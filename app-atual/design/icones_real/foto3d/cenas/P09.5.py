@@ -1,0 +1,16 @@
+# P09.5 oracoes reduzidas: luneta de latao recolhida (a mesma oracao numa forma mais curta)
+from _por import *
+cena_p()
+lat = metal('#d4a52a', 0.2); cou = ruido_cor('#5a2f16', '#7a4322', 30, 0.6, bump=0.2)
+ob = []
+ob.append(cilindro((0, 0, 0), 0.24, 0.9, cou, rot=(0, math.radians(90), 0), chanfro=0.01))
+for x in (-0.47, 0.47): ob.append(cilindro((x, 0, 0), 0.255, 0.08, lat, rot=(0, math.radians(90), 0), chanfro=0.015))
+ob.append(cilindro((0.6, 0, 0), 0.2, 0.22, lat, rot=(0, math.radians(90), 0), chanfro=0.01))
+ob.append(cilindro((0.74, 0, 0), 0.215, 0.05, lat, rot=(0, math.radians(90), 0), chanfro=0.01))
+ob.append(cilindro((0.84, 0, 0), 0.16, 0.16, lat, rot=(0, math.radians(90), 0), chanfro=0.01))
+ob.append(cilindro((0.93, 0, 0), 0.12, 0.08, lat, rot=(0, math.radians(90), 0), chanfro=0.01))
+ob.append(cilindro((-0.6, 0, 0), 0.28, 0.18, lat, rot=(0, math.radians(90), 0), chanfro=0.02))
+le = esfera((-0.69, 0, 0), 0.24, vidro('#cfe6ff', 0.0)); le.scale = (0.12, 1, 1); ob.append(le)
+for x in (-0.25, 0.25): ob.append(toro((x, 0, 0), 0.245, 0.012, lat, rot=(0, math.radians(90), 0)))
+g = grupo(ob, rot=(0, 0, math.radians(-30))); no_chao(g)
+render(saida('P09.5'), elev=34, azim=-14)

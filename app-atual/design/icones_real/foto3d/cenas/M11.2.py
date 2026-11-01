@@ -1,0 +1,15 @@
+from _mat import *
+cena()
+# lata cilindrica: base circular de raio r e altura h (V = pi r^2 h)
+alu = metal('#d8dbe0', 0.18); r = 0.55; h = 1.4
+cilindro((0, 0, h / 2), r, h - 0.12, plastico(VERM, 0.25), chanfro=0)
+cilindro((0, 0, h / 2), r * 1.003, 0.18, plastico('#ffffff', 0.3), chanfro=0)
+cilindro((0, 0, h / 2 + 0.2), r * 1.004, 0.04, plastico(AMAR, 0.3), chanfro=0)
+cilindro((0, 0, h / 2 - 0.2), r * 1.004, 0.04, plastico(AMAR, 0.3), chanfro=0)
+cilindro((0, 0, 0.04), r * 0.97, 0.08, alu, chanfro=0.02)
+cilindro((0, 0, h - 0.04), r * 0.97, 0.08, alu, chanfro=0.02)
+toro((0, 0, h), r * 0.95, 0.028, alu)
+cilindro((0, 0, h - 0.005), r * 0.86, 0.02, alu, chanfro=0.01)
+caixa((0.15, -0.05, h + 0.01), (0.34, 0.16, 0.015), alu, chanfro=0.006)
+cilindro((0.27, -0.05, h + 0.012), 0.05, 0.02, metal('#a9adb3', 0.3), chanfro=0.004)
+fim('M11.2', elev=28, azim=-14)
