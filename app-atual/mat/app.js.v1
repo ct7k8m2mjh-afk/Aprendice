@@ -1,0 +1,592 @@
+const D = JSON.parse(document.getElementById('dados').textContent);
+const BANCO = D.banco, TEORIA = D.teoria;
+const POR = {}; BANCO.forEach(q => POR[q.id] = q);
+const MODS = {};
+BANCO.forEach(q => { (MODS[q.modulo] = MODS[q.modulo] || []).push(q); });
+const SUBS = {};
+BANCO.forEach(q => { (SUBS[q.sub] = SUBS[q.sub] || []).push(q); });
+Object.values(SUBS).forEach(l => l.sort((a, b) => a.dif - b.dif));
+const NOMESUB = D.nomesub || {};
+const KEY = 'saocamilo.mat.v1';
+const IMGS = {};
+async function carregaImagens(id) {
+  if (IMGS[id]) return IMGS[id];
+  const r = await fetch('img/' + id + '.json');
+  if (!r.ok) throw new Error('falha ao carregar a questão');
+  IMGS[id] = await r.json();
+  return IMGS[id];
+}
+const $ = s => document.querySelector(s);
+
+let S = { q: {}, ult: null, sims: [], tema: null };
+try { const r = localStorage.getItem(KEY); if (r) S = Object.assign(S, JSON.parse(r)); } catch (e) { }
+const salvaLocal = () => { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) { } };
+const salva = () => { salvaLocal(); agendaSync(); };
+
+/* ---------- progresso salvo fora do navegador ---------- */
+let DB = null, UID = null, DL = null, syncTimer = null, syncEstado = 'local';
+function mesclaQ(a, b) {
+  const out = {}, ids = new Set([...Object.keys(a || {}), ...Object.keys(b || {})]);
+  ids.forEach(id => {
+    const x = (a || {})[id], y = (b || {})[id];
+    if (!x) { out[id] = y; return; }
+    if (!y) { out[id] = x; return; }
+    const porTs = {};
+    (x.tent || []).concat(y.tent || []).forEach(t => { porTs[t.ts] = t; });
+    out[id] = { tent: Object.values(porTs).sort((p, q) => p.ts - q.ts), rev: !!(x.rev || y.rev) };
+  });
+  return out;
+}
+function mesclaSims(a, b) {
+  const porTs = {};
+  (a || []).concat(b || []).forEach(x => { porTs[x.ts] = x; });
+  return Object.values(porTs).sort((p, q) => p.ts - q.ts);
+}
+function refProgresso() { return DB && UID ? DB.doc('data/users/' + UID + '/progresso') : null; }
+async function escreveRemoto() {
+  const ref = refProgresso(); if (!ref) return;
+  try { await ref.set({ q: S.q, sims: S.sims || [], atualizado: Date.now() }); syncEstado = 'conta'; }
+  catch (e) { syncEstado = e && e.code === 'invalid_argument' ? 'semPermissao' : 'erro'; }
+  pintaSync();
+}
+function agendaSync() {
+  if (!refProgresso()) return;
+  clearTimeout(syncTimer);
+  syncTimer = setTimeout(escreveRemoto, 1500);
+}
+function pintaSync() {
+  const txt = {
+    conta: 'Progresso salvo na sua conta: ele volta em qualquer aparelho em que você abrir esta página, mesmo se limpar o navegador.',
+    local: 'Progresso salvo só neste navegador. Se limpar os dados do navegador ou trocar de aparelho, ele se perde — use o botão de baixar, em Progresso.',
+    semPermissao: 'Não consegui salvar na sua conta (esta visualização não tem permissão de escrita). Seu progresso está salvo neste navegador.',
+    erro: 'Falha ao salvar na sua conta agora. Seu progresso continua salvo neste navegador e eu tento de novo na próxima resposta.'
+  }[syncEstado] || '';
+  const a = document.getElementById('sync'); if (a) a.textContent = txt;
+  const b = document.getElementById('sync2'); if (b) b.textContent = txt;
+}
+(async function iniciaCapacidades() {
+  try {
+    if (!window.claude || !window.claude.use) { pintaSync(); return; }
+    const [db, user, dl] = await Promise.all([
+      claude.use('db').catch(() => null),
+      claude.use('user').catch(() => null),
+      claude.use('downloads').catch(() => null)
+    ]);
+    DL = dl || null;
+    const bex = document.getElementById('b-export');
+    if (bex && !DL) bex.textContent = 'Copiar meu progresso (sem download aqui)';
+    if (db && user) {
+      const id = await user.id().catch(() => null);
+      if (id) {
+        DB = db; UID = id;
+        const snap = await refProgresso().get().catch(() => null);
+        if (snap && snap.exists) {
+          const r = snap.data() || {};
+          S.q = mesclaQ(S.q, r.q); S.sims = mesclaSims(S.sims, r.sims);
+          salvaLocal();
+          const v = ['inicio', 'estudar', 'escada', 'simulado', 'progresso'].find(x => !document.getElementById('v-' + x).hidden);
+          if (v === 'inicio') pintaInicio(); else if (v === 'progresso') pintaProgresso();
+          else if (v === 'escada' && subAtual) pintaEscada(subAtual); else if (v === 'estudar') pintaModulos();
+        }
+        syncEstado = 'conta';
+        await escreveRemoto();
+      }
+    }
+  } catch (e) { syncEstado = 'erro'; }
+  pintaSync();
+})();
+
+/* ---------- tema ---------- */
+const aplicaTema = () => S.tema ? document.documentElement.setAttribute('data-theme', S.tema) : document.documentElement.removeAttribute('data-theme');
+aplicaTema();
+$('#btema').onclick = () => {
+  const esc = S.tema ? S.tema === 'dark' : matchMedia('(prefers-color-scheme:dark)').matches;
+  S.tema = esc ? 'light' : 'dark'; aplicaTema(); salva();
+};
+
+/* ---------- estatística ---------- */
+const est = id => S.q[id] || null;
+const tentativas = id => (est(id) ? est(id).tent : []);
+const acertou = id => tentativas(id).some(t => t.ok);
+const respondida = id => tentativas(id).length > 0;
+function taxa(lista) {
+  const t = lista.flatMap(q => tentativas(q.id));
+  return t.length ? Math.round(100 * t.filter(x => x.ok).length / t.length) : null;
+}
+const domSub = s => { const l = (SUBS[s] || []).filter(q => q.degrau); return l.length ? l.filter(q => acertou(q.id)).length / l.length : 0; };
+const domMod = m => { const l = MODS[m] || []; return l.length ? l.filter(q => acertou(q.id)).length / l.length : 0; };
+const nomeSub = s => NOMESUB[s] || s;
+const FAIXA = d => d <= 2 ? ['Iniciante', 'dif1'] : d <= 4 ? ['Intermediário', 'dif2'] : d === 5 ? ['Avançado', 'dif3'] : d === 6 ? ['Vestibular', 'dif4'] : ['Vestibular+', 'dif4'];
+const rotuloDif = d => d <= 2 ? ['Iniciante', 'dif1'] : d <= 4 ? ['Intermediário', 'dif2'] : d <= 5 ? ['Avançado', 'dif3'] : d === 6 ? ['Vestibular', 'dif4'] : ['Vestibular+', 'dif4'];
+
+/* ---------- navegação ---------- */
+let ctx = null;   // {lista:[ids], i, origem, sim}
+function vai(v) {
+  ['inicio', 'estudar', 'escada', 'questao', 'simulado', 'progresso'].forEach(x => { const e = document.getElementById('v-' + x); if (e) e.hidden = x !== v; });
+  document.querySelectorAll('nav.bot button').forEach(b => b.classList.toggle('on', b.dataset.v === v));
+  scrollTo(0, 0);
+  if (v === 'inicio') pintaInicio();
+  if (v === 'estudar') pintaModulos();
+  if (v === 'simulado') pintaSimulados();
+  if (v === 'progresso') pintaProgresso();
+}
+document.querySelectorAll('nav.bot button').forEach(b => b.onclick = () => {
+  if (b.dataset.v === 'questao') return;
+  vai(b.dataset.v);
+});
+
+/* ---------- tela inicial ---------- */
+function pintaInicio() {
+  const resp = BANCO.filter(q => respondida(q.id)).length;
+  const tudo = BANCO.flatMap(q => tentativas(q.id));
+  $('#k-q').textContent = BANCO.length;
+  $('#k-resp').textContent = resp;
+  $('#k-acerto').textContent = tudo.length ? Math.round(100 * tudo.filter(t => t.ok).length / tudo.length) + '%' : '—';
+  const subs = Object.keys(SUBS);
+  $('#k-sub').textContent = subs.length;
+  $('#k-conc').textContent = subs.filter(s => domSub(s) >= 0.8).length;
+  const fracos = subs.filter(s => { const t = taxa(SUBS[s]); return t !== null && t < 60; });
+  $('#k-ref').textContent = fracos.length;
+  if (!resp) {
+    $('#i-tit').textContent = 'Comece pelos fundamentos';
+    $('#i-sub').textContent = BANCO.length + ' questões reais de provas da Vunesp, organizadas em escadas de 10 degraus por conteúdo: o degrau 1 é de ensino médio, o 10 é de prova de medicina. Suba um por vez.';
+  } else {
+    const t = Math.round(100 * tudo.filter(x => x.ok).length / tudo.length);
+    $('#i-tit').textContent = resp + ' de ' + BANCO.length + ' questões feitas';
+    $('#i-sub').textContent = 'Acerto de ' + t + '%. ' + (fracos.length ? 'Os conteúdos abaixo são os que mais te derrubaram.' : 'Nenhum conteúdo abaixo de 60% de acerto até agora.');
+  }
+  const ref = $('#reforco'); ref.innerHTML = '';
+  const ordem = fracos.map(s => [s, taxa(SUBS[s])]).sort((a, b) => a[1] - b[1]).slice(0, 6);
+  if (!ordem.length) ref.innerHTML = '<div class="vazio"><b>Sem dados ainda</b>Responda algumas questões e os conteúdos fracos aparecem aqui.</div>';
+  ordem.forEach(([s, t]) => {
+    const d = document.createElement('div'); d.className = 'linha';
+    d.innerHTML = '<span class="bolinha b-err"></span><span class="nm">' + nomeSub(s) + '</span><span class="mono" style="color:var(--errado)">' + t + '%</span>';
+    d.style.cursor = 'pointer'; d.onclick = () => abrirSub(s);
+    ref.appendChild(d);
+  });
+  const pr = {}; BANCO.forEach(q => { const k = q.escola + ' ' + q.ano; pr[k] = (pr[k] || 0) + 1; });
+  const pe = {}; BANCO.forEach(q => { pe[q.escola] = (pe[q.escola] || 0) + 1; });
+  $('#procedencia').innerHTML = Object.entries(pe).sort((a, b) => b[1] - a[1]).map(([e, n]) =>
+    '<div class="linha"><span class="nm">' + e + '</span><span class="mono">' + n + ' questões</span></div>').join('');
+}
+$('#b-continuar').onclick = () => {
+  if (S.ult && POR[S.ult]) return abrirQuestao(S.ult, null);
+  const prox = BANCO.slice().sort((a, b) => a.dif - b.dif).find(q => !respondida(q.id));
+  if (prox) abrirQuestao(prox.id, null); else vai('estudar');
+};
+
+/* ---------- estudar ---------- */
+function pintaModulos() {
+  const alvo = $('#modulos'); alvo.innerHTML = '';
+  Object.keys(TEORIA).filter(m => MODS[m]).sort().forEach(m => {
+    const info = TEORIA[m], qs = MODS[m], d = domMod(m);
+    const det = document.createElement('details'); det.className = 'painel mod';
+    const sum = document.createElement('summary');
+    sum.innerHTML = '<span class="nm">' + info.nome + '<small>' + m + ' · ' + qs.length + (qs.length === 1 ? ' questão real' : ' questões reais') + '</small></span>' +
+      '<span class="prog"><i style="width:' + (d * 100) + '%"></i></span><span class="pc">' + Math.round(d * 100) + '%</span>';
+    det.appendChild(sum);
+    const corpo = document.createElement('div'); corpo.className = 'corpo';
+    const subs = [...new Set(qs.map(q => q.sub))].sort();
+    corpo.innerHTML =
+      '<div class="teoria"><p>' + info.resumo + '</p></div>' +
+      '<div class="form">' + info.formulas.map(f => '<div>' + f + '</div>').join('') + '</div>' +
+      '<div class="cuida"><b>Erro clássico</b>' + info.erro + '</div>' +
+      subs.map(s => {
+        const l = SUBS[s], deg = l.filter(q => q.degrau), feitas = deg.filter(q => acertou(q.id)).length;
+        const falta = deg.length < 10 ? '<span class="falta">' + deg.length + ' de 10 degraus</span>' : '';
+        return '<button class="sub" data-sub="' + s + '"><span class="t">' + nomeSub(s) + '</span>' + falta +
+          '<span class="q">' + feitas + '/' + deg.length + '</span></button>';
+      }).join('');
+    corpo.querySelectorAll('[data-sub]').forEach(b => b.onclick = () => abrirSub(b.dataset.sub));
+    det.appendChild(corpo); alvo.appendChild(det);
+  });
+  const completos = Object.keys(SUBS).filter(s => SUBS[s].filter(q => q.degrau).length >= 10).length;
+  $('#aviso-cobertura').innerHTML = 'Cada conteúdo tem uma escada de 10 degraus, do nível iniciante até questão de prova de medicina. ' +
+    '<b>' + completos + '</b> conteúdos já têm os 10 degraus; os outros mostram quantos têm hoje. ' +
+    'Nenhum degrau foi preenchido com questão inventada: só entra questão de prova oficial publicada, com gabarito.';
+}
+let subAtual = null;
+function abrirSub(s) { subAtual = s; vai('escada'); pintaEscada(s); }
+function escadaDe(s) {
+  return (SUBS[s] || []).filter(q => q.degrau).sort((a, b) => a.degrau - b.degrau);
+}
+function extrasDe(s) { return (SUBS[s] || []).filter(q => !q.degrau).sort((a, b) => a.dif - b.dif); }
+function pintaEscada(s) {
+  const deg = escadaDe(s), ext = extrasDe(s);
+  const feitos = deg.filter(q => acertou(q.id)).length;
+  const prox = deg.find(q => !acertou(q.id));
+  $('#e-tit').textContent = nomeSub(s).charAt(0).toUpperCase() + nomeSub(s).slice(1);
+  $('#e-sub').textContent = deg.length === 10
+    ? 'Escada completa: 10 degraus, do nível iniciante até questão de prova de medicina. Você venceu ' + feitos + '.'
+    : 'Este conteúdo tem ' + deg.length + ' degraus reais hoje (a escada cheia são 10). Você venceu ' + feitos + '. Nenhuma lacuna foi preenchida com questão inventada.';
+  $('#e-volta').onclick = () => vai('estudar');
+  const barra = '<div class="escadabar">' + deg.map(q => {
+    const t = tentativas(q.id);
+    const cl = acertou(q.id) ? 'ok' : (t.length ? 'er' : (prox && q.id === prox.id ? 'at' : ''));
+    return '<i class="' + cl + '"></i>';
+  }).join('') + '</div>';
+  $('#e-degraus').innerHTML = barra + deg.map(q => {
+    const [fx, cls] = FAIXA(q.dif);
+    const t = tentativas(q.id);
+    const est2 = acertou(q.id) ? 'feito' : (t.length ? 'errou' : '');
+    const agora = prox && q.id === prox.id ? ' agora' : '';
+    return '<button class="degrau ' + est2 + agora + '" data-id="' + q.id + '">' +
+      '<span class="num">' + q.degrau + '</span>' +
+      '<span class="inf"><b>' + (acertou(q.id) ? 'Vencido' : (t.length ? 'Tente de novo' : 'Degrau ' + q.degrau)) + '</b>' +
+      '<small>' + q.escola + ' ' + q.ano + ' · questão ' + q.n + ' · ~' + q.tempo + ' min</small></span>' +
+      '<span class="faixa ' + cls + '">' + fx + '</span></button>';
+  }).join('');
+  $('#e-degraus').querySelectorAll('[data-id]').forEach(b => b.onclick = () => {
+    const lista = deg.map(q => q.id);
+    ctx = { lista, i: lista.indexOf(b.dataset.id), origem: s };
+    abrirQuestao(b.dataset.id, ctx);
+  });
+  $('#e-extras').innerHTML = ext.length
+    ? '<h2 class="sec">Mais ' + ext.length + ' questões deste conteúdo, fora da escada</h2>' +
+      '<div class="painel">' + ext.map(q => '<div class="linha" data-id="' + q.id + '" style="cursor:pointer">' +
+        '<span class="bolinha ' + (acertou(q.id) ? 'b-ok' : (tentativas(q.id).length ? 'b-err' : '')) + '"></span>' +
+        '<span class="nm">' + q.escola + ' ' + q.ano + ' · questão ' + q.n + '</span>' +
+        '<span class="mono">nível ' + q.dif + '</span></div>').join('') + '</div>'
+    : '';
+  $('#e-extras').querySelectorAll('[data-id]').forEach(b => b.onclick = () => {
+    const lista = ext.map(q => q.id);
+    ctx = { lista, i: lista.indexOf(b.dataset.id), origem: s };
+    abrirQuestao(b.dataset.id, ctx);
+  });
+}
+
+/* ---------- questão ---------- */
+let t0 = 0, tTimer = null;
+function abrirQuestao(id, contexto) {
+  ctx = contexto || ctx;
+  const q = POR[id]; if (!q) return;
+  S.ult = id; salva();
+  vai('questao');
+  $('#q-cont').textContent = ctx && ctx.lista ? (ctx.i + 1) + ' de ' + ctx.lista.length : '';
+  $('#q-volta').onclick = () => { clearInterval(tTimer); if (ctx && ctx.sim) return vai('simulado'); if (subAtual) { vai('escada'); pintaEscada(subAtual); } else vai('estudar'); };
+  t0 = Date.now();
+  clearInterval(tTimer);
+  tTimer = setInterval(() => {
+    const s = Math.floor((Date.now() - t0) / 1000);
+    $('#q-crono').textContent = String(Math.floor(s / 60)).padStart(2, '0') + ':' + String(s % 60).padStart(2, '0');
+  }, 1000);
+  desenhaQuestao(q, null);
+}
+function alternativasHTML(q, marcada, corrigida) {
+  return 'ABCDE'.split('').map(L => {
+    const conteudo = q.tipo === 'imagem'
+      ? '<img src="' + q.imgalts[L].src + '" alt="alternativa ' + L + '">'
+      : (q.alts[L] || '');
+    let cls = 'alt';
+    if (corrigida) { if (L === q.gab) cls += ' certo'; else if (L === marcada) cls += ' errado'; }
+    else if (L === marcada) cls += ' sel';
+    return '<button class="' + cls + '" data-l="' + L + '"><span class="bol">' + L + '</span><span class="co">' + conteudo + '</span></button>';
+  }).join('');
+}
+async function desenhaQuestao(q, marcada) {
+  if (q.remoto && !IMGS[q.id]) {
+    $('#q-corpo').innerHTML = '<div class="print"><div class="carregando">carregando a questão…</div></div>';
+    try { await carregaImagens(q.id); }
+    catch (e) {
+      $('#q-corpo').innerHTML = '<div class="print"><div class="carregando">não consegui carregar esta questão agora. ' +
+        '<a href="' + q.url + '" target="_blank" rel="noopener">abrir o caderno oficial</a></div></div>';
+      return;
+    }
+  }
+  if (q.remoto) { q.img = IMGS[q.id].img; q.imgalts = IMGS[q.id].imgalts; }
+  const [rot, cls] = rotuloDif(q.dif);
+  const h = tentativas(q.id);
+  const corpo = $('#q-corpo');
+  const temPrint = !!(q.print || q.img);
+  const prova = q.print
+    ? '<div class="print"><img src="crop/' + q.id + '.webp" alt="questão ' + q.n + ' da prova ' + q.escola + ' ' + q.ano + '"></div>'
+    : (q.img
+      ? '<div class="print"><img src="' + q.img.src + '" alt="enunciado"></div>' +
+        '<div class="print" style="margin-top:8px">' + 'ABCDE'.split('').map(L =>
+          '<img src="' + q.imgalts[L].src + '" alt="alternativa ' + L + '">').join('') + '</div>'
+      : '<div class="enun"><p class="pergunta">A questão</p><div class="txt">' + q.enun + '</div>' +
+        'ABCDE'.split('').map(L => '<p class="alt-t"><b>' + L + ')</b> ' + (q.alts[L] || '') + '</p>').join('') + '</div>');
+  corpo.innerHTML =
+    '<div class="qmeta entra">' +
+    (q.degrau ? '<span class="tag dif ' + FAIXA(q.dif)[1] + '">Degrau ' + q.degrau + ' de 10 · ' + FAIXA(q.dif)[0] + '</span>'
+              : '<span class="tag dif ' + cls + '">' + rot + '</span>') +
+    '<span class="tag">' + q.escola + ' ' + q.ano + '</span>' +
+    '<span class="tag">~' + q.tempo + ' min</span></div>' +
+    '<div class="entra2">' + prova +
+    '<div class="bolhas" id="bolhas">' + 'ABCDE'.split('').map(L =>
+      '<button class="bolha" data-l="' + L + '">' + L + '</button>').join('') + '</div>' +
+    '<div class="acoes"><button class="btn" id="b-conf">Confirmar resposta</button>' +
+    '<button class="btn sec" style="margin-top:0" id="b-rev">' + (est(q.id) && est(q.id).rev ? '★ marcada' : '☆ marcar') + '</button></div>' +
+    (temPrint && q.enun ? '<button class="texto-toggle" id="b-texto">＋ ler a questão em texto</button>' +
+      '<div class="texto-box" id="texto-box" hidden>' + q.enun +
+      'ABCDE'.split('').map(L => '<div class="alt-t"><b>' + L + ')</b> ' + (q.alts[L] || '') + '</div>').join('') + '</div>' : '') +
+    '<details class="ficha"><summary>de onde vem esta questão' + (h.length ? ' · suas tentativas' : '') + '</summary>' +
+    '<div class="fonte">Prova oficial ' + q.escola + ' ' + q.ano + ', questão ' + q.n + ', banca ' + q.banca + '. ' +
+    '<a href="' + q.url + '" target="_blank" rel="noopener">abrir o caderno em PDF</a>' +
+    (h.length ? '<br>Suas tentativas: ' + h.map(t => (t.ok ? '✔' : '✘') + t.letra).join(' · ') : '') +
+    '</div></details></div>';
+  let sel = marcada;
+  corpo.querySelectorAll('#bolhas .bolha').forEach(b => b.onclick = () => {
+    sel = b.dataset.l;
+    corpo.querySelectorAll('#bolhas .bolha').forEach(x => x.classList.toggle('sel', x.dataset.l === sel));
+  });
+  $('#b-conf').onclick = () => { if (!sel) { $('#b-conf').textContent = 'Toque numa letra primeiro'; return; } confirma(q, sel); };
+  $('#b-rev').onclick = () => {
+    const e = S.q[q.id] = S.q[q.id] || { tent: [], rev: false };
+    e.rev = !e.rev; salva(); $('#b-rev').textContent = e.rev ? '★ marcada' : '☆ marcar';
+  };
+  const bt = document.getElementById('b-texto');
+  if (bt) bt.onclick = () => {
+    const cx = $('#texto-box'); cx.hidden = !cx.hidden;
+    bt.textContent = (cx.hidden ? '＋' : '－') + ' ler a questão em texto';
+  };
+}
+
+function confirma(q, letra) {
+  clearInterval(tTimer);
+  const ok = letra === q.gab;
+  const e = S.q[q.id] = S.q[q.id] || { tent: [], rev: false };
+  e.tent.push({ letra, ok, ts: Date.now(), seg: Math.round((Date.now() - t0) / 1000) });
+  salva();
+  if (ctx && ctx.sim) { ctx.respostas = ctx.respostas || {}; ctx.respostas[q.id] = ok; }
+  const corpo = $('#q-corpo');
+  corpo.querySelectorAll('#bolhas .bolha').forEach(b => {
+    const L = b.dataset.l; b.classList.remove('sel');
+    if (L === q.gab) b.classList.add('certo');
+    else if (L === letra) b.classList.add('errado');
+    else b.classList.add('apaga');
+    b.onclick = null;
+  });
+  const acoes = corpo.querySelector('.acoes'); if (acoes) acoes.hidden = true;
+  const expl = q.tipo === 'imagem'
+    ? '<p style="margin:0 0 10px;font-size:17px;line-height:1.6">' + (q.expl.correta || '') + '</p>' +
+      (q.expl.erradas && q.expl.erradas[letra] && !ok ? '<p style="margin:0;color:var(--errado);font-size:16px;line-height:1.55"><b>Sua marcação (' + letra + '):</b> ' + q.expl.erradas[letra] + '</p>' : '')
+    : '<ol class="passos">' + (q.passos || []).map(p => '<li>' + p + '</li>').join('') + '</ol>';
+  const erradas = e.tent.filter(t => !t.ok).length;
+  const bloco = document.createElement('div');
+  bloco.innerHTML =
+    '<div class="veredito entra ' + (ok ? 'v1' : 'v0') + '"><b>' + (ok ? 'Correto.' : 'Incorreto.') + '</b>' +
+    'Gabarito oficial: <b style="display:inline">' + q.gab + '</b>.</div>' +
+    '<div class="resolucao entra2">' +
+    '<h3>Como se resolve</h3>' +
+    '<p class="conc">' + q.conceito + '</p>' + expl +
+    '<div class="sep"></div>' +
+    '<h3>A armadilha</h3><p style="margin:0;font-size:16px;line-height:1.55">' + q.armadilha + '</p>' +
+    (erradas >= 2 ? '<div class="aviso-box" style="margin-top:16px"><b>Você já errou esta questão ' + erradas + ' vezes.</b> ' +
+      'Volte ao módulo ' + q.modulo + ', releia a teoria e as fórmulas, e tente de novo.</div>' : '') +
+    '</div>' +
+    '<div class="acoes"><button class="btn" id="b-prox">' + (ctx && ctx.lista && ctx.i < ctx.lista.length - 1 ? 'Próxima questão' : 'Terminar') + '</button>' +
+    '<button class="btn sec" style="margin-top:0" id="b-refaz">Refazer esta questão</button></div>' +
+    (!ok ? '<button class="btn sec" id="b-teoria">Revisar a teoria de ' + TEORIA[q.modulo].nome + '</button>' : '');
+  corpo.appendChild(bloco);
+  $('#b-refaz').onclick = () => { t0 = Date.now(); desenhaQuestao(q, null); scrollTo(0, 0); };
+  $('#b-prox').onclick = proxima;
+  const bt = document.getElementById('b-teoria');
+  if (bt) bt.onclick = () => { vai('estudar'); setTimeout(() => { const d = document.querySelectorAll('#modulos details')[Object.keys(TEORIA).filter(m => MODS[m]).sort().indexOf(q.modulo)]; if (d) { d.open = true; d.scrollIntoView({ block: 'center' }); } }, 60); };
+  bloco.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+function proxima() {
+  if (ctx && ctx.lista && ctx.i < ctx.lista.length - 1) { ctx.i++; abrirQuestao(ctx.lista[ctx.i], ctx); return; }
+  if (ctx && ctx.sim) return fimSimulado();
+  if (ctx && ctx.origem) {
+    vai('escada'); pintaEscada(ctx.origem); return;
+  }
+  if (false) {
+    const l = SUBS[ctx.origem], ac = l.filter(q => acertou(q.id)).length;
+    $('#q-corpo').innerHTML = '<div class="vazio"><b>Conteúdo concluído</b>Você acertou ' + ac + ' das ' + l.length +
+      ' questões de ' + nomeSub(ctx.origem) + '.</div><button class="btn" id="b-volta2">Escolher outro conteúdo</button>';
+    $('#b-volta2').onclick = () => vai('estudar');
+    return;
+  }
+  vai('estudar');
+}
+
+/* ---------- simulados ---------- */
+const SIMS = [
+  { id: 's5', nome: 'Simulado rápido', desc: '5 questões sorteadas de todo o banco', n: 5, f: () => BANCO },
+  { id: 'sdif', nome: 'Só as difíceis', desc: 'Nível 6 e 7: padrão de prova de medicina', n: 8, f: () => BANCO.filter(q => q.dif >= 6) },
+  { id: 'srec', nome: 'Conteúdos mais recorrentes', desc: 'Combinatória, probabilidade, geometria e funções', n: 10, f: () => BANCO.filter(q => ['M13', 'M11', 'M08', 'M05', 'M04'].includes(q.modulo)) },
+  { id: 'serr', nome: 'Revisão dos meus erros', desc: 'Só o que você errou alguma vez', n: 10, f: () => BANCO.filter(q => tentativas(q.id).some(t => !t.ok)) },
+  { id: 'ssc', nome: 'São Camilo e Santa Casa', desc: 'As duas bancas mais próximas da sua prova', n: 10, f: () => BANCO.filter(q => /Camilo|Santa Casa/.test(q.escola)) }
+];
+function pintaSimulados() {
+  const alvo = $('#lista-sim'); alvo.innerHTML = '';
+  SIMS.forEach(s => {
+    const pool = s.f();
+    const d = document.createElement('div'); d.className = 'linha'; d.style.cursor = 'pointer';
+    d.innerHTML = '<span class="nm"><b class="disp">' + s.nome + '</b><br><span class="dica">' + s.desc + '</span></span>' +
+      '<span class="mono">' + Math.min(s.n, pool.length) + ' q</span>';
+    d.onclick = () => pool.length ? iniciaSimulado(s) : alert2('Ainda não há questões para este simulado.');
+    alvo.appendChild(d);
+  });
+  const h = $('#hist-sim');
+  h.innerHTML = (S.sims || []).length ? S.sims.slice(-10).reverse().map(x =>
+    '<div class="linha"><span class="nm">' + x.nome + '</span><span class="mono">' + x.acertos + '/' + x.total +
+    ' · ' + Math.round(x.seg / 60) + ' min</span></div>').join('')
+    : '<div class="vazio"><b>Nenhum simulado ainda</b>Escolha um acima: o tempo é cronometrado.</div>';
+}
+function alert2(m) { const h = $('#hist-sim'); if (h) h.innerHTML = '<div class="vazio">' + m + '</div>'; }
+function iniciaSimulado(s) {
+  const pool = s.f().slice();
+  for (let i = pool.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1));[pool[i], pool[j]] = [pool[j], pool[i]]; }
+  const lista = pool.slice(0, s.n).sort((a, b) => a.dif - b.dif).map(q => q.id);
+  ctx = { lista, i: 0, sim: s, t0: Date.now(), respostas: {} };
+  abrirQuestao(lista[0], ctx);
+}
+function fimSimulado() {
+  const r = ctx.respostas || {}, total = ctx.lista.length;
+  const acertos = Object.values(r).filter(Boolean).length;
+  const seg = Math.round((Date.now() - ctx.t0) / 1000);
+  S.sims = S.sims || []; S.sims.push({ nome: ctx.sim.nome, acertos, total, seg, ts: Date.now() }); salva();
+  $('#q-corpo').innerHTML = '<div class="vazio"><b>' + acertos + ' de ' + total + ' no simulado</b>' +
+    'Tempo total: ' + Math.floor(seg / 60) + ' min ' + (seg % 60) + ' s — média de ' + Math.round(seg / total) + ' s por questão.</div>' +
+    '<button class="btn" id="b-sim2">Voltar aos simulados</button>';
+  $('#b-sim2').onclick = () => vai('simulado');
+  ctx = null;
+}
+$('#b-simulado5').onclick = () => iniciaSimulado(SIMS[0]);
+
+/* ---------- progresso ---------- */
+function pintaProgresso() {
+  pintaSync();
+  const dd = $('#desempenho'); dd.innerHTML = '';
+  Object.keys(MODS).sort().forEach(m => {
+    const t = taxa(MODS[m]), d = domMod(m), nome = (TEORIA[m] || {}).nome || m;
+    const el = document.createElement('div'); el.className = 'linha';
+    el.innerHTML = '<span class="nm">' + nome + '<br><span class="dica">' + MODS[m].filter(q => respondida(q.id)).length + ' de ' + MODS[m].length + ' respondidas</span></span>' +
+      '<span class="prog"><i style="width:' + (d * 100) + '%"></i></span><span class="pc">' + (t === null ? '—' : t + '%') + '</span>';
+    dd.appendChild(el);
+  });
+  const pad = $('#padroes'); pad.innerHTML = '';
+  const regras = [
+    ['M03', 'porcentagem e acréscimos sucessivos', 'Refaça pensando em fator multiplicativo: 10% de aumento é ×1,1, e dois seguidos são ×1,21, nunca +20%.'],
+    ['M13', 'contagem: arranjo × combinação', 'Antes de contar, responda: a ordem muda o resultado? Se não muda, é combinação.'],
+    ['M14', 'leitura de tabela e gráfico', 'Marque no enunciado o que o eixo mede e em que unidade antes de fazer qualquer conta.'],
+    ['M11', 'volume e conversão de unidade', 'Padronize tudo em cm, dm ou m antes de aplicar a fórmula. 1 dm³ = 1 L.'],
+    ['M09', 'semelhança de triângulos', 'Escreva a proporção com os lados correspondentes na mesma ordem; em áreas, eleve a razão ao quadrado.'],
+    ['M10', 'trigonometria no triângulo', 'Identifique quem é oposto e quem é adjacente ao ângulo citado antes de escolher seno, cosseno ou tangente.'],
+    ['M06', 'logaritmo e meia-vida', 'Conte quantas meias-vidas cabem no tempo dado; log de soma não se separa.']
+  ];
+  const achados = regras.filter(([m]) => { const t = taxa(MODS[m] || []); return t !== null && t < 65; });
+  pad.innerHTML = achados.length ? achados.map(([m, nome, dica]) =>
+    '<div class="linha"><span class="nm"><b class="disp">' + nome + '</b><br><span class="dica">' + dica + '</span></span>' +
+    '<span class="mono" style="color:var(--errado)">' + taxa(MODS[m]) + '%</span></div>').join('')
+    : '<div class="vazio"><b>Nenhum padrão de erro detectado</b>Ou você está indo bem, ou ainda há poucas respostas registradas.</div>';
+  const rev = $('#revisar');
+  const marcadas = Object.keys(S.q).filter(id => S.q[id].rev && POR[id]);
+  rev.innerHTML = marcadas.length ? marcadas.map(id => {
+    const q = POR[id];
+    return '<div class="linha" data-id="' + id + '" style="cursor:pointer"><span class="bolinha b-rev"></span>' +
+      '<span class="nm">' + q.escola + ' ' + q.ano + ' · questão ' + q.n + '<br><span class="dica">' + nomeSub(q.sub) + '</span></span>' +
+      '<span class="mono">nível ' + q.dif + '</span></div>';
+  }).join('') : '<div class="vazio"><b>Nada marcado</b>Use o botão "marcar para revisão" dentro de uma questão.</div>';
+  rev.querySelectorAll('[data-id]').forEach(e => e.onclick = () => abrirQuestao(e.dataset.id, null));
+}
+$('#b-export').onclick = async () => {
+  const b = $('#b-export'), txt = JSON.stringify(S);
+  const voltar = t => setTimeout(() => b.textContent = t, 4500);
+  if (DL) {
+    b.textContent = 'Preparando o arquivo…';
+    try {
+      await DL.save({ filename: 'progresso-matematica-saocamilo.json', data: txt });
+      b.textContent = 'Arquivo salvo'; voltar('Baixar meu progresso (.json)'); return;
+    } catch (e) {
+      const c = e && e.code;
+      if (c === 'declined') { b.textContent = 'Você cancelou o download'; voltar('Baixar meu progresso (.json)'); return; }
+      b.textContent = 'Download indisponível aqui — copiando o texto';
+    }
+  }
+  try {
+    await navigator.clipboard.writeText(txt);
+    b.textContent = 'Progresso copiado — cole num arquivo de texto'; voltar('Baixar meu progresso (.json)');
+  } catch (e) {
+    b.textContent = 'Selecione e copie o texto abaixo'; mostraTexto(txt);
+  }
+};
+function mostraTexto(t) {
+  const ta = document.createElement('textarea'); ta.value = t; ta.style.cssText = 'width:100%;height:120px;margin-top:8px';
+  $('#b-export').after(ta); ta.select();
+}
+$('#b-import').onclick = () => $('#f-import').click();
+$('#f-import').onchange = ev => {
+  const f = ev.target.files[0]; if (!f) return;
+  const r = new FileReader();
+  r.onload = () => { try { S = Object.assign(S, JSON.parse(r.result)); salva(); location.reload(); } catch (e) { $('#b-import').textContent = 'Arquivo inválido'; } };
+  r.readAsText(f);
+};
+$('#b-zerar').onclick = async () => {
+  const b = $('#b-zerar');
+  if (b.dataset.c !== '1') { b.dataset.c = '1'; b.textContent = 'Tem certeza? Toque de novo para apagar'; setTimeout(() => { b.dataset.c = ''; b.textContent = 'Apagar meu progresso'; }, 5000); return; }
+  S = { q: {}, ult: null, sims: [], tema: S.tema }; salvaLocal();
+  const ref = refProgresso();
+  if (ref) { try { await ref.delete(); } catch (e) { } }
+  location.reload();
+};
+function gravaAgora() {
+  salvaLocal();
+  clearTimeout(syncTimer);
+  if (refProgresso()) escreveRemoto();
+}
+addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') gravaAgora(); });
+addEventListener('pagehide', gravaAgora);
+addEventListener('beforeunload', () => { salvaLocal(); });
+
+/* ---------- tela cheia (com plano B para iPad/iPhone) ---------- */
+const docEl = document.documentElement;
+function emTelaCheia() {
+  return !!(document.fullscreenElement || document.webkitFullscreenElement);
+}
+function podeTelaCheia() {
+  return !!(docEl.requestFullscreen || docEl.webkitRequestFullscreen);
+}
+function pintaBotaoTela() {
+  const b = $('#bfull');
+  const ativo = emTelaCheia() || docEl.classList.contains('foco');
+  b.textContent = ativo ? '⤡' : '⤢';
+  b.setAttribute('aria-label', ativo ? 'Sair da tela cheia' : 'Tela cheia');
+}
+function entraFoco() { docEl.classList.add('foco'); pintaBotaoTela(); }
+function saiFoco() { docEl.classList.remove('foco'); pintaBotaoTela(); }
+async function alternaTela() {
+  if (emTelaCheia()) {
+    try { await (document.exitFullscreen ? document.exitFullscreen() : document.webkitExitFullscreen()); } catch (e) { }
+    saiFoco(); return;
+  }
+  if (docEl.classList.contains('foco')) { saiFoco(); return; }
+  if (podeTelaCheia()) {
+    try {
+      await (docEl.requestFullscreen ? docEl.requestFullscreen({ navigationUI: 'hide' }) : docEl.webkitRequestFullscreen());
+      pintaBotaoTela();
+      return;
+    } catch (e) { /* o visualizador recusou: cai no modo foco */ }
+  }
+  entraFoco();
+}
+$('#bfull').onclick = alternaTela;
+$('#sair-foco').onclick = () => { if (emTelaCheia()) alternaTela(); else saiFoco(); };
+addEventListener('fullscreenchange', pintaBotaoTela);
+addEventListener('webkitfullscreenchange', pintaBotaoTela);
+addEventListener('keydown', e => { if (e.key === 'Escape' && docEl.classList.contains('foco')) saiFoco(); });
+pintaBotaoTela();
+
+(function avisoTela() {
+  const p = $('#aviso-tela'); if (!p) return;
+  const soltaNaSafari = /tela\.html$/.test(location.pathname);
+  const dentroDeMoldura = (() => { try { return window.self !== window.top; } catch (e) { return true; } })();
+  if (soltaNaSafari) {
+    p.innerHTML = 'Pagina solta, fora do aplicativo do Claude. Toque em <b>\u2922</b> no topo para tela cheia, ou em ' +
+      '<b>compartilhar \u2192 Adicionar a Tela de In\u00edcio</b>: a\u00ed ele abre como aplicativo, sem barra nenhuma. ' +
+      'Aqui o progresso fica salvo neste navegador.';
+    return;
+  }
+  if (dentroDeMoldura) {
+    p.innerHTML = 'O visualizador do Claude n\u00e3o deixa a p\u00e1gina ocupar a tela toda. O bot\u00e3o <b>\u2922</b> no topo esconde o ' +
+      'cabe\u00e7alho e usa toda a \u00e1rea dispon\u00edvel aqui dentro. ' +
+      '<a href="tela.html" target="_blank" rel="noopener"><b>Abrir em tela cheia de verdade</b></a> \u2014 abre fora do aplicativo, ' +
+      'e l\u00e1 d\u00e1 para adicionar \u00e0 Tela de In\u00edcio.';
+  } else if (podeTelaCheia()) {
+    p.innerHTML = 'Toque em <b>\u2922</b> no topo para usar a tela cheia.';
+  }
+})();
+
+pintaInicio();
