@@ -7,6 +7,14 @@ Hoje existe um protótipo funcional em HTML estático com 4 matérias (Biologia,
 
 Fale com o dono do produto em português do Brasil, direto, passo a passo, sem assumir conhecimento técnico. Antes de escrever código, apresente o plano e espere aprovação. Enumere as tarefas e informe cada uma ao terminar.
 
+## Fases do projeto (respeitar a ordem)
+1. **Protótipo completo — FASE ATUAL.** Construir o app inteiro já no formato final (uma base de código para site + iOS + Android, para nada ser reescrito depois), rodando **só localmente**: todas as telas e funções, com o conteúdo real do `app-atual/`. Login, nuvem e IA ficam simulados (progresso salvo no aparelho). Nada de servidor, banco na nuvem, domínio, lojas ou deploy nesta fase. Mostrar cada tela com prints em tamanho de celular e de computador e uma prévia navegável.
+2. **Rodadas de ajustes** pedidas pelo dono, até ele aprovar.
+3. **Parte real:** contas, banco de dados na nuvem, IA do app pela API.
+4. **Simulador e aparelho real.**
+5. **Publicação:** site no ar e apps nas lojas.
+Não avançar de fase sem aprovação explícita do dono.
+
 ## Princípios do produto (não se quebram)
 1. **Questões só reais**, de provas publicadas, com a fonte (prova, ano, número, link). Nunca criar, redigitar ou "reconstruir" questão. O app mostra o print/fiel da questão original; o texto serve para acessibilidade e busca.
 2. **Gabarito só de fonte publicada** (oficial ou resolução reconhecida). Sem gabarito publicado, a questão não entra.
