@@ -1,0 +1,537 @@
+# Acentuação do campo `conceito` — 174 questões corrigidas
+
+Só acento, cedilha e til; nenhuma palavra, ordem ou pontuação mudou (conferido: texto sem acentos idêntico antes/depois).
+
+## bio (47)
+
+- **Pe1d4e32**
+  - antes: Ler o grafico de PPB, respiracao, PPL e biomassa ao longo da sucessao e concluir o balanco entre fotossintese e respiracao em cada estagio.
+  - depois: Ler o gráfico de PPB, respiração, PPL e biomassa ao longo da sucessão e concluir o balanço entre fotossíntese e respiração em cada estágio.
+- **P04e21cc**
+  - antes: Reconhecer a verminose pelo ovo eliminado nas fezes e pela via de saida do ovo a partir dos vasos mesentericos.
+  - depois: Reconhecer a verminose pelo ovo eliminado nas fezes e pela via de saída do ovo a partir dos vasos mesentéricos.
+- **P1ff66e3**
+  - antes: Reconhecer o mecanismo celular da autofagia: organela envolvida por membrana do reticulo e depois fundida ao lisossomo.
+  - depois: Reconhecer o mecanismo celular da autofagia: organela envolvida por membrana do retículo e depois fundida ao lisossomo.
+- **P9478a0b**
+  - antes: Acompanhar a quantidade de DNA por celula ao longo da interfase e das duas divisoes da meiose e identificar a fase a partir do valor lido no grafico.
+  - depois: Acompanhar a quantidade de DNA por célula ao longo da interfase e das duas divisões da meiose e identificar a fase a partir do valor lido no gráfico.
+- **Pa62a9f0**
+  - antes: Relacionar morfologia celular (microvilosidades e numero de mitocondrias) com a intensidade de reabsorcao e o gasto de ATP em cada segmento do tubulo renal.
+  - depois: Relacionar morfologia celular (microvilosidades e número de mitocôndrias) com a intensidade de reabsorção e o gasto de ATP em cada segmento do túbulo renal.
+- **P0e6c3a7**
+  - antes: Ler no grafico a variacao de volume da hemacia e classificar cada solucao quanto a tonicidade.
+  - depois: Ler no gráfico a variação de volume da hemácia e classificar cada solução quanto à tonicidade.
+- **P023b4d8**
+  - antes: Distinguir imunizacao ativa (no cavalo) de passiva (na pessoa que recebe o soro) e aplicar a resposta secundaria de memoria.
+  - depois: Distinguir imunização ativa (no cavalo) de passiva (na pessoa que recebe o soro) e aplicar a resposta secundária de memória.
+- **P9dc2eb5**
+  - antes: Usar as frequencias fenotipicas de um cruzamento-teste para descobrir o arranjo (cis ou trans) dos genes ligados e calcular a distancia em unidades de recombinacao.
+  - depois: Usar as frequências fenotípicas de um cruzamento-teste para descobrir o arranjo (cis ou trans) dos genes ligados e calcular a distância em unidades de recombinação.
+- **Pf1de617**
+  - antes: Ler a curva de dissociacao da hemoglobina e identificar em que ponto da circulacao o sangue tem alta ou baixa saturacao de oxigenio.
+  - depois: Ler a curva de dissociação da hemoglobina e identificar em que ponto da circulação o sangue tem alta ou baixa saturação de oxigênio.
+- **P8f3cb1f**
+  - antes: Aplicar o principio do fluxo unidirecional de energia e da perda por respiracao de cada nivel trofico.
+  - depois: Aplicar o princípio do fluxo unidirecional de energia e da perda por respiração de cada nível trófico.
+- **P2d058bf**
+  - antes: Combinar o modo de reproducao (bipartição x reproducao sexuada) com a heranca mendeliana de um transgene em heterozigose.
+  - depois: Combinar o modo de reprodução (bipartição x reprodução sexuada) com a herança mendeliana de um transgene em heterozigose.
+- **P9f037b6**
+  - antes: Nomear o mecanismo de morte celular geneticamente programada a partir da descricao.
+  - depois: Nomear o mecanismo de morte celular geneticamente programada a partir da descrição.
+- **P258c1f7**
+  - antes: Reconhecer que o esquema e de mitose e localizar o crescimento celular na interfase, descartando eventos exclusivos da meiose.
+  - depois: Reconhecer que o esquema é de mitose e localizar o crescimento celular na interfase, descartando eventos exclusivos da meiose.
+- **Pb5912cb**
+  - antes: Explicar a especificidade virus-celula hospedeira pelo encaixe quimico entre proteinas do capsideo ou envelope e receptores da membrana.
+  - depois: Explicar a especificidade vírus-célula hospedeira pelo encaixe químico entre proteínas do capsídeo ou envelope e receptores da membrana.
+- **Pe5590d3**
+  - antes: Interpretar as curvas de fotossintese e respiracao ao longo do dia e concluir o saldo de materia organica entre os pontos de compensacao.
+  - depois: Interpretar as curvas de fotossíntese e respiração ao longo do dia e concluir o saldo de matéria orgânica entre os pontos de compensação.
+- **Pbb379d6**
+  - antes: Inverter o raciocinio da prova cruzada: deduzir o proprio tipo sanguineo a partir de quais aglutininas o seu plasma tem.
+  - depois: Inverter o raciocínio da prova cruzada: deduzir o próprio tipo sanguíneo a partir de quais aglutininas o seu plasma tem.
+- **P6afc021**
+  - antes: Identificar tres perfis hemodinamicos (velocidade, area total de seccao e pressao) em graficos nao rotulados ao longo da arvore vascular.
+  - depois: Identificar três perfis hemodinâmicos (velocidade, área total de secção e pressão) em gráficos não rotulados ao longo da árvore vascular.
+- **P262e5ea**
+  - antes: Explicar por que especie invasora reduz biodiversidade, rejeitando afirmacoes com erro conceitual ou absoluto.
+  - depois: Explicar por que espécie invasora reduz biodiversidade, rejeitando afirmações com erro conceitual ou absoluto.
+- **Paf0ad5e**
+  - antes: Distinguir o mecanismo neodarwinista (variacao ao acaso e depois selecao) das formulacoes lamarckistas.
+  - depois: Distinguir o mecanismo neodarwinista (variação ao acaso e depois seleção) das formulações lamarckistas.
+- **P35eeb54**
+  - antes: Contar o numero maximo de gametas em celula com genes ligados e ainda testar qual combinacao genica e compativel com o arranjo dos cromossomos.
+  - depois: Contar o número máximo de gametas em célula com genes ligados e ainda testar qual combinação gênica é compatível com o arranjo dos cromossomos.
+- **P78dcde2**
+  - antes: Separar 'alelos na mesma celula' de 'alelos no mesmo cromossomo' em uma serie de alelos multiplos.
+  - depois: Separar 'alelos na mesma célula' de 'alelos no mesmo cromossomo' em uma série de alelos múltiplos.
+- **P3f348a8**
+  - antes: Ligar a enzima do peroxissomo ao gas produzido e usar isso para prever o tipo bacteriano eliminado.
+  - depois: Ligar a enzima do peroxissomo ao gás produzido e usar isso para prever o tipo bacteriano eliminado.
+- **Pb6f000c**
+  - antes: Aplicar o conceito biologico de especie usando a intensidade do fluxo genico entre populacoes insulares.
+  - depois: Aplicar o conceito biológico de espécie usando a intensidade do fluxo gênico entre populações insulares.
+- **P12f78fa**
+  - antes: Prever a consequencia genetica de repovoar com clones: ausencia de variabilidade e heranca das mesmas suscetibilidades do doador.
+  - depois: Prever a consequência genética de repovoar com clones: ausência de variabilidade e herança das mesmas suscetibilidades do doador.
+- **P676e1d3**
+  - antes: Nomear relacoes ecologicas interespecificas a partir da descricao do microbioma humano em equilibrio e em disbiose.
+  - depois: Nomear relações ecológicas interespecíficas a partir da descrição do microbioma humano em equilíbrio e em disbiose.
+- **P042315a**
+  - antes: Ler o esquema da ovogenese humana e aplicar o fato de que a meiose II so se completa apos a fecundacao.
+  - depois: Ler o esquema da ovogênese humana e aplicar o fato de que a meiose II só se completa após a fecundação.
+- **P5989d59**
+  - antes: Deduzir o tipo de circulacao a partir da comparacao dos gases na veia pulmonar e na aorta e, com isso, identificar a que grupos de vertebrados pertencem os animais.
+  - depois: Deduzir o tipo de circulação a partir da comparação dos gases na veia pulmonar e na aorta e, com isso, identificar a que grupos de vertebrados pertencem os animais.
+- **P0dcd967**
+  - antes: Relacionar o carater basico do corante com a basofilia dos acidos nucleicos para prever a estrutura corada.
+  - depois: Relacionar o caráter básico do corante com a basofilia dos ácidos nucleicos para prever a estrutura corada.
+- **Pcb6e094**
+  - antes: Reconhecer o bioma brasileiro pela fauna, flora e pelo regime de inundacao descritos.
+  - depois: Reconhecer o bioma brasileiro pela fauna, flora e pelo regime de inundação descritos.
+- **Pcb53e1e**
+  - antes: Prever o efeito de uma insercao de um par de nucleotideos (mutacao de deslocamento de quadro) sobre a proteina.
+  - depois: Prever o efeito de uma inserção de um par de nucleotídeos (mutação de deslocamento de quadro) sobre a proteína.
+- **Pd79452b**
+  - antes: Descrever corretamente a etapa inicial do ciclo de um retrovirus, identificando virus, molecula e enzima.
+  - depois: Descrever corretamente a etapa inicial do ciclo de um retrovírus, identificando vírus, molécula e enzima.
+- **P269f729**
+  - antes: Determinar a ploidia das celulas somaticas em metagenese (cnidario) e em partenogenese (abelha) a partir de um numero diploide dado como X.
+  - depois: Determinar a ploidia das células somáticas em metagênese (cnidário) e em partenogênese (abelha) a partir de um número diploide dado como X.
+- **Pb99b11c**
+  - antes: Ler o grafico de hormonios do ciclo menstrual e acertar quem produz cada hormonio e em que ordem a estimulacao acontece.
+  - depois: Ler o gráfico de hormônios do ciclo menstrual e acertar quem produz cada hormônio e em que ordem a estimulação acontece.
+- **Pec63d88**
+  - antes: Relacionar tres adaptacoes osmorregulatorias (vacuolo pulsatil, brânquias secretoras de sal, alca de Henle curta) ao ambiente em que cada organismo vive.
+  - depois: Relacionar três adaptações osmorregulatórias (vacúolo pulsátil, brânquias secretoras de sal, alça de Henle curta) ao ambiente em que cada organismo vive.
+- **Pfb3e0c8**
+  - antes: Prever volume celular e concentracao citoplasmatica de um protozoario em meio hipotonico quando o vacuolo contratil e inibido, e casar a previsao com as curvas.
+  - depois: Prever volume celular e concentração citoplasmática de um protozoário em meio hipotônico quando o vacúolo contrátil é inibido, e casar a previsão com as curvas.
+- **P1f6aed6**
+  - antes: Identificar que as figuras mostram meiose e nao mitose e, a partir disso, localizar em que estrutura da planta esse processo ocorre.
+  - depois: Identificar que as figuras mostram meiose e não mitose e, a partir disso, localizar em que estrutura da planta esse processo ocorre.
+- **Pbe72ace**
+  - antes: Identificar o helminto pelo ciclo esquematizado e julgar cinco afirmacoes que descrevem vermes diferentes.
+  - depois: Identificar o helminto pelo ciclo esquematizado e julgar cinco afirmações que descrevem vermes diferentes.
+- **P411044a**
+  - antes: Ligar a atividade da telomerase a imortalizacao das celulas tumorais para prever o efeito da sua inibicao.
+  - depois: Ligar a atividade da telomerase à imortalização das células tumorais para prever o efeito da sua inibição.
+- **P8f63f9c**
+  - antes: Identificar a estrutura embrionaria formada na regiao dorsal (tubo neural), seu folheto de origem e seus derivados.
+  - depois: Identificar a estrutura embrionária formada na região dorsal (tubo neural), seu folheto de origem e seus derivados.
+- **Pe07eea7**
+  - antes: Contar classes fenotipicas em F2 combinando um gene com dominancia incompleta e outro com dominancia completa, em segregacao independente.
+  - depois: Contar classes fenotípicas em F2 combinando um gene com dominância incompleta e outro com dominância completa, em segregação independente.
+- **P24fdaef**
+  - antes: Explicar a protecao cruzada do experimento de Jenner pela semelhanca antigenica entre dois virus proximos evolutivamente.
+  - depois: Explicar a proteção cruzada do experimento de Jenner pela semelhança antigênica entre dois vírus próximos evolutivamente.
+- **Pd335f1b**
+  - antes: Reconhecer qual observacao das viagens de Darwin forneceu a materia-prima da selecao natural: a variabilidade dentro das populacoes.
+  - depois: Reconhecer qual observação das viagens de Darwin forneceu a matéria-prima da seleção natural: a variabilidade dentro das populações.
+- **P715b848**
+  - antes: Preencher as lacunas sobre a mare vermelha: organismo causador, fator que a desencadeia e a relacao ecologica com os demais seres.
+  - depois: Preencher as lacunas sobre a maré vermelha: organismo causador, fator que a desencadeia e a relação ecológica com os demais seres.
+- **Pc682321**
+  - antes: Reconhecer que a estrutura apontada no musgo e o esporofito e que em seu interior os esporos sao produzidos por meiose.
+  - depois: Reconhecer que a estrutura apontada no musgo é o esporófito e que em seu interior os esporos são produzidos por meiose.
+- **P051777a**
+  - antes: Ler a tabela e concluir que X, Y e Z sao enzimas digestivas especificas, cada uma ativa sobre um substrato e num pH proprio.
+  - depois: Ler a tabela e concluir que X, Y e Z são enzimas digestivas específicas, cada uma ativa sobre um substrato e num pH próprio.
+- **Pbd4716c**
+  - antes: Explicar a diferenciacao celular pela expressao genica diferencial: mesmo genoma, genes diferentes ativados.
+  - depois: Explicar a diferenciação celular pela expressão gênica diferencial: mesmo genoma, genes diferentes ativados.
+- **Pf1efeae**
+  - antes: Nomear a heranca de muitos genes de efeito aditivo sobre uma caracteristica (quantitativa) e o exemplo humano (cor de pele).
+  - depois: Nomear a herança de muitos genes de efeito aditivo sobre uma característica (quantitativa) e o exemplo humano (cor de pele).
+
+## qui (12)
+
+- **P15247b2**
+  - antes: Aplicar Le Chatelier à temperatura, à pressão (contando mols de gás) e a adição de reagente.
+  - depois: Aplicar Le Chatelier à temperatura, à pressão (contando mols de gás) e à adição de reagente.
+- **W59d812b**
+  - antes: Aplicar a definicao de grau de ionizacao como razao entre moleculas ionizadas e moleculas dissolvidas.
+  - depois: Aplicar a definição de grau de ionização como razão entre moléculas ionizadas e moléculas dissolvidas.
+- **Wa969bc7**
+  - antes: Ordenar acidos por forca lendo valores de Ka escritos em notacao cientifica.
+  - depois: Ordenar ácidos por força lendo valores de Ka escritos em notação científica.
+- **W546f346**
+  - antes: Reconhecer quais substancias liberam ions em agua, por dissociacao ionica ou por ionizacao, e por isso conduzem corrente.
+  - depois: Reconhecer quais substâncias liberam íons em água, por dissociação iônica ou por ionização, e por isso conduzem corrente.
+- **Wd875b6a**
+  - antes: Montar a relacao algebrica entre moleculas ionizadas e nao ionizadas antes de calcular o grau de ionizacao.
+  - depois: Montar a relação algébrica entre moléculas ionizadas e não ionizadas antes de calcular o grau de ionização.
+- **Wd7b9b46**
+  - antes: Aplicar a lei de diluicao de Ostwald para obter a constante de ionizacao a partir do grau de ionizacao e da concentracao.
+  - depois: Aplicar a lei de diluição de Ostwald para obter a constante de ionização a partir do grau de ionização e da concentração.
+- **Wa486274**
+  - antes: Converter pH em pOH e so entao em concentracao de hidroxila, sem trocar um ion pelo outro.
+  - depois: Converter pH em pOH e só então em concentração de hidroxila, sem trocar um íon pelo outro.
+- **W237c1fe**
+  - antes: Identificar a formacao de precipitado como consequencia de a solucao ultrapassar a saturacao de um sal pouco soluvel.
+  - depois: Identificar a formação de precipitado como consequência de a solução ultrapassar a saturação de um sal pouco solúvel.
+- **W791c2de**
+  - antes: Reconhecer que um tampao acido se forma por um acido fraco mais um sal soluvel que tenha o mesmo anion desse acido.
+  - depois: Reconhecer que um tampão ácido se forma por um ácido fraco mais um sal solúvel que tenha o mesmo ânion desse ácido.
+- **Wd43b998**
+  - antes: Montar a expressao do Kps respeitando os coeficientes da dissociacao antes de substituir as concentracoes.
+  - depois: Montar a expressão do Kps respeitando os coeficientes da dissociação antes de substituir as concentrações.
+- **W1b4f033**
+  - antes: Combinar o mecanismo de acao de um tampao com o deslocamento do equilibrio carbonico do sangue.
+  - depois: Combinar o mecanismo de ação de um tampão com o deslocamento do equilíbrio carbônico do sangue.
+- **W85ba2b5**
+  - antes: Converter solubilidade em gramas por litro para mol por litro e dai obter o produto de solubilidade.
+  - depois: Converter solubilidade em gramas por litro para mol por litro e daí obter o produto de solubilidade.
+
+## mat (100)
+
+- **P3841cbe**
+  - antes: ler a malha ortogonal, decompor cada caminho em segmentos e somar antes de comparar; a conta em si e soma de inteiros
+  - depois: ler a malha ortogonal, decompor cada caminho em segmentos e somar antes de comparar; a conta em si é soma de inteiros
+- **P6707c42**
+  - antes: cinco afirmacoes para testar, mas cada teste e um contraexemplo imediato
+  - depois: cinco afirmações para testar, mas cada teste é um contraexemplo imediato
+- **Pf3c7bcb**
+  - antes: duas etapas e uma passagem contraintuitiva: o reajuste que anula um desconto de 6% nao e um aumento de 6%
+  - depois: duas etapas e uma passagem contraintuitiva: o reajuste que anula um desconto de 6% não é um aumento de 6%
+- **P1ca8c20**
+  - antes: montar um sistema 2x2 e resolver; numeros limpos e o enunciado diz o que calcular
+  - depois: montar um sistema 2x2 e resolver; números limpos e o enunciado diz o que calcular
+- **Pe1791cf**
+  - antes: precisa enxergar que minimizar a quantidade de cubos equivale a maximizar a aresta, isto e, tomar o MDC, e so depois dividir volumes
+  - depois: precisa enxergar que minimizar a quantidade de cubos equivale a maximizar a aresta, isto é, tomar o MDC, e só depois dividir volumes
+- **P9c55f95**
+  - antes: tres etapas e uma passagem nao obvia: contar 26^10, quebrar em 2^10.13^10 (ou aplicar log) e so entao comparar com potencias de 10
+  - depois: três etapas e uma passagem não óbvia: contar 26^10, quebrar em 2^10.13^10 (ou aplicar log) e só então comparar com potências de 10
+- **Paeea58a**
+  - antes: ler a figura, identificar a equacao da reta e decidir o sinal da desigualdade do semiplano antes de escolher a alternativa
+  - depois: ler a figura, identificar a equação da reta e decidir o sinal da desigualdade do semiplano antes de escolher a alternativa
+- **Pa56de09**
+  - antes: precisa desenhar o quadrado no vertice reto e reconhecer a semelhanca entre o triangulo pequeno e o original para montar a proporcao
+  - depois: precisa desenhar o quadrado no vértice reto e reconhecer a semelhança entre o triângulo pequeno e o original para montar a proporção
+- **P09ac4ef**
+  - antes: tres parcelas de comprimento de arco encadeadas, com a conversao de 45 graus em fracao da volta
+  - depois: três parcelas de comprimento de arco encadeadas, com a conversão de 45 graus em fração da volta
+- **P2ea2843**
+  - antes: igualar duas regras lineares e resolver uma equacao do 1.o grau, depois converter a fracao de ano em meses
+  - depois: igualar duas regras lineares e resolver uma equação do 1.o grau, depois converter a fração de ano em meses
+- **P6a37d19**
+  - antes: duas frentes combinadas: achar N por inequacao e depois usar ln(15) = ln3 + ln5 para ler a tabela
+  - depois: duas frentes combinadas: achar N por inequação e depois usar ln(15) = ln3 + ln5 para ler a tabela
+- **Pf440dfb**
+  - antes: quatro etapas: igualar volumes totais, cancelar pi e h, extrair a raiz da razao dos raios e converter em acrescimo percentual
+  - depois: quatro etapas: igualar volumes totais, cancelar pi e h, extrair a raiz da razão dos raios e converter em acréscimo percentual
+- **P038cd4b**
+  - antes: duas etapas diretas: recuperar o total de candidatos e refazer a razao com o novo numero de vagas
+  - depois: duas etapas diretas: recuperar o total de candidatos e refazer a razão com o novo número de vagas
+- **Pb077531**
+  - antes: combina dois conteudos: soma dos angulos internos para descobrir o triangulo 30-60-90 e so depois a area com os catetos
+  - depois: combina dois conteúdos: soma dos ângulos internos para descobrir o triângulo 30-60-90 e só depois a área com os catetos
+- **P07eccef**
+  - antes: sistema 2x3 indeterminado: tem de parametrizar as solucoes por v e so entao impor e >= 0 e d >= 0 com v inteiro para contar as ternas
+  - depois: sistema 2x3 indeterminado: tem de parametrizar as soluções por v e só então impor e >= 0 e d >= 0 com v inteiro para contar as ternas
+- **Pe2cefb7**
+  - antes: tres etapas: tirar a base do logaritmo de um ponto dado, voltar na definicao para achar as abscissas de A e C e fechar com a distancia entre pontos
+  - depois: três etapas: tirar a base do logaritmo de um ponto dado, voltar na definição para achar as abscissas de A e C e fechar com a distância entre pontos
+- **Pe035d6f**
+  - antes: tres etapas e um passo nao obvio: fatorar 87, listar quais produtos de dois cartoes caem nos divisores e tratar os pares como ordenados
+  - depois: três etapas e um passo não óbvio: fatorar 87, listar quais produtos de dois cartões caem nos divisores e tratar os pares como ordenados
+- **Pe6898d1**
+  - antes: tres aplicacoes encadeadas de Pitagoras, com uma altura auxiliar no triangulo isosceles que nao esta desenhada
+  - depois: três aplicações encadeadas de Pitágoras, com uma altura auxiliar no triângulo isósceles que não está desenhada
+- **Pa9f2935**
+  - antes: tres etapas encadeadas: razao da PA, valor do 19o termo e soma dos 24 termos, com a leitura extra de que a parcela nao paga precisa ser descontada
+  - depois: três etapas encadeadas: razão da PA, valor do 19o termo e soma dos 24 termos, com a leitura extra de que a parcela não paga precisa ser descontada
+- **P3a8842d**
+  - antes: monta uma equacao com duas incognitas a partir do acrescimo de 10% e exige perceber que so a razao a/g pode ser determinada, nao os precos
+  - depois: monta uma equação com duas incógnitas a partir do acréscimo de 10% e exige perceber que só a razão a/g pode ser determinada, não os preços
+- **P37bafd0**
+  - antes: o passo nao obvio e enxergar que o total acumulado e a area sob o grafico; depois e uma area de trapezio com valores lidos na figura
+  - depois: o passo não óbvio é enxergar que o total acumulado é a área sob o gráfico; depois é uma área de trapézio com valores lidos na figura
+- **P930d099**
+  - antes: duas combinacoes simples e o principio multiplicativo; numeros pequenos e enunciado diz exatamente o que contar
+  - depois: duas combinações simples e o princípio multiplicativo; números pequenos e enunciado diz exatamente o que contar
+- **P2b0c877**
+  - antes: duas etapas: variacao de altura e volume do cilindro; conceito unico e numeros limpos
+  - depois: duas etapas: variação de altura e volume do cilindro; conceito único e números limpos
+- **P5fdfcdb**
+  - antes: uma definicao nova e dada no proprio enunciado e basta multiplicar primos em sequencia ate passar de 2000; so uma conta encadeada
+  - depois: uma definição nova é dada no próprio enunciado e basta multiplicar primos em sequência até passar de 2000; só uma conta encadeada
+- **Pd767896**
+  - antes: exige ler a figura identificando os poligonos ao redor de um vertice e aplicar a convencao de notacao do enunciado; da para fechar tambem pelo criterio dos 360 graus
+  - depois: exige ler a figura identificando os polígonos ao redor de um vértice e aplicar a convenção de notação do enunciado; dá para fechar também pelo critério dos 360 graus
+- **Pc141080**
+  - antes: principio das gavetas no pior caso: precisa perceber que os numeros de 1 a 9 podem ser esgotados por completo e que dos demais da-se 9 cartoes cada, somar uma PA e somente depois acrescentar 1
+  - depois: princípio das gavetas no pior caso: precisa perceber que os números de 1 a 9 podem ser esgotados por completo e que dos demais dá-se 9 cartões cada, somar uma PA e somente depois acrescentar 1
+- **Pce8554c**
+  - antes: quatro etapas com uma passagem nao obvia: obter os vertices D, G e F girando vetores 90 graus, escrever duas equacoes de reta e resolver o sistema para achar a intersecao
+  - depois: quatro etapas com uma passagem não óbvia: obter os vértices D, G e F girando vetores 90 graus, escrever duas equações de reta e resolver o sistema para achar a interseção
+- **Pffe3912**
+  - antes: tres conteudos combinados: assintota vertical do log, raiz do log, ponto medio e volta ao log para calcular a ordenada
+  - depois: três conteúdos combinados: assíntota vertical do log, raiz do log, ponto médio e volta ao log para calcular a ordenada
+- **P116f0d5**
+  - antes: duas etapas: substituir f dentro de f e simplificar fracao de fracoes sem errar sinal
+  - depois: duas etapas: substituir f dentro de f e simplificar fração de frações sem errar sinal
+- **Pcb18998**
+  - antes: precisa ver que o pentagono se parte em 3 pedacos de T/3 e 2 de Q/4 em torno do vertice comum; nada disso esta no enunciado
+  - depois: precisa ver que o pentágono se parte em 3 pedaços de T/3 e 2 de Q/4 em torno do vértice comum; nada disso está no enunciado
+- **P15af562**
+  - antes: duas etapas encadeadas: tirar o log virando potencia de 2 nos dois pontos e resolver o sistema 2x2
+  - depois: duas etapas encadeadas: tirar o log virando potência de 2 nos dois pontos e resolver o sistema 2x2
+- **P26b0fc4**
+  - antes: quatro etapas: achar a razao no triangulo retangulo isosceles, montar a PG, passar para inequacao exponencial e logaritmar com log2=0,30
+  - depois: quatro etapas: achar a razão no triângulo retângulo isósceles, montar a PG, passar para inequação exponencial e logaritmar com log2=0,30
+- **P4bb7a99**
+  - antes: tres distancias pela formula e depois limitar tres raizes irracionais para decidir o intervalo
+  - depois: três distâncias pela fórmula e depois limitar três raízes irracionais para decidir o intervalo
+- **Pc458dc9**
+  - antes: duas etapas: completar quadrado nas duas equacoes e comparar a distancia dos centros com a soma dos raios
+  - depois: duas etapas: completar quadrado nas duas equações e comparar a distância dos centros com a soma dos raios
+- **Pe4abaf7**
+  - antes: tem de validar cada passo da resolucao errada do estudante; o erro esta num passo so, mas exige saber sen(2x)=2senx.cosx
+  - depois: tem de validar cada passo da resolução errada do estudante; o erro está num passo só, mas exige saber sen(2x)=2senx.cosx
+- **P37188ab**
+  - antes: tres etapas: volume da piramide, equacao com os 2/3 do cubo e simplificacao da raiz cubica
+  - depois: três etapas: volume da pirâmide, equação com os 2/3 do cubo e simplificação da raiz cúbica
+- **P1de8cf1**
+  - antes: ler tres figuras na malha quadriculada, calcular as tres areas em funcao de um lado comum e depois testar as relacoes das alternativas
+  - depois: ler três figuras na malha quadriculada, calcular as três áreas em função de um lado comum e depois testar as relações das alternativas
+- **P8b13820**
+  - antes: tres etapas: achar t pelo instante zero, isolar u^7, extrair a raiz setima com apoio do grafico e somar
+  - depois: três etapas: achar t pelo instante zero, isolar u^7, extrair a raiz sétima com apoio do gráfico e somar
+- **Pcd3e9bd**
+  - antes: tem de ver que os tempos de cada lado formam PG de razao 1/2, somar 30 termos (aproximando pela soma infinita) e converter minuto em segundo
+  - depois: tem de ver que os tempos de cada lado formam PG de razão 1/2, somar 30 termos (aproximando pela soma infinita) e converter minuto em segundo
+- **P8cdf3c8**
+  - antes: duas etapas e uma pegadinha: a taxa incide so em 6 horas mas a media e sobre 8 horas
+  - depois: duas etapas e uma pegadinha: a taxa incide só em 6 horas mas a média é sobre 8 horas
+- **P81ffe98**
+  - antes: tres etapas: achar o x do vertice, calcular f no vertice e ainda inverter para 'lavoura livre' = 100 - f, lendo x=8 como inicio de agosto
+  - depois: três etapas: achar o x do vértice, calcular f no vértice e ainda inverter para 'lavoura livre' = 100 - f, lendo x=8 como início de agosto
+- **Pe8d7ee0**
+  - antes: Tirar uma massa por porcentagem de um total convertido de unidade e depois transformar essa massa em volume usando uma concentracao em gramas por litro.
+  - depois: Tirar uma massa por porcentagem de um total convertido de unidade e depois transformar essa massa em volume usando uma concentração em gramas por litro.
+- **P77b38ad**
+  - antes: Aplicar a area do setor circular, tirando a fracao do circulo a partir do angulo central dado.
+  - depois: Aplicar a área do setor circular, tirando a fração do círculo a partir do ângulo central dado.
+- **Pb0bae23**
+  - antes: Calcular dois senos com as medidas da figura, localizar cada angulo numa tabela trigonometrica e subtrair os intervalos, e nao os valores aproximados.
+  - depois: Calcular dois senos com as medidas da figura, localizar cada ângulo numa tabela trigonométrica e subtrair os intervalos, e não os valores aproximados.
+- **Pc66b793**
+  - antes: Ler dois valores projetados num grafico de eixo duplo e aplica-los com conversao de unidade, descartando os dados de 2009 que o enunciado oferece de isca.
+  - depois: Ler dois valores projetados num gráfico de eixo duplo e aplicá-los com conversão de unidade, descartando os dados de 2009 que o enunciado oferece de isca.
+- **P327a043**
+  - antes: Montar e resolver um sistema a partir de uma media ponderada e da soma total das notas, percebendo que a soma das notas das duas categorias equivale a 100 vezes a soma das duas medias.
+  - depois: Montar e resolver um sistema a partir de uma média ponderada e da soma total das notas, percebendo que a soma das notas das duas categorias equivale a 100 vezes a soma das duas médias.
+- **P74805b7**
+  - antes: Achar os dois pontos de corte de uma parabola com uma reta horizontal e usar essas coordenadas para calcular a area de um triangulo com vertice na origem.
+  - depois: Achar os dois pontos de corte de uma parábola com uma reta horizontal e usar essas coordenadas para calcular a área de um triângulo com vértice na origem.
+- **Pb0574b0**
+  - antes: Combinar Pitagoras no triangulo retangulo interno, o seno do arco duplo e a lei dos senos no triangulo maior, reconhecendo que o angulo em C e comum aos dois triangulos.
+  - depois: Combinar Pitágoras no triângulo retângulo interno, o seno do arco duplo e a lei dos senos no triângulo maior, reconhecendo que o ângulo em C é comum aos dois triângulos.
+- **P9cf2821**
+  - antes: Parametrizar os tres termos da PG por a e r e perceber que, em f(r), os tres termos do trinomio ficam todos iguais a a vezes r ao quadrado.
+  - depois: Parametrizar os três termos da PG por a e r e perceber que, em f(r), os três termos do trinômio ficam todos iguais a a vezes r ao quadrado.
+- **Pd37f2ee**
+  - antes: Enxergar que a agua que sobra num copo cilindrico tombado a 45 graus forma um cilindro de corte obliquo e que seu volume e a area da base vezes a altura media das geratrizes.
+  - depois: Enxergar que a água que sobra num copo cilíndrico tombado a 45 graus forma um cilindro de corte oblíquo e que seu volume é a área da base vezes a altura média das geratrizes.
+- **W1f4a211**
+  - antes: Reta paralela a um lado do triangulo (IFG): ler na figura quais segmentos se correspondem e achar o lado inteiro a partir da parte.
+  - depois: Reta paralela a um lado do triângulo (IFG): ler na figura quais segmentos se correspondem e achar o lado inteiro a partir da parte.
+- **W35f0aad**
+  - antes: Lei dos senos lendo na figura o par lado-angulo oposto (100 m / 30 graus) para achar o lado oposto a 120 graus, com aproximacao de raiz(3).
+  - depois: Lei dos senos lendo na figura o par lado-ângulo oposto (100 m / 30 graus) para achar o lado oposto a 120 graus, com aproximação de raiz(3).
+- **W4666ece**
+  - antes: Enem: fechar o terceiro angulo pela soma 180 graus e so entao aplicar a lei dos senos, ignorando o cos 28 que entra como distrator.
+  - depois: Enem: fechar o terceiro ângulo pela soma 180 graus e só então aplicar a lei dos senos, ignorando o cos 28 que entra como distrator.
+- **Wdc1e64d**
+  - antes: Uerj adaptada: lei dos cossenos com angulo obtuso (120 graus), em que o cosseno negativo faz o terceiro termo somar em vez de subtrair.
+  - depois: Uerj adaptada: lei dos cossenos com ângulo obtuso (120 graus), em que o cosseno negativo faz o terceiro termo somar em vez de subtrair.
+- **W0021e33**
+  - antes: Funiversa: uso inverso da lei dos cossenos, com os tres lados conhecidos, para isolar o cosseno e reconhecer o angulo notavel.
+  - depois: Funiversa: uso inverso da lei dos cossenos, com os três lados conhecidos, para isolar o cosseno e reconhecer o ângulo notável.
+- **We55fa78**
+  - antes: Achar a fracao restante depois de duas retiradas com denominadores diferentes e aplicar essa fracao a uma massa de 50 kg.
+  - depois: Achar a fração restante depois de duas retiradas com denominadores diferentes e aplicar essa fração a uma massa de 50 kg.
+- **Wb5dab1c**
+  - antes: Contar os elementos escuros e o total numa figura antes de montar a razao pedida.
+  - depois: Contar os elementos escuros e o total numa figura antes de montar a razão pedida.
+- **W232e73e**
+  - antes: Resolver uma potencia de expoente radical e converter expoente decimal em fracionario para simplificar.
+  - depois: Resolver uma potência de expoente radical e converter expoente decimal em fracionário para simplificar.
+- **Wf4bdd5c**
+  - antes: Reconhecer pelo nome a propriedade comutativa da adicao e da multiplicacao nos reais.
+  - depois: Reconhecer pelo nome a propriedade comutativa da adição e da multiplicação nos reais.
+- **W182285b**
+  - antes: Julgar tres afirmacoes sobre uniao, intersecao e diferenca entre N, Z e R.
+  - depois: Julgar três afirmações sobre união, interseção e diferença entre N, Z e R.
+- **W9aff871**
+  - antes: Isolar o capital na formula do juro simples a partir de juro, taxa e tempo.
+  - depois: Isolar o capital na fórmula do juro simples a partir de juro, taxa e tempo.
+- **Wf986504**
+  - antes: Somar a massa de soluto de duas solucoes misturadas e dividir pelo volume final apos a diluicao.
+  - depois: Somar a massa de soluto de duas soluções misturadas e dividir pelo volume final após a diluição.
+- **W473f90c**
+  - antes: Montar a equacao do 1.o grau de um custo com parcela fixa mais parcela variavel e isolar a incognita.
+  - depois: Montar a equação do 1.o grau de um custo com parcela fixa mais parcela variável e isolar a incógnita.
+- **W730cc1c**
+  - antes: Montar duas progressoes lineares a partir do texto, resolver a inequacao entre elas e converter o numero de meses em mes do calendario.
+  - depois: Montar duas progressões lineares a partir do texto, resolver a inequação entre elas e converter o número de meses em mês do calendário.
+- **W3a643a3**
+  - antes: Compor duas transparencias percentuais multiplicando os fatores, nos extremos do intervalo.
+  - depois: Compor duas transparências percentuais multiplicando os fatores, nos extremos do intervalo.
+- **W2512250**
+  - antes: Isolar a parcela variavel da conta e calcular a reducao percentual apenas sobre ela.
+  - depois: Isolar a parcela variável da conta e calcular a redução percentual apenas sobre ela.
+- **W0b8eac4**
+  - antes: Combinar proporcionalidade de consumo por quilometro com um acrescimo percentual.
+  - depois: Combinar proporcionalidade de consumo por quilômetro com um acréscimo percentual.
+- **Wf52c7da**
+  - antes: Achar o prazo de uma aplicacao a juros simples a partir de capital e montante.
+  - depois: Achar o prazo de uma aplicação a juros simples a partir de capital e montante.
+- **W16d7a80**
+  - antes: Aplicar direto M = C(1+i)^t com prazo de dois periodos.
+  - depois: Aplicar direto M = C(1+i)^t com prazo de dois períodos.
+- **Wf467d02**
+  - antes: Achar a taxa de juros compostos em quatro periodos a partir de capital e montante.
+  - depois: Achar a taxa de juros compostos em quatro períodos a partir de capital e montante.
+- **W0574263**
+  - antes: Aplicar C = m/V com os dados ja nas unidades corretas.
+  - depois: Aplicar C = m/V com os dados já nas unidades corretas.
+- **W0673c4e**
+  - antes: Calcular a fracao percentual de um componente dentro de uma dose diaria recomendada.
+  - depois: Calcular a fração percentual de um componente dentro de uma dose diária recomendada.
+- **W1316955**
+  - antes: Encadear duas aplicacoes de C = m/V: massa ingerida e depois diluicao no sangue.
+  - depois: Encadear duas aplicações de C = m/V: massa ingerida e depois diluição no sangue.
+- **W57cac95**
+  - antes: Resolver uma equacao do 2.o grau vinda de um modelo e descartar a raiz negativa.
+  - depois: Resolver uma equação do 2.o grau vinda de um modelo e descartar a raiz negativa.
+- **W4be4bdc**
+  - antes: Comparar dois precos do tipo taxa fixa mais valor por hora usando inequacao.
+  - depois: Comparar dois preços do tipo taxa fixa mais valor por hora usando inequação.
+- **W17389d1**
+  - antes: Montar inequacao com gastos fracionarios do salario e achar o valor minimo.
+  - depois: Montar inequação com gastos fracionários do salário e achar o valor mínimo.
+- **W4e8d270**
+  - antes: Dada a hipotenusa e um cateto, encontrar o outro cateto pelo teorema de Pitagoras.
+  - depois: Dada a hipotenusa e um cateto, encontrar o outro cateto pelo teorema de Pitágoras.
+- **Wbba1585**
+  - antes: Hipotenusa pelo teorema de Pitagoras, perimetro do terreno triangular e custo total do arame em varias voltas.
+  - depois: Hipotenusa pelo teorema de Pitágoras, perímetro do terreno triangular e custo total do arame em várias voltas.
+- **Wbeafe0b**
+  - antes: Proporcionalidade entre alturas e sombras projetadas pelo mesmo feixe de luz, com subtracao final de alturas.
+  - depois: Proporcionalidade entre alturas e sombras projetadas pelo mesmo feixe de luz, com subtração final de alturas.
+- **W0e86d45**
+  - antes: Situacao de loteamento: duas alamedas transversais a um feixe de ruas paralelas, lendo as medidas na planta.
+  - depois: Situação de loteamento: duas alamedas transversais a um feixe de ruas paralelas, lendo as medidas na planta.
+- **W69b5dd2**
+  - antes: Rampa com alturas proporcionais ao percurso: achar o comprimento total e descontar o trecho ja percorrido.
+  - depois: Rampa com alturas proporcionais ao percurso: achar o comprimento total e descontar o trecho já percorrido.
+- **Wbc19c08**
+  - antes: Altura de um predio pela sombra, usando um poste de altura conhecida no mesmo instante.
+  - depois: Altura de um prédio pela sombra, usando um poste de altura conhecida no mesmo instante.
+- **W781715b**
+  - antes: Seno de 30 graus para obter a elevacao vertical de quem sobe uma rampa de comprimento dado.
+  - depois: Seno de 30 graus para obter a elevação vertical de quem sobe uma rampa de comprimento dado.
+- **We104af3**
+  - antes: Aplicacao direta da lei dos cossenos: dois lados e o angulo entre eles.
+  - depois: Aplicação direta da lei dos cossenos: dois lados e o ângulo entre eles.
+- **Wd0f30e2**
+  - antes: Conversao de radianos para graus pela proporcao 180 graus equivale a pi radianos.
+  - depois: Conversão de radianos para graus pela proporção 180 graus equivale a pi radianos.
+- **W9b31ac9**
+  - antes: Reduzir um arco de varias voltas ao primeiro quadrante e expressar o resultado em radianos.
+  - depois: Reduzir um arco de várias voltas ao primeiro quadrante e expressar o resultado em radianos.
+- **We211bd4**
+  - antes: Maximo e minimo de um custo modelado por funcao seno, substituindo o seno por 1 e por -1.
+  - depois: Máximo e mínimo de um custo modelado por função seno, substituindo o seno por 1 e por -1.
+- **W5bb6c02**
+  - antes: Permutar com um bloco de letras que deve ficar junto e em ordem fixa, descontando um caso ja usado.
+  - depois: Permutar com um bloco de letras que deve ficar junto e em ordem fixa, descontando um caso já usado.
+- **Wf0a570d**
+  - antes: Usar a informacao dada ('os numeros sao impares') para reduzir o espaco amostral antes de contar os casos favoraveis.
+  - depois: Usar a informação dada ('os números são ímpares') para reduzir o espaço amostral antes de contar os casos favoráveis.
+- **We2d7752**
+  - antes: Achar a mediana de um conjunto com quantidade impar de valores lidos em um quadro.
+  - depois: Achar a mediana de um conjunto com quantidade ímpar de valores lidos em um quadro.
+- **W15f006f**
+  - antes: Ler media, mediana e moda a partir de uma tabela de distribuicao de frequencia.
+  - depois: Ler média, mediana e moda a partir de uma tabela de distribuição de frequência.
+- **W3aa2a67**
+  - antes: Identificar a moda lendo a barra mais alta de um grafico de frequencia.
+  - depois: Identificar a moda lendo a barra mais alta de um gráfico de frequência.
+- **Wec2f113**
+  - antes: Calcular a media diaria a partir de um quadro que da valores e quantidade de dias.
+  - depois: Calcular a média diária a partir de um quadro que dá valores e quantidade de dias.
+- **W4121a4c**
+  - antes: Calcular a media de um quadro e depois localizar o dia cujo valor fica mais proximo dela.
+  - depois: Calcular a média de um quadro e depois localizar o dia cujo valor fica mais próximo dela.
+- **W264c89e**
+  - antes: Calcular cinco medias a partir de uma tabela e comparar para escolher as duas maiores.
+  - depois: Calcular cinco médias a partir de uma tabela e comparar para escolher as duas maiores.
+- **W0830ebd**
+  - antes: Escolher o conjunto mais homogeneo comparando os desvios-padrao de uma tabela.
+  - depois: Escolher o conjunto mais homogêneo comparando os desvios-padrão de uma tabela.
+- **W45b8280**
+  - antes: Interpretar qual estatistica mede proximidade do tempo-alvo numa tabela com media, moda e desvio-padrao.
+  - depois: Interpretar qual estatística mede proximidade do tempo-alvo numa tabela com média, moda e desvio-padrão.
+- **Wcc08dfe**
+  - antes: Usar o desvio-padrao como criterio de desempate entre dois candidatos de mesma media.
+  - depois: Usar o desvio-padrão como critério de desempate entre dois candidatos de mesma média.
+- **W386e63b**
+  - antes: Calcular a media de casos confirmados por regiao e classificar cada regiao acima ou abaixo dela para dimensionar uma equipe.
+  - depois: Calcular a média de casos confirmados por região e classificar cada região acima ou abaixo dela para dimensionar uma equipe.
+- **We4f956f**
+  - antes: Usar a media mensal de vacinas aplicadas para dimensionar a reposicao do estoque de um posto de saude.
+  - depois: Usar a média mensal de vacinas aplicadas para dimensionar a reposição do estoque de um posto de saúde.
+
+## por (15)
+
+- **Pc2900f5**
+  - antes: Localizar no verbete a quem o editorial da voz.
+  - depois: Localizar no verbete a quem o editorial dá voz.
+- **We5a6a5a**
+  - antes: Reconhecer o traco que une autores pre-modernistas de projetos estéticos diferentes.
+  - depois: Reconhecer o traço que une autores pré-modernistas de projetos estéticos diferentes.
+- **W1ac9974**
+  - antes: Justificar o nome do periodo Pre-Modernismo a partir de um trecho de Lima Barreto.
+  - depois: Justificar o nome do período Pré-Modernismo a partir de um trecho de Lima Barreto.
+- **Wa61139f**
+  - antes: Separar, entre cinco estrofes, a que nao tem os tracos de estilo de Augusto dos Anjos.
+  - depois: Separar, entre cinco estrofes, a que não tem os traços de estilo de Augusto dos Anjos.
+- **Wc59dd23**
+  - antes: Ler no texto-base sobre Anita Malfatti qual era o projeto estetico dos modernistas.
+  - depois: Ler no texto-base sobre Anita Malfatti qual era o projeto estético dos modernistas.
+- **W5852634**
+  - antes: Ler o titulo de um poema-piada modernista como retomada ironica de um conceito medieval.
+  - depois: Ler o título de um poema-piada modernista como retomada irônica de um conceito medieval.
+- **Wac6bf4d**
+  - antes: Ler no poema de Mario de Andrade como a identidade nacional e problematizada, nao exaltada.
+  - depois: Ler no poema de Mário de Andrade como a identidade nacional é problematizada, não exaltada.
+- **W26048cd**
+  - antes: Ler no poema a tensao entre o eu e a comunidade que o formou.
+  - depois: Ler no poema a tensão entre o eu e a comunidade que o formou.
+- **W76f960c**
+  - antes: Reconhecer o cuidado com a forma e o experimentalismo como marca da terceira geracao.
+  - depois: Reconhecer o cuidado com a forma e o experimentalismo como marca da terceira geração.
+- **W0c5d26d**
+  - antes: Classificar um trecho de Guimaraes Rosa como regionalismo reelaborado, nao como denuncia nem como intimismo.
+  - depois: Classificar um trecho de Guimarães Rosa como regionalismo reelaborado, não como denúncia nem como intimismo.
+- **W5ac7ab3**
+  - antes: Identificar o procedimento de humanizacao dos animais que da expressividade a cena.
+  - depois: Identificar o procedimento de humanização dos animais que dá expressividade à cena.
+- **W0408c47**
+  - antes: Identificar a afirmacao falsa sobre a Poesia Marginal e o contexto da ditadura.
+  - depois: Identificar a afirmação falsa sobre a Poesia Marginal e o contexto da ditadura.
+- **W850c6d2**
+  - antes: Julgar tres afirmacoes sobre o alcance e os integrantes do Concretismo.
+  - depois: Julgar três afirmações sobre o alcance e os integrantes do Concretismo.
+- **W27420e4**
+  - antes: Ler no poema a poetica do transver, isto e, da transfiguracao do real pelo olhar.
+  - depois: Ler no poema a poética do transver, isto é, da transfiguração do real pelo olhar.
+- **W4a58a87**
+  - antes: Julgar seis proposicoes sobre um poema de Cacaso e sobre a Poesia Marginal.
+  - depois: Julgar seis proposições sobre um poema de Cacaso e sobre a Poesia Marginal.

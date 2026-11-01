@@ -1,0 +1,196 @@
+# Dicionário passe-o-mouse — BIOLOGIA (D['dic'], 180 termos) — 29/10
+
+## Método
+1. Corpus: bio/res/*.json + teoria/cartões + flash + flash_img + conceito/enunciado/alternativas do banco (base64/SVG removidos, 2,9 MB). Contagem de siglas por regex e de ~450 termos candidatos (palavra inteira; siglas com maiúsculas exatas).
+2. Rascunho de 236 termos → corte para 180, priorizando siglas de expansão inglesa e fisiologia endócrina, renal, imune e molecular; saíram citologia/digestão/coagulação básicas e termos raros.
+3. Verificação automática: cada entrada tem palavras-chave em inglês (ex.: 'follicle-stimulating hormone') que o script baixou e conferiu na página-fonte. Resultado: 180/180 fontes conferidas, 0 falhas. Genes: NCBI Gene via E-utilities (DHFR 1719, CMAH 8418, OR6A2 8590, CCR5 1234); EIN3/EIL1 pelo título do artigo PubMed 20647342.
+4. Datas e etimologias de nomes próprios conferidas na Wikipedia (Langerhans 1869, Krebs 1937/Nobel 1953, Calvin Nobel 1961, Mitchell 1961, Barr 1949, Turner 1938, Klinefelter 1942, Bohr 1904, Golgi 1898, Rh/Rhesus 1940, Gilbert 1978 para íntron/éxon, telos+meros, pepsis, myelos, auxein, apoptosis = 'queda'). A etimologia de 'hematose', que não pôde ser confirmada, foi retirada.
+5. Segunda passada: limites de palavras (def ≤30, origem ≤25, exemplo ≤20: 0 violações); formas sem duplicata entre termos; 'célula B/T' removidas (casavam com 'a célula A / a célula B' em questões); 'simpático' só como 'sistema nervoso simpático'; cis/trans só como 'arranjo cis/trans'; definição de NH3 generalizada (aparece também no ciclo do nitrogênio).
+
+## Observações para quem implementar o tooltip
+- Casar por palavra inteira, com maiúsculas exatas nas siglas curtas (Rh, UR, OD, GH, LH, cM, Bt, CAM, C4, T3, T4, AME, SUS).
+- Preferir a forma mais longa quando houver sobreposição (ex.: 'gonadotrofina coriônica humana' antes de 'gonadotrofina coriônica').
+- ANP não aparece no material de bio (0 ocorrências); ficou por ser o exemplo do Vitor e porque cobre conteúdo futuro.
+
+## Lista (termo — ocorrências no material — fonte)
+
+- **ADH** (63) — formas: ADH, hormônio antidiurético, vasopressina — https://openstax.org/books/anatomy-and-physiology-2e/pages/17-3-the-pituitary-gland-and-hypothalamus
+- **FSH** (59) — formas: FSH, hormônio folículo-estimulante, hormônio foliculestimulante — https://openstax.org/books/anatomy-and-physiology-2e/pages/17-3-the-pituitary-gland-and-hypothalamus
+- **LH** (67) — formas: LH, hormônio luteinizante — https://openstax.org/books/anatomy-and-physiology-2e/pages/17-3-the-pituitary-gland-and-hypothalamus
+- **hCG** (33) — formas: hCG, HCG, gonadotrofina coriônica, gonadotrofina coriônica humana — https://openstax.org/books/anatomy-and-physiology-2e/pages/28-2-embryonic-development
+- **TSH** (15) — formas: TSH, tireotrofina, hormônio tireoestimulante — https://openstax.org/books/anatomy-and-physiology-2e/pages/17-4-the-thyroid-gland
+- **TRH** (8) — formas: TRH — https://openstax.org/books/anatomy-and-physiology-2e/pages/17-4-the-thyroid-gland
+- **ACTH** (7) — formas: ACTH, corticotrofina, hormônio adrenocorticotrófico — https://openstax.org/books/anatomy-and-physiology-2e/pages/17-3-the-pituitary-gland-and-hypothalamus
+- **GnRH** (4) — formas: GnRH — https://openstax.org/books/anatomy-and-physiology-2e/pages/27-1-anatomy-and-physiology-of-the-testicular-reproductive-system
+- **GHRH** (3) — formas: GHRH — https://openstax.org/books/anatomy-and-physiology-2e/pages/17-3-the-pituitary-gland-and-hypothalamus
+- **PIF** (3) — formas: PIF — https://openstax.org/books/anatomy-and-physiology-2e/pages/17-3-the-pituitary-gland-and-hypothalamus
+- **GH** (26) — formas: GH, hormônio do crescimento, somatotropina, somatotrofina — https://openstax.org/books/anatomy-and-physiology-2e/pages/17-3-the-pituitary-gland-and-hypothalamus
+- **PTH** (23) — formas: PTH, paratormônio, hormônio da paratireoide — https://openstax.org/books/anatomy-and-physiology-2e/pages/17-5-the-parathyroid-glands
+- **T4** (38) — formas: T4, T₄, tiroxina, tetraiodotironina — https://openstax.org/books/anatomy-and-physiology-2e/pages/17-4-the-thyroid-gland
+- **T3** (35) — formas: T3, T₃, tri-iodotironina, triiodotironina — https://openstax.org/books/anatomy-and-physiology-2e/pages/17-4-the-thyroid-gland
+- **calcitonina** (23) — formas: calcitonina — https://openstax.org/books/anatomy-and-physiology-2e/pages/17-4-the-thyroid-gland
+- **aldosterona** (29) — formas: aldosterona — https://openstax.org/books/anatomy-and-physiology-2e/pages/17-6-the-adrenal-glands
+- **ANP** (0) — formas: ANP, peptídeo natriurético atrial, fator natriurético atrial — https://openstax.org/books/anatomy-and-physiology-2e/pages/17-10-organs-with-secondary-endocrine-functions
+- **ocitocina** (16) — formas: ocitocina, oxitocina — https://openstax.org/books/anatomy-and-physiology-2e/pages/17-3-the-pituitary-gland-and-hypothalamus
+- **prolactina** (13) — formas: prolactina — https://openstax.org/books/anatomy-and-physiology-2e/pages/17-3-the-pituitary-gland-and-hypothalamus
+- **insulina** (96) — formas: insulina — https://openstax.org/books/anatomy-and-physiology-2e/pages/17-9-the-endocrine-pancreas
+- **glucagon** (65) — formas: glucagon — https://openstax.org/books/anatomy-and-physiology-2e/pages/17-9-the-endocrine-pancreas
+- **cortisol** (12) — formas: cortisol — https://openstax.org/books/anatomy-and-physiology-2e/pages/17-6-the-adrenal-glands
+- **adrenalina** (43) — formas: adrenalina, epinefrina — https://openstax.org/books/anatomy-and-physiology-2e/pages/17-6-the-adrenal-glands
+- **noradrenalina** (17) — formas: noradrenalina, norepinefrina — https://openstax.org/books/anatomy-and-physiology-2e/pages/17-6-the-adrenal-glands
+- **progesterona** (69) — formas: progesterona — https://openstax.org/books/anatomy-and-physiology-2e/pages/27-2-anatomy-and-physiology-of-the-ovarian-reproductive-system
+- **estrógeno** (57) — formas: estrógeno, estrógenos, estrogênio, estrogênios, estradiol — https://openstax.org/books/anatomy-and-physiology-2e/pages/27-2-anatomy-and-physiology-of-the-ovarian-reproductive-system
+- **hipófise** (190) — formas: hipófise, pituitária, glândula pituitária — https://openstax.org/books/anatomy-and-physiology-2e/pages/17-3-the-pituitary-gland-and-hypothalamus
+- **adeno-hipófise** (41) — formas: adeno-hipófise, adenoipófise, hipófise anterior — https://openstax.org/books/anatomy-and-physiology-2e/pages/17-3-the-pituitary-gland-and-hypothalamus
+- **neuro-hipófise** (37) — formas: neuro-hipófise, neuroipófise, hipófise posterior — https://openstax.org/books/anatomy-and-physiology-2e/pages/17-3-the-pituitary-gland-and-hypothalamus
+- **hipotálamo** (53) — formas: hipotálamo — https://openstax.org/books/anatomy-and-physiology-2e/pages/17-3-the-pituitary-gland-and-hypothalamus
+- **sistema porta-hipofisário** (6) — formas: sistema porta-hipofisário, porta-hipofisário, sistema porta hipofisário — https://openstax.org/books/anatomy-and-physiology-2e/pages/17-3-the-pituitary-gland-and-hypothalamus
+- **feedback negativo** (10) — formas: feedback negativo, retroalimentação negativa, retroalimentação — https://openstax.org/books/biology-2e/pages/37-4-regulation-of-hormone-production
+- **glicemia** (35) — formas: glicemia, hiperglicemia, hipoglicemia — https://openstax.org/books/anatomy-and-physiology-2e/pages/17-9-the-endocrine-pancreas
+- **calcemia** (8) — formas: calcemia — https://openstax.org/books/anatomy-and-physiology-2e/pages/17-5-the-parathyroid-glands
+- **corpo lúteo** (43) — formas: corpo lúteo, corpos lúteos, corpo-lúteo — https://openstax.org/books/anatomy-and-physiology-2e/pages/27-2-anatomy-and-physiology-of-the-ovarian-reproductive-system
+- **endométrio** (22) — formas: endométrio — https://openstax.org/books/anatomy-and-physiology-2e/pages/27-2-anatomy-and-physiology-of-the-ovarian-reproductive-system
+- **ilhotas de Langerhans** (10) — formas: ilhotas de Langerhans, ilhotas pancreáticas, ilhota de Langerhans — https://openstax.org/books/anatomy-and-physiology-2e/pages/17-9-the-endocrine-pancreas
+- **bócio** (8) — formas: bócio — https://openstax.org/books/anatomy-and-physiology-2e/pages/17-4-the-thyroid-gland
+- **diabetes insípido** (4) — formas: diabetes insípido, diabetes insipidus — https://openstax.org/books/anatomy-and-physiology-2e/pages/17-3-the-pituitary-gland-and-hypothalamus
+- **diabetes mellitus** (8) — formas: diabetes mellitus, diabetes melito, diabetes tipo 1, diabetes tipo 2 — https://openstax.org/books/anatomy-and-physiology-2e/pages/17-9-the-endocrine-pancreas
+- **secretina** (9) — formas: secretina — https://openstax.org/books/anatomy-and-physiology-2e/pages/23-6-accessory-organs-in-digestion-the-liver-pancreas-and-gallbladder
+- **néfron** (31) — formas: néfron, néfrons, nefrônio, nefrônios — https://openstax.org/books/anatomy-and-physiology-2e/pages/25-4-microscopic-anatomy-of-the-kidney
+- **glomérulo** (20) — formas: glomérulo, glomérulos — https://openstax.org/books/anatomy-and-physiology-2e/pages/25-4-microscopic-anatomy-of-the-kidney
+- **cápsula de Bowman** (8) — formas: cápsula de Bowman, cápsula glomerular — https://openstax.org/books/anatomy-and-physiology-2e/pages/25-4-microscopic-anatomy-of-the-kidney
+- **alça de Henle** (16) — formas: alça de Henle, alças de Henle, alça néfrica — https://openstax.org/books/anatomy-and-physiology-2e/pages/25-4-microscopic-anatomy-of-the-kidney
+- **túbulo contorcido proximal** (14) — formas: túbulo contorcido proximal, túbulo proximal — https://openstax.org/books/anatomy-and-physiology-2e/pages/25-4-microscopic-anatomy-of-the-kidney
+- **túbulo contorcido distal** (12) — formas: túbulo contorcido distal, túbulo distal — https://openstax.org/books/anatomy-and-physiology-2e/pages/25-6-tubular-reabsorption
+- **ducto coletor** (24) — formas: ducto coletor, ductos coletores, túbulo coletor, túbulos coletores — https://openstax.org/books/anatomy-and-physiology-2e/pages/25-6-tubular-reabsorption
+- **filtração glomerular** (5) — formas: filtração glomerular, filtrado glomerular — https://openstax.org/books/anatomy-and-physiology-2e/pages/25-5-physiology-of-urine-formation
+- **reabsorção tubular** (64) — formas: reabsorção tubular, reabsorção — https://openstax.org/books/anatomy-and-physiology-2e/pages/25-6-tubular-reabsorption
+- **ureia** (14) — formas: ureia, uréia — https://openstax.org/books/biology-2e/pages/41-4-nitrogenous-wastes
+- **amônia** (64) — formas: amônia, NH3, NH₃ — https://openstax.org/books/biology-2e/pages/41-4-nitrogenous-wastes
+- **ureter** (17) — formas: ureter, ureteres — https://openstax.org/books/anatomy-and-physiology-2e/pages/25-2-gross-anatomy-of-urine-transport
+- **uretra** (22) — formas: uretra — https://openstax.org/books/anatomy-and-physiology-2e/pages/25-2-gross-anatomy-of-urine-transport
+- **antígeno** (275) — formas: antígeno, antígenos — https://openstax.org/books/anatomy-and-physiology-2e/pages/21-3-the-adaptive-immune-response-t-lymphocytes-and-their-functional-types
+- **anticorpo** (246) — formas: anticorpo, anticorpos, imunoglobulina, imunoglobulinas — https://openstax.org/books/anatomy-and-physiology-2e/pages/21-4-the-adaptive-immune-response-b-lymphocytes-and-antibodies
+- **linfócito T** (10) — formas: linfócito T, linfócitos T — https://openstax.org/books/anatomy-and-physiology-2e/pages/21-3-the-adaptive-immune-response-t-lymphocytes-and-their-functional-types
+- **linfócito B** (15) — formas: linfócito B, linfócitos B — https://openstax.org/books/anatomy-and-physiology-2e/pages/21-1-anatomy-of-the-lymphatic-and-immune-systems
+- **plasmócito** (13) — formas: plasmócito, plasmócitos — https://openstax.org/books/anatomy-and-physiology-2e/pages/21-4-the-adaptive-immune-response-b-lymphocytes-and-antibodies
+- **macrófago** (33) — formas: macrófago, macrófagos — https://openstax.org/books/anatomy-and-physiology-2e/pages/21-2-barrier-defenses-and-the-innate-immune-response
+- **CD4** (12) — formas: CD4, CD4+, T CD4 — https://en.wikipedia.org/wiki/CD4
+- **HIV** (79) — formas: HIV, VIH — https://openstax.org/books/anatomy-and-physiology-2e/pages/21-6-diseases-associated-with-depressed-or-overactive-immune-responses
+- **aids** (8) — formas: AIDS, Aids, aids, SIDA — https://www.genome.gov/genetics-glossary/Acquired-Immunodeficiency-Syndrome
+- **retrovírus** (36) — formas: retrovírus — https://openstax.org/books/biology-2e/pages/21-2-virus-infections-and-hosts
+- **transcriptase reversa** (48) — formas: transcriptase reversa, transcritase reversa — https://openstax.org/books/biology-2e/pages/21-2-virus-infections-and-hosts
+- **integrase** (21) — formas: integrase — https://openstax.org/books/biology-2e/pages/21-3-prevention-and-treatment-of-viral-infections
+- **PrEP** (1) — formas: PrEP — https://www.gov.br/aids/pt-br/assuntos/prevencao-combinada/prep-profilaxia-pre-exposicao
+- **CCR5** (15) — formas: CCR5 — https://www.ncbi.nlm.nih.gov/gene/1234
+- **soroterapia** (22) — formas: soroterapia, soro antiofídico, soro antitetânico, antitoxina, antitoxinas — https://openstax.org/books/anatomy-and-physiology-2e/pages/21-4-the-adaptive-immune-response-b-lymphocytes-and-antibodies
+- **memória imunológica** (27) — formas: memória imunológica, células de memória, célula de memória — https://openstax.org/books/anatomy-and-physiology-2e/pages/21-3-the-adaptive-immune-response-t-lymphocytes-and-their-functional-types
+- **vacina atenuada** (14) — formas: vacina atenuada, vacinas atenuadas, vírus atenuado, vírus atenuados — https://openstax.org/books/biology-2e/pages/21-3-prevention-and-treatment-of-viral-infections
+- **BCG** (10) — formas: BCG — https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/t/tuberculose
+- **HPV** (43) — formas: HPV — https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/h/hpv
+- **HCV** (7) — formas: HCV — https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/h/hepatite-c
+- **IST** (12) — formas: IST, ISTs — https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/i/ist
+- **SUS** (8) — formas: SUS — https://www.gov.br/saude/pt-br/composicao/saes/sus
+- **eritroblastose fetal** (3) — formas: eritroblastose fetal, eritroblastose, doença hemolítica do recém-nascido, doença hemolítica perinatal — https://openstax.org/books/anatomy-and-physiology-2e/pages/18-6-blood-typing
+- **Rh** (59) — formas: Rh, fator Rh — https://openstax.org/books/anatomy-and-physiology-2e/pages/18-6-blood-typing
+- **ABO** (75) — formas: ABO, sistema ABO — https://openstax.org/books/anatomy-and-physiology-2e/pages/18-6-blood-typing
+- **DNA** (1201) — formas: DNA, ADN — https://www.genome.gov/genetics-glossary/Deoxyribonucleic-Acid
+- **RNA** (690) — formas: RNA, ARN — https://openstax.org/books/biology-2e/pages/3-5-nucleic-acids
+- **RNAm** (162) — formas: RNAm, RNA-m, RNA mensageiro, mRNA — https://www.genome.gov/genetics-glossary/Messenger-RNA
+- **RNAt** (51) — formas: RNAt, RNA-t, RNA transportador, RNA de transferência, tRNA — https://www.genome.gov/genetics-glossary/Transfer-RNA
+- **RNAr** (22) — formas: RNAr, RNA-r, RNA ribossômico, rRNA — https://openstax.org/books/biology-2e/pages/15-5-ribosomes-and-protein-synthesis
+- **ATP** (604) — formas: ATP — https://openstax.org/books/biology-2e/pages/6-4-atp-adenosine-triphosphate
+- **ADP** (31) — formas: ADP — https://openstax.org/books/biology-2e/pages/6-4-atp-adenosine-triphosphate
+- **AMP** (18) — formas: AMP — https://en.wikipedia.org/wiki/Adenosine_monophosphate
+- **GTP** (28) — formas: GTP — https://openstax.org/books/biology-2e/pages/7-3-oxidation-of-pyruvate-and-the-citric-acid-cycle
+- **NADH** (75) — formas: NADH, NAD, NAD+, NAD⁺, NADH2, NADH₂ — https://openstax.org/books/biology-2e/pages/7-1-energy-in-living-systems
+- **NADPH** (72) — formas: NADPH, NADP, NADP+, NADP⁺, NADPH2, NADPH₂ — https://en.wikipedia.org/wiki/Nicotinamide_adenine_dinucleotide_phosphate
+- **FADH2** (40) — formas: FADH2, FADH₂, FAD — https://openstax.org/books/biology-2e/pages/7-1-energy-in-living-systems
+- **acetil-CoA** (83) — formas: acetil-CoA, acetil-coenzima A, acetilCoA, CoA, coenzima A — https://openstax.org/books/biology-2e/pages/7-3-oxidation-of-pyruvate-and-the-citric-acid-cycle
+- **glicólise** (168) — formas: glicólise — https://openstax.org/books/biology-2e/pages/7-2-glycolysis
+- **ciclo de Krebs** (95) — formas: ciclo de Krebs, ciclo do ácido cítrico, ciclo dos ácidos tricarboxílicos — https://openstax.org/books/biology-2e/pages/7-3-oxidation-of-pyruvate-and-the-citric-acid-cycle
+- **cadeia respiratória** (101) — formas: cadeia respiratória, cadeia transportadora de elétrons, cadeia de transporte de elétrons — https://openstax.org/books/biology-2e/pages/7-4-oxidative-phosphorylation
+- **fosforilação oxidativa** (34) — formas: fosforilação oxidativa — https://openstax.org/books/biology-2e/pages/7-4-oxidative-phosphorylation
+- **quimiosmose** (8) — formas: quimiosmose, quimiosmótica, quimiosmótico — https://openstax.org/books/biology-2e/pages/7-4-oxidative-phosphorylation
+- **ATP sintase** (17) — formas: ATP sintase, ATP-sintase, ATP sintetase — https://openstax.org/books/biology-2e/pages/7-4-oxidative-phosphorylation
+- **ciclo de Calvin** (45) — formas: ciclo de Calvin, ciclo de Calvin-Benson — https://openstax.org/books/biology-2e/pages/8-3-using-light-energy-to-make-organic-molecules
+- **Rubisco** (42) — formas: Rubisco, rubisco, RuBisCO, RUBISCO — https://openstax.org/books/biology-2e/pages/8-3-using-light-energy-to-make-organic-molecules
+- **RuBP** (21) — formas: RuBP, RuDP, ribulose-1,5-bisfosfato, ribulose bisfosfato — https://openstax.org/books/biology-2e/pages/8-3-using-light-energy-to-make-organic-molecules
+- **PGA** (17) — formas: PGA, 3-PGA, ácido fosfoglicérico, 3-fosfoglicerato — https://openstax.org/books/biology-2e/pages/8-3-using-light-energy-to-make-organic-molecules
+- **PGAL** (17) — formas: PGAL, G3P, gliceraldeído-3-fosfato, fosfogliceraldeído — https://openstax.org/books/biology-2e/pages/8-3-using-light-energy-to-make-organic-molecules
+- **fotólise** (23) — formas: fotólise, fotólise da água — https://openstax.org/books/biology-2e/pages/8-2-the-light-dependent-reactions-of-photosynthesis
+- **fotossistema** (12) — formas: fotossistema, fotossistemas — https://openstax.org/books/biology-2e/pages/8-2-the-light-dependent-reactions-of-photosynthesis
+- **plantas C4** (9) — formas: plantas C4, C4 — https://openstax.org/books/biology-2e/pages/8-3-using-light-energy-to-make-organic-molecules
+- **CAM** (7) — formas: CAM, plantas CAM — https://openstax.org/books/biology-2e/pages/8-3-using-light-energy-to-make-organic-molecules
+- **códon** (192) — formas: códon, códons, codon, codons — https://www.genome.gov/genetics-glossary/Codon
+- **anticódon** (58) — formas: anticódon, anticódons — https://www.genome.gov/genetics-glossary/Anticodon
+- **AUG** (42) — formas: AUG, códon de iniciação, códon de início — https://openstax.org/books/biology-2e/pages/15-1-the-genetic-code
+- **códon de parada** (70) — formas: códon de parada, códons de parada, códon de terminação, códons de terminação, UAA, UAG, UGA, stop códon — https://www.genome.gov/genetics-glossary/Stop-Codon
+- **íntron** (31) — formas: íntron, íntrons, intron, introns — https://en.wikipedia.org/wiki/Intron
+- **éxon** (22) — formas: éxon, éxons, exon, exons — https://en.wikipedia.org/wiki/Exon
+- **splicing** (7) — formas: splicing, splicing alternativo — https://openstax.org/books/biology-2e/pages/15-4-rna-processing-in-eukaryotes
+- **DNA polimerase** (24) — formas: DNA polimerase, DNA polimerases, DNA-polimerase — https://openstax.org/books/biology-2e/pages/14-4-dna-replication-in-prokaryotes
+- **RNA polimerase** (41) — formas: RNA polimerase, RNA polimerases, RNA-polimerase — https://openstax.org/books/biology-2e/pages/15-2-prokaryotic-transcription
+- **promotor** (19) — formas: promotor, promotores, região promotora — https://www.genome.gov/genetics-glossary/Promoter
+- **telômero** (15) — formas: telômero, telômeros — https://www.genome.gov/genetics-glossary/Telomere
+- **plasmídeo** (40) — formas: plasmídeo, plasmídeos, plasmídio — https://www.genome.gov/genetics-glossary/Plasmid
+- **enzima de restrição** (24) — formas: enzima de restrição, enzimas de restrição, endonuclease de restrição, endonucleases de restrição — https://www.genome.gov/genetics-glossary/Restriction-Enzyme
+- **PCR** (4) — formas: PCR — https://www.genome.gov/genetics-glossary/Polymerase-Chain-Reaction
+- **Taq polimerase** (2) — formas: Taq polimerase, Taq — https://openstax.org/books/biology-2e/pages/17-1-biotechnology
+- **eletroforese** (14) — formas: eletroforese, eletroforese em gel — https://www.genome.gov/genetics-glossary/Electrophoresis
+- **transgênico** (41) — formas: transgênico, transgênicos, transgênica, transgênicas, OGM, OGMs — https://www.genome.gov/genetics-glossary/Transgenic
+- **Bt** (16) — formas: Bt, milho Bt, algodão Bt, soja Bt — https://openstax.org/books/biology-2e/pages/17-1-biotechnology
+- **CRISPR** (10) — formas: CRISPR, CRISPR-Cas9, Cas9 — https://www.genome.gov/genetics-glossary/CRISPR
+- **apoptose** (73) — formas: apoptose — https://www.genome.gov/genetics-glossary/Apoptosis
+- **SRY** (15) — formas: SRY, gene SRY — https://medlineplus.gov/genetics/gene/sry/
+- **corpúsculo de Barr** (2) — formas: corpúsculo de Barr, corpúsculos de Barr, cromatina sexual — https://openstax.org/books/biology-2e/pages/13-2-chromosomal-basis-of-inherited-disorders
+- **cariótipo** (45) — formas: cariótipo, cariótipos — https://www.genome.gov/genetics-glossary/Karyotype
+- **aneuploidia** (36) — formas: aneuploidia, aneuploidias — https://www.genome.gov/genetics-glossary/Aneuploidy
+- **síndrome de Klinefelter** (13) — formas: síndrome de Klinefelter, Klinefelter — https://openstax.org/books/biology-2e/pages/13-2-chromosomal-basis-of-inherited-disorders
+- **síndrome de Turner** (7) — formas: síndrome de Turner — https://openstax.org/books/biology-2e/pages/13-2-chromosomal-basis-of-inherited-disorders
+- **crossing-over** (68) — formas: crossing-over, crossing over, permutação — https://www.genome.gov/genetics-glossary/Crossing-Over
+- **epistasia** (79) — formas: epistasia, epistasias, epistático, epistática — https://www.genome.gov/genetics-glossary/Epistasis
+- **pleiotropia** (9) — formas: pleiotropia, pleiotrópico, pleiotrópica — https://en.wikipedia.org/wiki/Pleiotropy
+- **codominância** (27) — formas: codominância, codominante, codominantes — https://www.genome.gov/genetics-glossary/Codominance
+- **dominância incompleta** (17) — formas: dominância incompleta, herança intermediária, ausência de dominância — https://openstax.org/books/biology-2e/pages/12-2-characteristics-and-traits
+- **linkage** (51) — formas: linkage, ligação gênica, genes ligados, ligação fatorial — https://www.genome.gov/genetics-glossary/Linkage
+- **arranjo cis** (15) — formas: arranjo cis, posição cis, configuração cis — https://openstax.org/books/biology-2e/pages/13-1-chromosomal-theory-and-genetic-linkage
+- **arranjo trans** (5) — formas: arranjo trans, posição trans, configuração trans — https://openstax.org/books/biology-2e/pages/13-1-chromosomal-theory-and-genetic-linkage
+- **UR** (51) — formas: UR, unidade de recombinação, unidades de recombinação, morganídeo, morganídeos, centimorgan, centimorgans, cM — https://www.genome.gov/genetics-glossary/Centimorgan
+- **Hardy-Weinberg** (42) — formas: Hardy-Weinberg, equilíbrio de Hardy-Weinberg — https://openstax.org/books/biology-2e/pages/19-1-population-evolution
+- **deriva genética** (61) — formas: deriva genética, deriva gênica — https://www.genome.gov/genetics-glossary/Genetic-Drift
+- **efeito fundador** (14) — formas: efeito fundador, princípio do fundador — https://www.genome.gov/genetics-glossary/Founder-Effect
+- **efeito gargalo** (8) — formas: efeito gargalo, gargalo populacional, gargalo genético, efeito de gargalo — https://openstax.org/books/biology-2e/pages/19-2-population-genetics
+- **heredograma** (56) — formas: heredograma, heredogramas, genealogia — https://www.genome.gov/genetics-glossary/Pedigree
+- **AME** (20) — formas: AME — https://medlineplus.gov/genetics/condition/spinal-muscular-atrophy/
+- **SMN1** (2) — formas: SMN1 — https://medlineplus.gov/genetics/gene/smn1/
+- **DHFR** (11) — formas: DHFR, di-hidrofolato redutase, diidrofolato redutase — https://www.ncbi.nlm.nih.gov/gene/1719
+- **CMAH** (13) — formas: CMAH — https://www.ncbi.nlm.nih.gov/gene/8418
+- **Neu5Gc** (11) — formas: Neu5Gc — https://www.ncbi.nlm.nih.gov/gene/8418
+- **OR6A2** (12) — formas: OR6A2 — https://www.ncbi.nlm.nih.gov/gene/8590
+- **EIN3** (6) — formas: EIN3 — https://pubmed.ncbi.nlm.nih.gov/20647342/
+- **EIL1** (7) — formas: EIL1 — https://pubmed.ncbi.nlm.nih.gov/20647342/
+- **HbO2** (17) — formas: HbO2, HbO₂, oxi-hemoglobina, oxiemoglobina — https://openstax.org/books/anatomy-and-physiology-2e/pages/22-5-transport-of-gases
+- **efeito Bohr** (6) — formas: efeito Bohr — https://openstax.org/books/anatomy-and-physiology-2e/pages/22-5-transport-of-gases
+- **hematose** (28) — formas: hematose — https://openstax.org/books/anatomy-and-physiology-2e/pages/22-4-gas-exchange
+- **hematócrito** (8) — formas: hematócrito — https://openstax.org/books/anatomy-and-physiology-2e/pages/18-1-an-overview-of-blood
+- **CHCM** (6) — formas: CHCM — https://medlineplus.gov/ency/article/003648.htm
+- **LDL** (11) — formas: LDL — https://medlineplus.gov/ldlthebadcholesterol.html
+- **HDL** (17) — formas: HDL — https://medlineplus.gov/ldlthebadcholesterol.html
+- **nó sinoatrial** (13) — formas: nó sinoatrial, nódulo sinoatrial, nó sinusal, nódulo sinusal, nó SA — https://openstax.org/books/anatomy-and-physiology-2e/pages/19-2-cardiac-muscle-and-electrical-activity
+- **potencial de ação** (25) — formas: potencial de ação, potenciais de ação — https://openstax.org/books/anatomy-and-physiology-2e/pages/12-4-the-action-potential
+- **bainha de mielina** (89) — formas: bainha de mielina, mielina, mielínica, mielínico — https://openstax.org/books/anatomy-and-physiology-2e/pages/12-2-nervous-tissue
+- **bomba de sódio e potássio** (54) — formas: bomba de sódio e potássio, bomba de sódio-potássio, bomba de Na+/K+, bomba de sódio, bomba Na+/K+ — https://openstax.org/books/biology-2e/pages/5-3-active-transport
+- **DBO** (24) — formas: DBO — https://en.wikipedia.org/wiki/Biochemical_oxygen_demand
+- **OD** (14) — formas: OD — https://www.epa.gov/national-aquatic-resource-surveys/indicators-dissolved-oxygen
+- **PPB** (26) — formas: PPB, produtividade primária bruta — https://openstax.org/books/biology-2e/pages/46-2-energy-flow-through-ecosystems
+- **PPL** (43) — formas: PPL, produtividade primária líquida — https://openstax.org/books/biology-2e/pages/46-2-energy-flow-through-ecosystems
+- **eutrofização** (30) — formas: eutrofização — https://openstax.org/books/biology-2e/pages/46-3-biogeochemical-cycles
+- **biomagnificação** (15) — formas: biomagnificação, magnificação trófica, amplificação biológica — https://openstax.org/books/biology-2e/pages/46-2-energy-flow-through-ecosystems
+- **DDT** (13) — formas: DDT — https://openstax.org/books/biology-2e/pages/46-2-energy-flow-through-ecosystems
+- **auxina** (59) — formas: auxina, auxinas, AIA — https://openstax.org/books/biology-2e/pages/30-6-plant-sensory-systems-and-responses
+- **etileno** (16) — formas: etileno — https://openstax.org/books/biology-2e/pages/30-6-plant-sensory-systems-and-responses
+- **ácido abscísico** (8) — formas: ácido abscísico, ABA — https://openstax.org/books/biology-2e/pages/30-6-plant-sensory-systems-and-responses
+- **xilema** (101) — formas: xilema, lenho — https://openstax.org/books/biology-2e/pages/30-1-the-plant-body
+- **floema** (86) — formas: floema, líber — https://openstax.org/books/biology-2e/pages/30-1-the-plant-body
+- **especiação alopátrica** (111) — formas: especiação alopátrica, alopátrica, alopátricas, alopátrico — https://openstax.org/books/biology-2e/pages/18-2-formation-of-new-species
+- **especiação simpátrica** (58) — formas: especiação simpátrica, simpátrica, simpátricas, simpátrico — https://openstax.org/books/biology-2e/pages/18-2-formation-of-new-species

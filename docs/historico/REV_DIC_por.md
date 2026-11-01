@@ -1,0 +1,190 @@
+# Revisão independente do dicionário — PORTUGUÊS (por)
+
+29/10/2026. 180 termos conferidos; 13 corrigidos, 0 removidos. Backups: por/index.html.bak_rev_dic, por/dados.json.bak_rev_dic. Depois: JSON válido, index.html = dados.json, só a chave "dic" mudou.
+
+## Método
+- Cada termo: verbete aberto de fato no Michaelis (michaelis.uol.com.br, def. + ETIMOLOGIA) e no Priberam (dicionario.priberam.org, def. + Origem), baixados por script e lidos um a um.
+- Fatos de história/teoria literária e siglas: páginas específicas abertas (abaixo).
+- Formas: frequência e contexto de cada forma arriscada conferidos no corpus da matéria (res/*.json + banco/teoria/flash).
+
+## Termo → fonte → resultado
+- **metonímia** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/metonimia/ ; https://dicionario.priberam.org/metonímia → ok
+- **sinédoque** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/sinedoque/ ; https://dicionario.priberam.org/sinédoque → ok
+- **metáfora** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/metafora/ ; https://dicionario.priberam.org/metáfora → ok
+- **catacrese** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/catacrese/ ; https://dicionario.priberam.org/catacrese → ok
+- **sinestesia** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/sinestesia/ ; https://dicionario.priberam.org/sinestesia → ok
+- **prosopopeia** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/prosopopeia/ ; https://dicionario.priberam.org/prosopopeia → ok
+- **eufemismo** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/eufemismo/ ; https://dicionario.priberam.org/eufemismo → ok
+- **ironia** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/ironia/ ; https://dicionario.priberam.org/ironia → ok
+- **antítese** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/antitese/ ; https://dicionario.priberam.org/antítese ; https://www.infoescola.com/literatura/barroco-na-literatura (Gregório: “Depois da luz, se segue a noite escura”) → ok
+- **paradoxo** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/paradoxo/ ; https://dicionario.priberam.org/paradoxo → ok
+- **oxímoro** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/oximoro/ ; https://dicionario.priberam.org/oxímoro → ok
+- **gradação** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/gradacao/ ; https://dicionario.priberam.org/gradação → ok
+- **apóstrofe** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/apostrofe/ ; https://dicionario.priberam.org/apóstrofe → corrigido (origem: grego = desvio, não "voltar-se")
+- **perífrase** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/perifrase/ ; https://dicionario.priberam.org/perífrase → ok
+- **alegoria** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/alegoria/ ; https://dicionario.priberam.org/alegoria → ok
+- **aliteração** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/aliteracao/ ; https://dicionario.priberam.org/aliteração → corrigido (origem: via francês allitération)
+- **paronomásia** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/paronomasia/ ; https://dicionario.priberam.org/paronomásia → ok
+- **elipse** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/elipse/ ; https://dicionario.priberam.org/elipse → ok
+- **zeugma** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/zeugma/ ; https://dicionario.priberam.org/zeugma → ok
+- **pleonasmo** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/pleonasmo/ ; https://dicionario.priberam.org/pleonasmo → ok
+- **hipérbato** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/hiperbato/ ; https://dicionario.priberam.org/hipérbato → ok
+- **silepse** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/silepse/ ; https://dicionario.priberam.org/silepse → ok
+- **anacoluto** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/anacoluto/ ; https://dicionario.priberam.org/anacoluto → ok
+- **polissíndeto** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/polissindeto/ ; https://dicionario.priberam.org/polissíndeto → ok
+- **assíndeto** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/assindeto/ ; https://dicionario.priberam.org/assíndeto → ok
+- **anáfora** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/anafora/ ; https://dicionario.priberam.org/anáfora → ok
+- **catáfora** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/catafora/ ; https://dicionario.priberam.org/catáfora → ok
+- **pergunta retórica** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/retorica/ ; https://dicionario.priberam.org/retórica → ok
+- **polissemia** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/polissemia/ ; https://dicionario.priberam.org/polissemia → ok
+- **ambiguidade** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/ambiguidade/ ; https://dicionario.priberam.org/ambiguidade → ok
+- **homônimo** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/homonimo/ ; https://dicionario.priberam.org/homônimo → ok
+- **parônimo** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/paronimo/ ; https://dicionario.priberam.org/parônimo → ok
+- **hiperônimo** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/hiperonimo/ ; https://dicionario.priberam.org/hiperônimo → ok
+- **hipônimo** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/hiponimo/ ; https://dicionario.priberam.org/hipônimo → ok
+- **denotação** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/denotacao/ ; https://dicionario.priberam.org/denotação → ok
+- **conotação** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/conotacao/ ; https://dicionario.priberam.org/conotação → ok
+- **campo semântico** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/semantico/ ; https://dicionario.priberam.org/semântico → ok
+- **neologismo** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/neologismo/ ; https://dicionario.priberam.org/neologismo ; https://www.libras.ufsc.br/colecaoLetrasLibras/eixoFormacaoBasica/sociolinguistica/scos/cap21499/4.html (imexível, Magri, 1990) → ok
+- **arcaísmo** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/arcaismo/ ; https://dicionario.priberam.org/arcaísmo → ok
+- **palavra-valise** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/palavra-valise/ ; https://dicionario.priberam.org/palavra-valise → ok
+- **dêitico** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/deitico/ ; https://dicionario.priberam.org/dêitico → ok
+- **antecedente** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/antecedente/ ; https://dicionario.priberam.org/antecedente → corrigido (formas: "antecedentes" casava "antecedentes criminais")
+- **coesão** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/coesao/ ; https://dicionario.priberam.org/coesão → ok
+- **coerência** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/coerencia/ ; https://dicionario.priberam.org/coerência → ok
+- **intertextualidade** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/intertextualidade/ ; https://dicionario.priberam.org/intertextualidade ; https://en.wikipedia.org/wiki/Intertextuality (Kristeva cunhou o termo; Théorie d’ensemble, 1968) → ok
+- **paráfrase** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/parafrase/ ; https://dicionario.priberam.org/paráfrase → ok
+- **paródia** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/parodia/ ; https://dicionario.priberam.org/paródia ; https://www.todamateria.com.br/oswald-de-andrade/ (“Minha terra tem palmares / Onde gorjeia o mar”) → ok
+- **epígrafe** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/epigrafe/ ; https://dicionario.priberam.org/epígrafe → ok
+- **metalinguagem** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/metalinguagem/ ; https://dicionario.priberam.org/metalinguagem ; https://en.wikipedia.org/wiki/Jakobson%27s_functions_of_language (metalinguística = código) → ok
+- **função referencial** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/referencial/ ; https://dicionario.priberam.org/referencial ; https://en.wikipedia.org/wiki/Jakobson%27s_functions_of_language (1960; referencial = contexto) → ok
+- **função emotiva** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/emotivo/ ; https://dicionario.priberam.org/emotivo ; https://en.wikipedia.org/wiki/Jakobson%27s_functions_of_language (emotiva = emissor) → corrigido (origem: fr. émotif < lat. emotus)
+- **função conativa** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/conativo/ ; https://dicionario.priberam.org/conativo ; https://en.wikipedia.org/wiki/Jakobson%27s_functions_of_language (conativa = destinatário) → ok
+- **interlocutor** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/interlocutor/ ; https://dicionario.priberam.org/interlocutor → ok
+- **enunciador** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/enunciador/ ; https://dicionario.priberam.org/enunciador → ok
+- **pressuposto** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/pressuposto/ ; https://dicionario.priberam.org/pressuposto ; https://en.wikipedia.org/wiki/Presupposition (constância sob negação) → ok
+- **subentendido** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/subentendido/ ; https://dicionario.priberam.org/subentendido ; https://saber.unioeste.br/index.php/temasematizes/article/viewFile/545/456 (subentendido depende do contexto) → corrigido (formas: "subentendido" solto casava "verbo subentendido", sentido sintático)
+- **inferência** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/inferencia/ ; https://dicionario.priberam.org/inferência → ok
+- **extrapolação** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/extrapolacao/ ; https://dicionario.priberam.org/extrapolação → corrigido (origem: francês extrapoler, não latim)
+- **concessão** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/concessao/ ; https://dicionario.priberam.org/concessão → ok
+- **modalização** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/modalizacao/ ; https://dicionario.priberam.org/modalização → ok
+- **juízo de valor** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/juizo/ ; https://dicionario.priberam.org/juízo → ok
+- **injunção** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/injuncao/ ; https://dicionario.priberam.org/injunção → ok
+- **paratexto** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/paratexto/ ; https://dicionario.priberam.org/paratexto ; https://pt.wikipedia.org/wiki/Paratexto (Genette cunhou o termo) → ok
+- **hipertexto** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/hipertexto/ ; https://dicionario.priberam.org/hipertexto ; https://pt.wikipedia.org/wiki/Hipertexto (Ted Nelson, anos 1960) → ok
+- **tipo textual** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/tipo/ ; https://dicionario.priberam.org/tipo ; https://www.e-publicacoes.uerj.br/soletras/article/download/5165/3788/19258 (Marcuschi: narrativa, argumentativa, expositiva, descritiva, injuntiva) → ok
+- **tópico frasal** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/frasal/ ; https://dicionario.priberam.org/frasal ; https://www.todamateria.com.br/o-que-e-um-topico-frasal-com-exemplos/ (def.; ref. Othon M. Garcia, Comunicação em Prosa Moderna) → ok
+- **variação linguística** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/variacao/ ; https://dicionario.priberam.org/variação → ok
+- **norma-padrão** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/norma/ ; https://dicionario.priberam.org/norma → ok
+- **norma culta** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/culto/ ; https://dicionario.priberam.org/culto → ok
+- **regionalismo** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/regionalismo/ ; https://dicionario.priberam.org/regionalismo → ok
+- **discurso direto** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/discurso/ ; https://dicionario.priberam.org/discurso → ok
+- **discurso indireto** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/indireto/ ; https://dicionario.priberam.org/indireto → ok
+- **discurso indireto livre** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/discurso/ ; https://dicionario.priberam.org/discurso → ok
+- **verbo de elocução** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/elocucao/ ; https://dicionario.priberam.org/elocução → ok
+- **eu lírico** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/lirico/ ; https://dicionario.priberam.org/lírico → ok
+- **digressão** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/digressao/ ; https://dicionario.priberam.org/digressão → ok
+- **tópica** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/topica/ ; https://dicionario.priberam.org/tópica → ok
+- **crônica** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/cronica/ ; https://dicionario.priberam.org/crônica → corrigido (origem: via latim chronica)
+- **charge** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/charge/ ; https://dicionario.priberam.org/charge → ok
+- **cartum** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/cartum/ ; https://dicionario.priberam.org/cartum → ok
+- **soneto** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/soneto/ ; https://dicionario.priberam.org/soneto → ok
+- **verso livre** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/verso-livre/ ; https://dicionario.priberam.org/verso%20livre ; https://pt.wikipedia.org/wiki/Verso_livre (vers libre; Laforgue/simbolistas) → ok
+- **decassílabo** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/decassilabo/ ; https://dicionario.priberam.org/decassílabo → ok
+- **rima rica** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/rima/ ; https://dicionario.priberam.org/rima → ok
+- **rima pobre** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/rima/ ; https://dicionario.priberam.org/rima → ok
+- **classicismo** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/classicismo/ ; https://dicionario.priberam.org/classicismo → ok
+- **barroco** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/barroco/ ; https://dicionario.priberam.org/barroco ; https://www.etymonline.com/word/baroque (fr. baroque, provavelmente do port. barroco, "pérola imperfeita") → corrigido (origem: via francês baroque; port. barroco é hipótese provável)
+- **cultismo** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/cultismo/ ; https://dicionario.priberam.org/cultismo ; https://pt.wikipedia.org/wiki/Gongorismo (Góngora) → ok
+- **conceptismo** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/conceptismo/ ; https://dicionario.priberam.org/conceptismo ; https://pt.wikipedia.org/wiki/Conceptismo (Quevedo) → ok
+- **arcadismo** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/arcadismo/ ; https://dicionario.priberam.org/arcadismo ; https://pt.wikipedia.org/wiki/Arcadismo (Arcádia, região do Peloponeso; pastores) → ok
+- **bucolismo** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/bucolismo/ ; https://dicionario.priberam.org/bucolismo → ok
+- **locus amoenus** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/ameno/ ; https://dicionario.priberam.org/ameno ; https://pt.wikipedia.org/wiki/Locus_amoenus → ok
+- **carpe diem** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/carpe-diem/ ; https://dicionario.priberam.org/carpe%20diem ; https://pt.wikipedia.org/wiki/Carpe_diem (Odes I, 11) → ok
+- **fugere urbem** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/urbe/ ; https://dicionario.priberam.org/urbe ; https://pt.wikipedia.org/wiki/Fugere_urbem → ok
+- **aurea mediocritas** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/mediocridade/ ; https://dicionario.priberam.org/mediocridade ; https://fgh.perseids.org/read/latinLit/phi0893/phi001/perseus-lat2/2.10.1-2.10.12 (Odes II, 10: "auream quisquis mediocritatem") → ok
+- **romantismo** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/romantismo/ ; https://dicionario.priberam.org/romantismo → ok
+- **indianismo** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/indianismo/ ; https://dicionario.priberam.org/indianismo → corrigido (origem: indiano + -ismo)
+- **ultrarromantismo** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/ultrarromantismo/ ; https://dicionario.priberam.org/ultrarromantismo → ok
+- **condoreirismo** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/condoreirismo/ ; https://dicionario.priberam.org/condoreirismo ; https://pt.wikipedia.org/wiki/Condoreirismo (condor, ave de voo alto) → ok
+- **realismo** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/realismo/ ; https://dicionario.priberam.org/realismo → ok
+- **naturalismo** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/naturalismo/ ; https://dicionario.priberam.org/naturalismo → ok
+- **determinismo** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/determinismo/ ; https://dicionario.priberam.org/determinismo ; https://pt.wikipedia.org/wiki/Hippolyte_Taine → corrigido (origem: fr. déterminisme; Taine aplicou, não sistematizou o conceito)
+- **positivismo** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/positivismo/ ; https://dicionario.priberam.org/positivismo ; https://pt.wikipedia.org/wiki/Ordem_e_Progresso (lema de Comte) → ok
+- **cientificismo** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/cientificismo/ ; https://dicionario.priberam.org/cientificismo → ok
+- **humanitismo** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/humanitismo/ ; https://dicionario.priberam.org/humanitismo ; https://pt.wikipedia.org/wiki/Humanitismo (frase das batatas; sátira ao positivismo/darwinismo social) → ok
+- **parnasianismo** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/parnasianismo/ ; https://dicionario.priberam.org/parnasianismo ; https://pt.wikipedia.org/wiki/Parnasianismo (Le Parnasse Contemporain, 1866) → ok
+- **arte pela arte** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/arte/ ; https://dicionario.priberam.org/arte ; https://pt.wikipedia.org/wiki/Arte_pela_arte (Gautier, grande divulgador) → ok
+- **simbolismo** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/simbolismo/ ; https://dicionario.priberam.org/simbolismo ; https://en.wikipedia.org/wiki/Symbolist_Manifesto (Moréas, Le Figaro, 18/9/1886); https://www.todamateria.com.br/cruz-e-souza/ (Missal e Broquéis, 1893) → ok
+- **pré-modernismo** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/pre-modernismo/ ; https://dicionario.priberam.org/pré-modernismo → ok
+- **modernismo** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/modernismo/ ; https://dicionario.priberam.org/modernismo → ok
+- **Semana de Arte Moderna** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/modernismo/ ; https://dicionario.priberam.org/modernismo ; https://pt.wikipedia.org/wiki/Semana_de_Arte_Moderna (13–17/2/1922, Theatro Municipal) → ok
+- **vanguarda** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/vanguarda/ ; https://dicionario.priberam.org/vanguarda → ok
+- **futurismo** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/futurismo/ ; https://dicionario.priberam.org/futurismo ; https://pt.wikipedia.org/wiki/Manifesto_Futurista (Le Figaro, 20/2/1909; Vitória de Samotrácia) → ok
+- **cubismo** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/cubismo/ ; https://dicionario.priberam.org/cubismo ; https://en.wikipedia.org/wiki/Cubism (Vauxcelles, "cubes"; Picasso e Braque; Demoiselles 1907) → ok
+- **expressionismo** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/expressionismo/ ; https://dicionario.priberam.org/expressionismo → ok
+- **surrealismo** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/surrealismo/ ; https://dicionario.priberam.org/surrealismo ; https://pt.wikipedia.org/wiki/Surrealismo (Breton, 1924) → ok
+- **antropofagia** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/antropofagia/ ; https://dicionario.priberam.org/antropofagia ; https://publicdomainreview.org/collection/manifesto-antropofago/ (1928; "Tupi, or not tupi that is the question.") → ok
+- **Pau-Brasil** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/pau-brasil/ ; https://dicionario.priberam.org/pau-brasil ; https://pt.wikipedia.org/wiki/Manifesto_da_Poesia_Pau-Brasil (Correio da Manhã, 18/3/1924) → ok
+- **romance de 30** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/romance/ ; https://dicionario.priberam.org/romance → ok
+- **geração de 45** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/geracao/ ; https://dicionario.priberam.org/geração → ok
+- **concretismo** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/concretismo/ ; https://dicionario.priberam.org/concretismo ; https://pt.wikipedia.org/wiki/Poesia_concreta (1956, MAM-SP); https://www.culturagenial.com/poemas-para-entender-poesia-concreta/ (beba coca cola, 1957) → ok
+- **Noigandres** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/noigandres/ ; https://dicionario.priberam.org/noigandres ; https://ubu.punctumbooks.com/papers/solt/brazil.html (1952; Campos, Campos, Pignatari; Canto XX de Pound / Arnaut Daniel) → ok
+- **poesia marginal** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/marginal/ ; https://dicionario.priberam.org/marginal → ok
+- **predicativo do sujeito** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/predicativo/ ; https://dicionario.priberam.org/predicativo → ok
+- **predicativo do objeto** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/predicativo/ ; https://dicionario.priberam.org/predicativo → ok
+- **objeto direto** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/objeto/ ; https://dicionario.priberam.org/objeto → ok
+- **objeto indireto** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/objeto/ ; https://dicionario.priberam.org/objeto → ok
+- **complemento nominal** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/complemento/ ; https://dicionario.priberam.org/complemento → ok
+- **adjunto adnominal** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/adnominal/ ; https://dicionario.priberam.org/adnominal → ok
+- **adjunto adverbial** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/adjunto/ ; https://dicionario.priberam.org/adjunto → ok
+- **agente da passiva** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/agente/ ; https://dicionario.priberam.org/agente → ok
+- **aposto** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/aposto/ ; https://dicionario.priberam.org/aposto → corrigido (formas: "aposto" solto casava o verbo em "E eu aposto o oposto")
+- **vocativo** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/vocativo/ ; https://dicionario.priberam.org/vocativo → ok
+- **sujeito indeterminado** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/indeterminado/ ; https://dicionario.priberam.org/indeterminado → ok
+- **oração sem sujeito** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/sujeito/ ; https://dicionario.priberam.org/sujeito → ok
+- **sujeito paciente** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/paciente/ ; https://dicionario.priberam.org/paciente → ok
+- **voz passiva analítica** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/analitico/ ; https://dicionario.priberam.org/analítico → ok
+- **voz passiva sintética** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/sintetico/ ; https://dicionario.priberam.org/sintético → ok
+- **partícula apassivadora** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/apassivador/ ; https://dicionario.priberam.org/apassivador → ok
+- **índice de indeterminação do sujeito** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/indeterminacao/ ; https://dicionario.priberam.org/indeterminação → ok
+- **pronome relativo** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/relativo/ ; https://dicionario.priberam.org/relativo → ok
+- **conjunção integrante** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/integrante/ ; https://dicionario.priberam.org/integrante → ok
+- **verbo de ligação** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/verbo/ ; https://dicionario.priberam.org/verbo → ok
+- **verbo transitivo direto** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/transitivo/ ; https://dicionario.priberam.org/transitivo → ok
+- **verbo transitivo indireto** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/transitivo/ ; https://dicionario.priberam.org/transitivo → ok
+- **verbo intransitivo** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/intransitivo/ ; https://dicionario.priberam.org/intransitivo → ok
+- **verbo impessoal** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/impessoal/ ; https://dicionario.priberam.org/impessoal → ok
+- **transitividade** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/transitividade/ ; https://dicionario.priberam.org/transitividade → ok
+- **regência verbal** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/regencia/ ; https://dicionario.priberam.org/regência → ok
+- **crase** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/crase/ ; https://dicionario.priberam.org/crase → ok
+- **próclise** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/proclise/ ; https://dicionario.priberam.org/próclise → ok
+- **mesóclise** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/mesoclise/ ; https://dicionario.priberam.org/mesóclise → ok
+- **ênclise** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/enclise/ ; https://dicionario.priberam.org/ênclise → ok
+- **palavra atrativa** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/atrativo/ ; https://dicionario.priberam.org/atrativo → ok
+- **oração reduzida** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/reduzido/ ; https://dicionario.priberam.org/reduzido → ok
+- **oração desenvolvida** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/desenvolvido/ ; https://dicionario.priberam.org/desenvolvido → ok
+- **oração adjetiva restritiva** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/restritivo/ ; https://dicionario.priberam.org/restritivo → ok
+- **oração adjetiva explicativa** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/explicativo/ ; https://dicionario.priberam.org/explicativo → ok
+- **oração subordinada substantiva** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/substantivo/ ; https://dicionario.priberam.org/substantivo → ok
+- **oração subordinada adverbial** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/adverbial/ ; https://dicionario.priberam.org/adverbial → ok
+- **conjunção adversativa** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/adversativo/ ; https://dicionario.priberam.org/adversativo → ok
+- **conjunção concessiva** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/concessivo/ ; https://dicionario.priberam.org/concessivo → ok
+- **conectivo** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/conectivo/ ; https://dicionario.priberam.org/conectivo → ok
+- **locução adjetiva** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/locucao/ ; https://dicionario.priberam.org/locução → ok
+- **expletivo** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/expletivo/ ; https://dicionario.priberam.org/expletivo → ok
+- **particípio** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/participio/ ; https://dicionario.priberam.org/particípio → ok
+- **subjuntivo** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/subjuntivo/ ; https://dicionario.priberam.org/subjuntivo → ok
+- **futuro do pretérito** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/preterito/ ; https://dicionario.priberam.org/pretérito → ok
+- **futuro do subjuntivo** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/subjuntivo/ ; https://dicionario.priberam.org/subjuntivo → corrigido (exemplo violava a colocação pronominal: "avise-me")
+- **mais-que-perfeito** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/mais-que-perfeito/ ; https://dicionario.priberam.org/mais-que-perfeito → ok
+- **derivação parassintética** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/parassintese/ ; https://dicionario.priberam.org/parassíntese → ok
+- **derivação regressiva** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/derivacao/ ; https://dicionario.priberam.org/derivação → ok
+- **derivação imprópria** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/derivacao/ ; https://dicionario.priberam.org/derivação → ok
+- **justaposição** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/justaposicao/ ; https://dicionario.priberam.org/justaposição → ok
+- **aglutinação** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/aglutinacao/ ; https://dicionario.priberam.org/aglutinação → ok
+- **desinência** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/desinencia/ ; https://dicionario.priberam.org/desinência → corrigido (exemplo: -va = tempo e modo; -mos = número e pessoa)
+- **AI-5** → https://www.historiadomundo.com.br/idade-contemporanea/ato-institucional-n-5-ai-5.htm ; https://www.conjur.com.br/2018-dez-13/50-anos-ai-ato-derrubou-estado-direito (13/12/1968, Congresso, HC, censura) → ok
+- **PNL** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/pnl/ ; https://dicionario.priberam.org/PNL ; https://en.wikipedia.org/wiki/Neuro-linguistic_programming (Bandler e Grinder, anos 1970; sem evidência científica) → ok
+- **LED** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/led/ ; https://dicionario.priberam.org/LED ; https://dicionario.priberam.org/LED (sigla do inglês light-emitting diode) → ok
+- **ICMS** → https://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/icms/ ; https://dicionario.priberam.org/ICMS ; https://www.fazenda.mg.gov.br/governo/assuntos_municipais/legislacao/constitfed1988.html (CF art. 158, IV: 25% aos municípios) → ok

@@ -1,0 +1,189 @@
+# Revisão independente — dicionário BIOLOGIA (D['dic']) — 29/10
+
+Método: 105 páginas-fonte do autor baixadas e conferidas por palavras-chave de cada termo (expansão em inglês, função, exemplo); páginas do NCBI bloqueadas por captcha conferidas pelas E-utilities; etimologias, datas e nomes próprios conferidos via WebFetch (Wikipedia, Merriam-Webster, Wiktionary, Priberam, gov.br). Formas checadas contra o corpus (bio/res + dados). Limites de palavras: 0 violações.
+
+Resumo: 180 termos; 20 corrigidos; 1 campo removido (origem de eletroforese); 0 termos removidos. Banco idêntico; só 'dic' mudou. Backups: bio/index.html.bak_rev_dic, bio/dados.json.bak_rev_dic.
+
+Formas de risco verificadas no corpus (sem falso positivo): reabsorção (63, todas renais), C4/CAM, OD, UR, cM, AME, CoA, Bt, Rh, T3/T4, PGA, NAD/FAD, UAA/UAG/UGA, lenho, líber, permutação.
+
+## Termo → fonte → status
+- **ADH** → https://openstax.org/books/anatomy-and-physiology-2e/pages/17-3-the-pituitary-gland-and-hypothalamus → ok
+- **FSH** → https://openstax.org/books/anatomy-and-physiology-2e/pages/17-3-the-pituitary-gland-and-hypothalamus → ok
+- **LH** → https://openstax.org/books/anatomy-and-physiology-2e/pages/17-3-the-pituitary-gland-and-hypothalamus (+ Wikipedia LH (luteus)) → corrigido — def: "estimula a testosterona" → "estimula a produção de testosterona" (células de Leydig; Wikipedia LH)
+- **hCG** → https://openstax.org/books/anatomy-and-physiology-2e/pages/28-2-embryonic-development (+ Wikipedia hCG + Wiktionary chorion) → ok
+- **TSH** → https://openstax.org/books/anatomy-and-physiology-2e/pages/17-4-the-thyroid-gland → ok
+- **TRH** → https://openstax.org/books/anatomy-and-physiology-2e/pages/17-4-the-thyroid-gland → ok
+- **ACTH** → https://openstax.org/books/anatomy-and-physiology-2e/pages/17-3-the-pituitary-gland-and-hypothalamus → corrigido — origem: "-trópico = que estimula" → "que age sobre" (Wiktionary -tropic: "affecting")
+- **GnRH** → https://openstax.org/books/anatomy-and-physiology-2e/pages/27-1-anatomy-and-physiology-of-the-testicular-reproductive-system → ok
+- **GHRH** → https://en.wikipedia.org/wiki/Growth_hormone%E2%80%93releasing_hormone (+ Wikipedia GHRH) → ok
+- **PIF** → https://openstax.org/books/anatomy-and-physiology-2e/pages/17-3-the-pituitary-gland-and-hypothalamus → ok
+- **GH** → https://openstax.org/books/anatomy-and-physiology-2e/pages/17-3-the-pituitary-gland-and-hypothalamus → corrigido — origem: retirada a etimologia "sôma" de somatotropina (não confirmada; MW só dá somatotropic + -in)
+- **PTH** → https://openstax.org/books/anatomy-and-physiology-2e/pages/17-5-the-parathyroid-glands → corrigido — origem: retirado "para- = ao lado" (não confirmado); mantido o fato de as paratireoides ficarem junto à tireoide
+- **T4** → https://openstax.org/books/anatomy-and-physiology-2e/pages/17-4-the-thyroid-gland → ok
+- **T3** → https://openstax.org/books/anatomy-and-physiology-2e/pages/17-4-the-thyroid-gland → ok
+- **calcitonina** → https://openstax.org/books/anatomy-and-physiology-2e/pages/17-4-the-thyroid-gland → ok
+- **aldosterona** → https://openstax.org/books/anatomy-and-physiology-2e/pages/17-6-the-adrenal-glands → ok
+- **ANP** → https://openstax.org/books/anatomy-and-physiology-2e/pages/17-10-organs-with-secondary-endocrine-functions → ok
+- **ocitocina** → https://openstax.org/books/anatomy-and-physiology-2e/pages/17-3-the-pituitary-gland-and-hypothalamus (+ Wikipedia Oxytocin (oxys + tokos)) → ok
+- **prolactina** → https://openstax.org/books/anatomy-and-physiology-2e/pages/17-3-the-pituitary-gland-and-hypothalamus (+ MW prolactin) → ok
+- **insulina** → https://openstax.org/books/anatomy-and-physiology-2e/pages/17-9-the-endocrine-pancreas (+ Wikipedia Insulin (insula)) → ok
+- **glucagon** → https://openstax.org/books/anatomy-and-physiology-2e/pages/17-9-the-endocrine-pancreas → ok
+- **cortisol** → https://openstax.org/books/anatomy-and-physiology-2e/pages/17-6-the-adrenal-glands → ok
+- **adrenalina** → https://openstax.org/books/anatomy-and-physiology-2e/pages/17-6-the-adrenal-glands (+ Wikipedia Adrenaline (ad + ren)) → ok
+- **noradrenalina** → https://openstax.org/books/anatomy-and-physiology-2e/pages/17-6-the-adrenal-glands → ok
+- **progesterona** → https://www.merriam-webster.com/dictionary/progesterone → corrigido — origem: não é pro- + gestação + -sterona; é junção de progestin + luteosterone (MW)
+- **estrógeno** → https://openstax.org/books/anatomy-and-physiology-2e/pages/27-2-anatomy-and-physiology-of-the-ovarian-reproductive-system → ok
+- **hipófise** → https://openstax.org/books/anatomy-and-physiology-2e/pages/17-3-the-pituitary-gland-and-hypothalamus → corrigido — def: "tamanho de uma ervilha" → "grão de feijão" (OpenStax: bean-sized; Wikipedia: kidney bean); origem: phyein = crescer (Wikipedia, Sömmerring)
+- **adeno-hipófise** → https://openstax.org/books/anatomy-and-physiology-2e/pages/17-3-the-pituitary-gland-and-hypothalamus (+ MW adeno-) → ok
+- **neuro-hipófise** → https://openstax.org/books/anatomy-and-physiology-2e/pages/17-3-the-pituitary-gland-and-hypothalamus → ok
+- **hipotálamo** → https://openstax.org/books/anatomy-and-physiology-2e/pages/17-3-the-pituitary-gland-and-hypothalamus → ok
+- **sistema porta-hipofisário** → https://openstax.org/books/anatomy-and-physiology-2e/pages/17-3-the-pituitary-gland-and-hypothalamus → ok
+- **feedback negativo** → https://openstax.org/books/biology-2e/pages/37-4-regulation-of-hormone-production → corrigido — forma "retroalimentação" removida (casaria "retroalimentação positiva" com a definição de negativa)
+- **glicemia** → https://openstax.org/books/anatomy-and-physiology-2e/pages/17-9-the-endocrine-pancreas (+ MW -emia) → ok
+- **calcemia** → https://openstax.org/books/anatomy-and-physiology-2e/pages/17-5-the-parathyroid-glands (+ Wiktionary calcemia) → ok
+- **corpo lúteo** → https://openstax.org/books/anatomy-and-physiology-2e/pages/27-2-anatomy-and-physiology-of-the-ovarian-reproductive-system → corrigido — exemplo: "cerca de duas semanas" → "cerca de 10 a 12 dias" (OpenStax 27-2)
+- **endométrio** → https://openstax.org/books/anatomy-and-physiology-2e/pages/27-2-anatomy-and-physiology-of-the-ovarian-reproductive-system (+ Wiktionary endometrium) → ok
+- **ilhotas de Langerhans** → https://openstax.org/books/anatomy-and-physiology-2e/pages/17-9-the-endocrine-pancreas (+ Wikipedia (1869)) → ok
+- **bócio** → https://openstax.org/books/anatomy-and-physiology-2e/pages/17-4-the-thyroid-gland → ok
+- **diabetes insípido** → https://openstax.org/books/anatomy-and-physiology-2e/pages/17-3-the-pituitary-gland-and-hypothalamus (+ Wiktionary insipidus) → ok
+- **diabetes mellitus** → https://openstax.org/books/anatomy-and-physiology-2e/pages/17-9-the-endocrine-pancreas (+ MW) → ok
+- **secretina** → https://openstax.org/books/anatomy-and-physiology-2e/pages/23-6-accessory-organs-in-digestion-the-liver-pancreas-and-gallbladder → ok
+- **néfron** → https://openstax.org/books/anatomy-and-physiology-2e/pages/25-4-microscopic-anatomy-of-the-kidney (+ MW nephr-) → ok
+- **glomérulo** → https://openstax.org/books/anatomy-and-physiology-2e/pages/25-4-microscopic-anatomy-of-the-kidney (+ MW glomerulus) → ok
+- **cápsula de Bowman** → https://openstax.org/books/anatomy-and-physiology-2e/pages/25-4-microscopic-anatomy-of-the-kidney (+ Wikipedia Bowman's capsule) → ok
+- **alça de Henle** → https://openstax.org/books/anatomy-and-physiology-2e/pages/25-4-microscopic-anatomy-of-the-kidney (+ Wikipedia Loop of Henle) → ok
+- **túbulo contorcido proximal** → https://openstax.org/books/anatomy-and-physiology-2e/pages/25-4-microscopic-anatomy-of-the-kidney → ok
+- **túbulo contorcido distal** → https://openstax.org/books/anatomy-and-physiology-2e/pages/25-6-tubular-reabsorption → ok
+- **ducto coletor** → https://openstax.org/books/anatomy-and-physiology-2e/pages/25-6-tubular-reabsorption → ok
+- **filtração glomerular** → https://openstax.org/books/anatomy-and-physiology-2e/pages/25-5-physiology-of-urine-formation → ok
+- **reabsorção tubular** → https://openstax.org/books/anatomy-and-physiology-2e/pages/25-6-tubular-reabsorption → ok
+- **ureia** → https://openstax.org/books/biology-2e/pages/41-4-nitrogenous-wastes → ok
+- **amônia** → https://en.wikipedia.org/wiki/Ammonia → corrigido — exemplo: "peixes ósseos excretam pelas brânquias" não confirmado na fonte → "Peixes eliminam a amônia direto na água" (Wikipedia Ammonia)
+- **ureter** → https://openstax.org/books/anatomy-and-physiology-2e/pages/25-2-gross-anatomy-of-urine-transport → ok
+- **uretra** → https://openstax.org/books/anatomy-and-physiology-2e/pages/25-2-gross-anatomy-of-urine-transport → ok
+- **antígeno** → https://openstax.org/books/anatomy-and-physiology-2e/pages/21-3-the-adaptive-immune-response-t-lymphocytes-and-their-functional-types → ok
+- **anticorpo** → https://openstax.org/books/anatomy-and-physiology-2e/pages/21-4-the-adaptive-immune-response-b-lymphocytes-and-antibodies → ok
+- **linfócito T** → https://openstax.org/books/anatomy-and-physiology-2e/pages/21-3-the-adaptive-immune-response-t-lymphocytes-and-their-functional-types → ok
+- **linfócito B** → https://openstax.org/books/anatomy-and-physiology-2e/pages/21-1-anatomy-of-the-lymphatic-and-immune-systems (+ Wikipedia Bursa of Fabricius) → ok
+- **plasmócito** → https://openstax.org/books/anatomy-and-physiology-2e/pages/21-4-the-adaptive-immune-response-b-lymphocytes-and-antibodies → ok
+- **macrófago** → https://openstax.org/books/anatomy-and-physiology-2e/pages/21-2-barrier-defenses-and-the-innate-immune-response (+ Wiktionary macrophage) → ok
+- **CD4** → https://en.wikipedia.org/wiki/CD4 → ok
+- **HIV** → https://openstax.org/books/anatomy-and-physiology-2e/pages/21-6-diseases-associated-with-depressed-or-overactive-immune-responses → ok
+- **aids** → https://www.genome.gov/genetics-glossary/Acquired-Immunodeficiency-Syndrome → ok
+- **retrovírus** → https://openstax.org/books/biology-2e/pages/21-2-virus-infections-and-hosts (+ Wikipedia Retrovirus) → ok
+- **transcriptase reversa** → https://openstax.org/books/biology-2e/pages/21-2-virus-infections-and-hosts → ok
+- **integrase** → https://openstax.org/books/biology-2e/pages/21-3-prevention-and-treatment-of-viral-infections → ok
+- **PrEP** → https://www.gov.br/aids/pt-br/assuntos/prevencao-combinada/prep-profilaxia-pre-exposicao → ok
+- **CCR5** → https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=gene&id=1234 → corrigido — expansão oficial é "C-C motif chemokine receptor 5" (NCBI Gene 1234, via E-utilities)
+- **soroterapia** → https://openstax.org/books/anatomy-and-physiology-2e/pages/21-4-the-adaptive-immune-response-b-lymphocytes-and-antibodies → ok
+- **memória imunológica** → https://openstax.org/books/anatomy-and-physiology-2e/pages/21-3-the-adaptive-immune-response-t-lymphocytes-and-their-functional-types → ok
+- **vacina atenuada** → https://openstax.org/books/biology-2e/pages/21-3-prevention-and-treatment-of-viral-infections → ok
+- **BCG** → https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/t/tuberculose (+ Wikipedia BCG vaccine) → ok
+- **HPV** → https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/h/hpv → ok
+- **HCV** → https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/h/hepatite-c → ok
+- **IST** → https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/i/ist (+ gov.br confirma Infecções Sexualmente Transmissíveis e a troca de DST) → ok
+- **SUS** → https://www.gov.br/saude/pt-br/composicao/saes/sus → ok
+- **eritroblastose fetal** → https://openstax.org/books/anatomy-and-physiology-2e/pages/18-6-blood-typing (+ Wikipedia HDN) → ok
+- **Rh** → https://en.wikipedia.org/wiki/Rh_blood_group_system → corrigido — origem: retirado o ano 1940 (Wikipedia dá descoberta em 1939 e importância em 1940)
+- **ABO** → https://openstax.org/books/anatomy-and-physiology-2e/pages/18-6-blood-typing → ok
+- **DNA** → https://www.genome.gov/genetics-glossary/Deoxyribonucleic-Acid → ok
+- **RNA** → https://openstax.org/books/biology-2e/pages/3-5-nucleic-acids → ok
+- **RNAm** → https://www.genome.gov/genetics-glossary/Messenger-RNA → ok
+- **RNAt** → https://www.genome.gov/genetics-glossary/Transfer-RNA → ok
+- **RNAr** → https://openstax.org/books/biology-2e/pages/15-5-ribosomes-and-protein-synthesis → ok
+- **ATP** → https://openstax.org/books/biology-2e/pages/6-4-atp-adenosine-triphosphate → ok
+- **ADP** → https://openstax.org/books/biology-2e/pages/6-4-atp-adenosine-triphosphate → ok
+- **AMP** → https://en.wikipedia.org/wiki/Adenosine_monophosphate → ok
+- **GTP** → https://openstax.org/books/biology-2e/pages/7-3-oxidation-of-pyruvate-and-the-citric-acid-cycle → ok
+- **NADH** → https://openstax.org/books/biology-2e/pages/7-1-energy-in-living-systems → ok
+- **NADPH** → https://en.wikipedia.org/wiki/Nicotinamide_adenine_dinucleotide_phosphate → ok
+- **FADH2** → https://openstax.org/books/biology-2e/pages/7-1-energy-in-living-systems → ok
+- **acetil-CoA** → https://openstax.org/books/biology-2e/pages/7-3-oxidation-of-pyruvate-and-the-citric-acid-cycle → ok
+- **glicólise** → https://openstax.org/books/biology-2e/pages/7-2-glycolysis (+ Wikipedia Glycolysis + MW -lysis) → ok
+- **ciclo de Krebs** → https://openstax.org/books/biology-2e/pages/7-3-oxidation-of-pyruvate-and-the-citric-acid-cycle (+ Wikipedia Hans Krebs (1937; Nobel 1953)) → ok
+- **cadeia respiratória** → https://openstax.org/books/biology-2e/pages/7-4-oxidative-phosphorylation → ok
+- **fosforilação oxidativa** → https://openstax.org/books/biology-2e/pages/7-4-oxidative-phosphorylation → ok
+- **quimiosmose** → https://openstax.org/books/biology-2e/pages/7-4-oxidative-phosphorylation (+ Wikipedia Chemiosmosis (Mitchell 1961)) → ok
+- **ATP sintase** → https://openstax.org/books/biology-2e/pages/7-4-oxidative-phosphorylation → ok
+- **ciclo de Calvin** → https://en.wikipedia.org/wiki/Melvin_Calvin → corrigido — "químico americano, Nobel de 1961" → "bioquímico americano, Nobel de Química de 1961"
+- **Rubisco** → https://en.wikipedia.org/wiki/RuBisCO (+ expansão confirmada na Wikipedia RuBisCO) → ok
+- **RuBP** → https://openstax.org/books/biology-2e/pages/8-3-using-light-energy-to-make-organic-molecules → ok
+- **PGA** → https://openstax.org/books/biology-2e/pages/8-3-using-light-energy-to-make-organic-molecules → ok
+- **PGAL** → https://openstax.org/books/biology-2e/pages/8-3-using-light-energy-to-make-organic-molecules → ok
+- **fotólise** → https://openstax.org/books/biology-2e/pages/8-2-the-light-dependent-reactions-of-photosynthesis (+ MW -lysis) → ok
+- **fotossistema** → https://openstax.org/books/biology-2e/pages/8-2-the-light-dependent-reactions-of-photosynthesis → ok
+- **plantas C4** → https://en.wikipedia.org/wiki/C4_carbon_fixation (+ Wikipedia C4 carbon fixation) → ok
+- **CAM** → https://en.wikipedia.org/wiki/Crassulacean_acid_metabolism (+ Wikipedia CAM (estômatos à noite, ácido málico)) → ok
+- **códon** → https://www.genome.gov/genetics-glossary/Codon → ok
+- **anticódon** → https://www.genome.gov/genetics-glossary/Anticodon → ok
+- **AUG** → https://openstax.org/books/biology-2e/pages/15-1-the-genetic-code → ok
+- **códon de parada** → https://www.genome.gov/genetics-glossary/Stop-Codon → ok
+- **íntron** → https://en.wikipedia.org/wiki/Intron (+ Wikipedia Intron (Gilbert 1978)) → ok
+- **éxon** → https://en.wikipedia.org/wiki/Exon (+ Wikipedia Intron/Exon) → ok
+- **splicing** → https://openstax.org/books/biology-2e/pages/15-4-rna-processing-in-eukaryotes (+ MW splice) → ok
+- **DNA polimerase** → https://openstax.org/books/biology-2e/pages/14-4-dna-replication-in-prokaryotes → ok
+- **RNA polimerase** → https://openstax.org/books/biology-2e/pages/15-2-prokaryotic-transcription → ok
+- **promotor** → https://www.genome.gov/genetics-glossary/Promoter → ok
+- **telômero** → https://www.genome.gov/genetics-glossary/Telomere (+ Wikipedia Telomere) → ok
+- **plasmídeo** → https://www.genome.gov/genetics-glossary/Plasmid → ok
+- **enzima de restrição** → https://www.genome.gov/genetics-glossary/Restriction-Enzyme → ok
+- **PCR** → https://www.genome.gov/genetics-glossary/Polymerase-Chain-Reaction → ok
+- **Taq polimerase** → https://openstax.org/books/biology-2e/pages/17-1-biotechnology (+ Wikipedia Taq polymerase) → ok
+- **eletroforese** → https://www.genome.gov/genetics-glossary/Electrophoresis → removido (só a origem) — "phoresis = ser carregado" não confirmado em fonte acessível (MW: só "New Latin")
+- **transgênico** → https://www.genome.gov/genetics-glossary/Transgenic → ok
+- **Bt** → https://openstax.org/books/biology-2e/pages/17-1-biotechnology (+ Wikipedia Bacillus thuringiensis) → ok
+- **CRISPR** → https://en.wikipedia.org/wiki/CRISPR_gene_editing (+ genome.gov não cita Cas9; Cas9/RNA-guia confirmado na Wikipedia CRISPR gene editing) → ok
+- **apoptose** → https://www.genome.gov/genetics-glossary/Apoptosis (+ Wikipedia Apoptosis) → ok
+- **SRY** → https://medlineplus.gov/genetics/gene/sry/ → ok
+- **corpúsculo de Barr** → https://openstax.org/books/biology-2e/pages/13-2-chromosomal-basis-of-inherited-disorders (+ Wikipedia Barr body (1949, canadense)) → ok
+- **cariótipo** → https://www.genome.gov/genetics-glossary/Karyotype (+ Wikipedia Karyotype) → ok
+- **aneuploidia** → https://www.genome.gov/genetics-glossary/Aneuploidy → corrigido — origem reescrita a partir de euploide = conjuntos completos (Wikipedia Aneuploidy)
+- **síndrome de Klinefelter** → https://openstax.org/books/biology-2e/pages/13-2-chromosomal-basis-of-inherited-disorders (+ Wikipedia (1942)) → ok
+- **síndrome de Turner** → https://openstax.org/books/biology-2e/pages/13-2-chromosomal-basis-of-inherited-disorders (+ Wikipedia (Henry Turner, 1938)) → ok
+- **crossing-over** → https://www.genome.gov/genetics-glossary/Crossing-Over → corrigido — origem: "cruzar por cima" → "cruzamento" (tradução literal mais fiel)
+- **epistasia** → https://www.genome.gov/genetics-glossary/Epistasis (+ MW epistasis + Wikipedia Labrador coat genetics (ee amarelo)) → ok
+- **pleiotropia** → https://en.wikipedia.org/wiki/Pleiotropy (+ Wikipedia Pleiotropy (inclui PKU)) → ok
+- **codominância** → https://www.genome.gov/genetics-glossary/Codominance → ok
+- **dominância incompleta** → https://openstax.org/books/biology-2e/pages/12-2-characteristics-and-traits → ok
+- **linkage** → https://www.genome.gov/genetics-glossary/Linkage → ok
+- **arranjo cis** → https://www.merriam-webster.com/dictionary/cis- → corrigido — origem: latim cis = "deste lado" (MW), não "do mesmo lado"
+- **arranjo trans** → https://www.merriam-webster.com/dictionary/trans- (+ MW trans- e trans (genética)) → ok
+- **UR** → https://www.genome.gov/genetics-glossary/Centimorgan → ok
+- **Hardy-Weinberg** → https://openstax.org/books/biology-2e/pages/19-1-population-evolution (+ Wikipedia (Hardy britânico, Weinberg médico alemão, 1908)) → ok
+- **deriva genética** → https://www.genome.gov/genetics-glossary/Genetic-Drift → ok
+- **efeito fundador** → https://www.genome.gov/genetics-glossary/Founder-Effect → ok
+- **efeito gargalo** → https://openstax.org/books/biology-2e/pages/19-2-population-genetics → ok
+- **heredograma** → https://www.genome.gov/genetics-glossary/Pedigree (+ Priberam (heres, -edis)) → ok
+- **AME** → https://medlineplus.gov/genetics/condition/spinal-muscular-atrophy/ → ok
+- **SMN1** → https://medlineplus.gov/genetics/gene/smn1/ → ok
+- **DHFR** → https://www.ncbi.nlm.nih.gov/gene/1719 (+ NCBI E-utilities 1719) → ok
+- **CMAH** → https://www.ncbi.nlm.nih.gov/gene/8418 (+ NCBI E-utilities (deleção de 92 pb; chimpanzé funcional)) → ok
+- **Neu5Gc** → https://www.ncbi.nlm.nih.gov/gene/8418 (+ NCBI E-utilities 8418) → ok
+- **OR6A2** → https://www.ncbi.nlm.nih.gov/gene/8590 (+ NCBI E-utilities 8590 (nome); associação com coentro já registrada pelo autor) → ok
+- **EIN3** → https://pubmed.ncbi.nlm.nih.gov/20647342/ → ok
+- **EIL1** → https://pubmed.ncbi.nlm.nih.gov/20647342/ → ok
+- **HbO2** → https://openstax.org/books/anatomy-and-physiology-2e/pages/22-5-transport-of-gases → ok
+- **efeito Bohr** → https://openstax.org/books/anatomy-and-physiology-2e/pages/22-5-transport-of-gases (+ Wikipedia (Christian Bohr, 1904)) → ok
+- **hematose** → https://openstax.org/books/anatomy-and-physiology-2e/pages/22-4-gas-exchange → ok
+- **hematócrito** → https://openstax.org/books/anatomy-and-physiology-2e/pages/18-1-an-overview-of-blood (+ Wiktionary hematocrit) → ok
+- **CHCM** → https://medlineplus.gov/ency/article/003648.htm → ok
+- **LDL** → https://medlineplus.gov/ldlthebadcholesterol.html → ok
+- **HDL** → https://medlineplus.gov/ldlthebadcholesterol.html → ok
+- **nó sinoatrial** → https://en.wikipedia.org/wiki/Sinoatrial_node → corrigido — origem: sinus refere-se ao seio das veias cavas (sinus venarum), não "seio venoso" (Wikipedia)
+- **potencial de ação** → https://openstax.org/books/anatomy-and-physiology-2e/pages/12-4-the-action-potential → ok
+- **bainha de mielina** → https://en.wikipedia.org/wiki/Myelin → corrigido — origem: myelos = medula óssea (tutano), não "medula" ambígua (Wikipedia Myelin, Virchow 1854)
+- **bomba de sódio e potássio** → https://openstax.org/books/biology-2e/pages/5-3-active-transport → ok
+- **DBO** → https://en.wikipedia.org/wiki/Biochemical_oxygen_demand → ok
+- **OD** → https://www.epa.gov/national-aquatic-resource-surveys/indicators-dissolved-oxygen → ok
+- **PPB** → https://openstax.org/books/biology-2e/pages/46-2-energy-flow-through-ecosystems → ok
+- **PPL** → https://openstax.org/books/biology-2e/pages/46-2-energy-flow-through-ecosystems → ok
+- **eutrofização** → https://openstax.org/books/biology-2e/pages/46-3-biogeochemical-cycles (+ Wikipedia Eutrophication) → ok
+- **biomagnificação** → https://openstax.org/books/biology-2e/pages/46-2-energy-flow-through-ecosystems → ok
+- **DDT** → https://openstax.org/books/biology-2e/pages/46-2-energy-flow-through-ecosystems → ok
+- **auxina** → https://en.wikipedia.org/wiki/Auxin → corrigido — origem: acrescentada a expansão de AIA (ácido indolilacético), forma listada sem explicação
+- **etileno** → https://openstax.org/books/biology-2e/pages/30-6-plant-sensory-systems-and-responses → ok
+- **ácido abscísico** → https://openstax.org/books/biology-2e/pages/30-6-plant-sensory-systems-and-responses (+ Wikipedia Abscisic acid) → ok
+- **xilema** → https://openstax.org/books/biology-2e/pages/30-1-the-plant-body (+ Wikipedia Xylem) → ok
+- **floema** → https://openstax.org/books/biology-2e/pages/30-1-the-plant-body (+ Wikipedia Phloem (anelamento)) → ok
+- **especiação alopátrica** → https://en.wikipedia.org/wiki/Allopatric_speciation → corrigido — origem: patris (Wikipedia), não patra
+- **especiação simpátrica** → https://openstax.org/books/biology-2e/pages/18-2-formation-of-new-species (+ MW sympatric (patra)) → ok

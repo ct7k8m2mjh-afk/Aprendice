@@ -1,0 +1,193 @@
+# Dicionário passe-o-mouse — PORTUGUÊS (por)
+
+180 termos gravados em D["dic"] de por/index.html e por/dados.json (29/10). Backups: por/index.html.bak_dic, por/dados.json.bak_dic.
+
+## Método
+- Corpus: por/res/*.json, D["teoria"], D["flash"], D["banco"][i]["conceito"] (strings base64 removidas). Contagem de ~450 candidatos (termos gramaticais, figuras, escolas, termos de interpretação, siglas) por expressão regular com limite de palavra.
+- Escolha: 180 termos técnicos mais frequentes/difíceis; cortados termos de uso comum (tema, tese, aspas, preposição, advérbio, registro, suporte) e 40 de baixa prioridade (quiasmo, epíteto, gerúndio, imperativo, fábula etc.).
+- Siglas: o material de Português quase não tem siglas técnicas; entraram as 4 que aparecem nas resoluções (AI-5, PNL, LED, ICMS).
+- Conferência: definições pela gramática normativa (Cunha & Cintra; Bechara), teoria do texto (Koch & Elias; Fiorin & Savioli; Marcuschi; Ducrot; Jakobson; Genette), literatura (Bosi; Massaud Moisés; G. M. Teles) e etimologia (Houaiss). Verificados na web: Noigandres/Concretismo (Solt, UbuWeb), ICMS (Enciclopédia Jurídica PUC-SP), PNL (Infopédia). Coerência conferida com o próprio material (zeugma, silepse, rima rica, palavra atrativa, Humanitismo, Geração de 45, tópicas árcades).
+- Exemplos: criados ou citações curtas consagradas (Camões, Gregório de Matos, Castro Alves, Drummond, Oswald, Tom Jobim, Hino Nacional).
+- Segunda passada: removidas formas que casariam palavras comuns ("enunciado", "dada", "clímax", "lugar-comum", "coerente", "conversão", "regressiva", "lírico/lírica", "referente", "realista", "editorial" solto); "editorial" e "realismo" só com formas inequívocas; siglas com maiúsculas exatas. Corrigidos: exemplo de acepção (pena = homônimos, trocado por "pé"), disfemismo, rima rica, discurso indireto livre (sem citação inventada).
+
+## Termos (termo — fonte)
+- **metonímia** — Cunha & Cintra, Nova Gramática do Português Contemporâneo (Figuras de sintaxe e de palavras); Bechara, Moderna Gramática Portuguesa (Estilística); Dicionário Houaiss da Língua Portuguesa (etimologia)
+- **sinédoque** — Cunha & Cintra, Nova Gramática do Português Contemporâneo (Figuras de sintaxe e de palavras); Bechara, Moderna Gramática Portuguesa (Estilística); Dicionário Houaiss da Língua Portuguesa (etimologia)
+- **metáfora** — Cunha & Cintra, Nova Gramática do Português Contemporâneo (Figuras de sintaxe e de palavras); Bechara, Moderna Gramática Portuguesa (Estilística); Dicionário Houaiss da Língua Portuguesa (etimologia)
+- **catacrese** — Cunha & Cintra, Nova Gramática do Português Contemporâneo (Figuras de sintaxe e de palavras); Bechara, Moderna Gramática Portuguesa (Estilística); Dicionário Houaiss da Língua Portuguesa (etimologia)
+- **sinestesia** — Cunha & Cintra, Nova Gramática do Português Contemporâneo (Figuras de sintaxe e de palavras); Bechara, Moderna Gramática Portuguesa (Estilística); Dicionário Houaiss da Língua Portuguesa (etimologia)
+- **prosopopeia** — Cunha & Cintra, Nova Gramática do Português Contemporâneo (Figuras de sintaxe e de palavras); Bechara, Moderna Gramática Portuguesa (Estilística); Dicionário Houaiss da Língua Portuguesa (etimologia)
+- **eufemismo** — Cunha & Cintra, Nova Gramática do Português Contemporâneo (Figuras de sintaxe e de palavras); Bechara, Moderna Gramática Portuguesa (Estilística); Dicionário Houaiss da Língua Portuguesa (etimologia)
+- **ironia** — Cunha & Cintra, Nova Gramática do Português Contemporâneo (Figuras de sintaxe e de palavras); Bechara, Moderna Gramática Portuguesa (Estilística); Dicionário Houaiss da Língua Portuguesa (etimologia)
+- **antítese** — Cunha & Cintra, Nova Gramática do Português Contemporâneo (Figuras de sintaxe e de palavras); Bechara, Moderna Gramática Portuguesa (Estilística); Dicionário Houaiss da Língua Portuguesa (etimologia)
+- **paradoxo** — Cunha & Cintra, Nova Gramática do Português Contemporâneo (Figuras de sintaxe e de palavras); Bechara, Moderna Gramática Portuguesa (Estilística); Dicionário Houaiss da Língua Portuguesa (etimologia)
+- **oxímoro** — Cunha & Cintra, Nova Gramática do Português Contemporâneo (Figuras de sintaxe e de palavras); Bechara, Moderna Gramática Portuguesa (Estilística); Dicionário Houaiss da Língua Portuguesa (etimologia)
+- **gradação** — Cunha & Cintra, Nova Gramática do Português Contemporâneo (Figuras de sintaxe e de palavras); Bechara, Moderna Gramática Portuguesa (Estilística); Dicionário Houaiss da Língua Portuguesa (etimologia)
+- **apóstrofe** — Cunha & Cintra, Nova Gramática do Português Contemporâneo (Figuras de sintaxe e de palavras); Bechara, Moderna Gramática Portuguesa (Estilística); Dicionário Houaiss da Língua Portuguesa (etimologia)
+- **perífrase** — Cunha & Cintra, Nova Gramática do Português Contemporâneo (Figuras de sintaxe e de palavras); Bechara, Moderna Gramática Portuguesa (Estilística); Dicionário Houaiss da Língua Portuguesa (etimologia)
+- **alegoria** — Cunha & Cintra, Nova Gramática do Português Contemporâneo (Figuras de sintaxe e de palavras); Bechara, Moderna Gramática Portuguesa (Estilística); Dicionário Houaiss da Língua Portuguesa (etimologia)
+- **aliteração** — Cunha & Cintra, Nova Gramática do Português Contemporâneo (Figuras de sintaxe e de palavras); Bechara, Moderna Gramática Portuguesa (Estilística); Dicionário Houaiss da Língua Portuguesa (etimologia)
+- **paronomásia** — Cunha & Cintra, Nova Gramática do Português Contemporâneo (Figuras de sintaxe e de palavras); Bechara, Moderna Gramática Portuguesa (Estilística); Dicionário Houaiss da Língua Portuguesa (etimologia)
+- **elipse** — Cunha & Cintra, Nova Gramática do Português Contemporâneo (Figuras de sintaxe e de palavras); Bechara, Moderna Gramática Portuguesa (Estilística); Dicionário Houaiss da Língua Portuguesa (etimologia)
+- **zeugma** — Cunha & Cintra, Nova Gramática do Português Contemporâneo (Figuras de sintaxe e de palavras); Bechara, Moderna Gramática Portuguesa (Estilística); Dicionário Houaiss da Língua Portuguesa (etimologia)
+- **pleonasmo** — Cunha & Cintra, Nova Gramática do Português Contemporâneo (Figuras de sintaxe e de palavras); Bechara, Moderna Gramática Portuguesa (Estilística); Dicionário Houaiss da Língua Portuguesa (etimologia)
+- **hipérbato** — Cunha & Cintra, Nova Gramática do Português Contemporâneo (Figuras de sintaxe e de palavras); Bechara, Moderna Gramática Portuguesa (Estilística); Dicionário Houaiss da Língua Portuguesa (etimologia)
+- **silepse** — Cunha & Cintra, Nova Gramática do Português Contemporâneo (Figuras de sintaxe e de palavras); Bechara, Moderna Gramática Portuguesa (Estilística); Dicionário Houaiss da Língua Portuguesa (etimologia)
+- **anacoluto** — Cunha & Cintra, Nova Gramática do Português Contemporâneo (Figuras de sintaxe e de palavras); Bechara, Moderna Gramática Portuguesa (Estilística); Dicionário Houaiss da Língua Portuguesa (etimologia)
+- **polissíndeto** — Cunha & Cintra, Nova Gramática do Português Contemporâneo (Figuras de sintaxe e de palavras); Bechara, Moderna Gramática Portuguesa (Estilística); Dicionário Houaiss da Língua Portuguesa (etimologia)
+- **assíndeto** — Cunha & Cintra, Nova Gramática do Português Contemporâneo (Figuras de sintaxe e de palavras); Bechara, Moderna Gramática Portuguesa (Estilística); Dicionário Houaiss da Língua Portuguesa (etimologia)
+- **anáfora** — Cunha & Cintra, Nova Gramática do Português Contemporâneo (Figuras de sintaxe e de palavras); Bechara, Moderna Gramática Portuguesa (Estilística); Koch & Elias, Ler e Compreender: os sentidos do texto (Contexto); Fiorin & Savioli, Para Entender o Texto (Ática)
+- **catáfora** — Koch & Elias, Ler e Compreender: os sentidos do texto (Contexto); Fiorin & Savioli, Para Entender o Texto (Ática); Dicionário Houaiss da Língua Portuguesa (etimologia)
+- **pergunta retórica** — Cunha & Cintra, Nova Gramática do Português Contemporâneo (Figuras de sintaxe e de palavras); Bechara, Moderna Gramática Portuguesa (Estilística); Koch & Elias, Ler e Compreender: os sentidos do texto (Contexto); Fiorin & Savioli, Para Entender o Texto (Ática)
+- **polissemia** — Ilari & Geraldi, Semântica (Ática); Cunha & Cintra, Nova Gramática (Semântica); Dicionário Houaiss da Língua Portuguesa (etimologia)
+- **ambiguidade** — Ilari & Geraldi, Semântica (Ática); Cunha & Cintra, Nova Gramática (Semântica); Koch & Elias, Ler e Compreender: os sentidos do texto (Contexto); Fiorin & Savioli, Para Entender o Texto (Ática)
+- **homônimo** — Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa; Dicionário Houaiss da Língua Portuguesa (etimologia)
+- **parônimo** — Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa; Dicionário Houaiss da Língua Portuguesa (etimologia)
+- **hiperônimo** — Ilari & Geraldi, Semântica (Ática); Cunha & Cintra, Nova Gramática (Semântica); Koch & Elias, Ler e Compreender: os sentidos do texto (Contexto); Fiorin & Savioli, Para Entender o Texto (Ática)
+- **hipônimo** — Ilari & Geraldi, Semântica (Ática); Cunha & Cintra, Nova Gramática (Semântica); Koch & Elias, Ler e Compreender: os sentidos do texto (Contexto); Fiorin & Savioli, Para Entender o Texto (Ática)
+- **denotação** — Ilari & Geraldi, Semântica (Ática); Cunha & Cintra, Nova Gramática (Semântica)
+- **conotação** — Ilari & Geraldi, Semântica (Ática); Cunha & Cintra, Nova Gramática (Semântica)
+- **campo semântico** — Ilari & Geraldi, Semântica (Ática); Cunha & Cintra, Nova Gramática (Semântica)
+- **neologismo** — Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa; Dicionário Houaiss da Língua Portuguesa (etimologia)
+- **arcaísmo** — Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa; Dicionário Houaiss da Língua Portuguesa (etimologia)
+- **palavra-valise** — Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa
+- **dêitico** — Koch & Elias, Ler e Compreender: os sentidos do texto (Contexto); Fiorin & Savioli, Para Entender o Texto (Ática); Dicionário Houaiss da Língua Portuguesa (etimologia)
+- **antecedente** — Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa
+- **coesão** — Koch & Elias, Ler e Compreender: os sentidos do texto (Contexto); Fiorin & Savioli, Para Entender o Texto (Ática)
+- **coerência** — Koch & Elias, Ler e Compreender: os sentidos do texto (Contexto); Fiorin & Savioli, Para Entender o Texto (Ática)
+- **intertextualidade** — Koch & Elias, Ler e Compreender: os sentidos do texto (Contexto); Fiorin & Savioli, Para Entender o Texto (Ática); Massaud Moisés, Dicionário de Termos Literários (Cultrix)
+- **paráfrase** — Koch & Elias, Ler e Compreender: os sentidos do texto (Contexto); Fiorin & Savioli, Para Entender o Texto (Ática); Dicionário Houaiss da Língua Portuguesa (etimologia)
+- **paródia** — Massaud Moisés, Dicionário de Termos Literários (Cultrix); Dicionário Houaiss da Língua Portuguesa (etimologia)
+- **epígrafe** — Massaud Moisés, Dicionário de Termos Literários (Cultrix); Dicionário Houaiss da Língua Portuguesa (etimologia)
+- **metalinguagem** — Roman Jakobson, Linguística e Comunicação (Cultrix) — 'Linguística e poética' (1960)
+- **função referencial** — Roman Jakobson, Linguística e Comunicação (Cultrix) — 'Linguística e poética' (1960)
+- **função emotiva** — Roman Jakobson, Linguística e Comunicação (Cultrix) — 'Linguística e poética' (1960)
+- **função conativa** — Roman Jakobson, Linguística e Comunicação (Cultrix) — 'Linguística e poética' (1960)
+- **interlocutor** — Koch & Elias, Ler e Compreender: os sentidos do texto (Contexto); Fiorin & Savioli, Para Entender o Texto (Ática)
+- **enunciador** — Koch & Elias, Ler e Compreender: os sentidos do texto (Contexto); Fiorin & Savioli, Para Entender o Texto (Ática)
+- **pressuposto** — Koch & Elias, Ler e Compreender: os sentidos do texto (Contexto); Fiorin & Savioli, Para Entender o Texto (Ática); Oswald Ducrot, O Dizer e o Dito (Pontes)
+- **subentendido** — Koch & Elias, Ler e Compreender: os sentidos do texto (Contexto); Fiorin & Savioli, Para Entender o Texto (Ática); Oswald Ducrot, O Dizer e o Dito (Pontes)
+- **inferência** — Koch & Elias, Ler e Compreender: os sentidos do texto (Contexto); Fiorin & Savioli, Para Entender o Texto (Ática)
+- **extrapolação** — Koch & Elias, Ler e Compreender: os sentidos do texto (Contexto); Fiorin & Savioli, Para Entender o Texto (Ática)
+- **concessão** — Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa; Koch & Elias, Ler e Compreender: os sentidos do texto (Contexto); Fiorin & Savioli, Para Entender o Texto (Ática)
+- **modalização** — Koch & Elias, Ler e Compreender: os sentidos do texto (Contexto); Fiorin & Savioli, Para Entender o Texto (Ática)
+- **juízo de valor** — Koch & Elias, Ler e Compreender: os sentidos do texto (Contexto); Fiorin & Savioli, Para Entender o Texto (Ática)
+- **injunção** — Luiz Antônio Marcuschi, Produção Textual, Análise de Gêneros e Compreensão (Parábola)
+- **paratexto** — Gérard Genette, Paratextos Editoriais (Ateliê); Massaud Moisés, Dicionário de Termos Literários (Cultrix)
+- **hipertexto** — Pierre Lévy, As Tecnologias da Inteligência (Ed. 34); Marcuschi, Gêneros textuais emergentes
+- **tipo textual** — Luiz Antônio Marcuschi, Produção Textual, Análise de Gêneros e Compreensão (Parábola)
+- **tópico frasal** — Othon M. Garcia, Comunicação em Prosa Moderna (FGV)
+- **variação linguística** — Marcos Bagno, Preconceito Linguístico (Loyola); Carlos Alberto Faraco, Norma Culta Brasileira (Parábola)
+- **norma-padrão** — Marcos Bagno, Preconceito Linguístico (Loyola); Carlos Alberto Faraco, Norma Culta Brasileira (Parábola)
+- **norma culta** — Marcos Bagno, Preconceito Linguístico (Loyola); Carlos Alberto Faraco, Norma Culta Brasileira (Parábola)
+- **regionalismo** — Marcos Bagno, Preconceito Linguístico (Loyola); Carlos Alberto Faraco, Norma Culta Brasileira (Parábola); Alfredo Bosi, História Concisa da Literatura Brasileira (Cultrix)
+- **discurso direto** — Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa; Massaud Moisés, Dicionário de Termos Literários (Cultrix)
+- **discurso indireto** — Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa; Massaud Moisés, Dicionário de Termos Literários (Cultrix)
+- **discurso indireto livre** — Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa; Massaud Moisés, Dicionário de Termos Literários (Cultrix)
+- **verbo de elocução** — Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa; Massaud Moisés, Dicionário de Termos Literários (Cultrix)
+- **eu lírico** — Massaud Moisés, Dicionário de Termos Literários (Cultrix)
+- **digressão** — Massaud Moisés, Dicionário de Termos Literários (Cultrix)
+- **tópica** — Massaud Moisés, Dicionário de Termos Literários (Cultrix)
+- **crônica** — Luiz Antônio Marcuschi, Produção Textual, Análise de Gêneros e Compreensão (Parábola); Massaud Moisés, Dicionário de Termos Literários (Cultrix)
+- **charge** — Luiz Antônio Marcuschi, Produção Textual, Análise de Gêneros e Compreensão (Parábola); Dicionário Houaiss da Língua Portuguesa (etimologia)
+- **cartum** — Luiz Antônio Marcuschi, Produção Textual, Análise de Gêneros e Compreensão (Parábola); Dicionário Houaiss da Língua Portuguesa (etimologia)
+- **soneto** — Cunha & Cintra, Nova Gramática (Noções de versificação); Massaud Moisés, Dicionário de Termos Literários (Cultrix)
+- **verso livre** — Cunha & Cintra, Nova Gramática (Noções de versificação); Massaud Moisés, Dicionário de Termos Literários (Cultrix); Alfredo Bosi, História Concisa da Literatura Brasileira (Cultrix)
+- **decassílabo** — Cunha & Cintra, Nova Gramática (Noções de versificação); Massaud Moisés, Dicionário de Termos Literários (Cultrix)
+- **rima rica** — Cunha & Cintra, Nova Gramática (Noções de versificação); Massaud Moisés, Dicionário de Termos Literários (Cultrix)
+- **rima pobre** — Cunha & Cintra, Nova Gramática (Noções de versificação); Massaud Moisés, Dicionário de Termos Literários (Cultrix)
+- **classicismo** — Massaud Moisés, A Literatura Portuguesa (Cultrix)
+- **barroco** — Alfredo Bosi, História Concisa da Literatura Brasileira (Cultrix); Dicionário Houaiss da Língua Portuguesa (etimologia)
+- **cultismo** — Alfredo Bosi, História Concisa da Literatura Brasileira (Cultrix)
+- **conceptismo** — Alfredo Bosi, História Concisa da Literatura Brasileira (Cultrix)
+- **arcadismo** — Alfredo Bosi, História Concisa da Literatura Brasileira (Cultrix)
+- **bucolismo** — Alfredo Bosi, História Concisa da Literatura Brasileira (Cultrix); Dicionário Houaiss da Língua Portuguesa (etimologia)
+- **locus amoenus** — Alfredo Bosi, História Concisa da Literatura Brasileira (Cultrix); Massaud Moisés, Dicionário de Termos Literários (Cultrix)
+- **carpe diem** — Massaud Moisés, Dicionário de Termos Literários (Cultrix)
+- **fugere urbem** — Massaud Moisés, Dicionário de Termos Literários (Cultrix)
+- **aurea mediocritas** — Massaud Moisés, Dicionário de Termos Literários (Cultrix)
+- **romantismo** — Alfredo Bosi, História Concisa da Literatura Brasileira (Cultrix)
+- **indianismo** — Alfredo Bosi, História Concisa da Literatura Brasileira (Cultrix)
+- **ultrarromantismo** — Alfredo Bosi, História Concisa da Literatura Brasileira (Cultrix)
+- **condoreirismo** — Alfredo Bosi, História Concisa da Literatura Brasileira (Cultrix)
+- **realismo** — Alfredo Bosi, História Concisa da Literatura Brasileira (Cultrix)
+- **naturalismo** — Alfredo Bosi, História Concisa da Literatura Brasileira (Cultrix)
+- **determinismo** — Alfredo Bosi, História Concisa da Literatura Brasileira (Cultrix)
+- **positivismo** — Alfredo Bosi, História Concisa da Literatura Brasileira (Cultrix)
+- **cientificismo** — Alfredo Bosi, História Concisa da Literatura Brasileira (Cultrix)
+- **humanitismo** — Alfredo Bosi, História Concisa da Literatura Brasileira (Cultrix)
+- **parnasianismo** — Alfredo Bosi, História Concisa da Literatura Brasileira (Cultrix)
+- **arte pela arte** — Alfredo Bosi, História Concisa da Literatura Brasileira (Cultrix)
+- **simbolismo** — Alfredo Bosi, História Concisa da Literatura Brasileira (Cultrix)
+- **pré-modernismo** — Alfredo Bosi, História Concisa da Literatura Brasileira (Cultrix)
+- **modernismo** — Alfredo Bosi, História Concisa da Literatura Brasileira (Cultrix)
+- **Semana de Arte Moderna** — Alfredo Bosi, História Concisa da Literatura Brasileira (Cultrix)
+- **vanguarda** — Gilberto Mendonça Teles, Vanguarda Europeia e Modernismo Brasileiro (Vozes)
+- **futurismo** — Gilberto Mendonça Teles, Vanguarda Europeia e Modernismo Brasileiro (Vozes)
+- **cubismo** — Gilberto Mendonça Teles, Vanguarda Europeia e Modernismo Brasileiro (Vozes)
+- **expressionismo** — Gilberto Mendonça Teles, Vanguarda Europeia e Modernismo Brasileiro (Vozes)
+- **surrealismo** — Gilberto Mendonça Teles, Vanguarda Europeia e Modernismo Brasileiro (Vozes)
+- **antropofagia** — Alfredo Bosi, História Concisa da Literatura Brasileira (Cultrix); Gilberto Mendonça Teles, Vanguarda Europeia e Modernismo Brasileiro (Vozes)
+- **Pau-Brasil** — Alfredo Bosi, História Concisa da Literatura Brasileira (Cultrix); Gilberto Mendonça Teles, Vanguarda Europeia e Modernismo Brasileiro (Vozes)
+- **romance de 30** — Alfredo Bosi, História Concisa da Literatura Brasileira (Cultrix)
+- **geração de 45** — Alfredo Bosi, História Concisa da Literatura Brasileira (Cultrix)
+- **concretismo** — Mary Ellen Solt, Concrete Poetry: A World View — https://ubu.punctumbooks.com/papers/solt/brazil.html; Alfredo Bosi, História Concisa da Literatura Brasileira (Cultrix)
+- **Noigandres** — Mary Ellen Solt, Concrete Poetry: A World View — https://ubu.punctumbooks.com/papers/solt/brazil.html
+- **poesia marginal** — Alfredo Bosi, História Concisa da Literatura Brasileira (Cultrix)
+- **predicativo do sujeito** — Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa
+- **predicativo do objeto** — Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa
+- **objeto direto** — Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa
+- **objeto indireto** — Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa
+- **complemento nominal** — Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa
+- **adjunto adnominal** — Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa
+- **adjunto adverbial** — Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa
+- **agente da passiva** — Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa
+- **aposto** — Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa
+- **vocativo** — Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa
+- **sujeito indeterminado** — Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa
+- **oração sem sujeito** — Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa
+- **sujeito paciente** — Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa
+- **voz passiva analítica** — Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa
+- **voz passiva sintética** — Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa
+- **partícula apassivadora** — Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa
+- **índice de indeterminação do sujeito** — Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa
+- **pronome relativo** — Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa
+- **conjunção integrante** — Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa
+- **verbo de ligação** — Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa
+- **verbo transitivo direto** — Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa
+- **verbo transitivo indireto** — Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa
+- **verbo intransitivo** — Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa
+- **verbo impessoal** — Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa
+- **transitividade** — Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa
+- **regência verbal** — Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa
+- **crase** — Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa; Dicionário Houaiss da Língua Portuguesa (etimologia)
+- **próclise** — Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa; Dicionário Houaiss da Língua Portuguesa (etimologia)
+- **mesóclise** — Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa; Dicionário Houaiss da Língua Portuguesa (etimologia)
+- **ênclise** — Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa; Dicionário Houaiss da Língua Portuguesa (etimologia)
+- **palavra atrativa** — Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa
+- **oração reduzida** — Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa
+- **oração desenvolvida** — Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa
+- **oração adjetiva restritiva** — Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa
+- **oração adjetiva explicativa** — Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa
+- **oração subordinada substantiva** — Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa
+- **oração subordinada adverbial** — Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa
+- **conjunção adversativa** — Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa
+- **conjunção concessiva** — Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa
+- **conectivo** — Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa; Koch & Elias, Ler e Compreender: os sentidos do texto (Contexto); Fiorin & Savioli, Para Entender o Texto (Ática)
+- **locução adjetiva** — Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa
+- **expletivo** — Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa; Dicionário Houaiss da Língua Portuguesa (etimologia)
+- **particípio** — Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa; Dicionário Houaiss da Língua Portuguesa (etimologia)
+- **subjuntivo** — Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa; Dicionário Houaiss da Língua Portuguesa (etimologia)
+- **futuro do pretérito** — Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa
+- **futuro do subjuntivo** — Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa
+- **mais-que-perfeito** — Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa
+- **derivação parassintética** — Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa
+- **derivação regressiva** — Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa
+- **derivação imprópria** — Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa
+- **justaposição** — Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa
+- **aglutinação** — Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa
+- **desinência** — Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa; Dicionário Houaiss da Língua Portuguesa (etimologia)
+- **AI-5** — Ato Institucional nº 5 — https://www.planalto.gov.br/ccivil_03/ait/ait-05-68.htm
+- **PNL** — Infopédia, 'programação neurolinguística' — https://www.infopedia.pt/artigos/$programacao-neurolinguistica
+- **LED** — Encyclopaedia Britannica, 'light-emitting diode'
+- **ICMS** — Enciclopédia Jurídica da PUC-SP, verbete ICMS — https://enciclopediajuridica.pucsp.br/verbetes/icms-imposto-estadual-sobre-operacoes-relativas-a-circulacao-de-mercadorias/
