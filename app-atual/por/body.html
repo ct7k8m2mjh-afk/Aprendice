@@ -1,0 +1,126 @@
+<header class="top">
+  <div class="marca">Português <em>São Camilo</em></div>
+  <button class="ic" id="bfull" aria-label="Tela cheia">⤢</button>
+  <button class="ic" id="btema" aria-label="Alternar tema">◐</button>
+</header>
+
+<button id="sair-foco" aria-label="Sair da tela cheia">✕</button>
+
+<div class="wrap">
+  <!-- INÍCIO -->
+  <section id="v-inicio">
+    <div class="capa">
+      <h1 id="i-tit">Carregando…</h1>
+      <p id="i-sub"></p>
+      <div class="kpis">
+        <div class="kpi"><b id="k-q">0</b><span>questões</span></div>
+        <div class="kpi"><b id="k-resp">0</b><span>respondidas</span></div>
+        <div class="kpi"><b id="k-acerto">—</b><span>acerto</span></div>
+        <div class="kpi"><b id="k-sub">0</b><span>conteúdos</span></div>
+        <div class="kpi"><b id="k-conc">0</b><span>concluídos</span></div>
+        <div class="kpi"><b id="k-ref">0</b><span>a reforçar</span></div>
+      </div>
+      <button class="btn" id="b-treino">Treino de hoje · 12 questões</button>
+      <p class="dica" id="treino-dica" style="margin:6px 0 10px"></p>
+      <button class="btn sec" id="b-continuar" style="margin-top:0">Continuar de onde parei</button>
+      <button class="btn sec" id="b-simulado5">Simulado rápido · 5 questões</button>
+      <p class="dica" id="sync">Verificando onde seu progresso está sendo salvo…</p>
+      <p class="aviso-tela" id="aviso-tela"></p>
+    </div>
+    <h2 class="sec">Onde você precisa reforçar</h2>
+    <div class="painel" id="reforco"></div>
+    <h2 class="sec">Procedência do banco</h2>
+    <div class="painel" id="procedencia"></div>
+    <p class="dica">Todas as questões são reais e já publicadas: parte vem de listas públicas de exercícios
+      (Brasil Escola e Mundo Educação) e parte de provas oficiais — as que estão no quadro acima, e só elas.
+      Cada uma traz o link da fonte, e o gabarito de cada uma foi conferido contra a própria fonte, com a leitura refeita do zero.
+      Nenhuma questão foi criada aqui — as resoluções é que são autorais, refeitas e conferidas uma a uma.</p>
+  </section>
+
+  <!-- ESTUDAR -->
+  <section id="v-estudar" hidden>
+    <h2 class="sec" style="margin-top:0" id="tit-modulos">Português</h2>
+    <div id="modulos"></div>
+    <p class="dica" id="aviso-cobertura"></p>
+  </section>
+
+
+  <!-- ESCADA DO CONTEÚDO -->
+  <section id="v-escada" hidden>
+    <div class="nav2"><button class="volta" id="e-volta">‹ módulos</button></div>
+    <div class="capa" style="margin-bottom:14px">
+      <h1 id="e-tit">—</h1>
+      <p id="e-sub"></p>
+    </div>
+    <div id="e-teoria"></div>
+    <h2 class="sec" style="margin-top:0">A escada — do iniciante ao vestibulando</h2>
+    <div id="e-degraus"></div>
+    <div id="e-extras"></div>
+  </section>
+
+  <!-- QUESTÃO -->
+  <section id="v-questao" hidden>
+    <div class="nav2">
+      <button class="volta" id="q-volta">‹ voltar</button>
+      <span class="cont" id="q-cont"></span>
+      <span class="cronometro" id="q-crono"></span>
+      <button class="btn-pausa" id="q-pausa" type="button" aria-label="pausar" hidden>⏸</button>
+    </div>
+    <div id="q-corpo"></div>
+  </section>
+
+  <!-- SIMULADOS -->
+  <section id="v-simulado" hidden>
+    <h2 class="sec" style="margin-top:0">Simulados com questões reais</h2>
+    <div class="painel" id="lista-sim"></div>
+    <p class="dica">Um simulado montado aqui reúne questões de provas diferentes: ele treina o padrão da banca,
+      mas não é uma prova oficial da São Camilo e não deve ser lido como tal.</p>
+    <h2 class="sec">Histórico</h2>
+    <div class="painel" id="hist-sim"></div>
+  </section>
+
+  <!-- PROGRESSO -->
+  <section id="v-progresso" hidden>
+    <h2 class="sec" style="margin-top:0">Desempenho por módulo</h2>
+    <div class="painel" id="desempenho"></div>
+    <h2 class="sec">Padrões que apareceram nos seus erros</h2>
+    <div class="painel" id="padroes"></div>
+    <h2 class="sec">Marcadas para revisão</h2>
+    <div class="painel" id="revisar"></div>
+    <h2 class="sec">Seus dados</h2>
+    <div class="painel" style="padding:13px">
+      <p class="dica" style="margin:0 0 10px">Onde o seu progresso está sendo guardado neste momento:</p>
+      <p class="dica" id="sync2" style="margin-top:0"></p>
+      <button class="btn sec" id="b-export" style="margin-top:0">Baixar meu progresso (.json)</button>
+      <button class="btn sec" id="b-import">Importar progresso</button>
+      <input type="file" id="f-import" accept="application/json" hidden>
+      <button class="btn sec" id="b-zerar">Apagar meu progresso</button>
+    </div>
+  </section>
+</div>
+
+<!-- Questão ampliada. Fica fora de .wrap de proposito: e' uma camada por cima de tudo, e nao
+     uma secao do aplicativo. Mostra SO' o print, com o mesmo corte do rodape do site —
+     nenhum gabarito, nenhuma alternativa marcada, nenhuma resolucao entram aqui. -->
+<div id="lupa" hidden role="dialog" aria-modal="true" aria-labelledby="lupa-tit">
+  <div class="lupa-top">
+    <b id="lupa-tit">Questão ampliada</b>
+    <span class="lupa-zoom">
+      <button id="lupa-menos" type="button" aria-label="Diminuir a questão">−</button>
+      <span id="lupa-nivel" aria-live="polite">na tela</span>
+      <button id="lupa-mais" type="button" aria-label="Ampliar a questão">+</button>
+    </span>
+    <button id="lupa-fecha" type="button" aria-label="Fechar a questão ampliada">✕</button>
+  </div>
+  <div class="lupa-rolo" id="lupa-rolo" tabindex="0" role="group" aria-label="a questão ampliada; use as setas para rolar">
+    <div class="lupa-papel"><img id="lupa-img" alt=""></div>
+  </div>
+  <p class="lupa-pe">arraste para rolar · <kbd>+</kbd> <kbd>−</kbd> ampliam · <kbd>Esc</kbd> fecha</p>
+</div>
+
+<nav class="bot">
+  <button data-v="inicio" class="on"><em>▣</em>INÍCIO</button>
+  <button data-v="estudar"><em>¶</em>ESTUDAR</button>
+  <button data-v="simulado"><em>⏱</em>SIMULADO</button>
+  <button data-v="progresso"><em>▤</em>PROGRESSO</button>
+</nav>
