@@ -56,10 +56,10 @@ export function Desempenho() {
         <div className="bloco"><b className="num">{feitas}</b><span>questões feitas</span></div>
         <div className="bloco"><b className="num">{tent ? Math.round((okT / tent) * 100) : 0}%</b><span>de acerto nas tentativas</span></div>
         <div className="bloco"><b className="num">{(segN ? Math.round(segSoma / segN / 6) / 10 : 0).toLocaleString('pt-BR')} min</b><span>por questão, em média</span></div>
-        <div className="bloco"><b className="num">{horasMin(tempoTotal(e))}</b><span>de estudo · {sem.semana} questões nesta semana</span></div>
+        <div className="bloco"><b className="num">{horasMin(tempoTotal(e))}</b><span>de estudo no total · {sem.semana} questões nesta semana</span></div>
       </div>
 
-      <section className="sec">
+      <section className="secao">
         <h2 className="sec-tit">Por matéria</h2>
         <div className="por-materia folha" style={{ padding: '8px 20px' }}>
           {resumos.map(({ mc, r }) => (
@@ -73,7 +73,7 @@ export function Desempenho() {
         </div>
       </section>
 
-      <div className="grade g2 sec">
+      <div className="grade g2 secao">
         <section className={`bloco m-${mSel}`}>
           <h2 className="sec-tit">Temas de {nomeMateria(mSel)}</h2>
           {mods.map((x) => (

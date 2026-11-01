@@ -36,14 +36,14 @@ export function Provas() {
         </div>
       </div>
       {porReg.map(({ r, l }) => (
-        <section key={r} className="sec" style={{ marginTop: 24 }}>
+        <section key={r} className="secao" style={{ marginTop: 24 }}>
           <h2 className="sec-tit">{r} <span className="fraco" style={{ fontWeight: 500, fontSize: 15 }}>{l.length}</span></h2>
           <div className="grade g3">
             {l.map((p) => (
               <Link key={p.id} to={`/provas/${p.id}`} className="cartao-prova">
-                <div className="cp-cab"><b>{p.prova}</b>{alvo.has(p.id) && <span className="etq cor m-bio">Prova-alvo</span>}</div>
+                <div className="cp-cab"><b>{p.prova}</b>{alvo.has(p.id) && <span className="etq cor">Prova-alvo</span>}</div>
                 <small>{p.instituicao}</small>
-                <small className="fraco">{[p.cidade, p.uf].filter(Boolean).join(' · ')}{p.banca ? ` · banca ${p.banca}` : ''}</small>
+                <small className="fraco">{[p.cidade, p.uf, p.banca && 'banca ' + p.banca].filter(Boolean).join(' · ')}</small>
                 <div className="cp-pe">
                   <span className="etq">{p.rede === 'publica' ? 'Pública' : p.rede === 'privada' ? 'Privada' : 'Rede a verificar'}</span>
                   <span className={'etq' + (nQ.get(p.id) ? ' ok' : '')}>{nQ.get(p.id) ? `${nQ.get(p.id)} questões` : 'questões em preparação'}</span>
@@ -80,7 +80,7 @@ export function ProvaDetalhe() {
       <nav className="migalhas"><Link to="/provas">Provas e faculdades</Link><Icone nome="direita" tam={14} /><span>{p.prova}</span></nav>
       <div className="titulo-pag prova-cab">
         <div><h1>{p.prova}</h1><p className="sub">{p.instituicao}{p.sigla && p.sigla !== p.prova ? ` (${p.sigla})` : ''} · {[p.cidade, p.uf].filter(Boolean).join(', ') || p.regiao}</p></div>
-        <button className={'btn' + (alvo ? ' sec' : '') + ' m-bio'} onClick={alterna} aria-pressed={!!alvo}>{alvo ? <><Icone nome="check" /> Prova-alvo</> : 'Adicionar às provas-alvo'}</button>
+        <button className={'btn' + (alvo ? ' sec' : '')} onClick={alterna} aria-pressed={!!alvo}>{alvo ? <><Icone nome="check" /> Prova-alvo</> : 'Adicionar às provas-alvo'}</button>
       </div>
       <section className="bloco">
         <dl className="ficha">
@@ -92,7 +92,7 @@ export function ProvaDetalhe() {
         ) : null}
         <p className="fontes">Fontes: {p.fontes.map((u, i) => <a key={i} href={u} target="_blank" rel="noreferrer noopener">{new URL(u).hostname.replace(/^www\./, '')}</a>)}</p>
       </section>
-      <section className="sec">
+      <section className="secao">
         <h2 className="sec-tit">Simulados desta prova</h2>
         {eds.length ? (
           <div className="grade g3">

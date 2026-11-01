@@ -20,7 +20,7 @@ function embaralha<T>(l: T[]): T[] { const a = [...l]; for (let i = a.length - 1
 export function montaTreino(mc: MateriaCarregada): SessaoTreino {
   const est = pegaEstado().materias[mc.id];
   const gosto = (id: string) => est?.flg[id]?.g !== -1;
-  const qs = embaralha(mc.conteudo.essencial.abc.filter((id) => mc.porId.has(id) && !feitaHoje(est?.q[id]))).slice(0, 6);
+  const qs = embaralha(mc.conteudo.essencial.abc.filter((id) => mc.porId.has(id) && !feitaHoje(est?.q[id]) && (!EH_PREVIA || !!urlPrint(mc.id, id)))).slice(0, 6);
   const comImg = embaralha(mc.conteudo.flashImg.filter((c) => gosto(c.id) && !EH_PREVIA)).slice(0, 2);
   const fs = [...comImg, ...embaralha(mc.conteudo.flash.filter((c) => gosto(c.id)))].slice(0, 5);
   const cz = embaralha(mc.conteudo.essencial.completar.filter((c) => gosto(c.id) && c.frase.split('___').length === 2)).slice(0, 4);

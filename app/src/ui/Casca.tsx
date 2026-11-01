@@ -93,7 +93,7 @@ export function Casca({ children, foco = false }: { children: ReactNode; foco?: 
           </NavLink>
         </nav>
         <div className="rodape">
-          <div className="meta-lado m-bio" title="Meta da semana">
+          <div className="meta-lado" title="Meta da semana">
             <Anel valor={sem.semana / meta}>{Math.min(100, Math.round((sem.semana / meta) * 100))}%</Anel>
             <div><b className="num">{sem.semana} de {meta}</b><small>meta da semana · hoje {sem.hoje}</small></div>
           </div>

@@ -31,7 +31,7 @@ export function SimuladoResultado() {
   return (
     <div className="conteudo estreito">
       <nav className="migalhas"><Link to="/simulados?aba=historico">Simulados</Link><Icone nome="direita" tam={14} /><span>Resultado</span></nav>
-      <div className="res-sim folha m-mat">
+      <div className="res-sim folha">
         <Anel valor={pct} tam={112} espessura={10}><span style={{ fontSize: 26 }}>{Math.round(pct * 100)}%</span></Anel>
         <div>
           <h1>{f.titulo}</h1>
@@ -39,7 +39,7 @@ export function SimuladoResultado() {
           <p className="fraco" style={{ fontSize: 14, marginTop: 6 }}>Os erros e as questões em branco já entraram na revisão espaçada.</p>
         </div>
       </div>
-      <section className="sec">
+      <section className="secao">
         <h2 className="sec-tit">Por matéria</h2>
         <div className="por-materia">
           {(Object.entries(f.porMateria) as [MateriaId, { acertos: number; total: number }][]).map(([m, p]) => (
@@ -51,7 +51,7 @@ export function SimuladoResultado() {
           ))}
         </div>
       </section>
-      <section className="sec">
+      <section className="secao">
         <div className="cab-sec"><h2>Questões</h2>
           <div className="chips"><button className="chip" aria-pressed={filtro === 'todas'} onClick={() => setFiltro('todas')}>Todas</button><button className="chip" aria-pressed={filtro === 'erros'} onClick={() => setFiltro('erros')}>Só erros ({f.itens.filter((x) => !x.ok).length})</button></div>
         </div>

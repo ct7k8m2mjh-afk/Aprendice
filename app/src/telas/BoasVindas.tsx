@@ -53,7 +53,7 @@ export function BoasVindas() {
               <input id="bv-email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} autoComplete="email" placeholder="voce@exemplo.com" aria-invalid={!emailOk} />
               {!emailOk ? <small style={{ color: 'var(--errado)' }}>Confira o e-mail: falta algo como “@” ou o domínio.</small>
                 : <small>Versão de demonstração: a conta e o progresso ficam só neste aparelho. Nada é enviado.</small>}</div>
-            <div className="bv-acoes"><button className="btn grande m-bio" type="submit">Continuar <Icone nome="direita" /></button></div>
+            <div className="bv-acoes"><button className="btn grande" type="submit">Continuar <Icone nome="direita" /></button></div>
           </form>
         )}
 
@@ -64,7 +64,7 @@ export function BoasVindas() {
             <EscolhaProvas valor={provas} aoMudar={setProvas} />
             <div className="bv-acoes">
               <button className="btn fantasma" onClick={() => setPasso(0)}><Icone nome="esquerda" /> Voltar</button>
-              <button className="btn grande m-bio" onClick={() => setPasso(2)} disabled={!provas.length}>Continuar <Icone nome="direita" /></button>
+              <button className="btn grande" onClick={() => setPasso(2)} disabled={!provas.length}>Continuar <Icone nome="direita" /></button>
             </div>
           </div>
         )}
@@ -82,7 +82,7 @@ export function BoasVindas() {
             </div>
             <div className="bv-acoes">
               <button className="btn fantasma" onClick={() => setPasso(1)}><Icone nome="esquerda" /> Voltar</button>
-              <button className="btn grande m-bio" onClick={conclui}>Começar a estudar</button>
+              <button className="btn grande" onClick={conclui}>Começar a estudar</button>
             </div>
           </div>
         )}

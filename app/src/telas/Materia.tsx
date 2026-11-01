@@ -114,9 +114,8 @@ export function Materia() {
       <div className="mat-topo">
         <Link to={`/m/${m}/treino`} className="capa-tg">
           <div className="capa-txt">
-            <span className="heroi-rot"><Icone nome="alvo" tam={14} /> {tg ? 'Treino em andamento' : 'Treino geral'}</span>
-            <h2>O essencial de {info.nome}</h2>
-            <p className="miolo">Questões reais de prova, frases para completar e flashcards dos temas que mais caem, tudo misturado.</p>
+            <h2>Treino geral de {info.nome}</h2>
+            <p className="miolo">{tg ? 'Seu treino está salvo onde você parou. ' : ''}Questões reais de prova, frases para completar e flashcards dos temas que mais caem, tudo misturado.</p>
             <div className="capa-nums">
               <span><b className="num">{nAbc}</b> questões</span><span><b className="num">{nComp}</b> frases</span><span><b className="num">{nFlash}</b> cartões</span>
             </div>
@@ -143,7 +142,7 @@ export function Materia() {
       </div>
 
       {mc.conteudo.areas.map((a) => (
-        <section key={a.id} className="sec area">
+        <section key={a.id} className="secao area">
           <div className="cab-sec"><div><h2>{a.nome}</h2>{a.resumo && <p className="fraco" style={{ fontSize: 15, marginTop: 4 }}>{a.resumo}</p>}</div></div>
           <div className="grade g3">
             {a.mods.map((mid) => {

@@ -67,7 +67,7 @@ export function Flashcards({ sessao = false }: { sessao?: boolean }) {
             {venc ? 'Revisar agora' : novos ? 'Começar sessão' : 'Tudo em dia'} <Icone nome="direita" />
           </button>
         </div>
-        <section className="sec">
+        <section className="secao">
           <h2 className="sec-tit">Filtrar por tema</h2>
           <div className="chips">
             <button className="chip" aria-pressed={!mod} onClick={() => setMod('')}>Todos</button>

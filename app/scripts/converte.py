@@ -210,6 +210,18 @@ def gera_logo_ts():
         f.write('export const LOGO = ' + json.dumps({'W': lg['W'], 'H': lg['H'], 'd': lg['d']}) + ' as const;\n')
 
 
+def reduz(data_uri_ou_b64, larg, qual=72):
+    """Só para a prévia de arquivo único: reduz a imagem (o app completo usa os arquivos originais)."""
+    from io import BytesIO
+    from PIL import Image
+    im = Image.open(BytesIO(data_uri_bytes(data_uri_ou_b64)))
+    if im.width > larg:
+        im = im.resize((larg, round(im.height * larg / im.width)), Image.LANCZOS)
+    out = BytesIO()
+    im.save(out, 'WEBP', quality=qual, method=6)
+    return base64.b64encode(out.getvalue()).decode()
+
+
 def amostra():
     """Prévia de arquivo único: todas as matérias com metadados completos, mas prints/resoluções só de
     alguns conteúdos, para o HTML caber em poucos MB."""
@@ -226,15 +238,15 @@ def amostra():
             subs = sorted((s for s in por_sub if s.startswith(mid + '.')), key=lambda s: -len(por_sub[s]))
             if subs:
                 escolhidos.append(subs[0])
-        ids_print = {q['id'] for s in escolhidos for q in por_sub[s][:10]}
+        ids_print = {q['id'] for s in escolhidos for q in por_sub[s][:8]}
         # questões do treino geral também (primeiras 8)
-        ids_print |= set(materia['essencial'].get('abc', [])[:8])
+        ids_print |= set(materia['essencial'].get('abc', [])[:6])
         pacote['materias'][m] = {
             'banco': banco,
             'materia': materia,
             'res': {s: {k: v for k, v in r.items() if k in ids_print} for s, r in res.items() if any(k in ids_print for k in r)},
-            'prints': {k: v for k, v in prints.items() if k in ids_print},
-            'icones': icones,
+            'prints': {k: 'data:image/webp;base64,' + reduz(v, 680, 58) for k, v in prints.items() if k in ids_print},
+            'icones': {k: reduz(v, 112, 78) for k, v in icones.items()},
             'figuras': {},
             'amostra': escolhidos,
         }

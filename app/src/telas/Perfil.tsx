@@ -31,20 +31,20 @@ export function Perfil() {
         </form>
       </section>
 
-      <section className="bloco sec">
+      <section className="bloco secao">
         <h2 className="sec-tit">Provas-alvo</h2>
         <p className="miolo" style={{ marginBottom: 14 }}>O início, os simulados sugeridos e o simulado “Minhas provas-alvo” seguem esta lista.</p>
         <EscolhaProvas valor={p.provasAlvo} aoMudar={(v) => muda({ provasAlvo: v })} />
       </section>
 
-      <section className="bloco sec">
+      <section className="bloco secao">
         <h2 className="sec-tit">Meta semanal</h2>
         <div className="chips">
           {[70, 100, 150, 200, 300].map((n) => <button key={n} className="chip num" aria-pressed={p.meta === n} onClick={() => muda({ meta: n })}>{n} questões</button>)}
         </div>
       </section>
 
-      <section className="sec perfil-pe">
+      <section className="secao perfil-pe">
         <Link to="/config" className="btn sec"><Icone nome="config" /> Configurações e meus dados</Link>
         <button className="btn fantasma" onClick={() => { atualiza((x) => ({ ...x, perfil: null })); nav('/boas-vindas'); }}>
           <Icone nome="sair" /> Sair da conta

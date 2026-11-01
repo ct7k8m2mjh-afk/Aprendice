@@ -42,10 +42,10 @@ export function Simulados() {
         </Link>
       )}
 
-      <div className="abas" role="tablist">
-        <button role="tab" aria-selected={aba === 'prova'} onClick={() => setQs({}, { replace: true })}>Por prova <small>{eds.length}</small></button>
-        <button role="tab" aria-selected={aba === 'objetivo'} onClick={() => setQs({ aba: 'objetivo' }, { replace: true })}>Por objetivo <small>{OBJETIVOS.length}</small></button>
-        <button role="tab" aria-selected={aba === 'historico'} onClick={() => setQs({ aba: 'historico' }, { replace: true })}>Histórico <small>{feitos.length}</small></button>
+      <div className="abas" role="group" aria-label="Seções">
+        <button aria-pressed={aba === 'prova'} onClick={() => setQs({}, { replace: true })}>Por prova <small>{eds.length}</small></button>
+        <button aria-pressed={aba === 'objetivo'} onClick={() => setQs({ aba: 'objetivo' }, { replace: true })}>Por objetivo <small>{OBJETIVOS.length}</small></button>
+        <button aria-pressed={aba === 'historico'} onClick={() => setQs({ aba: 'historico' }, { replace: true })}>Histórico <small>{feitos.length}</small></button>
       </div>
 
       {aba === 'prova' && (
@@ -83,7 +83,7 @@ export function Simulados() {
             );
           })}
           {alvoSemQuestoes.length > 0 && (
-            <section className="sec">
+            <section className="secao">
               <h2 className="sec-tit">Suas provas-alvo em preparação</h2>
               <div className="chips">{alvoSemQuestoes.map((p) => <Link key={p!.id} to={`/provas/${p!.id}`} className="chip">{p!.prova}<span className="etq">em preparação</span></Link>)}</div>
             </section>

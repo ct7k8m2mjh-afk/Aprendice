@@ -3,6 +3,7 @@ const { chromium } = require('playwright');
 const SAIDA = process.argv[2] || 'prints';
 const FILTRO = process.argv[3] || '';
 const BASE = process.env.BASE || 'http://localhost:5173/';
+const DEMO = process.env.DEMO === '1' ? require('./demo.cjs')() : null;
 const PERFIL = { nome: 'Ana Souza', email: '', provasAlvo: ['enem', 'fuvest', 'unesp', 'santacasa'], meta: 150, criadoEm: Date.now() };
 const TELAS = [
   ['boas-vindas', '#/boas-vindas', { semPerfil: true }],
@@ -37,14 +38,14 @@ const VISTAS = [['pc', 1366, 860, 'claro'], ['cel', 390, 844, 'claro'], ['cel-es
       const p = await ctx.newPage();
       p.on('pageerror', (e) => erros.push(`${vn}/${nome}: ${e.message}`));
       p.on('console', (m) => { if (m.type() === 'error') erros.push(`${vn}/${nome} console: ${m.text()}`); });
-      await ctx.addInitScript(([perfil, tema, sem]) => {
+      await ctx.addInitScript(([perfil, tema, sem, demo]) => {
         if (sessionStorage.getItem('__prep')) return;
         sessionStorage.setItem('__prep', '1');
         const e = JSON.parse(localStorage.getItem('aprendice.v1') || 'null') || { versao: 1, materias: {}, simulado: null, simuladosFeitos: [], treino: {}, migradoDe: [] };
         e.perfil = sem ? null : perfil; e.pref = { tema, menuFechado: false, ultimaMateria: null };
-        if (window.__DEMO) Object.assign(e, window.__DEMO);
+        if (demo && !sem) Object.assign(e, demo);
         localStorage.setItem('aprendice.v1', JSON.stringify(e));
-      }, [PERFIL, tema, !!op.semPerfil]);
+      }, [PERFIL, tema, !!op.semPerfil, DEMO]);
       await p.goto(BASE + rota);
       await p.waitForTimeout(1200);
       if (op.responder) { await p.keyboard.press(op.responder); await p.keyboard.press('Enter'); await p.waitForTimeout(900); await p.evaluate(() => scrollTo(0, 0)); }

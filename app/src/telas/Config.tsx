@@ -48,12 +48,12 @@ export function Config() {
         <h2 className="sec-tit">Aparência</h2>
         <div className="chips" role="radiogroup" aria-label="Tema">
           {([['claro', 'Claro', 'sol'], ['escuro', 'Escuro', 'lua'], ['sistema', 'Igual ao aparelho', 'config']] as const).map(([v, t, ic]) => (
-            <button key={v} role="radio" aria-checked={tema === v} className="chip" aria-pressed={tema === v} onClick={() => defineTema(v)}><Icone nome={ic} tam={15} /> {t}</button>
+            <button key={v} role="radio" aria-checked={tema === v} className="chip" onClick={() => defineTema(v)}><Icone nome={ic} tam={15} /> {t}</button>
           ))}
         </div>
       </section>
 
-      <section className="bloco sec">
+      <section className="bloco secao">
         <h2 className="sec-tit">Meus dados</h2>
         <p className="miolo">Seu progresso fica salvo neste aparelho. Baixe uma cópia de vez em quando ou traga o progresso de outro aparelho ou do protótipo antigo: a importação junta tudo e não apaga nada.</p>
         <div className="dados-acoes">
@@ -72,12 +72,12 @@ export function Config() {
         </div>
       </section>
 
-      <section className="bloco sec">
+      <section className="bloco secao">
         <h2 className="sec-tit">Correção dos flashcards</h2>
         <p className="miolo">Nesta versão, a “correção por IA” é simulada: quem corrige é o próprio aparelho, comparando ideias-chave e números pelo valor. Nada do que você escreve sai daqui. Na versão com servidor, a resposta vai para a IA sem nome nem e-mail.</p>
       </section>
 
-      <section className="bloco sec">
+      <section className="bloco secao">
         <h2 className="sec-tit">Atalhos de teclado</h2>
         <dl className="atalhos">
           <div><dt><kbd>A</kbd>–<kbd>E</kbd> ou <kbd>1</kbd>–<kbd>5</kbd></dt><dd>escolher alternativa</dd></div>
@@ -91,12 +91,12 @@ export function Config() {
         </dl>
       </section>
 
-      <section className="bloco sec">
+      <section className="bloco secao">
         <h2 className="sec-tit">Privacidade</h2>
         <p className="miolo">Sem servidor nesta versão: nenhum dado pessoal é enviado a ninguém. Sem anúncios, sem rastreamento, fontes hospedadas no próprio app. Quando houver contas na nuvem, você poderá baixar e apagar seus dados a qualquer momento (LGPD).</p>
       </section>
 
-      <section className="bloco sec">
+      <section className="bloco secao">
         <h2 className="sec-tit">Créditos e fontes</h2>
         <ul className="creditos">
           <li>Questões: cadernos oficiais das provas e listas públicas de exercícios; cada questão traz o link da fonte e o gabarito publicado.</li>

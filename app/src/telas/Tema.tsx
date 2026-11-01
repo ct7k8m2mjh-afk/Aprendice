@@ -64,7 +64,6 @@ export function Tema() {
 
   return (
     <div className={`conteudo m-${m}`}>
-      <FaixaTemas mc={mc} s={s} atual={mod.id} />
       <nav className="migalhas" aria-label="Você está em"><Link to={`/m/${m}`}>{infoMateria(m)?.nome}</Link><Icone nome="direita" tam={14} /><span>{mod.nome}</span></nav>
       <div className="tema-cab">
         <Ic3D m={m} chave={mod.id} tam={96} />
@@ -73,9 +72,10 @@ export function Tema() {
           <p className="sub num">{plural(subs.length, 'escada', 'escadas')} · {plural(p.total, 'questão', 'questões')} · {p.feitas} feitas</p>
         </div>
       </div>
-      <div className="abas" role="tablist">
-        <button role="tab" aria-selected={aba === 'escadas'} onClick={() => setQs({}, { replace: true })}>Escadas <small>{subs.length}</small></button>
-        <button role="tab" aria-selected={aba === 'teoria'} onClick={() => setQs({ aba: 'teoria' }, { replace: true })}>Teoria <small>{mod.cartoes.length}</small></button>
+      <FaixaTemas mc={mc} s={s} atual={mod.id} />
+      <div className="abas" role="group" aria-label="Seções">
+        <button aria-pressed={aba === 'escadas'} onClick={() => setQs({}, { replace: true })}>Escadas <small>{subs.length}</small></button>
+        <button aria-pressed={aba === 'teoria'} onClick={() => setQs({ aba: 'teoria' }, { replace: true })}>Teoria <small>{mod.cartoes.length}</small></button>
       </div>
       {aba === 'teoria' ? <TeoriaModulo m={m} mod={mod} /> : (
         <div className="lista-escadas">

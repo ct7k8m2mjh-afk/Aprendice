@@ -50,7 +50,7 @@ export function Escada() {
       </div>
 
       {cartoes.length > 0 && (
-        <section className="sec">
+        <section className="secao">
           <button className="sanfona" aria-expanded={teoria} onClick={() => setTeoria(!teoria)}>
             <Icone nome="livro" /> <span>Teoria antes de começar</span><Icone nome="baixo" className={teoria ? 'gira' : ''} />
           </button>
@@ -58,7 +58,7 @@ export function Escada() {
         </section>
       )}
 
-      <section className="sec">
+      <section className="secao">
         <h2 className="sec-tit">Degraus</h2>
         <ol className="degraus">
           {l.map((q, i) => {

@@ -93,7 +93,7 @@ export function Certeza({ valor, aoMudar }: { valor: Conf | null; aoMudar: (c: C
     <div className="certeza" role="radiogroup" aria-label="Quanta certeza você tem">
       <span className="fraco">Certeza:</span>
       {([['certeza', 'Tenho certeza'], ['acho', 'Acho que é'], ['chute', 'Chutei']] as [Conf, string][]).map(([c, t]) => (
-        <button key={c} role="radio" aria-checked={valor === c} className="chip" aria-pressed={valor === c} onClick={() => aoMudar(valor === c ? null : c)}>{t}</button>
+        <button key={c} role="radio" aria-checked={valor === c} className="chip" tabIndex={valor === c || (!valor && c === 'certeza') ? 0 : -1} onKeyDown={(e) => { const ord: Conf[] = ['certeza', 'acho', 'chute']; const i = ord.indexOf(c); if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { e.preventDefault(); e.stopPropagation(); const n = ord[(i + (e.key === 'ArrowRight' ? 1 : 2)) % 3]; aoMudar(n); ((e.currentTarget.parentElement?.querySelectorAll('button')[ord.indexOf(n)]) as HTMLElement | undefined)?.focus(); } }} onClick={() => aoMudar(valor === c ? null : c)}>{t}</button>
       ))}
     </div>
   );

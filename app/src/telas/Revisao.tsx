@@ -32,10 +32,10 @@ export function Revisao() {
   return (
     <div className="conteudo">
       <div className="titulo-pag"><div><h1>Revisão</h1><p className="sub">Errou, chutou ou pediu pista: a questão volta em {PASSOS_Q.join(', ')} dias. Acertou na data, ela avança.</p></div></div>
-      <div className="abas" role="tablist">
-        <button role="tab" aria-selected={aba === 'questoes'} onClick={() => setQs({}, { replace: true })}>Questões <small>{totVenc}</small></button>
-        <button role="tab" aria-selected={aba === 'flash'} onClick={() => setQs({ aba: 'flash' }, { replace: true })}>Flashcards <small>{totFlash}</small></button>
-        <button role="tab" aria-selected={aba === 'marcadas'} onClick={() => setQs({ aba: 'marcadas' }, { replace: true })}>Marcadas <small>{totMarc}</small></button>
+      <div className="abas" role="group" aria-label="Seções">
+        <button aria-pressed={aba === 'questoes'} onClick={() => setQs({}, { replace: true })}>Questões <small>{totVenc}</small></button>
+        <button aria-pressed={aba === 'flash'} onClick={() => setQs({ aba: 'flash' }, { replace: true })}>Flashcards <small>{totFlash}</small></button>
+        <button aria-pressed={aba === 'marcadas'} onClick={() => setQs({ aba: 'marcadas' }, { replace: true })}>Marcadas <small>{totMarc}</small></button>
       </div>
 
       {aba === 'questoes' && (totVenc === 0 && !porMat.some((x) => x.prox.length) ? (

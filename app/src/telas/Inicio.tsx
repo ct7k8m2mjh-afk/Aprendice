@@ -91,9 +91,8 @@ export function Inicio() {
         {parou ? (
           <Link to={`/m/${parou.m}/q/${parou.prox.id}?ctx=escada`} className={`heroi m-${parou.m}`}>
             <div className="heroi-txt">
-              <span className="heroi-rot"><Icone nome="play" tam={14} /> Continue de onde parou</span>
               <h2>{parou.sub ? parou.sub.nome.charAt(0).toUpperCase() + parou.sub.nome.slice(1) : 'Sua escada'}</h2>
-              <p className="miolo">{infoMateria(parou.m)?.nome} · {parou.mod?.nome} · degrau {parou.prox.degrau || '?'} de {parou.escada.length}</p>
+              <p className="miolo">Continue de onde parou: {infoMateria(parou.m)?.nome} · {parou.mod?.nome} · degrau {parou.prox.degrau || '?'} de {parou.escada.length}</p>
               <span className="btn">Continuar <Icone nome="direita" /></span>
             </div>
             <div className="heroi-arte">
@@ -104,7 +103,6 @@ export function Inicio() {
         ) : (
           <Link to={`/m/${hojeId}/treino`} className={`heroi m-${hojeId}`}>
             <div className="heroi-txt">
-              <span className="heroi-rot"><Icone nome="alvo" tam={14} /> Comece por aqui</span>
               <h2>Treino geral de {hoje.nome}</h2>
               <p className="miolo">O essencial da matéria, tudo misturado: questões reais de prova, frases para completar e flashcards.</p>
               <span className="btn">Começar <Icone nome="direita" /></span>
@@ -116,7 +114,7 @@ export function Inicio() {
         <section className="bloco hoje" aria-labelledby="hoje-tit">
           <h2 id="hoje-tit" className="sec-tit">Hoje</h2>
           <Link to="/revisao" className="linha-lista">
-            <span className="mini m-bio"><Icone nome="repetir" /></span>
+            <span className="mini"><Icone nome="repetir" /></span>
             <span><span className="tit">Revisão espaçada</span><br /><span className="det">{vencidasTot ? plural(vencidasTot, 'questão vencida', 'questões vencidas') : 'Nada vencido hoje'}</span></span>
             <Icone nome="direita" />
           </Link>
@@ -127,7 +125,7 @@ export function Inicio() {
           </Link>
           {sugerido && (
             <Link to={`/simulados/prova/${encodeURIComponent(sugerido.chave)}`} className="linha-lista">
-              <span className="mini m-qui"><Icone nome="relogio" /></span>
+              <span className="mini"><Icone nome="relogio" /></span>
               <span><span className="tit">Simulado {nomeEdicao(sugerido)}</span><br /><span className="det">{sugerido.itens.length} questões da prova · cronometrado</span></span>
               <Icone nome="direita" />
             </Link>
@@ -135,7 +133,7 @@ export function Inicio() {
         </section>
       </div>
 
-      <section className="sec">
+      <section className="secao">
         <div className="cab-sec"><h2>Matérias</h2><Link to="/materias">Ver todas <Icone nome="direita" tam={16} /></Link></div>
         <div className="grade g4">
           {MATERIAS_ATIVAS.map((m) => {
@@ -158,7 +156,7 @@ export function Inicio() {
         </div>
       </section>
 
-      <div className="grade g2 sec">
+      <div className="grade g2 secao">
         <section className="bloco">
           <h2 className="sec-tit">Meu progresso</h2>
           <div className="prog-nums">
