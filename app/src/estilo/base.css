@@ -1,0 +1,71 @@
+/* APRENDICE — base visual herdada do protótipo (app-atual/design/materia.css):
+   base cinza neutra, folhas brancas com borda fina, UMA cor por matéria, Familjen Grotesk,
+   letra de mão (Caveat) só para a marca de correção. Cores de matéria vêm de src/dados/materias.ts. */
+@font-face { font-family: 'Familjen Grotesk'; font-style: normal; font-display: swap; font-weight: 400 700;
+  src: url('../assets/fontes/familjen-grotesk-latin-wght-normal.woff2') format('woff2-variations');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Familjen Grotesk'; font-style: normal; font-display: swap; font-weight: 400 700;
+  src: url('../assets/fontes/familjen-grotesk-latin-ext-wght-normal.woff2') format('woff2-variations');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'Familjen Grotesk'; font-style: italic; font-display: swap; font-weight: 400 700;
+  src: url('../assets/fontes/familjen-grotesk-latin-wght-italic.woff2') format('woff2-variations'); }
+@font-face { font-family: 'Caveat'; font-style: normal; font-display: swap; font-weight: 400 700;
+  src: url('../assets/fontes/caveat-latin-wght-normal.woff2') format('woff2-variations'); }
+
+:root, [data-theme='light'] {
+  --papel: #F1F1EE; --folha: #FFFFFF; --folha2: #F6F6F3; --tinta: #17181C; --lapis: #585B64; --fraco: #646771;
+  --linha: #E5E5E0; --borda2: #D6D6D0; --malha: #EEEEEA;
+  --certo: #0E8F60; --certo-bg: #E2F6EE; --errado: #B3302A; --errado-bg: #FCEAE7; --aviso: #8A6200; --aviso-bg: #FBF1DA;
+  --d1: #177E52; --d2: #7A6B18; --d3: #A35E12; --d4: #B4362C;
+  --sombra: 0 1px 2px rgba(21, 25, 51, .05), 0 8px 22px rgba(21, 25, 51, .06);
+  --sombra-alta: 0 2px 6px rgba(21, 25, 51, .08), 0 18px 48px rgba(21, 25, 51, .14);
+  --cad-papel: #FBF7EA; --cad-tinta: #1C2F74; --cad-caneta: #C0392B; --cad-borda: #E6DCC0;
+  --c: #2B2D33; --t: #2B2D33; --ink: #FFFFFF;
+  color-scheme: light;
+}
+[data-theme='dark'] {
+  --papel: #0C0D10; --folha: #16171B; --folha2: #1D1F24; --tinta: #EDEEF1; --lapis: #A3A6B0; --fraco: #8C8F99;
+  --linha: #25272D; --borda2: #32353D; --malha: #1A1B1F;
+  --certo: #2FD39A; --certo-bg: #0F2A22; --errado: #FF7B6B; --errado-bg: #2E1714; --aviso: #F5C451; --aviso-bg: #2A2312;
+  --d1: #3FBF8A; --d2: #E7C14B; --d3: #F08A3E; --d4: #FF7B6B;
+  --sombra: 0 1px 0 rgba(255, 255, 255, .03) inset, 0 8px 24px rgba(0, 0, 0, .22);
+  --sombra-alta: 0 1px 0 rgba(255, 255, 255, .04) inset, 0 18px 48px rgba(0, 0, 0, .5);
+  --cad-papel: #1C1B18; --cad-tinta: #EFE8CF; --cad-caneta: #FF8A7A; --cad-borda: #34312A;
+  --c: #D9DBE0; --t: #D9DBE0; --ink: #0C0D10;
+  color-scheme: dark;
+}
+:root {
+  --fonte: 'Familjen Grotesk', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --mao: 'Caveat', 'Segoe Print', cursive;
+  --r: 14px; --r-p: 10px;
+  --sv: color-mix(in srgb, var(--c) 13%, var(--folha));
+  --sv2: color-mix(in srgb, var(--c) 7%, var(--folha));
+  --curva: cubic-bezier(.2, .7, .2, 1);
+  --lado: 256px;
+  --topo: 64px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--papel); color: var(--tinta);
+  font: 400 17px/1.55 var(--fonte); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: 'ss01' 0;
+}
+::selection { background: color-mix(in srgb, var(--c) 28%, transparent); color: inherit; }
+:focus-visible { outline: 2px solid var(--t); outline-offset: 2px; border-radius: 6px; }
+a { color: var(--t); text-underline-offset: 3px; }
+button, input, textarea, select { font: inherit; color: inherit; }
+button { cursor: pointer; }
+img { max-width: 100%; }
+h1, h2, h3 { line-height: 1.15; margin: 0; letter-spacing: -0.01em; text-wrap: balance; }
+p { margin: 0; text-wrap: pretty; }
+.num, [data-num] { font-variant-numeric: tabular-nums; }
+* { scrollbar-width: thin; scrollbar-color: var(--borda2) transparent; }
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb { background: var(--borda2); border-radius: 10px; border: 3px solid var(--papel); }
+.sr { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
+}

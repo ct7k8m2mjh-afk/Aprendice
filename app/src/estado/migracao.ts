@@ -1,0 +1,154 @@
+/**
+ * Migração e mesclagem de progresso. Princípio 7: nunca perder progresso do aluno.
+ * - Lê o formato do protótipo (uma chave por matéria: saocamilo.<m>.v1, conteúdo = objeto S).
+ * - Lê arquivos exportados pelo protótipo (JSON de S de uma matéria) e pelo app novo (Estado inteiro).
+ * - Mescla sem apagar: tentativas são unidas por timestamp; flashcards ficam com o registro mais recente.
+ */
+import type { MateriaId } from '../dados/tipos';
+import type { EstadoMateria, EstadoQuestao, Estado, FlashRec, SimuladoResultado } from './tipos';
+import { estadoMateriaVazio } from './tipos';
+
+export const CHAVES_PROTOTIPO: Record<string, MateriaId> = {
+  'saocamilo.bio.v1': 'bio', 'saocamilo.qui.v1': 'qui', 'saocamilo.mat.v1': 'mat', 'saocamilo.por.v1': 'por',
+};
+
+function obj<T>(x: unknown): T | null { return x && typeof x === 'object' && !Array.isArray(x) ? (x as T) : null; }
+
+export function mesclaQ(a: Record<string, EstadoQuestao>, b: Record<string, EstadoQuestao>): Record<string, EstadoQuestao> {
+  const out: Record<string, EstadoQuestao> = { ...a };
+  for (const id of Object.keys(b)) {
+    const x = a[id], y = b[id];
+    if (!y || !Array.isArray(y.tent)) continue;
+    if (!x) { out[id] = { tent: [...y.tent], rev: !!y.rev }; continue; }
+    const porTs = new Map<number, EstadoQuestao['tent'][number]>();
+    [...x.tent, ...y.tent].forEach((t) => porTs.set(t.ts, t));
+    out[id] = { tent: [...porTs.values()].sort((p, q) => p.ts - q.ts), rev: !!(x.rev || y.rev) };
+  }
+  return out;
+}
+
+export function mesclaSims(a: SimuladoResultado[], b: SimuladoResultado[]): SimuladoResultado[] {
+  const vis = new Set(a.map((s) => s.ts + '|' + s.nome));
+  return [...a, ...b.filter((s) => s && !vis.has(s.ts + '|' + s.nome))].sort((p, q) => p.ts - q.ts);
+}
+
+const ultTs = (x?: FlashRec) => (x && x.hist && x.hist.length ? x.hist[x.hist.length - 1].ts : 0);
+
+export function mesclaFlash(a: Record<string, FlashRec>, b: Record<string, FlashRec>): Record<string, FlashRec> {
+  const out: Record<string, FlashRec> = {};
+  for (const id of new Set([...Object.keys(a), ...Object.keys(b)])) {
+    const x = a[id], y = b[id];
+    if (!x || !y) { out[id] = (x || y)!; continue; }
+    const base = ultTs(y) > ultTs(x) ? y : x;
+    const porTs = new Map<number, FlashRec['hist'][number]>();
+    [...(x.hist || []), ...(y.hist || [])].forEach((t) => porTs.set(t.ts, t));
+    out[id] = { etapa: base.etapa, vence: base.vence, hist: [...porTs.values()].sort((p, q) => p.ts - q.ts).slice(-12) };
+  }
+  return out;
+}
+
+export function mesclaMateria(a: EstadoMateria, b: Partial<EstadoMateria>): EstadoMateria {
+  const sessoes = [...a.sessoes, ...(b.sessoes || [])];
+  const vis = new Set<number>();
+  return {
+    q: mesclaQ(a.q, obj<Record<string, EstadoQuestao>>(b.q) || {}),
+    ult: a.ult || b.ult || null,
+    sims: mesclaSims(a.sims, Array.isArray(b.sims) ? b.sims : []),
+    flash: mesclaFlash(a.flash, obj<Record<string, FlashRec>>(b.flash) || {}),
+    flg: { ...(obj(b.flg) || {}), ...a.flg },
+    sessoes: sessoes.filter((s) => s && !vis.has(s.ts) && (vis.add(s.ts), true)).sort((p, q) => p.ts - q.ts).slice(-200),
+  };
+}
+
+/** Aplica os aliases (questões duplicadas que foram retiradas): o progresso passa para a questão mantida. */
+export function aplicaAlias(e: EstadoMateria, alias: Record<string, string>): EstadoMateria {
+  const q: Record<string, EstadoQuestao> = { ...e.q };
+  let mudou = false;
+  for (const [velho, novo] of Object.entries(alias)) {
+    if (!q[velho]) continue;
+    q[novo] = mesclaQ({ [novo]: q[novo] || { tent: [] } }, { [novo]: q[velho] })[novo];
+    delete q[velho];
+    mudou = true;
+  }
+  return mudou ? { ...e, q, ult: e.ult && alias[e.ult] ? alias[e.ult] : e.ult } : e;
+}
+
+/** Descobre a matéria de um objeto S do protótipo pelos ids de questão. */
+export function materiaDoS(s: Partial<EstadoMateria>, idsPorMateria: Record<string, Set<string>>): MateriaId | null {
+  const ids = Object.keys(obj(s.q) || {});
+  let melhor: string | null = null, n = 0;
+  for (const [m, set] of Object.entries(idsPorMateria)) {
+    const c = ids.filter((id) => set.has(id)).length;
+    if (c > n) { n = c; melhor = m; }
+  }
+  if (!melhor) {
+    // sem questões: tenta pelos ids de cartão (bio-d001, qui-k003...)
+    const ids2 = [...Object.keys(obj(s.flash) || {}), ...Object.keys(obj(s.flg) || {})];
+    const pref = ids2.map((x) => x.split('-')[0]).find((p) => ['bio', 'qui', 'mat', 'por'].includes(p));
+    return (pref as MateriaId) || null;
+  }
+  return melhor as MateriaId;
+}
+
+export interface ResultadoImportacao { materias: MateriaId[]; questoes: number; cartoes: number; erro?: string }
+
+/** Importa um arquivo (texto JSON) para dentro do estado atual, sem apagar nada. */
+export function importaArquivo(estado: Estado, texto: string, idsPorMateria: Record<string, Set<string>>): { estado: Estado; r: ResultadoImportacao } {
+  let dado: unknown;
+  try { dado = JSON.parse(texto); } catch { return { estado, r: { materias: [], questoes: 0, cartoes: 0, erro: 'O arquivo não é um JSON válido.' } }; }
+  const d = obj<Record<string, unknown>>(dado);
+  if (!d) return { estado, r: { materias: [], questoes: 0, cartoes: 0, erro: 'Arquivo vazio ou em formato desconhecido.' } };
+
+  const novo: Estado = { ...estado, materias: { ...estado.materias } };
+  const r: ResultadoImportacao = { materias: [], questoes: 0, cartoes: 0 };
+
+  const junta = (m: MateriaId, s: Partial<EstadoMateria>) => {
+    const ids = idsPorMateria[m];
+    const q = Object.fromEntries(Object.entries(obj<Record<string, EstadoQuestao>>(s.q) || {}).filter(([id, v]) => (!ids || ids.has(id)) && v && Array.isArray(v.tent)));
+    const base = novo.materias[m] || estadoMateriaVazio();
+    novo.materias[m] = mesclaMateria(base, { ...s, q });
+    r.materias.push(m);
+    r.questoes += Object.keys(q).length;
+    r.cartoes += Object.keys(obj(s.flash) || {}).length;
+  };
+
+  if (d.versao === 1 && obj(d.materias)) {
+    // exportação do app novo
+    for (const [m, s] of Object.entries(d.materias as Record<string, Partial<EstadoMateria>>)) junta(m as MateriaId, s);
+    if (Array.isArray(d.simuladosFeitos)) {
+      const vis = new Set(novo.simuladosFeitos.map((x) => x.ts));
+      novo.simuladosFeitos = [...novo.simuladosFeitos, ...(d.simuladosFeitos as Estado['simuladosFeitos']).filter((x) => !vis.has(x.ts))];
+    }
+  } else if (obj(d.q) || obj(d.flash)) {
+    // exportação do protótipo: o S de uma matéria
+    const m = materiaDoS(d as Partial<EstadoMateria>, idsPorMateria);
+    if (!m) return { estado, r: { ...r, erro: 'Não reconheci de qual matéria é este arquivo.' } };
+    junta(m, d as Partial<EstadoMateria>);
+  } else {
+    // pode ser um despejo de várias chaves do protótipo: { "saocamilo.bio.v1": {...} | "texto" }
+    let achou = false;
+    for (const [k, v] of Object.entries(d)) {
+      const m = CHAVES_PROTOTIPO[k];
+      if (!m) continue;
+      const s = typeof v === 'string' ? (() => { try { return JSON.parse(v); } catch { return null; } })() : v;
+      if (obj(s)) { junta(m, s as Partial<EstadoMateria>); achou = true; }
+    }
+    if (!achou) return { estado, r: { ...r, erro: 'Não encontrei progresso do APRENDICE neste arquivo.' } };
+  }
+  return { estado: novo, r };
+}
+
+/** Na primeira abertura no mesmo navegador do protótipo, puxa as chaves antigas (sem apagá-las). */
+export function migraDoNavegador(estado: Estado, ler: (k: string) => string | null): Estado {
+  let e = estado;
+  for (const [k, m] of Object.entries(CHAVES_PROTOTIPO)) {
+    if (e.migradoDe.includes(k)) continue;
+    const bruto = ler(k);
+    if (!bruto) continue;
+    try {
+      const s = JSON.parse(bruto) as Partial<EstadoMateria>;
+      e = { ...e, materias: { ...e.materias, [m]: mesclaMateria(e.materias[m] || estadoMateriaVazio(), s) }, migradoDe: [...e.migradoDe, k] };
+    } catch { /* chave corrompida: deixa como está, não apaga */ }
+  }
+  return e;
+}
