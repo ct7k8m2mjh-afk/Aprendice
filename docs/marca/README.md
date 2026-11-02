@@ -16,6 +16,7 @@ O código da animação fica em `app-atual/design/shell.html`, no bloco "logotip
 | `aprendice-logo-branco.svg` | Logotipo em tinta clara `#EDEEF1`, para o tema escuro |
 | `aprendice-logo-currentColor.svg` | Pega a cor do texto (`color`) e serve nos dois temas; é assim que o app usa |
 | `aprendice-logo.png` e `aprendice-logo-branco.png` | PNG com 2400 px de largura e fundo transparente |
+| `aprendice-logo-branco-fundo-preto.png` e `aprendice-logo-fundo-claro.png` | PNG 3000 × 1361 px com fundo sólido (`#0C0D10` escuro do app / `#F1F1EE` claro do app), para ver ou mandar sem depender de transparência |
 | `aprendice-abertura.html` | Animação isolada; abre no navegador. Tem os botões Repetir e Tema e aceita `?tema=escuro` |
 | `aprendice-abertura-computador-claro.mp4`, `aprendice-abertura-computador-escuro.mp4`, `aprendice-abertura-celular-claro.mp4` | Vídeos de referência a 60 fps |
 
