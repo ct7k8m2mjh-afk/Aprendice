@@ -16,8 +16,10 @@ Fale com o dono do produto em português do Brasil, direto, passo a passo, sem a
 Não avançar de fase sem aprovação explícita do dono.
 
 ## Princípios do produto (não se quebram)
-1. **Questões só reais**, de provas publicadas, com a fonte (prova, ano, número, link). Nunca criar, redigitar ou "reconstruir" questão. O app mostra o print/fiel da questão original; o texto serve para acessibilidade e busca.
-2. **Gabarito só de fonte publicada** (oficial ou resolução reconhecida). Sem gabarito publicado, a questão não entra.
+1. **Dois tipos de questão, nunca misturados** (regras completas em `docs/questoes-aprendice.md`):
+   - **Questão de prova**: de prova publicada, com a fonte (prova, ano, número, link). O app mostra o print fiel; nunca redigitar ou "reconstruir". Os prints atuais das bancas ficam por enquanto; antes da publicação, refazer o recorte a partir do PDF oficial e registrar a autorização de uso de cada banca.
+   - **Questão Aprendice**: escrita pela fábrica, com o selo "Questão Aprendice" e **nunca com nome de banca** (pode dizer "tema que caiu na Fuvest 2023"). Substitui as questões copiadas de sites didáticos (Brasil Escola, Mundo Educação, InfoEscola, Prepara Enem), que não podem aparecer no app: nem print, nem foto, nem logo, nem nome. Não é paráfrase: é questão nova (contexto, números, texto e alternativas próprios), só o conceito é o mesmo. Figuras feitas por código, com medidas calculadas.
+2. **Gabarito confiável.** Questão de prova: só com gabarito publicado (oficial ou resolução reconhecida); sem ele, não entra. Questão Aprendice: duas resoluções independentes (agentes e prompts diferentes) precisam chegar à mesma alternativa, e as contas são conferidas por código; divergência vai para a fila de exceção.
 3. **Zero erro em material de estudo.** Resoluções, teoria, flashcards e frases têm fonte e passam por **revisão em lentes sucessivas** com agentes diferentes: 1ª lente confere fatos contra a fonte; 2ª lente confere utilidade, tamanho e estilo de prova; a 1ª lente volta em tudo que mudou. Nada vai ao ar sem isso.
 4. **A prova manda.** Prioridade de conteúdo, simulados e treinos vem do que as provas de Medicina realmente cobram (raio-x por instituição: temas, frequência, formato). O aluno escolhe as provas-alvo e o app prioriza por elas.
 5. **Errar ensina.** A resolução explica a alternativa que o aluno marcou, não só a certa (origem de cada distrator).
@@ -32,8 +34,8 @@ Não avançar de fase sem aprovação explícita do dono.
 - Cores por matéria: Matemática verde-água · Português amarelo · Biologia verde · Química rosa/magenta. Definir as das novas matérias seguindo o mesmo sistema.
 - Vocabulário (manter):
   - **Escada / degrau**: cada conteúdo é uma escada de questões do mais fácil ao mais difícil (meta: 10 degraus por conteúdo).
-  - **Treino geral**: mistura questões reais + frases para completar + flashcards dos temas que mais caem.
-  - **Simulado**: resolução logo após cada resposta; por universidade e por objetivo.
+  - **Treino geral**: mistura questões de prova e questões Aprendice + frases para completar + flashcards dos temas que mais caem.
+  - **Simulado**: resolução logo após cada resposta; por universidade e por objetivo. Simulado por universidade usa só questões de prova daquela universidade.
   - **Flashcard**: pergunta curta no estilo das discursivas, resposta em uma frase; correção por IA ou local; no verso, fonte e "Curtiu este cartão? Sim/Não" (Não tira das próximas sessões).
   - Faixa de temas sempre no topo da matéria.
 
@@ -57,5 +59,6 @@ Banco atual: Bio 507 · Quí 569 · Mat 610 · Por 535 questões (concentradas e
 ## O que precisa mudar para virar produto público
 - Tirar tudo que é pessoal do protótipo: nome fixo na saudação, a arte de capa de Biologia com o rosto do aluno, a prioridade fixa em São Camilo (vira escolha do usuário: provas-alvo).
 - Banco nacional: ENEM e vestibulares de Medicina de todas as regiões, com raio-x por instituição; mesmo padrão de fonte e gabarito.
-- Revisar os direitos de uso das fontes dos prints (muitos vêm de PDFs de cursinhos e páginas de sites didáticos) antes de abrir ao público.
+- Trocar as 788 questões de sites didáticos por questões Aprendice ou pela questão de prova original (plano em `docs/questoes-aprendice.md`).
+- Antes de abrir ao público: refazer os prints das bancas a partir dos PDFs oficiais (hoje 1.309 vêm de PDFs do Curso Objetivo) e registrar a autorização de cada banca.
 - Pendências herdadas: logo da Unesp; escadas incompletas (a maioria com menos de 10 degraus); mais visuais em Mat e Por; lacunas de flashcards em `docs/estado-escadas-01-11.md`.
