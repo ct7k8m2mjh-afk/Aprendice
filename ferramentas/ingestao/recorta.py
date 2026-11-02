@@ -21,6 +21,7 @@ from PIL import Image, ImageChops
 
 sys.path.insert(0, str(Path(__file__).parent))
 from provas import PROVAS  # noqa: E402
+from transcreve import transcreve  # noqa: E402
 
 RAIZ = Path(__file__).resolve().parents[2]
 ENTRADA = RAIZ / 'fabrica_saida' / 'ingestao'
@@ -143,8 +144,9 @@ def eventos_do_pdf(pdf, cfg, faixa=None):
                         if m:
                             resto = t[m.start():] + ' ' + (lp[li + 1]['t'] if li + 1 < len(lp) else '')
                             mq = re.search(r'(?i)(quest|cuesti)\w*\W*(.*)', resto)
-                            if mq:   # "Text 17 (for questions 18, 19, 20 and 21)" -> 18..21
-                                ns = [int(x) for x in re.findall(r'\d+', mq.group(2))]
+                            if mq:   # "Text 17 (for questions 18, 19, 20 and 21)" -> 18..21; só a lista logo após "questões"
+                                ml = re.match(r'(?i)\s*(\d+)((?:\s*(?:,|\be\b|\ba\b|\band\b|\by\b|\bto\b|–|-)\s*\d+)*)', mq.group(2))
+                                ns = [int(x) for x in re.findall(r'\d+', ml.group(0))] if ml else []
                                 nums = [min(ns), max(ns)] if len(ns) >= 2 else ns
                             else:
                                 nums = [int(x) for x in re.findall(r'\d+', resto)][:2]
@@ -354,17 +356,20 @@ def redige(pdf, glifo):
     return n
 
 
-def processa(pid, amostra=False):
+def processa(pid, amostra=False, so_texto=False):
     cfg = PROVAS[pid]
     pasta = ENTRADA / pid
     man = json.loads((pasta / 'manifesto.json').read_text())
     destino = SAIDA / pid
     import shutil
-    if (destino / 'q').exists():
+    anteriores = {}
+    if so_texto:   # refaz só a transcrição, reaproveitando os prints já gerados
+        anteriores = {q['n']: q for q in json.loads((destino / 'prova.json').read_text())['questoes']}
+    elif (destino / 'q').exists():
         shutil.rmtree(destino / 'q')  # nunca misturar recortes de uma rodada anterior
     (destino / 'q').mkdir(parents=True, exist_ok=True)
     questoes = {}
-    relatorio = {'sem_gabarito': [], 'anuladas': [], 'faltando': [], 'duplicadas': []}
+    relatorio = {'sem_gabarito': [], 'anuladas': [], 'faltando': [], 'duplicadas': [], 'suspeitas': []}
     gab = cfg['gabarito'](pasta)
     cads = cfg['cadernos'](pasta) if callable(cfg['cadernos']) else cfg['cadernos']
     for cad in cads:
@@ -418,6 +423,8 @@ def processa(pid, amostra=False):
                 segs_s = segmentos(pdf, cfg, ev, i, faixa_pag)
                 if suporte and suporte.get('aberto'):
                     suporte['segs'] += segs_s  # Texto 1 + Texto 2 seguidos: os dois valem
+                    if e['faixa']:
+                        suporte['faixa'] = e['faixa']   # a indicação mais específica (a última) manda
                 else:
                     suporte = {'segs': segs_s, 'faixa': e['faixa'], 'aberto': True}
                 if e.get('num') is not None:
@@ -458,12 +465,25 @@ def processa(pid, amostra=False):
                 elif len(f) < 2 and not suporte.get('usado'):
                     sup = suporte['segs']  # sem faixa declarada: vale só para a questão seguinte
                     suporte['usado'] = True
-            img = render(pdf, sup + segs, marcas, coloridos)
+            if so_texto and n in anteriores:
+                class _Img:  # medidas do print já existente
+                    width, height = anteriores[n]['larg'], anteriores[n]['alt']
+                img = _Img()
+            elif so_texto:
+                continue
+            else:
+                img = render(pdf, sup + segs, marcas, coloridos)
             if img is None:
                 relatorio['faltando'].append(n)
                 continue
-            if not amostra or len(questoes) < 6:
+            if img.height > 12000:   # atravessou páginas demais: âncora seguinte não foi achada
+                relatorio.setdefault('suspeitas', []).append(n)
+                continue
+            if not so_texto and (not amostra or len(questoes) < 6):
                 img.save(destino / 'q' / f'{n:03d}.webp', 'WEBP', quality=80, method=6)
+            # questão só de texto: transcrição fiel da camada de texto (nunca com figura, fórmula ou OCR)
+            estr = transcreve(pdf, sup + segs, cfg['ancora'], tuple(cfg.get('corte', [])) + tuple(cfg.get('fim', [])),
+                              cfg.get('alternativas', 5), ocr=id(pdf) in _OCR)
             g = gab.get(n)
             questoes[n] = {
                 'n': n, 'area': secao or cfg['area'](n), 'gab': g,
@@ -471,6 +491,8 @@ def processa(pid, amostra=False):
                 'texto': texto(pdf, sup + segs),
                 'print': f'q/{n:03d}.webp', 'larg': img.width, 'alt': img.height,
             }
+            if estr:
+                questoes[n]['transcricao'] = estr
     esperado = cfg['total'] if 'total' in cfg else cfg['total_de'](pasta)
     for n in range(1, esperado + 1):
         if n not in questoes:
@@ -493,6 +515,8 @@ def processa(pid, amostra=False):
         'questoes': sorted(validas, key=lambda q: q['n']),
         'fora': {k: sorted(set(v)) for k, v in relatorio.items() if v},
     }
+    if so_texto:   # a lista de fora (anuladas etc.) é a da rodada completa anterior
+        prova['fora'] = json.loads((destino / 'prova.json').read_text()).get('fora', {})
     (destino / 'prova.json').write_text(json.dumps(prova, ensure_ascii=False, indent=1) + '\n')
     return prova
 
@@ -500,5 +524,6 @@ def processa(pid, amostra=False):
 if __name__ == '__main__':
     ids = [a for a in sys.argv[1:] if not a.startswith('--')]
     for pid in ids:
-        p = processa(pid, amostra='--amostra' in sys.argv)
-        print(f"{pid}: {len(p['questoes'])} de {p['total_oficial']} válidas · fora: {p['fora']}")
+        p = processa(pid, amostra='--amostra' in sys.argv, so_texto='--so-texto' in sys.argv)
+        nt = sum(1 for q in p['questoes'] if q.get('transcricao'))
+        print(f"{pid}: {len(p['questoes'])} de {p['total_oficial']} válidas · {nt} em texto · fora: {p['fora']}")

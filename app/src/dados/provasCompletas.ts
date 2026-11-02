@@ -6,7 +6,7 @@
  * Prévia publicada: provas/indice.json e provas/<id>.json (prints embutidos), servidos ao lado do HTML.
  */
 import { useEffect, useState } from 'react';
-import type { Letra, MateriaId, Questao } from './tipos';
+import type { Letra, MateriaId, Questao, Transcricao } from './tipos';
 
 const PREVIA = import.meta.env.VITE_PREVIA === '1';
 const BASE = PREVIA ? 'provas/' : import.meta.env.BASE_URL + 'conteudo/provas/';
@@ -35,6 +35,7 @@ export interface QuestaoProva {
   texto: string;
   print: string;
   caderno?: string;
+  transcricao?: Transcricao;
 }
 
 export interface ProvaCompleta extends Omit<IndiceProva, 'questoes' | 'areas'> {
@@ -80,12 +81,12 @@ const LETRAS: Letra[] = ['A', 'B', 'C', 'D', 'E'];
 /** A questão da prova no formato das telas de questão (print, fonte, gabarito; sem resolução ainda). */
 export function comoQuestao(p: ProvaCompleta, q: QuestaoProva): Questao {
   const alts: Partial<Record<Letra, string>> = {};
-  for (const l of LETRAS.slice(0, p.alternativas || 5)) alts[l] = '';
+  for (const l of LETRAS.slice(0, p.alternativas || 5)) alts[l] = q.transcricao?.alts[l] || '';
   const caderno = (q.caderno && p.fontes[q.caderno]) || Object.values(p.fontes)[0] || '';
   return {
     id: q.id, escola: p.escola, ano: p.ano, n: String(q.n), banca: p.banca, fase: p.fase,
     enun: q.texto, alts, gab: q.gab, modulo: '', sub: '', dif: 0, degrau: 0, conceito: q.area, pista: '',
-    url: caderno, origem: 'prova', figura: true,
+    url: caderno, origem: 'prova', figura: !q.transcricao, transcricao: q.transcricao,
   };
 }
 

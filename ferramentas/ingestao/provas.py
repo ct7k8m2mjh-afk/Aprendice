@@ -299,3 +299,47 @@ def upe(ano, duracao=9):
 
 
 PROVAS.update({f'upe-ssa3-{a}': upe(a) for a in (2026, 2025, 2024)})
+
+
+# ----------------------------------------------------------------------------------------------- CMMG
+CMMG_COLUNAS = [('PORTUGUESA', 'Língua Portuguesa e Literatura'), ('INGLÊS', 'Inglês'), ('BIOLOGIA', 'Biologia'),
+                ('FÍSICA', 'Física'), ('QUÍMICA', 'Química'), ('MATEMÁTICA', 'Matemática')]
+
+
+def cmmg(ano, sem, ocr=False, duracao=4.5):
+    areas = {}
+
+    def gab(pasta):
+        """Gabarito definitivo em colunas por matéria: a matéria de cada questão sai da coluna em que ela está."""
+        txt = texto_pdf(pasta / 'gabarito-definitivo.pdf')
+        linhas = txt.splitlines()
+        cab = next((l for l in linhas if 'BIOLOGIA' in l and 'QUÍMICA' in l), '')
+        pos = [(cab.find(k) + len(k) / 2, nome) for k, nome in CMMG_COLUNAS if cab.find(k) >= 0]
+        g = {}
+        for l in linhas:
+            for m in re.finditer(r'(?<![\d,.])(\d{1,2})\.\s*([A-E]\b|ANULAD[AO]|\*|X\b)', l):
+                n = int(m.group(1))
+                g.setdefault(n, m.group(2) if len(m.group(2)) == 1 and m.group(2) in 'ABCDE' else 'X')
+                if pos:
+                    centro = m.start() + 2
+                    areas[n] = min(pos, key=lambda p: abs(p[0] - centro))[1]
+        return g
+
+    return {
+        'catalogo': 'cmmg', 'escola': 'FCM-MG', 'ano': str(ano), 'fase': f'{sem}º semestre', 'titulo': f'FCM-MG {ano}/{sem}',
+        'banca': 'Feluma', 'duracao_horas': duracao, 'alternativas': 4,
+        'nota': 'Faculdade Ciências Médicas de Minas Gerais, vestibular de Medicina. Gabarito definitivo.'
+                + (' Caderno com fonte sem texto legível: questões localizadas por OCR (o print é a página original).' if ocr else ''),
+        'cadernos': [{'arquivo': 'caderno', 'paginas': (2, 999), 'ocr': ocr}],
+        'colunas': lambda r: [(14, r.width - 14)], 'topo': 50 if not ocr else 52, 'base': 20, 'rodape_num': True,
+        'ancora': r'^0?(\d{1,2})\s?[.,](\s|$)', 'ancora_dx': 30, 'sequencial': True,
+        'corte': [r'(?i)^PROVA DE REDA', r'(?i)^PROPOSTA DE REDA', r'^REDAÇÃO$', r'(?i)^RASCUNHO', r'^Tabela peri'],
+        'suporte': [r'(?i)para responder [àa]s? quest(ão|ao|ões|oes)', r'(?i)^[A-ZÁÉÍÓÚÂÊÔÃÕÇ ]+ ?[-–] ?QUEST[ÕO]ES DE \d+ A \d+'],
+        'gabarito': gab, 'area': lambda n: areas.get(n, 'Conhecimentos gerais'),
+    }
+
+
+for _a, _s, _o in ((2026, 2, False), (2025, 1, True), (2024, 2, False), (2024, 1, False)):
+    _c = cmmg(_a, _s, _o)
+    _c['total_de'] = (lambda c: (lambda pasta: max(c['gabarito'](pasta))))(_c)
+    PROVAS[f'cmmg-{_a}-{_s}'] = _c

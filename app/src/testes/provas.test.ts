@@ -42,6 +42,20 @@ describe.skipIf(!temProvas)('provas completas (recorte oficial)', () => {
     }
   });
 
+  it('transcrição só com todas as alternativas e sem notação especial nem resposta', () => {
+    let n = 0;
+    for (const p of provas) for (const q of p.questoes) {
+      if (!q.transcricao) continue;
+      n++;
+      expect(Object.keys(q.transcricao.alts).join('')).toBe('ABCDE'.slice(0, p.alternativas));
+      expect(q.transcricao.enun.length).toBeGreaterThan(0);
+      const tudo = JSON.stringify(q.transcricao);
+      expect(tudo).not.toMatch(/Alternativa correta|►|Gabarito/);
+      expect(tudo).not.toMatch(/[\u{1D400}-\u{1D7FF}]/u);
+    }
+    expect(n).toBeGreaterThan(500);
+  });
+
   it('fonte oficial registrada para cada prova', () => {
     for (const p of provas) {
       expect(Object.keys(p.fontes).length).toBeGreaterThan(0);

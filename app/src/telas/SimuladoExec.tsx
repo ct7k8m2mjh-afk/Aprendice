@@ -239,7 +239,7 @@ export function SimuladoExec() {
             <EnunciadoQuestao q={q} print={qq?.print ?? null} numero={`${sim.i + 1} · ${grupoDoItem(it)}`} /></article>
 <aside className={'folha q-painel' + (revelado ? ' revelado' : '')} aria-label="Resposta">
             <Alternativas q={q} escolhida={escolha} aoEscolher={(l) => grava(l)} revelado={revelado} riscadas={riscadas}
-              aoRiscar={(l) => setRiscadas((r) => { const n = new Set(r); n.has(l) ? n.delete(l) : n.add(l); return n; })} mostrarTexto={!qq?.print} />
+              aoRiscar={(l) => setRiscadas((r) => { const n = new Set(r); n.has(l) ? n.delete(l) : n.add(l); return n; })} mostrarTexto={!!q.transcricao || !qq?.print} />
             {!revelado && <Certeza valor={conf} aoMudar={(c) => { setConf(c); if (escolha) grava(escolha, c); }} />}
             <div className="q-acoes">
               <button className={'btn fantasma' + (sim.marcadas.includes(it.id) ? ' marcado' : '')} onClick={marca} aria-pressed={sim.marcadas.includes(it.id)}><Icone nome="bandeira" /> {sim.marcadas.includes(it.id) ? 'Marcada para revisar' : 'Revisar depois'}</button>

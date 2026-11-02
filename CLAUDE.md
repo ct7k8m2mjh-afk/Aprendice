@@ -8,7 +8,7 @@ Hoje existe um protótipo funcional em HTML estático com 4 matérias (Biologia,
 Fale com o dono do produto em português do Brasil, direto, passo a passo, sem assumir conhecimento técnico. Antes de escrever código, apresente o plano e espere aprovação. Enumere as tarefas e informe cada uma ao terminar.
 
 ## Princípios do produto (não se quebram)
-1. **Questões só reais**, de provas publicadas, com a fonte (prova, ano, número, link). Nunca criar, redigitar ou "reconstruir" questão. O app mostra o print/fiel da questão original; o texto serve para acessibilidade e busca.
+1. **Questões só reais**, de provas publicadas, com a fonte (prova, ano, número, link). Nunca criar ou "reconstruir" questão. Questão **só de texto** aparece escrita, copiada da camada de texto da prova oficial e organizada como a banca organizou (parágrafos, versos, alinhamento, negrito/itálico), com a fonte entre parênteses — decisão do dono, 02/11/2026. **Proibido** transcrever questão com imagem, figura geométrica, gráfico, tabela ou fórmula: essas aparecem como print fiel. O print original fica sempre disponível.
 2. **Gabarito só de fonte publicada** (oficial ou resolução reconhecida). Sem gabarito publicado, a questão não entra.
 3. **Zero erro em material de estudo.** Resoluções, teoria, flashcards e frases têm fonte e passam por **revisão em lentes sucessivas** com agentes diferentes: 1ª lente confere fatos contra a fonte; 2ª lente confere utilidade, tamanho e estilo de prova; a 1ª lente volta em tudo que mudou. Nada vai ao ar sem isso.
 4. **A prova manda.** Prioridade de conteúdo, simulados e treinos vem do que as provas de Medicina realmente cobram (raio-x por instituição: temas, frequência, formato). O aluno escolhe as provas-alvo e o app prioriza por elas.
@@ -27,6 +27,7 @@ Fale com o dono do produto em português do Brasil, direto, passo a passo, sem a
   - **Treine sua evolução**: percorre o conteúdo do mais fácil ao mais difícil; dá para treinar um nível só. O desempenho por nível alimenta o feedback "onde você mais erra".
   - Quantidade de questões aparece só nos conteúdos (subtemas), não na matéria nem no tema.
   - **Treino geral**: mistura questões reais + frases para completar + flashcards dos temas que mais caem.
+  - **Plataforma**: primeiro site (computador, celular, iPad e outros), depois apps nas lojas (decisão do dono, 02/11/2026).
   - **Simulado**: só prova inteira, com todas as matérias, escolhida por instituição e ano (título com o ano). Sem simulado por objetivo ou por conteúdo. Meta: provas de 2020 a 2026 (privadas incluídas); onde não houver, no mínimo 3 anos por instituição.
   - **Flashcard**: pergunta curta no estilo das discursivas, resposta em uma frase; correção por IA ou local; no verso, fonte e "Curtiu este cartão? Sim/Não" (Não tira das próximas sessões).
   - Faixa de temas sempre no topo da matéria.

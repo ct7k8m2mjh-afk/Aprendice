@@ -27,7 +27,12 @@ export interface Questao {
   figura: boolean;
   /** motivo pelo qual a questão está fora do ar (ex.: sem link da fonte) */
   pendente?: string;
+  /** questão só de texto, transcrita da camada de texto da prova oficial (parágrafos como a banca organizou) */
+  transcricao?: Transcricao;
 }
+
+/** Parágrafo transcrito: a = alinhamento (e esquerda, c centro, d direita); t com **negrito**, ~~itálico~~ e quebras \n. */
+export interface Transcricao { enun: { a: 'e' | 'c' | 'd'; t: string }[]; alts: Partial<Record<Letra, string>> }
 
 export interface Passo { faz: string; conta: string; porque: string; tipo?: string }
 

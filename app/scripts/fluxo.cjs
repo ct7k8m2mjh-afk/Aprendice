@@ -91,7 +91,7 @@ const BASE = process.env.BASE || 'http://localhost:5173/';
   await p.goto(BASE + '#/simulados/prova/uel-2026');
   await p.click('text=Começar simulado');
   await p.waitForSelector('.q-painel .alts');
-  await p.waitForSelector('.q-print img');
+  await p.waitForSelector('.q-print img, .q-transcricao');
   await p.keyboard.press('B');
   await p.keyboard.press('ArrowRight');
   await p.waitForTimeout(300);
@@ -106,7 +106,7 @@ const BASE = process.env.BASE || 'http://localhost:5173/';
   assert.ok(f.porArea && Object.keys(f.porArea).length >= 1, 'resultado por área');
   assert.strictEqual(e.simulado, null);
   await p.click('.gq >> nth=0');
-  await p.waitForSelector('.q-print img');
+  await p.waitForSelector('.q-print img, .q-transcricao');
   passo(`simulado UEL 2026 (prova completa): entregue com 2 respondidas, ${f.acertos} acertos, resultado por área e print da questão`);
 
   // 7b. simulado inexistente (edição parcial antiga) não abre

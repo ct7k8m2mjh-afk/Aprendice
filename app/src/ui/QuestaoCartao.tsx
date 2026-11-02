@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 import type { Letra, MateriaId, Questao } from '../dados/tipos';
 import { urlPrint } from '../dados/conteudo';
 import { Icone } from './Icone';
@@ -26,10 +26,45 @@ export function Lupa({ src, alt, aoFechar }: { src: string; alt: string; aoFecha
   );
 }
 
+/** Texto com a marcação da transcrição: **negrito**, ~~itálico~~ e quebras de linha. */
+export function TextoBanca({ t }: { t: string }) {
+  const partes = t.split(/(\*\*|~~|\n)/);
+  const out: ReactNode[] = [];
+  let neg = false, ita = false;
+  partes.forEach((p, i) => {
+    if (p === '**') { neg = !neg; return; }
+    if (p === '~~') { ita = !ita; return; }
+    if (p === '\n') { out.push(<br key={i} />); return; }
+    if (!p) return;
+    let n: ReactNode = p;
+    if (ita) n = <i key={'i' + i}>{n}</i>;
+    if (neg) n = <b key={'b' + i}>{n}</b>;
+    out.push(<span key={i}>{n}</span>);
+  });
+  return <>{out}</>;
+}
+
+/** Questão só de texto: transcrição da prova oficial, organizada como a banca organizou, com a fonte entre parênteses. */
+function EnunciadoTexto({ q }: { q: Questao }) {
+  const tr = q.transcricao!;
+  return (
+    <div className="q-transcricao">
+      {tr.enun.map((p, i) => (
+        <p key={i} className={'tr-' + p.a}>
+          {i === 0 && <b className="tr-fonte">({q.escola} {q.ano}) </b>}
+          <TextoBanca t={p.t} />
+        </p>
+      ))}
+    </div>
+  );
+}
+
 /** Print fiel da questão original + cabeçalho com a fonte. */
 export function EnunciadoQuestao({ m, q, numero, print }: { m?: MateriaId; q: Questao; numero?: string; print?: string | null }) {
   const [lupa, setLupa] = useState(false);
   const [txt, setTxt] = useState(false);
+  const [original, setOriginal] = useState(false);
+  useEffect(() => setOriginal(false), [q.id]);
   const src = print !== undefined ? print : m ? urlPrint(m, q.id) : null;
   const alt = textoAlternativo(q);
   return (
@@ -41,7 +76,12 @@ export function EnunciadoQuestao({ m, q, numero, print }: { m?: MateriaId; q: Qu
         </span>
         <a className="q-link" href={q.url} target="_blank" rel="noreferrer noopener" title="Abrir a fonte original"><Icone nome="externo" tam={15} /><span className="sr">Fonte original</span></a>
       </div>
-      {src ? (
+      {q.transcricao && !original ? (
+        <>
+          <EnunciadoTexto q={q} />
+          {src && <button className="q-ver-txt" onClick={() => setOriginal(true)}><Icone nome="arquivo" tam={15} /> Ver a questão original (print da prova)</button>}
+        </>
+      ) : src ? (
         <button className="q-print" onClick={() => setLupa(true)} aria-label="Ampliar a questão">
           <img src={src} alt={alt} />
           <span className="q-amplia"><Icone nome="lupa" tam={16} /> Ampliar</span>
@@ -52,7 +92,10 @@ export function EnunciadoQuestao({ m, q, numero, print }: { m?: MateriaId; q: Qu
           <p style={{ whiteSpace: 'pre-line' }}>{q.enun}</p>
         </div>
       )}
-      {src && (
+      {src && q.transcricao && original && (
+        <button className="q-ver-txt" onClick={() => setOriginal(false)}><Icone nome="arquivo" tam={15} /> Voltar para o texto</button>
+      )}
+      {src && !q.transcricao && (
         <button className="q-ver-txt" onClick={() => setTxt(!txt)} aria-expanded={txt}><Icone nome="arquivo" tam={15} /> {txt ? 'Esconder texto' : 'Ver em texto (leitor de tela, busca)'}</button>
       )}
       {src && txt && <div className="q-texto" style={{ whiteSpace: 'pre-line' }}>{alt}</div>}
@@ -78,9 +121,9 @@ export function Alternativas({ q, escolhida, aoEscolher, revelado, riscadas, aoR
         return (
           <button key={l} className={cls.join(' ')} role="radio" aria-checked={escolhida === l} disabled={revelado}
             onClick={() => aoEscolher(l)} onContextMenu={(e) => { e.preventDefault(); aoRiscar(l); }}
-            aria-label={`Alternativa ${l}${mostrarTexto && q.alts[l] ? ': ' + q.alts[l] : ''}${riscadas.has(l) ? ' (riscada)' : ''}`}>
+            aria-label={`Alternativa ${l}${mostrarTexto && q.alts[l] ? ': ' + q.alts[l]!.replace(/\*\*|~~/g, '') : ''}${riscadas.has(l) ? ' (riscada)' : ''}`}>
             <span className="alt-l">{l}</span>
-            {mostrarTexto && q.alts[l] && <span className="alt-t">{q.alts[l]}</span>}
+            {mostrarTexto && q.alts[l] && <span className="alt-t"><TextoBanca t={q.alts[l]!} /></span>}
           </button>
         );
       })}
