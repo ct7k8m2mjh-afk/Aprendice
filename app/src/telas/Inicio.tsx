@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { useMemo } from 'react';
 import { useTodasMaterias, type MateriaCarregada } from '../dados/conteudo';
 import { MATERIAS, MATERIAS_ATIVAS, materia as infoMateria } from '../dados/materias';
-import { edicoes, nomeEdicao } from '../dados/provas';
+import { useIndiceProvas } from '../dados/provasCompletas';
 import { useEstado } from '../estado/loja';
 import { atividadeRecente, materiaDeHoje, progressoEscada, resumoMateria, semana, tempoTotal } from '../logica/estatisticas';
 import { Barra, Carregando, Ic3D, horasMin, plural, useTitulo } from '../ui/comum';
@@ -58,12 +58,15 @@ export function Inicio() {
   const meta = e.perfil?.meta || 150;
   const nome = (e.perfil?.nome || '').split(' ')[0];
 
+  const indice = useIndiceProvas();
   const sugerido = useMemo(() => {
-    if (!todas) return null;
+    if (!indice) return null;
     const alvo = new Set(e.perfil?.provasAlvo || []);
-    const eds = edicoes(todas).filter((x) => x.completa);
-    return eds.find((x) => x.catalogoId && alvo.has(x.catalogoId)) || eds[0] || null;
-  }, [todas, e.perfil?.provasAlvo]);
+    const feitos = new Set(e.simuladosFeitos.map((x) => x.sid));
+    const ord = [...indice].sort((a, b) => b.ano.localeCompare(a.ano));
+    const naoFeitos = ord.filter((x) => !feitos.has('prova:' + x.id));
+    return naoFeitos.find((x) => alvo.has(x.catalogoId)) || naoFeitos[0] || ord[0] || null;
+  }, [indice, e.perfil?.provasAlvo, e.simuladosFeitos]);
 
   if (!todas) return <div className="conteudo"><Carregando /></div>;
 
@@ -128,9 +131,9 @@ export function Inicio() {
             <Icone nome="direita" />
           </Link>
           {sugerido && (
-            <Link to={`/simulados/prova/${encodeURIComponent(sugerido.chave)}`} className="linha-lista">
+            <Link to={`/simulados/prova/${encodeURIComponent(sugerido.id)}`} className="linha-lista">
               <span className="mini"><Icone nome="relogio" /></span>
-              <span><span className="tit">Simulado {nomeEdicao(sugerido)}</span><br /><span className="det">{sugerido.itens.length} questões da prova · cronometrado</span></span>
+              <span><span className="tit">Simulado {sugerido.titulo}</span><br /><span className="det">Prova completa · {sugerido.questoes} questões · cronometrado</span></span>
               <Icone nome="direita" />
             </Link>
           )}

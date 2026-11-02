@@ -6,6 +6,8 @@ import { useEstado } from '../estado/loja';
 import { Anel, Barra, Carregando, formataTempo, useTitulo } from '../ui/comum';
 import { Icone } from '../ui/Icone';
 import { EnunciadoQuestao } from '../ui/QuestaoCartao';
+import { useProvaCompleta } from '../dados/provasCompletas';
+import { grupoDoItem, questaoDoItem } from './SimuladoExec';
 import { ResolucaoView } from '../ui/Resolucao';
 import type { MateriaId, Resolucao } from '../dados/tipos';
 
@@ -19,9 +21,11 @@ export function SimuladoResultado() {
   const [res, setRes] = useState<Record<string, Resolucao>>({});
   useTitulo('Resultado do simulado');
 
+  const prova = useProvaCompleta(f?.itens[0]?.p);
   const itAberto = f?.itens.find((x) => x.id === aberta);
-  const qAberta = itAberto && todas ? todas.find((x) => x.id === itAberto.m)?.porId.get(itAberto.id) : undefined;
-  useEffect(() => { if (itAberto && qAberta) carregaResolucoes(itAberto.m, qAberta.sub).then((r) => setRes((o) => ({ ...o, ...r }))); }, [itAberto, qAberta]);
+  const qqAberta = questaoDoItem(itAberto, prova, todas);
+  const qAberta = qqAberta?.q;
+  useEffect(() => { if (itAberto?.m && !itAberto.p && qAberta) carregaResolucoes(itAberto.m, qAberta.sub).then((r) => setRes((o) => ({ ...o, ...r }))); }, [itAberto, qAberta]);
 
   if (!f) return <div className="conteudo vazio"><h3>Resultado não encontrado</h3><Link className="btn sec" to="/simulados">Simulados</Link></div>;
   if (!todas) return <div className="conteudo"><Carregando /></div>;
@@ -36,19 +40,20 @@ export function SimuladoResultado() {
         <div>
           <h1>{f.titulo}</h1>
           <p className="miolo num">{f.acertos} de {f.total} certas · {formataTempo(f.seg)} · {new Date(f.ts).toLocaleDateString('pt-BR', { day: 'numeric', month: 'long' })}</p>
-          <p className="fraco" style={{ fontSize: 14, marginTop: 6 }}>Os erros e as questões em branco já entraram na revisão espaçada.</p>
+          <p className="fraco" style={{ fontSize: 14, marginTop: 6 }}>{f.itens[0]?.p ? 'Toque em uma questão para ver o print e o gabarito oficial. A resolução comentada entra depois da revisão.' : 'Os erros e as questões em branco já entraram na revisão espaçada.'}</p>
         </div>
       </div>
       <section className="secao">
-        <h2 className="sec-tit">Por matéria</h2>
+        <h2 className="sec-tit">{f.porArea ? 'Por área da prova' : 'Por matéria'}</h2>
         <div className="por-materia">
-          {(Object.entries(f.porMateria) as [MateriaId, { acertos: number; total: number }][]).map(([m, p]) => (
-            <div key={m} className={`pm m-${m}`}>
-              <span className="pm-nome"><i className="ponto" />{nomeMateria(m)}</span>
-              <Barra valor={p.acertos / p.total} rotulo={nomeMateria(m)} />
-              <b className="num">{p.acertos}/{p.total}</b>
-            </div>
-          ))}
+          {(f.porArea ? Object.entries(f.porArea) : (Object.entries(f.porMateria) as [MateriaId, { acertos: number; total: number }][]).map(([m, p]) => [nomeMateria(m), p] as const))
+            .map(([g, p]) => (
+              <div key={g} className="pm">
+                <span className="pm-nome"><i className="ponto" />{g}</span>
+                <Barra valor={p.acertos / p.total} rotulo={g} />
+                <b className="num">{p.acertos}/{p.total}</b>
+              </div>
+            ))}
         </div>
       </section>
       <section className="secao">
@@ -57,15 +62,15 @@ export function SimuladoResultado() {
         </div>
         <div className="gabarito-grade">
           {lista.map((x) => (
-            <button key={x.id} className={'gq ' + (x.ok ? 'ok' : x.letra ? 'err' : 'branco') + (aberta === x.id ? ' sel' : '') + ` m-${x.m}`} onClick={() => setAberta(aberta === x.id ? null : x.id)}
+            <button key={x.id} className={'gq ' + (x.ok ? 'ok' : x.letra ? 'err' : 'branco') + (aberta === x.id ? ' sel' : '') + (x.m ? ` m-${x.m}` : '')} onClick={() => setAberta(aberta === x.id ? null : x.id)}
               aria-label={`Questão ${x.n}: ${x.ok ? 'certa' : x.letra ? `errada, marcou ${x.letra}` : 'em branco'}`} aria-expanded={aberta === x.id}>
               <span className="num">{x.n}</span><b>{x.letra || '–'}</b>
             </button>
           ))}
         </div>
         {itAberto && qAberta && (
-          <div className={`m-${itAberto.m}`} style={{ marginTop: 18 }}>
-            <article className="folha q-cartao"><EnunciadoQuestao m={itAberto.m} q={qAberta} numero={nomeMateria(itAberto.m)} /></article>
+          <div className={itAberto.m ? `m-${itAberto.m}` : ''} style={{ marginTop: 18 }}>
+            <article className="folha q-cartao"><EnunciadoQuestao q={qAberta} print={qqAberta?.print ?? null} numero={grupoDoItem(itAberto)} /></article>
             <ResolucaoView q={qAberta} r={res[qAberta.id]} marcada={itAberto.letra} />
           </div>
         )}

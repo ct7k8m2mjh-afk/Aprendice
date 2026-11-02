@@ -2,29 +2,41 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { carregaResolucoes, urlPrint, useTodasMaterias, type MateriaCarregada } from '../dados/conteudo';
 import { nomeMateria } from '../dados/materias';
+import { comoQuestao, urlPrintProva, useProvaCompleta, type ProvaCompleta } from '../dados/provasCompletas';
 import { atualiza, atualizaMateria, useEstado } from '../estado/loja';
-import { planoPorChave, type PlanoSimulado } from '../logica/simulados';
+import { planoDaProva, type PlanoSimulado } from '../logica/simulados';
 import { Carregando, formataTempo, plural, useTitulo } from '../ui/comum';
 import { Icone } from '../ui/Icone';
 import { Alternativas, Certeza, EnunciadoQuestao, type Conf } from '../ui/QuestaoCartao';
 import { ResolucaoView } from '../ui/Resolucao';
-import type { Letra, MateriaId, Resolucao } from '../dados/tipos';
-import type { SimuladoAndamento, SimuladoFeito } from '../estado/tipos';
+import type { Letra, MateriaId, Questao, Resolucao } from '../dados/tipos';
+import type { ItemSimulado, SimuladoAndamento, SimuladoFeito } from '../estado/tipos';
+
+/** Nome do grupo de um item no resultado: área da prova completa, ou a matéria. */
+export function grupoDoItem(it: { m?: MateriaId; a?: string }): string { return it.a || (it.m ? nomeMateria(it.m) : 'Outras'); }
+
+/** Questão de um item de simulado: da prova completa (p) ou do banco da matéria (m). */
+export function questaoDoItem(it: ItemSimulado | undefined, prova: ProvaCompleta | null | undefined, todas: MateriaCarregada[] | null): { q: Questao; print: string | null } | undefined {
+  if (!it) return undefined;
+  if (it.p) {
+    const qp = prova?.id === it.p ? prova.questoes.find((x) => x.id === it.id) : undefined;
+    return qp && prova ? { q: comoQuestao(prova, qp), print: urlPrintProva(prova, qp) } : undefined;
+  }
+  const q = it.m && todas ? todas.find((x) => x.id === it.m)?.porId.get(it.id) : undefined;
+  return q && it.m ? { q, print: urlPrint(it.m, q.id) } : undefined;
+}
 
 export function SimuladoNovo() {
   const { chave } = useParams();
-  const todas = useTodasMaterias();
+  const prova = useProvaCompleta(chave ? decodeURIComponent(chave) : null);
   const e = useEstado();
   const nav = useNavigate();
   const [modo, setModo] = useState<'prova' | 'treino'>('prova');
   const [cronometrado, setCron] = useState(true);
-  const plano = useMemo<PlanoSimulado | null>(() => {
-    if (!todas) return null;
-    return chave ? planoPorChave(decodeURIComponent(chave), todas) : null;
-  }, [todas, chave]);
+  const plano = useMemo<PlanoSimulado | null>(() => (prova ? planoDaProva(prova) : null), [prova]);
   useTitulo(plano?.titulo || 'Simulado');
-  if (!todas) return <div className="conteudo"><Carregando /></div>;
-  if (!plano) return <div className="conteudo vazio"><h3>Simulado não encontrado</h3><Link className="btn sec" to="/simulados">Ver simulados</Link></div>;
+  if (prova === undefined) return <div className="conteudo"><Carregando /></div>;
+  if (!plano) return <div className="conteudo vazio"><h3>Simulado não encontrado</h3><p>Os simulados são as provas completas. Escolha uma na lista.</p><Link className="btn sec" to="/simulados">Ver simulados</Link></div>;
   if (!plano.itens.length) return (
     <div className="conteudo estreito vazio">
       <h3>{plano.titulo}</h3>
@@ -34,7 +46,7 @@ export function SimuladoNovo() {
   );
 
   const limite = cronometrado ? plano.itens.length * plano.segPorQuestao : null;
-  const porMat = plano.itens.reduce<Record<string, number>>((a, x) => { a[x.m] = (a[x.m] || 0) + 1; return a; }, {});
+  const porGrupo = plano.itens.reduce<Record<string, number>>((a, x) => { const g = grupoDoItem(x); a[g] = (a[g] || 0) + 1; return a; }, {});
 
   const inicia = () => {
     const s: SimuladoAndamento = { sid: plano.sid, titulo: plano.titulo, modo, itens: plano.itens, resp: {}, marcadas: [], i: 0, limiteSeg: limite, usadoSeg: 0, iniciadoEm: Date.now(), pausado: false };
@@ -47,7 +59,8 @@ export function SimuladoNovo() {
       <nav className="migalhas"><Link to="/simulados">Simulados</Link><Icone nome="direita" tam={14} /><span>{plano.titulo}</span></nav>
       <div className="titulo-pag"><div><h1>{plano.titulo}</h1><p className="sub">{plano.descricao}</p></div></div>
       <div className="sim-config folha">
-        <div className="sc-linha"><span className="fraco">Questões</span><b className="num">{plano.itens.length}</b><span className="sc-mats">{Object.entries(porMat).map(([m, n]) => <span key={m} className={`m-${m}`}><i className="ponto" />{nomeMateria(m)} {n}</span>)}</span></div>
+        <div className="sc-linha"><span className="fraco">Questões</span><b className="num">{plano.itens.length}</b><span className="sc-mats">{Object.entries(porGrupo).map(([g, n]) => <span key={g}><i className="ponto" />{g} {n}</span>)}</span></div>
+        {prova?.nota && <p className="fraco" style={{ fontSize: 14, margin: 0 }}>{prova.nota}</p>}
         <fieldset className="sc-grupo">
           <legend>Correção</legend>
           <label className={'opcao' + (modo === 'prova' ? ' sel' : '')}><input type="radio" name="modo" checked={modo === 'prova'} onChange={() => setModo('prova')} /><span><b>Como na prova</b><small>Folha de respostas, pode pular e voltar; resultado e resoluções no fim.</small></span></label>
@@ -62,26 +75,33 @@ export function SimuladoNovo() {
   );
 }
 
-function finaliza(sim: SimuladoAndamento, todas: MateriaCarregada[]): SimuladoFeito {
+function finaliza(sim: SimuladoAndamento, todas: MateriaCarregada[], prova: ProvaCompleta | null | undefined): SimuladoFeito {
   const ts = Date.now();
   const itens: SimuladoFeito['itens'] = [];
   const porMateria: SimuladoFeito['porMateria'] = {};
+  const porArea: NonNullable<SimuladoFeito['porArea']> = {};
   for (const it of sim.itens) {
-    const q = todas.find((x) => x.id === it.m)?.porId.get(it.id);
-    if (!q) continue;
+    const qq = questaoDoItem(it, prova, todas);
+    if (!qq) continue;
     const r = sim.resp[it.id];
-    const ok = !!r && r.letra === q.gab;
-    itens.push({ m: it.m, id: it.id, letra: r?.letra || null, ok });
-    const pm = porMateria[it.m] || { acertos: 0, total: 0 };
-    pm.total++; if (ok) pm.acertos++;
-    porMateria[it.m] = pm;
+    const ok = !!r && r.letra === qq.q.gab;
+    itens.push({ m: it.m, id: it.id, letra: r?.letra || null, ok, p: it.p, a: it.a });
+    const g = grupoDoItem(it);
+    const pa = porArea[g] || { acertos: 0, total: 0 };
+    pa.total++; if (ok) pa.acertos++;
+    porArea[g] = pa;
+    if (it.m && !it.p) {
+      const pm = porMateria[it.m] || { acertos: 0, total: 0 };
+      pm.total++; if (ok) pm.acertos++;
+      porMateria[it.m] = pm;
+    }
   }
   const acertos = itens.filter((x) => x.ok).length;
-  // grava as tentativas (entram na revisão espaçada) e o resumo por matéria (formato do protótipo)
+  // questões do banco por matéria: as tentativas entram na revisão espaçada (formato do protótipo)
   for (const [m, pm] of Object.entries(porMateria) as [MateriaId, { acertos: number; total: number }][]) {
     atualizaMateria(m, (s) => {
       const q = { ...s.q };
-      for (const it of itens.filter((x) => x.m === m && x.letra)) {
+      for (const it of itens.filter((x) => x.m === m && !x.p && x.letra)) {
         const r = sim.resp[it.id];
         const eq = q[it.id] || { tent: [] };
         q[it.id] = { ...eq, tent: [...eq.tent, { letra: r.letra, ok: it.ok, ts: r.ts || ts, seg: r.seg, conf: r.conf, ctx: 'simulado' }] };
@@ -89,7 +109,7 @@ function finaliza(sim: SimuladoAndamento, todas: MateriaCarregada[]): SimuladoFe
       return { ...s, q, sims: [...s.sims, { nome: sim.titulo, acertos: pm.acertos, total: pm.total, seg: sim.usadoSeg, ts }] };
     });
   }
-  return { sid: sim.sid, titulo: sim.titulo, modo: sim.modo, ts, seg: sim.usadoSeg, acertos, total: itens.length, porMateria, itens };
+  return { sid: sim.sid, titulo: sim.titulo, modo: sim.modo, ts, seg: sim.usadoSeg, acertos, total: itens.length, porMateria, porArea, itens };
 }
 
 export function SimuladoExec() {
@@ -108,7 +128,9 @@ export function SimuladoExec() {
   useTitulo(sim?.titulo || 'Simulado');
 
   const it = sim?.itens[sim.i];
-  const q = it && todas ? todas.find((x) => x.id === it.m)?.porId.get(it.id) : undefined;
+  const prova = useProvaCompleta(sim?.itens[0]?.p);
+  const qq = questaoDoItem(it, prova, todas);
+  const q = qq?.q;
 
   useEffect(() => {
     if (!sim || !it) return;
@@ -118,7 +140,7 @@ export function SimuladoExec() {
     tQ.current = Date.now();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sim?.i, sim?.sid]);
-  useEffect(() => { if (q && sim?.modo === 'treino') carregaResolucoes(it!.m, q.sub).then(setRes); }, [q, sim?.modo, it]);
+  useEffect(() => { if (q && it?.m && !it.p && sim?.modo === 'treino') carregaResolucoes(it.m, q.sub).then(setRes); }, [q, sim?.modo, it]);
 
   // relógio do simulado (conta enquanto não está pausado e a aba está visível)
   useEffect(() => {
@@ -132,7 +154,7 @@ export function SimuladoExec() {
 
   const termina = () => {
     if (!sim || !todas) return;
-    const f = finaliza(sim, todas);
+    const f = finaliza(sim, todas, prova);
     atualiza((x) => ({ ...x, simulado: null, simuladosFeitos: [...x.simuladosFeitos, f] }));
     nav(`/simulado/resultado/${f.ts}`, { replace: true });
   };
@@ -160,7 +182,7 @@ export function SimuladoExec() {
       if (!sim || sim.pausado || confirmaFim) return;
       if ((ev.target as HTMLElement)?.tagName === 'INPUT') return;
       const k = ev.key.toUpperCase();
-      if ('ABCDE'.includes(k) && k.length === 1 && !revelado) { if (ev.shiftKey) setRiscadas((r) => { const n = new Set(r); n.has(k as Letra) ? n.delete(k as Letra) : n.add(k as Letra); return n; }); else grava(k as Letra); }
+      if ('ABCDE'.includes(k) && k.length === 1 && !revelado && (!q || q.alts[k as Letra] !== undefined || !Object.keys(q.alts).length)) { if (ev.shiftKey) setRiscadas((r) => { const n = new Set(r); n.has(k as Letra) ? n.delete(k as Letra) : n.add(k as Letra); return n; }); else grava(k as Letra); }
       else if (ev.key === 'ArrowRight') vai(sim.i + 1);
       else if (ev.key === 'ArrowLeft') vai(sim.i - 1);
       else if (ev.key === 'Enter') { ev.preventDefault(); if (sim.modo === 'treino' && escolha && !revelado) setRevelado(true); else if (sim.i < sim.itens.length - 1) vai(sim.i + 1); else setConfirmaFim(true); }
@@ -171,7 +193,7 @@ export function SimuladoExec() {
   });
 
   if (!sim) return <div className="conteudo vazio"><h3>Nenhum simulado em andamento</h3><Link className="btn sec" to="/simulados">Escolher um simulado</Link></div>;
-  if (!todas) return <div className="conteudo"><Carregando /></div>;
+  if (!todas || (sim.itens[0]?.p && prova === undefined)) return <div className="conteudo"><Carregando /></div>;
 
   const respondidas = Object.keys(sim.resp).length;
   const restante = sim.limiteSeg ? sim.limiteSeg - sim.usadoSeg : null;
@@ -181,7 +203,7 @@ export function SimuladoExec() {
       <div className="q-barra">
         <button className="btn-ic" onClick={() => nav('/simulados')} aria-label="Sair (o simulado fica salvo)" title="Sair (fica salvo)"><Icone nome="fechar" /></button>
         <div className="q-barra-txt"><b>{sim.titulo}</b><span className="fraco num">Questão {sim.i + 1} de {sim.itens.length} · {respondidas} respondidas</span></div>
-        <button className="btn sec peq folha-btn" onClick={() => setFolha(!folhaAberta)} aria-expanded={folhaAberta}><Icone nome="lista" tam={16} /> Folha de respostas</button>
+        <button className="btn sec peq folha-btn" onClick={() => setFolha(!folhaAberta)} aria-expanded={folhaAberta}><Icone nome="lista" tam={16} /><span>Folha de respostas</span></button>
         <button className={'crono num' + (restante !== null && restante < 300 ? ' alerta' : '')} onClick={() => pausa(true)} aria-label="Pausar simulado" title="Pausar (P)">
           <Icone nome="pausa" tam={15} />{restante !== null ? formataTempo(restante) : formataTempo(sim.usadoSeg)}
         </button>
@@ -193,7 +215,7 @@ export function SimuladoExec() {
           {sim.itens.map((x, i) => {
             const r = sim.resp[x.id];
             return (
-              <button key={x.id} className={'fr-q' + (i === sim.i ? ' atual' : '') + (r ? ' resp' : '') + (sim.marcadas.includes(x.id) ? ' marc' : '') + ` m-${x.m}`} onClick={() => { vai(i); setFolha(false); }}
+              <button key={x.id} className={'fr-q' + (i === sim.i ? ' atual' : '') + (r ? ' resp' : '') + (sim.marcadas.includes(x.id) ? ' marc' : '') + (x.m ? ` m-${x.m}` : '')} onClick={() => { vai(i); setFolha(false); }}
                 aria-label={`Questão ${i + 1}${r ? `, marcada ${r.letra}` : ', em branco'}${sim.marcadas.includes(x.id) ? ', para revisar' : ''}`}>
                 <span className="num">{i + 1}</span><b>{r?.letra || ''}</b>
               </button>
@@ -211,13 +233,13 @@ export function SimuladoExec() {
           <button className="btn" onClick={() => pausa(false)}>Continuar <Icone nome="play" tam={16} /></button>
         </div>
       ) : q && it ? (
-        <div className={`q-corpo m-${it.m}`}>
+        <div className={'q-corpo' + (it.m ? ` m-${it.m}` : '')}>
           <div className="q-duas">
 <article className="folha q-cartao">
-            <EnunciadoQuestao m={it.m} q={q} numero={`${sim.i + 1} · ${nomeMateria(it.m)}`} /></article>
+            <EnunciadoQuestao q={q} print={qq?.print ?? null} numero={`${sim.i + 1} · ${grupoDoItem(it)}`} /></article>
 <aside className={'folha q-painel' + (revelado ? ' revelado' : '')} aria-label="Resposta">
             <Alternativas q={q} escolhida={escolha} aoEscolher={(l) => grava(l)} revelado={revelado} riscadas={riscadas}
-              aoRiscar={(l) => setRiscadas((r) => { const n = new Set(r); n.has(l) ? n.delete(l) : n.add(l); return n; })} mostrarTexto={!urlPrint(it.m, q.id)} />
+              aoRiscar={(l) => setRiscadas((r) => { const n = new Set(r); n.has(l) ? n.delete(l) : n.add(l); return n; })} mostrarTexto={!qq?.print} />
             {!revelado && <Certeza valor={conf} aoMudar={(c) => { setConf(c); if (escolha) grava(escolha, c); }} />}
             <div className="q-acoes">
               <button className={'btn fantasma' + (sim.marcadas.includes(it.id) ? ' marcado' : '')} onClick={marca} aria-pressed={sim.marcadas.includes(it.id)}><Icone nome="bandeira" /> {sim.marcadas.includes(it.id) ? 'Marcada para revisar' : 'Revisar depois'}</button>

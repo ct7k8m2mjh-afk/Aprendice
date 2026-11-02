@@ -82,16 +82,36 @@ const BASE = process.env.BASE || 'http://localhost:5173/';
   await p.waitForSelector('text=Retomar (1 de');
   passo('treino geral: salvo no meio e oferece “Retomar”');
 
-  // 7. simulados: só prova inteira. Edição parcial (Fuvest 2020 tem só parte das questões no banco) não abre;
-  //    a lista mostra as provas completas em preparação. O fluxo de responder/entregar volta a ser exercitado
-  //    aqui quando a primeira prova completa entrar no banco.
+  // 7. simulado de prova completa (UEL 2026): começar, responder 2, entregar; resultado por área da prova
+  await p.goto(BASE + '#/simulados');
+  await p.waitForSelector('text=ENEM 2025');      // provas-alvo do perfil (ENEM + Fuvest) vêm primeiro
+  await p.click('text=Todas as provas');
+  await p.waitForSelector('text=UEL 2026');
+  assert.strictEqual(await p.locator('text=Por objetivo').count(), 0, 'sem simulado por objetivo');
+  await p.goto(BASE + '#/simulados/prova/uel-2026');
+  await p.click('text=Começar simulado');
+  await p.waitForSelector('.q-painel .alts');
+  await p.waitForSelector('.q-print img');
+  await p.keyboard.press('B');
+  await p.keyboard.press('ArrowRight');
+  await p.waitForTimeout(300);
+  await p.keyboard.press('D');
+  await p.click('.q-barra >> text=Entregar');
+  await p.click('text=Entregar e ver resultado');
+  await p.waitForSelector('.res-sim');
+  await p.waitForTimeout(600);
+  e = await estado();
+  const f = e.simuladosFeitos[0];
+  assert.strictEqual(f.total, 59); assert.strictEqual(f.itens.filter((x) => x.letra).length, 2);
+  assert.ok(f.porArea && Object.keys(f.porArea).length >= 1, 'resultado por área');
+  assert.strictEqual(e.simulado, null);
+  await p.click('.gq >> nth=0');
+  await p.waitForSelector('.q-print img');
+  passo(`simulado UEL 2026 (prova completa): entregue com 2 respondidas, ${f.acertos} acertos, resultado por área e print da questão`);
+
+  // 7b. simulado inexistente (edição parcial antiga) não abre
   await p.goto(BASE + '#/simulados/prova/' + encodeURIComponent('Fuvest|2020|1ª fase'));
   await p.waitForSelector('text=Simulado não encontrado');
-  await p.goto(BASE + '#/simulados');
-  await p.waitForSelector('text=Em preparação');
-  await p.waitForSelector('text=ENEM 2025');
-  assert.strictEqual(await p.locator('text=Por objetivo').count(), 0, 'sem simulado por objetivo');
-  passo('simulados: só prova completa; parcial não abre; provas em preparação listadas');
 
   // 8. importar progresso no formato do protótipo
   const S = { q: { P0a240e7: { tent: [{ letra: 'D', ok: true, ts: 1761900000000, seg: 40 }] } }, ult: 'P0a240e7', sims: [], flash: {}, flg: {}, sessoes: [] };

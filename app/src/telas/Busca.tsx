@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { Icone } from '../ui/Icone';
 import { useTodasMaterias } from '../dados/conteudo';
 import { MATERIAS, nomeMateria } from '../dados/materias';
-import { CATALOGO, edicoes, nomeEdicao } from '../dados/provas';
+import { CATALOGO } from '../dados/provas';
+import { useIndiceProvas } from '../dados/provasCompletas';
 import { norm } from '../logica/correcao';
 import { Ic3D } from '../ui/comum';
 import type { MateriaId } from '../dados/tipos';
@@ -12,6 +13,7 @@ interface Resultado { grupo: string; titulo: string; det: string; ir: string; m?
 
 export function Busca({ aoFechar }: { aoFechar: () => void }) {
   const todas = useTodasMaterias();
+  const provasCompletas = useIndiceProvas();
   const nav = useNavigate();
   const [t, setT] = useState('');
   const [sel, setSel] = useState(0);
@@ -32,10 +34,10 @@ export function Busca({ aoFechar }: { aoFechar: () => void }) {
       }
       for (const c of mc.conteudo.flash) r.push({ grupo: 'Cartões', titulo: c.frente, det: `Flashcard · ${nomeMateria(mc.id)}`, ir: `/m/${mc.id}/flashcards?c=${c.id}`, m: mc.id });
     }
-    for (const e of edicoes(todas).filter((x) => x.completa)) r.push({ grupo: 'Simulados', titulo: nomeEdicao(e), det: 'Prova completa · todas as matérias', ir: `/simulados/prova/${encodeURIComponent(e.chave)}` });
+    for (const e of provasCompletas || []) r.push({ grupo: 'Simulados', titulo: e.titulo, det: `Prova completa · ${e.questoes} questões`, ir: `/simulados/prova/${encodeURIComponent(e.id)}` });
     for (const p of CATALOGO) r.push({ grupo: 'Provas e faculdades', titulo: `${p.prova} · ${p.sigla || p.instituicao}`, det: [p.cidade, p.uf].filter(Boolean).join(' · ') || p.regiao, ir: `/provas/${p.id}` });
     return r;
-  }, [todas]);
+  }, [todas, provasCompletas]);
 
   const lista = useMemo(() => {
     const q = norm(t);

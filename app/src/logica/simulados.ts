@@ -1,5 +1,5 @@
-import type { MateriaCarregada } from '../dados/conteudo';
-import { edicoes, nomeEdicao, provaPorId, type Edicao } from '../dados/provas';
+import { materiaDaArea, type ProvaCompleta } from '../dados/provasCompletas';
+import { provaPorId } from '../dados/provas';
 import type { ItemSimulado } from '../estado/tipos';
 
 export interface PlanoSimulado {
@@ -10,26 +10,22 @@ export interface PlanoSimulado {
   segPorQuestao: number;
 }
 
-/** Tempo por questão: o da prova oficial quando o catálogo traz duração e número de questões; senão 3 min. */
-export function tempoPorQuestao(catalogoId: string | null): number {
-  const p = catalogoId ? provaPorId(catalogoId) : undefined;
-  const h = p?.formato?.duracao_horas, n = p?.formato?.questoes_objetivas;
+/** Tempo por questão: o da prova oficial (duração / número de questões); senão o do catálogo; senão 3 min. */
+export function tempoPorQuestao(p: Pick<ProvaCompleta, 'duracao_horas' | 'total_oficial' | 'catalogoId'>): number {
+  if (p.duracao_horas && p.total_oficial) return Math.round((p.duracao_horas * 3600) / p.total_oficial);
+  const c = provaPorId(p.catalogoId);
+  const h = c?.formato?.duracao_horas, n = c?.formato?.questoes_objetivas;
   if (h && n) return Math.round((h * 3600) / n);
   return 180;
 }
 
-export function planoDaEdicao(e: Edicao): PlanoSimulado {
+/** Simulado = a prova inteira, na ordem original, com todas as matérias. */
+export function planoDaProva(p: ProvaCompleta): PlanoSimulado {
   return {
-    sid: 'prova:' + e.chave,
-    titulo: nomeEdicao(e),
-    descricao: 'Prova completa, com todas as matérias, na ordem original. Gabarito oficial.',
-    itens: e.itens.map((x) => ({ m: x.m, id: x.q.id })),
-    segPorQuestao: tempoPorQuestao(e.catalogoId),
+    sid: 'prova:' + p.id,
+    titulo: p.titulo,
+    descricao: 'Prova completa, na ordem original, com todas as matérias. Gabarito oficial.',
+    itens: p.questoes.map((q) => ({ id: q.id, p: p.id, a: q.area, m: materiaDaArea(q.area) })),
+    segPorQuestao: tempoPorQuestao(p),
   };
-}
-
-export function planoPorChave(chave: string, todas: MateriaCarregada[]): PlanoSimulado | null {
-  // só prova inteira vira simulado
-  const e = edicoes(todas).find((x) => x.chave === chave && x.completa);
-  return e ? planoDaEdicao(e) : null;
 }

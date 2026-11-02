@@ -88,15 +88,9 @@ export function nomeEdicao(e: Pick<Edicao, 'escola' | 'ano' | 'fase'>): string {
  * Provas completas já baixadas da fonte oficial (caderno + gabarito), em recorte e conferência.
  * Viram simulado quando todas as questões entram no banco. Fonte: fabrica_saida/ingestao/<prova>/manifesto.json.
  */
-export const PROVAS_EM_PREPARO: { catalogoId: string; titulo: string }[] = [
-  { catalogoId: 'enem', titulo: 'ENEM 2025' }, { catalogoId: 'enem', titulo: 'ENEM 2024' }, { catalogoId: 'enem', titulo: 'ENEM 2023' },
-  { catalogoId: 'fuvest', titulo: 'Fuvest 2027' }, { catalogoId: 'fuvest', titulo: 'Fuvest 2025' },
-  { catalogoId: 'uel', titulo: 'UEL 2026' }, { catalogoId: 'uel', titulo: 'UEL 2025' }, { catalogoId: 'uel', titulo: 'UEL 2024' },
-  { catalogoId: 'ufpr', titulo: 'UFPR 2026' }, { catalogoId: 'ufpr', titulo: 'UFPR 2025' }, { catalogoId: 'ufpr', titulo: 'UFPR 2024' },
-  { catalogoId: 'acafe', titulo: 'Acafe Inverno 2026' }, { catalogoId: 'acafe', titulo: 'Acafe Verão 2026' },
-  { catalogoId: 'acafe', titulo: 'Acafe Inverno 2025' }, { catalogoId: 'acafe', titulo: 'Acafe Verão 2025' }, { catalogoId: 'acafe', titulo: 'Acafe Inverno 2024' },
-  { catalogoId: 'upe', titulo: 'UPE SSA3 2026' }, { catalogoId: 'upe', titulo: 'UPE SSA3 2025' }, { catalogoId: 'upe', titulo: 'UPE SSA3 2024' },
-  { catalogoId: 'unb', titulo: 'UnB PAS 3 2025' },
+export const PROVAS_EM_PREPARO: { catalogoId: string; titulo: string; motivo: string }[] = [
+  { catalogoId: 'unb', titulo: 'UnB PAS 3 2025', motivo: 'itens de certo ou errado (formato Cebraspe)' },
+  { catalogoId: 'fuvest', titulo: 'Fuvest 2026, 2024 e 2023', motivo: 'caderno a baixar manualmente' },
 ];
 
 /** Escolas do banco que são provas de Medicina com catálogo (podem ser provas-alvo com questões). */

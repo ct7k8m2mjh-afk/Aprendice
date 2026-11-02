@@ -37,7 +37,9 @@ export interface Perfil {
   criadoEm: number;
 }
 
-export interface ItemSimulado { m: MateriaId; id: string }
+/** Item de simulado. Questões do banco por matéria trazem m; questões de prova completa trazem p (id da prova),
+ *  a (área segundo a própria prova) e m só quando a prova separa por matéria. Campos novos são opcionais: dados antigos seguem válidos. */
+export interface ItemSimulado { m?: MateriaId; id: string; p?: string; a?: string }
 
 export interface SimuladoAndamento {
   sid: string;
@@ -62,7 +64,9 @@ export interface SimuladoFeito {
   acertos: number;
   total: number;
   porMateria: Partial<Record<MateriaId, { acertos: number; total: number }>>;
-  itens: { m: MateriaId; id: string; letra: Letra | null; ok: boolean }[];
+  /** resultado por área da prova (provas completas) */
+  porArea?: Record<string, { acertos: number; total: number }>;
+  itens: { m?: MateriaId; id: string; letra: Letra | null; ok: boolean; p?: string; a?: string }[];
 }
 
 export interface SessaoTreino { it: { k: 'q' | 'f' | 'c'; id: string }[]; i: number; res: Record<string, 'a' | 'q' | 'e'>; t0: number }

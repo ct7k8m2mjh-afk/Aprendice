@@ -27,10 +27,10 @@ export function Lupa({ src, alt, aoFechar }: { src: string; alt: string; aoFecha
 }
 
 /** Print fiel da questão original + cabeçalho com a fonte. */
-export function EnunciadoQuestao({ m, q, numero }: { m: MateriaId; q: Questao; numero?: string }) {
+export function EnunciadoQuestao({ m, q, numero, print }: { m?: MateriaId; q: Questao; numero?: string; print?: string | null }) {
   const [lupa, setLupa] = useState(false);
   const [txt, setTxt] = useState(false);
-  const src = urlPrint(m, q.id);
+  const src = print !== undefined ? print : m ? urlPrint(m, q.id) : null;
   const alt = textoAlternativo(q);
   return (
     <div className="q-enun">

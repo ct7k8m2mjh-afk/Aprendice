@@ -1,13 +1,12 @@
 import { Link, useParams } from 'react-router-dom';
 import { useMemo, useState } from 'react';
 import { useTodasMaterias } from '../dados/conteudo';
-import { CATALOGO, REGIOES, campoLegivel, edicoes, escolasComQuestoes, provaPorId } from '../dados/provas';
-import { nomeMateria } from '../dados/materias';
+import { CATALOGO, REGIOES, campoLegivel, escolasComQuestoes, provaPorId } from '../dados/provas';
+import { useIndiceProvas } from '../dados/provasCompletas';
 import { atualiza, useEstado } from '../estado/loja';
 import { norm } from '../logica/correcao';
 import { plural, useTitulo } from '../ui/comum';
 import { Icone } from '../ui/Icone';
-import type { MateriaId } from '../dados/tipos';
 
 const INGRESSO: Record<string, string> = { vestibular_proprio: 'Vestibular próprio', enem_sisu: 'ENEM/Sisu', enem_nota: 'Nota do ENEM', seriado: 'Seriado' };
 
@@ -16,6 +15,8 @@ export function Provas() {
   const todas = useTodasMaterias();
   const e = useEstado();
   const nQ = useMemo(() => (todas ? escolasComQuestoes(todas) : new Map<string, number>()), [todas]);
+  const indiceL = useIndiceProvas();
+  const nSim = useMemo(() => { const m = new Map<string, number>(); for (const x of indiceL || []) m.set(x.catalogoId, (m.get(x.catalogoId) || 0) + 1); return m; }, [indiceL]);
   const [regiao, setRegiao] = useState('Todas');
   const [rede, setRede] = useState('');
   const [t, setT] = useState('');
@@ -46,7 +47,7 @@ export function Provas() {
                 <small className="fraco">{[p.cidade, p.uf, p.banca && 'banca ' + p.banca].filter(Boolean).join(' · ')}</small>
                 <div className="cp-pe">
                   <span className="etq">{p.rede === 'publica' ? 'Pública' : p.rede === 'privada' ? 'Privada' : 'Rede a verificar'}</span>
-                  <span className={'etq' + (nQ.get(p.id) ? ' ok' : '')}>{nQ.get(p.id) ? `${nQ.get(p.id)} questões` : 'questões em preparação'}</span>
+                  <span className={'etq' + (nSim.get(p.id) || nQ.get(p.id) ? ' ok' : '')}>{nSim.get(p.id) ? plural(nSim.get(p.id)!, 'prova completa', 'provas completas') : nQ.get(p.id) ? `${nQ.get(p.id)} questões` : 'questões em preparação'}</span>
                 </div>
               </Link>
             ))}
@@ -61,10 +62,10 @@ export function Provas() {
 export function ProvaDetalhe() {
   const { id } = useParams() as { id: string };
   const p = provaPorId(id);
-  const todas = useTodasMaterias();
   const e = useEstado();
   useTitulo(p?.prova || 'Prova');
-  const eds = useMemo(() => (todas ? edicoes(todas).filter((x) => x.catalogoId === id && x.completa) : []), [todas, id]);
+  const indice = useIndiceProvas();
+  const eds = useMemo(() => (indice || []).filter((x) => x.catalogoId === id).sort((a, b) => b.ano.localeCompare(a.ano) || a.fase.localeCompare(b.fase)), [indice, id]);
   if (!p) return <div className="conteudo vazio"><h3>Prova não encontrada</h3><Link className="btn sec" to="/provas">Catálogo</Link></div>;
   const alvo = e.perfil?.provasAlvo.includes(p.id);
   const alterna = () => atualiza((x) => x.perfil ? ({ ...x, perfil: { ...x.perfil, provasAlvo: alvo ? x.perfil.provasAlvo.filter((y) => y !== p.id) : [...x.perfil.provasAlvo, p.id] } }) : x);
@@ -97,10 +98,10 @@ export function ProvaDetalhe() {
         {eds.length ? (
           <div className="grade g3">
             {eds.map((ed) => (
-              <Link key={ed.chave} to={`/simulados/prova/${encodeURIComponent(ed.chave)}`} className="cartao-sim">
-                <b className="cs-titulo">{p.sigla || p.prova} {ed.ano}{ed.fase ? ` · ${ed.fase}` : ''}</b>
-                <span className="num">{plural(ed.itens.length, 'questão', 'questões')} · todas as matérias</span>
-                <span className="cs-mats">{(Object.keys(ed.porMateria) as MateriaId[]).map((m) => <span key={m} className={`m-${m}`}><i className="ponto" />{nomeMateria(m)}</span>)}</span>
+              <Link key={ed.id} to={`/simulados/prova/${encodeURIComponent(ed.id)}`} className="cartao-sim">
+                <b className="cs-titulo">{ed.titulo}</b>
+                <span className="num">{plural(ed.questoes, 'questão', 'questões')} · prova completa</span>
+                <span className="cs-mats">{Object.keys(ed.areas).slice(0, 6).map((a) => <span key={a}><i className="ponto" />{a}</span>)}</span>
               </Link>
             ))}
           </div>

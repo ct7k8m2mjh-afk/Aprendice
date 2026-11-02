@@ -237,6 +237,73 @@ def converte_nova(m, amostra_ids=None):
     return {'questoes': 0, 'temas': len(materia['modulos']), 'icones': len(icones)}
 
 
+FONTE_PROVAS = os.path.join(APP, 'conteudo-fonte', 'provas')
+
+
+def provas_fonte():
+    """Provas completas recortadas (ferramentas/ingestao/recorta.py): metadados + questões válidas."""
+    out = []
+    if not os.path.isdir(FONTE_PROVAS):
+        return out
+    for pid in sorted(os.listdir(FONTE_PROVAS)):
+        f = os.path.join(FONTE_PROVAS, pid, 'prova.json')
+        if os.path.exists(f):
+            out.append(ler(f))
+    return out
+
+
+def entrada_indice(p):
+    areas = {}
+    for q in p['questoes']:
+        areas[q['area']] = areas.get(q['area'], 0) + 1
+    return {k: p.get(k) for k in ('id', 'catalogoId', 'escola', 'ano', 'fase', 'titulo', 'banca', 'duracao_horas',
+                                  'alternativas', 'total_oficial')} | {'questoes': len(p['questoes']), 'areas': areas}
+
+
+def copia_provas():
+    """App completo: public/conteudo/provas/<id>/prova.json + q/<n>.webp e o índice."""
+    destino = os.path.join(DESTINO, 'provas')
+    if os.path.isdir(destino):
+        shutil.rmtree(destino)
+    indice = []
+    for p in provas_fonte():
+        d = os.path.join(destino, p['id'])
+        os.makedirs(os.path.join(d, 'q'), exist_ok=True)
+        for q in p['questoes']:
+            shutil.copy(os.path.join(FONTE_PROVAS, p['id'], q['print']), os.path.join(d, q['print']))
+        gravar(os.path.join(d, 'prova.json'), p)
+        indice.append(entrada_indice(p))
+    gravar(os.path.join(destino, 'indice.json'), indice)
+    return {'provas': len(indice), 'questoes': sum(x['questoes'] for x in indice)}
+
+
+def pacotes_provas(pasta):
+    """Prévia publicada: provas/indice.json + provas/<id>.json com os prints embutidos (reduzidos),
+    servidos ao lado do HTML e lidos sob demanda."""
+    from io import BytesIO
+    from PIL import Image
+    destino = os.path.join(pasta, 'provas')
+    os.makedirs(destino, exist_ok=True)
+    indice = []
+    for p in provas_fonte():
+        prints = {}
+        for q in p['questoes']:
+            im = Image.open(os.path.join(FONTE_PROVAS, p['id'], q['print'])).convert('RGB')
+            if im.width > 760:
+                im = im.resize((760, round(im.height * 760 / im.width)), Image.LANCZOS)
+            b = BytesIO()
+            im.save(b, 'WEBP', quality=60, method=6)
+            prints[q['id']] = 'data:image/webp;base64,' + base64.b64encode(b.getvalue()).decode()
+        pacote = dict(p)
+        pacote['prints'] = prints
+        alvo = os.path.join(destino, p['id'] + '.json')
+        with open(alvo, 'w', encoding='utf-8') as f:
+            json.dump(pacote, f, ensure_ascii=False, separators=(',', ':'))
+        indice.append(entrada_indice(p))
+        print(f"  pacote {p['id']}: {os.path.getsize(alvo) / 1e6:.1f} MB")
+    gravar(os.path.join(destino, 'indice.json'), indice)
+
+
 def copia_comuns():
     """Logos de provas (as fontes ficam em src/assets/fontes, versionadas)."""
     os.makedirs(os.path.join(DESTINO, 'logos'), exist_ok=True)
@@ -303,6 +370,9 @@ def amostra():
 
 
 def main():
+    if '--pacotes-provas' in sys.argv:
+        pacotes_provas(sys.argv[sys.argv.index('--pacotes-provas') + 1])
+        return
     gera_logo_ts()
     if AMOSTRA:
         copia_comuns()
@@ -317,6 +387,8 @@ def main():
     for m in NOVAS:
         relatorio[m] = converte_nova(m)
         print(m, relatorio[m])
+    relatorio['provas'] = copia_provas()
+    print('provas completas', relatorio['provas'])
     gravar(os.path.join(DESTINO, 'relatorio.json'), relatorio)
     # versão do conteúdo (para cache)
     h = hashlib.md5(json.dumps(relatorio, sort_keys=True).encode()).hexdigest()[:8]

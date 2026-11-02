@@ -1,26 +1,24 @@
 import { Link, useSearchParams } from 'react-router-dom';
 import { useMemo, useState } from 'react';
-import { useTodasMaterias } from '../dados/conteudo';
-import { CATALOGO, PROVAS_EM_PREPARO, edicoes, provaPorId } from '../dados/provas';
-import { nomeMateria } from '../dados/materias';
+import { CATALOGO, PROVAS_EM_PREPARO, provaPorId } from '../dados/provas';
+import { useIndiceProvas, type IndiceProva } from '../dados/provasCompletas';
 import { useEstado } from '../estado/loja';
 import { Carregando, formataTempo, plural, useTitulo } from '../ui/comum';
 import { Icone } from '../ui/Icone';
-import type { MateriaId } from '../dados/tipos';
 
 export function Simulados() {
   useTitulo('Simulados');
-  const todas = useTodasMaterias();
+  const indice = useIndiceProvas();
   const e = useEstado();
   const [qs, setQs] = useSearchParams();
   const aba = qs.get('aba') === 'historico' ? 'historico' : 'prova';
   const [so, setSo] = useState<'alvo' | 'todas'>('alvo');
   const alvo = useMemo(() => new Set(e.perfil?.provasAlvo || []), [e.perfil?.provasAlvo]);
   // só provas inteiras, com todas as matérias
-  const eds = useMemo(() => (todas ? edicoes(todas).filter((x) => x.completa) : []), [todas]);
-  if (!todas) return <div className="conteudo"><Carregando /></div>;
+  const eds: IndiceProva[] = useMemo(() => indice || [], [indice]);
+  if (!indice) return <div className="conteudo"><Carregando /></div>;
 
-  const daAlvo = eds.filter((x) => x.catalogoId && alvo.has(x.catalogoId));
+  const daAlvo = eds.filter((x) => alvo.has(x.catalogoId));
   const lista = so === 'alvo' && daAlvo.length ? daAlvo : eds;
   const andamento = e.simulado;
   const feitos = [...e.simuladosFeitos].sort((a, b) => b.ts - a.ts);
@@ -29,6 +27,7 @@ export function Simulados() {
   const grupos = new Map<string, typeof lista>();
   for (const ed of lista) { const l = grupos.get(ed.escola) || []; l.push(ed); grupos.set(ed.escola, l); }
   for (const l of grupos.values()) l.sort((a, b) => b.ano.localeCompare(a.ano) || a.fase.localeCompare(b.fase));
+  const ordemGrupos = [...grupos.entries()].sort((a, b) => (a[0] === 'ENEM' ? -1 : b[0] === 'ENEM' ? 1 : a[0].localeCompare(b[0])));
 
   return (
     <div className="conteudo">
@@ -57,21 +56,20 @@ export function Simulados() {
             </div>
           )}
           {eds.length > 0 && so === 'alvo' && !daAlvo.length && <p className="miolo" style={{ marginBottom: 16 }}>Suas provas-alvo ainda não têm prova completa. Mostrando todas.</p>}
-          {[...grupos.entries()].map(([escola, l]) => {
-            const cat = l[0].catalogoId ? provaPorId(l[0].catalogoId) : undefined;
-            const f = cat?.formato;
+          {ordemGrupos.map(([escola, l]) => {
+            const cat = provaPorId(l[0].catalogoId);
             return (
               <section key={escola} className="grupo-prova">
-                <div className="cab-sec"><div><h2 style={{ fontSize: 20 }}>{escola}</h2>{cat && <p className="fraco" style={{ fontSize: 14 }}>{cat.instituicao}{cat.banca ? ` · banca ${cat.banca}` : ''}</p>}</div>
+                <div className="cab-sec"><div><h2 style={{ fontSize: 20 }}>{escola}</h2>{cat && <p className="fraco" style={{ fontSize: 14 }}>{cat.instituicao}{l[0].banca ? ` · banca ${l[0].banca}` : ''} · {plural(l.length, 'prova', 'provas')}</p>}</div>
                   {cat && <Link to={`/provas/${cat.id}`}>Sobre a prova <Icone nome="direita" tam={16} /></Link>}</div>
                 <div className="grade g3">
                   {l.map((ed) => {
-                    const feito = feitos.find((x) => x.sid === 'prova:' + ed.chave);
+                    const feito = feitos.filter((x) => x.sid === 'prova:' + ed.id).sort((a, b) => b.ts - a.ts)[0];
                     return (
-                      <Link key={ed.chave} to={`/simulados/prova/${encodeURIComponent(ed.chave)}`} className="cartao-sim">
-                        <b className="cs-titulo">{escola} {ed.ano}{ed.fase ? ` · ${ed.fase}` : ''}</b>
-                        <span className="num">{plural(ed.itens.length, 'questão', 'questões')} · todas as matérias{f?.duracao_horas ? ` · ${String(f.duracao_horas).replace('.', ',')} h` : ''}</span>
-                        <span className="cs-mats">{(Object.keys(ed.porMateria) as MateriaId[]).map((m) => <span key={m} className={`m-${m}`}><i className="ponto" />{nomeMateria(m)}</span>)}</span>
+                      <Link key={ed.id} to={`/simulados/prova/${encodeURIComponent(ed.id)}`} className="cartao-sim">
+                        <b className="cs-titulo">{ed.titulo}</b>
+                        <span className="num">{plural(ed.questoes, 'questão', 'questões')}{ed.duracao_horas ? ` · ${String(ed.duracao_horas).replace('.', ',')} h` : ''}</span>
+                        <span className="cs-mats">{Object.keys(ed.areas).slice(0, 6).map((a) => <span key={a}><i className="ponto" />{a}</span>)}{Object.keys(ed.areas).length > 6 ? <span>+{Object.keys(ed.areas).length - 6}</span> : null}</span>
                         {feito && <span className="etq ok num">Feito · {feito.acertos}/{feito.total}</span>}
                       </Link>
                     );
@@ -83,13 +81,13 @@ export function Simulados() {
           {!eds.length && (
             <div className="vazio" style={{ paddingTop: 12 }}>
               <h3>As provas completas estão chegando</h3>
-              <p>Cada simulado é uma prova inteira, com todas as matérias, do jeito que caiu. Elas entram aqui assim que o recorte de cada questão e o gabarito oficial forem conferidos.</p>
+              <p>Cada simulado é uma prova inteira, com todas as matérias, do jeito que caiu. Se esta lista não carregou, verifique a conexão e abra a página de novo.</p>
             </div>
           )}
           <section className="secao">
             <h2 className="sec-tit">Em preparação</h2>
-            <p className="fraco" style={{ fontSize: 14, margin: '0 0 10px' }}>Já baixadas da fonte oficial, com caderno e gabarito.</p>
-            <div className="chips">{PROVAS_EM_PREPARO.map((p) => <Link key={p.titulo} to={`/provas/${p.catalogoId}`} className="chip">{p.titulo}<span className="etq">em preparação</span></Link>)}</div>
+            <p className="fraco" style={{ fontSize: 14, margin: '0 0 10px' }}>Provas que ainda não entram como simulado, e o motivo.</p>
+            <div className="chips">{PROVAS_EM_PREPARO.map((p) => <Link key={p.titulo} to={`/provas/${p.catalogoId}`} className="chip" title={p.motivo}>{p.titulo}<span className="etq">{p.motivo}</span></Link>)}</div>
           </section>
           <p className="fraco" style={{ fontSize: 14, marginTop: 28 }}>Catálogo com {CATALOGO.length} provas de Medicina de todo o Brasil em <Link to="/provas">Provas e faculdades</Link>.</p>
         </>
