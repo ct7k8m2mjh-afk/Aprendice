@@ -27,12 +27,12 @@ export function Busca({ aoFechar }: { aoFechar: () => void }) {
         r.push({ grupo: 'Temas', titulo: mod.nome, det: nomeMateria(mc.id), ir: `/m/${mc.id}/tema/${mod.id}`, m: mc.id, ic: mod.id });
         for (const s of mod.subs) {
           const n = mc.porSub.get(s.id)?.length || 0;
-          if (n) r.push({ grupo: 'Conteúdos', titulo: s.nome.charAt(0).toUpperCase() + s.nome.slice(1), det: `${nomeMateria(mc.id)} · ${mod.nome} · escada de ${n}`, ir: `/m/${mc.id}/escada/${s.id}`, m: mc.id, ic: s.id });
+          if (n) r.push({ grupo: 'Conteúdos', titulo: s.nome.charAt(0).toUpperCase() + s.nome.slice(1), det: `${nomeMateria(mc.id)} · ${mod.nome} · ${n} ${n === 1 ? 'questão' : 'questões'}`, ir: `/m/${mc.id}/escada/${s.id}`, m: mc.id, ic: s.id });
         }
       }
       for (const c of mc.conteudo.flash) r.push({ grupo: 'Cartões', titulo: c.frente, det: `Flashcard · ${nomeMateria(mc.id)}`, ir: `/m/${mc.id}/flashcards?c=${c.id}`, m: mc.id });
     }
-    for (const e of edicoes(todas).filter((x) => x.itens.length >= 5)) r.push({ grupo: 'Simulados', titulo: nomeEdicao(e), det: `${e.itens.length} questões no banco`, ir: `/simulados/prova/${encodeURIComponent(e.chave)}` });
+    for (const e of edicoes(todas).filter((x) => x.completa)) r.push({ grupo: 'Simulados', titulo: nomeEdicao(e), det: 'Prova completa · todas as matérias', ir: `/simulados/prova/${encodeURIComponent(e.chave)}` });
     for (const p of CATALOGO) r.push({ grupo: 'Provas e faculdades', titulo: `${p.prova} · ${p.sigla || p.instituicao}`, det: [p.cidade, p.uf].filter(Boolean).join(' · ') || p.regiao, ir: `/provas/${p.id}` });
     return r;
   }, [todas]);

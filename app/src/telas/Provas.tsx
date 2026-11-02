@@ -64,7 +64,7 @@ export function ProvaDetalhe() {
   const todas = useTodasMaterias();
   const e = useEstado();
   useTitulo(p?.prova || 'Prova');
-  const eds = useMemo(() => (todas ? edicoes(todas).filter((x) => x.catalogoId === id) : []), [todas, id]);
+  const eds = useMemo(() => (todas ? edicoes(todas).filter((x) => x.catalogoId === id && x.completa) : []), [todas, id]);
   if (!p) return <div className="conteudo vazio"><h3>Prova não encontrada</h3><Link className="btn sec" to="/provas">Catálogo</Link></div>;
   const alvo = e.perfil?.provasAlvo.includes(p.id);
   const alterna = () => atualiza((x) => x.perfil ? ({ ...x, perfil: { ...x.perfil, provasAlvo: alvo ? x.perfil.provasAlvo.filter((y) => y !== p.id) : [...x.perfil.provasAlvo, p.id] } }) : x);
@@ -98,13 +98,13 @@ export function ProvaDetalhe() {
           <div className="grade g3">
             {eds.map((ed) => (
               <Link key={ed.chave} to={`/simulados/prova/${encodeURIComponent(ed.chave)}`} className="cartao-sim">
-                <b>{ed.ano}{ed.fase ? ` · ${ed.fase}` : ''}</b>
-                <span className="num">{plural(ed.itens.length, 'questão', 'questões')}{f?.questoes_objetivas ? ` de ${f.questoes_objetivas}` : ''}</span>
-                <span className="cs-mats">{(Object.entries(ed.porMateria) as [MateriaId, number][]).map(([m, n]) => <span key={m} className={`m-${m}`}><i className="ponto" />{nomeMateria(m).slice(0, 3)} {n}</span>)}</span>
+                <b className="cs-titulo">{p.sigla || p.prova} {ed.ano}{ed.fase ? ` · ${ed.fase}` : ''}</b>
+                <span className="num">{plural(ed.itens.length, 'questão', 'questões')} · todas as matérias</span>
+                <span className="cs-mats">{(Object.keys(ed.porMateria) as MateriaId[]).map((m) => <span key={m} className={`m-${m}`}><i className="ponto" />{nomeMateria(m)}</span>)}</span>
               </Link>
             ))}
           </div>
-        ) : <p className="miolo">As questões desta prova entram com a importação das provas oficiais completas{p.provas_anteriores ? <> (<a href={p.provas_anteriores} target="_blank" rel="noreferrer noopener">provas anteriores na fonte oficial</a>)</> : ''}.</p>}
+        ) : <p className="miolo">Os simulados desta prova entram quando a prova inteira, com todas as matérias, estiver no banco{p.provas_anteriores ? <> (<a href={p.provas_anteriores} target="_blank" rel="noreferrer noopener">provas anteriores na fonte oficial</a>)</> : ''}.</p>}
       </section>
     </div>
   );

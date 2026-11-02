@@ -50,7 +50,7 @@ export function TeoriaModulo({ m, mod }: { m: MateriaId; mod: Modulo }) {
 export function Tema() {
   const { m, mod: modId } = useParams() as { m: MateriaId; mod: string };
   const [qs, setQs] = useSearchParams();
-  const aba = qs.get('aba') === 'teoria' ? 'teoria' : 'escadas';
+  const abaPedida = qs.get('aba') === 'teoria' ? 'teoria' : 'conteudos';
   const mc = useMateria(m);
   const s = useMateriaEstado(m);
   const mod = mc?.conteudo.modulos.find((x) => x.id === modId);
@@ -61,6 +61,8 @@ export function Tema() {
   const subs = mod.subs.filter((x) => mc.porSub.get(x.id)?.length);
   const todas = mc.banco.filter((q) => q.modulo === mod.id);
   const p = progressoEscada(todas, s);
+  const temTeoria = mod.cartoes.length > 0 || !!mod.resumo;
+  const aba = temTeoria ? abaPedida : 'conteudos';
 
   return (
     <div className={`conteudo m-${m}`}>
@@ -69,14 +71,23 @@ export function Tema() {
         <Ic3D m={m} chave={mod.id} tam={96} />
         <div>
           <h1>{mod.nome}</h1>
-          <p className="sub num">{plural(subs.length, 'escada', 'escadas')} · {plural(p.total, 'questão', 'questões')} · {p.feitas} feitas</p>
+          <p className="sub num">{subs.length ? `${plural(subs.length, 'conteúdo', 'conteúdos')} · ${p.feitas} ${p.feitas === 1 ? 'questão feita' : 'questões feitas'}` : 'Questões em preparação'}</p>
         </div>
       </div>
       <FaixaTemas mc={mc} s={s} atual={mod.id} />
-      <div className="abas" role="group" aria-label="Seções">
-        <button aria-pressed={aba === 'escadas'} onClick={() => setQs({}, { replace: true })}>Escadas <small>{subs.length}</small></button>
-        <button aria-pressed={aba === 'teoria'} onClick={() => setQs({ aba: 'teoria' }, { replace: true })}>Teoria <small>{mod.cartoes.length}</small></button>
-      </div>
+      {temTeoria && (
+        <div className="abas" role="group" aria-label="Seções">
+          <button aria-pressed={aba === 'conteudos'} onClick={() => setQs({}, { replace: true })}>Conteúdos <small>{subs.length}</small></button>
+          <button aria-pressed={aba === 'teoria'} onClick={() => setQs({ aba: 'teoria' }, { replace: true })}>Teoria <small>{mod.cartoes.length}</small></button>
+        </div>
+      )}
+      {!subs.length && aba === 'conteudos' && (
+        <section className="bloco preparo">
+          <h2>Questões em preparação</h2>
+          <p className="miolo">As questões de {mod.nome.toLowerCase()} entram com as provas completas: print fiel da prova, fonte (prova, ano, número, link) e gabarito oficial. Cada uma recebe o seu nível: básico, intermediário ou avançado.</p>
+          <div className="preparo-acoes"><Link to="/simulados" className="btn sec">Ver simulados</Link></div>
+        </section>
+      )}
       {aba === 'teoria' ? <TeoriaModulo m={m} mod={mod} /> : (
         <div className="lista-escadas">
           {subs.map((sub) => {
@@ -89,7 +100,7 @@ export function Tema() {
                   <Ic3D m={m} chave={sub.id} tam={56} />
                   <span className="le-txt">
                     <b>{cap(sub.nome)}</b>
-                    <small className="num">{plural(l.length, 'degrau', 'degraus')} · {pe.certas} certas de {pe.feitas} feitas</small>
+                    <small className="num">{plural(l.length, 'questão', 'questões')} · {pe.certas} certas de {pe.feitas} feitas</small>
                     <Barra valor={pe.feitas / pe.total} rotulo={`Progresso em ${sub.nome}`} />
                   </span>
                 </Link>

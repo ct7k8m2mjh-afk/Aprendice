@@ -4,7 +4,8 @@ import { useTodasMaterias } from '../dados/conteudo';
 import { nomeMateria } from '../dados/materias';
 import { useEstado } from '../estado/loja';
 import { resumoMateria, semana, tempoTotal } from '../logica/estatisticas';
-import { Barra, Carregando, horasMin, useTitulo } from '../ui/comum';
+import { desempenhoPorNivel, feedbackNiveis, nomeNivel, pontosFracos } from '../logica/nivel';
+import { Barra, Carregando, cap, horasMin, plural, useTitulo } from '../ui/comum';
 import { Icone } from '../ui/Icone';
 import { estadoMateriaVazio } from '../estado/tipos';
 import type { MateriaId } from '../dados/tipos';
@@ -43,6 +44,10 @@ export function Desempenho() {
     return { mod, total: qs.length, feitas: feitasM, acerto: n ? ok / n : null };
   });
   const fracos = mods.filter((x) => x.acerto !== null && x.feitas >= 3).sort((a, b) => a.acerto! - b.acerto!).slice(0, 3);
+  const niveis = desempenhoPorNivel(sel.mc.banco, sel.s);
+  const feedback = feedbackNiveis(niveis);
+  const grupos = sel.mc.conteudo.modulos.flatMap((mod) => mod.subs.map((sub) => ({ ref: { mod, sub }, qs: sel.mc.porSub.get(sub.id) || [] }))).filter((g) => g.qs.length);
+  const ondeErra = pontosFracos(grupos, sel.s, 5);
 
   if (!feitas) return (
     <div className="conteudo"><div className="titulo-pag"><h1>Desempenho</h1></div>
@@ -66,8 +71,8 @@ export function Desempenho() {
             <button key={mc.id} className={`pm m-${mc.id}` + (mSel === mc.id ? ' sel' : '')} onClick={() => setMSel(mc.id)} aria-pressed={mSel === mc.id}>
               <span className="pm-nome"><i className="ponto" />{nomeMateria(mc.id)}</span>
               <Barra valor={r.tentativas ? r.acertoTentativas / r.tentativas : 0} rotulo={`Acerto em ${nomeMateria(mc.id)}`} />
-              <b className="num">{r.tentativas ? Math.round((r.acertoTentativas / r.tentativas) * 100) : 0}%</b>
-              <small className="fraco num">{r.feitas}/{r.total}</small>
+              <b className="num">{r.tentativas ? `${Math.round((r.acertoTentativas / r.tentativas) * 100)}%` : '–'}</b>
+              <small className="fraco num">{plural(r.feitas, 'feita', 'feitas')}</small>
             </button>
           ))}
         </div>
@@ -81,11 +86,35 @@ export function Desempenho() {
               <span>{x.mod.nome}</span>
               <Barra valor={x.acerto ?? 0} rotulo={x.mod.nome} />
               <b className="num">{x.acerto === null ? '–' : `${Math.round(x.acerto * 100)}%`}</b>
-              <small className="fraco num">{x.feitas}/{x.total}</small>
+              <small className="fraco num">{plural(x.feitas, 'feita', 'feitas')}</small>
             </Link>
           ))}
         </section>
         <div style={{ display: 'grid', gap: 16, alignContent: 'start' }}>
+          <section className={`bloco m-${mSel}`}>
+            <h2 className="sec-tit">Por nível em {nomeMateria(mSel)}</h2>
+            {niveis.map((d) => (
+              <div key={d.nivel} className="tema-desemp">
+                <span>{nomeNivel(d.nivel)}</span>
+                <Barra valor={d.acerto ?? 0} rotulo={`Acerto no nível ${nomeNivel(d.nivel)}`} />
+                <b className="num">{d.acerto === null ? '–' : `${Math.round(d.acerto * 100)}%`}</b>
+                <small className="fraco num">{plural(d.feitas, 'feita', 'feitas')}</small>
+              </div>
+            ))}
+            {feedback && <p className="feedback-nivel"><Icone nome="lampada" tam={18} /><span>{feedback}</span></p>}
+          </section>
+          {ondeErra.length > 0 && (
+            <section className={`bloco m-${mSel}`}>
+              <h2 className="sec-tit">Onde você mais erra</h2>
+              {ondeErra.map((x) => (
+                <Link key={x.ref.sub.id + x.nivel} to={`/m/${mSel}/escada/${x.ref.sub.id}`} className="linha-lista">
+                  <span className="etq err num">{Math.round(x.acerto * 100)}%</span>
+                  <span><span className="tit">{cap(x.ref.sub.nome)}</span><br /><span className="det">{x.ref.mod.nome} · nível {nomeNivel(x.nivel).toLowerCase()} · {plural(x.feitas, 'feita', 'feitas')}</span></span>
+                  <Icone nome="direita" />
+                </Link>
+              ))}
+            </section>
+          )}
           <section className="bloco">
             <h2 className="sec-tit">Como você erra</h2>
             <ul className="padroes">

@@ -1,8 +1,8 @@
 import type { MateriaId } from './tipos';
 
 /**
- * As dez matérias do vestibular. As quatro primeiras têm conteúdo revisado do protótipo;
- * as demais têm estrutura e recebem questões reais quando a fábrica de conteúdo importar as provas completas.
+ * As dez matérias do vestibular. Bio, Quí, Mat e Por têm conteúdo revisado do protótipo; Física e Geografia
+ * estão ativas com os temas definidos e recebem as questões com as provas completas; as demais ainda em preparação.
  *
  * Sistema de cor (o mesmo do protótipo): uma cor por matéria, em dois tons por tema —
  *   c  = preenchimento (botão, barra)   t = texto sobre a página (contraste AA)   ink = texto sobre a cor.
@@ -31,15 +31,15 @@ export const MATERIAS: MateriaInfo[] = [
   { id: 'por', nome: 'Português', curto: 'Por', ativa: true,
     claro: { c: '#F2C12E', t: '#8A6200', ink: '#17181C' }, escuro: { c: '#F7C548', t: '#F7C548', ink: '#0C0D10' },
     descricao: 'Interpretação, gramática, literatura e linguagens.' },
-  { id: 'fis', nome: 'Física', curto: 'Fís', ativa: false,
+  { id: 'fis', nome: 'Física', curto: 'Fís', ativa: true,
     claro: { c: '#2F5BD3', t: '#2A4FB8', ink: '#FFFFFF' }, escuro: { c: '#7EA2FF', t: '#7EA2FF', ink: '#0C0D10' },
-    descricao: 'Mecânica, ondas, eletricidade, termologia e óptica.' },
+    descricao: 'Cinemática, dinâmica, energia, termologia, óptica, ondas e eletricidade.' },
   { id: 'his', nome: 'História', curto: 'His', ativa: false,
     claro: { c: '#9A4A1C', t: '#8A4119', ink: '#FFFFFF' }, escuro: { c: '#F0965C', t: '#F0965C', ink: '#0C0D10' },
     descricao: 'Brasil, Geral, América e o mundo contemporâneo.' },
-  { id: 'geo', nome: 'Geografia', curto: 'Geo', ativa: false,
+  { id: 'geo', nome: 'Geografia', curto: 'Geo', ativa: true,
     claro: { c: '#5E7A12', t: '#516A0F', ink: '#FFFFFF' }, escuro: { c: '#B5D94A', t: '#B5D94A', ink: '#0C0D10' },
-    descricao: 'Natureza, população, economia, cartografia e geopolítica.' },
+    descricao: 'Cartografia, natureza, população, espaço urbano e agrário, energia e geopolítica.' },
   { id: 'ing', nome: 'Inglês', curto: 'Ing', ativa: false,
     claro: { c: '#5B3FC4', t: '#5236B3', ink: '#FFFFFF' }, escuro: { c: '#A996FF', t: '#A996FF', ink: '#0C0D10' },
     descricao: 'Leitura e interpretação de textos em inglês.' },

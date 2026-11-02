@@ -46,7 +46,7 @@ export function BoasVindas() {
         {passo === 0 && (
           <form className="bv-corpo" onSubmit={(e) => { e.preventDefault(); if (emailOk) setPasso(1); }}>
             <h1>Comece a estudar pelas provas</h1>
-            <p className="miolo">Escadas de questões reais do mais fácil ao mais difícil, resolução que explica o seu erro, flashcards e simulados.</p>
+            <p className="miolo">Questões reais por nível, do básico ao avançado, resolução que explica o seu erro, flashcards e simulados de provas inteiras.</p>
             <div className="campo"><label htmlFor="bv-nome">Como você quer ser chamado</label>
               <input id="bv-nome" value={nome} onChange={(e) => setNome(e.target.value)} autoComplete="given-name" placeholder="Seu nome" autoFocus /></div>
             <div className="campo"><label htmlFor="bv-email">E-mail <span className="fraco">(opcional)</span></label>

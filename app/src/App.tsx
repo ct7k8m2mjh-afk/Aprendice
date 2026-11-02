@@ -39,7 +39,6 @@ function Rotas() {
         <Route path="/m/:m/flashcards/sessao" element={<Flashcards sessao />} />
         <Route path="/simulados" element={<Simulados />} />
         <Route path="/simulados/prova/:chave" element={<SimuladoNovo />} />
-        <Route path="/simulados/objetivo/:obj" element={<SimuladoNovo />} />
         <Route path="/simulado/agora" element={<SimuladoExec />} />
         <Route path="/simulado/resultado/:ts" element={<SimuladoResultado />} />
         <Route path="/revisao" element={<Revisao />} />

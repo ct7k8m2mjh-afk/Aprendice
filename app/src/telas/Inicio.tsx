@@ -7,6 +7,7 @@ import { useEstado } from '../estado/loja';
 import { atividadeRecente, materiaDeHoje, progressoEscada, resumoMateria, semana, tempoTotal } from '../logica/estatisticas';
 import { Barra, Carregando, Ic3D, horasMin, plural, useTitulo } from '../ui/comum';
 import { Icone } from '../ui/Icone';
+import { nivelDe, nomeNivel } from '../logica/nivel';
 import type { MateriaId } from '../dados/tipos';
 import type { Estado } from '../estado/tipos';
 import iluBio from '../assets/ilu/bio.webp';
@@ -56,17 +57,20 @@ export function Inicio() {
   const sem = semana(e);
   const meta = e.perfil?.meta || 150;
   const nome = (e.perfil?.nome || '').split(' ')[0];
-  const hojeId: MateriaId = materiaDeHoje(e, MATERIAS_ATIVAS.map((m) => m.id));
-  const hoje = infoMateria(hojeId)!;
 
   const sugerido = useMemo(() => {
     if (!todas) return null;
     const alvo = new Set(e.perfil?.provasAlvo || []);
-    const eds = edicoes(todas).filter((x) => x.itens.length >= 10);
+    const eds = edicoes(todas).filter((x) => x.completa);
     return eds.find((x) => x.catalogoId && alvo.has(x.catalogoId)) || eds[0] || null;
   }, [todas, e.perfil?.provasAlvo]);
 
   if (!todas) return <div className="conteudo"><Carregando /></div>;
+
+  // "matéria de hoje" só entre as que já têm questões
+  const comQuestoes = todas.filter((mc) => mc.banco.length).map((mc) => mc.id);
+  const hojeId: MateriaId = materiaDeHoje(e, comQuestoes.length ? comQuestoes : ['bio']);
+  const hoje = infoMateria(hojeId)!;
 
   const resumos = Object.fromEntries(todas.map((mc) => [mc.id, resumoMateria(mc, e.materias[mc.id] || { q: {}, ult: null, sims: [], flash: {}, flg: {}, sessoes: [] })]));
   const parou = ondeParou(todas, e);
@@ -91,8 +95,8 @@ export function Inicio() {
         {parou ? (
           <Link to={`/m/${parou.m}/q/${parou.prox.id}?ctx=escada`} className={`heroi m-${parou.m}`}>
             <div className="heroi-txt">
-              <h2>{parou.sub ? parou.sub.nome.charAt(0).toUpperCase() + parou.sub.nome.slice(1) : 'Sua escada'}</h2>
-              <p className="miolo">Continue de onde parou: {infoMateria(parou.m)?.nome} · {parou.mod?.nome} · degrau {parou.prox.degrau || '?'} de {parou.escada.length}</p>
+              <h2>{parou.sub ? parou.sub.nome.charAt(0).toUpperCase() + parou.sub.nome.slice(1) : 'Seu conteúdo'}</h2>
+              <p className="miolo">Continue de onde parou: {infoMateria(parou.m)?.nome} · {parou.mod?.nome} · nível {nomeNivel(nivelDe(parou.prox.dif)).toLowerCase()}</p>
               <span className="btn">Continuar <Icone nome="direita" /></span>
             </div>
             <div className="heroi-arte">
@@ -140,11 +144,13 @@ export function Inicio() {
             const r = resumos[m.id];
             return (
               <Link key={m.id} to={`/m/${m.id}`} className={`cartao-mat m-${m.id}`}>
-                <div className="cm-arte"><img src={ILU[m.id]} alt="" /></div>
+                <div className="cm-arte">{ILU[m.id] ? <img src={ILU[m.id]} alt="" /> : <span className="cm-arte-vazia" aria-hidden><Icone nome="camadas" tam={44} /></span>}</div>
                 <div className="cm-txt">
                   <h3><span className="ponto" aria-hidden />{m.nome}</h3>
-                  <p className="fraco num">{r.feitas} de {r.total} questões</p>
-                  <div className="cm-barra"><Barra valor={r.feitas / r.total} rotulo={`Progresso em ${m.nome}`} /><b className="num">{Math.round((r.feitas / r.total) * 100)}%</b></div>
+                  {r.total === 0
+                    ? <p className="fraco">Questões em preparação</p>
+                    : <p className="fraco num">{plural(r.feitas, 'questão feita', 'questões feitas')}</p>}
+                  {r.feitas > 0 && <div className="cm-barra"><Barra valor={r.acertos / r.feitas} rotulo={`Acerto em ${m.nome}`} /><b className="num">{Math.round((r.acertos / r.feitas) * 100)}%</b></div>}
                 </div>
               </Link>
             );
@@ -173,7 +179,7 @@ export function Inicio() {
         </section>
         <section className="bloco">
           <div className="cab-sec" style={{ marginBottom: 6 }}><h2 style={{ fontSize: 19 }}>Atividade recente</h2><Link to="/desempenho">Desempenho <Icone nome="direita" tam={16} /></Link></div>
-          {!recentes.length && <p className="miolo" style={{ padding: '12px 0' }}>Suas últimas respostas aparecem aqui. Comece por uma escada ou pelo treino geral.</p>}
+          {!recentes.length && <p className="miolo" style={{ padding: '12px 0' }}>Suas últimas respostas aparecem aqui. Comece por um conteúdo ou pelo treino geral.</p>}
           {recentes.map((r) => {
             const mc = todas.find((x) => x.id === r.m)!; const q = mc.porId.get(r.id);
             if (!q) return null;

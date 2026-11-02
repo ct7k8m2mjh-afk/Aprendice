@@ -5,6 +5,7 @@ import { materia as infoMateria } from '../dados/materias';
 import { atualizaMateria, pegaEstado, useMateriaEstado } from '../estado/loja';
 import { questoesVencidas } from '../logica/estatisticas';
 import { filaDe, emDias } from '../logica/revisao';
+import { ehNivel, nivelDe, nomeNivel } from '../logica/nivel';
 import { Carregando, cap, formataTempo, useTitulo } from '../ui/comum';
 import { Icone } from '../ui/Icone';
 import { Alternativas, Certeza, EnunciadoQuestao, useCronometro, type Conf } from '../ui/QuestaoCartao';
@@ -27,11 +28,13 @@ export function alternaMarcada(m: MateriaId, id: string) {
   });
 }
 
-/** Responde a uma questão: escolha, certeza, pista, confirmação e resolução. Usada na escada e na revisão. */
+/** Responde a uma questão: escolha, certeza, pista, confirmação e resolução. Usada no conteúdo (evolução ou um nível) e na revisão. */
 export function QuestaoTela() {
   const { m, id } = useParams() as { m: MateriaId; id: string };
   const [qs] = useSearchParams();
   const ctx = qs.get('ctx') || 'escada';
+  const nvParam = qs.get('nv');
+  const nv = ctx === 'nivel' && ehNivel(nvParam) ? nvParam : null;
   const nav = useNavigate();
   const mc = useMateria(m);
   const s = useMateriaEstado(m);
@@ -49,9 +52,10 @@ export function QuestaoTela() {
   const fila = useMemo<Questao[]>(() => {
     if (!mc || !q) return [];
     if (ctx === 'revisao') { const v = questoesVencidas(mc, pegaEstado().materias[m] || s); return v.some((x) => x.id === q.id) ? v : [q, ...v]; }
-    return mc.porSub.get(q.sub) || [q];
+    const l = mc.porSub.get(q.sub) || [q];
+    return nv ? l.filter((x) => nivelDe(x.dif) === nv) : l;
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [mc, q?.sub, ctx]);
+  }, [mc, q?.sub, ctx, nv]);
 
   useEffect(() => { setEscolha(null); setConf(null); setRevelado(false); setPista(false); setRiscadas(new Set()); }, [id]);
 
@@ -66,7 +70,7 @@ export function QuestaoTela() {
     setRevelado(true);
     requestAnimationFrame(() => document.getElementById('res-tit')?.scrollIntoView({ behavior: 'smooth', block: 'start' }));
   };
-  const vaiPara = (x?: Questao) => { if (x) nav(`/m/${m}/q/${x.id}?ctx=${ctx}`, { replace: true }); else nav(voltarPara); };
+  const vaiPara = (x?: Questao) => { if (x) nav(`/m/${m}/q/${x.id}?ctx=${ctx}${nv ? `&nv=${nv}` : ''}`, { replace: true }); else nav(voltarPara); };
 
   useEffect(() => {
     const f = (e: KeyboardEvent) => {
@@ -106,7 +110,7 @@ export function QuestaoTela() {
         <button className="btn-ic" onClick={() => nav(voltarPara)} aria-label="Sair da questão" title="Sair (Esc)"><Icone nome="fechar" /></button>
         <div className="q-barra-txt">
           <b>{ctx === 'revisao' ? 'Revisão espaçada' : cap(sub?.nome || '')}</b>
-          <span className="fraco num">{infoMateria(m)?.nome} · {ctx === 'revisao' ? 'questão' : 'degrau'} {pos + 1} de {fila.length}</span>
+          <span className="fraco num">{infoMateria(m)?.nome} · {nv ? `nível ${nomeNivel(nv).toLowerCase()} · ` : q && ctx !== 'revisao' ? `${nomeNivel(nivelDe(q.dif))} · ` : ''}questão {pos + 1} de {fila.length}</span>
         </div>
         <div className="q-progresso" aria-hidden>{fila.slice(0, 24).map((x, i) => {
           const t = s.q[x.id]?.tent; const u = t?.[t.length - 1];
@@ -158,7 +162,7 @@ export function QuestaoTela() {
               <ResolucaoView q={q} r={res ? r : undefined} marcada={escolha} />
               <div className="q-nav">
                 {ant ? <button className="btn sec" onClick={() => vaiPara(ant)}><Icone nome="esquerda" /> Anterior</button> : <span />}
-                <button className="btn" onClick={() => vaiPara(prox)} >{prox ? <>Próximo degrau <Icone nome="direita" /></> : 'Concluir'}</button>
+                <button className="btn" onClick={() => vaiPara(prox)} >{prox ? <>Próxima questão <Icone nome="direita" /></> : 'Concluir'}</button>
               </div>
             </>
           )}

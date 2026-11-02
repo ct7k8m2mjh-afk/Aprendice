@@ -53,6 +53,10 @@ export interface Edicao {
   fase: string;
   itens: { m: MateriaId; q: Questao }[];
   porMateria: Partial<Record<MateriaId, number>>;
+  /** número de questões objetivas da prova oficial (catálogo), quando conhecido */
+  oficiais: number | null;
+  /** prova inteira no banco: todas as questões oficiais, de todas as matérias (só essas viram simulado) */
+  completa: boolean;
 }
 
 export function edicoes(materias: MateriaCarregada[]): Edicao[] {
@@ -63,18 +67,35 @@ export function edicoes(materias: MateriaCarregada[]): Edicao[] {
       const fase = q.fase || '';
       const chave = [q.escola, q.ano, fase].join('|');
       let e = mapa.get(chave);
-      if (!e) { e = { chave, escola: q.escola, catalogoId: idDaEscola(q.escola), ano: q.ano, fase, itens: [], porMateria: {} }; mapa.set(chave, e); }
+      if (!e) { e = { chave, escola: q.escola, catalogoId: idDaEscola(q.escola), ano: q.ano, fase, itens: [], porMateria: {}, oficiais: null, completa: false }; mapa.set(chave, e); }
       e.itens.push({ m: mc.id, q });
       e.porMateria[mc.id] = (e.porMateria[mc.id] || 0) + 1;
     }
   }
-  for (const e of mapa.values()) e.itens.sort((a, b) => (parseInt(a.q.n, 10) || 999) - (parseInt(b.q.n, 10) || 999));
+  for (const e of mapa.values()) {
+    e.itens.sort((a, b) => (parseInt(a.q.n, 10) || 999) - (parseInt(b.q.n, 10) || 999));
+    e.oficiais = (e.catalogoId && provaPorId(e.catalogoId)?.formato?.questoes_objetivas) || null;
+    e.completa = !!e.oficiais && new Set(e.itens.map((x) => x.q.n)).size >= e.oficiais;
+  }
   return [...mapa.values()].sort((a, b) => b.ano.localeCompare(a.ano) || b.itens.length - a.itens.length);
 }
 
 export function nomeEdicao(e: Pick<Edicao, 'escola' | 'ano' | 'fase'>): string {
   return [e.escola, e.ano, e.fase].filter(Boolean).join(' · ');
 }
+
+/**
+ * Provas completas já baixadas da fonte oficial (caderno + gabarito), em recorte e conferência.
+ * Viram simulado quando todas as questões entram no banco. Fonte: fabrica_saida/ingestao/<prova>/manifesto.json.
+ */
+export const PROVAS_EM_PREPARO: { catalogoId: string; titulo: string }[] = [
+  { catalogoId: 'enem', titulo: 'ENEM 2025' },
+  { catalogoId: 'fuvest', titulo: 'Fuvest 2027' },
+  { catalogoId: 'uel', titulo: 'UEL 2026' },
+  { catalogoId: 'ufpr', titulo: 'UFPR 2026' },
+  { catalogoId: 'acafe', titulo: 'Acafe Inverno 2026' },
+  { catalogoId: 'upe', titulo: 'UPE SSA3 2026' },
+];
 
 /** Escolas do banco que são provas de Medicina com catálogo (podem ser provas-alvo com questões). */
 export function escolasComQuestoes(materias: MateriaCarregada[]): Map<string, number> {

@@ -45,10 +45,11 @@ Ele traz todas as matérias e todas as telas. Os prints originais ficam só em a
 npm test
 ```
 
-São 56 testes. Eles conferem:
+São 62 testes. Eles conferem:
 - integridade do conteúdo: mesmas questões e mesmos ids do protótipo, gabarito, fonte, print e resolução;
 - correção local;
 - revisão espaçada;
+- níveis de dificuldade e feedback por nível;
 - migração do progresso.
 
 ```bash
@@ -62,7 +63,7 @@ Com o `npm run dev` rodando, esse script percorre no navegador os fluxos princip
 4. revisão;
 5. flashcard;
 6. treino geral;
-7. simulado;
+7. simulados (só prova inteira);
 8. importação do progresso do protótipo;
 9. tema escuro e busca.
 

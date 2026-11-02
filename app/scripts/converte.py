@@ -19,6 +19,9 @@ DESTINO = os.path.join(APP, 'public', 'conteudo')
 AMOSTRA = '--amostra' in sys.argv
 
 MATERIAS = ['bio', 'qui', 'mat', 'por']
+# Matérias novas: estrutura (temas) em conteudo-fonte/materias/<m>.json; questões chegam com as provas completas.
+NOVAS = ['fis', 'geo']
+FONTE_NOVAS = os.path.join(APP, 'conteudo-fonte', 'materias')
 ESCOLA_NORMAL = {'Mundo Educacao': 'Mundo Educação', 'FMJ': 'FMJ (Jundiaí)'}
 FASE_NORMAL = {'1fase': '1ª fase', '2fase': '2ª fase'}
 PESSOAL = [(re.compile(r'\bVitor\b'), 'você')]
@@ -194,6 +197,46 @@ def converte_materia(m, amostra_ids=None):
     }
 
 
+def icones_novos(m):
+    """Ícones 3D enviados pelo dono: conteudo-fonte/materias/ic/<m>/<id do tema>.png|webp -> base64 webp."""
+    from io import BytesIO
+    from PIL import Image
+    pasta = os.path.join(FONTE_NOVAS, 'ic', m)
+    out = {}
+    if not os.path.isdir(pasta):
+        return out
+    for f in sorted(os.listdir(pasta)):
+        chave, ext = os.path.splitext(f)
+        if ext.lower() not in ('.png', '.webp', '.jpg', '.jpeg'):
+            continue
+        im = Image.open(os.path.join(pasta, f)).convert('RGBA')
+        b = BytesIO()
+        im.save(b, 'WEBP', quality=88, method=6)
+        out[chave] = base64.b64encode(b.getvalue()).decode()
+    return out
+
+
+def converte_nova(m, amostra_ids=None):
+    """Física, Geografia...: temas definidos, sem questões ainda (entram com as provas completas)."""
+    materia = ler(os.path.join(FONTE_NOVAS, m + '.json'))
+    materia.pop('_sobre', None)
+    banco = []
+    icones = icones_novos(m)
+    if amostra_ids is not None:
+        return banco, materia, {}, {}, icones, {}
+    saida = os.path.join(DESTINO, m)
+    if os.path.isdir(saida):
+        shutil.rmtree(saida)
+    gravar(os.path.join(saida, 'materia.json'), materia)
+    gravar(os.path.join(saida, 'banco.json'), banco)
+    gravar(os.path.join(saida, 'figuras.json'), {})
+    os.makedirs(os.path.join(saida, 'ic'), exist_ok=True)
+    for k, v in icones.items():
+        with open(os.path.join(saida, 'ic', k + '.webp'), 'wb') as f:
+            f.write(base64.b64decode(v))
+    return {'questoes': 0, 'temas': len(materia['modulos']), 'icones': len(icones)}
+
+
 def copia_comuns():
     """Logos de provas (as fontes ficam em src/assets/fontes, versionadas)."""
     os.makedirs(os.path.join(DESTINO, 'logos'), exist_ok=True)
@@ -250,6 +293,10 @@ def amostra():
             'figuras': {},
             'amostra': escolhidos,
         }
+    for m in NOVAS:
+        banco, materia, res, prints, icones, figuras = converte_nova(m, amostra_ids=True)
+        pacote['materias'][m] = {'banco': banco, 'materia': materia, 'res': {}, 'prints': {},
+                                 'icones': {k: reduz(v, 112, 78) for k, v in icones.items()}, 'figuras': {}, 'amostra': []}
     alvo = os.path.join(APP, 'src', 'previa', 'dados.json')
     gravar(alvo, pacote)
     print('amostra gravada:', alvo, round(os.path.getsize(alvo) / 1e6, 1), 'MB')
@@ -266,6 +313,9 @@ def main():
     relatorio = {}
     for m in MATERIAS:
         relatorio[m] = converte_materia(m)
+        print(m, relatorio[m])
+    for m in NOVAS:
+        relatorio[m] = converte_nova(m)
         print(m, relatorio[m])
     gravar(os.path.join(DESTINO, 'relatorio.json'), relatorio)
     # versão do conteúdo (para cache)

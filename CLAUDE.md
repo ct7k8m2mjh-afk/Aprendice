@@ -1,7 +1,7 @@
 # APRENDICE — instruções para o Claude Code
 
 ## O produto
-APRENDICE é um aplicativo de estudos para quem se prepara para **vestibulares de Medicina em todo o Brasil**. O aluno estuda pelas questões reais das provas (ENEM e vestibulares próprios das faculdades de Medicina, públicas e privadas, de todas as regiões), em escadas de dificuldade, com resolução comentada, teoria em cartões, flashcards curtos e simulados por universidade.
+APRENDICE é um aplicativo de estudos para quem se prepara para **vestibulares de Medicina em todo o Brasil**. O aluno estuda pelas questões reais das provas (ENEM e vestibulares próprios das faculdades de Medicina, públicas e privadas, de todas as regiões), por nível de dificuldade, com resolução comentada, teoria em cartões, flashcards curtos e simulados por universidade.
 
 Hoje existe um protótipo funcional em HTML estático com 4 matérias (Biologia, Química, Matemática, Português), feito para um aluno e por isso com banco concentrado em provas de São Paulo. O objetivo agora é transformá-lo em **site + aplicativo de celular** para o público geral: contas de usuário, progresso salvo na nuvem, banco nacional de questões e todas as matérias do vestibular (incluir Física, História, Geografia, Inglês, Filosofia/Sociologia, Redação).
 
@@ -23,9 +23,11 @@ Fale com o dono do produto em português do Brasil, direto, passo a passo, sem a
 ## Identidade
 - Cores por matéria: Matemática verde-água · Português amarelo · Biologia verde · Química rosa/magenta. Definir as das novas matérias seguindo o mesmo sistema.
 - Vocabulário (manter):
-  - **Escada / degrau**: cada conteúdo é uma escada de questões do mais fácil ao mais difícil (meta: 10 degraus por conteúdo).
+  - **Nível**: cada questão tem um nível de dificuldade — básico (dif 1–3), intermediário (4–6) ou avançado (7–10). Sem limite de questões por conteúdo e sem meta de degraus (decisão do dono, 02/11/2026).
+  - **Treine sua evolução**: percorre o conteúdo do mais fácil ao mais difícil; dá para treinar um nível só. O desempenho por nível alimenta o feedback "onde você mais erra".
+  - Quantidade de questões aparece só nos conteúdos (subtemas), não na matéria nem no tema.
   - **Treino geral**: mistura questões reais + frases para completar + flashcards dos temas que mais caem.
-  - **Simulado**: resolução logo após cada resposta; por universidade e por objetivo.
+  - **Simulado**: só prova inteira, com todas as matérias, escolhida por instituição e ano (título com o ano). Sem simulado por objetivo ou por conteúdo. Meta: provas de 2020 a 2026 (privadas incluídas); onde não houver, no mínimo 3 anos por instituição.
   - **Flashcard**: pergunta curta no estilo das discursivas, resposta em uma frase; correção por IA ou local; no verso, fonte e "Curtiu este cartão? Sim/Não" (Não tira das próximas sessões).
   - Faixa de temas sempre no topo da matéria.
 

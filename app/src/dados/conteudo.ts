@@ -5,11 +5,12 @@
  */
 import { useEffect, useState } from 'react';
 import type { Figura, MateriaConteudo, MateriaId, Questao, Resolucao } from './tipos';
+import { ordemEvolucao } from '../logica/nivel';
 
 const PREVIA = import.meta.env.VITE_PREVIA === '1';
 const BASE = import.meta.env.BASE_URL + 'conteudo/';
 
-export const MATERIAS_COM_CONTEUDO: MateriaId[] = ['bio', 'qui', 'mat', 'por'];
+export const MATERIAS_COM_CONTEUDO: MateriaId[] = ['bio', 'qui', 'mat', 'por', 'fis', 'geo'];
 
 interface PacotePrevia {
   materias: Record<string, {
@@ -33,7 +34,7 @@ export interface MateriaCarregada {
   banco: Questao[];
   porId: Map<string, Questao>;
   conteudo: MateriaConteudo;
-  /** questões por conteúdo (sub), ordenadas por degrau e dificuldade */
+  /** questões por conteúdo (sub), do mais fácil ao mais difícil (ordem do "Treine sua evolução") */
   porSub: Map<string, Questao[]>;
   amostra?: string[];
 }
@@ -48,7 +49,7 @@ function monta(id: MateriaId, bancoTodo: Questao[], conteudo: MateriaConteudo, a
     l.push(q);
     porSub.set(q.sub, l);
   }
-  for (const l of porSub.values()) l.sort((a, b) => (a.degrau || 99) - (b.degrau || 99) || a.dif - b.dif || a.id.localeCompare(b.id));
+  for (const l of porSub.values()) l.sort(ordemEvolucao);
   return { id, banco, porId: new Map(banco.map((q) => [q.id, q])), conteudo, porSub, amostra };
 }
 

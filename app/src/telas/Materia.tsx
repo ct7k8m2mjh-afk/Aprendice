@@ -99,47 +99,63 @@ export function Materia() {
   const nFlash = mc.conteudo.flash.length + mc.conteudo.flashImg.length;
   const ultQ = s.ult ? mc.porId.get(s.ult) : null;
 
+  const vazia = mc.banco.length === 0;
+  const temTreino = nAbc + nComp + nFlash > 0;
+  const acertoPct = r.feitas ? Math.round((r.acertos / r.feitas) * 100) : 0;
+
   return (
     <div className={`conteudo m-${m}`}>
       <div className="titulo-pag mat-cab">
         <div>
           <h1 className="tit-mat">{info.nome}</h1>
-          <p className="sub num">{plural(mc.conteudo.modulos.length, 'tema', 'temas')} · {plural(r.total, 'questão real', 'questões reais')}, todas com a fonte</p>
+          <p className="sub num">{plural(mc.conteudo.modulos.length, 'tema', 'temas')} · {vazia ? 'questões em preparação' : 'questões reais, todas com a fonte'}</p>
         </div>
-        <div className="mat-anel"><Anel valor={r.feitas / r.total} tam={58} espessura={6}>{Math.round((r.feitas / r.total) * 100)}%</Anel><span className="fraco">{r.feitas} feitas<br />{r.feitas ? Math.round((r.acertos / r.feitas) * 100) : 0}% de acerto</span></div>
+        {r.feitas > 0 && <div className="mat-anel"><Anel valor={r.acertos / r.feitas} tam={58} espessura={6}>{acertoPct}%</Anel><span className="fraco">de acerto<br />{plural(r.feitas, 'questão feita', 'questões feitas')}</span></div>}
       </div>
 
       <FaixaTemas mc={mc} s={s} />
 
+      {vazia && (
+        <section className="bloco preparo" style={{ marginTop: 8 }}>
+          <span className="preparo-ic" aria-hidden><Icone nome="camadas" tam={28} /></span>
+          <h2>Questões de {info.nome} em preparação</h2>
+          <p className="miolo">Os temas já estão aqui. As questões entram com as provas completas: cada uma com o print fiel da prova, a fonte (prova, ano, número, link), o gabarito oficial e o nível de dificuldade. Nenhuma questão é criada ou redigitada.</p>
+          <div className="preparo-acoes"><Link to="/simulados" className="btn sec">Ver simulados</Link></div>
+        </section>
+      )}
+
+      {!vazia && (
       <div className="mat-topo">
+        {temTreino && (
         <Link to={`/m/${m}/treino`} className="capa-tg">
           <div className="capa-txt">
             <h2>Treino geral de {info.nome}</h2>
             <p className="miolo">{tg ? 'Seu treino está salvo onde você parou. ' : ''}Questões reais de prova, frases para completar e flashcards dos temas que mais caem, tudo misturado.</p>
-            <div className="capa-nums">
-              <span><b className="num">{nAbc}</b> questões</span><span><b className="num">{nComp}</b> frases</span><span><b className="num">{nFlash}</b> cartões</span>
-            </div>
             <span className="btn">{tg ? `Retomar (${tg.i} de ${tg.it.length})` : 'Começar treino'} <Icone nome="direita" /></span>
           </div>
-          <img src={ILU[m]} alt="" className="capa-ilu" />
+          {ILU[m] && <img src={ILU[m]} alt="" className="capa-ilu" />}
         </Link>
+        )}
         <div className="mat-atalhos">
           {ultQ && (
             <Link to={`/m/${m}/q/${ultQ.id}?ctx=escada`} className="atalho">
               <Icone nome="play" /><span><b>Continuar de onde parei</b><small>{mc.conteudo.modulos.find((x) => x.id === ultQ.modulo)?.nome} · {ultQ.escola} {ultQ.ano}</small></span>
             </Link>
           )}
+          {nFlash > 0 && (
           <Link to={`/m/${m}/flashcards`} className="atalho">
             <Icone nome="cartas" /><span><b>Flashcards</b><small>{r.flashVencidos ? `${r.flashVencidos} para revisar hoje` : `${r.flashNovos} cartões novos`}</small></span>
           </Link>
+          )}
           <Link to="/revisao" className="atalho">
             <Icone nome="repetir" /><span><b>Revisão dos erros</b><small>{r.vencidas ? plural(r.vencidas, 'questão vencida', 'questões vencidas') : 'Nada vencido hoje'}</small></span>
           </Link>
-          <Link to={`/simulados?m=${m}`} className="atalho">
-            <Icone nome="relogio" /><span><b>Simulados</b><small>Por prova e por objetivo</small></span>
+          <Link to="/simulados" className="atalho">
+            <Icone nome="relogio" /><span><b>Simulados</b><small>Provas completas, por ano</small></span>
           </Link>
         </div>
       </div>
+      )}
 
       {mc.conteudo.areas.map((a) => (
         <section key={a.id} className="secao area">
@@ -150,13 +166,13 @@ export function Materia() {
               if (!mod) return null;
               const qs = mc.banco.filter((q) => q.modulo === mid);
               const p = progressoEscada(qs, s);
-              const nEsc = mod.subs.filter((x) => mc.porSub.get(x.id)?.length).length;
+              const nCont = mod.subs.filter((x) => mc.porSub.get(x.id)?.length).length;
               return (
                 <Link key={mid} to={`/m/${m}/tema/${mid}`} className="cartao-tema">
                   <Ic3D m={m} chave={mid} tam={72} />
                   <span className="ct-txt">
                     <b>{mod.nome}</b>
-                    <small className="num">{plural(nEsc, 'escada', 'escadas')} · {plural(p.total, 'questão', 'questões')}</small>
+                    <small className="num">{nCont ? plural(nCont, 'conteúdo', 'conteúdos') : 'Em preparação'}</small>
                     <Barra valor={p.total ? p.feitas / p.total : 0} rotulo={`Progresso em ${mod.nome}`} />
                   </span>
                 </Link>
