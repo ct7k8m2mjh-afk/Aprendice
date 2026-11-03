@@ -75,10 +75,22 @@ def colunas_da_pagina(pg, cfg):
         m = cfg.get('margem', 15)
         um = ls and cruzam / len(ls) > 0.2 and not ancora_direita
         c = [(m, w - m)] if um else [(m, meio - 2), (meio - 2, w - m)]
+    elif c == 'por_ancora':
+        # duas colunas só quando há âncora na metade direita (cabeçalhos centralizados em cada coluna)
+        w = pg.rect.width
+        m = cfg.get('margem', 15)
+        dir_ = any(re.match(cfg['ancora'], l['t']) and l['bbox'][0] > w / 2 + 10 for l in linhas(pg))
+        esq = any(re.match(cfg['ancora'], l['t']) and l['bbox'][2] < w / 2 - 10 for l in linhas(pg))
+        c = [(m, w / 2 - 2), (w / 2 - 2, w - m)] if dir_ and esq else [(m, w - m)]
     elif callable(c):
         c = c(pg.rect)
     _cache_cols[k] = c
     return c
+
+
+def topo_de(pg, cfg):
+    """Margem de cima da página (algumas provas têm quadro de instruções no alto da 1ª página de questões)."""
+    return cfg.get('topo_pag', {}).get(pg.number + 1, cfg['topo'])
 
 
 def limite_baixo(pg, cfg):
@@ -98,6 +110,25 @@ def coluna_de(x0, cols):
     return None
 
 
+def pagina_cartaz(pg):
+    """Página ocupada por uma imagem de página inteira e quase sem texto."""
+    area = pg.rect.width * pg.rect.height
+    grandes = [b for b in pg.get_image_info() if pymupdf.Rect(b["bbox"]).get_area() > 0.8 * area]
+    return bool(grandes) and len(pg.get_text().strip()) < 400
+
+
+def artes_sangradas(pg, lp):
+    """Topo de imagens que vão de uma borda à outra da página, altas e sem texto por cima."""
+    W, H = pg.rect.width, pg.rect.height
+    ys = []
+    for b in pg.get_image_info():
+        r = pymupdf.Rect(b['bbox'])
+        if r.x0 <= 2 and r.x1 >= W - 2 and r.height > 0.2 * H and r.height < 0.8 * H:
+            if not any(r.intersects(pymupdf.Rect(L['bbox'])) and len(L['t']) > 3 and (L['bbox'][2] - L['bbox'][0]) > (L['bbox'][3] - L['bbox'][1]) for L in lp):
+                ys.append(r.y0)
+    return ys
+
+
 def eventos_do_pdf(pdf, cfg, faixa=None):
     """Lista de eventos em ordem de leitura: ('q', n) início de questão, ('fim',) fim de enunciado,
     ('corte',) cabeçalho a excluir, ('suporte', ini, fim) texto de apoio compartilhado."""
@@ -106,8 +137,15 @@ def eventos_do_pdf(pdf, cfg, faixa=None):
         if faixa and not (faixa[0] <= pi + 1 <= faixa[1]):
             continue
         pg = pdf[pi]
+        if pagina_cartaz(pg):
+            # página só com arte de página inteira (ex.: aviso "IMPORTANTE" antes da redação): encerra a questão
+            ev.append({'p': pi, 'c': 0, 'y': 0, 'tipo': 'corte'})
+            continue
         cols = colunas_da_pagina(pg, cfg)
         lp = linhas(pg)
+        for y in artes_sangradas(pg, lp):
+            # arte de borda a borda sem texto por cima (ex.: aviso antes da redação): encerra a questão
+            ev.append({'p': pi, 'c': 0, 'y': y, 'tipo': 'corte'})
         baixo = limite_baixo(pg, cfg)
         for li, L in enumerate(lp):
             x0, y0, x1, y1 = L['bbox']
@@ -117,10 +155,11 @@ def eventos_do_pdf(pdf, cfg, faixa=None):
             c = coluna_de(x0, cols)
             if c is None:
                 continue
-            if y0 < cfg['topo']:
+            topo = topo_de(pg, cfg)
+            if y0 < topo:
                 # acima da margem só valem cortes (ex.: título da redação colado no topo)
-                if y0 >= cfg['topo'] - 18 and any(re.search(rx, t) for rx in cfg.get('corte', [])):
-                    ev.append({'p': pi, 'c': c, 'y': max(y0, cfg['topo']), 'tipo': 'corte'})
+                if y0 >= topo - 18 and any(re.search(rx, t) for rx in cfg.get('corte', [])):
+                    ev.append({'p': pi, 'c': c, 'y': max(y0, topo), 'tipo': 'corte'})
                 continue
             if cfg.get('secoes') and t.strip() in cfg['secoes']:
                 ev.append({'p': pi, 'c': c, 'y': y0, 'tipo': 'secao', 'nome': cfg['secoes'][t.strip()]})
@@ -145,17 +184,33 @@ def eventos_do_pdf(pdf, cfg, faixa=None):
                             resto = t[m.start():] + ' ' + (lp[li + 1]['t'] if li + 1 < len(lp) else '')
                             mq = re.search(r'(?i)(quest|cuesti)\w*\W*(.*)', resto)
                             if mq:   # "Text 17 (for questions 18, 19, 20 and 21)" -> 18..21; só a lista logo após "questões"
-                                ml = re.match(r'(?i)\s*(\d+)((?:\s*(?:,|\be\b|\ba\b|\band\b|\by\b|\bto\b|–|-)\s*\d+)*)', mq.group(2))
+                                ml = re.match(r'(?i)\s*(?:de|das|dos|nos|n[ºo°]s?\.?)?\s*(\d+)((?:\s*(?:,|\be\b|\ba\b|\band\b|\by\b|\bto\b|–|-)\s*\d+)*)', mq.group(2))
                                 ns = [int(x) for x in re.findall(r'\d+', ml.group(0))] if ml else []
                                 nums = [min(ns), max(ns)] if len(ns) >= 2 else ns
                             else:
                                 nums = [int(x) for x in re.findall(r'\d+', resto)][:2]
                             mt = re.match(r'(?i)^texto\s+(\d+)', t)
-                            ev.append({'p': pi, 'c': c, 'y': y0, 'tipo': 'suporte', 'faixa': nums if not mt else [],
+                            yi = y0
+                            # frase de instrução quebrada em duas linhas: começa na linha de cima
+                            if li > 0 and coluna_de(lp[li - 1]['bbox'][0], cols) == c and 0 <= y0 - lp[li - 1]['bbox'][3] < 5 \
+                                    and not re.match(cfg['ancora'], lp[li - 1]['t']) and lp[li - 1]['bbox'][1] >= cfg['topo']:
+                                yi = lp[li - 1]['bbox'][1] - 2
+                            ev.append({'p': pi, 'c': c, 'y': yi, 'tipo': 'suporte', 'faixa': nums if not mt else [],
                                        'num': int(mt.group(1)) if mt else None})
                             break
     ev.sort(key=lambda e: (e['p'], e['c'], e['y']))
-    return ev
+    # camada de texto duplicada: o mesmo evento duas vezes no mesmo lugar
+    unicos, vistos = [], set()
+    for e in ev:
+        k = (e['p'], e['c'], round(e['y']), e['tipo'], e.get('n'))
+        if k not in vistos:
+            vistos.add(k)
+            unicos.append(e)
+        elif e['tipo'] == 'suporte' and e.get('num') is not None:
+            # "Texto 2" e "Texto 3" lado a lado na mesma linha: um só recorte vale pelos dois
+            dono = next(u for u in unicos if (u['p'], u['c'], round(u['y']), u['tipo'], u.get('n')) == k)
+            dono.setdefault('outros', []).append(e['num'])
+    return unicos
 
 
 def segmentos(pdf, cfg, ev, i, faixa_pag=None):
@@ -178,7 +233,7 @@ def segmentos(pdf, cfg, ev, i, faixa_pag=None):
             c, p = 0, p + 1
             if p > ultima:
                 return segs
-        y = cfg['topo']
+        y = topo_de(pdf[p], cfg) if p < len(pdf) else cfg['topo']
         if not prox and p != e['p']:
             return segs  # última questão do caderno: não passa da própria página
 
@@ -250,7 +305,24 @@ def apara(im):
     """Corta faixas brancas em cima e embaixo (mantém margem lateral, para não deslocar o texto)."""
     bg = Image.new('RGB', im.size, 'white')
     diff = ImageChops.difference(im, bg).convert('L').point(lambda v: 255 if v > 24 else 0)
-    # fios verticais nas bordas (separador de colunas) não contam como conteúdo
+    # fios verticais (separador de colunas, moldura da questão) não contam como conteúdo
+    if im.height > 60:
+        col = diff.resize((im.width, 1), Image.BOX)     # média de cada coluna de pixels
+        escuras = [col.getpixel((x, 0)) > 255 * 0.5 for x in range(im.width)]
+        fios, x = [], 0
+        while x < im.width:              # só faixas finas (até 4 px): uma imagem escura larga não é fio
+            if escuras[x]:
+                ini = x
+                while x < im.width and escuras[x]:
+                    x += 1
+                if x - ini <= 4:
+                    fios += range(ini, x)
+            else:
+                x += 1
+        if fios:
+            diff = diff.copy()
+            for x in fios:
+                diff.paste(0, (max(0, x - 1), 0, min(im.width, x + 2), im.height))
     borda = min(14, im.width // 10)
     miolo = diff.crop((borda, 0, im.width - borda, im.height))
     bb = miolo.getbbox()
@@ -388,7 +460,7 @@ def processa(pid, amostra=False, so_texto=False):
         faixa_pag = cad.get('paginas')
         ev = eventos_do_pdf(pdf, cfg, faixa_pag)
         if cfg.get('sequencial'):
-            ok, ult = [], None
+            ok, ult = [], (cad['questoes'][0] - cad.get('deslocamento', 0) - 1) if cad.get('questoes') else None
             for e in ev:
                 if e['tipo'] == 'q':
                     if ult is not None and e['n'] != ult + 1:
@@ -428,7 +500,8 @@ def processa(pid, amostra=False, so_texto=False):
                 else:
                     suporte = {'segs': segs_s, 'faixa': e['faixa'], 'aberto': True}
                 if e.get('num') is not None:
-                    textos[e['num']] = segs_s
+                    for nt in [e['num']] + e.get('outros', []):
+                        textos[nt] = segs_s
                 continue
             if e['tipo'] == 'corte':
                 suporte = None   # texto de apoio não atravessa um corte (troca de seção, opção de língua)
@@ -441,7 +514,7 @@ def processa(pid, amostra=False, so_texto=False):
             lo, hi = cad.get('questoes', (1, 999))
             if not (lo <= n <= hi):
                 continue
-            if cfg.get('sequencial') and vistos and n not in (max(vistos) + 1,):
+            if cfg.get('sequencial') and vistos and n != max(vistos) + 1:
                 continue  # número solto no meio do texto (fórmula, índice), não é início de questão
             if n in vistos or n in questoes:
                 relatorio['duplicadas'].append(n)  # ex.: ENEM 1–5 na opção espanhol (fica a opção inglês)
@@ -459,7 +532,9 @@ def processa(pid, amostra=False, so_texto=False):
                     enun = texto(pdf, segs)
                     citados = [int(x) for par in re.findall(r'(?i)textos?\s+(\d)(?:\s*e\s*(\d))?', enun) for x in par if x]
                     if citados and all(c in textos for c in citados):
-                        sup = [sg for c in sorted(set(citados)) for sg in textos[c]]
+                        sup = []
+                        for c in sorted(set(citados)):
+                            sup += [sg for sg in textos[c] if sg not in sup]
                     elif not citados and len(enun) < 700 and re.search(r'(?i)\b(o texto|do texto|no texto|ao texto|crônica|poema|canção|reportagem|artigo|trecho|fragmento)\b', enun):
                         sup = suporte['segs']
                 elif len(f) < 2 and not suporte.get('usado'):
@@ -493,6 +568,9 @@ def processa(pid, amostra=False, so_texto=False):
             }
             if estr:
                 questoes[n]['transcricao'] = estr
+            elif os.environ.get('MOTIVOS'):
+                from transcreve import MOTIVO
+                print('  sem texto', n, MOTIVO.get('ultimo'))
     esperado = cfg['total'] if 'total' in cfg else cfg['total_de'](pasta)
     for n in range(1, esperado + 1):
         if n not in questoes:

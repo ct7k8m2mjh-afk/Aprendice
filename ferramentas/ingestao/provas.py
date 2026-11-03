@@ -343,3 +343,138 @@ for _a, _s, _o in ((2026, 2, False), (2025, 1, True), (2024, 2, False), (2024, 1
     _c = cmmg(_a, _s, _o)
     _c['total_de'] = (lambda c: (lambda pasta: max(c['gabarito'](pasta))))(_c)
     PROVAS[f'cmmg-{_a}-{_s}'] = _c
+
+
+# ------------------------------------------------------------------------------- Vunesp (layout padrão)
+def vunesp(pid_catalogo, escola, ano, fase, titulo, total, caderno='caderno-prova-II', gabarito='gabarito',
+           duracao=None, nota='', alternativas=5):
+    """Cadernos da Fundação Vunesp (São Camilo, Unesp, Santa Casa, Einstein, FMABC, UEA...):
+    duas colunas, "QUESTÃO 07", alternativas "(A)", gabarito "1 - E"."""
+    def gab(pasta):
+        g = {}
+        for n, v in re.findall(r'(?<![\d,.])(\d{1,2})\s*[-–]\s*([A-E]\b|\*|X\b|ANULAD[AO])', texto_pdf(pasta / (gabarito + '.pdf'))):
+            g.setdefault(int(n), v if len(v) == 1 and v in 'ABCDE' else 'X')
+        return g
+
+    return {
+        'catalogo': pid_catalogo, 'escola': escola, 'ano': str(ano), 'fase': fase, 'titulo': titulo, 'banca': 'Vunesp',
+        'duracao_horas': duracao, 'total': total, 'alternativas': alternativas, 'nota': nota,
+        'cadernos': [{'arquivo': caderno, 'paginas': (2, 999)}],
+        'colunas': lambda r: duas_colunas(r, 28), 'topo': 20, 'base': 32,
+        'ancora': r'(?i)^quest[ãa]o\s+(\d{1,3})\b', 'ancora_dx': 34,
+        'corte': [r'(?i)^CLASSIFICAÇÃO PERIÓDICA', r'(?i)^REDAÇÃO$', r'(?i)^Confidencial até'],
+        'suporte': [r'(?i)para responder [àa]s? quest'],
+        'gabarito': gab, 'area': lambda n: 'Conhecimentos gerais',
+    }
+
+
+PROVAS['saocamilo-2024-2'] = vunesp(
+    'saocamilo', 'São Camilo', 2024, '2º semestre', 'São Camilo 2024/2', 40, duracao=5,
+    nota='Centro Universitário São Camilo, Medicina, Prova II (objetiva), versão 1. Caderno e gabarito oficiais da Vunesp '
+         '(CUSC2302), em cópia hospedada pelo Curso Objetivo: o portal da Vunesp bloqueia acesso automático.')
+
+
+# ------------------------------------------------------------------------------------- PUC-Campinas
+def puccampinas(ano, duracao=5):
+    def gab(pasta):
+        g = pares(texto_pdf(pasta / 'gabarito-geral.pdf'))
+        g.update({n + 50: v for n, v in pares(texto_pdf(pasta / 'gabarito-especifica.pdf')).items()})
+        return g
+
+    return {
+        'catalogo': 'puccampinas', 'escola': 'PUC-Campinas', 'ano': str(ano), 'fase': '', 'titulo': f'PUC-Campinas {ano}',
+        'banca': 'PUC-Campinas', 'duracao_horas': duracao, 'total': 70,
+        'nota': 'Vestibular de Medicina: Prova Geral (1 a 50) e Prova Específica (numerada aqui 51 a 70). '
+                'Gabarito divulgado pela PUC-Campinas no dia da prova; reconferir após os recursos.',
+        'cadernos': [{'arquivo': 'livrete', 'paginas': (3, 16), 'questoes': (1, 50)},
+                     {'arquivo': 'livrete', 'paginas': (22, 29), 'questoes': (51, 70), 'deslocamento': 50}],
+        'colunas': lambda r: [(14, r.width - 14)], 'topo': 26, 'base': 20, 'rodape_num': True,
+        'ancora': r'^(\d{1,2})\.$', 'ancora_dx': 30, 'sequencial': True,
+        'corte': [r'^REDAÇÃO$', r'^PROVA (GERAL|ESPECÍFICA)$'], 'suporte': [r'(?i)(para|responder) [àa]s quest[õo]es'],
+        'gabarito': gab, 'area': lambda n: 'Prova geral' if n <= 50 else 'Prova específica',
+    }
+
+
+PROVAS['puccampinas-2027'] = puccampinas(2027)
+
+
+# ---------------------------------------------------------------------------------------------- Unifor
+UNIFOR_SECOES = {
+    'MATEMÁTICA E SUAS TECNOLOGIAS': 'Matemática', 'CIÊNCIAS DA NATUREZA E SUAS TECNOLOGIAS': 'Ciências da Natureza',
+    'CIÊNCIAS HUMANAS E SUAS TECNOLOGIAS': 'Ciências Humanas', 'LINGUAGENS, CÓDIGOS E SUAS TECNOLOGIAS': 'Linguagens',
+    'LINGUAGENS E CÓDIGOS E SUAS TECNOLOGIAS': 'Linguagens', 'LÍNGUA INGLESA': 'Inglês', 'LÍNGUA ESPANHOLA': 'Espanhol',
+    'INGLÊS': 'Inglês', 'ESPANHOL': 'Espanhol',
+}
+
+
+def unifor(ano, sem, duracao=5):
+    def gab(pasta):
+        """Grade: linha de números, linha de letras (X = anulada). Só a parte INGLÊS."""
+        txt = texto_pdf(pasta / 'gabarito.pdf')
+        parte = txt.split('ESPANHOL')[0]
+        linhas = [l.split() for l in parte.splitlines() if l.strip()]
+        g = {}
+        for a, b in zip(linhas, linhas[1:]):
+            if a and all(x.isdigit() for x in a) and b and all(re.fullmatch(r'[A-EX*]', x) for x in b) and len(a) == len(b):
+                for n, v in zip(a, b):
+                    g[int(n)] = v if v in 'ABCDE' else 'X'
+        return g
+
+    return {
+        'catalogo': 'unifor', 'escola': 'Unifor', 'ano': str(ano), 'fase': f'{sem}º semestre', 'titulo': f'Unifor {ano}.{sem}',
+        'banca': 'Unifor (CPPS)', 'duracao_horas': duracao, 'total': 60,
+        'nota': 'Universidade de Fortaleza, vestibular de Medicina. Língua estrangeira: inglês. Gabarito oficial retificado.',
+        'cadernos': [{'arquivo': 'caderno', 'paginas': (2, 999)}],
+        'colunas': 'auto', 'margem': 40, 'topo': 30, 'base': 72, 'rodape_num': False,  # rodapé com logotipo fica fora
+        'ancora': r'(?i)^quest[ãa]o\s+(\d{1,2})\b', 'ancora_dx': 40,
+        'secoes': UNIFOR_SECOES, 'pular_secoes': ('Espanhol',),
+        'corte': [r'(?i)^PROPOSTA DE REDA', r'(?i)^REDAÇÃO$', r'(?i)^RASCUNHO'],
+        'suporte': [r'(?i)(para|responder) [àa]s quest[õo]es', r'(?i)^texto para as quest'],
+        'gabarito': gab, 'area': lambda n: 'Conhecimentos gerais',
+    }
+
+
+for _a, _s in ((2027, 1), (2026, 2), (2026, 1), (2025, 1)):
+    PROVAS[f'unifor-{_a}-{_s}'] = unifor(_a, _s)
+
+
+# ------------------------------------------------------------------------------------- PUC-SP (NucVest)
+PUCSP_AREAS = [('MATEMÁTICA', 'Matemática'), ('NATUREZA', 'Ciências da Natureza'), ('HUMANAS', 'Ciências Humanas'),
+               ('LINGUAGENS', 'Linguagens')]
+
+
+def pucsp(ano, duracao=5):
+    areas = {}
+
+    def gab(pasta):
+        """Gabarito em blocos por área, em duas colunas: a área de cada número é o último cabeçalho da sua coluna."""
+        g, atual = {}, {0: None, 1: None}
+        for l in texto_pdf(pasta / 'gabarito.pdf').splitlines():
+            meio = 40
+            for k, nome in PUCSP_AREAS:
+                i = l.find(k)
+                if i >= 0:
+                    atual[0 if i < meio else 1] = nome
+            for m in re.finditer(r'(?<![\d,.])(\d{1,2})\s+([A-E]\b|ANULAD[AO])', l):
+                n = int(m.group(1))
+                g.setdefault(n, m.group(2) if len(m.group(2)) == 1 else 'X')
+                lado = 0 if m.start() < meio else 1
+                if atual[lado]:
+                    areas[n] = atual[lado]
+        return g
+
+    return {
+        'catalogo': 'pucsp', 'escola': 'PUC-SP', 'ano': str(ano), 'fase': 'Verão', 'titulo': f'PUC-SP {ano}',
+        'banca': 'NucVest', 'duracao_horas': duracao, 'total': 50,
+        'nota': 'Vestibular de Verão da PUC-SP (a mesma prova de Medicina). Caderno e gabarito oficiais publicados pela NucVest.',
+        'cadernos': [{'arquivo': 'caderno', 'paginas': (2, 999)}],
+        'colunas': 'por_ancora', 'margem': 28, 'topo': 26, 'topo_pag': {2: 170}, 'base': 30, 'rodape_num': True,
+        'ancora': r'(?i)^quest[ãa]o\s+(\d{1,2})\b', 'ancora_dx': 300,
+        'corte': [r'(?i)^quest[õo]es de \d+ a \d+$', r'(?i)^PROPOSTA DE REDA', r'(?i)^REDAÇÃO$', r'^IMPORTANTE\s*[–-]?', r'(?i)^Na próxima página'],
+        'suporte': [r'(?i)(texto|textos) para as quest', r'(?i)para responder [àa]s quest'],
+        'gabarito': gab, 'area': lambda n: areas.get(n, 'Conhecimentos gerais'),
+    }
+
+
+for _a in (2026, 2025, 2024):
+    PROVAS[f'pucsp-{_a}'] = pucsp(_a)

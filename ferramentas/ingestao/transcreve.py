@@ -29,12 +29,16 @@ def _spans(pg, clip):
         if b.get('type') != 0:
             continue
         for l in b['lines']:
+            if abs(l['dir'][1]) > 0.01:
+                continue   # texto girado (aviso de direitos na margem): não é parte da questão
             spans = []
             ult_x1 = None
             for s_ in l['spans']:
                 txt = []
                 for c in s_['chars']:
                     ch = c['c']
+                    if not (clip.y0 - 1 <= c['origin'][1] <= clip.y1 + 3):
+                        continue   # pedaço (descendente) de uma linha que está fora do recorte
                     if ult_x1 is not None and ch.strip() and c['bbox'][0] - ult_x1 > s_['size'] * 0.16 and (not txt or txt[-1] != ' '):
                         if not (spans and spans[-1]['text'].endswith(' ')) or txt:
                             txt.append(' ')
@@ -53,6 +57,10 @@ def _tem_figura(pg, clip, faixa_ancora=None):
     for im in pg.get_image_info():
         r = pymupdf.Rect(im['bbox']) & clip
         if not r.is_empty and min(r.width, r.height) >= 8 and r.width * r.height > 300:
+            if faixa_ancora and r.y0 < faixa_ancora[1] + 3 and r.y1 > faixa_ancora[0] - 3 and r.height < 26:
+                continue               # selo do cabeçalho da questão ("Questão 07" desenhado como imagem)
+            if r.height <= 12 and r.width > 200:
+                continue               # faixa decorativa fina
             return 'imagem %dx%d' % (r.width, r.height)
     horiz = vert = molduras = 0
     for d in pg.get_drawings():
@@ -71,6 +79,10 @@ def _tem_figura(pg, clip, faixa_ancora=None):
             continue                   # enfeite do cabeçalho da questão (barra "QUESTÃO 07", caixinha do número)
         if d.get('fill') is not None and r.height <= 12:
             continue                   # fileira de pontos/barra decorativa
+        tipos = {it[0] for it in d['items']}
+        if (tipos <= {'re', 'qu'} or (tipos <= {'l', 'c'} and len(d['items']) <= 12)) and len(pg.get_text('text', clip=r).strip()) > 60:
+            molduras += 1              # caixa (com ou sem fundo, cantos arredondados) em volta de texto de apoio
+            continue
         if d.get('fill') is None and all(it[0] == 're' for it in d['items']) or (d.get('fill') is None and len(d['items']) == 4 and all(it[0] == 'l' for it in d['items'])):
             molduras += 1              # moldura em volta de texto
             continue
@@ -92,7 +104,8 @@ def _tem_formula(linhas):
             if any(c in SIMBOLOS for c in s['text']):
                 return 'simbolo ' + ''.join(c for c in s['text'] if c in SIMBOLOS)
             # índice/expoente: trecho bem menor que o texto e fora da linha de base
-            if s['size'] < 0.78 * base and s['text'].strip() and (s['flags'] & 1 or abs(s['origin'][1] - l['bbox'][3]) > 2.5):
+            mista = any(o['size'] >= 0.9 * base and o['text'].strip() for o in l['spans'])
+            if mista and s['size'] < 0.78 * base and s['text'].strip() and (s['flags'] & 1 or abs(s['origin'][1] - l['bbox'][3]) > 2.5):
                 if re.search(r'[\dA-Za-z+\-]', s['text']):
                     return 'indice ' + s['text'][:10]
     return False
@@ -104,7 +117,7 @@ def _linhas_numeradas(linhas):
 
 
 def _estilo(s):
-    negrito = bool(s['flags'] & 16) or bool(re.search(r'(?i)bold|black|heavy|semibold', s['font']))
+    negrito = (bool(s['flags'] & 16) or bool(re.search(r'(?i)bold|black|heavy|semibold', s['font']))) and not s.get('base')
     italico = bool(s['flags'] & 2) or bool(re.search(r'(?i)italic|oblique', s['font']))
     return ('**' if negrito else '') + ('~~' if italico else '')   # itálico = ~~ (o _ aparece em lacunas "____")
 
@@ -183,6 +196,13 @@ def transcreve(pdf, segs, ancora, cortes=(), alternativas=5, ocr=False):
     linhas = unicas
     if not linhas:
         return _nao('vazio')
+    # texto lado a lado (quadro à esquerda, enunciado à direita): a ordem de leitura não é segura
+    for i, l in enumerate(linhas):
+        for m in linhas[i + 1:]:
+            if m['p'] == l['p'] and m['col'] == l['col'] and min(l['bbox'][3], m['bbox'][3]) - max(l['bbox'][1], m['bbox'][1]) > 4 \
+                    and (m['bbox'][0] - l['bbox'][2] > 15 or l['bbox'][0] - m['bbox'][2] > 15) \
+                    and min(len(_txt(l)), len(_txt(m))) > 3:
+                return _nao('lado a lado')
     for l in linhas:
         for sp in l['spans']:
             for c in sp['text']:
@@ -194,6 +214,18 @@ def transcreve(pdf, segs, ancora, cortes=(), alternativas=5, ocr=False):
         return _nao('formula:' + str(_tem_formula(linhas)))
     if _linhas_numeradas(linhas):
         return _nao('linhas numeradas')
+
+    # fonte do texto corrido: se a banca compõe o texto todo em negrito (ex.: Lato-Bold), ele é o normal
+    uso = {}
+    for l in linhas:
+        for sp in l['spans']:
+            uso[sp['font']] = uso.get(sp['font'], 0) + len(sp['text'].strip())
+    corrida = max(uso, key=uso.get) if uso else None
+    if corrida and re.search(r'(?i)bold|black|heavy|semibold', corrida):
+        for l in linhas:
+            for sp in l['spans']:
+                if sp['font'] == corrida:
+                    sp['base'] = True
 
     # tira o número da questão (âncora) e o que for corte
     limpas = []

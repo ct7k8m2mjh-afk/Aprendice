@@ -91,6 +91,9 @@ export function nomeEdicao(e: Pick<Edicao, 'escola' | 'ano' | 'fase'>): string {
 export const PROVAS_EM_PREPARO: { catalogoId: string; titulo: string; motivo: string }[] = [
   { catalogoId: 'unb', titulo: 'UnB PAS 3 2025', motivo: 'itens de certo ou errado (formato Cebraspe)' },
   { catalogoId: 'fuvest', titulo: 'Fuvest 2026, 2024 e 2023', motivo: 'caderno a baixar manualmente' },
+  { catalogoId: 'saocamilo', titulo: 'São Camilo 2020 a 2026 (outros semestres)', motivo: 'caderno a baixar manualmente (site da Vunesp)' },
+  { catalogoId: 'santacasa', titulo: 'Santa Casa 2020 a 2026', motivo: 'caderno a baixar manualmente (site da Vunesp)' },
+  { catalogoId: 'einstein', titulo: 'Einstein 2020 a 2026', motivo: 'caderno a baixar manualmente (site da Vunesp)' },
 ];
 
 /** Escolas do banco que são provas de Medicina com catálogo (podem ser provas-alvo com questões). */
