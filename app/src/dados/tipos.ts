@@ -48,6 +48,12 @@ export interface Resolucao {
   armadilha?: string;
   alerta?: string;
   essencial?: { pede?: string; chave?: string; cuidado?: string };
+  /** a conta como no caderno, linha por linha (animada no app) */
+  quadro?: { linha: string; nota?: string; destaque?: string }[];
+  /** outros jeitos de resolver */
+  caminhos?: { nome: string; ideia: string }[];
+  /** decisão da banca sobre visual/animação extra (roteiro para produção futura) */
+  visual?: { cabe: boolean; porque?: string; tipo?: string; roteiro?: string };
 }
 
 export interface CartaoTeoria {

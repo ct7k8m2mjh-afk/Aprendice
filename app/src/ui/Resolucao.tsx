@@ -1,5 +1,6 @@
 import type { Letra, Questao, Resolucao } from '../dados/tipos';
 import { Icone } from './Icone';
+import { QuadroAnimado } from './QuadroAnimado';
 
 /** Resolução comentada. Princípio 5: começa pela alternativa que o aluno marcou. */
 export function ResolucaoView({ q, r, marcada }: { q: Questao; r: Resolucao | null | undefined; marcada: Letra | null }) {
@@ -55,9 +56,16 @@ export function ResolucaoView({ q, r, marcada }: { q: Questao; r: Resolucao | nu
               ))}
             </ol>
           )}
+          {r.quadro && r.quadro.length > 0 && <QuadroAnimado quadro={r.quadro} />}
           {r.checagem && <div className="res-bloco"><h3>Confira em 10 segundos</h3><p>{r.checagem}</p></div>}
           {r.armadilha && <div className="res-bloco armadilha"><h3>Armadilha</h3><p>{r.armadilha}</p></div>}
           {r.alerta && <div className="res-bloco"><h3>Atenção</h3><p>{r.alerta}</p></div>}
+          {r.caminhos && r.caminhos.length > 0 && (
+            <details className="res-caminhos">
+              <summary>Outros jeitos de resolver</summary>
+              <ul>{r.caminhos.map((c, i) => <li key={i}><b>{c.nome}</b><span>{c.ideia}</span></li>)}</ul>
+            </details>
+          )}
           {r.erradas && Object.keys(r.erradas).length > 0 && (
             <details className="res-erradas" open={!marcada || acertou ? false : undefined}>
               <summary>De onde vem cada alternativa errada</summary>

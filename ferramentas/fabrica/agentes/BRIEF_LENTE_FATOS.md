@@ -8,7 +8,9 @@ Para cada questão do lote:
 2. Confira com o gabarito oficial. Se você e o gabarito divergirem, marque `exceção` e explique.
 3. Leia a resolução proposta linha por linha e confira: cada fato, número, conta (refaça todas), unidade, nome, data,
    leitura de figura/gráfico (bate com o print?), cada comentário de `erradas` (o motivo dado é verdadeiro e suficiente?),
-   `pista` (não entrega?), classificação (matéria/tema/conteúdo/nível plausíveis?).
+   `pista` (não entrega?), classificação (matéria/tema/conteúdo/nível plausíveis?), cada linha do `quadro` (refaça a
+   conta: cada linha decorre da anterior?), os `caminhos` alternativos (estão certos?), o roteiro do `visual` (correto?).
+   Confira também se a resolução responde EXATAMENTE o que o enunciado pede.
    Fato duvidoso: verifique em fonte confiável (WebSearch) e cite.
 4. Corrija direto no JSON (edite o arquivo) o que estiver errado, com a menor mudança necessária, e registre cada
    correção em `revisao.fatos`: `[{"campo": "passos[2].conta", "antes": "…", "depois": "…", "motivo": "…", "fonte": ""}]`.

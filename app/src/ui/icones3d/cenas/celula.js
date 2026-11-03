@@ -158,10 +158,12 @@ function mitocondria(L, Wd, alt, mats, sd = 1) {
   for (let i = 0; i < idx.length; i += 3) { let cx = 0, cy = 0; for (let k = 0; k < 3; k++) { cx += pp.getX(idx[i + k]) / 3; cy += pp.getY(idx[i + k]) / 3; } if (dentro(cx, cy)) novo.push(idx[i], idx[i + 1], idx[i + 2]); }
   fg.setIndex(novo);
   { const cE = new THREE.Color(0x35105c), cC = new THREE.Color(0xb68ce8), c = new THREE.Color(), cores = new Float32Array(pp.count * 3);
+    const n = (x, y) => Math.sin(x * 215 + 3.2 * ruido2(x * 22 + sd, y * 22, sd) + 1.6 * ruido2(x * 48, y * 48 + sd, sd + 5)), e = 1e-4; // dobras transversais onduladas
     for (let i = 0; i < pp.count; i++) { const x = pp.getX(i), y = pp.getY(i);
-      const n = ruido2(x * 26 + sd * 3.1, y * 26, sd) + 0.5 * ruido2(x * 55, y * 55 + sd, sd + 9) - 0.75 + 0.25 * Math.sin(x * 60 + sd); // linhas de nível zero = sulcos
-      const t = Math.min(1, Math.abs(n) / 0.085), h = t * t * (3 - 2 * t);
-      pp.setZ(i, 0.017 * h); c.copy(cE).lerp(cC, 0.15 + 0.85 * h); cores.set([c.r, c.g, c.b], i * 3); }
+      // cristas = faixas de largura constante ao longo das linhas de nível zero (distância ≈ |n| / |grad n|) -> labirinto
+      const v = n(x, y), gx = (n(x + e, y) - v) / e, gy = (n(x, y + e) - v) / e, d = Math.abs(v) / Math.max(1e-3, Math.hypot(gx, gy));
+      const t = Math.min(1, Math.max(0, (0.0062 - d) / 0.0035)), h = Math.sqrt(t * (2 - t));
+      pp.setZ(i, 0.02 * h); c.copy(cE).lerp(cC, h); cores.set([c.r, c.g, c.b], i * 3); }
     fg.setAttribute('color', new THREE.BufferAttribute(cores, 3)); fg.computeVertexNormals(); }
   const fundo = malha(fg, mats.fundo, false); fundo.receiveShadow = false; fundo.rotation.x = -Math.PI / 2; fundo.position.y = alt * 0.42; g.add(fundo);
   g.userData.fundo = fundo; return g;
@@ -329,27 +331,27 @@ export default function celula() {
 
   rnd = semente(41);
   // ---- retículo liso: teias magenta (membrana grossa e arredondada com furos) e dedos com bolhas, saindo do alto da parede
-  const magenta = plast(0x8c1f46, { rug: 0.42, coat: 0.35, coatRug: 0.3 });
+  const magenta = plast(0x701432, { rug: 0.5, coat: 0.25, coatRug: 0.35 });
   const curS = [], bolhas = [];
-  for (const [cs, cy, h, esc, rot, nf0] of [[0.1, 0.8, 0.07, 1.3, 0.3, 6], [0.4, 0.66, 0.1, 1.15, -0.3, 5], [0.65, 0.47, 0.13, 1.05, 0.5, 4]]) {
+  for (const [cs, cy, h, esc, rot, nf0] of [[0.1, 0.8, 0.07, 1.3, 0.3, 9], [0.4, 0.66, 0.1, 1.15, -0.3, 8], [0.65, 0.47, 0.13, 1.05, 0.5, 6]]) {
     const cen = Wp(cs, cy, h); const nf = V(0.5, 0.3, 0.8).normalize(); const u0 = V(0, 1, 0).cross(nf).normalize(), v0 = nf.clone().cross(u0);
     const u = u0.clone().multiplyScalar(Math.cos(rot)).add(v0.clone().multiplyScalar(Math.sin(rot))), w = nf.clone().cross(u);
     const R0 = 0.085 * esc, f1 = rnd() * TAU, f2 = rnd() * TAU;
-    const raio = (t) => R0 * (1 + 0.22 * Math.sin(3 * t + f1) + 0.1 * Math.sin(5 * t + f2));
+    const raio = (t) => R0 * (1 + 0.2 * Math.sin(3 * t + f1) + 0.12 * Math.sin(5 * t + f2) + 0.08 * Math.sin(9 * t + f1 * 2));
     const contorno = []; for (let k = 0; k < 64; k++) { const t = k / 64 * TAU; contorno.push(new THREE.Vector2(Math.cos(t) * raio(t), Math.sin(t) * raio(t) * 0.85)); }
     const forma = new THREE.Shape(contorno); const furos = [];
-    for (let tent = 0; tent < 60 && furos.length < nf0; tent++) { const t = rnd() * TAU, rr = Math.sqrt(rnd()) * 0.62 * R0, cx = Math.cos(t) * rr, cy2 = Math.sin(t) * rr * 0.85, a = R0 * (0.13 + 0.12 * rnd()), b = a * (0.6 + 0.4 * rnd());
-      if (furos.some(([x, y, aa]) => Math.hypot(x - cx, y - cy2) < aa + a + 0.022) || Math.hypot(cx, cy2) + a > 0.8 * raio(t)) continue; furos.push([cx, cy2, a, b]);
+    for (let tent = 0; tent < 60 && furos.length < nf0; tent++) { const t = rnd() * TAU, rr = Math.sqrt(rnd()) * 0.62 * R0, cx = Math.cos(t) * rr, cy2 = Math.sin(t) * rr * 0.85, a = R0 * (0.1 + 0.1 * rnd()), b = a * (0.6 + 0.4 * rnd());
+      if (furos.some(([x, y, aa]) => Math.hypot(x - cx, y - cy2) < aa + a + 0.016) || Math.hypot(cx, cy2) + a > 0.86 * raio(t)) continue; furos.push([cx, cy2, a, b]);
       const fu = new THREE.Path(); fu.absellipse(cx, cy2, a, b, 0, TAU, true, rnd() * 3); forma.holes.push(fu); }
     const geo = suave(new THREE.ExtrudeGeometry(forma, { depth: 0.006, bevelEnabled: true, bevelThickness: 0.013, bevelSize: 0.012, bevelSegments: 4, curveSegments: 10 }));
     const m = malha(geo, magenta); m.position.copy(cen); m.quaternion.setFromRotationMatrix(new THREE.Matrix4().makeBasis(u, w, nf)); C.add(m);
     const P = (a, b) => cen.clone().add(u.clone().multiplyScalar(a)).add(w.clone().multiplyScalar(b));
-    for (let k = 0; k < 4; k++) { const t = (k + 0.3 + rnd() * 0.4) / 4 * TAU; const r0 = raio(t) * 0.85; const p0 = P(Math.cos(t) * r0, Math.sin(t) * r0 * 0.85); const L = 0.05 + rnd() * 0.06;
+    for (let k = 0; k < 4; k++) { const t = (k + 0.3 + rnd() * 0.4) / 4 * TAU; const r0 = raio(t) * 0.85; const p0 = P(Math.cos(t) * r0, Math.sin(t) * r0 * 0.85); const L = 0.025 + rnd() * 0.04;
       const p1 = P(Math.cos(t + (rnd() - 0.5) * 0.6) * (r0 + L), Math.sin(t + (rnd() - 0.5) * 0.6) * (r0 + L) * 0.85).add(nf.clone().multiplyScalar((rnd() - 0.3) * 0.03));
       curS.push([new THREE.CatmullRomCurve3([p0, p0.clone().lerp(p1, 0.5).add(nf.clone().multiplyScalar(0.008)), p1]), false, 4]); bolhas.push(p1); }
   }
-  C.add(malha(tubos(curS, 0.012, 4, 10), magenta));
-  for (const p of bolhas) { const b = esfera(0.019, magenta, 16); b.position.copy(p); C.add(b); }
+  C.add(malha(tubos(curS, 0.014, 4, 10), magenta));
+  for (const p of bolhas) { const b = esfera(0.017, magenta, 16); b.position.copy(p); C.add(b); }
 
   rnd = semente(51);
   // ---- centríolos: funil de rede ciano na parede (canto inferior esquerdo) com feixes dourados
@@ -358,7 +360,7 @@ export default function celula() {
   const funilGeo = new THREE.LatheGeometry(FUN_PERFIL.map(([r, y]) => new THREE.Vector2(r, y)), 72);
   const tFun = textura('funil'); tFun.wrapS = THREE.RepeatWrapping;
   const funil = malha(funilGeo, new THREE.MeshStandardMaterial({ map: tFun, alphaTest: 0.5, side: THREE.DoubleSide, roughness: 0.32 }));
-  const fundoF = malha(new THREE.LatheGeometry(FUN_PERFIL.map(([r, y]) => new THREE.Vector2(r * 1.07 + 0.004, y - 0.004)), 72), plast(0x0e2c38, { rug: 0.8, coat: 0, lado: THREE.DoubleSide }), false);
+  const fundoF = malha(new THREE.LatheGeometry(FUN_PERFIL.map(([r, y]) => new THREE.Vector2(r * (1.08 + y * 0.25) + 0.002, y - 0.006)).slice(0, -1), 72), plast(0x0e2c38, { rug: 0.8, coat: 0, lado: THREE.DoubleSide }), false);
   for (const m of [funil, fundoF]) { m.position.copy(FUN_M); m.quaternion.setFromUnitVectors(V(0, 1, 0), FUN_U); FUN.add(m); }
   // centríolos: dois feixes de 9 trincas de microtúbulos (anel em cata-vento), dourados; um sai do funil na diagonal, o outro aparece de ponta
   const ouro = plast(0xcf9c22, { metal: 0.3, rug: 0.34, coat: 0.6, lado: THREE.DoubleSide, emis: 0x3a2800 });

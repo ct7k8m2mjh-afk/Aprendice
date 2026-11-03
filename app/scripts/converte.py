@@ -256,7 +256,10 @@ def provas_fonte():
                 for q in p['questoes']:
                     r = res.get(q['id'])
                     if r and r.get('aprovada'):
-                        q['res'] = r['resolucao']
+                        q['res'] = dict(r['resolucao'])
+                        for k in ('quadro', 'caminhos', 'visual'):
+                            if r.get(k):
+                                q['res'][k] = r[k]
                         for k in ('materia', 'tema', 'conteudo', 'nivel', 'conceito'):
                             if r.get(k) is not None:
                                 q[k] = r[k]

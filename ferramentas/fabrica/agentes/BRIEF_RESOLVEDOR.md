@@ -16,7 +16,15 @@ de questões REAIS de provas (o aluno vê o print fiel da prova). Público: alun
    por que ela não serve, com o fato ou a conta do enunciado. Proibido "provavelmente", "não sai de conta nenhuma",
    "é distrator", origem de erro presumida. Só cite a origem do erro quando ela for verificável (ex.: "é o valor da
    reação direta: 5 − 20 = −15").
-5. **Didático e curto.** Frases de até 30 palavras. Termo técnico explicado na primeira vez (`antes.simbolos`).
+5. **O caminho mais simples, não a fórmula decorada.** Antes de escrever, pense em 2–3 maneiras de resolver (raciocínio
+   direto, estimativa, eliminação de alternativas, desenho, regra de três, propriedade, analogia). Use como resolução
+   principal a mais SIMPLES e segura para um aluno de 17 anos; registre as outras em `caminhos`.
+6. **Visual quando ajuda a entender** (`visual`): decida se uma animação/visual é cabível e necessária para entender
+   (ex.: ciclo, fluxo, gráfico que muda, transformação de figura). Se não ajudar, `cabe: false` e diga por quê.
+7. **Matemática: a conta é animada, linha por linha** (`quadro`, OBRIGATÓRIO em Matemática e em toda questão com conta
+   — Física, Química): escreva a conta como o aluno escreveria no caderno, uma linha por vez, cada linha com uma nota
+   curta do que foi feito. O app mostra as linhas aparecendo em sequência para o aluno copiar e reproduzir.
+8. **Didático e curto.** Frases de até 30 palavras. Termo técnico explicado na primeira vez (`antes.simbolos`).
    A `pista` ajuda a pensar e NÃO entrega a resposta nem cita a letra.
 
 ## Formato (JSON, um objeto por questão)
@@ -41,6 +49,13 @@ de questões REAIS de provas (o aluno vê o print fiel da prova). Público: alun
     "alerta": "",                          // só se o enunciado tiver erro/ambiguidade real; senão vazio
     "essencial": { "pede": "o que a questão pede", "chave": "a ideia que resolve", "cuidado": "onde se erra" }
   },
+  "caminhos": [ { "nome": "eliminação", "ideia": "outra maneira de chegar à resposta, em 1–2 frases" } ],
+  "quadro": [                            // a conta no caderno (obrigatório em Matemática e em questões com conta)
+    { "linha": "2x + 3 = 11", "nota": "o que o enunciado diz" },
+    { "linha": "2x = 11 − 3", "nota": "passe o 3 para o outro lado, trocando o sinal", "destaque": "− 3" },
+    { "linha": "x = 4", "nota": "divida por 2" }
+  ],
+  "visual": { "cabe": false, "porque": "…", "tipo": "nenhum|diagrama|grafico|fluxo|figura|linha-do-tempo", "roteiro": "se cabe: o que aparece, quadro a quadro" },
   "fontes": []                           // URLs consultadas para fatos (vazio se tudo vem da questão)
 }
 ```

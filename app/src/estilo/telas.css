@@ -753,3 +753,25 @@ kbd { font: 600 12.5px var(--fonte); border: 1px solid var(--borda2); border-bot
 .linha-mat .icone3d { width: 64px; height: 64px; }
 .capa-ilu.icone3d { width: 220px; height: 200px; }
 @media (max-width: 760px) { .ih-arte .icone3d { width: 130px; height: 112px; } .mat-cartao .icone3d { width: 90px; height: 80px; } }
+
+/* conta no caderno, linha por linha */
+.quadro { margin: 16px 0; border: 1px solid var(--cad-borda); border-radius: 14px; background: var(--cad-papel); overflow: hidden; }
+.quadro-cab { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; padding: 10px 14px; border-bottom: 1px solid var(--cad-borda); }
+.quadro-cab h3 { font-size: 16px; margin: 0; color: var(--cad-tinta); }
+.quadro-btns { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+.quadro-folha { list-style: none; margin: 0; padding: 10px 16px 14px 46px; min-height: 64px; position: relative;
+  background-image: linear-gradient(to bottom, transparent 39px, color-mix(in srgb, var(--cad-tinta) 14%, transparent) 40px); background-size: 100% 40px; }
+.quadro-folha::before { content: ''; position: absolute; top: 0; bottom: 0; left: 34px; width: 1.5px; background: color-mix(in srgb, var(--cad-caneta) 45%, transparent); }
+.quadro-folha li { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; min-height: 40px; padding-top: 4px; }
+.q-linha { font-family: var(--mao); font-size: 26px; line-height: 1.25; color: var(--cad-tinta); }
+.q-linha mark { background: none; color: var(--cad-caneta); text-decoration: underline 2px; text-underline-offset: 4px; }
+.q-nota { font-size: 14px; color: var(--lapis); }
+.quadro-folha li.nova .q-linha { animation: escreve .9s steps(24, end) both; clip-path: inset(0 100% 0 0); }
+.quadro-folha li.nova .q-nota { animation: aparece .4s .8s both; }
+@keyframes escreve { to { clip-path: inset(0 0 0 0); } }
+@keyframes aparece { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+.quadro-vazio { font-size: 15px; color: var(--lapis); font-family: inherit; }
+.res-caminhos { margin: 14px 0; }
+.res-caminhos ul { list-style: none; padding: 0; margin: 8px 0 0; display: grid; gap: 8px; }
+.res-caminhos li { display: grid; gap: 2px; padding: 10px 12px; border: 1px solid var(--linha); border-radius: 10px; }
+@media (prefers-reduced-motion: reduce) { .quadro-folha li.nova .q-linha, .quadro-folha li.nova .q-nota { animation: none; clip-path: none; } }
