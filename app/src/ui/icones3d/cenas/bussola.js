@@ -12,40 +12,135 @@ import { THREE, V, TAU, plast, metal, semente, malha, esfera } from '../base.js'
 const suave = (a, b, x) => { const k = Math.min(1, Math.max(0, (x - a) / (b - a))); return k * k * (3 - 2 * k); };
 
 // ---------- texturas
-function texMapa() {
-  const W = 768, H = 480, c = document.createElement('canvas'); c.width = W; c.height = H; const x = c.getContext('2d');
-  // relevo: ruído de valor suave em 4 oitavas
-  const rnd = semente(7), N = 17, grade = []; for (let i = 0; i < N * N; i++) grade.push(rnd());
-  const vr = (u, v) => { const i = Math.floor(u), j = Math.floor(v), fu = u - i, fv = v - j; const q = (a, b) => grade[((a % N + N) % N) + ((b % N + N) % N) * N];
-    const su = fu * fu * (3 - 2 * fu), sv = fv * fv * (3 - 2 * fv); return (q(i, j) * (1 - su) + q(i + 1, j) * su) * (1 - sv) + (q(i, j + 1) * (1 - su) + q(i + 1, j + 1) * su) * sv; };
-  const rio = (py) => 0.4 * W + (py / H) * 0.36 * W + Math.sin(py / H * 7.5) * 0.06 * W; // eixo do rio (desce do alto ao canto inferior direito)
-  const im = x.createImageData(W, H), d = im.data;
-  const cores = [[22, 132, 40], [52, 160, 30], [112, 190, 24], [196, 206, 24], [242, 198, 22], [236, 150, 30]];
-  for (let py = 0; py < H; py++) for (let px = 0; px < W; px++) {
-    let u = px / W * 7, v = py / H * 4.5;
-    const wu = vr(u * 0.7 + 3, v * 0.7) * 1.2, wv = vr(u * 0.7, v * 0.7 + 5) * 1.2; u += wu; v += wv; // relevo orgânico
-    let h = vr(u, v) * 0.5 + vr(u * 2.1, v * 2.1) * 0.28 + vr(u * 4.3, v * 4.3) * 0.14 + vr(u * 9, v * 9) * 0.08;
-    const dr = Math.abs(px - rio(py)) / W; h = h * (0.5 + 0.5 * Math.min(1, dr * 3)) + 0.04;
-    const f = Math.min(0.999, Math.max(0, (h - 0.1) * 1.6)) * (cores.length - 1), k = Math.floor(f), m = f - k;
-    const a = cores[k], b = cores[Math.min(cores.length - 1, k + 1)];
-    const cont = (h * 30) % 1, linha = cont < 0.08 ? 0.66 : 1; // curvas de nível
-    const o = (py * W + px) * 4; d[o] = (a[0] + (b[0] - a[0]) * m) * linha; d[o + 1] = (a[1] + (b[1] - a[1]) * m) * linha; d[o + 2] = (a[2] + (b[2] - a[2]) * m) * linha; d[o + 3] = 255;
+// Mapa topográfico procedural em alta resolução (2048 px):
+//  relevo suave (ruído com distorção de domínio) rebaixado ao longo dos rios -> quantizado em faixas (curvas de nível)
+//  -> cor hipsométrica por faixa (verde escuro nas baixadas, verde-claro, amarelo, laranja nas partes altas)
+//  -> degraus suaves entre faixas sombreados com luz do alto à esquerda -> rios largos, sinuosos e ramificados,
+//  rebaixados, com margem azul-clara. O mesmo campo de altura vira o bumpMap (os terraços leem em 3D).
+const TW = 2048, TH = 1356, MARG = 0.042; // margem branca do papel (fração da largura)
+function hash(i, j) { const s = Math.sin(i * 127.1 + j * 311.7) * 43758.5453; return s - Math.floor(s); }
+function vruido(u, v) {
+  const i = Math.floor(u), j = Math.floor(v), fu = u - i, fv = v - j, su = fu * fu * (3 - 2 * fu), sv = fv * fv * (3 - 2 * fv);
+  const a = hash(i, j), b = hash(i + 1, j), c = hash(i, j + 1), d = hash(i + 1, j + 1);
+  return (a + (b - a) * su) * (1 - sv) + (c + (d - c) * su) * sv;
+}
+// rios: pontos de controle em fração da folha (x da esquerda, y do alto), largura em fração da largura
+const RIOS = [
+  { w: 0.046, p: [[0.55, -0.04], [0.575, 0.1], [0.615, 0.22], [0.575, 0.34], [0.525, 0.45], [0.575, 0.57], [0.655, 0.65], [0.625, 0.78], [0.675, 0.9], [0.66, 1.05]], semente: 1 },
+  { w: 0.032, p: [[0.535, 0.44], [0.47, 0.37], [0.425, 0.25], [0.36, 0.17], [0.3, 0.06], [0.235, -0.04]], semente: 2, afina: 0.3 },
+  { w: 0.024, p: [[0.61, 0.61], [0.715, 0.555], [0.8, 0.47], [0.875, 0.36], [0.95, 0.3], [1.05, 0.26]], semente: 3, afina: 0.35 },
+  { w: 0.016, p: [[0.37, 0.18], [0.27, 0.235], [0.16, 0.205], [0.07, 0.27], [-0.05, 0.24]], semente: 4, afina: 0.3 },
+  { w: 0.018, p: [[0.635, 0.77], [0.555, 0.84], [0.48, 0.93], [0.41, 1.05]], semente: 5, afina: 0.3 },
+  { w: 0.015, p: [[0.6, 0.2], [0.69, 0.15], [0.79, 0.115], [0.885, 0.045], [0.96, -0.04]], semente: 6, afina: 0.35 },
+  { w: 0.012, p: [[0.36, 0.17], [0.33, 0.33], [0.24, 0.42], [0.2, 0.55]], semente: 7, afina: 0.45 },
+];
+function amostraRio(r) { // Catmull-Rom pelos pontos + meandros perpendiculares + largura variável
+  const P = r.p.map(([x, y]) => [x * TW, y * TH]), out = [];
+  const n = P.length - 1, PASSOS = 60, s0 = r.semente * 3.7;
+  for (let i = 0; i < n; i++) for (let k = 0; k < PASSOS; k++) {
+    const t = k / PASSOS, p0 = P[Math.max(0, i - 1)], p1 = P[i], p2 = P[i + 1], p3 = P[Math.min(n, i + 2)];
+    const cr = (a, b, c, d) => 0.5 * (2 * b + (-a + c) * t + (2 * a - 5 * b + 4 * c - d) * t * t + (-a + 3 * b - 3 * c + d) * t * t * t);
+    out.push([cr(p0[0], p1[0], p2[0], p3[0]), cr(p0[1], p1[1], p2[1], p3[1])]);
   }
-  x.putImageData(im, 0, 0);
-  // rio principal (meandros) com margem clara e afluentes
-  const tracar = (pts, w, cor) => { x.strokeStyle = cor; x.lineWidth = w; x.lineCap = 'round'; x.lineJoin = 'round'; x.beginPath(); x.moveTo(pts[0][0], pts[0][1]); for (let i = 1; i < pts.length; i++) x.lineTo(pts[i][0], pts[i][1]); x.stroke(); };
-  const rp = []; for (let py = -10; py <= H + 10; py += 5) rp.push([rio(py) + Math.sin(py * 0.08) * 9, py]);
-  const af = [
-    [[rio(120), 120], [250, 100], [170, 140], [90, 120], [-10, 150]],
-    [[rio(250), 250], [200, 290], [120, 260], [40, 300]],
-    [[rio(90), 90], [450, 70], [560, 40], [640, -10]],
-    [[rio(300), 300], [560, 270], [660, 220], [780, 210]],
-  ];
-  for (const [w, cor] of [[40, '#a6dcf6'], [27, '#1d7fe2'], [9, '#55b0f2']]) tracar(rp, w, cor);
-  for (const r of af) { tracar(r, 15, '#a6dcf6'); tracar(r, 8, '#1d7fe2'); }
-  // margem branca do papel
-  x.strokeStyle = '#f7f5ee'; x.lineWidth = 38; x.strokeRect(0, 0, W, H);
-  const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 4; return t;
+  out.push(P[n]);
+  const res = []; let s = 0;
+  for (let i = 0; i < out.length; i++) {
+    const a = out[Math.max(0, i - 1)], b = out[Math.min(out.length - 1, i + 1)];
+    let tx = b[0] - a[0], ty = b[1] - a[1]; const L = Math.hypot(tx, ty) || 1; tx /= L; ty /= L;
+    if (i) s += Math.hypot(out[i][0] - out[i - 1][0], out[i][1] - out[i - 1][1]);
+    const q = s / TW, fim = i / (out.length - 1);
+    const amp = r.w * TW * 0.55 * Math.min(1, fim * 6); // a junção com o rio-mãe fica no lugar
+    const off = amp * (Math.sin(q * 38 + s0) * 0.75 + Math.sin(q * 83 + s0 * 2.1) * 0.35);
+    const w = r.w * TW * (1 + 0.16 * Math.sin(q * 29 + s0 * 1.7)) * (1 - (r.afina || 0) * fim);
+    res.push([out[i][0] - ty * off, out[i][1] + tx * off, w]);
+  }
+  return res;
+}
+function tracaRios(x, rios, larg, cor) {
+  x.strokeStyle = cor; x.lineCap = 'round'; x.lineJoin = 'round';
+  for (const r of rios) for (let i = 1; i < r.length; i++) {
+    x.lineWidth = larg(r[i][2]); x.beginPath(); x.moveTo(r[i - 1][0], r[i - 1][1]); x.lineTo(r[i][0], r[i][1]); x.stroke();
+  }
+}
+function canal(c) { const d = c.getContext('2d').getImageData(0, 0, TW, TH).data, o = new Float32Array(TW * TH); for (let i = 0; i < o.length; i++) o[i] = d[i * 4] / 255; return o; }
+function telaRios(rios, larg, blur) {
+  const c = document.createElement('canvas'); c.width = TW; c.height = TH; const x = c.getContext('2d');
+  x.fillStyle = '#000'; x.fillRect(0, 0, TW, TH);
+  if (blur) { const c2 = document.createElement('canvas'); c2.width = TW; c2.height = TH; tracaRios(c2.getContext('2d'), rios, larg, '#fff'); x.filter = `blur(${blur}px)`; x.drawImage(c2, 0, 0); x.filter = 'none'; }
+  else tracaRios(x, rios, larg, '#fff');
+  return canal(c);
+}
+// cores hipsométricas por nível (0 = baixada, 1 = topo)
+const PALETA = [[0, [58, 138, 56]], [0.16, [86, 160, 58]], [0.3, [118, 178, 56]], [0.42, [150, 194, 64]], [0.52, [188, 204, 72]],
+  [0.62, [226, 210, 86]], [0.72, [240, 204, 88]], [0.82, [242, 186, 78]], [0.92, [236, 160, 66]], [1, [226, 136, 58]]];
+function corNivel(t) {
+  for (let i = 1; i < PALETA.length; i++) if (t <= PALETA[i][0]) {
+    const [ta, a] = PALETA[i - 1], [tb, b] = PALETA[i], m = (t - ta) / (tb - ta);
+    return [a[0] + (b[0] - a[0]) * m, a[1] + (b[1] - a[1]) * m, a[2] + (b[2] - a[2]) * m];
+  }
+  return PALETA[PALETA.length - 1][1];
+}
+function texMapa() {
+  const rios = RIOS.map(amostraRio);
+  const mRio = telaRios(rios, (w) => w, 1.2);                 // leito (com antisserrilhado)
+  const mFundo = telaRios(rios, (w) => w * 0.55, 0.18 * TW * 0.046); // profundidade: 0 na margem, 1 no meio
+  const mVale = telaRios(rios, (w) => w * 3.2, 90);            // vale largo: o relevo desce até o rio
+  const NB = 17, ST = 3.2, PROF = 7; // nº de faixas, altura do degrau e fundura do rio (em px, para o sombreado)
+  const hN = new Float32Array(TW * TH), alt = new Float32Array(TW * TH);
+  const esc = 5.2 / TW;
+  for (let py = 0; py < TH; py++) for (let px = 0; px < TW; px++) {
+    let u = px * esc, v = py * esc;
+    const wu = vruido(u * 0.8 + 3.1, v * 0.8 + 1.7), wv = vruido(u * 0.8 + 7.3, v * 0.8 + 5.2); u += wu * 1.3; v += wv * 1.3;
+    let h = vruido(u, v) * 0.52 + vruido(u * 2.03 + 11, v * 2.03) * 0.27 + vruido(u * 4.1, v * 4.1 + 23) * 0.13;
+    h += (vruido(u * 9.3 + 5, v * 9.3) - 0.5) * 0.09 + (vruido(u * 19 + 2, v * 19 + 9) - 0.5) * 0.035; // contornos recortados
+    const i = py * TW + px, vale = mVale[i];
+    h = (h - 0.18) * 1.55 * (1 - 0.62 * Math.min(1, vale * 1.6)) + 0.04 + 0.05 * (1 - vale);
+    hN[i] = Math.min(0.999, Math.max(0, h));
+  }
+  // terraços: altura constante na faixa, subida suave só junto à borda de cima (degrau macio)
+  for (let i = 0; i < hN.length; i++) {
+    const f = hN[i] * NB, k = Math.floor(f), m = f - k, e = Math.min(1, Math.max(0, (m - 0.78) / 0.22));
+    alt[i] = (k + e * e * (3 - 2 * e)) * ST - mRio[i] * (2 + PROF * mFundo[i]);
+  }
+  const c = document.createElement('canvas'); c.width = TW; c.height = TH; const x = c.getContext('2d');
+  const im = x.createImageData(TW, TH), d = im.data;
+  const cb = document.createElement('canvas'); cb.width = TW; cb.height = TH; const xb = cb.getContext('2d');
+  const ib = xb.createImageData(TW, TH), db = ib.data;
+  const L = [-0.55, -0.68, 0.9], Ln = Math.hypot(...L); L[0] /= Ln; L[1] /= Ln; L[2] /= Ln;
+  const mx = MARG * TW, papel = [248, 246, 240];
+  const cAgua = [28, 158, 226], cMargem = [118, 206, 246], cFundo = [22, 140, 214];
+  for (let py = 0; py < TH; py++) for (let px = 0; px < TW; px++) {
+    const i = py * TW + px, o = i * 4;
+    const xa = Math.max(0, px - 1), xc = Math.min(TW - 1, px + 1), ya = Math.max(0, py - 1), yc = Math.min(TH - 1, py + 1);
+    const gx = (alt[py * TW + xc] - alt[py * TW + xa]) / 2, gy = (alt[yc * TW + px] - alt[ya * TW + px]) / 2;
+    const nn = Math.hypot(gx, gy, 1), luz = (-gx * L[0] - gy * L[1] + L[2]) / nn / L[2];
+    const sh = Math.min(1.3, Math.max(0.55, 0.35 + 0.65 * luz));
+    const f = hN[i] * NB, k = Math.floor(f), m = f - k;
+    let cor = corNivel((k + 0.5) / NB);
+    const clr = 0.96 + 0.06 * m; // leve gradiente dentro da faixa
+    const linha = 1 - 0.16 * Math.max(0, 1 - Math.abs(m - 0.86) / 0.1); // traço fino da curva de nível
+    let r = cor[0] * clr * linha, g = cor[1] * clr * linha, b = cor[2] * clr * linha;
+    const a = mRio[i];
+    if (a > 0) { // água: margem clara, meio vivo, faixa mais funda
+      const fu = Math.min(1, mFundo[i] * 1.6), t1 = Math.min(1, fu * 2.2);
+      const wr = cMargem[0] + (cAgua[0] - cMargem[0]) * t1 + (cFundo[0] - cAgua[0]) * Math.max(0, fu - 0.6);
+      const wg = cMargem[1] + (cAgua[1] - cMargem[1]) * t1 + (cFundo[1] - cAgua[1]) * Math.max(0, fu - 0.6);
+      const wb = cMargem[2] + (cAgua[2] - cMargem[2]) * t1 + (cFundo[2] - cAgua[2]) * Math.max(0, fu - 0.6);
+      r += (wr - r) * a; g += (wg - g) * a; b += (wb - b) * a;
+    }
+    r *= sh; g *= sh; b *= sh;
+    // papel: margem branca (borda interna levemente sombreada)
+    const db0 = Math.min(px, py, TW - 1 - px, TH - 1 - py);
+    let gb = Math.min(255, Math.max(0, 70 + alt[i] * 2.4));
+    if (db0 < mx) { r = papel[0]; g = papel[1]; b = papel[2]; gb = 40; }
+    else if (db0 < mx + 6) { const q = 0.9 + 0.1 * (db0 - mx) / 6; r *= q; g *= q; b *= q; }
+    d[o] = r; d[o + 1] = g; d[o + 2] = b; d[o + 3] = 255;
+    db[o] = db[o + 1] = db[o + 2] = gb; db[o + 3] = 255;
+  }
+  x.putImageData(im, 0, 0); xb.putImageData(ib, 0, 0);
+  const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8;
+  const tb = new THREE.CanvasTexture(cb); tb.anisotropy = 8;
+  return { cor: t, relevo: tb };
 }
 function texFace() {
   const c = document.createElement('canvas'); c.width = c.height = 512; const x = c.getContext('2d');
@@ -84,7 +179,8 @@ export default function bussola() {
   for (let i = 0; i < pos.count; i++) { const u = pos.getX(i), v = pos.getY(i); pos.setZ(i, dobra(u) + 0.03 * Math.sin((v / MH + 0.5) * Math.PI) * Math.cos(u * 2)); }
   geoM.computeVertexNormals();
   const mapa = new THREE.Group(); mapa.rotation.x = -MAPA_INC; mapa.position.set(0.12, Math.sin(Math.PI / 2 - MAPA_INC) * MH / 2 + 0.02, -0.45 - Math.cos(Math.PI / 2 - MAPA_INC) * MH / 2);
-  mapa.add(malha(geoM, plast(0xa8a8a8, { map: texMapa(), rug: 0.9, coat: 0, metal: 0 })));
+  const tm = texMapa();
+  mapa.add(malha(geoM, plast(0xb4b4b4, { map: tm.cor, bump: tm.relevo, bumpE: 1.2, rug: 0.82, coat: 0, metal: 0 })));
   mapa.add(malha(geoM, plast(0xf4f2ea, { rug: 0.8, coat: 0, lado: THREE.BackSide })));
   g.add(mapa);
 
