@@ -1,0 +1,22 @@
+# Pedidos do dono (registro permanente)
+
+Tudo o que o dono envia (texto, imagens, pranchas) fica anotado aqui, com data e o que foi feito.
+Imagem enviada nunca é "por enviar": tem uso, e o uso fica registrado.
+
+## Imagens recebidas
+| Data | O que é | Onde está no projeto | Uso |
+|---|---|---|---|
+| 02/11 | Prancha de 12 ícones de Física (um por tema F01–F12) | app/conteudo-fonte/materias/ic/pranchas/fisica.webp | ícones dos temas de Física e ícone principal |
+| 02/11 | Prancha de 12 ícones de Geografia (G01–G12) | app/conteudo-fonte/materias/ic/pranchas/geografia.webp | ícones dos temas de Geografia e ícone principal |
+| 03/11 | Pranchas de História, Filosofia, Sociologia, Inglês | app/conteudo-fonte/materias/ic/pranchas/ | ícones dos temas e principais |
+| 03/11 | Referência do menu lateral | docs/referencias/menu-lateral.webp | ícones de linha verdes do menu |
+| 03/11 | Referência da tela inicial | docs/referencias/tela-inicial.webp | nova tela inicial |
+
+## Regras visuais ditas pelo dono
+- Ícones 3D: luz de FRENTE e de cima; o fundo branco é o chão; a sombra cai para TRÁS do objeto (nunca na frente). A sombra serve para dar contraste e destacar o ícone.
+- Resolução máxima: nada borrado em tela cheia. Recorte nunca pode cortar o objeto.
+- Sem fundo branco em volta do ícone recortado.
+- Cores das matérias bem distintas entre si (como um caderno de cada cor): nenhuma matéria com cor parecida com outra.
+- Prioridade futura: construir os ícones (3D/vetor em camadas) em vez de colar PNG, para poder animar (ex.: expandir ao passar o mouse).
+- Redação não é matéria do app (removida em 03/11).
+- Formas decorativas (onda verde do menu) não podem aparecer cortadas.

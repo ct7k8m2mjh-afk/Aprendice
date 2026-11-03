@@ -56,22 +56,19 @@ export function FaixaTemas({ mc, s, atual }: { mc: MateriaCarregada; s: EstadoMa
 function EmPreparacao({ m }: { m: MateriaId }) {
   const info = infoMateria(m)!;
   useTitulo(info.nome);
-  const red = m === 'red';
   return (
     <div className={`conteudo estreito m-${m}`}>
       <div className="titulo-pag"><div><h1 className="tit-mat">{info.nome}</h1><p className="sub">{info.descricao}</p></div></div>
       <section className="bloco preparo">
-        <span className="preparo-ic" aria-hidden><Icone nome={red ? 'caneta' : 'camadas'} tam={28} /></span>
-        <h2>{red ? 'Redação em preparação' : 'Questões em preparação'}</h2>
+        <span className="preparo-ic" aria-hidden><Icone nome="camadas" tam={28} /></span>
+        <h2>Questões em preparação</h2>
         <p className="miolo">
-          {red
-            ? 'Aqui entram as propostas reais de redação do ENEM e dos vestibulares de Medicina, com os textos de apoio originais, os critérios de correção de cada banca e a correção da sua redação.'
-            : `As questões de ${info.nome} chegam com a importação das provas completas: cada uma com o print fiel da prova, a fonte (prova, ano, número, link) e o gabarito oficial. Nenhuma questão é criada ou redigitada.`}
+          {`As questões de ${info.nome} chegam com a importação das provas completas: cada uma com o print fiel da prova, a fonte (prova, ano, número, link) e o gabarito oficial. Nenhuma questão é criada ou redigitada.`}
         </p>
         <ol className="preparo-passos">
           <li><b>Provas completas</b><span>ENEM e vestibulares de Medicina de todas as regiões, baixados da fonte oficial.</span></li>
           <li><b>Gabarito publicado</b><span>Sem gabarito oficial ou resolução reconhecida, a questão não entra.</span></li>
-          <li><b>{red ? 'Critérios da banca' : 'Resolução revisada'}</b><span>{red ? 'Grade de correção de cada prova, com fonte.' : 'Revisão em lentes: fatos contra a fonte, depois utilidade e estilo de prova.'}</span></li>
+          <li><b>Resolução revisada</b><span>Revisão em lentes: fatos contra a fonte, depois utilidade e estilo de prova.</span></li>
         </ol>
         <div className="preparo-acoes">
           <Link to="/provas" className="btn sec">Ver o catálogo de provas</Link>
