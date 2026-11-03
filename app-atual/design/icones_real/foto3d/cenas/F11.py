@@ -63,7 +63,7 @@ def principled(nome, hexa, rug=0.3, metal=0.0, coat=0.0, coat_rug=0.08, aniso=0.
 
 
 # corpo preto: plastico laqueado, verniz brilhante, rugosidade levemente irregular (filme impresso do rotulo)
-preto = acabamento(principled('pilha_preto', '#0b0b0d', 0.22, coat=1.0, coat_rug=0.06), 0.22, rvar=0.08, resc=9, bump=0.012, besc=420)
+preto = acabamento(principled('pilha_preto', '#030304', 0.42, coat=0.35, coat_rug=0.05, **{'Specular IOR Level': 0.3}), 0.42, rvar=0.05, resc=9, bump=0.012, besc=420)
 # faixa dourada: metal escovado (riscos horizontais), verniz por cima
 ouro = acabamento(principled('pilha_ouro', '#ffbc22', 0.22, metal=0.55, coat=0.6, coat_rug=0.1, aniso=0.5),
                   0.24, rvar=0.1, resc=6, bump=0.03, besc=40, esticar=(1, 1, 90))
@@ -74,7 +74,7 @@ anel_isol = principled('anel_isol', '#1d1d20', 0.45)
 vermelho = acabamento(principled('fio_borracha', '#c3121a', 0.3, coat=0.7, coat_rug=0.14,
                                  **{'Subsurface Weight': 0.08, 'Subsurface Radius': (1, .2, .1), 'Subsurface Scale': 0.02}),
                       0.3, rvar=0.06, resc=10, bump=0.006, besc=120)
-soq = acabamento(principled('soquete', '#62656b', 0.4, metal=0.85, coat=0.2, coat_rug=0.25, aniso=0.3), 0.4, rvar=0.05, resc=8, bump=0.004, besc=200)
+soq = acabamento(principled('soquete', '#74777d', 0.5, metal=0.55, coat=0.15, coat_rug=0.3, aniso=0.3), 0.5, rvar=0.05, resc=8, bump=0.004, besc=200)
 rosca_m = acabamento(principled('rosca', '#cfd2d6', 0.2, metal=1.0, aniso=0.4), 0.2, rvar=0.06, resc=16, bump=0.015, besc=300)
 
 
@@ -116,9 +116,13 @@ torno([(0, PH), (.245, PH), (.245, PH + .02), (.25, PH + .03), (.25, PH + .07), 
        (.16, PH + TH), (.15, PH + TH - .006), (.14, PH + TH), (.09, PH + TH), (.08, PH + TH - .006), (.07, PH + TH), (0, PH + TH)],
       prata, fechado=False, nome='pilha_tampa')
 # "+" impresso na faixa dourada e "-" branco no corpo (decalques enrolados no cilindro)
-tp = texto('+', (0, -PR, 1.79), 0.72, tinta_preta, extr=.0025, fonte=INTER)
-decalque(tp, PR + .003)
-bpy.ops.mesh.primitive_cube_add(size=1, location=(0, -PR, .62)); mb = bpy.context.object; mb.scale = (.3, .005, .07)
+# "+" negrito: duas barras de cantos arredondados (como o sinal impresso grosso da ref)
+for (sx, sz) in ((.21, .055), (.055, .21)):
+    bpy.ops.mesh.primitive_cube_add(size=1, location=(0, -PR - .003, 1.76)); bp_ = bpy.context.object
+    bp_.scale = (2 * sx, .005, 2 * sz); bp_.data.materials.append(tinta_preta)
+    bv = bp_.modifiers.new('bv', 'BEVEL'); bv.width = .025; bv.segments = 4; bv.affect = 'EDGES'
+    decalque(bp_, PR + .003)
+bpy.ops.mesh.primitive_cube_add(size=1, location=(0, -PR, .62)); mb = bpy.context.object; mb.scale = (.34, .005, .085)
 mb.data.materials.append(tinta_branca)
 bv = mb.modifiers.new('bv', 'BEVEL'); bv.width = .02; bv.segments = 4; bv.affect = 'EDGES'
 decalque(mb, PR)
@@ -168,29 +172,31 @@ rosca(.43, .04, ZR0, ZR1, .095, (LX, LY, 0), rosca_m)
 torno([(.0, ZR1 - .01), (.45, ZR1 - .01), (.465, ZR1), (.46, ZR1 + .03), (.43, ZR1 + .04), (0, ZR1 + .04)], rosca_m, loc=(LX, LY, 0), fechado=False, nome='aro')
 
 # vidro: casca fina (por fora e por dentro), formato de pera: pescoco -> globo
-RG, ZG = .86, 1.76
+RG, ZG = .84, 1.88
 ext = []
 for i in range(0, 61):
     t = i / 60
     if t < .3:
-        u = t / .3; r = .42 + .02 * u + .11 * u ** 3; z = ZR1 + .02 + .32 * u
+        u = t / .3; r = .41 + .01 * u + .16 * u ** 2.6; z = ZR1 + .02 + .42 * u
     else:
         u = (t - .3) / .7
-        ang = -math.radians(48) + u * math.radians(138)
+        ang = -math.radians(42) + u * math.radians(132)
         r = RG * math.cos(ang); z = ZG + RG * math.sin(ang)
     ext.append((max(r, 0.0), z))
 ext[-1] = (0, ZG + RG)
 # suaviza a emenda pescoco/globo
 ESP = .022
 inn = [(max(0.0, r - ESP), z - (ESP if r < .05 else 0)) for (r, z) in reversed(ext)]
-vb = bpy.data.materials.new('vidro_lamp'); vb.use_nodes = True; b = vb.node_tree.nodes['Principled BSDF']
-b.inputs['Base Color'].default_value = cor('#ffe9c2'); b.inputs['Transmission Weight'].default_value = 1.0
-b.inputs['Roughness'].default_value = 0.015; b.inputs['IOR'].default_value = 1.15
-b.inputs['Specular IOR Level'].default_value = 0.35
-b.inputs['Emission Color'].default_value = cor('#f59a1c')
-lwg = vb.node_tree.nodes.new('ShaderNodeLayerWeight'); lwg.inputs['Blend'].default_value = 0.45
-mg = vb.node_tree.nodes.new('ShaderNodeMath'); mg.operation = 'MULTIPLY_ADD'; mg.inputs[1].default_value = 1.6; mg.inputs[2].default_value = 0.15
-vb.node_tree.links.new(lwg.outputs['Facing'], mg.inputs[0]); vb.node_tree.links.new(mg.outputs[0], b.inputs['Emission Strength'])
+vb = bpy.data.materials.new('vidro_lamp'); vb.use_nodes = True; nt = vb.node_tree; b = nt.nodes['Principled BSDF']
+b.inputs['Base Color'].default_value = cor('#f29a1c'); b.inputs['Transmission Weight'].default_value = float(os.environ.get('VTR', 0.65))
+b.inputs['Roughness'].default_value = 0.02; b.inputs['IOR'].default_value = 1.2
+b.inputs['Specular IOR Level'].default_value = float(os.environ.get('VSP', 0.25))
+# emissao ambar: centro amarelo quente, bordas laranja (vidro "aceso", quase opaco)
+lwg = nt.nodes.new('ShaderNodeLayerWeight'); lwg.inputs['Blend'].default_value = 0.5
+rp = nt.nodes.new('ShaderNodeValToRGB'); E = rp.color_ramp.elements
+E[0].position = 0.0; E[0].color = cor('#cc620a'); E[1].position = 1.0; E[1].color = cor('#ffc63a')
+nt.links.new(lwg.outputs['Facing'], rp.inputs['Fac']); nt.links.new(rp.outputs['Color'], b.inputs['Emission Color'])
+b.inputs['Emission Strength'].default_value = float(os.environ.get('VEM', 0.74))
 gl = torno(ext + inn, vb, loc=(LX, LY, 0), fechado=True, nome='vidro', seg=96)
 
 # brilho interno ambar: volume emissivo com o formato interno do vidro (mais espesso no miolo = mais claro no centro)
@@ -198,7 +204,7 @@ gm = bpy.data.materials.new('brilho'); gm.use_nodes = True; nt = gm.node_tree
 for nd in list(nt.nodes):
     if nd.type != 'OUTPUT_MATERIAL': nt.nodes.remove(nd)
 outn = [nd for nd in nt.nodes if nd.type == 'OUTPUT_MATERIAL'][0]
-em = nt.nodes.new('ShaderNodeEmission'); em.inputs['Color'].default_value = cor('#ff7f0e'); em.inputs['Strength'].default_value = float(os.environ.get('GLOW', 0.8))
+em = nt.nodes.new('ShaderNodeEmission'); em.inputs['Color'].default_value = cor('#ff9a1a'); em.inputs['Strength'].default_value = float(os.environ.get('GLOW', 0.25))
 nt.links.new(em.outputs[0], outn.inputs['Volume'])
 brilho = torno([(0, ext[0][1] + .03)] + [(max(0.0, r - ESP - .006), z) for (r, z) in ext[1:-1]] + [(0, ext[-1][1] - ESP - .006)],
                gm, loc=(LX, LY, 0), fechado=False, nome='brilho', seg=64)
@@ -208,20 +214,20 @@ brilho.visible_shadow = False
 haste_m = principled('haste', '#f4efe2', 0.05, **{'Transmission Weight': 0.9, 'IOR': 1.5})
 torno([(0, ZR1 + .02), (.2, ZR1 + .02), (.17, ZR1 + .06), (.1, ZR1 + .14), (.075, ZR1 + .24), (.07, 1.4), (.085, 1.43), (.06, 1.46), (0, 1.46)],
       haste_m, loc=(LX, LY, 0), fechado=False, nome='haste')
-sup = principled('suporte', '#e8dcc4', 0.2, metal=1.0, **{'Emission Color': cor('#ffc070'), 'Emission Strength': 0.8})
-FZ = 1.84; FW = .22
+sup = principled('suporte', '#fff0d0', 0.25, metal=1.0, **{'Emission Color': cor('#fff0c8'), 'Emission Strength': 1.5})
+FZ = 1.94; FW = .3
 for s in (-1, 1):
-    tubo([(LX + s * .03, LY, 1.2), (LX + s * .04, LY, 1.45), (LX + s * .15, LY, 1.68), (LX + s * FW, LY, FZ)], .012, sup, tipo='NURBS')
+    tubo([(LX + s * .03, LY, 1.2), (LX + s * .04, LY, 1.45), (LX + s * .15, LY, 1.74), (LX + s * FW, LY, FZ)], .014, sup, tipo='NURBS')
 # fio central de apoio (gancho)
-tubo([(LX, LY, 1.45), (LX, LY, 1.75), (LX, LY - .015, FZ + .05)], .008, sup, tipo='NURBS')
-fil = emissivo('#ffe6a8', 22)
+tubo([(LX, LY, 1.45), (LX, LY, 1.82), (LX, LY - .015, FZ + .05)], .008, sup, tipo='NURBS')
+fil = emissivo('#fff6dc', 70)
 esp = []
-NV = 15; N = 15 * 24
+NV = 12; N = 12 * 24
 for i in range(N + 1):
     t = i / N; x = -FW + 2 * FW * t; a = t * 2 * math.pi * NV
     zc = FZ + .05 * math.sin(math.pi * t)              # arco suave entre os suportes
-    esp.append((LX + x, LY + .03 * math.sin(a), zc + .03 * math.cos(a)))
-tubo(esp, .009, fil, tipo='POLY', res=4)
+    esp.append((LX + x, LY + .02 * math.sin(a), zc + .02 * math.cos(a)))
+tubo(esp, .007, fil, tipo='POLY', res=4)
 # halo do filamento (calor)
 hm = bpy.data.materials.new('halo'); hm.use_nodes = True; nt = hm.node_tree
 for nd in list(nt.nodes):
@@ -238,8 +244,9 @@ nt.links.new(mx.outputs[0], outn.inputs['Surface'])
 bpy.ops.mesh.primitive_uv_sphere_add(radius=.3, location=(LX, LY, FZ + .03), segments=48, ring_count=24)
 halo = bpy.context.object; halo.data.materials.append(hm); halo.scale = (1, .45, .4); halo.visible_shadow = False
 for p in halo.data.polygons: p.use_smooth = True
+bpy.data.objects.remove(halo)
 # luz quente interna
-bpy.ops.object.light_add(type='POINT', location=(LX, LY, FZ)); Lb = bpy.context.object; Lb.data.energy = 22
+bpy.ops.object.light_add(type='POINT', location=(LX, LY, FZ)); Lb = bpy.context.object; Lb.data.energy = float(os.environ.get('LBE', 8))
 Lb.data.color = (1, .7, .32); Lb.data.shadow_soft_size = .25
 lampada = objs_novos(a1)
 
@@ -262,15 +269,20 @@ def arredonda(cantos, r, n=12):
 
 
 WR = .095
-XM = 1.85; ZT = PH + TH + .55; ZS = .25
+XM = 1.85; ZT = PH + TH + float(os.environ.get('ZTD', .4)); ZS = .25
 # sobe de DENTRO da tampa, cruza, desce e entra no costado do soquete
-cima = arredonda([(0, 0, PH + TH - .06), (0, 0, ZT), (XM, LY, ZT), (XM, LY, ZS), (LX - .55, LY, ZS)], .3)
+cima = arredonda([(0, 0, PH + TH - .015), (0, 0, ZT), (XM, LY, ZT), (XM, LY, ZS), (LX - .8, LY, ZS)], .3)
 tubo(cima, WR, vermelho, tipo='POLY', tampa=True)
 # sai do outro lado do soquete, desce ao chao, vem para a frente e volta pelo chao ate entrar na base da pilha
-YF = -.88
-baixo = arredonda([(LX + .55, LY, ZS), (LX + 1.02, LY, ZS), (LX + 1.02, LY, WR), (LX + 1.02, YF, WR), (-.05, YF, WR),
-                   (-.05, -.15, WR)], .3)
+YF = float(os.environ.get('YF', -.68))
+baixo = arredonda([(LX + .8, LY, ZS), (LX + 1.02, LY, ZS), (LX + 1.02, LY, WR), (LX + 1.02, YF, WR), (-.05, YF, WR),
+                   (-.05, -.6, WR)], .2)
 tubo(baixo, WR, vermelho, tipo='POLY', tampa=True)
+# pontas arredondadas (sem tampa chapada aparecendo quando o fio e mostrado sozinho)
+for pt in (cima[0], cima[-1], baixo[0], baixo[-1]):
+    bpy.ops.mesh.primitive_uv_sphere_add(radius=WR, location=pt, segments=32, ring_count=16)
+    e = bpy.context.object; e.data.materials.append(vermelho)
+    for p in e.data.polygons: p.use_smooth = True
 fio = objs_novos(a2)
 
 parte('pilha', pilha); parte('fio', fio); parte('lampada', lampada)

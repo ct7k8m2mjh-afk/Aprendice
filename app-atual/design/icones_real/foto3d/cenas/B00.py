@@ -12,8 +12,8 @@ cena(); random.seed(5)
 V = _m.Vector
 
 # ---------- materiais
-alveolo_m = org('#eedcb2', '#e6d2a4', cav='#8a6a38', sss=.6, rugos=.5, coat=.25, bump=.1, esc=4, ao=.05, sss_esc=.04)
-casca_m = org('#e4c690', '#ecd3a2', cav='#7a5424', sss=.6, rugos=.32, coat=.5, bump=.15, esc=5, ao=.1, cav_forca=.9, sss_esc=.04)
+alveolo_m = org('#f8f0de', '#f2e6cc', cav='#9a7a44', sss=.6, rugos=.5, coat=.25, bump=.06, esc=4, ao=.09, cav_forca=.95, sss_esc=.04)
+casca_m = org('#e8cf98', '#efd9a8', cav='#7a5424', sss=.6, rugos=.32, coat=.5, bump=.15, esc=5, ao=.1, cav_forca=.9, sss_esc=.04)
 cito_m = org('#f4efe4', '#ece4d2', cav='#b8a888', sss=.45, rugos=.6, coat=.1, bump=.15, esc=10, ao=.05, bump_esc=40)
 verm = org('#c51d1d', '#d6302a', cav='#4a0606', sss=.3, rugos=.25, coat=.75, bump=.05, esc=5)
 creme = org('#f1e6c4', '#e9dcb4', cav='#8a7a50', sss=.4, rugos=.5, coat=.2, bump=.3, esc=12)
@@ -23,7 +23,7 @@ crom_m = org('#7a3ac8', '#8a4ad6', cav='#2a0a5a', sss=.2, rugos=.3, coat=.5, bum
 rer_m = org('#d2691e', '#e07a28', cav='#5a2400', sss=.35, rugos=.38, coat=.45, bump=.25, esc=8, ao=.04)
 rede_m = org('#22a6c8', '#30b4d4', cav='#064a5a', sss=.25, rugos=.3, coat=.55, bump=0)
 golgi_m = org('#2438c4', '#3448d4', cav='#060c4a', sss=.3, rugos=.3, coat=.6, bump=.1, esc=6)
-liso_m = org('#b4264e', '#c4365e', cav='#3a0414', sss=.35, rugos=.35, coat=.45, bump=.2, esc=8)
+liso_m = org('#b8306a', '#c8407a', cav='#3a0414', sss=.35, rugos=.35, coat=.45, bump=.2, esc=8)
 mit_ext = org('#6a18a8', '#7a22b8', cav='#1e0440', sss=.3, rugos=.3, coat=.6, bump=.1)
 mit_int = org('#a24ad8', '#b25ee2', cav='#3a0a6a', sss=.35, rugos=.4, coat=.35, bump=.2, esc=8)
 crist_m = org('#5a10a0', '#6a1ab0', cav='#1a0438', sss=.2, rugos=.3, coat=.5, bump=0)
@@ -88,49 +88,55 @@ def relevo_rede(m, escala=2.4, altura=.12):
     f = nt.nodes.new('ShaderNodeMath'); f.operation = 'MULTIPLY'; f.inputs[1].default_value = .22; nt.links.new(inv.outputs[0], f.inputs[0])
     nt.links.new(f.outputs[0], mx.inputs['Factor']); nt.links.new(src, mx.inputs[6]); mx.inputs[7].default_value = cor('#d8c590')
     nt.links.new(mx.outputs[2], b.inputs['Base Color'])
-casca = ico(1.0, 7, alveolo_m, (0, 0, CZ))
-# relevo em rede: deslocamento no material (relevo_rede)
+def gn_rede(o, altura=.08, escala=2.4, largura=.14, warp=.35, warp_esc=1.6):
+    """cristas arredondadas em rede (Voronoi: distância à borda) deslocando a malha na normal; guarda 'crista' (0..1)"""
+    ng = bpy.data.node_groups.new('rede', 'GeometryNodeTree')
+    ng.interface.new_socket('Geometry', in_out='INPUT', socket_type='NodeSocketGeometry')
+    ng.interface.new_socket('Geometry', in_out='OUTPUT', socket_type='NodeSocketGeometry')
+    N = ng.nodes; Lk = ng.links
+    gi = N.new('NodeGroupInput'); go = N.new('NodeGroupOutput')
+    pos = N.new('GeometryNodeInputPosition'); nor = N.new('GeometryNodeInputNormal')
+    nz = N.new('ShaderNodeTexNoise'); nz.inputs['Scale'].default_value = warp_esc; nz.inputs['Detail'].default_value = 2
+    Lk.new(pos.outputs[0], nz.inputs['Vector'])
+    sb = N.new('ShaderNodeVectorMath'); sb.operation = 'SUBTRACT'; sb.inputs[1].default_value = (.5, .5, .5); Lk.new(nz.outputs['Color'], sb.inputs[0])
+    sc = N.new('ShaderNodeVectorMath'); sc.operation = 'SCALE'; sc.inputs['Scale'].default_value = warp; Lk.new(sb.outputs[0], sc.inputs[0])
+    ad = N.new('ShaderNodeVectorMath'); ad.operation = 'ADD'; Lk.new(pos.outputs[0], ad.inputs[0]); Lk.new(sc.outputs[0], ad.inputs[1])
+    vo = N.new('ShaderNodeTexVoronoi'); vo.feature = 'DISTANCE_TO_EDGE'; vo.inputs['Scale'].default_value = escala; vo.inputs['Randomness'].default_value = .9
+    Lk.new(ad.outputs[0], vo.inputs['Vector'])
+    # perfil arredondado (quase meia-cana): f = (1 - x^2)^0.7, x = distância/largura
+    xr = N.new('ShaderNodeMapRange'); xr.inputs['From Min'].default_value = 0; xr.inputs['From Max'].default_value = largura
+    Lk.new(vo.outputs['Distance'], xr.inputs['Value'])
+    x2 = N.new('ShaderNodeMath'); x2.operation = 'MULTIPLY'; Lk.new(xr.outputs['Result'], x2.inputs[0]); Lk.new(xr.outputs['Result'], x2.inputs[1])
+    om = N.new('ShaderNodeMath'); om.operation = 'SUBTRACT'; om.inputs[0].default_value = 1; Lk.new(x2.outputs[0], om.inputs[1])
+    mr = N.new('ShaderNodeMath'); mr.operation = 'POWER'; mr.inputs[1].default_value = .65; Lk.new(om.outputs[0], mr.inputs[0])
+    mu = N.new('ShaderNodeMath'); mu.operation = 'MULTIPLY'; mu.inputs[1].default_value = altura; Lk.new(mr.outputs[0], mu.inputs[0])
+    vs = N.new('ShaderNodeVectorMath'); vs.operation = 'SCALE'; Lk.new(nor.outputs[0], vs.inputs[0]); Lk.new(mu.outputs[0], vs.inputs['Scale'])
+    sp = N.new('GeometryNodeSetPosition'); Lk.new(gi.outputs[0], sp.inputs['Geometry']); Lk.new(vs.outputs[0], sp.inputs['Offset'])
+    st = N.new('GeometryNodeStoreNamedAttribute'); st.data_type = 'FLOAT'; st.domain = 'POINT'; st.inputs['Name'].default_value = 'crista'
+    Lk.new(sp.outputs[0], st.inputs['Geometry']); Lk.new(mr.outputs[0], st.inputs['Value'])
+    Lk.new(st.outputs[0], go.inputs[0])
+    md = o.modifiers.new('gn', 'NODES'); md.node_group = ng
+    return aplica(o)
+def tinge_crista(m, hexa, forca=1.0):
+    """mistura a cor das cristas (atributo 'crista') sobre a cor dos alvéolos"""
+    nt = m.node_tree; b = nt.nodes['Principled BSDF']; src = b.inputs['Base Color'].links[0].from_socket
+    at = nt.nodes.new('ShaderNodeAttribute'); at.attribute_name = 'crista'
+    f = nt.nodes.new('ShaderNodeMath'); f.operation = 'MULTIPLY'; f.inputs[1].default_value = forca; nt.links.new(at.outputs['Fac'], f.inputs[0])
+    mx = nt.nodes.new('ShaderNodeMix'); mx.data_type = 'RGBA'; mx.blend_type = 'MIX'; mx.clamp_factor = True
+    nt.links.new(f.outputs[0], mx.inputs['Factor']); nt.links.new(src, mx.inputs[6]); mx.inputs[7].default_value = cor(hexa)
+    nt.links.new(mx.outputs[2], b.inputs['Base Color'])
+tinge_crista(alveolo_m, '#dfbf80')
+casca = ico(1.0, 7, alveolo_m, (0, 0, CZ)); gn_rede(casca)
 dentro = ico(.9, 6, None, (0, 0, CZ)); dif(casca, dentro); corta_quarto(casca)
 forro = ico(.9, 6, cito_m, (0, 0, CZ)); dif(forro, ico(.885, 6, None, (0, 0, CZ))); corta_quarto(forro)        # face interna clara
 cito = ico(.892, 6, cito_m, (0, 0, CZ))
 bpy.ops.mesh.primitive_cube_add(size=1, location=(0, 0, 1.5)); c = bpy.context.object; c.scale = (3, 3, 3); dif(cito, c)   # chão no equador
-# cristas da membrana: rede de Voronoi esférica (geometria de verdade), tubos grossos e arredondados por cima dos alvéolos
-from scipy.spatial import SphericalVoronoi
 import numpy as _np
-_rng = _np.random.default_rng(3)
-_n = 72; _i = _np.arange(_n) + .5
-_phi = _np.arccos(1 - 2 * _i / _n); _th = _np.pi * (1 + 5 ** .5) * _i
-_pts = _np.c_[_np.cos(_th) * _np.sin(_phi), _np.sin(_th) * _np.sin(_phi), _np.cos(_phi)] + _rng.normal(0, .06, (_n, 3))
-_pts /= _np.linalg.norm(_pts, axis=1)[:, None]
-_sv = SphericalVoronoi(_pts, 1.0, _np.zeros(3)); _sv.sort_vertices_of_regions()
-def _dentro(q):   # ponto (no mundo) dentro da parte que sobra da membrana?
-    return not ((q[1] < CORTE_Y and q[2] > 0) or (q[0] > .5 and q[2] > 0)) and q[2] > -.02 - CZ * 0 - 10
-_arestas = set()
-for reg in _sv.regions:
-    for a_, b_ in zip(reg, reg[1:] + reg[:1]):
-        _arestas.add((min(a_, b_), max(a_, b_)))
 cristas = []
-RC = 1.0
-for a_, b_ in _arestas:
-    A = _sv.vertices[a_]; B = _sv.vertices[b_]
-    seg = []
-    for t in _np.linspace(0, 1, 10):
-        q = A * (1 - t) + B * t; q = q / _np.linalg.norm(q) * RC
-        w = (q[0], q[1], q[2] + CZ)
-        if _dentro(w): seg.append(w)
-        else:
-            if len(seg) > 1: cristas.append(tubo(seg, .058, casca_m, res=6))
-            seg = []
-    if len(seg) > 1: cristas.append(tubo(seg, .058, casca_m, res=6))
-for o in cristas:
-    o.data.resolution_u = 6
-for v in _sv.vertices:   # nós arredondados onde as cristas se encontram (sem emendas)
-    q = v / _np.linalg.norm(v) * RC; w = (q[0], q[1], q[2] + CZ)
-    if _dentro(w): cristas.append(esfera(w, .059, casca_m, seg=24))
 # bordas do corte: rolo grosso e arredondado acompanhando o corte (como a referência)
-RB = .95
+RB = .955
 def aro(pts):
-    cristas.append(tubo(pts, .055, casca_m, res=8))
+    cristas.append(tubo(pts, .07, casca_m, res=8))
 rz = (RB ** 2 - CZ ** 2) ** .5
 aro([(rz * math.cos(t), rz * math.sin(t), 0) for t in _np.linspace(math.asin(CORTE_Y / rz) - math.pi, math.asin(CORTE_Y / rz), 40) if rz * math.cos(t) <= .5 or True])
 ry = (RB ** 2 - CORTE_Y ** 2) ** .5
@@ -173,15 +179,36 @@ parte('nucleo', nuc)
 
 # ---------- retículo endoplasmático rugoso: sacos laranja achatados em anel ao redor do núcleo
 rer = []
-for k in range(70):
-    a = random.uniform(0, 6.283); z = random.uniform(.02, .46)
-    rr = math.sqrt(max(0, (RN + .045) ** 2 - (z - NC.z) ** 2 * .7)) + random.uniform(-.005, .015)
-    if math.cos(a) > .2 and math.sin(a) < -.2 and z > NC.z - .02: continue   # deixa à mostra o corte do núcleo
-    p = V((NC.x + rr * math.cos(a), NC.y + rr * math.sin(a), z))
-    o = elipsoide_ = esfera((0, 0, 0), 1, rer_m, seg=48)
-    o.scale = (.095, .062, .036); bpy.ops.object.transform_apply(scale=True)
-    o.rotation_euler = (random.uniform(-.25, .25), random.uniform(-.2, .2), a + 1.5708)
-    o.location = p; rer.append(o)
+def placa(r, a0, a1, e0, e1, esp=.024, m=None):
+    """cisterna achatada: casca esférica concêntrica ao núcleo (az a0..a1, elev e0..e1, graus), bordas arredondadas"""
+    nu, nv = 14, 10; vs = []; fs = []
+    for i in range(nu):
+        for j in range(nv):
+            u = i / (nu - 1); v = j / (nv - 1)
+            az = math.radians(a0 + (a1 - a0) * u); el = math.radians(e0 + (e1 - e0) * v)
+            # borda levemente ondulada (saco orgânico)
+            rr = r * (1 + .012 * math.sin(7 * u + 3 * v + r * 40))
+            vs.append(tuple(NC + V((rr * math.cos(el) * math.cos(az), rr * math.cos(el) * math.sin(az), rr * math.sin(el)))))
+    for i in range(nu - 1):
+        for j in range(nv - 1):
+            fs.append((i * nv + j, (i + 1) * nv + j, (i + 1) * nv + j + 1, i * nv + j + 1))
+    me = bpy.data.meshes.new('pl'); me.from_pydata(vs, [], fs); o = bpy.data.objects.new('pl', me); bpy.context.scene.collection.objects.link(o)
+    sd = o.modifiers.new('so', 'SOLIDIFY'); sd.thickness = esp; sd.offset = 0
+    ss = o.modifiers.new('ss', 'SUBSURF'); ss.levels = ss.render_levels = 2
+    o.data.materials.append(m or rer_m)
+    for pg in o.data.polygons: pg.use_smooth = True
+    return o
+EL0 = math.degrees(math.asin(-NC.z / RN)) - 4     # elevação onde a casca encosta no chão
+for j in range(3):
+    r = RN + .04 + j * .05
+    a = random.uniform(0, 20) + j * 19
+    while a < 360 + j * 19:
+        w = random.uniform(34, 52)
+        mid = (a + w / 2) % 360
+        frente = 255 < mid < 365 or mid < 10        # setor virado para a câmera (corte do núcleo)
+        topo = random.uniform(-6, 4) - j * 5 if frente else random.uniform(14, 34) - j * 9
+        rer.append(placa(r, a, a + w - 7, EL0 + j * 2, topo, esp=.03))
+        a += w
 parte('rer', rer)
 
 # ---------- retículo em rede (azul): arcos pelas paredes e malha no chão
@@ -223,10 +250,19 @@ parte('golgi', gol)
 
 # ---------- retículo liso (rosa-escuro): rede orgânica no alto da parede do fundo
 blobs = []
-for k in range(26):
-    p = parede(random.uniform(62, 100), random.uniform(30, 55), .04)
-    blobs.append(('CAPSULE', tuple(p), .03, (.06, .03, .03), (random.uniform(0, 3), 0, random.uniform(0, 3))))
-liso = blob(blobs, liso_m, res=.012, thr=.5)
+# rede orgânica: nós espalhados no alto da parede do fundo, ligados aos vizinhos mais próximos por tubos (metaballs)
+_rl = _np.random.default_rng(21)
+_nos = [parede(float(_rl.uniform(58, 112)), float(_rl.uniform(26, 62)), float(_rl.uniform(.05, .12))) for _ in range(34)]
+for i, p in enumerate(_nos):
+    blobs.append(('BALL', tuple(p), float(_rl.uniform(.035, .055))))
+    viz = sorted(range(len(_nos)), key=lambda k: (_nos[k] - p).length)[1:3]
+    for k in viz:
+        q = _nos[k]; d = (q - p)
+        if d.length > .2: continue
+        n = max(2, int(d.length / .02))
+        for t in range(1, n):
+            blobs.append(('BALL', tuple(p + d * (t / n)), .026))
+liso = blob(blobs, liso_m, res=.01, thr=.5)
 parte('liso', [liso])
 
 # ---------- mitocôndrias: cápsulas roxas com cristas onduladas por cima
@@ -275,4 +311,4 @@ parte('ribossomos', rib)
 
 bpy.context.view_layer.update()
 mover_tudo(-min((casca.matrix_world @ v.co).z for v in casca.data.vertices))
-render_camadas('B00', elev=36, azim=16, folga=1.04, fundo=('membrana',))
+render_camadas('B00', elev=22, azim=16, folga=.96, fundo=('membrana',))
