@@ -14,10 +14,11 @@ import urlRelevo from '../texturas/mapa-relevo.webp';
 const suave = (a, b, x) => { const k = Math.min(1, Math.max(0, (x - a) / (b - a))); return k * k * (3 - 2 * k); };
 
 // ---------- texturas
-// Mapa: pintura da própria referência aprovada (docs/referencias/icones3d/bussola.png), desdobrada painel a painel
-// numa folha plana de 2048 px (o que a bússola e o alfinete tapavam foi preenchido com terreno vizinho).
-// O relevo (bump) vem das faixas de cor: verde baixo, amarelo e laranja altos, rio rebaixado — os terraços pegam luz.
-// Gerador: app/src/ui/icones3d/texturas/desdobra-mapa.py
+// Mapa: textura criada do zero (nenhum pixel da referência), 3072 x 2034 px: relevo fractal em 10 faixas hipsométricas
+// (verde baixo -> amarelo/laranja alto), cada borda em terraço (linha escura na sombra, clara na luz, luz do alto à esquerda),
+// curvas de nível finas, rio azul largo com afluentes e braço, margem de papel branco.
+// O relevo (bump) são os mesmos degraus das faixas, com o rio rebaixado.
+// Gerador: app/src/ui/icones3d/texturas/gera-mapa.py
 // As imagens começam a carregar já na importação; quando a cena é montada depois disso, a textura nasce pronta.
 // Se a cena foi desenhada antes de a imagem chegar, pede um novo quadro ao palco (pedeRedesenho).
 const IMGS = {};
