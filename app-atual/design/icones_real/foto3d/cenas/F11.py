@@ -168,7 +168,7 @@ rosca(.43, .04, ZR0, ZR1, .095, (LX, LY, 0), rosca_m)
 torno([(.0, ZR1 - .01), (.45, ZR1 - .01), (.465, ZR1), (.46, ZR1 + .03), (.43, ZR1 + .04), (0, ZR1 + .04)], rosca_m, loc=(LX, LY, 0), fechado=False, nome='aro')
 
 # vidro: casca fina (por fora e por dentro), formato de pera: pescoco -> globo
-RG, ZG = .8, 1.7
+RG, ZG = .86, 1.76
 ext = []
 for i in range(0, 61):
     t = i / 60
@@ -185,7 +185,8 @@ ESP = .022
 inn = [(max(0.0, r - ESP), z - (ESP if r < .05 else 0)) for (r, z) in reversed(ext)]
 vb = bpy.data.materials.new('vidro_lamp'); vb.use_nodes = True; b = vb.node_tree.nodes['Principled BSDF']
 b.inputs['Base Color'].default_value = cor('#ffe9c2'); b.inputs['Transmission Weight'].default_value = 1.0
-b.inputs['Roughness'].default_value = 0.015; b.inputs['IOR'].default_value = 1.5
+b.inputs['Roughness'].default_value = 0.015; b.inputs['IOR'].default_value = 1.15
+b.inputs['Specular IOR Level'].default_value = 0.35
 b.inputs['Emission Color'].default_value = cor('#f59a1c')
 lwg = vb.node_tree.nodes.new('ShaderNodeLayerWeight'); lwg.inputs['Blend'].default_value = 0.45
 mg = vb.node_tree.nodes.new('ShaderNodeMath'); mg.operation = 'MULTIPLY_ADD'; mg.inputs[1].default_value = 1.6; mg.inputs[2].default_value = 0.15
@@ -197,7 +198,7 @@ gm = bpy.data.materials.new('brilho'); gm.use_nodes = True; nt = gm.node_tree
 for nd in list(nt.nodes):
     if nd.type != 'OUTPUT_MATERIAL': nt.nodes.remove(nd)
 outn = [nd for nd in nt.nodes if nd.type == 'OUTPUT_MATERIAL'][0]
-em = nt.nodes.new('ShaderNodeEmission'); em.inputs['Color'].default_value = cor('#ff9620'); em.inputs['Strength'].default_value = float(os.environ.get('GLOW', 0.85))
+em = nt.nodes.new('ShaderNodeEmission'); em.inputs['Color'].default_value = cor('#ff7f0e'); em.inputs['Strength'].default_value = float(os.environ.get('GLOW', 0.8))
 nt.links.new(em.outputs[0], outn.inputs['Volume'])
 brilho = torno([(0, ext[0][1] + .03)] + [(max(0.0, r - ESP - .006), z) for (r, z) in ext[1:-1]] + [(0, ext[-1][1] - ESP - .006)],
                gm, loc=(LX, LY, 0), fechado=False, nome='brilho', seg=64)
@@ -207,13 +208,13 @@ brilho.visible_shadow = False
 haste_m = principled('haste', '#f4efe2', 0.05, **{'Transmission Weight': 0.9, 'IOR': 1.5})
 torno([(0, ZR1 + .02), (.2, ZR1 + .02), (.17, ZR1 + .06), (.1, ZR1 + .14), (.075, ZR1 + .24), (.07, 1.4), (.085, 1.43), (.06, 1.46), (0, 1.46)],
       haste_m, loc=(LX, LY, 0), fechado=False, nome='haste')
-sup = principled('suporte', '#e8dcc4', 0.2, metal=1.0, **{'Emission Color': cor('#ffc070'), 'Emission Strength': 1.5})
+sup = principled('suporte', '#e8dcc4', 0.2, metal=1.0, **{'Emission Color': cor('#ffc070'), 'Emission Strength': 0.8})
 FZ = 1.84; FW = .22
 for s in (-1, 1):
     tubo([(LX + s * .03, LY, 1.2), (LX + s * .04, LY, 1.45), (LX + s * .15, LY, 1.68), (LX + s * FW, LY, FZ)], .012, sup, tipo='NURBS')
 # fio central de apoio (gancho)
 tubo([(LX, LY, 1.45), (LX, LY, 1.75), (LX, LY - .015, FZ + .05)], .008, sup, tipo='NURBS')
-fil = emissivo('#fff0cc', 45)
+fil = emissivo('#ffe6a8', 22)
 esp = []
 NV = 15; N = 15 * 24
 for i in range(N + 1):
@@ -230,12 +231,12 @@ lw = nt.nodes.new('ShaderNodeLayerWeight'); lw.inputs['Blend'].default_value = 0
 cr = nt.nodes.new('ShaderNodeValToRGB'); cr.color_ramp.elements[0].position = 0.0; cr.color_ramp.elements[0].color = (1, 1, 1, 1)
 cr.color_ramp.elements[1].position = 0.7; cr.color_ramp.elements[1].color = (0, 0, 0, 1)
 nt.links.new(lw.outputs['Facing'], cr.inputs['Fac'])
-em = nt.nodes.new('ShaderNodeEmission'); em.inputs['Color'].default_value = cor('#ffc060'); em.inputs['Strength'].default_value = 1.6
+em = nt.nodes.new('ShaderNodeEmission'); em.inputs['Color'].default_value = cor('#ff9a30'); em.inputs['Strength'].default_value = 0.25
 tr = nt.nodes.new('ShaderNodeBsdfTransparent'); mx = nt.nodes.new('ShaderNodeMixShader')
 nt.links.new(cr.outputs['Color'], mx.inputs[0]); nt.links.new(tr.outputs[0], mx.inputs[1]); nt.links.new(em.outputs[0], mx.inputs[2])
 nt.links.new(mx.outputs[0], outn.inputs['Surface'])
 bpy.ops.mesh.primitive_uv_sphere_add(radius=.3, location=(LX, LY, FZ + .03), segments=48, ring_count=24)
-halo = bpy.context.object; halo.data.materials.append(hm); halo.scale = (1, .6, .55); halo.visible_shadow = False
+halo = bpy.context.object; halo.data.materials.append(hm); halo.scale = (1, .45, .4); halo.visible_shadow = False
 for p in halo.data.polygons: p.use_smooth = True
 # luz quente interna
 bpy.ops.object.light_add(type='POINT', location=(LX, LY, FZ)); Lb = bpy.context.object; Lb.data.energy = 22
