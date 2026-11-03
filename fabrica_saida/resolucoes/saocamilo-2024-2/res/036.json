@@ -37,31 +37,31 @@
   "pista": "Quanto a PA \"anda\" do primeiro ao último termo? Esse total precisa ser dividido em saltos iguais e inteiros.",
   "passos": [
    {
-    "faz": "Aplique o termo geral.",
-    "conta": "183 = 43 + (n − 1)·r → (n − 1)·r = 140",
-    "porque": "Do 43 ao 183 a PA cresce 140.",
-    "tipo": "aplicar"
-   },
-   {
-    "faz": "Use que n é múltiplo de 9.",
-    "conta": "n = 9, 18, 27, 36, … → n − 1 = 8, 17, 26, 35, …",
-    "porque": "n − 1 tem de ser um desses valores e também dividir 140.",
-    "tipo": "interpretar"
-   },
-   {
-    "faz": "Liste os divisores de 140 e veja qual deles é n − 1.",
-    "conta": "divisores de 140: 1, 2, 4, 5, 7, 10, 14, 20, 28, 35, 70, 140; só 35 está na lista 8, 17, 26, 35, 44, …",
-    "porque": "n − 1 precisa dividir 140 (r inteiro) e deixar resto 8 na divisão por 9; só 35 cumpre as duas.",
+    "faz": "Descubra quanto a PA cresce do primeiro ao último termo.",
+    "conta": "183 − 43 = 140",
+    "porque": "Esse crescimento é feito em saltos iguais de tamanho r.",
     "tipo": "calcular"
    },
    {
-    "faz": "Calcule a razão.",
-    "conta": "r = 140 / 35 = 4 (n = 36 termos)",
-    "porque": "Com n − 1 = 35, a razão inteira é 4.",
+    "faz": "Relacione saltos e número de termos.",
+    "conta": "saltos = 140 ÷ r;  n = saltos + 1",
+    "porque": "Entre n termos há n − 1 saltos, como entre 5 dedos há 4 espaços.",
+    "tipo": "aplicar"
+   },
+   {
+    "faz": "Teste as razões das alternativas.",
+    "conta": "r = 4: 35 saltos → n = 36 (múltiplo de 9)\nr = 5: 28 → n = 29\nr = 7: 20 → n = 21\nr = 8: 17,5 (não inteiro)\nr = 9: ≈ 15,6 (não inteiro)",
+    "porque": "A razão serve só se 140 ÷ r for inteiro e n der múltiplo de 9.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Conclua.",
+    "conta": "r = 4, com 36 termos",
+    "porque": "É a única razão que cumpre as duas condições.",
     "tipo": "concluir"
    }
   ],
-  "resposta": "Alternativa A: (n − 1)·r = 140 e n múltiplo de 9 só funciona com n = 36, o que dá r = 140/35 = 4.",
+  "resposta": "Alternativa A: com r = 4 há 140 ÷ 4 = 35 saltos e 36 termos, e 36 é múltiplo de 9; as outras razões falham.",
   "checagem": "Com r = 4: a_36 = 43 + 35·4 = 43 + 140 = 183. E 36 = 9·4 é múltiplo de 9.",
   "erradas": {
    "B": "Com r = 5, n − 1 = 140/5 = 28, logo n = 29, que não é múltiplo de 9.",
@@ -73,9 +73,71 @@
   "alerta": "",
   "essencial": {
    "pede": "a razão da PA",
-   "chave": "(n − 1)·r = 140, com n múltiplo de 9 → n = 36, r = 4",
-   "cuidado": "o múltiplo de 9 é o número de termos n, não n − 1"
+   "chave": "140 ÷ r saltos; n = saltos + 1 tem de ser múltiplo de 9 → r = 4",
+   "cuidado": "o múltiplo de 9 é o número de termos n, não o número de saltos n − 1"
   }
  },
- "fontes": []
+ "caminhos": [
+  {
+   "nome": "divisores de 140",
+   "ideia": "(n − 1)·r = 140, com n − 1 em 8, 17, 26, 35, …; o único divisor de 140 nessa lista é 35, logo r = 140/35 = 4."
+  },
+  {
+   "nome": "testar o número de termos",
+   "ideia": "Com n = 9, 18, 27, 36, os saltos n − 1 são 8, 17, 26, 35. O primeiro que divide 140 é 35, e é o único (44, 53, …, 134 não dividem 140): r = 4."
+  }
+ ],
+ "quadro": [
+  {
+   "linha": "183 − 43 = 140",
+   "nota": "quanto a PA cresce do primeiro ao último termo"
+  },
+  {
+   "linha": "saltos = 140 ÷ r",
+   "nota": "cada salto vale r"
+  },
+  {
+   "linha": "r = 4 → 140 ÷ 4 = 35 saltos",
+   "nota": "teste a alternativa A"
+  },
+  {
+   "linha": "n = 35 + 1 = 36",
+   "nota": "número de termos = saltos + 1"
+  },
+  {
+   "linha": "36 = 9 × 4",
+   "nota": "múltiplo de 9: serve",
+   "destaque": "36 = 9 × 4"
+  },
+  {
+   "linha": "r = 5 → n = 29;  r = 7 → n = 21;  r = 8 e r = 9 não dividem 140",
+   "nota": "as outras razões falham"
+  }
+ ],
+ "visual": {
+  "cabe": false,
+  "porque": "A questão é de divisão e contagem; o quadro já mostra cada teste, e uma reta com 35 saltos repetiria a conta.",
+  "tipo": "nenhum",
+  "roteiro": ""
+ },
+ "fontes": [],
+ "revisao": {
+  "fatos": [
+   {
+    "campo": "caminhos[0].ideia",
+    "antes": "(n − 1)·r = 140, com n − 1 em 8, 17, 26, 35, …; o único divisor de 140 nessa lista é 35, logo r = 140/35 = 4. Era a resolução anterior.",
+    "depois": "(n − 1)·r = 140, com n − 1 em 8, 17, 26, 35, …; o único divisor de 140 nessa lista é 35, logo r = 140/35 = 4.",
+    "motivo": "Frase de bastidor (histórico da fábrica) não é conteúdo para o aluno.",
+    "fonte": ""
+   },
+   {
+    "campo": "caminhos[1].ideia",
+    "antes": "Com n = 9, 18, 27, 36, os saltos n − 1 são 8, 17, 26, 35. O primeiro que divide 140 é 35: r = 4.",
+    "depois": "Com n = 9, 18, 27, 36, os saltos n − 1 são 8, 17, 26, 35. O primeiro que divide 140 é 35, e é o único (44, 53, …, 134 não dividem 140): r = 4.",
+    "motivo": "'O primeiro' não garante unicidade; acrescentada a verificação (único divisor de 140 da forma 9k − 1 é 35).",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true
+ }
 }

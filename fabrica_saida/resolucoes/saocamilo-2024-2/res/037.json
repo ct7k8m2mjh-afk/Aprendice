@@ -11,9 +11,10 @@
  "divergencia": "",
  "resolucao": {
   "antes": {
-   "texto": "Uma reflexão (simetria em relação a uma reta) funciona como um espelho: muda a posição da figura, mas não muda distâncias nem ângulos. Por isso a figura simétrica tem a mesma área da original.",
+   "texto": "Uma reflexão (simetria em relação a uma reta) funciona como um espelho: muda a posição da figura, mas não muda distâncias nem ângulos. Por isso a figura simétrica tem a mesma área da original. Na malha, a área sai fácil cortando em triângulos com um lado sobre as linhas.",
    "formulas": [
     "Área(P'Q'R'S') = Área(PQRS)",
+    "Área do triângulo = base × altura ÷ 2",
     "Área = ½·|Σ(x_i·y_{i+1} − x_{i+1}·y_i)| (fórmula do cadarço)"
    ],
    "simbolos": [
@@ -42,29 +43,35 @@
     "tipo": "localizar"
    },
    {
-    "faz": "Envolva PQRS no retângulo de x = 4 a 8 e y = 4 a 12.",
-    "conta": "Área do retângulo = 4 × 8 = 32",
-    "porque": "Fica mais simples tirar do retângulo os pedaços que sobram.",
+    "faz": "Corte PQRS pela diagonal SQ em dois triângulos.",
+    "conta": "triângulos SPQ e SQR",
+    "porque": "Cada um tem um lado sobre uma linha da malha (SP horizontal, SR vertical); base e altura saem por contagem.",
+    "tipo": "aplicar"
+   },
+   {
+    "faz": "Calcule o triângulo SPQ.",
+    "conta": "base SP = 4; altura de Q até y = 12: 12 − 4 = 8 → 4 · 8 ÷ 2 = 16",
+    "porque": "A altura é a distância vertical de Q até a reta da base.",
     "tipo": "calcular"
    },
    {
-    "faz": "Desconte os dois triângulos que ficam fora do quadrilátero.",
-    "conta": "Triângulo P, Q, (8,4): ½·2·8 = 8; triângulo R, Q, (4,4): ½·2·1 = 1",
-    "porque": "Entre o lado PQ e a borda direita fica um triângulo; abaixo de RQ fica outro.",
+    "faz": "Calcule o triângulo SQR.",
+    "conta": "base SR = 12 − 5 = 7; altura de Q até x = 4: 6 − 4 = 2 → 7 · 2 ÷ 2 = 7",
+    "porque": "A altura é a distância horizontal de Q até a reta da base.",
     "tipo": "calcular"
    },
    {
-    "faz": "Subtraia.",
-    "conta": "32 − 8 − 1 = 23",
+    "faz": "Some.",
+    "conta": "16 + 7 = 23",
     "porque": "É a área de PQRS e, portanto, a de P'Q'R'S'.",
     "tipo": "concluir"
    }
   ],
-  "resposta": "Alternativa C: a reflexão preserva a área; PQRS ocupa 32 − 8 − 1 = 23 unidades de área.",
-  "checagem": "Pela fórmula do cadarço com P, Q, R, S: (32 − 72) + (30 − 16) + (48 − 20) + (48 − 96) = −46; metade do módulo = 23.",
+  "resposta": "Alternativa C: a reflexão conserva a área; cortando PQRS pela diagonal SQ, os triângulos têm áreas 16 e 7, total 23.",
+  "checagem": "Pelo retângulo envolvente: 4 × 8 = 32, menos os triângulos de fora, de áreas 8 e 1: 32 − 8 − 1 = 23.",
   "erradas": {
    "A": "24 não é a área: o retângulo 4 × 8 = 32 menos os triângulos de áreas 8 e 1 dá 23.",
-   "B": "23,5 não é a área: com vértices de coordenadas inteiras, a conta exata dá 32 − 8 − 1 = 23.",
+   "B": "23,5 não é a área: a conta exata dá 32 − 8 − 1 = 23.",
    "D": "22,5 não é a área: a conta exata pelo retângulo dá 23, confirmada pela fórmula do cadarço.",
    "E": "24,5 não é a área: a conta exata pelo retângulo dá 23, confirmada pela fórmula do cadarço."
   },
@@ -72,9 +79,80 @@
   "alerta": "",
   "essencial": {
    "pede": "a área do quadrilátero refletido",
-   "chave": "reflexão conserva área → calcular a área de PQRS",
-   "cuidado": "tirar os dois triângulos certos do retângulo envolvente"
+   "chave": "reflexão conserva área → calcular a área de PQRS (16 + 7 = 23)",
+   "cuidado": "usar como base um lado que está sobre a malha (SP horizontal, SR vertical)"
   }
  },
- "fontes": []
+ "caminhos": [
+  {
+   "nome": "retângulo menos sobras",
+   "ideia": "Envolva PQRS no retângulo de x = 4 a 8 e y = 4 a 12 (área 32) e tire os triângulos de fora: 8 (junto de PQ) e 1 (abaixo de RQ). 32 − 8 − 1 = 23."
+  },
+  {
+   "nome": "fórmula do cadarço",
+   "ideia": "Com P, Q, R, S em ordem: (32 − 72) + (30 − 16) + (48 − 20) + (48 − 96) = −46; metade do módulo = 23."
+  }
+ ],
+ "quadro": [
+  {
+   "linha": "Área(P'Q'R'S') = Área(PQRS)",
+   "nota": "a reflexão não muda a área"
+  },
+  {
+   "linha": "SPQ: base SP = 8 − 4 = 4",
+   "nota": "SP é horizontal, em y = 12"
+  },
+  {
+   "linha": "altura = 12 − 4 = 8",
+   "nota": "de Q (y = 4) até a reta y = 12"
+  },
+  {
+   "linha": "A₁ = 4 · 8 ÷ 2 = 16",
+   "nota": "triângulo: base × altura ÷ 2"
+  },
+  {
+   "linha": "SQR: base SR = 12 − 5 = 7",
+   "nota": "SR é vertical, em x = 4"
+  },
+  {
+   "linha": "altura = 6 − 4 = 2",
+   "nota": "de Q (x = 6) até a reta x = 4"
+  },
+  {
+   "linha": "A₂ = 7 · 2 ÷ 2 = 7",
+   "nota": "triângulo: base × altura ÷ 2"
+  },
+  {
+   "linha": "Área = 16 + 7 = 23",
+   "nota": "some os dois triângulos",
+   "destaque": "23"
+  }
+ ],
+ "visual": {
+  "cabe": true,
+  "porque": "Ver a figura se dobrar sobre a reta t sem mudar de tamanho, e depois ser cortada em dois triângulos na malha, mostra as duas ideias da questão.",
+  "tipo": "figura",
+  "roteiro": "Quadro 1: a figura do print com P'Q'R'S' destacado. Quadro 2: o quadrilátero se dobra sobre a reta t, como num espelho, e cai sobre PQRS com o mesmo tamanho. Quadro 3: traça-se a diagonal SQ; o triângulo SPQ se pinta, com base 4 e altura 8 marcadas na malha. Quadro 4: o triângulo SQR se pinta, com base 7 e altura 2. Quadro 5: aparece 16 + 7 = 23."
+ },
+ "fontes": [],
+ "revisao": {
+  "fatos": [
+   {
+    "campo": "caminhos[0].ideia",
+    "antes": "Envolva PQRS no retângulo de x = 4 a 8 e y = 4 a 12 (área 32) e tire os triângulos de fora: 8 (junto de PQ) e 1 (abaixo de RQ). 32 − 8 − 1 = 23. Era a resolução anterior.",
+    "depois": "Envolva PQRS no retângulo de x = 4 a 8 e y = 4 a 12 (área 32) e tire os triângulos de fora: 8 (junto de PQ) e 1 (abaixo de RQ). 32 − 8 − 1 = 23.",
+    "motivo": "Frase de bastidor (histórico da fábrica) não é conteúdo para o aluno.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "antes": "23,5 não é a área: com vértices de coordenadas inteiras, a conta exata dá 32 − 8 − 1 = 23.",
+    "depois": "23,5 não é a área: a conta exata dá 32 − 8 − 1 = 23.",
+    "motivo": "A frase sugeria que coordenadas inteiras impedem área com ,5, o que é falso (polígonos de vértices inteiros podem ter área meio-inteira).",
+    "fonte": ""
+   }
+  ],
+  "obs": "Área conferida por decomposição, retângulo e cadarço (23).",
+  "fatos_ok": true
+ }
 }

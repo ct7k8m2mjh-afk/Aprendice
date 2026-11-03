@@ -1,6 +1,7 @@
 /* eslint-disable */
 import { THREE, V, TAU, plast, semente, malha, esfera, pedeRedesenho } from '../base.js';
 import { mergeGeometries, mergeVertices, toCreasedNormals } from 'three/addons/utils/BufferGeometryUtils.js';
+import { MarchingCubes } from 'three/addons/objects/MarchingCubes.js';
 const suave = (geo) => { geo.deleteAttribute('normal'); geo.deleteAttribute('uv'); const m = mergeVertices(geo, 1e-5); m.computeVertexNormals(); return m; }; // extrusões com sombreamento liso
 
 // =====================================================================================
@@ -11,7 +12,7 @@ const suave = (geo) => { geo.deleteAttribute('normal'); geo.deleteAttribute('uv'
 // camada creme com cromossomos roxos, nucleoplasma vermelho-escuro com grânulos). Retículo (rede ciano) na parede e
 // no piso; retículo rugoso (sacos laranja) abraçando o núcleo; Golgi azul dobrado; mitocôndrias roxas abertas com
 // cristas; retículo liso magenta no alto da parede; centríolos dourados num funil de rede ciano; ribossomos.
-// Função: vesículas saem do Golgi rumo à membrana; mitocôndrias pulsam (energia).
+// Função: vesículas saem do Golgi rumo à membrana e se fundem a ela (secreção). Nada pulsa.
 // Coordenadas internas: centro da célula na origem, raio 1; quarto removido em x>0 e y>0.
 // Parede: ponto (s, y) -> (0, y, -s) [s cresce para a direita da imagem]; piso: (x, z) -> (x, 0, z).
 
@@ -82,6 +83,13 @@ function materialMembrana(borda = false) { // borda: relevo ao longo da normal d
 // ---------- utilidades
 function tubos(curvas, raio, segPor = 6, radial = 6) { // várias curvas -> uma só malha
   const gs = curvas.map(([c, fechada, n]) => new THREE.TubeGeometry(c, Math.max(8, n * segPor), raio, radial, fechada));
+  const g = mergeGeometries(gs); gs.forEach((x) => x.dispose()); return g;
+}
+function tubosCarnudos(curvas, raio, inchaco = 0.7, segPor = 6, radial = 12) { // tubos que engrossam nas junções (aspecto de massinha)
+  const gs = curvas.map(([c, , n]) => { const S = Math.max(10, n * segPor), geo = new THREE.TubeGeometry(c, S, raio, radial, false); const p = geo.attributes.position, cen = new THREE.Vector3(), v = new THREE.Vector3();
+    for (let i = 0; i <= S; i++) { const t = i / S, f = 1 + inchaco * Math.pow(1 - Math.sin(Math.PI * t), 2); c.getPointAt(t, cen);
+      for (let j = 0; j <= radial; j++) { const k = i * (radial + 1) + j; v.fromBufferAttribute(p, k).sub(cen).multiplyScalar(f).add(cen); p.setXYZ(k, v.x, v.y, v.z); } }
+    geo.computeVertexNormals(); return geo; });
   const g = mergeGeometries(gs); gs.forEach((x) => x.dispose()); return g;
 }
 // faixa de alvéolos ao longo de uma curva 2D: devolve laços fechados (pontos 2D) — rede do retículo
@@ -248,12 +256,15 @@ export default function celula() {
   const granM = plast(0x2a0507, { rug: 0.6, coat: 0, lado: THREE.DoubleSide }), granG = new THREE.CircleGeometry(0.0115, 16);
   for (let i = 0; i < 70; i++) { const yy = 1 - (i + 0.5) / 70 * 2, r2 = Math.sqrt(1 - yy * yy), ph = i * 2.39996; const d = V(Math.cos(ph) * r2, yy, Math.sin(ph) * r2);
     if (d.x > -0.05 && d.y > -0.05 && d.z > -0.05) continue; const p = malha(granG, granM, false); p.position.copy(d.clone().multiplyScalar(RC * 0.993)); p.lookAt(0, 0, 0); N.add(p); }
-  // cromossomos: X roxos finos deitados nas faces creme
-  const roxo = plast(0x7650c8, { rug: 0.4, coat: 0.4 }), gX = new THREE.CapsuleGeometry(0.0042, 0.05, 3, 8);
-  const cromo = (u, v, face, ang) => { const x = new THREE.Group(); for (const sg of [1, -1]) { const c = malha(gX, roxo, false); c.rotation.z = ang + sg * 0.42; x.add(c); }
-    if (face === 0) x.position.set(u, v, 0.004); else if (face === 1) { x.position.set(0.004, v, u); x.rotation.y = Math.PI / 2; } else { x.position.set(u, 0.004, v); x.rotation.x = -Math.PI / 2; }
-    x.scale.z = 0.5; N.add(x); };
-  for (let f = 0; f < 3; f++) for (let k = 0; k < 3; k++) { const a = (k + 0.5) / 3 * Math.PI / 2 + (rnd() - 0.5) * 0.3, r = RC + 0.028 + rnd() * 0.035; cromo(Math.cos(a) * r, Math.sin(a) * r, f, rnd() * 3); }
+  // cromatina: FIOS roxos soltos nas faces creme (na interfase não há cromossomo em "X"; o X só existe na divisão)
+  const roxo = plast(0x7650c8, { rug: 0.4, coat: 0.4 }); const fios = [];
+  const naFace = (u, v, face) => face === 0 ? V(u, v, 0.004) : face === 1 ? V(0.004, v, u) : V(u, 0.004, v);
+  for (let f = 0; f < 3; f++) for (let k = 0; k < 4; k++) {
+    let a = (k + 0.5) / 4 * Math.PI / 2 + (rnd() - 0.5) * 0.25, r = RC + 0.022 + rnd() * 0.05; const pts = [];
+    for (let j = 0; j < 6; j++) { pts.push(naFace(Math.cos(a) * r, Math.sin(a) * r, f)); a += (rnd() - 0.5) * 0.28; r = Math.min(RN - ENV - 0.014, Math.max(RC + 0.012, r + (rnd() - 0.5) * 0.03));
+      a = Math.min(Math.PI / 2 - 0.06, Math.max(0.06, a)); }
+    fios.push([new THREE.CatmullRomCurve3(pts), false, 5]); }
+  N.add(malha(tubos(fios, 0.0036, 6, 6), roxo, false));
   // poros do envoltório
   const poroM = plast(0x5a0a0c, { rug: 0.7, coat: 0 }), poroC = plast(0xb7967a, { rug: 0.7, coat: 0 });
   for (let i = 0; i < 40; i++) { const d = new THREE.Vector3().setFromSphericalCoords(1, 0.2 + rnd() * 1.6, rnd() * TAU); if (d.x > -0.1 && d.y > -0.1 && d.z > -0.1) continue;
@@ -278,6 +289,7 @@ export default function celula() {
   const NL = new THREE.Matrix4().makeRotationY(-N.rotation.y); // para testar o oitavo aberto no referencial do núcleo
   const dirAE = (az, el) => { const A = az * Math.PI / 180, E = el * Math.PI / 180; return camH.clone().multiplyScalar(Math.cos(A) * Math.cos(E)).add(esqH.clone().multiplyScalar(Math.sin(A) * Math.cos(E))).add(V(0, Math.sin(E), 0)).normalize(); };
   // [azimute (+ = esquerda da imagem, 0 = de frente), elevação, camada, giro do comprimento (0 = deitado, 90 = em pé), comprimento]
+  const sacosRER = [];
   const RER = [ // [azimute, elevação, camada, giro, comprimento, largura]
     // colar esquerdo: cortinas em pé, coladas, e um saco grande por fora
     [52, 6, 0, 86, 0.28, 0.1], [68, 4, 0, 89, 0.3, 0.1], [84, 6, 0, 92, 0.28, 0.1], [100, 8, 0, 95, 0.25, 0.1],
@@ -297,7 +309,7 @@ export default function celula() {
     const leste = V(0, 1, 0).cross(d); if (leste.lengthSq() < 1e-4) leste.set(1, 0, 0); leste.normalize(); const norte = d.clone().cross(leste);
     const P = psi * Math.PI / 180, eixo = leste.clone().multiplyScalar(Math.cos(P)).add(norte.clone().multiplyScalar(Math.sin(P))), yy = d.clone().cross(eixo);
     const m = malha(saco(L, Wd, T0, rS), laranja); m.position.copy(NC).add(d.clone().multiplyScalar(rS));
-    m.quaternion.setFromRotationMatrix(new THREE.Matrix4().makeBasis(eixo, yy, d)); C.add(m);
+    m.quaternion.setFromRotationMatrix(new THREE.Matrix4().makeBasis(eixo, yy, d)); C.add(m); sacosRER.push(m);
   }
   rnd = semente(31);
   for (const [a0, r, h, inc, L] of [ // fileiras deitadas no piso em volta da base (ângulo em torno do núcleo, raio, altura, inclinação para o núcleo)
@@ -330,28 +342,29 @@ export default function celula() {
     const m = mitocondria(L, Wd, 0.042, mitM, mitos.length + 1); m.position.copy(Wp(s, y, h)); m.rotation.set(0, 0, -Math.PI / 2); m.rotateY(ang); m.rotateOnWorldAxis(V(0, 1, 0), vira); C.add(m); mitos.push(m); }
 
   rnd = semente(41);
-  // ---- retículo liso: teias magenta (membrana grossa e arredondada com furos) e dedos com bolhas, saindo do alto da parede
-  const magenta = plast(0x701432, { rug: 0.5, coat: 0.25, coatRug: 0.35 });
-  const curS = [], bolhas = [];
-  for (const [cs, cy, h, esc, rot, nf0] of [[0.1, 0.8, 0.07, 1.3, 0.3, 9], [0.4, 0.66, 0.1, 1.15, -0.3, 8], [0.65, 0.47, 0.13, 1.05, 0.5, 6]]) {
-    const cen = Wp(cs, cy, h); const nf = V(0.5, 0.3, 0.8).normalize(); const u0 = V(0, 1, 0).cross(nf).normalize(), v0 = nf.clone().cross(u0);
-    const u = u0.clone().multiplyScalar(Math.cos(rot)).add(v0.clone().multiplyScalar(Math.sin(rot))), w = nf.clone().cross(u);
-    const R0 = 0.085 * esc, f1 = rnd() * TAU, f2 = rnd() * TAU;
-    const raio = (t) => R0 * (1 + 0.2 * Math.sin(3 * t + f1) + 0.12 * Math.sin(5 * t + f2) + 0.08 * Math.sin(9 * t + f1 * 2));
-    const contorno = []; for (let k = 0; k < 64; k++) { const t = k / 64 * TAU; contorno.push(new THREE.Vector2(Math.cos(t) * raio(t), Math.sin(t) * raio(t) * 0.85)); }
-    const forma = new THREE.Shape(contorno); const furos = [];
-    for (let tent = 0; tent < 60 && furos.length < nf0; tent++) { const t = rnd() * TAU, rr = Math.sqrt(rnd()) * 0.62 * R0, cx = Math.cos(t) * rr, cy2 = Math.sin(t) * rr * 0.85, a = R0 * (0.1 + 0.1 * rnd()), b = a * (0.6 + 0.4 * rnd());
-      if (furos.some(([x, y, aa]) => Math.hypot(x - cx, y - cy2) < aa + a + 0.016) || Math.hypot(cx, cy2) + a > 0.86 * raio(t)) continue; furos.push([cx, cy2, a, b]);
-      const fu = new THREE.Path(); fu.absellipse(cx, cy2, a, b, 0, TAU, true, rnd() * 3); forma.holes.push(fu); }
-    const geo = suave(new THREE.ExtrudeGeometry(forma, { depth: 0.006, bevelEnabled: true, bevelThickness: 0.013, bevelSize: 0.012, bevelSegments: 4, curveSegments: 10 }));
-    const m = malha(geo, magenta); m.position.copy(cen); m.quaternion.setFromRotationMatrix(new THREE.Matrix4().makeBasis(u, w, nf)); C.add(m);
-    const P = (a, b) => cen.clone().add(u.clone().multiplyScalar(a)).add(w.clone().multiplyScalar(b));
-    for (let k = 0; k < 4; k++) { const t = (k + 0.3 + rnd() * 0.4) / 4 * TAU; const r0 = raio(t) * 0.85; const p0 = P(Math.cos(t) * r0, Math.sin(t) * r0 * 0.85); const L = 0.025 + rnd() * 0.04;
-      const p1 = P(Math.cos(t + (rnd() - 0.5) * 0.6) * (r0 + L), Math.sin(t + (rnd() - 0.5) * 0.6) * (r0 + L) * 0.85).add(nf.clone().multiplyScalar((rnd() - 0.3) * 0.03));
-      curS.push([new THREE.CatmullRomCurve3([p0, p0.clone().lerp(p1, 0.5).add(nf.clone().multiplyScalar(0.008)), p1]), false, 4]); bolhas.push(p1); }
+  // ---- retículo liso: TEIA 3D de túbulos magenta (o REL é feito de túbulos ramificados), grossos e arredondados,
+  //      com junções inchadas e furos entre eles; descola da parede e avança para o corte, no alto à direita
+  const magenta = plast(0xa8234b, { rug: 0.45, coat: 0.3, coatRug: 0.3 }); magenta.envMapIntensity = 0.6;
+  // cada lóbulo: rede de túbulos FUNDIDOS (metabolas: contas de esferas ao longo dos túbulos, que se fundem como massinha,
+  // com junções inchadas e furos entre os galhos); a rede é 3D: sai da parede e ondula
+  for (const [cs, cy, h, nN, esc] of [[0.1, 0.8, 0.07, 9, 1.05], [0.38, 0.67, 0.1, 9, 1.0], [0.63, 0.49, 0.13, 8, 0.95]]) {
+    const cen = Wp(cs, cy, h), nf = V(0.55, 0.25, 0.8).normalize(), u = V(0, 1, 0).cross(nf).normalize(), w = nf.clone().cross(u);
+    const HS = 0.22, RES = 100; const mc = new MarchingCubes(RES, magenta, false, false, 60000); mc.isolation = 80;
+    const bola = (a, b, c, r) => { const S = 22; mc.addBall(0.5 + a / HS / 2, 0.5 + b / HS / 2, 0.5 + c / HS / 2, (r / HS / 2) ** 2 * (mc.isolation + S) , S); };
+    const pts = [];
+    for (let t = 0; pts.length < nN && t < 300; t++) { const ang = rnd() * TAU, rr = Math.sqrt(rnd()) * 0.135 * esc; const a = Math.cos(ang) * rr, bb = Math.sin(ang) * rr * 0.85;
+      if (pts.some((q) => Math.hypot(q[0] - a, q[1] - bb) < 0.07 * esc)) continue; pts.push([a, bb, (rnd() - 0.3) * 0.09]); }
+    const ar = new Set(), seg = (A, B, M, r0, r1) => { for (let i = 0; i <= 14; i++) { const t = i / 14, it = 1 - t; // curva de Bézier quadrática
+        const x = it * it * A[0] + 2 * it * t * M[0] + t * t * B[0], y = it * it * A[1] + 2 * it * t * M[1] + t * t * B[1], z = it * it * A[2] + 2 * it * t * M[2] + t * t * B[2];
+        bola(x, y, z, r0 + (r1 - r0) * t); } };
+    const liga = (i, j) => { const k = i < j ? i + ',' + j : j + ',' + i; if (i === j || ar.has(k)) return; ar.add(k); const A = pts[i], B = pts[j];
+      const M = [(A[0] + B[0]) / 2 + (rnd() - 0.5) * 0.04, (A[1] + B[1]) / 2 + (rnd() - 0.5) * 0.04, (A[2] + B[2]) / 2 + 0.015 + rnd() * 0.03]; seg(A, B, M, 0.0125, 0.0125); };
+    pts.forEach((q, i) => { const viz = pts.map((r, j) => [Math.hypot(r[0] - q[0], r[1] - q[1]), j]).sort((x, y) => x[0] - y[0]); liga(i, viz[1][1]); liga(i, viz[2][1]); });
+    pts.forEach((q) => bola(q[0], q[1], q[2], 0.019 + rnd() * 0.005)); // junções inchadas
+    for (let k = 0; k < 3; k++) { const q = pts[Math.floor(rnd() * pts.length)], ang = Math.atan2(q[1], q[0]) + (rnd() - 0.5) * 0.9, L = 0.06 + rnd() * 0.05; // dedos de ponta redonda
+      const B = [q[0] + Math.cos(ang) * L, q[1] + Math.sin(ang) * L, q[2] + 0.03 * rnd()]; seg(q, B, [(q[0] + B[0]) / 2, (q[1] + B[1]) / 2, (q[2] + B[2]) / 2 + 0.012], 0.012, 0.014); bola(...B, 0.017); }
+    mc.update(); mc.position.copy(cen); mc.scale.setScalar(HS); mc.quaternion.setFromRotationMatrix(new THREE.Matrix4().makeBasis(u, w, nf)); mc.castShadow = mc.receiveShadow = true; C.add(mc);
   }
-  C.add(malha(tubos(curS, 0.014, 4, 10), magenta));
-  for (const p of bolhas) { const b = esfera(0.017, magenta, 16); b.position.copy(p); C.add(b); }
 
   rnd = semente(51);
   // ---- centríolos: funil de rede ciano na parede (canto inferior esquerdo) com feixes dourados
@@ -360,7 +373,7 @@ export default function celula() {
   const funilGeo = new THREE.LatheGeometry(FUN_PERFIL.map(([r, y]) => new THREE.Vector2(r, y)), 72);
   const tFun = textura('funil'); tFun.wrapS = THREE.RepeatWrapping;
   const funil = malha(funilGeo, new THREE.MeshStandardMaterial({ map: tFun, alphaTest: 0.5, side: THREE.DoubleSide, roughness: 0.32 }));
-  const fundoF = malha(new THREE.LatheGeometry(FUN_PERFIL.map(([r, y]) => new THREE.Vector2(r * (1.08 + y * 0.25) + 0.002, y - 0.006)).slice(0, -1), 72), plast(0x0e2c38, { rug: 0.8, coat: 0, lado: THREE.DoubleSide }), false);
+  const fundoF = malha(new THREE.LatheGeometry(FUN_PERFIL.map(([r, y]) => new THREE.Vector2(r * 1.03 + 0.002, y - 0.006)).slice(0, -2), 72), plast(0x0b3a4c, { rug: 0.8, coat: 0, lado: THREE.DoubleSide }), false);
   for (const m of [funil, fundoF]) { m.position.copy(FUN_M); m.quaternion.setFromUnitVectors(V(0, 1, 0), FUN_U); FUN.add(m); }
   // centríolos: dois feixes de 9 trincas de microtúbulos (anel em cata-vento), dourados; um sai do funil na diagonal, o outro aparece de ponta
   const ouro = plast(0xcf9c22, { metal: 0.3, rug: 0.34, coat: 0.6, lado: THREE.DoubleSide, emis: 0x3a2800 });
@@ -394,6 +407,12 @@ export default function celula() {
   for (const [s, y] of [[0.0, 0.9], [-0.13, 0.85], [-0.24, 0.59], [-0.45, 0.48], [0.79, 0.2], [0.75, 0.38], [0.86, 0.43], [-0.62, 0.42]]) ribo(Wp(s, y, 0), V(1, 0, 0));
   for (const [x, z] of [[0.11, -0.71], [0.33, 0.62], [0.45, 0.42], [0.63, 0.24], [0.79, 0.04], [0.28, 0.85], [0.66, -0.55], [0.5, -0.5]]) ribo(Fp(x, z), V(0, 1, 0));
   for (let k = 0; k < 7; k++) ribo(Fp(0.6 + k * 0.024, 0.63 - k * 0.035), V(0, 1, 0));
+  // ribossomos do retículo RUGOSO: grãos na face de fora de cada saco (é o que o torna "rugoso")
+  { const pv = new THREE.Vector3(), nv = new THREE.Vector3(), q = new THREE.Quaternion();
+    for (const m of sacosRER) { m.updateMatrix(); const pos = m.geometry.attributes.position, nor = m.geometry.attributes.normal; const nm = new THREE.Matrix3().getNormalMatrix(m.matrix);
+      for (let k = 0, pegos = 0; k < 400 && pegos < 9; k++) { const i = Math.floor(rnd() * pos.count); nv.fromBufferAttribute(nor, i); if (nv.z < 0.75) continue;
+        pv.fromBufferAttribute(pos, i).applyMatrix4(m.matrix); nv.applyMatrix3(nm).normalize(); const r = 0.0062;
+        q.setFromUnitVectors(V(0, 1, 0), nv); ribs.push(new THREE.Matrix4().compose(pv.clone().add(nv.clone().multiplyScalar(r * 0.5)), q, V(r, r, r))); pegos++; } } }
   const ribI = new THREE.InstancedMesh(ribG, ribM, ribs.length); ribs.forEach((m, i) => ribI.setMatrixAt(i, m)); ribI.castShadow = true; C.add(ribI);
 
   // ---- vesículas de secreção: saem da face trans do Golgi rumo à membrana

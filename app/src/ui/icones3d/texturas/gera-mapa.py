@@ -41,6 +41,8 @@ u, v = X / CW, Y / CH
 tend = 0.0 * np.exp(-((u - 0.82) ** 2 / 0.05 + (v - 0.62) ** 2 / 0.12)) + 0.18 * np.exp(-((u - 0.36) ** 2 / 0.03 + (v - 0.55) ** 2 / 0.05)) \
      + 0.12 * np.exp(-((u - 0.12) ** 2 / 0.02 + (v - 0.30) ** 2 / 0.03)) - 0.16 * np.exp(-((u - 0.2) ** 2 / 0.04 + (v - 0.9) ** 2 / 0.03)) \
      - 0.2 * np.exp(-((u - 0.88) ** 2 / 0.03 + (v - 0.18) ** 2 / 0.04)) - 0.1 * np.exp(-((u - 0.3) ** 2 / 0.02 + (v - 0.08) ** 2 / 0.01))
+tend = tend + 0.15 * np.exp(-((u - 0.82) ** 2 / 0.012 + (v - 0.60) ** 2 / 0.05)) + 0.26 * np.exp(-((u - 0.63) ** 2 / 0.008 + (v - 0.30) ** 2 / 0.014)) \
+     - 0.12 * np.exp(-((u - 0.48) ** 2 / 0.01 + (v - 0.85) ** 2 / 0.02))
 alt = alt + tend
 
 # ---------- rios: linha central suave (Catmull-Rom) + meandros de ruído, largura crescendo rio abaixo
@@ -58,7 +60,7 @@ def meandro(c, amp, semente, preso):
   d = np.gradient(c, axis=0); comp = np.linalg.norm(d, axis=1); d /= comp[:, None] + 1e-9
   nrm = np.stack([-d[:, 1], d[:, 0]], 1)
   sarc = np.concatenate([[0], np.cumsum(comp[1:])]); L = sarc[-1]
-  passo = 95 * S; k = r.normal(0, 1, int(L / passo) + 3)
+  passo = 68 * S; k = r.normal(0, 1, int(L / passo) + 3)
   off = np.interp(sarc, np.linspace(0, L, len(k)), k)
   off = cv2.GaussianBlur(off.reshape(1, -1).astype(np.float32), (0, 0), max(2.0, 0.35 * passo / (L / n))).ravel()
   off = off / (np.abs(off).max() + 1e-6) * amp
@@ -74,10 +76,10 @@ RIOS = [  # (pontos em fração da área colorida, largura inicial e final em px
 ]
 mask = np.zeros((CH, CW), np.uint8)
 for pts, l0, l1, sem in RIOS:
-  c = curva([(x * CW, y * CH) for x, y in pts]); c = meandro(c, (16 + 0.32 * (l0 + l1)) * S, sem, sem != 11)
+  c = curva([(x * CW, y * CH) for x, y in pts]); c = meandro(c, (20 + 0.45 * (l0 + l1)) * S, sem, sem != 11)
   n = len(c)
   for i, (x, y) in enumerate(c):
-    r = (l0 + (l1 - l0) * (i / n) ** 0.8) * S / 2
+    r = (l0 + (l1 - l0) * (i / n) ** 0.8) * S / 2 * 1.3
     cv2.circle(mask, (int(x * 4), int(y * 4)), int(r * 4), 255, -1, cv2.LINE_AA, 2)
 # bordas da água levemente irregulares
 m = cv2.GaussianBlur(mask.astype(np.float32) / 255, (0, 0), 2 * S)
@@ -89,14 +91,15 @@ ddentro = cv2.distanceTransform(mb, cv2.DIST_L2, 5)
 alt = alt - 0.42 * np.exp(-dfora / (130 * S)) - 0.1 * np.exp(-dfora / (30 * S))
 
 # ---------- faixas de altitude (10) e paleta hipsométrica
-N = 8
+N = 12
 lo, hi = np.percentile(alt, 2), np.percentile(alt, 99.5)
 hn = np.clip((alt - lo) / (hi - lo), 0, 0.9999)
 banda = np.floor(hn * N).astype(np.uint8)
 banda = cv2.medianBlur(cv2.medianBlur(banda, 11), 7).astype(np.int32)  # tira ilhotas soltas
 PAL = np.array([  # verde-escuro baixo -> verde -> verde-amarelo -> amarelo -> laranja-amarelo alto
   (52, 152, 44), (84, 174, 40), (122, 194, 42), (162, 208, 50), (198, 218, 58),
-  (228, 220, 66), (245, 212, 76), (247, 196, 84)], np.float32)
+  (230, 222, 64), (246, 214, 72), (248, 202, 80)], np.float32)
+PAL = np.stack([np.interp(np.linspace(0, 7, N), np.arange(8), PAL[:, k]) for k in range(3)], 1).astype(np.float32)
 cor = PAL[banda]
 # leve variação dentro da faixa (para não ficar chapado)
 fr = hn * N - banda
@@ -115,9 +118,9 @@ cla = cv2.GaussianBlur(np.clip(luz * 3.2 * S, 0, 1), (0, 0), 1.0 * S)
 bsl = cv2.GaussianBlur(bf, (0, 0), 5 * S)  # sombra macia do degrau (o patamar de baixo escurece junto à parede)
 gx2 = cv2.Sobel(bsl, cv2.CV_32F, 1, 0, ksize=3) / 8; gy2 = cv2.Sobel(bsl, cv2.CV_32F, 0, 1, ksize=3) / 8
 macio = -(gx2 * L[0] + gy2 * L[1]) * 9 * S
-cor = cor * (1 + 0.16 * np.clip(macio, -1, 1))[..., None]
+cor = cor * (1 + 0.13 * np.clip(macio, -1, 1))[..., None]
 ESC = np.array([40, 100, 30], np.float32)
-cor = cor * (1 - 0.30 * np.clip(esc, 0, 1))[..., None] + ESC * (0.30 * np.clip(esc, 0, 1))[..., None] * 0.6
+cor = cor * (1 - 0.26 * np.clip(esc, 0, 1))[..., None] + ESC * (0.26 * np.clip(esc, 0, 1))[..., None] * 0.6
 cor = cor + (255 - cor) * (0.42 * np.clip(cla, 0, 1))[..., None]
 
 # ---------- curvas de nível finas dentro das faixas (3 por faixa)
@@ -133,7 +136,7 @@ dd = ddentro / S
 # raio local do rio (máximo da distância numa vizinhança) -> posição relativa margem..centro
 rloc = cv2.dilate(dd, np.ones((int(70 * S), int(70 * S)), np.uint8)) + 1e-3
 t = np.clip(dd / rloc, 0, 1)
-c_borda = np.array([136, 216, 250], np.float32); c_meio = np.array([44, 170, 238], np.float32); c_canal = np.array([26, 136, 222], np.float32)
+c_borda = np.array([104, 202, 246], np.float32); c_meio = np.array([44, 170, 238], np.float32); c_canal = np.array([26, 136, 222], np.float32)
 a1 = np.clip(t / 0.45, 0, 1)[..., None]; a2 = np.clip((t - 0.55) / 0.45, 0, 1)[..., None]
 azul = c_borda * (1 - a1) + c_meio * a1
 azul = azul * (1 - a2) + c_canal * a2
