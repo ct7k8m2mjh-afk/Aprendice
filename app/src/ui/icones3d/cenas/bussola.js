@@ -1,65 +1,161 @@
 /* eslint-disable */
-import { THREE, V, TAU, plast, metal, ruido, semente, texPaginas, texPena, brilhoTex, malha, esfera, caminhoArredondado } from '../base.js';
+import { THREE, V, TAU, plast, metal, semente, malha, esfera } from '../base.js';
 
 // =====================================================================================
-// GEOGRAFIA — mapa dobrado + bússola + alfinete. Função: a agulha oscila e aponta o NORTE; o alfinete marca o ponto.
+// GEOGRAFIA — mapa topográfico dobrado em três painéis + bússola dourada + alfinete de mapa.
+// Função (docs/pesquisa/animacao-dos-icones.md, 5.1): "orientar e depois localizar", uma vez por ativação.
+//  1. Um toque na bússola tira a agulha do lugar: ela faz uma oscilação amortecida (como um pêndulo no campo
+//     magnético) e para apontando o N (≈1,3 s).
+//  2. Depois, o alfinete cai e espeta o mapa, assenta 2–3 mm e para, sem quicar (≈0,5 s).
+// Repouso (e "reduzir movimento"): o estado final, parado — agulha no N, alfinete espetado.
+
+const suave = (a, b, x) => { const k = Math.min(1, Math.max(0, (x - a) / (b - a))); return k * k * (3 - 2 * k); };
+
+// ---------- texturas
 function texMapa() {
-  const c = document.createElement('canvas'); c.width = 512; c.height = 384; const x = c.getContext('2d');
-  const gr = x.createLinearGradient(0, 0, 512, 384); gr.addColorStop(0, '#9fd36a'); gr.addColorStop(0.5, '#e8d36a'); gr.addColorStop(1, '#7cc35a'); x.fillStyle = gr; x.fillRect(0, 0, 512, 384);
-  for (let i = 0; i < 40; i++) { x.strokeStyle = `rgba(90,120,40,${0.15 + Math.random() * 0.2})`; x.lineWidth = 1.5; x.beginPath(); const cx = Math.random() * 512, cy = Math.random() * 384, r = 20 + Math.random() * 60; x.ellipse(cx, cy, r, r * 0.6, Math.random() * 3, 0, TAU); x.stroke(); }
-  x.strokeStyle = '#2f8fd8'; x.lineWidth = 10; x.lineCap = 'round'; x.beginPath(); x.moveTo(40, 340); x.bezierCurveTo(160, 260, 200, 180, 300, 170); x.bezierCurveTo(390, 160, 420, 90, 500, 40); x.stroke();
-  x.strokeStyle = '#5fb2ea'; x.lineWidth = 4; x.beginPath(); x.moveTo(300, 170); x.bezierCurveTo(330, 230, 380, 260, 470, 300); x.stroke();
-  const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t;
+  const W = 768, H = 480, c = document.createElement('canvas'); c.width = W; c.height = H; const x = c.getContext('2d');
+  // relevo: ruído de valor suave em 4 oitavas
+  const rnd = semente(7), N = 17, grade = []; for (let i = 0; i < N * N; i++) grade.push(rnd());
+  const vr = (u, v) => { const i = Math.floor(u), j = Math.floor(v), fu = u - i, fv = v - j; const q = (a, b) => grade[((a % N + N) % N) + ((b % N + N) % N) * N];
+    const su = fu * fu * (3 - 2 * fu), sv = fv * fv * (3 - 2 * fv); return (q(i, j) * (1 - su) + q(i + 1, j) * su) * (1 - sv) + (q(i, j + 1) * (1 - su) + q(i + 1, j + 1) * su) * sv; };
+  const rio = (py) => 0.4 * W + (py / H) * 0.36 * W + Math.sin(py / H * 7.5) * 0.06 * W; // eixo do rio (desce do alto ao canto inferior direito)
+  const im = x.createImageData(W, H), d = im.data;
+  const cores = [[22, 132, 40], [52, 160, 30], [112, 190, 24], [196, 206, 24], [242, 198, 22], [236, 150, 30]];
+  for (let py = 0; py < H; py++) for (let px = 0; px < W; px++) {
+    let u = px / W * 7, v = py / H * 4.5;
+    const wu = vr(u * 0.7 + 3, v * 0.7) * 1.2, wv = vr(u * 0.7, v * 0.7 + 5) * 1.2; u += wu; v += wv; // relevo orgânico
+    let h = vr(u, v) * 0.5 + vr(u * 2.1, v * 2.1) * 0.28 + vr(u * 4.3, v * 4.3) * 0.14 + vr(u * 9, v * 9) * 0.08;
+    const dr = Math.abs(px - rio(py)) / W; h = h * (0.5 + 0.5 * Math.min(1, dr * 3)) + 0.04;
+    const f = Math.min(0.999, Math.max(0, (h - 0.1) * 1.6)) * (cores.length - 1), k = Math.floor(f), m = f - k;
+    const a = cores[k], b = cores[Math.min(cores.length - 1, k + 1)];
+    const cont = (h * 30) % 1, linha = cont < 0.08 ? 0.66 : 1; // curvas de nível
+    const o = (py * W + px) * 4; d[o] = (a[0] + (b[0] - a[0]) * m) * linha; d[o + 1] = (a[1] + (b[1] - a[1]) * m) * linha; d[o + 2] = (a[2] + (b[2] - a[2]) * m) * linha; d[o + 3] = 255;
+  }
+  x.putImageData(im, 0, 0);
+  // rio principal (meandros) com margem clara e afluentes
+  const tracar = (pts, w, cor) => { x.strokeStyle = cor; x.lineWidth = w; x.lineCap = 'round'; x.lineJoin = 'round'; x.beginPath(); x.moveTo(pts[0][0], pts[0][1]); for (let i = 1; i < pts.length; i++) x.lineTo(pts[i][0], pts[i][1]); x.stroke(); };
+  const rp = []; for (let py = -10; py <= H + 10; py += 5) rp.push([rio(py) + Math.sin(py * 0.08) * 9, py]);
+  const af = [
+    [[rio(120), 120], [250, 100], [170, 140], [90, 120], [-10, 150]],
+    [[rio(250), 250], [200, 290], [120, 260], [40, 300]],
+    [[rio(90), 90], [450, 70], [560, 40], [640, -10]],
+    [[rio(300), 300], [560, 270], [660, 220], [780, 210]],
+  ];
+  for (const [w, cor] of [[40, '#a6dcf6'], [27, '#1d7fe2'], [9, '#55b0f2']]) tracar(rp, w, cor);
+  for (const r of af) { tracar(r, 15, '#a6dcf6'); tracar(r, 8, '#1d7fe2'); }
+  // margem branca do papel
+  x.strokeStyle = '#f7f5ee'; x.lineWidth = 38; x.strokeRect(0, 0, W, H);
+  const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 4; return t;
 }
-function bussolaTex() {
+function texFace() {
   const c = document.createElement('canvas'); c.width = c.height = 512; const x = c.getContext('2d');
-  x.fillStyle = '#fbf8f0'; x.beginPath(); x.arc(256, 256, 250, 0, TAU); x.fill();
-  x.strokeStyle = '#1a2a4a'; for (let i = 0; i < 72; i++) { const a = i / 72 * TAU, r1 = i % 9 === 0 ? 205 : 222; x.lineWidth = i % 9 === 0 ? 4 : 2; x.beginPath(); x.moveTo(256 + Math.sin(a) * r1, 256 - Math.cos(a) * r1); x.lineTo(256 + Math.sin(a) * 240, 256 - Math.cos(a) * 240); x.stroke(); }
-  x.fillStyle = '#1a2a4a'; x.font = 'bold 64px sans-serif'; x.textAlign = 'center'; x.textBaseline = 'middle';
-  [['N', 0], ['L', 1], ['S', 2], ['O', 3]].forEach(([l, k]) => { const a = k * Math.PI / 2; x.fillText(l, 256 + Math.sin(a) * 160, 256 - Math.cos(a) * 160); });
-  const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t;
+  const gr = x.createRadialGradient(256, 236, 60, 256, 256, 256); gr.addColorStop(0, '#ffffff'); gr.addColorStop(0.8, '#f5f4f0'); gr.addColorStop(1, '#d9d6cf');
+  x.fillStyle = gr; x.fillRect(0, 0, 512, 512);
+  x.strokeStyle = 'rgba(60,60,60,.35)'; x.lineWidth = 2; x.beginPath(); x.moveTo(256, 60); x.lineTo(256, 452); x.moveTo(60, 256); x.lineTo(452, 256); x.stroke();
+  x.strokeStyle = '#333'; for (let i = 0; i < 12; i++) { if (i % 3 === 0) continue; const a = i / 12 * TAU; x.lineWidth = 5; x.beginPath(); x.moveTo(256 + Math.sin(a) * 214, 256 - Math.cos(a) * 214); x.lineTo(256 + Math.sin(a) * 244, 256 - Math.cos(a) * 244); x.stroke(); }
+  x.fillStyle = '#0d0d0d'; x.font = 'bold 76px "Helvetica Neue", Arial, "DejaVu Sans", sans-serif'; x.textAlign = 'center'; x.textBaseline = 'middle';
+  x.strokeStyle = '#0d0d0d'; x.lineWidth = 6; x.lineJoin = 'round';
+  [['N', 0], ['L', 1], ['S', 2], ['O', 3]].forEach(([l, k]) => { const a = k * Math.PI / 2; x.fillText(l, 256 + Math.sin(a) * 182, 262 - Math.cos(a) * 182); x.strokeText(l, 256 + Math.sin(a) * 182, 262 - Math.cos(a) * 182); });
+  const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 4; return t;
 }
+
+// metade da agulha: losango com aresta central elevada (duas facetas, uma clara e outra escura)
+function meiaAgulha(cor, comp, larg, alt) {
+  const p = [0, comp, 0, -larg, 0, 0, 0, 0, alt, 0, comp, 0, 0, 0, alt, larg, 0, 0];
+  const geo = new THREE.BufferGeometry(); geo.setAttribute('position', new THREE.Float32BufferAttribute(p, 3)); geo.computeVertexNormals();
+  const cl = new THREE.Color(cor), es = cl.clone().multiplyScalar(0.72);
+  const cs = []; for (let i = 0; i < 3; i++) cs.push(cl.r, cl.g, cl.b); for (let i = 0; i < 3; i++) cs.push(es.r, es.g, es.b);
+  geo.setAttribute('color', new THREE.Float32BufferAttribute(cs, 3));
+  return malha(geo, plast(0xffffff, { vcores: true, rug: 0.3, coat: 1, coatRug: 0.1 }), false);
+}
+
 export default function bussola() {
   const g = new THREE.Group();
-  // mapa dobrado em 4 painéis
-  const tm = texMapa(); const mapa = new THREE.Group();
-  for (let i = 0; i < 4; i++) {
-    const geo = new THREE.PlaneGeometry(0.85, 2.0); const uv = geo.attributes.uv;
-    for (let k = 0; k < uv.count; k++) uv.setX(k, (uv.getX(k) + i) / 4);
-    const p = malha(geo, plast(0xffffff, { map: tm, rug: 0.75, coat: 0.05, lado: THREE.DoubleSide }));
-    p.rotation.x = -Math.PI / 2 + 0.0; p.position.set(-1.275 + i * 0.85, 0.02 + (i % 2) * 0.12, 0); p.rotation.y = (i % 2 ? -1 : 1) * 0.14; mapa.add(p);
+
+  // ---------- mapa: folha em três painéis (dobras em sanfona), inclinada para trás, apoiada no chão
+  const MW = 3.7, MH = 2.45, MAPA_INC = 0.78; // inclinação: 0 = em pé, PI/2 = deitado
+  const dobra = (u) => { // u em [-MW/2, MW/2] -> afastamento z (para a câmera)
+    const a = -MW / 2, b = -0.55, c2 = 0.45, d = MW / 2;
+    if (u < b) return 0.6 * (u - a) / (b - a);
+    if (u < c2) return 0.6 * (1 - (u - b) / (c2 - b)) + 0.04;
+    return 0.04 + 0.4 * (u - c2) / (d - c2);
+  };
+  const geoM = new THREE.PlaneGeometry(MW, MH, 74, 6); const pos = geoM.attributes.position;
+  for (let i = 0; i < pos.count; i++) { const u = pos.getX(i), v = pos.getY(i); pos.setZ(i, dobra(u) + 0.03 * Math.sin((v / MH + 0.5) * Math.PI) * Math.cos(u * 2)); }
+  geoM.computeVertexNormals();
+  const mapa = new THREE.Group(); mapa.rotation.x = -MAPA_INC; mapa.position.set(0.12, Math.sin(Math.PI / 2 - MAPA_INC) * MH / 2 + 0.02, -0.45 - Math.cos(Math.PI / 2 - MAPA_INC) * MH / 2);
+  mapa.add(malha(geoM, plast(0xa8a8a8, { map: texMapa(), rug: 0.9, coat: 0, metal: 0 })));
+  mapa.add(malha(geoM, plast(0xf4f2ea, { rug: 0.8, coat: 0, lado: THREE.BackSide })));
+  g.add(mapa);
+
+  // ---------- bússola dourada em pé, levemente reclinada, de frente para a câmera
+  const R = 0.66;
+  const B = new THREE.Group(); B.position.set(-0.3, R + 0.02, 0.3); B.rotation.set(-0.2, 0.12, 0); g.add(B);
+  const ouro = plast(0xf6c445, { metal: 0.85, rug: 0.25, coat: 0.7, coatRug: 0.1 });
+  const ouroEsc = plast(0xb27a1c, { metal: 1, rug: 0.3, coat: 0.3 });
+  const caixa = malha(new THREE.CylinderGeometry(R - 0.02, R - 0.05, 0.22, 72), ouroEsc); caixa.rotation.x = Math.PI / 2; caixa.position.z = -0.1; caixa.castShadow = false; B.add(caixa);
+  const aro = malha(new THREE.TorusGeometry(R - 0.065, 0.065, 20, 80), ouro); aro.position.z = 0.03; B.add(aro);
+  const aro2 = malha(new THREE.TorusGeometry(R - 0.135, 0.018, 10, 80), ouro); aro2.position.z = 0.02; B.add(aro2);
+  const face = malha(new THREE.CircleGeometry(R - 0.13, 72), plast(0xffffff, { map: texFace(), rug: 0.55, coat: 0.1 }), false); face.position.z = 0.02; B.add(face);
+  // argola e pino de corda no topo
+  const haste = malha(new THREE.CylinderGeometry(0.07, 0.085, 0.16, 24), ouro); haste.position.y = R + 0.06; B.add(haste);
+  const coroa = malha(new THREE.CylinderGeometry(0.1, 0.1, 0.06, 24), ouroEsc); coroa.position.y = R + 0.15; B.add(coroa);
+  const argola = malha(new THREE.TorusGeometry(0.19, 0.032, 14, 48), ouro); argola.position.set(0, R + 0.37, -0.02); B.add(argola);
+  // agulha (vermelha = norte) e pivô
+  const agulha = new THREE.Group(); agulha.position.z = 0.04; B.add(agulha);
+  agulha.add(meiaAgulha(0xe0261f, 0.42, 0.11, 0.035));
+  const sul = meiaAgulha(0x1f63d9, 0.42, 0.11, 0.035); sul.rotation.z = Math.PI; agulha.add(sul);
+  const pivo = esfera(0.065, ouro, 24); pivo.scale.set(1, 1, 0.6); pivo.position.z = 0.04; agulha.add(pivo);
+  const pivoAnel = malha(new THREE.TorusGeometry(0.06, 0.012, 8, 24), ouroEsc); pivoAnel.position.z = 0.04; agulha.add(pivoAnel);
+  const vidro = malha(new THREE.CircleGeometry(R - 0.13, 64), new THREE.MeshPhysicalMaterial({ color: 0xffffff, transparent: true, opacity: 0.08, roughness: 0.02, clearcoat: 1, metalness: 0 }), false); vidro.position.z = 0.09; B.add(vidro);
+
+  // a bússola não projeta sombra no chão (ficava uma elipse dura na frente); no lugar, sombra de contato suave sob a borda
+  B.traverse((o) => { if (o.isMesh) o.castShadow = false; });
+  const sc = document.createElement('canvas'); sc.width = 128; sc.height = 64; const sx = sc.getContext('2d');
+  const sg = sx.createRadialGradient(64, 32, 2, 64, 32, 62); sg.addColorStop(0, 'rgba(0,0,0,.55)'); sg.addColorStop(1, 'rgba(0,0,0,0)');
+  sx.setTransform(1, 0, 0, 0.5, 0, 16); sx.fillStyle = sg; sx.fillRect(0, 0, 128, 128);
+  const contato = new THREE.Mesh(new THREE.PlaneGeometry(1.7, 0.55), new THREE.MeshBasicMaterial({ map: new THREE.CanvasTexture(sc), transparent: true, depthWrite: false, opacity: 0.55 }));
+  contato.rotation.x = -Math.PI / 2; contato.position.set(-0.26, 0.004, 0.42); g.add(contato);
+  // ---------- alfinete de mapa (marcador): cabeça redonda com centro branco, ponta cônica; espetado no mapa
+  const pinM = plast(0xe3231f, { rug: 0.2, coat: 1, coatRug: 0.06 });
+  const pin = new THREE.Group(); pin.scale.setScalar(0.9); g.add(pin);
+  const RC = 0.34, HP = 1.0; // raio da cabeça e altura da ponta ao centro da cabeça
+  const perfil = []; const ang = Math.asin(RC / HP); // cone tangente à esfera
+  perfil.push(new THREE.Vector2(0.0005, 0));
+  const yT = HP - RC * Math.sin(ang), rT = RC * Math.cos(ang);
+  for (let i = 1; i <= 10; i++) { const t = i / 10; perfil.push(new THREE.Vector2(rT * t, yT * t)); }
+  for (let i = 1; i <= 24; i++) { const a = -ang + (Math.PI / 2 + ang) * i / 24; perfil.push(new THREE.Vector2(Math.max(0.0005, RC * Math.cos(a)), HP + RC * Math.sin(a))); }
+  const corpoPin = malha(new THREE.LatheGeometry(perfil, 48), pinM); corpoPin.scale.z = 0.62; pin.add(corpoPin);
+  const miolo = esfera(0.16, plast(0xf7f7f7, { rug: 0.35, coat: 0.5 }), 32); miolo.scale.set(1, 1, 0.45); miolo.position.set(0, HP, RC * 0.62 - 0.03); pin.add(miolo);
+  // ponto marcado no papel (anel claro sob a ponta)
+  const marca = malha(new THREE.CircleGeometry(0.14, 32), new THREE.MeshStandardMaterial({ color: 0xf3f1ea, roughness: 0.8, transparent: true, opacity: 0.9 }), false);
+  marca.position.set(0.95, 0.55, 0.0); marca.position.z = 0; // ajustado abaixo
+  const ptMapa = (u, v) => { const p = V(u, v, dobra(u) + 0.03 * Math.sin((v / MH + 0.5) * Math.PI) * Math.cos(u * 2)); mapa.updateMatrix(); return p.applyMatrix4(mapa.matrix); };
+  const ponta = ptMapa(0.78, 0.36);
+  marca.position.copy(V(0.78, 0.36, dobra(0.78) + 0.006)); mapa.add(marca);
+  const PEN = 0.05; // quanto a ponta entra no papel
+  const yFinal = ponta.y - PEN; pin.position.set(ponta.x, yFinal, ponta.z);
+
+  // ---------- animação (uma vez por ativação)
+  const A0 = 0.95, GAMA = 2.6, OMEGA = 8.5, T_AG = 1.35, T_QUEDA = 1.4, H_PIN = 0.35, T_CAI = 0.22;
+  let t0 = null, ativoAnt = false, angAtual = 0, yAtual = yFinal;
+  function agulhaEm(tau) { // toque: velocidade inicial, oscilação amortecida; termina exatamente no N
+    return A0 * Math.exp(-GAMA * tau) * Math.sin(OMEGA * tau) * (1 - suave(T_AG - 0.25, T_AG, tau));
   }
-  mapa.rotation.y = -0.2; mapa.position.set(0.1, 0, -0.2); g.add(mapa);
-  // bússola
-  const B = new THREE.Group(); B.position.set(-0.5, 0.12, 0.45); g.add(B);
-  const ouro = metal(0xd4a52a, 0.22);
-  const caixa = malha(new THREE.CylinderGeometry(0.72, 0.75, 0.2, 96), ouro); caixa.position.y = 0.1; B.add(caixa);
-  const aro = malha(new THREE.TorusGeometry(0.71, 0.045, 20, 96), ouro); aro.rotation.x = Math.PI / 2; aro.position.y = 0.21; B.add(aro);
-  const face = malha(new THREE.CircleGeometry(0.66, 96), plast(0xffffff, { map: bussolaTex(), rug: 0.5, coat: 0.2 })); face.rotation.x = -Math.PI / 2; face.position.y = 0.205; B.add(face);
-  const anel = malha(new THREE.TorusGeometry(0.1, 0.035, 16, 32), ouro); anel.position.set(0, 0.25, -0.82); B.add(anel);
-  const haste = malha(new THREE.CylinderGeometry(0.06, 0.06, 0.12, 24), ouro); haste.rotation.x = Math.PI / 2; haste.position.set(0, 0.2, -0.76); B.add(haste);
-  const agulha = new THREE.Group(); agulha.position.y = 0.24; B.add(agulha);
-  const forma = (cor) => { const s = new THREE.Shape(); s.moveTo(0, 0); s.lineTo(0.07, 0); s.lineTo(0, 0.5); s.lineTo(-0.07, 0); s.lineTo(0, 0);
-    return malha(new THREE.ExtrudeGeometry(s, { depth: 0.03, bevelEnabled: true, bevelSize: 0.008, bevelThickness: 0.008, bevelSegments: 2 }), plast(cor, { rug: 0.25, coat: 1 })); };
-  const nr = forma(0xd62828); nr.rotation.x = -Math.PI / 2; nr.position.y = 0.0; agulha.add(nr);
-  const sr = forma(0x1f5fd6); sr.rotation.set(-Math.PI / 2, 0, Math.PI); agulha.add(sr);
-  const pino = malha(new THREE.CylinderGeometry(0.045, 0.045, 0.06, 24), ouro); pino.position.y = 0.03; agulha.add(pino);
-  const vidro = malha(new THREE.CircleGeometry(0.67, 96), new THREE.MeshPhysicalMaterial({ color: 0xffffff, transparent: true, opacity: 0.12, roughness: 0, clearcoat: 1 })); vidro.rotation.x = -Math.PI / 2; vidro.position.y = 0.3; B.add(vidro);
-  // alfinete
-  const pin = new THREE.Group(); pin.position.set(0.85, 0, -0.5); g.add(pin);
-  const cab = esfera(0.22, plast(0xe02424, { rug: 0.2, coat: 1 }), 48); cab.position.y = 1.0; cab.scale.set(1, 1.1, 1); pin.add(cab);
-  const ponta = malha(new THREE.ConeGeometry(0.2, 0.75, 48), plast(0xe02424, { rug: 0.2, coat: 1 })); ponta.rotation.x = Math.PI; ponta.position.y = 0.55; pin.add(ponta);
-  const furo = esfera(0.08, plast(0xffffff, { rug: 0.3 }), 24); furo.position.set(0, 1.03, 0.17); pin.add(furo);
-  const norte = 0; // a agulha vermelha aponta para o norte (eixo -z da cena, "para trás")
+  function pinoEm(tau) {
+    if (tau < 0.3) return yFinal + PEN + H_PIN * suave(0, 0.3, tau);          // é tirado do mapa (junto com o toque)
+    if (tau < T_QUEDA) return yFinal + PEN + H_PIN;                              // espera a agulha assentar
+    const q = tau - T_QUEDA;
+    if (q < T_CAI) return yFinal + PEN + H_PIN * (1 - (q / T_CAI) ** 2);         // cai acelerando
+    return yFinal + PEN * (1 - suave(0, 0.12, q - T_CAI));                       // espeta e assenta, sem quique
+  }
   return {
-    grupo: g, camera: { pos: V(0.3, 3.4, 4.6), alvo: V(0, 0.35, 0), fov: 32 },
+    grupo: g, camera: { pos: V(0, 2.85, 9.0), alvo: V(0, 0.98, 0), fov: 25 },
     animar(t, ativo, dt) {
-      if (ativo && !this._ativo) this._t0 = t;          // ao ativar: perturba e a agulha volta ao norte (oscilação amortecida)
-      this._ativo = ativo;
-      const dtA = this._t0 != null ? t - this._t0 : 99;
-      const ang = norte + 1.4 * Math.exp(-dtA * 1.1) * Math.cos(dtA * 7) + 0.03 * Math.sin(t * 1.3);
-      agulha.rotation.y = ang;
-      pin.position.y = ativo ? Math.max(0, Math.sin(Math.min(dtA * 6, Math.PI))) * 0.25 : 0;
+      if (ativo && !ativoAnt) t0 = t; ativoAnt = ativo;
+      if (ativo && t0 != null) { const tau = t - t0; angAtual = agulhaEm(tau); yAtual = pinoEm(tau); }
+      else { const k = Math.min(1, dt * 14); angAtual += (0 - angAtual) * k; yAtual += (yFinal - yAtual) * k; } // ao sair: estado final em ~250 ms
+      agulha.rotation.z = angAtual; pin.position.y = yAtual;
     },
   };
 }

@@ -12,7 +12,7 @@ export const NOMES = { celula: 'Biologia — célula animal', atomo: 'Química �
   circuito: 'Física — circuito elétrico', bussola: 'Geografia — mapa e bússola' };
 export const FUNCAO = { celula: 'Vesículas saem do Golgi rumo à membrana; mitocôndrias pulsam (energia).', atomo: 'Elétrons percorrem as órbitas.',
   solidos: 'Cada sólido gira sobre o próprio eixo, mostrando o volume.', livros: 'A pena molha no tinteiro para escrever.',
-  circuito: 'A corrente sai do +, corre no fio até a lâmpada, volta ao −; a lâmpada acende.', bussola: 'A agulha oscila e aponta o norte; o alfinete marca o ponto.' };
+  circuito: 'Ao fechar o circuito, a corrente passa ao mesmo tempo no circuito todo (do + ao −) e a lâmpada acende na hora.', bussola: 'A agulha oscila, se acomoda apontando o norte, e o alfinete espeta o ponto no mapa.' };
 
 // =====================================================================================
 // Palco único (um só contexto WebGL) que desenha várias cenas em vários elementos da página (scissor).
