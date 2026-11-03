@@ -179,7 +179,7 @@ def funil():
 
 def membrana():
     """Voronoi esférico: cordões amarelos (com concordância nas junções) sobre alvéolos creme; equirretangular"""
-    W, H = 2048, 1024; N = 130
+    W, H = 2048, 1024; N = 95
     i = np.arange(N) + 0.5; phi = np.arccos(1 - 2 * i / N); th = np.pi * (1 + 5 ** 0.5) * i
     P = np.stack([np.cos(th) * np.sin(phi), np.cos(phi), np.sin(th) * np.sin(phi)], -1)
     P += rng.normal(0, 0.035, P.shape); P /= np.linalg.norm(P, axis=1, keepdims=True); T = cKDTree(P)
@@ -195,16 +195,20 @@ def membrana():
     ds = np.stack(ds, 1); kk = 0.018
     dsm = -kk * np.log(np.exp(-ds / kk).sum(1))            # mínimo suave: cordões se fundem nas junções
     dsm = dsm.reshape(H, W) + 0.012
-    larg = 0.068
+    larg = 0.092
     t = np.clip(1 - dsm / larg, 0, 1); cord = np.sqrt(np.clip(1 - (1 - t) ** 2, 0, 1))
     d1 = ds.min(1).reshape(H, W)
     alv = np.clip(d1 / 0.12, 0, 1); domo = 0.25 * np.sqrt(alv)   # alvéolo levemente abaulado
     h = np.maximum(cord, domo * (1 - cord))
     h = cv2.GaussianBlur(h.astype(np.float32), (0, 0), 1.2)
-    c_cord = np.array([0.93, 0.83, 0.56]); c_alv = np.array([0.94, 0.89, 0.77]); c_pe = np.array([0.80, 0.72, 0.52])
+    c_cord = np.array([0.96, 0.87, 0.60]); c_alv = np.array([0.94, 0.89, 0.74]); c_pe = np.array([0.80, 0.72, 0.52])
     pe = np.clip(1 - np.abs(cord - 0.12) / 0.12, 0, 1) * (cord < 0.3)     # sombra no pé do cordão
     col = c_alv * (1 - cord[..., None]) + c_cord * cord[..., None]
-    col = col * (1 - 0.18 * pe[..., None]) + 0 * c_pe
+    col = col * (1 - 0.36 * pe[..., None]) + 0 * c_pe
+    topo = np.clip((cord - 0.75) / 0.25, 0, 1) ** 2                        # brilho pintado no alto do cordão
+    col = col + 0.07 * topo[..., None]
+    lado = np.clip(1 - np.abs(cord - 0.4) / 0.3, 0, 1) * (cord < 0.75)      # flanco do cordão um pouco mais escuro
+    col = col * (1 - 0.08 * lado[..., None])
     return (np.clip(col, 0, 1) * 255).astype(np.uint8), (np.clip(h, 0, 1) * 255).astype(np.uint8)
 
 

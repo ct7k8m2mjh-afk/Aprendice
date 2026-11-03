@@ -31,6 +31,26 @@
     [
      "r",
      "razão da PA"
+    ],
+    [
+     "termo",
+     "cada número da sequência"
+    ],
+    [
+     "crescente",
+     "cada termo é maior que o anterior (r positivo)"
+    ],
+    [
+     "razão inteira",
+     "r é um número inteiro (sem vírgula)"
+    ],
+    [
+     "múltiplo de 9",
+     "número que é 9 vezes um inteiro: 9, 18, 27, 36…"
+    ],
+    [
+     "divisor de 140",
+     "número que divide 140 sem sobrar resto"
     ]
    ]
   },
@@ -44,7 +64,7 @@
    },
    {
     "faz": "Relacione saltos e número de termos.",
-    "conta": "saltos = 140 ÷ r;  n = saltos + 1",
+    "conta": "(n − 1)·r = 140  →  saltos = 140 ÷ r;  n = saltos + 1",
     "porque": "Entre n termos há n − 1 saltos, como entre 5 dedos há 4 espaços.",
     "tipo": "aplicar"
    },
@@ -80,7 +100,7 @@
  "caminhos": [
   {
    "nome": "divisores de 140",
-   "ideia": "(n − 1)·r = 140, com n − 1 em 8, 17, 26, 35, …; o único divisor de 140 nessa lista é 35, logo r = 140/35 = 4."
+   "ideia": "(n − 1)·r = 140, com n − 1 em 8, 17, 26, 35, … (um a menos que os múltiplos de 9). O único divisor de 140 nessa lista é 35, logo r = 140/35 = 4."
   },
   {
    "nome": "testar o número de termos",
@@ -89,29 +109,52 @@
  ],
  "quadro": [
   {
-   "linha": "183 − 43 = 140",
-   "nota": "quanto a PA cresce do primeiro ao último termo"
+   "linha": "43 + (n − 1)·r = 183",
+   "nota": "primeiro termo + todos os saltos = último termo"
   },
   {
-   "linha": "saltos = 140 ÷ r",
-   "nota": "cada salto vale r"
+   "linha": "(n − 1)·r = 183 − 43",
+   "nota": "passe o 43 para o outro lado, subtraindo",
+   "destaque": "− 43"
   },
   {
-   "linha": "r = 4 → 140 ÷ 4 = 35 saltos",
+   "linha": "(n − 1)·r = 140",
+   "nota": "saltos × tamanho do salto = 140",
+   "destaque": "140"
+  },
+  {
+   "linha": "r = 4:  n − 1 = 140 ÷ 4 = 35",
    "nota": "teste a alternativa A"
   },
   {
    "linha": "n = 35 + 1 = 36",
-   "nota": "número de termos = saltos + 1"
+   "nota": "número de termos = saltos + 1",
+   "destaque": "36"
   },
   {
    "linha": "36 = 9 × 4",
-   "nota": "múltiplo de 9: serve",
-   "destaque": "36 = 9 × 4"
+   "nota": "é múltiplo de 9: serve"
   },
   {
-   "linha": "r = 5 → n = 29;  r = 7 → n = 21;  r = 8 e r = 9 não dividem 140",
-   "nota": "as outras razões falham"
+   "linha": "r = 5:  n − 1 = 28  →  n = 29",
+   "nota": "29 não é múltiplo de 9"
+  },
+  {
+   "linha": "r = 7:  n − 1 = 20  →  n = 21",
+   "nota": "21 não é múltiplo de 9"
+  },
+  {
+   "linha": "r = 8:  140 ÷ 8 = 17,5",
+   "nota": "não é inteiro: não serve"
+  },
+  {
+   "linha": "r = 9:  140 ÷ 9 ≈ 15,6",
+   "nota": "não é inteiro: não serve"
+  },
+  {
+   "linha": "r = 4",
+   "nota": "única razão que cumpre as duas condições",
+   "destaque": "r = 4"
   }
  ],
  "visual": {
@@ -138,6 +181,25 @@
     "fonte": ""
    }
   ],
-  "fatos_ok": true
+  "fatos_ok": true,
+  "didatica": [
+   {
+    "campo": "resolucao.antes.simbolos",
+    "motivo": "Incluídos termo, crescente, razão inteira, múltiplo de 9 e divisor (palavras do enunciado e dos caminhos)."
+   },
+   {
+    "campo": "quadro",
+    "motivo": "Refeito linha por linha: termo geral → (n − 1)·r = 140, e cada razão testada em linha própria (a última linha juntava 4 testes)."
+   },
+   {
+    "campo": "resolucao.passos.1.conta",
+    "motivo": "Mostra a equação (n − 1)·r = 140 de onde vem a contagem de saltos."
+   },
+   {
+    "campo": "caminhos.0.ideia",
+    "motivo": "Explicado de onde vem a lista 8, 17, 26, 35; frase dividida."
+   }
+  ],
+  "didatica_ok": true
  }
 }
