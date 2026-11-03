@@ -110,19 +110,19 @@ def parede():
     mask = np.zeros((H, W), bool)
     # leque em volta da boca do funil
     a, b, dentro = faixa_polar(Sw, Yw, (-0.70, 0.13), lambda th: 0.125 + 0 * th, lambda th, a: 0.25 + 0 * th, -30, 215, 0.18)
-    mask |= voronoi_fios(a, b, regiao(QUAL, dentro), 0.05, 0.06, 0.018, ppu, 3)
+    mask |= voronoi_fios(a, b, regiao(QUAL, dentro), 0.055, 0.06, 0.016, ppu, 3)
     # arco de alças altas em volta do núcleo (topo), alças irregulares
     rr = np.random.default_rng(11); alt = rr.random(64)
     def topo(th, a):  # topo irregular por coluna (alças de alturas diferentes)
         x = (a + 2) / 0.15; j = np.clip(x.astype(int), 0, 63); f = x - np.floor(x)            # alças altas de topo redondo, alturas variadas
         return 0.6 + (0.06 + 0.13 * alt[j]) * np.sqrt(np.clip(np.sin(np.pi * f), 0, 1)) - 0.1 * np.clip((th - 105) / 30, 0, 1) - 0.12 * np.clip((40 - th) / 30, 0, 1)
-    a, b, dentro = faixa_polar(Sw, Yw, (-0.02, -0.02), lambda th: 0.47 + 0.0 * th, topo, 10, 122, 0.62)
-    mask |= voronoi_fios(a, b, regiao(QUAL, dentro), 0.075, 0.17, 0.022, ppu, 1)
+    a, b, dentro = faixa_polar(Sw, Yw, (-0.02, -0.02), lambda th: 0.5 + 0.0 * th, topo, 10, 122, 0.62)
+    mask |= voronoi_fios(a, b, regiao(QUAL, dentro), 0.072, 0.5, 0.018, ppu, 1)
     # lado esquerdo: malha mais miúda descendo até o canto do funil
     a, b, dentro = faixa_polar(Sw, Yw, (-0.02, -0.02), lambda th: 0.47 + 0.1 * np.clip((th - 150) / 25, 0, 1), lambda th, a: 0.84 - 0.06 * np.clip((th - 150) / 25, 0, 1), 122, 176, 0.65)
-    mask |= voronoi_fios(a, b, regiao(QUAL, dentro), 0.062, 0.075, 0.02, ppu, 2)
+    mask |= voronoi_fios(a, b, regiao(QUAL, dentro), 0.07, 0.09, 0.017, ppu, 2)
     mask &= r < 0.95
-    cor, m, _ = pinta_fios(base, mask, 0.021 * ppu, CIANO)
+    cor, m, _ = pinta_fios(base, mask, 0.018 * ppu, CIANO)
     return (np.clip(cor, 0, 1) * 255).astype(np.uint8)
 
 
@@ -136,20 +136,20 @@ def piso():
     base = base * (1 - 0.08 * np.exp(-X / 0.05)[..., None])
     wob = 0.01 * ruido(H, W, ((1, 10),), semente=6); Xw, Zw = X + wob, Z - 0.7 * wob
     mask = np.zeros((H, W), bool)
-    # alça longa em volta da base do núcleo, pela frente
-    a, b, dentro = faixa_polar(Xw, Zw, (0.256, 0.183), lambda th: 0.36 + 0 * th, lambda th, a: 0.47 + 0 * th, -80, 95, 0.42)
-    mask |= voronoi_fios(a, b, regiao(QUAL, dentro), 0.13, 0.2, 0.02, ppu, 4)
-    # escada na frente, rumo à direita
-    a, b, dentro = faixa_reta(Xw, Zw, (0.42, 0.62), (0.82, -0.12), 0.06, -0.02, 0.15)
-    mask |= voronoi_fios(a, b, regiao(QUAL, dentro), 0.085, 0.2, 0.019, ppu, 5)
-    # trama densa à direita (atrás e sob o Golgi)
-    a, b, dentro = faixa_reta(Xw, Zw, (0.52, -0.1), (0.22, -0.84), 0.05, -0.08, 0.14)
-    mask |= voronoi_fios(a, b, regiao(QUAL, dentro), 0.06, 0.07, 0.018, ppu, 6)
     # leque no pé do funil
-    a, b, dentro = faixa_polar(Xw, Zw, (0.06, 0.8), lambda th: 0.1 + 0 * th, lambda th, a: 0.2 + 0 * th, -150, 40, 0.15)
-    mask |= voronoi_fios(a, b, regiao(QUAL, dentro), 0.05, 0.05, 0.017, ppu, 7)
+    a, b, dentro = faixa_polar(Xw, Zw, (0.06, 0.8), lambda th: 0.1 + 0 * th, lambda th, a: 0.19 + 0 * th, -150, 40, 0.15)
+    mask |= voronoi_fios(a, b, regiao(QUAL, dentro), 0.055, 0.05, 0.016, ppu, 7)
+    # alça longa em volta da base do núcleo, pela frente (uma fileira de laços compridos)
+    a, b, dentro = faixa_polar(Xw, Zw, (0.256, 0.183), lambda th: 0.37 + 0 * th, lambda th, a: 0.45 + 0 * th, -70, 75, 0.41)
+    mask |= voronoi_fios(a, b, regiao(QUAL, dentro), 0.17, 0.4, 0.017, ppu, 4)
+    # escada rumo à direita (uma fileira)
+    a, b, dentro = faixa_reta(Xw, Zw, (0.5, 0.2), (0.86, -0.2), 0.03, 0.0, 0.1)
+    mask |= voronoi_fios(a, b, regiao(QUAL, dentro), 0.08, 0.3, 0.016, ppu, 5)
+    # trama sob o Golgi (duas fileiras)
+    a, b, dentro = faixa_reta(Xw, Zw, (0.55, -0.1), (0.3, -0.75), 0.04, -0.03, 0.11)
+    mask |= voronoi_fios(a, b, regiao(QUAL, dentro), 0.075, 0.07, 0.016, ppu, 6)
     mask &= r < 0.95
-    cor, m, _ = pinta_fios(base, mask, 0.02 * ppu, CIANO, luz=(-0.4, -0.7, 0.6))
+    cor, m, _ = pinta_fios(base, mask, 0.017 * ppu, CIANO, luz=(-0.4, -0.7, 0.6))
     return (np.clip(cor, 0, 1) * 255).astype(np.uint8)
 
 
@@ -168,10 +168,10 @@ def funil():
     q = np.stack([(U + wob).ravel(), (Vv + wob).ravel() * asp], -1); d, ii = T.query(q, k=2)
     p1, p2 = pts[ii[:, 0]] * [1, asp], pts[ii[:, 1]] * [1, asp]; n = (p2 - p1); n /= np.linalg.norm(n, axis=1, keepdims=True)
     f = np.abs(((q - (p1 + p2) / 2) * n).sum(1)).reshape(H, W)
-    larg = 0.0085 * (1 + 0.5 * ruido(H, W, ((1, 12),), semente=10))
+    larg = 0.017 * (1 + 0.35 * ruido(H, W, ((1, 12),), semente=10))
     mask = (f < larg) | (Vv > 0.965) | (Vv < 0.04)
     base = np.zeros((H, W, 3), np.float32)
-    cor, m, _ = pinta_fios(base, mask, 22, CIANO, luz=(-0.3, -0.75, 0.6), sombra=(0, 0), sombra_forca=0)
+    cor, m, _ = pinta_fios(base, mask, 34, CIANO, luz=(-0.3, -0.75, 0.6), sombra=(0, 0), sombra_forca=0)
     a = cv2.GaussianBlur(m.astype(np.float32), (0, 0), 0.8)
     rgba = np.dstack([np.clip(cor, 0, 1) * 255, a * 255]).astype(np.uint8)
     return rgba
@@ -195,13 +195,13 @@ def membrana():
     ds = np.stack(ds, 1); kk = 0.018
     dsm = -kk * np.log(np.exp(-ds / kk).sum(1))            # mínimo suave: cordões se fundem nas junções
     dsm = dsm.reshape(H, W) + 0.012
-    larg = 0.062
+    larg = 0.08
     t = np.clip(1 - dsm / larg, 0, 1); cord = np.sqrt(np.clip(1 - (1 - t) ** 2, 0, 1))
     d1 = ds.min(1).reshape(H, W)
     alv = np.clip(d1 / 0.12, 0, 1); domo = 0.25 * np.sqrt(alv)   # alvéolo levemente abaulado
     h = np.maximum(cord, domo * (1 - cord))
     h = cv2.GaussianBlur(h.astype(np.float32), (0, 0), 1.2)
-    c_cord = np.array([0.93, 0.83, 0.56]); c_alv = np.array([0.95, 0.91, 0.80]); c_pe = np.array([0.80, 0.72, 0.52])
+    c_cord = np.array([0.93, 0.83, 0.56]); c_alv = np.array([0.94, 0.89, 0.77]); c_pe = np.array([0.80, 0.72, 0.52])
     pe = np.clip(1 - np.abs(cord - 0.12) / 0.12, 0, 1) * (cord < 0.3)     # sombra no pé do cordão
     col = c_alv * (1 - cord[..., None]) + c_cord * cord[..., None]
     col = col * (1 - 0.18 * pe[..., None]) + 0 * c_pe
