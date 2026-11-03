@@ -35,7 +35,7 @@ function texPluma() {
 
 export default function livros() {
   const g = new THREE.Group();
-  const capa = plast(0x8c2219, { rug: 0.5, coat: 0.25, coatRug: 0.35, bump: ruido(), bumpE: 0.6 });
+  const capa = plast(0x82201a, { rug: 0.5, coat: 0.25, coatRug: 0.35, bump: ruido(), bumpE: 0.6 });
   const L = 2.2, h = 0.46, D = 1.4, t = 0.05, ov = 0.07, ex = 0.09; // comprimento, altura, profundidade, capa, aba, curva da lombada
   const mFrente = plast(0xffffff, { map: texMiolo(false), rug: 0.85, coat: 0 }), mLado = plast(0xffffff, { map: texMiolo(true), rug: 0.85, coat: 0 });
   for (const m of [mFrente, mLado]) { m.map.repeat.set(1 / L, 1 / (h - 2 * t)); m.map.offset.set(0, -t / (h - 2 * t)); m.map.wrapS = m.map.wrapT = THREE.ClampToEdgeWrapping; }
@@ -68,11 +68,11 @@ export default function livros() {
   g.add(l1, l2);
   { // sombra de contato suave atrás e à direita (como na referência), além da sombra do palco
     const c = document.createElement('canvas'); c.width = c.height = 256; const x = c.getContext('2d');
-    const gr = x.createRadialGradient(128, 128, 10, 128, 128, 128); gr.addColorStop(0, 'rgba(60,50,45,.32)'); gr.addColorStop(0.6, 'rgba(60,50,45,.12)'); gr.addColorStop(1, 'rgba(60,50,45,0)');
+    const gr = x.createRadialGradient(128, 128, 10, 128, 128, 128); gr.addColorStop(0, 'rgba(60,50,45,.42)'); gr.addColorStop(0.6, 'rgba(60,50,45,.16)'); gr.addColorStop(1, 'rgba(60,50,45,0)');
     x.fillStyle = gr; x.fillRect(0, 0, 256, 256);
     const tx = new THREE.CanvasTexture(c);
     const somb = new THREE.Mesh(new THREE.PlaneGeometry(3.4, 2.6), new THREE.MeshBasicMaterial({ map: tx, transparent: true, depthWrite: false }));
-    somb.rotation.x = -Math.PI / 2; somb.position.set(0.25, 0.003, 0.05); g.add(somb);
+    somb.rotation.x = -Math.PI / 2; somb.position.set(0.55, 0.003, -0.15); g.add(somb);
   }
 
   // tinteiro: vidro azul-escuro brilhante, corpo bojudo, gargalo curto e boca com aba
@@ -80,7 +80,7 @@ export default function livros() {
   const perfil = [[0, 0], [0.33, 0], [0.37, 0.015], [0.4, 0.05], [0.415, 0.12], [0.42, 0.24], [0.41, 0.36], [0.38, 0.45], [0.32, 0.53], [0.24, 0.585], [0.185, 0.615],
     [0.175, 0.66], [0.19, 0.69], [0.225, 0.71], [0.245, 0.75], [0.25, 0.8], [0.24, 0.835], [0.215, 0.85], [0.18, 0.845], [0.165, 0.82], [0.155, 0.76], [0, 0.75]]
     .map(([r, y]) => new THREE.Vector2(r, y));
-  const tint = new THREE.Group(); tint.position.set(0.32, 0, 1.0); tint.scale.set(0.82, 0.98, 0.82); g.add(tint);
+  const tint = new THREE.Group(); tint.position.set(0.22, 0, 1.0); tint.scale.set(0.88, 0.84, 0.88); g.add(tint);
   tint.add(malha(new THREE.LatheGeometry(perfil, 64), vid));
   const tinta = malha(new THREE.CircleGeometry(0.156, 32), plast(0x050a18, { rug: 0.1, coat: 1 }), false); tinta.rotation.x = -Math.PI / 2; tinta.position.y = 0.77; tint.add(tinta);
 
@@ -128,11 +128,11 @@ export default function livros() {
     raque.geometry.computeVertexNormals();
   }
   pena.add(raque);
-  const BASE = 0.72; // boca do tinteiro
-  pena.position.set(0.32, BASE, 1.0); pena.rotation.set(0.12, 0.08, -0.33); g.add(pena);
+  const BASE = 0.68; // boca do tinteiro
+  pena.position.set(0.22, BASE, 1.0); pena.rotation.set(0.12, 0.08, -0.33); g.add(pena);
 
   return {
-    grupo: g, camera: { pos: V(-0.25, 2.2, 5.8), alvo: V(-0.05, 1.0, 0.3), fov: 33 },
+    grupo: g, camera: { pos: V(-0.25, 1.85, 5.9), alvo: V(-0.05, 0.95, 0.3), fov: 33 },
     animar(tm, ativo, dt) {
       this._a = (this._a || 0) + ((ativo ? 1 : 0) - (this._a || 0)) * Math.min(1, dt * 4);
       const mergulho = Math.max(0, Math.sin(tm * 2.2)) * this._a; // molha a pena na tinta e levanta para escrever

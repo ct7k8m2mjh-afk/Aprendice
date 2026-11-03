@@ -18,7 +18,7 @@ const Wp = (s, y, h = 0) => V(h, y, -s);
 const Fp = (x, z, h = 0) => V(x, h, z);
 
 // ---------- membrana: rede de cristas (Worley 3D no sombreador; relevo no vértice + normal analítica no pixel)
-const ESC = 3.3, LARG = 0.2, AMP = 0.045;
+const ESC = 3.3, LARG = 0.3, AMP = 0.05;
 const GLSL_CRISTA = `
 vec3 hshC(vec3 p){ p=fract(p*vec3(.1031,.1030,.0973)); p+=dot(p,p.yxz+33.33); return fract((p.xxy+p.yxx)*p.zyx); }
 float crista(vec3 q, out vec3 grad){
@@ -45,7 +45,7 @@ function materialMembrana() {
       .replace('#include <common>', `#include <common>\nvarying vec3 vOP; varying vec3 vNX; varying vec3 vNY; varying vec3 vNZ;\n${GLSL_CRISTA}`)
       .replace('#include <color_fragment>', `#include <color_fragment>
  vec3 ddM = normalize(vOP); vec3 gqM; float hM = crista(ddM*${ESC.toFixed(2)}, gqM);
- diffuseColor.rgb *= mix(vec3(0.90,0.865,0.77), vec3(0.95,0.88,0.64), smoothstep(0.0,0.6,hM));`)
+ diffuseColor.rgb *= mix(vec3(0.84,0.80,0.68), vec3(0.95,0.86,0.58), smoothstep(0.0,0.5,hM));`)
       .replace('#include <normal_fragment_maps>', `#include <normal_fragment_maps>
  { vec3 gp = ${ESC.toFixed(2)}*(gqM - dot(gqM,ddM)*ddM); vec3 nO = normalize(ddM - ${AMP.toFixed(3)}*gp);
    normal = normalize(vNX*nO.x + vNY*nO.y + vNZ*nO.z); }`)
@@ -162,7 +162,7 @@ export default function celula() {
   C.add(malha(new THREE.SphereGeometry(R * 0.985, 200, 64, -Math.PI / 2, Math.PI, 0, Math.PI / 2), memM));
   C.add(malha(new THREE.SphereGeometry(R * 0.985, 200, 64, 0, TAU, Math.PI / 2, Math.PI / 2), memM));
   // borda arredondada do corte: arco da parede (plano x=0) e arco do piso (y=0, x>0)
-  const bordaM = plast(0xf2e3b4, { rug: 0.5, coat: 0.3, coatRug: 0.35, sheen: 0.5, sheenCor: 0xfff2cc });
+  const bordaM = plast(0xf0dca0, { rug: 0.5, coat: 0.3, coatRug: 0.35, sheen: 0.5, sheenCor: 0xfff2cc });
   const c3 = (fn) => { const cur = new THREE.Curve(); cur.getPoint = (t, alvo = new THREE.Vector3()) => alvo.copy(fn(t)); return cur; };
   const cParede = c3((t) => { const a = Math.PI * t; return V(0, Math.sin(a) * RB, Math.cos(a) * RB); });
   const cPiso = c3((t) => { const a = Math.PI * t - Math.PI / 2; return V(Math.cos(a) * RB, 0, -Math.sin(a) * RB); });
@@ -187,10 +187,10 @@ export default function celula() {
   const rr = 0.011; const curvas = [];
   const addLacos = (lacos, map) => { for (const l of lacos) { const pts = l.map(([a, b]) => map(a, b)); curvas.push([new THREE.CatmullRomCurve3(pts, true, 'centripetal'), true, pts.length]); } };
   // arco de alvéolos altos em volta do núcleo (s, y), do canto esquerdo até o lado direito
-  addLacos(faixa(rnd, arco(-0.08, -0.02, 1, Math.PI * 0.03, Math.PI * 0.97), 30, [0.4, 0.5, 0.57, 0.8], { amp: 0.015, irreg: 0.1, colFator: (k) => (k === 2 ? 1.0 : 0.75), pula: (k, t) => k === 2 && t > 0.63 }), (s, y) => Wp(s, y, rr * 0.6));
-  addLacos(faixa(rnd, arco(-0.08, -0.02, 1, Math.PI * 0.62, Math.PI * 0.99), 12, [0.58, 0.66, 0.74, 0.82], { amp: 0.01 }), (s, y) => Wp(s, y, rr * 0.6));
+  addLacos(faixa(rnd, arco(-0.08, -0.02, 0, Math.PI * 0.03, Math.PI * 0.97), 30, [0.4, 0.5, 0.57, 0.8], { amp: 0.015, irreg: 0.1, colFator: (k) => (k === 2 ? 1.0 : 0.75), pula: (k, t) => k === 2 && t > 0.63 }), (s, y) => Wp(s, y, rr * 0.6));
+  addLacos(faixa(rnd, arco(-0.08, -0.02, 0, Math.PI * 0.62, Math.PI * 0.99), 12, [0.58, 0.66, 0.74, 0.82], { amp: 0.01 }), (s, y) => Wp(s, y, rr * 0.6));
   // piso: escada na frente do núcleo e trama densa à direita (atrás do Golgi)
-  addLacos(faixa(rnd, reta(0.2, 0.5, 0.86, 0.04, -0.06), 9, [0.0, 0.16], { amp: 0.01 }), (x, z) => Fp(x, z, rr * 0.6));
+  addLacos(faixa(rnd, reta(0.16, 0.52, 0.9, 0.0, -0.05), 10, [0.0, 0.17], { amp: 0.01 }), (x, z) => Fp(x, z, rr * 0.6));
   addLacos(faixa(rnd, reta(0.62, 0.06, 0.3, -0.8, 0.05), 10, [-0.05, 0.05, 0.14], { amp: 0.01 }), (x, z) => Fp(x, z, rr * 0.6));
   C.add(malha(tubos(curvas, rr, 3, 6), ciano));
 
@@ -225,8 +225,8 @@ export default function celula() {
   const laranja = plast(0xd06a22, { rug: 0.45, coat: 0.35, coatRug: 0.3 });
   const saco = (L, Wd) => { const s = new THREE.Shape(); const r = Wd / 2; s.absarc(L / 2 - r, 0, r, -Math.PI / 2, Math.PI / 2); s.absarc(-L / 2 + r, 0, r, Math.PI / 2, Math.PI * 1.5);
     const geo = new THREE.ExtrudeGeometry(s, { depth: 0.008, bevelEnabled: true, bevelThickness: 0.013, bevelSize: 0.014, bevelSegments: 4, curveSegments: 10 }); geo.translate(0, 0, -0.004); return geo; };
-  const sacosGeo = [saco(0.13, 0.05), saco(0.1, 0.045), saco(0.16, 0.055)];
-  const camadas = [[RN + 0.028, 30], [RN + 0.07, 26]];
+  const sacosGeo = [saco(0.17, 0.065), saco(0.14, 0.06), saco(0.2, 0.07)];
+  const camadas = [[RN + 0.035, 34], [RN + 0.085, 30]];
   for (const [rS, n] of camadas) for (let i = 0; i < n; i++) {
     const th = Math.acos(1 - 2 * ((i + rnd() * 0.6) / n) * 0.62), ph = (i * 2.399 + rnd() * 0.4) % TAU;
     const d = new THREE.Vector3().setFromSphericalCoords(1, th, ph);
@@ -258,23 +258,23 @@ export default function celula() {
 
   // ---- retículo liso: emaranhado magenta de tubos com bolhas, saindo da parede no alto à direita
   const magenta = plast(0xb8234f, { rug: 0.42, coat: 0.35, coatRug: 0.3 });
-  const nos = []; for (let i = 0; i < 16; i++) { const s = 0.05 + rnd() * 0.85, y = 0.45 + rnd() * 0.47; if (Math.hypot(s, y) > 0.9) { i--; continue; } nos.push(Wp(s, y, 0.02 + rnd() * 0.09)); }
+  const nos = []; for (let i = 0; i < 30; i++) { const a = (0.14 + 0.36 * rnd()) * Math.PI, r = 0.56 + rnd() * 0.32; nos.push(Wp(Math.cos(a) * r, Math.sin(a) * r, 0.03 + rnd() * 0.12)); }
   const curS = [];
-  nos.forEach((a, i) => { const viz = nos.map((b, j) => [j, a.distanceTo(b)]).filter(([j]) => j !== i).sort((p, q) => p[1] - q[1]).slice(0, 2);
+  nos.forEach((a, i) => { const viz = nos.map((b, j) => [j, a.distanceTo(b)]).filter(([j]) => j !== i).sort((p, q) => p[1] - q[1]).slice(0, 3);
     for (const [j, d] of viz) { if (j < i && d < 0.3) continue; const b = nos[j]; const m = a.clone().lerp(b, 0.5).add(V(rnd() * 0.04, (rnd() - 0.5) * 0.06, (rnd() - 0.5) * 0.06));
       curS.push([new THREE.CatmullRomCurve3([a, m, b]), false, 6]); } });
-  C.add(malha(tubos(curS, 0.02, 3, 8), magenta));
-  for (const p of nos) { const b = esfera(0.028 + rnd() * 0.012, magenta, 16); b.position.copy(p); b.scale.set(0.8, 1, 1.2); C.add(b); }
+  C.add(malha(tubos(curS, 0.024, 3, 8), magenta));
+  for (const p of nos) { const b = esfera(0.03 + rnd() * 0.02, magenta, 16); b.position.copy(p); b.scale.set(0.8, 1, 1.2); C.add(b); }
 
   // ---- centríolos: funil de rede ciano na parede (canto inferior esquerdo) com feixes dourados
-  const FUN = new THREE.Group(); FUN.position.copy(Wp(-0.7, 0.13, 0)); FUN.rotation.set(0, 0.35, -0.25); C.add(FUN);
-  const perfil = [[0.035, 0], [0.07, 0.03], [0.12, 0.08], [0.16, 0.13], [0.175, 0.15]].map(([r, y]) => new THREE.Vector2(r, y));
+  const FUN = new THREE.Group(); FUN.position.copy(Wp(-0.66, 0.14, 0)); FUN.quaternion.setFromUnitVectors(V(1, 0, 0), V(1, 0.3, 0.15).normalize()); C.add(FUN);
+  const perfil = [[0.04, 0], [0.09, 0.04], [0.15, 0.1], [0.2, 0.16], [0.215, 0.19]].map(([r, y]) => new THREE.Vector2(r, y));
   const funilGeo = new THREE.LatheGeometry(perfil, 48); funilGeo.rotateZ(-Math.PI / 2);
   const funil = malha(funilGeo, plast(0xffffff, { map: texRede(512, 128, 40, 34, 5, [24, 164, 207]), alphaTest: 0.5, rug: 0.3, coat: 0.6, lado: THREE.DoubleSide }));
   funil.material.alphaTest = 0.5; funil.material.transparent = false; FUN.add(funil);
   const fundoFunil = malha(new THREE.LatheGeometry(perfil.map((p) => new THREE.Vector2(p.x * 0.93, p.y - 0.004)), 48).rotateZ(-Math.PI / 2), plast(0x183846, { rug: 0.8, coat: 0, lado: THREE.DoubleSide }));
   FUN.add(fundoFunil);
-  const boca = malha(new THREE.TorusGeometry(0.175, 0.011, 8, 48), ciano); boca.rotation.y = Math.PI / 2; boca.position.x = 0.15; FUN.add(boca);
+  const boca = malha(new THREE.TorusGeometry(0.215, 0.012, 8, 48), ciano); boca.rotation.y = Math.PI / 2; boca.position.x = 0.19; FUN.add(boca);
   const ouro = plast(0xe0b02a, { metal: 0.35, rug: 0.32, coat: 0.6 });
   const feixe = (n, L) => { const b = new THREE.Group(); const gTubo = new THREE.CylinderGeometry(0.0055, 0.0055, L, 8, 1, true);
     for (let i = 0; i < n; i++) { const a = i * 2.399, r = 0.009 * Math.sqrt(i); const t = malha(gTubo, ouro); t.position.set(Math.cos(a) * r, (rnd() - 0.5) * 0.012, Math.sin(a) * r); b.add(t); }
