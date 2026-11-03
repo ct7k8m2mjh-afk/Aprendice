@@ -32,7 +32,9 @@ const OFF = V(CAM.alvo[0], 0, CAM.alvo[2]);
 export default function circuitoAssado() {
   const g = new THREE.Group();
   const modelo = new THREE.Group(); modelo.position.copy(OFF).multiplyScalar(-1); g.add(modelo);
-  const camPos = V(...CAM.pos).sub(OFF), camAlvo = V(...CAM.alvo).sub(OFF);
+  const camAlvo = V(...CAM.alvo).sub(OFF);
+  const camPos = V(...CAM.pos).sub(OFF).sub(camAlvo).multiplyScalar(1.1).add(camAlvo);   // 10% mais longe: margem igual aos outros ícones
+  const camPosMundo = camPos.clone().add(OFF);
 
   const camadasAcesas = [];           // materiais da textura acesa (opacidade = brilho da lâmpada)
   const pulsos = []; let trechos = null, total = 0;
@@ -100,7 +102,7 @@ export default function circuitoAssado() {
           for (let i = 0; i < NP; i++) {
             const [p, vis] = ponto((i / NP) * total + (tau / DUR) * total);
             // o pulso fica na face do fio voltada para a câmera (o centro do fio está dentro do tubo)
-            paraCam.copy(camPos).add(OFF).sub(p).normalize().multiplyScalar(0.1);
+            paraCam.copy(camPosMundo).sub(p).normalize().multiplyScalar(0.1);
             pulsos[i].position.copy(p).add(paraCam); pulsos[i].visible = vis && op > 0.001; pulsos[i].material.opacity = op;
           }
         }

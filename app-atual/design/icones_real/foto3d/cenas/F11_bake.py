@@ -190,16 +190,16 @@ ext[-1] = (0, ZG + RG)
 ESP = .022
 inn = [(max(0.0, r - ESP), z - (ESP if r < .05 else 0)) for (r, z) in reversed(ext)]
 vb = bpy.data.materials.new('vidro_lamp'); vb.use_nodes = True; nt = vb.node_tree; b = nt.nodes['Principled BSDF']
-b.inputs['Base Color'].default_value = cor(os.environ.get('VCOR', '#f29a1c')); b.inputs['Transmission Weight'].default_value = float(os.environ.get('VTR', 0.65))
+b.inputs['Base Color'].default_value = cor(os.environ.get('VCOR', '#f8b830')); b.inputs['Transmission Weight'].default_value = float(os.environ.get('VTR', 0.7))
 b.inputs['Roughness'].default_value = 0.02; b.inputs['IOR'].default_value = 1.14
 b.inputs['Specular IOR Level'].default_value = float(os.environ.get('VSP', 0.25))
 # emissao ambar: centro amarelo quente, bordas laranja (vidro "aceso", quase opaco)
 lwg = nt.nodes.new('ShaderNodeLayerWeight'); lwg.inputs['Blend'].default_value = 0.5
 rp = nt.nodes.new('ShaderNodeValToRGB'); E = rp.color_ramp.elements
-E[0].position = 0.0; E[0].color = cor(os.environ.get('VR0', '#cc620a')); E[1].position = 1.0; E[1].color = cor(os.environ.get('VR1', '#ffc63a'))
-E.new(0.55).color = cor(os.environ.get('VRM', '#f39a1e'))   # F11_bake: cores do vidro ajustáveis (VCOR/VR0/VRM/VR1)
+E[0].position = 0.0; E[0].color = cor(os.environ.get('VR0', '#d98a12')); E[1].position = 1.0; E[1].color = cor(os.environ.get('VR1', '#ffd968'))
+E.new(0.55).color = cor(os.environ.get('VRM', '#f6b52c'))   # F11_bake: vidro dourado mais claro (mais perto da ref.) que o F11.py
 nt.links.new(lwg.outputs['Facing'], rp.inputs['Fac']); nt.links.new(rp.outputs['Color'], b.inputs['Emission Color'])
-b.inputs['Emission Strength'].default_value = float(os.environ.get('VEM', 0.74))
+b.inputs['Emission Strength'].default_value = float(os.environ.get('VEM', 0.55))
 gl = torno(ext + inn, vb, loc=(LX, LY, 0), fechado=True, nome='vidro', seg=96)
 
 # brilho interno ambar: volume emissivo com o formato interno do vidro (mais espesso no miolo = mais claro no centro)
@@ -207,7 +207,7 @@ gm = bpy.data.materials.new('brilho'); gm.use_nodes = True; nt = gm.node_tree
 for nd in list(nt.nodes):
     if nd.type != 'OUTPUT_MATERIAL': nt.nodes.remove(nd)
 outn = [nd for nd in nt.nodes if nd.type == 'OUTPUT_MATERIAL'][0]
-em = nt.nodes.new('ShaderNodeEmission'); em.inputs['Color'].default_value = cor('#ff9a1a'); em.inputs['Strength'].default_value = float(os.environ.get('GLOW', 0.25))
+em = nt.nodes.new('ShaderNodeEmission'); em.inputs['Color'].default_value = cor('#ff9a1a'); em.inputs['Strength'].default_value = float(os.environ.get('GLOW', 0.18))
 nt.links.new(em.outputs[0], outn.inputs['Volume'])
 brilho = torno([(0, ext[0][1] + .03)] + [(max(0.0, r - ESP - .006), z) for (r, z) in ext[1:-1]] + [(0, ext[-1][1] - ESP - .006)],
                gm, loc=(LX, LY, 0), fechado=False, nome='brilho', seg=64)
@@ -253,7 +253,7 @@ cm = bpy.data.materials.new('miolo'); cm.use_nodes = True; nt = cm.node_tree
 for nd in list(nt.nodes):
     if nd.type != 'OUTPUT_MATERIAL': nt.nodes.remove(nd)
 outn = [nd for nd in nt.nodes if nd.type == 'OUTPUT_MATERIAL'][0]
-em = nt.nodes.new('ShaderNodeEmission'); em.inputs['Color'].default_value = cor('#ffd36a'); em.inputs['Strength'].default_value = float(os.environ.get('MIO', 1.6))
+em = nt.nodes.new('ShaderNodeEmission'); em.inputs['Color'].default_value = cor('#ffd36a'); em.inputs['Strength'].default_value = float(os.environ.get('MIO', 1.2))
 nt.links.new(em.outputs[0], outn.inputs['Volume'])
 bpy.ops.mesh.primitive_uv_sphere_add(radius=.36, location=(LX, LY, FZ), segments=48, ring_count=24)
 mio = bpy.context.object; mio.data.materials.append(cm); mio.scale = (1, .8, .75); mio.visible_shadow = False
