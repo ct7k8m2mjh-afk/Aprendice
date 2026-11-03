@@ -56,7 +56,7 @@ fill=low+hff*0.9
 al=np.clip(cv2.GaussianBlur(tapa.astype(np.float32),(0,0),14)*1.6,0,1)[...,None]
 fill=cor*(1-al)+fill*al
 fill8=np.clip(fill,0,255).astype(np.uint8)
-img=Image.fromarray(fill8).filter(ImageFilter.UnsharpMask(radius=5,percent=110,threshold=2))
+img=Image.fromarray(fill8).filter(ImageFilter.UnsharpMask(radius=10,percent=45,threshold=1)).filter(ImageFilter.UnsharpMask(radius=3.5,percent=140,threshold=2))
 folha=Image.new('RGB',(TW,TH),(255,255,253)); folha.paste(img,(MG,MG))
 folha.save(OUT+'mapa.webp',quality=90); folha.save(S+'mapa_flat.png')
 print('ok')

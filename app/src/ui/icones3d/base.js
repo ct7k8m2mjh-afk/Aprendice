@@ -69,3 +69,6 @@ export function caminhoArredondado(pts, raio) {
   return cp;
 }
 
+// Pedido de redesenho: uma cena avisa o palco quando algo assíncrono termina (ex.: textura que acabou de carregar).
+export const redesenho = { n: 0 };
+export function pedeRedesenho() { redesenho.n++; }

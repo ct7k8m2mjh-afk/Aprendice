@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { THREE, V, TAU, plast, metal, semente, malha, esfera } from '../base.js';
+import { THREE, V, TAU, plast, metal, semente, malha, esfera , pedeRedesenho } from '../base.js';
 import urlMapa from '../texturas/mapa.webp';
 import urlRelevo from '../texturas/mapa-relevo.webp';
 
@@ -19,24 +19,17 @@ const suave = (a, b, x) => { const k = Math.min(1, Math.max(0, (x - a) / (b - a)
 // O relevo (bump) vem das faixas de cor: verde baixo, amarelo e laranja altos, rio rebaixado — os terraços pegam luz.
 // Gerador: app/src/ui/icones3d/texturas/desdobra-mapa.py
 // As imagens começam a carregar já na importação; quando a cena é montada depois disso, a textura nasce pronta.
-// Se a cena foi desenhada antes de a imagem chegar, pede um novo quadro ao palco (que só redesenha quando "sujo"):
-// um pointerleave sintético marca a vista como suja sem ligar a animação (pula a vista em uso pelo aluno).
+// Se a cena foi desenhada antes de a imagem chegar, pede um novo quadro ao palco (pedeRedesenho).
 const IMGS = {};
 function img(url) {
   if (!IMGS[url]) { const im = new Image(); im.decoding = 'async'; im.src = url; IMGS[url] = im; }
   return IMGS[url];
 }
 if (typeof document !== 'undefined') { img(urlMapa); img(urlRelevo); }
-function redesenhaPalcos() {
-  document.querySelectorAll('.palco3d-tela').forEach((tl) => {
-    const el = tl.parentElement; if (!el || el.matches(':hover') || el.contains(document.activeElement)) return;
-    el.dispatchEvent(new Event('pointerleave'));
-  });
-}
 function carregaTex(url, cor) {
   const im = img(url), t = new THREE.Texture(im); if (cor) t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8;
   if (im.complete && im.naturalWidth) t.needsUpdate = true;
-  else im.addEventListener('load', () => { t.needsUpdate = true; requestAnimationFrame(redesenhaPalcos); }, { once: true });
+  else im.addEventListener('load', () => { t.needsUpdate = true; pedeRedesenho(); }, { once: true });
   return t;
 }
 function texFace() {
@@ -137,11 +130,16 @@ export default function bussola() {
   const aroB = malha(new THREE.TorusGeometry(0.142, 0.022, 12, 48), brancoBase, false); aroB.position.z = 0.03; marca.add(aroB);
   const fundoB = malha(new THREE.CircleGeometry(0.07, 32), plast(0xc9c9c4, { rug: 0.6, coat: 0 }), false); fundoB.position.z = 0.0315; marca.add(fundoB);
   const PU = 0.48, PV = 0.5; // ponto do alfinete na folha (onde a referência o espeta)
-  const ptMapa = (u, v) => { const p = V(u, v, dobra(u) + 0.03 * Math.sin((v / MH + 0.5) * Math.PI) * Math.cos(u * 2)); mapa.updateMatrix(); return p.applyMatrix4(mapa.matrix); };
-  const ponta = ptMapa(PU, PV);
-  marca.position.copy(V(PU, PV, dobra(PU) + 0.004)); mapa.add(marca);
+  const zMapa = (u, v) => dobra(u) + 0.03 * Math.sin((v / MH + 0.5) * Math.PI) * Math.cos(u * 2);
+  const incP = Math.atan((dobra(PU - 0.05) - dobra(PU + 0.05)) / 0.1); // inclinação do painel sob o alfinete
+  // a base fica quase deitada no painel, um pouco mais achatada para a câmera (na referência lê como elipse larga),
+  // erguida o bastante para a borda de baixo não entrar no papel; a ponta do alfinete entra no centro dela
+  const INC_B = -0.5;
+  marca.rotation.order = 'YXZ'; marca.rotation.y = incP * 0.5; marca.rotation.x = INC_B;
+  marca.position.copy(V(PU, PV, zMapa(PU, PV) + 0.16 * Math.sin(-INC_B) + 0.01)); mapa.add(marca);
   marca.traverse((o) => { if (o.isMesh) o.receiveShadow = false; }); // base sempre branca e limpa, como na referência
-  const PEN = 0.05; // quanto a ponta entra no papel
+  mapa.updateMatrixWorld(true); const ponta = marca.localToWorld(V(0, 0, 0.03)); g.worldToLocal(ponta);
+  const PEN = 0.05; // quanto a ponta entra na base
   const yFinal = ponta.y - PEN; pin.position.set(ponta.x, yFinal, ponta.z);
 
   // ---------- animação (uma vez por ativação)

@@ -16,6 +16,17 @@ const suave = (geo) => { geo.deleteAttribute('normal'); geo.deleteAttribute('uv'
 // Parede: ponto (s, y) -> (0, y, -s) [s cresce para a direita da imagem]; piso: (x, z) -> (x, 0, z).
 
 const Wp = (s, y, h = 0) => V(h, y, -s);
+// ---------- texturas pintadas a partir da arte aprovada (docs/referencias/icones3d/celula.png), projetadas no 3D
+const URL_TEX = { parede: new URL('../texturas/celula-parede.webp', import.meta.url).href, piso: new URL('../texturas/celula-piso.webp', import.meta.url).href,
+  ref: new URL('../texturas/celula-ref.webp', import.meta.url).href };
+const _tex = {};
+function textura(n) { if (_tex[n]) return _tex[n]; const t = new THREE.TextureLoader().load(URL_TEX[n]); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8; return (_tex[n] = t); }
+// material "pintado": a cor vem quase toda da pintura (luz já desenhada nela); a luz da cena só modula de leve
+function pintado(t, o = {}) {
+  const m = new THREE.MeshStandardMaterial({ color: new THREE.Color(o.luz ?? 0.3, o.luz ?? 0.3, o.luz ?? 0.3), map: t, emissive: 0xffffff, emissiveMap: t, emissiveIntensity: o.emis ?? 0.8,
+    roughness: o.rug ?? 0.7, metalness: 0, side: o.lado ?? THREE.FrontSide });
+  m.toneMapped = false; return m;
+}
 const Fp = (x, z, h = 0) => V(x, h, z);
 
 // ---------- membrana: rede de cristas (Worley 3D no sombreador; relevo no vértice + normal analítica no pixel)
@@ -160,6 +171,14 @@ function meandro(alturas, passo, base) { // pernas verticais com voltas arredond
 
 export default function celula() {
   let rnd = semente(11);
+  // câmera ajustada aos pontos da referência (cantos do corte, silhueta, polo); a mesma câmera projeta a pintura
+  const camera = { pos: V(1.93, 2.54, 1.957), alvo: V(-0.05, 0.964, 0.047), fov: 41.6 };
+  const camRef = new THREE.PerspectiveCamera(camera.fov, 1, 0.1, 50); camRef.position.copy(camera.pos); camRef.lookAt(camera.alvo); camRef.updateMatrixWorld(true);
+  const aProjetar = []; // malhas cujo uv = posição na arte de referência (projeção pela câmera ajustada)
+  const projeta = (m) => { m.updateWorldMatrix(true, false); const p = m.geometry.attributes.position, uv = new Float32Array(p.count * 2), v = new THREE.Vector3();
+    for (let i = 0; i < p.count; i++) { v.fromBufferAttribute(p, i).applyMatrix4(m.matrixWorld).project(camRef); uv[2 * i] = (v.x + 1) / 2; uv[2 * i + 1] = (v.y + 1) / 2; }
+    m.geometry.setAttribute('uv', new THREE.BufferAttribute(uv, 2)); };
+  const refT = textura('ref');
   const g = new THREE.Group(); const C = new THREE.Group(); C.position.y = 1.0; g.add(C);
   const R = 1.0, RB = 0.955, rb = 0.052; // raio externo; borda do corte (tubo) e raio do tubo
 
@@ -176,38 +195,26 @@ export default function celula() {
   for (const z of [1, -1]) { const e = esfera(rb * 1.08, plast(0xd8bf80, { rug: 0.75, coat: 0 }), 24); e.position.set(0, 0, z * RB); C.add(e); }
 
   // ---- parede e piso do corte (meio discos), com sombreamento de contato embutido por vértice
-  const FURO = [-0.64, 0.2, 0.19]; // furo do funil do centríolo na parede (s, y, raio)
-  const corte = (corBase, escuroBorda, escuroJunta, furo) => {
-    const geo = new THREE.RingGeometry(0.0005, RB, 160, 56, 0, Math.PI); const p = geo.attributes.position; const cores = [];
+  const FURO = [-0.70, 0.12, 0.115, 0.135]; // furo (elíptico) do funil do centríolo na parede (s, y, raio em s, raio em y)
+  const corte = (furo, uvDe) => {
+    const geo = new THREE.RingGeometry(0.0005, RB, 160, 56, 0, Math.PI); const p = geo.attributes.position;
     if (furo) { const idx = geo.index.array, novo = []; for (let i = 0; i < idx.length; i += 3) { let cx = 0, cy = 0; for (let k = 0; k < 3; k++) { cx += p.getX(idx[i + k]) / 3; cy += p.getY(idx[i + k]) / 3; }
-      if (Math.hypot(cx - furo[0], cy - furo[1]) > furo[2]) novo.push(idx[i], idx[i + 1], idx[i + 2]); } geo.setIndex(novo); }
-    for (let i = 0; i < p.count; i++) { const x = p.getX(i), y = p.getY(i), r = Math.hypot(x, y);
-      const ao = 1 - escuroBorda * Math.pow(Math.max(0, (r - 0.7) / 0.26), 2) - escuroJunta * Math.exp(-y / 0.06);
-      const c = new THREE.Color(corBase).multiplyScalar(ao); cores.push(c.r, c.g, c.b); }
-    geo.setAttribute('color', new THREE.Float32BufferAttribute(cores, 3)); return geo;
+      if (Math.hypot((cx - furo[0]) / furo[2], (cy - furo[1]) / furo[3]) > 1) novo.push(idx[i], idx[i + 1], idx[i + 2]); } geo.setIndex(novo); }
+    const uv = geo.attributes.uv; for (let i = 0; i < p.count; i++) uv.setXY(i, ...uvDe(p.getX(i), p.getY(i)));
+    return geo;
   };
-  const corteM = plast(0xffffff, { vcores: true, rug: 0.62, coat: 0.12, coatRug: 0.4, emis: 0x140f06, emisI: 1 });
-  const parede = malha(corte(0xe4d0a8, 0.14, 0.06, FURO), corteM); parede.rotation.y = Math.PI / 2; C.add(parede); // local (x,y) -> (0, y, -x)
-  const piso = malha(corte(0xf8f3e6, 0.1, 0.12), corteM); piso.rotation.set(-Math.PI / 2, 0, -Math.PI / 2); C.add(piso); // local (x,y) -> (y, 0, -x)?
+  // parede: local (x,y) -> (0, y, -x): s = x; textura u=(s+1)/2, v=y.  piso: local (x,y) -> (y, 0, x): u=(1-z)/2, v=x_mundo
+  const parede = malha(corte(FURO, (x, y) => [(x + 1) / 2, y]), pintado(textura('parede'), { emis: 0.78, luz: 0.28 })); parede.rotation.y = Math.PI / 2; C.add(parede);
+  const piso = malha(corte(null, (x, y) => [(1 - x) / 2, y]), pintado(textura('piso'), { emis: 0.8, luz: 0.25 })); piso.rotation.set(-Math.PI / 2, 0, -Math.PI / 2); C.add(piso);
   piso.updateMatrix();
 
-  // ---- retículo endoplasmático (rede ciano em relevo) na parede e no piso
+  // ---- retículo endoplasmático (rede ciano): pintado na textura da parede e do piso
   const ciano = plast(0x0c92c4, { rug: 0.3, coat: 0.7, coatRug: 0.2 });
-  const rr = 0.013; const curvas = [];
-  const addLacos = (lacos, map, furo) => { for (const l of lacos) { if (furo && l.some(([a, b]) => Math.hypot(a - furo[0], b - furo[1]) < furo[2] + 0.005)) continue; const pts = l.map(([a, b]) => map(a, b)); curvas.push([new THREE.CatmullRomCurve3(pts, true, 'centripetal'), true, pts.length]); } };
-  // arco de alvéolos altos em volta do núcleo (s, y), do canto esquerdo até o lado direito
-  addLacos(faixa(rnd, arco(-0.08, -0.02, 0, Math.PI * 0.03, Math.PI * 0.97), 19, [0.4, 0.55, 0.82], { amp: 0.02, irreg: 0.1, colFator: (k) => (k === 1 ? 1.0 : 0.6), pula: (k, t) => k === 0 && t > 0.8 }), (s, y) => Wp(s, y, rr * 0.6), FURO);
-  // leque de alvéolos em volta da boca do funil do centríolo
-  addLacos(faixa(rnd, arco(FURO[0], FURO[1], 0, Math.PI * 0.35, Math.PI * 1.5), 7, [FURO[2] + 0.015, FURO[2] + 0.09], { amp: 0.008, colFator: (k) => (k ? 1.2 : 1) }), (s, y) => Wp(s, Math.max(0.012, y), rr * 0.6));
-  // piso: escada na frente do núcleo e trama densa à direita (atrás do Golgi)
-  addLacos(faixa(rnd, reta(0.3, 0.49, 0.76, -0.1, 0.07), 7, [-0.05, 0.14], { amp: 0.008 }), (x, z) => Fp(x, z, rr * 0.6));
-  addLacos(faixa(rnd, reta(0.5, -0.12, 0.2, -0.82, 0.04), 9, [-0.06, 0.04, 0.13], { amp: 0.01 }), (x, z) => Fp(x, z, rr * 0.6));
-  C.add(malha(tubos(curvas, rr, 3, 6), ciano));
 
   rnd = semente(21);
   // ---- núcleo: esfera com um oitavo removido (voltado à câmera); camadas no corte
-  const RN = 0.26, RC = 0.155; const NC = V(0.34, RN - 0.02, 0.25);
-  const N = new THREE.Group(); N.position.copy(NC); N.rotation.y = 0.06; C.add(N);
+  const RN = 0.225, RC = 0.135; const NC = V(0.261, RN - 0.02, 0.148);
+  const N = new THREE.Group(); N.position.copy(NC); N.rotation.y = 0.0; C.add(N);
   const verm = plast(0xb01616, { rug: 0.45, coat: 0.3, coatRug: 0.3 });
   N.add(malha(new THREE.SphereGeometry(RN, 96, 48, Math.PI, Math.PI * 1.5, 0, Math.PI / 2), verm), malha(new THREE.SphereGeometry(RN, 96, 48, 0, TAU, Math.PI / 2, Math.PI / 2), verm));
   const creme = plast(0xf1dfb4, { rug: 0.55, coat: 0.2, lado: THREE.DoubleSide });
@@ -219,14 +226,7 @@ export default function celula() {
   }
   // nucleoplasma: domo vermelho-escuro com grânulos escuros
   const nucM = plast(0x7a1218, { rug: 0.5, coat: 0.2 }); const core = esfera(RC, nucM, 48); N.add(core);
-  const granM = plast(0x3a070a, { rug: 0.6, coat: 0 });
-  for (let i = 0; i < 60; i++) { const yy = 1 - (i + 0.5) / 60 * 2, rr2 = Math.sqrt(1 - yy * yy), ph = i * 2.39996; const d = new THREE.Vector3(Math.cos(ph) * rr2, yy, Math.sin(ph) * rr2); if (d.x < 0.06 || d.y < 0.06 || d.z < 0.06) continue; const p = malha(new THREE.CircleGeometry(0.0135, 16), granM, false); p.position.copy(d.clone().multiplyScalar(RC * 1.002)); p.lookAt(d.clone().multiplyScalar(2)); N.add(p); }
-  // cromossomos (X roxos) sobre a camada creme
-  const roxo = plast(0x7a4cc8, { rug: 0.4, coat: 0.4 });
-  const cromo = (u, v, face, ang) => { const x = new THREE.Group(); for (const s of [1, -1]) { const c = malha(new THREE.CapsuleGeometry(0.0068, 0.062, 3, 8), roxo, false); c.rotation.z = ang + s * 0.45; x.add(c); }
-    const p = [u, v]; if (face === 0) { x.position.set(p[0], p[1], 0.006); } else if (face === 1) { x.position.set(0.006, p[1], p[0]); x.rotation.y = Math.PI / 2; } else { x.position.set(p[0], 0.006, p[1]); x.rotation.x = -Math.PI / 2; }
-    N.add(x); };
-  for (let f = 0; f < 3; f++) for (let k = 0; k < 3; k++) { const a = (k + 0.5) / 3 * Math.PI / 2 + (rnd() - 0.5) * 0.25, r = RC + 0.04 + rnd() * 0.035; cromo(Math.cos(a) * r, Math.sin(a) * r, f, rnd() * 3); }
+  // grânulos do nucleoplasma e cromossomos: pintados (projeção da arte de referência nas faces do corte)
   // poros do envoltório
   const poroM = plast(0x6a1010, { rug: 0.7, coat: 0 });
   for (let i = 0; i < 40; i++) { const d = new THREE.Vector3().setFromSphericalCoords(1, 0.2 + rnd() * 1.6, rnd() * TAU); if (d.x > -0.1 && d.y > -0.1 && d.z > -0.1) continue;
@@ -345,8 +345,7 @@ export default function celula() {
   for (let i = 0; i < 4; i++) { const v = esfera(0.03, vesM.clone(), 20); C.add(v); ves.push(v); }
   const ini = V(0.76, 0.17, -0.22), fim = V(0.87, 0.07, -0.37);
 
-  // câmera ajustada aos pontos da referência (cantos do corte, silhueta, polo)
-  const camera = { pos: V(1.93, 2.54, 1.957), alvo: V(-0.05, 0.964, 0.047), fov: 41.6 };
+  g.updateMatrixWorld(true); aProjetar.forEach(projeta);
   return {
     grupo: g, camera,
     // uma vez por ativação (pesquisa: 1–2,5 s, sem laço); terminado, fica no estado final

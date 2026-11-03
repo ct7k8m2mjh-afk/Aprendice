@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { V } from './base.js';
+import { V, redesenho } from './base.js';
 import celula from './cenas/celula.js';
 import atomo from './cenas/atomo.js';
 import solidos from './cenas/solidos.js';
@@ -58,13 +58,14 @@ export async function criarPalco(_canvasIgnorado, { claro = true } = {}) {
   }
   function desmontar(v) { const i = vistas.indexOf(v); if (i >= 0) vistas.splice(i, 1); visiveis.delete(v); io.unobserve(v.el); v.tela.remove(); }
   function tema(cl) { claro = cl; for (const v of vistas) { v.s.traverse((o) => { if (o.material && o.material.isShadowMaterial) o.material.opacity = cl ? 0.22 : 0.45; }); v.sujo = true; } }
-  const relogio = new THREE.Clock(); let parar = false;
+  const relogio = new THREE.Clock(); let parar = false; let visto = redesenho.n;
   const menos = window.matchMedia('(prefers-reduced-motion: reduce)');
   function quadro() {
     if (parar) return; requestAnimationFrame(quadro);
     const dt = Math.min(0.05, relogio.getDelta()), t = relogio.elapsedTime;
     if (document.hidden) return;
     const agora = performance.now();
+    if (redesenho.n !== visto) { visto = redesenho.n; for (const v of visiveis) v.sujo = true; }
     for (const v of visiveis) {
       const w = Math.max(1, Math.round(v.el.clientWidth * dpr)), h = Math.max(1, Math.round(v.el.clientHeight * dpr));
       const mexendo = v.ativo || agora < v.ate || Math.abs(v.giroAlvo - v.giro) > 0.001;
