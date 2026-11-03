@@ -29,3 +29,9 @@ Imagem enviada nunca é "por enviar": tem uso, e o uso fica registrado.
 3. Animação dos ícones construídos (ex.: partes que se expandem ao passar o mouse).
 
 - Ícones construídos precisam de textura, proporção e vida no nível da referência 3D da célula (03/11).
+
+## Regra de animação (03/11, vale para TODOS os ícones)
+- Cada ícone anima de acordo com a FUNÇÃO do que representa (ex.: circuito = corrente correndo no fio e lâmpada acendendo).
+- Nunca "desmontar" peças sem sentido. Antes de animar, conferir se o próprio desenho faz sentido físico/científico
+  (ex.: nuvem e vento do tamanho de continentes soltos fora da Terra NÃO fazem sentido; nuvens e ventos ficam rentes à superfície).
+- Catálogo de cada ícone, função e animação: docs/animacoes-dos-icones.md.
