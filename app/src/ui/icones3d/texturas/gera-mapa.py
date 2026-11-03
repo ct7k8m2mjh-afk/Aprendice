@@ -30,11 +30,11 @@ def norm(a):
 wx = (fbm(420 * S, 4, 100) - 0.5) * 260 * S
 wy = (fbm(420 * S, 4, 200) - 0.5) * 260 * S
 X, Y = np.meshgrid(np.arange(CW, dtype=np.float32), np.arange(CH, dtype=np.float32))
-alt = norm(fbm(700 * S, 7, 1, 0.52))
+alt = norm(fbm(400 * S, 7, 1, 0.56))
 alt = cv2.remap(alt, X + wx, Y + wy, cv2.INTER_LINEAR, borderMode=cv2.BORDER_REFLECT)
 # serrilhado fino das curvas (a referência tem bordas em zigue-zague)
-zx = (fbm(60 * S, 3, 300) - 0.5) * 34 * S
-zy = (fbm(60 * S, 3, 400) - 0.5) * 34 * S
+zx = (fbm(40 * S, 3, 300) - 0.5) * 40 * S
+zy = (fbm(40 * S, 3, 400) - 0.5) * 40 * S
 alt = cv2.remap(alt, X + zx, Y + zy, cv2.INTER_LINEAR, borderMode=cv2.BORDER_REFLECT)
 # planaltos mais altos à direita e no centro-baixo; mais verde na faixa de cima e à esquerda embaixo
 u, v = X / CW, Y / CH
@@ -62,14 +62,15 @@ def meandro(c, amp, semente):
 
 RIOS = [  # (pontos em fração da área colorida, largura inicial e final em px de 2048)
   ([(-0.02, 0.22), (0.07, 0.25), (0.14, 0.33), (0.21, 0.25), (0.29, 0.17), (0.37, 0.14), (0.43, 0.24), (0.46, 0.37),
-    (0.53, 0.47), (0.60, 0.56), (0.67, 0.66), (0.70, 0.75), (0.66, 0.86), (0.64, 1.03)], 18, 92, 11),
-  ([(0.585, 0.53), (0.68, 0.45), (0.78, 0.35), (0.88, 0.26), (0.97, 0.19), (1.03, 0.16)], 30, 13, 12),
-  ([(0.45, 0.31), (0.50, 0.21), (0.55, 0.12), (0.57, 0.02), (0.58, -0.03)], 26, 10, 13),
-  ([(0.13, 0.32), (0.09, 0.44), (0.12, 0.55), (0.08, 0.64)], 13, 8, 14),
+    (0.53, 0.47), (0.60, 0.56), (0.67, 0.66), (0.70, 0.75), (0.66, 0.86), (0.64, 1.03)], 30, 130, 11),
+  ([(0.47, 0.38), (0.50, 0.50), (0.55, 0.60), (0.63, 0.66), (0.68, 0.70)], 40, 46, 15),
+  ([(0.585, 0.53), (0.68, 0.45), (0.78, 0.35), (0.88, 0.26), (0.97, 0.19), (1.03, 0.16)], 52, 26, 12),
+  ([(0.45, 0.31), (0.50, 0.21), (0.55, 0.12), (0.57, 0.02), (0.58, -0.03)], 40, 18, 13),
+  ([(0.13, 0.32), (0.09, 0.44), (0.12, 0.55), (0.08, 0.64)], 22, 14, 14),
 ]
 mask = np.zeros((CH, CW), np.uint8)
 for pts, l0, l1, sem in RIOS:
-  c = curva([(x * CW, y * CH) for x, y in pts]); c = meandro(c, 9 * S, sem)
+  c = curva([(x * CW, y * CH) for x, y in pts]); c = meandro(c, 16 * S, sem)
   n = len(c)
   for i, (x, y) in enumerate(c):
     r = (l0 + (l1 - l0) * (i / n) ** 0.8) * S / 2
@@ -90,8 +91,8 @@ lo, hi = np.percentile(alt, 2), np.percentile(alt, 99.5)
 hn = np.clip((alt - lo) / (hi - lo), 0, 0.9999)
 banda = np.floor(hn * N).astype(np.int32)
 PAL = np.array([  # verde-escuro baixo -> verde -> verde-amarelo -> amarelo -> laranja-amarelo alto
-  (52, 150, 44), (76, 168, 40), (108, 186, 38), (142, 200, 44), (176, 210, 52),
-  (206, 214, 60), (232, 214, 72), (242, 204, 78), (243, 190, 82), (238, 174, 84)], np.float32)
+  (48, 152, 46), (70, 170, 42), (98, 186, 40), (128, 198, 44), (160, 208, 50),
+  (190, 214, 56), (218, 218, 66), (240, 216, 76), (246, 206, 82), (246, 194, 86)], np.float32)
 cor = PAL[banda]
 # leve variação dentro da faixa (para não ficar chapado)
 fr = hn * N - banda
@@ -111,8 +112,8 @@ bsl = cv2.GaussianBlur(bf, (0, 0), 7 * S)  # sombra macia do degrau (o patamar d
 gx2 = cv2.Sobel(bsl, cv2.CV_32F, 1, 0, ksize=3) / 8; gy2 = cv2.Sobel(bsl, cv2.CV_32F, 0, 1, ksize=3) / 8
 macio = -(gx2 * L[0] + gy2 * L[1]) * 9 * S
 cor = cor * (1 + 0.10 * np.clip(macio, -1, 1))[..., None]
-ESC = np.array([60, 90, 20], np.float32)
-cor = cor * (1 - 0.55 * np.clip(esc, 0, 1))[..., None] + ESC * (0.55 * np.clip(esc, 0, 1))[..., None] * 0.6
+ESC = np.array([40, 100, 30], np.float32)
+cor = cor * (1 - 0.42 * np.clip(esc, 0, 1))[..., None] + ESC * (0.42 * np.clip(esc, 0, 1))[..., None] * 0.6
 cor = cor + (255 - cor) * (0.42 * np.clip(cla, 0, 1))[..., None]
 
 # ---------- curvas de nível finas dentro das faixas (3 por faixa)
