@@ -151,3 +151,34 @@ def render_camadas(ID, tam=None, elev=30, azim=-18, lente=50, folga=1.08, amostr
     json.dump({'id': ID, 'tam': tam, 'ordem': ordem}, open(os.path.join(saida, 'camadas.json'), 'w'), ensure_ascii=False, indent=1)
     _proj()
     print('camadas', ID, ordem, '->', saida)
+
+
+def render_quadros(ID, passo, n=24, tam=None, elev=30, azim=-18, lente=50, folga=1.12, amostras=48):
+    """Animação pela FUNÇÃO do objeto, em 3D de verdade: passo(t) move a cena (t de 0 a 1, ciclo fechado:
+    o quadro n seria igual ao 0). Renderiza n quadros do ícone completo (com chão/sombra) na MESMA câmera.
+    Saída: <saida>/quadros/q00.png ... e quadros.json. O quadro 0 é o ícone parado.
+    Use antes de render_camadas() ou sozinho (SO_QUADROS=1)."""
+    sc = bpy.context.scene
+    tam = int(os.environ.get('QUADRO_TAM', tam or 512))
+    sc.render.resolution_x = sc.render.resolution_y = tam
+    sc.cycles.samples = int(os.environ.get('QUADRO_AMOSTRAS', amostras))
+    sc.render.image_settings.file_format = 'PNG'; sc.render.image_settings.color_mode = 'RGBA'
+    saida = os.environ.get('ICONE_SAIDA') or os.path.join(os.path.dirname(os.path.abspath(__file__)), 'camadas', ID)
+    pasta = os.path.join(saida, 'quadros'); os.makedirs(pasta, exist_ok=True)
+    K = bpy.data.objects.get('KEY')
+    if K:
+        K.location = (-0.6, -3.0, 8.0); K.data.size = 6; K.data.energy = 780
+        K.rotation_euler = (mathutils.Vector((0, 0, 0)) - K.location).to_track_quat('-Z', 'Y').to_euler()
+    passo(0.0)
+    cam = sc.camera if sc.camera and sc.camera.name == 'cam' else _camera(elev, azim, lente, folga)
+    for o in _objs_cena():
+        o.visible_camera = True
+    n = int(os.environ.get('QUADROS_N', n))
+    for f in range(n):
+        passo(f / n)
+        bpy.context.view_layer.update()
+        sc.render.filepath = os.path.join(pasta, 'q%02d.png' % f)
+        bpy.ops.render.render(write_still=True)
+    json.dump({'id': ID, 'n': n, 'tam': tam}, open(os.path.join(pasta, 'quadros.json'), 'w'))
+    passo(0.0)
+    print('quadros', ID, n, '->', pasta)

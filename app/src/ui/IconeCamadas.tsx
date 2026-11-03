@@ -11,16 +11,18 @@ type Meta = {
   id: string;
   partes: { nome: string; cx: number; cy: number }[];
   animacao?: 'corrente' | 'inteiro';
+  filme?: { n: number; fps: number };
   trajetos?: Record<string, [number, number][]>;
   pontos?: Record<string, { xy: [number, number]; r: number }>;
 };
 const IMAGENS = import.meta.glob('../assets/ic3d/*/*.webp', { eager: true, import: 'default' }) as Record<string, string>;
 const METAS = import.meta.glob('../assets/ic3d/*/camadas.json', { eager: true, import: 'default' }) as Record<string, Meta>;
 
-const ICONES: Record<string, { meta: Meta; sombra: string; partes: { nome: string; src: string }[] }> = {};
+const ICONES: Record<string, { meta: Meta; sombra: string; partes: { nome: string; src: string }[]; filme?: string; parado?: string }> = {};
 for (const [caminho, meta] of Object.entries(METAS)) {
   const pasta = caminho.replace(/camadas\.json$/, '');
-  ICONES[meta.id] = { meta, sombra: IMAGENS[pasta + 'sombra.webp'], partes: meta.partes.map((p) => ({ nome: p.nome, src: IMAGENS[pasta + p.nome + '.webp'] })) };
+  ICONES[meta.id] = { meta, sombra: IMAGENS[pasta + 'sombra.webp'], partes: meta.partes.map((p) => ({ nome: p.nome, src: IMAGENS[pasta + p.nome + '.webp'] })),
+    filme: IMAGENS[pasta + 'filme.webp'], parado: IMAGENS[pasta + 'parado.webp'] };
 }
 
 export function temCamadas(id: string | undefined): boolean {
@@ -37,6 +39,17 @@ export function IconeCamadas({ id, tam, className = '', rotulo }: { id: string; 
   const brilho = meta.pontos?.brilho;
   const trajeto = meta.trajetos ? caminho([...(meta.trajetos.ida || []), ...(meta.trajetos.volta || [])]) : '';
   const uid = 'icc-' + id;
+  if (meta.filme && ic.filme && ic.parado) {
+    // animação 3D renderizada (quadros da própria cena): parado = quadro 0; ao passar o mouse toca a tira de quadros
+    const { n, fps } = meta.filme;
+    return (
+      <span className={`ic-camadas anim-filme ${className}`} role={rotulo ? 'img' : undefined} aria-label={rotulo} aria-hidden={rotulo ? undefined : true}
+        style={{ ...(tam ? { ['--tam' as string]: tam + 'px' } : {}), ['--n' as string]: n, ['--dur' as string]: (n / fps).toFixed(2) + 's' }}>
+        <img className="icc-parado" src={ic.parado} alt="" draggable={false} />
+        <span className="icc-filme" style={{ backgroundImage: `url(${ic.filme})` }} />
+      </span>
+    );
+  }
   return (
     <span className={`ic-camadas anim-${anim} ${className}`} style={tam ? { ['--tam' as string]: tam + 'px' } : undefined}
       role={rotulo ? 'img' : undefined} aria-label={rotulo} aria-hidden={rotulo ? undefined : true}>

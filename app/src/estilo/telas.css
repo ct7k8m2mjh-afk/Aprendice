@@ -731,6 +731,11 @@ kbd { font: 600 12.5px var(--fonte); border: 1px solid var(--borda2); border-bot
 :is(a, button):is(:hover, :focus-visible) .anim-corrente .icc-luz, .anim-corrente:hover .icc-luz { opacity: 1; animation: acende 1.4s ease-in-out infinite; }
 @keyframes corrente { 0% { stroke-dashoffset: .07; opacity: 1; } 92% { opacity: 1; } 100% { stroke-dashoffset: -.93; opacity: 0; } }
 @keyframes acende { 0%, 30% { opacity: .55; transform: scale(.92); } 50% { opacity: 1; transform: scale(1.05); } 100% { opacity: .7; transform: scale(1); } }
+/* filme: quadros renderizados da cena 3D (função do objeto em movimento real) */
+.icc-filme { position: absolute; inset: 0; background-repeat: no-repeat; background-size: calc(var(--n) * 100%) 100%; background-position: 0 0; opacity: 0; }
+:is(a, button):is(:hover, :focus-visible) .anim-filme .icc-filme, .anim-filme:hover .icc-filme { opacity: 1; animation: filme var(--dur) steps(var(--n), jump-none) infinite; }
+:is(a, button):is(:hover, :focus-visible) .anim-filme .icc-parado, .anim-filme:hover .icc-parado { opacity: 0; }
+@keyframes filme { from { background-position: 0% 0; } to { background-position: 100% 0; } }
 @media (prefers-reduced-motion: reduce) { .ic-camadas * { transition: none !important; animation: none !important; } }
 
 /* ícone construído: a sombra já vem do render (apoiado no chão); a interface não acrescenta outra */

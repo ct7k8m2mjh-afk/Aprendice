@@ -17,8 +17,10 @@ LADO = 768
 #   inteiro:  o ícone se ergue de leve e a sombra se abre (nada se separa)
 ANIMACAO = {'F11': 'corrente', 'B00': 'inteiro'}   # basta para tela cheia em celular de alta densidade; webp leve
 
-for ID in sys.argv[1:]:
+def camadas(ID):
     src = os.path.join(ORIGEM, ID)
+    if not os.path.exists(os.path.join(src, 'camadas.json')):
+        return
     meta = json.load(open(os.path.join(src, 'camadas.json')))
     nomes = ['sombra'] + meta['ordem']
     ims = {n: Image.open(os.path.join(src, n + '.png')).convert('RGBA') for n in nomes}
@@ -53,3 +55,37 @@ for ID in sys.argv[1:]:
         extra['pontos'] = {n: {'xy': conv(v['xy']), 'r': round(v['r'] * k / LADO, 4)} for n, v in meta['pontos'].items()}
     json.dump({'id': ID, 'partes': partes, **extra}, open(os.path.join(out, 'camadas.json'), 'w'), ensure_ascii=False, indent=1)
     print(ID, 'ok', [p['nome'] for p in partes])
+
+
+def quadros(ID, lado=480):
+    """Sequência de quadros (animação pela função) -> uma tira WebP (quadros lado a lado) + meta no camadas.json."""
+    src = os.path.join(ORIGEM, ID, 'quadros')
+    if not os.path.isdir(src):
+        return
+    meta = json.load(open(os.path.join(src, 'quadros.json')))
+    ims = [Image.open(os.path.join(src, 'q%02d.png' % f)).convert('RGBA') for f in range(meta['n'])]
+    caixa = None
+    for im in ims:
+        a = np.asarray(im)[..., 3]; ys, xs = np.where(a > 10)
+        b = [xs.min(), ys.min(), xs.max() + 1, ys.max() + 1]
+        caixa = b if caixa is None else [min(caixa[0], b[0]), min(caixa[1], b[1]), max(caixa[2], b[2]), max(caixa[3], b[3])]
+    w, h = caixa[2] - caixa[0], caixa[3] - caixa[1]; L = max(w, h); pad = int(L * .04); L += 2 * pad
+    x0 = caixa[0] - pad - (L - 2 * pad - w) // 2; y0 = caixa[1] - pad - (L - 2 * pad - h) // 2
+    tira = Image.new('RGBA', (lado * len(ims), lado), (0, 0, 0, 0))
+    for i, im in enumerate(ims):
+        t = Image.new('RGBA', (L, L), (0, 0, 0, 0)); t.paste(im, (-x0, -y0))
+        tira.paste(t.resize((lado, lado), Image.LANCZOS), (i * lado, 0))
+    out = os.path.join(DESTINO, ID); os.makedirs(out, exist_ok=True)
+    tira.save(os.path.join(out, 'filme.webp'), 'WEBP', quality=86, method=6, alpha_quality=95)
+    ims[0].crop((x0, y0, x0 + L, y0 + L)).resize((768, 768), Image.LANCZOS).save(os.path.join(out, 'parado.webp'), 'WEBP', quality=90, method=6)
+    arq = os.path.join(out, 'camadas.json')
+    m = json.load(open(arq)) if os.path.exists(arq) else {'id': ID, 'partes': []}
+    m['filme'] = {'n': len(ims), 'fps': meta.get('fps', 18)}
+    json.dump(m, open(arq, 'w'), ensure_ascii=False, indent=1)
+    print(ID, 'filme', len(ims), 'quadros', round(os.path.getsize(os.path.join(out, 'filme.webp')) / 1024), 'KB')
+
+
+if __name__ == '__main__':
+    for ID in sys.argv[1:]:
+        camadas(ID)
+        quadros(ID)
