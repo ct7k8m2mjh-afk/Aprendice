@@ -17,6 +17,16 @@ import bpy, math, mathutils, os, json
 from kit import *
 
 _PARTES = {}
+_TRAJETOS = {}   # caminhos (pontos no mundo) para animações desenhadas por cima: ex. a corrente correndo no fio
+_PONTOS = {}     # pontos de interesse (ex.: centro do vidro da lâmpada, onde o brilho acende)
+
+
+def trajeto(nome, pts):
+    _TRAJETOS[nome] = [tuple(p) for p in pts]
+
+
+def ponto(nome, p, raio=0.0):
+    _PONTOS[nome] = (tuple(p), raio)
 
 
 def parte(nome, objs):
@@ -108,6 +118,20 @@ def render_camadas(ID, tam=None, elev=30, azim=-18, lente=50, folga=1.08, amostr
     cam = _camera(elev, azim, lente, folga)
     chao = bpy.data.objects.get('CHAO')
 
+    def _proj():
+        from bpy_extras.object_utils import world_to_camera_view
+        bpy.context.view_layer.update()
+        def pr(p):
+            v = world_to_camera_view(sc, cam, mathutils.Vector(p)); return [round(v.x * tam, 1), round((1 - v.y) * tam, 1)]
+        out = {'trajetos': {n: [pr(p) for p in pts] for n, pts in _TRAJETOS.items()}, 'pontos': {}}
+        for n, (p, r) in _PONTOS.items():
+            c = pr(p); borda = pr((p[0] + r, p[1], p[2])); out['pontos'][n] = {'xy': c, 'r': round(abs(borda[0] - c[0]), 1)}
+        arq = os.path.join(saida, 'camadas.json')
+        base = json.load(open(arq)) if os.path.exists(arq) else {'id': ID, 'tam': tam}
+        base.update(out); json.dump(base, open(arq, 'w'), ensure_ascii=False, indent=1)
+    if os.environ.get('SO_TRAJETO'):
+        _proj(); print('trajetos', ID, list(_TRAJETOS)); return
+
     def faz(nome):
         sc.render.filepath = os.path.join(saida, nome + '.png')
         bpy.ops.render.render(write_still=True)
@@ -125,4 +149,5 @@ def render_camadas(ID, tam=None, elev=30, azim=-18, lente=50, folga=1.08, amostr
     chao.hide_render = False
     ordem = [n for n in fundo if n in _PARTES] + sorted([n for n in _PARTES if n not in fundo], key=lambda n: -_profundidade(cam, _PARTES[n]))   # mais longe primeiro
     json.dump({'id': ID, 'tam': tam, 'ordem': ordem}, open(os.path.join(saida, 'camadas.json'), 'w'), ensure_ascii=False, indent=1)
+    _proj()
     print('camadas', ID, ordem, '->', saida)

@@ -11,7 +11,11 @@ from PIL import Image
 RAIZ = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 ORIGEM = os.path.join(RAIZ, 'app-atual', 'design', 'icones_real', 'foto3d', 'camadas')
 DESTINO = os.path.join(RAIZ, 'app', 'src', 'assets', 'ic3d')
-LADO = 768   # basta para tela cheia em celular de alta densidade; webp leve
+LADO = 768
+# como cada ícone anima (decidido pelo que faz sentido no assunto, não por desmontar):
+#   corrente: a corrente corre pelo fio e a lâmpada acende; as peças ficam no lugar
+#   inteiro:  o ícone se ergue de leve e a sombra se abre (nada se separa)
+ANIMACAO = {'F11': 'corrente', 'B00': 'inteiro'}   # basta para tela cheia em celular de alta densidade; webp leve
 
 for ID in sys.argv[1:]:
     src = os.path.join(ORIGEM, ID)
@@ -40,5 +44,12 @@ for ID in sys.argv[1:]:
             a = np.asarray(tela)[..., 3].astype(float)
             ys, xs = np.nonzero(a > 20)
             partes.append({'nome': n, 'cx': round(float(xs.mean()) / LADO, 3), 'cy': round(float(ys.mean()) / LADO, 3)})
-    json.dump({'id': ID, 'partes': partes}, open(os.path.join(out, 'camadas.json'), 'w'), ensure_ascii=False, indent=1)
+    k = LADO / lado
+    conv = lambda xy: [round((xy[0] - x0) * k / LADO, 4), round((xy[1] - y0) * k / LADO, 4)]
+    extra = {'animacao': ANIMACAO.get(ID, 'inteiro')}
+    if meta.get('trajetos'):
+        extra['trajetos'] = {n: [conv(p) for p in pts] for n, pts in meta['trajetos'].items()}
+    if meta.get('pontos'):
+        extra['pontos'] = {n: {'xy': conv(v['xy']), 'r': round(v['r'] * k / LADO, 4)} for n, v in meta['pontos'].items()}
+    json.dump({'id': ID, 'partes': partes, **extra}, open(os.path.join(out, 'camadas.json'), 'w'), ensure_ascii=False, indent=1)
     print(ID, 'ok', [p['nome'] for p in partes])

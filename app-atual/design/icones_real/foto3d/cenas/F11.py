@@ -301,4 +301,9 @@ for pt in (cima[0], cima[-1], baixo[0], baixo[-1]):
 fio = objs_novos(a2)
 
 parte('pilha', pilha); parte('fio', fio); parte('lampada', lampada)
+# animação com sentido físico: a corrente sai do polo +, corre pelo fio até a lâmpada, volta pelo fio de baixo ao polo −,
+# e a lâmpada acende (brilho no centro do vidro). As peças NÃO se separam.
+from camadas import trajeto, ponto
+trajeto('ida', cima); trajeto('volta', baixo)
+ponto('brilho', (LX, LY, ZG), RG)
 render_camadas('F11', folga=float(os.environ.get('FOLGA', 1.06)), elev=float(os.environ.get('ELEV', 10)), azim=float(os.environ.get('AZIM', -2)))

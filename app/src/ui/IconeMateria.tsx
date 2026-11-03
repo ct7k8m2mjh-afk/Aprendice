@@ -7,16 +7,17 @@ import iluHis from '../assets/ilu/his.webp';
 import iluFil from '../assets/ilu/fil.webp';
 import iluSoc from '../assets/ilu/soc.webp';
 import iluIng from '../assets/ilu/ing.webp';
+import iluGeo from '../assets/ilu/geo.webp';
 
 /**
  * Mapa central do ícone 3D principal de cada matéria (o mesmo em cartões, listas e desempenho).
  * Bio, Quí, Mat e Por: ilustrações grandes do protótipo, sem sombra própria (a interface põe a sombra).
  * His, Fil, Soc e Ing: recortados das pranchas aprovadas, já com a sombra de contato do desenho
  * e em resolução menor; por isso aparecem com a classe "ilu-propria" (sem sombra extra, tamanho contido).
- * Física e Geografia ainda não têm ilustração principal: mostram o ponto na cor da matéria.
+ * Geografia: mapa com bússola da prancha do dono (G01). Física: ícone construído (circuito, F11).
  */
-export const ILU: Record<string, string> = { bio: iluBio, qui: iluQui, mat: iluMat, por: iluPor, his: iluHis, fil: iluFil, soc: iluSoc, ing: iluIng };
-export const ILU_PROPRIA = new Set(['his', 'fil', 'soc', 'ing']);
+export const ILU: Record<string, string> = { bio: iluBio, qui: iluQui, mat: iluMat, por: iluPor, his: iluHis, fil: iluFil, soc: iluSoc, ing: iluIng, geo: iluGeo };
+export const ILU_PROPRIA = new Set(['his', 'fil', 'soc', 'ing', 'geo']);
 
 /** Matérias cujo ícone principal já é CONSTRUÍDO em camadas 3D (animável); prevalece sobre a imagem. */
 export const CAMADAS_MATERIA: Record<string, string> = { bio: 'B00', fis: 'F11' };

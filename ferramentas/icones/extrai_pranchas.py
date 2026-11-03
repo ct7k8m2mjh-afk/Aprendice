@@ -20,6 +20,11 @@ PRANCHAS = {
     'his': ('historia.webp', grade((196, 528), (640, 945), ['H01', 'H02', 'H03', 'H04', 'H05', 'H06', 'H07', 'H08']) + [('_materia', (418, 28, 592, 168))]),
     'fil': ('filosofia.webp', grade((232, 524), (642, 935), ['L01', 'L02', 'L03', 'L04', 'L05', 'L06', 'L07', 'L08']) + [('_materia', (646, 16, 802, 114))]),
     'soc': ('sociologia.webp', grade((216, 500), (625, 932), ['S01', 'S02', 'S03', 'S04', 'S05', 'S06', 'S07', 'S08']) + [('_materia', (316, 16, 514, 190))]),
+    # Física e Geografia (pranchas enviadas pelo dono em 02/11): 3 linhas x 4 cartões; só a área do desenho, sem o título
+    'fis': ('fisica.webp', [(f'F{i + 1:02d}', (x0 + 6, y0, x1 - 6, y1)) for i, ((x0, x1), (y0, y1)) in enumerate(
+        [(c, r) for r in ((32, 258), (382, 598), (730, 928)) for c in ((44, 368), (388, 713), (734, 1060), (1080, 1408))])]),
+    'geo': ('geografia.webp', [(f'G{i + 1:02d}', (x0 + 6, y0, x1 - 6, y1)) for i, ((x0, x1), (y0, y1)) in enumerate(
+        [(c, r) for r in ((26, 262), (370, 600), (712, 950)) for c in ((35, 364), (385, 714), (735, 1064), (1086, 1415))])]),
     'ing': ('ingles.webp', grade((215, 594), (635, 1014), ['_ouvir', 'I02', 'I03', 'I04', '_pronuncia', '_fala', 'I01', '_escrita']) + [('_materia', (453, 46, 646, 184))]),
 }
 sess = None
@@ -226,6 +231,24 @@ def extrai(prancha, caixa, chave):
         ImageDraw.Draw(pm).polygon(pts, fill=255)
         lum = a.mean(2); sat_ = a.max(2) - a.min(2)
         out[(np.asarray(pm) > 0) & (lum > lmin) & (sat_ < smax), 3] = 0
+    # papel quadriculado / vidro claro (F02, F07): só as linhas e contornos ficam; o fundo claro vira transparente
+    PAPEL = {'fis-F02': .62, 'fis-F07': .22}
+    if chave in PAPEL:
+        lum = a.mean(2); sat_ = a.max(2) - a.min(2)
+        zona = np.zeros(lum.shape, bool); zona[:int(lum.shape[0] * PAPEL[chave])] = True
+        claro = zona & (lum > 205) & (sat_ < 50)
+        out[claro, 3] = (np.clip((255 - lum[claro]) / 45, 0, 1) * out[claro, 3] * .9).astype(np.uint8)
+    # nuvem branca (G03): cinza-claro do desenho é objeto opaco
+    if chave == 'geo-G03':
+        from PIL import ImageDraw
+        pm = Image.new('L', (out.shape[1], out.shape[0]), 0); ImageDraw.Draw(pm).polygon([(0, 88), (108, 88), (108, 180), (0, 180)], fill=255)
+        lum = a.mean(2)
+        nuv = (np.asarray(pm) > 0) & (lum < 250.5) & (lum > 180)
+        nuv = ndimage.binary_opening(ndimage.binary_fill_holes(ndimage.binary_closing(nuv, iterations=6)), iterations=3)
+        nuv = ndimage.binary_erosion(nuv, iterations=1)
+        suave = ndimage.gaussian_filter(nuv.astype(float), 1.0)
+        out[nuv, :3] = a[nuv].astype(np.uint8)
+        out[..., 3] = np.maximum(out[..., 3], (suave * 255).astype(np.uint8))
     return Image.fromarray(out, 'RGBA')
 
 def limpa(im):

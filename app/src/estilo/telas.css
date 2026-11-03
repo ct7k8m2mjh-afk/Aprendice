@@ -714,15 +714,24 @@ kbd { font: 600 12.5px var(--fonte); border: 1px solid var(--borda2); border-bot
   .mc-pct { white-space: nowrap; }
 }
 
-/* Ícones construídos em camadas: todas as camadas ocupam o mesmo quadro; ao passar o mouse as peças se afastam do centro */
-.ic-camadas { position: relative; display: block; flex: none; aspect-ratio: 1; width: var(--tam, 100%); height: var(--tam, auto); }
-.ic-camadas img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; pointer-events: none; user-select: none;
-  transition: transform .45s var(--curva), opacity .45s var(--curva); transition-delay: calc(var(--i, 0) * 25ms); }
-:is(a, button, .ic-camadas):hover .ic-camadas .icc-peca, .ic-camadas:hover .icc-peca, :is(a, button):focus-visible .ic-camadas .icc-peca {
-  transform: translate(calc(var(--dx) * 42%), calc(var(--dy) * 30%)) scale(1.05); }
-:is(a, button):hover .ic-camadas .icc-sombra, .ic-camadas:hover .icc-sombra, :is(a, button):focus-visible .ic-camadas .icc-sombra {
-  transform: scale(1.06, 1.02); opacity: .8; }
-@media (prefers-reduced-motion: reduce) { .ic-camadas img { transition: none; } .ic-camadas .icc-peca, .ic-camadas .icc-sombra { transform: none !important; } }
+/* Ícones construídos em camadas: sombra + objeto no mesmo quadro. A animação segue o que o objeto faz (IconeCamadas.tsx). */
+.ic-camadas img, .ic-camadas .icc-objeto, .ic-camadas .icc-fx { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; user-select: none; }
+.ic-camadas img { object-fit: contain; }
+.ic-camadas .icc-objeto, .ic-camadas .icc-sombra { transition: transform .5s var(--curva), opacity .5s var(--curva); }
+/* inteiro: o objeto sai um pouco do chão e a sombra se abre e clareia */
+:is(a, button):is(:hover, :focus-visible) .anim-inteiro .icc-objeto, .anim-inteiro:hover .icc-objeto { transform: translateY(-3.5%) scale(1.025); }
+:is(a, button):is(:hover, :focus-visible) .anim-inteiro .icc-sombra, .anim-inteiro:hover .icc-sombra { transform: scale(1.07, 1.03); opacity: .7; }
+/* corrente: pulso de luz percorre o fio (polo + → lâmpada → polo −) e a lâmpada acende */
+.icc-fx { overflow: visible; }
+.icc-pulso { fill: none; stroke: #fff3b0; stroke-width: .016; stroke-linecap: round; stroke-dasharray: .07 .93; stroke-dashoffset: .07;
+  opacity: 0; filter: drop-shadow(0 0 .012px #ffd24a) drop-shadow(0 0 .02px #ffb000); }
+.icc-pulso.p2 { stroke-width: .03; stroke: #ffd34a; opacity: 0; stroke-dasharray: .07 .93; filter: blur(.006px); }
+.icc-luz { opacity: .15; transition: opacity .6s var(--curva); transform-box: fill-box; transform-origin: center; }
+:is(a, button):is(:hover, :focus-visible) .anim-corrente .icc-pulso, .anim-corrente:hover .icc-pulso { animation: corrente 1.4s linear infinite; }
+:is(a, button):is(:hover, :focus-visible) .anim-corrente .icc-luz, .anim-corrente:hover .icc-luz { opacity: 1; animation: acende 1.4s ease-in-out infinite; }
+@keyframes corrente { 0% { stroke-dashoffset: .07; opacity: 1; } 92% { opacity: 1; } 100% { stroke-dashoffset: -.93; opacity: 0; } }
+@keyframes acende { 0%, 30% { opacity: .55; transform: scale(.92); } 50% { opacity: 1; transform: scale(1.05); } 100% { opacity: .7; transform: scale(1); } }
+@media (prefers-reduced-motion: reduce) { .ic-camadas * { transition: none !important; animation: none !important; } }
 
 /* ícone construído: a sombra já vem do render (apoiado no chão); a interface não acrescenta outra */
 .ilu-camadas { filter: none !important; }
