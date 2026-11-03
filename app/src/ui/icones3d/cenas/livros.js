@@ -20,7 +20,7 @@ function texMiolo(lado) {
 function texPluma() {
   const c = document.createElement('canvas'); c.width = 256; c.height = 1024; const x = c.getContext('2d');
   const gr = x.createLinearGradient(0, 1024, 0, 0);
-  gr.addColorStop(0, '#c4906c'); gr.addColorStop(0.2, '#dfb597'); gr.addColorStop(0.6, '#e8c6ab'); gr.addColorStop(1, '#ecd0b8');
+  gr.addColorStop(0, '#bf8762'); gr.addColorStop(0.2, '#dcad8c'); gr.addColorStop(0.6, '#e6bfa2'); gr.addColorStop(1, '#eccab0');
   x.fillStyle = gr; x.fillRect(0, 0, 256, 1024);
   const rx = x.createLinearGradient(0, 0, 256, 0);
   rx.addColorStop(0, 'rgba(170,105,70,.45)'); rx.addColorStop(0.3, 'rgba(190,130,95,0)'); rx.addColorStop(0.7, 'rgba(190,130,95,0)'); rx.addColorStop(1, 'rgba(170,105,70,.4)');
@@ -114,7 +114,7 @@ export default function livros() {
     for (let i = 0; i < P.count; i++) {
       const px = P.getX(i), py = P.getY(i);
       U.setXY(i, (px + 0.3) / 0.6, (py - v0) / C);
-      P.setX(i, px + arco(py)); P.setZ(i, P.getZ(i) - 0.006 - 0.5 * px * px + 0.05 * Math.sin(Math.PI * (py - v0) / C) * 0);
+      P.setX(i, px + arco(py)); P.setZ(i, P.getZ(i) - 0.006 - 1.1 * px * px);
     }
     gv.computeVertexNormals();
   }
