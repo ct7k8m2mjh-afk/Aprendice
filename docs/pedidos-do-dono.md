@@ -11,6 +11,7 @@ Imagem enviada nunca é "por enviar": tem uso, e o uso fica registrado.
 | 03/11 | Pranchas de História, Filosofia, Sociologia, Inglês | app/conteudo-fonte/materias/ic/pranchas/ | ícones dos temas e principais |
 | 03/11 | Referência do menu lateral | docs/referencias/menu-lateral.webp | ícones de linha verdes do menu |
 | 03/11 | Referência da tela inicial | docs/referencias/tela-inicial.webp | nova tela inicial |
+| 03/11 | Célula 3D de referência (corte com um quarto removido) | docs/referencias/celula-3d.webp | padrão de acabamento da célula construída (textura, proporção, organelas) |
 
 ## Regras visuais ditas pelo dono
 - Ícones 3D: luz de FRENTE e de cima; o fundo branco é o chão; a sombra cai para TRÁS do objeto (nunca na frente). A sombra serve para dar contraste e destacar o ícone.
@@ -26,3 +27,5 @@ Imagem enviada nunca é "por enviar": tem uso, e o uso fica registrado.
 2. Ícones CONSTRUÍDOS (3D em camadas) em vez de melhorar o copia-e-cola: não se amplia/retoca o que vai ser refeito.
    Sombras e resolução entram já na construção (luz de frente e de cima, sombra para trás, render em alta).
 3. Animação dos ícones construídos (ex.: partes que se expandem ao passar o mouse).
+
+- Ícones construídos precisam de textura, proporção e vida no nível da referência 3D da célula (03/11).
