@@ -35,3 +35,8 @@ Imagem enviada nunca é "por enviar": tem uso, e o uso fica registrado.
 - Nunca "desmontar" peças sem sentido. Antes de animar, conferir se o próprio desenho faz sentido físico/científico
   (ex.: nuvem e vento do tamanho de continentes soltos fora da Terra NÃO fazem sentido; nuvens e ventos ficam rentes à superfície).
 - Catálogo de cada ícone, função e animação: docs/animacoes-dos-icones.md.
+
+## Regra de criação (03/11)
+- Nada é tirado/copiado/projetado da imagem de referência: copiar perde a qualidade original.
+- Tudo é CRIADO (modelado, pintado de forma procedural em alta resolução, ou assado da nossa própria cena 3D) para ficar
+  igual à referência. A referência serve só para olhar e comparar lado a lado.

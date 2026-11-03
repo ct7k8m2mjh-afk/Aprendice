@@ -26,7 +26,7 @@ function carregar() {
 }
 
 // câmera do render Cycles (impressa pelo F11_bake.py), deslocada para o centro do conjunto ficar na origem (giro)
-const CAM = { pos: [1.4778, 2.8344, 8.0547], alvo: [1.7604, 1.407, -0.0357], fov: 39.598 };
+const CAM = { pos: [1.4864, 2.7048, 7.6488], alvo: [1.7543, 1.3509, -0.0247], fov: 39.598 };
 const OFF = V(CAM.alvo[0], 0, CAM.alvo[2]);
 
 export default function circuitoAssado() {
@@ -54,14 +54,14 @@ export default function circuitoAssado() {
       const m0 = o.material; const nome = o.name.split('.')[0].replace(/_\d+$/, '');
       o.castShadow = false; o.receiveShadow = false;
       if (nome === 'sombra') {
-        o.material = new THREE.MeshBasicMaterial({ map: m0.map, color: 0x000000, transparent: true, depthWrite: false, toneMapped: false });
+        o.material = new THREE.MeshBasicMaterial({ map: m0.map, transparent: true, depthWrite: false, toneMapped: false, vertexColors: !!o.geometry.attributes.color });
         o.position.y += 0.002; o.renderOrder = 1; return;
       }
-      o.material = new THREE.MeshBasicMaterial({ map: m0.map, toneMapped: false });
+      o.material = new THREE.MeshBasicMaterial({ map: m0.map, toneMapped: false, side: THREE.DoubleSide });
       if (m0.emissiveMap) pendentes.push([o, m0.emissiveMap]);
     });
     for (const [o, tex] of pendentes) {
-      const m = new THREE.MeshBasicMaterial({ map: tex, transparent: true, opacity: 0, depthWrite: false, depthFunc: THREE.LessEqualDepth, toneMapped: false });
+      const m = new THREE.MeshBasicMaterial({ map: tex, transparent: true, opacity: 0, side: THREE.DoubleSide, depthWrite: false, depthFunc: THREE.LessEqualDepth, toneMapped: false });
       const c = new THREE.Mesh(o.geometry, m); c.renderOrder = 2; o.add(c); camadasAcesas.push(m);
     }
     modelo.add(cena);

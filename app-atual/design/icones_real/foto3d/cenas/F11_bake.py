@@ -190,14 +190,14 @@ ext[-1] = (0, ZG + RG)
 ESP = .022
 inn = [(max(0.0, r - ESP), z - (ESP if r < .05 else 0)) for (r, z) in reversed(ext)]
 vb = bpy.data.materials.new('vidro_lamp'); vb.use_nodes = True; nt = vb.node_tree; b = nt.nodes['Principled BSDF']
-b.inputs['Base Color'].default_value = cor('#f29a1c'); b.inputs['Transmission Weight'].default_value = float(os.environ.get('VTR', 0.65))
+b.inputs['Base Color'].default_value = cor(os.environ.get('VCOR', '#f29a1c')); b.inputs['Transmission Weight'].default_value = float(os.environ.get('VTR', 0.65))
 b.inputs['Roughness'].default_value = 0.02; b.inputs['IOR'].default_value = 1.14
 b.inputs['Specular IOR Level'].default_value = float(os.environ.get('VSP', 0.25))
 # emissao ambar: centro amarelo quente, bordas laranja (vidro "aceso", quase opaco)
 lwg = nt.nodes.new('ShaderNodeLayerWeight'); lwg.inputs['Blend'].default_value = 0.5
 rp = nt.nodes.new('ShaderNodeValToRGB'); E = rp.color_ramp.elements
-E[0].position = 0.0; E[0].color = cor('#cc620a'); E[1].position = 1.0; E[1].color = cor('#ffc63a')
-E.new(0.55).color = cor('#f39a1e')
+E[0].position = 0.0; E[0].color = cor(os.environ.get('VR0', '#cc620a')); E[1].position = 1.0; E[1].color = cor(os.environ.get('VR1', '#ffc63a'))
+E.new(0.55).color = cor(os.environ.get('VRM', '#f39a1e'))   # F11_bake: cores do vidro ajustáveis (VCOR/VR0/VRM/VR1)
 nt.links.new(lwg.outputs['Facing'], rp.inputs['Fac']); nt.links.new(rp.outputs['Color'], b.inputs['Emission Color'])
 b.inputs['Emission Strength'].default_value = float(os.environ.get('VEM', 0.74))
 gl = torno(ext + inn, vb, loc=(LX, LY, 0), fechado=True, nome='vidro', seg=96)
@@ -303,10 +303,14 @@ fio = objs_novos(a2)
 # =====================================================================================================
 # F11_bake (03/11): piloto da rota "assar no Blender -> GLB -> three.js" (docs/pesquisa/tecnicas-3d-realista.md, seções 2.2/4/7).
 # Mesma cena do F11.py (acima, sem mudanças) + a mesma luz de estúdio do render_camadas (KEY grande e macia, de frente e
-# de cima; FILL fraca; mundo branco). Assa, por objeto, o COMBINED do Cycles visto da câmera do ícone (reflexos no lugar
-# certo) em textura; a lâmpada, o soquete e o fio são assados duas vezes (apagada / acesa) para a animação misturar.
-# O chão vira um plano com a sombra assada (alfa). Exporta um GLB com as texturas (WebP) e os trajetos da corrente.
-# Uso: flock /tmp/render.lock python3 cenas/F11_bake.py   (BAKE_AMOSTRAS, BAKE_ESCALA para testes rápidos)
+# de cima; FILL fraca; mundo branco). Dois modos:
+#  BAKE_MODO=projecao (padrão): cada peça é renderizada SOZINHA pelo Cycles (as outras continuam na cena fazendo sombra,
+#    reflexo e luz rebatida), na câmera do ícone, e o render é projetado na malha (UV = projeção da câmera). É o render
+#    idêntico, peça por peça, sem perder o brilho dos metais. O chão: render só da sombra (shadow catcher) projetado num plano.
+#  BAKE_MODO=uv: bake COMBINED do Cycles em UV "smart project" (rota clássica). No Blender 5.2 os metais e o verniz saíram
+#    escuros (o bake perdeu o reflexo do estúdio, mesmo com view_from=ACTIVE_CAMERA) -> fica só como registro do teste.
+# Lâmpada, soquete e fio saem duas vezes (apagada / acesa) para a animação misturar. Exporta GLB (WebP) + trajetos da corrente.
+# Uso: flock /tmp/render.lock python3 cenas/F11_bake.py   (RENDER_TAM, BAKE_AMOSTRAS, BAKE_ESCALA para testes rápidos)
 import json, numpy as np, camadas
 
 SAIDA = os.environ.get('GLB_SAIDA', '/home/user/aprendice/app/src/ui/icones3d/modelos/circuito.glb')
@@ -319,6 +323,7 @@ TAM = {k: int(v * ESC) for k, v in {'pilha': 2048, 'fio': 1024, 'base': 1024, 'v
 # mesma luz do render_camadas (padrão do dono: de frente e bem de cima, sombra curta para trás)
 K = bpy.data.objects['KEY']; K.location = (-0.6, -3.0, 8.0); K.data.size = 6; K.data.energy = 780
 K.rotation_euler = (V((0, 0, 0)) - K.location).to_track_quat('-Z', 'Y').to_euler()
+sc.render.resolution_x = sc.render.resolution_y = 1024     # quadro quadrado, como o render_camadas (enquadramento igual)
 cam = camadas._camera(float(os.environ.get('ELEV', 10)), float(os.environ.get('AZIM', -2)), 50, float(os.environ.get('FOLGA', 1.06)))
 bpy.context.view_layer.update()
 # câmera para o three.js (Y para cima: (x, y, z)_blender -> (x, z, -y)_three)
@@ -351,6 +356,137 @@ def uv(o, margem):
 
 base_objs = [o for o in lampada if o.type == 'MESH' and o.name.split('.')[0] in ('soquete', 'friso', 'rosca', 'isol_rosca', 'aro')]
 O = {'pilha': juntar(pilha, 'pilha'), 'fio': juntar(fio, 'fio'), 'base': juntar(base_objs, 'base'), 'vidro': gl}
+
+MODO = os.environ.get('BAKE_MODO', 'projecao')
+if MODO == 'projecao':
+    from bpy_extras.object_utils import world_to_camera_view
+    from PIL import Image
+    import cv2
+    RT = int(int(os.environ.get('RENDER_TAM', 1536)) * ESC)
+    sc.render.resolution_x = sc.render.resolution_y = RT
+    sc.cycles.samples = AMOSTRAS; sc.cycles.use_denoising = True
+    sc.render.image_settings.file_format = 'PNG'; sc.render.image_settings.color_mode = 'RGBA'; sc.render.image_settings.color_depth = '8'
+    ch = bpy.data.objects['CHAO']
+    todos = [o for o in sc.objects if o.type in ('MESH', 'FONT', 'CURVE') and o is not ch]
+
+    def render_so(alvo, nome):
+        """só 'alvo' aparece para a câmera (None = só a sombra no chão); o resto da cena segue fazendo sombra/reflexo/luz"""
+        for o in todos: o.visible_camera = (o is alvo)
+        ch.visible_camera = alvo is None
+        sc.render.filepath = os.path.join(TMP, nome + '.png')
+        import time; t = time.time(); bpy.ops.render.render(write_still=True)
+        print('RENDER', nome, RT, '%.0fs' % (time.time() - t), flush=True)
+        return sc.render.filepath
+
+    R = {}
+    for n in ('pilha', 'fio', 'base', 'vidro'): R[n + '_acesa'] = render_so(O[n], n + '_acesa')
+    R['sombra'] = render_so(None, 'sombra')
+    # estado APAGADO: sem emissão, sem luz interna; vidro claro (transparente, levemente quente)
+    b = vb.node_tree.nodes['Principled BSDF']
+    b.inputs['Emission Strength'].default_value = 0.0; b.inputs['Base Color'].default_value = cor('#f4ecd6')
+    b.inputs['Transmission Weight'].default_value = 0.95
+    for m in (gm, cm): [nd for nd in m.node_tree.nodes if nd.type == 'EMISSION'][0].inputs['Strength'].default_value = 0.0
+    fb = fil.node_tree.nodes['Principled BSDF']; fb.inputs['Emission Strength'].default_value = 0.0; fb.inputs['Base Color'].default_value = cor('#5b4c3c')
+    fb.inputs['Metallic'].default_value = 0.8; fb.inputs['Roughness'].default_value = 0.35
+    haste_m.node_tree.nodes['Principled BSDF'].inputs['Emission Strength'].default_value = 0.0
+    Lb.data.energy = 0.0
+    for n in ('fio', 'base', 'vidro'): R[n + '_apagada'] = render_so(O[n], n + '_apagada')
+    for o in todos: o.visible_camera = True
+    ch.visible_camera = True
+
+    # chão da sombra: plano subdividido (a UV projetada é linear por face; faces pequenas = sem distorção)
+    bpy.ops.mesh.primitive_grid_add(x_subdivisions=64, y_subdivisions=40, size=1, location=(1.8, 0.6, 0.0)); pl = bpy.context.object
+    pl.name = 'sombra'; pl.scale = (9.0, 6.0, 1); bpy.ops.object.transform_apply(scale=True)
+    # alfa por vértice: o plano some suavemente nas bordas (a borda do plano nunca aparece como degrau)
+    ca = pl.data.color_attributes.new('Col', 'FLOAT_COLOR', 'POINT')
+    for i, v in enumerate(pl.data.vertices):
+        d = min(4.5 - abs(v.co.x), 3.0 - abs(v.co.y)) / 1.2; d = max(0.0, min(1.0, d)); d = d * d * (3 - 2 * d)
+        ca.data[i].color = (1, 1, 1, d)
+    pl.data.color_attributes.active_color = ca
+    O2 = dict(O); O2['sombra'] = pl
+
+    # malha leve para a web (depois do render: a textura vem da malha cheia; a projeção é geométrica)
+    DEC = {'pilha': 0.1, 'base': 0.45, 'fio': 0.6, 'vidro': 0.7}
+    for n, o in O.items():
+        md = o.modifiers.new('dec', 'DECIMATE'); md.ratio = DEC[n]; md.use_collapse_triangulate = True
+        sel(o); bpy.ops.object.modifier_apply(modifier='dec')
+        print('MALHA', n, len(o.data.vertices), len(o.data.polygons))
+    bpy.context.view_layer.update()
+
+    def projeta(o):
+        me = o.data
+        import bmesh as _bm
+        bm = _bm.new(); bm.from_mesh(me); _bm.ops.recalc_face_normals(bm, faces=bm.faces); bm.to_mesh(me); bm.free()   # normais para fora
+        for l in list(me.uv_layers): me.uv_layers.remove(l)
+        uvl = me.uv_layers.new(name='UVMap'); M = o.matrix_world
+        co = [world_to_camera_view(sc, cam, M @ v.co) for v in me.vertices]
+        uv = np.array([[co[l.vertex_index].x, co[l.vertex_index].y] for l in me.loops])
+        return uvl, uv
+
+    def recorta(caminho, uv, nome, alfa_cor=False, folga=0.012, caixa=None):
+        """corta o render na área da peça, estende a cor para fora da silhueta (sem franja escura) e remapeia a UV"""
+        im = np.array(Image.open(caminho).convert('RGBA')).astype(np.float32) / 255
+        H = im.shape[0]
+        cx = uv if caixa is None else caixa
+        u0, v0 = np.clip(cx.min(0) - folga, 0, 1); u1, v1 = np.clip(cx.max(0) + folga, 0, 1)
+        x0, x1 = int(u0 * H), int(np.ceil(u1 * H)); y0, y1 = int((1 - v1) * H), int(np.ceil((1 - v0) * H))
+        c = im[y0:y1, x0:x1].copy()
+        if not alfa_cor:   # cor estendida por dilatação ponderada pelo alfa (as bordas da silhueta não escurecem)
+            a = c[..., 3:4]; rgb = c[..., :3] * a; w = a.copy()
+            for _ in range(24):
+                rgb2 = cv2.blur(rgb, (3, 3)); w2 = cv2.blur(w[..., 0], (3, 3))[..., None]
+                vazio = w < 0.98
+                rgb = np.where(vazio, rgb2, rgb); w = np.where(vazio, w2, w)
+            c[..., :3] = np.where(c[..., 3:4] > 0.98, c[..., :3], rgb / np.maximum(w, 1e-4)); c[..., 3] = 1
+        else:              # sombra: cor preta, só o alfa importa; some suavemente perto da borda do quadro (sem degrau)
+            c[..., :3] = 0
+            hh, ww = c.shape[:2]; yy, xx = np.mgrid[0:hh, 0:ww]
+            f_ = np.clip(np.minimum(np.minimum(xx, ww - 1 - xx) / (ww * .12), np.minimum(yy, hh - 1 - yy) / (hh * .12)), 0, 1)
+            c[..., 3] = c[..., 3] * f_ * f_ * (3 - 2 * f_)
+        out = os.path.join(TMP, nome + '_tex.png')
+        Image.fromarray((np.clip(c, 0, 1) * 255 + .5).astype(np.uint8), 'RGBA' if alfa_cor else 'RGBA').convert('RGBA' if alfa_cor else 'RGB').save(out)
+        uvn = np.stack([(uv[:, 0] * H - x0) / (x1 - x0), (uv[:, 1] * H - (H - y1)) / (y1 - y0)], 1)
+        return out, uvn
+
+    arq = {}
+    for n, o in O2.items():
+        uvl, uv = projeta(o)
+        if n == 'sombra':
+            a = np.array(Image.open(R['sombra']))[..., 3]; ys, xs = np.where(a > 2); Hs = a.shape[0]
+            caixa = np.array([[xs.min() / Hs, 1 - ys.max() / Hs], [xs.max() / Hs, 1 - ys.min() / Hs]])
+            # UV do plano no mesmo recorte (fora dele: borda transparente, CLAMP no three.js)
+            arq['sombra'], uvn = recorta(R['sombra'], uv, 'sombra', alfa_cor=True, folga=0.01, caixa=caixa)
+        else:
+            arq[n + '_acesa'], uvn = recorta(R[n + '_acesa'], uv, n + '_acesa')
+            if n + '_apagada' in R: arq[n + '_apagada'], _ = recorta(R[n + '_apagada'], uv, n + '_apagada')
+        uvl.data.foreach_set('uv', uvn.astype(np.float32).ravel())
+
+    def mat_export(o, nome, cor_img, emis_img=None, alfa_img=False):
+        m = bpy.data.materials.new('m_' + nome); m.use_nodes = True; nt = m.node_tree
+        bs = nt.nodes['Principled BSDF']
+        t1 = nt.nodes.new('ShaderNodeTexImage'); t1.image = bpy.data.images.load(cor_img); t1.extension = 'EXTEND'
+        nt.links.new(t1.outputs['Color'], bs.inputs['Base Color'])
+        if alfa_img: nt.links.new(t1.outputs['Alpha'], bs.inputs['Alpha'])
+        if emis_img:
+            t2 = nt.nodes.new('ShaderNodeTexImage'); t2.image = bpy.data.images.load(emis_img); t2.extension = 'EXTEND'
+            nt.links.new(t2.outputs['Color'], bs.inputs['Emission Color']); bs.inputs['Emission Strength'].default_value = 1.0
+        o.data.materials.clear(); o.data.materials.append(m)
+        for p in o.data.polygons: p.material_index = 0
+
+    mat_export(O['pilha'], 'pilha', arq['pilha_acesa'])
+    for n in ('fio', 'base', 'vidro'): mat_export(O[n], n, arq[n + '_apagada'], arq[n + '_acesa'])
+    mat_export(pl, 'sombra', arq['sombra'], alfa_img=True)
+    O['fio']['ida'] = json.dumps([y3(p) for p in cima]); O['fio']['volta'] = json.dumps([y3(p) for p in baixo])
+    O['fio']['camera'] = json.dumps(CAM)
+    bpy.ops.object.select_all(action='DESELECT')
+    for o in O2.values(): o.select_set(True)
+    bpy.ops.export_scene.gltf(filepath=SAIDA, export_format='GLB', use_selection=True, export_image_format='WEBP',
+                              export_normals=False, export_tangents=False, export_extras=True, export_cameras=False,
+                              export_lights=False, export_apply=True, export_materials='EXPORT',
+                              export_vertex_color='ACTIVE')
+    print('GLB', SAIDA, os.path.getsize(SAIDA))
+    raise SystemExit
+# ---------------- modo "uv": bake COMBINED em UV smart project (registro do teste) ----------------
 # malha leve para a web: os decalques (+/-) e a rosca vêm muito subdivididos; o detalhe fica na textura assada
 DEC = {'pilha': 0.1, 'base': 0.45, 'fio': 0.6, 'vidro': 0.7}
 for n, o in O.items():
@@ -359,7 +495,16 @@ for n, o in O.items():
     print('MALHA', n, len(o.data.vertices), len(o.data.polygons))
 for n, o in O.items(): uv(o, 0.004 if TAM[n] >= 2048 else 0.006)
 
-sc.render.bake.view_from = 'ACTIVE_CAMERA'      # brilho/reflexo calculados como a câmera do ícone vê
+if os.environ.get('BAKE_SEM_ANISO'):
+    for m in bpy.data.materials:
+        if m.node_tree and 'Principled BSDF' in m.node_tree.nodes: m.node_tree.nodes['Principled BSDF'].inputs['Anisotropic'].default_value = 0.0
+if os.environ.get('BAKE_PREVIA'):   # conferência: render Cycles com a câmera do bake e a malha já preparada
+    sc.render.resolution_x = sc.render.resolution_y = 512; sc.cycles.samples = 24
+    sc.render.filepath = os.path.join(TMP, 'previa.png'); bpy.ops.render.render(write_still=True); raise SystemExit
+# no render, o chão "shadow catcher" aparece para os raios indiretos como chão branco iluminado (é o que os metais refletem);
+# no bake ele precisa ser um chão branco comum para dar o mesmo reflexo
+_ch = bpy.data.objects['CHAO']; _ch.is_shadow_catcher = False
+sc.render.bake.view_from = os.environ.get('BAKE_VIEW', 'ACTIVE_CAMERA')      # brilho/reflexo calculados como a câmera do ícone vê
 sc.render.bake.margin = 6; sc.render.bake.margin_type = 'EXTEND'
 sc.render.bake.use_selected_to_active = False
 sc.cycles.samples = AMOSTRAS
@@ -374,7 +519,7 @@ def assar(o, nome, tam, tipo='COMBINED', passes=None):
     sel(o)
     import time; t = time.time()
     if passes: bpy.ops.object.bake(type=tipo, pass_filter=passes)
-    else: bpy.ops.object.bake(type=tipo)
+    else: bpy.ops.object.bake(type=tipo, pass_filter={'EMIT', 'DIRECT', 'INDIRECT', 'DIFFUSE', 'GLOSSY', 'TRANSMISSION'})
     print('ASSADO', nome, tam, '%.0fs' % (time.time() - t), flush=True)
     return img
 
