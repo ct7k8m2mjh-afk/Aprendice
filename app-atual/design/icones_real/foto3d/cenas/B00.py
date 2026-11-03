@@ -124,6 +124,9 @@ for a_, b_ in _arestas:
     if len(seg) > 1: cristas.append(tubo(seg, .058, casca_m, res=6))
 for o in cristas:
     o.data.resolution_u = 6
+for v in _sv.vertices:   # nós arredondados onde as cristas se encontram (sem emendas)
+    q = v / _np.linalg.norm(v) * RC; w = (q[0], q[1], q[2] + CZ)
+    if _dentro(w): cristas.append(esfera(w, .059, casca_m, seg=24))
 # bordas do corte: rolo grosso e arredondado acompanhando o corte (como a referência)
 RB = .95
 def aro(pts):
