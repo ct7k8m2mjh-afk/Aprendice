@@ -324,14 +324,14 @@ export default function celula() {
 
   // ---- Golgi: cisternas azuis achatadas em pé, abertas em cima (corte), unidas como uma lâmina dobrada:
   //      fileira de trás alta e alongada em profundidade, fileira da frente baixa (face trans, voltada à membrana)
-  const azul = plast(0x24368c, { rug: 0.42, coat: 0.3, coatRug: 0.3 });
+  const azul = plast(0x2a44b4, { rug: 0.5, coat: 0.2, coatRug: 0.35 });
   const GOL = new THREE.Group(); GOL.position.set(0.7, 0, -0.29); GOL.rotation.y = 0.55; GOL.scale.setScalar(0.8); C.add(GOL);
   const cisterna = (a, b, h, esp = 0.017) => { const s = new THREE.Shape(); s.absellipse(0, 0, a, b, 0, TAU); const f = new THREE.Path(); f.absellipse(0, 0, a - esp, b - esp, 0, TAU, true); s.holes.push(f);
     const m = malha(suave(new THREE.ExtrudeGeometry(s, { depth: h, bevelEnabled: true, bevelThickness: 0.009, bevelSize: 0.008, bevelSegments: 4, curveSegments: 28 })), azul); m.rotation.x = -Math.PI / 2; return m; };
-  const fitaG = fitaGrossa(meandro([0.23, 0.28, 0.19], 0.07, 0.03), 0.024, 0.075, azul); fitaG.geometry = suave(fitaG.geometry);
-  { const pp = fitaG.geometry.attributes.position; for (let i = 0; i < pp.count; i++) { const x = pp.getX(i) - 0.17; pp.setZ(i, pp.getZ(i) + 0.9 * x * x); } fitaG.geometry.computeVertexNormals(); }
+  const fitaG = fitaGrossa(meandro([0.29, 0.35, 0.25], 0.064, 0.03), 0.028, 0.13, azul); fitaG.geometry = suave(fitaG.geometry);
+  { const pp = fitaG.geometry.attributes.position; for (let i = 0; i < pp.count; i++) { const x = pp.getX(i) - 0.17, y = pp.getY(i); pp.setZ(i, pp.getZ(i) + 0.9 * x * x - 0.12 * y * y); pp.setX(i, pp.getX(i) + 0.01 * Math.sin(y * 24 + x * 9) + 0.06 * y * y); } fitaG.geometry.computeVertexNormals(); } // dobras orgânicas, inclinadas para trás
   fitaG.position.set(-0.17, 0, -0.1); GOL.add(fitaG);
-  for (const [x, z, a, b, h, inc] of [[-0.115, 0.05, 0.058, 0.034, 0.15, 0.12], [0.0, 0.055, 0.042, 0.03, 0.2, -0.05], [0.105, 0.06, 0.036, 0.026, 0.15, -0.14]]) {
+  for (const [x, z, a, b, h, inc] of [[-0.115, 0.075, 0.062, 0.034, 0.19, 0.06], [0.0, 0.085, 0.056, 0.03, 0.24, -0.03], [0.105, 0.09, 0.05, 0.028, 0.17, -0.08]]) {
     const c = cisterna(a, b, h); c.position.set(x, 0.008, z); c.rotation.z = inc; GOL.add(c); }
 
   // ---- mitocôndrias abertas: duas no piso, duas encaixadas na parede
