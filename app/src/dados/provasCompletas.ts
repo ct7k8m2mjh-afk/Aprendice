@@ -72,7 +72,7 @@ export function urlPrintProva(p: ProvaCompleta, q: QuestaoProva): string {
 const AREA_MATERIA: Record<string, MateriaId> = {
   'Matemática': 'mat', 'Biologia': 'bio', 'Química': 'qui', 'Física': 'fis', 'Geografia': 'geo', 'História': 'his',
   'Língua Portuguesa': 'por', 'Literatura': 'por', 'Língua Portuguesa e Literatura': 'por', 'Inglês': 'ing',
-  'Filosofia': 'fil', 'Sociologia': 'fil',
+  'Filosofia': 'fil', 'Sociologia': 'soc', 'Língua Inglesa': 'ing',
 };
 export function materiaDaArea(area: string): MateriaId | undefined { return AREA_MATERIA[area]; }
 

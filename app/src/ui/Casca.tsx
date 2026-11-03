@@ -2,7 +2,7 @@ import { useEffect, useState, type ReactNode } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { Icone, type NomeIcone } from './Icone';
 import { Anel, Logo } from './comum';
-import { MATERIAS } from '../dados/materias';
+import { MATERIAS_PRINCIPAIS, OUTRAS_MATERIAS, type MateriaInfo } from '../dados/materias';
 import { atualiza, useEstado } from '../estado/loja';
 import { semana } from '../logica/estatisticas';
 import { Busca } from '../telas/Busca';
@@ -20,12 +20,20 @@ function usaTema() {
   const escuro = pref === 'escuro' || (pref === 'sistema' && sistemaEscuro);
   useEffect(() => {
     document.documentElement.dataset.theme = escuro ? 'dark' : 'light';
-    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', escuro ? '#0C0D10' : '#F1F1EE');
+    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', escuro ? '#0C0D10' : '#F7F4EF');
   }, [escuro]);
   return escuro;
 }
 
 export function defineTema(t: 'claro' | 'escuro' | 'sistema') { atualiza((e) => ({ ...e, pref: { ...e.pref, tema: t } })); }
+
+function ItemMateria({ m, atual }: { m: MateriaInfo; atual?: string }) {
+  return (
+    <NavLink to={`/m/${m.id}`} className={({ isActive }) => 'item-nav' + (isActive || atual === m.id ? ' ativo' : '')} title={m.nome}>
+      <Icone nome={`m_${m.id}` as NomeIcone} className="ic-mat" /><span className="rotulo">{m.nome}</span>
+    </NavLink>
+  );
+}
 
 function ItemNav({ para, icone, children, fim, extra }: { para: string; icone: NomeIcone; children: ReactNode; fim?: boolean; extra?: ReactNode }) {
   return (
@@ -61,6 +69,9 @@ export function Casca({ children, foco = false }: { children: ReactNode; foco?: 
   useEffect(() => { setBusca(false); scrollTo(0, 0); }, [loc.pathname]);
 
   const mAtual = loc.pathname.match(/^\/m\/(\w+)/)?.[1];
+  const emOutra = !!mAtual && OUTRAS_MATERIAS.some((m) => m.id === mAtual);
+  const [outrasAbertas, setOutras] = useState(emOutra);
+  useEffect(() => { if (emOutra) setOutras(true); }, [emOutra]);
 
   return (
     <div className={'casca' + (fechado ? ' menu-fechado' : '') + (foco ? ' foco' : '')}>
@@ -73,24 +84,24 @@ export function Casca({ children, foco = false }: { children: ReactNode; foco?: 
             <Icone nome={fechado ? 'direita' : 'esquerda'} />
           </button>
         </div>
-        <nav>
+        <nav aria-label="Início e matérias">
           <ItemNav para="/" icone="inicio" fim>Início</ItemNav>
-          <ItemNav para="/simulados" icone="relogio">Simulados</ItemNav>
-          <ItemNav para="/revisao" icone="repetir">Revisão</ItemNav>
-          <ItemNav para="/desempenho" icone="grafico">Desempenho</ItemNav>
-          <ItemNav para="/provas" icone="predio">Provas e faculdades</ItemNav>
+          {MATERIAS_PRINCIPAIS.map((m) => <ItemMateria key={m.id} m={m} atual={mAtual} />)}
+          <button type="button" className={'item-nav outras' + (outrasAbertas ? ' aberto' : '')} aria-expanded={outrasAbertas} aria-controls="outras-materias"
+            onClick={() => setOutras(!outrasAbertas)} title="Outras matérias">
+            <Icone nome="grade" className="ic-mat" /><span className="rotulo">Outras matérias</span><Icone nome={outrasAbertas ? 'cima' : 'baixo'} className="seta" tam={16} />
+          </button>
+          <div id="outras-materias" className="sub-nav" hidden={!outrasAbertas}>
+            {OUTRAS_MATERIAS.map((m) => <ItemMateria key={m.id} m={m} atual={mAtual} />)}
+          </div>
         </nav>
-        <div className="grupo">Matérias</div>
-        <nav aria-label="Matérias">
-          {MATERIAS.filter((m) => m.ativa).map((m) => (
-            <NavLink key={m.id} to={`/m/${m.id}`} className={({ isActive }) => `item-nav m-${m.id}` + (isActive || mAtual === m.id ? ' ativo' : '')} title={m.nome}>
-              <span className="ponto" aria-hidden /><span className="rotulo">{m.nome}</span>
-            </NavLink>
-          ))}
-          <NavLink to="/materias" className={({ isActive }) => 'item-nav inativo' + (isActive || (mAtual && !MATERIAS.find((x) => x.id === mAtual)?.ativa) ? ' ativo' : '')} title="Outras matérias">
-            <span className="pontos" aria-hidden>{MATERIAS.filter((m) => !m.ativa).map((m) => <i key={m.id} className={`m-${m.id}`} />)}</span>
-            <span className="rotulo">Outras matérias</span><span className="em-breve">em breve</span>
-          </NavLink>
+        <hr className="lado-div" />
+        <nav aria-label="Estudo">
+          <ItemNav para="/materias" icone="quadcheck">Questões</ItemNav>
+          <ItemNav para="/simulados" icone="arquivo">Simulados</ItemNav>
+          <ItemNav para="/revisao" icone="camadas">Revisão</ItemNav>
+          <ItemNav para="/desempenho" icone="barras">Desempenho</ItemNav>
+          <ItemNav para="/provas" icone="predio">Provas e faculdades</ItemNav>
         </nav>
         <div className="rodape">
           <div className="meta-lado" title="Meta da semana">
@@ -99,21 +110,26 @@ export function Casca({ children, foco = false }: { children: ReactNode; foco?: 
           </div>
           <ItemNav para="/config" icone="config">Configurações</ItemNav>
         </div>
+        <svg className="lado-onda" viewBox="0 0 260 200" preserveAspectRatio="none" aria-hidden>
+          <path d="M0 40 C 60 70, 110 150, 260 200 L 0 200 Z" className="o1" />
+          <path d="M0 95 C 50 120, 90 175, 170 200 L 0 200 Z" className="o2" />
+        </svg>
       </aside>
 
       <div className="principal">
         <header className={'topo' + (rolou ? ' rolou' : '')}>
           <Link to="/" className="logo-cel" aria-label="Início"><Logo /></Link>
-          <button className="busca-btn" onClick={() => setBusca(true)} aria-label="Buscar">
-            <Icone nome="busca" /><span className="txt">Buscar conteúdos, provas, cartões...</span><kbd>Ctrl K</kbd>
+          <button className="busca-btn" onClick={() => setBusca(true)} aria-label="Buscar conteúdo, questões ou simulados" aria-keyshortcuts="Control+K">
+            <Icone nome="busca" tam={20} /><span className="txt">Buscar conteúdo, questões ou simulados...</span><kbd>Ctrl K</kbd>
           </button>
           <div className="direita">
             <div className="tema-seg" role="group" aria-label="Tema">
-              <button aria-pressed={!escuro} onClick={() => defineTema('claro')} title="Tema claro"><Icone nome="sol" /><span className="rotulo">Dia</span></button>
-              <button aria-pressed={escuro} onClick={() => defineTema('escuro')} title="Tema escuro"><Icone nome="lua" /><span className="rotulo">Noite</span></button>
+              <button aria-pressed={!escuro} onClick={() => defineTema('claro')} title="Tema claro" aria-label="Tema claro"><Icone nome="sol" /></button>
+              <button aria-pressed={escuro} onClick={() => defineTema('escuro')} title="Tema escuro" aria-label="Tema escuro"><Icone nome="lua" /></button>
             </div>
-            <Link to="/perfil" className="perfil-chip" aria-label="Meu perfil">
-              <span className="avatar" aria-hidden>{nome.trim().charAt(0).toUpperCase()}</span><span className="nome">{nome.split(' ')[0]}</span>
+            <span className="topo-div" aria-hidden />
+            <Link to="/perfil" className="perfil-chip" aria-label={`Meu perfil (${nome})`}>
+              <span className="avatar" aria-hidden><Icone nome="usuario" tam={20} /></span><span className="nome">Meu perfil</span>
             </Link>
           </div>
         </header>

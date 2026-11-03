@@ -20,7 +20,7 @@ AMOSTRA = '--amostra' in sys.argv
 
 MATERIAS = ['bio', 'qui', 'mat', 'por']
 # Matérias novas: estrutura (temas) em conteudo-fonte/materias/<m>.json; questões chegam com as provas completas.
-NOVAS = ['fis', 'geo']
+NOVAS = ['fis', 'geo', 'his', 'fil', 'soc', 'ing']
 FONTE_NOVAS = os.path.join(APP, 'conteudo-fonte', 'materias')
 ESCOLA_NORMAL = {'Mundo Educacao': 'Mundo Educação', 'FMJ': 'FMJ (Jundiaí)'}
 FASE_NORMAL = {'1fase': '1ª fase', '2fase': '2ª fase'}

@@ -4,13 +4,9 @@ import { Logo, useTitulo } from '../ui/comum';
 import { Icone } from '../ui/Icone';
 import { atualiza } from '../estado/loja';
 import { EscolhaProvas } from './EscolhaProvas';
-import { MATERIAS_ATIVAS } from '../dados/materias';
-import iluBio from '../assets/ilu/bio.webp';
-import iluQui from '../assets/ilu/qui.webp';
-import iluMat from '../assets/ilu/mat.webp';
-import iluPor from '../assets/ilu/por.webp';
+import { MATERIAS_PRINCIPAIS } from '../dados/materias';
+import { ILU } from '../ui/IconeMateria';
 
-const ILU: Record<string, string> = { bio: iluBio, qui: iluQui, mat: iluMat, por: iluPor };
 
 /** Primeira abertura: conta de demonstração (login simulado, fica só no aparelho), provas-alvo e meta. */
 export function BoasVindas() {
@@ -33,7 +29,7 @@ export function BoasVindas() {
       <div className="bv-lado" aria-hidden>
         <Logo className="bv-logo" />
         <div className="bv-ilus">
-          {MATERIAS_ATIVAS.map((m, i) => <img key={m.id} src={ILU[m.id]} alt="" style={{ animationDelay: `${i * 90}ms` }} />)}
+          {MATERIAS_PRINCIPAIS.filter((m) => ILU[m.id]).map((m, i) => <img key={m.id} src={ILU[m.id]} alt="" style={{ animationDelay: `${i * 90}ms` }} />)}
         </div>
         <p className="bv-frase">Questões reais das provas de Medicina, do jeito que a banca cobra.</p>
       </div>

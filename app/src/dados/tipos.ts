@@ -2,7 +2,7 @@
 
 export type MateriaId =
   | 'bio' | 'qui' | 'mat' | 'por'
-  | 'fis' | 'his' | 'geo' | 'ing' | 'fil' | 'red';
+  | 'fis' | 'his' | 'geo' | 'ing' | 'fil' | 'soc' | 'red';
 
 export type Letra = 'A' | 'B' | 'C' | 'D' | 'E';
 

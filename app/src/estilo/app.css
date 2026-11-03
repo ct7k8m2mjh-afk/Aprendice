@@ -20,6 +20,12 @@
 .item-nav.inativo { color: var(--fraco); }
 .item-nav.inativo .ponto { background: transparent; box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--c) 70%, transparent); }
 .item-nav .em-breve { margin-left: auto; font-size: 12px; color: var(--fraco); font-weight: 500; }
+.item-nav .ic-mat { color: var(--verde-nav); }
+.item-nav.outras { cursor: pointer; font-family: inherit; }
+.item-nav.outras .seta { margin-left: auto; color: var(--verde-nav); }
+.sub-nav { display: flex; flex-direction: column; gap: 2px; margin: 0 0 2px 19px; padding-left: 8px; border-left: 1.5px solid var(--linha); }
+.menu-fechado .lado .seta { display: none; }
+.menu-fechado .sub-nav { margin-left: 0; padding-left: 0; border-left: 0; }
 .item-nav .cont { margin-left: auto; font-size: 13px; color: var(--fraco); }
 .item-nav .badge { margin-left: auto; min-width: 22px; height: 22px; padding: 0 7px; border-radius: 11px; background: var(--tinta); color: var(--papel);
   font-size: 12.5px; font-weight: 600; display: grid; place-items: center; }
@@ -181,3 +187,65 @@
 .cab-sec a.btn { color: var(--ink); font-size: 15px; }
 .cab-sec a.btn:hover { color: var(--ink); }
 a.chip, a.chip:hover { text-decoration: none; }
+
+/* ===================== casca: direção de arte aprovada (docs/referencias/tela-inicial.webp) ===================== */
+.casca:not(.menu-fechado) { --lado: 272px; }
+.lado { background: var(--lado-fundo); border-right-color: var(--cartao-borda); padding: 22px 16px 18px; gap: 6px; isolation: isolate; }
+.lado .marca { padding: 0 4px 22px 14px; min-height: 64px; }
+.lado .marca svg.logo { height: 50px; }
+.lado .marca .btn-ic { color: var(--fraco); opacity: .7; }
+.lado .marca .btn-ic:hover { opacity: 1; }
+.lado nav { gap: 4px; }
+.lado .item-nav { gap: 16px; padding: 11px 16px; border-radius: 12px; font-size: 17px; font-weight: 500; color: var(--tinta); }
+.lado .item-nav .ic { width: 24px; height: 24px; color: var(--verde-nav); }
+.lado .item-nav .seta { width: 16px; height: 16px; }
+.lado .item-nav:hover { background: var(--verde-suave); color: var(--tinta); }
+.lado .item-nav.ativo { color: #fff; background: linear-gradient(180deg, #23913F, #146E2E); box-shadow: 0 1px 1px rgba(10, 60, 25, .2), 0 6px 16px rgba(20, 110, 46, .28); }
+[data-theme='dark'] .lado .item-nav.ativo { color: #0C0D10; background: linear-gradient(180deg, #62D07F, #43B866); box-shadow: 0 6px 16px rgba(0, 0, 0, .35); }
+.lado .item-nav.ativo .ic { color: currentColor; }
+.lado .sub-nav { margin-left: 27px; border-left-color: var(--cartao-borda); }
+.lado .sub-nav .item-nav { font-size: 16px; padding: 8px 12px; }
+.lado .sub-nav .item-nav .ic { width: 20px; height: 20px; }
+.lado-div { border: 0; border-top: 1px solid var(--cartao-borda); margin: 12px 10px; }
+.lado > nav, .lado .rodape, .lado .marca, .lado-div { position: relative; z-index: 1; }
+.lado .rodape { border-top: 0; padding-top: 18px; gap: 4px; }
+.lado .rodape .meta-lado { padding: 4px 14px; }
+.lado .rodape .meta-lado .num + small, .lado .rodape .meta-lado small { font-size: 12.5px; }
+.lado .rodape .meta-lado span svg circle:last-child { stroke: var(--verde); }
+/* pontilhado e onda verde do rodapé do menu (decorativos) */
+.lado::before { content: ''; position: absolute; right: 14px; bottom: 12px; width: 84px; height: 56px; z-index: 0; pointer-events: none;
+  background-image: radial-gradient(circle, var(--pontos) 1.1px, transparent 1.6px); background-size: 14px 14px; opacity: .9; }
+.lado-onda { position: absolute; left: 0; bottom: 0; width: 100%; height: 190px; z-index: 0; pointer-events: none; }
+.lado-onda .o1 { fill: var(--onda1); }
+.lado-onda .o2 { fill: var(--onda2); }
+.lado { position: sticky; }
+.menu-fechado .lado { padding-inline: 10px; }
+.menu-fechado .lado .item-nav { padding: 11px 0; justify-content: center; }
+.menu-fechado .lado .marca { padding: 0 0 18px; justify-content: center; }
+.menu-fechado .lado .sub-nav { margin-left: 0; }
+.menu-fechado .lado::before { display: none; }
+.menu-fechado .lado .rodape .meta-lado { justify-content: center; padding: 4px 0; }
+
+.topo { display: grid; grid-template-columns: 1fr minmax(0, 530px) 1fr; height: 72px; padding: 0 32px; background: color-mix(in srgb, var(--papel) 82%, transparent); }
+.topo .logo-cel { grid-column: 1; }
+.busca-btn { grid-column: 2; max-width: none; width: 100%; height: 42px; border-radius: 21px; padding: 0 14px 0 18px; gap: 12px; border-color: var(--cartao-borda);
+  box-shadow: 0 1px 2px rgba(70, 50, 30, .04); font-size: 15.5px; color: var(--fraco); }
+.busca-btn .ic { color: var(--lapis); }
+.topo .direita { grid-column: 3; justify-self: end; gap: 14px; }
+.tema-seg { background: color-mix(in srgb, var(--malha) 80%, transparent); border-radius: 20px; }
+.tema-seg button { padding: 6px 9px; border-radius: 16px; }
+.topo-div { width: 1px; height: 30px; background: var(--cartao-borda); }
+.perfil-chip { font-size: 16px; gap: 10px; padding: 4px 12px 4px 4px; }
+.perfil-chip .avatar { width: 38px; height: 38px; background: linear-gradient(180deg, #2E9C49, #17722F); color: #fff; }
+[data-theme='dark'] .perfil-chip .avatar { background: linear-gradient(180deg, #62D07F, #3DAE5E); color: #0C0D10; }
+
+@media (max-width: 960px) {
+  .topo { display: flex; height: 58px; padding: 0 16px; }
+  .busca-btn { flex: none; width: 40px; height: 40px; padding: 0; border-radius: 12px; margin-left: auto; }
+  .topo .direita { gap: 8px; }
+  .topo-div { display: none; }
+  .perfil-chip { padding: 0; }
+  .tabs a.ativo { color: var(--verde-t); }
+  .tabs a.ativo .bolha-ic { background: var(--verde-suave); }
+}
+.sub-nav[hidden] { display: none; }

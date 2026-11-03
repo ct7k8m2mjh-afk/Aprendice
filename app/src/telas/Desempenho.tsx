@@ -6,6 +6,7 @@ import { useEstado } from '../estado/loja';
 import { resumoMateria, semana, tempoTotal } from '../logica/estatisticas';
 import { desempenhoPorNivel, feedbackNiveis, nomeNivel, pontosFracos } from '../logica/nivel';
 import { Barra, Carregando, cap, horasMin, plural, useTitulo } from '../ui/comum';
+import { IconeMateria } from '../ui/IconeMateria';
 import { Icone } from '../ui/Icone';
 import { estadoMateriaVazio } from '../estado/tipos';
 import type { MateriaId } from '../dados/tipos';
@@ -69,7 +70,7 @@ export function Desempenho() {
         <div className="por-materia folha" style={{ padding: '8px 20px' }}>
           {resumos.map(({ mc, r }) => (
             <button key={mc.id} className={`pm m-${mc.id}` + (mSel === mc.id ? ' sel' : '')} onClick={() => setMSel(mc.id)} aria-pressed={mSel === mc.id}>
-              <span className="pm-nome"><i className="ponto" />{nomeMateria(mc.id)}</span>
+              <span className="pm-nome"><IconeMateria m={mc.id} tam={26} />{nomeMateria(mc.id)}</span>
               <Barra valor={r.tentativas ? r.acertoTentativas / r.tentativas : 0} rotulo={`Acerto em ${nomeMateria(mc.id)}`} />
               <b className="num">{r.tentativas ? `${Math.round((r.acertoTentativas / r.tentativas) * 100)}%` : '–'}</b>
               <small className="fraco num">{plural(r.feitas, 'feita', 'feitas')}</small>

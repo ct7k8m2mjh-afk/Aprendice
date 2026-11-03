@@ -10,7 +10,7 @@ import { ordemEvolucao } from '../logica/nivel';
 const PREVIA = import.meta.env.VITE_PREVIA === '1';
 const BASE = import.meta.env.BASE_URL + 'conteudo/';
 
-export const MATERIAS_COM_CONTEUDO: MateriaId[] = ['bio', 'qui', 'mat', 'por', 'fis', 'geo'];
+export const MATERIAS_COM_CONTEUDO: MateriaId[] = ['bio', 'qui', 'mat', 'por', 'fis', 'geo', 'his', 'fil', 'soc', 'ing'];
 
 interface PacotePrevia {
   materias: Record<string, {
