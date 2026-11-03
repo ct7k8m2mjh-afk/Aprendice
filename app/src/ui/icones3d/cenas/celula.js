@@ -276,22 +276,24 @@ export default function celula() {
 
   rnd = semente(41);
   // ---- retículo liso: emaranhado magenta de tubos com bolhas, saindo da parede no alto à direita
-  const magenta = plast(0x962246, { rug: 0.42, coat: 0.35, coatRug: 0.3 });
+  const magenta = plast(0x8a1c3c, { rug: 0.42, coat: 0.35, coatRug: 0.3 });
   const curS = [], bolhas = [];
   // três teias (folhas com furos e dedos) ao longo de uma diagonal no alto da parede, saindo para fora
   for (const [cs, cy, h, esc, rot] of [[0.12, 0.74, 0.06, 1.2, 0.2], [0.42, 0.63, 0.1, 1.25, -0.3], [0.66, 0.46, 0.13, 1.15, 0.4]]) {
     const cen = Wp(cs, cy, h); const nf = V(0.5, 0.3, 0.8).normalize(); const u0 = V(0, 1, 0).cross(nf).normalize(), v0 = nf.clone().cross(u0); // folha de frente para quem olha
     const u = u0.clone().multiplyScalar(Math.cos(rot)).add(v0.clone().multiplyScalar(Math.sin(rot))), w = nf.clone().cross(u);
     const P = (a, b) => cen.clone().add(u.clone().multiplyScalar(a * esc)).add(w.clone().multiplyScalar(b * esc));
-    const anel = (ca, cb, ra, rb, n = 6) => { const pts = []; for (let k = 0; k < n; k++) { const t = (k + (rnd() - 0.5) * 0.4) / n * TAU; const f = 0.7 + 0.6 * rnd(); pts.push(P(ca + Math.cos(t) * ra * f, cb + Math.sin(t) * rb * f)); } curS.push([new THREE.CatmullRomCurve3(pts, true, 'centripetal'), true, n * 2]); return pts; };
-    const a1 = anel(-0.05, 0, 0.06, 0.05), a2 = anel(0.06, 0.02, 0.05, 0.06), a3 = anel(0.0, 0.09, 0.04, 0.03), a4 = a1;
-    for (const p of [a1[0], a1[3], a2[2], a2[4], a3[1]]) bolhas.push(p);
-    for (const p of [a1[1], a2[0], a3[3]]) { const f = esfera(1, magenta, 16); f.position.copy(p); f.quaternion.setFromUnitVectors(V(0, 0, 1), nf); f.scale.set(0.035, 0.03, 0.012); C.add(f); }
-    for (let k = 0; k < 4; k++) { const a0 = rnd() * TAU; const p0 = P(Math.cos(a0) * 0.07, Math.sin(a0) * 0.07); const p1 = P(Math.cos(a0) * 0.15 + (rnd() - 0.5) * 0.04, Math.sin(a0) * 0.13 + (rnd() - 0.5) * 0.04);
+    // folha com furos (forma irregular extrudada fina, cantos arredondados)
+    const contorno = []; for (let k = 0; k < 14; k++) { const t = k / 14 * TAU; const r = (0.075 + 0.03 * Math.sin(3 * t + rnd()) + 0.015 * rnd()); contorno.push(new THREE.Vector2(Math.cos(t) * r * 1.25, Math.sin(t) * r)); }
+    const folha = new THREE.Shape(new THREE.SplineCurve(contorno.concat([contorno[0]])).getPoints(56));
+    for (const [hx, hy, ha, hb] of [[-0.035, 0.012, 0.026, 0.018], [0.03, -0.01, 0.022, 0.026], [0.0, 0.045, 0.015, 0.011]]) { const f = new THREE.Path(); f.absellipse(hx, hy, ha * (0.8 + 0.4 * rnd()), hb * (0.8 + 0.4 * rnd()), 0, TAU, true); folha.holes.push(f); }
+    const fg = suave(new THREE.ExtrudeGeometry(folha, { depth: 0.006, bevelEnabled: true, bevelThickness: 0.011, bevelSize: 0.011, bevelSegments: 3, curveSegments: 16 }));
+    const fm = malha(fg, magenta); fm.matrixAutoUpdate = true; fm.quaternion.setFromRotationMatrix(new THREE.Matrix4().makeBasis(u, w, nf)); fm.scale.setScalar(esc); fm.position.copy(cen); C.add(fm);
+    for (let k = 0; k < 5; k++) { const a0 = (k + rnd() * 0.6) / 5 * TAU; const p0 = P(Math.cos(a0) * 0.07, Math.sin(a0) * 0.055); const p1 = P(Math.cos(a0) * 0.16 + (rnd() - 0.5) * 0.04, Math.sin(a0) * 0.12 + (rnd() - 0.5) * 0.04);
       curS.push([new THREE.CatmullRomCurve3([p0, p0.clone().lerp(p1, 0.5).add(V(0, 0.01, 0)), p1]), false, 4]); bolhas.push(p1); }
   }
-  C.add(malha(tubos(curS, 0.021, 3, 8), magenta));
-  for (const p of bolhas) { const b = esfera(0.026, magenta, 14); b.position.copy(p); C.add(b); }
+  C.add(malha(tubos(curS, 0.014, 3, 8), magenta));
+  for (const p of bolhas) { const b = esfera(0.019, magenta, 14); b.position.copy(p); C.add(b); }
 
   rnd = semente(51);
   // ---- centríolos: funil de rede ciano na parede (canto inferior esquerdo) com feixes dourados
