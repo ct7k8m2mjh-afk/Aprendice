@@ -20,3 +20,9 @@ Imagem enviada nunca é "por enviar": tem uso, e o uso fica registrado.
 - Prioridade futura: construir os ícones (3D/vetor em camadas) em vez de colar PNG, para poder animar (ex.: expandir ao passar o mouse).
 - Redação não é matéria do app (removida em 03/11).
 - Formas decorativas (onda verde do menu) não podem aparecer cortadas.
+
+## Ordem de trabalho (03/11) — o que vem primeiro e por quê
+1. Feito: cores distintas por matéria, Redação removida, onda do menu sem corte (valem de qualquer jeito).
+2. Ícones CONSTRUÍDOS (3D em camadas) em vez de melhorar o copia-e-cola: não se amplia/retoca o que vai ser refeito.
+   Sombras e resolução entram já na construção (luz de frente e de cima, sombra para trás, render em alta).
+3. Animação dos ícones construídos (ex.: partes que se expandem ao passar o mouse).
