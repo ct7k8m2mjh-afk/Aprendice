@@ -71,7 +71,7 @@ export function SimuladoResultado() {
         {itAberto && qAberta && (
           <div className={itAberto.m ? `m-${itAberto.m}` : ''} style={{ marginTop: 18 }}>
             <article className="folha q-cartao"><EnunciadoQuestao q={qAberta} print={qqAberta?.print ?? null} numero={grupoDoItem(itAberto)} /></article>
-            <ResolucaoView q={qAberta} r={res[qAberta.id]} marcada={itAberto.letra} />
+            <ResolucaoView q={qAberta} r={qAberta.res || res[qAberta.id]} marcada={itAberto.letra} />
           </div>
         )}
       </section>

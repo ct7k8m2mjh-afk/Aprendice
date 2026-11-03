@@ -29,6 +29,8 @@ export interface Questao {
   pendente?: string;
   /** questão só de texto, transcrita da camada de texto da prova oficial (parágrafos como a banca organizou) */
   transcricao?: Transcricao;
+  /** resolução embutida (questões de prova completa aprovadas pela banca) */
+  res?: Resolucao;
 }
 
 /** Parágrafo transcrito: a = alinhamento (e esquerda, c centro, d direita); t com **negrito**, ~~itálico~~ e quebras \n. */

@@ -248,7 +248,19 @@ def provas_fonte():
     for pid in sorted(os.listdir(FONTE_PROVAS)):
         f = os.path.join(FONTE_PROVAS, pid, 'prova.json')
         if os.path.exists(f):
-            out.append(ler(f))
+            p = ler(f)
+            # resoluções aprovadas pela banca (resolvedor + corretor de fatos + corretor de didática + fatos de novo)
+            fr = os.path.join(FONTE_PROVAS, pid, 'resolucoes.json')
+            if os.path.exists(fr):
+                res = ler(fr)
+                for q in p['questoes']:
+                    r = res.get(q['id'])
+                    if r and r.get('aprovada'):
+                        q['res'] = r['resolucao']
+                        for k in ('materia', 'tema', 'conteudo', 'nivel', 'conceito'):
+                            if r.get(k) is not None:
+                                q[k] = r[k]
+            out.append(p)
     return out
 
 

@@ -36,11 +36,14 @@ alt = cv2.remap(alt, X + wx, Y + wy, cv2.INTER_LINEAR, borderMode=cv2.BORDER_REF
 zx = (fbm(40 * S, 3, 300) - 0.5) * 40 * S
 zy = (fbm(40 * S, 3, 400) - 0.5) * 40 * S
 alt = cv2.remap(alt, X + zx, Y + zy, cv2.INTER_LINEAR, borderMode=cv2.BORDER_REFLECT)
+# segunda camada, mais curta: dentes angulosos nas bordas das faixas
+z2x = (fbm(20 * S, 2, 500) - 0.5) * 22 * S; z2y = (fbm(20 * S, 2, 600) - 0.5) * 22 * S
+alt = cv2.remap(alt, X + z2x, Y + z2y, cv2.INTER_LINEAR, borderMode=cv2.BORDER_REFLECT)
 # planaltos mais altos à direita e no centro-baixo; mais verde na faixa de cima e à esquerda embaixo
 u, v = X / CW, Y / CH
-tend = 0.22 * np.exp(-((u - 0.82) ** 2 / 0.05 + (v - 0.62) ** 2 / 0.12)) + 0.18 * np.exp(-((u - 0.36) ** 2 / 0.03 + (v - 0.55) ** 2 / 0.05)) \
+tend = 0.06 * np.exp(-((u - 0.82) ** 2 / 0.05 + (v - 0.62) ** 2 / 0.12)) + 0.18 * np.exp(-((u - 0.36) ** 2 / 0.03 + (v - 0.55) ** 2 / 0.05)) \
      + 0.12 * np.exp(-((u - 0.12) ** 2 / 0.02 + (v - 0.30) ** 2 / 0.03)) - 0.16 * np.exp(-((u - 0.2) ** 2 / 0.04 + (v - 0.9) ** 2 / 0.03)) \
-     - 0.18 * np.exp(-((u - 0.92) ** 2 / 0.02 + (v - 0.12) ** 2 / 0.03)) - 0.1 * np.exp(-((u - 0.3) ** 2 / 0.02 + (v - 0.08) ** 2 / 0.01))
+     - 0.2 * np.exp(-((u - 0.88) ** 2 / 0.03 + (v - 0.18) ** 2 / 0.04)) - 0.1 * np.exp(-((u - 0.3) ** 2 / 0.02 + (v - 0.08) ** 2 / 0.01))
 alt = alt + tend
 
 # ---------- rios: linha central suave (Catmull-Rom) + meandros de ruído, largura crescendo rio abaixo
@@ -58,19 +61,19 @@ def meandro(c, amp, semente):
   nrm = np.stack([-d[:, 1], d[:, 0]], 1)
   k = r.normal(0, 1, n // 40 + 4); off = np.interp(np.arange(n), np.linspace(0, n, len(k)), k)
   k2 = r.normal(0, 1, n // 8 + 4); off2 = np.interp(np.arange(n), np.linspace(0, n, len(k2)), k2)
-  return c + nrm * (off * amp + off2 * amp * 0.35)[:, None]
+  return c + nrm * (off * amp + off2 * amp * 0.12)[:, None]
 
 RIOS = [  # (pontos em fração da área colorida, largura inicial e final em px de 2048)
   ([(-0.02, 0.22), (0.07, 0.25), (0.14, 0.33), (0.21, 0.25), (0.29, 0.17), (0.37, 0.14), (0.43, 0.24), (0.46, 0.37),
-    (0.53, 0.47), (0.60, 0.56), (0.67, 0.66), (0.70, 0.75), (0.66, 0.86), (0.64, 1.03)], 30, 130, 11),
-  ([(0.47, 0.38), (0.50, 0.50), (0.55, 0.60), (0.63, 0.66), (0.68, 0.70)], 40, 46, 15),
-  ([(0.585, 0.53), (0.68, 0.45), (0.78, 0.35), (0.88, 0.26), (0.97, 0.19), (1.03, 0.16)], 52, 26, 12),
+    (0.45, 0.42), (0.50, 0.53), (0.57, 0.60), (0.65, 0.66), (0.70, 0.75), (0.66, 0.86), (0.64, 1.03)], 26, 110, 11),
+  ([(0.44, 0.27), (0.52, 0.36), (0.60, 0.45), (0.66, 0.55), (0.69, 0.68)], 36, 40, 15),
+  ([(0.62, 0.48), (0.70, 0.42), (0.78, 0.35), (0.88, 0.26), (0.97, 0.19), (1.03, 0.16)], 52, 26, 12),
   ([(0.45, 0.31), (0.50, 0.21), (0.55, 0.12), (0.57, 0.02), (0.58, -0.03)], 40, 18, 13),
   ([(0.13, 0.32), (0.09, 0.44), (0.12, 0.55), (0.08, 0.64)], 22, 14, 14),
 ]
 mask = np.zeros((CH, CW), np.uint8)
 for pts, l0, l1, sem in RIOS:
-  c = curva([(x * CW, y * CH) for x, y in pts]); c = meandro(c, 22 * S, sem)
+  c = curva([(x * CW, y * CH) for x, y in pts]); c = meandro(c, (8 + 0.22 * (l0 + l1)) * S, sem)
   n = len(c)
   for i, (x, y) in enumerate(c):
     r = (l0 + (l1 - l0) * (i / n) ** 0.8) * S / 2
@@ -88,12 +91,12 @@ alt = alt - 0.42 * np.exp(-dfora / (130 * S)) - 0.1 * np.exp(-dfora / (30 * S))
 # ---------- faixas de altitude (10) e paleta hipsométrica
 N = 10
 lo, hi = np.percentile(alt, 2), np.percentile(alt, 99.5)
-hn = np.clip((alt - lo) / (hi - lo), 0, 0.9999)
+hn = np.clip((alt - lo) / (hi - lo), 0, 0.9999) ** 0.85
 banda = np.floor(hn * N).astype(np.uint8)
 banda = cv2.medianBlur(cv2.medianBlur(banda, 11), 7).astype(np.int32)  # tira ilhotas soltas
 PAL = np.array([  # verde-escuro baixo -> verde -> verde-amarelo -> amarelo -> laranja-amarelo alto
   (48, 152, 46), (70, 170, 42), (98, 186, 40), (128, 198, 44), (160, 208, 50),
-  (190, 214, 56), (218, 218, 66), (240, 216, 76), (246, 206, 82), (246, 194, 86)], np.float32)
+  (192, 216, 54), (222, 220, 62), (242, 218, 72), (248, 208, 78), (248, 196, 82)], np.float32)
 cor = PAL[banda]
 # leve variação dentro da faixa (para não ficar chapado)
 fr = hn * N - banda
@@ -114,7 +117,7 @@ gx2 = cv2.Sobel(bsl, cv2.CV_32F, 1, 0, ksize=3) / 8; gy2 = cv2.Sobel(bsl, cv2.CV
 macio = -(gx2 * L[0] + gy2 * L[1]) * 9 * S
 cor = cor * (1 + 0.10 * np.clip(macio, -1, 1))[..., None]
 ESC = np.array([40, 100, 30], np.float32)
-cor = cor * (1 - 0.42 * np.clip(esc, 0, 1))[..., None] + ESC * (0.42 * np.clip(esc, 0, 1))[..., None] * 0.6
+cor = cor * (1 - 0.36 * np.clip(esc, 0, 1))[..., None] + ESC * (0.36 * np.clip(esc, 0, 1))[..., None] * 0.6
 cor = cor + (255 - cor) * (0.42 * np.clip(cla, 0, 1))[..., None]
 
 # ---------- curvas de nível finas dentro das faixas (3 por faixa)
@@ -123,21 +126,20 @@ fsub = np.abs(sub - np.round(sub))
 gsub = np.hypot(*np.gradient(sub)) + 1e-6
 linha = np.clip(1 - fsub / (gsub * 0.9 * S), 0, 1)
 linha *= (np.round(sub) % 3 != 0)          # as de faixa já têm o terraço
-cor = cor * (1 - 0.22 * linha)[..., None]
+cor = cor * (1 - 0.13 * linha)[..., None]
 
 # ---------- água: azul vivo no centro, bordas mais claras, margem escura, reflexos finos
 dd = ddentro / S
-c_meio = np.array([30, 143, 224], np.float32); c_borda = np.array([88, 190, 240], np.float32)
-t = np.clip(dd / 9, 0, 1)[..., None]
+c_meio = np.array([28, 162, 234], np.float32); c_borda = np.array([130, 214, 250], np.float32)
+t = np.clip(dd / 13, 0, 1)[..., None] ** 0.8
 azul = c_borda * (1 - t) + c_meio * t
 # linhas finas acompanhando a margem dentro da água (como na referência)
-ond = np.abs(np.sin(dd * 0.55)) ; rf = np.clip(1 - ond / 0.18, 0, 1) * (dd > 4) * (dd < 16) * 0.22
+ond = np.abs(np.sin(dd * 0.42)); rf = np.clip(1 - ond / 0.2, 0, 1) * (dd > 4) * (dd < 22) * 0.32
 azul = azul + (255 - azul) * rf[..., None]
-azul = azul * (1 - 0.18 * np.clip(macio, -1, 1) * 0)[..., None]
 cor = cor * (1 - agua[..., None]) + azul * agua[..., None]
 df = dfora / S
 mar = np.exp(-((df - 1.6) / 1.4) ** 2) * (1 - agua)   # margem azul-escura
-cor = cor * (1 - 0.75 * mar[..., None]) + np.array([20, 92, 150], np.float32) * (0.75 * mar[..., None])
+cor = cor * (1 - 0.75 * mar[..., None]) + np.array([24, 104, 170], np.float32) * (0.75 * mar[..., None])
 halo = np.exp(-((df - 5) / 3) ** 2) * (1 - agua) * 0.28  # orla clara azulada no barranco
 cor = cor * (1 - halo[..., None]) + np.array([150, 215, 200], np.float32) * halo[..., None]
 

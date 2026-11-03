@@ -256,7 +256,7 @@ export function SimuladoExec() {
             </div>
           </aside>
           </div>
-          {revelado && sim.modo === 'treino' && <ResolucaoView q={q} r={res ? res[q.id] : undefined} marcada={escolha} />}
+          {revelado && sim.modo === 'treino' && <ResolucaoView q={q} r={q.res || (res ? res[q.id] : undefined)} marcada={escolha} />}
         </div>
       ) : <Carregando />}
 

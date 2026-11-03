@@ -16,10 +16,10 @@ const suave = (geo) => { geo.deleteAttribute('normal'); geo.deleteAttribute('uv'
 // Parede: ponto (s, y) -> (0, y, -s) [s cresce para a direita da imagem]; piso: (x, z) -> (x, 0, z).
 
 const Wp = (s, y, h = 0) => V(h, y, -s);
-// ---------- texturas pintadas a partir da arte aprovada (docs/referencias/icones3d/celula.png), projetadas no 3D
+// ---------- texturas PINTADAS (procedurais, geradas por texturas/celula-gera.py; a referência só serve de olho)
 const URL_TEX = { parede: new URL('../texturas/celula-parede.webp', import.meta.url).href, piso: new URL('../texturas/celula-piso.webp', import.meta.url).href,
-  ref: new URL('../texturas/celula-ref.webp', import.meta.url).href, membrana: new URL('../texturas/celula-membrana.webp', import.meta.url).href,
-  membranaRelevo: new URL('../texturas/celula-membrana-relevo.webp', import.meta.url).href, relevo: new URL('../texturas/celula-relevo.webp', import.meta.url).href };
+  funil: new URL('../texturas/celula-funil.webp', import.meta.url).href, membrana: new URL('../texturas/celula-membrana.webp', import.meta.url).href,
+  membranaRelevo: new URL('../texturas/celula-membrana-relevo.webp', import.meta.url).href };
 const _tex = {};
 function textura(n, cor = true) { if (_tex[n]) return _tex[n]; const t = new THREE.TextureLoader().load(URL_TEX[n], () => pedeRedesenho()); if (cor) t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8; return (_tex[n] = t); }
 // material "pintado": a cor vem quase toda da pintura (luz já desenhada nela); a luz da cena só modula de leve
@@ -29,6 +29,12 @@ function pintado(t, o = {}) {
   m.toneMapped = false; return m;
 }
 const Fp = (x, z, h = 0) => V(x, h, z);
+// ruído de valor suave (determinístico), para as cristas das mitocôndrias
+function ruido2(x, y, sd) {
+  const h = (i, j) => { const n = Math.sin(i * 127.1 + j * 311.7 + sd * 74.7) * 43758.5453; return n - Math.floor(n); };
+  const i = Math.floor(x), j = Math.floor(y), fx = x - i, fy = y - j, ux = fx * fx * (3 - 2 * fx), uy = fy * fy * (3 - 2 * fy);
+  return (h(i, j) * (1 - ux) + h(i + 1, j) * ux) * (1 - uy) + (h(i, j + 1) * (1 - ux) + h(i + 1, j + 1) * ux) * uy;
+}
 
 // ---------- membrana: rede de cristas (Worley 3D no sombreador; relevo no vértice + normal analítica no pixel)
 const ESC = 2.55, AMP = 0.085, T0 = '0.5', T1 = '0.88';
@@ -139,17 +145,24 @@ function contornoFeijao(L, Wd, n = 48, curva = 0.1) {
   return pts;
 }
 // mitocôndria aberta (corte): parede roxa em forma de feijão + fundo de cristas. Eixo local: comprimento X, largura Z, altura Y.
-function mitocondria(L, Wd, alt, mats) {
+function mitocondria(L, Wd, alt, mats, sd = 1) {
   const g = new THREE.Group();
   const ext = contornoFeijao(L, Wd, 48, 0.2), int = ext.map((p) => p.clone().multiply(new THREE.Vector2(1 - 0.018 / L, 1 - 0.018 / Wd)).add(new THREE.Vector2(0, 0.0)));
   const forma = new THREE.Shape(ext); forma.holes.push(new THREE.Path(int.slice().reverse()));
   const pg = suave(new THREE.ExtrudeGeometry(forma, { depth: alt, bevelEnabled: true, bevelThickness: 0.004, bevelSize: 0.003, bevelSegments: 3, curveSegments: 6 }));
   const parede = malha(pg, mats.parede); parede.rotation.x = -Math.PI / 2; g.add(parede);
-  // fundo de cristas: grade fina recortada no contorno interno; relevo (deslocamento) e cor vêm da pintura projetada
+  // fundo de cristas: grade fina recortada no contorno interno; labirinto procedural (prateleiras lilases altas, sulcos
+  // roxo-escuros estreitos nas linhas de nível zero de um ruído suave) com relevo REAL (deslocamento) e cor por vértice
   const fg = new THREE.PlaneGeometry(L, Wd, Math.round(L * 460), Math.round(Wd * 460)); const pp = fg.attributes.position, idx = fg.index.array, novo = [];
   const dentro = (x, y) => { let c = false; for (let i = 0, j = int.length - 1; i < int.length; j = i++) { const a = int[i], b = int[j]; if ((a.y > y) !== (b.y > y) && x < (b.x - a.x) * (y - a.y) / (b.y - a.y) + a.x) c = !c; } return c; };
   for (let i = 0; i < idx.length; i += 3) { let cx = 0, cy = 0; for (let k = 0; k < 3; k++) { cx += pp.getX(idx[i + k]) / 3; cy += pp.getY(idx[i + k]) / 3; } if (dentro(cx, cy)) novo.push(idx[i], idx[i + 1], idx[i + 2]); }
   fg.setIndex(novo);
+  { const cE = new THREE.Color(0x35105c), cC = new THREE.Color(0xb68ce8), c = new THREE.Color(), cores = new Float32Array(pp.count * 3);
+    for (let i = 0; i < pp.count; i++) { const x = pp.getX(i), y = pp.getY(i);
+      const n = ruido2(x * 26 + sd * 3.1, y * 26, sd) + 0.5 * ruido2(x * 55, y * 55 + sd, sd + 9) - 0.75 + 0.25 * Math.sin(x * 60 + sd); // linhas de nível zero = sulcos
+      const t = Math.min(1, Math.abs(n) / 0.085), h = t * t * (3 - 2 * t);
+      pp.setZ(i, 0.017 * h); c.copy(cE).lerp(cC, 0.15 + 0.85 * h); cores.set([c.r, c.g, c.b], i * 3); }
+    fg.setAttribute('color', new THREE.BufferAttribute(cores, 3)); fg.computeVertexNormals(); }
   const fundo = malha(fg, mats.fundo, false); fundo.receiveShadow = false; fundo.rotation.x = -Math.PI / 2; fundo.position.y = alt * 0.42; g.add(fundo);
   g.userData.fundo = fundo; return g;
 }
@@ -175,23 +188,16 @@ function meandro(alturas, passo, base) { // pernas verticais com voltas arredond
 
 export default function celula() {
   let rnd = semente(11);
-  // câmera ajustada aos pontos da referência (cantos do corte, silhueta, polo); a mesma câmera projeta a pintura
+  // câmera ajustada aos pontos da referência (cantos do corte, silhueta, polo)
   const camera = { pos: V(1.93, 2.54, 1.957), alvo: V(-0.05, 0.964, 0.047), fov: 41.6 };
-  const camRef = new THREE.PerspectiveCamera(camera.fov, 1, 0.1, 50); camRef.position.copy(camera.pos); camRef.lookAt(camera.alvo); camRef.updateMatrixWorld(true);
-  const aProjetar = []; // malhas cujo uv = posição na arte de referência (projeção pela câmera ajustada)
-  const projeta = (m) => { m.updateWorldMatrix(true, false); const p = m.geometry.attributes.position, uv = new Float32Array(p.count * 2), v = new THREE.Vector3(); const A = m.userData.ajuste;
-    for (let i = 0; i < p.count; i++) { v.fromBufferAttribute(p, i).applyMatrix4(m.matrixWorld).project(camRef); let x = (v.x + 1) / 2, y = (v.y + 1) / 2;
-      if (A) { const x2 = A[0] * x + A[1] * y + A[2], y2 = A[3] * x + A[4] * y + A[5]; x = x2; y = y2; } uv[2 * i] = x; uv[2 * i + 1] = y; }
-    m.geometry.setAttribute('uv', new THREE.BufferAttribute(uv, 2)); };
-  const refT = textura('ref');
   const g = new THREE.Group(); const C = new THREE.Group(); C.position.y = 1.0; g.add(C);
   const R = 1.0, RB = 0.97, rb = 0.032; // raio externo; borda do corte (tubo) e raio do tubo
 
   // ---- membrana: metade de baixo inteira + metade de cima de trás (x<0)
-  //      pintura da referência desdobrada em equirretangular (textura celula-membrana) + relevo dos cordões (deslocamento real)
+  //      rede de cordões de um Voronoi esférico (textura pintada + mapa de altura): deslocamento real e luz da cena
   const memRel = textura('membranaRelevo', false);
-  const memM = pintado(textura('membrana'), { emis: 0.78, luz: 0.3, lado: THREE.DoubleSide });
-  Object.assign(memM, { displacementMap: memRel, displacementScale: 0.028, bumpMap: memRel, bumpScale: 0.8 });
+  const memM = new THREE.MeshStandardMaterial({ map: textura('membrana'), displacementMap: memRel, displacementScale: 0.036, bumpMap: memRel, bumpScale: 1.2, roughness: 0.7, side: THREE.DoubleSide });
+  memM.envMapIntensity = 0.8;
   const calota = (seg, anel, f0, fL, t0, tL) => { const geo = new THREE.SphereGeometry(R * 0.972, seg, anel, f0, fL, t0, tL); const uv = geo.attributes.uv;
     for (let i = 0; i < uv.count; i++) { let f = f0 + uv.getX(i) * fL; if (f < 0) f += TAU; const t = t0 + (1 - uv.getY(i)) * tL; uv.setXY(i, f / TAU, 1 - t / Math.PI); } // uv global (costura atrás, em phi = 0)
     return malha(geo, memM); };
@@ -231,13 +237,21 @@ export default function celula() {
   const N = new THREE.Group(); N.position.copy(NC); N.rotation.y = -0.193; C.add(N);
   const verm = plast(0xa01218, { rug: 0.55, coat: 0.1, coatRug: 0.4 }); verm.envMapIntensity = 0.5;
   N.add(malha(new THREE.SphereGeometry(RN, 96, 48, Math.PI, Math.PI * 1.5, 0, Math.PI / 2), verm), malha(new THREE.SphereGeometry(RN, 96, 48, 0, TAU, Math.PI / 2, Math.PI / 2), verm));
-  // faces do corte e nucleoplasma: pintura da referência (envoltório fino, camada creme com cromossomos em X, nucleoplasma com grânulos)
-  const corteN = pintado(refT, { lado: THREE.DoubleSide, emis: 0.85, luz: 0.2, rug: 0.5 }); const nucPint = [];
+  // faces do corte: envoltório vermelho FINO + camada creme; nucleoplasma vermelho-escuro afundado (cavidade) com grânulos
+  const creme = plast(0xf2dfb2, { rug: 0.6, coat: 0.12, lado: THREE.DoubleSide }), vermF = plast(0xb3161c, { rug: 0.5, coat: 0.15, lado: THREE.DoubleSide });
+  const ENV = 0.014;
   const faces = [[0, 0, 0], [0, -Math.PI / 2, 0], [Math.PI / 2, 0, 0]]; // quartos de anel nos planos z=0 (x,y>0), x=0 (z,y>0), y=0 (x,z>0)
-  for (const [rx, ry] of faces) { const m = malha(new THREE.RingGeometry(RC, RN, 48, 6, 0, Math.PI / 2), corteN); m.rotation.set(rx, ry, 0, 'YXZ'); N.add(m); aProjetar.push(m); nucPint.push(m); }
-  // nucleoplasma afundado: cavidade esférica vista por dentro (só as faces de trás), borda nas três faces do corte
-  const fossa = malha(new THREE.SphereGeometry(RC, 48, 24), pintado(refT, { lado: THREE.BackSide, emis: 0.85, luz: 0.2, rug: 0.5 })); N.add(fossa); aProjetar.push(fossa); nucPint.push(fossa);
-  // grânulos do nucleoplasma e cromossomos: pintados (projeção da arte de referência nas faces do corte)
+  for (const [rx, ry] of faces) for (const m of [malha(new THREE.RingGeometry(RN - ENV, RN, 64, 1, 0, Math.PI / 2), vermF), malha(new THREE.RingGeometry(RC, RN - ENV, 64, 3, 0, Math.PI / 2), creme)]) { m.rotation.set(rx, ry, 0, 'YXZ'); N.add(m); }
+  const fossaM = plast(0x6c1016, { rug: 0.55, coat: 0.2, lado: THREE.BackSide }); N.add(malha(new THREE.SphereGeometry(RC, 48, 24), fossaM, false));
+  const granM = plast(0x2a0507, { rug: 0.6, coat: 0, lado: THREE.DoubleSide }), granG = new THREE.CircleGeometry(0.0115, 16);
+  for (let i = 0; i < 70; i++) { const yy = 1 - (i + 0.5) / 70 * 2, r2 = Math.sqrt(1 - yy * yy), ph = i * 2.39996; const d = V(Math.cos(ph) * r2, yy, Math.sin(ph) * r2);
+    if (d.x > -0.05 && d.y > -0.05 && d.z > -0.05) continue; const p = malha(granG, granM, false); p.position.copy(d.clone().multiplyScalar(RC * 0.993)); p.lookAt(0, 0, 0); N.add(p); }
+  // cromossomos: X roxos finos deitados nas faces creme
+  const roxo = plast(0x7650c8, { rug: 0.4, coat: 0.4 }), gX = new THREE.CapsuleGeometry(0.0042, 0.05, 3, 8);
+  const cromo = (u, v, face, ang) => { const x = new THREE.Group(); for (const sg of [1, -1]) { const c = malha(gX, roxo, false); c.rotation.z = ang + sg * 0.42; x.add(c); }
+    if (face === 0) x.position.set(u, v, 0.004); else if (face === 1) { x.position.set(0.004, v, u); x.rotation.y = Math.PI / 2; } else { x.position.set(u, 0.004, v); x.rotation.x = -Math.PI / 2; }
+    x.scale.z = 0.5; N.add(x); };
+  for (let f = 0; f < 3; f++) for (let k = 0; k < 3; k++) { const a = (k + 0.5) / 3 * Math.PI / 2 + (rnd() - 0.5) * 0.3, r = RC + 0.028 + rnd() * 0.035; cromo(Math.cos(a) * r, Math.sin(a) * r, f, rnd() * 3); }
   // poros do envoltório
   const poroM = plast(0x5a0a0c, { rug: 0.7, coat: 0 }), poroC = plast(0xb7967a, { rug: 0.7, coat: 0 });
   for (let i = 0; i < 40; i++) { const d = new THREE.Vector3().setFromSphericalCoords(1, 0.2 + rnd() * 1.6, rnd() * TAU); if (d.x > -0.1 && d.y > -0.1 && d.z > -0.1) continue;
@@ -306,41 +320,46 @@ export default function celula() {
     const c = cisterna(a, b, h); c.position.set(x, 0.008, z); c.rotation.z = inc; GOL.add(c); }
 
   // ---- mitocôndrias abertas: duas no piso, duas encaixadas na parede
-  // parede lisa e alta, roxa brilhante; cristas: pintura da referência com relevo alto (deslocamento + relevo de luz pelo canal vermelho:
-  // cristas lilases claras sobem, sulcos roxo-escuros descem)
-  const mitM = { parede: plast(0x5e1a5e, { rug: 0.35, coat: 0.55, coatRug: 0.2 }), fundo: pintado(refT, { emis: 0.92, luz: 0.2 }) };
-  // relevo de verdade: quando o mapa de relevo carrega, as cristas sobem na geometria (e o uv é reprojetado do ponto já elevado)
-  const levantaCristas = (img) => { const cv = document.createElement('canvas'); cv.width = img.width; cv.height = img.height; const cx = cv.getContext('2d', { willReadFrequently: true }); cx.drawImage(img, 0, 0);
-    const px = cx.getImageData(0, 0, img.width, img.height).data, W = img.width, H = img.height;
-    const alt = (u, v) => { const x = Math.min(W - 1, Math.max(0, Math.round(u * (W - 1)))), y = Math.min(H - 1, Math.max(0, Math.round((1 - v) * (H - 1)))); return px[(y * W + x) * 4] / 255; };
-    for (const m of mitos) { const f = m.userData.fundo, p = f.geometry.attributes.position, uv = f.geometry.attributes.uv;
-      for (let i = 0; i < p.count; i++) { const h = alt(uv.getX(i), uv.getY(i)); p.setZ(i, 0.022 * Math.pow(h, 0.8)); }
-      p.needsUpdate = true; f.geometry.computeVertexNormals(); projeta(f); }
-    pedeRedesenho(); };
-  if (typeof document !== 'undefined') new THREE.ImageLoader().load(URL_TEX.relevo, levantaCristas);
+  // parede lisa e alta, roxa brilhante; fundo de cristas procedural (cor por vértice, relevo real)
+  const mitM = { parede: plast(0x5e1a5e, { rug: 0.35, coat: 0.55, coatRug: 0.2 }), fundo: plast(0xffffff, { vcores: true, rug: 0.4, coat: 0.45, coatRug: 0.25 }) };
   const mitos = [];
-  for (const [x, z, ry, L, Wd] of [[0.505, 0.705, 0.527, 0.235, 0.115], [0.863, 0.211, 1.258, 0.235, 0.105]]) { const m = mitocondria(L, Wd, 0.05, mitM); m.position.set(x, 0.0, z); m.rotation.y = ry; C.add(m); mitos.push(m); }
+  for (const [x, z, ry, L, Wd] of [[0.505, 0.705, 0.527, 0.235, 0.115], [0.863, 0.211, 1.258, 0.235, 0.105]]) { const m = mitocondria(L, Wd, 0.05, mitM, mitos.length + 1); m.position.set(x, 0.0, z); m.rotation.y = ry; C.add(m); mitos.push(m); }
   for (const [s, y, ang, L, Wd, vira, h] of [[-0.434, 0.647, 2.04, 0.245, 0.12, 0, 0], [0.562, 0.208, 0.22, 0.21, 0.1, -0.95, 0.05]]) { // vira: gira a face para quem olha (descola da parede)
-    const m = mitocondria(L, Wd, 0.042, mitM); m.position.copy(Wp(s, y, h)); m.rotation.set(0, 0, -Math.PI / 2); m.rotateY(ang); m.rotateOnWorldAxis(V(0, 1, 0), vira); C.add(m); mitos.push(m); }
+    const m = mitocondria(L, Wd, 0.042, mitM, mitos.length + 1); m.position.copy(Wp(s, y, h)); m.rotation.set(0, 0, -Math.PI / 2); m.rotateY(ang); m.rotateOnWorldAxis(V(0, 1, 0), vira); C.add(m); mitos.push(m); }
 
-  mitos.forEach((m) => aProjetar.push(m.userData.fundo));
   rnd = semente(41);
-  // ---- retículo liso: teias magenta (membrana com furos e dedos) saindo do alto da parede. Pintura da referência
-  //      recortada pela própria forma (canal alfa) em lâminas paralelas à parede, um pouco à frente dela
-  const lisoM = pintado(refT, { lado: THREE.DoubleSide, emis: 0.85, luz: 0.22 }); lisoM.alphaTest = 0.5;
-  for (const h of [0.085, 0.1, 0.115]) {
-    const geo = new THREE.PlaneGeometry(1.4, 1.0, 1, 1); const p = geo.attributes.position;
-    for (let i = 0; i < p.count; i++) { const q = Wp(0.47 + p.getX(i), 0.62 + p.getY(i), h); p.setXYZ(i, q.x, q.y, q.z); }
-    geo.computeVertexNormals(); const m = malha(geo, lisoM); m.receiveShadow = false; C.add(m); aProjetar.push(m);
+  // ---- retículo liso: teias magenta (membrana grossa e arredondada com furos) e dedos com bolhas, saindo do alto da parede
+  const magenta = plast(0x8c1f46, { rug: 0.42, coat: 0.35, coatRug: 0.3 });
+  const curS = [], bolhas = [];
+  for (const [cs, cy, h, esc, rot, nf0] of [[0.1, 0.8, 0.07, 1.3, 0.3, 6], [0.4, 0.66, 0.1, 1.15, -0.3, 5], [0.65, 0.47, 0.13, 1.05, 0.5, 4]]) {
+    const cen = Wp(cs, cy, h); const nf = V(0.5, 0.3, 0.8).normalize(); const u0 = V(0, 1, 0).cross(nf).normalize(), v0 = nf.clone().cross(u0);
+    const u = u0.clone().multiplyScalar(Math.cos(rot)).add(v0.clone().multiplyScalar(Math.sin(rot))), w = nf.clone().cross(u);
+    const R0 = 0.085 * esc, f1 = rnd() * TAU, f2 = rnd() * TAU;
+    const raio = (t) => R0 * (1 + 0.22 * Math.sin(3 * t + f1) + 0.1 * Math.sin(5 * t + f2));
+    const contorno = []; for (let k = 0; k < 64; k++) { const t = k / 64 * TAU; contorno.push(new THREE.Vector2(Math.cos(t) * raio(t), Math.sin(t) * raio(t) * 0.85)); }
+    const forma = new THREE.Shape(contorno); const furos = [];
+    for (let tent = 0; tent < 60 && furos.length < nf0; tent++) { const t = rnd() * TAU, rr = Math.sqrt(rnd()) * 0.62 * R0, cx = Math.cos(t) * rr, cy2 = Math.sin(t) * rr * 0.85, a = R0 * (0.13 + 0.12 * rnd()), b = a * (0.6 + 0.4 * rnd());
+      if (furos.some(([x, y, aa]) => Math.hypot(x - cx, y - cy2) < aa + a + 0.022) || Math.hypot(cx, cy2) + a > 0.8 * raio(t)) continue; furos.push([cx, cy2, a, b]);
+      const fu = new THREE.Path(); fu.absellipse(cx, cy2, a, b, 0, TAU, true, rnd() * 3); forma.holes.push(fu); }
+    const geo = suave(new THREE.ExtrudeGeometry(forma, { depth: 0.006, bevelEnabled: true, bevelThickness: 0.013, bevelSize: 0.012, bevelSegments: 4, curveSegments: 10 }));
+    const m = malha(geo, magenta); m.position.copy(cen); m.quaternion.setFromRotationMatrix(new THREE.Matrix4().makeBasis(u, w, nf)); C.add(m);
+    const P = (a, b) => cen.clone().add(u.clone().multiplyScalar(a)).add(w.clone().multiplyScalar(b));
+    for (let k = 0; k < 4; k++) { const t = (k + 0.3 + rnd() * 0.4) / 4 * TAU; const r0 = raio(t) * 0.85; const p0 = P(Math.cos(t) * r0, Math.sin(t) * r0 * 0.85); const L = 0.05 + rnd() * 0.06;
+      const p1 = P(Math.cos(t + (rnd() - 0.5) * 0.6) * (r0 + L), Math.sin(t + (rnd() - 0.5) * 0.6) * (r0 + L) * 0.85).add(nf.clone().multiplyScalar((rnd() - 0.3) * 0.03));
+      curS.push([new THREE.CatmullRomCurve3([p0, p0.clone().lerp(p1, 0.5).add(nf.clone().multiplyScalar(0.008)), p1]), false, 4]); bolhas.push(p1); }
   }
+  C.add(malha(tubos(curS, 0.012, 4, 10), magenta));
+  for (const p of bolhas) { const b = esfera(0.019, magenta, 16); b.position.copy(p); C.add(b); }
 
   rnd = semente(51);
   // ---- centríolos: funil de rede ciano na parede (canto inferior esquerdo) com feixes dourados
   const FUN = new THREE.Group(); C.add(FUN);
-  // funil FUNDO; a rede ciano orgânica (furos irregulares, fios grossos) é a pintura da referência projetada nele
+  // funil FUNDO de rede ciano orgânica (textura pintada com furos transparentes) sobre um cone escuro por trás
   const funilGeo = new THREE.LatheGeometry(FUN_PERFIL.map(([r, y]) => new THREE.Vector2(r, y)), 72);
-  const funil = malha(funilGeo, pintado(refT, { lado: THREE.DoubleSide, emis: 0.85, luz: 0.2 })); funil.receiveShadow = false;
-  funil.position.copy(FUN_M); funil.quaternion.setFromUnitVectors(V(0, 1, 0), FUN_U); FUN.add(funil); aProjetar.push(funil);
+  const tFun = textura('funil'); tFun.wrapS = THREE.RepeatWrapping;
+  const funil = malha(funilGeo, new THREE.MeshStandardMaterial({ map: tFun, alphaTest: 0.5, side: THREE.DoubleSide, roughness: 0.32 }));
+  const fundoF = malha(new THREE.LatheGeometry(FUN_PERFIL.map(([r, y]) => new THREE.Vector2(r * 1.07 + 0.004, y - 0.004)), 72), plast(0x0e2c38, { rug: 0.8, coat: 0, lado: THREE.DoubleSide }), false);
+  for (const m of [funil, fundoF]) { m.position.copy(FUN_M); m.quaternion.setFromUnitVectors(V(0, 1, 0), FUN_U); FUN.add(m); }
   // centríolos: dois feixes de 9 trincas de microtúbulos (anel em cata-vento), dourados; um sai do funil na diagonal, o outro aparece de ponta
   const ouro = plast(0xcf9c22, { metal: 0.3, rug: 0.34, coat: 0.6, lado: THREE.DoubleSide, emis: 0x3a2800 });
   const centriolo = (L, rA, rt = 0.0036) => { const b = new THREE.Group(); const gT = new THREE.CylinderGeometry(rt, rt, L, 8, 1, true);
@@ -380,16 +399,6 @@ export default function celula() {
   for (let i = 0; i < 4; i++) { const v = esfera(0.03, vesM.clone(), 20); C.add(v); ves.push(v); }
   const ini = V(0.76, 0.17, -0.22), fim = V(0.87, 0.07, -0.37);
 
-  g.updateMatrixWorld(true);
-  { // ajuste fino (afim, mínimos quadrados) para o corte do núcleo cair exatamente sobre o corte pintado na referência
-    const loc = [V(0, RN, 0), V(0, 0, RN), V(RN, 0, 0), V(RN * 0.686, 0, RN * 0.686)], alvo = [[607, 408], [487, 601], [670, 608], [574, 596]].map(([x, y]) => [x / 1080, 1 - y / 1080]);
-    const src = loc.map((q) => { const w = q.clone().applyMatrix4(N.matrixWorld).project(camRef); return [(w.x + 1) / 2, (w.y + 1) / 2]; });
-    const sol = (k) => { const M = [[0, 0, 0], [0, 0, 0], [0, 0, 0]], b = [0, 0, 0]; src.forEach(([x, y], i) => { const r = [x, y, 1]; for (let a = 0; a < 3; a++) { b[a] += r[a] * alvo[i][k]; for (let c = 0; c < 3; c++) M[a][c] += r[a] * r[c]; } });
-      const det = (m) => m[0][0] * (m[1][1] * m[2][2] - m[1][2] * m[2][1]) - m[0][1] * (m[1][0] * m[2][2] - m[1][2] * m[2][0]) + m[0][2] * (m[1][0] * m[2][1] - m[1][1] * m[2][0]);
-      const D = det(M); return [0, 1, 2].map((c) => det(M.map((row, a) => row.map((x, j) => (j === c ? b[a] : x)))) / D); };
-    const A = [...sol(0), ...sol(1)]; if (0) for (const m of nucPint) m.userData.ajuste = A;
-  }
-  aProjetar.forEach(projeta);
   return {
     grupo: g, camera,
     // uma vez por ativação (pesquisa: 1–2,5 s, sem laço); terminado, fica no estado final

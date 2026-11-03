@@ -22,6 +22,15 @@ def ruido(h, w, escalas=((0.5, 6), (0.3, 14), (0.2, 40)), semente=1):
     return out / max(1e-6, np.abs(out).max())
 
 
+_ocupado = {}
+def regiao(chave, dentro):
+    """tira da região o que outra faixa já ocupa (evita fios sobrepostos que viram manchas)"""
+    oc = _ocupado.get(chave)
+    if oc is not None: dentro = dentro & ~oc
+    _ocupado[chave] = dentro if oc is None else (oc | dentro)
+    return dentro
+
+
 def voronoi_fios(cA, cB, dentro, cw, ch, larg_mundo, px_por_un, semente, wrapA=None):
     """Fios nas bordas de um Voronoi anisotrópico sobre coordenadas locais (cA ao longo, cB através).
     Devolve a máscara (bool) dos fios, incluindo o contorno da região."""
@@ -48,7 +57,7 @@ def voronoi_fios(cA, cB, dentro, cw, ch, larg_mundo, px_por_un, semente, wrapA=N
 
 def pinta_fios(base, mask, larg_px, cor, luz=(-0.55, -0.6, 0.58), sombra=(7, 9), sombra_forca=0.28, espec=0.55):
     """Arredonda os fios (fechamento = concordância nas junções), relevo pela distância à borda e sombreamento."""
-    k = int(larg_px * 1.1) | 1
+    k = int(larg_px * 0.7) | 1
     m = cv2.morphologyEx(mask.astype(np.uint8), cv2.MORPH_CLOSE, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (k, k)))
     m = cv2.GaussianBlur(m.astype(np.float32), (0, 0), 1.2) > 0.5
     dt = cv2.distanceTransform(m.astype(np.uint8), cv2.DIST_L2, 5)
@@ -88,6 +97,7 @@ CIANO = (24, 150, 198)
 
 
 def parede():
+    QUAL = 'parede'
     W, H = 2048, 1024; ppu = 1024
     S = ((np.arange(W) + 0.5) / W * 2 - 1)[None, :].repeat(H, 0); Y = (1 - (np.arange(H) + 0.5) / H)[:, None].repeat(W, 1)
     r = np.hypot(S, Y)
@@ -98,24 +108,26 @@ def parede():
     wob = 0.012 * ruido(H, W, ((1, 10),), semente=5)
     Sw, Yw = S + wob, Y + 0.6 * wob
     mask = np.zeros((H, W), bool)
+    # leque em volta da boca do funil
+    a, b, dentro = faixa_polar(Sw, Yw, (-0.70, 0.13), lambda th: 0.125 + 0 * th, lambda th, a: 0.25 + 0 * th, -30, 215, 0.18)
+    mask |= voronoi_fios(a, b, regiao(QUAL, dentro), 0.05, 0.06, 0.018, ppu, 3)
     # arco de alças altas em volta do núcleo (topo), alças irregulares
     rr = np.random.default_rng(11); alt = rr.random(64)
     def topo(th, a):  # topo irregular por coluna (alças de alturas diferentes)
-        j = np.clip(((a + 2) / 0.075).astype(int), 0, 63); return 0.64 + 0.15 * alt[j] - 0.1 * np.clip((th - 105) / 30, 0, 1) - 0.12 * np.clip((40 - th) / 30, 0, 1)
+        x = (a + 2) / 0.15; j = np.clip(x.astype(int), 0, 63); f = x - np.floor(x)            # alças altas de topo redondo, alturas variadas
+        return 0.6 + (0.06 + 0.13 * alt[j]) * np.sqrt(np.clip(np.sin(np.pi * f), 0, 1)) - 0.1 * np.clip((th - 105) / 30, 0, 1) - 0.12 * np.clip((40 - th) / 30, 0, 1)
     a, b, dentro = faixa_polar(Sw, Yw, (-0.02, -0.02), lambda th: 0.47 + 0.0 * th, topo, 10, 122, 0.62)
-    mask |= voronoi_fios(a, b, dentro, 0.075, 0.17, 0.022, ppu, 1)
+    mask |= voronoi_fios(a, b, regiao(QUAL, dentro), 0.075, 0.17, 0.022, ppu, 1)
     # lado esquerdo: malha mais miúda descendo até o canto do funil
     a, b, dentro = faixa_polar(Sw, Yw, (-0.02, -0.02), lambda th: 0.47 + 0.1 * np.clip((th - 150) / 25, 0, 1), lambda th, a: 0.84 - 0.06 * np.clip((th - 150) / 25, 0, 1), 122, 176, 0.65)
-    mask |= voronoi_fios(a, b, dentro, 0.062, 0.075, 0.02, ppu, 2)
-    # leque em volta da boca do funil
-    a, b, dentro = faixa_polar(Sw, Yw, (-0.70, 0.13), lambda th: 0.125 + 0 * th, lambda th, a: 0.25 + 0 * th, -30, 215, 0.18)
-    mask |= voronoi_fios(a, b, dentro, 0.05, 0.06, 0.018, ppu, 3)
+    mask |= voronoi_fios(a, b, regiao(QUAL, dentro), 0.062, 0.075, 0.02, ppu, 2)
     mask &= r < 0.95
     cor, m, _ = pinta_fios(base, mask, 0.021 * ppu, CIANO)
     return (np.clip(cor, 0, 1) * 255).astype(np.uint8)
 
 
 def piso():
+    QUAL = 'piso'
     W, H = 2048, 1024; ppu = 1024
     Z = (1 - (np.arange(W) + 0.5) / W * 2)[None, :].repeat(H, 0); X = (1 - (np.arange(H) + 0.5) / H)[:, None].repeat(W, 1)
     r = np.hypot(X, Z)
@@ -126,16 +138,16 @@ def piso():
     mask = np.zeros((H, W), bool)
     # alça longa em volta da base do núcleo, pela frente
     a, b, dentro = faixa_polar(Xw, Zw, (0.256, 0.183), lambda th: 0.36 + 0 * th, lambda th, a: 0.47 + 0 * th, -80, 95, 0.42)
-    mask |= voronoi_fios(a, b, dentro, 0.13, 0.2, 0.02, ppu, 4)
+    mask |= voronoi_fios(a, b, regiao(QUAL, dentro), 0.13, 0.2, 0.02, ppu, 4)
     # escada na frente, rumo à direita
     a, b, dentro = faixa_reta(Xw, Zw, (0.42, 0.62), (0.82, -0.12), 0.06, -0.02, 0.15)
-    mask |= voronoi_fios(a, b, dentro, 0.085, 0.2, 0.019, ppu, 5)
+    mask |= voronoi_fios(a, b, regiao(QUAL, dentro), 0.085, 0.2, 0.019, ppu, 5)
     # trama densa à direita (atrás e sob o Golgi)
     a, b, dentro = faixa_reta(Xw, Zw, (0.52, -0.1), (0.22, -0.84), 0.05, -0.08, 0.14)
-    mask |= voronoi_fios(a, b, dentro, 0.06, 0.07, 0.018, ppu, 6)
+    mask |= voronoi_fios(a, b, regiao(QUAL, dentro), 0.06, 0.07, 0.018, ppu, 6)
     # leque no pé do funil
     a, b, dentro = faixa_polar(Xw, Zw, (0.06, 0.8), lambda th: 0.1 + 0 * th, lambda th, a: 0.2 + 0 * th, -150, 40, 0.15)
-    mask |= voronoi_fios(a, b, dentro, 0.05, 0.05, 0.017, ppu, 7)
+    mask |= voronoi_fios(a, b, regiao(QUAL, dentro), 0.05, 0.05, 0.017, ppu, 7)
     mask &= r < 0.95
     cor, m, _ = pinta_fios(base, mask, 0.02 * ppu, CIANO, luz=(-0.4, -0.7, 0.6))
     return (np.clip(cor, 0, 1) * 255).astype(np.uint8)
@@ -146,7 +158,7 @@ def funil():
     W, H = 2048, 512
     U = ((np.arange(W) + 0.5) / W)[None, :].repeat(H, 0); Vv = ((np.arange(H) + 0.5) / H)[:, None].repeat(W, 1)
     wob = 0.012 * ruido(H, W, ((1, 8),), semente=8)
-    pts = []; r = np.random.default_rng(9); ncol, nlin = 22, 7
+    pts = []; r = np.random.default_rng(9); ncol, nlin = 15, 6
     for j in range(nlin):
         for i in range(ncol):
             pts.append([(i + 0.5 * (j % 2) + (r.random() - 0.5) * 0.6) / ncol, (j + 0.5 + (r.random() - 0.5) * 0.5) / nlin])
@@ -156,7 +168,7 @@ def funil():
     q = np.stack([(U + wob).ravel(), (Vv + wob).ravel() * asp], -1); d, ii = T.query(q, k=2)
     p1, p2 = pts[ii[:, 0]] * [1, asp], pts[ii[:, 1]] * [1, asp]; n = (p2 - p1); n /= np.linalg.norm(n, axis=1, keepdims=True)
     f = np.abs(((q - (p1 + p2) / 2) * n).sum(1)).reshape(H, W)
-    larg = 0.011 * (1 + 0.45 * ruido(H, W, ((1, 12),), semente=10))
+    larg = 0.0085 * (1 + 0.5 * ruido(H, W, ((1, 12),), semente=10))
     mask = (f < larg) | (Vv > 0.965) | (Vv < 0.04)
     base = np.zeros((H, W, 3), np.float32)
     cor, m, _ = pinta_fios(base, mask, 22, CIANO, luz=(-0.3, -0.75, 0.6), sombra=(0, 0), sombra_forca=0)
@@ -167,7 +179,7 @@ def funil():
 
 def membrana():
     """Voronoi esférico: cordões amarelos (com concordância nas junções) sobre alvéolos creme; equirretangular"""
-    W, H = 2048, 1024; N = 360
+    W, H = 2048, 1024; N = 230
     i = np.arange(N) + 0.5; phi = np.arccos(1 - 2 * i / N); th = np.pi * (1 + 5 ** 0.5) * i
     P = np.stack([np.cos(th) * np.sin(phi), np.cos(phi), np.sin(th) * np.sin(phi)], -1)
     P += rng.normal(0, 0.035, P.shape); P /= np.linalg.norm(P, axis=1, keepdims=True); T = cKDTree(P)
@@ -183,7 +195,7 @@ def membrana():
     ds = np.stack(ds, 1); kk = 0.018
     dsm = -kk * np.log(np.exp(-ds / kk).sum(1))            # mínimo suave: cordões se fundem nas junções
     dsm = dsm.reshape(H, W) + 0.012
-    larg = 0.05
+    larg = 0.062
     t = np.clip(1 - dsm / larg, 0, 1); cord = np.sqrt(np.clip(1 - (1 - t) ** 2, 0, 1))
     d1 = ds.min(1).reshape(H, W)
     alv = np.clip(d1 / 0.12, 0, 1); domo = 0.25 * np.sqrt(alv)   # alvéolo levemente abaulado
