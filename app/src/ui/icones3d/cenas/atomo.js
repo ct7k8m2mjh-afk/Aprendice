@@ -36,7 +36,7 @@ export default function atomo() {
     const o = new THREE.Group(); o.rotation.x = fi; ext.add(o);
     const tor = malha(new THREE.TorusGeometry(a, 0.012, 8, 160), orbM, false); o.add(tor);
     const el = [esfera(0.14, eletM, 28), esfera(0.14, eletM, 28)]; el.forEach((e) => { e.castShadow = false; o.add(e); });
-    orbitas.push({ el, a, vel: [1, 1.25, 1.1][k] });
+    orbitas.push({ el, a, vel: [1, 1.25, 1.1][k], fase: k * 1.1 });
   });
   const sombra = manchaSombra(1.3, 0.5, 0.7); sombra.position.set(0.35, 0.003, -0.15); g.add(sombra);
   // a cena "olha" a câmera: o plano das órbitas fica de frente para ela
@@ -44,10 +44,13 @@ export default function atomo() {
   return {
     grupo: g, camera: { pos: V(0, 1.85, 5.15), alvo: V(0, 1.0, 0), fov: 32 },
     _v: 0,
+    // uma vez por ativação (pesquisa: 1–2,5 s, sem laço); terminado, fica no estado final
+    _passo(t, ativo, dur) { if (ativo && !this._at && (this._t0 == null || t - this._t0 >= dur)) this._t0 = t; this._at = ativo;
+      if (this._t0 == null) return 1; const p = Math.min(1, Math.max(0, (t - this._t0) / dur)); return p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2; },
     animar(t, ativo, dt) {
-      this._v += ((ativo ? 1.6 : 0.08) - this._v) * Math.min(1, dt * 3);
-      this._s = (this._s || 0) + dt * this._v;
-      for (const o of orbitas) o.el.forEach((e, i) => { const s = this._s * o.vel + i * Math.PI; e.position.set(Math.cos(s) * o.a, Math.sin(s) * o.a, 0); });
+      // elétrons parados em repouso; ao ativar, cada um percorre a órbita UMA volta e para (átomo neutro: 6 p, 6 n, 6 e⁻)
+      const p = this._passo(t, ativo, 2.2) % 1;
+      for (const o of orbitas) o.el.forEach((e, i) => { const s = (o.fase || 0) + p * Math.PI * 2 * (o.vel > 0 ? 1 : -1) + i * Math.PI; e.position.set(Math.cos(s) * o.a, Math.sin(s) * o.a, 0); });
     },
   };
 }

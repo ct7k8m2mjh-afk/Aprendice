@@ -10,8 +10,8 @@ import bussola from './cenas/bussola.js';
 export const CENAS = { celula, atomo, solidos, livros, circuito, bussola };
 export const NOMES = { celula: 'Biologia — célula animal', atomo: 'Química — átomo', solidos: 'Matemática — sólidos', livros: 'Português — livros e pena',
   circuito: 'Física — circuito elétrico', bussola: 'Geografia — mapa e bússola' };
-export const FUNCAO = { celula: 'Vesículas saem do Golgi rumo à membrana; mitocôndrias pulsam (energia).', atomo: 'Elétrons percorrem as órbitas.',
-  solidos: 'Cada sólido gira sobre o próprio eixo, mostrando o volume.', livros: 'A pena molha no tinteiro para escrever.',
+export const FUNCAO = { celula: 'Secreção: vesículas saem do Golgi e se fundem à membrana.', atomo: 'Os elétrons percorrem uma volta das órbitas (átomo neutro de carbono: 6 prótons, 6 nêutrons, 6 elétrons; modelo escolar).',
+  solidos: 'O conjunto gira um pouco e mostra as faces e o volume dos sólidos.', livros: 'A pena molha uma vez no tinteiro para escrever.',
   circuito: 'Ao fechar o circuito, a corrente passa ao mesmo tempo no circuito todo (do + ao −) e a lâmpada acende na hora.', bussola: 'A agulha oscila, se acomoda apontando o norte, e o alfinete espeta o ponto no mapa.' };
 
 // =====================================================================================
@@ -46,8 +46,8 @@ export async function criarPalco(_canvasIgnorado, { claro = true } = {}) {
     tela.style.cssText = 'display:block;width:100%;height:100%;pointer-events:none';
     el.appendChild(tela);
     const v = { el, s, c, cam, tela, ctx: tela.getContext('2d'), ativo: false, giro: 0, giroAlvo: 0, sujo: true, ate: 0 };
-    const liga = () => { v.ativo = true; }, desliga = () => { v.ativo = false; v.arrasto = null; v.ate = performance.now() + 1500; };
-    Object.defineProperty(v, 'ativo', { get() { return v._ativo; }, set(x) { if (v._ativo && !x) v.ate = performance.now() + 1500; v._ativo = x; v.sujo = true; } });
+    const liga = () => { v.ativo = true; }, desliga = () => { v.ativo = false; v.arrasto = null; v.ate = performance.now() + 2600; };
+    Object.defineProperty(v, 'ativo', { get() { return v._ativo; }, set(x) { if (v._ativo && !x) v.ate = performance.now() + 2600; v._ativo = x; v.sujo = true; } });
     v._ativo = false;
     el.addEventListener('pointerenter', liga); el.addEventListener('pointerleave', desliga);
     el.addEventListener('focusin', liga); el.addEventListener('focusout', desliga);

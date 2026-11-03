@@ -133,9 +133,13 @@ export default function livros() {
 
   return {
     grupo: g, camera: { pos: V(-0.25, 1.85, 5.9), alvo: V(-0.05, 0.95, 0.3), fov: 33 },
+    // uma vez por ativação (pesquisa: 1–2,5 s, sem laço); terminado, fica no estado final
+    _passo(t, ativo, dur) { if (ativo && !this._at && (this._t0 == null || t - this._t0 >= dur)) this._t0 = t; this._at = ativo;
+      if (this._t0 == null) return 1; const p = Math.min(1, Math.max(0, (t - this._t0) / dur)); return p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2; },
     animar(tm, ativo, dt) {
-      this._a = (this._a || 0) + ((ativo ? 1 : 0) - (this._a || 0)) * Math.min(1, dt * 4);
-      const mergulho = Math.max(0, Math.sin(tm * 2.2)) * this._a; // molha a pena na tinta e levanta para escrever
+      // a pena molha UMA vez no tinteiro (desce, toca a tinta, sobe) e para
+      const p = this._passo(tm, ativo, 1.6);
+      const mergulho = Math.sin(Math.PI * p);
       pena.position.y = BASE - mergulho * 0.22; pena.rotation.z = -0.33 + mergulho * 0.12; pena.rotation.x = 0.12 - mergulho * 0.05;
     },
   };

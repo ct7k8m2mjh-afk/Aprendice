@@ -1,6 +1,6 @@
 /* eslint-disable */
 import { THREE, V, TAU, plast, semente, malha, esfera } from '../base.js';
-import { mergeGeometries, mergeVertices } from 'three/addons/utils/BufferGeometryUtils.js';
+import { mergeGeometries, mergeVertices, toCreasedNormals } from 'three/addons/utils/BufferGeometryUtils.js';
 const suave = (geo) => { geo.deleteAttribute('normal'); geo.deleteAttribute('uv'); const m = mergeVertices(geo, 1e-5); m.computeVertexNormals(); return m; }; // extrusões com sombreamento liso
 
 // =====================================================================================
@@ -19,7 +19,7 @@ const Wp = (s, y, h = 0) => V(h, y, -s);
 const Fp = (x, z, h = 0) => V(x, h, z);
 
 // ---------- membrana: rede de cristas (Worley 3D no sombreador; relevo no vértice + normal analítica no pixel)
-const ESC = 2.55, AMP = 0.065, T0 = '0.52', T1 = '0.86';
+const ESC = 2.55, AMP = 0.085, T0 = '0.5', T1 = '0.88';
 const GLSL_CRISTA = `
 vec3 hshC(vec3 p){ p=fract(p*vec3(.1031,.1030,.0973)); p+=dot(p,p.yxz+33.33); return fract((p.xxy+p.yxx)*p.zyx); }
 float crista(vec3 q, out vec3 grad){
@@ -34,23 +34,29 @@ float crista(vec3 q, out vec3 grad){
   grad=(6.*u*(1.-u)/(${T1}-${T0}))*gt;
   return h;
 }`;
-function materialMembrana() {
-  const m = plast(0xffffff, { rug: 0.8, coat: 0.0 }); m.specularIntensity = 0.35;
+function materialMembrana(borda = false) { // borda: relevo ao longo da normal do tubo da borda do corte
+  const m = plast(0xffffff, { rug: 0.9, coat: 0.0 }); m.specularIntensity = 0.08; m.envMapIntensity = 0.65;
+  const dirV = borda ? 'normal' : 'normalize(position)', amp = borda ? AMP * 0.3 : AMP, ampV = borda ? AMP * 0.22 : AMP * 0.6;
   m.onBeforeCompile = (sh) => {
+    const decl = `varying vec3 vOP; varying vec3 vON; varying vec3 vNX; varying vec3 vNY; varying vec3 vNZ;\n${GLSL_CRISTA}`;
     sh.vertexShader = sh.vertexShader
-      .replace('#include <common>', `#include <common>\nvarying vec3 vOP; varying vec3 vNX; varying vec3 vNY; varying vec3 vNZ;\n${GLSL_CRISTA}`)
-      .replace('#include <begin_vertex>', `#include <begin_vertex>\n vOP = position; { vec3 gq; float hv = crista(normalize(position)*${ESC.toFixed(2)}, gq); transformed += normalize(position)*${(AMP * 0.6).toFixed(3)}*hv; }
+      .replace('#include <common>', `#include <common>\n${decl}`)
+      .replace('#include <begin_vertex>', `#include <begin_vertex>\n vOP = position; vON = normal; { vec3 gq; float hv = crista(normalize(position)*${ESC.toFixed(2)}, gq); transformed += ${dirV}*${ampV.toFixed(3)}*hv; }
  vNX = normalize(normalMatrix*vec3(1.,0.,0.)); vNY = normalize(normalMatrix*vec3(0.,1.,0.)); vNZ = normalize(normalMatrix*vec3(0.,0.,1.));`);
     sh.fragmentShader = sh.fragmentShader
-      .replace('#include <common>', `#include <common>\nvarying vec3 vOP; varying vec3 vNX; varying vec3 vNY; varying vec3 vNZ;\n${GLSL_CRISTA}`)
+      .replace('#include <common>', `#include <common>\n${decl}`)
       .replace('#include <color_fragment>', `#include <color_fragment>
  vec3 ddM = normalize(vOP); vec3 gqM; float hM = crista(ddM*${ESC.toFixed(2)}, gqM);
- diffuseColor.rgb *= mix(vec3(0.62,0.54,0.38), vec3(0.86,0.65,0.27), smoothstep(0.0,0.45,hM));`)
+ diffuseColor.rgb *= mix(0.8, 1.02, smoothstep(-0.9, 0.8, dot(ddM, normalize(vec3(-0.3, 0.5, 0.8))))); // luz de estúdio da referência (esquerda-frente), assada de leve
+ diffuseColor.rgb *= mix(vec3(1.0), vec3(0.88,0.82,0.66), smoothstep(-0.3, 0.6, dot(ddM, normalize(vec3(-0.6, 0.6, 0.5))))); // lado de cima/esquerdo: creme mais quente (sem estourar)
+ diffuseColor.rgb *= mix(vec3(0.86,0.81,0.67), vec3(0.88,0.68,0.31), ${borda ? '0.7+0.3*' : ''}smoothstep(0.1,0.6,hM));
+ diffuseColor.rgb *= 1. - ${borda ? '0.0' : '0.15'}*smoothstep(0.0,0.25,hM)*(1.-smoothstep(0.35,0.7,hM)); // cavidade: sombra suave no pé da crista`)
+      .replace('#include <emissivemap_fragment>', `#include <emissivemap_fragment>
+ totalEmissiveRadiance += diffuseColor.rgb * ${borda ? '0.0' : '0.3'} * smoothstep(0.1, -0.7, ddM.y); // rebatedor de estúdio: a metade de baixo não fica escura`)
       .replace('#include <normal_fragment_maps>', `#include <normal_fragment_maps>
- { vec3 gp = ${ESC.toFixed(2)}*(gqM - dot(gqM,ddM)*ddM); vec3 nO = normalize(ddM - ${AMP.toFixed(3)}*gp);
+ { vec3 nB = ${borda ? 'normalize(vON)' : 'ddM'}; vec3 gp = ${ESC.toFixed(2)}*(gqM - dot(gqM,nB)*nB); vec3 nO = normalize(nB - ${amp.toFixed(3)}*gp);
    normal = normalize(vNX*nO.x + vNY*nO.y + vNZ*nO.z); }`)
       .replace('#include <clearcoat_normal_fragment_begin>', '#include <clearcoat_normal_fragment_begin>\n#ifdef USE_CLEARCOAT\n clearcoatNormal = normal;\n#endif');
-    if (typeof location !== 'undefined' && location.search.includes('dbg=2')) sh.fragmentShader = sh.fragmentShader.replace('#include <dithering_fragment>', '#include <dithering_fragment>\n gl_FragColor = vec4(clamp(hM,0.,1.), 0.5+0.5*normal.y, 0.5+0.5*normal.z, 1.);');
   };
   return m;
 }
@@ -155,19 +161,19 @@ function meandro(alturas, passo, base) { // pernas verticais com voltas arredond
 export default function celula() {
   let rnd = semente(11);
   const g = new THREE.Group(); const C = new THREE.Group(); C.position.y = 1.0; g.add(C);
-  const R = 1.0, RB = 0.96, rb = 0.046; // raio externo; borda do corte (tubo) e raio do tubo
+  const R = 1.0, RB = 0.955, rb = 0.052; // raio externo; borda do corte (tubo) e raio do tubo
 
   // ---- membrana: metade de baixo inteira + metade de cima de trás (x<0)
-  const memM = materialMembrana(); if (typeof location !== 'undefined' && location.search.includes('dbg=1')) memM.onBeforeCompile = () => {};
+  const memM = materialMembrana();
   C.add(malha(new THREE.SphereGeometry(R * 0.985, 220, 72, -Math.PI / 2, Math.PI, 0, Math.PI / 2), memM));
   C.add(malha(new THREE.SphereGeometry(R * 0.985, 320, 80, 0, TAU, Math.PI / 2, Math.PI / 2), memM));
   // borda arredondada do corte: arco da parede (plano x=0) e arco do piso (y=0, x>0)
-  const bordaM = plast(0xdcc27c, { rug: 0.7, coat: 0.1, coatRug: 0.4 });
+  const bordaM = materialMembrana(true);
   const c3 = (fn) => { const cur = new THREE.Curve(); cur.getPoint = (t, alvo = new THREE.Vector3()) => alvo.copy(fn(t)); return cur; };
   const cParede = c3((t) => { const a = Math.PI * t; return V(0, Math.sin(a) * RB, Math.cos(a) * RB); });
   const cPiso = c3((t) => { const a = Math.PI * t - Math.PI / 2; return V(Math.cos(a) * RB, 0, -Math.sin(a) * RB); });
   C.add(malha(tubos([[cParede, false, 40], [cPiso, false, 40]], rb, 4, 20), bordaM));
-  for (const z of [1, -1]) { const e = esfera(rb, bordaM, 24); e.position.set(0, 0, z * RB); C.add(e); }
+  for (const z of [1, -1]) { const e = esfera(rb * 1.08, plast(0xd8bf80, { rug: 0.75, coat: 0 }), 24); e.position.set(0, 0, z * RB); C.add(e); }
 
   // ---- parede e piso do corte (meio discos), com sombreamento de contato embutido por vértice
   const FURO = [-0.64, 0.2, 0.19]; // furo do funil do centríolo na parede (s, y, raio)
@@ -180,20 +186,19 @@ export default function celula() {
       const c = new THREE.Color(corBase).multiplyScalar(ao); cores.push(c.r, c.g, c.b); }
     geo.setAttribute('color', new THREE.Float32BufferAttribute(cores, 3)); return geo;
   };
-  const corteM = plast(0xffffff, { vcores: true, rug: 0.62, coat: 0.12, coatRug: 0.4, emis: 0x2e2618, emisI: 1 });
-  const parede = malha(corte(0xf8eed6, 0.12, 0.05, FURO), corteM); parede.rotation.y = Math.PI / 2; C.add(parede); // local (x,y) -> (0, y, -x)
-  const piso = malha(corte(0xfbf9f3, 0.08, 0.12), corteM); piso.rotation.set(-Math.PI / 2, 0, -Math.PI / 2); C.add(piso); // local (x,y) -> (y, 0, -x)?
+  const corteM = plast(0xffffff, { vcores: true, rug: 0.62, coat: 0.12, coatRug: 0.4, emis: 0x140f06, emisI: 1 });
+  const parede = malha(corte(0xe4d0a8, 0.14, 0.06, FURO), corteM); parede.rotation.y = Math.PI / 2; C.add(parede); // local (x,y) -> (0, y, -x)
+  const piso = malha(corte(0xf8f3e6, 0.1, 0.12), corteM); piso.rotation.set(-Math.PI / 2, 0, -Math.PI / 2); C.add(piso); // local (x,y) -> (y, 0, -x)?
   piso.updateMatrix();
 
   // ---- retículo endoplasmático (rede ciano em relevo) na parede e no piso
-  const ciano = plast(0x18a4cf, { rug: 0.3, coat: 0.7, coatRug: 0.2 });
+  const ciano = plast(0x0c92c4, { rug: 0.3, coat: 0.7, coatRug: 0.2 });
   const rr = 0.013; const curvas = [];
   const addLacos = (lacos, map, furo) => { for (const l of lacos) { if (furo && l.some(([a, b]) => Math.hypot(a - furo[0], b - furo[1]) < furo[2] + 0.005)) continue; const pts = l.map(([a, b]) => map(a, b)); curvas.push([new THREE.CatmullRomCurve3(pts, true, 'centripetal'), true, pts.length]); } };
   // arco de alvéolos altos em volta do núcleo (s, y), do canto esquerdo até o lado direito
-  addLacos(faixa(rnd, arco(-0.08, -0.02, 0, Math.PI * 0.03, Math.PI * 0.97), 19, [0.4, 0.55, 0.82], { amp: 0.02, irreg: 0.1, colFator: (k) => (k === 1 ? 1.0 : 0.6), pula: (k, t) => k === 1 && t > 0.63 }), (s, y) => Wp(s, y, rr * 0.6), FURO);
-  addLacos(faixa(rnd, arco(-0.08, -0.02, 0, Math.PI * 0.62, Math.PI * 0.99), 8, [0.55, 0.69, 0.84], { amp: 0.015 }), (s, y) => Wp(s, y, rr * 0.6), FURO);
+  addLacos(faixa(rnd, arco(-0.08, -0.02, 0, Math.PI * 0.03, Math.PI * 0.97), 19, [0.4, 0.55, 0.82], { amp: 0.02, irreg: 0.1, colFator: (k) => (k === 1 ? 1.0 : 0.6), pula: (k, t) => k === 0 && t > 0.8 }), (s, y) => Wp(s, y, rr * 0.6), FURO);
   // leque de alvéolos em volta da boca do funil do centríolo
-  addLacos(faixa(rnd, arco(FURO[0], FURO[1], 0, Math.PI * 0.3, Math.PI * 1.55), 9, [FURO[2] + 0.015, FURO[2] + 0.08, FURO[2] + 0.15], { amp: 0.008, colFator: (k) => (k ? 1.2 : 1) }), (s, y) => Wp(s, Math.max(0.012, y), rr * 0.6));
+  addLacos(faixa(rnd, arco(FURO[0], FURO[1], 0, Math.PI * 0.35, Math.PI * 1.5), 7, [FURO[2] + 0.015, FURO[2] + 0.09], { amp: 0.008, colFator: (k) => (k ? 1.2 : 1) }), (s, y) => Wp(s, Math.max(0.012, y), rr * 0.6));
   // piso: escada na frente do núcleo e trama densa à direita (atrás do Golgi)
   addLacos(faixa(rnd, reta(0.3, 0.49, 0.76, -0.1, 0.07), 7, [-0.05, 0.14], { amp: 0.008 }), (x, z) => Fp(x, z, rr * 0.6));
   addLacos(faixa(rnd, reta(0.5, -0.12, 0.2, -0.82, 0.04), 9, [-0.06, 0.04, 0.13], { amp: 0.01 }), (x, z) => Fp(x, z, rr * 0.6));
@@ -203,7 +208,7 @@ export default function celula() {
   // ---- núcleo: esfera com um oitavo removido (voltado à câmera); camadas no corte
   const RN = 0.26, RC = 0.155; const NC = V(0.34, RN - 0.02, 0.25);
   const N = new THREE.Group(); N.position.copy(NC); N.rotation.y = 0.06; C.add(N);
-  const verm = plast(0xc01a1a, { rug: 0.38, coat: 0.5, coatRug: 0.2 });
+  const verm = plast(0xb01616, { rug: 0.45, coat: 0.3, coatRug: 0.3 });
   N.add(malha(new THREE.SphereGeometry(RN, 96, 48, Math.PI, Math.PI * 1.5, 0, Math.PI / 2), verm), malha(new THREE.SphereGeometry(RN, 96, 48, 0, TAU, Math.PI / 2, Math.PI / 2), verm));
   const creme = plast(0xf1dfb4, { rug: 0.55, coat: 0.2, lado: THREE.DoubleSide });
   const vermF = plast(0xc01a1a, { rug: 0.35, coat: 0.5, lado: THREE.DoubleSide });
@@ -223,7 +228,7 @@ export default function celula() {
     N.add(x); };
   for (let f = 0; f < 3; f++) for (let k = 0; k < 3; k++) { const a = (k + 0.5) / 3 * Math.PI / 2 + (rnd() - 0.5) * 0.25, r = RC + 0.04 + rnd() * 0.035; cromo(Math.cos(a) * r, Math.sin(a) * r, f, rnd() * 3); }
   // poros do envoltório
-  const poroM = plast(0xd8c08e, { rug: 0.7, coat: 0 });
+  const poroM = plast(0x6a1010, { rug: 0.7, coat: 0 });
   for (let i = 0; i < 40; i++) { const d = new THREE.Vector3().setFromSphericalCoords(1, 0.2 + rnd() * 1.6, rnd() * TAU); if (d.x > -0.1 && d.y > -0.1 && d.z > -0.1) continue;
     const p = malha(new THREE.CircleGeometry(0.012, 14), poroM, false); p.scale.y = 1.4; p.position.copy(d.clone().multiplyScalar(RN * 1.003)); p.lookAt(d.clone().multiplyScalar(5).add(p.position)); N.add(p); }
 
@@ -248,22 +253,22 @@ export default function celula() {
     m.quaternion.setFromRotationMatrix(new THREE.Matrix4().makeBasis(eixo, yy, d)); m.rotateZ((rnd() - 0.5) * 0.5);
     C.add(m);
   }
-  for (let i = 0; i < 9; i++) { // anel de sacos deitados no piso em volta da base do núcleo
-    const a = -0.7 + i / 8 * 3.0 + (rnd() - 0.5) * 0.12, r = 0.2 + (i % 2) * 0.03;
-    const m = malha(sacosGeo[(i + 1) % 3], laranja); m.position.set(NC.x + Math.cos(a) * r, 0.032 + (i % 2) * 0.01, NC.z + Math.sin(a) * r);
+  for (let i = 0; i < 8; i++) { // anel de sacos deitados no piso em volta da base do núcleo
+    const a = -0.7 + i / 7 * 3.0 + (rnd() - 0.5) * 0.12, r = 0.205 + (i % 2) * 0.035;
+    const m = malha(sacosGeo[1], laranja); m.scale.setScalar(0.85); m.position.set(NC.x + Math.cos(a) * r, 0.032 + (i % 2) * 0.01, NC.z + Math.sin(a) * r);
     m.rotation.set(-Math.PI / 2, 0, 0); m.rotateZ(-a + Math.PI / 2 + (rnd() - 0.5) * 0.4); m.rotateX(-0.12 + (rnd() - 0.5) * 0.2); C.add(m);
   }
 
   // ---- Golgi: cisternas azuis achatadas em pé, abertas em cima (corte), unidas como uma lâmina dobrada:
   //      fileira de trás alta e alongada em profundidade, fileira da frente baixa (face trans, voltada à membrana)
-  const azul = plast(0x3247b0, { rug: 0.42, coat: 0.3, coatRug: 0.3 });
-  const GOL = new THREE.Group(); GOL.position.set(0.78, 0, -0.22); GOL.rotation.y = 0.55; C.add(GOL);
+  const azul = plast(0x24368c, { rug: 0.42, coat: 0.3, coatRug: 0.3 });
+  const GOL = new THREE.Group(); GOL.position.set(0.7, 0, -0.29); GOL.rotation.y = 0.55; GOL.scale.setScalar(0.8); C.add(GOL);
   const cisterna = (a, b, h, esp = 0.017) => { const s = new THREE.Shape(); s.absellipse(0, 0, a, b, 0, TAU); const f = new THREE.Path(); f.absellipse(0, 0, a - esp, b - esp, 0, TAU, true); s.holes.push(f);
     const m = malha(suave(new THREE.ExtrudeGeometry(s, { depth: h, bevelEnabled: true, bevelThickness: 0.009, bevelSize: 0.008, bevelSegments: 4, curveSegments: 28 })), azul); m.rotation.x = -Math.PI / 2; return m; };
   const fitaG = fitaGrossa(meandro([0.23, 0.28, 0.19], 0.07, 0.03), 0.024, 0.075, azul); fitaG.geometry = suave(fitaG.geometry);
   { const pp = fitaG.geometry.attributes.position; for (let i = 0; i < pp.count; i++) { const x = pp.getX(i) - 0.17; pp.setZ(i, pp.getZ(i) + 0.9 * x * x); } fitaG.geometry.computeVertexNormals(); }
   fitaG.position.set(-0.17, 0, -0.1); GOL.add(fitaG);
-  for (const [x, z, a, b, h, inc] of [[-0.115, 0.05, 0.052, 0.038, 0.14, 0.05], [0.0, 0.055, 0.04, 0.034, 0.19, 0.0], [0.105, 0.06, 0.035, 0.03, 0.15, -0.06]]) {
+  for (const [x, z, a, b, h, inc] of [[-0.115, 0.05, 0.058, 0.034, 0.15, 0.12], [0.0, 0.055, 0.042, 0.03, 0.2, -0.05], [0.105, 0.06, 0.036, 0.026, 0.15, -0.14]]) {
     const c = cisterna(a, b, h); c.position.set(x, 0.008, z); c.rotation.z = inc; GOL.add(c); }
 
   // ---- mitocôndrias abertas: duas no piso, duas encaixadas na parede
@@ -276,24 +281,22 @@ export default function celula() {
 
   rnd = semente(41);
   // ---- retículo liso: emaranhado magenta de tubos com bolhas, saindo da parede no alto à direita
-  const magenta = plast(0x8a1c3c, { rug: 0.42, coat: 0.35, coatRug: 0.3 });
+  const magenta = plast(0x7e1a38, { rug: 0.42, coat: 0.35, coatRug: 0.3 });
   const curS = [], bolhas = [];
   // três teias (folhas com furos e dedos) ao longo de uma diagonal no alto da parede, saindo para fora
-  for (const [cs, cy, h, esc, rot] of [[0.12, 0.74, 0.06, 1.2, 0.2], [0.42, 0.63, 0.1, 1.25, -0.3], [0.66, 0.46, 0.13, 1.15, 0.4]]) {
+  for (const [cs, cy, h, esc, rot] of [[0.08, 0.8, 0.09, 1.25, 0.2], [0.4, 0.66, 0.11, 1.25, -0.3], [0.66, 0.46, 0.13, 1.15, 0.4]]) {
     const cen = Wp(cs, cy, h); const nf = V(0.5, 0.3, 0.8).normalize(); const u0 = V(0, 1, 0).cross(nf).normalize(), v0 = nf.clone().cross(u0); // folha de frente para quem olha
     const u = u0.clone().multiplyScalar(Math.cos(rot)).add(v0.clone().multiplyScalar(Math.sin(rot))), w = nf.clone().cross(u);
     const P = (a, b) => cen.clone().add(u.clone().multiplyScalar(a * esc)).add(w.clone().multiplyScalar(b * esc));
-    // folha com furos (forma irregular extrudada fina, cantos arredondados)
-    const contorno = []; for (let k = 0; k < 14; k++) { const t = k / 14 * TAU; const r = (0.075 + 0.03 * Math.sin(3 * t + rnd()) + 0.015 * rnd()); contorno.push(new THREE.Vector2(Math.cos(t) * r * 1.25, Math.sin(t) * r)); }
-    const folha = new THREE.Shape(new THREE.SplineCurve(contorno.concat([contorno[0]])).getPoints(56));
-    for (const [hx, hy, ha, hb] of [[-0.035, 0.012, 0.026, 0.018], [0.03, -0.01, 0.022, 0.026], [0.0, 0.045, 0.015, 0.011]]) { const f = new THREE.Path(); f.absellipse(hx, hy, ha * (0.8 + 0.4 * rnd()), hb * (0.8 + 0.4 * rnd()), 0, TAU, true); folha.holes.push(f); }
-    const fg = suave(new THREE.ExtrudeGeometry(folha, { depth: 0.006, bevelEnabled: true, bevelThickness: 0.011, bevelSize: 0.011, bevelSegments: 3, curveSegments: 16 }));
-    const fm = malha(fg, magenta); fm.matrixAutoUpdate = true; fm.quaternion.setFromRotationMatrix(new THREE.Matrix4().makeBasis(u, w, nf)); fm.scale.setScalar(esc); fm.position.copy(cen); C.add(fm);
+    // laços grossos (os furos da teia) unidos por membrana nas junções
+    const anel = (ca, cb, ra, rb, n = 6) => { const pts = []; for (let k = 0; k < n; k++) { const t = (k + (rnd() - 0.5) * 0.4) / n * TAU; const f = 0.8 + 0.4 * rnd(); pts.push(P(ca + Math.cos(t) * ra * f, cb + Math.sin(t) * rb * f)); } curS.push([new THREE.CatmullRomCurve3(pts, true, 'centripetal'), true, n * 2]); return pts; };
+    const a1 = anel(-0.045, 0, 0.05, 0.045), a2 = anel(0.05, 0.015, 0.045, 0.05), a3 = anel(0.0, 0.075, 0.035, 0.028);
+    for (const p of [a1[1], a1[4], a2[0], a2[3], a3[2], a3[5], P(0.0, 0.03), P(0.005, -0.035)]) { const f = esfera(1, magenta, 16); f.position.copy(p); f.quaternion.setFromUnitVectors(V(0, 0, 1), nf); f.scale.set(0.03 * esc, 0.026 * esc, 0.014); C.add(f); }
     for (let k = 0; k < 5; k++) { const a0 = (k + rnd() * 0.6) / 5 * TAU; const p0 = P(Math.cos(a0) * 0.07, Math.sin(a0) * 0.055); const p1 = P(Math.cos(a0) * 0.16 + (rnd() - 0.5) * 0.04, Math.sin(a0) * 0.12 + (rnd() - 0.5) * 0.04);
       curS.push([new THREE.CatmullRomCurve3([p0, p0.clone().lerp(p1, 0.5).add(V(0, 0.01, 0)), p1]), false, 4]); bolhas.push(p1); }
   }
-  C.add(malha(tubos(curS, 0.014, 3, 8), magenta));
-  for (const p of bolhas) { const b = esfera(0.019, magenta, 14); b.position.copy(p); C.add(b); }
+  C.add(malha(tubos(curS, 0.019, 3, 8), magenta));
+  for (const p of bolhas) { const b = esfera(0.022, magenta, 14); b.position.copy(p); C.add(b); }
 
   rnd = semente(51);
   // ---- centríolos: funil de rede ciano na parede (canto inferior esquerdo) com feixes dourados
@@ -312,6 +315,20 @@ export default function celula() {
   const f1 = feixe(22, 0.26, V(0.45, 0.75, -0.5)); f1.position.set(0.02, 0.0, -0.03); FUN.add(f1);
   const f2 = feixe(16, 0.1, V(1, 0.35, 0.25)); f2.position.set(-0.05, 0.05, 0.06); FUN.add(f2);
 
+  // ---- sombras de contato (oclusão suave) no piso e na parede, sob/atrás das organelas
+  const ocl = (() => { const c = document.createElement('canvas'); c.width = c.height = 128; const x = c.getContext('2d'); const gr = x.createRadialGradient(64, 64, 0, 64, 64, 64);
+    gr.addColorStop(0, 'rgba(60,40,20,0.55)'); gr.addColorStop(0.5, 'rgba(60,40,20,0.25)'); gr.addColorStop(1, 'rgba(60,40,20,0)'); x.fillStyle = gr; x.fillRect(0, 0, 128, 128);
+    return new THREE.CanvasTexture(c); })();
+  const oclM = new THREE.MeshBasicMaterial({ map: ocl, transparent: true, depthWrite: false, polygonOffset: true, polygonOffsetFactor: -2 });
+  const mancha = (p, n, sx, sy, rot = 0, op = 1) => { const m = new THREE.Mesh(new THREE.PlaneGeometry(sx, sy), op === 1 ? oclM : Object.assign(oclM.clone(), { opacity: op })); m.position.copy(p).add(n.clone().multiplyScalar(0.002));
+    m.quaternion.setFromUnitVectors(V(0, 0, 1), n); m.rotateZ(rot); m.renderOrder = 1; C.add(m); };
+  const cima = V(0, 1, 0), fora = V(1, 0, 0);
+  mancha(Fp(NC.x, NC.z), cima, 0.78, 0.78);                                   // núcleo + RER
+  mancha(Fp(0.7, -0.29), cima, 0.36, 0.3, -0.55);                          // Golgi
+  mancha(Fp(0.5, 0.7), cima, 0.38, 0.22, -0.74, 0.8); mancha(Fp(0.84, 0.19), cima, 0.34, 0.2, -0.44, 0.8); // mitocôndrias do piso
+  mancha(Wp(0.42, 0.66), fora, 0.75, 0.5, -0.4, 0.55);                       // retículo liso
+  mancha(Wp(-0.4, 0.62), fora, 0.32, 0.2, 0.62, 0.7); mancha(Wp(0.67, 0.26), fora, 0.24, 0.32, 0, 0.7); // mitocôndrias da parede
+  mancha(Wp(0.1, 0.12), fora, 0.9, 0.5, 0, 0.7);                             // núcleo encostado na parede
   rnd = semente(61);
   // ---- ribossomos (grupinhos de 3–4 grãos vermelho-escuros)
   const ribM = plast(0x6e0d0d, { rug: 0.35, coat: 0.5 }); const ribG = new THREE.SphereGeometry(1, 12, 8); const ribs = [];
@@ -326,19 +343,22 @@ export default function celula() {
   // ---- vesículas de secreção: saem da face trans do Golgi rumo à membrana
   const vesM = plast(0x4a6cf0, { rug: 0.2, coat: 1, transp: true, opac: 0 }); const ves = [];
   for (let i = 0; i < 4; i++) { const v = esfera(0.03, vesM.clone(), 20); C.add(v); ves.push(v); }
-  const ini = V(0.8, 0.2, -0.22), fim = V(0.9, 0.08, -0.36);
+  const ini = V(0.76, 0.17, -0.22), fim = V(0.87, 0.07, -0.37);
 
   // câmera ajustada aos pontos da referência (cantos do corte, silhueta, polo)
-  let camera = { pos: V(1.93, 2.54, 1.957), alvo: V(-0.05, 0.964, 0.047), fov: 41.6 };
-  try { const q = new URLSearchParams(location.search).get('cam'); if (q) { const n = q.split(',').map(Number); camera = { pos: V(n[0], n[1], n[2]), alvo: V(n[3], n[4], n[5]), fov: n[6] }; } } catch (e) {}
+  const camera = { pos: V(1.93, 2.54, 1.957), alvo: V(-0.05, 0.964, 0.047), fov: 41.6 };
   return {
     grupo: g, camera,
+    // uma vez por ativação (pesquisa: 1–2,5 s, sem laço); terminado, fica no estado final
+    _passo(t, ativo, dur) { if (ativo && !this._at && (this._t0 == null || t - this._t0 >= dur)) this._t0 = t; this._at = ativo;
+      if (this._t0 == null) return 1; const p = Math.min(1, Math.max(0, (t - this._t0) / dur)); return p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2; },
     animar(t, ativo, dt) {
-      this._a = (this._a || 0) + ((ativo ? 1 : 0) - (this._a || 0)) * Math.min(1, dt * 3);
-      ves.forEach((v, i) => { const s = (t * 0.35 + i / ves.length) % 1; v.position.lerpVectors(ini, fim, s); v.position.y += Math.sin(s * Math.PI) * 0.05;
-        v.material.opacity = this._a * Math.sin(s * Math.PI); });
-      mitM.fundo.emissiveIntensity = this._a * (0.25 + 0.25 * Math.sin(t * 5));
-      mitos.forEach((m, i) => m.scale.setScalar(1 + this._a * 0.05 * Math.sin(t * 5 + i)));
+      // secreção: as vesículas saem do Golgi e vão até a membrana UMA vez (em sequência) e somem ao se fundir; nada pulsa
+      const p = this._passo(t, ativo, 2.4);
+      const andando = this._t0 != null && p < 1;
+      ves.forEach((v, i) => { const s = Math.min(1, Math.max(0, p * 1.6 - i * 0.2)); v.position.lerpVectors(ini, fim, s); v.position.y += Math.sin(s * Math.PI) * 0.05;
+        v.material.opacity = andando ? Math.sin(s * Math.PI) : 0; });
+      mitM.fundo.emissiveIntensity = 0; mitos.forEach((m) => m.scale.setScalar(1));
     },
   };
 }

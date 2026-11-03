@@ -41,10 +41,16 @@ export default function solidos() {
   const sol = [cil, cub, con];
   return {
     grupo: g, camera: { pos: V(0.2, 3.75, 6.2), alvo: V(-0.02, 0.8, 0), fov: 26 },
+    // uma vez por ativação (pesquisa: 1–2,5 s, sem laço); terminado, fica no estado final
+    _passo(t, ativo, dur) { if (ativo && !this._at && (this._t0 == null || t - this._t0 >= dur)) this._t0 = t; this._at = ativo;
+      if (this._t0 == null) return 1; const p = Math.min(1, Math.max(0, (t - this._t0) / dur)); return p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2; },
     animar(t, ativo, dt) {
-      this._v = (this._v || 0) + ((ativo ? 1.2 : 0) - (this._v || 0)) * Math.min(1, dt * 3);
-      sol.forEach((m, i) => { m.rotation.y += dt * this._v * (i % 2 ? -0.8 : 0.8); });
-      esf.position.y = 0.5 + Math.abs(Math.sin(t * 3)) * 0.18 * this._v;
+      // o conjunto gira ~40° uma vez (mostra outra face e o volume) e para; ao sair, volta devagar
+      if (!this._gi) { this._gi = new THREE.Group(); const filhos = [...g.children]; for (const c of filhos) this._gi.add(c); g.add(this._gi); }
+      const p = this._passo(t, ativo, 1.6);
+      this._alvo = ativo ? 0.7 * p : 0;
+      this._r = (this._r || 0) + (this._alvo - (this._r || 0)) * Math.min(1, dt * (ativo ? 12 : 3));
+      this._gi.rotation.y = this._r;
     },
   };
 }
