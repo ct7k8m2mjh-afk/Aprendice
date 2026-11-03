@@ -1,4 +1,6 @@
 import { IconeCamadas, temCamadas } from './IconeCamadas';
+import { Icone3D } from './icones3d/Icone3D';
+import type { ChaveCena } from './icones3d/cenas3d';
 import iluBio from '../assets/ilu/bio.webp';
 import iluQui from '../assets/ilu/qui.webp';
 import iluMat from '../assets/ilu/mat.webp';
@@ -22,10 +24,18 @@ export const ILU_PROPRIA = new Set(['his', 'fil', 'soc', 'ing', 'geo']);
 /** Matérias cujo ícone principal já é CONSTRUÍDO em camadas 3D (animável); prevalece sobre a imagem. */
 export const CAMADAS_MATERIA: Record<string, string> = { bio: 'B00', fis: 'F11' };
 
-export function temIlu(m: string): boolean { return !!(CAMADAS_MATERIA[m] && temCamadas(CAMADAS_MATERIA[m])) || !!ILU[m]; }
+export function temIlu(m: string): boolean { return !!CENA_3D[m] || !!(CAMADAS_MATERIA[m] && temCamadas(CAMADAS_MATERIA[m])) || !!ILU[m]; }
 
-/** Ícone principal: construído (camadas) quando existe; senão a imagem; senão nada (quem chama decide o substituto). */
+/** Matérias com ícone principal em 3D de tempo real (Three.js, animado pela função). */
+export const CENA_3D: Record<string, ChaveCena> = { bio: 'celula', qui: 'atomo', mat: 'solidos', por: 'livros', fis: 'circuito', geo: 'bussola' };
+
+/** Ícone principal: 3D em tempo real nos tamanhos grandes; construído (camadas) ou imagem como reserva e nos tamanhos pequenos. */
 export function IluMateria({ m, className = '', tam }: { m: string; className?: string; tam?: number }) {
+  if (CENA_3D[m] && (!tam || tam >= 72)) return <Icone3D chave={CENA_3D[m]} tam={tam} className={'ilu-3d ' + className} reserva={<IluImagem m={m} className={className} tam={tam} />} />;
+  return <IluImagem m={m} className={className} tam={tam} />;
+}
+
+function IluImagem({ m, className = '', tam }: { m: string; className?: string; tam?: number }) {
   const id = CAMADAS_MATERIA[m];
   if (id && temCamadas(id)) return <IconeCamadas id={id} tam={tam} className={'ilu-camadas ' + className} />;
   if (ILU[m]) return <img src={ILU[m]} alt="" width={tam} height={tam} className={classeIlu(m, className)} />;

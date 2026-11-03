@@ -16,56 +16,70 @@ export const FUNCAO = { celula: 'Vesículas saem do Golgi rumo à membrana; mito
 
 // =====================================================================================
 // Palco único (um só contexto WebGL) que desenha várias cenas em vários elementos da página (scissor).
-export async function criarPalco(canvas, { claro = true, recorte = null } = {}) {
+export async function criarPalco(_canvasIgnorado, { claro = true } = {}) {
+  // Um motor WebGL fora da tela desenha cada cena e copia o resultado para um <canvas> 2D próprio dentro do elemento
+  // (sem camada sobre a página, sem limite de contextos). Só redesenha quando algo muda: animação ativa, assentando,
+  // elemento visível novo, redimensionado ou troca de tema. Pausa com a aba oculta.
   const { RoomEnvironment } = await import('three/addons/environments/RoomEnvironment.js');
-  const r = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
-  r.setPixelRatio(Math.min(2, window.devicePixelRatio || 1));
+  const off = document.createElement('canvas');
+  const r = new THREE.WebGLRenderer({ canvas: off, antialias: true, alpha: true });
+  const dpr = Math.min(2, window.devicePixelRatio || 1); r.setPixelRatio(1);
   r.outputColorSpace = THREE.SRGBColorSpace; r.toneMapping = THREE.ACESFilmicToneMapping; r.toneMappingExposure = 1.05;
-  r.shadowMap.enabled = true; r.shadowMap.type = THREE.PCFSoftShadowMap; r.setScissorTest(true);
+  r.shadowMap.enabled = true; r.shadowMap.type = THREE.PCFSoftShadowMap;
   const pm = new THREE.PMREMGenerator(r); const env = pm.fromScene(new RoomEnvironment(), 0.04).texture;
   const vistas = [];
+  const visiveis = new Set();
+  const io = new IntersectionObserver((es) => { for (const e of es) { const v = vistas.find((x) => x.el === e.target); if (!v) continue; if (e.isIntersecting) { visiveis.add(v); v.sujo = true; } else visiveis.delete(v); } });
   function montar(el, chave) {
-    const s = new THREE.Scene(); s.environment = env; if (!CENAS[chave]) return null;
+    if (!CENAS[chave]) return null;
+    const s = new THREE.Scene(); s.environment = env;
     const c = CENAS[chave](); s.add(c.grupo);
-    // luz principal de frente e de cima (do lado da câmera): a sombra cai para trás, curta
     const cam = new THREE.PerspectiveCamera(c.camera.fov, 1, 0.1, 50); cam.position.copy(c.camera.pos); cam.lookAt(c.camera.alvo);
     const dir = c.camera.pos.clone().sub(c.camera.alvo).setY(0).normalize();
+    // luz principal de frente e de cima (do lado da câmera): a sombra cai para trás, curta
     const L = new THREE.DirectionalLight(0xffffff, 2.2); L.position.copy(c.camera.alvo).add(dir.multiplyScalar(3)).add(V(0, 7, 0)); L.target.position.copy(c.camera.alvo);
     L.castShadow = true; L.shadow.mapSize.set(1024, 1024); L.shadow.radius = 6; L.shadow.bias = -0.0004; L.shadow.normalBias = 0.02;
     Object.assign(L.shadow.camera, { left: -3, right: 3, top: 3, bottom: -3, near: 0.5, far: 20 });
     s.add(L, L.target, new THREE.HemisphereLight(0xffffff, 0xe8e0d0, 0.6));
     const chao = new THREE.Mesh(new THREE.PlaneGeometry(20, 20), new THREE.ShadowMaterial({ opacity: claro ? 0.22 : 0.45 })); chao.rotation.x = -Math.PI / 2; chao.receiveShadow = true; s.add(chao);
-    const v = { el, s, c, cam, ativo: false, giro: 0, giroAlvo: 0 };
-    el.addEventListener('pointerenter', () => { v.ativo = true; }); el.addEventListener('pointerleave', () => { v.ativo = false; v.arrasto = null; });
-    el.addEventListener('focusin', () => { v.ativo = true; }); el.addEventListener('focusout', () => { v.ativo = false; });
-    el.addEventListener('pointerdown', (e) => { v.arrasto = e.clientX; v.ativo = true; });
+    const tela = document.createElement('canvas'); tela.className = 'palco3d-tela';
+    tela.style.cssText = 'display:block;width:100%;height:100%;pointer-events:none';
+    el.appendChild(tela);
+    const v = { el, s, c, cam, tela, ctx: tela.getContext('2d'), ativo: false, giro: 0, giroAlvo: 0, sujo: true, ate: 0 };
+    const liga = () => { v.ativo = true; }, desliga = () => { v.ativo = false; v.arrasto = null; v.ate = performance.now() + 1500; };
+    Object.defineProperty(v, 'ativo', { get() { return v._ativo; }, set(x) { if (v._ativo && !x) v.ate = performance.now() + 1500; v._ativo = x; v.sujo = true; } });
+    v._ativo = false;
+    el.addEventListener('pointerenter', liga); el.addEventListener('pointerleave', desliga);
+    el.addEventListener('focusin', liga); el.addEventListener('focusout', desliga);
+    el.addEventListener('pointerdown', (e) => { v.ativo = true; if (!el.dataset.semgiro) v.arrasto = e.clientX; });
     el.addEventListener('pointerup', () => { v.arrasto = null; });
-    el.addEventListener('pointermove', (e) => { if (v.arrasto != null) { v.giroAlvo += (e.clientX - v.arrasto) * 0.012; v.arrasto = e.clientX; } });
-    vistas.push(v); return v;
+    el.addEventListener('pointermove', (e) => { if (v.arrasto != null) { v.giroAlvo += (e.clientX - v.arrasto) * 0.012; v.arrasto = e.clientX; v.sujo = true; } });
+    vistas.push(v); io.observe(el); return v;
   }
-  function desmontar(v) { const i = vistas.indexOf(v); if (i >= 0) vistas.splice(i, 1); }
-  function tema(c) { for (const v of vistas) v.s.traverse((o) => { if (o.material && o.material.isShadowMaterial) o.material.opacity = c ? 0.22 : 0.45; }); claro = c; }
+  function desmontar(v) { const i = vistas.indexOf(v); if (i >= 0) vistas.splice(i, 1); visiveis.delete(v); io.unobserve(v.el); v.tela.remove(); }
+  function tema(cl) { claro = cl; for (const v of vistas) { v.s.traverse((o) => { if (o.material && o.material.isShadowMaterial) o.material.opacity = cl ? 0.22 : 0.45; }); v.sujo = true; } }
   const relogio = new THREE.Clock(); let parar = false;
   const menos = window.matchMedia('(prefers-reduced-motion: reduce)');
   function quadro() {
     if (parar) return; requestAnimationFrame(quadro);
-    const W = canvas.clientWidth, H = canvas.clientHeight;
-    if (canvas.width !== Math.floor(W * r.getPixelRatio()) || canvas.height !== Math.floor(H * r.getPixelRatio())) r.setSize(W, H, false);
     const dt = Math.min(0.05, relogio.getDelta()), t = relogio.elapsedTime;
-    r.setScissor(0, 0, W, H); r.setClearColor(0x000000, 0); r.clear();
-    const cr = canvas.getBoundingClientRect();
-    const rc = recorte ? recorte() : { left: cr.left, top: cr.top, right: cr.right, bottom: cr.bottom };
-    for (const v of vistas) {
-      const b = v.el.getBoundingClientRect();
-      const l = Math.max(b.left, rc.left), tp = Math.max(b.top, rc.top), rr = Math.min(b.right, rc.right), bt = Math.min(b.bottom, rc.bottom);
-      if (rr - l < 2 || bt - tp < 2 || b.width < 2) continue;
+    if (document.hidden) return;
+    const agora = performance.now();
+    for (const v of visiveis) {
+      const w = Math.max(1, Math.round(v.el.clientWidth * dpr)), h = Math.max(1, Math.round(v.el.clientHeight * dpr));
+      const mexendo = v.ativo || agora < v.ate || Math.abs(v.giroAlvo - v.giro) > 0.001;
+      if (!mexendo && !v.sujo && v.tela.width === w && v.tela.height === h) continue;
+      if (v.tela.width !== w || v.tela.height !== h) { v.tela.width = w; v.tela.height = h; }
+      if (off.width < w || off.height < h) r.setSize(Math.max(off.width, w), Math.max(off.height, h), false);
       v.giro += (v.giroAlvo - v.giro) * Math.min(1, dt * 8); v.c.grupo.rotation.y = v.giro;
       v.c.animar(menos.matches ? 0 : t, menos.matches ? false : v.ativo, dt);
-      const x = b.left - cr.left, y = cr.bottom - b.bottom;
-      r.setViewport(x, y, b.width, b.height); r.setScissor(l - cr.left, cr.bottom - bt, rr - l, bt - tp);
-      v.cam.aspect = b.width / b.height; v.cam.updateProjectionMatrix(); r.render(v.s, v.cam);
+      r.setViewport(0, 0, w, h); r.setScissor(0, 0, w, h); r.setScissorTest(true);
+      r.setClearColor(0x000000, 0); r.clear();
+      v.cam.aspect = w / h; v.cam.updateProjectionMatrix(); r.render(v.s, v.cam);
+      v.ctx.clearRect(0, 0, w, h); v.ctx.drawImage(off, 0, off.height - h, w, h, 0, 0, w, h);
+      v.sujo = false;
     }
   }
   quadro();
-  return { montar, desmontar, tema, parar: () => { parar = true; r.dispose(); }, vistas };
+  return { montar, desmontar, tema, parar: () => { parar = true; io.disconnect(); r.dispose(); }, vistas };
 }

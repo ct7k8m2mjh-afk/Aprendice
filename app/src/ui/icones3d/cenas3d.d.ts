@@ -9,4 +9,4 @@ export interface Palco {
   tema(claro: boolean): void;
   parar(): void;
 }
-export function criarPalco(canvas: HTMLCanvasElement, op?: { claro?: boolean; recorte?: () => { left: number; top: number; right: number; bottom: number } }): Promise<Palco>;
+export function criarPalco(canvas: HTMLCanvasElement | null, op?: { claro?: boolean }): Promise<Palco>;
