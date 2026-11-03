@@ -17,12 +17,12 @@ casca_m = org('#e8cf98', '#efd9a8', cav='#7a5424', sss=.6, rugos=.32, coat=.5, b
 cito_m = org('#f4efe4', '#ece4d2', cav='#b8a888', sss=.45, rugos=.6, coat=.1, bump=.15, esc=10, ao=.05, bump_esc=40)
 verm = org('#c51d1d', '#d6302a', cav='#4a0606', sss=.3, rugos=.25, coat=.75, bump=.05, esc=5)
 creme = org('#f1e6c4', '#e9dcb4', cav='#8a7a50', sss=.4, rugos=.5, coat=.2, bump=.3, esc=12)
-nucleo_m = org('#8a1218', '#a01a20', cav='#2a0204', sss=.3, rugos=.45, coat=.3, bump=.4, esc=14)
+nucleo_m = org('#6a0c12', '#7e1218', cav='#2a0204', sss=.3, rugos=.45, coat=.3, bump=.4, esc=14)
 preto = org('#2a0608', '#3a0a0c', sss=.1, rugos=.4, coat=.3, bump=0)
 crom_m = org('#7a3ac8', '#8a4ad6', cav='#2a0a5a', sss=.2, rugos=.3, coat=.5, bump=0)
 rer_m = org('#d2691e', '#e07a28', cav='#5a2400', sss=.35, rugos=.38, coat=.45, bump=.25, esc=8, ao=.04)
 rede_m = org('#22a6c8', '#30b4d4', cav='#064a5a', sss=.25, rugos=.3, coat=.55, bump=0)
-golgi_m = org('#2438c4', '#3448d4', cav='#060c4a', sss=.3, rugos=.3, coat=.6, bump=.1, esc=6)
+golgi_m = org('#2a40d0', '#3c56e0', cav='#060c4a', sss=.35, rugos=.28, coat=.6, bump=.1, esc=6)
 liso_m = org('#b8306a', '#c8407a', cav='#3a0414', sss=.35, rugos=.35, coat=.45, bump=.2, esc=8)
 mit_ext = org('#6a18a8', '#7a22b8', cav='#1e0440', sss=.3, rugos=.3, coat=.6, bump=.1)
 mit_int = org('#a24ad8', '#b25ee2', cav='#3a0a6a', sss=.35, rugos=.4, coat=.35, bump=.2, esc=8)
@@ -88,7 +88,7 @@ def relevo_rede(m, escala=2.4, altura=.12):
     f = nt.nodes.new('ShaderNodeMath'); f.operation = 'MULTIPLY'; f.inputs[1].default_value = .22; nt.links.new(inv.outputs[0], f.inputs[0])
     nt.links.new(f.outputs[0], mx.inputs['Factor']); nt.links.new(src, mx.inputs[6]); mx.inputs[7].default_value = cor('#d8c590')
     nt.links.new(mx.outputs[2], b.inputs['Base Color'])
-def gn_rede(o, altura=.08, escala=2.4, largura=.14, warp=.35, warp_esc=1.6):
+def gn_rede(o, altura=.08, escala=2.4, largura=.14, warp=.15, warp_esc=1.6):
     """cristas arredondadas em rede (Voronoi: distância à borda) deslocando a malha na normal; guarda 'crista' (0..1)"""
     ng = bpy.data.node_groups.new('rede', 'GeometryNodeTree')
     ng.interface.new_socket('Geometry', in_out='INPUT', socket_type='NodeSocketGeometry')
@@ -101,7 +101,7 @@ def gn_rede(o, altura=.08, escala=2.4, largura=.14, warp=.35, warp_esc=1.6):
     sb = N.new('ShaderNodeVectorMath'); sb.operation = 'SUBTRACT'; sb.inputs[1].default_value = (.5, .5, .5); Lk.new(nz.outputs['Color'], sb.inputs[0])
     sc = N.new('ShaderNodeVectorMath'); sc.operation = 'SCALE'; sc.inputs['Scale'].default_value = warp; Lk.new(sb.outputs[0], sc.inputs[0])
     ad = N.new('ShaderNodeVectorMath'); ad.operation = 'ADD'; Lk.new(pos.outputs[0], ad.inputs[0]); Lk.new(sc.outputs[0], ad.inputs[1])
-    vo = N.new('ShaderNodeTexVoronoi'); vo.feature = 'DISTANCE_TO_EDGE'; vo.inputs['Scale'].default_value = escala; vo.inputs['Randomness'].default_value = .9
+    vo = N.new('ShaderNodeTexVoronoi'); vo.feature = 'DISTANCE_TO_EDGE'; vo.inputs['Scale'].default_value = escala; vo.inputs['Randomness'].default_value = .75
     Lk.new(ad.outputs[0], vo.inputs['Vector'])
     # perfil arredondado (quase meia-cana): f = (1 - x^2)^0.7, x = distância/largura
     xr = N.new('ShaderNodeMapRange'); xr.inputs['From Min'].default_value = 0; xr.inputs['From Max'].default_value = largura
@@ -147,24 +147,24 @@ parte('membrana', [casca, forro, cito] + cristas)
 
 # ---------- núcleo (no canto entre as paredes, meio enterrado no chão): envelope vermelho com poros,
 # camada creme, nucleoplasma escuro com nucléolo e cromossomos; um oitavo cortado de frente para a câmera
-NC = V((.04, .04, .13)); RN = .37
+NC = V((.04, .06, .17)); RN = .43
 def oitavo(o):
     bpy.ops.mesh.primitive_cube_add(size=1, location=(NC.x + .5, NC.y - .5, NC.z + .5)); return dif(o, bpy.context.object)
 env = ico(RN, 6, verm); dif(env, ico(RN - .025, 5, None)); oitavo(env)
-cam_ = ico(RN - .026, 5, creme); dif(cam_, ico(RN - .075, 5, None)); oitavo(cam_)
-miolo = ico(RN - .076, 5, nucleo_m); oitavo(miolo)
+cam_ = ico(RN - .026, 5, creme); dif(cam_, ico(RN - .09, 5, None)); oitavo(cam_)
+miolo = ico(RN - .091, 5, nucleo_m); oitavo(miolo)
 nuc = [env, cam_, miolo]
 for k in range(22):   # poros: discos escuros na superfície do envelope
     u = random.uniform(-.3, 1); a = random.uniform(0, 6.283)
     dd = V((math.sqrt(1 - u * u) * math.cos(a), math.sqrt(1 - u * u) * math.sin(a), u))
     if dd.x > 0 and dd.y < 0 and dd.z > 0: continue
     c = cilindro(tuple(NC + dd * (RN - .002)), .016, .012, preto); c.rotation_euler = dd.to_track_quat('Z', 'Y').to_euler(); nuc.append(c)
-for k in range(26):   # grânulos escuros nas faces cortadas do nucleoplasma
+for k in range(40):   # grânulos escuros nas faces cortadas do nucleoplasma
     f = random.choice('xyz'); r = random.uniform(.03, RN - .09); a = random.uniform(0, 1.5708)
     if f == 'x': p = V((NC.x + .003, NC.y - r * math.cos(a), NC.z + r * math.sin(a)))
     elif f == 'y': p = V((NC.x + r * math.cos(a), NC.y - .003, NC.z + r * math.sin(a)))
     else: p = V((NC.x + r * math.cos(a), NC.y - r * math.sin(a), NC.z + .003))
-    nuc.append(esfera(tuple(p), .011, preto, seg=12))
+    nuc.append(esfera(tuple(p), .017, preto, seg=12))
 def cromossomo(p, n, ang):
     q = _m.Matrix.Rotation(ang, 4, n)
     out = []
@@ -175,6 +175,10 @@ def cromossomo(p, n, ang):
 for (p, n) in (((NC.x + .006, NC.y - .2, NC.z + .1), 'X'), ((NC.x + .006, NC.y - .1, NC.z + .22), 'X'), ((NC.x + .2, NC.y - .006, NC.z + .1), 'Y'),
                ((NC.x + .12, NC.y - .006, NC.z + .21), 'Y'), ((NC.x + .2, NC.y - .12, NC.z + .006), 'Z'), ((NC.x + .1, NC.y - .21, NC.z + .006), 'Z')):
     nuc += cromossomo(V(p), n, random.uniform(0, 3))
+GIRO_N = math.radians(-17)   # gira o corte do núcleo para ficar de frente para a câmera (azim 16)
+bpy.context.view_layer.update()
+_Rn = _m.Matrix.Translation(NC) @ _m.Matrix.Rotation(GIRO_N, 4, 'Z') @ _m.Matrix.Translation(-NC)
+for o in nuc: o.matrix_world = _Rn @ o.matrix_world
 parte('nucleo', nuc)
 
 # ---------- retículo endoplasmático rugoso: sacos laranja achatados em anel ao redor do núcleo
@@ -185,9 +189,9 @@ def placa(r, a0, a1, e0, e1, esp=.024, m=None):
     for i in range(nu):
         for j in range(nv):
             u = i / (nu - 1); v = j / (nv - 1)
-            az = math.radians(a0 + (a1 - a0) * u); el = math.radians(e0 + (e1 - e0) * v)
-            # borda levemente ondulada (saco orgânico)
-            rr = r * (1 + .012 * math.sin(7 * u + 3 * v + r * 40))
+            # borda de cima ondulada e saco que se abre para fora no alto (cisterna orgânica, não cerca)
+            az = math.radians(a0 + (a1 - a0) * u); el = math.radians(e0 + (e1 - e0) * v * (1 + .22 * math.sin(u * 6.5 + r * 37)) * (1 - .35 * (2 * u - 1) ** 6))
+            rr = r * (1 + .02 * math.sin(7 * u + 3 * v + r * 40) + .05 * v * v)
             vs.append(tuple(NC + V((rr * math.cos(el) * math.cos(az), rr * math.cos(el) * math.sin(az), rr * math.sin(el)))))
     for i in range(nu - 1):
         for j in range(nv - 1):
@@ -198,6 +202,7 @@ def placa(r, a0, a1, e0, e1, esp=.024, m=None):
     o.data.materials.append(m or rer_m)
     for pg in o.data.polygons: pg.use_smooth = True
     return o
+_rr = random.Random(11)   # sorteio próprio dos ribossomos aderidos (não mexe no resto)
 EL0 = math.degrees(math.asin(-NC.z / RN)) - 4     # elevação onde a casca encosta no chão
 for j in range(3):
     r = RN + .04 + j * .05
@@ -205,9 +210,13 @@ for j in range(3):
     while a < 360 + j * 19:
         w = random.uniform(34, 52)
         mid = (a + w / 2) % 360
-        frente = 255 < mid < 365 or mid < 10        # setor virado para a câmera (corte do núcleo)
-        topo = random.uniform(-6, 4) - j * 5 if frente else random.uniform(14, 34) - j * 9
-        rer.append(placa(r, a, a + w - 7, EL0 + j * 2, topo, esp=.03))
+        frente = 226 < mid < 336        # setor virado para a câmera (corte do núcleo)
+        topo = random.uniform(-6, 6) - j * 5 if frente else random.uniform(8, 42) - j * 9
+        rer.append(placa(r, a, a + w - 7, EL0 + j * 2, topo, esp=.042))
+        for _k in range(6):   # ribossomos aderidos (RE rugoso): grânulos escuros na face de fora da cisterna
+            v = _rr.uniform(.15, .7); az_ = math.radians(_rr.uniform(a + 3, a + w - 10)); el_ = math.radians(EL0 + j * 2 + (topo - EL0 - j * 2) * v)
+            rr_ = r * (1 + .05 * v * v) + .026
+            rer.append(esfera(tuple(NC + V((rr_ * math.cos(el_) * math.cos(az_), rr_ * math.cos(el_) * math.sin(az_), rr_ * math.sin(el_)))), .011, ribo_m, seg=12))
         a += w
 parte('rer', rer)
 
@@ -216,17 +225,17 @@ rede = []
 # retículo em rede: Voronoi 2D sobre a parede (azimute x elevação) e sobre o chão; arestas viram tubos finos
 from scipy.spatial import Voronoi
 _r2 = _np.random.default_rng(9)
-P = _np.c_[_r2.uniform(10, 170, 150), _r2.uniform(-12, 62, 150)]
+P = _np.c_[_r2.uniform(10, 170, 95), _r2.uniform(-12, 62, 95)]
 vw = Voronoi(P)
 for (a_, b_) in vw.ridge_vertices:
     if a_ < 0 or b_ < 0: continue
     A = vw.vertices[a_]; B = vw.vertices[b_]
     if not (12 < A[0] < 168 and 12 < B[0] < 168 and -12 < A[1] < 58 and -12 < B[1] < 58): continue
-    if _np.hypot(*(A - B)) > 16: continue
+    if _np.hypot(*(A - B)) > 22: continue
     # mais densa perto do núcleo e embaixo; rala no alto (como a referência)
     if max(A[1], B[1]) > 30 + 25 * _r2.random(): continue
     pts = [tuple(parede(*(A * (1 - t) + B * t))) for t in (0, .5, 1)]
-    rede.append(tubo(pts, .013, rede_m, res=4))
+    rede.append(tubo(pts, .017, rede_m, res=5))
 Q = _np.c_[_r2.uniform(-.6, .7, 70), _r2.uniform(-.75, -.15, 70)]
 vf = Voronoi(Q)
 for (a_, b_) in vf.ridge_vertices:
@@ -234,18 +243,38 @@ for (a_, b_) in vf.ridge_vertices:
     A = vf.vertices[a_]; B = vf.vertices[b_]
     if any(_np.hypot(*X) > .78 or X[1] > CORTE_Y - .02 or X[0] > .48 for X in (A, B)): continue
     if _np.hypot(*(A - B)) > .2: continue
-    rede.append(tubo([(A[0], A[1], .01), (B[0], B[1], .01)], .012, rede_m, res=4))
+    rede.append(tubo([(A[0], A[1], .012), (B[0], B[1], .012)], .016, rede_m, res=5))
 parte('reticulo', rede)
 
 # ---------- complexo golgiense: pilha dobrada (azul-escuro) no chão, à direita
 gol = []
-pts = []
-for j in range(7):
-    x = .4 + j * .065; h = .32 if j % 2 == 0 else .06
-    pts += [(x, -.1 - j * .025, .06), (x + .018, -.1 - j * .025, h), (x + .048, -.1 - j * .025, h)]
-o = tubo(pts, .055, golgi_m); o.scale = (1, .55, 1); gol.append(o)
-pts = [(x + .02, y - .14, z * .8) for (x, y, z) in pts[:12]]
-o = tubo(pts, .04, golgi_m); o.scale = (1, .55, 1); gol.append(o)
+# dictiossomo: 6 cisternas curvas em pé, face cis (côncava) voltada para o núcleo; borda de cima ondulada
+GC = V((.16, -.02, 0))                         # centro de curvatura (lado do núcleo)
+def cisterna(r, a0, a1, h, esp=.034, fase=0):
+    nu, nv = 24, 9; vs = []; fs = []
+    for i in range(nu):
+        u = i / (nu - 1); az = math.radians(a0 + (a1 - a0) * u)
+        top = h * (.82 + .18 * math.sin(u * 9.4 + fase)) * (1 - .55 * (2 * u - 1) ** 4)
+        for j in range(nv):
+            v = j / (nv - 1); z = .015 + top * v
+            rr = r + .012 * math.sin(u * 14 + fase + v * 2)
+            vs.append(tuple(GC + V((rr * math.cos(az), rr * math.sin(az), z))))
+    for i in range(nu - 1):
+        for j in range(nv - 1):
+            fs.append((i * nv + j, (i + 1) * nv + j, (i + 1) * nv + j + 1, i * nv + j + 1))
+    me = bpy.data.meshes.new('gc'); me.from_pydata(vs, [], fs); o = bpy.data.objects.new('gc', me); bpy.context.scene.collection.objects.link(o)
+    sd = o.modifiers.new('so', 'SOLIDIFY'); sd.thickness = esp; sd.offset = 0
+    ss = o.modifiers.new('ss', 'SUBSURF'); ss.levels = ss.render_levels = 2
+    o.data.materials.append(golgi_m)
+    for pg in o.data.polygons: pg.use_smooth = True
+    return o
+for j in range(6):
+    r = .42 + j * .058; meia = 32 - j * 2.5
+    gol.append(cisterna(r, -18 - meia, -18 + meia, .40 - abs(j - 2) * .035, fase=j * 1.3, esp=.04))
+for k in range(7):   # vesículas saindo da face trans rumo à membrana
+    az = math.radians(random.uniform(-36, 0)); r = random.uniform(.76, .8)
+    pv = GC + V((r * math.cos(az), r * math.sin(az), 0)); pv.z = 0; pv = pv * min(1, .76 / pv.length); pv.z = random.uniform(.06, .32)
+    gol.append(esfera(tuple(pv), random.uniform(.022, .032), golgi_m, seg=24))
 parte('golgi', gol)
 
 # ---------- retículo liso (rosa-escuro): rede orgânica no alto da parede do fundo
@@ -274,7 +303,7 @@ def mito(loc, rot):
     for k in range(7):
         x = -.09 + k * .03
         g.append(tubo([(x, -.035, .04), (x + .012, -.012, .043), (x - .012, .012, .043), (x, .035, .04)], .006, crist_m))
-    M = _m.Matrix.Translation(loc) @ _m.Euler(rot).to_matrix().to_4x4()
+    M = _m.Matrix.Translation(loc) @ _m.Euler(rot).to_matrix().to_4x4() @ _m.Matrix.Scale(1.35, 4)
     for o in g: o.matrix_world = M @ o.matrix_world
     return g
 mitos += mito((-.32, -.6, .035), (0, 0, .2))
@@ -287,21 +316,38 @@ parte('mitocondrias', mitos)
 
 # ---------- centríolos: feixes de microtúbulos (dourados) junto à parede esquerda, num funil de rede
 cen = []
-for (base, ang) in (((-.62, .1, .1), (math.radians(55), 0, -.3)), ((-.56, .06, .08), (math.radians(80), 0, 1.2))):
-    M = _m.Matrix.Translation(base) @ _m.Euler(ang).to_matrix().to_4x4()
+# funil de rede (microtúbulos irradiando do centrossomo) preso à parede esquerda, aberto para dentro da célula
+_ap = parede(166, 7, .0)                         # ápice na parede
+_ax = V((.75, -.65, .04)).normalized()           # eixo do funil: para o centro e para a câmera
+_q = _ax.to_track_quat('Z', 'Y').to_matrix()
+def _fp(t, ang, tw=0):   # ponto do funil: t = 0..1 ao longo do eixo; raio cresce
+    r = .035 + .17 * t ** 1.3; a = ang + tw * t
+    return _ap + _q @ V((r * math.cos(a), r * math.sin(a), .34 * t))
+for k in range(16):      # meridianos cruzados (malha em losangos)
+    a0 = k / 16 * 6.283
+    for tw in (.9, -.9):
+        cen.append(tubo([tuple(_fp(t, a0, tw)) for t in _np.linspace(0, 1, 8)], .007, rede_m, res=3))
+for t in (.35, .6, .82, 1.0):
+    cen.append(tubo([tuple(_fp(t, a)) for a in _np.linspace(0, 6.283, 33)], .008, rede_m, res=3, fecha=True))
+# dois centríolos (9 trincas de microtúbulos) em ângulo reto, dentro da boca do funil
+def centriolo(c, eixo, comp=.2, r=.05):
+    M = _m.Matrix.Translation(c) @ eixo.to_track_quat('Z', 'Y').to_matrix().to_4x4()
     for k in range(9):
         a = k / 9 * 6.283
-        p0 = M @ V((.045 * math.cos(a), .045 * math.sin(a), 0)); p1 = M @ V((.045 * math.cos(a), .045 * math.sin(a), .3))
-        cen.append(bastao(tuple(p0), tuple(p1), .009, ouro))
-for k in range(3):
-    t = toro((-.6, .1, .06 + k * .06), .12 - k * .015, .008, rede_m); t.rotation_euler = (math.radians(70), 0, -.3); cen.append(t)
+        for j in range(3):
+            rr = r - j * .011; aa = a + j * .16
+            p0 = M @ V((rr * math.cos(aa), rr * math.sin(aa), -comp / 2)); p1 = M @ V((rr * math.cos(aa), rr * math.sin(aa), comp / 2))
+            cen.append(bastao(tuple(p0), tuple(p1), .0065, ouro))
+_cc = _ap + _ax * .26
+centriolo(_cc, _ax)
+centriolo(_cc + _ax * .02 + V((0, 0, .09)), _ax.cross(V((0, 0, 1))).normalized())
 parte('centriolos', cen)
 
 # ---------- ribossomos livres: trincas de grânulos escuros no chão e nas paredes
 rib = []
 def trinca(p):
     for k in range(3):
-        a = k / 3 * 6.283; rib.append(esfera((p[0] + .014 * math.cos(a), p[1] + .014 * math.sin(a), p[2]), .011, ribo_m, seg=14))
+        a = k / 3 * 6.283; rib.append(esfera((p[0] + .02 * math.cos(a), p[1] + .02 * math.sin(a), p[2] + .004), .016, ribo_m, seg=16))
 for k in range(16):
     a = random.uniform(math.pi, 2 * math.pi); r = random.uniform(.3, .82)
     trinca((r * math.cos(a) * .9 + .1, r * math.sin(a) * .9, .012))
@@ -309,6 +355,11 @@ for k in range(12):
     trinca(tuple(parede(random.uniform(20, 160), random.uniform(0, 55), .016)))
 parte('ribossomos', rib)
 
+# caixa envolvente da membrana alinhada à vista da câmera (mesma geometria no mundo): o enquadramento por caixa fica justo
+CAM_ELEV, CAM_AZIM = 22, 16
+_Rv = _m.Matrix.Rotation(math.radians(CAM_AZIM), 4, 'Z') @ _m.Matrix.Rotation(math.radians(-CAM_ELEV), 4, 'X')
+for o in (casca, forro, cito):
+    o.data.transform(_Rv.inverted()); o.matrix_world = o.matrix_world @ _Rv
 bpy.context.view_layer.update()
 mover_tudo(-min((casca.matrix_world @ v.co).z for v in casca.data.vertices))
-render_camadas('B00', elev=22, azim=16, folga=.96, fundo=('membrana',))
+render_camadas('B00', elev=CAM_ELEV, azim=CAM_AZIM, folga=.96, fundo=('membrana',))
