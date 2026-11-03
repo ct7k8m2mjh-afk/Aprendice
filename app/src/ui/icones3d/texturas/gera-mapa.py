@@ -30,7 +30,7 @@ def norm(a):
 wx = (fbm(420 * S, 4, 100) - 0.5) * 260 * S
 wy = (fbm(420 * S, 4, 200) - 0.5) * 260 * S
 X, Y = np.meshgrid(np.arange(CW, dtype=np.float32), np.arange(CH, dtype=np.float32))
-alt = norm(fbm(400 * S, 7, 1, 0.56))
+alt = norm(fbm(420 * S, 5, 1, 0.5))
 alt = cv2.remap(alt, X + wx, Y + wy, cv2.INTER_LINEAR, borderMode=cv2.BORDER_REFLECT)
 # serrilhado fino das curvas (a referência tem bordas em zigue-zague)
 zx = (fbm(40 * S, 3, 300) - 0.5) * 40 * S
@@ -58,7 +58,7 @@ def meandro(c, amp, semente):
   nrm = np.stack([-d[:, 1], d[:, 0]], 1)
   k = r.normal(0, 1, n // 40 + 4); off = np.interp(np.arange(n), np.linspace(0, n, len(k)), k)
   k2 = r.normal(0, 1, n // 8 + 4); off2 = np.interp(np.arange(n), np.linspace(0, n, len(k2)), k2)
-  return c + nrm * (off * amp + off2 * amp * 0.18)[:, None]
+  return c + nrm * (off * amp + off2 * amp * 0.35)[:, None]
 
 RIOS = [  # (pontos em fração da área colorida, largura inicial e final em px de 2048)
   ([(-0.02, 0.22), (0.07, 0.25), (0.14, 0.33), (0.21, 0.25), (0.29, 0.17), (0.37, 0.14), (0.43, 0.24), (0.46, 0.37),
@@ -70,7 +70,7 @@ RIOS = [  # (pontos em fração da área colorida, largura inicial e final em px
 ]
 mask = np.zeros((CH, CW), np.uint8)
 for pts, l0, l1, sem in RIOS:
-  c = curva([(x * CW, y * CH) for x, y in pts]); c = meandro(c, 16 * S, sem)
+  c = curva([(x * CW, y * CH) for x, y in pts]); c = meandro(c, 22 * S, sem)
   n = len(c)
   for i, (x, y) in enumerate(c):
     r = (l0 + (l1 - l0) * (i / n) ** 0.8) * S / 2
@@ -89,7 +89,8 @@ alt = alt - 0.42 * np.exp(-dfora / (130 * S)) - 0.1 * np.exp(-dfora / (30 * S))
 N = 10
 lo, hi = np.percentile(alt, 2), np.percentile(alt, 99.5)
 hn = np.clip((alt - lo) / (hi - lo), 0, 0.9999)
-banda = np.floor(hn * N).astype(np.int32)
+banda = np.floor(hn * N).astype(np.uint8)
+banda = cv2.medianBlur(cv2.medianBlur(banda, 11), 7).astype(np.int32)  # tira ilhotas soltas
 PAL = np.array([  # verde-escuro baixo -> verde -> verde-amarelo -> amarelo -> laranja-amarelo alto
   (48, 152, 46), (70, 170, 42), (98, 186, 40), (128, 198, 44), (160, 208, 50),
   (190, 214, 56), (218, 218, 66), (240, 216, 76), (246, 206, 82), (246, 194, 86)], np.float32)
