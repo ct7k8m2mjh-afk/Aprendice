@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { THREE, V, TAU, plast, semente, malha, esfera } from '../base.js';
+import { THREE, V, TAU, plast, semente, malha, esfera, pedeRedesenho } from '../base.js';
 import { mergeGeometries, mergeVertices, toCreasedNormals } from 'three/addons/utils/BufferGeometryUtils.js';
 const suave = (geo) => { geo.deleteAttribute('normal'); geo.deleteAttribute('uv'); const m = mergeVertices(geo, 1e-5); m.computeVertexNormals(); return m; }; // extrusões com sombreamento liso
 
@@ -20,7 +20,7 @@ const Wp = (s, y, h = 0) => V(h, y, -s);
 const URL_TEX = { parede: new URL('../texturas/celula-parede.webp', import.meta.url).href, piso: new URL('../texturas/celula-piso.webp', import.meta.url).href,
   ref: new URL('../texturas/celula-ref.webp', import.meta.url).href };
 const _tex = {};
-function textura(n) { if (_tex[n]) return _tex[n]; const t = new THREE.TextureLoader().load(URL_TEX[n]); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8; return (_tex[n] = t); }
+function textura(n) { if (_tex[n]) return _tex[n]; const t = new THREE.TextureLoader().load(URL_TEX[n], () => pedeRedesenho()); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8; return (_tex[n] = t); }
 // material "pintado": a cor vem quase toda da pintura (luz já desenhada nela); a luz da cena só modula de leve
 function pintado(t, o = {}) {
   const m = new THREE.MeshStandardMaterial({ color: new THREE.Color(o.luz ?? 0.3, o.luz ?? 0.3, o.luz ?? 0.3), map: t, emissive: 0xffffff, emissiveMap: t, emissiveIntensity: o.emis ?? 0.8,
@@ -213,19 +213,16 @@ export default function celula() {
 
   rnd = semente(21);
   // ---- núcleo: esfera com um oitavo removido (voltado à câmera); camadas no corte
-  const RN = 0.225, RC = 0.135; const NC = V(0.261, RN - 0.02, 0.148);
-  const N = new THREE.Group(); N.position.copy(NC); N.rotation.y = 0.0; C.add(N);
+  const RN = 0.255, RC = 0.15; const NC = V(0.381, RN - 0.02, 0.315);
+  const N = new THREE.Group(); N.position.copy(NC); N.rotation.y = -0.193; C.add(N);
   const verm = plast(0xb01616, { rug: 0.45, coat: 0.3, coatRug: 0.3 });
   N.add(malha(new THREE.SphereGeometry(RN, 96, 48, Math.PI, Math.PI * 1.5, 0, Math.PI / 2), verm), malha(new THREE.SphereGeometry(RN, 96, 48, 0, TAU, Math.PI / 2, Math.PI / 2), verm));
-  const creme = plast(0xf1dfb4, { rug: 0.55, coat: 0.2, lado: THREE.DoubleSide });
-  const vermF = plast(0xc01a1a, { rug: 0.35, coat: 0.5, lado: THREE.DoubleSide });
+  // faces do corte e nucleoplasma: pintura da referência (envoltório fino, camada creme com cromossomos em X, nucleoplasma com grânulos)
+  const corteN = pintado(refT, { lado: THREE.DoubleSide, emis: 0.85, luz: 0.2, rug: 0.5 });
   const faces = [[0, 0, 0], [0, -Math.PI / 2, 0], [Math.PI / 2, 0, 0]]; // quartos de anel nos planos z=0 (x,y>0), x=0 (z,y>0), y=0 (x,z>0)
-  for (const [rx, ry] of faces) {
-    const a = malha(new THREE.RingGeometry(RN - 0.03, RN, 48, 1, 0, Math.PI / 2), vermF); const b = malha(new THREE.RingGeometry(RC * 0.98, RN - 0.03, 48, 2, 0, Math.PI / 2), creme);
-    for (const m of [a, b]) { m.rotation.set(rx, ry, 0, 'YXZ'); N.add(m); }
-  }
-  // nucleoplasma: domo vermelho-escuro com grânulos escuros
-  const nucM = plast(0x7a1218, { rug: 0.5, coat: 0.2 }); const core = esfera(RC, nucM, 48); N.add(core);
+  for (const [rx, ry] of faces) { const m = malha(new THREE.RingGeometry(RC, RN, 48, 6, 0, Math.PI / 2), corteN); m.rotation.set(rx, ry, 0, 'YXZ'); N.add(m); aProjetar.push(m); }
+  // nucleoplasma afundado: cavidade (oitavo de esfera virado para dentro) com a borda nas três faces
+  const fossa = malha(new THREE.SphereGeometry(RC, 40, 20, Math.PI / 2, Math.PI / 2, 0, Math.PI / 2).scale(-1, -1, -1), corteN); N.add(fossa); aProjetar.push(fossa);
   // grânulos do nucleoplasma e cromossomos: pintados (projeção da arte de referência nas faces do corte)
   // poros do envoltório
   const poroM = plast(0x6a1010, { rug: 0.7, coat: 0 });

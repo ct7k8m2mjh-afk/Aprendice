@@ -6,8 +6,9 @@ import solidos from './cenas/solidos.js';
 import livros from './cenas/livros.js';
 import circuito from './cenas/circuito.js';
 import bussola from './cenas/bussola.js';
+import circuito_assado from './cenas/circuito_assado.js'; // piloto bake (temporário, comparação)
 
-export const CENAS = { celula, atomo, solidos, livros, circuito, bussola };
+export const CENAS = { celula, atomo, solidos, livros, circuito, bussola, circuito_assado };
 export const NOMES = { celula: 'Biologia — célula animal', atomo: 'Química — átomo', solidos: 'Matemática — sólidos', livros: 'Português — livros e pena',
   circuito: 'Física — circuito elétrico', bussola: 'Geografia — mapa e bússola' };
 export const FUNCAO = { celula: 'Secreção: vesículas saem do Golgi e se fundem à membrana.', atomo: 'Os elétrons percorrem uma volta das órbitas (átomo neutro de carbono: 6 prótons, 6 nêutrons, 6 elétrons; modelo escolar).',
