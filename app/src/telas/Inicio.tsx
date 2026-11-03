@@ -8,7 +8,7 @@ import { Barra, Carregando, Ic3D, cap, plural, useTitulo } from '../ui/comum';
 import { Icone } from '../ui/Icone';
 import type { MateriaId } from '../dados/tipos';
 import type { Estado, EstadoMateria } from '../estado/tipos';
-import { ILU, classeIlu } from '../ui/IconeMateria';
+import { ILU, IluMateria, temIlu } from '../ui/IconeMateria';
 
 export { ILU };
 
@@ -81,8 +81,8 @@ function Faisca({ className }: { className?: string }) {
 
 /** Ícone 3D principal da matéria; sem ilustração (Física, Geografia), o marcador neutro na cor da matéria. */
 function IcMat({ m, tam, className = '' }: { m: MateriaId; tam: number; className?: string }) {
-  return ILU[m]
-    ? <img src={ILU[m]} alt="" width={tam} height={tam} className={classeIlu(m, 'ini-ic ' + className)} />
+  return temIlu(m)
+    ? <IluMateria m={m} tam={tam} className={'ini-ic ' + className} />
     : <span className={`ic3d ic3d-vazio m-${m} ${className}`} style={{ width: tam, height: tam }} aria-hidden><Icone nome="camadas" tam={Math.round(tam * 0.42)} /></span>;
 }
 
@@ -146,7 +146,7 @@ export function Inicio() {
                 <Link to={`/m/${parou.m}/q/${parou.prox.id}?ctx=escada`} className="btn btn-verde">Retomar estudo <Icone nome="seta" /></Link>
               </div>
               <div className="ih-arte">
-                {ILU[parou.m] ? <img src={ILU[parou.m]} alt="" className={classeIlu(parou.m, 'ih-ilu')} /> : <Ic3D m={parou.m} chave={parou.q.sub} tam={150} />}
+                {temIlu(parou.m) ? <IluMateria m={parou.m} className="ih-ilu" /> : <Ic3D m={parou.m} chave={parou.q.sub} tam={150} />}
               </div>
             </section>
           ) : (

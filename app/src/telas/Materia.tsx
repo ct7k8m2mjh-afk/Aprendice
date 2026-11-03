@@ -6,7 +6,7 @@ import { useEstado, useMateriaEstado } from '../estado/loja';
 import { progressoEscada, resumoMateria } from '../logica/estatisticas';
 import { Anel, Barra, Carregando, Ic3D, plural, useTitulo } from '../ui/comum';
 import { Icone } from '../ui/Icone';
-import { ILU, IconeMateria, classeIlu } from '../ui/IconeMateria';
+import { IconeMateria, IluMateria, temIlu } from '../ui/IconeMateria';
 import type { MateriaId } from '../dados/tipos';
 import type { EstadoMateria } from '../estado/tipos';
 
@@ -18,7 +18,7 @@ export function ListaMaterias() {
       <div className="grade g2">
         {MATERIAS.map((m) => (
           <Link key={m.id} to={`/m/${m.id}`} className={`linha-mat m-${m.id}` + (m.ativa ? '' : ' inativa')}>
-            {ILU[m.id] ? <img src={ILU[m.id]} alt="" className={classeIlu(m.id, '')} /> : <span className="lm-ic" aria-hidden><IconeMateria m={m.id} /></span>}
+            {temIlu(m.id) ? <IluMateria m={m.id} className="lm-ilu" /> : <span className="lm-ic" aria-hidden><IconeMateria m={m.id} /></span>}
             <span><b>{m.nome}</b><small>{m.ativa ? m.descricao : 'Em preparação: entra com as provas completas.'}</small></span>
             <Icone nome="direita" />
           </Link>
@@ -130,7 +130,7 @@ export function Materia() {
             <p className="miolo">{tg ? 'Seu treino está salvo onde você parou. ' : ''}Questões reais de prova, frases para completar e flashcards dos temas que mais caem, tudo misturado.</p>
             <span className="btn">{tg ? `Retomar (${tg.i} de ${tg.it.length})` : 'Começar treino'} <Icone nome="direita" /></span>
           </div>
-          {ILU[m] && <img src={ILU[m]} alt="" className={classeIlu(m, 'capa-ilu')} />}
+          {temIlu(m) && <IluMateria m={m} className="capa-ilu" />}
         </Link>
         )}
         <div className="mat-atalhos">

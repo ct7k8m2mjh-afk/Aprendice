@@ -1,3 +1,4 @@
+import { IconeCamadas, temCamadas } from './IconeCamadas';
 import iluBio from '../assets/ilu/bio.webp';
 import iluQui from '../assets/ilu/qui.webp';
 import iluMat from '../assets/ilu/mat.webp';
@@ -17,13 +18,24 @@ import iluIng from '../assets/ilu/ing.webp';
 export const ILU: Record<string, string> = { bio: iluBio, qui: iluQui, mat: iluMat, por: iluPor, his: iluHis, fil: iluFil, soc: iluSoc, ing: iluIng };
 export const ILU_PROPRIA = new Set(['his', 'fil', 'soc', 'ing']);
 
+/** Matérias cujo ícone principal já é CONSTRUÍDO em camadas 3D (animável); prevalece sobre a imagem. */
+export const CAMADAS_MATERIA: Record<string, string> = { bio: 'B00', fis: 'F11' };
+
+export function temIlu(m: string): boolean { return !!(CAMADAS_MATERIA[m] && temCamadas(CAMADAS_MATERIA[m])) || !!ILU[m]; }
+
+/** Ícone principal: construído (camadas) quando existe; senão a imagem; senão nada (quem chama decide o substituto). */
+export function IluMateria({ m, className = '', tam }: { m: string; className?: string; tam?: number }) {
+  const id = CAMADAS_MATERIA[m];
+  if (id && temCamadas(id)) return <IconeCamadas id={id} tam={tam} className={'ilu-camadas ' + className} />;
+  if (ILU[m]) return <img src={ILU[m]} alt="" width={tam} height={tam} className={classeIlu(m, className)} />;
+  return null;
+}
+
 export function classeIlu(m: string, base: string): string {
   return base + (ILU_PROPRIA.has(m) ? ' ilu-propria' : '');
 }
 
 /** Ícone principal da matéria em tamanho pequeno (listas, desempenho); sem ilustração, o ponto na cor da matéria. */
 export function IconeMateria({ m, tam = 28 }: { m: string; tam?: number }) {
-  return ILU[m]
-    ? <img className={classeIlu(m, 'ic-materia')} src={ILU[m]} alt="" width={tam} height={tam} />
-    : <i className="ponto" aria-hidden />;
+  return temIlu(m) ? <IluMateria m={m} tam={tam} className="ic-materia" /> : <i className="ponto" aria-hidden />;
 }

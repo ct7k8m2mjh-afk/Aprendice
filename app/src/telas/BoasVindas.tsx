@@ -5,7 +5,7 @@ import { Icone } from '../ui/Icone';
 import { atualiza } from '../estado/loja';
 import { EscolhaProvas } from './EscolhaProvas';
 import { MATERIAS_PRINCIPAIS } from '../dados/materias';
-import { ILU } from '../ui/IconeMateria';
+import { IluMateria, temIlu } from '../ui/IconeMateria';
 
 
 /** Primeira abertura: conta de demonstração (login simulado, fica só no aparelho), provas-alvo e meta. */
@@ -29,7 +29,7 @@ export function BoasVindas() {
       <div className="bv-lado" aria-hidden>
         <Logo className="bv-logo" />
         <div className="bv-ilus">
-          {MATERIAS_PRINCIPAIS.filter((m) => ILU[m.id]).map((m, i) => <img key={m.id} src={ILU[m.id]} alt="" style={{ animationDelay: `${i * 90}ms` }} />)}
+          {MATERIAS_PRINCIPAIS.filter((m) => temIlu(m.id)).map((m, i) => <span key={m.id} className="bv-ilu" style={{ animationDelay: `${i * 90}ms` }}><IluMateria m={m.id} /></span>)}
         </div>
         <p className="bv-frase">Questões reais das provas de Medicina, do jeito que a banca cobra.</p>
       </div>
