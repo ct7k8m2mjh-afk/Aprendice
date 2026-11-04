@@ -73,9 +73,9 @@
   "checagem": "Quanto mais genes somam efeitos, mais classes de fenótipo aparecem; a cor da pele tem muitos tons, não só dois.",
   "erradas": {
    "A": "Herança restrita ao sexo envolve genes do cromossomo Y, não muitos genes em vários cromossomos.",
-   "C": "\"Poligênica\" é sinônimo de quantitativa, mas a hemofilia não serve: é causada por um gene recessivo do cromossomo X.",
+   "C": "\"Poligênica\" é sinônimo de quantitativa, mas a hemofilia não serve: cada tipo depende de um único gene do cromossomo X, com alelo recessivo.",
    "D": "Herança ligada ao sexo depende de genes do cromossomo X, não de muitos genes somando efeitos em vários cromossomos.",
-   "E": "Herança polialélica é um gene com vários alelos (como o ABO). O daltonismo é herança recessiva ligada ao X."
+   "E": "Herança polialélica é um gene com três ou mais alelos (como o ABO). O daltonismo depende de alelo recessivo ligado ao X, não de muitos genes somando efeitos."
   },
   "armadilha": "Ver \"poligênica\" na C e marcar sem conferir o exemplo: hemofilia é monogênica ligada ao X.",
   "alerta": "",
@@ -88,7 +88,7 @@
  "caminhos": [
   {
    "nome": "eliminação pelo exemplo",
-   "ideia": "Hemofilia e daltonismo dependem de um único gene, ligado ao cromossomo X; não são herança de muitos genes. Elimina C e E."
+   "ideia": "Hemofilia e daltonismo são heranças ligadas ao cromossomo X em que cada tipo depende de um único gene; não são herança de muitos genes. Elimina C e E."
   },
   {
    "nome": "eliminação pelo tipo",
@@ -104,7 +104,24 @@
  },
  "fontes": [],
  "revisao": {
-  "fatos": [],
+  "fatos": [
+   {
+    "campo": "resolucao.erradas.C",
+    "antes": "\"Poligênica\" é sinônimo de quantitativa, mas a hemofilia não serve: depende de um único gene do cromossomo X, com alelo recessivo.",
+    "depois": "\"Poligênica\" é sinônimo de quantitativa, mas a hemofilia não serve: cada tipo depende de um único gene do cromossomo X, com alelo recessivo.",
+    "motivo": "Hemofilia A (gene F8) e hemofilia B (gene F9) são genes diferentes, ambos no X; \"a hemofilia depende de um único gene\" é impreciso. Cada tipo é monogênico.",
+    "fonte": "https://medlineplus.gov/genetics/condition/hemophilia/",
+    "etapa": "4-especialista"
+   },
+   {
+    "campo": "caminhos[0].ideia",
+    "antes": "Hemofilia e daltonismo dependem de um único gene, ligado ao cromossomo X; não são herança de muitos genes. Elimina C e E.",
+    "depois": "Hemofilia e daltonismo são heranças ligadas ao cromossomo X em que cada tipo depende de um único gene; não são herança de muitos genes. Elimina C e E.",
+    "motivo": "Mesmo ajuste da erradas.C: hemofilia (F8/F9) e daltonismo vermelho-verde (OPN1LW/OPN1MW) têm mais de um gene possível, mas cada tipo é monogênico.",
+    "fonte": "https://medlineplus.gov/genetics/condition/hemophilia/",
+    "etapa": "4-especialista"
+   }
+  ],
   "fatos_ok": true,
   "didatica": [
    {
@@ -114,6 +131,22 @@
   ],
   "didatica_ok": true,
   "didatica_alertas": [],
-  "fatos_ok_final": true
+  "fatos_ok_final": true,
+  "especialista": [
+   {
+    "campo": "resolucao.erradas.C",
+    "antes": "\"Poligênica\" é sinônimo de quantitativa, mas a hemofilia não serve: é causada por um gene recessivo do cromossomo X.",
+    "depois": "\"Poligênica\" é sinônimo de quantitativa, mas a hemofilia não serve: depende de um único gene do cromossomo X, com alelo recessivo.",
+    "motivo": "\"gene recessivo\" é impreciso: recessivo é o alelo, não o gene."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "antes": "Herança polialélica é um gene com vários alelos (como o ABO). O daltonismo é herança recessiva ligada ao X.",
+    "depois": "Herança polialélica é um gene com três ou mais alelos (como o ABO). O daltonismo depende de alelo recessivo ligado ao X, não de muitos genes somando efeitos.",
+    "motivo": "Termo exato (alelo recessivo) e o erro ligado ao texto do enunciado (muitos genes aditivos)."
+   }
+  ],
+  "especialista_ok": true,
+  "fatos_ok_especialista": true
  }
 }
