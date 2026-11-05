@@ -55,3 +55,4 @@ Imagem enviada nunca é "por enviar": tem uso, e o uso fica registrado.
 - 05/11/2026: tela de login igual à referência do dono (Aprendice_Login_Pacote, versão sem a animação do pacote) e abertura com o logotipo escrito à mão (aprendice-abertura.html) no lugar da animação de entrada. Ilustração e textos da referência usados por decisão do dono.
 - 05/11/2026: proibido reutilizar designs de trabalhos anteriores para copiar e colar sem comando do dono; referência é para reproduzir, não copiar; não economizar esforço (CLAUDE.md, princípio 12).
 - 05/11/2026: login igual à referência (Aprendice_Login_Pacote), com a ilustração pintada do pacote (uso autorizado pelo dono) e a abertura escrita à mão. Sempre que uma aba inteira mudar, publicar a atualização no site.
+- 05/11/2026: provas de 2ª fase dissertativas ficam de fora do banco agora; as questões dissertativas serão feitas pelo Claude depois, com comando do dono. Banco de provas: só múltipla escolha.

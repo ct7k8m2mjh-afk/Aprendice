@@ -17,5 +17,5 @@ Legenda: **feito** · **em andamento** · **em espera (ordem do dono)** · **agu
 | 11 | Link público | feito; 05/11 23h: caiu (main sem o site virou produção) e foi restabelecido; produção agora só a partir de `app-prototipo-completo` | https://aprendice.vercel.app |
 | 12 | Login igual à referência + abertura escrita à mão | feito e publicado; auditoria: tema escuro corrigido (login fica sempre claro, como a referência) | site, tela de entrada |
 | 13 | Publicar sempre que uma aba inteira mudar | regra registrada | `CLAUDE.md` |
-| 14 | Instituições e provas (82) para simulados e exercícios: baixar, separar matérias, classificar nível e subtema (sem resolução) | **em andamento** — passo 1 (inventário) | `docs/provas/inventario-*.md` |
+| 14 | Instituições e provas (82) para simulados e exercícios: baixar, separar matérias, classificar nível e subtema (sem resolução; só múltipla escolha — dissertativas depois, por comando do dono) | **em andamento** — passo 1 (inventário) | `docs/provas/inventario-*.md` |
 | 15 | Revisão a cada 30 min dos comandos | em andamento (loop) | este arquivo |
