@@ -1,9 +1,9 @@
 import { useRef, useState } from 'react';
 import { Logo } from '../ui/comum';
-import ilustracao from '../assets/login/ilustracao.svg?raw';
+import figura from '../assets/login/figura.webp';
 import '../estilo/login.css';
 
-/** Tela de login, construída para reproduzir a referência do dono (Aprendice_Login_Pacote, 05/11/2026); a ilustração é desenhada em SVG (assets/login/ilustracao.svg).
+/** Tela de login, construída para reproduzir a referência do dono (Aprendice_Login_Pacote, 05/11/2026); a ilustração pintada é a do pacote do dono (uso autorizado por ele em 05/11/2026).
  *  Ainda não há servidor de contas: entrar/criar conta valida e-mail e senha e segue para as provas-alvo.
  *  A senha nunca é guardada; o progresso fica só neste aparelho. */
 export function Login({ aoEntrar }: { aoEntrar: (email: string) => void }) {
@@ -36,7 +36,10 @@ export function Login({ aoEntrar }: { aoEntrar: (email: string) => void }) {
             <div><span className="l-selo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinejoin="round"><path d="m2 9 10-5 10 5-10 5L2 9Z" /><path d="M6 11v5c4 4 8 4 12 0v-5" /><path d="M22 9v6" /></svg> Estudo organizado, prática constante, progresso real</span></div>
             <h1 className="l-titulo">Estude com foco em<br />questões reais de vestibulares <em>e evolua em cada matéria.</em></h1>
             <p className="l-lead">Organize seus estudos, pratique questões, entenda suas respostas e acompanhe seu progresso — tudo em um só lugar.</p>
-            <div className="l-ilustracao" role="img" aria-label="Célula, átomo, livros, frasco de laboratório, cubo mágico e caderno" dangerouslySetInnerHTML={{ __html: ilustracao }} />
+            <div className="l-ilustracao">
+              <div className="l-barras" aria-hidden>{[32, 44, 59, 74, 89].map((h) => <i key={h} style={{ ['--h' as string]: h + '%' }} />)}</div>
+              <img className="l-figura" src={figura} alt="Célula, átomo, livros, frasco de laboratório, cubo mágico e caderno" width={660} height={395} />
+            </div>
             <div className="l-vantagens">
               <div className="l-vantagem"><div className="l-vantagem-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.1" strokeLinecap="round"><rect x="3" y="5" width="18" height="16" rx="2" /><path d="M7 3v4m10-4v4M3 10h18" /></svg></div><div><b>Organize seus estudos</b><p>Planeje matérias e revise com clareza.</p></div></div>
               <div className="l-vantagem"><div className="l-vantagem-ic ouro"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.1" strokeLinecap="round"><path d="M12 21a9 9 0 1 0-9-9c0 2.4 1 4.5 2.5 6L5 22l4-2.5c1 .3 2 .5 3 .5Z" /><path d="M9.5 9a2.6 2.6 0 0 1 5.2.2c0 2-2.6 2-2.6 4M12 17h.01" /></svg></div><div><b>Pratique com questões</b><p>Aprenda com exercícios de provas.</p></div></div>

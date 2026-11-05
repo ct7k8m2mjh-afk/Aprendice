@@ -7,6 +7,8 @@ Hoje existe um protótipo funcional em HTML estático com 4 matérias (Biologia,
 
 **Regra de manutenção (decisão do dono, 05/11/2026):** toda vez que o dono alterar este arquivo, a mudança é aplicada na hora em todos os outros arquivos do projeto que tratam do mesmo assunto — `PRODUCT.md`, `DESIGN.md`, `README.md`s, `docs/`, briefs da banca (`ferramentas/fabrica/agentes/`), textos do site e código. Nada pode contradizer o `CLAUDE.md`. Ao terminar, informe o que foi alterado em cada arquivo. (`docs/historico/` é registro do passado e não se altera.)
 
+**Regra de publicação (decisão do dono, 05/11/2026):** sempre que uma aba (tela) inteira do site for alterada, publicar a atualização no link público (https://aprendice.vercel.app) logo depois de conferir, e avisar o dono.
+
 Fale com o dono do produto em português do Brasil, direto, passo a passo, sem assumir conhecimento técnico. Antes de escrever código, apresente o plano e espere aprovação. Enumere as tarefas e informe cada uma ao terminar.
 
 ## Princípios do produto (não se quebram)
