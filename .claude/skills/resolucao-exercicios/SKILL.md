@@ -1,13 +1,13 @@
 ---
 name: resolucao-exercicios
-description: Como escrever, revisar ou corrigir resoluções comentadas de questões de vestibular e ENEM no APRENDICE, em qualquer matéria (Matemática, Física, Química, Biologia, Português, Literatura, Redação, História, Geografia, Filosofia, Sociologia, Inglês, Espanhol). Use sempre que for gerar ou revisar o conteúdo de `res/<sub>.json` (antes, pista, passos, resposta, checagem, erradas, armadilha, alerta, essencial), escrever prompts da fábrica de resoluções ou de Questões Aprendice, montar a lista de subtemas de uma matéria nova, ou avaliar se uma resolução está no padrão.
+description: Como escrever, revisar ou corrigir resoluções comentadas de questões de vestibular e ENEM no APRENDICE, em Português, Matemática, Inglês, Física, Química, Biologia, Geografia ou História. Use sempre que for gerar ou revisar o conteúdo de `res/<sub>.json` (antes, pista, passos, resposta, checagem, erradas, armadilha, alerta, essencial), escrever prompts da fábrica de resoluções ou de Questões Aprendice, montar a lista de subtemas de uma matéria nova, ou avaliar se uma resolução está no padrão.
 ---
 
 # Resolução de exercícios no APRENDICE
 
 Este guia junta duas fontes:
 1. **O padrão que já está no app.** São 2.916 resoluções em `app-atual/*/res/*.json`, revisadas em lentes. Ele manda no formato.
-2. **Como os bons professores resolvem em vídeo.** São 45 resoluções de canais de vestibular, analisadas em 05/11/2026; as anotações de cada vídeo estão em `docs/pesquisa/videos-resolucao/`. Elas mandam no método: a ordem de raciocínio, o que destacar e onde o aluno erra.
+2. **Como os bons professores resolvem em vídeo.** São cerca de 50 resoluções por matéria, de canais de vestibular, analisadas a partir de 05/11/2026; as anotações de cada vídeo estão em `docs/pesquisa/videos-resolucao/`. Elas mandam no método: a ordem de raciocínio, o que destacar e onde o aluno erra.
 
 Quando as duas fontes divergem, vale o formato do app, porque o aluno lê no celular e não assiste a uma aula.
 
@@ -19,13 +19,10 @@ Os arquivos por matéria ficam em `materias/`. Leia o da matéria antes de escre
 | Física | `materias/fisica.md` |
 | Química | `materias/quimica.md` |
 | Biologia | `materias/biologia.md` |
-| Português (gramática e interpretação) | `materias/portugues.md` |
-| Literatura | `materias/literatura.md` |
-| Redação | `materias/redacao.md` |
+| Português | `materias/portugues.md` |
+| Inglês | `materias/ingles.md` |
 | História | `materias/historia.md` |
 | Geografia | `materias/geografia.md` |
-| Filosofia e Sociologia | `materias/filosofia-sociologia.md` |
-| Inglês e Espanhol | `materias/linguas-estrangeiras.md` |
 
 Cada arquivo traz:
 - os subtemas que caem, com os que mais caem primeiro;
@@ -59,7 +56,7 @@ Escreva para um aluno que **errou** a questão e está lendo no celular. Use fra
 - `tipo`: sempre preencher, com um destes: `localizar` (achar no texto, figura ou gráfico), `calcular`, `comparar`, `eliminar` (descartar alternativa ou hipótese), `concluir`. Cerca de 2.500 passos antigos estão sem tipo; ao revisar, complete.
 - Normalmente são de 3 a 6 passos. O último é `concluir` e liga o resultado à letra.
 - A ordem é a do raciocínio, não a do enunciado. Antes de executar, sempre vem o passo que traduz o que é pedido, quando ele não é óbvio.
-- As matérias de leitura (Português, Literatura, Humanas, Línguas) seguem o mesmo esquema. A `conta` vira o trecho do texto entre aspas ou a informação localizada, e o `porque` explica o que o trecho prova.
+- As matérias de leitura (Português, Inglês, História, Geografia) seguem o mesmo esquema. A `conta` vira o trecho do texto entre aspas ou a informação localizada, e o `porque` explica o que o trecho prova.
 
 ### `resposta`
 "Alternativa X — " seguida do conteúdo da alternativa em linguagem de gente (com unidade, quando houver).
