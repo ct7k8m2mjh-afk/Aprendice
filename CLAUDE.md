@@ -1,7 +1,7 @@
 # APRENDICE — instruções para o Claude Code
 
 ## O produto
-APRENDICE é um aplicativo de estudos para quem se prepara para **vestibulares de Medicina em todo o Brasil**. O aluno estuda pelas questões reais das provas (ENEM e vestibulares próprios das faculdades de Medicina, públicas e privadas, de todas as regiões), por nível de dificuldade, com resolução comentada, teoria em cartões, flashcards curtos e simulados por universidade.
+APRENDICE é um site de estudos para quem se prepara para **vestibulares em todo o Brasil**. O aluno estuda pelas questões reais das provas (ENEM e vestibulares próprios das faculdades públicas e privadas, de todas as regiões), organizadas por nível de dificuldade, cada uma com resolução comentada. Para cada matéria, além das questões, haverá teoria em cartões, flashcards curtos e simulados por universidade.
 
 Hoje existe um protótipo funcional em HTML estático com 4 matérias (Biologia, Química, Matemática, Português), feito para um aluno e por isso com banco concentrado em provas de São Paulo. O objetivo agora é transformá-lo em **site + aplicativo de celular** para o público geral: contas de usuário, progresso salvo na nuvem, banco nacional de questões e todas as matérias do vestibular (incluir Física, História, Geografia, Inglês, Filosofia/Sociologia, Redação).
 
