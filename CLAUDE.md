@@ -42,6 +42,8 @@ Não avançar de fase sem aprovação explícita do dono.
 ## Fábrica de conteúdo (API + créditos do Console)
 Trabalho de volume (classificar questões, rascunhar resoluções, flashcards, revisões em lentes) roda em programas da fábrica que chamam a **API do Claude** com a chave `ANTHROPIC_API_KEY`, pagos pelos créditos mensais do Console — não pelo limite do plano. Você (Claude Code) escreve, roda e supervisiona esses programas, confere amostras e integra só o que passou por todas as lentes. Use Batches sempre que não for urgente, declare o teto de gasto de cada lote e registre o gasto. Detalhes e linha de produção: `docs/fabrica-de-conteudo-api.md`.
 
+**Resoluções:** para escrever, revisar ou gerar resoluções (inclusive os prompts da fábrica e as Questões Aprendice), use a skill `resolucao-exercicios` (`.claude/skills/resolucao-exercicios/`). Ela tem as regras gerais de cada campo de `res/<sub>.json` e um guia por matéria (Português com Literatura, Matemática, Inglês, Física, Química, Biologia, Geografia e História), com subtemas, roteiros por tipo de questão, distratores típicos e um exemplo conferido. Esse conteúdo foi tirado de cerca de 430 resoluções em vídeo, e as anotações estão em `docs/pesquisa/videos-resolucao/`.
+
 ## O protótipo atual (`app-atual/`)
 - `bio/ qui/ mat/ por/` — uma matéria cada:
   - `dados.json` — `banco` (questões: id, escola, ano, n, banca, enun, alts, gab, modulo, sub, dif, degrau, conceito, pista, url, tipo prova|site, fase), `teoria` (módulos e cartões de teoria), `nomesub` (conteúdos), `glossario`, `areas`, `flash`, `flash_img`, `essencial.abc` (questões do treino geral), `essencial.completar` (frases), `dic`, `alias`.
