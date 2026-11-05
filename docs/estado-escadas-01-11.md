@@ -28,4 +28,4 @@ Protótipo publicado como artifact no claude.ai (HTML estático). Código e dado
 - Poucas questões com visual em Mat e Por.
 - Lacunas de flashcards: Bio (proporções F2 de epistasia/ligação, zoologia, rim/ADH), Quí (polímeros de condensação, Le Châtelier com temperatura, estrutura com imagem), Mat (leitura de gráfico/tabela), Por (expressão idiomática, união de orações, literatura contemporânea).
 - Itens pessoais do protótipo a remover no produto público: saudação com nome fixo, capa do Treino geral de Biologia com o rosto do aluno, prioridade fixa em São Camilo.
-- Revisar direitos de uso das fontes dos prints antes de abrir ao público.
+- Registrar a origem de cada print; a decisão de publicar conteúdo de terceiros é do dono (05/11/2026).
