@@ -18,6 +18,7 @@ import { Desempenho } from './telas/Desempenho';
 import { Provas, ProvaDetalhe } from './telas/Provas';
 import { Perfil } from './telas/Perfil';
 import { Config } from './telas/Config';
+import { Abertura } from './ui/Abertura';
 
 function Rotas() {
   const e = useEstado();
@@ -58,6 +59,7 @@ export function App() {
     <HashRouter>
       <EstiloMaterias />
       <Rotas />
+      <Abertura />
     </HashRouter>
   );
 }

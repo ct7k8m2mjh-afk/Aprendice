@@ -102,7 +102,7 @@ export function Config() {
           <li>Questões: cadernos oficiais das provas e listas públicas de exercícios; cada questão traz o link da fonte e o gabarito publicado.</li>
           <li>Ilustrações de flashcards: Servier Medical Art, CC BY 3.0; figuras de Matemática geradas por código.</li>
           <li>Logos de simulados: Wikimedia Commons (Fuvest, CC BY 3.0; São Camilo).</li>
-          <li>Ícones de interface: Lucide (ISC). Fontes: Familjen Grotesk e Caveat (SIL Open Font License).</li>
+          <li>Ícones de interface: Lucide (ISC). Fontes: Familjen Grotesk, Caveat e DM Sans (SIL Open Font License).</li>
           <li>Catálogo de provas: editais e sites oficiais das bancas, ciclo 2027.</li>
         </ul>
         <p className="fraco" style={{ fontSize: 13, marginTop: 12 }}>Aprendice · versão 0.1 (protótipo local)</p>

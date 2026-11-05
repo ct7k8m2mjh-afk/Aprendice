@@ -78,7 +78,7 @@ export function Casca({ children, foco = false }: { children: ReactNode; foco?: 
       <a href="#principal" className="sr">Pular para o conteúdo</a>
       <aside className="lado" aria-label="Menu principal">
         <div className="marca">
-          <Link to="/" aria-label="Início"><Logo /></Link>
+          <Link to="/" aria-label="Início" data-logo-alvo><Logo /></Link>
           <button className="btn-ic" style={{ border: 0, background: 'none' }} onClick={() => atualiza((x) => ({ ...x, pref: { ...x.pref, menuFechado: !fechado } }))}
             aria-label={fechado ? 'Abrir menu' : 'Recolher menu'} title={fechado ? 'Abrir menu' : 'Recolher menu'}>
             <Icone nome={fechado ? 'direita' : 'esquerda'} />

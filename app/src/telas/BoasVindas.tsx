@@ -6,6 +6,7 @@ import { atualiza } from '../estado/loja';
 import { EscolhaProvas } from './EscolhaProvas';
 import { MATERIAS_PRINCIPAIS } from '../dados/materias';
 import { IluMateria, temIlu } from '../ui/IconeMateria';
+import { Login } from './Login';
 
 
 /** Primeira abertura: conta de demonstração (login simulado, fica só no aparelho), provas-alvo e meta. */
@@ -23,6 +24,8 @@ export function BoasVindas() {
     atualiza((e) => ({ ...e, perfil: { nome: nome.trim() || 'Estudante', email: email.trim(), provasAlvo: provas, meta, criadoEm: Date.now() } }));
     nav('/', { replace: true });
   };
+
+  if (passo === 0) return <Login aoEntrar={(em) => { setEmail(em); if (!nome) setNome(nomeDoEmail(em)); setPasso(1); }} />;
 
   return (
     <div className="bv">
@@ -85,4 +88,10 @@ export function BoasVindas() {
       </div>
     </div>
   );
+}
+
+/** Nome inicial a partir do e-mail (dá para trocar no perfil): "maria.silva@x.com" -> "Maria". */
+function nomeDoEmail(email: string): string {
+  const p = email.split('@')[0].split(/[._\-+0-9]+/).filter(Boolean)[0] || 'Estudante';
+  return p.charAt(0).toUpperCase() + p.slice(1).toLowerCase();
 }
