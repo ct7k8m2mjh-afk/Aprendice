@@ -187,6 +187,9 @@ components:
 
 # Design System: APRENDICE
 
+## Regra de trabalho (decisão do dono, 05/11/2026)
+Referência do dono é para **reproduzir**, não para copiar: cada tela, componente ou imagem é construído de novo até ficar igual à referência. Proibido copiar e colar código, CSS, imagens ou arquivos da referência, e proibido reaproveitar designs de trabalhos anteriores sem comando expresso do dono (`CLAUDE.md`, princípio 12).
+
 ## Overview
 
 **Creative North Star: "A mesa de estudo"**

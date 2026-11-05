@@ -21,6 +21,7 @@ Fale com o dono do produto em português do Brasil, direto, passo a passo, sem a
 9. **Conferir antes de entregar:** ver o resultado renderizado (claro, escuro, 390 px) e rodar os testes. Nunca declarar pronto sem ver.
 10. **Direitos e privacidade:** **quem decide o que de terceiros vai ao site (questões, prints, figuras, logos) é o dono** (decisão do dono, 05/11/2026). O Claude registra de onde veio cada item e, quando houver risco de direito autoral, informa o dono uma vez, de forma objetiva, sem bloquear a publicação que o dono autorizou. Logos oficiais só onde identificam a prova (simulado por universidade). Nunca enviar dado pessoal do usuário a serviços de terceiros sem necessidade; LGPD.
 11. **Acabamento acima de velocidade.**
+12. **Reproduzir, nunca copiar (decisão do dono, 05/11/2026).** Quando o dono manda uma referência, o trabalho é **reproduzi-la**: construir de novo, com esforço total, o mesmo resultado visual — nunca copiar e colar o código, o CSS, as imagens ou os arquivos da referência. É **proibido reutilizar designs, telas, componentes ou código de trabalhos feitos anteriormente** (deste projeto ou de outros) para copiar e colar sem comando expresso do dono. Não economizar trabalho se esforçando menos: na dúvida entre copiar e construir, construir.
 
 ## Identidade
 - Cores por matéria: Matemática verde-água · Português amarelo · Biologia verde · Química rosa/magenta. Definir as das novas matérias seguindo o mesmo sistema.

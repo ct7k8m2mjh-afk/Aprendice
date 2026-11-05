@@ -53,3 +53,4 @@ Imagem enviada nunca é "por enviar": tem uso, e o uso fica registrado.
 
 - 05/11/2026: tarefa da célula 3D cancelada. Decisão: o site passará a usar só ícones sem animação. Não mexer nos ícones até o dono mandar.
 - 05/11/2026: tela de login igual à referência do dono (Aprendice_Login_Pacote, versão sem a animação do pacote) e abertura com o logotipo escrito à mão (aprendice-abertura.html) no lugar da animação de entrada. Ilustração e textos da referência usados por decisão do dono.
+- 05/11/2026: proibido reutilizar designs de trabalhos anteriores para copiar e colar sem comando do dono; referência é para reproduzir, não copiar; não economizar esforço (CLAUDE.md, princípio 12).
