@@ -1,4 +1,4 @@
-# Catálogo de vestibulares de Medicina (ciclo 2027)
+# Catálogo de vestibulares (ciclo 2027; levantado a partir dos cursos de Medicina, vale para todos os cursos)
 
 Gerado em 2026-11-01. Fonte de dados: `catalogo-vestibulares.json`. Legenda: ✔ = formato principal confirmado em fonte oficial; ✖ = parcial.
 

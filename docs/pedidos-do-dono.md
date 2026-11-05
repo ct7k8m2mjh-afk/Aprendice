@@ -19,7 +19,7 @@ Imagem enviada nunca é "por enviar": tem uso, e o uso fica registrado.
 - Sem fundo branco em volta do ícone recortado.
 - Cores das matérias bem distintas entre si (como um caderno de cada cor): nenhuma matéria com cor parecida com outra.
 - Prioridade futura: construir os ícones (3D/vetor em camadas) em vez de colar PNG, para poder animar (ex.: expandir ao passar o mouse).
-- Redação não é matéria do app (removida em 03/11).
+- Redação não é matéria do site (removida em 03/11).
 - Formas decorativas (onda verde do menu) não podem aparecer cortadas.
 
 ## Ordem de trabalho (03/11) — o que vem primeiro e por quê

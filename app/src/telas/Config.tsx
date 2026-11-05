@@ -93,7 +93,7 @@ export function Config() {
 
       <section className="bloco secao">
         <h2 className="sec-tit">Privacidade</h2>
-        <p className="miolo">Sem servidor nesta versão: nenhum dado pessoal é enviado a ninguém. Sem anúncios, sem rastreamento, fontes hospedadas no próprio app. Quando houver contas na nuvem, você poderá baixar e apagar seus dados a qualquer momento (LGPD).</p>
+        <p className="miolo">Sem servidor nesta versão: nenhum dado pessoal é enviado a ninguém. Sem anúncios, sem rastreamento, fontes hospedadas no próprio site. Quando houver contas na nuvem, você poderá baixar e apagar seus dados a qualquer momento (LGPD).</p>
       </section>
 
       <section className="bloco secao">

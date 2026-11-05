@@ -197,7 +197,7 @@ Imagem-base: a que o dono autorizar (princípio 10); a alternativa é o PNG do n
 
 ## 6. Riscos
 
-1. **Direitos da referência** (alto): a 2,5D e a projeção publicam pixels da referência. Sem licença confirmada, não usar no produto (princípio 10). O bake com geometria e textura nossas não tem esse risco.
+1. **Direitos da referência** (alto): a 2,5D e a projeção publicam pixels da referência. Usar ou não no produto é decisão do dono (princípio 10); registrar a origem e avisar o risco uma vez. O bake com geometria e textura nossas não tem esse risco.
 2. **Ciência errada** (alto): projeção, 2,5D e IA copiam ou inventam detalhe. Toda cena continua passando pela conferência de `docs/ciencia-dos-icones.md`. IA de imagem→3D descartada por isso.
 3. **Animação × bake** (médio): tudo que se move não pode ter luz/sombra fixa. Separar estático e móvel desde a modelagem; sombras de contato em sprite.
 4. **Brilho "congelado"** (médio): no bake totalmente sem luz, o reflexo não se move ao inclinar — fica "foto colada". Mitigação: difuso assado + especular ao vivo (truque do emissivo, seção 2.2), a validar numa cena-piloto.

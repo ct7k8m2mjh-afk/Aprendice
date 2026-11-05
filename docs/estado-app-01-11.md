@@ -1,7 +1,7 @@
 # Estado do app em 01/11/2026 (protótipo completo, local)
 
 ## O que existe
-App em `app/` (React + TypeScript + Capacitor). É uma base só para site, iPhone e Android, rodando localmente com o conteúdo real do `app-atual/`.
+App em `app/` (React + TypeScript + Capacitor). É o site (navegador em qualquer aparelho; aplicativo de loja fora do plano), rodando localmente com o conteúdo real do `app-atual/`.
 
 **Conteúdo convertido:**
 - Bio 507 · Quí 569 · Mat 610 · Por 535 questões, cada uma com print, fonte, gabarito e resolução;
@@ -47,12 +47,12 @@ O logo manuscrito foi mantido.
 
 ## Pendências que precisam de decisão do dono
 1. **Questões de listas de sites: 788 do banco.** São de Brasil Escola (587), Mundo Educação (197), Prepara Enem e InfoEscola. Não são de provas publicadas, não têm ano de prova e o direito de uso dos prints não está verificado. O app as identifica como "lista pública de exercícios". Decidir se ficam.
-2. **Prints com marca d'água de cursinho.** Muitos prints de provas vêm dos PDFs de resolução do Objetivo (aparece a marca "OBJETIVO"). Antes de publicar, é preciso trocar pelos cadernos oficiais das bancas ou obter autorização.
+2. **Prints com marca d'água de cursinho.** Muitos prints de provas vêm dos PDFs de resolução do Objetivo (aparece a marca "OBJETIVO"). A origem fica registrada; quem decide publicar é o dono (princípio 10). A alternativa é trocar pelos cadernos oficiais das bancas.
 3. **Uma questão sem link da fonte:** Santa Casa 2026, questão 52 (Química, id `P054feae`). Está escondida no app até a fonte ser preenchida.
 4. **Nenhuma prova completa no banco.** Os simulados por prova cobrem só as questões de Bio, Quí, Mat e Por de cada edição, e a tela diz isso ("cobre 28 das 80 questões"). Para ter a prova inteira, é preciso importar as provas oficiais.
 5. **Catálogo nacional: 47 provas, 19 conferidas em fonte oficial.** As demais têm campos marcados "a conferir no edital".
 6. **Rede bloqueada neste ambiente.** Os sites das bancas (fuvest.br, gov.br/inep, vunesp.com.br etc.) estão fora da lista permitida. Para baixar provas e editais, é preciso liberar o acesso à rede nas configurações do ambiente.
-7. **Apps instaláveis.** Gerar o APK exige o Android SDK, e o app de iPhone exige um Mac com Xcode. Os dois ainda não foram gerados.
+7. **Apps instaláveis.** Fora do plano: o produto é um site (decisão do dono, 05/11/2026).
 
 ## Próximos passos sugeridos
 1. Liberar a rede e montar a ingestão de provas oficiais completas (ENEM e onda 1 do catálogo), com print fiel e gabarito oficial.

@@ -1,11 +1,11 @@
-# APRENDICE: o app (site + iPhone + Android)
+# APRENDICE: o site
 
-Uma base de código só. Hoje roda **localmente**: sem servidor, sem banco na nuvem, sem login real, sem publicar nada. O progresso fica salvo no aparelho; o login e a correção por IA são simulados.
+Um site (navegador no computador, no celular e no tablet). Publicado em https://aprendice.vercel.app; ainda sem servidor de contas nem banco na nuvem. O progresso fica salvo no aparelho; o login e a correção por IA são simulados.
 
 ## Tecnologia (em uma frase cada)
-- **React + TypeScript**: o app é feito de peças (telas e componentes), e o TypeScript aponta erros antes de o aluno vê-los.
+- **React + TypeScript**: o site é feito de peças (telas e componentes), e o TypeScript aponta erros antes de o aluno vê-los.
 - **Vite**: monta o site e abre a versão de desenvolvimento.
-- **Capacitor**: empacota o mesmo site como app de iPhone e de Android.
+- **Capacitor**: permitiria empacotar o site como aplicativo de loja, mas isso está fora do plano (decisão do dono, 05/11/2026).
 
 ## Como rodar no seu computador
 É preciso ter o **Node.js** (versão 20 ou mais nova) e o **Python 3** com a biblioteca Pillow.
