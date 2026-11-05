@@ -16,14 +16,14 @@ Ranking geral, do que mais aproxima da referência com custo aceitável:
 | # | Técnica | Fidelidade à referência | Custo no celular | Custo de produção | Quando usar |
 |---|---|---|---|---|---|
 | 1 | **Bake no Blender (Cycles) → GLB com textura "assada" → three.js com material barato + brilho do ambiente por cima** | Alta (é o mesmo motor que gera os PNGs aprovados) | Muito baixo | Médio (1 script `bpy` por ícone, já existe a cena) | Quase todos: célula, livros+pena, pilha+lâmpada, bússola, sólidos |
-| 2 | **2,5D a partir da própria referência: imagem + mapa de profundidade (Depth Anything V2 Small) + camadas, com leve paralaxe** | Máxima (os pixels *são* a referência) | Baixo | Baixo | Ícones que só precisam "respirar" (inclinar ±8°), sem peça que gira; **só se a referência tiver direito de uso** |
+| 2 | **2,5D a partir da própria referência: imagem + mapa de profundidade (Depth Anything V2 Small) + camadas, com leve paralaxe** | Máxima (os pixels *são* a referência) | Baixo | Baixo | Ícones que só precisam "respirar" (inclinar ±8°), sem peça que gira; uso da referência decidido pelo dono (princípio 10) |
 | 3 | **Projeção da referência sobre geometria parecida** (projetor de câmera / "Project from View") | Alta só perto do ângulo original | Baixo | Médio | Superfícies quase planas: o mapa topográfico, capas de livro |
 | 4 | **Texturas procedurais pintadas** (cores hipsométricas + curvas de nível; Voronoi para citoplasma) + normal map gerado da altura | Média (precisa de ajuste fino de paleta) | Baixo | Médio | Complemento de 1 e 3 (mapa, membrana, papel, madeira) |
 | 5 | **Matcap / rampa toon pintada** | Média; ótima para "massinha" de forma simples | Mínimo | Baixo | Átomo, sólidos geométricos, peças pequenas |
 | 6 | Pós-processamento (SSAO/N8AO, bloom) | Ajuda pouco a mais do que o bake | **Alto** no celular | Baixo | Evitar nos ícones; usar AO assada e "brilho falso" com sprite |
 | 7 | Imagem→3D por IA (TripoSR, Hunyuan3D, SF3D, TRELLIS) | Baixa: a IA reinterpreta e erra ciência | — | Alto em CPU | Não usar no produto; no máximo rascunho de forma |
 
-**Recomendação:** adotar a técnica 1 como padrão (rota principal) e a 2 como rota rápida para ícones sem peça móvel, desde que o direito de uso da referência esteja resolvido. Projeção (3) e procedural (4) entram como *fonte de textura* dentro do bake, não como técnica de tempo real separada.
+**Recomendação:** adotar a técnica 1 como padrão (rota principal) e a 2 como rota rápida para ícones sem peça móvel, com a decisão do dono sobre o uso da referência (princípio 10). Projeção (3) e procedural (4) entram como *fonte de textura* dentro do bake, não como técnica de tempo real separada.
 
 A seção 7 ("Como os profissionais fazem") mostra a receita de estúdios e designers de ícones 3D: bevel generoso, degradê + ruído na cor, luz grande e macia com AO e, para web, bake ou matcap. Ela confirma a escolha da técnica 1.
 
@@ -104,7 +104,7 @@ Uma observação honesta antes de investir: a pasta `app-atual/design/icones_rea
 - **O que esconde atrás**: um único mapa de profundidade não mostra o que está atrás da peça da frente. A solução clássica é a imagem em camadas com preenchimento (LDI + inpainting, Shih et al., CVPR 2020, código MIT) [31]. Para ícones de fundo transparente com 1 a 3 objetos, basta: separar as camadas pela profundidade ou por máscara, preencher a camada de trás com `cv2.inpaint`/LaMa e manter a inclinação pequena.
 - **Luz que se mexe**: gerar normal map da profundidade (Sobel) e somar um brilho especular discreto que acompanha a inclinação — tira a sensação de "foto colada".
 
-**Limites.** Inclinação máxima pequena (estimativa: ±8–12°); **não gira** o objeto; partes animadas (agulha, elétron, lâmpada) precisam ser camadas separadas ou peças 3D de verdade sobre o 2,5D. E, principalmente, **direito de uso**: as referências `REFERENCIA_*.png` e `referencia_vitor_3110.png` vieram do dono; antes de publicar pixels delas é preciso confirmar quem as criou e sob qual licença (princípio 10 do produto). Se forem de terceiros ou geradas por um serviço com termos restritivos, a técnica 2,5D só pode ser usada sobre **renders nossos** (Blender), não sobre a referência.
+**Limites.** Inclinação máxima pequena (estimativa: ±8–12°); **não gira** o objeto; partes animadas (agulha, elétron, lâmpada) precisam ser camadas separadas ou peças 3D de verdade sobre o 2,5D. **Uso da referência:** as referências `REFERENCIA_*.png` e `referencia_vitor_3110.png` vieram do dono; quem decide publicar pixels delas é o dono (princípio 10). Registrar a origem de cada uma.
 
 ---
 
@@ -176,7 +176,7 @@ Tudo roda nesta máquina, sem GPU. Passos por ícone `<ID>`:
 
 ## 5. Pipeline concreto da opção 2 (2,5D)
 
-Pré-requisito: direito de uso da imagem-base. Se a referência não for liberada, usar como base o PNG do nosso render.
+Imagem-base: a que o dono autorizar (princípio 10); a alternativa é o PNG do nosso render.
 
 1. **Profundidade** (CPU, uma vez por ícone):
    ```bash
