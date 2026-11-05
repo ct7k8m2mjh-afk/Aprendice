@@ -229,24 +229,157 @@ def rede_voronoi(poligono, passo, jit=0.42, semente=1, anis=(1, 1)):
         if dentro(A) and dentro(B): arestas.append((A, B))
     return arestas
 
+
+def leque(cx=585, cy=610, ang0=38, ang1=165, aneis=(215, 300), semente=4):
+    """rede da parede em leque: anéis em arco (ondulados) + raios entre eles + alças altas no topo. Devolve segmentos (A, B) em pixels."""
+    r = np.random.default_rng(semente); segs = []
+    def pt(rr, a): a = math.radians(a); return np.array([cx + rr * math.cos(a), cy - rr * math.sin(a)])
+    def ond(k, a): return 12 * math.sin(math.radians(a) * 5 + k * 1.3) + 7 * math.sin(math.radians(a) * 11 + k)
+    # anéis
+    for k, rr in enumerate(aneis):
+        angs = np.linspace(ang0, ang1, 60)
+        P = [pt(rr + ond(k, a), a) for a in angs]
+        segs += [(P[i], P[i + 1]) for i in range(len(P) - 1)]
+    # raios entre anéis (desencontrados)
+    for k in range(len(aneis) - 1):
+        passo = 360 * 36 / (2 * math.pi * aneis[k + 1])
+        a = ang0 + (k % 2) * passo / 2
+        while a <= ang1:
+            aj = a + (r.random() - 0.5) * passo * 0.6
+            segs.append((pt(aneis[k] + ond(k, aj), aj), pt(aneis[k + 1] + ond(k + 1, aj), aj)))
+            a += passo
+    # alças altas: pernas a partir do anel externo, topo arredondado; altura maior no meio do leque
+    rr0 = aneis[-1]; a = ang0 + 2
+    while a < ang1 - 3:
+        larg = 4.5 + r.random() * 3.5; a2 = a + larg
+        meio = math.sin(math.radians((a + a2) / 2 - ang0) / (ang1 - ang0) * 180 * math.pi / 180) if False else math.sin(math.pi * ((a + a2) / 2 - ang0) / (ang1 - ang0))
+        H = 25 + meio * (95 + r.random() * 45) + (r.random() - 0.5) * 30
+        b1 = pt(rr0 + ond(2, a), a); b2 = pt(rr0 + ond(2, a2), a2)
+        t1 = pt(rr0 + H, a); t2 = pt(rr0 + H, a2)
+        segs.append((b1, t1)); segs.append((b2, t2))
+        cen = (t1 + t2) / 2; raio_a = np.linalg.norm(t2 - t1) / 2; dirn = (cen - np.array([cx, cy])); dirn /= np.linalg.norm(dirn)
+        ortn = np.array([dirn[1], -dirn[0]]); prev = t1
+        for i in range(1, 9):
+            th = math.pi * i / 8; q = cen + ortn * (-raio_a * math.cos(th)) * (1 if np.dot(t1 - cen, ortn) < 0 else -1) + dirn * raio_a * math.sin(th)
+            segs.append((prev, q)); prev = q
+        segs.append((prev, t2))
+        if r.random() < 0.35:  # travessa no meio da alça
+            m1 = pt(rr0 + H * 0.5, a); m2 = pt(rr0 + H * 0.5, a2); segs.append((m1, m2))
+        a = a2 + (0.6 if r.random() < 0.7 else 3.0)
+    return segs
+
+
+def leque_voronoi(cx=585, cy=612, ang0=36, ang1=172, r_in=175, semente=6, passo_t=26, passo_r=78):
+    """rede orgânica em leque: Voronoi no espaço (arco, raio), células alongadas no sentido do raio,
+    contorno de cima ondulado (as ondas viram as alças altas)."""
+    from scipy.spatial import Voronoi
+    rg = np.random.default_rng(semente); RM = 300.0
+    def r_top(a):  # a em graus
+        m = math.sin(math.pi * (a - ang0) / (ang1 - ang0))
+        esq = max(0.0, (a - 122) / (ang1 - 122))
+        return 262 + 40 * m + 10 * math.sin(math.radians(a) * 9) + 120 * esq ** 0.8
+    pts = []
+    for j, rr in enumerate(np.arange(r_in - passo_r, 470 + passo_r, passo_r)):
+        for x in np.arange(math.radians(ang0) * RM - passo_t * 2 + (j % 2) * passo_t / 2, math.radians(ang1) * RM + passo_t * 2, passo_t):
+            pts.append((x + (rg.random() - .5) * 0.55 * passo_t, rr + (rg.random() - .5) * 0.5 * passo_r))
+    vor = Voronoi(np.array(pts)); segs = []
+    def dentro(q):
+        a = math.degrees(q[0] / RM); return ang0 <= a <= ang1 and r_in <= q[1] <= r_top(a)
+    def tela(q):
+        a = q[0] / RM; return np.array([cx + q[1] * math.cos(a), cy - q[1] * math.sin(a)])
+    for a_, b_ in vor.ridge_vertices:
+        if a_ < 0 or b_ < 0: continue
+        A, B = vor.vertices[a_], vor.vertices[b_]
+        if dentro(A) and dentro(B):
+            n = max(2, int(np.hypot(*(B - A)) / 8)); Q = [tela(A + (B - A) * t) for t in np.linspace(0, 1, n + 1)]
+            segs += [(Q[i], Q[i + 1]) for i in range(n)]
+    # contorno de cima (ondulado) e laterais
+    angs = np.linspace(ang0, ang1, 240); Q = [tela((math.radians(a) * RM, r_top(a))) for a in angs]
+    segs += [(Q[i], Q[i + 1]) for i in range(len(Q) - 1)]
+    return segs
+
+
+def alcas(cx=585, cy=612, ang0=42, ang1=124, semente=8):
+    """alças altas e estreitas no topo do leque: pernas no sentido do raio, topo arredondado, alturas variadas."""
+    rg = np.random.default_rng(semente); segs = []
+    def pt(rr, a): a = math.radians(a); return np.array([cx + rr * math.cos(a), cy - rr * math.sin(a)])
+    def base(a): m = math.sin(math.pi * (a - 36) / (168 - 36)); return 262 + 40 * m + 10 * math.sin(math.radians(a) * 9)
+    a = ang0 + 3
+    while a < ang1 - 4:
+        larg = 3.6 + rg.random() * 2.4; a2 = a + larg; am = (a + a2) / 2
+        m = math.sin(math.pi * (am - 36) / (150 - 36))
+        H = 30 + m * 125 + (rg.random() - 0.4) * 45
+        r0a, r0b = base(a), base(a2); topo = max(r0a, r0b) + H
+        # pernas levemente onduladas
+        for (aa, r0) in ((a, r0a), (a2, r0b)):
+            pts = [pt(r0 + (topo - r0) * t, aa + 0.6 * math.sin(t * 3 + aa)) for t in np.linspace(0, 1, 6)]
+            segs += [(pts[i], pts[i + 1]) for i in range(5)]
+        # topo arredondado (semicírculo no plano da tela)
+        t1 = pt(topo, a + 0.6 * math.sin(3 + a)); t2 = pt(topo, a2 + 0.6 * math.sin(3 + a2)); c = (t1 + t2) / 2
+        rad = np.linalg.norm(t2 - t1) / 2; dirn = (c - np.array([cx, cy])) / np.linalg.norm(c - np.array([cx, cy])); ort = (t1 - c) / max(1e-6, rad)
+        prev = t1
+        for i in range(1, 11):
+            th = math.pi * i / 10; q = c + ort * rad * math.cos(th) + dirn * rad * 1.15 * math.sin(th); segs.append((prev, q)); prev = q
+        if rg.random() < 0.3:
+            k = 0.35 + rg.random() * 0.3; segs.append((pt(r0a + (topo - r0a) * k, a), pt(r0b + (topo - r0b) * k, a2)))
+        a = a2 + (0.0 if rg.random() < 0.55 else 2.2 + rg.random() * 2)
+    return segs
+
+
+CONTORNO_REDE = [(200, 560), (208, 470), (222, 400), (245, 345), (290, 300), (350, 258), (410, 205), (462, 165), (530, 152), (600, 146),
+                 (680, 160), (742, 200), (782, 262), (792, 350), (772, 430), (700, 442), (600, 432), (480, 442), (400, 520), (330, 582), (262, 602)]
+def rede_parede(cx=600, cy=625, semente=6, passo_t=23, passo_r=110):
+    """rede da parede: Voronoi no espaço (arco, raio) em volta do núcleo, recortado pelo contorno da referência.
+    Células alongadas no sentido do raio (aberturas altas e estreitas)."""
+    from scipy.spatial import Voronoi
+    rg = np.random.default_rng(semente); RM = 320.0
+    pol = np.array(CONTORNO_REDE, float)
+    # contorno arredondado (Chaikin)
+    for _ in range(3):
+        q = []
+        for i in range(len(pol)):
+            a_, b_ = pol[i], pol[(i + 1) % len(pol)]; q += [0.75 * a_ + 0.25 * b_, 0.25 * a_ + 0.75 * b_]
+        pol = np.array(q)
+    def dentro(p):
+        x, y = p; c = False; n = len(pol)
+        for i in range(n):
+            (x1, y1), (x2, y2) = pol[i], pol[(i + 1) % n]
+            if (y1 > y) != (y2 > y) and x < (x2 - x1) * (y - y1) / (y2 - y1) + x1: c = not c
+        return c
+    def tela(q):
+        a = q[0] / RM; return np.array([cx + q[1] * math.cos(a), cy - q[1] * math.sin(a)])
+    pts = []
+    for j, rr in enumerate(np.arange(120, 560, passo_r)):
+        for x in np.arange(math.radians(15) * RM + (j % 2) * passo_t / 2, math.radians(195) * RM, passo_t * (1 + 0.15 * (rr < 330))):
+            pts.append((x + (rg.random() - .5) * 0.45 * passo_t, rr + (rg.random() - .5) * 0.18 * passo_r))
+    vor = Voronoi(np.array(pts)); segs = []
+    for a_, b_ in vor.ridge_vertices:
+        if a_ < 0 or b_ < 0: continue
+        A, B = vor.vertices[a_], vor.vertices[b_]
+        n = max(2, int(np.hypot(*(B - A)) / 6)); Q = [tela(A + (B - A) * t) for t in np.linspace(0, 1, n + 1)]
+        ok = [dentro(q) for q in Q]
+        for i in range(n):
+            if ok[i] and ok[i + 1]: segs.append((Q[i], Q[i + 1]))
+    segs += [(pol[i], pol[(i + 1) % len(pol)]) for i in range(len(pol))]
+    return segs
+
 def projeta_aresta(A, B, dpx=6, folga=0.009):
     n = max(2, int(np.hypot(*(B - A)) / dpx)); out = []
     for t in np.linspace(0, 1, n + 1):
         u, v = A + (B - A) * t; p, nr = na_tela(u, v)
         if p is None: return None
+        if nr.dot((p - Vector((0, 0, 1))).normalized()) > 0.75: return None   # caiu na casca de fora: descarta
         out.append(p + nr * folga)
     return out
 
 def rede_turquesa():
     m = material('turquesa', '#14a3c7', rug=0.38, coat=0.35, sss=0.05)
     # regiões da referência (pixels 1080): parede esquerda densa, parede de cima com alças altas, piso com malha larga
-    regioes = [  # (polígono na tela, passo px, anisotropia (larg, alt), semente)
-        ([(235, 560), (232, 470), (250, 400), (290, 340), (330, 300), (380, 278), (425, 300), (432, 360), (420, 430), (400, 500), (370, 545), (330, 562), (290, 578)], 21, (1.0, 1.35), 11),
-        ([(382, 285), (430, 205), (520, 168), (640, 158), (730, 172), (785, 215), (792, 330), (802, 430), (762, 472), (650, 470), (540, 470), (432, 440), (405, 360)], 25, (0.62, 3.1), 12),
+    regioes = [  # (polígono na tela, passo px, anisotropia (larg, alt), semente) — só o piso; a parede é o leque
         ([(742, 440), (800, 428), (858, 468), (880, 540), (850, 600), (800, 612), (760, 560)], 28, (1.45, 0.8), 13),
         ([(482, 640), (560, 700), (650, 732), (722, 746), (800, 702), (870, 652), (882, 600), (800, 602), (700, 640), (600, 652), (520, 630)], 33, (1.85, 0.75), 14),
     ]
-    todas = []
+    todas = [(np.array(A, float), np.array(B, float)) for A, B in rede_parede()]
     for pol, passo, anis, sd in regioes:
         for A, B in rede_voronoi(pol, passo, semente=sd, anis=anis): todas.append((A, B))
     k = 0; juntas = {}
@@ -257,7 +390,7 @@ def rede_turquesa():
         for P in (A, B):
             key = (round(P[0]), round(P[1])); juntas[key] = juntas.get(key, 0) + 1
     for (u, v), c in juntas.items():
-        if c >= 2:
+        if c >= 3:
             p, nr = na_tela(u, v)
             if p is not None: esfera('junta', p + nr * 0.009, 0.0125, m, seg=12)
     return m
@@ -606,7 +739,7 @@ def ninho_e_ouro(m_turq):
     eixo = (nr * 0.55 - fwd * 0.6 + rt * 0.35).normalized()     # boca virada para quem olha, à direita
     s_ = escala_px(p); Rb = 72 * s_; prof = 0.24
     centro_boca = p + nr * 0.05
-    escuro = material('ninho', '#0d3442', rug=0.85)
+    escuro = material('ninho', '#123f4f', rug=0.85)
     # concha do ninho (superfície escura por dentro), perfil de funil
     bm = bmesh.new(); n = 48; aneis = 10; vs = []
     for j in range(aneis + 1):
@@ -620,18 +753,18 @@ def ninho_e_ouro(m_turq):
     # cordões turquesa sobre a concha: Voronoi no espaço (ângulo, profundidade), projetado na superfície
     from scipy.spatial import Voronoi
     r = np.random.default_rng(5); pts = []
-    for j in range(9):
-        for k in range(22): pts.append(((k + 0.5 * (j % 2) + (r.random() - .5) * 0.5) / 22, (j - 0.5 + (r.random() - .5) * 0.5) / 7.5))
+    for j in range(14):
+        for k in range(26): pts.append(((k + 0.5 * (j % 2) + (r.random() - .5) * 0.6) / 26, (j - 1.0 + (r.random() - .5) * 0.6) / 11.0))
     pts = np.array(pts); pts = np.concatenate([pts, pts + [1, 0], pts - [1, 0]])
     vor = Voronoi(pts); M = conc.matrix_world
     def sup(a, f):
-        rr = Rb * (1 - 0.82 * max(0, min(1, f)) ** 1.4) + 0.008; z = -prof * max(0, min(1, f))
+        rr = Rb * (1 - 0.82 * max(0, min(1, f)) ** 1.4) - 0.009; z = -prof * max(0, min(1, f))
         return M @ Vector((rr * math.cos(2 * math.pi * a), rr * math.sin(2 * math.pi * a), z))
     k = 0
     for a_, b_ in vor.ridge_vertices:
         if a_ < 0 or b_ < 0: continue
         A, B = vor.vertices[a_], vor.vertices[b_]
-        if not (0 <= A[0] < 1 and 0 <= B[0] <= 1.05 and -0.05 <= A[1] <= 0.95 and -0.05 <= B[1] <= 0.95): continue
+        if not (0 <= A[0] < 1 and 0 <= B[0] <= 1.05 and 0.12 <= A[1] <= 0.96 and 0.12 <= B[1] <= 0.96): continue
         if abs(A[0] - B[0]) > 0.5: continue
         seg = [sup(*(A + (B - A) * t)) for t in np.linspace(0, 1, 6)]
         curva(f'ninho_c{k}', seg, 0.009, m_turq); k += 1
