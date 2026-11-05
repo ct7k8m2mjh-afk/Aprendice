@@ -7,7 +7,7 @@ description: Como escrever, revisar ou corrigir resoluções comentadas de quest
 
 Este guia junta duas fontes:
 1. **O padrão que já está no app.** São 2.916 resoluções em `app-atual/*/res/*.json`, revisadas em lentes. Ele manda no formato.
-2. **Como os bons professores resolvem em vídeo.** São cerca de 50 resoluções por matéria, de canais de vestibular, analisadas a partir de 05/11/2026; as anotações de cada vídeo estão em `docs/pesquisa/videos-resolucao/`. Elas mandam no método: a ordem de raciocínio, o que destacar e onde o aluno erra.
+2. **Como os bons professores resolvem em vídeo.** São 433 resoluções de canais de vestibular, cerca de 50 por matéria (83 em Português, que inclui Literatura), analisadas em 05/11/2026; as anotações de cada vídeo estão em `docs/pesquisa/videos-resolucao/`. As anotações foram geradas por IA a partir dos vídeos e algumas têm erros de conta ou de fato. Os guias por matéria já descartaram essas anotações e as listam. Nunca use uma anotação como fonte de fato sem conferir. Elas mandam no método: a ordem de raciocínio, o que destacar e onde o aluno erra.
 
 Quando as duas fontes divergem, vale o formato do app, porque o aluno lê no celular e não assiste a uma aula.
 
