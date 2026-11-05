@@ -19,7 +19,7 @@ Fale com o dono do produto em português do Brasil, direto, passo a passo, sem a
 7. **Nunca perder progresso do aluno.** Mudança de formato de dados exige migração; ids existentes não mudam.
 8. **Visual profissional:** nada de emoji nem visual "de IA"; ícones 3D realistas (estilo de referência em `app-atual/design/icones_real/foto3d/ref3110/`); tema claro padrão e escuro; ótimo no celular e no desktop; acessível.
 9. **Conferir antes de entregar:** ver o resultado renderizado (claro, escuro, 390 px) e rodar os testes. Nunca declarar pronto sem ver.
-10. **Direitos e privacidade:** só publicar conteúdo de terceiros (prints, figuras, logos) com direito de uso verificado; logos oficiais só onde identificam a prova (simulado por universidade), de fonte com licença. Nunca enviar dado pessoal do usuário a serviços de terceiros sem necessidade; LGPD.
+10. **Direitos e privacidade:** **quem decide o que de terceiros vai ao site (questões, prints, figuras, logos) é o dono** (decisão do dono, 05/11/2026). O Claude registra de onde veio cada item e, quando houver risco de direito autoral, informa o dono uma vez, de forma objetiva, sem bloquear a publicação que o dono autorizou. Logos oficiais só onde identificam a prova (simulado por universidade). Nunca enviar dado pessoal do usuário a serviços de terceiros sem necessidade; LGPD.
 11. **Acabamento acima de velocidade.**
 
 ## Identidade
@@ -54,5 +54,5 @@ Banco atual: Bio 507 · Quí 569 · Mat 610 · Por 535 questões (concentradas e
 ## O que precisa mudar para virar produto público
 - Tirar tudo que é pessoal do protótipo: nome fixo na saudação, a arte de capa de Biologia com o rosto do aluno, a prioridade fixa em São Camilo (vira escolha do usuário: provas-alvo).
 - Banco nacional: ENEM e vestibulares de todas as regiões, com raio-x por instituição; mesmo padrão de fonte e gabarito.
-- Revisar os direitos de uso das fontes dos prints (muitos vêm de PDFs de cursinhos e páginas de sites didáticos) antes de abrir ao público.
+- Manter registrada a origem de cada print (prova oficial, PDF de cursinho, site didático), para o dono decidir sobre direitos de uso; a decisão de publicar é do dono.
 - Pendências herdadas: logo da Unesp; escadas incompletas (a maioria com menos de 10 degraus); mais visuais em Mat e Por; lacunas de flashcards em `docs/estado-escadas-01-11.md`.

@@ -48,3 +48,5 @@ Imagem enviada nunca é "por enviar": tem uso, e o uso fica registrado.
 - O site pode ter **Questões Aprendice** (criadas por ele), revisadas pela banca de especialistas e sempre identificadas.
 - Uma banca de especialistas (doutores/mestres) por matéria resolve e revisa as questões.
 - Toda mudança no `CLAUDE.md` é aplicada em todos os arquivos do projeto.
+- Direitos autorais: quem decide o que de terceiros vai ao site é o dono. O Claude registra a origem e avisa riscos, sem bloquear.
+- Site publicado em link público por decisão do dono (05/11/2026).
