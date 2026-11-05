@@ -50,3 +50,5 @@ Imagem enviada nunca é "por enviar": tem uso, e o uso fica registrado.
 - Toda mudança no `CLAUDE.md` é aplicada em todos os arquivos do projeto.
 - Direitos autorais: quem decide o que de terceiros vai ao site é o dono. O Claude registra a origem e avisa riscos, sem bloquear.
 - Site publicado em link público por decisão do dono (05/11/2026).
+
+- 05/11/2026: tarefa da célula 3D cancelada. Decisão: o site passará a usar só ícones sem animação. Não mexer nos ícones até o dono mandar.
