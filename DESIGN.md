@@ -1,6 +1,6 @@
 ---
 name: APRENDICE
-description: Estudo para vestibular de Medicina pelas questões reais das provas, em folhas brancas sobre papel cinza, uma cor por matéria.
+description: Site de estudo para vestibulares pelas questões reais das provas, em folhas brancas sobre papel cinza, uma cor por matéria.
 colors:
   papel: "#F1F1EE"
   folha: "#FFFFFF"
@@ -210,7 +210,7 @@ Tema claro é o padrão; o escuro troca papel e folha por grafites quase pretos 
 Uma base acromática levemente quente, três cores semânticas e um círculo de cores de matéria que entram por escopo (`.m-<id>`), nunca soltas na interface.
 
 ### Primary
-- **Cor da matéria** (`--c` / `--t` / `--ink`, definidos por matéria em `app/src/dados/materias.ts` e injetados por `EstiloMaterias` como `.m-<id>`, nos dois temas): `--c` preenche (botão, barra, anel, ponto da navegação, borda do item atual), `--t` é a versão do texto sobre a folha com contraste AA (título da matéria, links e destaques dentro da matéria) e `--ink` é o texto sobre `--c`. Biologia verde (`bio-c`), Química magenta (`qui-c`), Matemática verde-água (`mat-c`), Português amarelo (`por-c`, com texto âmbar escuro `por-t` e tinta escura sobre o amarelo). As matérias em preparação já têm matiz reservado: Física azul, História terracota, Geografia oliva, Inglês violeta, Filosofia e Sociologia castanho, Redação ardósia.
+- **Cor da matéria** (`--c` / `--t` / `--ink`, definidos por matéria em `app/src/dados/materias.ts` e injetados por `EstiloMaterias` como `.m-<id>`, nos dois temas): `--c` preenche (botão, barra, anel, ponto da navegação, borda do item atual), `--t` é a versão do texto sobre a folha com contraste AA (título da matéria, links e destaques dentro da matéria) e `--ink` é o texto sobre `--c`. Biologia verde (`bio-c`), Química magenta (`qui-c`), Matemática verde-água (`mat-c`), Português amarelo (`por-c`, com texto âmbar escuro `por-t` e tinta escura sobre o amarelo). As matérias em preparação já têm matiz reservado: Física azul, História terracota, Geografia oliva, Inglês violeta, Filosofia e Sociologia castanho (Redação não é matéria do site).
 - **Lavagens da matéria** (`--sv` = 13% de `--c` sobre a folha; `--sv2` = 7%): fundo do ladrilho das ilustrações 3D, do ícone em quadradinho de linhas e atalhos, da alternativa selecionada, da questão respondida na folha de respostas, da caixa "A ideia-chave".
 - **Grafite neutro** (`neutro-c`, e `neutro-c-escuro` no tema escuro): é o valor de `--c`/`--t` fora de qualquer matéria. Botões e destaques das telas gerais (simulados, revisão, configurações) usam esse grafite.
 

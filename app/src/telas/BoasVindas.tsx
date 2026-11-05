@@ -31,7 +31,7 @@ export function BoasVindas() {
         <div className="bv-ilus">
           {MATERIAS_PRINCIPAIS.filter((m) => temIlu(m.id)).map((m, i) => <span key={m.id} className="bv-ilu" style={{ animationDelay: `${i * 90}ms` }}><IluMateria m={m.id} /></span>)}
         </div>
-        <p className="bv-frase">Questões reais das provas de Medicina, do jeito que a banca cobra.</p>
+        <p className="bv-frase">Questões reais dos vestibulares, do jeito que a banca cobra.</p>
       </div>
       <div className="bv-form">
         <Logo className="bv-logo-cel" />
@@ -56,7 +56,7 @@ export function BoasVindas() {
         {passo === 1 && (
           <div className="bv-corpo">
             <h1>Quais provas você vai fazer?</h1>
-            <p className="miolo">O app prioriza o que essas provas cobram: simulados, sugestões e treinos. Dá para mudar depois no perfil.</p>
+            <p className="miolo">O site prioriza o que essas provas cobram: simulados, sugestões e treinos. Dá para mudar depois no perfil.</p>
             <EscolhaProvas valor={provas} aoMudar={setProvas} />
             <div className="bv-acoes">
               <button className="btn fantasma" onClick={() => setPasso(0)}><Icone nome="esquerda" /> Voltar</button>

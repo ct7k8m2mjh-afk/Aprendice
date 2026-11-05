@@ -14,7 +14,7 @@ export function ListaMaterias() {
   useTitulo('Matérias');
   return (
     <div className="conteudo">
-      <div className="titulo-pag"><div><h1>Matérias</h1><p className="sub">Todas as matérias do vestibular de Medicina.</p></div></div>
+      <div className="titulo-pag"><div><h1>Matérias</h1><p className="sub">Todas as matérias do vestibular.</p></div></div>
       <div className="grade g2">
         {MATERIAS.map((m) => (
           <Link key={m.id} to={`/m/${m.id}`} className={`linha-mat m-${m.id}` + (m.ativa ? '' : ' inativa')}>
@@ -66,7 +66,7 @@ function EmPreparacao({ m }: { m: MateriaId }) {
           {`As questões de ${info.nome} chegam com a importação das provas completas: cada uma com o print fiel da prova, a fonte (prova, ano, número, link) e o gabarito oficial. Nenhuma questão é criada ou redigitada.`}
         </p>
         <ol className="preparo-passos">
-          <li><b>Provas completas</b><span>ENEM e vestibulares de Medicina de todas as regiões, baixados da fonte oficial.</span></li>
+          <li><b>Provas completas</b><span>ENEM e vestibulares de todas as regiões, baixados da fonte oficial.</span></li>
           <li><b>Gabarito publicado</b><span>Sem gabarito oficial ou resolução reconhecida, a questão não entra.</span></li>
           <li><b>Resolução revisada</b><span>Revisão em lentes: fatos contra a fonte, depois utilidade e estilo de prova.</span></li>
         </ol>

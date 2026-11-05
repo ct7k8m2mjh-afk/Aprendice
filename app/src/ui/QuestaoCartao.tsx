@@ -88,7 +88,7 @@ export function EnunciadoQuestao({ m, q, numero, print }: { m?: MateriaId; q: Qu
         </button>
       ) : (
         <div className="q-texto" aria-label="Texto da questão">
-          <p className="aviso-previa"><Icone nome="info" tam={15} /> Nesta prévia o print original não está incluído; o app completo mostra o print fiel da prova.</p>
+          <p className="aviso-previa"><Icone nome="info" tam={15} /> Nesta prévia o print original não está incluído; o site completo mostra o print fiel da prova.</p>
           <p style={{ whiteSpace: 'pre-line' }}>{q.enun}</p>
         </div>
       )}

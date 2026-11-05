@@ -3,7 +3,9 @@
 ## O produto
 APRENDICE é um site de estudos para quem se prepara para **vestibulares em todo o Brasil**. O aluno estuda pelas questões reais das provas (ENEM e vestibulares próprios das faculdades públicas e privadas, de todas as regiões), organizadas por nível de dificuldade, cada uma com resolução comentada. Para cada matéria, além das questões, haverá teoria em cartões, flashcards curtos e simulados por universidade.
 
-Hoje existe um protótipo funcional em HTML estático com 4 matérias (Biologia, Química, Matemática, Português), feito para um aluno e por isso com banco concentrado em provas de São Paulo. O objetivo agora é transformá-lo em um **site** para o público geral, acessado pelo navegador no computador, no celular e no tablet (não é aplicativo de loja): contas de usuário, progresso salvo na nuvem, banco nacional de questões e todas as matérias do vestibular (incluir Física, História, Geografia, Inglês, Filosofia/Sociologia, Redação).
+Hoje existe um protótipo funcional em HTML estático com 4 matérias (Biologia, Química, Matemática, Português), feito para um aluno e por isso com banco concentrado em provas de São Paulo. O objetivo agora é transformá-lo em um **site** para o público geral, acessado pelo navegador no computador, no celular e no tablet (não é aplicativo de loja): contas de usuário, progresso salvo na nuvem, banco nacional de questões e todas as matérias do vestibular (incluir Física, História, Geografia, Inglês, Filosofia e Sociologia; Redação não é matéria do site — decisão do dono, 03/11/2026).
+
+**Regra de manutenção (decisão do dono, 05/11/2026):** toda vez que o dono alterar este arquivo, a mudança é aplicada na hora em todos os outros arquivos do projeto que tratam do mesmo assunto — `PRODUCT.md`, `DESIGN.md`, `README.md`s, `docs/`, briefs da banca (`ferramentas/fabrica/agentes/`), textos do site e código. Nada pode contradizer o `CLAUDE.md`. Ao terminar, informe o que foi alterado em cada arquivo. (`docs/historico/` é registro do passado e não se altera.)
 
 Fale com o dono do produto em português do Brasil, direto, passo a passo, sem assumir conhecimento técnico. Antes de escrever código, apresente o plano e espere aprovação. Enumere as tarefas e informe cada uma ao terminar.
 
@@ -11,7 +13,7 @@ Fale com o dono do produto em português do Brasil, direto, passo a passo, sem a
 1. **Questões reais e questões do Aprendice.** Questão de prova é real, publicada, com a fonte (prova, ano, número, link); nunca "reconstruir" nem alterar questão de prova. O site **pode ter questões criadas por ele** (decisão do dono, 05/11/2026), desde que: tenham como base o que se cobra em cada matéria (raio-x das provas); sejam resolvidas, corrigidas e analisadas pela banca de especialistas da matéria em todas as lentes antes de ir ao ar; e apareçam sempre identificadas como "Questão Aprendice", nunca como questão de vestibular. Questão de prova **só de texto** aparece escrita, copiada da camada de texto da prova oficial e organizada como a banca organizou (parágrafos, versos, alinhamento, negrito/itálico), com a fonte entre parênteses — decisão do dono, 02/11/2026. **Proibido** transcrever questão com imagem, figura geométrica, gráfico, tabela ou fórmula: essas aparecem como print fiel. O print original fica sempre disponível.
 2. **Gabarito de questão de prova só de fonte publicada** (oficial ou resolução reconhecida); sem gabarito publicado, a questão não entra. Questão Aprendice: gabarito definido pelo especialista da matéria e confirmado de forma independente pela lente de fatos.
 3. **Zero erro em material de estudo.** Resoluções, teoria, flashcards e frases têm fonte e passam por **revisão em lentes sucessivas** com agentes diferentes: 1ª lente confere fatos contra a fonte; 2ª lente confere utilidade, tamanho e estilo de prova; a 1ª lente volta em tudo que mudou. Nada vai ao ar sem isso.
-4. **A prova manda.** Prioridade de conteúdo, simulados e treinos vem do que as provas de Medicina realmente cobram (raio-x por instituição: temas, frequência, formato). O aluno escolhe as provas-alvo e o site prioriza por elas.
+4. **A prova manda.** Prioridade de conteúdo, simulados e treinos vem do que as provas realmente cobram (raio-x por instituição: temas, frequência, formato). O aluno escolhe as provas-alvo e o site prioriza por elas.
 5. **Errar ensina.** A resolução explica a alternativa que o aluno marcou, não só a certa (origem de cada distrator).
 6. **Rotina sem atrito.** Retomar de onde parou, pausar, responder pelo teclado, revisão espaçada dos erros.
 7. **Nunca perder progresso do aluno.** Mudança de formato de dados exige migração; ids existentes não mudam.
@@ -51,6 +53,6 @@ Banco atual: Bio 507 · Quí 569 · Mat 610 · Por 535 questões (concentradas e
 
 ## O que precisa mudar para virar produto público
 - Tirar tudo que é pessoal do protótipo: nome fixo na saudação, a arte de capa de Biologia com o rosto do aluno, a prioridade fixa em São Camilo (vira escolha do usuário: provas-alvo).
-- Banco nacional: ENEM e vestibulares de Medicina de todas as regiões, com raio-x por instituição; mesmo padrão de fonte e gabarito.
+- Banco nacional: ENEM e vestibulares de todas as regiões, com raio-x por instituição; mesmo padrão de fonte e gabarito.
 - Revisar os direitos de uso das fontes dos prints (muitos vêm de PDFs de cursinhos e páginas de sites didáticos) antes de abrir ao público.
 - Pendências herdadas: logo da Unesp; escadas incompletas (a maioria com menos de 10 degraus); mais visuais em Mat e Por; lacunas de flashcards em `docs/estado-escadas-01-11.md`.

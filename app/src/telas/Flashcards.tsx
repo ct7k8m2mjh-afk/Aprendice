@@ -58,7 +58,7 @@ export function Flashcards({ sessao = false }: { sessao?: boolean }) {
     return (
       <div className={`conteudo estreito m-${m}`}>
         <nav className="migalhas"><Link to={`/m/${m}`}>{info.nome}</Link><Icone nome="direita" tam={14} /><span>Flashcards</span></nav>
-        <div className="titulo-pag"><div><h1>Flashcards de {info.nome}</h1><p className="sub">Pergunta curta no estilo das discursivas, resposta em uma frase. Você escreve, o app corrige e você confirma.</p></div></div>
+        <div className="titulo-pag"><div><h1>Flashcards de {info.nome}</h1><p className="sub">Pergunta curta no estilo das discursivas, resposta em uma frase. Você escreve, o site corrige e você confirma.</p></div></div>
         <div className="fl-resumo folha">
           <div><b className="num">{venc}</b><span>para revisar hoje</span></div>
           <div><b className="num">{novos}</b><span>novos</span></div>

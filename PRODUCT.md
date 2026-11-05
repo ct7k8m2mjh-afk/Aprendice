@@ -15,15 +15,15 @@ delegated: React 18 + TypeScript + Vite, HashRouter, Capacitor 6. Escolhido porq
 
 ## Users
 
-Estudantes que se preparam para vestibulares de Medicina em todo o Brasil (ENEM e provas próprias de faculdades públicas e privadas). Estudam todos os dias, muitas vezes no celular, em sessões curtas entre aulas e longas em casa; fazem muitos simulados e revisam erros.
+Estudantes que se preparam para vestibulares em todo o Brasil (ENEM e provas próprias de faculdades públicas e privadas). O produto é um **site**, usado no navegador do computador, do celular e do tablet; não é aplicativo de loja. Estudam todos os dias, muitas vezes no celular, em sessões curtas entre aulas e longas em casa; fazem muitos simulados e revisam erros.
 
 ## Product Purpose
 
-Estudar pelas questões reais das provas: escadas de dificuldade por conteúdo, resolução comentada que explica a alternativa marcada, teoria em cartões, flashcards curtos, treino geral e simulados (prova inteira ou por objetivo), com revisão espaçada dos erros. Sucesso = o aluno volta todo dia, retoma de onde parou e erra menos o que já errou.
+Estudar pelas questões reais das provas: questões organizadas por nível de dificuldade (básico, intermediário, avançado), resolução comentada que explica a alternativa marcada, teoria em cartões, flashcards curtos, treino geral e simulados (só prova inteira, por instituição e ano), com revisão espaçada dos erros. Sucesso = o aluno volta todo dia, retoma de onde parou e erra menos o que já errou.
 
 ## Positioning
 
-Só questões reais com fonte e gabarito publicado, priorizadas pelo que as provas-alvo do aluno realmente cobram (raio-x por instituição), e material revisado em lentes sucessivas.
+Questões reais de prova com fonte e gabarito publicado, mais Questões Aprendice (criadas pelo site, revisadas pela banca de especialistas e sempre identificadas como tal), priorizadas pelo que as provas-alvo do aluno realmente cobram (raio-x por instituição), e material revisado em lentes sucessivas.
 
 ## Operating Context
 
@@ -36,7 +36,7 @@ Só questões reais com fonte e gabarito publicado, priorizadas pelo que as prov
 - Fase atual (01/11/2026): protótipo completo rodando só localmente; sem servidor, banco na nuvem, login real ou publicação. Progresso no aparelho; login e IA simulados.
 - Vocabulário fixo: escada/degrau, treino geral, simulado, flashcard, faixa de temas.
 - Ids de questão e de cartão nunca mudam; mudança de formato exige migração.
-- Matérias: Biologia, Química, Matemática, Português (com conteúdo); Física, História, Geografia, Inglês, Filosofia/Sociologia, Redação (estrutura; questões vêm da fábrica de conteúdo).
+- Matérias: Biologia, Química, Matemática, Português (com conteúdo); Física, História, Geografia, Inglês, Filosofia, Sociologia (estrutura; questões vêm da fábrica de conteúdo).
 
 ## Brand Commitments
 

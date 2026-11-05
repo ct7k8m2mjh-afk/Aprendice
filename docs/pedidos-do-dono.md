@@ -40,3 +40,11 @@ Imagem enviada nunca é "por enviar": tem uso, e o uso fica registrado.
 - Nada é tirado/copiado/projetado da imagem de referência: copiar perde a qualidade original.
 - Tudo é CRIADO (modelado, pintado de forma procedural em alta resolução, ou assado da nossa própria cena 3D) para ficar
   igual à referência. A referência serve só para olhar e comparar lado a lado.
+
+
+## Decisões de 05/11/2026
+- O produto é um **site** (navegador no computador, celular e tablet), não aplicativo de loja.
+- Público: vestibulares em geral de todo o Brasil, não só Medicina.
+- O site pode ter **Questões Aprendice** (criadas por ele), revisadas pela banca de especialistas e sempre identificadas.
+- Uma banca de especialistas (doutores/mestres) por matéria resolve e revisa as questões.
+- Toda mudança no `CLAUDE.md` é aplicada em todos os arquivos do projeto.

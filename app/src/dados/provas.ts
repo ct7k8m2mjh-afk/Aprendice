@@ -96,7 +96,7 @@ export const PROVAS_EM_PREPARO: { catalogoId: string; titulo: string; motivo: st
   { catalogoId: 'einstein', titulo: 'Einstein 2020 a 2026', motivo: 'caderno a baixar manualmente (site da Vunesp)' },
 ];
 
-/** Escolas do banco que são provas de Medicina com catálogo (podem ser provas-alvo com questões). */
+/** Escolas do banco que têm catálogo de vestibular (podem ser provas-alvo com questões). */
 export function escolasComQuestoes(materias: MateriaCarregada[]): Map<string, number> {
   const n = new Map<string, number>();
   for (const mc of materias) for (const q of mc.banco) {

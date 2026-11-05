@@ -73,7 +73,9 @@ DEMO=1 node scripts/prints.cjs pasta-de-saida
 
 Tira os prints de todas as telas nos temas claro e escuro, em celular (390 px) e computador. Com `DEMO=1`, usa progresso de demonstração.
 
-## Gerar os apps de celular
+## Apps de celular (fora do plano)
+
+O produto é um **site** (decisão do dono, 05/11/2026); aplicativo de loja não está no plano. Os comandos abaixo ficam só como registro técnico.
 ```bash
 npm run build
 ```
@@ -95,7 +97,7 @@ Este ambiente de nuvem não tem o Android SDK nem o Xcode, então os apps instal
 | Pasta | O que tem |
 |---|---|
 | `scripts/converte.py` | conversor do protótipo; os ids nunca mudam |
-| `conteudo-fonte/catalogo-vestibulares.json` | catálogo nacional de 47 provas de Medicina, com fonte |
+| `conteudo-fonte/catalogo-vestibulares.json` | catálogo nacional de 47 vestibulares, com fonte |
 | `src/dados/` | tipos do conteúdo, carregamento, matérias (cores) e provas |
 | `src/estado/` | progresso do aluno: loja, formato salvo e migração do protótipo |
 | `src/logica/` | correção local, revisão espaçada, estatísticas, simulados e IA simulada |

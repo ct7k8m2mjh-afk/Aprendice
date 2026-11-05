@@ -26,7 +26,7 @@ export function Provas() {
 
   return (
     <div className="conteudo">
-      <div className="titulo-pag"><div><h1>Provas e faculdades</h1><p className="sub">{CATALOGO.length} vestibulares de Medicina de todas as regiões, com banca, formato e fonte. Escolha suas provas-alvo e o app prioriza por elas.</p></div></div>
+      <div className="titulo-pag"><div><h1>Provas e faculdades</h1><p className="sub">{CATALOGO.length} vestibulares de todas as regiões, com banca, formato e fonte. Escolha suas provas-alvo e o site prioriza por elas.</p></div></div>
       <div className="ep-filtros" style={{ marginBottom: 20 }}>
         <label className="ep-busca"><Icone nome="busca" /><span className="sr">Buscar</span><input value={t} onChange={(ev) => setT(ev.target.value)} placeholder="Buscar faculdade, cidade, estado ou banca" /></label>
         <div className="chips">

@@ -89,7 +89,7 @@ export function Simulados() {
             <p className="fraco" style={{ fontSize: 14, margin: '0 0 10px' }}>Provas que ainda não entram como simulado, e o motivo.</p>
             <div className="chips">{PROVAS_EM_PREPARO.map((p) => <Link key={p.titulo} to={`/provas/${p.catalogoId}`} className="chip" title={p.motivo}>{p.titulo}<span className="etq">{p.motivo}</span></Link>)}</div>
           </section>
-          <p className="fraco" style={{ fontSize: 14, marginTop: 28 }}>Catálogo com {CATALOGO.length} provas de Medicina de todo o Brasil em <Link to="/provas">Provas e faculdades</Link>.</p>
+          <p className="fraco" style={{ fontSize: 14, marginTop: 28 }}>Catálogo com {CATALOGO.length} vestibulares de todo o Brasil em <Link to="/provas">Provas e faculdades</Link>.</p>
         </>
       )}
 
