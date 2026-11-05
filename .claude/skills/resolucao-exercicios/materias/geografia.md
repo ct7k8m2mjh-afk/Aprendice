@@ -209,7 +209,7 @@ Regras específicas para os campos:
 - **Reconhecer:** mapa de bacias numeradas, aquífero, transposição, crise hídrica, hidrovia, conflito por água.
 - **Roteiro:** (1) localizar a bacia ou o recurso; (2) comparar com as características: rio de planalto → potencial hidrelétrico; rio de planície → navegabilidade; regime (perene × intermitente); (3) eliminar; (4) concluir.
 - **Ideia-chave:** potencial hidrelétrico disponível (Amazônica) ≠ potência instalada (Paraná); rio de planalto não é, por isso, boa hidrovia.
-- **Armadilha:** confundir potencial com aproveitamento; achar que o Brasil é "dono" de todas as nascentes dos seus grandes rios (Amazonas e Paraguai vêm de países vizinhos ou passam por eles).
+- **Armadilha:** confundir potencial com aproveitamento; achar que todos os grandes rios do Brasil nascem no território nacional (o Amazonas nasce nos Andes peruanos).
 - **Distratores típicos:** generalização ("nenhum", "todos os rios"); dessalinização "barata"; poluição atribuída à técnica errada (irrigação × agroquímicos).
 
 ### 16. Espaço agrário (G08)
