@@ -1,6 +1,6 @@
 # Matemática — como resolver
 
-Destilado de 50 anotações de vídeos de resolução (36 canais identificados e 2 sem canal), conferidas contra as 953 resoluções de `app-atual/mat/res/`. Quando as duas fontes divergem, vale o formato do app.
+Destilado de 50 anotações de vídeos de resolução (36 canais identificados e 2 sem canal), e alinhado ao padrão das resoluções aprovadas em `app-atual/mat/res/`. Quando as duas fontes divergem, vale o formato do app.
 
 ## Subtemas que caem
 
@@ -299,14 +299,14 @@ Tipos de passo mais frequentes em Matemática: `calcular` domina; use `localizar
 - **Antecipar o distrator do total bruto:** Thyago Araujo avisa que 16 máquinas é a pegadinha, porque o clube já tem 2.
 
 **O que evitar (falhas recorrentes):**
-- **Não comentar as erradas.** Em 45 dos 50 vídeos o professor chega ao valor e marca a letra. No app, cada letra errada tem origem conferida por conta ou teste.
-- **Não conferir.** Cerca de metade confia na própria conta. No app, `checagem` é obrigatória e por outro caminho.
+- **Não comentar as erradas.** Na grande maioria dos vídeos o professor chega ao valor e marca a letra; só os de leitura de gráfico e alguns do ENEM comentam as erradas. No app, cada letra errada tem origem conferida por conta ou teste.
+- **Não conferir.** Muitos confiam na própria conta e marcam a letra. No app, `checagem` é obrigatória e por outro caminho.
 - **Teoria longa antes da questão** (3 minutos de revisão de juros compostos ou de porcentagem antes de começar). No app, a teoria cabe em `antes` em até 5 frases e só com o que será usado.
 - **Fórmula sem sentido:** "J = C·i·t/100" ou tabela de relações métricas decorada sem dizer por que vale. Prefira a frase que se diz em aula ("juros simples: a taxa incide sempre sobre o capital inicial") e, quando der, a razão por semelhança.
 - **Pular a volta ao comando:** parar em x quando se pede o perímetro, em n quando se pede o mês, em juros quando se pede montante.
 - **Macetes sem regra por trás** ("esquerda é soma, direita diminui" na ordem de grandeza; "ler da direita para a esquerda" na função por partes). No app, só entram com a regra explícita ("compare a mantissa com √10 ≈ 3,16").
 - **Gírias e bordões** ("friends", "na maldade", "letra D de danada"). O tom do app é de professor de cursinho direto e gentil, sem bordão.
-- **Contas erradas nas próprias anotações.** As anotações foram geradas por outro modelo a partir dos vídeos e várias têm erros (ver relatório da destilação). Nunca copie uma conta de anotação: refaça em Python.
+- **Contas erradas nas próprias anotações.** As anotações foram geradas por outro modelo a partir dos vídeos e várias têm contas ou conclusões erradas (por exemplo, raízes de equação trocadas e uma ordenação de densidades incoerente). Nunca copie uma conta de anotação: refaça em Python.
 
 ## Exemplo completo
 
