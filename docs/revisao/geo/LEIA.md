@@ -14,3 +14,4 @@ Observações para a integração:
 | G04 Hidrografia | aprovado (06/11/2026) | 49 |
 | G06 População e demografia | aprovado (06/11/2026) | 59 |
 | G03 Clima e atmosfera | aprovado (06/11/2026) | 60 |
+| G12 Meio ambiente e sustentabilidade | aprovado (06/11/2026) | 60 |
