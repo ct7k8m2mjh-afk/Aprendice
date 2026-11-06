@@ -1100,9 +1100,9 @@ def ueg(ano, sem, duracao=4.5):
         'secoes_rx': [(r'(?i)^QUEST[ÕO]ES DE \d+ A \d+ \(OP[ÇC][ÃA]O ESPANHOL\)', 'Espanhol'),
                       (r'(?i)^QUEST[ÕO]ES DE \d+ A \d+ \(OP[ÇC][ÃA]O INGL[ÊE]S\)', 'Inglês')],
         'pular_secoes': ('Espanhol',), 'pular_antes_sequencia': True,
-        'corte': [r'(?i)^Espaço para rascunho', r'(?i)^PROVA DE REDA', r'(?i)^PROPOSTA DE REDA', r'(?i)^REDAÇÃO$', r'(?i)^Rascunho'],
+        'pausa': [r'(?i)^Espaço para rascunho'], 'corte': [r'^NÚMERO$', r'(?i)^TABELA PERI', r'(?i)^CLASSIFICA[ÇC][ÃA]O PERI', r'(?i)^PROVA DE REDA', r'(?i)^PROPOSTA DE REDA', r'(?i)^REDAÇÃO$', r'(?i)^Rascunho'],
         'suporte': [r'(?i)(para responder|e responda|para contestar|para a[s]? quest)'], 'suporte_apos_alt': r'^e\)',
-        'suporte_apos_secao': True, 'faixa_unica': True,
+        'suporte_apos_secao': True, 'faixa_unica': True, 'suporte_nao_colado': 25,
         'gabarito': gab, 'area': lambda n: 'Conhecimentos gerais',
     }
     cfg['total_de'] = lambda pasta: max(gab(pasta))
@@ -1111,3 +1111,53 @@ def ueg(ano, sem, duracao=4.5):
 
 for _a, _s in ((2020, 1), (2021, 1), (2021, 2), (2022, 1), (2022, 2), (2023, 1), (2023, 2), (2024, 1), (2024, 2), (2025, 1), (2025, 2), (2026, 1), (2026, 2)):
     PROVAS[f'ueg-{_a}-{_s}'] = ueg(_a, _s)
+PROVAS['ueg-2025-1']['anexa'] = {11: 10}   # "Observe a imagem ... questões 10 e 11": a imagem está no recorte da 10
+
+
+# ---------------------------------------------------------------------------------------- UFJF (PISM III)
+def ufjf_gab(txt):
+    """Gabarito por matéria: linha de números (às vezes com o nome da matéria) e, abaixo, a das letras.
+    "C ou E" (duas respostas aceitas) fica fora, como anulada."""
+    txt = re.sub(r'\b([A-E])(\s+ou\s+|/)([A-E])\b', 'X', txt)
+    linhas = txt.splitlines()
+    g = {}
+    for k, l in enumerate(linhas):
+        ns = re.findall(r'(?<![\w,.])(\d{1,2})(?![\w,.])', l)
+        if len(ns) < 2 or re.search(r'(?i)prova|módulo|dia|pism|20\d\d', l):
+            continue
+        for l2 in linhas[k + 1:k + 3]:
+            vs = re.findall(r'(?<![\w])([A-EX]|ANULAD[AO])(?![\w])', l2)
+            if l2.strip() and len(vs) == len(ns) and not re.search(r'\d', l2):
+                for n, v in zip(ns, vs):
+                    g[int(n)] = v if v in 'ABCDE' else 'X'
+                break
+    return g
+
+
+def ufjf(ano, duracao=4):
+    def gab(pasta):
+        g = ufjf_gab(texto_pdf(pasta / 'd1-gabarito.pdf'))
+        g.update({n + 20: v for n, v in ufjf_gab(texto_pdf(pasta / 'd2-gabarito.pdf')).items()})
+        return g
+
+    cfg = {
+        'catalogo': 'ufjf', 'escola': 'UFJF', 'ano': str(ano), 'fase': 'PISM III', 'titulo': f'UFJF PISM {ano} – Módulo III', 'banca': 'Copese-UFJF',
+        'duracao_horas': duracao, 'total': 40,
+        'nota': f'Universidade Federal de Juiz de Fora, Programa de Ingresso Seletivo Misto (PISM {ano}), Módulo III: questões objetivas '
+                'A–E dos dois dias (1º dia numerado 1 a 20; 2º dia, aqui 21 a 40), caderno da área de Saúde. As discursivas e a redação '
+                'ficam fora. Gabarito oficial (retificado/pós-recursos, quando houve); questão com duas respostas aceitas ou anulada fica fora.',
+        'cadernos': [{'arquivo': 'd1-caderno', 'paginas': (2, 999), 'questoes': (1, 20)},
+                     {'arquivo': 'd2-caderno', 'paginas': (2, 999), 'questoes': (21, 40), 'deslocamento': 20}],
+        # até 2024: uma coluna, "QUESTÃO 01 -"; 2025 em diante (LaTeX): duas colunas, "Questão 1."
+        'colunas': (lambda r: duas_colunas(r, 26)) if ano >= 2025 else (lambda r: [(26, r.width - 26)]), 'topo': 48, 'base': 40,
+        'ancora': r'(?i)^quest[ãa]o\s+0?(\d{1,2})\b', 'ancora_dx': 30, 'sequencial': True,
+        'corte': [r'(?i)DISCURSIVAS|DISSERTATIVAS', r'(?i)^QUESTÕES OBJETIVAS$', r'(?i)^REDAÇÃO$', r'(?i)^RASCUNHO'],
+        'suporte': [r'(?i)(responder|responda)\s+(a|à|às|as)\s+quest', r'(?i)^TEXTO\s+([IVX]+|\d+):?\s*$'], 'texto_n_sem_faixa': True,
+        'faixa_unica': True, 'suporte_ate_proximo': True, 'suporte_nao_colado': 25, 'texto_romano': True,
+        'gabarito': gab, 'area': lambda n: 'Conhecimentos gerais',
+    }
+    return cfg
+
+
+for _a in (2020, 2022, 2023, 2024, 2025, 2026):
+    PROVAS[f'ufjf-pism3-{_a}'] = ufjf(_a)

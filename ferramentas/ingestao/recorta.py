@@ -82,6 +82,18 @@ def linhas(pagina):
     return out
 
 
+_LATEX = {'˜': '\u0303', '´': '\u0301', '`': '\u0300', 'ˆ': '\u0302'}
+
+
+def acentos_latex(t):
+    """Cadernos feitos em LaTeX trazem o acento solto antes da letra ("quest˜ao", "´e", "QUEST ˜AO") e a cedilha depois
+    ("c¸"): junta de volta para a busca das âncoras e o texto."""
+    t = re.sub(r'([˜´`ˆ])\s?([A-Za-z])', lambda m: unicodedata.normalize('NFC', m.group(2) + _LATEX[m.group(1)]), t)
+    t = re.sub(r'(\S)\s(?=[ÃÕÁÉÍÓÚÂÊÔãõáéíóúâêô])', lambda m: m.group(1) if m.group(1).isupper() else m.group(0), t) if 'QUEST ' in t else t
+    t = re.sub(r'([cC])¸\s?', lambda m: 'ç' if m.group(1) == 'c' else 'Ç', t)
+    return t
+
+
 def _linhas(pagina):
     out = []
     par = None if id(pagina.parent) in _OCR_SO_TEXTO else textpage(pagina)
@@ -90,6 +102,8 @@ def _linhas(pagina):
         for l in b.get('lines', []):
             # NFC: alguns cadernos escrevem "Ã" como "A" + til combinante
             t = unicodedata.normalize('NFC', ''.join(s['text'] for s in l['spans'])).replace('\xa0', ' ').strip()
+            if t and re.search(r'[˜´`ˆ¸]', t):
+                t = acentos_latex(t)
             if t:
                 sp0 = next((sp for sp in l['spans'] if sp['text'].strip()), {})
                 neg = bool(sp0.get('flags', 0) & 16) or bool(re.search(r'(?i)bold|black|heavy', sp0.get('font', '')))
@@ -443,6 +457,9 @@ def eventos_do_pdf(pdf, cfg, faixa=None):
                         y0 = min(y0, r_.y0)
                 ev.append({'p': pi, 'c': c, 'y': y0, 'tipo': 'q', 'n': int(m.group(1))})
                 continue
+            if any(re.search(rx, t) for rx in cfg.get('pausa', [])):
+                ev.append({'p': pi, 'c': c, 'y': y0, 'tipo': 'pausa'})
+                continue
             for rx in cfg.get('fim', []):
                 if re.search(rx, t):
                     ev.append({'p': pi, 'c': c, 'y': y0, 'tipo': 'fim'})
@@ -468,9 +485,12 @@ def eventos_do_pdf(pdf, cfg, faixa=None):
                                     nums = [ns[0], ns[0]]
                             else:
                                 nums = [int(x) for x in re.findall(r'\d+', resto)][:2]
-                            if cfg.get('texto_n_sem_faixa') and re.match(r'(?i)^texto?\s+[0-9IVX]+\s*$', t):
+                            if cfg.get('texto_n_sem_faixa') and re.match(r'(?i)^texto?\s+[0-9IVX]+:?\s*$', t):
                                 nums = []   # "TEXT 1" sozinho: os números da linha seguinte (link, data) não são questões
                             mt = re.match(r'(?i)^texto\s+(\d+)', t)
+                            if not mt and cfg.get('texto_romano') and re.match(r'^TEXTO\s+([IVX]+)\b', t, re.I):
+                                mt = re.match(r'(?i)^texto\s+([IVX]+)\b', t)
+                                mt = type('M', (), {'group': lambda self, k, _v=ROMANO.get(mt.group(1).upper()): _v})()
                             if not mt and not mq and cfg.get('texto_ingles'):   # "Text 1" sozinho (sem lista de questões)
                                 mt = re.match(r'(?i)^text\s+(\d+)\s*$', t)
                             yi = y0
@@ -590,7 +610,13 @@ def suportes_apos_alternativa(pdf, cfg, ev, faixa=None):
 def segmentos(pdf, cfg, ev, i, faixa_pag=None):
     """Regiões (página, retângulo) entre o evento i e o próximo, em ordem de leitura."""
     e = ev[i]
-    prox = ev[i + 1] if i + 1 < len(ev) else None
+    # "pausa" (ex.: quadro "Espaço para rascunho" no pé da página): o recorte pula o resto da coluna e segue adiante
+    k = i + 1
+    pausas = []
+    while k < len(ev) and ev[k]['tipo'] == 'pausa':
+        pausas.append(ev[k])
+        k += 1
+    prox = ev[k] if k < len(ev) else None
     segs = []
     p, c, y = e['p'], e['c'], e['y'] - 3
     # a folga de 3 pt não pode pegar o pé da linha de cima (fim da questão anterior)
@@ -613,6 +639,7 @@ def segmentos(pdf, cfg, ev, i, faixa_pag=None):
                     fim = y1_
             segs.append((p, pymupdf.Rect(cols[c][0] - 4, y, cols[c][1] + 4, fim)))
             return segs
+        bx = min([bx] + [pz['y'] - 2 for pz in pausas if pz['p'] == p and pz['c'] == c and pz['y'] > y])
         segs.append((p, pymupdf.Rect(cols[c][0] - 4, y, cols[c][1] + 4, bx)))
         c += 1
         if c >= len(cols):
@@ -624,11 +651,17 @@ def segmentos(pdf, cfg, ev, i, faixa_pag=None):
             return segs  # última questão do caderno: não passa da própria página
 
 
+ROMANO = {r: i for i, r in enumerate(['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X'], 1)}
+
+
 def textos_citados(enun, cfg=None):
     if cfg and cfg.get('texto_id'):   # textos com nome próprio ("Texto 1A4-II", Cebraspe)
         return [x.upper() for x in re.findall(cfg['texto_id'], enun)]
     """Números dos textos que o enunciado cita: "Texto 1", "Textos 2 e 3", "Text 02", "Texts 1 and 2"."""
     out = []
+    if cfg and cfg.get('texto_romano'):   # "texto II", "textos I e III"
+        for m in re.finditer(r'\b(?:[Tt]extos?|TEXTOS?)\s+([IVX]+)\b((?:\s*(?:,|e)\s*[IVX]+\b)*)', enun):
+            out += [ROMANO[x] for x in [m.group(1)] + re.findall(r'[IVX]+', m.group(2)) if x in ROMANO]
     for m in re.finditer(r'(?i)\b(?:textos?|texts?)\s+0?(\d)\b((?:\s*(?:,|e|and|y)\s*0?\d\b)*)', enun):
         out.append(int(m.group(1)))
         out += [int(x) for x in re.findall(r'\d', m.group(2))]
