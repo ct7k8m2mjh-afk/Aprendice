@@ -37,13 +37,15 @@ SAIDA = os.path.join(RAIZ, 'fabrica_saida', 'api')
 GASTOS = os.path.join(RAIZ, 'fabrica_saida', 'gastos.csv')
 
 ETAPAS = ['resolvedor', 'fatos', 'didatica', 'fatos-volta']
+# orçamento do dono: US$ 200 no total (06/11/2026). A lente de fatos, a mais crítica, fica no Opus; as outras no Sonnet.
 MODELO = {'resolvedor': 'claude-sonnet-5-5', 'fatos': 'claude-opus-5-5',
-          'didatica': 'claude-opus-5-5', 'fatos-volta': 'claude-opus-5-5'}
+          'didatica': 'claude-sonnet-5-5', 'fatos-volta': 'claude-sonnet-5-5'}
+ESFORCO = {'resolvedor': 'high', 'fatos': 'medium', 'didatica': 'medium', 'fatos-volta': 'medium'}
 # US$ por milhão de tokens, já com o desconto de 50% do Batches (entrada, saída, leitura de cache, escrita de cache)
-PRECO = {'claude-sonnet-5-5': (1.0, 5.0, 0.10, 1.25), 'claude-opus-5-5': (2.0, 10.0, 0.10, 2.5)}
+PRECO = {'claude-sonnet-5-5': (1.0, 5.0, 0.10, 1.25), 'claude-opus-5-5': (2.0, 10.0, 0.20, 2.5)}
 BUSCA_US = 0.01  # por busca na web
 # estimativa por questão e etapa (para conferir o teto ANTES de mandar o lote)
-ESTIMATIVA_US = {'resolvedor': 0.10, 'fatos': 0.35, 'didatica': 0.30, 'fatos-volta': 0.30}
+ESTIMATIVA_US = {'resolvedor': 0.04, 'fatos': 0.08, 'didatica': 0.03, 'fatos-volta': 0.03}
 
 GUIA = {'mat': 'matematica', 'por': 'portugues', 'bio': 'biologia', 'qui': 'quimica', 'fis': 'fisica',
         'geo': 'geografia', 'his': 'historia', 'ing': 'ingles'}
@@ -108,7 +110,7 @@ def sistema(etapa, materia, tema):
               '# Guia de resolução do APRENDICE (skill resolucao-exercicios)\n' + ler(os.path.join(SKILL, 'SKILL.md'))]
     if materia in GUIA:
         partes.append('# Guia da matéria\n' + ler(os.path.join(SKILL, 'materias', GUIA[materia] + '.md')))
-    partes.append('# Taxonomia (ids de tema e conteúdo)\n' + ler(os.path.join(AGENTES, 'TAXONOMIA.md')))
+    # a taxonomia inteira (~9 mil tokens) não vai: a questão já chega classificada; mantenha tema/conteúdo/nível
     partes.append(ADAPTA)
     return '\n\n---\n\n'.join(partes)
 
@@ -158,25 +160,53 @@ def pedido(etapa, q, prova, atual):
             'Resolução proposta (JSON):\n```json\n' + json.dumps(limpa_para_lente(atual), ensure_ascii=False, indent=1)
             + '\n```' + extra + '\n\n'
             'Devolva um JSON com: {"sua_resposta": "letra", "excecao": "" ou o motivo (se você e o gabarito divergem), '
-            '"questao": <o JSON completo da resolução, já com as suas correções, mesmo formato do proposto>, '
-            '"correcoes": [{"campo": "...", "antes": "...", "depois": "...", "motivo": "...", "fonte": ""}], '
-            '"fatos_ok": true|false}. Faça a menor mudança necessária; não reescreva por estilo. '
+            '"correcoes": [{"campo": "caminho do campo, ex.: resolucao.passos[2].conta, resolucao.erradas.B, quadro[3].linha", '
+            '"depois": <o valor novo completo daquele campo>, "motivo": "...", "fonte": ""}], "fatos_ok": true|false}. '
+            'NÃO devolva a resolução inteira: só as correções (lista vazia se não há o que corrigir). '
+            'Faça a menor mudança necessária; não reescreva por estilo. '
             '"fatos_ok": true só se você assina embaixo de cada frase depois das correções.')})
     elif etapa == 'didatica':
         conteudo.append({'type': 'text', 'text': (
             f'Gabarito oficial publicado: {q["gab"]}. Os fatos já foram conferidos pela lente de fatos.\n\n'
             'Resolução (JSON):\n```json\n' + json.dumps(limpa_para_lente(atual), ensure_ascii=False, indent=1) + '\n```\n\n'
-            'Devolva um JSON com: {"questao": <o JSON completo, já melhorado, mesmo formato>, '
-            '"didatica": [{"campo": "...", "motivo": "..."}], "didatica_alertas": ["erro de fato que você viu e NÃO '
-            'corrigiu"], "didatica_ok": true|false}. Não mude fatos, números nem a resposta.')})
+            'Devolva um JSON com: {"didatica": [{"campo": "caminho do campo, ex.: resolucao.pista, resolucao.passos[1].porque", '
+            '"depois": <o valor novo completo daquele campo>, "motivo": "..."}], "didatica_alertas": ["erro de fato que '
+            'você viu e NÃO corrigiu"], "didatica_ok": true|false}. NÃO devolva a resolução inteira: só as mudanças. '
+            'Não mude fatos, números nem a resposta.')})
     p = dict(model=MODELO[etapa], max_tokens=32000,
              system=[{'type': 'text', 'text': sistema(etapa, q['materia'], q.get('tema')),
                       'cache_control': {'type': 'ephemeral'}}],
              messages=[{'role': 'user', 'content': conteudo}],
-             output_config={'effort': 'high'})
+             output_config={'effort': ESFORCO[etapa]})
     if etapa in ('fatos', 'fatos-volta'):
-        p['tools'] = [{'type': 'web_search_20260209', 'name': 'web_search', 'max_uses': 3}]
+        p['tools'] = [{'type': 'web_search_20260209', 'name': 'web_search', 'max_uses': 2}]
     return p
+
+
+def aplica(r, mudancas):
+    """Aplica [{campo: 'resolucao.passos[2].conta', depois: ...}] em r. Devolve a lista de campos que não existem."""
+    falhas = []
+    for m in mudancas or []:
+        campo = (m.get('campo') or '').strip()
+        partes = re.findall(r'[^.\[\]]+|\[\d+\]', campo)
+        if not partes or 'depois' not in m:
+            falhas.append(campo); continue
+        alvo = r
+        try:
+            for p in partes[:-1]:
+                alvo = alvo[int(p[1:-1])] if p.startswith('[') else alvo[p]
+            u = partes[-1]
+            if u.startswith('['):
+                i = int(u[1:-1])
+                if i == len(alvo):
+                    alvo.append(m['depois'])
+                else:
+                    alvo[i] = m['depois']
+            else:
+                alvo[u] = m['depois']
+        except (KeyError, IndexError, TypeError, ValueError):
+            falhas.append(campo)
+    return falhas
 
 
 def limpa_para_lente(r):
@@ -345,6 +375,7 @@ def roda(lote, teto):
                 gravar_json(os.path.join(d, 'estado.json'), est)
                 return
             reqs = []
+            vivos.sort(key=lambda i: (qs[i]['materia'], qs[i].get('tema') or ''))
             for i in vivos:
                 atual = ler_json(os.path.join(res_dir, i + '.json')) if etapa != 'resolvedor' else None
                 reqs.append(Request(custom_id=i, params=MessageCreateParamsNonStreaming(**pedido(etapa, qs[i], prova, atual))))
@@ -395,12 +426,10 @@ def roda(lote, teto):
                 atual['revisao'] = {'lentes': ['resolvedor'], 'modelos': {'resolvedor': msg.model}}
             else:
                 atual = ler_json(os.path.join(res_dir, i + '.json'))
-                nova = saida.get('questao') or {}
                 rev = atual['revisao']
-                for k in ('materia', 'tema', 'conteudo', 'nivel', 'conceito', 'resolucao', 'caminhos', 'quadro',
-                          'visual', 'fontes'):
-                    if k in nova:
-                        atual[k] = nova[k]
+                falhas = aplica(atual, saida.get('didatica' if etapa == 'didatica' else 'correcoes'))
+                if falhas:
+                    excecoes[i] = {'etapa': etapa, 'motivo': 'correção em campo inexistente: ' + ', '.join(falhas)}
                 rev['lentes'].append(etapa)
                 rev['modelos'][etapa] = msg.model
                 if etapa in ('fatos', 'fatos-volta'):
