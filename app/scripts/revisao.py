@@ -25,7 +25,7 @@ FOTOS = os.path.join(APP, 'conteudo-fonte', 'revisao')
 DESTINO = os.path.join(APP, 'public', 'conteudo')
 TIPOS = {'abertura', 'conceito', 'formula', 'grafico', 'exemplo', 'pegadinha', 'na_prova', 'fixe'}
 # de onde vêm as fichas de cada matéria (as chaves de fonte "L1-F1-C02" são livro, frente e capítulo dessa obra)
-OBRAS = {'fis': 'PV Física (Poliedro)'}  # fs: a chave já diz a obra (FIL-..., SOC-...), ver dados/revisao.ts
+OBRAS = {'fis': 'PV Física (Poliedro)', 'bio': 'PV Biologia (Poliedro)'}  # fs: a chave já diz a obra (FIL-..., SOC-...), ver dados/revisao.ts
 LARGURA_FOTO = 1280
 
 

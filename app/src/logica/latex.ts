@@ -86,10 +86,12 @@ export function analisaLatex(src: string): NoMat[][] {
     // como no LaTeX, o espaço depois de um comando de letras é engolido ("\Delta s" é "Δs")
     while (s[i] === ' ') i++;
     if (nome in ESPACOS) { out.push({ t: 'esp', w: ESPACOS[nome] }); return; }
-    if (IGNORA.has(nome)) {
-      if (nome === 'mathrm' || nome === 'mathit') txt(out, grupoTexto());
+    if (nome === 'mathrm' || nome === 'mathit' || nome === 'mathbf' || nome === 'ce') {
+      // fórmula em pé (H_2O): o conteúdo é lido como fórmula, com índice e expoente
+      for (const x of argumento()) if (x.t === 'txt') txt(out, x.v); else out.push(x);
       return;
     }
+    if (IGNORA.has(nome)) return;
     switch (nome) {
       case 'frac': case 'dfrac': case 'tfrac': { const n = argumento(); const d = argumento(); out.push({ t: 'frac', n, d }); return; }
       case 'sqrt': { out.push({ t: 'raiz', v: argumento() }); return; }
