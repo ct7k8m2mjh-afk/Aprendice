@@ -1239,12 +1239,12 @@ def ufsm(ano, duracao=4.5):
                 'aqui numeradas 1–40, 41–80 e 81–120). Língua estrangeira: inglês. Gabarito oficial definitivo; anulada fica fora.',
         'cadernos': [{'arquivo': f'p{k}-caderno', 'paginas': (2, 999), 'questoes': (40 * (k - 1) + 1, 40 * k), 'deslocamento': 40 * (k - 1)}
                      for k in (1, 2, 3)],
-        'colunas': 'faixas', 'margem': 12, 'topo': 50, 'base': 48,
+        'colunas': 'faixas', 'faixas_modo': 'largas', 'margem': 12, 'topo': 50, 'base': 48,
         'ancora': r'^(\d{2})$', 'ancora_dx': 310, 'sequencial': True, 'ancora_negrito': True,
         'secoes_rx': [(r'^L[ÍI]NGUA ESPANHOLA$|^Língua Espanhola$', 'Espanhol'), (r'^L[ÍI]NGUA INGLESA$|^Língua Inglesa$', 'Inglês')],
         'pular_secoes': ('Espanhol',), 'pular_antes_sequencia': True,
         'pausa': [r'^Anotações$'], 'corte': [r'(?i)^PROPOSTA DE REDA', r'(?i)^REDAÇÃO$', r'(?i)^RASCUNHO', r'(?i)^CLASSIFICAÇÃO PERIÓDICA'],
-        'suporte': [r'(?i)(responder|responda)\s+(a|à|às|as)\s+quest'], 'faixa_unica': True, 'suporte_nao_colado': 20,
+        'suporte': [r'(?i)(responder|responda)\s+(a|à|às|as)\s+quest'], 'faixa_unica': True, 'suporte_nao_colado': 45,
         'gabarito': gab, 'area': lambda n: 'Conhecimentos gerais',
     }
     return cfg

@@ -33,6 +33,38 @@ FONTE_NOVAS = os.path.join(APP, 'conteudo-fonte', 'materias')
 ESCOLA_NORMAL = {'Mundo Educacao': 'Mundo Educação', 'FMJ': 'FMJ (Jundiaí)'}
 FASE_NORMAL = {'1fase': '1ª fase', '2fase': '2ª fase'}
 PESSOAL = [(re.compile(r'\bVitor\b'), 'você')]
+# Comando 21 do dono: questões copiadas de sites didáticos (tipo "site") não vão ao site. A triagem
+# (scripts/triagem_site.py) diz qual questão de prova ocupa o lugar de cada uma, quando existe.
+TRIAGEM = os.path.join(os.path.dirname(APP), 'docs', 'provas', 'triagem-questoes-site.json')
+
+
+def triagem():
+    """id da questão de site -> {'m', 'sub', 'dif', 'para': (matéria, id) | None} (para = questão de prova equivalente)."""
+    out = {}
+    for i in ler(TRIAGEM)['itens']:
+        e = i.get('equivalente') if i['destino'].startswith('questao_de_prova:') else None
+        out[i['id']] = {'m': i['materia'], 'sub': i['sub'], 'dif': i['dif'], 'para': (e['materia'], e['id']) if e else None}
+    return out
+
+
+_TRIAGEM = None
+
+
+def tri():
+    global _TRIAGEM
+    if _TRIAGEM is None:
+        _TRIAGEM = triagem()
+    return _TRIAGEM
+
+
+def sub_troca():
+    """Questão de prova que ocupa o lugar de uma de site da MESMA matéria vai para o conteúdo (sub) dela.
+    Questão que recebe mais de uma (de matérias diferentes) fica no conteúdo da de mesma matéria."""
+    out = {}
+    for sid, t in tri().items():
+        if t['para'] and t['para'][0] == t['m']:
+            out.setdefault(t['para'][1], t['sub'])
+    return out
 
 
 def ler(p):
@@ -108,7 +140,14 @@ def questao(q):
 def converte_materia(m, amostra_ids=None):
     src = os.path.join(ORIGEM, m)
     d = ler(os.path.join(src, 'dados.json'))
-    banco = [questao(q) for q in d['banco']]
+    # comando 21: as questões de sites didáticos ficam só em app-atual/ (não vão ao site)
+    banco = [questao(q) for q in d['banco'] if (q.get('tipo') or 'prova') != 'site']
+    troca = sub_troca()
+    sub_antes = {}
+    for q in banco:
+        if q['id'] in troca and troca[q['id']] != q['sub']:
+            sub_antes[q['id']] = q['sub']
+            q['sub'], q['modulo'] = troca[q['id']], troca[q['id']].split('.')[0]
     ids = {q['id'] for q in banco}
     saida = os.path.join(DESTINO, m)
 
@@ -132,6 +171,13 @@ def converte_materia(m, amostra_ids=None):
             limpo[qid] = neutro(r)
         if limpo:
             res_por_sub[sub] = limpo
+    # questão que mudou de conteúdo (sub_troca): a resolução vai junto para o arquivo do conteúdo novo
+    for qid, velho in sub_antes.items():
+        r = res_por_sub.get(velho, {}).pop(qid, None)
+        if r is not None:
+            novo = next(q['sub'] for q in banco if q['id'] == qid)
+            res_por_sub.setdefault(novo, {})[qid] = r
+    res_por_sub = {k: v for k, v in res_por_sub.items() if v}
 
     # ícones (módulo e conteúdo); com ícones novos do dono em docs/icones/, só eles (os antigos saem do site)
     icones = icones_tema_ou(m, lambda: ler(os.path.join(src, 'ic.json')))
@@ -151,7 +197,9 @@ def converte_materia(m, amostra_ids=None):
     modulos = []
     for mid in sorted(teoria.keys()):
         t = teoria[mid]
-        subs = sorted({q['sub'] for q in banco if q['modulo'] == mid} | {s for s in nomesub if s.split('.')[0] == mid}, key=lambda s: (s.split('.')[0], inteiro(s.split('.')[-1], 999)))
+        # conteúdos que só tinham questões de site continuam no tema (vazios até chegar a questão de prova ou Aprendice)
+        subs = sorted({q['sub'] for q in banco if q['modulo'] == mid} | {s for s in nomesub if s.split('.')[0] == mid}
+                      | {q['sub'] for q in d['banco'] if q['modulo'] == mid}, key=lambda s: (s.split('.')[0], inteiro(s.split('.')[-1], 999)))
         modulos.append({
             'id': mid, 'nome': t.get('nome', mid), 'resumo': t.get('resumo', ''),
             'formulas': t.get('formulas', []), 'erro': t.get('erro', ''),
@@ -422,9 +470,13 @@ def liga_provas(provas):
     res_novas = {m: {} for m in todas}
     res_antigas = {}  # resolução aprovada da prova para a questão antiga que ainda não tem
     fora = {'sem_classificacao': 0, 'conteudo_desconhecido': 0, 'gabarito_invalido': 0}
+    troca = sub_troca()
     for p in provas:
         for pq in p['questoes']:
             m = pq.get('materia')
+            if pq['id'] in troca and pq.get('conteudo') and troca[pq['id']].split('.')[0][0] == pq['conteudo'][0]:
+                # comando 21: ocupa o lugar de uma questão de site, no mesmo conteúdo dela (a fonte não muda)
+                pq = dict(pq, conteudo=troca[pq['id']], tema=troca[pq['id']].split('.')[0])
             if pq['id'] in dup:
                 d = dup[pq['id']]
                 if pq.get('res'):
@@ -476,6 +528,53 @@ def liga_provas(provas):
     rel['fora'] = fora
     # registro: questão da prova -> questão do banco antigo que ficou no lugar dela (o teste confere)
     gravar(os.path.join(DESTINO, 'duplicatas-provas.json'), {pid: d['m'] + '/' + d['id'] for pid, d in sorted(dup.items())})
+    return rel
+
+
+def aplica_retiradas():
+    """Comando 21, depois de montar os bancos: (1) confere que nenhuma questão de site entrou; (2) o treino geral
+    (essencial.abc) troca cada id de site pela questão de prova equivalente da mesma matéria, ou tira da lista;
+    (3) grava src/dados/questoesRetiradas.ts, que a migração do progresso (src/estado/migracao.ts) e o desempenho usam."""
+    bancos = {m: ler(os.path.join(DESTINO, m, 'banco.json')) for m in MATERIAS + NOVAS}
+    no_ar = {(m, q['id']): q for m, b in bancos.items() for q in b if not q.get('pendente')}
+    for (m, qid), q in no_ar.items():
+        if q.get('origem') == 'site' or q['escola'] in ('Brasil Escola', 'Mundo Educação', 'Mundo Educacao', 'Prepara Enem', 'InfoEscola'):
+            raise SystemExit(f'questão de site no banco do site: {m}/{qid}')
+    t = tri()
+    destino = {}
+    for sid, x in t.items():
+        if (x['m'], sid) in no_ar:
+            raise SystemExit(f'questão de site no banco do site: {sid}')
+        p = x['para']
+        destino[sid] = p if p and p in no_ar else None
+    rel = {'retiradas': len(t), 'com_equivalente': sum(1 for v in destino.values() if v),
+           'sem_equivalente_no_ar': sorted(sid for sid, x in t.items() if x['para'] and not destino[sid]), 'essencial': {}}
+    for m in MATERIAS:
+        f = os.path.join(DESTINO, m, 'materia.json')
+        mat = ler(f)
+        abc, novo = mat['essencial'].get('abc', []), []
+        for qid in abc:
+            if qid in t:
+                d = destino[qid]
+                qid = d[1] if d and d[0] == m else None
+            if qid and qid not in novo:
+                novo.append(qid)
+        rel['essencial'][m] = {'antes': len(abc), 'depois': len(novo)}
+        mat['essencial']['abc'] = novo
+        gravar(f, mat)
+    por_m = {}
+    for sid, x in sorted(t.items()):
+        v = [x['sub'], x['dif']] + (list(destino[sid]) if destino[sid] else [])
+        por_m.setdefault(x['m'], {})[sid] = v
+    alvo = os.path.join(APP, 'src', 'dados', 'questoesRetiradas.ts')
+    with open(alvo, 'w', encoding='utf-8') as f:
+        f.write('// Gerado por scripts/converte.py a partir de docs/provas/triagem-questoes-site.json (comando 21 do dono).\n')
+        f.write('// Questões de sites didáticos que saíram do site: id -> [conteúdo, dificuldade, matéria e id da questão de prova\n')
+        f.write('// equivalente (quando existe)]. O progresso do aluno nesses ids não se perde (src/estado/migracao.ts).\n')
+        f.write("import type { MateriaId } from './tipos';\n\n")
+        f.write('export type RetiradaBruta = [sub: string, dif: number, m?: MateriaId, id?: string];\n')
+        f.write('export const RETIRADAS: Partial<Record<MateriaId, Record<string, RetiradaBruta>>> = ')
+        f.write(json.dumps(por_m, ensure_ascii=False, separators=(',', ':')) + ';\n')
     return rel
 
 
@@ -595,6 +694,8 @@ def main():
     print('provas completas', relatorio['provas'])
     relatorio['exercicios'] = liga_provas(provas)
     print('questões das provas nos exercícios', relatorio['exercicios'])
+    relatorio['questoes_de_site'] = aplica_retiradas()
+    print('questões de site fora do site', relatorio['questoes_de_site'])
     gravar(os.path.join(DESTINO, 'relatorio.json'), relatorio)
     # versão do conteúdo (para cache)
     h = hashlib.md5(json.dumps(relatorio, sort_keys=True).encode()).hexdigest()[:8]

@@ -177,6 +177,20 @@ def faixas_da_pagina(pg, cfg):
     m = cfg.get('margem', 15)
     meio = W / 2
     topo, base = topo_de(pg, cfg), limite_baixo(pg, cfg)
+    manual = cfg.get('faixas_pag', {}).get((Path(pg.parent.name).stem, pg.number + 1))
+    if manual is None and cfg.get('faixas_modo') == 'largas':
+        manual = faixas_por_largas(pg, cfg, topo, base)
+    if manual is not None:   # [(y0, y1, divisa ou None = largura total)], de cima para baixo
+        cols, ys = [], []
+        for a, b, div in manual:
+            a, b = max(a, topo), min(b, base)
+            if b - a < 2:
+                continue
+            if div is None:
+                cols.append((m, W - m)); ys.append((a, b))
+            else:
+                cols += [(m, div), (div, W - m)]; ys += [(a, b), (a, b)]
+        return cols, ys
     ls = [L for L in linhas(pg) if L['bbox'][1] >= topo - 2 and L['bbox'][3] <= base + 2]
     figuras = [pymupdf.Rect(b['bbox']) for b in pg.get_image_info()
                if b['bbox'][0] < meio - 60 and b['bbox'][2] > meio + 60 and b['bbox'][3] - b['bbox'][1] > 40
@@ -249,6 +263,64 @@ def faixas_da_pagina(pg, cfg):
     if base - y > 2 or not cols:
         cols.append((m, W - m)); ys.append((y, base))
     return cols, ys
+
+
+def faixas_por_largas(pg, cfg, topo, base):
+    """Modo 'largas' (UFSM): a página é de duas colunas, menos as faixas onde há linha de texto, figura ou fio que
+    atravessa a calha (largura total). A âncora/instrução da coluna esquerda logo acima de uma faixa larga, sem texto
+    da coluna direita ao lado, entra na faixa larga."""
+    W = pg.rect.width
+    meio = cfg.get('divisa', W / 2)
+    ls = [L for L in linhas(pg) if L['bbox'][1] >= topo - 2 and L['bbox'][3] <= base + 2]
+    larg = [(L['bbox'][1], L['bbox'][3]) for L in ls if L['bbox'][0] < meio - 20 and L['bbox'][2] > meio + 20]
+    # figura/fio que atravessa a calha só é larga se não há texto da coluna direita ao lado dela
+    ao_lado = lambda r: any(L['bbox'][0] > meio + 5 and L['bbox'][1] < r[3] - 2 and L['bbox'][3] > r[1] + 2
+                            and not pymupdf.Rect(r).contains(pymupdf.Rect(L['bbox'])) for L in ls)
+    larg += [(b['bbox'][1], b['bbox'][3]) for b in pg.get_image_info()
+             if b['bbox'][0] < meio - 30 and b['bbox'][2] > meio + 30 and topo - 5 < b['bbox'][3] and b['bbox'][1] < base + 5
+             and not ao_lado(b['bbox'])]
+    larg += [(d['rect'].y0, d['rect'].y1) for d in pg.get_drawings()
+             if d['rect'].x0 < meio - 30 and d['rect'].x1 > meio + 30 and topo <= d['rect'].y0 <= base and d['rect'].height < base - topo - 50
+             and not ao_lado(tuple(d['rect']))]
+    larg.sort()
+    grupos = []
+    for a, b in larg:
+        a, b = max(a, topo), min(b, base)
+        # não junta se há texto da coluna direita entre as duas faixas largas
+        if grupos and (a - grupos[-1][1] < 6 or (a - grupos[-1][1] < cfg.get('largas_gap', 30) and not any(
+                L['bbox'][0] > meio + 5 and grupos[-1][1] - 1 < L['bbox'][1] and L['bbox'][3] < a + 1 for L in ls))):
+            grupos[-1][1] = max(grupos[-1][1], b)
+        else:
+            grupos.append([a, b])
+    # linhas acima de cada faixa larga, só na coluna esquerda (número da questão, instrução), entram nela
+    for g in grupos:
+        while True:
+            acima = [L for L in ls if g[0] - 40 < L['bbox'][3] <= g[0] + 1 and L['bbox'][1] < g[0] - 0.5]
+            if not acima:
+                break
+            forte = lambda L: re.match(cfg['ancora'], L['t']) or any(re.search(rx, L['t']) for rx in cfg.get('suporte', []))
+            if not all(forte(L) for L in acima):
+                break
+            y = min(L['bbox'][1] for L in acima)
+            if any(L['bbox'][0] > meio + 5 for L in ls if L['bbox'][3] > y and L['bbox'][1] < g[0]):
+                break
+            g[0] = y - 1
+    junt = []
+    for g in grupos:
+        if junt and g[0] <= junt[-1][1] + 2:
+            junt[-1][1] = max(junt[-1][1], g[1])
+        else:
+            junt.append(g)
+    grupos = junt
+    out, y = [], topo
+    for a, b in grupos:
+        if a - y > 2:
+            out.append((y, a, meio))
+        out.append((a, b + 1, None))
+        y = b + 1
+    if base - y > 2:
+        out.append((y, base, meio))
+    return out
 
 
 def larga_de(pg, cfg):
