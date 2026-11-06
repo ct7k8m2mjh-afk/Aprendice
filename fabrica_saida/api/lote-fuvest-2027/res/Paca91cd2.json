@@ -1,0 +1,137 @@
+{
+ "n": 32,
+ "id": "Paca91cd2",
+ "materia": "mat",
+ "tema": "M07",
+ "conteudo": "M07.3",
+ "nivel": 5,
+ "conceito": "Escrever 820 como soma de potências distintas de 3 (pontos de cada rodada: 1, 3, 9, 27...) e contar as parcelas.",
+ "resolucao": {
+  "antes": {
+   "texto": "A rodada 1 vale 1, a 2 vale 3, a 3 vale 9: cada rodada vale 3 vezes a anterior, então os valores são 1, 3, 9, 27, 81, 243, 729... O jogador só pontua nas rodadas que vence, e cada rodada conta uma vez. Logo 820 é uma soma de números desta lista, sem repetir nenhum. A pergunta é quantas parcelas tem essa soma.",
+   "formulas": [
+    "valor da rodada k = 3^(k−1)",
+    "valores: 1, 3, 9, 27, 81, 243, 729, 2187..."
+   ],
+   "simbolos": [
+    [
+     "3^(k−1)",
+     "3 multiplicado por ele mesmo (k−1) vezes; é a pontuação da rodada k"
+    ],
+    [
+     "potência de 3",
+     "número da lista 1, 3, 9, 27, 81, 243, 729..."
+    ]
+   ]
+  },
+  "pista": "Escreva os valores das rodadas até passar de 820. Qual é o maior que cabe em 820? Tire-o e veja o que sobra.",
+  "passos": [
+   {
+    "faz": "Liste os valores das rodadas",
+    "conta": "1, 3, 9, 27, 81, 243, 729",
+    "porque": "Cada valor é o triplo do anterior. O próximo, 2187, já passa de 820 e não pode ser usado.",
+    "tipo": "localizar"
+   },
+   {
+    "faz": "Veja que o 729 é obrigatório",
+    "conta": "1+3+9+27+81+243 = 364",
+    "porque": "Sem o 729, a soma máxima possível é 364, menor que 820. Então o jogador venceu a rodada de 729 pontos.",
+    "tipo": "interpretar"
+   },
+   {
+    "faz": "Subtraia e repita o raciocínio",
+    "conta": "820 − 729 = 91",
+    "porque": "Sobram 91 pontos. Sem o 81, o máximo seria 1+3+9+27 = 40, menor que 91. Então o 81 é obrigatório. (O 243 já não cabe em 91.)",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Continue até zerar",
+    "conta": "91 − 81 = 10 ; 10 − 9 = 1 ; 1 − 1 = 0",
+    "porque": "Sobram 10. O 27 não cabe. Sem o 9, o máximo seria 1+3 = 4, menor que 10, então o 9 é obrigatório. Sobra 1, que é a rodada de 1 ponto.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Conte as parcelas",
+    "conta": "820 = 729 + 81 + 9 + 1",
+    "porque": "São 4 parcelas, ou seja, 4 rodadas vencidas (a 1ª, a 3ª, a 5ª e a 7ª). Alternativa C.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa C: 820 = 729 + 81 + 9 + 1, quatro parcelas, logo 4 rodadas ganhas.",
+  "checagem": "Some de volta: 729 + 81 = 810; 810 + 9 = 819; 819 + 1 = 820. Fecha com 4 parcelas, todas diferentes.",
+  "erradas": {
+   "A": "2 rodadas não servem: com o 729 obrigatório sobrariam 91, e 91 não é potência de 3 (81 e 243 são os vizinhos). Duas parcelas nunca somam 820.",
+   "B": "3 rodadas não servem: com 729 sobram 91, que precisariam ser soma de duas potências. A única escolha possível é 81 + 10, e 10 não é potência de 3. Falta ainda o 9 e o 1.",
+   "D": "5 rodadas não servem: os passos obrigatórios (729, depois 81, depois 9, depois 1) já zeram a soma em 4 parcelas. Uma quinta parcela passaria de 820.",
+   "E": "6 rodadas não servem: o mesmo raciocínio forçado zera em 4 parcelas. Com 6 parcelas distintas a soma não daria exatamente 820."
+  },
+  "armadilha": "A rodada k vale 3^(k−1), não 3k: quem trata os valores como 3, 6, 9... não chega a 820 com contas exatas.",
+  "alerta": "",
+  "essencial": {
+   "pede": "O número de rodadas vencidas por quem fez 820 pontos.",
+   "chave": "Cada rodada vale uma potência de 3 diferente; a decomposição 820 = 729 + 81 + 9 + 1 é forçada.",
+   "cuidado": "Não repita rodadas e não use 2187 ou mais: passa de 820."
+  }
+ },
+ "caminhos": [
+  {
+   "nome": "base 3",
+   "ideia": "Escrever 820 na base 3 dá 1010101, só com algarismos 0 e 1. Os algarismos 1 são as rodadas vencidas: são 4."
+  },
+  {
+   "nome": "teste das alternativas",
+   "ideia": "Como 820 está entre 729 e 2187, o 729 é obrigatório. Depois, cada escolha forçada do restante (81, 9, 1) confirma que são exatamente 4 parcelas."
+  }
+ ],
+ "quadro": [
+  {
+   "linha": "valores: 1, 3, 9, 27, 81, 243, 729",
+   "nota": "cada rodada vale o triplo da anterior"
+  },
+  {
+   "linha": "1+3+9+27+81+243 = 364",
+   "nota": "sem o 729 não chega a 820"
+  },
+  {
+   "linha": "820 − 729 = 91",
+   "nota": "o 729 é obrigatório; sobram 91",
+   "destaque": "91"
+  },
+  {
+   "linha": "91 − 81 = 10",
+   "nota": "sem o 81 o máximo seria 40; ele é obrigatório"
+  },
+  {
+   "linha": "10 − 9 = 1",
+   "nota": "o 27 não cabe; sem o 9 o máximo seria 4"
+  },
+  {
+   "linha": "1 − 1 = 0",
+   "nota": "resta a rodada de 1 ponto"
+  },
+  {
+   "linha": "820 = 729 + 81 + 9 + 1",
+   "nota": "quatro parcelas = 4 rodadas ganhas",
+   "destaque": "4"
+  }
+ ],
+ "visual": {
+  "cabe": false,
+  "porque": "A conta é uma decomposição curta em potências de 3; o quadro linha a linha já mostra tudo.",
+  "tipo": "nenhum",
+  "roteiro": ""
+ },
+ "fontes": [],
+ "confere": true,
+ "divergencia": "",
+ "resposta_resolvedor": "C",
+ "gab": "C",
+ "revisao": {
+  "lentes": [
+   "resolvedor"
+  ],
+  "modelos": {
+   "resolvedor": "claude-sonnet-5-5"
+  }
+ }
+}
