@@ -55,13 +55,13 @@
     "faz": "Identifique o processo 3",
     "conta": "RNAm + ribossomo → proteína",
     "porque": "A seta de 3 leva o RNAm ao ribossomo, onde nasce a cadeia de proteína. Esse processo é a tradução, e não a transcrição, que ocorre dentro do núcleo.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Identifique o número 2",
-    "conta": "proteína → 2 → Golgi → vesícula",
-    "porque": "A proteína entra na estrutura 2 (um saco achatado, no desenho) e segue para o Golgi. Essa é a ordem da via secretora: o retículo endoplasmático vem antes do Golgi.",
-    "tipo": "interpretar"
+    "conta": "proteína → 2 → vesícula",
+    "porque": "A cadeia que sai do ribossomo entra na estrutura 2, uma bolsa membranosa onde o ribossomo está preso, e dali segue em vesícula até a membrana. A proteína de membrana é feita por ribossomo ligado ao retículo endoplasmático. O Golgi não recebe a proteína direto do ribossomo; ele vem depois do retículo.",
+    "tipo": "localizar"
    },
    {
     "faz": "Monte a sequência e escolha a letra",
@@ -71,11 +71,11 @@
    }
   ],
   "resposta": "Alternativa D: 1 = núcleo, 2 = retículo endoplasmático, 3 = tradução, 4 = RNA mensageiro.",
-  "checagem": "Siga o caminho no desenho: DNA no núcleo → RNAm → ribossomo (tradução) → retículo → Golgi → vesícula → membrana. A ordem fecha, e a cauda poli-A é típica de RNAm.",
+  "checagem": "Siga o caminho no desenho: DNA no núcleo → RNAm → ribossomo (tradução) → retículo → vesícula → membrana. A ordem bate com a via secretora (o Golgi, que fica entre o retículo e a membrana, foi omitido no desenho), e a cauda poli-A é típica de RNAm.",
   "erradas": {
    "A": "Nucléolo é uma região do núcleo onde se formam os ribossomos; o quadro 1 envolve todo o DNA e o gene. A estrutura 2 não é o ribossomo: ele já aparece no desenho, sobre o RNAm. Em 3, o processo é a tradução. O RNA 4 tem cauda poli-A e leva a informação do gene, portanto não é RNA ribossomal.",
    "B": "Citosol é o líquido do citoplasma e não tem dupla membrana nem guarda o DNA. Em 2, o Golgi vem depois do retículo, que é onde a proteína entra primeiro. Splicing ocorre dentro do núcleo, e o que o desenho mostra no ribossomo é a tradução. RNA transportador (RNAt) leva aminoácidos e não tem cauda poli-A.",
-   "C": "Núcleo está certo, mas em 2 a proteína entra primeiro no retículo endoplasmático e só depois vai ao Golgi, que no desenho é a estrutura seguinte, de onde saem as vesículas. Em 3, o RNAm no ribossomo indica tradução; transcrição é a síntese do RNA a partir do DNA, dentro do núcleo.",
+   "C": "Núcleo está certo, mas a proteína sai do ribossomo e entra primeiro no retículo endoplasmático, onde o ribossomo fica preso; o Golgi só a recebe depois, e o desenho nem o mostra. Em 3, o RNAm no ribossomo indica tradução; transcrição é a síntese do RNA a partir do DNA, dentro do núcleo.",
    "E": "O quadro 1 é o núcleo e não o citosol. Em 4, a molécula com cauda poli-A é RNAm, não RNAt (que carrega aminoácidos e tem forma de trevo). Só 2 e 3 estão certos."
   },
   "armadilha": "Trocar tradução por transcrição e esquecer que, na via secretora, o retículo endoplasmático vem antes do Golgi.",
@@ -110,10 +110,52 @@
  "gab": "D",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "localizar",
+    "motivo": "'interpretar' não está entre os tipos permitidos (localizar, calcular, comparar, eliminar, concluir). O passo lê a figura, então o tipo certo é 'localizar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "localizar",
+    "motivo": "'interpretar' não está entre os tipos permitidos.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "proteína → 2 → vesícula",
+    "motivo": "No print, a seta sai de 2 direto para uma vesícula (o círculo com proteínas) e dali para a membrana. O Golgi não aparece no desenho, e a conta antiga dizia que ele estava lá.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "A cadeia que sai do ribossomo entra na estrutura 2, uma bolsa membranosa onde o ribossomo está preso, e dali segue em vesícula até a membrana. A proteína de membrana é feita por ribossomo ligado ao retículo endoplasmático. O Golgi não recebe a proteína direto do ribossomo; ele vem depois do retículo.",
+    "motivo": "A versão antiga dizia que, no desenho, a proteína seguia de 2 para o Golgi. O desenho não mostra o Golgi, só a vesícula.",
+    "fonte": "OpenStax Biology 2e, 4.4 The Endomembrane System and Proteins"
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "Núcleo está certo, mas a proteína sai do ribossomo e entra primeiro no retículo endoplasmático, onde o ribossomo fica preso; o Golgi só a recebe depois, e o desenho nem o mostra. Em 3, o RNAm no ribossomo indica tradução; transcrição é a síntese do RNA a partir do DNA, dentro do núcleo.",
+    "motivo": "A versão antiga dizia que o Golgi era, no desenho, a estrutura seguinte, de onde saem as vesículas. O print não mostra isso: depois de 2 vem uma vesícula.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Siga o caminho no desenho: DNA no núcleo → RNAm → ribossomo (tradução) → retículo → vesícula → membrana. A ordem bate com a via secretora (o Golgi, que fica entre o retículo e a membrana, foi omitido no desenho), e a cauda poli-A é típica de RNAm.",
+    "motivo": "O texto antigo atribuía ao desenho uma etapa de Golgi que não aparece no print.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "D"
  }
 }

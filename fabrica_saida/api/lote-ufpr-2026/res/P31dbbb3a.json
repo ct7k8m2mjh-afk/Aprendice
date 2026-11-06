@@ -37,11 +37,11 @@
     "faz": "Trace a vertical de D até AE",
     "conta": "P em AE, com DP ⊥ AE",
     "porque": "Assim surge o triângulo retângulo EPD, com ângulo reto em P e ângulo θ em E.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Ache a altura DP",
-    "conta": "DP = AB − BC... não: DP = AB − CD",
+    "conta": "DP = AB − CD = 12 − 5 = 7",
     "porque": "Os lados AB e CD são verticais e paralelos. A vertical DP e o lado CD somam a altura total AB. Então DP = 12 − 5 = 7. (Aqui o lado CD fica entre D e a linha de cima, que está a 12 de altura.)",
     "tipo": "calcular"
    },
@@ -87,7 +87,7 @@
   },
   {
    "nome": "eliminação",
-   "ideia": "Em E o ângulo é agudo e a reta ED sobe 7 enquanto avança 8, então tan < 1. Isso elimina 5/4 e 8/7. Resta decidir entre 4/5, 5/8 e 7/8 com o triângulo EPD."
+   "ideia": "Na figura, θ é menor que 45° (o ângulo em E é bem fechado), então tan θ < 1. Isso elimina 5/4 e 8/7. Resta decidir entre 4/5, 5/8 e 7/8 com o triângulo EPD."
   }
  ],
  "quadro": [
@@ -138,10 +138,34 @@
  "gab": "E",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[0].tipo",
+    "depois": "localizar",
+    "motivo": "O tipo 'interpretar' não está na lista permitida (localizar, calcular, comparar, eliminar, concluir). Traçar o auxiliar e achar o triângulo na figura é 'localizar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "DP = AB − CD = 12 − 5 = 7",
+    "motivo": "A conta trazia uma tentativa errada que depois era corrigida ('AB − BC... não'). Ela confunde o aluno e não pertence à conta final.",
+    "fonte": ""
+   },
+   {
+    "campo": "caminhos[1].ideia",
+    "depois": "Na figura, θ é menor que 45° (o ângulo em E é bem fechado), então tan θ < 1. Isso elimina 5/4 e 8/7. Resta decidir entre 4/5, 5/8 e 7/8 com o triângulo EPD.",
+    "motivo": "O texto antigo justificava tan < 1 com 'o ângulo é agudo', mas todo ângulo agudo pode ter tangente maior que 1. Também usava o próprio resultado (sobe 7, avança 8), o que torna a eliminação circular. A justificativa correta é θ < 45° na figura.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E"
  }
 }

@@ -45,13 +45,13 @@
     "faz": "Veja o que vem depois da lista",
     "conta": "\"O Elias era traficante… de gente.\"",
     "porque": "A resposta só aparece depois de descartar os outros. A repetição prepara a revelação e prende a atenção de quem ouve.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Confira se a expectativa é de fato criada",
     "conta": "\"o bem mais valioso daquela época\" → ?",
     "porque": "A frase anterior já lança a pergunta sobre qual seria o bem. A lista de negativas mantém o ouvinte esperando a resposta. A alternativa B descreve isso.",
-    "tipo": "aplicar"
+    "tipo": "comparar"
    },
    {
     "faz": "Teste 'Bonzinho ele…'",
@@ -75,7 +75,7 @@
   "resposta": "Alternativa B: a repetição de 'num era' descarta vários bens valiosos e cria expectativa sobre qual era o 'bem mais valioso', revelado só depois: gente escravizada.",
   "checagem": "Tire a lista de 'num era' e leia direto 'O Elias era traficante… de gente'. A revelação perde o suspense. Isso mostra que a repetição existe para criar a expectativa.",
   "erradas": {
-   "A": "O narrador usa ironia em 'Bonzinho ele…': logo depois vem 'Mas comé que o Elias... juntou tanto dinheiro?', e a resposta é o tráfico de pessoas. O texto chama o gesto de 'grotesco', então não há admiração.",
+   "A": "O narrador usa ironia em 'Bonzinho ele…': logo depois vem 'Mas comé que o Elias... juntou tanto dinheiro?', e a resposta é o tráfico de pessoas. Ele ainda critica a Família Real por aceitar o presente e chama o tráfico de 'coisa grotesca'. Não há admiração.",
    "C": "A frase final 'Ajuda a explicar por que o Brasil é o Brasil' fecha o argumento. O narrador diz que o simbolismo da relação entre traficante e Família Real ajuda a explicar a escravidão longa e a Independência. Tem significado, não só tautologia.",
    "D": "'Daí quando' tem valor de tempo e sequência: então, no momento em que a Família Real chegou. O palácio já existia ('Já existia um prédio aqui'), então a construção não foi causada pela vinda da Família Real, que foi posterior.",
    "E": "A comparação é por semelhança de função (residência oficial) e é feita para marcar uma diferença: 'diferentemente do Alvorada, este palácio aqui num foi construído pra ser a residência oficial'. Não se compara a 'origem da destinação' para uso histórico."
@@ -91,7 +91,7 @@
  "caminhos": [
   {
    "nome": "eliminação",
-   "ideia": "A: o texto chama o gesto de 'grotesco' e desmente 'bonzinho'. C: a frase final resume a tese. D: o palácio já existia antes da vinda. E: a comparação marca diferença. Sobra B."
+   "ideia": "A: o 'Mas' seguido da revelação do tráfico, que o texto chama de 'coisa grotesca', desmente o 'bonzinho'. C: a frase final resume a tese. D: o palácio já existia antes da vinda. E: a comparação marca diferença. Sobra B."
   },
   {
    "nome": "teste de supressão",
@@ -112,10 +112,40 @@
  "gab": "B",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "O narrador usa ironia em 'Bonzinho ele…': logo depois vem 'Mas comé que o Elias... juntou tanto dinheiro?', e a resposta é o tráfico de pessoas. Ele ainda critica a Família Real por aceitar o presente e chama o tráfico de 'coisa grotesca'. Não há admiração.",
+    "motivo": "No texto, 'grotesca' qualifica o tráfico ('o tráfico nessa época era legal [...] mas num deixa de ser uma coisa grotesca'), não o gesto de doar. A versão anterior atribuía ao texto algo que ele não diz.",
+    "fonte": ""
+   },
+   {
+    "campo": "caminhos[0].ideia",
+    "depois": "A: o 'Mas' seguido da revelação do tráfico, que o texto chama de 'coisa grotesca', desmente o 'bonzinho'. C: a frase final resume a tese. D: o palácio já existia antes da vinda. E: a comparação marca diferença. Sobra B.",
+    "motivo": "Mesmo erro de leitura: 'grotesca' se refere ao tráfico, não ao gesto de Elias.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "localizar",
+    "motivo": "'interpretar' não é um tipo permitido (localizar, calcular, comparar, eliminar, concluir). O passo localiza a frase da revelação.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "comparar",
+    "motivo": "'aplicar' não é um tipo permitido. O passo compara a pergunta lançada com a lista de negativas.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "B"
  }
 }

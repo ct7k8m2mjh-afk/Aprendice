@@ -67,9 +67,9 @@
    }
   ],
   "resposta": "Alternativa D: em relação ao mapa A, o B mudou a orientação, o C mudou a escala (1:110.000.000) e o D mudou a projeção.",
-  "checagem": "Cada mapa mudou um elemento só. B: mesma escala, mesma forma, norte trocado. C: mesma forma e norte, escala dobrada. D: mesma escala e norte, forma deformada. Os três elementos diferentes aparecem sem repetição.",
+  "checagem": "Cada mapa mudou um elemento só. B: mesma escala, mesma forma, norte trocado. C: mesma forma e mesmo norte, mas o denominador da escala dobrou, e por isso a escala ficou menor. D: mesma escala e mesmo norte, forma deformada. Os três elementos diferentes aparecem sem repetição.",
   "erradas": {
-   "A": "Põe 'coordenadas geográficas' no B, mas o B tem a mesma escala e só gira o desenho e a rosa dos ventos (orientação). Nenhum dos mapas mostra grade de latitude e longitude, e o contorno do C não foi deformado, então 'escala' em C não resolve o B.",
+   "A": "Acerta o C (escala) e o D (projeção), mas põe 'coordenadas geográficas' no B. O B mantém a escala 1:55.000.000 e a forma do país; só o desenho e a rosa dos ventos aparecem girados (S em cima), o que é mudança de orientação.",
    "B": "Acerta a orientação do B, mas diz que o C mudou 'coordenadas geográficas' (o C mudou a escala, de 1:55.000.000 para 1:110.000.000). Diz também que o D mudou a escala, mas ele mantém 1:55.000.000; o que mudou foi a forma do contorno.",
    "C": "Diz que o B mudou a projeção, mas o contorno do B tem a mesma forma do A, só girado: é orientação. Diz que o D mudou a orientação, mas a rosa dos ventos do D está com o norte para cima, igual à do A.",
    "E": "Põe 'coordenadas geográficas' no B, mas o B mudou a orientação. Diz que o C mudou a projeção, mas o C é o mesmo desenho do A, só reduzido (escala 1:110.000.000). Diz que o D mudou a orientação, mas o norte do D segue para cima."
@@ -85,7 +85,7 @@
  "caminhos": [
   {
    "nome": "eliminação",
-   "ideia": "O C é o único com escala diferente (1:110.000.000), então ele é 'Escala'. Só a D traz 'Escala' na coluna do C. A resposta sai sem analisar B e D."
+   "ideia": "O C é o único com escala diferente (1:110.000.000), então a coluna do C é 'Escala'. Isso deixa só as letras A e D. Para desempatar, basta olhar o B: a rosa dos ventos tem o S em cima, então mudou a orientação. Fica a D."
   }
  ],
  "quadro": [],
@@ -102,10 +102,34 @@
  "gab": "D",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "Acerta o C (escala) e o D (projeção), mas põe 'coordenadas geográficas' no B. O B mantém a escala 1:55.000.000 e a forma do país; só o desenho e a rosa dos ventos aparecem girados (S em cima), o que é mudança de orientação.",
+    "motivo": "O texto anterior terminava com uma frase sem lógica ('então escala em C não resolve o B') e não dizia que a A acerta as colunas C e D. Na A, só a coluna do B está errada.",
+    "fonte": ""
+   },
+   {
+    "campo": "caminhos[0].ideia",
+    "depois": "O C é o único com escala diferente (1:110.000.000), então a coluna do C é 'Escala'. Isso deixa só as letras A e D. Para desempatar, basta olhar o B: a rosa dos ventos tem o S em cima, então mudou a orientação. Fica a D.",
+    "motivo": "Estava errado dizer que só a D traz 'Escala' na coluna do C. A alternativa A também traz, então a eliminação precisa olhar mais um mapa.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Cada mapa mudou um elemento só. B: mesma escala, mesma forma, norte trocado. C: mesma forma e mesmo norte, mas o denominador da escala dobrou, e por isso a escala ficou menor. D: mesma escala e mesmo norte, forma deformada. Os três elementos diferentes aparecem sem repetição.",
+    "motivo": "'Escala dobrada' está errado. Quando o denominador passa de 55.000.000 para 110.000.000, a escala cai pela metade e fica menor.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "D"
  }
 }

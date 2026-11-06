@@ -41,7 +41,7 @@
     "faz": "Veja quantos lugares faltam preencher",
     "conta": "5 − 1 (atacante) − 1 (goleiro) = 3",
     "porque": "O atacante já está fixo no 1º lugar e o goleiro está garantido. Faltam 3 cobradores, escolhidos entre os 6 livres.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Escolha os 3 cobradores livres",
@@ -67,8 +67,8 @@
   "erradas": {
    "A": "280 não confere: toda configuração vem de um trio (20 possíveis) com 24 ordens, então o total é múltiplo de 24. 280 ÷ 24 não é inteiro.",
    "B": "340 não confere: pelo mesmo teste, o total tem de ser múltiplo de 24 (20 trios × 24 ordens). 340 ÷ 24 não é inteiro.",
-   "D": "625 não confere: é 5^4 e supõe repetir jogadores, 5 escolhas para cada uma de 4 posições. O enunciado exige 5 jogadores diferentes. Além disso, 625 não é múltiplo de 24.",
-   "E": "864 = 24 × 36 é múltiplo de 24, mas exigiria 36 trios possíveis. Só existem C(6,3) = 20 trios entre os 6 jogadores livres. Também não se pode contar a ordem do atacante, que já está fixa."
+   "D": "625 não confere: toda configuração vem de um trio (20 possíveis) com 24 ordens, então o total é múltiplo de 24. 625 é ímpar, por isso não pode ser múltiplo de 24.",
+   "E": "864 = 24 × 36 é múltiplo de 24, mas exigiria 36 trios possíveis. Só existem C(6,3) = 20 trios entre os 6 jogadores livres."
   },
   "armadilha": "Esquecer uma das restrições: o atacante já ocupa o 1º lugar (não entra na ordem) e o goleiro é obrigatório, então não se escolhem 4 entre 7.",
   "alerta": "",
@@ -136,10 +136,34 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "localizar",
+    "motivo": "O tipo 'interpretar' não está na lista permitida (localizar, calcular, comparar, eliminar, concluir). O passo lê no enunciado quantas vagas sobram, então o tipo certo é 'localizar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "625 não confere: toda configuração vem de um trio (20 possíveis) com 24 ordens, então o total é múltiplo de 24. 625 é ímpar, por isso não pode ser múltiplo de 24.",
+    "motivo": "O texto anterior começava com 'não confere' e depois inventava uma origem (5^4, com jogadores repetidos), e nada no enunciado leva a essa conta. O guia proíbe inventar a origem de um distrator. Ficou só o teste objetivo, que é verdadeiro: 625 é ímpar.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "864 = 24 × 36 é múltiplo de 24, mas exigiria 36 trios possíveis. Só existem C(6,3) = 20 trios entre os 6 jogadores livres.",
+    "motivo": "Tirei a frase final sobre 'contar a ordem do atacante'. Ela sugeria uma origem para o 864 que não se confirma: liberar o atacante da 1ª posição não dá 864. O teste dos 36 trios contra os 20 possíveis basta.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C"
  }
 }

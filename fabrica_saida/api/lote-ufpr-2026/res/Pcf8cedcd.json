@@ -56,13 +56,13 @@
     "faz": "Traduza 'pretend' com cuidado",
     "conta": "pretend = fingir (não 'pretender')",
     "porque": "É falso cognato. As duas pessoas não têm a intenção de escrever ou ler; elas dão a impressão de que escreveram e leram.",
-    "tipo": "interpretar"
+    "tipo": "comparar"
    },
    {
     "faz": "Formule a ideia da tirinha",
     "conta": "as pessoas fingem que escrevem e leem",
     "porque": "O humor e a crítica estão no ciclo: a IA infla o e-mail na ida e o encolhe na volta, e ninguém realmente escreve nem lê.",
-    "tipo": "interpretar"
+    "tipo": "comparar"
    },
    {
     "faz": "Ligue à alternativa",
@@ -111,10 +111,28 @@
  "gab": "E",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "comparar",
+    "motivo": "'interpretar' não é um tipo válido. Os tipos aceitos são localizar, calcular, comparar, eliminar e concluir. Este passo confronta 'pretend' com 'pretender', então o tipo certo é comparar.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "comparar",
+    "motivo": "'interpretar' não é um tipo válido. O passo junta as duas falas e chega à ideia comum, que é o fingimento. Não pode ser 'concluir', porque esse tipo fica reservado ao último passo, o que liga a ideia à letra.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E"
  }
 }

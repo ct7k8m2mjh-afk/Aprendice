@@ -49,7 +49,7 @@
     "faz": "Classifique a lactose",
     "conta": "lactose → carboidrato",
     "porque": "Dois anéis de açúcar ligados por um oxigênio formam um dissacarídeo, que é um carboidrato.",
-    "tipo": "interpretar"
+    "tipo": "comparar"
    },
    {
     "faz": "Leia a estrutura do antraceno",
@@ -61,7 +61,7 @@
     "faz": "Classifique o antraceno",
     "conta": "antraceno → hidrocarboneto",
     "porque": "Só C e H: é hidrocarboneto aromático. Sem OH, não pode ser fenol.",
-    "tipo": "interpretar"
+    "tipo": "comparar"
    },
    {
     "faz": "Monte a ordem pedida",
@@ -106,10 +106,28 @@
  "gab": "D",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "comparar",
+    "motivo": "O tipo 'interpretar' não está na lista permitida (localizar, calcular, comparar, eliminar, concluir). Este passo compara a estrutura lida com a definição de carboidrato, por isso vira 'comparar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "comparar",
+    "motivo": "O tipo 'interpretar' não está na lista permitida. Este passo compara a estrutura com as definições de hidrocarboneto e de fenol, por isso vira 'comparar'.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "D"
  }
 }

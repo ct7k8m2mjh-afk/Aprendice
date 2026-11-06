@@ -48,18 +48,18 @@
     "faz": "Traduza a pergunta",
     "conta": "Qual traço do grupo o deixa exposto ao ambiente?",
     "porque": "Se o grupo é mais ameaçado do que os demais vertebrados, ele tem algo que o torna mais dependente do ambiente.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Ligue a pele às ameaças",
     "conta": "Pele fina e úmida → troca gases e água",
     "porque": "A pele permeável absorve poluentes e sofre com a secura e com o calor. Também é a porta de entrada de fungos, como o que causa a quitridiomicose, doença da pele dos anfíbios.",
-    "tipo": "aplicar"
+    "tipo": "comparar"
    },
    {
     "faz": "Elimine as demais",
     "conta": "Endotermia, ovo com âmnio e ácido úrico não são dos anfíbios",
-    "porque": "Endotermia, âmnio e excreção de ácido úrico são traços de répteis, aves e mamíferos (os dois últimos), que protegem contra o ambiente. Anfíbios não os têm.",
+    "porque": "Endotermia (aves e mamíferos), ovo com âmnio (répteis, aves e mamíferos) e excreção de ácido úrico (répteis e aves) protegem contra o ambiente, e os anfíbios não têm nenhum desses traços. O desenvolvimento direto só aparece em parte das espécies e não é o que expõe o grupo.",
     "tipo": "eliminar"
    },
    {
@@ -70,10 +70,10 @@
    }
   ],
   "resposta": "Alternativa B: a pele fina, úmida e permeável deixa o anfíbio muito exposto a fungos, a variações de clima e a alterações do ambiente.",
-  "checagem": "Teste invertendo: aves (13%) e mamíferos (27%) são endotérmicos e têm pele recoberta (penas, pelos); são os menos ameaçados. Répteis (21%) têm pele com escamas e ovos com âmnio. Os anfíbios, de pele exposta, lideram o ranking.",
+  "checagem": "Teste por comparação: aves (13%) e répteis (21%) têm a pele coberta por penas ou escamas e ovo com âmnio, e estão bem abaixo dos anfíbios. Os mamíferos (27%) têm pelos e também ficam bem abaixo. Os anfíbios, de pele nua, fina e úmida, lideram o ranking com 41%.",
   "erradas": {
    "A": "Endotermia é característica de aves e mamíferos, não de anfíbios, que são ectotérmicos (dependem do calor do ambiente). Aves e mamíferos têm risco menor (13% e 27%), então endotermia não explica o risco maior dos anfíbios.",
-   "C": "O desenvolvimento direto (sem larva) é raro nos anfíbios. A maioria tem fase larval aquática (girino) e metamorfose, o que os torna dependentes de dois ambientes. Desenvolvimento direto não explica o risco maior do grupo.",
+   "C": "O desenvolvimento direto (sem larva) ocorre só em parte dos anfíbios. A maioria tem fase larval aquática (girino) e metamorfose, o que torna esses animais dependentes de dois ambientes. Não é o desenvolvimento direto que explica o risco maior do grupo.",
    "D": "Ovos com casca e âmnio são característicos de répteis, aves e mamíferos (amniotas). Os ovos dos anfíbios não têm casca nem âmnio e precisam de água ou ambiente úmido.",
    "E": "A excreção de ácido úrico ocorre em répteis e aves, que economizam água. Anfíbios adultos excretam principalmente ureia, e os girinos, amônia. Além disso, a excreção não se relaciona com fungos, clima ou perda de hábitat."
   },
@@ -92,7 +92,7 @@
   },
   {
    "nome": "comparação entre grupos",
-   "ideia": "Compare a cobertura do corpo: aves (penas, 13%), mamíferos (pelos, 27%), répteis (escamas, 21%) e anfíbios (pele nua e úmida, 41%). Quanto mais exposta a pele, maior o risco."
+   "ideia": "Compare a cobertura do corpo: anfíbios (pele nua e úmida, 41%) contra aves (penas, 13%), répteis (escamas, 21%) e mamíferos (pelos, 27%). O grupo de pele exposta e permeável é o mais ameaçado."
   }
  ],
  "quadro": [],
@@ -109,10 +109,52 @@
  "gab": "B",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "localizar",
+    "motivo": "'interpretar' não está entre os tipos permitidos (localizar, calcular, comparar, eliminar, concluir). O passo traduz o comando da questão, por isso fica 'localizar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "comparar",
+    "motivo": "'aplicar' não está entre os tipos permitidos. O passo compara a característica com as ameaças citadas.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Endotermia (aves e mamíferos), ovo com âmnio (répteis, aves e mamíferos) e excreção de ácido úrico (répteis e aves) protegem contra o ambiente, e os anfíbios não têm nenhum desses traços. O desenvolvimento direto só aparece em parte das espécies e não é o que expõe o grupo.",
+    "motivo": "A frase original sugeria que os mamíferos excretam ácido úrico. Na verdade os mamíferos excretam ureia. Além disso, o passo não eliminava a alternativa C.",
+    "fonte": "Campbell Biology; OpenStax Biology 2e, cap. 41 (excreção nitrogenada)"
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Teste por comparação: aves (13%) e répteis (21%) têm a pele coberta por penas ou escamas e ovo com âmnio, e estão bem abaixo dos anfíbios. Os mamíferos (27%) têm pelos e também ficam bem abaixo. Os anfíbios, de pele nua, fina e úmida, lideram o ranking com 41%.",
+    "motivo": "O texto original dizia que aves e mamíferos são os menos ameaçados. Isso é falso: os mamíferos (27%) estão acima dos répteis (21%).",
+    "fonte": ""
+   },
+   {
+    "campo": "caminhos[1].ideia",
+    "depois": "Compare a cobertura do corpo: anfíbios (pele nua e úmida, 41%) contra aves (penas, 13%), répteis (escamas, 21%) e mamíferos (pelos, 27%). O grupo de pele exposta e permeável é o mais ameaçado.",
+    "motivo": "A regra 'quanto mais exposta a pele, maior o risco' não fecha com os dados, porque mamíferos (27%) ficam acima de répteis (21%). A nova redação compara só os anfíbios com os demais grupos.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "O desenvolvimento direto (sem larva) ocorre só em parte dos anfíbios. A maioria tem fase larval aquática (girino) e metamorfose, o que torna esses animais dependentes de dois ambientes. Não é o desenvolvimento direto que explica o risco maior do grupo.",
+    "motivo": "Chamar o desenvolvimento direto de 'raro' é impreciso, porque ele ocorre em muitas espécies (por exemplo, rãs da família Eleutherodactylidae, salamandras pletodontídeas e muitas cecílias). O argumento da alternativa continua o mesmo.",
+    "fonte": "Wells, The Ecology and Behavior of Amphibians (2007)"
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "B"
  }
 }

@@ -74,7 +74,7 @@
    "B": "Acerta que a África tem alta mortalidade (grande em B) e baixa emissão (pequena em A). Mas diz que a mortalidade é 'devido às suas baixas emissões', o que inverte a causa. Poucas emissões não causam mortes; o mapa mostra duas variáveis lado a lado, sem ligar uma à outra dessa forma.",
    "C": "Diz que a Ásia tem baixa emissão. No mapa A a China e a Rússia aparecem grandes e a Ásia como um todo tem emissão considerável. Afirmar baixa emissão para o continente inteiro generaliza e contradiz o mapa A. Só parte do sul da Ásia emite pouco.",
    "D": "Inverte a leitura. As regiões que mais emitem (EUA, Europa) aparecem pequenas no mapa B, ou seja, com mortalidade relativamente baixa. Os mais afetados são os que menos emitem.",
-   "E": "Os EUA são grandes em A, mas o mapa não traz a média global, então não dá para afirmar que está acima dela. Além disso, nenhum mapa mostra que as emissões deles gerem mortalidade alta nas Américas: no mapa B o continente americano é pequeno, e os EUA quase não aparecem."
+   "E": "A primeira parte se sustenta: os EUA são enormes no mapa A. O erro está na consequência. No mapa B a América do Norte quase some e a América do Sul tem tamanho modesto, então não há alta mortalidade nas Américas, e o mapa não liga as emissões dos EUA à mortalidade no continente."
   },
   "armadilha": "Ler o cartograma como mapa comum, sem notar que o tamanho mostra o dado, ou concluir causa e efeito direto entre uma região emitir pouco e sofrer muito.",
   "alerta": "",
@@ -87,7 +87,7 @@
  "caminhos": [
   {
    "nome": "eliminação por palavras-chave",
-   "ideia": "B usa 'devido às suas baixas emissões', causa absurda. C diz Ásia 'baixa emissão', mas ela é grande em A. D afirma o contrário do que se vê. E cita média global, que o mapa não dá. Sobra a A."
+   "ideia": "B usa 'devido às suas baixas emissões', uma causa absurda. C diz que a Ásia tem 'baixa emissão', mas ela aparece grande em A. D afirma o contrário do que se vê. E liga as emissões dos EUA a uma alta mortalidade nas Américas, mas a América é pequena em B. Sobra a A."
   },
   {
    "nome": "teste com um país",
@@ -108,10 +108,28 @@
  "gab": "A",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "A primeira parte se sustenta: os EUA são enormes no mapa A. O erro está na consequência. No mapa B a América do Norte quase some e a América do Sul tem tamanho modesto, então não há alta mortalidade nas Américas, e o mapa não liga as emissões dos EUA à mortalidade no continente.",
+    "motivo": "A versão anterior dizia que não dá para afirmar que os EUA emitem acima da média global. Isso é falso: os EUA estão entre os maiores do mapa A, logo ficam bem acima da média dos países. O que derruba a E é a segunda parte. A frase 'o continente americano é pequeno' também ficou mais precisa, porque a América do Sul não é minúscula em B.",
+    "fonte": ""
+   },
+   {
+    "campo": "caminhos[0].ideia",
+    "depois": "B usa 'devido às suas baixas emissões', uma causa absurda. C diz que a Ásia tem 'baixa emissão', mas ela aparece grande em A. D afirma o contrário do que se vê. E liga as emissões dos EUA a uma alta mortalidade nas Américas, mas a América é pequena em B. Sobra a A.",
+    "motivo": "Ajuste para ficar coerente com a correção de erradas.E: o problema da E não é a média global, é a mortalidade alta nas Américas, que o mapa B não mostra.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "A"
  }
 }

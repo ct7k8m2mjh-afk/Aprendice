@@ -50,7 +50,7 @@
     "faz": "Escreva a soma total da PA",
     "conta": "S = (a1 + a6) × 6/2 = 3·(a1 + a6)",
     "porque": "A soma de n termos de uma PA é (primeiro + último) × n ÷ 2. O enunciado diz que a soma total vale 84/5.",
-    "tipo": "aplicar"
+    "tipo": "calcular"
    },
    {
     "faz": "Ache a1 + a6",
@@ -70,7 +70,7 @@
   "erradas": {
    "A": "26/5 não confere: a soma de PQ e QR é um terço do total, pois a3 + a4 = a1 + a6 e 3·(a1 + a6) = 84/5. Isso dá 28/5, e 26/5 deixaria o total em 3 × 26/5 = 78/5, não 84/5.",
    "B": "24/5 não confere: 3 × 24/5 = 72/5, que é diferente dos 84/5 do enunciado. Para a soma de PQ e QR valer 24/5, o caminho todo teria de medir 72/5.",
-   "C": "42/5 é a metade do total: (84/5) ÷ 2 = 42/5. Isso seria a soma de 3 segmentos, e a soma pedida é de só 2 dos 6 segmentos, ou seja, um terço do total.",
+   "C": "42/5 sai de dividir o total por 2: (84/5) ÷ 2 = 42/5. Mas PQ e QR são só 2 dos 6 segmentos, e formam um dos 3 pares de soma igual. A soma deles é um terço do total, não a metade.",
    "E": "48/5 não confere: 3 × 48/5 = 144/5, bem maior que 84/5. Dois segmentos do meio não podem somar mais da metade do caminho todo (42/5)."
   },
   "armadilha": "Contar menos de 6 segmentos (por exemplo, esquecer o primeiro, de A até o canto, ou o último, até B) muda a razão entre a soma de PQ e QR e o total.",
@@ -143,10 +143,28 @@
  "gab": "D",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "calcular",
+    "motivo": "O tipo 'aplicar' não está na lista permitida (localizar, calcular, comparar, eliminar, concluir). O passo monta a soma da PA, então o tipo certo é 'calcular'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "42/5 sai de dividir o total por 2: (84/5) ÷ 2 = 42/5. Mas PQ e QR são só 2 dos 6 segmentos, e formam um dos 3 pares de soma igual. A soma deles é um terço do total, não a metade.",
+    "motivo": "A frase 'Isso seria a soma de 3 segmentos' é falsa em geral. Numa PA, três segmentos quaisquer não somam metade do total: a1 + a2 + a3 = 3a1 + 3r, enquanto metade do total é 3a1 + 7,5r. Por isso troquei pelo motivo correto.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "D"
  }
 }

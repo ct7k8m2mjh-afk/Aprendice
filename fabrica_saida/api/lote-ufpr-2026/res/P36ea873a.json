@@ -34,7 +34,7 @@
     "faz": "Dê nome à entrada de f",
     "conta": "u = 2x + 1",
     "porque": "Queremos f(u) para qualquer u. Então chamamos de u o que está dentro do parêntese.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Isole x em função de u",
@@ -58,7 +58,7 @@
     "faz": "Ache o x do vértice",
     "conta": "x_v = −3/(2·1) = −3/2",
     "porque": "Fórmula do vértice: x_v = −b/(2a).",
-    "tipo": "aplicar"
+    "tipo": "calcular"
    },
    {
     "faz": "Calcule o y do vértice",
@@ -147,10 +147,28 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[0].tipo",
+    "depois": "localizar",
+    "motivo": "'interpretar' não é um tipo aceito. Os tipos válidos são localizar, calcular, comparar, eliminar e concluir. Dar nome à entrada de f é um passo de localizar o que se pede.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[4].tipo",
+    "depois": "calcular",
+    "motivo": "'aplicar' não é um tipo aceito. O passo calcula x_v = −b/(2a), então o tipo é calcular.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C"
  }
 }

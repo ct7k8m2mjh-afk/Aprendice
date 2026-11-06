@@ -54,14 +54,14 @@
    {
     "faz": "Nomeie a função do arco triunfal",
     "conta": "arco triunfal → vitória militar",
-    "porque": "Os romanos ergueram arcos para marcar triunfos: vitórias sobre inimigos externos e conquistas de território.",
-    "tipo": "aplicar"
+    "porque": "Os romanos ergueram arcos para marcar triunfos: vitórias militares em guerras de conquista, sobre revoltas e até em guerras civis.",
+    "tipo": "comparar"
    },
    {
     "faz": "Entenda a polêmica",
     "conta": "bandeira de Israel + arco da vitória sobre a Judeia",
     "porque": "Projetar o símbolo de Israel sobre um monumento da vitória romana sobre os judeus gera estranhamento. É o que o texto chama de \"curiosidade e polêmica\".",
-    "tipo": "interpretar"
+    "tipo": "comparar"
    },
    {
     "faz": "Teste as alternativas contra essa função",
@@ -82,7 +82,7 @@
    "A": "Roma era politeísta na República e no Alto Império. O cristianismo só foi oficializado no fim do século IV, e os arcos triunfais não celebravam monoteísmo. O Arco de Tito, aliás, celebra vitória sobre judeus, que eram monoteístas.",
    "B": "A romanização foi um processo de integração cultural. O arco triunfal celebra a vitória sobre um inimigo, não a convivência com estrangeiros.",
    "C": "Os gladiadores lutavam em anfiteatros, como o Coliseu. O arco triunfal é um monumento de passagem e homenagem a vitórias, não um local de jogos.",
-   "E": "O Tribunato da Plebe nasceu na República como conquista dos plebeus nas lutas contra os patrícios, e é tema de política interna. O arco triunfal celebra vitórias externas, não a coesão entre patrícios e plebeus."
+   "E": "O Tribunato da Plebe nasceu na República como conquista dos plebeus nas lutas contra os patrícios; é tema de política interna. O arco triunfal celebra vitória militar, não a coesão entre patrícios e plebeus."
   },
   "armadilha": "Escolher uma alternativa verdadeira sobre Roma (romanização, gladiadores, plebeus) que não responde ao que o arco triunfal representava.",
   "alerta": "",
@@ -119,10 +119,40 @@
  "gab": "D",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "comparar",
+    "motivo": "\"aplicar\" não é um tipo válido. Os tipos permitidos são localizar, calcular, comparar, eliminar e concluir.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "comparar",
+    "motivo": "\"interpretar\" não é um tipo válido. O passo confronta o símbolo projetado com o sentido do monumento, então o tipo certo é comparar.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Os romanos ergueram arcos para marcar triunfos: vitórias militares em guerras de conquista, sobre revoltas e até em guerras civis.",
+    "motivo": "Dizer que os arcos marcavam só vitórias sobre inimigos externos é impreciso. O próprio Arco de Tito celebra o fim de uma revolta numa província (a Judeia), e o Arco de Constantino celebra a vitória sobre Maxêncio numa guerra civil. A alternativa D cita \"rebeliões\" de propósito.",
+    "fonte": "https://www.britannica.com/technology/triumphal-arch"
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "O Tribunato da Plebe nasceu na República como conquista dos plebeus nas lutas contra os patrícios; é tema de política interna. O arco triunfal celebra vitória militar, não a coesão entre patrícios e plebeus.",
+    "motivo": "Troquei \"vitórias externas\" por \"vitória militar\". A versão antiga era imprecisa, porque arcos também celebraram o fim de rebeliões e vitórias em guerras civis.",
+    "fonte": "https://www.britannica.com/technology/triumphal-arch"
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "D"
  }
 }

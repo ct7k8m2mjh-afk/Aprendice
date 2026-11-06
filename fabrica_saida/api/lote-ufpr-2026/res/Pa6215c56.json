@@ -40,14 +40,14 @@
    {
     "faz": "Verifique se Sócrates aceita B e D",
     "conta": "Exemplo: devolver armas a um amigo louco",
-    "porque": "Sócrates mostra que devolver o que se tomou e dizer a verdade nem sempre é justo. Isso derruba D e também a definição de Polemarco, B, que depende dela.",
-    "tipo": "aplicar"
+    "porque": "Sócrates mostra que devolver o que se tomou e dizer a verdade nem sempre é justo, e isso derruba D. Polemarco então reformula a ideia como 'dar a cada um o que lhe é devido' (B). Sócrates também examina e refuta essa versão.",
+    "tipo": "eliminar"
    },
    {
     "faz": "Verifique a tese de Trasímaco (E)",
     "conta": "Trasímaco: justiça = vantagem do mais forte",
     "porque": "É Trasímaco quem diz que a justiça serve aos fortes e prejudica os governados. Sócrates a combate, argumentando que o governante verdadeiro cuida do interesse dos governados.",
-    "tipo": "interpretar"
+    "tipo": "eliminar"
    },
    {
     "faz": "Verifique se Sócrates desiste de definir (A)",
@@ -101,10 +101,34 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "Sócrates mostra que devolver o que se tomou e dizer a verdade nem sempre é justo, e isso derruba D. Polemarco então reformula a ideia como 'dar a cada um o que lhe é devido' (B). Sócrates também examina e refuta essa versão.",
+    "motivo": "A frase original dizia que o caso das armas 'derruba também B, que depende dela'. Isso exagera. O caso das armas força Polemarco a reinterpretar o 'devido' como fazer bem aos amigos e mal aos inimigos. A refutação de B vem depois, em 332a–335e, com o argumento de que o justo não prejudica ninguém.",
+    "fonte": "Platão, A República, Livro I, 331c–335e"
+   },
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "eliminar",
+    "motivo": "'aplicar' não é um tipo válido. Os tipos válidos são localizar, calcular, comparar, eliminar e concluir. Este passo descarta B e D.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "eliminar",
+    "motivo": "'interpretar' não é um tipo válido. Este passo descarta E.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C"
  }
 }

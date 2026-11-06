@@ -64,9 +64,9 @@
   "resposta": "Alternativa D: o quadrado tem lado 3 cm, o retângulo ABCD tem base 3 + 5 = 8 cm e altura 3 cm, então a área é 24 cm².",
   "checagem": "Divida em duas partes: o quadrado tem 9 cm² e o retângulo FECD tem 5 × 3 = 15 cm². Somando, 9 + 15 = 24 cm². Fecha com o outro caminho.",
   "erradas": {
-   "A": "12 não confere: seria 4 × 3. Isso exigiria base 4 cm, mas a base é 3 + 5 = 8 cm. Também não é 9 + 3.",
+   "A": "12 sai de calcular o perímetro do quadrado ABEF: 4 × 3 = 12 cm. Isso é um comprimento, não a área. Com altura 3, uma área de 12 exigiria base 4 cm, mas a base é 3 + 5 = 8 cm.",
    "B": "15 é a área só do retângulo FECD (5 × 3 = 15). Falta somar o quadrado ABEF, de 9 cm², que também faz parte de ABCD.",
-   "C": "22 não confere: não sai de base 8 e altura 3 (8 × 3 = 24). Para dar 22 seria preciso uma medida que a figura não tem.",
+   "C": "22 sai de calcular o perímetro de ABCD em vez da área: 2 × (8 + 3) = 22 cm. A área é base × altura = 8 × 3 = 24 cm².",
    "E": "45 sai de multiplicar 9 × 5, a área do quadrado pelo segmento DF. Isso não é área de nada na figura, porque 9 já é uma área e DF é um comprimento."
   },
   "armadilha": "Tomar DF = 5 como a base inteira, esquecendo de somar o lado do quadrado (3 cm), ou parar na área do retângulo menor.",
@@ -84,7 +84,7 @@
   },
   {
    "nome": "eliminação",
-   "ideia": "A área tem de ser maior que 9 (o quadrado está dentro) e maior que 15 (o retângulo da direita também está dentro). Só sobram 22, 24 e 45; 45 é grande demais para base ~8 e altura 3."
+   "ideia": "A área tem de ser maior que 9 (o quadrado está dentro) e maior que 15 (o retângulo da direita também está dentro). Só sobram 22, 24 e 45; 45 é grande demais para base 8 e altura 3, e 22 é o perímetro de ABCD, 2 × (8 + 3). Fica 24 = 8 × 3."
   }
  ],
  "quadro": [
@@ -127,10 +127,34 @@
  "gab": "D",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "12 sai de calcular o perímetro do quadrado ABEF: 4 × 3 = 12 cm. Isso é um comprimento, não a área. Com altura 3, uma área de 12 exigiria base 4 cm, mas a base é 3 + 5 = 8 cm.",
+    "motivo": "O texto antigo dizia \"Também não é 9 + 3\", o que é falso, porque 9 + 3 = 12. Além disso, 12 tem uma origem real e exata: o perímetro do quadrado (4 × 3).",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "22 sai de calcular o perímetro de ABCD em vez da área: 2 × (8 + 3) = 22 cm. A área é base × altura = 8 × 3 = 24 cm².",
+    "motivo": "O texto antigo dizia que 22 exigiria \"uma medida que a figura não tem\". Mas 22 sai exatamente do perímetro de ABCD, 2 × (8 + 3) = 22, um erro típico real.",
+    "fonte": ""
+   },
+   {
+    "campo": "caminhos[1].ideia",
+    "depois": "A área tem de ser maior que 9 (o quadrado está dentro) e maior que 15 (o retângulo da direita também está dentro). Só sobram 22, 24 e 45; 45 é grande demais para base 8 e altura 3, e 22 é o perímetro de ABCD, 2 × (8 + 3). Fica 24 = 8 × 3.",
+    "motivo": "A eliminação antiga parava em três alternativas e não separava 22 de 24, então não levava à resposta.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "D"
  }
 }

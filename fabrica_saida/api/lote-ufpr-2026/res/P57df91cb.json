@@ -44,13 +44,13 @@
     "faz": "Lembre a tese de Bento",
     "conta": "Pacto: naturalizar a desigualdade",
     "porque": "O livro denuncia que a hierarquia racial é tratada como algo normal. A fala é um exemplo disso, não uma defesa de eficiência.",
-    "tipo": "aplicar"
+    "tipo": "comparar"
    },
    {
     "faz": "Ligue à personalidade autoritária",
     "conta": "hierarquia + violência com 'inferiores'",
     "porque": "Tratar de modo mais duro quem está embaixo na hierarquia social e racial é traço autoritário.",
-    "tipo": "aplicar"
+    "tipo": "comparar"
    },
    {
     "faz": "Procure a alternativa que une as duas ideias",
@@ -71,7 +71,7 @@
    "A": "Diz que Bento vê a fala como técnica e sem intenção discriminatória. Bento faz o contrário: mostra que o argumento da 'particularidade cultural' naturaliza a desigualdade racial.",
    "C": "Atribui a violência a 'falta de treinamento', explicação individual e técnica. Bento a vê como parte da estrutura de privilégios do pacto da branquitude, e não como falha de preparo.",
    "D": "Diz que a violência racial é explícita e desvinculada de eficiência. A fala do comandante mostra o oposto: a diferenciação é apresentada em linguagem de eficiência e adequação, ou seja, de modo implícito.",
-   "E": "Endossa a ideia de que a periferia exige linguagem mais dura porque há mais criminalidade. Isso reproduz o preconceito que Bento critica, e a alternativa erra ao dizer que ela negaria o viés racial."
+   "E": "Diz que a diferença 'comprova' que a periferia exige linguagem mais dura por ter mais crime, e chama isso de análise 'realista'. Para Bento, ligar periferia a crime é a própria racialização que ela denuncia, não realismo."
   },
   "armadilha": "Aceitar a fala como 'técnica' e 'adaptada à cultura', quando Bento a lê como naturalização de uma hierarquia racial.",
   "alerta": "",
@@ -105,10 +105,34 @@
  "gab": "B",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "comparar",
+    "motivo": "O tipo \"aplicar\" não está na lista permitida (localizar, calcular, comparar, eliminar, concluir). Neste passo, a fala é confrontada com a tese de Bento.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "comparar",
+    "motivo": "O tipo \"aplicar\" não está na lista permitida. Neste passo, a fala é confrontada com o conceito de personalidade autoritária.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "Diz que a diferença 'comprova' que a periferia exige linguagem mais dura por ter mais crime, e chama isso de análise 'realista'. Para Bento, ligar periferia a crime é a própria racialização que ela denuncia, não realismo.",
+    "motivo": "O comentário antigo dizia que a alternativa 'erra ao dizer que ela negaria o viés racial'. É uma leitura errada: a E diz que Bento critica a análise por negar o viés racial, e essa parte é coerente com a autora. O erro da E está em apresentar a diferença como comprovada e 'realista', aceitando a premissa da criminalidade.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "B"
  }
 }

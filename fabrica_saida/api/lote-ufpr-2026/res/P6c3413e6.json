@@ -50,13 +50,13 @@
     "faz": "Leia o grupo no produto",
     "conta": "C(=O)–O–C na cadeia → éster",
     "porque": "Dentro do colchete o C=O está ligado a um O que se liga a outro carbono: isso é éster.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Descubra o que foi perdido",
     "conta": "–COOH + HO–C → –COO–C + H2O",
     "porque": "O OH do ácido e o H do álcool saem juntos como água, e o O do álcool fica ligando as unidades.",
-    "tipo": "aplicar"
+    "tipo": "comparar"
    },
    {
     "faz": "Dê nome à reação",
@@ -105,7 +105,7 @@
    "nota": "n moléculas de ácido lático"
   },
   {
-   "linha": "→ [–O–CH(CH3)–CO–]n + (n−1) H2O",
+   "linha": "→ [–O–CH(CH3)–CO–]n + n H2O",
    "nota": "cadeia de ésteres e água liberada"
   }
  ],
@@ -122,10 +122,34 @@
  "gab": "E",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "localizar",
+    "motivo": "O tipo 'interpretar' não está na lista permitida (localizar, calcular, comparar, eliminar, concluir). O passo acha o grupo éster dentro dos colchetes do produto, então o tipo certo é localizar.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "comparar",
+    "motivo": "O tipo 'aplicar' não está na lista permitida. O passo compara os grupos do reagente com os do produto para descobrir o que saiu (a água), então o tipo certo é comparar.",
+    "fonte": ""
+   },
+   {
+    "campo": "quadro[3].linha",
+    "depois": "→ [–O–CH(CH3)–CO–]n + n H2O",
+    "motivo": "Com a unidade repetitiva sem grupos nas pontas, a equação só fecha com n H2O: n C3H6O3 = (C3H4O2)n + n H2O. O valor (n−1) H2O só vale se as pontas HO– e –H forem escritas na cadeia.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E"
  }
 }

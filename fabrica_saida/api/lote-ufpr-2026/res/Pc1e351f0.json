@@ -72,7 +72,7 @@
    "A": "10 e 10 não confere: 10 CO2 teria só 10 C, mas o ácido tem 20 C. 10 H2O teria 20 H, mas o ácido tem 30 H.",
    "B": "10 e 15 acerta a água (30 H ÷ 2 = 15), mas erra o CO2: 20 carbonos geram 20 CO2, não 10. O valor 10 sai de dividir 20 por 2, como se cada CO2 levasse dois carbonos.",
    "D": "20 e 60 acerta o CO2, mas erra a água: 60 seria 2 × 30, multiplicando os hidrogênios em vez de dividir por 2. Cada H2O tem 2 H, então saem 15 águas.",
-   "E": "40 e 60 não confere: 40 é o dobro dos 20 carbonos e 60 é o dobro dos 30 hidrogênios. Parece multiplicar por 2 em vez de contar um C por CO2 e dois H por H2O."
+   "E": "40 e 60 não confere: 40 CO2 teriam 40 C e 60 H2O teriam 120 H, mas o ácido só tem 20 C e 30 H. Os dois números são o dobro de 20 e de 60, sem nenhuma contagem que os justifique."
   },
   "armadilha": "Multiplicar ou dividir errado: o H é dividido por 2 (cada H2O tem 2 H), enquanto o C passa direto (1 C por CO2).",
   "alerta": "",
@@ -137,10 +137,22 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "40 e 60 não confere: 40 CO2 teriam 40 C e 60 H2O teriam 120 H, mas o ácido só tem 20 C e 30 H. Os dois números são o dobro de 20 e de 60, sem nenhuma contagem que os justifique.",
+    "motivo": "O texto antigo atribuía uma origem especulativa (\"Parece multiplicar por 2...\"), o que o guia proíbe. Troquei por um teste objetivo de conservação de átomos, que derruba a alternativa.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C"
  }
 }

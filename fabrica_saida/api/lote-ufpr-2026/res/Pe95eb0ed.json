@@ -75,14 +75,14 @@
    }
   ],
   "resposta": "Alternativa C: K_B = 40 nJ, pois B tem velocidade de 0,40 cm/s em t = 15 s e massa de 5,0 g.",
-  "checagem": "No gráfico, B passa por 2,0 cm em t = 15 s, a meio caminho entre 4,0 cm e 0, o que confirma a reta descendo. Na unidade: kg × (m/s)² = J. Ordem de grandeza: massa de 10⁻³ kg e velocidade de 10⁻³ m/s dão cerca de 10⁻⁹ × 10⁻³ ... da ordem de 10⁻⁸ J, isto é, dezenas de nJ.",
+  "checagem": "No gráfico, B passa por 2,0 cm em t = 15 s, a meio caminho entre 4,0 cm e 0, o que confirma a reta descendo. Na unidade: kg × (m/s)² = J. Ordem de grandeza: massa de ~10⁻³ kg e v² ≈ 1,6 × 10⁻⁵ m²/s² dão m·v²/2 da ordem de 10⁻⁸ J, isto é, dezenas de nJ.",
   "erradas": {
    "A": "10 nJ corresponde a v = 0,20 cm/s (K = 5,0×10⁻³ × (2,0×10⁻³)² ÷ 2 = 1,0×10⁻⁸ J). Mas a inclinação de B entre 10 s e 20 s é 0,40 cm/s, não 0,20 cm/s.",
    "B": "20 nJ não confere: exigiria v ≈ 2,8 mm/s (0,28 cm/s), valor que não aparece no gráfico. A inclinação do trecho é 4,0 cm ÷ 10 s = 0,40 cm/s.",
    "D": "80 nJ sai de esquecer o fator 1/2 da fórmula: m × v² = 5,0×10⁻³ × 1,6×10⁻⁵ = 8,0×10⁻⁸ J. O certo é m × v² ÷ 2.",
-   "E": "160 nJ corresponde a v = 0,80 cm/s, o dobro do real (K = 5,0×10⁻³ × (8,0×10⁻³)² ÷ 2 = 1,6×10⁻⁷ J). Isso sai de dividir 4,0 cm por 5 s. Mas o trecho tem 10 s de duração (de 10 s a 20 s)."
+   "E": "160 nJ não confere: exigiria v = 0,80 cm/s (K = 5,0×10⁻³ × (8,0×10⁻³)² ÷ 2 = 1,6×10⁻⁷ J), o dobro da inclinação real. Entre 10 s e 20 s, B desce 4,0 cm em 10 s, ou seja, 0,40 cm/s."
   },
-  "armadilha": "Converter errado cm/s e g para o SI, ou esquecer o 1/2 da energia cinética, leva às letras D e E.",
+  "armadilha": "Esquecer o ÷ 2 da energia cinética leva a 80 nJ (letra D); converter cm/s e g para o SI sem cuidado erra a potência de dez.",
   "alerta": "",
   "essencial": {
    "pede": "A energia cinética de B em t = 15 s, em nJ.",
@@ -149,10 +149,34 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "160 nJ não confere: exigiria v = 0,80 cm/s (K = 5,0×10⁻³ × (8,0×10⁻³)² ÷ 2 = 1,6×10⁻⁷ J), o dobro da inclinação real. Entre 10 s e 20 s, B desce 4,0 cm em 10 s, ou seja, 0,40 cm/s.",
+    "motivo": "A origem 'dividir 4,0 cm por 5 s' foi inventada e não corresponde a nenhuma leitura natural do gráfico. Em t = 15 s, B está em 2,0 cm, então 5 s correspondem a 2,0 cm, não a 4,0 cm. Troquei por um teste objetivo. A conta 1,6×10⁻⁷ J = 160 nJ está certa.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.armadilha",
+    "depois": "Esquecer o ÷ 2 da energia cinética leva a 80 nJ (letra D); converter cm/s e g para o SI sem cuidado erra a potência de dez.",
+    "motivo": "Dizer que errar a conversão leva às letras D e E é falso. Errar a conversão muda o resultado por fatores de 10 (100, 1 000…), o que não dá em nenhuma das duas. A letra D sai só de esquecer o 1/2, e a letra E não sai de erro de conversão.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "No gráfico, B passa por 2,0 cm em t = 15 s, a meio caminho entre 4,0 cm e 0, o que confirma a reta descendo. Na unidade: kg × (m/s)² = J. Ordem de grandeza: massa de ~10⁻³ kg e v² ≈ 1,6 × 10⁻⁵ m²/s² dão m·v²/2 da ordem de 10⁻⁸ J, isto é, dezenas de nJ.",
+    "motivo": "O trecho da ordem de grandeza estava truncado e incoerente ('10⁻⁹ × 10⁻³ ...'). Ele daria 10⁻¹², e não 10⁻⁸.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C"
  }
 }

@@ -48,19 +48,19 @@
     "faz": "Traduza o efeito esperado",
     "conta": "invasora → compete e/ou preda a nativa",
     "porque": "O peixe-leão é predador voraz, e a tilápia disputa alimento e espaço. O efeito comum a todos é competição e predação.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Veja a consequência para a biodiversidade",
     "conta": "nativas ↓ → biodiversidade ↓",
     "porque": "Com menos alimento e mais predação, as populações nativas encolhem e algumas podem desaparecer.",
-    "tipo": "interpretar"
+    "tipo": "concluir"
    },
    {
     "faz": "Elimine as alternativas que dizem o contrário",
     "conta": "B, C, D, E: efeito benéfico",
     "porque": "Todas descrevem ganho às nativas (menos doenças, mais biodiversidade, mais variabilidade, nicho ampliado), o oposto do que a invasão costuma causar.",
-    "tipo": "aplicar"
+    "tipo": "eliminar"
    },
    {
     "faz": "Conclua",
@@ -92,7 +92,7 @@
   },
   {
    "nome": "Exemplo concreto",
-   "ideia": "O peixe-leão come peixes nativos de recifes e não tem predadores no Atlântico, o que ilustra competição e predação."
+   "ideia": "O peixe-leão come peixes nativos de recifes e tem poucos predadores naturais no Atlântico, o que ilustra competição e predação."
   }
  ],
  "quadro": [],
@@ -109,10 +109,40 @@
  "gab": "A",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "localizar",
+    "motivo": "'interpretar' não está entre os tipos aceitos (localizar, calcular, comparar, eliminar, concluir). O passo traduz o texto no processo biológico, competição e predação, e isso é 'localizar' no método da matéria.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "concluir",
+    "motivo": "'interpretar' não é um tipo aceito. O passo tira a consequência, a queda das nativas e da biodiversidade.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "eliminar",
+    "motivo": "'aplicar' não é um tipo aceito. O passo descarta as alternativas B, C, D e E.",
+    "fonte": ""
+   },
+   {
+    "campo": "caminhos[1].ideia",
+    "depois": "O peixe-leão come peixes nativos de recifes e tem poucos predadores naturais no Atlântico, o que ilustra competição e predação.",
+    "motivo": "Dizer que ele 'não tem predadores' é absoluto demais: no Atlântico há registros de garoupas e tubarões comendo peixe-leão, só que raramente. O certo é 'poucos predadores naturais'.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "A"
  }
 }

@@ -73,11 +73,11 @@
    }
   ],
   "resposta": "Alternativa C: a lactose é C12H22O11 e o antraceno é C14H10.",
-  "checagem": "A lactose é um dissacarídeo, formado por duas hexoses C6H12O6 que perdem uma água: C12H24O12 − H2O = C12H22O11. O antraceno, com 14 C e 3 anéis aromáticos, tem 10 H, como é conhecido.",
+  "checagem": "A lactose é um dissacarídeo, formado por duas hexoses C6H12O6 que perdem uma água: C12H24O12 − H2O = C12H22O11. No antraceno, conte as insaturações: 3 anéis + 7 ligações duplas = 10. O alcano de 14 C seria C14H30, e cada insaturação tira 2 H: 30 − 2 × 10 = 10 H, o que dá C14H10.",
   "erradas": {
    "A": "C10H22O11 erra a contagem de carbonos da lactose: faltou somar os dois CH2OH fora dos anéis, o que dá 10 C em vez de 12. Cada anel tem 6 C (5 do anel + 1 do CH2OH).",
    "B": "O C12H22O11 está certo, mas C14H14 está errado para o antraceno: os 4 carbonos de junção entre os anéis não têm hidrogênio, então são 10 H e não 14.",
-   "D": "C10H12O11 erra a lactose duas vezes: 10 C em vez de 12 e 12 H em vez de 22. Conta de C e de H pela metade. O antraceno C14H10 está certo.",
+   "D": "C10H12O11 não confere com a lactose: contando o desenho, são 12 C (5 + 1 em cada anel) e 22 H (11 em cada anel), e não 10 C e 12 H. O antraceno C14H10 está certo.",
    "E": "A lactose C12H22O11 está certa, mas C10H10 não serve para o antraceno. São três anéis de 6 lados com carbonos compartilhados, o que dá 14 C, e não 10."
   },
   "armadilha": "Esquecer que o vértice sem letra é carbono (contar só os grupos CH2OH) ou contar H nos carbonos de junção do antraceno, que não têm nenhum.",
@@ -151,10 +151,28 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "C10H12O11 não confere com a lactose: contando o desenho, são 12 C (5 + 1 em cada anel) e 22 H (11 em cada anel), e não 10 C e 12 H. O antraceno C14H10 está certo.",
+    "motivo": "O texto dizia que C e H foram contados 'pela metade'. Isso é falso: 12 H não é metade de 22 e 10 C não é metade de 12. A origem dada para o erro era inventada, então troquei por um teste objetivo.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "A lactose é um dissacarídeo, formado por duas hexoses C6H12O6 que perdem uma água: C12H24O12 − H2O = C12H22O11. No antraceno, conte as insaturações: 3 anéis + 7 ligações duplas = 10. O alcano de 14 C seria C14H30, e cada insaturação tira 2 H: 30 − 2 × 10 = 10 H, o que dá C14H10.",
+    "motivo": "Para o antraceno, a checagem só dizia 'como é conhecido', o que não confere nada. Troquei por uma conta feita por outro caminho, com as insaturações. Na estrutura de Kekulé, 14 C formam 7 C=C.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C"
  }
 }

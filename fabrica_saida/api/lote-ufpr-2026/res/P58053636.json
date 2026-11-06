@@ -63,7 +63,7 @@
    "A": "R$ 70,00 não confere: 15% de 70 = 10,50 e 70 − 10,50 = 59,50, não 51. O preço com desconto seria R$ 59,50.",
    "C": "R$ 67,00 não confere: 15% de 67 = 10,05 e 67 − 10,05 = 56,95, não 51.",
    "D": "R$ 80,00 não confere: 15% de 80 = 12 e 80 − 12 = 68, não 51. Esse preço original daria um valor promocional bem maior.",
-   "E": "R$ 56,00 sai de somar 15% ao preço pago como se o desconto fosse sobre ele: 15% de 51 = 7,65 e 51 + 7,65 = 58,65, que arredondaria para perto de 56 só com erro. Pelo teste: 15% de 56 = 8,40 e 56 − 8,40 = 47,60, não 51."
+   "E": "R$ 56,00 não confere: 15% de 56 = 8,40 e 56 − 8,40 = 47,60, não 51. O preço com desconto seria R$ 47,60."
   },
   "armadilha": "Somar 15% aos R$ 51,00: o desconto foi calculado sobre o preço original, não sobre o preço com desconto.",
   "alerta": "",
@@ -132,10 +132,22 @@
  "gab": "B",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "R$ 56,00 não confere: 15% de 56 = 8,40 e 56 − 8,40 = 47,60, não 51. O preço com desconto seria R$ 47,60.",
+    "motivo": "A resolução dava uma origem que não existe. Ela dizia que E 'sai de' somar 15% a 51, mas essa conta dá 58,65, e não 56. O guia proíbe inventar a origem de um distrator. Troquei pelo teste objetivo, que já estava no texto e confere: 0,15 × 56 = 8,40 e 56 − 8,40 = 47,60.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "B"
  }
 }

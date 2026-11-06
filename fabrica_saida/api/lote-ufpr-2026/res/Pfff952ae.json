@@ -44,19 +44,19 @@
     "faz": "Identifique o reagente da oxidação",
     "conta": "alimento + O2 → deterioração",
     "porque": "A oxidação do alimento consome o gás oxigênio do ar. Menos O2, menos colisões efetivas e reação mais lenta.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Teste cada alternativa nos fatores",
     "conta": "A: mais O2 → mais rápida",
     "porque": "Aumentar a concentração de reagente acelera a reação, e não é isso que se quer.",
-    "tipo": "aplicar"
+    "tipo": "eliminar"
    },
    {
     "faz": "Continue testando",
-    "conta": "B: mais T | D: mais área | E: catalisador",
+    "conta": "B: T↑ | D: área↑ | E: enzima",
     "porque": "Temperatura alta, maior superfície de contato e enzimas aumentam a velocidade. Todas pioram a conservação.",
-    "tipo": "aplicar"
+    "tipo": "eliminar"
    },
    {
     "faz": "Ligue a alternativa que sobrou",
@@ -131,10 +131,40 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "localizar",
+    "motivo": "O tipo 'interpretar' não existe no padrão do app. Os tipos válidos são localizar, calcular, comparar, eliminar e concluir. Este passo identifica o reagente (O2) a partir do enunciado, então o tipo certo é localizar.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "eliminar",
+    "motivo": "O tipo 'aplicar' não existe no padrão do app. O passo descarta a alternativa A, então o tipo certo é eliminar.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "eliminar",
+    "motivo": "O tipo 'aplicar' não existe no padrão do app. O passo descarta as alternativas B, D e E, então o tipo certo é eliminar.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "B: T↑ | D: área↑ | E: enzima",
+    "motivo": "A conta original tem cerca de 41 caracteres e passa do limite de ~30 da linha escrita à mão, que não quebra no celular. O conteúdo continua o mesmo.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C"
  }
 }

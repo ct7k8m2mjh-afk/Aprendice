@@ -40,7 +40,7 @@
   "passos": [
    {
     "faz": "Localize o que a vacina contém",
-    "conta": "\"transferência de RNAm associado a proteínas virais\"",
+    "conta": "\"RNAm associado a proteínas virais\"",
     "porque": "A vacina leva só a instrução (RNAm) de uma proteína do vírus, não o vírus inteiro.",
     "tipo": "localizar"
    },
@@ -48,13 +48,13 @@
     "faz": "Diga o que o RNAm faz na célula",
     "conta": "RNAm → ribossomo → proteína",
     "porque": "A função do RNAm é ser traduzido nos ribossomos. A célula vacinada passa a fabricar a proteína viral.",
-    "tipo": "aplicar"
+    "tipo": "concluir"
    },
    {
     "faz": "Ligue a proteína viral à imunidade",
-    "conta": "proteína viral = antígeno → anticorpos + memória",
+    "conta": "proteína viral = antígeno",
     "porque": "O sistema imune reconhece a proteína como estranha, produz anticorpos e guarda memória. Esse é o efeito posterior; o primeiro é a produção da proteína.",
-    "tipo": "interpretar"
+    "tipo": "concluir"
    },
    {
     "faz": "Teste as demais alternativas",
@@ -64,7 +64,7 @@
    },
    {
     "faz": "Conclua",
-    "conta": "Primeiro momento: produção de proteína viral",
+    "conta": "1º efeito: proteína viral",
     "porque": "Sem a proteína viral produzida pelas células, não haveria antígeno para treinar o sistema imune.",
     "tipo": "concluir"
    }
@@ -73,12 +73,12 @@
   "checagem": "Pergunte: sem proteína viral, o que o sistema imune reconheceria? Nada. Então a produção da proteína tem de vir antes dos anticorpos e da memória, e a única alternativa que fala dela é a C.",
   "erradas": {
    "A": "Carga viral é a quantidade de vírus numa pessoa infectada. A vacina não contém vírus e não ataca vírus por si. A proteção vem depois, pelos anticorpos produzidos.",
-   "B": "O RNAm da vacina é lido (traduzido) para fazer proteína; a vacina não é um sistema de replicar RNA. O efeito do RNAm é síntese de proteína, não aumento da síntese de RNA.",
+   "B": "O RNAm da vacina é lido (traduzido) para fazer proteína. As vacinas de RNAm usadas contra a COVID-19 não replicam RNA nem aumentam a transcrição da célula. O efeito do RNAm é a síntese de proteína, não o aumento da síntese de RNA.",
    "D": "Leucócitos são as células de defesa; a vacina os ativa e não os reduz. Uma queda de leucócitos deixaria a pessoa mais vulnerável, o oposto de imunidade.",
    "E": "O anticorpo é feito contra o antígeno, a proteína viral produzida pelas células, e não contra o RNAm. Além disso, os anticorpos surgem depois, não 'em um primeiro momento'."
   },
   "armadilha": "Marcar anticorpos (E) porque é o resultado final da vacina, quando a pergunta pede o PRIMEIRO efeito do RNAm: a produção da proteína.",
-  "alerta": "",
+  "alerta": "O enunciado diz \"RNAm associado a proteínas virais\", o que é impreciso. As vacinas de RNAm não contêm proteína viral: o RNAm vem envolto em nanopartículas lipídicas e codifica a proteína do vírus (spike). Leia como \"RNAm que codifica proteínas virais\". O gabarito C continua correto.",
   "essencial": {
    "pede": "O que o RNAm da vacina causa, em um primeiro momento, nas células de quem a recebeu.",
    "chave": "RNAm é traduzido em proteína; a proteína viral é o antígeno que dispara a imunidade.",
@@ -109,10 +109,58 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[0].conta",
+    "depois": "\"RNAm associado a proteínas virais\"",
+    "motivo": "A conta tinha cerca de 53 caracteres, acima do limite de cerca de 30 que o site escreve à mão sem quebrar a linha. Mantive o trecho que decide a questão.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "concluir",
+    "motivo": "\"aplicar\" não é um tipo válido. Os tipos aceitos são localizar, calcular, comparar, eliminar e concluir.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "proteína viral = antígeno",
+    "motivo": "A conta tinha cerca de 47 caracteres, acima do limite de linha. A sequência anticorpos → memória já está explicada no porque.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "concluir",
+    "motivo": "\"interpretar\" não é um tipo válido.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "1º efeito: proteína viral",
+    "motivo": "A conta tinha cerca de 44 caracteres, acima do limite de linha.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "O RNAm da vacina é lido (traduzido) para fazer proteína. As vacinas de RNAm usadas contra a COVID-19 não replicam RNA nem aumentam a transcrição da célula. O efeito do RNAm é a síntese de proteína, não o aumento da síntese de RNA.",
+    "motivo": "Existem vacinas de RNA autoamplificável (saRNA), então a frase genérica \"a vacina não é um sistema de replicar RNA\" ficou mais absoluta do que o fato. Limitei a afirmação às vacinas de RNAm comuns, que não se replicam.",
+    "fonte": "OpenStax Biology 2e, cap. 15 (tradução); CDC, \"Understanding How COVID-19 Vaccines Work\""
+   },
+   {
+    "campo": "resolucao.alerta",
+    "depois": "O enunciado diz \"RNAm associado a proteínas virais\", o que é impreciso. As vacinas de RNAm não contêm proteína viral: o RNAm vem envolto em nanopartículas lipídicas e codifica a proteína do vírus (spike). Leia como \"RNAm que codifica proteínas virais\". O gabarito C continua correto.",
+    "motivo": "A banca usou um termo impreciso e o aluno pode ler que a vacina já traz a proteína pronta. A resolução já interpreta assim no passo 1, mas o problema da prova precisa ficar registrado no alerta.",
+    "fonte": "CDC, \"Understanding How COVID-19 Vaccines Work\" (mRNA vaccines)"
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C"
  }
 }

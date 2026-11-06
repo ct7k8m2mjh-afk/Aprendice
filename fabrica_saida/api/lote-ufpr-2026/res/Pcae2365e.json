@@ -43,13 +43,13 @@
     "faz": "Escreva a condição do tubo aberto",
     "conta": "L = n × λ/2",
     "porque": "Nas duas pontas abertas há ventres. O 1º harmônico tem meio λ no tubo; o 3º tem três meios λ.",
-    "tipo": "aplicar"
+    "tipo": "calcular"
    },
    {
     "faz": "Ligue λ à frequência",
     "conta": "λ = v/f → L = n·v/(2f)",
     "porque": "A velocidade da onda é v = λ·f. Trocar λ deixa L em função dos dados.",
-    "tipo": "aplicar"
+    "tipo": "calcular"
    },
    {
     "faz": "Converta a frequência para Hz",
@@ -73,7 +73,7 @@
   "resposta": "Alternativa B: L = 10,0 cm.",
   "checagem": "Confira ao contrário: com L = 0,10 m, a fundamental é f₁ = 340 ÷ (2 × 0,10) = 1 700 Hz. O 3º harmônico é 3 × 1 700 = 5 100 Hz = 5,1 kHz, igual ao enunciado.",
   "erradas": {
-   "A": "L = 5,00 cm daria f₁ = 340 ÷ 0,10 = 3 400 Hz e f₃ = 10,2 kHz, o dobro do dado. Sai de usar a fórmula do harmônico n sem o fator 2 no denominador de L: 3 × 340 ÷ 5100 = 0,20 m seria o resultado errado, e não 5 cm. A alternativa não confere com f₃ = 5,1 kHz.",
+   "A": "Sai de tratar o tubo como fechado, com L = n·λ/4: 3 × 340 ÷ (4 × 5100) = 0,05 m = 5 cm. O tubo é aberto, então L = n·λ/2. Com 5 cm, o tubo aberto daria f₃ = 10,2 kHz.",
    "C": "L = 15,0 cm daria f₁ = 340 ÷ 0,30 ≈ 1 133 Hz e f₃ ≈ 3,4 kHz, não 5,1 kHz. Não confere com o enunciado.",
    "D": "L = 20,0 cm é o valor de n·v/f = 3 × 340 ÷ 5100 = 0,20 m, que esquece o 2 do denominador (2L). No tubo aberto, L = n·λ/2, não n·λ. Com 20 cm, f₃ = 2,55 kHz.",
    "E": "L = 30,0 cm daria f₃ = 3 × 340 ÷ 0,60 = 1 700 Hz, bem abaixo de 5,1 kHz. Seria o resultado de tratar a frequência como f₁ (n = 1) em vez de f₃: 340 ÷ (2 × 5100) = 3,3 cm, que também não é 30 cm, então não confere."
@@ -130,7 +130,7 @@
   "cabe": true,
   "porque": "O padrão de onda estacionária no tubo mostra de onde vem n·λ/2.",
   "tipo": "diagrama",
-  "roteiro": "Quadro 1: tubo horizontal aberto nos dois lados. Quadro 2: 1º harmônico, uma meia onda com ventres nas pontas (L = λ/2). Quadro 3: 3º harmônico, três meias ondas, três ventres internos e ventres nas pontas (L = 3λ/2). Quadro 4: aparece a fórmula L = 3λ/2 e a conta com λ = 340/5100 resultando em L = 10 cm."
+  "roteiro": "Quadro 1: tubo horizontal aberto nos dois lados. Quadro 2: 1º harmônico, uma meia onda com ventres nas pontas e um nó no meio (L = λ/2). Quadro 3: 3º harmônico, três meias ondas, com ventres nas duas pontas, dois ventres internos e três nós (L = 3λ/2). Quadro 4: aparece a fórmula L = 3λ/2 e a conta com λ = 340/5100, resultando em L = 10 cm."
  },
  "fontes": [],
  "resposta_resolvedor": "B",
@@ -139,10 +139,40 @@
  "gab": "B",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "Sai de tratar o tubo como fechado, com L = n·λ/4: 3 × 340 ÷ (4 × 5100) = 0,05 m = 5 cm. O tubo é aberto, então L = n·λ/2. Com 5 cm, o tubo aberto daria f₃ = 10,2 kHz.",
+    "motivo": "O texto antigo se contradizia: dizia que o erro sem o fator 2 levava a A e logo depois que dava 0,20 m, não 5 cm. A origem real de 5 cm é a fórmula do tubo fechado, conferida: 1020/20400 = 0,05 m.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[0].tipo",
+    "depois": "calcular",
+    "motivo": "'aplicar' não é um dos tipos permitidos (localizar, calcular, comparar, eliminar, concluir).",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "calcular",
+    "motivo": "'aplicar' não é um dos tipos permitidos.",
+    "fonte": ""
+   },
+   {
+    "campo": "visual.roteiro",
+    "depois": "Quadro 1: tubo horizontal aberto nos dois lados. Quadro 2: 1º harmônico, uma meia onda com ventres nas pontas e um nó no meio (L = λ/2). Quadro 3: 3º harmônico, três meias ondas, com ventres nas duas pontas, dois ventres internos e três nós (L = 3λ/2). Quadro 4: aparece a fórmula L = 3λ/2 e a conta com λ = 340/5100, resultando em L = 10 cm.",
+    "motivo": "No 3º harmônico do tubo aberto há três nós e quatro ventres (dois nas pontas e dois internos), e não três ventres internos.",
+    "fonte": "OpenStax College Physics, 17.5 Sound Interference and Resonance (tubo aberto: ventres nas duas pontas, L = nλ/2)"
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "B"
  }
 }

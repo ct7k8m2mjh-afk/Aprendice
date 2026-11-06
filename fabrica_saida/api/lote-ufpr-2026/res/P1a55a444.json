@@ -48,18 +48,18 @@
     "faz": "Traduza o conceito",
     "conta": "Lebensraum = \"espaço vital\"",
     "porque": "Dizer que falta espaço vital é justificar a conquista de terras. A própria expressão já aponta para expansão.",
-    "tipo": "interpretar"
+    "tipo": "comparar"
    },
    {
     "faz": "Some a ideia de raça",
     "conta": "alemães \"superiores\" x eslavos \"inferiores\"",
     "porque": "O nazismo era racista. A conquista do Leste servia para dar terra e domínio aos alemães e submeter ou eliminar os eslavos.",
-    "tipo": "aplicar"
+    "tipo": "comparar"
    },
    {
     "faz": "Elimine o que contradiz expansão",
     "conta": "A (unir europeus), C (fronteiras estáticas)",
-    "porque": "A diz que o nazismo unia germânicos e eslavos em igualdade, o oposto da hierarquia racial. C fala em fronteiras fixas, o oposto de expansão.",
+    "porque": "A diz que o nazismo unia todos os povos da Europa, eslavos incluídos, o que é o oposto da hierarquia racial. C fala em fronteiras fixas, o oposto de expansão.",
     "tipo": "eliminar"
    },
    {
@@ -79,7 +79,7 @@
   "checagem": "Troque \"Espaço Vital\" por sua definição (\"mais território para o povo alemão\") e releia cada alternativa. Só a E fala em ganhar território. A política nazista concreta confirma: anexação da Áustria e dos Sudetos e invasão da Polônia (1939) e da URSS (1941).",
   "erradas": {
    "A": "Inverte o nazismo. Ele era racista e hierárquico: os eslavos eram vistos como inferiores, e o Leste europeu seria conquistado para os alemães. Não havia união igualitária de povos europeus.",
-   "B": "O nazismo era agressivo, mas não defendia a \"soberania individual\" de costumes. O regime era totalitário, com forte controle do Estado. A \"tradição romani\" é citada sem relação com o Espaço Vital.",
+   "B": "O nazismo era agressivo, mas não defendia uma \"soberania individual\" de costumes: o regime era totalitário. Os romani (ciganos) também não eram tratados como tradição germânica. Os nazistas os perseguiram como \"racialmente inferiores\" e os mataram em massa.",
    "C": "Contradiz o Lebensraum. Quem busca espaço vital quer ampliar as fronteiras: o nazismo anexou a Áustria e partes da Tchecoslováquia e invadiu a Polônia. Fronteiras estáticas é o oposto.",
    "D": "O Grande Reich pregava a unificação dos alemães e a expansão, mas a perseguição aos judeus era racial, e não religiosa. Os nazistas perseguiam judeus mesmo convertidos ao cristianismo, e o regime também perseguiu outros grupos."
   },
@@ -94,7 +94,7 @@
  "caminhos": [
   {
    "nome": "Tradução da palavra",
-   "ideia": "Lebensraum quer dizer \"espaço para viver\". Quem reivindica mais espaço quer avançar sobre outros territórios. Isso já derruba A, B e C e deixa só E (D é recusada por tratar a perseguição aos judeus como religiosa)."
+   "ideia": "Lebensraum quer dizer \"espaço para viver\". Quem reivindica mais espaço quer avançar sobre outros territórios. Isso derruba C (fronteiras estáticas) e aponta para E. A cai pela hierarquia racial, B pela perseguição aos romani e D por tratar como religiosa uma perseguição que era racial."
   },
   {
    "nome": "Fatos históricos",
@@ -118,10 +118,46 @@
  "gab": "E",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "comparar",
+    "motivo": "\"interpretar\" não é um tipo válido. Os tipos permitidos são localizar, calcular, comparar, eliminar e concluir.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "comparar",
+    "motivo": "\"aplicar\" não é um tipo válido. O passo põe lado a lado a hierarquia racial (alemães × eslavos), então o tipo é comparar.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "A diz que o nazismo unia todos os povos da Europa, eslavos incluídos, o que é o oposto da hierarquia racial. C fala em fronteiras fixas, o oposto de expansão.",
+    "motivo": "A alternativa A não fala em \"igualdade\". A resolução atribuía a ela uma palavra que não está no texto.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "O nazismo era agressivo, mas não defendia uma \"soberania individual\" de costumes: o regime era totalitário. Os romani (ciganos) também não eram tratados como tradição germânica. Os nazistas os perseguiram como \"racialmente inferiores\" e os mataram em massa.",
+    "motivo": "Faltava o erro de fato central da alternativa B: os romani foram vítimas da perseguição racial nazista, e não um costume germânico que o regime defendia.",
+    "fonte": "https://encyclopedia.ushmm.org/content/pt-br/article/genocide-of-european-roma-gypsies-1939-1945"
+   },
+   {
+    "campo": "caminhos[0].ideia",
+    "depois": "Lebensraum quer dizer \"espaço para viver\". Quem reivindica mais espaço quer avançar sobre outros territórios. Isso derruba C (fronteiras estáticas) e aponta para E. A cai pela hierarquia racial, B pela perseguição aos romani e D por tratar como religiosa uma perseguição que era racial.",
+    "motivo": "Só a tradução da palavra não derruba A e B. A afirmação \"derruba A, B e C\" exagerava o alcance desse caminho.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E"
  }
 }

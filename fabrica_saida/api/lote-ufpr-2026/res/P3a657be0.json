@@ -54,7 +54,7 @@
   "passos": [
    {
     "faz": "Traduza o comando",
-    "conta": "\"descreve corretamente uma instância administrativa ... e sua função\"",
+    "conta": "nome + função corretos?",
     "porque": "Só há uma alternativa em que o nome e a função estão corretos. As outras trocam uma palavra: público/privado, centralizador/descentralizador, ou atribuem à instituição um papel que não era dela.",
     "tipo": "localizar"
    },
@@ -67,7 +67,7 @@
    {
     "faz": "Teste o padroado (B) e o Santo Ofício (E)",
     "conta": "padroado: Papa → Coroa",
-    "porque": "O padroado não é uma instituição religiosa de autoridade papal. É um acordo que dava ao rei o controle da Igreja colonial. Já o Santo Ofício julgava heresias, e a nomeação de clérigos cabia à Coroa.",
+    "porque": "O padroado não é uma instituição religiosa de autoridade papal. É um acordo que dava ao rei o controle da Igreja colonial. Já o Santo Ofício julgava heresias, e a indicação de bispos e párocos cabia à Coroa.",
     "tipo": "eliminar"
    },
    {
@@ -89,7 +89,7 @@
    "A": "As capitanias eram doadas a particulares (donatários), com poderes delegados pelo rei. A alternativa chama esse controle de 'público', e isso a torna incorreta.",
    "B": "O padroado era um acordo entre o Papa e a Coroa, que dava ao rei o controle da Igreja na Colônia. Não era uma instituição de autoridade direta do Papa, e treinar indígenas como burocratas não era a sua função.",
    "D": "O Governo-Geral (1548) foi criado para centralizar a administração e dar mais controle à Coroa sobre as capitanias. Chamá-lo de 'descentralizador' inverte sua função.",
-   "E": "O Tribunal do Santo Ofício era a Inquisição, que investigava e punia heresias. A nomeação de clérigos e das ordens religiosas cabia à Coroa, pelo padroado."
+   "E": "O Tribunal do Santo Ofício era a Inquisição, que investigava e punia heresias. Não nomeava clérigos: bispos e párocos eram indicados pela Coroa, pelo padroado, e ordens como os jesuítas escolhiam os próprios superiores."
   },
   "armadilha": "Todas as alternativas citam instituições reais do período; o erro está numa palavra: 'público' nas capitanias, 'descentralizador' no Governo-Geral e 'nomeação de clérigos' na Inquisição.",
   "alerta": "",
@@ -120,10 +120,34 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "O Tribunal do Santo Ofício era a Inquisição, que investigava e punia heresias. Não nomeava clérigos: bispos e párocos eram indicados pela Coroa, pelo padroado, e ordens como os jesuítas escolhiam os próprios superiores.",
+    "motivo": "A frase antiga dizia que a nomeação 'das ordens religiosas' cabia à Coroa, o que é impreciso. O padroado dava ao rei a indicação de bispos e de cargos do clero secular. As ordens regulares, como a Companhia de Jesus, escolhiam os próprios superiores, mesmo dependendo da autorização régia para atuar na Colônia.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "O padroado não é uma instituição religiosa de autoridade papal. É um acordo que dava ao rei o controle da Igreja colonial. Já o Santo Ofício julgava heresias, e a indicação de bispos e párocos cabia à Coroa.",
+    "motivo": "A frase antiga atribuía à Coroa a nomeação de clérigos em geral, sem distinguir o clero secular das ordens. A nova versão usa o mesmo ajuste feito em erradas.E.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[0].conta",
+    "depois": "nome + função corretos?",
+    "motivo": "A conta antiga tinha mais de 30 caracteres e não cabia na tela de 390 px, onde a conta não quebra linha. A citação inteira do comando já é explicada no 'porque'.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C"
  }
 }

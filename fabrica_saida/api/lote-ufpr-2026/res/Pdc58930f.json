@@ -52,7 +52,7 @@
    },
    {
     "faz": "Leia a frase de “culprit”",
-    "conta": "“the real culprit is simply that this generation…is less interested”",
+    "conta": "“the real culprit is…”\n“…less interested”",
     "porque": "O texto lista regras e custos como causas, mas diz que o verdadeiro culpado (a causa real) é o desinteresse dos jovens.",
     "tipo": "localizar"
    },
@@ -60,13 +60,13 @@
     "faz": "Teste a definição da D",
     "conta": "culprit = a causa real do problema",
     "porque": "O problema é o declínio das festas. A causa real é o desinteresse jovem. A definição se encaixa.",
-    "tipo": "aplicar"
+    "tipo": "comparar"
    },
    {
     "faz": "Elimine as demais pelo texto",
     "conta": "A: noite toda ≠ 24 h\nB: higher ≠ less expensive\nC: sober ≠ bebe mais\nE: die out ≠ crescer",
     "porque": "Cada uma contradiz a frase do texto ou o significado da expressão.",
-    "tipo": "interpretar"
+    "tipo": "eliminar"
    },
    {
     "faz": "Conclua",
@@ -88,7 +88,7 @@
   "essencial": {
    "pede": "A alternativa que define corretamente uma expressão do texto.",
    "chave": "Trocar a expressão pela definição na frase e conferir se o sentido do texto se mantém.",
-   "cuidado": "Três alternativas inverteem o sentido (B, C, E) e uma exagera (A)."
+   "cuidado": "Três alternativas invertem o sentido (B, C, E) e uma exagera (A)."
   }
  },
  "caminhos": [
@@ -111,10 +111,40 @@
  "gab": "D",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "comparar",
+    "motivo": "O tipo 'aplicar' não existe na lista permitida (localizar, calcular, comparar, eliminar, concluir). Neste passo a definição da D é comparada com a frase do texto, então o tipo certo é 'comparar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "eliminar",
+    "motivo": "O tipo 'interpretar' não existe na lista permitida. Este passo descarta as alternativas A, B, C e E, então o tipo certo é 'eliminar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "“the real culprit is…”\n“…less interested”",
+    "motivo": "A conta tinha cerca de 65 caracteres numa linha só. O site não quebra a linha e o limite é de cerca de 30 caracteres. Mantive o trecho citado, só dividido em duas linhas.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.essencial.cuidado",
+    "depois": "Três alternativas invertem o sentido (B, C, E) e uma exagera (A).",
+    "motivo": "Erro de digitação: estava 'inverteem'.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "D"
  }
 }

@@ -44,7 +44,7 @@
     "faz": "Monte a equação para o perclorato",
     "conta": "x + 4(−2) = −1",
     "porque": "A soma dos nox dos 5 átomos tem de ser igual à carga do íon.",
-    "tipo": "aplicar"
+    "tipo": "calcular"
    },
    {
     "faz": "Resolva para o perclorato",
@@ -66,7 +66,7 @@
    }
   ],
   "resposta": "Alternativa D: o cloro tem nox +7 no perclorato (ClO4⁻) e +5 no clorato (ClO3⁻).",
-  "checagem": "Refaça a soma com os valores achados. Perclorato: +7 + 4(−2) = +7 − 8 = −1. Clorato: +5 + 3(−2) = +5 − 6 = −1. As duas cargas batem com a carga do íon. Além disso, +7 é o nox máximo do cloro (7 elétrons de valência), coerente com o oxidante forte.",
+  "checagem": "Refaça a soma com os valores achados. Perclorato: +7 + 4(−2) = +7 − 8 = −1. Clorato: +5 + 3(−2) = +5 − 6 = −1. As duas somas batem com a carga do íon. Além disso, +7 é o nox máximo do cloro (7 elétrons de valência), coerente com o papel de oxidante: nesse estado, o cloro só pode ganhar elétrons.",
   "erradas": {
    "A": "−1 e −1 é o nox do cloro no cloreto (Cl⁻), não nos íons com oxigênio. Aqui o cloro está ligado ao oxigênio, que é mais eletronegativo, então o cloro fica com nox positivo. Além disso, −1 + 4(−2) = −9, que não é −1.",
    "B": "−7 e −5 é a resposta com sinal trocado. Com Cl = −7: −7 + 4(−2) = −15, que não dá a carga −1 do íon. O cloro perde a disputa de elétrons para o oxigênio e fica positivo.",
@@ -157,10 +157,28 @@
  "gab": "D",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "calcular",
+    "motivo": "O tipo 'aplicar' não existe na lista permitida (localizar, calcular, comparar, eliminar, concluir). Montar a equação do nox é o início da conta, então o tipo certo é 'calcular'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Refaça a soma com os valores achados. Perclorato: +7 + 4(−2) = +7 − 8 = −1. Clorato: +5 + 3(−2) = +5 − 6 = −1. As duas somas batem com a carga do íon. Além disso, +7 é o nox máximo do cloro (7 elétrons de valência), coerente com o papel de oxidante: nesse estado, o cloro só pode ganhar elétrons.",
+    "motivo": "A frase 'coerente com o oxidante forte' sugere que o perclorato oxida mais que o clorato, o que é discutível: em muitas condições o perclorato reage de forma lenta. O que o nox máximo garante, sem ressalva, é que o cloro só pode se reduzir, ou seja, só pode atuar como oxidante.",
+    "fonte": "OpenStax Chemistry 2e, seção 4.2 (números de oxidação; agentes oxidantes e redutores)"
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "D"
  }
 }

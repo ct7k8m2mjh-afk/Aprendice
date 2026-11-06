@@ -50,19 +50,19 @@
     "faz": "Ache a doença do Aedes aegypti",
     "conta": "Aedes + vírus → dengue ou zika",
     "porque": "O texto diz que a Wolbachia reduz a transmissão de vírus. O Aedes transmite dengue, zika, chikungunya e febre amarela urbana.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Ache a doença do Anopheles",
     "conta": "Anopheles + Plasmodium → malária",
     "porque": "O próprio texto cita o protozoário Plasmodium, causador da malária, transmitido pelo Anopheles.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Ache a doença do Phlebotomus",
     "conta": "Phlebotomus → leishmaniose",
     "porque": "O Phlebotomus (flebotomíneo) transmite a Leishmania. A doença de Chagas é transmitida pelo barbeiro, não por mosquito.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Compare com as alternativas",
@@ -74,12 +74,12 @@
   "resposta": "Alternativa C: Aedes transmite dengue, Anopheles transmite malária e Phlebotomus transmite leishmaniose.",
   "checagem": "Confira a ordem de trás para a frente: leishmaniose é do flebotomíneo, malária do Anopheles e dengue do Aedes. Cada par bate com o vetor do enunciado.",
   "erradas": {
-   "A": "Põe malária fora de lugar: coloca 'dengue' no lugar do Anopheles. Dengue é vírus do Aedes; o Anopheles transmite o protozoário Plasmodium, que causa malária. Zika no primeiro lugar até serve, mas o segundo e o terceiro não.",
+   "A": "Coloca dengue no lugar do Anopheles. Dengue é um vírus transmitido pelo Aedes; o Anopheles transmite o protozoário Plasmodium, que causa a malária. Zika no primeiro lugar e leishmaniose no terceiro servem, mas o segundo item não.",
    "B": "Começa com malária para o Aedes, mas o Aedes transmite vírus (dengue, zika) e a malária é do Anopheles. Também põe zika para o Phlebotomus, que transmite leishmaniose.",
    "D": "Zika para o Aedes serve, e malária para o Anopheles também. Mas o Phlebotomus não transmite doença de Chagas: ela é transmitida pelo barbeiro (Triatoma), que não é mosquito.",
    "E": "Dengue para o Aedes serve, mas leishmaniose é do Phlebotomus, não do Anopheles (que transmite malária). Além disso, a doença de Chagas é do barbeiro, não de mosquito."
   },
-  "armadilha": "Marcar zika ou dengue sem conferir o resto: duas alternativas (D e E) acertam o Aedes e falham no Anopheles ou no Phlebotomus.",
+  "armadilha": "Marcar zika ou dengue sem conferir o resto: três alternativas (A, D e E) acertam o Aedes e erram no Anopheles ou no Phlebotomus.",
   "alerta": "",
   "essencial": {
    "pede": "A doença que cada mosquito transmite (Aedes, Anopheles, Phlebotomus), na ordem do enunciado.",
@@ -111,10 +111,46 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "Coloca dengue no lugar do Anopheles. Dengue é um vírus transmitido pelo Aedes; o Anopheles transmite o protozoário Plasmodium, que causa a malária. Zika no primeiro lugar e leishmaniose no terceiro servem, mas o segundo item não.",
+    "motivo": "A frase dizia que o terceiro item da A está errado. A A traz leishmaniose para o Phlebotomus, e isso está certo. O único erro da A é a dengue no lugar da malária.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.armadilha",
+    "depois": "Marcar zika ou dengue sem conferir o resto: três alternativas (A, D e E) acertam o Aedes e erram no Anopheles ou no Phlebotomus.",
+    "motivo": "A A também acerta o Aedes (zika). Por isso são três alternativas, e não duas, que acertam o primeiro item e erram nos seguintes.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "localizar",
+    "motivo": "'interpretar' não é um dos tipos permitidos (localizar, calcular, comparar, eliminar, concluir). O passo liga o vetor do texto à doença, então o tipo é localizar.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "localizar",
+    "motivo": "'interpretar' não é um dos tipos permitidos.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "localizar",
+    "motivo": "'interpretar' não é um dos tipos permitidos.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C"
  }
 }

@@ -58,19 +58,19 @@
     "faz": "Note a ligação entre as regiões",
     "conta": "Mali → Cairo → Meca",
     "porque": "Ele foi da África Ocidental ao Egito e à Arábia. Isso só era possível por caminhos que atravessavam o Saara e ligavam as regiões.",
-    "tipo": "interpretar"
+    "tipo": "comparar"
    },
    {
     "faz": "Elimine o que o texto desmente",
     "conta": "A: ouro importado? Não. Texto: ouro exportado",
     "porque": "A alternativa A inverte o fluxo do ouro, que ia do Sudão para o Mediterrâneo.",
-    "tipo": "aplicar"
+    "tipo": "eliminar"
    },
    {
     "faz": "Elimine as demais por fatos",
     "conta": "B beduínos; C cristianismo; D ápice",
     "porque": "Os estados eram sedentários, o cristianismo existia na África antes e o apogeu do Mali foi sob o Islã.",
-    "tipo": "aplicar"
+    "tipo": "eliminar"
    },
    {
     "faz": "Conclua",
@@ -85,7 +85,7 @@
    "A": "Inverte o fluxo. O ouro era produzido na África Ocidental e exportado para o norte. O texto mostra Mansa Musa distribuindo ouro no Cairo, e não importando ouro.",
    "B": "Os beduínos eram nômades árabes do deserto. Gana, Mali e Songai eram estados sedentários, com exército, cidades e comércio. O texto fala de rei, território extenso e exército numeroso.",
    "C": "O cristianismo existia na África antes e fora da presença islâmica: Egito (copta), Núbia e Etiópia (Axum). Dizer que só chegou com os europeus é falso.",
-   "D": "Mali e Songai chegaram ao auge já islamizados. Mansa Musa, reinando de 1312 a 1337, era muçulmano e fez o hajj. O Islã chegou à região a partir do século XI, ao passo que o auge veio depois."
+   "D": "Mali e Songai chegaram ao auge já islamizados. Mansa Musa, que reinou de 1312 a 1337, era muçulmano e fez o hajj. O Islã chegou à região com os mercadores das caravanas a partir dos séculos VIII e IX, e o auge do Mali veio depois, no século XIV."
   },
   "armadilha": "A alternativa A inverte o fluxo do ouro: quem lê rápido liga ouro ao comércio com o Mediterrâneo e esquece que o ouro saía da África Ocidental.",
   "alerta": "",
@@ -122,10 +122,40 @@
  "gab": "E",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "comparar",
+    "motivo": "O guia só aceita os tipos localizar, calcular, comparar, eliminar e concluir. \"interpretar\" não está na lista. O passo compara o trajeto Mali → Cairo → Meca com a ligação entre as regiões.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "eliminar",
+    "motivo": "\"aplicar\" não é um tipo válido. O passo descarta a alternativa A, então o tipo certo é eliminar.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[4].tipo",
+    "depois": "eliminar",
+    "motivo": "\"aplicar\" não é um tipo válido. O passo descarta B, C e D, então o tipo certo é eliminar.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "Mali e Songai chegaram ao auge já islamizados. Mansa Musa, que reinou de 1312 a 1337, era muçulmano e fez o hajj. O Islã chegou à região com os mercadores das caravanas a partir dos séculos VIII e IX, e o auge do Mali veio depois, no século XIV.",
+    "motivo": "A frase \"O Islã chegou à região a partir do século XI\" é imprecisa. Mercadores muçulmanos já frequentavam o Sudão ocidental pelas rotas transaarianas desde os séculos VIII e IX. Al-Bakri (1068) descreve um bairro muçulmano na capital de Gana. O século XI é o das conversões de governantes, como em Gao e em Takrur, e não o da chegada do Islã.",
+    "fonte": "https://www.britannica.com/place/Mali-historical-region-Africa ; Levtzion & Hopkins, Corpus of Early Arabic Sources for West African History (al-Bakri)"
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E"
  }
 }

@@ -76,7 +76,7 @@
   "checagem": "Atalho da escala 1:1.000.000: 1 cm no mapa = 10 km no terreno (1.000.000 cm = 10.000 m). Assim, 100 km ÷ 10 km por cm = 10 cm. Bate.",
   "erradas": {
    "A": "D = 10 km e d = 1 cm tem um zero a menos. Sai de tomar 100.000 m como 10 km (usando 1 km = 10.000 m). Como 1 km = 1.000 m, 100.000 m são 100 km.",
-   "B": "D = 47 km e d = 4,7 cm não vem da diferença 470.000 − 370.000. Esse valor mistura os algarismos 47 de 470.000 com a distância, sem a subtração. Os pontos distam 100 km, e 47 km nem é o valor de nenhuma das duas coordenadas.",
+   "B": "B não confere: nenhuma conta com os dados chega a 47 km. A diferença 470.000 − 370.000 dá 100.000 m = 100 km, e 47 km não é nenhuma das coordenadas nem a diferença entre elas.",
    "D": "D = 470 km e d = 47 cm usa só a coordenada de B (470.000 m = 470 km) como se fosse a distância. Falta subtrair a coordenada de A: 470 − 370 = 100 km.",
    "E": "D = 7350 km e d = 73,5 cm usa a coordenada N-S (7.350.000 m), que é igual nos dois pontos. Ela não entra na distância, que depende só da diferença E-W."
   },
@@ -137,10 +137,22 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "B não confere: nenhuma conta com os dados chega a 47 km. A diferença 470.000 − 370.000 dá 100.000 m = 100 km, e 47 km não é nenhuma das coordenadas nem a diferença entre elas.",
+    "motivo": "O texto antigo inventava uma origem para o valor (\"mistura os algarismos 47 de 470.000\") e, logo depois, se contradizia ao dizer que 47 km não é nenhuma das coordenadas. O guia proíbe inventar a origem de um distrator: quando nenhuma conta chega ao valor, escreve-se \"não confere\" e mostra-se o teste objetivo.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C"
  }
 }

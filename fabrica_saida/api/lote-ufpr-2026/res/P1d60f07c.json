@@ -61,7 +61,7 @@
     "faz": "Ligue cada hormônio ao efeito na glicemia",
     "conta": "queda de glicemia → insulina ↑ e glucagon ↓",
     "porque": "Mais insulina leva glicose para as células. Menos glucagon reduz a liberação de glicose pelo fígado. Os dois efeitos juntos baixam a glicemia, que é o que o texto descreve.",
-    "tipo": "aplicar"
+    "tipo": "concluir"
    },
    {
     "faz": "Elimine as figuras que contradizem esse par",
@@ -80,7 +80,7 @@
   "checagem": "Teste a Figura V com o raciocínio inverso: se a insulina sobe e o glucagon cai, a glicose deve cair. É o que a linha da glicemia mostra. Nas outras figuras, algum hormônio empurra a glicemia para o lado contrário ao da curva.",
   "erradas": {
    "A": "Figura I: o glucagon fica constante e a insulina cai. Insulina menor reduz a entrada de glicose nas células, o que não explica a queda da glicemia. O texto diz que a secreção de hormônios é alterada, e aqui o glucagon não se altera.",
-   "B": "Figura II: o glucagon cai, o que está certo, mas a insulina também cai. Sem aumento de insulina, falta o hormônio que mais reduz a glicemia. A figura mostra a glicemia caindo com insulina em queda, uma incoerência.",
+   "B": "Figura II: o glucagon cai, o que está certo, mas a insulina também cai. O medicamento estimula a secreção de insulina, o hormônio que mais reduz a glicemia. Insulina em queda vai contra o efeito descrito.",
    "C": "Figura III: a insulina sobe, o que está certo, mas o glucagon sobe junto. Glucagon alto manda o fígado liberar glicose e eleva a glicemia, o que contraria a curva de glicemia em queda.",
    "D": "Figura IV: o glucagon sobe e a insulina cai. Os dois efeitos elevam a glicemia, o oposto do que a própria figura mostra e do que o texto afirma."
   },
@@ -137,10 +137,28 @@
  "gab": "E",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "concluir",
+    "motivo": "O tipo 'aplicar' não existe na lista permitida (localizar, calcular, comparar, eliminar, concluir). Este passo tira a regra que decide a questão, então o tipo certo é 'concluir'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "Figura II: o glucagon cai, o que está certo, mas a insulina também cai. O medicamento estimula a secreção de insulina, o hormônio que mais reduz a glicemia. Insulina em queda vai contra o efeito descrito.",
+    "motivo": "A frase original dizia que glicemia em queda com insulina em queda é 'uma incoerência'. Isso exagera: a glicemia pode cair com insulina menor se o glucagon também cair e o esvaziamento gástrico ficar mais lento. O que derruba a II é a insulina contrariar o mecanismo do fármaco, que estimula a secreção de insulina.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E"
  }
 }

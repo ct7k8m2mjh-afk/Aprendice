@@ -37,13 +37,13 @@
     "faz": "Escreva a força da situação 1",
     "conta": "F1 = k·q·Q1 / d1²",
     "porque": "É a lei de Coulomb com a carga Q1 e a distância d1.",
-    "tipo": "aplicar"
+    "tipo": "calcular"
    },
    {
     "faz": "Escreva a força da situação 2",
     "conta": "F2 = k·q·(4Q1) / (2d1)²",
     "porque": "Troque Q1 por 4Q1 e d1 por 2d1, que é o que o enunciado manda.",
-    "tipo": "aplicar"
+    "tipo": "calcular"
    },
    {
     "faz": "Eleve a distância ao quadrado",
@@ -53,7 +53,7 @@
    },
    {
     "faz": "Simplifique F2",
-    "conta": "F2 = k·q·4Q1 / (4·d1²) = k·q·Q1 / d1²",
+    "conta": "F2 = k·q·Q1 / d1²",
     "porque": "O fator 4 do numerador (carga ×4) cancela o 4 do denominador (distância ao quadrado).",
     "tipo": "calcular"
    },
@@ -142,10 +142,34 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[0].tipo",
+    "depois": "calcular",
+    "motivo": "'aplicar' não é um tipo válido. Os tipos aceitos são localizar, calcular, comparar, eliminar e concluir.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "calcular",
+    "motivo": "'aplicar' não é um tipo válido. Os tipos aceitos são localizar, calcular, comparar, eliminar e concluir.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "F2 = k·q·Q1 / d1²",
+    "motivo": "A conta tinha cerca de 40 caracteres e passava do limite de ~30 da tela, onde não há quebra de linha. O cancelamento do 4 já está explicado no 'porque' e no quadro. O conteúdo não muda.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C"
  }
 }

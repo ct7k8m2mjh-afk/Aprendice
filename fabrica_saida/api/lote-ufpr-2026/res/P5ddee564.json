@@ -45,18 +45,18 @@
     "faz": "Lembre a voz narrativa do livro",
     "conta": "jovens da periferia carioca",
     "porque": "O livro dá voz a adolescentes e jovens de favela, e a linguagem reproduz a fala deles. Isso derruba a ideia de discurso formal (A) e de narrador distanciado (B).",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Elimine A e B pela linguagem e pelo narrador",
     "conta": "A: \"discurso formal e panfletário\"; B: \"abandona o ponto de vista jovem\"",
-    "porque": "Nenhum dos contos foge da fala jovem e coloquial. Em \"Rolézim\" não há discurso formal de denúncia, e \"Estação Padre Miguel\" mantém a perspectiva de um jovem do lugar.",
+    "porque": "Nenhum dos contos foge da fala jovem e coloquial. Em \"Rolézim\" não há discurso formal de denúncia, e \"Estação Padre Miguel\" mantém a perspectiva de um jovem narrador.",
     "tipo": "eliminar"
    },
    {
     "faz": "Elimine C e D pelas personagens e pela violência",
     "conta": "C: violência \"como pano de fundo\"; D: \"protagonistas femininas\"",
-    "porque": "Em \"A história do Periquito e do Macaco\", a violência faz parte do mundo das personagens, não é cenário. Os protagonistas do livro são jovens do sexo masculino, então D é falsa.",
+    "porque": "Em \"A história do Periquito e do Macaco\", a violência faz parte do mundo das personagens, não é cenário. Os protagonistas desses três contos são jovens do sexo masculino, então D é falsa.",
     "tipo": "eliminar"
    },
    {
@@ -70,7 +70,7 @@
   "checagem": "As alternativas A, B e C afirmam que um conto difere dos outros, e D muda o gênero dos protagonistas. Só E aponta um traço comum, que é o que identifica a obra como um todo (voz jovem periférica e oralidade).",
   "erradas": {
    "A": "Falsa porque \"Rolézim\" usa a mesma linguagem coloquial, de gírias, dos outros contos. Não há discurso formal nem panfletário; a crítica social aparece pela experiência narrada, não por argumentação direta.",
-   "B": "Falsa porque \"Estação Padre Miguel\" não abandona a perspectiva jovem: o conto também parte de um jovem do lugar, com fala oral. A alternativa inventa um narrador distanciado que não existe.",
+   "B": "Falsa porque \"Estação Padre Miguel\" não abandona a perspectiva jovem: o conto também é narrado por um jovem, com fala oral. A alternativa inventa um narrador distanciado que não existe.",
    "C": "Falsa porque, em \"A história do Periquito e do Macaco\", a violência é central na vida das personagens, não cenário. Opor esse conto aos outros dois é falso.",
    "D": "Falsa porque os protagonistas dos contos são jovens do sexo masculino, e não há \"emancipação política e social\" feminina. A alternativa troca o gênero e o tema."
   },
@@ -106,10 +106,40 @@
  "gab": "E",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "localizar",
+    "motivo": "O passo usa o tipo \"interpretar\", que não está na lista permitida (localizar, calcular, comparar, eliminar, concluir). O passo resgata a voz narrativa da obra, então o tipo certo é localizar.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Nenhum dos contos foge da fala jovem e coloquial. Em \"Rolézim\" não há discurso formal de denúncia, e \"Estação Padre Miguel\" mantém a perspectiva de um jovem narrador.",
+    "motivo": "O texto dizia \"um jovem do lugar\". Não dá para garantir que o narrador more em Padre Miguel, e a alternativa B cai só por ele ser jovem. Troquei por \"jovem narrador\", que é o que sustenta a eliminação.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Em \"A história do Periquito e do Macaco\", a violência faz parte do mundo das personagens, não é cenário. Os protagonistas desses três contos são jovens do sexo masculino, então D é falsa.",
+    "motivo": "O texto dizia \"Os protagonistas do livro\", uma generalização para a coletânea inteira que não se pode garantir. A questão trata só dos três contos citados, então restringi a afirmação a eles.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "Falsa porque \"Estação Padre Miguel\" não abandona a perspectiva jovem: o conto também é narrado por um jovem, com fala oral. A alternativa inventa um narrador distanciado que não existe.",
+    "motivo": "Mesmo ajuste de passos[2]: \"um jovem do lugar\" afirmava mais do que se pode garantir. O que derruba B é o narrador ser jovem, não o lugar onde ele mora.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E"
  }
 }

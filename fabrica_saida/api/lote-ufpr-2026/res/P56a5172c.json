@@ -50,7 +50,7 @@
     "faz": "Leia o verso da alternativa B",
     "conta": "\"As glórias, que vêm tarde, já vêm frias\"",
     "porque": "Glória que chega tarde chega sem calor, sem valor: o tempo estragou o prazer. A lição, desenvolvida na mesma lira, é gozar a juventude e o amor enquanto dá tempo.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Descarte o verso de simplicidade e originalidade",
@@ -83,7 +83,7 @@
    "A": "\"Nem canto letra, que não seja minha\" trata da originalidade do poeta, que só canta versos próprios. É um verso sobre a própria poesia, sem a ideia de tempo passando nem de gozar o presente.",
    "C": "\"Eu não beijo vis tesouros\" recusa a riqueza e a ambição material, tema da vida simples (aurea mediocritas). Valoriza o desapego, não a urgência de aproveitar o momento.",
    "D": "\"Eu vejo aquela Deusa\" apenas apresenta uma figura mitológica que o eu lírico vê. O verso não fala do tempo nem convida a gozar o presente.",
-   "E": "\"Tu não verás, Marília, cem cativos\" diz que o casal não terá escravos nem fortuna: é a vida modesta, sem luxo. Isso é aurea mediocritas, não carpe diem."
+   "E": "\"Tu não verás, Marília, cem cativos\" diz que Marília não verá o eu lírico enriquecer com escravos tirando ouro da terra. O verso recusa a riqueza da mineração e prefere a vida modesta, que é a aurea mediocritas e não o carpe diem."
   },
   "armadilha": "Marcar um verso arcádico qualquer (simplicidade, desprezo à riqueza, mitologia) só por ser típico do Arcadismo, sem ver que o pedido é o tópico do tempo que passa.",
   "alerta": "",
@@ -117,10 +117,28 @@
  "gab": "B",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "localizar",
+    "motivo": "'interpretar' não está entre os tipos aceitos (localizar, calcular, comparar, eliminar, concluir). O passo lê e localiza o verso, então o tipo certo é 'localizar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "\"Tu não verás, Marília, cem cativos\" diz que Marília não verá o eu lírico enriquecer com escravos tirando ouro da terra. O verso recusa a riqueza da mineração e prefere a vida modesta, que é a aurea mediocritas e não o carpe diem.",
+    "motivo": "O texto anterior dizia que 'o casal não terá escravos nem fortuna'. Na lira, os cem cativos são escravos trabalhando na mineração, e o eu lírico recusa esse caminho para enriquecer. O verso não diz que o casal não terá escravo nenhum. A mudança deixa a descrição fiel ao verso sem alterar o motivo da eliminação.",
+    "fonte": "Tomás Antônio Gonzaga, Marília de Dirceu, Parte III, Lira III"
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "B"
  }
 }

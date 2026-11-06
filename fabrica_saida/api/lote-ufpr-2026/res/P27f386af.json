@@ -29,7 +29,7 @@
     ],
     [
      "frente fria",
-     "massa de ar frio que avança e desloca o ar quente; traz chuva e queda de temperatura"
+     "borda de uma massa de ar frio que avança sobre o ar quente; traz chuva e queda de temperatura"
     ],
     [
      "granizo",
@@ -48,32 +48,38 @@
    {
     "faz": "Localize a pista da notícia",
     "conta": "\"ilhadas após uma cabeça d'água atingir o Rio do Nunes\"",
-    "porque": "A água atinge as pessoas no rio. Isso indica que a cheia veio de outro ponto, rio acima.",
+    "porque": "A notícia fala de um rio que subiu e deixou pessoas ilhadas. Trata-se de uma cheia no leito do rio, não de um fenômeno que acontece no ar.",
     "tipo": "localizar"
    },
    {
     "faz": "Aplique o conceito de cheia súbita",
     "conta": "chuva na cabeceira → desce o rio",
     "porque": "Nas partes altas o declive é forte e a água escoa depressa. O nível sobe de repente a jusante, mesmo sem chuva ali.",
-    "tipo": "aplicar"
+    "tipo": "comparar"
    },
    {
     "faz": "Elimine as que citam outro fenômeno",
     "conta": "A: tromba d'água; C: frente fria; D: granizo",
     "porque": "Nenhuma explica a subida rápida do rio. Cada uma descreve um fenômeno atmosférico diferente.",
-    "tipo": "interpretar"
+    "tipo": "eliminar"
    },
    {
     "faz": "Elimine a que erra a causa e o efeito",
     "conta": "E: chuva homogênea; erosão no litoral",
     "porque": "A cabeça d'água vem de chuva concentrada na parte alta, e a surpresa é a cheia súbita, não a erosão costeira.",
+    "tipo": "eliminar"
+   },
+   {
+    "faz": "Ligue o resultado à alternativa",
+    "conta": "chuva no alto + cheia súbita = B",
+    "porque": "Só a B acerta as duas partes do comando: a causa (chuva intensa nas áreas elevadas da bacia) e a surpresa (o rio sobe de repente onde não choveu).",
     "tipo": "concluir"
    }
   ],
   "resposta": "Alternativa B: chuva intensa nas áreas mais elevadas da bacia causa a cheia súbita, que surpreende por chegar onde não choveu.",
   "checagem": "Releia a notícia: as pessoas ficaram ilhadas por água que subiu no rio. Só a B liga chuva a montante, subida rápida do nível e ausência de chuva no local.",
   "erradas": {
-   "A": "Descreve tromba d'água (coluna de ar em rotação sobre superfície de água), um fenômeno atmosférico. A cabeça d'água é uma cheia no leito de rio ou córrego, e a notícia fala de um rio.",
+   "A": "Descreve a tromba d'água no sentido da meteorologia: uma coluna de ar em rotação sobre superfície de água, que é um fenômeno atmosférico. No uso popular, 'tromba d'água' também quer dizer chuvarada, mas não é isso que a alternativa descreve. A cabeça d'água é uma cheia no leito de um rio.",
    "C": "Frente fria é fenômeno atmosférico que pode trazer chuva, mas a surpresa citada (onda de frio no verão) não tem relação com o rio subir de repente. Não explica a cabeça d'água.",
    "D": "Granizo é precipitação de gelo formada em nuvens de tempestade, não resultado de chuva em bacia. A cabeça d'água é uma cheia no rio, e o texto da questão não fala de granizo.",
    "E": "Chuva homogênea (espalhada por igual) não produz a onda repentina: a cabeça d'água vem de chuva concentrada nas cabeceiras. Erosão e deslizamentos no litoral são outro efeito, e o enunciado não os cita."
@@ -110,10 +116,66 @@
  "gab": "B",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "A notícia fala de um rio que subiu e deixou pessoas ilhadas. Trata-se de uma cheia no leito do rio, não de um fenômeno que acontece no ar.",
+    "motivo": "A notícia sozinha não mostra que a cheia veio rio acima; isso sai do conceito, que é aplicado no passo seguinte. A frase original dizia mais do que o suporte sustenta.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "comparar",
+    "motivo": "O tipo 'aplicar' não existe. Os tipos válidos são localizar, calcular, comparar, eliminar e concluir.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "eliminar",
+    "motivo": "O tipo 'interpretar' não existe. O passo descarta alternativas, então o tipo certo é eliminar.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[4].tipo",
+    "depois": "eliminar",
+    "motivo": "O passo descarta a alternativa E, então é eliminar e não concluir. Também faltava o passo de conclusão que liga o resultado à letra, acrescentado em passos[5].",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[5]",
+    "depois": {
+     "faz": "Ligue o resultado à alternativa",
+     "conta": "chuva no alto + cheia súbita = B",
+     "porque": "Só a B acerta as duas partes do comando: a causa (chuva intensa nas áreas elevadas da bacia) e a surpresa (o rio sobe de repente onde não choveu).",
+     "tipo": "concluir"
+    },
+    "motivo": "Pelo padrão, o último passo tem de ser do tipo concluir e ligar o resultado à letra.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.antes.simbolos[3]",
+    "depois": [
+     "frente fria",
+     "borda de uma massa de ar frio que avança sobre o ar quente; traz chuva e queda de temperatura"
+    ],
+    "motivo": "Frente é a zona de contato entre massas de ar, não a própria massa de ar frio.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "Descreve a tromba d'água no sentido da meteorologia: uma coluna de ar em rotação sobre superfície de água, que é um fenômeno atmosférico. No uso popular, 'tromba d'água' também quer dizer chuvarada, mas não é isso que a alternativa descreve. A cabeça d'água é uma cheia no leito de um rio.",
+    "motivo": "No Brasil, 'tromba d'água' também se usa popularmente para chuva torrencial. Sem essa ressalva, o aluno pode achar que a A descreve a mesma coisa que a B.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "B"
  }
 }

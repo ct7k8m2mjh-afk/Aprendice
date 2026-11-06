@@ -40,7 +40,7 @@
     "faz": "Escolha a fórmula sem corrente",
     "conta": "P = ΔV² ÷ R",
     "porque": "O enunciado não dá a corrente. Esta fórmula usa só tensão e resistência, que são o que temos.",
-    "tipo": "aplicar"
+    "tipo": "localizar"
    },
    {
     "faz": "Isole R",
@@ -50,7 +50,7 @@
    },
    {
     "faz": "Substitua e calcule",
-    "conta": "R = 10² ÷ 5,0 = 100 ÷ 5,0 = 20 Ω",
+    "conta": "R = 100 ÷ 5,0 = 20 Ω",
     "porque": "Eleve a tensão ao quadrado antes de dividir pela potência.",
     "tipo": "calcular"
    },
@@ -64,9 +64,9 @@
   "resposta": "Alternativa D: R = 20 Ω, pois R = ΔV² ÷ P = 100 ÷ 5,0.",
   "checagem": "Pela lei de Ohm: i = ΔV ÷ R = 10 ÷ 20 = 0,5 A. Então P = ΔV × i = 10 × 0,5 = 5,0 W, igual ao dado.",
   "erradas": {
-   "A": "R = 2,0 Ω sai de dividir P por ΔV: 5,0 ÷ 10 = 0,5 e depois ... não; o teste objetivo é este: com 2,0 Ω a potência seria 10² ÷ 2,0 = 50 W, e não 5,0 W.",
+   "A": "R = 2,0 Ω sai de esquecer o quadrado da tensão: 10 ÷ 5,0 = 2,0. Com 2,0 Ω, a potência seria 10² ÷ 2,0 = 50 W, e não 5,0 W.",
    "B": "R = 5,0 Ω não confere: com ele a potência seria 10² ÷ 5,0 = 20 W, e não 5,0 W. Esse 5,0 é o valor da potência, que não é a resistência.",
-   "C": "R = 10 Ω sai de tratar a resistência como o valor da tensão. Com 10 Ω, P = 10² ÷ 10 = 10 W, e não 5,0 W.",
+   "C": "R = 10 Ω não confere: com ele a potência seria 10² ÷ 10 = 10 W, e não 5,0 W.",
    "E": "R = 50 Ω sai de calcular ΔV × P = 10 × 5,0. Essa conta não tem sentido físico aqui: com 50 Ω, P = 10² ÷ 50 = 2,0 W, e não 5,0 W."
   },
   "armadilha": "Esquecer de elevar a tensão ao quadrado e fazer 10 ÷ 5,0 = 2,0 Ω.",
@@ -98,7 +98,7 @@
   },
   {
    "linha": "R = ΔV² / P",
-   "nota": "R passa para o numerador e P para o denominador",
+   "nota": "R e P trocam de lugar",
    "mov": [
     {
      "termo": "R",
@@ -135,10 +135,46 @@
  "gab": "D",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "R = 2,0 Ω sai de esquecer o quadrado da tensão: 10 ÷ 5,0 = 2,0. Com 2,0 Ω, a potência seria 10² ÷ 2,0 = 50 W, e não 5,0 W.",
+    "motivo": "O texto tinha um trecho truncado e contraditório (\"5,0 ÷ 10 = 0,5 e depois ... não;\"). A origem real do 2,0 é ΔV ÷ P sem o quadrado, a mesma conta citada na armadilha. Conta conferida: 10 ÷ 5 = 2 e 100 ÷ 2 = 50.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "R = 10 Ω não confere: com ele a potência seria 10² ÷ 10 = 10 W, e não 5,0 W.",
+    "motivo": "A origem \"tratar a resistência como o valor da tensão\" foi inventada e nenhuma conta chega a esse valor. Pela regra, fica só o teste objetivo. Conta conferida: 100 ÷ 10 = 10 W.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "localizar",
+    "motivo": "\"aplicar\" não é um tipo válido. Os tipos permitidos são localizar, calcular, comparar, eliminar e concluir.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "R = 100 ÷ 5,0 = 20 Ω",
+    "motivo": "A conta tinha 33 caracteres e passava do limite de cerca de 30. O 10² já aparece no quadro e no porque. A conta continua correta: 100 ÷ 5 = 20.",
+    "fonte": ""
+   },
+   {
+    "campo": "quadro[2].nota",
+    "depois": "R e P trocam de lugar",
+    "motivo": "Em R = ΔV²/P, o R fica sozinho no lado esquerdo e não no numerador. A nota antiga dizia que R ia para o numerador, o que contradiz a própria linha e o mov (para: esquerda).",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "D"
  }
 }

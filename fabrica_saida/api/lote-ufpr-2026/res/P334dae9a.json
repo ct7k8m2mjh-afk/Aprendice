@@ -55,7 +55,7 @@
     "faz": "Leia a conclusão do autor",
     "conta": "\"sabemos ... destruir uma cidade ... mas ainda não temos ideia de como conciliar bem-estar coletivo ... e expectativa de vida\"",
     "porque": "A técnica avançou muito, inclusive na longevidade, mas não garantiu bem-estar coletivo. É a tese do texto.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Elimine o que extrapola ou foca num detalhe",
@@ -76,7 +76,7 @@
    "A": "Generaliza: o texto chama o aumento do tempo de vida de 'o maior avanço da humanidade' e cita o fogo e a roda como façanhas. Não diz que a técnica trouxe mais inconvenientes que benefícios.",
    "B": "Inverte a lógica: o texto diz que os homens 'sonharam em vão' com o elixir e que o domínio da natureza já vinha desde o fogo. Nada liga o domínio da natureza à descoberta do elixir.",
    "C": "Restringe a um detalhe: o autor diz 'E não estou falando apenas das aposentadorias'. Elas são só um exemplo, não a questão crucial.",
-   "E": "Exagera: o texto não compara problemas e benefícios para dizer que os problemas 'suplantam' as vantagens. Ele chama o aumento da vida de 'maior avanço'. Além disso, atribui os problemas ao envelhecimento em si, e não à falta de preparo da sociedade."
+   "E": "Exagera: o texto não compara problemas e benefícios para dizer que os problemas 'suplantam' as vantagens. Ele chama o aumento da vida de 'o maior avanço da humanidade'."
   },
   "armadilha": "Marcar uma alternativa radical (A ou E) por perceber a crítica do autor, sem notar que ele ainda considera a longevidade o maior avanço da humanidade.",
   "alerta": "",
@@ -110,10 +110,28 @@
  "gab": "D",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "localizar",
+    "motivo": "O tipo 'interpretar' não existe no padrão do app, que aceita só localizar, calcular, comparar, eliminar e concluir. O passo localiza e lê o trecho final do texto, então o tipo certo é 'localizar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "Exagera: o texto não compara problemas e benefícios para dizer que os problemas 'suplantam' as vantagens. Ele chama o aumento da vida de 'o maior avanço da humanidade'.",
+    "motivo": "Tirei a frase 'atribui os problemas ao envelhecimento em si, e não à falta de preparo da sociedade' porque ela é falsa como crítica à alternativa. O próprio texto liga os problemas ao aumento do tempo de vida: 'Muitos dos problemas [...] têm relação com o aumento do tempo de vida'. A alternativa E cai só pelo exagero de 'suplantam'.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "D"
  }
 }

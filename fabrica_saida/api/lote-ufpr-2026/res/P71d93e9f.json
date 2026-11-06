@@ -38,7 +38,7 @@
     "faz": "Escreva a lei geral dos gases",
     "conta": "P1·V1/T1 = P2·V2/T2",
     "porque": "A quantidade de gás é fixa, então n·R é constante e P·V/T tem o mesmo valor nos dois estados.",
-    "tipo": "aplicar"
+    "tipo": "calcular"
    },
    {
     "faz": "Isole a razão P2/P1",
@@ -68,7 +68,7 @@
   "resposta": "Alternativa C: P2/P1 = 5/6, pois o volume triplica (pressão cai a 1/3) e a temperatura absoluta sobe 5/2 vezes (pressão sobe 5/2 vezes).",
   "checagem": "Teste com números: P1 = 6, V1 = 1, T1 = 2. Então P·V/T = 3. No estado 2: V2 = 3 e T2 = 5. Logo P2 = 3 × 5/3 = 5 e P2/P1 = 5/6. Confere.",
   "erradas": {
-   "A": "2/15 sai de inverter as duas razões: (1/3) × (2/5) = 2/15. Mas a temperatura mais alta aumenta a pressão (T2/T1 = 5/2, não 2/5), e o volume maior diminui a pressão. Falta manter a temperatura no numerador.",
+   "A": "2/15 sai de inverter só a razão das temperaturas: (1/3) × (2/5) = 2/15. Mas a temperatura mais alta aumenta a pressão (T2/T1 = 5/2, não 2/5). Falta manter T2 no numerador.",
    "B": "2/5 sai de usar T2/T1 invertida (2/5) e ignorar o volume. O volume triplicou e precisa entrar com fator 1/3. A razão certa é (1/3) × (5/2), não 2/5.",
    "D": "6/5 sai de inverter a razão final: (3) × (2/5) = 6/5, ou seja, V2/V1 no numerador e T1/T2. O volume maior diminui a pressão e a temperatura maior a aumenta; aqui os dois efeitos foram trocados.",
    "E": "15/2 sai de multiplicar V2/V1 por T2/T1: 3 × 5/2 = 15/2. Mas a pressão é inversamente proporcional ao volume: se o volume triplica, a pressão cai a 1/3, e não triplica."
@@ -147,10 +147,28 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "2/15 sai de inverter só a razão das temperaturas: (1/3) × (2/5) = 2/15. Mas a temperatura mais alta aumenta a pressão (T2/T1 = 5/2, não 2/5). Falta manter T2 no numerador.",
+    "motivo": "O texto dizia que 2/15 vem de inverter as duas razões. Inverter as duas dá 3 × 2/5 = 6/5, que é a alternativa D. A conta (1/3) × (2/5) inverte apenas a razão das temperaturas e mantém V1/V2.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[0].tipo",
+    "depois": "calcular",
+    "motivo": "'aplicar' não é um dos tipos permitidos (localizar, calcular, comparar, eliminar, concluir).",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C"
  }
 }
