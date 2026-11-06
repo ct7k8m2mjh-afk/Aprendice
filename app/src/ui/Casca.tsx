@@ -29,7 +29,7 @@ export function defineTema(t: 'claro' | 'escuro' | 'sistema') { atualiza((e) => 
 
 function ItemMateria({ m, atual }: { m: MateriaInfo; atual?: string }) {
   return (
-    <NavLink to={`/m/${m.id}`} className={({ isActive }) => 'item-nav' + (isActive || atual === m.id ? ' ativo' : '')} title={m.nome}>
+    <NavLink to={`/m/${m.id}`} className={({ isActive }) => `item-nav mat m-${m.id}` + (isActive || atual === m.id ? ' ativo' : '')} title={m.nome}>
       <Icone nome={`m_${m.id}` as NomeIcone} className="ic-mat" /><span className="rotulo">{m.nome}</span>
     </NavLink>
   );
@@ -95,7 +95,7 @@ export function Casca({ children, foco = false }: { children: ReactNode; foco?: 
             {OUTRAS_MATERIAS.map((m) => <ItemMateria key={m.id} m={m} atual={mAtual} />)}
           </div>
         </nav>
-        <hr className="lado-div" />
+        <div className="grupo" aria-hidden>Estudo</div>
         <nav aria-label="Estudo">
           <ItemNav para="/materias" icone="quadcheck">Questões</ItemNav>
           <ItemNav para="/simulados" icone="arquivo">Simulados</ItemNav>
@@ -124,12 +124,11 @@ export function Casca({ children, foco = false }: { children: ReactNode; foco?: 
           </button>
           <div className="direita">
             <div className="tema-seg" role="group" aria-label="Tema">
-              <button aria-pressed={!escuro} onClick={() => defineTema('claro')} title="Tema claro" aria-label="Tema claro"><Icone nome="sol" /></button>
-              <button aria-pressed={escuro} onClick={() => defineTema('escuro')} title="Tema escuro" aria-label="Tema escuro"><Icone nome="lua" /></button>
+              <button aria-pressed={!escuro} onClick={() => defineTema('claro')} title="Tema claro" aria-label="Tema claro"><Icone nome="sol" /><span className="rotulo-t">Dia</span></button>
+              <button aria-pressed={escuro} onClick={() => defineTema('escuro')} title="Tema escuro" aria-label="Tema escuro"><Icone nome="lua" /><span className="rotulo-t">Noite</span></button>
             </div>
-            <span className="topo-div" aria-hidden />
             <Link to="/perfil" className="perfil-chip" aria-label={`Meu perfil (${nome})`}>
-              <span className="avatar" aria-hidden><Icone nome="usuario" tam={20} /></span><span className="nome">Meu perfil</span>
+              <span className="avatar" aria-hidden><Icone nome="usuario" tam={18} /></span><span className="nome">Meu perfil</span>
             </Link>
           </div>
         </header>

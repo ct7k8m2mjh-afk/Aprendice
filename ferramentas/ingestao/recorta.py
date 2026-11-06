@@ -139,8 +139,9 @@ def limite_baixo(pg, cfg):
     lim = pg.rect.height - cfg['base']
     if cfg.get('rodape_num'):
         for l in linhas(pg):
-            if re.fullmatch(r'\d{1,3}', l['t']) and l['bbox'][1] > pg.rect.height * 0.85:
-                lim = min(lim, l['bbox'][1] - 3) if lim > l['bbox'][1] else lim
+            centro = abs((l['bbox'][0] + l['bbox'][2]) / 2 - pg.rect.width / 2) < 30
+            if re.fullmatch(r'\d{1,3}', l['t']) and l['bbox'][1] > pg.rect.height * 0.85 and (centro or not cfg.get('rodape_centro')):
+                lim = min(lim, l['bbox'][1] - cfg.get('rodape_folga', 3)) if lim > l['bbox'][1] else lim
     return lim
 
 
@@ -188,6 +189,9 @@ def eventos_do_pdf(pdf, cfg, faixa=None):
             # arte de borda a borda sem texto por cima (ex.: aviso antes da redação): encerra a questão
             ev.append({'p': pi, 'c': 0, 'y': y, 'tipo': 'corte'})
         baixo = limite_baixo(pg, cfg)
+        # âncora que existe no desenho da página mas não na camada de texto do PDF (conferida à mão no print)
+        for n_f, y_f, c_f in cfg.get('ancora_forcada', {}).get((cfg.get('_arquivo'), pi + 1), []):
+            ev.append({'p': pi, 'c': c_f, 'y': y_f, 'tipo': 'q', 'n': n_f})
         for li, L in enumerate(lp):
             x0, y0, x1, y1 = L['bbox']
             t = L['t']
@@ -210,7 +214,8 @@ def eventos_do_pdf(pdf, cfg, faixa=None):
                 ev.append({'p': pi, 'c': c, 'y': y0, 'tipo': 'secao', 'nome': cfg['secoes'][t.strip()]})
                 continue
             m = re.match(cfg['ancora'], t)
-            if m and x0 - cols[c][0] <= cfg.get('ancora_dx', 30):
+            dx = cfg.get('ancora_dx_pag', {}).get((cfg.get('_arquivo'), pi + 1), cfg.get('ancora_dx', 30))
+            if m and x0 - cols[c][0] <= dx:
                 ev.append({'p': pi, 'c': c, 'y': y0, 'tipo': 'q', 'n': int(m.group(1))})
                 continue
             for rx in cfg.get('fim', []):
@@ -238,7 +243,8 @@ def eventos_do_pdf(pdf, cfg, faixa=None):
                             yi = y0
                             # frase de instrução quebrada em duas linhas: começa na linha de cima
                             if li > 0 and coluna_de(lp[li - 1]['bbox'][0], cols) == c and 0 <= y0 - lp[li - 1]['bbox'][3] < 5 \
-                                    and not re.match(cfg['ancora'], lp[li - 1]['t']) and lp[li - 1]['bbox'][1] >= cfg['topo']:
+                                    and not re.match(cfg['ancora'], lp[li - 1]['t']) and lp[li - 1]['bbox'][1] >= cfg['topo'] \
+                                    and lp[li - 1]['t'].strip() not in cfg.get('secoes', {}):
                                 yi = lp[li - 1]['bbox'][1] - 2
                             ev.append({'p': pi, 'c': c, 'y': yi, 'tipo': 'suporte', 'faixa': nums if not mt else [],
                                        'num': int(mt.group(1)) if mt else None})
@@ -512,6 +518,7 @@ def processa(pid, amostra=False, so_texto=False):
             marcas = marcas_de_resposta(pdf, cfg['redigir'])
             redige(pdf, cfg['redigir'])
         faixa_pag = cad.get('paginas')
+        cfg['_arquivo'] = cad['arquivo']
         ev = eventos_do_pdf(pdf, cfg, faixa_pag)
         if cfg.get('sequencial'):
             ok, ult = [], (cad['questoes'][0] - cad.get('deslocamento', 0) - 1) if cad.get('questoes') else None

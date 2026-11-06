@@ -9,6 +9,13 @@
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
 @font-face { font-family: 'Familjen Grotesk'; font-style: italic; font-display: swap; font-weight: 400 700;
   src: url('../assets/fontes/familjen-grotesk-latin-wght-italic.woff2') format('woff2-variations'); }
+/* Dancing Script (SIL OFL 1.1, licença em assets/fontes/OFL-dancing-script.txt): só o título da matéria, na cor dela */
+@font-face { font-family: 'Dancing Script'; font-style: normal; font-display: swap; font-weight: 400 700;
+  src: url('../assets/fontes/dancing-script-latin-wght-normal.woff2') format('woff2-variations');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Dancing Script'; font-style: normal; font-display: swap; font-weight: 400 700;
+  src: url('../assets/fontes/dancing-script-latin-ext-wght-normal.woff2') format('woff2-variations');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
 @font-face { font-family: 'Caveat'; font-style: normal; font-display: swap; font-weight: 400 700;
   src: url('../assets/fontes/caveat-latin-wght-normal.woff2') format('woff2-variations'); }
 
@@ -27,6 +34,8 @@
   --verde-trilho: #E4EFE2; --verde-suave: #EBF6EA; --verde-borda: #CFE6CC;
   --lado-fundo: #FBF9F6; --pontos: #D5CFC6; --onda1: rgba(60, 170, 80, .13); --onda2: rgba(40, 150, 64, .26);
   --cartao-borda: #EEE9E1; --sombra-cartao: 0 1px 2px rgba(70, 50, 30, .04), 0 6px 20px rgba(70, 50, 30, .06);
+  --sombra-folha: 0 1px 2px rgba(21, 25, 51, .04);
+  --sombra-tema: 0 1px 2px rgba(20, 22, 30, .04), 0 10px 26px -18px rgba(20, 22, 30, .22);
   color-scheme: light;
 }
 [data-theme='dark'] {
@@ -43,17 +52,22 @@
   --verde-trilho: #1E2A22; --verde-suave: #14231A; --verde-borda: #24402C;
   --lado-fundo: #0F1013; --pontos: #2A2D33; --onda1: rgba(76, 196, 110, .07); --onda2: rgba(76, 196, 110, .13);
   --cartao-borda: var(--linha); --sombra-cartao: var(--sombra);
+  --sombra-folha: none; --sombra-tema: 0 10px 26px -18px rgba(0, 0, 0, .6);
   color-scheme: dark;
 }
 :root {
   --fonte: 'Familjen Grotesk', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   --mao: 'Caveat', 'Segoe Print', cursive;
-  --r: 14px; --r-p: 10px;
+  --escrita: 'Dancing Script', var(--fonte);
+  /* SISTEMA (medidas tiradas do protótipo: app-atual/design/materia.css e shell.html, comando 16 do dono) */
+  --r: 14px; --r-p: 10px; --r-ctl: 11px; --r-bloco: 16px; --r-dest: 18px; --r-item: 9px;
+  --pag-max: 1440px; --pag-estreita: 880px; --pag-x: 32px; --pag-topo: 22px; --pag-pe: 48px;
   --sv: color-mix(in srgb, var(--c) 13%, var(--folha));
   --sv2: color-mix(in srgb, var(--c) 7%, var(--folha));
   --curva: cubic-bezier(.2, .7, .2, 1);
-  --lado: 256px;
-  --topo: 64px;
+  --lado: 244px;
+  --lado-trilho: 64px;
+  --topo: 61px;
 }
 
 *, *::before, *::after { box-sizing: border-box; }

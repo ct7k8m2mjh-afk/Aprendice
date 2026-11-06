@@ -17,7 +17,7 @@ def texto_pdf(p: Path, layout=True) -> str:
 def pares(txt, letras='ABCDE'):
     """Lê pares 'número letra' em ordem; a primeira letra após o número vence (ex.: ENEM 1–5, opção inglês)."""
     g = {}
-    for m in re.finditer(rf'(?<![\d,.])(\d{{1,3}})\s+([{letras}]\b|ANULAD[AO]|Anulad[ao]|\*|X\b)', txt):
+    for m in re.finditer(rf'(?<![\d,.])(\d{{1,3}})\s+([{letras}]\b|ANULAD[AO]|Anulad[ao]|NULA|\*|X\b)', txt):
         n, v = int(m.group(1)), m.group(2)
         if n in g:
             continue
@@ -371,7 +371,7 @@ def upe(ano, duracao=9):
         'nota': 'Sistema Seriado de Avaliação, 3ª fase (dois dias). 2º dia numerado a partir do fim do 1º. Língua estrangeira: inglês. Gabarito definitivo.',
         'cadernos': cadernos,
         'colunas': lambda r: [(28, r.width - 22)], 'topo': 40, 'base': 20, 'rodape_num': True,
-        'ancora': r'^(\d{1,2})\.(\s|$)', 'ancora_dx': 22, 'sequencial': True,
+        'ancora': r'^(\d{1,2})\.(\s|$|(?=[A-ZÀ-Ú“"])|\.)', 'ancora_dx': 22, 'sequencial': True,
         'secoes': UPE_SECOES,
         'corte': [r'PROPOSTA DE TEMA PARA A REDA', r'(?i)quest[õo]es de \d+ a \d+ \(op[çc][ãa]o', r'(?i)^as quest[õo]es de \d+ a \d+ avaliam',
                   r'CIÊNCIAS HUMANAS E SOCIAIS APLICADAS', r'CIÊNCIAS DA NATUREZA E SUAS', r'^\W*MATEMÁTICA E SUAS'],
@@ -384,6 +384,8 @@ def upe(ano, duracao=9):
 
 
 PROVAS.update({f'upe-ssa3-{a}': upe(a) for a in (2026, 2025, 2024, 2023, 2022, 2021, 2020)})
+PROVAS['upe-ssa3-2023']['ancora_dx_pag'] = {('d1-caderno', 14): 240, ('d2-caderno', 22): 30}   # 10 ao lado de imagem; "45.." recuado
+PROVAS['upe-ssa3-2022']['ancora_forcada'] = {('d1-caderno', 31): [(41, 54, 0)]}   # "41." desenhado sem camada de texto
 
 
 # ----------------------------------------------------------------------------------------------- CMMG
@@ -608,3 +610,42 @@ for _a in range(2020, 2027):
     _c = ufu(_a)
     _c['total_de'] = (lambda c: (lambda pasta: max(c['gabarito'](pasta))))(_c)
     PROVAS[f'ufu-{_a}'] = _c
+
+
+# ----------------------------------------------------------------------------------------------- UFAM
+UFAM_SECOES = {
+    'LÍNGUA PORTUGUESA': 'Língua Portuguesa', 'LITERATURA': 'Literatura', 'LÍNGUA ESTRANGEIRA – INGLÊS': 'Inglês',
+    'LÍNGUA ESTRANGEIRA – ESPANHOL': 'Espanhol', 'LÍNGUA ESTRANGEIRA – FRANCÊS': 'Francês', 'HISTÓRIA': 'História',
+    'GEOGRAFIA': 'Geografia', 'BIOLOGIA': 'Biologia', 'QUÍMICA': 'Química', 'FÍSICA': 'Física', 'MATEMÁTICA': 'Matemática',
+    'REDAÇÃO': 'Redação', 'PROVA DE REDAÇÃO': 'Redação',
+}
+
+
+def ufam(ano, duracao=5):
+    def gab(pasta):
+        """Duas colunas de "NN. X"; nas questões de língua (13 a 18) a 1ª letra é a do inglês. ANULADA/NULA = fora."""
+        g = {}
+        for n, v in re.findall(r'(?<![\d,.])(\d{2})\.\s+([A-E]\b|ANULAD[AO]|ANULAR|NULA)', texto_pdf(pasta / 'gabarito-definitivo.pdf')):
+            g.setdefault(int(n), v if len(v) == 1 else 'X')
+        return g
+
+    cfg = {
+        'catalogo': 'ufam', 'escola': 'UFAM', 'ano': str(ano), 'fase': 'PSC 3ª etapa', 'titulo': f'UFAM PSC {ano} – 3ª etapa',
+        'banca': 'Compec-UFAM', 'duracao_horas': duracao,
+        'nota': f'Processo Seletivo Contínuo (PSC {ano}), 3ª etapa, Prova de Conhecimentos Gerais. Língua estrangeira: inglês. '
+                'Gabarito definitivo da Compec, publicado no repositório institucional da UFAM (Edoc).',
+        'cadernos': [{'arquivo': 'caderno', 'paginas': (3, 999)}],
+        'colunas': lambda r: duas_colunas(r, 20), 'topo': 34, 'cabecalho': r'^PROCESSO SELETIVO CONT', 'base': 30, 'rodape_num': True, 'rodape_centro': True, 'rodape_folga': 0.5,
+        'ancora': r'^(\d{2})\.(\s|“|"|$)', 'ancora_dx': 20, 'sequencial': True,
+        'secoes': UFAM_SECOES, 'pular_secoes': ('Espanhol', 'Francês', 'Redação'),
+        'corte': [r'^RASCUNHO$', r'(?i)^PROPOSTAS? DE REDA'],
+        'suporte': [r'(?i)(responder|para|responda) [àa]s? quest', r'(?i)^texto para as quest', r'(?i)^as quest[õo]es \d+ (a|e) \d+ se refere',
+                    r'(?i)^responda [àa] quest', r'(?i)^(leia|considere) .*(texto|poema|excerto|tirinha).*(responder|responda)',
+                    r'(?i)responder [àa]s$'],
+        'gabarito': gab, 'area': lambda n: 'Conhecimentos gerais',
+    }
+    cfg['total_de'] = lambda pasta: max(gab(pasta))
+    return cfg
+
+
+PROVAS.update({f'ufam-psc3-{a}': ufam(a) for a in range(2020, 2027)})
