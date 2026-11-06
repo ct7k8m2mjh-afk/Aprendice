@@ -1022,3 +1022,42 @@ def uerr(ano, duracao=5):
 for _a in (2025, 2026):
     PROVAS[f'uerr-{_a}'] = uerr(_a)
 PROVAS['uerr-2025']['sem_apoio'] = (7,)   # texto próprio (Antonio Candido), não o 1A1
+
+
+# ---------------------------------------------------------------------------------------------- PUCRS
+PUCRS_SECOES = {'LÍNGUA ESPANHOLA': 'Espanhol', 'LÍNGUA INGLESA': 'Inglês', 'LÍNGUA PORTUGUESA': 'Língua Portuguesa',
+                'MATEMÁTICA': 'Matemática', 'FÍSICA': 'Física', 'QUÍMICA': 'Química', 'BIOLOGIA': 'Biologia',
+                'LITERATURA': 'Literatura', 'HISTÓRIA': 'História', 'GEOGRAFIA': 'Geografia',
+                'LITERATURA BRASILEIRA': 'Literatura'}
+
+
+def pucrs(ano, duracao=4):
+    def gab(pasta):
+        """Gabarito em colunas: Língua Espanhola (1–10), Língua Inglesa (1–10), depois 11–70. A questão de 1 a 10
+        aparece duas vezes por linha: vale a 2ª, a do inglês."""
+        g = {}
+        for linha in texto_pdf(pasta / 'gabarito.pdf').splitlines():
+            for m in re.finditer(r'(?<![\d,.])(\d{1,2})\s*[–-]\s*([A-D]\b|ANULAD[AO])', linha):
+                g[int(m.group(1))] = m.group(2) if len(m.group(2)) == 1 else 'X'
+        return g
+
+    cfg = {
+        'catalogo': 'pucrs', 'escola': 'PUCRS', 'ano': str(ano), 'fase': 'Verão', 'titulo': f'PUCRS {ano}', 'banca': 'PUCRS',
+        'duracao_horas': duracao, 'alternativas': 4,
+        'nota': f'Pontifícia Universidade Católica do Rio Grande do Sul, Concurso Vestibular de Verão {ano} (prova de Medicina): '
+                'questões objetivas A–D. Língua estrangeira: inglês (questões 1 a 10 da opção inglês). Gabarito oficial '
+                + ('(com a errata publicada pela PUCRS)' if ano == 2025 else '') + '; anulada fica fora.',
+        'cadernos': [{'arquivo': 'caderno', 'paginas': (1, 999)}],
+        'colunas': 'faixas', 'margem': 36, 'topo': 46, 'base': 80,
+        'ancora': r'(?i)^quest[ãa]o\s+(\d{1,2})\b', 'ancora_dx': 30, 'sequencial': True,
+        'secoes': PUCRS_SECOES, 'pular_secoes': ('Espanhol',), 'pular_antes_sequencia': True,
+        'corte': [r'^_{10,}$', r'(?i)^INSTRUÇÃO GERAL', r'(?i)^REDAÇÃO$', r'(?i)^RASCUNHO'],
+        'suporte': [r'(?i)^INSTRUÇÃO:'],
+        'gabarito': gab, 'area': lambda n: 'Conhecimentos gerais',
+    }
+    cfg['total_de'] = lambda pasta: max(gab(pasta))
+    return cfg
+
+
+for _a in (2022, 2023, 2025, 2026):
+    PROVAS[f'pucrs-{_a}'] = pucrs(_a)
