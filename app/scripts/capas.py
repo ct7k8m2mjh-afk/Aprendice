@@ -41,7 +41,7 @@ CAPAS = {
     'por': [('PILHA-DE-LIVROS', 1199, 61, 412, False), ('LIVRO-ROXO', 1303, 243, 368, False), ('CANETA', 1770, 231, 421, False)],
     'fis': [('IMA', 1890, 288, 232, False), ('SEM-NOME-e792b5e0', 1323, 131, 502, False), ('LAMPADA', 1218, 236, 348, False)],
     'geo': [('GLOBO-TERRA', 1260, 18, 696, False), ('MONTANHAS', 1708, 230, 362, False), ('BUSSOLA', 1585, 442, 276, False)],
-    'his': [('COLUNA-ANTIGA', 1663, 23, 504, False), ('AMPULHETA', 1366, 80, 556, False), ('PERGAMINHO', 1556, 486, 196, False)],
+    'his': [('COLUNA-ANTIGA', 1630, 22, 582, False), ('AMPULHETA', 1384, 122, 506, False), ('PERGAMINHO', 1556, 486, 196, False)],
     'ing': [('LIVRO-VERMELHO', 1262, 330, 362, False), ('BALAO-VERMELHO', 1370, 43, 324, False), ('BALAO-ROSE', 1588, 92, 276, False),
             ('BANDEIRA-USA', 1900, 128, 280, False)],
     'fs': [('BALANCA', 1518, 26, 552, False), ('BONECOS', 1708, 382, 284, False), ('CORUJA', 1191, 174, 490, False)],
@@ -53,7 +53,8 @@ CAPAS = {
 # em preto translúcido (escurece o fundo suave por multiplicação; no escuro fica naturalmente discreta, como na REF
 # escura). Medidas em fração da largura da base da peça: dx/dy = centro, rx/ry = raios, sigma = desfoque, op = opacidade.
 SOMBRA = {'dx': 0.15, 'dy': -0.02, 'rx': 0.62, 'ry': 0.06, 'sigma': 0.06, 'op': 0.38}
-SOMBRA_MATERIA = {}
+# História: na REF a luz vem da direita e a sombra de chão vai para a esquerda, atrás da base da ampulheta
+SOMBRA_MATERIA = {'his': {'dx': -0.16, 'sigma': 0.09, 'op': 0.3}}
 # peças que flutuam ou ficam atrás de outra na REF: sem sombra de chão
 SOLTAS = {('bio', 'CELULA'), ('bio', 'FOLHA'), ('qui', 'MOLECULA'), ('ing', 'BALAO-VERMELHO'), ('ing', 'BALAO-ROSE'),
           ('ing', 'BANDEIRA-USA')}
