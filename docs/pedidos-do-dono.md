@@ -67,3 +67,8 @@ Imagem enviada nunca é "por enviar": tem uso, e o uso fica registrado.
 - Na aba principal haverá a opção **Treino geral**: questões aleatórias de qualquer matéria, sem sequência, sem matéria específica, tudo junto e misturado aleatoriamente.
 - Fazer em paralelo às outras tarefas.
 
+## Pedido de 06/11/2026 (19h20) — revisão essencial (comando 33)
+- As revisões de cada matéria SÃO REVISÕES. Ler o Revisaí de Matemática e se basear nesse caderno de revisões para incrementar as revisões das outras matérias no site.
+- Ninguém vai ler 800 slides um a um: pegar as partes mais importantes que todo aluno deve saber e entender e que são primordiais nas provas.
+- Formato decidido a partir do Revisaí: `docs/revisao/FORMATO-ESSENCIAL.md`.
+
