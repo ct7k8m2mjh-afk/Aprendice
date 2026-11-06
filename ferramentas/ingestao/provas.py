@@ -1759,3 +1759,47 @@ def unitins(ano, sem, ordem=('Física', 'Biologia', 'Matemática', 'História', 
 for _a, _s in ((2022, 2), (2024, 2), (2025, 2), (2026, 2)):
     PROVAS[f'unitins-{_a}-{_s}'] = unitins(_a, _s)
 PROVAS['unitins-2023-2'] = unitins(2023, 2, ('Física', 'Matemática', 'Química', 'Biologia', 'História', 'Geografia'))
+
+
+# ------------------------------------------------------------------------------------------------------ UVA
+def uva(ano, sem, total, bloco):
+    """UVA (Universidade Estadual Vale do Acaraú, Sobral), {ano}.{sem}: prova objetiva A–D em uma coluna, "11. Read..."
+    (número com ponto no começo da linha). 2024.1: Prova de Conhecimentos Gerais (60 questões; as provas específicas
+    por curso ficam fora); desde 2025.1: prova objetiva única (56 questões). Caderno da versão inglês. Gabarito
+    definitivo do Sistema UVA, em grade; N = nula."""
+    def gab(pasta):
+        txt = texto_pdf(pasta / 'gabarito.pdf')
+        txt = txt[txt.index(bloco):]
+        txt = re.split(r'\n\s*(BIOLOGIA E|GEOGRAFIA E|L\. PORTUGUESA|MATEM[ÁA]TICA E|P[áa]gina \d)', txt)[0]
+        ls = [l.split() for l in txt.splitlines()[1:] if l.strip()]
+        g = {}
+        for a, b in zip(ls, ls[1:]):
+            if a and all(x.isdigit() for x in a) and len(a) == len(b) and all(re.fullmatch(r'[A-DN]', x) for x in b):
+                for n, v in zip(a, b):
+                    g[int(n)] = v if v != 'N' else 'X'
+        return g
+
+    return {
+        'catalogo': 'uva', 'escola': 'UVA', 'ano': str(ano), 'fase': f'{ano}.{sem}', 'titulo': f'UVA {ano}.{sem}', 'banca': 'CCV-UVA',
+        'duracao_horas': 4, 'total': total, 'alternativas': 4,
+        'nota': f'Universidade Estadual Vale do Acaraú (Sobral, CE), seleção {ano}.{sem}: '
+                + ('Prova de Conhecimentos Gerais (60 questões A–D; as provas de conhecimentos específicos de cada curso ficam fora). '
+                   if total == 60 else 'prova objetiva (56 questões A–D). ')
+                + 'Língua estrangeira: inglês. Redação fora. Gabarito definitivo publicado pelo Sistema UVA; questão nula fica fora.',
+        'cadernos': [{'arquivo': 'caderno', 'paginas': (1, 999)}],
+        'colunas': lambda r: [(40, r.width - 30)], 'margem': 40, 'topo': 40, 'base': 45,
+        'ancora': r'^(\d{1,2})\.\s', 'ancora_dx': 14, 'sequencial': True,
+        'secoes_rx': [(r'^L[ÍI]NGUA PORTUGUESA$', 'Língua Portuguesa'), (r'^L[ÍI]NGUA INGLESA$', 'Inglês'), (r'^L[ÍI]NGUA ESPANHOLA$', 'Espanhol'),
+                      (r'^HIST[ÓO]RIA$', 'História'), (r'^GEOGRAFIA$', 'Geografia'), (r'^MATEM[ÁA]TICA$', 'Matemática'),
+                      (r'^F[ÍI]SICA$', 'Física'), (r'^QU[ÍI]MICA$', 'Química'), (r'^BIOLOGIA$', 'Biologia'), (r'^FILOSOFIA$', 'Filosofia'),
+                      (r'^SOCIOLOGIA$', 'Sociologia')],
+        'pular_secoes': ('Espanhol',), 'pular_antes_sequencia': True,
+        'corte': [r'(?i)^RASCUNHO', r'(?i)^REDA[ÇC][ÃA]O$', r'(?i)^PROPOSTA DE REDA', r'(?i)^TABELA PERI', r'(?i)^CLASSIFICA[ÇC][ÃA]O PERI'],
+        'suporte': [r'(?i)(responda|responder)\b.*\bquest[õo]es\s+\d', r'(?i)^textos? para as quest', r'(?i)answer questions\s+\d'],
+        'gabarito': gab, 'area': lambda n: 'Conhecimentos gerais',
+    }
+
+
+PROVAS['uva-2024-1'] = uva(2024, 1, 60, 'LINGUA ESTRANGEIRA-INGLÊS')
+PROVAS['uva-2025-1'] = uva(2025, 1, 56, 'LINGUA ESTRANGEIRA-INGLÊS')
+PROVAS['uva-2026-1'] = uva(2026, 1, 56, 'LINGUA ESTRANGEIRA-INGLÊS')
