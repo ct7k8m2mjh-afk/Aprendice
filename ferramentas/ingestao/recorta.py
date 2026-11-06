@@ -249,6 +249,10 @@ def eventos_do_pdf(pdf, cfg, faixa=None):
             if cfg.get('secoes') and t.strip() in cfg['secoes']:
                 ev.append({'p': pi, 'c': c, 'y': y0, 'tipo': 'secao', 'nome': cfg['secoes'][t.strip()]})
                 continue
+            sec_rx = next((nome for rx, nome in cfg.get('secoes_rx', []) if re.search(rx, t)), None)
+            if sec_rx:
+                ev.append({'p': pi, 'c': c, 'y': y0, 'tipo': 'secao', 'nome': sec_rx})
+                continue
             m = re.match(cfg['ancora'], t)
             dx = cfg.get('ancora_dx_pag', {}).get((cfg.get('_arquivo'), pi + 1), cfg.get('ancora_dx', 30))
             if not m and cfg.get('sequencial') and cfg.get('ancora_sem_numero') and re.match(cfg['ancora_sem_numero'], t) \

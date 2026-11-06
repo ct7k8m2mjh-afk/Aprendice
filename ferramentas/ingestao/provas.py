@@ -755,8 +755,11 @@ def udesc(ano, sem, duracao=4):
         'ancora': r'(?i)^(?:quest\S{1,3}o|question)\s+(\d{1,2})\b', 'ancora_dx': 75, 'sequencial': True,
         'secoes': {'Inglês': 'Inglês', 'Espanhol': 'Espanhol', 'INGLÊS': 'Inglês', 'ESPANHOL': 'Espanhol'},
         'pular_secoes': ('Espanhol',), 'area_do_gabarito': True,
+        # título de seção com o nº de questões ao lado ("Inglês (08 questões)") ou lido por OCR
+        'secoes_rx': [(r'(?i)^ingl[êe]s\b', 'Inglês'), (r'(?i)^espanhol\b', 'Espanhol'),
+                      (r'(?i)^L[ÍI]NGUA PORTUGUESA', 'Língua Portuguesa e Literatura'), (r'(?i)^(F[ÍI]SICA|MATEM[ÁA]TICA)\b', 'Ciências')],
         'corte': [r'(?i)^FOLHA DE RASCUNHO', r'^LÍNGUA ESTRANGEIRA', r'^LÍNGUA PORTUGUESA E LITERATURA', r'^(MATEMÁTICA|BIOLOGIA|FÍSICA|QUÍMICA|HISTÓRIA|GEOGRAFIA|FILOSOFIA|SOCIOLOGIA)\b',
-                  r'(?i)^FORMUL[ÁA]RIO', r'(?i)^Tabela peri', r'^(Inglês|Espanhol)\s+\(\d+ quest',
+                  r'(?i)^FORMUL[ÁA]RIO', r'(?i)^Tabela peri',
                   r'(?i)^PROPOSTA DE REDA', r'(?i)^REDAÇÃO$'],
         'suporte': [r'(?i)(responder|para) [àa]s quest', r'(?i)^texto? \d+\s*$'], 'suporte_ate_proximo': True, 'suporte_primeira': True,
         'cabecalho_imagem': r'(?i)^(UDESC|Vestibular 20\d\d)', 'texto_ingles': True,
