@@ -2039,3 +2039,46 @@ PROVAS['mackenzie-2026-1'] = mackenzie(2026, 1, 'Higienópolis, 27/11/2025')
 PROVAS['mackenzie-2026-2'] = mackenzie(2026, 2, '11/06/2026, prova A')
 PROVAS['mackenzie-2027-1'] = mackenzie(2027, 1, 'Medicina, Alphaville, 21/10/2026')
 PROVAS['mackenzie-2027-1']['ultima_continua'] = True   # a questão 60 continua na última página (52), conferido no caderno
+
+
+# ------------------------------------------------------------------------------------------------------ Fempar
+def fempar(ano, bloco, data):
+    """Fempar (Faculdade Evangélica Mackenzie do Paraná), Processo Seletivo de Medicina {ano} (banca FGV), caderno tipo 1
+    (branco): 80 questões A–E em duas colunas, número em negrito em linha própria; língua estrangeira 16–25 (inglês ou
+    espanhol, com a mesma numeração: vale o inglês). Gabarito definitivo do tipo 1 na opção inglês."""
+    def gab(pasta):
+        txt = texto_pdf(pasta / 'gabarito.pdf')
+        txt = txt[txt.index(bloco):]
+        txt = re.split(r'\n.*(TIPO|Tipo)\s+2', txt)[0]
+        ls = [l.split() for l in txt.splitlines()[1:] if l.strip()]
+        g = {}
+        for a, b in zip(ls, ls[1:]):
+            if a and all(x.isdigit() for x in a) and len(a) == len(b) and all(re.fullmatch(r'[A-E]|\*', x) for x in b):
+                for n, v in zip(a, b):
+                    g[int(n)] = v if v != '*' else 'X'
+        return g
+
+    secs = [(r'^L[íi]ngua Portuguesa$', 'Língua Portuguesa'), (r'^L[íi]ngua (Inglesa|Estrangeira \(Ingl[êe]s\))$', 'Inglês'),
+            (r'^L[íi]ngua (Espanhola|Estrangeira \(Espanhol\))$', 'Espanhol'),
+            (r'(?i)^CI[ÊE]NCIAS HUMANAS', 'Ciências Humanas'), (r'(?i)^CI[ÊE]NCIAS DA NATUREZA', 'Ciências da Natureza'),
+            (r'(?i)^MATEM[ÁA]TICA E SUAS', 'Matemática'), (r'^(Hist[óo]ria|Geografia|Filosofia|Sociologia|Biologia|Qu[íi]mica|F[íi]sica|Matem[áa]tica)$', 'Conhecimentos gerais')]
+    return {
+        'catalogo': 'fempar', 'escola': 'Fempar', 'ano': str(ano), 'fase': f'Medicina {ano}', 'titulo': f'Fempar Medicina {ano}',
+        'banca': 'FGV', 'duracao_horas': 5, 'total': 80,
+        'nota': f'Faculdade Evangélica Mackenzie do Paraná, Processo Seletivo do Curso de Medicina {ano} (prova de {data}, banca FGV), '
+                'caderno tipo 1: 80 questões A–E. Língua estrangeira: inglês (16–25). Redação fora. Gabarito definitivo; anulada fica fora.',
+        'cadernos': [{'arquivo': 'caderno', 'paginas': (3, 999)}],
+        'colunas': lambda r: [(36, 300), (300, r.width - 30)], 'margem': 36, 'topo': 52, 'base': 50,
+        'ancora': r'^(\d{1,2})$', 'ancora_dx': 14, 'sequencial': True, 'ancora_negrito': True, 'ancora_isolada': True,
+        'secoes_rx': secs, 'pular_secoes': ('Espanhol',), 'pular_antes_sequencia': True,
+        'corte': [r'(?i)^RASCUNHO', r'(?i)^REDA[ÇC][ÃA]O$', r'(?i)^PROPOSTA DE REDA', r'(?i)^TABELA PERI', r'(?i)^CLASSIFICA[ÇC][ÃA]O PERI',
+                  r'(?i)^TECNOLOGIAS$'],
+        'suporte': [r'(?i)^Read Text', r'(?i)^Read the (text|fragment)', r'(?i)(responda|responder)\b.*\bquest[õo]es', r'(?i)^textos? para as quest',
+                    r'(?i)^Leia o texto [IVX]+ ', r'^(TEXTO|Texto|TEXT|Text)\s+[IVX]+$'],
+        'suporte_secao': True,   # o texto vale até o próximo texto, corte ou seção ("answer the next five questions")
+        'gabarito': gab, 'area': lambda n: 'Inglês' if 16 <= n <= 25 else 'Conhecimentos gerais',
+    }
+
+
+PROVAS['fempar-2021'] = fempar(2021, 'Tipo 1 (Língua Estrangeira: Inglesa)', '20/02/2021')
+PROVAS['fempar-2026'] = fempar(2026, 'Medicina (I) - TIPO 1', '28/09/2025')
