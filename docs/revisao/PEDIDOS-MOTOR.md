@@ -15,6 +15,8 @@ o lado da revisão pronto; quando o motor atender, basta trocar a ligação indi
   e anime cada passo do roteiro, com a mesma regra de ouro do motor (DOM final, só transform/opacity/clip-path).
 - **Dado que falta:** um campo estruturado `visual.cena` nos JSON (objetos, posições, valores por passo). Proposta para a
   fábrica: `{"objetos":[{"id":"carro","tipo":"movel","x0":0}], "eixos":{"x":"t (s)","y":"v (m/s)"}, "passos":[{"move":"carro","ate":40,"dur":1.2,"rotulo":"40 m"}]}`.
+- **Inglês (comando 28):** a linha do tempo dos tempos verbais é o visual principal de I04; pedido igual: primitiva
+  "linha do tempo" (eixo passado–agora–futuro, marcos, intervalo, ponto) animada pelo motor a partir de `visual.cena`.
 - **Ligar:** em `RoteiroAnimado.tsx`, quando `visual.cena` existir, montar `<svg>` e chamar `animaCena` no lugar do
   palco de texto (o controle de tocar/pausar já usa a interface `Controle`).
 

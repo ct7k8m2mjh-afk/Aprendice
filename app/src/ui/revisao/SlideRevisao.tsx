@@ -40,7 +40,9 @@ export function SlideRevisao({ m, tema, sub, k, s, pos, total, aviso, lembrou, a
   /** marca do pilar 1.2 ("você errou na pergunta inicial") */ aviso?: string;
   lembrou?: Lembrou; aoLembrar?: (v: Lembrou) => void;
 }) {
-  const tent = aoLembrar ? pedeTentativa(s) : null;
+  const t0 = aoLembrar ? pedeTentativa(s) : null;
+  // fórmula sem outras do tema para comparar: não há escolha a fazer, o slide abre direto
+  const tent = t0 === 'formula' && opcoesFormula(tema, sub, k).opcoes.length < 2 ? null : t0;
   const [revelado, setRevelado] = useState(!tent || lembrou !== undefined);
   // Humanas (Filosofia e Sociologia...): passos de raciocínio e "fórmulas" em frase, na letra da interface
   // ("1 + 1" é conta em Física e Matemática e texto nas matérias em que o passo é sempre texto)

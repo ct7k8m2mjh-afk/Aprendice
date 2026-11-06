@@ -134,7 +134,7 @@ describe.skipIf(!TEMAS.length)('conteúdo de docs/revisao', () => {
           if (pedeTentativa(s) !== 'formula') continue;
           const o = opcoesFormula(t, sub, k);
           expect(new Set(o.opcoes).size).toBe(o.opcoes.length);
-          expect(o.opcoes.length).toBeGreaterThanOrEqual(2);
+          // com uma só (nenhuma outra fórmula no tema) o slide abre direto, sem escolha
           expect(o.opcoes[o.certa]).toBe(s.formula);
         }
       });
@@ -206,6 +206,7 @@ describe('ciclo de 5 tempos', () => {
   it('fonte legível e roteiro sem código de cor', () => {
     expect(fonteLegivel('L1-F1-C02 p. 24', 'PV Física (Poliedro)')).toBe('PV Física (Poliedro), livro 1, frente 1, cap. 2, p. 24');
     expect(fonteLegivel('FIL-L1-F1-C01 p. 11', '')).toBe('PV Filosofia (Poliedro), livro 1, frente 1, cap. 1, p. 11');
+    expect(fonteLegivel('ING-L2-F1-C03 p. 40', '')).toBe('PV Língua Inglesa (Poliedro), livro 2, frente 1, cap. 3, p. 40');
     expect(limpaRoteiro('2. A faixa se pinta de laranja #F27700.')).toBe('A faixa se pinta de laranja.');
   });
 });
