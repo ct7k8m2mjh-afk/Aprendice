@@ -1623,6 +1623,7 @@ for _k in [k for k in PROVAS if k.startswith('urca-')]:
     # transcrição dos cadernos em LaTeX não fica fiel (acentos soltos, parágrafos partidos, "€"): fica o print
     PROVAS[_k]['sem_transcricao'] = True
     PROVAS[_k]['faixa_unica'] = True   # "Texto 5 – Questão 56" vale só para a 56
+    PROVAS[_k]['texto_n_com_faixa'] = True
 PROVAS['urca-2025-1']['anexa'] = {119: 118}          # Q59 cita "o último parêntese da Questão 58"
 PROVAS['urca-2023-1']['apoio_de'] = {118: [113]}     # Q58 compara com o caso do Texto 3 (questões 53–54)
 PROVAS['urca-2023-2']['ancora_dy'] = {16: -12}       # √(5/7) e √(7/5) na 1ª linha: numeradores acima da âncora
@@ -1633,3 +1634,4 @@ PROVAS['unespar-2023']['sem_transcricao'] = (33,)
 PROVAS['unemat-2026-1']['sem_transcricao'] = (6, 13, 27)
 PROVAS['unemat-2023']['sem_transcricao'] = (28, 35)
 PROVAS['unimontes-2024']['sem_transcricao'] = (15,)
+PROVAS['ufsm-2025']['faixas_pag'] = {('p1-caderno', 11): [(50, 794, 289.5)]}   # números de linha da 19 começam em x≈292

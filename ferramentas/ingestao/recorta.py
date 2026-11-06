@@ -537,7 +537,14 @@ def eventos_do_pdf(pdf, cfg, faixa=None):
                 if cfg.get('ancora_bloco'):
                     # número centrado na altura do parágrafo ao lado (texto ao lado de figura, Unicentro 2026):
                     # a questão começa na 1ª linha do parágrafo que encosta no número
-                    viz = sorted((M for M in lp if 0 <= M['bbox'][0] - x1 < 20), key=lambda M: M['bbox'][1])
+                    viz = sorted((M for M in lp if 0 <= M['bbox'][0] - x1 < 40), key=lambda M: M['bbox'][1])
+                    # só o parágrafo que está na altura do número (mesma margem esquerda)
+                    par_ = [M for M in viz if M['bbox'][1] - 2 <= y0 <= M['bbox'][3] + 2]
+                    if par_:
+                        xb = min(M['bbox'][0] for M in par_)
+                        viz = [M for M in viz if abs(M['bbox'][0] - xb) < 2 or (M['bbox'][0] > xb and any(abs(N['bbox'][1] - M['bbox'][1]) < 2 and abs(N['bbox'][0] - xb) < 2 for N in viz))]
+                    else:
+                        viz = []
                     acima = [M for M in viz if M['bbox'][1] < y0 - 1 and M['bbox'][3] > y0 - 40]
                     topo_b = y0
                     for M in sorted(viz, key=lambda M: -M['bbox'][1]):
@@ -616,7 +623,8 @@ def eventos_do_pdf(pdf, cfg, faixa=None):
                                         yi = min(yi, r_.y0 - 1)
                             # errata da banca: a indicação impressa aponta outras questões (conferida no caderno)
                             nums = cfg.get('faixa_errata', {}).get((cfg.get('_arquivo'), pi + 1, tuple(nums)), nums)
-                            ev.append({'p': pi, 'c': c, 'y': yi, 'tipo': 'suporte', 'faixa': nums if not mt else [],
+                            # 'texto_n_com_faixa': "Texto 5 – Questão 56" vale só para as questões que declara
+                            ev.append({'p': pi, 'c': c, 'y': yi, 'tipo': 'suporte', 'faixa': nums if (not mt or cfg.get('texto_n_com_faixa')) else [],
                                        'singular': bool(cfg.get('suporte_singular') and re.search(cfg['suporte_singular'], resto)),
                                        'num': (re.search(cfg['texto_id'], t).group(1).upper() if cfg.get('texto_id') and re.search(cfg['texto_id'], t)
                                                else int(mt.group(1)) if mt else None)})
@@ -809,7 +817,14 @@ def trechos_coloridos(pdf, cores):
             for l in b.get('lines', []):
                 for sp in l['spans']:
                     if sp['color'] in cores and sp['text'].strip():
-                        rs.append(pymupdf.Rect(sp['bbox']))
+                        # folga: parênteses e radicais grandes desenham fora da caixa do caractere (só o vermelho muda)
+                        rs.append(pymupdf.Rect(sp['bbox']) + (-3, -8, 3, 8))
+        for dr in pg.get_drawings():   # fórmula desenhada (traço de fração, radical, parênteses grandes) na mesma cor
+            for k in ('color', 'fill'):
+                c = dr.get(k)
+                if c and len(c) == 3 and (round(c[0] * 255) << 16 | round(c[1] * 255) << 8 | round(c[2] * 255)) in cores:
+                    rs.append(pymupdf.Rect(dr['rect']) + (-1, -1, 1, 1))
+                    break
         if rs:
             out[pg.number] = rs
     return out
