@@ -11,3 +11,4 @@ Observações para a integração:
 - Exemplos de questão nos slides são novos, escritos para a revisão; se forem ao ar como questão, entram como "Questão Aprendice".
 - `pendencias` de cada arquivo traz propostas de conteúdo novo (sem id criado): decisão do dono.
 | L05 Filosofia política | aprovado (06/11/2026) | 68 |
+| L07 Iluminismo | aprovado (06/11/2026) | 40 |
