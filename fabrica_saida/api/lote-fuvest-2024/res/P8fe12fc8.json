@@ -10,8 +10,8 @@
   "antes": {
    "texto": "Na protoboard, os cinco furos de uma mesma linha formam um único ponto elétrico (um nó). O truque é ver onde cada resistor liga: dois resistores com as duas pontas nos mesmos nós estão em paralelo. Resistores em série dividem a mesma corrente, e a corrente do circuito vem da lei de Ohm.",
    "formulas": [
-    "Paralelo de dois iguais: R = R ÷ 2",
-    "Paralelo de dois: R = (Ra × Rb) ÷ (Ra + Rb)",
+    "Paralelo de dois resistores iguais: R_paralelo = R ÷ 2",
+    "Paralelo de dois resistores diferentes: R_paralelo = (Ra × Rb) ÷ (Ra + Rb)",
     "Série: R_eq = soma das resistências",
     "Lei de Ohm: i = U ÷ R"
    ],
@@ -66,7 +66,7 @@
    },
    {
     "faz": "Aplique a lei de Ohm",
-    "conta": "i = 5 ÷ 200 000\ni = 0,000025 A = 25 μA",
+    "conta": "i = 5 ÷ 200 000\ni = 0,000025 A\ni = 25 μA",
     "porque": "A corrente total é a mesma que passa por R1, já que R1 está em série com o conjunto R2 e R3.",
     "tipo": "concluir"
    }
@@ -76,8 +76,8 @@
   "erradas": {
    "A": "12,5 μA é a corrente em R2 (ou em R3), não em R1: os 25 μA se dividem igualmente entre os dois resistores iguais em paralelo, 25 ÷ 2 = 12,5 μA. A pergunta é sobre R1.",
    "B": "14,3 μA vem de somar as três em série: 150 + 100 + 100 = 350 kΩ, e 5 ÷ 350 000 ≈ 14,3 μA. Faltou ver que R2 e R3 ligam os mesmos nós e estão em paralelo.",
-   "D": "37,5 μA exigiria resistência total de 5 V ÷ 37,5 μA ≈ 133 kΩ. Isso não sai da associação do circuito: com R1 em série, a resistência total nunca fica abaixo de 150 kΩ.",
-   "E": "50 μA exigiria 100 kΩ no total. Isso é menor que R1 sozinho (150 kΩ), e R1 está em série com o resto. Seria impossível com R1 no circuito."
+   "D": "37,5 μA não confere: exigiria resistência total de 5 V ÷ 37,5 μA ≈ 133 kΩ. Como R1 (150 kΩ) está em série, a total é sempre maior que 150 kΩ.",
+   "E": "50 μA não confere: exigiria resistência total de 5 V ÷ 50 μA = 100 kΩ. Isso é menos que R1 sozinho (150 kΩ), e R1 está em série com o resto, então a total passa de 150 kΩ."
   },
   "armadilha": "Somar as três resistências como se fossem uma série, sem notar que R2 e R3 ligam os mesmos dois nós e estão em paralelo.",
   "alerta": "",
@@ -120,7 +120,7 @@
   },
   {
    "linha": "i = 0,000025 A",
-   "nota": "divisão"
+   "nota": "5 ÷ 200 000 em ohms dá ampères"
   },
   {
    "linha": "i = 25 μA",
@@ -141,11 +141,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -156,6 +158,45 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "C"
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.formulas[0]",
+    "depois": "Paralelo de dois resistores iguais: R_paralelo = R ÷ 2",
+    "motivo": "A fórmula 'R = R ÷ 2' usava a mesma letra nos dois lados e confundia o aluno."
+   },
+   {
+    "campo": "resolucao.antes.formulas[1]",
+    "depois": "Paralelo de dois resistores diferentes: R_paralelo = (Ra × Rb) ÷ (Ra + Rb)",
+    "motivo": "Deixa claro qual é o resultado da fórmula e para que caso ela serve."
+   },
+   {
+    "campo": "resolucao.passos[0].conta",
+    "depois": "Nó 1: esquerdo (cabo preto)\nNó 2: do meio\nNó 3: direito (cabo vermelho)",
+    "motivo": "Sem mudança no conteúdo; as linhas já são curtas e cabem no celular."
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "i = 5 ÷ 200 000\ni = 0,000025 A\ni = 25 μA",
+    "motivo": "Um movimento por linha: primeiro a divisão, depois a conversão para μA."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "37,5 μA não confere: exigiria resistência total de 5 V ÷ 37,5 μA ≈ 133 kΩ. Como R1 (150 kΩ) está em série, a total é sempre maior que 150 kΩ.",
+    "motivo": "Começa pelo teste objetivo e diz com clareza onde o raciocínio de quem marcou D falha."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "50 μA não confere: exigiria resistência total de 5 V ÷ 50 μA = 100 kΩ. Isso é menos que R1 sozinho (150 kΩ), e R1 está em série com o resto, então a total passa de 150 kΩ.",
+    "motivo": "Mostra a conta que derruba a alternativa e fala de série de forma direta."
+   },
+   {
+    "campo": "resolucao.quadro[5].nota",
+    "depois": "5 ÷ 200 000 em ohms dá ampères",
+    "motivo": "A nota 'divisão' não dizia nada; agora indica a unidade do resultado."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

@@ -8,11 +8,12 @@
  "conceito": "Ilha de calor urbana: a temperatura do ar é maior no centro, onde asfalto, vidro e concreto absorvem e reemitem a radiação solar, e menor nas áreas verdes.",
  "resolucao": {
   "antes": {
-   "texto": "O gráfico compara a temperatura do ar em tipos de área da mesma cidade. Superfícies escuras e impermeáveis (asfalto, concreto) e prédios de vidro absorvem muita radiação solar e a devolvem como calor. Já vegetação e solo úmido esfriam o ar. Esse contraste cria a chamada ilha de calor. O albedo é a fração da radiação solar que a superfície reflete.",
+   "texto": "O gráfico compara a temperatura do ar em tipos de área da mesma cidade. Asfalto e concreto são escuros e os prédios de vidro também esquentam: todos absorvem muita radiação solar e a devolvem como calor. Vegetação e solo úmido esfriam o ar. Esse contraste forma a ilha de calor. Albedo é a fração da radiação solar que a superfície reflete.",
    "formulas": [
-    "superfície escura e impermeável: absorve mais radiação, menor albedo, mais calor",
-    "vegetação: sombra e evapotranspiração, ar mais frio",
-    "ilha de calor = centro urbano mais quente que rural e áreas verdes"
+    "albedo baixo: reflete pouco, absorve muito, esquenta",
+    "asfalto, concreto, vidro: absorvem radiação e liberam calor",
+    "vegetação: faz sombra e perde água para o ar, e o ambiente esfria",
+    "ilha de calor: centro urbano mais quente que o rural e as áreas verdes"
    ],
    "simbolos": [
     [
@@ -37,13 +38,13 @@
   "passos": [
    {
     "faz": "Leia o que o gráfico mostra",
-    "conta": "Eixo: temperatura de 29,4 a 33,3 °C",
-    "porque": "O gráfico mede a temperatura do ar por tipo de área, do rural ao verde. A pergunta pede a causa desse perfil.",
+    "conta": "Eixo: 29,4 a 33,3 °C",
+    "porque": "O gráfico mostra a temperatura do ar em cada tipo de área, do rural ao verde. A pergunta pede a causa desse perfil, não só a leitura dele.",
     "tipo": "localizar"
    },
    {
     "faz": "Ache o pico e os mínimos",
-    "conta": "Centro ≈ 32,8 °C (máximo)",
+    "conta": "Centro ≈ 32,8 °C (máximo)\nRural ≈ 29,4 °C (mínimo)\nVerde ≈ 30,0 °C",
     "porque": "O centro é o ponto mais alto da curva. Rural (≈ 29,4 °C) e Verde (≈ 30,0 °C) são os mais frios.",
     "tipo": "localizar"
    },
@@ -55,8 +56,8 @@
    },
    {
     "faz": "Elimine as que contradizem o gráfico",
-    "conta": "A, C, D, E erram o dado ou o conceito",
-    "porque": "Cada uma erra um valor lido no gráfico ou inverte um conceito (albedo, efeito da vegetação, sombreamento).",
+    "conta": "A, C, D e E contradizem algo",
+    "porque": "A, C e D citam valores que o gráfico desmente. A E diz que o asfalto reflete mais, mas albedo menor significa refletir menos.",
     "tipo": "eliminar"
    },
    {
@@ -71,8 +72,8 @@
   "erradas": {
    "A": "Inverte o efeito da vegetação: áreas verdes esfriam o ar. No gráfico, a área Verde fica em torno de 30 °C, e nenhuma área ultrapassa 33,3 °C. A periferia fica perto de 31 °C, abaixo de 32 °C.",
    "C": "A sombra dos edifícios reduz a radiação que chega ao chão, e não a aumenta. Além disso, o centro está em cerca de 32,8 °C, e não abaixo de 30 °C.",
-   "D": "Comercial e residencial não aparecem ao longo de todo o perfil, porque o gráfico também tem área rural e área verde. Só o centro passa de 32 °C (cerca de 32,8 °C); as outras áreas ficam abaixo disso. Além disso, o gráfico não mede umidade.",
-   "E": "Afirma que o albedo do asfalto é menor, o que é verdade, mas conclui 'maior reflexão', o que é contraditório. Albedo menor significa refletir menos e absorver mais. O erro está em dizer que o asfalto reflete mais."
+   "D": "Só o centro passa de 32 °C (≈ 32,8 °C). Rural e verde ficam bem abaixo, então não há áreas comerciais e residenciais 'em todo o perfil'. O gráfico também não mede umidade.",
+   "E": "O asfalto tem mesmo albedo menor que a vegetação, e isso está certo. Mas albedo menor quer dizer que ele reflete menos e absorve mais. Por isso 'maior reflexão' contradiz o próprio conceito."
   },
   "armadilha": "Cair na alternativa E, que usa o termo 'albedo' mas trata como reflexão algo que é absorção.",
   "alerta": "",
@@ -107,11 +108,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -128,6 +131,65 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "B"
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "O gráfico compara a temperatura do ar em tipos de área da mesma cidade. Asfalto e concreto são escuros e os prédios de vidro também esquentam: todos absorvem muita radiação solar e a devolvem como calor. Vegetação e solo úmido esfriam o ar. Esse contraste forma a ilha de calor. Albedo é a fração da radiação solar que a superfície reflete.",
+    "motivo": "Frases mais curtas; evita 'impermeáveis' e a ideia de que vidro seja escuro."
+   },
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "albedo baixo: reflete pouco, absorve muito, esquenta",
+     "asfalto, concreto, vidro: absorvem radiação e liberam calor",
+     "vegetação: faz sombra e perde água para o ar, e o ambiente esfria",
+     "ilha de calor: centro urbano mais quente que o rural e as áreas verdes"
+    ],
+    "motivo": "Regras no formato de linha, sem repetir o texto."
+   },
+   {
+    "campo": "resolucao.passos[0].conta",
+    "depois": "Eixo: 29,4 a 33,3 °C",
+    "motivo": "Cabe na linha do celular."
+   },
+   {
+    "campo": "resolucao.passos[0].porque",
+    "depois": "O gráfico mostra a temperatura do ar em cada tipo de área, do rural ao verde. A pergunta pede a causa desse perfil, não só a leitura dele.",
+    "motivo": "Deixa claro o que o comando pede."
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "Centro ≈ 32,8 °C (máximo)\nRural ≈ 29,4 °C (mínimo)\nVerde ≈ 30,0 °C",
+    "motivo": "Uma informação por linha."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "Centro: asfalto, vidro, concreto",
+    "motivo": "Mantido, sem mudança de conteúdo."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "A, C, D e E contradizem algo",
+    "motivo": "Cabe na linha e fica mais direto."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "A, C e D citam valores que o gráfico desmente. A E diz que o asfalto reflete mais, mas albedo menor significa refletir menos.",
+    "motivo": "Diz qual erro derruba cada alternativa."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "O asfalto tem mesmo albedo menor que a vegetação, e isso está certo. Mas albedo menor quer dizer que ele reflete menos e absorve mais. Por isso 'maior reflexão' contradiz o próprio conceito.",
+    "motivo": "Mostra com clareza o que faltou a quem marcou E."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "Só o centro passa de 32 °C (≈ 32,8 °C). Rural e verde ficam bem abaixo, então não há áreas comerciais e residenciais 'em todo o perfil'. O gráfico também não mede umidade.",
+    "motivo": "Mais curto e direto."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

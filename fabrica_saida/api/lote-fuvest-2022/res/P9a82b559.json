@@ -8,7 +8,7 @@
  "conceito": "Ler um documento oficial sobre patrimônio (Cais do Valongo) e ligar o local ao tráfico atlântico de africanos escravizados para as Américas.",
  "resolucao": {
   "antes": {
-   "texto": "O Cais do Valongo, no Rio de Janeiro, foi o principal ponto de desembarque de africanos escravizados nas Américas. O texto é um documento de patrimônio: o IPHAN quer preservar a memória de um passado trágico e mostrar que o sítio tem valor para o mundo todo. A resposta deve sair do que o documento diz, e não do que você sabe do tema em geral.",
+   "texto": "O Cais do Valongo, no Rio de Janeiro, foi o principal ponto de desembarque de africanos escravizados nas Américas, segundo o próprio documento. O texto é um documento de patrimônio: o IPHAN quer preservar a memória de um passado trágico e mostrar que o sítio tem valor para o mundo todo. A resposta deve sair do que o documento diz, e não do que você sabe do tema em geral.",
    "formulas": [
     "documento de patrimônio = preservar a memória, não apagá-la",
     "Valongo = porta de entrada de africanos escravizados nas Américas",
@@ -68,13 +68,13 @@
    {
     "faz": "Descarte o que o texto não diz",
     "conta": "B 'única'; D 'após'; E 'silenciar'",
-    "porque": "O texto não diz que o Rio era único, não fala de reexportação de escravizados e afirma que o objetivo é não esquecer, o oposto de silenciar.",
+    "porque": "O texto não diz que o Rio era a única cidade escravista das Américas, não fala de envio de escravizados do Brasil para outras partes das Américas e afirma que o objetivo é não esquecer, o oposto de silenciar.",
     "tipo": "eliminar"
    },
    {
     "faz": "Ligue o trecho à alternativa",
     "conta": "entrada + africanos → A",
-    "porque": "O Brasil era colônia de Portugal quando o tráfico trouxe a maioria desses africanos. Logo, 'tráfico de africanos para a América de colonização portuguesa' é o que o texto sustenta.",
+    "porque": "O Brasil era colônia de Portugal quando o tráfico trouxe a maioria desses africanos para o Valongo. Logo, 'tráfico de africanos para a América de colonização portuguesa' é o que o texto sustenta.",
     "tipo": "concluir"
    }
   ],
@@ -120,12 +120,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -226,6 +228,28 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "O Cais do Valongo, no Rio de Janeiro, foi o principal ponto de desembarque de africanos escravizados nas Américas, segundo o próprio documento. O texto é um documento de patrimônio: o IPHAN quer preservar a memória de um passado trágico e mostrar que o sítio tem valor para o mundo todo. A resposta deve sair do que o documento diz, e não do que você sabe do tema em geral.",
+    "motivo": "A frase afirmava como fato próprio uma tese que é do documento (maior volume de africanos escravizados nas Américas). A mudança atribui a afirmação ao texto, sem alterar o sentido.",
+    "fonte": "Texto do IPHAN (dossiê de candidatura do Valongo, 2016); UNESCO, inscrição em 2017"
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "O texto não diz que o Rio era a única cidade escravista das Américas, não fala de envio de escravizados do Brasil para outras partes das Américas e afirma que o objetivo é não esquecer, o oposto de silenciar.",
+    "motivo": "O original dizia que o texto 'não diz que o Rio era único'. A formulação não deixava claro que a alternativa B fala das Américas inteiras. A nova redação também troca 'reexportação' por uma descrição mais direta da alternativa D.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "O Brasil era colônia de Portugal quando o tráfico trouxe a maioria desses africanos para o Valongo. Logo, 'tráfico de africanos para a América de colonização portuguesa' é o que o texto sustenta.",
+    "motivo": "Precisão: o Valongo funcionou de 1811 a 1831, quando o Brasil já era Reino Unido (desde 1815) e depois Império independente (1822). Dizer que 'o Brasil era colônia' no auge do Valongo é impreciso. A nova redação evita afirmar que o Brasil era colônia no período de funcionamento do cais, mas ainda sustenta a letra A com base no tráfico para a América portuguesa e depois luso-brasileira.",
+    "fonte": "IPHAN/UNESCO: Cais do Valongo em uso de 1811 a 1831"
+   }
+  ],
+  "fatos_volta_ok": false,
+  "fatos_volta_resposta": "A"
  }
 }

@@ -42,27 +42,27 @@
     "tipo": "localizar"
    },
    {
-    "faz": "Leia a legenda e as barras",
+    "faz": "Leia a legenda do gráfico",
     "conta": "Escura: até 500 m da água",
-    "porque": "A legenda diz que o preto é o garimpo até 500 m de um rio ou lago e o amarelo é o garimpo mais distante.",
+    "porque": "A legenda diz que a barra escura é o garimpo a até 500 m de um rio ou lago. A amarela é o garimpo mais longe, a partir de 500 m.",
     "tipo": "localizar"
    },
    {
-    "faz": "Leia os valores de cada terra",
-    "conta": "Kayapó: 70% perto da água",
-    "porque": "Na terra Yanomami são 64% perto da água; na Munduruku, 39% perto e 61% longe. Em duas das três terras, a maior parte do garimpo está colada à água.",
+    "faz": "Leia a barra escura de cada terra",
+    "conta": "Kayapó: 70% / Yanomami: 64%",
+    "porque": "Munduruku tem só 39% perto da água e 61% longe. Em duas das três terras, a maior parte do garimpo fica a até 500 m da água.",
     "tipo": "localizar"
    },
    {
-    "faz": "Ligue ao conceito",
-    "conta": "garimpo + água = mercúrio",
-    "porque": "O garimpo se instala junto à água porque depende dela. O mercúrio contamina rios, peixes e quem os consome, o que é um risco alto para pessoas e animais.",
+    "faz": "Ligue o gráfico ao conceito",
+    "conta": "garimpo perto da água → mercúrio",
+    "porque": "O garimpo usa água para separar o ouro e usa mercúrio nessa separação. O mercúrio contamina rios e peixes e chega às pessoas. É risco alto para gente e animais.",
     "tipo": "comparar"
    },
    {
-    "faz": "Elimine as demais",
-    "conta": "A, C, D, E contradizem fatos",
-    "porque": "A fala em desertificação; C diz que o garimpo é distante dos rios; D diz que o impacto é baixo; E diz que o garimpo não depende da água. Todas afirmam algo falso.",
+    "faz": "Elimine as outras letras",
+    "conta": "A, C, D, E: afirmam algo falso",
+    "porque": "A fala em desertificação, que não ocorre na Amazônia úmida. C diz que o garimpo é distante dos rios. D diz que o impacto é baixo. E diz que o garimpo não depende da água.",
     "tipo": "eliminar"
    },
    {
@@ -76,8 +76,8 @@
   "checagem": "Teste cada alternativa contra o gráfico. A C diz que o garimpo é distante da água, mas em duas de três terras a barra escura passa de 60%. A E diz que o garimpo não depende da água, mas a proximidade dos rios mostra o contrário. A A (desertificação, terras indígenas desmatadas) e a D (baixo impacto) já caem pela realidade da Amazônia. Sobra só a B.",
   "erradas": {
    "A": "Erra duas vezes. As terras indígenas estão entre as áreas mais preservadas da Amazônia, não entre as mais desmatadas. E desertificação ocorre em áreas secas; a Amazônia é úmida, e o dano do garimpo ali é desmatamento e contaminação, não desertificação.",
-   "C": "Contradiz o gráfico: 70% (Kayapó) e 64% (Yanomami) do garimpo estão a até 500 m da água, ou seja, perto dos rios. Dizer que o garimpo é distante dos corpos d'água e tem pouco impacto sobre eles é falso, pois o mercúrio contamina os rios.",
-   "D": "O garimpo ilegal tem alto impacto, não baixo: destrói margens, contamina a água e prejudica populações indígenas. A proximidade dos rios se explica pela dependência da água no processo, não por rota de fuga. O texto e o gráfico não sustentam essa interpretação.",
+   "C": "Contradiz o gráfico: 70% (Kayapó) e 64% (Yanomami) do garimpo ficam a até 500 m da água, ou seja, perto dos rios. Quem marcou C leu a distância pelo rio Amazonas e esqueceu os rios menores e os lagos, que contam como corpos d'água. O mercúrio contamina esses rios.",
+   "D": "O garimpo ilegal tem impacto alto: contamina a água com mercúrio e ameaça os povos indígenas. A proximidade dos rios vem do uso da água no processo, não de rota de fuga. Nem o gráfico nem o texto sustentam essa ideia.",
    "E": "Inverte a relação. O garimpo depende da água para separar o ouro do sedimento, e por isso se instala perto dos rios e lagos, como mostram as barras escuras. A relação é direta, e não por as populações indígenas saberem onde há ouro."
   },
   "armadilha": "Aceitar alternativas que parecem 'ambientais' (desertificação, desmatamento) sem checar o gráfico, que mostra o garimpo colado à água, e sem lembrar que terras indígenas são áreas preservadas.",
@@ -113,11 +113,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -140,6 +142,60 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "B"
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[1]",
+    "depois": {
+     "faz": "Leia a legenda do gráfico",
+     "conta": "Escura: até 500 m da água",
+     "porque": "A legenda diz que a barra escura é o garimpo a até 500 m de um rio ou lago. A amarela é o garimpo mais longe, a partir de 500 m.",
+     "tipo": "localizar"
+    },
+    "motivo": "O passo misturava legenda e barras; agora cada passo faz uma coisa e o porque explica a legenda."
+   },
+   {
+    "campo": "resolucao.passos[2]",
+    "depois": {
+     "faz": "Leia a barra escura de cada terra",
+     "conta": "Kayapó: 70% / Yanomami: 64%",
+     "porque": "Munduruku tem só 39% perto da água e 61% longe. Em duas das três terras, a maior parte do garimpo fica a até 500 m da água.",
+     "tipo": "localizar"
+    },
+    "motivo": "A conta mostrava só um valor e o porque trazia os outros. Agora os dois valores principais estão na conta e a comparação está no porque."
+   },
+   {
+    "campo": "resolucao.passos[3]",
+    "depois": {
+     "faz": "Ligue o gráfico ao conceito",
+     "conta": "garimpo perto da água → mercúrio",
+     "porque": "O garimpo usa água para separar o ouro e usa mercúrio nessa separação. O mercúrio contamina rios e peixes e chega às pessoas. É risco alto para gente e animais.",
+     "tipo": "comparar"
+    },
+    "motivo": "Frase mais clara, sem afirmar que o garimpo se instala junto à água só por depender dela."
+   },
+   {
+    "campo": "resolucao.passos[4]",
+    "depois": {
+     "faz": "Elimine as outras letras",
+     "conta": "A, C, D, E: afirmam algo falso",
+     "porque": "A fala em desertificação, que não ocorre na Amazônia úmida. C diz que o garimpo é distante dos rios. D diz que o impacto é baixo. E diz que o garimpo não depende da água.",
+     "tipo": "eliminar"
+    },
+    "motivo": "Conta mais curta, para caber na tela do celular, e porque mais claro."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "O garimpo ilegal tem impacto alto: contamina a água com mercúrio e ameaça os povos indígenas. A proximidade dos rios vem do uso da água no processo, não de rota de fuga. Nem o gráfico nem o texto sustentam essa ideia.",
+    "motivo": "Texto mais direto, dizendo o que faltou a quem marcou D."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "Contradiz o gráfico: 70% (Kayapó) e 64% (Yanomami) do garimpo ficam a até 500 m da água, ou seja, perto dos rios. Quem marcou C leu a distância pelo rio Amazonas e esqueceu os rios menores e os lagos, que contam como corpos d'água. O mercúrio contamina esses rios.",
+    "motivo": "Explica o que faltou no raciocínio de quem marcou C."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

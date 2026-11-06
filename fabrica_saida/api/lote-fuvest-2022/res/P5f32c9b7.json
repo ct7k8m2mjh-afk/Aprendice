@@ -78,7 +78,7 @@
   "erradas": {
    "A": "0,4 mg/kg sai de multiplicar 2,0 × 0,20: aplicou os 20% de água ao naftaleno. A água não leva naftaleno embora; o que diminui é a massa de solo.",
    "B": "1,6 mg/kg sai de multiplicar 2,0 × 0,80. Isso supõe que o naftaleno diminuiu junto com a água. Mas a massa de naftaleno é a mesma; só a de solo diminuiu, então o valor deve subir.",
-   "C": "2,0 mg/kg é o valor por kg de solo úmido, dado no enunciado. Ele não mudaria só se a amostra seca tivesse a mesma massa, o que contradiz os 20% de água.",
+   "C": "2,0 mg/kg é o valor por kg de solo úmido, dado no enunciado. Não confere para o solo seco: 2,0 mg/kg × 0,80 kg = 1,6 mg, e não os 2,0 mg de naftaleno da amostra.",
    "D": "2,2 mg/kg não confere: 2,2 mg/kg × 0,80 kg de solo seco = 1,76 mg de naftaleno, menos que os 2,0 mg da amostra. Para a massa de naftaleno se manter, é preciso dividir por 0,80, o que dá um aumento de 25%."
   },
   "armadilha": "Acrescentar 20% (× 1,2) em vez de dividir por 0,80: o aumento correto é de 25%, não de 20%.",
@@ -144,12 +144,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -245,6 +247,16 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "2,0 mg/kg é o valor por kg de solo úmido, dado no enunciado. Não confere para o solo seco: 2,0 mg/kg × 0,80 kg = 1,6 mg, e não os 2,0 mg de naftaleno da amostra.",
+    "motivo": "A frase original era confusa; troquei por um teste objetivo.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "E"
  }
 }

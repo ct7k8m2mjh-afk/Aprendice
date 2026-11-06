@@ -29,6 +29,14 @@
     [
      "linhagem",
      "grupo de bactérias descendentes de uma mesma célula, com o mesmo material genético"
+    ],
+    [
+     "resistente",
+     "bactéria que não morre mesmo com o antibiótico presente"
+    ],
+    [
+     "meio de cultura",
+     "mistura de nutrientes em que as bactérias crescem no laboratório"
     ]
    ]
   },
@@ -49,13 +57,13 @@
    {
     "faz": "Teste D e E contra o gráfico",
     "conta": "Dia 16: antib. 3 ≈ 120 milhões\nAntib. 2 zera no dia 9\nAntib. 1 zera no dia 16",
-    "porque": "No dia 16 as bactérias do antibiótico 3 estão numerosas, ou seja, resistentes a ele; D é falsa. O 2 é o mais rápido, mas o 1 também elimina tudo, só que mais devagar; E, porém, ignora que 3 é o pior. Veja também as erradas.",
+    "porque": "No dia 16, o antibiótico 3 está em cerca de 120 milhões: as bactérias voltaram a crescer, ou seja, resistem a ele. Por isso D é falsa. Em E, o antibiótico 3 é o pior, pois não elimina a população. Mas o 1 também zera a população, só que mais devagar. Assim, E erra ao chamar o 1 de menos eficiente.",
     "tipo": "eliminar"
    },
    {
     "faz": "Teste A e B contra o mecanismo",
     "conta": "A: combinar antibióticos ≠ menos antibiótico\nB: mais antibiótico na natureza → mais seleção",
-    "porque": "Em A, nada no texto liga combinar antibióticos a lançar menos no esgoto, e mutantes surgem ao acaso, independentemente do fármaco. Em B, o texto diz que o contato com antibióticos favorece a seleção dos resistentes; mais antibiótico na natureza aumenta essa seleção.",
+    "porque": "Em A, nada no texto liga combinar antibióticos a lançar menos no esgoto. Além disso, as mutações surgem ao acaso, com ou sem o fármaco. Em B, o texto diz que o contato com antibióticos favorece a seleção dos resistentes. Logo, mais antibiótico na natureza aumenta essa seleção.",
     "tipo": "eliminar"
    },
    {
@@ -68,10 +76,10 @@
   "resposta": "Alternativa C: mutações aleatórias, somadas à exposição prolongada aos antibióticos, contribuem para a seleção de bactérias resistentes.",
   "checagem": "Conte o que o texto diz: dose ou tempo insuficientes deixam sobreviventes que se multiplicam e acumulam alterações genéticas. Isso é mutação ao acaso mais seleção. O gráfico mostra o mesmo: com o antibiótico 3, a população se recupera após o dia 10.",
   "erradas": {
-   "A": "Mutações surgem ao acaso, com ou sem antibiótico. Por isso, combinar fármacos não muda a chance de surgirem mutantes, e o texto não traz nenhum dado sobre a quantidade lançada no esgoto. O antibiótico só seleciona os resistentes que já existem.",
+   "A": "Faltou lembrar que mutações surgem ao acaso, com ou sem antibiótico. Combinar fármacos não muda a chance de surgirem mutantes, e o texto não traz dado sobre a quantidade lançada no esgoto. O antibiótico só seleciona os resistentes que já existem.",
    "B": "Aumentar a concentração de antibióticos na natureza amplia o contato das bactérias com os fármacos. O texto diz que esse contato \"favorece a seleção das variedades resistentes\", então a medida pioraria o problema.",
    "D": "No dia 16 a curva do antibiótico 3 está em cerca de 120 milhões, quase igual à de crescimento livre. As bactérias sobreviventes e multiplicadas nessa cultura são resistentes a ele, então ele não será eficiente contra essas linhagens.",
-   "E": "O antibiótico 2 zera a população no dia 9, mas o 1 também a leva a zero, no dia 16. Dizer que o 1 é o menos eficiente ignora o antibiótico 3, que não elimina a população: ela volta a crescer. O menos eficiente é o 3."
+   "E": "Faltou olhar a curva do antibiótico 3. O 2 zera a população no dia 9, mas o 1 também a leva a zero, no dia 16. Então o 1 não é o menos eficiente: o pior é o 3, cuja população volta a crescer."
   },
   "armadilha": "Marcar E por ver que o antibiótico 2 zera primeiro, sem notar que o antibiótico 3 é o que falha e que a questão pede a afirmação correta sobre resistência.",
   "alerta": "",
@@ -102,11 +110,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -123,6 +133,70 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "C"
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "Sem antib.: sobe de ~55 a ~130\nAntib. 2: cai a 0 no dia 9\nAntib. 1: sobe até ~88, cai a 0 no dia 16\nAntib. 3: cai a ~10 no dia 10, sobe a ~120 no dia 16",
+    "motivo": "Sem mudança no conteúdo; confirmado que cabe e está legível."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "No dia 16, o antibiótico 3 está em cerca de 120 milhões: as bactérias voltaram a crescer, ou seja, resistem a ele. Por isso D é falsa. Em E, o antibiótico 3 é o pior, pois não elimina a população. Mas o 1 também zera a população, só que mais devagar. Assim, E erra ao chamar o 1 de menos eficiente.",
+    "motivo": "Texto original confuso e com frase incompleta ('E, porém, ignora...'); reescrito em frases curtas e com um único sentido."
+   },
+   {
+    "campo": "resolucao.passos[2].faz",
+    "depois": "Teste D e E contra o gráfico",
+    "motivo": "Mantido."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Em A, nada no texto liga combinar antibióticos a lançar menos no esgoto. Além disso, as mutações surgem ao acaso, com ou sem o fármaco. Em B, o texto diz que o contato com antibióticos favorece a seleção dos resistentes. Logo, mais antibiótico na natureza aumenta essa seleção.",
+    "motivo": "Frases mais curtas e ligadas por conectivos claros."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "Faltou olhar a curva do antibiótico 3. O 2 zera a população no dia 9, mas o 1 também a leva a zero, no dia 16. Então o 1 não é o menos eficiente: o pior é o 3, cuja população volta a crescer.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou E."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "Faltou lembrar que mutações surgem ao acaso, com ou sem antibiótico. Combinar fármacos não muda a chance de surgirem mutantes, e o texto não traz dado sobre a quantidade lançada no esgoto. O antibiótico só seleciona os resistentes que já existem.",
+    "motivo": "Explicita o que faltou ao aluno que marcou A."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "mutação aleatória",
+      "alteração no DNA que surge ao acaso, sem relação com a necessidade da bactéria"
+     ],
+     [
+      "seleção natural",
+      "o ambiente favorece os indivíduos que já têm uma característica vantajosa"
+     ],
+     [
+      "patogênica",
+      "que causa doença"
+     ],
+     [
+      "linhagem",
+      "grupo de bactérias descendentes de uma mesma célula, com o mesmo material genético"
+     ],
+     [
+      "resistente",
+      "bactéria que não morre mesmo com o antibiótico presente"
+     ],
+     [
+      "meio de cultura",
+      "mistura de nutrientes em que as bactérias crescem no laboratório"
+     ]
+    ],
+    "motivo": "Incluídos termos usados na questão que um aluno de 17 anos pode não conhecer."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

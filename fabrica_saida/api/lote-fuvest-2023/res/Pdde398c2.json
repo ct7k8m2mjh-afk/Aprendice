@@ -50,14 +50,14 @@
    },
    {
     "faz": "Subtraia as duas equações",
-    "conta": "(5a + b) − (3a + b) = 16 − 4",
-    "porque": "O b aparece nas duas equações com o mesmo sinal, então subtrair uma da outra cancela o b: 2a = 12 e a = 6.",
+    "conta": "2a = 16 − 4 = 12",
+    "porque": "O b aparece nas duas equações com o mesmo sinal. Ao subtrair uma da outra, ele some: (5a + b) − (3a + b) = 2a. Logo 2a = 12 e a = 6.",
     "tipo": "calcular"
    },
    {
-    "faz": "Ache b e some",
+    "faz": "Ache b e some a + b",
     "conta": "b = 4 − 3·6 = −14",
-    "porque": "Volte em 3a + b = 4 com a = 6. Então a + b = 6 + (−14) = −8.",
+    "porque": "Volte em 3a + b = 4 com a = 6: b = 4 − 18 = −14. A pergunta é a + b, então some: 6 + (−14) = −8.",
     "tipo": "concluir"
    }
   ],
@@ -107,7 +107,7 @@
    "destaque": "2⁴ = 16"
   },
   {
-   "linha": "(5a+b) − (3a+b) = 16 − 4",
+   "linha": "(5a + b) − (3a + b) = 16 − 4",
    "nota": "subtraia: o b se cancela",
    "mov": [
     {
@@ -138,7 +138,7 @@
   },
   {
    "linha": "b = 4 − 3·6",
-   "nota": "volte em 3a + b = 4 e passe 3a para o outro lado",
+   "nota": "de 3a + b = 4, o 3a passa para a direita com sinal trocado",
    "mov": [
     {
      "termo": "3a",
@@ -173,11 +173,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -194,6 +196,45 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "A"
+  "fatos_resposta": "A",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "2a = 16 − 4 = 12",
+    "motivo": "A conta anterior ficava no ar; mostrar o resultado da subtração cabe em uma linha curta de celular."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "O b aparece nas duas equações com o mesmo sinal. Ao subtrair uma da outra, ele some: (5a + b) − (3a + b) = 2a. Logo 2a = 12 e a = 6.",
+    "motivo": "Mostra de onde vem o 2a e deixa a subtração explícita."
+   },
+   {
+    "campo": "resolucao.passos[4].faz",
+    "depois": "Ache b e some a + b",
+    "motivo": "O passo faz duas ações e o comando deve dizer qual delas é o pedido final."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "Volte em 3a + b = 4 com a = 6: b = 4 − 18 = −14. A pergunta é a + b, então some: 6 + (−14) = −8.",
+    "motivo": "Liga o resultado ao que foi pedido (a + b, não só b)."
+   },
+   {
+    "campo": "resolucao.quadro[4].linha",
+    "depois": "(5a + b) − (3a + b) = 16 − 4",
+    "motivo": "Espaçamento consistente para copiar no caderno."
+   },
+   {
+    "campo": "resolucao.quadro[6].linha",
+    "depois": "a = 12/2 = 6",
+    "motivo": "Mantida a fração no formato do site (numerador/denominador); sem mudança de conteúdo."
+   },
+   {
+    "campo": "resolucao.quadro[7].nota",
+    "depois": "de 3a + b = 4, o 3a passa para a direita com sinal trocado",
+    "motivo": "Nota mais clara sobre a mudança de lado."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

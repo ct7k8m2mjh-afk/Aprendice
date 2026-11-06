@@ -66,7 +66,7 @@
   "erradas": {
    "A": "A sai de errar a conversão: dividir 6.000.000 cm por 10.000.000 dá 0,6. Esse número de cm não é o de 1 km. O certo é 100.000 cm por km, que dá 60 km.",
    "B": "6 km sai de dividir 6.000.000 cm por 1.000.000, como se 1 km tivesse 1.000.000 cm. Mas 1 km tem 100.000 cm, e a divisão correta dá 60 km.",
-   "C": "C não confere: não existe conta de escala que dê 6,6. A escala só pede multiplicar (6 × 1.000.000) e mudar a unidade. Quem marcou C provavelmente somou algo ao 6 sem base na conta.",
+   "C": "C não confere: nenhuma conta de escala dá 6,6. A escala pede multiplicar (6 × 1.000.000 = 6.000.000 cm) e converter para km (÷ 100.000), o que dá 60. Além disso, 1 cm já vale 10 km, então qualquer valor abaixo de 10 km é impossível.",
    "E": "600 km sai de usar 1 km = 10.000 cm (6.000.000 ÷ 10.000 = 600). Faltou um zero: 1 km = 1.000 m × 100 cm = 100.000 cm."
   },
   "armadilha": "Errar o número de zeros na conversão de cm para km (1 km = 100.000 cm, e não 10.000 nem 1.000.000).",
@@ -137,12 +137,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -199,6 +201,16 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "C não confere: nenhuma conta de escala dá 6,6. A escala pede multiplicar (6 × 1.000.000 = 6.000.000 cm) e converter para km (÷ 100.000), o que dá 60. Além disso, 1 cm já vale 10 km, então qualquer valor abaixo de 10 km é impossível.",
+    "motivo": "Remove a especulação ('provavelmente somou algo'), que o guia proíbe, e deixa só o teste objetivo.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "D"
  }
 }

@@ -49,13 +49,13 @@
    {
     "faz": "Identifique o alvo no soneto",
     "conta": "\"A certa personagem desvanecida\"",
-    "porque": "O título diz que o retratado é vaidoso. O poeta finge elogiá-lo, mas só fala da dificuldade de compor o soneto. O elogio vira pretexto vazio.",
+    "porque": "O título diz que o retratado é vaidoso (\"desvanecida\"). O poeta finge elogiá-lo, mas só fala da dificuldade de compor o soneto: o elogio vira pretexto vazio, e nenhuma qualidade do louvado aparece.",
     "tipo": "localizar"
    },
    {
     "faz": "Veja a ironia do elogio",
     "conta": "\"Gabando-vos a vós, e eu fico um rei\"",
-    "porque": "Quem deveria ser louvado não recebe elogio algum. O poeta gasta os versos contando quartetos e tercetos, e nenhuma qualidade do louvado aparece. Sobra o vazio de quem se julga digno de louvor.",
+    "porque": "Quem deveria ser louvado não recebe elogio algum. O poeta gasta os versos contando quartetos e tercetos, e nenhuma qualidade do louvado aparece. O \"louvor\" é vazio, o que sugere que o retratado não tem méritos a louvar, embora se julgue digno deles.",
     "tipo": "localizar"
    },
    {
@@ -87,7 +87,7 @@
   "checagem": "Teste a letra C em cada texto. Soneto: a personagem 'desvanecida' recebe um 'elogio' que não diz nada dela. Samba: 'tipo zero', 'tipo esgotado'. Os dois textos confirmam.",
   "erradas": {
    "A": "Vale só para o soneto, que fala de como é feito (\"Já lá vão duas, e esta é a terceira\"). O samba não comenta a própria composição; a repetição de 'tipo' fala do retratado. E o que se ironiza nos dois textos é a pessoa, não o processo.",
-   "B": "O soneto diz que o retratado 'honra' o poeta, mas é ironia: o poeta zomba dele, não se rebaixa. No samba, o eu lírico fala de cima: \"Eu até hoje nunca vi nenhum tipo vulgar tão fora do comum\". Nenhum dos textos ironiza a inferioridade de quem fala.",
+   "B": "O soneto finge dizer que o retratado \"honra\" o poeta, mas o tom é de zombaria dirigida a ele, não de rebaixamento do poeta. No samba, o eu lírico fala de cima: \"Eu até hoje nunca vi nenhum / Tipo vulgar tão fora do comum\". Nenhum dos textos ironiza a inferioridade de quem fala.",
    "D": "Nenhum dos textos revela algo sublime escondido. No samba, o 'tipo' é \"vulgar\" e \"esgotado\"; no soneto, o louvor é vazio. O que se mostra é nulidade, não grandeza oculta.",
    "E": "Os retratados não são gênios, só se julgam especiais. A ironia atinge a vaidade deles, não a intolerância dos outros. Quem marcou E leu o retratado como injustiçado; nenhum verso fala de intolerância ou de gênio."
   },
@@ -125,12 +125,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -227,6 +229,28 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.passos[0].porque",
+    "depois": "O título diz que o retratado é vaidoso (\"desvanecida\"). O poeta finge elogiá-lo, mas só fala da dificuldade de compor o soneto: o elogio vira pretexto vazio, e nenhuma qualidade do louvado aparece.",
+    "motivo": "O texto dizia que o título traz o retratado como vaidoso e que o poeta ironiza. A versão nova é mais precisa e liga \"desvanecida\" ao termo do título. Também evita sugerir que o soneto trata de uma pessoa \"nula\" por si.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "Quem deveria ser louvado não recebe elogio algum. O poeta gasta os versos contando quartetos e tercetos, e nenhuma qualidade do louvado aparece. O \"louvor\" é vazio, o que sugere que o retratado não tem méritos a louvar, embora se julgue digno deles.",
+    "motivo": "Ajuste de precisão: \"Sobra o vazio de quem se julga digno\" atribuía ao texto uma afirmação que ele apenas sugere. A nova redação diz que o texto sugere isso.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "O soneto finge dizer que o retratado \"honra\" o poeta, mas o tom é de zombaria dirigida a ele, não de rebaixamento do poeta. No samba, o eu lírico fala de cima: \"Eu até hoje nunca vi nenhum / Tipo vulgar tão fora do comum\". Nenhum dos textos ironiza a inferioridade de quem fala.",
+    "motivo": "O trecho citado do samba estava em duas linhas e foi unido sem a quebra. Também deixa claro que o soneto \"finge\" dizer isso.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "C"
  }
 }

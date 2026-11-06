@@ -4,7 +4,7 @@
  "materia": "por",
  "tema": "P10",
  "conteudo": "P10.4",
- "nivel": 3,
+ "nivel": 2,
  "conceito": "Valor dos dois-pontos: introduzem uma explicação que detalha ou justifica a afirmação anterior.",
  "resolucao": {
   "antes": {
@@ -45,7 +45,7 @@
    {
     "faz": "Localize a afirmação antes dos dois-pontos",
     "conta": "\"Nem mesmo comparando com outros robozinhos\"",
-    "porque": "O trecho diz que os bots de fake news não são os grandes responsáveis, nem mesmo na comparação com outros bots. A frase deixa uma pergunta no ar: por que eles não se destacam?",
+    "porque": "O trecho diz que os bots de fake news não são os grandes responsáveis, nem mesmo se comparados a outros bots. Fica no ar a pergunta: com que base se diz isso?",
     "tipo": "localizar"
    },
    {
@@ -74,7 +74,7 @@
    }
   ],
   "resposta": "Alternativa C: os dois-pontos introduzem uma explicação, pois o que vem depois detalha e justifica a afirmação anterior.",
-  "checagem": "Reescreva com 'ou seja': \"Nem mesmo comparando com outros robozinhos, ou seja, os que espalham informações mentirosas e os que divulgam dados verdadeiros alcançaram o mesmo número de pessoas.\" O sentido se mantém. Agora tente 'portanto' ou 'mas': o sentido muda.",
+  "checagem": "Troque os dois-pontos por 'pois': \"Nem mesmo comparando com outros robozinhos, pois tanto os que espalham informações mentirosas quanto aqueles que divulgam dados verdadeiros alcançaram o mesmo número de pessoas.\" O sentido se mantém. Agora tente 'portanto' ou 'embora': o sentido muda.",
   "erradas": {
    "A": "Conclusão seria um resultado tirado do que veio antes, como 'portanto'. Aqui a segunda parte não é consequência da primeira: ela apresenta o dado que a sustenta. Com 'portanto', o sentido se perde.",
    "B": "Concessão admite algo contrário, com 'embora' ou 'ainda que'. Depois dos dois-pontos não há nenhuma ideia contrária à primeira: o dado reforça a afirmação de que os bots de fake news não são os grandes responsáveis.",
@@ -96,7 +96,7 @@
   },
   {
    "nome": "pergunta ao texto",
-   "ideia": "Pergunte 'por que os bots de fake news não são os grandes responsáveis?'. A parte depois dos dois-pontos responde, e isso é explicação."
+   "ideia": "Pergunte 'com que base se afirma que os bots de fake news não são os grandes responsáveis?'. A parte depois dos dois-pontos responde, e isso é explicação."
   }
  ],
  "quadro": [],
@@ -115,12 +115,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [],
   "fatos_ok": true,
@@ -183,6 +185,34 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Troque os dois-pontos por 'pois': \"Nem mesmo comparando com outros robozinhos, pois tanto os que espalham informações mentirosas quanto aqueles que divulgam dados verdadeiros alcançaram o mesmo número de pessoas.\" O sentido se mantém. Agora tente 'portanto' ou 'embora': o sentido muda.",
+    "motivo": "A versão com 'ou seja' misturava a pontuação e cortava o 'tanto... quanto', e o 'mas' dá um sentido que o texto não tem. A nova checagem usa 'pois' e contrapõe 'portanto' e 'embora', que são conectivos de conclusão e de concessão. Com isso a checagem passa a bater com as alternativas A e B.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[0].porque",
+    "depois": "O trecho diz que os bots de fake news não são os grandes responsáveis, nem mesmo se comparados a outros bots. Fica no ar a pergunta: com que base se diz isso?",
+    "motivo": "A pergunta 'por que eles não se destacam?' tinha o sentido de pedir a causa. O que os dois-pontos trazem é a justificativa, ou seja, o dado que sustenta a afirmação. A nova pergunta é mais precisa.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.caminhos[1].ideia",
+    "depois": "Pergunte 'com que base se afirma que os bots de fake news não são os grandes responsáveis?'. A parte depois dos dois-pontos responde, e isso é explicação.",
+    "motivo": "Mantém a coerência com o passo 1, corrigido acima. A pergunta anterior ('por que não são os grandes responsáveis?') pedia uma causa, e o texto traz um dado comprobatório.",
+    "fonte": ""
+   },
+   {
+    "campo": "nivel",
+    "depois": 2,
+    "motivo": "A classificação atual do banco é nível 2, e a resolução trazia 3 sem justificativa. A nota_dif é opcional e não foi pedida, então mantive o valor do banco.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "C"
  }
 }

@@ -8,7 +8,7 @@
  "conceito": "Conservação da energia mecânica: a energia potencial gravitacional no alto da bacia vira energia cinética no ponto mais baixo (v = √(2gh)).",
  "resolucao": {
   "antes": {
-   "texto": "A questão pede a velocidade MÁXIMA, ou seja, a que o skatista teria sem perder energia para atrito ou resistência do ar. Nesse caso, toda a energia potencial do ponto alto vira energia cinética embaixo. A massa do skatista aparece nos dois lados da igualdade e cancela, por isso o enunciado não a fornece. O formato da bacia também não importa, só a diferença de altura.",
+   "texto": "A questão pede a velocidade MÁXIMA: a que o skatista teria sem perder energia para o atrito nem para o ar. Nesse caso, toda a energia que ele tem por estar no alto (energia potencial) vira energia de movimento (energia cinética) embaixo. A massa dele aparece nos dois lados da igualdade e cancela, por isso o enunciado não a dá. O formato da bacia também não importa: só a diferença de altura.",
    "formulas": [
     "Energia potencial: Ep = m × g × h",
     "Energia cinética: Ec = m × v² ÷ 2",
@@ -32,8 +32,20 @@
      "velocidade no ponto mais baixo, em m/s"
     ],
     [
+     "energia potencial",
+     "energia guardada por estar em um lugar alto"
+    ],
+    [
+     "energia cinética",
+     "energia que o corpo tem por estar em movimento"
+    ],
+    [
      "energia mecânica",
      "soma da energia cinética com a potencial"
+    ],
+    [
+     "repouso",
+     "parado, velocidade zero"
     ]
    ]
   },
@@ -41,7 +53,7 @@
   "passos": [
    {
     "faz": "Liste os dados",
-    "conta": "h = 2,45 m; g = 10 m/s²; v₀ = 0",
+    "conta": "h = 2,45 m\ng = 10 m/s²\nv₀ = 0 (repouso)",
     "porque": "Parte do repouso, então no alto só há energia potencial. A profundidade da bacia é o desnível h.",
     "tipo": "localizar"
    },
@@ -71,12 +83,12 @@
    }
   ],
   "resposta": "Alternativa C: 7 m/s, pois v = √(2 × g × h) = √(2 × 10 × 2,45) = √49 = 7 m/s.",
-  "checagem": "Confira pela unidade e pelo teste inverso: 7² ÷ 2 = 24,5 m²/s² e g × h = 10 × 2,45 = 24,5 m²/s². As energias por kg são iguais. Em queda livre de 2,45 m, o tempo é √(2 × 2,45 ÷ 10) = 0,7 s e v = 10 × 0,7 = 7 m/s, o mesmo valor.",
+  "checagem": "Confira por outro caminho: a queda livre de 2,45 m. O tempo é t = √(2 × 2,45 ÷ 10) = 0,7 s. Então v = g × t = 10 × 0,7 = 7 m/s, o mesmo valor. A unidade também fecha: m/s.",
   "erradas": {
-   "A": "3 m/s não confere: com v = 3, a energia cinética por kg seria 3² ÷ 2 = 4,5 J/kg, mas a potencial perdida é g × h = 24,5 J/kg. Daria uma altura de apenas 0,45 m, não 2,45 m.",
-   "B": "B sai de esquecer o 2 de m × v² ÷ 2: v² = g × h = 10 × 2,45 = 24,5, e √24,5 ≈ 4,95 ≈ 5 m/s. Com o 2, v² = 49 e v = 7 m/s. Já 5 m/s exatos dariam só 12,5 J/kg, o que corresponde a uma queda de 1,25 m.",
-   "D": "9 m/s não confere: com v = 9, a energia cinética por kg seria 81 ÷ 2 = 40,5 J/kg, mais que os 24,5 J/kg que a altura de 2,45 m fornece. Exigiria um desnível de 4,05 m, e o skatista não pode ganhar energia do nada.",
-   "E": "11 m/s não confere: com v = 11, a energia cinética por kg seria 121 ÷ 2 = 60,5 J/kg, muito maior que os 24,5 J/kg disponíveis. Exigiria um desnível de 6,05 m."
+   "A": "3 m/s não confere: v² = 9 e h = v² ÷ 20 = 0,45 m, bem menor que os 2,45 m dados. Essa velocidade corresponderia a uma bacia rasa.",
+   "B": "B sai de esquecer o 2 de v² ÷ 2: v² = g × h = 10 × 2,45 = 24,5 e √24,5 ≈ 5 m/s. Faltou o fator 2 da energia cinética: o certo é v² = 2 × g × h = 49.",
+   "D": "9 m/s não confere: v² = 81 e h = 81 ÷ 20 = 4,05 m, bem acima dos 2,45 m. Sem atrito, o skatista não ganha energia além da que a altura dá.",
+   "E": "11 m/s não confere: v² = 121 e h = 121 ÷ 20 = 6,05 m, muito mais que os 2,45 m dados. Essa velocidade exigiria uma bacia bem mais funda."
   },
   "armadilha": "Procurar a massa do skatista ou o formato da bacia: nenhum dos dois entra, pois a massa cancela e só importa o desnível de 2,45 m.",
   "alerta": "",
@@ -159,11 +171,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -180,6 +194,83 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "C"
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "A questão pede a velocidade MÁXIMA: a que o skatista teria sem perder energia para o atrito nem para o ar. Nesse caso, toda a energia que ele tem por estar no alto (energia potencial) vira energia de movimento (energia cinética) embaixo. A massa dele aparece nos dois lados da igualdade e cancela, por isso o enunciado não a dá. O formato da bacia também não importa: só a diferença de altura.",
+    "motivo": "Termos técnicos explicados com palavras simples na primeira aparição."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "m",
+      "massa do skatista, em kg"
+     ],
+     [
+      "g",
+      "aceleração da gravidade, 10 m/s² (dado do enunciado)"
+     ],
+     [
+      "h",
+      "desnível entre o ponto mais alto e o mais baixo, 2,45 m"
+     ],
+     [
+      "v",
+      "velocidade no ponto mais baixo, em m/s"
+     ],
+     [
+      "energia potencial",
+      "energia guardada por estar em um lugar alto"
+     ],
+     [
+      "energia cinética",
+      "energia que o corpo tem por estar em movimento"
+     ],
+     [
+      "energia mecânica",
+      "soma da energia cinética com a potencial"
+     ],
+     [
+      "repouso",
+      "parado, velocidade zero"
+     ]
+    ],
+    "motivo": "Incluir potencial, cinética e repouso, que aparecem na resolução."
+   },
+   {
+    "campo": "resolucao.passos[0].conta",
+    "depois": "h = 2,45 m\ng = 10 m/s²\nv₀ = 0 (repouso)",
+    "motivo": "A conta longa não cabe em uma linha no celular."
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Confira por outro caminho: a queda livre de 2,45 m. O tempo é t = √(2 × 2,45 ÷ 10) = 0,7 s. Então v = g × t = 10 × 0,7 = 7 m/s, o mesmo valor. A unidade também fecha: m/s.",
+    "motivo": "Checagem mais simples, por outro caminho, sem unidade estranha (J/kg)."
+   },
+   {
+    "campo": "resolucao.erradas",
+    "depois": {
+     "A": "3 m/s não confere: v² = 9 e h = v² ÷ 20 = 0,45 m, bem menor que os 2,45 m dados. Essa velocidade corresponderia a uma bacia rasa.",
+     "B": "B sai de esquecer o 2 de v² ÷ 2: v² = g × h = 10 × 2,45 = 24,5 e √24,5 ≈ 5 m/s. Faltou o fator 2 da energia cinética: o certo é v² = 2 × g × h = 49.",
+     "D": "9 m/s não confere: v² = 81 e h = 81 ÷ 20 = 4,05 m, bem acima dos 2,45 m. Sem atrito, o skatista não ganha energia além da que a altura dá.",
+     "E": "11 m/s não confere: v² = 121 e h = 121 ÷ 20 = 6,05 m, muito mais que os 2,45 m dados. Essa velocidade exigiria uma bacia bem mais funda."
+    },
+    "motivo": "Trocadas contas em J/kg por teste de altura, mais direto; removido 'provavelmente' em B."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "11 m/s não confere: v² = 121 e h = 121 ÷ 20 = 6,05 m, muito mais que os 2,45 m dados. Essa velocidade exigiria uma bacia bem mais funda.",
+    "motivo": "Evita 'provavelmente' e dá o teste objetivo."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "3 m/s não confere: v² = 9 e h = v² ÷ 20 = 0,45 m, bem menor que os 2,45 m dados. Essa velocidade corresponderia a uma bacia rasa.",
+    "motivo": "Evita especulação sobre o aluno e dá o teste objetivo."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

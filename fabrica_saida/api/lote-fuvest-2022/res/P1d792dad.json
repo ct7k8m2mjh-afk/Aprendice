@@ -44,7 +44,7 @@
     ],
     [
      "República de Vichy",
-     "governo francês que colaborou com a Alemanha nazista, de 1940 a 1944"
+     "governo francês que colaborou com a Alemanha nazista, de 1940 a 1944, com sede na cidade de Vichy"
     ],
     [
      "Resistência francesa",
@@ -103,7 +103,8 @@
    "pede": "Dizer a que eventos da Segunda Guerra se referem as duas fotos, na ordem.",
    "chave": "Omaha Beach, 6/6/1944 = desembarque aliado na Normandia; Berlim, maio de 1945, com bandeira soviética = avanço aliado sobre a Alemanha.",
    "cuidado": "Não misture Primeira Guerra, Muro de Berlim (1961) e cortina de ferro com a cronologia da Segunda Guerra."
-  }
+  },
+  "nivel": 3
  },
  "caminhos": [
   {
@@ -131,12 +132,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -227,6 +230,41 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
- }
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.antes.simbolos[7]",
+    "depois": [
+     "República de Vichy",
+     "governo francês que colaborou com a Alemanha nazista, de 1940 a 1944, com sede na cidade de Vichy"
+    ],
+    "motivo": "Mudança opcional e mínima. A data de 1940 a 1944 está correta (armistício de junho de 1940, queda em agosto de 1944). Nenhum erro factual; a mudança só deixa o termo mais claro.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.antes.simbolos[1]",
+    "depois": [
+     "Dia D",
+     "nome dado ao dia do desembarque aliado na Normandia, em 6 de junho de 1944"
+    ],
+    "motivo": "Sem alteração de conteúdo. Está correto.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.nivel",
+    "depois": 3,
+    "motivo": "A classificação atual do banco é tema H07 (Brasil Colônia), conteúdo H07.6, nível 5. Isso não se aplica a uma questão sobre a Segunda Guerra. O tema deveria ser H12 (H12.3, Segunda Guerra Mundial). Corrija a classificação conforme os ids da TAXONOMIA. A resolução já traz nivel 3, o que é plausível.",
+    "fonte": ""
+   },
+   {
+    "campo": "tema/conteudo",
+    "depois": "H12 / H12.3",
+    "motivo": "Os campos tema e conteudo da resolução (H07 / H07.6) estão errados para o assunto. Confira o id exato na TAXONOMIA.md.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "A"
+ },
+ "tema/conteudo": "H12 / H12.3"
 }

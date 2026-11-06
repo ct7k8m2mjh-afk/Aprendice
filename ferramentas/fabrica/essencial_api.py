@@ -138,6 +138,17 @@ def pedido(etapa, m, tema, atual):
                 output_config={'effort': ESFORCO[etapa]})
 
 
+def registra_gasto(lote, etapa, n, us, batch_id):
+    import csv
+    novo = not os.path.exists(R.GASTOS)
+    with open(R.GASTOS, 'a', newline='', encoding='utf-8') as f:
+        w = csv.writer(f)
+        if novo:
+            w.writerow(['data', 'lote', 'etapa', 'modelo', 'pedidos', 'gasto_usd', 'batch_id'])
+        w.writerow([datetime.datetime.now().isoformat(timespec='seconds'), 'essencial/' + lote, etapa, MODELO[etapa], n,
+                    f'{us:.4f}', batch_id])
+
+
 def pasta(lote):
     return os.path.join(SAIDA, lote)
 
@@ -225,7 +236,7 @@ def roda(lote, temas, teto):
             R.gravar_json(arq, atual)
         est['gasto_usd'] = round(est['gasto_usd'] + gasto, 4)
         e.update(gasto_usd=round(gasto, 4), fim=datetime.datetime.now().isoformat(timespec='seconds'))
-        R.registra_gasto(lote, etapa, e['pedidos'], gasto, e['batch_id'])
+        registra_gasto(lote, etapa, e['pedidos'], gasto, e['batch_id'])
         R.gravar_json(exc_p, exc)
         R.gravar_json(pe, est)
         print(f'{etapa}: fim. US$ {gasto:.2f} (lote US$ {est["gasto_usd"]:.2f}); exceções: {len(exc)}', flush=True)

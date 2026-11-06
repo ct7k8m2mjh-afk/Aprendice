@@ -52,7 +52,7 @@
    {
     "faz": "Termine EVM19",
     "conta": "EVM19 = 116 − 54,7 = 61,3",
-    "porque": "Tire 54,7 de 116. Isso já elimina as alternativas A, B e C.",
+    "porque": "Tire 54,7 de 116 e sobra 61,3. Só as alternativas D e E têm EVM19 = 61,3, então A, B e C já caem.",
     "tipo": "calcular"
    },
    {
@@ -69,8 +69,8 @@
    },
    {
     "faz": "Faça a média aos 20 anos",
-    "conta": "EVB20 = (53,8 + 60,4)/2 = 57,1",
-    "porque": "O Brasil é a média simples entre homens e mulheres. 53,8 + 60,4 = 114,2, e 114,2 ÷ 2 = 57,1.",
+    "conta": "EVB20 = (53,8 + 60,4)/2",
+    "porque": "O Brasil é a média simples entre homens e mulheres. 53,8 + 60,4 = 114,2, e 114,2 ÷ 2 = 57,1. Alternativa E.",
     "tipo": "concluir"
    }
   ],
@@ -78,8 +78,8 @@
   "checagem": "A média está sempre no meio do caminho entre homens e mulheres: fica a 3,3 dos homens (6,6 ÷ 2). Aos 19 anos: 54,7 + 3,3 = 58, o valor dado. Aos 20 anos: 53,8 + 3,3 = 57,1. Fecha.",
   "erradas": {
    "A": "EVM19 = 54,7 não confere: esse é o valor dos homens. Se as mulheres também valessem 54,7, a média seria 54,7 e não os 58 do enunciado.",
-   "B": "EVM19 = 54,7 não confere, pelo mesmo motivo: a média de 54,7 e 54,7 é 54,7, não 58. O 58 é o EVB aos 19 anos, e a questão pede o EVB aos 20 anos, que é menor.",
-   "C": "EVM19 = 60 não confere: (54,7 + 60)/2 = 57,35, e não 58. O EVB20 = 54 também falha: ele é a média de 53,8 com um valor de apenas 54,2, o que deixaria as mulheres quase iguais aos homens.",
+   "B": "EVM19 = 54,7 não confere: a média de 54,7 e 54,7 é 54,7, não 58. O 58 é o valor do Brasil aos 19 anos, e a questão pede o do Brasil aos 20 anos, que não é 58.",
+   "C": "EVM19 = 60 não confere: (54,7 + 60)/2 = 57,35, e não 58. Além disso, EVB20 = 54 ficaria abaixo dos 53,8 dos homens só por 0,2, o que exigiria mulheres com 54,2 aos 20 anos: quase iguais aos homens, e não 6,6 a mais.",
    "D": "O EVM19 = 61,3 está certo, mas EVB20 = 56 não confere. Para a média de 53,8 e EVM20 dar 56, as mulheres teriam de valer 58,2, só 4,4 a mais que os homens. A diferença correta é 6,6, que dá EVM20 = 60,4 e média 57,1."
   },
   "armadilha": "Não basta o valor de EVM19: a segunda coluna exige somar a diferença de 6,6 aos homens aos 20 anos e tirar a média, e não só subtrair um pouco de 58.",
@@ -175,11 +175,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -190,6 +192,35 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "E"
+  "fatos_resposta": "E",
+  "didatica": [
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "EVM19 = 60 não confere: (54,7 + 60)/2 = 57,35, e não 58. Além disso, EVB20 = 54 ficaria abaixo dos 53,8 dos homens só por 0,2, o que exigiria mulheres com 54,2 aos 20 anos: quase iguais aos homens, e não 6,6 a mais.",
+    "motivo": "Frase original confusa (valor 54,2 aparecia sem explicação). Agora mostra o teste de forma direta."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "EVM19 = 54,7 não confere: a média de 54,7 e 54,7 é 54,7, não 58. O 58 é o valor do Brasil aos 19 anos, e a questão pede o do Brasil aos 20 anos, que não é 58.",
+    "motivo": "Retirada a afirmação 'é menor' sem justificativa; frase mais simples."
+   },
+   {
+    "campo": "resolucao.passos[5].conta",
+    "depois": "EVB20 = (53,8 + 60,4)/2",
+    "motivo": "A conta longa não cabe na linha do celular; o cálculo da soma e da divisão vai no porque."
+   },
+   {
+    "campo": "resolucao.passos[5].porque",
+    "depois": "O Brasil é a média simples entre homens e mulheres. 53,8 + 60,4 = 114,2, e 114,2 ÷ 2 = 57,1. Alternativa E.",
+    "motivo": "Liga o resultado à letra no passo final e inclui as contas retiradas da linha."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Tire 54,7 de 116 e sobra 61,3. Só as alternativas D e E têm EVM19 = 61,3, então A, B e C já caem.",
+    "motivo": "Dizer quais alternativas sobram, em vez de uma frase solta."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

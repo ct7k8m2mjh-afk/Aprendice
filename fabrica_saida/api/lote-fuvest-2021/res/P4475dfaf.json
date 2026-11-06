@@ -8,7 +8,7 @@
  "conceito": "Efeito da altitude sobre temperatura, pressão e oxigênio disponível (fatores climáticos).",
  "resolucao": {
   "antes": {
-   "texto": "Quanto maior a altitude, menor a pressão atmosférica. O ar fica rarefeito: há menos moléculas de gás, inclusive de oxigênio, em cada respiração. A temperatura também cai com a altitude. A 8.430 m, o ar tem cerca de um terço do oxigênio disponível ao nível do mar.",
+   "texto": "Quanto maior a altitude, menor a pressão atmosférica. O ar fica rarefeito: há menos moléculas de gás, inclusive de oxigênio, em cada respiração. A temperatura também cai com a altitude. No topo do Everest, a pressão do ar é cerca de um terço da do nível do mar, e o oxigênio disponível em cada respiração cai na mesma proporção.",
    "formulas": [
     "mais altitude → menos pressão atmosférica → ar rarefeito → menos oxigênio por respiração",
     "mais altitude → menor temperatura (queda média de cerca de 0,6 °C a cada 100 m)"
@@ -55,7 +55,7 @@
    {
     "faz": "Elimine o que contraria isso",
     "conta": "A: umidade alta → ar é seco\nB: chuva → cai neve\nD: dia curto → depende da latitude\nE: pressão alta → pressão cai",
-    "porque": "Em grande altitude o ar é seco e a pressão é baixa. A duração do dia depende da latitude e da época do ano, não da altitude.",
+    "porque": "Em grande altitude a pressão é baixa e o ar frio guarda pouco vapor de água. Por isso a umidade não é o problema. A duração do dia depende da latitude e da época do ano, não da altitude.",
     "tipo": "eliminar"
    },
    {
@@ -71,7 +71,7 @@
    "A": "Falta lembrar que o ar de altitude extrema é muito frio e seco: o ar frio guarda pouquíssimo vapor de água. Por isso a dificuldade não vem de 'elevada umidade'.",
    "B": "Falta ler o que o texto diz: ele não cita chuva nem avalanche. A 8.430 m a temperatura fica muito abaixo de 0 °C, então a precipitação cai como neve, não como chuva. A dificuldade vem do frio e do pouco oxigênio.",
    "D": "Falta separar altitude de latitude. A duração do dia depende da latitude e da época do ano, não da altitude. Além disso, em altitude a radiação solar é mais intensa, porque há menos atmosfera para filtrá-la.",
-   "E": "Falta lembrar que a pressão diminui com a altitude, não aumenta. No Everest ela é cerca de um terço da pressão ao nível do mar. A alternativa inverte o fenômeno."
+   "E": "Falta lembrar que a pressão diminui com a altitude, não aumenta. No topo do Everest ela é cerca de um terço da pressão ao nível do mar. A alternativa inverte o fenômeno."
   },
   "armadilha": "Achar que altitude aumenta a pressão; na verdade ela diminui, e é isso que reduz o oxigênio.",
   "alerta": "",
@@ -107,12 +107,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -200,6 +202,34 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Quanto maior a altitude, menor a pressão atmosférica. O ar fica rarefeito: há menos moléculas de gás, inclusive de oxigênio, em cada respiração. A temperatura também cai com a altitude. No topo do Everest, a pressão do ar é cerca de um terço da do nível do mar, e o oxigênio disponível em cada respiração cai na mesma proporção.",
+    "motivo": "A frase original dizia 'a 8.430 m'. O valor de cerca de um terço é o conhecido para o cume (8.848 m). A 8.430 m a pressão é um pouco maior, perto de 35%. Foi escrito 'no topo do Everest' para evitar impreciso.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Em grande altitude a pressão é baixa e o ar frio guarda pouco vapor de água. Por isso a umidade não é o problema. A duração do dia depende da latitude e da época do ano, não da altitude.",
+    "motivo": "A frase 'o ar é seco' é válida para o ar frio e com pouco vapor. Foi reescrita para ligar umidade ao frio e evitar uma afirmação absoluta.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "Falta lembrar que a pressão diminui com a altitude, não aumenta. No topo do Everest ela é cerca de um terço da pressão ao nível do mar. A alternativa inverte o fenômeno.",
+    "motivo": "O valor de um terço vale para o cume (8.848 m), não para 8.430 m.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "Falta separar altitude de latitude. A duração do dia depende da latitude e da época do ano, não da altitude. Além disso, em altitude a radiação solar é mais intensa, porque há menos atmosfera para filtrá-la.",
+    "motivo": "Sem mudança de fato; o conteúdo está correto.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "C"
  }
 }

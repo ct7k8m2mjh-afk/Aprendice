@@ -51,28 +51,28 @@
     "faz": "Escreva a transferência de H+",
     "conta": "CH3NH2 + H+ → CH3NH3+",
     "porque": "O par livre forma uma nova ligação N–H. O N fica com 4 ligações e sem par livre.",
-    "tipo": "calcular"
+    "tipo": "concluir"
    },
    {
     "faz": "Confira a carga do produto",
-    "conta": "ganhou H+ → carga total +1",
-    "porque": "A espécie recebeu uma carga positiva e não perdeu elétrons. Portanto o produto é um cátion.",
+    "conta": "0 + (+1) = +1 → cátion",
+    "porque": "A metilamina é neutra e o H+ traz uma carga positiva. Logo o produto tem carga +1: é um cátion.",
     "tipo": "calcular"
    },
    {
-    "faz": "Procure a estrutura no print",
-    "conta": "C: 3 H no C, 3 H no N, sinal +",
-    "porque": "Só a alternativa C tem N com 4 ligações, sem par livre, dentro de colchetes com carga +.",
+    "faz": "Ache a estrutura no print",
+    "conta": "6 H, N com 4 ligações, +",
+    "porque": "Só a C tem 3 H no C, 3 H no N, nenhum par livre e o sinal + fora dos colchetes.",
     "tipo": "concluir"
    }
   ],
   "resposta": "Alternativa C: o produto é o cátion metilamônio, CH3NH3+. O N fica com 4 ligações, sem par livre, e a estrutura tem carga +.",
-  "checagem": "Conte os átomos: CH3NH2 tem 5 H e, somado ao H+, dá 6 H (3 no C e 3 no N). A estrutura C tem 6 H e carga +1, igual à soma dos reagentes (neutro + H+).",
+  "checagem": "Conte os H: CH3NH2 tem 5 H; com o H+ do ácido dá 6 H (3 no C e 3 no N). A estrutura C tem 6 H e carga +1, igual à soma dos reagentes (neutro + H+).",
   "erradas": {
-   "A": "Tem o par livre no N (só 3 ligações, como na metilamina) e, mesmo assim, carga +. Não ganhou nenhum H, então a carga não tem origem. O cátion verdadeiro não tem par livre.",
+   "A": "A mostra o N com par livre e só 3 ligações, como na metilamina, mas com sinal +. Falta o H que traria a carga: sem ganhar H+, a carga + não tem origem. No cátion real o par livre foi usado.",
    "B": "É a própria metilamina, CH3NH2, com o par livre e sem carga. Ela é o reagente. O enunciado pede o produto da reação com o ácido.",
-   "D": "O N tem 4 ligações e sem par livre, mas a estrutura está sem o sinal de carga. Com 6 H e nenhuma carga, ela não corresponde ao que se forma: CH3NH2 + H+ resulta em carga +1.",
-   "E": "Mostra o N com só 2 H e sem carga: é a própria metilamina, o reagente, desenhada sem o par livre. Não ganhou o H+, então não é o produto da reação."
+   "D": "D desenha o N com 4 ligações e sem par livre, ou seja, o cátion, mas sem o sinal +. Quem marcou viu a estrutura certa e esqueceu a carga. Ao receber H+, o íon fica com carga +1 e ela precisa aparecer.",
+   "E": "E mostra o N com 2 H e sem par livre desenhado, nem carga. É a metilamina incompleta, o reagente, e não recebeu o H+. Quem marcou não notou que o produto tem 6 H e carga +."
   },
   "armadilha": "Marcar a estrutura que parece 'a mesma molécula' (B) ou esquecer que o N com 4 ligações e sem par livre exige a carga +.",
   "alerta": "",
@@ -124,11 +124,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -151,6 +153,57 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "C"
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "concluir",
+    "motivo": "Escrever a equação não é cálculo; o tipo 'calcular' não descreve a ação. 'concluir' é o mais próximo, pois o passo fecha qual é o produto."
+   },
+   {
+    "campo": "resolucao.passos[3]",
+    "depois": {
+     "faz": "Confira a carga do produto",
+     "conta": "0 + (+1) = +1 → cátion",
+     "porque": "A metilamina é neutra e o H+ traz uma carga positiva. Logo o produto tem carga +1: é um cátion.",
+     "tipo": "calcular"
+    },
+    "motivo": "Conta curta para caber na tela e frase do porque mais clara."
+   },
+   {
+    "campo": "resolucao.passos[4]",
+    "depois": {
+     "faz": "Ache a estrutura no print",
+     "conta": "6 H, N com 4 ligações, +",
+     "porque": "Só a C tem 3 H no C, 3 H no N, nenhum par livre e o sinal + fora dos colchetes.",
+     "tipo": "concluir"
+    },
+    "motivo": "Descrição mais precisa do que procurar; a conta cabe na tela."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "A mostra o N com par livre e só 3 ligações, como na metilamina, mas com sinal +. Falta o H que traria a carga: sem ganhar H+, a carga + não tem origem. No cátion real o par livre foi usado.",
+    "motivo": "Frase mais clara sobre o que faltou no raciocínio de quem marcou A."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "D desenha o N com 4 ligações e sem par livre, ou seja, o cátion, mas sem o sinal +. Quem marcou viu a estrutura certa e esqueceu a carga. Ao receber H+, o íon fica com carga +1 e ela precisa aparecer.",
+    "motivo": "Mostra o que faltou ao aluno: lembrar de indicar a carga."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "E mostra o N com 2 H e sem par livre desenhado, nem carga. É a metilamina incompleta, o reagente, e não recebeu o H+. Quem marcou não notou que o produto tem 6 H e carga +.",
+    "motivo": "Clareza e indicação do que faltou."
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Conte os H: CH3NH2 tem 5 H; com o H+ do ácido dá 6 H (3 no C e 3 no N). A estrutura C tem 6 H e carga +1, igual à soma dos reagentes (neutro + H+).",
+    "motivo": "Frase mais simples e direta."
+   }
+  ],
+  "didatica_alertas": [
+   "Print: na alternativa E o N aparece com 2 H e sem par livre e sem carga (estrutura incompleta). O texto de A, B, D e E confere com a imagem."
+  ],
+  "didatica_ok": true
  }
 }

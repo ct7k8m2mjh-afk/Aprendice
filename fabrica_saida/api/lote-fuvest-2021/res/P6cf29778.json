@@ -79,7 +79,7 @@
    "A": "O texto não diz que a Cry muda os nutrientes; o gene só dá defesa contra insetos. O aspecto positivo de A não tem base, e isso derruba a alternativa. A alergia é um risco discutido, mas sozinha não salva A.",
    "B": "A Cry protege contra insetos e não encurta a maturação dos grãos. O aspecto positivo de B não tem base no texto. A invasão da vegetação nativa também não é sustentada pelo texto.",
    "C": "A polinização não depende da toxina contra lagartas. O risco de extinção de aves e mamíferos insetívoros também é contrariado pelo texto: a Cry é inativada na digestão ácida deles e perde a ação.",
-   "D": "A Cry não reduz a necessidade de água, então não há economia de irrigação. Quanto aos agrotóxicos, o efeito esperado é o contrário: com a planta se defendendo da praga, tende a diminuir o uso de inseticidas."
+   "D": "A Cry não reduz a necessidade de água, então não há economia de irrigação. Quanto aos agrotóxicos, o esperado é o contrário: com a planta se defendendo da praga, tende a cair o uso de inseticidas, e não a exposição dos agricultores."
   },
   "armadilha": "Escolher efeitos que parecem vantajosos ou arriscados em transgênicos em geral, sem checar se decorrem da proteína Cry e do que o texto afirma.",
   "alerta": "",
@@ -87,7 +87,8 @@
    "pede": "Um aspecto positivo e um negativo da modificação genética do milho Bt para o ser humano.",
    "chave": "A Cry mata lagartas: mais produtividade, mas o uso constante da toxina seleciona lagartas resistentes.",
    "cuidado": "Aceite só o que decorre da Cry e do texto: aves e mamíferos inativam a toxina, e nutrição, água e polinização não entram."
-  }
+  },
+  "nivel": 6
  },
  "caminhos": [
   {
@@ -115,12 +116,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -209,6 +212,22 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.nivel",
+    "depois": 6,
+    "motivo": "A classificação atual do banco é nível 6, mas a resolução traz nível 5. O campo deve acompanhar o banco. Se o nível 5 foi uma reclassificação deliberada, isso precisa ser registrado em nota_dif. Quem altera dif ou degrau é o banco, não a resolução.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "A Cry não reduz a necessidade de água, então não há economia de irrigação. Quanto aos agrotóxicos, o esperado é o contrário: com a planta se defendendo da praga, tende a cair o uso de inseticidas, e não a exposição dos agricultores.",
+    "motivo": "Ajuste mínimo. A frase original já está correta nos fatos. Só deixei claro que o negativo de D contradiz o efeito esperado.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "E"
  }
 }

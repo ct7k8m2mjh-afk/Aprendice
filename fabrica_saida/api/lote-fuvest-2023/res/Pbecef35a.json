@@ -8,11 +8,11 @@
  "conceito": "Sentido de palavra em contexto: 'dwindles' (diminui gradualmente) e seu sinônimo.",
  "resolucao": {
   "antes": {
-   "texto": "Questão de vocabulário pede o sentido da palavra naquela frase. Leia a frase inteira, descubra o que acontece com a 'capacity' (capacidade da bateria) a cada recarga e teste cada opção no lugar de 'dwindles'. Aqui o contexto é negativo: a frase fala de limitações das baterias.",
+   "texto": "Questão de vocabulário pede o sentido da palavra naquela frase. Leia a frase inteira, descubra o que acontece com a 'capacity' (quanto a bateria consegue guardar de energia) a cada recarga e teste cada opção no lugar de 'dwindles'. O contexto é negativo: a frase fala de limitações das baterias.",
    "formulas": [
     "dwindle = diminuir aos poucos, minguar",
-    "but … Moreover = a lista é de problemas das baterias",
-    "substituir a palavra na frase: o sentido deve continuar o mesmo"
+    "Moreover = soma mais um ponto: a frase é uma lista de problemas das baterias",
+    "teste: troque a palavra na frase e veja se o sentido continua o mesmo"
    ],
    "simbolos": [
     [
@@ -62,13 +62,13 @@
    {
     "faz": "Localize a frase e o sujeito de 'dwindles'",
     "conta": "“their capacity dwindles with each recharge”",
-    "porque": "O sujeito é 'capacity' (capacidade das baterias). A pergunta é o que acontece com ela a cada recarga.",
+    "porque": "O sujeito de 'dwindles' é 'capacity' (quanto a bateria guarda de energia). A pergunta é o que acontece com ela a cada recarga.",
     "tipo": "localizar"
    },
    {
     "faz": "Veja o tom da frase",
     "conta": "“typical models exhaust their stored energy after only three or four hours”",
-    "porque": "A frase aponta defeitos: a bateria esgota rápido ('only'). 'Dwindles' vem na mesma linha negativa, sem ideia de melhora.",
+    "porque": "A frase aponta defeitos: a bateria esgota a energia em poucas horas ('only'). 'Dwindles' segue a mesma linha negativa e não tem ideia de melhora.",
     "tipo": "localizar"
    },
    {
@@ -80,7 +80,7 @@
    {
     "faz": "Substitua cada opção na frase",
     "conta": "“their capacity decreases with each recharge”",
-    "porque": "Só 'decreases' (diminui) mantém o sentido. Melhorar, dirigir, propagar ou quebrar mudam a ideia.",
+    "porque": "Só 'decreases' (diminui) mantém o sentido. Melhorar, dirigir, propagar ou quebrar mudam a ideia da frase.",
     "tipo": "eliminar"
    },
    {
@@ -94,9 +94,9 @@
   "checagem": "Veja a frase seguinte: “Moreover, it is expensive to collect enough batteries…”. O 'Moreover' soma mais um problema às baterias; logo 'dwindles' também é um problema, e não uma melhora.",
   "erradas": {
    "A": "'Improves' (melhora) inverte o sentido. A frase lista defeitos das baterias (esgotam em 3 ou 4 horas) e o dono de smartphone sabe que a bateria piora, não melhora.",
-   "B": "'Directs' (dirige, orienta) não combina com 'capacity' como sujeito: capacidade não 'dirige' nada a cada recarga. Não descreve mudança de capacidade.",
-   "C": "'Propagates' (propaga, espalha) sugere aumento ou disseminação. A capacidade da bateria não se espalha, ela encolhe a cada recarga, e a palavra não expressa diminuição.",
-   "D": "'Breaks' (quebra) indica falha total e súbita. 'Dwindles' é perda gradual, 'with each recharge' (a cada recarga). A bateria não quebra a cada recarga."
+   "B": "'Directs' (dirige, orienta) não cabe: capacidade não 'dirige' nada. A frase fala de uma perda, e 'directs' não diz que algo diminui.",
+   "C": "'Propagates' (espalha, multiplica) sugere aumento. Quem marcou C trocou 'diminuir' por 'espalhar' e esqueceu que a capacidade encolhe a cada recarga.",
+   "D": "'Breaks' (quebra) é negativa, mas fala de falha total e súbita. 'Dwindles' é perda gradual, 'with each recharge' (a cada recarga). Quem marcou D viu só o tom negativo e ignorou o 'aos poucos'."
   },
   "armadilha": "Escolher 'breaks' por ser negativa: o verbo certo precisa ser negativo E gradual, e só 'decreases' diz isso.",
   "alerta": "",
@@ -131,11 +131,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -164,6 +166,61 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "E"
+  "fatos_resposta": "E",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Questão de vocabulário pede o sentido da palavra naquela frase. Leia a frase inteira, descubra o que acontece com a 'capacity' (quanto a bateria consegue guardar de energia) a cada recarga e teste cada opção no lugar de 'dwindles'. O contexto é negativo: a frase fala de limitações das baterias.",
+    "motivo": "Explicar capacity em linguagem simples e deixar as frases curtas."
+   },
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "dwindle = diminuir aos poucos, minguar",
+     "Moreover = soma mais um ponto: a frase é uma lista de problemas das baterias",
+     "teste: troque a palavra na frase e veja se o sentido continua o mesmo"
+    ],
+    "motivo": "A fórmula antiga citava 'but … Moreover' de forma confusa. Agora cada linha tem uma regra clara."
+   },
+   {
+    "campo": "resolucao.passos[0].porque",
+    "depois": "O sujeito de 'dwindles' é 'capacity' (quanto a bateria guarda de energia). A pergunta é o que acontece com ela a cada recarga.",
+    "motivo": "Explicar capacity no ponto em que ela aparece."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "A frase aponta defeitos: a bateria esgota a energia em poucas horas ('only'). 'Dwindles' segue a mesma linha negativa e não tem ideia de melhora.",
+    "motivo": "Frase mais direta e sem ambiguidade."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "“their capacity decreases with each recharge”",
+    "motivo": "Sem mudança no conteúdo; confirmado que a conta cabe na linha."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Só 'decreases' (diminui) mantém o sentido. Melhorar, dirigir, propagar ou quebrar mudam a ideia da frase.",
+    "motivo": "Deixar claro que o teste é a substituição na frase."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "'Directs' (dirige, orienta) não cabe: capacidade não 'dirige' nada. A frase fala de uma perda, e 'directs' não diz que algo diminui.",
+    "motivo": "Dizer o que faltou ao raciocínio de quem marcou B."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "'Propagates' (espalha, multiplica) sugere aumento. Quem marcou C trocou 'diminuir' por 'espalhar' e esqueceu que a capacidade encolhe a cada recarga.",
+    "motivo": "Mostrar o que faltou no raciocínio de quem marcou C."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "'Breaks' (quebra) é negativa, mas fala de falha total e súbita. 'Dwindles' é perda gradual, 'with each recharge' (a cada recarga). Quem marcou D viu só o tom negativo e ignorou o 'aos poucos'.",
+    "motivo": "Mostrar o que faltou no raciocínio de quem marcou D."
+   }
+  ],
+  "didatica_alertas": [
+   "O campo 'tema' está como I03 e 'conteudo' como I03.1 no JSON, mas a classificação do banco é I02/I02.1 e nível 5 (o JSON diz nível 4). Verificar a classificação."
+  ],
+  "didatica_ok": true
  }
 }

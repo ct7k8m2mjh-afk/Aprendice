@@ -8,7 +8,7 @@
  "conceito": "Atrito cinético: a força necessária para puxar o trenó com velocidade constante é proporcional ao coeficiente de atrito. Menor coeficiente, transporte mais fácil.",
  "resolucao": {
   "antes": {
-   "texto": "Quando o trenó é puxado com velocidade constante, a força de puxar equilibra a força de atrito cinético. Essa força vale μ × N, e a normal N é a mesma em todos os casos, pois o trenó e a carga são os mesmos. Logo, quanto menor o coeficiente de atrito μ, menor a força que os carregadores precisam fazer. O texto sobre o Egito é só contexto; a pergunta é ler a tabela.",
+   "texto": "Quando o trenó é puxado com velocidade constante, a força de puxar é igual à força de atrito cinético. Essa força vale μ × N. A normal N é a mesma em todos os casos, pois o trenó e a carga não mudam. Então, quanto menor o coeficiente μ, menos força os carregadores precisam fazer. O texto sobre o Egito é só contexto: a questão pede para ler a tabela.",
    "formulas": [
     "F_atrito = μ × N",
     "velocidade constante: F_puxar = F_atrito"
@@ -44,19 +44,19 @@
    },
    {
     "faz": "Leia os coeficientes da tabela",
-    "conta": "0%: 0,57 | 1,5%: 0,54",
+    "conta": "0%: 0,57\n1,5%: 0,54",
     "porque": "Cada conteúdo de água tem um coeficiente de atrito na tabela.",
     "tipo": "localizar"
    },
    {
     "faz": "Leia as outras duas colunas",
-    "conta": "3,2%: 0,50 | 7,4%: 0,61",
+    "conta": "3,2%: 0,50\n7,4%: 0,61",
     "porque": "Note que o atrito não cai sempre: com muita água (7,4%) ele sobe de novo.",
     "tipo": "localizar"
    },
    {
     "faz": "Escolha o menor coeficiente",
-    "conta": "menor μ = 0,50 → 3,2%",
+    "conta": "menor μ = 0,50, em 3,2%",
     "porque": "Menor μ dá menor força de atrito, logo menos esforço dos carregadores.",
     "tipo": "concluir"
    }
@@ -128,11 +128,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -149,6 +151,37 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "C"
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Quando o trenó é puxado com velocidade constante, a força de puxar é igual à força de atrito cinético. Essa força vale μ × N. A normal N é a mesma em todos os casos, pois o trenó e a carga não mudam. Então, quanto menor o coeficiente μ, menos força os carregadores precisam fazer. O texto sobre o Egito é só contexto: a questão pede para ler a tabela.",
+    "motivo": "Frases mais curtas e diretas; 'equilibra' trocado por 'é igual', mais simples para o aluno."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "0%: 0,57\n1,5%: 0,54",
+    "motivo": "Uma linha por dado, para caber na tela do celular."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "3,2%: 0,50\n7,4%: 0,61",
+    "motivo": "Uma linha por dado, para caber na tela do celular."
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "menor μ = 0,50, em 3,2%",
+    "motivo": "Mais curta para o celular, sem alterar o resultado."
+   },
+   {
+    "campo": "resolucao.quadro[1].linha",
+    "depois": "N = 1000 N (exemplo)",
+    "motivo": "Sem mudança de conteúdo: a linha já cabe. Mantida como está."
+   }
+  ],
+  "didatica_alertas": [
+   "Os campos tema e conteudo do JSON (F02, F02.3) diferem da classificação atual informada (F03, F03.3). Não corrigi: o corretor 1 deve conferir a classificação."
+  ],
+  "didatica_ok": true
  }
 }

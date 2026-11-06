@@ -46,13 +46,13 @@
    {
     "faz": "Compare as temperaturas",
     "conta": "café (menos de 100 °C) < 186 °C",
-    "porque": "O café quente nunca passa dos 100 °C, bem abaixo da fusão da sacarose (186 °C). A sacarose não derrete.",
+    "porque": "O café quente fica abaixo de 100 °C, bem abaixo da fusão da sacarose (186 °C). A sacarose não derrete.",
     "tipo": "comparar"
    },
    {
     "faz": "Identifique o que sobe do café",
     "conta": "café quente → vapor de água",
-    "porque": "Líquido quente evapora. A sacarose tem ponto de fusão alto e está dissolvida ou ausente do café, então não sobe. O que sobe é o vapor de água.",
+    "porque": "Líquido quente evapora. O que sobe do café é o vapor de água. A sacarose não evapora nessa temperatura, e o café, no enunciado, não é a fonte do açúcar.",
     "tipo": "localizar"
    },
    {
@@ -79,7 +79,7 @@
   "erradas": {
    "A": "Diz que a sacarose liquefaz. A fusão ocorre a 186 °C e o café quente está abaixo de 100 °C. Logo a sacarose continua sólida.",
    "B": "Diz que pinga água pura. Mas a água que condensa entra em contato com a sacarose, muito solúvel (1,97 kg/L), e a dissolve. O que goteja é solução açucarada.",
-   "C": "Diz que a sacarose evapora do café. Mas o café não tem açúcar (o açúcar vem do algodão-doce) e a sacarose só funde a 186 °C, bem acima da temperatura do café. O que sai do café é vapor de água.",
+   "C": "Diz que a sacarose evapora do café. Mas o enunciado coloca o açúcar no algodão-doce, não no café, e a sacarose só funde a 186 °C, bem acima da temperatura do café. O que sai do café é vapor de água.",
    "E": "Diz que o vapor vaporiza a sacarose. Não dá: a sacarose nem derrete abaixo de 186 °C, então não vira gás a menos de 100 °C. A água condensada dissolve o açúcar; não o vaporiza."
   },
   "armadilha": "Achar que o calor derrete ou evapora o açúcar: o que ocorre é condensação da água e dissolução da sacarose.",
@@ -116,12 +116,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -242,6 +244,28 @@
   "didatica_alertas": [
    "O enunciado não diz que o café é adoçado ou não; a afirmação 'o café ainda não foi adoçado' usada na alternativa C foi retirada. Conferir se o gabarito não depende dela."
   ],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.passos[0].porque",
+    "depois": "O café quente fica abaixo de 100 °C, bem abaixo da fusão da sacarose (186 °C). A sacarose não derrete.",
+    "motivo": "Café recém-coado ou muito quente pode ficar perto de 100 °C, mas não passa disso à pressão ambiente. 'Nunca passa' é correto, mas 'fica abaixo de' é mais seguro e mantém o argumento.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "Líquido quente evapora. O que sobe do café é o vapor de água. A sacarose não evapora nessa temperatura, e o café, no enunciado, não é a fonte do açúcar.",
+    "motivo": "A frase anterior dizia que a sacarose está 'dissolvida ou ausente' do café, o que é vago e não vem do enunciado. A nova versão usa só o que o enunciado dá.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "Diz que a sacarose evapora do café. Mas o enunciado coloca o açúcar no algodão-doce, não no café, e a sacarose só funde a 186 °C, bem acima da temperatura do café. O que sai do café é vapor de água.",
+    "motivo": "A afirmação 'o café não tem açúcar' não vem do enunciado, porque o café pode ser adoçado. A correção usa o que o enunciado diz: o açúcar da questão está no algodão-doce.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "D"
  }
 }

@@ -8,7 +8,7 @@
  "conceito": "Localizar informação explícita: quais fenômenos naturais participam da 'dança gravitacional' que afeta a rotação da Terra.",
  "resolucao": {
   "antes": {
-   "texto": "A pergunta pede um dado que está escrito no texto, e não uma dedução. A expressão-chave do comando, 'complexa interação gravitacional', tem tradução quase direta: 'complicated gravitational dance'. Basta achar essa frase e ler a lista que vem depois dela. Só vale o que está na lista.",
+   "texto": "A pergunta pede um dado que está escrito no texto, e não uma dedução. A expressão-chave do comando, 'complexa interação gravitacional', corresponde a 'complicated gravitational dance'. Ache essa frase e leia a lista que vem depois dela. Só vale o que está na lista.",
    "formulas": [
     "complicated gravitational dance = complexa interação gravitacional",
     "tides = marés; oceanic tides = marés oceânicas",
@@ -41,26 +41,26 @@
   "passos": [
    {
     "faz": "Traduza o comando",
-    "conta": "fenômenos naturais + interação gravitacional",
+    "conta": "pede: elementos da interação gravitacional",
     "porque": "O comando pede quais elementos fazem parte da interação gravitacional que afeta a rotação. É informação explícita: procure a lista no texto.",
     "tipo": "localizar"
    },
    {
     "faz": "Ache a frase correspondente no texto",
     "conta": "“complicated gravitational dance” (complexa dança gravitacional)",
-    "porque": "Está no quinto parágrafo e é a tradução quase literal do trecho do comando. Ali começa a lista.",
+    "porque": "A frase está no quinto parágrafo e traduz quase literalmente o trecho do comando. A lista de elementos começa logo depois dela.",
     "tipo": "localizar"
    },
    {
     "faz": "Leia a lista completa",
-    "conta": "“with the moon, the sun, the oceanic tides, Earth’s own atmosphere and the motion of the planet’s solid inner core” (com a Lua, o Sol, as marés oceânicas, a própria atmosfera da Terra e o movimento do núcleo interno sólido)",
-    "porque": "Esses são os elementos que o texto cita. Entre eles, só as marés oceânicas aparecem nas alternativas.",
+    "conta": "“the moon, the sun, the oceanic tides, Earth’s own atmosphere and the ... solid inner core”",
+    "porque": "Tradução: a Lua, o Sol, as marés oceânicas, a atmosfera da Terra e o núcleo interno sólido. Entre esses itens, só as marés oceânicas aparecem nas alternativas.",
     "tipo": "localizar"
    },
    {
     "faz": "Confronte as alternativas com a lista",
-    "conta": "terremotos, vulcões, avalanches, ciclones: ausentes",
-    "porque": "Nenhuma dessas palavras (earthquakes, volcanoes, avalanches, cyclones) aparece no texto. Só 'oceanic tides' aparece.",
+    "conta": "A, B, C, E: não estão no texto",
+    "porque": "As palavras earthquakes (terremotos), volcanoes (vulcões), avalanches e cyclones (ciclones) não aparecem no texto. Só 'oceanic tides' aparece.",
     "tipo": "eliminar"
    },
    {
@@ -74,9 +74,9 @@
   "checagem": "Releia o último parágrafo e o penúltimo: eles falam de gelo derretido, núcleo e formato do planeta, e não de terremotos, vulcões, avalanches ou ciclones. Nenhuma dessas quatro palavras aparece em qualquer parte do texto.",
   "erradas": {
    "A": "Terremotos (earthquakes) não aparecem no texto. A lista da 'gravitational dance' traz Lua, Sol, marés, atmosfera e núcleo interno. É um fenômeno natural conhecido, mas não está escrito.",
-   "B": "Vulcões (volcanoes) não são citados em nenhum parágrafo. O que se menciona é o 'solid inner core' (núcleo interno sólido), que não é vulcanismo.",
+   "B": "O texto não cita vulcões (volcanoes). Ele fala do 'solid inner core' (núcleo interno sólido), que é outra coisa. Quem marcou B trouxe um fenômeno conhecido, mas que não está escrito.",
    "C": "Avalanches não aparecem no texto. O texto fala de derretimento de gelo polar e deslocamento de água (meltwater) para o equador, o que é diferente de avalanches.",
-   "E": "Ciclones não são citados. O texto menciona 'Earth’s own atmosphere' (a atmosfera da Terra) em geral, mas nada sobre ciclones, que seriam apenas um exemplo de fenômeno atmosférico."
+   "E": "O texto cita 'Earth’s own atmosphere' (a atmosfera), mas não cita ciclones. Ciclone seria só um exemplo de fenômeno da atmosfera, e o texto não diz isso. Quem marcou E inventou o elo."
   },
   "armadilha": "Escolher um fenômeno natural 'famoso' que parece plausível (terremoto, vulcão), em vez de usar só o que está na lista do texto.",
   "alerta": "",
@@ -107,11 +107,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -122,6 +124,55 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "D"
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "A pergunta pede um dado que está escrito no texto, e não uma dedução. A expressão-chave do comando, 'complexa interação gravitacional', corresponde a 'complicated gravitational dance'. Ache essa frase e leia a lista que vem depois dela. Só vale o que está na lista.",
+    "motivo": "Frases mais curtas e sem ambiguidade ('tradução quase direta')."
+   },
+   {
+    "campo": "resolucao.passos[0].conta",
+    "depois": "pede: elementos da interação gravitacional",
+    "motivo": "A conta anterior não dizia o que a pergunta pede. Agora a pergunta aparece em linguagem simples."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "A frase está no quinto parágrafo e traduz quase literalmente o trecho do comando. A lista de elementos começa logo depois dela.",
+    "motivo": "Mais clareza sobre onde a lista começa."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "“the moon, the sun, the oceanic tides, Earth’s own atmosphere and the ... solid inner core”",
+    "motivo": "Encurtada para caber na tela do celular; a tradução vai para o porque."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Tradução: a Lua, o Sol, as marés oceânicas, a atmosfera da Terra e o núcleo interno sólido. Entre esses itens, só as marés oceânicas aparecem nas alternativas.",
+    "motivo": "A tradução saiu da conta, que não quebra linha na tela."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "A, B, C, E: não estão no texto",
+    "motivo": "Mais curto e sem ambiguidade."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "As palavras earthquakes (terremotos), volcanoes (vulcões), avalanches e cyclones (ciclones) não aparecem no texto. Só 'oceanic tides' aparece.",
+    "motivo": "Traduz as palavras que o aluno deveria procurar, em cada alternativa."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "O texto cita 'Earth’s own atmosphere' (a atmosfera), mas não cita ciclones. Ciclone seria só um exemplo de fenômeno da atmosfera, e o texto não diz isso. Quem marcou E inventou o elo.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou E."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "O texto não cita vulcões (volcanoes). Ele fala do 'solid inner core' (núcleo interno sólido), que é outra coisa. Quem marcou B trouxe um fenômeno conhecido, mas que não está escrito.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou B."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

@@ -33,13 +33,13 @@
    {
     "faz": "Leia a legenda",
     "conta": "vermelho = muitas espécies",
-    "porque": "A legenda tem uma escala de cores: vermelho marca muitas espécies, amarelo marca valor intermediário e azul marca poucas espécies.",
+    "porque": "A escala de cores diz o que cada cor significa: vermelho, muitas espécies; amarelo, valor intermediário; azul, poucas espécies.",
     "tipo": "localizar"
    },
    {
     "faz": "Localize os vermelhos",
-    "conta": "Norte/oeste (Amazônia) e litoral Sudeste",
-    "porque": "As faixas vermelhas e laranja estão na Amazônia e ao longo do litoral do Sudeste e do Sul, onde fica a Mata Atlântica. Os dois biomas são de floresta.",
+    "conta": "Vermelho: Amazônia e litoral Sudeste",
+    "porque": "As faixas vermelhas e laranja estão na Amazônia e no litoral do Sudeste, onde fica a Mata Atlântica. Os dois biomas são florestas.",
     "tipo": "localizar"
    },
    {
@@ -56,8 +56,8 @@
    },
    {
     "faz": "Teste as alternativas com esses pontos",
-    "conta": "B: Caatinga é tropical e azul. C: Mata Atlântica é leste e vermelha. D: Caatinga é quente e azul. E: litoral nordestino é azul.",
-    "porque": "Cada uma das outras alternativas tem um contraexemplo visível no mapa.",
+    "conta": "B e D: Caatinga, quente e azul\nC: Mata Atlântica, leste e vermelha\nE: litoral do Nordeste, azul",
+    "porque": "Cada alternativa errada tem um lugar no mapa que a desmente.",
     "tipo": "eliminar"
    },
    {
@@ -68,12 +68,12 @@
    }
   ],
   "resposta": "Alternativa A: a diversidade de aves é mais alta onde há floresta (Amazônia e Mata Atlântica, em vermelho) e mais baixa onde a vegetação é mais aberta (Caatinga e Pampa, em azul).",
-  "checagem": "Veja o contraste entre biomas. A Amazônia e a Mata Atlântica, ambas florestais, são vermelhas, apesar de estarem em lados opostos do país. A Caatinga e o Pampa, ambos abertos, são azuis, apesar de um ser quente e o outro ser frio. Só a vegetação explica o padrão nos dois pares.",
+  "checagem": "Compare dois pares de biomas. Amazônia e Mata Atlântica são florestas, ficam em lados opostos do país e são vermelhas. Caatinga e Pampa são abertos, um quente e outro mais frio, e são azuis. Só a vegetação explica os dois pares.",
   "erradas": {
-   "B": "Os trópicos não são 'igualmente' ricos. A Caatinga também fica na faixa tropical e aparece azul (poucas espécies), enquanto o litoral do Sul, mais subtropical, tem trechos laranja. A palavra 'igualmente' derruba a alternativa.",
-   "C": "A Mata Atlântica está na região oriental e aparece vermelha e laranja, com muitas espécies, então o leste não é 'igualmente baixo'. A Caatinga (azul) está a leste, mas a região oriental como um todo não é baixa. A parte ocidental, a Amazônia, é de fato alta, mas isso só não sustenta a alternativa.",
-   "D": "A Caatinga é uma das regiões mais quentes do país e está em azul (poucas aves). Já o litoral do Sul, mais frio, tem faixas laranja e vermelhas, com muitas aves. Então a temperatura sozinha não explica o mapa.",
-   "E": "O litoral do Nordeste e do Rio Grande do Sul tem trechos azul-esverdeados, próximos ao mar, com poucas espécies. A Amazônia, no interior do continente, é a região mais vermelha. Logo, distância do mar não define o padrão."
+   "B": "Faltou testar a palavra 'igualmente'. A Caatinga fica na faixa tropical e aparece azul, com poucas espécies. Então os trópicos não têm diversidade igual.",
+   "C": "Faltou olhar o leste inteiro. A Mata Atlântica fica a leste e aparece vermelha e laranja, com muitas espécies. Por isso o leste não é 'igualmente baixo'.",
+   "D": "Faltou testar o calor contra regiões do mapa. A Caatinga é muito quente e aparece azul, com poucas aves. Então calor não explica o padrão.",
+   "E": "Faltou comparar litoral e interior. Partes do litoral do Nordeste aparecem em azul, com poucas espécies, e a Amazônia, bem no interior, é a região mais vermelha. Distância do mar não explica o padrão."
   },
   "armadilha": "Escolher um fator geral (calor, trópico, litoral) por reflexo, sem conferir que há exceções no mapa; o que se repete nas regiões vermelhas é a floresta.",
   "alerta": "",
@@ -108,11 +108,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -123,6 +125,62 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "A"
+  "fatos_resposta": "A",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[0].porque",
+    "depois": "A escala de cores diz o que cada cor significa: vermelho, muitas espécies; amarelo, valor intermediário; azul, poucas espécies.",
+    "motivo": "Frase mais curta e sem repetição."
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "Vermelho: Amazônia e litoral Sudeste",
+    "motivo": "Conta mais clara; a anterior misturava pontos cardeais e bioma."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "As faixas vermelhas e laranja estão na Amazônia e no litoral do Sudeste, onde fica a Mata Atlântica. Os dois biomas são florestas.",
+    "motivo": "Retirada a menção ao Sul, que não é vermelho no mapa; frase mais simples."
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "B e D: Caatinga, quente e azul\nC: Mata Atlântica, leste e vermelha\nE: litoral do Nordeste, azul",
+    "motivo": "Uma ideia por linha, mais fácil de copiar e ler."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "Cada alternativa errada tem um lugar no mapa que a desmente.",
+    "motivo": "Mais direto."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "Faltou testar a palavra 'igualmente'. A Caatinga fica na faixa tropical e aparece azul, com poucas espécies. Então os trópicos não têm diversidade igual.",
+    "motivo": "Diz o que faltou ao raciocínio e remove a afirmação duvidosa sobre o Sul subtropical."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "Faltou olhar o leste inteiro. A Mata Atlântica fica a leste e aparece vermelha e laranja, com muitas espécies. Por isso o leste não é 'igualmente baixo'.",
+    "motivo": "Texto original era confuso e se contradizia; agora há um único argumento."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "Faltou testar o calor contra regiões do mapa. A Caatinga é muito quente e aparece azul, com poucas aves. Então calor não explica o padrão.",
+    "motivo": "Foco no raciocínio faltante; retirada a afirmação sobre o litoral do Sul."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "Faltou comparar litoral e interior. Partes do litoral do Nordeste aparecem em azul, com poucas espécies, e a Amazônia, bem no interior, é a região mais vermelha. Distância do mar não explica o padrão.",
+    "motivo": "Retirado o trecho sobre o litoral do Rio Grande do Sul; frase mais clara."
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Compare dois pares de biomas. Amazônia e Mata Atlântica são florestas, ficam em lados opostos do país e são vermelhas. Caatinga e Pampa são abertos, um quente e outro mais frio, e são azuis. Só a vegetação explica os dois pares.",
+    "motivo": "Frases mais curtas."
+   }
+  ],
+  "didatica_alertas": [
+   "Pampa e Mata Atlântica do Sul: no mapa, o extremo Sul aparece azul-esverdeado e o litoral Sudeste, vermelho. Conferir se 'Cerrado e Pantanal: amarelo' (passo 4) está de acordo com o mapa."
+  ],
+  "didatica_ok": true
  }
 }

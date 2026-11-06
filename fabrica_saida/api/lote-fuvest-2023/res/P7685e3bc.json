@@ -10,7 +10,7 @@
  "divergencia": "",
  "resolucao": {
   "antes": {
-   "texto": "A questão dá a fórmula pronta; o trabalho é substituir e calcular. O aumento da pontuação é P'_A − P_A, que vale 60 × (V_A − E_A). Falta saber quanto vale 10^0,6. O 'Note e adote' diz que log 2 = 0,3, ou seja, 10^0,3 = 2. Com isso, 10^0,6 = (10^0,3)² = 2² = 4.",
+   "texto": "A questão dá a fórmula pronta; o trabalho é substituir e calcular. O aumento da pontuação é P'_A − P_A, que vale 60 × (V_A − E_A). Falta saber quanto vale 10^0,6. O 'Note e adote' diz que log 2 = 0,3, ou seja, 10^0,3 = 2. Como 0,6 é o dobro de 0,3, o resultado é 2² = 4.",
    "formulas": [
     "aumento = P'_A − P_A = 60 × (V_A − E_A)",
     "log 2 = 0,3 significa 10^0,3 = 2",
@@ -44,7 +44,7 @@
    {
     "faz": "Diga o que a questão pede",
     "conta": "aumento = P'_A − P_A",
-    "porque": "O aumento é a pontuação nova menos a antiga. Pela fórmula, isso é 60 × (V_A − E_A). Não precisamos saber P_A nem P_B separadamente.",
+    "porque": "O aumento é a pontuação nova menos a antiga. Pela fórmula, isso é 60 × (V_A − E_A). Por isso não precisamos de P_A nem de P_B separados, só da diferença.",
     "tipo": "localizar"
    },
    {
@@ -73,10 +73,10 @@
    }
   ],
   "resposta": "Alternativa C: com E_A = 0,8 e V_A = 1, a pontuação de A aumenta 60 × 0,2 = 12 pontos.",
-  "checagem": "Pense na lógica do jogo: A é muito favorita (E_A = 0,8, ou seja, 80% esperado). Vencer era quase certo e rende pouco: só 20% da pontuação máxima possível de 60, que é 12. Um aumento menor que 60 e pequeno é coerente.",
+  "checagem": "Confira por outro caminho: A é muito favorita, com E_A = 0,8 (80% de chance esperada). Vencer era quase certo, então rende pouco. Faltavam 0,2 para o máximo: 0,2 × 60 = 12. Também dá para testar: se 10^0,6 = 4, então log 4 = 2 × 0,3 = 0,6. Fecha.",
   "erradas": {
    "A": "6 pontos exigiria 60 × (1 − E_A) = 6, ou seja, E_A = 0,9. Isso pede 10^0,6 = 9, mas 10^0,6 = 4, pois 10^0,3 = 2 e 2² = 4.",
-   "B": "10 pontos exigiria E_A = 5/6, ou seja, 10^0,6 = 5. Mas log 5 = 1 − 0,3 = 0,7, e não 0,6. O valor correto é 10^0,6 = 4.",
+   "B": "10 pontos exigiria E_A = 5/6, ou seja, 10^0,6 = 5. Mas 10^0,6 = 4, pois 10^0,3 = 2 e 2² = 4. Quem marcou B usou um valor de 10^0,6 que o log dado não sustenta.",
    "D": "15 pontos não confere: exigiria 60 × (1 − E_A) = 15, ou seja, E_A = 3/4 e 10^0,6 = 3. Mas 10^0,3 = 2, então 10^0,6 = 2² = 4, e não 3.",
    "E": "20 pontos sai de tomar 10^0,6 = 2 (esquecer de elevar ao quadrado): E_A = 2/3 e 60 × 1/3 = 20. O 2 vale para o expoente 0,3; para 0,6 o resultado é 4."
   },
@@ -156,11 +156,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -171,6 +173,30 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "C"
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "A questão dá a fórmula pronta; o trabalho é substituir e calcular. O aumento da pontuação é P'_A − P_A, que vale 60 × (V_A − E_A). Falta saber quanto vale 10^0,6. O 'Note e adote' diz que log 2 = 0,3, ou seja, 10^0,3 = 2. Como 0,6 é o dobro de 0,3, o resultado é 2² = 4.",
+    "motivo": "Frases mais curtas e ligação clara entre 0,6 e o dobro de 0,3."
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Confira por outro caminho: A é muito favorita, com E_A = 0,8 (80% de chance esperada). Vencer era quase certo, então rende pouco. Faltavam 0,2 para o máximo: 0,2 × 60 = 12. Também dá para testar: se 10^0,6 = 4, então log 4 = 2 × 0,3 = 0,6. Fecha.",
+    "motivo": "A checagem antiga repetia a conta e tinha frase confusa; agora usa a conferência inversa pelo log."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "10 pontos exigiria E_A = 5/6, ou seja, 10^0,6 = 5. Mas 10^0,6 = 4, pois 10^0,3 = 2 e 2² = 4. Quem marcou B usou um valor de 10^0,6 que o log dado não sustenta.",
+    "motivo": "A explicação anterior usava log 5 = 0,7, que é um dado fora do enunciado e confundia o aluno; agora usa só o 'Note e adote'."
+   },
+   {
+    "campo": "resolucao.passos[0].porque",
+    "depois": "O aumento é a pontuação nova menos a antiga. Pela fórmula, isso é 60 × (V_A − E_A). Por isso não precisamos de P_A nem de P_B separados, só da diferença.",
+    "motivo": "Mais clara: explica por que basta a diferença."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

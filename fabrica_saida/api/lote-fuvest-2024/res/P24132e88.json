@@ -57,25 +57,25 @@
    {
     "faz": "Leia a legenda do mapa",
     "conta": "Escala: 0,05 → 10 t/km²/ano",
-    "porque": "Amarelo-claro indica pouca pesca. Vermelho e vinho-escuro indicam as áreas mais ricas, com 5 a 10 t/km² por ano.",
+    "porque": "A legenda mostra t/km² por ano. Amarelo-claro é pouca pesca (cerca de 0,05 a 0,2). Vermelho e vinho são as áreas mais ricas (5 a 10).",
     "tipo": "localizar"
    },
    {
     "faz": "Ache as manchas escuras no Sul",
-    "conta": "Peru e Chile: vermelho-escuro / S. África: vinho",
+    "conta": "Peru e Chile: vermelho-escuro\nSudoeste da África: vinho",
     "porque": "No Hemisfério Sul, as maiores concentrações estão na costa oeste da América do Sul e na costa sudoeste da África. As costas leste têm pouca pesca.",
     "tipo": "localizar"
    },
    {
     "faz": "Associe cada costa à corrente",
-    "conta": "Oeste da Am. do Sul → Humboldt (fria)",
-    "porque": "Ao lado, na costa sudoeste da África, passa a corrente de Benguela (fria). Ambas têm ressurgência, e por isso o mapa as mostra tão piscosas.",
+    "conta": "Oeste da Am. do Sul → Humboldt (fria)\nSudoeste da África → Benguela (fria)",
+    "porque": "As duas correntes são frias e têm ressurgência: a água fria e rica em nutrientes sobe até a superfície. Por isso o mapa mostra essas costas tão piscosas.",
     "tipo": "comparar"
    },
    {
     "faz": "Elimine as demais",
     "conta": "A, B, C e E contrariam mapa ou conceito",
-    "porque": "A inverte a relação com as correntes quentes, B erra a corrente do Golfo, C ignora que o alto-mar é pouco produtivo, e E dá uma causa errada para os polos.",
+    "porque": "A diz que as costas leste são as mais piscosas, mas o mapa mostra o contrário. B troca a temperatura e a costa da corrente do Golfo. C diz que o alto-mar é o mais piscoso, mas o mapa mostra manchas escuras junto às costas. E dá uma causa errada: as correntes frias ajudam a pesca.",
     "tipo": "eliminar"
    },
    {
@@ -88,10 +88,10 @@
   "resposta": "Alternativa D: no Hemisfério Sul, as áreas mais piscosas ficam na costa oeste da América do Sul e na costa sudoeste da África, onde passam as correntes frias de Humboldt e de Benguela.",
   "checagem": "Pelo caminho inverso: correntes frias com ressurgência são ricas em peixes. Humboldt e Benguela são frias e estão no oeste dos continentes. O mapa tem justamente aí o vermelho e o vinho.",
   "erradas": {
-   "A": "Afirma que, no Sul, a pesca é maior nas costas leste, com correntes quentes. No mapa, as manchas vinho-escuro do Sul ficam nas costas oeste (Peru e Chile, sudoeste da África), não nas leste. Correntes quentes são pobres em nutrientes.",
-   "B": "A corrente do Golfo é quente, não fria, e banha a costa leste da América do Norte, não a oeste. A frase inverte a localização e a temperatura. A parte do Labrador (fria, costa leste) está certa, mas o conjunto está errado.",
-   "C": "O mapa mostra o contrário: as manchas mais escuras ficam junto às costas, nas plataformas continentais e nas áreas de ressurgência. O alto-mar aparece em amarelo-claro ou sem cor, com valores baixos. A expressão 'independentemente das correntes' também ignora o papel das correntes frias.",
-   "E": "A causa está errada: as correntes frias favorecem a pesca, porque trazem nutrientes, e não a reduzem. O mapa também não sustenta a ideia de pouca pesca em latitudes altas: perto da Noruega e no norte do Pacífico há manchas vermelhas e vinho."
+   "A": "Quem marcou A achou que correntes quentes trazem peixe. Falta lembrar que elas são pobres em nutrientes. No mapa, as manchas escuras do Sul ficam nas costas oeste (Peru, Chile, sudoeste da África), não nas costas leste.",
+   "B": "O Golfo é corrente quente e passa pela costa leste da América do Norte, não pela oeste. A frase também trata o Golfo como fria. O Labrador (fria, costa leste) está certo, mas a frase toda fica errada. Falta lembrar a temperatura de cada corrente.",
+   "C": "Quem marcou C esqueceu de olhar a distribuição das cores. No mapa, as manchas mais escuras ficam junto às costas e o alto-mar aparece em amarelo-claro. Além disso, 'independentemente das correntes' ignora o papel das correntes frias.",
+   "E": "Quem marcou E acha que corrente fria reduz a pesca. É o contrário: ela traz nutrientes. O mapa também mostra manchas vermelhas e vinho em latitudes altas, perto da Noruega e no norte do Pacífico, o que contraria 'potencial reduzido'."
   },
   "armadilha": "Achar que corrente fria atrapalha a pesca, ou que correntes quentes são mais produtivas, quando é o contrário: as frias com ressurgência concentram os peixes.",
   "alerta": "",
@@ -126,11 +126,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -165,6 +167,57 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "D"
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "Oeste da Am. do Sul → Humboldt (fria)\nSudoeste da África → Benguela (fria)",
+    "motivo": "O passo trata de duas correntes e a conta só mostrava uma; o porque falava de Benguela sem a conta correspondente."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "As duas correntes são frias e têm ressurgência: a água fria e rica em nutrientes sobe até a superfície. Por isso o mapa mostra essas costas tão piscosas.",
+    "motivo": "Frase mais curta e sem repetir a conta; liga a corrente ao que o mapa mostra."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "A diz que as costas leste são as mais piscosas, mas o mapa mostra o contrário. B troca a temperatura e a costa da corrente do Golfo. C diz que o alto-mar é o mais piscoso, mas o mapa mostra manchas escuras junto às costas. E dá uma causa errada: as correntes frias ajudam a pesca.",
+    "motivo": "O texto original dizia 'A inverte a relação com as correntes quentes', o que ficava vago, e 'C ignora que o alto-mar é pouco produtivo' sem apoio no mapa. Reescrito com o que cada letra afirma e onde o mapa a desmente."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "Peru e Chile: vermelho-escuro\nSudoeste da África: vinho",
+    "motivo": "A conta tinha 'S. África', abreviação ambígua, e duas informações na mesma linha, que não cabia na tela do celular. Foram separadas em duas linhas."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "A legenda mostra t/km² por ano. Amarelo-claro é pouca pesca (cerca de 0,05 a 0,2). Vermelho e vinho são as áreas mais ricas (5 a 10).",
+    "motivo": "Deixa claro que os números são toneladas por km² por ano e evita a ambiguidade de 'indicam' sem unidade."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "O Golfo é corrente quente e passa pela costa leste da América do Norte, não pela oeste. A frase também trata o Golfo como fria. O Labrador (fria, costa leste) está certo, mas a frase toda fica errada. Falta lembrar a temperatura de cada corrente.",
+    "motivo": "O texto original não dizia o que faltou no raciocínio de quem marcou B. Reescrito."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "Quem marcou A achou que correntes quentes trazem peixe. Falta lembrar que elas são pobres em nutrientes. No mapa, as manchas escuras do Sul ficam nas costas oeste (Peru, Chile, sudoeste da África), não nas costas leste.",
+    "motivo": "Passa a mostrar o que faltou no raciocínio de quem escolheu A e fica em frases curtas."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "Quem marcou C esqueceu de olhar a distribuição das cores. No mapa, as manchas mais escuras ficam junto às costas e o alto-mar aparece em amarelo-claro. Além disso, 'independentemente das correntes' ignora o papel das correntes frias.",
+    "motivo": "Mostra o que faltou ao aluno e encurta a frase."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "Quem marcou E acha que corrente fria reduz a pesca. É o contrário: ela traz nutrientes. O mapa também mostra manchas vermelhas e vinho em latitudes altas, perto da Noruega e no norte do Pacífico, o que contraria 'potencial reduzido'.",
+    "motivo": "Diz o que faltou no raciocínio e mantém o argumento do mapa."
+   }
+  ],
+  "didatica_alertas": [
+   "Alerta de fato: o mapa mostra a mancha escura do Sul na costa sudoeste da África (região de Benguela) e não em toda a costa oeste africana. O texto da alternativa D diz 'costa oeste'. Não alterei, mas o corretor 1 pode conferir. Também vale conferir se a letra E, sobre as regiões polares, pode ser contestada, já que o mapa mostra pesca alta no Ártico perto da Noruega."
+  ],
+  "didatica_ok": true
  }
 }

@@ -8,7 +8,7 @@
  "conceito": "Ler a temperatura de ebulição para saber o estado físico a −6 °C e comparar o calor liberado por volume de gás.",
  "resolucao": {
   "antes": {
-   "texto": "À pressão atmosférica, uma substância é gás quando a temperatura do ambiente está acima da sua temperatura de ebulição (TE). Se está abaixo, ela é líquida. Um fogareiro precisa que o combustível saia do botijão como gás. Entre os que servem, o mais vantajoso é o que libera mais calor por volume.",
+   "texto": "Temperatura de ebulição (TE) é a temperatura em que o líquido vira gás. Se o ambiente está mais quente que a TE, a substância é gás. Se está mais frio, ela continua líquida. O fogareiro precisa que o combustível saia do botijão como gás. Entre os que servem, o melhor é o que libera mais calor por volume, porque gasta menos gás.",
    "formulas": [
     "temperatura do ambiente > TE → gás",
     "temperatura do ambiente < TE → líquido",
@@ -21,11 +21,19 @@
     ],
     [
      "kcal/m³",
-     "quilocaloria liberada para cada metro cúbico de gás queimado"
+     "quilocaloria (unidade de energia) liberada para cada metro cúbico de gás queimado"
     ],
     [
      "combustão",
      "queima do gás com oxigênio, que libera calor"
+    ],
+    [
+     "n-butano",
+     "butano de cadeia reta; o isobutano tem a mesma fórmula, com cadeia ramificada"
+    ],
+    [
+     "fase gasosa",
+     "estado de gás, e não de líquido"
     ]
    ]
   },
@@ -58,7 +66,7 @@
    {
     "faz": "Entre os gases, compare o calor",
     "conta": "isobutano 8211 > propano 5065",
-    "porque": "O isobutano libera mais calor por m³, então é preciso queimar menos gás para cozinhar.",
+    "porque": "Entre os dois gases, o isobutano libera mais calor por m³. Então é preciso queimar menos gás para cozinhar.",
     "tipo": "comparar"
    },
    {
@@ -71,9 +79,9 @@
   "resposta": "Alternativa B: o isobutano está gasoso a −6 °C (TE de −12 °C) e, entre os gases (propano e isobutano), libera mais calor por volume.",
   "checagem": "Coloque as TE em ordem na reta: −42, −12, −6 (ambiente), −1. Os dois primeiros ficam abaixo do ambiente (gases) e o n-butano fica acima (líquido). Dos dois gases, 8211 é maior que 5065.",
   "erradas": {
-   "A": "O propano tem TE de −42 °C, bem abaixo de −6 °C. Logo ele é gasoso, e não líquido. Além disso, um combustível líquido não alimenta o fogareiro como gás.",
+   "A": "O propano tem TE de −42 °C, e −6 °C é mais quente que isso. Logo ele é gás, e não líquido. Quem marcou A comparou os números ao contrário. Além disso, líquido não alimenta o fogareiro como gás.",
    "C": "O n-butano tem TE de −1 °C, acima de −6 °C. Logo ele está líquido a −6 °C, e não gasoso. O maior calor (8411) não adianta se ele não sai como gás.",
-   "D": "O n-butano é de fato líquido a −6 °C, mas ele não pertence ao grupo das substâncias gasosas. Ele também libera mais calor (8411), e não menos, do que os outros dois.",
+   "D": "D tem duas falhas. O n-butano é líquido a −6 °C, então não está entre as substâncias gasosas. E o calor dele, 8411 kcal/m³, é o maior da tabela, e não menor.",
    "E": "O isobutano é gasoso a −6 °C, mas libera 8211 kcal/m³, mais que o propano (5065). Dizer que fornece menos calor que os outros gases contradiz a tabela."
   },
   "armadilha": "Escolher o n-butano porque tem o maior calor (8411), sem notar que a −6 °C ele ainda é líquido (TE = −1 °C).",
@@ -126,11 +134,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -141,6 +151,56 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "B"
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Temperatura de ebulição (TE) é a temperatura em que o líquido vira gás. Se o ambiente está mais quente que a TE, a substância é gás. Se está mais frio, ela continua líquida. O fogareiro precisa que o combustível saia do botijão como gás. Entre os que servem, o melhor é o que libera mais calor por volume, porque gasta menos gás.",
+    "motivo": "Define TE de forma simples e deixa o raciocínio de viabilidade e consumo mais claro."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "TE",
+      "temperatura de ebulição: acima dela a substância é gás, abaixo dela é líquida"
+     ],
+     [
+      "kcal/m³",
+      "quilocaloria (unidade de energia) liberada para cada metro cúbico de gás queimado"
+     ],
+     [
+      "combustão",
+      "queima do gás com oxigênio, que libera calor"
+     ],
+     [
+      "n-butano",
+      "butano de cadeia reta; o isobutano tem a mesma fórmula, com cadeia ramificada"
+     ],
+     [
+      "fase gasosa",
+      "estado de gás, e não de líquido"
+     ]
+    ],
+    "motivo": "Explica termos técnicos que o aluno pode não conhecer (n-butano, fase gasosa) e a unidade kcal."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "Entre os dois gases, o isobutano libera mais calor por m³. Então é preciso queimar menos gás para cozinhar.",
+    "motivo": "Frase mais curta e direta."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "D tem duas falhas. O n-butano é líquido a −6 °C, então não está entre as substâncias gasosas. E o calor dele, 8411 kcal/m³, é o maior da tabela, e não menor.",
+    "motivo": "Deixa claro o que faltou no raciocínio de quem marcou D, com os números da tabela."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "O propano tem TE de −42 °C, e −6 °C é mais quente que isso. Logo ele é gás, e não líquido. Quem marcou A comparou os números ao contrário. Além disso, líquido não alimenta o fogareiro como gás.",
+    "motivo": "Aponta o erro de raciocínio (inverteu a comparação) de quem marcou A."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

@@ -51,7 +51,7 @@
    {
     "faz": "Leia o 2º quadro",
     "conta": "brancas ligam coloridas em cadeias",
-    "porque": "As partículas brancas se unem em fileiras e conectam as coloridas. Ou seja, as duas espécies reagem entre si e crescem juntas.",
+    "porque": "As partículas coloridas, que fazem várias ligações, ficam unidas por fileiras curtas de partículas brancas. As duas espécies reagem entre si e crescem juntas.",
     "tipo": "localizar"
    },
    {
@@ -63,7 +63,7 @@
    {
     "faz": "Teste cada alternativa",
     "conta": "A, C, D, E: não formam rede",
-    "porque": "Combustão dá moléculas pequenas. Fusão solta as partículas. A água pura tem uma só espécie. Anel aromático é um ciclo pequeno de carbonos. Nenhuma dessas opções forma uma rede com duas espécies ligadas entre si, como a do desenho.",
+    "porque": "Combustão dá moléculas pequenas (CO₂ e H₂O). Fusão solta as partículas. A água pura tem uma só espécie. Anel aromático é um ciclo pequeno de carbonos. Nenhuma dessas opções forma uma rede com duas espécies ligadas entre si, como a do desenho.",
     "tipo": "eliminar"
    },
    {
@@ -77,9 +77,9 @@
   "checagem": "Conte as espécies: o desenho tem duas. Agora veja se o resultado final é uma estrutura única e contínua: é. Combustão, fusão e solidificação da água não dão esse resultado.",
   "erradas": {
    "A": "Combustão de hidrocarboneto com O₂ gasoso dá CO₂ e H₂O, que são moléculas pequenas e separadas. No desenho, as espécies se unem em uma rede enorme, e na combustão nenhuma rede se forma.",
-   "C": "Na fusão, o sólido organizado vira líquido e os íons ganham liberdade de movimento. O desenho mostra o caminho contrário: partículas soltas que se ligam numa estrutura contínua. Além disso, são dois sais, e o desenho mostra duas espécies que se unem, não dois sólidos que derretem.",
+   "C": "Na fusão, o sólido organizado vira líquido e os íons ganham liberdade de movimento. O desenho mostra o caminho contrário: partículas soltas que se ligam numa estrutura contínua. Além disso, na fusão não surgem ligações novas entre as duas espécies, como a rede do desenho.",
    "D": "A água pura tem uma só espécie, a molécula H₂O, e o desenho tem duas. Além disso, ao solidificar, as moléculas apenas se organizam por interações intermoleculares, sem formar uma rede de ligações entre duas espécies diferentes.",
-   "E": "Anel aromático é um ciclo pequeno de carbonos, como o benzeno. No desenho, cada círculo é uma molécula ou um íon inteiro, e as malhas são formadas por muitas partículas ligadas. Isso é uma rede de polímero, não um anel. O solvente orgânico também não aparece no desenho."
+   "E": "Anel aromático é um ciclo pequeno de carbonos, como o benzeno. No desenho, cada círculo é uma molécula ou um íon inteiro, e a rede é formada por muitas partículas ligadas, não por um anel de carbonos. O solvente orgânico também não aparece no desenho."
   },
   "armadilha": "Ver só o 'juntar' e pensar em mudança de estado (D). Falta notar que o desenho tem DUAS espécies diferentes e que a rede final é uma estrutura de ligações, não um sólido organizado de uma só substância.",
   "alerta": "",
@@ -115,12 +115,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -228,6 +230,40 @@
   "didatica_alertas": [
    "A afirmação do passo 2 de que as brancas 'conectam as coloridas' e o passo 3 de que a rede é um polímero são leituras do desenho, que só mostra partículas ligadas. A associação com polímero é razoável, mas a figura é esquemática."
   ],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "O desenho tem três quadros em sequência. No primeiro, há dois tipos de partícula soltas: brancas, pequenas, e coloridas, maiores. No segundo, elas começam a se ligar. No terceiro, formam uma rede grande e contínua. Unir muitas unidades pequenas numa estrutura grande é a polimerização. Para escolher a alternativa, pergunte: quantas espécies há? Elas se ligam entre si? O resultado é uma rede?",
+    "motivo": "Sem alteração de conteúdo; texto conferido e correto.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "As partículas coloridas, que fazem várias ligações, ficam unidas por fileiras curtas de partículas brancas. As duas espécies reagem entre si e crescem juntas.",
+    "motivo": "O original dizia que as brancas se unem em fileiras e conectam as coloridas, o que é impreciso. No desenho, as coloridas são os nós (maiores, com vários vizinhos) e as brancas formam os elos entre elas.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Combustão dá moléculas pequenas (CO₂ e H₂O). Fusão solta as partículas. A água pura tem uma só espécie. Anel aromático é um ciclo pequeno de carbonos. Nenhuma dessas opções forma uma rede com duas espécies ligadas entre si, como a do desenho.",
+    "motivo": "Detalhe que ajuda o aluno: CO₂ e H₂O são os produtos da combustão. O conteúdo já estava correto.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "Na fusão, o sólido organizado vira líquido e os íons ganham liberdade de movimento. O desenho mostra o caminho contrário: partículas soltas que se ligam numa estrutura contínua. Além disso, na fusão não surgem ligações novas entre as duas espécies, como a rede do desenho.",
+    "motivo": "A frase 'são dois sais, e o desenho mostra duas espécies que se unem, não dois sólidos que derretem' era confusa. Foi trocada por um argumento verdadeiro e direto.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "Anel aromático é um ciclo pequeno de carbonos, como o benzeno. No desenho, cada círculo é uma molécula ou um íon inteiro, e a rede é formada por muitas partículas ligadas, não por um anel de carbonos. O solvente orgânico também não aparece no desenho.",
+    "motivo": "Retirada a frase 'Isso é uma rede de polímero, não um anel', que repetia o argumento. O conteúdo é o mesmo.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "B"
  }
 }

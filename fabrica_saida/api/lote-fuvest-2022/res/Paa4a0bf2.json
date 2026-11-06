@@ -68,7 +68,7 @@
   "resposta": "Alternativa D: o foco tem 1000 nm e a ponta tem 10 nm, então a razão é 100.",
   "checagem": "Cem pontas de 10 nm lado a lado ocupam 100 × 10 = 1000 nm, que é 1 µm. Fecha com o foco.",
   "erradas": {
-   "A": "0,0001 é 10^−4 e não confere. Nem a razão (100) nem o seu inverso (10 ÷ 1000 = 0,01) dão esse valor. Só sairia de uma conversão com três zeros a mais.",
+   "A": "0,0001 é 10^−4 e não confere. A razão certa é 100 e o seu inverso é 10 ÷ 1000 = 0,01. Para dar 0,0001, a ponta teria que ser 10 000 vezes maior que o foco.",
    "B": "0,01 sai de inverter a razão: ponta ÷ foco = 10 nm ÷ 1000 nm = 0,01. A questão pede o foco dividido pela ponta, não o contrário.",
    "C": "1 não confere: razão 1 significaria foco e ponta do mesmo tamanho. Mas 1 µm = 1000 nm, que é 100 vezes os 10 nm da ponta. Quem marca C costuma esquecer de converter a unidade e comparar só os números.",
    "E": "10000 não confere: exigiria um foco de 100 000 nm (100 µm). Com 1 µm = 1000 nm, a razão é 1000 ÷ 10 = 100."
@@ -106,7 +106,7 @@
    "destaque": "1000 nm"
   },
   {
-   "linha": "razão = \\frac{1000}{10}",
+   "linha": "razão = 1000/10",
    "nota": "foco sobre ponta, agora na mesma unidade",
    "mov": [
     {
@@ -146,12 +146,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -177,7 +179,7 @@
    },
    {
     "campo": "resolucao.quadro[3].linha",
-    "depois": "razão = \\frac{1000}{10}",
+    "depois": "razão = 1000/10",
     "motivo": "Fração deve ser escrita empilhada, não na linha."
    },
    {
@@ -192,6 +194,22 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.quadro[3].linha",
+    "depois": "razão = 1000/10",
+    "motivo": "Sem LaTeX: a fração é escrita como numerador/denominador, e o site a desenha empilhada.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "0,0001 é 10^−4 e não confere. A razão certa é 100 e o seu inverso é 10 ÷ 1000 = 0,01. Para dar 0,0001, a ponta teria que ser 10 000 vezes maior que o foco.",
+    "motivo": "Troca a frase sobre 'três zeros a mais', que era imprecisa, por um teste objetivo.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "D"
  }
 }

@@ -8,7 +8,7 @@
  "conceito": "Humor em cartum: o aluno lê o X da equação como numeral romano (10) e estranha que valha 6.",
  "resolucao": {
   "antes": {
-   "texto": "Em cartum, o humor nasce do choque entre a imagem e a fala. Aqui a lousa traz uma equação de álgebra, em que X é a incógnita, o valor que se procura. A fala do aluno trata o mesmo X como numeral romano, em que X vale 10. O humor vem desse duplo sentido do símbolo X.",
+   "texto": "Em cartum, o humor nasce do choque entre a imagem e a fala. Aqui a lousa traz uma equação de álgebra, em que x é a incógnita, o valor que se procura. O aluno lê o X como numeral romano, em que X vale 10. O humor vem desse duplo sentido do símbolo e da certeza do aluno de que está certo.",
    "formulas": [
     "X na álgebra = incógnita (valor desconhecido)",
     "X em numeral romano = 10"
@@ -48,28 +48,28 @@
    },
    {
     "faz": "Ache o choque entre os dois sentidos",
-    "conta": "X = incógnita × X = 10",
+    "conta": "x (incógnita) × X (romano = 10)",
     "porque": "O mesmo símbolo tem dois usos. O aluno confunde os contextos, acha que o professor mudou o valor de X e fica indignado. Esse mal-entendido é a graça.",
     "tipo": "comparar"
    },
    {
-    "faz": "Compare com as alternativas",
-    "conta": "A, D, E: nada disso aparece no desenho",
-    "porque": "Sobram B e C, as duas que tratam do aluno. A C fala em interpretação de símbolos, mas ainda falta checar o detalhe \"teoria dos conjuntos\".",
+    "faz": "Descarte as alternativas A, D e E",
+    "conta": "A: apatia? D: duas formas? E: rivalidade?",
+    "porque": "Nenhuma dessas cenas aparece no desenho: o professor só escreve uma resolução e um único aluno reclama. Restam B e C, que falam do aluno.",
     "tipo": "eliminar"
    },
    {
     "faz": "Decida entre B e C",
-    "conta": "B: certeza do aluno; C: símbolos de conjuntos",
-    "porque": "O texto fala de numerais romanos, não de conjuntos. A B descreve de fato o que o desenho mostra: o aluno está certo de que X vale 10 e desafia o professor. É isso que contribui para o humor.",
+    "conta": "B: aluno certo de que X = 10\nC: símbolos de conjuntos",
+    "porque": "A fala cita numerais romanos, não conjuntos: a C cai. A B descreve a cena: o aluno está convicto de que X vale 10 e cobra o professor. Essa convicção equivocada gera o humor.",
     "tipo": "concluir"
    }
   ],
   "resposta": "Alternativa B: o aluno tem certeza de que X vale 10 (numeral romano) e, nessa certeza, desafia o professor, que escreveu x = 6.",
   "checagem": "Troque a fala por \"Ah, aqui o x é incógnita\". O aluno já não desafia o professor, e a graça some. O humor depende da certeza equivocada dele.",
   "erradas": {
-   "A": "O professor não age diante de apatia nenhuma. Ele só está em pé ao lado da lousa, e um aluno aponta para ela e fala. Nada no cartum mostra um grupo incapaz de responder.",
-   "C": "Os símbolos em jogo são algébricos e romanos (X = 10), não da teoria dos conjuntos. Nenhum símbolo de conjunto (∈, ∪, ∩) aparece na lousa ou na fala.",
+   "A": "Falta olhar a cena: o aluno fala e aponta para a lousa, e ninguém está apático. O professor só está em pé ao lado da lousa, sem ser cobrado de nada que não saiba responder. Nada mostra um grupo incapaz de responder.",
+   "C": "Falta ler a fala: ela cita numerais romanos (X = 10), não conjuntos. Na lousa só há conta de álgebra, e nenhum símbolo de conjunto (∈, ∪, ∩) aparece. O aluno confunde dois usos do X, e nenhum deles é de conjuntos.",
    "D": "O professor usa uma só forma de resolver a equação, em três linhas: 4 + x = 10, x = 10 − 4, x = 6. Não há duas formas.",
    "E": "Não há disputa entre colegas. A fala é de um aluno só, dirigida ao professor, e ninguém compete para mostrar saber mais."
   },
@@ -106,11 +106,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -139,6 +141,50 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "B"
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[3]",
+    "depois": {
+     "faz": "Descarte as alternativas A, D e E",
+     "conta": "A: apatia? D: duas formas? E: rivalidade?",
+     "porque": "Nenhuma dessas cenas aparece no desenho: o professor só escreve uma resolução e um único aluno reclama. Restam B e C, que falam do aluno.",
+     "tipo": "eliminar"
+    },
+    "motivo": "O passo antigo deixava a C 'em aberto' e citava só A, D e E sem o teste que as derruba. Agora diz o que falta em cada cena."
+   },
+   {
+    "campo": "resolucao.passos[4]",
+    "depois": {
+     "faz": "Decida entre B e C",
+     "conta": "B: aluno certo de que X = 10\nC: símbolos de conjuntos",
+     "porque": "A fala cita numerais romanos, não conjuntos: a C cai. A B descreve a cena: o aluno está convicto de que X vale 10 e cobra o professor. Essa convicção equivocada gera o humor.",
+     "tipo": "concluir"
+    },
+    "motivo": "A conta tinha duas ideias na mesma linha e não cabe na tela do celular. Separei em duas linhas e deixei o porquê mais direto."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "x (incógnita) × X (romano = 10)",
+    "motivo": "Deixa claro, com o parêntese, quais são os dois sentidos do mesmo símbolo."
+   },
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Em cartum, o humor nasce do choque entre a imagem e a fala. Aqui a lousa traz uma equação de álgebra, em que x é a incógnita, o valor que se procura. O aluno lê o X como numeral romano, em que X vale 10. O humor vem desse duplo sentido do símbolo e da certeza do aluno de que está certo.",
+    "motivo": "Liga o duplo sentido à atitude do aluno, que é o que o comando pede (o que contribui para o humor), sem resolver a questão."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "Falta ler a fala: ela cita numerais romanos (X = 10), não conjuntos. Na lousa só há conta de álgebra, e nenhum símbolo de conjunto (∈, ∪, ∩) aparece. O aluno confunde dois usos do X, e nenhum deles é de conjuntos.",
+    "motivo": "Diz o que faltou ao aluno que marcou C (ler a fala em inglês) e o que cada símbolo realmente é."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "Falta olhar a cena: o aluno fala e aponta para a lousa, e ninguém está apático. O professor só está em pé ao lado da lousa, sem ser cobrado de nada que não saiba responder. Nada mostra um grupo incapaz de responder.",
+    "motivo": "Deixa claro que quem marcou A inventou uma cena que não está no desenho."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

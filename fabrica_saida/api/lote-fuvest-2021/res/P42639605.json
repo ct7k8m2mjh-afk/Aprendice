@@ -12,7 +12,7 @@
    "formulas": [
     "cruzamento: pedaço de A + pedaço de B (dramédia = drama + comédia)",
     "justaposição: A inteira + B inteira, sem perda (passatempo, girassol)",
-    "aglutinação: junção com perda de som em um dos elementos (planalto)",
+    "aglutinação: junção com perda de som em um dos elementos (plano + alto = planalto)",
     "derivação: radical + prefixo ou sufixo (arenista, sabiamente)"
    ],
    "simbolos": [
@@ -53,7 +53,7 @@
    {
     "faz": "Desmonte a alternativa A",
     "conta": "deleitura = deleite + leitura",
-    "porque": "'Deleite' perde o '-te' e 'leitura' perde o 'l' inicial, e as duas se encaixam no trecho 'lei'. Resultado: um jeito novo de dizer 'leitura com prazer'.",
+    "porque": "'Deleite' perde o '-e' final e 'leitura' perde o 'l' inicial: as duas se encaixam no trecho comum 'lei', que aparece uma vez só. Resultado: um jeito novo de dizer 'leitura com prazer'.",
     "tipo": "calcular"
    },
    {
@@ -65,7 +65,7 @@
    {
     "faz": "Teste as demais",
     "conta": "B: passa+tempo; micro+vestido\nC: hidro+elétrica; sábia+mente\nD: arena+ista; gira+sol\nE: plano+alto; multi+cor",
-    "porque": "Em cada par há palavra inteira, aglutinação, ou prefixo/sufixo. Em nenhum há fusão de dois pedaços de palavras diferentes com sentido novo.",
+    "porque": "Em cada par há palavra inteira, aglutinação, elemento de composição ou sufixo. Em nenhum há fusão de dois pedaços de palavras diferentes com sentido novo.",
     "tipo": "eliminar"
    },
    {
@@ -78,10 +78,10 @@
   "resposta": "Alternativa A: 'deleitura' (deleite + leitura) e 'namorido' (namorado + marido) são cruzamentos vocabulares, como 'dramédia'.",
   "checagem": "Confira a fusão com perda nas três palavras. 'Dramédia': drama + comédia, cada uma perde um pedaço. 'Deleitura': deleite + leitura, as duas se encaixam em 'lei'. 'Namorido': namorado + marido, ficam 'namor-' e '-ido'. Em nenhuma há prefixo ou sufixo.",
   "erradas": {
-   "B": "'Passatempo' é justaposição (passa + tempo, as duas inteiras); em 'microvestido' (micro + vestido) há prefixo ligado a 'vestido' inteiro, sem fusão com perda de partes.",
-   "C": "'Hidrelétrica' é hidro + elétrica, aglutinação: só o 'o' de hidro cai, sem fusão criativa de sentido. 'Sabiamente' é derivação: sábia + sufixo -mente.",
+   "B": "'Passatempo' é justaposição (passa + tempo, as duas inteiras); em 'microvestido' (micro + vestido) há elemento de composição ligado a 'vestido' inteiro, sem fusão com perda de partes.",
+   "C": "'Hidrelétrica' é composição (hidro + elétrica): o 'o' final do primeiro elemento cai, sem fusão criativa de sentido. 'Sabiamente' é derivação: sábia + sufixo -mente.",
    "D": "'Arenista' é derivação: arena + sufixo -ista. 'Girassol' é justaposição: gira + sol, as duas palavras inteiras, sem perda. Nenhuma funde pedaços de duas palavras.",
-   "E": "'Planalto' é aglutinação: plano + alto, só o 'o' de plano cai. 'Multicor' é multi- (prefixo) + cor inteira. Nenhum junta pedaços de duas palavras."
+   "E": "'Planalto' é aglutinação: plano + alto, só o 'o' de plano cai. 'Multicor' é composição: elemento de composição multi- + cor inteira. Nenhum junta pedaços de duas palavras."
   },
   "armadilha": "Tomar qualquer palavra que perde uma letra (hidrelétrica, planalto) por cruzamento. No cruzamento, os dois pedaços se fundem e criam um sentido novo.",
   "alerta": "",
@@ -117,12 +117,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -261,6 +263,46 @@
    "'Hidrelétrica' é classificada por muitas gramáticas como composição por justaposição (hidro- é elemento de composição), e 'planalto' é aglutinação. O corretor 1 pode conferir a nomenclatura, mas a resposta não muda.",
    "O campo caminhos[0] diz que 'sabiamente' e 'arenista' são 'derivadas por sufixo' e depois que 'B, C, D e E caem' só pelas suas palavras. Basta que cada alternativa tenha UM item que não seja cruzamento. Vale conferir a redação."
   ],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "'Deleite' perde o '-e' final e 'leitura' perde o 'l' inicial: as duas se encaixam no trecho comum 'lei', que aparece uma vez só. Resultado: um jeito novo de dizer 'leitura com prazer'.",
+    "motivo": "A versão anterior dizia que 'deleite' perde o '-te', o que não é o que acontece: deleit(e) + (l)eitura, com sobreposição em 'eit'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.antes.formulas[2]",
+    "depois": "aglutinação: junção com perda de som em um dos elementos (plano + alto = planalto)",
+    "motivo": "Troquei o exemplo da fórmula pela decomposição completa, já que 'planalto' é o caso clássico de aglutinação.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "'Hidrelétrica' é composição (hidro + elétrica): o 'o' final do primeiro elemento cai, sem fusão criativa de sentido. 'Sabiamente' é derivação: sábia + sufixo -mente.",
+    "motivo": "Aglutinação é, no sentido estrito, a junção em que um elemento perde som e a palavra deixa de ser reconhecível como duas. 'Hidrelétrica' é composição com elemento grego reduzido; o mais seguro é não rotular como aglutinação.",
+    "fonte": "Bechara, Moderna Gramática Portuguesa; Cunha & Cintra"
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "'Planalto' é aglutinação: plano + alto, só o 'o' de plano cai. 'Multicor' é composição: elemento de composição multi- + cor inteira. Nenhum junta pedaços de duas palavras.",
+    "motivo": "Multi- é elemento de composição; o termo 'prefixo' é discutível.",
+    "fonte": "Bechara, Moderna Gramática Portuguesa"
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "'Passatempo' é justaposição (passa + tempo, as duas inteiras); em 'microvestido' (micro + vestido) há elemento de composição ligado a 'vestido' inteiro, sem fusão com perda de partes.",
+    "motivo": "Mesma imprecisão: micro- é elemento de composição.",
+    "fonte": "Bechara, Moderna Gramática Portuguesa"
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Em cada par há palavra inteira, aglutinação, elemento de composição ou sufixo. Em nenhum há fusão de dois pedaços de palavras diferentes com sentido novo.",
+    "motivo": "Coerência com as correções de B, C e E.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "A"
  }
 }

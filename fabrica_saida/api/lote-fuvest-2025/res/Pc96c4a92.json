@@ -8,7 +8,7 @@
  "conceito": "Relação entre clima (temperatura, chuva, vento) e proliferação do mosquito vetor da dengue, com interpretação de texto.",
  "resolucao": {
   "antes": {
-   "texto": "O texto diz que temperatura, chuva e vento afetam a distribuição dos mosquitos, as picadas e a eclosão dos ovos. Mostra que calor acelera a incubação (27 °C: 10 dias; 37 °C: 7 dias). Diz também que chuvas intermitentes e ventos calmos favorecem o vetor. Fatores populacionais, como deslocamento e densidade, também contam.",
+   "texto": "O texto diz que temperatura, chuva e vento afetam onde o mosquito vive, quantas picadas ele dá e quando os ovos eclodem. O calor acelera a incubação: a 27 °C são 10 dias e a 37 °C são 7 dias. Chuvas que caem e param, e ventos calmos, também favorecem o mosquito. Deslocamento e densidade de pessoas contam como fatores.",
    "formulas": [
     "mais calor → incubação mais curta → mais mosquitos",
     "chuvas intermitentes + vento calmo → mais proliferação",
@@ -37,7 +37,7 @@
     ]
    ]
   },
-  "pista": "Compare o que cada alternativa diz sobre temperatura (sobe ou desce?) e sobre as pessoas com o que o texto afirma. Os números 27 °C e 37 °C mostram qual sentido acelera os ovos.",
+  "pista": "Veja o que o texto diz sobre a temperatura: com 27 °C e 37 °C, em qual dos dois os ovos eclodem mais depressa? Depois procure, em cada letra, se a temperatura sobe ou desce.",
   "passos": [
    {
     "faz": "Traduza o que se pede",
@@ -66,23 +66,23 @@
    {
     "faz": "Elimine a alternativa B",
     "conta": "B: \"minimizar a epidemia\"",
-    "porque": "Floresta, clima tropical e dispersão não reduzem a epidemia no texto. Além disso, o texto fala em densidade e deslocamento, não em dispersão como solução.",
+    "porque": "O texto não diz que floresta, clima tropical ou dispersão da população diminuem a epidemia. Ele cita densidade e deslocamento de pessoas como fatores que ajudam o mosquito.",
     "tipo": "eliminar"
    },
    {
     "faz": "Conclua",
     "conta": "A: calor + chuva + urbanização + circulação",
-    "porque": "A letra A combina o que o texto afirma: temperatura, chuva e deslocamento populacional potencializam a dengue.",
+    "porque": "A letra A reúne o que o texto afirma: calor, chuva e movimento de pessoas favorecem a dengue. Desmatamento e urbanização não aparecem no texto, mas também não o contradizem. Eles reforçam a ideia de população e ambiente alterados.",
     "tipo": "concluir"
    }
   ],
   "resposta": "Alternativa A: o aumento da temperatura e da chuva, somado a desmatamento, urbanização e circulação de pessoas, favorece a expansão da dengue.",
   "checagem": "Teste cada letra com o número do texto: mais calor (37 °C) encurta a incubação de 10 para 7 dias. Só a A fala de elevação da temperatura; C, D e E falam de frio, e B diz que a epidemia diminui.",
   "erradas": {
-   "B": "Diz que clima tropical, florestas e dispersão da população 'contribuem para minimizar a epidemia'. O texto mostra fatores que acentuam a proliferação e nada que minimize a epidemia. A conclusão é invertida.",
+   "B": "B diz que clima tropical, florestas e dispersão da população 'minimizam a epidemia'. O texto não afirma isso: ele só lista fatores que aumentam a proliferação. A conclusão da letra é inversa.",
    "C": "Afirma que as baixas temperaturas intensificam a transmissão. O texto mostra que o calor (37 °C) acelera a eclosão, e o frio não. Além disso, o texto aponta densidade populacional como fator, e não áreas pouco povoadas.",
    "D": "Diz que baixas temperaturas reduzem o tempo de eclosão. É o inverso do texto: a 27 °C são 10 dias e a 37 °C, 7 dias; quem reduz o tempo é o calor.",
-   "E": "A dengue ser problema mundial pode ser verdade, mas a causa citada está invertida: diminuição de temperatura, mais vento e menos chuva. O texto cita calor, vento calmo e chuvas intermitentes."
+   "E": "E erra o sentido de três fatores. Fala em queda de temperatura, mais vento e menos chuva. O texto cita calor, vento calmo e chuvas intermitentes. Que a dengue seja problema mundial não salva a letra."
   },
   "armadilha": "Marcar uma alternativa que parece plausível, mas inverte o sentido do texto: frio no lugar de calor, vento forte no lugar de vento calmo.",
   "alerta": "",
@@ -117,11 +117,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -132,6 +134,42 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "A"
+  "fatos_resposta": "A",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "O texto diz que temperatura, chuva e vento afetam onde o mosquito vive, quantas picadas ele dá e quando os ovos eclodem. O calor acelera a incubação: a 27 °C são 10 dias e a 37 °C são 7 dias. Chuvas que caem e param, e ventos calmos, também favorecem o mosquito. Deslocamento e densidade de pessoas contam como fatores.",
+    "motivo": "Frases mais curtas e diretas; 'intermitentes' explicado pelo sentido de chuva que cai e para."
+   },
+   {
+    "campo": "resolucao.pista",
+    "depois": "Veja o que o texto diz sobre a temperatura: com 27 °C e 37 °C, em qual dos dois os ovos eclodem mais depressa? Depois procure, em cada letra, se a temperatura sobe ou desce.",
+    "motivo": "A pista antiga já apontava para o texto, mas ficou comprida. Agora diz por onde começar sem entregar a letra."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "O texto não diz que floresta, clima tropical ou dispersão da população diminuem a epidemia. Ele cita densidade e deslocamento de pessoas como fatores que ajudam o mosquito.",
+    "motivo": "Texto simplificado; o original era confuso e sugeria que o texto trata a dispersão como solução."
+   },
+   {
+    "campo": "resolucao.passos[5].porque",
+    "depois": "A letra A reúne o que o texto afirma: calor, chuva e movimento de pessoas favorecem a dengue. Desmatamento e urbanização não aparecem no texto, mas também não o contradizem. Eles reforçam a ideia de população e ambiente alterados.",
+    "motivo": "A letra A cita desmatamento e urbanização, que o texto não menciona. A explicação agora admite isso, para o aluno não achar que o texto diz tudo."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "B diz que clima tropical, florestas e dispersão da população 'minimizam a epidemia'. O texto não afirma isso: ele só lista fatores que aumentam a proliferação. A conclusão da letra é inversa.",
+    "motivo": "Texto mais claro e sem repetição."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "E erra o sentido de três fatores. Fala em queda de temperatura, mais vento e menos chuva. O texto cita calor, vento calmo e chuvas intermitentes. Que a dengue seja problema mundial não salva a letra.",
+    "motivo": "Mostra o que faltou ao aluno que marcou E: conferir o sentido de cada fator, não só o tema geral."
+   }
+  ],
+  "didatica_alertas": [
+   "A letra A cita desmatamento e urbanização, que o texto-base não menciona. O gabarito A se sustenta porque as demais são contraditas pelo texto."
+  ],
+  "didatica_ok": true
  }
 }

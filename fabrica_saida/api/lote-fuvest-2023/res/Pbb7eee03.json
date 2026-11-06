@@ -8,7 +8,7 @@
  "conceito": "Ler fotografias do Comício da Central do Brasil (13/03/1964) como fonte: apoio popular às Reformas de Base de Jango.",
  "resolucao": {
   "antes": {
-   "texto": "O Comício da Central do Brasil, no Rio de Janeiro, foi organizado pelo governo de João Goulart (Jango) em 13 de março de 1964. Nele, Jango anunciou medidas das chamadas Reformas de Base, como o decreto que previa desapropriar terras às margens de rodovias e ferrovias federais, um primeiro passo da reforma agrária. Pouco mais de duas semanas depois, em 31 de março, veio o golpe militar. Imagens de multidão com faixas são fontes sobre o que os participantes pediam.",
+   "texto": "O Comício da Central do Brasil, no Rio de Janeiro, foi organizado pelo governo de João Goulart (Jango) em 13 de março de 1964. Nele, Jango anunciou medidas das chamadas Reformas de Base, como o decreto que previa desapropriar terras às margens de rodovias e ferrovias federais, um primeiro passo da reforma agrária. Em 31 de março, pouco mais de duas semanas depois, veio o golpe militar. Fotografia é fonte: descreva o que se vê e leia as faixas antes de interpretar.",
    "formulas": [
     "fotografia como fonte: descreva o que se vê (faixas, multidão) antes de interpretar",
     "Comício de 13/03/1964 = apoio popular às Reformas de Base; golpe = 31/03/1964"
@@ -55,12 +55,12 @@
    {
     "faz": "Cheque outra faixa",
     "conta": "\"QUEREMOS LUZ ...\"",
-    "porque": "É uma reivindicação social, não um pedido de intervenção militar. Nenhuma faixa legível pede golpe.",
+    "porque": "Pede luz, isto é, serviços básicos. É uma reivindicação social, e não um pedido de intervenção militar. Nenhuma faixa legível pede golpe.",
     "tipo": "localizar"
    },
    {
-    "faz": "Elimine o que as fotos não mostram",
-    "conta": "multidão grande, sem tropas",
+    "faz": "Elimine A e B pelo que as fotos mostram",
+    "conta": "multidão enorme, comício feito",
     "porque": "As imagens mostram um grande comício realizado: não há apatia (A) nem comício impedido (B).",
     "tipo": "eliminar"
    },
@@ -76,8 +76,8 @@
   "erradas": {
    "A": "As fotos mostram uma multidão enorme, com muitas faixas e participação de sindicatos. Isso é o oposto de apatia da sociedade civil.",
    "B": "O comício aconteceu e é o que as fotos registram. Nenhuma imagem mostra Forças Armadas impedindo o evento.",
-   "C": "O cartaz dos metalúrgicos diz \"Jango! Defenderemos as suas reformas a bala\". \"Deus, pátria e família\" ou \"família, religião e propriedade\" eram lemas dos opositores, como na Marcha da Família com Deus pela Liberdade, que veio depois do comício.",
-   "E": "As faixas legíveis pedem reformas e apoiam Jango. Quem reclamava a intervenção militar eram setores da direita e dos conservadores, que não estavam no comício."
+   "C": "O cartaz dos metalúrgicos diz \"Jango! Defenderemos as suas reformas a bala\". \"Família, religião e propriedade\" era o discurso dos opositores de Jango, como na Marcha da Família com Deus pela Liberdade, que veio depois do comício. Faltou ler o cartaz.",
+   "E": "As faixas legíveis pedem reformas e apoiam Jango. Quem reclamava a intervenção militar eram setores da direita e dos conservadores, que não estavam entre os manifestantes do comício."
   },
   "armadilha": "Misturar o que se sabe do golpe de 1964 com o que as fotos mostram: a leitura das imagens revela apoio às reformas, e não oposição ao governo.",
   "alerta": "",
@@ -112,11 +112,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -127,6 +129,40 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "D"
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "O Comício da Central do Brasil, no Rio de Janeiro, foi organizado pelo governo de João Goulart (Jango) em 13 de março de 1964. Nele, Jango anunciou medidas das chamadas Reformas de Base, como o decreto que previa desapropriar terras às margens de rodovias e ferrovias federais, um primeiro passo da reforma agrária. Em 31 de março, pouco mais de duas semanas depois, veio o golpe militar. Fotografia é fonte: descreva o que se vê e leia as faixas antes de interpretar.",
+    "motivo": "Frase final mais clara; reduz ambiguidade do último período."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Pede luz, isto é, serviços básicos. É uma reivindicação social, e não um pedido de intervenção militar. Nenhuma faixa legível pede golpe.",
+    "motivo": "Explica o sentido de 'luz' para o aluno."
+   },
+   {
+    "campo": "resolucao.passos[4].faz",
+    "depois": "Elimine A e B pelo que as fotos mostram",
+    "motivo": "Deixa claro quais letras o passo elimina."
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "multidão enorme, comício feito",
+    "motivo": "Mais precisa que 'sem tropas', que as fotos não provam; evita afirmar algo não visível."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "As faixas legíveis pedem reformas e apoiam Jango. Quem reclamava a intervenção militar eram setores da direita e dos conservadores, que não estavam entre os manifestantes do comício.",
+    "motivo": "Redação mais precisa: ligada aos manifestantes e não ao local."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "O cartaz dos metalúrgicos diz \"Jango! Defenderemos as suas reformas a bala\". \"Família, religião e propriedade\" era o discurso dos opositores de Jango, como na Marcha da Família com Deus pela Liberdade, que veio depois do comício. Faltou ler o cartaz.",
+    "motivo": "Indica o que faltou no raciocínio de quem marcou C e simplifica."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

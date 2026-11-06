@@ -89,7 +89,7 @@
   "checagem": "Teste com 23 painéis: 23 × 40 = 920 kWh. Somando com a usina: 920 + 1 080 = 2 000 kWh, exatamente o consumo. Com 22 painéis seriam 880 + 1 080 = 1 960 kWh, que não bastam.",
   "erradas": {
    "A": "12 painéis dão 480 kWh; com os 1 080 kWh da usina, são 1 560 kWh, menos que 2 000 kWh. Faltou calcular quanto a usina fornece e completar a diferença.",
-   "C": "30 painéis dão 1 200 kWh, e com a usina chegam a 2 280 kWh. Isso supre a demanda, mas não é o mínimo: com 23 já fecha 2 000 kWh. Quem marcou C provavelmente não calculou a sobra.",
+   "C": "30 painéis dão 1 200 kWh, e com a usina chegam a 2 280 kWh. Isso supre a demanda, mas não é o mínimo: com 23 já fecha 2 000 kWh. A pergunta pede o MENOR número.",
    "D": "45 painéis dão 1 800 kWh, e com a usina chegam a 2 880 kWh. Supre a demanda com muito excesso. A pergunta pede o MENOR número, que é 23.",
    "E": "Sai de ignorar a hidrelétrica: 2 000 kWh ÷ 40 kWh = 50 painéis. O enunciado diz que a usina supre parte da demanda e os painéis só o restante."
   },
@@ -158,12 +158,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -253,6 +255,16 @@
   "didatica_alertas": [
    "Classificação atual no banco é F04/F04.5, mas a resolução usa F03/F03.3 (potência e energia). Verificar qual é a certa."
   ],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "30 painéis dão 1 200 kWh, e com a usina chegam a 2 280 kWh. Isso supre a demanda, mas não é o mínimo: com 23 já fecha 2 000 kWh. A pergunta pede o MENOR número.",
+    "motivo": "Retirada a especulação ('provavelmente'), que o guia proíbe; o teste objetivo permanece.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "B"
  }
 }

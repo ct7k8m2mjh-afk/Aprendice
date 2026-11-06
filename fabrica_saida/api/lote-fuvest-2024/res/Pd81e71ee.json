@@ -45,14 +45,14 @@
   "passos": [
    {
     "faz": "Leia os eixos e a legenda",
-    "conta": "x: ano (0 a 2000)",
+    "conta": "Eixo x: ano (0 a 2000)",
     "porque": "O eixo horizontal mostra o tempo; os eixos verticais mostram a concentração em ppm (CO2) e em ppb (CH4 e N2O). Cada linha da legenda é um gás.",
     "tipo": "localizar"
    },
    {
     "faz": "Descreva a forma das curvas",
     "conta": "CO2: ~280 ppm até ~1800",
-    "porque": "Por quase 1800 anos as curvas oscilam pouco. Depois de ~1800 sobem de modo muito acentuado, sobretudo o metano, que ficou quase vertical.",
+    "porque": "Por cerca de 1800 anos as curvas quase não mudam. Depois de ~1800 elas sobem muito, e o metano fica quase vertical.",
     "tipo": "localizar"
    },
    {
@@ -63,8 +63,8 @@
    },
    {
     "faz": "Elimine as que contradizem gráfico ou ciência",
-    "conta": "A: curvas sobem até 2000",
-    "porque": "A fala de estabilização em 2000 é desmentida pelo gráfico, que termina em alta. O texto ainda diz que o CO2 chegou a 420 ppm em 2022. As demais trazem erros de fato (energia renovável, árvores, clima constante).",
+    "conta": "A: gráfico sobe até 2000",
+    "porque": "A diz que parou de subir em 2000, mas o gráfico termina em alta. O texto também traz 420 ppm de CO2 em 2022. B, C e D têm erro de fato (energia renovável, árvores, clima constante).",
     "tipo": "eliminar"
    },
    {
@@ -77,10 +77,10 @@
   "resposta": "Alternativa E: o efeito estufa foi intensificado a partir da Revolução Industrial pelas atividades humanas emissoras de CO2, o que contribui para o aquecimento global.",
   "checagem": "Pelo texto: a concentração de CO2 subiu de cerca de 280 ppm (antes da Revolução Industrial) para cerca de 420 ppm em 2022, um aumento de 140 ppm, ou 50%. Esse aumento coincide com a época em que o gráfico começa a subir.",
   "erradas": {
-   "A": "O gráfico mostra o contrário: as três curvas continuam subindo até 2000, o metano quase na vertical. E o texto diz que o CO2 chegou a cerca de 420 ppm em 2022, bem acima dos 280 ppm originais. Não houve estabilização.",
-   "B": "A Revolução Industrial se apoiou na máquina a vapor movida a carvão mineral, um combustível fóssil não renovável. Foi justamente essa queima que elevou o CO2. A alternativa fala em energias renováveis, o que está errado.",
-   "C": "Árvores absorvem CO2 na fotossíntese e guardam carbono. O plantio em grande escala ajuda a reduzir o CO2 atmosférico, e não a acentuar o aquecimento. A alternativa inverte o efeito.",
-   "D": "O erro está na justificativa: o clima da Terra nunca foi constante. Houve eras glaciais e períodos mais quentes ao longo da história geológica. A alternativa apoia a conclusão numa premissa falsa."
+   "A": "Faltou ler o fim do gráfico: as três curvas seguem subindo até 2000, e o metano fica quase vertical. O texto ainda diz que o CO2 chegou a 420 ppm em 2022, bem acima dos 280 ppm originais. Não houve estabilização.",
+   "B": "Faltou lembrar a fonte de energia da época. A Revolução Industrial usou a máquina a vapor movida a carvão mineral, que é fóssil e não renovável. Essa queima elevou o CO2. Falar em energia renovável está errado.",
+   "C": "Faltou lembrar a fotossíntese: árvores absorvem CO2 e guardam carbono. Plantar em grande escala ajuda a reduzir o CO2 do ar, não a piorar o aquecimento. A alternativa inverte o efeito.",
+   "D": "Faltou lembrar que o clima da Terra sempre mudou: houve eras glaciais e períodos mais quentes. A premissa 'temperaturas constantes' é falsa, então a conclusão não se sustenta."
   },
   "armadilha": "Confundir efeito estufa (natural, necessário à vida) com a sua intensificação por ação humana: a E acerta ao falar em 'intensificado'.",
   "alerta": "",
@@ -114,11 +114,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -135,6 +137,57 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "E"
+  "fatos_resposta": "E",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[0].conta",
+    "depois": "Eixo x: ano (0 a 2000)",
+    "motivo": "Deixa claro o que a linha mostra; antes parecia só um intervalo solto."
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "CO2: ~280 ppm até ~1800",
+    "motivo": "Mantido. O 'porque' abaixo ficou mais simples."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "Por cerca de 1800 anos as curvas quase não mudam. Depois de ~1800 elas sobem muito, e o metano fica quase vertical.",
+    "motivo": "Frases mais curtas e sem 'de modo muito acentuado'. A leitura do gráfico fica mais direta."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "A: gráfico sobe até 2000",
+    "motivo": "A conta fica mais clara e continua curta para caber na tela do celular."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "A diz que parou de subir em 2000, mas o gráfico termina em alta. O texto também traz 420 ppm de CO2 em 2022. B, C e D têm erro de fato (energia renovável, árvores, clima constante).",
+    "motivo": "Divide a ideia em frases curtas e liga cada letra ao seu erro."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "Faltou ler o fim do gráfico: as três curvas seguem subindo até 2000, e o metano fica quase vertical. O texto ainda diz que o CO2 chegou a 420 ppm em 2022, bem acima dos 280 ppm originais. Não houve estabilização.",
+    "motivo": "Mostra o que faltou ao aluno que marcou A: olhar o final das curvas."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "Faltou lembrar a fonte de energia da época. A Revolução Industrial usou a máquina a vapor movida a carvão mineral, que é fóssil e não renovável. Essa queima elevou o CO2. Falar em energia renovável está errado.",
+    "motivo": "Explica o que faltou no raciocínio e usa palavra simples."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "Faltou lembrar a fotossíntese: árvores absorvem CO2 e guardam carbono. Plantar em grande escala ajuda a reduzir o CO2 do ar, não a piorar o aquecimento. A alternativa inverte o efeito.",
+    "motivo": "Diz o que o aluno esqueceu e simplifica o texto."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "Faltou lembrar que o clima da Terra sempre mudou: houve eras glaciais e períodos mais quentes. A premissa 'temperaturas constantes' é falsa, então a conclusão não se sustenta.",
+    "motivo": "Diz o que faltou ao aluno e encurta a frase."
+   }
+  ],
+  "didatica_alertas": [
+   "O campo 'nivel' está 4 no JSON, e o enunciado da tarefa diz nível 6. O conteúdo está como G03.6, mas a lista do guia só vai até G03.5. Confira a TAXONOMIA."
+  ],
+  "didatica_ok": true
  }
 }

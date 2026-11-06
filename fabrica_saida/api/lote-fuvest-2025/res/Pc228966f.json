@@ -8,9 +8,9 @@
  "conceito": "Calcular inclinação percentual (razão h/c × 100) e conferir se ela cabe na faixa que a tabela permite para o desnível de cada segmento.",
  "resolucao": {
   "antes": {
-   "texto": "A inclinação é uma razão: altura do desnível dividida pela projeção horizontal, vezes 100. Para cada segmento você precisa de h e de i. Depois entra na tabela pela linha do desnível h e confere se o i do segmento está na faixa daquela linha. A tabela liga cada desnível a uma faixa de inclinação, então não basta a inclinação parecer pequena.",
+   "texto": "A inclinação é uma razão: altura do desnível dividida pela projeção horizontal, vezes 100. Para cada segmento você precisa de h e de i. Depois procure na tabela a linha do desnível h e confira se o i do segmento está na faixa dessa linha. A tabela liga cada desnível a uma faixa de inclinação. Por isso, uma inclinação pequena não basta: ela precisa estar dentro da faixa.",
    "formulas": [
-    "i (%) = (h ÷ c) × 100",
+    "i = (h ÷ c) × 100",
     "logo h = i × c ÷ 100"
    ],
    "simbolos": [
@@ -43,7 +43,7 @@
    {
     "faz": "Confira o 1º segmento na tabela",
     "conta": "0 < 0,6 ≤ 0,8 → 6,25 < i ≤ 8,33",
-    "porque": "Com h = 0,6 m vale a última linha da tabela, que exige i maior que 6,25%. Como 6% não passa de 6,25%, o 1º segmento está fora da norma.",
+    "porque": "Com h = 0,6 m vale a última linha da tabela, que exige i maior que 6,25%. Como 6% é menor que 6,25%, o 1º segmento está fora da norma.",
     "tipo": "comparar"
    },
    {
@@ -61,7 +61,7 @@
    {
     "faz": "Conclua sobre a rampa inteira",
     "conta": "1º fora; 2º dentro → rampa inadequada",
-    "porque": "A rampa só é adequada se todos os segmentos cumprirem a norma. Basta o 1º falhar, e só ele falha: alternativa C.",
+    "porque": "A rampa só é adequada se todos os segmentos cumprirem a norma. O 1º falha e o 2º cumpre. Basta uma falha para a rampa inteira ser inadequada: alternativa C.",
     "tipo": "concluir"
    }
   ],
@@ -89,7 +89,7 @@
  ],
  "quadro": [
   {
-   "linha": "1º: i = 6% ; c = 10",
+   "linha": "1º: i = 6% ; c = 10 m",
    "nota": "dados do 1º segmento"
   },
   {
@@ -110,7 +110,7 @@
    "destaque": "fora"
   },
   {
-   "linha": "2º: h = 0,5 ; c = 7",
+   "linha": "2º: h = 0,5 m ; c = 7 m",
    "nota": "dados do 2º segmento"
   },
   {
@@ -120,6 +120,10 @@
   {
    "linha": "i ≈ 7,14%",
    "nota": "inclinação do 2º segmento"
+  },
+  {
+   "linha": "0 < 0,5 ≤ 0,8",
+   "nota": "mesma linha da tabela: 6,25 < i ≤ 8,33"
   },
   {
    "linha": "6,25 < 7,14 ≤ 8,33 → ok",
@@ -141,14 +145,91 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [],
   "fatos_ok": true,
-  "fatos_resposta": "C"
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "A inclinação é uma razão: altura do desnível dividida pela projeção horizontal, vezes 100. Para cada segmento você precisa de h e de i. Depois procure na tabela a linha do desnível h e confira se o i do segmento está na faixa dessa linha. A tabela liga cada desnível a uma faixa de inclinação. Por isso, uma inclinação pequena não basta: ela precisa estar dentro da faixa.",
+    "motivo": "Frases mais curtas e sem sentido duplo (\"parecer pequena\")."
+   },
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "i = (h ÷ c) × 100",
+     "logo h = i × c ÷ 100"
+    ],
+    "motivo": "Mantém as fórmulas sem parênteses duplicados; as frações ficam em ÷, como a regra pede."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "Com h = 0,6 m vale a última linha da tabela, que exige i maior que 6,25%. Como 6% é menor que 6,25%, o 1º segmento está fora da norma.",
+    "motivo": "Troca \"não passa de\" por \"é menor que\", que tem um só sentido."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "A rampa só é adequada se todos os segmentos cumprirem a norma. O 1º falha e o 2º cumpre. Basta uma falha para a rampa inteira ser inadequada: alternativa C.",
+    "motivo": "Separa as ideias em frases curtas e evita o \"só ele falha\" ambíguo."
+   },
+   {
+    "campo": "resolucao.quadro",
+    "depois": [
+     {
+      "linha": "1º: i = 6% ; c = 10 m",
+      "nota": "dados do 1º segmento"
+     },
+     {
+      "linha": "h = 6 × 10 ÷ 100",
+      "nota": "da fórmula da inclinação sai h"
+     },
+     {
+      "linha": "h = 0,6 m",
+      "nota": "desnível do 1º segmento"
+     },
+     {
+      "linha": "0 < 0,6 ≤ 0,8",
+      "nota": "linha da tabela: 6,25 < i ≤ 8,33"
+     },
+     {
+      "linha": "6 < 6,25 → fora",
+      "nota": "o 1º segmento não cumpre a norma",
+      "destaque": "fora"
+     },
+     {
+      "linha": "2º: h = 0,5 m ; c = 7 m",
+      "nota": "dados do 2º segmento"
+     },
+     {
+      "linha": "i = (0,5 ÷ 7) × 100",
+      "nota": "divida h por c e multiplique por 100"
+     },
+     {
+      "linha": "i ≈ 7,14%",
+      "nota": "inclinação do 2º segmento"
+     },
+     {
+      "linha": "0 < 0,5 ≤ 0,8",
+      "nota": "mesma linha da tabela: 6,25 < i ≤ 8,33"
+     },
+     {
+      "linha": "6,25 < 7,14 ≤ 8,33 → ok",
+      "nota": "o 2º segmento cumpre a norma",
+      "destaque": "ok"
+     }
+    ],
+    "motivo": "Coloca as unidades nos dados e acrescenta a linha que confere o desnível do 2º segmento na tabela, sem pular passagem."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

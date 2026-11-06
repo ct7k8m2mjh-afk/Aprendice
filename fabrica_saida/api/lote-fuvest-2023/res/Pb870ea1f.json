@@ -29,6 +29,14 @@
     [
      "estatais",
      "empresas que pertencem ao Estado"
+    ],
+    [
+     "depreciação",
+     "perda de valor ou de qualidade de um bem"
+    ],
+    [
+     "avariar",
+     "estragar, danificar"
     ]
    ]
   },
@@ -43,13 +51,13 @@
    {
     "faz": "Veja o exemplo que o filho lê",
     "conta": "\"Avariar lixeiras e placas de trânsito... é crime!\"",
-    "porque": "O filho lê a notícia no jornal. Ela cita só lixeiras e placas de trânsito como patrimônio protegido por lei.",
+    "porque": "O pai e o filho estão olhando um jornal. A notícia lida pelo filho cita só lixeiras e placas de trânsito como bens protegidos por lei.",
     "tipo": "localizar"
    },
    {
     "faz": "Leia a pergunta do último quadro",
     "conta": "\"E hospitais, universidades, florestas, estatais?...\"",
-    "porque": "O filho cita bens públicos muito maiores do que lixeiras e placas. As reticências sugerem crítica: se avariar pequenos objetos é crime, destruir esses bens também é dano ao patrimônio público.",
+    "porque": "O filho cita bens públicos muito maiores do que lixeiras e placas. As reticências deixam a pergunta no ar: se avariar objetos pequenos é crime, destruir esses bens também deveria ser. Isso é dano ao patrimônio público.",
     "tipo": "localizar"
    },
    {
@@ -59,19 +67,19 @@
     "tipo": "comparar"
    },
    {
-    "faz": "Confronte as alternativas",
-    "conta": "A, B, C, E × D",
-    "porque": "A, B, C e E contradizem o texto ou atribuem ao pai e ao filho algo que a tira não mostra. Só a D traduz a conclusão que formulamos.",
+    "faz": "Compare com as alternativas e escolha",
+    "conta": "D = a conclusão do passo 4",
+    "porque": "A, B, C e E contradizem a tira ou inventam algo que ela não mostra. Só a D diz o que a pergunta do filho sugere.",
     "tipo": "concluir"
    }
   ],
   "resposta": "Alternativa D: a pergunta final do filho sugere que hospitais, universidades, florestas e estatais também são patrimônio público, e destruí-los é igualmente crime de dano.",
   "checagem": "Leia a D como resposta à pergunta do filho: se avariar lixeiras e placas, bens pequenos, já é crime, destruir hospitais e florestas, bens enormes e também públicos, é dano ao patrimônio público do mesmo jeito. O sentido bate com o último quadro.",
   "erradas": {
-   "A": "A reflexão não é inócua: a pergunta final do filho amplia o conceito de patrimônio e faz uma crítica pertinente. No último quadro, o pai, que antes respondeu na hora, fica sem resposta.",
+   "A": "'Inócua' é inútil, e a reflexão não é: a pergunta final do filho amplia a ideia de patrimônio público e deixa o pai sem resposta. Quem marcou A não viu a crítica no último quadro.",
    "B": "O filho menciona hospitais, universidades, florestas e estatais, que não são equipamentos das vias. Logo, a tira sugere o oposto: o patrimônio vai além das vias da cidade.",
    "C": "A notícia lida diz que avariar lixeiras e placas de trânsito é crime, isto é, esses itens são protegidos como patrimônio público. A alternativa afirma o contrário.",
-   "E": "Pai e filho não discutem os efeitos da depreciação. O pai concorda que não se pode detonar o patrimônio ('claro que não, filho'), e o filho só amplia a lista de bens. Não há discordância."
+   "E": "Os dois não discordam. O pai diz 'Claro que não, filho!' e o filho só amplia a lista de bens. Ninguém discute os efeitos da depreciação (perda de valor). Quem marcou E inventou um conflito."
   },
   "armadilha": "Ficar só com o exemplo da notícia (lixeiras e placas) e esquecer que a pergunta final do filho é o que carrega a crítica.",
   "alerta": "",
@@ -102,11 +110,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -141,6 +151,75 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "D"
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "O pai e o filho estão olhando um jornal. A notícia lida pelo filho cita só lixeiras e placas de trânsito como bens protegidos por lei.",
+    "motivo": "Frase mais simples e fiel à tira: o filho lê o jornal, e o texto não diz que é uma 'notícia' explicitamente."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "O filho cita bens públicos muito maiores do que lixeiras e placas. As reticências deixam a pergunta no ar: se avariar objetos pequenos é crime, destruir esses bens também deveria ser. Isso é dano ao patrimônio público.",
+    "motivo": "Deixa claro o raciocínio por trás da inferência e usa frases curtas."
+   },
+   {
+    "campo": "resolucao.passos[4].faz",
+    "depois": "Compare com as alternativas e escolha",
+    "motivo": "O passo final é de conclusão, e o comando anterior era vago."
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "D = a conclusão do passo 4",
+    "motivo": "A conta anterior ('A, B, C, E × D') era confusa para o aluno; esta cabe na tela do celular."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "A, B, C e E contradizem a tira ou inventam algo que ela não mostra. Só a D diz o que a pergunta do filho sugere.",
+    "motivo": "Texto mais curto e direto."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "'Inócua' é inútil, e a reflexão não é: a pergunta final do filho amplia a ideia de patrimônio público e deixa o pai sem resposta. Quem marcou A não viu a crítica no último quadro.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou A, sem afirmar o que o pai sente além do que a tira mostra."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "Os dois não discordam. O pai diz 'Claro que não, filho!' e o filho só amplia a lista de bens. Ninguém discute os efeitos da depreciação (perda de valor). Quem marcou E inventou um conflito.",
+    "motivo": "Explica o termo 'depreciação' e diz o que faltou no raciocínio."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "patrimônio público",
+      "conjunto de bens que pertencem a todos: prédios, equipamentos, áreas e serviços públicos"
+     ],
+     [
+      "depreender",
+      "concluir, tirar uma ideia que está implícita no texto"
+     ],
+     [
+      "inócua",
+      "que não produz efeito, inútil"
+     ],
+     [
+      "estatais",
+      "empresas que pertencem ao Estado"
+     ],
+     [
+      "depreciação",
+      "perda de valor ou de qualidade de um bem"
+     ],
+     [
+      "avariar",
+      "estragar, danificar"
+     ]
+    ],
+    "motivo": "Inclui 'depreciação' (alternativa E) e 'avariar' (fala da tira), palavras difíceis para o aluno."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

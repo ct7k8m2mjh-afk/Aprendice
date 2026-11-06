@@ -35,7 +35,7 @@
     ],
     [
      "RNA",
-     "molécula copiada do DNA para fabricar proteínas; dura pouco e é refeita o tempo todo"
+     "molécula copiada do DNA para fabricar proteínas; é degradada e refeita o tempo todo"
     ],
     [
      "tundra",
@@ -75,7 +75,7 @@
    },
    {
     "faz": "Compare A com E",
-    "conta": "A: somáticas ✗   E: germinativas na flor ✓",
+    "conta": "A: somáticas ✗ E: germinativas na flor ✓",
     "porque": "Em A, a mutação não seria transmitida. Em E, a planta em floração tem células germinativas (nas flores), e a mutação passa às sementes e às plantas de hoje.",
     "tipo": "concluir"
    }
@@ -84,7 +84,7 @@
   "checagem": "Teste cada alternativa com a pergunta: isso chegaria às ervas de hoje e deixaria o efeito no herói sem herança? Só a E responde às duas: a planta herda a mutação e o herói não a transmite, porque nele nada foi alterado nas germinativas.",
   "erradas": {
    "A": "Mutação em célula somática fica só no corpo da planta que a sofreu e não vai para os gametas. As ervas de hoje não a teriam herdado. Faltou perguntar qual célula leva a mutação aos descendentes.",
-   "B": "O RNA é desfeito e refeito a partir do DNA o tempo todo, então uma mutação nele não duraria a vida inteira do herói. Além disso, a pergunta é sobre o que aconteceu com a erva, não com o herói.",
+   "B": "A erva não promoveu mutação no RNA do herói. A solução da erva é só ingerida ou aplicada, e a mutação original foi na planta, causada pelo meteorito. Além disso, o RNA é degradado e refeito a partir do DNA, então uma alteração nele não explicaria efeitos que duram a vida inteira.",
    "C": "Mutação em célula germinativa do herói seria transmitida aos filhos. O enunciado diz o contrário: os efeitos 'não são transmitidos aos descendentes'. Essa alternativa contradiz o texto.",
    "D": "Wakanda fica na África equatorial, região quente. Tundra é um bioma frio de alta latitude. A alternativa não fala de mutação e contradiz a localização dada."
   },
@@ -120,12 +120,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -238,6 +240,51 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "célula somática",
+      "célula que forma o corpo (folha, raiz, pele); não gera gametas"
+     ],
+     [
+      "célula germinativa",
+      "célula que dá origem aos gametas. Na planta com flor, fica na flor e forma o pólen e o óvulo"
+     ],
+     [
+      "gameta",
+      "célula reprodutiva (pólen, óvulo) que leva os genes aos descendentes"
+     ],
+     [
+      "mutação",
+      "alteração no material genético (DNA) de uma célula"
+     ],
+     [
+      "RNA",
+      "molécula copiada do DNA para fabricar proteínas; é degradada e refeita o tempo todo"
+     ],
+     [
+      "tundra",
+      "região muito fria, perto dos polos, de vegetação baixa"
+     ],
+     [
+      "Vibranium",
+      "metal fictício do meteorito; o enunciado diz que ele causou as mutações"
+     ]
+    ],
+    "motivo": "Ajuste de precisão: o RNA mensageiro é degradado e renovado, e nem todo RNA dura pouco (o rRNA, por exemplo, é estável). A frase passou a falar de degradação e renovação, sem 'dura pouco'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "A erva não promoveu mutação no RNA do herói. A solução da erva é só ingerida ou aplicada, e a mutação original foi na planta, causada pelo meteorito. Além disso, o RNA é degradado e refeito a partir do DNA, então uma alteração nele não explicaria efeitos que duram a vida inteira.",
+    "motivo": "O motivo anterior era incompleto. A alternativa B afirma uma causa (a erva mutando o herói), e o texto não sustenta isso. Mantive o argumento do RNA como segundo motivo.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "E"
  }
 }

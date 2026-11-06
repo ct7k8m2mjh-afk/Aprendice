@@ -33,7 +33,7 @@
    {
     "faz": "Leia a célula 1",
     "conta": "Célula 1: muitas mitocôndrias, sem vesículas",
-    "porque": "O esquema mostra 1 núcleo e muitas mitocôndrias espalhadas pelo citoplasma, sem vesículas. Muitas mitocôndrias indicam gasto grande de energia.",
+    "porque": "O esquema mostra 1 núcleo e muitas mitocôndrias espalhadas pelo citoplasma, praticamente sem vesículas. Muitas mitocôndrias indicam gasto grande de energia.",
     "tipo": "localizar"
    },
    {
@@ -58,7 +58,7 @@
   "resposta": "Alternativa C: a célula 1, rica em mitocôndrias, lembra uma célula muscular esquelética; a célula 2, cheia de vesículas secretoras, lembra uma célula do pâncreas.",
   "checagem": "Troque a ordem: pâncreas na célula 1 e músculo na 2 não faz sentido. O músculo precisa de muitas mitocôndrias e o pâncreas, de muitas vesículas de secreção. Só a ordem da C respeita as duas funções.",
   "erradas": {
-   "A": "Sangue e fígado: as hemácias, células mais numerosas do sangue, não têm núcleo nem mitocôndrias, e a célula 1 tem os dois. Além disso, a célula do fígado não é típica de secreção em vesículas visíveis como a célula 2. Faltou ligar as organelas à função.",
+   "A": "Sangue e fígado: a célula 1 (muitas mitocôndrias, núcleo) não representa bem as células do sangue. A hemácia madura não tem núcleo nem mitocôndrias. E a célula 2, com muitas vesículas e poucas mitocôndrias, não combina com o hepatócito (célula do fígado), que é rico em mitocôndrias. Faltou ligar as organelas à função.",
    "B": "Osso e pâncreas: o pâncreas serve para a célula 2, mas o osteócito (célula do osso) tem pouca atividade e poucas mitocôndrias. Quem gasta muita energia é a célula muscular. Faltou conferir o primeiro tecido.",
    "D": "Músculo cardíaco e osso: a célula 1 combina com músculo cardíaco, mas a célula 2 não combina com osso. O osteócito não acumula vesículas de secreção. Faltou conferir o segundo tecido: a célula cheia de vesículas é a do pâncreas.",
    "E": "Pâncreas e fígado: inverte a lógica. A célula 1 não tem vesículas, marca da célula pancreática. Já a célula 2, com poucas mitocôndrias, não é típica do hepatócito (célula do fígado), que tem muitas. Faltou olhar as organelas de cada desenho."
@@ -93,12 +93,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -190,6 +192,22 @@
    "A alternativa E (hepatócito com poucas mitocôndrias) e a A (sangue, fígado) dependem de afirmações simplificadas sobre o fígado; o fígado tem retículo e vesículas e também secreta bile. O corretor 1 pode conferir se a justificativa é segura.",
    "O alerta já presente diz que a fibra muscular esquelética é multinucleada e a célula 1 mostra um só núcleo; vale manter, é fato do esquema simplificado."
   ],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "Sangue e fígado: a célula 1 (muitas mitocôndrias, núcleo) não representa bem as células do sangue. A hemácia madura não tem núcleo nem mitocôndrias. E a célula 2, com muitas vesículas e poucas mitocôndrias, não combina com o hepatócito (célula do fígado), que é rico em mitocôndrias. Faltou ligar as organelas à função.",
+    "motivo": "O argumento anterior sobre o fígado 'não ser típico de secreção' era discutível, pois o fígado secreta albumina e bile. Troquei pelo argumento das organelas, que é seguro.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[0].porque",
+    "depois": "O esquema mostra 1 núcleo e muitas mitocôndrias espalhadas pelo citoplasma, praticamente sem vesículas. Muitas mitocôndrias indicam gasto grande de energia.",
+    "motivo": "Evita afirmar ausência total de vesículas, para não contradizer o esquema.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "C"
  }
 }

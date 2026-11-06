@@ -8,13 +8,17 @@
  "conceito": "Progressão geométrica de razão √2/2 (lado dos quadrados da Árvore Pitagórica), resolvida com logaritmo.",
  "resolucao": {
   "antes": {
-   "texto": "Em cada etapa, o lado dos novos quadrados é o lado do quadrado anterior multiplicado por um número fixo. Isso é uma progressão geométrica (PG). O lado do quadrado da etapa 1 mede 1 cm. 'Um décimo de milésimo' é 1/10 000 = 10^−4. Para comparar potências de 2 com 10^−4, use logaritmo na base 10.",
+   "texto": "A cada etapa, o lado dos novos quadrados é o lado do quadrado anterior vezes um número fixo. Isso é uma progressão geométrica (PG). O lado da etapa 1 mede 1 cm. 'Um décimo de milésimo' é 1/10000, ou seja, 10^−4. Para comparar potências de 2 com 10^−4, use logaritmo na base 10.",
    "formulas": [
     "lado da etapa n = 1 × q^(n−1), com q = razão da PG",
     "log(2^k) = k × log 2",
     "log 2 = 0,3 (dado na prova)"
    ],
    "simbolos": [
+    [
+     "PG",
+     "progressão geométrica: sequência em que cada termo é o anterior multiplicado sempre pelo mesmo número"
+    ],
     [
      "q",
      "razão da PG: número pelo qual o lado é multiplicado a cada etapa"
@@ -25,15 +29,23 @@
     ],
     [
      "log",
-     "logaritmo na base 10; log(10^−4) = −4"
+     "logaritmo na base 10: o expoente que o 10 precisa ter. Por exemplo, log(10^−4) = −4"
     ],
     [
      "catetos",
      "lados que formam o ângulo reto do triângulo retângulo"
+    ],
+    [
+     "hipotenusa",
+     "lado oposto ao ângulo reto, o maior do triângulo retângulo"
+    ],
+    [
+     "√2",
+     "raiz quadrada de 2, cerca de 1,41"
     ]
    ]
   },
-  "pista": "Se a hipotenusa mede L num triângulo retângulo isósceles, quanto mede cada cateto? A etapa 1 já é o primeiro termo, então conte quantas multiplicações foram feitas até a etapa n.",
+  "pista": "Se a hipotenusa mede L, quanto mede cada cateto? A etapa 1 já é o primeiro termo: até a etapa n foram feitas n−1 multiplicações.",
   "passos": [
    {
     "faz": "Ache a razão entre os lados",
@@ -66,9 +78,15 @@
     "tipo": "calcular"
    },
    {
-    "faz": "Resolva e conclua",
-    "conta": "n−1 > 4/0,15 ≈ 26,67 → n ≥ 28",
-    "porque": "Multiplicando por −1 a desigualdade inverte, e 0,15 = 0,3/2. Como n−1 é inteiro, o menor valor é 27, logo n = 28. Alternativa C.",
+    "faz": "Resolva a inequação",
+    "conta": "n−1 > 4 ÷ 0,15 ≈ 26,67",
+    "porque": "Multiplicar por −1 inverte a desigualdade. Aqui 0,3 ÷ 2 = 0,15. Como n−1 é inteiro e maior que 26,67, o menor valor é 27, logo n = 28 (alternativa C).",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Ligue o resultado à alternativa",
+    "conta": "n = 28 → alternativa C",
+    "porque": "A pergunta pede a primeira etapa em que o lado fica menor que 10^−4. A etapa 27 ainda não serve, então a primeira é a 28.",
     "tipo": "concluir"
    }
   ],
@@ -100,54 +118,58 @@
  ],
  "quadro": [
   {
-   "linha": "cateto = L ÷ √2",
+   "linha": "cateto = \\frac{L}{\\sqrt{2}}",
    "nota": "Triângulo retângulo isósceles com hipotenusa L."
   },
   {
-   "linha": "q = 1/√2 = 2^(−1/2)",
+   "linha": "q = \\frac{1}{\\sqrt{2}} = 2^{-\\frac{1}{2}}",
    "nota": "Razão da PG, escrita como potência de 2."
   },
   {
-   "linha": "l_n = 2^(−(n−1)/2)",
-   "nota": "Etapa 1 tem lado 1; são n−1 multiplicações por q."
+   "linha": "l_n = 2^{-\\frac{n-1}{2}}",
+   "nota": "A etapa 1 tem lado 1; até a etapa n são n−1 multiplicações por q."
   },
   {
-   "linha": "2^(−(n−1)/2) < 10^(−4)",
+   "linha": "2^{-\\frac{n-1}{2}} < 10^{-4}",
    "nota": "Menor que 1 décimo de milésimo."
   },
   {
-   "linha": "−(n−1)/2 × 0,3 < −4",
-   "nota": "Aplicamos log nos dois lados; log 2 = 0,3."
+   "linha": "-\\frac{n-1}{2} \\times 0{,}3 < -4",
+   "nota": "Log nos dois lados; log 2 = 0,3."
   },
   {
-   "linha": "(n−1) × 0,15 > 4",
-   "nota": "Multiplicamos por −1, e a desigualdade inverte.",
+   "linha": "-(n-1) \\times 0{,}15 < -4",
+   "nota": "Trocamos 0,3 ÷ 2 por 0,15."
+  },
+  {
+   "linha": "(n-1) \\times 0{,}15 > 4",
+   "nota": "Multiplicamos por −1: os sinais somem e o sentido da desigualdade inverte.",
    "mov": [
     {
      "termo": "−",
      "de": "esquerda",
      "para": "direita",
      "vira": "−",
-     "como": "os dois sinais negativos se cancelam e o sinal da desigualdade inverte"
+     "como": "multiplicando os dois lados por −1, o sinal da desigualdade inverte"
     }
    ]
   },
   {
-   "linha": "n−1 > 4/0,15 ≈ 26,67",
+   "linha": "n-1 > \\frac{4}{0{,}15} \\approx 26{,}67",
    "nota": "O 0,15 passa dividindo.",
    "mov": [
     {
      "termo": "0,15",
      "de": "esquerda",
-     "para": "denominador",
-     "vira": "0,15",
+     "para": "direita",
+     "vira": "÷ 0,15",
      "como": "passa dividindo"
     }
    ]
   },
   {
-   "linha": "n−1 ≥ 27 → n ≥ 28",
-   "nota": "n−1 é inteiro, então o menor valor é 27."
+   "linha": "n-1 = 27",
+   "nota": "n−1 é inteiro; o menor inteiro maior que 26,67 é 27."
   },
   {
    "linha": "n = 28",
@@ -168,11 +190,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -189,6 +213,143 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "C"
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "A cada etapa, o lado dos novos quadrados é o lado do quadrado anterior vezes um número fixo. Isso é uma progressão geométrica (PG). O lado da etapa 1 mede 1 cm. 'Um décimo de milésimo' é 1/10000, ou seja, 10^−4. Para comparar potências de 2 com 10^−4, use logaritmo na base 10.",
+    "motivo": "Frases mais curtas e 'um décimo de milésimo' explicado em palavras."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "PG",
+      "progressão geométrica: sequência em que cada termo é o anterior multiplicado sempre pelo mesmo número"
+     ],
+     [
+      "q",
+      "razão da PG: número pelo qual o lado é multiplicado a cada etapa"
+     ],
+     [
+      "n",
+      "número da etapa"
+     ],
+     [
+      "log",
+      "logaritmo na base 10: o expoente que o 10 precisa ter. Por exemplo, log(10^−4) = −4"
+     ],
+     [
+      "catetos",
+      "lados que formam o ângulo reto do triângulo retângulo"
+     ],
+     [
+      "hipotenusa",
+      "lado oposto ao ângulo reto, o maior do triângulo retângulo"
+     ],
+     [
+      "√2",
+      "raiz quadrada de 2, cerca de 1,41"
+     ]
+    ],
+    "motivo": "Incluídos PG, hipotenusa e √2, que aparecem na resolução sem explicação."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "2^(−(n−1)/2) < 10^−4",
+    "motivo": "Padroniza a notação do expoente com o restante da resolução."
+   },
+   {
+    "campo": "resolucao.passos[5]",
+    "depois": {
+     "faz": "Resolva a inequação",
+     "conta": "n−1 > 4 ÷ 0,15 ≈ 26,67",
+     "porque": "Multiplicar por −1 inverte a desigualdade. Aqui 0,3 ÷ 2 = 0,15. Como n−1 é inteiro e maior que 26,67, o menor valor é 27, logo n = 28 (alternativa C).",
+     "tipo": "calcular"
+    },
+    "motivo": "Resolver e concluir estavam juntos em um passo só; separo o cálculo e deixo a ligação com a letra no passo seguinte. A forma 'n ≥ 28' foi trocada por texto claro."
+   },
+   {
+    "campo": "resolucao.passos[6]",
+    "depois": {
+     "faz": "Ligue o resultado à alternativa",
+     "conta": "n = 28 → alternativa C",
+     "porque": "A pergunta pede a primeira etapa em que o lado fica menor que 10^−4. A etapa 27 ainda não serve, então a primeira é a 28.",
+     "tipo": "concluir"
+    },
+    "motivo": "Passo final de conclusão, voltando ao que foi pedido."
+   },
+   {
+    "campo": "resolucao.quadro",
+    "depois": [
+     {
+      "linha": "cateto = \\frac{L}{\\sqrt{2}}",
+      "nota": "Triângulo retângulo isósceles com hipotenusa L."
+     },
+     {
+      "linha": "q = \\frac{1}{\\sqrt{2}} = 2^{-\\frac{1}{2}}",
+      "nota": "Razão da PG, escrita como potência de 2."
+     },
+     {
+      "linha": "l_n = 2^{-\\frac{n-1}{2}}",
+      "nota": "A etapa 1 tem lado 1; até a etapa n são n−1 multiplicações por q."
+     },
+     {
+      "linha": "2^{-\\frac{n-1}{2}} < 10^{-4}",
+      "nota": "Menor que 1 décimo de milésimo."
+     },
+     {
+      "linha": "-\\frac{n-1}{2} \\times 0{,}3 < -4",
+      "nota": "Log nos dois lados; log 2 = 0,3."
+     },
+     {
+      "linha": "-(n-1) \\times 0{,}15 < -4",
+      "nota": "Trocamos 0,3 ÷ 2 por 0,15."
+     },
+     {
+      "linha": "(n-1) \\times 0{,}15 > 4",
+      "nota": "Multiplicamos por −1: os sinais somem e o sentido da desigualdade inverte.",
+      "mov": [
+       {
+        "termo": "−",
+        "de": "esquerda",
+        "para": "direita",
+        "vira": "−",
+        "como": "multiplicando os dois lados por −1, o sinal da desigualdade inverte"
+       }
+      ]
+     },
+     {
+      "linha": "n-1 > \\frac{4}{0{,}15} \\approx 26{,}67",
+      "nota": "O 0,15 passa dividindo.",
+      "mov": [
+       {
+        "termo": "0,15",
+        "de": "esquerda",
+        "para": "direita",
+        "vira": "÷ 0,15",
+        "como": "passa dividindo"
+       }
+      ]
+     },
+     {
+      "linha": "n-1 = 27",
+      "nota": "n−1 é inteiro; o menor inteiro maior que 26,67 é 27."
+     },
+     {
+      "linha": "n = 28",
+      "nota": "Teste: −13,5 × 0,3 = −4,05 < −4."
+     }
+    ],
+    "motivo": "Frações em formato empilhado, uma passagem por linha e sem passagem pulada."
+   },
+   {
+    "campo": "resolucao.pista",
+    "depois": "Se a hipotenusa mede L, quanto mede cada cateto? A etapa 1 já é o primeiro termo: até a etapa n foram feitas n−1 multiplicações.",
+    "motivo": "Pista mais curta; sem entregar a conta."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

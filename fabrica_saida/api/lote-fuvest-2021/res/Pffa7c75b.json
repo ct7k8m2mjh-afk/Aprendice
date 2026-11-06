@@ -64,7 +64,7 @@
    {
     "faz": "Localize a família de cada um",
     "conta": "Li Na K Rb Cs Fr → família 1",
-    "porque": "Esses seis são metais alcalinos. O H também fica na coluna 1, mas é um não metal, um gás.",
+    "porque": "Esses seis são metais alcalinos. O H também fica na coluna 1 da tabela, mas é um não metal, um gás nas condições ambiente.",
     "tipo": "localizar"
    },
    {
@@ -89,10 +89,10 @@
   "resposta": "Alternativa A: o hidrogênio é o impostor, pois tende a fazer ligação covalente, enquanto os demais (metais alcalinos) tendem a fazer ligação iônica.",
   "checagem": "Seis dos sete símbolos (Li, Na, K, Rb, Cs, Fr) são metais e terminam em ns¹. O hidrogênio também termina em 1s¹, mas é gás e não metal. É o único dos sete que não é metal.",
   "erradas": {
-   "B": "Na não é o único obtido como metal: Li, K, Rb, Cs e Fr também são metais. Os alcalinos também não formam só óxidos: o sódio forma peróxido (Na₂O₂) e o potássio, superóxido (KO₂). Faltou conferir cada afirmação.",
+   "B": "Na não é o único obtido como metal: Li, K, Rb, Cs e Fr também são metais. Os alcalinos também não formam só óxidos: o sódio forma também peróxido (Na₂O₂) e o potássio forma superóxido (KO₂). Faltou conferir cada afirmação.",
    "C": "O raio cresce de cima para baixo na família, então abaixo do K (Rb, Cs, Fr) os átomos são maiores. O raio do K segue o padrão, não é atípico. Quem marcou C inverteu o sentido do crescimento.",
    "D": "O Cs é da família 1, como os demais, e forma Cs⁺, não +2. Cátion +2 é da família 2 (alcalino-terrosos). Quem marcou D errou a coluna do Cs e a carga do íon.",
-   "E": "O Fr tem o maior raio da família, não pequeno. Todos os alcalinos reagem com a água, com mais força de cima para baixo. Logo o Fr não é diferente. Faltou ver que a reação com a água é característica da família toda."
+   "E": "O Fr tem o maior raio da família, não pequeno. Todos os alcalinos reagem com a água, e a reatividade aumenta de cima para baixo. Logo o Fr não é diferente. Faltou ver que a reação com a água é característica da família toda."
   },
   "armadilha": "Escolher um metal alcalino que parece estranho e esquecer que o H, apesar de estar na coluna 1, não é metal e faz ligação covalente.",
   "alerta": "",
@@ -145,12 +145,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -277,6 +279,28 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "Na não é o único obtido como metal: Li, K, Rb, Cs e Fr também são metais. Os alcalinos também não formam só óxidos: o sódio forma também peróxido (Na₂O₂) e o potássio forma superóxido (KO₂). Faltou conferir cada afirmação.",
+    "motivo": "Ajuste mínimo de precisão. O sódio forma óxido (Na₂O) e também peróxido, e a redação anterior podia sugerir que ele não forma óxido.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "O Fr tem o maior raio da família, não pequeno. Todos os alcalinos reagem com a água, e a reatividade aumenta de cima para baixo. Logo o Fr não é diferente. Faltou ver que a reação com a água é característica da família toda.",
+    "motivo": "Redação mais precisa. O Fr é extremamente raro e radioativo, mas o argumento da alternativa (raio pequeno) é falso. A reatividade crescente na família é um fato conhecido.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "Esses seis são metais alcalinos. O H também fica na coluna 1 da tabela, mas é um não metal, um gás nas condições ambiente.",
+    "motivo": "Precisão: o H fica na coluna 1 por ter configuração 1s¹, mas não é um metal alcalino. Ajuste mínimo.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "A"
  }
 }

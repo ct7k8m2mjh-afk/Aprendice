@@ -56,7 +56,7 @@
    {
     "faz": "Teste a alternativa dos Camisas Negras",
     "conta": "Camisas Negras = Mussolini",
-    "porque": "Era a milícia do partido fascista italiano. Usou espancamentos, intimidação e assassinatos contra socialistas, comunistas e outros opositores. O caso mais famoso é o do deputado Matteotti, morto em 1924.",
+    "porque": "Era a milícia do partido fascista italiano (Milícia Voluntária para a Segurança Nacional). Usou espancamentos, intimidação e assassinatos contra socialistas, comunistas e outros opositores. O caso mais famoso é o do deputado socialista Matteotti, sequestrado e morto em 1924.",
     "tipo": "comparar"
    },
    {
@@ -68,7 +68,7 @@
    {
     "faz": "Confira Falange e salazarismo",
     "conta": "Falange: pró-Franco; Portugal: Legião",
-    "porque": "A Falange lutou ao lado de Franco e atacou republicanos e esquerdistas, não monarquistas. Portugal tinha a Legião Portuguesa. As colônias na Ásia pertenciam a Portugal, então não havia 'resistência contra interesses portugueses' organizada por Salazar.",
+    "porque": "A Falange lutou ao lado de Franco e atacou republicanos e esquerdistas, não monarquistas. Portugal tinha a Legião Portuguesa, milícia do Estado Novo. As colônias portuguesas na Ásia (Goa, Macau, Timor) eram de Portugal. Por isso, não havia milícia salazarista para 'resistir a interesses portugueses' nelas.",
     "tipo": "eliminar"
    },
    {
@@ -82,8 +82,8 @@
   "checagem": "Releia B e pergunte: esse grupo poderia ser alemão, espanhol ou português? Não: usar violência e assassinatos contra opositores de Mussolini só descreve a Itália fascista. As outras alternativas trocam a função ou o país.",
   "erradas": {
    "A": "A SS começou como guarda pessoal de Hitler e depois virou polícia política e do terror, ligada à repressão e aos campos. Organizar as manifestações de massa era trabalho do aparato de propaganda do partido. A função está trocada.",
-   "C": "A SA foi a milícia de rua do partido nazista, famosa por brigas, intimidação e proteção de comícios nos anos 20 e 30. Ela perdeu o poder após a Noite das Facas Longas (1934), bem antes da ocupação de territórios na guerra. Controlar os territórios ocupados coube à SS e à Wehrmacht.",
-   "D": "A Falange foi um partido fascista que apoiou Franco e usou a violência contra republicanos e esquerdistas na Guerra Civil. Atentados contra monarquistas e judeus não a definem; os monarquistas inclusive chegaram a ser aliados do franquismo.",
+   "C": "A SA foi a milícia de rua do partido nazista, famosa por brigas, intimidação e proteção de comícios nos anos 20 e 30. Perdeu o poder após a Noite das Facas Longas (1934), bem antes da ocupação de territórios na guerra. A segurança dos territórios ocupados coube à SS, à polícia e à Wehrmacht.",
+   "D": "A Falange foi um partido fascista que apoiou Franco e usou a violência contra republicanos e esquerdistas na Guerra Civil. Atentados contra monarquistas e judeus não a definem. Os monarquistas, aliás, apoiaram o franquismo.",
    "E": "Não existiram 'milícias salazaristas' contra interesses portugueses na Ásia. O regime de Salazar tinha a Legião Portuguesa, e a frase é contraditória: defender Portugal seria o interesse do próprio regime, não resistir a ele."
   },
   "armadilha": "SS e SA são nomes muito parecidos e suas funções se confundem; quem não lembra a diferença cai em A ou C.",
@@ -120,12 +120,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -192,6 +194,34 @@
   "didatica_alertas": [
    "A afirmação 'a SS depois comandou campos e polícia política' é correta; mas conferir se 'Falange... violência contra republicanos' não deveria citar também que Falange foi absorvida por Franco em 1937 (não altera a resposta)."
   ],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "Era a milícia do partido fascista italiano (Milícia Voluntária para a Segurança Nacional). Usou espancamentos, intimidação e assassinatos contra socialistas, comunistas e outros opositores. O caso mais famoso é o do deputado socialista Matteotti, sequestrado e morto em 1924.",
+    "motivo": "Matteotti era deputado socialista e foi assassinado por fascistas em 1924. A frase original estava correta, mas ficava vaga sobre quem ele era. Acrescentei o partido para evitar ambiguidade.",
+    "fonte": "https://www.britannica.com/biography/Giacomo-Matteotti"
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "A Falange lutou ao lado de Franco e atacou republicanos e esquerdistas, não monarquistas. Portugal tinha a Legião Portuguesa, milícia do Estado Novo. As colônias portuguesas na Ásia (Goa, Macau, Timor) eram de Portugal. Por isso, não havia milícia salazarista para 'resistir a interesses portugueses' nelas.",
+    "motivo": "A frase original era imprecisa. As colônias eram portuguesas, e a Legião Portuguesa atuava para defender o regime, não para resistir a interesses portugueses.",
+    "fonte": "https://www.britannica.com/topic/Portuguese-Legion"
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "A SA foi a milícia de rua do partido nazista, famosa por brigas, intimidação e proteção de comícios nos anos 20 e 30. Perdeu o poder após a Noite das Facas Longas (1934), bem antes da ocupação de territórios na guerra. A segurança dos territórios ocupados coube à SS, à polícia e à Wehrmacht.",
+    "motivo": "Ajuste menor de redação: 'segurança' em vez de 'controlar' deixa o texto mais fiel à alternativa C. O conteúdo factual estava correto.",
+    "fonte": "https://www.britannica.com/topic/Sturmabteilung"
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "A Falange foi um partido fascista que apoiou Franco e usou a violência contra republicanos e esquerdistas na Guerra Civil. Atentados contra monarquistas e judeus não a definem. Os monarquistas, aliás, apoiaram o franquismo.",
+    "motivo": "Troquei 'chegaram a ser aliados' por 'apoiaram', que é mais preciso. Carlistas e alfonsinos apoiaram a revolta de 1936.",
+    "fonte": "https://www.britannica.com/topic/Falange"
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "B"
  }
 }

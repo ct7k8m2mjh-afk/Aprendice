@@ -8,7 +8,7 @@
  "conceito": "Efeitos genéticos da fragmentação de habitat: populações pequenas e isoladas perdem variabilidade e ficam endogâmicas, o que expõe alelos recessivos deletérios.",
  "resolucao": {
   "antes": {
-   "texto": "Quando uma população grande é dividida por uma barreira, cada pedaço fica menor e isolado. Em populações pequenas, os cruzamentos entre indivíduos aparentados (endogamia) ficam mais frequentes. A deriva genética (variação ao acaso na frequência dos alelos) tem efeito forte e a variabilidade genética cai. Alelos recessivos prejudiciais, antes raros em heterozigose, passam a se encontrar em homozigose com mais frequência.",
+   "texto": "Quando uma barreira divide uma população grande, cada pedaço fica pequeno e isolado. Em grupo pequeno, os cruzamentos entre parentes (endogamia) ficam mais comuns. Além disso, a deriva genética (mudança ao acaso na frequência dos alelos) pesa mais, e a variabilidade genética cai. Alelos recessivos prejudiciais, que antes ficavam escondidos em heterozigotos (Aa), passam a se juntar em homozigose (aa) com mais frequência.",
    "formulas": [
     "população menor → deriva genética maior → variabilidade menor",
     "mais endogamia → mais homozigotos (aa) → mais doenças recessivas"
@@ -29,10 +29,26 @@
     [
      "fluxo gênico",
      "troca de alelos entre populações por migração e cruzamento"
+    ],
+    [
+     "heterozigoto (Aa)",
+     "indivíduo com dois alelos diferentes do mesmo gene; o recessivo fica escondido"
+    ],
+    [
+     "homozigoto recessivo (aa)",
+     "indivíduo com os dois alelos recessivos; manifesta a doença"
+    ],
+    [
+     "alelo",
+     "cada versão de um gene"
+    ],
+    [
+     "deletério",
+     "que prejudica a saúde ou a sobrevivência"
     ]
    ]
   },
-  "pista": "Se a população fica pequena e isolada, com quem cada indivíduo vai se cruzar? E o que acontece com a diversidade de alelos disponíveis?",
+  "pista": "Com a população pequena e isolada, quem sobra para cada indivíduo cruzar? E o que acontece com a diversidade de alelos disponíveis?",
   "passos": [
    {
     "faz": "Leia o que a figura mostra",
@@ -48,14 +64,14 @@
    },
    {
     "faz": "Ligue a endogamia aos alelos recessivos",
-    "conta": "Aa × Aa → 1/4 aa",
-    "porque": "Parentes têm mais chance de carregar o mesmo alelo recessivo raro, herdado de um ancestral comum. Ao se cruzarem, aumenta a chance de filhos aa, que manifestam a doença.",
+    "conta": "Aa × Aa → 1/4 aa (doente)",
+    "porque": "Parentes têm mais chance de carregar o mesmo alelo recessivo raro, herdado de um ancestral comum. Quando se cruzam, cresce a chance de filhos aa, que manifestam a doença.",
     "tipo": "calcular"
    },
    {
     "faz": "Teste as demais alternativas",
-    "conta": "variabilidade ↓; mutação igual; sem fluxo",
-    "porque": "A variabilidade diminui, a taxa de mutação não depende do tamanho do grupo, e a barreira impede a mistura entre os grupos.",
+    "conta": "A: variabilidade cai\nC: mutação não depende do tamanho\nE: barreira impede a mistura",
+    "porque": "A variabilidade diminui, a taxa de mutação não depende do tamanho do grupo e a barreira impede a mistura entre os grupos. A D também cai: seleção natural não escolhe característica por ser dominante.",
     "tipo": "eliminar"
    },
    {
@@ -73,12 +89,12 @@
    "D": "A seleção natural não favorece uma característica só por ser dominante. Ela favorece quem tem maior sobrevivência e reprodução, seja dominante ou recessivo. A figura também não mostra seleção por dominância.",
    "E": "A barreira separa os grupos e impede o cruzamento entre eles. Ocorre o contrário: o fluxo gênico diminui e a mistura entre as populações é dificultada."
   },
-  "armadilha": "Achar que a seleção natural elimina os recessivos por serem recessivos; na verdade, a endogamia é que faz os recessivos raros aparecerem.",
+  "armadilha": "Achar que a seleção natural cria ou elimina recessivos só por serem recessivos. O que faz os recessivos raros aparecerem é a endogamia.",
   "alerta": "",
   "essencial": {
    "pede": "A consequência genética da fragmentação do habitat e da redução das populações.",
    "chave": "População pequena e isolada → endogamia e deriva → menos variabilidade e mais homozigose de alelos recessivos.",
-   "cuidado": "Não confundir recessivo com raro-por-seleção: recessivos deletérios ficam escondidos em heterozigotos e aparecem quando há endogamia."
+   "cuidado": "Recessivos prejudiciais ficam escondidos nos heterozigotos. A endogamia os junta em aa; a seleção natural não os faz aparecer."
   }
  },
  "caminhos": [
@@ -106,11 +122,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -151,6 +169,88 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "B"
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Quando uma barreira divide uma população grande, cada pedaço fica pequeno e isolado. Em grupo pequeno, os cruzamentos entre parentes (endogamia) ficam mais comuns. Além disso, a deriva genética (mudança ao acaso na frequência dos alelos) pesa mais, e a variabilidade genética cai. Alelos recessivos prejudiciais, que antes ficavam escondidos em heterozigotos (Aa), passam a se juntar em homozigose (aa) com mais frequência.",
+    "motivo": "Frases mais curtas e explicação de heterozigoto e homozigose, termos usados nos passos."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "endogamia",
+      "cruzamento entre indivíduos aparentados"
+     ],
+     [
+      "deriva genética",
+      "mudança ao acaso na frequência dos alelos, mais forte em populações pequenas"
+     ],
+     [
+      "variabilidade genética",
+      "diversidade de alelos e genótipos presentes numa população"
+     ],
+     [
+      "fluxo gênico",
+      "troca de alelos entre populações por migração e cruzamento"
+     ],
+     [
+      "heterozigoto (Aa)",
+      "indivíduo com dois alelos diferentes do mesmo gene; o recessivo fica escondido"
+     ],
+     [
+      "homozigoto recessivo (aa)",
+      "indivíduo com os dois alelos recessivos; manifesta a doença"
+     ],
+     [
+      "alelo",
+      "cada versão de um gene"
+     ],
+     [
+      "deletério",
+      "que prejudica a saúde ou a sobrevivência"
+     ]
+    ],
+    "motivo": "Termos usados na resolução e ainda não explicados."
+   },
+   {
+    "campo": "resolucao.pista",
+    "depois": "Com a população pequena e isolada, quem sobra para cada indivíduo cruzar? E o que acontece com a diversidade de alelos disponíveis?",
+    "motivo": "Mantém a pista sem entregar a resposta, com linguagem mais direta."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "Aa × Aa → 1/4 aa (doente)",
+    "motivo": "Deixa claro que aa é o afetado."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Parentes têm mais chance de carregar o mesmo alelo recessivo raro, herdado de um ancestral comum. Quando se cruzam, cresce a chance de filhos aa, que manifestam a doença.",
+    "motivo": "Frase mais clara."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "A: variabilidade cai\nC: mutação não depende do tamanho\nE: barreira impede a mistura",
+    "motivo": "Cada item em sua linha, para caber na tela. D é tratada no campo 'erradas'."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "A variabilidade diminui, a taxa de mutação não depende do tamanho do grupo e a barreira impede a mistura entre os grupos. A D também cai: seleção natural não escolhe característica por ser dominante.",
+    "motivo": "Inclui a D, que ficava fora do passo."
+   },
+   {
+    "campo": "resolucao.essencial.cuidado",
+    "depois": "Recessivos prejudiciais ficam escondidos nos heterozigotos. A endogamia os junta em aa; a seleção natural não os faz aparecer.",
+    "motivo": "Frase original ambígua ('raro-por-seleção')."
+   },
+   {
+    "campo": "resolucao.armadilha",
+    "depois": "Achar que a seleção natural cria ou elimina recessivos só por serem recessivos. O que faz os recessivos raros aparecerem é a endogamia.",
+    "motivo": "Mais clara e fiel à ideia."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

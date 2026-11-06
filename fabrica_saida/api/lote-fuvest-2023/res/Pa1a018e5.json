@@ -49,8 +49,8 @@
    },
    {
     "faz": "Some as 24 parcelas",
-    "conta": "S = (120 + 258) × 24 ÷ 2 = 4536",
-    "porque": "É o total que Joana pagaria se tivesse pago todas as parcelas: 378 × 12 = 4536.",
+    "conta": "S = (120 + 258) × 24 ÷ 2",
+    "porque": "Esse é o total se Joana pagasse todas as parcelas: 378 × 12 = 4536. A fórmula soma o primeiro com o último e multiplica pela metade do número de termos.",
     "tipo": "calcular"
    },
    {
@@ -69,10 +69,10 @@
   "resposta": "Alternativa D: o total das 24 parcelas é R$ 4.536,00; tirando a 19ª (R$ 228,00), Joana pagou R$ 4.308,00.",
   "checagem": "Por outro caminho: as 23 parcelas pagas são as 18 primeiras mais as 5 últimas. As 18 primeiras somam (120 + 222) × 18 ÷ 2 = 3078. As 5 últimas (234, 240, 246, 252, 258) somam 1230. Então 3078 + 1230 = 4308.",
   "erradas": {
-   "A": "R$ 3.954,00 não confere. Para chegar a esse valor, a parcela retirada de 4536 seria 4536 − 3954 = 582. Mas 582 não está na PA: a maior parcela é 258.",
-   "B": "R$ 4.026,00 não confere. A parcela retirada de 4536 seria 510, valor que também não existe na PA: 510 − 120 = 390 dá 65 saltos de 6, e a PA só tem 23 saltos.",
-   "C": "R$ 4.200,00 não confere. A parcela retirada seria 4536 − 4200 = 336, que exigiria (336 − 120) ÷ 6 = 36 saltos; a PA só tem 23. Esse valor está depois da 24ª parcela.",
-   "E": "R$ 4.382,00 não confere. A parcela retirada seria 4536 − 4382 = 154. Como (154 − 120) ÷ 6 não é inteiro, 154 não é parcela da PA. Além disso, a 19ª vale 228."
+   "A": "R$ 3.954,00 não confere. Tirando de 4536 dá 582, e nenhuma parcela vale isso: a maior é a 24ª, de R$ 258,00. Quem marcou subtraiu um valor que não é parcela.",
+   "B": "R$ 4.026,00 não confere. Tirando de 4536 dá 510, e nenhuma parcela vale isso: a maior é R$ 258,00. Quem marcou esqueceu de conferir se o valor tirado é uma parcela da PA.",
+   "C": "R$ 4.200,00 não confere. Tirando de 4536 dá 336, valor maior que a última parcela (R$ 258,00). Quem marcou não percebeu que o valor tirado precisa estar entre 120 e 258.",
+   "E": "R$ 4.382,00 não confere. Tirando de 4536 dá 154, que não é parcela: as parcelas são 120, 126, 132... e 154 fica entre 150 e 156. Quem marcou não calculou a 19ª parcela, que vale 228."
   },
   "armadilha": "Parar na soma das 24 parcelas (4536) sem subtrair a 19ª, ou contar 19 saltos em vez de 18 ao calcular a 19ª parcela.",
   "alerta": "",
@@ -145,14 +145,50 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [],
   "fatos_ok": true,
-  "fatos_resposta": "D"
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "R$ 3.954,00 não confere. Tirando de 4536 dá 582, e nenhuma parcela vale isso: a maior é a 24ª, de R$ 258,00. Quem marcou subtraiu um valor que não é parcela.",
+    "motivo": "Dizer o que faltou no raciocínio de quem marcou A."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "R$ 4.026,00 não confere. Tirando de 4536 dá 510, e nenhuma parcela vale isso: a maior é R$ 258,00. Quem marcou esqueceu de conferir se o valor tirado é uma parcela da PA.",
+    "motivo": "Texto mais simples (sem a conta de 65 saltos) e com o que faltou no raciocínio."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "R$ 4.200,00 não confere. Tirando de 4536 dá 336, valor maior que a última parcela (R$ 258,00). Quem marcou não percebeu que o valor tirado precisa estar entre 120 e 258.",
+    "motivo": "Simplificar e mostrar o teste objetivo."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "R$ 4.382,00 não confere. Tirando de 4536 dá 154, que não é parcela: as parcelas são 120, 126, 132... e 154 fica entre 150 e 156. Quem marcou não calculou a 19ª parcela, que vale 228.",
+    "motivo": "Teste mais claro e o que faltou no raciocínio."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "S = (120 + 258) × 24 ÷ 2",
+    "motivo": "Cabe melhor na tela; o resultado vai para o porque."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Esse é o total se Joana pagasse todas as parcelas: 378 × 12 = 4536. A fórmula soma o primeiro com o último e multiplica pela metade do número de termos.",
+    "motivo": "Incluir o resultado, que saiu da conta, e explicar a fórmula."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

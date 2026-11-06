@@ -10,7 +10,7 @@
  "divergencia": "",
  "resolucao": {
   "antes": {
-   "texto": "Cada pingo marca a posição do carro em instantes igualmente espaçados, como fotos tiradas a intervalos iguais. Se a distância entre pingos seguidos é grande, o carro andou muito naquele intervalo e estava rápido. Se é pequena, estava devagar. No gráfico posição × tempo, a velocidade é a inclinação da curva: curva mais inclinada é carro mais rápido.",
+   "texto": "Cada pingo marca onde o carro estava em instantes igualmente espaçados, como fotos tiradas a intervalos iguais. Pingos muito afastados indicam que o carro andou muito naquele intervalo, ou seja, estava rápido. Pingos próximos indicam que ele estava devagar. No gráfico posição × tempo, a velocidade é a inclinação da curva: curva mais inclinada é carro mais rápido.",
    "formulas": [
     "velocidade média = distância percorrida ÷ intervalo de tempo",
     "em posição × tempo: inclinação da curva = velocidade"
@@ -34,26 +34,26 @@
   "passos": [
    {
     "faz": "Descubra o sentido do movimento",
-    "conta": "rua: esquerda → direita",
+    "conta": "esquerda → direita = sentido +",
     "porque": "O enunciado diz que o carro anda da esquerda para a direita, e esse é o sentido positivo. A posição aumenta com o tempo, então a curva é crescente.",
     "tipo": "localizar"
    },
    {
     "faz": "Compare as distâncias entre pingos",
-    "conta": "esquerda: pingos bem separados",
+    "conta": "pingos: longe → perto → quase juntos",
     "porque": "Na figura I, os pingos começam bem afastados. Para a direita ficam cada vez mais próximos, até quase se encostarem nos dois últimos.",
     "tipo": "localizar"
    },
    {
     "faz": "Traduza em velocidade",
-    "conta": "mesmo Δt, menor distância",
+    "conta": "mesmo tempo, menos distância",
     "porque": "No mesmo intervalo de tempo, o carro anda cada vez menos. Sua velocidade diminui: ele está freando, e sempre para a direita.",
     "tipo": "comparar"
    },
    {
     "faz": "Monte o gráfico esperado",
-    "conta": "sobe, mas cada vez mais plana",
-    "porque": "A posição só aumenta, então a curva sobe. A velocidade cai, então a inclinação diminui até quase zero. A curva fica côncava para baixo e tende a um patamar.",
+    "conta": "sobe e vai achatando",
+    "porque": "A posição só aumenta, então a curva sobe. A velocidade cai, então a inclinação diminui até quase zero. A curva sobe cada vez mais devagar e tende a ficar horizontal.",
     "tipo": "comparar"
    },
    {
@@ -64,12 +64,12 @@
    }
   ],
   "resposta": "Alternativa A: a curva a sobe (o carro vai para a direita) e vai ficando mais plana (a velocidade diminui), como os pingos cada vez mais próximos indicam.",
-  "checagem": "Imagine os pingos em ordem: o último quase encosta no penúltimo. Isso quer dizer velocidade quase nula no fim, ou seja, curva quase horizontal no fim e ainda subindo. Só a curva a faz isso.",
+  "checagem": "Olhe os dois últimos pingos: quase se encostam. Isso significa velocidade quase nula no fim. Então a curva deve estar quase horizontal no fim e ainda subindo. Só a curva a faz isso.",
   "erradas": {
-   "B": "A curva b é uma reta crescente: inclinação constante, ou seja, velocidade constante para a direita. Nesse caso os pingos teriam espaçamento igual, mas na figura I eles se aproximam.",
-   "C": "A curva c é horizontal: a posição não muda, o carro está parado. Um carro parado não espalharia pingos em posições diferentes ao longo da rua.",
-   "D": "A curva d é uma reta decrescente: a posição diminui com o tempo, com velocidade constante para a esquerda. O carro anda para a direita, e o espaçamento não é uniforme.",
-   "E": "A curva e também desce, então o carro iria para a esquerda. Ela tem a forma certa de freada (inclinação diminuindo), mas o sentido é oposto ao da rua, que é da esquerda para a direita."
+   "B": "A curva b é uma reta que sobe: o carro vai para a direita com velocidade constante. Então os pingos teriam sempre o mesmo espaçamento. Na figura I eles se aproximam, logo a velocidade diminui.",
+   "C": "A curva c é horizontal: a posição não muda, o carro está parado. Um carro parado deixaria os pingos todos no mesmo ponto, e na figura I eles estão em lugares diferentes.",
+   "D": "A curva d é uma reta que desce: o carro iria para a esquerda com velocidade constante. Mas ele vai para a direita, e os pingos não têm espaçamento igual. Erra o sentido e a velocidade.",
+   "E": "A curva e desce, então o carro iria para a esquerda. Ela mostra bem uma freada (a inclinação diminui), mas o sentido está trocado. Quem marcou e viu a freada e esqueceu de conferir o sentido."
   },
   "armadilha": "Reconhecer a freada mas escolher a curva e, que também achata, esquecendo que a posição deve crescer porque o carro anda para a direita.",
   "alerta": "",
@@ -102,11 +102,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -123,6 +125,67 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "A"
+  "fatos_resposta": "A",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Cada pingo marca onde o carro estava em instantes igualmente espaçados, como fotos tiradas a intervalos iguais. Pingos muito afastados indicam que o carro andou muito naquele intervalo, ou seja, estava rápido. Pingos próximos indicam que ele estava devagar. No gráfico posição × tempo, a velocidade é a inclinação da curva: curva mais inclinada é carro mais rápido.",
+    "motivo": "Texto mais direto e sem ambiguidade; frases curtas."
+   },
+   {
+    "campo": "resolucao.passos[0].conta",
+    "depois": "esquerda → direita = sentido +",
+    "motivo": "Deixa claro que esse sentido é o positivo."
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "pingos: longe → perto → quase juntos",
+    "motivo": "A conta anterior só descrevia o começo; agora descreve o padrão inteiro."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "mesmo tempo, menos distância",
+    "motivo": "Texto claro e dentro do limite de largura da tela."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "sobe e vai achatando",
+    "motivo": "Texto simples e na ordem em que o aluno pensa."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "A posição só aumenta, então a curva sobe. A velocidade cai, então a inclinação diminui até quase zero. A curva sobe cada vez mais devagar e tende a ficar horizontal.",
+    "motivo": "Troca 'côncava para baixo' e 'patamar', que são jargão, por descrição simples."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "A curva b é uma reta que sobe: o carro vai para a direita com velocidade constante. Então os pingos teriam sempre o mesmo espaçamento. Na figura I eles se aproximam, logo a velocidade diminui.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou b: perceber que a velocidade muda."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "A curva c é horizontal: a posição não muda, o carro está parado. Um carro parado deixaria os pingos todos no mesmo ponto, e na figura I eles estão em lugares diferentes.",
+    "motivo": "Corrige a frase, que podia ser lida de outro modo, e liga ao que se vê na figura."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "A curva d é uma reta que desce: o carro iria para a esquerda com velocidade constante. Mas ele vai para a direita, e os pingos não têm espaçamento igual. Erra o sentido e a velocidade.",
+    "motivo": "Mostra os dois erros de raciocínio de quem marcou d."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "A curva e desce, então o carro iria para a esquerda. Ela mostra bem uma freada (a inclinação diminui), mas o sentido está trocado. Quem marcou e viu a freada e esqueceu de conferir o sentido.",
+    "motivo": "Explica o que faltou a quem marcou e."
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Olhe os dois últimos pingos: quase se encostam. Isso significa velocidade quase nula no fim. Então a curva deve estar quase horizontal no fim e ainda subindo. Só a curva a faz isso.",
+    "motivo": "Frases mais curtas e claras."
+   }
+  ],
+  "didatica_alertas": [
+   "O campo tema aparece como F01 e conteúdo como null, enquanto a classificação atual do cabeçalho é F02/F02.3. A questão é de cinemática (gráfico posição × tempo), então F01 parece mais adequado: conferir a taxonomia."
+  ],
+  "didatica_ok": true
  }
 }

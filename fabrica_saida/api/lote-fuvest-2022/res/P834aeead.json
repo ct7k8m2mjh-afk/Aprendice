@@ -81,11 +81,10 @@
   "resposta": "Alternativa E: os aplicativos têm uma estrutura de marketing que permite ampliar a marca e o círculo de clientes dos restaurantes.",
   "checagem": "Veja o que vem depois de 'However' e de 'But': só queixas (qualidade, listas sem permissão, taxas). A vantagem fica antes do 'However' e volta no último parágrafo, em 'potential customers'.",
   "erradas": {
-   "A": "O texto diz o contrário: as taxas ('the fees') matam as margens e são 'unsustainable' (insustentáveis). Taxas são queixa, não vantagem.",
-   "B": "Troca o sujeito. Quem reclama da falta de controle de qualidade ('lack of quality control') são os donos dos restaurantes, não os aplicativos. Além disso, é queixa, não vantagem.",
+   "A": "O texto diz o contrário: as taxas ('the fees') matam as margens, e os custos ('the costs') estão ficando 'unsustainable' (insustentáveis). Taxas são queixa, não vantagem.",
+   "B": "Troca o sujeito. Quem reclama da falta de controle de qualidade ('lack of quality control') são os donos dos restaurantes, e a queixa é contra os aplicativos. Os aplicativos não demonstram essa preocupação. Além disso, é queixa, não vantagem.",
    "C": "Não confere: o texto não fala de imprensa nem de avaliação de restaurantes. Procure no texto 'press' ou 'review': não aparecem. 'Brand' é marca, não crítica.",
-   "D": "Contradiz o texto: alguns serviços listam restaurantes sem permissão e publicam itens e preços 'incorrect or out of date' (incorretos ou desatualizados). É queixa, não vantagem.",
-   "E": "Correta: 'marketing might' vira 'estrutura de marketing', e 'expand ... brand' com 'potential customers' vira 'expansão do círculo de clientes'."
+   "D": "Contradiz o texto: alguns serviços listam restaurantes sem permissão e publicam itens e preços 'incorrect or out of date' (incorretos ou desatualizados). É queixa, não vantagem."
   },
   "armadilha": "Marcar um item que aparece no texto como queixa dos donos (taxas, qualidade, listas erradas) em vez da vantagem anunciada antes do 'However'.",
   "alerta": "",
@@ -117,12 +116,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -193,6 +194,35 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "Troca o sujeito. Quem reclama da falta de controle de qualidade ('lack of quality control') são os donos dos restaurantes, e a queixa é contra os aplicativos. Os aplicativos não demonstram essa preocupação. Além disso, é queixa, não vantagem.",
+    "motivo": "A redação anterior ('não os aplicativos') ficava ambígua. O texto diz que os donos reclamam da falta de controle de qualidade dos aplicativos, e a alternativa B atribui a preocupação aos aplicativos.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "O texto diz o contrário: as taxas ('the fees') matam as margens, e os custos ('the costs') estão ficando 'unsustainable' (insustentáveis). Taxas são queixa, não vantagem.",
+    "motivo": "'Unsustainable' qualifica 'the costs', não 'the fees'. A frase anterior atribuía o adjetivo às taxas, o que simplifica demais o texto.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "Não confere: o texto não fala de imprensa nem de avaliação de restaurantes. Procure no texto 'press' ou 'review': não aparecem. 'Brand' é marca, não crítica.",
+    "motivo": "Nenhuma correção de fato. O teste de busca confere com o texto, em que não aparecem 'press' nem 'review'.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "E",
+  "normalizacao": [
+   {
+    "campo": "resolucao.erradas.E",
+    "removido": "Correta: 'marketing might' vira 'estrutura de marketing', e 'expand ... brand' com 'potential customers' vira 'expansão do círculo de clientes'.",
+    "motivo": "comentário da letra certa"
+   }
+  ]
  }
 }

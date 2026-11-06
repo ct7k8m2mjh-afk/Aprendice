@@ -8,7 +8,7 @@
  "conceito": "Distância entre dois pontos no plano cartesiano e estimativa de raízes quadradas sem calculadora.",
  "resolucao": {
   "antes": {
-   "texto": "A pessoa vai de O a B e de B a C. O caminho direto vai de O a C. O que ela deixa de andar é a diferença: d = OB + BC − OC. Cada distância sai do teorema de Pitágoras aplicado às coordenadas. Como não há calculadora, basta saber entre quais números inteiros cada raiz fica.",
+   "texto": "A pessoa vai de O a B e de B a C. O caminho direto vai de O a C. O que ela deixa de andar é a diferença: d = OB + BC − OC. Cada distância sai do teorema de Pitágoras aplicado às coordenadas: a diferença entre os x e a diferença entre os y são os catetos. Sem calculadora, basta saber entre quais números decimais cada raiz fica.",
    "formulas": [
     "distância entre (x1, y1) e (x2, y2) = √[(x2 − x1)² + (y2 − y1)²]",
     "d = OB + BC − OC"
@@ -56,14 +56,14 @@
    },
    {
     "faz": "Limite cada raiz entre dois números",
-    "conta": "19,8 < √394 < 19,9 ; 17,4 < √305 < 17,5 ; 30 < √905 < 30,1",
-    "porque": "Testando quadrados: 19,8² = 392,04 e 19,9² = 396,01; 17,4² = 302,76 e 17,5² = 306,25; 30² = 900 e 30,1² = 906,01.",
+    "conta": "19,8² = 392,04 ; 19,9² = 396,01",
+    "porque": "394 fica entre 392,04 e 396,01, então 19,8 < √394 < 19,9. Do mesmo modo, 302,76 < 305 < 306,25 dá 17,4 < √305 < 17,5. E 900 < 905 < 906,01 dá 30 < √905 < 30,1. Cada raiz fica presa entre dois valores.",
     "tipo": "calcular"
    },
    {
     "faz": "Limite d e escolha a alternativa",
     "conta": "7,1 < d < 7,4",
-    "porque": "O menor valor de d usa os menores OB e BC e o maior OC: 19,8 + 17,4 − 30,1 = 7,1. O maior valor de d usa o contrário: 19,9 + 17,5 − 30 = 7,4. Então d está entre 5 e 8.",
+    "porque": "Para o menor d, use as menores OB e BC e a maior OC: 19,8 + 17,4 − 30,1 = 7,1. Para o maior d, faça o contrário: 19,9 + 17,5 − 30 = 7,4. Então d está entre 5 e 8: alternativa C.",
     "tipo": "concluir"
    }
   ],
@@ -96,7 +96,7 @@
  "quadro": [
   {
    "linha": "d = OB + BC − OC",
-   "nota": "o que se deixa de andar"
+   "nota": "o que ela deixa de andar"
   },
   {
    "linha": "OB = √(13² + 15²)",
@@ -161,11 +161,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -182,6 +184,40 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "C"
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "A pessoa vai de O a B e de B a C. O caminho direto vai de O a C. O que ela deixa de andar é a diferença: d = OB + BC − OC. Cada distância sai do teorema de Pitágoras aplicado às coordenadas: a diferença entre os x e a diferença entre os y são os catetos. Sem calculadora, basta saber entre quais números decimais cada raiz fica.",
+    "motivo": "Explica de onde vêm os catetos e troca 'inteiros' por 'decimais', pois os limites usados têm uma casa decimal."
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "19,8² = 392,04 ; 19,9² = 396,01",
+    "motivo": "A conta longa não cabe na tela do celular (~30 caracteres). Mostra o teste de OB; as outras raízes passam para os passos seguintes."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "394 fica entre 392,04 e 396,01, então 19,8 < √394 < 19,9. Do mesmo modo, 302,76 < 305 < 306,25 dá 17,4 < √305 < 17,5. E 900 < 905 < 906,01 dá 30 < √905 < 30,1. Cada raiz fica presa entre dois valores.",
+    "motivo": "Liga cada quadrado testado à conclusão sobre a raiz, que antes aparecia só como lista de números."
+   },
+   {
+    "campo": "resolucao.passos[5].conta",
+    "depois": "7,1 < d < 7,4",
+    "motivo": "Mantido. Sem mudança de valor."
+   },
+   {
+    "campo": "resolucao.passos[5].porque",
+    "depois": "Para o menor d, use as menores OB e BC e a maior OC: 19,8 + 17,4 − 30,1 = 7,1. Para o maior d, faça o contrário: 19,9 + 17,5 − 30 = 7,4. Então d está entre 5 e 8: alternativa C.",
+    "motivo": "Frases mais curtas e explica a ideia de pegar o pior caso de cada lado."
+   },
+   {
+    "campo": "resolucao.quadro[0].nota",
+    "depois": "o que ela deixa de andar",
+    "motivo": "Concordância com 'pessoa' e clareza."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

@@ -37,32 +37,32 @@
   "passos": [
    {
     "faz": "Leia o gráfico país a país",
-    "conta": "Rússia: ferrov. 81%",
-    "porque": "O modal que predomina é o de maior porcentagem na barra. Na Rússia é o ferroviário, com 81%.",
+    "conta": "Rússia: ferroviário 81%",
+    "porque": "Predomina o modal de maior porcentagem na barra. Na Rússia é o ferroviário, com 81%. Faça o mesmo nos outros países.",
     "tipo": "localizar"
    },
    {
     "faz": "Marque onde o aquaviário predomina",
     "conta": "Canadá 47%; China 51%",
-    "porque": "Só em 2 dos 6 países o azul é a maior parte: Canadá e China. Isso é menos da metade, o que derruba a alternativa A.",
+    "porque": "Só em 2 dos 6 países o azul é a maior parte: Canadá e China. Dois de seis é menos da metade, o que derruba a alternativa A.",
     "tipo": "localizar"
    },
    {
     "faz": "Leia EUA e Brasil",
-    "conta": "EUA: rodov. 43%",
-    "porque": "Nos EUA e no Brasil (68%) o rodoviário predomina. O gráfico não informa a causa nem o custo; essas partes das frases B e D dependem de conhecimento.",
+    "conta": "EUA: rodoviário 43%",
+    "porque": "Nos EUA (43%) e no Brasil (68%) predomina o rodoviário. O gráfico não mostra causa nem custo: essas partes de B e D dependem de conhecimento.",
     "tipo": "localizar"
    },
    {
-    "faz": "Elimine as frases com custo ou causa errados",
-    "conta": "B, C e D",
-    "porque": "B inventa a 'baixa necessidade de cargas'. C diz que o aquaviário é caro e que todos os rios congelam. D diz que a rodovia é mais eficiente para grandes volumes e longas distâncias. Os três contrariam o que se sabe dos modais.",
+    "faz": "Elimine B, C e D pelo conhecimento",
+    "conta": "B, C e D falham em custo ou causa",
+    "porque": "B inventa 'baixa necessidade de cargas'. C diz que o aquaviário é caro e que todos os rios congelam. D dá à rodovia a eficiência em grandes volumes e longas distâncias, que é da ferrovia e da hidrovia.",
     "tipo": "eliminar"
    },
    {
     "faz": "Confira a alternativa E",
     "conta": "China: aquaviário 51%",
-    "porque": "O gráfico confirma a predominância do aquaviário na China. Ele é barato para grandes volumes e polui menos que o rodoviário, então a ligação entre custo e poluição está correta.",
+    "porque": "O gráfico confirma que o aquaviário predomina na China. Ele é barato para grandes volumes e polui menos que o rodoviário. Por isso E está correta.",
     "tipo": "concluir"
    }
   ],
@@ -70,7 +70,7 @@
   "checagem": "Conte as barras com azul maior: só Canadá e China, ou seja, 2 de 6. Isso derruba A. Em B, C e D, a afirmação sobre custo ou eficiência contraria o que se sabe: a rodovia é a mais cara em longas distâncias. Só E mantém dado e raciocínio coerentes.",
   "erradas": {
    "A": "O aquaviário só predomina em 2 dos 6 países: Canadá (47%) e China (51%). Em Rússia, Austrália e EUA predominam ferrovia ou rodovia. 2 de 6 não é mais da metade.",
-   "B": "Nos EUA o rodoviário realmente predomina (43%), mas o motivo está errado. Os EUA movimentam enorme quantidade de carga. Além disso, a frase fala de transporte de pessoas, e o gráfico trata de carga.",
+   "B": "Nos EUA o rodoviário predomina (43%), mas o motivo está errado: os EUA movimentam muita carga. Além disso, a frase fala de transporte de pessoas, e o gráfico mostra carga.",
    "C": "O aquaviário predomina no Canadá (47%), mas não tem alto custo. É o modal mais barato para grandes volumes. Congelamento ocorre em partes do país e em certas épocas; 'todo o país' e 'a maior parte do ano' exageram.",
    "D": "É certo que a matriz brasileira é rodoviária (68%) e que a rodovia tem custo maior. Mas ela é menos eficiente, não mais, para grandes quantidades e longos percursos. Para isso, ferrovia e hidrovia são melhores."
   },
@@ -107,14 +107,75 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [],
   "fatos_ok": true,
-  "fatos_resposta": "E"
+  "fatos_resposta": "E",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[0]",
+    "depois": {
+     "faz": "Leia o gráfico país a país",
+     "conta": "Rússia: ferroviário 81%",
+     "porque": "Predomina o modal de maior porcentagem na barra. Na Rússia é o ferroviário, com 81%. Faça o mesmo nos outros países.",
+     "tipo": "localizar"
+    },
+    "motivo": "Abreviação 'ferrov.' trocada por palavra inteira; o passo agora diz que o método vale para todos os países."
+   },
+   {
+    "campo": "resolucao.passos[1]",
+    "depois": {
+     "faz": "Marque onde o aquaviário predomina",
+     "conta": "Canadá 47%; China 51%",
+     "porque": "Só em 2 dos 6 países o azul é a maior parte: Canadá e China. Dois de seis é menos da metade, o que derruba a alternativa A.",
+     "tipo": "localizar"
+    },
+    "motivo": "Frase mais clara."
+   },
+   {
+    "campo": "resolucao.passos[2]",
+    "depois": {
+     "faz": "Leia EUA e Brasil",
+     "conta": "EUA: rodoviário 43%",
+     "porque": "Nos EUA (43%) e no Brasil (68%) predomina o rodoviário. O gráfico não mostra causa nem custo: essas partes de B e D dependem de conhecimento.",
+     "tipo": "localizar"
+    },
+    "motivo": "Conta mostra o modal por extenso; o dado do Brasil já entra no porquê."
+   },
+   {
+    "campo": "resolucao.passos[3]",
+    "depois": {
+     "faz": "Elimine B, C e D pelo conhecimento",
+     "conta": "B, C e D falham em custo ou causa",
+     "porque": "B inventa 'baixa necessidade de cargas'. C diz que o aquaviário é caro e que todos os rios congelam. D dá à rodovia a eficiência em grandes volumes e longas distâncias, que é da ferrovia e da hidrovia.",
+     "tipo": "eliminar"
+    },
+    "motivo": "Conta curta cabe na tela; o porquê detalha cada erro."
+   },
+   {
+    "campo": "resolucao.passos[4]",
+    "depois": {
+     "faz": "Confira a alternativa E",
+     "conta": "China: aquaviário 51%",
+     "porque": "O gráfico confirma que o aquaviário predomina na China. Ele é barato para grandes volumes e polui menos que o rodoviário. Por isso E está correta.",
+     "tipo": "concluir"
+    },
+    "motivo": "Passo final liga explicitamente à letra E."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "Nos EUA o rodoviário predomina (43%), mas o motivo está errado: os EUA movimentam muita carga. Além disso, a frase fala de transporte de pessoas, e o gráfico mostra carga.",
+    "motivo": "Texto mais direto, frases curtas."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

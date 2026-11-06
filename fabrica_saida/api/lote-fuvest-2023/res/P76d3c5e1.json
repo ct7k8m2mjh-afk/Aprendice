@@ -28,6 +28,10 @@
      "ângulo entre o raio refratado e a reta normal"
     ],
     [
+     "sen",
+     "seno do ângulo; entre 0° e 90°, ângulo maior tem seno maior"
+    ],
+    [
      "dispersão",
      "separação da luz branca em cores, porque cada cor tem um índice de refração diferente no vidro"
     ]
@@ -44,13 +48,13 @@
    {
     "faz": "Leia o desvio de cada cor na figura",
     "conta": "cor 1: mais desviada (embaixo)",
-    "porque": "Na figura, o raio incidente é horizontal. Dentro do prisma, a cor 1 é a que mais se afasta dessa direção (a mais inclinada para baixo). A cor 3 é a menos desviada (a de cima), e a cor 2 fica no meio.",
+    "porque": "Na figura, o raio incidente é horizontal. Dentro do prisma, a cor 1 é a que mais se afasta dessa direção (a mais inclinada para baixo). A cor 3 é a menos desviada (a de cima) e a cor 2 fica no meio.",
     "tipo": "localizar"
    },
    {
     "faz": "Relacione desvio maior com θr menor",
     "conta": "mais desvio → θr menor",
-    "porque": "Ao entrar no vidro, o raio se aproxima da normal. Quanto mais ele se aproxima, mais desviado fica e menor é θr. Então θr(cor 1) < θr(cor 2) < θr(cor 3).",
+    "porque": "Ao entrar no vidro, o raio se aproxima da normal. Quanto mais ele se aproxima, menor é θr e maior é o desvio em relação à direção original. Então θr(cor 1) < θr(cor 2) < θr(cor 3).",
     "tipo": "comparar"
    },
    {
@@ -67,7 +71,7 @@
    },
    {
     "faz": "Compare com o ar e conclua",
-    "conta": "θr < θi → n > 1",
+    "conta": "n3 = sen θi ÷ sen θr3 > 1",
     "porque": "O raio se aproxima da normal ao entrar no vidro, então θr < θi. Logo sen θi ÷ sen θr é maior que 1 para as três cores, e n3 > 1. Resultado: n1 > n2 > n3 > 1.",
     "tipo": "concluir"
    }
@@ -77,7 +81,7 @@
   "erradas": {
    "A": "Se n1 = n2 = n3, as três cores teriam o mesmo θr e sairiam juntas, sem se separar. A figura mostra três raios em direções diferentes, então os índices são diferentes.",
    "C": "Essa ordem diz que a cor 3 tem o maior n e deveria ser a mais desviada. Na figura, a cor 3 é a menos desviada. Quem desvia mais tem θr menor e n maior, que é a cor 1.",
-   "D": "Índices menores que 1 não servem. Eles fariam sen θr = sen θi ÷ n ser maior que sen θi, ou seja, o raio se afastaria da normal. Na figura, o raio se aproxima da normal ao entrar no vidro. Além disso, a ordem n1 < n2 < n3 também está invertida.",
+   "D": "Índice menor que 1 faria o raio se afastar da normal ao entrar no vidro (θr > θi). Na figura o raio se aproxima da normal, então n > 1. A ordem n1 < n2 < n3 também está invertida.",
    "E": "Aqui n < 1 para todas as cores, o que daria θr > θi. Mas na figura o raio se aproxima da normal (θr < θi), então n > 1."
   },
   "armadilha": "Achar que a cor mais desviada tem o menor índice de refração. É o contrário: desvio maior significa θr menor e n maior, porque n = sen θi ÷ sen θr.",
@@ -151,11 +155,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -190,6 +196,56 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "B"
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "Na figura, o raio incidente é horizontal. Dentro do prisma, a cor 1 é a que mais se afasta dessa direção (a mais inclinada para baixo). A cor 3 é a menos desviada (a de cima) e a cor 2 fica no meio.",
+    "motivo": "Frase mais curta e sem dupla leitura."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Ao entrar no vidro, o raio se aproxima da normal. Quanto mais ele se aproxima, menor é θr e maior é o desvio em relação à direção original. Então θr(cor 1) < θr(cor 2) < θr(cor 3).",
+    "motivo": "Deixa claro que o desvio é medido em relação à direção do raio incidente. Isso evita confundir desvio com aproximação da normal."
+   },
+   {
+    "campo": "resolucao.passos[5].conta",
+    "depois": "n3 = sen θi ÷ sen θr3 > 1",
+    "motivo": "A conta anterior ('θr < θi → n > 1') não mostrava o valor de n. Agora a conta mostra o resultado."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "Índice menor que 1 faria o raio se afastar da normal ao entrar no vidro (θr > θi). Na figura o raio se aproxima da normal, então n > 1. A ordem n1 < n2 < n3 também está invertida.",
+    "motivo": "Texto mais curto e direto. Explica o que faltou a quem marcou D."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "n",
+      "índice de refração: mede o quanto o meio reduz a velocidade da luz e desvia o raio"
+     ],
+     [
+      "θi",
+      "ângulo entre o raio incidente e a reta normal (perpendicular à superfície)"
+     ],
+     [
+      "θr",
+      "ângulo entre o raio refratado e a reta normal"
+     ],
+     [
+      "sen",
+      "seno do ângulo; entre 0° e 90°, ângulo maior tem seno maior"
+     ],
+     [
+      "dispersão",
+      "separação da luz branca em cores, porque cada cor tem um índice de refração diferente no vidro"
+     ]
+    ],
+    "motivo": "Incluí 'sen', que é usado em todos os passos e não estava explicado."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

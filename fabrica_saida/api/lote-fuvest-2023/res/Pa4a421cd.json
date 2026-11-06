@@ -16,6 +16,10 @@
    ],
    "simbolos": [
     [
+     "fertilizante",
+     "adubo (nitrogênio, fósforo, potássio) que repõe nutrientes do solo e aumenta a colheita"
+    ],
+    [
      "commodities",
      "produtos primários com preço definido no mercado internacional, como soja, café e minério"
     ],
@@ -34,10 +38,18 @@
     [
      "mão de obra especializada",
      "trabalhadores qualificados, como operadores de máquinas e técnicos agrícolas"
+    ],
+    [
+     "agronegócio",
+     "agricultura em grande escala, ligada à indústria e ao comércio, voltada ao mercado"
+    ],
+    [
+     "Matopiba",
+     "nova fronteira agrícola entre Maranhão, Tocantins, Piauí e Bahia"
     ]
    ]
   },
-  "pista": "Pense em quem tem dinheiro para comprar fertilizante em grande quantidade. Que tipo de produtor e de mercado são esses? Depois veja em que região do país ficam as lavouras que o gráfico destaca.",
+  "pista": "Fertilizante é caro. Pense em quem consegue comprá-lo em grande quantidade: que tipo de produtor é esse e para quem ele vende? Depois, veja onde ficam as lavouras que o gráfico destaca.",
   "passos": [
    {
     "faz": "Traduza o que se pede",
@@ -47,7 +59,7 @@
    },
    {
     "faz": "Leia o gráfico",
-    "conta": "Soja 40%, Milho 17%, Cana 12%",
+    "conta": "Soja 40% + Milho 17% = 57%",
     "porque": "O gráfico de rosca mostra a parcela de fertilizante de cada lavoura. Soja e milho juntas somam 57%, a maioria. Com cana, café e algodão, as culturas nomeadas somam 78%.",
     "tipo": "localizar"
    },
@@ -65,13 +77,13 @@
    },
    {
     "faz": "Elimine as letras com erro",
-    "conta": "A, B, C e E trazem contradições",
-    "porque": "Cada uma mistura um elemento falso: pequena propriedade, baixo impacto ambiental, mercado interno ou região errada. Só a D descreve o agronegócio sem contradição.",
+    "conta": "A, B, C, E: cada uma tem um erro",
+    "porque": "A: pequena propriedade. B: muita mão de obra com muita máquina. C: mercado interno e baixo impacto. E: Norte e Nordeste como região principal. Só a D não tem erro.",
     "tipo": "eliminar"
    },
    {
     "faz": "Conclua",
-    "conta": "mecanizada + exportação + Centro-Sul",
+    "conta": "mecanizada + exportação + Centro-Sul → D",
     "porque": "Esses três traços e a mão de obra especializada batem com a letra D.",
     "tipo": "concluir"
    }
@@ -134,11 +146,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -161,6 +175,78 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "D"
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "Soja 40% + Milho 17% = 57%",
+    "motivo": "A conta anterior listava só três números e não mostrava a soma citada no porquê. Agora o dado e a conta aparecem juntos e cabem na linha."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "soja, milho, cana → agronegócio",
+    "motivo": "Mantido igual: já está curto e claro."
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "A, B, C, E: cada uma tem um erro",
+    "motivo": "A frase anterior (\"trazem contradições\") era vaga. Agora fica claro que cada letra tem um erro."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "A: pequena propriedade. B: muita mão de obra com muita máquina. C: mercado interno e baixo impacto. E: Norte e Nordeste como região principal. Só a D não tem erro.",
+    "motivo": "O porquê deve dizer qual erro derruba cada letra, e não repetir que existe um erro."
+   },
+   {
+    "campo": "resolucao.passos[5].conta",
+    "depois": "mecanizada + exportação + Centro-Sul → D",
+    "motivo": "O passo final deve ligar o resultado à letra."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "fertilizante",
+      "adubo (nitrogênio, fósforo, potássio) que repõe nutrientes do solo e aumenta a colheita"
+     ],
+     [
+      "commodities",
+      "produtos primários com preço definido no mercado internacional, como soja, café e minério"
+     ],
+     [
+      "lavoura extensiva",
+      "cultivo em grandes áreas, com pouco trabalhador por hectare"
+     ],
+     [
+      "lavoura intensiva",
+      "cultivo que busca alta produção por hectare, com muito insumo e tecnologia"
+     ],
+     [
+      "Centro-Sul",
+      "conjunto das regiões Centro-Oeste, Sudeste e Sul do Brasil"
+     ],
+     [
+      "mão de obra especializada",
+      "trabalhadores qualificados, como operadores de máquinas e técnicos agrícolas"
+     ],
+     [
+      "agronegócio",
+      "agricultura em grande escala, ligada à indústria e ao comércio, voltada ao mercado"
+     ],
+     [
+      "Matopiba",
+      "nova fronteira agrícola entre Maranhão, Tocantins, Piauí e Bahia"
+     ]
+    ],
+    "motivo": "Os termos fertilizante, agronegócio e Matopiba aparecem na resolução e não estavam explicados."
+   },
+   {
+    "campo": "resolucao.pista",
+    "depois": "Fertilizante é caro. Pense em quem consegue comprá-lo em grande quantidade: que tipo de produtor é esse e para quem ele vende? Depois, veja onde ficam as lavouras que o gráfico destaca.",
+    "motivo": "Frases mais curtas, sem entregar a resposta."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

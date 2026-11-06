@@ -8,7 +8,7 @@
  "conceito": "Montar uma equação com dois preços desconhecidos a partir de uma relação de 10% entre dois gastos e obter a razão entre os preços.",
  "resolucao": {
   "antes": {
-   "texto": "Não é preciso achar os preços em reais. Chame o preço do litro de etanol de e e o da gasolina de g. O gasto de cada pessoa é litros × preço, somando os dois combustíveis. 'Foi 10% maior' significa multiplicar o gasto de Bianca por 1,1. Isso gera uma equação com e e g, e dela sai a razão e/g.",
+   "texto": "Não é preciso achar os preços em reais. Chame o preço do litro de etanol de e e o da gasolina de g. O gasto de cada pessoa é litros × preço, somando os dois combustíveis. 'Foi 10% maior' significa multiplicar o gasto de Bianca por 1,1. Isso gera uma equação com e e g, e dela sai a razão e/g. A razão é uma fração: preço do etanol em cima, preço da gasolina embaixo.",
    "formulas": [
     "gasto = litros de etanol × e + litros de gasolina × g",
     "10% maior que X = 1,1 × X",
@@ -58,13 +58,13 @@
    {
     "faz": "Junte e com e, g com g",
     "conta": "32g − 22g = 33e − 18e → 10g = 15e",
-    "porque": "Passando 22g para a esquerda e 18e para a direita, cada um troca de sinal.",
+    "porque": "Queremos e e g em lados diferentes. Passe 22g para a esquerda e 18e para a direita: cada termo que atravessa o igual troca de sinal.",
     "tipo": "calcular"
    },
    {
-    "faz": "Isole a razão e/g",
+    "faz": "Monte a razão e/g",
     "conta": "e/g = 10/15 = 2/3",
-    "porque": "Dividindo os dois lados por 15g, fica e/g = 10/15. Simplificando por 5, dá 2/3.",
+    "porque": "De 10g = 15e, divida os dois lados por 15g. À esquerda sobra e/g (o g cancela) e à direita 10/15. Simplificando por 5, dá 2/3, que é a alternativa B.",
     "tipo": "concluir"
    }
   ],
@@ -139,7 +139,7 @@
   },
   {
    "linha": "e/g = 10/15",
-   "nota": "passe g para o denominador do lado direito e 15 para o esquerdo, em fração",
+   "nota": "divida os dois lados por 15g: o g sai da esquerda e o 15 sai da direita",
    "mov": [
     {
      "termo": "g",
@@ -176,11 +176,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -200,6 +202,35 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "B"
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Não é preciso achar os preços em reais. Chame o preço do litro de etanol de e e o da gasolina de g. O gasto de cada pessoa é litros × preço, somando os dois combustíveis. 'Foi 10% maior' significa multiplicar o gasto de Bianca por 1,1. Isso gera uma equação com e e g, e dela sai a razão e/g. A razão é uma fração: preço do etanol em cima, preço da gasolina embaixo.",
+    "motivo": "Deixar claro qual preço fica em cima na razão, evitando inverter."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "Queremos e e g em lados diferentes. Passe 22g para a esquerda e 18e para a direita: cada termo que atravessa o igual troca de sinal.",
+    "motivo": "Explicar o objetivo da mudança de lado, em frase mais simples."
+   },
+   {
+    "campo": "resolucao.passos[5].faz",
+    "depois": "Monte a razão e/g",
+    "motivo": "Verbo mais claro; o passo antes de concluir só precisa montar a razão."
+   },
+   {
+    "campo": "resolucao.passos[5].porque",
+    "depois": "De 10g = 15e, divida os dois lados por 15g. À esquerda sobra e/g (o g cancela) e à direita 10/15. Simplificando por 5, dá 2/3, que é a alternativa B.",
+    "motivo": "Mostrar o cancelamento que isola e/g e ligar à letra."
+   },
+   {
+    "campo": "resolucao.quadro[6].nota",
+    "depois": "divida os dois lados por 15g: o g sai da esquerda e o 15 sai da direita",
+    "motivo": "A nota original era confusa; descreve a divisão corretamente."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

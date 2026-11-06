@@ -76,7 +76,7 @@
   "checagem": "Confira a ordem de grandeza: 8 km/s são 28.800 km/h. Em 1 s o projétil anda 8 km, e a superfície da Terra se afasta da reta tangente cerca de 5 m nesses 8 km. Isso é igual à queda em 1 s (½·g·t² = 5 m). Curvatura e queda coincidem, então o projétil não toca o solo.",
   "erradas": {
    "B": "11,2 km/s é a velocidade de escape da Terra, cerca de 1,41 vez a orbital (8 × 1,41 ≈ 11,3). Com ela o projétil abandona a Terra e não fica em órbita. O erro é usar um valor decorado em vez de v = √(g·R).",
-   "C": "80 km/s não confere: v = √(g·R) dá 8.000 m/s, ou 8 km/s. Para dar 80 km/s, R teria de ser 100 vezes maior. Quem marcou C provavelmente errou a raiz ou a potência de dez e não conferiu a ordem de grandeza.",
+   "C": "80 km/s não confere: v = √(g·R) dá 8.000 m/s, ou 8 km/s. Para dar 80 km/s, R teria de ser 100 vezes maior (v² cresce 100 vezes). Quem chega a C errou a potência de dez na raiz ou na conversão do raio.",
    "D": "112 km/s é 10 vezes a velocidade de escape (11,2 km/s) e 14 vezes a orbital. Não confere: v² = g·R = 6,4×10^7 m²/s² e a raiz é 8.000 m/s. Faltou conferir se o valor era plausível.",
    "E": "O número 8.000 está certo, mas a unidade não: o cálculo dá 8.000 m/s. Faltou dividir por 1.000 para chegar a km/s. 8.000 km/s seria cerca de 2,7% da velocidade da luz, impossível para um projétil."
   },
@@ -163,12 +163,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -249,6 +251,23 @@
   "didatica_alertas": [
    "Classificação: tema F06 (Termologia) e conteúdo F06.3 (calor sensível e latente) não correspondem à questão, que é de gravitação e movimento circular (F05.2). O corretor de fatos ou classificação deve revisar."
   ],
-  "didatica_ok": true
- }
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "80 km/s não confere: v = √(g·R) dá 8.000 m/s, ou 8 km/s. Para dar 80 km/s, R teria de ser 100 vezes maior (v² cresce 100 vezes). Quem chega a C errou a potência de dez na raiz ou na conversão do raio.",
+    "motivo": "Retirar 'provavelmente' (especulação sobre a origem do erro); manter o teste objetivo.",
+    "fonte": ""
+   },
+   {
+    "campo": "classificacao (tema/conteudo)",
+    "depois": "tema F05, conteúdo F05.2 (gravitação, satélites e velocidade orbital)",
+    "motivo": "F06.3 é calor sensível e latente (Termologia); a questão trata de gravitação e força centrípeta em órbita rasante.",
+    "fonte": "Guia de Física: F05.2 lei da gravitação universal, gravidade e satélites"
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "A"
+ },
+ "classificacao (tema/conteudo)": "tema F05, conteúdo F05.2 (gravitação, satélites e velocidade orbital)"
 }

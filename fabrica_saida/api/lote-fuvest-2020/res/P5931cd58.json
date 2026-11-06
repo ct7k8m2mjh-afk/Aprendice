@@ -51,7 +51,7 @@
    {
     "faz": "Calcule o volume do Norte e some",
     "conta": "28 × 30 = 840 ; 160 + 840 = 1000",
-    "porque": "O resultado está em mm × km², que é proporcional ao volume de água. Serve para comparar os setores.",
+    "porque": "O resultado está em mm × km², que é proporcional ao volume de água. Somar os dois setores dá o volume total da cidade (na mesma unidade).",
     "tipo": "calcular"
    },
    {
@@ -65,7 +65,7 @@
   "checagem": "Outro caminho: o Sul é 1/4 da cidade e o Norte é 3/4. Então 1/4 × 16 + 3/4 × 28 = 4 + 21 = 25. O resultado fica entre 16 e 28, mais perto de 28, como esperado.",
   "erradas": {
    "A": "15 mm não confere: é menor que 16 mm, a menor chuva entre os setores. A média da cidade nunca fica abaixo do menor valor.",
-   "B": "17 mm não confere: fica quase igual ao Sul (16 mm), como se o Sul fosse a maior parte da cidade. Mas o Sul tem só 10 dos 40 km², um quarto.",
+   "B": "17 mm não confere: fica quase igual ao Sul (16 mm), como se o Sul fosse a maior parte da cidade. Mas o Sul tem só 10 dos 40 km², um quarto. Com o Norte (28 mm) valendo três quartos, a média passa de 25 mm.",
    "C": "22 mm sai da média simples dos setores: (16 + 28) ÷ 2 = 22. Ela trata Sul e Norte como se tivessem a mesma área, mas o Norte é 3 vezes maior.",
    "E": "28 mm é a chuva do Norte sozinho. Ignora o Sul, que também faz parte da cidade e teve só 16 mm."
   },
@@ -129,12 +129,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -213,6 +215,22 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "O resultado está em mm × km², que é proporcional ao volume de água. Somar os dois setores dá o volume total da cidade (na mesma unidade).",
+    "motivo": "A frase antiga dizia que o resultado só serve para comparar os setores. Mas o passo soma os volumes, e o passo seguinte usa essa soma. A nova frase descreve o que o passo faz.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "17 mm não confere: fica quase igual ao Sul (16 mm), como se o Sul fosse a maior parte da cidade. Mas o Sul tem só 10 dos 40 km², um quarto. Com o Norte (28 mm) valendo três quartos, a média passa de 25 mm.",
+    "motivo": "O texto antigo não mostrava o teste objetivo que derruba o 17. Esse teste é o peso de 3/4 do Norte.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "D"
  }
 }

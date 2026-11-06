@@ -12,7 +12,7 @@
    "formulas": [
     "Bactérias: gonorreia, sífilis, clamídia (tratadas com antibiótico)",
     "Vírus: AIDS (HIV), hepatite B e C, herpes genital, condiloma (HPV)",
-    "Vacina no SUS: HPV e hepatite B",
+    "Vacina no SUS contra IST: HPV e hepatite B",
     "Sem vacina: gonorreia, sífilis, hepatite C e HIV"
    ],
    "simbolos": [
@@ -132,12 +132,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -268,6 +270,33 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "Bactérias: gonorreia, sífilis, clamídia (tratadas com antibiótico)",
+     "Vírus: AIDS (HIV), hepatite B e C, herpes genital, condiloma (HPV)",
+     "Vacina no SUS contra IST: HPV e hepatite B",
+     "Sem vacina: gonorreia, sífilis, hepatite C e HIV"
+    ],
+    "motivo": "A vacina contra hepatite B é oferecida no SUS, mas o texto original não deixava claro que a lista trata de ISTs. Ajuste mínimo de precisão. Os fatos continuam corretos.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[0].porque",
+    "depois": "Hepatite C é causada por vírus, e a sífilis, por bactéria. Então a linha B (HCV 'bactéria') e a linha D (Treponema 'verme') caem.",
+    "motivo": "Sem mudança de conteúdo. Conferido e correto.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "O HIV é vírus e a erupção na pele pode ocorrer, mas não existe vacina contra o HIV. Quem marcou C não conferiu a coluna da vacina.",
+    "motivo": "Sem mudança de conteúdo. Conferido e correto.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "E"
  }
 }

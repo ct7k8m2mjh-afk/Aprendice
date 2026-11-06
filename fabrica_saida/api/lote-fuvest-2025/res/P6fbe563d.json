@@ -8,10 +8,10 @@
  "conceito": "Volume e área lateral do cilindro: comparar três cilindros com altura ou raio reduzidos pela metade.",
  "resolucao": {
   "antes": {
-   "texto": "Compare tudo com o cilindro C. O volume é a área da base vezes a altura, e a área lateral é o comprimento da circunferência vezes a altura. Metade do raio divide o volume por 4, porque o raio entra ao quadrado. Na área lateral o raio entra só uma vez, então ela cai pela metade.",
+   "texto": "Compare tudo com o cilindro C. O volume é a área da base vezes a altura. A área lateral é o comprimento da circunferência da base vezes a altura. Metade do raio divide o volume por 4, porque o raio entra ao quadrado. Na área lateral o raio entra uma vez só, então ela cai pela metade.",
    "formulas": [
     "V = π × r² × h",
-    "A (área lateral) = 2 × π × r × h"
+    "A = 2 × π × r × h (área lateral)"
    ],
    "simbolos": [
     [
@@ -24,15 +24,23 @@
     ],
     [
      "r",
-     "raio da circunferência da base"
+     "raio: distância do centro da base até a borda"
     ],
     [
      "h",
      "altura do cilindro"
     ],
     [
+     "π",
+     "número pi, cerca de 3,14. Aparece em todas as contas e se cancela na comparação"
+    ],
+    [
      "C, C₁, C₂",
      "os três cilindros do enunciado"
+    ],
+    [
+     "V₁, V₂, A₁, A₂",
+     "volume e área lateral de C₁ e de C₂"
     ]
    ]
   },
@@ -59,19 +67,19 @@
    {
     "faz": "Monte as combinações dos volumes",
     "conta": "V₁ + 2V₂ = V/2 + 2·V/4 = V",
-    "porque": "Duas vezes V/4 é V/2. Somando com V/2, sobra V inteiro. Já V₁ + V₂ daria só 3V/4.",
+    "porque": "Duas vezes V/4 dá V/2. Somando com V/2, sobra V inteiro. Já V₁ + V₂ daria só 3V/4.",
     "tipo": "calcular"
    },
    {
     "faz": "Monte as combinações das áreas",
     "conta": "A₁ + A₂ = A/2 + A/2 = A",
-    "porque": "As duas áreas laterais valem metade de A, então a soma simples já recompõe A.",
+    "porque": "A₁ e A₂ valem metade de A cada uma. Somadas, recompõem A.",
     "tipo": "calcular"
    },
    {
     "faz": "Ligue ao enunciado",
     "conta": "V = V₁ + 2V₂ e A = A₁ + A₂",
-    "porque": "Essa é a única alternativa com as duas relações corretas.",
+    "porque": "Só a alternativa D tem as duas relações certas ao mesmo tempo. A, B, C e E erram pelo menos uma.",
     "tipo": "concluir"
    }
   ],
@@ -149,11 +157,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -164,6 +174,72 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "D"
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Compare tudo com o cilindro C. O volume é a área da base vezes a altura. A área lateral é o comprimento da circunferência da base vezes a altura. Metade do raio divide o volume por 4, porque o raio entra ao quadrado. Na área lateral o raio entra uma vez só, então ela cai pela metade.",
+    "motivo": "Explica o que é a área lateral e deixa as frases mais curtas, sem ambiguidade."
+   },
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "V = π × r² × h",
+     "A = 2 × π × r × h (área lateral)"
+    ],
+    "motivo": "Deixa claro que A é a área lateral, sem parênteses dentro do símbolo."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "V",
+      "volume do cilindro: o espaço que ele ocupa"
+     ],
+     [
+      "A",
+      "área lateral: só a parede curva, sem o topo nem a base"
+     ],
+     [
+      "r",
+      "raio: distância do centro da base até a borda"
+     ],
+     [
+      "h",
+      "altura do cilindro"
+     ],
+     [
+      "π",
+      "número pi, cerca de 3,14. Aparece em todas as contas e se cancela na comparação"
+     ],
+     [
+      "C, C₁, C₂",
+      "os três cilindros do enunciado"
+     ],
+     [
+      "V₁, V₂, A₁, A₂",
+      "volume e área lateral de C₁ e de C₂"
+     ]
+    ],
+    "motivo": "Faltavam π e os símbolos com índice, usados na resolução."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Duas vezes V/4 dá V/2. Somando com V/2, sobra V inteiro. Já V₁ + V₂ daria só 3V/4.",
+    "motivo": "Frase mais simples."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "A₁ e A₂ valem metade de A cada uma. Somadas, recompõem A.",
+    "motivo": "Mais direto e sem repetir 'simples'."
+   },
+   {
+    "campo": "resolucao.passos[5].porque",
+    "depois": "Só a alternativa D tem as duas relações certas ao mesmo tempo. A, B, C e E erram pelo menos uma.",
+    "motivo": "Liga o resultado às alternativas e aponta a eliminação."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

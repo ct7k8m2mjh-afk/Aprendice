@@ -33,13 +33,13 @@
   "passos": [
    {
     "faz": "Leia o total de cada 1º trimestre",
-    "conta": "2019: 7,93 | 2021: 6,60",
+    "conta": "1º tri 2024: 9,30 milhões",
     "porque": "Os rótulos do gráfico de cima, em milhões, são 7,93 (2019), 7,34 (2020), 6,60 (2021), 7,01 (2022), 7,44 (2023) e 9,30 (2024).",
     "tipo": "localizar"
    },
    {
     "faz": "Leia a % de fêmeas e de machos",
-    "conta": "2019: F 46,6 | M 53,4",
+    "conta": "1º tri 2024: F 46,2% | M 53,8%",
     "porque": "Gráfico de baixo, 1º trimestre. Fêmeas: 46,6 (2019), 36,8 (2021), 39,5 (2022), 44,8 (2023), 46,2 (2024). Machos: 53,4, 63,2, 60,5, 55,2, 53,8.",
     "tipo": "localizar"
    },
@@ -52,7 +52,7 @@
    {
     "faz": "Teste as outras alternativas",
     "conta": "F 2023 = 0,448 × 7,44 ≈ 3,33",
-    "porque": "Em 2023 as fêmeas somam cerca de 3,3 milhões, não 2. Em 2019 e 2024 as fêmeas diferem (3,70 contra 4,30). A diferença machos−fêmeas em 2023 (0,77) é maior que em 2019 (0,54). Em 2021 (1,74) e 2022 (1,47) as diferenças também são distintas.",
+    "porque": "B: em 2023 as fêmeas somam cerca de 3,3 milhões, não 2. E: 3,70 milhões em 2019 contra 4,30 em 2024, então não são iguais. A: a diferença de 2023 é 0,77 milhão e a de 2019 é 0,54, então a de 2023 é maior. C: 1,74 em 2021 e 1,47 em 2022, valores diferentes.",
     "tipo": "calcular"
    },
    {
@@ -94,8 +94,12 @@
    "nota": "gráfico de baixo, 1º tri de 2024"
   },
   {
+   "linha": "46,2% = 46,2/100 = 0,462",
+   "nota": "porcentagem vira decimal"
+  },
+  {
    "linha": "0,462 × 9,30",
-   "nota": "porcentagem vira decimal e multiplica o total"
+   "nota": "porcentagem × total"
   },
   {
    "linha": "= 4,2966",
@@ -136,11 +140,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -151,6 +157,76 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "D"
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[0].conta",
+    "depois": "1º tri 2024: 9,30 milhões",
+    "motivo": "O passo é achar o total do trimestre que a resposta usa; a conta antiga mostrava só dois anos e não cabia no passo."
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "1º tri 2024: F 46,2% | M 53,8%",
+    "motivo": "Alinha com o passo seguinte, que calcula 2024, e a conta cabe na tela."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "F 2023 = 0,448 × 7,44 ≈ 3,33",
+    "motivo": "Mantém uma conta curta; as demais verificações ficam no porque."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "B: em 2023 as fêmeas somam cerca de 3,3 milhões, não 2. E: 3,70 milhões em 2019 contra 4,30 em 2024, então não são iguais. A: a diferença de 2023 é 0,77 milhão e a de 2019 é 0,54, então a de 2023 é maior. C: 1,74 em 2021 e 1,47 em 2022, valores diferentes.",
+    "motivo": "Frases curtas, com cada alternativa identificada pela letra."
+   },
+   {
+    "campo": "resolucao.quadro",
+    "depois": [
+     {
+      "linha": "Total 2024 = 9,30 milhões",
+      "nota": "gráfico de cima, 1º tri de 2024"
+     },
+     {
+      "linha": "Fêmeas 2024 = 46,2%",
+      "nota": "gráfico de baixo, 1º tri de 2024"
+     },
+     {
+      "linha": "46,2% = 46,2/100 = 0,462",
+      "nota": "porcentagem vira decimal"
+     },
+     {
+      "linha": "0,462 × 9,30",
+      "nota": "porcentagem × total"
+     },
+     {
+      "linha": "= 4,2966",
+      "nota": "resultado em milhões"
+     },
+     {
+      "linha": "≈ 4,3 milhões",
+      "nota": "alternativa D confirmada"
+     },
+     {
+      "linha": "F 2023 = 0,448 × 7,44",
+      "nota": "teste da B"
+     },
+     {
+      "linha": "≈ 3,33 milhões",
+      "nota": "não é 2 milhões"
+     },
+     {
+      "linha": "F 2019 = 0,466 × 7,93",
+      "nota": "teste da E"
+     },
+     {
+      "linha": "≈ 3,70 milhões",
+      "nota": "diferente de 4,30"
+     }
+    ],
+    "motivo": "Incluí a passagem de porcentagem para decimal, que antes estava pulada."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

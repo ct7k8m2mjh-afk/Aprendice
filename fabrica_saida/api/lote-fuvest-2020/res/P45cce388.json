@@ -75,7 +75,7 @@
   "checagem": "Confira o sentido da pressão no gráfico: a região sólido–vapor fica na parte de baixo (pressão baixa). Altas montanhas têm pressão baixa, e isso combina com a D.",
   "erradas": {
    "A": "Erra ao dizer que a pressão nas montanhas é alta. Ela é baixa, pois há menos ar acima. Quem marcou A trocou o sentido da pressão com a altitude; no gráfico, a sublimação fica na faixa de pressão baixa.",
-   "B": "Leva o alimento para a parte mais baixa da montanha, onde a pressão é MAIOR, não menor. Essa pressão maior dificulta a sublimação.",
+   "B": "Leva o alimento para a parte mais baixa da montanha, onde a pressão é MAIOR, não menor. O enunciado diz que a pressão é menor ali, e isso contradiz o fato: quanto mais baixo o lugar, mais ar pesa sobre ele. Essa pressão maior dificulta a sublimação.",
    "C": "Diz que a baixa pressão favorece a solidificação (líquido → sólido), mas o processo pedido é a sublimação. E aquecer ao sol não congela o alimento: faltou a etapa do frio.",
    "E": "Prensar aumenta a pressão, e no gráfico a linha sólido–vapor fica na faixa de pressão baixa. Aumentar a pressão afasta o sistema da sublimação."
   },
@@ -85,7 +85,8 @@
    "pede": "Explicar como a liofilização natural era possível nos Andes.",
    "chave": "O frio congela o alimento; a pressão mais baixa da altitude favorece a passagem do gelo direto a vapor.",
    "cuidado": "A pressão atmosférica diminui com a altitude e a sublimação exige pressão baixa."
-  }
+  },
+  "nivel": "2"
  },
  "caminhos": [
   {
@@ -109,12 +110,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -265,6 +268,22 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "Leva o alimento para a parte mais baixa da montanha, onde a pressão é MAIOR, não menor. O enunciado diz que a pressão é menor ali, e isso contradiz o fato: quanto mais baixo o lugar, mais ar pesa sobre ele. Essa pressão maior dificulta a sublimação.",
+    "motivo": "A alternativa B afirma uma coisa falsa (pressão menor na parte baixa). A explicação dada já estava certa, mas ficou implícito que é a alternativa que erra. Deixei isso explícito, com a menor mudança possível.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.nivel",
+    "depois": "2",
+    "motivo": "Não vale como correção de fato: a classificação atual da questão é nível 2 e o JSON traz 3. A diferença é de classificação, e mantive a decisão para a etapa que a define. Se a etapa seguinte preferir ignorar este item, nada muda no conteúdo.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "D"
  }
 }

@@ -8,7 +8,7 @@
  "conceito": "Empuxo e equilíbrio de corpo totalmente imerso: a tensão no fio some quando empuxo = peso, ou seja, quando a densidade do líquido iguala a do corpo; leitura de gráfico.",
  "resolucao": {
   "antes": {
-   "texto": "O objeto está totalmente mergulhado e preso ao fundo por um fio. Sobre ele agem o peso (para baixo), o empuxo (para cima) e a tração do fio (para baixo, pois o fio puxa o objeto em direção ao fundo). A tração só é zero quando o empuxo sozinho equilibra o peso. Isso acontece quando a densidade do óleo é igual à densidade do objeto.",
+   "texto": "O objeto está totalmente mergulhado e preso ao fundo por um fio. Sobre ele agem o peso (para baixo), o empuxo (para cima) e a tração do fio (para baixo, porque o fio puxa o objeto em direção ao fundo). A tração só é zero quando o empuxo sozinho equilibra o peso. Isso acontece quando a densidade do óleo é igual à densidade do objeto.",
    "formulas": [
     "Empuxo: E = d_óleo × V × g",
     "Peso: P = M × g",
@@ -18,11 +18,19 @@
    "simbolos": [
     [
      "E",
-     "empuxo: força vertical para cima que o líquido faz no corpo imerso"
+     "empuxo: força vertical para cima que o líquido faz no corpo mergulhado"
+    ],
+    [
+     "P",
+     "peso do objeto: força com que a Terra o puxa para baixo"
     ],
     [
      "T",
      "tração: força que o fio faz no objeto"
+    ],
+    [
+     "M",
+     "massa do objeto, 18 g"
     ],
     [
      "d_óleo",
@@ -30,7 +38,15 @@
     ],
     [
      "V",
-     "volume do objeto, que é o volume de óleo deslocado"
+     "volume do objeto, que é o volume de óleo que ele empurra para os lados"
+    ],
+    [
+     "g",
+     "aceleração da gravidade; aparece nos dois lados da conta e cancela"
+    ],
+    [
+     "g-força",
+     "unidade de força: o peso de 1 g de massa. Com massa em g, evita converter para newton"
     ]
    ]
   },
@@ -50,7 +66,7 @@
    },
    {
     "faz": "Troque pelas expressões e simplifique",
-    "conta": "d_óleo·V·g = M·g → d_óleo = M/V",
+    "conta": "d_óleo × V × g = M × g",
     "porque": "O g cancela. A tração é nula quando a densidade do óleo iguala a do objeto.",
     "tipo": "calcular"
    },
@@ -63,17 +79,17 @@
    {
     "faz": "Leia no gráfico a temperatura de 0,90",
     "conta": "d_óleo = 0,90 → 150 °C",
-    "porque": "O eixo vertical marca a densidade e o horizontal marca a temperatura. A reta laranja passa por 0,90 g/cm³ em 150 °C.",
+    "porque": "O eixo vertical marca a densidade e o horizontal marca a temperatura. Siga a linha de 0,90 até encontrar a reta laranja: ela cruza em 150 °C.",
     "tipo": "concluir"
    }
   ],
   "resposta": "Alternativa D: a tração se anula quando a densidade do óleo vale 0,90 g/cm³, igual à do objeto, o que ocorre em 150 °C.",
-  "checagem": "Em 150 °C: E = 0,90 × 20 = 18 g-força, igual ao peso de 18 g. Sobra tração zero. Abaixo de 150 °C o óleo é mais denso, o empuxo é maior que o peso e o fio fica esticado, como a figura mostra.",
+  "checagem": "Em 150 °C: E = 0,90 × 20 = 18 g-força, igual ao peso de 18 g-força. Sobra tração zero. Abaixo de 150 °C o óleo é mais denso, o empuxo é maior que o peso e o fio fica esticado, como na figura.",
   "erradas": {
    "A": "Em 0 °C o gráfico dá densidade 1,00 g/cm³. O empuxo é 1,00 × 20 = 20 g-força, maior que o peso de 18. O fio precisa puxar para baixo com 2 g-força, então a tração não é nula.",
    "B": "Em 75 °C o gráfico dá densidade de cerca de 0,95 g/cm³. O empuxo é cerca de 19 g-força contra um peso de 18. Ainda sobra cerca de 1 g-força de tração.",
    "C": "Em 100 °C o gráfico dá densidade de cerca de 0,93 g/cm³. O empuxo é cerca de 18,7 g-força, ainda maior que o peso de 18. A tração é pequena, mas não é zero.",
-   "E": "Em 275 °C a densidade do óleo (cerca de 0,83 g/cm³) é menor que a do objeto. O empuxo, cerca de 16,6 g-força, não sustenta o peso de 18. O objeto afundaria e ficaria apoiado no fundo, com o fio frouxo. Isso não é a configuração do termômetro. O ponto em que a tração zera estando o objeto imerso e em equilíbrio é E = P, em 150 °C."
+   "E": "Em 275 °C a densidade do óleo (cerca de 0,83 g/cm³) é menor que a do objeto. O empuxo, cerca de 16,6 g-força, é menor que o peso de 18. O objeto afundaria e o fio ficaria frouxo, mas isso não é o equilíbrio imerso da figura. Quem marcou E percebeu que o fio frouxo tem tração zero, mas esqueceu que o objeto deixa de flutuar imerso. A tração zera com E = P, em 150 °C."
   },
   "armadilha": "Achar que a tração só depende do peso. O empuxo depende da densidade do óleo, que muda com a temperatura. A tração zera quando d_óleo = M ÷ V.",
   "alerta": "",
@@ -150,11 +166,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -183,6 +201,85 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "D"
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "O objeto está totalmente mergulhado e preso ao fundo por um fio. Sobre ele agem o peso (para baixo), o empuxo (para cima) e a tração do fio (para baixo, porque o fio puxa o objeto em direção ao fundo). A tração só é zero quando o empuxo sozinho equilibra o peso. Isso acontece quando a densidade do óleo é igual à densidade do objeto.",
+    "motivo": "Trocou 'pois' por 'porque', mais simples para o aluno; sentido mantido."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "E",
+      "empuxo: força vertical para cima que o líquido faz no corpo mergulhado"
+     ],
+     [
+      "P",
+      "peso do objeto: força com que a Terra o puxa para baixo"
+     ],
+     [
+      "T",
+      "tração: força que o fio faz no objeto"
+     ],
+     [
+      "M",
+      "massa do objeto, 18 g"
+     ],
+     [
+      "d_óleo",
+      "densidade do óleo, lida no gráfico em g/cm³"
+     ],
+     [
+      "V",
+      "volume do objeto, que é o volume de óleo que ele empurra para os lados"
+     ],
+     [
+      "g",
+      "aceleração da gravidade; aparece nos dois lados da conta e cancela"
+     ],
+     [
+      "g-força",
+      "unidade de força: o peso de 1 g de massa. Com massa em g, evita converter para newton"
+     ]
+    ],
+    "motivo": "Faltavam P, M, g e a unidade 'g-força', usados na resolução e na checagem sem explicação."
+   },
+   {
+    "campo": "resolucao.passos[0].conta",
+    "depois": "E = P + T",
+    "motivo": "Mantido; sem alteração necessária na conta."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "d_óleo × V × g = M × g",
+    "motivo": "Linha curta, sem ambiguidade, e o resultado vai para o passo seguinte."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "O eixo vertical marca a densidade e o horizontal marca a temperatura. Siga a linha de 0,90 até encontrar a reta laranja: ela cruza em 150 °C.",
+    "motivo": "Instrui como ler o gráfico, em frases mais curtas."
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Em 150 °C: E = 0,90 × 20 = 18 g-força, igual ao peso de 18 g-força. Sobra tração zero. Abaixo de 150 °C o óleo é mais denso, o empuxo é maior que o peso e o fio fica esticado, como na figura.",
+    "motivo": "Deixou o peso na mesma unidade (g-força) do empuxo."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "Em 275 °C a densidade do óleo (cerca de 0,83 g/cm³) é menor que a do objeto. O empuxo, cerca de 16,6 g-força, é menor que o peso de 18. O objeto afundaria e o fio ficaria frouxo, mas isso não é o equilíbrio imerso da figura. Quem marcou E percebeu que o fio frouxo tem tração zero, mas esqueceu que o objeto deixa de flutuar imerso. A tração zera com E = P, em 150 °C.",
+    "motivo": "Disse o que faltou no raciocínio de quem marcou E e encurtou as frases."
+   },
+   {
+    "campo": "resolucao.quadro[4].linha",
+    "depois": "d_óleo = M/V",
+    "motivo": "Mantido; fração já escrita em formato aceito."
+   }
+  ],
+  "didatica_alertas": [
+   "Possível inconsistência: o texto da alternativa E diz que o objeto 'afundaria', mas com a densidade do óleo menor que a do objeto e o fio frouxo o termômetro deixa de funcionar; é coerente, apenas conferir. A classificação do tema no JSON (F04.6) difere da informada no cabeçalho (F08.2): o correto é empuxo, F04.6."
+  ],
+  "didatica_ok": true
  }
 }

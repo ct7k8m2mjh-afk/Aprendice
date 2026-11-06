@@ -8,7 +8,7 @@
  "conceito": "Energia mecânica perdida = energia potencial no topo − energia cinética na base (conservação parcial de energia).",
  "resolucao": {
   "antes": {
-   "texto": "No topo, o carrinho está em repouso: toda a energia mecânica é potencial gravitacional. O ponto mais baixo da descida é tomado no nível do solo (h = 0), como a questão supõe ao dar a altura do topo em relação ao solo. Ali, toda a energia que sobrou é cinética. Se nada fosse perdido, as duas seriam iguais. A diferença entre elas é a energia dissipada (atrito e resistência do ar).",
+   "texto": "No topo, o carrinho está em repouso: toda a energia mecânica é potencial gravitacional. Tome a base no nível do solo (h = 0), já que a altura do topo é dada em relação ao solo. Ali, só resta energia cinética. Se nada fosse perdido, as duas seriam iguais. A diferença é a energia dissipada, que vira calor por atrito e resistência do ar.",
    "formulas": [
     "Ep = m × g × h",
     "Ec = (m × v²) ÷ 2",
@@ -58,7 +58,7 @@
    {
     "faz": "Calcule a energia mecânica na base",
     "conta": "Ec = 300 × 30² ÷ 2 = 135 000 J",
-    "porque": "Na base a altura vale zero e a Ep também. Sobra só a energia cinética. 30² = 900 e 300 × 900 = 270 000; metade dá 135 000.",
+    "porque": "Na base a altura vale zero, então a Ep também. Sobra só a energia cinética. Primeiro eleve ao quadrado: 30² = 900. Depois: 300 × 900 = 270 000, e a metade dá 135 000.",
     "tipo": "calcular"
    },
    {
@@ -71,10 +71,10 @@
   "resposta": "Alternativa D: a energia mecânica perdida é 15 000 J (150 000 J no topo menos 135 000 J na base).",
   "checagem": "Sem perdas, a velocidade seria v = raiz de (2 × g × h) = raiz de 1000 ≈ 31,6 m/s. O valor real, 30 m/s, é um pouco menor, e a perda é uma fração pequena: 15 000 ÷ 150 000 = 10% da energia inicial. Isso é coerente.",
   "erradas": {
-   "A": "1 200 J não confere. Com essa perda, a Ec na base seria 148 800 J e a velocidade ≈ 31,5 m/s, não 30 m/s.",
-   "B": "2 500 J não confere. A Ec na base seria 147 500 J, o que dá v ≈ 31,4 m/s, diferente dos 30 m/s do enunciado.",
-   "C": "5 000 J não confere. A Ec na base seria 145 000 J, o que dá v ≈ 31,1 m/s, e não 30 m/s.",
-   "E": "20 000 J não confere. A Ec na base seria 130 000 J, o que dá v ≈ 29,4 m/s. Só 15 000 J reproduz os 30 m/s do enunciado, já que 150 000 − 135 000 = 15 000."
+   "A": "1 200 J não confere. Com essa perda, a Ec na base seria 148 800 J. Isso dá v ≈ 31,5 m/s, e o enunciado diz 30 m/s. Quem marca A erra a ordem de grandeza: a perda real é de dezenas de milhares de joules.",
+   "B": "2 500 J não confere. A Ec na base seria 147 500 J, o que dá v ≈ 31,4 m/s, e não 30 m/s. Quem marca B não montou a conta com os 30 m/s do enunciado: precisa comparar Ep e Ec.",
+   "C": "5 000 J não confere. A Ec na base seria 145 000 J, o que dá v ≈ 31,1 m/s, e não 30 m/s. Quem marca C não calculou a Ec com v = 30 m/s e escolheu um valor sem fazer a conta.",
+   "E": "20 000 J não confere. A Ec na base seria 130 000 J, o que dá v ≈ 29,4 m/s, e não 30 m/s. Só 15 000 J reproduz os 30 m/s: 150 000 − 135 000 = 15 000. Quem marca E errou a conta de Ec ou da subtração."
   },
   "armadilha": "Parar em Ep = 150 000 J ou em Ec = 135 000 J: a pergunta é a diferença entre as duas, a energia perdida.",
   "alerta": "",
@@ -147,11 +147,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -162,6 +164,43 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "D"
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Na base a altura vale zero, então a Ep também. Sobra só a energia cinética. Primeiro eleve ao quadrado: 30² = 900. Depois: 300 × 900 = 270 000, e a metade dá 135 000.",
+    "motivo": "Deixa a ordem das contas explícita: quadrado primeiro, depois multiplicar e dividir por 2."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "1 200 J não confere. Com essa perda, a Ec na base seria 148 800 J. Isso dá v ≈ 31,5 m/s, e o enunciado diz 30 m/s. Quem marca A erra a ordem de grandeza: a perda real é de dezenas de milhares de joules.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou a letra, e não só que ela não confere."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "2 500 J não confere. A Ec na base seria 147 500 J, o que dá v ≈ 31,4 m/s, e não 30 m/s. Quem marca B não montou a conta com os 30 m/s do enunciado: precisa comparar Ep e Ec.",
+    "motivo": "Mostra o que faltou no raciocínio de quem escolheu esta letra."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "5 000 J não confere. A Ec na base seria 145 000 J, o que dá v ≈ 31,1 m/s, e não 30 m/s. Quem marca C não calculou a Ec com v = 30 m/s e escolheu um valor sem fazer a conta.",
+    "motivo": "Indica o que faltou no raciocínio do aluno que marcou a letra."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "20 000 J não confere. A Ec na base seria 130 000 J, o que dá v ≈ 29,4 m/s, e não 30 m/s. Só 15 000 J reproduz os 30 m/s: 150 000 − 135 000 = 15 000. Quem marca E errou a conta de Ec ou da subtração.",
+    "motivo": "Indica o que faltou no raciocínio e mantém o teste objetivo."
+   },
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "No topo, o carrinho está em repouso: toda a energia mecânica é potencial gravitacional. Tome a base no nível do solo (h = 0), já que a altura do topo é dada em relação ao solo. Ali, só resta energia cinética. Se nada fosse perdido, as duas seriam iguais. A diferença é a energia dissipada, que vira calor por atrito e resistência do ar.",
+    "motivo": "Frases mais curtas e com o destino da energia perdida explicado."
+   }
+  ],
+  "didatica_alertas": [
+   "Classificação: o tema do JSON é F03/F03.2 (energia mecânica), mas o cabeçalho da questão diz F04/F04.3 (densidade e pressão). A classificação do cabeçalho parece errada.",
+   "O enunciado diz que o ponto mais baixo fica no nível do solo apenas de forma implícita (a altura é 'do solo'); a resolução assume isso e avisa no antes."
+  ],
+  "didatica_ok": true
  }
 }

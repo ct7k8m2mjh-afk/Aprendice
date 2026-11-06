@@ -24,7 +24,15 @@
     ],
     [
      "π",
-     "constante do círculo; as alternativas já a trazem escrita, então ela fica na resposta"
+     "constante do círculo (cerca de 3,14); as alternativas já a trazem escrita, então ela fica na resposta"
+    ],
+    [
+     "r²",
+     "r × r; aqui, 8 × 8 = 64"
+    ],
+    [
+     "cm³",
+     "centímetro cúbico, unidade de volume"
     ]
    ]
   },
@@ -60,7 +68,7 @@
   "erradas": {
    "A": "128π cm³ é 64π × 2: corresponde a uma subida de 2 cm. A figura mostra 23,5 − 20 = 3,5 cm, então não confere.",
    "C": "240π cm³ é 64π × 3,75: corresponde a uma subida de 3,75 cm. A subida real é 3,5 cm, então não confere.",
-   "D": "282π cm³ não confere: dividindo por 64π, a subida seria cerca de 4,4 cm. A subida lida na figura é 3,5 cm.",
+   "D": "282π cm³ não confere: 282π ÷ 64π = 4,40625 cm de subida, que não bate com os 3,5 cm da figura (64π × 3,5 = 224π).",
    "E": "320π cm³ é 64π × 5: corresponde a uma subida de 5 cm. Mas 23,5 − 20 = 3,5 cm, então não confere."
   },
   "armadilha": "Usar a altura toda da água (20 ou 23,5 cm) em vez de só a subida de 3,5 cm.",
@@ -100,12 +108,20 @@
    "nota": "raio 8 cm e h = 3,5 cm"
   },
   {
+   "linha": "8² = 8 × 8 = 64",
+   "nota": "quadrado do raio"
+  },
+  {
    "linha": "V = π × 64 × 3,5",
-   "nota": "8² = 64"
+   "nota": "troque 8² por 64"
+  },
+  {
+   "linha": "64 × 3,5 = 224",
+   "nota": "64 × 3 = 192 e 64 × 0,5 = 32; 192 + 32 = 224"
   },
   {
    "linha": "V = 224π cm³",
-   "nota": "64 × 3,5 = 224",
+   "nota": "alternativa B",
    "destaque": "224π"
   }
  ],
@@ -123,14 +139,91 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [],
   "fatos_ok": true,
-  "fatos_resposta": "B"
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "r",
+      "raio da base do cilindro, 8 cm"
+     ],
+     [
+      "h",
+      "altura do cilindro; aqui, quanto a água subiu"
+     ],
+     [
+      "π",
+      "constante do círculo (cerca de 3,14); as alternativas já a trazem escrita, então ela fica na resposta"
+     ],
+     [
+      "r²",
+      "r × r; aqui, 8 × 8 = 64"
+     ],
+     [
+      "cm³",
+      "centímetro cúbico, unidade de volume"
+     ]
+    ],
+    "motivo": "Explicar r² e cm³, símbolos usados nos passos, e dar uma ideia do valor de π."
+   },
+   {
+    "campo": "resolucao.quadro",
+    "depois": [
+     {
+      "linha": "V = π × r² × h",
+      "nota": "volume do cilindro de água deslocada"
+     },
+     {
+      "linha": "h = 23,5 − 20",
+      "nota": "altura da subida da água",
+      "destaque": "23,5 − 20"
+     },
+     {
+      "linha": "h = 3,5 cm",
+      "nota": "faça a subtração"
+     },
+     {
+      "linha": "V = π × 8² × 3,5",
+      "nota": "raio 8 cm e h = 3,5 cm"
+     },
+     {
+      "linha": "8² = 8 × 8 = 64",
+      "nota": "quadrado do raio"
+     },
+     {
+      "linha": "V = π × 64 × 3,5",
+      "nota": "troque 8² por 64"
+     },
+     {
+      "linha": "64 × 3,5 = 224",
+      "nota": "64 × 3 = 192 e 64 × 0,5 = 32; 192 + 32 = 224"
+     },
+     {
+      "linha": "V = 224π cm³",
+      "nota": "alternativa B",
+      "destaque": "224π"
+     }
+    ],
+    "motivo": "Separar o cálculo de 8² e de 64 × 3,5 em linhas próprias, sem pular passagens."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "282π cm³ não confere: 282π ÷ 64π = 4,40625 cm de subida, que não bate com os 3,5 cm da figura (64π × 3,5 = 224π).",
+    "motivo": "Mostrar o teste objetivo com a conta completa, em vez de 'cerca de'."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

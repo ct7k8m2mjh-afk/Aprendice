@@ -72,7 +72,7 @@
    {
     "faz": "Elimine as que agravam o problema",
     "conta": "B: lavouras em meia encosta; C: eucalipto",
-    "porque": "Lavoura em encosta deixa o solo exposto, e a chuva o arrasta (erosão). Eucalipto é espécie exótica e consome muita água, o que pesa em área seca.",
+    "porque": "Lavoura em encosta deixa o solo exposto, e a chuva o arrasta (erosão). O eucalipto é espécie exótica, de crescimento rápido e alto consumo de água, e não recompõe a vegetação nativa da área seca.",
     "tipo": "eliminar"
    },
    {
@@ -87,8 +87,8 @@
   "erradas": {
    "A": "Quem marcou A pensou em ajudar as pessoas, e não em recuperar a terra. Deslocar gente para áreas úmidas é adaptação social: a terra continua degradada, então não mitiga a desertificação.",
    "B": "Quem marcou B esqueceu o que acontece com o solo na encosta. Cultivar ali o deixa exposto à erosão e amplia a degradação: a medida aumenta o problema em vez de reduzi-lo.",
-   "C": "Parece boa porque plantar árvore soa ambiental. Mas o eucalipto é exótico e consome muita água, o que pode piorar a situação em área seca. Falta pensar na espécie: a D propõe nativas, adaptadas ao ambiente.",
-   "E": "Quem marcou E confundiu saneamento com recuperação da terra. Fossas sépticas tratam esgoto doméstico; não recuperam solo nem vegetação. Além disso, dispensar o saneamento básico não resolve nada."
+   "C": "Parece boa porque plantar árvore soa ambiental. Mas o eucalipto é exótico e tem alto consumo de água, e a mitigação pede recomposição com espécies nativas, adaptadas ao ambiente seco. A D propõe exatamente isso.",
+   "E": "Quem marcou E confundiu saneamento com recuperação da terra. Fossas sépticas tratam esgoto doméstico; não recuperam solo nem vegetação. Além disso, a alternativa propõe dispensar o sistema de saneamento básico, o que não combate a degradação da terra."
   },
   "armadilha": "A alternativa C parece boa porque 'plantar árvore' soa ambientalmente correto, mas o eucalipto é exótico e consome muita água.",
   "alerta": "",
@@ -124,12 +124,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -223,6 +225,28 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "Quem marcou E confundiu saneamento com recuperação da terra. Fossas sépticas tratam esgoto doméstico; não recuperam solo nem vegetação. Além disso, a alternativa propõe dispensar o sistema de saneamento básico, o que não combate a degradação da terra.",
+    "motivo": "A frase 'dispensar o saneamento básico não resolve nada' é absoluta e imprecisa. A alternativa diz que as fossas dispensam o sistema hídrico de saneamento. O problema é que isso não tem relação com a recuperação da terra, e esse é o argumento que o comentário precisa dar.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Lavoura em encosta deixa o solo exposto, e a chuva o arrasta (erosão). O eucalipto é espécie exótica, de crescimento rápido e alto consumo de água, e não recompõe a vegetação nativa da área seca.",
+    "motivo": "Mantém o fato correto sem afirmar que o eucalipto agrava a seca de forma absoluta. O consumo de água do eucalipto é debatido na literatura. O ponto central do gabarito é a recomposição com espécies nativas.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "Parece boa porque plantar árvore soa ambiental. Mas o eucalipto é exótico e tem alto consumo de água, e a mitigação pede recomposição com espécies nativas, adaptadas ao ambiente seco. A D propõe exatamente isso.",
+    "motivo": "Troca 'pode piorar a situação' por uma afirmação mais segura, que se apoia no critério da espécie nativa.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "D"
  }
 }

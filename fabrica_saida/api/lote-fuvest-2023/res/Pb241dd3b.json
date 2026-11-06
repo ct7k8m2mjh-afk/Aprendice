@@ -8,7 +8,7 @@
  "conceito": "Relacionar o pH de substâncias do dia a dia (ácidas, neutras e básicas) com a cor de um indicador natural, o extrato de repolho roxo.",
  "resolucao": {
   "antes": {
-   "texto": "O extrato de repolho roxo é um indicador ácido-base: muda de cor conforme o pH. Na figura, o vermelho e o rosa ficam à esquerda (pH baixo, meio ácido). O roxo fica em pH 7 (neutro). Do azul (pH 8) para a direita, passando por azul esverdeado, verde e amarelo, o meio é básico. Então a questão pede um produto ÁCIDO para a tinta rosa/vermelha e um produto BÁSICO para a tinta azul/verde.",
+   "texto": "O extrato de repolho roxo é um indicador ácido-base: muda de cor conforme o pH. Na figura, vermelho e rosa ficam à esquerda (pH baixo, meio ácido). O roxo fica em pH 7 (neutro). Do azul (pH 8) para a direita, passando por azul esverdeado, verde e amarelo, o meio é básico. A questão pede um produto ÁCIDO para a tinta rosa/vermelha e um produto BÁSICO para a tinta azul/verde.",
    "formulas": [
     "pH menor que 7: meio ácido (rosa/vermelho)",
     "pH igual a 7: meio neutro (roxo)",
@@ -41,13 +41,13 @@
   "passos": [
    {
     "faz": "Traduza as cores em tipo de meio",
-    "conta": "rosa/vermelho: pH < 5",
+    "conta": "rosa/vermelho: pH < 5 → ácido",
     "porque": "Na figura, vermelho (pH 1) e rosa (pH 3 a 5) estão à esquerda do roxo (pH 7). Isso é meio ácido.",
     "tipo": "localizar"
    },
    {
     "faz": "Faça o mesmo para azul/verde",
-    "conta": "azul/verde: pH de 8 a 11",
+    "conta": "azul/verde: pH 8 a 11 → básico",
     "porque": "Azul (pH 8), azul esverdeado (9), verde escuro (10) e verde (11) estão à direita do roxo. Isso é meio básico.",
     "tipo": "localizar"
    },
@@ -60,13 +60,13 @@
    {
     "faz": "Continue a classificação",
     "conta": "açúcar, sal: neutros",
-    "porque": "Açúcar (sacarose) é molecular e não altera o pH da água. O sal de cozinha (NaCl) vem de ácido forte e base forte, então a solução é neutra e fica roxa.",
+    "porque": "Açúcar (sacarose) não reage com a água e não muda o pH. O sal de cozinha (NaCl) vem de um ácido forte e uma base forte, então a solução é neutra e o extrato fica roxo.",
     "tipo": "comparar"
    },
    {
     "faz": "Complete a classificação",
     "conta": "bicarbonato, soda: básicos",
-    "porque": "O bicarbonato de sódio é básico fraco (pH em torno de 8, azul). A soda cáustica é base forte (pH muito alto, verde ou amarelo).",
+    "porque": "O bicarbonato de sódio é uma base fraca (pH perto de 8, azul). A soda cáustica é base forte (pH muito alto, verde ou amarelo).",
     "tipo": "comparar"
    },
    {
@@ -80,9 +80,9 @@
   "checagem": "Teste cada coluna isoladamente. Na 1ª coluna, só pode entrar produto ácido; na 2ª, só produto básico. A única linha que passa nos dois testes é a E.",
   "erradas": {
    "A": "Açúcar e sal de cozinha são neutros (pH em torno de 7). As duas tintas ficariam roxas, sem o rosa nem o azul pedidos.",
-   "B": "O sal de cozinha (NaCl) é neutro e deixaria a tinta roxa, não rosa. O bicarbonato serve para o azul, mas a 1ª coluna falha.",
-   "C": "As colunas estão trocadas. O bicarbonato é básico e daria azul na coluna do rosa/vermelho. O vinagre é ácido e daria rosa/vermelho na coluna do azul/verde.",
-   "D": "A soda cáustica é base forte e serve para o azul/verde (ou amarelo, se muito concentrada). Mas o açúcar é neutro: a tinta ficaria roxa, não rosa/vermelha."
+   "B": "O sal de cozinha (NaCl) é neutro e deixaria a tinta roxa, não rosa. O bicarbonato serve para o azul, mas a 1ª coluna falha: faltou procurar um ácido ali.",
+   "C": "As colunas estão trocadas. O bicarbonato é básico e daria azul, mas está na coluna do rosa/vermelho. O vinagre é ácido e daria rosa, mas está na coluna do azul/verde. Quem marcou C acertou os tipos de produto, mas errou a ordem.",
+   "D": "A soda cáustica é base forte e serve para o azul/verde (ou amarelo, se muito concentrada). Mas o açúcar é neutro: a tinta ficaria roxa, não rosa/vermelha. Faltou testar a 1ª coluna."
   },
   "armadilha": "Achar que sal e açúcar são 'ácidos' ou 'básicos' só por serem comuns na cozinha, esquecendo que são neutros e deixam o indicador roxo.",
   "alerta": "",
@@ -117,11 +117,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -150,6 +152,53 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "E"
+  "fatos_resposta": "E",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "O extrato de repolho roxo é um indicador ácido-base: muda de cor conforme o pH. Na figura, vermelho e rosa ficam à esquerda (pH baixo, meio ácido). O roxo fica em pH 7 (neutro). Do azul (pH 8) para a direita, passando por azul esverdeado, verde e amarelo, o meio é básico. A questão pede um produto ÁCIDO para a tinta rosa/vermelha e um produto BÁSICO para a tinta azul/verde.",
+    "motivo": "Frases mais curtas e sem repetir 'Então'; mantém a ideia."
+   },
+   {
+    "campo": "resolucao.passos[0].conta",
+    "depois": "rosa/vermelho: pH < 5 → ácido",
+    "motivo": "A conta já mostra a conclusão (tipo de meio), que é o que o 'faz' pede."
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "azul/verde: pH 8 a 11 → básico",
+    "motivo": "Idem: mostra o tipo de meio no próprio caderno."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Açúcar (sacarose) não reage com a água e não muda o pH. O sal de cozinha (NaCl) vem de um ácido forte e uma base forte, então a solução é neutra e o extrato fica roxo.",
+    "motivo": "Troca 'é molecular' (termo não explicado) por explicação simples."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "O bicarbonato de sódio é uma base fraca (pH perto de 8, azul). A soda cáustica é base forte (pH muito alto, verde ou amarelo).",
+    "motivo": "Linguagem mais direta."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "O sal de cozinha (NaCl) é neutro e deixaria a tinta roxa, não rosa. O bicarbonato serve para o azul, mas a 1ª coluna falha: faltou procurar um ácido ali.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou B."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "As colunas estão trocadas. O bicarbonato é básico e daria azul, mas está na coluna do rosa/vermelho. O vinagre é ácido e daria rosa, mas está na coluna do azul/verde. Quem marcou C acertou os tipos de produto, mas errou a ordem.",
+    "motivo": "Explicita o que faltou: conferir a ordem das colunas."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "A soda cáustica é base forte e serve para o azul/verde (ou amarelo, se muito concentrada). Mas o açúcar é neutro: a tinta ficaria roxa, não rosa/vermelha. Faltou testar a 1ª coluna.",
+    "motivo": "Mostra onde o raciocínio parou."
+   }
+  ],
+  "didatica_alertas": [
+   "O campo 'nivel' do JSON da resolução é 3, mas a classificação atual informada é nível 4; conferir qual vale.",
+   "Detalhe de fato: a figura mostra o NaCl como neutro (roxo), mas o pH do bicarbonato em água, perto de 8, fica no limite do azul; a questão aceita isso, sem erro de gabarito."
+  ],
+  "didatica_ok": true
  }
 }

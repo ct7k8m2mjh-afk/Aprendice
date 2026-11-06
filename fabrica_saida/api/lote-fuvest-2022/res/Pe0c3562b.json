@@ -52,7 +52,7 @@
   "passos": [
    {
     "faz": "Localize Na e K na tabela",
-    "conta": "Na: linha 3, coluna 1",
+    "conta": "Na: linha 3, col. 1 / K: linha 4, col. 1",
     "porque": "Na tabela do print, o Na está na linha 3 e o K na linha 4, ambos na coluna 1. Logo, K está abaixo de Na.",
     "tipo": "localizar"
    },
@@ -104,11 +104,11 @@
  "quadro": [
   {
    "linha": "Na: Z = 11 → Na⁺: 2 camadas",
-   "nota": "perde 1 elétron da camada 3"
+   "nota": "perde o 1 elétron da camada 3 (3s¹)"
   },
   {
    "linha": "K: Z = 19 → K⁺: 3 camadas",
-   "nota": "perde 1 elétron da camada 4"
+   "nota": "perde o 1 elétron da camada 4 (4s¹)"
   },
   {
    "linha": "raio K⁺ > raio Na⁺",
@@ -138,12 +138,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -245,6 +247,34 @@
    "Classificação: o JSON traz tema Q01 e conteúdo Q01.5 (propriedades periódicas), enquanto a classificação atual do banco é Q02/Q02.1. Q01.5 parece mais adequado; o corretor 1 deve conferir.",
    "A alternativa A diz 'mais preenchida e mais resistente', e o texto sustenta isso. Raio iônico de Na⁺ e K⁺ (102 e 138 pm) são valores de tabela, não do enunciado; vale conferir a fonte."
   ],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "tema",
+    "depois": "Q01",
+    "motivo": "Sem correção de fato: o raio iônico é propriedade periódica (Q01.5), então a classificação Q01/Q01.5 da resolução está adequada. A classificação atual do banco (Q02.1) é que parece inadequada. Fica como observação, sem alteração.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[0].conta",
+    "depois": "Na: linha 3, col. 1 / K: linha 4, col. 1",
+    "motivo": "A conta continuava citando só o Na, embora a didática tenha dito que passaria a mostrar os dois elementos. Cabe em cerca de 36 caracteres, então fica melhor em duas linhas, como as instruções pedem.",
+    "fonte": ""
+   },
+   {
+    "campo": "quadro[0].nota",
+    "depois": "perde o 1 elétron da camada 3 (3s¹)",
+    "motivo": "O Na (1s² 2s² 2p⁶ 3s¹) perde o elétron da camada 3. O texto original era correto, mas agora identifica o subnível 3s¹ para evitar ambiguidade.",
+    "fonte": ""
+   },
+   {
+    "campo": "quadro[1].nota",
+    "depois": "perde o 1 elétron da camada 4 (4s¹)",
+    "motivo": "O K (…3p⁶ 4s¹) perde o elétron da camada 4. O texto original era correto, mas agora identifica o subnível 4s¹.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "A"
  }
 }

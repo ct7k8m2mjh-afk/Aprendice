@@ -36,13 +36,13 @@
   "passos": [
    {
     "faz": "Teste A: sábados (quadrados)",
-    "conta": "quadrado mais à direita ≈ 440",
+    "conta": "quadrado mais à direita ≈ 460",
     "porque": "O quadrado mais à direita passa de 379,6, que é a marca seguinte do eixo. Logo houve sábado com energia acima de 380, e A é falsa.",
     "tipo": "localizar"
    },
    {
     "faz": "Teste C: domingos e feriados (triângulos)",
-    "conta": "triângulo mais à direita ≈ 330",
+    "conta": "triângulo mais à direita ≈ 350",
     "porque": "Nenhum triângulo chega perto de 569,4, muito menos de 600. Os triângulos ficam todos à esquerda de 379,6. C é falsa.",
     "tipo": "localizar"
    },
@@ -54,8 +54,8 @@
    },
    {
     "faz": "Teste E: sábado com energia 190",
-    "conta": "reta azul em 190: F ≈ 0,35",
-    "porque": "Os quadrados mais à esquerda, com energia entre 240 e 300, têm F entre 0,4 e 0,5. A reta azul, que vai de (0, 0) a F = 1 perto de 550, dá F ≈ 0,35 em 190. Nunca passa de 60%. E é falsa.",
+    "conta": "reta azul em 190: F ≈ 0,33",
+    "porque": "Os quadrados mais à esquerda, com energia entre 240 e 300, têm F entre 0,4 e 0,5. A reta azul, que vai de (0, 0) a F = 1 perto de 580, dá F ≈ 0,33 em 190. Nunca passa de 60%. E é falsa.",
     "tipo": "localizar"
    },
    {
@@ -66,12 +66,12 @@
    }
   ],
   "resposta": "Alternativa D: para o mesmo número de pessoas que saiu de casa, os dias úteis têm energia sísmica média maior ou igual à de sábados, domingos e feriados.",
-  "checagem": "Escolha F = 0,8. A reta dos dias úteis (preta) atinge esse valor com energia em torno de 650, a azul dos sábados em torno de 440 e a vermelha dos domingos em torno de 330. A ordem é a mesma em qualquer F, o que confirma D.",
+  "checagem": "Escolha F = 0,8. A reta dos dias úteis (preta) atinge esse valor com energia em torno de 650, a azul dos sábados em torno de 470 e a vermelha dos domingos em torno de 350. A ordem é a mesma em qualquer F, o que confirma D.",
   "erradas": {
-   "A": "Falsa: há quadrados (sábados) com energia em torno de 440, à direita da marca 379,6. Então houve sábado acima de 380 (nm/s)².",
+   "A": "Falsa: há quadrados (sábados) com energia em torno de 460, à direita da marca 379,6. Então houve sábado acima de 380 (nm/s)².",
    "B": "Falsa: o círculo mais alto tem F ≈ 0,86, o que deixa só 1 − 0,86 = 14% em casa. Portanto nem todo dia útil teve pelo menos 20% em casa.",
-   "C": "Falsa: o triângulo mais à direita fica em cerca de 330, bem antes de 569,4. Nenhum domingo ou feriado chega a 600 (nm/s)².",
-   "E": "Falsa: em 190 (nm/s)², a reta azul dos sábados dá F ≈ 0,35, ou seja, cerca de 35% saíram de casa. Os quadrados mais próximos têm F entre 0,4 e 0,5, longe de 60%."
+   "C": "Falsa: o triângulo mais à direita fica em cerca de 350, bem antes de 569,4. Nenhum domingo ou feriado chega a 600 (nm/s)².",
+   "E": "Falsa: em 190 (nm/s)², a reta azul dos sábados dá F ≈ 0,33, ou seja, cerca de 33% saíram de casa. Os quadrados mais próximos têm F entre 0,4 e 0,5, longe de 60%."
   },
   "armadilha": "Misturar grupos: cada letra fala de um grupo de símbolos, e comparar exige o mesmo F, não a mesma energia.",
   "alerta": "",
@@ -93,11 +93,11 @@
  ],
  "quadro": [
   {
-   "linha": "A: quadrado mais à direita ≈ 440",
-   "nota": "440 > 380, então A é falsa"
+   "linha": "A: quadrado mais à direita ≈ 460",
+   "nota": "460 > 380, então A é falsa"
   },
   {
-   "linha": "C: triângulo mais à direita ≈ 330",
+   "linha": "C: triângulo mais à direita ≈ 350",
    "nota": "330 < 600, então C é falsa"
   },
   {
@@ -109,7 +109,7 @@
    "nota": "14% em casa, menos que 20%: B falsa"
   },
   {
-   "linha": "E: reta azul em 190, F ≈ 0,35",
+   "linha": "E: reta azul em 190, F ≈ 0,33",
    "nota": "35% é menos que 60%: E falsa"
   },
   {
@@ -132,12 +132,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -258,6 +260,82 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "triângulo mais à direita ≈ 350",
+    "motivo": "No gráfico, o triângulo mais à direita fica perto de 350, não de 330. A conclusão não muda, porque 350 é menor que 379,6 e muito menor que 600.",
+    "fonte": ""
+   },
+   {
+    "campo": "quadro[1].linha",
+    "depois": "C: triângulo mais à direita ≈ 350",
+    "motivo": "Mesma leitura corrigida do gráfico.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "Falsa: o triângulo mais à direita fica em cerca de 350, bem antes de 569,4. Nenhum domingo ou feriado chega a 600 (nm/s)².",
+    "motivo": "Mesma leitura corrigida do gráfico.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "reta azul em 190: F ≈ 0,33",
+    "motivo": "A reta azul chega a F = 1 perto de 580, e 190 ÷ 580 ≈ 0,33. O valor 0,35 estava um pouco alto.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Os quadrados mais à esquerda, com energia entre 240 e 300, têm F entre 0,4 e 0,5. A reta azul, que vai de (0, 0) a F = 1 perto de 580, dá F ≈ 0,33 em 190. Nunca passa de 60%. E é falsa.",
+    "motivo": "A reta azul atinge F = 1 perto de 580, não de 550.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "Falsa: em 190 (nm/s)², a reta azul dos sábados dá F ≈ 0,33, ou seja, cerca de 33% saíram de casa. Os quadrados mais próximos têm F entre 0,4 e 0,5, longe de 60%.",
+    "motivo": "Corrige o valor de F lido na reta azul em 190.",
+    "fonte": ""
+   },
+   {
+    "campo": "quadro[4].linha",
+    "depois": "E: reta azul em 190, F ≈ 0,33",
+    "motivo": "Corrige o valor de F lido na reta azul em 190.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Escolha F = 0,8. A reta dos dias úteis (preta) atinge esse valor com energia em torno de 650, a azul dos sábados em torno de 470 e a vermelha dos domingos em torno de 350. A ordem é a mesma em qualquer F, o que confirma D.",
+    "motivo": "Corrige as leituras das retas azul e vermelha em F = 0,8. Pelo gráfico, a azul fica perto de 470 e a vermelha perto de 350.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "Falsa: há quadrados (sábados) com energia em torno de 460, à direita da marca 379,6. Então houve sábado acima de 380 (nm/s)².",
+    "motivo": "O quadrado mais à direita fica perto de 460, não de 440. A conclusão não muda.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[0].conta",
+    "depois": "quadrado mais à direita ≈ 460",
+    "motivo": "Mesma leitura corrigida do gráfico.",
+    "fonte": ""
+   },
+   {
+    "campo": "quadro[0].linha",
+    "depois": "A: quadrado mais à direita ≈ 460",
+    "motivo": "Mesma leitura corrigida do gráfico.",
+    "fonte": ""
+   },
+   {
+    "campo": "quadro[0].nota",
+    "depois": "460 > 380, então A é falsa",
+    "motivo": "Acompanha a leitura corrigida.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "D"
  }
 }

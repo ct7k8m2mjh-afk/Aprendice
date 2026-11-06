@@ -8,7 +8,7 @@
  "conceito": "Conservação da energia: energia potencial gravitacional somada ao trabalho do arremesso vira energia cinética, que é toda dissipada num choque perfeitamente inelástico.",
  "resolucao": {
   "antes": {
-   "texto": "Num choque perfeitamente inelástico com o solo, a bola para: toda a energia cinética que ela tinha ao chegar é dissipada. Essa energia vem de duas fontes: a energia potencial que a bola tinha na altura de onde foi solta e o trabalho extra que a pessoa realizou ao arremessá-la. A altura da bola é medida a partir do solo, e não a partir da cabeça. O enunciado mistura cal e J, então é preciso converter.",
+   "texto": "Num choque perfeitamente inelástico com o solo, a bola para: toda a energia de movimento (energia cinética) que ela tinha ao chegar é dissipada. Essa energia vem de duas fontes: a energia potencial que a bola tinha na altura de onde foi solta e o trabalho extra que a pessoa realizou ao arremessá-la. A altura é medida a partir do solo, e não a partir da cabeça. O enunciado mistura cal e J, então é preciso converter.",
    "formulas": [
     "E_pot = m × g × h",
     "E_dissipada = E_pot + trabalho do arremesso",
@@ -20,16 +20,24 @@
      "energia potencial gravitacional: energia guardada pela bola por estar no alto"
     ],
     [
-     "inelástico",
-     "choque em que a energia cinética se perde (calor, som, deformação)"
+     "energia cinética",
+     "energia que um corpo tem por estar em movimento"
     ],
     [
      "perfeitamente inelástico",
-     "a bola fica parada no solo depois do choque, sem quicar"
+     "choque em que a bola fica parada no solo, sem quicar; toda a energia de movimento se perde"
+    ],
+    [
+     "dissipada",
+     "energia que se perde em calor, som e deformação"
     ],
     [
      "cal",
      "caloria, unidade de energia; aqui vale 4,2 J"
+    ],
+    [
+     "J",
+     "joule, unidade de energia no SI"
     ],
     [
      "trabalho",
@@ -60,7 +68,7 @@
    {
     "faz": "Some as duas fontes de energia",
     "conta": "E = 126 J + 42 J = 168 J",
-    "porque": "Sem atrito do ar, a energia cinética ao chegar ao chão é a potencial perdida mais o trabalho dado pela pessoa.",
+    "porque": "Sem resistência do ar, a energia cinética ao chegar ao chão é a energia potencial que a bola tinha mais o trabalho dado pela pessoa.",
     "tipo": "calcular"
    },
    {
@@ -82,7 +90,7 @@
    "A": "10 cal é só o trabalho adicional do arremesso. Faltou a energia potencial da bola, que vale 126 J = 30 cal.",
    "B": "Sai de subtrair em vez de somar: 126 − 42 = 84 J = 20 cal. O trabalho da pessoa é energia acrescentada à bola, então ele soma.",
    "C": "30 cal é só a energia potencial (126 J ÷ 4,2). Faltou somar as 10 cal que a pessoa fornece ao arremessar, pois essa energia também chega ao chão e é dissipada.",
-   "E": "50 cal = 210 J não confere: a bola só recebe 126 J de energia potencial e 42 J do arremesso, que somam 168 J. Nenhuma outra energia entra na bola, então não há 210 J para dissipar."
+   "E": "50 cal = 210 J não confere: a bola só recebe 126 J de energia potencial e 42 J do arremesso, somando 168 J. Quem marcou E provavelmente somou uma energia a mais que não existe; só há essas duas fontes."
   },
   "armadilha": "Medir a altura só até a cabeça (ou só até 40 cm) e esquecer o trabalho de 10 cal, que também vira energia a ser dissipada.",
   "alerta": "",
@@ -150,11 +158,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -171,6 +181,66 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "D"
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Num choque perfeitamente inelástico com o solo, a bola para: toda a energia de movimento (energia cinética) que ela tinha ao chegar é dissipada. Essa energia vem de duas fontes: a energia potencial que a bola tinha na altura de onde foi solta e o trabalho extra que a pessoa realizou ao arremessá-la. A altura é medida a partir do solo, e não a partir da cabeça. O enunciado mistura cal e J, então é preciso converter.",
+    "motivo": "Explica 'energia cinética' na primeira aparição."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "E_pot",
+      "energia potencial gravitacional: energia guardada pela bola por estar no alto"
+     ],
+     [
+      "energia cinética",
+      "energia que um corpo tem por estar em movimento"
+     ],
+     [
+      "perfeitamente inelástico",
+      "choque em que a bola fica parada no solo, sem quicar; toda a energia de movimento se perde"
+     ],
+     [
+      "dissipada",
+      "energia que se perde em calor, som e deformação"
+     ],
+     [
+      "cal",
+      "caloria, unidade de energia; aqui vale 4,2 J"
+     ],
+     [
+      "J",
+      "joule, unidade de energia no SI"
+     ],
+     [
+      "trabalho",
+      "energia que a pessoa transfere à bola ao empurrá-la para baixo"
+     ]
+    ],
+    "motivo": "Remove a definição de 'inelástico' redundante, e inclui cinética, dissipada e J."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Sem resistência do ar, a energia cinética ao chegar ao chão é a energia potencial que a bola tinha mais o trabalho dado pela pessoa.",
+    "motivo": "Frase mais clara; 'sem atrito do ar' era impreciso."
+   },
+   {
+    "campo": "resolucao.passos[4].faz",
+    "depois": "Use o choque perfeitamente inelástico",
+    "motivo": "Mantido; apenas confirmado."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "50 cal = 210 J não confere: a bola só recebe 126 J de energia potencial e 42 J do arremesso, somando 168 J. Quem marcou E provavelmente somou uma energia a mais que não existe; só há essas duas fontes.",
+    "motivo": "Diz o que faltou no raciocínio, sem inventar origem."
+   }
+  ],
+  "didatica_alertas": [
+   "A classificação do banco (F04.3, pressão) não combina com a questão, que é de energia e conservação (F03.2). A resolução já usa F03/F03.2; o banco precisa ser corrigido."
+  ],
+  "didatica_ok": true
  }
 }

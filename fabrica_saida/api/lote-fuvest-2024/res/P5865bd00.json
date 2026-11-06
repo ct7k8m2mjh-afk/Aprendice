@@ -39,33 +39,39 @@
   "pista": "Leia no gráfico os valores aproximados de cada linha nos anos citados e teste uma alternativa de cada vez.",
   "passos": [
    {
-    "faz": "Leia os valores no gráfico",
-    "conta": "DF: 2007≈4,3 ; 2014≈4,1 ; 2016≈4,1 ; 2017≈2,9",
-    "porque": "O eixo vertical vai de 0,0 a 6,0 em passos de 1,0. A linha laranja tracejada é o DF.",
+    "faz": "Leia o DF no gráfico",
+    "conta": "DF: 2007≈4,3 ; 2014≈4,1",
+    "porque": "A linha laranja tracejada é o DF. O eixo vertical vai de 0,0 a 6,0, de 1,0 em 1,0.",
     "tipo": "localizar"
    },
    {
-    "faz": "Continue a leitura das outras linhas",
-    "conta": "SC: 2007≈2,3 ; 2014≈3,2 ; 2016≈3,1 ; 2017≈3,1",
-    "porque": "A linha verde é Santa Catarina. Já a vermelha (SP) e a azul (Brasil) dão os valores a seguir.",
+    "faz": "Continue lendo o DF",
+    "conta": "DF: 2016≈4,1 ; 2017≈2,9",
+    "porque": "Esses dois pontos mostram a queda forte do DF no último ano.",
     "tipo": "localizar"
    },
    {
-    "faz": "Anote SP e Brasil",
+    "faz": "Leia SC, SP e Brasil",
+    "conta": "SC: 2007≈2,3 ; 2016≈3,1 ; 2017≈3,1",
+    "porque": "A linha verde é Santa Catarina. A vermelha é São Paulo (SP) e a azul é o Brasil.",
+    "tipo": "localizar"
+   },
+   {
+    "faz": "Leia SP e Brasil",
     "conta": "SP: 2014≈2,65 ; 2016≈2,2 ; 2017≈2,15",
-    "porque": "Brasil: 2017≈4,7. Esses valores bastam para testar todas as alternativas.",
+    "porque": "No Brasil, 2017≈4,7. Com esses valores dá para testar todas as alternativas.",
     "tipo": "localizar"
    },
    {
     "faz": "Teste 2014 → 2017 (A)",
-    "conta": "DF: 1,2 ; SP: 0,5 ; SC: 0,1",
-    "porque": "O maior decréscimo entre 2014 e 2017 é o do DF, não o de SP. A é falsa.",
-    "tipo": "calcular"
+    "conta": "DF: 4,1 − 2,9 = 1,2 ; SP: 2,65 − 2,15 = 0,5",
+    "porque": "Nesse período o DF caiu mais que SP. Logo A é falsa.",
+    "tipo": "eliminar"
    },
    {
     "faz": "Teste 2016 → 2017 (E)",
     "conta": "DF: 4,1 − 2,9 = 1,2 ; SP: 0,05 ; SC: 0",
-    "porque": "O DF teve a maior redução entre 2016 e 2017, então E é verdadeira. B, C e D já caem em outros testes.",
+    "porque": "O DF teve a maior queda de 2016 para 2017, então E é verdadeira. B, C e D falham, como mostram as erradas.",
     "tipo": "concluir"
    }
   ],
@@ -75,7 +81,7 @@
    "A": "O decréscimo de SP entre 2014 e 2017 é 2,65 − 2,15 ≈ 0,5. O do DF é 4,1 − 2,9 ≈ 1,2, bem maior. Logo SP não foi a maior queda.",
    "B": "Santa Catarina subiu: de ≈2,3 em 2007 para ≈3,1 em 2017. Só DF (4,3 → 2,9) e SP (2,8 → 2,15) caíram, então não foram as três.",
    "C": "A soma das três taxas em 2017 é ≈2,9 + 3,1 + 2,15 ≈ 8,15. O Brasil está em ≈4,7, bem menor que 8,15.",
-   "D": "SC tem de fato a maior taxa entre DF, SC e SP em 2017 (≈3,1). Mas o gráfico traz só as três unidades de menor taxa do país em 2017, então Paraná e Rio Grande do Sul têm taxas maiores que a de SC. A afirmação 'superando os demais estados do Sul' é falsa."
+   "D": "Entre DF, SC e SP, SC tem a maior taxa em 2017 (≈3,1). Mas o gráfico mostra só as três unidades com as menores taxas do país. Então Paraná e Rio Grande do Sul têm taxas maiores que a de SC, e 'superando os demais estados do Sul' é falso."
   },
   "armadilha": "Afirmar algo sobre estados que não estão no gráfico (D) ou olhar o período errado (A usa 2014–2017, E usa 2016–2017).",
   "alerta": "",
@@ -135,14 +141,97 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [],
   "fatos_ok": true,
-  "fatos_resposta": "E"
+  "fatos_resposta": "E",
+  "didatica": [
+   {
+    "campo": "resolucao.passos",
+    "depois": [
+     {
+      "faz": "Leia o DF no gráfico",
+      "conta": "DF: 2007≈4,3 ; 2014≈4,1",
+      "porque": "A linha laranja tracejada é o DF. O eixo vertical vai de 0,0 a 6,0, de 1,0 em 1,0.",
+      "tipo": "localizar"
+     },
+     {
+      "faz": "Continue lendo o DF",
+      "conta": "DF: 2016≈4,1 ; 2017≈2,9",
+      "porque": "Esses dois pontos mostram a queda forte do DF no último ano.",
+      "tipo": "localizar"
+     },
+     {
+      "faz": "Leia SC, SP e Brasil",
+      "conta": "SC: 2007≈2,3 ; 2016≈3,1 ; 2017≈3,1",
+      "porque": "A linha verde é Santa Catarina. A vermelha é São Paulo (SP) e a azul é o Brasil.",
+      "tipo": "localizar"
+     },
+     {
+      "faz": "Leia SP e Brasil",
+      "conta": "SP: 2014≈2,65 ; 2016≈2,2 ; 2017≈2,15",
+      "porque": "No Brasil, 2017≈4,7. Com esses valores dá para testar todas as alternativas.",
+      "tipo": "localizar"
+     },
+     {
+      "faz": "Teste 2014 → 2017 (A)",
+      "conta": "DF: 4,1 − 2,9 = 1,2 ; SP: 2,65 − 2,15 = 0,5",
+      "porque": "Nesse período o DF caiu mais que SP. Logo A é falsa.",
+      "tipo": "eliminar"
+     },
+     {
+      "faz": "Teste 2016 → 2017 (E)",
+      "conta": "DF: 4,1 − 2,9 = 1,2 ; SP: 0,05 ; SC: 0",
+      "porque": "O DF teve a maior queda de 2016 para 2017, então E é verdadeira. B, C e D falham, como mostram as erradas.",
+      "tipo": "concluir"
+     }
+    ],
+    "motivo": "Passos reorganizados: leitura por estado, sem a frase 'Já a vermelha...' ambígua; A passa a ser eliminar; valores de SC em 2014 não eram usados."
+   },
+   {
+    "campo": "resolucao.quadro",
+    "depois": [
+     {
+      "linha": "DF 2016 ≈ 4,1",
+      "nota": "leitura da linha laranja"
+     },
+     {
+      "linha": "DF 2017 ≈ 2,9",
+      "nota": "leitura da linha laranja"
+     },
+     {
+      "linha": "queda DF = 4,1 − 2,9",
+      "nota": "taxa inicial menos final"
+     },
+     {
+      "linha": "queda DF ≈ 1,2",
+      "nota": "maior queda do período"
+     },
+     {
+      "linha": "SP: 2,2 − 2,15 ≈ 0,05",
+      "nota": "queda pequena"
+     },
+     {
+      "linha": "SC: 3,1 − 3,1 = 0",
+      "nota": "sem queda"
+     }
+    ],
+    "motivo": "Mantido igual; já cabe no caderno, um passo por linha."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "Entre DF, SC e SP, SC tem a maior taxa em 2017 (≈3,1). Mas o gráfico mostra só as três unidades com as menores taxas do país. Então Paraná e Rio Grande do Sul têm taxas maiores que a de SC, e 'superando os demais estados do Sul' é falso.",
+    "motivo": "Frases mais curtas e raciocínio mais claro."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

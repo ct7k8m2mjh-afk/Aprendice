@@ -88,8 +88,8 @@
   "resposta": "Alternativa B: os pesticidas evaporam nas regiões quentes, são levados pelas correntes atmosféricas e condensam nas regiões frias, como os polos.",
   "checagem": "Reconstrua o ciclo: evaporação (quente) → transporte pelo ar → condensação (frio). São as mesmas três etapas de um destilador de laboratório. Só a B tem as três, na ordem certa.",
   "erradas": {
-   "A": "Põe o transporte nas correntes marinhas e o depósito nas águas frias. Quem marcou esqueceu que o composto é volátil: ele vira vapor e viaja pelo ar. A destilação condensa o vapor no frio. Não é a água fria do mar que o 'precipita'.",
-   "C": "Diz que a destilação deixa o composto resistente à degradação e que as correntes marinhas o espalham. Quem marcou esqueceu que destilar não muda a substância. Falta também o mecanismo: vapor levado pelo ar e condensado no frio. Isso não explica o acúmulo nos polos.",
+   "A": "Põe o transporte nas correntes marinhas e o depósito nas águas frias. Quem marcou esqueceu que o composto é volátil: ele vira vapor e viaja pelo ar. A destilação condensa o vapor no frio. A água fria do mar não faz o composto 'precipitar', e as águas aquecidas dos oceanos não são o ponto de partida do modelo.",
+   "C": "Diz que a destilação deixa o composto resistente à degradação e que as correntes marinhas o espalham. A destilação é só mudança de estado e não altera a substância. A resistência à degradação é uma propriedade própria dos organoclorados, que não vem da destilação. Falta também o mecanismo: vapor levado pelo ar e condensado no frio. Isso não explica o acúmulo nos polos.",
    "D": "Atribui o acúmulo a uma afinidade do cloro com o gelo por causa da eletronegatividade. Organoclorados são pouco polares e hidrofóbicos, então não têm afinidade especial com o gelo (água). A causa do acúmulo é a condensação a baixa temperatura, não essa afinidade.",
    "E": "Diz que são hidrofílicos e condensam junto com a água nas regiões quentes. Organoclorados são hidrofóbicos (pouco polares). Além disso, a condensação que leva ao acúmulo ocorre nas regiões frias, não nas quentes."
   },
@@ -123,12 +123,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -228,6 +230,22 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "Diz que a destilação deixa o composto resistente à degradação e que as correntes marinhas o espalham. A destilação é só mudança de estado e não altera a substância. A resistência à degradação é uma propriedade própria dos organoclorados, que não vem da destilação. Falta também o mecanismo: vapor levado pelo ar e condensado no frio. Isso não explica o acúmulo nos polos.",
+    "motivo": "O texto dizia que 'destilar não muda a substância', o que é verdadeiro. Mas ele não deixava claro que a persistência dos organoclorados existe de fato e é independente da destilação. A mudança evita que o aluno entenda que eles não são persistentes.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "Põe o transporte nas correntes marinhas e o depósito nas águas frias. Quem marcou esqueceu que o composto é volátil: ele vira vapor e viaja pelo ar. A destilação condensa o vapor no frio. A água fria do mar não faz o composto 'precipitar', e as águas aquecidas dos oceanos não são o ponto de partida do modelo.",
+    "motivo": "A frase original mostrava só um erro do que o aluno esqueceu. Esta versão aponta o que a alternativa afirma de errado.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "B"
  }
 }

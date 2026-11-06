@@ -8,7 +8,7 @@
  "conceito": "Traduzir três condições em palavras (valor em x = 1, total crescente, preço por quilo decrescente) e testá-las em cinco fórmulas.",
  "resolucao": {
   "antes": {
-   "texto": "A questão dá três regras e pede a fórmula que cumpre as três. Cada regra vira um teste numérico. 'Paga R$ 5,00 por 1 kg' significa total = 5 quando x = 1. 'Total maior' significa que a fórmula cresce com x. 'Valor por quilo menor' significa que o total dividido por x diminui quando x aumenta.",
+   "texto": "A questão dá três regras e pede a fórmula que cumpre as três. Cada regra vira um teste com números. 'Paga R$ 5,00 por 1 kg' quer dizer: total = 5 quando x = 1. 'Quanto mais compra, maior o total' quer dizer: o total sobe quando x sobe. 'Menor o valor por quilo' quer dizer: o total dividido por x diminui quando x sobe.",
    "formulas": [
     "teste 1: total(1) = 5",
     "teste 2: total cresce quando x cresce",
@@ -37,32 +37,32 @@
   "passos": [
    {
     "faz": "Aplique o teste do 1 kg",
-    "conta": "x = 1 deve dar 5",
-    "porque": "A: 5·1² = 5. B: 5·√1 = 5. C: 5/1 = 5. D: 5·1 = 5. E: 5·1 − 1² = 4. Só a E falha, e sai da lista.",
+    "conta": "Testar x = 1: tem de dar 5",
+    "porque": "Troque x por 1 em cada fórmula. A: 5 × 1² = 5. B: 5 × √1 = 5. C: 5 ÷ 1 = 5. D: 5 × 1 = 5. E: 5 × 1 − 1² = 4. Só a E não dá 5, então sai.",
     "tipo": "eliminar"
    },
    {
     "faz": "Aplique o teste do total crescente",
-    "conta": "C: x=1→5 ; x=5→1",
-    "porque": "Em C o total cai quando x aumenta (5/5 = 1), pois é uma fração com x no denominador. Isso contraria 'maior quantidade, maior total'. A, B e D crescem.",
+    "conta": "C: x = 1 → 5 ; x = 5 → 1",
+    "porque": "Em C, com 5 kg o total seria 5 ÷ 5 = 1 real, menos que os 5 reais de 1 kg. Isso contraria 'maior quantidade, maior total'. Em A, B e D o total sobe, então ficam.",
     "tipo": "eliminar"
    },
    {
     "faz": "Calcule o preço por quilo de A e D",
-    "conta": "A: 5x²/x = 5x ; D: 5x/x = 5",
-    "porque": "Em A o preço por kg é 5x, que aumenta com x, ao contrário do pedido. Em D é sempre R$ 5,00, constante, sem desconto algum. As duas saem.",
+    "conta": "A: 5x² ÷ x = 5x ; D: 5x ÷ x = 5",
+    "porque": "Preço por quilo é o total dividido por x. Em A dá 5x, que sobe junto com x: contraria o desconto. Em D dá sempre R$ 5,00, sem desconto nenhum. As duas saem.",
     "tipo": "calcular"
    },
    {
     "faz": "Confirme a B com números",
-    "conta": "x=1: 5 ; x=4: 10 ; x=9: 15",
-    "porque": "O total sobe: 5, 10, 15. Por quilo: 5/1 = 5, 10/4 = 2,5, 15/9 ≈ 1,67. O valor por kg só diminui.",
+    "conta": "x = 1: 5 ; x = 4: 10 ; x = 9: 15",
+    "porque": "O total sobe: 5, 10, 15. O preço por quilo é 5 ÷ 1 = 5, depois 10 ÷ 4 = 2,5, depois 15 ÷ 9 ≈ 1,67. Ele só diminui.",
     "tipo": "calcular"
    },
    {
     "faz": "Conclua",
     "conta": "B cumpre as 3 regras",
-    "porque": "Por quilo, 5√x/x = 5/√x, que diminui conforme x cresce. B é a única que passa nos três testes.",
+    "porque": "Em B, o preço por quilo é 5√x ÷ x = 5 ÷ √x. Quanto maior x, maior o denominador e menor o valor. B passa nos três testes.",
     "tipo": "concluir"
    }
   ],
@@ -103,19 +103,19 @@
    "destaque": "4"
   },
   {
-   "linha": "C: x=5 → 5/5 = 1",
+   "linha": "C: x = 5 → 5 ÷ 5 = 1",
    "nota": "falha: o total diminui"
   },
   {
-   "linha": "A: 5x²/x = 5x",
+   "linha": "A: 5x² ÷ x = 5x",
    "nota": "preço por kg aumenta: falha"
   },
   {
-   "linha": "D: 5x/x = 5",
+   "linha": "D: 5x ÷ x = 5",
    "nota": "preço por kg constante: falha"
   },
   {
-   "linha": "B: 5√x/x = 5/√x",
+   "linha": "B: 5√x ÷ x = 5 ÷ √x",
    "nota": "diminui quando x cresce: passa",
    "destaque": "5/√x"
   },
@@ -142,11 +142,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -157,6 +159,87 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "B"
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "A questão dá três regras e pede a fórmula que cumpre as três. Cada regra vira um teste com números. 'Paga R$ 5,00 por 1 kg' quer dizer: total = 5 quando x = 1. 'Quanto mais compra, maior o total' quer dizer: o total sobe quando x sobe. 'Menor o valor por quilo' quer dizer: o total dividido por x diminui quando x sobe.",
+    "motivo": "Frases mais curtas e mais diretas, sem termos como 'cresce' sem explicação."
+   },
+   {
+    "campo": "resolucao.passos[0].conta",
+    "depois": "Testar x = 1: tem de dar 5",
+    "motivo": "Conta mais clara; o 'porque' traz as contas de cada letra."
+   },
+   {
+    "campo": "resolucao.passos[0].porque",
+    "depois": "Troque x por 1 em cada fórmula. A: 5 × 1² = 5. B: 5 × √1 = 5. C: 5 ÷ 1 = 5. D: 5 × 1 = 5. E: 5 × 1 − 1² = 4. Só a E não dá 5, então sai.",
+    "motivo": "Escrever as contas por extenso, sem fração na linha."
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "C: x = 1 → 5 ; x = 5 → 1",
+    "motivo": "Mostra o total caindo, com formato legível."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "Em C, com 5 kg o total seria 5 ÷ 5 = 1 real, menos que os 5 reais de 1 kg. Isso contraria 'maior quantidade, maior total'. Em A, B e D o total sobe, então ficam.",
+    "motivo": "Clareza; evita fração na linha."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "A: 5x² ÷ x = 5x ; D: 5x ÷ x = 5",
+    "motivo": "Evitar fração escrita na linha."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Preço por quilo é o total dividido por x. Em A dá 5x, que sobe junto com x: contraria o desconto. Em D dá sempre R$ 5,00, sem desconto nenhum. As duas saem.",
+    "motivo": "Define preço por quilo no ponto de uso e simplifica a frase."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "x = 1: 5 ; x = 4: 10 ; x = 9: 15",
+    "motivo": "Padronização."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "O total sobe: 5, 10, 15. O preço por quilo é 5 ÷ 1 = 5, depois 10 ÷ 4 = 2,5, depois 15 ÷ 9 ≈ 1,67. Ele só diminui.",
+    "motivo": "Escrever as divisões por extenso."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "Em B, o preço por quilo é 5√x ÷ x = 5 ÷ √x. Quanto maior x, maior o denominador e menor o valor. B passa nos três testes.",
+    "motivo": "Explica por que a expressão diminui."
+   },
+   {
+    "campo": "resolucao.quadro[5].linha",
+    "depois": "B: 5√x ÷ x = 5 ÷ √x",
+    "motivo": "Sem fração na linha; formato do site."
+   },
+   {
+    "campo": "resolucao.quadro[2].linha",
+    "depois": "C: x = 5 → 5 ÷ 5 = 1",
+    "motivo": "Clareza."
+   },
+   {
+    "campo": "resolucao.quadro[3].linha",
+    "depois": "A: 5x² ÷ x = 5x",
+    "motivo": "Padronização."
+   },
+   {
+    "campo": "resolucao.quadro[4].linha",
+    "depois": "D: 5x ÷ x = 5",
+    "motivo": "Padronização."
+   },
+   {
+    "campo": "resolucao.quadro[7].linha",
+    "depois": "10 ÷ 4 = 2,5",
+    "motivo": "Mantido, só confirmando que está legível."
+   }
+  ],
+  "didatica_alertas": [
+   "Os campos 'tema/conteudo/nivel' do JSON (M05, M05.3, nível 4) diferem da classificação atual informada (M03, M03.2, nível 5): vale conferir com o corretor de fatos."
+  ],
+  "didatica_ok": true
  }
 }

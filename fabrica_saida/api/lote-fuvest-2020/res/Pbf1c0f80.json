@@ -89,7 +89,7 @@
   },
   {
    "nome": "Eliminação",
-   "ideia": "A alternativa D (200%) vem da subtração ingênua. Como a inflação reduz o valor do ganho, o resultado correto não pode ser tão grande quanto 200%; só o fator 4 ÷ 2 é coerente."
+   "ideia": "A alternativa D (200%) vem da subtração ingênua, 300% − 100%. Mas subtrair porcentagens não vale quando uma age sobre a outra: o certo é dividir os fatores, 4 ÷ 2 = 2, que dá +100%."
   }
  ],
  "quadro": [
@@ -102,7 +102,7 @@
    "nota": "100% de inflação: os preços dobram"
   },
   {
-   "linha": "real = \\frac{4}{2}",
+   "linha": "real = 4/2",
    "nota": "fator real é o fator nominal dividido pelo da inflação",
    "mov": [
     {
@@ -139,12 +139,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -175,7 +177,7 @@
       "nota": "100% de inflação: os preços dobram"
      },
      {
-      "linha": "real = \\frac{4}{2}",
+      "linha": "real = 4/2",
       "nota": "fator real é o fator nominal dividido pelo da inflação",
       "mov": [
        {
@@ -221,6 +223,22 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.quadro[2].linha",
+    "depois": "real = 4/2",
+    "motivo": "O padrão da etapa proíbe LaTeX (\\frac) no quadro; a fração deve ser escrita como numerador/denominador, que o site desenha empilhada.",
+    "fonte": ""
+   },
+   {
+    "campo": "caminhos[1].ideia",
+    "depois": "A alternativa D (200%) vem da subtração ingênua, 300% − 100%. Mas subtrair porcentagens não vale quando uma age sobre a outra: o certo é dividir os fatores, 4 ÷ 2 = 2, que dá +100%.",
+    "motivo": "O argumento original (a inflação 'reduz o ganho, então não pode chegar a 200%') não prova nada, porque o real só precisa ser menor que 300%. Troquei por uma justificativa correta.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "B"
  }
 }

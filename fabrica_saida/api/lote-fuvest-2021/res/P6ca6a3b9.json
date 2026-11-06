@@ -97,7 +97,7 @@
    "A": "O texto não fala de conhecimento técnico nem de hardware. Diz até que os jovens veem a internet como um lugar para ganhar voz. As restrições citadas são do mundo físico: controle dos pais, pouco acesso ao ar livre e agenda cheia demais.",
    "C": "O texto não menciona competição nem atitudes antiéticas. Fala de uma frente aberta (“frontier”) para pioneiros ousados e de instituições invisíveis (equipes de relações públicas) que impulsionam conteúdo.",
    "D": "O texto não fala de variedade limitada de vídeos nem de imagens ruins. A causa citada é o tédio do público, a mudança de algoritmos ou a moda, e não a qualidade técnica.",
-   "E": "O texto não diz que os vídeos viralizam entre grupos de interesses conflitantes. Viralizar aparece só como algo que muitas vezes depende de instituições por trás. Além disso, viralizar explica a fama, não o fim dela."
+   "E": "O texto não diz que os vídeos viralizam entre grupos de interesses conflitantes. Ele diz que muito do conteúdo viral só viraliza por causa de instituições invisíveis. Além disso, viralizar explica a fama, não o fim dela."
   },
   "armadilha": "Escolher uma alternativa que parece plausível sobre redes sociais (competição, qualidade ruim) em vez de a que está escrita depois do “because”.",
   "alerta": "",
@@ -129,12 +129,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -231,6 +233,28 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "Tradução: a fama pode surgir de repente e ser tirada de repente. É a frase que trata da efemeridade.",
+    "motivo": "Sem mudança. O texto diz 'just as suddenly be taken away', e a tradução está correta.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "“algorithms change”; “goes out of fashion”",
+    "motivo": "O texto traz 'the platform's algorithms change' e 'goes out of fashion'. Os trechos estão corretos e as aspas isoladas são aceitáveis.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "O texto não diz que os vídeos viralizam entre grupos de interesses conflitantes. Ele diz que muito do conteúdo viral só viraliza por causa de instituições invisíveis. Além disso, viralizar explica a fama, não o fim dela.",
+    "motivo": "A frase 'Viralizar aparece só como algo que muitas vezes depende de instituições' ficou imprecisa. O texto diz 'much of the content that goes viral ... does so because of unseen institutions'. Isso é uma causa do viral, não só algo que 'muitas vezes depende'.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "B"
  }
 }

@@ -8,7 +8,7 @@
  "conceito": "Combinações: escolher 2 de 3 questões de Matemática e 6 de 8 de Física, multiplicando as escolhas independentes.",
  "resolucao": {
   "antes": {
-   "texto": "Como a ordem das questões na prova não importa, cada escolha é uma combinação: só interessa QUAIS questões entram. As escolhas de Matemática e de Física são independentes, então se multiplicam. Combinação de n escolhendo p: C(n,p) = n!/(p!(n−p)!).",
+   "texto": "A ordem das questões na prova não importa: só interessa QUAIS questões entram. Por isso cada escolha é uma combinação. As escolhas de Matemática e de Física não dependem uma da outra, então os resultados se multiplicam. C(n,p) conta de quantos modos se escolhem p itens entre n.",
    "formulas": [
     "C(n,p) = n! ÷ (p! × (n−p)!)",
     "provas = C(3,2) × C(8,6)"
@@ -16,15 +16,19 @@
    "simbolos": [
     [
      "C(n,p)",
-     "número de modos de escolher p itens entre n, sem importar a ordem"
+     "número de modos de escolher p itens entre n, sem importar a ordem. Lê-se 'combinação de n, p a p'"
     ],
     [
      "n!",
-     "fatorial: n × (n−1) × ... × 1"
+     "fatorial de n: n × (n−1) × ... × 1. Exemplo: 4! = 4 × 3 × 2 × 1 = 24"
+    ],
+    [
+     "princípio multiplicativo",
+     "se uma escolha tem a modos e outra tem b modos, juntas têm a × b modos"
     ]
    ]
   },
-  "pista": "Escolher 2 questões para entrar é o mesmo que escolher qual fica de fora? Faça as escolhas de cada disciplina separadamente e depois junte.",
+  "pista": "Escolher quais 2 questões entram é o mesmo que escolher qual fica de fora. Conte as escolhas de cada disciplina separadamente e depois junte.",
   "passos": [
    {
     "faz": "Decida o tipo de contagem",
@@ -35,7 +39,7 @@
    {
     "faz": "Conte as escolhas de Matemática",
     "conta": "C(3,2) = 3",
-    "porque": "Escolher 2 de 3 equivale a escolher a 1 que fica de fora: são 3 modos.",
+    "porque": "São 3 questões de Matemática e entram 2. Escolher as 2 que entram é o mesmo que escolher a 1 que fica de fora: são 3 modos.",
     "tipo": "calcular"
    },
    {
@@ -47,23 +51,23 @@
    {
     "faz": "Calcule C(8,2)",
     "conta": "(8 × 7)/2 = 28",
-    "porque": "Com 2 itens, a combinação é n(n−1) dividido por 2, pois a ordem dos 2 não importa.",
+    "porque": "Há 8 modos para a primeira questão e 7 para a segunda. Isso dá 8 × 7 = 56, mas cada par foi contado 2 vezes (A e B, B e A). Divide-se por 2.",
     "tipo": "calcular"
    },
    {
     "faz": "Multiplique as escolhas",
     "conta": "3 × 28 = 84",
-    "porque": "Para cada escolha de Matemática há 28 de Física: é o princípio multiplicativo.",
+    "porque": "Cada uma das 3 escolhas de Matemática pode vir com qualquer uma das 28 escolhas de Física. Por isso se multiplica: 3 × 28.",
     "tipo": "concluir"
    }
   ],
   "resposta": "Alternativa E: C(3,2) × C(8,6) = 3 × 28 = 84 provas distintas.",
   "checagem": "Conte pelo que fica de fora: 1 questão de Matemática entre 3 (3 modos) e 2 de Física entre 8 (28 modos). 3 × 28 = 84, o mesmo resultado.",
   "erradas": {
-   "A": "42 não confere: 42 = 3 × 14 exigiria só 14 modos em Física, mas C(8,6) = 28. Nenhuma divisão extra entra, porque cada combinação já descarta a ordem.",
-   "B": "54 não confere: 54 = 3 × 18 exigiria 18 modos em Física, mas C(8,6) = 28.",
-   "C": "62 não confere: o total é 3 vezes o número de escolhas de Física, então tem de ser múltiplo de 3, e 62 ÷ 3 não dá inteiro.",
-   "D": "72 não confere: exigiria 24 modos em Física (72 ÷ 3), mas C(8,6) = 28. Falta contar 4 modos de escolher as questões de Física."
+   "A": "42 não confere: 42 = 3 × 14 exigiria só 14 modos em Física, mas C(8,6) = 28. Quem marcou provavelmente dividiu por 2 de novo, mas a combinação já descarta a ordem.",
+   "B": "54 não confere: 54 = 3 × 18 exigiria 18 modos em Física, mas C(8,6) = 28. Para chegar a 28, faça 8 × 7 ÷ 2, sem outra divisão ou subtração.",
+   "C": "62 não confere: o total é 3 × (escolhas de Física), então tem de ser múltiplo de 3. Como 62 ÷ 3 não é inteiro, não pode ser a resposta.",
+   "D": "72 não confere: exigiria 24 modos em Física (72 ÷ 3), mas C(8,6) = 28. Falta contar 4 dos modos de escolher as questões de Física."
   },
   "armadilha": "Contar a ordem das questões (arranjo) em vez de só escolher quais entram, ou somar em vez de multiplicar as escolhas.",
   "alerta": "",
@@ -128,11 +132,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -161,6 +167,73 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "E"
+  "fatos_resposta": "E",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "A ordem das questões na prova não importa: só interessa QUAIS questões entram. Por isso cada escolha é uma combinação. As escolhas de Matemática e de Física não dependem uma da outra, então os resultados se multiplicam. C(n,p) conta de quantos modos se escolhem p itens entre n.",
+    "motivo": "Frases mais curtas, sem fórmula no meio do texto e sem a palavra 'independentes' sem explicação."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "C(n,p)",
+      "número de modos de escolher p itens entre n, sem importar a ordem. Lê-se 'combinação de n, p a p'"
+     ],
+     [
+      "n!",
+      "fatorial de n: n × (n−1) × ... × 1. Exemplo: 4! = 4 × 3 × 2 × 1 = 24"
+     ],
+     [
+      "princípio multiplicativo",
+      "se uma escolha tem a modos e outra tem b modos, juntas têm a × b modos"
+     ]
+    ],
+    "motivo": "Exemplo de fatorial e explicação do princípio multiplicativo, citado nos passos."
+   },
+   {
+    "campo": "resolucao.pista",
+    "depois": "Escolher quais 2 questões entram é o mesmo que escolher qual fica de fora. Conte as escolhas de cada disciplina separadamente e depois junte.",
+    "motivo": "Pista mais direta, sem pergunta ambígua, e sem entregar a conta."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "São 3 questões de Matemática e entram 2. Escolher as 2 que entram é o mesmo que escolher a 1 que fica de fora: são 3 modos.",
+    "motivo": "Deixa claro de onde vem o 3."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Há 8 modos para a primeira questão e 7 para a segunda. Isso dá 8 × 7 = 56, mas cada par foi contado 2 vezes (A e B, B e A). Divide-se por 2.",
+    "motivo": "Explica de onde vem o 'dividido por 2', em vez de só afirmar."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "Cada uma das 3 escolhas de Matemática pode vir com qualquer uma das 28 escolhas de Física. Por isso se multiplica: 3 × 28.",
+    "motivo": "Troca o termo técnico por explicação direta."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "42 não confere: 42 = 3 × 14 exigiria só 14 modos em Física, mas C(8,6) = 28. Quem marcou provavelmente dividiu por 2 de novo, mas a combinação já descarta a ordem.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou A."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "54 não confere: 54 = 3 × 18 exigiria 18 modos em Física, mas C(8,6) = 28. Para chegar a 28, faça 8 × 7 ÷ 2, sem outra divisão ou subtração.",
+    "motivo": "Orienta o que o aluno deve corrigir."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "62 não confere: o total é 3 × (escolhas de Física), então tem de ser múltiplo de 3. Como 62 ÷ 3 não é inteiro, não pode ser a resposta.",
+    "motivo": "Frase mais curta e direta."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "72 não confere: exigiria 24 modos em Física (72 ÷ 3), mas C(8,6) = 28. Falta contar 4 dos modos de escolher as questões de Física.",
+    "motivo": "Mantém o teste objetivo, com redação mais clara."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

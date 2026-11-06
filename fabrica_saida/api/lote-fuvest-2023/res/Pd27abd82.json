@@ -30,6 +30,22 @@
     [
      "transpiração",
      "perda de água em forma de vapor, principalmente pelos estômatos das folhas"
+    ],
+    [
+     "estômatos",
+     "pequenos poros das folhas por onde sai o vapor de água"
+    ],
+    [
+     "clima temperado",
+     "clima com estações bem marcadas, incluindo meses frios"
+    ],
+    [
+     "clima tropical",
+     "clima quente o ano todo, com mínimas altas"
+    ],
+    [
+     "clima equatorial",
+     "clima quente e úmido o ano todo, perto da linha do Equador"
     ]
    ]
   },
@@ -38,13 +54,13 @@
    {
     "faz": "Leia a curva do número de folhas",
     "conta": "Folhas: 0 de jan a mar; pico jul-ago",
-    "porque": "A linha azul tracejada fica em zero de janeiro a março, sobe a partir de abril, chega ao máximo (cerca de 13 mil) em julho e agosto e volta a zero em dezembro. A árvore perde as folhas na estação desfavorável.",
+    "porque": "A linha azul tracejada fica em zero de janeiro a março, sobe a partir de abril, chega ao máximo (cerca de 13 mil) em julho e agosto e volta a zero em dezembro. Sem folhas = época desfavorável da planta.",
     "tipo": "localizar"
    },
    {
     "faz": "Leia a temperatura mínima nesses meses",
     "conta": "Jan-mar e dez: cerca de 1 a 4 °C",
-    "porque": "A linha laranja é baixa quando a planta está sem folhas, com cerca de 1,4 °C em janeiro, e máxima (cerca de 14 °C) em julho e agosto. Mínimas entre 1 e 14 °C mostram estações bem marcadas, com meses frios. Isso é típico de clima temperado, não de tropical, em que as mínimas ficam altas o ano todo.",
+    "porque": "A linha laranja é baixa quando a planta está sem folhas (cerca de 1,4 °C em janeiro) e chega a cerca de 14 °C em julho e agosto. Mínimas que caem a 1 °C indicam meses frios. Isso combina com clima temperado, que tem estações bem marcadas. No tropical, as mínimas ficam altas o ano todo.",
     "tipo": "comparar"
    },
    {
@@ -56,7 +72,7 @@
    {
     "faz": "Relacione o clima à perda de folhas",
     "conta": "frio + pouca chuva → sem folhas",
-    "porque": "Com frio e pouca água, manter folhas custa energia e perde água por transpiração. Derrubá-las é uma adaptação. A variação do número de folhas acompanha temperaturas mínimas baixas e pouca chuva nos meses mais frios.",
+    "porque": "Com frio e pouca água, manter folhas gasta energia e perde água por transpiração. Derrubar as folhas é uma adaptação. Assim, a variação do número de folhas acompanha mínimas baixas e pouca chuva nos meses frios.",
     "tipo": "concluir"
    },
    {
@@ -72,7 +88,7 @@
    "A": "Diz 'tropical' e 'muita chuva nos meses mais frios'. No gráfico, nos meses frios (jan-mar, nov-dez) a chuva é baixa, de 3,6 a 6,5 cm, e é nos meses quentes que chega a 16 cm. A mínima de 1,4 °C em janeiro também não é de clima tropical.",
    "B": "Acerta 'temperado' e 'temperaturas mínimas baixas', mas diz 'pouca chuva nos meses mais quentes'. Os meses mais quentes (junho a agosto) têm a maior chuva, cerca de 12 a 16 cm. A seca coincide com os meses frios.",
    "C": "Diz 'tropical', com temperaturas mínimas altas. A mínima cai até cerca de 1,4 °C em janeiro e 0,8 °C em dezembro, valores que mostram meses frios. Também diz 'pouca chuva nos meses mais quentes', o contrário do gráfico, em que a chuva é máxima de junho a julho.",
-   "E": "Diz 'equatorial' e 'muita chuva nos meses mais quentes'. A chuva alta nos meses quentes está certa, mas o clima equatorial tem temperatura alta o ano todo, sem meses de mínima próxima de 1 °C como em janeiro e dezembro. Além disso, 'temperaturas mínimas baixas' não combina com 'muita chuva nos meses mais quentes' como causa da perda de folhas, que ocorre justamente quando a chuva é pouca."
+   "E": "Diz 'equatorial' e 'muita chuva nos meses mais quentes'. A chuva alta nos meses quentes está certa. Mas o clima equatorial tem temperatura alta o ano todo, e o gráfico mostra mínimas perto de 1 °C em janeiro e dezembro. Além disso, a árvore perde folhas justamente quando a chuva é pouca, e não quando é muita."
   },
   "armadilha": "Associar a queda de folhas só à falta de chuva, ou colocar a seca nos meses quentes, sem conferir em qual época do gráfico a chuva e a temperatura estão baixas.",
   "alerta": "",
@@ -136,11 +152,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -163,6 +181,68 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "D"
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[0].porque",
+    "depois": "A linha azul tracejada fica em zero de janeiro a março, sobe a partir de abril, chega ao máximo (cerca de 13 mil) em julho e agosto e volta a zero em dezembro. Sem folhas = época desfavorável da planta.",
+    "motivo": "Frase mais curta e direta; evita afirmar a causa antes de ler as outras curvas."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "A linha laranja é baixa quando a planta está sem folhas (cerca de 1,4 °C em janeiro) e chega a cerca de 14 °C em julho e agosto. Mínimas que caem a 1 °C indicam meses frios. Isso combina com clima temperado, que tem estações bem marcadas. No tropical, as mínimas ficam altas o ano todo.",
+    "motivo": "Frases curtas (≤ 30 palavras) e sem ambiguidade."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Com frio e pouca água, manter folhas gasta energia e perde água por transpiração. Derrubar as folhas é uma adaptação. Assim, a variação do número de folhas acompanha mínimas baixas e pouca chuva nos meses frios.",
+    "motivo": "Frases mais curtas."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "Diz 'equatorial' e 'muita chuva nos meses mais quentes'. A chuva alta nos meses quentes está certa. Mas o clima equatorial tem temperatura alta o ano todo, e o gráfico mostra mínimas perto de 1 °C em janeiro e dezembro. Além disso, a árvore perde folhas justamente quando a chuva é pouca, e não quando é muita.",
+    "motivo": "Texto original confuso; reescrito dizendo o que faltou no raciocínio de quem marcou E."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "decídua",
+      "planta que perde as folhas em uma época do ano e as renova depois"
+     ],
+     [
+      "pluviosidade",
+      "quantidade de chuva, aqui em cm por mês"
+     ],
+     [
+      "temperatura mínima",
+      "menor temperatura registrada no mês, em °C (média mensal)"
+     ],
+     [
+      "transpiração",
+      "perda de água em forma de vapor, principalmente pelos estômatos das folhas"
+     ],
+     [
+      "estômatos",
+      "pequenos poros das folhas por onde sai o vapor de água"
+     ],
+     [
+      "clima temperado",
+      "clima com estações bem marcadas, incluindo meses frios"
+     ],
+     [
+      "clima tropical",
+      "clima quente o ano todo, com mínimas altas"
+     ],
+     [
+      "clima equatorial",
+      "clima quente e úmido o ano todo, perto da linha do Equador"
+     ]
+    ],
+    "motivo": "Termos usados na resolução (estômatos e os três climas) não estavam explicados."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

@@ -33,6 +33,18 @@
     [
      "leptospirose",
      "doença bacteriana transmitida pela urina de ratos, comum em enchentes e esgoto a céu aberto"
+    ],
+    [
+     "cólera",
+     "doença intestinal grave, transmitida por água contaminada por fezes"
+    ],
+    [
+     "BCG",
+     "vacina contra formas graves de tuberculose"
+    ],
+    [
+     "influenza",
+     "vírus da gripe"
     ]
    ]
   },
@@ -53,7 +65,7 @@
    {
     "faz": "Associe cada cidade ao tipo de doença",
     "conta": "I e III: doenças evitáveis por vacina\nIV: doenças de veiculação hídrica\nII: os dois tipos",
-    "porque": "Onde a vacinação é baixa, sobem as doenças preveníveis por vacina. Onde o saneamento é baixo, sobem as de água e esgoto.",
+    "porque": "Vacinação baixa aumenta o risco de doenças que a vacina previne. Saneamento ruim aumenta o risco de doenças de água e esgoto. A cidade II tem os dois problemas.",
     "tipo": "comparar"
    },
    {
@@ -63,8 +75,8 @@
     "tipo": "eliminar"
    },
    {
-    "faz": "Confira a letra restante",
-    "conta": "I tuberculose (BCG)\nII poliomielite\nIII hepatite B\nIV amebíase",
+    "faz": "Confira a letra que sobrou (E)",
+    "conta": "I: tuberculose (vacina BCG)\nII: poliomielite (vacina)\nIII: hepatite B (vacina)\nIV: amebíase (água/esgoto)",
     "porque": "I, II e III têm vacinação baixa e doenças evitáveis por vacina. IV tem saneamento ruim e amebíase, de veiculação hídrica.",
     "tipo": "concluir"
    }
@@ -72,7 +84,7 @@
   "resposta": "Alternativa E: cidades I, II e III, com vacinação baixa, têm risco de tuberculose, poliomielite e hepatite B. A cidade IV, com saneamento precário, tem risco de amebíase.",
   "checagem": "Faça o caminho inverso. A amebíase aparece na cidade IV, a única com saneamento muito ruim e vacinação alta. As outras três doenças da letra E têm vacina, e as cidades I, II e III têm vacinação baixa.",
   "erradas": {
-   "A": "A erra em duas cidades. Leptospirose na cidade I, que tem 89% de saneamento, contradiz a tabela. Amebíase na cidade III, que tem 98% de saneamento, também. Cólera na cidade IV está certa, mas as outras duas derrubam a letra.",
+   "A": "Leptospirose na cidade I não serve: ali o esgoto é 89%, o saneamento é bom. Amebíase na cidade III também não: o esgoto é 98%. Faltou ligar cada doença à coluna ruim da cidade.",
    "B": "B coloca tuberculose na cidade IV, que tem 90% de vacinação (a BCG protege contra formas graves da doença). O risco da cidade IV vem do saneamento ruim, e a tuberculose não é de veiculação hídrica.",
    "C": "C coloca cólera na cidade III, que tem 98% de saneamento. A cólera é transmitida por água contaminada, então o risco ali é baixo. A cidade III é a que precisa de doença evitável por vacina.",
    "D": "D coloca COVID na cidade IV, que tem 90% de vacinação. O risco ali vem do saneamento ruim, e a COVID não é de veiculação hídrica. Influenza na cidade I e teníase na cidade II até serviriam, mas a cidade IV derruba a letra."
@@ -106,11 +118,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -139,6 +153,75 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "E"
+  "fatos_resposta": "E",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "I: esgoto 89%, vacina 19%\nII: esgoto 12%, vacina 13%\nIII: esgoto 98%, vacina 15%\nIV: esgoto 10%, vacina 90%",
+    "motivo": "Mantido o conteúdo; cada linha já cabe na tela."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Vacinação baixa aumenta o risco de doenças que a vacina previne. Saneamento ruim aumenta o risco de doenças de água e esgoto. A cidade II tem os dois problemas.",
+    "motivo": "Frase mais direta e sem repetir o passo anterior."
+   },
+   {
+    "campo": "resolucao.passos[4].faz",
+    "depois": "Confira a letra que sobrou (E)",
+    "motivo": "Deixa claro que a letra E é o resultado da eliminação."
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "I: tuberculose (vacina BCG)\nII: poliomielite (vacina)\nIII: hepatite B (vacina)\nIV: amebíase (água/esgoto)",
+    "motivo": "Mostra a ligação de cada doença com a coluna da tabela."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "cobertura vacinal completa",
+      "porcentagem da população que tomou todas as doses das vacinas"
+     ],
+     [
+      "veiculação hídrica",
+      "transmissão por água ou alimento contaminado por fezes ou esgoto"
+     ],
+     [
+      "amebíase",
+      "doença causada por uma ameba, adquirida ao ingerir cistos presentes em água ou alimento contaminado"
+     ],
+     [
+      "teníase",
+      "doença causada pela tênia (solitária), adquirida ao comer carne crua ou malcozida com larvas; é associada ao saneamento precário"
+     ],
+     [
+      "leptospirose",
+      "doença bacteriana transmitida pela urina de ratos, comum em enchentes e esgoto a céu aberto"
+     ],
+     [
+      "cólera",
+      "doença intestinal grave, transmitida por água contaminada por fezes"
+     ],
+     [
+      "BCG",
+      "vacina contra formas graves de tuberculose"
+     ],
+     [
+      "influenza",
+      "vírus da gripe"
+     ]
+    ],
+    "motivo": "Termos técnicos que aparecem na resolução e nas alternativas (cólera, BCG, influenza) não estavam explicados."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "Leptospirose na cidade I não serve: ali o esgoto é 89%, o saneamento é bom. Amebíase na cidade III também não: o esgoto é 98%. Faltou ligar cada doença à coluna ruim da cidade.",
+    "motivo": "Frase mais curta e diz o que faltou no raciocínio."
+   }
+  ],
+  "didatica_alertas": [
+   "Leve imprecisão de fato: o gabarito E mostra tuberculose na cidade I, com vacinação baixa. A BCG protege sobretudo contra formas graves, e a tuberculose também depende de aglomeração. A letra E segue como a melhor opção."
+  ],
+  "didatica_ok": true
  }
 }

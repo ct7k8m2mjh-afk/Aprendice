@@ -17,7 +17,7 @@
    "simbolos": [
     [
      "E",
-     "campo elétrico, aqui 10 kV/m = 10⁴ V/m"
+     "campo elétrico: mostra quantos volts a carga encontra a cada metro; aqui 10 kV/m = 10⁴ V/m"
     ],
     [
      "d",
@@ -25,19 +25,27 @@
     ],
     [
      "U",
-     "diferença de potencial (tensão), em volts"
+     "diferença de potencial (tensão), em volts (V)"
     ],
     [
      "q",
-     "carga deslocada, 30 C"
+     "carga elétrica deslocada, 30 C (coulombs)"
     ],
     [
      "W",
-     "energia (trabalho elétrico), em joules"
+     "energia (trabalho elétrico), em joules (J)"
     ],
     [
      "P",
-     "potência, em watts"
+     "potência: energia por segundo, em watts (W)"
+    ],
+    [
+     "Δt",
+     "intervalo de tempo da descarga, 1 milésimo de segundo = 10⁻³ s"
+    ],
+    [
+     "kV",
+     "quilovolt = 10³ V"
     ],
     [
      "GW / MW",
@@ -67,7 +75,7 @@
    },
    {
     "faz": "Divida a energia pelo tempo",
-    "conta": "P = 3×10⁷ ÷ 10⁻³",
+    "conta": "P = 3×10⁷ ÷ 10⁻³ = 3×10¹⁰",
     "porque": "Um milésimo de segundo é 10⁻³ s. Dividir por 10⁻³ equivale a multiplicar por 10³. Dá P = 3 × 10¹⁰ W.",
     "tipo": "calcular"
    },
@@ -82,9 +90,9 @@
   "checagem": "Outro caminho: a corrente média é i = q ÷ Δt = 30 ÷ 10⁻³ = 3 × 10⁴ A. Então P = U × i = 10⁶ × 3×10⁴ = 3×10¹⁰ W = 30 GW. Dá o mesmo valor.",
   "erradas": {
    "B": "3 GW = 3×10⁹ W, dez vezes menos que o correto. Sai de ler 10 kV/m como 10³ V/m, só o kilo: U = 10³ × 100 = 10⁵ V; 30 × 10⁵ ÷ 10⁻³ = 3×10⁹ W.",
-   "C": "C não confere: 300 MW = 3×10⁸ W, cem vezes menos que P = 3×10¹⁰ W. Com U = 10⁶ V, q = 30 C e Δt = 10⁻³ s, nenhuma troca de prefixo comum leva a esse valor.",
+   "C": "C não confere: 300 MW = 3×10⁸ W, cem vezes menos que o correto (3×10¹⁰ W). Teste: U = 10⁶ V, q = 30 C e Δt = 10⁻³ s só dão 3×10¹⁰ W.",
    "D": "30 MW é 3×10⁷ W, que é a energia em joules (W = 30 × 10⁶ J), e não a potência. Faltou dividir pelo tempo de 10⁻³ s.",
-   "E": "E não confere: 3 MW = 3×10⁶ W, dez mil vezes menos que P = 3×10¹⁰ W. Nem tomar a energia (3×10⁷ J) por potência chega tão baixo."
+   "E": "E não confere: 3 MW = 3×10⁶ W, dez mil vezes menos que 3×10¹⁰ W. Até a energia (3×10⁷ J) lida como potência já seria maior que esse valor."
   },
   "armadilha": "Confundir a energia (3×10⁷ J, que vira 30 MW se for lida como potência) com a potência: falta dividir pelo tempo de 10⁻³ s.",
   "alerta": "",
@@ -152,11 +160,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -185,6 +195,67 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "A"
+  "fatos_resposta": "A",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "E",
+      "campo elétrico: mostra quantos volts a carga encontra a cada metro; aqui 10 kV/m = 10⁴ V/m"
+     ],
+     [
+      "d",
+      "comprimento do raio, 100 m"
+     ],
+     [
+      "U",
+      "diferença de potencial (tensão), em volts (V)"
+     ],
+     [
+      "q",
+      "carga elétrica deslocada, 30 C (coulombs)"
+     ],
+     [
+      "W",
+      "energia (trabalho elétrico), em joules (J)"
+     ],
+     [
+      "P",
+      "potência: energia por segundo, em watts (W)"
+     ],
+     [
+      "Δt",
+      "intervalo de tempo da descarga, 1 milésimo de segundo = 10⁻³ s"
+     ],
+     [
+      "kV",
+      "quilovolt = 10³ V"
+     ],
+     [
+      "GW / MW",
+      "gigawatt = 10⁹ W; megawatt = 10⁶ W"
+     ]
+    ],
+    "motivo": "Δt e kV aparecem na resolução sem explicação; E agora diz o que significa."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "C não confere: 300 MW = 3×10⁸ W, cem vezes menos que o correto (3×10¹⁰ W). Teste: U = 10⁶ V, q = 30 C e Δt = 10⁻³ s só dão 3×10¹⁰ W.",
+    "motivo": "Tira a frase vaga sobre troca de prefixo e deixa um teste objetivo."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "E não confere: 3 MW = 3×10⁶ W, dez mil vezes menos que 3×10¹⁰ W. Até a energia (3×10⁷ J) lida como potência já seria maior que esse valor.",
+    "motivo": "Frase mais clara, sem sentido duplo."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "P = 3×10⁷ ÷ 10⁻³ = 3×10¹⁰",
+    "motivo": "A conta agora mostra o resultado, e cabe na tela."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

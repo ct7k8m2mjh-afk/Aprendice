@@ -8,7 +8,7 @@
  "conceito": "Estequiometria com ppm: massa de SO2 formada a partir do enxofre do diesel (S500 menos S10).",
  "resolucao": {
   "antes": {
-   "texto": "A questão pede a diferença entre o SO2 emitido pelos dois diesels, por kg de combustível. O enunciado dá o enxofre em ppm, e o 'Note e adote' diz que 1 ppm = 1 mg de S por kg de diesel. Basta achar a diferença de enxofre e depois transformá-la em SO2 pela equação, onde 1 mol de S gera 1 mol de SO2.",
+   "texto": "A questão pede a diferença entre o SO2 emitido pelos dois diesels, por kg de combustível. O enunciado dá o enxofre em ppm, e o 'Note e adote' diz que 1 ppm = 1 mg de S por kg de diesel. Ache primeiro a diferença de enxofre e depois transforme-a em SO2 pela equação: 1 mol de S gera 1 mol de SO2. Como o SO2 tem dois O além do S, a massa de SO2 é maior que a de S.",
    "formulas": [
     "1 ppm de S = 1 mg de S por kg de diesel",
     "massa molar do SO2 = 32 + 2 × 16 = 64 g/mol",
@@ -33,7 +33,7 @@
     ]
    ]
   },
-  "pista": "Primeiro descubra quantos mg de enxofre a mais o S500 tem por kg. Depois pergunte: cada 32 g de S formam quantos gramas de SO2?",
+  "pista": "Primeiro descubra quantos mg de enxofre a mais o S500 tem por kg. Depois compare a massa de 1 mol de S com a de 1 mol de SO2.",
   "passos": [
    {
     "faz": "Converta ppm em mg de S por kg",
@@ -77,8 +77,8 @@
   "erradas": {
    "A": "245 mg/kg sai de dividir por 2 em vez de multiplicar: 490 ÷ 2 = 245. O SO2 pesa o dobro do S (64 contra 32), então a massa dobra.",
    "B": "490 mg/kg é só a diferença de enxofre (500 − 10). Faltou converter S em SO2: 490 mg de S geram 980 mg de SO2.",
-   "D": "1960 mg/kg não confere: exigiria multiplicar a diferença de enxofre por 4 (1960 ÷ 490 = 4). A razão em massa SO2/S é só 64/32 = 2, o que dá 980.",
-   "E": "3920 mg/kg não confere: exigiria multiplicar a diferença de enxofre por 8 (3920 ÷ 490 = 8). A razão 1:1 em mol dá, em massa, só o fator 64/32 = 2."
+   "D": "1960 mg/kg não confere: é 490 × 4. Quem marcou pode ter dobrado duas vezes, ou usado 64 × 2 ÷ 32. A razão correta SO2/S é 64/32 = 2, que dá 980.",
+   "E": "3920 mg/kg não confere: é 490 × 8. A razão em mol é 1:1 e, em massa, só 64/32 = 2. Multiplicar por 8 não tem base na equação; o correto é 980."
   },
   "armadilha": "Parar na diferença de enxofre (490 mg/kg) esquecendo que a pergunta é a massa de SO2, que é o dobro, pois o S ganha dois átomos de oxigênio.",
   "alerta": "",
@@ -101,31 +101,43 @@
  "quadro": [
   {
    "linha": "S10 = 10 mg S/kg",
-   "nota": "1 ppm = 1 mg de S por kg de diesel"
+   "nota": "1 ppm = 1 mg de S por kg"
   },
   {
    "linha": "S500 = 500 mg S/kg",
-   "nota": "mesma conversão para o outro diesel"
+   "nota": "mesma conversão"
   },
   {
    "linha": "500 − 10 = 490 mg S/kg",
-   "nota": "diferença de enxofre entre os dois"
+   "nota": "diferença de enxofre"
   },
   {
    "linha": "S + O2 → SO2",
    "nota": "1 mol de S gera 1 mol de SO2"
   },
   {
+   "linha": "M(SO2) = 32 + 2 × 16",
+   "nota": "dois átomos de O"
+  },
+  {
+   "linha": "M(SO2) = 64 g/mol",
+   "nota": "massa molar do SO2"
+  },
+  {
    "linha": "32 g S → 64 g SO2",
-   "nota": "massa molar SO2 = 32 + 2 × 16 = 64"
+   "nota": "1 mol de cada"
   },
   {
    "linha": "m = 490 × 64/32",
-   "nota": "cada mg de S gera 64/32 mg de SO2"
+   "nota": "cada mg de S dá 64/32 mg de SO2"
+  },
+  {
+   "linha": "m = 490 × 2",
+   "nota": "64/32 = 2"
   },
   {
    "linha": "m = 980 mg SO2/kg",
-   "nota": "64/32 = 2, então 490 × 2 = 980"
+   "nota": "resposta, alternativa C"
   }
  ],
  "visual": {
@@ -142,11 +154,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -163,6 +177,81 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "C"
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "A questão pede a diferença entre o SO2 emitido pelos dois diesels, por kg de combustível. O enunciado dá o enxofre em ppm, e o 'Note e adote' diz que 1 ppm = 1 mg de S por kg de diesel. Ache primeiro a diferença de enxofre e depois transforme-a em SO2 pela equação: 1 mol de S gera 1 mol de SO2. Como o SO2 tem dois O além do S, a massa de SO2 é maior que a de S.",
+    "motivo": "Antecipa a ideia de que a massa aumenta, sem entregar a conta."
+   },
+   {
+    "campo": "resolucao.pista",
+    "depois": "Primeiro descubra quantos mg de enxofre a mais o S500 tem por kg. Depois compare a massa de 1 mol de S com a de 1 mol de SO2.",
+    "motivo": "A pista antiga já entregava '32 g de S formam quantos g de SO2', quase a conta; agora só aponta o caminho."
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "490 × 64/32 = 980 mg/kg",
+    "motivo": "Mantido o valor; a fração é desenhada empilhada pelo site."
+   },
+   {
+    "campo": "resolucao.quadro",
+    "depois": [
+     {
+      "linha": "S10 = 10 mg S/kg",
+      "nota": "1 ppm = 1 mg de S por kg"
+     },
+     {
+      "linha": "S500 = 500 mg S/kg",
+      "nota": "mesma conversão"
+     },
+     {
+      "linha": "500 − 10 = 490 mg S/kg",
+      "nota": "diferença de enxofre"
+     },
+     {
+      "linha": "S + O2 → SO2",
+      "nota": "1 mol de S gera 1 mol de SO2"
+     },
+     {
+      "linha": "M(SO2) = 32 + 2 × 16",
+      "nota": "dois átomos de O"
+     },
+     {
+      "linha": "M(SO2) = 64 g/mol",
+      "nota": "massa molar do SO2"
+     },
+     {
+      "linha": "32 g S → 64 g SO2",
+      "nota": "1 mol de cada"
+     },
+     {
+      "linha": "m = 490 × 64/32",
+      "nota": "cada mg de S dá 64/32 mg de SO2"
+     },
+     {
+      "linha": "m = 490 × 2",
+      "nota": "64/32 = 2"
+     },
+     {
+      "linha": "m = 980 mg SO2/kg",
+      "nota": "resposta, alternativa C"
+     }
+    ],
+    "motivo": "Um passo por linha, sem pular a conta da massa molar nem a simplificação 64/32 = 2; linhas curtas para caber na tela."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "1960 mg/kg não confere: é 490 × 4. Quem marcou pode ter dobrado duas vezes, ou usado 64 × 2 ÷ 32. A razão correta SO2/S é 64/32 = 2, que dá 980.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou D."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "3920 mg/kg não confere: é 490 × 8. A razão em mol é 1:1 e, em massa, só 64/32 = 2. Multiplicar por 8 não tem base na equação; o correto é 980.",
+    "motivo": "Mais direto sobre onde o raciocínio falhou."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

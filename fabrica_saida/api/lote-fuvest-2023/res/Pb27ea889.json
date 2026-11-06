@@ -8,7 +8,7 @@
  "conceito": "Ler o gráfico de emissões de GEE no Brasil por setor e ligar cada setor ao gás e ao processo que de fato o origina.",
  "resolucao": {
   "antes": {
-   "texto": "O gráfico mostra a parcela de cada setor no total de GEE emitido no Brasil, e não o gás emitido. Por isso a questão mistura leitura do gráfico com Química e Biologia ambiental. Cada setor tem um gás típico: a agropecuária emite metano (CH4) e óxido nitroso (N2O); a mudança no uso da terra emite CO2 da queima e da decomposição da vegetação; a indústria emite CO2.",
+   "texto": "O gráfico mostra a parcela de cada setor no total de gases do efeito estufa (GEE) emitido no Brasil. Ele não diz qual gás cada setor emite. Por isso você precisa ligar cada setor ao seu gás típico. A agropecuária emite metano (CH4) e óxido nitroso (N2O). A mudança no uso da terra emite sobretudo gás carbônico (CO2), da queima e da decomposição da vegetação. A indústria emite sobretudo CO2.",
    "formulas": [
     "ruminante: fermentação entérica (digestão da celulose por microrganismos do rúmen) → CH4",
     "solo adubado e dejetos → N2O (óxido nitroso)",
@@ -48,8 +48,8 @@
    },
    {
     "faz": "Leia o gráfico",
-    "conta": "Agropecuária 33,2%",
-    "porque": "A barra única soma 100%. Em ordem: agropecuária 33,2%, energia 28,9%, uso da terra 27,1%, processos industriais 6,4% e resíduos agrícolas 4,4%. A agropecuária é o maior setor.",
+    "conta": "Agropecuária: 33,2% (maior)",
+    "porque": "A barra única soma 100%. Em ordem: agropecuária 33,2%, energia 28,9%, uso da terra 27,1%, processos industriais 6,4% e resíduos agrícolas 4,4%. Portanto, a agropecuária é o maior setor.",
     "tipo": "localizar"
    },
    {
@@ -60,8 +60,8 @@
    },
    {
     "faz": "Teste as demais alternativas",
-    "conta": "B, C, D, E: gás ou número errado",
-    "porque": "Resíduos agrícolas, indústria, mudança do uso da terra e energia têm, cada um, um erro de gás, de processo ou de número, ou usam uma palavra absoluta.",
+    "conta": "B: gás errado | C: gás errado",
+    "porque": "B e C citam gás ou processo errado. D erra o número (27,1%, não 50%). E usa \"todos os processos\", palavra absoluta e falsa. Os detalhes de cada letra estão em \"Por que eu errei\".",
     "tipo": "eliminar"
    },
    {
@@ -77,7 +77,7 @@
    "B": "Resíduos agrícolas têm de fato peso pequeno (4,4%), mas os gases de sua decomposição são metano e N2O, não cloretos e sulfetos. Cloretos e sulfetos não são GEE, e o processo é decomposição de matéria orgânica, não intemperismo, que é desgaste de rocha.",
    "C": "A indústria (6,4%) emite sobretudo CO2, da queima de combustíveis e de reações como a produção de cimento e aço. O metano por ação de microrganismos sobre compostos nitrogenados não é o processo industrial típico. A alternativa troca o gás e o processo.",
    "D": "O gráfico dá 27,1% para uso da terra, não cerca de metade (50%). Além disso, a emissão vem principalmente da queima e da decomposição da vegetação derrubada, liberando CO2, e não apenas da ação de bactérias e fungos.",
-   "E": "A energia (28,9%) é, de fato, grande emissora, mas \"todos os processos de geração de energia\" é generalização falsa. Hidrelétrica, solar e eólica emitem muito pouco na geração. Além disso, a alternativa cita óxido nítrico (NO), que não é o óxido nitroso (N2O), este sim um GEE."
+   "E": "A energia (28,9%) é de fato grande emissora, mas \"todos os processos de geração de energia\" é falso: hidrelétrica, solar e eólica emitem muito pouco ao gerar. Além disso, óxido nítrico (NO) não é óxido nitroso (N2O), este sim um gás do efeito estufa."
   },
   "armadilha": "Aceitar alternativas que citam um setor verdadeiro com gás ou processo errado (B, C, E) ou com número errado (D), sem checar o gráfico e o gás típico de cada setor.",
   "alerta": "",
@@ -111,8 +111,8 @@
    "nota": "valor que a D exigiria"
   },
   {
-   "linha": "uso da terra = 27,1% < 50%",
-   "nota": "a D contradiz o gráfico"
+   "linha": "27,1% < 50%",
+   "nota": "uso da terra: a D contradiz o gráfico"
   }
  ],
  "visual": {
@@ -129,11 +129,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -150,6 +152,64 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "A"
+  "fatos_resposta": "A",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "O gráfico mostra a parcela de cada setor no total de gases do efeito estufa (GEE) emitido no Brasil. Ele não diz qual gás cada setor emite. Por isso você precisa ligar cada setor ao seu gás típico. A agropecuária emite metano (CH4) e óxido nitroso (N2O). A mudança no uso da terra emite sobretudo gás carbônico (CO2), da queima e da decomposição da vegetação. A indústria emite sobretudo CO2.",
+    "motivo": "Frases mais curtas e sem misturar disciplinas; o aluno entende o que o gráfico mostra e o que não mostra."
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "Agropecuária: 33,2% (maior)",
+    "motivo": "A conta mostrava só um dado; agora indica o maior setor, que é o que o passo usa."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "A barra única soma 100%. Em ordem: agropecuária 33,2%, energia 28,9%, uso da terra 27,1%, processos industriais 6,4% e resíduos agrícolas 4,4%. Portanto, a agropecuária é o maior setor.",
+    "motivo": "Frase mais direta."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "B: gás errado | C: gás errado",
+    "motivo": "A conta original era vaga; esta resume o erro de cada letra, em linha curta."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "B e C citam gás ou processo errado. D erra o número (27,1%, não 50%). E usa \"todos os processos\", palavra absoluta e falsa. Os detalhes de cada letra estão em \"Por que eu errei\".",
+    "motivo": "Aponta o erro de cada letra de forma clara, uma por uma."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "A energia (28,9%) é de fato grande emissora, mas \"todos os processos de geração de energia\" é falso: hidrelétrica, solar e eólica emitem muito pouco ao gerar. Além disso, óxido nítrico (NO) não é óxido nitroso (N2O), este sim um gás do efeito estufa.",
+    "motivo": "Texto mais simples, com a ideia de que a palavra absoluta derruba a alternativa."
+   },
+   {
+    "campo": "resolucao.quadro",
+    "depois": [
+     {
+      "linha": "33,2 + 28,9 + 27,1 = 89,2",
+      "nota": "soma dos três maiores setores"
+     },
+     {
+      "linha": "89,2 + 6,4 + 4,4 = 100",
+      "nota": "a barra fecha em 100%"
+     },
+     {
+      "linha": "metade de 100% = 50%",
+      "nota": "valor que a D exigiria"
+     },
+     {
+      "linha": "27,1% < 50%",
+      "nota": "uso da terra: a D contradiz o gráfico"
+     }
+    ],
+    "motivo": "Linha mais curta para caber na tela do celular."
+   }
+  ],
+  "didatica_alertas": [
+   "A alternativa A diz que a agropecuária é a atividade com maior emissão de metano. É correta no Brasil, mas o gráfico não mostra gás por setor; depende do conhecimento externo (SEEG). Vale conferir se a fonte consta em fontes, que está vazio."
+  ],
+  "didatica_ok": true
  }
 }

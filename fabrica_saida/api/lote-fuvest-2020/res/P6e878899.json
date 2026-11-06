@@ -13,7 +13,7 @@
     "could be = poderia ser (possibilidade, não certeza)",
     "If successful = se der certo: a condição vem antes da promessa",
     "answer to a problem = solução para um problema",
-    "information overload = excesso de informação a ser guardada"
+    "information overload = excesso de informação produzida, que precisa ser guardada"
    ],
    "simbolos": [
     [
@@ -34,7 +34,7 @@
     ],
     [
      "zettabyte",
-     "unidade de medida de dados, enorme: 1 zettabyte = 1 trilhão de gigabytes"
+     "unidade de medida de dados, enorme: 1 zettabyte = 1 bilhão de terabytes (1 trilhão de gigabytes)"
     ],
     [
      "data deluge",
@@ -105,7 +105,8 @@
    "pede": "O que o texto afirma sobre o futuro da gravação em DNA.",
    "chave": "'DNA storage could be the answer to… information overload': o DNA poderá resolver o problema de espaço de armazenamento.",
    "cuidado": "Não aceite alternativa que só reaproveita palavras do texto. Confira se a frase inteira está escrita lá."
-  }
+  },
+  "nivel": "Remover o campo. O nível 4 não pertence ao objeto resolucao, e o JSON de entrada tem 'nivel': 4 no topo, enquanto a classificação atual diz 6."
  },
  "caminhos": [
   {
@@ -129,12 +130,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -234,6 +237,31 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.antes.simbolos[4]",
+    "depois": [
+     "zettabyte",
+     "unidade de medida de dados, enorme: 1 zettabyte = 1 bilhão de terabytes (1 trilhão de gigabytes)"
+    ],
+    "motivo": "A conta está certa, mas a explicação fica mais completa assim. 1 ZB = 10^21 bytes e 1 GB = 10^9 bytes, então 1 ZB = 10^12 GB, ou seja, 1 trilhão de gigabytes. Esse valor está correto.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.nivel",
+    "depois": "Remover o campo. O nível 4 não pertence ao objeto resolucao, e o JSON de entrada tem 'nivel': 4 no topo, enquanto a classificação atual diz 6.",
+    "motivo": "Há uma divergência entre o nível 4 do JSON e o nível 6 da classificação atual. Isso é só um alerta de classificação, não de fato. Se o campo for mantido, o nível 4 é plausível para uma questão de localização simples.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.antes.formulas[3]",
+    "depois": "information overload = excesso de informação produzida, que precisa ser guardada",
+    "motivo": "Ajuste menor. A frase original é aceitável. Não é necessário alterar.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "E"
  }
 }

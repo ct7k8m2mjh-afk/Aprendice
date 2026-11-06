@@ -67,8 +67,8 @@
    },
    {
     "faz": "Leia as isóbaras do mapa",
-    "conta": "1030 hPa na Europa; 1010 hPa na África",
-    "porque": "A pressão é alta ao norte (Europa e Mediterrâneo) e baixa ao sul (África). O gradiente vai da Europa para a África.",
+    "conta": "Alta (1030 hPa) ao norte; menor ao sul",
+    "porque": "A pressão é alta ao norte (Europa e Mediterrâneo, 1030 hPa) e menor ao sul (valores de 1020 a 1010 hPa na África). O gradiente vai da Europa para a África.",
     "tipo": "localizar"
    },
    {
@@ -91,12 +91,12 @@
    }
   ],
   "resposta": "Alternativa B: gradiente de pressão Europa–África, ventos de Noroeste e elevação do nível da água pela maré de sizígia (Lua Cheia).",
-  "checagem": "Sizígia sempre significa maré mais alta, então 'rebaixamento pela sizígia' (D) se contradiz. O gráfico sobe de 1,56 m para 2,08 m, confirmando a elevação. O mapa mostra 1030 hPa ao norte e 1010 hPa ao sul, e o vento vai do norte para o sul.",
+  "checagem": "Sizígia sempre significa maré mais alta, então 'rebaixamento pela sizígia' (D) se contradiz. O gráfico sobe de 1,56 m para 2,08 m, confirmando a elevação. No mapa a pressão cai do norte (1030 hPa) para o sul (1010 hPa), e o vento acompanha, indo do norte e noroeste para o sul e sudeste.",
   "erradas": {
    "A": "Erra em três pontos. O mapa mostra alta pressão na Europa e no Mediterrâneo, e o gradiente vai da Europa para a África, não da Ásia para a África. As setas perto do Egito indicam vento de Noroeste, não de Sudoeste. E a Lua Cheia (28/3) indica sizígia, não quadratura: a água subiu em vez de baixar.",
    "C": "Acerta o gradiente Europa–África, mas diz quadratura. A Lua Cheia no gráfico (28/3) marca sizígia. Também erra o vento: as setas perto do Egito vão para o sudeste, então o vento vem do noroeste (Noroeste), não de Sudeste. Quem marcou C leu o sentido da seta como se fosse a origem do vento.",
    "D": "Diz que a sizígia causa rebaixamento, mas a sizígia traz maré mais alta, e o gráfico sobe até 2,10 m. Água mais baixa deixaria o navio mais preso. O vento de Nordeste também não é o das setas perto do Egito. Quem marcou D esqueceu que sizígia significa água mais alta e inverteu o sentido do vento.",
-   "E": "Diz calmarias, mas o mapa tem setas de vento e isóbaras de 1010 a 1030 hPa, ou seja, há gradiente e vento. Diz vazante, mas a maré subia. E 'maré neutra' não é o caso: a Lua Cheia indica sizígia."
+   "E": "Diz calmarias, mas o mapa tem setas de vento e isóbaras de 1010 a 1030 hPa, ou seja, há gradiente e vento. Diz vazante, mas a maré subia até a Lua Cheia. E 'maré neutra' não é o caso: a Lua Cheia indica sizígia."
   },
   "armadilha": "Acreditar que sizígia baixa a água, ou trocar sizígia por quadratura. A Lua Cheia marcada no gráfico é sizígia, com água mais alta.",
   "alerta": "",
@@ -141,12 +141,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -249,6 +251,34 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "Alta (1030 hPa) ao norte; menor ao sul",
+    "motivo": "O 1010 hPa do mapa está no Atlântico equatorial e no Sahel, não na África como um todo. A leitura segura é que a pressão é alta ao norte e menor ao sul.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "A pressão é alta ao norte (Europa e Mediterrâneo, 1030 hPa) e menor ao sul (valores de 1020 a 1010 hPa na África). O gradiente vai da Europa para a África.",
+    "motivo": "Evita afirmar que a África inteira tem 1010 hPa.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Sizígia sempre significa maré mais alta, então 'rebaixamento pela sizígia' (D) se contradiz. O gráfico sobe de 1,56 m para 2,08 m, confirmando a elevação. No mapa a pressão cai do norte (1030 hPa) para o sul (1010 hPa), e o vento acompanha, indo do norte e noroeste para o sul e sudeste.",
+    "motivo": "Ajuste coerente com a leitura corrigida do mapa.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "Diz calmarias, mas o mapa tem setas de vento e isóbaras de 1010 a 1030 hPa, ou seja, há gradiente e vento. Diz vazante, mas a maré subia até a Lua Cheia. E 'maré neutra' não é o caso: a Lua Cheia indica sizígia.",
+    "motivo": "Sem mudança de fato relevante, apenas precisão: a maré subia até a Lua Cheia.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "B"
  }
 }
