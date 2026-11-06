@@ -2,6 +2,8 @@
 
 Legenda: **feito** · **em andamento** · **em espera (ordem do dono)** · **aguardando o dono**
 
+> **06/11/2026, publicado no link** (commit d85f7293): design do protótipo, paleta e fontes, ícones de tema das 9 matérias, correção em 4 blocos com o motor novo, provas novas, questões de sites fora. O build da Vercel passou a instalar numpy e scipy (usados pelo conversor dos ícones). Conferido no ar em 390 e 1280: sem erro e sem rolagem lateral.
+>
 > **06/11/2026, fim do dia:** todos os agentes pararam pelo limite semanal de uso do plano (volta em 12/11, 1h de Brasília). O trabalho de cada um ficou salvo no repositório; na volta, cada agente continua de onde parou (ícones das 7 matérias, revisão em slides, piloto de resoluções, lote 2 rodada 5, auditoria rodada 2 do comando 20). Nada novo foi publicado.
 
 | # | Comando | Situação | Onde conferir |
