@@ -21,3 +21,4 @@ Observações para a integração:
 | L06 Racionalismo e empirismo | aprovado (06/11/2026) | 60 |
 | L02 Sócrates, Platão e Aristóteles | aprovado (06/11/2026) | 70 |
 | S05 Poder e Estado | aprovado (06/11/2026) | 57 |
+| S06 Movimentos sociais | aprovado (06/11/2026) | 56 |
