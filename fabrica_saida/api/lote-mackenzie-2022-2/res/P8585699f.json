@@ -16,7 +16,7 @@
    "simbolos": [
     [
      "Al-Qaeda",
-     "rede terrorista fundada em 1988; ficou conhecida pelos atentados de 11 de setembro de 2001"
+     "rede terrorista fundada por volta de 1988; ficou conhecida pelos atentados de 11 de setembro de 2001"
     ],
     [
      "Estado Islâmico (EI)",
@@ -36,7 +36,7 @@
     ],
     [
      "AQPA",
-     "Al-Qaeda na Península Arábica, filial do grupo no Iêmen"
+     "Al-Qaeda na Península Arábica, filial do grupo formada em 2009 pela fusão dos ramos saudita e iemenita, com base no Iêmen"
     ]
    ]
   },
@@ -63,7 +63,7 @@
    {
     "faz": "Elimine as alternativas com país errado",
     "conta": "Iêmen, Marrocos: não são origem",
-    "porque": "O EI nasceu no Iraque, não na Síria. Iêmen, Marrocos e Arábia Saudita não são a origem de nenhum dos dois grupos. Isso derruba B, D e E, e a A cai pelo Iêmen.",
+    "porque": "O EI nasceu no Iraque, não na Síria. Iêmen, Marrocos e Arábia Saudita não são a origem de nenhum dos dois grupos. Isso derruba B, D e E (todas trazem Síria ou Arábia Saudita ou Marrocos como origem), e a A cai pelo Iêmen.",
     "tipo": "eliminar"
    },
    {
@@ -115,12 +115,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -197,6 +199,34 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "O EI nasceu no Iraque, não na Síria. Iêmen, Marrocos e Arábia Saudita não são a origem de nenhum dos dois grupos. Isso derruba B, D e E (todas trazem Síria ou Arábia Saudita ou Marrocos como origem), e a A cai pelo Iêmen.",
+    "motivo": "A frase anterior dizia que B, D e E caem por Iêmen/Marrocos/Arábia Saudita, mas E (Afeganistão e Síria) cai pela Síria, e não por esses países. A nova redação corrige a ligação entre os países e as letras.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.antes.simbolos[0]",
+    "depois": [
+     "Al-Qaeda",
+     "rede terrorista fundada por volta de 1988; ficou conhecida pelos atentados de 11 de setembro de 2001"
+    ],
+    "motivo": "A data de fundação costuma ser dada como 1988, mas há variação nas fontes (1988 a 1989). 'Por volta de' evita falsa precisão.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.antes.simbolos[5]",
+    "depois": [
+     "AQPA",
+     "Al-Qaeda na Península Arábica, filial do grupo formada em 2009 pela fusão dos ramos saudita e iemenita, com base no Iêmen"
+    ],
+    "motivo": "Precisão: a AQPA foi anunciada em janeiro de 2009 a partir da fusão dos braços saudita e iemenita. A resolução já usa 2009 em erradas.A.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "C"
  }
 }

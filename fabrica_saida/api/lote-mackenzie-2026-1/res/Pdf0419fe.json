@@ -31,7 +31,7 @@
     ],
     [
      "biomassa",
-     "toda a matéria viva de um ser vivo: tronco, folhas, raízes"
+     "massa de matéria orgânica dos seres vivos, como tronco, folhas e raízes"
     ],
     [
      "transpiração",
@@ -66,7 +66,7 @@
    {
     "faz": "Teste as outras alternativas",
     "conta": "A: O₂ é produto, não consumo",
-    "porque": "A descreve a respiração celular, não a fotossíntese. C descreve a transpiração. D é física da superfície. E cita um processo que a planta não faz. Nenhuma retira CO₂ do ar.",
+    "porque": "A descreve a respiração celular, não a fotossíntese: na fotossíntese o O₂ é produto. C descreve a transpiração, que não é a fotossíntese. D é propriedade da superfície, não da fotossíntese. E cita um processo que a planta não faz. Nenhuma retira CO₂ do ar.",
     "tipo": "eliminar"
    },
    {
@@ -80,7 +80,7 @@
   "checagem": "Pense na madeira de uma árvore: é feita de celulose, que tem carbono. Esse carbono só pode ter vindo do CO₂ do ar, captado na fotossíntese.",
   "erradas": {
    "A": "A descreve a respiração celular, não a fotossíntese. Na fotossíntese a planta libera O₂ (é produto). Quem marcou A confundiu os dois processos e esqueceu que o gás pedido é o CO₂.",
-   "C": "A planta perde vapor d'água pela transpiração, não pela fotossíntese. Quem marcou C esqueceu que a pergunta é sobre fotossíntese e carbono, e que o vapor d'água também retém calor.",
+   "C": "A planta perde vapor d'água pela transpiração, não pela fotossíntese. Além disso, o vapor d'água é um gás de efeito estufa, e liberá-lo não tira carbono do ar. Quem marcou C esqueceu que a pergunta é sobre fotossíntese e carbono.",
    "D": "Refletir luz é propriedade da superfície, não da fotossíntese. Pelo contrário, a folha absorve luz para fotossintetizar. Quem marcou D esqueceu de testar se a frase descreve a fotossíntese.",
    "E": "Os reagentes da fotossíntese são CO₂ e água, não metano (CH₄). Quem marcou E atribuiu à fotossíntese um processo que ela não faz, só porque o metano também é gás de efeito estufa."
   },
@@ -90,7 +90,8 @@
    "pede": "Por que plantar árvores ajuda contra o aquecimento global, do ponto de vista da fotossíntese.",
    "chave": "Fotossíntese retira CO₂ do ar e fixa o carbono em moléculas orgânicas.",
    "cuidado": "Não confunda fotossíntese (consome CO₂, libera O₂) com respiração (consome O₂, libera CO₂) nem com transpiração (perde vapor d'água)."
-  }
+  },
+  "nivel": 2
  },
  "caminhos": [
   {
@@ -131,12 +132,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -221,6 +224,37 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "A planta perde vapor d'água pela transpiração, não pela fotossíntese. Além disso, o vapor d'água é um gás de efeito estufa, e liberá-lo não tira carbono do ar. Quem marcou C esqueceu que a pergunta é sobre fotossíntese e carbono.",
+    "motivo": "A frase 'o vapor d'água também retém calor' ficou solta e sem ligação com o motivo. Reescrita como fato (o vapor d'água é gás de efeito estufa) e ligada ao carbono. O fato está correto.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "A descreve a respiração celular, não a fotossíntese: na fotossíntese o O₂ é produto. C descreve a transpiração, que não é a fotossíntese. D é propriedade da superfície, não da fotossíntese. E cita um processo que a planta não faz. Nenhuma retira CO₂ do ar.",
+    "motivo": "Deixa claro que o O₂ é produto na fotossíntese e que C é transpiração, não fotossíntese. O conteúdo original estava certo e a mudança é mínima.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.antes.simbolos[4]",
+    "depois": [
+     "biomassa",
+     "massa de matéria orgânica dos seres vivos, como tronco, folhas e raízes"
+    ],
+    "motivo": "A definição 'toda a matéria viva de um ser vivo' era imprecisa. Biomassa é a massa de matéria orgânica dos seres vivos.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.nivel",
+    "depois": 2,
+    "motivo": "O JSON propõe nível 2, que é plausível para uma questão conceitual direta, e a classificação anterior dizia 4. Mantive 2 porque a questão é de nível básico. O app não deve alterar o degrau por conta própria, então este item é só um aviso de classificação.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "B"
  }
 }

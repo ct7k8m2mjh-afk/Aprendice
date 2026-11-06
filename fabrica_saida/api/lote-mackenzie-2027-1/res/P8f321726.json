@@ -80,7 +80,7 @@
    {
     "faz": "Confira C no slogan",
     "conta": "“RELIEF TODAY | ACTIVE TOMORROW”",
-    "porque": "O slogan promete alívio hoje e vida ativa amanhã. C é uma leitura livre dele: “efeitos melhores amanhã” não está escrito. Mas C não nega nada que o anúncio afirme; a E nega. Por isso C fica como a menos ruim das quatro que sobram.",
+    "porque": "O slogan promete alívio hoje e vida ativa amanhã. C é uma leitura livre dele: “efeitos melhores amanhã” não está escrito. Mas C é uma extrapolação, não uma negação: o anúncio não diz o contrário. A E contradiz de forma direta o que o anúncio afirma sobre dor de cabeça.",
     "tipo": "comparar"
    },
    {
@@ -95,7 +95,7 @@
   "erradas": {
    "A": "Está de acordo com o anúncio. “Trusted pain relief” (alívio da dor de confiança) e “Safe & effective when used as directed” (seguro e eficaz quando usado conforme a orientação) sustentam “seguro e confiável”.",
    "B": "Está de acordo. O rodapé diz “Relief for everyday aches” (alívio para dores do dia a dia), e os ícones mostram dor de cabeça, de dente, muscular e articular.",
-   "C": "Está mais perto de um exagero do que de uma contradição. O slogan “Relief today | Active tomorrow” (alívio hoje, ativo amanhã) não diz “efeitos melhores amanhã”. Mesmo assim, C não nega nada escrito no anúncio, como a E faz com dor de cabeça.",
+   "C": "Extrapola o slogan, mas não o contradiz. “Relief today | Active tomorrow” (alívio hoje, ativo amanhã) liga o remédio à disposição no dia seguinte; “efeitos melhores amanhã” é uma leitura livre disso. C não nega nada escrito no anúncio, e a E nega.",
    "D": "Está de acordo. O ícone do termômetro diz “Lowers fever – brings down high body temperature” (baixa a febre, reduz a temperatura corporal alta). O “you” no lugar de “your” é só erro de digitação."
   },
   "armadilha": "A alternativa C parece estranha, e o aluno pode marcá-la. Só a E contradiz o texto, porque nega um benefício que o anúncio afirma.",
@@ -104,7 +104,8 @@
    "pede": "A alternativa que contradiz o anúncio.",
    "chave": "O anúncio apresenta dor de cabeça como uma das dores que o remédio alivia.",
    "cuidado": "A pergunta é pela INCORRETA: não marque uma alternativa só porque ela confirma o anúncio."
-  }
+  },
+  "nivel": 4
  },
  "caminhos": [
   {
@@ -132,12 +133,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -236,6 +239,28 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.nivel",
+    "depois": 4,
+    "motivo": "A classificação informada para a questão é nível 4, e a resolução traz nível 3. Alinhei o campo com a classificação atual. Se o banco usa o campo `dif`, não altere por conta própria. Nesse caso, desconsidere esta correção.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "O slogan promete alívio hoje e vida ativa amanhã. C é uma leitura livre dele: “efeitos melhores amanhã” não está escrito. Mas C é uma extrapolação, não uma negação: o anúncio não diz o contrário. A E contradiz de forma direta o que o anúncio afirma sobre dor de cabeça.",
+    "motivo": "A frase 'C fica como a menos ruim' soa como se C fosse errada por si só. Troquei por uma explicação mais precisa: C extrapola o slogan, E o contradiz. Os fatos não mudaram.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "Extrapola o slogan, mas não o contradiz. “Relief today | Active tomorrow” (alívio hoje, ativo amanhã) liga o remédio à disposição no dia seguinte; “efeitos melhores amanhã” é uma leitura livre disso. C não nega nada escrito no anúncio, e a E nega.",
+    "motivo": "A redação anterior chamava C de exagero, o que sugere erro factual. A nova deixa claro que C é uma leitura livre que o slogan admite, e não uma contradição.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "E"
  }
 }

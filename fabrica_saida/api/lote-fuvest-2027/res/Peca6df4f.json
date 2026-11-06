@@ -62,7 +62,7 @@
    },
    {
     "faz": "Teste as alternativas restantes",
-    "conta": "D: só infravermelho ✗   E: absorve tudo ✗",
+    "conta": "D: só infravermelho ✗ E: absorve tudo ✗",
     "porque": "Nebulosas também são vistas em luz visível, então D falha. Se a nuvem absorvesse toda a luz, só a veríamos como silhueta escura contra um fundo brilhante, e isso não explica a visibilidade em geral.",
     "tipo": "eliminar"
    },
@@ -78,11 +78,11 @@
   "erradas": {
    "A": "Faltou lembrar que fusão nuclear só ocorre no interior de estrelas. A nebulosa só vira estrela depois de colapsar, o que o enunciado diz acontecer apenas 'em certas condições'.",
    "C": "Faltou notar que atrito não produz luz visível aqui. No espaço interestelar a densidade é baixíssima e os grãos quase nunca se tocam.",
-   "D": "Faltou ver o 'apenas'. A poeira aquecida emite infravermelho, mas nebulosas também são vistas em luz visível: as de reflexão aparecem azuladas porque a poeira espalha a luz de estrelas próximas.",
+   "D": "Faltou ver o 'apenas'. A poeira aquecida emite infravermelho, mas nebulosas também são vistas em luz visível: as de reflexão aparecem azuladas porque a poeira espalha mais a luz azul das estrelas próximas.",
    "E": "Faltou ver o 'completamente'. Se a nuvem absorvesse toda a luz, só seria vista como silhueta (nebulosa escura) contra um fundo luminoso. Isso é um caso particular, não a razão geral."
   },
   "armadilha": "Achar que toda nebulosa brilha por luz própria, como uma estrela, ou confundir uma nebulosa escura (vista por contraste) com o caso geral.",
-  "alerta": "Rigor astrofísico: muitas nebulosas (as de emissão, como a de Órion) também brilham com luz própria, porque o gás ionizado pela radiação ultravioleta de estrelas quentes vizinhas emite luz ao se recombinar. Isso não é fusão. De todo modo, a energia vem de estrelas próximas, e a alternativa B é a única correta entre as cinco.",
+  "alerta": "Rigor astrofísico: muitas nebulosas (as de emissão, como a de Órion) também brilham com luz própria. O gás é ionizado pela radiação ultravioleta de estrelas quentes vizinhas e emite luz ao se recombinar. Isso não é fusão. De todo modo, a energia vem de estrelas próximas. A alternativa B é a melhor das cinco, e as outras têm erro claro: A (fusão), C (atrito), D ('apenas') e E ('completamente').",
   "essencial": {
    "pede": "Por que uma nebulosa interestelar pode ser observada da Terra.",
    "chave": "Ela não é estrela: a poeira reflete e espalha a luz de estrelas próximas.",
@@ -115,12 +115,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -228,6 +230,22 @@
   "didatica_alertas": [
    "Classificação: tema F06/F06.4 (termologia) não combina com a questão; o JSON usa F09.3 (fenômenos ondulatórios), o que é mais adequado, mas a taxonomia oficial deve ser conferida pelo corretor de fatos."
   ],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "Faltou ver o 'apenas'. A poeira aquecida emite infravermelho, mas nebulosas também são vistas em luz visível: as de reflexão aparecem azuladas porque a poeira espalha mais a luz azul das estrelas próximas.",
+    "motivo": "Mudança mínima. A frase original era verdadeira, mas incompleta. Nebulosas de reflexão são azuladas porque o espalhamento é mais eficiente em comprimentos de onda curtos, e dizer isso evita a impressão de que a cor vem de qualquer espalhamento.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.alerta",
+    "depois": "Rigor astrofísico: muitas nebulosas (as de emissão, como a de Órion) também brilham com luz própria. O gás é ionizado pela radiação ultravioleta de estrelas quentes vizinhas e emite luz ao se recombinar. Isso não é fusão. De todo modo, a energia vem de estrelas próximas. A alternativa B é a melhor das cinco, e as outras têm erro claro: A (fusão), C (atrito), D ('apenas') e E ('completamente').",
+    "motivo": "Mudança mínima. 'A única correta' é forte demais, porque as nebulosas de emissão também são vistas por emissão do gás. B é a melhor resposta e o gabarito oficial a confirma.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "B"
  }
 }

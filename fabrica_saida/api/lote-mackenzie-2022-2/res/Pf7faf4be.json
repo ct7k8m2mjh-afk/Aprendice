@@ -22,7 +22,7 @@
     ],
     [
      "mandato",
-     "administração de uma ex-colônia de país derrotado, entregue a outra potência pela Liga das Nações após a Primeira Guerra"
+     "administração de uma ex-colônia de país derrotado, confiada a outra potência pela Liga das Nações após a Primeira Guerra"
     ],
     [
      "Hutus, Tutsis e Tuás",
@@ -74,9 +74,9 @@
   "resposta": "Alternativa C: Ruanda, o único país que reúne Hutus e Tutsis, dominação alemã, mandato belga, independência em 1962 e genocídio em 1994.",
   "checagem": "Teste inverso: pergunte a cada país da lista quem foi a metrópole. Angola e Moçambique: Portugal. Marrocos: França e Espanha. Sudão: Reino Unido e Egito. Só Ruanda teve Alemanha e depois Bélgica.",
   "erradas": {
-   "A": "Angola foi colônia de Portugal e ficou independente em 1975, não em 1962. Sua guerra civil (1975-2002) foi entre movimentos políticos (MPLA, UNITA e FNLA), não entre Hutus e Tutsis.",
+   "A": "Angola foi colônia de Portugal e ficou independente em 1975, não em 1962. Sua guerra civil (1975-2002) opôs movimentos políticos (MPLA, UNITA e FNLA), não Hutus e Tutsis.",
    "B": "Moçambique foi colônia de Portugal e ficou independente em 1975. Sua guerra civil (1977-1992) opôs Frelimo e Renamo, por motivo político. Não teve domínio alemão nem mandato belga.",
-   "D": "Marrocos, no noroeste da África, foi protetorado da França e da Espanha e ficou independente em 1956. Sua população é árabe e berbere, sem Hutus nem Tutsis. Quem marcou D confundiu o país: ele não tem guerra civil nem genocídio.",
+   "D": "Marrocos, no noroeste da África, foi protetorado da França e da Espanha e ficou independente em 1956. Sua população é árabe e berbere, sem Hutus nem Tutsis. Não teve guerra civil nem genocídio como o descrito.",
    "E": "O Sudão foi dominado por britânicos e egípcios e ficou independente em 1956. Teve guerras civis, mas sua população não se divide em Hutus e Tutsis, e não houve mandato belga. Quem marcou E viu 'guerra civil' e não conferiu as outras pistas."
   },
   "armadilha": "Escolher um país africano que também teve guerra civil, como Angola, Moçambique ou Sudão, sem conferir as pistas coloniais (Alemanha e Bélgica) e as étnicas (Hutus e Tutsis).",
@@ -102,7 +102,7 @@
   "cabe": true,
   "porque": "A sucessão de domínios coloniais até a independência e o genocídio é uma sequência de datas, e a linha do tempo mostra que as pistas do texto se encaixam em um único país.",
   "tipo": "linha-do-tempo",
-  "roteiro": "Quadro 1: linha do tempo horizontal com o rótulo Ruanda. Quadro 2: no fim do século XIX, aparece a bandeira alemã (África Oriental Alemã). Quadro 3: na Primeira Guerra, tropas belgas ocupam o território (1916); com a derrota alemã, a Liga das Nações entrega o mandato à Bélgica (1922). Quadro 4: em 1962, independência. Quadro 5: de 1990 a 1994, guerra civil, com destaque para abril a julho de 1994 e a marca de cerca de 800 mil mortos. Quadro 6: ao lado, um mapa da África com Ruanda destacada no centro-leste e as demais alternativas em cinza, cada uma com sua ex-metrópole."
+  "roteiro": "Quadro 1: linha do tempo horizontal com o rótulo Ruanda. Quadro 2: no fim do século XIX, aparece a bandeira alemã (África Oriental Alemã). Quadro 3: na Primeira Guerra, tropas belgas ocupam o território (1916); depois da derrota alemã, a Liga das Nações confia o mandato à Bélgica (1922). Quadro 4: em 1962, independência. Quadro 5: de 1990 a 1994, guerra civil, com destaque para abril a julho de 1994 e a marca de cerca de 800 mil mortos. Quadro 6: ao lado, um mapa da África com Ruanda destacada no centro-leste e as demais alternativas em cinza, cada uma com sua ex-metrópole."
  },
  "fontes": [],
  "resposta_resolvedor": "C",
@@ -111,12 +111,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -210,6 +212,37 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "Angola foi colônia de Portugal e ficou independente em 1975, não em 1962. Sua guerra civil (1975-2002) opôs movimentos políticos (MPLA, UNITA e FNLA), não Hutus e Tutsis.",
+    "motivo": "Ajuste de precisão. A guerra civil angolana começou em 1975, mas a FNLA se desfez como força relevante no fim dos anos 1970 e a guerra seguiu sobretudo entre MPLA e UNITA. A frase original sugere que os três movimentos lutaram até 2002. Troquei 'foi entre' por 'opôs' e mantive a lista de movimentos.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "Marrocos, no noroeste da África, foi protetorado da França e da Espanha e ficou independente em 1956. Sua população é árabe e berbere, sem Hutus nem Tutsis. Não teve guerra civil nem genocídio como o descrito.",
+    "motivo": "Correção de fato e de tom. 'Ele não tem guerra civil nem genocídio' é absoluto e discutível, porque Marrocos travou a guerra do Saara Ocidental, e a frase 'Quem marcou D confundiu o país' é inferência sobre o aluno. Qualifiquei a afirmação.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.antes.simbolos[1]",
+    "depois": [
+     "mandato",
+     "administração de uma ex-colônia de país derrotado, confiada a outra potência pela Liga das Nações após a Primeira Guerra"
+    ],
+    "motivo": "Ajuste de redação: 'confiada' em vez de 'entregue', que é mais fiel ao sistema de mandatos da Liga. O sentido do fato é o mesmo.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.visual.roteiro",
+    "depois": "Quadro 1: linha do tempo horizontal com o rótulo Ruanda. Quadro 2: no fim do século XIX, aparece a bandeira alemã (África Oriental Alemã). Quadro 3: na Primeira Guerra, tropas belgas ocupam o território (1916); depois da derrota alemã, a Liga das Nações confia o mandato à Bélgica (1922). Quadro 4: em 1962, independência. Quadro 5: de 1990 a 1994, guerra civil, com destaque para abril a julho de 1994 e a marca de cerca de 800 mil mortos. Quadro 6: ao lado, um mapa da África com Ruanda destacada no centro-leste e as demais alternativas em cinza, cada uma com sua ex-metrópole.",
+    "motivo": "O conteúdo factual está correto: ocupação belga em 1916, mandato de 1922 (mandato B da Liga), com Ruanda-Urundi. Só alinhei o verbo ao de 'mandato' usado em 'simbolos'.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "C"
  }
 }

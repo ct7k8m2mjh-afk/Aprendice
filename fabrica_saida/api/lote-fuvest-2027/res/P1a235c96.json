@@ -70,7 +70,7 @@
    {
     "faz": "Elimine A e E pela lógica do acelerador e do freio",
     "conta": "A: inativa o acelerador ✗\nE: 'potencializam' o freio ✗",
-    "porque": "Em A, inativar o proto-oncogene reduz o estímulo à divisão. Em E, a mutação no supressor costuma inativá-lo, não potencializá-lo. Além disso, o texto não diz que os tumores ficam sempre mais rápidos.",
+    "porque": "Em A, inativar o proto-oncogene reduz o estímulo à divisão. Em E, as proteínas do supressor e do proto-oncogene têm funções opostas e as mutações no supressor costumam inativá-lo, não potencializá-lo. Além disso, o texto não diz que os tumores ficam sempre mais rápidos.",
     "tipo": "eliminar"
    },
    {
@@ -90,7 +90,7 @@
   "checagem": "Pelo carro: câncer = acelerador preso OU freio quebrado. Só a B descreve uma dessas falhas corretamente (freio quebrado). A descreve acelerador desligado, o que não leva a mais divisão.",
   "erradas": {
    "A": "Inverte o efeito. Se a proteína do proto-oncogene é inativada, a célula recebe MENOS estímulo à divisão. O proto-oncogene contribui para o câncer quando a mutação o ativa em excesso (oncogene), e não quando o inativa.",
-   "C": "Falta notar a expressão absoluta 'sem os quais não é possível'. Radiação, tabaco e vírus aumentam o risco, mas mutações também surgem por erros espontâneos ao copiar o DNA e por herança.",
+   "C": "Falta notar a expressão absoluta 'sem os quais não é possível'. Radiação, tabaco e vírus aumentam o risco, mas mutações também surgem por erros espontâneos ao copiar o DNA e podem ser herdadas.",
    "D": "Mutação em célula somática não chega aos filhos: só a mutação em gameta é herdada. No câncer familiar, herda-se pelo gameta uma mutação (por exemplo, num gene supressor) que aumenta a predisposição. Não é acúmulo de mutações somáticas ao longo das gerações.",
    "E": "Falta ver o efeito da mutação no supressor: ela inativa o freio, não o 'potencializa'. Além disso, o texto não afirma que mutações simultâneas geram casos sempre mais agressivos e rápidos. A alternativa extrapola o enunciado."
   },
@@ -131,12 +131,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -248,6 +250,22 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Em A, inativar o proto-oncogene reduz o estímulo à divisão. Em E, as proteínas do supressor e do proto-oncogene têm funções opostas e as mutações no supressor costumam inativá-lo, não potencializá-lo. Além disso, o texto não diz que os tumores ficam sempre mais rápidos.",
+    "motivo": "Ajuste mínimo de precisão: a frase original deixava de explicar o outro ponto do erro de E (potencializar a função do produto). Não há erro factual grave; é só um refinamento.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "Falta notar a expressão absoluta 'sem os quais não é possível'. Radiação, tabaco e vírus aumentam o risco, mas mutações também surgem por erros espontâneos ao copiar o DNA e podem ser herdadas.",
+    "motivo": "'por herança' sugeria que a mutação herdada surge sem causa; 'podem ser herdadas' é mais exato. Mudança mínima.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "B"
  }
 }

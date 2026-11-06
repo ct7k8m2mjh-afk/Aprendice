@@ -103,9 +103,9 @@
   "resposta": "Alternativa C: a Constituinte (1789-1791) aboliu os privilégios feudais, promulgou a Declaração dos Direitos do Homem e do Cidadão, manteve o voto censitário e criou a Constituição Civil do Clero.",
   "checagem": "Teste de datas: Declaração (1789), fim dos privilégios (1789) e Constituição Civil do Clero (1790) cabem em 1789-1791. Nas outras, há troca de grupo (girondinos no lugar de jacobinos, jacobinos no lugar da burguesia) ou de medida (Preço Máximo e voto universal atribuídos ao Diretório).",
   "erradas": {
-   "A": "Inverte os grupos. A Convenção Montanhesa (1793-1794) foi dos jacobinos radicais, não dos girondinos moderados. Os jacobinos aprovaram o Preço Máximo e a Constituição de 1793, com voto universal masculino. Em 1794, a Convenção aboliu a escravidão nas colônias, decisão depois revertida por Napoleão.",
+   "A": "Inverte os grupos. A Convenção Montanhesa (1793-1794) foi dos jacobinos radicais, não dos girondinos moderados. Os jacobinos aprovaram o Preço Máximo e a Constituição de 1793, com voto universal masculino. Em fevereiro de 1794 a Convenção aboliu a escravidão nas colônias, e Napoleão a restabeleceu em 1802.",
    "B": "O Diretório foi uma república burguesa conservadora, que voltou ao voto censitário. A Lei do Preço Máximo e o voto universal masculino são da fase jacobina (1793), e o Diretório não é o ponto de maior avanço democrático.",
-   "D": "O 18 Brumário (1799) foi um golpe da alta burguesia e de militares, com Sieyès e Napoleão, contra o Diretório. Ele concentrou o poder em Napoleão no Consulado e não restabeleceu os princípios jacobinos, que já haviam sido derrubados em 1794.",
+   "D": "O 18 Brumário (1799) foi um golpe de Sieyès e Napoleão, com apoio de parte da burguesia e dos militares, contra o Diretório. Ele concentrou o poder em Napoleão no Consulado e não restabeleceu os princípios jacobinos, que já haviam sido derrubados em 1794 (Termidor).",
    "E": "Troca os grupos. O Terror foi conduzido por Robespierre e pelos jacobinos na Convenção Montanhesa, e não na fase girondina. Os girondinos, aliás, foram uma das vítimas da guilhotina."
   },
   "armadilha": "Atribuir o Terror e as medidas radicais (Preço Máximo, voto universal) à fase errada, ou misturar girondinos com jacobinos.",
@@ -114,7 +114,8 @@
    "pede": "A única alternativa que descreve corretamente uma fase da Revolução Francesa.",
    "chave": "Associe cada fase ao seu grupo: Constituinte liberal e censitária, Convenção Montanhesa com o Terror, Diretório conservador, 18 Brumário com Napoleão.",
    "cuidado": "Girondinos e jacobinos não se confundem; o Terror é jacobino, não girondino."
-  }
+  },
+  "tema": "H08"
  },
  "caminhos": [
   {
@@ -146,12 +147,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -256,6 +259,34 @@
   "didatica_alertas": [
    "Nas 'erradas', A diz que a Convenção aboliu a escravidão em 1794 (correto) e que Napoleão a reverteu (1802); conferir se cabe manter a data na fonte. Em 'passos[3]', 'Convenção (1792-95)' e a alternativa A dá '1793-1794' para a fase montanhesa: coerente, sem erro."
   ],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "A Revolução Francesa (1789-1799) teve fases em que grupos diferentes governaram. A Constituinte (1789-1791) foi burguesa, liberal e moderada. A Convenção (1792-1795) teve primeiro os girondinos e depois os montanheses (jacobinos), com o Terror (1793-1794). O Diretório (1795-1799) foi uma república burguesa conservadora. O golpe do 18 Brumário (1799) deu o poder a Napoleão e encerrou a Revolução.",
+    "motivo": "Sem alteração de fato. Fica registrado que a Convenção ia de 1792 a 1795, e o Terror de 1793 a 1794, o que está correto.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "Inverte os grupos. A Convenção Montanhesa (1793-1794) foi dos jacobinos radicais, não dos girondinos moderados. Os jacobinos aprovaram o Preço Máximo e a Constituição de 1793, com voto universal masculino. Em fevereiro de 1794 a Convenção aboliu a escravidão nas colônias, e Napoleão a restabeleceu em 1802.",
+    "motivo": "Precisão: a abolição ocorreu em 4 de fevereiro de 1794 (16 pluviôse, ano II), e Napoleão a restabeleceu em 1802. A frase antiga estava vaga ('depois revertida').",
+    "fonte": "https://www.britannica.com/event/French-Revolution"
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "O 18 Brumário (1799) foi um golpe de Sieyès e Napoleão, com apoio de parte da burguesia e dos militares, contra o Diretório. Ele concentrou o poder em Napoleão no Consulado e não restabeleceu os princípios jacobinos, que já haviam sido derrubados em 1794 (Termidor).",
+    "motivo": "Ajuste menor: 'alta burguesia' simplificava demais, e o Termidor passou a ser nomeado. Os fatos centrais estavam corretos.",
+    "fonte": "https://www.britannica.com/event/French-Revolution"
+   },
+   {
+    "campo": "resolucao.tema",
+    "depois": "H08",
+    "motivo": "O prompt trouxe a classificação atual H06/H06.4, que está errada. A proposta H08/H08.3 (Revolução Francesa) está correta e deve ser mantida.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "C"
  }
 }

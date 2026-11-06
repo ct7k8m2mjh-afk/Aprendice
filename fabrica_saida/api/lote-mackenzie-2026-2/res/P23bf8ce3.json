@@ -8,10 +8,10 @@
  "conceito": "Descolonização da África: ritmos diferentes, guerras de independência, Guerra Fria e a manutenção das fronteiras coloniais pela OUA.",
  "resolucao": {
   "antes": {
-   "texto": "A descolonização da África não foi igual em todo lugar. Muitas colônias francesas e britânicas ficaram independentes por acordo, sobretudo em 1960. Outras, como a Argélia e as colônias portuguesas, passaram por guerras longas, e as potências da Guerra Fria intervieram. As fronteiras traçadas pelos europeus em Berlim (1884-1885) continuaram valendo. Em 1963, a OUA decidiu preservá-las, para evitar guerras entre os novos Estados.",
+   "texto": "A descolonização da África não foi igual em todo lugar. Muitas colônias francesas e britânicas ficaram independentes por acordo, sobretudo em 1960. Outras, como a Argélia e as colônias portuguesas, passaram por guerras longas, e as potências da Guerra Fria intervieram. As fronteiras traçadas pelos europeus em Berlim (1884-1885) continuaram valendo. Em 1964, a OUA decidiu preservá-las, para evitar guerras entre os novos Estados.",
    "formulas": [
     "1954-1962: guerra da Argélia; 1960: 'Ano da África'",
-    "1963: criação da OUA; 1964: aceita as fronteiras herdadas",
+    "1963: criação da OUA; 1964: Cairo, resolução aceita as fronteiras herdadas",
     "1974: Revolução dos Cravos; 1975: independência de Angola e Moçambique"
    ],
    "simbolos": [
@@ -91,7 +91,7 @@
   "erradas": {
    "A": "O texto diz que Argélia, Angola, Moçambique, Guiné-Bissau e Rodésia do Sul tiveram processo 'longo, violento'. Também não houve reconhecimento voluntário em todos os casos: Portugal só cedeu após a Revolução dos Cravos (1974).",
    "B": "O texto lista a Guerra Fria entre os fatores que fizeram o processo variar, com intervenções de URSS, Cuba e EUA. A URSS apoiou movimentos de libertação, então os dois blocos não defenderam juntos os impérios. 'Incondicionalmente' também não se sustenta.",
-   "C": "O Ano da África (1960) foi de colônias francesas e britânicas (texto). Angola, Moçambique e Guiné-Bissau lutaram até a Revolução dos Cravos e só tiveram a independência reconhecida em 1974-1975, não nos anos 1950. Cabral liderou a luta na Guiné-Bissau e em Cabo Verde, e foi assassinado em 1973.",
+   "C": "O Ano da África (1960) foi de colônias francesas e britânicas (texto). Angola, Moçambique e Guiné-Bissau lutaram até a Revolução dos Cravos (1974) e se tornaram independentes em 1973-1975, não nos anos 1950. Cabral liderou a luta na Guiné-Bissau e em Cabo Verde e foi assassinado em 1973.",
    "D": "A guerra da Argélia (1954-1962) foi longa e violenta, como diz o texto. A independência veio por acordo apenas ao fim dela. A OUA foi criada em 1963, depois da independência argelina, então não podia mediar."
   },
   "armadilha": "A alternativa E parece menos 'dramática' que as outras, mas só ela não contradiz o texto nem a cronologia. As demais erram por generalização ou por data.",
@@ -131,12 +131,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -233,6 +235,28 @@
    "Conferir o 'tema/conteúdo': a classificação do app (H08.4) não combina com descolonização da África; o JSON da resolução usa H14/H14.2, que é o correto.",
    "Em 'erradas.C', a frase sobre Amílcar Cabral (assassinado em 1973, liderou Guiné-Bissau e Cabo Verde) é fato extra; o corretor de fatos deve confirmar."
   ],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.antes.formulas[1]",
+    "depois": "1963: criação da OUA; 1964: Cairo, resolução aceita as fronteiras herdadas",
+    "motivo": "A OUA foi criada em maio de 1963 em Adis Abeba. A resolução sobre a intangibilidade das fronteiras coloniais é de julho de 1964, na cúpula do Cairo. A forma original dava a entender que a OUA tomou a decisão em 1963. Já o antes.texto e o passo 5 dizem 1963-64, o que é aceitável. Esta é uma precisão menor.",
+    "fonte": "https://www.britannica.com/topic/Organization-of-African-Unity"
+   },
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "A descolonização da África não foi igual em todo lugar. Muitas colônias francesas e britânicas ficaram independentes por acordo, sobretudo em 1960. Outras, como a Argélia e as colônias portuguesas, passaram por guerras longas, e as potências da Guerra Fria intervieram. As fronteiras traçadas pelos europeus em Berlim (1884-1885) continuaram valendo. Em 1964, a OUA decidiu preservá-las, para evitar guerras entre os novos Estados.",
+    "motivo": "A decisão da OUA de respeitar as fronteiras herdadas é de 1964 (Cairo). A OUA em si é de 1963.",
+    "fonte": "https://www.britannica.com/topic/Organization-of-African-Unity"
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "O Ano da África (1960) foi de colônias francesas e britânicas (texto). Angola, Moçambique e Guiné-Bissau lutaram até a Revolução dos Cravos (1974) e se tornaram independentes em 1973-1975, não nos anos 1950. Cabral liderou a luta na Guiné-Bissau e em Cabo Verde e foi assassinado em 1973.",
+    "motivo": "A Guiné-Bissau declarou independência unilateral em 1973 e Portugal a reconheceu em 1974. Angola e Moçambique ficaram independentes em 1975. Dizer que todas só tiveram a independência reconhecida em 1974-75 e 'não nos anos 1950' fica correto, mas assim fica mais exato.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "E"
  }
 }

@@ -11,7 +11,7 @@
    "texto": "Bioma é um grande conjunto de ecossistemas com clima, vegetação e fauna próprios. O IBGE reconhece seis biomas no Brasil. Cada um tem uma marca dominante: o clima semiárido, com longas estiagens e chuvas irregulares, pertence a um só deles, a Caatinga. O texto repete essa pista várias vezes.",
    "formulas": [
     "clima semiárido + chuva irregular + estiagem longa → Caatinga",
-    "Caatinga: cerca de 11% do território; bioma só do Brasil"
+    "Caatinga: cerca de 11% do território; bioma exclusivamente brasileiro"
    ],
    "simbolos": [
     [
@@ -78,7 +78,7 @@
   "resposta": "Alternativa C: Caatinga, bioma do clima semiárido, com estiagens longas, chuvas irregulares, cerca de 11% do território e grande endemismo.",
   "checagem": "Releia o texto com a palavra Caatinga nas lacunas: \"a Caatinga ocupa cerca de 11% do território\" e \"adversidades do clima semiárido\". Tudo fecha. Com qualquer outro bioma, a frase do clima semiárido ficaria sem sentido.",
   "erradas": {
-   "A": "O Cerrado tem estação seca marcada, mas o clima é tropical com verão chuvoso, não semiárido. Ocupa cerca de 24% do território, bem mais que 11%, e não é o bioma típico do Semiárido.",
+   "A": "O Cerrado tem estação seca marcada, mas o clima é tropical com verão chuvoso, não semiárido. Ocupa cerca de 23% do território, bem mais que 11%, e não é o bioma típico do Semiárido.",
    "B": "O Pantanal é planície que alaga por temporada, com muita água, e ocupa cerca de 2% do território. Não tem clima semiárido nem ligação com o Semiárido nordestino.",
    "D": "O Pampa são campos do extremo sul, de clima subtropical, com chuvas bem distribuídas ao longo do ano. É o oposto do clima semiárido, e sua área é bem menor que 11%.",
    "E": "A Mata Atlântica é floresta úmida da faixa litorânea, a mais devastada do país. Clima úmido, não semiárido, e o texto fala de bioma ligado ao Semiárido."
@@ -117,12 +117,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -204,6 +206,22 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.antes.formulas[1]",
+    "depois": "Caatinga: cerca de 11% do território; bioma exclusivamente brasileiro",
+    "motivo": "A frase 'bioma só do Brasil' vale para a Caatinga, que é o único bioma restrito ao território nacional. A nova redação deixa isso explícito e correto. A frase original já era aceitável, então a mudança é de precisão, não de erro.",
+    "fonte": "IBGE, Mapa de Biomas do Brasil: a Caatinga ocupa cerca de 10,7% do território (≈11%)."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "O Cerrado tem estação seca marcada, mas o clima é tropical com verão chuvoso, não semiárido. Ocupa cerca de 23% do território, bem mais que 11%, e não é o bioma típico do Semiárido.",
+    "motivo": "O IBGE (2019) dá ao Cerrado cerca de 23,3% do território, não 24%. O valor de 24% é arredondamento antigo. Troquei por 23%.",
+    "fonte": "IBGE, Biomas e Sistema Costeiro-Marinho do Brasil, 2019: Cerrado 23,3%."
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "C"
  }
 }

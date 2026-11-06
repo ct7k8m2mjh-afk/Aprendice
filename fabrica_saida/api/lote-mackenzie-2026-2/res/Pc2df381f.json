@@ -25,7 +25,7 @@
     ],
     [
      "corpos cetônicos",
-     "moléculas feitas no fígado a partir de gordura quando falta glicose; servem de combustível"
+     "moléculas feitas no fígado a partir de ácidos graxos quando falta glicose; servem de combustível para cérebro, coração e músculos"
     ],
     [
      "cetose",
@@ -62,7 +62,7 @@
    {
     "faz": "Siga o destino das proteínas em excesso",
     "conta": "aminoácido → NH₃ → ureia → urina",
-    "porque": "O corpo não guarda proteína em excesso como reserva. Ele retira o nitrogênio (amônia). O fígado faz a ureia e os rins a eliminam; por isso os dois órgãos ficam sobrecarregados.",
+    "porque": "O corpo não guarda aminoácidos em excesso como proteína de reserva. Ele retira o grupo amina (vira amônia). O fígado faz a ureia e os rins a eliminam; por isso os dois órgãos trabalham mais. O restante da molécula pode virar glicose ou gordura.",
     "tipo": "localizar"
    },
    {
@@ -80,7 +80,7 @@
    {
     "faz": "Teste a alternativa E",
     "conta": "pouco carboidrato → insulina baixa",
-    "porque": "Dieta pobre em carboidrato deixa a insulina baixa, sem hipoglicemia de rebote. Também não eleva a absorção de gordura a ponto de causar esteatorreia, que vem de falha na digestão ou na absorção de lipídios.",
+    "porque": "Dieta pobre em carboidrato mantém a insulina baixa, então não há hipoglicemia de rebote. Esteatorreia vem de falha na digestão ou na absorção de lipídios (falta de bile ou de lipase), não da restrição de carboidratos.",
     "tipo": "eliminar"
    },
    {
@@ -96,7 +96,7 @@
    "A": "O excesso de aminoácidos passa por desaminação e pode virar glicose ou gordura, então 'sem passar por qualquer processo metabólico' é falso. Sem carboidrato o metabolismo não para: usa-se gordura e aminoácidos.",
    "C": "'Exclusivamente proteínas' e 'poupando os lipídios' são falsos. Sem carboidratos o corpo usa mais lipídios, e a cetose prova isso. O ganho de gordura também não é a consequência típica: o texto fala em perda de peso inicial.",
    "D": "Proteínas são digeridas e absorvidas no intestino delgado, não excretadas integralmente nas fezes. Sem carboidratos há ATP a partir de gorduras e aminoácidos, então não há morte celular imediata.",
-   "E": "A proteína estimula alguma insulina, mas o quadro típico de dieta pobre em carboidrato é de insulina baixa. Restrição de carboidratos não aumenta a absorção de gorduras nem causa esteatorreia, que vem de falha na digestão ou na absorção de lipídios (bile, lipase)."
+   "E": "Dieta pobre em carboidrato mantém a insulina baixa, e a hipoglicemia de rebote é típica de pico de carboidrato simples, não de dieta hiperproteica. A proteína estimula alguma insulina, mas o efeito é modesto. Restrição de carboidratos não causa esteatorreia, que vem de falha na digestão ou na absorção de lipídios (bile, lipase)."
   },
   "armadilha": "Marcar alternativas que parecem 'científicas', mas trazem termos absolutos (exclusivamente, integralmente, imediata, qualquer).",
   "alerta": "",
@@ -132,12 +132,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -265,6 +267,37 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.passos[0].porque",
+    "depois": "O corpo não guarda aminoácidos em excesso como proteína de reserva. Ele retira o grupo amina (vira amônia). O fígado faz a ureia e os rins a eliminam; por isso os dois órgãos trabalham mais. O restante da molécula pode virar glicose ou gordura.",
+    "motivo": "A frase 'não guarda proteína como reserva' está correta, mas o texto ficava incompleto: o esqueleto de carbono dos aminoácidos pode virar glicose ou gordura, como diz a errada A. Isso evita contradição interna.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Dieta pobre em carboidrato mantém a insulina baixa, então não há hipoglicemia de rebote. Esteatorreia vem de falha na digestão ou na absorção de lipídios (falta de bile ou de lipase), não da restrição de carboidratos.",
+    "motivo": "A frase original ('não eleva a absorção de gordura a ponto de causar esteatorreia') sugeria que a absorção aumenta um pouco. O correto é que não há relação causal entre restrição de carboidratos e esteatorreia.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "Dieta pobre em carboidrato mantém a insulina baixa, e a hipoglicemia de rebote é típica de pico de carboidrato simples, não de dieta hiperproteica. A proteína estimula alguma insulina, mas o efeito é modesto. Restrição de carboidratos não causa esteatorreia, que vem de falha na digestão ou na absorção de lipídios (bile, lipase).",
+    "motivo": "A afirmação original de insulina baixa como 'quadro típico' é correta, mas faltava refutar a 'hipoglicemia de rebote'. Também se removeu a ideia de que a absorção de gorduras aumenta.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.antes.simbolos[2]",
+    "depois": [
+     "corpos cetônicos",
+     "moléculas feitas no fígado a partir de ácidos graxos quando falta glicose; servem de combustível para cérebro, coração e músculos"
+    ],
+    "motivo": "Precisão: o fígado produz, mas não usa os corpos cetônicos; os tecidos extra-hepáticos os usam.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "B"
  }
 }

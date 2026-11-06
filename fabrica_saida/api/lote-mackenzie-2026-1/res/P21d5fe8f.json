@@ -49,7 +49,7 @@
     ],
     [
      "d.d.p.",
-     "diferença de potencial elétrico, medida em volts; se for maior que zero, a reação acontece sozinha"
+     "diferença de potencial elétrico, medida em volts; se a d.d.p. da reação for maior que zero, ela acontece sozinha (espontânea)"
     ]
    ]
   },
@@ -92,7 +92,7 @@
    "A": "O aço é o cátodo, onde ocorre redução, e não oxidação. Ele recebe elétrons da bateria e os passa aos íons Ni²⁺. Quem marcou A trocou os papéis: oxidação é no ânodo.",
    "B": "A barra de níquel é o ânodo, onde ocorre oxidação (Ni → Ni²⁺ + 2 e⁻). A massa diminui, mas por oxidação, não por redução. A frase se contradiz.",
    "D": "A semirreação escrita (Ni²⁺ + 2 e⁻ → Ni) é uma redução, que ocorre no cátodo. No ânodo ocorre a inversa: Ni → Ni²⁺ + 2 e⁻.",
-   "E": "A eletrólise é forçada pela bateria, então não é espontânea. Além disso, a reação global só move o Ni da barra para o aço (Ni → Ni), com d.d.p. igual a zero nas condições padrão, e não maior que zero."
+   "E": "A eletrólise é forçada pela bateria, então não é espontânea. A reação global só move o Ni da barra para o aço (Ni → Ni), com ΔE° = 0 nas condições padrão. A bateria fornece a energia que faz o processo andar, e um processo espontâneo teria d.d.p. maior que zero sem ela."
   },
   "armadilha": "Trocar os papéis: na eletrólise o ânodo ainda é onde ocorre oxidação e o cátodo é onde ocorre redução. O que muda em relação à pilha é só o sinal dos polos e a não espontaneidade.",
   "alerta": "",
@@ -141,12 +141,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -252,6 +254,25 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "A eletrólise é forçada pela bateria, então não é espontânea. A reação global só move o Ni da barra para o aço (Ni → Ni), com ΔE° = 0 nas condições padrão. A bateria fornece a energia que faz o processo andar, e um processo espontâneo teria d.d.p. maior que zero sem ela.",
+    "motivo": "O texto anterior misturava a d.d.p. da bateria com a da reação. Agora o ponto central é a não espontaneidade, e a d.d.p. padrão é apresentada como a da reação global (ΔE° = 0), sem confundir os dois sentidos de d.d.p.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.antes.simbolos[8]",
+    "depois": [
+     "d.d.p.",
+     "diferença de potencial elétrico, medida em volts; se a d.d.p. da reação for maior que zero, ela acontece sozinha (espontânea)"
+    ],
+    "motivo": "Precisa deixar claro que a d.d.p. que indica espontaneidade é a da reação, não a da bateria que alimenta a cuba.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "C"
  }
 }

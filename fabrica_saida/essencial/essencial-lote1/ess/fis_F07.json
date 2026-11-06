@@ -84,12 +84,12 @@
    "sub": "F07.4",
    "titulo": "Empuxo: afunda, para ou boia",
    "pontos": [
-    "Empuxo = peso do fluido deslocado, para cima.",
+    "Empuxo = peso do fluido deslocado.",
     "Densidade do fluido e volume submerso; a do corpo só entra no peso.",
     "Mais denso afunda; menos denso boia, com E = P."
    ],
    "formula": "E = d_{\\text{fluido}} \\cdot g \\cdot V_{\\text{sub}}",
-   "pegadinha": "Com fio ou apoio, desenhe P, E e a força extra.",
+   "pegadinha": "Com fio ou apoio, desenhe todas as forças.",
    "visual": {
     "tipo": "animacao",
     "descricao": "Três bolas no tanque: a mais densa afunda, a de mesma densidade fica parada, a menos densa boia.",
@@ -119,9 +119,9 @@
    "sub": "F07.2",
    "titulo": "Stevin, atmosfera e tubo em U",
    "pontos": [
-    "Pressão cresce só com a profundidade vertical, não com a forma.",
+    "Pressão cresce só com a profundidade vertical.",
     "10 m de água ≈ 1 atm = 76 cmHg.",
-    "Tubo em U: d₁ · h₁ = d₂ · h₂ a partir da separação."
+    "Tubo em U: d₁h₁ = d₂h₂, a partir da separação."
    ],
    "formula": "p = p_{atm} + d \\cdot g \\cdot h",
    "pegadinha": "A 20 m na água: 3 atm no total, não 2.",
@@ -135,9 +135,8 @@
    "titulo": "Densidade e pressão",
    "pontos": [
     "1 g/cm³ = 1 kg/L = 1 000 kg/m³.",
-    "Pressão usa só a força perpendicular; menor área de apoio, maior pressão.",
-    "1 cm² = 10⁻⁴ m²; 1 atm ≈ 10⁵ Pa.",
-    "Manométrica = total − atmosférica."
+    "Só a força perpendicular conta; menor área, maior pressão.",
+    "1 cm² = 10⁻⁴ m²; 1 atm ≈ 10⁵ Pa."
    ],
    "formula": "\\begin{gathered} d = \\frac{m}{V} \\\\ p = \\frac{F}{A} \\end{gathered}",
    "pegadinha": "Corpo oco tem densidade menor que a do material.",
@@ -169,7 +168,7 @@
    "sub": "F07.5",
    "titulo": "Vazão, continuidade e Bernoulli",
    "pontos": [
-    "Vazão = volume/tempo = A · v; 1 m³/s = 1 000 L/s.",
+    "Vazão = volume/tempo = A · v.",
     "Tubo sem ramificação: vazão igual em todo trecho; estreitou, acelerou.",
     "Bernoulli, na mesma altura: mais velocidade, menos pressão."
    ],
@@ -237,12 +236,62 @@
  "_revisao": {
   "lentes": [
    "gera",
-   "lente-a"
+   "lente-a",
+   "lente-b",
+   "lente-a-volta"
   ],
   "pendencias": [
    "O peso (alta, media) do termômetro foi inferido do texto dos slides 'Como cai na prova', que não traz rótulo numérico: F07.4 ('o que mais cai') e F07.2 (maior lista de provas) como alta; as demais como media.",
    "Bernoulli não tem teoria no livro-base; a tela F07.5 usa o que o tema já registrou com fonte OpenStax (College Physics 2e, 12.2)."
   ],
-  "lente_a": []
+  "lente_a": [],
+  "lente_b": [
+   {
+    "campo": "telas[0].pontos",
+    "depois": [
+     "Empuxo = peso do fluido deslocado.",
+     "Densidade do fluido e volume submerso; a do corpo só entra no peso.",
+     "Mais denso afunda; menos denso boia, com E = P."
+    ],
+    "motivo": "Corta palavras do 1º tópico. A tela passa de 42 para cerca de 37 palavras, sem perder conteúdo."
+   },
+   {
+    "campo": "telas[0].pegadinha",
+    "depois": "Com fio ou apoio, desenhe todas as forças.",
+    "motivo": "Mais curta e mais geral. Fecha o limite de 40 palavras."
+   },
+   {
+    "campo": "telas[2].pontos",
+    "depois": [
+     "Pressão cresce só com a profundidade vertical.",
+     "10 m de água ≈ 1 atm = 76 cmHg.",
+     "Tubo em U: d₁h₁ = d₂h₂, a partir da separação."
+    ],
+    "motivo": "A tela tinha 46 palavras. Tirei a frase 'não com a forma' (a pegadinha já cobre o essencial) e enxuguei o tubo em U. Agora tem cerca de 35."
+   },
+   {
+    "campo": "telas[3].pontos",
+    "depois": [
+     "1 g/cm³ = 1 kg/L = 1 000 kg/m³.",
+     "Só a força perpendicular conta; menor área, maior pressão.",
+     "1 cm² = 10⁻⁴ m²; 1 atm ≈ 10⁵ Pa."
+    ],
+    "motivo": "A tela tinha 45 palavras. Reduzi para 3 tópicos e tirei 'manométrica = total − atmosférica'. Esse tópico é de peso menor e a conexão com Biologia já o cobre. Agora tem cerca de 38 palavras."
+   },
+   {
+    "campo": "telas[5].pontos",
+    "depois": [
+     "Vazão = volume/tempo = A · v.",
+     "Tubo sem ramificação: vazão igual em todo trecho; estreitou, acelerou.",
+     "Bernoulli, na mesma altura: mais velocidade, menos pressão."
+    ],
+    "motivo": "A tela tinha 42 palavras. Tirei a conversão 1 m³/s = 1 000 L/s, que já aparece no exemplo e nos slides. Agora tem cerca de 35."
+   }
+  ],
+  "alertas": [
+   "O termômetro está em ordem alta → média. As telas seguem F07.4, F07.2 e depois F07.1, F07.3 e F07.5, conforme o termômetro. Telas: 6 de conteúdo + termômetro + mapa + questão + conexão = 10, dentro do limite.",
+   "A tela telas[1] (F07.4, fração submersa e peso aparente) fica dentro das 40 palavras, perto do limite. A tela telas[4] (F07.3) também."
+  ],
+  "lente_a_volta": []
  }
 }

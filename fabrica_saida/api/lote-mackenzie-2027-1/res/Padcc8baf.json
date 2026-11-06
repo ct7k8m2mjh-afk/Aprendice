@@ -67,7 +67,7 @@
    {
     "faz": "Teste B, C e E",
     "conta": "B: III é memorialístico?\nC: I é poético?\nE: II é referencial?",
-    "porque": "O III não narra lembranças. O I é ensaio sobre literatura, de função referencial. O II é poema, justamente o oposto do que E diz.",
+    "porque": "O III não narra lembranças: é exposição impessoal. O I é ensaio teórico sobre literatura, de função predominantemente referencial. O II é poema, o oposto do que E afirma.",
     "tipo": "eliminar"
    },
    {
@@ -95,7 +95,7 @@
    "A": "Generaliza para \"os três textos em sua totalidade\". O Texto III é um verbete informativo, objetivo e sem recursos poéticos em destaque, e o Texto I é um texto teórico sobre literatura.",
    "B": "O Texto III não é narrativa memorialística: não conta lembranças de ninguém. Expõe de modo impessoal e objetivo o que foi a escravidão (\"A escravidão no Brasil consiste...\"). É texto informativo, não literatura em prosa.",
    "C": "O Texto I fala sobre a linguagem literária, mas não é construído poeticamente. Predomina a função referencial, com traço metalinguístico, pois explica conceitos de modo objetivo (\"Há os que entendem que...\"). Não há emoção de quem fala, logo não há função expressiva.",
-   "E": "Atribui ao Texto II características do Texto III. O Texto II é poema em versos, com linguagem conotativa, estrofe em versos curtos e função poética. Não tem referencialidade dominante nem linguagem denotativa."
+   "E": "Atribui ao Texto II características do Texto III. O Texto II é poema em versos, com linguagem conotativa e função poética. Não tem referencialidade dominante nem linguagem denotativa, e a 'paragrafação única' não se aplica a um poema em estrofe de versos curtos."
   },
   "armadilha": "Confundir texto que fala de literatura (Texto I) com texto literário, ou aceitar \"os três textos\" sem notar que o Texto III é só informativo.",
   "alerta": "",
@@ -131,12 +131,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -248,6 +250,28 @@
    "O campo 'conteudo' do JSON diz P01.4, mas a classificação atual informada é P01.2; confirmar qual vale.",
    "O campo 'nivel' do JSON é 5, mas a classificação atual informada é nível 6; confirmar qual vale."
   ],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "conteudo",
+    "depois": "P01.4",
+    "motivo": "A classificação atual do banco é P01.2 (explícito × inferência), mas a questão trata de funções da linguagem e de linguagem literária × não literária. Isso é P01.4 (finalidade do texto e funções da linguagem). A resolução proposta já traz P01.4. Registro a divergência para o banco.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "O III não narra lembranças: é exposição impessoal. O I é ensaio teórico sobre literatura, de função predominantemente referencial. O II é poema, o oposto do que E afirma.",
+    "motivo": "O original dizia que o Texto I é 'de função referencial' sem ressalva. A redação ficou categórica demais, e o próprio texto tem traço metalinguístico, como a resolução reconhece em C. Troquei por 'predominantemente'. A mudança é mínima.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "Atribui ao Texto II características do Texto III. O Texto II é poema em versos, com linguagem conotativa e função poética. Não tem referencialidade dominante nem linguagem denotativa, e a 'paragrafação única' não se aplica a um poema em estrofe de versos curtos.",
+    "motivo": "A frase 'estrofe em versos curtos' era vaga. A paragrafação única é de prosa, e E atribui isso ao poema. O texto corrigido deixa claro por que a característica não cabe ao poema.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "D"
  }
 }

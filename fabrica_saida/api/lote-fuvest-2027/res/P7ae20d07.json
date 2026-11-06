@@ -100,10 +100,10 @@
   "resposta": "Alternativa B: parques lineares e corredores ecológicos usam áreas verdes ao longo de rios e vias, conectam habitats e favorecem a biodiversidade. É um sistema natural, como define o texto.",
   "checagem": "Teste cada letra com a pergunta: o ecossistema faz o trabalho, ou o concreto faz? Em A, C e D quem trabalha é a obra. Em E há plantas, mas são exóticas e apoiadas em concreto, o que não restaura o ecossistema nativo. Só em B as áreas verdes conectadas fazem o trabalho.",
   "erradas": {
-   "A": "Tamponar canais e impermeabilizar o chão é infraestrutura cinza. Impermeabilizar ainda aumenta o escoamento e agrava os alagamentos, o contrário de uma SbN. Faltou notar que 'engenharia' já indica obra cinza.",
-   "C": "Piscinões, macrodrenagem e desassoreamento com máquinas são obras de engenharia convencional (cinza). Combatem enchentes, mas o ecossistema não faz o trabalho. Faltou usar o critério do texto, e não só o problema resolvido.",
-   "D": "Telhado de zinco e amianto é construção, sem vegetação nem processo natural. O amianto ainda é nocivo à saúde. Um telhado verde seria SbN, mas não é o que está escrito. Quem marcou D leu 'concentrar chuva' e esqueceu o material.",
-   "E": "Tem plantas e fala de erosão, mas as espécies são exóticas e fixadas com concreto. Isso não restaura o ecossistema, pode gerar espécies invasoras e o concreto é infraestrutura cinza. Quem marcou E só viu 'planta' e 'erosão'."
+   "A": "Tamponar canais e impermeabilizar o chão é infraestrutura cinza. Impermeabilizar ainda aumenta o escoamento superficial e agrava os alagamentos, o contrário de uma SbN. O critério do texto é o ecossistema fazer o trabalho, e aqui quem faz é a obra.",
+   "C": "Piscinões, macrodrenagem e desassoreamento com máquinas são obras de engenharia convencional (cinza). Combatem enchentes, mas o ecossistema não faz o trabalho. É verdadeira como medida contra alagamento, mas o comando pede SbN.",
+   "D": "Telhado de zinco e amianto é construção, sem vegetação nem processo natural. Ele é só uma superfície impermeável que capta a chuva, e não um ecossistema. O amianto ainda é nocivo à saúde. Um telhado verde seria SbN, mas não é o que está escrito.",
+   "E": "Tem plantas e fala de erosão, mas as espécies são exóticas e fixadas com estruturas de concreto. Isso não restaura o ecossistema nativo, pode gerar espécies invasoras, e o concreto é infraestrutura cinza. O texto pede sistemas naturais, e aqui a natureza é só um complemento da obra."
   },
   "armadilha": "Escolher a alternativa que resolve alagamento (C) ou erosão (E) só porque o problema parece o certo, esquecendo que SbN exige solução baseada em ecossistema.",
   "alerta": "",
@@ -139,12 +139,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -269,6 +271,34 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "Tem plantas e fala de erosão, mas as espécies são exóticas e fixadas com estruturas de concreto. Isso não restaura o ecossistema nativo, pode gerar espécies invasoras, e o concreto é infraestrutura cinza. O texto pede sistemas naturais, e aqui a natureza é só um complemento da obra.",
+    "motivo": "Retirei a frase 'Quem marcou E só viu planta e erosão'. Ela supõe o raciocínio do aluno sem prova e vai contra a regra de não inventar a origem do erro. O conteúdo factual continua igual.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "Telhado de zinco e amianto é construção, sem vegetação nem processo natural. Ele é só uma superfície impermeável que capta a chuva, e não um ecossistema. O amianto ainda é nocivo à saúde. Um telhado verde seria SbN, mas não é o que está escrito.",
+    "motivo": "Retirei a frase 'Quem marcou D leu concentrar chuva...', que supunha o raciocínio do aluno sem prova. Também deixei a justificativa mais precisa.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "Tamponar canais e impermeabilizar o chão é infraestrutura cinza. Impermeabilizar ainda aumenta o escoamento superficial e agrava os alagamentos, o contrário de uma SbN. O critério do texto é o ecossistema fazer o trabalho, e aqui quem faz é a obra.",
+    "motivo": "Retirei a frase 'Faltou notar...', que supunha o raciocínio do aluno. O conteúdo factual continua igual.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "Piscinões, macrodrenagem e desassoreamento com máquinas são obras de engenharia convencional (cinza). Combatem enchentes, mas o ecossistema não faz o trabalho. É verdadeira como medida contra alagamento, mas o comando pede SbN.",
+    "motivo": "Troquei a frase sobre o que 'faltou' ao aluno por um teste objetivo da alternativa. O conteúdo factual continua igual.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "B"
  }
 }

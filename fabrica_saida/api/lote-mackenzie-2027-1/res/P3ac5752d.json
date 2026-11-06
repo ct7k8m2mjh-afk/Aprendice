@@ -75,10 +75,10 @@
   "resposta": "Alternativa D: 58,5 g/L caem 10^6 vezes (três diluições de 1:100), resultando em 5,85·10^−5 g/L.",
   "checagem": "Em 1 L de solução 3CH há 5,85·10^−5 g de NaCl. Multiplicando pelo fator 10^6, volta-se a 58,5 g, a massa de 1 mol. Em mol, a concentração é 10^−6 mol/L, e 10^−6 × 58,5 = 5,85·10^−5.",
   "erradas": {
-   "A": "1,17·10^−6 não confere. O valor certo é 5,85·10^−5. Para chegar em 1,17·10^−6 seria preciso partir de 117 g (o dobro da massa de 1 mol) e dividir por 10^8. Os dois dados estão errados.",
-   "B": "5,85·10^−6 não confere: equivale a 58,5 ÷ 10^7. Quem marcou dividiu por 10 vezes mais do que o necessário. Três diluições de 100 vezes dão 100 × 100 × 100 = 10^6, e não 10^7.",
+   "A": "1,17·10^−6 não confere. Seria 117 ÷ 10^8: exigiria o dobro da massa de 1 mol (117 g) e um fator 10^8. Aqui a massa é 58,5 g e o fator é 10^6.",
+   "B": "5,85·10^−6 não confere: equivale a 58,5 ÷ 10^7. O fator usado foi 10 vezes maior que o correto. Três diluições de 100 vezes dão 100 × 100 × 100 = 10^6, e não 10^7.",
    "C": "1,17·10^−5 não confere: exigiria partir de 117 g e dividir por 10^7. Mas 1 mol de NaCl pesa 58,5 g, e o fator de 3CH é 10^6.",
-   "E": "1,17·10^−4 é 117 ÷ 10^6. O fator 10^6 está certo, mas a massa inicial está dobrada: 1 mol de NaCl tem 58,5 g, e não 117 g. Quem marcou somou Na e Cl duas vezes."
+   "E": "1,17·10^−4 é 117 ÷ 10^6. O fator 10^6 está certo, mas a massa inicial está dobrada: 117 g seriam 2 mol de NaCl. Aqui há 1 mol, que pesa 58,5 g."
   },
   "armadilha": "Tratar 3CH como 3 × 100 = 300 vezes, ou como 10^7, em vez de 100 elevado a 3 = 10^6.",
   "alerta": "",
@@ -156,12 +156,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -228,6 +230,28 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "1,17·10^−6 não confere. Seria 117 ÷ 10^8: exigiria o dobro da massa de 1 mol (117 g) e um fator 10^8. Aqui a massa é 58,5 g e o fator é 10^6.",
+    "motivo": "Troca a frase vaga 'os dois dados estão errados' pelo teste objetivo.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "5,85·10^−6 não confere: equivale a 58,5 ÷ 10^7. O fator usado foi 10 vezes maior que o correto. Três diluições de 100 vezes dão 100 × 100 × 100 = 10^6, e não 10^7.",
+    "motivo": "'Dividiu por 10 vezes mais' era impreciso: o fator é 10 vezes maior que o certo.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "1,17·10^−4 é 117 ÷ 10^6. O fator 10^6 está certo, mas a massa inicial está dobrada: 117 g seriam 2 mol de NaCl. Aqui há 1 mol, que pesa 58,5 g.",
+    "motivo": "Troca a origem não comprovada ('somou Na e Cl duas vezes') por um teste objetivo.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "D"
  }
 }

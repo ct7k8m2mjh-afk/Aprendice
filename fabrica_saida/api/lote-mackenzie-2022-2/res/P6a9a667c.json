@@ -71,7 +71,7 @@
    },
    {
     "faz": "Confirme com a fala sussurrada",
-    "conta": "“I got you.” (Estou com você.) / “I know... Thank you.” (Eu sei... Obrigada.)",
+    "conta": "“I got you.” (Estou com você / Pode deixar.) / “I know... Thank you.” (Eu sei... Obrigada.)",
     "porque": "Gaga diz 'estou com você'. Liza agradece. Agradece-se ajuda e apoio, e não uma substituição.",
     "tipo": "localizar"
    },
@@ -87,7 +87,7 @@
   "erradas": {
    "A": "A diz 'estava tentando substituir a Liza'. O texto diz que as duas subiram juntas ('took the stage together') e Gaga só ajudou a terminar a fala. Quem marcou A viu 'ajuda' e entendeu 'tomar o lugar'. Ninguém foi substituído.",
    "B": "B diz que Liza pediu ajuda para ir ao banheiro. Quem marcou B inventou um pedido que não existe. O texto não fala de banheiro nem de pedido: a ajuda foi na leitura do teleprompter ('helping her finish her line').",
-   "C": "C diz que Gaga 'deu as costas' a Liza. Quem marcou C traduziu 'back' como costas e esqueceu que é expressão idiomática. No texto, Gaga se inclina e sussurra 'I got you', o oposto de dar as costas.",
+   "C": "C diz que Gaga 'deu as costas' a Liza (gave her back). Quem marcou C traduziu 'back' como costas e esqueceu que é expressão idiomática. No texto, Gaga se inclina e sussurra 'I got you', o oposto de ignorar ou abandonar.",
    "E": "E diz que Liza 'deu as costas' a Gaga. Tem o mesmo erro literal de C e ainda inverte quem age: quem apoia é Gaga, e Liza agradece ('Thank you')."
   },
   "armadilha": "Traduzir 'back' como 'costas' e escolher uma alternativa literal (C ou E), em vez de reconhecer a expressão idiomática 'have someone's back'.",
@@ -96,7 +96,8 @@
    "pede": "O significado de 'had Liza Minnelli's back'.",
    "chave": "É expressão idiomática: apoiar e proteger alguém. O texto mostra Gaga ajudando Liza a terminar a fala.",
    "cuidado": "Não traduza 'back' como costas; o sentido é do conjunto."
-  }
+  },
+  "conteudo": "I03.4"
  },
  "caminhos": [
   {
@@ -124,12 +125,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -236,6 +239,28 @@
    "O enunciado oficial grafa 'Minelli' (um n só) nas alternativas, mas a resolução usa 'Minnelli' no texto. Nas alternativas 'erradas' o nome aparece como no original; é erro de digitação da prova, sem efeito na resposta.",
    "Classificação do nível: o JSON diz nivel 3 e tema I03/I03.4, enquanto o cabeçalho informava I01/I01.3 e nível 5. Conferir qual vale."
   ],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "“I got you.” (Estou com você / Pode deixar.) / “I know... Thank you.” (Eu sei... Obrigada.)",
+    "motivo": "Ajuste menor: 'I got you' aqui quer dizer 'pode deixar, eu te ajudo', como diz o campo 'antes.formulas'. A tradução anterior era aceitável, mas esta fica coerente com o resto da resolução.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "C diz que Gaga 'deu as costas' a Liza (gave her back). Quem marcou C traduziu 'back' como costas e esqueceu que é expressão idiomática. No texto, Gaga se inclina e sussurra 'I got you', o oposto de ignorar ou abandonar.",
+    "motivo": "Em português, 'dar as costas' tem o sentido figurado de abandonar. A alternativa C fala literalmente de entregar a própria parte de trás do corpo; o texto desmente os dois sentidos.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.conteudo",
+    "depois": "I03.4",
+    "motivo": "Sem mudança de valor. A classificação I03/I03.4 (expressão idiomática) está correta e é mais adequada que a 'classificação atual' I01.3 do banco. O nível 3 é plausível.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "D"
  }
 }

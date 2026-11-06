@@ -8,10 +8,11 @@
  "conceito": "Conservação da energia mecânica (queda livre): altura de queda necessária para atingir 2 m/s, somada à altura da lâmina de água.",
  "resolucao": {
   "antes": {
-   "texto": "A água sai do bico com velocidade desprezível e cai sem atrito, então a energia potencial vira energia cinética. A queda que dá 2 m/s é medida só entre o bico e a superfície da água. Como D e H têm a base do filtro como referência, a queda é D − H. O enunciado fornece a densidade da água, mas ela não é necessária: a massa cancela.",
+   "texto": "A água sai do bico quase parada e cai sem atrito. Assim, a energia de altura (energia potencial) vira energia de movimento (energia cinética). A velocidade de 2 m/s é a que o jato tem ao tocar a água do filtro. Por isso, só conta a queda entre o bico e a superfície da água. D e H são medidos a partir da base do filtro, então a queda é D − H. O enunciado dá a densidade da água, mas ela não é necessária: a massa cancela.",
    "formulas": [
     "m·g·h = (m·v²)/2, logo h = v²/(2g)",
-    "queda h = D − H"
+    "queda h = D − H",
+    "1 m = 100 cm"
    ],
    "simbolos": [
     [
@@ -36,7 +37,7 @@
     ]
    ]
   },
-  "pista": "A água só ganha velocidade enquanto cai. Quanto vale essa queda em função de D e de H, medidos a partir da base do filtro?",
+  "pista": "A água só ganha velocidade enquanto cai. Quanto mede essa queda, do bico até a superfície da água? Use D e H, medidos a partir da base do filtro.",
   "passos": [
    {
     "faz": "Identifique a queda do jato",
@@ -58,7 +59,7 @@
    },
    {
     "faz": "Calcule h com v = 2 m/s",
-    "conta": "h = 4/20 = 0,2 m = 20 cm",
+    "conta": "h = 4/20 = 0,2 m\n0,2 m × 100 = 20 cm",
     "porque": "v² = 2² = 4 e 2g = 20. O resultado em metros vira cm multiplicando por 100.",
     "tipo": "calcular"
    },
@@ -73,7 +74,7 @@
   "checagem": "Confira pela cinemática: com h = 0,2 m, v² = 2·g·h = 2·10·0,2 = 4, então v = 2 m/s. Isso fecha com a queda de 20 cm.",
   "erradas": {
    "A": "4 cm não confere: o bico ficaria abaixo da lâmina de água (H = 8 cm), então não haveria queda nenhuma. D tem de ser maior que 8 cm.",
-   "B": "8,2 cm sai de tomar h = 0,2 como se fosse cm e somar com H: 8 + 0,2 = 8,2 cm. Mas h = 0,2 m = 20 cm.",
+   "B": "8,2 cm sai de somar 0,2 com 8 sem converter a unidade. O 0,2 está em metro e o 8 está em cm. O correto é 0,2 m = 20 cm, e 8 + 20 = 28 cm.",
    "C": "10 cm não confere: com queda de 10 − 8 = 2 cm, v² = 2·10·0,02 = 0,4, e v ≈ 0,63 m/s, bem abaixo de 2 m/s.",
    "D": "18 cm sai de esquecer o quadrado de v: h = v/(2g) = 2/20 = 0,1 m = 10 cm, e 10 + 8 = 18 cm. Com queda de 10 cm, v = √(2·10·0,1) ≈ 1,4 m/s, abaixo de 2 m/s."
   },
@@ -152,11 +153,15 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -191,6 +196,42 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "E"
+  "fatos_resposta": "E",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "A água sai do bico quase parada e cai sem atrito. Assim, a energia de altura (energia potencial) vira energia de movimento (energia cinética). A velocidade de 2 m/s é a que o jato tem ao tocar a água do filtro. Por isso, só conta a queda entre o bico e a superfície da água. D e H são medidos a partir da base do filtro, então a queda é D − H. O enunciado dá a densidade da água, mas ela não é necessária: a massa cancela.",
+    "motivo": "Explica em palavras simples energia potencial e cinética e deixa claro que a velocidade pedida é ao tocar a água. Frases mais curtas."
+   },
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "m·g·h = (m·v²)/2, logo h = v²/(2g)",
+     "queda h = D − H",
+     "1 m = 100 cm"
+    ],
+    "motivo": "A conversão de m para cm é usada no passo 4."
+   },
+   {
+    "campo": "resolucao.pista",
+    "depois": "A água só ganha velocidade enquanto cai. Quanto mede essa queda, do bico até a superfície da água? Use D e H, medidos a partir da base do filtro.",
+    "motivo": "Deixa a pista mais clara, sem entregar a resposta."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "h = 4/20 = 0,2 m\n0,2 m × 100 = 20 cm",
+    "motivo": "Separa a conta da conversão, um passo por linha."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "8,2 cm sai de somar 0,2 com 8 sem converter a unidade. O 0,2 está em metro e o 8 está em cm. O correto é 0,2 m = 20 cm, e 8 + 20 = 28 cm.",
+    "motivo": "Deixa claro o erro de unidade de quem marcou B."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "E"
  }
 }

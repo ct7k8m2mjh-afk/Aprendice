@@ -8,7 +8,7 @@
  "conceito": "Comparar três textos de gêneros diferentes (ensaio teórico, quadro-resumo e poema) e reconhecer que cada um serve a um objetivo, com temática comum entre o primeiro e o segundo.",
  "resolucao": {
   "antes": {
-   "texto": "O comando pede a afirmação correta sobre os TRÊS textos juntos. A resposta certa não pode inventar ideias: tudo o que ela diz precisa estar nos textos. Os três não são do mesmo gênero. O Texto I é um ensaio (texto que explica e argumenta sobre um assunto). O Texto II é um quadro comparativo. O Texto III é um poema. O que liga os dois primeiros é o assunto: a diferença entre linguagem literária e linguagem do dia a dia.",
+   "texto": "O comando pede a afirmação correta sobre os TRÊS textos juntos. A resposta certa não pode inventar ideias: tudo o que ela diz precisa estar nos textos. Os três não são do mesmo gênero. O Texto I é um ensaio (texto que explica e argumenta sobre um assunto). O Texto II é um quadro comparativo. O Texto III é um poema. O que liga os dois primeiros é o assunto: a diferença entre linguagem literária e linguagem do dia a dia. O Texto III também trata de linguagem e poesia, mas de modo poético.",
    "formulas": [
     "Texto I: ensaio teórico, linguagem literária × cotidiana",
     "Texto II: quadro comparativo, mesma oposição, em esquema",
@@ -60,7 +60,7 @@
    },
    {
     "faz": "Identifique o gênero do Texto II",
-    "conta": "Literária: conotação × Não literária: denotação",
+    "conta": "Literária: conotação / Não literária: denotação",
     "porque": "O quadro resume em esquema a mesma oposição do Texto I: caráter não utilitário, subjetividade e conotação contra utilitário, objetividade e denotação. Por isso as temáticas se relacionam.",
     "tipo": "localizar"
    },
@@ -86,8 +86,8 @@
   "resposta": "Alternativa D: os textos são de gêneros diferentes (ensaio, quadro e poema), cada um com a elaboração estilística adequada ao seu objetivo, e os dois primeiros tratam do mesmo tema, a diferença entre linguagem literária e não literária.",
   "checagem": "Teste cada afirmação da D. Gêneros diferentes: ensaio, quadro e poema. Temas I e II relacionados: ambos opõem uso cotidiano (denotação, utilidade) e literário (conotação, estético). Todas se confirmam, e nenhuma outra alternativa passa nesse teste.",
   "erradas": {
-   "A": "Falta conferir no texto. A diz que os textos são só descritivos e tratam da norma culta das classes superiores. O Texto I defende ideias e o poema não descreve cena nem fala de classes sociais.",
-   "B": "Falta ler o gênero e o que o Texto I diz. B fala em textos narrativos, mas nenhum conta fatos. O Texto I só separa linguagem do cotidiano (informar e agir) de linguagem literária (criação artística) e não diz que uma é superior.",
+   "A": "Falta conferir no texto. A diz que os textos são só descritivos e tratam da norma culta das classes superiores. O Texto I defende ideias, o Texto II é um quadro comparativo e o poema não descreve cena nem fala de classes sociais.",
+   "B": "Falta ler o gênero e o que o Texto I diz. B fala em textos narrativos, mas nenhum conta fatos. O Texto I separa linguagem do cotidiano (informar e agir) de linguagem literária (criação artística), e não diz que a literária é a mais alta expressão da norma culta nem que a língua serve só a fins estéticos.",
    "C": "Falta conferir o assunto. C atribui aos textos uma tese sobre 'língua nacional' e 'nação' em movimentos literários. Nenhum dos três fala disso; o assunto é a natureza da linguagem literária.",
    "E": "Falta conferir a tese. E diz que os textos defendem que a língua evolui por textos não literários em versos. Nenhum trata de evolução da língua, e o único texto em versos é um poema, ou seja, literário."
   },
@@ -125,12 +125,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -234,6 +236,34 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "O comando pede a afirmação correta sobre os TRÊS textos juntos. A resposta certa não pode inventar ideias: tudo o que ela diz precisa estar nos textos. Os três não são do mesmo gênero. O Texto I é um ensaio (texto que explica e argumenta sobre um assunto). O Texto II é um quadro comparativo. O Texto III é um poema. O que liga os dois primeiros é o assunto: a diferença entre linguagem literária e linguagem do dia a dia. O Texto III também trata de linguagem e poesia, mas de modo poético.",
+    "motivo": "Evita sugerir que o poema fica fora do tema. Ele fala da palavra e da poesia, mas faz isso em versos e não explica. A alternativa D só exige a relação temática entre o primeiro e o segundo texto, e essa relação continua valendo.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "Literária: conotação / Não literária: denotação",
+    "motivo": "O símbolo × pode ser lido como multiplicação. Troquei por barra, como num quadro comparativo.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "Falta conferir no texto. A diz que os textos são só descritivos e tratam da norma culta das classes superiores. O Texto I defende ideias, o Texto II é um quadro comparativo e o poema não descreve cena nem fala de classes sociais.",
+    "motivo": "Completa a refutação. O Texto II também não é descritivo no sentido de A, e nenhum dos três trata de norma culta ou de classes.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "Falta ler o gênero e o que o Texto I diz. B fala em textos narrativos, mas nenhum conta fatos. O Texto I separa linguagem do cotidiano (informar e agir) de linguagem literária (criação artística), e não diz que a literária é a mais alta expressão da norma culta nem que a língua serve só a fins estéticos.",
+    "motivo": "O motivo anterior era impreciso. O Texto I não afirma que a linguagem literária seja superior, e B atribui aos textos justamente essa tese e a de uso exclusivamente estético.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "D"
  }
 }

@@ -65,7 +65,7 @@
    {
     "faz": "Localize 'boisterous'",
     "conta": "“a boisterous British personality” (uma personalidade britânica cheia de energia)",
-    "porque": "O texto chama os membros da banda de 'high-energy' (cheios de energia) e fala de pop dançante. A ideia é agitado e animado, não calmo.",
+    "porque": "O texto chama os membros da banda de 'high-energy' (cheios de energia) e fala de pop dançante. 'Boisterous' é animado, agitado, barulhento, e não calmo. 'Turbulent' aparece em E como sinônimo próximo, no sentido de agitado.",
     "tipo": "localizar"
    },
    {
@@ -82,7 +82,7 @@
    },
    {
     "faz": "Teste a alternativa E nas frases",
-    "conta": "Tom died peacefully / a turbulent British personality / as he was submitted to treatment",
+    "conta": "Tom died peacefully / turbulent British personality / was submitted to treatment",
     "porque": "As três frases mantêm o sentido original. Só a letra E acerta os três termos ao mesmo tempo.",
     "tipo": "concluir"
    }
@@ -90,10 +90,10 @@
   "resposta": "Alternativa E: 'passed away' = die, 'boisterous' = turbulent (agitado, enérgico) e 'underwent' = be submitted to something.",
   "checagem": "Troque os termos na frase: 'Tom died peacefully', 'a turbulent British personality' e 'as he was submitted to treatment'. Todas fazem sentido. Em cada uma das outras alternativas, pelo menos um termo contradiz o texto.",
   "erradas": {
-   "A": "'Go on' (continuar) não é 'underwent': a frase diria que ele continuava o tratamento, e não que passou por ele. 'Exuberant' serve para 'boisterous' e 'pass' pode ser eufemismo de morrer, mas o terceiro termo derruba a letra.",
+   "A": "'Go on' (continuar) não é 'underwent': a frase diria que ele continuava o tratamento, e não que passou por ele. 'Exuberant' serve para 'boisterous', mas 'pass' sozinho não equivale a 'passed away' (e está no presente, não no passado). O terceiro termo também derruba a letra.",
    "B": "'Go out' é sair ou apagar-se, não é 'passed away'. 'Stormy' (tempestuoso) não é a energia animada da banda. 'Be included' (ser incluído) não é 'underwent': ele passou pelo tratamento, não foi incluído nele. Os três termos falham.",
    "C": "'Quiet' (quieto) é o oposto de 'boisterous': o texto fala em membros 'high-energy'. 'Quit' (largar, desistir) também contradiz 'underwent': ele fez o tratamento, não desistiu dele.",
-   "D": "'Decease' e 'noisy' até se aproximam dos dois primeiros termos, mas 'stop' (parar) não é 'underwent'. Ele não parou o tratamento, passou por ele. A palavra 'stop' derruba a alternativa."
+   "D": "'Decease' (morrer, formal) e 'noisy' (barulhento) podem servir para os dois primeiros termos. Mas 'stop' (parar) não é 'underwent': ele não parou o tratamento, passou por ele. A palavra 'stop' derruba a alternativa."
   },
   "armadilha": "Traduzir 'passed away' como 'passou' e escolher 'pass', ou ver 'noisy' e 'decease' certos e esquecer de testar o último termo.",
   "alerta": "",
@@ -133,12 +133,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -301,6 +303,34 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "'Go on' (continuar) não é 'underwent': a frase diria que ele continuava o tratamento, e não que passou por ele. 'Exuberant' serve para 'boisterous', mas 'pass' sozinho não equivale a 'passed away' (e está no presente, não no passado). O terceiro termo também derruba a letra.",
+    "motivo": "A resolução dizia que 'pass' pode ser eufemismo de morrer. Isso é impreciso: o sinônimo pedido é de 'passed away' e 'pass' sozinho não é o sinônimo correto. Além disso, o texto está no passado.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "'Decease' (morrer, formal) e 'noisy' (barulhento) podem servir para os dois primeiros termos. Mas 'stop' (parar) não é 'underwent': ele não parou o tratamento, passou por ele. A palavra 'stop' derruba a alternativa.",
+    "motivo": "Texto original dizia que 'decease' e 'noisy' 'até se aproximam'. Ficou vago. A nova redação é mais precisa e mantém o fato.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "O texto chama os membros da banda de 'high-energy' (cheios de energia) e fala de pop dançante. 'Boisterous' é animado, agitado, barulhento, e não calmo. 'Turbulent' aparece em E como sinônimo próximo, no sentido de agitado.",
+    "motivo": "Liga o sentido de 'boisterous' à palavra 'turbulent' da alternativa E, que o passo não justificava.",
+    "fonte": "Merriam-Webster: boisterous = noisily turbulent"
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "Tom died peacefully / turbulent British personality / was submitted to treatment",
+    "motivo": "Trocou a conta por uma versão mais curta. A original passava de 30 caracteres e não cabe na tela do celular. Também tirou a frase 'as he was submitted', que ficava estranha.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "E"
  }
 }

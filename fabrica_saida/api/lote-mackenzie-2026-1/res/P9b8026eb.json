@@ -3,12 +3,12 @@
  "id": "P9b8026eb",
  "materia": "geo",
  "tema": "G01",
- "conteudo": "G01.1",
+ "conteudo": "G01.3",
  "nivel": 3,
  "conceito": "Fusos horários: converter a hora de um jogo da Cidade do México (UTC-6) para o Rio de Janeiro (UTC-3).",
  "resolucao": {
   "antes": {
-   "texto": "UTC é o horário de referência, o de Greenwich (0°). UTC-6 significa que o relógio está 6 horas atrás de Greenwich. Para comparar duas cidades, veja quantas horas separam os dois UTC. No Rio de Janeiro vale o horário de Brasília, UTC-3. O Brasil não tem horário de verão desde 2019, e a Cidade do México também não o adota desde 2022. Por isso, em junho a diferença é a de sempre: 3 horas.",
+   "texto": "UTC é o horário de referência, o de Greenwich (0°). UTC-6 significa que o relógio está 6 horas atrás de Greenwich. Para comparar duas cidades, veja quantas horas separam os dois UTC. No Rio de Janeiro vale o horário de Brasília, UTC-3. O Brasil não tem horário de verão desde 2019, e o enunciado já informa o fuso fixo UTC-6 para a Cidade do México. Por isso, em junho a diferença é de 3 horas.",
    "formulas": [
     "diferença = UTC do Rio − UTC do México",
     "número maior (menos negativo) = relógio adiantado",
@@ -130,12 +130,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [],
   "fatos_ok": true,
@@ -192,6 +194,22 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "UTC é o horário de referência, o de Greenwich (0°). UTC-6 significa que o relógio está 6 horas atrás de Greenwich. Para comparar duas cidades, veja quantas horas separam os dois UTC. No Rio de Janeiro vale o horário de Brasília, UTC-3. O Brasil não tem horário de verão desde 2019, e o enunciado já informa o fuso fixo UTC-6 para a Cidade do México. Por isso, em junho a diferença é de 3 horas.",
+    "motivo": "Evita afirmar sem fonte a data em que o México aboliu o horário de verão; o enunciado já fixa UTC-6.",
+    "fonte": ""
+   },
+   {
+    "campo": "conteudo",
+    "depois": "G01.3",
+    "motivo": "Fusos horários são G01.3; G01.1 é coordenadas e orientação.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "C"
  }
 }

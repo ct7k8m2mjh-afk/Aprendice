@@ -79,7 +79,7 @@
    {
     "faz": "Elimine as que exageram ou contradizem",
     "conta": "'exclusivo', 'inexistem', 'idêntico'",
-    "porque": "A, C e D usam palavras absolutas que os textos contradizem: o Texto I defende áreas especializadas, os Textos II e III trazem dados e o Texto I diz que cada órgão funciona de modo específico. A E fala de uma dificuldade de pesquisa que o Texto III não menciona.",
+    "porque": "A, C e D usam palavras absolutas que os textos contradizem: o Texto I defende áreas especializadas (contra A), os Textos II e III trazem dados sobre áreas e hemisférios (contra C) e o Texto I diz que cada órgão tem funcionamento específico, o que não permite igualar o cérebro ao fígado e aos rins (contra D). A E fala de uma dificuldade de pesquisa que o Texto III não menciona.",
     "tipo": "eliminar"
    },
    {
@@ -92,10 +92,10 @@
   "resposta": "Alternativa B: os três textos mostram que a linguagem depende de estruturas do cérebro (módulo, áreas ativas, hemisférios), isto é, de características biológicas da espécie.",
   "checagem": "Teste cada alternativa com uma segunda marca no texto: o Texto I fala em 'arquitetura especial' (biologia), o II mostra áreas do cérebro, o III cita hemisférios. Nenhum dos três usa 'cultura' como causa única, nem diz que o cérebro é igual aos outros órgãos.",
   "erradas": {
-   "A": "Falta ler o que o Texto I defende: o cérebro tem áreas especializadas, e isso sustenta uma base biológica. A alternativa diz que não há áreas e que a inteligência é 'exclusivamente' cultural. Nenhum texto afirma isso.",
+   "A": "Falta ler o que o Texto I defende: o cérebro tem áreas especializadas, e isso sustenta uma base biológica. A alternativa inverte a lógica: diz que a ausência dessas áreas reforçaria uma inteligência 'exclusivamente' cultural. Nenhum texto defende isso.",
    "C": "Falta olhar os Textos II e III: o II mostra áreas do cérebro ativas na linguagem e o III traz porcentagens sobre o controle por hemisfério. 'Inexistem dados' nega o que está diante de você.",
    "D": "Falta separar analogia de igualdade. O Texto I compara o cérebro a órgãos ('como se fossem') para propor módulos, e diz que cada órgão funciona de modo específico. Não afirma que o cérebro funcione de forma 'idêntica' ao fígado e aos rins.",
-   "E": "Falta ler os números do Texto III: 97% dos destros têm a linguagem no hemisfério esquerdo, ou seja, são o grupo mais regular. Quem varia são os canhotos (19%, 68% e os demais por ambos). O texto não fala em 'maior dificuldade' como objeto de pesquisa."
+   "E": "Falta ler os números do Texto III: 97% dos destros têm a linguagem no hemisfério esquerdo, o grupo mais regular. Nos canhotos, 19% têm a linguagem no direito, 68% no esquerdo e os demais (13%) em ambos os lados. O texto não diz que os destros sejam mais difíceis de estudar."
   },
   "armadilha": "Marcar uma alternativa que usa o assunto dos textos, mas com palavra absoluta ('exclusivo', 'inexistem', 'idêntico') que eles não autorizam.",
   "alerta": "",
@@ -131,12 +131,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -242,6 +244,28 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "A, C e D usam palavras absolutas que os textos contradizem: o Texto I defende áreas especializadas (contra A), os Textos II e III trazem dados sobre áreas e hemisférios (contra C) e o Texto I diz que cada órgão tem funcionamento específico, o que não permite igualar o cérebro ao fígado e aos rins (contra D). A E fala de uma dificuldade de pesquisa que o Texto III não menciona.",
+    "motivo": "A versão anterior não ligava cada texto à alternativa que ele desmente. Além disso, 'idêntico' em D é o contrário do que o Texto I afirma. Esse texto diz que órgãos diferentes têm funcionamento específico, e só compara o cérebro a órgãos por analogia.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "Falta ler o que o Texto I defende: o cérebro tem áreas especializadas, e isso sustenta uma base biológica. A alternativa inverte a lógica: diz que a ausência dessas áreas reforçaria uma inteligência 'exclusivamente' cultural. Nenhum texto defende isso.",
+    "motivo": "A alternativa A não afirma que 'não há áreas'. Ela diz que a ausência de áreas reforçaria o argumento cultural. A resolução anterior atribuía a A uma afirmação que ela não faz.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "Falta ler os números do Texto III: 97% dos destros têm a linguagem no hemisfério esquerdo, o grupo mais regular. Nos canhotos, 19% têm a linguagem no direito, 68% no esquerdo e os demais (13%) em ambos os lados. O texto não diz que os destros sejam mais difíceis de estudar.",
+    "motivo": "Os 'demais' são 13% (100 − 19 − 68). Dar esse número deixa o dado completo. A frase também passa a negar exatamente o que E afirma: maior dificuldade dos destros como objeto de pesquisa.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "B"
  }
 }

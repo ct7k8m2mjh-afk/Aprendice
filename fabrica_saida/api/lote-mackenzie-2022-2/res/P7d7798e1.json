@@ -76,7 +76,7 @@
    "A": "1/2 m não confere: o máximo é 2 × 1 = 2 m, pois o fator 2 multiplica o seno. O tempo π/2 s também falha: com t = π/2, o ângulo é 5t/4 = 5π/8, e o seno ali é menor que 1.",
    "B": "1 m esquece o fator 2 da lei: H = 2·sen, então o máximo é 2 m. O tempo π/2 s esquece que o ângulo é 5t/4: com t = π/2 o ângulo é 5π/8, não π/2, e o seno ainda não chegou a 1.",
    "C": "A altura 1 m ignora o fator 2: o máximo é 2 m. O tempo 2π/5 s está certo, mas a altura não: H(2π/5) = 2·sen(π/2) = 2, e não 1.",
-   "E": "O tempo 5π/4 s vem de igualar t (e não 5t/4) a π/2 e tentar ajustar. Testando: com t = 5π/4, o ângulo é 5t/4 = 25π/16 (entre 3π/2 e 2π), onde o seno é negativo. Então H < 0, e não 2 m."
+   "E": "5π/4 s não confere: com t = 5π/4, o ângulo é 5t/4 = 25π/16 (entre 3π/2 e 2π), onde o seno é negativo. Então H < 0, e não 2 m. Além disso, 5π/4 s não é o primeiro instante do máximo, que é 2π/5 s."
   },
   "armadilha": "Igualar t (e não 5t/4) a π/2, esquecendo que o ângulo do seno é 5t/4; e esquecer o fator 2 na altura.",
   "alerta": "",
@@ -159,12 +159,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -258,6 +260,16 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "5π/4 s não confere: com t = 5π/4, o ângulo é 5t/4 = 25π/16 (entre 3π/2 e 2π), onde o seno é negativo. Então H < 0, e não 2 m. Além disso, 5π/4 s não é o primeiro instante do máximo, que é 2π/5 s.",
+    "motivo": "A origem do erro era inventada, sem conta que chegue a 5π/4; trocado por 'não confere' com o teste objetivo.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "D"
  }
 }

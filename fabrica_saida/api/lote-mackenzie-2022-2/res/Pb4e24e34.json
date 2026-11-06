@@ -12,7 +12,7 @@
    "formulas": [
     "FALSE = a alternativa que contradiz o texto",
     "debut single = primeiro single (lançamento de estreia)",
-    "A, as did B = A e também B (mas cada um com a sua data)",
+    "A, as did B = A e também B (cada um com a sua data no texto)",
     "confira datas e números: é onde a alternativa falsa costuma mudar o texto"
    ],
    "simbolos": [
@@ -117,12 +117,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -219,6 +221,22 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "nivel",
+    "depois": 3,
+    "motivo": "A classificação atual do banco é nível 5, mas a resolução traz nível 3. Esta é uma questão de localizar informação explícita e conferir um ano, o que combina com nível 3. Não alterei dif nem degrau, só registro a divergência. O campo nivel do JSON já está em 3.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.antes.formulas[2]",
+    "depois": "A, as did B = A e também B (cada um com a sua data no texto)",
+    "motivo": "Ajuste mínimo de precisão. O texto só traz a data de B (2012) e a de A (2010) está na oração anterior. 'As did' não dá a data junto, e quem lê precisa buscá-la separadamente.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "B"
  }
 }

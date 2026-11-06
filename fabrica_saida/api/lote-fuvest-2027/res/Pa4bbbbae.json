@@ -56,7 +56,7 @@
    {
     "faz": "Elimine A pela palavra 'artificial'",
     "conta": "Seleção artificial = ação humana",
-    "porque": "O aumento de temperatura é um fator ambiental, então não é seleção artificial. Além disso, o CO₂ é matéria-prima da fotossíntese, não a inibe de modo geral.",
+    "porque": "O aumento de temperatura é um fator ambiental, então não é seleção artificial. Além disso, o CO₂ é matéria-prima da fotossíntese e, em geral, a estimula, não a inibe.",
     "tipo": "eliminar"
    },
    {
@@ -81,9 +81,9 @@
   "resposta": "Alternativa E: o desajuste entre floração e polinizadores pode reduzir o sucesso reprodutivo das plantas.",
   "checagem": "Só a E decorre direto do texto. As outras têm um erro cada: seleção artificial (A), 'sem competição' (B), clima temperado como se fosse altitude (C) e mais pressão e oxigênio na altitude (D).",
   "erradas": {
-   "A": "Seleção artificial é feita por seres humanos, e a floração antecipou por causa da temperatura, um fator do ambiente. Além disso, o CO₂ é matéria-prima da fotossíntese e não a inibe. Quem marcou A confundiu seleção artificial com seleção natural.",
+   "A": "Seleção artificial é feita por seres humanos, e a floração antecipou por causa da temperatura, um fator do ambiente. Além disso, o CO₂ é matéria-prima da fotossíntese e, em geral, a estimula em vez de inibi-la. Quem marcou A confundiu seleção artificial com seleção natural.",
    "B": "Diz que a adaptação é 'imediata' e 'sem competição'. Quem marcou B viu só a vantagem de migrar. Faltou lembrar que as espécies nativas já usam esses recursos, então há competição, e que adaptar-se leva gerações.",
-   "C": "Afirma que plantas de bioma temperado são menos afetadas. O texto diz o contrário: elas migram para regiões mais frias por causa do aquecimento. Quem marcou C esqueceu que clima temperado não é o mesmo que clima frio de altitude, e não viu que o desajuste com polinizadores pode ocorrer.",
+   "C": "Afirma que plantas de biomas temperados são menos afetadas pelo aquecimento. O texto diz o contrário: elas migram para regiões mais frias por causa do aquecimento. Além disso, bioma temperado não é o mesmo que ambiente de altitude elevada, e o desajuste com os polinizadores pode ocorrer mesmo sem migração.",
    "D": "Inverte o efeito da altitude: quanto mais alto, menor a pressão do ar e menor a quantidade de oxigênio disponível. Plantas migram por causa da temperatura, não por oxigênio. Quem marcou D esqueceu como pressão e oxigênio variam com a altitude."
   },
   "armadilha": "Marcar B por parecer uma 'vantagem' da migração, sem notar 'imediata' e 'sem competição', que são afirmações absolutas falsas.",
@@ -120,12 +120,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [],
   "fatos_ok": true,
@@ -227,6 +229,28 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "Afirma que plantas de biomas temperados são menos afetadas pelo aquecimento. O texto diz o contrário: elas migram para regiões mais frias por causa do aquecimento. Além disso, bioma temperado não é o mesmo que ambiente de altitude elevada, e o desajuste com os polinizadores pode ocorrer mesmo sem migração.",
+    "motivo": "A versão anterior misturava o raciocínio de quem errou e dizia 'não viu que o desajuste pode ocorrer'. Reescrita para afirmar só fatos: a premissa de C ('adaptadas a maiores altitudes') é falsa e o texto contradiz a conclusão.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "Seleção artificial é feita por seres humanos, e a floração antecipou por causa da temperatura, um fator do ambiente. Além disso, o CO₂ é matéria-prima da fotossíntese e, em geral, a estimula em vez de inibi-la. Quem marcou A confundiu seleção artificial com seleção natural.",
+    "motivo": "'Não a inibe' é impreciso: o CO₂ elevado costuma estimular a fotossíntese em plantas C3. A nova redação é mais exata. Além disso, a antecipação da floração é uma resposta fenológica à temperatura, não um mecanismo de seleção.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "O aumento de temperatura é um fator ambiental, então não é seleção artificial. Além disso, o CO₂ é matéria-prima da fotossíntese e, em geral, a estimula, não a inibe.",
+    "motivo": "Mesma precisão do CO₂ aplicada ao passo.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "E"
  }
 }

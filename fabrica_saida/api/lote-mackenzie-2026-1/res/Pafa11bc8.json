@@ -72,7 +72,7 @@
    "A": "A confunde grande com populoso. A área 3 é Mato Grosso, o maior estado em área, mas Goiás tem quase o dobro da população (cerca de 7,1 milhões contra 3,7 milhões em 2022). Extensão não gera população.",
    "B": "O Pantanal fica no oeste de Mato Grosso e de Mato Grosso do Sul, ou seja, no limite entre as áreas 3 e 2. Entre 1 (Goiás/DF) e 2 (MS) não está o Pantanal. A frase sobre a maior planície alagável do planeta é verdadeira, mas a localização está errada.",
    "C": "C confunde densidade com área. O MS (área 2) tem cerca de 8 hab/km² (2,76 mi ÷ 357 mil km²). A maior densidade é a do DF: cerca de 489 hab/km². Faltou dividir pessoas por área.",
-   "D": "D erra no número: o DF elege 3 senadores, como qualquer estado, qualquer que seja a área ou a população. Quem marcou D achou que área pequena dá menos representantes. O texto também chama o DF de estado, mas ele não é."
+   "D": "D erra no número: o DF elege 3 senadores, como qualquer estado, qualquer que seja a área ou a população. Quem marcou D achou que área pequena dá menos representantes. A alternativa também diz que o DF virou estado em 1960, mas ele é uma unidade da federação que não é estado. Sua representação foi criada em 1988 pela Constituição, e Brasília foi inaugurada em 1960."
   },
   "armadilha": "Confundir estado populoso com estado grande, e aceitar uma afirmação com dado verdadeiro (Pantanal, Senado) sem checar o detalhe que a derruba.",
   "alerta": "",
@@ -110,7 +110,7 @@
    "nota": "baixa densidade"
   },
   {
-   "linha": "DF: 2,82 mi ÷ 5,8 mil km²",
+   "linha": "DF: 2,82 mi ÷ 5,76 mil km²",
    "nota": "densidade do Distrito Federal"
   },
   {
@@ -137,12 +137,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -194,6 +196,28 @@
   "didatica_alertas": [
    "A alternativa D diz que o DF 'se tornou estado em 1960' (na verdade, Brasília foi inaugurada em 1960 e o DF nunca foi estado). A alternativa continua falsa, mas o corretor de fatos pode citar isso. A resolução já aponta que o DF não é estado."
   ],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "GO ≈ 7,1 mi; MT ≈ 3,7 mi\nDF ≈ 489 hab/km²",
+    "motivo": "Sem alteração de valor. Conferido com o Censo 2022: GO 7.056.495 (≈7,06 mi, que arredonda para 7,1), MT 3.658.649, MS 2.757.013, DF 2.817.381. Áreas: MT 903.208 km², MS 357.142 km², DF 5.760 km². Densidades: MT ≈ 4,05, MS ≈ 7,7 (≈8), DF ≈ 489. Os números conferem.",
+    "fonte": "IBGE, Censo 2022"
+   },
+   {
+    "campo": "resolucao.quadro[4].linha",
+    "depois": "DF: 2,82 mi ÷ 5,76 mil km²",
+    "motivo": "A área do DF é 5.760 km² (5.760,78), não 5,8 mil. A divisão 2.817.381 ÷ 5.760,78 dá 489,06, então o resultado de 489 hab/km² está certo. O ajuste só deixa a conta coerente com o resultado, porque 2,82 mi ÷ 5,8 mil daria 486.",
+    "fonte": "IBGE, Censo 2022"
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "D erra no número: o DF elege 3 senadores, como qualquer estado, qualquer que seja a área ou a população. Quem marcou D achou que área pequena dá menos representantes. A alternativa também diz que o DF virou estado em 1960, mas ele é uma unidade da federação que não é estado. Sua representação foi criada em 1988 pela Constituição, e Brasília foi inaugurada em 1960.",
+    "motivo": "A frase original deixava de dizer que a data de 1960 também está imprecisa. Em 1960 Brasília foi inaugurada e o Rio de Janeiro virou o estado da Guanabara. O DF só elegeu senadores a partir de 1986/1990, conforme a CF/88, art. 46.",
+    "fonte": "Constituição Federal de 1988, art. 46"
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "E"
  }
 }

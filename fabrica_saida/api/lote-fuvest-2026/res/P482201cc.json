@@ -33,6 +33,18 @@
     [
      "Trabalhador autônomo",
      "Quem trabalha por conta própria, sem patrão."
+    ],
+    [
+     "Rendimento médio",
+     "Valor que a pessoa ganha por mês, em média, em cada categoria."
+    ],
+    [
+     "≪",
+     "Muito menor que."
+    ],
+    [
+     "≈",
+     "Aproximadamente igual: o valor é lido da barra e não é exato."
     ]
    ]
   },
@@ -52,20 +64,20 @@
    },
    {
     "faz": "Elimine A e B",
-    "conta": "A: 4 + 25 < 40  |  B: 2.300 < 3.100",
+    "conta": "A: 4 + 25 = 29 < 40 | B: 2.300 < 3.100",
     "porque": "Empregadores mais autônomos (≈ 29 milhões) são menos numerosos que empregados com carteira (≈ 40). Já o empregado sem carteira ganha menos que o com carteira, e o autônomo sem CNPJ também.",
     "tipo": "eliminar"
    },
    {
     "faz": "Elimine C e E",
-    "conta": "C: sem dado de proteção  |  E: 6,5 ≪ 40",
+    "conta": "C: sem dado | E: 6,5 mi ≪ 40 mi",
     "porque": "Os gráficos não medem proteção contra riscos sociais, e autônomo informal tem menos direitos, não mais. Autônomos com CNPJ ganham mais que empregados com carteira, mas são só ≈ 6,5 milhões, longe de 'muito numerosos'.",
     "tipo": "eliminar"
    },
    {
     "faz": "Confira D nos dois gráficos",
-    "conta": "8.900 (maior renda) | 4 milhões < 53 milhões",
-    "porque": "Empregadores têm o maior rendimento e são poucos frente aos empregados (≈ 40 + 13,5 milhões no setor privado). É a única alternativa em que as duas partes da frase batem com os gráficos.",
+    "conta": "D: R$ 8.900 e 4 mi < 40 mi",
+    "porque": "Empregadores têm o maior rendimento e são poucos (≈ 4 milhões) diante dos empregados (≈ 40 milhões só com carteira). É a única alternativa em que as duas partes da frase batem com os gráficos.",
     "tipo": "concluir"
    }
   ],
@@ -74,7 +86,7 @@
   "erradas": {
    "A": "Diz que empregadores e autônomos são mais numerosos que empregados com carteira. No gráfico de baixo, os empregados com carteira têm ≈ 40 milhões. Empregadores (≈ 4) mais autônomos (≈ 25) somam ≈ 29 milhões, menos que isso.",
    "B": "Afirma que empregados sem carteira e autônomos ganham mais que os com carteira. No gráfico de cima, sem carteira ganha ≈ R$ 2.300 contra ≈ R$ 3.100 com carteira, e o autônomo sem CNPJ ganha ≈ R$ 2.000. Só o autônomo com CNPJ (≈ R$ 4.800) supera. Além disso, rendimento médio menor não significa estar 'mais protegido'.",
-   "C": "Fala de proteção contra riscos sociais e de direitos, algo que os gráficos não medem. E o argumento é invertido: o emprego formal (CLT) é justamente o que garante direitos trabalhistas, não 'menos direitos'.",
+   "C": "Fala de proteção contra riscos sociais, algo que os gráficos não medem. Além disso, o emprego formal (CLT) é o que garante direitos trabalhistas. Dizer que ele oferece 'menos direitos' inverte a realidade, e a questão pede uma visão apoiada nos dados.",
    "E": "Acerta que o autônomo com CNPJ ganha mais que o empregado com carteira (≈ R$ 4.800 contra ≈ R$ 3.100). Mas erra ao dizer que são 'muito numerosos': são ≈ 6,5 milhões, contra ≈ 40 milhões de empregados com carteira. A maioria dos autônomos (≈ 19 milhões) não tem CNPJ e ganha ≈ R$ 2.000."
   },
   "armadilha": "Alternativas que acertam o rendimento (como E) mas erram o número de pessoas, ou o contrário. Cada metade da frase precisa ser conferida no gráfico certo.",
@@ -135,11 +147,15 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -150,6 +166,78 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "D"
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "A: 4 + 25 = 29 < 40 | B: 2.300 < 3.100",
+    "motivo": "Mostra a soma completa para o aluno copiar no caderno."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "C: sem dado | E: 6,5 mi ≪ 40 mi",
+    "motivo": "Explica o símbolo ≪ pelo contexto e deixa claro que a unidade é milhão."
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "D: R$ 8.900 e 4 mi < 40 mi",
+    "motivo": "A conta anterior misturava 53 milhões, que não aparece no raciocínio. Agora compara empregadores (4 mi) com empregados com carteira (40 mi), igual ao porquê."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "Empregadores têm o maior rendimento e são poucos (≈ 4 milhões) diante dos empregados (≈ 40 milhões só com carteira). É a única alternativa em que as duas partes da frase batem com os gráficos.",
+    "motivo": "Simplifica e retira a soma 40 + 13,5, que não era necessária."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "CLT / com carteira",
+      "Emprego formal, com carteira de trabalho assinada, que dá direitos trabalhistas."
+     ],
+     [
+      "CNPJ",
+      "Registro de empresa. 'Com CNPJ' indica negócio formalizado."
+     ],
+     [
+      "PNAD-C",
+      "Pesquisa do IBGE que estima emprego e renda das famílias brasileiras."
+     ],
+     [
+      "Empregador",
+      "Pessoa que tem negócio próprio e contrata empregados."
+     ],
+     [
+      "Trabalhador autônomo",
+      "Quem trabalha por conta própria, sem patrão."
+     ],
+     [
+      "Rendimento médio",
+      "Valor que a pessoa ganha por mês, em média, em cada categoria."
+     ],
+     [
+      "≪",
+      "Muito menor que."
+     ],
+     [
+      "≈",
+      "Aproximadamente igual: o valor é lido da barra e não é exato."
+     ]
+    ],
+    "motivo": "Explica termos e símbolos usados na resolução (rendimento médio, ≪, ≈)."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "Fala de proteção contra riscos sociais, algo que os gráficos não medem. Além disso, o emprego formal (CLT) é o que garante direitos trabalhistas. Dizer que ele oferece 'menos direitos' inverte a realidade, e a questão pede uma visão apoiada nos dados.",
+    "motivo": "Diz com clareza o que faltou para quem marcou C: ligar a afirmação ao dado do gráfico."
+   }
+  ],
+  "didatica_alertas": [
+   "A alternativa D afirma que os jovens 'desprezam' a relação de emprego, o que o gráfico não mostra. O gráfico só sustenta renda maior e número menor de empregadores. Ainda assim, D é a melhor alternativa e confere com o gabarito."
+  ],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "D"
  }
 }

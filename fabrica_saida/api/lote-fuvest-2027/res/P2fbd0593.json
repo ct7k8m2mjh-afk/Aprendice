@@ -86,7 +86,7 @@
   "checagem": "Cruzamento Aa × aa: dois dos quatro resultados são Aa, ou seja, 50%. Se o gene fosse do X, o pai passaria o X a todas as filhas (100%) e o Y a todos os filhos; o texto diz autossômica, então não é o caso.",
   "erradas": {
    "A": "O texto diz herança autossômica, ou seja, o gene não está no X. Além disso, se estivesse no X de um pai afetado, 100% das filhas receberiam o X dele, e não 50%.",
-   "B": "O texto diz herança autossômica, então o gene não está no Y. Além disso, Gaten é afetado e os pais não, então a mutação nem veio de um pai afetado pelo Y. Em gene do Y, todos os filhos homens seriam afetados e nenhuma filha, o que não é o caso aqui.",
+   "B": "O texto diz herança autossômica, então o gene não está no Y. Além disso, um gene no Y só passaria de pai para filhos homens e nunca atingiria filhas; aqui o gene está num autossomo e a chance é a mesma para filhos e filhas.",
    "D": "Inverte a dominância: numa doença dominante um único alelo já causa a síndrome. Pais heterozigotos seriam afetados, mas o texto diz que Gaten é o único afetado da família.",
    "E": "Ser heterozigoto não anula a chance para os filhos homens. Por ser autossômica, a herança independe do sexo: Gaten passa o alelo a 50% dos filhos, homens ou mulheres."
   },
@@ -114,7 +114,7 @@
    "nota": "caso mais simples: sem o alelo"
   },
   {
-   "linha": "Gametas: A ou a  ×  só a",
+   "linha": "Gametas: A ou a × só a",
    "nota": "Gaten faz 1/2 A e 1/2 a"
   },
   {
@@ -137,12 +137,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -234,11 +236,21 @@
    },
    {
     "campo": "resolucao.quadro[2].linha",
-    "depois": "Gametas: A ou a  ×  só a",
+    "depois": "Gametas: A ou a × só a",
     "motivo": "Mais claro: Gaten faz dois tipos de gameta; a parceira aa faz só um."
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "O texto diz herança autossômica, então o gene não está no Y. Além disso, um gene no Y só passaria de pai para filhos homens e nunca atingiria filhas; aqui o gene está num autossomo e a chance é a mesma para filhos e filhas.",
+    "motivo": "Frase anterior confusa: a mutação não 'veio de pai afetado pelo Y'; e o argumento sobre o Y vale só para pai afetado. Reescrito de forma correta e simples.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "C"
  }
 }

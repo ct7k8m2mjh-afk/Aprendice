@@ -8,7 +8,7 @@
  "conceito": "Calcular a diferença de hora entre a Itália (UTC+1) e São Paulo (UTC−3) para saber a que horas se assiste a uma transmissão ao vivo.",
  "resolucao": {
   "antes": {
-   "texto": "UTC é a hora de referência mundial, a de Greenwich. Cada fuso diz quantas horas o relógio do lugar está à frente (+) ou atrás (−) dela. Para passar a hora de um lugar a outro, veja a diferença entre os dois fusos. O enunciado dá o da Itália: UTC+1. O de São Paulo você precisa lembrar: UTC−3, o mesmo de Brasília. Em 15 de fevereiro nenhum dos dois países usa horário de verão: a Itália o adota só de março a outubro, e o Brasil o aboliu em 2019.",
+   "texto": "UTC é a hora de referência mundial, a de Greenwich. Cada fuso diz quantas horas o relógio do lugar está à frente (+) ou atrás (−) dela. Para passar a hora de um lugar a outro, veja a diferença entre os dois fusos. O enunciado dá o da Itália: UTC+1. O de São Paulo você precisa lembrar: UTC−3, o mesmo de Brasília. Em 15 de fevereiro nenhum dos dois países usa horário de verão: na Itália ele vai do fim de março ao fim de outubro, e o Brasil o aboliu em 2019.",
    "formulas": [
     "diferença = fuso da Itália − fuso de São Paulo",
     "lugar a leste tem hora adiantada; lugar a oeste tem hora atrasada",
@@ -29,7 +29,7 @@
     ],
     [
      "horário de verão",
-     "adiantamento de 1 hora nos relógios durante o verão; a Itália o usa de março a outubro, e o Brasil não o usa mais desde 2019"
+     "adiantamento de 1 hora nos relógios durante o verão; a Itália o usa do fim de março ao fim de outubro, e o Brasil não o usa mais desde 2019"
     ]
    ]
   },
@@ -137,12 +137,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -230,6 +232,25 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "UTC é a hora de referência mundial, a de Greenwich. Cada fuso diz quantas horas o relógio do lugar está à frente (+) ou atrás (−) dela. Para passar a hora de um lugar a outro, veja a diferença entre os dois fusos. O enunciado dá o da Itália: UTC+1. O de São Paulo você precisa lembrar: UTC−3, o mesmo de Brasília. Em 15 de fevereiro nenhum dos dois países usa horário de verão: na Itália ele vai do fim de março ao fim de outubro, e o Brasil o aboliu em 2019.",
+    "motivo": "'Só de março a outubro' é aproximado. O horário de verão europeu começa no último domingo de março e termina no último domingo de outubro. A mudança é pequena e deixa o texto exato. O fato central está certo: em fevereiro a Itália está em UTC+1 (o enunciado confirma), e o Brasil acabou com o horário de verão pelo Decreto 9.772/2019.",
+    "fonte": "Diretiva 2000/84/CE (UE); Decreto nº 9.772/2019"
+   },
+   {
+    "campo": "resolucao.antes.simbolos[3]",
+    "depois": [
+     "horário de verão",
+     "adiantamento de 1 hora nos relógios durante o verão; a Itália o usa do fim de março ao fim de outubro, e o Brasil não o usa mais desde 2019"
+    ],
+    "motivo": "Mesmo ajuste de precisão do texto principal.",
+    "fonte": "Diretiva 2000/84/CE (UE)"
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "B"
  }
 }

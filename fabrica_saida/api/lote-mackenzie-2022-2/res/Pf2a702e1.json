@@ -37,7 +37,7 @@
     ],
     [
      "calpaínas, caspases, proteassomo",
-     "outras enzimas e complexos que quebram proteínas, soltos no citoplasma (citosol)"
+     "enzimas e complexos que quebram proteínas e agem soltos no citoplasma (citosol); o proteassomo é um complexo de proteínas, não uma organela com membrana"
     ],
     [
      "organela",
@@ -91,12 +91,13 @@
    "E": "O complexo de Golgi modifica, empacota e envia proteínas. Ele forma os lisossomos, mas quem faz a digestão e a autofagia é o lisossomo, não o Golgi."
   },
   "armadilha": "Escolher mitocôndria por associar apoptose a ela, esquecendo que o texto fala de degradação proteica e autofagia, funções do lisossomo.",
-  "alerta": "O comando atribui a uma organela 'os mecanismos descritos', mas só a autofagia é lisossômica. Calpaínas, caspases e proteassomo agem no citosol, e as caspases não dependem de cálcio, ao contrário do que diz o texto citado. Mesmo assim, entre as alternativas o lisossomo é a única resposta defensável, e o gabarito se mantém.",
+  "alerta": "O comando atribui a uma organela 'os mecanismos descritos', mas só a autofagia é lisossômica. Calpaínas e proteassomo agem no citosol. As caspases também agem no citosol e não são dependentes de cálcio (são proteases de cisteína ativadas na apoptose), ao contrário do que diz o texto citado. Mesmo assim, entre as alternativas o lisossomo é a única resposta defensável, e o gabarito se mantém.",
   "essencial": {
    "pede": "A organela responsável pela degradação de proteínas, autofagia e morte celular descritas no texto.",
    "chave": "Digestão intracelular com enzimas (autofagia) é função do lisossomo.",
    "cuidado": "Não confundir a organela que produz ou envia proteínas (RE, Golgi) com a que as digere."
-  }
+  },
+  "tema": "B01"
  },
  "caminhos": [
   {
@@ -124,12 +125,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -255,6 +258,31 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.antes.simbolos[5]",
+    "depois": [
+     "calpaínas, caspases, proteassomo",
+     "enzimas e complexos que quebram proteínas e agem soltos no citoplasma (citosol); o proteassomo é um complexo de proteínas, não uma organela com membrana"
+    ],
+    "motivo": "A frase 'outras enzimas e complexos... soltos no citoplasma' é correta, mas o proteassomo não é enzima solta, e vale deixar claro que não é organela. Ajuste mínimo de precisão.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.alerta",
+    "depois": "O comando atribui a uma organela 'os mecanismos descritos', mas só a autofagia é lisossômica. Calpaínas e proteassomo agem no citosol. As caspases também agem no citosol e não são dependentes de cálcio (são proteases de cisteína ativadas na apoptose), ao contrário do que diz o texto citado. Mesmo assim, entre as alternativas o lisossomo é a única resposta defensável, e o gabarito se mantém.",
+    "motivo": "O alerta dizia que calpaínas, caspases e proteassomo agem no citosol e depois que as caspases não dependem de cálcio. Está correto, mas a redação separa melhor cada fato. As calpaínas são as proteases dependentes de cálcio.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.tema",
+    "depois": "B01",
+    "motivo": "Já está B01/B01.4 na resolução, o que é coerente (endomembranas/lisossomo). A classificação atual do banco (B09/B09.6, ecologia) está errada e deve ser corrigida para B01.4.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "A"
  }
 }

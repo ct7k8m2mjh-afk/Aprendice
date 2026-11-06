@@ -41,7 +41,7 @@
     ],
     [
      "mitocôndria",
-     "organela da célula onde ocorre boa parte da respiração aeróbia"
+     "organela da célula onde ocorrem o ciclo de Krebs e a cadeia respiratória, etapas da respiração aeróbia que liberam CO2"
     ],
     [
      "ciclo de Calvin",
@@ -90,8 +90,8 @@
   "checagem": "Compare claro e escuro. Com luz, a fotossíntese consome CO2 e o indicador tenderia ao azul. Sem luz, só há liberação de CO2 e o indicador vai ao amarelo, como no experimento. Você também libera CO2, de dia e de noite.",
   "erradas": {
    "A": "A diz que a planta só faz fotossíntese. Falso: autótrofo só quer dizer que produz o próprio alimento, e a planta tem mitocôndrias e respira. A contaminação por microrganismos não aparece no enunciado.",
-   "C": "C diz que tecido submerso não consegue respirar com O2. Falso: a Elodea usa o O2 dissolvido na água. O enunciado não fala em falta de oxigênio, e a respiração aeróbia já explica o CO2 a mais.",
-   "D": "O ciclo de Calvin monta açúcar a partir de CO2 e não roda ao contrário. No escuro ele para, pois precisa do ATP e do NADPH (moléculas de energia) feitos com luz. O CO2 vem da respiração da glicose, na glicólise e nas mitocôndrias.",
+   "C": "C diz que a planta passou a fazer fermentação alcoólica porque a respiração aeróbia não se sustenta em tecido submerso. Falso: a Elodea usa o O2 dissolvido na água, e a falta de luz não causa anaerobiose. O enunciado não fala em falta de oxigênio, e a respiração aeróbia já explica o CO2 a mais.",
+   "D": "O ciclo de Calvin monta açúcar a partir de CO2 e não roda ao contrário. No escuro ele para, pois precisa do ATP e do NADPH (moléculas de energia) feitos com luz. O CO2 vem da respiração celular, que degrada a glicose na glicólise (citosol), no ciclo de Krebs e na cadeia respiratória (mitocôndrias).",
    "E": "Todas as células vivas da planta têm mitocôndrias e respiram o tempo todo, inclusive as das folhas e do caule. Dizer que as folhas ficam metabolicamente inativas no escuro é falso. A luz liga só a fotossíntese, não o metabolismo inteiro."
   },
   "armadilha": "Achar que, sem luz, a planta 'para' de vez ou que só ela faz fotossíntese: no escuro só a fotossíntese para, a respiração continua.",
@@ -128,12 +128,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -271,6 +273,31 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "C diz que a planta passou a fazer fermentação alcoólica porque a respiração aeróbia não se sustenta em tecido submerso. Falso: a Elodea usa o O2 dissolvido na água, e a falta de luz não causa anaerobiose. O enunciado não fala em falta de oxigênio, e a respiração aeróbia já explica o CO2 a mais.",
+    "motivo": "A versão anterior não mencionava a fermentação alcoólica, que é o núcleo do erro da alternativa C. A falta de luz não leva a planta à anaerobiose.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "O ciclo de Calvin monta açúcar a partir de CO2 e não roda ao contrário. No escuro ele para, pois precisa do ATP e do NADPH (moléculas de energia) feitos com luz. O CO2 vem da respiração celular, que degrada a glicose na glicólise (citosol), no ciclo de Krebs e na cadeia respiratória (mitocôndrias).",
+    "motivo": "A frase anterior dizia que o CO2 vem da glicólise. A glicólise não libera CO2; ele sai no ciclo de Krebs e na descarboxilação do piruvato, dentro da mitocôndria.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.antes.simbolos[6]",
+    "depois": [
+     "mitocôndria",
+     "organela da célula onde ocorrem o ciclo de Krebs e a cadeia respiratória, etapas da respiração aeróbia que liberam CO2"
+    ],
+    "motivo": "A definição \"boa parte da respiração aeróbia\" era vaga. Esta versão é precisa e é a que sustenta a correção do CO2.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "B"
  }
 }

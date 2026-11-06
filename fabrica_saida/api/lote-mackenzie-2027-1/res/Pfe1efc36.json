@@ -71,7 +71,7 @@
    {
     "faz": "Veja quais dores são citadas",
     "conta": "Headache, muscle pain, toothache",
-    "porque": "Sob 'Relieves pain', o texto cita dor de cabeça, dor muscular e de dente. Na faixa inferior há também MUSCLE PAIN e JOINT PAIN.",
+    "porque": "Sob 'Relieves pain', o cartaz cita dor de cabeça (headache), dor muscular (muscle pain) e dor de dente (toothache). Na faixa inferior aparecem também MUSCLE PAIN e JOINT PAIN.",
     "tipo": "localizar"
    },
    {
@@ -92,7 +92,7 @@
   "erradas": {
    "A": "'You may have migraines' (você pode ter enxaquecas) inverte a promessa. Quem marcou A viu HEADACHE no cartaz e não notou que é uma dor que o remédio ALIVIA, não um efeito de tomá-lo.",
    "B": "'Your joint pain will be worsened' (sua dor articular será piorada) é o contrário do anunciado. Quem marcou B viu JOINT PAIN e esqueceu que ela está entre as dores para as quais o produto promete alívio.",
-   "C": "'You surely know it is an unknown medicine' (você tem certeza de que é um remédio desconhecido) se contradiz: quem 'sabe com certeza' não trata o remédio como 'desconhecido'. O cartaz diz 'TRUSTED PAIN RELIEF' (alívio de dor confiável), o oposto de desconhecido.",
+   "C": "'You surely know it is an unknown medicine' (você sabe com certeza que é um remédio desconhecido) se contradiz: quem 'sabe com certeza' não trata o remédio como 'desconhecido'. O cartaz também diz 'TRUSTED PAIN RELIEF' (alívio de dor confiável), o oposto de desconhecido.",
    "E": "'You might have high fever' (você pode ter febre alta) inverte o item LOWERS FEVER, 'Brings down high body temperature' (baixa a temperatura corporal alta). Quem marcou E leu 'fever' e não viu que o remédio reduz a febre, não a causa."
   },
   "armadilha": "A, B e E pegam males citados no cartaz (dor de cabeça, dor articular, febre) e trocam o sentido: o que o remédio ALIVIA vira o que ele CAUSA.",
@@ -125,12 +125,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -201,6 +203,22 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Sob 'Relieves pain', o cartaz cita dor de cabeça (headache), dor muscular (muscle pain) e dor de dente (toothache). Na faixa inferior aparecem também MUSCLE PAIN e JOINT PAIN.",
+    "motivo": "Ajuste de precisão: o texto do cartaz é 'Headache, muscle pain, toothache & more'. A frase proposta estava correta, mas deixava de dizer que o item 'Headache, muscle pain, toothache' está sob 'Relieves pain'. Esta versão só reformula, sem mudar o fato.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "'You surely know it is an unknown medicine' (você sabe com certeza que é um remédio desconhecido) se contradiz: quem 'sabe com certeza' não trata o remédio como 'desconhecido'. O cartaz também diz 'TRUSTED PAIN RELIEF' (alívio de dor confiável), o oposto de desconhecido.",
+    "motivo": "A tradução 'você tem certeza de que é' é imprecisa. 'You surely know' é 'você certamente sabe'.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "D"
  }
 }

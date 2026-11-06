@@ -74,8 +74,8 @@
   "erradas": {
    "A": "'Curiosos e destemidos' descreve comportamento. Temperamento não é critério de classificação biológica e aparece em vários grupos de animais.",
    "B": "'Adaptáveis e amáveis com crianças' é comportamento e convivência com pessoas. O próprio texto atribui isso à origem pastora, não à classificação biológica.",
-   "C": "Ser rateiro em barcas é uma função dada pelo ser humano. Gatos e furões caçam ratos, mas aves de rapina também. Não indica mamífero.",
-   "E": "Tamanho pequeno, cor preta e silhueta são aspectos externos que variam em qualquer grupo animal; não são exclusivos dos mamíferos."
+   "C": "Ser rateiro em barcas é uma função dada pelo ser humano. Caçar ratos não é exclusivo de mamíferos: aves de rapina, como as corujas, também fazem isso. Não indica mamífero.",
+   "E": "Tamanho pequeno e cor preta variam em qualquer grupo animal e não definem mamífero. 'Silhueta única' também não indica o grupo."
   },
   "armadilha": "Marcar um trecho verdadeiro sobre o cão que não diz nada sobre a classificação biológica; o critério precisa ser exclusivo dos mamíferos.",
   "alerta": "",
@@ -83,7 +83,8 @@
    "pede": "O trecho do texto que revela uma característica própria dos mamíferos.",
    "chave": "Pelos são exclusivos dos mamíferos, e 'pelagem' se refere ao conjunto de pelos.",
    "cuidado": "Comportamento, cor, tamanho e função humana não definem classe biológica."
-  }
+  },
+  "tema": "B12"
  },
  "caminhos": [
   {
@@ -107,12 +108,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -197,6 +200,34 @@
   "didatica_alertas": [
    "O campo 'tema' da resolução está B12/B12.6, mas a classificação atual do banco é B09/B09.6; verificar qual vale. O fato da questão não muda."
   ],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Mamíferos são vertebrados (animais com coluna vertebral) com marcas que só eles têm: pelos, glândulas mamárias (produzem leite para os filhotes) e diafragma (músculo que ajuda a respirar). Das três, o texto cita apenas o pelo. Comportamento, tamanho, cor e local de vida não definem o grupo.",
+    "motivo": "Texto conferido. Ele já está correto: pelos, glândulas mamárias e diafragma são características exclusivas dos mamíferos. Mantido sem alteração.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "Ser rateiro em barcas é uma função dada pelo ser humano. Caçar ratos não é exclusivo de mamíferos: aves de rapina, como as corujas, também fazem isso. Não indica mamífero.",
+    "motivo": "A frase 'Gatos e furões caçam ratos, mas aves de rapina também' sugeria que gatos e furões não seriam mamíferos. A nova redação deixa claro que o contraexemplo é a ave de rapina.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "Tamanho pequeno e cor preta variam em qualquer grupo animal e não definem mamífero. 'Silhueta única' também não indica o grupo.",
+    "motivo": "A frase 'silhueta... não são exclusivos' era vaga. A nova redação diz o motivo exato.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.tema",
+    "depois": "B12",
+    "motivo": "A classificação B12/B12.6 (vertebrados e classificação) é plausível. O nível 2 também é plausível. Nenhuma mudança necessária; registrado apenas como conferido.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "D"
  }
 }

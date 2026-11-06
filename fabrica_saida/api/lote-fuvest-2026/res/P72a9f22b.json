@@ -8,7 +8,7 @@
  "conceito": "Ideia central do crédito de carbono: redução ou remoção comprovada de gases de efeito estufa que vira um ativo negociável em mercado.",
  "resolucao": {
   "antes": {
-   "texto": "Crédito de carbono é um certificado que representa 1 tonelada de CO2 equivalente que deixou de ser emitida ou foi retirada da atmosfera. Quem reduz as emissões além da meta pode vender o certificado a quem não conseguiu reduzir. A lógica é emitir menos e transformar essa redução em algo negociável, sem importar o país de origem.",
+   "texto": "Crédito de carbono é um certificado que vale 1 tonelada de CO2 equivalente que deixou de ser emitida ou foi retirada do ar. Quem reduz as emissões além da meta pode vender esse certificado a quem não conseguiu reduzir. A ideia central é transformar a redução de emissões em algo que se pode comprar e vender, seja qual for o país.",
    "formulas": [
     "1 crédito de carbono = 1 tonelada de CO2 equivalente reduzida ou removida",
     "reduziu além da meta → gera crédito → pode vender",
@@ -17,15 +17,31 @@
    "simbolos": [
     [
      "crédito de carbono",
-     "certificado negociável que comprova a redução ou remoção de uma tonelada de CO2 equivalente"
+     "certificado que comprova a redução ou a retirada de 1 tonelada de CO2 equivalente e que pode ser vendido"
     ],
     [
      "CO2 equivalente (CO2e)",
-     "medida que converte outros gases de efeito estufa, como o metano, em quantidade equivalente de CO2"
+     "medida que converte outros gases do efeito estufa, como o metano, em quantidade de CO2 que teria o mesmo efeito"
+    ],
+    [
+     "gases de efeito estufa",
+     "gases que retêm calor na atmosfera e aquecem o planeta, como o CO2 e o metano"
     ],
     [
      "mercado de carbono",
-     "ambiente em que esses certificados são comprados e vendidos"
+     "lugar (real ou virtual) onde esses certificados são comprados e vendidos"
+    ],
+    [
+     "meta de emissão",
+     "quantidade máxima de gases que um país ou empresa se compromete a emitir"
+    ],
+    [
+     "REDD+",
+     "tipo de pagamento por conservar florestas e evitar o desmatamento"
+    ],
+    [
+     "NDC",
+     "meta de redução que cada país define para si no Acordo de Paris"
     ],
     [
      "Protocolo de Kyoto (1997)",
@@ -37,7 +53,7 @@
     ]
    ]
   },
-  "pista": "Pergunte-se: o que exatamente o certificado comprova? Uma floresta que existe, um limite de emissão ou uma redução de gases?",
+  "pista": "Pergunte-se o que o certificado comprova: uma floresta que existe, um limite de emissão ou uma redução de gases? Depois veja quem pode obtê-lo.",
   "passos": [
    {
     "faz": "Traduza o que se pede",
@@ -59,7 +75,7 @@
    },
    {
     "faz": "Elimine as alternativas com conceito trocado",
-    "conta": "A: pagamento por floresta. B: fotossíntese. D: poluidor gera crédito. E: limite e sanção.",
+    "conta": "A: pagamento por floresta\nB: fotossíntese\nD: poluidor gera crédito\nE: limite e sanção",
     "porque": "Cada uma troca o crédito por outro conceito: pagamento por serviço ambiental, processo biológico, papel invertido de poluidor ou teto de emissões.",
     "tipo": "eliminar"
    },
@@ -75,8 +91,8 @@
   "erradas": {
    "A": "Descreve uma modalidade de pagamento por conservação florestal (como o REDD+), não a ideia central do crédito. O crédito vem de redução ou remoção comprovada de CO2e, e não de um dever de países florestados receberem de menos florestados.",
    "B": "Confunde crédito com processo biológico. A maior taxa de fotossíntese não é o crédito: o crédito é um certificado de tonelada de CO2e reduzida ou removida, comprovada por metodologia, e não depende só de florestas tropicais.",
-   "D": "Inverte os papéis. Países industrializados são os grandes emissores, logo geram poucos créditos e tendem a ser compradores. Pelo que diz a própria alternativa, o repasse seria 'aos países menos poluidores', que não precisariam comprá-los.",
-   "E": "Mistura crédito com teto de emissões. O teto define quanto se pode emitir, e o crédito é a redução comprovada. No Acordo de Paris, cada país fixa a própria meta (a NDC), e quem a descumpre não sofre sanção econômica internacional."
+   "D": "Inverte os papéis. Países industrializados emitem muito e, em geral, têm mais emissões a compensar, então tendem a ser compradores de créditos. A alternativa também erra ao dizer que o crédito é repassado aos 'menos poluidores', que têm pouca emissão a compensar. O fluxo comum é o inverso: quem reduziu ou removeu emissões vende o crédito a quem precisa compensar.",
+   "E": "Mistura crédito com teto de emissões. O teto diz quanto se pode emitir; o crédito é a redução comprovada. No Acordo de Paris, cada país fixa a própria meta (NDC), e o acordo não prevê sanção econômica internacional por descumpri-la."
   },
   "armadilha": "Escolher a alternativa que soa mais 'ambiental' (A ou B) e esquecer que crédito de carbono é medida de emissão evitada, negociável, e não pagamento por floresta nem fotossíntese.",
   "alerta": "",
@@ -111,11 +127,15 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -132,6 +152,95 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "C"
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Crédito de carbono é um certificado que vale 1 tonelada de CO2 equivalente que deixou de ser emitida ou foi retirada do ar. Quem reduz as emissões além da meta pode vender esse certificado a quem não conseguiu reduzir. A ideia central é transformar a redução de emissões em algo que se pode comprar e vender, seja qual for o país.",
+    "motivo": "Frases mais curtas e vocabulário mais simples (atmosfera → ar, 'sem importar' → 'seja qual for')."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "crédito de carbono",
+      "certificado que comprova a redução ou a retirada de 1 tonelada de CO2 equivalente e que pode ser vendido"
+     ],
+     [
+      "CO2 equivalente (CO2e)",
+      "medida que converte outros gases do efeito estufa, como o metano, em quantidade de CO2 que teria o mesmo efeito"
+     ],
+     [
+      "gases de efeito estufa",
+      "gases que retêm calor na atmosfera e aquecem o planeta, como o CO2 e o metano"
+     ],
+     [
+      "mercado de carbono",
+      "lugar (real ou virtual) onde esses certificados são comprados e vendidos"
+     ],
+     [
+      "meta de emissão",
+      "quantidade máxima de gases que um país ou empresa se compromete a emitir"
+     ],
+     [
+      "REDD+",
+      "tipo de pagamento por conservar florestas e evitar o desmatamento"
+     ],
+     [
+      "NDC",
+      "meta de redução que cada país define para si no Acordo de Paris"
+     ],
+     [
+      "Protocolo de Kyoto (1997)",
+      "tratado que fixou metas de redução de emissões, sobretudo para países industrializados"
+     ],
+     [
+      "Acordo de Paris (2015)",
+      "acordo em que quase todos os países assumem metas próprias de redução de emissões"
+     ]
+    ],
+    "motivo": "Incluídos termos usados nas erradas (REDD+, NDC, gases de efeito estufa, meta) que não estavam explicados."
+   },
+   {
+    "campo": "resolucao.pista",
+    "depois": "Pergunte-se o que o certificado comprova: uma floresta que existe, um limite de emissão ou uma redução de gases? Depois veja quem pode obtê-lo.",
+    "motivo": "Mantém a pista sem entregar a letra, mas aponta a segunda checagem (quem pode obter)."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "A: pagamento por floresta\nB: fotossíntese\nD: poluidor gera crédito\nE: limite e sanção",
+    "motivo": "Uma ideia por linha, para caber na tela do celular e ser copiada no caderno."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "Mistura crédito com teto de emissões. O teto diz quanto se pode emitir; o crédito é a redução comprovada. No Acordo de Paris, cada país fixa a própria meta (NDC) e não há sanção econômica internacional por descumpri-la.",
+    "motivo": "Frases mais curtas, sem mudar o fato."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "Inverte os papéis. Países industrializados emitem muito e geram poucos créditos; tendem a ser compradores. Além disso, repassar aos 'menos poluidores' não faz sentido, pois eles têm pouca emissão a compensar.",
+    "motivo": "Explica de forma mais clara o que faltou a quem marcou D."
+   }
+  ],
+  "didatica_alertas": [
+   "A alternativa C é a melhor, mas 'qualquer país' é simplificação: o crédito depende de metodologia e certificação, e na prática é gerado por projetos e empresas. O Acordo de Paris prevê mecanismo próprio (art. 6) e o Kyoto só dava metas a países industrializados. Vale conferir se o corretor de fatos quer registrar a ressalva."
+  ],
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "Mistura crédito com teto de emissões. O teto diz quanto se pode emitir; o crédito é a redução comprovada. No Acordo de Paris, cada país fixa a própria meta (NDC), e o acordo não prevê sanção econômica internacional por descumpri-la.",
+    "motivo": "Ajuste de precisão. O Acordo de Paris tem um mecanismo de transparência e de cumprimento, mas ele é facilitador e não punitivo, então a frase fica mais exata sem a negação absoluta. No Protocolo de Kyoto havia metas vinculantes para os países do Anexo I, e a afirmação sobre Paris continua verdadeira.",
+    "fonte": "Acordo de Paris (2015), art. 15: o comitê de cumprimento é facilitador, não punitivo."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "Inverte os papéis. Países industrializados emitem muito e, em geral, têm mais emissões a compensar, então tendem a ser compradores de créditos. A alternativa também erra ao dizer que o crédito é repassado aos 'menos poluidores', que têm pouca emissão a compensar. O fluxo comum é o inverso: quem reduziu ou removeu emissões vende o crédito a quem precisa compensar.",
+    "motivo": "A frase 'geram poucos créditos' é uma generalização. Países industrializados podem gerar créditos, e a própria C diz isso. A correção evita contradizer o gabarito e deixa o argumento no sentido do fluxo.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "C"
  }
 }

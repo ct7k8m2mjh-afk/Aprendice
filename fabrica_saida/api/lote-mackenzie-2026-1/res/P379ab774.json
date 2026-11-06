@@ -90,8 +90,8 @@
   "erradas": {
    "A": "A insulina produzida é a mesma proteína, codificada pelo gene humano da insulina. O gene inserido não a torna 'mais potente'. A vantagem é de compatibilidade, não de potência.",
    "B": "A terapia gênica insere um gene no genoma das células. Isso é engenharia genética por definição, com DNA recombinante. O enunciado diz 'insere o gene da insulina em seu genoma'.",
-   "C": "C promete uma cura para sempre, e o enunciado não diz isso: a terapia ainda é só pesquisada. Além disso, no diabetes tipo 1 o sistema imune ataca as células beta, e isso pode atingir também as células novas.",
-   "D": "D atribui às células um controle da glicose que o texto não dá: só se insere o gene da insulina, sem sensor de glicose. E o doador saudável já regula a glicose, então isso não seria vantagem da II sobre a I."
+   "C": "C promete uma cura para sempre, e o enunciado não diz isso: a terapia ainda é só pesquisada. Além disso, no diabetes tipo 1 a autoimunidade ataca as células beta, e isso pode atingir também as células novas, que continuam sendo do próprio paciente.",
+   "D": "D atribui às células um controle da glicose que o texto não dá: só se insere o gene da insulina, sem sensor de glicose. Além disso, células de um doador saudável já regulam a glicose, então isso não seria vantagem da II sobre a I."
   },
   "armadilha": "Escolher alternativas sedutoras que prometem cura total ou controle perfeito da glicose, em vez da vantagem real: não ser rejeitada por vir do próprio paciente.",
   "alerta": "",
@@ -127,12 +127,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -236,6 +238,22 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "D atribui às células um controle da glicose que o texto não dá: só se insere o gene da insulina, sem sensor de glicose. Além disso, células de um doador saudável já regulam a glicose, então isso não seria vantagem da II sobre a I.",
+    "motivo": "A frase original afirmava que o doador 'já regula a glicose'. O doador saudável é quem tem as células funcionais. A estratégia I usa células pancreáticas (ilhotas) de doador, e estas têm sensor de glicose. Reescrevi para deixar claro que se trata das células do doador, e não do receptor.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "C promete uma cura para sempre, e o enunciado não diz isso: a terapia ainda é só pesquisada. Além disso, no diabetes tipo 1 a autoimunidade ataca as células beta, e isso pode atingir também as células novas, que continuam sendo do próprio paciente.",
+    "motivo": "Deixa a lógica precisa. A autoimunidade do DM1 pode atacar células produtoras de insulina, mas o ponto central é que a cura definitiva não é garantida.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "E"
  }
 }

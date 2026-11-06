@@ -62,7 +62,7 @@
    {
     "faz": "Elimine a que contradiz o texto",
     "conta": "E: costas 'preservadas' do nível do mar",
-    "porque": "O texto diz que o nível do mar sobe 4,7 mm por ano. Nada no texto diz que as costas estão protegidas, e obras de engenharia não protegem todas.",
+    "porque": "O texto diz que o nível do mar sobe 4,7 mm por ano. Nada no texto diz que as costas estão protegidas, e obras de engenharia não protegem todas. A alternativa ainda troca a média global por 'no ano de 2024'.",
     "tipo": "eliminar"
    },
    {
@@ -76,7 +76,7 @@
   "checagem": "Confira as palavras de cada letra: A inverte o calor específico, B diz 'neutralizar', D diz 'ilimitada' e E diz 'preservadas'. Só C afirma algo verdadeiro e sem absoluto.",
   "erradas": {
    "A": "Inverte o fato: a água tem calor específico alto, não reduzido. Por isso absorve muito calor sem esquentar tanto. Absorver menos calor também não daria ao oceano papel regulador.",
-   "B": "Corais e florestas de algas não 'neutralizam continuamente' o aquecimento. Eles são afetados pelas ondas de calor marinhas (os corais branqueiam). O papel regulador vem da água do oceano como um todo.",
+   "B": "Corais e florestas de algas não 'neutralizam continuamente' o aquecimento nem as ondas de calor marinhas. Eles são afetados por elas (os corais branqueiam). O papel regulador vem da água do oceano como um todo.",
    "D": "O volume é imenso, mas a absorção não é 'ilimitada'. O texto mostra águas no maior nível de aquecimento em 65 anos, e o CO₂ absorvido acidifica a água. Ele mitiga, não elimina o problema.",
    "E": "Contradiz o texto: o nível do mar sobe 4,7 mm por ano, o que ameaça as áreas costeiras. Obras pontuais não preservam todas as costas."
   },
@@ -114,12 +114,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -169,6 +171,22 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "Corais e florestas de algas não 'neutralizam continuamente' o aquecimento nem as ondas de calor marinhas. Eles são afetados por elas (os corais branqueiam). O papel regulador vem da água do oceano como um todo.",
+    "motivo": "A redação anterior era ambígua. Ela deixava de dizer que o erro da alternativa está também em atribuir a esses ecossistemas a neutralização das ondas de calor marinhas, e não só do aquecimento.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "O texto diz que o nível do mar sobe 4,7 mm por ano. Nada no texto diz que as costas estão protegidas, e obras de engenharia não protegem todas. A alternativa ainda troca a média global por 'no ano de 2024'.",
+    "motivo": "A média de 4,7 mm por ano vale para o período 2015–2024, e não para 2024 isolado. A frase de E contém esse erro, e a resolução não o apontava.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "C"
  }
 }

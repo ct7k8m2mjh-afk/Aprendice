@@ -59,7 +59,7 @@
    {
     "faz": "Teste C, D e E com a Física",
     "conta": "C: Joule não é a principal causa\nD: bateria tem metais\nE: U maior → i menor",
-    "porque": "Cada uma contradiz um fato. A queima de fósseis emite muito CO₂. A bateria contém metais tóxicos. Para a mesma potência, mais tensão pede menos corrente e causa menos perda por Joule.",
+    "porque": "Cada uma contradiz um fato. A queima de fósseis emite muito CO₂. A bateria contém metais que exigem descarte adequado. Para a mesma potência, mais tensão pede menos corrente e causa menos perda por Joule.",
     "tipo": "eliminar"
    },
    {
@@ -73,8 +73,8 @@
   "checagem": "Imagine o Uruguai, com 99% de matriz renovável, e um país que gera tudo com carvão. O mesmo carro tem impacto bem diferente em cada um, e é isso que a B diz. As outras quatro trazem afirmações falsas absolutas, como 'elimina', 'principal causa', 'lixo comum' e 'qualquer relação'.",
   "erradas": {
    "A": "Faltou ver que o carro não é um sistema isolado. Ele recebe energia da rede, que pode vir de fontes fósseis, e dissipa calor. Fabricar carro e bateria também emite carbono. Por isso 'elimina a pegada de carbono' é exagero.",
-   "C": "Faltou comparar as grandezas. O calor do motor é pequeno perto do CO₂ da queima de combustíveis fósseis, que é a principal causa do aquecimento global. Por isso o Joule não é 'mais prejudicial' que os motores a combustão.",
-   "D": "Faltou lembrar o que a bateria é. Ela guarda energia química e libera corrente elétrica; não converte seus componentes 'integralmente em energia mecânica'. Seus metais (lítio, cobalto, níquel) seguem na bateria. Por isso o descarte em lixo comum é errado.",
+   "C": "Faltou comparar as grandezas. O calor do motor elétrico é pequeno perto do CO₂ emitido pela queima de combustíveis fósseis, que é a principal causa do aquecimento global. Por isso o Joule não é a principal causa nem é 'mais prejudicial' que os motores a combustão.",
+   "D": "Faltou lembrar o que a bateria é. Ela guarda energia química e libera corrente elétrica. Seus componentes (lítio, cobalto, níquel) não somem no uso e seguem na bateria. Por isso o descarte em lixo comum é errado.",
    "E": "Faltou usar P = U × i. Com a mesma potência, U dobrado reduz a corrente à metade. Como a perda é R × i², ela cai a um quarto. Logo a tensão maior tem relação direta com reduzir perdas."
   },
   "armadilha": "Cair em afirmações absolutas ('elimina', 'qualquer relação', 'lixo comum') que parecem técnicas, mas contradizem a física ou o ambiente.",
@@ -112,12 +112,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -202,6 +204,35 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
- }
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "classificacao",
+    "depois": "tema F11, conteúdo F11.3 (ou F13.5), nível 3",
+    "motivo": "A classificação atual (F04.5, princípio de Pascal e prensa hidráulica) não tem relação com a questão. Ela trata de energia, matriz elétrica, impacto ambiental e perdas por efeito Joule. Isso cabe em F13.5 (fontes de energia, usinas e impacto ambiental) ou F11.3 (potência elétrica). Este campo está fora de `resolucao`. Se o pipeline só aceitar campos dentro de `resolucao`, o responsável pelo fluxo deve ajustar a classificação.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Cada uma contradiz um fato. A queima de fósseis emite muito CO₂. A bateria contém metais que exigem descarte adequado. Para a mesma potência, mais tensão pede menos corrente e causa menos perda por Joule.",
+    "motivo": "A expressão 'metais tóxicos' é genérica demais para uma bateria de íon-lítio, e o descarte adequado é o fato que realmente derruba a D. A mudança é pequena.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "Faltou lembrar o que a bateria é. Ela guarda energia química e libera corrente elétrica. Seus componentes (lítio, cobalto, níquel) não somem no uso e seguem na bateria. Por isso o descarte em lixo comum é errado.",
+    "motivo": "A frase original dizia que ela 'não converte' componentes em energia mecânica. A bateria fornece energia elétrica, e a conversão em mecânica é feita pelo motor. A nova redação é mais precisa e mantém o argumento.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "Faltou comparar as grandezas. O calor do motor elétrico é pequeno perto do CO₂ emitido pela queima de combustíveis fósseis, que é a principal causa do aquecimento global. Por isso o Joule não é a principal causa nem é 'mais prejudicial' que os motores a combustão.",
+    "motivo": "A alternativa afirma duas coisas: que o Joule é a principal causa e que ele é mais prejudicial. A redação original refutava só a segunda. A nova refuta as duas.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "B"
+ },
+ "classificacao": "tema F11, conteúdo F11.3 (ou F13.5), nível 3"
 }

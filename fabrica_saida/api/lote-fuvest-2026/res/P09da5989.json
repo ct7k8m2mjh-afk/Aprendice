@@ -8,10 +8,10 @@
  "conceito": "Interpretar o gráfico altura × tempo de uma queda livre seguida de quique elástico: inclinação do gráfico = velocidade.",
  "resolucao": {
   "antes": {
-   "texto": "Em um gráfico de altura contra tempo, a inclinação da curva é a velocidade. Curva horizontal significa velocidade zero. Curva muito inclinada significa velocidade grande. Na queda livre, a bolinha parte do repouso e ganha velocidade a cada instante. No quique, a velocidade inverte de sentido quase de uma vez. Na subida, a bolinha perde velocidade até parar na altura de origem.",
+   "texto": "Em um gráfico de altura contra tempo, a inclinação da curva é a velocidade. Curva horizontal quer dizer velocidade zero. Curva muito inclinada quer dizer velocidade grande. Na queda, a bolinha parte do repouso e ganha velocidade a cada instante. No quique, a velocidade troca de sentido quase de uma vez. Na subida, ela perde velocidade até parar na altura de origem.",
    "formulas": [
     "inclinação do gráfico altura × tempo = velocidade",
-    "queda livre a partir do repouso: h = h0 − (g × t²) ÷ 2"
+    "queda a partir do repouso: h = h0 − (g × t²) ÷ 2"
    ],
    "simbolos": [
     [
@@ -24,7 +24,15 @@
     ],
     [
      "g",
-     "aceleração da gravidade, que faz a velocidade crescer na queda"
+     "aceleração da gravidade (≈ 10 m/s²): faz a velocidade crescer na queda"
+    ],
+    [
+     "t",
+     "tempo contado a partir do instante em que a bolinha é solta"
+    ],
+    [
+     "concavidade",
+     "o lado para onde a curva 'abre', como a boca de uma tigela (para cima) ou de um morro (para baixo)"
     ],
     [
      "quique",
@@ -43,12 +51,12 @@
    {
     "faz": "Descreva a descida",
     "conta": "h = h0 − (g × t²) ÷ 2",
-    "porque": "A velocidade cresce com o tempo. A curva fica cada vez mais inclinada até chegar ao chão, com a concavidade voltada para baixo.",
+    "porque": "A velocidade cresce com o tempo. A curva fica cada vez mais inclinada até o chão e tem a forma de um morro, aberta para baixo.",
     "tipo": "comparar"
    },
    {
     "faz": "Descreva o instante do quique",
-    "conta": "v: −v1 → +v1 quase de uma vez",
+    "conta": "v passa de −v1 para +v1",
     "porque": "O choque com o chão é muito rápido. Por isso a curva tem uma ponta (um bico) no ponto mais baixo, e não um fundo arredondado.",
     "tipo": "comparar"
    },
@@ -69,9 +77,9 @@
   "checagem": "Troque o gráfico pelo movimento. Em C, a bolinha parte devagar, acelera até o chão, inverte de uma vez e sobe desacelerando até parar na altura inicial. Isso é exatamente o que o enunciado descreve.",
   "erradas": {
    "A": "As duas partes são retas, ou seja, velocidade constante na descida e na subida. Mas na queda livre a velocidade aumenta com o tempo, então a curva não pode ser reta. Também falta a curva horizontal no topo, onde v = 0.",
-   "B": "Mostra uma parábola contínua, com fundo arredondado e inclinação zero no chão. Isso diria que a bolinha para no chão, quando na verdade ela chega ao chão na velocidade máxima. Além disso, a curva sai do topo já inclinada, mas a bolinha foi solta do repouso e deveria começar horizontal.",
+   "B": "B é uma curva suave em U, com fundo arredondado: inclinação zero no chão, ou seja, bolinha parada ali. Mas ela chega ao chão na velocidade máxima. Faltou também o topo horizontal: B sai do topo já inclinada, e a bolinha foi solta do repouso.",
    "D": "Tem os topos horizontais corretos, mas o fundo é arredondado, com inclinação zero no chão. Isso significa velocidade zero na altura mínima. No chão a velocidade é máxima e inverte de sentido bruscamente, então o fundo tem de ser um bico.",
-   "E": "Mostra uma bolinha que parte do chão, sobe até um máximo e volta ao chão, como um arremesso para cima. O enunciado diz que a bolinha é solta de cima e quica, de modo que a altura é máxima nos extremos e mínima no meio, e não o contrário."
+   "E": "E mostra a bolinha saindo do chão, subindo até um máximo e voltando ao chão, como um arremesso para cima. Faltou ler que ela é solta de cima: a altura é máxima nos extremos e mínima no meio."
   },
   "armadilha": "Escolher a curva suave em forma de U (B ou D): o quique é um choque rápido e a velocidade inverte de uma vez, então o gráfico tem um bico no chão, não um fundo arredondado.",
   "alerta": "",
@@ -94,14 +102,14 @@
  "quadro": [
   {
    "linha": "h = h0 − 5 t²",
-   "nota": "queda livre com g ≈ 10 m/s²: parábola com concavidade para baixo"
+   "nota": "queda com g ≈ 10 m/s²: curva em forma de morro, aberta para baixo"
   },
   {
    "linha": "v = −10 t",
    "nota": "a velocidade cresce em módulo: a curva fica cada vez mais inclinada"
   },
   {
-   "linha": "chão: v = −v1 → +v1",
+   "linha": "chão: v passa de −v1 a +v1",
    "nota": "o quique inverte a velocidade de uma vez: bico no gráfico"
   },
   {
@@ -123,11 +131,15 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -162,6 +174,86 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "C"
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Em um gráfico de altura contra tempo, a inclinação da curva é a velocidade. Curva horizontal quer dizer velocidade zero. Curva muito inclinada quer dizer velocidade grande. Na queda, a bolinha parte do repouso e ganha velocidade a cada instante. No quique, a velocidade troca de sentido quase de uma vez. Na subida, ela perde velocidade até parar na altura de origem.",
+    "motivo": "Frases mais curtas e sem ambiguidade."
+   },
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "inclinação do gráfico altura × tempo = velocidade",
+     "queda a partir do repouso: h = h0 − (g × t²) ÷ 2"
+    ],
+    "motivo": "Troca 'queda livre' por 'queda', mais simples."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "h",
+      "altura da bolinha em relação ao chão"
+     ],
+     [
+      "h0",
+      "altura de onde a bolinha foi solta"
+     ],
+     [
+      "g",
+      "aceleração da gravidade (≈ 10 m/s²): faz a velocidade crescer na queda"
+     ],
+     [
+      "t",
+      "tempo contado a partir do instante em que a bolinha é solta"
+     ],
+     [
+      "concavidade",
+      "o lado para onde a curva 'abre', como a boca de uma tigela (para cima) ou de um morro (para baixo)"
+     ],
+     [
+      "quique",
+      "choque da bolinha com o chão, em que ela inverte o sentido do movimento"
+     ]
+    ],
+    "motivo": "Explica t e 'concavidade', termos usados nos passos e não definidos."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "A velocidade cresce com o tempo. A curva fica cada vez mais inclinada até o chão e tem a forma de um morro, aberta para baixo.",
+    "motivo": "Troca o jargão 'concavidade voltada para baixo' por descrição simples."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "v passa de −v1 para +v1",
+    "motivo": "Notação mais legível; v1 é a velocidade com que a bolinha chega ao chão."
+   },
+   {
+    "campo": "resolucao.quadro[2].linha",
+    "depois": "chão: v passa de −v1 a +v1",
+    "motivo": "Coerência com o passo e linha curta para o celular."
+   },
+   {
+    "campo": "resolucao.quadro[0].nota",
+    "depois": "queda com g ≈ 10 m/s²: curva em forma de morro, aberta para baixo",
+    "motivo": "Evita o termo 'concavidade'."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "B é uma curva suave em U, com fundo arredondado: inclinação zero no chão, ou seja, bolinha parada ali. Mas ela chega ao chão na velocidade máxima. Faltou também o topo horizontal: B sai do topo já inclinada, e a bolinha foi solta do repouso.",
+    "motivo": "Frases mais curtas e foco no que faltou a quem marcou B."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "E mostra a bolinha saindo do chão, subindo até um máximo e voltando ao chão, como um arremesso para cima. Faltou ler que ela é solta de cima: a altura é máxima nos extremos e mínima no meio.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou E."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "C"
  }
 }

@@ -25,11 +25,11 @@
     ],
     [
      "ligação metálica",
-     "cátions de metal imersos num 'mar' de elétrons livres; ocorre em metais e ligas"
+     "cátions (íons positivos) de metal imersos num 'mar' de elétrons livres; ocorre em metais e ligas"
     ],
     [
      "ligação iônica",
-     "atração entre cátion e ânion, após transferência de elétrons"
+     "atração entre cátion (íon positivo) e ânion (íon negativo), após transferência de elétrons"
     ],
     [
      "ligação covalente",
@@ -38,13 +38,17 @@
     [
      "diagonal da tabela",
      "pares de átomos iguais, como Na–Na ou Cl–Cl"
+    ],
+    [
+     "liga",
+     "mistura de metais, como o bronze (cobre e estanho)"
     ]
    ]
   },
   "pista": "Separe os seis elementos em dois grupos, metais e ametais. Depois pergunte, para cada quadradinho da tabela, que tipo de par ele representa.",
   "passos": [
    {
-    "faz": "Classifique os seis elementos",
+    "faz": "Separe os metais",
     "conta": "Metais: Na, K, Ca",
     "porque": "Na, K e Ca ficam à esquerda da tabela periódica e perdem elétrons com facilidade.",
     "tipo": "localizar"
@@ -57,19 +61,19 @@
    },
    {
     "faz": "Preencha a diagonal",
-    "conta": "Na, K, Ca: Δ | Cl, Br, I: ○",
+    "conta": "Na–Na, K–K, Ca–Ca: Δ",
     "porque": "Átomo de metal com outro igual forma ligação metálica. Os halogênios formam as moléculas Cl2, Br2 e I2, com ligação covalente.",
     "tipo": "comparar"
    },
    {
     "faz": "Preencha os pares metal–metal",
     "conta": "Na–K, Na–Ca, K–Ca: Δ",
-    "porque": "Metais não formam ânions; eles se unem em ligas por ligação metálica.",
+    "porque": "Metais não formam ânions (íons negativos), então não há quem receba elétrons. Eles se unem por ligação metálica, como nas ligas.",
     "tipo": "comparar"
    },
    {
     "faz": "Preencha metal–ametal e ametal–ametal",
-    "conta": "metais × (Cl, Br, I): ■ | Cl–Br, Cl–I, Br–I: ○",
+    "conta": "metal–Cl, Br, I: ■ | Cl–Br etc.: ○",
     "porque": "Metal doa elétron ao halogênio e forma ligação iônica. Entre dois halogênios não há quem doe, então eles compartilham elétrons.",
     "tipo": "comparar"
    },
@@ -103,7 +107,7 @@
   },
   {
    "nome": "eliminação pelo par Na–K",
-   "ideia": "Na–K é metal com metal e deve ser Δ. Isso elimina B (■), C (○) e D (■). A Figura A também marca Δ em Na–K, então confira Na–Cl: deve ser ■ (iônica). A marca Δ e E marca ■. Só a E resiste."
+   "ideia": "Na–K é metal com metal e deve ser Δ. Isso elimina B (■ na figura), C (○) e D (■). A Figura A também marca Δ em Na–K, então confira Na–Cl, que deve ser ■ (iônica). A marca Δ nesse par e a E marca ■. Só a E resiste."
   }
  ],
  "quadro": [
@@ -142,11 +146,15 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -181,6 +189,77 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "E"
+  "fatos_resposta": "E",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[0].faz",
+    "depois": "Separe os metais",
+    "motivo": "O comando dizia 'classifique os seis elementos', mas o passo trata só dos três metais. O passo seguinte trata dos ametais."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "Na–Na, K–K, Ca–Ca: Δ",
+    "motivo": "A conta anterior ('Na, K, Ca: Δ | Cl, Br, I: ○') não cabia na tela de celular e não dizia que eram pares. Agora está curta e clara."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Metais não formam ânions (íons negativos), então não há quem receba elétrons. Eles se unem por ligação metálica, como nas ligas.",
+    "motivo": "Explicava 'ânions' sem definir. Também a frase 'em ligas' ficava solta."
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "metal–Cl, Br, I: ■ | Cl–Br etc.: ○",
+    "motivo": "A conta original era longa demais para a tela do celular."
+   },
+   {
+    "campo": "resolucao.passos[5].conta",
+    "depois": "Só a Figura E tem esse padrão",
+    "motivo": "Mantido sem mudança de sentido; o porque explica o padrão."
+   },
+   {
+    "campo": "resolucao.caminhos[1].ideia",
+    "depois": "Na–K é metal com metal e deve ser Δ. Isso elimina B (■ na figura), C (○) e D (■). A Figura A também marca Δ em Na–K, então confira Na–Cl, que deve ser ■ (iônica). A marca Δ nesse par e a E marca ■. Só a E resiste.",
+    "motivo": "A frase 'A marca Δ e E marca ■' era ambígua (A é figura ou verbo?). Agora está clara."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "Na, K, Ca",
+      "metais: Na e K são alcalinos (família 1) e Ca é alcalino-terroso (família 2)"
+     ],
+     [
+      "Cl, Br, I",
+      "ametais da família dos halogênios (família 17)"
+     ],
+     [
+      "ligação metálica",
+      "cátions (íons positivos) de metal imersos num 'mar' de elétrons livres; ocorre em metais e ligas"
+     ],
+     [
+      "ligação iônica",
+      "atração entre cátion (íon positivo) e ânion (íon negativo), após transferência de elétrons"
+     ],
+     [
+      "ligação covalente",
+      "compartilhamento de pares de elétrons entre ametais"
+     ],
+     [
+      "diagonal da tabela",
+      "pares de átomos iguais, como Na–Na ou Cl–Cl"
+     ],
+     [
+      "liga",
+      "mistura de metais, como o bronze (cobre e estanho)"
+     ]
+    ],
+    "motivo": "Cátion, ânion e liga apareciam sem definição para um aluno de 17 anos."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "E"
  }
 }

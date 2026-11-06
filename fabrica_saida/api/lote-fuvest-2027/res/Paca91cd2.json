@@ -64,10 +64,10 @@
   "resposta": "Alternativa C: 820 = 729 + 81 + 9 + 1, quatro parcelas, logo 4 rodadas ganhas.",
   "checagem": "Some de volta: 729 + 81 = 810; 810 + 9 = 819; 819 + 1 = 820. Fecha com 4 parcelas, todas diferentes.",
   "erradas": {
-   "A": "2 rodadas não servem: o 729 é obrigatório e sobram 91, que não é potência de 3 (os vizinhos são 81 e 243). Quem marcou A parou antes de decompor o 91.",
+   "A": "2 rodadas não servem: duas potências de 3 somam 820 só se uma delas for 729, e aí sobram 91, que não é potência de 3 (fica entre 81 e 243). Nenhum par fecha 820.",
    "B": "3 rodadas não servem: depois do 729 e do 81 sobram 10, que não é potência de 3. O 10 ainda precisa de duas parcelas (9 + 1), totalizando 4.",
-   "D": "5 rodadas não servem: 729, 81, 9 e 1 já somam 820 com 4 parcelas. Uma quinta parcela passaria de 820.",
-   "E": "6 rodadas não servem: a decomposição é única e tem 4 parcelas. Seis valores distintos somariam mais ou menos que 820; quem marcou E provavelmente contou rodadas até 729 (sete valores) em vez de só as vencidas."
+   "D": "5 rodadas não servem: a decomposição de 820 em potências distintas de 3 é única (729 + 81 + 9 + 1, ou 1010101 na base 3) e tem 4 parcelas. Cinco parcelas distintas não dão 820.",
+   "E": "6 rodadas não servem: a decomposição de 820 em potências distintas de 3 é única (1010101 na base 3) e tem 4 parcelas. Seis parcelas distintas não dão 820."
   },
   "armadilha": "A rodada k vale 3^(k−1), não 3k: quem usa 3, 6, 9... não consegue fechar 820.",
   "alerta": "",
@@ -134,12 +134,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -209,6 +211,28 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "2 rodadas não servem: duas potências de 3 somam 820 só se uma delas for 729, e aí sobram 91, que não é potência de 3 (fica entre 81 e 243). Nenhum par fecha 820.",
+    "motivo": "Removida a origem especulada do erro ('parou antes de decompor'); no lugar entra o teste objetivo.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "5 rodadas não servem: a decomposição de 820 em potências distintas de 3 é única (729 + 81 + 9 + 1, ou 1010101 na base 3) e tem 4 parcelas. Cinco parcelas distintas não dão 820.",
+    "motivo": "O argumento correto é a unicidade da decomposição, não só que uma quinta parcela passaria de 820.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "6 rodadas não servem: a decomposição de 820 em potências distintas de 3 é única (1010101 na base 3) e tem 4 parcelas. Seis parcelas distintas não dão 820.",
+    "motivo": "Removidos 'provavelmente' e a origem inventada, que o guia proíbe; no lugar entra o teste objetivo.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "C"
  }
 }

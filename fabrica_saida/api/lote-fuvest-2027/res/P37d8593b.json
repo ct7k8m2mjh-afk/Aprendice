@@ -12,7 +12,7 @@
    "formulas": [
     "intemperismo físico: a rocha se quebra, mas a composição química NÃO muda",
     "intemperismo químico: minerais primários viram secundários (argilas), com água, O₂ e CO₂",
-    "clima árido ou frio, com grande amplitude térmica: predomina o físico",
+    "clima árido, polar ou de grande amplitude térmica: predomina o físico",
     "clima quente e úmido: predomina o químico"
    ],
    "simbolos": [
@@ -89,7 +89,7 @@
    "B": "Descreve o intemperismo químico: minerais primários viram secundários (argilas) pela ação de água, O₂ e CO₂, mais intenso em clima quente e úmido. O comando pede o físico, em que a composição não muda.",
    "C": "Descreve a hidrólise, em que a água quebra ligações de uma molécula maior. É uma reação química, e o intemperismo físico não envolve reação química.",
    "D": "D descreve sais (carbonato de cálcio ou gipsita) que se acumulam no solo de clima seco. Isso é acúmulo no perfil do solo, não rocha se quebrando. Não é intemperismo físico.",
-   "E": "E descreve o intemperismo biológico. Raízes quebram rochas (físico), mas ácidos de raízes e bactérias dissolvem minerais (químico). Como mistura os dois, não define só o físico."
+   "E": "E descreve o intemperismo biológico, que engloba ações físicas (raízes quebrando rochas) e químicas (ácidos orgânicos dissolvendo minerais). Como mistura os dois tipos, não define só o intemperismo físico."
   },
   "armadilha": "Marcar a E porque raízes quebram rochas, sem notar que ela mistura processos químicos e atribui tudo a seres vivos, e a pergunta é só sobre o físico.",
   "alerta": "",
@@ -125,12 +125,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -227,6 +229,22 @@
    "A alternativa A afirma que o intemperismo físico é 'mais comum em climas áridos, desérticos ou polares': é a generalização usual, e a letra segue como gabarito.",
    "O texto-base sobre o conceito de solo não é usado pelo comando; a pergunta é independente dele."
   ],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.antes.formulas[2]",
+    "depois": "clima árido, polar ou de grande amplitude térmica: predomina o físico",
+    "motivo": "A regra original dizia 'árido ou frio', o que é impreciso. A alternativa A fala em climas áridos, desérticos ou polares. Os termos ficam mais fiéis ao enunciado.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "E descreve o intemperismo biológico, que engloba ações físicas (raízes quebrando rochas) e químicas (ácidos orgânicos dissolvendo minerais). Como mistura os dois tipos, não define só o intemperismo físico.",
+    "motivo": "A frase 'Raízes quebram rochas (físico), mas ácidos... (químico)' está correta. Porém 'intemperismo biológico' é tratado como categoria à parte, e a E o define de forma ampla. A nova redação deixa claro que a E é uma definição mista, não a do físico.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "A"
  }
 }

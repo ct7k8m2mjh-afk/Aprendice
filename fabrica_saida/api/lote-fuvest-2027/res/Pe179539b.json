@@ -42,8 +42,8 @@
    },
    {
     "faz": "Leia o gráfico",
-    "conta": "Alvenaria: 601 (urbana)\nEdifícios: 186 (urbana)\nCafé: 184 (rural)",
-    "porque": "Alvenaria e edifícios são construção civil, e a extração de pedras abastece esse setor. A administração pública também é urbana. Só o café (184) é atividade rural.",
+    "conta": "Alvenaria: 601 (urbana)\nEdifícios: 186 (urbana)\nAdm. pública: 341 (urbana)\nCafé: 184 (rural)",
+    "porque": "Alvenaria e edifícios são construção civil, e a extração de pedras para construção abastece esse setor. A administração pública é atividade urbana. Só o café (184) é claramente rural.",
     "tipo": "localizar"
    },
    {
@@ -69,12 +69,12 @@
   "checagem": "Troque 'urbano' por 'rural' na pergunta: aí a D serviria. Como o enunciado fala em centros urbanos e o gráfico mostra obras e construção, só a C se encaixa.",
   "erradas": {
    "A": "A diz que não há respaldo legal, mas o Código Penal (art. 149) pune esse crime. O problema é fiscalizar e aplicar a lei, não a falta dela. Alta empregabilidade também não explica a vulnerabilidade.",
-   "B": "B fala de empresas públicas contratando para o café. O texto não diz isso, e café é atividade rural (184 resgates), enquanto a pergunta é sobre cidades. Quem marcou B se prendeu à palavra 'administração pública' do gráfico.",
+   "B": "B fala de empresas públicas contratando para o café. O gráfico não mostra isso, e café é atividade rural (184 resgates), enquanto a pergunta é sobre cidades. Quem marcou B pode ter se prendido à legenda 'Administração pública em geral'.",
    "D": "Concentração fundiária e isolamento geográfico explicam o trabalho escravo rural, em fazendas distantes. A pergunta é sobre centros urbanos, onde a terra e o isolamento não são a causa.",
    "E": "Nas cidades brasileiras a desigualdade social persiste. A superexploração decorre de precarização, desemprego e informalidade, não de redução da desigualdade. A afirmação não tem base no texto nem na realidade."
   },
   "armadilha": "Associar trabalho escravo só ao campo (concentração fundiária, isolamento) e esquecer que a pergunta é sobre o meio urbano.",
-  "alerta": "O enunciado diz que o balanço foi divulgado em 28/01/2025 sobre as ações realizadas 'ao longo de 2025', o que é cronologicamente impossível. Isso não altera a resposta.",
+  "alerta": "O enunciado diz que o balanço foi divulgado em 28/01/2025 sobre as ações realizadas 'ao longo de 2025'. Isso é cronologicamente impossível, pois o balanço só poderia cobrir 2024. Os 68% (urbano) parecem ser o dado de 2024, e os 30% citados 'de 2024' ficam confusos. Isso não altera a resposta.",
   "essencial": {
    "pede": "A causa social do trabalho análogo à escravidão nas cidades.",
    "chave": "Precarização urbana: setores que se expandem com contratos informais, mais desemprego e informalidade, geram vulnerabilidade.",
@@ -107,12 +107,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -203,6 +205,34 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "Alvenaria e edifícios são construção civil, e a extração de pedras para construção abastece esse setor. A administração pública é atividade urbana. Só o café (184) é claramente rural.",
+    "motivo": "A extração de pedras não é construção civil. Ela fornece insumo para a construção, e a redação anterior misturava as duas coisas. A administração pública é urbana por natureza, então a frase ficou mais precisa. O resgate em extração e britamento pode ocorrer fora da cidade, e o texto não fala disso.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "Alvenaria: 601 (urbana)\nEdifícios: 186 (urbana)\nAdm. pública: 341 (urbana)\nCafé: 184 (rural)",
+    "motivo": "A administração pública (341) é citada no porque e aparece no gráfico, mas faltava na conta. Foi incluída para a conta bater com a explicação.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "B fala de empresas públicas contratando para o café. O gráfico não mostra isso, e café é atividade rural (184 resgates), enquanto a pergunta é sobre cidades. Quem marcou B pode ter se prendido à legenda 'Administração pública em geral'.",
+    "motivo": "A afirmação sobre a causa do erro de quem marcou B estava dada como fato. Foi suavizada. Também foi trocado 'O texto não diz isso' por 'O gráfico não mostra isso', porque a legenda do gráfico é o que cita a administração pública.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.alerta",
+    "depois": "O enunciado diz que o balanço foi divulgado em 28/01/2025 sobre as ações realizadas 'ao longo de 2025'. Isso é cronologicamente impossível, pois o balanço só poderia cobrir 2024. Os 68% (urbano) parecem ser o dado de 2024, e os 30% citados 'de 2024' ficam confusos. Isso não altera a resposta.",
+    "motivo": "A frase original só apontava a impossibilidade. O trecho 'diferente de 2024, quando era 30%' reforça a inconsistência de datas do enunciado. Foi um ajuste de clareza, sem mudar a conclusão. Não afirmo qual ano o dado representa, então o trecho foi escrito como 'parecem'.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "C"
  }
 }

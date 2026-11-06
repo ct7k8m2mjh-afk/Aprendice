@@ -53,7 +53,7 @@
    {
     "faz": "Identifique o grupo do parasita",
     "conta": "Taenia solium → platelminto",
-    "porque": "Tênias são vermes achatados. Isso elimina nematódeo (B) e anelídeo (D).",
+    "porque": "Tênias são vermes achatados (platelmintos). Isso elimina nematódeo (B) e anelídeo (D).",
     "tipo": "eliminar"
    },
    {
@@ -86,7 +86,7 @@
   "erradas": {
    "A": "Descreve a teníase. Comer carne suína com cisticercos gera a tênia adulta no intestino, não neurocisticercose. A neurocisticercose vem de ovos ingeridos, e a larva no cérebro não vira adulta.",
    "B": "T. solium não é nematódeo, é platelminto. Nematódeos são vermes cilíndricos, como a lombriga. A via por ovos está certa, mas o grupo está errado.",
-   "C": "A forma ingerida na neurocisticercose é o ovo, não o cisticerco. Cisticercos estão na carne de porco, não em vegetais. Vegetais contaminados carregam ovos.",
+   "C": "A forma ingerida na neurocisticercose é o ovo, não o cisticerco. Cisticercos ficam na carne de porco (ou de boi, na T. saginata), não em vegetais. Vegetais contaminados carregam ovos.",
    "D": "T. solium não é anelídeo (minhoca, sanguessuga). Larvas que penetram a pele a partir do solo são de nematódeos como o ancilóstomo, e não da tênia."
   },
   "armadilha": "Trocar teníase (ingestão de cisticerco na carne) por cisticercose (ingestão de ovos).",
@@ -119,12 +119,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -232,6 +234,22 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.passos[0].porque",
+    "depois": "Tênias são vermes achatados (platelmintos). Isso elimina nematódeo (B) e anelídeo (D).",
+    "motivo": "Ajuste mínimo de precisão: o 'porque' agora diz explicitamente que as tênias são platelmintos. O conteúdo factual já estava correto.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "A forma ingerida na neurocisticercose é o ovo, não o cisticerco. Cisticercos ficam na carne de porco (ou de boi, na T. saginata), não em vegetais. Vegetais contaminados carregam ovos.",
+    "motivo": "Ajuste menor: o cisticerco ocorre em tecidos de hospedeiros intermediários, e não apenas no porco. Como a questão trata de T. solium, a mudança é opcional e não altera a conclusão.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "E"
  }
 }

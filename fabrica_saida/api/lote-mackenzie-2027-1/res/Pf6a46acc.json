@@ -65,7 +65,7 @@
    {
     "faz": "Leia a ordem dos picos",
     "conta": "Estrogênio (linha contínua): pico ≈ 90",
-    "porque": "A linha contínua sobe no proestro e chega ao pico antes das outras duas, perto do rótulo 'estro'.",
+    "porque": "A linha contínua sobe no proestro e chega ao pico (≈ 90) entre o proestro e o estro, antes das outras duas.",
     "tipo": "localizar"
    },
    {
@@ -76,7 +76,7 @@
    },
    {
     "faz": "Localize a progesterona",
-    "conta": "Progesterona: ≈ 5 a 15 até o estro; ≈ 97 no diestro",
+    "conta": "Progesterona: ≈ 5 a 15 até o estro; ≈ 97 entre estro e diestro",
     "porque": "A linha tracejada sobe só um pouco no proestro e no estro. Ela dispara depois do pico de LH e chega ao máximo (≈ 97) no diestro, quando o corpo lúteo está formado.",
     "tipo": "localizar"
    },
@@ -105,7 +105,7 @@
    "A": "No gráfico o pico de estrogênio (≈ 90) vem ANTES do pico de LH (≈ 97); os picos não coincidem. Além disso, o estrogênio alto estimula o pico de LH, e é o LH que desencadeia a ovulação, não o estrogênio diretamente.",
    "B": "No ciclo menstrual o pico de LH também vem ANTES da ovulação, pois é ele que a provoca. Quem marcou B achou que o LH vir antes explicaria o óvulo imaturo, mas a imaturidade é só uma particularidade da cadela.",
    "C": "O enunciado diz que a cadela libera óvulos imaturos, que só terminam de amadurecer no oviduto. 'Maduros nos dois casos' contradiz o texto. Quem marcou C esqueceu essa particularidade da cadela.",
-   "E": "O gráfico até mostra uma subida leve da progesterona no proestro, mas quem desencadeia a ovulação é o pico de LH, não a progesterona. Isso vale também para o ciclo menstrual, então 'ao contrário do que ocorre' é falso."
+   "E": "No gráfico a progesterona fica baixa (≈ 5 a 10) no proestro e só dispara depois do pico de LH, então não sobe 'antes do pico de LH' de forma relevante. Quem desencadeia a ovulação é o pico de LH, não a progesterona. Isso vale também para o ciclo menstrual, então 'ao contrário do que ocorre' é falso."
   },
   "armadilha": "Achar que o óvulo imaturo da cadela mudaria a ordem dos hormônios; a ordem (estrogênio, LH, ovulação, progesterona) é a mesma nos dois ciclos.",
   "alerta": "",
@@ -141,12 +141,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -315,6 +317,28 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.passos[0].porque",
+    "depois": "A linha contínua sobe no proestro e chega ao pico (≈ 90) entre o proestro e o estro, antes das outras duas.",
+    "motivo": "No gráfico, o pico de estrogênio fica na faixa entre os rótulos 'proestro' e 'estro', ou seja, no fim do proestro. 'Perto do rótulo estro' era impreciso e entrava em conflito com o roteiro do visual e com o passo 1.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "Progesterona: ≈ 5 a 15 até o estro; ≈ 97 entre estro e diestro",
+    "motivo": "O pico de progesterona (≈ 97) cai entre os rótulos 'estro' e 'diestro', um pouco antes de 'diestro'. Dizer 'no diestro' é aproximado. Os demais trechos que citam o diestro são aceitáveis, pois a progesterona alta é a marca do diestro.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "No gráfico a progesterona fica baixa (≈ 5 a 10) no proestro e só dispara depois do pico de LH, então não sobe 'antes do pico de LH' de forma relevante. Quem desencadeia a ovulação é o pico de LH, não a progesterona. Isso vale também para o ciclo menstrual, então 'ao contrário do que ocorre' é falso.",
+    "motivo": "O texto original dizia que o gráfico 'até mostra uma subida leve' da progesterona no proestro. Isso dava a entender que o início da alternativa E era verdadeiro. O trecho é impreciso. Na curva, a subida antes do pico de LH é mínima, e o erro principal de E é atribuir à progesterona o papel de desencadear a ovulação.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "D"
  }
 }

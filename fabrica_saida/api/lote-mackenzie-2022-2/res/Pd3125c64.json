@@ -85,7 +85,7 @@
   "erradas": {
    "A": "−228 kJ/mol não confere. Nenhuma conta com os ΔHf e os coeficientes chega a esse valor; o correto é −1368. Os produtos sozinhos já valem −1646 kJ, muito mais que −228.",
    "B": "−342 kJ/mol não confere. Nenhuma conta com os ΔHf e os coeficientes chega a esse valor. Dois CO2 e três H2O já liberam −1646 kJ, muito mais que isso.",
-   "C": "−684 kJ/mol não confere. Os produtos sozinhos valem −1646 kJ, e o etanol só desconta +278 kJ, então o resultado não fica em −684. Quem marcou provavelmente esqueceu os coeficientes 2 e 3.",
+   "C": "−684 kJ/mol é a metade do correto (−1368 ÷ 2). Não confere: os produtos sozinhos valem −1646 kJ e o etanol só desconta +278 kJ, então o resultado é −1368, não −684.",
    "E": "−2736 kJ/mol sai de dobrar o resultado: 2 × (−1368). Valeria para 2 mol de etanol, mas a entalpia de combustão é por 1 mol de etanol."
   },
   "armadilha": "Esquecer os coeficientes (2 CO2 e 3 H2O) ou o sinal do ΔHf do etanol: ele é reagente, então se subtrai (−1646 − (−278)).",
@@ -182,12 +182,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -265,6 +267,16 @@
    "O campo 'nivel' do JSON está 5, enquanto a classificação atual diz nível 6; não alterei, apenas registrei a divergência.",
    "As equações do enunciado trazem ΔHf do etanol já líquido, o que bate com o uso na resolução; sem erro de fato."
   ],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "−684 kJ/mol é a metade do correto (−1368 ÷ 2). Não confere: os produtos sozinhos valem −1646 kJ e o etanol só desconta +278 kJ, então o resultado é −1368, não −684.",
+    "motivo": "Retira a especulação 'provavelmente esqueceu os coeficientes': esquecer os coeficientes daria −394 − 286 + 278 = −402, não −684. A relação real é ser exatamente metade de −1368.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "D"
  }
 }

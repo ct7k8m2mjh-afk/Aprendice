@@ -55,14 +55,14 @@
    },
    {
     "faz": "Descarte A e E (Plasmodium no solo ou na água)",
-    "conta": "Plasmodium: só no sangue e no mosquito",
+    "conta": "Plasmodium: fígado, sangue e mosquito",
     "porque": "O protozoário é transmitido pela picada. Ele não sai do solo para as poças nem se desenvolve na água. A água das poças serve para as larvas do mosquito.",
     "tipo": "eliminar"
    },
    {
-    "faz": "Descarte B: ela inverte o texto",
+    "faz": "Descarte B: o texto não sustenta a migração",
     "conta": "texto: bordas = poças e calor",
-    "porque": "O texto diz que as bordas da mata favorecem o mosquito. B diz que ele sai da mata densa, que teria mais calor e menos água. Isso contradiz o texto.",
+    "porque": "O texto diz que as bordas da mata, com poças sombreadas e quentes, favorecem o mosquito. Ele não fala de migração da mata densa, nem diz que lá faz mais calor e há menos água. B inventa isso.",
     "tipo": "eliminar"
    },
    {
@@ -79,10 +79,10 @@
    }
   ],
   "resposta": "Alternativa D: florestas íntegras, mais diversas, tendem a limitar o mosquito vetor e o contato entre patógenos de animais e pessoas, como o texto sugere.",
-  "checagem": "Verifique o que cada alternativa diz sobre o Plasmodium: A e E o colocam no solo ou na água, o que é falso. B contradiz o texto, e C usa \"depende\", que exclui os vetores. Só D não contém nenhum erro.",
+  "checagem": "Verifique o que cada alternativa diz sobre o Plasmodium: A e E o colocam no solo ou na água, o que é falso. B não tem apoio no texto, e C usa \"depende\", que exclui os vetores. Só D não contém nenhum erro.",
   "erradas": {
    "A": "Diz que o solo libera o Plasmodium e que ele infecta mosquitos nas poças. O Plasmodium é um parasita do sangue humano e do mosquito, passado pela picada. Não vive livre no solo nem na água.",
-   "B": "Inverte o texto: o desmatamento cria bordas com poças e calor que favorecem o mosquito. O texto não diz que ele migra da mata densa, nem que lá faz mais calor e há menos água.",
+   "B": "O texto diz que as bordas, com poças e calor, favorecem o mosquito. Ele não fala de migração a partir da mata densa, nem que lá faz mais calor e há menos água. B acrescenta o que o texto não sustenta.",
    "C": "Diz que a transmissão \"depende do contato físico direto\". Muitas zoonoses passam por vetor: a febre amarela silvestre vai do macaco ao ser humano pela picada do mosquito. A palavra \"depende\" generaliza e torna a frase falsa.",
    "E": "Atribui ao calor da água o desenvolvimento do Plasmodium \"na água\". O texto diz que a poça quente favorece o mosquito. O protozoário se desenvolve no sangue humano e no mosquito, não na água."
   },
@@ -97,7 +97,7 @@
  "caminhos": [
   {
    "nome": "Eliminação por fato biológico",
-   "ideia": "Procure alternativas que contradizem o ciclo da malária: Plasmodium no solo (A) ou na água (E). Depois, as que contradizem o texto (B) ou generalizam (C). Resta D."
+   "ideia": "Procure alternativas que contradizem o ciclo da malária: Plasmodium no solo (A) ou na água (E). Depois, as que não têm apoio no texto (B) ou generalizam (C). Resta D."
   },
   {
    "nome": "Palavras absolutas",
@@ -109,7 +109,7 @@
   "cabe": true,
   "porque": "O ciclo de transmissão e o efeito do desmatamento ficam claros em animação.",
   "tipo": "fluxo",
-  "roteiro": "Quadro 1: floresta densa, com muitas espécies e poucas poças. Quadro 2: árvores caem e surgem bordas com poças sombreadas e quentes. Quadro 3: o Anopheles se multiplica nas poças e animais silvestres se aproximam das casas. Quadro 4: o ciclo da malária em setas: pessoa infectada → picada do mosquito → outra pessoa, com o Plasmodium no sangue e no mosquito, nunca no solo. Quadro 5: floresta conservada em contraste, com menos poças e menos contato."
+  "roteiro": "Quadro 1: floresta densa, com muitas espécies e poucas poças. Quadro 2: árvores caem e surgem bordas com poças sombreadas e quentes. Quadro 3: o Anopheles se multiplica nas poças e animais silvestres se aproximam das casas. Quadro 4: o ciclo da malária em setas: pessoa infectada → picada do mosquito → outra pessoa, com o Plasmodium no fígado e no sangue humano e no mosquito, nunca no solo. Quadro 5: floresta conservada em contraste, com menos poças e menos contato."
  },
  "fontes": [],
  "confere": true,
@@ -120,12 +120,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -230,6 +232,52 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "Plasmodium: fígado, sangue e mosquito",
+    "motivo": "O Plasmodium também passa pelo fígado humano; 'só no sangue' era impreciso.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].faz",
+    "depois": "Descarte B: o texto não sustenta a migração",
+    "motivo": "O texto não diz que o mosquito migra da mata densa. Dizer que 'inverte o texto' era forte demais.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "O texto diz que as bordas da mata, com poças sombreadas e quentes, favorecem o mosquito. Ele não fala de migração da mata densa, nem diz que lá faz mais calor e há menos água. B inventa isso.",
+    "motivo": "Precisão: a alternativa é infundada, não necessariamente contraditória.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "O texto diz que as bordas, com poças e calor, favorecem o mosquito. Ele não fala de migração a partir da mata densa, nem que lá faz mais calor e há menos água. B acrescenta o que o texto não sustenta.",
+    "motivo": "Evita afirmar contradição direta com o texto.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Verifique o que cada alternativa diz sobre o Plasmodium: A e E o colocam no solo ou na água, o que é falso. B não tem apoio no texto, e C usa \"depende\", que exclui os vetores. Só D não contém nenhum erro.",
+    "motivo": "Coerência com a correção de B.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.caminhos[0].ideia",
+    "depois": "Procure alternativas que contradizem o ciclo da malária: Plasmodium no solo (A) ou na água (E). Depois, as que não têm apoio no texto (B) ou generalizam (C). Resta D.",
+    "motivo": "Coerência com B.",
+    "fonte": ""
+   },
+   {
+    "campo": "visual.roteiro",
+    "depois": "Quadro 1: floresta densa, com muitas espécies e poucas poças. Quadro 2: árvores caem e surgem bordas com poças sombreadas e quentes. Quadro 3: o Anopheles se multiplica nas poças e animais silvestres se aproximam das casas. Quadro 4: o ciclo da malária em setas: pessoa infectada → picada do mosquito → outra pessoa, com o Plasmodium no fígado e no sangue humano e no mosquito, nunca no solo. Quadro 5: floresta conservada em contraste, com menos poças e menos contato.",
+    "motivo": "Incluir o fígado no ciclo.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "D"
  }
 }

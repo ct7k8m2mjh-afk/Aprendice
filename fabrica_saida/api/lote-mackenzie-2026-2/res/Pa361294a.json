@@ -29,7 +29,7 @@
     ],
     [
      "óxido neutro",
-     "óxido que não reage com água, ácido ou base (exemplos: CO, NO, N2O)"
+     "óxido que não reage com água, ácido ou base (exemplos: CO, N2O)"
     ],
     [
      "espontânea",
@@ -60,7 +60,7 @@
    {
     "faz": "Classifique o NO2 e a espontaneidade",
     "conta": "NO2 + H2O → ácido (HNO3)",
-    "porque": "O NO2 forma ácido ao reagir com água: é óxido ácido, não neutro. Na equação do enunciado, a reação acontece na atmosfera, sem energia externa, logo é espontânea. A (d) erra nas duas partes.",
+    "porque": "O NO2 forma ácido ao reagir com água: é óxido ácido, não neutro. A reação ocorre na atmosfera sem energia externa contínua, e a conversão de NO2 em HNO3 é favorável. Logo é espontânea. A (d) erra nas duas partes.",
     "tipo": "eliminar"
    },
    {
@@ -76,7 +76,7 @@
    "A": "O HNO3 é ácido forte: libera H⁺ (HNO3 → H⁺ + NO3⁻) e AUMENTA a concentração de H⁺, baixando o pH. Quem marcou A trocou o sentido: ácido aumenta H⁺, não diminui.",
    "B": "Ter nitrogênio na fórmula não basta para fertilizar. A chuva ácida acidifica o solo e arrasta nutrientes (Ca²⁺, Mg²⁺, K⁺), então a fertilidade cai. Faltou olhar o efeito do H⁺, e não só o N do HNO3.",
    "C": "O nox do N vai de +4 (NO2) para +5 (HNO3). Nox que sobe é oxidação, não redução. Quem é reduzido é o O2 (de 0 para −2). Faltou calcular o nox antes de classificar.",
-   "D": "O NO2 reage com água e forma ácido (HNO3): é óxido ácido. Neutros típicos são CO e NO. A reação ocorre sozinha na atmosfera, logo é espontânea. Faltou testar se o óxido reage com água."
+   "D": "O NO2 reage com água e forma ácido (HNO3): é óxido ácido. Neutros típicos são CO e N2O. A reação ocorre sozinha na atmosfera, logo é espontânea. Faltou testar se o óxido reage com água."
   },
   "armadilha": "Achar que chuva ácida 'diminui' a concentração de H⁺ ou que o nitrogênio do ácido nítrico fertiliza o solo, sem considerar o efeito de acidificação.",
   "alerta": "",
@@ -133,12 +133,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -213,6 +215,31 @@
    "O campo 'nivel' está 5 no JSON e 6 na classificação atual: conferir qual vale.",
    "Em resolucao.passos[3], a afirmação 'a reação ocorre na atmosfera, logo é espontânea' é um argumento simplificado; aceitável, mas o corretor 1 pode revisar."
   ],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.antes.simbolos[3]",
+    "depois": [
+     "óxido neutro",
+     "óxido que não reage com água, ácido ou base (exemplos: CO, N2O)"
+    ],
+    "motivo": "O NO costuma ser citado como óxido neutro, mas ele é instável e reage com O2 formando NO2. Para evitar polêmica, o exemplo mais seguro são CO e N2O. A mudança é mínima.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "O NO2 reage com água e forma ácido (HNO3): é óxido ácido. Neutros típicos são CO e N2O. A reação ocorre sozinha na atmosfera, logo é espontânea. Faltou testar se o óxido reage com água.",
+    "motivo": "Mesma troca: NO sai da lista de exemplos de óxido neutro, deixando CO e N2O.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "O NO2 forma ácido ao reagir com água: é óxido ácido, não neutro. A reação ocorre na atmosfera sem energia externa contínua, e a conversão de NO2 em HNO3 é favorável. Logo é espontânea. A (d) erra nas duas partes.",
+    "motivo": "A afirmação original dava a espontaneidade como consequência de não precisar de energia externa. Isso é impreciso. A reformulação aponta a favorabilidade da reação.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "E"
  }
 }

@@ -81,7 +81,7 @@
   "checagem": "Resuma D em português: 'o sarampo voltou apesar da vacinação'. Isso combina com um texto de alerta. Já A, B, C e E passam uma imagem tranquila ou absoluta, que não combina com alerta.",
   "erradas": {
    "A": "Diz que os casos novos 'não enfraqueceram' (haven't undermined) anos de esforço pela eliminação. Um alerta sobre o retorno do sarampo mostra o contrário: o avanço conquistado está em risco.",
-   "B": "Afirma que 'a maioria dos países' passou de 95% na primeira dose da tríplice viral. Um texto que alerta para o retorno da doença não combinaria com cobertura alta na maioria dos países; a alternativa afirma uma conquista que o alerta contradiz.",
+   "B": "Afirma que 'a maioria dos países' passou de 95% na primeira dose da tríplice viral. Os alertas epidemiológicos da PAHO sobre sarampo mostram o contrário: vários países estão abaixo da meta de 95%. Os exemplos do alerta ficam entre 82% e 96% na primeira dose, e a cobertura caiu nos últimos anos. A alternativa afirma uma conquista que o texto não sustenta.",
    "C": "Usa 'no news' (nenhuma notícia) e diz que as pessoas estão ansiosas pela erradicação. A hesitação vacinal é um fator conhecido do retorno do sarampo, e a afirmação absoluta é fácil de desmentir.",
    "E": "Diz 'no effective risk targets' (nenhum alvo de risco efetivo). Alertas de saúde pública identificam grupos de risco e o que fazer por eles; negar isso por completo é uma afirmação absoluta sem sustentação."
   },
@@ -119,12 +119,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -187,6 +189,16 @@
   "didatica_alertas": [
    "O texto da PAHO não está no material recebido; a resolução depende de inferência pelo tom. Em A, B, C e E as refutações são por coerência com alerta, não por trecho conferido; o corretor de fatos deveria checar com o texto original, sobretudo B (95% na primeira dose) e A."
   ],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "Afirma que 'a maioria dos países' passou de 95% na primeira dose da tríplice viral. Os alertas epidemiológicos da PAHO sobre sarampo mostram o contrário: vários países estão abaixo da meta de 95%. Os exemplos do alerta ficam entre 82% e 96% na primeira dose, e a cobertura caiu nos últimos anos. A alternativa afirma uma conquista que o texto não sustenta.",
+    "motivo": "A justificativa original se apoiava só no tom de alerta. O alerta da PAHO traz cobertura de MMR1 abaixo de 95% em vários países, o que derruba B com um dado e não só com o tom. Os valores vêm do alerta epidemiológico de fev/2026, que talvez não seja o texto exato da prova.",
+    "fonte": "PAHO, Epidemiological Alert: Measles in the Americas Region (fev/2026), https://www.paho.org/sites/default/files/2026/02/2026-feb-3-phe-alerta-epi-measles-enfinal_0.pdf"
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "D"
  }
 }

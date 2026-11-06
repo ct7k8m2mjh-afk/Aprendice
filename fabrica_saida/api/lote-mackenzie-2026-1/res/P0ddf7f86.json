@@ -8,7 +8,7 @@
  "conceito": "Localizar, em mapa, o país onde Tigre e Eufrates se encontram (Chatt al-Arab) antes de chegar ao Golfo Pérsico: o Iraque.",
  "resolucao": {
   "antes": {
-   "texto": "O Tigre e o Eufrates nascem na Turquia. O Eufrates passa pela Síria e os dois entram no Iraque. No sul iraquiano eles se juntam e formam o Chatt al-Arab, que deságua no Golfo Pérsico. A região entre os dois rios é a antiga Mesopotâmia, que significa 'entre rios'.",
+   "texto": "O Tigre e o Eufrates nascem na Turquia. O Eufrates passa pela Síria e os dois rios correm pelo Iraque. No sul iraquiano eles se juntam e formam o Chatt al-Arab, que deságua no Golfo Pérsico. A região entre os dois rios é a antiga Mesopotâmia, que significa 'entre rios'.",
    "formulas": [
     "Tigre + Eufrates → Chatt al-Arab → Golfo Pérsico",
     "Mesopotâmia = terra entre os dois rios, hoje quase toda no Iraque"
@@ -74,8 +74,8 @@
   "erradas": {
    "B": "B não confere: a Jordânia fica a oeste do Iraque e nenhuma linha azul chega até ela. Quem marcou B esqueceu de seguir os rios no mapa.",
    "C": "C engana porque o Eufrates passa pela Síria. Mas ali os dois rios ainda estão separados; a junção fica bem mais ao sul. Quem marcou C respondeu 'por onde passa', não 'onde se encontram'.",
-   "D": "D não confere: a Arábia Saudita fica ao sul e oeste do Iraque, e as linhas azuis não entram nela. A junção ocorre antes, dentro do Iraque.",
-   "E": "E não confere: o Afeganistão fica na Ásia Central, bem a leste, fora da área do mapa. Quem marcou E não localizou os rios, só lembrou de um país da Ásia."
+   "D": "D não confere: a Arábia Saudita fica ao sul e a oeste do Iraque, e as linhas azuis não entram nela. A junção ocorre antes, dentro do Iraque.",
+   "E": "E não confere: o Afeganistão fica na Ásia Central, bem a leste do Iraque e do Irã, fora da área do mapa. Quem marcou E não localizou os rios, só lembrou de um país da Ásia."
   },
   "armadilha": "Marcar a Síria por ver o Eufrates passando nela, esquecendo que a pergunta é sobre o ponto onde os dois rios se encontram.",
   "alerta": "",
@@ -111,12 +111,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -226,6 +228,28 @@
   "didatica_alertas": [
    "A afirmação do passo 'Identifique o país da junção' e a Síria no mapa dependem do desenho das fronteiras; confirmar na imagem original se o Tigre toca a fronteira síria (removido da errada C por precaução)."
   ],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "O Tigre e o Eufrates nascem na Turquia. O Eufrates passa pela Síria e os dois rios correm pelo Iraque. No sul iraquiano eles se juntam e formam o Chatt al-Arab, que deságua no Golfo Pérsico. A região entre os dois rios é a antiga Mesopotâmia, que significa 'entre rios'.",
+    "motivo": "O Tigre não passa pela Síria: ele só toca a fronteira sírio-turca. A frase 'os dois entram no Iraque' fica correta, mas 'correm pelo Iraque' é mais clara.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "D não confere: a Arábia Saudita fica ao sul e a oeste do Iraque, e as linhas azuis não entram nela. A junção ocorre antes, dentro do Iraque.",
+    "motivo": "Só corrige a redação: 'ao sul e a oeste'. O conteúdo já estava certo.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "E não confere: o Afeganistão fica na Ásia Central, bem a leste do Iraque e do Irã, fora da área do mapa. Quem marcou E não localizou os rios, só lembrou de um país da Ásia.",
+    "motivo": "Deixa a posição geográfica mais precisa.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "A"
  }
 }

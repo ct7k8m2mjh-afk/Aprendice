@@ -69,7 +69,7 @@
   "checagem": "Teste com um valor: se a = 1 m/s², V_A² = 100, então V_A = 10 m/s; V_B² = 200, então V_B ≈ 14,1 m/s. A razão 14,1 ÷ 10 = 1,41 ≈ √2. Pelo tempo: s = a·t²/2 dá t_A = 10 s e t_B ≈ 14,1 s, V = a·t, mesma razão.",
   "erradas": {
    "B": "Marcou 2 por achar que dobrar a distância dobra a velocidade. Mas v² = 2·a·Δs: é v² que dobra, não v. Para dobrar v, a distância teria de quadruplicar (200 m).",
-   "C": "Marcou √50 ao misturar a distância de A (50 m) com a raiz. Mas V_B²/V_A² = 100/50 = 2, e só essa razão sofre a raiz: √2 ≈ 1,41. √50 ≈ 7,07 exigiria distância 50 vezes maior.",
+   "C": "√50 não confere: V_B²/V_A² = 100/50 = 2, então V_B/V_A = √2 ≈ 1,41. √50 ≈ 7,07 exigiria V_B² = 50·V_A², ou seja, 50 vezes a distância, e aqui ela só dobra.",
    "D": "Razão 10 exigiria V_B² = 100·V_A², ou seja, 100 vezes a distância. Aqui a distância só dobra (50 m para 100 m), então a razão de v² é 2 e a de v é √2.",
    "E": "Razão 50 exigiria V_B² = 2500·V_A², ou seja, 2500 vezes a distância. Aqui a distância só dobra (50 m para 100 m), então a razão das velocidades é √2 ≈ 1,41."
   },
@@ -79,7 +79,8 @@
    "pede": "A razão V_B/V_A entre as velocidades nos pontos a 100 m e a 50 m da partida, num MUV a partir do repouso.",
    "chave": "Torricelli com v₀ = 0: v² = 2·a·Δs, então v é proporcional a √Δs e a aceleração cancela na razão.",
    "cuidado": "Dividir os quadrados dá 2; a razão das velocidades é a raiz desse valor, √2, e não 2."
-  }
+  },
+  "classificacao_nota": "Tema F01 (Cinemática), conteúdo F01.3 (MUV e Torricelli), nível 3: plausível. A classificação no banco (F02.2) está inadequada, e F01.3 é a correta."
  },
  "caminhos": [
   {
@@ -146,12 +147,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -219,6 +222,22 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "√50 não confere: V_B²/V_A² = 100/50 = 2, então V_B/V_A = √2 ≈ 1,41. √50 ≈ 7,07 exigiria V_B² = 50·V_A², ou seja, 50 vezes a distância, e aqui ela só dobra.",
+    "motivo": "O texto antigo dizia que '√50 ≈ 7,07 exigiria distância 50 vezes maior'. Isso é impreciso, porque √50 como razão de velocidades exige V_B²/V_A² = 50, ou seja, razão de distâncias 50. A explicação sobre 'misturar a distância de A com a raiz' é uma origem inventada. A correção troca essa origem por um teste objetivo.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.classificacao_nota",
+    "depois": "Tema F01 (Cinemática), conteúdo F01.3 (MUV e Torricelli), nível 3: plausível. A classificação no banco (F02.2) está inadequada, e F01.3 é a correta.",
+    "motivo": "A questão é de cinemática (MUV), não de leis de Newton. A classificação F01.3 da resolução está certa.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "A"
  }
 }

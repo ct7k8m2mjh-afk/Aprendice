@@ -33,6 +33,14 @@
     [
      "empregabilidade",
      "chance de conseguir e manter um emprego"
+    ],
+    [
+     "hachurada",
+     "preenchida com listras diagonais, como a barra de serviços na legenda"
+    ],
+    [
+     "salário-mínimo (SM)",
+     "menor valor mensal que a lei permite pagar a um trabalhador"
     ]
    ]
   },
@@ -46,7 +54,7 @@
    },
    {
     "faz": "Leia o mapa do Sul",
-    "conta": "Sul: as 2 faixas mais escuras",
+    "conta": "Sul: cores mais escuras (vermelho)",
     "porque": "O Sul concentra muitos imigrantes com renda de até meio salário-mínimo, ou seja, alta vulnerabilidade social. O mapa não indica renda acima de um salário-mínimo.",
     "tipo": "localizar"
    },
@@ -64,7 +72,7 @@
    },
    {
     "faz": "Elimine pelo cruzamento",
-    "conta": "A: renda maior? B: acima de 1 SM? C: comércio? D: menos vulnerabilidade?",
+    "conta": "A, B, C e D contradizem os suportes",
     "porque": "Cada uma contradiz o mapa (baixa renda) ou o gráfico (escolaridade e setor). Só a E liga indústria, baixa remuneração e vulnerabilidade, o que combina com o mapa e com o gráfico.",
     "tipo": "eliminar"
    },
@@ -76,11 +84,11 @@
    }
   ],
   "resposta": "Alternativa E: os imigrantes do Sul estão muito presentes no CadÚnico (baixa renda) e trabalham sobretudo na indústria, setor de baixa qualificação. Os baixos salários industriais refletem-se na vulnerabilidade deles.",
-  "checagem": "Teste cada alternativa contra o mapa: ele só trata de renda de até meio salário-mínimo. As letras A, B, C e D falam de renda maior, renda acima de um salário-mínimo, comércio qualificado ou redução da vulnerabilidade, e nenhuma dessas ideias aparece nos dois suportes.",
+  "checagem": "Releia o comando: 'a partir do mapa e do gráfico'. O mapa só trata de renda de até meio salário-mínimo. Então A, B e D, que falam de renda maior, renda acima de 1 salário-mínimo e redução da vulnerabilidade, caem. C erra o setor e a causa. Só a E combina indústria, pouca escolaridade e vulnerabilidade.",
   "erradas": {
-   "A": "O mapa mostra muitos imigrantes de renda baixa no Sul, e não renda maior que garanta segurança social. No gráfico, os serviços só predominam entre mestres e doutores, uma parcela pequena. A relação entre renda maior e emprego em serviços não aparece nos suportes.",
+   "A": "O mapa mostra muitos imigrantes de baixa renda no Sul, não renda maior. No gráfico, serviços só predominam entre mestres e doutores. Faltou ver que renda maior e serviços não aparecem ligados nos suportes.",
    "B": "Inverte o mapa. A legenda trata de imigrantes com renda de até meio salário-mínimo, muito abaixo de um salário-mínimo. Estar no CadÚnico indica vulnerabilidade, e não maior segurança social.",
-   "C": "O gráfico mostra o comércio como fatia pequena ou média das ocupações, nunca a maior, e sem sinal de qualificação. O CadÚnico reflete baixa renda, não empregabilidade qualificada. Além disso, a frase atribui o número alto a algo que o suporte não relaciona.",
+   "C": "O gráfico mostra o comércio como fatia pequena ou média, nunca a maior, e não indica qualificação. O CadÚnico mede baixa renda, não empregabilidade. A causa que a letra afirma não aparece nos suportes.",
    "D": "Contradiz o gráfico. A indústria concentra os imigrantes de menor escolaridade (cerca de 90% entre analfabetos e cerca de 10% no doutorado), e não de escolaridade alta. E o mapa mostra alta vulnerabilidade no Sul, não redução dela."
   },
   "armadilha": "Escolher uma alternativa que soa positiva (segurança social, renda maior, qualificação) sem checar que o mapa mostra justamente baixa renda e o gráfico liga a indústria à baixa escolaridade.",
@@ -113,11 +121,15 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -128,6 +140,70 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "E"
+  "fatos_resposta": "E",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "Sul: cores mais escuras (vermelho)",
+    "motivo": "A conta anterior ('2 faixas mais escuras') era vaga. Agora aponta a cor que o aluno vê na legenda."
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "A, B, C e D contradizem os suportes",
+    "motivo": "A conta anterior, em forma de pergunta, deixava o passo confuso. A nova diz o que se faz: eliminar as quatro."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "O gráfico mostra o comércio como fatia pequena ou média, nunca a maior, e não indica qualificação. O CadÚnico mede baixa renda, não empregabilidade. A causa que a letra afirma não aparece nos suportes.",
+    "motivo": "Texto mais curto, em voz ativa e sem frase repetida."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "O mapa mostra muitos imigrantes de baixa renda no Sul, não renda maior. No gráfico, serviços só predominam entre mestres e doutores. Faltou ver que renda maior e serviços não aparecem ligados nos suportes.",
+    "motivo": "A resposta agora diz o que faltou no raciocínio de quem marcou A."
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Releia o comando: 'a partir do mapa e do gráfico'. O mapa só trata de renda de até meio salário-mínimo. Então A, B e D, que falam de renda maior, renda acima de 1 salário-mínimo e redução da vulnerabilidade, caem. C erra o setor e a causa. Só a E combina indústria, pouca escolaridade e vulnerabilidade.",
+    "motivo": "A checagem anterior repetia a eliminação sem citar a E. A nova confere pelo comando e fecha na E."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "CadÚnico",
+      "Cadastro Único para Programas Sociais, o registro de famílias de baixa renda do governo federal"
+     ],
+     [
+      "vulnerabilidade social",
+      "situação de fragilidade econômica e de proteção social, como renda baixa e pouco acesso a direitos"
+     ],
+     [
+      "vínculo ativo de emprego formal",
+      "contrato de trabalho com carteira assinada em vigor"
+     ],
+     [
+      "empregabilidade",
+      "chance de conseguir e manter um emprego"
+     ],
+     [
+      "hachurada",
+      "preenchida com listras diagonais, como a barra de serviços na legenda"
+     ],
+     [
+      "salário-mínimo (SM)",
+      "menor valor mensal que a lei permite pagar a um trabalhador"
+     ]
+    ],
+    "motivo": "Foram incluídos 'hachurada' e 'SM', que aparecem nos passos e o aluno pode não conhecer."
+   }
+  ],
+  "didatica_alertas": [
+   "A alternativa E fala em 'indústria alimentícia' e 'baixos salários'. O gráfico não traz salários nem o ramo alimentício. É inferência da banca, e o gabarito é E por exclusão."
+  ],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "E"
  }
 }

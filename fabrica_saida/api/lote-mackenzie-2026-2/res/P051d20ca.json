@@ -68,7 +68,7 @@
    {
     "faz": "Elimine as demais pelo absoluto ou pela inversão",
     "conta": "B 'qualquer... prescinde'; C 'deixaram de definir'; D 'não ficcional'; E 'indiscutível... apenas'",
-    "porque": "B diz que o texto literário dispensa a função estética, o que é falso. C diz que a emoção deixou de definir a literatura, e não há base para isso. D diz que a literatura é não ficcional, e em geral ela é ficcional ou subjetiva. E reduz a linguagem literária ao sentido literal, mas ela usa muito o figurado.",
+    "porque": "B diz que o texto literário dispensa a função estética, o que é falso. C diz que a emoção deixou de definir a literatura, e não há base para isso. D diz que a linguagem literária é fundamentalmente não ficcional, o que é falso, porque a ficção é muito comum na literatura. Além disso, nela predomina a função poética, não a referencial. E reduz a linguagem literária ao sentido literal, mas ela usa muito o figurado.",
     "tipo": "eliminar"
    },
    {
@@ -79,11 +79,11 @@
    }
   ],
   "resposta": "Alternativa A: uma das funções do texto literário é provocar emoções no leitor por meio de uma linguagem elaborada esteticamente.",
-  "checagem": "Teste cada alternativa contra um poema qualquer: ele tem forma trabalhada (derruba B), costuma emocionar (derruba C), é ficcional ou subjetivo, não referencial (derruba D) e usa figuras de linguagem, ou seja, sentido conotativo (derruba E).",
+  "checagem": "Teste cada alternativa contra um poema qualquer: ele tem forma trabalhada (derruba B), costuma emocionar (derruba C), privilegia a função poética e não a referencial (derruba D) e usa figuras de linguagem, ou seja, sentido conotativo (derruba E).",
   "erradas": {
    "B": "Diz que 'qualquer' texto literário dispensa a função estética. É o contrário: o trabalho estético com a linguagem (função poética) é o que mais caracteriza o texto literário.",
    "C": "Afirma que tocar a sensibilidade 'deixou de definir' a linguagem literária. Não há base para isso: a emoção do leitor continua sendo característica importante da literatura.",
-   "D": "Diz que a literatura é 'fundamentalmente não ficcional' e que usa a função referencial como estilo. Faltou lembrar que o texto literário costuma ser ficcional ou subjetivo, e que nele predomina a função poética, não a referencial (típica de notícia).",
+   "D": "Diz que a linguagem literária é 'fundamentalmente não ficcional' e que usa a função referencial como estilo. A ficção é muito comum na literatura, e o que a marca é a função poética, não a referencial (típica de notícia e de texto científico).",
    "E": "'Indiscutível' e 'apenas denotativa' são absolutos falsos. Faltou lembrar que o texto literário usa muito o sentido figurado (conotação, como em metáforas), e que os teóricos não reduzem a literatura ao sentido literal."
   },
   "armadilha": "Cair em alternativas com palavras absolutas ('qualquer', 'indiscutível', 'apenas') que soam teóricas, ou tentar responder pelo conteúdo do texto de Bandeira em vez da teoria pedida.",
@@ -121,12 +121,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -216,6 +218,34 @@
    "A classificação atual (tema P11, conteúdo P11.3) não combina com a questão: ela cobra teoria da linguagem literária (funções da linguagem, P01.4), não Realismo e Naturalismo. O JSON da resolução já usa P01/P01.4, então vale conferir o cadastro do banco.",
    "A alternativa C é tecnicamente ambígua na redação ('deixaram de definir'), mas continua errada: a emoção do leitor segue como traço da literatura."
   ],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "B diz que o texto literário dispensa a função estética, o que é falso. C diz que a emoção deixou de definir a literatura, e não há base para isso. D diz que a linguagem literária é fundamentalmente não ficcional, o que é falso, porque a ficção é muito comum na literatura. Além disso, nela predomina a função poética, não a referencial. E reduz a linguagem literária ao sentido literal, mas ela usa muito o figurado.",
+    "motivo": "A versão anterior dizia que a literatura 'em geral é ficcional ou subjetiva', o que generaliza demais. A nova redação nega só o que D afirma, a não ficcionalidade fundamental, e também aponta o erro da função referencial.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "Diz que a linguagem literária é 'fundamentalmente não ficcional' e que usa a função referencial como estilo. A ficção é muito comum na literatura, e o que a marca é a função poética, não a referencial (típica de notícia e de texto científico).",
+    "motivo": "A versão anterior ('costuma ser ficcional ou subjetivo') generalizava e podia ser contestada, porque há literatura não ficcional, como memórias e crônicas. A nova redação nega só o que D afirma.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Teste cada alternativa contra um poema qualquer: ele tem forma trabalhada (derruba B), costuma emocionar (derruba C), privilegia a função poética e não a referencial (derruba D) e usa figuras de linguagem, ou seja, sentido conotativo (derruba E).",
+    "motivo": "A checagem anterior dizia que o poema 'é ficcional ou subjetivo' para derrubar D. Isso é impreciso, porque um poema pode ser de assunto real. O argumento certo é o predomínio da função poética.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "A questão não pergunta sobre o Romantismo. O texto de Bandeira só serve de abertura, e o comando cobra uma noção teórica: o que caracteriza a linguagem literária. O texto literário trabalha a linguagem com cuidado estético (função poética) e costuma provocar emoção. Em geral é conotativo e muitas vezes ficcional, mas sem exclusividade. Palavras absolutas como 'qualquer', 'indiscutível' e 'apenas' pedem desconfiança.",
+    "motivo": "Sem mudança de conteúdo. O texto já está correto e foi mantido.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "A"
  }
 }

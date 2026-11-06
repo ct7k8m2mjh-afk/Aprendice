@@ -21,12 +21,20 @@
      "plataforma de gelo, a parte flutuante que sai da costa"
     ],
     [
+     "ice sheet",
+     "manto de gelo, a parte apoiada sobre a terra"
+    ],
+    [
      "glacier",
-     "geleira, gelo que escorre sobre a terra"
+     "geleira, gelo que escorre lentamente sobre a terra"
     ],
     [
      "displaced their own weight",
-     "deslocaram água com peso igual ao seu próprio peso"
+     "deslocaram água de peso igual ao seu próprio peso"
+    ],
+    [
+     "empuxo",
+     "força da água que empurra o objeto para cima"
     ],
     [
      "sea level",
@@ -47,7 +55,7 @@
    {
     "faz": "Traduza o comando",
     "conta": "“Segundo o texto, é correto afirmar”",
-    "porque": "Só vale o que está escrito. Conhecimento de Física que o texto não traz não conta, mesmo que seja verdadeiro.",
+    "porque": "Só vale o que está escrito no texto. Conhecimento de Física que o texto não traz não conta, mesmo que seja verdadeiro.",
     "tipo": "localizar"
    },
    {
@@ -65,7 +73,7 @@
    {
     "faz": "Confira o dado dos três quartos",
     "conta": "“surround three-quarters of Antarctica’s coast and make up about 11% of its total area”",
-    "porque": "Três quartos é da COSTA, e a área que elas ocupam é cerca de 11%. Não são três quartos da área total.",
+    "porque": "Traduzindo: cercam três quartos da COSTA e ocupam cerca de 11% da área total. Então 'três quartos' fala da costa, não da área total.",
     "tipo": "localizar"
    },
    {
@@ -78,8 +86,8 @@
   "resposta": "Alternativa C: o texto diz que as plataformas de gelo regulam a velocidade das geleiras em terra, segurando-as.",
   "checagem": "Releia o fim do segundo parágrafo: “Any ice and liquid water that the glaciers take with them will raise sea level” (todo gelo e água que as geleiras levarem elevará o nível do mar). Isso reforça que a plataforma importa por conter as geleiras.",
   "erradas": {
-   "A": "O texto diz que o Ross Ice Shelf é “roughly the size of France”, mas ele ainda é uma plataforma de gelo existente. Não fala de gelo já derretido. A alternativa troca 'gelo existente' por 'gelo derretido'.",
-   "B": "Inverte a Física: pelo texto, a plataforma “displaced their own weight” (deslocou água com peso igual ao seu), ou seja, empuxo igual ao peso, não muito menor. Se o empuxo fosse muito menor, o gelo afundaria.",
+   "A": "O texto diz que a Ross Ice Shelf é “roughly the size of France” (mais ou menos do tamanho da França). Ela é uma das maiores plataformas e ainda existe, flutuando. O texto não fala de área de gelo já derretido. A alternativa troca “plataforma que existe” por “gelo derretido”.",
+   "B": "Inverte a ideia do texto. Ele diz que as plataformas flutuantes “have already displaced their own weight” (já deslocaram água com peso igual ao seu). Ou seja, o empuxo (força da água para cima) é igual ao peso, não “muito menor”. Se fosse muito menor, o gelo afundaria.",
    "D": "Mistura dois dados. As plataformas cercam três quartos da COSTA e ocupam cerca de 11% da área total. Além disso, o texto justifica a relevância pela contenção das geleiras, não por esse número.",
    "E": "O texto afirma o contrário: “By Archimedes’s principle, ice shelves floating on the water have already displaced their own weight”. O princípio se aplica e explica por que o derretimento não muda o nível da água."
   },
@@ -112,11 +120,15 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -127,6 +139,98 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "C"
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "“surround three-quarters of Antarctica’s coast and make up about 11% of its total area”",
+    "motivo": "Mantido o trecho, mas veja o item seguinte: o 'porque' ganha a tradução, que faltava."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Traduzindo: cercam três quartos da COSTA e ocupam cerca de 11% da área total. Então 'três quartos' fala da costa, não da área total.",
+    "motivo": "Incluir a tradução do trecho citado, para o aluno que não domina o inglês, e deixar a frase mais simples."
+   },
+   {
+    "campo": "resolucao.passos[0].porque",
+    "depois": "Só vale o que está escrito no texto. Conhecimento de Física que o texto não traz não conta, mesmo que seja verdadeiro.",
+    "motivo": "Frase mais direta."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "O texto diz que a Ross Ice Shelf é “roughly the size of France” (mais ou menos do tamanho da França), mas ela ainda existe, flutuando. O texto não fala de gelo já derretido. A alternativa troca 'gelo que existe' por 'gelo derretido'.",
+    "motivo": "Tradução do trecho e fala mais clara sobre o que faltou a quem marcou A."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "Inverte a ideia do texto. Ele diz que a plataforma “displaced their own weight” (deslocou água com peso igual ao seu). Ou seja, o empuxo (força da água para cima) é igual ao peso, não 'muito menor'. Com empuxo muito menor, o gelo afundaria.",
+    "motivo": "Explica 'empuxo' para o aluno e mostra o que faltou: ler 'own weight' como 'peso igual'."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "ice shelf",
+      "plataforma de gelo, a parte flutuante que sai da costa"
+     ],
+     [
+      "ice sheet",
+      "manto de gelo, a parte apoiada sobre a terra"
+     ],
+     [
+      "glacier",
+      "geleira, gelo que escorre lentamente sobre a terra"
+     ],
+     [
+      "displaced their own weight",
+      "deslocaram água com peso igual ao seu próprio peso"
+     ],
+     [
+      "empuxo",
+      "força da água que empurra o objeto para cima"
+     ],
+     [
+      "sea level",
+      "nível do mar"
+     ],
+     [
+      "three-quarters",
+      "três quartos"
+     ],
+     [
+      "coast",
+      "costa"
+     ]
+    ],
+    "motivo": "Incluir 'ice sheet' e 'empuxo', que aparecem na resolução e podem ser desconhecidos."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "O texto diz que a Ross Ice Shelf é “roughly the size of France” (mais ou menos do tamanho da França). Ela é uma das maiores plataformas e ainda existe, flutuando. O texto não fala de área de gelo já derretido. A alternativa troca “plataforma que existe” por “gelo derretido”.",
+    "motivo": "O texto não diz que a Ross ainda existe. Só afirma que ela é uma das maiores e tem o tamanho da França. A frase 'ela ainda existe' era inferência. Reescrita para ficar ancorada no texto: o tamanho se refere à plataforma, não ao gelo derretido.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "Inverte a ideia do texto. Ele diz que as plataformas flutuantes “have already displaced their own weight” (já deslocaram água com peso igual ao seu). Ou seja, o empuxo (força da água para cima) é igual ao peso, não “muito menor”. Se fosse muito menor, o gelo afundaria.",
+    "motivo": "A citação original estava truncada e com sujeito singular. O texto traz o sujeito plural e usa 'have already displaced'. Corrigido para citar fielmente.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.antes.simbolos[3]",
+    "depois": [
+     "displaced their own weight",
+     "deslocaram água de peso igual ao seu próprio peso"
+    ],
+    "motivo": "A fórmula era imprecisa. O texto diz 'have already displaced', e o princípio é peso da água deslocada = peso do corpo flutuante. Ajuste mínimo.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "C"
  }
 }

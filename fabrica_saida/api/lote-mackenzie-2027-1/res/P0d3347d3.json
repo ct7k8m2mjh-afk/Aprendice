@@ -58,7 +58,7 @@
    {
     "faz": "Teste surge",
     "conta": "surge = aumento súbito → wave",
-    "porque": "Surge é uma onda ou subida repentina. Number é só uma quantidade; few é o contrário de uma grande subida. Surgery é cirurgia, outra palavra.",
+    "porque": "Surge é uma onda ou subida repentina. Number é só uma quantidade; few (poucos) não expressa aumento. Surgery é cirurgia, outra palavra.",
     "tipo": "eliminar"
    },
    {
@@ -83,13 +83,13 @@
   "resposta": "Alternativa B: destroying, amazing, wave, estimate e possibility são, nesta ordem, os que mais se aproximam de undermining, staggering, surge, assessment e likelihood.",
   "checagem": "Troque o par mais seguro, surge por wave, e depois likelihood por possibility. As outras quatro alternativas já falham em pelo menos dois itens evidentes (number, few, figures, surgery).",
   "erradas": {
-   "A": "Acerta astonishing, evaluation e probability, mas falha em dois itens. Controlling (controlar) não é minar, e number é só uma quantidade, enquanto surge é um aumento súbito, uma onda.",
+   "A": "Acerta astonishing, evaluation e probability, mas falha em dois itens. Controlling (controlar) não é minar, e number é só uma quantidade, enquanto surge é um aumento súbito, uma onda. Note que \"number\" até serve em alguns contextos, mas controlar não é enfraquecer.",
    "C": "Eliminating é eliminar por completo, e undermining é enfraquecer aos poucos. Distressing é angustiante, não espantoso. Figures são números, e opinion (opinião) não é avaliação técnica. Só chance combina com likelihood.",
-   "D": "Sabotaging serve para undermining, mas o resto falha. Bothering é incomodar, não espantar. Few (poucos) é o oposto de um aumento súbito. Point of view é ponto de vista, e event é um acontecimento, não uma chance.",
+   "D": "Sabotaging serve para undermining, mas o resto falha. Bothering é incomodar, não espantar. Few (poucos) não tem relação com um aumento súbito. Point of view é ponto de vista, e event é um acontecimento, não uma chance.",
    "E": "Falha em quase tudo. Overthrowing é derrubar um governo. Unimportant (sem importância) é o oposto de staggering. Surgery é cirurgia, falso amigo de surge. Point é ponto, e fact é algo já certo, não probabilidade."
   },
   "armadilha": "A alternativa A parece segura porque tem astonishing, evaluation e probability corretos. Quem não confere surge (aumento súbito, e não 'number') e undermining cai nela.",
-  "alerta": "O texto de origem não aparece no print. Em undermining, destroying é uma aproximação forte, e sabotaging seria mais exato; B continua a única que acerta os outros quatro itens.",
+  "alerta": "O texto de origem não aparece no print. Em undermining, sabotaging (alternativa D) seria sinônimo mais exato que destroying, mas D falha nos outros quatro itens. B é a única que acerta os demais, então é o gabarito.",
   "essencial": {
    "pede": "A lista em que as cinco palavras têm sinônimos corretos, na mesma ordem.",
    "chave": "Surge é onda ou aumento súbito, e likelihood é possibilidade ou probabilidade. Com esses dois itens já se descartam A, C, D e E.",
@@ -122,12 +122,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [],
   "fatos_ok": true,
@@ -184,6 +186,34 @@
    "Em undermining, sabotaging é mais exato que destroying; destroying é aproximação. B continua a única que acerta os outros quatro itens.",
    "Em assessment, estimate é aproximação; evaluation (alternativa A) é mais exato. A cai por controlling e number."
   ],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "Acerta astonishing, evaluation e probability, mas falha em dois itens. Controlling (controlar) não é minar, e number é só uma quantidade, enquanto surge é um aumento súbito, uma onda. Note que \"number\" até serve em alguns contextos, mas controlar não é enfraquecer.",
+    "motivo": "Pequeno ajuste de precisão. Em A, o erro decisivo é undermining = controlling, porque minar não é controlar. Number é inadequado para surge, mas pode ser aceito em contextos como 'a surge in numbers'. O texto original está essencialmente correto, então esta correção é opcional e a manutenção do original é aceitável.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "Sabotaging serve para undermining, mas o resto falha. Bothering é incomodar, não espantar. Few (poucos) não tem relação com um aumento súbito. Point of view é ponto de vista, e event é um acontecimento, não uma chance.",
+    "motivo": "Few não é exatamente o oposto de surge; é só um sentido incompatível. Retirei a palavra 'oposto' por imprecisão.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "Surge é uma onda ou subida repentina. Number é só uma quantidade; few (poucos) não expressa aumento. Surgery é cirurgia, outra palavra.",
+    "motivo": "Few não é o contrário de uma grande subida. Ele só não tem o sentido de aumento.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.alerta",
+    "depois": "O texto de origem não aparece no print. Em undermining, sabotaging (alternativa D) seria sinônimo mais exato que destroying, mas D falha nos outros quatro itens. B é a única que acerta os demais, então é o gabarito.",
+    "motivo": "Deixa claro por que B vence apesar de destroying ser aproximado.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "B"
  }
 }

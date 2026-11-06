@@ -50,8 +50,8 @@
   "passos": [
    {
     "faz": "Traduza o comando",
-    "conta": "\"atualmente\" = Right now / hoje",
-    "porque": "A pergunta é sobre o presente. O texto também fala do futuro (\"next-generation\"), que não vale aqui.",
+    "conta": "\"atualmente\" = \"Right now\"",
+    "porque": "A pergunta é sobre o presente. O texto também fala do futuro (\"next-generation\" = próxima geração), e esse trecho não responde ao que se pede.",
     "tipo": "localizar"
    },
    {
@@ -63,23 +63,23 @@
    {
     "faz": "Formule a resposta em português",
     "conta": "puny portion = parcela insignificante",
-    "porque": "\"Necessidades de eletricidade e aquecimento\" corresponde a \"demanda energética da sociedade\".",
+    "porque": "\"Electricity and heating needs\" (necessidades de eletricidade e aquecimento) quer dizer o mesmo que \"demanda energética da sociedade\". Já temos a resposta em português, antes de olhar as letras.",
     "tipo": "comparar"
    },
    {
-    "faz": "Compare com as alternativas",
+    "faz": "Procure essa ideia nas alternativas",
     "conta": "A: parcela insignificante da demanda",
-    "porque": "Só a A repete essa ideia. As outras afirmam coisas que o texto não diz ou contradiz.",
+    "porque": "Só a A repete essa ideia. As outras afirmam coisas que o texto não diz (B, D) ou que ele contradiz (C, E).",
     "tipo": "concluir"
    }
   ],
   "resposta": "Alternativa A: o texto diz que hoje a energia geotérmica atende apenas uma \"puny portion\" (parcela minúscula) das necessidades de eletricidade e aquecimento da humanidade.",
   "checagem": "Veja o contraste na frase seguinte: \"Fossil fuels power about eighty per cent of human activity\" (combustíveis fósseis movem cerca de 80% da atividade humana). Se os fósseis dominam, sobra pouco para a geotermia.",
   "erradas": {
-   "B": "O texto não fala em custo baixo. Ele aponta um obstáculo técnico: \"The biggest drawback is drilling miles through hot rock, safely\" (a maior desvantagem é perfurar milhas de rocha quente com segurança). Nada sustenta a ideia de aparato barato.",
-   "C": "O texto lista vantagens ambientais fortes: \"it is carbon-free, available everywhere, and effectively unlimited\" (sem carbono, disponível em toda parte e praticamente ilimitada). Não as chama de limitadas.",
-   "D": "\"Moon shot\" é uma expressão figurada para projeto ousado e arriscado, e não pesquisa sobre a superfície lunar. O texto não cita nenhum método lunar.",
-   "E": "Não há restrição de utilidade industrial no texto. Ele diz que o calor \"can be used to produce steam, spin a turbine, and generate electricity\" (produzir vapor, girar turbina e gerar eletricidade). O que é pequeno é a parcela atendida hoje, e não a utilidade."
+   "B": "O texto não fala em custo baixo. Ele aponta um obstáculo: \"The biggest drawback is drilling miles through hot rock, safely\" (a maior desvantagem é perfurar milhas de rocha quente com segurança). Nada sustenta a ideia de aparato barato.",
+   "C": "O texto lista vantagens fortes: \"it is carbon-free, available everywhere, and effectively unlimited\" (sem carbono, disponível em toda parte e praticamente ilimitada). Ele não diz que são limitadas. Diz ainda que, ao contrário de painéis solares e eólica, a geotérmica dá fluxo estável de energia (baseload).",
+   "D": "\"Moon shot\" é expressão figurada para projeto ousado e arriscado (veja \"often, they miss\"), e não tem relação com pesquisa sobre a Lua. O texto não cita nenhum método lunar.",
+   "E": "O texto não restringe a utilidade industrial: o calor \"can be used to produce steam, spin a turbine, and generate electricity\" (produzir vapor, girar turbina e gerar eletricidade). O que é pequeno é a parcela da demanda atendida hoje, e não a utilidade prática da geotermia."
   },
   "armadilha": "Confundir o que a geotermia PODE fazer (gerar eletricidade, ser limpa) com o que ela FAZ hoje: atende só uma parcela minúscula da demanda.",
   "alerta": "",
@@ -110,11 +110,15 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -137,6 +141,99 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "A"
+  "fatos_resposta": "A",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[0].porque",
+    "depois": "A pergunta é sobre o presente. O texto também fala do futuro (\"next-generation\" = próxima geração), e esse trecho não responde ao que se pede.",
+    "motivo": "Explicar o termo em inglês e deixar claro por que o futuro não vale."
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "\"Right now, geothermal energy meets a puny portion of humanity's electricity and heating needs.\"",
+    "motivo": "Mantido o trecho. O texto original dizia 'Ache a frase' sem pedir a tradução na conta; a tradução continua no porque."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "puny portion = parcela insignificante",
+    "motivo": "Mantido. O texto do 'porque' foi ajustado para ficar mais claro."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "\"Electricity and heating needs\" (necessidades de eletricidade e aquecimento) quer dizer o mesmo que \"demanda energética da sociedade\". Já temos a resposta em português, antes de olhar as letras.",
+    "motivo": "Deixar claro que a resposta é formulada antes de comparar as alternativas."
+   },
+   {
+    "campo": "resolucao.passos[3].faz",
+    "depois": "Procure essa ideia nas alternativas",
+    "motivo": "O comando ficou mais natural e direto."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "A: parcela insignificante da demanda",
+    "motivo": "Mantido."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Só a A repete essa ideia. As outras afirmam coisas que o texto não diz (B, D) ou que ele contradiz (C, E).",
+    "motivo": "Dizer quais letras o texto contradiz e quais ele simplesmente não menciona."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "O texto lista vantagens fortes: \"it is carbon-free, available everywhere, and effectively unlimited\" (sem carbono, disponível em toda parte e praticamente ilimitada). Ele não diz que são limitadas nem compara com outras renováveis. Quem marcou C leu a frase sobre os riscos como se fosse sobre o ambiente.",
+    "motivo": "Dizer o que faltou no raciocínio de quem marcou C."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "O texto não restringe a utilidade industrial: o calor \"can be used to produce steam, spin a turbine, and generate electricity\" (produzir vapor, girar turbina e gerar eletricidade). O que é pequeno é a parcela atendida hoje, e não a utilidade. Quem marcou E confundiu uso com tamanho do uso.",
+    "motivo": "Mostrar a confusão de quem marcou E."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "O texto não fala em custo baixo. Ele aponta um obstáculo: \"The biggest drawback is drilling miles through hot rock, safely\" (a maior desvantagem é perfurar milhas de rocha quente com segurança). Nada sustenta a ideia de aparato barato. Quem marcou B juntou a palavra \"tecnologia\" a uma ideia que o texto não escreve.",
+    "motivo": "Dizer o que faltou no raciocínio de quem marcou B."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "\"Moon shot\" é expressão figurada para projeto ousado e arriscado (veja \"often, they miss\"), e não tem relação com pesquisa sobre a Lua. O texto não cita nenhum método lunar. Quem marcou D leu a expressão ao pé da letra.",
+    "motivo": "Mostrar o erro de leitura literal."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.passos[0].conta",
+    "depois": "\"atualmente\" = \"Right now\"",
+    "motivo": "O texto não usa \"hoje\" como marca; a marca de tempo do texto é \"Right now\". A conta original misturava os dois termos, e a nova mantém só a marca que está no texto.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "O texto lista vantagens fortes: \"it is carbon-free, available everywhere, and effectively unlimited\" (sem carbono, disponível em toda parte e praticamente ilimitada). Ele não diz que são limitadas. Diz ainda que, ao contrário de painéis solares e eólica, a geotérmica dá fluxo estável de energia (baseload).",
+    "motivo": "Corrige a afirmação de que o texto não compara com outras renováveis: ele compara com solar e eólica (\"unlike solar panels or wind\") e aponta uma vantagem. Também remove a especulação sobre quem marcou C.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "O texto não restringe a utilidade industrial: o calor \"can be used to produce steam, spin a turbine, and generate electricity\" (produzir vapor, girar turbina e gerar eletricidade). O que é pequeno é a parcela da demanda atendida hoje, e não a utilidade prática da geotermia.",
+    "motivo": "Remove a frase especulativa sobre quem marcou E, o que o guia proíbe. O conteúdo factual foi mantido.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "O texto não fala em custo baixo. Ele aponta um obstáculo: \"The biggest drawback is drilling miles through hot rock, safely\" (a maior desvantagem é perfurar milhas de rocha quente com segurança). Nada sustenta a ideia de aparato barato.",
+    "motivo": "Remove a frase especulativa sobre quem marcou B.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "\"Moon shot\" é expressão figurada para projeto ousado e arriscado (veja \"often, they miss\"), e não tem relação com pesquisa sobre a Lua. O texto não cita nenhum método lunar.",
+    "motivo": "Remove a frase especulativa sobre quem marcou D.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "A"
  }
 }

@@ -12,6 +12,7 @@
    "formulas": [
     "log(a^t) = t × log a",
     "log(a ÷ b) = log a − log b",
+    "log 10 = 1",
     "log 2 = 1 − log 5, porque log 2 + log 5 = log 10 = 1",
     "1,1 = 11/10, então log 1,1 = log 11 − 1"
    ],
@@ -22,7 +23,7 @@
     ],
     [
      "log",
-     "logaritmo na base 10"
+     "logaritmo na base 10: log 100 = 2, log 10 = 1"
     ],
     [
      "≅",
@@ -31,6 +32,14 @@
     [
      "1,1^t",
      "1,1 multiplicado por ele mesmo t vezes"
+    ],
+    [
+     "t",
+     "tempo em semanas; fica no expoente"
+    ],
+    [
+     "função crescente",
+     "quanto maior t, maior M(t); o sentido da desigualdade não muda ao aplicar log"
     ]
    ]
   },
@@ -62,14 +71,20 @@
    },
    {
     "faz": "Calcule log 1,5",
-    "conta": "log 1,5 = log 3 − log 2 = 0,4771 − 0,3010 = 0,1761",
-    "porque": "1,5 = 3/2. O log 2 não foi dado, mas sai de log 2 = 1 − log 5 = 1 − 0,6990 = 0,3010.",
+    "conta": "log 1,5 = 0,4771 − 0,3010 = 0,1761",
+    "porque": "1,5 = 3/2, então log 1,5 = log 3 − log 2. O log 2 não foi dado, mas sai de 1 − log 5 = 1 − 0,6990 = 0,3010.",
     "tipo": "calcular"
    },
    {
-    "faz": "Resolva e localize t",
+    "faz": "Resolva a inequação",
     "conta": "t > 0,1761/0,0414 ≈ 4,25",
-    "porque": "O número de usuários passa de 300 mil depois de cerca de 4,25 semanas. Esse instante está entre 4 e 5 semanas, portanto dentro de 'entre 4 e 6'.",
+    "porque": "Dividir por 0,0414, que é positivo, mantém o sentido. Passa de 300 mil depois de 4,25 semanas, entre a 4ª e a 5ª.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Ligue o resultado à alternativa",
+    "conta": "4,25 está entre 4 e 6 → E",
+    "porque": "A ultrapassagem acontece em 4,25, dentro de 'entre 4 e 6'. Nas outras opções, M fica abaixo de 300 em todo o intervalo.",
     "tipo": "concluir"
    }
   ],
@@ -82,7 +97,7 @@
    "D": "Entre 3 e 4 semanas: M(3) = 266,2 e M(4) = 292,82. Os dois estão abaixo de 300, então ainda não ultrapassou. A ultrapassagem só acontece em t ≈ 4,25."
   },
   "armadilha": "M(4) = 292,82 fica perto de 300 e parece já ter passado, mas ainda é menor. Só a conta com logaritmo (t > 4,25) mostra que o cruzamento acontece depois da 4ª semana.",
-  "alerta": "A redação 'entre 4 e 6 semanas' não descreve todo o período em que M > 300, porque a função continua acima de 300 depois da 6ª semana. A alternativa E é a única que contém o instante da ultrapassagem (t ≈ 4,25) e a única cujo intervalo tem M > 300 em algum ponto. Por isso é a resposta.",
+  "alerta": "A alternativa E diz 'entre 4 e 6 semanas', mas M > 300 vale para todo t > 4,25, inclusive depois da 6ª semana. Entre as opções, só E contém o instante da ultrapassagem (t ≈ 4,25), por isso é a resposta.",
   "essencial": {
    "pede": "O intervalo de semanas em que aparece o momento em que M(t) passa de 300 (mil usuários).",
    "chave": "Resolver 1,1^t > 1,5 com log: t > (log 3 − log 2)/(log 11 − 1) = 0,1761/0,0414 ≈ 4,25.",
@@ -181,11 +196,15 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -214,6 +233,117 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "E"
+  "fatos_resposta": "E",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "log(a^t) = t × log a",
+     "log(a ÷ b) = log a − log b",
+     "log 10 = 1",
+     "log 2 = 1 − log 5, porque log 2 + log 5 = log 10 = 1",
+     "1,1 = 11/10, então log 1,1 = log 11 − 1"
+    ],
+    "motivo": "Incluir log 10 = 1, usado nos passos, sem mudar fatos."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "M(t)",
+      "número de usuários, em milhares, após t semanas"
+     ],
+     [
+      "log",
+      "logaritmo na base 10: log 100 = 2, log 10 = 1"
+     ],
+     [
+      "≅",
+      "aproximadamente igual"
+     ],
+     [
+      "1,1^t",
+      "1,1 multiplicado por ele mesmo t vezes"
+     ],
+     [
+      "t",
+      "tempo em semanas; fica no expoente"
+     ],
+     [
+      "função crescente",
+      "quanto maior t, maior M(t); o sentido da desigualdade não muda ao aplicar log"
+     ]
+    ],
+    "motivo": "Explicar termos usados na resolução (expoente, crescente, base 10)."
+   },
+   {
+    "campo": "resolucao.passos[5]",
+    "depois": {
+     "faz": "Resolva a inequação",
+     "conta": "t > 0,1761/0,0414 ≈ 4,25",
+     "porque": "Dividir por 0,0414, que é positivo, mantém o sentido. Passa de 300 mil depois de 4,25 semanas, entre a 4ª e a 5ª.",
+     "tipo": "calcular"
+    },
+    "motivo": "O passo misturava cálculo e conclusão."
+   },
+   {
+    "campo": "resolucao.passos",
+    "depois": [
+     {
+      "faz": "Monte a inequação",
+      "conta": "200 × 1,1^t > 300",
+      "porque": "M está em milhares. Então 300 mil usuários é M = 300, e queremos M maior que isso.",
+      "tipo": "localizar"
+     },
+     {
+      "faz": "Isole a potência",
+      "conta": "1,1^t > 300/200 = 1,5",
+      "porque": "Dividir os dois lados por 200, que é positivo, mantém o sentido da desigualdade.",
+      "tipo": "calcular"
+     },
+     {
+      "faz": "Aplique log nos dois lados",
+      "conta": "t × log 1,1 > log 1,5",
+      "porque": "O log traz o expoente t para a frente. O sentido se mantém porque log é crescente.",
+      "tipo": "calcular"
+     },
+     {
+      "faz": "Calcule log 1,1",
+      "conta": "log 1,1 = 1,0414 − 1 = 0,0414",
+      "porque": "1,1 = 11/10, então log 1,1 = log 11 − log 10 = 1,0414 − 1.",
+      "tipo": "calcular"
+     },
+     {
+      "faz": "Calcule log 1,5",
+      "conta": "log 1,5 = 0,4771 − 0,3010 = 0,1761",
+      "porque": "1,5 = 3/2, então log 1,5 = log 3 − log 2. O log 2 não foi dado, mas sai de 1 − log 5 = 1 − 0,6990 = 0,3010.",
+      "tipo": "calcular"
+     },
+     {
+      "faz": "Resolva a inequação",
+      "conta": "t > 0,1761/0,0414 ≈ 4,25",
+      "porque": "Dividir por 0,0414, que é positivo, mantém o sentido. Passa de 300 mil depois de 4,25 semanas, entre a 4ª e a 5ª.",
+      "tipo": "calcular"
+     },
+     {
+      "faz": "Ligue o resultado à alternativa",
+      "conta": "4,25 está entre 4 e 6 → E",
+      "porque": "A ultrapassagem acontece em 4,25, dentro de 'entre 4 e 6'. Nas outras opções, M fica abaixo de 300 em todo o intervalo.",
+      "tipo": "concluir"
+     }
+    ],
+    "motivo": "Separar o cálculo da conclusão; um movimento por passo, com conta curta."
+   },
+   {
+    "campo": "resolucao.alerta",
+    "depois": "A alternativa E diz 'entre 4 e 6 semanas', mas M > 300 vale para todo t > 4,25, inclusive depois da 6ª semana. Entre as opções, só E contém o instante da ultrapassagem (t ≈ 4,25), por isso é a resposta.",
+    "motivo": "Redação mais clara, sem mudar o fato."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "E"
  }
 }

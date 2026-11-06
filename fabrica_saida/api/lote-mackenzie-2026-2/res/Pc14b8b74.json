@@ -26,7 +26,7 @@
     ],
     [
      "álcool desidrogenase",
-     "enzima que oxida (quebra, com gasto de oxigênio ou perda de hidrogênio) o etanol; no texto, age no citosol"
+     "enzima que oxida o etanol (tira hidrogênios dele, transformando-o em acetaldeído); no texto, age no citosol"
     ],
     [
      "retículo endoplasmático liso (REL)",
@@ -90,9 +90,9 @@
   "resposta": "Alternativa D: o retículo endoplasmático liso aumenta nos hepatócitos de quem bebe cronicamente e participa da metabolização do etanol.",
   "checagem": "Confira cada organela pela função: Golgi (secreção), RER (proteínas), lisossomo (digestão), mitocôndria (ATP). Só o REL é de desintoxicação, e o enunciado diz que a organela proliferou.",
   "erradas": {
-   "A": "A bile é produzida pelo fígado inteiro (pelos hepatócitos), não pelo Golgi, e ela ajuda a digerir gorduras; não dissolve o etanol. O Golgi só modifica, empacota e envia substâncias. Faltou lembrar que o etanol é oxidado, não dissolvido.",
+   "A": "A bile é produzida pelos hepatócitos, não pelo Golgi, e ajuda a emulsificar gorduras; não dissolve o etanol, que já é solúvel em água. O Golgi modifica, empacota e envia substâncias. Faltou lembrar que o etanol é oxidado, não dissolvido.",
    "B": "O RER tem ribossomos, e ribossomos montam proteínas, não degradam etanol. Faltou separar retículo rugoso (proteínas) de liso (desintoxicação, sem ribossomos).",
-   "C": "Lisossomos têm enzimas que digerem material dentro da célula. Não oxidam o álcool até CO₂ e H₂O. Faltou notar que o texto pede a organela que prolifera com o consumo crônico, e o lisossomo não faz isso.",
+   "C": "Lisossomos têm enzimas hidrolíticas que digerem material dentro da célula. Não oxidam o álcool até CO₂ e H₂O. Além disso, o texto pede a organela que prolifera com o consumo crônico para desintoxicar, e essa é o REL, não o lisossomo.",
    "E": "O texto diz que a álcool desidrogenase age no citosol, não nas cristas da mitocôndria. A mitocôndria produz ATP (energia). Quem marcou E ligou 'oxidar' a 'energia' e não leu onde o texto põe a enzima."
   },
   "armadilha": "Confundir retículo liso e rugoso, ou escolher a mitocôndria por associar \"oxidar\" a \"energia\" e ignorar que o texto coloca a enzima no citosol.",
@@ -129,12 +129,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -231,6 +233,31 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.antes.simbolos[2]",
+    "depois": [
+     "álcool desidrogenase",
+     "enzima que oxida o etanol (tira hidrogênios dele, transformando-o em acetaldeído); no texto, age no citosol"
+    ],
+    "motivo": "A definição 'com gasto de oxigênio ou perda de hidrogênio' está imprecisa. A ADH desidrogena o etanol, usando NAD+ como aceptor. Ela não gasta O2.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "Lisossomos têm enzimas hidrolíticas que digerem material dentro da célula. Não oxidam o álcool até CO₂ e H₂O. Além disso, o texto pede a organela que prolifera com o consumo crônico para desintoxicar, e essa é o REL, não o lisossomo.",
+    "motivo": "A frase original dizia que o lisossomo não prolifera com o consumo crônico, o que é uma afirmação não sustentada. O motivo suficiente é a função: lisossomo é digestão por hidrolases, não oxidação do etanol.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "A bile é produzida pelos hepatócitos, não pelo Golgi, e ajuda a emulsificar gorduras; não dissolve o etanol, que já é solúvel em água. O Golgi modifica, empacota e envia substâncias. Faltou lembrar que o etanol é oxidado, não dissolvido.",
+    "motivo": "Precisão: a bile emulsifica gorduras, não 'digere'. A ressalva sobre o etanol ser solúvel em água reforça por que a bile não teria papel.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "D"
  }
 }

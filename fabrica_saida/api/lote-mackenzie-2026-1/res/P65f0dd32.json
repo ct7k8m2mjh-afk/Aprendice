@@ -79,7 +79,7 @@
    {
     "faz": "Teste as demais relações lógicas",
     "conta": "furthermore (soma), unless, so that, if",
-    "porque": "Nenhum desses expressa contraste. Furthermore soma, unless e if criam condição, so that indica finalidade. Furthermore também pediria ponto ou ponto e vírgula antes dele, e não só vírgula.",
+    "porque": "Nenhum desses expressa contraste. Furthermore soma, unless e if criam condição, so that indica finalidade. Além disso, furthermore, como conectivo entre orações, pediria ponto ou ponto e vírgula antes dele, e não só vírgula.",
     "tipo": "eliminar"
    },
    {
@@ -93,9 +93,9 @@
   "checagem": "Troque although por but na frase original e leia em português: 'pode levar de um a três meses, mas cada um aprende de um jeito'. O sentido é o mesmo.",
   "erradas": {
    "B": "Furthermore significa 'além disso' e soma uma ideia à outra. O texto não soma: ele contrapõe o prazo à diferença entre os aprendizes. Quem marcou B leu a segunda parte como mais um fato. Faltaria também ponto ou ponto e vírgula antes de furthermore.",
-   "C": "Unless significa 'a menos que'. A frase diria que a prática leva de um a três meses a menos que todos aprendam de forma diferente. A ressalva do texto vira uma condição de exceção, e isso muda o sentido.",
+   "C": "Unless significa 'a menos que'. A frase diria que a prática leva de um a três meses a menos que todos aprendam de forma diferente. A ressalva do texto vira uma condição de exceção, o que muda o sentido e fica incoerente.",
    "D": "So that significa 'para que' (finalidade). A frase diria que a prática leva esse tempo para que todos aprendam diferente, o que não faz sentido e não aparece no texto.",
-   "E": "If significa 'se'. A frase diria que o prazo vale caso todos aprendam diferente. No texto, todos aprendem de um jeito próprio e isso é uma ressalva, não uma condição. Quem marcou E trocou ressalva por condição."
+   "E": "If significa 'se'. A frase diria que o prazo vale caso todos aprendam diferente, o que vira uma condição. No texto, 'cada um aprende de um jeito' é uma ressalva, não uma condição. Quem marcou E trocou ressalva por condição."
   },
   "armadilha": "Achar que but e although não se equivalem por serem palavras diferentes. Os dois marcam contraste; although só muda a construção.",
   "alerta": "",
@@ -103,7 +103,8 @@
    "pede": "A frase correta e com o mesmo sentido, trocando o conectivo although.",
    "chave": "Although = embora, que expressa contraste; o equivalente simples é but.",
    "cuidado": "Não confunda concessão com adição, condição ou finalidade."
-  }
+  },
+  "nivel": 3
  },
  "caminhos": [
   {
@@ -127,12 +128,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -251,6 +254,34 @@
    "O texto-base do PDF traz 'Check please' sem vírgula por causa da quebra de linha; no enunciado é 'Check, please'. Sem erro de fato.",
    "Classificação do JSON (I04/I04.2, nível 3) difere da classificação atual (I01/I01.3, nível 5). Isso é decisão do corretor de fatos."
   ],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Nenhum desses expressa contraste. Furthermore soma, unless e if criam condição, so that indica finalidade. Além disso, furthermore, como conectivo entre orações, pediria ponto ou ponto e vírgula antes dele, e não só vírgula.",
+    "motivo": "Ajuste mínimo de precisão: a frase 'Furthermore também pediria ponto...' fica clara como regra de pontuação. O fato em si está correto.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "If significa 'se'. A frase diria que o prazo vale caso todos aprendam diferente, o que vira uma condição. No texto, 'cada um aprende de um jeito' é uma ressalva, não uma condição. Quem marcou E trocou ressalva por condição.",
+    "motivo": "O trecho original 'todos aprendem de um jeito próprio e isso é uma ressalva' misturava a ideia. A frase com if também fica semanticamente estranha, e a nova redação deixa isso claro.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "Unless significa 'a menos que'. A frase diria que a prática leva de um a três meses a menos que todos aprendam de forma diferente. A ressalva do texto vira uma condição de exceção, o que muda o sentido e fica incoerente.",
+    "motivo": "Redação ligeiramente mais precisa. O sentido original estava correto.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.nivel",
+    "depois": 3,
+    "motivo": "Classificação: o tema I04/I04.2 (conectivos) está adequado; o tema do banco (I01.3) está fora da taxonomia correta para esta questão. Mantém-se a classificação da resolução proposta (I04.2, nível 3).",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "A"
  }
 }

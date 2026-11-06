@@ -13,7 +13,7 @@
    "texto": "Questão de 'de acordo com o texto': a alternativa certa só afirma o que está escrito. Qualquer elemento a mais (palavra absoluta como 'only', ideia de 'dominar' o idioma, 'interações longas') derruba a alternativa. O texto defende um 'survival level': falar o básico, sem se preocupar com gramática.",
    "formulas": [
     "survival level = nível de sobrevivência: falar o básico, como uma criança pequena, mas se fazer entender",
-    "only = apenas: palavra absoluta; o texto teria de excluir qualquer outra vantagem",
+    "only = apenas: palavra absoluta; a alternativa só vale se o texto excluir qualquer outra ajuda",
     "tiny interaction = interação pequena, curtinha",
     "mastering = dominar por completo; proficiency = fluência, domínio avançado"
    ],
@@ -75,7 +75,7 @@
    {
     "faz": "Veja o que o texto manda evitar",
     "conta": "“not getting hung up on grammar or achieving proficiency”",
-    "porque": "O texto recomenda não se prender à gramática nem à fluência. Isso derruba as alternativas que exigem domínio do idioma.",
+    "porque": "O texto recomenda não se prender à gramática nem à fluência (proficiency). Isso derruba as alternativas A e C, que exigem domínio do idioma.",
     "tipo": "localizar"
    },
    {
@@ -92,14 +92,15 @@
    "B": "Tem 'only'. O texto cita emergências, mas também sair dos centros turísticos, conexão e virar 'sympathetic traveler'. Emergência não é a única ajuda; faltou desconfiar da palavra absoluta.",
    "C": "Inverte o texto: ele diz para não se prender à gramática nem a proficiency (“not getting hung up on grammar or achieving proficiency”).",
    "D": "O texto fala de 'tiny interaction', uma interação curtinha, que já conecta. Nada diz que precisam ser longas. Quem marcou D trocou 'tiny' por 'long' e não conferiu a palavra."
+  },
+  "nivel": 5,
+  "armadilha": "Alternativas B e A parecem ecoar o texto (emergências, aprender o idioma), mas B exagera com 'only' e A exige 'domínio', que o texto desaconselha.",
+  "alerta": "",
+  "essencial": {
+   "pede": "A única alternativa que o texto sustenta por completo.",
+   "chave": "Falar poucas palavras do idioma local conecta você às pessoas e muda a imagem de 'mero turista' para 'viajante simpático'.",
+   "cuidado": "Desconfie de 'only', 'must' e 'mastering': o texto defende o nível básico, sem gramática nem fluência."
   }
- },
- "armadilha": "Alternativas B e A parecem ecoar o texto (emergências, aprender o idioma), mas B exagera com 'only' e A exige 'domínio', que o texto desaconselha.",
- "alerta": "",
- "essencial": {
-  "pede": "A única alternativa que o texto sustenta por completo.",
-  "chave": "Falar poucas palavras do idioma local conecta você às pessoas e muda a imagem de 'mero turista' para 'viajante simpático'.",
-  "cuidado": "Desconfie de 'only', 'must' e 'mastering': o texto defende o nível básico, sem gramática nem fluência."
  },
  "caminhos": [
   {
@@ -125,12 +126,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -238,6 +241,28 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.antes.formulas[1]",
+    "depois": "only = apenas: palavra absoluta; a alternativa só vale se o texto excluir qualquer outra ajuda",
+    "motivo": "Menor ajuste de precisão: a regra deve falar da alternativa que usa 'only', não do texto 'ter de' excluir. Evita ambiguidade.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "O texto recomenda não se prender à gramática nem à fluência (proficiency). Isso derruba as alternativas A e C, que exigem domínio do idioma.",
+    "motivo": "Especifica quais alternativas o trecho derruba (A e C), o que torna o passo coerente com o passo 5.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.nivel",
+    "depois": 5,
+    "motivo": "A classificação atual do banco é nível 5. A resolução trazia 4 sem justificativa, e a instrução é não alterar nível por conta própria. Este valor repõe o original.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "E"
  }
 }

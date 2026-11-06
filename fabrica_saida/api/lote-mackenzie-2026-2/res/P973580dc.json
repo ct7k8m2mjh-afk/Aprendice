@@ -22,7 +22,7 @@
     ],
     [
      "H⁺",
-     "íon hidrogênio, usado como catalisador ácido; ajuda a reação, mas não aparece como reagente"
+     "íon hidrogênio, usado como catalisador ácido; acelera a reação, mas não é consumido"
     ],
     [
      "Δ",
@@ -87,7 +87,7 @@
   "checagem": "Balanço dos dois lados: C₂H₆O → C₂H₄ + H₂O. Há 2 C, 6 H e 1 O de cada lado (4 H + 2 H = 6 H). Fecha.",
   "erradas": {
    "A": "A formação da dupla é verdadeira, mas na adição a dupla é consumida e entram átomos. Aqui a dupla é criada e uma molécula (H₂O) sai. O motivo citado descreve o resultado, não o tipo de reação.",
-   "B": "Em substituição, um grupo sai e outro entra no mesmo lugar. Aqui o OH sai e nada entra no lugar: o carbono passa a fazer ligação dupla com o vizinho.",
+   "B": "Em substituição, um grupo sai e outro entra no lugar dele. Aqui o OH sai e nada entra no lugar: o H sai do carbono vizinho e os dois carbonos passam a fazer ligação dupla. O grupo funcional não é trocado por outro.",
    "D": "Volatilização é mudança de estado físico (líquido para gás), sem alterar a substância. Aqui o etanol vira outra substância, o etileno. O gás formado é consequência, não o critério de classificação.",
    "E": "Isômeros têm a mesma fórmula molecular. Etanol é C₂H₆O e etileno é C₂H₄, e ainda sai H₂O. A fórmula mudou, então não é isomerização."
   },
@@ -146,12 +146,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -239,6 +241,25 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.antes.simbolos[1]",
+    "depois": [
+     "H⁺",
+     "íon hidrogênio, usado como catalisador ácido; acelera a reação, mas não é consumido"
+    ],
+    "motivo": "O texto original dizia que o H⁺ 'não aparece como reagente'. Isso confunde o aluno, porque o H⁺ aparece sobre a seta. O catalisador está na seta e não é consumido, então a frase foi ajustada.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "Em substituição, um grupo sai e outro entra no lugar dele. Aqui o OH sai e nada entra no lugar: o H sai do carbono vizinho e os dois carbonos passam a fazer ligação dupla. O grupo funcional não é trocado por outro.",
+    "motivo": "Deixa claro que o H do carbono vizinho também sai. A versão anterior omitia isso e podia sugerir que só o OH sai.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "C"
  }
 }

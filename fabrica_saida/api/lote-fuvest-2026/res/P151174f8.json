@@ -8,7 +8,7 @@
  "conceito": "Volume do cilindro com restrição no diâmetro: para a menor altura, usa-se o maior diâmetro permitido.",
  "resolucao": {
   "antes": {
-   "texto": "A lata cilíndrica deve conter 350 mL, e 1 mL é 1 cm³, então o volume é 350 cm³. O volume do cilindro é área da base × altura. Com o volume fixo, quanto maior a base, menor a altura. Logo, a menor altura vem do maior diâmetro permitido: 8 cm.",
+   "texto": "A lata deve conter 350 mL, e 1 mL é o mesmo que 1 cm³. Então o volume é 350 cm³. O volume do cilindro é área da base × altura. Com o volume fixo, quanto mais larga a base, mais baixa a lata. Por isso a menor altura vem do maior diâmetro permitido: 8 cm.",
    "formulas": [
     "1 mL = 1 cm³",
     "V = π × r² × h",
@@ -30,6 +30,14 @@
     [
      "π",
      "número pi, aproximadamente 3,14"
+    ],
+    [
+     "cm³",
+     "centímetro cúbico: volume de um cubinho de 1 cm de lado"
+    ],
+    [
+     "diâmetro",
+     "largura da base, medida passando pelo centro"
     ]
    ]
   },
@@ -55,8 +63,8 @@
    },
    {
     "faz": "Isole h e calcule",
-    "conta": "h = 350/(16π) ≈ 350/50,3",
-    "porque": "O 16π passa dividindo. Com π ≈ 3,14, 16π ≈ 50,3.",
+    "conta": "h = 350/(16π)",
+    "porque": "Para isolar h, o 16π passa dividindo. Com π ≈ 3,14, temos 16π ≈ 50,3 e h ≈ 350/50,3 ≈ 6,96.",
     "tipo": "calcular"
    },
    {
@@ -69,10 +77,10 @@
   "resposta": "Alternativa B: com diâmetro de 8 cm (o maior permitido), a altura é 350/(16π) ≈ 6,96, ou seja, cerca de 7 cm.",
   "checagem": "Volte pelo volume: π × 4² × 7 = 16 × 3,14 × 7 ≈ 351,7 cm³, muito perto de 350 cm³. Fecha.",
   "erradas": {
-   "A": "5 cm não serve como menor altura. Com h = 5, o raio seria r² = 350/(5π) ≈ 22,3, então r ≈ 4,7 e d ≈ 9,4 cm, acima do limite de 8 cm. Essa lata não pode ser fabricada.",
-   "C": "13 cm é uma altura possível: com ela, r ≈ 2,93 e d ≈ 5,86 cm, dentro do intervalo de 5 a 8 cm. Mas não é a menor, pois com d = 8 cm a altura cai para cerca de 7 cm.",
+   "A": "5 cm não serve. Com h = 5, r² = 350/(5π) ≈ 22,3, então r ≈ 4,7 e d ≈ 9,4 cm, acima do limite de 8 cm. Quem marcou A esqueceu de checar o limite do diâmetro: essa lata não pode ser fabricada.",
+   "C": "13 cm é uma altura possível: r ≈ 2,93 e d ≈ 5,86 cm, dentro do intervalo. Mas a pergunta é a MENOR altura. Quem marcou C parou numa lata que serve, sem testar o diâmetro de 8 cm, que dá cerca de 7 cm.",
    "D": "18 cm vem de usar o menor diâmetro, 5 cm (r = 2,5): h = 350/(6,25π) ≈ 17,8 ≈ 18. Essa é a MAIOR altura possível, não a menor.",
-   "E": "28 cm não confere: com h = 28, r² = 350/(28π) ≈ 3,98, então r ≈ 2 e d ≈ 4 cm, menor que o mínimo de 5 cm. Essa lata violaria a restrição do diâmetro."
+   "E": "28 cm não confere: com h = 28, r² = 350/(28π) ≈ 3,98, então r ≈ 2 e d ≈ 4 cm, menor que o mínimo de 5 cm. Quem marcou E não conferiu a restrição do diâmetro."
   },
   "armadilha": "Menor altura exige o MAIOR diâmetro. Quem usa o diâmetro de 5 cm acha a maior altura (18 cm) e erra.",
   "alerta": "",
@@ -146,11 +154,15 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -173,6 +185,81 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "B"
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "A lata deve conter 350 mL, e 1 mL é o mesmo que 1 cm³. Então o volume é 350 cm³. O volume do cilindro é área da base × altura. Com o volume fixo, quanto mais larga a base, mais baixa a lata. Por isso a menor altura vem do maior diâmetro permitido: 8 cm.",
+    "motivo": "Frases mais curtas e diretas, sem 'maior base' ambíguo."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "V",
+      "volume do cilindro, aqui 350 cm³"
+     ],
+     [
+      "r",
+      "raio da base, metade do diâmetro"
+     ],
+     [
+      "h",
+      "altura da lata"
+     ],
+     [
+      "π",
+      "número pi, aproximadamente 3,14"
+     ],
+     [
+      "cm³",
+      "centímetro cúbico: volume de um cubinho de 1 cm de lado"
+     ],
+     [
+      "diâmetro",
+      "largura da base, medida passando pelo centro"
+     ]
+    ],
+    "motivo": "Explicar cm³ e diâmetro, termos usados na resolução."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "h = 350/(16π)",
+    "motivo": "Conta cabe na tela e evita sinal ≈ no meio de uma fração; a aproximação vai na linha seguinte do passo."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Para isolar h, o 16π passa dividindo. Com π ≈ 3,14, temos 16π ≈ 50,3 e h ≈ 350/50,3 ≈ 6,96.",
+    "motivo": "Incluir o valor final da conta, já que a conta do passo foi encurtada."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "5 cm não serve. Com h = 5, r² = 350/(5π) ≈ 22,3, então r ≈ 4,7 e d ≈ 9,4 cm, acima do limite de 8 cm. Quem marcou A esqueceu de checar o limite do diâmetro: essa lata não pode ser fabricada.",
+    "motivo": "Dizer o que faltou no raciocínio de quem marcou A."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "13 cm é uma altura possível: r ≈ 2,93 e d ≈ 5,86 cm, dentro do intervalo. Mas a pergunta é a MENOR altura. Quem marcou C parou numa lata que serve, sem testar o diâmetro de 8 cm, que dá cerca de 7 cm.",
+    "motivo": "Mostrar o que faltou: buscar o extremo do intervalo."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "28 cm não confere: com h = 28, r² = 350/(28π) ≈ 3,98, então r ≈ 2 e d ≈ 4 cm, menor que o mínimo de 5 cm. Quem marcou E não conferiu a restrição do diâmetro.",
+    "motivo": "Indicar a falha de raciocínio."
+   },
+   {
+    "campo": "resolucao.quadro[5]",
+    "depois": {
+     "linha": "h ≈ 350/50,3",
+     "nota": "16 × 3,14 ≈ 50,3"
+    },
+    "motivo": "Mantido; linha copiável, sem mudança de conteúdo."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "B"
  }
 }

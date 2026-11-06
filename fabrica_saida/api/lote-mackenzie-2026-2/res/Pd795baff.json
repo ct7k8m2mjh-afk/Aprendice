@@ -73,7 +73,7 @@
   "resposta": "Alternativa D: o estado é o Piauí (capital Teresina, a única do Nordeste no interior), indicado pelo número 4.",
   "checagem": "Teste os outros estados com a mesma pista: Maranhão, Ceará, Pernambuco e Bahia têm capital no litoral. Só o Piauí passa no teste da capital interiorana, e o formato alongado do 4 confirma.",
   "erradas": {
-   "A": "O número 1 é um estado pequeno da faixa leste, junto ao mar. Sua capital fica na costa, então falha na pista da capital afastada do litoral.",
+   "A": "O número 1 não é um estado: agrupa os estados pequenos da faixa leste (RN, PB, PE, AL e SE), todos com capital no litoral. Falha na pista da capital afastada do litoral.",
    "B": "O número 2 é o Maranhão, cuja capital, São Luís, fica numa ilha no litoral. A maior parte do estado não é semiárida: o clima é mais úmido, de transição para a Amazônia.",
    "C": "O número 3 é o Ceará. Tem muito semiárido, mas Fortaleza é capital litorânea, o que desmente a descrição. Tem o clima certo, mas falha na pista da capital.",
    "E": "O número 5 é a Bahia, o maior estado da região. Tem produção de grãos e algodão e energia eólica, mas Salvador fica no litoral. Falha na pista da capital."
@@ -112,12 +112,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -187,6 +189,16 @@
    "No mapa, o número 1 aparece sobre a faixa leste com vários estados pequenos; a resolução original dizia 'Pernambuco' para o 1, o que o desenho não permite afirmar com certeza. Sugere-se o corretor de fatos conferir.",
    "A classificação (tema G12.3 no JSON, G08.3 informado no lote) está divergente; conferir contra a TAXONOMIA."
   ],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "O número 1 não é um estado: agrupa os estados pequenos da faixa leste (RN, PB, PE, AL e SE), todos com capital no litoral. Falha na pista da capital afastada do litoral.",
+    "motivo": "O número 1 no mapa é um conjunto de estados, não um estado pequeno.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "D"
  }
 }

@@ -24,7 +24,7 @@
     ],
     [
      "supermassive",
-     "supermassivo: com massa enorme, de milhões a bilhões de vezes a do Sol"
+     "supermassivo: com massa enorme, milhões a bilhões de vezes a do Sol"
     ],
     [
      "outer layer",
@@ -66,7 +66,7 @@
    },
    {
     "faz": "Elimine o que o texto não sustenta",
-    "conta": "B: evolução de estrelas? C: fusão? D: galáxias × gravidade? E: estágio estelar?",
+    "conta": "B: estrelas geram o objeto?",
     "porque": "O texto não sustenta nenhuma dessas ideias. A fusão nuclear aparece, mas negada. A ordem de formação (estrelas ou buracos negros primeiro) fica como pergunta em aberto.",
     "tipo": "eliminar"
    },
@@ -115,12 +115,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -252,6 +254,31 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "O texto nega que seja estrela no sentido usual, movida por fusão nuclear. Isso enfraquece as alternativas que falam de fusão (C) e de estrela convencional (E).",
+    "motivo": "A versão da didática trazia 'ou seja, movida por', que passa a ideia de que 'sentido usual' e 'movida por fusão' são só sinônimos. A frase-fonte diz 'in the usual sense of being powered by nuclear fusion', e a fusão é o critério do sentido usual. Mantive a redação anterior, que é mais fiel. Mudança mínima, sem alteração de fato.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "B: estrelas geram o objeto?",
+    "motivo": "A conta tinha mais de 30 caracteres e não cabe na tela de 390 px, pois não quebra linha. Os detalhes de C, D e E já estão no porque e em erradas.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.antes.simbolos[2]",
+    "depois": [
+     "supermassive",
+     "supermassivo: com massa enorme, milhões a bilhões de vezes a do Sol"
+    ],
+    "motivo": "Ajuste de redação. O fato continua correto, pois buracos negros supermassivos têm de milhões a bilhões de massas solares. O texto não diz isso, mas é conhecimento padrão.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "A"
  }
 }

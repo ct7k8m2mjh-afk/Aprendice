@@ -80,7 +80,7 @@
   "resposta": "Alternativa E: o bloco percorre 25 m, pois o atrito (10 N) causa desaceleração de 2 m/s² e d = 10² ÷ (2 × 2) = 25 m.",
   "checagem": "Pelo tempo: v = v₀ − a·t dá 0 = 10 − 2t, então t = 5 s. A velocidade média é (10 + 0) ÷ 2 = 5 m/s, e 5 m/s × 5 s = 25 m. Confere.",
   "erradas": {
-   "A": "10 m não confere. É o valor da força de atrito (10 N), com número igual mas grandeza diferente. Com a = 2 m/s², 10 m dá v² = 100 − 2 × 2 × 10 = 60, e o bloco ainda estaria em movimento.",
+   "A": "10 m não confere. Com a = 2 m/s², em 10 m teríamos v² = 100 − 2 × 2 × 10 = 60, e o bloco ainda estaria em movimento. O número 10 também coincide com o valor da força de atrito (10 N), mas grandeza diferente.",
    "B": "12,5 m não confere. Com d = 12,5 m, Torricelli exigiria a = 100 ÷ (2 × 12,5) = 4 m/s², o dobro da desaceleração que o atrito produz (μ × g = 2 m/s²).",
    "C": "15 m não confere. Com d = 15 m, a aceleração necessária seria 100 ÷ 30 ≈ 3,3 m/s², e o atrito dado produz 2 m/s².",
    "D": "20 m não confere. Com d = 20 m, Torricelli exigiria a = 100 ÷ (2 × 20) = 2,5 m/s², mas o atrito dá μ × g = 2 m/s². Com 20 m percorridos, ainda sobraria v² = 100 − 2 × 2 × 20 = 20, e o bloco continuaria andando."
@@ -113,7 +113,7 @@
    "nota": "atrito cinético = μ × N"
   },
   {
-   "linha": "a = \\frac{10}{5} = 2 m/s²",
+   "linha": "a = 10/5 = 2 m/s²",
    "nota": "2ª lei de Newton: o atrito é a resultante, contra o movimento"
   },
   {
@@ -138,7 +138,7 @@
    ]
   },
   {
-   "linha": "d = \\frac{100}{4}",
+   "linha": "d = 100/4",
    "nota": "o 4 que multiplica passa dividindo",
    "mov": [
     {
@@ -170,12 +170,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -224,7 +226,7 @@
       "nota": "atrito cinético = μ × N"
      },
      {
-      "linha": "a = \\frac{10}{5} = 2 m/s²",
+      "linha": "a = 10/5 = 2 m/s²",
       "nota": "2ª lei de Newton: o atrito é a resultante, contra o movimento"
      },
      {
@@ -249,7 +251,7 @@
       ]
      },
      {
-      "linha": "d = \\frac{100}{4}",
+      "linha": "d = 100/4",
       "nota": "o 4 que multiplica passa dividindo",
       "mov": [
        {
@@ -282,6 +284,35 @@
   "didatica_alertas": [
    "Classificação: o JSON está como tema F02/conteúdo F02.3 (dinâmica/atrito), mas o cabeçalho do pedido diz F05/F05.1 (gravitação/Kepler). O conteúdo é de atrito, então F02.3 faz sentido; revisar o cadastro."
   ],
-  "didatica_ok": true
- }
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "classificacao (tema/conteudo)",
+    "depois": "tema F02, conteúdo F02.3 (atrito); a classificação atual F05/F05.1 é Gravitação/Kepler e está errada",
+    "motivo": "A questão trata de atrito cinético e frenagem em plano horizontal. A resolução já usa F02/F02.3, mas a classificação atual do banco (F05, F05.1) não corresponde ao conteúdo e deve ser atualizada. Nível 4 é plausível.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.quadro[2].linha",
+    "depois": "a = 10/5 = 2 m/s²",
+    "motivo": "O guia proíbe LaTeX (\\frac) em qualquer campo, inclusive no quadro. A fração deve ser escrita como numerador/denominador.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.quadro[6].linha",
+    "depois": "d = 100/4",
+    "motivo": "O guia proíbe LaTeX (\\frac). Usar a notação numerador/denominador.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "10 m não confere. Com a = 2 m/s², em 10 m teríamos v² = 100 − 2 × 2 × 10 = 60, e o bloco ainda estaria em movimento. O número 10 também coincide com o valor da força de atrito (10 N), mas grandeza diferente.",
+    "motivo": "Mudança só de ordem. A conta original está correta (100 − 40 = 60). Manter a lógica, mas apresentar primeiro o teste objetivo.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "E"
+ },
+ "classificacao (tema/conteudo)": "tema F02, conteúdo F02.3 (atrito); a classificação atual F05/F05.1 é Gravitação/Kepler e está errada"
 }

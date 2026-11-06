@@ -86,9 +86,9 @@
   "checagem": "Refaça a conta de volta: 900 km = 90.000.000 cm, e 90.000.000 ÷ 15.000.000 = 6 cm. Fecha com a medida do enunciado. Como Moldávia, Belarus e Ucrânia estão fora da OTAN, só a letra E sobra.",
   "erradas": {
    "A": "A erra nas duas partes. 90 km sai de dividir por 1.000.000 em vez de 100.000: 90.000.000 ÷ 1.000.000 = 90. Além disso, a Moldávia não é membro da OTAN.",
-   "B": "B erra nas duas partes. 210 km não vem da conta correta (6 × 15.000.000 = 900 km). E Belarus e Moldávia não pertencem à OTAN.",
+   "B": "B erra nas duas partes. 210 km não confere com 6 × 15.000.000 cm = 900 km. E Belarus e Moldávia não pertencem à OTAN.",
    "C": "C erra nas duas partes. 320 km não confere com 6 cm × 15.000.000 = 900 km. A Bulgária é da OTAN, mas a Crimeia é uma península (anexada pela Rússia em 2014 e reconhecida internacionalmente como parte da Ucrânia), não um país-membro.",
-   "D": "D erra nas duas partes. 420 km não confere com 900 km. Belarus é aliado da Rússia e a Ucrânia não é membro da OTAN, apesar de ter pedido adesão."
+   "D": "D erra nas duas partes. 420 km não confere com 6 × 15.000.000 cm = 900 km. Belarus é aliado da Rússia e a Ucrânia não é membro da OTAN, embora tenha pedido adesão."
   },
   "armadilha": "Errar os zeros na conversão de cm para km (1 km = 100.000 cm) e achar que Belarus, Moldávia ou Ucrânia são da OTAN.",
   "alerta": "O enunciado escreve a escala como '1: 15000.000'. Foi lida como 1:15.000.000, a única leitura que leva a uma alternativa. Além disso, o mapa rotula a Crimeia como se fosse país, embora seja uma península.",
@@ -156,12 +156,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -275,6 +277,22 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "B erra nas duas partes. 210 km não confere com 6 × 15.000.000 cm = 900 km. E Belarus e Moldávia não pertencem à OTAN.",
+    "motivo": "Redação mais precisa. O original sugeria que 210 km vinha de uma conta, e o teste objetivo (6 × 15.000.000 cm = 900 km) já derruba a alternativa.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "D erra nas duas partes. 420 km não confere com 6 × 15.000.000 cm = 900 km. Belarus é aliado da Rússia e a Ucrânia não é membro da OTAN, embora tenha pedido adesão.",
+    "motivo": "Acrescenta o teste objetivo que derruba a distância. Os fatos geopolíticos já estavam corretos.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "E"
  }
 }

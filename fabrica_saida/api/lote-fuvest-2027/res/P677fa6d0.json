@@ -92,9 +92,9 @@
   "resposta": "Alternativa A: o Cs⁺ é retido por atração eletrostática (íon-íon) com as regiões de carga negativa da rede de Azul da Prússia.",
   "checagem": "Troque o Cs⁺ por K⁺ no raciocínio: os dois têm carga +1 e podem ocupar o mesmo lugar na cavidade. Uma troca de um cátion por outro, a 'troca iônica' do texto, só faz sentido se a retenção depender da carga.",
   "erradas": {
-   "B": "Ligação covalente é compartilhamento de elétrons: seria forte e permanente. O texto diz 'fracamente ligados' e que os cátions podem ser trocados. Além disso, eles ficam nas cavidades, não ligados ao ferro.",
-   "C": "Van der Waals são atrações fracas entre partículas neutras. O Cs⁺ tem carga e é atraído pela carga oposta da rede. O texto diz que a força é eletrostática; essa é a retenção principal, e não 'todos os átomos'.",
-   "D": "Ligação de hidrogênio exige H ligado a F, O ou N. O CN⁻ não tem H, e o Cs⁺ também não. Quem marcou D viu 'N' no cianeto e esqueceu de procurar o H.",
+   "B": "Ligação covalente é compartilhamento de elétrons: seria forte e permanente. O texto diz 'fracamente ligados' e que os cátions podem ser trocados. Além disso, o texto os coloca nas cavidades, presos por atração eletrostática, e não ligados ao ferro.",
+   "C": "Van der Waals são atrações fracas entre partículas neutras ou dipolos. O Cs⁺ tem carga e é atraído pela carga oposta da rede. O texto diz que a força é eletrostática. Além disso, Van der Waals atuam em todos os átomos, mas não são a causa principal da retenção do cátion.",
+   "D": "Ligação de hidrogênio exige H ligado a F, O ou N. O CN⁻ não tem H, e o Cs⁺ também não. Não há H na estrutura que possa fazer essa ligação.",
    "E": "O texto afirma que a interação é eletrostática, portanto há atração entre cátion e rede. A alternativa nega isso ao dizer 'sem interação eletrostática'; um simples aprisionamento físico também não explicaria a compensação de carga."
   },
   "armadilha": "Achar que 'cianeto' lembra ligação de hidrogênio ou covalente, quando o texto já diz que a ligação é eletrostática e que o cátion compensa a carga da rede.",
@@ -131,12 +131,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -256,6 +258,28 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "Ligação de hidrogênio exige H ligado a F, O ou N. O CN⁻ não tem H, e o Cs⁺ também não. Não há H na estrutura que possa fazer essa ligação.",
+    "motivo": "A frase sobre 'quem marcou D' especula a origem do erro. O guia proíbe isso, então ficou só o teste objetivo.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "Ligação covalente é compartilhamento de elétrons: seria forte e permanente. O texto diz 'fracamente ligados' e que os cátions podem ser trocados. Além disso, o texto os coloca nas cavidades, presos por atração eletrostática, e não ligados ao ferro.",
+    "motivo": "O trecho 'eles ficam nas cavidades, não ligados ao ferro' afirmava um fato que o texto não diz. Eu o reescrevi com base no que o texto diz.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "Van der Waals são atrações fracas entre partículas neutras ou dipolos. O Cs⁺ tem carga e é atraído pela carga oposta da rede. O texto diz que a força é eletrostática. Além disso, Van der Waals atuam em todos os átomos, mas não são a causa principal da retenção do cátion.",
+    "motivo": "A frase original era confusa. Eu a deixei tecnicamente precisa.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "A"
  }
 }
