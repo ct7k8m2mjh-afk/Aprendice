@@ -151,6 +151,7 @@ export function Tema() {
               return (
                 <li key={sub.id}>
                   <Link to={`/m/${m}/escada/${sub.id}`}>
+                    <i className="ponto-sub" aria-hidden />
                     <span className="t"><b>{cap(sub.nome)}</b>{frase && <span>{frase}</span>}</span>
                     <span className="p"><span className="num">{pe.feitas}/{pe.total}</span><Barra valor={pe.total ? pe.feitas / pe.total : 0} rotulo={`Progresso em ${sub.nome}`} /></span>
                     <Icone nome="direita" className="tp-seta" />

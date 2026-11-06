@@ -196,6 +196,13 @@ def faixas_da_pagina(pg, cfg):
                         and not any(g['y0'] <= a and b <= L['bbox'][1] for a, b in largas):
                     g['y1'] = max(g['y1'], L['bbox'][3])
                     g['ls'].append(L)
+    # rótulos "(A)" das alternativas da coluna direita, recuados à esquerda do texto delas
+    for g in grupos:
+        xs = min(L['bbox'][0] for L in g['ls'])
+        for L in ls:
+            if re.match(r'^\(?[A-E][\).]\s*$|^\(?[A-E]\)', L['t']) and xs - 45 < L['bbox'][0] < xs - 1 and L not in g['ls'] \
+                    and g['y0'] - 2 <= L['bbox'][1] <= g['y1'] + 2:
+                g['ls'].append(L)
     faixas = []
     for g in grupos:
         forte = any(forte_(L) for L in g['ls'])
@@ -299,7 +306,7 @@ def limite_baixo(pg, cfg):
     lim = pg.rect.height - cfg['base']
     if cfg.get('rodape_rx'):   # rodapé em altura que muda por ano: a página acaba logo acima dele
         for l in linhas(pg):
-            if l['bbox'][1] > pg.rect.height * 0.88 and re.search(cfg['rodape_rx'], l['t']):
+            if l['bbox'][1] > pg.rect.height * 0.82 and re.search(cfg['rodape_rx'], l['t']):
                 # rodapé ao lado da última alternativa (mesma altura): não corta, só é apagado no print ('apagar')
                 lado = any(o is not l and o['bbox'][1] < l['bbox'][3] - 2 and o['bbox'][3] > l['bbox'][1] + 2
                            and not re.search(cfg['rodape_rx'], o['t']) and not re.fullmatch(r'[\d\s•∙·|]*(Fatec)?', o['t'])
@@ -609,7 +616,10 @@ def apagaveis(pdf, cfg):
     if not cfg.get('apagar'):
         return out
     for pg in pdf:
-        rs = [pymupdf.Rect(L['bbox']) for L in linhas(pg) if any(re.search(rx, L['t']) for rx in cfg['apagar'])]
+        # só no alto ou no pé da página (um "7" solto no meio é numerador de fração, valor de eixo, célula de tabela)
+        H = pg.rect.height
+        rs = [pymupdf.Rect(L['bbox']) for L in linhas(pg) if any(re.search(rx, L['t']) for rx in cfg['apagar'])
+              and (L['bbox'][1] > H * 0.82 or L['bbox'][3] < H * 0.1)]
         if rs:
             out[pg.number] = rs
     return out

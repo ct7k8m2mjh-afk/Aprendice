@@ -7,7 +7,6 @@ import { useEstado } from '../estado/loja';
 import { atividadeRecente, materiaDeHoje, progressoEscada, resumoMateria } from '../logica/estatisticas';
 import { Barra, Carregando, cap, plural, useTitulo } from '../ui/comum';
 import { Icone, type NomeIcone } from '../ui/Icone';
-import { IcTema } from '../ui/IconeTema';
 import type { MateriaId } from '../dados/tipos';
 import type { Estado, EstadoMateria } from '../estado/tipos';
 import { ILU, IluMateria, temIlu } from '../ui/IconeMateria';
@@ -154,7 +153,7 @@ export function Inicio() {
             </>)}
           </div>
           <div className="ih-arte">
-            {parou && !temIlu(parou.m) ? <IcTema m={parou.m} tema={parou.q.modulo} tam={150} /> : <IcMat m={heroiM} tam={150} className="ih-ilu" />}
+            <IcMat m={heroiM} tam={150} className="ih-ilu" />
           </div>
         </section>
 

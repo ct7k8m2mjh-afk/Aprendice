@@ -6,7 +6,6 @@ import { quandoVolta } from '../logica/revisao';
 import { atualizaMateria, useMateriaEstado } from '../estado/loja';
 import { urlFlashImg, EH_PREVIA } from '../dados/conteudo';
 import { Icone } from './Icone';
-import { IcTema } from './IconeTema';
 
 export type Nota = 'a' | 'q' | 'e';
 
@@ -85,7 +84,7 @@ export function FlashcardView({ m, c, todos, aoNotar, usarIA = true, tema, conte
     <article className="flashcard folha">
       {tema ? (
         <div className="fc-faixa">
-          <IcTema m={m} tema={c.mod} tam={34} />
+          <i className="ponto-sub" aria-hidden />
           <span className="fc-faixa-nm"><b>{tema}</b>{conteudo && <span>{conteudo}</span>}</span>
           <span className="fc-faixa-tg">
             <span className="etq">{TIPO[c.tipo || (c.img ? 'imagem' : '')] || 'Flashcard'}</span>
