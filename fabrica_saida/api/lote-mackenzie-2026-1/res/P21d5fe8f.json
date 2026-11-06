@@ -12,7 +12,7 @@
    "formulas": [
     "Cátodo: recebe elétrons, redução",
     "Ânodo: perde elétrons, oxidação",
-    "Eletrólise: processo não espontâneo (d.d.p. da reação < 0)"
+    "Eletrólise: processo não espontâneo, forçado pela bateria"
    ],
    "simbolos": [
     [
@@ -53,19 +53,19 @@
     "faz": "Escreva a semirreação do cátodo",
     "conta": "Ni²⁺(aq) + 2 e⁻ → Ni(s)",
     "porque": "No cátodo há redução. Os íons Ni²⁺ da solução ganham elétrons e se depositam como Ni metálico sobre o aço.",
-    "tipo": "aplicar"
+    "tipo": "localizar"
    },
    {
     "faz": "Escreva a semirreação do ânodo",
     "conta": "Ni(s) → Ni²⁺(aq) + 2 e⁻",
     "porque": "No ânodo há oxidação. A barra de níquel perde elétrons e vira íon, por isso sua massa diminui.",
-    "tipo": "aplicar"
+    "tipo": "localizar"
    },
    {
     "faz": "Some as duas semirreações",
     "conta": "Ni²⁺ sai de um lado e entra do outro",
     "porque": "Os íons consumidos no cátodo são repostos no ânodo. Tudo se resume a transferir Ni da barra para o objeto.",
-    "tipo": "interpretar"
+    "tipo": "comparar"
    },
    {
     "faz": "Avalie as alternativas",
@@ -77,7 +77,7 @@
   "resposta": "Alternativa C: os íons Ni²⁺ da solução são reduzidos no cátodo (Ni²⁺ + 2 e⁻ → Ni), recobrindo o aço.",
   "checagem": "Cátodo = redução e ânodo = oxidação, sempre (vale na pilha e na eletrólise). Aqui o cátodo é o aço, e ali os íons Ni²⁺ ganham elétrons. Só a C diz isso.",
   "erradas": {
-   "A": "O aço é o cátodo, onde ocorre redução, e não oxidação. Ele recebe elétrons dos íons Ni²⁺ da solução, em vez de liberá-los.",
+   "A": "O aço é o cátodo, onde ocorre redução, e não oxidação. Ele recebe elétrons da bateria pelo fio e os passa aos íons Ni²⁺ da solução; quem se reduz são esses íons, e o aço não libera elétrons próprios.",
    "B": "A barra de níquel é o ânodo, onde ocorre oxidação (Ni → Ni²⁺ + 2 e⁻). A massa diminui, mas por oxidação, não por redução. A frase se contradiz.",
    "D": "A semirreação escrita (Ni²⁺ + 2 e⁻ → Ni) é uma redução, que ocorre no cátodo. No ânodo ocorre a inversa: Ni → Ni²⁺ + 2 e⁻.",
    "E": "Eletrólise é processo não espontâneo, forçado pela bateria. Além disso, a reação global é Ni → Ni (muda só de lugar), com E° = 0 nas condições padrão. A bateria fornece a energia para o transporte do níquel."
@@ -127,10 +127,46 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "O aço é o cátodo, onde ocorre redução, e não oxidação. Ele recebe elétrons da bateria pelo fio e os passa aos íons Ni²⁺ da solução; quem se reduz são esses íons, e o aço não libera elétrons próprios.",
+    "motivo": "A frase original dizia que o aço recebe elétrons dos íons Ni²⁺, e isso está errado. Os íons Ni²⁺ ganham elétrons, não os cedem. Quem fornece os elétrons ao cátodo é a bateria, pelo circuito externo.",
+    "fonte": "OpenStax Chemistry 2e, seção 17.7 (Electrolysis)"
+   },
+   {
+    "campo": "resolucao.antes.formulas[2]",
+    "depois": "Eletrólise: processo não espontâneo, forçado pela bateria",
+    "motivo": "A regra geral 'd.d.p. da reação < 0' contradiz o próprio comentário da E. Neste niquelamento a reação global é Ni → Ni, com E° = 0. A bateria é necessária porque o processo é forçado, e não porque a d.d.p. calculada seja negativa.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "localizar",
+    "motivo": "'aplicar' não está na lista de tipos permitidos (localizar, calcular, comparar, eliminar, concluir).",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "localizar",
+    "motivo": "'aplicar' não está na lista de tipos permitidos.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "comparar",
+    "motivo": "'interpretar' não está na lista de tipos permitidos.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C"
  }
 }

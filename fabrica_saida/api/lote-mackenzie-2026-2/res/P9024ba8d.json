@@ -44,7 +44,7 @@
     "faz": "Monte a diferença de áreas",
     "conta": "A_útil = (x + a)² − (x − a)²",
     "porque": "A região útil está dentro do maior e fora do menor. Por isso se tira a área do menor da área do maior.",
-    "tipo": "interpretar"
+    "tipo": "calcular"
    },
    {
     "faz": "Desenvolva os dois quadrados",
@@ -68,7 +68,7 @@
   "resposta": "Alternativa E: a área útil é (x + a)² − (x − a)² = 4ax.",
   "checagem": "Teste com números: x = 3 e a = 1. O quadrado maior tem lado 4 e área 16. O menor tem lado 2 e área 4. A diferença é 12, e 4ax = 4 × 1 × 3 = 12. Confere.",
   "erradas": {
-   "A": "4(x + a)(x − a) = 4(x² − a²). Essa expressão vem de aplicar a diferença de quadrados e multiplicar por 4, sem base na diferença de áreas. Com x = 3 e a = 1, dá 4 × 8 = 32, mas a área útil é 12.",
+   "A": "4(x + a)(x − a) não confere. Ela vale 4(x² − a²): com x = 3 e a = 1, dá 4 × 8 = 32, e a área útil é 12. O valor passa até dos 16 do quadrado maior inteiro.",
    "B": "4(x + a)² é quatro vezes a área do quadrado maior. Com x = 3 e a = 1, dá 4 × 16 = 64, muito acima de 12. A área útil nunca passa da área do quadrado maior, que é 16.",
    "C": "4(x − a)² é quatro vezes a área do quadrado menor. Com x = 3 e a = 1, dá 4 × 4 = 16, e não 12. Ela ignora o quadrado maior.",
    "D": "4x² − a² não confere. Com x = 3 e a = 1, dá 36 − 1 = 35, e a área útil é 12. Além disso, 35 é maior que 16, a área do quadrado maior inteiro."
@@ -147,10 +147,28 @@
  "gab": "E",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "calcular",
+    "motivo": "O tipo 'interpretar' não existe na lista permitida (localizar, calcular, comparar, eliminar, concluir). No guia, montar a equação conta como passo 'calcular'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "4(x + a)(x − a) não confere. Ela vale 4(x² − a²): com x = 3 e a = 1, dá 4 × 8 = 32, e a área útil é 12. O valor passa até dos 16 do quadrado maior inteiro.",
+    "motivo": "A origem dada antes ('aplicar a diferença de quadrados e multiplicar por 4') não descreve nenhum erro real de quem resolve, então era uma origem inventada. Pelo guia, nesse caso o certo é escrever 'não confere' e mostrar o teste. Confirmei a conta: 4 × (9 − 1) = 32.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E"
  }
 }

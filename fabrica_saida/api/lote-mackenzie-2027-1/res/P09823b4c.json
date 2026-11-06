@@ -63,19 +63,19 @@
     "faz": "Julgue o item II",
     "conta": "Truman, 1947: contenção",
     "porque": "A Doutrina Truman, anunciada em 1947, definiu a contenção do comunismo. Ela justificou ajuda e intervenção em vários lugares, como Grécia e Turquia. O item é verdadeiro.",
-    "tipo": "aplicar"
+    "tipo": "comparar"
    },
    {
     "faz": "Julgue o item III",
     "conta": "OTAN, 1949: aliança defensiva",
     "porque": "A OTAN reuniu EUA, Canadá e países da Europa ocidental num pacto de defesa coletiva, com liderança de Washington. O item é verdadeiro.",
-    "tipo": "aplicar"
+    "tipo": "comparar"
    },
    {
     "faz": "Julgue o item IV",
     "conta": "golpes + Segurança Nacional",
     "porque": "Os EUA apoiaram ou estimularam golpes e regimes anticomunistas na América Latina, como Guatemala (1954), Brasil (1964) e Chile (1973). O item é verdadeiro.",
-    "tipo": "aplicar"
+    "tipo": "comparar"
    },
    {
     "faz": "Monte a combinação",
@@ -108,7 +108,7 @@
   },
   {
    "nome": "item mais seguro",
-   "ideia": "Os itens III (OTAN, 1949) e IV (apoio a ditaduras) são verdadeiros. As alternativas A e B perdem o IV, a A perde o III, e a E contém o I falso. Só a C fecha."
+   "ideia": "Os itens III (OTAN, 1949) e IV (apoio a ditaduras) são verdadeiros. Isso elimina a A, que não traz nenhum dos dois, e a B, que não traz o IV. Sobram C, D e E. A D e a E contêm o I, que é falso. Só a C fecha."
   }
  ],
  "visual": {
@@ -125,10 +125,40 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "comparar",
+    "motivo": "'aplicar' não é um dos tipos permitidos (localizar, calcular, comparar, eliminar, concluir). Julgar um item contra o conteúdo corresponde a 'comparar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "comparar",
+    "motivo": "'aplicar' não é um dos tipos permitidos (localizar, calcular, comparar, eliminar, concluir).",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[4].tipo",
+    "depois": "comparar",
+    "motivo": "'aplicar' não é um dos tipos permitidos (localizar, calcular, comparar, eliminar, concluir).",
+    "fonte": ""
+   },
+   {
+    "campo": "caminhos[1].ideia",
+    "depois": "Os itens III (OTAN, 1949) e IV (apoio a ditaduras) são verdadeiros. Isso elimina a A, que não traz nenhum dos dois, e a B, que não traz o IV. Sobram C, D e E. A D e a E contêm o I, que é falso. Só a C fecha.",
+    "motivo": "O texto anterior não eliminava a D, que contém III e IV. Ela só cai por conter o item I, que é falso. Do jeito que estava, o caminho não fechava.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C"
  }
 }

@@ -38,25 +38,25 @@
     "faz": "Identifique o que o enunciado pede",
     "conta": "Por que há resgates no meio urbano?",
     "porque": "O texto diz que 68% dos resgatados em 2025 estavam em áreas urbanas. A explicação deve ser urbana, não rural.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Leia o gráfico",
     "conta": "Alvenaria 601; administração pública 341; edifícios 186",
-    "porque": "Três das cinco atividades são da construção civil, setor ligado à cidade, com muitos contratos informais e terceirizados. O café (184) e a pedra (126) pesam menos.",
+    "porque": "Duas das cinco atividades são da construção civil (alvenaria e edifícios), e a extração de pedras abastece esse setor. A administração pública (341) também é urbana. Só o café (184) é rural.",
     "tipo": "localizar"
    },
    {
     "faz": "Elimine as explicações rurais",
     "conta": "Concentração fundiária → campo",
     "porque": "A letra D explica o trabalho escravo rural, não o urbano. Ela contraria o foco do enunciado.",
-    "tipo": "aplicar"
+    "tipo": "eliminar"
    },
    {
     "faz": "Elimine as afirmações falsas ou incoerentes",
     "conta": "A: sem lei? B: empresas públicas? E: menos desigualdade?",
-    "porque": "O trabalho escravo é crime, há lei que pune. As empresas públicas não são a causa. A desigualdade urbana não diminuiu.",
-    "tipo": "aplicar"
+    "porque": "O trabalho escravo é crime, e há lei que pune. As empresas públicas não são a causa. E a vulnerabilidade vem da desigualdade, não da redução dela.",
+    "tipo": "eliminar"
    },
    {
     "faz": "Confirme a alternativa que liga setor e vulnerabilidade",
@@ -74,7 +74,7 @@
    "E": "Nas cidades brasileiras a desigualdade social persiste. A superexploração decorre de precarização, desemprego e informalidade, não de redução da desigualdade. A afirmação não tem base no texto nem na realidade."
   },
   "armadilha": "Associar trabalho escravo só ao campo (concentração fundiária, isolamento) e esquecer que a pergunta é sobre o meio urbano.",
-  "alerta": "",
+  "alerta": "O enunciado diz que o balanço foi divulgado em 28/01/2025 sobre as ações realizadas 'ao longo de 2025', o que é cronologicamente impossível. Isso não altera a resposta.",
   "essencial": {
    "pede": "A causa social do trabalho análogo à escravidão nas cidades.",
    "chave": "Precarização urbana: setores que se expandem com contratos informais, mais desemprego e informalidade, geram vulnerabilidade.",
@@ -88,7 +88,7 @@
   },
   {
    "nome": "leitura do gráfico",
-   "ideia": "As barras mais altas são obras de alvenaria (601) e construção de edifícios (186), setores urbanos. Procure a alternativa que explique por que esses setores concentram resgates."
+   "ideia": "A barra mais alta é obras de alvenaria (601), seguida de administração pública (341); com construção de edifícios (186), dominam setores urbanos de construção e serviços. Procure a alternativa que explique por que esses setores concentram resgates."
   }
  ],
  "quadro": [],
@@ -105,10 +105,58 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[0].tipo",
+    "depois": "localizar",
+    "motivo": "'interpretar' não é um tipo permitido. Os tipos válidos são localizar, calcular, comparar, eliminar e concluir.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "Duas das cinco atividades são da construção civil (alvenaria e edifícios), e a extração de pedras abastece esse setor. A administração pública (341) também é urbana. Só o café (184) é rural.",
+    "motivo": "Leitura errada do gráfico. O texto dizia que três atividades eram da construção civil, mas só alvenaria e edifícios são. A extração e britamento de pedras é atividade extrativa, e a mesma frase ainda tratava 'a pedra' como se não fosse construção. Além disso, o café (184) quase empata com edifícios (186), então dizer que ele 'pesa menos' não se sustentava.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "eliminar",
+    "motivo": "'aplicar' não é um tipo permitido, e este passo descarta uma alternativa.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "eliminar",
+    "motivo": "'aplicar' não é um tipo permitido, e este passo descarta alternativas.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "O trabalho escravo é crime, e há lei que pune. As empresas públicas não são a causa. E a vulnerabilidade vem da desigualdade, não da redução dela.",
+    "motivo": "A frase 'A desigualdade urbana não diminuiu' é uma afirmação empírica absoluta, sem fonte e discutível: o índice de Gini caiu em anos recentes. Troquei pelo argumento lógico, que basta para eliminar a E.",
+    "fonte": ""
+   },
+   {
+    "campo": "caminhos[1].ideia",
+    "depois": "A barra mais alta é obras de alvenaria (601), seguida de administração pública (341); com construção de edifícios (186), dominam setores urbanos de construção e serviços. Procure a alternativa que explique por que esses setores concentram resgates.",
+    "motivo": "Leitura errada do gráfico. A segunda barra mais alta é administração pública (341), não construção de edifícios (186).",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.alerta",
+    "depois": "O enunciado diz que o balanço foi divulgado em 28/01/2025 sobre as ações realizadas 'ao longo de 2025', o que é cronologicamente impossível. Isso não altera a resposta.",
+    "motivo": "Há uma incoerência interna de data no texto-base da prova, e cabe registrá-la como problema da questão.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C"
  }
 }

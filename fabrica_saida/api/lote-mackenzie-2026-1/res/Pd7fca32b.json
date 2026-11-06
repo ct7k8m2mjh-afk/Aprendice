@@ -47,7 +47,7 @@
     "tipo": "localizar"
    },
    {
-    "faz": "Calcule a força de atrito",
+    "faz": "Calcule a força normal",
     "conta": "N = P = 5 × 10 = 50 N",
     "porque": "Na horizontal não há movimento vertical, então a normal equilibra o peso.",
     "tipo": "calcular"
@@ -68,7 +68,7 @@
     "faz": "Aplique Torricelli",
     "conta": "0 = 10² − 2 × 2 × d",
     "porque": "A aceleração tem sinal negativo porque freia. Não há tempo nos dados, então Torricelli é a equação certa.",
-    "tipo": "aplicar"
+    "tipo": "calcular"
    },
    {
     "faz": "Isole a distância",
@@ -81,11 +81,11 @@
   "checagem": "Pelo tempo: v = v₀ − a·t dá 0 = 10 − 2t, então t = 5 s. A velocidade média é (10 + 0) ÷ 2 = 5 m/s, e 5 m/s × 5 s = 25 m. Confere.",
   "erradas": {
    "A": "10 m não confere. É o valor da força de atrito (10 N), com número igual mas grandeza diferente. Com a = 2 m/s², 10 m dá v² = 100 − 2 × 2 × 10 = 60, e o bloco ainda estaria em movimento.",
-   "B": "12,5 m sai de usar aceleração de 4 m/s²: 100 ÷ (2 × 4) = 12,5. Isso seria dobrar a aceleração, esquecendo que d = v² ÷ (2a) leva o 2 no denominador junto com a = 2.",
+   "B": "12,5 m não confere. Com d = 12,5 m, Torricelli exigiria a = 100 ÷ (2 × 12,5) = 4 m/s², o dobro da desaceleração que o atrito produz (μ × g = 2 m/s²).",
    "C": "15 m não confere. Com d = 15 m, a aceleração necessária seria 100 ÷ 30 ≈ 3,3 m/s², e o atrito dado produz 2 m/s².",
-   "D": "20 m sai de d = v² ÷ (2a) com a = 2,5 m/s², valor que não vem dos dados. Com a = 2 m/s² correta, a distância é 25 m. Também sai de trocar 100 ÷ 5 = 20, ou seja, dividir por m em vez de por 2a, o que mistura massa com aceleração."
+   "D": "20 m não confere. Com d = 20 m, Torricelli exigiria a = 100 ÷ (2 × 20) = 2,5 m/s², mas o atrito dá μ × g = 2 m/s². Com 20 m percorridos, ainda sobraria v² = 100 − 2 × 2 × 20 = 20, e o bloco continuaria andando."
   },
-  "armadilha": "Esquecer o fator 2 de Torricelli: d = v² ÷ a daria 50 m, e usar 2a sem dividir direito leva a 12,5 m ou 20 m. Também não se deve usar a massa na conta final, pois ela cancela.",
+  "armadilha": "Esquecer o fator 2 de Torricelli: d = v₀² ÷ a daria 50 m, o dobro do correto. A massa não entra na conta final, porque cancela no cálculo da aceleração (a = μ × g).",
   "alerta": "",
   "essencial": {
    "pede": "A distância percorrida por um bloco de 5 kg lançado a 10 m/s com atrito μ = 0,2 até parar.",
@@ -164,10 +164,46 @@
  "gab": "E",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].faz",
+    "depois": "Calcule a força normal",
+    "motivo": "A conta desse passo calcula a normal (N = 50 N), não o atrito. O atrito só aparece no passo seguinte.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[4].tipo",
+    "depois": "calcular",
+    "motivo": "\"aplicar\" não é um tipo permitido. Os tipos válidos são localizar, calcular, comparar, eliminar e concluir.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "12,5 m não confere. Com d = 12,5 m, Torricelli exigiria a = 100 ÷ (2 × 12,5) = 4 m/s², o dobro da desaceleração que o atrito produz (μ × g = 2 m/s²).",
+    "motivo": "A origem dada (usar a = 4 m/s², \"dobrar a aceleração\") não sai de nenhum erro reproduzível a partir dos dados. Troquei pelo teste objetivo.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "20 m não confere. Com d = 20 m, Torricelli exigiria a = 100 ÷ (2 × 20) = 2,5 m/s², mas o atrito dá μ × g = 2 m/s². Com 20 m percorridos, ainda sobraria v² = 100 − 2 × 2 × 20 = 20, e o bloco continuaria andando.",
+    "motivo": "A versão anterior inventava uma origem (\"a = 2,5 m/s², valor que não vem dos dados\") e propunha 100 ÷ 5, uma conta sem sentido físico (v² dividido pela massa). Troquei pelo teste objetivo.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.armadilha",
+    "depois": "Esquecer o fator 2 de Torricelli: d = v₀² ÷ a daria 50 m, o dobro do correto. A massa não entra na conta final, porque cancela no cálculo da aceleração (a = μ × g).",
+    "motivo": "A frase dizia que \"usar 2a sem dividir direito\" leva a 12,5 m ou 20 m, o que não se sustenta (ver erradas B e D).",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E"
  }
 }

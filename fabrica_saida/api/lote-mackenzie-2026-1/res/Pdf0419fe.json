@@ -43,13 +43,13 @@
     "faz": "Escreva a equação da fotossíntese",
     "conta": "CO₂ + H₂O + luz → glicose + O₂",
     "porque": "O CO₂ é reagente: entra na planta. O carbono dele passa para a glicose, uma molécula orgânica.",
-    "tipo": "aplicar"
+    "tipo": "localizar"
    },
    {
     "faz": "Ligue ao efeito estufa",
     "conta": "CO₂ no ar ↓ → menos calor retido",
     "porque": "O CO₂ é um dos principais gases de efeito estufa. Retirá-lo do ar e guardá-lo na biomassa reduz o aquecimento.",
-    "tipo": "interpretar"
+    "tipo": "concluir"
    },
    {
     "faz": "Teste as outras alternativas",
@@ -117,10 +117,28 @@
  "gab": "B",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "localizar",
+    "motivo": "O valor \"aplicar\" não está na lista de tipos permitidos (localizar, calcular, comparar, eliminar, concluir). O passo escreve a equação da fotossíntese e mostra nela que o CO₂ é reagente, então o tipo certo é localizar.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "concluir",
+    "motivo": "O valor \"interpretar\" não está na lista de tipos permitidos. O passo tira uma consequência: menos CO₂ no ar significa menos calor retido. Por isso o tipo certo é concluir.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "B"
  }
 }

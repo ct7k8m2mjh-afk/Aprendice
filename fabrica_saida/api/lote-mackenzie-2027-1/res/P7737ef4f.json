@@ -51,7 +51,7 @@
    },
    {
     "faz": "Teste x = 5 e x = 4",
-    "conta": "x=5: 22 × 14 = 308 ; x=4: 24 × 16 = 384",
+    "conta": "22 × 14 = 308 ; 24 × 16 = 384",
     "porque": "Os dois resultados ficam abaixo de 468, então ambos são descartados.",
     "tipo": "comparar"
    },
@@ -71,7 +71,7 @@
   "resposta": "Alternativa D: 3 mm, pois com x = 3 a área central é 26 × 18 = 468 mm², exatamente o mínimo; com x = 4 já cai para 384 mm².",
   "checagem": "Pela equação: (32−2x)(24−2x) = 468 vira x² − 28x + 75 = 0, com raízes 3 e 25. A área é maior ou igual a 468 para x ≤ 3 (25 não cabe, pois a largura 24 − 2x ficaria negativa). O maior inteiro é 3.",
   "erradas": {
-   "A": "6 mm deixa o centro com (32−12) × (24−12) = 20 × 12 = 240 mm², menos que 468.",
+   "A": "6 mm sai de descontar só x de cada medida: (32 − 6)(24 − 6) = 26 × 18 = 468. Mas a faixa fica nos dois lados; o certo é (32 − 12)(24 − 12) = 20 × 12 = 240 mm², menos que 468.",
    "B": "5 mm deixa o centro com 22 × 14 = 308 mm², menos que 468.",
    "C": "4 mm deixa o centro com 24 × 16 = 384 mm², menos que 468.",
    "E": "2 mm cumpre a área: 28 × 20 = 560 mm², que é maior que 468. Mas a equipe quer a MAIOR largura possível, e 3 mm também cumpre a condição, então 2 mm não é a maior."
@@ -142,10 +142,28 @@
  "gab": "D",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "6 mm sai de descontar só x de cada medida: (32 − 6)(24 − 6) = 26 × 18 = 468. Mas a faixa fica nos dois lados; o certo é (32 − 12)(24 − 12) = 20 × 12 = 240 mm², menos que 468.",
+    "motivo": "O próprio erro da armadilha (descontar x em vez de 2x) leva exatamente a 6 mm. O guia pede 'X sai de…' quando um erro típico chega ao valor da alternativa. A conta antiga continua no texto como teste.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "22 × 14 = 308 ; 24 × 16 = 384",
+    "motivo": "A conta tinha cerca de 40 caracteres e passava do limite de ~30 da tela. O campo 'faz' já diz que a ordem é x = 5 e depois x = 4, e os valores continuam iguais e conferidos.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "D"
  }
 }

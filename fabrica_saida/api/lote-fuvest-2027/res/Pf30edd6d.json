@@ -8,7 +8,7 @@
  "conceito": "Avaliar criticamente a ideia de 'poluição zero' do carro elétrico: a energia vem da matriz elétrica, e as perdas por efeito Joule dependem da corrente.",
  "resolucao": {
   "antes": {
-   "texto": "Um carro elétrico não emite gases no escapamento. Mesmo assim, a energia que carrega a bateria precisa ser gerada em algum lugar. Se a usina queima carvão, a poluição ocorre lá e não na cidade. Além disso, a bateria é um sistema químico com metais, e não pode ser jogada em lixo comum. Nenhuma conversão de energia é 100% eficiente.",
+   "texto": "Um carro elétrico não emite gases no escapamento. Mesmo assim, a energia que carrega a bateria precisa ser gerada em algum lugar. Se a usina queima carvão, a poluição ocorre lá e não na cidade. Além disso, a bateria é um sistema químico com metais, e não pode ser jogada em lixo comum. Nenhum motor transforma 100% da energia recebida em movimento: parte vira calor.",
    "formulas": [
     "P = U × i (potência = tensão × corrente)",
     "P_perdida = R × i² (efeito Joule)"
@@ -48,19 +48,19 @@
     "faz": "Siga a origem da energia",
     "conta": "usina → rede → bateria → motor",
     "porque": "O carro não cria energia, apenas a transforma. Se a usina emite poluentes, a poluição foi deslocada para ela.",
-    "tipo": "interpretar"
+    "tipo": "comparar"
    },
    {
     "faz": "Teste a alternativa A",
     "conta": "sistema fechado? Não",
     "porque": "Carregar a bateria exige energia da rede, e fabricar o carro e a bateria também gera emissões. Não há isolamento do ambiente.",
-    "tipo": "aplicar"
+    "tipo": "eliminar"
    },
    {
     "faz": "Teste C, D e E com a Física",
     "conta": "C: Joule ≠ principal causa\nD: bateria tem metais\nE: P = U·i, i menor, perda menor",
-    "porque": "Cada uma contradiz um fato: a queima de fósseis emite CO₂ em grande escala, a bateria é tóxica e a tensão maior reduz as perdas.",
-    "tipo": "aplicar"
+    "porque": "Cada uma contradiz um fato: a queima de fósseis emite CO₂ em grande escala, a bateria contém metais tóxicos e, para a mesma potência, a tensão maior reduz as perdas.",
+    "tipo": "eliminar"
    },
    {
     "faz": "Conclua",
@@ -72,7 +72,7 @@
   "resposta": "Alternativa B: a eficiência ambiental do carro elétrico depende da matriz energética. Com eletricidade de termelétrica a carvão, a poluição apenas muda de lugar.",
   "checagem": "Imagine o Uruguai, com 99% de matriz renovável, e um país que gera tudo com carvão. O mesmo carro tem impacto bem diferente em cada um, e é isso que a B diz. As outras quatro trazem afirmações falsas absolutas, como 'elimina', 'principal causa', 'lixo comum' e 'qualquer relação'.",
   "erradas": {
-   "A": "Errada: 'elimina a pegada de carbono' é exagero. Carregar a bateria exige energia da rede, que pode vir de fontes fósseis. Fabricar o carro e a bateria também emite carbono. O carro troca energia com o ambiente, e o motor não funciona por indução em circuito isolado.",
+   "A": "Errada: 'elimina a pegada de carbono' é exagero. Carregar a bateria exige energia da rede, que pode vir de fontes fósseis. Fabricar o carro e a bateria também emite carbono. O carro troca energia com o ambiente: recebe energia da rede e dissipa calor. Funcionar por princípios eletromagnéticos não isola o sistema.",
    "C": "Errada: o calor do efeito Joule no motor é pequeno perto das emissões de gases de efeito estufa. O aquecimento global vem principalmente do CO₂ da queima de combustíveis fósseis. Não é verdade que o Joule seja mais prejudicial do que isso.",
    "D": "Errada: a bateria não converte seus componentes químicos 'integralmente em energia mecânica'. Ela guarda energia química e libera corrente elétrica, e seus metais (lítio, cobalto, níquel) continuam na bateria, por isso exigem descarte e reciclagem adequados, nunca lixo comum.",
    "E": "Errada: com mais tensão, a mesma potência (P = U × i) exige menos corrente. Como a perda por efeito Joule é R × i², dobrar U reduz a corrente à metade e a perda a um quarto. Logo, a tensão maior tem relação direta com reduzir perdas energéticas."
@@ -110,10 +110,52 @@
  "gab": "B",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "Errada: 'elimina a pegada de carbono' é exagero. Carregar a bateria exige energia da rede, que pode vir de fontes fósseis. Fabricar o carro e a bateria também emite carbono. O carro troca energia com o ambiente: recebe energia da rede e dissipa calor. Funcionar por princípios eletromagnéticos não isola o sistema.",
+    "motivo": "A frase antiga dizia que 'o motor não funciona por indução'. Isso é falso como regra geral, porque existem motores de indução em carros elétricos. O que derruba a A é a ideia de sistema isolado, não o princípio de funcionamento do motor.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Um carro elétrico não emite gases no escapamento. Mesmo assim, a energia que carrega a bateria precisa ser gerada em algum lugar. Se a usina queima carvão, a poluição ocorre lá e não na cidade. Além disso, a bateria é um sistema químico com metais, e não pode ser jogada em lixo comum. Nenhum motor transforma 100% da energia recebida em movimento: parte vira calor.",
+    "motivo": "A frase 'nenhuma conversão de energia é 100% eficiente' é falsa em geral: a conversão de energia elétrica em calor num resistor é integral. Restringi a frase ao motor, que é o caso da questão.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "comparar",
+    "motivo": "O valor 'interpretar' não está na lista de tipos permitidos (localizar, calcular, comparar, eliminar, concluir).",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "eliminar",
+    "motivo": "O valor 'aplicar' não está na lista de tipos permitidos. O passo descarta a alternativa A.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "eliminar",
+    "motivo": "O valor 'aplicar' não está na lista de tipos permitidos. O passo descarta as alternativas C, D e E.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Cada uma contradiz um fato: a queima de fósseis emite CO₂ em grande escala, a bateria contém metais tóxicos e, para a mesma potência, a tensão maior reduz as perdas.",
+    "motivo": "A redução de perdas com tensão maior só vale para a mesma potência, e faltava essa condição. 'A bateria é tóxica' virou 'contém metais tóxicos', que é a afirmação precisa.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "B"
  }
 }

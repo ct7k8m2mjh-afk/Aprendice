@@ -48,13 +48,13 @@
     "faz": "Nomeie o mecanismo",
     "conta": "mutação ao acaso → antibiótico seleciona",
     "porque": "Essa é a explicação darwinista atual: o antibiótico é o agente seletivo, que elimina os sensíveis e deixa os resistentes se multiplicarem.",
-    "tipo": "aplicar"
+    "tipo": "concluir"
    },
    {
     "faz": "Teste a alternativa A",
     "conta": "A: aleatória + seleção sobre variabilidade",
     "porque": "Diz exatamente isso: mutações independentes do fármaco, e o fármaco apenas seleciona. Está correta.",
-    "tipo": "eliminar"
+    "tipo": "comparar"
    },
    {
     "faz": "Elimine B e C",
@@ -65,7 +65,7 @@
    {
     "faz": "Elimine D e E",
     "conta": "D: anticorpos em bactéria; E: convergência por mutações iguais",
-    "porque": "Bactérias não têm sistema imunológico com anticorpos. E trata convergência como mutações idênticas e simultâneas, o que não é o conceito.",
+    "porque": "Bactérias não produzem anticorpos, que são exclusivos dos vertebrados. E trata convergência como mutações idênticas e simultâneas, o que não é o conceito.",
     "tipo": "eliminar"
    },
    {
@@ -76,11 +76,11 @@
    }
   ],
   "resposta": "Alternativa A: as mutações de resistência surgem ao acaso, independentes do fármaco, que apenas seleciona as bactérias resistentes já existentes.",
-  "checagem": "Pense numa placa com bactérias: ao pingar antibiótico, sobram colônias resistentes. Se a resistência fosse induzida, todas as bactérias, e não só algumas, mudariam. Experimentos clássicos (como o de Luria e Delbrück) mostraram mutantes resistentes já presentes antes do contato com o agente.",
+  "checagem": "Pense em várias culturas iguais de bactérias. Se o contato com o agente induzisse a resistência, cada cultura teria um número parecido de resistentes. Luria e Delbrück (1943) viram números muito diferentes entre as culturas. Isso mostra que os mutantes resistentes surgiram ao acaso, antes do contato. Mais tarde, Lederberg mostrou o mesmo com antibiótico, usando placas-réplica.",
   "erradas": {
    "B": "Afirma que o antibiótico induz mutações específicas. Mutações são ao acaso; o antibiótico não as provoca de modo dirigido, ele só mata os sensíveis e deixa os resistentes que já existiam.",
    "C": "Diz que as bactérias se adaptam durante a vida e transmitem isso. É herança de caracteres adquiridos (Lamarck), rejeitada: o que se transmite é a mutação genética já existente, selecionada.",
-   "D": "Bactérias não têm sistema imunológico nem produzem anticorpos (isso é de vertebrados). A conjugação e o plasmídeo existem, mas o plasmídeo leva genes de resistência, não anticorpos.",
+   "D": "Bactérias não produzem anticorpos (isso é de vertebrados), e suas defesas contra vírus, como o CRISPR, não agem contra antibióticos. A conjugação e o plasmídeo existem, mas o plasmídeo leva genes de resistência, não anticorpos.",
    "E": "Convergência adaptativa é quando grupos não aparentados desenvolvem características semelhantes sob pressões parecidas, não 'as mesmas mutações simultâneas'. Isso não explica a resistência."
   },
   "armadilha": "Marcar B ou C por achar que o antibiótico 'faz' a bactéria ficar resistente; o ambiente seleciona o que já existe, não induz a mutação.",
@@ -108,17 +108,67 @@
   "tipo": "fluxo",
   "roteiro": "Quadro 1: população de bactérias sensíveis (azuis) com algumas poucas resistentes (vermelhas) por mutação ao acaso, antes do antibiótico. Quadro 2: entra o antibiótico (gotas); as azuis morrem e as vermelhas sobrevivem. Quadro 3: as vermelhas se dividem e se multiplicam. Quadro 4: nova população quase toda vermelha, e o texto 'o antibiótico seleciona, não cria a mutação'. Quadro 5: uma bactéria resistente passa um plasmídeo para outra por conjugação, mostrando a disseminação."
  },
- "fontes": [],
+ "fontes": [
+  "Luria SE, Delbrück M. Mutations of bacteria from virus sensitivity to virus resistance. Genetics 28:491–511, 1943",
+  "Lederberg J, Lederberg EM. Replica plating and indirect selection of bacterial mutants. J Bacteriol 63:399–406, 1952",
+  "OpenStax Biology 2e, cap. 19 (Evolution of Populations)"
+ ],
  "confere": true,
  "divergencia": "",
  "resposta_resolvedor": "A",
  "gab": "A",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "concluir",
+    "motivo": "O tipo 'aplicar' não está na lista permitida (localizar, calcular, comparar, eliminar, concluir). Este passo dá nome ao mecanismo a partir do comando, então o tipo certo é 'concluir'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "comparar",
+    "motivo": "Este passo confirma a alternativa A em vez de descartá-la. O tipo 'eliminar' não descreve o que o passo faz.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "Bactérias não produzem anticorpos, que são exclusivos dos vertebrados. E trata convergência como mutações idênticas e simultâneas, o que não é o conceito.",
+    "motivo": "Dizer que bactérias 'não têm sistema imunológico' é falso no sentido estrito. Elas têm defesas contra vírus, como o CRISPR-Cas e as enzimas de restrição. O que derruba a alternativa D é a falta de anticorpos.",
+    "fonte": "Alberts, Molecular Biology of the Cell, 6ª ed. (CRISPR como defesa adaptativa bacteriana; anticorpos restritos a vertebrados com mandíbula)"
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "Bactérias não produzem anticorpos (isso é de vertebrados), e suas defesas contra vírus, como o CRISPR, não agem contra antibióticos. A conjugação e o plasmídeo existem, mas o plasmídeo leva genes de resistência, não anticorpos.",
+    "motivo": "Mesma correção do passo 5: bactérias têm sistemas de defesa, mas não têm anticorpos.",
+    "fonte": "Alberts, Molecular Biology of the Cell, 6ª ed."
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Pense em várias culturas iguais de bactérias. Se o contato com o agente induzisse a resistência, cada cultura teria um número parecido de resistentes. Luria e Delbrück (1943) viram números muito diferentes entre as culturas. Isso mostra que os mutantes resistentes surgiram ao acaso, antes do contato. Mais tarde, Lederberg mostrou o mesmo com antibiótico, usando placas-réplica.",
+    "motivo": "A frase 'se fosse induzida, todas as bactérias mudariam' não é correta: uma indução também seria probabilística. A prova do experimento de Luria e Delbrück é a flutuação no número de resistentes entre as culturas. Além disso, o experimento usou bacteriófago (vírus), não antibiótico. O exemplo com antibiótico, a estreptomicina, é o das placas-réplica de Lederberg (1952).",
+    "fonte": "Luria SE, Delbrück M. Genetics 28:491–511, 1943; Lederberg J, Lederberg EM. J Bacteriol 63:399–406, 1952"
+   },
+   {
+    "campo": "fontes",
+    "depois": [
+     "Luria SE, Delbrück M. Mutations of bacteria from virus sensitivity to virus resistance. Genetics 28:491–511, 1943",
+     "Lederberg J, Lederberg EM. Replica plating and indirect selection of bacterial mutants. J Bacteriol 63:399–406, 1952",
+     "OpenStax Biology 2e, cap. 19 (Evolution of Populations)"
+    ],
+    "motivo": "O campo estava vazio, mas a resolução cita experimentos clássicos. Registrei as referências.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "A"
  }
 }

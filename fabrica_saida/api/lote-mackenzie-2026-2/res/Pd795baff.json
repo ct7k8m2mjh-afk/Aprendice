@@ -41,13 +41,13 @@
     "faz": "Ache a pista exclusiva",
     "conta": "Capital afastada do litoral = Teresina",
     "porque": "São Luís, Fortaleza, Natal, João Pessoa, Recife, Maceió, Aracaju e Salvador são litorâneas. Só Teresina fica no interior, então o estado é o Piauí.",
-    "tipo": "interpretar"
+    "tipo": "eliminar"
    },
    {
     "faz": "Confirme com as outras pistas",
     "conta": "Soja, milho e algodão; vento e Sol",
     "porque": "O sul do Piauí tem cerrado e produz grãos e algodão. O interior ensolarado e ventoso abriga parques eólicos e solares. Tudo bate com o Piauí.",
-    "tipo": "aplicar"
+    "tipo": "comparar"
    },
    {
     "faz": "Localize o Piauí no mapa",
@@ -102,10 +102,28 @@
  "gab": "D",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "eliminar",
+    "motivo": "\"interpretar\" não é um tipo permitido (localizar, calcular, comparar, eliminar, concluir). O passo descarta as oito capitais do litoral e fica só com Teresina, por isso o tipo certo é eliminar.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "comparar",
+    "motivo": "\"aplicar\" não é um tipo permitido. O passo compara as outras pistas (grãos, algodão, energia eólica e solar) com o Piauí, por isso o tipo certo é comparar.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "D"
  }
 }

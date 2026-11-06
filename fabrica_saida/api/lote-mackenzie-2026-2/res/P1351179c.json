@@ -42,13 +42,13 @@
     "faz": "Ache a inclinação de t",
     "conta": "2 × m_t = −1 → m_t = −1/2",
     "porque": "Ruas perpendiculares têm produto das inclinações igual a −1.",
-    "tipo": "aplicar"
+    "tipo": "calcular"
    },
    {
     "faz": "Escreva a equação de t por P(2,3)",
     "conta": "y − 3 = −1/2 · (x − 2)",
     "porque": "A reta t tem inclinação −1/2 e passa por (2, 3).",
-    "tipo": "aplicar"
+    "tipo": "calcular"
    },
    {
     "faz": "Faça x = 0 (eixo y)",
@@ -66,10 +66,10 @@
   "resposta": "Alternativa D: a reta t é y = −x/2 + 4, que corta o eixo y em (0, 4).",
   "checagem": "Teste P na reta y = −x/2 + 4: com x = 2, y = −1 + 4 = 3. Confere. Inclinação −1/2 × 2 = −1, perpendicular a r.",
   "erradas": {
-   "A": "(8, 0) está no eixo x, e não no eixo das ordenadas (y). Além disso, 8 não aparece em t: para x = 8, y = −4 + 4 = 0 mostra apenas que (8,0) é onde t cruza o eixo x. A pergunta é o cruzamento com o eixo y.",
+   "A": "(8, 0) sai de trocar os eixos: é onde t cruza o eixo x (y = 0 → 0 = −x/2 + 4 → x = 8). O ponto pedido fica no eixo das ordenadas, onde x = 0.",
    "B": "(2, 0) tem y = 0 e x = 2, mas t em x = 2 vale y = 3 (é o ponto P). Então (2, 0) não pertence a t, e também não está no eixo y.",
-   "C": "(0, 2) está no eixo y, mas não pertence a t: com x = 0 a reta dá y = 4, e não 2. Esse valor não confere com y − 3 = −1/2 · (0 − 2).",
-   "E": "(0, 8) está no eixo y, mas t dá y = 4 em x = 0. O valor 8 apareceria se a inclinação fosse −2 (3 + 2 × 2 = 7, ainda não 8), então também não confere com nenhuma inclinação ligada a r."
+   "C": "(0, 2) sai de inverter a inclinação sem trocar o sinal: com m = 1/2, y − 3 = 1/2 · (0 − 2) = −1, e y = 2. A perpendicular exige m = −1/2.",
+   "E": "(0, 8) sai de parar antes do fim na equação geral x + 2y − 8 = 0: com x = 0 fica 2y = 8, e falta dividir por 2. O certo é y = 4."
   },
   "armadilha": "Usar a inclinação 2 (ou −2) em vez de −1/2: perpendicular é o inverso trocado de sinal, não só o sinal trocado.",
   "alerta": "",
@@ -82,7 +82,7 @@
  "caminhos": [
   {
    "nome": "vetor normal",
-   "ideia": "A reta r: 2x − y + 1 = 0 tem direção normal (2, −1). Como t é perpendicular a r, t tem essa direção como direção da reta: de P(2,3), cada passo (2, −1) leva a (4, 2). Voltando de P pelo vetor oposto de metade, (−2, +1) leva a (0, 4)."
+   "ideia": "A reta r: 2x − y + 1 = 0 tem vetor normal (2, −1). Como t é perpendicular a r, esse vetor dá a direção de t: de P(2,3), um passo (2, −1) leva a (4, 2). Andando no sentido oposto, (−2, +1), chega-se a (0, 4)."
   },
   {
    "nome": "equação geral de t",
@@ -143,10 +143,52 @@
  "gab": "D",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "calcular",
+    "motivo": "O tipo 'aplicar' não existe. Os valores aceitos são localizar, calcular, comparar, eliminar e concluir.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "calcular",
+    "motivo": "O tipo 'aplicar' não existe. Os valores aceitos são localizar, calcular, comparar, eliminar e concluir.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "(8, 0) sai de trocar os eixos: é onde t cruza o eixo x (y = 0 → 0 = −x/2 + 4 → x = 8). O ponto pedido fica no eixo das ordenadas, onde x = 0.",
+    "motivo": "O texto antigo dizia que '8 não aparece em t', mas logo depois mostrava que (8, 0) pertence a t. A frase se contradizia. A origem real do erro é a interseção de t com o eixo x.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "(0, 2) sai de inverter a inclinação sem trocar o sinal: com m = 1/2, y − 3 = 1/2 · (0 − 2) = −1, e y = 2. A perpendicular exige m = −1/2.",
+    "motivo": "Existe um erro típico que chega exatamente a (0, 2): usar m = +1/2. Pelo guia, nesse caso a explicação deve dizer de onde o valor sai, e não só que ele não confere.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "(0, 8) sai de parar antes do fim na equação geral x + 2y − 8 = 0: com x = 0 fica 2y = 8, e falta dividir por 2. O certo é y = 4.",
+    "motivo": "O texto antigo atribuía o 8 a m = −2, mas a própria conta dava 7. A explicação se contradizia. A origem real é esquecer a divisão por 2 em 2y = 8.",
+    "fonte": ""
+   },
+   {
+    "campo": "caminhos[0].ideia",
+    "depois": "A reta r: 2x − y + 1 = 0 tem vetor normal (2, −1). Como t é perpendicular a r, esse vetor dá a direção de t: de P(2,3), um passo (2, −1) leva a (4, 2). Andando no sentido oposto, (−2, +1), chega-se a (0, 4).",
+    "motivo": "(−2, 1) é o oposto de (2, −1), e não o oposto 'de metade'. A expressão estava errada.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "D"
  }
 }

@@ -55,19 +55,19 @@
    {
     "faz": "Leia o dado do Texto III",
     "conta": "\"hemisfério esquerdo controla a linguagem de 97% dos destros\"",
-    "porque": "Se um hemisfério controla a linguagem na maioria das pessoas, ela está ligada a regiões específicas do cérebro, e o dano nelas afeta a fala.",
+    "porque": "Se um hemisfério controla a linguagem na maioria das pessoas, ela está ligada a regiões específicas do cérebro, e o dano nelas afeta o uso da língua.",
     "tipo": "localizar"
    },
    {
     "faz": "Junte as três ideias",
     "conta": "módulo + áreas + hemisfério = base biológica",
     "porque": "Os três textos dizem que a linguagem depende de estruturas do cérebro, ou seja, de características biológicas da espécie humana.",
-    "tipo": "interpretar"
+    "tipo": "comparar"
    },
    {
     "faz": "Elimine as que exageram ou contradizem",
     "conta": "'exclusivo', 'inexistem', 'idêntico'",
-    "porque": "As palavras absolutas das alternativas A, C e D contradizem os textos. A E inverte o que o Texto III diz sobre destros.",
+    "porque": "As palavras absolutas das alternativas A, C e D contradizem os textos. A E atribui aos destros uma dificuldade de pesquisa que o Texto III não menciona.",
     "tipo": "eliminar"
    },
    {
@@ -83,7 +83,7 @@
    "A": "Inverte a lógica. O Texto I defende que existem áreas especializadas, e é isso que sustenta a ideia de uma base biológica. Nenhum texto fala em inteligência 'produto exclusivo da cultura'; o 'exclusivo' é extrapolação.",
    "C": "Contradiz os três textos. O Texto II mostra áreas do cérebro ativas na linguagem e o Texto III traz porcentagens sobre o controle por hemisfério. Dizer que 'inexistem dados' nega o que está diante do aluno.",
    "D": "O Texto I usa o corpo como analogia ('como se fossem órgãos') para propor que o cérebro tem módulos, não que seu funcionamento seja 'idêntico' ao do fígado e dos rins. Aliás, o texto diz que cada órgão funciona de modo específico.",
-   "E": "O Texto III mostra que os destros são o grupo mais regular (97% com linguagem no hemisfério esquerdo), o que facilita a pesquisa. Os canhotos é que têm distribuição variada (19%, 68% e os demais por ambos). Nenhum texto fala em 'maior dificuldade' dos destros."
+   "E": "O Texto III mostra que os destros são o grupo mais regular (97% com linguagem no hemisfério esquerdo). Os canhotos é que têm distribuição variada (19%, 68% e os demais por ambos). Nenhum texto fala em 'maior dificuldade' dos destros como objeto de pesquisa."
   },
   "armadilha": "Marcar uma alternativa que usa o assunto dos textos, mas com palavra absoluta ('exclusivo', 'inexistem', 'idêntico') que eles não autorizam.",
   "alerta": "",
@@ -117,10 +117,40 @@
  "gab": "B",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "comparar",
+    "motivo": "O tipo 'interpretar' não existe na lista permitida (localizar, calcular, comparar, eliminar, concluir). O passo junta as três marcas, então o tipo certo é comparar.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Se um hemisfério controla a linguagem na maioria das pessoas, ela está ligada a regiões específicas do cérebro, e o dano nelas afeta o uso da língua.",
+    "motivo": "O Texto III fala em dano no 'uso das línguas' e na 'capacidade sintática', não na fala especificamente. Troquei o termo pelo que o texto diz.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "As palavras absolutas das alternativas A, C e D contradizem os textos. A E atribui aos destros uma dificuldade de pesquisa que o Texto III não menciona.",
+    "motivo": "A E não inverte nada que o Texto III diga: o texto nunca trata de dificuldade de pesquisa. O defeito da E é afirmar algo sem apoio no texto.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "O Texto III mostra que os destros são o grupo mais regular (97% com linguagem no hemisfério esquerdo). Os canhotos é que têm distribuição variada (19%, 68% e os demais por ambos). Nenhum texto fala em 'maior dificuldade' dos destros como objeto de pesquisa.",
+    "motivo": "Tirei 'o que facilita a pesquisa', que é uma extrapolação: o texto não afirma isso. A resolução não pode cometer o mesmo erro que critica na alternativa.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "B"
  }
 }

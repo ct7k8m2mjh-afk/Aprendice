@@ -51,7 +51,7 @@
     "faz": "Una os dois fatos numa frase",
     "conta": "árvore → Morro da Favela → moradias populares",
     "porque": "No fim do século XIX a palavra passou a nomear o lugar onde moravam os soldados de Canudos. Depois ficou o sentido de favela₁.",
-    "tipo": "interpretar"
+    "tipo": "comparar"
    },
    {
     "faz": "Elimine as alternativas que o texto não sustenta",
@@ -67,11 +67,11 @@
    }
   ],
   "resposta": "Alternativa B: no final do século XIX a palavra, antes só nome de árvore, passou a nomear o lugar onde moraram os soldados que arrasaram Canudos.",
-  "checagem": "Releia a última frase do texto: os 'ingredientes' reunidos são a árvore em Canudos, os soldados e o pé de favela no Morro da Providência. Isso confirma B e não confirma as outras.",
+  "checagem": "Releia o fim do texto: os 'ingredientes' reunidos são a árvore em Canudos, os soldados e o pé de favela no Morro da Providência. Isso confirma B e não confirma as outras.",
   "erradas": {
    "A": "A origem latina (faba → fabella → favela) está certa. Mas o texto atribui o sentido atual a fatos históricos (Canudos e Morro da Providência), não às transformações morfológicas.",
    "C": "A forma diminutiva é verdadeira, mas o texto não liga a palavra a 'semente sem valor comercial'. O pouco valor das sementes explica 'mandar às favas', não 'favela'. O verbete favela₂ ainda diz que as sementes dão óleo e farinha.",
-   "D": "O texto não fala em 'importância do nome latino'. O nome latino é faba (fava), que não designa a árvore; o verbete dá à árvore o nome científico Jatropha phyllacantha. A árvore é só um dos ingredientes da história.",
+   "D": "O texto não fala em 'importância do nome latino'. 'Favela' vem do latim fabella, mas o texto não diz que algum nome latino foi dado à árvore; o verbete dá à árvore só o nome científico Jatropha phyllacantha. A árvore é apenas um dos ingredientes da história.",
    "E": "Inverte a explicação. O texto explica o sentido atual pela árvore de Canudos, pelo Morro da Providência e pelos soldados, não pela exclusão social. A exclusão social vem só no verbete favela₁, como descrição do que a palavra designa."
   },
   "armadilha": "Marcar a alternativa que parece verdadeira no mundo real (exclusão social, origem latina) em vez da que o texto afirma sobre a palavra.",
@@ -102,10 +102,34 @@
  "gab": "B",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "comparar",
+    "motivo": "'interpretar' não é um tipo válido. Os tipos válidos são localizar, calcular, comparar, eliminar e concluir. O passo põe os dois fatos lado a lado, então o tipo certo é 'comparar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "O texto não fala em 'importância do nome latino'. 'Favela' vem do latim fabella, mas o texto não diz que algum nome latino foi dado à árvore; o verbete dá à árvore só o nome científico Jatropha phyllacantha. A árvore é apenas um dos ingredientes da história.",
+    "motivo": "A frase antiga dizia que o nome latino em jogo era faba, que não designa a árvore. Isso é impreciso: o texto deriva 'favela', nome da árvore, de fabella, que também é latim. O que derruba a alternativa D é o texto não falar em importância do nome latino nem em nome latino dado à árvore.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Releia o fim do texto: os 'ingredientes' reunidos são a árvore em Canudos, os soldados e o pé de favela no Morro da Providência. Isso confirma B e não confirma as outras.",
+    "motivo": "A última frase do texto não lista os ingredientes; eles aparecem nas frases anteriores. Por isso troquei 'a última frase' por 'o fim do texto'.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "B"
  }
 }

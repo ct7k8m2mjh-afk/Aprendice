@@ -68,13 +68,13 @@
     "faz": "Veja a base dessa conclusão",
     "conta": "“a form of mathematical reasoning rooted in symmetry and repetition”",
     "porque": "Tradução: uma forma de raciocínio matemático baseada em simetria e repetição. É raciocínio abstrato, expresso em desenhos, e não em escrita.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Formule a resposta em português",
     "conta": "raciocínio abstrato veio antes da escrita",
     "porque": "Formular antes de ler as letras evita a alternativa que só parece sofisticada.",
-    "tipo": "interpretar"
+    "tipo": "comparar"
    },
    {
     "faz": "Compare com as alternativas",
@@ -86,7 +86,7 @@
   "resposta": "Alternativa A: dizer que o pensamento matemático começou muito antes da escrita reforça a concepção de que formas abstratas de raciocínio precederam os sistemas formais de escrita.",
   "checagem": "Troque 'abstrato' por 'simetria e repetição' (raciocínio dos oleiros, sem números escritos) e 'escrita' por 'writing': a alternativa A ainda reproduz a última frase do texto, sem acrescentar nada.",
   "erradas": {
-   "B": "Inverte e inventa: diz que registros gráficos surgiram por causa da decoração cerâmica. O texto não fala da origem da escrita; só diz que o pensamento matemático veio antes dela.",
+   "B": "Inventa uma relação de causa: diz que registros gráficos surgiram por causa da decoração cerâmica. O texto não fala da origem da escrita; só diz que o pensamento matemático veio antes dela.",
    "C": "Contradiz a ideia: notação numérica coexistindo com os objetos sugere números escritos, mas o texto fala de padrões visuais (pétalas em sequência) como sinal de raciocínio sem escrita. Não há menção a notação numérica.",
    "D": "Restringe sem base. O texto cita que a matemática pode ter raízes na vida cotidiana (dividir colheitas, terras comunitárias), numa comunidade de aldeias, e nunca fala de administração estatal nem de 'restringiu-se'.",
    "E": "Fala de substituir a tradição oral por linguagem simbólica. O texto não menciona tradição oral nem substituição progressiva; trata só de matemática anterior à escrita."
@@ -102,7 +102,7 @@
  "caminhos": [
   {
    "nome": "eliminação por palavra ausente",
-   "ideia": "Procure no texto as palavras que cada alternativa exigiria: 'notação' (C), 'administração' ou 'Estado' (D), 'oral' (E). Nenhuma aparece, só 'writing' e 'reasoning', que sustentam A."
+   "ideia": "Procure no texto as palavras que cada alternativa exigiria: 'notação' (C), 'Estado' (D), 'oral' (E). Nenhuma aparece. O que aparece é 'writing' e 'reasoning', que sustentam A."
   },
   {
    "nome": "paráfrase direta",
@@ -123,10 +123,40 @@
  "gab": "A",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "localizar",
+    "motivo": "O tipo 'interpretar' não existe na lista permitida (localizar, calcular, comparar, eliminar, concluir). Este passo cita um trecho do texto e o traduz, então é 'localizar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "comparar",
+    "motivo": "O tipo 'interpretar' não existe na lista permitida. O guia manda formular a resposta antes das alternativas em um passo 'concluir' ou 'comparar'; como o último passo já é 'concluir', este fica 'comparar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "Inventa uma relação de causa: diz que registros gráficos surgiram por causa da decoração cerâmica. O texto não fala da origem da escrita; só diz que o pensamento matemático veio antes dela.",
+    "motivo": "A palavra 'Inverte' estava errada. A alternativa B não inverte nenhuma relação do texto; ela cria uma relação de causa que o texto não traz.",
+    "fonte": ""
+   },
+   {
+    "campo": "caminhos[0].ideia",
+    "depois": "Procure no texto as palavras que cada alternativa exigiria: 'notação' (C), 'Estado' (D), 'oral' (E). Nenhuma aparece. O que aparece é 'writing' e 'reasoning', que sustentam A.",
+    "motivo": "O texto traz 'managing village communities' (administrar comunidades de aldeias), que fica perto de 'administração'. Então não é verdade que nada ligado a 'administração' aparece. O que derruba D é 'estatal', junto com o 'restringiu-se'.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "A"
  }
 }

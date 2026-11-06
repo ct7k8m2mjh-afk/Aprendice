@@ -53,21 +53,21 @@
    },
    {
     "faz": "Julgue a proposição I",
-    "conta": "Y: Z=17, 18 e⁻ → Cl⁻; X: Z=17, neutro → Cl",
+    "conta": "Y: Z=17, 18 e⁻ → Cl⁻\nX: Z=17, neutro → Cl",
     "porque": "Y é ânion monovalente. Seu átomo neutro tem o mesmo Z (17), que é X. Verdadeira.",
-    "tipo": "interpretar"
+    "tipo": "comparar"
    },
    {
     "faz": "Julgue a proposição II",
     "conta": "R: Z=19, 19 e⁻ → K\nP: Z=19, 18 e⁻ → K⁺",
     "porque": "R é neutra. Ao perder 1 elétron, R vira cátion monovalente com 18 elétrons, que é P. Verdadeira.",
-    "tipo": "interpretar"
+    "tipo": "comparar"
    },
    {
     "faz": "Julgue a proposição III",
     "conta": "Y: 18 e⁻ e P: 18 e⁻",
     "porque": "Ambos são íons (Y é ânion, P é cátion) e têm o mesmo número de elétrons, logo são isoeletrônicos. Verdadeira.",
-    "tipo": "interpretar"
+    "tipo": "comparar"
    },
    {
     "faz": "Conclua",
@@ -141,10 +141,40 @@
  "gab": "E",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "comparar",
+    "motivo": "\"interpretar\" não é um tipo válido. Os tipos permitidos são localizar, calcular, comparar, eliminar e concluir. Este passo compara Y com X (mesmo Z, elétrons diferentes).",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "comparar",
+    "motivo": "\"interpretar\" não é um tipo válido. Este passo compara R com P (mesmo Z, elétrons diferentes).",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[4].tipo",
+    "depois": "comparar",
+    "motivo": "\"interpretar\" não é um tipo válido. Este passo compara o número de elétrons de Y e de P.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "Y: Z=17, 18 e⁻ → Cl⁻\nX: Z=17, neutro → Cl",
+    "motivo": "A linha única tinha cerca de 42 caracteres e não cabe na tela de 390 px, que não quebra linha. Dividi em duas linhas, como no passo seguinte. O conteúdo não mudou.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E"
  }
 }

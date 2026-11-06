@@ -57,7 +57,7 @@
     "faz": "Isole o bloco B",
     "conta": "T = m_B × a = 2 × 4",
     "porque": "A tração é a única força horizontal sobre B, então ela é a resultante em B.",
-    "tipo": "aplicar"
+    "tipo": "calcular"
    },
    {
     "faz": "Conclua o valor da tração",
@@ -100,15 +100,7 @@
   {
    "linha": "a = 20/5",
    "nota": "força externa dividida pela massa total",
-   "mov": [
-    {
-     "termo": "5",
-     "de": "esquerda",
-     "para": "denominador",
-     "vira": "5",
-     "como": "a massa passa dividindo"
-    }
-   ]
+   "mov": []
   },
   {
    "linha": "a = 4 m/s²",
@@ -141,10 +133,28 @@
  "gab": "A",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "calcular",
+    "motivo": "O tipo \"aplicar\" não está na lista permitida (localizar, calcular, comparar, eliminar, concluir). O passo monta e substitui T = m_B × a, então o tipo certo é calcular.",
+    "fonte": ""
+   },
+   {
+    "campo": "quadro[1].mov",
+    "depois": [],
+    "motivo": "Esse movimento diz que o 5 passa \"da esquerda para o denominador\". Mas a linha anterior é m = 3 + 2 = 5 kg, e nela não existe a equação 20 = 5 × a. Por isso a linha não decorre da anterior como o movimento descreve. A conta a = 20/5 continua certa e a nota \"força externa dividida pela massa total\" já explica de onde ela vem.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "A"
  }
 }

@@ -45,13 +45,13 @@
     "faz": "Dê a direção da normal da parede",
     "conta": "N horizontal, para fora da parede",
     "porque": "A normal é perpendicular à parede, que é vertical. Ela empurra a caixa para longe da parede, não em direção a ela.",
-    "tipo": "aplicar"
+    "tipo": "localizar"
    },
    {
     "faz": "Dê a direção do atrito",
     "conta": "f vertical, para cima",
     "porque": "O atrito é paralelo à parede (vertical) e se opõe à tendência da caixa de escorregar para baixo.",
-    "tipo": "aplicar"
+    "tipo": "localizar"
    },
    {
     "faz": "Aplique o equilíbrio em cada eixo",
@@ -75,7 +75,7 @@
    "D": "Peso e normal são perpendiculares (vertical e horizontal), então não se anulam. Também não são par de ação e reação: o par do peso é a atração da caixa sobre a Terra, e o par da normal é a força da caixa sobre a parede."
   },
   "armadilha": "Achar que o atrito é horizontal ou igual à força da mão. Na verdade ele é vertical e equilibra o peso, e quem equilibra a mão é a normal.",
-  "alerta": "A mão também encosta na caixa e pode exercer atrito sobre ela. Mesmo assim, a alternativa E é a única que descreve corretamente o equilíbrio vertical.",
+  "alerta": "A mão também encosta na caixa e poderia exercer atrito sobre ela. Nesse caso, o peso seria equilibrado pelo atrito da parede somado ao atrito da mão. O gabarito supõe que o atrito da mão é desprezível. Mesmo assim, E é a única alternativa que descreve corretamente o equilíbrio vertical.",
   "essencial": {
    "pede": "A afirmação correta sobre as forças na caixa pressionada contra a parede.",
    "chave": "Horizontal: normal = força da mão. Vertical: atrito = peso.",
@@ -115,10 +115,34 @@
  "gab": "E",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "localizar",
+    "motivo": "O tipo 'aplicar' não está na lista permitida (localizar, calcular, comparar, eliminar, concluir). O passo identifica a direção da normal na situação da figura.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "localizar",
+    "motivo": "O tipo 'aplicar' não está na lista permitida. O passo identifica a direção do atrito na situação da figura.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.alerta",
+    "depois": "A mão também encosta na caixa e poderia exercer atrito sobre ela. Nesse caso, o peso seria equilibrado pelo atrito da parede somado ao atrito da mão. O gabarito supõe que o atrito da mão é desprezível. Mesmo assim, E é a única alternativa que descreve corretamente o equilíbrio vertical.",
+    "motivo": "A versão anterior dava E como correta sem dizer em que condição. Se a mão exercesse atrito, só o atrito da parede não equilibraria o peso. A hipótese da banca precisa aparecer escrita para a frase ficar fisicamente correta.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E"
  }
 }

@@ -43,7 +43,7 @@
     "faz": "Identifique o caráter do HNO3",
     "conta": "HNO3 → H⁺ + NO3⁻",
     "porque": "O HNO3 é ácido forte: libera H⁺ na água da chuva. A concentração de H⁺ AUMENTA e o pH cai. A afirmação (a) diz o contrário.",
-    "tipo": "interpretar"
+    "tipo": "eliminar"
    },
    {
     "faz": "Calcule o nox do N nos dois lados",
@@ -59,9 +59,9 @@
    },
    {
     "faz": "Classifique o NO2 e a espontaneidade",
-    "conta": "NO2 + H2O + O2 → HNO3",
+    "conta": "NO2 + H2O → ácido: óxido ácido",
     "porque": "O NO2 reage com água formando ácido: é óxido ácido, não neutro. Além disso, a reação ocorre na atmosfera, logo é espontânea. A afirmação (d) erra nas duas partes.",
-    "tipo": "interpretar"
+    "tipo": "eliminar"
    },
    {
     "faz": "Avalie o efeito sobre o solo",
@@ -131,10 +131,34 @@
  "gab": "E",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[0].tipo",
+    "depois": "eliminar",
+    "motivo": "\"interpretar\" não é um tipo válido (os válidos são localizar, calcular, comparar, eliminar e concluir). O passo derruba a alternativa A, então o tipo certo é \"eliminar\".",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "eliminar",
+    "motivo": "\"interpretar\" não é um tipo válido. O passo derruba a alternativa D, então o tipo certo é \"eliminar\".",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "NO2 + H2O → ácido: óxido ácido",
+    "motivo": "A conta trazia a equação \"NO2 + H2O + O2 → HNO3\" sem balanceamento, apresentada como se fosse uma equação química. A equação balanceada está no enunciado. Aqui basta o esquema conceitual que classifica o óxido.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E"
  }
 }

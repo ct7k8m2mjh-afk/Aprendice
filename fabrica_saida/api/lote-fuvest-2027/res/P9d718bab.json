@@ -76,7 +76,7 @@
   "erradas": {
    "A": "10 km/h é cerca de 2,8 m/s, o que daria energia cinética de apenas 270 J, longe dos 31.500 J que sobram. Não confere. Para ter só 10 m/s, 3.500 J, a perda teria de ser enorme.",
    "B": "30 é a velocidade em m/s, que ainda não foi convertida para km/h. O pedido é em km/h: 30 × 3,6 = 108.",
-   "C": "47 km/h é cerca de 13 m/s, o que dá energia cinética de aproximadamente 5.900 J. Não confere com os 31.500 J. Não sai de nenhuma combinação coerente dos dados da questão.",
+   "C": "47 km/h é cerca de 13 m/s, o que dá energia cinética de aproximadamente 6.000 J (35 × 13,1² ≈ 5.970 J). Não confere com os 31.500 J que sobram no ponto mais baixo.",
    "E": "126 km/h = 35 m/s é o valor que se obtém sem a perda de energia: v² = 2 g Δh = 1.206 dá cerca de 34,7 m/s (≈ 125 km/h). Ignora os 10.710 J dissipados pelo atrito e pelo arrasto, que a questão pede para considerar."
   },
   "armadilha": "Esquecer de descontar o trabalho das forças dissipativas, ou deixar a velocidade em m/s sem converter para km/h.",
@@ -94,7 +94,7 @@
   },
   {
    "nome": "Eliminação por estimativa",
-   "ideia": "Sem perdas, a velocidade seria cerca de 35 m/s, ou seja, ≈ 125 km/h. Com perdas ela é menor, então a alternativa E (126) sai. A perda é de ¼ da energia, o que reduz a velocidade a cerca de 87%, resultando em ≈ 108 km/h."
+   "ideia": "Sem perdas, a velocidade seria cerca de 35 m/s, ou seja, ≈ 125 km/h. Com perdas ela é menor, então a alternativa E (126) sai. A perda é de cerca de ¼ da energia, o que reduz a velocidade a cerca de 86% (√0,75 ≈ 0,87; com a fração exata, √(31.500/42.210) ≈ 0,864), resultando em ≈ 108 km/h."
   }
  ],
  "quadro": [
@@ -156,10 +156,28 @@
  "gab": "D",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "47 km/h é cerca de 13 m/s, o que dá energia cinética de aproximadamente 6.000 J (35 × 13,1² ≈ 5.970 J). Não confere com os 31.500 J que sobram no ponto mais baixo.",
+    "motivo": "Com 47 ÷ 3,6 ≈ 13,06 m/s, a energia cinética fica em 35 × 170,4 ≈ 5.966 J, então o valor arredondado é ≈ 6.000 J, não 5.900 J. Também tirei a frase 'não sai de nenhuma combinação coerente', porque o teste objetivo já basta.",
+    "fonte": ""
+   },
+   {
+    "campo": "caminhos[1].ideia",
+    "depois": "Sem perdas, a velocidade seria cerca de 35 m/s, ou seja, ≈ 125 km/h. Com perdas ela é menor, então a alternativa E (126) sai. A perda é de cerca de ¼ da energia, o que reduz a velocidade a cerca de 86% (√0,75 ≈ 0,87; com a fração exata, √(31.500/42.210) ≈ 0,864), resultando em ≈ 108 km/h.",
+    "motivo": "A razão exata das energias é 31.500/42.210 ≈ 0,746, cuja raiz é ≈ 0,864, ou seja, 86% e não 87%. A conta 125 × 0,864 ≈ 108 fecha.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "D"
  }
 }

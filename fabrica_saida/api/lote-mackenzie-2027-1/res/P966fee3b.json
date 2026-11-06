@@ -49,7 +49,7 @@
     "faz": "Nomeie a função de cada estrutura",
     "conta": "Espinho = folha reduzida",
     "porque": "Pouca área foliar significa pouca transpiração. Já o cladódio é verde, com clorofila, e armazena água. Ele assumiu a fotossíntese.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Teste a alternativa A",
@@ -59,7 +59,7 @@
    },
    {
     "faz": "Elimine B, C, D e E",
-    "conta": "B, C: fotossíntese não é no cladódio?\nD: chuva. E: raiz.",
+    "conta": "B, C: caule não fotossintetiza\nD: chuva. E: raiz.",
     "porque": "B e C negam a fotossíntese no caule. D fala de períodos chuvosos, quando a água não falta. E coloca fotossíntese na raiz, que não tem clorofila.",
     "tipo": "eliminar"
    },
@@ -106,10 +106,28 @@
  "gab": "A",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "localizar",
+    "motivo": "O guia não aceita o tipo \"interpretar\". Os tipos permitidos são localizar, calcular, comparar, eliminar e concluir. Este passo identifica a função de cada estrutura, então o tipo certo é localizar.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "B, C: caule não fotossintetiza\nD: chuva. E: raiz.",
+    "motivo": "O texto original terminava em interrogação (\"fotossíntese não é no cladódio?\"). Isso deixava a frase ambígua, como se fosse dúvida, e a linha passava de 30 caracteres. A nova versão diz o que B e C afirmam e cabe na linha.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "A"
  }
 }

@@ -50,7 +50,7 @@
     "faz": "Pergunte de onde vem a luz que a torna visível",
     "conta": "estrelas próximas → luz → poeira",
     "porque": "Estrelas vizinhas iluminam a nuvem. Os grãos de poeira refletem e espalham parte dessa luz em todas as direções, inclusive para a Terra.",
-    "tipo": "interpretar"
+    "tipo": "comparar"
    },
    {
     "faz": "Teste as alternativas restantes",
@@ -61,7 +61,7 @@
    {
     "faz": "Conclua",
     "conta": "visível por reflexão e espalhamento",
-    "porque": "É a única alternativa que explica a visibilidade sem atribuir à nuvem uma fonte de luz inexistente.",
+    "porque": "É a única alternativa que explica a visibilidade sem atribuir à nuvem um mecanismo que ela não tem, como fusão ou atrito, nem uma afirmação absoluta falsa, como 'apenas infravermelho' ou 'absorve completamente'.",
     "tipo": "concluir"
    }
   ],
@@ -70,11 +70,11 @@
   "erradas": {
    "A": "A fusão nuclear ocorre no interior das estrelas, e não em nuvens de gás e poeira. A nebulosa só pode virar estrela depois de colapsar, e o enunciado diz que isso acontece apenas 'em certas condições'.",
    "C": "Atrito entre grãos de poeira não produz luz visível. No espaço interestelar, a densidade é baixíssima e os grãos quase não se tocam.",
-   "D": "Nebulosas também são observadas em luz visível, como a imagem de uma nebulosa que reflete luz azulada de estrelas. A poeira aquecida emite infravermelho, mas 'apenas' esse tipo de radiação é falso.",
+   "D": "Nebulosas também são observadas em luz visível. As nebulosas de reflexão, por exemplo, aparecem azuladas porque a poeira espalha a luz de estrelas próximas. A poeira aquecida emite infravermelho, mas dizer que ela emite 'apenas' esse tipo de radiação é falso.",
    "E": "Se a nebulosa absorvesse completamente a luz incidente, não restaria luz refletida. Ela só seria vista como silhueta (nebulosa escura) contra um fundo luminoso, o que não explica a visibilidade em geral, e a absorção não é completa."
   },
   "armadilha": "Achar que toda nebulosa brilha por luz própria, como uma estrela, ou confundir uma nebulosa escura (vista por contraste) com o caso geral.",
-  "alerta": "",
+  "alerta": "Rigor astrofísico: muitas nebulosas (as de emissão, como a de Órion) também brilham com luz própria, porque o gás ionizado pela radiação ultravioleta de estrelas quentes vizinhas emite luz ao se recombinar. Isso não é fusão. De todo modo, a energia vem de estrelas próximas, e a alternativa B é a única correta entre as cinco.",
   "essencial": {
    "pede": "Por que uma nebulosa interestelar pode ser observada da Terra.",
    "chave": "Ela não é estrela: a poeira reflete e espalha a luz de estrelas próximas.",
@@ -105,10 +105,40 @@
  "gab": "B",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "comparar",
+    "motivo": "'interpretar' não está entre os tipos permitidos (localizar, calcular, comparar, eliminar, concluir). Este passo confronta as duas origens possíveis da luz, a própria e a das estrelas vizinhas, então o tipo certo é 'comparar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "Nebulosas também são observadas em luz visível. As nebulosas de reflexão, por exemplo, aparecem azuladas porque a poeira espalha a luz de estrelas próximas. A poeira aquecida emite infravermelho, mas dizer que ela emite 'apenas' esse tipo de radiação é falso.",
+    "motivo": "O texto citava 'a imagem de uma nebulosa', mas a questão não tem imagem. A frase passa a dar o exemplo real: as nebulosas de reflexão têm tom azulado porque a luz azul é espalhada com mais eficiência.",
+    "fonte": "OpenStax Astronomy 2e, cap. 20 (Between the Stars: Gas and Dust in Space), seção 20.3"
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "É a única alternativa que explica a visibilidade sem atribuir à nuvem um mecanismo que ela não tem, como fusão ou atrito, nem uma afirmação absoluta falsa, como 'apenas infravermelho' ou 'absorve completamente'.",
+    "motivo": "A frase anterior dizia que as outras alternativas atribuem à nuvem 'uma fonte de luz inexistente'. Isso é impreciso: o infravermelho da alternativa D existe de fato (a poeira aquecida emite). O que torna D errada é o 'apenas'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.alerta",
+    "depois": "Rigor astrofísico: muitas nebulosas (as de emissão, como a de Órion) também brilham com luz própria, porque o gás ionizado pela radiação ultravioleta de estrelas quentes vizinhas emite luz ao se recombinar. Isso não é fusão. De todo modo, a energia vem de estrelas próximas, e a alternativa B é a única correta entre as cinco.",
+    "motivo": "A resolução sugere que a nebulosa só é vista por reflexão. Vale registrar o caso das nebulosas de emissão, sem contestar o gabarito, porque nenhuma outra alternativa é defensável.",
+    "fonte": "OpenStax Astronomy 2e, seção 20.2 (Interstellar Gas)"
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "B"
  }
 }

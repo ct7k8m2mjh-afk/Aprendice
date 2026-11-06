@@ -52,7 +52,7 @@
     "faz": "Use a 1ª lei na isotérmica",
     "conta": "ΔU = 0 → Q = W = 2000 J",
     "porque": "Gás ideal a temperatura constante não muda a energia interna. Todo o calor recebido vira trabalho.",
-    "tipo": "aplicar"
+    "tipo": "calcular"
    },
    {
     "faz": "Calcule a potência da resistência",
@@ -64,7 +64,7 @@
     "faz": "Iguale o calor à energia elétrica",
     "conta": "Q = P × Δt → 2000 = 200 × Δt",
     "porque": "Todo o calor da resistência é absorvido pelo gás, então o calor recebido é a potência vezes o tempo.",
-    "tipo": "aplicar"
+    "tipo": "calcular"
    },
    {
     "faz": "Isole o tempo",
@@ -77,7 +77,7 @@
   "checagem": "Em 10 s, a resistência libera 200 J/s × 10 s = 2000 J, exatamente o trabalho realizado. A unidade final é segundo, como deve ser.",
   "erradas": {
    "A": "5 s daria só 200 × 5 = 1000 J, metade do trabalho. O valor sai de dividir por 400 (por exemplo, 2000 ÷ (200 × 2)), contando a corrente duas vezes. A potência é 100 × 2 = 200 W, sem multiplicar de novo.",
-   "C": "20 s daria 200 × 20 = 4000 J, o dobro do trabalho de 2000 J. Sai de usar P = 100 W (só a tensão), ou de achar que o gás precisa receber o dobro de calor. Na isotérmica, Q = W exatamente.",
+   "C": "20 s daria 200 × 20 = 4000 J, o dobro do trabalho de 2000 J. Sai de usar P = 100 W (só a tensão): 2000 ÷ 100 = 20 s. A potência é U × i = 100 × 2 = 200 W.",
    "D": "40 s daria 200 × 40 = 8000 J, quatro vezes o necessário. Não confere com Q = W = 2000 J e P = 200 W.",
    "E": "80 s daria 200 × 80 = 16000 J, oito vezes o necessário. Não confere com Q = W = 2000 J e P = 200 W."
   },
@@ -159,10 +159,34 @@
  "gab": "B",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[0].tipo",
+    "depois": "calcular",
+    "motivo": "'aplicar' não está entre os tipos permitidos (localizar, calcular, comparar, eliminar, concluir). O passo tira Q = W = 2000 J da 1ª lei, então é um passo de cálculo.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "calcular",
+    "motivo": "'aplicar' não está entre os tipos permitidos. O passo monta a equação 2000 = 200 × Δt, então é um passo de cálculo.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "20 s daria 200 × 20 = 4000 J, o dobro do trabalho de 2000 J. Sai de usar P = 100 W (só a tensão): 2000 ÷ 100 = 20 s. A potência é U × i = 100 × 2 = 200 W.",
+    "motivo": "A segunda origem dada ('achar que o gás precisa receber o dobro de calor') não vem de nenhuma conta; foi inventada, e o guia proíbe isso. Ficou só a origem real, 2000 ÷ 100 = 20, com a correção do erro.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "B"
  }
 }

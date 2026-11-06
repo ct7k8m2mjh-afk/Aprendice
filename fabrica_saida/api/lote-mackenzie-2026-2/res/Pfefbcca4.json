@@ -10,7 +10,7 @@
   "antes": {
    "texto": "A classe de uma palavra depende da função dela na frase, e não da forma isolada. Para decidir, olhe o que vem antes e depois: 'extremely' antes da palavra, 'the' ou 'a' antes de um nome, 'to' antes de um verbo. Aqui basta classificar quatro palavras no contexto em que aparecem.",
    "formulas": [
-    "extremely + palavra = a palavra descreve um estado (adjetivo)",
+    "extremely shaken, descrevendo como a filha ficou = adjetivo",
     "what respect and boundaries are = boundaries é o sujeito do 'are' (substantivo no plural)",
     "a lengthy Instagram video = lengthy descreve o substantivo 'video' (adjetivo)",
     "to scold us = verbo no infinitivo, com objeto 'us'"
@@ -48,25 +48,25 @@
     "faz": "Classifique 'shaken' pelo contexto",
     "conta": "“left his daughter ... ‘extremely shaken.’”",
     "porque": "'Extremely' intensifica adjetivos, e 'shaken' descreve como a filha ficou (abalada). Embora venha de um particípio do verbo 'shake', aqui funciona como adjetivo.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Classifique 'boundaries'",
     "conta": "“what respect and boundaries are”",
     "porque": "'Boundaries' é coordenado a 'respect' e é o sujeito de 'are'. Termina em -ies, plural de 'boundary': substantivo.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Classifique 'lengthy'",
     "conta": "“in a lengthy Instagram video”",
     "porque": "Está entre o artigo 'a' e o nome 'Instagram video' e o descreve (um vídeo longo). O sufixo -y não faz dela advérbio: é adjetivo.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Classifique 'scold'",
-    "conta": "“to [...] scold us and say that he was going to complain”",
+    "conta": "“to […] scold us and say”",
     "porque": "Depois de 'to' vem verbo no infinitivo, ligado a 'say' e com objeto 'us'. É verbo.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Monte a sequência e ache a letra",
@@ -80,7 +80,7 @@
   "erradas": {
    "B": "Erra as quatro: 'shaken' aqui não é verbo transitivo, pois não tem objeto e vem após 'extremely'; 'boundaries' é substantivo, não adjetivo; 'lengthy' descreve 'video', logo não é advérbio; 'scold' é verbo, não substantivo.",
    "C": "'Shaken' não é verbo intransitivo aqui, é adjetivo depois de 'extremely'. 'Boundaries' não é advérbio (é o sujeito de 'are') e 'lengthy' não é substantivo: descreve 'video'. 'Scold' não é adjetivo, tem objeto 'us'.",
-   "D": "'Shaken' não é advérbio (descreve a filha), 'boundaries' não é conjunção (é sujeito de 'are') e 'lengthy' não é pronome (acompanha 'video'). 'Scold' é verbo, não substantivo plural; nem tem plural.",
+   "D": "'Shaken' não é advérbio (descreve a filha), 'boundaries' não é conjunção (é sujeito de 'are') e 'lengthy' não é pronome (acompanha 'video'). 'Scold' é verbo, não substantivo plural; nem está no plural (não termina em -s).",
    "E": "'Shaken' não é quantificador (não indica quantidade) e 'boundaries' não é numeral. 'Lengthy' não quantifica nada, descreve o vídeo. 'Scold' não liga orações: é verbo."
   },
   "armadilha": "Ver 'shaken' como verbo por vir de 'shake' e 'lengthy' como advérbio por terminar em -y, sem olhar a função na frase.",
@@ -115,10 +115,58 @@
  "gab": "A",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[0].tipo",
+    "depois": "localizar",
+    "motivo": "'interpretar' não é um dos tipos aceitos (localizar, calcular, comparar, eliminar, concluir). O passo acha a palavra no texto e a classifica pelo contexto.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "localizar",
+    "motivo": "'interpretar' não é um dos tipos aceitos.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "localizar",
+    "motivo": "'interpretar' não é um dos tipos aceitos.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "localizar",
+    "motivo": "'interpretar' não é um dos tipos aceitos.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "“to […] scold us and say”",
+    "motivo": "A conta passava de ~30 caracteres e não cabe na tela. O trecho menor mantém o que prova: 'to' + verbo + objeto 'us'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.antes.formulas[0]",
+    "depois": "extremely shaken, descrevendo como a filha ficou = adjetivo",
+    "motivo": "A regra geral 'extremely + palavra = adjetivo' é falsa, porque extremely também intensifica advérbios (extremely quickly). A regra agora vale só para este contexto.",
+    "fonte": "Cambridge Dictionary, verbete 'extremely' (adverb: to a very great degree)"
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "'Shaken' não é advérbio (descreve a filha), 'boundaries' não é conjunção (é sujeito de 'are') e 'lengthy' não é pronome (acompanha 'video'). 'Scold' é verbo, não substantivo plural; nem está no plural (não termina em -s).",
+    "motivo": "Dizer que scold 'nem tem plural' é impreciso: o substantivo 'a scold' existe e tem plural 'scolds'. O que vale é que, no texto, a palavra não está no plural.",
+    "fonte": "Merriam-Webster, verbete 'scold' (noun: a person who scolds habitually)"
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "A"
  }
 }

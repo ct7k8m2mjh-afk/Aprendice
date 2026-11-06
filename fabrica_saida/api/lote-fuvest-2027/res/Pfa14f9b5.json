@@ -45,19 +45,19 @@
     "faz": "Diga o que a falta de luz muda",
     "conta": "escuro → sem fotossíntese",
     "porque": "A fotossíntese depende de luz. Sem ela, a planta deixa de consumir CO2. Isso, porém, só explica por que o CO2 não diminui, não por que aumenta.",
-    "tipo": "interpretar"
+    "tipo": "concluir"
    },
    {
     "faz": "Identifique quem libera CO2",
     "conta": "glicose + O2 → CO2 + H2O + ATP",
     "porque": "A respiração celular aeróbia não depende de luz. Ela ocorre nas mitocôndrias de todas as células vivas da planta (folhas, caule e raízes) e libera CO2.",
-    "tipo": "aplicar"
+    "tipo": "localizar"
    },
    {
     "faz": "Ligue o CO2 à cor do indicador",
     "conta": "CO2 + H2O → H2CO3",
     "porque": "O CO2 dissolvido forma ácido carbônico e acidifica a água. O azul de bromotimol vira amarelo.",
-    "tipo": "aplicar"
+    "tipo": "concluir"
    },
    {
     "faz": "Teste as alternativas",
@@ -70,9 +70,9 @@
   "checagem": "A conta fecha: com luz, a fotossíntese consome o CO2 e o indicador tenderia ao azul; sem luz, só há liberação de CO2, e o indicador vai ao amarelo, como no experimento. Isso é coerente com o que acontece no seu corpo: você também libera CO2, de dia e de noite.",
   "erradas": {
    "A": "Autótrofo só quer dizer que produz o próprio alimento orgânico; a planta também tem mitocôndrias e respira. A alternativa nega a respiração e inventa contaminação por microrganismos, dado que o enunciado não traz.",
-   "C": "A planta submersa no escuro continua com O2 dissolvido suficiente por 12 h. Nada no enunciado indica falta de oxigênio, e o ramo ficou no recipiente fechado com água. A respiração aeróbia se sustenta; a fermentação alcoólica só ocorreria em falta de O2 e não é a explicação do resultado.",
-   "D": "O ciclo de Calvin fixa CO2 e constrói glicose; ele não funciona 'ao contrário' no escuro. A degradação da glicose acontece pela glicólise e pela respiração (citosol e mitocôndrias), com outras enzimas. Cloroplasto não degrada glicose pelas enzimas do Calvin.",
-   "E": "Todas as células vivas da planta têm mitocôndrias e respiram, inclusive as das folhas. Dizer que as folhas ficam metabolicamente inativas no escuro é falso; o ramo de Elodea nem tem raízes bem definidas no experimento descrito."
+   "C": "C diz que tecido submerso não sustenta a respiração aeróbia. Isso é falso: plantas aquáticas como a Elodea respiram aerobicamente usando o O2 dissolvido na água. Nada no enunciado indica anaerobiose, e a respiração aeróbia já explica o CO2 a mais.",
+   "D": "O ciclo de Calvin fixa CO2 e monta açúcar. No escuro ele para, porque depende do ATP e do NADPH da fase luminosa. Ele não roda ao contrário. A glicose é degradada pela glicólise (no citosol) e pela respiração (nas mitocôndrias), e é daí que vem o CO2.",
+   "E": "Todas as células vivas da planta têm mitocôndrias e respiram o tempo todo, inclusive as das folhas e do caule. Dizer que as folhas ficam metabolicamente inativas no escuro é falso. A luz liga só a fotossíntese, não o metabolismo inteiro."
   },
   "armadilha": "Achar que, sem luz, a planta 'para' de vez ou que só ela faz fotossíntese: no escuro só a fotossíntese para, a respiração continua.",
   "alerta": "",
@@ -85,7 +85,7 @@
  "caminhos": [
   {
    "nome": "eliminação por palavra absoluta",
-   "ideia": "A diz que o metabolismo 'restringe-se' à fotossíntese e E diz 'apenas' nas raízes: termos absolutos falsos. C e D afirmam fatos que o enunciado não sustenta. Sobra a B."
+   "ideia": "A diz que o metabolismo 'restringe-se' à fotossíntese e E diz que a respiração ocorre 'apenas' nas raízes: são termos absolutos falsos. C nega a respiração aeróbia em tecido submerso e D inventa um ciclo de Calvin ao contrário; as duas contradizem a fisiologia vegetal. Sobra a B."
   },
   {
    "nome": "comparar com claro × escuro",
@@ -106,10 +106,58 @@
  "gab": "B",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "concluir",
+    "motivo": "'interpretar' não é um tipo válido. Os tipos aceitos são localizar, calcular, comparar, eliminar e concluir.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "localizar",
+    "motivo": "'aplicar' não é um tipo válido.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "concluir",
+    "motivo": "'aplicar' não é um tipo válido.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "C diz que tecido submerso não sustenta a respiração aeróbia. Isso é falso: plantas aquáticas como a Elodea respiram aerobicamente usando o O2 dissolvido na água. Nada no enunciado indica anaerobiose, e a respiração aeróbia já explica o CO2 a mais.",
+    "motivo": "O texto antigo dizia, sem base, que o O2 seria 'suficiente por 12 h' num frasco fechado. Isso não dá para garantir. Também havia uma frase irrelevante ('ficou no recipiente fechado com água'). O erro real da alternativa C é negar a respiração aeróbia em tecido submerso.",
+    "fonte": "OpenStax Biology 2e, cap. 7 (respiração celular) e cap. 8 (fotossíntese)"
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "O ciclo de Calvin fixa CO2 e monta açúcar. No escuro ele para, porque depende do ATP e do NADPH da fase luminosa. Ele não roda ao contrário. A glicose é degradada pela glicólise (no citosol) e pela respiração (nas mitocôndrias), e é daí que vem o CO2.",
+    "motivo": "A frase antiga 'cloroplasto não degrada glicose pelas enzimas do Calvin' é imprecisa. A via oxidativa das pentoses, que ocorre no plastídio, usa enzimas em comum com o Calvin (transcetolase, transaldolase). O argumento correto é que o ciclo para no escuro e não se inverte.",
+    "fonte": "OpenStax Biology 2e, seção 8.3 (ciclo de Calvin)"
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "Todas as células vivas da planta têm mitocôndrias e respiram o tempo todo, inclusive as das folhas e do caule. Dizer que as folhas ficam metabolicamente inativas no escuro é falso. A luz liga só a fotossíntese, não o metabolismo inteiro.",
+    "motivo": "Tirei a afirmação especulativa de que o ramo 'nem tem raízes bem definidas', porque o enunciado não informa isso.",
+    "fonte": ""
+   },
+   {
+    "campo": "caminhos[0].ideia",
+    "depois": "A diz que o metabolismo 'restringe-se' à fotossíntese e E diz que a respiração ocorre 'apenas' nas raízes: são termos absolutos falsos. C nega a respiração aeróbia em tecido submerso e D inventa um ciclo de Calvin ao contrário; as duas contradizem a fisiologia vegetal. Sobra a B.",
+    "motivo": "C e D não são apenas 'não sustentadas pelo enunciado': elas afirmam fatos biologicamente falsos.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "B"
  }
 }

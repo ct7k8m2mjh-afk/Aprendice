@@ -77,7 +77,7 @@
     "faz": "Formule a resposta antes das letras",
     "conta": "toma → dor muscular passa",
     "porque": "O anúncio sugere alívio de dores, entre elas a muscular. Procure essa ideia nas alternativas.",
-    "tipo": "interpretar"
+    "tipo": "comparar"
    },
    {
     "faz": "Confira a alternativa D",
@@ -94,7 +94,7 @@
    "C": "'You surely know it is an unknown medicine' se contradiz: 'saber com certeza' e 'desconhecido' não combinam. O cartaz diz 'TRUSTED PAIN RELIEF' (alívio de dor confiável), o oposto de desconhecido.",
    "E": "'You might have high fever' (você pode ter febre alta) inverte o item LOWERS FEVER, 'Brings down high body temperature' (baixa a temperatura corporal alta). O remédio reduz a febre, não a causa."
   },
-  "armadilha": "Cada errada usa uma palavra do cartaz (migraine/headache, joint pain, fever) mas troca o sentido: o que o remédio ALIVIA vira o que ele CAUSA.",
+  "armadilha": "A, B e E pegam males citados no cartaz (dor de cabeça, dor articular, febre) e trocam o sentido: o que o remédio ALIVIA vira o que ele CAUSA.",
   "alerta": "",
   "essencial": {
    "pede": "O que o anúncio sugere que acontece com quem toma Ibuprofen.",
@@ -122,10 +122,28 @@
  "gab": "D",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "comparar",
+    "motivo": "'interpretar' não é um tipo válido. Os tipos aceitos são localizar, calcular, comparar, eliminar e concluir. Este passo formula a resposta para depois confrontá-la com as alternativas, por isso o tipo certo é 'comparar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.armadilha",
+    "depois": "A, B e E pegam males citados no cartaz (dor de cabeça, dor articular, febre) e trocam o sentido: o que o remédio ALIVIA vira o que ele CAUSA.",
+    "motivo": "A frase original tinha dois erros. 'Migraine' não aparece no cartaz (o cartaz diz 'headache'). E 'cada errada' inclui a C, que não segue esse padrão: ela erra por se contradizer e por contrariar 'TRUSTED PAIN RELIEF'.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "D"
  }
 }

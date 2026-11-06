@@ -44,7 +44,7 @@
     "faz": "Escreva a combustão do metanol",
     "conta": "CH3OH + 3/2 O2 → CO2 + 2 H2O",
     "porque": "1 C vira 1 CO2; 4 H viram 2 H2O; o O2 fecha o balanço de oxigênio (3/2).",
-    "tipo": "aplicar"
+    "tipo": "calcular"
    },
    {
     "faz": "Calcule o ΔH do metanol",
@@ -55,8 +55,8 @@
    {
     "faz": "Escreva a combustão do etanol",
     "conta": "C2H5OH + 3 O2 → 2 CO2 + 3 H2O",
-    "porque": "2 C viram 2 CO2; 6 H viram 3 H2O; oxigênios: 2 + 3 = 5, menos 1 do etanol = 3 O2.",
-    "tipo": "aplicar"
+    "porque": "2 C viram 2 CO2; 6 H viram 3 H2O; oxigênios nos produtos: 4 + 3 = 7, menos 1 do etanol = 6 átomos = 3 O2.",
+    "tipo": "calcular"
    },
    {
     "faz": "Calcule o ΔH do etanol",
@@ -154,10 +154,34 @@
  "gab": "A",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "2 C viram 2 CO2; 6 H viram 3 H2O; oxigênios nos produtos: 4 + 3 = 7, menos 1 do etanol = 6 átomos = 3 O2.",
+    "motivo": "A conta de oxigênios estava errada. 2 CO2 têm 4 átomos de O, não 2. Com 3 H2O, os produtos somam 7 O; tirando o O do etanol, sobram 6 átomos, ou seja, 3 O2. O texto anterior somava 2 + 3 = 5 e, descontado o O do etanol, chegaria a 4 átomos (2 O2), o que não fecha com o 3 O2 da equação.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[0].tipo",
+    "depois": "calcular",
+    "motivo": "O tipo 'aplicar' não existe na lista permitida (localizar, calcular, comparar, eliminar, concluir). Balancear a equação é um passo de cálculo.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "calcular",
+    "motivo": "O tipo 'aplicar' não existe na lista permitida. Balancear a equação é um passo de cálculo.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "A"
  }
 }

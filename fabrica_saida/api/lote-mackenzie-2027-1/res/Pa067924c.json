@@ -39,7 +39,7 @@
     "faz": "Monte a condição da metade",
     "conta": "C0 · 10^(−0,05t) = C0/2",
     "porque": "A nova dose sai quando a concentração vale metade da inicial C0.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Corte o C0",
@@ -51,7 +51,7 @@
     "faz": "Aplique log dos dois lados",
     "conta": "−0,05t = log(1/2) = −log 2",
     "porque": "O log de 10 elevado a algo devolve o expoente. E log(1/2) = −log 2.",
-    "tipo": "aplicar"
+    "tipo": "calcular"
    },
    {
     "faz": "Troque log 2 por 0,3",
@@ -71,7 +71,7 @@
   "erradas": {
    "A": "4 h dá expoente −0,05 × 4 = −0,2. Então 10^(−0,2) = 1/10^0,2; e 10^0,2 ≈ 1,58 (log 1,58 = 0,2), não 2. A concentração fica em cerca de 63% da inicial, ainda acima da metade.",
    "B": "5 h dá expoente −0,25. Como 10^0,25 ≈ 1,78 e não 2 (log 2 = 0,3, não 0,25), a concentração ainda é cerca de 56% de C0.",
-   "D": "8 h dá expoente −0,4. Como 0,4 é maior que 0,3, 10^(−0,4) é menor que 1/2 (≈ 0,40). A concentração já passou da metade; o ponto de metade é em 6 h.",
+   "D": "8 h dá expoente −0,4. Como 0,4 é maior que 0,3, 10^(−0,4) é menor que 1/2 (≈ 0,40). A concentração já caiu abaixo da metade; o ponto de metade é em 6 h.",
    "E": "10 h dá expoente −0,5, ou seja, 10^(−0,5) ≈ 0,32 de C0. Isso é cerca de um terço, bem abaixo da metade. Também não vale 1/4, que exigiria 2 log 2 = 0,6, ou seja, t = 12 h."
   },
   "armadilha": "Trocar log(1/2) por +0,3 e obter t = −6, ou esquecer que log(1/2) = −log 2 e travar no sinal.",
@@ -145,10 +145,34 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[0].tipo",
+    "depois": "localizar",
+    "motivo": "O tipo 'interpretar' não existe. Os tipos válidos são localizar, calcular, comparar, eliminar e concluir. Traduzir a condição do enunciado conta como 'localizar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "calcular",
+    "motivo": "O tipo 'aplicar' não existe na lista de tipos válidos. Aplicar log nos dois lados é 'calcular'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "8 h dá expoente −0,4. Como 0,4 é maior que 0,3, 10^(−0,4) é menor que 1/2 (≈ 0,40). A concentração já caiu abaixo da metade; o ponto de metade é em 6 h.",
+    "motivo": "A frase 'já passou da metade' é ambígua: pode ser lida como 'está acima da metade'. Com 10^(−0,4) ≈ 0,398, a concentração já está abaixo da metade.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C"
  }
 }

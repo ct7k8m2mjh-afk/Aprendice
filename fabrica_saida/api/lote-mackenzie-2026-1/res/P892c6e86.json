@@ -51,7 +51,7 @@
     "faz": "Separe o que o texto-base diz do que o comando pede",
     "conta": "Texto-base: cor ou símbolo no polígono",
     "porque": "O texto-base descreve o mapa temático tradicional, em que o polígono fica com a área real. O comando contrasta com isso: aqui o polígono muda.",
-    "tipo": "interpretar"
+    "tipo": "comparar"
    },
    {
     "faz": "Elimine as técnicas que mantêm a área",
@@ -63,7 +63,7 @@
     "faz": "Nomeie a técnica que sobra",
     "conta": "área ∝ dado → anamorfose",
     "porque": "Anamorfose geográfica é a técnica em que o tamanho de cada território é proporcional à variável: a Índia e a China enormes num mapa de população, por exemplo.",
-    "tipo": "aplicar"
+    "tipo": "comparar"
    },
    {
     "faz": "Ligue à alternativa",
@@ -112,10 +112,28 @@
  "gab": "B",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "comparar",
+    "motivo": "O tipo 'interpretar' não existe na lista permitida (localizar, calcular, comparar, eliminar, concluir). Este passo compara o texto-base com o comando, por isso o tipo certo é 'comparar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "comparar",
+    "motivo": "O tipo 'aplicar' não existe na lista permitida. Este passo liga a ideia de área proporcional ao dado ao nome da técnica, que é uma comparação com o conceito. O tipo 'concluir' fica só para o último passo.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "B"
  }
 }

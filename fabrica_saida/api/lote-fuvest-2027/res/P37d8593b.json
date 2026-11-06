@@ -49,7 +49,7 @@
     "faz": "Lembre a marca do físico",
     "conta": "físico = quebrar sem mudar a química",
     "porque": "No físico, só o tamanho dos fragmentos muda. Se a alternativa fala em reação química ou novos minerais, ela descreve outro processo.",
-    "tipo": "aplicar"
+    "tipo": "comparar"
    },
    {
     "faz": "Elimine os processos químicos",
@@ -65,7 +65,7 @@
    },
    {
     "faz": "Confira a alternativa restante",
-    "conta": "A: fragmenta 'sem alterar a composição química'; causas: temperatura, gelo, alívio de pressão, raízes",
+    "conta": "A: 'sem alterar a composição'\nCausas: calor, gelo, pressão, raízes",
     "porque": "Bate com a definição: só desagrega a rocha. Os climas citados (árido, desértico, polar, grande amplitude térmica) são os típicos do intemperismo físico.",
     "tipo": "concluir"
    }
@@ -110,10 +110,28 @@
  "gab": "A",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "comparar",
+    "motivo": "O guia só aceita estes tipos de passo: localizar, calcular, comparar, eliminar e concluir. 'aplicar' não está na lista. Este passo põe a marca do físico ao lado das alternativas, então o tipo certo é 'comparar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "A: 'sem alterar a composição'\nCausas: calor, gelo, pressão, raízes",
+    "motivo": "A linha original tinha mais de 90 caracteres e não cabe na tela do celular, onde cada linha deve ter cerca de 30. Dividi em duas linhas curtas sem mudar o conteúdo: a citação literal da A e as causas que ela lista.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "A"
  }
 }

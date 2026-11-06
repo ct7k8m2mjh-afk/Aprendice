@@ -43,25 +43,25 @@
     "faz": "Classifique a combustão do álcool",
     "conta": "combustão → exotérmica",
     "porque": "Queimar combustível sempre libera calor. Isso elimina quem diz que a combustão é endotérmica.",
-    "tipo": "aplicar"
+    "tipo": "eliminar"
    },
    {
     "faz": "Descubra o que o papel precisa para queimar",
     "conta": "papel queima se T ≥ T de ignição",
     "porque": "Não basta haver chama perto: o papel precisa aquecer até a temperatura de ignição.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Veja o papel de a água na mistura",
     "conta": "água: c alto + vaporiza (absorve calor)",
-    "porque": "O calor da chama aquece e evapora a água do papel. Enquanto há água, a temperatura do papel fica perto de 100 °C, abaixo da ignição.",
-    "tipo": "aplicar"
+    "porque": "O calor da chama aquece e evapora a água do papel. Enquanto há água, a temperatura do papel não passa de cerca de 100 °C, bem abaixo da ignição.",
+    "tipo": "localizar"
    },
    {
     "faz": "Compare o tempo da chama",
     "conta": "chama dura poucos segundos",
     "porque": "O álcool queima rápido. Ao acabar, o papel ainda tem água e não chegou à ignição, ficando intacto.",
-    "tipo": "interpretar"
+    "tipo": "comparar"
    },
    {
     "faz": "Escolha a alternativa",
@@ -71,7 +71,7 @@
    }
   ],
   "resposta": "Alternativa C: a combustão do álcool é exotérmica, mas a água absorve grande parte do calor e mantém o papel abaixo da temperatura de ignição.",
-  "checagem": "Teste com papel seco: ele pega fogo, pois não há água para absorver o calor. Papel molhado só com água também não queima. Logo, é a água que protege o papel.",
+  "checagem": "Teste com papel embebido só em álcool, sem água: ele pega fogo, pois não há água para absorver o calor. Logo, é a água que protege o papel.",
   "erradas": {
    "A": "Combustão libera calor, é exotérmica (ΔH < 0). Dizer que é endotérmica contradiz o próprio enunciado, que fala em liberação de energia, e a chama visível mostra o calor liberado.",
    "B": "A chama não consome a si mesma. O álcool queima e a chama acaba quando o álcool termina; isso não impede o papel de queimar. Papel seco ao lado da mesma chama queimaria.",
@@ -79,7 +79,7 @@
    "E": "Falso por usar 'sempre'. A velocidade de liberação de energia não é lenta em toda reação exotérmica em solução aquosa; muitas são rápidas, como a neutralização de ácido forte com base forte. E a chama aqui é rápida."
   },
   "armadilha": "Achar que, por a combustão ser exotérmica, o papel necessariamente queima: falta lembrar que o calor pode ser absorvido pela água antes de chegar à temperatura de ignição.",
-  "alerta": "",
+  "alerta": "O enunciado diz que a explicação envolve 'quantidade de energia' e 'velocidade com que essa energia é liberada' (cinética). Só que a alternativa correta (C) explica o fenômeno pela absorção de calor pela água, sem falar em velocidade de reação. O texto de apoio pode induzir o aluno a procurar uma resposta de cinética, como a E.",
   "essencial": {
    "pede": "Por que o papel embebido em álcool e água não queima.",
    "chave": "Combustão é exotérmica, mas a água absorve o calor (aquece e evapora) e mantém o papel abaixo da temperatura de ignição.",
@@ -106,8 +106,8 @@
    "nota": "a água aquece e evapora, absorvendo o calor"
   },
   {
-   "linha": "T do papel ≈ 100 °C",
-   "nota": "enquanto houver água, o papel fica perto disso"
+   "linha": "T do papel ≤ ~100 °C",
+   "nota": "enquanto houver água, o papel não passa disso"
   },
   {
    "linha": "100 °C < T de ignição",
@@ -127,10 +127,70 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[0].tipo",
+    "depois": "eliminar",
+    "motivo": "O tipo 'aplicar' não existe na lista permitida (localizar, calcular, comparar, eliminar, concluir). Este passo classifica a combustão como exotérmica e com isso descarta a alternativa A.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "localizar",
+    "motivo": "O tipo 'interpretar' não existe na lista permitida. O passo apenas identifica a condição para o papel queimar.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "localizar",
+    "motivo": "O tipo 'aplicar' não existe na lista permitida.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "O calor da chama aquece e evapora a água do papel. Enquanto há água, a temperatura do papel não passa de cerca de 100 °C, bem abaixo da ignição.",
+    "motivo": "Correção de precisão. A mistura de álcool e água ferve abaixo de 100 °C, então o papel fica no máximo perto de 100 °C, e não necessariamente 'perto de 100 °C'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "comparar",
+    "motivo": "O tipo 'interpretar' não existe na lista permitida.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Teste com papel embebido só em álcool, sem água: ele pega fogo, pois não há água para absorver o calor. Logo, é a água que protege o papel.",
+    "motivo": "O teste antigo era fraco. 'Papel seco' não diz se havia combustível, e 'papel molhado só com água não queima' não tem chama nenhuma, então não testa a hipótese. O teste certo compara a mesma chama com e sem água.",
+    "fonte": ""
+   },
+   {
+    "campo": "quadro[2].linha",
+    "depois": "T do papel ≤ ~100 °C",
+    "motivo": "Mesma correção de precisão: com água presente, a temperatura do papel fica no máximo por volta de 100 °C, e não obrigatoriamente ≈ 100 °C.",
+    "fonte": ""
+   },
+   {
+    "campo": "quadro[2].nota",
+    "depois": "enquanto houver água, o papel não passa disso",
+    "motivo": "Acompanha a correção da linha.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.alerta",
+    "depois": "O enunciado diz que a explicação envolve 'quantidade de energia' e 'velocidade com que essa energia é liberada' (cinética). Só que a alternativa correta (C) explica o fenômeno pela absorção de calor pela água, sem falar em velocidade de reação. O texto de apoio pode induzir o aluno a procurar uma resposta de cinética, como a E.",
+    "motivo": "A banca redigiu o texto de forma imprecisa: o texto anuncia um argumento de cinética, e o gabarito usa um argumento de calor absorvido pela água. Vale avisar o aluno.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C"
  }
 }

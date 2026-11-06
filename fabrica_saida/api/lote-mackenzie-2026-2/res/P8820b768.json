@@ -49,7 +49,7 @@
     "faz": "Monte a ficha da malária",
     "conta": "Plasmodium → Anopheles (fêmea)",
     "porque": "O protozoário Plasmodium é o agente. A fêmea do Anopheles o transmite ao picar e é o vetor.",
-    "tipo": "aplicar"
+    "tipo": "localizar"
    },
    {
     "faz": "Descarte as doenças trocadas",
@@ -71,7 +71,7 @@
    }
   ],
   "resposta": "Alternativa E: o mosquito do gênero Anopheles é o vetor da malária, pois transmite o Plasmodium pela picada.",
-  "checagem": "Confira as outras doenças: leishmaniose (flebotomíneo/Lutzomyia), Chagas (barbeiro) e dengue (Aedes). Cada vetor aparece em uma alternativa errada, e o Anopheles só combina com a malária.",
+  "checagem": "Confira as outras doenças: leishmaniose (Leishmania, transmitida pelo flebotomíneo Lutzomyia) e Chagas (Trypanosoma cruzi, transmitido pelo barbeiro). Os nomes dessas fichas aparecem nas alternativas A, B e C, e o Anopheles só combina com a malária.",
   "erradas": {
    "A": "Lutzomyia é o flebotomíneo (mosquito-palha), vetor da leishmaniose, não da malária. Além disso, na malária o mosquito Anopheles é o hospedeiro definitivo (nele ocorre a fase sexuada do Plasmodium), e não o intermediário. O ser humano é o hospedeiro intermediário.",
    "B": "Leishmania causa a leishmaniose (calazar e forma cutânea). O agente da malária é o Plasmodium (P. vivax, P. falciparum etc.).",
@@ -106,10 +106,28 @@
  "gab": "E",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "localizar",
+    "motivo": "O valor \"aplicar\" não está entre os tipos aceitos (localizar, calcular, comparar, eliminar, concluir). Este passo recupera a ficha agente → vetor da malária, então o tipo certo é \"localizar\".",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Confira as outras doenças: leishmaniose (Leishmania, transmitida pelo flebotomíneo Lutzomyia) e Chagas (Trypanosoma cruzi, transmitido pelo barbeiro). Os nomes dessas fichas aparecem nas alternativas A, B e C, e o Anopheles só combina com a malária.",
+    "motivo": "A frase original dizia que \"cada vetor aparece em uma alternativa errada\" e incluía a dengue (Aedes). Isso é falso: o Aedes não aparece em nenhuma alternativa, e B cita um agente (Leishmania), não um vetor.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E"
  }
 }

@@ -69,7 +69,7 @@
   "resposta": "Alternativa B: com 4 horas de diferença, a prova das 10h30 na Itália foi vista a partir das 6h30 em São Paulo.",
   "checagem": "Passe por Greenwich: 10h30 na Itália (UTC+1) = 9h30 em UTC. De UTC a São Paulo (UTC−3) subtraem-se 3 h: 9h30 − 3h = 6h30. O resultado é o mesmo.",
   "erradas": {
-   "A": "5h30 supõe 5 h de diferença, o que exigiria São Paulo em UTC−4. Mas São Paulo está em UTC−3 e a Itália em UTC+1 (diferença de 4 h). Brasília só teria UTC−4 se fosse o horário do Amazonas, e não é.",
+   "A": "5h30 supõe 5 h de diferença, o que exigiria São Paulo em UTC−4. Mas São Paulo está em UTC−3 e a Itália em UTC+1 (diferença de 4 h). UTC−4 é o fuso do Amazonas, não o de São Paulo.",
    "C": "7h30 sai de 10h30 − 3h: usa só o fuso de São Paulo (UTC−3) e ignora o +1 da Itália. Isso vale se a Itália estivesse em UTC 0, mas ela está 1 h à frente de Greenwich.",
    "D": "8h30 sai de 10h30 − 2h, com 2 = 3 − 1. Quem errou subtraiu os dois fusos como se estivessem do mesmo lado de Greenwich. Como a Itália está a leste (+1) e São Paulo a oeste (−3), as distâncias se somam: 1 + 3 = 4.",
    "E": "9h30 sai de 10h30 − 1h: só leva a hora italiana até Greenwich (UTC). Falta ainda atrasar mais 3 h para chegar a São Paulo."
@@ -131,10 +131,22 @@
  "gab": "B",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "5h30 supõe 5 h de diferença, o que exigiria São Paulo em UTC−4. Mas São Paulo está em UTC−3 e a Itália em UTC+1 (diferença de 4 h). UTC−4 é o fuso do Amazonas, não o de São Paulo.",
+    "motivo": "A frase 'Brasília só teria UTC−4 se fosse o horário do Amazonas' não faz sentido: Brasília tem um fuso fixo, UTC−3. A correção diz o fato certo: UTC−4 é o fuso do Amazonas, não o de São Paulo.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "B"
  }
 }

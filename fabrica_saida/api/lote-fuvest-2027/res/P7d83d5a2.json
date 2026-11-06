@@ -12,7 +12,7 @@
    "formulas": [
     "Colônia espanhola até 1898 → passa aos EUA (Tratado de Paris)",
     "Território não incorporado = é dos EUA, mas não é estado",
-    "Cidadania americana (desde 1917) ≠ voto para presidente (só estados votam no Colégio Eleitoral)",
+    "Cidadania americana (desde 1917) ≠ voto para presidente (só estados e o Distrito de Colúmbia têm delegados no Colégio Eleitoral)",
     "CELAC = bloco de países soberanos da América Latina e do Caribe"
    ],
    "simbolos": [
@@ -30,7 +30,7 @@
     ],
     [
      "Colégio Eleitoral",
-     "grupo de delegados dos estados que elege formalmente o presidente dos EUA"
+     "grupo de delegados dos estados e do Distrito de Colúmbia que elege formalmente o presidente dos EUA"
     ]
    ]
   },
@@ -73,9 +73,9 @@
    "A": "Erra a data e o processo. Porto Rico não se tornou independente em 1889. Em 1898, pelo Tratado de Paris, a Espanha o cedeu aos EUA. Não houve independência nem protetorado em 1945.",
    "B": "Os porto-riquenhos nascem cidadãos americanos, então a mudança para os EUA continentais não é migração internacional. Além disso, o maior grupo de origem latino-americana nos EUA é o de origem mexicana, não o porto-riquenho.",
    "D": "A CELAC é composta por Estados soberanos da América Latina e do Caribe. Porto Rico é território dos EUA e não é membro, então não pode ter entrado em 2021. A premissa também contraria o texto, que mostra a relação com os EUA ainda marcada pela subordinação.",
-   "E": "A presença militar americana na ilha existe, mas a alternativa está imprecisa. A instalação militar mais ligada a San Juan é Fort Buchanan, que fica em Guaynabo, na região metropolitana da capital. Porto Rico também não é um país com defesa própria que dependa de outro: sua defesa é, por definição, federal, pois é território dos EUA. A alternativa trata como dependência militar entre países o que é consequência do status político, e C descreve esse status sem imprecisão."
+   "E": "A presença militar americana na ilha existe (por exemplo, Fort Buchanan, em Guaynabo, na região metropolitana de San Juan), mas a alternativa trata Porto Rico como país que depende militarmente de outro. Porto Rico é território dos EUA e sua defesa é federal por definição: isso não é dependência entre países, é consequência do status político que C descreve."
   },
-  "armadilha": "Tratar Porto Rico como país independente (A, D, E) ou como estado americano comum, e esquecer que cidadania americana não dá voto para presidente.",
+  "armadilha": "Tratar Porto Rico como país independente (A, D, E) ou como estado americano comum, e esquecer que quem mora na ilha tem cidadania americana mas não vota para presidente.",
   "alerta": "",
   "essencial": {
    "pede": "Escolher a afirmação correta sobre a relação política entre Porto Rico e os EUA.",
@@ -107,10 +107,43 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.antes.formulas[2]",
+    "depois": "Cidadania americana (desde 1917) ≠ voto para presidente (só estados e o Distrito de Colúmbia têm delegados no Colégio Eleitoral)",
+    "motivo": "O Distrito de Colúmbia também tem delegados no Colégio Eleitoral (23ª Emenda), então 'só estados votam' está errado. Quem mora em Porto Rico não vota para presidente porque o território não tem delegados.",
+    "fonte": "Constituição dos EUA, 23ª Emenda (1961)"
+   },
+   {
+    "campo": "resolucao.antes.simbolos[3]",
+    "depois": [
+     "Colégio Eleitoral",
+     "grupo de delegados dos estados e do Distrito de Colúmbia que elege formalmente o presidente dos EUA"
+    ],
+    "motivo": "A definição deixava de fora os delegados do Distrito de Colúmbia.",
+    "fonte": "Constituição dos EUA, 23ª Emenda"
+   },
+   {
+    "campo": "resolucao.armadilha",
+    "depois": "Tratar Porto Rico como país independente (A, D, E) ou como estado americano comum, e esquecer que quem mora na ilha tem cidadania americana mas não vota para presidente.",
+    "motivo": "O que impede o voto para presidente é morar no território, não a cidadania. Um porto-riquenho que se muda para um estado passa a votar. A frase antiga dava a entender que a cidadania americana, por si só, não dá direito a votar para presidente.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "A presença militar americana na ilha existe (por exemplo, Fort Buchanan, em Guaynabo, na região metropolitana de San Juan), mas a alternativa trata Porto Rico como país que depende militarmente de outro. Porto Rico é território dos EUA e sua defesa é federal por definição: isso não é dependência entre países, é consequência do status político que C descreve.",
+    "motivo": "A frase 'a instalação mais ligada a San Juan é Fort Buchanan' não se sustenta: perto da capital existem outras instalações, como a base Muñiz da Guarda Nacional Aérea, em Carolina, e o setor da Guarda Costeira em San Juan. Troquei por um exemplo que não exige classificar qual base é a principal e mantive o motivo central da eliminação.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C"
  }
 }

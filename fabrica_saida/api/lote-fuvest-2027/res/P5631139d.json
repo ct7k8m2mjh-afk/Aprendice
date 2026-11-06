@@ -8,7 +8,7 @@
  "conceito": "Reconhecer, num texto literário, as reações de medo intenso (luta ou fuga) como respostas comandadas pelo sistema nervoso autônomo simpático.",
  "resolucao": {
   "antes": {
-   "texto": "O sistema nervoso autônomo comanda, sem controle voluntário, as reações do corpo a situações de ameaça. É a resposta de luta ou fuga: tremor, pavor, sons presos na garganta, fuga em pânico. Os músculos, o coração e a respiração são os órgãos que executam. Quem dispara a reação é o sistema nervoso autônomo, com predomínio da divisão simpática.",
+   "texto": "O sistema nervoso autônomo comanda, sem controle voluntário, as reações do corpo a situações de ameaça. É a resposta de luta ou fuga: tremor, pavor, sons presos na garganta, fuga em pânico. Os músculos, o coração e os pulmões são os órgãos que executam. Quem dispara a reação é o sistema nervoso autônomo, com predomínio da divisão simpática.",
    "formulas": [
     "perigo → sistema nervoso autônomo simpático → reação de luta ou fuga",
     "autônomo = involuntário; motor somático = voluntário"
@@ -46,7 +46,7 @@
     "faz": "Traduza para o mecanismo biológico",
     "conta": "medo → luta ou fuga → autônomo simpático",
     "porque": "O medo intenso ativa o simpático, que provoca tremor, alteração da respiração e preparo do corpo para fugir. O texto descreve essas respostas emocionais involuntárias.",
-    "tipo": "interpretar"
+    "tipo": "concluir"
    },
    {
     "faz": "Elimine os sistemas que só executam ou só percebem",
@@ -67,10 +67,10 @@
    "B": "O sistema cardiovascular (coração e vasos) é órgão executor: o coração acelera porque o autônomo o estimula. Além disso, os trechos não descrevem batimento nem pressão, só tremor, grito e fuga.",
    "C": "O sistema motor realiza os movimentos (tremor, fuga), mas esses movimentos são o efeito do pavor. Quem desencadeia a reação de medo, sem controle voluntário, é o autônomo, e o enunciado pede o desencadeante primário.",
    "D": "O sistema sensorial capta estímulos (a criança vê, ouve). Os trechos descrevem reações do corpo, não a percepção do estímulo.",
-   "E": "Os \"sons estrangulados\" e a boca torcida envolvem a respiração e a voz, mas só em parte do segundo trecho. O sistema respiratório executa a ventilação e não explica a fuga da multidão nem o tremor. Ele também é comandado pelo autônomo."
+   "E": "Os \"sons estrangulados\" e a boca torcida envolvem a respiração e a voz, mas só em parte do segundo trecho. O sistema respiratório executa a ventilação e não explica a fuga da multidão nem o tremor."
   },
   "armadilha": "Marcar o sistema motor porque os trechos mostram muito movimento, esquecendo que a pergunta é sobre o que desencadeia primariamente a reação de medo.",
-  "alerta": "A questão usa \"primariamente\" para separar quem dispara a resposta de quem a executa. Tremor e fuga também envolvem músculos (sistema motor), por isso é preciso ler a pergunta com atenção.",
+  "alerta": "O segundo trecho (tremor violento, olhos que se desviam, contorções, a criança como que \"raptada do mundo\") também lembra uma crise convulsiva. A origem de uma convulsão é uma descarga anormal de neurônios do encéfalo, e não o sistema nervoso autônomo. O gabarito A só se sustenta se os dois trechos forem lidos como reações de pavor. A palavra \"primariamente\" separa quem dispara a resposta (o autônomo) de quem a executa (músculos, coração, pulmões).",
   "essencial": {
    "pede": "O sistema que desencadeia primariamente as respostas de pavor descritas nos dois trechos.",
    "chave": "Medo intenso aciona o sistema nervoso autônomo simpático (luta ou fuga), de forma involuntária.",
@@ -101,10 +101,40 @@
  "gab": "A",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "concluir",
+    "motivo": "O tipo \"interpretar\" não existe no padrão. Os tipos aceitos são localizar, calcular, comparar, eliminar e concluir. Pelo guia da matéria, traduzir o texto para o processo biológico entra como localizar ou concluir.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "O sistema nervoso autônomo comanda, sem controle voluntário, as reações do corpo a situações de ameaça. É a resposta de luta ou fuga: tremor, pavor, sons presos na garganta, fuga em pânico. Os músculos, o coração e os pulmões são os órgãos que executam. Quem dispara a reação é o sistema nervoso autônomo, com predomínio da divisão simpática.",
+    "motivo": "Respiração é uma função, não um órgão. Como a frase fala de \"órgãos que executam\", troquei por \"os pulmões\".",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "Os \"sons estrangulados\" e a boca torcida envolvem a respiração e a voz, mas só em parte do segundo trecho. O sistema respiratório executa a ventilação e não explica a fuga da multidão nem o tremor.",
+    "motivo": "Retirei a frase \"Ele também é comandado pelo autônomo\" porque ela está errada. Quem controla a ventilação são os centros respiratórios do bulbo, que agem por nervos motores somáticos (o frênico, por exemplo) sobre o diafragma e os músculos intercostais, que são músculos esqueléticos. O autônomo só modula a respiração, por exemplo pelo diâmetro dos brônquios.",
+    "fonte": "OpenStax Anatomy and Physiology 2e, 22.3 (The Process of Breathing: Respiratory Rate and Depth)"
+   },
+   {
+    "campo": "resolucao.alerta",
+    "depois": "O segundo trecho (tremor violento, olhos que se desviam, contorções, a criança como que \"raptada do mundo\") também lembra uma crise convulsiva. A origem de uma convulsão é uma descarga anormal de neurônios do encéfalo, e não o sistema nervoso autônomo. O gabarito A só se sustenta se os dois trechos forem lidos como reações de pavor. A palavra \"primariamente\" separa quem dispara a resposta (o autônomo) de quem a executa (músculos, coração, pulmões).",
+    "motivo": "O alerta antigo era uma dica de leitura, não um problema da prova. Ele não registrava a ambiguidade real: o segundo trecho pode descrever uma convulsão, que não é desencadeada pelo sistema nervoso autônomo.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "A"
  }
 }

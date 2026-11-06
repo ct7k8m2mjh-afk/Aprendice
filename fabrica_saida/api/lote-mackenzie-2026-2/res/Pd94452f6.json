@@ -56,13 +56,13 @@
     "faz": "Veja a oração principal",
     "conta": "“I'd be canceling” = I would be canceling",
     "porque": "Would + verbo fecha a estrutura if + passado, would + verbo: 2º condicional.",
-    "tipo": "aplicar"
+    "tipo": "localizar"
    },
    {
     "faz": "Defina o valor da frase",
     "conta": "eu não sou você → situação imaginária",
     "porque": "A frase é um conselho dado de um ponto de vista imaginário. Isso é situação hipotética, não plano real.",
-    "tipo": "interpretar"
+    "tipo": "comparar"
    },
    {
     "faz": "Ligue tipo e valor à letra",
@@ -111,10 +111,28 @@
  "gab": "E",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "localizar",
+    "motivo": "O tipo 'aplicar' não está na lista permitida (localizar, calcular, comparar, eliminar, concluir). Este passo identifica na frase a estrutura would + verbo, que é um movimento de localizar.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "comparar",
+    "motivo": "O tipo 'interpretar' não está na lista permitida. Este passo compara a condição ('eu não sou você') com a realidade para concluir que a situação é hipotética.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E"
  }
 }

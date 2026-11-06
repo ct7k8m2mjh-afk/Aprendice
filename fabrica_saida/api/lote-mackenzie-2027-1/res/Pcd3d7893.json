@@ -65,10 +65,10 @@
   "resposta": "Alternativa C: a região entre os planos tem 78,4% do volume total, pois o cone de cima tem 0,6³ = 21,6%.",
   "checagem": "Confira com um cone de raio 10 e altura 10: V = π·100·10/3. O cone menor tem raio 6 e altura 6, V = π·36·6/3 = π·216/3. Razão 216/1000 = 21,6%. Fecha.",
   "erradas": {
-   "A": "40,0% não confere: nenhuma razão de semelhança dá isso. Seria 100% − 60%, usando k = 0,6 como se fosse razão de volumes, mas k = 0,6 é razão linear.",
+   "A": "40,0% sai de 100% − 60%: usou k = 0,6 como se fosse a razão de volumes. Mas 0,6 é a razão linear; o volume usa 0,6³ = 0,216.",
    "B": "64,0% sai de 100% − 36%: usou a razão de áreas como se fosse a de volumes. O cone de cima tem 36% da área da base, não do volume.",
    "D": "87,0% não confere: o cone pequeno teria 13% do volume, o que exigiria k³ = 0,13, ou seja k ≈ 0,507, e k² ≈ 25,7%, não 36%.",
-   "E": "95,3% não confere: o cone pequeno teria 4,7% do volume, o que daria k³ = 0,047, ou seja k ≈ 0,36, e k² ≈ 13%, não 36%. Sai de 1 − 0,36³ = 0,953: usou 36% como razão linear, mas 36% é a razão de áreas."
+   "E": "95,3% sai de 1 − 0,36³ = 1 − 0,047 ≈ 0,953: usou 36% como razão linear. Mas 36% é a razão de áreas; a razão linear é √0,36 = 0,6."
   },
   "armadilha": "Usar 36% como razão de volumes (ou como razão linear) em vez de tirar a raiz quadrada e depois elevar ao cubo.",
   "alerta": "",
@@ -134,10 +134,28 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "40,0% sai de 100% − 60%: usou k = 0,6 como se fosse a razão de volumes. Mas 0,6 é a razão linear; o volume usa 0,6³ = 0,216.",
+    "motivo": "O texto dizia 'não confere' e logo depois dava a origem do valor (1 − 0,6 = 0,4). Isso se contradiz. Pelo padrão, quando um erro típico chega exatamente ao valor, a explicação começa com 'sai de'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "95,3% sai de 1 − 0,36³ = 1 − 0,047 ≈ 0,953: usou 36% como razão linear. Mas 36% é a razão de áreas; a razão linear é √0,36 = 0,6.",
+    "motivo": "O texto dizia 'não confere' e depois 'Sai de 1 − 0,36³', o que se contradiz. Conferi a conta: 0,36³ = 0,046656 e 1 − 0,046656 = 0,953344 ≈ 95,3%. Então a alternativa sai de um erro real.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C"
  }
 }

@@ -52,19 +52,19 @@
     "faz": "Deduza a carga da rede",
     "conta": "cátion (+) compensa a carga → rede (−)",
     "porque": "Para compensar a carga positiva dos cátions, a rede precisa ter carga líquida negativa, concentrada nos grupos CN⁻.",
-    "tipo": "interpretar"
+    "tipo": "concluir"
    },
    {
     "faz": "Nomeie a interação",
     "conta": "Cs⁺ ··· região (−) da rede",
     "porque": "Atração entre um íon positivo e uma região negativa é do tipo íon-íon, fraca o bastante para permitir a troca.",
-    "tipo": "aplicar"
+    "tipo": "concluir"
    },
    {
     "faz": "Elimine as alternativas que contradizem o texto",
     "conta": "B, D, E, C: não servem",
     "porque": "Cada uma propõe outra ligação (covalente, hidrogênio, só Van der Waals ou nenhuma interação) que o texto não sustenta.",
-    "tipo": "interpretar"
+    "tipo": "eliminar"
    },
    {
     "faz": "Conclua",
@@ -74,10 +74,10 @@
    }
   ],
   "resposta": "Alternativa A: o Cs⁺ é retido por atração eletrostática (íon-íon) com as regiões de carga negativa da rede de Azul da Prússia.",
-  "checagem": "Troque o Cs⁺ por K⁺ ou Na⁺ no raciocínio: todos são +1 e ocupam o mesmo tipo de lugar. Isso só funciona se a retenção for por carga, como diz o texto sobre a 'troca iônica'.",
+  "checagem": "Troque o Cs⁺ por K⁺ no raciocínio: os dois têm carga +1 e podem ocupar o mesmo lugar na cavidade. Uma troca de um cátion por outro, a 'troca iônica' do texto, só faz sentido se a retenção depender da carga.",
   "erradas": {
    "B": "Ligação covalente é compartilhamento de elétrons e seria forte e permanente. O texto diz 'fracamente ligados ... por interações eletrostáticas' e que os cátions podem ser substituídos. Os cátions também estão nas cavidades, e não ligados ao ferro.",
-   "C": "Van der Waals existe, mas é fraca e não explica a retenção seletiva de cátions. O texto aponta a interação eletrostática como a responsável, e um cátion carregado interage por carga, não por forças entre átomos neutros.",
+   "C": "Forças de Van der Waals existem entre quaisquer partículas, mas não explicam a retenção de cátions. O texto aponta a interação eletrostática como a responsável, e um íon carregado é atraído pela carga oposta da rede.",
    "D": "Ligação de hidrogênio exige um H ligado a F, O ou N. Os grupos CN⁻ não têm H, e o Cs⁺ é um cátion metálico sem H. Logo, essa ligação não pode se formar.",
    "E": "O texto afirma que a interação é eletrostática, portanto há atração entre cátion e rede. A alternativa nega isso ao dizer 'sem interação eletrostática'; um simples aprisionamento físico também não explicaria a compensação de carga."
   },
@@ -113,10 +113,46 @@
  "gab": "A",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "concluir",
+    "motivo": "O tipo 'interpretar' não está na lista permitida (localizar, calcular, comparar, eliminar, concluir). Neste passo se tira uma conclusão do texto: a rede tem carga negativa.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "concluir",
+    "motivo": "O tipo 'aplicar' não está na lista permitida. Neste passo se conclui o nome da interação a partir da carga.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "eliminar",
+    "motivo": "O tipo 'interpretar' não está na lista permitida. O passo descarta alternativas, então o tipo é 'eliminar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "Forças de Van der Waals existem entre quaisquer partículas, mas não explicam a retenção de cátions. O texto aponta a interação eletrostática como a responsável, e um íon carregado é atraído pela carga oposta da rede.",
+    "motivo": "O texto antigo descartava Van der Waals por ser 'fraca'. Esse argumento não se sustenta, porque o próprio texto da prova diz que os cátions estão 'fracamente ligados'. Também saiu a frase sobre 'átomos neutros', que é imprecisa.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Troque o Cs⁺ por K⁺ no raciocínio: os dois têm carga +1 e podem ocupar o mesmo lugar na cavidade. Uma troca de um cátion por outro, a 'troca iônica' do texto, só faz sentido se a retenção depender da carga.",
+    "motivo": "Saiu o Na⁺. O Azul da Prússia retém o Na⁺ muito menos que o Cs⁺ e o K⁺, por causa do tamanho e da hidratação do íon. Dizer que todos ocupam o lugar da mesma forma era impreciso.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "A"
  }
 }

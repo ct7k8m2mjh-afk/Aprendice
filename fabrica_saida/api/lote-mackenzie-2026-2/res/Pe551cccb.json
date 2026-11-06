@@ -66,8 +66,8 @@
   "erradas": {
    "A": "3,0 g é a diferença para só 100 mL (39 − 36). O frasco tem 250 mL, então falta multiplicar por 2,5.",
    "B": "4,5 g não confere: seria 3 × 1,5. A água é 250 mL, ou seja, 2,5 porções de 100 mL, não 1,5; testando 3 × 2,5 sai 7,5 g.",
-   "C": "6,0 g sai de 3 g × 2: tratou 250 mL como 200 mL. 250 mL ÷ 100 mL = 2,5, e não 2.",
-   "E": "9,0 g sai de 3 g × 3: arredondou 250 mL para 300 mL (3 porções). O fator correto é 2,5."
+   "C": "6,0 g não confere: para 250 mL de água, 39 × 2,5 = 97,5 g dissolvidos a 100 °C e 36 × 2,5 = 90 g a 20 °C. A diferença é 7,5 g, e não 6,0 g; 6,0 g seria o precipitado em 200 mL.",
+   "E": "9,0 g não confere: o fator é 250 ÷ 100 = 2,5, e 3 g × 2,5 = 7,5 g. Seriam 9,0 g só com 300 mL de água (3 × 3 g)."
   },
   "armadilha": "Esquecer que o enunciado dá solubilidade para 100 mL e o frasco tem 250 mL, parando em 3,0 g.",
   "alerta": "",
@@ -127,10 +127,28 @@
  "gab": "D",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "6,0 g não confere: para 250 mL de água, 39 × 2,5 = 97,5 g dissolvidos a 100 °C e 36 × 2,5 = 90 g a 20 °C. A diferença é 7,5 g, e não 6,0 g; 6,0 g seria o precipitado em 200 mL.",
+    "motivo": "A origem 'tratou 250 mL como 200 mL' é uma suposição sem respaldo; nenhum erro típico real chega a 6,0 g. Troquei pelo teste objetivo, como pede o guia.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "9,0 g não confere: o fator é 250 ÷ 100 = 2,5, e 3 g × 2,5 = 7,5 g. Seriam 9,0 g só com 300 mL de água (3 × 3 g).",
+    "motivo": "A origem 'arredondou 250 mL para 300 mL' é inventada. Troquei pelo teste objetivo.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "D"
  }
 }

@@ -25,7 +25,7 @@
     ],
     [
      "portadora assintomática",
-     "mulher X^H X^h: carrega o alelo, mas não tem sintomas"
+     "mulher X^H X^h: carrega o alelo, mas em geral não tem sintomas"
     ],
     [
      "homozigota dominante",
@@ -51,7 +51,7 @@
     "faz": "Liste os gametas",
     "conta": "Pai: X^h ou Y",
     "porque": "O pai produz metade de espermatozoides com X^h e metade com Y. A mãe produz só óvulos X^H.",
-    "tipo": "aplicar"
+    "tipo": "calcular"
    },
    {
     "faz": "Cruze e some os resultados",
@@ -123,10 +123,31 @@
  "gab": "E",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "calcular",
+    "motivo": "O tipo 'aplicar' não existe na lista permitida (localizar, calcular, comparar, eliminar, concluir). Listar os gametas é a primeira etapa do cruzamento, por isso o tipo certo é 'calcular'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.antes.simbolos[2]",
+    "depois": [
+     "portadora assintomática",
+     "mulher X^H X^h: carrega o alelo, mas em geral não tem sintomas"
+    ],
+    "motivo": "Algumas portadoras de hemofilia têm o fator de coagulação mais baixo e sangramentos leves. Dizer que elas 'não têm sintomas', sem ressalva, é absoluto demais. O próprio enunciado usa 'geralmente não manifestam'.",
+    "fonte": "NCBI Bookshelf, GeneReviews: Hemophilia A (as mulheres heterozigotas podem ter sangramento leve)"
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E"
  }
 }

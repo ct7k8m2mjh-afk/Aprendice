@@ -39,12 +39,12 @@
     "faz": "Entenda o que o comando exige",
     "conta": "imperativo + 'você' + norma-padrão",
     "porque": "O verbo de ordem precisa estar na forma do presente do subjuntivo. Uma forma de 'tu' (vai, volta, olha) dirigida a 'você' é a mistura que o enunciado diz ser intencional na letra.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Examine as alternativas A e B",
-    "conta": "A: 'Volta aqui, vem você'; B: 'Lembra que...', 'olha só'",
-    "porque": "Volta, vem, lembra e olha são formas de 'tu'. Para 'você' seriam: volte, venha, lembre, olhe.",
+    "conta": "A: 'Volta aqui, vem você'; B: 'olha só'",
+    "porque": "Volta, vem e olha são formas de 'tu'. Para 'você' seriam volte, venha e olhe. Em B, 'Lembra que...?' é pergunta no indicativo, não ordem.",
     "tipo": "eliminar"
    },
    {
@@ -67,10 +67,10 @@
    }
   ],
   "resposta": "Alternativa E: 'não vá agora' é o imperativo negativo de 'você', formado com o presente do subjuntivo de 'ir'.",
-  "checagem": "Troque os verbos pelas formas de 'você': 'Volte aqui, venha você'; 'Lembre', 'olhe'; 'Olhe pra cá', 'Dê uma olhada', 'venha'; 'Vá'. As alternativas A a D precisariam dessa troca. Em E, 'vá' já é essa forma, e nada precisa mudar.",
+  "checagem": "Troque os verbos pelas formas de 'você': 'Volte aqui, venha você'; 'olhe só'; 'Olhe pra cá', 'Dê uma olhada', 'venha'; 'Vá'. As alternativas A a D precisariam dessa troca. Em E, 'vá' já é essa forma, e nada precisa mudar.",
   "erradas": {
    "A": "'Volta' e 'vem' são formas de 'tu' (tu voltas → volta; tu vens → vem). Dirigidas a 'você', a norma pede 'volte' e 'venha'.",
-   "B": "'Lembra' e 'olha' são imperativo de 'tu'. Com 'você' (vem dele o 'você não está aqui'), a norma pede 'lembre' e 'olhe'.",
+   "B": "'Olha' ('Ei, olha só') é imperativo de 'tu'. O trecho fala com 'você' ('você não está aqui'), e com 'você' a norma pede 'olhe'. 'Lembra que...?' é pergunta no indicativo, não ordem.",
    "C": "'Olha', 'dá' e 'vem' são formas de 'tu'; o trecho ainda mistura 'teu' com 'você'. Para 'você' seriam 'olhe', 'dê' e 'venha'.",
    "D": "'Vai' é imperativo de 'tu' (tu vais → vai). O trecho tem 'se você precisa ir'; para 'você' a norma pede 'Vá'."
   },
@@ -89,7 +89,7 @@
   },
   {
    "nome": "Eliminação pelo 's' do tu",
-   "ideia": "Vai, volta, vem, olha, dá e lembra são formas de 'tu'. Quem as contém dirigidas a 'você' erra; sobra a alternativa com subjuntivo."
+   "ideia": "Vai, volta, vem, olha e dá são formas de 'tu'. Quem as contém dirigidas a 'você' erra; sobra a alternativa com subjuntivo."
   }
  ],
  "quadro": [],
@@ -106,10 +106,52 @@
  "gab": "E",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[0].tipo",
+    "depois": "localizar",
+    "motivo": "O guia só aceita os tipos localizar, calcular, comparar, eliminar e concluir. 'interpretar' não está na lista; o passo traduz o comando, então o tipo certo é 'localizar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "A: 'Volta aqui, vem você'; B: 'olha só'",
+    "motivo": "Em B, 'Lembra que o plano era ficarmos bem?' é uma pergunta no presente do indicativo ('você lembra?'), não uma ordem. O único imperativo de B é 'olha'.",
+    "fonte": "Bechara, Moderna Gramática Portuguesa (emprego do imperativo)"
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "Volta, vem e olha são formas de 'tu'. Para 'você' seriam volte, venha e olhe. Em B, 'Lembra que...?' é pergunta no indicativo, não ordem.",
+    "motivo": "Mesmo erro: 'lembra', na pergunta, não é imperativo.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "'Olha' ('Ei, olha só') é imperativo de 'tu'. O trecho fala com 'você' ('você não está aqui'), e com 'você' a norma pede 'olhe'. 'Lembra que...?' é pergunta no indicativo, não ordem.",
+    "motivo": "Corrige a leitura de 'Lembra' como imperativo.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Troque os verbos pelas formas de 'você': 'Volte aqui, venha você'; 'olhe só'; 'Olhe pra cá', 'Dê uma olhada', 'venha'; 'Vá'. As alternativas A a D precisariam dessa troca. Em E, 'vá' já é essa forma, e nada precisa mudar.",
+    "motivo": "Tira 'Lembre', porque 'Lembra' em B não é imperativo.",
+    "fonte": ""
+   },
+   {
+    "campo": "caminhos[1].ideia",
+    "depois": "Vai, volta, vem, olha e dá são formas de 'tu'. Quem as contém dirigidas a 'você' erra; sobra a alternativa com subjuntivo.",
+    "motivo": "Tira 'lembra', que no trecho é indicativo numa pergunta.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E"
  }
 }

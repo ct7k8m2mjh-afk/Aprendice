@@ -8,7 +8,7 @@
  "conceito": "Diluições sucessivas: a cada diluição 1:99 a concentração cai 100 vezes (diluição centesimal, CH).",
  "resolucao": {
   "antes": {
-   "texto": "O texto longo é só contexto. A pergunta é de diluição: a quantidade de soluto não muda, só o volume cresce. Na escala CH, 1 parte de soluto é misturada a 99 partes de solvente, então o volume total é 100 vezes maior e a concentração cai 100 vezes. Em 3CH isso acontece 3 vezes seguidas.",
+   "texto": "O texto longo é só contexto. A pergunta é de diluição: a quantidade de soluto não muda, só o volume cresce. Na escala CH, 1 parte da solução anterior é misturada a 99 partes de solvente, então o volume total é 100 vezes maior e a concentração cai 100 vezes. Em 3CH isso acontece 3 vezes seguidas.",
    "formulas": [
     "massa de NaCl = quantidade (mol) × massa molar",
     "1 CH: concentração ÷ 100",
@@ -50,8 +50,8 @@
    {
     "faz": "Traduza 1 CH em fator de diluição",
     "conta": "1 + 99 = 100 partes",
-    "porque": "1 parte de soluto em 100 partes de mistura: o volume fica 100 vezes maior, a concentração cai 100 vezes.",
-    "tipo": "interpretar"
+    "porque": "1 parte da solução em 100 partes de mistura: o volume fica 100 vezes maior, a concentração cai 100 vezes.",
+    "tipo": "localizar"
    },
    {
     "faz": "Aplique as 3 diluições seguidas",
@@ -76,7 +76,7 @@
   "checagem": "Em 1 L de solução 3CH há 5,85·10^−5 g de NaCl. Multiplicando pelo fator 10^6, volta-se a 58,5 g, a massa de 1 mol. Em mol, a concentração é 10^−6 mol/L, e 10^−6 × 58,5 = 5,85·10^−5.",
   "erradas": {
    "A": "1,17·10^−6 não confere com 1 mol de NaCl diluído 10^6 vezes (que dá 5,85·10^−5). O coeficiente 1,17 é 117/100, ou seja, 2 × 58,5 dividido por 10^8: dobra a massa e usa um fator 100 vezes maior do que o de 3CH.",
-   "B": "5,85·10^−6 sai de dividir 58,5 por 10^7, como se fossem 3,5 diluições. Três diluições centesimais dão 100³ = 10^6, não 10^7.",
+   "B": "5,85·10^−6 não confere: é 58,5 ÷ 10^7, um fator 10 vezes maior que o de 3CH. Três diluições centesimais dão 100³ = 10^6, não 10^7.",
    "C": "1,17·10^−5 não confere: exigiria 117 g (2 × 58,5) divididos por 10^7. A massa inicial é 1 mol × 58,5 g/mol, e o fator de 3CH é 10^6.",
    "E": "1,17·10^−4 é 117/10^6: o fator 10^6 está certo, mas a massa inicial está dobrada. 1 mol de NaCl tem 58,5 g, e não 117 g. Contar Na e Cl como dois mols de sal duplicaria a massa."
   },
@@ -154,10 +154,40 @@
  "gab": "D",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "localizar",
+    "motivo": "'interpretar' não é um tipo válido. Os tipos aceitos são localizar, calcular, comparar, eliminar e concluir. O passo traduz a definição de CH dada no enunciado.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "O texto longo é só contexto. A pergunta é de diluição: a quantidade de soluto não muda, só o volume cresce. Na escala CH, 1 parte da solução anterior é misturada a 99 partes de solvente, então o volume total é 100 vezes maior e a concentração cai 100 vezes. Em 3CH isso acontece 3 vezes seguidas.",
+    "motivo": "O que se mistura aos 99 de solvente em cada etapa é 1 parte da solução (o insumo), não 1 parte de soluto puro. A frase original confundia soluto com solução.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "1 parte da solução em 100 partes de mistura: o volume fica 100 vezes maior, a concentração cai 100 vezes.",
+    "motivo": "Mesma imprecisão: a parte diluída é a solução, não o soluto.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "5,85·10^−6 não confere: é 58,5 ÷ 10^7, um fator 10 vezes maior que o de 3CH. Três diluições centesimais dão 100³ = 10^6, não 10^7.",
+    "motivo": "'Como se fossem 3,5 diluições' é uma origem inventada, não um erro típico real. Troquei pelo teste objetivo, como pede o guia.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "D"
  }
 }

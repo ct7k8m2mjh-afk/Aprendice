@@ -64,7 +64,7 @@
   "checagem": "Verifique pela unidade: m/s dividido por Hz (1/s) dá metro. Ordem de grandeza: o Wi-Fi de 2,4 GHz tem λ ≈ 12,5 cm, então 3 GHz dando 10 cm é coerente (frequência maior, λ menor).",
   "erradas": {
    "B": "0,12 cm não confere: o comprimento seria 0,0012 m, o que exigiria f = v ÷ λ = 2,5 × 10¹¹ Hz (250 GHz), e não 3 GHz. O valor 12 cm seria de uma onda de 2,5 GHz, não 0,12 cm.",
-   "C": "3,0 cm vem de usar 10 GHz: (3,0 × 10⁸) ÷ (10 × 10⁹) = 0,03 m. Com f = 3,0 GHz, λ = 0,10 m = 10 cm. Também pode vir de copiar o 3,0 do enunciado sem fazer a divisão.",
+   "C": "3,0 cm não confere: 3,0 cm = 0,03 m exigiria f = (3,0 × 10⁸) ÷ 0,03 = 1,0 × 10¹⁰ Hz = 10 GHz. Com 3,0 GHz, o resultado é 10 cm.",
    "D": "0,1 cm é o valor certo em metro (0,1 m) com a unidade trocada: faltou converter para cm. 0,1 m = 10 cm, não 0,1 cm.",
    "E": "4,0 cm não confere: exigiria f = (3,0 × 10⁸) ÷ 0,04 = 7,5 × 10⁹ Hz = 7,5 GHz. Com 3,0 GHz, o resultado é 10 cm."
   },
@@ -134,10 +134,22 @@
  "gab": "A",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "3,0 cm não confere: 3,0 cm = 0,03 m exigiria f = (3,0 × 10⁸) ÷ 0,03 = 1,0 × 10¹⁰ Hz = 10 GHz. Com 3,0 GHz, o resultado é 10 cm.",
+    "motivo": "A versão anterior inventava uma origem para o erro. Usar 10 GHz não tem base no enunciado, que dá 3,0 GHz, e o 'também pode vir de copiar o 3,0' é especulação, que o guia proíbe. Troquei por um teste objetivo e refiz a conta: 3e8 ÷ 0,03 = 1e10 Hz.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "A"
  }
 }

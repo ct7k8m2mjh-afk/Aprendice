@@ -35,19 +35,19 @@
     "faz": "Compare os pesos dos blocos",
     "conta": "mesmo volume, d_ferro > d_madeira\nlogo m_ferro > m_madeira\nP_ferro > P_madeira",
     "porque": "Massa = densidade × volume. Com o volume igual, o mais denso tem mais massa e mais peso.",
-    "tipo": "interpretar"
+    "tipo": "comparar"
    },
    {
     "faz": "Aplique o equilíbrio ao bloco de cima",
     "conta": "Situação (1): N = P_madeira\nSituação (2): N = P_ferro",
     "porque": "O bloco de cima está parado e só recebe força do bloco de baixo. Essa força equilibra o peso dele.",
-    "tipo": "aplicar"
+    "tipo": "calcular"
    },
    {
     "faz": "Passe para a força sobre o bloco de baixo",
     "conta": "(1) madeira sobre ferro = P_madeira\n(2) ferro sobre madeira = P_ferro",
     "porque": "Pela 3ª lei, a força que o de cima faz sobre o de baixo tem o mesmo módulo da normal que ele recebe.",
-    "tipo": "aplicar"
+    "tipo": "calcular"
    },
    {
     "faz": "Calcule a força do solo",
@@ -65,7 +65,7 @@
   "resposta": "Alternativa C: o bloco de cima está em equilíbrio, então a força que ele faz sobre o de baixo é igual ao peso dele. Em (1) é o peso da madeira e em (2) é o peso do ferro.",
   "checagem": "Casos extremos: se o bloco de cima fosse uma pluma, ele quase não pressionaria o de baixo. Se fosse chumbo, pressionaria muito. A força depende só do peso de quem está em cima, o que confirma a alternativa C.",
   "erradas": {
-   "A": "A força do solo nas duas situações vale P_ferro + P_madeira, porque o solo sustenta a pilha toda. Elas são iguais, não maior em (1). Além disso, o solo não está sob só um bloco, e a justificativa 'o ferro exerce mais força' ignora o bloco de cima.",
+   "A": "A força do solo nas duas situações vale P_ferro + P_madeira, porque o solo sustenta a pilha toda. As duas são iguais, e a de (1) não é maior. O solo só toca o bloco de baixo, mas esse bloco também é empurrado pelo de cima. Por isso a justificativa 'o ferro exerce mais força' ignora o bloco de cima.",
    "B": "A 3ª lei vale para o par de corpos da mesma situação. Em (1), a madeira sobre o ferro vale P_madeira. Em (2), o ferro sobre a madeira vale P_ferro. Como P_ferro > P_madeira, essas forças são diferentes. São situações distintas, então a 3ª lei não as iguala.",
    "D": "Em (1), o ferro sobre a madeira é a reação à madeira sobre o ferro, que vale P_madeira. Em (2), a madeira sobre o ferro é a reação do ferro sobre a madeira, que vale P_ferro. Logo, (1) = P_madeira < P_ferro = (2). Fica menor, não maior.",
    "E": "Em (2), a força do ferro sobre a madeira e a da madeira sobre o ferro formam um par ação-reação e são sempre iguais, qualquer que seja a inércia. A inércia maior do ferro não torna uma das duas maior."
@@ -119,10 +119,40 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "A força do solo nas duas situações vale P_ferro + P_madeira, porque o solo sustenta a pilha toda. As duas são iguais, e a de (1) não é maior. O solo só toca o bloco de baixo, mas esse bloco também é empurrado pelo de cima. Por isso a justificativa 'o ferro exerce mais força' ignora o bloco de cima.",
+    "motivo": "A frase 'o solo não está sob só um bloco' está errada: o solo só tem contato com o bloco de baixo. Ele sustenta os dois pesos porque o bloco de cima empurra o de baixo.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[0].tipo",
+    "depois": "comparar",
+    "motivo": "O tipo 'interpretar' não está na lista permitida (localizar, calcular, comparar, eliminar, concluir).",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "calcular",
+    "motivo": "O tipo 'aplicar' não está na lista permitida. O passo monta o equilíbrio N = P.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "calcular",
+    "motivo": "O tipo 'aplicar' não está na lista permitida.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C"
  }
 }

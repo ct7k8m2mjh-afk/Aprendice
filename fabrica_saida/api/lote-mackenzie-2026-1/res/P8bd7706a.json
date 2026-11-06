@@ -69,12 +69,12 @@
    "C": "7h06min = 7,1 h não confere: 320 × 7,1 = 2272 peças, faltam 128 para a meta.",
    "E": "7h50min (≈ 7,83 h) não confere: 320 × 7,83 ≈ 2507 peças, mais do que o necessário. A meta de 2400 se atinge em 7,5 h."
   },
-  "armadilha": "Incluir as 4 máquinas na regra de três como se limitassem a produção; o enunciado diz que o gargalo são os trabalhadores.",
+  "armadilha": "Pensar que dobrar a equipe faz o tempo cair. A meta também sobe, e sobe mais que a equipe (× 2,5 contra × 2), então o tempo aumenta de 6 h para 7,5 h.",
   "alerta": "",
   "essencial": {
    "pede": "O tempo diário de funcionamento das máquinas para produzir 2400 peças com o dobro de trabalhadores.",
    "chave": "A produção é proporcional a trabalhadores × horas: 960 ÷ 48 = 20 peças por trabalhador por hora; depois 2400 ÷ (16 × 20) = 7,5 h.",
-   "cuidado": "Não use as máquinas como fator da conta e converta 0,5 h para 30 min."
+   "cuidado": "Compare as duas mudanças: a meta cresce × 2,5 e a equipe só × 2, então o tempo cresce × 1,25. Depois converta 0,5 h em 30 min."
   }
  },
  "caminhos": [
@@ -132,10 +132,28 @@
  "gab": "D",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.armadilha",
+    "depois": "Pensar que dobrar a equipe faz o tempo cair. A meta também sobe, e sobe mais que a equipe (× 2,5 contra × 2), então o tempo aumenta de 6 h para 7,5 h.",
+    "motivo": "A armadilha antiga não descreve um erro real. O número de máquinas é 4 nas duas situações, então pôr as máquinas na regra de três (razão 4/4 = 1) não muda o resultado. Por isso esse não pode ser o motivo de quem errou. Coloquei no lugar um erro de raciocínio que muda de fato a resposta.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.essencial.cuidado",
+    "depois": "Compare as duas mudanças: a meta cresce × 2,5 e a equipe só × 2, então o tempo cresce × 1,25. Depois converta 0,5 h em 30 min.",
+    "motivo": "O texto antigo mandava não usar as máquinas como fator. Como as máquinas não mudam, usar ou não usar dá o mesmo valor, então esse cuidado não evita erro nenhum. Troquei pelo cuidado que realmente decide a conta.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "D"
  }
 }

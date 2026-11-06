@@ -61,7 +61,7 @@
     "faz": "Ache os mols de NaHCO3",
     "conta": "n = 0,02 mol",
     "porque": "Razão 1:1 quer dizer a mesma quantidade em mol. É o mínimo para neutralizar todo o ácido.",
-    "tipo": "aplicar"
+    "tipo": "calcular"
    },
    {
     "faz": "Calcule a massa molar do NaHCO3",
@@ -80,9 +80,9 @@
   "checagem": "Faça pela proporção em massa: 84 g de NaHCO3 neutralizam 36,5 g de HCl. Como 0,73 g é 50 vezes menos que 36,5 g, a massa de NaHCO3 é 84 ÷ 50 = 1,68 g. Os dois caminhos concordam.",
   "erradas": {
    "A": "3,36 g é o dobro do correto. Sai de usar 2 mol de bicarbonato por mol de HCl: 0,04 × 84 = 3,36. Mas o coeficiente do NaHCO3 na equação é 1, não 2.",
-   "C": "0,84 g é a metade do correto. Sai de dividir por 2 sem motivo: 0,01 × 84 = 0,84. A equação tem razão 1:1, e 0,73 g de HCl já são 0,02 mol, não 0,01 mol.",
-   "D": "0,42 g sai de dividir a massa por 4: 0,005 mol × 84 = 0,42. Não há coeficiente 4 nem razão 1:4 na equação, que é 1:1.",
-   "E": "0,21 g sai de dividir por 8: 0,0025 mol × 84 = 0,21. Isso contraria a razão 1:1, que exige 0,02 mol de NaHCO3, ou seja, 1,68 g."
+   "C": "0,84 g não confere: corresponde a 0,01 mol × 84. Mas 0,73 ÷ 36,5 = 0,02 mol de HCl, e a razão 1:1 exige 0,02 mol de NaHCO3, ou seja, 1,68 g.",
+   "D": "0,42 g não confere: corresponde a 0,005 mol × 84, um quarto do necessário. A razão 1:1 exige 0,02 mol de NaHCO3; com 0,42 g sobrariam 0,015 mol de HCl sem neutralizar.",
+   "E": "0,21 g não confere: corresponde a 0,0025 mol × 84, um oitavo do necessário. A razão 1:1 exige 0,02 mol de NaHCO3 (1,68 g); com 0,21 g quase todo o HCl ficaria sem reagir."
   },
   "armadilha": "Misturar massa com mol: o coeficiente 1:1 vale para mols, e só depois se multiplica pela massa molar do NaHCO3 (84), não do HCl.",
   "alerta": "",
@@ -154,10 +154,40 @@
  "gab": "B",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "calcular",
+    "motivo": "O tipo \"aplicar\" não existe na lista permitida (localizar, calcular, comparar, eliminar, concluir). O passo deduz uma quantidade em mol pela razão 1:1, então o tipo certo é \"calcular\".",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "0,84 g não confere: corresponde a 0,01 mol × 84. Mas 0,73 ÷ 36,5 = 0,02 mol de HCl, e a razão 1:1 exige 0,02 mol de NaHCO3, ou seja, 1,68 g.",
+    "motivo": "A frase \"dividir por 2 sem motivo\" atribui ao aluno uma origem que não se sustenta. Troquei por um teste objetivo, como o guia manda.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "0,42 g não confere: corresponde a 0,005 mol × 84, um quarto do necessário. A razão 1:1 exige 0,02 mol de NaHCO3; com 0,42 g sobrariam 0,015 mol de HCl sem neutralizar.",
+    "motivo": "\"Dividir a massa por 4\" é uma origem inventada. Troquei por um teste objetivo: com essa massa, sobra ácido.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "0,21 g não confere: corresponde a 0,0025 mol × 84, um oitavo do necessário. A razão 1:1 exige 0,02 mol de NaHCO3 (1,68 g); com 0,21 g quase todo o HCl ficaria sem reagir.",
+    "motivo": "\"Dividir por 8\" é uma origem inventada. Troquei por um teste objetivo.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "B"
  }
 }

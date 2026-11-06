@@ -64,13 +64,13 @@
     "faz": "Compare as duas mensagens",
     "conta": "nunca esquecer = lembrar sempre",
     "porque": "Mudam as palavras, mas o conteúdo é o mesmo. Os dois lados, que se acham opostos, defendem a mesma ideia.",
-    "tipo": "interpretar"
+    "tipo": "comparar"
    },
    {
     "faz": "Leia a fala do carro",
     "conta": "“Errr... agree to disagree?”",
-    "porque": "O carro 'USA' chega entre as placas e propõe 'concordar em discordar'. É irônico: não há nada a discordar, pois os dois lados dizem o mesmo. Aí está o humor.",
-    "tipo": "interpretar"
+    "porque": "O carro 'USA' passa pela estrada entre as placas e propõe 'concordar em discordar'. É irônico: não há nada a discordar, pois os dois lados dizem o mesmo. Aí está o humor.",
+    "tipo": "localizar"
    },
    {
     "faz": "Ligue à alternativa",
@@ -82,7 +82,7 @@
   "resposta": "Alternativa C: apesar de usarem palavras diferentes (never forget × always remember), os dois lados dizem a mesma coisa, e o humor está em eles ainda assim 'concordarem em discordar'.",
   "checagem": "Substitua uma placa pela outra: 'Always remember Sept. 11' no lugar de 'Never forget Sept. 11'. A mensagem não muda, e por isso a fala do carro soa absurda.",
   "erradas": {
-   "A": "A fala 'Agree to disagree?' é irônica. Quem está no carro não duvida entre dois pontos de vista diferentes: percebe que os lados brigam mesmo dizendo o mesmo. Não há dúvida na cena.",
+   "A": "Diz que quem está no carro hesita entre dois pontos de vista diferentes. O 'Errr...' mostra hesitação, mas os pontos de vista não são diferentes: 'never forget' e 'always remember' pedem a mesma coisa. Não há duas posições entre as quais escolher.",
    "B": "Diz que as opiniões são opostas, mas 'never forget' e 'always remember' pedem a mesma coisa (lembrar a data). A oposição existe só na rotulagem esquerda × direita, e não no conteúdo das placas.",
    "D": "Afirma que NEVER e ALWAYS dão ideias totalmente diferentes. Mas 'never' nega 'forget' e 'always' afirma 'remember'; as duas combinações significam 'não esquecer'. A ideia final é igual.",
    "E": "A conclusão está certa, mas o motivo é falso: 'forget' (esquecer) e 'remember' (lembrar) são antônimos, e não sinônimos. As frases se equivalem justamente porque 'never' inverte 'forget'."
@@ -118,10 +118,40 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "comparar",
+    "motivo": "O tipo 'interpretar' não existe na lista permitida (localizar, calcular, comparar, eliminar, concluir). Este passo põe as duas placas lado a lado, então o tipo certo é 'comparar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "localizar",
+    "motivo": "O tipo 'interpretar' não existe na lista permitida. O passo lê a fala do balão na imagem, então o tipo certo é 'localizar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "O carro 'USA' passa pela estrada entre as placas e propõe 'concordar em discordar'. É irônico: não há nada a discordar, pois os dois lados dizem o mesmo. Aí está o humor.",
+    "motivo": "Na charge o carro aparece de costas, seguindo pela estrada entre as placas e levantando poeira. Ele não está 'chegando'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "Diz que quem está no carro hesita entre dois pontos de vista diferentes. O 'Errr...' mostra hesitação, mas os pontos de vista não são diferentes: 'never forget' e 'always remember' pedem a mesma coisa. Não há duas posições entre as quais escolher.",
+    "motivo": "A frase 'Não há dúvida na cena' é falsa: o 'Errr...' e o ponto de interrogação mostram hesitação. O erro da alternativa A está em supor dois pontos de vista diferentes.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C"
  }
 }

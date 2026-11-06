@@ -66,9 +66,9 @@
   "checagem": "Confira por outro caminho: AB e CD ficam na mesma razão nos dois tamanhos. No modelo, 5,2 ÷ 3,2 = 1,625. No real, 3,9 ÷ 2,4 = 1,625. Fecha. Além disso, 3,9 é menor que 5,2, como deve ser, pois o real é menor que o modelo.",
   "erradas": {
    "A": "2,4 cm é o AB real (24 mm), não o CD. A alternativa só converte a unidade do dado do enunciado e não usa o 5,2 cm de CD.",
-   "C": "4,4 cm não confere: 5,2 − 0,8 = 4,4 seria subtrair uma diferença fixa, mas a ampliação é proporcional (multiplica), não soma. Pela razão, 3,9 ÷ 2,4 deveria ser igual a 5,2 ÷ 3,2, e 4,4 ÷ 2,4 ≈ 1,83 não é.",
+   "C": "4,4 cm sai de tratar a ampliação como soma: AB cresceu 3,2 − 2,4 = 0,8 cm, e 5,2 − 0,8 = 4,4. Só que a ampliação multiplica: 4,4 ÷ 2,4 ≈ 1,83, e não 5,2 ÷ 3,2 = 1,625.",
    "D": "24 vem de pegar o 24 de AB sem converter nem aplicar a razão. Um CD real de 24 cm seria maior que o modelo de 5,2 cm, o que é impossível, pois o modelo é ampliado.",
-   "E": "39 sai de 5,2 × 3 ÷ 4 = 3,9 com a vírgula no lugar errado, isto é, 3,9 cm lido como 39 mm. A pergunta pede centímetros, e 39 cm seria maior que o próprio modelo (5,2 cm)."
+   "E": "39 sai de não converter AB: 24 × 5,2 ÷ 3,2 = 39, misturando mm com cm. Esse número é o CD real em milímetros (39 mm = 3,9 cm). Lido em centímetros, ficaria maior que o próprio modelo (5,2 cm)."
   },
   "armadilha": "AB está em mm e a figura em cm: sem converter 24 mm para 2,4 cm, a razão sai errada; e é preciso dividir por k, não multiplicar, para voltar ao real.",
   "alerta": "",
@@ -150,10 +150,28 @@
  "gab": "B",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "4,4 cm sai de tratar a ampliação como soma: AB cresceu 3,2 − 2,4 = 0,8 cm, e 5,2 − 0,8 = 4,4. Só que a ampliação multiplica: 4,4 ÷ 2,4 ≈ 1,83, e não 5,2 ÷ 3,2 = 1,625.",
+    "motivo": "O texto antigo dizia 'não confere' e logo depois dava a origem (5,2 − 0,8). Também não dizia de onde vinha o 0,8. A conta chega exatamente a 4,4, então o certo é 'sai de', mostrando o 0,8 (3,2 − 2,4).",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "39 sai de não converter AB: 24 × 5,2 ÷ 3,2 = 39, misturando mm com cm. Esse número é o CD real em milímetros (39 mm = 3,9 cm). Lido em centímetros, ficaria maior que o próprio modelo (5,2 cm).",
+    "motivo": "A origem real e exata de 39 é usar AB = 24 sem converter para cm, que é a armadilha citada na própria resolução. A explicação 'vírgula no lugar errado' era vaga.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "B"
  }
 }

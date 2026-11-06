@@ -37,7 +37,7 @@
     ]
    ]
   },
-  "pista": "Primeiro identifique qual alternativa tem a fórmula do ácido ETANOICO (quantos carbonos?). Depois confira se a carga total dos dois lados da equação é a mesma.",
+  "pista": "Primeiro identifique qual alternativa tem a fórmula do ácido ETANOICO (quantos carbonos?). Depois confira qual íon um ácido de Arrhenius libera em água.",
   "passos": [
    {
     "faz": "Identifique o ácido etanoico",
@@ -55,12 +55,12 @@
     "faz": "Veja qual átomo se solta como cátion",
     "conta": "O–H: O (mais eletroneg.) fica com o par",
     "porque": "O oxigênio atrai mais o par de elétrons. O H fica sem o elétron e sai como H⁺.",
-    "tipo": "aplicar"
+    "tipo": "localizar"
    },
    {
     "faz": "Compare a e d",
     "conta": "a: CH3COO⁻ + H⁺",
-    "porque": "Em a, o H sai e o O fica com o par, formando o acetato. Em d, surge OH⁻ e um cátion CH3CO⁺, o que contradiz o enunciado (o O seria o negativo). Além disso, o ácido não libera OH⁻.",
+    "porque": "Em a, a ligação O–H se rompe: o H sai como H⁺ e o O fica com o par, formando o acetato. Em d, quem se rompe é a ligação C–O, e sai OH⁻. Esse comportamento é de base de Arrhenius; um ácido de Arrhenius libera H⁺ em água.",
     "tipo": "comparar"
    },
    {
@@ -75,7 +75,7 @@
   "erradas": {
    "B": "Usa HCOOH, que é o ácido metanoico (fórmico, 1 carbono), não o etanoico. A ionização está certa (HCOO⁻ + H⁺), mas é a de outro ácido.",
    "C": "Usa HCOOH (ácido metanoico, não o acético). Além disso, os produtos HCO⁺ + OH⁻ estão errados: um ácido de Arrhenius libera H⁺, não OH⁻ (OH⁻ é característico de base).",
-   "D": "A fórmula do ácido está certa, mas os produtos CH3CO⁺ + OH⁻ não: o ácido libera H⁺, não OH⁻. Seria o grupo OH saindo com o par, o que contraria o enunciado (o H, menos eletronegativo, é que fica positivo).",
+   "D": "A fórmula do ácido está certa, mas a ligação rompida não. Romper C–O e liberar OH⁻ (com CH3CO⁺) é comportamento de base de Arrhenius. Na ionização do ácido rompe-se a ligação O–H do –COOH, e sai H⁺.",
    "E": "Usa HCOOH (ácido metanoico, não o acético). Os produtos HCOO⁺ + H⁻ invertem as cargas: o H, menos eletronegativo que o O, não vira ânion H⁻; o oxigênio é que fica com o par e a carga negativa."
   },
   "armadilha": "Confundir etanoico (2 C, CH3COOH) com metanoico (1 C, HCOOH); a alternativa B tem a ionização certa, mas de outro ácido.",
@@ -88,8 +88,8 @@
  },
  "caminhos": [
   {
-   "nome": "eliminação por carga e por íon",
-   "ideia": "Descarte as equações cujos íons não têm carga total zero ou que liberam OH⁻ (ácido libera H⁺). Resta só a alternativa A, e confira depois que o ácido tem 2 carbonos."
+   "nome": "eliminação pelo íon liberado",
+   "ideia": "Ácido de Arrhenius libera H⁺. Descarte a c e a d (liberam OH⁻) e a e (forma H⁻). Sobram a e b; a b é do ácido metanoico (HCOOH, 1 C), logo resta a A."
   },
   {
    "nome": "nome do ácido",
@@ -127,10 +127,49 @@
  "gab": "A",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "localizar",
+    "motivo": "O tipo 'aplicar' não está na lista permitida (localizar, calcular, comparar, eliminar, concluir). O passo aponta a ligação O–H e qual átomo fica com o par de elétrons, então é 'localizar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Em a, a ligação O–H se rompe: o H sai como H⁺ e o O fica com o par, formando o acetato. Em d, quem se rompe é a ligação C–O, e sai OH⁻. Esse comportamento é de base de Arrhenius; um ácido de Arrhenius libera H⁺ em água.",
+    "motivo": "A frase antiga dizia que a d contradiz o enunciado porque 'o O seria o negativo'. Isso é falso: na d, o O está no OH⁻, que é o íon negativo, e o C, menos eletronegativo, fica positivo. O erro real da d é a ligação rompida (C–O no lugar de O–H) e a liberação de OH⁻.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "A fórmula do ácido está certa, mas a ligação rompida não. Romper C–O e liberar OH⁻ (com CH3CO⁺) é comportamento de base de Arrhenius. Na ionização do ácido rompe-se a ligação O–H do –COOH, e sai H⁺.",
+    "motivo": "Na d, o par vai para o O, que é mais eletronegativo que o C. Ela não contraria a regra de eletronegatividade do enunciado, como a frase antiga dizia. O que a derruba é a ligação rompida e o íon liberado (OH⁻ no lugar de H⁺).",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.pista",
+    "depois": "Primeiro identifique qual alternativa tem a fórmula do ácido ETANOICO (quantos carbonos?). Depois confira qual íon um ácido de Arrhenius libera em água.",
+    "motivo": "Nas cinco alternativas a carga total já se conserva (0 = +1 − 1), então conferir a carga não separa nenhuma. A pista antiga mandava o aluno para um teste que não funciona.",
+    "fonte": ""
+   },
+   {
+    "campo": "caminhos[0]",
+    "depois": {
+     "nome": "eliminação pelo íon liberado",
+     "ideia": "Ácido de Arrhenius libera H⁺. Descarte a c e a d (liberam OH⁻) e a e (forma H⁻). Sobram a e b; a b é do ácido metanoico (HCOOH, 1 C), logo resta a A."
+    },
+    "motivo": "O caminho antigo eliminava por 'carga total diferente de zero', mas todas as alternativas têm carga total zero. Retirar só as que liberam OH⁻ deixa A, B e E, e não 'só a A'.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "A"
  }
 }

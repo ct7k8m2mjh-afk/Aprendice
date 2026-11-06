@@ -57,19 +57,19 @@
     "faz": "Classifique a polimerização",
     "conta": "ácido + álcool → éster + H2O",
     "porque": "Cada ligação éster nasce com saída de água, então é condensação. Não há ligação dupla C=C abrindo, logo não é adição.",
-    "tipo": "interpretar"
+    "tipo": "eliminar"
    },
    {
     "faz": "Desfaça o éster para achar o ácido",
     "conta": "HOOC–C6H4–COOH",
     "porque": "O lado do C=O volta a ser COOH. O anel com dois COOH em posição para é o ácido benzeno-1,4-dioico (tereftálico).",
-    "tipo": "aplicar"
+    "tipo": "localizar"
    },
    {
     "faz": "Desfaça o éster para achar o álcool",
     "conta": "HO–CH2–CH2–OH",
     "porque": "O lado do O–CH2–CH2–O volta a ter OH nas duas pontas. É o etano-1,2-diol, o etilenoglicol.",
-    "tipo": "aplicar"
+    "tipo": "localizar"
    },
    {
     "faz": "Compare com as alternativas",
@@ -139,10 +139,34 @@
  "gab": "B",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "eliminar",
+    "motivo": "O guia não aceita o tipo \"interpretar\". O tipo deve ser localizar, calcular, comparar, eliminar ou concluir. Este passo descarta a adição (alternativa C), então o tipo certo é eliminar.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "localizar",
+    "motivo": "O guia não aceita o tipo \"aplicar\". Neste passo você acha o monômero ácido a partir da estrutura, então o tipo certo é localizar.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "localizar",
+    "motivo": "O guia não aceita o tipo \"aplicar\". Neste passo você acha o monômero diol a partir da estrutura, então o tipo certo é localizar.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "B"
  }
 }

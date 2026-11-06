@@ -11,7 +11,7 @@
    "texto": "O Tigre e o Eufrates nascem na Turquia, atravessam a Síria (só o Eufrates) e o Iraque, e se juntam no sul iraquiano, formando o Chatt al-Arab. Esse rio curto deságua no Golfo Pérsico, na fronteira com o Irã. A região entre os dois rios é a antiga Mesopotâmia, que significa 'entre rios'.",
    "formulas": [
     "Tigre + Eufrates → Chatt al-Arab → Golfo Pérsico",
-    "Mesopotâmia = terra entre os dois rios = Iraque atual"
+    "Mesopotâmia = terra entre os dois rios, hoje em grande parte no Iraque"
    ],
    "simbolos": [
     [
@@ -32,7 +32,7 @@
     ]
    ]
   },
-  "pista": "Siga as duas linhas azuis do mapa até onde elas se tocam, perto do mar. Depois veja a qual país pertence a área pintada de amarelo ao redor desse ponto.",
+  "pista": "Siga as duas linhas azuis do mapa até onde elas se tocam, perto do mar. Depois use as linhas de fronteira para ver em que país fica esse ponto.",
   "passos": [
    {
     "faz": "Traduza o que se pede",
@@ -54,9 +54,9 @@
    },
    {
     "faz": "Identifique o país da junção",
-    "conta": "Área amarela central = Iraque",
-    "porque": "A bacia entre os dois rios é a Mesopotâmia, e a junção fica no sul dela, que é território iraquiano.",
-    "tipo": "interpretar"
+    "conta": "Junção no sul do Iraque",
+    "porque": "O mapa não nomeia países: a área amarela é a bacia dos rios. Pelas linhas de fronteira, a junção fica no sul do Iraque, onde termina a antiga Mesopotâmia.",
+    "tipo": "comparar"
    },
    {
     "faz": "Ligue à alternativa",
@@ -105,10 +105,46 @@
  "gab": "A",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "Junção no sul do Iraque",
+    "motivo": "O mapa não pinta países. A área amarela é a bacia dos dois rios, que se estende pela Turquia, pela Síria, pelo Iraque e pelo Irã. Escrever 'Área amarela central = Iraque' é uma leitura errada da figura.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "O mapa não nomeia países: a área amarela é a bacia dos rios. Pelas linhas de fronteira, a junção fica no sul do Iraque, onde termina a antiga Mesopotâmia.",
+    "motivo": "Corrige a leitura da legenda, sem mudar a conclusão.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "comparar",
+    "motivo": "'interpretar' não é um tipo permitido. Os tipos válidos são localizar, calcular, comparar, eliminar e concluir.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.pista",
+    "depois": "Siga as duas linhas azuis do mapa até onde elas se tocam, perto do mar. Depois use as linhas de fronteira para ver em que país fica esse ponto.",
+    "motivo": "A área amarela não corresponde a um único país, porque é a bacia hidrográfica. A pista antiga induzia a ler a figura de forma errada.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.antes.formulas[1]",
+    "depois": "Mesopotâmia = terra entre os dois rios, hoje em grande parte no Iraque",
+    "motivo": "A Mesopotâmia histórica também inclui partes do nordeste da Síria e do sudeste da Turquia. Igualá-la ao 'Iraque atual' é impreciso, e o próprio campo simbolos já diz 'quase toda no Iraque'.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "A"
  }
 }

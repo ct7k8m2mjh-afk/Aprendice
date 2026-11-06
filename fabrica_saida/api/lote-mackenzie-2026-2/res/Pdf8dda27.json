@@ -42,7 +42,7 @@
     "faz": "Diga o que se pede",
     "conta": "resina = cone − bolha",
     "porque": "O enunciado pede o volume de resina efetivamente usado. O espaço da bolha não tem resina, então sai do total.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Calcule o volume do cone",
@@ -78,7 +78,7 @@
    "E": "234 sai de somar a bolha ao cone: 216 + 18 = 234. A bolha é um vazio dentro do cone e reduz a resina, então se subtrai."
   },
   "armadilha": "Esquecer que a bolha é vazio e que se subtrai (ou somar, ou parar no volume do cone), e errar o volume da semiesfera (esfera inteira ou r²).",
-  "alerta": "As alternativas aparecem sem o π: o volume correto é 198π cm³ e as opções trazem só o coeficiente. A única que bate com 198π é a B; sem o π, nenhum valor em cm³ seria exatamente 198.",
+  "alerta": "As alternativas aparecem sem o π: o volume correto é 198π cm³ e as opções trazem só o coeficiente de π. Em cm³, 198π ≈ 622 cm³, valor que não aparece em nenhuma alternativa. A única que bate com 198π é a B.",
   "essencial": {
    "pede": "O volume de resina da peça: cone menos a bolha em forma de semiesfera.",
    "chave": "Cone: 1/3 × π × 6² × 18 = 216π. Semiesfera: 2/3 × π × 3³ = 18π. Resina: 198π.",
@@ -146,10 +146,28 @@
  "gab": "B",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[0].tipo",
+    "depois": "localizar",
+    "motivo": "'interpretar' não está entre os tipos aceitos (localizar, calcular, comparar, eliminar, concluir). O passo que traduz o que se pede é 'localizar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.alerta",
+    "depois": "As alternativas aparecem sem o π: o volume correto é 198π cm³ e as opções trazem só o coeficiente de π. Em cm³, 198π ≈ 622 cm³, valor que não aparece em nenhuma alternativa. A única que bate com 198π é a B.",
+    "motivo": "A frase 'nenhum valor em cm³ seria exatamente 198' era vaga. Agora ela mostra o valor numérico real (198 × 3,1416 ≈ 622,0 cm³), o que deixa claro o erro do enunciado, que pede o volume 'em cm³'.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "B"
  }
 }

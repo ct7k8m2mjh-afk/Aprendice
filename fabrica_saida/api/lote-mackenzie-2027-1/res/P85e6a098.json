@@ -44,13 +44,13 @@
     "faz": "Dê o sinal do foco",
     "conta": "convexo → f = −3 m",
     "porque": "No espelho convexo os raios refletidos divergem; o foco é virtual e leva sinal negativo.",
-    "tipo": "interpretar"
+    "tipo": "calcular"
    },
    {
     "faz": "Escreva a equação de Gauss",
     "conta": "1/f = 1/p + 1/p'",
     "porque": "Ela liga foco, objeto e imagem. Aqui p = 6 m (objeto real, na frente).",
-    "tipo": "aplicar"
+    "tipo": "calcular"
    },
    {
     "faz": "Isole 1/p'",
@@ -149,10 +149,28 @@
  "gab": "B",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "calcular",
+    "motivo": "\"interpretar\" não está entre os tipos permitidos (localizar, calcular, comparar, eliminar, concluir). Neste passo se define o sinal do foco que entra na conta, por isso o tipo é calcular.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "calcular",
+    "motivo": "\"aplicar\" não está entre os tipos permitidos. Este passo monta a equação de Gauss que será usada na conta, por isso o tipo é calcular.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "B"
  }
 }

@@ -40,7 +40,7 @@
   "passos": [
    {
     "faz": "Localize o alvo do remédio",
-    "conta": "\"Os ISRS atuam sobre esse transportador, bloqueando-o\"",
+    "conta": "alvo: transportador (bloqueado)",
     "porque": "O alvo é o transportador de recaptação da membrana pré-sináptica. Não é receptor, nem canal, nem enzima de síntese.",
     "tipo": "localizar"
    },
@@ -48,19 +48,19 @@
     "faz": "Descreva a função normal do transportador",
     "conta": "fenda → transportador → pré-sináptico",
     "porque": "Ele retira a serotonina da fenda e encerra o sinal. É uma das formas de remover o neurotransmissor.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Preveja o efeito do bloqueio",
     "conta": "sem recaptação → serotonina fica",
     "porque": "Sem a remoção, a serotonina permanece mais tempo na fenda. Ela continua ativando os receptores pós-sinápticos e o efeito dura mais.",
-    "tipo": "aplicar"
+    "tipo": "concluir"
    },
    {
     "faz": "Elimine alternativas com alvo errado",
     "conta": "A: síntese; C: canais; D e E: receptores",
     "porque": "A, C, D e E atribuem ao remédio ações em outros alvos. O texto só fala do transportador.",
-    "tipo": "interpretar"
+    "tipo": "eliminar"
    },
    {
     "faz": "Conclua",
@@ -73,7 +73,7 @@
   "checagem": "A própria sigla já diz: Inibidores da Recaptação. Se a recaptação é inibida, a serotonina não volta e fica mais tempo na fenda. Nenhum outro termo do nome cita síntese, canal ou receptor.",
   "erradas": {
    "A": "O ISRS não atua na síntese. O texto diz que ele bloqueia o transportador de recaptação. A serotonina sobe na fenda porque deixa de ser recolhida, não porque é produzida em maior quantidade.",
-   "C": "O ISRS não age sobre canais iônicos. Além disso, o texto diz que a serotonina atua por receptores metabotrópicos, de efeito lento e difuso, e não por potenciais de ação imediatos.",
+   "C": "O ISRS não age sobre canais iônicos. Além disso, o texto diz que a serotonina atua muitas vezes por receptores metabotrópicos, de efeito lento e difuso, e não gerando potenciais de ação imediatos.",
    "D": "Substituir a serotonina nos receptores e agir como agonista direto seria ocupar o receptor. O ISRS liga-se ao transportador da membrana pré-sináptica e quem ativa os receptores é a própria serotonina, que se acumula.",
    "E": "Bloquear os receptores pós-sinápticos seria o oposto do efeito antidepressivo. O ISRS aumenta a ação da serotonina; ele não impede a resposta do neurônio seguinte."
   },
@@ -109,10 +109,46 @@
  "gab": "B",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[0].conta",
+    "depois": "alvo: transportador (bloqueado)",
+    "motivo": "A citação entre aspas omitia 'justamente' do original ('atuam justamente sobre esse transportador'), então não era literal. Troquei por um esquema que não é citação e cabe na linha.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "localizar",
+    "motivo": "'interpretar' não está entre os tipos válidos (localizar, calcular, comparar, eliminar, concluir). O passo recupera a função descrita no texto.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "concluir",
+    "motivo": "'aplicar' não está entre os tipos válidos.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "eliminar",
+    "motivo": "O passo descarta as alternativas A, C, D e E, e 'interpretar' não está entre os tipos válidos.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "O ISRS não age sobre canais iônicos. Além disso, o texto diz que a serotonina atua muitas vezes por receptores metabotrópicos, de efeito lento e difuso, e não gerando potenciais de ação imediatos.",
+    "motivo": "O texto diz 'muitas vezes por receptores metabotrópicos', e não sempre. A serotonina também tem um receptor ionotrópico (5-HT3), então a frase absoluta estava errada.",
+    "fonte": "Purves et al., Neuroscience (NCBI Bookshelf): o receptor 5-HT3 é um canal iônico controlado por ligante; os demais receptores de 5-HT são acoplados a proteína G."
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "B"
  }
 }

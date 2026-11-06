@@ -65,12 +65,12 @@
     "faz": "Analise 'cujo'",
     "conta": "\"africanos, cujo trabalho começa a ser empregado\"",
     "porque": "'Cujo' equivale a 'de quem': o trabalho dos africanos. Indica posse, não oposição. Por isso a letra D é a incorreta.",
-    "tipo": "aplicar"
+    "tipo": "comparar"
    },
    {
     "faz": "Confirme 'a fim de'",
     "conta": "\"a fim de consolidar um sistema escravista\"",
-    "porque": "Equivale a 'para': a substituição da escravidão indígena tinha como meta consolidar o sistema. Finalidade: a letra E está certa.",
+    "porque": "Equivale a 'para': a substituição da escravidão indígena tinha como meta consolidar o sistema. É finalidade, então a letra E está certa. Com A, B, C e E corretas, a única incorreta é a D.",
     "tipo": "concluir"
    }
   ],
@@ -82,7 +82,7 @@
    "C": "Está correta. Depois dos dois-pontos da linha 9 vem a explicação do 'algo' que os românticos acrescentam: a visão inédita e autêntica das coisas.",
    "E": "Está correta. 'A fim de consolidar um sistema escravista' expressa finalidade: a meta que justifica a substituição do trabalho indígena pelo africano."
   },
-  "armadilha": "Aceitar que 'cujo', por estar entre vírgulas depois de 'africanos', introduza contraste; ele é relativo de posse, não adversativo.",
+  "armadilha": "Aceitar que 'cujo', por vir depois da vírgula que segue 'africanos', introduza contraste; ele é relativo de posse, não adversativo.",
   "alerta": "",
   "essencial": {
    "pede": "A alternativa que descreve de modo errado o valor de um recurso linguístico do texto.",
@@ -114,10 +114,34 @@
  "gab": "D",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[4].tipo",
+    "depois": "comparar",
+    "motivo": "'aplicar' não é um tipo permitido. Os tipos válidos são localizar, calcular, comparar, eliminar e concluir. O passo testa o valor de 'cujo' contra o texto, como fazem os passos 2 a 4.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[5].porque",
+    "depois": "Equivale a 'para': a substituição da escravidão indígena tinha como meta consolidar o sistema. É finalidade, então a letra E está certa. Com A, B, C e E corretas, a única incorreta é a D.",
+    "motivo": "O último passo, do tipo concluir, precisa ligar o resultado à letra. Antes, ele só validava a E.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.armadilha",
+    "depois": "Aceitar que 'cujo', por vir depois da vírgula que segue 'africanos', introduza contraste; ele é relativo de posse, não adversativo.",
+    "motivo": "No texto, 'cujo' não fica entre vírgulas. Há vírgula só antes dele, e a oração termina em ponto: \"ao lado dos africanos, cujo trabalho começa a ser empregado nos engenhos.\"",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "D"
  }
 }

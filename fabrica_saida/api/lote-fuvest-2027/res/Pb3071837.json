@@ -39,7 +39,7 @@
     "faz": "Identifique o que o comando pede",
     "conta": "'influenciar a percepção sobre corpo e padrões estéticos'",
     "porque": "Pede o mecanismo que faz a publicação moldar o que se vê como corpo ideal, não o conteúdo geral da publicação.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Teste A, B, C e E contra o print",
@@ -51,7 +51,7 @@
     "faz": "Conecte treino e corpo exibido",
     "conta": "treino/método/produto → corpo",
     "porque": "Quando o corpo é mostrado como prova de que o treino funciona, ele vira modelo de desejo e padrão a seguir.",
-    "tipo": "aplicar"
+    "tipo": "comparar"
    },
    {
     "faz": "Conclua",
@@ -100,10 +100,28 @@
  "gab": "D",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "localizar",
+    "motivo": "O guia só aceita os tipos localizar, calcular, comparar, eliminar e concluir, e 'interpretar' não é um deles. O passo localiza no enunciado o que o comando pede.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "comparar",
+    "motivo": "O guia não aceita 'aplicar' como tipo. O passo compara o mecanismo visto no print (treino ligado ao corpo exibido) com o que a alternativa D afirma.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "D"
  }
 }

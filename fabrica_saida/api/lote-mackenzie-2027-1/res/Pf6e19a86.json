@@ -49,13 +49,13 @@
     "faz": "Aplique a superfície de contato",
     "conta": "pó > comprimido inteiro",
     "porque": "Triturar o sólido expõe mais partículas ao contato com o outro reagente, então há mais colisões por segundo.",
-    "tipo": "aplicar"
+    "tipo": "comparar"
    },
    {
     "faz": "Aplique a temperatura",
     "conta": "T↑ → energia cinética↑ → v↑",
     "porque": "Aquecer agita mais as moléculas: os choques ficam mais frequentes e mais energéticos. A energia de ativação não muda.",
-    "tipo": "aplicar"
+    "tipo": "comparar"
    },
    {
     "faz": "Avalie cada alternativa",
@@ -71,7 +71,7 @@
    }
   ],
   "resposta": "Alternativa E: o antídoto pulverizado tem maior superfície de contato, o que aumenta a frequência de colisões efetivas e acelera a neutralização.",
-  "checagem": "Pelo cotidiano: comprimido efervescente em pó dissolve mais rápido do que inteiro, e a comida cozinha mais rápido em fogo alto. Superfície maior e temperatura maior aceleram a reação, como diz a E.",
+  "checagem": "Pelo cotidiano: comprimido efervescente em pó reage (efervesce) mais rápido do que inteiro, e a comida cozinha mais rápido na panela de pressão, onde a água ferve acima de 100 °C. Superfície maior e temperatura maior aceleram a reação, como diz a E.",
   "erradas": {
    "A": "Inverte o fator: o comprimido compacto tem menos superfície exposta, logo reage mais devagar que o pó em suspensão. A velocidade depende de colisões, não de o sólido 'reter energia potencial'.",
    "B": "Reduzir a temperatura diminui a agitação das moléculas e retarda as reações. Além disso, a temperatura não altera a energia de ativação, que só diminui com catalisador (enzima).",
@@ -93,7 +93,7 @@
   },
   {
    "nome": "analogia cotidiana",
-   "ideia": "Açúcar em pó dissolve mais rápido que torrão, e comida cozinha mais rápido em fogo alto. O antídoto em pó e o corpo febril seguem o mesmo princípio."
+   "ideia": "Açúcar em pó dissolve mais rápido que torrão, e comida cozinha mais rápido na panela de pressão (água fervendo acima de 100 °C). O antídoto em pó e o corpo febril seguem o mesmo princípio."
   }
  ],
  "quadro": [],
@@ -110,10 +110,40 @@
  "gab": "E",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "comparar",
+    "motivo": "'aplicar' não está entre os tipos aceitos (localizar, calcular, comparar, eliminar, concluir). O passo compara o pó com o comprimido inteiro.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "comparar",
+    "motivo": "'aplicar' não está entre os tipos aceitos. O passo compara a temperatura maior com a menor.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Pelo cotidiano: comprimido efervescente em pó reage (efervesce) mais rápido do que inteiro, e a comida cozinha mais rápido na panela de pressão, onde a água ferve acima de 100 °C. Superfície maior e temperatura maior aceleram a reação, como diz a E.",
+    "motivo": "Fogo alto não aumenta a temperatura da água que já está fervendo, porque ela fica perto de 100 °C. O exemplo correto de temperatura maior é a panela de pressão. Troquei 'dissolve' por 'reage (efervesce)', porque a efervescência é reação química.",
+    "fonte": ""
+   },
+   {
+    "campo": "caminhos[1].ideia",
+    "depois": "Açúcar em pó dissolve mais rápido que torrão, e comida cozinha mais rápido na panela de pressão (água fervendo acima de 100 °C). O antídoto em pó e o corpo febril seguem o mesmo princípio.",
+    "motivo": "É o mesmo erro da checagem: fogo alto não eleva a temperatura da água fervente.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E"
  }
 }

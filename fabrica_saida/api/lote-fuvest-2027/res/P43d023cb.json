@@ -45,7 +45,7 @@
     "faz": "Nomeie o processo",
     "conta": "N em excesso → algas ↑ → morte → decomposição → O₂ ↓",
     "porque": "Esse é o processo de eutrofização. Nutriente em excesso faz as algas se multiplicarem. Ao morrerem, elas são decompostas por bactérias que gastam o oxigênio da água.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Descarte as que dizem que o impacto diminui",
@@ -72,7 +72,7 @@
    "B": "Afirma que lixiviação e escoamento reduzem os impactos. Eles são os processos que levam o excesso de fertilizante para rios e águas subterrâneas, ou seja, espalham o impacto, como diz o texto. O texto não cita tecnologia que o reduza.",
    "C": "Diz que pulverizar com drones reduz o nitrogênio e ameniza os riscos. O texto não menciona drones. Pulverizar também não elimina o excesso; ele continua no solo e na água.",
    "D": "Fala de aumento da produção de soja pela qualidade dos fertilizantes. O texto diz que o problema é a baixa eficiência de absorção, que gera excedentes poluentes. A questão pergunta o impacto sobre os biomas, não a produtividade.",
-   "E": "O desmatamento é uma causa de perda de floresta, não um efeito do fertilizante. A justificativa \"o nitrogênio evapora antes de atingir solos e oceanos\" contradiz o texto, que diz que o nitrogênio atinge corpos hídricos, oceanos e solo."
+   "E": "O desmatamento não é efeito do excesso de fertilizante: ele vem da expansão da fronteira agrícola. A justificativa \"o nitrogênio evapora antes de atingir solos e oceanos\" contradiz o texto, que diz que os excedentes se acumulam no solo e atingem corpos hídricos e oceanos. Se o nitrogênio evaporasse antes, também não haveria aumento de algas."
   },
   "armadilha": "Marcar B ou C por soarem como soluções (tecnologia, drones), sendo que a questão pergunta o impacto negativo do excesso de nitrogênio.",
   "alerta": "",
@@ -102,10 +102,28 @@
  "gab": "A",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "localizar",
+    "motivo": "'interpretar' não está na lista de tipos permitidos (localizar, calcular, comparar, eliminar, concluir). Quando o passo dá nome ao processo, o guia da matéria manda usar 'localizar' ou 'concluir'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "O desmatamento não é efeito do excesso de fertilizante: ele vem da expansão da fronteira agrícola. A justificativa \"o nitrogênio evapora antes de atingir solos e oceanos\" contradiz o texto, que diz que os excedentes se acumulam no solo e atingem corpos hídricos e oceanos. Se o nitrogênio evaporasse antes, também não haveria aumento de algas.",
+    "motivo": "A frase original (\"o desmatamento é uma causa de perda de floresta\") não faz sentido, porque desmatamento é a própria perda de floresta. A correção diz o motivo certo e acrescenta a contradição interna da alternativa.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "A"
  }
 }

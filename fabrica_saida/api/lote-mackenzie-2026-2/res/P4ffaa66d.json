@@ -64,13 +64,13 @@
     "faz": "Identifique o balão do quadro 3",
     "conta": "balão de nuvem com bolinhas = pensamento",
     "porque": "O balão sai do lado de Garfield, e as bolinhas indicam que é pensamento. Quem pensa é o gato, e não Jon.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Traduza o pensamento de Garfield",
     "conta": "“Minutes? If I were you, I'd be canceling plans for the weekend”",
-    "porque": "“Minutos? Se eu fosse você, estaria cancelando os planos do fim de semana.” Garfield ironiza: não vai sair do colo tão cedo, talvez só no domingo.",
-    "tipo": "interpretar"
+    "porque": "“Minutos? Se eu fosse você, estaria cancelando os planos do fim de semana.” Garfield ironiza: não pretende sair do colo tão cedo, e sim ficar ali o fim de semana inteiro.",
+    "tipo": "localizar"
    },
    {
     "faz": "Ligue a quebra de expectativa à alternativa",
@@ -119,10 +119,34 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "localizar",
+    "motivo": "'interpretar' não é um tipo válido. Os tipos permitidos são localizar, calcular, comparar, eliminar e concluir. Este passo identifica o balão na figura, então é 'localizar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "localizar",
+    "motivo": "'interpretar' não é um tipo válido. Este passo traduz o trecho localizado no quadro 3, então é 'localizar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "“Minutos? Se eu fosse você, estaria cancelando os planos do fim de semana.” Garfield ironiza: não pretende sair do colo tão cedo, e sim ficar ali o fim de semana inteiro.",
+    "motivo": "A frase 'talvez só no domingo' vai além do que a tira mostra. O balão fala em cancelar os planos do fim de semana, sem citar dia. A correção deixa só o que a tira sustenta.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C"
  }
 }

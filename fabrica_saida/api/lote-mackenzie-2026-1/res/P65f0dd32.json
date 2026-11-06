@@ -56,19 +56,19 @@
     "faz": "Nomeie a relação de although",
     "conta": "although = concessão (contraste)",
     "porque": "A ideia 'de um a três meses' é dada como estimativa, e 'cada um aprende diferente' é a ressalva que a contraria em parte. É um contraste.",
-    "tipo": "interpretar"
+    "tipo": "comparar"
    },
    {
     "faz": "Procure o conectivo de contraste",
     "conta": "but = mas",
     "porque": "But marca contraste e mantém a mesma ideia: 'leva de um a três meses, mas cada um aprende de um jeito'. A frase é gramaticalmente correta.",
-    "tipo": "aplicar"
+    "tipo": "comparar"
    },
    {
     "faz": "Teste as demais relações lógicas",
     "conta": "furthermore (soma), unless, so that, if",
     "porque": "Nenhuma dessas expressa contraste. Além disso, furthermore precisa de ponto e vírgula ou ponto antes dele, e não de vírgula simples.",
-    "tipo": "comparar"
+    "tipo": "eliminar"
    },
    {
     "faz": "Conclua",
@@ -81,11 +81,11 @@
   "checagem": "Troque although por but na frase original e leia em português: 'pode levar de um a três meses, mas cada um aprende de um jeito'. O sentido é o mesmo.",
   "erradas": {
    "B": "Furthermore significa 'além disso' e soma uma ideia à outra. O texto não soma: contrapõe a estimativa de tempo à diferença entre aprendizes. Também faltaria ponto ou ponto e vírgula antes de furthermore.",
-   "C": "Unless significa 'a menos que'. A frase diria que a prática leva de um a três meses a menos que todos aprendam de forma diferente, o que inverte a lógica do texto.",
+   "C": "Unless significa 'a menos que'. A frase diria que a prática leva de um a três meses a menos que todos aprendam de forma diferente. A ressalva do texto vira uma condição de exceção, e isso muda o sentido.",
    "D": "So that significa 'para que' (finalidade). A frase diria que a prática leva esse tempo para que todos aprendam diferente, o que não faz sentido e não aparece no texto.",
    "E": "If significa 'se' (condição). A frase diria que leva esse tempo caso todos aprendam diferente. O texto afirma que todos aprendem diferente, como ressalva, e não como condição."
   },
-  "armadilha": "Achar que but e although são opostos por serem palavras diferentes; both marcam contraste, e although só muda a construção.",
+  "armadilha": "Achar que but e although não se equivalem por serem palavras diferentes. Os dois marcam contraste; although só muda a construção.",
   "alerta": "",
   "essencial": {
    "pede": "A frase correta e com o mesmo sentido, trocando o conectivo although.",
@@ -113,10 +113,46 @@
  "gab": "A",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "comparar",
+    "motivo": "O tipo 'interpretar' não existe. Os tipos válidos são localizar, calcular, comparar, eliminar e concluir.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "comparar",
+    "motivo": "O tipo 'aplicar' não existe. Este passo compara o but com a relação de concessão do although.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "eliminar",
+    "motivo": "Este passo descarta as alternativas B a E, então o tipo certo é 'eliminar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "Unless significa 'a menos que'. A frase diria que a prática leva de um a três meses a menos que todos aprendam de forma diferente. A ressalva do texto vira uma condição de exceção, e isso muda o sentido.",
+    "motivo": "Dizer que 'inverte a lógica' não descreve bem o erro. O unless não inverte nada: ele transforma a ressalva em condição de exceção.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.armadilha",
+    "depois": "Achar que but e although não se equivalem por serem palavras diferentes. Os dois marcam contraste; although só muda a construção.",
+    "motivo": "A frase tinha a palavra inglesa 'both' no meio do português, no lugar de 'ambos/os dois'. Também deixei mais claro qual é o raciocínio errado.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "A"
  }
 }

@@ -67,8 +67,8 @@
   "erradas": {
    "A": "6,7 cm não confere: 6,7 cm × 1.500.000 = 10.050.000 cm = cerca de 100 km. Esse comprimento representaria menos da metade dos 223 km.",
    "C": "6,7 dm = 67 cm, e 67 × 1.500.000 = 100.500.000 cm, cerca de 1.005 km. Isso é bem mais que os 223 km do trecho.",
-   "D": "1,48 m = 148 cm, e 148 × 1.500.000 = 222.000.000 cm = 2.220 km. É dez vezes o valor certo, como se o aluno tivesse errado um zero na conversão de km para cm.",
-   "E": "1,48 cm × 1.500.000 = 2.220.000 cm = 22,2 km. É dez vezes menos que os 223 km, como se tivesse sobrado um zero a mais na divisão."
+   "D": "D sai de usar 1 km = 1.000.000 cm (um zero a mais): 223.000.000 ÷ 1.500.000 ≈ 148 cm = 1,48 m. Na volta, 148 cm × 1.500.000 = 222.000.000 cm = 2.220 km, dez vezes os 223 km.",
+   "E": "E sai de usar 1 km = 10.000 cm (um zero a menos): 223 × 10.000 = 2.230.000 cm e 2.230.000 ÷ 1.500.000 ≈ 1,48 cm. Na volta, 1,48 cm × 1.500.000 = 2.220.000 cm = 22,2 km, dez vezes menos que 223 km."
   },
   "armadilha": "Errar o número de zeros ao passar km para cm, ou deixar o resultado na unidade errada (cm, dm, m), o que gera valores dez vezes maiores ou menores.",
   "alerta": "",
@@ -127,10 +127,28 @@
  "gab": "B",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "E sai de usar 1 km = 10.000 cm (um zero a menos): 223 × 10.000 = 2.230.000 cm e 2.230.000 ÷ 1.500.000 ≈ 1,48 cm. Na volta, 1,48 cm × 1.500.000 = 2.220.000 cm = 22,2 km, dez vezes menos que 223 km.",
+    "motivo": "A origem dada no texto anterior estava no sentido errado. Ele falava em 'um zero a mais na divisão', mas 1,48 cm só sai com um zero A MENOS na conversão de km para cm (1 km = 10.000 cm). Refiz a conta: 2.230.000 ÷ 1.500.000 = 1,4867.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "D sai de usar 1 km = 1.000.000 cm (um zero a mais): 223.000.000 ÷ 1.500.000 ≈ 148 cm = 1,48 m. Na volta, 148 cm × 1.500.000 = 222.000.000 cm = 2.220 km, dez vezes os 223 km.",
+    "motivo": "O texto anterior dizia 'como se o aluno tivesse errado um zero'. Troquei pela origem exata, que dá para conferir: 223 × 1.000.000 ÷ 1.500.000 = 148,67 cm.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "B"
  }
 }

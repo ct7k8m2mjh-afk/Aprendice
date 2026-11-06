@@ -67,7 +67,7 @@
    "A": "6,6 s sai de usar só a taxa e somá-la ao último ponto: 6,4 + 0,2 = 6,6. Isso acrescenta o tempo de apenas 1 mil pixels, e faltam 15 mil pixels (de 25 mil a 40 mil).",
    "B": "8,8 s não confere: de 25 mil a 40 mil pixels o acréscimo é 15 × 0,2 = 3,0 s, e 6,4 + 3,0 = 9,4. Para chegar a 8,8 seriam só 12 mil pixels a mais.",
    "C": "9,0 s não confere: com T(x) = 0,2x + 1,4, T(40) = 9,4. Para dar 9,0, o x seria 38 (0,2 × 38 + 1,4 = 9,0), ou seja, 38.000 pixels.",
-   "D": "9,2 s sai de esquecer o termo b = 1,4 e errar a conta em outro ponto: 0,2 × 40 = 8,0, que também não é 9,2. Com T(x) = 0,2x + 1,4, T(40) = 9,4, e 9,2 corresponde a x = 39."
+   "D": "9,2 s não confere: com T(x) = 0,2x + 1,4, T(40) = 0,2 × 40 + 1,4 = 9,4. Para dar 9,2, o x seria 39 (0,2 × 39 + 1,4 = 9,2), ou seja, 39.000 pixels."
   },
   "armadilha": "Usar 40.000 no lugar de x = 40 (o x está em milhares), ou esquecer o valor inicial b = 1,4.",
   "alerta": "",
@@ -152,10 +152,22 @@
  "gab": "E",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "9,2 s não confere: com T(x) = 0,2x + 1,4, T(40) = 0,2 × 40 + 1,4 = 9,4. Para dar 9,2, o x seria 39 (0,2 × 39 + 1,4 = 9,2), ou seja, 39.000 pixels.",
+    "motivo": "O texto anterior dizia que 9,2 'sai de' um erro e, na mesma frase, admitia que a conta dava 8,0, não 9,2. A explicação se contradizia e inventava uma origem para o valor. Troquei por um teste objetivo: 0,2 × 39 + 1,4 = 7,8 + 1,4 = 9,2.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E"
  }
 }

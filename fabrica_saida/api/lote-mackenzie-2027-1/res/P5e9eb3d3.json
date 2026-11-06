@@ -47,18 +47,18 @@
     "faz": "Trace a cadeia de efeitos",
     "conta": "isolamento → menos fluxo gênico",
     "porque": "Sem trânsito entre fragmentos, as populações ficam pequenas e separadas, com menos variabilidade e mais risco de extinção local.",
-    "tipo": "aplicar"
+    "tipo": "concluir"
    },
    {
     "faz": "Some o efeito de borda",
     "conta": "fragmento menor → mais borda",
     "porque": "Quanto menor o fragmento, maior a proporção de área de borda, onde as condições mudam e espécies de interior são prejudicadas.",
-    "tipo": "aplicar"
+    "tipo": "concluir"
    },
    {
     "faz": "Elimine A, B, C e D",
-    "conta": "\"necessariamente\", \"exclusivamente\", \"não representa ameaça\"",
-    "porque": "Cada uma traz uma afirmação absoluta ou contrária ao que se sabe: A, B e C usam termos absolutos que a fragmentação desmente, e D inverte o efeito da homogeneização genética.",
+    "conta": "A, B, C: absolutas; D: inverte",
+    "porque": "A e C usam termos absolutos (\"necessariamente\", \"exclusivamente\") que a fragmentação desmente. B nega a ameaça e supõe que populações isoladas continuam conectadas, o que o próprio esquema contradiz. D trata a homogeneização genética, que é perda de variabilidade, como vantagem, quando ela reduz a adaptação.",
     "tipo": "eliminar"
    },
    {
@@ -69,12 +69,12 @@
    }
   ],
   "resposta": "Alternativa E: o isolamento reduz o fluxo gênico, o fragmento menor aumenta o efeito de borda e as espécies se perdem, comprometendo a biodiversidade.",
-  "checagem": "Pense num caso real: as manchas de Mata Atlântica isoladas. Onivoros de interior, como grandes felinos, somem primeiro nos fragmentos pequenos. Isso bate com E.",
+  "checagem": "Pense num caso real: as manchas isoladas de Mata Atlântica. Espécies que precisam de grandes áreas de mata, como a onça-pintada, desaparecem primeiro dos fragmentos pequenos. Isso bate com E.",
   "erradas": {
    "A": "Diz que a fragmentação aumenta \"necessariamente\" a biodiversidade. Falso: a perda de área e o isolamento tendem a reduzir espécies, sobretudo as de interior de mata. Novos ambientes podem favorecer espécies generalistas, mas não é regra, e a palavra \"necessariamente\" derruba a alternativa.",
    "B": "Afirma que a perda de habitat não é ameaça quando há alta diversidade nos fragmentos, porque as populações estariam conectadas. Isso contradiz o enunciado: o isolamento justamente rompe a conexão. Fragmentos diversos, mas isolados e pequenos, perdem espécies com o tempo.",
    "C": "Diz que afeta \"exclusivamente\" plantas e que animais se deslocam livremente. Falso: muitos animais não atravessam áreas abertas (pasto, lavoura) e têm populações isoladas, e plantas e animais são afetados. A palavra \"exclusivamente\" já derruba a alternativa.",
-   "D": "Mistura erros: a fragmentação não favorece a sucessão nem aumenta rapidamente a biomassa (há perda de vegetação). Homogeneização genética, ou seja, baixa variabilidade, reduz a capacidade de adaptação a mudanças, não aumenta."
+   "D": "Mistura erros. A fragmentação não aumenta rapidamente a biomassa, porque o desmatamento remove vegetação. A homogeneização genética, ou seja, a baixa variabilidade, reduz a capacidade de adaptação a mudanças em vez de aumentá-la."
   },
   "armadilha": "Cair em alternativas com termos absolutos (\"necessariamente\", \"exclusivamente\") ou que tratam baixa variabilidade genética como vantagem.",
   "alerta": "",
@@ -108,10 +108,52 @@
  "gab": "E",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "concluir",
+    "motivo": "\"aplicar\" não é um tipo permitido. Os tipos válidos são localizar, calcular, comparar, eliminar e concluir, e este passo tira uma consequência do isolamento.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "concluir",
+    "motivo": "\"aplicar\" não é um tipo permitido. Este passo também tira uma consequência, agora do tamanho menor do fragmento.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "A, B, C: absolutas; D: inverte",
+    "motivo": "A conta antiga tinha cerca de 60 caracteres e não cabe numa linha de 390 px. A nova está alinhada ao porque corrigido.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "A e C usam termos absolutos (\"necessariamente\", \"exclusivamente\") que a fragmentação desmente. B nega a ameaça e supõe que populações isoladas continuam conectadas, o que o próprio esquema contradiz. D trata a homogeneização genética, que é perda de variabilidade, como vantagem, quando ela reduz a adaptação.",
+    "motivo": "B não usa um termo absoluto como \"necessariamente\" ou \"exclusivamente\". Ela erra ao negar a ameaça e ao supor conexão genética entre fragmentos isolados.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Pense num caso real: as manchas isoladas de Mata Atlântica. Espécies que precisam de grandes áreas de mata, como a onça-pintada, desaparecem primeiro dos fragmentos pequenos. Isso bate com E.",
+    "motivo": "Os grandes felinos são carnívoros, não onívoros, e \"Onivoros\" também estava sem acento. O exemplo foi trocado por um fato correto e verificável: a onça-pintada já desapareceu localmente de muitos fragmentos de Mata Atlântica.",
+    "fonte": "Paviolo et al. 2016, Scientific Reports 6:37147 (declínio da onça-pintada na Mata Atlântica)"
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "Mistura erros. A fragmentação não aumenta rapidamente a biomassa, porque o desmatamento remove vegetação. A homogeneização genética, ou seja, a baixa variabilidade, reduz a capacidade de adaptação a mudanças em vez de aumentá-la.",
+    "motivo": "A frase \"não favorece a sucessão\" era absoluta demais: áreas desmatadas podem passar por sucessão secundária. O erro de D está no aumento rápido da biomassa e na vantagem atribuída à homogeneização.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E"
  }
 }

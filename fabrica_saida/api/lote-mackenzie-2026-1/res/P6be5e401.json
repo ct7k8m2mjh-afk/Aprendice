@@ -46,7 +46,7 @@
    },
    {
     "faz": "Calcule cos 75°",
-    "conta": "cos 75° = (√6 − √2)/4 = 1/4",
+    "conta": "cos 75° = (√6 − √2)/4 ≈ 1/4",
     "porque": "cos(45° + 30°) = cos45°·cos30° − sen45°·sen30° = (√6 − √2)/4. Com √6 = 2,4 e √2 = 1,4, fica 1/4 = 0,25.",
     "tipo": "calcular"
    },
@@ -54,7 +54,7 @@
     "faz": "Aplique a lei dos cossenos em ABC",
     "conta": "BC² = 6² + 4² − 2·6·4·(1/4)",
     "porque": "Temos os lados AB = 6 e AC = 4 e o ângulo entre eles (75°). O terceiro lado é BC.",
-    "tipo": "aplicar"
+    "tipo": "calcular"
    },
    {
     "faz": "Calcule BC",
@@ -82,7 +82,7 @@
  "caminhos": [
   {
    "nome": "altura e Pitágoras",
-   "ideia": "Trace a altura CH sobre a reta DB. Então AH = 4·cos75° ≈ 1 e CH = 4·sen75° ≈ 3,9. HB = AB + AH ≈ 7, e Pitágoras dá BC ≈ √(49 + 15,2) ≈ 8. Esse caminho é mais trabalhoso e exige sen 75°, que o enunciado não fornece."
+   "ideia": "Trace a altura CH sobre a reta DB. Como CÂB = 75° é agudo, H cai entre A e B. AH = 4·cos 75° ≈ 4 × 0,25 = 1 e CH² = 4² − 1² = 15. Então HB = AB − AH = 6 − 1 = 5, e Pitágoras no triângulo CHB dá BC² = 5² + 15 = 40, BC = 2√10 ≈ 6,4."
   },
   {
    "nome": "eliminação por estimativa",
@@ -111,7 +111,7 @@
    "nota": "cos45°·cos30° − sen45°·sen30°"
   },
   {
-   "linha": "cos 75° = (2,4 − 1,4)/4 = 0,25",
+   "linha": "cos 75° ≈ (2,4 − 1,4)/4 = 0,25",
    "nota": "use os valores dados no enunciado"
   },
   {
@@ -148,10 +148,40 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "cos 75° = (√6 − √2)/4 ≈ 1/4",
+    "motivo": "O valor exato (√6 − √2)/4 vale cerca de 0,2588, não 1/4. Ele só dá 1/4 com as aproximações √6 = 2,4 e √2 = 1,4. O sinal certo é ≈.",
+    "fonte": ""
+   },
+   {
+    "campo": "quadro[5].linha",
+    "depois": "cos 75° ≈ (2,4 − 1,4)/4 = 0,25",
+    "motivo": "Mesmo motivo: a igualdade só vale com os valores aproximados que o enunciado dá.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "calcular",
+    "motivo": "'aplicar' não está na lista de tipos permitidos (localizar, calcular, comparar, eliminar, concluir).",
+    "fonte": ""
+   },
+   {
+    "campo": "caminhos[0].ideia",
+    "depois": "Trace a altura CH sobre a reta DB. Como CÂB = 75° é agudo, H cai entre A e B. AH = 4·cos 75° ≈ 4 × 0,25 = 1 e CH² = 4² − 1² = 15. Então HB = AB − AH = 6 − 1 = 5, e Pitágoras no triângulo CHB dá BC² = 5² + 15 = 40, BC = 2√10 ≈ 6,4.",
+    "motivo": "O caminho proposto estava errado. Ele somava AH a AB (HB ≈ 7) e chegava a BC ≈ 8, valor que não está entre as alternativas e contradiz a resolução. O ângulo em A é agudo, então o pé da altura fica entre A e B e é preciso subtrair. Também não é preciso sen 75°: CH sai por Pitágoras no triângulo ACH. Conferido: AH = 1,035, CH = 3,864, HB = 4,965, BC ≈ 6,29.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C"
  }
 }

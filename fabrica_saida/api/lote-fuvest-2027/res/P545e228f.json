@@ -61,17 +61,17 @@
     "faz": "Relacione força com evaporação",
     "conta": "atração maior → P. vapor menor",
     "porque": "Quanto mais forte a atração, menos moléculas escapam para o vapor, principalmente em baixa temperatura.",
-    "tipo": "aplicar"
+    "tipo": "comparar"
    },
    {
     "faz": "Compare as alternativas",
-    "conta": "A, C, D, E: falhas de fato",
+    "conta": "só B explica a evaporação",
     "porque": "Só a B trata da evaporação pela causa certa, a interação entre as moléculas.",
     "tipo": "concluir"
    }
   ],
   "resposta": "Alternativa B: o etanol faz ligações de hidrogênio intermoleculares, o que reduz sua pressão de vapor e dificulta a evaporação no frio.",
-  "checagem": "Compare as temperaturas de ebulição: etanol ≈ 78 °C. Um hidrocarboneto de massa parecida, como o hexano (≈ 69 °C), ferve mais baixo, e a gasolina, que é mistura de hidrocarbonetos, começa a vaporizar ainda antes. Isso mostra que o etanol, apesar de ter menos carbonos, é menos volátil que a gasolina.",
+  "checagem": "Compare as temperaturas de ebulição: etanol (46 g/mol) ≈ 78 °C. Um hidrocarboneto de massa parecida, como o propano (44 g/mol), ferve a ≈ −42 °C, e até o hexano, com 6 carbonos, ferve a ≈ 69 °C. A gasolina, que é mistura de hidrocarbonetos, começa a vaporizar ainda antes. Isso mostra que o etanol, apesar de ter menos carbonos, é menos volátil que a gasolina.",
   "erradas": {
    "A": "O fato está certo (o etanol tem 2 carbonos e a gasolina, de 5 a 12 aproximadamente), mas a conclusão está invertida: menos carbonos em moléculas apolares dá MAIOR volatilidade. O etanol é menos volátil por causa da ligação de hidrogênio, não pelo tamanho da cadeia.",
    "C": "O etanol não sofre 'redução' na partida. O que ocorre é combustão, uma oxidação. Além disso, o enunciado diz que o problema está na evaporação, antes de qualquer reação.",
@@ -110,10 +110,34 @@
  "gab": "B",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "comparar",
+    "motivo": "'aplicar' não é um tipo aceito (localizar, calcular, comparar, eliminar, concluir). O passo compara a força da atração com a facilidade de evaporar.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "só B explica a evaporação",
+    "motivo": "'A, C, D, E: falhas de fato' não está certo: o fato da A (menos carbonos) é verdadeiro, só a conclusão está invertida. Como o passo é 'concluir', ele também precisa ligar o raciocínio à letra.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Compare as temperaturas de ebulição: etanol (46 g/mol) ≈ 78 °C. Um hidrocarboneto de massa parecida, como o propano (44 g/mol), ferve a ≈ −42 °C, e até o hexano, com 6 carbonos, ferve a ≈ 69 °C. A gasolina, que é mistura de hidrocarbonetos, começa a vaporizar ainda antes. Isso mostra que o etanol, apesar de ter menos carbonos, é menos volátil que a gasolina.",
+    "motivo": "O hexano (86 g/mol) não tem 'massa parecida' com a do etanol (46 g/mol): é quase o dobro. O propano (44 g/mol, ebulição ≈ −42 °C) é a comparação de massa parecida. O hexano fica no texto como exemplo de hidrocarboneto maior que ainda ferve abaixo do etanol.",
+    "fonte": "Valores de tabela (CRC Handbook / NIST WebBook): etanol, ebulição 78,4 °C; propano, −42,1 °C; hexano, 68,7 °C"
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "B"
  }
 }

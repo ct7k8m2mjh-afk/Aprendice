@@ -38,25 +38,25 @@
     "faz": "Identifique a conversão de energia",
     "conta": "gerador: mecânica → elétrica",
     "porque": "O vento move as pás e o ímã; o resultado é corrente elétrica. Isso mostra que a alternativa A inverteu o sentido.",
-    "tipo": "interpretar"
+    "tipo": "eliminar"
    },
    {
     "faz": "Use a lei de Faraday-Lenz no fluxo constante",
     "conta": "ΔΦ = 0 → ε = 0",
     "porque": "Se o fluxo não varia, o numerador é zero e não há tensão induzida. Logo, a indução não é máxima (alternativa B falsa).",
-    "tipo": "aplicar"
+    "tipo": "eliminar"
    },
    {
     "faz": "Compare gerador e transformador",
     "conta": "transformador: elétrica → elétrica",
     "porque": "O transformador só muda os valores de tensão e corrente, sem converter energia mecânica. Alternativa C falsa.",
-    "tipo": "aplicar"
+    "tipo": "eliminar"
    },
    {
     "faz": "Veja o efeito do número de espiras",
     "conta": "ε = N × (ΔΦ ÷ Δt)",
     "porque": "Cada espira gera tensão e elas se somam: mais espiras, maior tensão. Alternativa E falsa.",
-    "tipo": "aplicar"
+    "tipo": "eliminar"
    },
    {
     "faz": "Examine as usinas hidrelétricas e termoelétricas",
@@ -109,7 +109,7 @@
   "cabe": true,
   "porque": "O processo de indução é um fluxo de energia e de movimento que se anima bem.",
   "tipo": "fluxo",
-  "roteiro": "Quadro 1: vento empurra as pás. Quadro 2: o eixo gira o ímã dentro da bobina. Quadro 3: o fluxo magnético na bobina oscila (sobe e desce). Quadro 4: surge tensão induzida e a corrente acende uma lâmpada. Quadro 5: mesmo esquema com vapor ou água empurrando a turbina de uma termoelétrica ou hidrelétrica, trocando só a fonte do movimento."
+  "roteiro": "Quadro 1: vento empurra as pás. Quadro 2: o eixo gira o ímã em torno da bobina. Quadro 3: o fluxo magnético na bobina oscila (sobe e desce). Quadro 4: surge tensão induzida e a corrente acende uma lâmpada. Quadro 5: mesmo esquema com vapor ou água empurrando a turbina de uma termoelétrica ou hidrelétrica, trocando só a fonte do movimento."
  },
  "resposta_resolvedor": "D",
  "confere": true,
@@ -118,10 +118,46 @@
  "gab": "D",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[0].tipo",
+    "depois": "eliminar",
+    "motivo": "'interpretar' não está entre os tipos aceitos (localizar, calcular, comparar, eliminar, concluir). O passo derruba a alternativa A.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "eliminar",
+    "motivo": "'aplicar' não está entre os tipos aceitos. O passo derruba a alternativa B.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "eliminar",
+    "motivo": "'aplicar' não está entre os tipos aceitos. O passo derruba a alternativa C.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "eliminar",
+    "motivo": "'aplicar' não está entre os tipos aceitos. O passo derruba a alternativa E.",
+    "fonte": ""
+   },
+   {
+    "campo": "visual.roteiro",
+    "depois": "Quadro 1: vento empurra as pás. Quadro 2: o eixo gira o ímã em torno da bobina. Quadro 3: o fluxo magnético na bobina oscila (sobe e desce). Quadro 4: surge tensão induzida e a corrente acende uma lâmpada. Quadro 5: mesmo esquema com vapor ou água empurrando a turbina de uma termoelétrica ou hidrelétrica, trocando só a fonte do movimento.",
+    "motivo": "O enunciado diz que o ímã gira 'em torno de uma bobina', e não dentro dela. O roteiro tem de seguir o enunciado.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "D"
  }
 }

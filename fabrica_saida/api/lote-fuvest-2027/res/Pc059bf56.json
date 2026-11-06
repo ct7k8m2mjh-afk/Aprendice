@@ -50,7 +50,7 @@
    {
     "faz": "Teste B, C e E",
     "conta": "Nefertiti / Mona Lisa; Hamurabi / Escola de Atenas; Naram-Sin / Última Ceia",
-    "porque": "Nessas obras antigas não há corpo torcido nem drapeado agitado: um busto de perfil sereno e duas estelas de composição rígida. Na Mona Lisa, o gesto é contido. A Escola de Atenas e a Última Ceia são composições de grupo, e os corpos não repetem a fórmula das obras antigas pareadas.",
+    "porque": "Nessas obras antigas não há corpo torcido nem drapeado agitado: um busto de expressão serena e duas estelas em relevo, com figuras de perfil e sem panos em movimento. Na Mona Lisa, o gesto é contido. A Escola de Atenas e a Última Ceia são composições de grupo, e os corpos não repetem a fórmula das obras antigas pareadas.",
     "tipo": "eliminar"
    },
    {
@@ -67,12 +67,12 @@
    }
   ],
   "resposta": "Alternativa A: o relevo antigo e A Primavera, de Botticelli, repetem a figura feminina de corpo em movimento, drapeado agitado e gesto afetivo.",
-  "checagem": "Cubra a obra antiga de cada par e pergunte se a imagem renascentista, sozinha, mostra corpo torcido e panos ao vento. Só em A e (em menor grau) em D há pano visível, e em D o pano está parado. Só A reúne as três marcas.",
+  "checagem": "Olhe só a obra antiga de cada par: um busto (B), duas estelas com figuras de perfil (C e E) e uma estátua em contrapposto calmo, com o manto parado (D). Só o relevo de A mostra um corpo em movimento com panos agitados, e é ele que Botticelli retoma.",
   "erradas": {
-   "B": "Nefertiti é um busto egípcio de perfil sereno e a Mona Lisa tem pose contida. Nenhuma das duas tem corpo torcido, drapeado agitado ou gesto afetivo intenso. O par liga duas obras famosas, mas não uma fórmula de emoção.",
+   "B": "Nefertiti é um busto egípcio de expressão serena e a Mona Lisa tem pose contida. Nenhuma das duas tem corpo torcido, drapeado agitado ou gesto afetivo intenso. O par liga duas obras famosas, mas não uma fórmula de emoção.",
    "C": "O Código de Hamurabi é uma estela de pedra com texto e relevo na parte de cima, sem corpo em movimento. A Escola de Atenas é uma composição arquitetônica de filósofos em poses calmas. O par não repete torção nem drapeado agitado.",
    "D": "O Augusto de Prima Porta ergue o braço num gesto de comando, em postura serena. O Casal Arnolfini, de Van Eyck, é uma pintura flamenga estática, com o tecido verde caindo parado. Há gesto e roupa, mas sem a torção e a intensidade afetiva que o enunciado pede.",
-   "E": "A estela de Naram-Sin mostra a vitória de um rei em registros hierarquizados, de composição rígida. A Última Ceia, de Leonardo, é um arranjo frontal de figuras sentadas à mesa. As duas obras têm grupos de figuras, mas não repetem corpo torcido nem drapeado em movimento."
+   "E": "A estela de Naram-Sin mostra a vitória de um rei que sobe uma montanha, com figuras de perfil e sem drapeado agitado. Na Última Ceia, de Leonardo, os apóstolos gesticulam, mas nenhum gesto retoma uma figura da estela: as duas obras não têm uma fórmula em comum."
   },
   "armadilha": "Marcar um par só porque envolve uma obra antiga famosa e uma obra do Renascimento, sem verificar as três marcas visuais (torção, drapeado e gesto afetivo) nas duas imagens.",
   "alerta": "",
@@ -106,10 +106,40 @@
  "gab": "A",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Nessas obras antigas não há corpo torcido nem drapeado agitado: um busto de expressão serena e duas estelas em relevo, com figuras de perfil e sem panos em movimento. Na Mona Lisa, o gesto é contido. A Escola de Atenas e a Última Ceia são composições de grupo, e os corpos não repetem a fórmula das obras antigas pareadas.",
+    "motivo": "O busto de Nefertiti não é 'de perfil': o print o mostra em três quartos e a peça é um busto de vulto. Também não dá para chamar a estela de Naram-Sin de 'rígida', porque a composição dela é diagonal e dinâmica. O que derruba as duas obras é a falta de drapeado agitado e de torção.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "Nefertiti é um busto egípcio de expressão serena e a Mona Lisa tem pose contida. Nenhuma das duas tem corpo torcido, drapeado agitado ou gesto afetivo intenso. O par liga duas obras famosas, mas não uma fórmula de emoção.",
+    "motivo": "O busto não aparece de perfil, nem no print nem na peça.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "A estela de Naram-Sin mostra a vitória de um rei que sobe uma montanha, com figuras de perfil e sem drapeado agitado. Na Última Ceia, de Leonardo, os apóstolos gesticulam, mas nenhum gesto retoma uma figura da estela: as duas obras não têm uma fórmula em comum.",
+    "motivo": "A estela de Naram-Sin é justamente famosa por abandonar os registros horizontais e adotar uma composição em diagonal, então 'registros hierarquizados' está errado. E a Última Ceia tem gestos agitados dos apóstolos; o que falta ao par é uma fórmula comum, não movimento.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Olhe só a obra antiga de cada par: um busto (B), duas estelas com figuras de perfil (C e E) e uma estátua em contrapposto calmo, com o manto parado (D). Só o relevo de A mostra um corpo em movimento com panos agitados, e é ele que Botticelli retoma.",
+    "motivo": "A checagem dizia que só A e D têm pano visível. Isso é falso: a Escola de Atenas, a Última Ceia e a Mona Lisa também mostram roupas e tecidos.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "A"
  }
 }

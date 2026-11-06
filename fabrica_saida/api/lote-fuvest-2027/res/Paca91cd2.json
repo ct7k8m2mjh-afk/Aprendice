@@ -36,7 +36,7 @@
     "faz": "Veja que o 729 é obrigatório",
     "conta": "1+3+9+27+81+243 = 364",
     "porque": "Sem o 729, a soma máxima possível é 364, menor que 820. Então o jogador venceu a rodada de 729 pontos.",
-    "tipo": "interpretar"
+    "tipo": "comparar"
    },
    {
     "faz": "Subtraia e repita o raciocínio",
@@ -46,7 +46,7 @@
    },
    {
     "faz": "Continue até zerar",
-    "conta": "91 − 81 = 10 ; 10 − 9 = 1 ; 1 − 1 = 0",
+    "conta": "91−81=10; 10−9=1; 1−1=0",
     "porque": "Sobram 10. O 27 não cabe. Sem o 9, o máximo seria 1+3 = 4, menor que 10, então o 9 é obrigatório. Sobra 1, que é a rodada de 1 ponto.",
     "tipo": "calcular"
    },
@@ -85,7 +85,7 @@
  ],
  "quadro": [
   {
-   "linha": "valores: 1, 3, 9, 27, 81, 243, 729",
+   "linha": "1, 3, 9, 27, 81, 243, 729",
    "nota": "cada rodada vale o triplo da anterior"
   },
   {
@@ -128,10 +128,34 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "comparar",
+    "motivo": "'interpretar' não é um dos tipos permitidos (localizar, calcular, comparar, eliminar, concluir). O passo compara a soma máxima sem o 729 (364) com 820, então o tipo certo é 'comparar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "91−81=10; 10−9=1; 1−1=0",
+    "motivo": "A conta tinha cerca de 36 caracteres e passava do limite de ~30 da tela, que não quebra linha. O conteúdo continua o mesmo.",
+    "fonte": ""
+   },
+   {
+    "campo": "quadro[0].linha",
+    "depois": "1, 3, 9, 27, 81, 243, 729",
+    "motivo": "A linha tinha 34 caracteres e passava do limite de ~30 da tela. Tirei o rótulo 'valores:', que já aparece na nota.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C"
  }
 }

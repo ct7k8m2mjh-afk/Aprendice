@@ -49,13 +49,13 @@
     "faz": "Escreva a equação geral",
     "conta": "C_xH_y + O2 → CO2 + H2O",
     "porque": "O combustível reage com o oxigênio e forma substâncias novas, diferentes dos reagentes.",
-    "tipo": "aplicar"
+    "tipo": "localizar"
    },
    {
     "faz": "Classifique o tipo de reação",
     "conta": "C é oxidado; O2 é reduzido",
     "porque": "O carbono perde elétrons ao formar CO2. Logo, o combustível sofre oxidação pelo O2.",
-    "tipo": "interpretar"
+    "tipo": "comparar"
    },
    {
     "faz": "Compare cada alternativa com esse modelo",
@@ -71,7 +71,7 @@
    }
   ],
   "resposta": "Alternativa C: a combustão é a oxidação do combustível pelo oxigênio, formando produtos de natureza química diferente da dos reagentes.",
-  "checagem": "Confira com a queima de metal: Mg + O2 → MgO. O Mg se oxida pelo O2 e forma um produto novo (MgO). O mesmo modelo explica o ganho de massa do metal e a perda do material orgânico, pois os produtos gasosos escapam.",
+  "checagem": "Confira com a queima de metal: 2 Mg + O2 → 2 MgO. O Mg se oxida pelo O2 e forma um produto novo (MgO). O mesmo modelo explica o ganho de massa do metal e a perda do material orgânico, pois os produtos gasosos escapam.",
   "erradas": {
    "A": "A combustão não é decomposição: o combustível reage com O2, ou seja, há dois reagentes que se combinam. Também é exotérmica, não endotérmica: libera calor e luz. Os produtos (CO2, H2O) são gases, mas isso não faz dela uma decomposição endotérmica.",
    "B": "É o inverso. O combustível se oxida (o C vai de nox negativo ou zero a +4) e quem se reduz é o O2. Além disso, a massa total não é reduzida: os gases formados escapam e, somados ao resíduo, a massa se conserva.",
@@ -110,10 +110,34 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "localizar",
+    "motivo": "O tipo 'aplicar' não existe na lista permitida (localizar, calcular, comparar, eliminar, concluir). Escrever a equação geral da combustão é montar o modelo a partir do enunciado, então o tipo certo é 'localizar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "comparar",
+    "motivo": "O tipo 'interpretar' não existe na lista permitida. O passo compara o que acontece com o carbono e com o O2 (quem se oxida e quem se reduz), então o tipo certo é 'comparar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Confira com a queima de metal: 2 Mg + O2 → 2 MgO. O Mg se oxida pelo O2 e forma um produto novo (MgO). O mesmo modelo explica o ganho de massa do metal e a perda do material orgânico, pois os produtos gasosos escapam.",
+    "motivo": "A equação estava sem balancear (Mg + O2 → MgO), o que contradiz a própria conservação da massa que a checagem defende. Agora ela fica igual à equação balanceada dos caminhos.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C"
  }
 }

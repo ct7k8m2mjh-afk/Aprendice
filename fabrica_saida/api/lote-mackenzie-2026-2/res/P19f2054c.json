@@ -41,13 +41,13 @@
     "faz": "Marque o ângulo de 60° e os lados",
     "conta": "60° entre toco e parte inclinada",
     "porque": "O ângulo de 60° está no topo do toco. O toco (2 m) encosta nele: é o cateto adjacente. A parte inclinada, oposta ao ângulo reto, é a hipotenusa.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Escolha o cosseno",
     "conta": "cos 60° = 2 ÷ L",
     "porque": "Temos o cateto adjacente (2) e queremos a hipotenusa (L). A razão que une os dois é o cosseno.",
-    "tipo": "aplicar"
+    "tipo": "calcular"
    },
    {
     "faz": "Calcule o comprimento L",
@@ -85,7 +85,7 @@
   },
   {
    "nome": "Triângulo equilátero (espelho)",
-   "ideia": "Espelhe o triângulo pelo toco: surge um triângulo com dois ângulos de 60°, portanto equilátero. O lado inclinado é o lado desse triângulo e vale o dobro de 2 m, ou seja, 4 m."
+   "ideia": "Espelhe o triângulo pelo solo: o toco e o seu reflexo formam um segmento vertical de 4 m. Os ângulos nas duas pontas desse segmento valem 60°, então o triângulo grande é equilátero. A parte inclinada é um lado dele e mede 4 m, o mesmo que o segmento."
   }
  ],
  "quadro": [
@@ -132,7 +132,7 @@
   "cabe": true,
   "porque": "A figura mostra o triângulo que se forma quando a árvore tomba.",
   "tipo": "figura",
-  "roteiro": "Quadro 1: árvore inteira em pé, com uma marca a 2 m do solo. Quadro 2: a parte de cima gira em torno do ponto do corte até a ponta tocar o chão. Quadro 3: destaca-se o triângulo (toco 2 m, solo, parte inclinada) com o ângulo reto no pé e o de 60° no topo do toco. Quadro 4: espelha-se o triângulo, formando um equilátero, e aparece L = 4 m. Quadro 5: as peças de 2 m e 4 m se alinham de novo, formando a árvore de 6 m."
+  "roteiro": "Quadro 1: árvore inteira em pé, com uma marca a 2 m do solo. Quadro 2: a parte de cima gira em torno do ponto do corte até a ponta tocar o chão. Quadro 3: destaca-se o triângulo (toco 2 m, solo, parte inclinada) com o ângulo reto no pé e o de 60° no topo do toco. Quadro 4: espelha-se o triângulo pelo solo, o toco com seu reflexo forma um lado de 4 m de um triângulo equilátero, e aparece L = 4 m. Quadro 5: as peças de 2 m e 4 m se alinham de novo, formando a árvore de 6 m."
  },
  "fontes": [],
  "resposta_resolvedor": "E",
@@ -141,10 +141,40 @@
  "gab": "E",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "caminhos[1].ideia",
+    "depois": "Espelhe o triângulo pelo solo: o toco e o seu reflexo formam um segmento vertical de 4 m. Os ângulos nas duas pontas desse segmento valem 60°, então o triângulo grande é equilátero. A parte inclinada é um lado dele e mede 4 m, o mesmo que o segmento.",
+    "motivo": "Espelhar pelo toco não forma um triângulo equilátero. O ângulo no topo fica com 60° + 60° = 120° e os da base com 30°. O equilátero só aparece quando se espelha pelo solo: ficam 60° no topo, 60° embaixo e 30° + 30° = 60° na ponta.",
+    "fonte": ""
+   },
+   {
+    "campo": "visual.roteiro",
+    "depois": "Quadro 1: árvore inteira em pé, com uma marca a 2 m do solo. Quadro 2: a parte de cima gira em torno do ponto do corte até a ponta tocar o chão. Quadro 3: destaca-se o triângulo (toco 2 m, solo, parte inclinada) com o ângulo reto no pé e o de 60° no topo do toco. Quadro 4: espelha-se o triângulo pelo solo, o toco com seu reflexo forma um lado de 4 m de um triângulo equilátero, e aparece L = 4 m. Quadro 5: as peças de 2 m e 4 m se alinham de novo, formando a árvore de 6 m.",
+    "motivo": "O roteiro precisa dizer que o espelhamento é pelo solo. Só esse espelhamento forma o triângulo equilátero (ver a correção de caminhos[1]).",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "localizar",
+    "motivo": "O tipo 'interpretar' não existe. Os tipos válidos são localizar, calcular, comparar, eliminar e concluir. Este passo marca o ângulo e os lados na figura.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "calcular",
+    "motivo": "O tipo 'aplicar' não existe. Este passo monta a equação cos 60° = 2 ÷ L.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E"
  }
 }

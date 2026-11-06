@@ -46,7 +46,7 @@
     "faz": "Deduza o genótipo de Helena",
     "conta": "Helena: X^H X^h",
     "porque": "Toda filha recebe o X do pai, que é X^h. Como ela é normal, o outro X (da mãe) tem de ser X^H.",
-    "tipo": "aplicar"
+    "tipo": "localizar"
    },
    {
     "faz": "Dê o genótipo de Ricardo",
@@ -64,7 +64,7 @@
     "faz": "Liste os filhos e marque quem tem h",
     "conta": "X^H X^H, X^H X^h, X^H Y, X^h Y",
     "porque": "Têm o alelo h: a menina X^H X^h (portadora) e o menino X^h Y (afetado). São 2 dos 4 filhos possíveis.",
-    "tipo": "interpretar"
+    "tipo": "comparar"
    },
    {
     "faz": "Calcule a probabilidade",
@@ -156,10 +156,28 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "localizar",
+    "motivo": "O valor 'aplicar' não está na lista permitida de tipos (localizar, calcular, comparar, eliminar, concluir). O passo deduz um genótipo a partir de um dado do enunciado, então 'localizar' é o tipo válido mais próximo. O conteúdo do passo está correto.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[4].tipo",
+    "depois": "comparar",
+    "motivo": "O valor 'interpretar' não está na lista permitida de tipos. O passo confere cada um dos quatro filhos possíveis para ver se tem o alelo h, então o tipo certo é 'comparar'. O conteúdo do passo está correto.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C"
  }
 }

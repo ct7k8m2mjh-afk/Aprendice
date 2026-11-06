@@ -52,13 +52,13 @@
     "faz": "Ligue o poema aos três presentes",
     "conta": "\"Nunca me esquecerei\"",
     "porque": "Há memória (a pedra já passou), esperança ou projeção (a promessa de nunca esquecer) e percepção atual (a pedra não está mais ali).",
-    "tipo": "interpretar"
+    "tipo": "comparar"
    },
    {
     "faz": "Confirme A, B, C e E",
     "conta": "memória / presente da lembrança",
     "porque": "Todas dizem que a pedra está presente pela mente (memória, expectativa), não como objeto real agora. Isso é coerente com Agostinho.",
-    "tipo": "aplicar"
+    "tipo": "eliminar"
    },
    {
     "faz": "Pegue a que contraria",
@@ -90,7 +90,7 @@
   },
   {
    "nome": "substituição",
-   "ideia": "Troque 'pedra' por 'lembrança da pedra' em cada alternativa. As que continuam fazendo sentido são coerentes; só D deixa de fazer."
+   "ideia": "Troque 'a pedra' por 'a lembrança da pedra' só em D: a frase passa a ser coerente com Agostinho. Isso mostra que o erro de D é pôr a permanência no objeto, e não na mente."
   }
  ],
  "quadro": [],
@@ -107,10 +107,34 @@
  "gab": "D",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "comparar",
+    "motivo": "'interpretar' não está na lista de tipos aceitos (localizar, calcular, comparar, eliminar, concluir). Este passo compara o poema com os três presentes, então o tipo certo é 'comparar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "eliminar",
+    "motivo": "'aplicar' não está na lista de tipos aceitos. Este passo descarta A, B, C e E, que são coerentes, então o tipo certo é 'eliminar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "caminhos[1].ideia",
+    "depois": "Troque 'a pedra' por 'a lembrança da pedra' só em D: a frase passa a ser coerente com Agostinho. Isso mostra que o erro de D é pôr a permanência no objeto, e não na mente.",
+    "motivo": "O texto antigo dizia que, feita a troca em cada alternativa, 'só D deixa de fazer' sentido. Isso contradiz a checagem, que mostra D ficando coerente depois da troca. Além disso, em E a troca gera 'memória de uma lembrança da pedra', que não tem sentido. Deixei o teste só em D, como está na checagem.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "D"
  }
 }

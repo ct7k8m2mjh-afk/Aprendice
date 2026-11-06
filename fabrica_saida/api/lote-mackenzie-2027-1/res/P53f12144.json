@@ -36,15 +36,15 @@
   "passos": [
    {
     "faz": "Classifique a situação I",
-    "conta": "I: 'estimular seu sistema imunológico... memória'",
+    "conta": "I: 'memória imunológica'",
     "porque": "Se o próprio corpo é estimulado a responder e a guardar memória, a preparação traz antígeno. Isso é vacina, imunização ativa. Doses repetidas na criança também lembram o esquema de vacinação.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Classifique a situação II",
-    "conta": "II: 'anticorpos... produzidos por outro organismo'",
+    "conta": "II: anticorpos de outro organismo",
     "porque": "Anticorpo pronto, feito em outro organismo (por exemplo, cavalo), é soro. A proteção é imediata, mas sem memória, pois o corpo não produziu nada.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Elimine as alternativas que invertem I e II",
@@ -66,7 +66,7 @@
    }
   ],
   "resposta": "Alternativa C: I é vacina (o corpo produz resposta e memória), II é soro (anticorpos prontos), e o sarampo tem vacina.",
-  "checagem": "Teste pela memória: só a vacina deixa memória, então a situação I, que a cita, só pode ser vacina. Em seguida, confira que sarampo é doença viral com vacina no calendário infantil. Pela outra via, uma verminose e um protozoário não têm vacina, o que derruba B e E.",
+  "checagem": "Teste pela memória: só a vacina deixa memória, então a situação I, que a cita, só pode ser vacina. Em seguida, confira que sarampo é doença viral com vacina no calendário infantil. Pela outra via, a ascaridíase e a doença de Chagas não têm vacina, o que derruba B e E.",
   "erradas": {
    "A": "Inverte as duas situações: chama de soro o que estimula resposta e memória (isso é vacina) e de vacina o que entrega anticorpos prontos (isso é soro). Ainda cita a dengue, que tem vacina, mas a classificação já derruba a alternativa.",
    "B": "A classificação está certa (I – vacina; II – soro), mas a ascaridíase, verminose causada por Ascaris lumbricoides, não tem vacina. A segunda exigência do enunciado não é cumprida.",
@@ -94,7 +94,7 @@
  "quadro": [],
  "visual": {
   "cabe": true,
-  "porque": "O processo é o mesmo para ambas, mas o caminho dos anticorpos é diferente. Animar os dois lado a lado deixa a diferença clara.",
+  "porque": "As duas preparações envolvem anticorpos, mas a origem deles é diferente. Animar os dois caminhos lado a lado deixa a diferença clara.",
   "tipo": "fluxo",
   "roteiro": "Tela dividida em duas colunas. Quadro 1, coluna VACINA: seringa injeta antígeno (pontos coloridos) no braço. Quadro 2: linfócitos B ativados se multiplicam e liberam anticorpos (Y azuis) ao longo de alguns dias; algumas células viram 'células de memória' e ficam. Quadro 3: novo contato com o agente, e a resposta aparece rápida e forte. Quadro 1, coluna SORO: um cavalo (outro organismo) produz anticorpos (Y), que são coletados e injetados na pessoa. Quadro 2: os anticorpos agem imediatamente sobre a toxina, mas desaparecem com o tempo, sem células de memória. Legenda final: vacina = ativa, preventiva, com memória; soro = passiva, imediata, sem memória."
  },
@@ -105,10 +105,52 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[0].tipo",
+    "depois": "localizar",
+    "motivo": "\"interpretar\" não está na lista de tipos permitidos (localizar, calcular, comparar, eliminar, concluir). O passo acha no texto a marca que classifica a situação I, então o tipo certo é localizar.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "localizar",
+    "motivo": "Mesmo caso do passo anterior: \"interpretar\" não é um tipo permitido.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[0].conta",
+    "depois": "I: 'memória imunológica'",
+    "motivo": "A conta original tinha cerca de 48 caracteres e passava do limite de ~30 da conta escrita à mão na tela de 390 px. O trecho que decide a classificação continua citado.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "II: anticorpos de outro organismo",
+    "motivo": "Mesmo caso: a conta original passava do limite de largura e foi encurtada sem perder o trecho que decide.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Teste pela memória: só a vacina deixa memória, então a situação I, que a cita, só pode ser vacina. Em seguida, confira que sarampo é doença viral com vacina no calendário infantil. Pela outra via, a ascaridíase e a doença de Chagas não têm vacina, o que derruba B e E.",
+    "motivo": "A frase \"uma verminose e um protozoário não têm vacina\" soa como regra geral, e como regra ela é falsa: a malária, causada por um protozoário, tem vacinas aprovadas pela OMS (RTS,S e R21). Agora a frase fala só das duas doenças da questão.",
+    "fonte": "OMS — recomendação das vacinas contra malária RTS,S/AS01 (2021) e R21/Matrix-M (2023)"
+   },
+   {
+    "campo": "visual.porque",
+    "depois": "As duas preparações envolvem anticorpos, mas a origem deles é diferente. Animar os dois caminhos lado a lado deixa a diferença clara.",
+    "motivo": "A frase \"o processo é o mesmo para ambas\" está errada. Na vacina o próprio corpo produz a resposta e a memória; no soro os anticorpos chegam prontos.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C"
  }
 }

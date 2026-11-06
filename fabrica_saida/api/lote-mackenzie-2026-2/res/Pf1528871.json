@@ -66,7 +66,7 @@
    {
     "faz": "Confirme a economia (E)",
     "conta": "Reservas de petróleo entre as maiores",
-    "porque": "O Irã está entre os países com maiores reservas provadas de petróleo e de gás natural. Isso, somado ao controle do Estreito de Ormuz, explica sua importância estratégica.",
+    "porque": "O Irã está entre os países com maiores reservas provadas de petróleo e de gás natural. Isso, somado à sua posição às margens do Estreito de Ormuz, explica sua importância estratégica.",
     "tipo": "concluir"
    }
   ],
@@ -83,13 +83,13 @@
   "essencial": {
    "pede": "A única afirmação correta sobre o Irã, país destacado no mapa.",
    "chave": "Irã é república islâmica, sem fronteira com Arábia Saudita, Iêmen ou Israel, fora da OTAN, e tem grandes reservas de petróleo.",
-   "cuidado": "Cada errada mistura um fato do Oriente Médio com o país errado. Teste regime, vizinhos, aliança e economia separadamente."
+   "cuidado": "Cada errada tem uma falha objetiva. Teste regime, vizinhos, aliança e economia separadamente."
   }
  },
  "caminhos": [
   {
    "nome": "eliminação por fato conhecido",
-   "ideia": "O Irã não é monarquia (A), não está na OTAN (C) e não tem fronteira com Israel (B). Sobra a E, a única que não contém erro."
+   "ideia": "O Irã não é monarquia (A), não faz fronteira com Israel (B), não está na OTAN (C) e não tem Reino Unido e França como maiores parceiros (D). Sobra a E, a única que não contém erro."
   },
   {
    "nome": "uso do mapa",
@@ -101,7 +101,7 @@
   "cabe": true,
   "porque": "Um mapa que destaca os vizinhos do Irã e os separa dos países citados na alternativa B ajuda a ver por que ela falha.",
   "tipo": "figura",
-  "roteiro": "Quadro 1: mapa do Oriente Médio com o Irã em vermelho. Quadro 2: contorno do Irã e nomes dos vizinhos (Iraque, Turquia, Armênia, Azerbaijão, Turcomenistão, Afeganistão, Paquistão). Quadro 3: Arábia Saudita, Iêmen e Israel marcados em cinza, com o Golfo Pérsico entre eles e o Irã. Quadro 4: ícone de barril de petróleo sobre o Irã e seta para o Estreito de Ormuz."
+  "roteiro": "Quadro 1: mapa do Oriente Médio com o Irã em vermelho. Quadro 2: contorno do Irã e nomes dos vizinhos (Iraque, Turquia, Armênia, Azerbaijão, Turcomenistão, Afeganistão, Paquistão). Quadro 3: Arábia Saudita, Iêmen e Israel marcados em cinza, com o Golfo Pérsico entre a Arábia Saudita e o Irã e o Iraque entre Israel e o Irã. Quadro 4: ícone de barril de petróleo sobre o Irã e seta para o Estreito de Ormuz."
  },
  "fontes": [
   "https://www.cia.gov/the-world-factbook/countries/iran/",
@@ -113,10 +113,40 @@
  "gab": "E",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "O Irã está entre os países com maiores reservas provadas de petróleo e de gás natural. Isso, somado à sua posição às margens do Estreito de Ormuz, explica sua importância estratégica.",
+    "motivo": "O Irã não controla sozinho o Estreito de Ormuz. Ele divide a margem do estreito com Omã (península de Musandam). O certo é falar em posição junto ao estreito, não em controle.",
+    "fonte": "https://www.eia.gov/international/analysis/special-topics/World_Oil_Transit_Chokepoints"
+   },
+   {
+    "campo": "caminhos[0].ideia",
+    "depois": "O Irã não é monarquia (A), não faz fronteira com Israel (B), não está na OTAN (C) e não tem Reino Unido e França como maiores parceiros (D). Sobra a E, a única que não contém erro.",
+    "motivo": "O caminho dizia que 'sobra a E' sem ter eliminado a D. Faltava um passo no raciocínio.",
+    "fonte": ""
+   },
+   {
+    "campo": "visual.roteiro",
+    "depois": "Quadro 1: mapa do Oriente Médio com o Irã em vermelho. Quadro 2: contorno do Irã e nomes dos vizinhos (Iraque, Turquia, Armênia, Azerbaijão, Turcomenistão, Afeganistão, Paquistão). Quadro 3: Arábia Saudita, Iêmen e Israel marcados em cinza, com o Golfo Pérsico entre a Arábia Saudita e o Irã e o Iraque entre Israel e o Irã. Quadro 4: ícone de barril de petróleo sobre o Irã e seta para o Estreito de Ormuz.",
+    "motivo": "O Golfo Pérsico não fica entre Israel e o Irã nem entre o Iêmen e o Irã. Ele separa o Irã da Arábia Saudita. A figura descrita estaria geograficamente errada.",
+    "fonte": "https://www.cia.gov/the-world-factbook/countries/iran/"
+   },
+   {
+    "campo": "resolucao.essencial.cuidado",
+    "depois": "Cada errada tem uma falha objetiva. Teste regime, vizinhos, aliança e economia separadamente.",
+    "motivo": "A frase 'cada errada mistura um fato do Oriente Médio com o país errado' generaliza além do que as alternativas mostram. C (proteção da OTAN e desmilitarização) e D (colonização britânica) não descrevem nenhum outro país da região, e a B nem vale para a Arábia Saudita, que não faz fronteira com Israel.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E"
  }
 }

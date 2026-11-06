@@ -33,7 +33,7 @@
     ],
     [
      "mesênquima",
-     "tecido embrionário frouxo de células soltas, de origem mesodérmica"
+     "tecido embrionário frouxo de células soltas, em grande parte de origem mesodérmica"
     ]
    ]
   },
@@ -49,13 +49,13 @@
     "faz": "Identifique o folheto envolvido",
     "conta": "Superfície dorsal → ectoderme",
     "porque": "A epiderme em desenvolvimento aparece acima do tubo e o sistema nervoso surge da mesma camada externa. Esse folheto é a ectoderme.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Dê o papel da notocorda",
     "conta": "Notocorda: abaixo do tubo, só induz",
     "porque": "A notocorda aparece como um ponto vermelho sob o tubo. Ela é mesoderme e induz a ectoderme acima dela, mas não vira o sistema nervoso.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Elimine as outras alternativas",
@@ -75,8 +75,8 @@
   "erradas": {
    "A": "Afirma que a mesoderme forma o tubo neural. A mesoderme origina a notocorda, músculos e esqueleto. Quem se dobra na figura é a ectoderme, e o tubo fica acima da notocorda, mas não é feito de mesoderme.",
    "B": "Diz que a endoderme forma cérebro e medula. A endoderme forma o revestimento do tubo digestório e de órgãos como fígado e pulmões, não o sistema nervoso.",
-   "D": "Diz que a notocorda origina diretamente o sistema nervoso central. A notocorda é mesodérmica e só induz a ectoderme a formar o tubo neural; depois fica como parte da coluna.",
-   "E": "Diz que células do mesênquima migram em torno da notocorda. O mesênquima (mesoderme) forma tecidos de sustentação, como as vértebras, e não o tubo neural, que se dobra a partir da ectoderme."
+   "D": "Diz que a notocorda origina diretamente o sistema nervoso central. A notocorda é mesodérmica e só induz a ectoderme a formar o tubo neural; nos humanos, o que resta dela forma o núcleo pulposo dos discos intervertebrais.",
+   "E": "Diz que células do mesênquima migram em torno da notocorda. O mesênquima (em grande parte mesodérmico) forma tecidos de sustentação, como as vértebras, e não o tubo neural, que se dobra a partir da ectoderme."
   },
   "armadilha": "Confundir o papel indutor da notocorda (mesoderme) com a origem do tubo neural, que é a ectoderme.",
   "alerta": "",
@@ -106,10 +106,46 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "localizar",
+    "motivo": "O tipo 'interpretar' não está na lista permitida (localizar, calcular, comparar, eliminar, concluir). Este passo identifica o folheto a partir da figura, então o tipo certo é localizar.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "localizar",
+    "motivo": "O tipo 'interpretar' não está na lista permitida. Este passo localiza a notocorda na figura e diz qual é o papel dela.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.antes.simbolos[4][1]",
+    "depois": "tecido embrionário frouxo de células soltas, em grande parte de origem mesodérmica",
+    "motivo": "Nem todo mesênquima vem da mesoderme: o da cabeça (ectomesênquima) vem da crista neural, que é ectodérmica. Dizer que todo ele é mesodérmico generaliza demais.",
+    "fonte": "Gilbert, Developmental Biology (crista neural e ectomesênquima)"
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "Diz que células do mesênquima migram em torno da notocorda. O mesênquima (em grande parte mesodérmico) forma tecidos de sustentação, como as vértebras, e não o tubo neural, que se dobra a partir da ectoderme.",
+    "motivo": "Mesmo ajuste de precisão feito em simbolos: nem todo mesênquima é mesodérmico.",
+    "fonte": "Gilbert, Developmental Biology"
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "Diz que a notocorda origina diretamente o sistema nervoso central. A notocorda é mesodérmica e só induz a ectoderme a formar o tubo neural; nos humanos, o que resta dela forma o núcleo pulposo dos discos intervertebrais.",
+    "motivo": "A frase 'fica como parte da coluna' era vaga. O que resta da notocorda no adulto humano é o núcleo pulposo dos discos intervertebrais; as vértebras vêm de outro tecido, o esclerótomo.",
+    "fonte": "Moore & Persaud, The Developing Human (notocorda e núcleo pulposo)"
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C"
  }
 }

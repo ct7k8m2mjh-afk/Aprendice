@@ -11,7 +11,7 @@
    "texto": "Cada afirmação deve ser testada contra o texto, e não contra o que você acha do assunto. Uma afirmação só é correta se o texto a sustenta. Basta um detalhe falso (como 'formal e distante' ou 'científicas') para a afirmação cair. Pergunta retórica é a que o autor faz sem esperar resposta, para conduzir o leitor.",
    "formulas": [
     "afirmação correta = sustentada por trecho do texto",
-    "pergunta retórica = pergunta cuja resposta o autor já tem e dá em seguida"
+    "pergunta retórica = pergunta que não pede resposta do leitor; aqui, o próprio autor responde em seguida"
    ],
    "simbolos": [
     [
@@ -40,7 +40,7 @@
     "faz": "Teste o tom da afirmação II",
     "conta": "\"Claro que interessa.\"; \"como respira\"; \"como gosto de definir\"",
     "porque": "O autor usa frases curtas, pergunta direta, 1ª pessoa e comparação cotidiana. O tom é próximo e opinativo, não formal e distante.",
-    "tipo": "interpretar"
+    "tipo": "comparar"
    },
    {
     "faz": "Procure as informações científicas",
@@ -97,10 +97,28 @@
  "gab": "B",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "comparar",
+    "motivo": "'interpretar' não está na lista de tipos permitidos (localizar, calcular, comparar, eliminar, concluir). O passo compara o tom que a afirmação II atribui ao autor com as marcas do texto.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.antes.formulas[1]",
+    "depois": "pergunta retórica = pergunta que não pede resposta do leitor; aqui, o próprio autor responde em seguida",
+    "motivo": "A pergunta retórica nem sempre vem seguida de resposta do autor. Isso acontece neste texto ('Claro que interessa', 'O poder da literatura', 'Não'), mas não serve de definição geral. Mudei o mínimo para a regra ficar correta.",
+    "fonte": "Bechara, Moderna Gramática Portuguesa (interrogação retórica)"
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "B"
  }
 }

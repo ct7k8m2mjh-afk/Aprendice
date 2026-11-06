@@ -49,13 +49,13 @@
     "faz": "Ache o sentido da força elétrica",
     "conta": "q > 0 → F_e no sentido de E: ↓",
     "porque": "Em carga positiva, a força elétrica tem o mesmo sentido do campo elétrico, que aponta para baixo.",
-    "tipo": "aplicar"
+    "tipo": "calcular"
    },
    {
     "faz": "Ache o sentido da força magnética",
-    "conta": "v → , B ⊗ : regra da mão direita → F_m ↑",
+    "conta": "v →, B ⊗: mão direita → F_m ↑",
     "porque": "Pela regra da mão direita (v para a direita, B entrando), a força sobre carga positiva aponta para cima, oposta à elétrica.",
-    "tipo": "aplicar"
+    "tipo": "calcular"
    },
    {
     "faz": "Use a condição de trajetória reta",
@@ -125,10 +125,34 @@
  "gab": "B",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "calcular",
+    "motivo": "O tipo 'aplicar' não existe. Os tipos válidos são localizar, calcular, comparar, eliminar e concluir.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "calcular",
+    "motivo": "O tipo 'aplicar' não existe. Os tipos válidos são localizar, calcular, comparar, eliminar e concluir.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "v →, B ⊗: mão direita → F_m ↑",
+    "motivo": "A conta tinha cerca de 40 caracteres e passava do limite de ~30 por linha, que o site não quebra. O conteúdo físico continua igual. Pela regra da mão direita, x̂ × (−ẑ) = +ŷ: a força magnética sobre a carga positiva aponta para cima.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "B"
  }
 }

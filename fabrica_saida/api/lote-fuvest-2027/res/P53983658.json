@@ -24,7 +24,7 @@
     ],
     [
      "supermassive",
-     "supermassivo: com massa enorme, milhões de vezes a do Sol"
+     "supermassivo: com massa enorme, de milhões a bilhões de vezes a do Sol"
     ],
     [
      "outer layer",
@@ -50,13 +50,13 @@
     "faz": "Veja de onde vem o brilho",
     "conta": "\"the illuminated gas cloud shines like the outer layer of a star\"",
     "porque": "O gás iluminado brilha como a camada externa de uma estrela. Então o objeto é parecido com estrela só na luminosidade: um híbrido.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Elimine o que o texto não sustenta",
     "conta": "B: evolução de estrelas? C: fusão? D: galáxias × gravidade? E: estágio estelar?",
-    "porque": "Nenhuma dessas ideias aparece no texto. Ele diz até que a ordem de formação (estrelas ou buracos negros primeiro) é uma pergunta em aberto.",
-    "tipo": "concluir"
+    "porque": "O texto não sustenta nenhuma dessas ideias: a fusão nuclear até aparece, mas negada. Ele diz também que a ordem de formação (estrelas ou buracos negros primeiro) é uma pergunta em aberto.",
+    "tipo": "eliminar"
    }
   ],
   "resposta": "Alternativa A: o objeto é híbrido (buraco negro + gás) e brilha de modo semelhante ao de uma estrela, sem ser estrela no sentido usual.",
@@ -64,7 +64,7 @@
   "erradas": {
    "B": "O texto não diz que estrelas massivas originam esses objetos. Ele pergunta se estrelas deram origem a buracos negros ou o contrário ('or was it the other way around?'), e deixa em aberto. Não há 'modelo clássico' reafirmado: o texto fala em desafiar ideias.",
    "C": "Inverte o texto: o objeto NÃO é movido por fusão nuclear ('not stars in the usual sense of being powered by nuclear fusion'). A energia vem do buraco negro que devora matéria e emite radiação.",
-   "D": "O texto não equipara galáxias jovens a processos gravitacionais. As galáxias aparecem só porque os pontos vermelhos pareciam galáxias maduras num universo jovem demais.",
+   "D": "O texto não equipara galáxias jovens a processos gravitacionais. As galáxias aparecem quando os pontos vermelhos parecem galáxias maduras num universo jovem demais e na pergunta sobre a ordem de formação, sem nenhuma equivalência funcional.",
    "E": "O texto não trata o objeto como fase inicial de estrela comum. Diz que é uma 'nova classe de objeto cósmico' e que não é estrela no sentido usual."
   },
   "armadilha": "Deixar-se levar pela palavra 'estrela' e supor fusão nuclear ou evolução estelar, quando o texto nega justamente isso.",
@@ -95,10 +95,49 @@
  "gab": "A",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "localizar",
+    "motivo": "'interpretar' não é um tipo permitido. Os tipos válidos são localizar, calcular, comparar, eliminar e concluir, e este passo localiza o trecho sobre o brilho.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "eliminar",
+    "motivo": "O passo descarta as alternativas B, C, D e E, então o tipo é eliminar, e não concluir.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "O texto não sustenta nenhuma dessas ideias: a fusão nuclear até aparece, mas negada. Ele diz também que a ordem de formação (estrelas ou buracos negros primeiro) é uma pergunta em aberto.",
+    "motivo": "A frase 'Nenhuma dessas ideias aparece no texto' é falsa para C: a fusão nuclear aparece no texto, só que negada ('not ... powered by nuclear fusion').",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "O texto não equipara galáxias jovens a processos gravitacionais. As galáxias aparecem quando os pontos vermelhos parecem galáxias maduras num universo jovem demais e na pergunta sobre a ordem de formação, sem nenhuma equivalência funcional.",
+    "motivo": "O 'só' era inexato: as galáxias também aparecem no texto na pergunta 'Did stars and galaxies give rise to black holes...?'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.antes.simbolos[2]",
+    "depois": [
+     "supermassive",
+     "supermassivo: com massa enorme, de milhões a bilhões de vezes a do Sol"
+    ],
+    "motivo": "Correção de precisão: buracos negros supermassivos vão de milhões a bilhões de massas solares.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "A"
  }
 }

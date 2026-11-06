@@ -60,13 +60,13 @@
    {
     "faz": "Elimine as que contradizem o texto",
     "conta": "A: mortalidade infantil\nB: incentivo eficaz\nD: urbanização\nE: saúde desnecessária",
-    "porque": "Nenhuma dessas causas aparece no texto. A e B o contrariam, D troca a causa e E ignora a necessidade de políticas.",
+    "porque": "A e D trazem causas que o texto não cita (mortalidade infantil, urbanização). B contraria o texto, que chama os resultados de limitados. E chega a uma conclusão que o texto nega, pois ele pede transformações econômicas e sociais mais amplas.",
     "tipo": "eliminar"
    },
    {
     "faz": "Confirme a alternativa que sobra",
     "conta": "fecundidade baixa + saldo migratório negativo",
-    "porque": "Casa com baixa natalidade e emigração do texto. A rejeição à imigração, fato conhecido no Leste Europeu, bloqueia uma estratégia de reposição usada em outros países europeus.",
+    "porque": "Casa com a baixa natalidade e a emigração citadas no texto. A rejeição à imigração bloqueia uma estratégia de reposição usada em outros países europeus.",
     "tipo": "concluir"
    }
   ],
@@ -127,10 +127,28 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "A e D trazem causas que o texto não cita (mortalidade infantil, urbanização). B contraria o texto, que chama os resultados de limitados. E chega a uma conclusão que o texto nega, pois ele pede transformações econômicas e sociais mais amplas.",
+    "motivo": "A frase \"Nenhuma dessas causas aparece no texto\" está errada para B e E. O incentivo à natalidade aparece no texto, com resultado limitado. \"Saúde desnecessária\" não é uma causa, é uma conclusão da alternativa.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "Casa com a baixa natalidade e a emigração citadas no texto. A rejeição à imigração bloqueia uma estratégia de reposição usada em outros países europeus.",
+    "motivo": "O texto fala do Sudeste Europeu, e a frase dizia \"fato conhecido no Leste Europeu\", uma região diferente. Além disso, ela apresentava como fato sem fonte o que a alternativa C já afirma. Tirei o aposto.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C"
  }
 }

@@ -49,13 +49,13 @@
     "faz": "Escreva a reação na água",
     "conta": "CO₂ + H₂O → H₂CO₃ → H⁺ + HCO₃⁻",
     "porque": "O ácido carbônico libera H⁺. O aumento de H⁺ é exatamente o que reduz o pH.",
-    "tipo": "aplicar"
+    "tipo": "calcular"
    },
    {
     "faz": "Ligue o pH baixo ao esqueleto",
     "conta": "H⁺ + CaCO₃ → Ca²⁺ + HCO₃⁻",
     "porque": "O H⁺ consome o carbonato, e o esqueleto calcário de corais e moluscos enfraquece ou se dissolve.",
-    "tipo": "aplicar"
+    "tipo": "concluir"
    },
    {
     "faz": "Teste as demais alternativas",
@@ -73,9 +73,9 @@
   "resposta": "Alternativa B: o CO₂ da queima de combustíveis fósseis se dissolve no mar, forma ácido carbônico, libera H⁺ e HCO₃⁻, reduz o pH e enfraquece os esqueletos calcários.",
   "checagem": "A cadeia fecha: mais CO₂ → mais H⁺ → pH menor (mais ácido). Isso coincide com o enunciado, que fala em aumento da acidez. O efeito sobre o calcário também é coerente: ácido ataca carbonato, como o vinagre faz com casca de ovo.",
   "erradas": {
-   "A": "O pH diminuir significa água mais ácida, e isso dissolve carbonatos em vez de aumentar a solubilidade a favor dos corais. Mais solubilidade significa esqueleto se dissolvendo mais, o que prejudica os corais. Além disso, a evaporação concentra sais, mas não é a causa da acidificação.",
+   "A": "A erra a causa e o efeito. A evaporação concentra sais, mas não é ela que acidifica o mar; a causa é o CO₂ absorvido do ar. E se a água ácida aumenta a solubilidade dos carbonatos, o esqueleto se dissolve: isso prejudica os corais, não favorece seu crescimento.",
    "C": "A fotossíntese consome CO₂, não libera. O fitoplâncton em fotossíntese tende a retirar CO₂ da água e elevar o pH. Quem libera CO₂ é a respiração, em especial a decomposição depois da proliferação. Também não existe 'neutralização da alcalinidade' que impeça a deposição de carbonato como causa da acidificação.",
-   "D": "Mais sais que estimulam a precipitação de CaCO₃ não deixariam o oceano mais ácido. A causa da acidificação é o CO₂ dissolvido, não o escoamento de sais. O desmatamento costeiro não é o mecanismo central do fenômeno.",
+   "D": "D põe a causa no escoamento de sais pelo desmatamento costeiro, mas a acidificação dos oceanos vem do CO₂ absorvido da atmosfera. Além disso, a acidificação dificulta a formação de CaCO₃, em vez de estimular sua precipitação.",
    "E": "O ácido sulfúrico elevaria a acidez, e não o pH: ácido faz o pH cair. O texto afirma 'eleva o pH', o que é contraditório. Além disso, mais acidez dificulta a formação de estruturas calcárias, não a favorece."
   },
   "armadilha": "Marcar uma alternativa que fala de pH e de calcário, mas com o sentido trocado (pH baixo 'favorecendo' corais) ou com a origem errada do CO₂ (fotossíntese em vez de queima de fósseis).",
@@ -127,10 +127,46 @@
  "gab": "B",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "A erra a causa e o efeito. A evaporação concentra sais, mas não é ela que acidifica o mar; a causa é o CO₂ absorvido do ar. E se a água ácida aumenta a solubilidade dos carbonatos, o esqueleto se dissolve: isso prejudica os corais, não favorece seu crescimento.",
+    "motivo": "O texto anterior dizia que a água ácida 'dissolve carbonatos em vez de aumentar a solubilidade', o que é contraditório, porque dissolver é justamente ter maior solubilidade. O erro real da alternativa está na causa (evaporação) e em dizer que isso 'favorece o crescimento dos corais'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "D põe a causa no escoamento de sais pelo desmatamento costeiro, mas a acidificação dos oceanos vem do CO₂ absorvido da atmosfera. Além disso, a acidificação dificulta a formação de CaCO₃, em vez de estimular sua precipitação.",
+    "motivo": "A frase 'precipitação de CaCO₃ não deixaria o oceano mais ácido' é quimicamente discutível. A calcificação (Ca²⁺ + 2 HCO₃⁻ → CaCO₃ + CO₂ + H₂O) libera CO₂ e baixa um pouco o pH. Troquei por argumentos que não se discutem: a causa está errada e o sentido do efeito sobre o CaCO₃ está invertido.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "calcular",
+    "motivo": "'aplicar' não está entre os tipos permitidos (localizar, calcular, comparar, eliminar, concluir).",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "concluir",
+    "motivo": "'aplicar' não está entre os tipos permitidos. O passo tira a consequência do pH baixo sobre o esqueleto.",
+    "fonte": ""
+   },
+   {
+    "campo": "conteudo",
+    "depois": "B09.7",
+    "motivo": "Confirmo que a classificação proposta (B09.7, poluição e desequilíbrios) está certa. A classificação atual do banco, B09.6 (biomas), não corresponde ao tema da questão.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "B"
  }
 }

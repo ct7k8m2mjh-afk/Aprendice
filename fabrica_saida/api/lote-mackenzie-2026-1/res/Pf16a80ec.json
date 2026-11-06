@@ -80,8 +80,8 @@
   "checagem": "Calcule o custo de cada aparelho. Chuveiro: 82,5 × 0,8 = R$ 66,00. Geladeira: 50 × 0,8 = R$ 40,00. Lâmpadas: 15 × 0,8 = R$ 12,00. A soma 66 + 40 + 12 = R$ 118,00 confere.",
   "erradas": {
    "A": "R$ 102,00 corresponderia a 127,5 kWh (102 ÷ 0,8). Mas os três aparelhos somam 82,5 + 50 + 15 = 147,5 kWh, e não 127,5 kWh. Esse valor deixa de fora 20 kWh do consumo real.",
-   "C": "R$ 130,00 corresponderia a 162,5 kWh (130 ÷ 0,8), 15 kWh a mais que o consumo real de 147,5 kWh. Nenhuma conta com os dados do enunciado chega a esse valor.",
-   "D": "R$ 145,50 corresponderia a cerca de 181,9 kWh (145,5 ÷ 0,8), bem acima dos 147,5 kWh somados. Também não sai de nenhuma combinação dos dados do enunciado.",
+   "C": "R$ 130,00 não confere: 130 ÷ 0,8 = 162,5 kWh, 15 kWh a mais que o consumo real de 82,5 + 50 + 15 = 147,5 kWh, que custa R$ 118,00.",
+   "D": "R$ 145,50 não confere: 145,5 ÷ 0,8 ≈ 181,9 kWh, bem acima dos 147,5 kWh que os três aparelhos somam (R$ 118,00).",
    "E": "R$ 160,00 corresponderia a 200 kWh (160 ÷ 0,8), muito acima dos 147,5 kWh que os três aparelhos consomem em 30 dias."
   },
   "armadilha": "Misturar unidades: somar 50 kWh da geladeira com watts ou minutos sem converter. Tudo precisa estar em kWh antes da soma.",
@@ -99,7 +99,7 @@
   },
   {
    "nome": "Estimativa para eliminar",
-   "ideia": "O chuveiro (5,5 kW por 0,5 h) gasta cerca de 2,75 kWh por dia, ou 82 kWh por mês. Com a geladeira, já são 132 kWh. Com as lâmpadas, cerca de 147 kWh, perto de 150 kWh. Isso dá cerca de R$ 118."
+   "ideia": "O chuveiro (5,5 kW por 0,5 h) gasta cerca de 2,75 kWh por dia, ou 82,5 kWh por mês. Com a geladeira, já são 132,5 kWh. Com as lâmpadas, chega perto de 150 kWh, ou cerca de R$ 120 (150 × 0,8). A alternativa mais próxima é R$ 118; as outras ficam longe."
   }
  ],
  "quadro": [
@@ -149,10 +149,34 @@
  "gab": "B",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "R$ 130,00 não confere: 130 ÷ 0,8 = 162,5 kWh, 15 kWh a mais que o consumo real de 82,5 + 50 + 15 = 147,5 kWh, que custa R$ 118,00.",
+    "motivo": "A frase 'Nenhuma conta com os dados do enunciado chega a esse valor' afirma mais do que se pode provar. Uma conta plausível chega a 162,5 kWh: contar as lâmpadas duas vezes (147,5 + 15). O guia proíbe afirmar que não há origem sem mostrar o teste. A nova versão fica só no teste objetivo.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "R$ 145,50 não confere: 145,5 ÷ 0,8 ≈ 181,9 kWh, bem acima dos 147,5 kWh que os três aparelhos somam (R$ 118,00).",
+    "motivo": "A frase 'não sai de nenhuma combinação dos dados' afirma uma inexistência que não dá para provar. Troquei pelo teste objetivo.",
+    "fonte": ""
+   },
+   {
+    "campo": "caminhos[1].ideia",
+    "depois": "O chuveiro (5,5 kW por 0,5 h) gasta cerca de 2,75 kWh por dia, ou 82,5 kWh por mês. Com a geladeira, já são 132,5 kWh. Com as lâmpadas, chega perto de 150 kWh, ou cerca de R$ 120 (150 × 0,8). A alternativa mais próxima é R$ 118; as outras ficam longe.",
+    "motivo": "O texto antigo tinha duas contas que não fechavam. 82,5 + 50 dá 132,5, e não 132. E 150 kWh × 0,8 dá R$ 120, não 'cerca de R$ 118' sem explicar. Corrigi a soma e expliquei por que a estimativa leva à alternativa B.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "B"
  }
 }

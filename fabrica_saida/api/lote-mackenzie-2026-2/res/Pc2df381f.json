@@ -25,7 +25,7 @@
     ],
     [
      "corpos cetônicos",
-     "moléculas produzidas no fígado a partir de ácidos graxas quando falta glicose; servem de combustível"
+     "moléculas produzidas no fígado a partir de ácidos graxos quando falta glicose; servem de combustível"
     ],
     [
      "esteatorreia",
@@ -43,13 +43,13 @@
     "faz": "Siga o destino das proteínas em excesso",
     "conta": "aminoácido → NH₃ → ureia → urina",
     "porque": "O corpo não guarda proteína em excesso como reserva. Remove o nitrogênio (amônia). O fígado faz a ureia e os rins a eliminam, por isso ficam sobrecarregados.",
-    "tipo": "aplicar"
+    "tipo": "localizar"
    },
    {
     "faz": "Siga o que acontece com pouco carboidrato",
     "conta": "pouca glicose → usa gordura → cetonas",
-    "porque": "Com glicose baixa, o fígado degrada muitos ácidos graxas e forma corpos cetônicos. Esse quadro é a cetose.",
-    "tipo": "aplicar"
+    "porque": "Com glicose baixa, o fígado degrada muitos ácidos graxos e forma corpos cetônicos. Esse quadro é a cetose.",
+    "tipo": "localizar"
    },
    {
     "faz": "Teste as alternativas com palavras absolutas",
@@ -59,8 +59,8 @@
    },
    {
     "faz": "Teste a alternativa E",
-    "conta": "aminoácidos → insulina e glucagon",
-    "porque": "Dieta pobre em carboidrato não eleva a absorção de gordura a ponto de causar esteatorreia, que decorre de falha na digestão ou na absorção de lipídios.",
+    "conta": "pouco carboidrato ≠ esteatorreia",
+    "porque": "Dieta pobre em carboidrato deixa a insulina baixa, sem hipoglicemia de rebote. Também não eleva a absorção de gordura a ponto de causar esteatorreia, que vem de falha na digestão ou na absorção de lipídios.",
     "tipo": "eliminar"
    },
    {
@@ -71,7 +71,7 @@
    }
   ],
   "resposta": "Alternativa B: o excesso de proteínas gera amônia, que sobrecarrega fígado e rins, e a pouca ingestão de carboidratos pode induzir a produção de corpos cetônicos.",
-  "checagem": "Pessoas com doença renal são orientadas a evitar dietas hiperproteicas (excesso de ureia). Dietas cetogênicas são, por definição, pobres em carboidratos e ricas em corpos cetônicos. As duas afirmações de B batem com esses fatos conhecidos.",
+  "checagem": "Pessoas com doença renal são orientadas a evitar dietas hiperproteicas (excesso de ureia). Dietas cetogênicas são, por definição, pobres em carboidratos e levam o fígado a produzir corpos cetônicos. As duas afirmações de B batem com esses fatos conhecidos.",
   "erradas": {
    "A": "O excesso de aminoácidos passa por desaminação e pode virar glicose ou gordura, então 'sem passar por qualquer processo metabólico' é falso. Sem carboidrato o metabolismo não para: usa-se gordura e aminoácidos.",
    "C": "'Exclusivamente proteínas' e 'poupando os lipídios' são falsos. Sem carboidratos o organismo usa mais lipídios, e a cetose é a prova disso. Além disso, o texto sugere perda de peso inicial, não ganho de gordura por esse motivo.",
@@ -101,7 +101,7 @@
   "cabe": true,
   "porque": "Dois fluxos metabólicos em paralelo ficam claros em animação.",
   "tipo": "fluxo",
-  "roteiro": "Quadro 1: prato com carne e ovos, sem pão. Quadro 2: aminoácidos chegam ao fígado; o grupo amina se solta como NH₃ (bolinhas); o fígado converte em ureia; seta para os rins e a urina, com fígado e rins destacados. Quadro 3: nível de glicose baixo; células de gordura liberam ácidos graxas; fígado transforma em corpos cetônicos; setas para cérebro e músculos como combustível. Quadro 4: aparecem as duas setas juntas, com a legenda 'amônia → ureia' e 'gordura → cetonas'."
+  "roteiro": "Quadro 1: prato com carne e ovos, sem pão. Quadro 2: aminoácidos chegam ao fígado; o grupo amina se solta como NH₃ (bolinhas); o fígado converte em ureia; seta para os rins e a urina, com fígado e rins destacados. Quadro 3: nível de glicose baixo; células de gordura liberam ácidos graxos; fígado transforma em corpos cetônicos; setas para cérebro e músculos como combustível. Quadro 4: aparecem as duas setas juntas, com a legenda 'amônia → ureia' e 'gordura → cetonas'."
  },
  "fontes": [],
  "resposta_resolvedor": "B",
@@ -110,10 +110,64 @@
  "gab": "B",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.antes.simbolos[2][1]",
+    "depois": "moléculas produzidas no fígado a partir de ácidos graxos quando falta glicose; servem de combustível",
+    "motivo": "O termo certo é 'ácidos graxos', e não 'ácidos graxas'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[0].tipo",
+    "depois": "localizar",
+    "motivo": "'aplicar' não está na lista de tipos aceitos (localizar, calcular, comparar, eliminar, concluir).",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "Com glicose baixa, o fígado degrada muitos ácidos graxos e forma corpos cetônicos. Esse quadro é a cetose.",
+    "motivo": "O termo certo é 'ácidos graxos', e não 'ácidos graxas'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "localizar",
+    "motivo": "'aplicar' não está na lista de tipos aceitos.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "pouco carboidrato ≠ esteatorreia",
+    "motivo": "A conta falava de 'insulina e glucagon', mas o porque trata só da esteatorreia. Agora a conta mostra o que o passo prova.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Dieta pobre em carboidrato deixa a insulina baixa, sem hipoglicemia de rebote. Também não eleva a absorção de gordura a ponto de causar esteatorreia, que vem de falha na digestão ou na absorção de lipídios.",
+    "motivo": "O passo derrubava só a segunda metade da alternativa E. Agora também derruba a primeira (insulina em excesso e hipoglicemia de rebote).",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Pessoas com doença renal são orientadas a evitar dietas hiperproteicas (excesso de ureia). Dietas cetogênicas são, por definição, pobres em carboidratos e levam o fígado a produzir corpos cetônicos. As duas afirmações de B batem com esses fatos conhecidos.",
+    "motivo": "A dieta não é 'rica em corpos cetônicos'. Ela induz o fígado a produzi-los.",
+    "fonte": ""
+   },
+   {
+    "campo": "visual.roteiro",
+    "depois": "Quadro 1: prato com carne e ovos, sem pão. Quadro 2: aminoácidos chegam ao fígado; o grupo amina se solta como NH₃ (bolinhas); o fígado converte em ureia; seta para os rins e a urina, com fígado e rins destacados. Quadro 3: nível de glicose baixo; células de gordura liberam ácidos graxos; fígado transforma em corpos cetônicos; setas para cérebro e músculos como combustível. Quadro 4: aparecem as duas setas juntas, com a legenda 'amônia → ureia' e 'gordura → cetonas'.",
+    "motivo": "O termo certo é 'ácidos graxos', e não 'ácidos graxas'.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "B"
  }
 }

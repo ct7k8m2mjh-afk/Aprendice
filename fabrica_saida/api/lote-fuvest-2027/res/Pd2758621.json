@@ -47,7 +47,7 @@
    {
     "faz": "Localize a descrição do fim do regime",
     "conta": "\"colapso... velocidade e completude\"",
-    "porque": "O autor diz que a queda foi rápida e total, sem resistência prolongada.",
+    "porque": "O autor diz que a queda foi rápida e total.",
     "tipo": "localizar"
    },
    {
@@ -60,7 +60,7 @@
     "faz": "Leia o que vem depois de 'apesar'",
     "conta": "\"controle... doutrinação... terror... cumplicidade\"",
     "porque": "Esses quatro fatores apontam para um regime forte. O 'apesar' mostra o contraste: mesmo assim o nazismo 'sumiu' em 1945.",
-    "tipo": "interpretar"
+    "tipo": "comparar"
    },
    {
     "faz": "Teste as alternativas contra o texto",
@@ -103,7 +103,7 @@
  ],
  "visual": {
   "cabe": false,
-  "porque": "É uma questão de leitura de um trecho curto. Uma linha do tempo não acrescenta nada além das datas 1933 e 1945, que já estão no texto.",
+  "porque": "É uma questão de leitura de um trecho curto. Uma linha do tempo não acrescenta nada além dos 'doze anos' de regime e de 1945, que já estão no texto.",
   "tipo": "nenhum",
   "roteiro": ""
  },
@@ -114,10 +114,34 @@
  "gab": "E",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "comparar",
+    "motivo": "O tipo 'interpretar' não existe na lista permitida (localizar, calcular, comparar, eliminar, concluir). O passo põe o 'apesar' ao lado do 'sumiu', então o tipo certo é 'comparar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "O autor diz que a queda foi rápida e total.",
+    "motivo": "'Sem resistência prolongada' vai além do texto e confunde as coisas: a Alemanha lutou até maio de 1945. O trecho trata do sumiço da influência do regime, não do fim dos combates.",
+    "fonte": ""
+   },
+   {
+    "campo": "visual.porque",
+    "depois": "É uma questão de leitura de um trecho curto. Uma linha do tempo não acrescenta nada além dos 'doze anos' de regime e de 1945, que já estão no texto.",
+    "motivo": "O ano de 1933 não aparece no texto. O texto fala em 'doze anos' e o título traz 1945.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E"
  }
 }

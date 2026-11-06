@@ -3,7 +3,7 @@
  "id": "P0cf1d2e5",
  "materia": "mat",
  "tema": "M06",
- "conteudo": "M06.4",
+ "conteudo": "M06.3",
  "nivel": 4,
  "conceito": "Mudança de base de logaritmo (base 2 para base 10) e parte inteira do resultado.",
  "resolucao": {
@@ -39,19 +39,19 @@
     "faz": "Ache a razão entre as frequências",
     "conta": "f1 = f2/10 → f2/f1 = 10",
     "porque": "Se f1 é um décimo de f2, f2 é dez vezes f1. Esse é o valor dentro do logaritmo.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Monte a expressão de n",
     "conta": "n = log_2(10)",
     "porque": "Basta substituir a razão 10 na fórmula dada no enunciado.",
-    "tipo": "aplicar"
+    "tipo": "calcular"
    },
    {
     "faz": "Mude para a base 10",
     "conta": "n = log 10 ÷ log 2",
     "porque": "A calculadora só opera na base 10. A mudança de base divide o log do número pelo log da base antiga.",
-    "tipo": "aplicar"
+    "tipo": "calcular"
    },
    {
     "faz": "Substitua os valores",
@@ -131,10 +131,40 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[0].tipo",
+    "depois": "localizar",
+    "motivo": "O tipo 'interpretar' não existe na lista permitida (localizar, calcular, comparar, eliminar, concluir). O passo lê a relação entre f1 e f2 no enunciado.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "calcular",
+    "motivo": "O tipo 'aplicar' não existe na lista permitida. O passo substitui o valor na fórmula, o que é cálculo.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "calcular",
+    "motivo": "O tipo 'aplicar' não existe na lista permitida. A mudança de base é uma passagem de cálculo.",
+    "fonte": ""
+   },
+   {
+    "campo": "conteudo",
+    "depois": "M06.3",
+    "motivo": "A questão não tem equação logarítmica a resolver (M06.4). Ela cobra mudança de base e o cálculo de log_2(10), que é uma propriedade do logaritmo (M06.3 definição e propriedades do logaritmo).",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C"
  }
 }

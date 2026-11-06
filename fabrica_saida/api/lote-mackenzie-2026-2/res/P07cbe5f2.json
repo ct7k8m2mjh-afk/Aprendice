@@ -38,19 +38,19 @@
     "faz": "Tire os sinais do enunciado",
     "conta": "direita e 3× maior → A = +3",
     "porque": "Imagem direita tem aumento positivo. Como é maior que o objeto, o espelho só pode ser côncavo, com f = +20 cm.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Relacione p' com p pelo aumento",
     "conta": "3 = − p'/p → p' = − 3p",
     "porque": "O sinal negativo de p' mostra que a imagem é virtual, atrás do espelho. Isso é coerente com imagem direita.",
-    "tipo": "aplicar"
+    "tipo": "calcular"
    },
    {
     "faz": "Substitua na equação de Gauss",
     "conta": "1/20 = 1/p + 1/(− 3p)",
     "porque": "Agora só resta a incógnita p.",
-    "tipo": "aplicar"
+    "tipo": "calcular"
    },
    {
     "faz": "Some as frações",
@@ -74,7 +74,7 @@
    "E": "40,4 cm está além do centro de curvatura (2f = 40 cm). Nessa posição a imagem é real, invertida e menor que o objeto. Isso contradiz 'direita e três vezes maior'."
   },
   "armadilha": "Esquecer que imagem direita é virtual (p' negativo): com p' positivo a conta dá 26,7 cm, que é a imagem invertida.",
-  "alerta": "",
+  "alerta": "O valor exato é p = 40/3 ≈ 13,3 cm, e não 13,5 cm. A banca pede a distância 'aproximada', e B é a única alternativa próxima: a vizinha mais perto é 6,7 cm. O gabarito se sustenta, mas a alternativa não traz o valor exato.",
   "essencial": {
    "pede": "A distância do objeto ao espelho côncavo (f = 20 cm) quando a imagem é direita e 3 vezes maior.",
    "chave": "A = +3 e p' = − 3p na equação 1/f = 1/p + 1/p' dão p = 2f/3 ≈ 13,3 cm.",
@@ -164,10 +164,40 @@
  "gab": "B",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[0].tipo",
+    "depois": "localizar",
+    "motivo": "'interpretar' não é um tipo válido. Os tipos válidos são localizar, calcular, comparar, eliminar e concluir. Este passo tira A = +3 do enunciado.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "calcular",
+    "motivo": "'aplicar' não é um tipo válido. O passo isola p' na fórmula do aumento.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "calcular",
+    "motivo": "'aplicar' não é um tipo válido. O passo substitui p' na equação de Gauss.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.alerta",
+    "depois": "O valor exato é p = 40/3 ≈ 13,3 cm, e não 13,5 cm. A banca pede a distância 'aproximada', e B é a única alternativa próxima: a vizinha mais perto é 6,7 cm. O gabarito se sustenta, mas a alternativa não traz o valor exato.",
+    "motivo": "Imprecisão da própria prova: a alternativa correta não coincide com o resultado exato. O registro vai em alerta, como manda o guia.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "B"
  }
 }

@@ -45,13 +45,13 @@
     "faz": "Ache a força que curva o carro",
     "conta": "Peso e normal: na vertical",
     "porque": "Peso e normal se anulam e não têm componente horizontal. Sobra só o atrito dos pneus como força horizontal.",
-    "tipo": "aplicar"
+    "tipo": "eliminar"
    },
    {
     "faz": "Dê a direção do atrito",
     "conta": "F_at = F_cp, para o centro",
     "porque": "Para o carro fazer a curva, a resultante precisa apontar para o centro. Então o atrito aponta para o centro, em cada instante.",
-    "tipo": "aplicar"
+    "tipo": "concluir"
    },
    {
     "faz": "Teste a velocidade máxima",
@@ -61,7 +61,7 @@
    },
    {
     "faz": "Confronte com as alternativas",
-    "conta": "Só a afirmação sobre o atrito para o centro vale",
+    "conta": "Só B: atrito para o centro",
     "porque": "As demais erram a direção de v, a direção do atrito, a direção da força centrípeta ou a dependência da massa.",
     "tipo": "concluir"
    }
@@ -132,10 +132,34 @@
  "gab": "B",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "eliminar",
+    "motivo": "O tipo 'aplicar' não existe na lista permitida (localizar, calcular, comparar, eliminar, concluir). Neste passo, peso e normal saem da disputa pela força horizontal, então o tipo é 'eliminar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "concluir",
+    "motivo": "O tipo 'aplicar' não existe na lista permitida. O passo tira uma conclusão: a resultante precisa apontar para o centro, então o atrito aponta para o centro.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "Só B: atrito para o centro",
+    "motivo": "A conta tinha cerca de 47 caracteres e passa do limite de cerca de 30, porque não quebra linha na tela de 390 px. O conteúdo continua o mesmo.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "B"
  }
 }

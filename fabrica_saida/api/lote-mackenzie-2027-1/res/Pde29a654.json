@@ -33,7 +33,7 @@
     ],
     [
      "míssil balístico",
-     "míssil lançado em trajetória de arco, de longo alcance, usado para carregar ogivas"
+     "míssil impulsionado por foguete na subida que depois cai em trajetória de arco; pode ter curto ou longo alcance"
     ]
    ]
   },
@@ -49,13 +49,13 @@
     "faz": "Julgue a proposição I",
     "conta": "Petróleo, dinheiro, tecnologia, experiência",
     "porque": "A Coreia do Norte é isolada e carente de recursos. A Rússia tem petróleo e tecnologia, e a guerra dá experiência de combate em larga escala. A reportagem mostra a contrapartida: soldados e munição. I é correta.",
-    "tipo": "aplicar"
+    "tipo": "comparar"
    },
    {
     "faz": "Julgue a proposição II",
     "conta": "Tropas + armas → violam resoluções da ONU",
     "porque": "As resoluções do Conselho de Segurança restringem a transferência de armas e atividades militares norte-coreanas. EUA e aliados denunciam as remessas de tropas e armas como violação. II é correta.",
-    "tipo": "aplicar"
+    "tipo": "comparar"
    },
    {
     "faz": "Julgue a proposição III",
@@ -78,7 +78,7 @@
    "D": "Inclui a III, que é falsa: a aproximação envolve um país asiático e armamento balístico, e a OTAN não a considera restrita à Europa nem sem ameaça para outras regiões. Também exclui a I, que é correta.",
    "E": "Inclui a III, falsa pelo 'limitada ao território da Europa' e por 'não representa ameaça significativa'. As proposições I e II estão certas, mas a III derruba esta alternativa."
   },
-  "armadilha": "Aceitar a III porque cita a OTAN e o conflito europeu, sem notar que 'limitada à Europa' e 'não é ameaça' são exageros que o próprio texto contradiz.",
+  "armadilha": "Aceitar a III porque cita a OTAN e o conflito europeu, sem notar que 'limitada à Europa' e 'não é ameaça' são exageros que contrariam a posição da OTAN, que vê riscos também para a Ásia e o Indo-Pacífico.",
   "alerta": "",
   "essencial": {
    "pede": "Identificar quais proposições sobre a parceria Rússia–Coreia do Norte são corretas.",
@@ -89,7 +89,7 @@
  "caminhos": [
   {
    "nome": "eliminação por proposição",
-   "ideia": "I e II são fáceis de aceitar. Se achar a III falsa, só sobra C. Se achar a III certa, caem todas as opções com I e II corretas sem ela."
+   "ideia": "I e II são fáceis de aceitar. Então tudo depende da III: se ela for falsa, sobra C; se fosse certa, a resposta seria E."
   },
   {
    "nome": "palavra restritiva",
@@ -110,10 +110,49 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "comparar",
+    "motivo": "O tipo 'aplicar' não existe na lista permitida (localizar, calcular, comparar, eliminar, concluir). Neste passo a proposição é comparada com os fatos.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "comparar",
+    "motivo": "O tipo 'aplicar' não existe na lista permitida. Neste passo a proposição é comparada com as resoluções da ONU.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.antes.simbolos[4]",
+    "depois": [
+     "míssil balístico",
+     "míssil impulsionado por foguete na subida que depois cai em trajetória de arco; pode ter curto ou longo alcance"
+    ],
+    "motivo": "Míssil balístico não é necessariamente de longo alcance. Os mísseis norte-coreanos enviados à Rússia, do tipo KN-23/Hwasong-11, são de curto alcance.",
+    "fonte": "Relatos do Ministério da Defesa da Ucrânia e da ONU sobre o uso de KN-23 pela Rússia (2024)"
+   },
+   {
+    "campo": "resolucao.armadilha",
+    "depois": "Aceitar a III porque cita a OTAN e o conflito europeu, sem notar que 'limitada à Europa' e 'não é ameaça' são exageros que contrariam a posição da OTAN, que vê riscos também para a Ásia e o Indo-Pacífico.",
+    "motivo": "A reportagem não trata da visão da OTAN e, portanto, não a contradiz diretamente. A III é falsa por conhecimento externo, ou seja, pelas declarações da OTAN.",
+    "fonte": "Declaração da Cúpula da OTAN em Washington, jul. 2024: condena o apoio da Coreia do Norte à Rússia e aponta a ligação entre a segurança euro-atlântica e a do Indo-Pacífico"
+   },
+   {
+    "campo": "caminhos[0].ideia",
+    "depois": "I e II são fáceis de aceitar. Então tudo depende da III: se ela for falsa, sobra C; se fosse certa, a resposta seria E.",
+    "motivo": "O texto original ('se achar a III certa, caem todas as opções com I e II corretas sem ela') é confuso e chega a sugerir uma conclusão errada. Com I e II certas, a III decide entre C e E.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C"
  }
 }

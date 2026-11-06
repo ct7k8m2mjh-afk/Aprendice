@@ -8,7 +8,7 @@
  "conceito": "Identificar as características de cada fase da Revolução Francesa (Constituinte, Legislativa, Convenção, Diretório e Consulado).",
  "resolucao": {
   "antes": {
-   "texto": "A Revolução Francesa (1789-1799) teve fases com grupos diferentes no poder. A Constituinte (1789-1791) era burguesa liberal e moderada. A Convenção (1792-1795) teve a Gironda e depois a Montanha jacobina, com o Terror (1793-1794). O Diretório (1795-1799) foi a república burguesa conservadora. O golpe do 18 Brumário (1799) deu o poder a Napoleão e encerrou a fase republicana da Revolução.",
+   "texto": "A Revolução Francesa (1789-1799) teve fases com grupos diferentes no poder. A Constituinte (1789-1791) era burguesa liberal e moderada. A Convenção (1792-1795) teve a Gironda e depois a Montanha jacobina, com o Terror (1793-1794). O Diretório (1795-1799) foi a república burguesa conservadora. O golpe do 18 Brumário (1799) deu o poder a Napoleão e encerrou o período revolucionário.",
    "formulas": [
     "Constituinte (1789-91): fim dos privilégios feudais + Declaração dos Direitos + voto censitário + Constituição Civil do Clero",
     "Convenção Montanhesa (1793-94): jacobinos, Robespierre, Terror, Preço Máximo, voto universal masculino (Constituição de 1793, que não chegou a vigorar)",
@@ -63,7 +63,7 @@
     "faz": "Teste a Constituinte (C)",
     "conta": "Abolição dos privilégios + Declaração + voto censitário + Const. Civil do Clero",
     "porque": "Tudo isso ocorreu entre 1789 e 1791. Em agosto de 1789 caiu o regime feudal e saiu a Declaração. A Constituição de 1791 separou cidadãos ativos (com renda) e passivos. A Constituição Civil do Clero é de 1790.",
-    "tipo": "aplicar"
+    "tipo": "comparar"
    },
    {
     "faz": "Descarte as fases do Terror (A e E)",
@@ -74,7 +74,7 @@
    {
     "faz": "Descarte o Diretório e o 18 Brumário (B e D)",
     "conta": "Diretório = voto censitário; 18 Brumário = fim da república",
-    "porque": "O Diretório voltou ao voto censitário e foi conservador. Napoleão deu o golpe com apoio da burguesia e do exército, e não dos jacobinos, e encerrou o período republicano.",
+    "porque": "O Diretório voltou ao voto censitário e foi conservador. Napoleão deu o golpe com apoio da burguesia e do exército, e não dos jacobinos, e concentrou o poder no Consulado em vez de aprofundar a democracia.",
     "tipo": "eliminar"
    },
    {
@@ -89,7 +89,7 @@
   "erradas": {
    "A": "Inverte os grupos. A Convenção Montanhesa (1793-1794) foi dos jacobinos radicais, não dos girondinos moderados. Os jacobinos aprovaram o Preço Máximo e a Constituição de 1793, com voto universal masculino. Em 1794, a Convenção aboliu a escravidão nas colônias, decisão depois revertida por Napoleão.",
    "B": "O Diretório foi uma república burguesa conservadora, que voltou ao voto censitário. A Lei do Preço Máximo e o voto universal masculino são da fase jacobina (1793), e o Diretório não é o ponto de maior avanço democrático.",
-   "D": "O 18 Brumário (1799) foi um golpe da alta burguesia e de militares, com Sieyès e Napoleão, contra o Diretório. Ele encerrou o período republicano e não restabeleceu os princípios jacobinos, que já haviam sido derrubados em 1794.",
+   "D": "O 18 Brumário (1799) foi um golpe da alta burguesia e de militares, com Sieyès e Napoleão, contra o Diretório. Ele concentrou o poder em Napoleão no Consulado e não restabeleceu os princípios jacobinos, que já haviam sido derrubados em 1794.",
    "E": "Troca os grupos. O Terror foi conduzido por Robespierre e pelos jacobinos na Convenção Montanhesa, e não na fase girondina. Os girondinos, aliás, foram uma das vítimas da guilhotina."
   },
   "armadilha": "Atribuir o Terror e as medidas radicais (Preço Máximo, voto universal) à fase errada, ou misturar girondinos com jacobinos.",
@@ -128,10 +128,40 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "comparar",
+    "motivo": "\"aplicar\" não é um tipo válido. Os tipos aceitos são localizar, calcular, comparar, eliminar e concluir. O passo confronta a alternativa C com os fatos da fase, então o tipo é comparar.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "A Revolução Francesa (1789-1799) teve fases com grupos diferentes no poder. A Constituinte (1789-1791) era burguesa liberal e moderada. A Convenção (1792-1795) teve a Gironda e depois a Montanha jacobina, com o Terror (1793-1794). O Diretório (1795-1799) foi a república burguesa conservadora. O golpe do 18 Brumário (1799) deu o poder a Napoleão e encerrou o período revolucionário.",
+    "motivo": "O golpe não encerrou a república. O Consulado (1799-1804) ainda era formalmente uma república, e a Primeira República só termina com o Império, em 1804. O 18 Brumário costuma ser apresentado como o fim da Revolução, não da república.",
+    "fonte": "https://www.britannica.com/event/Coup-of-18-19-Brumaire"
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "O Diretório voltou ao voto censitário e foi conservador. Napoleão deu o golpe com apoio da burguesia e do exército, e não dos jacobinos, e concentrou o poder no Consulado em vez de aprofundar a democracia.",
+    "motivo": "Mesmo erro: o Consulado manteve formalmente a república até 1804. Por isso tirei \"encerrou o período republicano\".",
+    "fonte": "https://www.britannica.com/event/Coup-of-18-19-Brumaire"
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "O 18 Brumário (1799) foi um golpe da alta burguesia e de militares, com Sieyès e Napoleão, contra o Diretório. Ele concentrou o poder em Napoleão no Consulado e não restabeleceu os princípios jacobinos, que já haviam sido derrubados em 1794.",
+    "motivo": "\"Encerrou o período republicano\" está errado: a república só acaba formalmente em 1804, com o Império.",
+    "fonte": "https://www.britannica.com/event/Coup-of-18-19-Brumaire"
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C"
  }
 }

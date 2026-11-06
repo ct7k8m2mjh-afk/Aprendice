@@ -39,7 +39,7 @@
     "faz": "Classifique o Texto I",
     "conta": "\"A noção de língua como meio de comunicação tem sido tachada de utilitária\"",
     "porque": "O autor expõe e defende uma ideia sobre literatura e comunicação, em prosa e com argumentos. É um texto expositivo-argumentativo, de linguagem predominantemente denotativa.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Note as exceções do Texto I",
@@ -51,12 +51,12 @@
     "faz": "Classifique o Texto II",
     "conta": "\"Levanta-se o pendão / E toca-se o clarim / Serve-se morto\"",
     "porque": "O herói é \"feito\" como uma receita, e \"serve-se morto\" é imagem figurada. É linguagem conotativa do início ao fim.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Elimine as alternativas falsas",
     "conta": "A, C, D, E contêm afirmações que o texto desmente",
-    "porque": "A e D tratam o Texto I como conotativo. C atribui a denotação a rimas e ritmo, que não existem na prosa. E limita a conotação do Texto II a dois versos.",
+    "porque": "A e D tratam o Texto I como conotativo. C liga a denotação a rimas e ritmo, mas denotação depende do sentido literal das palavras, não da sonoridade, e o Texto I é prosa sem rimas. E limita a conotação do Texto II a dois versos.",
     "tipo": "eliminar"
    },
    {
@@ -106,10 +106,34 @@
  "gab": "B",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[0].tipo",
+    "depois": "localizar",
+    "motivo": "'interpretar' não é um tipo válido. Os tipos aceitos são localizar, calcular, comparar, eliminar e concluir. Este passo acha no texto o trecho que mostra a linguagem expositiva.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "localizar",
+    "motivo": "'interpretar' não é um tipo válido. Este passo acha no Texto II os versos de sentido figurado.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "A e D tratam o Texto I como conotativo. C liga a denotação a rimas e ritmo, mas denotação depende do sentido literal das palavras, não da sonoridade, e o Texto I é prosa sem rimas. E limita a conotação do Texto II a dois versos.",
+    "motivo": "Corrige a afirmação de que ritmo 'não existe na prosa'. A prosa também tem ritmo; o que falta no Texto I é rima e métrica. Além disso, o erro de C é ligar a denotação à sonoridade, o que já basta para derrubá-la.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "B"
  }
 }

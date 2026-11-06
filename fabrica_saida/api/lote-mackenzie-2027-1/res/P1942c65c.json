@@ -12,7 +12,7 @@
    "formulas": [
     "fenol = OH no anel aromático; álcool = OH em carbono saturado",
     "tripla ligação C≡C: os dois carbonos são lineares (180°)",
-    "carbono quiral: 4 ligantes diferentes, e então existem enantiômeros",
+    "carbono quiral: 4 ligantes diferentes; molécula com carbono quiral e sem simetria interna tem enantiômero",
     "fórmula molecular: some os C e os H de cada vértice"
    ],
    "simbolos": [
@@ -44,12 +44,12 @@
     "faz": "Avalie a afirmação I (fenol)",
     "conta": "Os 4 anéis não têm 3 duplas alternadas",
     "porque": "Há só uma dupla (C5=C6) e nenhum anel aromático. Os três OH estão em carbonos saturados, então são álcoois e não fenóis. Álcool não é ácido de forma apreciável. I é falsa.",
-    "tipo": "interpretar"
+    "tipo": "eliminar"
    },
    {
     "faz": "Procure carbonos quirais",
     "conta": "C3, C7, C8, C9, C10, C13, C14, C17",
-    "porque": "Esses carbonos têm 4 grupos diferentes (os traços cheios e tracejados mostram isso). Havendo carbono quiral, a molécula tem enantiômero.",
+    "porque": "Cada um desses carbonos tem 4 grupos diferentes; as cunhas cheias e tracejadas mostram a posição desses grupos no espaço. A molécula não tem simetria interna, então é quiral: sua imagem no espelho não se sobrepõe a ela, e esse é o enantiômero.",
     "tipo": "localizar"
    },
    {
@@ -142,10 +142,34 @@
  "gab": "D",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[0].tipo",
+    "depois": "eliminar",
+    "motivo": "\"interpretar\" não é um tipo válido. Os tipos permitidos são localizar, calcular, comparar, eliminar e concluir. Este passo descarta a afirmação I, então o tipo certo é \"eliminar\".",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.antes.formulas[2]",
+    "depois": "carbono quiral: 4 ligantes diferentes; molécula com carbono quiral e sem simetria interna tem enantiômero",
+    "motivo": "Ter carbono quiral nem sempre basta: compostos meso têm carbonos quirais e não têm enantiômero. A regra ficava absoluta demais. Este esteroide não tem simetria interna, então para ele vale.",
+    "fonte": "IUPAC Gold Book, verbetes chirality e meso-compounds"
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "Cada um desses carbonos tem 4 grupos diferentes; as cunhas cheias e tracejadas mostram a posição desses grupos no espaço. A molécula não tem simetria interna, então é quiral: sua imagem no espelho não se sobrepõe a ela, e esse é o enantiômero.",
+    "motivo": "As cunhas não provam que os 4 ligantes são diferentes; elas só mostram a configuração no espaço. Também faltava a condição de não haver simetria interna para afirmar que existe enantiômero.",
+    "fonte": "IUPAC Gold Book, verbete enantiomer"
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "D"
  }
 }

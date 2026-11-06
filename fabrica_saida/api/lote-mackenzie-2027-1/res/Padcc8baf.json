@@ -68,7 +68,7 @@
     "faz": "Procure sensação e estilo literário",
     "conta": "\"Senhor Deus dos desgraçados!\" / \"Astros! noites! tempestades!\"",
     "porque": "Invocação, interjeições, exclamações e interrogações transmitem indignação e horror diante da escravidão. São recursos de estilo literário a serviço da temática, como diz D.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Conclua",
@@ -82,7 +82,7 @@
   "erradas": {
    "A": "Generaliza para \"os três textos em sua totalidade\". O Texto III é um verbete informativo, objetivo e sem recursos poéticos em destaque, e o Texto I é um texto teórico sobre literatura.",
    "B": "O Texto III não é narrativa memorialística: não conta lembranças de ninguém. Expõe de modo impessoal e objetivo o que foi a escravidão (\"A escravidão no Brasil consiste...\"). É texto informativo, não literatura em prosa.",
-   "C": "O Texto I fala sobre a linguagem literária, mas não é construído poeticamente. Predomina a função referencial, pois explica conceitos de forma objetiva (\"Há os que entendem que...\"). Não há função expressiva, pois não aparece a emoção de quem fala.",
+   "C": "O Texto I fala sobre a linguagem literária, mas não é construído poeticamente. Predomina a função referencial, com traço metalinguístico, pois explica conceitos de forma objetiva (\"Há os que entendem que...\"). Não há função expressiva, pois não aparece a emoção de quem fala.",
    "E": "Atribui ao Texto II características do Texto III. O Texto II é poema em versos, com linguagem conotativa, estrofe em versos curtos e função poética. Não tem referencialidade dominante nem linguagem denotativa."
   },
   "armadilha": "Confundir texto que fala de literatura (Texto I) com texto literário, ou aceitar \"os três textos\" sem notar que o Texto III é só informativo.",
@@ -117,10 +117,28 @@
  "gab": "D",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[4].tipo",
+    "depois": "localizar",
+    "motivo": "O guia só admite os tipos localizar, calcular, comparar, eliminar e concluir, e \"interpretar\" não está na lista. O passo cita trechos do Texto II para servir de prova, por isso o tipo certo é localizar.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "O Texto I fala sobre a linguagem literária, mas não é construído poeticamente. Predomina a função referencial, com traço metalinguístico, pois explica conceitos de forma objetiva (\"Há os que entendem que...\"). Não há função expressiva, pois não aparece a emoção de quem fala.",
+    "motivo": "O Texto I trata da própria linguagem e da obra literária. Dizer só que ele é \"referencial\" deixa de fora o traço metalinguístico, que uma banca reconheceria. A mudança é mínima e mantém o argumento que derruba a C.",
+    "fonte": "Bechara, Moderna Gramática Portuguesa (funções da linguagem, segundo Jakobson)"
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "D"
  }
 }

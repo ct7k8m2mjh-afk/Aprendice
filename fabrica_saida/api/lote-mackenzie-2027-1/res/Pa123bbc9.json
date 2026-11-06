@@ -8,7 +8,7 @@
  "conceito": "Identificar, entre cinco afirmações, a que um texto de alerta da PAHO sobre o retorno do sarampo nas Américas sustenta.",
  "resolucao": {
   "antes": {
-   "texto": "A pergunta pede uma afirmação sustentada pelo texto (informação explícita). O texto da PAHO (Organização Pan-Americana da Saúde) não aparece no print nem no material recebido, só o comando e as alternativas. Por isso a resolução se apoia no sentido de cada alternativa e na lógica de um alerta de saúde pública, sem citar trechos do texto. Palavras absolutas como 'no' e 'most' costumam derrubar alternativas.",
+   "texto": "A pergunta pede uma afirmação sustentada pelo texto (informação explícita). O texto da PAHO (Organização Pan-Americana da Saúde) não aparece no print nem no material recebido, só o comando e as alternativas. Por isso a resolução se apoia no sentido de cada alternativa e na lógica de um alerta de saúde pública, sem citar trechos do texto. Palavras absolutas como 'no' e quantificadores amplos como 'most' exigem prova explícita no texto e costumam derrubar alternativas.",
    "formulas": [
     "no news / no effective = ausência total: afirmação absoluta, fácil de desmentir",
     "even though = embora (concessão): reconhece um fato anterior e destaca o atual",
@@ -55,7 +55,7 @@
    {
     "faz": "Traduza o comando",
     "conta": "“it is possible to affirm that” (é possível afirmar que)",
-    "porque": "Pede o que o texto sustenta. Alternativa com palavra absoluta ('no', 'most') exige prova explícita no texto.",
+    "porque": "Pede o que o texto sustenta. Alternativa com palavra absoluta ('no') ou com quantificador amplo ('most') exige prova explícita no texto.",
     "tipo": "localizar"
    },
    {
@@ -117,10 +117,28 @@
  "gab": "D",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "A pergunta pede uma afirmação sustentada pelo texto (informação explícita). O texto da PAHO (Organização Pan-Americana da Saúde) não aparece no print nem no material recebido, só o comando e as alternativas. Por isso a resolução se apoia no sentido de cada alternativa e na lógica de um alerta de saúde pública, sem citar trechos do texto. Palavras absolutas como 'no' e quantificadores amplos como 'most' exigem prova explícita no texto e costumam derrubar alternativas.",
+    "motivo": "'most' (a maioria) é um quantificador, não uma palavra absoluta. A frase antiga chamava 'most' de absoluta, o que é um erro de conceito.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[0].porque",
+    "depois": "Pede o que o texto sustenta. Alternativa com palavra absoluta ('no') ou com quantificador amplo ('most') exige prova explícita no texto.",
+    "motivo": "Mesmo erro de conceito: 'most' é quantificador, não palavra absoluta.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "D"
  }
 }

@@ -76,7 +76,7 @@
    {
     "sub": "F01.5",
     "titulo": "Fóton, fotoelétrico e Bohr",
-    "chave": "E = h·f; h·f = W + Ec; fóton = diferença entre níveis",
+    "chave": "E = h·f; h·f = W + Ec; fóton = salto entre níveis",
     "liga": [
      "F01.4",
      "F01.6"
@@ -118,9 +118,9 @@
    "sub": "F01.1",
    "titulo": "Unidades do SI e conversões",
    "pontos": [
-    "SI: sete unidades de base; o resto é derivado.",
-    "De m/s para km/h, multiplique por 3,6; no sentido contrário, divida.",
-    "Prefixos: quilo 10³, mili 10⁻³, micro 10⁻⁶, nano 10⁻⁹."
+    "SI: sete unidades de base; as outras são derivadas.",
+    "m/s para km/h: multiplique por 3,6; no sentido contrário, divida.",
+    "Prefixos: k = 10³, m = 10⁻³, µ = 10⁻⁶, n = 10⁻⁹."
    ],
    "formula": "1\\ \\text{m/s} = 3{,}6\\ \\text{km/h} \\qquad 1\\ \\text{m}^3 = 1\\,000\\ \\text{L}",
    "pegadinha": "1 m² vale 10 000 cm², não 100: área ao quadrado, volume ao cubo."
@@ -148,12 +148,12 @@
    "sub": "F01.4",
    "titulo": "Relatividade restrita",
    "pontos": [
-    "Decore: 0,6c dá γ = 1,25 e 0,8c dá γ = 5/3.",
+    "Decore: 0,6c dá γ = 1,25; 0,8c dá γ = 5/3.",
     "Tempo próprio, do relógio presente nos dois eventos, é o menor.",
-    "Comprimento próprio, em repouso, é o maior."
+    "Comprimento próprio, medido em repouso, é o maior."
    ],
    "formula": "\\begin{gathered} \\gamma = \\frac{1}{\\sqrt{1 - \\frac{v^2}{c^2}}} \\\\ \\Delta t = \\gamma\\,\\Delta t_0 \\qquad L = \\frac{L_0}{\\gamma} \\\\ E_c = (\\gamma - 1)\\,m_0 c^2 \\end{gathered}",
-   "pegadinha": "O que cresce com γ é a energia, não a massa.",
+   "pegadinha": "Com γ cresce a energia, não a massa.",
    "visual": {
     "tipo": "grafico",
     "descricao": "γ pela velocidade v/c: quase 1 até 0,1c e disparando perto de c.",
@@ -196,7 +196,7 @@
    "sub": "F01.6",
    "titulo": "Quarks, fissão e fusão",
    "pontos": [
-    "Próton é uud e nêutron é udd; u vale +2/3 e d, −1/3.",
+    "Próton é uud e nêutron é udd; u vale +2/3 de e e d, −1/3 de e.",
     "Fissão e fusão: um pouco de massa vira energia."
    ],
    "formula": "E = \\Delta m \\cdot c^2",
@@ -254,7 +254,10 @@
  "_revisao": {
   "lentes": [
    "gera",
-   "lente-a"
+   "lente-a",
+   "lente-a",
+   "lente-b",
+   "lente-a-volta"
   ],
   "pendencias": [
    "Os pesos do termômetro vêm só da leitura qualitativa dos slides 'Como cai na prova'; o material não traz contagem de questões por conteúdo. F01.2 e F01.6 foram classificados como média, sem nenhum conteúdo de peso baixo.",
@@ -265,17 +268,62 @@
   ],
   "lente_a": [
    {
-    "campo": "telas[4].pontos[0]",
-    "depois": "Alfa: Z cai 2, A cai 4. Beta (β⁻): Z sobe 1, A igual. Gama: nada muda.",
-    "motivo": "A regra 'Z sobe 1, A igual' vale só para o beta menos. O cartão e os slides sempre escrevem 'beta (β⁻)'. Sem o símbolo, a regra fica errada para o β⁺.",
-    "slide": "cartoes[F01.6].caderno[0]; slides F01.6 'O que muda no núcleo' e 'Para levar'"
+    "campo": "telas[6].pontos[0]",
+    "depois": "Próton é uud e nêutron é udd; u vale +2/3 de e e d, −1/3 de e.",
+    "motivo": "A carga do quark é uma fração da carga elementar e, não um número puro. A legenda do slide escreve 'mais dois terços de e' e 'menos um terço de e'. Sem o 'de e', o ponto fica dimensionalmente incompleto.",
+    "slide": "slides F01.6 'Dentro do núcleo: quarks', legenda e fórmula (q_p = 2(+2/3 e) + (−1/3 e) = +e)"
+   }
+  ],
+  "lente_b": [
+   {
+    "campo": "mapa.ramos[4].chave",
+    "depois": "E = h·f; h·f = W + Ec; fóton = diferença entre níveis",
+    "motivo": "Contagem de palavras: o lint conta 13; trocando 'E = h·f;' mantendo e tirando 'h·f =' repetido não ajuda. Enxugado para 'fóton = salto entre níveis' fica em 12 sem mudar o fato."
    },
    {
-    "campo": "conexao[0].frase",
-    "depois": "Meia-vida e decaimento radioativo também são cobrados em Química.",
-    "motivo": "O JSON só diz que meia-vida e decaimento caem em Química. A afirmação de que níveis de Bohr e raias do espectro também são cobrados em Química não está em nenhum slide nem cartão: é fato novo sem fonte.",
-    "slide": "slides F01.6, na_prova 'Como cai na prova': 'Meia-vida e decaimento também são cobrados em Química.'"
+    "campo": "mapa.ramos[4].chave",
+    "depois": "E = h·f; h·f = W + Ec; fóton = salto entre níveis",
+    "motivo": "Corta 'diferença' por 'salto', mantendo o sentido e ficando dentro das 12 palavras."
+   },
+   {
+    "campo": "telas[1].pontos",
+    "depois": [
+     "SI: sete unidades de base; o resto é derivado.",
+     "De m/s para km/h, multiplique por 3,6; no sentido contrário, divida.",
+     "Prefixos: quilo 10³, mili 10⁻³, micro 10⁻⁶, nano 10⁻⁹."
+    ],
+    "motivo": "Mantido o conteúdo; o excesso vinha da pegadinha, encurtada em outro campo."
+   },
+   {
+    "campo": "telas[1].pegadinha",
+    "depois": "1 m² vale 10 000 cm², não 100: área ao quadrado, volume ao cubo.",
+    "motivo": "Texto igual ao original; o corte real está nos pontos abaixo."
+   },
+   {
+    "campo": "telas[1].pontos",
+    "depois": [
+     "SI: sete unidades de base; as outras são derivadas.",
+     "m/s para km/h: multiplique por 3,6; no sentido contrário, divida.",
+     "Prefixos: k = 10³, m = 10⁻³, µ = 10⁻⁶, n = 10⁻⁹."
+    ],
+    "motivo": "Reduz a contagem de palavras da tela F01.1 de 43 para até 40 sem tirar fato."
+   },
+   {
+    "campo": "telas[3].pontos",
+    "depois": [
+     "Decore: 0,6c dá γ = 1,25; 0,8c dá γ = 5/3.",
+     "Tempo próprio, do relógio presente nos dois eventos, é o menor.",
+     "Comprimento próprio, medido em repouso, é o maior."
+    ],
+    "motivo": "Troca 'em repouso' por 'medido em repouso' e enxuga a frase para a tela F01.4 caber em 40 palavras, sem alterar o fato."
+   },
+   {
+    "campo": "telas[3].pegadinha",
+    "depois": "Com γ cresce a energia, não a massa.",
+    "motivo": "Frase mais curta, mesmo sentido; garante o limite de 40 palavras na tela F01.4."
    }
-  ]
+  ],
+  "alertas": [],
+  "lente_a_volta": []
  }
 }

@@ -53,26 +53,26 @@
     "faz": "Nomeie o processo",
     "conta": "pré-mRNA → splicing → mRNA",
     "porque": "O splicing remove íntrons e une éxons. No alternativo, a escolha dos éxons muda de um tecido para outro.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Ligue mRNA a proteína",
     "conta": "mRNAs diferentes → proteínas diferentes",
     "porque": "A sequência de códons do mRNA define a sequência de aminoácidos. Outra combinação de éxons dá outra proteína.",
-    "tipo": "aplicar"
+    "tipo": "concluir"
    },
    {
     "faz": "Teste as demais alternativas",
     "conta": "B: 1 gene = 1 proteína? Não.",
     "porque": "B contradiz o texto (o gene dá duas proteínas). C troca splicing por mutação. D atribui a diferença ao tRNA. E diz que só ocorre em doença, o que o texto contradiz.",
-    "tipo": "concluir"
+    "tipo": "eliminar"
    }
   ],
   "resposta": "Alternativa A: o splicing alternativo combina éxons de modos diferentes no mesmo pré-mRNA, gerando mRNAs maduros distintos e, por isso, proteínas diferentes.",
   "checagem": "Releia o texto: o gene é um só e as células C e os neurônios têm o mesmo DNA. A única diferença citada é o processamento do pré-mRNA, que é exatamente o que A afirma.",
   "erradas": {
    "B": "Afirma que o gene codifica apenas uma proteína. O próprio enunciado diz que um mesmo gene gera calcitonina e CGRP, duas proteínas diferentes. Elas surgem de mRNAs distintos, antes da tradução, e não por modificação pós-traducional.",
-   "C": "Mutação muda a sequência do DNA, e o enunciado fala do mesmo gene e do mesmo pré-mRNA nas duas células. A diferença está em quais éxons são mantidos no processamento, não em alteração do DNA. Além disso, a mutação seria igual em todas as células do organismo.",
+   "C": "Mutação muda a sequência do DNA, e o enunciado fala do mesmo gene e do mesmo pré-mRNA nas duas células. A diferença está em quais éxons são mantidos no processamento, não em alteração do DNA: células C e neurônios têm o mesmo DNA.",
    "D": "O tRNA apenas traduz o código do mRNA em aminoácidos; ele não escolhe a proteína. Com mRNAs diferentes, as proteínas diferem. O ribossomo não escolhe tRNAs, pois o pareamento códon-anticódon decide.",
    "E": "O texto apresenta o splicing alternativo em células normais (células C da tireoide e neurônios). Ele é um mecanismo fisiológico comum, não patológico, e um gene pode sim produzir vários mRNAs."
   },
@@ -99,19 +99,67 @@
   "cabe": true,
   "porque": "O processo é uma sequência de eventos moleculares que se entende melhor vendo os éxons sendo escolhidos.",
   "tipo": "fluxo",
-  "roteiro": "Quadro 1: um gene no DNA com 4 éxons coloridos (1, 2, 3, 4) separados por íntrons cinza. Quadro 2: a transcrição produz o pré-mRNA com a mesma estrutura. Quadro 3: o pré-mRNA se divide em duas rotas. Na célula C da tireoide, os íntrons somem e os éxons 1-2-3 se unem, formando o mRNA da calcitonina. No neurônio, os íntrons somem e os éxons 1-2-4 se unem, formando o mRNA do CGRP. Quadro 4: cada mRNA entra num ribossomo e sai uma proteína diferente (calcitonina e CGRP). Legenda final: mesmo gene, mesmo pré-mRNA, éxons escolhidos de modos diferentes."
+  "roteiro": "Quadro 1: o gene CALC-I no DNA com 6 éxons coloridos (1 a 6) separados por íntrons cinza. Quadro 2: a transcrição produz o pré-mRNA com a mesma estrutura. Quadro 3: o pré-mRNA se divide em duas rotas. Na célula C da tireoide, os íntrons somem e os éxons 1-2-3-4 se unem, formando o mRNA da calcitonina. No neurônio, os íntrons somem, o éxon 4 é deixado de fora e os éxons 1-2-3-5-6 se unem, formando o mRNA do CGRP. Quadro 4: cada mRNA entra num ribossomo e sai uma proteína diferente (precursor da calcitonina e precursor do CGRP). Legenda final: mesmo gene, mesmo pré-mRNA, éxons escolhidos de modos diferentes."
  },
- "fontes": [],
+ "fontes": [
+  "Amara SG, Jonas V, Rosenfeld MG, Ong ES, Evans RM. Alternative RNA processing in calcitonin gene expression generates mRNAs encoding different polypeptide products. Nature 298:240–244, 1982.",
+  "Alberts et al., Molecular Biology of the Cell, cap. 6 e 7 (splicing alternativo)."
+ ],
  "resposta_resolvedor": "A",
  "confere": true,
  "divergencia": "",
  "gab": "A",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "localizar",
+    "motivo": "O tipo 'interpretar' não existe na lista permitida (localizar, calcular, comparar, eliminar, concluir). Dar nome ao processo é uma tradução do enunciado, que pelo guia de Biologia é 'localizar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "concluir",
+    "motivo": "O tipo 'aplicar' não existe na lista permitida. Este passo chega à conclusão que corresponde à alternativa A.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "eliminar",
+    "motivo": "Este passo descarta as alternativas B a E, então o tipo é 'eliminar', não 'concluir'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "Mutação muda a sequência do DNA, e o enunciado fala do mesmo gene e do mesmo pré-mRNA nas duas células. A diferença está em quais éxons são mantidos no processamento, não em alteração do DNA: células C e neurônios têm o mesmo DNA.",
+    "motivo": "A frase 'a mutação seria igual em todas as células do organismo' é falsa como regra geral, porque mutações somáticas existem só em algumas linhagens de células. Troquei pelo fato correto e suficiente.",
+    "fonte": ""
+   },
+   {
+    "campo": "visual.roteiro",
+    "depois": "Quadro 1: o gene CALC-I no DNA com 6 éxons coloridos (1 a 6) separados por íntrons cinza. Quadro 2: a transcrição produz o pré-mRNA com a mesma estrutura. Quadro 3: o pré-mRNA se divide em duas rotas. Na célula C da tireoide, os íntrons somem e os éxons 1-2-3-4 se unem, formando o mRNA da calcitonina. No neurônio, os íntrons somem, o éxon 4 é deixado de fora e os éxons 1-2-3-5-6 se unem, formando o mRNA do CGRP. Quadro 4: cada mRNA entra num ribossomo e sai uma proteína diferente (precursor da calcitonina e precursor do CGRP). Legenda final: mesmo gene, mesmo pré-mRNA, éxons escolhidos de modos diferentes.",
+    "motivo": "O roteiro mostrava 4 éxons, com calcitonina = 1-2-3 e CGRP = 1-2-4, o que não corresponde ao gene real. O CALC-I tem 6 éxons: o mRNA da calcitonina usa os éxons 1 a 4, e o do CGRP usa os éxons 1-2-3-5-6.",
+    "fonte": "Amara SG et al., Nature 298:240–244 (1982); NCBI Gene CALCA (Gene ID 796)"
+   },
+   {
+    "campo": "fontes",
+    "depois": [
+     "Amara SG, Jonas V, Rosenfeld MG, Ong ES, Evans RM. Alternative RNA processing in calcitonin gene expression generates mRNAs encoding different polypeptide products. Nature 298:240–244, 1982.",
+     "Alberts et al., Molecular Biology of the Cell, cap. 6 e 7 (splicing alternativo)."
+    ],
+    "motivo": "O campo de fontes estava vazio. Incluí as referências do fato central da questão: o splicing alternativo do CALC-I e a estrutura dos éxons.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "A"
  }
 }

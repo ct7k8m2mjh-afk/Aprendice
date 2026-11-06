@@ -67,9 +67,9 @@
   "resposta": "Alternativa E: 28×3 + 28×1 + 64×2 = 84 + 28 + 128 = 240 apertos de mão.",
   "checagem": "Confira o total de pares: 28 + 28 + 64 = 120, que é igual a 16 × 15 ÷ 2 = 120. Os pares estão todos contados. Todo par aperta pelo menos 1 vez; os 120 pares dão 120 apertos na base. Os extras: médicos 28×2 = 56 e médico–médica 64×1 = 64, total 120 extras. Então 120 + 120 = 240.",
   "erradas": {
-   "A": "184 não confere. Ele sai de contar 84 (médicos) + 28 (médicas) + 72 de médico–médica; mas 64 pares × 2 apertos dão 128, não 72. O resultado correto é 240.",
-   "B": "212 não confere. Ele sai de errar o aperto médico–médica: 84 + 28 + 100 não bate com 64 × 2 = 128. Com 128 a soma é 240.",
-   "C": "220 sai de contar só 1 aperto por par médico–médica na parte final: 84 + 28 + 64 = 176 não dá 220. Faltou usar 2 apertos por par: 64 × 2 = 128, e o total é 240. Conferido: 220 não resulta de nenhuma leitura correta das regras.",
+   "A": "184 sai de dar só 1 aperto por par médico–médico: 28 × 1 + 28 × 1 + 64 × 2 = 28 + 28 + 128 = 184. Os médicos apertam a mão nos três momentos, então são 28 × 3 = 84.",
+   "B": "212 sai de esquecer os apertos entre as médicas, como se elas só acenassem: 84 + 128 = 212. Elas apertam a mão à meia-noite, o que soma mais 28 × 1 = 28.",
+   "C": "220 não confere. Para chegar a ele com 84 + 28 dos pares do mesmo grupo, os 64 pares médico–médica teriam de dar 220 − 112 = 108 apertos, e 108 não é múltiplo de 64. O certo é 64 × 2 = 128, e o total fica 240.",
    "D": "232 não confere. Ficaria a 8 de 240, e nenhuma contagem correta dos pares chega a ele: com 28, 28 e 64 pares e apertos 3, 1 e 2, a soma é exatamente 240."
   },
   "armadilha": "Contar aceno como aperto de mão, ou esquecer de dividir por 2 ao contar pares dentro do mesmo grupo (8 × 7 = 56 em vez de 28).",
@@ -130,10 +130,34 @@
  "gab": "E",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "184 sai de dar só 1 aperto por par médico–médico: 28 × 1 + 28 × 1 + 64 × 2 = 28 + 28 + 128 = 184. Os médicos apertam a mão nos três momentos, então são 28 × 3 = 84.",
+    "motivo": "O texto antigo dizia que a alternativa não confere e, logo depois, apontava uma origem (72 apertos entre médico e médica) que não sai de nenhuma leitura das regras. Esse 184 tem origem real: 240 − 56 = 184, que é o total quando os médicos apertam a mão só uma vez em vez de três.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "212 sai de esquecer os apertos entre as médicas, como se elas só acenassem: 84 + 128 = 212. Elas apertam a mão à meia-noite, o que soma mais 28 × 1 = 28.",
+    "motivo": "O texto antigo inventava um valor de 100 para os pares médico–médica. O 212 tem origem real: 240 − 28 = 212, que é o total sem os apertos entre as médicas.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "220 não confere. Para chegar a ele com 84 + 28 dos pares do mesmo grupo, os 64 pares médico–médica teriam de dar 220 − 112 = 108 apertos, e 108 não é múltiplo de 64. O certo é 64 × 2 = 128, e o total fica 240.",
+    "motivo": "O texto antigo se contradizia: dizia que 220 \"sai de\" uma conta que dá 176. Nenhuma leitura plausível das regras chega a 220, então troquei por um teste objetivo.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E"
  }
 }

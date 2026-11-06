@@ -8,7 +8,7 @@
  "conceito": "Informação explícita: achar a alternativa que contradiz o texto (questão com INCORRECT).",
  "resolucao": {
   "antes": {
-   "texto": "O comando pede a alternativa INCORRETA, isto é, a que contradiz o texto. Três alternativas repetem o texto e uma é falsa. Procure no texto o trecho de cada alternativa e veja qual é desmentida.",
+   "texto": "O comando pede a alternativa INCORRETA, isto é, a que contradiz o texto. Quatro alternativas repetem o texto e uma é falsa. Procure no texto o trecho de cada alternativa e veja qual é desmentida.",
    "formulas": [
     "INCORRECT = a alternativa que o texto desmente",
     "doesn't happen overnight = não acontece da noite para o dia, leva tempo",
@@ -98,7 +98,7 @@
   "essencial": {
    "pede": "A alternativa que contradiz o texto.",
    "chave": "O texto diz que aprender as palavras certas leva de um a três meses de prática diária.",
-   "cuidado": "INCORRECT inverte a lógica: três alternativas são verdadeiras e uma é falsa."
+   "cuidado": "INCORRECT inverte a lógica: quatro alternativas são verdadeiras e uma é falsa."
   }
  },
  "caminhos": [
@@ -121,10 +121,28 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "O comando pede a alternativa INCORRETA, isto é, a que contradiz o texto. Quatro alternativas repetem o texto e uma é falsa. Procure no texto o trecho de cada alternativa e veja qual é desmentida.",
+    "motivo": "A questão tem cinco alternativas (A a E). Então são quatro verdadeiras e uma falsa, e não três verdadeiras. O passo 1 da própria resolução já diz 'As outras quatro são verdadeiras'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.essencial.cuidado",
+    "depois": "INCORRECT inverte a lógica: quatro alternativas são verdadeiras e uma é falsa.",
+    "motivo": "Mesma contagem errada: com cinco alternativas, quatro são verdadeiras.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C"
  }
 }

@@ -39,7 +39,7 @@
     "faz": "Escreva o tempo de A",
     "conta": "t_A = 180 ÷ V",
     "porque": "A anda sem parar com velocidade V. Tempo é distância dividida por velocidade.",
-    "tipo": "aplicar"
+    "tipo": "calcular"
    },
    {
     "faz": "Ache a velocidade de B",
@@ -66,13 +66,13 @@
     "tipo": "concluir"
    }
   ],
-  "resposta": "Alternativa C: a velocidade de A é 90 km/h, valor em que os 30 km/h·h de diferença (30 ÷ V) valem exatamente 1/3 h = 20 min.",
+  "resposta": "Alternativa C — 90 km/h: com esse valor, B ganha na estrada 30/90 h = 1/3 h = 20 min, exatamente o tempo parado no pedágio.",
   "checagem": "Com V = 90 km/h, A leva 180 ÷ 90 = 2 h. B vai a 108 km/h e leva 180 ÷ 108 = 1,667 h = 1 h 40 min. Somando 20 min de parada, dá 2 h. Os dois chegam juntos.",
   "erradas": {
    "A": "Com V = 72 km/h, A leva 180 ÷ 72 = 2,5 h. B andando leva 180 ÷ 86,4 ≈ 2,083 h, ou seja, 25 min a menos que A. Como B só para 20 min, chegaria 5 min antes de A.",
    "B": "Com V = 80 km/h, A leva 2,25 h. B (96 km/h) anda 1,875 h, ou seja, 22,5 min a menos que A. A parada de 20 min não compensa: B chegaria 2,5 min antes.",
    "D": "Com V = 100 km/h, A leva 1,8 h. B (120 km/h) anda 1,5 h, ou seja, 18 min a menos que A. Com 20 min de parada, B chegaria 2 min depois de A.",
-   "E": "Com V = 108 km/h, A leva 180 ÷ 108 ≈ 1,667 h. B (129,6 km/h) anda ≈ 1,389 h, ou seja, ≈ 16,7 min a menos que A. Com 20 min parado, B chegaria cerca de 3,3 min depois."
+   "E": "108 km/h é a velocidade de B (1,2 × 90), não a de A. Teste: com V = 108 km/h, A leva 180 ÷ 108 ≈ 1,667 h e B (129,6 km/h) anda ≈ 1,389 h, só ≈ 16,7 min a menos. Com 20 min parado, B chegaria ≈ 3,3 min depois."
   },
   "armadilha": "Esquecer de converter 20 min em 1/3 h (ou usar 0,20 h) antes de somar com tempos em horas.",
   "alerta": "",
@@ -162,10 +162,34 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[0].tipo",
+    "depois": "calcular",
+    "motivo": "O tipo 'aplicar' não existe na lista permitida (localizar, calcular, comparar, eliminar, concluir). O passo escreve t = d ÷ v, então o tipo certo é 'calcular'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.resposta",
+    "depois": "Alternativa C — 90 km/h: com esse valor, B ganha na estrada 30/90 h = 1/3 h = 20 min, exatamente o tempo parado no pedágio.",
+    "motivo": "A unidade estava errada. O texto dizia '30 km/h·h', mas o 30 de 30/V vem de 180 km − 150 km, então está em km, e 30/V está em hora. O formato também foi corrigido: o padrão é 'Alternativa X — …'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "108 km/h é a velocidade de B (1,2 × 90), não a de A. Teste: com V = 108 km/h, A leva 180 ÷ 108 ≈ 1,667 h e B (129,6 km/h) anda ≈ 1,389 h, só ≈ 16,7 min a menos. Com 20 min parado, B chegaria ≈ 3,3 min depois.",
+    "motivo": "Acrescentei a origem real do distrator: o aluno respondeu a velocidade de B em vez da de A. As contas originais estão certas e foram mantidas.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C"
  }
 }

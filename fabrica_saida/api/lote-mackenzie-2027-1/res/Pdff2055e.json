@@ -8,7 +8,7 @@
  "conceito": "Reconhecer um estado no mapa do Brasil a partir de uma bacia hidrográfica, da população e da produção agrícola.",
  "resolucao": {
   "antes": {
-   "texto": "A questão pede identificar um estado do mapa com três pistas: um rio, o tamanho da população e um produto agrícola. Primeiro, diga quais estados os números 1 a 5 representam. Depois, procure a pista mais exclusiva, que aqui é o nome do rio. O rio Paraguaçu nasce na Chapada Diamantina e deságua na Baía de Todos os Santos, em Salvador, na Bahia.",
+   "texto": "A questão pede identificar um estado do mapa com três pistas: um rio, o tamanho da população e um produto agrícola. Primeiro, diga quais estados os números 1 a 5 representam. Depois, procure a pista mais exclusiva, que aqui é o nome do rio. O rio Paraguaçu nasce na Chapada Diamantina e deságua na Baía de Todos os Santos, no Recôncavo Baiano, na Bahia.",
    "formulas": [
     "1 = Paraná; 2 = Mato Grosso do Sul; 3 = Goiás; 4 = Minas Gerais; 5 = Bahia",
     "Rio Paraguaçu → Bahia",
@@ -45,7 +45,7 @@
     "faz": "Localize o rio Paraguaçu",
     "conta": "Paraguaçu: Chapada Diamantina → Baía de Todos os Santos",
     "porque": "O rio corre inteiro na Bahia, a pista mais exclusiva da questão. Ela já aponta o número 5.",
-    "tipo": "aplicar"
+    "tipo": "localizar"
    },
    {
     "faz": "Confirme pela população",
@@ -97,7 +97,7 @@
   "cabe": true,
   "porque": "O mapa ajuda a fixar a localização dos estados e das pistas.",
   "tipo": "figura",
-  "roteiro": "Quadro 1: o mapa do Brasil com os cinco estados numerados. Quadro 2: cada número ganha o nome do estado (1 PR, 2 MS, 3 GO, 4 MG, 5 BA). Quadro 3: um ponto marca a nascente do Paraguaçu na Chapada Diamantina e uma seta leva o rio até Salvador, dentro do estado 5. Quadro 4: um selo de 14,1 milhões de habitantes e outro de cacau no sul da Bahia aparecem no estado 5, que fica destacado."
+  "roteiro": "Quadro 1: o mapa do Brasil com os cinco estados numerados. Quadro 2: cada número ganha o nome do estado (1 PR, 2 MS, 3 GO, 4 MG, 5 BA). Quadro 3: um ponto marca a nascente do Paraguaçu na Chapada Diamantina e uma seta leva o rio até a Baía de Todos os Santos, dentro do estado 5. Quadro 4: um selo de 14,1 milhões de habitantes e outro de cacau no sul da Bahia aparecem no estado 5, que fica destacado."
  },
  "fontes": [
   "https://censo2022.ibge.gov.br/",
@@ -109,10 +109,34 @@
  "gab": "E",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "A questão pede identificar um estado do mapa com três pistas: um rio, o tamanho da população e um produto agrícola. Primeiro, diga quais estados os números 1 a 5 representam. Depois, procure a pista mais exclusiva, que aqui é o nome do rio. O rio Paraguaçu nasce na Chapada Diamantina e deságua na Baía de Todos os Santos, no Recôncavo Baiano, na Bahia.",
+    "motivo": "A foz do Paraguaçu não fica em Salvador. O rio deságua na Baía de Iguape, braço da Baía de Todos os Santos, no Recôncavo (entre Maragogipe e Saubara). Salvador recebe água do rio pela barragem de Pedra do Cavalo, mas a foz não é lá.",
+    "fonte": "ANA / INEMA-BA: Bacia Hidrográfica do Rio Paraguaçu"
+   },
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "localizar",
+    "motivo": "'aplicar' não está entre os tipos permitidos (localizar, calcular, comparar, eliminar, concluir). O passo localiza o rio no território.",
+    "fonte": ""
+   },
+   {
+    "campo": "visual.roteiro",
+    "depois": "Quadro 1: o mapa do Brasil com os cinco estados numerados. Quadro 2: cada número ganha o nome do estado (1 PR, 2 MS, 3 GO, 4 MG, 5 BA). Quadro 3: um ponto marca a nascente do Paraguaçu na Chapada Diamantina e uma seta leva o rio até a Baía de Todos os Santos, dentro do estado 5. Quadro 4: um selo de 14,1 milhões de habitantes e outro de cacau no sul da Bahia aparecem no estado 5, que fica destacado.",
+    "motivo": "Mesmo erro do antes.texto: o rio deságua na Baía de Todos os Santos (Baía de Iguape, Recôncavo), não em Salvador.",
+    "fonte": "ANA / INEMA-BA: Bacia Hidrográfica do Rio Paraguaçu"
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E"
  }
 }

@@ -42,29 +42,29 @@
     "faz": "Classifique a polaridade da água",
     "conta": "H₂O: angular → polar",
     "porque": "Os dois pares de elétrons livres do O deixam a molécula angular, e os vetores das ligações O–H não se anulam.",
-    "tipo": "aplicar"
+    "tipo": "localizar"
    },
    {
     "faz": "Elimine a alternativa A",
     "conta": "A: 'apolar' → falso",
     "porque": "Sendo polar, a água dissolve substâncias polares e iônicas, não as apolares.",
-    "tipo": "interpretar"
+    "tipo": "eliminar"
    },
    {
     "faz": "Elimine B e C",
-    "conta": "B: participa de reações. C: calor específico é alto.",
-    "porque": "A água participa de hidrólise e fotossíntese. O alto calor específico estabiliza a temperatura corporal.",
-    "tipo": "interpretar"
+    "conta": "B: reage; C: calor esp. alto",
+    "porque": "A água participa de hidrólises nas células, como a do ATP e a das proteínas. O alto calor específico estabiliza a temperatura corporal.",
+    "tipo": "eliminar"
    },
    {
     "faz": "Elimine D",
-    "conta": "Perda de água → solutos mais concentrados",
+    "conta": "Perde água → soluto concentra",
     "porque": "A água é central na osmose. Menos água no sangue deixa os solutos mais concentrados, o que é a desidratação do caso.",
-    "tipo": "interpretar"
+    "tipo": "eliminar"
    },
    {
     "faz": "Confirme a alternativa E",
-    "conta": "água dissolve iônicos e polares → transporte",
+    "conta": "solvente polar → transporte",
     "porque": "O sangue (plasma) é à base de água e transporta íons, glicose e ureia dissolvidos. Isso mantém a homeostase.",
     "tipo": "concluir"
    }
@@ -73,7 +73,7 @@
   "checagem": "Releia as quatro erradas procurando a falha: A diz 'apolar'; B diz 'não participa de reações'; C diz 'baixo' calor específico; D diz 'não participa da regulação osmótica'. Cada uma tem uma afirmação contrária ao que se sabe da água. A E não tem nenhuma.",
   "erradas": {
    "A": "A água é polar (geometria angular, O mais eletronegativo que H). Por isso dissolve substâncias polares e iônicas, não principalmente as apolares.",
-   "B": "A ligação de hidrogênio é uma interação entre moléculas e não impede a água de reagir. A água participa de hidrólise e da fotossíntese, entre outras reações celulares.",
+   "B": "A ligação de hidrogênio é uma interação entre moléculas e não impede a água de reagir. Nas células, a água participa de hidrólises, como a do ATP e a das proteínas.",
    "C": "O calor específico da água é alto (cerca de 4,18 J/g·°C), não baixo. É isso que torna a temperatura corporal estável diante de variações do ambiente.",
    "D": "A água participa diretamente da osmose. Com a perda de água, o sangue fica com solutos mais concentrados, como no paciente desidratado. A afirmação contradiz o caso do enunciado."
   },
@@ -105,10 +105,70 @@
  "gab": "E",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[0].tipo",
+    "depois": "localizar",
+    "motivo": "O tipo 'aplicar' não está na lista permitida (localizar, calcular, comparar, eliminar, concluir). Este passo identifica uma propriedade da molécula.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "eliminar",
+    "motivo": "O tipo 'interpretar' não está na lista permitida. O passo descarta uma alternativa.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "eliminar",
+    "motivo": "O tipo 'interpretar' não está na lista permitida. O passo descarta alternativas.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "eliminar",
+    "motivo": "O tipo 'interpretar' não está na lista permitida. O passo descarta uma alternativa.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "B: reage; C: calor esp. alto",
+    "motivo": "A conta tinha cerca de 50 caracteres e não cabe na tela (limite de ~30). O conteúdo continua o mesmo.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "A água participa de hidrólises nas células, como a do ATP e a das proteínas. O alto calor específico estabiliza a temperatura corporal.",
+    "motivo": "A questão fala do organismo humano, e não há fotossíntese nas células humanas. O exemplo enganava, então foi trocado por hidrólises que ocorrem nas células humanas.",
+    "fonte": "OpenStax Biology 2e, cap. 2.2 (Water) e 6.4 (ATP)"
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "Perde água → soluto concentra",
+    "motivo": "A conta tinha 41 caracteres e passava do limite de ~30 da tela.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "solvente polar → transporte",
+    "motivo": "A conta tinha 44 caracteres e passava do limite de ~30 da tela. A ideia continua a mesma.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "A ligação de hidrogênio é uma interação entre moléculas e não impede a água de reagir. Nas células, a água participa de hidrólises, como a do ATP e a das proteínas.",
+    "motivo": "Fotossíntese não ocorre em células humanas, e a questão trata do organismo humano. O exemplo foi trocado por hidrólises celulares que são verdadeiras nesse contexto.",
+    "fonte": "OpenStax Biology 2e, cap. 2.2 e 6.4"
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E"
  }
 }

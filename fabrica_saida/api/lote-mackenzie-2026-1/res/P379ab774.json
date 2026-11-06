@@ -44,13 +44,13 @@
     "faz": "Relacione origem das células e sistema imune",
     "conta": "célula de outra pessoa → antígenos diferentes → rejeição",
     "porque": "O sistema imune ataca o que reconhece como não próprio. Isso exige imunossupressores no transplante de doador.",
-    "tipo": "aplicar"
+    "tipo": "concluir"
    },
    {
     "faz": "Aplique à terapia gênica ex vivo",
     "conta": "célula do paciente → antígenos próprios → sem rejeição",
     "porque": "As células voltam ao corpo de quem as doou. Só ganharam o gene da insulina, e o conjunto de antígenos da superfície continua o mesmo.",
-    "tipo": "aplicar"
+    "tipo": "concluir"
    },
    {
     "faz": "Elimine as alternativas que exageram ou erram",
@@ -71,7 +71,7 @@
    "A": "A insulina produzida é a mesma proteína, codificada pelo gene humano da insulina. O gene inserido não a torna 'mais potente'. A vantagem é de compatibilidade, não de potência.",
    "B": "A terapia gênica insere um gene no genoma das células. Isso é engenharia genética por definição, com DNA recombinante. O enunciado diz 'insere o gene da insulina em seu genoma'.",
    "C": "'Eliminar a necessidade por toda a vida' é afirmação absoluta e não está no enunciado. A terapia é apenas pesquisada. Além disso, o sistema imune ainda pode atacar as novas células produtoras de insulina, pois a causa autoimune do diabetes tipo 1 continua.",
-   "D": "As células com o gene inserido podem produzir insulina, mas o gene não traz sensor de glicose nem controle da liberação. Regular a glicose 'sozinhas' exigiria um mecanismo que o enunciado não menciona. Não é a vantagem fundamental frente ao transplante."
+   "D": "O enunciado só fala em inserir o gene da insulina, sem nenhum sensor de glicose ou controle da liberação. Além disso, células beta de um doador saudável já regulam a glicose. Então D não seria vantagem da II sobre a I."
   },
   "armadilha": "Escolher alternativas sedutoras que prometem cura total ou controle perfeito da glicose, em vez da vantagem real: não ser rejeitada por vir do próprio paciente.",
   "alerta": "",
@@ -105,10 +105,34 @@
  "gab": "E",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "concluir",
+    "motivo": "O tipo 'aplicar' não está na lista permitida (localizar, calcular, comparar, eliminar, concluir). O passo tira uma conclusão biológica a partir da origem das células.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "concluir",
+    "motivo": "O tipo 'aplicar' não está na lista permitida. O passo conclui que, na estratégia II, não há rejeição.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "O enunciado só fala em inserir o gene da insulina, sem nenhum sensor de glicose ou controle da liberação. Além disso, células beta de um doador saudável já regulam a glicose. Então D não seria vantagem da II sobre a I.",
+    "motivo": "O texto antigo dizia como fato geral que 'o gene não traz sensor de glicose'. Existem construções com promotor sensível à glicose, então a frase foi limitada ao que o enunciado descreve. Também faltava o argumento principal: o transplante (I) já tem essa capacidade, logo D não é uma vantagem comparativa.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E"
  }
 }

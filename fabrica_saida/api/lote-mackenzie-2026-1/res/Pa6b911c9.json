@@ -44,14 +44,14 @@
    {
     "faz": "Lembre quem eleva o cálcio",
     "conta": "Cálcio baixo → PTH ↑",
-    "porque": "O PTH (paratireoides) retira cálcio dos ossos, aumenta a reabsorção nos rins e a absorção no intestino. A calcemia sobe.",
-    "tipo": "aplicar"
+    "porque": "O PTH (paratireoides) retira cálcio dos ossos e aumenta a reabsorção nos rins. Ele também ativa a vitamina D, que aumenta a absorção no intestino. A calcemia sobe.",
+    "tipo": "localizar"
    },
    {
     "faz": "Lembre quem reduz o cálcio",
     "conta": "Cálcio alto → calcitonina ↑",
     "porque": "A calcitonina (tireoide) favorece a deposição de cálcio nos ossos e diminui a calcemia. Efeito oposto ao do PTH.",
-    "tipo": "aplicar"
+    "tipo": "localizar"
    },
    {
     "faz": "Elimine os pares que regulam outra coisa",
@@ -106,10 +106,34 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "O PTH (paratireoides) retira cálcio dos ossos e aumenta a reabsorção nos rins. Ele também ativa a vitamina D, que aumenta a absorção no intestino. A calcemia sobe.",
+    "motivo": "O PTH não age direto sobre o intestino. A absorção intestinal de cálcio sobe porque o PTH estimula o rim a ativar a vitamina D (calcitriol). Do jeito que estava, parecia uma ação direta.",
+    "fonte": "OpenStax Biology 2e, seção 37.4 (Regulation of Body Processes – calcium homeostasis)"
+   },
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "localizar",
+    "motivo": "O tipo 'aplicar' não existe no padrão. Os tipos válidos são localizar, calcular, comparar, eliminar e concluir.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "localizar",
+    "motivo": "O tipo 'aplicar' não existe no padrão. Os tipos válidos são localizar, calcular, comparar, eliminar e concluir.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C"
  }
 }

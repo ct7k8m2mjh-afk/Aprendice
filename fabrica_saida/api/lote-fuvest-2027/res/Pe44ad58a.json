@@ -64,13 +64,13 @@
     "faz": "Leia o que a expressão 'implies'",
     "conta": "'implies a form of mathematical reasoning rooted in symmetry and repetition'",
     "porque": "Tradução: 'implica uma forma de raciocínio matemático baseado em simetria e repetição'. A sequência é a evidência; o raciocínio é a conclusão.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Formule a resposta antes das letras",
     "conta": "sequência = prova de raciocínio",
     "porque": "Resposta em português: o termo sustenta a interpretação de que os desenhos mostram raciocínio matemático com progressão numérica e simetria.",
-    "tipo": "interpretar"
+    "tipo": "comparar"
    },
    {
     "faz": "Compare com as alternativas",
@@ -84,10 +84,10 @@
   "erradas": {
    "A": "Exagera. O último parágrafo diz que os números podem refletir 'an earlier and simpler level of mathematical thinking' (um nível anterior e mais simples). Isso é o oposto de sistemas formais de cálculo comparáveis à matemática clássica.",
    "C": "Inverte o texto. O texto liga os motivos florais à organização numérica: o número de pétalas 'is determined by this doubling sequence' (é determinado por essa sequência de dobros). Não há desvinculação.",
-   "D": "O texto diz que o pensamento matemático começou 'long before writing' (muito antes da escrita). Não fala de escrita numérica, nem de uso administrativo. As aplicações práticas citadas são dividir colheitas e campos comunais.",
+   "D": "O texto diz que o pensamento matemático começou 'long before writing' (muito antes da escrita). Não fala de escrita numérica, nem trata a cerâmica como registro administrativo. As aplicações práticas citadas são dividir colheitas e campos comunais.",
    "E": "O texto não fala de convenção artística difundida na Mesopotâmia. Fala de raciocínio matemático dos halafianos, com raízes práticas ('practical roots in daily life'), como partilhar colheitas. A alternativa inventa uma ideia que o texto não apresenta."
   },
-  "armadilha": "Marcar a A, que soa científica, mas faz o texto dizer mais do que diz: o próprio texto fala de um nível 'simples' de matemática.",
+  "armadilha": "Marcar a A, que soa científica, mas faz o texto dizer mais do que diz: o próprio texto fala de um nível 'mais simples' (simpler) de matemática.",
   "alerta": "",
   "essencial": {
    "pede": "Para que o texto usa a expressão 'geometric sequence'.",
@@ -119,10 +119,40 @@
  "gab": "B",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "localizar",
+    "motivo": "O guia só aceita os tipos localizar, calcular, comparar, eliminar e concluir; \"interpretar\" não é um deles. Este passo acha no texto o trecho que vem depois de 'implies', então o tipo certo é localizar.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "comparar",
+    "motivo": "\"interpretar\" não é um tipo aceito. Este passo formula a resposta antes de confrontá-la com as letras. O guia diz que esse passo é do tipo concluir ou comparar, e o concluir fica para o último passo.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "O texto diz que o pensamento matemático começou 'long before writing' (muito antes da escrita). Não fala de escrita numérica, nem trata a cerâmica como registro administrativo. As aplicações práticas citadas são dividir colheitas e campos comunais.",
+    "motivo": "A frase antiga dizia que o texto não fala de uso administrativo, e isso não é exato: o 5º parágrafo liga o raciocínio a 'managing village communities' (administrar comunidades). O que o texto não diz é que a cerâmica fosse um sistema de escrita usado na administração.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.armadilha",
+    "depois": "Marcar a A, que soa científica, mas faz o texto dizer mais do que diz: o próprio texto fala de um nível 'mais simples' (simpler) de matemática.",
+    "motivo": "O texto diz 'simpler' (mais simples), e não 'simple'. A tradução precisa ser fiel ao trecho citado.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "B"
  }
 }

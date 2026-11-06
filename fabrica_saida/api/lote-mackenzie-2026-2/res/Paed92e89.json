@@ -49,7 +49,7 @@
     "faz": "Cole MACKE numa peça só",
     "conta": "peças: [MACKE], N, Z, I, E",
     "porque": "O bloco gasta um dos E. Sobram 4 letras avulsas (N, Z, I e o outro E), e junto com o bloco são 5 peças.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Calcule os casos favoráveis",
@@ -87,7 +87,7 @@
   },
   {
    "nome": "Probabilidade por sorteio de letras",
-   "ideia": "Sorteando as 9 posições em ordem, a chance de cair MACKE em posições vizinhas e depois arrumar o resto leva à mesma razão 120/181440."
+   "ideia": "Pense nos dois E como diferentes. O bloco pode começar em 5 posições (da 1ª à 5ª). Para uma posição fixa, a chance é 1/9 × 1/8 × 1/7 × 1/6 × 2/5 = 2/15120, porque o último E pode ser qualquer um dos dois. Só existe um M, então duas posições nunca valem ao mesmo tempo e as chances se somam: 5 × 2/15120 = 10/15120 = 1/1512."
   }
  ],
  "quadro": [
@@ -142,10 +142,28 @@
  "gab": "D",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "localizar",
+    "motivo": "O tipo 'interpretar' não está na lista permitida (localizar, calcular, comparar, eliminar, concluir). Este passo identifica as peças a permutar, então o tipo certo é 'localizar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "caminhos[1].ideia",
+    "depois": "Pense nos dois E como diferentes. O bloco pode começar em 5 posições (da 1ª à 5ª). Para uma posição fixa, a chance é 1/9 × 1/8 × 1/7 × 1/6 × 2/5 = 2/15120, porque o último E pode ser qualquer um dos dois. Só existe um M, então duas posições nunca valem ao mesmo tempo e as chances se somam: 5 × 2/15120 = 10/15120 = 1/1512.",
+    "motivo": "O texto anterior só dizia que o caminho 'leva à mesma razão', sem mostrar a conta, e não dava para conferir. Agora a conta está escrita e foi refeita: 9 × 8 × 7 × 6 × 5 = 15120 e 10/15120 = 1/1512.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "D"
  }
 }

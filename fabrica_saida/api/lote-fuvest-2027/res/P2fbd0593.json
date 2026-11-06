@@ -49,13 +49,13 @@
     "faz": "Defina o genótipo de Gaten",
     "conta": "Gaten afetado, dominante → Aa",
     "porque": "Se ele precisasse de dois alelos alterados, a doença seria recessiva. Aqui basta um; o outro alelo é normal, então ele é heterozigoto.",
-    "tipo": "aplicar"
+    "tipo": "concluir"
    },
    {
     "faz": "Defina o genótipo dos pais",
     "conta": "\"única pessoa com a síndrome\" → pais aa",
-    "porque": "Numa doença dominante, quem tem o alelo é afetado. Pais sem a síndrome não têm o alelo, logo a mutação surgiu nos gametas ou no embrião de Gaten.",
-    "tipo": "interpretar"
+    "porque": "Numa doença dominante, quem tem o alelo é afetado. Pais sem a síndrome não têm o alelo, então a mutação surgiu num gameta de um dos pais ou no início do desenvolvimento de Gaten.",
+    "tipo": "concluir"
    },
    {
     "faz": "Calcule a chance para os filhos",
@@ -66,11 +66,11 @@
    {
     "faz": "Compare com as alternativas",
     "conta": "C: 50% para filhos e filhas, gene não sexual",
-    "porque": "A (X), B (Y), D (pais homozigotos exigidos) e E (chance nula) contradizem os passos anteriores. A C diz o que se calculou, com a razão certa.",
+    "porque": "A (X), B (Y), D (pais heterozigotos, exige homozigose) e E (chance nula) contradizem os passos anteriores. A C acerta o 'pelo menos 50%': com parceira aa a chance é 50%; se a parceira também fosse afetada (Aa), subiria para 75%.",
     "tipo": "concluir"
    }
   ],
-  "resposta": "Alternativa C: o gene é autossômico e Gaten é Aa, então cada filho ou filha tem 50% de chance de herdar o alelo e manifestar a síndrome.",
+  "resposta": "Alternativa C: o gene é autossômico e Gaten é Aa, então cada filho ou filha tem pelo menos 50% de chance de herdar o alelo e manifestar a síndrome (exatamente 50% se a parceira não for afetada).",
   "checagem": "Cruzamento Aa × aa: dois dos quatro resultados são Aa, ou seja, 50%. Se o gene fosse do X, o pai passaria o X a todas as filhas (100%) e o Y a todos os filhos; o texto diz autossômica, então não é o caso.",
   "erradas": {
    "A": "O texto diz herança autossômica, ou seja, o gene não está no X. Além disso, se estivesse no X de um pai afetado, 100% das filhas receberiam o X dele, e não 50%.",
@@ -123,10 +123,46 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "concluir",
+    "motivo": "O tipo 'aplicar' não existe na lista permitida (localizar, calcular, comparar, eliminar, concluir). Este passo tira uma conclusão do tipo de herança.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "concluir",
+    "motivo": "O tipo 'interpretar' não existe na lista permitida. Este passo deduz o genótipo dos pais a partir do texto.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Numa doença dominante, quem tem o alelo é afetado. Pais sem a síndrome não têm o alelo, então a mutação surgiu num gameta de um dos pais ou no início do desenvolvimento de Gaten.",
+    "motivo": "A frase 'nos gametas ou no embrião de Gaten' dava a entender que a mutação surgiu nos gametas do próprio Gaten. Uma mutação nos gametas dele afetaria os filhos dele, e não ele. A mutação nova surge no gameta de um dos pais ou no início do embrião.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "A (X), B (Y), D (pais heterozigotos, exige homozigose) e E (chance nula) contradizem os passos anteriores. A C acerta o 'pelo menos 50%': com parceira aa a chance é 50%; se a parceira também fosse afetada (Aa), subiria para 75%.",
+    "motivo": "A alternativa C diz 'pelo menos 50%', e não 50% exatos. A resolução não explicava por que o 'pelo menos' está correto. Também corrigido: a D afirma que os pais são heterozigotos, e não 'homozigotos'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.resposta",
+    "depois": "Alternativa C: o gene é autossômico e Gaten é Aa, então cada filho ou filha tem pelo menos 50% de chance de herdar o alelo e manifestar a síndrome (exatamente 50% se a parceira não for afetada).",
+    "motivo": "A resposta precisa refletir o 'pelo menos 50%' que a alternativa afirma.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C"
  }
 }

@@ -12,7 +12,7 @@
    "formulas": [
     "E = k·q/d²",
     "Campo de carga positiva: afasta-se da carga",
-    "Vetores iguais a 120° entre si somam zero"
+    "Três vetores iguais a 120° entre si somam zero"
    ],
    "simbolos": [
     [
@@ -57,7 +57,7 @@
     "faz": "Veja a direção dos três resultados",
     "conta": "Q em 0°, 240° e 120°",
     "porque": "Os pares são (+Q à direita, +2Q à esquerda), (+Q embaixo à esquerda, +2Q em cima à direita) e (+Q em cima à esquerda, +2Q embaixo à direita). Os três resultados de módulo kQ/L² apontam para os vértices +Q, que ficam a 120° uns dos outros.",
-    "tipo": "interpretar"
+    "tipo": "comparar"
    },
    {
     "faz": "Some os três vetores",
@@ -71,7 +71,7 @@
   "erradas": {
    "A": "kQ/L² é o resultado de um único par oposto (2kQ/L² − kQ/L²). Faltou somar os outros dois pares, que apontam a 120° e cancelam esse valor.",
    "B": "2kQ/L² é o campo de uma só carga 2Q. Faltou subtrair o campo da carga Q oposta e somar os outros vértices.",
-   "C": "4kQ/L² não confere: seria o resultado de somar módulos como se os campos fossem paralelos. Os sentidos são opostos nos pares e os pares estão a 120° entre si.",
+   "C": "4kQ/L² não confere: somar os módulos dos seis campos dá 3 × kQ/L² + 3 × 2kQ/L² = 9kQ/L², não 4. Pela simetria, cada par oposto deixa kQ/L², e os três resultados, a 120° entre si, se anulam.",
    "D": "10kQ/L² não confere: somaria todos os módulos, 3 × kQ/L² + 3 × 2kQ/L² = 9kQ/L², e ainda assim não chega a 10. Campo é vetor, e os sentidos opostos fazem os campos se cancelarem."
   },
   "armadilha": "Somar os módulos dos campos como números comuns, esquecendo que campo é vetor e que cargas opostas em relação a P empurram em sentidos contrários.",
@@ -135,10 +135,34 @@
  "gab": "E",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "comparar",
+    "motivo": "\"interpretar\" não é um tipo permitido. Os tipos válidos são localizar, calcular, comparar, eliminar e concluir. O passo compara as direções dos três resultados, então o tipo é \"comparar\".",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.antes.formulas[2]",
+    "depois": "Três vetores iguais a 120° entre si somam zero",
+    "motivo": "Como estava escrita, a regra vale para qualquer número de vetores, e isso é falso: dois vetores iguais a 120° dão uma resultante de mesmo módulo, não zero. A regra vale para três vetores.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "4kQ/L² não confere: somar os módulos dos seis campos dá 3 × kQ/L² + 3 × 2kQ/L² = 9kQ/L², não 4. Pela simetria, cada par oposto deixa kQ/L², e os três resultados, a 120° entre si, se anulam.",
+    "motivo": "A origem dada era falsa: somar os módulos como se os campos fossem paralelos dá 9kQ/L², não 4kQ/L². Nenhuma conta plausível chega a 4, então a entrada passa para \"não confere\" com o teste objetivo.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E"
  }
 }
