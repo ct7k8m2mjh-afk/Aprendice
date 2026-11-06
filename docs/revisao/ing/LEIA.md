@@ -12,3 +12,4 @@ Observações para a integração:
 - `pendencias` traz propostas de conteúdo novo (sem id criado): decisão do dono.
 | I02 Vocabulário | aprovado (06/11/2026) | 45 |
 | I03 Gramática | aprovado (06/11/2026) | 86 |
+| I01 Leitura e interpretação de textos | aprovado (06/11/2026) | 86 |
