@@ -19,3 +19,4 @@ Observações para a integração:
 | S07 Globalização | aprovado (06/11/2026) | 49 |
 | S08 Mídia e indústria cultural | aprovado (06/11/2026) | 48 |
 | L06 Racionalismo e empirismo | aprovado (06/11/2026) | 60 |
+| L02 Sócrates, Platão e Aristóteles | aprovado (06/11/2026) | 70 |
