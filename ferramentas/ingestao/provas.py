@@ -328,7 +328,8 @@ def acafe(ano, sem, total=63, duracao=4.5):
         'duracao_horas': duracao, 'total': total, 'alternativas': 4,
         'nota': 'Vestibular de Medicina Acafe. Língua estrangeira: inglês. Print da prova oficial comentada, só o enunciado (os dados e a justificativa da banca ficam fora).',
         'cadernos': [{'arquivo': 'caderno-comentado'}],
-        'colunas': lambda r: [(30, r.width - 25)], 'topo': 26, 'base': 20, 'rodape_num': True,
+        # rodape_ultimo: número de fração no pé da página ("34/√34", Inverno 2025 q27) não é o número da página
+        'colunas': lambda r: [(30, r.width - 25)], 'topo': 26, 'base': 20, 'rodape_num': True, 'rodape_ultimo': True,
         'ancora': r'^(\d{2})\)', 'ancora_dx': 30,
         # a prova comentada pinta a alternativa correta de vermelho: volta para a cor do texto no print
         'neutralizar_cores': (0xff0000, 0xee0000, 0xed0000),
@@ -1234,10 +1235,26 @@ def _ufsm_ultima(pdf):
 
 def ufsm(ano, duracao=4.5):
     def gab1(arq):
-        """Pares "NN X"; as questões de língua (38–40) aparecem duas vezes: espanhol, depois inglês — vale a última."""
+        """Pares "NN X" pela posição na página; as questões de língua (38–40) aparecem duas vezes, no quadro
+        "Língua Espanhola" e no quadro "Língua Inglesa": vale o par que fica abaixo do título "Língua Inglesa"."""
+        import pymupdf
+        pg = pymupdf.open(arq)[0]
+        ws = pg.get_text('words')
+        y_ing = min(w[1] for w in ws if w[4] == 'Inglesa')
+        x_ing = [w[0] for w in ws if w[4] == 'Inglesa'][0]
         g = {}
-        for n, v in re.findall(r'(?<![\d,.])(\d{2})\s+([A-E]\b|ANULAD[AO]|X\b|\*)', texto_pdf(arq, layout=False)):
-            g[int(n)] = v if len(v) == 1 and v in 'ABCDE' else 'X'
+        for w in ws:
+            if not re.fullmatch(r'\d{2}', w[4]):
+                continue
+            n = int(w[4])
+            # alternativa: a palavra seguinte na mesma linha, à direita
+            v = [o for o in ws if abs(o[1] - w[1]) < 4 and 0 < o[0] - w[2] < 120 and re.fullmatch(r'[A-E]|ANULAD[AO]', o[4])]
+            if not v:
+                continue
+            v = min(v, key=lambda o: o[0])[4]
+            if n >= 38 and not (w[1] > y_ing and abs(w[0] - x_ing) < 80):
+                continue   # 38–40 fora do quadro do inglês (espanhol)
+            g[n] = v if len(v) == 1 else 'X'
         return g
 
     def gab(pasta):
