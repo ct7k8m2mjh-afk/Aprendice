@@ -486,6 +486,17 @@ def eventos_do_pdf(pdf, cfg, faixa=None):
             continue
         cols = colunas_da_pagina(pg, cfg)
         lp = linhas(pg)
+        if cfg.get('corte_espacado'):
+            # título com as letras espaçadas ("P R O D U Ç Ã O  D E  T E X T O"): cada letra vira uma linha na camada de
+            # texto; a palavra remontada na mesma altura encerra a questão anterior
+            por_y = {}
+            for L in lp:
+                if len(L['t']) == 1:
+                    por_y.setdefault(round(L['bbox'][1]), []).append(L)
+            for y_, ls_ in por_y.items():
+                palavra = ''.join(L['t'] for L in sorted(ls_, key=lambda L: L['bbox'][0]))
+                if any(w in palavra for w in cfg['corte_espacado']) and y_ >= topo_de(pg, cfg) - 5:
+                    ev.append({'p': pi, 'c': 0, 'y': y_, 'tipo': 'corte'})
         for y in artes_sangradas(pg, lp):
             # arte de borda a borda sem texto por cima (ex.: aviso antes da redação): encerra a questão
             ev.append({'p': pi, 'c': 0, 'y': y, 'tipo': 'corte'})
@@ -756,7 +767,7 @@ def segmentos(pdf, cfg, ev, i, faixa_pag=None):
         x0_, y0_, x1_, y1_ = L['bbox']
         if coluna_do_ponto(pdf[p], cfg, x0_, y0_, cols0) == c and y0_ < e['y'] - 2 and y < y1_ <= e['y'] + 0.5:
             y = y1_ + 0.3
-    ultima = len(pdf) - 1 if not faixa_pag else faixa_pag[1] - 1
+    ultima = len(pdf) - 1 if not faixa_pag else min(len(pdf), faixa_pag[1]) - 1
     while True:
         pg = pdf[p]
         cols = colunas_da_pagina(pg, cfg)
@@ -778,8 +789,8 @@ def segmentos(pdf, cfg, ev, i, faixa_pag=None):
             if p > ultima:
                 return segs
         y = faixa_vertical(pdf[p], cfg, c, colunas_da_pagina(pdf[p], cfg))[0] if p < len(pdf) else cfg['topo']
-        if not prox and p != e['p']:
-            return segs  # última questão do caderno: não passa da própria página
+        if not prox and p != e['p'] and not cfg.get('ultima_continua'):
+            return segs  # última questão do caderno: não passa da própria página (salvo 'ultima_continua', conferido)
 
 
 ROMANO = {r: i for i, r in enumerate(['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X'], 1)}

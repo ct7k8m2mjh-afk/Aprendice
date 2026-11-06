@@ -1958,3 +1958,84 @@ def pucpr(ano, sem, rotulo):
 for _a, _s, _r in ((2024, 2, 'Vestibular de Inverno 2024'), (2025, 1, 'Vestibular de Verão 2024'), (2025, 2, 'Vestibular de Inverno 2025'),
                    (2026, 1, 'Vestibular de Verão 2025'), (2026, 2, 'Vestibular de Inverno 2026')):
     PROVAS[f'pucpr-{_a}-{_s}'] = pucpr(_a, _s, _r)
+
+
+# ------------------------------------------------------------------------------------------------ PUC Minas
+def pucminas(ano, sem):
+    """PUC Minas, Vestibular {ano}/{sem}, caderno de Medicina (Betim, Contagem e Poços de Caldas): 50 questões A–D em uma
+    coluna, "QUESTÃO 19" em negrito: Língua Portuguesa 1–15, Biologia, Química, Física e Matemática até a 45, língua
+    estrangeira 46–50 (espanhol ou inglês). O gabarito oficial traz uma só coluna para 46–50, sem dizer de qual língua:
+    as questões de língua ficam fora."""
+    def gab(pasta):
+        txt = texto_pdf(pasta / 'gabarito.pdf')
+        txt = re.split(r'DEMAIS CURSOS|DIREITO|\n\s*VESTIBULAR PUC MINAS\s*\n(?=.*\n.*(?!MEDICINA))', txt)[0]
+        g = {}
+        for n, v in re.findall(r'(?<![\d,.])(\d{2})\s+([A-D])(?=\s|$)', txt):
+            if int(n) <= 45:
+                g.setdefault(int(n), v)
+        return g
+
+    return {
+        'catalogo': 'pucminas', 'escola': 'PUC Minas', 'ano': str(ano), 'fase': f'Medicina {ano}/{sem}', 'titulo': f'PUC Minas Medicina {ano}/{sem}',
+        'banca': 'PUC Minas', 'duracao_horas': 4.5, 'total': 45, 'alternativas': 4,
+        'nota': f'Pontifícia Universidade Católica de Minas Gerais, Vestibular {ano}/{sem}, caderno de Medicina: questões 1–45 '
+                '(Língua Portuguesa, Biologia, Química, Física e Matemática), A–D. As de língua estrangeira (46–50) ficam fora: '
+                'o gabarito oficial não diz se a coluna 46–50 é a do inglês ou a do espanhol. Redação fora.',
+        'cadernos': [{'arquivo': 'caderno', 'paginas': (3, 999)}],
+        'colunas': lambda r: [(50, r.width - 40)], 'margem': 50, 'topo': 50, 'base': 30,
+        'ancora': r'^QUEST[ÃA]O\s+(\d{1,2})$', 'ancora_dx': 20, 'sequencial': True, 'ancora_negrito': True,
+        'secoes_rx': [(r'^PROVA DE L[ÍI]NGUA PORTUGUESA$', 'Língua Portuguesa'), (r'^PROVA DE BIOLOGIA$', 'Biologia'),
+                      (r'^PROVA DE QU[ÍI]MICA$', 'Química'), (r'^PROVA DE F[ÍI]SICA$', 'Física'), (r'^PROVA DE MATEM[ÁA]TICA$', 'Matemática'),
+                      (r'^PROVA DE (ESPANHOL|INGL[ÊE]S)$', 'Língua estrangeira')],
+        'pular_secoes': ('Língua estrangeira',), 'pular_antes_sequencia': True,
+        'corte': [r'(?i)^PRODU[ÇC][ÃA]O DE TEXTO', r'(?i)^PROPOSTA DE REDA', r'(?i)^RASCUNHO', r'(?i)^TABELA PERI', r'(?i)^VESTIBULAR PUC MINAS$'],
+        'suporte': [r'(?i)(responda|responder)\b.*\bquest[õo]es', r'(?i)^(o |os )?textos? (a seguir |abaixo )?(é |são )?(para|refere-se|referem-se|base)'
+                    , r'(?i)^INSTRU[ÇC][ÃA]O:'],
+        'corte_espacado': ('PRODUÇÃO', 'RASCUNHO'),
+        'gabarito': gab, 'area': lambda n: 'Conhecimentos gerais',
+    }
+
+
+for _a, _s in ((2024, 1), (2025, 1), (2026, 1), (2027, 1)):
+    PROVAS[f'pucminas-{_a}-{_s}'] = pucminas(_a, _s)
+
+
+# ------------------------------------------------------------------------------------------------ Mackenzie
+def mackenzie(ano, sem, rotulo, tipo='A'):
+    """Universidade Presbiteriana Mackenzie, Vestibular {ano}/{sem} ({rotulo}): questões objetivas A–E em uma coluna,
+    "Questão nº 03" em negrito; Português, Inglês, Física, Química, Matemática, Biologia, História e Geografia.
+    Gabarito oficial em grade por matéria (linha de números e linha de letras)."""
+    def gab(pasta):
+        ls = [l.split() for l in texto_pdf(pasta / 'gabarito.pdf').splitlines() if l.strip()]
+        g = {}
+        for a, b in zip(ls, ls[1:]):
+            if a and all(x.isdigit() for x in a) and len(a) == len(b) and all(re.fullmatch(r'[A-E]|\*|ANULADA|X', x) for x in b):
+                for n, v in zip(a, b):
+                    g[int(n)] = v if v in 'ABCDE' else 'X'
+        return g
+
+    secs = [(r'^PORTUGU[ÊE]S$', 'Língua Portuguesa'), (r'^INGL[ÊE]S$', 'Inglês'), (r'^F[ÍI]SICA$', 'Física'), (r'^QU[ÍI]MICA$', 'Química'),
+            (r'^MATEM[ÁA]TICA$', 'Matemática'), (r'^BIOLOGIA$', 'Biologia'), (r'^HIST[ÓO]RIA$', 'História'), (r'^GEOGRAFIA$', 'Geografia')]
+    cfg = {
+        'catalogo': 'mackenzie', 'escola': 'Mackenzie', 'ano': str(ano), 'fase': f'{ano}/{sem}', 'titulo': f'Mackenzie {ano}/{sem}' + (' Medicina' if 'Medicina' in rotulo else ''),
+        'banca': 'Mackenzie', 'duracao_horas': 4.5,
+        'nota': f'Universidade Presbiteriana Mackenzie, Vestibular {ano} – {sem}º semestre ({rotulo}): questões objetivas A–E. '
+                'Redação fora. Gabarito oficial publicado pelo Mackenzie; anulada fica fora.',
+        'cadernos': [{'arquivo': 'caderno', 'paginas': (2, 999)}],
+        'colunas': lambda r: [(36, r.width - 30)], 'margem': 36, 'topo': 30, 'base': 46,
+        'ancora': r'^Quest[ãa]o\s+n[ºo°]\s*(\d{1,2})$', 'ancora_dx': 20, 'sequencial': True, 'ancora_negrito': True,
+        'secoes_rx': secs,
+        'corte': [r'(?i)^RASCUNHO', r'(?i)^PROPOSTA DE REDA', r'(?i)^REDA[ÇC][ÃA]O$', r'(?i)^TABELA PERI', r'(?i)^CLASSIFICA[ÇC][ÃA]O PERI'],
+        'suporte': [r'(?i)^textos? para as quest', r'(?i)(responda|responder)\b.*\bquest[õo]es', r'(?i)^Text(s)? for questions',
+                    r'(?i)enable you to answer questions', r'(?i)answer questions\s+\d'],
+        'gabarito': gab, 'area': lambda n: 'Conhecimentos gerais',
+    }
+    cfg['total_de'] = lambda pasta: max(gab(pasta))
+    return cfg
+
+
+PROVAS['mackenzie-2022-2'] = mackenzie(2022, 2, 'Alphaville e Higienópolis, 21/06/2022, prova tipo A')
+PROVAS['mackenzie-2026-1'] = mackenzie(2026, 1, 'Higienópolis, 27/11/2025')
+PROVAS['mackenzie-2026-2'] = mackenzie(2026, 2, '11/06/2026, prova A')
+PROVAS['mackenzie-2027-1'] = mackenzie(2027, 1, 'Medicina, Alphaville, 21/10/2026')
+PROVAS['mackenzie-2027-1']['ultima_continua'] = True   # a questão 60 continua na última página (52), conferido no caderno
