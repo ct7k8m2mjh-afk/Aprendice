@@ -27,7 +27,7 @@ export function CartaoTeoriaView({ c, figs }: { c: CartaoTeoria; figs?: Figura[]
       {c.caderno && c.caderno.length > 0 && (
         <ul className="caderno">{c.caderno.map((x, i) => ehLatex(x)
           // revisão (docs/revisao): texto na letra da interface com as fórmulas entre $…$ à mão
-          ? <li key={i} className="texto com-fm"><TextoMat t={x} prosa={contaEhTexto('', materiaDoCodigo(c.sub))} /></li>
+          ? <li key={i} className="texto com-fm"><TextoMat t={x} prosa={contaEhTexto('1 + 1', materiaDoCodigo(c.sub))} /></li>
           : <li key={i} className={contaEhTexto(x, materiaDoCodigo(c.sub)) ? 'texto' : undefined}>{comFracoes(x)}</li>)}</ul>
       )}
       {c.cuidado && <p className="cuidado"><Icone nome="info" tam={16} /> <span><b>Cuidado: </b>{c.cuidado}</span></p>}
@@ -49,7 +49,7 @@ export function TeoriaModulo({ m, mod }: { m: MateriaId; mod: Modulo }) {
       <section className="bloco teoria-resumo">
         <p className="resumo-mod">{mod.resumo}</p>
         {mod.formulas.length > 0 && (<><h3>No caderno</h3><ul className="caderno">{mod.formulas.map((f, i) => ehLatex(f)
-          ? (contaEhTexto('', m) ? <li key={i} className="texto"><Formula tex={f} prosa /></li> : <li key={i}><Formula tex={f} bloco={false} /></li>)
+          ? (contaEhTexto('1 + 1', m) ? <li key={i} className="texto"><Formula tex={f} prosa /></li> : <li key={i}><Formula tex={f} bloco={false} /></li>)
           : <li key={i} className={contaEhTexto(f, m) ? 'texto' : undefined}>{comFracoes(f)}</li>)}</ul></>)}
         {mod.erro && <p className="cuidado"><Icone nome="info" tam={16} /> <span><b>Erro que mais derruba: </b>{mod.erro}</span></p>}
       </section>

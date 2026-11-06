@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest';
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { analisaLatex, latexParaLeitura, latexParaMotor, type NoMat } from '../logica/latex';
-import { partesFracao } from '../logica/fracao';
+import { contaEhTexto, partesFracao } from '../logica/fracao';
 import { montaRoteiro } from '../logica/motorConta';
 import {
   confereLacuna, escolheQuestoes, fechaSessao, lacuna, linhasFixe, nivelDoAluno, novoAndamento, opcoesFormula, pedeTentativa,
@@ -53,6 +53,9 @@ describe('LaTeX das revisões', () => {
     expect(latexParaMotor('10\\,\\Delta s = 400 \\;\\Rightarrow\\; \\Delta s = \\frac{400}{10} = 40\\ \\text{m}', contaFracoes)).toBe('10Δs = 400\nΔs = 400/10 = 40 m');
     // índice sem forma Unicode: não dá para escrever sem perda (pedido 2 ao motor)
     expect(latexParaMotor('f_{cat} = \\frac{10}{4}', contaFracoes)).toBeNull();
+    // Humanas: a quebra que só corta a frase some; item novo fica em linha própria
+    expect(latexParaMotor('\\begin{gathered} \\text{ética: agir pelo correto,} \\\\ \\text{não por medo} \\\\ \\text{(2) outro} \\end{gathered}', contaFracoes, true))
+      .toBe('ética: agir pelo correto, não por medo\n(2) outro');
   });
   it('o motor anima a passagem do 10 que multiplica para o outro lado dividindo', () => {
     const conta = latexParaMotor('10\\,\\Delta s = 400 \\;\\Rightarrow\\; \\Delta s = \\frac{400}{10} = 40\\ \\text{m}', contaFracoes)!;
@@ -67,6 +70,13 @@ describe.skipIf(!TEMAS.length)('conteúdo de docs/revisao', () => {
   for (const { m, t } of TEMAS) {
     describe(`${m}/${t.id}`, () => {
       const todos = Object.entries(t.slides).flatMap(([sub, l]) => l.map((s, k) => ({ sub, k, s })));
+      it('só conteúdos que existem no site (pendências não viram id)', () => {
+        const arq = join(RAIZ, 'app', 'public', 'conteudo', m, 'materia.json');
+        if (!existsSync(arq)) return;
+        const mod = (JSON.parse(readFileSync(arq, 'utf-8')).modulos as { id: string; subs: { id: string }[] }[]).find((x) => x.id === t.id);
+        expect(mod, t.id).toBeTruthy();
+        for (const sub of Object.keys(t.slides)) expect(mod!.subs.map((x) => x.id), sub).toContain(sub);
+      });
       it('cada conteúdo tem cartão e slides; fixe com 3 linhas', () => {
         for (const sub of Object.keys(t.slides)) {
           expect(t.cartoes?.some((c) => c.sub === sub), `cartão de ${sub}`).toBe(true);
@@ -97,8 +107,9 @@ describe.skipIf(!TEMAS.length)('conteúdo de docs/revisao', () => {
       it('exemplos com conta vão ao motor único (ou à saída do pedido 2 ao motor)', () => {
         const ex = todos.filter(({ s }) => s.passos?.length);
         expect(ex.length).toBeGreaterThan(0);
+        const texto = contaEhTexto('1 + 1', m);
         for (const { s } of ex) {
-          const r = passosParaMotor(s.passos!);
+          const r = passosParaMotor(s.passos!, texto);
           if (r) for (const p of r.passos!) expect(p.conta).not.toMatch(/\\|[{}]/);
         }
         // F02 (o tema conferido slide a slide): quase todos pelo motor; só índices sem forma Unicode ficam de fora
@@ -191,6 +202,7 @@ describe('ciclo de 5 tempos', () => {
   });
   it('fonte legível e roteiro sem código de cor', () => {
     expect(fonteLegivel('L1-F1-C02 p. 24', 'PV Física (Poliedro)')).toBe('PV Física (Poliedro), livro 1, frente 1, cap. 2, p. 24');
+    expect(fonteLegivel('FIL-L1-F1-C01 p. 11', '')).toBe('PV Filosofia (Poliedro), livro 1, frente 1, cap. 1, p. 11');
     expect(limpaRoteiro('2. A faixa se pinta de laranja #F27700.')).toBe('A faixa se pinta de laranja.');
   });
 });

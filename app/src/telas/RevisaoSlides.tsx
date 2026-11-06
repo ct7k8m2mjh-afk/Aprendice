@@ -66,7 +66,8 @@ export function RevisaoSlides() {
   useEffect(() => { setFechada(null); }, [m, sub]);
 
   if (!mc || tema === undefined) return <div className="conteudo"><Carregando /></div>;
-  if (!tema || !slides?.length || !mod) {
+  // só conteúdos que existem no site (conteúdo novo proposto nas pendências não vira id sem decisão do dono)
+  if (!tema || !slides?.length || !mod || !mod.subs.some((x) => x.id === sub)) {
     return (
       <div className={`conteudo vazio m-${m}`}>
         <h3>Revisão em preparação</h3>

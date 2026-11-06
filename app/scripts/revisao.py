@@ -25,7 +25,7 @@ FOTOS = os.path.join(APP, 'conteudo-fonte', 'revisao')
 DESTINO = os.path.join(APP, 'public', 'conteudo')
 TIPOS = {'abertura', 'conceito', 'formula', 'grafico', 'exemplo', 'pegadinha', 'na_prova', 'fixe'}
 # de onde vêm as fichas de cada matéria (as chaves de fonte "L1-F1-C02" são livro, frente e capítulo dessa obra)
-OBRAS = {'fis': 'PV Física (Poliedro)'}
+OBRAS = {'fis': 'PV Física (Poliedro)'}  # fs: a chave já diz a obra (FIL-..., SOC-...), ver dados/revisao.ts
 LARGURA_FOTO = 1280
 
 
@@ -160,7 +160,9 @@ def alimenta_teoria(m, temas):
         if not mod.get('formulas') and d.get('formulas'):
             mod['formulas'] = list(d['formulas'])
         tem = {c.get('sub') for c in mod.get('cartoes', [])}
-        novos = [c for c in d.get('cartoes', []) if c.get('sub') not in tem]
+        # só conteúdos que existem no site: conteúdo novo proposto em `pendencias` não vira id sem decisão do dono
+        ids = {x['id'] for x in mod.get('subs', [])}
+        novos = [c for c in d.get('cartoes', []) if c.get('sub') not in tem and c.get('sub') in ids]
         if novos:
             mod['cartoes'] = list(mod.get('cartoes', [])) + novos
             n += len(novos)

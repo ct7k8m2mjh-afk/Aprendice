@@ -43,7 +43,8 @@ export function SlideRevisao({ m, tema, sub, k, s, pos, total, aviso, lembrou, a
   const tent = aoLembrar ? pedeTentativa(s) : null;
   const [revelado, setRevelado] = useState(!tent || lembrou !== undefined);
   // Humanas (Filosofia e Sociologia...): passos de raciocínio e "fórmulas" em frase, na letra da interface
-  const prosa = contaEhTexto('', m);
+  // ("1 + 1" é conta em Física e Matemática e texto nas matérias em que o passo é sempre texto)
+  const prosa = contaEhTexto('1 + 1', m);
   const res = useMemo(() => (s.passos?.length ? passosParaMotor(s.passos, prosa) : null), [s.passos, prosa]);
   const temVisual = !!(s.visual && ((s.visual.movimento && s.visual.movimento.length) || s.visual.foto));
   const marca = (v: Lembrou) => { aoLembrar?.(v); setRevelado(true); };

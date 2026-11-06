@@ -107,10 +107,19 @@ export function useTemaRevisao(m: MateriaId, tema: string | undefined): TemaRevi
 
 export function urlRevisao(m: MateriaId, caminho: string): string { return BASE + m + '/' + caminho; }
 
-/** "L1-F1-C02 p. 24" → "PV Física (Poliedro), livro 1, frente 1, cap. 2, p. 24" (chaves desconhecidas ficam como estão). */
+/** obras com prefixo na chave (Filosofia e Sociologia: "FIL-L1-F1-C01", "SOC-L1-F1-C03") */
+const OBRA_PREFIXO: Record<string, string> = { FIL: 'PV Filosofia (Poliedro)', SOC: 'PV Sociologia (Poliedro)' };
+
+/** "L1-F1-C02 p. 24" → "PV Física (Poliedro), livro 1, frente 1, cap. 2, p. 24"; "FIL-L1-F1-C01 p. 11" → "PV Filosofia
+ *  (Poliedro), livro 1, ..." (chaves desconhecidas ficam como estão). */
 export function fonteLegivel(fonte: string, obra?: string): string {
-  const t = fonte.replace(/\bL(\d+)-F(\d+)-C(\d+)\b/g, (_, l, f, c) => `livro ${+l}, frente ${+f}, cap. ${+c}`).replace(/(cap\. \d+) (p\.)/g, '$1, $2');
-  return obra ? `${obra}, ${t}` : t;
+  let usouPrefixo = false;
+  const t = fonte.replace(/\b(?:(FIL|SOC)-)?L(\d+)-F(\d+)-C(\d+)\b/g, (_, pre, l, f, c) => {
+    const base = `livro ${+l}, frente ${+f}, cap. ${+c}`;
+    if (pre && OBRA_PREFIXO[pre]) { usouPrefixo = true; return `${OBRA_PREFIXO[pre]}, ${base}`; }
+    return base;
+  }).replace(/(cap\. \d+) (p\.)/g, '$1, $2');
+  return obra && !usouPrefixo ? `${obra}, ${t}` : t;
 }
 
 /** Tira do texto do roteiro o código de cor ("laranja #F27700" → "laranja"): o aluno vê a cor, não o código. */
