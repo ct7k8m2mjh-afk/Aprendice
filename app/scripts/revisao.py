@@ -204,6 +204,9 @@ def converte(materias=None):
         fotos = 0
         for a in arqs:
             d = ler(os.path.join(pasta, a))
+            # comando 33: tema só com a revisão essencial (slides vazio) fica para a tela do essencial, fora dos slides
+            if not d.get('slides') and d.get('essencial'):
+                continue
             confere_tema(m, d, f'docs/revisao/{m}/{a}')
             fotos += prepara_fotos(m, d, saida)
             d['obra'] = OBRAS.get(m, '')

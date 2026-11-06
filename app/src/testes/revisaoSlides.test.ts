@@ -24,7 +24,7 @@ const contaFracoes = (l: string) => partesFracao(l).filter((p) => p.t === 'frac'
 const TEMAS: { m: string; t: TemaRevisao }[] = existsSync(PASTA)
   ? readdirSync(PASTA).flatMap((m) => {
     const p = join(PASTA, m);
-    try { return readdirSync(p).filter((f) => /^[A-Z]\d{2}\.json$/.test(f)).map((f) => ({ m, t: JSON.parse(readFileSync(join(p, f), 'utf-8')) as TemaRevisao })); } catch { return []; }
+    try { return readdirSync(p).filter((f) => /^[A-Z]\d{2}\.json$/.test(f)).map((f) => ({ m, t: JSON.parse(readFileSync(join(p, f), 'utf-8')) as TemaRevisao })).filter((x) => Object.keys(x.t.slides || {}).length > 0); } catch { return []; } // só essencial (comando 33): fora dos slides
   })
   : [];
 
