@@ -1,0 +1,3 @@
+// Gerado por scripts/capas.py a partir de docs/capas/<matéria>/ (comando 32 do dono).
+// Caixa ocupada pelos objetos na capa de referência (2172 x 724, 3:1), em frações: esquerda, topo, direita, base.
+export const CAIXA_CAPA: Record<string, readonly [number, number, number, number]> = {"bio": [0.6618, 0.0197, 0.9586, 0.9507], "fis": [0.5612, 0.1815, 0.9592, 0.8738], "fs": [0.5487, 0.0355, 0.952, 0.9191], "geo": [0.5803, 0.0256, 0.9908, 0.9901], "his": [0.6375, 0.0316, 0.9395, 0.931], "ing": [0.5809, 0.0592, 0.9868, 0.9882], "mat": [0.5967, 0.0335, 0.9526, 0.9132], "por": [0.552, 0.0848, 0.9704, 0.9014], "qui": [0.5914, 0.0651, 0.9586, 0.9172]};

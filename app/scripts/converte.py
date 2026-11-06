@@ -14,6 +14,7 @@ import base64, json, os, re, shutil, sys, hashlib
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import icones_tema  # noqa: E402  (ícones de tema do dono: docs/icones/)
+import capas  # noqa: E402  (capas e ícone da matéria do dono: docs/capas/, comando 32)
 import revisao  # noqa: E402  (revisão em slides: docs/revisao/<m>/<TEMA>.json, comandos 24 e 26)
 
 AQUI = os.path.dirname(os.path.abspath(__file__))
@@ -677,6 +678,7 @@ def main():
         return
     os.makedirs(DESTINO, exist_ok=True)
     copia_comuns()
+    capas.gera_ts(capas.gera(DESTINO))
     relatorio = {}
     for m in MATERIAS:
         relatorio[m] = converte_materia(m)
