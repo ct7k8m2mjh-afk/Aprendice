@@ -212,7 +212,9 @@ def faixas_da_pagina(pg, cfg):
         if any(f.y0 < b - 2 and f.y1 > a + 2 for f in figuras):
             continue   # figura de largura total dentro da faixa (ex.: legenda/fonte à direita da arte): não divide
         xs = min(L['bbox'][0] for L in g['ls'])
-        div = min(cfg.get('divisa', meio - 2), xs - 8)
+        # divisa no meio da calha: entre o fim do texto da coluna esquerda e o início da direita
+        esq_x1 = [L['bbox'][2] for L in ls if a - 1 <= L['bbox'][1] <= b and L['bbox'][0] < meio - 12 and L['bbox'][2] < xs - 2]
+        div = (max(esq_x1) + xs) / 2 if esq_x1 else min(cfg.get('divisa', meio - 2), xs - 8)
         if faixas and a <= faixas[-1][1]:
             faixas[-1] = (faixas[-1][0], max(b, faixas[-1][1]), min(div, faixas[-1][2]))
         else:

@@ -10,9 +10,20 @@ Só entram edições com caderno + gabarito oficial e download livre; anulada ou
 | FMABC 2020, 2021, 2022, 2023, 2024 | 80 cada | Cadernos e gabaritos oficiais da Vunesp publicados pela FMABC. |
 | FMABC 2025 | 78 | Questões 65 e 66 anuladas ("N" no gabarito oficial). |
 
+## Rodada 2 do lote 2 (06/11/2026, em andamento — ver lista ao fim deste arquivo)
+
+### Fatec (2020/1, 2022/2, 2023/1–2026/2): recortada e classificada
+- Recorte resolvido com o modo `'colunas': 'faixas'` (recorta.py): a página é dividida em faixas de largura total e faixas
+  de duas colunas (a coluna esquerda pode ser estreita, ao lado de figura); figura de largura total nunca é dividida.
+  A instrução "Leia o texto..." numa faixa cinza entra inteira (`suporte_caixa`); rodapé "VESTIBULAR" fica fora.
+- **2023/1:** o link "Fatec_Gabarito_2023_retificado.pdf" da página oficial é o gabarito do 2º sem/2013 (não confere com
+  o caderno). Usado o gabarito oficial do dia (`Gabarito-Vestibular-1sem-2023.pdf`, baixado como `gabarito-original`).
+- **2025/1** (banca Idecan, duas colunas): textos das multidisciplinares vêm antes da questão, com título centralizado
+  (`suporte_titulo`).
+
 ## Baixado, mas não integrado nesta rodada (motivo técnico)
 
-- **Fatec (2020/1, 2022/2, 2023/1–2026/2):** cadernos e gabaritos baixados em `fabrica_saida/ingestao/fatec-*` e
+- ~~**Fatec**~~ (resolvido na rodada 2, acima). Texto antigo: cadernos e gabaritos baixados em `fabrica_saida/ingestao/fatec-*` e
   configurados em `ferramentas/ingestao/provas.py` (gabarito já lido com a disciplina de cada questão). Ficou de fora
   porque o caderno mistura páginas de uma e de duas colunas e questões ao lado de figuras; o recorte automático corta
   parte das questões nessas páginas. Precisa de ajuste página a página antes de ir ao ar.

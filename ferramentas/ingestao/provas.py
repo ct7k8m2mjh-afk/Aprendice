@@ -832,7 +832,7 @@ def fatec(ano, sem, duracao=5, gab_arq='gabarito'):
         'apagar': [r'^(\d{1,2}\s+)?VESTIBULAR\b', r'^\d{1,2}$'],
         'ancora': r'(?i)^quest[ãa]o\s+(\d{1,3})\b', 'ancora_dx': 75, 'sequencial': True,
         'corte': [r'(?i)^REDAÇÃO$', r'(?i)^PROPOSTA DE REDA', r'(?i)^RASCUNHO', r'(?i)^FOLHA DE'],
-        'suporte': [r'(?i)(para|responder) [àa]s quest[õo]es', r'(?i)^texto para as quest'],
+        'suporte': [r'(?i)(para|responder) [àa]s quest[õo]es', r'(?i)^texto para as quest', r'(?i)^[àa]s quest[õo]es (de )?\d+ (e|a) \d+\.?$'],
         'gabarito': gab, 'area': lambda n: areas.get(n, 'Conhecimentos gerais'), 'area_do_gabarito': True,
     }
     cfg['total_de'] = lambda pasta: max(gab(pasta))
