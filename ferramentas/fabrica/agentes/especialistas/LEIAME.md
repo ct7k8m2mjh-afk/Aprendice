@@ -9,7 +9,7 @@ Toda questão é encaminhada pela `materia` ao especialista certo, em todas as e
 4. **Corretor 1 volta** em tudo que mudou.
 
 Lote = questões de UMA matéria (nunca misturar matérias no mesmo agente).
-Matérias: bio qui mat por fis geo his fil soc ing.
+Matérias do site: bio qui mat por fis geo his fs ing (fs = Filosofia e Sociologia, uma matéria só desde o comando 18). Especialistas: fil.md para os temas L* e soc.md para os temas S* de fs; o campo "materia" da questão é "fs".
 
 ## Questões Aprendice (decisão do dono, 05/11/2026)
 O site pode ter questões criadas por ele, sempre identificadas como "Questão Aprendice" (nunca como questão de vestibular).

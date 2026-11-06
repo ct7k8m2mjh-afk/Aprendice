@@ -62,7 +62,7 @@ export function FaixaTemas({ mc, s, atual, compacta = false }: { mc: MateriaCarr
           const p = progressoEscada(qs, s);
           return (
             <Link key={mod.id} to={`/m/${mc.id}/tema/${mod.id}`} className={'ft-item' + (atual === mod.id ? ' atual' : '')} aria-current={atual === mod.id ? 'page' : undefined}>
-              <span className="ft-ic"><Ic3D m={mc.id} chave={mod.id} tam={compacta ? 72 : 112} /></span>
+              <span className="ft-ic"><Ic3D m={mc.id} chave={mod.id} tam={compacta ? 76 : 112} /></span>
               <span className="ft-nome">{mod.nome}</span>
               <Barra valor={p.total ? p.feitas / p.total : 0} rotulo={`Progresso em ${mod.nome}`} />
             </Link>
@@ -116,6 +116,11 @@ export function Materia() {
   const nAbc = mc.conteudo.essencial.abc.length, nComp = mc.conteudo.essencial.completar.length;
   const nFlash = mc.conteudo.flash.length + mc.conteudo.flashImg.length;
   const ultQ = s.ult ? mc.porId.get(s.ult) : null;
+  // contadores da capa do treino geral (protótipo: .ad-tg-n) e a composição de uma rodada (Treino.tsx: 6 questões, 4 frases, 5 flashcards)
+  const feitoAbc = mc.conteudo.essencial.abc.filter((id) => s.q[id]?.tent.length).length;
+  const feitoComp = mc.conteudo.essencial.completar.filter((c) => s.flash[c.id]).length;
+  const feitoFlash = [...mc.conteudo.flash, ...mc.conteudo.flashImg].filter((c) => s.flash[c.id]).length;
+  const nRq = Math.min(6, nAbc), nRc = Math.min(4, nComp), nRf = Math.min(5, nFlash), porRodada = nRq + nRc + nRf;
 
   const vazia = mc.banco.length === 0;
   const temTreino = nAbc + nComp + nFlash > 0;
@@ -145,7 +150,13 @@ export function Materia() {
           <span className="capa-txt">
             <h2>Treino geral de {info.nome}</h2>
             <span className="capa-p">{tg ? 'Seu treino está salvo onde você parou. ' : ''}Questões reais de prova, frases para completar e flashcards dos temas que mais caem, tudo misturado.</span>
+            <span className="tg-nums">
+              {([['Questões de prova', feitoAbc, nAbc], ['Completar a frase', feitoComp, nComp], ['Flashcards', feitoFlash, nFlash]] as [string, number, number][]).filter(([, , n]) => n > 0).map(([t, f, n]) => (
+                <span key={t} className="tg-n"><i>{t}</i><b className="num">{f}<small> de {n}</small></b><span className="barra" aria-hidden><i style={{ width: `${n ? (f / n) * 100 : 0}%` }} /></span></span>
+              ))}
+            </span>
             <span className="btn btn-capa"><Icone nome="alvo" /> {tg ? `Retomar (${tg.i} de ${tg.it.length})` : 'Começar treino'}</span>
+            <span className="tg-comp num">{porRodada} itens por rodada: {[nRq && plural(nRq, 'questão', 'questões'), nRc && plural(nRc, 'frase', 'frases'), nRf && plural(nRf, 'flashcard', 'flashcards')].filter(Boolean).join(', ').replace(/, ([^,]*)$/, ' e $1')}</span>
           </span>
           {temIlu(m) && <IluMateria m={m} className="capa-ilu" />}
         </Link>
@@ -174,7 +185,7 @@ export function Materia() {
       <section className="bloco-areas" aria-label="Temas por área">
         {mc.conteudo.areas.map((a) => (
           <div key={a.id} className="area-g">
-            <div className="area-cab"><h2>{a.nome}</h2>{a.resumo && <p>{a.resumo}</p>}</div>
+            <div className="area-cab" title={a.resumo || undefined}><h2>{a.nome}</h2></div>
             <div className="area-lista">
               {a.mods.map((mid) => {
                 const mod = mc.conteudo.modulos.find((x) => x.id === mid);

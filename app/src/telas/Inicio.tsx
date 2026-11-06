@@ -1,3 +1,4 @@
+import type { CSSProperties } from 'react';
 import type { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import { useTodasMaterias, type MateriaCarregada } from '../dados/conteudo';
@@ -5,7 +6,7 @@ import { MATERIAS_PRINCIPAIS, materia as infoMateria, nomeMateria } from '../dad
 import { useEstado } from '../estado/loja';
 import { atividadeRecente, materiaDeHoje, progressoEscada, resumoMateria } from '../logica/estatisticas';
 import { Barra, Carregando, Ic3D, cap, plural, useTitulo } from '../ui/comum';
-import { Icone } from '../ui/Icone';
+import { Icone, type NomeIcone } from '../ui/Icone';
 import type { MateriaId } from '../dados/tipos';
 import type { Estado, EstadoMateria } from '../estado/tipos';
 import { ILU, IluMateria, temIlu } from '../ui/IconeMateria';
@@ -178,13 +179,13 @@ export function Inicio() {
           </div>
           <Link to="/materias" className="ini-link">Ver todas as matérias <Icone nome="seta" tam={16} /></Link>
         </div>
-        <div className="mats-grade s12" role="list" aria-labelledby="mats-tit">
+        <div className="mats-grade s12" role="list" aria-labelledby="mats-tit" style={{ '--mats-col': MATERIAS_PRINCIPAIS.length % 4 === 0 || MATERIAS_PRINCIPAIS.length > 8 ? 4 : MATERIAS_PRINCIPAIS.length % 3 === 0 ? 3 : 4 } as CSSProperties}>
           {MATERIAS_PRINCIPAIS.map((m) => {
             const r = resumoDe(m.id);
             return (
               <Link key={m.id} to={`/m/${m.id}`} className={`mat-cartao m-${m.id}`} role="listitem">
                 <span className="mc-arte"><IcMat m={m.id} tam={140} className="mc-ic" /></span>
-                <span className="mc-nome">{m.nome}</span>
+                <span className="mc-nome"><Icone nome={`m_${m.id}` as NomeIcone} className="mc-traco" />{m.nome}</span>
                 <span className="mc-pct num">{r.total ? `${r.feitas.toLocaleString('pt-BR')} de ${r.total.toLocaleString('pt-BR')} questões` : 'Questões em preparação'}</span>
                 <span className="mc-linha">
                   <Barra valor={r.total ? r.feitas / r.total : 0} rotulo={`Concluído em ${m.nome}`} />

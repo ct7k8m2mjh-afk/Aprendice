@@ -36,7 +36,7 @@ Questões reais de prova com fonte e gabarito publicado, mais Questões Aprendic
 - Situação (05/11/2026): site publicado em https://aprendice.vercel.app (decisão do dono). Progresso no aparelho; login e IA ainda simulados até a etapa de contas e nuvem.
 - Vocabulário fixo (CLAUDE.md): nível (básico, intermediário, avançado), Treine sua evolução, treino geral, simulado (só prova inteira), flashcard, faixa de temas.
 - Ids de questão e de cartão nunca mudam; mudança de formato exige migração.
-- Matérias: Biologia, Química, Matemática, Português (com conteúdo); Física, História, Geografia, Inglês, Filosofia, Sociologia (estrutura; questões vêm da ingestão de provas e da fábrica de conteúdo). Redação não é matéria do site.
+- Matérias: Biologia, Química, Matemática, Português (com conteúdo); Física, História, Geografia, Inglês, Filosofia e Sociologia (uma matéria só, desde o comando 18; estrutura; questões vêm da ingestão de provas e da fábrica de conteúdo). Redação não é matéria do site.
 
 ## Brand Commitments
 

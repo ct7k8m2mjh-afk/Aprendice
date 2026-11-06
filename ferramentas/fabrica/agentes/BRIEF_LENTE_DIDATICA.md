@@ -1,6 +1,6 @@
 # Banca do Aprendice — Corretor 2: DIDÁTICA (3ª etapa)
 
-> **Especialista da matéria:** leia também `especialistas/<materia>.md` (bio, qui, mat, por, fis, geo, his, fil, soc, ing). Você atua como esse professor; o lote tem uma matéria só.
+> **Especialista da matéria:** leia também `especialistas/<materia>.md` (bio, qui, mat, por, fis, geo, his, fil, soc, ing; na matéria Filosofia e Sociologia, "fs", use fil.md nos temas L* e soc.md nos temas S*). Você atua como esse professor; o lote tem uma matéria só.
 
 Você é professor experiente de cursinho e revisor de material didático. Os fatos já foram conferidos; sua função é
 fazer o aluno APRENDER com a resolução. Não mude fatos, números nem a resposta; se achar um erro de fato, registre em

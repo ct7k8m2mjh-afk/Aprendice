@@ -127,7 +127,7 @@ export function QuestaoTela() {
         <div className="q-barq">
           <span className="g" aria-hidden><Icone nome={`m_${m}` as NomeIcone} /></span>
           <span className="n">{ctx === 'revisao' ? 'Revisão' : nomeMat}</span>
-          <span className="t num"><b>{ctx === 'revisao' ? `${nomeMat}` : cap(sub?.nome || '')}</b>{nv ? ` · ${nomeNivel(nv)}` : ctx !== 'revisao' ? ` · ${nomeNivel(nivelDe(q.dif))}` : ''} · <b>{pos + 1}</b> de {fila.length}</span>
+          <span className="t num"><b>{cap(mod?.nome || sub?.nome || '')}</b>{nv ? ` · ${nomeNivel(nv)}` : ctx !== 'revisao' ? ` · ${nomeNivel(nivelDe(q.dif))}` : ''} · <b>{pos + 1}</b> de {fila.length}</span>
           <span className="p" aria-hidden><i style={{ width: `${fila.length ? ((pos + 1) / fila.length) * 100 : 0}%` }} /></span>
         </div>
         <span className="q-ajuda" role="img" tabIndex={0} title={TECLAS} aria-label={TECLAS}><Icone nome="teclado" /></span>
@@ -175,7 +175,13 @@ export function QuestaoTela() {
             <AbasPainel aba={aba} aoMudar={setAba} />
             <div className="q-lado-corpo" id="q-lado-corpo">
               {aba === 'res' && (revelado ? (
-                <ResolucaoView q={q} r={res ? r : undefined} marcada={escolha} />
+                <>
+                  <ResolucaoView q={q} r={res ? r : undefined} marcada={escolha} />
+                  <div className="q-lado-fim">
+                    {ant ? <button className="btn sec" onClick={() => vaiPara(ant)}><Icone nome="esquerda" /> Anterior</button> : <span />}
+                    <button className="btn" onClick={() => vaiPara(prox)}>{prox ? <>Próxima questão <Icone nome="direita" /></> : 'Concluir'}</button>
+                  </div>
+                </>
               ) : (
                 <>
                   {anteriores > 0 && (

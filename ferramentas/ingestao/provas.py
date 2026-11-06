@@ -756,8 +756,8 @@ def udesc(ano, sem, duracao=4):
         'secoes': {'Inglês': 'Inglês', 'Espanhol': 'Espanhol', 'INGLÊS': 'Inglês', 'ESPANHOL': 'Espanhol'},
         'pular_secoes': ('Espanhol',), 'area_do_gabarito': True,
         # título de seção com o nº de questões ao lado ("Inglês (08 questões)") ou lido por OCR
-        'secoes_rx': [(r'(?i)^ingl[êe]s\b', 'Inglês'), (r'(?i)^espanhol\b', 'Espanhol'),
-                      (r'(?i)^L[ÍI]NGUA PORTUGUESA', 'Língua Portuguesa e Literatura'), (r'(?i)^(F[ÍI]SICA|MATEM[ÁA]TICA)\b', 'Ciências')],
+        'secoes_rx': [(r'(?i)^ingl[êe]s(\s*\(\d+ quest\S*\))?\s*$', 'Inglês'), (r'(?i)^espanhol(\s*\(\d+ quest\S*\))?\s*$', 'Espanhol'),
+                      (r'^L[ÍI]NGUA PORTUGUESA', 'Língua Portuguesa e Literatura'), (r'^(F[ÍI]SICA|MATEM[ÁA]TICA)\b', 'Ciências')],
         'corte': [r'(?i)^FOLHA DE RASCUNHO', r'^LÍNGUA ESTRANGEIRA', r'^LÍNGUA PORTUGUESA E LITERATURA', r'^(MATEMÁTICA|BIOLOGIA|FÍSICA|QUÍMICA|HISTÓRIA|GEOGRAFIA|FILOSOFIA|SOCIOLOGIA)\b',
                   r'(?i)^FORMUL[ÁA]RIO', r'(?i)^Tabela peri',
                   r'(?i)^PROPOSTA DE REDA', r'(?i)^REDAÇÃO$'],

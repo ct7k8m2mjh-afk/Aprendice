@@ -94,7 +94,7 @@ Use estes ids exatamente. Se nenhum conteúdo servir, use só o tema.
 - H06 Revoluções
 - H07 Guerras Mundiais
 - H08 Guerra Fria
-## fil
+## fs (Filosofia e Sociologia: uma matéria só desde o comando 18; temas L* de Filosofia e S* de Sociologia, ids inalterados)
 - L01 Pré-socráticos
 - L02 Sócrates, Platão e Aristóteles
 - L03 Ética
@@ -103,7 +103,6 @@ Use estes ids exatamente. Se nenhum conteúdo servir, use só o tema.
 - L06 Racionalismo e empirismo
 - L07 Iluminismo
 - L08 Existencialismo
-## soc
 - S01 Cultura e sociedade
 - S02 Socialização
 - S03 Trabalho e capitalismo

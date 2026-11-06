@@ -7,7 +7,7 @@ import { atualiza, atualizaMateria, useEstado } from '../estado/loja';
 import { planoDaProva, type PlanoSimulado } from '../logica/simulados';
 import { Carregando, formataTempo, plural, useTitulo } from '../ui/comum';
 import { Icone } from '../ui/Icone';
-import { Alternativas, Certeza, EnunciadoQuestao, type Conf } from '../ui/QuestaoCartao';
+import { Certeza, EnunciadoQuestao, RespostaCartao, mostraPainel, type Conf } from '../ui/QuestaoCartao';
 import { ResolucaoView } from '../ui/Resolucao';
 import type { Letra, MateriaId, Questao, Resolucao } from '../dados/tipos';
 import type { ItemSimulado, SimuladoAndamento, SimuladoFeito } from '../estado/tipos';
@@ -122,7 +122,6 @@ export function SimuladoExec() {
   const [riscadas, setRiscadas] = useState<Set<Letra>>(new Set());
   const [revelado, setRevelado] = useState(false);
   const [res, setRes] = useState<Record<string, Resolucao> | null>(null);
-  const [folhaAberta, setFolha] = useState(false);
   const [confirmaFim, setConfirmaFim] = useState(false);
   const tQ = useRef(Date.now());
   useTitulo(sim?.titulo || 'Simulado');
@@ -201,29 +200,19 @@ export function SimuladoExec() {
   return (
     <div className="questao-tela simulado">
       <div className="q-barra">
-        <button className="btn-ic" onClick={() => nav('/simulados')} aria-label="Sair (o simulado fica salvo)" title="Sair (fica salvo)"><Icone nome="fechar" /></button>
-        <div className="q-barra-txt"><b>{sim.titulo}</b><span className="fraco num">Questão {sim.i + 1} de {sim.itens.length} · {respondidas} respondidas</span></div>
-        <button className="btn sec peq folha-btn" onClick={() => setFolha(!folhaAberta)} aria-expanded={folhaAberta}><Icone nome="lista" tam={16} /><span>Folha de respostas</span></button>
+        <button className="q-volta" onClick={() => nav('/simulados')} aria-label="Sair (o simulado fica salvo)" title="Sair (fica salvo)"><Icone nome="esquerda" /><span>Sair</span></button>
+        <div className="q-barq">
+          <span className="g" aria-hidden><Icone nome="arquivo" /></span>
+          <span className="n">{sim.titulo}</span>
+          <span className="t num">Questão <b>{sim.i + 1}</b> de {sim.itens.length} · {respondidas} respondidas</span>
+          <span className="p" aria-hidden><i style={{ width: `${((sim.i + 1) / sim.itens.length) * 100}%` }} /></span>
+        </div>
+        <button className="btn sec peq folha-btn" onClick={() => mostraPainel()}><Icone nome="lista" tam={16} /><span>Folha de respostas</span></button>
         <button className={'crono num' + (restante !== null && restante < 300 ? ' alerta' : '')} onClick={() => pausa(true)} aria-label="Pausar simulado" title="Pausar (P)">
           <Icone nome="pausa" tam={15} />{restante !== null ? formataTempo(restante) : formataTempo(sim.usadoSeg)}
         </button>
         <button className="btn peq" onClick={() => setConfirmaFim(true)}>Entregar</button>
       </div>
-
-      {folhaAberta && (
-        <div className="folha-resp folha" aria-label="Folha de respostas">
-          {sim.itens.map((x, i) => {
-            const r = sim.resp[x.id];
-            return (
-              <button key={x.id} className={'fr-q' + (i === sim.i ? ' atual' : '') + (r ? ' resp' : '') + (sim.marcadas.includes(x.id) ? ' marc' : '') + (x.m ? ` m-${x.m}` : '')} onClick={() => { vai(i); setFolha(false); }}
-                aria-label={`Questão ${i + 1}${r ? `, marcada ${r.letra}` : ', em branco'}${sim.marcadas.includes(x.id) ? ', para revisar' : ''}`}>
-                <span className="num">{i + 1}</span><b>{r?.letra || ''}</b>
-              </button>
-            );
-          })}
-          <p className="fraco fr-leg"><i className="fr-dot resp" /> respondida <i className="fr-dot marc" /> para revisar</p>
-        </div>
-      )}
 
       {sim.pausado ? (
         <div className="pausa-tela folha">
@@ -234,27 +223,41 @@ export function SimuladoExec() {
         </div>
       ) : q && it ? (
         <div className={'q-corpo' + (it.m ? ` m-${it.m}` : '')}>
-          <div className="q-duas">
-<article className="folha q-cartao">
-            <EnunciadoQuestao q={q} print={qq?.print ?? null} numero={`${sim.i + 1} · ${grupoDoItem(it)}`} /></article>
-<aside className={'folha q-painel' + (revelado ? ' revelado' : '')} aria-label="Resposta">
-            <Alternativas q={q} escolhida={escolha} aoEscolher={(l) => grava(l)} revelado={revelado} riscadas={riscadas}
-              aoRiscar={(l) => setRiscadas((r) => { const n = new Set(r); n.has(l) ? n.delete(l) : n.add(l); return n; })} mostrarTexto={!!q.transcricao || !qq?.print} />
-            {!revelado && <Certeza valor={conf} aoMudar={(c) => { setConf(c); if (escolha) grava(escolha, c); }} />}
-            <div className="q-acoes">
-              <button className={'btn fantasma' + (sim.marcadas.includes(it.id) ? ' marcado' : '')} onClick={marca} aria-pressed={sim.marcadas.includes(it.id)}><Icone nome="bandeira" /> {sim.marcadas.includes(it.id) ? 'Marcada para revisar' : 'Revisar depois'}</button>
-              {escolha && !revelado && sim.modo === 'prova' && <button className="btn fantasma" onClick={() => grava(null)}>Apagar resposta</button>}
-              <span style={{ flex: 1 }} />
-              {sim.modo === 'treino' && !revelado ? (
-                <button className="btn" disabled={!escolha} onClick={() => setRevelado(true)}>Confirmar e ver resolução</button>
-              ) : (
-                <>
-                  <button className="btn sec" onClick={() => vai(sim.i - 1)} disabled={sim.i === 0}><Icone nome="esquerda" /><span className="sr">Anterior</span></button>
-                  {sim.i < sim.itens.length - 1 ? <button className="btn" onClick={() => vai(sim.i + 1)}>Próxima <Icone nome="direita" /></button> : <button className="btn" onClick={() => setConfirmaFim(true)}>Entregar simulado</button>}
-                </>
-              )}
-            </div>
-          </aside>
+          <div className={'q-grade' + (revelado ? ' respondida' : '')}>
+            <article className="folha q-cartao">
+              <EnunciadoQuestao q={q} print={qq?.print ?? null} numero={`${sim.i + 1} · ${grupoDoItem(it)}`}
+                acao={<button className={'q-marca' + (sim.marcadas.includes(it.id) ? ' marcado' : '')} onClick={marca} aria-pressed={sim.marcadas.includes(it.id)} aria-label="Revisar depois" title={sim.marcadas.includes(it.id) ? 'Marcada para revisar' : 'Revisar depois'}><Icone nome="bandeira" /></button>} />
+              <RespostaCartao q={q} escolha={escolha} aoEscolher={(l) => grava(l)} revelado={revelado} riscadas={riscadas}
+                aoRiscar={(l) => setRiscadas((r) => { const n = new Set(r); n.has(l) ? n.delete(l) : n.add(l); return n; })} mostrarTexto={!!q.transcricao || !qq?.print}>
+                {!revelado && <Certeza valor={conf} aoMudar={(c) => { setConf(c); if (escolha) grava(escolha, c); }} />}
+                {escolha && !revelado && sim.modo === 'prova' && <button className="btn fantasma" onClick={() => grava(null)}>Apagar resposta</button>}
+                {sim.modo === 'treino' && !revelado ? (
+                  <button className="btn btn-conf" disabled={!escolha} onClick={() => setRevelado(true)}>Confirmar e ver resolução</button>
+                ) : (
+                  <>
+                    <button className="q-ant" onClick={() => vai(sim.i - 1)} disabled={sim.i === 0} aria-label="Questão anterior" title="Anterior"><Icone nome="esquerda" /></button>
+                    {sim.i < sim.itens.length - 1 ? <button className="btn btn-conf" onClick={() => vai(sim.i + 1)}>Próxima <Icone nome="direita" /></button> : <button className="btn btn-conf" onClick={() => setConfirmaFim(true)}>Entregar simulado</button>}
+                  </>
+                )}
+              </RespostaCartao>
+            </article>
+            <aside className="folha q-lado" id="q-lado" aria-label="Folha de respostas">
+              <h2 className="q-lado-tit">Folha de respostas</h2>
+              <div className="q-lado-corpo" id="q-lado-corpo">
+                  <div className="folha-resp">
+                    {sim.itens.map((x, i) => {
+                      const r = sim.resp[x.id];
+                      return (
+                        <button key={x.id} className={'fr-q' + (i === sim.i ? ' atual' : '') + (r ? ' resp' : '') + (sim.marcadas.includes(x.id) ? ' marc' : '') + (x.m ? ` m-${x.m}` : '')} onClick={() => vai(i)}
+                          aria-label={`Questão ${i + 1}${r ? `, marcada ${r.letra}` : ', em branco'}${sim.marcadas.includes(x.id) ? ', para revisar' : ''}`}>
+                          <span className="num">{i + 1}</span><b>{r?.letra || ''}</b>
+                        </button>
+                      );
+                    })}
+                    <p className="fraco fr-leg"><i className="fr-dot resp" /> respondida <i className="fr-dot marc" /> para revisar</p>
+                  </div>
+              </div>
+            </aside>
           </div>
           {revelado && sim.modo === 'treino' && <ResolucaoView q={q} r={q.res || (res ? res[q.id] : undefined)} marcada={escolha} />}
         </div>

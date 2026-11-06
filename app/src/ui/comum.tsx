@@ -68,7 +68,7 @@ export function useTitulo(t: string) {
 export function Bloco({ titulo, children, className, acao }: { titulo?: ReactNode; children: ReactNode; className?: string; acao?: ReactNode }) {
   return (
     <section className={'bloco' + (className ? ' ' + className : '')}>
-      {titulo && <div className="cab-sec" style={{ marginBottom: 12 }}><h2 style={{ fontSize: 19 }}>{titulo}</h2>{acao}</div>}
+      {titulo && <div className="cab-sec" style={{ marginBottom: 12 }}><h2>{titulo}</h2>{acao}</div>}
       {children}
     </section>
   );
@@ -83,7 +83,7 @@ export function Anel({ valor, tam = 44, espessura = 5, children }: { valor: numb
         <circle cx={tam / 2} cy={tam / 2} r={r} fill="none" stroke="var(--c)" strokeWidth={espessura} strokeLinecap="round"
           strokeDasharray={c} strokeDashoffset={c * (1 - v)} style={{ transition: 'stroke-dashoffset .5s var(--curva)' }} />
       </svg>
-      <span style={{ position: 'relative', fontSize: 12, fontWeight: 600 }} className="num">{children}</span>
+      <span style={{ position: 'relative', fontSize: tam >= 44 ? 13 : 12, fontWeight: 600 }} className="num">{children}</span>
     </span>
   );
 }

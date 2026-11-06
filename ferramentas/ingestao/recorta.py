@@ -595,7 +595,9 @@ def processa(pid, amostra=False, so_texto=False):
             for e in ev:
                 if e['tipo'] == 'q':
                     ult_q, dentro = e, False
-                elif e['tipo'] == 'suporte' and ult_q and (dentro or (e['p'] == ult_q['p'] and e['c'] == ult_q['c'] and 0 <= e['y'] - ult_q['y'] < cfg['suporte_interno'])):
+                elif e['tipo'] == 'suporte' and ult_q and (dentro or (e['p'] == ult_q['p'] and e['c'] == ult_q['c'] and 0 <= e['y'] - ult_q['y'] < cfg['suporte_interno'])
+                                                           or (e['p'] == ult_q['p'] + 1 and ult_q['y'] > pdf[ult_q['p']].rect.height * 0.8
+                                                               and e['y'] < topo_de(pdf[e['p']], cfg) + 30)):
                     dentro = True
                     continue
                 elif e['tipo'] in ('corte', 'secao'):

@@ -4,9 +4,10 @@ import { EH_PREVIA, urlPrint, useMateria, useResolucoes, type MateriaCarregada }
 import { materia as infoMateria } from '../dados/materias';
 import { atualiza, pegaEstado, useEstado } from '../estado/loja';
 import { feitaHoje } from '../logica/revisao';
-import { Carregando, useTitulo } from '../ui/comum';
-import { Icone } from '../ui/Icone';
-import { Alternativas, Certeza, EnunciadoQuestao, useCronometro, type Conf } from '../ui/QuestaoCartao';
+import { Carregando, Ic3D, cap, useTitulo } from '../ui/comum';
+import { Icone, type NomeIcone } from '../ui/Icone';
+import { AbasPainel, BotaoTelaCheia, Certeza, EnunciadoQuestao, FonteQuestao, RespostaCartao, mostraPainel, useCronometro, type AbaPainel, type Conf } from '../ui/QuestaoCartao';
+import { CartaoTeoriaView } from './Tema';
 import { ResolucaoView } from '../ui/Resolucao';
 import { CompletarView, FlashcardView, type Nota } from '../ui/Cartoes';
 import { registraTentativa } from './Questao';
@@ -30,19 +31,22 @@ export function montaTreino(mc: MateriaCarregada): SessaoTreino {
   return { it, i: 0, res: {}, t0: Date.now() };
 }
 
-function QuestaoInline({ m, q, aoTerminar }: { m: MateriaId; q: Questao; aoTerminar: (ok: boolean) => void }) {
+function QuestaoInline({ mc, q, aoTerminar }: { mc: MateriaCarregada; q: Questao; aoTerminar: (ok: boolean) => void }) {
+  const m = mc.id;
+  const [aba, setAba] = useState<AbaPainel>('res');
   const res = useResolucoes(m, q.sub);
   const [escolha, setEscolha] = useState<Letra | null>(null);
   const [conf, setConf] = useState<Conf | null>(null);
   const [revelado, setRevelado] = useState(false);
   const [riscadas, setRiscadas] = useState<Set<Letra>>(new Set());
   const crono = useCronometro(!revelado, q.id);
-  useEffect(() => { setEscolha(null); setConf(null); setRevelado(false); setRiscadas(new Set()); }, [q.id]);
+  useEffect(() => { setEscolha(null); setConf(null); setRevelado(false); setRiscadas(new Set()); setAba('res'); }, [q.id]);
   const confirma = () => {
     if (!escolha || revelado) return;
     registraTentativa(m, q.id, { letra: escolha, ok: escolha === q.gab, ts: Date.now(), seg: crono.total(), conf, ctx: 'treino' });
     setRevelado(true);
-    requestAnimationFrame(() => document.getElementById('res-tit')?.scrollIntoView({ behavior: 'smooth', block: 'start' }));
+    setAba('res');
+    requestAnimationFrame(() => mostraPainel(true));
   };
   useEffect(() => {
     const f = (e: KeyboardEvent) => {
@@ -54,24 +58,38 @@ function QuestaoInline({ m, q, aoTerminar }: { m: MateriaId; q: Questao; aoTermi
     addEventListener('keydown', f);
     return () => removeEventListener('keydown', f);
   });
+  const mod = mc.conteudo.modulos.find((x) => x.id === q.modulo);
+  const sub = mod?.subs.find((x) => x.id === q.sub);
+  const cartoes = (() => { const l = mod?.cartoes.filter((c) => c.sub === q.sub) || []; return l.length ? l : mod?.cartoes || []; })();
   return (
-    <>
-      <div className="q-duas">
-<article className="folha q-cartao">
-        <EnunciadoQuestao m={m} q={q} numero="Questão real" /></article>
-<aside className={'folha q-painel' + (revelado ? ' revelado' : '')} aria-label="Resposta">
-        <Alternativas q={q} escolhida={escolha} aoEscolher={setEscolha} revelado={revelado} riscadas={riscadas}
-          aoRiscar={(l) => setRiscadas((r) => { const n = new Set(r); n.has(l) ? n.delete(l) : n.add(l); return n; })} mostrarTexto={!urlPrint(m, q.id)} />
-        {!revelado && (<><Certeza valor={conf} aoMudar={setConf} /><div className="q-acoes"><span className="q-dica-tecla fraco">A–E escolhe · Enter confirma</span><button className="btn" disabled={!escolha} onClick={confirma}>Confirmar resposta</button></div></>)}
+    <div className={'q-grade' + (revelado ? ' respondida' : '')}>
+      <article className="folha q-cartao">
+        <EnunciadoQuestao m={m} q={q} numero="Questão real" depois={sub && <span className="etq q-sub" title={cap(sub.nome)}>{cap(sub.nome)}</span>} />
+        <RespostaCartao q={q} escolha={escolha} aoEscolher={setEscolha} revelado={revelado} riscadas={riscadas}
+          aoRiscar={(l) => setRiscadas((r) => { const n = new Set(r); n.has(l) ? n.delete(l) : n.add(l); return n; })} mostrarTexto={!urlPrint(m, q.id)}>
+          {!revelado ? (
+            <><Certeza valor={conf} aoMudar={setConf} /><button className="btn btn-conf" disabled={!escolha} onClick={confirma}>Confirmar resposta</button></>
+          ) : (
+            <button className="btn btn-conf" onClick={() => aoTerminar(escolha === q.gab)}>Continuar <Icone nome="direita" /></button>
+          )}
+        </RespostaCartao>
+      </article>
+      <aside className="folha q-lado" id="q-lado" aria-label="Resolução, teoria e fonte">
+        <AbasPainel aba={aba} aoMudar={setAba} />
+        <div className="q-lado-corpo" id="q-lado-corpo">
+          {aba === 'res' && (revelado ? <><ResolucaoView q={q} r={res ? res[q.id] : undefined} marcada={escolha} /><div className="q-lado-fim"><span /><button className="btn" onClick={() => aoTerminar(escolha === q.gab)}>Continuar <Icone nome="direita" /></button></div></> : (
+            <div className="q-trava"><Icone nome="lampada" /><div><b>A resolução abre quando você confirmar</b><p>Marque uma alternativa e confirme. A resolução explica a alternativa que você marcou.</p></div></div>
+          ))}
+          {aba === 'teo' && (
+            <div className="q-teoria">
+              <p className="q-teo-rot"><Ic3D m={m} chave={q.sub} tam={34} /><span>Teoria desta questão · <b>{cap(sub?.nome || mod?.nome || '')}</b></span></p>
+              {cartoes.length ? cartoes.map((c, i) => <CartaoTeoriaView key={i} c={c} />) : <p className="miolo">A teoria deste conteúdo está em preparação.</p>}
+            </div>
+          )}
+          {aba === 'fon' && <FonteQuestao q={q} />}
+        </div>
       </aside>
-          </div>
-      {revelado && (
-        <>
-          <ResolucaoView q={q} r={res ? res[q.id] : undefined} marcada={escolha} />
-          <div className="q-nav"><span /><button className="btn" onClick={() => aoTerminar(escolha === q.gab)}>Continuar <Icone nome="direita" /></button></div>
-        </>
-      )}
-    </>
+    </div>
   );
 }
 
@@ -120,13 +138,19 @@ export function Treino() {
   return (
     <div className={`questao-tela m-${m}`}>
       <div className="q-barra">
-        <button className="btn-ic" onClick={() => nav(`/m/${m}`)} aria-label="Pausar e sair (o treino fica salvo)" title="Sair (o treino fica salvo)"><Icone nome="fechar" /></button>
-        <div className="q-barra-txt"><b>Treino geral</b><span className="fraco num">{info.nome} · {ses.i + 1} de {ses.it.length} · fica salvo se você sair</span></div>
+        <button className="q-volta" onClick={() => nav(`/m/${m}`)} aria-label="Voltar (o treino fica salvo)" title="Voltar (o treino fica salvo)"><Icone nome="esquerda" /><span>Voltar</span></button>
+        <div className="q-barq">
+          <span className="g" aria-hidden><Icone nome={`m_${m}` as NomeIcone} /></span>
+          <span className="n">{info.nome}</span>
+          <span className="t num" title="O treino fica salvo se você sair"><b>Treino geral</b> · <b>{ses.i + 1}</b> de {ses.it.length}</span>
+          <span className="p" aria-hidden><i style={{ width: `${((ses.i + 1) / ses.it.length) * 100}%` }} /></span>
+        </div>
         <div className="q-progresso" aria-hidden>{ses.it.map((x, k) => <i key={x.id + k} className={(k === ses.i ? 'atual ' : '') + (ses.res[x.id] ? (ses.res[x.id] === 'a' ? 'ok' : ses.res[x.id] === 'q' ? 'qs' : 'err') : '')} />)}</div>
         <button className="btn fantasma peq" onClick={recomecar}>Recomeçar</button>
+        <BotaoTelaCheia />
       </div>
       <div className="q-corpo">
-        {it.k === 'q' && mc.porId.get(it.id) && <QuestaoInline m={m} q={mc.porId.get(it.id)!} aoTerminar={(ok) => avanca(it.id, ok ? 'a' : 'e')} />}
+        {it.k === 'q' && mc.porId.get(it.id) && <QuestaoInline mc={mc} q={mc.porId.get(it.id)!} aoTerminar={(ok) => avanca(it.id, ok ? 'a' : 'e')} />}
         {it.k === 'f' && (() => { const c = todos.find((x) => x.id === it.id); return c ? <FlashcardView m={m} c={c} todos={todos} aoNotar={(n, o) => { notaFlash(m, c.id, n, o); avanca(c.id, n); }} /> : null; })()}
         {it.k === 'c' && (() => { const c = mc.conteudo.essencial.completar.find((x) => x.id === it.id); return c ? <CompletarView m={m} c={c} aoNotar={(n, o) => { notaFlash(m, c.id, n, o); avanca(c.id, n); }} /> : null; })()}
         {((it.k === 'q' && !mc.porId.get(it.id))) && <div className="vazio"><p>Item indisponível.</p><button className="btn sec" onClick={() => avanca(it.id, 'q')}>Pular</button></div>}

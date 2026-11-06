@@ -6,7 +6,8 @@ import { atualizaMateria, pegaEstado, useMateriaEstado } from '../estado/loja';
 import { cartoesAtivos } from '../logica/estatisticas';
 import { flashVencido, marcaFlash } from '../logica/revisao';
 import { Carregando, plural, useTitulo } from '../ui/comum';
-import { Icone } from '../ui/Icone';
+import { Icone, type NomeIcone } from '../ui/Icone';
+import { BotaoTelaCheia } from '../ui/QuestaoCartao';
 import { FlashcardView, type Nota } from '../ui/Cartoes';
 import type { Flashcard, MateriaId } from '../dados/tipos';
 
@@ -105,9 +106,15 @@ export function Flashcards({ sessao = false }: { sessao?: boolean }) {
   return (
     <div className={`questao-tela m-${m}`}>
       <div className="q-barra">
-        <button className="btn-ic" onClick={() => nav(`/m/${m}/flashcards`)} aria-label="Sair da sessão"><Icone nome="fechar" /></button>
-        <div className="q-barra-txt"><b>Flashcards</b><span className="fraco num">{info.nome} · {i + 1} de {ids.length}</span></div>
+        <button className="q-volta" onClick={() => nav(`/m/${m}/flashcards`)} aria-label="Sair da sessão" title="Sair da sessão"><Icone nome="esquerda" /><span>Voltar</span></button>
+        <div className="q-barq">
+          <span className="g" aria-hidden><Icone nome={`m_${m}` as NomeIcone} /></span>
+          <span className="n">{info.nome}</span>
+          <span className="t num"><b>Flashcards</b> · <b>{i + 1}</b> de {ids.length}</span>
+          <span className="p" aria-hidden><i style={{ width: `${((i + 1) / ids.length) * 100}%` }} /></span>
+        </div>
         <div className="q-progresso" aria-hidden>{ids.map((x, k) => <i key={x} className={(k === i ? 'atual ' : '') + (res[x] ? (res[x] === 'a' ? 'ok' : res[x] === 'q' ? 'qs' : 'err') : '')} />)}</div>
+        <BotaoTelaCheia />
       </div>
       <div className="q-corpo">
         {c && <FlashcardView m={m} c={c} todos={todos} aoNotar={(n, origem) => { notaFlash(m, c.id, n, origem); setRes((r) => ({ ...r, [c.id]: n })); setI((k) => k + 1); }} />}

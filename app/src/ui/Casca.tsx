@@ -2,7 +2,7 @@ import { useEffect, useState, type ReactNode } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { Icone, type NomeIcone } from './Icone';
 import { Anel, Logo } from './comum';
-import { MATERIAS_PRINCIPAIS, OUTRAS_MATERIAS, type MateriaInfo } from '../dados/materias';
+import { MATERIAS_PRINCIPAIS, OUTRAS_MATERIAS, materia, type MateriaInfo } from '../dados/materias';
 import { atualiza, useEstado } from '../estado/loja';
 import { semana } from '../logica/estatisticas';
 import { Busca } from '../telas/Busca';
@@ -74,11 +74,13 @@ export function Casca({ children, foco = false }: { children: ReactNode; foco?: 
 
   const mAtual = loc.pathname.match(/^\/m\/(\w+)/)?.[1];
   const emOutra = !!mAtual && OUTRAS_MATERIAS.some((m) => m.id === mAtual);
+  // ao entrar numa matéria, o site inteiro (menu, abas, onda, anel da meta) assume a cor dela
+  const corMateria = mAtual ? materia(mAtual)?.id : undefined;
   const [outrasAbertas, setOutras] = useState(emOutra);
   useEffect(() => { if (emOutra) setOutras(true); }, [emOutra]);
 
   return (
-    <div className={'casca' + (fechado ? ' menu-fechado' : '') + (oculto ? ' trilho-oculto' : '') + (foco ? ' foco' : '')}>
+    <div className={'casca' + (fechado ? ' menu-fechado' : '') + (oculto ? ' trilho-oculto' : '') + (foco ? ' foco' : '') + (corMateria ? ` em-materia m-${corMateria}` : '')}>
       <a href="#principal" className="sr">Pular para o conteúdo</a>
       <aside className="lado" aria-label="Menu principal">
         <div className="marca">
