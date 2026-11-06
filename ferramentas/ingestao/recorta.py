@@ -607,6 +607,7 @@ def eventos_do_pdf(pdf, cfg, faixa=None):
             ant = ok[-1] if ok else None
             if e['tipo'] == 'suporte' and ant and ant['tipo'] == 'q' and (ant['p'], ant['c']) == (e['p'], e['c']) \
                     and 0 <= e['y'] - ant['y'] < cfg['suporte_nao_colado']:
+                ant['texto_colado'] = True   # a questão traz o próprio texto ("Texto 1" logo abaixo do número)
                 continue
             ok.append(e)
         ev = ok
@@ -1056,7 +1057,8 @@ def processa(pid, amostra=False, so_texto=False):
             ok, ult_q, dentro = [], None, False
             for e in ev:
                 if e['tipo'] == 'q':
-                    ult_q, dentro = e, False
+                    # texto colado ao número: os textos seguintes ("Texto 2") também são da questão
+                    ult_q, dentro = e, bool(e.get('texto_colado'))
                 elif e['tipo'] == 'suporte' and ult_q and (dentro or (e['p'] == ult_q['p'] and e['c'] == ult_q['c'] and 0 <= e['y'] - ult_q['y'] < cfg['suporte_interno'])
                                                            or (e['p'] == ult_q['p'] + 1 and ult_q['y'] > pdf[ult_q['p']].rect.height * 0.8
                                                                and e['y'] < topo_de(pdf[e['p']], cfg) + 30)):

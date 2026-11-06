@@ -266,7 +266,8 @@ def ufpr(ano, total=90, duracao=5, cads=None):
         'colunas': lambda r: [(20, r.width - 15)], 'topo': 30, 'base': 30,
         'ancora': r'^\*{0,2}\s?(\d{2})\s*-', 'ancora_dx': 30, 'sequencial': False,  # "*15 -" = anulada no próprio caderno
         'secoes': UFPR_SECOES, 'corte': [r'^RESPOSTAS$', r'^COMPREENSÃO E PRODUÇÃO DE TEXTO$', r'^QUESTÃO DISCURSIVA$'] + [rf'^{l}$' for l in UFPR_LINGUAS if l != 'INGLÊS'], 'suporte': [r'(?i)texto (a seguir )?(é|e) referente [àa]s quest', r'(?i)^as quest[õo]es \d+ (a|e) \d+',
-                    r'(?i)(é|e) referência para as? quest', r'(?i)\b(text|excerpt) refers? to quest'],
+                    r'(?i)(é|e) referência para as? quest', r'(?i)\b(text|excerpt) refers? to quest',
+                    r'(?i)\bis (a )?reference to quest'],   # "The following text is reference to questions 89 and 90" (2024 a 2026)
         'gabarito': gab, 'area': lambda n: 'Língua estrangeira' if n >= 83 else 'Conhecimentos gerais',
     }
 
@@ -1178,6 +1179,7 @@ def ufjf(ano, duracao=4):
 
 for _a in (2020, 2022, 2023, 2024, 2025, 2026):
     PROVAS[f'ufjf-pism3-{_a}'] = ufjf(_a)
+PROVAS['ufjf-pism3-2026']['suporte_interno'] = 110   # 2026 (duas colunas): "Texto 1" da questão 19 vem depois de um comando de duas linhas
 # 2023, 2º dia: a questão 16 está impressa como "QUESTÃO 1 –" (erro de numeração do caderno; conferido no gabarito e na ordem)
 PROVAS['ufjf-pism3-2023']['ancora_forcada'] = {('d2-caderno', 13): [(16, 145, 0)]}
 
@@ -1301,3 +1303,49 @@ PROVAS['ufsm-2026']['suporte'] = PROVAS['ufsm-2026']['suporte'] + [r'^O advento 
 # o texto de apoio começa no início do parágrafo, e a faixa 01–02 é dada aqui
 PROVAS['ufsm-2026']['suporte'][0] = r'(?i)^(?!parque\. Leia-o)(?=.*(responder|responda)\s+(a|à|às|as)\s+quest)'
 PROVAS['ufsm-2026']['faixa_errata'] = {('p1-caderno', 2, ()): [1, 2]}
+
+
+# --------------------------------------------------------------------------------------------- UNEMAT
+def unemat(ano, sem=None, ingles_primeiro=True, alternativas=5, duracao=4):
+    """UNEMAT (Portal do Candidato / Covest): 35 questões objetivas, duas colunas, "Questão 01." em negrito.
+    Língua estrangeira 34–35 em duas opções; no gabarito oficial a ordem das opções muda de ano para ano."""
+    letras = 'ABCDE'[:alternativas]
+
+    def gab(pasta):
+        g, vistos = {}, set()
+        for n, v in re.findall(rf'(?<![\d,.])(\d{{1,2}})\s+([{letras}]\b|ANULAD[AO])', texto_pdf(pasta / 'gabarito.pdf')):
+            n = int(n)
+            v = v if len(v) == 1 else 'X'
+            if n in vistos:   # 2ª ocorrência de 34/35 (outra língua)
+                if not ingles_primeiro:
+                    g[n] = v
+                continue
+            vistos.add(n)
+            g[n] = v
+        return {n: v for n, v in g.items() if 1 <= n <= 35}
+
+    ed = f'{ano}/{sem}' if sem else str(ano)
+    return {
+        'catalogo': 'unemat', 'escola': 'UNEMAT', 'ano': str(ano), 'fase': ed, 'titulo': f'UNEMAT {ed}', 'banca': 'Covest-UNEMAT',
+        'duracao_horas': duracao, 'total': 35, 'alternativas': alternativas,
+        'nota': f'Universidade do Estado de Mato Grosso, Concurso Vestibular {ed}: 35 questões objetivas '
+                f'{"A–E" if alternativas == 5 else "A–D"} (redação fora). Língua estrangeira: inglês (34 e 35). '
+                'Gabarito oficial (pós-recursos) publicado em edital; anulada fica fora.',
+        'cadernos': [{'arquivo': 'caderno', 'paginas': (3, 999)}],
+        'colunas': duas_colunas, 'margem': 22, 'topo': 26, 'base': 14, 'rodape_rx': r'Concurso Ves.{0,3}bular',
+        'ancora': r'(?i)^quest[ãa]o\s+(\d{1,2})\.?\s*$', 'ancora_dx': 40, 'sequencial': True, 'ancora_negrito': True,
+        'secoes_rx': [(r'(?i)^L[íi]ngua Estrangeira:.*Espanhol', 'Espanhol'), (r'(?i)^L[íi]ngua Estrangeira:.*Ingl[êe]s', 'Inglês')],
+        'pular_secoes': ('Espanhol',), 'pular_antes_sequencia': True,
+        'corte': [r'(?i)^Reda[çc][ãa]o$', r'(?i)^PROPOSTA DE REDA', r'(?i)^INSTRU[ÇC][ÕO]ES PARA A REDA', r'(?i)^TEXTOS MOTIVADORES',
+                  r'(?i)^ESPA[ÇC]O PARA RASCUNHO', r'(?i)^Ci[êe]ncias da Natureza e suas Tecnologias$', r'(?i)^Matem[áa]tica e suas Tecn',
+                  r'(?i)^Ci[êe]ncias Humanas e suas Tecnologias$', r'(?i)^Linguagens,? C[óo]digos e suas Tecnologias$'],
+        'suporte': [r'(?i)^textos?( de apoio)? para (as? )?quest', r'(?i)(responda|responder)\s+(à|às|a|as)\s+quest'],
+        'gabarito': gab, 'area': lambda n: 'Conhecimentos gerais',
+    }
+
+
+PROVAS['unemat-2022-2'] = unemat(2022, 2, ingles_primeiro=False)
+PROVAS['unemat-2023'] = unemat(2023, ingles_primeiro=False)
+PROVAS['unemat-2024-1'] = unemat(2024, 1)
+PROVAS['unemat-2025-1'] = unemat(2025, 1, alternativas=4)
+PROVAS['unemat-2026-1'] = unemat(2026, 1, alternativas=4)
