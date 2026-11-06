@@ -1,5 +1,7 @@
 # Revisão de Filosofia e Sociologia — situação por tema
 
+**Completa (06/11/2026): os 16 temas (L01–L08, S01–S08) aprovados nas lentes, 865 slides.**
+
 Fonte: PV Filosofia – LU (14 capítulos) e PV Sociologia – LU (17 capítulos), lidos inteiros; fichamentos com página. Cada tema passa pelas lentes fato → didática → fato antes de entrar aqui. Mesmo formato da Física (`docs/revisao/FORMATO.md`). Em Humanas, `passos` são passos de raciocínio (achar a pista, ligar ao autor, riscar distratores) e `formulas`/`conta` vêm em `\text{}` para o KaTeX.
 
 | Tema | Situação | Slides |
@@ -25,3 +27,7 @@ Observações para a integração:
 | L08 Existencialismo | aprovado (06/11/2026) | 58 |
 | S03 Trabalho e capitalismo | aprovado (06/11/2026) | 60 |
 | S04 Desigualdade social | aprovado (06/11/2026) | 60 |
+
+Propostas de conteúdo novo (só entram com decisão do dono; já há slides prontos para L01.6 e L06.6 dentro dos arquivos):
+- L01.6 "o que é filosofia e suas áreas" (exibir antes de L01.1); L06.6 filosofia analítica e virada linguística.
+- Outras sugestões em `pendencias`: Hegel, Foucault (Filosofia), filosofia da mente e IA, Schopenhauer, S01.7 intérpretes do Brasil, S01.8 senso comum e Comte, sociologia urbana, S05.7 crise da democracia.
