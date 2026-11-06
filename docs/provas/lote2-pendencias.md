@@ -98,3 +98,53 @@ Integradas e classificadas (matéria, tema, conteúdo, nível; sem resolução),
   separador "_____" corta no traço (não na caixa da linha).
 - **Cederj 2020.2 e 2021.1 continuam fora:** no OCR a numeração é "1." (sem zero), números de questão se perdem
   (ex.: 2020.2 questão 7) e as questões de língua vêm misturadas; o layout não fica perfeito.
+
+Continuação da rodada 3 (mesmo dia):
+
+| Prova | Questões válidas | Observação |
+|---|---|---|
+| UEG 2020/1 | 52 |  |
+| UEG 2021/1 | 52 |  |
+| UEG 2021/2 | 50 | anuladas/fora: 3, 19 |
+| UEG 2022/1 | 50 | anuladas/fora: 14, 16 |
+| UEG 2022/2 | 52 |  |
+| UEG 2023/1 | 51 | anuladas/fora: 18 |
+| UEG 2023/2 | 52 |  |
+| UEG 2024/1 | 52 |  |
+| UEG 2024/2 | 52 |  |
+| UEG 2025/1 | 51 | anuladas/fora: 39 |
+| UEG 2025/2 | 52 |  |
+| UEG 2026/1 | 48 | anuladas/fora: 15, 27, 29, 32 |
+| UEG 2026/2 | 51 | anuladas/fora: 37 |
+| UEMA PAES 2020 | 60 |  |
+| UEMA PAES 2021 | 87 | anuladas/fora: 36 |
+| UEMA PAES 2022 | 59 | anuladas/fora: 42 |
+| UEMA PAES 2024 | 59 | anuladas/fora: 45 |
+| UEMA PAES 2026 | 60 |  |
+| UFJF PISM 2020 – Módulo III | 40 |  |
+| UFJF PISM 2022 – Módulo III | 38 | anuladas/fora: 22, 26 |
+| UFJF PISM 2023 – Módulo III | 37 | anuladas/fora: 34, 35, 36 |
+| UFJF PISM 2024 – Módulo III | 40 |  |
+| UFJF PISM 2025 – Módulo III | 38 | anuladas/fora: 11, 15 |
+| UFJF PISM 2026 – Módulo III | 39 | anuladas/fora: 37 |
+
+- **UEG** (13 edições, 2020/1 a 2026/2; vestibular geral): uma coluna por página (imagem e questão lado a lado ficam no mesmo
+  recorte); no gabarito as questões 1–4 aparecem duas vezes (espanhol, depois inglês): vale a 2ª (conferido na 2025/1).
+  "Espaço para rascunho" vira pausa (a questão continua na página seguinte). 2022/1: o caderno diz "questão 4" antes da 48
+  (errata no `provas.py`). 2025/1 q11 leva junto o recorte da q10 (a imagem das duas está dentro da 10).
+  **UEG Medicina: não feita** — os cadernos/gabaritos do vestibular de Medicina não estão no inventário (só os códigos do
+  Núcleo de Seleção); precisa localizar os links.
+- **UFJF PISM III** (2020, 2022–2026): só as objetivas dos dois dias (2º dia = 21–40), caderno Saúde; discursivas e redação
+  fora. "C ou E" / "D/E" (duas respostas) = fora. 2023: a questão 16 do 2º dia está impressa como "QUESTÃO 1" (âncora
+  forçada). 2021 sem caderno no site (fora). Cadernos 2025–2026 feitos em LaTeX: o recorte junta os acentos soltos.
+- **UEMA PAES** (2020, 2021 [2 dias, 2º numerado 45–88], 2022, 2024, 2026): língua 16–20 (2021: 9–12) = 1ª coluna (inglês).
+  2023 e 2025 sem caderno no site oficial (fora). Links da 2020 trocados para https (o servidor serve os dois).
+- **UFSM 2025 e 2026: baixadas e configuradas, FORA do site** — páginas misturam texto de largura total com números de linha
+  e duas colunas, tirinhas com números em negrito e um aviso de língua no lugar da questão 37; o recorte ainda falha em parte
+  das questões (2025: 19, 37, 81, 87, 97, 115).
+- Conferência: alternativas e texto depois da última alternativa por programa (`chk.py`; alternativas em imagem —
+  UFJF 2020–2024 usa letras desenhadas — conferidas no print), amostra visual dos prints e 60 questões sorteadas (3%) +
+  revisão de todas as classificações uma a uma ao classificar; 2 correções na amostra.
+
+**Falta (nesta ordem):** UEG Medicina (links), UFSM (layout), UNEMAT, Unimontes, Unespar, Unicentro, UNIRG, Unitins, URCA,
+UVA, PUC-Rio, PUCPR (apagar o destaque azul da resposta), PUC Minas, Mackenzie, Fempar, FGV, Mauá, EMESCAM.
