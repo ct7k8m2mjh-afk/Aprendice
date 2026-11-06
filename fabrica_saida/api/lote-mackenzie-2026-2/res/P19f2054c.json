@@ -8,9 +8,9 @@
  "conceito": "Razão trigonométrica (cosseno) no triângulo retângulo formado pelo toco, pelo solo e pela parte inclinada; altura original = toco + parte inclinada.",
  "resolucao": {
   "antes": {
-   "texto": "A árvore se partiu em duas peças: o toco que ficou em pé (2 m) e a parte de cima, que tombou e agora é uma 'rampa' apoiada no chão. Essa rampa tem o comprimento da parte que caiu. A altura original da árvore é o toco mais esse comprimento. O toco, o solo e a parte inclinada formam um triângulo retângulo, com o ângulo reto no pé da árvore.",
+   "texto": "A árvore se partiu em duas peças: o toco que ficou em pé (2 m) e a parte de cima, que tombou e agora é uma rampa apoiada no chão. A altura original é o toco mais o comprimento dessa rampa. O toco, o solo e a rampa formam um triângulo retângulo, com o ângulo reto no pé da árvore. O ângulo de 60° fica no topo do toco, entre o toco e a rampa.",
    "formulas": [
-    "cos(ângulo) = cateto adjacente ÷ hipotenusa",
+    "cosseno = cateto adjacente ÷ hipotenusa",
     "cos 60° = 1/2",
     "altura original = toco + parte inclinada"
    ],
@@ -26,6 +26,14 @@
     [
      "cos 60°",
      "cosseno de 60°, que vale 1/2"
+    ],
+    [
+     "L",
+     "comprimento da parte inclinada, o que queremos descobrir"
+    ],
+    [
+     "tg 60°",
+     "tangente de 60°, que vale √3; usada só na checagem"
     ]
    ]
   },
@@ -39,19 +47,19 @@
    },
    {
     "faz": "Marque o ângulo de 60° e os lados",
-    "conta": "60° entre toco e parte inclinada",
+    "conta": "toco: adjacente a 60°",
     "porque": "O ângulo de 60° está no topo do toco. O toco (2 m) encosta nele: é o cateto adjacente. A parte inclinada, oposta ao ângulo reto, é a hipotenusa.",
     "tipo": "localizar"
    },
    {
     "faz": "Escolha o cosseno",
     "conta": "cos 60° = 2 ÷ L",
-    "porque": "Temos o cateto adjacente (2) e queremos a hipotenusa (L). A razão que une os dois é o cosseno.",
+    "porque": "Chame de L o comprimento da parte inclinada. Temos o cateto adjacente (2) e queremos a hipotenusa (L). A razão que une os dois é o cosseno.",
     "tipo": "calcular"
    },
    {
     "faz": "Calcule o comprimento L",
-    "conta": "1/2 = 2/L → L = 4 m",
+    "conta": "1/2 = 2/L, então L = 4 m",
     "porque": "Como cos 60° = 1/2, a hipotenusa é o dobro do cateto adjacente: 2 × 2 = 4 m.",
     "tipo": "calcular"
    },
@@ -63,12 +71,12 @@
    }
   ],
   "resposta": "Alternativa E: a parte inclinada mede 4 m e o toco mede 2 m, então a árvore tinha 6,0 m.",
-  "checagem": "Pelo outro lado: o cateto horizontal vale 2 × tg 60° = 2√3 ≈ 3,4 m. Pitágoras: 2² + 3,4² ≈ 4 + 11,6 = 15,6 ≈ 4² = 16 (a aproximação √3 = 1,7 explica a pequena diferença). Fecha com L = 4 m.",
+  "checagem": "Por outro caminho: o cateto horizontal vale 2 × tg 60° = 2√3 ≈ 3,4 m. Por Pitágoras, 2² + 3,4² ≈ 4 + 11,6 = 15,6, perto de 4² = 16. A diferença vem de √3 = 1,7 ser aproximado. Fecha com L = 4 m.",
   "erradas": {
    "A": "3,0 m não confere. Para dar 3 m a parte inclinada teria 1 m, mas pelo cosseno ela tem 4 m (cos 60° = 2/L). Além disso, 1 m seria menor que o cateto de 2 m, e a hipotenusa é sempre o maior lado.",
    "B": "3,4 m é 2 × √3 = 2 × 1,7, a distância horizontal do pé do toco até a ponta no chão (cateto oposto, que usa tangente). Não é a altura da árvore.",
    "C": "4,0 m é só o comprimento da parte inclinada (hipotenusa). Faltou somar os 2 m do toco que ficou em pé.",
-   "D": "5,8 m não confere: não sai da soma 2 + 4. Também não bate com 2 + 2√3 = 5,4 nem com 2 + 4·1,4 = 7,6. O comprimento da parte caída é exatamente 4 m, logo a altura é 6 m."
+   "D": "5,8 m não confere. A parte inclinada mede exatamente 4 m (cos 60° = 2/L), então a altura é 2 + 4 = 6 m. Quem marcou D provavelmente errou ao usar as aproximações de √3; elas nem são necessárias aqui."
   },
   "armadilha": "Parar em 4 m, que é só a parte que tombou: a pergunta é a altura da árvore inteira, que inclui o toco de 2 m.",
   "alerta": "",
@@ -142,11 +150,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -175,6 +185,81 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "E"
+  "fatos_resposta": "E",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "A árvore se partiu em duas peças: o toco que ficou em pé (2 m) e a parte de cima, que tombou e agora é uma rampa apoiada no chão. A altura original é o toco mais o comprimento dessa rampa. O toco, o solo e a rampa formam um triângulo retângulo, com o ângulo reto no pé da árvore. O ângulo de 60° fica no topo do toco, entre o toco e a rampa.",
+    "motivo": "Texto mais curto e deixa claro onde ficam o ângulo reto e o de 60°."
+   },
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "cosseno = cateto adjacente ÷ hipotenusa",
+     "cos 60° = 1/2",
+     "altura original = toco + parte inclinada"
+    ],
+    "motivo": "Escrito como se diz em aula; cos(ângulo) sem explicação confunde."
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "toco: adjacente a 60°",
+    "motivo": "Conta mais clara e curta, cabe na tela."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "cos 60° = 2 ÷ L",
+    "motivo": "Mantido; L é o comprimento da parte inclinada, o que agora está dito no porquê.",
+    "_nota": "sem mudança de valor"
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Chame de L o comprimento da parte inclinada. Temos o cateto adjacente (2) e queremos a hipotenusa (L). A razão que une os dois é o cosseno.",
+    "motivo": "L não tinha sido definido antes de aparecer."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "1/2 = 2/L, então L = 4 m",
+    "motivo": "Conta mais legível."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "5,8 m não confere. A parte inclinada mede exatamente 4 m (cos 60° = 2/L), então a altura é 2 + 4 = 6 m. Quem marcou D provavelmente errou ao usar as aproximações de √3; elas nem são necessárias aqui.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou D, sem inventar uma origem exata."
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Por outro caminho: o cateto horizontal vale 2 × tg 60° = 2√3 ≈ 3,4 m. Por Pitágoras, 2² + 3,4² ≈ 4 + 11,6 = 15,6, perto de 4² = 16. A diferença vem de √3 = 1,7 ser aproximado. Fecha com L = 4 m.",
+    "motivo": "Explica tg e √3 de forma direta; tangente deve estar em simbolos."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "cateto adjacente",
+      "lado do triângulo retângulo que encosta no ângulo considerado e não é a hipotenusa"
+     ],
+     [
+      "hipotenusa",
+      "lado oposto ao ângulo reto, o maior do triângulo; aqui é a parte inclinada"
+     ],
+     [
+      "cos 60°",
+      "cosseno de 60°, que vale 1/2"
+     ],
+     [
+      "L",
+      "comprimento da parte inclinada, o que queremos descobrir"
+     ],
+     [
+      "tg 60°",
+      "tangente de 60°, que vale √3; usada só na checagem"
+     ]
+    ],
+    "motivo": "L e tg aparecem na resolução e não estavam explicados."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

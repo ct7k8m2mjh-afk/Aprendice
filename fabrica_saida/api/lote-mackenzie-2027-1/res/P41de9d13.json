@@ -35,6 +35,14 @@
     [
      "SI",
      "Sistema Internacional de Unidades: metro, quilograma, segundo, joule, watt..."
+    ],
+    [
+     "Wh",
+     "watt-hora, outra unidade de energia: 1 W ligado por 1 hora (não é do SI)"
+    ],
+    [
+     "10⁸",
+     "10 elevado a 8: o número 1 seguido de oito zeros"
     ]
    ]
   },
@@ -60,13 +68,13 @@
    },
    {
     "faz": "Calcule a energia",
-    "conta": "E = 3 × 10⁸ × 8,64 × 10⁴",
+    "conta": "E = 3 × 10⁸ × 8,64 × 10⁴ = 25,92 × 10¹²",
     "porque": "Energia é potência vezes tempo. Os números multiplicam entre si e as potências de dez somam os expoentes: 3 × 8,64 = 25,92 e 10⁸ × 10⁴ = 10¹².",
     "tipo": "calcular"
    },
    {
     "faz": "Ajuste a notação e arredonde",
-    "conta": "E = 25,92 × 10¹² ≈ 2,6 × 10¹³ J",
+    "conta": "25,92 × 10¹² = 2,592 × 10¹³ ≈ 2,6 × 10¹³ J",
     "porque": "Ao passar 25,92 para 2,592, a vírgula andou uma casa e o expoente subiu de 12 para 13. O enunciado pede valor aproximado, então 2,592 vira 2,6.",
     "tipo": "concluir"
    }
@@ -74,11 +82,11 @@
   "resposta": "Alternativa E: 2,6 × 10¹³ J, que é 300 MW (3 × 10⁸ W) vezes 86 400 s.",
   "checagem": "Faça por outro caminho. Em 1 hora, E = 3 × 10⁸ × 3 600 ≈ 1,1 × 10¹² J. Em 24 horas, 24 × 1,08 × 10¹² ≈ 2,6 × 10¹³ J. Dá o mesmo valor. Em kWh: 300 000 kW × 24 h = 7,2 × 10⁶ kWh, e 1 kWh = 3,6 × 10⁶ J, o que também dá cerca de 2,6 × 10¹³ J.",
   "erradas": {
-   "A": "7,2 × 10⁹ é a energia em watt-hora, não em joule: 300 × 10⁶ W × 24 h = 7,2 × 10⁹ Wh. O enunciado pede joule, e faltou multiplicar por 3 600 para trocar hora por segundo (7,2 × 10⁹ × 3 600 ≈ 2,6 × 10¹³).",
+   "A": "Sai de calcular em watt-hora: 3 × 10⁸ W × 24 h = 7,2 × 10⁹ Wh. Faltou trocar hora por segundo (× 3 600), pois o enunciado pede joule: 7,2 × 10⁹ × 3 600 ≈ 2,6 × 10¹³ J.",
    "B": "2,6 × 10⁷ sai de usar 300 W no lugar de 300 MW: 300 × 86 400 = 2,59 × 10⁷ J. Faltou converter o prefixo mega (10⁶): sem ele o valor fica um milhão de vezes menor.",
-   "C": "7,2 × 10³ sai de multiplicar 300 por 24 sem converter nada: 300 × 24 = 7 200. Isso mistura MW com horas e não está em joule.",
+   "C": "Sai de multiplicar 300 × 24 = 7 200 sem converter nada. Faltou passar MW para W (× 10⁶) e horas para segundos (× 3 600). O resultado não está em joule.",
    "D": "1,1 × 10¹² J é a energia de uma hora só: 3 × 10⁸ W × 3 600 s = 1,08 × 10¹² J. O enunciado pede 24 horas, então falta multiplicar por 24.",
-   "E": "É a resposta correta."
+   "E": "Está certa: 3 × 10⁸ W × 86 400 s ≈ 2,6 × 10¹³ J."
   },
   "armadilha": "Misturar unidades: usar MW com hora (Wh) ou esquecer que 1 dia tem 86 400 s, e assim errar a conversão para joule.",
   "alerta": "",
@@ -156,14 +164,79 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [],
   "fatos_ok": true,
-  "fatos_resposta": "E"
+  "fatos_resposta": "E",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "E = 3 × 10⁸ × 8,64 × 10⁴ = 25,92 × 10¹²",
+    "motivo": "A conta fica completa na linha, com o resultado intermediário que o porque cita. Cabe em duas linhas curtas no site."
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "25,92 × 10¹² = 2,592 × 10¹³ ≈ 2,6 × 10¹³ J",
+    "motivo": "Mostra a passagem 25,92 → 2,592 antes de arredondar, sem pular etapa no caderno."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "Sai de calcular em watt-hora: 3 × 10⁸ W × 24 h = 7,2 × 10⁹ Wh. Faltou trocar hora por segundo (× 3 600), pois o enunciado pede joule: 7,2 × 10⁹ × 3 600 ≈ 2,6 × 10¹³ J.",
+    "motivo": "Frase mais curta e direta sobre o que faltou no raciocínio de quem marcou A."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "Sai de multiplicar 300 × 24 = 7 200 sem converter nada. Faltou passar MW para W (× 10⁶) e horas para segundos (× 3 600). O resultado não está em joule.",
+    "motivo": "Diz o que faltou no raciocínio, como pede o bloco 'Por que eu errei'."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "Está certa: 3 × 10⁸ W × 86 400 s ≈ 2,6 × 10¹³ J.",
+    "motivo": "Mostra a conta resumida em vez de só dizer que é a correta."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "MW",
+      "megawatt, um milhão de watts (10⁶ W)"
+     ],
+     [
+      "W",
+      "watt, unidade de potência: 1 joule de energia por segundo"
+     ],
+     [
+      "J",
+      "joule, unidade de energia no SI"
+     ],
+     [
+      "Δt",
+      "intervalo de tempo em que a potência se mantém"
+     ],
+     [
+      "SI",
+      "Sistema Internacional de Unidades: metro, quilograma, segundo, joule, watt..."
+     ],
+     [
+      "Wh",
+      "watt-hora, outra unidade de energia: 1 W ligado por 1 hora (não é do SI)"
+     ],
+     [
+      "10⁸",
+      "10 elevado a 8: o número 1 seguido de oito zeros"
+     ]
+    ],
+    "motivo": "Wh aparece nas erradas e na checagem sem explicação; 10⁸ ajuda quem não domina potência de dez."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

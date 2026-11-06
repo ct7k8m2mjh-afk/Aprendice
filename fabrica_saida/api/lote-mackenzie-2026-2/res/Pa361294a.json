@@ -37,7 +37,7 @@
     ]
    ]
   },
-  "pista": "Avalie cada afirmação uma por uma. Na (c), calcule o nox do nitrogênio no NO2 e no HNO3. Na (a), lembre o que um ácido faz com o H⁺ da água.",
+  "pista": "Avalie uma afirmação por vez. Para a (c), calcule o nox do nitrogênio no NO2 e no HNO3 e veja se ele sobe ou desce. Para a (a), pense no que um ácido faz com a quantidade de H⁺ na água.",
   "passos": [
    {
     "faz": "Identifique o caráter do HNO3",
@@ -59,13 +59,13 @@
    },
    {
     "faz": "Classifique o NO2 e a espontaneidade",
-    "conta": "NO2 + H2O → ácido: óxido ácido",
-    "porque": "O NO2 reage com água formando ácido: é óxido ácido, não neutro. Além disso, a reação ocorre na atmosfera, logo é espontânea. A afirmação (d) erra nas duas partes.",
+    "conta": "NO2 + H2O → ácido (HNO3)",
+    "porque": "O NO2 forma ácido ao reagir com água: é óxido ácido, não neutro. Na equação do enunciado, a reação acontece na atmosfera, sem energia externa, logo é espontânea. A (d) erra nas duas partes.",
     "tipo": "eliminar"
    },
    {
-    "faz": "Avalie o efeito sobre o solo",
-    "conta": "H⁺ troca de lugar com Ca²⁺, Mg²⁺, K⁺",
+    "faz": "Avalie o efeito da chuva ácida no solo",
+    "conta": "H⁺ ocupa o lugar de Ca²⁺, Mg²⁺, K⁺",
     "porque": "O excesso de H⁺ da chuva ácida desloca os cátions nutrientes dos grãos do solo, e a água os arrasta. É a lixiviação da afirmação (e), que é verdadeira.",
     "tipo": "concluir"
    }
@@ -73,10 +73,10 @@
   "resposta": "Alternativa E: a chuva ácida, rica em H⁺, desloca e arrasta nutrientes catiônicos (Mg²⁺, Ca²⁺, K⁺) do solo, empobrecendo-o.",
   "checagem": "As outras quatro caem por um fato verificável: (a) ácido aumenta H⁺; (c) o nox do N sobe de +4 para +5; (d) NO2 é óxido ácido; (b) a acidificação do solo é prejudicial. Só sobra a (e).",
   "erradas": {
-   "A": "Afirma que o HNO3 DIMINUI a concentração de H⁺. Como ácido forte, ele libera H⁺ (HNO3 → H⁺ + NO3⁻) e aumenta essa concentração, o que baixa o pH dos rios e solos.",
-   "B": "A chuva ácida acidifica o solo e remove nutrientes (Ca²⁺, Mg²⁺, K⁺), o que reduz a fertilidade. Ter nitrogênio na fórmula não basta: o efeito dominante do H⁺ é prejudicial, e o nitrogênio do ácido nítrico não torna a chuva ácida benéfica.",
-   "C": "O nox do N vai de +4 (NO2) para +5 (HNO3). Nox que sobe é oxidação, não redução. Quem é reduzido é o O2 (de 0 para −2).",
-   "D": "O NO2 é óxido ácido, pois reage com água formando ácido (HNO3). Óxidos neutros típicos são CO e NO. A reação ocorre naturalmente na atmosfera, portanto é espontânea."
+   "A": "O HNO3 é ácido forte: libera H⁺ (HNO3 → H⁺ + NO3⁻) e AUMENTA a concentração de H⁺, baixando o pH. Quem marcou A trocou o sentido: ácido aumenta H⁺, não diminui.",
+   "B": "Ter nitrogênio na fórmula não basta para fertilizar. A chuva ácida acidifica o solo e arrasta nutrientes (Ca²⁺, Mg²⁺, K⁺), então a fertilidade cai. Faltou olhar o efeito do H⁺, e não só o N do HNO3.",
+   "C": "O nox do N vai de +4 (NO2) para +5 (HNO3). Nox que sobe é oxidação, não redução. Quem é reduzido é o O2 (de 0 para −2). Faltou calcular o nox antes de classificar.",
+   "D": "O NO2 reage com água e forma ácido (HNO3): é óxido ácido. Neutros típicos são CO e NO. A reação ocorre sozinha na atmosfera, logo é espontânea. Faltou testar se o óxido reage com água."
   },
   "armadilha": "Achar que chuva ácida 'diminui' a concentração de H⁺ ou que o nitrogênio do ácido nítrico fertiliza o solo, sem considerar o efeito de acidificação.",
   "alerta": "",
@@ -132,11 +132,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -159,6 +161,58 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "E"
+  "fatos_resposta": "E",
+  "didatica": [
+   {
+    "campo": "resolucao.pista",
+    "depois": "Avalie uma afirmação por vez. Para a (c), calcule o nox do nitrogênio no NO2 e no HNO3 e veja se ele sobe ou desce. Para a (a), pense no que um ácido faz com a quantidade de H⁺ na água.",
+    "motivo": "Pista mais clara e sem jargão; continua sem entregar a letra."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "NO2 + H2O → ácido (HNO3)",
+    "motivo": "Conta curta o bastante para a tela de 390 px."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "O NO2 forma ácido ao reagir com água: é óxido ácido, não neutro. Na equação do enunciado, a reação acontece na atmosfera, sem energia externa, logo é espontânea. A (d) erra nas duas partes.",
+    "motivo": "Frases mais curtas; explica por que a reação é espontânea."
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "H⁺ ocupa o lugar de Ca²⁺, Mg²⁺, K⁺",
+    "motivo": "A conta anterior ('troca de lugar') era ambígua; agora diz quem ocupa o lugar de quem."
+   },
+   {
+    "campo": "resolucao.passos[4].faz",
+    "depois": "Avalie o efeito da chuva ácida no solo",
+    "motivo": "Deixa claro que este passo confere a alternativa (e) e fecha a questão."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "Ter nitrogênio na fórmula não basta para fertilizar. A chuva ácida acidifica o solo e arrasta nutrientes (Ca²⁺, Mg²⁺, K⁺), então a fertilidade cai. Faltou olhar o efeito do H⁺, e não só o N do HNO3.",
+    "motivo": "Texto mais curto e direto; diz o que faltou no raciocínio de quem marcou B."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "O NO2 reage com água e forma ácido (HNO3): é óxido ácido. Neutros típicos são CO e NO. A reação ocorre sozinha na atmosfera, logo é espontânea. Faltou testar se o óxido reage com água.",
+    "motivo": "Inclui o que faltou no raciocínio de quem marcou D."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "O HNO3 é ácido forte: libera H⁺ (HNO3 → H⁺ + NO3⁻) e AUMENTA a concentração de H⁺, baixando o pH. Quem marcou A trocou o sentido: ácido aumenta H⁺, não diminui.",
+    "motivo": "Deixa explícito o erro de raciocínio de quem marcou A."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "O nox do N vai de +4 (NO2) para +5 (HNO3). Nox que sobe é oxidação, não redução. Quem é reduzido é o O2 (de 0 para −2). Faltou calcular o nox antes de classificar.",
+    "motivo": "Indica o que faltou: calcular o nox."
+   }
+  ],
+  "didatica_alertas": [
+   "O campo 'nivel' está 5 no JSON e 6 na classificação atual: conferir qual vale.",
+   "Em resolucao.passos[3], a afirmação 'a reação ocorre na atmosfera, logo é espontânea' é um argumento simplificado; aceitável, mas o corretor 1 pode revisar."
+  ],
+  "didatica_ok": true
  }
 }

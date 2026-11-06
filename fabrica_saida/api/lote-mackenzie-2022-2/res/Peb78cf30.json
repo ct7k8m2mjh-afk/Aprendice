@@ -42,13 +42,13 @@
    {
     "faz": "Fixe Cláudio e Henrique",
     "conta": "S ≥ 2 → H = S+2 ≥ 4",
-    "porque": "Sandro não está no 1º andar, então S ≥ 2 e H ≥ 4. Como C é maior que H e o máximo é 5, temos H = 4 e C = 5. Logo S = 4 − 2 = 2.",
+    "porque": "Sandro não está no 1º andar, então S ≥ 2 e H ≥ 4. Cláudio fica acima de Henrique e o último andar é o 5º. Logo H = 4 e C = 5. Então S = 4 − 2 = 2.",
     "tipo": "calcular"
    },
    {
     "faz": "Descubra o andar de Elias",
     "conta": "E < 4 e E ≠ 2 → E = 1 ou 3",
-    "porque": "Elias chega antes de Henrique (andar 4) e o 2º andar já é de Sandro. Se E = 3, então P = 5, que é o andar de Cláudio. Isso é impossível, pois os andares são diferentes. Logo E = 1.",
+    "porque": "Elias chega antes de Henrique (4º), e o 2º já é de Sandro. Sobram 1 e 3. Se E = 3, então P = 5, o andar de Cláudio. Isso não pode, pois cada um tem um andar diferente. Logo E = 1.",
     "tipo": "eliminar"
    },
    {
@@ -61,12 +61,12 @@
   "resposta": "Alternativa A: Paulo tem aulas no 3º andar, pois Elias está no 1º e Paulo fica 2 andares acima dele.",
   "checagem": "Teste todas as pistas com E1, S2, P3, H4, C5. Elias (1) < Henrique (4) < Cláudio (5): ok. H = S + 2 = 4: ok. P = E + 2 = 3: ok. Sandro não está no 1º: ok. Os andares são todos diferentes: ok.",
   "erradas": {
-   "B": "O 1º andar é o de Elias. Como Paulo chega 2 andares depois dele, Paulo não pode estar no 1º, nem no mesmo andar que Elias.",
-   "C": "O 2º andar é o de Sandro: de H = S + 2 = 4 e H = 4, resulta S = 2. Cada um tem um andar diferente, então Paulo não fica aí.",
-   "D": "O 5º andar é o de Cláudio, que precisa estar acima de Henrique (4º). Paulo só ficaria no 5º com Elias no 3º (P = E + 2), mas aí Paulo repetiria o andar de Cláudio, o que é proibido.",
-   "E": "O 4º andar é o de Henrique, que está 2 andares acima de Sandro (2º). Paulo teria de estar no mesmo andar que ele, e os andares são diferentes."
+   "B": "Falta ver que Elias está no 1º. Como P = E + 2, Paulo fica 2 andares acima de Elias, nunca no 1º. Além disso, dois alunos não dividem o mesmo andar.",
+   "C": "Falta usar H = S + 2. Como H = 4, Sandro está no 2º andar. Cada um tem um andar diferente, então Paulo não pode ficar aí.",
+   "D": "Falta lembrar que Cláudio já ocupa o 5º andar. Paulo só iria ao 5º com Elias no 3º (P = E + 2), mas aí Paulo repetiria o andar de Cláudio, o que é proibido.",
+   "E": "Falta ver que o 4º é de Henrique, que está 2 andares acima de Sandro (2º). Paulo não pode dividir o andar com Henrique, pois cada um tem um andar diferente."
   },
-  "armadilha": "Esquecer que 'sobem juntos' faz 'chegar antes' significar 'andar menor', e não testar o caso E = 3, que daria Paulo no mesmo andar de Cláudio.",
+  "armadilha": "Esquecer que 'sobem juntos' faz 'chegar antes' significar 'andar menor', e não testar E = 3, que põe Paulo no andar de Cláudio.",
   "alerta": "",
   "essencial": {
    "pede": "O andar em que Paulo tem aulas.",
@@ -132,11 +132,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -171,6 +173,57 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "A"
+  "fatos_resposta": "A",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[2]",
+    "depois": {
+     "faz": "Fixe Cláudio e Henrique",
+     "conta": "S ≥ 2 → H = S+2 ≥ 4",
+     "porque": "Sandro não está no 1º andar, então S ≥ 2 e H ≥ 4. Cláudio fica acima de Henrique e o último andar é o 5º. Logo H = 4 e C = 5. Então S = 4 − 2 = 2.",
+     "tipo": "calcular"
+    },
+    "motivo": "Frases mais curtas e raciocínio na ordem natural, sem ambiguidade."
+   },
+   {
+    "campo": "resolucao.passos[3]",
+    "depois": {
+     "faz": "Descubra o andar de Elias",
+     "conta": "E < 4 e E ≠ 2 → E = 1 ou 3",
+     "porque": "Elias chega antes de Henrique (4º), e o 2º já é de Sandro. Sobram 1 e 3. Se E = 3, então P = 5, o andar de Cláudio. Isso não pode, pois cada um tem um andar diferente. Logo E = 1.",
+     "tipo": "eliminar"
+    },
+    "motivo": "Separa as possibilidades e a eliminação em frases curtas."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "Falta ver que Elias está no 1º. Como P = E + 2, Paulo fica 2 andares acima de Elias, nunca no 1º. Além disso, dois alunos não dividem o mesmo andar.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou B."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "Falta usar H = S + 2. Como H = 4, Sandro está no 2º andar. Cada um tem um andar diferente, então Paulo não pode ficar aí.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou C."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "Falta lembrar que Cláudio já ocupa o 5º andar. Paulo só iria ao 5º com Elias no 3º (P = E + 2), mas aí Paulo repetiria o andar de Cláudio, o que é proibido.",
+    "motivo": "Mais claro sobre o que faltou."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "Falta ver que o 4º é de Henrique, que está 2 andares acima de Sandro (2º). Paulo não pode dividir o andar com Henrique, pois cada um tem um andar diferente.",
+    "motivo": "A frase original estava confusa; agora diz o que faltou."
+   },
+   {
+    "campo": "resolucao.armadilha",
+    "depois": "Esquecer que 'sobem juntos' faz 'chegar antes' significar 'andar menor', e não testar E = 3, que põe Paulo no andar de Cláudio.",
+    "motivo": "Frase mais simples."
+   }
+  ],
+  "didatica_alertas": [
+   "O campo 'nivel' do JSON é 4, mas a classificação atual diz nível 5; verificar qual vale."
+  ],
+  "didatica_ok": true
  }
 }

@@ -11,7 +11,7 @@
    "texto": "A calculadora só tem log na base 10, então é preciso trocar a base: log_2(x) = log(x) ÷ log(2). A razão entre as frequências é f2/f1; se f1 é um décimo de f2, então f2/f1 = 10. O enunciado pede a parte inteira de n, não o valor exato.",
    "formulas": [
     "mudança de base: log_2(x) = log(x) ÷ log(2)",
-    "log 10 = 1",
+    "log 10 = 1, pois 10 elevado a 1 dá 10",
     "oitavas = parte inteira de n"
    ],
    "simbolos": [
@@ -42,7 +42,7 @@
     "tipo": "localizar"
    },
    {
-    "faz": "Monte a expressão de n",
+    "faz": "Escreva n com essa razão",
     "conta": "n = log_2(10)",
     "porque": "Basta substituir a razão 10 na fórmula dada no enunciado.",
     "tipo": "calcular"
@@ -69,9 +69,9 @@
   "resposta": "Alternativa C: n = log_2(10) = 1 ÷ 0,30 ≈ 3,33, cuja parte inteira é 3 oitavas.",
   "checagem": "Teste com potências de 2: 2³ = 8 e 2⁴ = 16. Como 10 está entre 8 e 16, o expoente está entre 3 e 4, e a parte inteira é 3.",
   "erradas": {
-   "A": "1 vem de usar log 10 = 1 e esquecer de dividir por log 2: tomar n = log 10 como se fosse a base 2. A mudança de base exige dividir por 0,30, o que dá 3,33.",
-   "B": "2 não confere: 2² = 4, e 4 é menor que 10. Para chegar a 10 é preciso um expoente maior que 3, pois 2³ = 8 ainda é menor que 10.",
-   "D": "4 não confere: 2⁴ = 16, que é maior que 10. O expoente que dá 10 é menor que 4, então a parte inteira não pode ser 4. Também 1 ÷ 0,30 = 3,33, e não 4.",
+   "A": "1 sai de parar em log 10 = 1, sem dividir por log 2. Isso trata n como se fosse um log na base 10. Na base 2 é preciso dividir: 1 ÷ 0,30 ≈ 3,33.",
+   "B": "2 não confere: 2² = 4, que é menor que 10. Falta ainda passar por 2³ = 8, que também é menor que 10. O expoente que dá 10 é maior que 3.",
+   "D": "4 não confere: 2⁴ = 16, que passa de 10. Então o expoente que dá 10 é menor que 4. A conta 1 ÷ 0,30 = 3,33 tem parte inteira 3. Quem marcou 4 arredondou 3,33 para cima, mas o enunciado pede a parte inteira.",
    "E": "5 não confere: 2⁵ = 32, muito acima de 10. O resultado 1 ÷ 0,30 = 3,33 tem parte inteira 3."
   },
   "armadilha": "Esquecer de dividir por log 2 na mudança de base, ou responder 3,33 em vez da parte inteira.",
@@ -132,11 +132,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -165,6 +167,41 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "C"
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "1 sai de parar em log 10 = 1, sem dividir por log 2. Isso trata n como se fosse um log na base 10. Na base 2 é preciso dividir: 1 ÷ 0,30 ≈ 3,33.",
+    "motivo": "Frase original confusa (\"tomar n = log 10 como se fosse a base 2\"); agora diz com clareza o que faltou ao aluno."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "2 não confere: 2² = 4, que é menor que 10. Falta ainda passar por 2³ = 8, que também é menor que 10. O expoente que dá 10 é maior que 3.",
+    "motivo": "Texto original dizia 'expoente maior que 3' logo depois de falar de 2², sem explicar a sequência; foi reordenado."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "4 não confere: 2⁴ = 16, que passa de 10. Então o expoente que dá 10 é menor que 4. A conta 1 ÷ 0,30 = 3,33 tem parte inteira 3. Quem marcou 4 arredondou 3,33 para cima, mas o enunciado pede a parte inteira.",
+    "motivo": "Diz o que faltou a quem marcou D (arredondar em vez de truncar) e não só o teste."
+   },
+   {
+    "campo": "resolucao.passos[1].faz",
+    "depois": "Escreva n com essa razão",
+    "motivo": "Frase mais simples para o aluno."
+   },
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "mudança de base: log_2(x) = log(x) ÷ log(2)",
+     "log 10 = 1, pois 10 elevado a 1 dá 10",
+     "oitavas = parte inteira de n"
+    ],
+    "motivo": "A origem de log 10 = 1 aparece já na fórmula."
+   }
+  ],
+  "didatica_alertas": [
+   "Metadado diz conteúdo M06.3 e nível 4, enquanto a classificação atual é M06.4 e nível 5; conferir com o corretor 1 (a questão é mudança de base, M06.3 parece mais adequado)."
+  ],
+  "didatica_ok": true
  }
 }

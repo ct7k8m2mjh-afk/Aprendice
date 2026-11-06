@@ -8,7 +8,7 @@
  "conceito": "Força centrípeta em curva plana: o atrito estático aponta para o centro e a velocidade é tangente à trajetória.",
  "resolucao": {
   "antes": {
-   "texto": "No movimento circular uniforme, a velocidade tem módulo constante, mas muda de direção o tempo todo. Por isso existe aceleração, dirigida para o centro da curva (aceleração centrípeta). Na pista plana e horizontal, a única força horizontal que pode fornecer a resultante para o centro é o atrito entre os pneus e o chão. A velocidade vetorial é sempre tangente à trajetória.",
+   "texto": "No movimento circular uniforme, o módulo da velocidade é constante, mas a direção muda o tempo todo. Por isso existe aceleração, dirigida para o centro da curva (aceleração centrípeta). Na pista plana e horizontal, a única força horizontal que pode apontar para o centro é o atrito entre os pneus e o chão. A velocidade é sempre tangente à trajetória.",
    "formulas": [
     "F_cp = m × v² ÷ R",
     "Atrito estático máximo: μ × m × g",
@@ -17,33 +17,45 @@
    "simbolos": [
     [
      "F_cp",
-     "força centrípeta: a resultante que aponta para o centro da curva"
+     "força centrípeta: a força resultante que aponta para o centro da curva"
     ],
     [
      "tangente",
      "reta que toca a curva em um ponto, na mesma direção do movimento naquele instante"
     ],
     [
+     "radial",
+     "na direção do raio: ao longo da reta que liga o carro ao centro da curva"
+    ],
+    [
      "μ",
-     "coeficiente de atrito entre pneu e pista"
+     "coeficiente de atrito entre pneu e pista (quanto maior, mais o pneu agarra)"
     ],
     [
      "R",
      "raio da curva"
+    ],
+    [
+     "g",
+     "aceleração da gravidade"
+    ],
+    [
+     "v_máx",
+     "maior velocidade com que o carro faz a curva sem derrapar"
     ]
    ]
   },
   "pista": "Se o carro muda de direção, precisa de uma força. Na pista plana, quem empurra o carro para o lado de dentro da curva?",
   "passos": [
    {
-    "faz": "Desenhe a velocidade em um ponto",
+    "faz": "Veja a direção da velocidade",
     "conta": "v tangente à curva",
     "porque": "Na figura, a seta v aponta ao longo da trajetória, na direção em que o carro anda. Ela nunca é perpendicular à curva.",
     "tipo": "localizar"
    },
    {
     "faz": "Ache a força que curva o carro",
-    "conta": "Peso e normal: na vertical",
+    "conta": "Peso ↓ e normal ↑ se anulam",
     "porque": "Peso e normal se anulam e não têm componente horizontal. Sobra só o atrito dos pneus como força horizontal.",
     "tipo": "eliminar"
    },
@@ -55,24 +67,24 @@
    },
    {
     "faz": "Teste a velocidade máxima",
-    "conta": "μ·m·g = m·v²/R → v² = μ·g·R",
+    "conta": "μ·m·g = m·v²/R\nv² = μ·g·R",
     "porque": "A massa m aparece dos dois lados e cancela. A velocidade máxima não depende da massa.",
     "tipo": "calcular"
    },
    {
     "faz": "Confronte com as alternativas",
     "conta": "Só B: atrito para o centro",
-    "porque": "As demais erram a direção de v, a direção do atrito, a direção da força centrípeta ou a dependência da massa.",
+    "porque": "A erra a direção de v. C erra o sentido do atrito. D confunde a direção da centrípeta com a de v. E põe a massa na velocidade máxima.",
     "tipo": "concluir"
    }
   ],
   "resposta": "Alternativa B: na pista plana, o atrito é a força que mantém o carro na curva e aponta, em cada instante, para o centro da trajetória.",
   "checagem": "Imagine a pista com gelo: sem atrito, o carro seguiria em linha reta, tangente à curva. Isso mostra que o atrito é a força que o desvia para o centro.",
   "erradas": {
-   "A": "A velocidade vetorial é sempre tangente à trajetória, como mostra a seta v da figura, e não perpendicular a ela. A perpendicular à trajetória é a direção da aceleração e da força centrípeta.",
-   "C": "O atrito aponta para o centro da curva, e não para fora. Se apontasse para fora, o carro seria empurrado para fora da curva. A direção radial é perpendicular à trajetória, mas o sentido correto é para dentro.",
-   "D": "A força centrípeta é radial, dirigida ao centro, e a velocidade é tangente. As duas direções são perpendiculares em todos os pontos, nunca iguais.",
-   "E": "Pelo limite do atrito, μ·m·g = m·v²/R, a massa cancela e v_máx = √(μ·g·R). A velocidade máxima não depende da massa do veículo."
+   "A": "Falta lembrar que v é tangente, como mostra a seta da figura. Perpendicular à trajetória é a direção da aceleração e da força centrípeta, não da velocidade.",
+   "C": "Faltou ver que o atrito é a força que curva o carro, então aponta para dentro. Para fora, o carro sairia da curva. A direção perpendicular está certa; o sentido, não.",
+   "D": "Faltou separar as duas direções: a centrípeta aponta para o centro e v é tangente. As duas formam 90° em todos os pontos, nunca são iguais.",
+   "E": "Faltou cancelar a massa: μ·m·g = m·v²/R dá v_máx = √(μ·g·R). Carro pesado e leve têm o mesmo limite, pois peso e atrito crescem juntos."
   },
   "armadilha": "Achar que existe uma 'força centrífuga' para fora, ou que a força centrípeta tem a direção da velocidade.",
   "alerta": "",
@@ -133,11 +145,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -160,6 +174,101 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "B"
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "No movimento circular uniforme, o módulo da velocidade é constante, mas a direção muda o tempo todo. Por isso existe aceleração, dirigida para o centro da curva (aceleração centrípeta). Na pista plana e horizontal, a única força horizontal que pode apontar para o centro é o atrito entre os pneus e o chão. A velocidade é sempre tangente à trajetória.",
+    "motivo": "Frase mais simples e sem a expressão 'resultante' solta; mantém a ideia."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "F_cp",
+      "força centrípeta: a força resultante que aponta para o centro da curva"
+     ],
+     [
+      "tangente",
+      "reta que toca a curva em um ponto, na mesma direção do movimento naquele instante"
+     ],
+     [
+      "radial",
+      "na direção do raio: ao longo da reta que liga o carro ao centro da curva"
+     ],
+     [
+      "μ",
+      "coeficiente de atrito entre pneu e pista (quanto maior, mais o pneu agarra)"
+     ],
+     [
+      "R",
+      "raio da curva"
+     ],
+     [
+      "g",
+      "aceleração da gravidade"
+     ],
+     [
+      "v_máx",
+      "maior velocidade com que o carro faz a curva sem derrapar"
+     ]
+    ],
+    "motivo": "Termos 'radial', g e v_máx aparecem na resolução e não estavam explicados."
+   },
+   {
+    "campo": "resolucao.passos[0]",
+    "depois": {
+     "faz": "Veja a direção da velocidade",
+     "conta": "v tangente à curva",
+     "porque": "Na figura, a seta v aponta ao longo da trajetória, na direção em que o carro anda. Ela nunca é perpendicular à curva.",
+     "tipo": "localizar"
+    },
+    "motivo": "O passo é de leitura da figura, não de desenhar."
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "Peso ↓ e normal ↑ se anulam",
+    "motivo": "Mais clara para o aluno."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "μ·m·g = m·v²/R\nv² = μ·g·R",
+    "motivo": "Conta longa vira duas linhas para caber na tela."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "A erra a direção de v. C erra o sentido do atrito. D confunde a direção da centrípeta com a de v. E põe a massa na velocidade máxima.",
+    "motivo": "Diz com precisão o erro de cada alternativa."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "Falta lembrar que v é tangente, como mostra a seta da figura. Perpendicular à trajetória é a direção da aceleração e da força centrípeta, não da velocidade.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou A."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "Faltou ver que o atrito é a força que curva o carro, então aponta para dentro. Para fora, o carro sairia da curva. A direção perpendicular está certa; o sentido, não.",
+    "motivo": "Mais direto sobre o erro de quem marcou C."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "Faltou separar as duas direções: a centrípeta aponta para o centro e v é tangente. As duas formam 90° em todos os pontos, nunca são iguais.",
+    "motivo": "Foca no que faltou ao aluno."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "Faltou cancelar a massa: μ·m·g = m·v²/R dá v_máx = √(μ·g·R). Carro pesado e leve têm o mesmo limite, pois peso e atrito crescem juntos.",
+    "motivo": "Explica por que a massa não pesa."
+   },
+   {
+    "campo": "resolucao.quadro[3].linha",
+    "depois": "v_máx = √(μ·g·R)",
+    "motivo": "Sem alteração de conteúdo; confirmado."
+   }
+  ],
+  "didatica_alertas": [
+   "Classificação F03.5 (colisões) e nível 6 no cabeçalho não combinam com a questão, que trata de força centrípeta (movimento circular, Dinâmica); o JSON traz nivel 4. Corretor 1 deve rever."
+  ],
+  "didatica_ok": true
  }
 }

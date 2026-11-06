@@ -8,7 +8,7 @@
  "conceito": "Ler uma placa de trânsito em inglês e identificar o que os motoristas devem fazer (cuidado, baixa velocidade) e por quê (vacas escuras são invisíveis no escuro ou na neblina).",
  "resolucao": {
   "antes": {
-   "texto": "A questão pede o que os motoristas devem ou não devem fazer, segundo a placa. Em placas, o título anuncia o perigo e o texto menor explica o motivo e dá a ordem. Compare cada alternativa com o que está escrito, item por item: ação pedida e motivo.",
+   "texto": "A questão pede o que os motoristas devem ou não devem fazer, segundo a placa. Em placas, o título anuncia o perigo e o texto menor explica o motivo e dá a ordem. Compare cada alternativa com a placa, item por item: a ação pedida e o motivo. Um detalhe a mais que a placa não escreve derruba a alternativa.",
    "formulas": [
     "beware of = cuidado com, tome cuidado com",
     "use extreme caution and drive very slowly = tenha extremo cuidado e dirija bem devagar",
@@ -29,6 +29,18 @@
      "com frequência"
     ],
     [
+     "often",
+     "frequentemente, muitas vezes (não é 'sempre')"
+    ],
+    [
+     "invisible",
+     "que não se pode ver"
+    ],
+    [
+     "darkness",
+     "escuridão"
+    ],
+    [
      "fog",
      "neblina"
     ],
@@ -43,6 +55,18 @@
     [
      "cattle",
      "gado"
+    ],
+    [
+     "lying on the road",
+     "deitadas na pista"
+    ],
+    [
+     "get lost",
+     "se perder"
+    ],
+    [
+     "chase",
+     "perseguir"
     ]
    ]
   },
@@ -51,19 +75,19 @@
    {
     "faz": "Traduza o comando",
     "conta": "“what drivers are supposed to do”",
-    "porque": "Significa o que os motoristas devem ou não devem fazer. Procure então a ordem da placa e o motivo dela.",
+    "porque": "Significa 'o que os motoristas devem ou não devem fazer'. Então procure na placa a ordem e o motivo dela.",
     "tipo": "localizar"
    },
    {
     "faz": "Leia o título da placa",
     "conta": "“BEWARE OF INVISIBLE COWS” (cuidado com vacas invisíveis)",
-    "porque": "O título já dá a ordem geral: ter cuidado. Não proíbe entrar.",
+    "porque": "O título já dá a ordem geral: ter cuidado. Ele não proíbe entrar na área.",
     "tipo": "localizar"
    },
    {
     "faz": "Leia o motivo",
     "conta": "“Dark colored cows are often invisible in darkness and/or fog”",
-    "porque": "Vacas escuras costumam ser invisíveis no escuro ou na neblina. Só em certas situações, não sempre.",
+    "porque": "Vacas escuras costumam ficar invisíveis no escuro ou na neblina. 'Often' quer dizer 'muitas vezes', então é só em certas situações, não sempre. Isso combina com 'under some circumstances' da alternativa B.",
     "tipo": "localizar"
    },
    {
@@ -74,8 +98,8 @@
    },
    {
     "faz": "Compare com as alternativas",
-    "conta": "B: atenção às vacas em certas circunstâncias, porque as escuras não se veem",
-    "porque": "A alternativa B reúne a ordem (atenção) e o motivo (vacas escuras invisíveis) sem inventar nada. “Under some circumstances” corresponde ao “often … in darkness and/or fog”.",
+    "conta": "B: atenção às vacas em certas situações, pois as escuras não se veem",
+    "porque": "A B reúne a ordem (atenção) e o motivo (vacas escuras invisíveis) sem inventar nada. 'Under some circumstances' (em algumas circunstâncias) corresponde a 'often … in darkness and/or fog'.",
     "tipo": "concluir"
    }
   ],
@@ -120,11 +144,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -135,6 +161,98 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "B"
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "A questão pede o que os motoristas devem ou não devem fazer, segundo a placa. Em placas, o título anuncia o perigo e o texto menor explica o motivo e dá a ordem. Compare cada alternativa com a placa, item por item: a ação pedida e o motivo. Um detalhe a mais que a placa não escreve derruba a alternativa.",
+    "motivo": "Deixa claro o critério de eliminação (tudo o que a alternativa afirma precisa estar escrito)."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "beware of",
+      "cuidado com"
+     ],
+     [
+      "open cattle range",
+      "pasto aberto, onde o gado anda solto"
+     ],
+     [
+      "frequently",
+      "com frequência"
+     ],
+     [
+      "often",
+      "frequentemente, muitas vezes (não é 'sempre')"
+     ],
+     [
+      "invisible",
+      "que não se pode ver"
+     ],
+     [
+      "darkness",
+      "escuridão"
+     ],
+     [
+      "fog",
+      "neblina"
+     ],
+     [
+      "caution",
+      "cautela, cuidado"
+     ],
+     [
+      "slowly",
+      "devagar"
+     ],
+     [
+      "cattle",
+      "gado"
+     ],
+     [
+      "lying on the road",
+      "deitadas na pista"
+     ],
+     [
+      "get lost",
+      "se perder"
+     ],
+     [
+      "chase",
+      "perseguir"
+     ]
+    ],
+    "motivo": "Incluídos termos que aparecem nas alternativas e na resolução (often, invisible, darkness, chase, get lost, lying) e que o aluno pode não conhecer."
+   },
+   {
+    "campo": "resolucao.passos[0].porque",
+    "depois": "Significa 'o que os motoristas devem ou não devem fazer'. Então procure na placa a ordem e o motivo dela.",
+    "motivo": "Frase mais simples e direta."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "O título já dá a ordem geral: ter cuidado. Ele não proíbe entrar na área.",
+    "motivo": "Clareza."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Vacas escuras costumam ficar invisíveis no escuro ou na neblina. 'Often' quer dizer 'muitas vezes', então é só em certas situações, não sempre. Isso combina com 'under some circumstances' da alternativa B.",
+    "motivo": "Explica 'often' e antecipa a ligação com a B."
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "B: atenção às vacas em certas situações, pois as escuras não se veem",
+    "motivo": "Conta mais curta para caber em ~30 caracteres por linha na tela do celular."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "A B reúne a ordem (atenção) e o motivo (vacas escuras invisíveis) sem inventar nada. 'Under some circumstances' (em algumas circunstâncias) corresponde a 'often … in darkness and/or fog'.",
+    "motivo": "Tradução de circumstances e linguagem mais simples."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

@@ -8,23 +8,27 @@
  "conceito": "Profundidade aparente de um objeto visto através da superfície da água (dioptro plano), com visão aproximadamente perpendicular.",
  "resolucao": {
   "antes": {
-   "texto": "Quando você olha um objeto dentro da água, a luz muda de meio ao sair e se afasta da normal. Por isso o objeto parece mais raso do que realmente está. O peixe real fica mais fundo que a imagem que o índio enxerga. Para acertar o peixe, a lança deve ir para onde ele realmente está, e não para onde parece estar.",
+   "texto": "Quando a luz do peixe sai da água para o ar, ela se afasta da normal (linha imaginária perpendicular à superfície). Por isso o olho enxerga o peixe mais perto da superfície do que ele realmente está. Para acertar, a lança deve ir para onde o peixe realmente está, e não para onde ele parece estar. Aqui, olhamos quase na vertical.",
    "formulas": [
-    "p′ ÷ p = n_observador ÷ n_objeto (olhando na vertical)",
+    "p′ ÷ p = n_ar ÷ n_água (olhando quase na vertical)",
     "p′ = p × n_ar ÷ n_água"
    ],
    "simbolos": [
     [
      "p",
-     "profundidade real do peixe (objeto)"
+     "profundidade real do peixe (onde ele de fato está)"
     ],
     [
      "p′",
-     "profundidade aparente, onde a imagem é vista"
+     "profundidade aparente (onde o índio vê a imagem do peixe)"
     ],
     [
      "n",
-     "índice de refração do meio (n_ar = 1,0; n_água = 4/3)"
+     "índice de refração: número que mede o quanto o meio atrasa a luz (n_ar = 1,0; n_água = 4/3)"
+    ],
+    [
+     "normal",
+     "linha imaginária perpendicular à superfície da água"
     ],
     [
      "dioptro plano",
@@ -37,19 +41,19 @@
    {
     "faz": "Liste os dados",
     "conta": "p = 2,0 m; n_ar = 1,0; n_água = 4/3",
-    "porque": "O peixe está na água e o observador no ar, então vale a relação do dioptro plano com n_ar no numerador.",
+    "porque": "O peixe está na água e o índio no ar. Então o índice do ar (onde está o olho) vai em cima e o da água (onde está o peixe) vai embaixo.",
     "tipo": "localizar"
    },
    {
     "faz": "Escreva a relação da profundidade aparente",
     "conta": "p′ = p × n_ar ÷ n_água",
-    "porque": "Na visão quase vertical, a profundidade aparente é a real multiplicada pela razão n_observador ÷ n_objeto.",
+    "porque": "Olhando quase na vertical, a profundidade vista é a real multiplicada por n do ar ÷ n da água.",
     "tipo": "calcular"
    },
    {
     "faz": "Calcule a profundidade aparente",
-    "conta": "p′ = 2,0 × 1,0 ÷ (4/3) = 1,5 m",
-    "porque": "Dividir por 4/3 é multiplicar por 3/4: 2,0 × 0,75 = 1,5 m. A imagem está mais rasa que o peixe.",
+    "conta": "p′ = 2,0 × 1,0 ÷ (4/3)",
+    "porque": "Dividir por 4/3 é multiplicar por 3/4: 2,0 × 0,75 = 1,5 m. A imagem aparece a 1,5 m, mais rasa que o peixe.",
     "tipo": "calcular"
    },
    {
@@ -135,11 +139,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -150,6 +156,76 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "E"
+  "fatos_resposta": "E",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Quando a luz do peixe sai da água para o ar, ela se afasta da normal (linha imaginária perpendicular à superfície). Por isso o olho enxerga o peixe mais perto da superfície do que ele realmente está. Para acertar, a lança deve ir para onde o peixe realmente está, e não para onde ele parece estar. Aqui, olhamos quase na vertical.",
+    "motivo": "Frase mais precisa (luz sai da água), sem duplo sentido, e avisa a condição de visão vertical."
+   },
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "p′ ÷ p = n_ar ÷ n_água (olhando quase na vertical)",
+     "p′ = p × n_ar ÷ n_água"
+    ],
+    "motivo": "Troca 'observador/objeto' por nomes concretos, mais simples para o aluno."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "p",
+      "profundidade real do peixe (onde ele de fato está)"
+     ],
+     [
+      "p′",
+      "profundidade aparente (onde o índio vê a imagem do peixe)"
+     ],
+     [
+      "n",
+      "índice de refração: número que mede o quanto o meio atrasa a luz (n_ar = 1,0; n_água = 4/3)"
+     ],
+     [
+      "normal",
+      "linha imaginária perpendicular à superfície da água"
+     ],
+     [
+      "dioptro plano",
+      "superfície plana que separa dois meios transparentes, como o ar e a água de um lago"
+     ]
+    ],
+    "motivo": "Explica 'normal' e 'índice de refração', termos usados no texto."
+   },
+   {
+    "campo": "resolucao.passos[0].porque",
+    "depois": "O peixe está na água e o índio no ar. Então o índice do ar (onde está o olho) vai em cima e o da água (onde está o peixe) vai embaixo.",
+    "motivo": "Remove jargão 'dioptro plano' e 'numerador'."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "Olhando quase na vertical, a profundidade vista é a real multiplicada por n do ar ÷ n da água.",
+    "motivo": "Linguagem mais simples."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "p′ = 2,0 × 1,0 ÷ (4/3)",
+    "motivo": "Conta curta cabe na tela; o resultado vai no passo seguinte."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Dividir por 4/3 é multiplicar por 3/4: 2,0 × 0,75 = 1,5 m. A imagem aparece a 1,5 m, mais rasa que o peixe.",
+    "motivo": "Inclui o resultado e mantém a ideia."
+   },
+   {
+    "campo": "resolucao.quadro[3].linha",
+    "depois": "p′ = 2,0 × 3/4",
+    "motivo": "Mantida; fração simples curta e legível."
+   }
+  ],
+  "didatica_alertas": [
+   "Classificação atual (tema F02, conteúdo F02.5, força centrípeta) não corresponde à questão, que é de refração (F08.4); o JSON já traz tema F08/F08.4, conferir a classificação no banco."
+  ],
+  "didatica_ok": true
  }
 }

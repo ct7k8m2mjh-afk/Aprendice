@@ -12,7 +12,8 @@
    "formulas": [
     "massa da solução = densidade × volume",
     "massa de soluto = título × massa da solução",
-    "mol = massa ÷ massa molar; mol/L = mol ÷ volume em litros"
+    "mol = massa ÷ massa molar",
+    "mol/L = mol ÷ volume em litros"
    ],
    "simbolos": [
     [
@@ -38,7 +39,7 @@
    {
     "faz": "Calcule a massa molar do H2SO4",
     "conta": "2×1 + 32 + 4×16 = 98 g/mol",
-    "porque": "Precisamos dela para passar de gramas para mols.",
+    "porque": "Para passar de gramas para mols, é preciso saber quantos gramas pesa 1 mol de H2SO4. O índice 4 do oxigênio multiplica só o O.",
     "tipo": "calcular"
    },
    {
@@ -67,14 +68,14 @@
    }
   ],
   "resposta": "Alternativa E: a concentração da solução era de 19,6 mol/L.",
-  "checagem": "Atalho: 1000 × 1,96 × 0,98 ÷ 98. Como 0,98 = 98/100, o 98 cancela e sobra 1000 × 1,96 ÷ 100 = 19,6. Teto de comparação: se fosse ácido 100% puro, seriam 1960 ÷ 98 = 20 mol/L. Com 98% de pureza, 19,6 é coerente.",
+  "checagem": "Confira pelo teto: se o ácido fosse 100% puro, 1 L teria 1960 g ÷ 98 g/mol = 20 mol. Como só 98% é ácido, o valor deve ficar um pouco abaixo de 20, e 19,6 está certo. Também vale cancelar: 0,98 (que é 98 ÷ 100) com a massa molar 98 deixa 1000 × 1,96 ÷ 100 = 19,6.",
   "erradas": {
-   "A": "12,2 mol/L não confere. Para dar esse valor, 1 L teria 12,2 × 98 = 1195,6 g de ácido, o que exigiria densidade de cerca de 1,22 g/mL. A questão dá 1,96 g/mL.",
+   "A": "12,2 mol/L não confere. 1 L teria de conter 12,2 × 98 = 1195,6 g de ácido, o que pediria densidade de uns 1,22 g/mL. O enunciado dá 1,96 g/mL, então esse valor não vem desses dados.",
    "B": "14,6 mol/L não confere. Seriam 14,6 × 98 = 1430,8 g de ácido em 1 L, o que exigiria densidade de cerca de 1,46 g/mL, e não 1,96 g/mL.",
    "C": "16,8 mol/L não confere. Seriam 16,8 × 98 = 1646,4 g de ácido em 1 L, o que exigiria densidade de cerca de 1,68 g/mL, e não 1,96 g/mL.",
    "D": "18,2 mol/L não confere. Seriam 18,2 × 98 = 1783,6 g de ácido em 1 L, o que exigiria densidade de cerca de 1,82 g/mL, e não 1,96 g/mL."
   },
-  "armadilha": "Esquecer a densidade (ou o título) e a conversão de mL para L: sem um dos dados o cálculo não chega a 19,6 mol/L.",
+  "armadilha": "Esquecer de converter litro em mL ao usar a densidade (g/mL) ou aplicar o título 98% na massa errada. Em qualquer dos dois casos o resultado não chega a 19,6 mol/L.",
   "alerta": "",
   "essencial": {
    "pede": "A concentração em mol/L da solução de ácido sulfúrico.",
@@ -94,15 +95,19 @@
  ],
  "quadro": [
   {
-   "linha": "M(H2SO4) = 2 + 32 + 64",
+   "linha": "M(H2SO4) = 2×1 + 32 + 4×16",
    "nota": "some as massas dos átomos"
+  },
+  {
+   "linha": "M(H2SO4) = 2 + 32 + 64",
+   "nota": "faça as multiplicações"
   },
   {
    "linha": "M(H2SO4) = 98 g/mol",
    "nota": "massa molar do ácido"
   },
   {
-   "linha": "1 L = 1000 mL",
+   "linha": "V = 1 L = 1000 mL",
    "nota": "adote 1 L de solução"
   },
   {
@@ -122,7 +127,7 @@
    "nota": "massa de H2SO4 em 1 L"
   },
   {
-   "linha": "n = 1920,8/98",
+   "linha": "n = \\frac{1920,8}{98}",
    "nota": "massa ÷ massa molar",
    "mov": [
     {
@@ -139,8 +144,12 @@
    "nota": "mols de ácido em 1 L"
   },
   {
+   "linha": "C = \\frac{19,6 mol}{1 L}",
+   "nota": "mols ÷ volume em litros"
+  },
+  {
    "linha": "C = 19,6 mol/L",
-   "nota": "mols ÷ 1 L"
+   "nota": "resposta: alternativa E"
   }
  ],
  "visual": {
@@ -157,14 +166,113 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [],
   "fatos_ok": true,
-  "fatos_resposta": "E"
+  "fatos_resposta": "E",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "massa da solução = densidade × volume",
+     "massa de soluto = título × massa da solução",
+     "mol = massa ÷ massa molar",
+     "mol/L = mol ÷ volume em litros"
+    ],
+    "motivo": "Separei a última linha em duas: cada linha traz uma só regra."
+   },
+   {
+    "campo": "resolucao.quadro",
+    "depois": [
+     {
+      "linha": "M(H2SO4) = 2×1 + 32 + 4×16",
+      "nota": "some as massas dos átomos"
+     },
+     {
+      "linha": "M(H2SO4) = 2 + 32 + 64",
+      "nota": "faça as multiplicações"
+     },
+     {
+      "linha": "M(H2SO4) = 98 g/mol",
+      "nota": "massa molar do ácido"
+     },
+     {
+      "linha": "V = 1 L = 1000 mL",
+      "nota": "adote 1 L de solução"
+     },
+     {
+      "linha": "m(sol) = 1,96 × 1000",
+      "nota": "densidade × volume em mL"
+     },
+     {
+      "linha": "m(sol) = 1960 g",
+      "nota": "massa de 1 L de solução"
+     },
+     {
+      "linha": "m(ác) = 0,98 × 1960",
+      "nota": "só 98% é ácido puro"
+     },
+     {
+      "linha": "m(ác) = 1920,8 g",
+      "nota": "massa de H2SO4 em 1 L"
+     },
+     {
+      "linha": "n = \\frac{1920,8}{98}",
+      "nota": "massa ÷ massa molar",
+      "mov": [
+       {
+        "termo": "98",
+        "de": "esquerda",
+        "para": "denominador",
+        "vira": "98",
+        "como": "a massa molar divide a massa"
+       }
+      ]
+     },
+     {
+      "linha": "n = 19,6 mol",
+      "nota": "mols de ácido em 1 L"
+     },
+     {
+      "linha": "C = \\frac{19,6 mol}{1 L}",
+      "nota": "mols ÷ volume em litros"
+     },
+     {
+      "linha": "C = 19,6 mol/L",
+      "nota": "resposta: alternativa E"
+     }
+    ],
+    "motivo": "Separei a conta da massa molar em passos copiáveis e escrevi a fração empilhada. Acrescentei a divisão por 1 L e a conclusão com a letra."
+   },
+   {
+    "campo": "resolucao.passos[0].porque",
+    "depois": "Para passar de gramas para mols, é preciso saber quantos gramas pesa 1 mol de H2SO4. O índice 4 do oxigênio multiplica só o O.",
+    "motivo": "O porquê estava vago e não explicava a conta."
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Confira pelo teto: se o ácido fosse 100% puro, 1 L teria 1960 g ÷ 98 g/mol = 20 mol. Como só 98% é ácido, o valor deve ficar um pouco abaixo de 20, e 19,6 está certo. Também vale cancelar: 0,98 (que é 98 ÷ 100) com a massa molar 98 deixa 1000 × 1,96 ÷ 100 = 19,6.",
+    "motivo": "Texto mais claro, com o teto de comparação primeiro e o cancelamento explicado."
+   },
+   {
+    "campo": "resolucao.armadilha",
+    "depois": "Esquecer de converter litro em mL ao usar a densidade (g/mL) ou aplicar o título 98% na massa errada. Em qualquer dos dois casos o resultado não chega a 19,6 mol/L.",
+    "motivo": "A frase original era confusa e não dizia o erro de quem marcou outra letra."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "12,2 mol/L não confere. 1 L teria de conter 12,2 × 98 = 1195,6 g de ácido, o que pediria densidade de uns 1,22 g/mL. O enunciado dá 1,96 g/mL, então esse valor não vem desses dados.",
+    "motivo": "Frase mais clara e com ligação explícita aos dados do enunciado."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

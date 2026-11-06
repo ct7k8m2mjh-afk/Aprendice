@@ -8,12 +8,12 @@
  "conceito": "Localizar informação explícita no texto e achar a afirmação falsa (data trocada)",
  "resolucao": {
   "antes": {
-   "texto": "A pergunta pede a frase FALSA, ou seja, a que contradiz o texto. Cada alternativa repete um trecho da notícia, e uma delas muda um detalhe. Confira cada alternativa contra a frase correspondente, olhando quem, o quê, quando e quantos.",
+   "texto": "A pergunta pede a frase FALSA, ou seja, a que contradiz o texto. Cada alternativa repete um trecho da notícia, e uma delas muda um detalhe. Confira cada alternativa contra a frase correspondente, olhando quem, o quê, quando e quantos. Atenção: a palavra 'as did' liga duas músicas, cada uma com o seu ano.",
    "formulas": [
     "FALSE = a alternativa que contradiz o texto",
     "debut single = primeiro single (lançamento de estreia)",
-    "as did = e também (repetindo 'reached No 1')",
-    "confira datas e números: eles são o ponto onde a alternativa falsa costuma mudar o texto"
+    "A, as did B = A e também B (mas cada um com a sua data)",
+    "confira datas e números: é onde a alternativa falsa costuma mudar o texto"
    ],
    "simbolos": [
     [
@@ -30,7 +30,7 @@
     ],
     [
      "is survived by",
-     "deixa (família que sobrevive a ele)"
+     "deixa (família que continua viva depois da morte dele)"
     ],
     [
      "touring production",
@@ -39,10 +39,14 @@
     [
      "aged 33",
      "aos 33 anos de idade"
+    ],
+    [
+     "as did",
+     "e também (retoma o verbo anterior: 'chegou ao nº 1')"
     ]
    ]
   },
-  "pista": "Procure no texto a frase sobre 'Glad You Came' e compare o ano com o que a alternativa diz.",
+  "pista": "Procure no texto a frase que cita 'Glad You Came' e veja qual ano aparece ao lado dessa música. Depois compare com o ano da alternativa.",
   "passos": [
    {
     "faz": "Traduza o comando",
@@ -58,8 +62,8 @@
    },
    {
     "faz": "Confira a alternativa B",
-    "conta": "“Their debut 2010 single, … All Time Low, reached No 1, as did Glad You Came in 2012.”",
-    "porque": "Em 2010 foi All Time Low. Glad You Came chegou ao nº 1 em 2012. A alternativa B troca o ano e contradiz o texto.",
+    "conta": "“All Time Low, reached No 1, as did Glad You Came in 2012” (All Time Low chegou ao nº 1, e também Glad You Came, em 2012)",
+    "porque": "All Time Low chegou ao nº 1 em 2010. 'As did' quer dizer 'e também': Glad You Came chegou ao nº 1 em 2012. A alternativa B põe 2010 nessa música e contradiz o texto.",
     "tipo": "comparar"
    },
    {
@@ -112,11 +116,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -145,6 +151,74 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "B"
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "A pergunta pede a frase FALSA, ou seja, a que contradiz o texto. Cada alternativa repete um trecho da notícia, e uma delas muda um detalhe. Confira cada alternativa contra a frase correspondente, olhando quem, o quê, quando e quantos. Atenção: a palavra 'as did' liga duas músicas, cada uma com o seu ano.",
+    "motivo": "Antecipa a estrutura que decide a questão, sem entregar a resposta."
+   },
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "FALSE = a alternativa que contradiz o texto",
+     "debut single = primeiro single (lançamento de estreia)",
+     "A, as did B = A e também B (mas cada um com a sua data)",
+     "confira datas e números: é onde a alternativa falsa costuma mudar o texto"
+    ],
+    "motivo": "A regra 'as did' estava incompleta: 'as did' pode confundir o aluno, pois não repete a data."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "fronted a documentary",
+      "apresentou/foi o rosto de um documentário"
+     ],
+     [
+      "reached No 1",
+      "chegou ao primeiro lugar das paradas"
+     ],
+     [
+      "debut single",
+      "single de estreia, primeiro lançamento"
+     ],
+     [
+      "is survived by",
+      "deixa (família que continua viva depois da morte dele)"
+     ],
+     [
+      "touring production",
+      "montagem itinerante, que viaja em turnê"
+     ],
+     [
+      "aged 33",
+      "aos 33 anos de idade"
+     ],
+     [
+      "as did",
+      "e também (retoma o verbo anterior: 'chegou ao nº 1')"
+     ]
+    ],
+    "motivo": "Explica 'as did' em simbolos, pois é a chave da questão; esclarece 'is survived by'."
+   },
+   {
+    "campo": "resolucao.pista",
+    "depois": "Procure no texto a frase que cita 'Glad You Came' e veja qual ano aparece ao lado dessa música. Depois compare com o ano da alternativa.",
+    "motivo": "Mais clara, sem entregar a letra."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "All Time Low chegou ao nº 1 em 2010. 'As did' quer dizer 'e também': Glad You Came chegou ao nº 1 em 2012. A alternativa B põe 2010 nessa música e contradiz o texto.",
+    "motivo": "Explica o 'as did' e deixa a ordem do raciocínio mais clara."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "“All Time Low, reached No 1, as did Glad You Came in 2012” (All Time Low chegou ao nº 1, e também Glad You Came, em 2012)",
+    "motivo": "Traz a tradução ao lado do trecho, como o padrão pede."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

@@ -8,7 +8,7 @@
  "conceito": "Grandezas inversamente proporcionais: pessoas × dias de comida, com mudança do número de pessoas no meio do caminho.",
  "resolucao": {
   "antes": {
-   "texto": "Pense na comida como um estoque medido em 'pessoa-dia': 1 pessoa come 1 pessoa-dia por dia. Se há N pessoas e comida para 70 dias, o estoque total é N × 70. A comida que sobra depois de 38 dias é gasta por mais gente, e o que se pergunta é o tamanho do grupo inicial.",
+   "texto": "Pense na comida como um estoque medido em 'pessoa-dia': 1 pessoa come 1 pessoa-dia por dia. Com N pessoas e comida para 70 dias, o estoque é N × 70. Depois de 38 dias sobra uma parte desse estoque, e ela é consumida por mais gente. Você quer o número inicial de pessoas.",
    "formulas": [
     "estoque total = pessoas × dias",
     "estoque que sobra = estoque total − comida já consumida",
@@ -39,7 +39,7 @@
    },
    {
     "faz": "Calcule o estoque que sobrou",
-    "conta": "total = 70N ; gasto = 38N",
+    "conta": "gasto = 38N ; sobra = 32N",
     "porque": "Nos 38 primeiros dias só havia N pessoas comendo, então foram gastos 38N pessoa-dias. Sobraram 70N − 38N = 32N.",
     "tipo": "calcular"
    },
@@ -71,12 +71,12 @@
   "resposta": "Alternativa C: a expedição tinha inicialmente 60 pessoas.",
   "checagem": "Com 60 pessoas, o estoque total é 60 × 70 = 4200. Gastos em 38 dias: 60 × 38 = 2280. Sobram 1920. Com 80 pessoas por 24 dias: 80 × 24 = 1920. Fecha exatamente.",
   "erradas": {
-   "A": "40 pessoas não confere. Sobrariam 32 × 40 = 1280 pessoa-dias, e 1280 ÷ 60 ≈ 21,3 dias. Mas o grupo de 60 precisou durar 24 dias (24 × 60 = 1440), então 1280 não basta.",
-   "B": "50 pessoas não confere. Sobrariam 32 × 50 = 1600 pessoa-dias, e 1600 ÷ 70 ≈ 22,9 dias. São menos que os 24 dias necessários, que exigiriam 24 × 70 = 1680.",
-   "D": "70 pessoas não confere. Sobrariam 32 × 70 = 2240 pessoa-dias, e 2240 ÷ 90 ≈ 24,9 dias. Isso daria mais de 24 dias, ou seja, a volta seria com menos de 8 dias de antecedência. Os 24 dias exigem 24 × 90 = 2160, que é menos que a sobra de 2240.",
-   "E": "80 pessoas não confere. Sobrariam 32 × 80 = 2560 pessoa-dias, e 2560 ÷ 100 = 25,6 dias. Isso daria mais que os 24 dias, e a volta não seria com 8 dias de antecedência (seriam 24 × 100 = 2400)."
+   "A": "40 pessoas não confere. Sobram 32 × 40 = 1280 pessoa-dias. O grupo de 60 comeria 1280 ÷ 60 ≈ 21,3 dias, e não os 24 dias da volta. Faltou testar se a sobra dura 24 dias.",
+   "B": "50 pessoas não confere. Sobram 32 × 50 = 1600 pessoa-dias. O grupo de 70 comeria 1600 ÷ 70 ≈ 22,9 dias, e não 24. Faltou conferir a duração do grupo maior.",
+   "D": "70 pessoas não confere. Sobram 32 × 70 = 2240 pessoa-dias. O grupo de 90 comeria 2240 ÷ 90 ≈ 24,9 dias, mais que os 24 reais. Faltou ver que a volta seria com menos de 8 dias de antecedência.",
+   "E": "80 pessoas não confere. Sobram 32 × 80 = 2560 pessoa-dias. O grupo de 100 comeria 2560 ÷ 100 = 25,6 dias, mais que 24. Faltou ver que a volta seria com menos de 8 dias de antecedência."
   },
-  "armadilha": "Esquecer que, depois dos 38 dias, a comida que resta é só 32 dias do grupo inicial, e que o grupo maior vive 24 dias (não 32 nem 8).",
+  "armadilha": "Depois dos 38 dias, a comida que resta é de 32 dias do grupo inicial. O grupo maior só come por 24 dias (70 − 8 − 38). Não use 8 nem 32 como duração do grupo maior.",
   "alerta": "",
   "essencial": {
    "pede": "O número de pessoas da expedição no início.",
@@ -105,7 +105,7 @@
   },
   {
    "linha": "sobra = 32N",
-   "nota": "faça 70N − 38N"
+   "nota": "70N − 38N = 32N: sobra comida de 32 dias"
   },
   {
    "linha": "dias = 70 − 8 − 38 = 24",
@@ -138,7 +138,7 @@
    "nota": "32N − 24N = 8N"
   },
   {
-   "linha": "N = 480/8",
+   "linha": "N = \\frac{480}{8}",
    "nota": "o 8 que multiplica passa dividindo",
    "mov": [
     {
@@ -169,14 +169,72 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [],
   "fatos_ok": true,
-  "fatos_resposta": "C"
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.erradas",
+    "depois": {
+     "A": "40 pessoas não confere. Sobram 32 × 40 = 1280 pessoa-dias. O grupo de 60 comeria 1280 ÷ 60 ≈ 21,3 dias, e não os 24 dias da volta. Faltou testar se a sobra dura 24 dias.",
+     "B": "50 pessoas não confere. Sobram 32 × 50 = 1600 pessoa-dias. O grupo de 70 comeria 1600 ÷ 70 ≈ 22,9 dias, e não 24. Faltou conferir a duração do grupo maior.",
+     "D": "70 pessoas não confere. Sobram 32 × 70 = 2240 pessoa-dias. O grupo de 90 comeria 2240 ÷ 90 ≈ 24,9 dias, mais que os 24 reais. Faltou ver que a volta seria com menos de 8 dias de antecedência.",
+     "E": "80 pessoas não confere. Sobram 32 × 80 = 2560 pessoa-dias. O grupo de 100 comeria 2560 ÷ 100 = 25,6 dias, mais que 24. Faltou ver que a volta seria com menos de 8 dias de antecedência."
+    },
+    "motivo": "Cada errada agora usa a mesma conta (sobra ÷ novo grupo) e diz o que faltou no raciocínio. Na A e na B o texto original estava confuso."
+   },
+   {
+    "campo": "resolucao.armadilha",
+    "depois": "Depois dos 38 dias, a comida que resta é de 32 dias do grupo inicial. O grupo maior só come por 24 dias (70 − 8 − 38). Não use 8 nem 32 como duração do grupo maior.",
+    "motivo": "A frase original era ambígua."
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "gasto = 38N ; sobra = 32N",
+    "motivo": "A conta original era longa para a tela do celular. O 70N já está em antes e no quadro."
+   },
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Pense na comida como um estoque medido em 'pessoa-dia': 1 pessoa come 1 pessoa-dia por dia. Com N pessoas e comida para 70 dias, o estoque é N × 70. Depois de 38 dias sobra uma parte desse estoque, e ela é consumida por mais gente. Você quer o número inicial de pessoas.",
+    "motivo": "Frases mais curtas e o pedido da questão fica claro."
+   },
+   {
+    "campo": "resolucao.quadro[2]",
+    "depois": {
+     "linha": "sobra = 32N",
+     "nota": "70N − 38N = 32N: sobra comida de 32 dias"
+    },
+    "motivo": "A nota repetia a linha anterior."
+   },
+   {
+    "campo": "resolucao.quadro[8]",
+    "depois": {
+     "linha": "N = \\frac{480}{8}",
+     "nota": "o 8 que multiplica passa dividindo",
+     "mov": [
+      {
+       "termo": "8",
+       "de": "esquerda",
+       "para": "denominador",
+       "vira": "8",
+       "como": "passa dividindo"
+      }
+     ]
+    },
+    "motivo": "A fração deve ser empilhada, não escrita na linha."
+   }
+  ],
+  "didatica_alertas": [
+   "O tema/conteúdo no JSON (M02/M02.4) difere da classificação atual (M06/M06.5). O assunto é grandezas inversamente proporcionais, então M02.4 parece correto. O corretor 1 deve confirmar a classificação."
+  ],
+  "didatica_ok": true
  }
 }

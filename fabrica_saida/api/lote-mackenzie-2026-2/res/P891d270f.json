@@ -14,7 +14,7 @@
     "Trabalho útil = variação da Ec",
     "Pot média = energia ÷ tempo",
     "rendimento = Pot útil ÷ Pot entrada",
-    "MUV a partir do repouso: d = (v ÷ 2) × t"
+    "MUV a partir do repouso: velocidade média = (0 + v) ÷ 2, e d = vm × t"
    ],
    "simbolos": [
     [
@@ -35,7 +35,7 @@
     ],
     [
      "MUV",
-     "movimento com aceleração constante; a força é constante e não há atrito"
+     "movimento com aceleração constante. Aqui a força é constante e não há atrito, então a aceleração é constante."
     ]
    ]
   },
@@ -78,7 +78,7 @@
    "A": "5 W não confere. Se a entrada fosse 5 W, a energia útil em 4 s seria 0,75 × 5 × 4 = 15 J, mas o bloco precisa de 60 J.",
    "B": "10 W não confere. Com entrada de 10 W, a energia útil em 4 s seria 0,75 × 10 × 4 = 30 J, só metade dos 60 J de energia cinética.",
    "C": "15 W é a potência útil, a que chega ao bloco (60 J ÷ 4 s). Faltou aplicar o rendimento: a entrada é 15 ÷ 0,75 = 20 W.",
-   "E": "30 W sai de dividir 60 J por 2, tomando os 2,0 m como se fossem 2,0 s. O tempo real é 4 s. Além disso, esse valor ignoraria o rendimento."
+   "E": "30 W sai de dividir 60 J por 2, tomando os 2,0 m como se fossem 2,0 s: 60 ÷ 2 = 30. O tempo real é 4 s. Além disso, faltou aplicar o rendimento."
   },
   "armadilha": "Esquecer de achar o tempo (usar os 2,0 m como segundos) ou parar nos 15 W de potência útil sem dividir pelo rendimento.",
   "alerta": "",
@@ -113,16 +113,7 @@
   },
   {
    "linha": "t = 2,0 ÷ 0,5",
-   "nota": "tempo = distância ÷ velocidade média",
-   "mov": [
-    {
-     "termo": "0,5",
-     "de": "esquerda",
-     "para": "denominador",
-     "vira": "0,5",
-     "como": "passa dividindo"
-    }
-   ]
+   "nota": "tempo = distância ÷ velocidade média"
   },
   {
    "linha": "t = 4 s",
@@ -134,7 +125,7 @@
   },
   {
    "linha": "Pot ent = 15 ÷ 0,75",
-   "nota": "rendimento de 75%: a entrada é maior que a útil",
+   "nota": "útil = 0,75 × entrada, então entrada = útil ÷ 0,75",
    "destaque": "÷ 0,75"
   },
   {
@@ -156,14 +147,57 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [],
   "fatos_ok": true,
-  "fatos_resposta": "D"
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.quadro[3]",
+    "depois": {
+     "linha": "t = 2,0 ÷ 0,5",
+     "nota": "tempo = distância ÷ velocidade média"
+    },
+    "motivo": "O 'mov' estava errado: nenhum termo muda de lado nessa linha, e a nota já explica a fórmula. Removi o movimento inexistente."
+   },
+   {
+    "campo": "resolucao.antes.formulas[4]",
+    "depois": "MUV a partir do repouso: velocidade média = (0 + v) ÷ 2, e d = vm × t",
+    "motivo": "A fórmula 'd = (v ÷ 2) × t' aparecia pronta. Mostrar a velocidade média explica de onde ela vem e combina com o passo 2."
+   },
+   {
+    "campo": "resolucao.antes.simbolos[4]",
+    "depois": [
+     "MUV",
+     "movimento com aceleração constante. Aqui a força é constante e não há atrito, então a aceleração é constante."
+    ],
+    "motivo": "Frase mais clara, com a ligação explícita entre força constante e aceleração constante."
+   },
+   {
+    "campo": "resolucao.quadro[6]",
+    "depois": {
+     "linha": "Pot ent = 15 ÷ 0,75",
+     "nota": "útil = 0,75 × entrada, então entrada = útil ÷ 0,75",
+     "destaque": "÷ 0,75"
+    },
+    "motivo": "A nota agora mostra por que se divide pelo rendimento, que é a dúvida mais comum."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "30 W sai de dividir 60 J por 2, tomando os 2,0 m como se fossem 2,0 s: 60 ÷ 2 = 30. O tempo real é 4 s. Além disso, faltou aplicar o rendimento.",
+    "motivo": "Mostra a conta do erro e deixa a frase mais direta."
+   }
+  ],
+  "didatica_alertas": [
+   "O campo 'conteudo' do JSON diz F03.3, mas a classificação informada é F03.2. Confirmar qual é o correto (a resolução usa energia cinética e potência)."
+  ],
+  "didatica_ok": true
  }
 }

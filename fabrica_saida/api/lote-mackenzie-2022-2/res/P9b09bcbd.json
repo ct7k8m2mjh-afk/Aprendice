@@ -13,13 +13,17 @@
    "texto": "A questão tem duas partes independentes: uma conta de escala e uma pergunta de geopolítica. A escala 1:15.000.000 diz que 1 cm no mapa vale 15.000.000 cm no terreno. O trabalho real da conta é converter centímetros em quilômetros. Na segunda parte, a OTAN é uma aliança militar do Atlântico Norte, e é preciso saber quais dos países rotulados no mapa são membros.",
    "formulas": [
     "distância real = distância no mapa × denominador da escala",
-    "1 km = 100.000 cm",
+    "1 km = 100.000 cm (1 km = 1.000 m e 1 m = 100 cm)",
     "OTAN: Lituânia, Romênia e Bulgária são membros; Belarus, Moldávia e Ucrânia não são"
    ],
    "simbolos": [
     [
      "escala 1:15.000.000",
      "cada 1 cm do mapa representa 15.000.000 cm na realidade"
+    ],
+    [
+     "denominador",
+     "o número de baixo da escala, aqui 15.000.000"
     ],
     [
      "distância linear",
@@ -32,6 +36,10 @@
     [
      "Crimeia",
      "península no Mar Negro, não é país independente (o mapa a rotula como se fosse)"
+    ],
+    [
+     "membro",
+     "país que assinou o tratado e faz parte da aliança"
     ]
    ]
   },
@@ -63,7 +71,7 @@
    },
    {
     "faz": "Identifique os países da OTAN",
-    "conta": "Lituânia e Romênia: membros",
+    "conta": "Lituânia: membro; Romênia: membro",
     "porque": "Belarus, Moldávia e Ucrânia não pertencem à OTAN. Crimeia não é país.",
     "tipo": "comparar"
    },
@@ -77,7 +85,7 @@
   "resposta": "Alternativa E: 6 cm × 15.000.000 = 900 km, e Lituânia e Romênia são membros da OTAN.",
   "checagem": "Refaça a conta de volta: 900 km = 90.000.000 cm, e 90.000.000 ÷ 15.000.000 = 6 cm. Fecha com a medida do enunciado. Como Moldávia, Belarus e Ucrânia estão fora da OTAN, só a letra E sobra.",
   "erradas": {
-   "A": "A erra nas duas partes. 90 km sai de errar os zeros na conversão: 90.000.000 cm ÷ 1.000.000 = 90 km, quando 1 km tem 100.000 cm. Além disso, a Moldávia não é membro da OTAN.",
+   "A": "A erra nas duas partes. 90 km sai de dividir por 1.000.000 em vez de 100.000: 90.000.000 ÷ 1.000.000 = 90. Além disso, a Moldávia não é membro da OTAN.",
    "B": "B erra nas duas partes. 210 km não vem da conta correta (6 × 15.000.000 = 900 km). E Belarus e Moldávia não pertencem à OTAN.",
    "C": "C erra nas duas partes. 320 km não confere com 6 cm × 15.000.000 = 900 km. A Bulgária é da OTAN, mas a Crimeia é uma península (anexada pela Rússia em 2014 e reconhecida internacionalmente como parte da Ucrânia), não um país-membro.",
    "D": "D erra nas duas partes. 420 km não confere com 900 km. Belarus é aliado da Rússia e a Ucrânia não é membro da OTAN, apesar de ter pedido adesão."
@@ -107,7 +115,7 @@
   },
   {
    "linha": "mapa = 6 cm",
-   "nota": "medida dada entre Kiev e Moscou"
+   "nota": "medida entre Kiev e Moscou"
   },
   {
    "linha": "real = 6 × 15.000.000",
@@ -115,7 +123,7 @@
   },
   {
    "linha": "real = 90.000.000 cm",
-   "nota": "resultado ainda em centímetros"
+   "nota": "ainda está em centímetros"
   },
   {
    "linha": "real = 90.000.000 ÷ 100.000",
@@ -147,11 +155,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -168,6 +178,103 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "E"
+  "fatos_resposta": "E",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "distância real = distância no mapa × denominador da escala",
+     "1 km = 100.000 cm (1 km = 1.000 m e 1 m = 100 cm)",
+     "OTAN: Lituânia, Romênia e Bulgária são membros; Belarus, Moldávia e Ucrânia não são"
+    ],
+    "motivo": "Explica de onde vem 100.000 já na fórmula, para o aluno não decorar."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "escala 1:15.000.000",
+      "cada 1 cm do mapa representa 15.000.000 cm na realidade"
+     ],
+     [
+      "denominador",
+      "o número de baixo da escala, aqui 15.000.000"
+     ],
+     [
+      "distância linear",
+      "distância em linha reta entre dois pontos"
+     ],
+     [
+      "OTAN",
+      "Organização do Tratado do Atlântico Norte, aliança militar liderada pelos EUA"
+     ],
+     [
+      "Crimeia",
+      "península no Mar Negro, não é país independente (o mapa a rotula como se fosse)"
+     ],
+     [
+      "membro",
+      "país que assinou o tratado e faz parte da aliança"
+     ]
+    ],
+    "motivo": "Inclui 'denominador' e 'membro', termos usados nos passos e não explicados."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "6 × 15.000.000 = 90.000.000 cm",
+    "motivo": "Mantido; sem alteração de conteúdo (apenas conferido)."
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "Lituânia: membro; Romênia: membro",
+    "motivo": "Mostra os dois países separadamente, um por linha de leitura."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "A erra nas duas partes. 90 km sai de dividir por 1.000.000 em vez de 100.000: 90.000.000 ÷ 1.000.000 = 90. Além disso, a Moldávia não é membro da OTAN.",
+    "motivo": "Frase mais curta e clara sobre o que faltou no raciocínio."
+   },
+   {
+    "campo": "resolucao.quadro",
+    "depois": [
+     {
+      "linha": "escala 1 : 15.000.000",
+      "nota": "1 cm no mapa = 15.000.000 cm no terreno"
+     },
+     {
+      "linha": "mapa = 6 cm",
+      "nota": "medida entre Kiev e Moscou"
+     },
+     {
+      "linha": "real = 6 × 15.000.000",
+      "nota": "multiplique pelo denominador"
+     },
+     {
+      "linha": "real = 90.000.000 cm",
+      "nota": "ainda está em centímetros"
+     },
+     {
+      "linha": "real = 90.000.000 ÷ 100.000",
+      "nota": "1 km = 100.000 cm",
+      "mov": [
+       {
+        "termo": "100.000",
+        "de": "esquerda",
+        "para": "denominador",
+        "vira": "100.000",
+        "como": "passa dividindo para virar km"
+       }
+      ]
+     },
+     {
+      "linha": "real = 900 km",
+      "nota": "alternativa E"
+     }
+    ],
+    "motivo": "Notas encurtadas e uniformes; conteúdo igual."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

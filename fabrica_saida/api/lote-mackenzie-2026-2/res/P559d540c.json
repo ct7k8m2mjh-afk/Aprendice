@@ -8,7 +8,7 @@
  "conceito": "Primeira lei da termodinâmica numa isotérmica (ΔU = 0, logo Q = W) combinada com a potência elétrica P = U × i.",
  "resolucao": {
   "antes": {
-   "texto": "Num gás ideal, a energia interna depende só da temperatura. Se a transformação é isotérmica, a temperatura não muda e ΔU = 0. Pela 1ª lei, ΔU = Q − W, então todo o calor recebido vira trabalho: Q = W. A resistência fornece esse calor com potência P = U × i, e a energia fornecida é P × tempo.",
+   "texto": "Num gás ideal, a energia interna depende só da temperatura. Se a transformação é isotérmica, a temperatura não muda e a energia interna também não: ΔU = 0. Pela 1ª lei, ΔU = Q − W, então todo o calor recebido vira trabalho: Q = W. A resistência fornece esse calor com potência P = U × i. A energia fornecida em um tempo Δt é P × Δt.",
    "formulas": [
     "ΔU = Q − W",
     "Isotérmica de gás ideal: ΔU = 0, logo Q = W",
@@ -68,7 +68,7 @@
    },
    {
     "faz": "Isole o tempo",
-    "conta": "Δt = 2000 ÷ 200 = 10 s",
+    "conta": "Δt = 2000/200 = 10 s",
     "porque": "Joule dividido por joule por segundo dá segundo.",
     "tipo": "concluir"
    }
@@ -76,10 +76,10 @@
   "resposta": "Alternativa B: 10 s, pois o calor necessário é 2000 J (igual ao trabalho) e a resistência o fornece a 200 J por segundo.",
   "checagem": "Em 10 s, a resistência libera 200 J/s × 10 s = 2000 J, exatamente o trabalho realizado. A unidade final é segundo, como deve ser.",
   "erradas": {
-   "A": "5 s daria só 200 × 5 = 1000 J, metade do trabalho. O valor sai de dividir por 400 (por exemplo, 2000 ÷ (200 × 2)), contando a corrente duas vezes. A potência é 100 × 2 = 200 W, sem multiplicar de novo.",
+   "A": "5 s daria só 200 × 5 = 1000 J, metade do trabalho. Quem marcou dividiu 2000 por 400, contando a corrente duas vezes (100 × 2 × 2). A potência é 100 × 2 = 200 W, sem multiplicar de novo.",
    "C": "20 s daria 200 × 20 = 4000 J, o dobro do trabalho de 2000 J. Sai de usar P = 100 W (só a tensão): 2000 ÷ 100 = 20 s. A potência é U × i = 100 × 2 = 200 W.",
-   "D": "40 s daria 200 × 40 = 8000 J, quatro vezes o necessário. Não confere com Q = W = 2000 J e P = 200 W.",
-   "E": "80 s daria 200 × 80 = 16000 J, oito vezes o necessário. Não confere com Q = W = 2000 J e P = 200 W."
+   "D": "40 s daria 200 × 40 = 8000 J, quatro vezes o trabalho de 2000 J. Não sai de conta com P = 200 W. Quem marcou não igualou o calor ao trabalho com a potência certa: 2000 ÷ 200 = 10 s.",
+   "E": "80 s daria 200 × 80 = 16000 J, oito vezes o trabalho de 2000 J. Não sai de conta com P = 200 W. Teste: em 80 s a resistência fornece muito mais calor do que o gás converte em trabalho."
   },
   "armadilha": "Achar que a temperatura de 27 °C entra na conta; ela só indica que ΔU = 0, e por isso Q = W.",
   "alerta": "",
@@ -129,7 +129,7 @@
    "nota": "troque os valores"
   },
   {
-   "linha": "Δt = 2000/200",
+   "linha": "Δt = \\frac{2000}{200}",
    "nota": "o 200 passa dividindo",
    "mov": [
     {
@@ -160,11 +160,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -187,6 +189,54 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "B"
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Num gás ideal, a energia interna depende só da temperatura. Se a transformação é isotérmica, a temperatura não muda e a energia interna também não: ΔU = 0. Pela 1ª lei, ΔU = Q − W, então todo o calor recebido vira trabalho: Q = W. A resistência fornece esse calor com potência P = U × i. A energia fornecida em um tempo Δt é P × Δt.",
+    "motivo": "Frases mais curtas e explicita que ΔU = 0 vem de a energia interna não mudar."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "Δt = 2000/200 = 10 s",
+    "motivo": "Passo mostra a divisão e o resultado em uma só linha, copiável no caderno."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "5 s daria só 200 × 5 = 1000 J, metade do trabalho. Quem marcou dividiu 2000 por 400, contando a corrente duas vezes (100 × 2 × 2). A potência é 100 × 2 = 200 W, sem multiplicar de novo.",
+    "motivo": "Texto mais claro sobre o que faltou no raciocínio de quem marcou A."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "40 s daria 200 × 40 = 8000 J, quatro vezes o trabalho de 2000 J. Não sai de conta com P = 200 W. Quem marcou não igualou o calor ao trabalho com a potência certa: 2000 ÷ 200 = 10 s.",
+    "motivo": "Diz o que faltou no raciocínio, e não só que não confere."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "80 s daria 200 × 80 = 16000 J, oito vezes o trabalho de 2000 J. Não sai de conta com P = 200 W. Teste: em 80 s a resistência fornece muito mais calor do que o gás converte em trabalho.",
+    "motivo": "Dá teste objetivo e diz o que faltou."
+   },
+   {
+    "campo": "resolucao.quadro[7]",
+    "depois": {
+     "linha": "Δt = \\frac{2000}{200}",
+     "nota": "o 200 passa dividindo",
+     "mov": [
+      {
+       "termo": "200",
+       "de": "direita",
+       "para": "denominador",
+       "vira": "200",
+       "como": "passa dividindo"
+      }
+     ]
+    },
+    "motivo": "Fração escrita empilhada, conforme o padrão."
+   }
+  ],
+  "didatica_alertas": [
+   "Classificação: o tema do print (F08, óptica) não combina com a questão, que é de termodinâmica e eletrodinâmica (F07.2). A resolução já usa F07/F07.2; conferir o banco."
+  ],
+  "didatica_ok": true
  }
 }

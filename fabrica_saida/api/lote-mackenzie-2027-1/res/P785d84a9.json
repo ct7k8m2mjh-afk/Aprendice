@@ -8,7 +8,7 @@
  "conceito": "Splicing alternativo: o mesmo pré-mRNA gera mRNAs maduros diferentes por combinações distintas de éxons, resultando em proteínas diferentes.",
  "resolucao": {
   "antes": {
-   "texto": "Em eucariotos, o gene é transcrito em pré-mRNA, que contém éxons (trechos que ficam) e íntrons (trechos removidos). No splicing, os íntrons saem e os éxons são unidos. No splicing alternativo, a célula escolhe quais éxons manter, e assim um só gene gera mRNAs maduros diferentes. Cada mRNA é traduzido em uma proteína própria.",
+   "texto": "Em eucariotos (seres com núcleo), o gene é copiado em pré-mRNA, que tem éxons (trechos que ficam) e íntrons (trechos que saem). No splicing, os íntrons saem e os éxons se unem. No splicing alternativo, a célula escolhe quais éxons manter. Assim, um só gene gera mRNAs maduros diferentes, e cada mRNA é traduzido em uma proteína própria.",
    "formulas": [
     "DNA → pré-mRNA (transcrição)",
     "pré-mRNA → mRNA maduro (splicing: sai íntron, éxons se unem)",
@@ -29,15 +29,23 @@
     ],
     [
      "pré-mRNA",
-     "RNA recém-transcrito, ainda não processado"
+     "RNA recém-copiado do DNA, ainda não processado"
+    ],
+    [
+     "mRNA maduro",
+     "RNA já processado, pronto para ser lido pelo ribossomo"
     ],
     [
      "pós-traducional",
-     "modificação feita na proteína depois que ela já foi traduzida"
+     "modificação feita na proteína depois que ela já foi produzida"
     ],
     [
      "tRNA",
      "RNA transportador: leva o aminoácido ao ribossomo conforme o códon do mRNA"
+    ],
+    [
+     "códon",
+     "grupo de 3 bases do mRNA que define um aminoácido"
     ]
    ]
   },
@@ -62,9 +70,9 @@
     "tipo": "concluir"
    },
    {
-    "faz": "Teste as demais alternativas",
-    "conta": "B: 1 gene = 1 proteína? Não.",
-    "porque": "B contradiz o texto (o gene dá duas proteínas). C troca splicing por mutação. D atribui a diferença ao tRNA. E diz que só ocorre em doença, o que o texto contradiz.",
+    "faz": "Elimine as demais alternativas",
+    "conta": "B, C, D, E: todas contradizem o texto",
+    "porque": "B diz que o gene dá uma só proteína, mas o texto cita duas. C troca splicing por mutação, mas o DNA é o mesmo. D culpa o tRNA, que só obedece ao mRNA. E diz que só ocorre em doença, mas o texto fala de células normais.",
     "tipo": "eliminar"
    }
   ],
@@ -73,7 +81,7 @@
   "erradas": {
    "B": "Afirma que o gene codifica apenas uma proteína. O próprio enunciado diz que um mesmo gene gera calcitonina e CGRP, duas proteínas diferentes. Elas surgem de mRNAs distintos, antes da tradução, e não por modificação pós-traducional.",
    "C": "Mutação muda a sequência do DNA, e o enunciado fala do mesmo gene e do mesmo pré-mRNA nas duas células. A diferença está em quais éxons são mantidos no processamento, não em alteração do DNA: células C e neurônios têm o mesmo DNA.",
-   "D": "O tRNA apenas traduz o código do mRNA em aminoácidos; ele não escolhe a proteína. Com mRNAs diferentes, as proteínas diferem. O ribossomo não escolhe tRNAs, pois o pareamento códon-anticódon decide.",
+   "D": "O tRNA só leva o aminoácido que o códon do mRNA pede; ele não decide qual proteína sai. Se os mRNAs são diferentes, as proteínas são diferentes. A diferença nasce antes, no splicing.",
    "E": "O texto apresenta o splicing alternativo em células normais (células C da tireoide e neurônios). Ele é um mecanismo fisiológico comum, não patológico, e um gene pode sim produzir vários mRNAs."
   },
   "armadilha": "Atribuir a diferença entre as proteínas à tradução, ao tRNA ou a mutações, quando o texto diz que o gene e o pré-mRNA são os mesmos e muda só o processamento.",
@@ -112,11 +120,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -160,6 +170,68 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "A"
+  "fatos_resposta": "A",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Em eucariotos (seres com núcleo), o gene é copiado em pré-mRNA, que tem éxons (trechos que ficam) e íntrons (trechos que saem). No splicing, os íntrons saem e os éxons se unem. No splicing alternativo, a célula escolhe quais éxons manter. Assim, um só gene gera mRNAs maduros diferentes, e cada mRNA é traduzido em uma proteína própria.",
+    "motivo": "Explica 'eucariotos' e deixa as frases mais curtas."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "splicing",
+      "processamento do pré-mRNA: corta os íntrons e emenda os éxons"
+     ],
+     [
+      "éxon",
+      "trecho do RNA que permanece no mRNA maduro e pode codificar a proteína"
+     ],
+     [
+      "íntron",
+      "trecho do pré-mRNA que é retirado no splicing"
+     ],
+     [
+      "pré-mRNA",
+      "RNA recém-copiado do DNA, ainda não processado"
+     ],
+     [
+      "mRNA maduro",
+      "RNA já processado, pronto para ser lido pelo ribossomo"
+     ],
+     [
+      "pós-traducional",
+      "modificação feita na proteína depois que ela já foi produzida"
+     ],
+     [
+      "tRNA",
+      "RNA transportador: leva o aminoácido ao ribossomo conforme o códon do mRNA"
+     ],
+     [
+      "códon",
+      "grupo de 3 bases do mRNA que define um aminoácido"
+     ]
+    ],
+    "motivo": "Inclui 'mRNA maduro' e 'códon', que aparecem na resolução."
+   },
+   {
+    "campo": "resolucao.passos[3]",
+    "depois": {
+     "faz": "Elimine as demais alternativas",
+     "conta": "B, C, D, E: todas contradizem o texto",
+     "porque": "B diz que o gene dá uma só proteína, mas o texto cita duas. C troca splicing por mutação, mas o DNA é o mesmo. D culpa o tRNA, que só obedece ao mRNA. E diz que só ocorre em doença, mas o texto fala de células normais.",
+     "tipo": "eliminar"
+    },
+    "motivo": "A conta 'B: 1 gene = 1 proteína? Não.' cobria só a B; agora o passo cobre todas, com conta curta."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "O tRNA só leva o aminoácido que o códon do mRNA pede; ele não decide qual proteína sai. Se os mRNAs são diferentes, as proteínas são diferentes. A diferença nasce antes, no splicing.",
+    "motivo": "Texto mais curto, sem frase repetida."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

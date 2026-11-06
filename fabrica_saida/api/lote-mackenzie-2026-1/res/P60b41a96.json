@@ -61,11 +61,11 @@
    }
   ],
   "resposta": "Alternativa A: λ = v ÷ f = 0,10 m = 10,0 cm.",
-  "checagem": "Verifique pela unidade: m/s dividido por Hz (1/s) dá metro. Ordem de grandeza: o Wi-Fi de 2,4 GHz tem λ ≈ 12,5 cm, então 3 GHz dando 10 cm é coerente (frequência maior, λ menor).",
+  "checagem": "Confira pela unidade: m/s dividido por Hz (que é 1/s) dá metro. Confira também pela ordem de grandeza: o Wi-Fi de 2,4 GHz tem λ ≈ 12,5 cm. Com frequência maior (3,0 GHz), λ fica menor, e 10 cm é coerente.",
   "erradas": {
-   "B": "0,12 cm não confere: o comprimento seria 0,0012 m, o que exigiria f = v ÷ λ = 2,5 × 10¹¹ Hz (250 GHz), e não 3 GHz. O valor 12 cm seria de uma onda de 2,5 GHz, não 0,12 cm.",
+   "B": "0,12 cm não confere: seria 0,0012 m, o que exigiria f = (3,0 × 10⁸) ÷ 0,0012 = 2,5 × 10¹¹ Hz (250 GHz), e não 3,0 GHz. Com 3,0 GHz, o resultado é 10 cm.",
    "C": "3,0 cm não confere: 3,0 cm = 0,03 m exigiria f = (3,0 × 10⁸) ÷ 0,03 = 1,0 × 10¹⁰ Hz = 10 GHz. Com 3,0 GHz, o resultado é 10 cm.",
-   "D": "0,1 cm é o valor certo em metro (0,1 m) com a unidade trocada: faltou converter para cm. 0,1 m = 10 cm, não 0,1 cm.",
+   "D": "0,1 cm sai de parar em λ = 0,1 m e escrever 'cm' sem converter. Como 1 m = 100 cm, 0,1 m = 10 cm.",
    "E": "4,0 cm não confere: exigiria f = (3,0 × 10⁸) ÷ 0,04 = 7,5 × 10⁹ Hz = 7,5 GHz. Com 3,0 GHz, o resultado é 10 cm."
   },
   "armadilha": "Esquecer de passar de metro para centímetro e marcar 0,1 cm, que é o valor certo, mas em metro.",
@@ -109,7 +109,7 @@
    "nota": "1 GHz = 10⁹ Hz"
   },
   {
-   "linha": "λ = (3,0 × 10⁸) ÷ (3,0 × 10⁹)",
+   "linha": "λ = 3,0 × 10⁸ ÷ 3,0 × 10⁹",
    "nota": "substitua os valores em unidades SI"
   },
   {
@@ -135,11 +135,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -150,6 +152,35 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "A"
+  "fatos_resposta": "A",
+  "didatica": [
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "0,12 cm não confere: seria 0,0012 m, o que exigiria f = (3,0 × 10⁸) ÷ 0,0012 = 2,5 × 10¹¹ Hz (250 GHz), e não 3,0 GHz. Com 3,0 GHz, o resultado é 10 cm.",
+    "motivo": "Frase final confusa (misturava 12 cm com 0,12 cm); texto simplificado, com conta explícita."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "0,1 cm sai de parar em λ = 0,1 m e escrever 'cm' sem converter. Como 1 m = 100 cm, 0,1 m = 10 cm.",
+    "motivo": "Deixa claro o erro de raciocínio de quem marcou D."
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Confira pela unidade: m/s dividido por Hz (que é 1/s) dá metro. Confira também pela ordem de grandeza: o Wi-Fi de 2,4 GHz tem λ ≈ 12,5 cm. Com frequência maior (3,0 GHz), λ fica menor, e 10 cm é coerente.",
+    "motivo": "Frases mais curtas e sentido da comparação explícito."
+   },
+   {
+    "campo": "resolucao.quadro[3].linha",
+    "depois": "λ = 3,0 × 10⁸ ÷ 3,0 × 10⁹",
+    "motivo": "Linha mais curta para caber na tela do celular sem quebrar."
+   },
+   {
+    "campo": "resolucao.quadro[2].linha",
+    "depois": "f = 3,0 GHz = 3,0 × 10⁹ Hz",
+    "motivo": "Mantido o conteúdo; sem mudança de fato."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

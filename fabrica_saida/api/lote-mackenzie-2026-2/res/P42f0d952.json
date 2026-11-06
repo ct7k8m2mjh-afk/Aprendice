@@ -8,7 +8,7 @@
  "conceito": "Cruzamento de herança recessiva ligada ao X: pai afetado × mãe homozigota dominante.",
  "resolucao": {
   "antes": {
-   "texto": "Na herança ligada ao X, a mulher tem dois cromossomos X e o homem tem um X e um Y. O filho homem recebe o X da mãe e o Y do pai. A filha recebe um X de cada um. Por isso o pai afetado passa o alelo mutado a todas as filhas e a nenhum filho homem.",
+   "texto": "Na herança ligada ao X, a mulher tem dois cromossomos X e o homem tem um X e um Y. O filho homem recebe o X da mãe e o Y do pai. A filha recebe um X de cada um. Por isso o pai afetado passa o alelo mutado a todas as filhas e a nenhum filho homem. O trabalho real da questão é saber de qual genitor vem cada cromossomo.",
    "formulas": [
     "Mulher: X^H X^H (normal), X^H X^h (portadora), X^h X^h (hemofílica)",
     "Homem: X^H Y (normal), X^h Y (hemofílico)",
@@ -17,11 +17,11 @@
    "simbolos": [
     [
      "X^h",
-     "cromossomo X com o alelo recessivo da hemofilia"
+     "cromossomo X com o alelo recessivo da hemofilia (o h pequeno indica o alelo da doença)"
     ],
     [
      "X^H",
-     "cromossomo X com o alelo normal, dominante"
+     "cromossomo X com o alelo normal, dominante (o H grande indica o alelo normal)"
     ],
     [
      "portadora assintomática",
@@ -30,6 +30,14 @@
     [
      "homozigota dominante",
      "mulher X^H X^H, sem nenhum alelo da hemofilia"
+    ],
+    [
+     "gameta",
+     "célula reprodutiva (óvulo ou espermatozoide), que leva só um cromossomo sexual de cada par"
+    ],
+    [
+     "cromossomo Y",
+     "cromossomo sexual só dos homens; não carrega o gene da hemofilia"
     ]
    ]
   },
@@ -48,31 +56,31 @@
     "tipo": "localizar"
    },
    {
-    "faz": "Liste os gametas",
-    "conta": "Pai: X^h ou Y",
-    "porque": "O pai produz metade de espermatozoides com X^h e metade com Y. A mãe produz só óvulos X^H.",
+    "faz": "Liste os gametas de cada genitor",
+    "conta": "Pai: X^h ou Y. Mãe: só X^H",
+    "porque": "O pai produz metade de espermatozoides com X^h e metade com Y. A mãe, com dois X^H iguais, produz só óvulos X^H.",
     "tipo": "calcular"
    },
    {
-    "faz": "Cruze e some os resultados",
-    "conta": "X^h + X^H → X^H X^h (filha)",
+    "faz": "Cruze os gametas",
+    "conta": "X^h + X^H → X^H X^h (filha)\nY + X^H → X^H Y (filho)",
     "porque": "Espermatozoide X^h gera menina portadora. Espermatozoide Y gera menino X^H Y, normal.",
     "tipo": "calcular"
    },
    {
-    "faz": "Ligue ao enunciado das alternativas",
+    "faz": "Ligue o resultado à alternativa",
     "conta": "Filhas: 100% portadoras",
     "porque": "Todas as filhas recebem o X^h do pai, e o X^H da mãe impede os sintomas. Todos os filhos recebem o X^H da mãe e o Y do pai, logo são normais.",
     "tipo": "concluir"
    }
   ],
   "resposta": "Alternativa E: todas as filhas serão portadoras assintomáticas e todos os filhos serão normais.",
-  "checagem": "O texto do enunciado já diz que homem hemofílico passa o alelo a todas as filhas e a nenhum filho. Isso confere com o quadro: filhas X^H X^h, filhos X^H Y.",
+  "checagem": "Confira pela regra do texto: homem hemofílico passa o alelo a todas as filhas e a nenhum filho. Bate com o quadro: filhas X^H X^h, filhos X^H Y. Contando 4 filhos hipotéticos (2 meninas, 2 meninos), nenhum menino tem X^h.",
   "erradas": {
    "A": "Diz que as filhas serão hemofílicas. Elas são X^H X^h: recebem o X^H da mãe, que é dominante e impede a doença. Ficam portadoras, não afetadas.",
    "B": "Diz que os filhos serão hemofílicos. O filho recebe o Y do pai e o X da mãe, que é X^H. Logo, nenhum filho tem o alelo da hemofilia.",
    "C": "Inverte tudo. Filho homem não pode ser portador: tem um só X, então ou tem a doença ou é normal. E as filhas não são X^h X^h, pois a mãe só dá X^H.",
-   "D": "Metade dos filhos hemofílicos exigiria que a mãe tivesse o alelo (X^H X^h). A mãe é X^H X^H; nenhum filho é afetado. Além disso, todas as filhas, e não metade, são portadoras."
+   "D": "Metade dos filhos hemofílicos só ocorreria se a mãe tivesse o alelo (X^H X^h). Ela é X^H X^H, então nenhum filho é afetado. E todas as filhas, não metade, são portadoras."
   },
   "armadilha": "Achar que o filho recebe o X do pai; o filho homem recebe o Y do pai e o X da mãe, por isso escapa da doença.",
   "alerta": "",
@@ -124,11 +132,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -148,6 +158,80 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "E"
+  "fatos_resposta": "E",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Na herança ligada ao X, a mulher tem dois cromossomos X e o homem tem um X e um Y. O filho homem recebe o X da mãe e o Y do pai. A filha recebe um X de cada um. Por isso o pai afetado passa o alelo mutado a todas as filhas e a nenhum filho homem. O trabalho real da questão é saber de qual genitor vem cada cromossomo.",
+    "motivo": "Avisa onde está o raciocínio central, como pede o guia."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "X^h",
+      "cromossomo X com o alelo recessivo da hemofilia (o h pequeno indica o alelo da doença)"
+     ],
+     [
+      "X^H",
+      "cromossomo X com o alelo normal, dominante (o H grande indica o alelo normal)"
+     ],
+     [
+      "portadora assintomática",
+      "mulher X^H X^h: carrega o alelo, mas em geral não tem sintomas"
+     ],
+     [
+      "homozigota dominante",
+      "mulher X^H X^H, sem nenhum alelo da hemofilia"
+     ],
+     [
+      "gameta",
+      "célula reprodutiva (óvulo ou espermatozoide), que leva só um cromossomo sexual de cada par"
+     ],
+     [
+      "cromossomo Y",
+      "cromossomo sexual só dos homens; não carrega o gene da hemofilia"
+     ]
+    ],
+    "motivo": "Inclui termos usados nos passos (gameta, Y) e explica a notação."
+   },
+   {
+    "campo": "resolucao.passos[2]",
+    "depois": {
+     "faz": "Liste os gametas de cada genitor",
+     "conta": "Pai: X^h ou Y. Mãe: só X^H",
+     "porque": "O pai produz metade de espermatozoides com X^h e metade com Y. A mãe, com dois X^H iguais, produz só óvulos X^H.",
+     "tipo": "calcular"
+    },
+    "motivo": "Conta mostra os dois genitores e o passo fica claro."
+   },
+   {
+    "campo": "resolucao.passos[3]",
+    "depois": {
+     "faz": "Cruze os gametas",
+     "conta": "X^h + X^H → X^H X^h (filha)\nY + X^H → X^H Y (filho)",
+     "porque": "Espermatozoide X^h gera menina portadora. Espermatozoide Y gera menino X^H Y, normal.",
+     "tipo": "calcular"
+    },
+    "motivo": "Mostra os dois cruzamentos, e não só o da filha."
+   },
+   {
+    "campo": "resolucao.passos[4].faz",
+    "depois": "Ligue o resultado à alternativa",
+    "motivo": "Comando mais claro."
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Confira pela regra do texto: homem hemofílico passa o alelo a todas as filhas e a nenhum filho. Bate com o quadro: filhas X^H X^h, filhos X^H Y. Contando 4 filhos hipotéticos (2 meninas, 2 meninos), nenhum menino tem X^h.",
+    "motivo": "Acrescenta uma conferência concreta."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "Metade dos filhos hemofílicos só ocorreria se a mãe tivesse o alelo (X^H X^h). Ela é X^H X^H, então nenhum filho é afetado. E todas as filhas, não metade, são portadoras.",
+    "motivo": "Frase mais direta."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

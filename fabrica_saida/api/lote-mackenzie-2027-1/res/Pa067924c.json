@@ -8,10 +8,10 @@
  "conceito": "Equação exponencial com logaritmo: tempo para a concentração cair à metade (meia-vida) em C(t) = C0 · 10^(−0,05t).",
  "resolucao": {
   "antes": {
-   "texto": "Cair à metade da concentração inicial significa C(t) = C0/2. Como C0 aparece nos dois lados, ele some e sobra uma equação só com t. O t está no expoente, então aplicamos log de base 10, que combina com a base 10 da fórmula.",
+   "texto": "Cair à metade da concentração inicial significa C(t) = C0/2. Como C0 aparece nos dois lados, ele some e sobra uma equação só com t. O t está no expoente. Para trazê-lo para baixo, usamos o logaritmo na base 10, a mesma base da fórmula.",
    "formulas": [
-    "C(t) = C0/2",
-    "log10(10^x) = x",
+    "C(t) = C0/2 (metade da inicial)",
+    "log(10^x) = x (o log desfaz a potência de 10)",
     "log(1/2) = −log 2"
    ],
    "simbolos": [
@@ -25,11 +25,15 @@
     ],
     [
      "log",
-     "logaritmo na base 10; log 2 = 0,3 foi dado pela questão"
+     "logaritmo na base 10. É o expoente que se põe no 10 para obter o número: log 100 = 2. A questão dá log 2 = 0,3"
     ],
     [
      "10^(−0,05t)",
      "potência de 10 com expoente negativo; o valor diminui conforme t cresce"
+    ],
+    [
+     "10^(−0,3)",
+     "o mesmo que 1 ÷ 10^0,3"
     ]
    ]
   },
@@ -44,13 +48,13 @@
    {
     "faz": "Corte o C0",
     "conta": "10^(−0,05t) = 1/2",
-    "porque": "C0 não é zero, então se divide os dois lados por ele. O valor inicial não importa.",
+    "porque": "C0 não é zero, então dividimos os dois lados por ele. O valor inicial não importa para o tempo.",
     "tipo": "calcular"
    },
    {
     "faz": "Aplique log dos dois lados",
     "conta": "−0,05t = log(1/2) = −log 2",
-    "porque": "O log de 10 elevado a algo devolve o expoente. E log(1/2) = −log 2.",
+    "porque": "O log de 10 elevado a algo devolve o expoente. E log(1/2) = −log 2, porque 1/2 é 2 elevado a −1.",
     "tipo": "calcular"
    },
    {
@@ -60,8 +64,8 @@
     "tipo": "calcular"
    },
    {
-    "faz": "Isole t",
-    "conta": "t = 0,3 ÷ 0,05 = 6",
+    "faz": "Isole t e conclua",
+    "conta": "t = 0,3 ÷ 0,05 = 6 → letra C",
     "porque": "Os sinais negativos se cancelam. 0,3 ÷ 0,05 é o mesmo que 30 ÷ 5.",
     "tipo": "concluir"
    }
@@ -72,7 +76,7 @@
    "A": "4 h dá expoente −0,05 × 4 = −0,2. Então 10^(−0,2) = 1/10^0,2; e 10^0,2 ≈ 1,58 (log 1,58 = 0,2), não 2. A concentração fica em cerca de 63% da inicial, ainda acima da metade.",
    "B": "5 h dá expoente −0,25. Como 10^0,25 ≈ 1,78 e não 2 (log 2 = 0,3, não 0,25), a concentração ainda é cerca de 56% de C0.",
    "D": "8 h dá expoente −0,4. Como 0,4 é maior que 0,3, 10^(−0,4) é menor que 1/2 (≈ 0,40). A concentração já caiu abaixo da metade; o ponto de metade é em 6 h.",
-   "E": "10 h dá expoente −0,5, ou seja, 10^(−0,5) ≈ 0,32 de C0. Isso é cerca de um terço, bem abaixo da metade. Também não vale 1/4, que exigiria 2 log 2 = 0,6, ou seja, t = 12 h."
+   "E": "10 h dá expoente −0,5, ou seja, 10^(−0,5) ≈ 0,32 de C0, cerca de um terço, abaixo da metade. Quem marcou E pensou em 'cair bastante' e não igualou a 1/2: para 1/2 o expoente é −0,3."
   },
   "armadilha": "Trocar log(1/2) por +0,3 e obter t = −6, ou esquecer que log(1/2) = −log 2 e travar no sinal.",
   "alerta": "",
@@ -146,11 +150,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -173,6 +179,75 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "C"
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Cair à metade da concentração inicial significa C(t) = C0/2. Como C0 aparece nos dois lados, ele some e sobra uma equação só com t. O t está no expoente. Para trazê-lo para baixo, usamos o logaritmo na base 10, a mesma base da fórmula.",
+    "motivo": "Frase mais clara; explica por que usar o log."
+   },
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "C(t) = C0/2 (metade da inicial)",
+     "log(10^x) = x (o log desfaz a potência de 10)",
+     "log(1/2) = −log 2"
+    ],
+    "motivo": "Fórmulas escritas como se diz em aula, com sentido."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "C(t)",
+      "concentração do medicamento (mg/L) após t horas"
+     ],
+     [
+      "C0",
+      "concentração logo após a dose, no instante t = 0"
+     ],
+     [
+      "log",
+      "logaritmo na base 10. É o expoente que se põe no 10 para obter o número: log 100 = 2. A questão dá log 2 = 0,3"
+     ],
+     [
+      "10^(−0,05t)",
+      "potência de 10 com expoente negativo; o valor diminui conforme t cresce"
+     ],
+     [
+      "10^(−0,3)",
+      "o mesmo que 1 ÷ 10^0,3"
+     ]
+    ],
+    "motivo": "Explica o que é logaritmo para o aluno de 17 anos."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "C0 não é zero, então dividimos os dois lados por ele. O valor inicial não importa para o tempo.",
+    "motivo": "Voz ativa e clareza."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "O log de 10 elevado a algo devolve o expoente. E log(1/2) = −log 2, porque 1/2 é 2 elevado a −1.",
+    "motivo": "Justifica a propriedade usada."
+   },
+   {
+    "campo": "resolucao.passos[4].faz",
+    "depois": "Isole t e conclua",
+    "motivo": "O último passo deve ligar à letra."
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "t = 0,3 ÷ 0,05 = 6 → letra C",
+    "motivo": "Liga o resultado à alternativa."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "10 h dá expoente −0,5, ou seja, 10^(−0,5) ≈ 0,32 de C0, cerca de um terço, abaixo da metade. Quem marcou E pensou em 'cair bastante' e não igualou a 1/2: para 1/2 o expoente é −0,3.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou E."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

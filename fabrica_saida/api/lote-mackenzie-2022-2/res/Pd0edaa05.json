@@ -8,7 +8,7 @@
  "conceito": "Quantos cubos cabem num paralelepípedo (razão entre volumes ou contagem por dimensão), depois multiplicar pelas 8 latas de cada caixa.",
  "resolucao": {
   "antes": {
-   "texto": "A questão tem duas etapas: primeiro descubra quantas caixas de papelão cabem na caixa plástica; depois lembre que cada caixa de papelão tem 8 latas. A pergunta final é sobre LATAS, não sobre caixas. Como a caixa plástica é preenchida sem espaços vazios, dá para contar quantos cubos cabem ao longo de cada dimensão.",
+   "texto": "A questão tem duas etapas. Primeiro, descubra quantas caixas de papelão cabem na caixa plástica. Depois, lembre que cada caixa de papelão tem 8 latas. A pergunta final é sobre LATAS, não sobre caixas. Como não sobra espaço vazio, conte quantos cubos cabem ao longo de cada medida da caixa plástica.",
    "formulas": [
     "cubos ao longo de uma aresta = medida da caixa plástica ÷ lado do cubo",
     "total de caixas = (cubos no comprimento) × (cubos na largura) × (cubos na altura)",
@@ -21,7 +21,15 @@
     ],
     [
      "caixa plástica",
-     "paralelepípedo de 80 cm × 120 cm × 60 cm, que recebe as caixas de papelão"
+     "caixa em forma de bloco, com 80 cm × 120 cm × 60 cm, que recebe as caixas de papelão"
+    ],
+    [
+     "÷",
+     "dividir: quantas vezes uma medida cabe dentro da outra"
+    ],
+    [
+     "cm³",
+     "centímetro cúbico, unidade de volume"
     ]
    ]
   },
@@ -30,7 +38,7 @@
    {
     "faz": "Diga o que se pede",
     "conta": "pede: nº de LATAS",
-    "porque": "O resultado da primeira etapa é número de caixas de papelão. Ainda falta passar para latas.",
+    "porque": "A primeira etapa dá o número de caixas de papelão. Ainda falta passar para latas, que é o que a questão pede.",
     "tipo": "localizar"
    },
    {
@@ -68,8 +76,8 @@
   "checagem": "Por volume: a caixa plástica tem 80 × 120 × 60 = 576 000 cm³ e cada cubo tem 20³ = 8 000 cm³. Então 576 000 ÷ 8 000 = 72 caixas, o mesmo resultado. E 72 × 8 = 576.",
   "erradas": {
    "A": "720 não confere. Seria 72 × 10, mas cada caixa tem 8 latas, não 10. Com 8 latas por caixa, 72 caixas dão 576 latas.",
-   "C": "4608 não confere: 4608 ÷ 8 = 576 caixas. Mas só cabem 72 caixas. 576 é o número de latas, e não de caixas, e ele já seria o resultado final. Quem marca 4608 multiplica por 8 duas vezes.",
-   "D": "2304 não confere: 2304 = 576 × 4. Não existe 4 na conta; a caixa plástica comporta 72 caixas de papelão, ou seja, 576 latas.",
+   "C": "4608 sai de multiplicar por 8 duas vezes: 72 × 8 × 8 = 4608. As 72 caixas já viraram 576 latas ao multiplicar por 8 uma vez; não há outro 8.",
+   "D": "2304 sai de 576 × 4 = 2304. Esse 4 aparece se alguém conta a largura (4 cubos) como mais um fator depois de já ter chegado nas latas. As 72 caixas × 8 já fecham em 576 latas.",
    "E": "144 não confere: 144 = 72 × 2. Cada caixa tem 8 latas, não 2. Pelo enunciado, 72 × 8 = 576."
   },
   "armadilha": "Parar em 72 (caixas de papelão) sem multiplicar por 8, ou aplicar o 8 duas vezes.",
@@ -131,14 +139,67 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [],
   "fatos_ok": true,
-  "fatos_resposta": "B"
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "A questão tem duas etapas. Primeiro, descubra quantas caixas de papelão cabem na caixa plástica. Depois, lembre que cada caixa de papelão tem 8 latas. A pergunta final é sobre LATAS, não sobre caixas. Como não sobra espaço vazio, conte quantos cubos cabem ao longo de cada medida da caixa plástica.",
+    "motivo": "Frases mais curtas e ordem clara das duas etapas."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "caixa de papelão",
+      "cubo de 20 cm de lado, com 8 latas dentro"
+     ],
+     [
+      "caixa plástica",
+      "caixa em forma de bloco, com 80 cm × 120 cm × 60 cm, que recebe as caixas de papelão"
+     ],
+     [
+      "÷",
+      "dividir: quantas vezes uma medida cabe dentro da outra"
+     ],
+     [
+      "cm³",
+      "centímetro cúbico, unidade de volume"
+     ]
+    ],
+    "motivo": "Explica 'paralelepípedo' em palavra simples e inclui cm³, usado na checagem."
+   },
+   {
+    "campo": "resolucao.passos[0].porque",
+    "depois": "A primeira etapa dá o número de caixas de papelão. Ainda falta passar para latas, que é o que a questão pede.",
+    "motivo": "Frase mais clara."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "4608 sai de multiplicar por 8 duas vezes: 72 × 8 × 8 = 4608. As 72 caixas já viraram 576 latas ao multiplicar por 8 uma vez; não há outro 8.",
+    "motivo": "Mostra a conta do erro de forma direta, sem a explicação confusa original. O erro de multiplicar duas vezes realmente chega a 4608."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "720 não confere. Seria 72 × 10, mas cada caixa tem 8 latas, não 10. Com 8 latas por caixa, 72 caixas dão 576 latas.",
+    "motivo": "Mantido o sentido; o texto já estava claro."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "2304 sai de 576 × 4 = 2304. Esse 4 aparece se alguém conta a largura (4 cubos) como mais um fator depois de já ter chegado nas latas. As 72 caixas × 8 já fecham em 576 latas.",
+    "motivo": "Substitui 'não existe 4 na conta' (falso: 4 é a contagem da largura) por uma origem plausível e consistente com a conta."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

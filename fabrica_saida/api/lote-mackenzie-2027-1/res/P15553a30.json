@@ -29,7 +29,7 @@
     ]
    ]
   },
-  "pista": "Primeiro ponha AB real e AB do modelo na mesma unidade e descubra quantas vezes o modelo é maior. Depois pergunte: para achar o real de CD, multiplica ou divide?",
+  "pista": "Ponha o AB real e o AB do modelo na mesma unidade e veja quantas vezes o modelo é maior. Depois pense: do modelo para o real, o número cresce ou diminui?",
   "passos": [
    {
     "faz": "Leia os dados da figura",
@@ -52,12 +52,12 @@
    {
     "faz": "Volte de CD modelo para CD real",
     "conta": "CD real = 5,2 ÷ (4/3)",
-    "porque": "O modelo é maior que o real, então o real é menor: divide-se por k. Dividir por 4/3 é multiplicar por 3/4.",
+    "porque": "O modelo é maior que o real, então o real é menor: divide-se por k. Dividir por 4/3 é o mesmo que multiplicar por 3/4 (inverte a fração).",
     "tipo": "calcular"
    },
    {
-    "faz": "Faça a conta",
-    "conta": "5,2 × 3/4 = 15,6/4 = 3,9",
+    "faz": "Calcule e ligue à alternativa",
+    "conta": "5,2 × 3/4 = 15,6/4 = 3,9 cm → B",
     "porque": "5,2 × 3 = 15,6, e 15,6 ÷ 4 = 3,9. O resultado já está em cm, que é o pedido.",
     "tipo": "concluir"
    }
@@ -67,8 +67,8 @@
   "erradas": {
    "A": "2,4 cm é o AB real (24 mm), não o CD. A alternativa só converte a unidade do dado do enunciado e não usa o 5,2 cm de CD.",
    "C": "4,4 cm sai de tratar a ampliação como soma: AB cresceu 3,2 − 2,4 = 0,8 cm, e 5,2 − 0,8 = 4,4. Só que a ampliação multiplica: 4,4 ÷ 2,4 ≈ 1,83, e não 5,2 ÷ 3,2 = 1,625.",
-   "D": "24 vem de pegar o 24 de AB sem converter nem aplicar a razão. Um CD real de 24 cm seria maior que o modelo de 5,2 cm, o que é impossível, pois o modelo é ampliado.",
-   "E": "39 sai de não converter AB: 24 × 5,2 ÷ 3,2 = 39, misturando mm com cm. Esse número é o CD real em milímetros (39 mm = 3,9 cm). Lido em centímetros, ficaria maior que o próprio modelo (5,2 cm)."
+   "D": "24 vem de pegar o 24 de AB sem converter nem aplicar a razão. Um CD real de 24 cm seria maior que o CD do modelo (5,2 cm), mas o modelo é o ampliado.",
+   "E": "39 sai de não converter AB: 24 × 5,2 ÷ 3,2 = 39. Isso dá o CD real em milímetros (39 mm = 3,9 cm). Em centímetros, 39 seria bem maior que o modelo (5,2 cm)."
   },
   "armadilha": "AB está em mm e a figura em cm: sem converter 24 mm para 2,4 cm, a razão sai errada; e é preciso dividir por k, não multiplicar, para voltar ao real.",
   "alerta": "",
@@ -151,11 +151,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -172,6 +174,50 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "B"
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[0].conta",
+    "depois": "AB modelo = 3,2 cm",
+    "motivo": "Mantido. O porquê abaixo foi ajustado para dizer o que se usa em cada passo."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "k = 3,2 ÷ 2,4 = 4/3",
+    "motivo": "Mantido o valor; a fração aparece empilhada no site."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "O modelo é maior que o real, então o real é menor: divide-se por k. Dividir por 4/3 é o mesmo que multiplicar por 3/4 (inverte a fração).",
+    "motivo": "Explica de onde vem a inversão, sem sentido duplo."
+   },
+   {
+    "campo": "resolucao.passos[4].faz",
+    "depois": "Calcule e ligue à alternativa",
+    "motivo": "O último passo é 'concluir' e precisa ligar o resultado à letra; antes só calculava."
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "5,2 × 3/4 = 15,6/4 = 3,9 cm → B",
+    "motivo": "Liga o resultado à letra B."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "24 vem de pegar o 24 de AB sem converter nem aplicar a razão. Um CD real de 24 cm seria maior que o CD do modelo (5,2 cm), mas o modelo é o ampliado.",
+    "motivo": "Frase mais clara: compara com o CD do modelo."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "39 sai de não converter AB: 24 × 5,2 ÷ 3,2 = 39. Isso dá o CD real em milímetros (39 mm = 3,9 cm). Em centímetros, 39 seria bem maior que o modelo (5,2 cm).",
+    "motivo": "Deixa claro o erro de unidade de quem marcou E."
+   },
+   {
+    "campo": "resolucao.pista",
+    "depois": "Ponha o AB real e o AB do modelo na mesma unidade e veja quantas vezes o modelo é maior. Depois pense: do modelo para o real, o número cresce ou diminui?",
+    "motivo": "Pergunta mais clara, sem entregar a operação."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

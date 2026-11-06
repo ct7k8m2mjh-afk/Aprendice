@@ -8,7 +8,7 @@
  "conceito": "Herança recessiva ligada ao X: descobrir o genótipo obrigatório de Helena (filha de pai hemofílico) e a chance de um filho do casal ter o alelo da hemofilia (menina portadora ou menino afetado).",
  "resolucao": {
   "antes": {
-   "texto": "Na herança ligada ao X, o homem tem um só X, herdado da mãe, e o Y vem do pai. A mulher tem dois X: um do pai e um da mãe. Um pai hemofílico (X^h Y) passa seu X, que carrega o alelo h, a todas as filhas. A pergunta não é sobre ser doente: é sobre ter o alelo, seja portadora (menina X^H X^h) ou afetado (menino X^h Y).",
+   "texto": "Na herança ligada ao X, o gene fica no cromossomo X. O homem tem um só X, herdado da mãe, e o Y vem do pai. A mulher tem dois X: um do pai e um da mãe. Um pai hemofílico (X^h Y) passa seu X, que leva o alelo h, a todas as filhas. A pergunta não é sobre ser doente: é sobre ter o alelo, seja menina portadora (X^H X^h) ou menino afetado (X^h Y).",
    "formulas": [
     "Pai hemofílico: X^h Y",
     "Mulher normal: X^H X^H ou X^H X^h (portadora)",
@@ -18,11 +18,15 @@
    "simbolos": [
     [
      "X^H",
-     "cromossomo X com o alelo normal (dominante)"
+     "cromossomo X com o alelo normal (dominante). O H maiúsculo marca o dominante."
     ],
     [
      "X^h",
-     "cromossomo X com o alelo da hemofilia (recessivo)"
+     "cromossomo X com o alelo da hemofilia (recessivo). O h minúsculo marca o recessivo."
+    ],
+    [
+     "alelo",
+     "cada versão de um gene. Aqui há duas: H (normal) e h (hemofilia)."
     ],
     [
      "portadora",
@@ -31,6 +35,10 @@
     [
      "ligada ao X",
      "o gene fica no cromossomo X, por isso homens (X Y) têm só um alelo"
+    ],
+    [
+     "gameta",
+     "célula reprodutiva (óvulo ou espermatozoide), com um só cromossomo sexual"
     ]
    ]
   },
@@ -57,7 +65,7 @@
    {
     "faz": "Cruze o casal",
     "conta": "X^H X^h × X^H Y",
-    "porque": "Helena dá X^H ou X^h (1/2 cada). Ricardo dá X^H ou Y (1/2 cada). Isso produz 4 combinações.",
+    "porque": "Helena produz óvulos X^H ou X^h (1/2 cada). Ricardo produz espermatozoides X^H ou Y (1/2 cada). Combinando os dois lados, saem 4 filhos possíveis.",
     "tipo": "calcular"
    },
    {
@@ -74,10 +82,10 @@
    }
   ],
   "resposta": "Alternativa C: 50%. Dos 4 filhos possíveis, 2 carregam o alelo h: a menina portadora (X^H X^h) e o menino hemofílico (X^h Y).",
-  "checagem": "Pelo caminho dos gametas: metade dos óvulos de Helena leva X^h. Esse X^h vai para o filho, de qualquer sexo, e o alelo h não vem do pai, que é X^H Y. A chance de o filho ter h é a chance de receber o X^h da mãe: 1/2 = 50%.",
+  "checagem": "Confira pelos óvulos: só Helena pode passar o h, pois Ricardo é X^H Y. Metade dos óvulos dela leva X^h, e esse X^h vai para o filho, menino ou menina. Logo, 1/2 = 50%.",
   "erradas": {
    "A": "0% erra ao tratar Helena como X^H X^H. Como o pai dela é hemofílico, ela recebeu dele o X^h e é portadora obrigatória. Por isso o casal tem sim chance de filhos com o alelo.",
-   "B": "25% conta só um tipo de filho: só a menina portadora (1/4) ou só o menino afetado (1/4). A pergunta é sobre ter o alelo, então os dois entram: 1/4 + 1/4 = 1/2.",
+   "B": "25% sai de contar só um tipo de filho: a menina portadora (1/4) ou o menino afetado (1/4). A pergunta é sobre ter o alelo, então os dois entram: 1/4 + 1/4 = 1/2.",
    "D": "75% não confere: o cruzamento X^H X^h × X^H Y tem 4 filhos possíveis e só 2 levam X^h. Para chegar a 3 de 4 seria preciso contar um filho X^H X^H ou X^H Y, que não tem o alelo h.",
    "E": "100% só ocorreria se todos os filhos recebessem o X^h. Mas Helena transmite X^h em apenas metade dos óvulos, e Ricardo não tem alelo h para passar. Os filhos X^H X^H e X^H Y não têm o alelo."
   },
@@ -157,11 +165,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -178,6 +188,60 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "C"
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Na herança ligada ao X, o gene fica no cromossomo X. O homem tem um só X, herdado da mãe, e o Y vem do pai. A mulher tem dois X: um do pai e um da mãe. Um pai hemofílico (X^h Y) passa seu X, que leva o alelo h, a todas as filhas. A pergunta não é sobre ser doente: é sobre ter o alelo, seja menina portadora (X^H X^h) ou menino afetado (X^h Y).",
+    "motivo": "Explica de cara que o gene está no X e usa frases mais curtas."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "X^H",
+      "cromossomo X com o alelo normal (dominante). O H maiúsculo marca o dominante."
+     ],
+     [
+      "X^h",
+      "cromossomo X com o alelo da hemofilia (recessivo). O h minúsculo marca o recessivo."
+     ],
+     [
+      "alelo",
+      "cada versão de um gene. Aqui há duas: H (normal) e h (hemofilia)."
+     ],
+     [
+      "portadora",
+      "mulher X^H X^h: não tem a doença, mas carrega o alelo h"
+     ],
+     [
+      "ligada ao X",
+      "o gene fica no cromossomo X, por isso homens (X Y) têm só um alelo"
+     ],
+     [
+      "gameta",
+      "célula reprodutiva (óvulo ou espermatozoide), com um só cromossomo sexual"
+     ]
+    ],
+    "motivo": "Incluí alelo e gameta, termos usados nos passos e no caminho; expliquei a notação H/h."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Helena produz óvulos X^H ou X^h (1/2 cada). Ricardo produz espermatozoides X^H ou Y (1/2 cada). Combinando os dois lados, saem 4 filhos possíveis.",
+    "motivo": "Usa 'óvulo' e 'espermatozoide' no lugar de formulações vagas e deixa claro o 'combinar'."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "25% sai de contar só um tipo de filho: a menina portadora (1/4) ou o menino afetado (1/4). A pergunta é sobre ter o alelo, então os dois entram: 1/4 + 1/4 = 1/2.",
+    "motivo": "Padroniza a origem do erro ('sai de') e deixa a frase mais direta."
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Confira pelos óvulos: só Helena pode passar o h, pois Ricardo é X^H Y. Metade dos óvulos dela leva X^h, e esse X^h vai para o filho, menino ou menina. Logo, 1/2 = 50%.",
+    "motivo": "Texto mais curto e sem ambiguidade."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

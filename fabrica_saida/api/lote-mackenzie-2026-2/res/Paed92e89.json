@@ -54,12 +54,12 @@
    {
     "faz": "Calcule os casos favoráveis",
     "conta": "5! = 120",
-    "porque": "As 5 peças são diferentes entre si (o E avulso é um só), então não há divisão. Como o M aparece uma vez, cada arrumação gera um anagrama diferente.",
+    "porque": "As 5 peças são diferentes entre si (só sobrou um E avulso), então não há divisão. O M aparece uma vez, então o bloco só pode ficar com o E que vem logo depois do K.",
     "tipo": "calcular"
    },
    {
     "faz": "Divida e simplifique",
-    "conta": "120 ÷ 181440 = 1/1512",
+    "conta": "120/181440 = 1/1512",
     "porque": "181440 ÷ 120 = 1512, então a fração simplifica para 1 sobre 1512.",
     "tipo": "concluir"
    }
@@ -68,7 +68,7 @@
   "checagem": "Outro caminho: escolha a posição do bloco e preencha o resto. Probabilidade = (5! × 2) ÷ 9! = 240 ÷ 362880 = 1/1512. Dá o mesmo valor, contando as letras como se os dois E fossem distintos.",
   "erradas": {
    "A": "1/7560 sai de usar só 4! = 24 casos favoráveis: 24/181440 = 1/7560. Quem marcou esqueceu que sobra um E avulso. São 5 peças, não 4.",
-   "B": "1/6048 sai de dividir os favoráveis por 2 (60) mas deixar o total sem dividir por 2 (9! = 362880): 60/362880 = 1/6048. A divisão pelo E repetido tem de ser coerente no total e nos favoráveis, e com o E avulso os favoráveis são 120.",
+   "B": "1/6048 sai de 60/362880 = 1/6048. Quem marcou dividiu os favoráveis por 2 (5!/2 = 60) mas não dividiu o total por 2. As duas contagens têm de seguir a mesma regra, e o E avulso é único: favoráveis = 120 e total = 181440.",
    "C": "1/3024 sai de 5!/9! = 120/362880 = 1/3024. O total ignorou a repetição do E: o correto é 9!/2! = 181440, e não 9!.",
    "E": "5/126 não confere: daria 7200 anagramas favoráveis (181440 × 5/126 = 7200), mas só existem 120 com MACKE colado. A probabilidade de uma sequência de 5 letras específica não pode ser tão alta."
   },
@@ -87,7 +87,7 @@
   },
   {
    "nome": "Probabilidade por sorteio de letras",
-   "ideia": "Pense nos dois E como diferentes. O bloco pode começar em 5 posições (da 1ª à 5ª). Para uma posição fixa, a chance é 1/9 × 1/8 × 1/7 × 1/6 × 2/5 = 2/15120, porque o último E pode ser qualquer um dos dois. Só existe um M, então duas posições nunca valem ao mesmo tempo e as chances se somam: 5 × 2/15120 = 10/15120 = 1/1512."
+   "ideia": "Pense nos dois E como diferentes. O bloco pode começar em 5 posições (da 1ª à 5ª). Para uma posição fixa, a chance é 1/9 × 1/8 × 1/7 × 1/6 × 2/5 = 2/15120, porque o último E pode ser qualquer um dos dois. Só existe um M, então o bloco não pode aparecer em duas posições ao mesmo tempo e as chances se somam: 5 × 2/15120 = 10/15120 = 1/1512."
   }
  ],
  "quadro": [
@@ -101,7 +101,7 @@
   },
   {
    "linha": "Total = 362880 ÷ 2 = 181440",
-   "nota": "faça a conta",
+   "nota": "362880 ÷ 2",
    "destaque": "181440"
   },
   {
@@ -143,11 +143,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -164,6 +166,40 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "D"
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "120/181440 = 1/1512",
+    "motivo": "Fração escrita empilhada pelo site, no lugar de '120 ÷ 181440 = 1/1512', que misturava dois formatos."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "As 5 peças são diferentes entre si (só sobrou um E avulso), então não há divisão. O M aparece uma vez, então o bloco só pode ficar com o E que vem logo depois do K.",
+    "motivo": "Frase original ambígua sobre o M; agora explica por que o bloco não gera anagramas repetidos."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "1/6048 sai de 60/362880 = 1/6048. Quem marcou dividiu os favoráveis por 2 (5!/2 = 60) mas não dividiu o total por 2. As duas contagens têm de seguir a mesma regra, e o E avulso é único: favoráveis = 120 e total = 181440.",
+    "motivo": "Texto mais claro sobre o que faltou no raciocínio."
+   },
+   {
+    "campo": "resolucao.quadro[2].nota",
+    "depois": "362880 ÷ 2",
+    "motivo": "A nota 'faça a conta' era vaga; agora mostra a divisão feita."
+   },
+   {
+    "campo": "resolucao.quadro[5].linha",
+    "depois": "P = 120/181440",
+    "motivo": "Mantida em formato de fração empilhada, sem alteração de conteúdo."
+   },
+   {
+    "campo": "resolucao.caminhos[1].ideia",
+    "depois": "Pense nos dois E como diferentes. O bloco pode começar em 5 posições (da 1ª à 5ª). Para uma posição fixa, a chance é 1/9 × 1/8 × 1/7 × 1/6 × 2/5 = 2/15120, porque o último E pode ser qualquer um dos dois. Só existe um M, então o bloco não pode aparecer em duas posições ao mesmo tempo e as chances se somam: 5 × 2/15120 = 10/15120 = 1/1512.",
+    "motivo": "Frase mais clara sobre por que as chances se somam."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

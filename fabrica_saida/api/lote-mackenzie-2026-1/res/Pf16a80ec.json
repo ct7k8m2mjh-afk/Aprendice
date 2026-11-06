@@ -40,7 +40,7 @@
   "pista": "Olhe a unidade da tarifa e a unidade que a geladeira já traz. Leve os três aparelhos para a mesma unidade antes de somar.",
   "passos": [
    {
-    "faz": "Calcule o consumo mensal do chuveiro",
+    "faz": "Calcule a energia do chuveiro em um dia",
     "conta": "5,5 kW × 0,5 h = 2,75 kWh/dia",
     "porque": "5.500 W = 5,5 kW e 30 min = 0,5 h. A energia diária é potência × tempo.",
     "tipo": "calcular"
@@ -59,8 +59,8 @@
    },
    {
     "faz": "Passe as lâmpadas para o mês",
-    "conta": "0,1 kW × 5 h × 30 = 15 kWh",
-    "porque": "São 5 horas por dia durante 30 dias: 0,1 × 5 = 0,5 kWh por dia.",
+    "conta": "0,1 kW × 5 h = 0,5 kWh/dia",
+    "porque": "São 5 horas por dia. Depois multiplique por 30 dias: 0,5 × 30 = 15 kWh no mês.",
     "tipo": "calcular"
    },
    {
@@ -79,8 +79,8 @@
   "resposta": "Alternativa B: o consumo mensal é 147,5 kWh, que custam R$ 118,00 a R$ 0,80 por kWh.",
   "checagem": "Calcule o custo de cada aparelho. Chuveiro: 82,5 × 0,8 = R$ 66,00. Geladeira: 50 × 0,8 = R$ 40,00. Lâmpadas: 15 × 0,8 = R$ 12,00. A soma 66 + 40 + 12 = R$ 118,00 confere.",
   "erradas": {
-   "A": "R$ 102,00 corresponderia a 127,5 kWh (102 ÷ 0,8). Mas os três aparelhos somam 82,5 + 50 + 15 = 147,5 kWh, e não 127,5 kWh. Esse valor deixa de fora 20 kWh do consumo real.",
-   "C": "R$ 130,00 não confere: 130 ÷ 0,8 = 162,5 kWh, 15 kWh a mais que o consumo real de 82,5 + 50 + 15 = 147,5 kWh, que custa R$ 118,00.",
+   "A": "R$ 102,00 corresponde a 127,5 kWh (102 ÷ 0,8), que é 20 kWh a menos que o consumo real de 147,5 kWh. Quem marcou deixou de somar parte do consumo ou errou uma conversão.",
+   "C": "R$ 130,00 não confere: 130 ÷ 0,8 = 162,5 kWh, que é 15 kWh a mais que o real. Os três aparelhos somam 82,5 + 50 + 15 = 147,5 kWh, ou R$ 118,00.",
    "D": "R$ 145,50 não confere: 145,5 ÷ 0,8 ≈ 181,9 kWh, bem acima dos 147,5 kWh que os três aparelhos somam (R$ 118,00).",
    "E": "R$ 160,00 corresponderia a 200 kWh (160 ÷ 0,8), muito acima dos 147,5 kWh que os três aparelhos consomem em 30 dias."
   },
@@ -104,11 +104,15 @@
  ],
  "quadro": [
   {
-   "linha": "Chuveiro: 5,5 kW × 0,5 h",
-   "nota": "5.500 W = 5,5 kW; 30 min = 0,5 h"
+   "linha": "Chuveiro: 5.500 W = 5,5 kW",
+   "nota": "tarifa é por kWh, use kW"
   },
   {
-   "linha": "= 2,75 kWh por dia",
+   "linha": "30 min = 0,5 h",
+   "nota": "30 ÷ 60 = 0,5"
+  },
+  {
+   "linha": "5,5 × 0,5 = 2,75 kWh/dia",
    "nota": "potência × tempo"
   },
   {
@@ -116,12 +120,20 @@
    "nota": "30 dias no mês"
   },
   {
-   "linha": "Lâmpadas: 10 × 10 W = 100 W",
-   "nota": "as 10 lâmpadas somam potência"
+   "linha": "Lâmpadas: 10 × 10 = 100 W",
+   "nota": "as 10 somam potência"
   },
   {
-   "linha": "0,1 kW × 5 h × 30 = 15 kWh",
-   "nota": "100 W = 0,1 kW"
+   "linha": "100 W = 0,1 kW",
+   "nota": "divida por 1000"
+  },
+  {
+   "linha": "0,1 × 5 = 0,5 kWh/dia",
+   "nota": "5 h por dia"
+  },
+  {
+   "linha": "0,5 × 30 = 15 kWh",
+   "nota": "30 dias no mês"
   },
   {
    "linha": "Geladeira = 50 kWh",
@@ -150,11 +162,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -177,6 +191,88 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "B"
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[0].faz",
+    "depois": "Calcule a energia do chuveiro em um dia",
+    "motivo": "O passo calcula o consumo diário, não o mensal; o mês vem no passo seguinte."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "0,1 kW × 5 h = 0,5 kWh/dia",
+    "motivo": "Uma conta por linha: a conta anterior cabia mal na tela e misturava dia e mês. O mês agora fica no porque."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "São 5 horas por dia. Depois multiplique por 30 dias: 0,5 × 30 = 15 kWh no mês.",
+    "motivo": "Mantém o resultado mensal (15 kWh) e deixa o passo claro."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "R$ 102,00 corresponde a 127,5 kWh (102 ÷ 0,8), que é 20 kWh a menos que o consumo real de 147,5 kWh. Quem marcou deixou de somar parte do consumo ou errou uma conversão.",
+    "motivo": "Diz o que faltou no raciocínio, sem inventar a origem."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "R$ 130,00 não confere: 130 ÷ 0,8 = 162,5 kWh, que é 15 kWh a mais que o real. Os três aparelhos somam 82,5 + 50 + 15 = 147,5 kWh, ou R$ 118,00.",
+    "motivo": "Frase mais direta e com teste objetivo."
+   },
+   {
+    "campo": "resolucao.quadro",
+    "depois": [
+     {
+      "linha": "Chuveiro: 5.500 W = 5,5 kW",
+      "nota": "tarifa é por kWh, use kW"
+     },
+     {
+      "linha": "30 min = 0,5 h",
+      "nota": "30 ÷ 60 = 0,5"
+     },
+     {
+      "linha": "5,5 × 0,5 = 2,75 kWh/dia",
+      "nota": "potência × tempo"
+     },
+     {
+      "linha": "2,75 × 30 = 82,5 kWh",
+      "nota": "30 dias no mês"
+     },
+     {
+      "linha": "Lâmpadas: 10 × 10 = 100 W",
+      "nota": "as 10 somam potência"
+     },
+     {
+      "linha": "100 W = 0,1 kW",
+      "nota": "divida por 1000"
+     },
+     {
+      "linha": "0,1 × 5 = 0,5 kWh/dia",
+      "nota": "5 h por dia"
+     },
+     {
+      "linha": "0,5 × 30 = 15 kWh",
+      "nota": "30 dias no mês"
+     },
+     {
+      "linha": "Geladeira = 50 kWh",
+      "nota": "já vem em kWh por mês"
+     },
+     {
+      "linha": "82,5 + 50 + 15 = 147,5 kWh",
+      "nota": "consumo total do mês"
+     },
+     {
+      "linha": "147,5 × 0,80 = R$ 118,00",
+      "nota": "multiplique pela tarifa"
+     }
+    ],
+    "motivo": "Um passo por linha, sem pular conversões, como o aluno copia no caderno."
+   }
+  ],
+  "didatica_alertas": [
+   "A classificação atual aparece como F11.6 (capacitores) no cabeçalho, mas o JSON traz F11.3 (potência e consumo), que é o correto. Vale conferir o cadastro.",
+   "O JSON traz nivel 3 e o cabeçalho diz nível 5; vale conferir."
+  ],
+  "didatica_ok": true
  }
 }

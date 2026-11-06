@@ -11,7 +11,7 @@
    "texto": "O movimento tem duas etapas. Na primeira, o motor está ligado e o foguete acelera por 8 s a partir do repouso. Na segunda, o motor desliga e o foguete continua subindo, mas freando a 10 m/s², até parar no ponto mais alto. A velocidade no fim da primeira etapa é a velocidade inicial da segunda. A altura máxima é a soma das duas alturas.",
    "formulas": [
     "v = v₀ + a·t",
-    "Δs = v₀·t + a·t²/2",
+    "Δs = v₀·t + (a·t²) ÷ 2",
     "v² = v₀² + 2·a·Δs (Torricelli, quando não há tempo)"
    ],
    "simbolos": [
@@ -20,8 +20,12 @@
      "velocidade inicial da etapa"
     ],
     [
+     "v",
+     "velocidade final da etapa"
+    ],
+    [
      "a",
-     "aceleração: positiva quando acelera para cima, negativa quando freia na subida"
+     "aceleração: positiva quando o foguete acelera para cima, negativa quando freia na subida"
     ],
     [
      "Δs",
@@ -30,6 +34,10 @@
     [
      "Torricelli",
      "equação que liga velocidades e deslocamento sem usar o tempo"
+    ],
+    [
+     "queda livre",
+     "movimento só sob ação da gravidade, sem motor e sem resistência do ar"
     ]
    ]
   },
@@ -37,7 +45,7 @@
   "passos": [
    {
     "faz": "Calcule a altura da etapa 1",
-    "conta": "h₁ = 0 + 10·8²/2 = 320 m",
+    "conta": "h₁ = 10 × 8² ÷ 2 = 320 m",
     "porque": "Parte do repouso (v₀ = 0) com a = 10 m/s² durante 8 s.",
     "tipo": "calcular"
    },
@@ -49,13 +57,13 @@
    },
    {
     "faz": "Monte a etapa 2 com Torricelli",
-    "conta": "0 = 80² − 2·10·h₂",
+    "conta": "0 = 80² + 2 × (−10) × h₂",
     "porque": "No ponto mais alto v = 0. A aceleração é −10 m/s², pois o foguete freia enquanto sobe. Não há tempo na pergunta, por isso Torricelli.",
     "tipo": "calcular"
    },
    {
     "faz": "Isole h₂",
-    "conta": "h₂ = 6400/20 = 320 m",
+    "conta": "h₂ = 6400 ÷ 20 = 320 m",
     "porque": "É a altura extra ganha depois que o motor desliga.",
     "tipo": "calcular"
    },
@@ -70,9 +78,9 @@
   "checagem": "Pela simetria: acelerar de 0 a 80 m/s a 10 m/s² e frear de 80 m/s a 0 a 10 m/s² levam o mesmo tempo (8 s) e percorrem a mesma distância. Logo h₂ = h₁ = 320 m, e o total é o dobro: 640 m.",
   "erradas": {
    "A": "320 m é só a altura da etapa 1, com o motor ligado. Esquece que o foguete continua subindo por mais 8 s até parar.",
-   "C": "400 m não confere. Seria, por exemplo, 80 m/s × 5 s, mas nenhuma etapa da questão dura 5 s. A etapa 2 dura 80 ÷ 10 = 8 s e sobe 320 m, o que dá 640 m, e não 400 m.",
-   "D": "800 m não confere com nenhuma etapa. A etapa 2 sobe 320 m, não 480 m. Pelo teste de Torricelli, 80² ÷ 20 = 320 m, e 320 + 320 = 640 m.",
-   "E": "960 m sai de somar 320 m a 640 m, ou seja, de usar a etapa 1 e depois um valor dobrado na etapa 2. Mas h₂ = 80² ÷ (2 × 10) = 320 m, e não 640 m."
+   "C": "400 m não confere. Teste: a etapa 2 sobe 80² ÷ (2 × 10) = 320 m, e 320 + 320 = 640 m. Nenhuma soma das etapas dá 400 m. Quem marcou C provavelmente errou o tempo ou a velocidade da etapa 2.",
+   "D": "800 m não confere. Teste: a etapa 2 sobe 80² ÷ 20 = 320 m, não 480 m. Total: 320 + 320 = 640 m. Faltou calcular a etapa 2 com v₀ = 80 m/s.",
+   "E": "960 m = 320 + 640: usou h₂ = 640 m, mas 80² ÷ (2 × 10) = 320 m. Provavelmente esqueceu de dividir por 2 ao usar a aceleração. Total correto: 320 + 320 = 640 m."
   },
   "armadilha": "Parar a conta em 320 m, sem lembrar que o foguete ainda sobe depois que o motor desliga.",
   "alerta": "",
@@ -89,7 +97,7 @@
   },
   {
    "nome": "gráfico v × t",
-   "ideia": "O gráfico é um triângulo: sobe de 0 a 80 m/s em 8 s e desce a 0 em mais 8 s. A área é 16 × 80 ÷ 2 = 640 m."
+   "ideia": "O gráfico v × t é um triângulo: sobe de 0 a 80 m/s em 8 s e desce a 0 em mais 8 s. Base = 16 s, altura = 80 m/s. Área = 16 × 80 ÷ 2 = 640 m."
   }
  ],
  "quadro": [
@@ -98,12 +106,16 @@
    "nota": "Dados da subida com motor ligado"
   },
   {
-   "linha": "h₁ = 10 × 8² / 2",
-   "nota": "Δs = a·t²/2, pois parte do repouso"
+   "linha": "h₁ = 10 × 8² ÷ 2",
+   "nota": "Δs = a·t² ÷ 2, pois parte do repouso"
+  },
+  {
+   "linha": "h₁ = 10 × 64 ÷ 2",
+   "nota": "8² = 64"
   },
   {
    "linha": "h₁ = 320 m",
-   "nota": "10 × 64 = 640; 640 ÷ 2 = 320"
+   "nota": "640 ÷ 2 = 320"
   },
   {
    "linha": "v = 10 × 8 = 80 m/s",
@@ -114,12 +126,16 @@
    "nota": "Freando, até parar no topo"
   },
   {
-   "linha": "0 = 80² − 2 × 10 × h₂",
+   "linha": "0² = 80² + 2 × (−10) × h₂",
    "nota": "Torricelli: v² = v₀² + 2·a·Δs"
   },
   {
-   "linha": "h₂ = 6400/20",
-   "nota": "O termo 20·h₂ passa para o outro lado",
+   "linha": "0 = 6400 − 20·h₂",
+   "nota": "80² = 6400; 2 × (−10) = −20"
+  },
+  {
+   "linha": "20·h₂ = 6400",
+   "nota": "O termo −20·h₂ passa para o outro lado",
    "mov": [
     {
      "termo": "20·h₂",
@@ -129,6 +145,10 @@
      "como": "atravessa o igual e troca de sinal"
     }
    ]
+  },
+  {
+   "linha": "h₂ = 6400 ÷ 20",
+   "nota": "Divide os dois lados por 20"
   },
   {
    "linha": "h₂ = 320 m",
@@ -153,11 +173,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -168,6 +190,149 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "B"
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "v = v₀ + a·t",
+     "Δs = v₀·t + (a·t²) ÷ 2",
+     "v² = v₀² + 2·a·Δs (Torricelli, quando não há tempo)"
+    ],
+    "motivo": "Fórmula com fração escrita de forma ambígua na linha; passa a ter parênteses e ÷ explícito."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "v₀",
+      "velocidade inicial da etapa"
+     ],
+     [
+      "v",
+      "velocidade final da etapa"
+     ],
+     [
+      "a",
+      "aceleração: positiva quando o foguete acelera para cima, negativa quando freia na subida"
+     ],
+     [
+      "Δs",
+      "deslocamento (altura percorrida) na etapa"
+     ],
+     [
+      "Torricelli",
+      "equação que liga velocidades e deslocamento sem usar o tempo"
+     ],
+     [
+      "queda livre",
+      "movimento só sob ação da gravidade, sem motor e sem resistência do ar"
+     ]
+    ],
+    "motivo": "Faltavam v e queda livre, que aparecem na resolução."
+   },
+   {
+    "campo": "resolucao.passos[0].conta",
+    "depois": "h₁ = 10 × 8² ÷ 2 = 320 m",
+    "motivo": "Mostrar a conta completa, copiável no caderno."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "0 = 80² + 2 × (−10) × h₂",
+    "motivo": "Deixar o sinal da aceleração visível, igual à fórmula de Torricelli."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "h₂ = 6400 ÷ 20 = 320 m",
+    "motivo": "Padroniza a divisão e inclui o resultado."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "400 m não confere. Teste: a etapa 2 sobe 80² ÷ (2 × 10) = 320 m, e 320 + 320 = 640 m. Nenhuma soma das etapas dá 400 m. Quem marcou C provavelmente errou o tempo ou a velocidade da etapa 2.",
+    "motivo": "Resposta mais clara, com o teste objetivo e o que faltou no raciocínio."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "800 m não confere. Teste: a etapa 2 sobe 80² ÷ 20 = 320 m, não 480 m. Total: 320 + 320 = 640 m. Faltou calcular a etapa 2 com v₀ = 80 m/s.",
+    "motivo": "Frase mais curta e diz o que faltou."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "960 m = 320 + 640: usou h₂ = 640 m, mas 80² ÷ (2 × 10) = 320 m. Provavelmente esqueceu de dividir por 2 ao usar a aceleração. Total correto: 320 + 320 = 640 m.",
+    "motivo": "Explica o erro de conta que leva a 960 m (dobrar h₂ por esquecer o fator 2)."
+   },
+   {
+    "campo": "resolucao.caminhos[1].ideia",
+    "depois": "O gráfico v × t é um triângulo: sobe de 0 a 80 m/s em 8 s e desce a 0 em mais 8 s. Base = 16 s, altura = 80 m/s. Área = 16 × 80 ÷ 2 = 640 m.",
+    "motivo": "Mais explícito sobre base e altura."
+   },
+   {
+    "campo": "resolucao.quadro",
+    "depois": [
+     {
+      "linha": "Etapa 1: v₀ = 0, a = 10, t = 8",
+      "nota": "Dados da subida com motor ligado"
+     },
+     {
+      "linha": "h₁ = 10 × 8² ÷ 2",
+      "nota": "Δs = a·t² ÷ 2, pois parte do repouso"
+     },
+     {
+      "linha": "h₁ = 10 × 64 ÷ 2",
+      "nota": "8² = 64"
+     },
+     {
+      "linha": "h₁ = 320 m",
+      "nota": "640 ÷ 2 = 320"
+     },
+     {
+      "linha": "v = 10 × 8 = 80 m/s",
+      "nota": "Velocidade quando o motor desliga"
+     },
+     {
+      "linha": "Etapa 2: v₀ = 80, v = 0, a = −10",
+      "nota": "Freando, até parar no topo"
+     },
+     {
+      "linha": "0² = 80² + 2 × (−10) × h₂",
+      "nota": "Torricelli: v² = v₀² + 2·a·Δs"
+     },
+     {
+      "linha": "0 = 6400 − 20·h₂",
+      "nota": "80² = 6400; 2 × (−10) = −20"
+     },
+     {
+      "linha": "20·h₂ = 6400",
+      "nota": "O termo −20·h₂ passa para o outro lado",
+      "mov": [
+       {
+        "termo": "20·h₂",
+        "de": "direita",
+        "para": "esquerda",
+        "vira": "+ 20·h₂",
+        "como": "atravessa o igual e troca de sinal"
+       }
+      ]
+     },
+     {
+      "linha": "h₂ = 6400 ÷ 20",
+      "nota": "Divide os dois lados por 20"
+     },
+     {
+      "linha": "h₂ = 320 m",
+      "nota": "6400 ÷ 20 = 320"
+     },
+     {
+      "linha": "H = 320 + 320 = 640 m",
+      "nota": "Soma das duas etapas: altura em relação ao solo"
+     }
+    ],
+    "motivo": "Quadro com um passo por linha, sem pular passagens (6400 − 20·h₂), sem fração escrita com barra."
+   }
+  ],
+  "didatica_alertas": [
+   "A classificação no cabeçalho do pedido (F02/F02.5, nível 6) difere da do JSON (F01/F01.5, nível 4). O conteúdo é cinemática (MUV), então F01.5 parece o correto; o corretor de classificação deve conferir."
+  ],
+  "didatica_ok": true
  }
 }

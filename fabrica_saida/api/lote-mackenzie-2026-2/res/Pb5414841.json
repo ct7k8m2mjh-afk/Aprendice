@@ -8,7 +8,7 @@
  "conceito": "Forças de contato entre blocos empilhados em repouso: equilíbrio (normal = peso sobre o bloco de cima) e terceira lei de Newton.",
  "resolucao": {
   "antes": {
-   "texto": "Corpo em repouso tem força resultante nula. O bloco de cima é apoiado só pelo bloco de baixo, então a força que o de baixo faz sobre ele é igual ao peso dele. Pela terceira lei de Newton, o bloco de cima empurra o de baixo com a mesma força, em sentido oposto. Os blocos têm o mesmo volume, e o ferro é mais denso, então P_ferro > P_madeira.",
+   "texto": "Corpo em repouso tem força resultante nula. O bloco de cima só se apoia no bloco de baixo, então a força que o de baixo faz sobre ele é igual ao peso dele. Pela terceira lei de Newton, o bloco de cima empurra o de baixo com a mesma força, no sentido oposto. Os blocos têm o mesmo volume e o ferro é mais denso, então o ferro é mais pesado.",
    "formulas": [
     "Em repouso: força resultante = 0",
     "Ação e reação: mesmo módulo, sentidos opostos, em corpos diferentes",
@@ -39,7 +39,7 @@
    },
    {
     "faz": "Aplique o equilíbrio ao bloco de cima",
-    "conta": "Situação (1): N = P_madeira\nSituação (2): N = P_ferro",
+    "conta": "(1) N = P_madeira\n(2) N = P_ferro",
     "porque": "O bloco de cima está parado e só recebe força do bloco de baixo. Essa força equilibra o peso dele.",
     "tipo": "calcular"
    },
@@ -52,7 +52,7 @@
    {
     "faz": "Calcule a força do solo",
     "conta": "(1) F_solo = P_ferro + P_madeira\n(2) F_solo = P_madeira + P_ferro",
-    "porque": "O solo sustenta a pilha toda, e os dois blocos estão nas duas situações. A força do solo é a mesma.",
+    "porque": "O solo sustenta a pilha toda, e os dois blocos estão presentes nas duas situações. A soma dos pesos é a mesma, então a força do solo também é a mesma.",
     "tipo": "calcular"
    },
    {
@@ -63,11 +63,11 @@
    }
   ],
   "resposta": "Alternativa C: o bloco de cima está em equilíbrio, então a força que ele faz sobre o de baixo é igual ao peso dele. Em (1) é o peso da madeira e em (2) é o peso do ferro.",
-  "checagem": "Casos extremos: se o bloco de cima fosse uma pluma, ele quase não pressionaria o de baixo. Se fosse chumbo, pressionaria muito. A força depende só do peso de quem está em cima, o que confirma a alternativa C.",
+  "checagem": "Caso extremo: se o bloco de cima fosse uma pluma, quase não pressionaria o de baixo. Se fosse de chumbo, pressionaria muito. A força sobre o bloco de baixo depende só do peso do bloco de cima, o que confirma a alternativa C.",
   "erradas": {
-   "A": "A força do solo nas duas situações vale P_ferro + P_madeira, porque o solo sustenta a pilha toda. As duas são iguais, e a de (1) não é maior. O solo só toca o bloco de baixo, mas esse bloco também é empurrado pelo de cima. Por isso a justificativa 'o ferro exerce mais força' ignora o bloco de cima.",
-   "B": "A 3ª lei vale para o par de corpos da mesma situação. Em (1), a madeira sobre o ferro vale P_madeira. Em (2), o ferro sobre a madeira vale P_ferro. Como P_ferro > P_madeira, essas forças são diferentes. São situações distintas, então a 3ª lei não as iguala.",
-   "D": "Em (1), o ferro sobre a madeira é a reação à madeira sobre o ferro, que vale P_madeira. Em (2), a madeira sobre o ferro é a reação do ferro sobre a madeira, que vale P_ferro. Logo, (1) = P_madeira < P_ferro = (2). Fica menor, não maior.",
+   "A": "A força do solo em (1) e em (2) vale P_ferro + P_madeira, porque o solo sustenta a pilha toda. As duas são iguais, então a de (1) não é maior. A justificativa 'o ferro exerce mais força' esquece o peso do bloco de cima, que também chega ao solo.",
+   "B": "A 3ª lei iguala só as duas forças de um mesmo par, na mesma situação. Em (1), madeira sobre ferro vale P_madeira. Em (2), ferro sobre madeira vale P_ferro. Como o ferro pesa mais, as duas forças são diferentes. A 3ª lei não compara situações distintas.",
+   "D": "Em (1), o ferro sobre a madeira é a reação da madeira sobre o ferro, e vale P_madeira. Em (2), a madeira sobre o ferro é a reação do ferro sobre a madeira, e vale P_ferro. Como P_madeira < P_ferro, a força em (1) é menor, não maior.",
    "E": "Em (2), a força do ferro sobre a madeira e a da madeira sobre o ferro formam um par ação-reação e são sempre iguais, qualquer que seja a inércia. A inércia maior do ferro não torna uma das duas maior."
   },
   "armadilha": "Comparar forças de situações diferentes como se a 3ª lei as igualasse, ou achar que o bloco de baixo recebe só o seu próprio peso do solo.",
@@ -120,11 +120,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -153,6 +155,45 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "C"
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Corpo em repouso tem força resultante nula. O bloco de cima só se apoia no bloco de baixo, então a força que o de baixo faz sobre ele é igual ao peso dele. Pela terceira lei de Newton, o bloco de cima empurra o de baixo com a mesma força, no sentido oposto. Os blocos têm o mesmo volume e o ferro é mais denso, então o ferro é mais pesado.",
+    "motivo": "Frases mais curtas e sem a notação P_ferro > P_madeira, que ainda não foi explicada."
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "(1) N = P_madeira\n(2) N = P_ferro",
+    "motivo": "Linhas mais curtas, para caber na tela do celular sem quebrar."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "O solo sustenta a pilha toda, e os dois blocos estão presentes nas duas situações. A soma dos pesos é a mesma, então a força do solo também é a mesma.",
+    "motivo": "Deixa claro por que a força do solo é igual em (1) e em (2)."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "A força do solo em (1) e em (2) vale P_ferro + P_madeira, porque o solo sustenta a pilha toda. As duas são iguais, então a de (1) não é maior. A justificativa 'o ferro exerce mais força' esquece o peso do bloco de cima, que também chega ao solo.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou A, em frases mais curtas."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "A 3ª lei iguala só as duas forças de um mesmo par, na mesma situação. Em (1), madeira sobre ferro vale P_madeira. Em (2), ferro sobre madeira vale P_ferro. Como o ferro pesa mais, as duas forças são diferentes. A 3ª lei não compara situações distintas.",
+    "motivo": "Esclarece o erro de quem usou a 3ª lei entre situações diferentes."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "Em (1), o ferro sobre a madeira é a reação da madeira sobre o ferro, e vale P_madeira. Em (2), a madeira sobre o ferro é a reação do ferro sobre a madeira, e vale P_ferro. Como P_madeira < P_ferro, a força em (1) é menor, não maior.",
+    "motivo": "Corrige a explicação, que descrevia as forças com os pares trocados. O resultado final é o mesmo."
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Caso extremo: se o bloco de cima fosse uma pluma, quase não pressionaria o de baixo. Se fosse de chumbo, pressionaria muito. A força sobre o bloco de baixo depende só do peso do bloco de cima, o que confirma a alternativa C.",
+    "motivo": "Texto mais direto, mantendo a checagem por caso extremo."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

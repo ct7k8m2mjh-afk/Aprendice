@@ -8,7 +8,7 @@
  "conceito": "Anúncio de remédio (texto verbal + imagem): achar a alternativa que contradiz o que o anúncio diz.",
  "resolucao": {
   "antes": {
-   "texto": "O comando pede a alternativa INCORRETA, ou seja, a que contradiz o anúncio. Quatro alternativas dizem algo que o anúncio sustenta; uma diz o contrário do que está escrito. Em anúncio, o sentido vem das frases curtas e dos ícones juntos.",
+   "texto": "O comando pede a alternativa INCORRETA, isto é, a que o anúncio não sustenta. Quatro alternativas batem com o que está escrito ou desenhado no anúncio. Uma diz o contrário. Em anúncio, o sentido vem das frases curtas e dos ícones juntos. Você não precisa traduzir tudo: procure só a frase que apoia cada letra.",
    "formulas": [
     "INCORRECT = a que o anúncio NÃO sustenta (a errada)",
     "relieves = alivia; lowers fever = baixa a febre",
@@ -42,6 +42,18 @@
     [
      "fast acting",
      "de ação rápida"
+    ],
+    [
+     "active tomorrow",
+     "ativo amanhã, com disposição no dia seguinte"
+    ],
+    [
+     "incorrect",
+     "incorreta, errada"
+    ],
+    [
+     "not effective for",
+     "não é eficaz para"
     ]
    ]
   },
@@ -68,7 +80,7 @@
    {
     "faz": "Confira C no slogan",
     "conta": "“RELIEF TODAY | ACTIVE TOMORROW”",
-    "porque": "O slogan promete alívio hoje e disposição amanhã. C força a leitura: o anúncio não fala em efeitos melhores amanhã e ainda diz “Fast acting” (ação rápida). Mesmo assim, C não nega um benefício escrito, como faz a E.",
+    "porque": "O slogan promete alívio hoje e vida ativa amanhã. C é uma leitura livre dele: “efeitos melhores amanhã” não está escrito. Mas C não nega nada que o anúncio afirme; a E nega. Por isso C fica como a menos ruim das quatro que sobram.",
     "tipo": "comparar"
    },
    {
@@ -83,7 +95,7 @@
   "erradas": {
    "A": "Está de acordo com o anúncio. “Trusted pain relief” (alívio da dor de confiança) e “Safe & effective when used as directed” (seguro e eficaz quando usado conforme a orientação) sustentam “seguro e confiável”.",
    "B": "Está de acordo. O rodapé diz “Relief for everyday aches” (alívio para dores do dia a dia), e os ícones mostram dor de cabeça, de dente, muscular e articular.",
-   "C": "Paráfrase forçada do slogan “Relief today | Active tomorrow” (alívio hoje, ativo amanhã): o anúncio não fala em efeitos melhores amanhã. Ainda assim, não nega um benefício escrito, como a E nega.",
+   "C": "Está mais perto de um exagero do que de uma contradição. O slogan “Relief today | Active tomorrow” (alívio hoje, ativo amanhã) não diz “efeitos melhores amanhã”. Mesmo assim, C não nega nada escrito no anúncio, como a E faz com dor de cabeça.",
    "D": "Está de acordo. O ícone do termômetro diz “Lowers fever – brings down high body temperature” (baixa a febre, reduz a temperatura corporal alta). O “you” no lugar de “your” é só erro de digitação."
   },
   "armadilha": "A alternativa C parece estranha, e o aluno pode marcá-la. Só a E contradiz o texto, porque nega um benefício que o anúncio afirma.",
@@ -119,11 +131,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -152,6 +166,76 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "E"
+  "fatos_resposta": "E",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[3]",
+    "depois": {
+     "faz": "Confira C no slogan",
+     "conta": "“RELIEF TODAY | ACTIVE TOMORROW”",
+     "porque": "O slogan promete alívio hoje e vida ativa amanhã. C é uma leitura livre dele: “efeitos melhores amanhã” não está escrito. Mas C não nega nada que o anúncio afirme; a E nega. Por isso C fica como a menos ruim das quatro que sobram.",
+     "tipo": "comparar"
+    },
+    "motivo": "Texto mais claro e sem a frase confusa 'força a leitura'. Mantém os fatos."
+   },
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "O comando pede a alternativa INCORRETA, isto é, a que o anúncio não sustenta. Quatro alternativas batem com o que está escrito ou desenhado no anúncio. Uma diz o contrário. Em anúncio, o sentido vem das frases curtas e dos ícones juntos. Você não precisa traduzir tudo: procure só a frase que apoia cada letra.",
+    "motivo": "Simplificar e orientar a estratégia de busca no texto."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "relieves pain",
+      "alivia a dor"
+     ],
+     [
+      "headache",
+      "dor de cabeça"
+     ],
+     [
+      "lowers fever",
+      "baixa a febre"
+     ],
+     [
+      "safe & effective",
+      "seguro e eficaz"
+     ],
+     [
+      "trusted pain relief",
+      "alívio da dor de confiança"
+     ],
+     [
+      "relief for everyday aches",
+      "alívio para dores do dia a dia"
+     ],
+     [
+      "fast acting",
+      "de ação rápida"
+     ],
+     [
+      "active tomorrow",
+      "ativo amanhã, com disposição no dia seguinte"
+     ],
+     [
+      "incorrect",
+      "incorreta, errada"
+     ],
+     [
+      "not effective for",
+      "não é eficaz para"
+     ]
+    ],
+    "motivo": "Incluídos termos usados na resolução e ainda não explicados (active tomorrow, incorrect, not effective for)."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "Está mais perto de um exagero do que de uma contradição. O slogan “Relief today | Active tomorrow” (alívio hoje, ativo amanhã) não diz “efeitos melhores amanhã”. Mesmo assim, C não nega nada escrito no anúncio, como a E faz com dor de cabeça.",
+    "motivo": "Explicar o que faltou no raciocínio de quem marcou C: confundiu leitura livre com contradição."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

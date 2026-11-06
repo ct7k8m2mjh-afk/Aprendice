@@ -8,9 +8,9 @@
  "conceito": "Interpretar inclinação em porcentagem como tangente (x/y) no triângulo retângulo do telhado e comparar duas alturas de cumeeira.",
  "resolucao": {
   "antes": {
-   "texto": "A inclinação i% = (x/y) · 100 é a razão entre a altura x e a distância horizontal y. Em um triângulo retângulo, essa razão é a tangente do ângulo. Como o telhado é simétrico, a cumeeira fica no meio da frente da casa, então o y de cada água é metade de 12 m. A pergunta é quanto a cumeeira SOBE: é a altura nova menos a altura antiga.",
+   "texto": "A inclinação i% = (x/y) · 100 compara a altura x com a distância horizontal y. Em um triângulo retângulo, essa razão é a tangente do ângulo. O telhado é simétrico, então a cumeeira fica no meio da frente da casa, e o y de cada água é metade de 12 m. A pergunta é quanto a cumeeira SOBE: é a altura nova menos a altura antiga.",
    "formulas": [
-    "i = (x/y) · 100, logo x = y × (i/100)",
+    "i = (x/y) · 100, logo x/y = i ÷ 100 e x = y × (i ÷ 100)",
     "tg do ângulo = x/y, logo x = y × tg",
     "elevação = altura nova − altura antiga"
    ],
@@ -33,7 +33,7 @@
     ]
    ]
   },
-  "pista": "Qual é o valor de y? Pense em onde fica a cumeeira de um telhado simétrico em relação aos 12 m da frente. E atenção: o que se pede é uma diferença de alturas.",
+  "pista": "Primeiro descubra o valor de y: onde fica a cumeeira de um telhado simétrico em relação aos 12 m da frente? Depois lembre que o pedido é uma diferença de alturas.",
   "passos": [
    {
     "faz": "Ache o y de cada água",
@@ -44,7 +44,7 @@
    {
     "faz": "Calcule a altura antiga",
     "conta": "x = 6 × 0,176 = 1,056 m",
-    "porque": "Inclinação de 17,6% significa x/y = 0,176. Então x = y × 0,176.",
+    "porque": "Inclinação de 17,6% quer dizer x/y = 17,6 ÷ 100 = 0,176. Então x = y × 0,176.",
     "tipo": "calcular"
    },
    {
@@ -69,7 +69,7 @@
   "resposta": "Alternativa C: a cumeeira sobe de 1,056 m para 2,82 m, elevação de cerca de 1,76 m.",
   "checagem": "Outro caminho: a elevação é y × (0,47 − 0,176) = 6 × 0,294 = 1,764 m. Dá o mesmo valor, sem calcular as duas alturas separadas.",
   "erradas": {
-   "A": "0,44 não confere. A diferença das inclinações é 0,47 − 0,176 = 0,294, e 0,294 × 6 = 1,764. Nenhum valor de y razoável (6 m ou 10 m) dá 0,44.",
+   "A": "0,44 não confere. A elevação certa é 6 × (0,47 − 0,176) = 6 × 0,294 = 1,764 m. Com y = 6 m, nenhuma conta com os dados do enunciado chega a 0,44.",
    "B": "1,06 é a altura ANTIGA da cumeeira (6 × 0,176 = 1,056), e não a elevação. Falta calcular a altura nova e subtrair.",
    "D": "2,82 é a altura NOVA da cumeeira (6 × 0,47). A pergunta é quanto ela subiu em relação à anterior, então falta subtrair 1,056.",
    "E": "2,94 sai de usar y = 10 m, metade da profundidade de 20 m: 10 × 0,294 = 2,94. O y correto é metade da frente de 12 m, porque a inclinação é medida no corte frontal."
@@ -141,14 +141,49 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [],
   "fatos_ok": true,
-  "fatos_resposta": "C"
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "A inclinação i% = (x/y) · 100 compara a altura x com a distância horizontal y. Em um triângulo retângulo, essa razão é a tangente do ângulo. O telhado é simétrico, então a cumeeira fica no meio da frente da casa, e o y de cada água é metade de 12 m. A pergunta é quanto a cumeeira SOBE: é a altura nova menos a altura antiga.",
+    "motivo": "Frases mais simples; 'compara' no lugar de 'é a razão entre'."
+   },
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "i = (x/y) · 100, logo x/y = i ÷ 100 e x = y × (i ÷ 100)",
+     "tg do ângulo = x/y, logo x = y × tg",
+     "elevação = altura nova − altura antiga"
+    ],
+    "motivo": "Mostra a passagem de porcentagem para decimal, usada no passo seguinte."
+   },
+   {
+    "campo": "resolucao.pista",
+    "depois": "Primeiro descubra o valor de y: onde fica a cumeeira de um telhado simétrico em relação aos 12 m da frente? Depois lembre que o pedido é uma diferença de alturas.",
+    "motivo": "Pista mais direta, sem entregar a resposta."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "Inclinação de 17,6% quer dizer x/y = 17,6 ÷ 100 = 0,176. Então x = y × 0,176.",
+    "motivo": "Explica a conversão de porcentagem para decimal."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "0,44 não confere. A elevação certa é 6 × (0,47 − 0,176) = 6 × 0,294 = 1,764 m. Com y = 6 m, nenhuma conta com os dados do enunciado chega a 0,44.",
+    "motivo": "Removido o teste com y = 10 m, que era confuso e desnecessário."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

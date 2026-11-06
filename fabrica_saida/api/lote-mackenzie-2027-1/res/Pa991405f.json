@@ -13,7 +13,7 @@
    "texto": "O eixo AH divide o triângulo isósceles ABC em dois triângulos retângulos iguais. Em cada um, o ângulo em A mede x/2, o cateto AH vale d = 10 m e o cateto oposto HB vale L/2. O dado do enunciado é tg(x), do ângulo inteiro, mas a conta pede tg(x/2). Esse é o trabalho real da questão: passar de tg(x) para tg(x/2).",
    "formulas": [
     "tg = cateto oposto ÷ cateto adjacente",
-    "tg(2a) = 2·tg(a) ÷ (1 − tg²(a))",
+    "tg(2a) = 2·tg(a) ÷ (1 − tg(a)²)",
     "L = 2 × HB"
    ],
    "simbolos": [
@@ -36,6 +36,18 @@
     [
      "L",
      "largura BC da região enquadrada, em metros"
+    ],
+    [
+     "bissetriz",
+     "reta que divide um ângulo em duas partes iguais; aqui é o eixo AH"
+    ],
+    [
+     "Bhaskara",
+     "fórmula que resolve equação do 2.º grau: t = (−b ± √Δ) ÷ 2a, com Δ = b² − 4ac"
+    ],
+    [
+     "t",
+     "nome que damos a tg(x/2), o valor que procuramos"
     ]
    ]
   },
@@ -49,14 +61,14 @@
    },
    {
     "faz": "Chame tg(x/2) de t",
-    "conta": "2t ÷ (1 − t²) = 3/4",
+    "conta": "tg(x) = 2t ÷ (1 − t²) = 3/4",
     "porque": "Aplique tg(2a) com a = x/2. O ângulo inteiro x é o dobro de x/2, e o enunciado diz que tg(x) = 3/4.",
     "tipo": "calcular"
    },
    {
     "faz": "Resolva a equação em t",
     "conta": "3t² + 8t − 3 = 0",
-    "porque": "Multiplique em cruz: 8t = 3 − 3t². Bhaskara dá t = (−8 ± 10)/6, ou seja, t = 1/3 ou t = −3. Como x/2 é agudo, a tangente é positiva, então t = 1/3.",
+    "porque": "Multiplique em cruz: 4 × 2t = 3 × (1 − t²), ou seja, 8t = 3 − 3t². Passando tudo para um lado: 3t² + 8t − 3 = 0. Bhaskara dá t = (−8 ± 10)/6, ou seja, t = 1/3 ou t = −3. Como x/2 é agudo, a tangente é positiva: t = 1/3.",
     "tipo": "calcular"
    },
    {
@@ -75,10 +87,10 @@
   "resposta": "Alternativa D: tg(x/2) = 1/3, então HB = 10/3 m e L = 20/3 ≈ 6,7 m.",
   "checagem": "Faça o caminho de volta com t = 1/3: tg(x) = (2/3) ÷ (1 − 1/9) = (2/3) ÷ (8/9) = 3/4. Confere com o enunciado.",
   "erradas": {
-   "A": "3,8 m não confere. Ele corresponde a tg(x/2) = 3,8/20 = 0,19, e então tg(x) = 0,38 ÷ (1 − 0,0361) ≈ 0,39, e não 0,75.",
-   "B": "4,5 m não confere. Ele corresponde a tg(x/2) = 0,225, e então tg(x) = 0,45 ÷ (1 − 0,0506) ≈ 0,47, e não 0,75.",
-   "C": "5,3 m não confere. Ele corresponde a tg(x/2) ≈ 0,265, e então tg(x) = 0,53 ÷ (1 − 0,0702) ≈ 0,57, e não 0,75.",
-   "E": "7,2 m não confere. Ele corresponde a tg(x/2) = 0,36, e então tg(x) = 0,72 ÷ (1 − 0,1296) ≈ 0,83, e não 0,75."
+   "A": "3,8 m não confere. Daria HB = 1,9 e tg(x/2) = 1,9 ÷ 10 = 0,19. Então tg(x) = 0,38 ÷ (1 − 0,0361) ≈ 0,39, e não 0,75.",
+   "B": "4,5 m não confere. Daria HB = 2,25 e tg(x/2) = 0,225. Então tg(x) = 0,45 ÷ (1 − 0,0506) ≈ 0,47, e não 0,75.",
+   "C": "5,3 m não confere. Daria HB = 2,65 e tg(x/2) = 0,265. Então tg(x) = 0,53 ÷ (1 − 0,0702) ≈ 0,57, e não 0,75.",
+   "E": "7,2 m não confere. Daria HB = 3,6 e tg(x/2) = 0,36. Então tg(x) = 0,72 ÷ (1 − 0,1296) ≈ 0,83, e não 0,75."
   },
   "armadilha": "Usar 3/4 como se fosse tg(x/2). Isso daria L = 2 × 10 × 3/4 = 15 m, valor que nem aparece entre as alternativas. O 3/4 é a tangente do ângulo inteiro x.",
   "alerta": "",
@@ -112,7 +124,7 @@
    "nota": "tangente do arco duplo"
   },
   {
-   "linha": "8t = 3 − 3t²",
+   "linha": "4 × 2t = 3 × (1 − t²)",
    "nota": "multiplique em cruz",
    "mov": [
     {
@@ -121,16 +133,47 @@
      "para": "numerador esquerdo",
      "vira": "4 × 2t",
      "como": "multiplicação cruzada"
+    },
+    {
+     "termo": "(1 − t²)",
+     "de": "denominador esquerdo",
+     "para": "numerador direito",
+     "vira": "3 × (1 − t²)",
+     "como": "multiplicação cruzada"
     }
    ]
   },
   {
+   "linha": "8t = 3 − 3t²",
+   "nota": "faça as multiplicações"
+  },
+  {
    "linha": "3t² + 8t − 3 = 0",
-   "nota": "passe tudo para um lado"
+   "nota": "passe 3t² e −3 para o lado esquerdo",
+   "mov": [
+    {
+     "termo": "3t²",
+     "de": "direita",
+     "para": "esquerda",
+     "vira": "+ 3t²",
+     "como": "atravessa o igual e troca o sinal"
+    },
+    {
+     "termo": "3",
+     "de": "direita",
+     "para": "esquerda",
+     "vira": "− 3",
+     "como": "atravessa o igual e troca o sinal"
+    }
+   ]
+  },
+  {
+   "linha": "Δ = 8² − 4·3·(−3) = 100",
+   "nota": "Δ = b² − 4ac"
   },
   {
    "linha": "t = (−8 + 10)/6",
-   "nota": "Bhaskara, Δ = 64 + 36 = 100; ângulo agudo exige t > 0"
+   "nota": "a outra raiz, −3, não serve: ângulo agudo exige t > 0"
   },
   {
    "linha": "t = 1/3",
@@ -141,17 +184,21 @@
    "nota": "cateto oposto ÷ adjacente"
   },
   {
-   "linha": "HB = 10/3",
+   "linha": "HB = 10 × 1/3",
    "nota": "o 10 passa multiplicando",
    "mov": [
     {
      "termo": "10",
-     "de": "denominador",
+     "de": "denominador esquerdo",
      "para": "direita",
      "vira": "× 10",
      "como": "passa multiplicando"
     }
    ]
+  },
+  {
+   "linha": "HB = 10/3",
+   "nota": "metros"
   },
   {
    "linha": "L = 2 × 10/3",
@@ -174,11 +221,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -189,6 +238,190 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "D"
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "tg = cateto oposto ÷ cateto adjacente",
+     "tg(2a) = 2·tg(a) ÷ (1 − tg(a)²)",
+     "L = 2 × HB"
+    ],
+    "motivo": "Escrever tg(a)² evita ler 'tg²(a)' como notação desconhecida."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "tg",
+      "tangente: no triângulo retângulo, cateto oposto dividido pelo cateto adjacente ao ângulo"
+     ],
+     [
+      "x",
+      "ângulo total BAC do enquadramento da câmera"
+     ],
+     [
+      "x/2",
+      "metade do ângulo, formada entre o eixo AH e o lado AB (ou AC)"
+     ],
+     [
+      "d",
+      "distância da câmera até a linha BC, aqui 10 m"
+     ],
+     [
+      "L",
+      "largura BC da região enquadrada, em metros"
+     ],
+     [
+      "bissetriz",
+      "reta que divide um ângulo em duas partes iguais; aqui é o eixo AH"
+     ],
+     [
+      "Bhaskara",
+      "fórmula que resolve equação do 2.º grau: t = (−b ± √Δ) ÷ 2a, com Δ = b² − 4ac"
+     ],
+     [
+      "t",
+      "nome que damos a tg(x/2), o valor que procuramos"
+     ]
+    ],
+    "motivo": "Termos como bissetriz, Bhaskara e t aparecem na resolução e não estavam explicados."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Multiplique em cruz: 4 × 2t = 3 × (1 − t²), ou seja, 8t = 3 − 3t². Passando tudo para um lado: 3t² + 8t − 3 = 0. Bhaskara dá t = (−8 ± 10)/6, ou seja, t = 1/3 ou t = −3. Como x/2 é agudo, a tangente é positiva: t = 1/3.",
+    "motivo": "Mostrar a multiplicação cruzada e a passagem de termos, que estavam pulados."
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "tg(x) = 2t ÷ (1 − t²) = 3/4",
+    "motivo": "Deixa claro que a expressão é a tg(x) pela fórmula do arco duplo."
+   },
+   {
+    "campo": "resolucao.quadro",
+    "depois": [
+     {
+      "linha": "tg(x) = 3/4",
+      "nota": "x é o ângulo inteiro"
+     },
+     {
+      "linha": "t = tg(x/2)",
+      "nota": "dê nome ao que precisamos"
+     },
+     {
+      "linha": "2t/(1 − t²) = 3/4",
+      "nota": "tangente do arco duplo"
+     },
+     {
+      "linha": "4 × 2t = 3 × (1 − t²)",
+      "nota": "multiplique em cruz",
+      "mov": [
+       {
+        "termo": "4",
+        "de": "denominador direito",
+        "para": "numerador esquerdo",
+        "vira": "4 × 2t",
+        "como": "multiplicação cruzada"
+       },
+       {
+        "termo": "(1 − t²)",
+        "de": "denominador esquerdo",
+        "para": "numerador direito",
+        "vira": "3 × (1 − t²)",
+        "como": "multiplicação cruzada"
+       }
+      ]
+     },
+     {
+      "linha": "8t = 3 − 3t²",
+      "nota": "faça as multiplicações"
+     },
+     {
+      "linha": "3t² + 8t − 3 = 0",
+      "nota": "passe 3t² e −3 para o lado esquerdo",
+      "mov": [
+       {
+        "termo": "3t²",
+        "de": "direita",
+        "para": "esquerda",
+        "vira": "+ 3t²",
+        "como": "atravessa o igual e troca o sinal"
+       },
+       {
+        "termo": "3",
+        "de": "direita",
+        "para": "esquerda",
+        "vira": "− 3",
+        "como": "atravessa o igual e troca o sinal"
+       }
+      ]
+     },
+     {
+      "linha": "Δ = 8² − 4·3·(−3) = 100",
+      "nota": "Δ = b² − 4ac"
+     },
+     {
+      "linha": "t = (−8 + 10)/6",
+      "nota": "a outra raiz, −3, não serve: ângulo agudo exige t > 0"
+     },
+     {
+      "linha": "t = 1/3",
+      "nota": "tangente de x/2"
+     },
+     {
+      "linha": "HB/10 = 1/3",
+      "nota": "cateto oposto ÷ adjacente"
+     },
+     {
+      "linha": "HB = 10 × 1/3",
+      "nota": "o 10 passa multiplicando",
+      "mov": [
+       {
+        "termo": "10",
+        "de": "denominador esquerdo",
+        "para": "direita",
+        "vira": "× 10",
+        "como": "passa multiplicando"
+       }
+      ]
+     },
+     {
+      "linha": "HB = 10/3",
+      "nota": "metros"
+     },
+     {
+      "linha": "L = 2 × 10/3",
+      "nota": "HB é metade de L"
+     },
+     {
+      "linha": "L = 20/3 ≈ 6,7",
+      "nota": "resposta em metros"
+     }
+    ],
+    "motivo": "Passos pulados (multiplicação cruzada completa, passagem de termos, cálculo de Δ) agora aparecem, um por linha."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "3,8 m não confere. Daria HB = 1,9 e tg(x/2) = 1,9 ÷ 10 = 0,19. Então tg(x) = 0,38 ÷ (1 − 0,0361) ≈ 0,39, e não 0,75.",
+    "motivo": "O texto original dizia 3,8/20 sem explicar; agora segue HB = L/2 e o aluno acompanha."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "4,5 m não confere. Daria HB = 2,25 e tg(x/2) = 0,225. Então tg(x) = 0,45 ÷ (1 − 0,0506) ≈ 0,47, e não 0,75.",
+    "motivo": "Mesma clareza: passa por HB = L/2."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "5,3 m não confere. Daria HB = 2,65 e tg(x/2) = 0,265. Então tg(x) = 0,53 ÷ (1 − 0,0702) ≈ 0,57, e não 0,75.",
+    "motivo": "Mesma clareza: passa por HB = L/2."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "7,2 m não confere. Daria HB = 3,6 e tg(x/2) = 0,36. Então tg(x) = 0,72 ÷ (1 − 0,1296) ≈ 0,83, e não 0,75.",
+    "motivo": "Mesma clareza: passa por HB = L/2."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

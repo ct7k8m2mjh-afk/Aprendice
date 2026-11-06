@@ -8,11 +8,11 @@
  "conceito": "Teorema da bissetriz interna junto com semelhança de triângulos (ou Pitágoras) no triângulo retângulo.",
  "resolucao": {
   "antes": {
-   "texto": "O triângulo é retângulo em B, então o maior lado (AC) é a hipotenusa, que se acha por Pitágoras. A bissetriz AD divide o lado oposto BC em partes proporcionais aos lados vizinhos do ângulo A: AB e AC. Como DE é paralelo a AB, o triângulo CDE é semelhante ao triângulo CBA.",
+   "texto": "O triângulo é retângulo em B, então AC é a hipotenusa (o maior lado), que se acha por Pitágoras. A bissetriz AD divide o lado oposto BC em partes proporcionais aos lados vizinhos do ângulo A: AB e AC. Como DE é paralelo a AB, o triângulo CDE é semelhante ao triângulo CBA. O pedido é DE, e não BD.",
    "formulas": [
     "Pitágoras: AC² = AB² + BC²",
-    "Bissetriz: BD/DC = AB/AC",
-    "Semelhança: DE/AB = CD/CB"
+    "Bissetriz: BD ÷ DC = AB ÷ AC",
+    "Semelhança: DE ÷ AB = CD ÷ CB"
    ],
    "simbolos": [
     [
@@ -34,13 +34,13 @@
    {
     "faz": "Calcule a hipotenusa AC",
     "conta": "AC² = 20² + (40√2)²",
-    "porque": "O triângulo é retângulo em B, então AB e BC são os catetos. Lembre que (40√2)² = 1600 × 2 = 3200.",
+    "porque": "O triângulo é retângulo em B, então AB e BC são os catetos e AC é a hipotenusa. Primeiro calcule (40√2)² = 1600 × 2 = 3200.",
     "tipo": "calcular"
    },
    {
     "faz": "Extraia a raiz",
-    "conta": "AC² = 400 + 3200 = 3600 → AC = 60",
-    "porque": "Agora os três lados do triângulo grande são conhecidos: 20, 40√2 e 60.",
+    "conta": "AC² = 400 + 3200 = 3600",
+    "porque": "A raiz de 3600 é 60, então AC = 60. Agora os três lados do triângulo grande são conhecidos: 20, 40√2 e 60.",
     "tipo": "calcular"
    },
    {
@@ -52,13 +52,13 @@
    {
     "faz": "Ache CD em relação a CB",
     "conta": "CD/CB = 3/(1+3) = 3/4",
-    "porque": "BC inteiro tem 1 + 3 = 4 partes, e CD ocupa 3 delas. Aqui está o ponto de atenção: CD, e não BD.",
+    "porque": "BC inteiro tem 1 + 3 = 4 partes e CD ocupa 3 delas. Atenção: precisamos de CD, e não de BD, porque o vértice C é o do triângulo menor.",
     "tipo": "calcular"
    },
    {
     "faz": "Use a semelhança CDE ~ CBA",
     "conta": "DE/20 = CD/CB = 3/4",
-    "porque": "DE é paralelo a AB, então os ângulos coincidem (C é comum e os de D e B são retos). DE corresponde a AB, e CD corresponde a CB.",
+    "porque": "DE é paralelo a AB: o ângulo C é comum e os ângulos em D e em B são retos. Logo CDE e CBA são semelhantes. DE corresponde a AB, e CD corresponde a CB.",
     "tipo": "calcular"
    },
    {
@@ -117,11 +117,15 @@
   },
   {
    "linha": "CD/CB = 3/4",
-   "nota": "BC tem 1 + 3 = 4 partes; CD tem 3"
+   "nota": "BC tem 4 partes; CD tem 3"
   },
   {
    "linha": "DE/20 = 3/4",
-   "nota": "DE // AB: CDE ~ CBA",
+   "nota": "DE // AB: CDE ~ CBA"
+  },
+  {
+   "linha": "DE = 20 × 3/4",
+   "nota": "o 20 passa multiplicando",
    "mov": [
     {
      "termo": "20",
@@ -133,12 +137,12 @@
    ]
   },
   {
-   "linha": "DE = 20 × 3/4",
-   "nota": "o 20 passa multiplicando"
+   "linha": "DE = 5 × 3",
+   "nota": "20 ÷ 4 = 5"
   },
   {
    "linha": "DE = 15",
-   "nota": "20 ÷ 4 = 5; 5 × 3 = 15 mm"
+   "nota": "15 mm, alternativa E"
   }
  ],
  "visual": {
@@ -155,11 +159,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -182,6 +188,109 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "E"
+  "fatos_resposta": "E",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "O triângulo é retângulo em B, então AC é a hipotenusa (o maior lado), que se acha por Pitágoras. A bissetriz AD divide o lado oposto BC em partes proporcionais aos lados vizinhos do ângulo A: AB e AC. Como DE é paralelo a AB, o triângulo CDE é semelhante ao triângulo CBA. O pedido é DE, e não BD.",
+    "motivo": "Diz logo o que a questão pede e evita o erro BD x DE."
+   },
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "Pitágoras: AC² = AB² + BC²",
+     "Bissetriz: BD ÷ DC = AB ÷ AC",
+     "Semelhança: DE ÷ AB = CD ÷ CB"
+    ],
+    "motivo": "Escrito como se diz em aula."
+   },
+   {
+    "campo": "resolucao.passos[0].porque",
+    "depois": "O triângulo é retângulo em B, então AB e BC são os catetos e AC é a hipotenusa. Primeiro calcule (40√2)² = 1600 × 2 = 3200.",
+    "motivo": "Frase mais clara e na ordem da conta."
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "AC² = 400 + 3200 = 3600",
+    "motivo": "Cabe na tela; a raiz vai para o passo seguinte."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "A raiz de 3600 é 60, então AC = 60. Agora os três lados do triângulo grande são conhecidos: 20, 40√2 e 60.",
+    "motivo": "Inclui a extração da raiz que saiu da conta."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "BD/DC = 20/60 = 1/3",
+    "motivo": "Mantida, sem mudança de fato."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "BC inteiro tem 1 + 3 = 4 partes e CD ocupa 3 delas. Atenção: precisamos de CD, e não de BD, porque o vértice C é o do triângulo menor.",
+    "motivo": "Explica por que CD e não BD."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "DE é paralelo a AB: o ângulo C é comum e os ângulos em D e em B são retos. Logo CDE e CBA são semelhantes. DE corresponde a AB, e CD corresponde a CB.",
+    "motivo": "Frase mais direta."
+   },
+   {
+    "campo": "resolucao.quadro",
+    "depois": [
+     {
+      "linha": "AC² = 20² + (40√2)²",
+      "nota": "Pitágoras no triângulo ABC, reto em B"
+     },
+     {
+      "linha": "AC² = 400 + 3200",
+      "nota": "(40√2)² = 1600 × 2 = 3200"
+     },
+     {
+      "linha": "AC = 60",
+      "nota": "raiz de 3600"
+     },
+     {
+      "linha": "BD/DC = AB/AC",
+      "nota": "AD é bissetriz de A"
+     },
+     {
+      "linha": "BD/DC = 20/60 = 1/3",
+      "nota": "simplifique a fração"
+     },
+     {
+      "linha": "CD/CB = 3/4",
+      "nota": "BC tem 4 partes; CD tem 3"
+     },
+     {
+      "linha": "DE/20 = 3/4",
+      "nota": "DE // AB: CDE ~ CBA"
+     },
+     {
+      "linha": "DE = 20 × 3/4",
+      "nota": "o 20 passa multiplicando",
+      "mov": [
+       {
+        "termo": "20",
+        "de": "denominador",
+        "para": "direita",
+        "vira": "20",
+        "como": "passa multiplicando"
+       }
+      ]
+     },
+     {
+      "linha": "DE = 5 × 3",
+      "nota": "20 ÷ 4 = 5"
+     },
+     {
+      "linha": "DE = 15",
+      "nota": "15 mm, alternativa E"
+     }
+    ],
+    "motivo": "O mov estava na linha errada: o termo muda de lado na linha seguinte. Também separei a conta final em passos."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

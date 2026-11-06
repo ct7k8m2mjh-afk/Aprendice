@@ -8,9 +8,9 @@
  "conceito": "Lei de Hess: calcular o ΔH de combustão do etanol a partir das entalpias de formação do CO2, da H2O e do etanol.",
  "resolucao": {
   "antes": {
-   "texto": "Combustão é a reação do combustível com O2, formando CO2 e H2O. As equações dadas são de formação (a partir de substâncias simples). Pela Lei de Hess, o ΔH da combustão sai de ΔH = Hprodutos − Hreagentes. Substância simples no estado padrão vale zero, então O2 não entra na conta.",
+   "texto": "Combustão é a reação do combustível com O2, formando CO2 e H2O. As equações dadas são de formação: cada uma forma 1 mol de uma substância a partir de substâncias simples. Pela Lei de Hess, o ΔH da combustão sai de ΔH = H dos produtos − H dos reagentes. Substância simples (como O2) vale zero, então não entra na conta.",
    "formulas": [
-    "ΔH = Σ(ΔHf dos produtos) − Σ(ΔHf dos reagentes)",
+    "ΔH = (soma dos ΔHf dos produtos) − (soma dos ΔHf dos reagentes)",
     "Cada ΔHf é multiplicado pelo coeficiente da substância",
     "Substância simples (O2) tem ΔHf = 0"
    ],
@@ -46,7 +46,7 @@
    {
     "faz": "Escreva a combustão balanceada",
     "conta": "C2H6O + 3 O2 → 2 CO2 + 3 H2O",
-    "porque": "Etanol queima em O2 e dá CO2 e H2O líquida. Balanceando: 2 C, 6 H e 7 O em cada lado.",
+    "porque": "Etanol queima em O2 e dá CO2 e H2O líquida. Conte os átomos: 2 C, 6 H e 7 O em cada lado, então está balanceada.",
     "tipo": "calcular"
    },
    {
@@ -57,7 +57,7 @@
    },
    {
     "faz": "Calcule a entalpia dos produtos",
-    "conta": "2(−394) + 3(−286) = −788 − 858 = −1646 kJ",
+    "conta": "2(−394) + 3(−286)\n= −788 − 858 = −1646 kJ",
     "porque": "Cada ΔHf é multiplicado pelo coeficiente: 2 mol de CO2 e 3 mol de H2O.",
     "tipo": "calcular"
    },
@@ -69,7 +69,7 @@
    },
    {
     "faz": "Aplique ΔH = produtos − reagentes",
-    "conta": "ΔH = −1646 − (−278) = −1646 + 278 = −1368 kJ",
+    "conta": "ΔH = −1646 − (−278)\n= −1646 + 278 = −1368 kJ",
     "porque": "Subtrair um número negativo é somar o seu módulo. O resultado vale para 1 mol de etanol, como pede a entalpia de combustão.",
     "tipo": "calcular"
    },
@@ -83,10 +83,10 @@
   "resposta": "Alternativa D: a entalpia-padrão de combustão do etanol é −1368 kJ·mol⁻¹, pois ΔH = [2(−394) + 3(−286)] − (−278) = −1368.",
   "checagem": "Confira por Hess em etapas: queimar C2H6O → decompor em 2 C + 3 H2 + ½ O2 (+278) → formar 2 CO2 (−788) → formar 3 H2O (−858). Soma: +278 − 788 − 858 = −1368. O balanço do O2 fecha: entram 3 O2 + ½ O2 (liberado na decomposição) = 3,5 O2, e saem 2 O2 (no CO2) + 1,5 O2 (na H2O) = 3,5 O2.",
   "erradas": {
-   "A": "−228 kJ/mol não confere: a soma correta dá −1368, e −228 é 1/6 desse valor. Nenhuma combinação dos ΔHf com os coeficientes da combustão balanceada chega a −228.",
-   "B": "−342 kJ/mol não confere: o valor correto é −1368, e −342 é só 1/4 dele. Com 2 CO2 e 3 H2O formados, a energia liberada é muito maior que isso.",
-   "C": "−684 kJ/mol não confere: é exatamente a metade de −1368. Os produtos sozinhos já valem −1646 kJ, e o etanol só desconta +278 kJ, então não sobra apenas −684.",
-   "E": "−2736 kJ/mol é o dobro de −1368. Seria o valor para 2 mol de etanol (equação com coeficiente 2), mas a entalpia de combustão é por 1 mol de etanol."
+   "A": "−228 kJ/mol não confere. Nenhuma conta com os ΔHf e os coeficientes chega a esse valor; o correto é −1368. Os produtos sozinhos já valem −1646 kJ, muito mais que −228.",
+   "B": "−342 kJ/mol não confere. Nenhuma conta com os ΔHf e os coeficientes chega a esse valor. Dois CO2 e três H2O já liberam −1646 kJ, muito mais que isso.",
+   "C": "−684 kJ/mol não confere. Os produtos sozinhos valem −1646 kJ, e o etanol só desconta +278 kJ, então o resultado não fica em −684. Quem marcou provavelmente esqueceu os coeficientes 2 e 3.",
+   "E": "−2736 kJ/mol sai de dobrar o resultado: 2 × (−1368). Valeria para 2 mol de etanol, mas a entalpia de combustão é por 1 mol de etanol."
   },
   "armadilha": "Esquecer os coeficientes (2 CO2 e 3 H2O) ou o sinal do ΔHf do etanol: ele é reagente, então se subtrai (−1646 − (−278)).",
   "alerta": "",
@@ -181,11 +181,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -202,6 +204,67 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "D"
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Combustão é a reação do combustível com O2, formando CO2 e H2O. As equações dadas são de formação: cada uma forma 1 mol de uma substância a partir de substâncias simples. Pela Lei de Hess, o ΔH da combustão sai de ΔH = H dos produtos − H dos reagentes. Substância simples (como O2) vale zero, então não entra na conta.",
+    "motivo": "Frase mais curta e sem dois sentidos; explica o que é equação de formação."
+   },
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "ΔH = (soma dos ΔHf dos produtos) − (soma dos ΔHf dos reagentes)",
+     "Cada ΔHf é multiplicado pelo coeficiente da substância",
+     "Substância simples (O2) tem ΔHf = 0"
+    ],
+    "motivo": "Troca 'Σ' por palavras, para o aluno que não conhece o símbolo."
+   },
+   {
+    "campo": "resolucao.passos[0].conta",
+    "depois": "C2H6O + 3 O2 → 2 CO2 + 3 H2O",
+    "motivo": "Mantida (cabe na linha). O porquê foi ajustado no campo seguinte."
+   },
+   {
+    "campo": "resolucao.passos[0].porque",
+    "depois": "Etanol queima em O2 e dá CO2 e H2O líquida. Conte os átomos: 2 C, 6 H e 7 O em cada lado, então está balanceada.",
+    "motivo": "Mais direto; ensina a conferir o balanceamento."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "2(−394) + 3(−286)\n= −788 − 858 = −1646 kJ",
+    "motivo": "Linha longa quebrada em duas para caber no celular."
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "ΔH = −1646 − (−278)\n= −1646 + 278 = −1368 kJ",
+    "motivo": "Linha longa quebrada em duas para caber no celular."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "−228 kJ/mol não confere. Nenhuma conta com os ΔHf e os coeficientes chega a esse valor; o correto é −1368. Os produtos sozinhos já valem −1646 kJ, muito mais que −228.",
+    "motivo": "Troca a comparação por fração (sem sentido para o aluno) por um teste objetivo."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "−342 kJ/mol não confere. Nenhuma conta com os ΔHf e os coeficientes chega a esse valor. Dois CO2 e três H2O já liberam −1646 kJ, muito mais que isso.",
+    "motivo": "Teste objetivo em vez de fração sem sentido."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "−684 kJ/mol não confere. Os produtos sozinhos valem −1646 kJ, e o etanol só desconta +278 kJ, então o resultado não fica em −684. Quem marcou provavelmente esqueceu os coeficientes 2 e 3.",
+    "motivo": "Mostra o que faltou no raciocínio de quem marcou C, com teste objetivo."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "−2736 kJ/mol sai de dobrar o resultado: 2 × (−1368). Valeria para 2 mol de etanol, mas a entalpia de combustão é por 1 mol de etanol.",
+    "motivo": "Explica o que faltou: olhar o 'por 1 mol'."
+   }
+  ],
+  "didatica_alertas": [
+   "O campo 'nivel' do JSON está 5, enquanto a classificação atual diz nível 6; não alterei, apenas registrei a divergência.",
+   "As equações do enunciado trazem ΔHf do etanol já líquido, o que bate com o uso na resolução; sem erro de fato."
+  ],
+  "didatica_ok": true
  }
 }

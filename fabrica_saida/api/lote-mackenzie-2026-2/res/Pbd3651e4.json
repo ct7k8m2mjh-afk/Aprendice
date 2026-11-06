@@ -11,7 +11,7 @@
    "texto": "A pergunta pede a alternativa ERRADA, isto é, a que não combina com o texto. Cada alternativa copia ou adapta uma frase do texto. Você só precisa achar a frase original e comparar palavra por palavra. Um único verbo trocado já derruba a alternativa.",
    "formulas": [
     "wrong alternative = a que contradiz o texto",
-    "went back to sit with her mum = voltou para sentar com a mãe",
+    "went back to sit with her mum = voltou para sentar com a mãe dela",
     "sat down at her table = sentou-se à mesa DELA (da cantora)"
    ],
    "simbolos": [
@@ -25,7 +25,7 @@
     ],
     [
      "went back to sit with her mum",
-     "voltou para se sentar com a mãe"
+     "voltou para se sentar com a mãe dela"
     ],
     [
      "approached",
@@ -40,12 +40,16 @@
      "abalada, transtornada"
     ],
     [
-     "boundaries",
-     "limites"
+     "mum",
+     "mãe (inglês britânico)"
+    ],
+    [
+     "her",
+     "dela; na alternativa B, 'her table' é a mesa da cantora"
     ]
    ]
   },
-  "pista": "Em cada alternativa, ache a frase correspondente no texto. Pergunte: para onde a menina voltou depois de passar pela mesa da cantora?",
+  "pista": "Na alternativa B, ache no texto a frase sobre a menina passando pela mesa da cantora. Veja onde ela se sentou depois: na mesa de quem?",
   "passos": [
    {
     "faz": "Traduza o comando",
@@ -56,7 +60,7 @@
    {
     "faz": "Confira a alternativa A",
     "conta": "“called out Chappell Roan on Instagram”",
-    "porque": "O 1º parágrafo traz exatamente isso. A está de acordo com o texto.",
+    "porque": "O 1º parágrafo traz exatamente isso: “called out Chappell Roan on Instagram” (criticou Chappell Roan no Instagram). A está de acordo com o texto.",
     "tipo": "localizar"
    },
    {
@@ -68,7 +72,7 @@
    {
     "faz": "Confira C, D e E",
     "conta": "“approached them and accused them of harassing and disrespecting the artist”",
-    "porque": "C repete essa frase. D repete “threatened to file a complaint”, “in tears” e “extremely shaken”. E reproduz a fala de Frello no 3º parágrafo. As três batem com o texto.",
+    "porque": "C repete essa frase. D repete “threatened to file a complaint”, “in tears” (em lágrimas) e “extremely shaken” (muito abalada). E reproduz a fala de Frello no 3º parágrafo. As três batem com o texto.",
     "tipo": "comparar"
    },
    {
@@ -79,7 +83,7 @@
    }
   ],
   "resposta": "Alternativa B: o texto diz que a menina “went back to sit with her mum”, e não que se sentou à mesa da cantora e ficou lá.",
-  "checagem": "Veja o fim da frase: ela tomava café com a mãe. O segurança aproximou-se de “them” (mãe e filha), e Harding fala de “a woman and her daughter eating breakfast” numa mesa. Isso sustenta que a menina voltou para a mãe.",
+  "checagem": "Procure uma segunda marca: o segurança se aproximou de “them” (mãe e filha juntas) e acusou as duas. Harding fala de “a woman and her daughter eating breakfast” (uma mulher e a filha tomando café) na mesma mesa. A menina estava com a mãe, não com a cantora.",
   "erradas": {
    "A": "Confere com o texto: o 1º parágrafo diz “Jorginho Frello called out Chappell Roan on Instagram”. Não contradiz nada.",
    "C": "Confere com o texto: “a security guard approached them and accused them of harassing and disrespecting the artist”. A alternativa repete a frase quase igual.",
@@ -115,11 +119,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -130,6 +136,79 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "B"
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "wrong alternative = a que contradiz o texto",
+     "went back to sit with her mum = voltou para sentar com a mãe dela",
+     "sat down at her table = sentou-se à mesa DELA (da cantora)"
+    ],
+    "motivo": "Deixa claro de quem é a mãe e de quem é 'her table' na alternativa B, que é o ponto que decide a questão."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "called out",
+      "criticou publicamente, denunciou"
+     ],
+     [
+      "walked past",
+      "passou por (sem parar)"
+     ],
+     [
+      "went back to sit with her mum",
+      "voltou para se sentar com a mãe dela"
+     ],
+     [
+      "approached",
+      "aproximou-se de"
+     ],
+     [
+      "threatened to file a complaint",
+      "ameaçou fazer uma reclamação formal"
+     ],
+     [
+      "shaken",
+      "abalada, transtornada"
+     ],
+     [
+      "mum",
+      "mãe (inglês britânico)"
+     ],
+     [
+      "her",
+      "dela; na alternativa B, 'her table' é a mesa da cantora"
+     ]
+    ],
+    "motivo": "Troca 'boundaries', que não é usado na resolução, por 'mum' e 'her', que são decisivos."
+   },
+   {
+    "campo": "resolucao.pista",
+    "depois": "Na alternativa B, ache no texto a frase sobre a menina passando pela mesa da cantora. Veja onde ela se sentou depois: na mesa de quem?",
+    "motivo": "A pista antiga fazia pergunta quase respondida; a nova aponta o trecho sem entregar o resultado."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "O 1º parágrafo traz exatamente isso: “called out Chappell Roan on Instagram” (criticou Chappell Roan no Instagram). A está de acordo com o texto.",
+    "motivo": "Traduz o trecho citado e dá a localização."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "C repete essa frase. D repete “threatened to file a complaint”, “in tears” (em lágrimas) e “extremely shaken” (muito abalada). E reproduz a fala de Frello no 3º parágrafo. As três batem com o texto.",
+    "motivo": "Traduz as expressões que o aluno pode não conhecer."
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Procure uma segunda marca: o segurança se aproximou de “them” (mãe e filha juntas) e acusou as duas. Harding fala de “a woman and her daughter eating breakfast” (uma mulher e a filha tomando café) na mesma mesa. A menina estava com a mãe, não com a cantora.",
+    "motivo": "Texto original da checagem ('Veja o fim da frase') era confuso; reescrito com tradução e a segunda marca clara."
+   }
+  ],
+  "didatica_alertas": [
+   "O campo 'nivel' do JSON está 4, mas a classificação atual informada é nível 6; verificar qual vale."
+  ],
+  "didatica_ok": true
  }
 }

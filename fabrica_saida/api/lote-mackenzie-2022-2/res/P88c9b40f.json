@@ -34,20 +34,20 @@
    },
    {
     "faz": "Converta 15 min para horas",
-    "conta": "15/60 = 0,25 h",
+    "conta": "15 ÷ 60 = 0,25 h",
     "porque": "15 min é um quarto de hora. Assim o tempo fica na unidade da resposta (h).",
     "tipo": "calcular"
    },
    {
     "faz": "Some a hora inteira",
     "conta": "1 + 0,25 = 1,25 h",
-    "porque": "O tempo total em horas é 1,25 h, ou 5/4 de hora.",
+    "porque": "O tempo total em horas é 1,25 h. Isso é o mesmo que 1 e 1/4 de hora.",
     "tipo": "calcular"
    },
    {
     "faz": "Divida distância por tempo",
     "conta": "52 ÷ 1,25 = 41,6 km/h",
-    "porque": "Velocidade média é distância dividida por tempo. Dividir por 5/4 é multiplicar por 4/5: 52 × 4/5 = 41,6.",
+    "porque": "Velocidade média é distância dividida por tempo. Como 1,25 h é 1 e 1/4 de hora, a conta 52 ÷ 1,25 dá 41,6.",
     "tipo": "calcular"
    },
    {
@@ -63,7 +63,7 @@
    "A": "35 não confere: 35 × 1,25 = 43,75 km, e não 52 km. A prova teria ficado 8,25 km curta.",
    "B": "38 não confere: 38 × 1,25 = 47,5 km, menor que os 52 km da prova.",
    "C": "39,5 não confere: 39,5 × 1,25 = 49,375 km, menor que 52 km.",
-   "E": "52 sai de dividir 52 km por 1 h, ignorando os 15 minutos extras. Como a prova durou 1,25 h, a velocidade tem de ser menor que 52 km/h."
+   "E": "52 sai de dividir 52 km por 1 h, ignorando os 15 minutos extras. A prova durou 1,25 h, então a velocidade é menor que 52 km/h."
   },
   "armadilha": "Escrever 1h15min como 1,15 h em vez de 1,25 h: 15 min são 0,25 h, não 0,15 h.",
   "alerta": "",
@@ -85,12 +85,12 @@
  ],
  "quadro": [
   {
-   "linha": "t = 12h45 − 11h30",
+   "linha": "t = 12h45min − 11h30min",
    "nota": "tempo = chegada menos largada"
   },
   {
    "linha": "t = 1h15min",
-   "nota": "45 − 30 = 15 min; 12 − 11 = 1 h"
+   "nota": "12 − 11 = 1 h e 45 − 30 = 15 min"
   },
   {
    "linha": "t = 1 + 15/60",
@@ -117,6 +117,10 @@
   {
    "linha": "v = 41,6 km/h",
    "nota": "52 ÷ 1,25 = 41,6"
+  },
+  {
+   "linha": "41,6 × 1,25 = 52",
+   "nota": "conferência: volta à distância"
   }
  ],
  "visual": {
@@ -133,14 +137,84 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [],
   "fatos_ok": true,
-  "fatos_resposta": "D"
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "15 ÷ 60 = 0,25 h",
+    "motivo": "Evita fração escrita na linha com barra; usa ÷ como o guia permite."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "O tempo total em horas é 1,25 h. Isso é o mesmo que 1 e 1/4 de hora.",
+    "motivo": "Troca '5/4' escrito na linha por uma forma mais simples para o aluno."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Velocidade média é distância dividida por tempo. Como 1,25 h é 1 e 1/4 de hora, a conta 52 ÷ 1,25 dá 41,6.",
+    "motivo": "Remove a explicação por multiplicação de fração com barra na linha, que complicava e usava 5/4 sem necessidade."
+   },
+   {
+    "campo": "resolucao.quadro",
+    "depois": [
+     {
+      "linha": "t = 12h45min − 11h30min",
+      "nota": "tempo = chegada menos largada"
+     },
+     {
+      "linha": "t = 1h15min",
+      "nota": "12 − 11 = 1 h e 45 − 30 = 15 min"
+     },
+     {
+      "linha": "t = 1 + 15/60",
+      "nota": "15 min viram fração de hora",
+      "destaque": "15/60"
+     },
+     {
+      "linha": "t = 1 + 0,25 = 1,25 h",
+      "nota": "15 ÷ 60 = 0,25"
+     },
+     {
+      "linha": "v = 52/1,25",
+      "nota": "velocidade = distância ÷ tempo",
+      "mov": [
+       {
+        "termo": "1,25",
+        "de": "tempo",
+        "para": "denominador",
+        "vira": "1,25",
+        "como": "divide a distância"
+       }
+      ]
+     },
+     {
+      "linha": "v = 41,6 km/h",
+      "nota": "52 ÷ 1,25 = 41,6"
+     },
+     {
+      "linha": "41,6 × 1,25 = 52",
+      "nota": "conferência: volta à distância"
+     }
+    ],
+    "motivo": "Padroniza as unidades do horário e acrescenta a linha de conferência copiável no caderno."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "52 sai de dividir 52 km por 1 h, ignorando os 15 minutos extras. A prova durou 1,25 h, então a velocidade é menor que 52 km/h.",
+    "motivo": "Frase mais curta e direta."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

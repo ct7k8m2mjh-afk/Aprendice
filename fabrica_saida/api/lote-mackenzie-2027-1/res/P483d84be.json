@@ -21,11 +21,23 @@
     ],
     [
      "magnitude",
-     "medida da energia liberada pelo terremoto no foco; o dado 7,4 indica um sismo forte"
+     "medida da energia liberada pelo terremoto no foco; 7,4 indica um sismo forte"
     ],
     [
      "subducção",
      "processo em que uma placa mais densa mergulha sob outra"
+    ],
+    [
+     "crosta",
+     "camada mais externa e rígida da Terra, onde vivemos"
+    ],
+    [
+     "manto",
+     "camada quente logo abaixo da crosta, sobre a qual as placas se movem"
+    ],
+    [
+     "placa oceânica",
+     "placa cuja superfície é fundo de oceano"
     ],
     [
      "placa de Nazca",
@@ -48,7 +60,7 @@
    {
     "faz": "Localize a placa do próprio país",
     "conta": "Colômbia = América do Sul",
-    "porque": "O território colombiano está sobre a placa Sul-Americana. Essa placa tem de aparecer na resposta, o que já tira as alternativas B, D e E.",
+    "porque": "O território colombiano está sobre a placa Sul-Americana, então ela tem de aparecer na resposta. Isso já tira B, D e E, que não a citam.",
     "tipo": "localizar"
    },
    {
@@ -60,7 +72,7 @@
    {
     "faz": "Elimine as alternativas com placas distantes",
     "conta": "Arábica, Scotia, Filipinas: longe",
-    "porque": "A placa Arábica fica no Oriente Médio, a de Scotia no Atlântico Sul perto da Antártida, a das Filipinas no Pacífico asiático. Nenhuma toca a Colômbia.",
+    "porque": "A placa Arábica fica no Oriente Médio, a de Scotia no Atlântico Sul perto da Antártida e a das Filipinas no Pacífico asiático. Nenhuma toca a Colômbia, então C e D caem.",
     "tipo": "eliminar"
    },
    {
@@ -73,10 +85,10 @@
   "resposta": "Alternativa A: placa de Nazca, placa Sul-Americana e placa do Caribe são as três que se encontram na região da Colômbia.",
   "checagem": "Cheque por outro caminho: a costa do Pacífico andino (Colômbia, Equador, Peru, Chile) tem muitos sismos por causa da subducção da placa de Nazca sob a Sul-Americana, e a Colômbia ainda toca o Caribe. Só a alternativa A traz as três placas.",
   "erradas": {
-   "B": "A placa de Cocos fica ao largo da América Central e do México, e a placa do Pacífico e a norte-americana estão longe da Colômbia. Além disso, falta a placa Sul-Americana, onde está o país.",
+   "B": "Falta o essencial: a placa Sul-Americana, onde está o país. Cocos fica ao largo da América Central e do México; a do Pacífico e a norte-americana estão longe da Colômbia.",
    "C": "Tem a placa Sul-Americana, mas a Arábica fica no Oriente Médio e a de Scotia no extremo sul do Atlântico, perto da Antártida. Nenhuma delas toca a Colômbia.",
-   "D": "Tem a placa de Nazca, mas a africana está do outro lado do Atlântico e a das Filipinas fica no oeste do Pacífico, na Ásia. Falta a placa Sul-Americana, onde está o país.",
-   "E": "A placa do Caribe toca a Colômbia, mas a de Cocos fica mais ao norte, na costa da América Central, e a euroasiática está na Eurásia. Falta a Sul-Americana, onde está o país."
+   "D": "Nazca está certa, mas falta a Sul-Americana, onde está o país. A africana fica do outro lado do Atlântico e a das Filipinas, no oeste do Pacífico, na Ásia.",
+   "E": "O Caribe está certo, mas falta a Sul-Americana, onde está o país. Cocos fica na costa da América Central e a euroasiática, na Eurásia."
   },
   "armadilha": "Marcar alternativas que citam placas famosas do Pacífico (Cocos, Pacífico, Filipinas) sem checar se elas realmente tocam a Colômbia e se a placa Sul-Americana está na lista.",
   "alerta": "",
@@ -111,11 +123,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -126,6 +140,78 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "A"
+  "fatos_resposta": "A",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "O território colombiano está sobre a placa Sul-Americana, então ela tem de aparecer na resposta. Isso já tira B, D e E, que não a citam.",
+    "motivo": "Frase mais direta e clara sobre quais alternativas saem."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "Arábica, Scotia, Filipinas: longe",
+    "motivo": "Mantido; apenas confirmado que cabe na tela."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "A placa Arábica fica no Oriente Médio, a de Scotia no Atlântico Sul perto da Antártida e a das Filipinas no Pacífico asiático. Nenhuma toca a Colômbia, então C e D caem.",
+    "motivo": "Liga a eliminação às letras, ajudando quem marcou C ou D."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "placa tectônica",
+      "grande bloco rígido da crosta terrestre que se move lentamente sobre o manto"
+     ],
+     [
+      "magnitude",
+      "medida da energia liberada pelo terremoto no foco; 7,4 indica um sismo forte"
+     ],
+     [
+      "subducção",
+      "processo em que uma placa mais densa mergulha sob outra"
+     ],
+     [
+      "crosta",
+      "camada mais externa e rígida da Terra, onde vivemos"
+     ],
+     [
+      "manto",
+      "camada quente logo abaixo da crosta, sobre a qual as placas se movem"
+     ],
+     [
+      "placa oceânica",
+      "placa cuja superfície é fundo de oceano"
+     ],
+     [
+      "placa de Nazca",
+      "placa oceânica do Pacífico leste, junto à costa oeste da América do Sul"
+     ],
+     [
+      "placa do Caribe",
+      "placa pequena que sustenta o mar do Caribe e parte da América Central"
+     ]
+    ],
+    "motivo": "Incluídos crosta, manto e placa oceânica, termos usados no texto e que um aluno de 17 anos pode não dominar."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "Falta o essencial: a placa Sul-Americana, onde está o país. Cocos fica ao largo da América Central e do México; a do Pacífico e a norte-americana estão longe da Colômbia.",
+    "motivo": "Começa pelo que faltou no raciocínio de quem marcou B."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "Nazca está certa, mas falta a Sul-Americana, onde está o país. A africana fica do outro lado do Atlântico e a das Filipinas, no oeste do Pacífico, na Ásia.",
+    "motivo": "Começa pelo que faltou no raciocínio de quem marcou D."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "O Caribe está certo, mas falta a Sul-Americana, onde está o país. Cocos fica na costa da América Central e a euroasiática, na Eurásia.",
+    "motivo": "Começa pelo que faltou no raciocínio de quem marcou E."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

@@ -8,10 +8,11 @@
  "conceito": "Fuso horário: diferença de horas entre Qatar (UTC+3) e São Paulo (UTC−3, horário de Brasília), jogo ao vivo.",
  "resolucao": {
   "antes": {
-   "texto": "UTC é a hora do meridiano de Greenwich. UTC+3 quer dizer 3 horas à frente de Greenwich. São Paulo usa o horário de Brasília, que é UTC−3, ou seja, 3 horas atrás de Greenwich. A questão não informa o fuso de São Paulo: é conhecimento que o aluno precisa ter. Em 2022 não havia horário de verão no Brasil (extinto em 2019).",
+   "texto": "UTC é a hora do meridiano de Greenwich. UTC+3 quer dizer 3 horas à frente de Greenwich. São Paulo usa o horário de Brasília, que é UTC−3, ou seja, 3 horas atrás de Greenwich. A questão não informa o fuso de São Paulo: você precisa saber isso. Em 2022 não havia horário de verão no Brasil (acabou em 2019). Quem está mais a leste vê o Sol nascer antes, por isso o relógio dele está adiantado.",
    "formulas": [
     "diferença = fuso do Qatar − fuso de São Paulo",
     "lugar mais a leste (fuso maior) tem a hora adiantada",
+    "hora em São Paulo = hora no Qatar − diferença",
     "ao vivo: mesmo instante, relógios diferentes"
    ],
    "simbolos": [
@@ -26,6 +27,14 @@
     [
      "UTC−3",
      "fuso 3 horas atrasado em relação a Greenwich; é o horário oficial de Brasília e de São Paulo"
+    ],
+    [
+     "Greenwich",
+     "bairro de Londres por onde passa o meridiano 0°, a referência dos fusos"
+    ],
+    [
+     "fuso-horário",
+     "faixa de 15° de longitude em que vale a mesma hora oficial"
     ],
     [
      "ao vivo",
@@ -56,7 +65,7 @@
    {
     "faz": "Calcule a diferença",
     "conta": "3 − (−3) = 6 horas",
-    "porque": "O Qatar está 6 horas adiantado em relação a São Paulo.",
+    "porque": "Os dois fusos ficam em lados opostos de Greenwich. Por isso somam-se as distâncias até ele: 3 + 3. O Qatar está 6 horas adiantado em relação a São Paulo.",
     "tipo": "calcular"
    },
    {
@@ -76,7 +85,7 @@
   "checagem": "Passe por Greenwich: 19h no Qatar menos 3h = 16h em Greenwich; 16h menos 3h = 13h em São Paulo. Mesmo resultado.",
   "erradas": {
    "A": "12 horas não confere: daria uma diferença de 7 horas (19 − 7 = 12), e nenhum par de fusos da questão gera isso. Com UTC+3 e UTC−3, a diferença é de 6 horas: 19 − 6 = 13.",
-   "C": "14 horas sai de usar diferença de 5 horas, que seria o caso de um fuso de São Paulo em UTC−2 (horário de verão, já extinto). Em 2022, SP está em UTC−3, diferença de 6 horas.",
+   "C": "14 horas sai de usar diferença de 5 horas (19 − 5 = 14). Isso valeria se São Paulo estivesse em UTC−2, como no antigo horário de verão. Em 2022 ele já tinha acabado, então SP está em UTC−3 e a diferença é 6 horas.",
    "D": "18 horas não confere: daria uma diferença de só 1 hora (19 − 1 = 18), e nenhum par de fusos da questão gera isso. A diferença entre UTC+3 e UTC−3 é de 6 horas.",
    "E": "22 horas sai de somar 3 horas em vez de subtrair 6: 19 + 3 = 22. Isso é só a conversão do Qatar para Greenwich ao contrário, sem considerar que São Paulo fica a oeste, com hora atrasada."
   },
@@ -95,7 +104,7 @@
   },
   {
    "nome": "Estimativa por longitude",
-   "ideia": "Doha fica a cerca de 51,5° L e São Paulo a cerca de 46,6° O: são uns 98° de diferença, cerca de 6,5 faixas de 15°. A conta só confirma a ordem de grandeza (São Paulo está a oeste, umas 6 a 7 horas atrás). A hora oficial segue os fusos legais inteiros, UTC+3 e UTC−3, e a diferença exata é de 6 h."
+   "ideia": "Doha fica a cerca de 51,5° L e São Paulo a cerca de 46,6° O: são uns 98° de diferença, perto de 6,5 faixas de 15°. A conta confirma a ordem de grandeza (umas 6 a 7 horas). A hora oficial usa fusos inteiros, UTC+3 e UTC−3, e a diferença exata é de 6 horas."
   }
  ],
  "quadro": [
@@ -134,11 +143,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -161,6 +172,70 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "B"
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "UTC é a hora do meridiano de Greenwich. UTC+3 quer dizer 3 horas à frente de Greenwich. São Paulo usa o horário de Brasília, que é UTC−3, ou seja, 3 horas atrás de Greenwich. A questão não informa o fuso de São Paulo: você precisa saber isso. Em 2022 não havia horário de verão no Brasil (acabou em 2019). Quem está mais a leste vê o Sol nascer antes, por isso o relógio dele está adiantado.",
+    "motivo": "Frases mais curtas, voz direta e explicação de por que o leste tem hora adiantada, que sustenta o passo de subtrair."
+   },
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "diferença = fuso do Qatar − fuso de São Paulo",
+     "lugar mais a leste (fuso maior) tem a hora adiantada",
+     "hora em São Paulo = hora no Qatar − diferença",
+     "ao vivo: mesmo instante, relógios diferentes"
+    ],
+    "motivo": "Faltava a regra que o passo final usa."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "UTC",
+      "Tempo Universal Coordenado: a hora de referência, a do meridiano de Greenwich (0°)"
+     ],
+     [
+      "UTC+3",
+      "fuso 3 horas adiantado em relação a Greenwich"
+     ],
+     [
+      "UTC−3",
+      "fuso 3 horas atrasado em relação a Greenwich; é o horário oficial de Brasília e de São Paulo"
+     ],
+     [
+      "Greenwich",
+      "bairro de Londres por onde passa o meridiano 0°, a referência dos fusos"
+     ],
+     [
+      "fuso-horário",
+      "faixa de 15° de longitude em que vale a mesma hora oficial"
+     ],
+     [
+      "ao vivo",
+      "o mesmo instante real visto em dois relógios diferentes"
+     ]
+    ],
+    "motivo": "Incluídos Greenwich e fuso-horário, termos usados na resolução e que o aluno pode não dominar."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Os dois fusos ficam em lados opostos de Greenwich. Por isso somam-se as distâncias até ele: 3 + 3. O Qatar está 6 horas adiantado em relação a São Paulo.",
+    "motivo": "Explica por que a conta é 3 − (−3), em vez de só repetir o resultado."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "14 horas sai de usar diferença de 5 horas (19 − 5 = 14). Isso valeria se São Paulo estivesse em UTC−2, como no antigo horário de verão. Em 2022 ele já tinha acabado, então SP está em UTC−3 e a diferença é 6 horas.",
+    "motivo": "Mais claro sobre o que faltou: lembrar que o horário de verão não existia mais."
+   },
+   {
+    "campo": "resolucao.caminhos[1].ideia",
+    "depois": "Doha fica a cerca de 51,5° L e São Paulo a cerca de 46,6° O: são uns 98° de diferença, perto de 6,5 faixas de 15°. A conta confirma a ordem de grandeza (umas 6 a 7 horas). A hora oficial usa fusos inteiros, UTC+3 e UTC−3, e a diferença exata é de 6 horas.",
+    "motivo": "Frases mais curtas e sem termos ambíguos."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

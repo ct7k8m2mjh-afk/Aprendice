@@ -8,7 +8,7 @@
  "conceito": "Imperativo com 'você' na norma-padrão: usa as formas do presente do subjuntivo, e não as da 2ª pessoa (tu).",
  "resolucao": {
   "antes": {
-   "texto": "Na norma-padrão, o imperativo afirmativo para 'tu' vem do presente do indicativo sem o 's' (tu vais → vai). Para 'você', o imperativo (afirmativo e negativo) usa o presente do subjuntivo (você vá → vá). No português falado, muita gente mistura as duas formas, como a letra de Renato Russo diz ('troco as pessoas, troco os pronomes'). A questão pede a única alternativa em que o verbo dirigido a 'você' segue a norma.",
+   "texto": "Na norma-padrão, o imperativo afirmativo para 'tu' vem do presente do indicativo sem o 's' (tu vais → vai). Para 'você', o imperativo, afirmativo ou negativo, usa o presente do subjuntivo (você vá → vá). Na fala, muita gente mistura as duas formas, como diz a letra ('troco as pessoas, troco os pronomes'). A questão pede a única alternativa em que o verbo de ordem, dirigido a 'você', segue a norma.",
    "formulas": [
     "tu: afirmativo = indicativo sem 's' (vai, volta, olha, dá)",
     "você: imperativo = presente do subjuntivo (vá, volte, olhe, dê)",
@@ -44,13 +44,13 @@
    {
     "faz": "Examine as alternativas A e B",
     "conta": "A: 'Volta aqui, vem você'; B: 'olha só'",
-    "porque": "Volta, vem e olha são formas de 'tu'. Para 'você' seriam volte, venha e olhe. Em B, 'Lembra que...?' é pergunta no indicativo, não ordem.",
+    "porque": "Volta, vem e olha são formas de 'tu'. Para 'você' seriam volte, venha e olhe. Em B, 'Lembra que...?' é uma pergunta, e não uma ordem. Mas o 'olha só' de B também está no imperativo de 'tu'.",
     "tipo": "eliminar"
    },
    {
     "faz": "Examine as alternativas C e D",
     "conta": "C: 'Olha pra cá', 'Dá uma olhada', 'vem'; D: 'Vai, se você precisa ir'",
-    "porque": "Em C, o 'você' aparece no 1º verso e as ordens seguintes usam olha, dá e vem (tu). Em D, 'Vai' é forma de 'tu'; para 'você' seria 'Vá'.",
+    "porque": "Em C, o 'você' aparece no 1º verso e as ordens seguintes usam olha, dá e vem (formas de 'tu'). Em D, 'Vai' é forma de 'tu'; para 'você' seria 'Vá'.",
     "tipo": "eliminar"
    },
    {
@@ -72,7 +72,8 @@
    "A": "'Volta' e 'vem' são formas de 'tu' (tu voltas → volta; tu vens → vem). Dirigidas a 'você', a norma pede 'volte' e 'venha'.",
    "B": "'Olha' ('Ei, olha só') é imperativo de 'tu'. O trecho fala com 'você' ('você não está aqui'), e com 'você' a norma pede 'olhe'. 'Lembra que...?' é pergunta no indicativo, não ordem.",
    "C": "'Olha', 'dá' e 'vem' são formas de 'tu'; o trecho ainda mistura 'teu' com 'você'. Para 'você' seriam 'olhe', 'dê' e 'venha'.",
-   "D": "'Vai' é imperativo de 'tu' (tu vais → vai). O trecho tem 'se você precisa ir'; para 'você' a norma pede 'Vá'."
+   "D": "'Vai' é imperativo de 'tu' (tu vais → vai). O trecho tem 'se você precisa ir'; para 'você' a norma pede 'Vá'.",
+   "E": "Não se aplica: E é a alternativa certa."
   },
   "armadilha": "Achar que, por soarem naturais na fala, 'vai', 'volta' ou 'olha' servem para 'você': a norma exige 'vá', 'volte' e 'olhe'.",
   "alerta": "",
@@ -107,11 +108,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -152,6 +155,33 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "E"
+  "fatos_resposta": "E",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Na norma-padrão, o imperativo afirmativo para 'tu' vem do presente do indicativo sem o 's' (tu vais → vai). Para 'você', o imperativo, afirmativo ou negativo, usa o presente do subjuntivo (você vá → vá). Na fala, muita gente mistura as duas formas, como diz a letra ('troco as pessoas, troco os pronomes'). A questão pede a única alternativa em que o verbo de ordem, dirigido a 'você', segue a norma.",
+    "motivo": "Frases mais curtas e claras; 'imperativo' passa a vir como 'verbo de ordem'."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "Volta, vem e olha são formas de 'tu'. Para 'você' seriam volte, venha e olhe. Em B, 'Lembra que...?' é uma pergunta, e não uma ordem. Mas o 'olha só' de B também está no imperativo de 'tu'.",
+    "motivo": "Deixa claro que B também falha por 'olha' e que 'Lembra' não é ordem."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Em C, o 'você' aparece no 1º verso e as ordens seguintes usam olha, dá e vem (formas de 'tu'). Em D, 'Vai' é forma de 'tu'; para 'você' seria 'Vá'.",
+    "motivo": "Ajuste de clareza."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "Não se aplica: E é a alternativa certa.",
+    "motivo": "Mantém a estrutura sem inventar erro para a letra correta. Se o site exigir só letras erradas, este campo pode ser descartado."
+   }
+  ],
+  "didatica_alertas": [
+   "Em C, o verso 'Dá uma olhada no meu sangue e vem sentir o teu perdão' mistura 'teu' (tu) com 'você'; o resumo está correto, mas confira se a resolução precisa citar também o 'teu'.",
+   "A nota do campo 'erradas' não tem entrada para E, o que está correto, pois E é o gabarito."
+  ],
+  "didatica_ok": true
  }
 }

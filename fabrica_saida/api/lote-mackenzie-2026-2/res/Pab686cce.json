@@ -8,7 +8,7 @@
  "conceito": "Área de região composta (triângulo grande menos triângulo pequeno), usando Pitágoras e semelhança de triângulos.",
  "resolucao": {
   "antes": {
-   "texto": "A região hachurada MACK é o triângulo grande MAE sem o triângulo pequeno CEK. Os dois triângulos são retângulos e dividem o ângulo E, então são semelhantes. Isso permite achar o lado CK, que a figura não informa. Depois é só subtrair as áreas.",
+   "texto": "A região hachurada MACK é o triângulo grande MAE sem o triângulo pequeno CEK. Os dois triângulos são retângulos (um ângulo reto em M, outro em C) e têm o ângulo E em comum, então são semelhantes. Isso permite achar o lado CK, que a figura não informa. Depois é só subtrair as áreas.",
    "formulas": [
     "Pitágoras: hipotenusa² = cateto² + cateto²",
     "área do triângulo retângulo = (cateto × cateto) ÷ 2",
@@ -44,8 +44,8 @@
    },
    {
     "faz": "Ache o cateto ME por Pitágoras",
-    "conta": "ME² = 20² − 12² = 400 − 144 = 256",
-    "porque": "No triângulo MAE, 20 é a hipotenusa e 12 é um cateto. Assim ME = √256 = 16 m.",
+    "conta": "ME² = 20² − 12² = 256",
+    "porque": "No triângulo MAE, 20 é a hipotenusa e 12 é um cateto. Então ME é a raiz de 256, ou seja, ME = 16 m.",
     "tipo": "calcular"
    },
    {
@@ -56,8 +56,8 @@
    },
    {
     "faz": "Ache CK por semelhança",
-    "conta": "CK/MA = CE/ME → CK/12 = 12/16",
-    "porque": "CEK e MEA têm o ângulo E em comum e um ângulo reto cada (em C e em M). Logo CE corresponde a ME, e CK corresponde a MA. Então CK = 12 × 12 ÷ 16 = 9 m.",
+    "conta": "CK/12 = 12/16, logo CK = 9",
+    "porque": "CEK e MEA têm o ângulo E em comum e um ângulo reto cada. Então CE (oposto a K) corresponde a ME (oposto a A), e CK corresponde a MA. Multiplicando cruzado: CK = 12 × 12 ÷ 16 = 9 m.",
     "tipo": "calcular"
    },
    {
@@ -74,7 +74,7 @@
    }
   ],
   "resposta": "Alternativa A: a área hachurada é 96 − 54 = 42 m².",
-  "checagem": "Confira por outro caminho: corte MACK pela diagonal MC. A altura de M até o solo é MA × ME ÷ AE = 12 × 16 ÷ 20 = 9,6 m. O pé dessa altura fica a 12² ÷ 20 = 7,2 m de A, ou seja, a 0,8 m da vertical CK. Triângulo MAC: (8 × 9,6) ÷ 2 = 38,4 m². Triângulo MCK: base CK = 9 e altura 0,8, então (9 × 0,8) ÷ 2 = 3,6 m². Somando, 38,4 + 3,6 = 42 m². Fecha.",
+  "checagem": "Confira pelas razões: CEK é semelhante a MEA com razão 12/16 = 3/4. A razão entre áreas é 9/16, e 9/16 × 96 = 54. Então 96 − 54 = 42 m². Fecha com o primeiro caminho.",
   "erradas": {
    "B": "54 é a área do triângulo CEK, a parte que NÃO é hachurada: (12 × 9) ÷ 2 = 54. Falta subtrair de 96.",
    "C": "96 é a área do triângulo MAE inteiro: (12 × 16) ÷ 2. Ela inclui o triângulo CEK, que não está hachurado.",
@@ -173,11 +173,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -208,6 +210,40 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "A"
+  "fatos_resposta": "A",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "A região hachurada MACK é o triângulo grande MAE sem o triângulo pequeno CEK. Os dois triângulos são retângulos (um ângulo reto em M, outro em C) e têm o ângulo E em comum, então são semelhantes. Isso permite achar o lado CK, que a figura não informa. Depois é só subtrair as áreas.",
+    "motivo": "Explicita por que os triângulos são semelhantes (ângulos retos e ângulo E comum)."
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "ME² = 20² − 12² = 256",
+    "motivo": "A conta original ficava longa para a tela do celular; a raiz passa para a linha seguinte do porque."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "No triângulo MAE, 20 é a hipotenusa e 12 é um cateto. Então ME é a raiz de 256, ou seja, ME = 16 m.",
+    "motivo": "Frase mais clara; o aluno entende de onde sai o 16."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "CK/12 = 12/16, logo CK = 9",
+    "motivo": "A conta curta cabe na tela; o cálculo completo fica no porque."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "CEK e MEA têm o ângulo E em comum e um ângulo reto cada. Então CE (oposto a K) corresponde a ME (oposto a A), e CK corresponde a MA. Multiplicando cruzado: CK = 12 × 12 ÷ 16 = 9 m.",
+    "motivo": "Separa a razão da conta e explica a correspondência dos lados."
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Confira pelas razões: CEK é semelhante a MEA com razão 12/16 = 3/4. A razão entre áreas é 9/16, e 9/16 × 96 = 54. Então 96 − 54 = 42 m². Fecha com o primeiro caminho.",
+    "motivo": "A checagem original era longa e difícil para um aluno de 17 anos. Esta é curta e confere por outro caminho (razão entre áreas)."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

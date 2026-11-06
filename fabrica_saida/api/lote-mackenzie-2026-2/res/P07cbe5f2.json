@@ -8,7 +8,7 @@
  "conceito": "Espelho esférico: equação de Gauss e aumento linear transversal para imagem virtual, direita e ampliada.",
  "resolucao": {
   "antes": {
-   "texto": "Só o espelho côncavo dá imagem direita e maior que o objeto, e isso acontece quando o objeto está entre o foco e o espelho. Essa imagem é virtual, ou seja, fica atrás do espelho. Por convenção, imagem virtual tem p' negativo. Imagem direita tem aumento A positivo.",
+   "texto": "Só o espelho côncavo dá imagem direita e maior que o objeto, e isso acontece quando o objeto está entre o foco e o espelho. Essa imagem é virtual: fica atrás do espelho. Por convenção, imagem virtual tem p' negativo. Imagem direita tem aumento A positivo.",
    "formulas": [
     "1/f = 1/p + 1/p'",
     "A = − p'/p"
@@ -24,11 +24,23 @@
     ],
     [
      "p'",
-     "distância da imagem ao espelho; negativa se a imagem é virtual"
+     "distância da imagem ao espelho; negativa se a imagem é virtual (atrás do espelho)"
     ],
     [
      "A",
      "aumento: tamanho da imagem ÷ tamanho do objeto; positivo se a imagem é direita"
+    ],
+    [
+     "côncavo",
+     "espelho curvado para dentro, como o interior de uma colher"
+    ],
+    [
+     "foco",
+     "ponto do eixo que fica a uma distância f do espelho"
+    ],
+    [
+     "virtual",
+     "imagem formada atrás do espelho, que não pode ser projetada num anteparo"
     ]
    ]
   },
@@ -61,7 +73,7 @@
    {
     "faz": "Isole p",
     "conta": "p = (2 × 20)/3 = 40/3 ≈ 13,3 cm",
-    "porque": "Multiplicando cruzado: 3p × 1 = 2 × 20. O resultado fica entre o foco (20 cm) e o espelho, como esperado. A alternativa mais próxima é 13,5 cm.",
+    "porque": "Multiplicando cruzado: 3p × 1 = 2 × 20. O resultado fica entre o espelho e o foco (20 cm), como esperado. A alternativa mais próxima de 13,3 cm é 13,5 cm.",
     "tipo": "concluir"
    }
   ],
@@ -70,7 +82,7 @@
   "erradas": {
    "A": "6,7 cm é 20 ÷ 3 (f/A), uma conta que não vem da equação de Gauss. Com p = 6,7 cm: 1/p' = 0,05 − 0,15 = − 0,10, então p' = − 10 cm e A = +1,5, não 3.",
    "C": "Com o objeto no foco (p = 20 cm), os raios refletidos saem paralelos e a imagem não se forma (vai ao infinito). Não existe aumento de 3.",
-   "D": "O valor 26,7 cm resulta de f × (1 + 1/3) e dá imagem REAL e INVERTIDA 3 vezes maior. Aqui a imagem é direita, então o objeto está entre o foco e o espelho (p < 20 cm), e 27,5 cm está além do foco.",
+   "D": "27,5 cm fica além do foco (20 cm). Aí a imagem seria real e invertida, e não direita. Com p = 26,7 cm (f × (1 + 1/3)), a imagem real é invertida e 3 vezes maior. Imagem direita exige p < 20 cm. Quem marcou D esqueceu que imagem direita é virtual (p' negativo).",
    "E": "40,4 cm está além do centro de curvatura (2f = 40 cm). Nessa posição a imagem é real, invertida e menor que o objeto. Isso contradiz 'direita e três vezes maior'."
   },
   "armadilha": "Esquecer que imagem direita é virtual (p' negativo): com p' positivo a conta dá 26,7 cm, que é a imagem invertida.",
@@ -165,11 +177,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -198,6 +212,59 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "B"
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Só o espelho côncavo dá imagem direita e maior que o objeto, e isso acontece quando o objeto está entre o foco e o espelho. Essa imagem é virtual: fica atrás do espelho. Por convenção, imagem virtual tem p' negativo. Imagem direita tem aumento A positivo.",
+    "motivo": "Troca 'ou seja' por dois pontos e deixa as frases mais curtas."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "f",
+      "distância focal do espelho (positiva no côncavo): 20 cm"
+     ],
+     [
+      "p",
+      "distância do objeto ao espelho (o que a questão pede)"
+     ],
+     [
+      "p'",
+      "distância da imagem ao espelho; negativa se a imagem é virtual (atrás do espelho)"
+     ],
+     [
+      "A",
+      "aumento: tamanho da imagem ÷ tamanho do objeto; positivo se a imagem é direita"
+     ],
+     [
+      "côncavo",
+      "espelho curvado para dentro, como o interior de uma colher"
+     ],
+     [
+      "foco",
+      "ponto do eixo que fica a uma distância f do espelho"
+     ],
+     [
+      "virtual",
+      "imagem formada atrás do espelho, que não pode ser projetada num anteparo"
+     ]
+    ],
+    "motivo": "Explica 'côncavo', 'foco' e 'virtual', termos usados nos passos."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "Multiplicando cruzado: 3p × 1 = 2 × 20. O resultado fica entre o espelho e o foco (20 cm), como esperado. A alternativa mais próxima de 13,3 cm é 13,5 cm.",
+    "motivo": "Texto mais claro, sem mudar fatos."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "27,5 cm fica além do foco (20 cm). Aí a imagem seria real e invertida, e não direita. Com p = 26,7 cm (f × (1 + 1/3)), a imagem real é invertida e 3 vezes maior. Imagem direita exige p < 20 cm. Quem marcou D esqueceu que imagem direita é virtual (p' negativo).",
+    "motivo": "O texto antigo dizia 'o valor 26,7 cm resulta de...' sem ligar à letra D (27,5). Agora diz o que faltou no raciocínio de quem marcou D."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

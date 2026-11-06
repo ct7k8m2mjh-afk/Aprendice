@@ -27,6 +27,18 @@
     [
      "lei dos cossenos",
      "relação que dá um lado do triângulo quando se conhecem os outros dois e o ângulo entre eles"
+    ],
+    [
+     "cos, sen",
+     "cosseno e seno do ângulo, números que dependem só da abertura dele"
+    ],
+    [
+     "ângulo raso",
+     "ângulo de 180°, formado por dois lados sobre a mesma reta"
+    ],
+    [
+     "≈",
+     "aproximadamente igual"
     ]
    ]
   },
@@ -46,7 +58,7 @@
    },
    {
     "faz": "Calcule cos 75°",
-    "conta": "cos 75° = (√6 − √2)/4 ≈ 1/4",
+    "conta": "cos 75° = (√6 − √2)/4 = 0,25",
     "porque": "cos(45° + 30°) = cos45°·cos30° − sen45°·sen30° = (√6 − √2)/4. Com √6 = 2,4 e √2 = 1,4, fica 1/4 = 0,25.",
     "tipo": "calcular"
    },
@@ -57,14 +69,14 @@
     "tipo": "calcular"
    },
    {
-    "faz": "Calcule BC",
+    "faz": "Calcule BC e ligue à alternativa",
     "conta": "BC² = 36 + 16 − 12 = 40",
-    "porque": "BC = √40 = 2√10 = 2 × 3,2 = 6,4. O valor √10 = 3,2 foi dado no enunciado.",
+    "porque": "BC = √40 = 2√10 = 2 × 3,2 = 6,4. O valor √10 = 3,2 foi dado no enunciado. Isso corresponde à alternativa C.",
     "tipo": "concluir"
    }
   ],
   "resposta": "Alternativa C: BC = 2√10 ≈ 6,4 cm.",
-  "checagem": "Use o valor exato cos 75° ≈ 0,2588: BC² = 52 − 48 × 0,2588 ≈ 39,6 e BC ≈ 6,3. Esse valor também fica mais perto de 6,4 do que de 5,9 ou 6,9. Outra checagem: BC fica entre AB − AC = 2 e AB + AC = 10, e 6,4 está nesse intervalo.",
+  "checagem": "Por outro caminho (altura): AH = 4 × 0,25 = 1 e CH² = 16 − 1 = 15. Então HB = 6 − 1 = 5 e BC² = 25 + 15 = 40. Fecha com 6,4.",
   "erradas": {
    "A": "5,4 não confere: 5,4² = 29,16, mas a lei dos cossenos dá BC² = 52 − 12 = 40. Para chegar a 29,16 seria preciso cos 75° ≈ 0,48, mas o valor correto é 0,25.",
    "B": "5,9 não confere: 5,9² = 34,81, bem abaixo dos 40 que a lei dos cossenos dá com cos 75° = 0,25.",
@@ -96,23 +108,39 @@
   },
   {
    "linha": "DÂC = 105°",
-   "nota": "faça a conta: 180 − 75 = 105"
+   "nota": "180 − 75 = 105"
   },
   {
-   "linha": "CÂB = 180° − 105° = 75°",
+   "linha": "CÂB = 180° − 105°",
    "nota": "D, A, B alinhados: ângulo raso"
+  },
+  {
+   "linha": "CÂB = 75°",
+   "nota": "ângulo entre AB e AC"
   },
   {
    "linha": "cos 75° = cos(45° + 30°)",
    "nota": "decomponha em ângulos notáveis"
   },
   {
-   "linha": "cos 75° = (√6 − √2)/4",
-   "nota": "cos45°·cos30° − sen45°·sen30°"
+   "linha": "cos 75° = cos45°·cos30° − sen45°·sen30°",
+   "nota": "fórmula da soma"
   },
   {
-   "linha": "cos 75° ≈ (2,4 − 1,4)/4 = 0,25",
-   "nota": "use os valores dados no enunciado"
+   "linha": "cos 75° = (√2/2)(√3/2) − (√2/2)(1/2)",
+   "nota": "valores dos ângulos notáveis"
+  },
+  {
+   "linha": "cos 75° = (√6 − √2)/4",
+   "nota": "√2·√3 = √6"
+  },
+  {
+   "linha": "cos 75° ≈ (2,4 − 1,4)/4",
+   "nota": "use os valores do enunciado"
+  },
+  {
+   "linha": "cos 75° ≈ 1/4 = 0,25",
+   "nota": "1 ÷ 4"
   },
   {
    "linha": "BC² = 6² + 4² − 2·6·4·0,25",
@@ -127,8 +155,12 @@
    "nota": "36 + 16 − 12 = 40"
   },
   {
-   "linha": "BC = √40 = 2√10",
-   "nota": "40 = 4 × 10, e √4 = 2"
+   "linha": "BC = √40 = √(4·10)",
+   "nota": "40 = 4 × 10"
+  },
+  {
+   "linha": "BC = 2√10",
+   "nota": "√4 = 2"
   },
   {
    "linha": "BC = 2 × 3,2 = 6,4",
@@ -149,11 +181,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -182,6 +216,132 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "C"
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.quadro",
+    "depois": [
+     {
+      "linha": "DÂC = 180° − 60° − 15°",
+      "nota": "soma dos ângulos do triângulo ACD"
+     },
+     {
+      "linha": "DÂC = 105°",
+      "nota": "180 − 75 = 105"
+     },
+     {
+      "linha": "CÂB = 180° − 105°",
+      "nota": "D, A, B alinhados: ângulo raso"
+     },
+     {
+      "linha": "CÂB = 75°",
+      "nota": "ângulo entre AB e AC"
+     },
+     {
+      "linha": "cos 75° = cos(45° + 30°)",
+      "nota": "decomponha em ângulos notáveis"
+     },
+     {
+      "linha": "cos 75° = cos45°·cos30° − sen45°·sen30°",
+      "nota": "fórmula da soma"
+     },
+     {
+      "linha": "cos 75° = (√2/2)(√3/2) − (√2/2)(1/2)",
+      "nota": "valores dos ângulos notáveis"
+     },
+     {
+      "linha": "cos 75° = (√6 − √2)/4",
+      "nota": "√2·√3 = √6"
+     },
+     {
+      "linha": "cos 75° ≈ (2,4 − 1,4)/4",
+      "nota": "use os valores do enunciado"
+     },
+     {
+      "linha": "cos 75° ≈ 1/4 = 0,25",
+      "nota": "1 ÷ 4"
+     },
+     {
+      "linha": "BC² = 6² + 4² − 2·6·4·0,25",
+      "nota": "lei dos cossenos em ABC"
+     },
+     {
+      "linha": "BC² = 36 + 16 − 12",
+      "nota": "2·6·4·0,25 = 12"
+     },
+     {
+      "linha": "BC² = 40",
+      "nota": "36 + 16 − 12 = 40"
+     },
+     {
+      "linha": "BC = √40 = √(4·10)",
+      "nota": "40 = 4 × 10"
+     },
+     {
+      "linha": "BC = 2√10",
+      "nota": "√4 = 2"
+     },
+     {
+      "linha": "BC = 2 × 3,2 = 6,4",
+      "nota": "use √10 = 3,2"
+     }
+    ],
+    "motivo": "Quadro com um passo por linha, sem pular a conta do cosseno, e com a nota errada da linha 2 corrigida."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "CÂB",
+      "ângulo no vértice A, entre as barras AC e AB"
+     ],
+     [
+      "DÂC",
+      "ângulo no vértice A, entre as barras AD e AC"
+     ],
+     [
+      "lei dos cossenos",
+      "relação que dá um lado do triângulo quando se conhecem os outros dois e o ângulo entre eles"
+     ],
+     [
+      "cos, sen",
+      "cosseno e seno do ângulo, números que dependem só da abertura dele"
+     ],
+     [
+      "ângulo raso",
+      "ângulo de 180°, formado por dois lados sobre a mesma reta"
+     ],
+     [
+      "≈",
+      "aproximadamente igual"
+     ]
+    ],
+    "motivo": "Explicar cos, sen, ângulo raso e ≈, usados na resolução."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "cos 75° = (√6 − √2)/4 = 0,25",
+    "motivo": "Evita o ≈ ambíguo; o valor 0,25 vem dos números do enunciado."
+   },
+   {
+    "campo": "resolucao.passos[4].faz",
+    "depois": "Calcule BC e ligue à alternativa",
+    "motivo": "O passo concluir precisa dizer a ligação com a letra."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "BC = √40 = 2√10 = 2 × 3,2 = 6,4. O valor √10 = 3,2 foi dado no enunciado. Isso corresponde à alternativa C.",
+    "motivo": "Liga o resultado à letra."
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Por outro caminho (altura): AH = 4 × 0,25 = 1 e CH² = 16 − 1 = 15. Então HB = 6 − 1 = 5 e BC² = 25 + 15 = 40. Fecha com 6,4.",
+    "motivo": "Checagem por outro caminho, sem depender de cos 75° exato e mais simples para o aluno."
+   }
+  ],
+  "didatica_alertas": [
+   "Classificação do banco diz tema M09/M09.1, mas a resolução usa M10/M10.3 (lei dos cossenos); vale revisar a classificação."
+  ],
+  "didatica_ok": true
  }
 }

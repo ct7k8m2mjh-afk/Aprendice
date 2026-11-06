@@ -10,11 +10,11 @@
  "divergencia": "",
  "resolucao": {
   "antes": {
-   "texto": "A peça é um cone inteiro de resina, mas dentro dele há um vazio (a bolha de ar). A resina de verdade é o volume do cone menos o volume da bolha. Calcule cada volume separadamente e subtraia. Em todas as contas o π aparece como fator: deixe-o escrito até o fim.",
+   "texto": "A peça é um cone inteiro de resina, mas dentro dele há um vazio (a bolha de ar). A resina de verdade é o volume do cone menos o volume da bolha. Calcule cada volume separadamente e subtraia. O π aparece nos dois volumes: deixe-o escrito até o fim. As alternativas trazem só o número que multiplica π.",
    "formulas": [
-    "volume do cone = 1/3 × π × r² × h",
-    "volume da esfera = 4/3 × π × r³",
-    "volume da semiesfera = metade da esfera = 2/3 × π × r³",
+    "volume do cone = (1/3) × π × r² × h",
+    "volume da esfera = (4/3) × π × r³",
+    "volume da semiesfera = metade da esfera = (2/3) × π × r³",
     "resina = volume do cone − volume da bolha"
    ],
    "simbolos": [
@@ -36,7 +36,7 @@
     ]
    ]
   },
-  "pista": "A bolha ocupa espaço onde não há resina. Que volume você precisa tirar de qual?",
+  "pista": "A bolha é ar, não resina. Que volume você precisa tirar de qual?",
   "passos": [
    {
     "faz": "Diga o que se pede",
@@ -47,7 +47,7 @@
    {
     "faz": "Calcule o volume do cone",
     "conta": "V = 1/3 × π × 6² × 18",
-    "porque": "Dados do enunciado: raio da base 6 cm e altura 18 cm. Primeiro 6² = 36; depois 1/3 de 18 é 6.",
+    "porque": "Dados do enunciado: raio da base 6 cm e altura 18 cm. Primeiro 6² = 36. Depois, um terço de 18 é 6.",
     "tipo": "calcular"
    },
    {
@@ -65,7 +65,7 @@
    {
     "faz": "Subtraia a bolha do cone",
     "conta": "216π − 18π = 198π cm³",
-    "porque": "Mesmo fator π nos dois volumes: basta subtrair 216 − 18 = 198. O número 198 está na alternativa B.",
+    "porque": "Os dois volumes têm o fator π, então basta subtrair os números: 216 − 18 = 198. Resina: 198π cm³. As alternativas trazem só o 198, que é a B.",
     "tipo": "concluir"
    }
   ],
@@ -77,7 +77,7 @@
    "D": "216 é o volume do cone inteiro, sem descontar a bolha. Mas a bolha é ar, não resina; falta subtrair 18π.",
    "E": "234 sai de somar a bolha ao cone: 216 + 18 = 234. A bolha é um vazio dentro do cone e reduz a resina, então se subtrai."
   },
-  "armadilha": "Esquecer que a bolha é vazio e que se subtrai (ou somar, ou parar no volume do cone), e errar o volume da semiesfera (esfera inteira ou r²).",
+  "armadilha": "Tratar a bolha como resina (somar ou esquecer de subtrair) e errar o volume da semiesfera (usar a esfera inteira ou r² em vez de r³).",
   "alerta": "As alternativas aparecem sem o π: o volume correto é 198π cm³ e as opções trazem só o coeficiente de π. Em cm³, 198π ≈ 622 cm³, valor que não aparece em nenhuma alternativa. A única que bate com 198π é a B.",
   "essencial": {
    "pede": "O volume de resina da peça: cone menos a bolha em forma de semiesfera.",
@@ -147,11 +147,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -168,6 +170,45 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "B"
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "A peça é um cone inteiro de resina, mas dentro dele há um vazio (a bolha de ar). A resina de verdade é o volume do cone menos o volume da bolha. Calcule cada volume separadamente e subtraia. O π aparece nos dois volumes: deixe-o escrito até o fim. As alternativas trazem só o número que multiplica π.",
+    "motivo": "Avisar desde o início que as alternativas omitem o π, para o aluno não estranhar o resultado 198π."
+   },
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "volume do cone = (1/3) × π × r² × h",
+     "volume da esfera = (4/3) × π × r³",
+     "volume da semiesfera = metade da esfera = (2/3) × π × r³",
+     "resina = volume do cone − volume da bolha"
+    ],
+    "motivo": "Parênteses deixam claro que a fração multiplica todo o resto."
+   },
+   {
+    "campo": "resolucao.pista",
+    "depois": "A bolha é ar, não resina. Que volume você precisa tirar de qual?",
+    "motivo": "Frase mais direta, sem entregar a conta."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "Dados do enunciado: raio da base 6 cm e altura 18 cm. Primeiro 6² = 36. Depois, um terço de 18 é 6.",
+    "motivo": "Frases curtas e sem ambiguidade."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "Os dois volumes têm o fator π, então basta subtrair os números: 216 − 18 = 198. Resina: 198π cm³. As alternativas trazem só o 198, que é a B.",
+    "motivo": "Explicar que a alternativa mostra só o coeficiente de π."
+   },
+   {
+    "campo": "resolucao.armadilha",
+    "depois": "Tratar a bolha como resina (somar ou esquecer de subtrair) e errar o volume da semiesfera (usar a esfera inteira ou r² em vez de r³).",
+    "motivo": "Frase original estava truncada e confusa."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

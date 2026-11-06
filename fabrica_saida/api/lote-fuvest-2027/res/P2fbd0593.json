@@ -17,23 +17,35 @@
    "simbolos": [
     [
      "autossômica",
-     "o gene está num cromossomo não sexual (do par 1 ao 22 na espécie humana)"
+     "o gene está num cromossomo que não é sexual (X ou Y). Na espécie humana são os pares 1 a 22"
     ],
     [
      "dominante",
-     "o alelo se manifesta mesmo em heterozigose (Aa)"
+     "o alelo aparece mesmo com apenas uma cópia (Aa)"
+    ],
+    [
+     "alelo",
+     "cada versão de um gene. Aqui, A é o alterado e a é o normal"
     ],
     [
      "heterozigótico",
-     "com dois alelos diferentes do mesmo gene"
+     "com dois alelos diferentes do mesmo gene (Aa)"
     ],
     [
      "homozigose",
-     "dois alelos iguais do mesmo gene"
+     "dois alelos iguais do mesmo gene (AA ou aa)"
     ],
     [
      "mutação patogênica",
-     "alteração no DNA que causa doença"
+     "mudança no DNA que causa doença"
+    ],
+    [
+     "mutação nova",
+     "mudança no DNA que surgiu na pessoa, e não foi herdada dos pais"
+    ],
+    [
+     "gameta",
+     "célula reprodutiva (óvulo ou espermatozoide), com um só alelo de cada gene"
     ]
    ]
   },
@@ -54,7 +66,7 @@
    {
     "faz": "Defina o genótipo dos pais",
     "conta": "\"única pessoa com a síndrome\" → pais aa",
-    "porque": "Numa doença dominante, quem tem o alelo é afetado. Pais sem a síndrome não têm o alelo, então a mutação surgiu num gameta de um dos pais ou no início do desenvolvimento de Gaten.",
+    "porque": "Na doença dominante, quem tem o alelo A é afetado. Pais sem a síndrome não têm A, então são aa. A mutação surgiu num gameta de um deles ou no começo do desenvolvimento de Gaten.",
     "tipo": "concluir"
    },
    {
@@ -66,7 +78,7 @@
    {
     "faz": "Compare com as alternativas",
     "conta": "C: 50% para filhos e filhas, gene não sexual",
-    "porque": "A (X), B (Y), D (pais heterozigotos, exige homozigose) e E (chance nula) contradizem os passos anteriores. A C acerta o 'pelo menos 50%': com parceira aa a chance é 50%; se a parceira também fosse afetada (Aa), subiria para 75%.",
+    "porque": "A (gene no X), B (gene no Y), D (exige homozigose) e E (chance nula) contradizem os passos anteriores. C diz 'pelo menos 50%': com parceira aa são 50%. Se a parceira fosse afetada (Aa), subiria para 75%.",
     "tipo": "concluir"
    }
   ],
@@ -74,7 +86,7 @@
   "checagem": "Cruzamento Aa × aa: dois dos quatro resultados são Aa, ou seja, 50%. Se o gene fosse do X, o pai passaria o X a todas as filhas (100%) e o Y a todos os filhos; o texto diz autossômica, então não é o caso.",
   "erradas": {
    "A": "O texto diz herança autossômica, ou seja, o gene não está no X. Além disso, se estivesse no X de um pai afetado, 100% das filhas receberiam o X dele, e não 50%.",
-   "B": "O texto diz herança autossômica, então o gene não está no Y. Se estivesse no Y, todos os filhos homens seriam afetados, mas isso não é o que o texto descreve.",
+   "B": "O texto diz herança autossômica, então o gene não está no Y. Além disso, Gaten é afetado e os pais não, então a mutação nem veio de um pai afetado pelo Y. Em gene do Y, todos os filhos homens seriam afetados e nenhuma filha, o que não é o caso aqui.",
    "D": "Inverte a dominância: numa doença dominante um único alelo já causa a síndrome. Pais heterozigotos seriam afetados, mas o texto diz que Gaten é o único afetado da família.",
    "E": "Ser heterozigoto não anula a chance para os filhos homens. Por ser autossômica, a herança independe do sexo: Gaten passa o alelo a 50% dos filhos, homens ou mulheres."
   },
@@ -102,7 +114,7 @@
    "nota": "caso mais simples: sem o alelo"
   },
   {
-   "linha": "Gametas: A, a  ×  a, a",
+   "linha": "Gametas: A ou a  ×  só a",
    "nota": "Gaten faz 1/2 A e 1/2 a"
   },
   {
@@ -124,11 +136,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -163,6 +177,68 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "C"
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "autossômica",
+      "o gene está num cromossomo que não é sexual (X ou Y). Na espécie humana são os pares 1 a 22"
+     ],
+     [
+      "dominante",
+      "o alelo aparece mesmo com apenas uma cópia (Aa)"
+     ],
+     [
+      "alelo",
+      "cada versão de um gene. Aqui, A é o alterado e a é o normal"
+     ],
+     [
+      "heterozigótico",
+      "com dois alelos diferentes do mesmo gene (Aa)"
+     ],
+     [
+      "homozigose",
+      "dois alelos iguais do mesmo gene (AA ou aa)"
+     ],
+     [
+      "mutação patogênica",
+      "mudança no DNA que causa doença"
+     ],
+     [
+      "mutação nova",
+      "mudança no DNA que surgiu na pessoa, e não foi herdada dos pais"
+     ],
+     [
+      "gameta",
+      "célula reprodutiva (óvulo ou espermatozoide), com um só alelo de cada gene"
+     ]
+    ],
+    "motivo": "Incluídos alelo, gameta e mutação nova, que aparecem nos passos. Frases simplificadas."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Na doença dominante, quem tem o alelo A é afetado. Pais sem a síndrome não têm A, então são aa. A mutação surgiu num gameta de um deles ou no começo do desenvolvimento de Gaten.",
+    "motivo": "Frases mais curtas e diretas."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "A (gene no X), B (gene no Y), D (exige homozigose) e E (chance nula) contradizem os passos anteriores. C diz 'pelo menos 50%': com parceira aa são 50%. Se a parceira fosse afetada (Aa), subiria para 75%.",
+    "motivo": "Texto mais claro e sem aspas confusas."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "O texto diz herança autossômica, então o gene não está no Y. Além disso, Gaten é afetado e os pais não, então a mutação nem veio de um pai afetado pelo Y. Em gene do Y, todos os filhos homens seriam afetados e nenhuma filha, o que não é o caso aqui.",
+    "motivo": "Explica o que faltou: autossômica elimina X e Y."
+   },
+   {
+    "campo": "resolucao.quadro[2].linha",
+    "depois": "Gametas: A ou a  ×  só a",
+    "motivo": "Mais claro: Gaten faz dois tipos de gameta; a parceira aa faz só um."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

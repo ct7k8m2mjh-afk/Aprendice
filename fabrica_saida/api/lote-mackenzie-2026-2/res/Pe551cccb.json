@@ -8,7 +8,7 @@
  "conceito": "Solubilidade em duas temperaturas: massa de sal que precipita quando a solução saturada é resfriada.",
  "resolucao": {
   "antes": {
-   "texto": "Solubilidade é a massa máxima de sal que se dissolve em certa quantidade de água. Se a temperatura cai e a solubilidade diminui, o sal que passa do limite não fica mais dissolvido e vai para o fundo. A massa precipitada é a diferença entre o que a água continha a 100 °C e o que ela aguenta a 20 °C. A água é 250 mL, não 100 mL: é preciso escalar os dados.",
+   "texto": "Solubilidade é a massa máxima de sal que se dissolve em certa quantidade de água. Ao esfriar, a água passa a aguentar menos sal. O que passa do limite sai da solução e cai no fundo. A massa que cai é a diferença entre o sal dissolvido a 100 °C e o que cabe a 20 °C. Atenção: os dados são para 100 mL de água, mas o frasco tem 250 mL. Esse ajuste é o trabalho real da questão.",
    "formulas": [
     "massa dissolvida = solubilidade × (volume de água ÷ 100 mL)",
     "massa precipitada = massa a 100 °C − massa que cabe a 20 °C"
@@ -16,7 +16,7 @@
    "simbolos": [
     [
      "solução saturada",
-     "solução que já tem a quantidade máxima de soluto dissolvido naquela temperatura"
+     "solução que já tem a quantidade máxima de sal dissolvido naquela temperatura"
     ],
     [
      "precipitar",
@@ -25,6 +25,10 @@
     [
      "g/100 mL",
      "gramas de sal que se dissolvem em cada 100 mL de água"
+    ],
+    [
+     "porção",
+     "cada 100 mL de água; é a unidade em que a solubilidade é dada"
     ]
    ]
   },
@@ -38,13 +42,13 @@
    },
    {
     "faz": "Calcule o sal dissolvido a 100 °C",
-    "conta": "39 g × 2,5 = 97,5 g",
+    "conta": "39 × 2,5 = 97,5 g",
     "porque": "250 mL são 2,5 porções de 100 mL, e cada porção dissolve 39 g.",
     "tipo": "calcular"
    },
    {
     "faz": "Calcule o sal que cabe a 20 °C",
-    "conta": "36 g × 2,5 = 90 g",
+    "conta": "36 × 2,5 = 90 g",
     "porque": "Mesma água (2,5 porções), agora com solubilidade 36 g por porção.",
     "tipo": "calcular"
    },
@@ -65,9 +69,9 @@
   "checagem": "Faça por 100 mL: 39 − 36 = 3 g precipitam. Para 250 mL, 3 × 2,5 = 7,5 g. Dá o mesmo valor.",
   "erradas": {
    "A": "3,0 g é a diferença para só 100 mL (39 − 36). O frasco tem 250 mL, então falta multiplicar por 2,5.",
-   "B": "4,5 g não confere: seria 3 × 1,5. A água é 250 mL, ou seja, 2,5 porções de 100 mL, não 1,5; testando 3 × 2,5 sai 7,5 g.",
-   "C": "6,0 g não confere: para 250 mL de água, 39 × 2,5 = 97,5 g dissolvidos a 100 °C e 36 × 2,5 = 90 g a 20 °C. A diferença é 7,5 g, e não 6,0 g; 6,0 g seria o precipitado em 200 mL.",
-   "E": "9,0 g não confere: o fator é 250 ÷ 100 = 2,5, e 3 g × 2,5 = 7,5 g. Seriam 9,0 g só com 300 mL de água (3 × 3 g)."
+   "B": "4,5 g sai de usar o fator 1,5 em vez de 2,5: 3 × 1,5 = 4,5 g. Mas 250 mL são 2,5 porções de 100 mL, então 3 × 2,5 = 7,5 g.",
+   "C": "6,0 g sai de 3 × 2 = 6,0 g: usar 2 porções (200 mL) em vez de 2,5. O frasco tem 250 mL, então o fator é 2,5 e o resultado, 7,5 g.",
+   "E": "9,0 g sai de 3 × 3 = 9,0 g: usar 3 porções (300 mL). Ao ler 250 mL, o fator correto é 2,5, e 3 × 2,5 = 7,5 g."
   },
   "armadilha": "Esquecer que o enunciado dá solubilidade para 100 mL e o frasco tem 250 mL, parando em 3,0 g.",
   "alerta": "",
@@ -128,11 +132,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -149,6 +155,62 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "D"
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Solubilidade é a massa máxima de sal que se dissolve em certa quantidade de água. Ao esfriar, a água passa a aguentar menos sal. O que passa do limite sai da solução e cai no fundo. A massa que cai é a diferença entre o sal dissolvido a 100 °C e o que cabe a 20 °C. Atenção: os dados são para 100 mL de água, mas o frasco tem 250 mL. Esse ajuste é o trabalho real da questão.",
+    "motivo": "Frases mais curtas e diretas; destaca a conversão escondida."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "solução saturada",
+      "solução que já tem a quantidade máxima de sal dissolvido naquela temperatura"
+     ],
+     [
+      "precipitar",
+      "sair da solução e se depositar no fundo como sólido"
+     ],
+     [
+      "g/100 mL",
+      "gramas de sal que se dissolvem em cada 100 mL de água"
+     ],
+     [
+      "porção",
+      "cada 100 mL de água; é a unidade em que a solubilidade é dada"
+     ]
+    ],
+    "motivo": "O termo 'porção' é usado nos passos e precisava ser definido."
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "39 × 2,5 = 97,5 g",
+    "motivo": "Cabe na tela do celular sem 'g' duplicado."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "36 × 2,5 = 90 g",
+    "motivo": "Cabe na tela do celular."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "4,5 g sai de usar o fator 1,5 em vez de 2,5: 3 × 1,5 = 4,5 g. Mas 250 mL são 2,5 porções de 100 mL, então 3 × 2,5 = 7,5 g.",
+    "motivo": "Mostra o que faltou no raciocínio de quem marcou B, sem frase confusa."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "6,0 g sai de 3 × 2 = 6,0 g: usar 2 porções (200 mL) em vez de 2,5. O frasco tem 250 mL, então o fator é 2,5 e o resultado, 7,5 g.",
+    "motivo": "Texto mais curto; diz o que o aluno errou."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "9,0 g sai de 3 × 3 = 9,0 g: usar 3 porções (300 mL). Ao ler 250 mL, o fator correto é 2,5, e 3 × 2,5 = 7,5 g.",
+    "motivo": "Texto mais curto; diz o que o aluno errou."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

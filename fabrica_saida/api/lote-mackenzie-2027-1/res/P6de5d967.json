@@ -11,7 +11,7 @@
    "texto": "Os dois veículos saem juntos e chegam juntos. Logo, o tempo total de viagem é igual para A e para B. A anda o tempo todo. B anda mais rápido, mas gasta 20 minutos parado. O tempo que B passa em movimento é, portanto, 20 minutos menor que o de A. O pedágio está em minutos e a velocidade em km/h, então converta 20 min para hora.",
    "formulas": [
     "v = d ÷ t, logo t = d ÷ v",
-    "20 min = 20 ÷ 60 h = 1/3 h",
+    "20 min = 20/60 h = 1/3 h",
     "20% maior: v_B = 1,2 × V"
    ],
    "simbolos": [
@@ -49,7 +49,7 @@
    },
    {
     "faz": "Calcule o tempo de B andando",
-    "conta": "180 ÷ (1,2V) = 150 ÷ V",
+    "conta": "t = 180/(1,2V) = 150/V",
     "porque": "180 ÷ 1,2 = 150. Andando mais rápido, B gasta menos tempo na estrada.",
     "tipo": "calcular"
    },
@@ -62,7 +62,7 @@
    {
     "faz": "Iguale os tempos e isole V",
     "conta": "180/V = 150/V + 1/3 → V = 90",
-    "porque": "A diferença 180/V − 150/V = 30/V é justamente a parada de 1/3 h. Então V = 30 × 3 = 90 km/h.",
+    "porque": "Passe 150/V para o outro lado: 180/V − 150/V = 30/V. Essa diferença é a parada de 1/3 h. Então 30/V = 1/3 e V = 30 × 3 = 90 km/h.",
     "tipo": "concluir"
    }
   ],
@@ -146,7 +146,7 @@
   },
   {
    "linha": "V = 90 km/h",
-   "nota": "30 × 3 = 90"
+   "nota": "30 × 3 = 90 (km/h, pois 30 é km)"
   }
  ],
  "visual": {
@@ -163,11 +163,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -190,6 +192,46 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "C"
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "v = d ÷ t, logo t = d ÷ v",
+     "20 min = 20/60 h = 1/3 h",
+     "20% maior: v_B = 1,2 × V"
+    ],
+    "motivo": "Uniformiza a fração na notação do site (numerador/denominador) em vez de '÷' misturado com '/'."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "t = 180/(1,2V) = 150/V",
+    "motivo": "Cabe no celular e deixa claro que é o tempo de B andando, sem a parada."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "t_B = 150/V + 1/3",
+    "motivo": "Mantém o formato e liga o passo ao símbolo t_B."
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "180/V = 150/V + 1/3 → V = 90",
+    "motivo": "Mantido. Conta curta, no formato do site."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "Passe 150/V para o outro lado: 180/V − 150/V = 30/V. Essa diferença é a parada de 1/3 h. Então 30/V = 1/3 e V = 30 × 3 = 90 km/h.",
+    "motivo": "Mostra a passagem de isolar V, que antes estava pulada, em frases curtas."
+   },
+   {
+    "campo": "resolucao.quadro[8].nota",
+    "depois": "30 × 3 = 90 (km/h, pois 30 é km)",
+    "motivo": "Explica a unidade do resultado, que é um ponto de dúvida comum."
+   }
+  ],
+  "didatica_alertas": [
+   "A classificação no JSON da resolução (tema F01, conteúdo F01.2) difere da classificação atual da questão (F02, F02.1, nível 4). A questão é de velocidade média, então F01.2 parece correto; convém que a classificação do banco seja revisada."
+  ],
+  "didatica_ok": true
  }
 }

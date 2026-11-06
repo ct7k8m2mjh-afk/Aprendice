@@ -11,7 +11,7 @@
  "divergencia": "",
  "resolucao": {
   "antes": {
-   "texto": "O campo elétrico de uma carga positiva aponta se afastando dela. O de uma carga negativa aponta em direção a ela. O módulo vale k·|Q|/d². Como o triângulo é isósceles e retângulo em A, A fica à mesma distância das duas cargas. Então o campo de cada carga é proporcional ao módulo da carga, e a carga de −30 µC produz um campo 3 vezes maior.",
+   "texto": "O campo elétrico de uma carga positiva aponta se afastando dela. O de uma carga negativa aponta em direção a ela. O módulo vale k·|Q|/d². O triângulo é isósceles e retângulo em A, então A fica à mesma distância das duas cargas. Assim, o campo de cada carga é proporcional ao módulo da carga: a carga de −30 µC produz um campo 3 vezes maior que a de +10 µC.",
    "formulas": [
     "E = k·|Q| ÷ d²",
     "carga positiva: campo se afasta; carga negativa: campo se aproxima",
@@ -20,7 +20,7 @@
    "simbolos": [
     [
      "E",
-     "campo elétrico no ponto A, uma grandeza vetorial (tem direção e sentido)"
+     "campo elétrico no ponto A, uma grandeza vetorial (tem módulo, direção e sentido)"
     ],
     [
      "k",
@@ -33,10 +33,26 @@
     [
      "µC",
      "microcoulomb, 10⁻⁶ C"
+    ],
+    [
+     "isósceles",
+     "triângulo com dois lados iguais; aqui, os dois catetos"
+    ],
+    [
+     "cateto",
+     "cada lado que forma o ângulo reto (AQ1 e AQ2)"
+    ],
+    [
+     "componente",
+     "parte do vetor ao longo de um eixo (horizontal ou vertical)"
+    ],
+    [
+     "cos45° = sen45°",
+     "valem o mesmo número (≈ 0,71); por isso aparecem iguais nas contas"
     ]
    ]
   },
-  "pista": "Desenhe o campo de cada carga em A, escolhendo se ele sai da carga ou vai em direção a ela. Depois compare o tamanho das duas setas.",
+  "pista": "Desenhe em A o campo de cada carga: ele sai da carga positiva e vai em direção à negativa. Depois compare o tamanho das duas setas e veja para onde cada uma aponta na horizontal e na vertical.",
   "passos": [
    {
     "faz": "Localize as cargas e A",
@@ -64,14 +80,14 @@
    },
    {
     "faz": "Decomponha em horizontal e vertical",
-    "conta": "x: E1 cos45° + 3E1 cos45° = 4E1 cos45°",
+    "conta": "x: E1·c + 3E1·c = 4E1·c",
     "porque": "Os dois campos apontam para a direita, então as componentes horizontais somam.",
     "tipo": "calcular"
    },
    {
     "faz": "Some as componentes verticais e conclua",
-    "conta": "y: +E1 sen45° − 3E1 sen45° = −2E1 sen45°",
-    "porque": "O campo de E2 puxa para baixo e é maior. Sobra componente x para a direita (4) e componente y para baixo (2). A resultante aponta para a direita e para baixo, com inclinação de cerca de 27° abaixo da horizontal.",
+    "conta": "y: E1·c − 3E1·c = −2E1·c",
+    "porque": "O campo de E2 puxa para baixo e é maior, então a vertical resultante é para baixo (2). A horizontal é para a direita (4). A resultante aponta para a direita e para baixo, com inclinação de cerca de 27° abaixo da horizontal.",
     "tipo": "concluir"
    }
   ],
@@ -94,7 +110,7 @@
  "caminhos": [
   {
    "nome": "eixos com o ângulo reto em A",
-   "ideia": "Os campos E1 e E2 são perpendiculares, porque os catetos AQ1 e AQ2 formam 90° em A. Gire os eixos para ficarem ao longo dos catetos: as componentes são E1 = 1 e E2 = 3, e a resultante tem módulo √10 com inclinação definida por esses dois valores."
+   "ideia": "Os campos E1 e E2 são perpendiculares, porque os catetos AQ1 e AQ2 formam 90° em A. Use eixos ao longo dos catetos: as componentes valem E1 = 1 e E2 = 3 (em unidades de E1). A resultante tem módulo √10 e fica mais perto da direção de E2."
   }
  ],
  "quadro": [
@@ -134,11 +150,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -173,6 +191,78 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "B"
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "O campo elétrico de uma carga positiva aponta se afastando dela. O de uma carga negativa aponta em direção a ela. O módulo vale k·|Q|/d². O triângulo é isósceles e retângulo em A, então A fica à mesma distância das duas cargas. Assim, o campo de cada carga é proporcional ao módulo da carga: a carga de −30 µC produz um campo 3 vezes maior que a de +10 µC.",
+    "motivo": "Frases mais curtas e sem ambiguidade (o 'Então' ligava duas ideias)."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "E",
+      "campo elétrico no ponto A, uma grandeza vetorial (tem módulo, direção e sentido)"
+     ],
+     [
+      "k",
+      "constante eletrostática, a mesma para as duas cargas"
+     ],
+     [
+      "d",
+      "distância de A até cada carga, igual para as duas porque o triângulo é isósceles"
+     ],
+     [
+      "µC",
+      "microcoulomb, 10⁻⁶ C"
+     ],
+     [
+      "isósceles",
+      "triângulo com dois lados iguais; aqui, os dois catetos"
+     ],
+     [
+      "cateto",
+      "cada lado que forma o ângulo reto (AQ1 e AQ2)"
+     ],
+     [
+      "componente",
+      "parte do vetor ao longo de um eixo (horizontal ou vertical)"
+     ],
+     [
+      "cos45° = sen45°",
+      "valem o mesmo número (≈ 0,71); por isso aparecem iguais nas contas"
+     ]
+    ],
+    "motivo": "Termos técnicos (isósceles, cateto, componente, 45°) apareciam sem explicação."
+   },
+   {
+    "campo": "resolucao.pista",
+    "depois": "Desenhe em A o campo de cada carga: ele sai da carga positiva e vai em direção à negativa. Depois compare o tamanho das duas setas e veja para onde cada uma aponta na horizontal e na vertical.",
+    "motivo": "Mais clara sobre o primeiro movimento, sem entregar a resposta."
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "x: E1·c + 3E1·c = 4E1·c",
+    "motivo": "Alinha com o quadro (c = cos45°) e fica curta para o celular."
+   },
+   {
+    "campo": "resolucao.passos[5].conta",
+    "depois": "y: E1·c − 3E1·c = −2E1·c",
+    "motivo": "Mesma notação do quadro; evita sen45° solto sem explicação."
+   },
+   {
+    "campo": "resolucao.passos[5].porque",
+    "depois": "O campo de E2 puxa para baixo e é maior, então a vertical resultante é para baixo (2). A horizontal é para a direita (4). A resultante aponta para a direita e para baixo, com inclinação de cerca de 27° abaixo da horizontal.",
+    "motivo": "Frases mais curtas e claras sobre o que sobra em cada eixo."
+   },
+   {
+    "campo": "resolucao.caminhos[0].ideia",
+    "depois": "Os campos E1 e E2 são perpendiculares, porque os catetos AQ1 e AQ2 formam 90° em A. Use eixos ao longo dos catetos: as componentes valem E1 = 1 e E2 = 3 (em unidades de E1). A resultante tem módulo √10 e fica mais perto da direção de E2.",
+    "motivo": "Explica de modo direto e sem frase vaga."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

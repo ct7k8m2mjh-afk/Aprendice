@@ -37,19 +37,19 @@
   "passos": [
    {
     "faz": "Identifique as áreas do mapa",
-    "conta": "3 = MT (Cuiabá)",
+    "conta": "3 = MT (Cuiabá)\n2 = MS (Campo Grande)\n1 = GO + DF (Goiânia, Brasília)",
     "porque": "As capitais marcadas no mapa dão a pista. A área 3 é Mato Grosso, a 2 é Mato Grosso do Sul (Campo Grande) e a 1 é Goiás com o Distrito Federal (Brasília, Goiânia).",
     "tipo": "localizar"
    },
    {
     "faz": "Julgue população e densidade (A e C)",
-    "conta": "GO ≈ 7,1 mi; MT ≈ 3,7 mi",
-    "porque": "O estado mais populoso do Centro-Oeste é Goiás (Censo 2022), não Mato Grosso. Grande área não garante muita gente: MT tem cerca de 4 hab/km². Mato Grosso do Sul tem cerca de 8 hab/km², perto da menor densidade da região, e o DF tem a maior (cerca de 489 hab/km²).",
+    "conta": "GO ≈ 7,1 mi; MT ≈ 3,7 mi\nDF ≈ 489 hab/km²",
+    "porque": "Goiás é o estado mais populoso do Centro-Oeste (Censo 2022), não Mato Grosso. Área grande não garante muita gente: MT tem cerca de 4 hab/km². MS tem cerca de 8 hab/km². O DF tem a maior densidade da região.",
     "tipo": "comparar"
    },
    {
     "faz": "Julgue Pantanal e Senado (B e D)",
-    "conta": "Pantanal: entre 2 e 3; DF: 3 senadores",
+    "conta": "Pantanal: entre 3 e 2\nDF: 3 senadores",
     "porque": "O Pantanal fica no oeste de MT e de MS, no limite entre as áreas 3 e 2, e não entre 1 e 2. O DF não é estado e tem 3 senadores, como qualquer unidade da federação.",
     "tipo": "eliminar"
    },
@@ -69,10 +69,10 @@
   "resposta": "Alternativa E: a área 2 é Mato Grosso do Sul, que tem 79 municípios e faz fronteira com o Paraguai e com a Bolívia.",
   "checagem": "Pelo mapa, a área 2 fica encostada na borda cinza do lado oeste (países vizinhos) e vai até o extremo sul da região. Isso combina com uma fronteira dupla, Bolívia a oeste e Paraguai ao sul e sudoeste. As outras quatro letras têm erro verificável: A (população), B (local do Pantanal), C (densidade) e D (número de senadores).",
   "erradas": {
-   "A": "A área 3 é Mato Grosso, o maior estado em área, mas não o mais populoso. Goiás (cerca de 7,1 milhões em 2022) tem quase o dobro da população de MT (cerca de 3,7 milhões). Extensão territorial não gera população.",
+   "A": "A confunde grande com populoso. A área 3 é Mato Grosso, o maior estado em área, mas Goiás tem quase o dobro da população (cerca de 7,1 milhões contra 3,7 milhões em 2022). Extensão não gera população.",
    "B": "O Pantanal fica no oeste de Mato Grosso e de Mato Grosso do Sul, ou seja, no limite entre as áreas 3 e 2. Entre 1 (Goiás/DF) e 2 (MS) não está o Pantanal. A frase sobre a maior planície alagável do planeta é verdadeira, mas a localização está errada.",
-   "C": "O MS (área 2) tem cerca de 2,76 milhões de habitantes em 357 mil km², ou seja, cerca de 8 hab/km². A maior densidade do Centro-Oeste é a do Distrito Federal, com cerca de 2,8 milhões de habitantes em 5,8 mil km², aproximadamente 489 hab/km².",
-   "D": "O DF não é um estado, e sim uma unidade da federação, e o texto o chama de estado. Pela Constituição de 1988, o DF elege 3 senadores, como qualquer estado, independentemente de área ou população. A ideia de apenas um representante é falsa."
+   "C": "C confunde densidade com área. O MS (área 2) tem cerca de 8 hab/km² (2,76 mi ÷ 357 mil km²). A maior densidade é a do DF: cerca de 489 hab/km². Faltou dividir pessoas por área.",
+   "D": "D erra no número: o DF elege 3 senadores, como qualquer estado, qualquer que seja a área ou a população. Quem marcou D achou que área pequena dá menos representantes. O texto também chama o DF de estado, mas ele não é."
   },
   "armadilha": "Confundir estado populoso com estado grande, e aceitar uma afirmação com dado verdadeiro (Pantanal, Senado) sem checar o detalhe que a derruba.",
   "alerta": "",
@@ -136,11 +136,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -151,6 +153,47 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "E"
+  "fatos_resposta": "E",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[0].conta",
+    "depois": "3 = MT (Cuiabá)\n2 = MS (Campo Grande)\n1 = GO + DF (Goiânia, Brasília)",
+    "motivo": "A conta citava só a área 3; agora traz as três identificações, em linhas curtas, que o aluno copia."
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "GO ≈ 7,1 mi; MT ≈ 3,7 mi\nDF ≈ 489 hab/km²",
+    "motivo": "Inclui o dado que derruba a C, que estava só no porque."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "Goiás é o estado mais populoso do Centro-Oeste (Censo 2022), não Mato Grosso. Área grande não garante muita gente: MT tem cerca de 4 hab/km². MS tem cerca de 8 hab/km². O DF tem a maior densidade da região.",
+    "motivo": "Frases mais curtas e sem a expressão ambígua 'perto da menor densidade'."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "Pantanal: entre 3 e 2\nDF: 3 senadores",
+    "motivo": "Duas linhas curtas, para caber na tela do celular."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "D erra no número: o DF elege 3 senadores, como qualquer estado, qualquer que seja a área ou a população. Quem marcou D achou que área pequena dá menos representantes. O texto também chama o DF de estado, mas ele não é.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou D (o Senado tem representação igual) e tira a confusão da frase anterior."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "A confunde grande com populoso. A área 3 é Mato Grosso, o maior estado em área, mas Goiás tem quase o dobro da população (cerca de 7,1 milhões contra 3,7 milhões em 2022). Extensão não gera população.",
+    "motivo": "Deixa claro o que faltou no raciocínio: separar tamanho de população."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "C confunde densidade com área. O MS (área 2) tem cerca de 8 hab/km² (2,76 mi ÷ 357 mil km²). A maior densidade é a do DF: cerca de 489 hab/km². Faltou dividir pessoas por área.",
+    "motivo": "Mostra o que faltou: calcular a densidade em vez de supor."
+   }
+  ],
+  "didatica_alertas": [
+   "A alternativa D diz que o DF 'se tornou estado em 1960' (na verdade, Brasília foi inaugurada em 1960 e o DF nunca foi estado). A alternativa continua falsa, mas o corretor de fatos pode citar isso. A resolução já aponta que o DF não é estado."
+  ],
+  "didatica_ok": true
  }
 }

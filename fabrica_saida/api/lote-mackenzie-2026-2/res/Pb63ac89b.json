@@ -8,9 +8,9 @@
  "conceito": "Calcular a diferença de hora entre a Itália (UTC+1) e São Paulo (UTC−3) para saber a que horas se assiste a uma transmissão ao vivo.",
  "resolucao": {
   "antes": {
-   "texto": "UTC é a hora de referência mundial (a de Greenwich). Cada fuso indica quantas horas o relógio de um lugar está à frente (+) ou atrás (−) dela. Para passar a hora de um lugar a outro, veja a diferença entre os dois fusos. O enunciado já dá o da Itália: UTC+1. O de São Paulo o aluno precisa lembrar: Brasília está em UTC−3. Em 15 de fevereiro, nenhum dos dois países usa horário de verão: a Itália só o adota de março a outubro, e o Brasil o aboliu em 2019.",
+   "texto": "UTC é a hora de referência mundial, a de Greenwich. Cada fuso diz quantas horas o relógio do lugar está à frente (+) ou atrás (−) dela. Para passar a hora de um lugar a outro, veja a diferença entre os dois fusos. O enunciado dá o da Itália: UTC+1. O de São Paulo você precisa lembrar: UTC−3, o mesmo de Brasília. Em 15 de fevereiro nenhum dos dois países usa horário de verão: a Itália o adota só de março a outubro, e o Brasil o aboliu em 2019.",
    "formulas": [
-    "diferença = fuso do 1º lugar − fuso do 2º lugar",
+    "diferença = fuso da Itália − fuso de São Paulo",
     "lugar a leste tem hora adiantada; lugar a oeste tem hora atrasada",
     "hora em São Paulo = hora na Itália − diferença"
    ],
@@ -33,7 +33,7 @@
     ]
    ]
   },
-  "pista": "Coloque os dois fusos na mesma régua, a partir de UTC 0, e veja quantas horas separam um do outro. Em que lado de Greenwich fica cada lugar?",
+  "pista": "Coloque os dois fusos na mesma régua, a partir de UTC 0. Cada lugar fica de um lado de Greenwich: veja quantas horas separam um do outro.",
   "passos": [
    {
     "faz": "Traduza o que se pede",
@@ -49,8 +49,8 @@
    },
    {
     "faz": "Calcule a diferença entre eles",
-    "conta": "1 − (−3) = 4 horas",
-    "porque": "A Itália está 1 h à frente de Greenwich e São Paulo 3 h atrás. Somando as duas distâncias, a Itália está 4 h adiantada.",
+    "conta": "1 − (−3) = 1 + 3 = 4 h",
+    "porque": "A Itália está 1 h à frente de Greenwich e São Paulo 3 h atrás. Os dois ficam em lados opostos, então as distâncias se somam: 4 h.",
     "tipo": "calcular"
    },
    {
@@ -69,9 +69,9 @@
   "resposta": "Alternativa B: com 4 horas de diferença, a prova das 10h30 na Itália foi vista a partir das 6h30 em São Paulo.",
   "checagem": "Passe por Greenwich: 10h30 na Itália (UTC+1) = 9h30 em UTC. De UTC a São Paulo (UTC−3) subtraem-se 3 h: 9h30 − 3h = 6h30. O resultado é o mesmo.",
   "erradas": {
-   "A": "5h30 supõe 5 h de diferença, o que exigiria São Paulo em UTC−4. Mas São Paulo está em UTC−3 e a Itália em UTC+1 (diferença de 4 h). UTC−4 é o fuso do Amazonas, não o de São Paulo.",
+   "A": "5h30 supõe 5 h de diferença. Isso exigiria São Paulo em UTC−4, mas ele está em UTC−3. A diferença real é 4 h (1 + 3).",
    "C": "7h30 sai de 10h30 − 3h: usa só o fuso de São Paulo (UTC−3) e ignora o +1 da Itália. Isso vale se a Itália estivesse em UTC 0, mas ela está 1 h à frente de Greenwich.",
-   "D": "8h30 sai de 10h30 − 2h, com 2 = 3 − 1. Quem errou subtraiu os dois fusos como se estivessem do mesmo lado de Greenwich. Como a Itália está a leste (+1) e São Paulo a oeste (−3), as distâncias se somam: 1 + 3 = 4.",
+   "D": "8h30 sai de 10h30 − 2h, com 2 = 3 − 1. Quem marcou subtraiu os fusos como se estivessem do mesmo lado de Greenwich. A Itália é +1 e São Paulo é −3: ficam em lados opostos e somam 1 + 3 = 4.",
    "E": "9h30 sai de 10h30 − 1h: só leva a hora italiana até Greenwich (UTC). Falta ainda atrasar mais 3 h para chegar a São Paulo."
   },
   "armadilha": "Subtrair só um dos fusos (9h30 ou 7h30) ou subtrair os fusos como se estivessem do mesmo lado de Greenwich, em vez de somar 1 + 3 = 4 h.",
@@ -103,7 +103,11 @@
   },
   {
    "linha": "dif = 1 − (−3)",
-   "nota": "lados opostos de Greenwich: as distâncias se somam"
+   "nota": "menos com menos vira mais"
+  },
+  {
+   "linha": "dif = 1 + 3",
+   "nota": "lados opostos de Greenwich: somam"
   },
   {
    "linha": "dif = 4 h",
@@ -111,11 +115,11 @@
   },
   {
    "linha": "10h30 − 4h",
-   "nota": "São Paulo fica a oeste, então o relógio é menor"
+   "nota": "São Paulo está a oeste: relógio menor"
   },
   {
    "linha": "= 6h30",
-   "nota": "resposta: alternativa b"
+   "nota": "resposta: alternativa B"
   }
  ],
  "visual": {
@@ -132,11 +136,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -147,6 +153,83 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "B"
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "UTC é a hora de referência mundial, a de Greenwich. Cada fuso diz quantas horas o relógio do lugar está à frente (+) ou atrás (−) dela. Para passar a hora de um lugar a outro, veja a diferença entre os dois fusos. O enunciado dá o da Itália: UTC+1. O de São Paulo você precisa lembrar: UTC−3, o mesmo de Brasília. Em 15 de fevereiro nenhum dos dois países usa horário de verão: a Itália o adota só de março a outubro, e o Brasil o aboliu em 2019.",
+    "motivo": "Frases mais curtas e voz direta, sem 'o aluno'."
+   },
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "diferença = fuso da Itália − fuso de São Paulo",
+     "lugar a leste tem hora adiantada; lugar a oeste tem hora atrasada",
+     "hora em São Paulo = hora na Itália − diferença"
+    ],
+    "motivo": "Fórmulas com os lugares da questão, mais fáceis de aplicar."
+   },
+   {
+    "campo": "resolucao.pista",
+    "depois": "Coloque os dois fusos na mesma régua, a partir de UTC 0. Cada lugar fica de um lado de Greenwich: veja quantas horas separam um do outro.",
+    "motivo": "Pista mais direta, sem pergunta solta."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "1 − (−3) = 1 + 3 = 4 h",
+    "motivo": "Mostra a regra dos sinais, que é o ponto de dúvida do aluno."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "A Itália está 1 h à frente de Greenwich e São Paulo 3 h atrás. Os dois ficam em lados opostos, então as distâncias se somam: 4 h.",
+    "motivo": "Explicação mais clara."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "5h30 supõe 5 h de diferença. Isso exigiria São Paulo em UTC−4, mas ele está em UTC−3. A diferença real é 4 h (1 + 3).",
+    "motivo": "Texto mais curto, mantendo o teste que derruba a letra."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "8h30 sai de 10h30 − 2h, com 2 = 3 − 1. Quem marcou subtraiu os fusos como se estivessem do mesmo lado de Greenwich. A Itália é +1 e São Paulo é −3: ficam em lados opostos e somam 1 + 3 = 4.",
+    "motivo": "Frase mais direta sobre o que faltou."
+   },
+   {
+    "campo": "resolucao.quadro",
+    "depois": [
+     {
+      "linha": "Itália: UTC + 1",
+      "nota": "fuso dado no enunciado"
+     },
+     {
+      "linha": "São Paulo: UTC − 3",
+      "nota": "fuso de Brasília, sem horário de verão"
+     },
+     {
+      "linha": "dif = 1 − (−3)",
+      "nota": "menos com menos vira mais"
+     },
+     {
+      "linha": "dif = 1 + 3",
+      "nota": "lados opostos de Greenwich: somam"
+     },
+     {
+      "linha": "dif = 4 h",
+      "nota": "a Itália está 4 h adiantada"
+     },
+     {
+      "linha": "10h30 − 4h",
+      "nota": "São Paulo está a oeste: relógio menor"
+     },
+     {
+      "linha": "= 6h30",
+      "nota": "resposta: alternativa B"
+     }
+    ],
+    "motivo": "Passo 1 − (−3) = 1 + 3 explicitado, sem pular passagem."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

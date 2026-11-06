@@ -8,10 +8,10 @@
  "conceito": "Localizar no texto a razão explícita pela qual Lady Gaga ajudou Liza Minnelli (informação explícita).",
  "resolucao": {
   "antes": {
-   "texto": "A pergunta pede a causa de uma ação: por que Lady Gaga ajudou Minnelli. Em questões de detalhe, procure no texto a palavra-chave do comando (help, back) e leia a frase inteira. Cada alternativa traz um fato diferente, e só um deles está escrito no texto. Cuidado com a palavra 'appeared': ela indica o que parecia estar acontecendo, e não o que Minnelli teria esquecido.",
+   "texto": "A pergunta pede a causa de uma ação: por que Lady Gaga ajudou Minnelli. Procure no texto a palavra-chave do comando (help, back) e leia a frase inteira. Cada alternativa traz um fato diferente, e só um deles está escrito. Atenção a 'appeared': significa 'pareceu', ou seja, o que se via acontecer, e não um fato confirmado.",
    "formulas": [
     "had her back = apoiou, deu cobertura (ajudou)",
-    "appeared to have trouble = parecia ter dificuldade",
+    "appeared to have trouble = pareceu ter dificuldade",
     "a alternativa certa só afirma o que está escrito, sem acrescentar fatos"
    ],
    "simbolos": [
@@ -52,7 +52,7 @@
    {
     "faz": "Ache o trecho da ajuda",
     "conta": "“Lady Gaga had her back, helping her finish her line.”",
-    "porque": "Tradução: Lady Gaga a apoiou, ajudando-a a terminar a fala. É o momento da ajuda; falta ver o motivo.",
+    "porque": "Tradução: Lady Gaga a apoiou, ajudando-a a terminar a fala. Esse é o momento da ajuda; falta achar o motivo, que vem logo antes.",
     "tipo": "localizar"
    },
    {
@@ -77,10 +77,10 @@
   "resposta": "Alternativa C: Lady Gaga ajudou porque Liza Minnelli estava tendo problemas com o teleprompter.",
   "checagem": "Logo depois da dificuldade, o texto traz a fala de Gaga, “We’re going to tell you who the nominees are right now” (vamos dizer agora quem são os indicados), e conta que ela se abaixou e sussurrou “I got you” (estou com você). Minnelli responde “Thank you”. A sequência mostra que a ajuda veio na hora da leitura, para completar a fala.",
   "erradas": {
-   "A": "A foto mostra Minnelli numa cadeira de rodas, mas o texto não diz que foi por isso que Gaga ajudou. A causa escrita é a dificuldade com o teleprompter.",
+   "A": "A foto mostra Minnelli numa cadeira de rodas, mas o texto não diz que Gaga ajudou por isso. A causa escrita é a dificuldade com o teleprompter. Quem marcou A usou a imagem em vez do texto.",
    "B": "O texto não menciona envelope algum. A palavra “envelope” não aparece; a dificuldade era de leitura no teleprompter.",
    "D": "O texto não fala de queda. Minnelli aparece no palco e recebe uma ovação de pé, sem nenhum acidente.",
-   "E": "O texto diz “appeared to have a little trouble reading the teleprompter” (pareceu ter dificuldade para ler). Isso não é o mesmo que ter esquecido as falas: ela tinha dificuldade para ler, não um branco de memória."
+   "E": "O texto diz “appeared to have a little trouble reading the teleprompter” (pareceu ter dificuldade para ler o teleprompter). Não diz que ela esqueceu as falas. A causa escrita é a leitura, e não um branco de memória."
   },
   "armadilha": "Marcar E por achar que 'ter dificuldade para ler' é o mesmo que 'esquecer as falas', ou A por causa da foto da cadeira de rodas.",
   "alerta": "",
@@ -115,11 +115,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -136,6 +138,49 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "C"
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "A pergunta pede a causa de uma ação: por que Lady Gaga ajudou Minnelli. Procure no texto a palavra-chave do comando (help, back) e leia a frase inteira. Cada alternativa traz um fato diferente, e só um deles está escrito. Atenção a 'appeared': significa 'pareceu', ou seja, o que se via acontecer, e não um fato confirmado.",
+    "motivo": "Frases mais simples, e a explicação de 'appeared' fica clara para um aluno de 17 anos."
+   },
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "had her back = apoiou, deu cobertura (ajudou)",
+     "appeared to have trouble = pareceu ter dificuldade",
+     "a alternativa certa só afirma o que está escrito, sem acrescentar fatos"
+    ],
+    "motivo": "'Appeared' é 'pareceu': tradução mais natural."
+   },
+   {
+    "campo": "resolucao.passos[0].conta",
+    "depois": "“felt she needed to help” = sentiu que precisava ajudar",
+    "motivo": "Mantido, sem mudança de sentido."
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "“Lady Gaga had her back, helping her finish her line.”",
+    "motivo": "Mantido."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "Tradução: Lady Gaga a apoiou, ajudando-a a terminar a fala. Esse é o momento da ajuda; falta achar o motivo, que vem logo antes.",
+    "motivo": "Deixa claro para onde o aluno olha em seguida."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "O texto diz “appeared to have a little trouble reading the teleprompter” (pareceu ter dificuldade para ler o teleprompter). Não diz que ela esqueceu as falas. A causa escrita é a leitura, e não um branco de memória.",
+    "motivo": "Frase mais direta; diz o que faltou no raciocínio de quem marcou E."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "A foto mostra Minnelli numa cadeira de rodas, mas o texto não diz que Gaga ajudou por isso. A causa escrita é a dificuldade com o teleprompter. Quem marcou A usou a imagem em vez do texto.",
+    "motivo": "Aponta o que faltou no raciocínio de quem marcou A."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

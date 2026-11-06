@@ -8,7 +8,7 @@
  "conceito": "Probabilidade condicional com porcentagens: montar a tabela com 1000 alunos e ler a linha ou coluna que o enunciado fixa.",
  "resolucao": {
   "antes": {
-   "texto": "Com porcentagens e um total redondo (1000 alunos), o caminho mais simples é transformar tudo em número de alunos. Depois é só contar. A frase final pergunta pela chance de um aluno 'de bairro próximo' ser dos que 'não utilizam transporte'. Isso restringe o grupo ao conjunto dos alunos de bairro próximo. Veja o alerta sobre a redação.",
+   "texto": "Com porcentagens e um total redondo (1000 alunos), o caminho mais simples é transformar tudo em número de alunos e contar. A frase final pergunta pela chance de um aluno de bairro próximo ser dos que não usam transporte. Por isso, o grupo de onde se sorteia é só o dos alunos de bairro próximo. Veja o alerta sobre a redação.",
    "formulas": [
     "probabilidade = casos favoráveis ÷ casos possíveis",
     "condicional: o grupo de onde se sorteia vira o denominador"
@@ -24,7 +24,7 @@
     ]
    ]
   },
-  "pista": "Transforme as porcentagens em número de alunos e monte uma tabela com duas linhas (usa ou não usa transporte) e duas colunas (bairro próximo ou não). Depois descubra quantos alunos moram em bairro próximo no total.",
+  "pista": "Transforme as porcentagens em número de alunos. Depois descubra quantos alunos moram em bairro próximo no total: é esse grupo que a pergunta usa como base.",
   "passos": [
    {
     "faz": "Separe os alunos que caminham",
@@ -52,12 +52,12 @@
    },
    {
     "faz": "Calcule a probabilidade",
-    "conta": "90/270 = 1/3",
+    "conta": "90 ÷ 270 = 1/3",
     "porque": "Favoráveis: os 90 de bairro próximo que não usam transporte. Possíveis: os 270 de bairro próximo. Alternativa B.",
     "tipo": "concluir"
    }
   ],
-  "resposta": "Alternativa B: entre os 270 alunos de bairro próximo, 90 não usam transporte, e 90/270 = 1/3.",
+  "resposta": "Alternativa B: entre os 270 alunos de bairro próximo, 90 não usam transporte, e 90 ÷ 270 = 1/3.",
   "checagem": "Confira a tabela: 90 + 10 = 100 não usam transporte, e 180 + 720 = 900 usam. A soma é 1000. Nessa leitura, 1 em cada 3 alunos de bairro próximo vai a pé, e 90 é metade de 180, então 90 em 270 é 1/3.",
   "erradas": {
    "A": "1/2 sai de comparar 90 só com os 180 que usam transporte e são próximos: 90/180 = 1/2. Esse denominador deixa de fora os próprios 90 que caminham. O total de bairro próximo é 90 + 180 = 270.",
@@ -110,7 +110,7 @@
    "nota": "casos possíveis"
   },
   {
-   "linha": "P = 90/270",
+   "linha": "P = 90 ÷ 270",
    "nota": "favoráveis sobre possíveis"
   },
   {
@@ -148,14 +148,45 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [],
   "fatos_ok": true,
-  "fatos_resposta": "B"
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Com porcentagens e um total redondo (1000 alunos), o caminho mais simples é transformar tudo em número de alunos e contar. A frase final pergunta pela chance de um aluno de bairro próximo ser dos que não usam transporte. Por isso, o grupo de onde se sorteia é só o dos alunos de bairro próximo. Veja o alerta sobre a redação.",
+    "motivo": "Frase mais clara, sem dois sentidos; diz qual é o grupo sorteado."
+   },
+   {
+    "campo": "resolucao.pista",
+    "depois": "Transforme as porcentagens em número de alunos. Depois descubra quantos alunos moram em bairro próximo no total: é esse grupo que a pergunta usa como base.",
+    "motivo": "Pista mais curta e sem entregar a tabela pronta."
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "90 ÷ 270 = 1/3",
+    "motivo": "Mantém a fração no formato aceito pelo site, com divisão explícita."
+   },
+   {
+    "campo": "resolucao.quadro[6].linha",
+    "depois": "P = 90 ÷ 270",
+    "motivo": "Formato de fração aceito pelo site; mesmo valor."
+   },
+   {
+    "campo": "resolucao.resposta",
+    "depois": "Alternativa B: entre os 270 alunos de bairro próximo, 90 não usam transporte, e 90 ÷ 270 = 1/3.",
+    "motivo": "Formato de fração consistente."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

@@ -8,10 +8,10 @@
  "conceito": "Fusos horários: converter a hora de um jogo da Cidade do México (UTC-6) para o Rio de Janeiro (UTC-3).",
  "resolucao": {
   "antes": {
-   "texto": "UTC é o horário de referência, o de Greenwich (0°). UTC-6 significa que o relógio está 6 horas atrás de Greenwich. Para comparar duas cidades, veja quantas horas separam os dois UTC. No Rio de Janeiro vale o horário de Brasília, UTC-3. O Brasil não tem horário de verão desde 2019, e a Cidade do México também não o adota desde 2022. Assim, em junho a diferença é a mesma de sempre.",
+   "texto": "UTC é o horário de referência, o de Greenwich (0°). UTC-6 significa que o relógio está 6 horas atrás de Greenwich. Para comparar duas cidades, veja quantas horas separam os dois UTC. No Rio de Janeiro vale o horário de Brasília, UTC-3. O Brasil não tem horário de verão desde 2019, e a Cidade do México também não o adota desde 2022. Por isso, em junho a diferença é a de sempre: 3 horas.",
    "formulas": [
-    "diferença = UTC da cidade A − UTC da cidade B",
-    "quem tem o UTC maior (menos negativo) está com o relógio adiantado",
+    "diferença = UTC do Rio − UTC do México",
+    "número maior (menos negativo) = relógio adiantado",
     "hora no Rio = hora no México + diferença"
    ],
    "simbolos": [
@@ -33,7 +33,7 @@
     ]
    ]
   },
-  "pista": "Compare os dois fusos: -6 e -3. Qual dos dois relógios está mais perto de Greenwich e, portanto, adiantado?",
+  "pista": "Compare os números -6 e -3. Qual dos dois fica mais perto de zero (Greenwich)? Esse relógio está adiantado.",
   "passos": [
    {
     "faz": "Traduza o que se pede",
@@ -49,8 +49,8 @@
    },
    {
     "faz": "Calcule a diferença",
-    "conta": "−3 − (−6) = 3 horas",
-    "porque": "O Rio está mais perto de Greenwich, a leste do México. Quem está a leste tem o relógio adiantado.",
+    "conta": "−3 − (−6) = −3 + 6 = 3 h",
+    "porque": "−3 é maior que −6, então o Rio está mais perto de Greenwich, a leste do México. Quem está a leste tem o relógio adiantado.",
     "tipo": "calcular"
    },
    {
@@ -69,10 +69,10 @@
   "resposta": "Alternativa C: 22h10 do dia 11 de junho, porque o Rio (UTC-3) está 3 horas adiantado em relação à Cidade do México (UTC-6).",
   "checagem": "Passe por Greenwich: 19h10 em UTC-6 equivale a 25h10, ou seja, 01h10 UTC do dia 12. Em UTC-3 subtraem-se 3 h: 22h10 do dia 11. Dá o mesmo resultado.",
   "erradas": {
-   "A": "20h10 vem de somar só 1 hora. Mas a diferença entre UTC-6 e UTC-3 é 3 horas (−3 − (−6) = 3), não 1.",
-   "B": "21h10 vem de somar só 2 horas. A diferença real é 3 horas; com 2 horas faltaria uma hora para chegar ao UTC-3.",
-   "D": "23h10 vem de somar 4 horas. Isso valeria para uma diferença de 4 fusos. Entre UTC-6 e UTC-3 são 3 fusos, e 19h10 + 3h = 22h10.",
-   "E": "00h10 do dia 12 vem de somar 5 horas. Essa diferença não existe entre UTC-6 e UTC-3, que distam 3 horas. Além disso, 22h10 ainda é dia 11."
+   "A": "A sai de somar só 1 hora: 19h10 + 1h = 20h10. Faltou subtrair os fusos: −3 − (−6) = 3 h, e não 1 h.",
+   "B": "B sai de somar só 2 horas: 19h10 + 2h = 21h10. Faltou contar o fuso inteiro: de −6 a −3 são 3 fusos, e não 2.",
+   "D": "D sai de somar 4 horas: 19h10 + 4h = 23h10. Faltou conferir a diferença: de −6 a −3 são 3 fusos, e não 4.",
+   "E": "E sai de somar 5 horas: 19h10 + 5h = 00h10 do dia 12. Faltou conferir a diferença, que é de 3 h. Com 3 h ainda é dia 11."
   },
   "armadilha": "Errar o sinal da diferença: o Rio está a leste do México, então o relógio dele está adiantado e a diferença entra somando, não subtraindo.",
   "alerta": "",
@@ -129,14 +129,69 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [],
   "fatos_ok": true,
-  "fatos_resposta": "C"
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "UTC é o horário de referência, o de Greenwich (0°). UTC-6 significa que o relógio está 6 horas atrás de Greenwich. Para comparar duas cidades, veja quantas horas separam os dois UTC. No Rio de Janeiro vale o horário de Brasília, UTC-3. O Brasil não tem horário de verão desde 2019, e a Cidade do México também não o adota desde 2022. Por isso, em junho a diferença é a de sempre: 3 horas.",
+    "motivo": "Frase final mais clara, sem 'a mesma de sempre' ambíguo."
+   },
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "diferença = UTC do Rio − UTC do México",
+     "número maior (menos negativo) = relógio adiantado",
+     "hora no Rio = hora no México + diferença"
+    ],
+    "motivo": "Fórmula direta para este caso, sem letras A e B que não aparecem na resolução."
+   },
+   {
+    "campo": "resolucao.pista",
+    "depois": "Compare os números -6 e -3. Qual dos dois fica mais perto de zero (Greenwich)? Esse relógio está adiantado.",
+    "motivo": "Linguagem mais simples, sem a palavra 'meridianos' ou frase longa; não entrega a letra."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "−3 − (−6) = −3 + 6 = 3 h",
+    "motivo": "Mostra o jogo de sinal, ponto em que o aluno costuma errar."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "−3 é maior que −6, então o Rio está mais perto de Greenwich, a leste do México. Quem está a leste tem o relógio adiantado.",
+    "motivo": "Liga o número ao sentido, explicando por que a diferença é positiva."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "A sai de somar só 1 hora: 19h10 + 1h = 20h10. Faltou subtrair os fusos: −3 − (−6) = 3 h, e não 1 h.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou A."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "B sai de somar só 2 horas: 19h10 + 2h = 21h10. Faltou contar o fuso inteiro: de −6 a −3 são 3 fusos, e não 2.",
+    "motivo": "Mostra a conta do erro e o que faltou."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "D sai de somar 4 horas: 19h10 + 4h = 23h10. Faltou conferir a diferença: de −6 a −3 são 3 fusos, e não 4.",
+    "motivo": "Texto mais direto, com o que faltou."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "E sai de somar 5 horas: 19h10 + 5h = 00h10 do dia 12. Faltou conferir a diferença, que é de 3 h. Com 3 h ainda é dia 11.",
+    "motivo": "Texto mais direto, com o que faltou."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

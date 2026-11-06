@@ -8,17 +8,17 @@
  "conceito": "Ler duas curvas de espirometria, obter VEF1 e CVF de cada paciente e usar a razão VEF1/CVF para reconhecer padrão obstrutivo.",
  "resolucao": {
   "antes": {
-   "texto": "Na espirometria, o paciente enche o pulmão e sopra com toda a força. O gráfico mostra o volume acumulado de ar expirado ao longo do tempo. O VEF1 é o valor da curva em t = 1 s. A CVF é o valor em que a curva se estabiliza, no fim da manobra. Em doença obstrutiva, o ar sai devagar: o VEF1 fica baixo em relação à CVF. O trabalho real da questão é ler os dois números de cada curva e calcular a razão.",
+   "texto": "Na espirometria, o paciente enche o pulmão e sopra com toda a força. O gráfico mostra o volume de ar que já saiu, somado ao longo do tempo. O VEF1 é o valor da curva em t = 1 s. A CVF é o valor em que a curva para de subir, no fim da manobra. Em doença obstrutiva, o ar sai devagar: o VEF1 fica baixo em relação à CVF. O trabalho real da questão é ler dois números de cada curva e dividir um pelo outro.",
    "formulas": [
     "VEF1 = volume expirado em t = 1 s",
-    "CVF = volume final (curva estabilizada)",
+    "CVF = volume final (onde a curva para de subir)",
     "razão = VEF1 ÷ CVF; abaixo de 70% indica obstrução",
-    "fluxo médio = volume ÷ tempo"
+    "fluxo médio = volume ÷ tempo (litros por segundo)"
    ],
    "simbolos": [
     [
      "VEF1",
-     "volume expirado no primeiro segundo da expiração forçada"
+     "volume de ar expirado no primeiro segundo da expiração forçada"
     ],
     [
      "CVF",
@@ -31,6 +31,14 @@
     [
      "espirometria",
      "exame que mede volumes e fluxos de ar dos pulmões"
+    ],
+    [
+     "razão",
+     "resultado de uma divisão; aqui, o VEF1 dividido pela CVF"
+    ],
+    [
+     "patamar",
+     "trecho do gráfico em que a curva fica na mesma altura, sem subir mais"
     ]
    ]
   },
@@ -45,7 +53,7 @@
    {
     "faz": "Leia a CVF de cada curva",
     "conta": "A ≈ 6,5 L; B ≈ 6,5 L",
-    "porque": "As duas curvas se estabilizam no mesmo patamar, um pouco acima de 6 L. A CVF é igual nos dois pacientes.",
+    "porque": "As duas curvas terminam na mesma altura, um pouco acima de 6 L. Logo, a CVF é igual nos dois pacientes.",
     "tipo": "localizar"
    },
    {
@@ -62,13 +70,13 @@
    },
    {
     "faz": "Teste as alternativas com esses números",
-    "conta": "A: CVF igual. B: VEF1 diferente. D: A tem fluxo maior.",
-    "porque": "A única afirmação que bate com as leituras é que B tem padrão obstrutivo.",
+    "conta": "A: CVF igual (6,5 L)",
+    "porque": "A diz que a CVF de B é maior: falso, são iguais. B diz que o VEF1 é igual: falso, 5 L contra 4 L. D diz que o fluxo de A é menor: falso, A tem 5 L/s e B 4 L/s. E diz que não há obstrução: falso, B tem 62%. Só a C bate com as leituras.",
     "tipo": "concluir"
    }
   ],
   "resposta": "Alternativa C: a razão VEF1/CVF de B é cerca de 4 ÷ 6,5 ≈ 62%, abaixo de 70%, o que indica padrão obstrutivo.",
-  "checagem": "Veja o formato das curvas: a curva A sobe mais rápido e chega perto do patamar em cerca de 2 s. A curva B demora mais, perto de 3 s. Esse atraso na saída do ar é o que caracteriza a obstrução.",
+  "checagem": "Compare o formato das curvas: A sobe mais rápido e chega perto do patamar em cerca de 2 s. B demora mais, perto de 3 s. Esse atraso na saída do ar é o que caracteriza a obstrução.",
   "erradas": {
    "A": "As duas curvas terminam no mesmo patamar, cerca de 6,5 L. As CVF são iguais, e a de B não é maior.",
    "B": "Em t = 1 s a curva A está perto de 5 L e a curva B perto de 4 L. Os VEF1 são diferentes, e o de A é maior.",
@@ -129,11 +137,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -144,6 +154,75 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "C"
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Na espirometria, o paciente enche o pulmão e sopra com toda a força. O gráfico mostra o volume de ar que já saiu, somado ao longo do tempo. O VEF1 é o valor da curva em t = 1 s. A CVF é o valor em que a curva para de subir, no fim da manobra. Em doença obstrutiva, o ar sai devagar: o VEF1 fica baixo em relação à CVF. O trabalho real da questão é ler dois números de cada curva e dividir um pelo outro.",
+    "motivo": "Troca 'acumulado' e 'estabiliza' por palavras mais simples; deixa claro que o trabalho é ler e dividir."
+   },
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "VEF1 = volume expirado em t = 1 s",
+     "CVF = volume final (onde a curva para de subir)",
+     "razão = VEF1 ÷ CVF; abaixo de 70% indica obstrução",
+     "fluxo médio = volume ÷ tempo (litros por segundo)"
+    ],
+    "motivo": "Linguagem mais simples e unidade do fluxo explícita, usada na alternativa D."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "VEF1",
+      "volume de ar expirado no primeiro segundo da expiração forçada"
+     ],
+     [
+      "CVF",
+      "capacidade vital forçada: volume máximo de ar expirado ao fim da manobra"
+     ],
+     [
+      "padrão obstrutivo",
+      "quando algo estreita as vias aéreas e o ar sai mais devagar, como na asma e no enfisema"
+     ],
+     [
+      "espirometria",
+      "exame que mede volumes e fluxos de ar dos pulmões"
+     ],
+     [
+      "razão",
+      "resultado de uma divisão; aqui, o VEF1 dividido pela CVF"
+     ],
+     [
+      "patamar",
+      "trecho do gráfico em que a curva fica na mesma altura, sem subir mais"
+     ]
+    ],
+    "motivo": "Explica 'razão' e 'patamar', palavras usadas nos passos."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "As duas curvas terminam na mesma altura, um pouco acima de 6 L. Logo, a CVF é igual nos dois pacientes.",
+    "motivo": "Frase mais direta."
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "A: CVF igual (6,5 L)",
+    "motivo": "A conta precisa caber em uma linha curta no celular; as demais letras vão para o porque."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "A diz que a CVF de B é maior: falso, são iguais. B diz que o VEF1 é igual: falso, 5 L contra 4 L. D diz que o fluxo de A é menor: falso, A tem 5 L/s e B 4 L/s. E diz que não há obstrução: falso, B tem 62%. Só a C bate com as leituras.",
+    "motivo": "Mostra o teste de cada letra de forma completa, sem caber tudo na conta."
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Compare o formato das curvas: A sobe mais rápido e chega perto do patamar em cerca de 2 s. B demora mais, perto de 3 s. Esse atraso na saída do ar é o que caracteriza a obstrução.",
+    "motivo": "Troca 'Veja' por 'Compare' e frases mais claras; mantém o outro caminho."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

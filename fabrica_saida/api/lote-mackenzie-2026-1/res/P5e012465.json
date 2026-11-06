@@ -26,6 +26,14 @@
     [
      "x",
      "Nox desconhecido do selênio, que vamos descobrir"
+    ],
+    [
+     "Na, Al, H, O",
+     "sódio, alumínio, hidrogênio e oxigênio"
+    ],
+    [
+     "ânion",
+     "átomo ou grupo com carga negativa, que ficou com elétrons a mais"
     ]
    ]
   },
@@ -46,7 +54,7 @@
    {
     "faz": "Monte e resolva o composto II",
     "conta": "Al2Se3: 2(+3) + 3x = 0 → x = −2",
-    "porque": "O alumínio dá +6 no total. Os 3 Se precisam somar −6, logo cada um vale −2. O selênio é o ânion (mais eletronegativo), como o enxofre em sulfetos.",
+    "porque": "Os dois Al somam +6, então os 3 Se precisam somar −6 e cada um vale −2. Aqui o Se só está ligado a um metal, então ele é o ânion (ficou com elétrons a mais) e o Nox é negativo.",
     "tipo": "calcular"
    },
    {
@@ -66,9 +74,9 @@
   "checagem": "Substitua de volta. I: +2 + 4 − 6 = 0. II: +6 − 6 = 0. III: +2 + 6 − 8 = 0. As três somas fecham em zero.",
   "erradas": {
    "A": "O +2 do composto II não confere: com Al = +3, dois átomos dão +6, e 3x = −6 leva a x = −2. Com +2, a soma seria 6 + 6 = +12, não zero.",
-   "C": "O +2 para o composto I não confere: 2(+1) + 2 + 3(−2) = −2, não zero. E o +4 do composto III também falha: 2 + 4 − 8 = −2.",
-   "D": "O +2 do composto II não confere (soma 6 + 6 = +12). O +4 do composto III também não: 2 + 4 − 8 = −2. Só o +4 do composto I está certo.",
-   "E": "O −4 do composto I não confere: 2 − 4 − 6 = −8, não zero. O +2 do composto II também não: a soma seria +12. Só o +6 do composto III está certo."
+   "C": "C não confere: no composto I, com Se = +2, a soma dá 2 + 2 − 6 = −2, e não zero. O Se de I vale +4, não +2. Quem marcou C errou o I e também o III (+4 em vez de +6).",
+   "D": "D não confere: o Se de Al2Se3 não vale +2, pois 6 + 6 = +12, e não zero. O III também falha: 2 + 4 − 8 = −2. Quem marcou D acertou só o I e esqueceu que o Se é ânion no sulfeto.",
+   "E": "E não confere: com Se = −4 no composto I, a soma dá 2 − 4 − 6 = −8, e não zero. O +2 do II também falha (+12). Só o +6 do III está certo. Quem marcou E errou a conta de sinais no I e no II."
   },
   "armadilha": "Esquecer de multiplicar o Nox pelo número de átomos (2 Na, 3 O, 2 Al, 3 Se) ou tratar o Se de Al2Se3 como positivo.",
   "alerta": "",
@@ -81,7 +89,7 @@
  "caminhos": [
   {
    "nome": "eliminação",
-   "ideia": "Em Al2Se3 o selênio está ligado só a um metal, então é o ânion e fica negativo. Isso elimina A, D e E (que trazem +2 nesse composto) e deixa B e C. Em C, o composto I teria Se = +2, mas 2 − 6 + 2 = −2 ≠ 0; sobra B."
+   "ideia": "Em Al2Se3 o selênio está ligado só a um metal, então é o ânion e fica negativo. Isso elimina A, D e E (trazem +2 aí) e deixa B e C. Em C, o Se do composto I valeria +2, mas 2 + 2 − 6 = −2, e não zero. Sobra B."
   },
   {
    "nome": "família do enxofre",
@@ -102,8 +110,8 @@
    "nota": "multiplique cada Nox pelo número de átomos"
   },
   {
-   "linha": "x = +6 − 2",
-   "nota": "passe +2 e −6 para o outro lado, trocando os sinais",
+   "linha": "x = −2 + 6",
+   "nota": "o +2 e o −6 mudam de lado e trocam de sinal",
    "mov": [
     {
      "termo": "+ 2",
@@ -181,11 +189,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -196,6 +206,85 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "B"
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "Nox",
+      "número de oxidação: carga real ou aparente de um átomo em uma substância"
+     ],
+     [
+      "Se",
+      "símbolo do selênio, um não metal da família do oxigênio (família 16)"
+     ],
+     [
+      "x",
+      "Nox desconhecido do selênio, que vamos descobrir"
+     ],
+     [
+      "Na, Al, H, O",
+      "sódio, alumínio, hidrogênio e oxigênio"
+     ],
+     [
+      "ânion",
+      "átomo ou grupo com carga negativa, que ficou com elétrons a mais"
+     ]
+    ],
+    "motivo": "A palavra 'ânion' aparece no passo 3 e no caminho sem explicação; símbolos dos elementos também entram."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Os dois Al somam +6, então os 3 Se precisam somar −6 e cada um vale −2. Aqui o Se só está ligado a um metal, então ele é o ânion (ficou com elétrons a mais) e o Nox é negativo.",
+    "motivo": "Frases mais curtas, ânion explicado e sem comparação com o enxofre, que o aluno pode não conhecer."
+   },
+   {
+    "campo": "resolucao.quadro[3]",
+    "depois": {
+     "linha": "x = −2 + 6",
+     "nota": "o +2 e o −6 mudam de lado e trocam de sinal",
+     "mov": [
+      {
+       "termo": "+ 2",
+       "de": "esquerda",
+       "para": "direita",
+       "vira": "− 2",
+       "como": "atravessa o igual"
+      },
+      {
+       "termo": "− 6",
+       "de": "esquerda",
+       "para": "direita",
+       "vira": "+ 6",
+       "como": "atravessa o igual"
+      }
+     ]
+    },
+    "motivo": "A linha anterior 'x = +6 − 2' tinha os sinais na ordem confusa; escrever −2 + 6 mostra os sinais trocados e leva a +4."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "C não confere: no composto I, com Se = +2, a soma dá 2 + 2 − 6 = −2, e não zero. O Se de I vale +4, não +2. Quem marcou C errou o I e também o III (+4 em vez de +6).",
+    "motivo": "Dizer o que faltou no raciocínio de quem marcou C, em frases curtas."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "D não confere: o Se de Al2Se3 não vale +2, pois 6 + 6 = +12, e não zero. O III também falha: 2 + 4 − 8 = −2. Quem marcou D acertou só o I e esqueceu que o Se é ânion no sulfeto.",
+    "motivo": "Explicita o que faltou ao aluno que escolheu D."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "E não confere: com Se = −4 no composto I, a soma dá 2 − 4 − 6 = −8, e não zero. O +2 do II também falha (+12). Só o +6 do III está certo. Quem marcou E errou a conta de sinais no I e no II.",
+    "motivo": "Explicita o que faltou ao aluno que escolheu E."
+   },
+   {
+    "campo": "resolucao.caminhos[0].ideia",
+    "depois": "Em Al2Se3 o selênio está ligado só a um metal, então é o ânion e fica negativo. Isso elimina A, D e E (trazem +2 aí) e deixa B e C. Em C, o Se do composto I valeria +2, mas 2 + 2 − 6 = −2, e não zero. Sobra B.",
+    "motivo": "Conta corrigida para ficar coerente com a soma (2 + 2 − 6) e mais clara."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

@@ -8,7 +8,7 @@
  "conceito": "Área de um círculo cortado por uma reta: círculo menos segmento circular (quarto de círculo menos triângulo), a partir das inequações.",
  "resolucao": {
   "antes": {
-   "texto": "x² + y² ≤ 25 é o círculo de centro (0, 0) e raio 5. A inequação x + y − 5 ≤ 0 é o semiplano de um lado da reta x + y = 5. Essa reta corta o círculo e tira dele um pedaço pequeno. A área pedida é a do círculo menos esse pedaço.",
+   "texto": "x² + y² ≤ 25 é o círculo de centro (0, 0) e raio 5. A inequação x + y − 5 ≤ 0 pede os pontos de um lado da reta x + y = 5. Essa reta corta o círculo e separa um pedaço pequeno. A área pedida é a do círculo menos esse pedaço.",
    "formulas": [
     "área do círculo = π × r²",
     "área do triângulo = (base × altura) ÷ 2",
@@ -30,6 +30,10 @@
     [
      "segmento circular",
      "pedaço do círculo entre uma corda e o arco correspondente"
+    ],
+    [
+     "corda",
+     "segmento que liga dois pontos da circunferência"
     ]
    ]
   },
@@ -44,7 +48,7 @@
    {
     "faz": "Ache onde a reta corta os eixos",
     "conta": "x=0 → y=5 ; y=0 → x=5",
-    "porque": "A reta passa por (0, 5) e (5, 0). Esses pontos estão sobre a circunferência, pois 0² + 5² = 25. A reta é uma corda.",
+    "porque": "A reta passa por (0, 5) e (5, 0). Esses pontos estão na circunferência, pois 0² + 5² = 25. Logo a reta liga dois pontos do círculo e forma uma corda.",
     "tipo": "calcular"
    },
    {
@@ -55,8 +59,8 @@
    },
    {
     "faz": "Calcule o pedaço cortado",
-    "conta": "75/4 − (5 × 5)/2 = 6,25",
-    "porque": "O pedaço é o arco de 90° entre (5, 0) e (0, 5), um quarto do círculo, menos o triângulo de vértices (0, 0), (5, 0) e (0, 5). O quarto de círculo vale 75 ÷ 4 = 18,75. O triângulo vale 12,5.",
+    "conta": "75 ÷ 4 = 18,75",
+    "porque": "O pedaço fica entre a reta e o arco de (5, 0) a (0, 5). Esse arco mede 90°, um quarto do círculo. Tire do quarto de círculo (75 ÷ 4 = 18,75) o triângulo de vértices (0, 0), (5, 0) e (0, 5), que vale (5 × 5) ÷ 2 = 12,5. Sobra 18,75 − 12,5 = 6,25 dam².",
     "tipo": "calcular"
    },
    {
@@ -106,6 +110,10 @@
    "nota": "reta: corta os eixos em (5,0) e (0,5)"
   },
   {
+   "linha": "0 + 0 − 5 = −5 ≤ 0",
+   "nota": "a origem vale: fica do lado do centro"
+  },
+  {
    "linha": "Quarto = 75 ÷ 4 = 18,75",
    "nota": "arco de 90° entre os dois pontos"
   },
@@ -145,11 +153,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -160,6 +170,103 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "B"
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "x² + y² ≤ 25 é o círculo de centro (0, 0) e raio 5. A inequação x + y − 5 ≤ 0 pede os pontos de um lado da reta x + y = 5. Essa reta corta o círculo e separa um pedaço pequeno. A área pedida é a do círculo menos esse pedaço.",
+    "motivo": "Frase mais direta; evita repetir 'semiplano' sem necessidade."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "75 ÷ 4 = 18,75",
+    "motivo": "A conta original, com várias operações e uma fração escrita na linha, não cabe na tela. Dividir em linhas curtas resolve."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "O pedaço fica entre a reta e o arco de (5, 0) a (0, 5). Esse arco mede 90°, um quarto do círculo. Tire do quarto de círculo (75 ÷ 4 = 18,75) o triângulo de vértices (0, 0), (5, 0) e (0, 5), que vale (5 × 5) ÷ 2 = 12,5. Sobra 18,75 − 12,5 = 6,25 dam².",
+    "motivo": "Passo traz as contas que antes estavam na linha de conta, em ordem natural."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "A reta passa por (0, 5) e (5, 0). Esses pontos estão na circunferência, pois 0² + 5² = 25. Logo a reta liga dois pontos do círculo e forma uma corda.",
+    "motivo": "Simplifica a frase e explica 'corda' no contexto."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "dam",
+      "decâmetro, 10 metros; dam² é a unidade de área"
+     ],
+     [
+      "x² + y² ≤ 25",
+      "pontos cuja distância à origem é no máximo 5: o círculo inteiro de raio 5"
+     ],
+     [
+      "semiplano",
+      "metade do plano de um dos lados de uma reta"
+     ],
+     [
+      "segmento circular",
+      "pedaço do círculo entre uma corda e o arco correspondente"
+     ],
+     [
+      "corda",
+      "segmento que liga dois pontos da circunferência"
+     ]
+    ],
+    "motivo": "A palavra 'corda' é usada nos passos e não estava explicada."
+   },
+   {
+    "campo": "resolucao.quadro",
+    "depois": [
+     {
+      "linha": "x² + y² = 25 → r = 5",
+      "nota": "círculo de raio 5 dam"
+     },
+     {
+      "linha": "A = 3 × 5² = 75",
+      "nota": "área do círculo, com π = 3"
+     },
+     {
+      "linha": "x + y = 5",
+      "nota": "reta: corta os eixos em (5,0) e (0,5)"
+     },
+     {
+      "linha": "0 + 0 − 5 = −5 ≤ 0",
+      "nota": "a origem vale: fica do lado do centro"
+     },
+     {
+      "linha": "Quarto = 75 ÷ 4 = 18,75",
+      "nota": "arco de 90° entre os dois pontos"
+     },
+     {
+      "linha": "Triângulo = (5 × 5) ÷ 2",
+      "nota": "catetos 5 e 5"
+     },
+     {
+      "linha": "Triângulo = 12,5",
+      "nota": "faça 25 ÷ 2"
+     },
+     {
+      "linha": "Pedaço = 18,75 − 12,5 = 6,25",
+      "nota": "segmento circular cortado"
+     },
+     {
+      "linha": "Região = 75 − 6,25",
+      "nota": "círculo menos o pedaço"
+     },
+     {
+      "linha": "Região = 68,75 dam²",
+      "nota": "alternativa B",
+      "destaque": "68,75"
+     }
+    ],
+    "motivo": "Incluído o teste da origem, que faltava no caderno e é o que decide o lado da reta."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

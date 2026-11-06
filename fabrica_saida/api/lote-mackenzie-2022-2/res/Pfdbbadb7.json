@@ -26,6 +26,22 @@
     [
      "tubo / unidade de controle",
      "conjunto que fica para trás e recua (21 kg)"
+    ],
+    [
+     "Δs",
+     "distância percorrida"
+    ],
+    [
+     "Δt",
+     "tempo gasto no percurso"
+    ],
+    [
+     "força externa",
+     "força que vem de fora do sistema; aqui seria o atrito da base, que não existe"
+    ],
+    [
+     "recuar",
+     "andar para trás, no sentido contrário ao do tiro"
     ]
    ]
   },
@@ -40,29 +56,29 @@
    {
     "faz": "Calcule a velocidade da ogiva",
     "conta": "v = 2000 ÷ 14 ≈ 143 m/s",
-    "porque": "Velocidade é distância dividida por tempo. A questão manda usar o quadro como determinante da velocidade de saída.",
+    "porque": "Velocidade é distância dividida por tempo. O enunciado manda usar o quadro para achar a velocidade de saída da ogiva.",
     "tipo": "calcular"
    },
    {
     "faz": "Escreva a conservação da quantidade de movimento",
     "conta": "0 = 3,0 × 143 − 21 × v",
-    "porque": "Sem atrito, não há força externa horizontal. A soma antes (zero) é igual à soma depois, com sinais opostos para frente e para trás.",
+    "porque": "Sem atrito, a quantidade de movimento total não muda: antes era zero e continua zero. A ogiva vai para a frente (sinal +) e o tubo para trás (sinal −), então um cancela o outro.",
     "tipo": "calcular"
    },
    {
     "faz": "Isole a velocidade de recuo",
-    "conta": "v = (3,0 × 143) ÷ 21 ≈ 20 m/s",
-    "porque": "3,0 × 143 ≈ 429 e 429 ÷ 21 ≈ 20,4. O tubo tem 7 vezes a massa da ogiva, então recua 7 vezes mais devagar que a ogiva avança: 143 ÷ 7 ≈ 20,4.",
+    "conta": "v = 3,0 × 143/21 ≈ 20 m/s",
+    "porque": "3,0 × 143 ≈ 429 e 429 ÷ 21 ≈ 20,4. O tubo tem 7 vezes a massa da ogiva, então recua com 1/7 da velocidade dela.",
     "tipo": "concluir"
    }
   ],
   "resposta": "Alternativa B: o tubo recua a cerca de 20 m/s, pois a ogiva sai a ≈ 143 m/s e tem 1/7 da massa do tubo.",
   "checagem": "A razão das massas é 21 ÷ 3,0 = 7. Logo, a velocidade do tubo é a da ogiva dividida por 7: 143 ÷ 7 ≈ 20,4 m/s. A mesma resposta sai sem calcular a quantidade de movimento.",
   "erradas": {
-   "A": "10 m/s exigiria ogiva a 21 × 10 ÷ 3,0 = 70 m/s, o que levaria 2000 ÷ 70 ≈ 28,6 s para os 2000 m. O quadro diz 14 s.",
-   "C": "30 m/s exigiria ogiva a 21 × 30 ÷ 3,0 = 210 m/s, que cobriria 2000 m em ≈ 9,5 s, e não nos 14 s do quadro.",
-   "D": "40 m/s exigiria ogiva a 21 × 40 ÷ 3,0 = 280 m/s, o que daria ≈ 7,1 s de voo, e não 14 s.",
-   "E": "50 m/s exigiria ogiva a 21 × 50 ÷ 3,0 = 350 m/s, o que daria ≈ 5,7 s de voo, e não 14 s."
+   "A": "Faltou testar contra o quadro. Com 10 m/s de recuo, a ogiva sairia a 21 × 10 ÷ 3,0 = 70 m/s e levaria 2000 ÷ 70 ≈ 28,6 s. O quadro diz 14 s.",
+   "C": "Faltou testar contra o quadro. Com 30 m/s de recuo, a ogiva sairia a 21 × 30 ÷ 3,0 = 210 m/s e levaria ≈ 9,5 s. O quadro diz 14 s.",
+   "D": "Faltou testar contra o quadro. Com 40 m/s de recuo, a ogiva sairia a 21 × 40 ÷ 3,0 = 280 m/s e levaria ≈ 7,1 s. O quadro diz 14 s.",
+   "E": "Faltou testar contra o quadro. Com 50 m/s de recuo, a ogiva sairia a 21 × 50 ÷ 3,0 = 350 m/s e levaria ≈ 5,7 s. O quadro diz 14 s."
   },
   "armadilha": "A velocidade da ogiva não é dada: é preciso tirá-la do quadro (2000 m ÷ 14 s) antes de aplicar a conservação da quantidade de movimento.",
   "alerta": "O enunciado trata a velocidade média do quadro (2000 m em 14 s) como a velocidade de saída da ogiva, como a própria questão manda. Na classificação, o assunto é impulso e quantidade de movimento (F03.4), não gravitação.",
@@ -104,7 +120,7 @@
    "nota": "troque pelos valores (massas em kg)"
   },
   {
-   "linha": "v_t = 429 ÷ 21",
+   "linha": "v_t = 3,0 × 143/21",
    "nota": "o 21 passa dividindo",
    "mov": [
     {
@@ -135,11 +151,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -162,6 +180,109 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "B"
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "Q",
+      "quantidade de movimento: massa vezes velocidade"
+     ],
+     [
+      "ogiva",
+      "a parte do míssil que voa até o alvo (3,0 kg)"
+     ],
+     [
+      "tubo / unidade de controle",
+      "conjunto que fica para trás e recua (21 kg)"
+     ],
+     [
+      "Δs",
+      "distância percorrida"
+     ],
+     [
+      "Δt",
+      "tempo gasto no percurso"
+     ],
+     [
+      "força externa",
+      "força que vem de fora do sistema; aqui seria o atrito da base, que não existe"
+     ],
+     [
+      "recuar",
+      "andar para trás, no sentido contrário ao do tiro"
+     ]
+    ],
+    "motivo": "Δs, Δt, força externa e recuar aparecem nos passos e não estavam explicados."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "Velocidade é distância dividida por tempo. O enunciado manda usar o quadro para achar a velocidade de saída da ogiva.",
+    "motivo": "Frase mais curta e direta."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "0 = 3,0 × 143 − 21 × v",
+    "motivo": "Mantida a conta. O sinal de menos fica explicado no porque."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Sem atrito, a quantidade de movimento total não muda: antes era zero e continua zero. A ogiva vai para a frente (sinal +) e o tubo para trás (sinal −), então um cancela o outro.",
+    "motivo": "Explica o significado do sinal negativo."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "v = 3,0 × 143/21 ≈ 20 m/s",
+    "motivo": "Conta mais clara, e a fração fica empilhada no site."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "3,0 × 143 ≈ 429 e 429 ÷ 21 ≈ 20,4. O tubo tem 7 vezes a massa da ogiva, então recua com 1/7 da velocidade dela.",
+    "motivo": "Texto mais curto, sem repetir a conta da checagem."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "Faltou testar contra o quadro. Com 10 m/s de recuo, a ogiva sairia a 21 × 10 ÷ 3,0 = 70 m/s e levaria 2000 ÷ 70 ≈ 28,6 s. O quadro diz 14 s.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou A."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "Faltou testar contra o quadro. Com 30 m/s de recuo, a ogiva sairia a 21 × 30 ÷ 3,0 = 210 m/s e levaria ≈ 9,5 s. O quadro diz 14 s.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou C."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "Faltou testar contra o quadro. Com 40 m/s de recuo, a ogiva sairia a 21 × 40 ÷ 3,0 = 280 m/s e levaria ≈ 7,1 s. O quadro diz 14 s.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou D."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "Faltou testar contra o quadro. Com 50 m/s de recuo, a ogiva sairia a 21 × 50 ÷ 3,0 = 350 m/s e levaria ≈ 5,7 s. O quadro diz 14 s.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou E."
+   },
+   {
+    "campo": "resolucao.quadro[5]",
+    "depois": {
+     "linha": "v_t = 3,0 × 143/21",
+     "nota": "o 21 passa dividindo",
+     "mov": [
+      {
+       "termo": "21",
+       "de": "direita",
+       "para": "denominador",
+       "vira": "21",
+       "como": "passa dividindo"
+      }
+     ]
+    },
+    "motivo": "Mostra a fração empilhada, como o caderno pede, antes do resultado 429 ÷ 21."
+   }
+  ],
+  "didatica_alertas": [
+   "Classificação: o JSON traz tema F03/F03.4, mas a classificação atual é F05/F05.1. Convém o corretor 1 conferir qual vale. O assunto é quantidade de movimento.",
+   "O nível está 4 no JSON e 6 na classificação atual: divergência a conferir."
+  ],
+  "didatica_ok": true
  }
 }

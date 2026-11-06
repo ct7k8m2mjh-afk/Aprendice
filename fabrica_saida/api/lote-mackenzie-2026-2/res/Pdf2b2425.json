@@ -8,7 +8,7 @@
  "conceito": "Seletor de velocidades: carga em campos elétrico e magnético cruzados que segue em linha reta tem força elétrica e força magnética de mesmo módulo e sentidos opostos.",
  "resolucao": {
   "antes": {
-   "texto": "Uma carga em movimento sofre força elétrica (qE) e, se a velocidade não for paralela a B, força magnética (qvB senθ). Para a trajetória continuar reta e sem desvio, a força resultante tem de ser nula (1ª lei de Newton). Aqui só há duas forças, então elas precisam se anular.",
+   "texto": "Uma carga em movimento sofre força elétrica (q × E). Se a velocidade não for paralela ao campo magnético, ela também sofre força magnética (q × v × B × senθ). Para a trajetória continuar reta, a força resultante tem de ser nula (1ª lei de Newton). Aqui só há duas forças, então elas precisam se anular.",
    "formulas": [
     "F_elétrica = q × E",
     "F_magnética = q × v × B × senθ",
@@ -17,7 +17,7 @@
    "simbolos": [
     [
      "q",
-     "carga elétrica da partícula (o próton tem carga positiva)"
+     "carga elétrica da partícula (a do próton é positiva)"
     ],
     [
      "E",
@@ -28,12 +28,24 @@
      "módulo do campo magnético"
     ],
     [
+     "v",
+     "velocidade do próton"
+    ],
+    [
      "θ",
      "ângulo entre a velocidade e o campo magnético; aqui vale 90°, então senθ = 1"
     ],
     [
+     "⊥",
+     "perpendicular, ou seja, formando 90°"
+    ],
+    [
      "força resultante",
-     "soma vetorial de todas as forças que atuam na partícula"
+     "soma, levando em conta os sentidos, de todas as forças que atuam na partícula"
+    ],
+    [
+     "× (na figura)",
+     "indica campo magnético entrando na página, como a ponta de uma seta que se afasta de você"
     ]
    ]
   },
@@ -60,17 +72,17 @@
    {
     "faz": "Use a condição de trajetória reta",
     "conta": "F_res = 0 → qE = qvB",
-    "porque": "Sem desvio, a aceleração é nula, então as duas forças têm o mesmo módulo e sentidos opostos. Isso vale quando v = E ÷ B.",
+    "porque": "Sem desvio, a aceleração é nula, então as duas forças têm o mesmo módulo e sentidos opostos. O q aparece nos dois lados e cancela, e sobra v = E ÷ B.",
     "tipo": "concluir"
    }
   ],
   "resposta": "Alternativa B: a força elétrica (para baixo) e a força magnética (para cima) têm módulos iguais e sentidos opostos, por isso se anulam e o próton segue em linha reta.",
   "checagem": "Confira pelo cancelamento: qE = qvB dá v = E ÷ B, uma velocidade não nula e bem definida. É o princípio do seletor de velocidades: só passa reto a partícula com essa velocidade.",
   "erradas": {
-   "A": "A força elétrica também depende do sinal da carga (F = qE troca de sentido se q muda de sinal). Além disso, com v = 0 a força magnética é zero e não cancelaria a elétrica. O cancelamento ocorre com v = E ÷ B, não nula.",
-   "C": "Com v perpendicular a B, senθ = 1 e a força magnética é a máxima, não zero. A massa pequena não impede o desvio: a aceleração é a = F ÷ m, e massa pequena a deixaria até maior. Se só a força elétrica atuasse, a partícula desviaria.",
-   "D": "Um campo não blinda o outro. A força elétrica vale qE e não é nula. É verdade que a força magnética é perpendicular a v e não realiza trabalho, mas isso não explica a ausência de desvio.",
-   "E": "Pelo desenho, as forças têm sentidos opostos (elétrica para baixo, magnética para cima), não o mesmo sentido. Além disso, inércia não equilibra força: o movimento retilíneo é consequência de a resultante ser nula."
+   "A": "Faltou ver que a força elétrica também depende do sinal da carga (F = qE troca de sentido se q muda de sinal). Além disso, com v = 0 a força magnética é zero e não cancelaria a elétrica. O cancelamento ocorre com v = E ÷ B, que não é zero.",
+   "C": "Faltou lembrar que com v perpendicular a B o senθ vale 1 e a força magnética é a máxima, não zero. Massa pequena não impede desvio: a = F ÷ m fica até maior. Só com a força elétrica, a partícula desviaria.",
+   "D": "Faltou notar que um campo não blinda o outro: a força elétrica vale qE e não é nula. É verdade que a força magnética é perpendicular a v e não realiza trabalho, mas isso não explica a ausência de desvio.",
+   "E": "Faltou olhar a figura: a força elétrica aponta para baixo e a magnética para cima, sentidos opostos. Além disso, inércia não é força que equilibra: o movimento reto vem de a resultante ser nula."
   },
   "armadilha": "Achar que a força magnética é nula porque v é perpendicular a B; é justamente nesse caso que ela é máxima.",
   "alerta": "",
@@ -126,11 +138,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -153,6 +167,83 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "B"
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Uma carga em movimento sofre força elétrica (q × E). Se a velocidade não for paralela ao campo magnético, ela também sofre força magnética (q × v × B × senθ). Para a trajetória continuar reta, a força resultante tem de ser nula (1ª lei de Newton). Aqui só há duas forças, então elas precisam se anular.",
+    "motivo": "Frases mais curtas e sem a expressão 'se a velocidade não for paralela a B' solta, que usava B sem apresentar."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "q",
+      "carga elétrica da partícula (a do próton é positiva)"
+     ],
+     [
+      "E",
+      "módulo do campo elétrico"
+     ],
+     [
+      "B",
+      "módulo do campo magnético"
+     ],
+     [
+      "v",
+      "velocidade do próton"
+     ],
+     [
+      "θ",
+      "ângulo entre a velocidade e o campo magnético; aqui vale 90°, então senθ = 1"
+     ],
+     [
+      "⊥",
+      "perpendicular, ou seja, formando 90°"
+     ],
+     [
+      "força resultante",
+      "soma, levando em conta os sentidos, de todas as forças que atuam na partícula"
+     ],
+     [
+      "× (na figura)",
+      "indica campo magnético entrando na página, como a ponta de uma seta que se afasta de você"
+     ]
+    ],
+    "motivo": "Faltavam v, ⊥ e o significado dos × da figura; 'soma vetorial' trocada por explicação simples."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Sem desvio, a aceleração é nula, então as duas forças têm o mesmo módulo e sentidos opostos. O q aparece nos dois lados e cancela, e sobra v = E ÷ B.",
+    "motivo": "Mais direto e liga o cancelamento ao resultado, sem frase solta."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "F_res = 0 → qE = qvB",
+    "motivo": "Mantido; sem mudança de conteúdo, confirma que cabe na linha."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "Faltou ver que a força elétrica também depende do sinal da carga (F = qE troca de sentido se q muda de sinal). Além disso, com v = 0 a força magnética é zero e não cancelaria a elétrica. O cancelamento ocorre com v = E ÷ B, que não é zero.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou A."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "Faltou lembrar que com v perpendicular a B o senθ vale 1 e a força magnética é a máxima, não zero. Massa pequena não impede desvio: a = F ÷ m fica até maior. Só com a força elétrica, a partícula desviaria.",
+    "motivo": "Foco no que faltou ao aluno e frases mais curtas."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "Faltou notar que um campo não blinda o outro: a força elétrica vale qE e não é nula. É verdade que a força magnética é perpendicular a v e não realiza trabalho, mas isso não explica a ausência de desvio.",
+    "motivo": "Explicita o que faltou no raciocínio."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "Faltou olhar a figura: a força elétrica aponta para baixo e a magnética para cima, sentidos opostos. Além disso, inércia não é força que equilibra: o movimento reto vem de a resultante ser nula.",
+    "motivo": "Diz o que faltou e simplifica."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

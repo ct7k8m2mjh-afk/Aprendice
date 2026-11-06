@@ -31,7 +31,7 @@
     ],
     [
      "coroplético",
-     "mapa em que áreas recebem cores conforme classes de um indicador"
+     "mapa em que cada área recebe uma cor conforme a classe do indicador (por exemplo, faixas de população)"
     ],
     [
      "isolinhas",
@@ -50,7 +50,7 @@
    {
     "faz": "Separe o que o texto-base diz do que o comando pede",
     "conta": "Texto-base: cor ou símbolo no polígono",
-    "porque": "O texto-base descreve o mapa temático tradicional, em que o polígono fica com a área real. O comando contrasta com isso: aqui o polígono muda.",
+    "porque": "O texto-base descreve o mapa temático tradicional, em que o polígono mantém a área real e só recebe cor ou símbolo. O comando faz o contrário: aqui o polígono muda de tamanho.",
     "tipo": "comparar"
    },
    {
@@ -62,7 +62,7 @@
    {
     "faz": "Nomeie a técnica que sobra",
     "conta": "área ∝ dado → anamorfose",
-    "porque": "Anamorfose geográfica é a técnica em que o tamanho de cada território é proporcional à variável: a Índia e a China enormes num mapa de população, por exemplo.",
+    "porque": "Anamorfose geográfica é a técnica em que o tamanho de cada território é proporcional ao dado. Num mapa de população, por exemplo, Índia e China ficam enormes.",
     "tipo": "comparar"
    },
    {
@@ -75,10 +75,10 @@
   "resposta": "Alternativa B: anamorfose geográfica, técnica em que o contorno de cada país é deformado proporcionalmente ao valor do tema representado.",
   "checagem": "Imagine um mapa de população em que a Índia aparece maior que a Rússia. Isso só é possível se o tamanho do país não for o real, ou seja, se houver deformação. Nas outras técnicas, a Rússia continuaria enorme.",
   "erradas": {
-   "A": "O coroplético mantém o contorno e a área reais e usa cores (tons) por classe de valor. O texto-base descreve justamente esse caso, que é o oposto do pedido: no comando o polígono é deformado.",
-   "C": "O mapa de pontos usa pontos, cada um valendo certa quantidade, espalhados sobre o território. Os países continuam com a área real e nada é redesenhado.",
-   "D": "O cartograma de fluxos usa setas ou linhas, com espessura proporcional à intensidade, para mostrar deslocamentos (migrações, comércio). Não deforma os países.",
-   "E": "Isolinhas são linhas que ligam pontos de mesmo valor (curvas de nível, isotermas, isoietas). Representam fenômenos contínuos e não alteram o tamanho dos polígonos."
+   "A": "Quem marcou A confundiu com o texto-base. O coroplético mantém o contorno e a área reais e só varia a cor por classe de valor. O comando pede o contrário: o polígono é deformado.",
+   "C": "Quem marcou C pensou em 'mostrar quantidade'. O mapa de pontos usa pontos, cada um valendo certa quantidade, sobre o território. Os países seguem com a área real e nada é redesenhado.",
+   "D": "Quem marcou D pensou em 'dado que varia'. O cartograma de fluxos mostra deslocamentos (migrações, comércio) com setas ou linhas, de espessura proporcional à intensidade. Não deforma os países.",
+   "E": "Quem marcou E faltou notar que isolinhas são linhas que ligam pontos de mesmo valor (curvas de nível, linhas de igual temperatura). Mostram fenômenos contínuos e não mudam o tamanho dos países."
   },
   "armadilha": "Marcar mapa coroplético porque o texto-base fala de cor e polígono: o comando descreve o contrário, um polígono deformado.",
   "alerta": "",
@@ -113,11 +113,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -134,6 +136,48 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "B"
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "O texto-base descreve o mapa temático tradicional, em que o polígono mantém a área real e só recebe cor ou símbolo. O comando faz o contrário: aqui o polígono muda de tamanho.",
+    "motivo": "Frase mais simples e sem ambiguidade."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Anamorfose geográfica é a técnica em que o tamanho de cada território é proporcional ao dado. Num mapa de população, por exemplo, Índia e China ficam enormes.",
+    "motivo": "Frases curtas e exemplo mais claro."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "Quem marcou A confundiu com o texto-base. O coroplético mantém o contorno e a área reais e só varia a cor por classe de valor. O comando pede o contrário: o polígono é deformado.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou A."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "Quem marcou C pensou em 'mostrar quantidade'. O mapa de pontos usa pontos, cada um valendo certa quantidade, sobre o território. Os países seguem com a área real e nada é redesenhado.",
+    "motivo": "Explicita o raciocínio que levou ao erro."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "Quem marcou D pensou em 'dado que varia'. O cartograma de fluxos mostra deslocamentos (migrações, comércio) com setas ou linhas, de espessura proporcional à intensidade. Não deforma os países.",
+    "motivo": "Explicita o raciocínio que levou ao erro."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "Quem marcou E faltou notar que isolinhas são linhas que ligam pontos de mesmo valor (curvas de nível, linhas de igual temperatura). Mostram fenômenos contínuos e não mudam o tamanho dos países.",
+    "motivo": "Diz o que faltou e explica o termo."
+   },
+   {
+    "campo": "resolucao.antes.simbolos[3]",
+    "depois": [
+     "coroplético",
+     "mapa em que cada área recebe uma cor conforme a classe do indicador (por exemplo, faixas de população)"
+    ],
+    "motivo": "Definição mais simples."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

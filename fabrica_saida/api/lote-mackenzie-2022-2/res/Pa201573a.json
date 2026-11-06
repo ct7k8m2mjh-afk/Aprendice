@@ -8,7 +8,7 @@
  "conceito": "Ler fórmulas em bastão, classificar carbonos (primário, secundário, terciário), reconhecer funções oxigenadas e saber quais oxidam.",
  "resolucao": {
   "antes": {
-   "texto": "O enigma tem três pistas: (1) o grupo oxigenado não oxida; (2) a cadeia tem 7 carbonos, ramificada, homogênea e alifática; (3) são 3 carbonos primários, 3 secundários e 1 terciário. Classifique cada carbono pelo número de OUTROS carbonos ligados a ele. Álcool primário e secundário e aldeído oxidam; cetona não oxida em condições brandas.",
+   "texto": "O enigma tem três pistas: (1) o grupo oxigenado não oxida; (2) a cadeia tem 7 carbonos, é ramificada, homogênea e alifática; (3) são 3 carbonos primários, 3 secundários e 1 terciário. Classifique cada carbono pelo número de OUTROS carbonos ligados a ele. Álcool primário, álcool secundário e aldeído oxidam; cetona não oxida em condições brandas.",
    "formulas": [
     "Carbono primário: ligado a 1 outro carbono",
     "Carbono secundário: ligado a 2 outros carbonos",
@@ -43,7 +43,7 @@
    {
     "faz": "Use a pista da oxidação",
     "conta": "Aldeído (b): oxida → fora",
-    "porque": "O aldeído oxida a ácido carboxílico com facilidade. A alternativa B tem um aldeído, então não serve.",
+    "porque": "O aldeído (grupo CHO) oxida com facilidade e vira ácido carboxílico. Como o enigma pede um grupo que não oxida, a alternativa B sai.",
     "tipo": "eliminar"
    },
    {
@@ -54,14 +54,14 @@
    },
    {
     "faz": "Classifique os carbonos do ácido (c)",
-    "conta": "C: 4 primários, 1 sec., 2 terc.",
+    "conta": "c) 4 prim., 1 sec., 2 terc.",
     "porque": "Os 3 CH3 e o COOH (ligado a só um carbono) são 4 primários. Só o CH2 é secundário. Os dois CH são terciários. Não bate com 3-3-1.",
     "tipo": "calcular"
    },
    {
     "faz": "Classifique os carbonos do éster (e)",
     "conta": "e) 3 prim., 2 sec., 1 terc.",
-    "porque": "Os 3 CH3 são primários. O CH ligado ao O e o CH2 são secundários, porque têm 2 vizinhos carbono. Só o CH com o metil é terciário. O C do HCOO não tem vizinho carbono. Não bate com 3-3-1, e o O entre carbonos deixa a cadeia heterogênea.",
+    "porque": "Os 3 CH3 são primários. O CH ligado ao O e o CH2 são secundários (2 vizinhos carbono). O CH com o metil é terciário. O C do HCOO não tem vizinho carbono. A contagem não bate com 3-3-1, e o O entre carbonos deixa a cadeia heterogênea.",
     "tipo": "calcular"
    },
    {
@@ -82,7 +82,7 @@
   "erradas": {
    "A": "O carbono é 3-3-1 (3 CH3; 2 CH2 e o CH(OH) secundários; 1 CH terciário), então a contagem fecha. Mas o grupo é um álcool secundário, que oxida a cetona. Isso contraria a pista da oxidação.",
    "B": "É um aldeído (CHO), que oxida facilmente a ácido carboxílico. A contagem até fecha: são 3 primários (o CHO e 2 CH3), 3 secundários (os 3 CH2) e 1 terciário (o CH). Mas a função oxida, e isso elimina a alternativa.",
-   "C": "É um ácido carboxílico, que não oxida facilmente, mas a contagem falha. O COOH conta como primário e há 3 CH3, então são 4 primários. Há só 1 carbono secundário (CH2) e 2 terciários (os dois CH). Não é 3-3-1.",
+   "C": "É um ácido carboxílico, que não oxida facilmente, mas a contagem falha. Os 3 CH3 e o COOH são primários: 4 no total. Só o CH2 é secundário e os dois CH são terciários. Não é 3-3-1.",
    "E": "É um éster, e o O entre carbonos (C–O–C) deixa a cadeia heterogênea, o que contraria o enigma. A contagem também falha: 3 CH3 primários, 2 secundários (o CH ligado ao O e o CH2) e 1 terciário (o CH com metil). O C do HCOO não tem vizinho carbono. Não é 3-3-1."
   },
   "armadilha": "Esquecer que o carbono do C=O também entra na contagem de primário/secundário, e que o aldeído e o álcool secundário oxidam.",
@@ -135,11 +135,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -168,6 +170,43 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "D"
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "O enigma tem três pistas: (1) o grupo oxigenado não oxida; (2) a cadeia tem 7 carbonos, é ramificada, homogênea e alifática; (3) são 3 carbonos primários, 3 secundários e 1 terciário. Classifique cada carbono pelo número de OUTROS carbonos ligados a ele. Álcool primário, álcool secundário e aldeído oxidam; cetona não oxida em condições brandas.",
+    "motivo": "Frase mais clara; 'condições brandas' fica como ressalva."
+   },
+   {
+    "campo": "resolucao.passos[0].porque",
+    "depois": "O aldeído (grupo CHO) oxida com facilidade e vira ácido carboxílico. Como o enigma pede um grupo que não oxida, a alternativa B sai.",
+    "motivo": "Mais simples e responde ao que o enigma pede."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "c) 4 prim., 1 sec., 2 terc.",
+    "motivo": "Conta mais legível, cabe na linha."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Os 3 CH3 são primários. O CH ligado ao O e o CH2 são secundários (2 vizinhos carbono). O CH com o metil é terciário. O C do HCOO não tem vizinho carbono. A contagem não bate com 3-3-1, e o O entre carbonos deixa a cadeia heterogênea.",
+    "motivo": "Frases mais curtas, sem duplo sentido."
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "CH3–CH2–C(=O)–CH(CH3)–CH2–CH3",
+    "motivo": "Mantido; o passo é copiável."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "É um ácido carboxílico, que não oxida facilmente, mas a contagem falha. Os 3 CH3 e o COOH são primários: 4 no total. Só o CH2 é secundário e os dois CH são terciários. Não é 3-3-1.",
+    "motivo": "Diz com clareza o que faltou a quem marcou C: contar o COOH e os CH3."
+   }
+  ],
+  "didatica_alertas": [
+   "Nas alternativas A e B a contagem 3-3-1 fecha. O campo 'caminhos' diz 'Só A, B e D têm 3-3-1'; a alternativa A, de fato, fecha, mas confira com o corretor de fatos a contagem em B, que tem carbono CHO com 1 vizinho carbono (ok).",
+   "O campo 'conteudo' vem como Q11.1 no JSON, mas a classificação diz Q11.6; confira."
+  ],
+  "didatica_ok": true
  }
 }

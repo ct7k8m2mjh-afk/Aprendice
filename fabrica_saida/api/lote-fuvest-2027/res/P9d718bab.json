@@ -25,8 +25,20 @@
      "aceleração da gravidade, 10 m/s²"
     ],
     [
+     "h",
+     "altura em relação ao solo"
+    ],
+    [
      "Δh",
-     "desnível entre o ponto de partida e o ponto mais baixo"
+     "desnível: diferença entre a altura da partida e a do ponto mais baixo"
+    ],
+    [
+     "E_pot",
+     "energia potencial: a energia guardada pela altura"
+    ],
+    [
+     "E_cin",
+     "energia cinética: a energia do movimento"
     ],
     [
      "J",
@@ -34,7 +46,11 @@
     ],
     [
      "E_dissipada",
-     "energia perdida pelo atrito e pelo arrasto do ar, igual ao módulo do trabalho dessas forças"
+     "energia perdida pelo atrito e pelo arrasto do ar (arrasto = resistência do ar), igual ao módulo do trabalho dessas forças"
+    ],
+    [
+     "v",
+     "velocidade; m/s = metros por segundo, km/h = quilômetros por hora"
     ]
    ]
   },
@@ -60,8 +76,8 @@
    },
    {
     "faz": "Ache a velocidade em m/s",
-    "conta": "35 v² = 31.500, v² = 900, v = 30 m/s",
-    "porque": "Pela energia cinética, 70 × v² ÷ 2 = 35 v². Dividindo 31.500 por 35, sai 900.",
+    "conta": "70 × v² ÷ 2 = 31.500",
+    "porque": "70 ÷ 2 = 35, então 35 × v² = 31.500. Dividindo por 35, v² = 900 e v = 30 m/s, pois 30 × 30 = 900.",
     "tipo": "calcular"
    },
    {
@@ -74,7 +90,7 @@
   "resposta": "Alternativa D: a velocidade no ponto mais baixo é 30 m/s, ou seja, 108 km/h.",
   "checagem": "Sem atrito, v² = 2 g Δh = 2 × 10 × 60,3 = 1.206, ou seja, v ≈ 34,7 m/s ≈ 125 km/h (a alternativa E). Com perda de energia, a velocidade é menor: 108 km/h é plausível. Conferindo: 70 × 900 ÷ 2 = 31.500 J, e 31.500 + 10.710 = 42.210 J. Fecha.",
   "erradas": {
-   "A": "10 km/h é cerca de 2,8 m/s, o que daria energia cinética de apenas 270 J, longe dos 31.500 J que sobram. Não confere. Para ter só 10 m/s, 3.500 J, a perda teria de ser enorme.",
+   "A": "Não confere: 10 km/h é cerca de 2,8 m/s, o que daria só 35 × 2,8² ≈ 270 J de energia cinética. Sobram 31.500 J, bem mais que isso.",
    "B": "30 é a velocidade em m/s, que ainda não foi convertida para km/h. O pedido é em km/h: 30 × 3,6 = 108.",
    "C": "47 km/h é cerca de 13 m/s, o que dá energia cinética de aproximadamente 6.000 J (35 × 13,1² ≈ 5.970 J). Não confere com os 31.500 J que sobram no ponto mais baixo.",
    "E": "126 km/h = 35 m/s é o valor que se obtém sem a perda de energia: v² = 2 g Δh = 1.206 dá cerca de 34,7 m/s (≈ 125 km/h). Ignora os 10.710 J dissipados pelo atrito e pelo arrasto, que a questão pede para considerar."
@@ -157,11 +173,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -178,6 +196,80 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "D"
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "E_pot = m × g × h",
+     "E_cin = m × v² ÷ 2",
+     "E_cin = m × g × Δh − E_dissipada",
+     "v (km/h) = v (m/s) × 3,6"
+    ],
+    "motivo": "Sem mudança de conteúdo; mantida a lista, que já está adequada."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "m",
+      "massa do skatista; 'pesa 70 kg' no enunciado quer dizer massa de 70 kg"
+     ],
+     [
+      "g",
+      "aceleração da gravidade, 10 m/s²"
+     ],
+     [
+      "h",
+      "altura em relação ao solo"
+     ],
+     [
+      "Δh",
+      "desnível: diferença entre a altura da partida e a do ponto mais baixo"
+     ],
+     [
+      "E_pot",
+      "energia potencial: a energia guardada pela altura"
+     ],
+     [
+      "E_cin",
+      "energia cinética: a energia do movimento"
+     ],
+     [
+      "J",
+      "joule, unidade de energia e de trabalho"
+     ],
+     [
+      "E_dissipada",
+      "energia perdida pelo atrito e pelo arrasto do ar (arrasto = resistência do ar), igual ao módulo do trabalho dessas forças"
+     ],
+     [
+      "v",
+      "velocidade; m/s = metros por segundo, km/h = quilômetros por hora"
+     ]
+    ],
+    "motivo": "Faltavam h, E_pot, E_cin, v e o significado de 'arrasto do ar' para um aluno de 17 anos."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "70 × v² ÷ 2 = 31.500",
+    "motivo": "Conta mais curta para caber na tela; a simplificação 35 v² vai para o porque."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "70 ÷ 2 = 35, então 35 × v² = 31.500. Dividindo por 35, v² = 900 e v = 30 m/s, pois 30 × 30 = 900.",
+    "motivo": "Passo mais claro, mostra a simplificação e a raiz."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "Não confere: 10 km/h é cerca de 2,8 m/s, o que daria só 35 × 2,8² ≈ 270 J de energia cinética. Sobram 31.500 J, bem mais que isso.",
+    "motivo": "Frase mais direta, sem trecho confuso sobre 10 m/s."
+   }
+  ],
+  "didatica_alertas": [
+   "Metadados: tema F03/F03.2 na resolução, enquanto a classificação atual é F04/F04.3 e nível 6 contra 5. O conteúdo é conservação de energia (F03.2), então a classificação F04.3 parece errada.",
+   "Na alternativa E, 126 km/h = 35 m/s exatos, mas a checagem dá 34,7 m/s ≈ 125 km/h sem perdas. A coerência é aproximada, o que não afeta a resposta."
+  ],
+  "didatica_ok": true
  }
 }

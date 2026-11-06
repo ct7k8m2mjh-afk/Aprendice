@@ -12,7 +12,7 @@
    "formulas": [
     "E = k·q/d²",
     "Campo de carga positiva: afasta-se da carga",
-    "Três vetores iguais a 120° entre si somam zero"
+    "Três vetores de mesmo módulo, a 120° entre si, somam zero"
    ],
    "simbolos": [
     [
@@ -50,13 +50,13 @@
    {
     "faz": "Some cada par de vértices opostos",
     "conta": "2kQ/L² − kQ/L² = kQ/L²",
-    "porque": "Em cada par oposto há uma carga Q e uma 2Q. Os campos têm sentidos contrários na mesma reta, então se subtraem. Sobra kQ/L², apontando para o lado da carga Q (a carga 2Q empurra mais forte).",
+    "porque": "Em cada par oposto há uma carga Q e uma 2Q. Os dois campos estão na mesma reta e têm sentidos contrários, então se subtraem. A carga 2Q empurra mais forte, e o resultado aponta para o lado da carga Q.",
     "tipo": "calcular"
    },
    {
-    "faz": "Veja a direção dos três resultados",
-    "conta": "Q em 0°, 240° e 120°",
-    "porque": "Os pares são (+Q à direita, +2Q à esquerda), (+Q embaixo à esquerda, +2Q em cima à direita) e (+Q em cima à esquerda, +2Q embaixo à direita). Os três resultados de módulo kQ/L² apontam para os vértices +Q, que ficam a 120° uns dos outros.",
+    "faz": "Veja para onde aponta cada resultado",
+    "conta": "Q à dir., Q baixo-esq., Q cima-esq.",
+    "porque": "Cada par tem uma carga Q e uma 2Q. O resultado do par aponta para o lado da carga Q. As três cargas +Q ficam em vértices alternados, a 120° umas das outras. Logo os três resultados também ficam a 120° entre si.",
     "tipo": "comparar"
    },
    {
@@ -67,12 +67,12 @@
    }
   ],
   "resposta": "Alternativa E: o campo elétrico resultante em P é zero, porque os três pares opostos deixam três vetores iguais a 120° entre si, que se anulam.",
-  "checagem": "Outra forma: se as seis cargas fossem todas Q, cada par oposto cancelaria e o campo seria zero. Agora some mais Q nos três vértices alternados (as cargas 2Q). Esses três vértices formam um triângulo equilátero, e três campos iguais a 120° entre si também somam zero. Os dois conjuntos se anulam, então o total é zero.",
+  "checagem": "Outro caminho: separe as cargas em dois grupos. As três +Q ocupam vértices alternados e formam um triângulo equilátero com centro em P. Três campos iguais a 120° entre si somam zero. As três +2Q também formam um triângulo equilátero, então somam zero. O total é zero.",
   "erradas": {
    "A": "kQ/L² é o resultado de um único par oposto (2kQ/L² − kQ/L²). Faltou somar os outros dois pares, que apontam a 120° e cancelam esse valor.",
    "B": "2kQ/L² é o campo de uma só carga 2Q. Faltou subtrair o campo da carga Q oposta e somar os outros vértices.",
-   "C": "4kQ/L² não confere: somar os módulos dos seis campos dá 3 × kQ/L² + 3 × 2kQ/L² = 9kQ/L², não 4. Pela simetria, cada par oposto deixa kQ/L², e os três resultados, a 120° entre si, se anulam.",
-   "D": "10kQ/L² não confere: somaria todos os módulos, 3 × kQ/L² + 3 × 2kQ/L² = 9kQ/L², e ainda assim não chega a 10. Campo é vetor, e os sentidos opostos fazem os campos se cancelarem."
+   "C": "4kQ/L² não confere. Mesmo somando os módulos dos seis campos como se fossem números comuns, o total seria 3 × kQ/L² + 3 × 2kQ/L² = 9kQ/L², e não 4. Campo é vetor: cada par oposto deixa kQ/L², e os três resultados, a 120° entre si, se anulam.",
+   "D": "10kQ/L² não confere. Mesmo somando todos os módulos, o máximo seria 9kQ/L². Quem marca D soma números e esquece que campo é vetor: os sentidos opostos fazem os campos se cancelarem."
   },
   "armadilha": "Somar os módulos dos campos como números comuns, esquecendo que campo é vetor e que cargas opostas em relação a P empurram em sentidos contrários.",
   "alerta": "",
@@ -136,11 +136,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -163,6 +165,51 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "E"
+  "fatos_resposta": "E",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[3]",
+    "depois": {
+     "faz": "Veja para onde aponta cada resultado",
+     "conta": "Q à dir., Q baixo-esq., Q cima-esq.",
+     "porque": "Cada par tem uma carga Q e uma 2Q. O resultado do par aponta para o lado da carga Q. As três cargas +Q ficam em vértices alternados, a 120° umas das outras. Logo os três resultados também ficam a 120° entre si.",
+     "tipo": "comparar"
+    },
+    "motivo": "Os ângulos '0°, 240°, 120°' não correspondem à figura e estavam confusos. Troquei por posições na figura, e a conta cabe na tela."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Em cada par oposto há uma carga Q e uma 2Q. Os dois campos estão na mesma reta e têm sentidos contrários, então se subtraem. A carga 2Q empurra mais forte, e o resultado aponta para o lado da carga Q.",
+    "motivo": "Frase mais curta e sem ambiguidade."
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Outro caminho: separe as cargas em dois grupos. As três +Q ocupam vértices alternados e formam um triângulo equilátero com centro em P. Três campos iguais a 120° entre si somam zero. As três +2Q também formam um triângulo equilátero, então somam zero. O total é zero.",
+    "motivo": "A checagem original falava em 'somar mais Q', o que era confuso. Agora usa os dois triângulos, que é o mesmo raciocínio do caminho por alternância."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "4kQ/L² não confere. Mesmo somando os módulos dos seis campos como se fossem números comuns, o total seria 3 × kQ/L² + 3 × 2kQ/L² = 9kQ/L², e não 4. Campo é vetor: cada par oposto deixa kQ/L², e os três resultados, a 120° entre si, se anulam.",
+    "motivo": "Texto mais claro sobre o que faltou a quem marcou C."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "10kQ/L² não confere. Mesmo somando todos os módulos, o máximo seria 9kQ/L². Quem marca D soma números e esquece que campo é vetor: os sentidos opostos fazem os campos se cancelarem.",
+    "motivo": "Simplificação: a frase 'ainda assim não chega a 10' era confusa."
+   },
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "E = k·q/d²",
+     "Campo de carga positiva: afasta-se da carga",
+     "Três vetores de mesmo módulo, a 120° entre si, somam zero"
+    ],
+    "motivo": "Deixa a fórmula mais precisa, com 'mesmo módulo'."
+   }
+  ],
+  "didatica_alertas": [
+   "A classificação no JSON da resolução (F10 / F10.3 / nível 5) difere da classificação atual do banco (F11 / F11.2 / nível 6). F10.3, campo elétrico, parece mais adequado."
+  ],
+  "didatica_ok": true
  }
 }

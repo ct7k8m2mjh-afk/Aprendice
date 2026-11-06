@@ -8,7 +8,7 @@
  "conceito": "Calcular o ΔH de combustão pela entalpia de formação e comparar a energia liberada por 1 mol de metanol e de etanol.",
  "resolucao": {
   "antes": {
-   "texto": "O texto sobre adulteração é só cenário. A pergunta é: quanta energia cada combustível libera por mol? Para isso, escreva a combustão completa de cada um (produz CO2 e H2O) e use a entalpia de formação. Cada ΔH de combustão sai de produtos menos reagentes, com os coeficientes da equação balanceada.",
+   "texto": "O texto sobre adulteração é só cenário. A pergunta é: quanta energia cada combustível libera por mol? Escreva a combustão completa de cada um (produz CO2 e H2O) e use a entalpia de formação. Atenção: o enunciado dá os valores de formação sem sinal, mas todos são negativos (a formação libera energia). Use −239, −278, −286 e −394.",
    "formulas": [
     "ΔH = soma(ΔHf produtos) − soma(ΔHf reagentes), cada um × coeficiente",
     "substância simples no estado padrão (O2) tem ΔHf = 0",
@@ -67,7 +67,7 @@
    {
     "faz": "Compare as energias liberadas",
     "conta": "(1368 − 727) ÷ 727 ≈ 0,88",
-    "porque": "O etanol libera 1368 kJ/mol contra 727 kJ/mol do metanol, ou seja, cerca de 88% a mais. Esse valor é aproximadamente 90%.",
+    "porque": "Divida a diferença pelo valor do metanol, que é a base da comparação. O etanol libera 1368 kJ/mol contra 727 kJ/mol, cerca de 88% a mais, que é aproximadamente 90%.",
     "tipo": "calcular"
    },
    {
@@ -78,12 +78,12 @@
    }
   ],
   "resposta": "Alternativa A: o etanol libera 1368 kJ/mol e o metanol, 727 kJ/mol, ou seja, cerca de 90% a mais.",
-  "checagem": "Por outro caminho: 727 × 1,9 ≈ 1381, bem perto de 1368. Já 727 × 1,5 ≈ 1090, longe de 1368, o que descarta 50%.",
+  "checagem": "Outro caminho: se o etanol liberasse 90% a mais, seria 727 × 1,9 ≈ 1381, bem perto de 1368. Para 50% a mais seria 727 × 1,5 ≈ 1090, longe de 1368, o que descarta B.",
   "erradas": {
-   "B": "Seria verdade se o etanol liberasse 727 × 1,5 ≈ 1090 kJ/mol. A conta dá 1368 kJ/mol, razão de 1368/727 ≈ 1,88, que é cerca de 90% a mais.",
-   "C": "Inverte os papéis: o metanol libera 727 kJ/mol, menos que os 1368 kJ/mol do etanol. Quem libera mais é o etanol.",
-   "D": "Também inverte os papéis, e 50% não confere com a razão 1368/727 ≈ 1,88. O metanol libera menos energia que o etanol.",
-   "E": "As energias diferem: 727 kJ/mol (metanol) e 1368 kJ/mol (etanol). O etanol tem mais carbono e forma mais CO2 e H2O por mol."
+   "B": "Quem marcou B achou que o etanol libera só metade a mais (727 × 1,5 ≈ 1090 kJ/mol). Faltou calcular o ΔH do etanol com 2 CO2 e 3 H2O: dá 1368 kJ/mol, razão 1368 ÷ 727 ≈ 1,88, cerca de 90% a mais.",
+   "C": "Quem marcou C trocou os combustíveis. O metanol libera 727 kJ/mol, menos que os 1368 kJ/mol do etanol. Faltou comparar os dois ΔH calculados, em módulo, antes de escolher o sentido.",
+   "D": "Quem marcou D trocou os combustíveis e ainda errou a porcentagem. O metanol libera menos (727 contra 1368 kJ/mol), e a diferença é cerca de 90%, não 50%. Faltou calcular os dois ΔH.",
+   "E": "Quem marcou E não calculou os dois ΔH: são 727 kJ/mol (metanol) e 1368 kJ/mol (etanol). O etanol tem 2 carbonos e forma mais CO2 e H2O por mol, então libera mais energia."
   },
   "armadilha": "Esquecer os coeficientes (2 CO2 e 3 H2O no etanol; 2 H2O no metanol) e usar os valores de formação sem multiplicar.",
   "alerta": "O enunciado traz os ΔHf como números positivos (239, 278, 286, 394), mas as entalpias de formação dessas substâncias são negativas. Lidos literalmente, os valores dariam ΔH com sinal trocado (+727 e +1368). A razão entre as energias é a mesma, então a resposta não muda.",
@@ -155,11 +155,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -182,6 +184,65 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "A"
+  "fatos_resposta": "A",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "ΔH = soma(ΔHf produtos) − soma(ΔHf reagentes), cada um × coeficiente",
+     "substância simples no estado padrão (O2) tem ΔHf = 0",
+     "combustão completa: composto orgânico + O2 → CO2 + H2O",
+     "% a mais = (maior − menor) ÷ menor × 100"
+    ],
+    "motivo": "Mantido o conteúdo; sem mudança necessária."
+   },
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "O texto sobre adulteração é só cenário. A pergunta é: quanta energia cada combustível libera por mol? Escreva a combustão completa de cada um (produz CO2 e H2O) e use a entalpia de formação. Atenção: o enunciado dá os valores de formação sem sinal, mas todos são negativos (a formação libera energia). Use −239, −278, −286 e −394.",
+    "motivo": "O aluno precisa saber, antes de calcular, que os valores devem entrar com sinal negativo; os passos já usam isso sem avisar."
+   },
+   {
+    "campo": "resolucao.passos[0].conta",
+    "depois": "CH3OH + 3/2 O2 → CO2 + 2 H2O",
+    "motivo": "Sem mudança; só confirmado."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "Divida a diferença pelo valor do metanol, que é a base da comparação. O etanol libera 1368 kJ/mol contra 727 kJ/mol, cerca de 88% a mais, que é aproximadamente 90%.",
+    "motivo": "Explica por que se divide pelo metanol (a pergunta é 'a mais do que o metanol')."
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "(1368 − 727) ÷ 727 ≈ 0,88",
+    "motivo": "Sem mudança; sem fração na linha."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "Quem marcou B achou que o etanol libera só metade a mais (727 × 1,5 ≈ 1090 kJ/mol). Faltou calcular o ΔH do etanol com 2 CO2 e 3 H2O: dá 1368 kJ/mol, razão 1368 ÷ 727 ≈ 1,88, cerca de 90% a mais.",
+    "motivo": "Diz o que faltou no raciocínio e evita fração escrita na linha."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "Quem marcou C trocou os combustíveis. O metanol libera 727 kJ/mol, menos que os 1368 kJ/mol do etanol. Faltou comparar os dois ΔH calculados, em módulo, antes de escolher o sentido.",
+    "motivo": "Aponta o que faltou."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "Quem marcou D trocou os combustíveis e ainda errou a porcentagem. O metanol libera menos (727 contra 1368 kJ/mol), e a diferença é cerca de 90%, não 50%. Faltou calcular os dois ΔH.",
+    "motivo": "Aponta o que faltou."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "Quem marcou E não calculou os dois ΔH: são 727 kJ/mol (metanol) e 1368 kJ/mol (etanol). O etanol tem 2 carbonos e forma mais CO2 e H2O por mol, então libera mais energia.",
+    "motivo": "Aponta o que faltou."
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Outro caminho: se o etanol liberasse 90% a mais, seria 727 × 1,9 ≈ 1381, bem perto de 1368. Para 50% a mais seria 727 × 1,5 ≈ 1090, longe de 1368, o que descarta B.",
+    "motivo": "Deixa claro o que cada multiplicação testa."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

@@ -8,7 +8,7 @@
  "conceito": "Diferenciar vacina (imunização ativa, com memória) de soro (imunização passiva, anticorpos prontos) e reconhecer uma doença com vacina.",
  "resolucao": {
   "antes": {
-   "texto": "Vacina e soro protegem de jeitos diferentes. A vacina leva ao corpo um antígeno (parte do agente, ou o agente enfraquecido ou inativado). O corpo, então, produz os próprios anticorpos e guarda memória. O soro já traz anticorpos prontos, feitos por outro organismo. Ele age na hora, mas não deixa memória. A questão tem dois comandos: classificar I e II e escolher uma doença que tenha vacina. As duas partes precisam estar certas.",
+   "texto": "Vacina e soro protegem de jeitos diferentes. A vacina leva ao corpo um antígeno (parte do agente, ou o agente enfraquecido ou inativado). O corpo produz os próprios anticorpos e guarda memória. O soro já traz anticorpos prontos, feitos por outro organismo. Ele age na hora, mas não deixa memória. A questão pede duas coisas: classificar I e II, e escolher uma doença que tenha vacina. As duas partes precisam estar certas.",
    "formulas": [
     "vacina = antígeno → o corpo produz anticorpos e memória (ativa, preventiva, demora dias)",
     "soro = anticorpos prontos → proteção imediata, sem memória (passiva, tratamento)"
@@ -16,19 +16,39 @@
    "simbolos": [
     [
      "antígeno",
-     "molécula ou parte do agente que o sistema imune reconhece e contra a qual produz anticorpos"
+     "molécula ou parte do agente que o sistema imune reconhece; contra ela o corpo produz anticorpos"
     ],
     [
      "anticorpo",
      "proteína de defesa produzida pelos linfócitos B, específica para um antígeno"
     ],
     [
+     "linfócito B",
+     "célula de defesa que fabrica anticorpos"
+    ],
+    [
      "memória imunológica",
-     "linfócitos que guardam o 'registro' do antígeno e respondem rápido e forte num novo contato"
+     "células que guardam o 'registro' do antígeno e respondem rápido e forte num novo contato"
+    ],
+    [
+     "imunização ativa",
+     "o próprio corpo produz os anticorpos (é o que a vacina faz)"
     ],
     [
      "imunização passiva",
-     "proteção recebida pronta (anticorpos de outro organismo); dura pouco"
+     "proteção recebida pronta, com anticorpos de outro organismo; dura pouco"
+    ],
+    [
+     "inativado",
+     "agente morto ou desativado, que não causa a doença mas ainda é reconhecido pelo corpo"
+    ],
+    [
+     "protozoose",
+     "doença causada por protozoário, um ser vivo de uma célula só"
+    ],
+    [
+     "verminose",
+     "doença causada por verme parasita"
     ]
    ]
   },
@@ -55,7 +75,7 @@
    {
     "faz": "Entre B, C e E, procure a doença com vacina",
     "conta": "B ascaridíase: sem vacina\nC sarampo: tem vacina\nE Chagas: sem vacina",
-    "porque": "Ascaridíase (verminose) e doença de Chagas (protozoose) não têm vacina no calendário. O sarampo, doença viral, tem a vacina tríplice ou tetra viral.",
+    "porque": "Ascaridíase (verminose) e doença de Chagas (protozoose) não têm vacina. O sarampo, doença causada por vírus, tem vacina (tríplice viral ou tetra viral).",
     "tipo": "eliminar"
    },
    {
@@ -68,7 +88,7 @@
   "resposta": "Alternativa C: I é vacina (o corpo produz resposta e memória), II é soro (anticorpos prontos), e o sarampo tem vacina.",
   "checagem": "Teste pela memória: só a vacina deixa memória, então a situação I, que a cita, só pode ser vacina. Em seguida, confira que sarampo é doença viral com vacina no calendário infantil. Pela outra via, a ascaridíase e a doença de Chagas não têm vacina, o que derruba B e E.",
   "erradas": {
-   "A": "Inverte as duas situações: chama de soro o que estimula resposta e memória (isso é vacina) e de vacina o que entrega anticorpos prontos (isso é soro). Ainda cita a dengue, que tem vacina, mas a classificação já derruba a alternativa.",
+   "A": "Inverte as duas situações: chama de soro o que gera resposta e memória (isso é vacina) e de vacina o que entrega anticorpos prontos (isso é soro). A dengue tem vacina, mas a troca já derruba a alternativa.",
    "B": "A classificação está certa (I – vacina; II – soro), mas a ascaridíase, verminose causada por Ascaris lumbricoides, não tem vacina. A segunda exigência do enunciado não é cumprida.",
    "D": "Cita uma doença com vacina, a hepatite B, mas chama a situação I de soro e a II de vacina, ao contrário do descrito. Só a vacina estimula resposta e memória; só o soro fornece anticorpos prontos.",
    "E": "A classificação está certa, mas a doença de Chagas, causada pelo protozoário Trypanosoma cruzi, não tem vacina. A prevenção é combater o barbeiro e cuidar dos alimentos."
@@ -106,11 +126,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -151,6 +173,72 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "C"
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Vacina e soro protegem de jeitos diferentes. A vacina leva ao corpo um antígeno (parte do agente, ou o agente enfraquecido ou inativado). O corpo produz os próprios anticorpos e guarda memória. O soro já traz anticorpos prontos, feitos por outro organismo. Ele age na hora, mas não deixa memória. A questão pede duas coisas: classificar I e II, e escolher uma doença que tenha vacina. As duas partes precisam estar certas.",
+    "motivo": "Frases mais curtas e voz ativa; 'a questão tem dois comandos' virou 'pede duas coisas'."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "antígeno",
+      "molécula ou parte do agente que o sistema imune reconhece; contra ela o corpo produz anticorpos"
+     ],
+     [
+      "anticorpo",
+      "proteína de defesa produzida pelos linfócitos B, específica para um antígeno"
+     ],
+     [
+      "linfócito B",
+      "célula de defesa que fabrica anticorpos"
+     ],
+     [
+      "memória imunológica",
+      "células que guardam o 'registro' do antígeno e respondem rápido e forte num novo contato"
+     ],
+     [
+      "imunização ativa",
+      "o próprio corpo produz os anticorpos (é o que a vacina faz)"
+     ],
+     [
+      "imunização passiva",
+      "proteção recebida pronta, com anticorpos de outro organismo; dura pouco"
+     ],
+     [
+      "inativado",
+      "agente morto ou desativado, que não causa a doença mas ainda é reconhecido pelo corpo"
+     ],
+     [
+      "protozoose",
+      "doença causada por protozoário, um ser vivo de uma célula só"
+     ],
+     [
+      "verminose",
+      "doença causada por verme parasita"
+     ]
+    ],
+    "motivo": "Incluídos termos usados nos passos e nas erradas (linfócito B, imunização ativa, inativado, protozoose, verminose) que o aluno pode não conhecer."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "B ascaridíase: sem vacina\nC sarampo: tem vacina\nE Chagas: sem vacina",
+    "motivo": "Mantido o conteúdo; cada doença em uma linha curta (já estava assim, confirmado)."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Ascaridíase (verminose) e doença de Chagas (protozoose) não têm vacina. O sarampo, doença causada por vírus, tem vacina (tríplice viral ou tetra viral).",
+    "motivo": "Frases mais simples e termos explicados."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "Inverte as duas situações: chama de soro o que gera resposta e memória (isso é vacina) e de vacina o que entrega anticorpos prontos (isso é soro). A dengue tem vacina, mas a troca já derruba a alternativa.",
+    "motivo": "Texto mais curto; diz o que faltou ao aluno que marcou A."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

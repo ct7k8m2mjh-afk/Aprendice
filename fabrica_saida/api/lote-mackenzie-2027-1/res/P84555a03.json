@@ -10,7 +10,7 @@
  "divergencia": "",
  "resolucao": {
   "antes": {
-   "texto": "O comando pede a afirmação INCORRETA, isto é, a que o texto contradiz. As outras quatro estão certas. Por isso, confronte cada alternativa com a frase do texto correspondente, olhando número, sujeito e a relação afirmada. Uma única palavra trocada (como 'unrelated') pode inverter o sentido.",
+   "texto": "O comando pede a afirmação INCORRETA, isto é, a que o texto contradiz. As outras quatro estão de acordo com o texto. Confronte cada alternativa com a frase correspondente, olhando número, sujeito e a relação afirmada. Uma única palavra trocada (como 'unrelated') pode inverter o sentido.",
    "formulas": [
     "INCORRECT = a alternativa que o texto contradiz",
     "associated with = associado a, relacionado a",
@@ -63,13 +63,13 @@
    {
     "faz": "Confira a alternativa A no texto",
     "conta": "“about 15 million children … do not get sufficient sleep” (cerca de 15 milhões de crianças não dormem o suficiente)",
-    "porque": "O trecho está no fim do primeiro parágrafo da segunda seção e bate com a alternativa A, número incluído.",
+    "porque": "O trecho está no fim do primeiro parágrafo da seção 'How Much Sleep is Needed…' e bate com a alternativa A, número incluído.",
     "tipo": "localizar"
    },
    {
     "faz": "Confira B e C",
     "conta": "B: “associated with greater use of social media technology”",
-    "porque": "Para adolescentes, o texto diz que o sono insuficiente está associado a mais uso de redes sociais. Para adultos, cita 'shift work and long hours' entre as causas da perda de sono (C). Ambas conferem.",
+    "porque": "B: para adolescentes, o texto liga sono insuficiente a mais uso de redes sociais. Confere. C: para adultos, o texto cita “shift work and long hours” entre as causas da perda de sono. Confere também.",
     "tipo": "localizar"
    },
    {
@@ -81,17 +81,17 @@
    {
     "faz": "Confira a alternativa E",
     "conta": "“among younger children it is associated with … family disagreements, and safety issues”",
-    "porque": "O texto diz que a perda de sono nas crianças menores é associada a desentendimentos familiares e problemas de segurança. A alternativa E diz 'unrelated' (sem relação), que é o oposto. É a incorreta.",
+    "porque": "O texto diz que, nas crianças menores, o sono insuficiente é associado a desentendimentos familiares e a problemas de segurança. A alternativa E diz “unrelated” (sem relação), o oposto. É a incorreta.",
     "tipo": "concluir"
    }
   ],
   "resposta": "Alternativa E: o texto diz que a perda de sono em crianças menores está associada a desentendimentos familiares e problemas de segurança, e não que seja 'unrelated' a eles.",
   "checagem": "Substitua 'unrelated to' por 'associated with' na alternativa E: a frase passa a repetir quase palavra por palavra o fim do último parágrafo. Isso mostra que E inverte o texto.",
   "erradas": {
-   "A": "Está de acordo com o texto: “Overall, about 15 million children in the United States do not get sufficient sleep”. Como o comando pede a incorreta, ela não serve.",
-   "B": "Está de acordo com o último parágrafo: “Among adolescents, insufficient sleep is associated with greater use of social media technology”. A alternativa repete a frase.",
-   "C": "Está de acordo com o texto: as causas da perda de sono em adultos incluem “work schedules (shift work and long hours)”. 'Among the reasons' bate com 'related mainly to'.",
-   "D": "Está de acordo com o texto: “almost 70% of high school students report getting fewer than 8 hours of sleep on an average weeknight”. 'Nearly' e 'almost' significam o mesmo."
+   "A": "Confere com o texto: “Overall, about 15 million children in the United States do not get sufficient sleep”. Quem marcou A achou uma frase verdadeira, mas o comando pede a que contradiz o texto.",
+   "B": "Confere com o texto: “Among adolescents, insufficient sleep is associated with greater use of social media technology”. A alternativa repete essa frase. Quem marcou B procurou a afirmação que combina com o texto, e o comando pede a que contradiz.",
+   "C": "Confere com o texto: as causas da perda de sono em adultos incluem “work schedules (shift work and long hours)”. “Among the reasons” corresponde a “related mainly to”. Quem marcou C esqueceu que o comando pede a incorreta.",
+   "D": "Confere com o texto: “almost 70% of high school students report getting fewer than 8 hours of sleep on an average weeknight”. “Nearly” e “almost” significam o mesmo. Quem marcou D confiou na semelhança das palavras e esqueceu que o comando pede a incorreta."
   },
   "armadilha": "O comando pede a INCORRETA: quem procura a que 'combina' com o texto marca uma verdadeira. Além disso, 'unrelated' inverte 'associated with'.",
   "alerta": "",
@@ -124,11 +124,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -142,6 +144,55 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "E"
+  "fatos_resposta": "E",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "O comando pede a afirmação INCORRETA, isto é, a que o texto contradiz. As outras quatro estão de acordo com o texto. Confronte cada alternativa com a frase correspondente, olhando número, sujeito e a relação afirmada. Uma única palavra trocada (como 'unrelated') pode inverter o sentido.",
+    "motivo": "Frase mais direta; 'estão certas' podia ser lido como 'estão corretas no mundo', e não 'de acordo com o texto'."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "O trecho está no fim do primeiro parágrafo da seção 'How Much Sleep is Needed…' e bate com a alternativa A, número incluído.",
+    "motivo": "'Segunda seção' era ambíguo: o texto tem a introdução e uma seção com título."
+   },
+   {
+    "campo": "resolucao.passos[2]",
+    "depois": {
+     "faz": "Confira B e C",
+     "conta": "B: “associated with greater use of social media technology”",
+     "porque": "B: para adolescentes, o texto liga sono insuficiente a mais uso de redes sociais. Confere. C: para adultos, o texto cita “shift work and long hours” entre as causas da perda de sono. Confere também.",
+     "tipo": "localizar"
+    },
+    "motivo": "O porquê misturava B e C sem marcar qual era qual; a conta mostrava só B."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "O texto diz que, nas crianças menores, o sono insuficiente é associado a desentendimentos familiares e a problemas de segurança. A alternativa E diz “unrelated” (sem relação), o oposto. É a incorreta.",
+    "motivo": "Troca 'perda de sono' por 'sono insuficiente', que é a expressão do texto; frase mais clara."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "Confere com o texto: “Among adolescents, insufficient sleep is associated with greater use of social media technology”. A alternativa repete essa frase. Quem marcou B procurou a afirmação que combina com o texto, e o comando pede a que contradiz.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou B: ler o comando em negativo."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "Confere com o texto: “Overall, about 15 million children in the United States do not get sufficient sleep”. Quem marcou A achou uma frase verdadeira, mas o comando pede a que contradiz o texto.",
+    "motivo": "Mostra o que faltou ao aluno que marcou A: ler o comando em negativo."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "Confere com o texto: as causas da perda de sono em adultos incluem “work schedules (shift work and long hours)”. “Among the reasons” corresponde a “related mainly to”. Quem marcou C esqueceu que o comando pede a incorreta.",
+    "motivo": "Explicita o erro de quem marcou C."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "Confere com o texto: “almost 70% of high school students report getting fewer than 8 hours of sleep on an average weeknight”. “Nearly” e “almost” significam o mesmo. Quem marcou D confiou na semelhança das palavras e esqueceu que o comando pede a incorreta.",
+    "motivo": "Explicita o erro de quem marcou D."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

@@ -30,6 +30,14 @@
     [
      "informação implícita",
      "ideia que o texto não escreve, mas que se conclui a partir do que ele diz"
+    ],
+    [
+     "postular",
+     "propor uma ideia como ponto de partida do raciocínio"
+    ],
+    [
+     "hemisfério",
+     "cada metade do cérebro: esquerda e direita"
     ]
    ]
   },
@@ -37,14 +45,14 @@
   "passos": [
    {
     "faz": "Teste a afirmação I no Texto I",
-    "conta": "'o coração bate... os rins não batem'",
+    "conta": "\"o coração bate para fazer circular o sangue, mas os rins não batem\"",
     "porque": "O autor compara os órgãos do corpo, cada um com função própria. Em seguida diz: 'podemos postular que o cérebro também é modular'. A comparação prepara a ideia de módulos. A afirmação I está correta.",
     "tipo": "localizar"
    },
    {
     "faz": "Teste a afirmação II no Texto II",
     "conta": "imagem: cérebros com manchas coloridas",
-    "porque": "O print mostra cortes de cérebro com manchas amarelas e laranja. Sem o título, o leitor não saberia que as manchas são áreas ligadas à linguagem verbal. O título é necessário.",
+    "porque": "O print mostra cortes de cérebro com manchas amarelas e laranja. Sem o título, o leitor comum não saberia que as manchas são áreas ligadas à linguagem verbal. O título é necessário para dar sentido à imagem.",
     "tipo": "localizar"
    },
    {
@@ -55,8 +63,8 @@
    },
    {
     "faz": "Teste a afirmação III no Texto III",
-    "conta": "'97% dos destros' × '19%... 68%'",
-    "porque": "O texto compara lados do cérebro e grupos de pessoas. Isso mostra que lados diferentes assumem funções de linguagem de modo desigual. O texto nunca escreve 'o cérebro é especializado', mas é o que se conclui: informação implícita. A afirmação III está correta.",
+    "conta": "\"97% dos destros\" × \"19%... 68%\"",
+    "porque": "O texto compara lados do cérebro e grupos de pessoas. Quando um lado lesionado é substituído pelo outro, a sintaxe fica pior. Isso mostra que as áreas não são intercambiáveis. O texto não escreve 'o cérebro é especializado', mas isso se conclui: é informação implícita. A afirmação III está correta.",
     "tipo": "comparar"
    },
    {
@@ -103,11 +111,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -136,6 +146,60 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "C"
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[0].conta",
+    "depois": "\"o coração bate para fazer circular o sangue, mas os rins não batem\"",
+    "motivo": "Citação fiel ao texto (a anterior tinha reticências e cortava a frase)."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "O print mostra cortes de cérebro com manchas amarelas e laranja. Sem o título, o leitor comum não saberia que as manchas são áreas ligadas à linguagem verbal. O título é necessário para dar sentido à imagem.",
+    "motivo": "Troca 'o leitor' por 'o leitor comum' e fecha o raciocínio; frase mais clara."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "\"97% dos destros\" × \"19%... 68%\"",
+    "motivo": "Aspas nos trechos citados, como o guia pede."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "O texto compara lados do cérebro e grupos de pessoas. Quando um lado lesionado é substituído pelo outro, a sintaxe fica pior. Isso mostra que as áreas não são intercambiáveis. O texto não escreve 'o cérebro é especializado', mas isso se conclui: é informação implícita. A afirmação III está correta.",
+    "motivo": "Explica por que os dados comparativos levam à especialização (o dano no lado esquerdo e a sintaxe inferior do direito), e não só os percentuais."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "modular",
+      "formado por módulos, partes especializadas, cada uma com sua função"
+     ],
+     [
+      "estratégia textual",
+      "recurso que o autor usa para conduzir o raciocínio do leitor"
+     ],
+     [
+      "prescindir",
+      "dispensar, passar sem"
+     ],
+     [
+      "informação implícita",
+      "ideia que o texto não escreve, mas que se conclui a partir do que ele diz"
+     ],
+     [
+      "postular",
+      "propor uma ideia como ponto de partida do raciocínio"
+     ],
+     [
+      "hemisfério",
+      "cada metade do cérebro: esquerda e direita"
+     ]
+    ],
+    "motivo": "Termos 'postular' e 'hemisfério' aparecem na resolução e podem ser desconhecidos para um aluno de 17 anos."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

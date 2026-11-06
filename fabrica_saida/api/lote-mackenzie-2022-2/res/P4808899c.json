@@ -8,9 +8,9 @@
  "conceito": "Igualar duas leis exponenciais de mesma base (1,1) escrevendo 484 como 400 × 1,1².",
  "resolucao": {
   "antes": {
-   "texto": "As duas leis têm a mesma base, 1,1. Quando duas potências da mesma base se igualam, os expoentes também são iguais. O truque é notar que 484 = 400 × 1,21 = 400 × 1,1², o que deixa os dois lados com o mesmo fator 400.",
+   "texto": "As duas leis têm a mesma base, 1,1. Se duas potências de mesma base são iguais, os expoentes também são iguais. Para usar isso, os números na frente precisam ser iguais. Repare que 484 = 400 × 1,21 = 400 × 1,1², então o 400 aparece nos dois lados.",
    "formulas": [
-    "a^m × a^n = a^(m+n)",
+    "a^m × a^n = a^(m+n) (mesma base: somam-se os expoentes)",
     "se a^x = a^y (a > 0, a ≠ 1), então x = y"
    ],
    "simbolos": [
@@ -24,7 +24,15 @@
     ],
     [
      "1,1",
-     "base: a população multiplica por 1,1 a cada expoente 1"
+     "base: a cada mês a população cresce 10%, ou seja, é multiplicada por 1,1"
+    ],
+    [
+     "1,1^(2t)",
+     "1,1 multiplicado por ele mesmo 2t vezes; 2t é o expoente"
+    ],
+    [
+     "expoente",
+     "o número pequeno no alto que diz quantas vezes a base se multiplica"
     ]
    ]
   },
@@ -51,13 +59,13 @@
    {
     "faz": "Corte o 400 e iguale os expoentes",
     "conta": "2t = t + 3",
-    "porque": "Com a mesma base 1,1 e o mesmo fator 400, só os expoentes podem diferir. Então eles são iguais.",
+    "porque": "Os dois lados têm 400 × 1,1 elevado a algum expoente. Cortando o 400, só sobram as potências de 1,1. Elas são iguais só se os expoentes forem iguais.",
     "tipo": "calcular"
    },
    {
     "faz": "Resolva a equação",
     "conta": "2t − t = 3  →  t = 3",
-    "porque": "Passando t para o outro lado, ele troca de sinal.",
+    "porque": "O t da direita passa para a esquerda e troca de sinal (+t vira −t). Assim 2t − t = t.",
     "tipo": "calcular"
    },
    {
@@ -70,7 +78,7 @@
   "resposta": "Alternativa C: as populações são iguais após 3 meses, pois 2t = t + 3 dá t = 3.",
   "checagem": "Substitua t = 3. A(3) = 400 × 1,1^6 = 400 × 1,771561 = 708,6244. B(3) = 484 × 1,1^4 = 484 × 1,4641 = 708,6244. São iguais.",
   "erradas": {
-   "A": "t = 1 não serve: A(1) = 400 × 1,1² = 484, mas B(1) = 484 × 1,1² = 585,64. B ainda é maior que A. Quem marcou viu o 484 aparecer nos dois e achou que igualava, mas B já está multiplicado por 1,21.",
+   "A": "t = 1 não serve: A(1) = 400 × 1,1² = 484, mas B(1) = 484 × 1,1² = 585,64. Quem marcou viu o 484 aparecer em A e achou que igualava a B, esquecendo que B também tem o fator 1,1^(t+1).",
    "B": "t = 2 não serve: A(2) = 400 × 1,1^4 = 585,64 e B(2) = 484 × 1,1³ = 644,204. B ainda é maior. Faltou comparar os expoentes (2t contra t+3): em t = 2 eles valem 4 e 5.",
    "D": "t = 4 não serve: A(4) = 400 × 1,1^8 ≈ 857,44 e B(4) = 484 × 1,1^5 ≈ 779,49. A já passou B. Os expoentes 2t = 8 e t+3 = 7 só coincidem em t = 3.",
    "E": "t = 5 não serve: A(5) = 400 × 1,1^10 ≈ 1037,50 e B(5) = 484 × 1,1^6 ≈ 857,44. A está bem acima de B. Os expoentes são 10 e 8, não 10 e 10."
@@ -157,11 +165,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -178,6 +188,64 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "C"
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "As duas leis têm a mesma base, 1,1. Se duas potências de mesma base são iguais, os expoentes também são iguais. Para usar isso, os números na frente precisam ser iguais. Repare que 484 = 400 × 1,21 = 400 × 1,1², então o 400 aparece nos dois lados.",
+    "motivo": "Frases mais curtas e explica por que o 400 precisa aparecer nos dois lados."
+   },
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "a^m × a^n = a^(m+n) (mesma base: somam-se os expoentes)",
+     "se a^x = a^y (a > 0, a ≠ 1), então x = y"
+    ],
+    "motivo": "Diz em palavras o que a regra faz."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "A(t), B(t)",
+      "população de cada tipo de inseto após t meses"
+     ],
+     [
+      "t",
+      "tempo em meses, com t ≥ 0"
+     ],
+     [
+      "1,1",
+      "base: a cada mês a população cresce 10%, ou seja, é multiplicada por 1,1"
+     ],
+     [
+      "1,1^(2t)",
+      "1,1 multiplicado por ele mesmo 2t vezes; 2t é o expoente"
+     ],
+     [
+      "expoente",
+      "o número pequeno no alto que diz quantas vezes a base se multiplica"
+     ]
+    ],
+    "motivo": "Explica expoente e a leitura da base, que o aluno pode não dominar."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Os dois lados têm 400 × 1,1 elevado a algum expoente. Cortando o 400, só sobram as potências de 1,1. Elas são iguais só se os expoentes forem iguais.",
+    "motivo": "Mais claro e sem frase ambígua."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "O t da direita passa para a esquerda e troca de sinal (+t vira −t). Assim 2t − t = t.",
+    "motivo": "Mostra o resultado da subtração 2t − t."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "t = 1 não serve: A(1) = 400 × 1,1² = 484, mas B(1) = 484 × 1,1² = 585,64. Quem marcou viu o 484 aparecer em A e achou que igualava a B, esquecendo que B também tem o fator 1,1^(t+1).",
+    "motivo": "Diz com mais clareza o que faltou no raciocínio."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

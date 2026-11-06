@@ -37,7 +37,7 @@
     ]
    ]
   },
-  "pista": "Os coeficientes da equação dizem a razão entre mols, não entre gramas. Comece calculando as duas massas molares.",
+  "pista": "Os coeficientes da equação dizem a razão entre mols, não entre gramas. Comece achando quantos mols de HCl existem em 0,73 g.",
   "passos": [
    {
     "faz": "Calcule a massa molar do HCl",
@@ -59,8 +59,8 @@
    },
    {
     "faz": "Ache os mols de NaHCO3",
-    "conta": "n = 0,02 mol",
-    "porque": "Razão 1:1 quer dizer a mesma quantidade em mol. É o mínimo para neutralizar todo o ácido.",
+    "conta": "1 : 1 → n = 0,02 mol",
+    "porque": "Razão 1:1 quer dizer a mesma quantidade em mol. Esse é o mínimo para neutralizar todo o ácido.",
     "tipo": "calcular"
    },
    {
@@ -72,7 +72,7 @@
    {
     "faz": "Converta mol de NaHCO3 em massa",
     "conta": "m = 0,02 × 84 = 1,68 g",
-    "porque": "Massa é quantidade em mol vezes a massa de 1 mol. Isso corresponde à alternativa B.",
+    "porque": "Massa é quantidade em mol vezes a massa de 1 mol. O resultado, 1,68 g, é a alternativa B.",
     "tipo": "concluir"
    }
   ],
@@ -99,17 +99,21 @@
   },
   {
    "nome": "estimativa com eliminação",
-   "ideia": "0,73 g é exatamente 1/50 da massa molar do HCl (36,5 g). Logo a massa de bicarbonato é 1/50 de 84 g, pouco menos de 2 g. Só a alternativa B, 1,68 g, fica nessa faixa e é 84/50."
+   "ideia": "0,73 g é 1/50 da massa molar do HCl (36,5 g). Logo, a massa de bicarbonato é 1/50 de 84 g, que dá 1,68 g. Para estimar: 84 ÷ 50 fica pouco abaixo de 2 g, e só a alternativa B está nessa faixa."
   }
  ],
  "quadro": [
   {
    "linha": "NaHCO3 + HCl → NaCl + H2O + CO2",
-   "nota": "equação balanceada, todos os coeficientes valem 1"
+   "nota": "equação balanceada: coeficientes todos 1"
   },
   {
-   "linha": "M(HCl) = 1 + 35,5 = 36,5 g/mol",
+   "linha": "M(HCl) = 1 + 35,5",
    "nota": "massa molar do ácido"
+  },
+  {
+   "linha": "M(HCl) = 36,5 g/mol",
+   "nota": "resultado da soma"
   },
   {
    "linha": "n(HCl) = 0,73 ÷ 36,5",
@@ -120,16 +124,20 @@
    "nota": "quantidade de ácido a neutralizar"
   },
   {
-   "linha": "n(NaHCO3) = 0,02 mol",
+   "linha": "n(NaHCO3) = n(HCl)",
    "nota": "razão 1:1: mesma quantidade em mol"
   },
   {
-   "linha": "M(NaHCO3) = 23+1+12+48",
-   "nota": "o índice 3 vale só para o O: 3 × 16 = 48"
+   "linha": "n(NaHCO3) = 0,02 mol",
+   "nota": "mínimo para neutralizar todo o HCl"
+  },
+  {
+   "linha": "M(NaHCO3) = 23+1+12+3×16",
+   "nota": "o índice 3 vale só para o O"
   },
   {
    "linha": "M(NaHCO3) = 84 g/mol",
-   "nota": "soma: 23 + 1 + 12 + 48 = 84"
+   "nota": "23 + 1 + 12 + 48 = 84"
   },
   {
    "linha": "m = 0,02 × 84",
@@ -155,11 +163,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -188,6 +198,86 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "B"
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.pista",
+    "depois": "Os coeficientes da equação dizem a razão entre mols, não entre gramas. Comece achando quantos mols de HCl existem em 0,73 g.",
+    "motivo": "Deixa a pista mais direta, sem entregar a conta nem a letra."
+   },
+   {
+    "campo": "resolucao.passos[3]",
+    "depois": {
+     "faz": "Ache os mols de NaHCO3",
+     "conta": "1 : 1 → n = 0,02 mol",
+     "porque": "Razão 1:1 quer dizer a mesma quantidade em mol. Esse é o mínimo para neutralizar todo o ácido.",
+     "tipo": "calcular"
+    },
+    "motivo": "A conta mostra de onde vem o valor. Frases mais curtas."
+   },
+   {
+    "campo": "resolucao.passos[5].porque",
+    "depois": "Massa é quantidade em mol vezes a massa de 1 mol. O resultado, 1,68 g, é a alternativa B.",
+    "motivo": "Frase mais clara."
+   },
+   {
+    "campo": "resolucao.quadro",
+    "depois": [
+     {
+      "linha": "NaHCO3 + HCl → NaCl + H2O + CO2",
+      "nota": "equação balanceada: coeficientes todos 1"
+     },
+     {
+      "linha": "M(HCl) = 1 + 35,5",
+      "nota": "massa molar do ácido"
+     },
+     {
+      "linha": "M(HCl) = 36,5 g/mol",
+      "nota": "resultado da soma"
+     },
+     {
+      "linha": "n(HCl) = 0,73 ÷ 36,5",
+      "nota": "massa dividida pela massa molar"
+     },
+     {
+      "linha": "n(HCl) = 0,02 mol",
+      "nota": "quantidade de ácido a neutralizar"
+     },
+     {
+      "linha": "n(NaHCO3) = n(HCl)",
+      "nota": "razão 1:1: mesma quantidade em mol"
+     },
+     {
+      "linha": "n(NaHCO3) = 0,02 mol",
+      "nota": "mínimo para neutralizar todo o HCl"
+     },
+     {
+      "linha": "M(NaHCO3) = 23+1+12+3×16",
+      "nota": "o índice 3 vale só para o O"
+     },
+     {
+      "linha": "M(NaHCO3) = 84 g/mol",
+      "nota": "23 + 1 + 12 + 48 = 84"
+     },
+     {
+      "linha": "m = 0,02 × 84",
+      "nota": "mol vezes massa molar",
+      "destaque": "0,02 × 84"
+     },
+     {
+      "linha": "m = 1,68 g",
+      "nota": "massa mínima de bicarbonato"
+     }
+    ],
+    "motivo": "Um passo por linha, sem pular passagens. Linhas curtas, que cabem na tela do celular."
+   },
+   {
+    "campo": "resolucao.caminhos[1].ideia",
+    "depois": "0,73 g é 1/50 da massa molar do HCl (36,5 g). Logo, a massa de bicarbonato é 1/50 de 84 g, que dá 1,68 g. Para estimar: 84 ÷ 50 fica pouco abaixo de 2 g, e só a alternativa B está nessa faixa.",
+    "motivo": "Troca a notação 84/50 por texto claro e mostra a estimativa."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

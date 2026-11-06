@@ -38,7 +38,7 @@
    },
    {
     "faz": "Calcule a taxa de variação",
-    "conta": "a = (6,4 − 3,4)/(25 − 10)",
+    "conta": "a = (6,4 − 3,4) ÷ (25 − 10)",
     "porque": "Em uma função afim, a taxa é a variação do tempo dividida pela variação de x.",
     "tipo": "calcular"
    },
@@ -83,8 +83,8 @@
    "ideia": "De 25 mil a 40 mil pixels são 15 mil a mais, o mesmo intervalo de 10 mil a 25 mil. Esse intervalo custou 3,0 s, então 6,4 + 3,0 = 9,4 s."
   },
   {
-   "nome": "Proporção sobre a variação",
-   "ideia": "15 mil pixels a mais deram 3,0 s a mais. Como 15 mil a mais de novo vale o mesmo, o tempo sobe mais 3,0 s sobre 6,4 s e vai a 9,4 s."
+   "nome": "Taxa e proporção",
+   "ideia": "Cada 15 mil pixels a mais somam 3,0 s. De 25 mil a 40 mil são 15 mil a mais, então 6,4 + 3,0 = 9,4 s."
   }
  ],
  "quadro": [
@@ -97,8 +97,12 @@
    "nota": "taxa = variação de T ÷ variação de x"
   },
   {
-   "linha": "a = 3/15 = 0,2",
-   "nota": "faça 6,4 − 3,4 = 3 e 25 − 10 = 15"
+   "linha": "a = 3/15",
+   "nota": "6,4 − 3,4 = 3 e 25 − 10 = 15"
+  },
+  {
+   "linha": "a = 0,2",
+   "nota": "3 ÷ 15 = 0,2 s por mil pixels"
   },
   {
    "linha": "T(x) = 0,2x + b",
@@ -113,7 +117,7 @@
    "nota": "0,2 × 10 = 2"
   },
   {
-   "linha": "b = 3,4 − 2",
+   "linha": "3,4 − 2 = b",
    "nota": "o 2 passa para o outro lado trocando o sinal",
    "destaque": "− 2",
    "mov": [
@@ -128,14 +132,22 @@
   },
   {
    "linha": "b = 1,4",
-   "nota": "faça 3,4 − 2"
+   "nota": "3,4 − 2 = 1,4"
+  },
+  {
+   "linha": "T(x) = 0,2x + 1,4",
+   "nota": "função completa"
   },
   {
    "linha": "T(40) = 0,2 × 40 + 1,4",
    "nota": "40.000 pixels é x = 40"
   },
   {
-   "linha": "T(40) = 8 + 1,4 = 9,4",
+   "linha": "T(40) = 8 + 1,4",
+   "nota": "0,2 × 40 = 8"
+  },
+  {
+   "linha": "T(40) = 9,4",
    "nota": "tempo estimado: 9,4 s"
   }
  ],
@@ -153,11 +165,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -168,6 +182,93 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "E"
+  "fatos_resposta": "E",
+  "didatica": [
+   {
+    "campo": "resolucao.quadro",
+    "depois": [
+     {
+      "linha": "(10 ; 3,4) e (25 ; 6,4)",
+      "nota": "pontos com x em milhares de pixels"
+     },
+     {
+      "linha": "a = (6,4 − 3,4)/(25 − 10)",
+      "nota": "taxa = variação de T ÷ variação de x"
+     },
+     {
+      "linha": "a = 3/15",
+      "nota": "6,4 − 3,4 = 3 e 25 − 10 = 15"
+     },
+     {
+      "linha": "a = 0,2",
+      "nota": "3 ÷ 15 = 0,2 s por mil pixels"
+     },
+     {
+      "linha": "T(x) = 0,2x + b",
+      "nota": "função afim com a = 0,2"
+     },
+     {
+      "linha": "3,4 = 0,2 × 10 + b",
+      "nota": "substitua o ponto (10 ; 3,4)"
+     },
+     {
+      "linha": "3,4 = 2 + b",
+      "nota": "0,2 × 10 = 2"
+     },
+     {
+      "linha": "3,4 − 2 = b",
+      "nota": "o 2 passa para o outro lado trocando o sinal",
+      "destaque": "− 2",
+      "mov": [
+       {
+        "termo": "+ 2",
+        "de": "direita",
+        "para": "esquerda",
+        "vira": "− 2",
+        "como": "atravessa o igual"
+       }
+      ]
+     },
+     {
+      "linha": "b = 1,4",
+      "nota": "3,4 − 2 = 1,4"
+     },
+     {
+      "linha": "T(x) = 0,2x + 1,4",
+      "nota": "função completa"
+     },
+     {
+      "linha": "T(40) = 0,2 × 40 + 1,4",
+      "nota": "40.000 pixels é x = 40"
+     },
+     {
+      "linha": "T(40) = 8 + 1,4",
+      "nota": "0,2 × 40 = 8"
+     },
+     {
+      "linha": "T(40) = 9,4",
+      "nota": "tempo estimado: 9,4 s"
+     }
+    ],
+    "motivo": "Um passo por linha, sem pular a passagem 3,4 − 2 = b; a função completa fica escrita antes de substituir 40."
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "a = (6,4 − 3,4) ÷ (25 − 10)",
+    "motivo": "Mantém a conta curta e legível, sem fração na linha."
+   },
+   {
+    "campo": "resolucao.caminhos[1]",
+    "depois": {
+     "nome": "Taxa e proporção",
+     "ideia": "Cada 15 mil pixels a mais somam 3,0 s. De 25 mil a 40 mil são 15 mil a mais, então 6,4 + 3,0 = 9,4 s."
+    },
+    "motivo": "O caminho antigo repetia o primeiro e a frase era confusa."
+   }
+  ],
+  "didatica_alertas": [
+   "A classificação do banco (tema M15, matrizes) está errada para esta questão; o conteúdo é função afim (M05.1). O JSON já traz M05, mas o cadastro atual diz M15."
+  ],
+  "didatica_ok": true
  }
 }

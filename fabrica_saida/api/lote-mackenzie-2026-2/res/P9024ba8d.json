@@ -8,7 +8,7 @@
  "conceito": "Área da região entre dois quadrados concêntricos: diferença de áreas e produtos notáveis.",
  "resolucao": {
   "antes": {
-   "texto": "A região útil fica dentro do quadrado maior e fora do menor. Então a área útil é a área do quadrado maior menos a área do quadrado menor. A área de um quadrado é lado × lado. Depois, desenvolva os dois quadrados com produtos notáveis e simplifique.",
+   "texto": "A região útil fica dentro do quadrado maior e fora do menor. Então a área útil é a área do quadrado maior menos a área do quadrado menor. A área de um quadrado é lado × lado. Para não errar sinal, desenvolva cada quadrado com os produtos notáveis e só depois subtraia.",
    "formulas": [
     "área do quadrado = lado²",
     "área útil = área do maior − área do menor",
@@ -18,11 +18,19 @@
    "simbolos": [
     [
      "x e a",
-     "parâmetros reais positivos, com x maior que a"
+     "medidas em metros; x e a são positivos e x é maior que a"
     ],
     [
      "produto notável",
-     "forma já conhecida de desenvolver um quadrado de soma ou de diferença"
+     "fórmula pronta para desenvolver um quadrado de soma ou de diferença, como (x + a)²"
+    ],
+    [
+     "A_maior, A_menor, A_útil",
+     "área do quadrado maior, área do quadrado menor e área da região útil da praça"
+    ],
+    [
+     "área útil",
+     "parte da praça que está dentro do quadrado maior e fora do menor"
     ]
    ]
   },
@@ -48,14 +56,14 @@
    },
    {
     "faz": "Desenvolva os dois quadrados",
-    "conta": "x²+2ax+a² − (x²−2ax+a²)",
-    "porque": "Use os produtos notáveis. O sinal de menos na frente do parêntese troca todos os sinais de dentro.",
+    "conta": "(x²+2ax+a²) − (x²−2ax+a²)",
+    "porque": "Use as fórmulas dos produtos notáveis. O sinal de menos na frente do segundo parêntese troca o sinal de cada termo de dentro.",
     "tipo": "calcular"
    },
    {
     "faz": "Simplifique",
-    "conta": "x² − x² + 2ax + 2ax + a² − a²",
-    "porque": "Os termos x² e a² se cancelam. Sobra 2ax + 2ax = 4ax.",
+    "conta": "x²−x² + 2ax+2ax + a²−a²",
+    "porque": "Os termos x² se cancelam, e os termos a² também. Sobram 2ax + 2ax, que somam 4ax.",
     "tipo": "calcular"
    },
    {
@@ -68,12 +76,12 @@
   "resposta": "Alternativa E: a área útil é (x + a)² − (x − a)² = 4ax.",
   "checagem": "Teste com números: x = 3 e a = 1. O quadrado maior tem lado 4 e área 16. O menor tem lado 2 e área 4. A diferença é 12, e 4ax = 4 × 1 × 3 = 12. Confere.",
   "erradas": {
-   "A": "4(x + a)(x − a) não confere. Ela vale 4(x² − a²): com x = 3 e a = 1, dá 4 × 8 = 32, e a área útil é 12. O valor passa até dos 16 do quadrado maior inteiro.",
-   "B": "4(x + a)² é quatro vezes a área do quadrado maior. Com x = 3 e a = 1, dá 4 × 16 = 64, muito acima de 12. A área útil nunca passa da área do quadrado maior, que é 16.",
-   "C": "4(x − a)² é quatro vezes a área do quadrado menor. Com x = 3 e a = 1, dá 4 × 4 = 16, e não 12. Ela ignora o quadrado maior.",
-   "D": "4x² − a² não confere. Com x = 3 e a = 1, dá 36 − 1 = 35, e a área útil é 12. Além disso, 35 é maior que 16, a área do quadrado maior inteiro."
+   "A": "4(x + a)(x − a) sai de multiplicar a soma pela diferença e pôr o 4 na frente: dá 4(x² − a²). Com x = 3 e a = 1, dá 4 × 8 = 32, mas a área útil é 12. Passa até dos 16 do quadrado maior inteiro.",
+   "B": "4(x + a)² é quatro vezes a área do quadrado maior. Com x = 3 e a = 1, dá 4 × 16 = 64. A área útil nunca passa de 16, a área do quadrado maior inteiro. Faltou subtrair o quadrado menor.",
+   "C": "4(x − a)² é quatro vezes a área do quadrado menor. Com x = 3 e a = 1, dá 4 × 4 = 16, e não 12. Usa só o quadrado menor e esquece que a praça é o quadrado maior menos o menor.",
+   "D": "4x² − a² não confere. Com x = 3 e a = 1, dá 36 − 1 = 35, e a área útil é 12. Além disso, 35 é maior que 16, a área do quadrado maior inteiro. Quem marcou esqueceu que (x + a)² e (x − a)² têm o termo do meio, 2ax."
   },
-  "armadilha": "Subtrair as áreas sem desenvolver os quadrados e achar que a diferença é (x+a) − (x−a). Também é comum errar o sinal ao tirar o parêntese de (x − a)².",
+  "armadilha": "Esquecer o termo do meio dos produtos notáveis, ou errar o sinal ao tirar o parêntese de (x − a)². Cuidado: (x + a)² − (x − a)² não é (x² − a²) − (x² − a²).",
   "alerta": "",
   "essencial": {
    "pede": "A expressão da área entre o quadrado maior e o menor, que está dentro dele.",
@@ -138,7 +146,7 @@
   "cabe": true,
   "porque": "A figura de uma moldura quadrada mostra de onde sai o 4ax.",
   "tipo": "figura",
-  "roteiro": "Quadro 1: quadrado grande de lado x + a, com o quadrado menor de lado x − a no centro. Quadro 2: a faixa entre eles tem largura a de cada lado (a diferença dos lados é 2a, dividida em dois lados). Quadro 3: a moldura é cortada em 4 retângulos x por a. Quadro 4: soma das áreas, 4 × ax = 4ax."
+  "roteiro": "Quadro 1: quadrado grande de lado x + a, com o quadrado menor de lado x − a no centro. Quadro 2: a faixa entre eles tem largura a em cada lado, porque a diferença entre os lados é 2a, repartida nos dois lados. Quadro 3: a moldura é cortada em 4 retângulos de lados x e a. Quadro 4: soma das áreas, 4 × ax = 4ax."
  },
  "fontes": [],
  "confere": true,
@@ -148,11 +156,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -169,6 +179,89 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "E"
+  "fatos_resposta": "E",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "A região útil fica dentro do quadrado maior e fora do menor. Então a área útil é a área do quadrado maior menos a área do quadrado menor. A área de um quadrado é lado × lado. Para não errar sinal, desenvolva cada quadrado com os produtos notáveis e só depois subtraia.",
+    "motivo": "Frase final mais clara, com o motivo de desenvolver antes de subtrair."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "x e a",
+      "medidas em metros; x e a são positivos e x é maior que a"
+     ],
+     [
+      "produto notável",
+      "fórmula pronta para desenvolver um quadrado de soma ou de diferença, como (x + a)²"
+     ],
+     [
+      "A_maior, A_menor, A_útil",
+      "área do quadrado maior, área do quadrado menor e área da região útil da praça"
+     ],
+     [
+      "área útil",
+      "parte da praça que está dentro do quadrado maior e fora do menor"
+     ]
+    ],
+    "motivo": "Os nomes A_maior, A_menor e A_útil aparecem nos passos e não estavam explicados."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "(x²+2ax+a²) − (x²−2ax+a²)",
+    "motivo": "Parênteses no primeiro quadrado deixam claro o que está sendo subtraído."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Use as fórmulas dos produtos notáveis. O sinal de menos na frente do segundo parêntese troca o sinal de cada termo de dentro.",
+    "motivo": "Frase mais clara."
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "x²−x² + 2ax+2ax + a²−a²",
+    "motivo": "Cabe melhor na tela do celular (~30 caracteres)."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "Os termos x² se cancelam, e os termos a² também. Sobram 2ax + 2ax, que somam 4ax.",
+    "motivo": "Explica os dois cancelamentos e a soma de forma explícita."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "4(x + a)(x − a) sai de multiplicar a soma pela diferença e pôr o 4 na frente: dá 4(x² − a²). Com x = 3 e a = 1, dá 4 × 8 = 32, mas a área útil é 12. Passa até dos 16 do quadrado maior inteiro.",
+    "motivo": "Mostra de onde vem o erro: trocou a diferença de quadrados por um produto com 4 na frente."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "4(x + a)² é quatro vezes a área do quadrado maior. Com x = 3 e a = 1, dá 4 × 16 = 64. A área útil nunca passa de 16, a área do quadrado maior inteiro. Faltou subtrair o quadrado menor.",
+    "motivo": "Diz o que faltou no raciocínio."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "4(x − a)² é quatro vezes a área do quadrado menor. Com x = 3 e a = 1, dá 4 × 4 = 16, e não 12. Usa só o quadrado menor e esquece que a praça é o quadrado maior menos o menor.",
+    "motivo": "Diz o que faltou no raciocínio."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "4x² − a² não confere. Com x = 3 e a = 1, dá 36 − 1 = 35, e a área útil é 12. Além disso, 35 é maior que 16, a área do quadrado maior inteiro. Quem marcou esqueceu que (x + a)² e (x − a)² têm o termo do meio, 2ax.",
+    "motivo": "Aponta o que faltou: o termo do meio dos produtos notáveis."
+   },
+   {
+    "campo": "resolucao.armadilha",
+    "depois": "Esquecer o termo do meio dos produtos notáveis, ou errar o sinal ao tirar o parêntese de (x − a)². Cuidado: (x + a)² − (x − a)² não é (x² − a²) − (x² − a²).",
+    "motivo": "Frase original estava confusa; a nova nomeia os erros reais."
+   },
+   {
+    "campo": "resolucao.visual.roteiro",
+    "depois": "Quadro 1: quadrado grande de lado x + a, com o quadrado menor de lado x − a no centro. Quadro 2: a faixa entre eles tem largura a em cada lado, porque a diferença entre os lados é 2a, repartida nos dois lados. Quadro 3: a moldura é cortada em 4 retângulos de lados x e a. Quadro 4: soma das áreas, 4 × ax = 4ax.",
+    "motivo": "Texto mais claro."
+   }
+  ],
+  "didatica_alertas": [
+   "O campo 'nivel' do JSON está 4, mas a classificação atual diz nível 5; verificar qual vale."
+  ],
+  "didatica_ok": true
  }
 }

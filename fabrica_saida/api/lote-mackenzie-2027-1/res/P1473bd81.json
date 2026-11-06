@@ -33,7 +33,7 @@
    {
     "faz": "Anote os dados",
     "conta": "a_4 = 128 ; a_9 = 168",
-    "porque": "A 4ª amostra selecionada está na posição 128 e a 9ª na posição 168.",
+    "porque": "Separar os dois dados do enunciado: a 4ª amostra selecionada está na posição 128 e a 9ª, na posição 168. O índice (4 e 9) diz qual amostra é; o valor (128 e 168) diz a posição dela.",
     "tipo": "localizar"
    },
    {
@@ -70,10 +70,10 @@
   "resposta": "Alternativa A: a razão é 8 e a 115ª amostra selecionada ocupa a posição 128 + 111 × 8 = 1016.",
   "checagem": "Confira pelo outro termo conhecido, a_9 = 168: faltam 115 − 9 = 106 saltos, e 168 + 106 × 8 = 168 + 848 = 1016. Dá o mesmo resultado.",
   "erradas": {
-   "B": "1024 sai de errar a contagem por um: usou a_1 = 104 e somou 115 saltos (104 + 115 × 8 = 1024). Entre o 1º e o 115º termo há 114 saltos, e 1024 é na verdade a posição da 116ª amostra.",
-   "C": "1040 sai de somar 114 saltos ao termo a_4: 128 + 114 × 8 = 1040. O 114 é o '115 − 1' da fórmula que parte de a_1, mas a partir de a_4 faltam 111 saltos.",
-   "D": "1048 sai de somar 115 saltos ao a_4: 128 + 115 × 8 = 1048. O número do termo (115) foi usado como número de saltos, sem descontar os 4 termos já contados.",
-   "E": "1238 sai de dividir 40 por 4 em vez de 5, o que dá razão 10: 128 + 111 × 10 = 1238. Entre o 4º e o 9º termo há 5 saltos, não 4, então a razão é 8."
+   "B": "1024 sai de contar um salto a mais: partindo de a_1 = 104, somou 115 saltos (104 + 115 × 8 = 1024). De a_1 até a_115 são 114 saltos. Quem marcou esqueceu que o 1º termo ainda não saltou.",
+   "C": "1040 sai de somar 114 saltos a a_4: 128 + 114 × 8 = 1040. O 114 vale para quem parte de a_1. Partindo de a_4, faltam 115 − 4 = 111 saltos. Faltou trocar o ponto de partida.",
+   "D": "1048 sai de somar 115 saltos a a_4: 128 + 115 × 8 = 1048. Quem marcou usou o número do termo (115) como número de saltos, sem descontar os 4 termos que já estavam contados.",
+   "E": "1238 sai de dividir 40 por 4, o que dá razão 10: 128 + 111 × 10 = 1238. Do 4º ao 9º termo há 9 − 4 = 5 saltos, e não 4. A razão certa é 40 ÷ 5 = 8."
   },
   "armadilha": "Contar termos em vez de saltos: de a_4 a a_9 são 5 saltos, e não 4 nem 6, e de a_4 a a_115 são 111.",
   "alerta": "",
@@ -143,14 +143,55 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [],
   "fatos_ok": true,
-  "fatos_resposta": "A"
+  "fatos_resposta": "A",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "razão = (diferença entre posições) ÷ (número de saltos)",
+     "termo n = termo k + (n − k) × razão"
+    ],
+    "motivo": "Sem mudança de conteúdo; mantido. A fórmula já é clara."
+   },
+   {
+    "campo": "resolucao.passos[0].porque",
+    "depois": "Separar os dois dados do enunciado: a 4ª amostra selecionada está na posição 128 e a 9ª, na posição 168. O índice (4 e 9) diz qual amostra é; o valor (128 e 168) diz a posição dela.",
+    "motivo": "Distinguir índice de posição, confusão que causa os erros de contagem."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "1024 sai de contar um salto a mais: partindo de a_1 = 104, somou 115 saltos (104 + 115 × 8 = 1024). De a_1 até a_115 são 114 saltos. Quem marcou esqueceu que o 1º termo ainda não saltou.",
+    "motivo": "Dizer o que faltou no raciocínio e encurtar a frase."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "1040 sai de somar 114 saltos a a_4: 128 + 114 × 8 = 1040. O 114 vale para quem parte de a_1. Partindo de a_4, faltam 115 − 4 = 111 saltos. Faltou trocar o ponto de partida.",
+    "motivo": "Deixar claro o que faltou."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "1048 sai de somar 115 saltos a a_4: 128 + 115 × 8 = 1048. Quem marcou usou o número do termo (115) como número de saltos, sem descontar os 4 termos que já estavam contados.",
+    "motivo": "Frase mais direta sobre o erro."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "1238 sai de dividir 40 por 4, o que dá razão 10: 128 + 111 × 10 = 1238. Do 4º ao 9º termo há 9 − 4 = 5 saltos, e não 4. A razão certa é 40 ÷ 5 = 8.",
+    "motivo": "Explicitar a conta da contagem de saltos."
+   }
+  ],
+  "didatica_alertas": [
+   "A classificação do banco (M13.4, nível 5) está errada para esta questão: o assunto é PA (M07.1). O JSON já traz M07/M07.1, nível 3."
+  ],
+  "didatica_ok": true
  }
 }

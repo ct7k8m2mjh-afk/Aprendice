@@ -8,10 +8,11 @@
  "conceito": "Inferir, a partir do anúncio (texto e imagem), o que o produto promete a quem o toma.",
  "resolucao": {
   "antes": {
-   "texto": "Pergunta com 'implies' pede uma inferência: o que o anúncio sugere a quem toma o remédio. Num anúncio, a resposta está nas promessas do produto: o que ele alivia, reduz ou baixa. Cada alternativa traz uma consequência. Só serve a que combina com uma promessa escrita no anúncio.",
+   "texto": "Pergunta com 'implies' pede uma inferência: o que o anúncio sugere a quem toma o remédio. Num anúncio, a resposta está nas promessas do produto: o que ele alivia, reduz ou baixa. Cada alternativa traz uma consequência. Só serve a que combina com uma promessa escrita no cartaz. Atenção: 'relieved of' (livre de) é a mesma ideia de 'relieves' (alivia).",
    "formulas": [
     "implies = sugere, dá a entender",
     "relieves = alivia; reduces = reduz; lowers = abaixa",
+    "relieved of = livre de (a dor passou)",
     "may / might = possibilidade; will = promessa"
    ],
    "simbolos": [
@@ -75,24 +76,24 @@
    },
    {
     "faz": "Formule a resposta antes das letras",
-    "conta": "toma → dor muscular passa",
+    "conta": "toma → a dor muscular passa",
     "porque": "O anúncio sugere alívio de dores, entre elas a muscular. Procure essa ideia nas alternativas.",
     "tipo": "comparar"
    },
    {
-    "faz": "Confira a alternativa D",
+    "faz": "Confira D e ligue à letra",
     "conta": "you'll be relieved of any muscle pain",
-    "porque": "Diz que você ficará livre da dor muscular que tiver. Combina com 'Relieves pain' e com o ícone MUSCLE PAIN.",
+    "porque": "'Relieved of muscle pain' quer dizer ficar livre da dor muscular. Combina com 'Relieves pain' e com o ícone MUSCLE PAIN. Por isso a resposta é D.",
     "tipo": "concluir"
    }
   ],
   "resposta": "Alternativa D: o anúncio promete aliviar dores, inclusive a muscular, então sugere que quem toma ficará aliviado de dor muscular.",
   "checagem": "O rodapé do cartaz diz 'RELIEF FOR EVERYDAY ACHES' (alívio para dores do dia a dia) e o ícone MUSCLE PAIN aparece entre as dores tratadas. É uma segunda marca para a mesma ideia.",
   "erradas": {
-   "A": "'You may have migraines' (você pode ter enxaquecas) inverte a promessa. O cartaz cita HEADACHE (dor de cabeça) como dor que o remédio ALIVIA, não como efeito de tomá-lo.",
-   "B": "'Your joint pain will be worsened' (sua dor articular será piorada) é o contrário do anunciado. JOINT PAIN está entre as dores para as quais o produto promete alívio.",
-   "C": "'You surely know it is an unknown medicine' se contradiz: 'saber com certeza' e 'desconhecido' não combinam. O cartaz diz 'TRUSTED PAIN RELIEF' (alívio de dor confiável), o oposto de desconhecido.",
-   "E": "'You might have high fever' (você pode ter febre alta) inverte o item LOWERS FEVER, 'Brings down high body temperature' (baixa a temperatura corporal alta). O remédio reduz a febre, não a causa."
+   "A": "'You may have migraines' (você pode ter enxaquecas) inverte a promessa. Quem marcou A viu HEADACHE no cartaz e não notou que é uma dor que o remédio ALIVIA, não um efeito de tomá-lo.",
+   "B": "'Your joint pain will be worsened' (sua dor articular será piorada) é o contrário do anunciado. Quem marcou B viu JOINT PAIN e esqueceu que ela está entre as dores para as quais o produto promete alívio.",
+   "C": "'You surely know it is an unknown medicine' (você tem certeza de que é um remédio desconhecido) se contradiz: quem 'sabe com certeza' não trata o remédio como 'desconhecido'. O cartaz diz 'TRUSTED PAIN RELIEF' (alívio de dor confiável), o oposto de desconhecido.",
+   "E": "'You might have high fever' (você pode ter febre alta) inverte o item LOWERS FEVER, 'Brings down high body temperature' (baixa a temperatura corporal alta). Quem marcou E leu 'fever' e não viu que o remédio reduz a febre, não a causa."
   },
   "armadilha": "A, B e E pegam males citados no cartaz (dor de cabeça, dor articular, febre) e trocam o sentido: o que o remédio ALIVIA vira o que ele CAUSA.",
   "alerta": "",
@@ -123,11 +124,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -144,6 +147,60 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "D"
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Pergunta com 'implies' pede uma inferência: o que o anúncio sugere a quem toma o remédio. Num anúncio, a resposta está nas promessas do produto: o que ele alivia, reduz ou baixa. Cada alternativa traz uma consequência. Só serve a que combina com uma promessa escrita no cartaz. Atenção: 'relieved of' (livre de) é a mesma ideia de 'relieves' (alivia).",
+    "motivo": "Liga o 'relieved of' da alternativa D ao 'relieves' do cartaz, para o aluno não travar na forma verbal diferente."
+   },
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "implies = sugere, dá a entender",
+     "relieves = alivia; reduces = reduz; lowers = abaixa",
+     "relieved of = livre de (a dor passou)",
+     "may / might = possibilidade; will = promessa"
+    ],
+    "motivo": "Inclui a equivalência que decide a alternativa D."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "toma → a dor muscular passa",
+    "motivo": "Frase mais clara, sem símbolo ambíguo."
+   },
+   {
+    "campo": "resolucao.passos[4].faz",
+    "depois": "Confira D e ligue à letra",
+    "motivo": "O último passo precisa ligar a resposta à alternativa."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "'Relieved of muscle pain' quer dizer ficar livre da dor muscular. Combina com 'Relieves pain' e com o ícone MUSCLE PAIN. Por isso a resposta é D.",
+    "motivo": "Explica o sentido de 'relieved of' e fecha com a letra."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "'You surely know it is an unknown medicine' (você tem certeza de que é um remédio desconhecido) se contradiz: quem 'sabe com certeza' não trata o remédio como 'desconhecido'. O cartaz diz 'TRUSTED PAIN RELIEF' (alívio de dor confiável), o oposto de desconhecido.",
+    "motivo": "Tradução da alternativa e explicação mais clara do erro de quem marcou C."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "'You may have migraines' (você pode ter enxaquecas) inverte a promessa. Quem marcou A viu HEADACHE no cartaz e não notou que é uma dor que o remédio ALIVIA, não um efeito de tomá-lo.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou A."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "'Your joint pain will be worsened' (sua dor articular será piorada) é o contrário do anunciado. Quem marcou B viu JOINT PAIN e esqueceu que ela está entre as dores para as quais o produto promete alívio.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou B."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "'You might have high fever' (você pode ter febre alta) inverte o item LOWERS FEVER, 'Brings down high body temperature' (baixa a temperatura corporal alta). Quem marcou E leu 'fever' e não viu que o remédio reduz a febre, não a causa.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou E."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

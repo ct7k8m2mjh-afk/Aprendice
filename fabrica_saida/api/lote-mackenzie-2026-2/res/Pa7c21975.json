@@ -39,15 +39,15 @@
     "tipo": "localizar"
    },
    {
-    "faz": "Calcule a média",
-    "conta": "soma = 80",
-    "porque": "Somando: 2+3+5+8+12 = 30 e 15+15+10+6+4 = 50. O total é 80, então a média é 80 ÷ 10 = 8.",
+    "faz": "Some os valores e ache a média",
+    "conta": "2+3+5+8+12 = 30",
+    "porque": "Some em duas partes para não errar: 30 (dias 1 a 5) e 15+15+10+6+4 = 50 (dias 6 a 10). O total é 80. Média = 80 ÷ 10 dias = 8.",
     "tipo": "calcular"
    },
    {
-    "faz": "Ordene e ache a mediana",
-    "conta": "2,3,4,5,6,8,10,12,15,15",
-    "porque": "São 10 valores, então a mediana é a média do 5º (6) e do 6º (8): (6+8)÷2 = 7.",
+    "faz": "Ordene os valores e ache a mediana",
+    "conta": "2, 3, 4, 5, 6, 8, 10, 12, 15, 15",
+    "porque": "Ordene do menor para o maior. Com 10 valores não há um do meio: use o 5º (6) e o 6º (8). A mediana é (6+8) ÷ 2 = 7.",
     "tipo": "calcular"
    },
    {
@@ -107,7 +107,7 @@
    "nota": "total de ataques"
   },
   {
-   "linha": "média = 80/10 = 8",
+   "linha": "média = \\frac{80}{10} = 8",
    "nota": "divida pela quantidade de dias",
    "destaque": "8"
   },
@@ -116,7 +116,7 @@
    "nota": "dados em ordem crescente"
   },
   {
-   "linha": "mediana = (6 + 8)/2 = 7",
+   "linha": "mediana = \\frac{6 + 8}{2} = 7",
    "nota": "média do 5º e do 6º valores",
    "destaque": "7"
   },
@@ -145,14 +145,90 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [],
   "fatos_ok": true,
-  "fatos_resposta": "A"
+  "fatos_resposta": "A",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[1]",
+    "depois": {
+     "faz": "Some os valores e ache a média",
+     "conta": "2+3+5+8+12 = 30",
+     "porque": "Some em duas partes para não errar: 30 (dias 1 a 5) e 15+15+10+6+4 = 50 (dias 6 a 10). O total é 80. Média = 80 ÷ 10 dias = 8.",
+     "tipo": "calcular"
+    },
+    "motivo": "A conta mostrava só 'soma = 80'; agora o passo mostra a soma e a divisão, e o porquê explica a divisão por 10."
+   },
+   {
+    "campo": "resolucao.passos[2]",
+    "depois": {
+     "faz": "Ordene os valores e ache a mediana",
+     "conta": "2, 3, 4, 5, 6, 8, 10, 12, 15, 15",
+     "porque": "Ordene do menor para o maior. Com 10 valores não há um do meio: use o 5º (6) e o 6º (8). A mediana é (6+8) ÷ 2 = 7.",
+     "tipo": "calcular"
+    },
+    "motivo": "Explica por que se usam dois valores centrais."
+   },
+   {
+    "campo": "resolucao.quadro",
+    "depois": [
+     {
+      "linha": "dados: 2, 3, 5, 8, 12",
+      "nota": "dias 1 a 5, lidos nas barras"
+     },
+     {
+      "linha": "e: 15, 15, 10, 6, 4",
+      "nota": "dias 6 a 10"
+     },
+     {
+      "linha": "2+3+5+8+12 = 30",
+      "nota": "soma da primeira metade"
+     },
+     {
+      "linha": "15+15+10+6+4 = 50",
+      "nota": "soma da segunda metade"
+     },
+     {
+      "linha": "soma = 30 + 50 = 80",
+      "nota": "total de ataques"
+     },
+     {
+      "linha": "média = \\frac{80}{10} = 8",
+      "nota": "divida pela quantidade de dias",
+      "destaque": "8"
+     },
+     {
+      "linha": "2,3,4,5,6,8,10,12,15,15",
+      "nota": "dados em ordem crescente"
+     },
+     {
+      "linha": "mediana = \\frac{6 + 8}{2} = 7",
+      "nota": "média do 5º e do 6º valores",
+      "destaque": "7"
+     },
+     {
+      "linha": "moda = 15",
+      "nota": "único valor repetido",
+      "destaque": "15"
+     },
+     {
+      "linha": "amplitude = 15 − 2 = 13",
+      "nota": "maior menos menor",
+      "destaque": "13"
+     }
+    ],
+    "motivo": "Frações do quadro em \\frac{}{}, como exige o padrão de Matemática."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

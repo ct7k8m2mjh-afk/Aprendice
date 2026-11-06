@@ -67,14 +67,14 @@
    },
    {
     "faz": "Formule a resposta antes de ver as letras",
-    "conta": "Gaga demonstra admiração e cuidado; Minnelli retribui",
+    "conta": "Gaga: admiração e apoio / Minnelli: retribui",
     "porque": "O doce vem da troca de afeto entre as duas, e não de um só lado.",
     "tipo": "comparar"
    },
    {
     "faz": "Compare com as alternativas",
     "conta": "Só D cobre os dois lados",
-    "porque": "As outras citam um fato isolado ou apenas a fala de uma das duas.",
+    "porque": "A, B, C e E citam um fato isolado ou a fala de uma só das duas. D junta o apreço de Gaga e a retribuição de Minnelli.",
     "tipo": "concluir"
    }
   ],
@@ -91,13 +91,14 @@
   "essencial": {
    "pede": "O que tornou doce o momento entre Gaga e Minnelli.",
    "chave": "Gaga mostrou admiração e apoio, e Minnelli retribuiu com agradecimento e declaração de fã.",
-   "cuidado": "Fala verdadeira de só uma das duas, ou atribuída à pessoa errada, não explica o momento inteiro."
-  }
+   "cuidado": "Uma fala verdadeira de só uma das duas não explica o momento inteiro: o doce vem da troca entre elas."
+  },
+  "cabe_nota": ""
  },
  "caminhos": [
   {
    "nome": "eliminação",
-   "ideia": "A e B citam fatos de contexto (lendárias, apresentação do prêmio). C só traz a fala de Minnelli. E atribui a Gaga uma fala que é de Minnelli. Sobra D."
+   "ideia": "A e B citam fatos de contexto (lendárias, apresentação do prêmio). C traz só a fala de Minnelli. E traz só a fala de Gaga: “I'm honored to present...”. Sobra D, que junta o apreço de Gaga e a retribuição de Minnelli."
   }
  ],
  "quadro": [],
@@ -115,11 +116,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -130,6 +133,40 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "D"
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.caminhos[0].ideia",
+    "depois": "A e B citam fatos de contexto (lendárias, apresentação do prêmio). C traz só a fala de Minnelli. E traz só a fala de Gaga: “I'm honored to present...”. Sobra D, que junta o apreço de Gaga e a retribuição de Minnelli.",
+    "motivo": "O texto antigo dizia que E atribui a Gaga uma fala de Minnelli, o que contradiz a explicação de E em 'erradas' (a fala é mesmo de Gaga). Corrigido para ficar coerente."
+   },
+   {
+    "campo": "resolucao.cabe_nota",
+    "depois": "",
+    "motivo": "Sem alteração necessária neste campo."
+   },
+   {
+    "campo": "resolucao.resolucao.passos[1].porque",
+    "depois": "(Estou honrada de apresentar... / Estou com você.) Gaga elogia Minnelli, chama-a de lenda, ajuda-a com o teleprompter e canta uma música do filme dela.",
+    "motivo": "Mais completo e claro: 'chama-a de lenda' liga ao apreço de Gaga mencionado na alternativa D."
+   },
+   {
+    "campo": "resolucao.essencial.cuidado",
+    "depois": "Uma fala verdadeira de só uma das duas não explica o momento inteiro: o doce vem da troca entre elas.",
+    "motivo": "Frase mais clara; a versão anterior sugeria erro de atribuição que não existe em nenhuma alternativa."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "Gaga: admiração e apoio / Minnelli: retribui",
+    "motivo": "Cabe melhor na tela de celular (linha curta, sem quebra)."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "A, B, C e E citam um fato isolado ou a fala de uma só das duas. D junta o apreço de Gaga e a retribuição de Minnelli.",
+    "motivo": "Explica por que cada grupo de letras cai, em vez de só afirmar que D cobre os dois lados."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

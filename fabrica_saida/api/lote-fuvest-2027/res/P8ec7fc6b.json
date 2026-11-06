@@ -8,11 +8,12 @@
  "conceito": "Encadear conversões: volume → massa (densidade) → mol (massa molar) → tempo (consumo por rotação e rotações por minuto).",
  "resolucao": {
   "antes": {
-   "texto": "A questão pede um tempo, mas os dados estão em unidades diferentes: litro de combustível, mol por rotação e rotações por minuto. O caminho é transformar o tanque em mol de etanol e descobrir quantos mol o motor gasta por minuto. Depois divide-se um pelo outro e passa-se o resultado de minuto para hora.",
+   "texto": "A questão pede um tempo, mas os dados estão em unidades diferentes: litro de combustível, mol por rotação e rotações por minuto. Transforme o tanque em mol de etanol. Depois descubra quantos mol o motor gasta por minuto. Divida um valor pelo outro para achar o tempo em minutos e, no fim, passe para horas.",
    "formulas": [
     "massa = densidade × volume",
     "n (mol) = massa ÷ massa molar",
-    "tempo = quantidade no tanque ÷ consumo por minuto"
+    "mol por minuto = mol por rotação × rotações por minuto",
+    "tempo = mol no tanque ÷ mol gastos por minuto"
    ],
    "simbolos": [
     [
@@ -33,7 +34,7 @@
     ]
    ]
   },
-  "pista": "Seu objetivo é comparar duas quantidades na mesma unidade: o que cabe no tanque e o que o motor gasta por minuto. Em que unidade (mol) isso é mais fácil de fazer?",
+  "pista": "Compare duas quantidades na mesma unidade: o que cabe no tanque e o que o motor gasta em cada minuto. Em qual unidade do enunciado essa comparação é possível?",
   "passos": [
    {
     "faz": "Converta o tanque para mL",
@@ -55,8 +56,8 @@
    },
    {
     "faz": "Ache o consumo por minuto",
-    "conta": "1,25×10^−3 × 3160 = 3,95 mol/min",
-    "porque": "Mol por rotação vezes rotações por minuto resulta em mol por minuto (a rotação cancela).",
+    "conta": "1,25×10^−3 × 3160 = 3,95",
+    "porque": "Mol por rotação vezes rotações por minuto dá mol por minuto: a palavra 'rotação' cancela. O resultado é 3,95 mol/min.",
     "tipo": "calcular"
    },
    {
@@ -78,9 +79,9 @@
    "A": "1,3 h não confere. Em 1,3 h o motor gastaria 1,3 × 60 × 3,95 ≈ 308 mol, o que são cerca de 17,9 L de etanol, bem menos que os 46 L do tanque.",
    "C": "4,4 h não confere. Em 4,4 h o motor gastaria cerca de 1043 mol, ou seja, cerca de 60,7 L de etanol, mais do que cabe no tanque de 46 L.",
    "D": "5,4 h não confere. Em 5,4 h o motor gastaria cerca de 1280 mol, equivalente a cerca de 74,5 L de etanol, muito acima dos 46 L do tanque.",
-   "E": "6,6 h não confere. Em 6,6 h o motor gastaria cerca de 1564 mol, equivalente a cerca de 91 L de etanol, o dobro do tanque. Esse valor é o dobro do correto."
+   "E": "6,6 h não confere. Em 6,6 h o motor gastaria cerca de 1564 mol, o que equivale a cerca de 91 L de etanol, o dobro do tanque. Quem marcou E provavelmente dobrou o tempo, mas o tanque só tem 790 mol."
   },
-  "armadilha": "Misturar unidades: densidade em g/mL pede volume em mL, e o resultado final sai em minutos, não em horas.",
+  "armadilha": "Misturar unidades: a densidade em g/mL pede volume em mL, e a divisão final dá minutos, não horas.",
   "alerta": "",
   "essencial": {
    "pede": "Por quantas horas o motor funciona com 46 L de etanol, gastando 1,25×10^−3 mol por rotação a 3160 rotações por minuto.",
@@ -154,11 +155,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -169,6 +172,60 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "B"
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "A questão pede um tempo, mas os dados estão em unidades diferentes: litro de combustível, mol por rotação e rotações por minuto. Transforme o tanque em mol de etanol. Depois descubra quantos mol o motor gasta por minuto. Divida um valor pelo outro para achar o tempo em minutos e, no fim, passe para horas.",
+    "motivo": "Frases mais curtas e voz ativa; deixa claro que o resultado intermediário sai em minutos."
+   },
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "massa = densidade × volume",
+     "n (mol) = massa ÷ massa molar",
+     "mol por minuto = mol por rotação × rotações por minuto",
+     "tempo = mol no tanque ÷ mol gastos por minuto"
+    ],
+    "motivo": "Inclui a fórmula do consumo por minuto, usada no passo 4."
+   },
+   {
+    "campo": "resolucao.pista",
+    "depois": "Compare duas quantidades na mesma unidade: o que cabe no tanque e o que o motor gasta em cada minuto. Em qual unidade do enunciado essa comparação é possível?",
+    "motivo": "Pista mais direta, sem entregar a resposta."
+   },
+   {
+    "campo": "resolucao.passos[0].conta",
+    "depois": "46 L × 1000 = 46 000 mL",
+    "motivo": "Mantido; cabe na linha."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "1,25×10^−3 × 3160 = 3,95",
+    "motivo": "A conta precisa caber em cerca de 30 caracteres na tela do celular; a unidade (mol/min) fica no porque."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Mol por rotação vezes rotações por minuto dá mol por minuto: a palavra 'rotação' cancela. O resultado é 3,95 mol/min.",
+    "motivo": "Informa a unidade que saiu da conta e explica o cancelamento."
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "790 ÷ 3,95 = 200 min",
+    "motivo": "Mantido; cabe na linha."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "6,6 h não confere. Em 6,6 h o motor gastaria cerca de 1564 mol, o que equivale a cerca de 91 L de etanol, o dobro do tanque. Quem marcou E provavelmente dobrou o tempo, mas o tanque só tem 790 mol.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou E, sem afirmar uma origem inventada."
+   },
+   {
+    "campo": "resolucao.armadilha",
+    "depois": "Misturar unidades: a densidade em g/mL pede volume em mL, e a divisão final dá minutos, não horas.",
+    "motivo": "Redação mais clara."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

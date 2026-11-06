@@ -8,11 +8,13 @@
  "conceito": "Soma de uma PA (fileiras de poltronas) para achar o diâmetro, e depois área de semicírculos.",
  "resolucao": {
   "antes": {
-   "texto": "Cada semicírculo tem uma primeira fileira com d poltronas, sendo d o diâmetro em metros. Cada fileira seguinte tem 2 a menos, até chegar a 2. As quantidades de poltronas formam uma PA. Somando a PA, você descobre d. Só então calcula a área.",
+   "texto": "A pergunta pede a área total onde ficam as poltronas, isto é, a dos quatro semicírculos. Cada semicírculo tem uma primeira fileira com d poltronas, sendo d o diâmetro em metros. Cada fileira seguinte tem 2 a menos, até chegar a 2. Essas quantidades formam uma PA. Somando a PA, você descobre d. Só então calcula a área.",
    "formulas": [
     "poltronas por semicírculo = 80 ÷ 4",
     "soma da PA = (primeiro + último) × número de termos ÷ 2",
-    "área do semicírculo = π × r² ÷ 2, com r = d ÷ 2"
+    "área do círculo = π × r × r",
+    "área do semicírculo = metade da área do círculo",
+    "raio = diâmetro ÷ 2"
    ],
    "simbolos": [
     [
@@ -40,24 +42,24 @@
    {
     "faz": "Escreva as fileiras como uma PA",
     "conta": "d, d−2, ..., 4, 2",
-    "porque": "A 1ª fileira tem d poltronas, cada uma seguinte tem 2 a menos, e a última tem 2. Como a razão é 2 e termina em 2, d é par.",
+    "porque": "A 1ª fileira tem d poltronas, cada seguinte tem 2 a menos, e a última tem 2. Como a diferença é 2 e a sequência termina em 2, todos os termos são pares, então d é par.",
     "tipo": "localizar"
    },
    {
     "faz": "Monte a soma e iguale a 20",
-    "conta": "d/2 fileiras; soma = d(d+2)/4",
-    "porque": "Há d/2 fileiras (de 2 em 2 até 2). Soma = (d + 2) × (d/2) ÷ 2 = d(d + 2)/4. Igualando a 20: d² + 2d = 80.",
+    "conta": "fileiras: d/2\nsoma = (d+2) × (d/2) ÷ 2",
+    "porque": "De 2 em 2 até 2, há d/2 fileiras. Pela soma da PA: (d + 2) × (d/2) ÷ 2 = d(d + 2)/4. Igualando a 20 e multiplicando por 4: d² + 2d = 80.",
     "tipo": "calcular"
    },
    {
-    "faz": "Resolva para d",
-    "conta": "d=8: 64+16 = 80 ✓",
-    "porque": "Teste direto: fileiras 8 + 6 + 4 + 2 = 20 poltronas. Então o diâmetro é 8 m e o raio é 4 m.",
+    "faz": "Ache d testando valores pares",
+    "conta": "d = 8: 64 + 16 = 80 ✓",
+    "porque": "Com d = 8, as fileiras são 8 + 6 + 4 + 2 = 20 poltronas, como pedido. Então o diâmetro é 8 m e o raio é 4 m.",
     "tipo": "calcular"
    },
    {
     "faz": "Calcule a área dos 4 semicírculos",
-    "conta": "4 × π·4²/2 = 4 × 8π = 32π",
+    "conta": "1 semicírculo: π × 4 × 4 ÷ 2 = 8π\n4 semicírculos: 4 × 8π = 32π",
     "porque": "Cada semicírculo tem π × 16 ÷ 2 = 8π m². Os quatro juntos têm 32π m².",
     "tipo": "calcular"
    },
@@ -73,10 +75,10 @@
   "erradas": {
    "A": "8π m² é a área de UM semicírculo (π × 4² ÷ 2). A questão pede a área dos quatro.",
    "B": "16π m² é a área de um círculo inteiro de raio 4 (π × 16), isto é, de só dois semicírculos. Faltam outros dois.",
-   "D": "42π m² não confere: os quatro semicírculos têm área 2πr². Igualando 2πr² = 42π, sai r² = 21, e o diâmetro seria 2√21 ≈ 9,2 m. Esse valor não é inteiro e não fecha as 20 poltronas por semicírculo.",
+   "D": "42π m² não confere. Os quatro semicírculos somam 2 × π × r × r; igualando a 42π, r × r = 21 e o diâmetro seria 2√21 ≈ 9,2 m, que não é inteiro. Quem marcou D não achou o diâmetro pela soma das fileiras: com d = 8 a área é 32π.",
    "E": "64π m² sai de esquecer a divisão por 2 na área do semicírculo: 4 × π × 4² = 4 × 16π = 64π. Assim cada semicírculo vira um círculo inteiro."
   },
-  "armadilha": "Parar na área de um semicírculo (8π) ou usar o diâmetro como se fosse raio na fórmula da área.",
+  "armadilha": "Parar na área de um semicírculo (8π) ou usar o diâmetro (8) no lugar do raio (4) na fórmula da área.",
   "alerta": "",
   "essencial": {
    "pede": "A área total dos quatro semicírculos onde ficam as poltronas.",
@@ -101,7 +103,7 @@
   },
   {
    "linha": "d + (d−2) + ... + 2 = 20",
-   "nota": "fileiras formam uma PA de razão −2"
+   "nota": "fileiras formam uma PA, de 2 em 2"
   },
   {
    "linha": "nº de fileiras = d/2",
@@ -109,7 +111,11 @@
   },
   {
    "linha": "(d + 2) × (d/2) ÷ 2 = 20",
-   "nota": "soma da PA: (primeiro + último) × n ÷ 2"
+   "nota": "soma da PA"
+  },
+  {
+   "linha": "d(d + 2)/4 = 20",
+   "nota": "multiplicou e simplificou"
   },
   {
    "linha": "d² + 2d = 80",
@@ -117,14 +123,14 @@
   },
   {
    "linha": "d = 8",
-   "nota": "8² + 2×8 = 64 + 16 = 80"
+   "nota": "teste: 64 + 16 = 80"
   },
   {
    "linha": "r = 8 ÷ 2 = 4",
    "nota": "raio é metade do diâmetro"
   },
   {
-   "linha": "A = π × 4² ÷ 2 = 8π",
+   "linha": "A = π × 4 × 4 ÷ 2 = 8π",
    "nota": "área de um semicírculo"
   },
   {
@@ -146,11 +152,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -167,6 +175,117 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "C"
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "A pergunta pede a área total onde ficam as poltronas, isto é, a dos quatro semicírculos. Cada semicírculo tem uma primeira fileira com d poltronas, sendo d o diâmetro em metros. Cada fileira seguinte tem 2 a menos, até chegar a 2. Essas quantidades formam uma PA. Somando a PA, você descobre d. Só então calcula a área.",
+    "motivo": "Começar pelo comando e dizer o que se pede."
+   },
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "poltronas por semicírculo = 80 ÷ 4",
+     "soma da PA = (primeiro + último) × número de termos ÷ 2",
+     "área do círculo = π × r × r",
+     "área do semicírculo = metade da área do círculo",
+     "raio = diâmetro ÷ 2"
+    ],
+    "motivo": "Fórmulas escritas como se diz em aula, sem expoente solto."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "A 1ª fileira tem d poltronas, cada seguinte tem 2 a menos, e a última tem 2. Como a diferença é 2 e a sequência termina em 2, todos os termos são pares, então d é par.",
+    "motivo": "Frase mais clara; 'razão é 2' era ambíguo."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "fileiras: d/2\nsoma = (d+2) × (d/2) ÷ 2",
+    "motivo": "Conta curta, cabe na tela; uma ideia por linha."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "De 2 em 2 até 2, há d/2 fileiras. Pela soma da PA: (d + 2) × (d/2) ÷ 2 = d(d + 2)/4. Igualando a 20 e multiplicando por 4: d² + 2d = 80.",
+    "motivo": "Explicar a passagem passo a passo."
+   },
+   {
+    "campo": "resolucao.passos[3].faz",
+    "depois": "Ache d testando valores pares",
+    "motivo": "O passo testa valores, não resolve equação de 2º grau."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "d = 8: 64 + 16 = 80 ✓",
+    "motivo": "Mostrar que a conta confere."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Com d = 8, as fileiras são 8 + 6 + 4 + 2 = 20 poltronas, como pedido. Então o diâmetro é 8 m e o raio é 4 m.",
+    "motivo": "Sem alteração de fato; texto mais direto."
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "1 semicírculo: π × 4 × 4 ÷ 2 = 8π\n4 semicírculos: 4 × 8π = 32π",
+    "motivo": "Conta em duas linhas curtas, sem quebrar."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "42π m² não confere. Os quatro semicírculos somam 2 × π × r × r; igualando a 42π, r × r = 21 e o diâmetro seria 2√21 ≈ 9,2 m, que não é inteiro. Quem marcou D não achou o diâmetro pela soma das fileiras: com d = 8 a área é 32π.",
+    "motivo": "Dizer o que faltou no raciocínio e evitar expoente."
+   },
+   {
+    "campo": "resolucao.armadilha",
+    "depois": "Parar na área de um semicírculo (8π) ou usar o diâmetro (8) no lugar do raio (4) na fórmula da área.",
+    "motivo": "Redação mais clara."
+   },
+   {
+    "campo": "resolucao.quadro",
+    "depois": [
+     {
+      "linha": "80 ÷ 4 = 20",
+      "nota": "poltronas em cada semicírculo"
+     },
+     {
+      "linha": "d + (d−2) + ... + 2 = 20",
+      "nota": "fileiras formam uma PA, de 2 em 2"
+     },
+     {
+      "linha": "nº de fileiras = d/2",
+      "nota": "de 2 em 2 até chegar ao 2"
+     },
+     {
+      "linha": "(d + 2) × (d/2) ÷ 2 = 20",
+      "nota": "soma da PA"
+     },
+     {
+      "linha": "d(d + 2)/4 = 20",
+      "nota": "multiplicou e simplificou"
+     },
+     {
+      "linha": "d² + 2d = 80",
+      "nota": "multiplique os dois lados por 4"
+     },
+     {
+      "linha": "d = 8",
+      "nota": "teste: 64 + 16 = 80"
+     },
+     {
+      "linha": "r = 8 ÷ 2 = 4",
+      "nota": "raio é metade do diâmetro"
+     },
+     {
+      "linha": "A = π × 4 × 4 ÷ 2 = 8π",
+      "nota": "área de um semicírculo"
+     },
+     {
+      "linha": "4 × 8π = 32π",
+      "nota": "são quatro semicírculos"
+     }
+    ],
+    "motivo": "Incluir a passagem d(d+2)/4 que estava pulada."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

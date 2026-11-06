@@ -54,18 +54,18 @@
    {
     "faz": "Julgue a proposição I",
     "conta": "Y: Z=17, 18 e⁻ → Cl⁻\nX: Z=17, neutro → Cl",
-    "porque": "Y é ânion monovalente. Seu átomo neutro tem o mesmo Z (17), que é X. Verdadeira.",
+    "porque": "Y tem carga −1, então é ânion monovalente. O átomo neutro do mesmo elemento tem o mesmo Z (17) e 17 elétrons, que é X. Verdadeira.",
     "tipo": "comparar"
    },
    {
     "faz": "Julgue a proposição II",
     "conta": "R: Z=19, 19 e⁻ → K\nP: Z=19, 18 e⁻ → K⁺",
-    "porque": "R é neutra. Ao perder 1 elétron, R vira cátion monovalente com 18 elétrons, que é P. Verdadeira.",
+    "porque": "R é neutra. Se perder 1 elétron, fica com 18 elétrons e carga +1. Isso é exatamente P, que tem o mesmo Z (19). Verdadeira.",
     "tipo": "comparar"
    },
    {
     "faz": "Julgue a proposição III",
-    "conta": "Y: 18 e⁻ e P: 18 e⁻",
+    "conta": "Y: 18 e⁻ (ânion)\nP: 18 e⁻ (cátion)",
     "porque": "Ambos são íons (Y é ânion, P é cátion) e têm o mesmo número de elétrons, logo são isoeletrônicos. Verdadeira.",
     "tipo": "comparar"
    },
@@ -79,17 +79,17 @@
   "resposta": "Alternativa E: as três proposições são verdadeiras, pois Y é Cl⁻ (cujo átomo neutro é X), P é o cátion K⁺ de R, e Y e P têm 18 elétrons cada.",
   "checagem": "Confira pelo elemento: Z=17 é cloro e Z=19 é potássio. Cl⁻ e K⁺ têm 18 elétrons, como o argônio. É o par isoeletrônico clássico.",
   "erradas": {
-   "A": "Falsa: afirma que nenhuma proposição é verdadeira, mas I, II e III passam no teste da carga (prótons − elétrons).",
-   "B": "Falsa: omite a proposição III, que é verdadeira. Y (18 e⁻) e P (18 e⁻) são íons com o mesmo número de elétrons, logo isoeletrônicos.",
-   "C": "Falsa: omite a proposição II, que é verdadeira. R tem 19 prótons e 19 elétrons (neutra). Perdendo 1 elétron fica com 18 e vira P, cátion monovalente.",
-   "D": "Falsa: omite a proposição I, que é verdadeira. Y tem 17 prótons e 18 elétrons (carga −1, ânion monovalente). Seu átomo neutro tem os mesmos 17 prótons e 17 elétrons, que é X."
+   "A": "Quem marcou A achou que alguma proposição falha. Mas I, II e III passam no teste da carga (prótons − elétrons). Faltou calcular a carga de cada espécie.",
+   "B": "Quem marcou B rejeitou a III. Faltou ver que Y (ânion) e P (cátion) são íons e ambos têm 18 elétrons. Isoeletrônicas só comparam elétrons, não o elemento nem a carga.",
+   "C": "Quem marcou C rejeitou a II. Faltou notar que R (19 prótons, 19 elétrons) é neutra e, ao perder 1 elétron, fica com 18 elétrons. Esse é P, cátion monovalente.",
+   "D": "Quem marcou D rejeitou a I. Faltou ver que Y (17 prótons, 18 elétrons) tem carga −1. Seu átomo neutro tem os mesmos 17 prótons e 17 elétrons, que é X."
   },
   "armadilha": "Pensar que isoeletrônicas precisam ser do mesmo elemento ou ter a mesma carga; o que conta é só o número de elétrons.",
   "alerta": "",
   "essencial": {
    "pede": "Julgar três afirmações sobre carga e relação entre as espécies da tabela.",
    "chave": "Carga = prótons − elétrons; o átomo neutro e o íon do mesmo elemento têm o mesmo Z.",
-   "cuidado": "Não confundir quem ganha elétron (ânion) com quem perde (cátion), e lembrar que isoeletrônicas só comparam elétrons."
+   "cuidado": "Ânion tem elétron a mais (ganhou); cátion tem elétron a menos (perdeu). Isoeletrônicas comparam só o número de elétrons."
   }
  },
  "caminhos": [
@@ -142,11 +142,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -175,6 +177,55 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "E"
+  "fatos_resposta": "E",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "Y: 17 − 18 = −1 (ânion)\nP: 19 − 18 = +1 (cátion)\nR: 19 − 19 = 0 (neutra)",
+    "motivo": "Mantida a mesma conta. Cada linha já cabe na tela e não precisa de mudança."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Y tem carga −1, então é ânion monovalente. O átomo neutro do mesmo elemento tem o mesmo Z (17) e 17 elétrons, que é X. Verdadeira.",
+    "motivo": "Frase mais clara: diz por que o mesmo Z indica o mesmo elemento e liga ao número de elétrons de X."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "R é neutra. Se perder 1 elétron, fica com 18 elétrons e carga +1. Isso é exatamente P, que tem o mesmo Z (19). Verdadeira.",
+    "motivo": "Mostra que P é o cátion de R porque o Z é igual, e não só pelo número de elétrons."
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "Y: 18 e⁻ (ânion)\nP: 18 e⁻ (cátion)",
+    "motivo": "Uma informação por linha, copiável no caderno."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "Quem marcou A achou que alguma proposição falha. Mas I, II e III passam no teste da carga (prótons − elétrons). Faltou calcular a carga de cada espécie.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou A."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "Quem marcou B rejeitou a III. Faltou ver que Y (ânion) e P (cátion) são íons e ambos têm 18 elétrons. Isoeletrônicas só comparam elétrons, não o elemento nem a carga.",
+    "motivo": "Aponta a falha de raciocínio: usar um critério que não é o da definição."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "Quem marcou C rejeitou a II. Faltou notar que R (19 prótons, 19 elétrons) é neutra e, ao perder 1 elétron, fica com 18 elétrons. Esse é P, cátion monovalente.",
+    "motivo": "Diz o que faltou: imaginar a perda de elétron a partir de R."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "Quem marcou D rejeitou a I. Faltou ver que Y (17 prótons, 18 elétrons) tem carga −1. Seu átomo neutro tem os mesmos 17 prótons e 17 elétrons, que é X.",
+    "motivo": "Diz o que faltou: comparar o Z de X e de Y."
+   },
+   {
+    "campo": "resolucao.essencial.cuidado",
+    "depois": "Ânion tem elétron a mais (ganhou); cátion tem elétron a menos (perdeu). Isoeletrônicas comparam só o número de elétrons.",
+    "motivo": "Frase mais direta e fácil de lembrar."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

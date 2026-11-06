@@ -41,7 +41,7 @@
    },
    {
     "faz": "Escreva a fórmula de g",
-    "conta": "a = (−6 − 2)/(2 − 0) = −4",
+    "conta": "a = (−6 − 2) ÷ (2 − 0) = −4",
     "porque": "O valor em x = 0 é 2, então b = 2 e g(x) = −4x + 2. A reta desce 4 a cada 1 que anda em x, como mostra o gráfico.",
     "tipo": "calcular"
    },
@@ -52,9 +52,9 @@
     "tipo": "calcular"
    },
    {
-    "faz": "Ache o ponto P igualando f e g",
-    "conta": "2x − 6 = −4x + 2 → x = 4/3",
-    "porque": "No encontro, f(x) = g(x). Passando termos: 6x = 8, então x = 4/3. Então y = 2·(4/3) − 6 = −10/3.",
+    "faz": "Ache x de P igualando f e g",
+    "conta": "2x − 6 = −4x + 2 → 6x = 8 → x = 4/3",
+    "porque": "No ponto P, as duas retas têm o mesmo y, então f(x) = g(x). Só o x de P é necessário, pois ele é a altura do triângulo.",
     "tipo": "calcular"
    },
    {
@@ -66,7 +66,7 @@
    {
     "faz": "Calcule a área",
     "conta": "A = 8 × (4/3) ÷ 2 = 16/3",
-    "porque": "Área do triângulo é base vezes altura dividido por 2. Isso corresponde à alternativa C.",
+    "porque": "Área do triângulo = base × altura ÷ 2 = 32/3 ÷ 2 = 16/3. A pergunta pede a área, então a resposta é a alternativa C.",
     "tipo": "concluir"
    }
   ],
@@ -143,14 +143,14 @@
    "nota": "some os termos de cada lado"
   },
   {
-   "linha": "x = 8/6 = 4/3",
-   "nota": "o 6 passa dividindo e simplifica",
+   "linha": "x = 8 ÷ 6 = 4/3",
+   "nota": "o 6 passa dividindo; simplifica por 2",
    "mov": [
     {
      "termo": "6",
      "de": "esquerda",
-     "para": "denominador",
-     "vira": "6",
+     "para": "direita",
+     "vira": "÷ 6",
      "como": "passa dividindo"
     }
    ]
@@ -160,7 +160,7 @@
    "nota": "lado sobre o eixo y"
   },
   {
-   "linha": "A = 8 × (4/3) ÷ 2",
+   "linha": "A = 8 × 4/3 ÷ 2",
    "nota": "base × altura ÷ 2"
   },
   {
@@ -181,14 +181,70 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [],
   "fatos_ok": true,
-  "fatos_resposta": "C"
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "a = (−6 − 2) ÷ (2 − 0) = −4",
+    "motivo": "Evita fração na linha; a conta fica clara no caderno."
+   },
+   {
+    "campo": "resolucao.passos[3]",
+    "depois": {
+     "faz": "Ache x de P igualando f e g",
+     "conta": "2x − 6 = −4x + 2 → 6x = 8 → x = 4/3",
+     "porque": "No ponto P, as duas retas têm o mesmo y, então f(x) = g(x). Só o x de P é necessário, pois ele é a altura do triângulo.",
+     "tipo": "calcular"
+    },
+    "motivo": "O y de P não é usado na área. Foi tirado do passo para não distrair. Ele continua na checagem."
+   },
+   {
+    "campo": "resolucao.passos[5].porque",
+    "depois": "Área do triângulo = base × altura ÷ 2 = 32/3 ÷ 2 = 16/3. A pergunta pede a área, então a resposta é a alternativa C.",
+    "motivo": "Mostra a conta intermediária e liga ao comando."
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Confira P nas duas funções: f(4/3) = 8/3 − 6 = −10/3 e g(4/3) = −16/3 + 2 = −10/3. Dão o mesmo valor. No gráfico, P fica perto de x ≈ 1,3 e y ≈ −3,3, o que concorda. Estimativa: 8 × 1,33 ÷ 2 ≈ 5,3, que é 16/3.",
+    "motivo": "Texto mantido: já confere por outro caminho."
+   },
+   {
+    "campo": "resolucao.quadro[7]",
+    "depois": {
+     "linha": "x = 8 ÷ 6 = 4/3",
+     "nota": "o 6 passa dividindo; simplifica por 2",
+     "mov": [
+      {
+       "termo": "6",
+       "de": "esquerda",
+       "para": "direita",
+       "vira": "÷ 6",
+       "como": "passa dividindo"
+      }
+     ]
+    },
+    "motivo": "Corrige o mov (o 6 vai para o outro lado dividindo) e evita fração na linha."
+   },
+   {
+    "campo": "resolucao.quadro[9]",
+    "depois": {
+     "linha": "A = 8 × 4/3 ÷ 2",
+     "nota": "base × altura ÷ 2"
+    },
+    "motivo": "Remove parênteses desnecessários."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

@@ -58,15 +58,15 @@
    {
     "faz": "Ligue à alternativa",
     "conta": "≈ 14,8 cm → letra B",
-    "porque": "Entre as opções, 14,8 cm é a que está na ordem de grandeza e no valor certos. Só falta uma diferença de arredondamento (14,87).",
+    "porque": "14,87 cm arredonda para cerca de 15 cm. A alternativa B (14,8 cm) é a mais próxima, e o enunciado diz 'aproximadamente'.",
     "tipo": "concluir"
    }
   ],
   "resposta": "Alternativa B: a linha de 223 km teria cerca de 14,8 cm no mapa 1:1.500.000.",
   "checagem": "Faça o caminho de volta: 14,8 cm × 1.500.000 = 22.200.000 cm = 222 km, quase os 223 km. Outra checagem: 1 cm no mapa vale 15 km, e 223 ÷ 15 ≈ 14,9, perto de 14,8.",
   "erradas": {
-   "A": "6,7 cm não confere: 6,7 cm × 1.500.000 = 10.050.000 cm = cerca de 100 km. Esse comprimento representaria menos da metade dos 223 km.",
-   "C": "6,7 dm = 67 cm, e 67 × 1.500.000 = 100.500.000 cm, cerca de 1.005 km. Isso é bem mais que os 223 km do trecho.",
+   "A": "A não confere: 6,7 cm × 1.500.000 = 10.050.000 cm = cerca de 100 km. Isso é menos da metade dos 223 km. Quem marcou A não conferiu a conta de volta.",
+   "C": "C não confere: 6,7 dm = 67 cm, e 67 × 1.500.000 = 100.500.000 cm = cerca de 1.005 km. É muito mais que 223 km. Faltou checar a unidade (dm) e o tamanho do resultado.",
    "D": "D sai de usar 1 km = 1.000.000 cm (um zero a mais): 223.000.000 ÷ 1.500.000 ≈ 148 cm = 1,48 m. Na volta, 148 cm × 1.500.000 = 222.000.000 cm = 2.220 km, dez vezes os 223 km.",
    "E": "E sai de usar 1 km = 10.000 cm (um zero a menos): 223 × 10.000 = 2.230.000 cm e 2.230.000 ÷ 1.500.000 ≈ 1,48 cm. Na volta, 1,48 cm × 1.500.000 = 2.220.000 cm = 22,2 km, dez vezes menos que 223 km."
   },
@@ -107,11 +107,11 @@
   },
   {
    "linha": "mapa = 223/15",
-   "nota": "corte cinco zeros em cima e embaixo"
+   "nota": "corte 5 zeros de cima e de baixo"
   },
   {
    "linha": "mapa ≈ 14,87 cm",
-   "nota": "faça a divisão: resultado próximo de 14,8 cm"
+   "nota": "223 ÷ 15 dá 14,87; B é a mais próxima"
   }
  ],
  "visual": {
@@ -128,11 +128,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -149,6 +151,48 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "B"
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "22.300.000 ÷ 1.500.000 ≈ 14,87 cm",
+    "motivo": "Mantido; apenas confirmado. Sem mudança."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "14,87 cm arredonda para cerca de 15 cm. A alternativa B (14,8 cm) é a mais próxima, e o enunciado diz 'aproximadamente'.",
+    "motivo": "O texto antigo falava em 'ordem de grandeza' e 'diferença de arredondamento', que são termos vagos. Agora explica que a questão pede valor aproximado."
+   },
+   {
+    "campo": "resolucao.quadro[3].linha",
+    "depois": "mapa = 22.300.000/1.500.000",
+    "motivo": "Formato de fração conforme as regras da etapa (numerador/denominador na linha)."
+   },
+   {
+    "campo": "resolucao.quadro[4].nota",
+    "depois": "corte 5 zeros de cima e de baixo",
+    "motivo": "Frase mais curta e clara, cabe na tela do celular."
+   },
+   {
+    "campo": "resolucao.quadro[5].nota",
+    "depois": "223 ÷ 15 dá 14,87; B é a mais próxima",
+    "motivo": "A nota antiga não mostrava de onde vinha o valor; esta liga a conta à alternativa."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "A não confere: 6,7 cm × 1.500.000 = 10.050.000 cm = cerca de 100 km. Isso é menos da metade dos 223 km. Quem marcou A não conferiu a conta de volta.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou A."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "C não confere: 6,7 dm = 67 cm, e 67 × 1.500.000 = 100.500.000 cm = cerca de 1.005 km. É muito mais que 223 km. Faltou checar a unidade (dm) e o tamanho do resultado.",
+    "motivo": "Aponta o que faltou: checar a unidade e o tamanho do resultado."
+   }
+  ],
+  "didatica_alertas": [
+   "Nota para o corretor de fatos: 223 ÷ 15 = 14,87, que arredonda para 14,9 e não para 14,8. A resolução diz que a diferença é de 'arredondamento', mas B (14,8) é só a alternativa mais próxima. O gabarito B está correto como aproximação.",
+   "O campo 'nivel' do JSON é 3, mas a classificação atual diz nível 4. Conferir qual vale."
+  ],
+  "didatica_ok": true
  }
 }

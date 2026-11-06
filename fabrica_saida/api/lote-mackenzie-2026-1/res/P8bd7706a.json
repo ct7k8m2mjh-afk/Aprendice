@@ -8,7 +8,7 @@
  "conceito": "Regra de três composta em que só alguns fatores limitam a produção: o gargalo são os trabalhadores, não as máquinas.",
  "resolucao": {
   "antes": {
-   "texto": "O enunciado diz que as máquinas ficam ociosas porque os trabalhadores não conseguem alimentá-las. Quem limita a produção é o trabalho humano, não a capacidade das máquinas. Por isso a produção é proporcional ao número de trabalhadores e às horas, e o número de máquinas não entra na conta.",
+   "texto": "A pergunta é: por quanto tempo as máquinas devem funcionar para chegar a 2400 peças. O enunciado diz que as máquinas ficam ociosas porque os trabalhadores não conseguem alimentá-las. Quem limita a produção é o trabalho humano, não as máquinas. Por isso a produção é proporcional ao número de trabalhadores e às horas, e o número de máquinas não entra na conta.",
    "formulas": [
     "produção = (peças por trabalhador por hora) × trabalhadores × horas",
     "taxa = produção ÷ (trabalhadores × horas)"
@@ -23,6 +23,10 @@
      "quantas peças cada trabalhador produz por hora; é um valor fixo"
     ],
     [
+     "trabalhador-hora",
+     "1 trabalhador trabalhando 1 hora; 8 trabalhadores em 6 horas somam 48 trabalhador-hora"
+    ],
+    [
      "h e min",
      "1 hora = 60 minutos; 0,5 h = 30 min"
     ]
@@ -31,7 +35,7 @@
   "pista": "Se as máquinas sobram, o que realmente limita a produção? Descubra quantas peças cada trabalhador faz em 1 hora.",
   "passos": [
    {
-    "faz": "Ache o ritmo de cada trabalhador",
+    "faz": "Some as horas de trabalho da situação inicial",
     "conta": "8 × 6 = 48 trabalhador-hora",
     "porque": "Os 8 trabalhadores, durante 6 horas, somam 48 horas de trabalho. É essa quantidade que gerou as 960 peças.",
     "tipo": "calcular"
@@ -45,7 +49,7 @@
    {
     "faz": "Calcule o ritmo da nova equipe",
     "conta": "16 × 20 = 320 peças/h",
-    "porque": "Dobrar de 8 para 16 trabalhadores dobra o ritmo da fábrica. Por isso o ritmo passa de 160 para 320 peças por hora.",
+    "porque": "Dobrar de 8 para 16 trabalhadores dobra o ritmo da fábrica: de 160 peças por hora (8 × 20) para 320.",
     "tipo": "calcular"
    },
    {
@@ -102,7 +106,7 @@
    "nota": "peças por hora com 16 trabalhadores"
   },
   {
-   "linha": "t = 2400/320",
+   "linha": "t = \\frac{2400}{320}",
    "nota": "tempo = total de peças ÷ ritmo"
   },
   {
@@ -133,11 +137,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -154,6 +160,52 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "D"
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "A pergunta é: por quanto tempo as máquinas devem funcionar para chegar a 2400 peças. O enunciado diz que as máquinas ficam ociosas porque os trabalhadores não conseguem alimentá-las. Quem limita a produção é o trabalho humano, não as máquinas. Por isso a produção é proporcional ao número de trabalhadores e às horas, e o número de máquinas não entra na conta.",
+    "motivo": "Começa pelo comando e deixa claro que a resposta é um tempo."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "ociosa",
+      "máquina parada, sem produzir"
+     ],
+     [
+      "eficiência individual",
+      "quantas peças cada trabalhador produz por hora; é um valor fixo"
+     ],
+     [
+      "trabalhador-hora",
+      "1 trabalhador trabalhando 1 hora; 8 trabalhadores em 6 horas somam 48 trabalhador-hora"
+     ],
+     [
+      "h e min",
+      "1 hora = 60 minutos; 0,5 h = 30 min"
+     ]
+    ],
+    "motivo": "O termo 'trabalhador-hora' aparece nos passos e não estava explicado."
+   },
+   {
+    "campo": "resolucao.passos[0].faz",
+    "depois": "Some as horas de trabalho da situação inicial",
+    "motivo": "O comando antigo falava em 'ritmo', mas o passo calcula horas de trabalho."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Dobrar de 8 para 16 trabalhadores dobra o ritmo da fábrica: de 160 peças por hora (8 × 20) para 320.",
+    "motivo": "Mostra de onde vem o 160, antes sem explicação."
+   },
+   {
+    "campo": "resolucao.quadro[3].linha",
+    "depois": "t = \\frac{2400}{320}",
+    "motivo": "Fração empilhada no quadro, conforme o padrão da matéria."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

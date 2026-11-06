@@ -8,7 +8,7 @@
  "conceito": "Associação de resistores (paralelo e série) e corrente em um ramo de um circuito ligado a fonte ideal.",
  "resolucao": {
   "antes": {
-   "texto": "Antes de calcular, descubra quem está em paralelo com quem. Ramos ligados aos mesmos dois nós recebem a mesma tensão. Um amperímetro ideal tem resistência zero: ele só mede a corrente do ramo em que está, e não muda o circuito. Aqui, o ramo R1, R2, R3 e amperímetro fica em paralelo com R4, e os dois ramos ficam ligados direto na fonte de 50 V.",
+   "texto": "Antes de calcular, descubra quem está em paralelo com quem. Ramos ligados aos mesmos dois pontos recebem a mesma tensão. Um amperímetro ideal tem resistência zero: ele só mede a corrente do ramo em que está e não muda o circuito. Aqui, o ramo com R1, R2, R3 e o amperímetro fica em paralelo com R4. Os dois ramos estão ligados direto à fonte de 50 V.",
    "formulas": [
     "Paralelo de dois resistores iguais: R ÷ 2",
     "Série: R_eq = R_a + R_b",
@@ -30,6 +30,14 @@
     [
      "nó",
      "ponto onde três ou mais fios se encontram e a corrente se divide"
+    ],
+    [
+     "ramo",
+     "caminho do circuito entre dois nós, com os elementos em fila"
+    ],
+    [
+     "∥",
+     "em paralelo com"
     ]
    ]
   },
@@ -37,7 +45,7 @@
   "passos": [
    {
     "faz": "Identifique os dois ramos da fonte",
-    "conta": "Ramo 1: (R1 ∥ R2) + R3 + A\nRamo 2: R4",
+    "conta": "Ramo 1: (R1 ∥ R2) + R3 + A\nRamo 2: R4\nOs dois: ligados a 50 V",
     "porque": "O fio do polo positivo se divide no nó da esquerda e os dois ramos se encontram no nó da direita, ligado ao polo negativo. Os dois ramos ficam sob 50 V.",
     "tipo": "localizar"
    },
@@ -62,7 +70,7 @@
    {
     "faz": "Conclua a leitura do amperímetro",
     "conta": "Leitura = 5,0 A",
-    "porque": "R4 está em outro ramo e não interfere nessa corrente. Só consome a sua parte: 50 ÷ 10 = 5 A.",
+    "porque": "R4 está em outro ramo e não interfere nessa corrente. Ele recebe seus próprios 50 V e leva 50 ÷ 10 = 5 A, que o amperímetro não mede.",
     "tipo": "concluir"
    }
   ],
@@ -95,26 +103,26 @@
  "quadro": [
   {
    "linha": "R1 ∥ R2 = 8 ÷ 2",
-   "nota": "dois resistores iguais em paralelo: o valor cai à metade"
+   "nota": "dois iguais em paralelo: metade"
   },
   {
    "linha": "R12 = 4 Ω",
    "nota": "resultado do paralelo"
   },
   {
-   "linha": "R_ramo = 4 + 6",
-   "nota": "R12 e R3 estão em série: soma"
+   "linha": "R_ramo = R12 + R3",
+   "nota": "série: soma"
   },
   {
-   "linha": "R_ramo = 10 Ω",
-   "nota": "o amperímetro ideal não soma nada"
+   "linha": "R_ramo = 4 + 6 = 10 Ω",
+   "nota": "amperímetro ideal soma 0 Ω"
   },
   {
-   "linha": "i = 50/10",
-   "nota": "Ohm: o ramo recebe os 50 V da fonte"
+   "linha": "i = U ÷ R_ramo",
+   "nota": "Ohm no ramo de 50 V"
   },
   {
-   "linha": "i = 5 A",
+   "linha": "i = 50 ÷ 10 = 5 A",
    "nota": "leitura do amperímetro"
   }
  ],
@@ -132,11 +140,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -147,6 +157,85 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "C"
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Antes de calcular, descubra quem está em paralelo com quem. Ramos ligados aos mesmos dois pontos recebem a mesma tensão. Um amperímetro ideal tem resistência zero: ele só mede a corrente do ramo em que está e não muda o circuito. Aqui, o ramo com R1, R2, R3 e o amperímetro fica em paralelo com R4. Os dois ramos estão ligados direto à fonte de 50 V.",
+    "motivo": "Troca 'nós' por 'pontos' na primeira aparição e deixa a ideia mais direta."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "Ω",
+      "ohm, unidade de resistência elétrica"
+     ],
+     [
+      "fonte ideal",
+      "fonte sem resistência interna: mantém sempre 50 V entre seus terminais"
+     ],
+     [
+      "amperímetro ideal",
+      "aparelho que mede corrente e tem resistência zero, então não altera o circuito"
+     ],
+     [
+      "nó",
+      "ponto onde três ou mais fios se encontram e a corrente se divide"
+     ],
+     [
+      "ramo",
+      "caminho do circuito entre dois nós, com os elementos em fila"
+     ],
+     [
+      "∥",
+      "em paralelo com"
+     ]
+    ],
+    "motivo": "O símbolo ∥ e a palavra 'ramo' são usados na resolução sem explicação."
+   },
+   {
+    "campo": "resolucao.passos[0].conta",
+    "depois": "Ramo 1: (R1 ∥ R2) + R3 + A\nRamo 2: R4\nOs dois: ligados a 50 V",
+    "motivo": "Deixa claro o que o passo conclui: os dois ramos recebem os 50 V."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "R4 está em outro ramo e não interfere nessa corrente. Ele recebe seus próprios 50 V e leva 50 ÷ 10 = 5 A, que o amperímetro não mede.",
+    "motivo": "A frase original ('Só consome a sua parte') era ambígua."
+   },
+   {
+    "campo": "resolucao.quadro",
+    "depois": [
+     {
+      "linha": "R1 ∥ R2 = 8 ÷ 2",
+      "nota": "dois iguais em paralelo: metade"
+     },
+     {
+      "linha": "R12 = 4 Ω",
+      "nota": "resultado do paralelo"
+     },
+     {
+      "linha": "R_ramo = R12 + R3",
+      "nota": "série: soma"
+     },
+     {
+      "linha": "R_ramo = 4 + 6 = 10 Ω",
+      "nota": "amperímetro ideal soma 0 Ω"
+     },
+     {
+      "linha": "i = U ÷ R_ramo",
+      "nota": "Ohm no ramo de 50 V"
+     },
+     {
+      "linha": "i = 50 ÷ 10 = 5 A",
+      "nota": "leitura do amperímetro"
+     }
+    ],
+    "motivo": "Um passo por linha, com a fórmula antes da substituição e notas curtas, sem fração com barra no texto."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

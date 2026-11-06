@@ -13,7 +13,7 @@
     "C=O ligado a N → amida; C=O ligado só a carbonos → cetona",
     "carbono quiral: sp3 com 4 grupos diferentes",
     "carbono quaternário: ligado a 4 outros carbonos",
-    "pares não ligantes: O tem 2 (quando faz 2 ligações); N tem 1 (quando faz 3 ligações)"
+    "pares não ligantes: O de C=O tem 2; N com 3 ligações tem 1"
    ],
    "simbolos": [
     [
@@ -43,6 +43,18 @@
     [
      "imidazol",
      "anel de 5 átomos com dois N, na parte de baixo da figura"
+    ],
+    [
+     "indol",
+     "anel de benzeno unido a um anel de 5 átomos com um N, na ponta esquerda da figura"
+    ],
+    [
+     "esteroide",
+     "estrutura de 4 anéis unidos (3 de seis lados e 1 de cinco), na parte direita da figura"
+    ],
+    [
+     "sp3",
+     "carbono que só faz ligações simples"
     ]
    ]
   },
@@ -56,19 +68,19 @@
    },
    {
     "faz": "Avalie II: conte os carbonos quirais",
-    "conta": "Indol: 3 | esteroide: 7 | total 10",
-    "porque": "Parte do indol: C quaternário do anel, C(H) ligado a dois N e C(H) ao lado do C=O. Esteroide: C3 (liga o imidazol), C9, C10, C13, C17, C20 e C24. Mesmo sem o C9 são 9 quirais, bem mais que 6. II é verdadeira.",
+    "conta": "indol: 3 quirais | esteroide: 7 | total 10",
+    "porque": "No indol: o carbono do anel que carrega o grupo C(CH3)2, o C–H ligado a dois N e o C–H ao lado do C=O. No esteroide: C3 (liga o imidazol), C9, C10, C13, C17, C20 e C24. Mesmo descontando um duvidoso, passa de 6. II é verdadeira.",
     "tipo": "calcular"
    },
    {
     "faz": "Avalie III: conte os carbonos quaternários",
-    "conta": "C(CH3)2 + C3 do indol + C10 + C13 = 4",
+    "conta": "C(CH3)2, C3 indol, C10, C13 = 4",
     "porque": "O C do grupo C(CH3)2–CH=CH2 tem 2 CH3, 1 CH= e o C3 do indol. O C3 do indol tem 4 vizinhos carbono (anel, CH2, C2 e esse grupo). C10 e C13 do esteroide carregam as metilas em negrito e têm 4 vizinhos C. III é verdadeira.",
     "tipo": "calcular"
    },
    {
     "faz": "Avalie IV: conte os pares livres",
-    "conta": "O: 2 × 2 = 4 | N: 5 × 1 = 5 | total 9",
+    "conta": "O: 2×2 = 4 | N: 5×1 = 5 | 9",
     "porque": "Há 2 oxigênios de C=O, com 2 pares cada. Há 5 nitrogênios, com 1 par cada: N–H do indol, N do anel central, N–H da amida e os 2 N do imidazol. São 9 pares, não 10. IV é falsa.",
     "tipo": "calcular"
    },
@@ -153,11 +165,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -168,6 +182,86 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "D"
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "C=O ligado a N → amida; C=O ligado só a carbonos → cetona",
+     "carbono quiral: sp3 com 4 grupos diferentes",
+     "carbono quaternário: ligado a 4 outros carbonos",
+     "pares não ligantes: O de C=O tem 2; N com 3 ligações tem 1"
+    ],
+    "motivo": "A regra 'O tem 2 quando faz 2 ligações' confunde: o O do C=O faz uma ligação dupla. Reescrita para o caso real da questão."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "amina",
+      "função com N ligado a carbono(s) sem C=O vizinho; aqui, o N–H do anel do indol"
+     ],
+     [
+      "amida",
+      "grupo C(=O)–N: o carbono da carbonila está ligado a um nitrogênio"
+     ],
+     [
+      "cetona",
+      "grupo C=O com os dois lados ligados a carbono"
+     ],
+     [
+      "carbono quiral",
+      "carbono com quatro ligantes todos diferentes"
+     ],
+     [
+      "carbono quaternário",
+      "carbono ligado diretamente a outros quatro átomos de carbono"
+     ],
+     [
+      "par de elétrons não ligante",
+      "par de elétrons de valência que não participa de ligação (par livre)"
+     ],
+     [
+      "imidazol",
+      "anel de 5 átomos com dois N, na parte de baixo da figura"
+     ],
+     [
+      "indol",
+      "anel de benzeno unido a um anel de 5 átomos com um N, na ponta esquerda da figura"
+     ],
+     [
+      "esteroide",
+      "estrutura de 4 anéis unidos (3 de seis lados e 1 de cinco), na parte direita da figura"
+     ],
+     [
+      "sp3",
+      "carbono que só faz ligações simples"
+     ]
+    ],
+    "motivo": "Os termos indol, esteroide e sp3 aparecem na resolução sem explicação."
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "indol: 3 quirais | esteroide: 7 | total 10",
+    "motivo": "Deixa claro o que cada número conta."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "No indol: o carbono do anel que carrega o grupo C(CH3)2, o C–H ligado a dois N e o C–H ao lado do C=O. No esteroide: C3 (liga o imidazol), C9, C10, C13, C17, C20 e C24. Mesmo descontando um duvidoso, passa de 6. II é verdadeira.",
+    "motivo": "Texto 'Mesmo sem o C9 são 9' era confuso; simplificado e sem alterar fatos."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "C(CH3)2, C3 indol, C10, C13 = 4",
+    "motivo": "Cabe na tela do celular."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "O: 2×2 = 4 | N: 5×1 = 5 | 9",
+    "motivo": "Mais curta para caber no celular."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

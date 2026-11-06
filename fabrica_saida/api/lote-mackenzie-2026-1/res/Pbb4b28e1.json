@@ -8,7 +8,7 @@
  "conceito": "Meia-vida como decaimento exponencial: descobrir quantas meias-vidas são necessárias para a massa cair abaixo de 0,1% usando log 2 = 0,3.",
  "resolucao": {
   "antes": {
-   "texto": "A cada meia-vida a massa cai pela metade. Depois de n meias-vidas, sobra a fração (1/2)^n da massa inicial. A questão pede o tempo até sobrar menos de 0,1% = 1/1000. O valor 19,26 g é dado, mas não muda a resposta: só importa a fração que sobra.",
+   "texto": "A cada meia-vida a massa cai pela metade. Depois de n meias-vidas, sobra a fração (1/2)^n da massa inicial. A questão pede o tempo até sobrar menos de 0,1%, ou seja, menos de 1/1000. O valor 19,26 g aparece no enunciado, mas não muda a resposta: só importa a fração que sobra.",
    "formulas": [
     "massa final = massa inicial × (1/2)^n",
     "n = número de meias-vidas = tempo ÷ 30 anos",
@@ -24,16 +24,24 @@
      "quantidade de meias-vidas que se passaram"
     ],
     [
+     "log",
+     "logaritmo na base 10: log 1000 = 3 porque 10³ = 1000"
+    ],
+    [
      "log 2 = 0,3",
-     "dado: 10^0,3 é aproximadamente 2"
+     "dado do enunciado: 10^0,3 é aproximadamente 2"
     ],
     [
      "0,1%",
      "uma parte em mil da massa inicial"
+    ],
+    [
+     "^",
+     "indica potência: 2^3 = 2 × 2 × 2"
     ]
    ]
   },
-  "pista": "Escreva a condição 'sobra menos de 1/1000' com potência de 2 e use o log para achar n.",
+  "pista": "Escreva 'sobra menos de 1/1000' usando potência de 1/2. Depois use o log para descobrir quantas meias-vidas (n) são necessárias.",
   "passos": [
    {
     "faz": "Traduza 0,1% em fração",
@@ -50,13 +58,13 @@
    {
     "faz": "Inverta os dois lados",
     "conta": "2^n > 1000",
-    "porque": "Ao inverter uma desigualdade entre números positivos, o sentido dela se troca.",
+    "porque": "Inverter os dois lados (os dois são positivos) troca o sentido do sinal: (1/2)^n vira 2^n, e 1/1000 vira 1000. Faz sentido: se sobra pouco, o 2^n precisa ser grande.",
     "tipo": "calcular"
    },
    {
     "faz": "Aplique log nos dois lados",
     "conta": "n × log 2 > log 1000 = 3",
-    "porque": "log 1000 = 3 porque 10³ = 1000. O expoente n desce multiplicando o log 2.",
+    "porque": "log 1000 = 3, porque 10³ = 1000. Pela propriedade do log, o expoente n desce multiplicando o log 2.",
     "tipo": "calcular"
    },
    {
@@ -66,9 +74,9 @@
     "tipo": "calcular"
    },
    {
-    "faz": "Converta em anos",
+    "faz": "Converta em anos e conclua",
     "conta": "t = 10 × 30 = 300 anos",
-    "porque": "Na conta com o dado, n = 10 é o limite. Na verdade 2^10 = 1024 > 1000, então com 10 meias-vidas já sobra menos de 0,1%. O tempo mínimo é 300 anos: alternativa D.",
+    "porque": "Cada meia-vida dura 30 anos. Com o dado, n = 10 está no limite; na prática 2^10 = 1024 > 1000, então 10 meias-vidas já deixam menos de 0,1%. Alternativa D.",
     "tipo": "concluir"
    }
   ],
@@ -99,7 +107,7 @@
   },
   {
    "nome": "Testar as alternativas",
-   "ideia": "Calcule n = t/30 e a fração 1/2^n de cada opção. 100 anos dá cerca de 1/10, 200 dá cerca de 1/100 e 300 dá cerca de 1/1000, que já passa do limite."
+   "ideia": "Calcule n = t ÷ 30 e a fração que sobra, (1/2)^n, de cada opção. 100 anos deixa cerca de 1/10, 200 anos cerca de 1/100 e 300 anos cerca de 1/1000, que atinge o limite."
   }
  ],
  "quadro": [
@@ -125,7 +133,7 @@
    "nota": "log 2 = 0,3 e log 1000 = 3"
   },
   {
-   "linha": "n > 3/0,3",
+   "linha": "n > 3 ÷ 0,3",
    "nota": "o 0,3 passa dividindo",
    "mov": [
     {
@@ -165,11 +173,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -180,6 +190,84 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "D"
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "A cada meia-vida a massa cai pela metade. Depois de n meias-vidas, sobra a fração (1/2)^n da massa inicial. A questão pede o tempo até sobrar menos de 0,1%, ou seja, menos de 1/1000. O valor 19,26 g aparece no enunciado, mas não muda a resposta: só importa a fração que sobra.",
+    "motivo": "Frase mais clara e sem dupla leitura."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "meia-vida",
+      "tempo para a quantidade cair à metade; aqui, 30 anos"
+     ],
+     [
+      "n",
+      "quantidade de meias-vidas que se passaram"
+     ],
+     [
+      "log",
+      "logaritmo na base 10: log 1000 = 3 porque 10³ = 1000"
+     ],
+     [
+      "log 2 = 0,3",
+      "dado do enunciado: 10^0,3 é aproximadamente 2"
+     ],
+     [
+      "0,1%",
+      "uma parte em mil da massa inicial"
+     ],
+     [
+      "^",
+      "indica potência: 2^3 = 2 × 2 × 2"
+     ]
+    ],
+    "motivo": "Explicar log e o símbolo de potência, que o aluno pode não dominar."
+   },
+   {
+    "campo": "resolucao.pista",
+    "depois": "Escreva 'sobra menos de 1/1000' usando potência de 1/2. Depois use o log para descobrir quantas meias-vidas (n) são necessárias.",
+    "motivo": "Pista mais clara, sem entregar a resposta."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Inverter os dois lados (os dois são positivos) troca o sentido do sinal: (1/2)^n vira 2^n, e 1/1000 vira 1000. Faz sentido: se sobra pouco, o 2^n precisa ser grande.",
+    "motivo": "Dar o sentido além da regra."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "log 1000 = 3, porque 10³ = 1000. Pela propriedade do log, o expoente n desce multiplicando o log 2.",
+    "motivo": "Nomear a propriedade usada."
+   },
+   {
+    "campo": "resolucao.passos[5]",
+    "depois": {
+     "faz": "Converta em anos e conclua",
+     "conta": "t = 10 × 30 = 300 anos",
+     "porque": "Cada meia-vida dura 30 anos. Com o dado, n = 10 está no limite; na prática 2^10 = 1024 > 1000, então 10 meias-vidas já deixam menos de 0,1%. Alternativa D.",
+     "tipo": "concluir"
+    },
+    "motivo": "Passo mais direto; o 'porque' explica o limite sem confundir."
+   },
+   {
+    "campo": "resolucao.caminhos[2].ideia",
+    "depois": "Calcule n = t ÷ 30 e a fração que sobra, (1/2)^n, de cada opção. 100 anos deixa cerca de 1/10, 200 anos cerca de 1/100 e 300 anos cerca de 1/1000, que atinge o limite.",
+    "motivo": "Frase mais precisa; 300 anos atinge o limite, e não o 'passa'."
+   },
+   {
+    "campo": "resolucao.quadro[5].linha",
+    "depois": "n > 3 ÷ 0,3",
+    "motivo": "Mantém a divisão legível na linha; o campo mov continua indicando o 0,3 passando dividindo."
+   }
+  ],
+  "didatica_alertas": [
+   "Em erradas.A, 'sobra cerca de 1/10 (10%)' e '1,9 g' são aproximações com 2^3,3 ≈ 10; está coerente, mas é só ordem de grandeza.",
+   "O campo 'nivel' do JSON (5) difere da classificação do cabeçalho (6); conferir.",
+   "Checagem: 19,26 ÷ 1024 ≈ 0,0188 e 0,1% de 19,26 = 0,01926; confere, mas a margem é pequena. É por isso que o alerta sobre log 2 = 0,3 exato é válido."
+  ],
+  "didatica_ok": true
  }
 }

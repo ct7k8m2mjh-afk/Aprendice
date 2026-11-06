@@ -8,7 +8,7 @@
  "conceito": "Reta perpendicular a outra (produto dos coeficientes angulares = −1) e interseção com o eixo y",
  "resolucao": {
   "antes": {
-   "texto": "Retas perpendiculares têm coeficientes angulares (inclinações) cujo produto é −1. Primeiro descubra a inclinação de r isolando y na equação. Depois ache a inclinação de t e use o ponto P para escrever a equação de t. O ponto de ônibus fica no eixo das ordenadas (eixo y), onde x = 0.",
+   "texto": "Retas perpendiculares se cruzam num ângulo reto. Nesse caso, o produto dos coeficientes angulares (inclinações) é −1. Primeiro descubra a inclinação de r, isolando y na equação. Depois ache a inclinação de t e use o ponto P para escrever a equação de t. O ponto de ônibus fica no eixo das ordenadas (eixo y), onde x = 0.",
    "formulas": [
     "r: y = m·x + n, com m = coeficiente angular",
     "perpendiculares: m_r × m_t = −1",
@@ -19,6 +19,14 @@
     [
      "m",
      "coeficiente angular: quanto y varia quando x aumenta 1"
+    ],
+    [
+     "n",
+     "coeficiente linear: valor de y quando x = 0"
+    ],
+    [
+     "perpendiculares",
+     "retas que se cruzam formando ângulo reto (90°)"
     ],
     [
      "eixo das ordenadas",
@@ -52,14 +60,14 @@
    },
    {
     "faz": "Faça x = 0 (eixo y)",
-    "conta": "y − 3 = −1/2 · (−2) = 1",
-    "porque": "O ponto de ônibus fica no eixo das ordenadas, onde x vale 0.",
+    "conta": "y − 3 = −1/2 · (0 − 2)",
+    "porque": "O ponto de ônibus fica no eixo das ordenadas, onde x vale 0. Troque x por 0 na equação de t.",
     "tipo": "calcular"
    },
    {
     "faz": "Calcule y e conclua",
-    "conta": "y = 3 + 1 = 4 → (0, 4)",
-    "porque": "O ponto de ônibus é (0, 4), alternativa D.",
+    "conta": "y − 3 = 1 → y = 4",
+    "porque": "O 3 passa somando para o outro lado: y = 1 + 3 = 4. O ponto de ônibus é (0, 4), alternativa D.",
     "tipo": "concluir"
    }
   ],
@@ -69,7 +77,7 @@
    "A": "(8, 0) sai de trocar os eixos: é onde t cruza o eixo x (y = 0 → 0 = −x/2 + 4 → x = 8). O ponto pedido fica no eixo das ordenadas, onde x = 0.",
    "B": "(2, 0) tem y = 0 e x = 2, mas t em x = 2 vale y = 3 (é o ponto P). Então (2, 0) não pertence a t, e também não está no eixo y.",
    "C": "(0, 2) sai de inverter a inclinação sem trocar o sinal: com m = 1/2, y − 3 = 1/2 · (0 − 2) = −1, e y = 2. A perpendicular exige m = −1/2.",
-   "E": "(0, 8) sai de parar antes do fim na equação geral x + 2y − 8 = 0: com x = 0 fica 2y = 8, e falta dividir por 2. O certo é y = 4."
+   "E": "(0, 8) sai de parar antes do fim na equação geral x + 2y − 8 = 0: com x = 0 fica 2y = 8. Falta dividir por 2, que dá y = 4."
   },
   "armadilha": "Usar a inclinação 2 (ou −2) em vez de −1/2: perpendicular é o inverso trocado de sinal, não só o sinal trocado.",
   "alerta": "",
@@ -144,11 +152,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -189,6 +199,66 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "D"
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Retas perpendiculares se cruzam num ângulo reto. Nesse caso, o produto dos coeficientes angulares (inclinações) é −1. Primeiro descubra a inclinação de r, isolando y na equação. Depois ache a inclinação de t e use o ponto P para escrever a equação de t. O ponto de ônibus fica no eixo das ordenadas (eixo y), onde x = 0.",
+    "motivo": "Explica o que é perpendicular antes de usar o termo."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "m",
+      "coeficiente angular: quanto y varia quando x aumenta 1"
+     ],
+     [
+      "n",
+      "coeficiente linear: valor de y quando x = 0"
+     ],
+     [
+      "perpendiculares",
+      "retas que se cruzam formando ângulo reto (90°)"
+     ],
+     [
+      "eixo das ordenadas",
+      "o eixo vertical (eixo y); seus pontos têm x = 0"
+     ],
+     [
+      "P(2,3)",
+      "ponto com x = 2 e y = 3"
+     ]
+    ],
+    "motivo": "Inclui n e perpendiculares, usados na resolução e nas fórmulas."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "y − 3 = −1/2 · (0 − 2)",
+    "motivo": "Mostra a substituição de x = 0 antes do resultado; o passo original pulava a etapa."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "O ponto de ônibus fica no eixo das ordenadas, onde x vale 0. Troque x por 0 na equação de t.",
+    "motivo": "Deixa a ação explícita."
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "y − 3 = 1 → y = 4",
+    "motivo": "Mostra o resultado de −1/2 × (−2) = 1 e a passagem do 3 para o outro lado."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "O 3 passa somando para o outro lado: y = 1 + 3 = 4. O ponto de ônibus é (0, 4), alternativa D.",
+    "motivo": "Explica a passagem de termo."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "(0, 8) sai de parar antes do fim na equação geral x + 2y − 8 = 0: com x = 0 fica 2y = 8. Falta dividir por 2, que dá y = 4.",
+    "motivo": "Frase mais clara."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

@@ -8,7 +8,7 @@
  "conceito": "Padrão de acréscimos alternados (+5, +4, +5, +4…): agrupar os acréscimos em pares e contar quantos pares há até a placa de 2100 LBs.",
  "resolucao": {
   "antes": {
-   "texto": "A foto mostra os valores em kg: 9, 14, 18, 23, 27, 32, 36. Cada valor é o anterior mais 5 ou mais 4, alternando. Dois acréscimos seguidos (5 + 4) somam sempre 9 kg. Basta contar quantas placas existem até 2100 LBs e quantos pares de acréscimos cabem.",
+   "texto": "A foto mostra os valores em kg: 9, 14, 18, 23, 27, 32, 36. Cada valor é o anterior mais 5 ou mais 4, alternando. Dois acréscimos seguidos (5 + 4) somam sempre 9 kg. A pergunta é o valor da placa de 2100 LBs: conte quantas placas existem até ela e quantos pares de acréscimos cabem nesse caminho.",
    "formulas": [
     "um par de acréscimos = 5 + 4 = 9 kg",
     "número de placas = (LBs ÷ 10) − 1, pois a primeira placa é a de 20 LBs"
@@ -39,13 +39,13 @@
    {
     "faz": "Conte as placas até 2100 LBs",
     "conta": "2100 ÷ 10 = 210 → 210 − 1 = 209",
-    "porque": "Os valores em LBs são 10, 20, 30… e a primeira placa é a de 20 LBs. Até 2100 LBs, os múltiplos de 10 vão de 10 a 210, e a placa de 10 LBs não existe. Sobram 209 placas.",
+    "porque": "As placas marcam 20, 30, 40… LBs. Os múltiplos de 10 até 2100 vão de 10 a 2100, são 210 números. A placa de 10 LBs não existe, então ficam 209 placas.",
     "tipo": "calcular"
    },
    {
     "faz": "Conte os acréscimos",
     "conta": "209 − 1 = 208 acréscimos",
-    "porque": "Entre a 1ª placa (9 kg) e a 209ª há 208 passos. Como 208 é par, eles formam 104 pares de (5 + 4).",
+    "porque": "Entre a 1ª placa (9 kg) e a 209ª há 208 passos, um a menos que o número de placas. Como 208 é par, eles formam 104 pares de (5 + 4).",
     "tipo": "calcular"
    },
    {
@@ -65,7 +65,7 @@
   "checagem": "Teste a regra com a imagem: a 7ª placa (80 LBs) tem 6 acréscimos, ou seja, 3 pares. Então 9 + 3 × 9 = 36 kg, igual ao valor da foto. A regra vale; com 104 pares, o resultado é 945.",
   "erradas": {
    "A": "936 é só o total dos 104 pares: 104 × 9 = 936. Falta somar os 9 kg da primeira placa, que é o ponto de partida da sequência.",
-   "B": "940 não confere. Os valores da sequência são do tipo 9 + 9m (placa em posição ímpar) ou 14 + 9m (posição par). 940 − 9 = 931 e 940 − 14 = 926 não são múltiplos de 9, então 940 nunca aparece na sequência.",
+   "B": "940 não confere. A sequência é 9, 14, 18, 23, 27… e as placas de posição ímpar valem 9 + 9m. Para dar 940 seria preciso 931 = 9 × 103,4…, que não é inteiro. A de posição par vale 14 + 9m, e 940 − 14 = 926 também não é múltiplo de 9. Logo 940 nunca aparece.",
    "D": "949 não confere. 949 − 9 = 940 e 949 − 14 = 935 não são múltiplos de 9, então esse valor não aparece em nenhuma placa. A placa seguinte à de 2100 LBs marcaria 945 + 5 = 950.",
    "E": "954 existe na sequência, mas na placa errada: 9 + 105 × 9 = 954, com 210 acréscimos, o que corresponde à placa de 2120 LBs. A de 2100 LBs tem 208 acréscimos (104 pares), não 210."
   },
@@ -135,14 +135,48 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [],
   "fatos_ok": true,
-  "fatos_resposta": "C"
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "A foto mostra os valores em kg: 9, 14, 18, 23, 27, 32, 36. Cada valor é o anterior mais 5 ou mais 4, alternando. Dois acréscimos seguidos (5 + 4) somam sempre 9 kg. A pergunta é o valor da placa de 2100 LBs: conte quantas placas existem até ela e quantos pares de acréscimos cabem nesse caminho.",
+    "motivo": "Deixa claro o que se pede e o plano de resolução, sem resolver."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "As placas marcam 20, 30, 40… LBs. Os múltiplos de 10 até 2100 vão de 10 a 2100, são 210 números. A placa de 10 LBs não existe, então ficam 209 placas.",
+    "motivo": "Frase mais simples e direta; evita dizer que os múltiplos vão 'de 10 a 210', que confunde LBs com o quociente."
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "2100 ÷ 10 = 210 → 210 − 1 = 209",
+    "motivo": "Mantida a conta, só confirmando que cabe na linha."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Entre a 1ª placa (9 kg) e a 209ª há 208 passos, um a menos que o número de placas. Como 208 é par, eles formam 104 pares de (5 + 4).",
+    "motivo": "Explica por que são 208 passos."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "940 não confere. A sequência é 9, 14, 18, 23, 27… e as placas de posição ímpar valem 9 + 9m. Para dar 940 seria preciso 931 = 9 × 103,4…, que não é inteiro. A de posição par vale 14 + 9m, e 940 − 14 = 926 também não é múltiplo de 9. Logo 940 nunca aparece.",
+    "motivo": "Torna o teste explícito e mais fácil de acompanhar; 931 ÷ 9 não é inteiro."
+   }
+  ],
+  "didatica_alertas": [
+   "O campo 'conteudo' está como M07.4 no JSON, enquanto a classificação informada é M07.1; conferir a taxonomia.",
+   "Em erradas.E, 954 com 210 acréscimos corresponderia à placa de 2120 LBs: 211 placas = 2120 ÷ 10 − 1 = 211, então 210 acréscimos, confere."
+  ],
+  "didatica_ok": true
  }
 }
