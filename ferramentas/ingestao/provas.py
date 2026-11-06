@@ -513,3 +513,48 @@ def pucsp(ano, duracao=5):
 
 for _a in (2026, 2025, 2024):
     PROVAS[f'pucsp-{_a}'] = pucsp(_a)
+
+
+# ------------------------------------------------------------------------------------------------ UFU
+UFU_SECOES = {
+    'BIOLOGIA': 'Biologia', 'FILOSOFIA': 'Filosofia', 'FÍSICA': 'Física', 'GEOGRAFIA': 'Geografia', 'HISTÓRIA': 'História',
+    'ESPANHOL': 'Espanhol', 'INGLÊS': 'Inglês', 'FRANCÊS': 'Francês', 'LÍNGUA PORTUGUESA': 'Língua Portuguesa',
+    'LITERATURA': 'Literatura', 'MATEMÁTICA': 'Matemática', 'QUÍMICA': 'Química', 'SOCIOLOGIA': 'Sociologia',
+    'LÍNGUA ESPANHOLA': 'Espanhol', 'LÍNGUA INGLESA': 'Inglês', 'LÍNGUA FRANCESA': 'Francês',
+}
+
+
+def ufu(ano, duracao=4.5):
+    def gab(pasta):
+        """Tabela com os tipos lado a lado: o 1º par de cada linha é o Tipo 1. As questões de língua estrangeira
+        repetem a numeração (espanhol, depois inglês): vale a última ocorrência, a do inglês. N* = anulada."""
+        txt = texto_pdf(pasta / 'gabarito.pdf')
+        assert txt.find('Inglês') > txt.find('Espanhol') or txt.upper().find('INGLÊS') > txt.upper().find('ESPANHOL')
+        g = {}
+        for linha in txt.splitlines():
+            m = re.match(r'^\D*?(?<![\d,.])(\d{1,2})\s+([A-D]\b|N\*?|\*|X\b|ANULAD[AO])', linha)
+            if m:
+                v = m.group(2)
+                g[int(m.group(1))] = v if v in 'ABCD' and len(v) == 1 else 'X'
+        return g
+
+    return {
+        'catalogo': 'ufu', 'escola': 'UFU', 'ano': str(ano), 'fase': '1ª fase', 'titulo': f'UFU {ano}', 'banca': 'DIRPS-UFU',
+        'duracao_horas': duracao, 'alternativas': 4,
+        'nota': f'Universidade Federal de Uberlândia, Processo Seletivo {ano}-2, prova objetiva (1ª fase), Tipo 1. '
+                'Língua estrangeira: inglês. Gabarito oficial definitivo; anulada fica fora.',
+        'cadernos': [{'arquivo': 'caderno', 'paginas': (2, 999)}],
+        # cabeçalho "Processo Seletivo UFU/AAAA-2 ..." muda de altura a cada ano; rodapé "Página N" a partir de y≈794
+        'colunas': lambda r: [(20, r.width - 20)], 'topo': 14, 'cabecalho': r'^Processo Seletivo UFU|^Concurso Seletivo', 'base': 49,
+        'ancora': r'(?i)^quest[ãa]o\s+(\d{1,2})\b', 'ancora_dx': 320,
+        'secoes': UFU_SECOES, 'pular_secoes': ('Espanhol', 'Francês'),
+        'corte': [r'(?i)^PROPOSTA DE REDA', r'(?i)^RASCUNHO', r'^LÍNGUA ESTRANGEIRA$'],
+        'suporte': [r'(?i)(para|responder) [àa]s quest[õo]es', r'(?i)^texto para as quest'],
+        'gabarito': gab, 'area': lambda n: 'Conhecimentos gerais',
+    }
+
+
+for _a in range(2020, 2027):
+    _c = ufu(_a)
+    _c['total_de'] = (lambda c: (lambda pasta: max(c['gabarito'](pasta))))(_c)
+    PROVAS[f'ufu-{_a}'] = _c

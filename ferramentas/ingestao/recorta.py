@@ -12,7 +12,7 @@ de cada questão ("Questão 07", "{07}", "07 -", ...). Uma questão vai da sua �
 (outra âncora, um corte como cabeçalho de seção, ou o fim do enunciado no caderno comentado), podendo
 atravessar colunas e páginas; os pedaços são empilhados num print só.
 """
-import json, os, re, sys, hashlib
+import json, os, re, sys, hashlib, unicodedata
 from io import BytesIO
 from pathlib import Path
 
@@ -53,7 +53,8 @@ def linhas(pagina):
     blocos = par[0].get_text('dict', textpage=par[1])['blocks'] if par else pagina.get_text('dict')['blocks']
     for b in blocos:
         for l in b.get('lines', []):
-            t = ''.join(s['text'] for s in l['spans']).strip()
+            # NFC: alguns cadernos escrevem "Ã" como "A" + til combinante
+            t = unicodedata.normalize('NFC', ''.join(s['text'] for s in l['spans'])).strip()
             if t:
                 out.append({'bbox': l['bbox'], 't': t})
     return out
@@ -113,7 +114,12 @@ def faixa_vertical(pg, cfg, c, cols):
 
 def topo_de(pg, cfg):
     """Margem de cima da página (algumas provas têm quadro de instruções no alto da 1ª página de questões)."""
-    return cfg.get('topo_pag', {}).get(pg.number + 1, cfg['topo'])
+    t = cfg.get('topo_pag', {}).get(pg.number + 1, cfg['topo'])
+    if cfg.get('cabecalho'):   # cabeçalho de altura variável: a página começa logo abaixo dele
+        for L in linhas(pg):
+            if L['bbox'][1] < 90 and re.search(cfg['cabecalho'], L['t']):
+                t = max(t, L['bbox'][3] + 1)
+    return t
 
 
 def limite_baixo(pg, cfg):
@@ -622,6 +628,13 @@ def processa(pid, amostra=False, so_texto=False):
         'questoes': sorted(validas, key=lambda q: q['n']),
         'fora': {k: sorted(set(v)) for k, v in relatorio.items() if v},
     }
+    # classificação já feita (matéria, tema, conteúdo, nível) sobrevive a um novo recorte: o id é estável
+    if (destino / 'prova.json').exists():
+        antes = {q['id']: q for q in json.loads((destino / 'prova.json').read_text()).get('questoes', []) if q.get('id')}
+        for q in prova['questoes']:
+            for k in ('materia', 'tema', 'conteudo', 'nivel'):
+                if k in antes.get(q['id'], {}):
+                    q[k] = antes[q['id']][k]
     if so_texto:   # a lista de fora (anuladas etc.) é a da rodada completa anterior
         prova['fora'] = json.loads((destino / 'prova.json').read_text()).get('fora', {})
     (destino / 'prova.json').write_text(json.dumps(prova, ensure_ascii=False, indent=1) + '\n')
