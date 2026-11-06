@@ -642,6 +642,7 @@ def processa(pid, amostra=False, so_texto=False):
             ev = limpos
         vistos = set()
         suporte = None
+        gerais = []   # instruções gerais de uma faixa larga, que seguem valendo dentro dela
         secao = None
         textos = {}   # suportes numerados da seção ("Texto 1", "Texto 2"), para questões que os mencionam
         liberado = not cad.get('depois_de')
@@ -650,13 +651,21 @@ def processa(pid, amostra=False, so_texto=False):
                 secao = e['nome']
                 liberado = liberado or secao == cad.get('depois_de')
                 suporte = None
+                gerais = []
                 textos = {}
                 continue
             if not liberado or secao in cfg.get('pular_secoes', ()):
                 continue
             if e['tipo'] == 'suporte':
                 segs_s = segmentos(pdf, cfg, ev, i, faixa_pag)
+                # 2º dia que recomeça em 1: "texto para as questões 11 e 12" = 53 e 54 na numeração da prova
+                e = dict(e, faixa=[v + cad.get('deslocamento', 0) for v in e['faixa']])
                 if suporte and suporte.get('aberto'):
+                    f0 = suporte['faixa']
+                    if len(f0) >= 2 and len(e['faixa']) >= 2 and f0[0] <= e['faixa'][0] and e['faixa'][1] < f0[1]:
+                        # instrução geral ("texto para as questões 10 a 18": constantes, g = 10) seguida de um texto
+                        # só de parte delas ("10 a 12"): a geral continua valendo para 13 a 18
+                        gerais.append({'segs': list(suporte['segs']), 'faixa': f0})
                     suporte['segs'] += segs_s  # Texto 1 + Texto 2 seguidos: os dois valem
                     if e['faixa']:
                         suporte['faixa'] = e['faixa']   # a indicação mais específica (a última) manda
@@ -711,6 +720,9 @@ def processa(pid, amostra=False, so_texto=False):
                 elif len(f) < 2 and not suporte.get('usado'):
                     sup = suporte['segs']  # sem faixa declarada: vale só para a questão seguinte
                     suporte['usado'] = True
+            for g_ in reversed(gerais):   # instrução geral da faixa, antes do texto próprio
+                if g_['faixa'][0] <= n <= g_['faixa'][1] and not all(sg in sup for sg in g_['segs']):
+                    sup = [sg for sg in g_['segs'] if sg not in sup] + list(sup)
             if so_texto and n in anteriores:
                 class _Img:  # medidas do print já existente
                     width, height = anteriores[n]['larg'], anteriores[n]['alt']
