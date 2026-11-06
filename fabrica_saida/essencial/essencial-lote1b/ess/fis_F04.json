@@ -1,0 +1,408 @@
+{
+ "termometro": [
+  {
+   "sub": "F04.3",
+   "peso": "alta",
+   "provas": "Enem, Fuvest, Unicamp, Famema, Santa Casa",
+   "como_cai": "Rampa, queda ou mola sem atrito: iguala-se a energia mecânica; looping e perdas por atrito aparecem nas questões difíceis."
+  },
+  {
+   "sub": "F04.4",
+   "peso": "alta",
+   "provas": "FEI, Mackenzie, Vunesp, PUC-SP, Fuvest, UFRJ",
+   "como_cai": "Potência e rendimento de motores e bombas, kWh e gráfico P × t; P = F · v com resistência do ar nas difíceis."
+  },
+  {
+   "sub": "F04.1",
+   "peso": "alta",
+   "provas": "Uerj, FGV, Fuvest, Unicamp, Famerp, UFPR",
+   "como_cai": "Sinal do trabalho, W = F · d · cos θ e área do gráfico F × x."
+  },
+  {
+   "sub": "F04.2",
+   "peso": "media",
+   "provas": "Fuvest, Famema, UEM, FMJ",
+   "como_cai": "Comparar energias cinéticas, ler gráficos de energia e aplicar o teorema com gráfico v × t ou F × x."
+  },
+  {
+   "sub": "F04.5",
+   "peso": "media",
+   "provas": "Enem, Fuvest, Unicamp, Unesp",
+   "como_cai": "Sequência de transformações de energia nas usinas e potência por vazão e altura de queda."
+  }
+ ],
+ "mapa": {
+  "centro": "Trabalho, energia e potência",
+  "ramos": [
+   {
+    "sub": "F04.1",
+    "titulo": "Trabalho de uma força",
+    "chave": "W = F·d·cosθ; força variável: área do gráfico",
+    "liga": [
+     "F04.2"
+    ]
+   },
+   {
+    "sub": "F04.2",
+    "titulo": "Energia cinética e potencial",
+    "chave": "Trabalho da resultante = variação da energia cinética",
+    "liga": [
+     "F04.1",
+     "F04.3"
+    ]
+   },
+   {
+    "sub": "F04.3",
+    "titulo": "Conservação da energia mecânica",
+    "chave": "Sem atrito, E_M inicial = E_M final; com atrito, parte vira calor",
+    "liga": [
+     "F04.2",
+     "F04.4"
+    ]
+   },
+   {
+    "sub": "F04.4",
+    "titulo": "Potência e rendimento",
+    "chave": "P_m = W/Δt; P = F·v; η = útil/total (0 a 1)",
+    "liga": [
+     "F04.5"
+    ]
+   },
+   {
+    "sub": "F04.5",
+    "titulo": "Usinas e impacto ambiental",
+    "chave": "Usina transforma energia; potência = η·ρ·vazão·g·h",
+    "liga": [
+     "F04.4"
+    ]
+   }
+  ]
+ },
+ "telas": [
+  {
+   "sub": "F04.3",
+   "titulo": "Conservação da energia mecânica",
+   "pontos": [
+    "E_M = cinética + potencial.",
+    "Sem atrito: E_M inicial = E_M final.",
+    "Com atrito: W dissipativo = ΔE_M (em geral, negativo)."
+   ],
+   "formula": "\\begin{gathered} E_{M,A} = E_{M,B} \\\\ W_{diss} = E_{M,B} - E_{M,A} \\\\ v = \\sqrt{2 \\cdot g \\cdot h} \\end{gathered}",
+   "pegadinha": "Atrito não destrói energia: vira calor. Topo do looping: v² mínimo = g·R, não zero.",
+   "visual": {
+    "tipo": "animacao",
+    "descricao": "Rampa com ponto A no alto e B embaixo; barras de potencial, cinética e mecânica (laranja #F27700).",
+    "movimento": [
+     "Na descida, a potencial esvazia e a cinética enche.",
+     "A barra mecânica fica igual sem atrito.",
+     "Com atrito, a mecânica encolhe e a térmica cresce."
+    ]
+   }
+  },
+  {
+   "sub": "F04.4",
+   "titulo": "Potência e rendimento",
+   "pontos": [
+    "Potência média é trabalho dividido por tempo; unidade watt (J/s).",
+    "Força constante a favor do movimento: P = F·v.",
+    "Rendimento: útil dividido por total, entre 0 e 1."
+   ],
+   "formula": "\\begin{gathered} P_m = \\frac{W}{\\Delta t} \\quad P = F \\cdot v \\\\ \\eta = \\frac{P_U}{P_T} \\\\ 1\\,\\text{kWh} = 3{,}6 \\cdot 10^6\\,\\text{J} \\\\ 1\\,\\text{cv} \\cong 735\\,\\text{W} \\end{gathered}",
+   "pegadinha": "kWh é energia, não potência (3,6·10⁶ J); rendimento não passa de 100%.",
+   "visual": {
+    "tipo": "animacao",
+    "descricao": "Barra de potência total entra no motor e se divide em útil (laranja #F27700) e dissipada (cinza).",
+    "movimento": [
+     "A barra total entra no motor.",
+     "Divide-se em útil e dissipada.",
+     "Aparece a fração útil sobre total."
+    ]
+   }
+  },
+  {
+   "sub": "F04.1",
+   "titulo": "Trabalho de uma força",
+   "pontos": [
+    "Só conta a parte da força ao longo do deslocamento.",
+    "θ < 90°: motor (+); 90°: nulo; > 90°: resistente (−).",
+    "Gráfico F × s: área, com sinal."
+   ],
+   "formula": "\\begin{gathered} W = F \\cdot d \\cdot \\cos\\theta \\\\ W_P = -m \\cdot g \\cdot (h_f - h_i) \\\\ W_{el} = -\\frac{k}{2} \\cdot (x_f^2 - x_i^2) \\end{gathered}",
+   "pegadinha": "No chão horizontal, peso e normal não trabalham; no elevador, a normal trabalha.",
+   "visual": {
+    "tipo": "animacao",
+    "descricao": "Seta F em laranja #F27700 gira de 0° a 180° sobre uma caixa que anda; medidor W com faixas motor, nulo e resistente.",
+    "movimento": [
+     "Em 0°, W = +F · d.",
+     "Em 90°, a projeção zera: nulo.",
+     "Acima de 90°, W fica negativo."
+    ]
+   }
+  },
+  {
+   "sub": "F04.2",
+   "titulo": "Energia cinética e potencial",
+   "pontos": [
+    "Cinética cresce com v²: velocidade em dobro, energia 4 vezes maior.",
+    "Gravitacional depende da referência; elástica nunca é negativa.",
+    "Teorema: trabalho da resultante = variação da energia cinética."
+   ],
+   "formula": "\\begin{gathered} E_C = \\frac{m \\cdot v^2}{2} \\quad E_{PG} = m \\cdot g \\cdot h \\\\ E_{PEl} = \\frac{k \\cdot x^2}{2} \\quad W_{res} = \\Delta E_C \\end{gathered}",
+   "pegadinha": "Velocidade constante: trabalho total nulo, mas forças isoladas podem trabalhar.",
+   "visual": {
+    "tipo": "animacao",
+    "descricao": "Carro de 1 000 kg a 20 m/s freia em 40 m; barra de energia cinética em laranja #F27700.",
+    "movimento": [
+     "A barra começa cheia, com 200 000 J.",
+     "Perde 50 000 J a cada 10 m.",
+     "Para em 40 m: F = 5 000 N."
+    ]
+   }
+  },
+  {
+   "sub": "F04.5",
+   "titulo": "Usinas e impacto ambiental",
+   "pontos": [
+    "Hidrelétrica: potencial gravitacional → cinética → elétrica.",
+    "Termelétrica: química → térmica → cinética do vapor → elétrica.",
+    "Eólica: vento → elétrica; fotovoltaica: luz → elétrica, sem turbina."
+   ],
+   "formula": "P = \\eta \\cdot \\rho \\cdot Z \\cdot g \\cdot h",
+   "pegadinha": "Renovável não é sem impacto; elétrica = rendimento × entrada.",
+   "visual": {
+    "tipo": "animacao",
+    "descricao": "Corte de hidrelétrica: represa, conduto, turbina, gerador e torre; rótulos de energia em laranja #F27700.",
+    "movimento": [
+     "A água desce: potencial vira cinética.",
+     "A turbina e o gerador giram.",
+     "A eletricidade segue pelos cabos."
+    ]
+   }
+  }
+ ],
+ "questao_resolvida": {
+  "enunciado": "Um bloco de 2 kg é solto do repouso no topo de uma rampa de 5 m de altura e chega à base com velocidade de 8 m/s. Adote g = 10 m/s². Qual o trabalho realizado pelas forças de atrito durante a descida?",
+  "alternativas": [
+   "A) +36 J",
+   "B) −36 J",
+   "C) −64 J",
+   "D) zero",
+   "E) −100 J"
+  ],
+  "gabarito": "B",
+  "passos": [
+   {
+    "faz": "Energia mecânica no topo (referência na base): só potencial",
+    "conta": "E_{M,A} = 2 \\cdot 10 \\cdot 5 = 100 \\text{ J}",
+    "mov": "Os três fatores se juntam e o 100 aparece."
+   },
+   {
+    "faz": "Energia mecânica na base: só cinética",
+    "conta": "E_{M,B} = \\frac{2 \\cdot 8^2}{2} = 64 \\text{ J}",
+    "mov": "8² vira 64; o 2 de cima cancela o de baixo."
+   },
+   {
+    "faz": "Trabalho dissipativo = final − inicial",
+    "conta": "W_{at} = 64 - 100",
+    "mov": "O 100 passa a ser subtraído do 64."
+   },
+   {
+    "faz": "Resultado, negativo: o atrito retirou energia mecânica",
+    "conta": "W_{at} = -36 \\text{ J}",
+    "mov": "O −36 aparece e a barra térmica ganha 36 J."
+   }
+  ],
+  "por_que_erram": "Quem conserva a energia mecânica marca zero (D), mas há atrito: o trabalho dissipativo é a variação de E_M, e dá negativo; +36 J erra o sinal."
+ },
+ "conexao": [
+  {
+   "materia": "Matemática",
+   "frase": "Gráficos de energia são parábolas e retas, e o trabalho é a área sob o gráfico F × s."
+  },
+  {
+   "materia": "Química",
+   "frase": "Na termelétrica, a energia química do combustível vira térmica e depois elétrica."
+  },
+  {
+   "materia": "Geografia",
+   "frase": "Fontes renováveis e não renováveis têm impactos ambientais próprios: represa alagando áreas e CO₂ das térmicas."
+  }
+ ],
+ "_revisao": {
+  "lentes": [
+   "gera",
+   "lente-a",
+   "lente-b",
+   "lente-a-volta"
+  ],
+  "pendencias": [
+   "Os slides 'Como cai na prova' não trazem o peso (alta, média, baixa) de forma explícita; o peso do termômetro foi inferido pela variedade de bancas citadas em cada conteúdo (F04.1, F04.3 e F04.4 mais citados que F04.2 e F04.5). A lente de fatos pode confirmar ou ajustar.",
+   "Os pontos de F04.4 (cv e hp, 750 W nos exercícios) e de F04.3 (looping com largada mínima de 2,5 R) ficaram reduzidos ou só na fórmula e na pegadinha por causa do limite de 40 palavras por tela.",
+   "Números de 'na prova' (instituições) vêm da contagem da ficha, não das provas originais."
+  ],
+  "lente_a": [
+   {
+    "campo": "telas[0].pontos[2]",
+    "depois": "Com atrito: trabalho dissipativo = variação de E_M (em geral, negativo).",
+    "motivo": "A fonte diz 'em geral, negativo'. Do jeito que estava, a frase afirmava que é sempre negativo.",
+    "slide": "cartoes F04.3 caderno[2]; formulas/erro do tema ('em geral negativo')"
+   },
+   {
+    "campo": "telas[0].pegadinha",
+    "depois": "Atrito não destrói energia: ela vira calor; no topo do looping, v² mínimo = g·R, não zero.",
+    "motivo": "v² = g·R é a condição-limite (velocidade mínima no topo), não o valor da velocidade em qualquer looping.",
+    "slide": "cartoes F04.3 caderno[4] ('v²_mín = g · R'); slides F04.3 pegadinha 'Topo do looping'"
+   },
+   {
+    "campo": "telas[2].pontos[0]",
+    "depois": "Conta só a parte da força na direção do deslocamento.",
+    "motivo": "No trabalho entra a componente da força, não a força inteira. A frase anterior sugeria descartar a força quando ela não é paralela ao deslocamento.",
+    "slide": "cartoes F04.1 oque ('só conta a parte da força na direção do movimento')"
+   },
+   {
+    "campo": "mapa.ramos[4].chave",
+    "depois": "Usina transforma energia; potência = η · ρ · vazão · g · h",
+    "motivo": "Faltava a densidade. η · vazão (m³/s) · g · h não dá watts; a fórmula da fonte é η · ρ · Z · g · h.",
+    "slide": "slides F04.5 formula 'Potência de uma hidrelétrica'"
+   },
+   {
+    "campo": "mapa.ramos[2].chave",
+    "depois": "Sem atrito, E_M inicial = E_M final; com atrito, parte vira calor",
+    "motivo": "'Perde calor' é impreciso. O que acontece é que parte da energia mecânica vira energia térmica.",
+    "slide": "cartoes F04.3 oque e cuidado"
+   }
+  ],
+  "lente_b": [
+   {
+    "campo": "mapa.ramos[0].chave",
+    "depois": "W = F·d·cosθ; força variável: área do gráfico",
+    "motivo": "Corta para menos de 12 palavras, sem mudar o conteúdo."
+   },
+   {
+    "campo": "mapa.ramos[3].chave",
+    "depois": "P = W/Δt = F·v; η = útil/total (0 a 1)",
+    "motivo": "Corta para 11 palavras, mantendo as fórmulas e o intervalo de η."
+   },
+   {
+    "campo": "mapa.ramos[4].chave",
+    "depois": "Usina transforma energia; potência = η·ρ·vazão·g·h",
+    "motivo": "Corta para menos de 12 palavras, mantendo a densidade na fórmula."
+   },
+   {
+    "campo": "telas",
+    "depois": [
+     {
+      "sub": "F04.3",
+      "titulo": "Conservação da energia mecânica",
+      "pontos": [
+       "E_M = cinética + potencial.",
+       "Sem atrito: E_M inicial = E_M final.",
+       "Com atrito: W dissipativo = ΔE_M (em geral, negativo)."
+      ],
+      "formula": "\\begin{gathered} E_{M,A} = E_{M,B} \\\\ W_{diss} = E_{M,B} - E_{M,A} \\\\ v = \\sqrt{2 \\cdot g \\cdot h} \\end{gathered}",
+      "pegadinha": "Atrito não destrói energia: vira calor. Topo do looping: v² mínimo = g·R, não zero.",
+      "visual": {
+       "tipo": "animacao",
+       "descricao": "Rampa com ponto A no alto e B embaixo; barras de potencial, cinética e mecânica (laranja #F27700).",
+       "movimento": [
+        "Na descida, a potencial esvazia e a cinética enche.",
+        "A barra mecânica fica igual sem atrito.",
+        "Com atrito, a mecânica encolhe e a térmica cresce."
+       ]
+      }
+     },
+     {
+      "sub": "F04.4",
+      "titulo": "Potência e rendimento",
+      "pontos": [
+       "Potência média é trabalho dividido por tempo; unidade watt (J/s).",
+       "Força constante a favor do movimento: P = F·v.",
+       "Rendimento: útil dividido por total, entre 0 e 1."
+      ],
+      "formula": "\\begin{gathered} P_m = \\frac{W}{\\Delta t} \\quad P = F \\cdot v \\\\ \\eta = \\frac{P_U}{P_T} \\\\ 1\\,\\text{kWh} = 3{,}6 \\cdot 10^6\\,\\text{J} \\\\ 1\\,\\text{cv} \\cong 735\\,\\text{W} \\end{gathered}",
+      "pegadinha": "kWh é energia, não potência (3,6·10⁶ J); rendimento não passa de 100%.",
+      "visual": {
+       "tipo": "animacao",
+       "descricao": "Barra de potência total entra no motor e se divide em útil (laranja #F27700) e dissipada (cinza).",
+       "movimento": [
+        "A barra total entra no motor.",
+        "Divide-se em útil e dissipada.",
+        "Aparece a fração útil sobre total."
+       ]
+      }
+     },
+     {
+      "sub": "F04.1",
+      "titulo": "Trabalho de uma força",
+      "pontos": [
+       "Só conta a parte da força ao longo do deslocamento.",
+       "θ < 90°: motor (+); 90°: nulo; > 90°: resistente (−).",
+       "Gráfico F × s: área, com sinal."
+      ],
+      "formula": "\\begin{gathered} W = F \\cdot d \\cdot \\cos\\theta \\\\ W_P = -m \\cdot g \\cdot (h_f - h_i) \\\\ W_{el} = -\\frac{k}{2} \\cdot (x_f^2 - x_i^2) \\end{gathered}",
+      "pegadinha": "No chão horizontal, peso e normal não trabalham; no elevador, a normal trabalha.",
+      "visual": {
+       "tipo": "animacao",
+       "descricao": "Seta F em laranja #F27700 gira de 0° a 180° sobre uma caixa que anda; medidor W com faixas motor, nulo e resistente.",
+       "movimento": [
+        "Em 0°, W = +F · d.",
+        "Em 90°, a projeção zera: nulo.",
+        "Acima de 90°, W fica negativo."
+       ]
+      }
+     },
+     {
+      "sub": "F04.2",
+      "titulo": "Energia cinética e potencial",
+      "pontos": [
+       "Cinética cresce com v²: velocidade em dobro, energia 4 vezes maior.",
+       "Gravitacional depende da referência; elástica nunca é negativa.",
+       "Teorema: trabalho da resultante = variação da energia cinética."
+      ],
+      "formula": "\\begin{gathered} E_C = \\frac{m \\cdot v^2}{2} \\quad E_{PG} = m \\cdot g \\cdot h \\\\ E_{PEl} = \\frac{k \\cdot x^2}{2} \\quad W_{res} = \\Delta E_C \\end{gathered}",
+      "pegadinha": "Velocidade constante: trabalho total nulo, mas forças isoladas podem trabalhar.",
+      "visual": {
+       "tipo": "animacao",
+       "descricao": "Carro de 1 000 kg a 20 m/s freia em 40 m; barra de energia cinética em laranja #F27700.",
+       "movimento": [
+        "A barra começa cheia, com 200 000 J.",
+        "Perde 50 000 J a cada 10 m.",
+        "Para em 40 m: F = 5 000 N."
+       ]
+      }
+     },
+     {
+      "sub": "F04.5",
+      "titulo": "Usinas e impacto ambiental",
+      "pontos": [
+       "Hidrelétrica: potencial gravitacional → cinética → elétrica.",
+       "Termelétrica: química → térmica → cinética do vapor → elétrica.",
+       "Eólica: vento → elétrica; fotovoltaica: luz → elétrica, sem turbina."
+      ],
+      "formula": "P = \\eta \\cdot \\rho \\cdot Z \\cdot g \\cdot h",
+      "pegadinha": "Renovável não é sem impacto; elétrica = rendimento × entrada.",
+      "visual": {
+       "tipo": "animacao",
+       "descricao": "Corte de hidrelétrica: represa, conduto, turbina, gerador e torre; rótulos de energia em laranja #F27700.",
+       "movimento": [
+        "A água desce: potencial vira cinética.",
+        "A turbina e o gerador giram.",
+        "A eletricidade segue pelos cabos."
+       ]
+      }
+     }
+    ],
+    "motivo": "Telas F04.3, F04.1 e F04.5 reduzidas a até 40 palavras (tópicos + pegadinha), sem mudar fatos. As demais ficam iguais e a ordem pelo termômetro está mantida."
+   }
+  ],
+  "alertas": [],
+  "lente_a_volta": [
+   {
+    "campo": "mapa.ramos[3].chave",
+    "antes": "P = W/Δt = F·v; η = útil/total (0 a 1)",
+    "depois": "P_m = W/Δt; P = F·v; η = útil/total (0 a 1)",
+    "motivo": "A corrente de igualdades W/Δt = F·v só vale com velocidade constante. Os slides e o cartão F04.4 tratam as duas como fórmulas separadas: P_m = W/Δt é a potência média; P = F·v vale para força constante na direção do movimento. Separar com ponto e vírgula tira essa equivalência falsa e mantém as 12 palavras."
+   }
+  ]
+ }
+}
