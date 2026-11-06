@@ -47,7 +47,19 @@ def textpage(pagina):
 _OCR_SO_TEXTO = set()   # id(documento): âncoras e colunas pela camada de texto do PDF; só o texto da questão por OCR
 
 
+_cache_linhas = {}
+
+
 def linhas(pagina):
+    k = (id(pagina.parent), pagina.number)
+    if k in _cache_linhas and _cache_linhas[k][0] is pagina.parent:
+        return _cache_linhas[k][1]
+    out = _linhas(pagina)
+    _cache_linhas[k] = (pagina.parent, out)
+    return out
+
+
+def _linhas(pagina):
     out = []
     par = None if id(pagina.parent) in _OCR_SO_TEXTO else textpage(pagina)
     blocos = par[0].get_text('dict', textpage=par[1])['blocks'] if par else pagina.get_text('dict')['blocks']
@@ -187,6 +199,8 @@ def eventos_do_pdf(pdf, cfg, faixa=None):
             if larga_de(pg, cfg) is not None and y0 >= larga_de(pg, cfg) - 1:
                 c = len(cols) - 1
             topo = topo_de(pg, cfg)
+            if y0 < topo and y1 > topo + 3 and re.match(cfg['ancora'], t) and cfg.get('cabecalho'):
+                y0 = topo   # âncora com caixa alta que encosta no cabeçalho: começa logo abaixo dele
             if y0 < topo:
                 # acima da margem só valem cortes (ex.: título da redação colado no topo)
                 if y0 >= topo - 18 and any(re.search(rx, t) for rx in cfg.get('corte', [])):
@@ -295,7 +309,11 @@ def neutraliza(im, clip, rects, escala):
         for y in range(y0, y1):
             for x in range(x0, x1):
                 rr, g, b = px[x, y]
-                if rr - max(g, b) > 40:          # pixel puxado para o vermelho (inclui o antisserrilhado)
+                if b - max(rr, g) > 30:          # destaque azul: escurece na proporção da tinta
+                    t = min(1.0, (255 - min(rr, g)) / 200)
+                    v = int(255 - t * 220)
+                    px[x, y] = (v, v, v)
+                elif rr - max(g, b) > 40:          # pixel puxado para o vermelho (inclui o antisserrilhado)
                     v = 255 - (rr - max(g, b))   # intensidade da tinta
                     v = max(0, min(255, int(max(g, b) * 0 + v)))
                     px[x, y] = (v, v, v)
@@ -401,7 +419,7 @@ def marcas_de_resposta(pdf, glifo):
             for l in b.get('lines', []):
                 cs = [c for s_ in l['spans'] for c in s_['chars']]
                 txt = ''.join(c['c'] for c in cs)
-                m = re.match(r'^\s*(' + re.escape(glifo) + r')?\s*([A-E])\)', txt)
+                m = re.match(r'^\s*(' + re.escape(glifo) + r')?\s*([A-Ea-e])\)', txt)
                 if not m:
                     continue
                 letra, par = cs[m.start(2)], cs[m.end() - 1]
@@ -478,6 +496,7 @@ def processa(pid, amostra=False, so_texto=False):
     for cad in cads:
         arq = pasta / (cad['arquivo'] + '.pdf')
         pdf = pymupdf.open(arq)
+        _cache_linhas.clear()
         _cache_cols.clear()  # chave usa id() do documento: não pode sobreviver de um caderno para outro
         _OCR.clear()
         _OCR_SO_TEXTO.clear()

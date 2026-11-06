@@ -137,6 +137,31 @@ def uel(ano, total=60, duracao=4):
 
 
 PROVAS.update({f'uel-{a}': uel(a) for a in (2026, 2025, 2024)})
+PROVAS.update({f'uel-{a}': uel(a) for a in (2023, 2020)})
+PROVAS['uel-2020']['base'] = 38   # rodapé "8 / 27" um pouco mais alto que nas edições recentes
+
+
+def uel_comentada(ano, total=50, duracao=4):
+    """UEL 2021 e 2022 (fase única, pandemia): só existe o caderno definitivo comentado da opção inglês.
+    O print vai do número da questão até "Alternativa correta" (a justificativa fica fora) e a alternativa
+    correta, pintada de azul no caderno, volta para a cor do texto."""
+    cfg = uel(ano, total, duracao)
+    cfg.update({
+        'fase': 'Fase única',
+        'nota': 'Fase única (pandemia): Conhecimentos Gerais, Língua Portuguesa e Literatura, Língua Inglesa. Tipo 1. '
+                'Print do caderno definitivo comentado pela Cops, só o enunciado (a justificativa fica fora; a alternativa '
+                'correta, destacada em azul no original, aparece na cor do texto). Gabarito oficial definitivo.',
+        'cadernos': [{'arquivo': 'fase1-caderno-definitivo-tipo1', 'paginas': (3, 999)}],
+        'colunas': lambda r: [(36, r.width - 30)], 'topo': 36, 'base': 40, 'margem': 36,
+        'ancora': r'^(\d{1,2})$', 'ancora_dx': 14, 'sequencial': True,
+        'fim': [r'^Alternativa correta'],
+        'neutralizar_cores': (0x3553a4, 0x0000ff),
+        'corte': [r'(?i)^O tema desta prova', r'(?i)redija um texto', r'(?i)^PROVA DE REDA'],
+    })
+    return cfg
+
+
+PROVAS.update({f'uel-{a}': uel_comentada(a) for a in (2022, 2021)})
 
 
 # ----------------------------------------------------------------------------------------------- UFPR
@@ -163,10 +188,12 @@ def _ufpr_paginas(pdf_path):
     return ini, len(d)
 
 
-def ufpr(ano, total=90, duracao=5):
+def ufpr(ano, total=90, duracao=5, cads=None):
     arq = 'fase1-gabarito-definitivo'
 
     def cadernos(pasta):
+        if cads:
+            return cads
         ini, n = _ufpr_paginas(pasta / (arq + '.pdf'))
         primeira_lingua = min(ini.values())
         depois = sorted(v for v in ini.values() if v > ini['INGLÊS'])
@@ -179,31 +206,39 @@ def ufpr(ano, total=90, duracao=5):
 
     def gab(pasta):
         import pymupdf
-        g, marcas = {}, {}
+        g, marcas, anuladas = {}, {}, set()
         d = pymupdf.open(pasta / (arq + '.pdf'))
+        tudo = '\n'.join(p.get_text() for p in d)
+        # o sentido dos asteriscos muda por ano ("* Questão anulada", "** Questão com resposta alterada"):
+        # vale a nota de rodapé do próprio caderno
+        estrelas_anula = {m.group(1) for m in re.finditer(r'(?m)^\s*(\*{1,2})\s*Quest[ãa]o anulada', tudo)}
+        rx = re.compile(r'(?m)^[ \t]*(\*{0,2})[ \t]*(\d{2})[ \t]*-(?=\s)|►\s*([A-Ea-e])\)|^[ \t]*(' + '|'.join(UFPR_LINGUAS) + r')[ \t]*$')
         for cad in cadernos(pasta):
             lo, hi = cad['questoes']
-            atual, dentro = None, False
-            for pi in range(cad['paginas'][0] - 1, cad['paginas'][1]):
-                for linha in d[pi].get_text().splitlines():
-                    if linha.strip() == 'INGLÊS':
+            atual, dentro = None, not cad.get('depois_de')
+            texto_cad = '\n'.join(d[pi].get_text() for pi in range(cad['paginas'][0] - 1, cad['paginas'][1]))
+            for m in rx.finditer(texto_cad):
+                if m.group(4):   # título de língua
+                    if m.group(4) == 'INGLÊS':
                         dentro = True
-                    if cad.get('depois_de') and not dentro:
-                        continue
-                    if linha.strip() in UFPR_LINGUAS and linha.strip() != 'INGLÊS':
+                    elif cad.get('depois_de') and dentro:
+                        break
+                    else:
                         atual = None
-                        if cad.get('depois_de'):
-                            break
-                    m = re.match(r'^\s*\*{0,2}(\d{2})\s*-', linha)
-                    if m:
-                        n = int(m.group(1))
-                        atual = n if lo <= n <= hi else None
-                    if atual is None:
-                        continue
-                    for mk in re.finditer(r'►\s*([A-E])\)', linha):
-                        marcas.setdefault(atual, []).append(mk.group(1))
+                    continue
+                if not dentro:
+                    continue
+                if m.group(2):
+                    n = int(m.group(2))
+                    atual = n if lo <= n <= hi else None
+                    if atual and m.group(1) and m.group(1) in estrelas_anula:
+                        anuladas.add(n)
+                elif atual is not None:   # até 2023 as letras são minúsculas
+                    marcas.setdefault(atual, []).append(m.group(3).upper())
         for n, l in marcas.items():
             g[n] = l[0] if len(set(l)) == 1 else 'X'
+        for n in anuladas:
+            g[n] = 'X'
         # anuladas pelo relatório oficial, na numeração da prova 001 (a mesma do caderno "Geral")
         rel = pasta / 'fase1-anuladas-alteradas.pdf'
         if rel.exists():
@@ -221,13 +256,28 @@ def ufpr(ano, total=90, duracao=5):
         'nota': 'Prova de Conhecimentos Gerais, prova 001 (Inglês). Gabarito: caderno oficial definitivo com a resposta marcada (►); o símbolo é apagado do print.',
         'cadernos': cadernos, 'redigir': '►',
         'colunas': lambda r: [(20, r.width - 15)], 'topo': 30, 'base': 30,
-        'ancora': r'^\*{0,2}(\d{2})\s*-', 'ancora_dx': 30, 'sequencial': False,  # "*15 -" = anulada no próprio caderno
-        'secoes': UFPR_SECOES, 'corte': [r'^RESPOSTAS$'] + [rf'^{l}$' for l in UFPR_LINGUAS if l != 'INGLÊS'], 'suporte': [r'(?i)texto (a seguir )?(é|e) referente [àa]s quest', r'(?i)^as quest[õo]es \d+ (a|e) \d+'],
+        'ancora': r'^\*{0,2}\s?(\d{2})\s*-', 'ancora_dx': 30, 'sequencial': False,  # "*15 -" = anulada no próprio caderno
+        'secoes': UFPR_SECOES, 'corte': [r'^RESPOSTAS$', r'^COMPREENSÃO E PRODUÇÃO DE TEXTO$', r'^QUESTÃO DISCURSIVA$'] + [rf'^{l}$' for l in UFPR_LINGUAS if l != 'INGLÊS'], 'suporte': [r'(?i)texto (a seguir )?(é|e) referente [àa]s quest', r'(?i)^as quest[õo]es \d+ (a|e) \d+'],
         'gabarito': gab, 'area': lambda n: 'Língua estrangeira' if n >= 83 else 'Conhecimentos gerais',
     }
 
 
 PROVAS.update({f'ufpr-{a}': ufpr(a) for a in (2026, 2025, 2024)})
+PROVAS.update({f'ufpr-{a}': ufpr(a) for a in (2023, 2020)})
+# 2021 (pandemia): 60 questões, arquivo só da versão inglês, sem seções de língua
+PROVAS['ufpr-2021'] = ufpr(2021, total=60, cads=[{'arquivo': 'fase1-gabarito-definitivo', 'paginas': (3, 16), 'questoes': (1, 60)}])
+PROVAS['ufpr-2021']['area'] = lambda n: 'Conhecimentos gerais'
+PROVAS['ufpr-2021']['fase'] = 'Fase única'
+PROVAS['ufpr-2021']['nota'] = ('Fase única (pandemia), 60 questões, versão inglês. Gabarito: caderno oficial definitivo com a resposta '
+                               'marcada (►); o símbolo é apagado do print. Questão marcada com * = anulada.')
+# 2022 (fase única): língua estrangeira primeiro (01 a 04, seção INGLÊS), depois as questões gerais 05 a 60
+PROVAS['ufpr-2022'] = ufpr(2022, total=60, cads=[
+    {'arquivo': 'fase1-gabarito-definitivo', 'paginas': (6, 7), 'questoes': (1, 4), 'depois_de': 'Inglês'},
+    {'arquivo': 'fase1-gabarito-definitivo', 'paginas': (9, 23), 'questoes': (5, 60)}])
+PROVAS['ufpr-2022']['area'] = lambda n: 'Língua estrangeira' if n <= 4 else 'Conhecimentos gerais'
+PROVAS['ufpr-2022']['fase'] = 'Fase única'
+PROVAS['ufpr-2022']['nota'] = ('Fase única, 60 questões: língua estrangeira (inglês) nas questões 1 a 4, depois as gerais. Gabarito: '
+                               'caderno oficial definitivo com a resposta marcada (►); o símbolo é apagado do print. * = anulada.')
 
 
 # ---------------------------------------------------------------------------------------------- Acafe
