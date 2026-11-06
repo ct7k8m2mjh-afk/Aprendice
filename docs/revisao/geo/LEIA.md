@@ -10,3 +10,4 @@ Observações para a integração:
 | Tema | Situação | Slides |
 |---|---|---|
 | G10 Geopolítica e globalização | aprovado (06/11/2026) | 80 |
+| G05 Biomas e vegetação | aprovado (06/11/2026) | 39 |
