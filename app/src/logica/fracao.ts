@@ -69,7 +69,7 @@ function ehFracao(texto: string, ini: number, num: string, den: string): boolean
   if (soLetras(num) && soLetras(den)) {
     const tira = (x: string) => x.replace(/[²³⁴⁵⁶⁷⁸⁹¹⁰⁻]/g, '');
     // depois de sinal, no começo, como argumento de função ("f(c/b)"), depois de "razão" ou antes de "=" ("a/g = 10/15")
-    const depoisDeSinal = /(^|[=+−\-×·÷≈<>→])\s*$/.test(antes) || /(^|[^A-Za-zÀ-ÿ])[a-zA-Z]\($/.test(antes)
+    const depoisDeSinal = /(^|[=+−\-×·÷≈<>→]\s*\(?)\s*$/.test(antes) || /(^|[^A-Za-zÀ-ÿ])[a-zA-Z]\($/.test(antes)
       || /\braz(ão|ões)\s+$/i.test(antes) || /^\s*[=≈]/.test(texto.slice(fim));
     if (!depoisDeSinal) return false;
     // no começo do texto, só letra de variável ou segmento ("a/b = c/d", "AB/CD"); "Wh/L (watt-hora...)" é unidade

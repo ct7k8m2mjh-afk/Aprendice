@@ -833,6 +833,8 @@ export function diagrama(s: string, conta: boolean): Diagrama | undefined {
 /** frases em sequência: cada uma acende por vez */
 function etapas(s: string): Diagrama | undefined {
   const frases = cortes(s, /(?<=[.!?;])\s+(?=[A-ZÀ-Ý0-9])/);
+  // fórmula solta ("PV = nRT") não é etapa de processo
+  if ((s.match(/[A-Za-zÀ-ÿ]{3,}/g) || []).length < 3) return undefined;
   // uma frase só: é uma etapa do processo (acende e liga à anterior)
   if (!frases.length) return palavras(s) >= 2 ? { tipo: 'etapas', pecas: [{ ini: 0, fim: s.length, papel: 'item' }] } : undefined;
   if (frases.length >= 1 && frases.length <= 6) {
