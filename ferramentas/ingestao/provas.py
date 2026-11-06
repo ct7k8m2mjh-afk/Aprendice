@@ -1353,7 +1353,7 @@ def unemat(ano, sem=None, ingles_primeiro=True, alternativas=5, duracao=4):
 
 
 PROVAS['unemat-2022-2'] = unemat(2022, 2, ingles_primeiro=False)
-PROVAS['unemat-2023'] = unemat(2023, ingles_primeiro=False)
+PROVAS['unemat-2023'] = unemat(2023, 2, ingles_primeiro=False)   # Concurso Vestibular 2023/2 (id sem o semestre)
 PROVAS['unemat-2024-1'] = unemat(2024, 1)
 PROVAS['unemat-2025-1'] = unemat(2025, 1, alternativas=4)
 PROVAS['unemat-2026-1'] = unemat(2026, 1, alternativas=4)
@@ -1613,3 +1613,23 @@ for _a in (2026, 2027):
     # em vermelho e é repintada de preto no print
     PROVAS[f'unicentro-{_a}'] = unicentro(_a, 'caderno-com-respostas')
     PROVAS[f'unicentro-{_a}']['neutralizar_cores'] = (0xff0000,)
+
+
+# ---------------------------------------------------------------------- correções da auditoria da rodada 4 (06/11/2026)
+# área do simulado pela matéria classificada (cadernos sem título de matéria por questão)
+for _k in [k for k in PROVAS if re.match(r'(ueg-20|ueg-medicina-|ufsm-|unemat-)', k)]:
+    PROVAS[_k]['area_da_materia'] = True
+for _k in [k for k in PROVAS if k.startswith('urca-')]:
+    # transcrição dos cadernos em LaTeX não fica fiel (acentos soltos, parágrafos partidos, "€"): fica o print
+    PROVAS[_k]['sem_transcricao'] = True
+    PROVAS[_k]['faixa_unica'] = True   # "Texto 5 – Questão 56" vale só para a 56
+PROVAS['urca-2025-1']['anexa'] = {119: 118}          # Q59 cita "o último parêntese da Questão 58"
+PROVAS['urca-2023-1']['apoio_de'] = {118: [113]}     # Q58 compara com o caso do Texto 3 (questões 53–54)
+PROVAS['urca-2023-2']['ancora_dy'] = {16: -12}       # √(5/7) e √(7/5) na 1ª linha: numeradores acima da âncora
+PROVAS['urca-2024-2']['ancora_dy'] = {17: -12}       # x = (√5 − √2)/2 na 1ª linha
+PROVAS['ueg-medicina-2026-1']['suporte'] = PROVAS['ueg-medicina-2026-1']['suporte'] + [r'(?i)^Leia e observe']
+# transcrição com fórmula ou parágrafos partidos: fica o print
+PROVAS['unespar-2023']['sem_transcricao'] = (33,)
+PROVAS['unemat-2026-1']['sem_transcricao'] = (6, 13, 27)
+PROVAS['unemat-2023']['sem_transcricao'] = (28, 35)
+PROVAS['unimontes-2024']['sem_transcricao'] = (15,)

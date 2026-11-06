@@ -156,7 +156,7 @@ Integradas e classificadas (matéria, tema, conteúdo, nível; sem resolução),
 | Prova | Questões válidas | Observação |
 |---|---|---|
 | UFSM 2025 | 119 | Provas 1, 2 e 3 (aqui 1–40, 41–80, 81–120). 88 anulada. Língua: inglês (quadro "Língua Inglesa" do gabarito, lido pela posição na página). |
-| UFSM 2026 | 119 | 48 anulada. Prova 3: só 38–39 são de língua; a 40 é comum. |
+| UFSM 2026 | 119 | 48 anulada. Prova 3: 38–40 são de língua (a 40 tem enunciado em português sobre o texto em inglês; o gabarito dá E no espanhol e D no inglês — vale D). |
 | UNEMAT 2022/2 | 35 | A–E. No gabarito o espanhol vem antes do inglês. |
 | UNEMAT 2023 | 32 | 5, 9 e 27 anuladas. Espanhol antes do inglês no gabarito. |
 | UNEMAT 2024/1 | 34 | 32 anulada. |

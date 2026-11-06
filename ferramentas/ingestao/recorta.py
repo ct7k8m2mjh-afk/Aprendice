@@ -544,6 +544,12 @@ def eventos_do_pdf(pdf, cfg, faixa=None):
                         if M['bbox'][1] < topo_b - 1 and topo_b - M['bbox'][3] < 6 and M['bbox'][1] < y0:
                             topo_b = M['bbox'][1]
                     if acima and topo_b < y0:
+                        # figura ao lado do parágrafo que começa um pouco acima dele (sem invadir a questão anterior)
+                        fim_ant = max([M['bbox'][3] for M in lp if M['bbox'][3] < topo_b - 1] or [0])
+                        for im_ in pg.get_image_info():
+                            bx = im_['bbox']
+                            if bx[0] > x1 and bx[1] < topo_b and bx[3] > topo_b and bx[1] > fim_ant + 2:
+                                topo_b = bx[1]
                         y0 = topo_b
                 ev.append({'p': pi, 'c': c, 'y': y0, 'tipo': 'q', 'n': int(m.group(1))})
                 continue
@@ -881,6 +887,10 @@ def render(pdf, segs, marcas=None, coloridos=None, apagar=None):
     return out
 
 
+NOME_MATERIA = {'bio': 'Biologia', 'qui': 'Química', 'mat': 'Matemática', 'por': 'Língua Portuguesa', 'fis': 'Física',
+                'geo': 'Geografia', 'his': 'História', 'fs': 'Filosofia e Sociologia', 'ing': 'Inglês'}
+
+
 def apara(im):
     """Corta faixas brancas em cima e embaixo (mantém margem lateral, para não deslocar o texto)."""
     bg = Image.new('RGB', im.size, 'white')
@@ -1076,6 +1086,9 @@ def processa(pid, amostra=False, so_texto=False):
     destino = SAIDA / pid
     import shutil
     anteriores = {}
+    cls_anterior = {}   # classificação já feita (para 'area_da_materia')
+    if cfg.get('area_da_materia') and (destino / 'prova.json').exists():
+        cls_anterior = {q['n']: q for q in json.loads((destino / 'prova.json').read_text())['questoes']}
     if so_texto:   # refaz só a transcrição, reaproveitando os prints já gerados
         anteriores = {q['n']: q for q in json.loads((destino / 'prova.json').read_text())['questoes']}
     elif (destino / 'q').exists():
@@ -1111,6 +1124,12 @@ def processa(pid, amostra=False, so_texto=False):
         cfg['_arquivo'] = cad['arquivo']
         apaga = apagaveis(pdf, cfg)
         ev = eventos_do_pdf(pdf, cfg, faixa_pag)
+        if cfg.get('ancora_dy'):
+            # fração no alto da 1ª linha ("Se x = (√5 − √2)/2"): o numerador fica acima da linha da âncora; a questão
+            # começa mais acima (e a anterior termina antes dele). Chave: número da questão no site.
+            for e in ev:
+                if e['tipo'] == 'q' and e['n'] + cad.get('deslocamento', 0) in cfg['ancora_dy']:
+                    e['y'] += cfg['ancora_dy'][e['n'] + cad.get('deslocamento', 0)]
         if cad.get('sem_suporte'):   # caderno em que os textos vêm dentro da questão, depois do número
             ev = [e for e in ev if e['tipo'] != 'suporte']
         if cfg.get('suporte_interno'):
@@ -1314,11 +1333,17 @@ def processa(pid, amostra=False, so_texto=False):
             if not so_texto and (not amostra or len(questoes) < 6):
                 img.save(destino / 'q' / f'{n:03d}.webp', 'WEBP', quality=80, method=6)
             # questão só de texto: transcrição fiel da camada de texto (nunca com figura, fórmula ou OCR)
-            estr = transcreve(pdf, sup + segs, cfg['ancora'], tuple(cfg.get('corte', [])) + tuple(cfg.get('fim', [])) + tuple(cfg.get('apagar', [])),
+            # 'sem_transcricao': True (prova toda) ou números do site — a transcrição não fica fiel: fica o print
+            st = cfg.get('sem_transcricao')
+            estr = None if (st is True or (st and n in st)) else transcreve(pdf, sup + segs, cfg['ancora'], tuple(cfg.get('corte', [])) + tuple(cfg.get('fim', [])) + tuple(cfg.get('apagar', [])),
                               cfg.get('alternativas', 5), ocr=id(pdf) in _OCR)
             g = gab.get(n)
+            area_q = cfg['area'](n) if cfg.get('area_do_gabarito') else (secao or cfg['area'](n))
+            if cfg.get('area_da_materia') and (cls_anterior.get(n) or {}).get('materia'):
+                # caderno sem títulos de matéria: a área do simulado vem da matéria já classificada da questão
+                area_q = NOME_MATERIA.get(cls_anterior[n]['materia'], area_q)
             questoes[n] = {
-                'n': n, 'area': cfg['area'](n) if cfg.get('area_do_gabarito') else (secao or cfg['area'](n)), 'gab': g,
+                'n': n, 'area': area_q, 'gab': g,
                 'paginas': sorted({p + 1 for p, _ in segs}), 'caderno': cad['arquivo'],
                 'texto': texto(pdf, sup + segs),
                 'print': f'q/{n:03d}.webp', 'larg': img.width, 'alt': img.height,

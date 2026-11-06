@@ -70,12 +70,14 @@ describe.skipIf(!TEMAS.length)('conteúdo de docs/revisao', () => {
   for (const { m, t } of TEMAS) {
     describe(`${m}/${t.id}`, () => {
       const todos = Object.entries(t.slides).flatMap(([sub, l]) => l.map((s, k) => ({ sub, k, s })));
-      it('só conteúdos que existem no site (pendências não viram id)', () => {
+      it('conteúdo que não existe no site só como proposta das pendências (não vira id; o site ignora)', () => {
         const arq = join(RAIZ, 'app', 'public', 'conteudo', m, 'materia.json');
         if (!existsSync(arq)) return;
         const mod = (JSON.parse(readFileSync(arq, 'utf-8')).modulos as { id: string; subs: { id: string }[] }[]).find((x) => x.id === t.id);
         expect(mod, t.id).toBeTruthy();
-        for (const sub of Object.keys(t.slides)) expect(mod!.subs.map((x) => x.id), sub).toContain(sub);
+        const ids = mod!.subs.map((x) => x.id);
+        for (const sub of Object.keys(t.slides)) if (!ids.includes(sub)) expect((t.pendencias || []).join(' '), sub).toContain(sub);
+        expect(Object.keys(t.slides).some((sub) => ids.includes(sub))).toBe(true);
       });
       it('cada conteúdo tem cartão e slides; fixe com 3 linhas', () => {
         for (const sub of Object.keys(t.slides)) {
@@ -94,7 +96,8 @@ describe.skipIf(!TEMAS.length)('conteúdo de docs/revisao', () => {
         for (const x of tex) {
           const ls = analisaLatex(x);
           const txt = ls.map(textoDe).join('\n');
-          expect(txt, x).not.toMatch(/\\|[{}^_]/);
+          // "\_\_\_" é a lacuna de uma frase (Inglês): o sublinhado fica
+          expect(txt, x).not.toMatch(x.includes('\\_') ? /\\|[{}^]/ : /\\|[{}^_]/);
           expect(ls.reduce((a, l) => a + temFrac(l), 0), x).toBe((x.match(/\\[dt]?frac/g) || []).length);
         }
       });
