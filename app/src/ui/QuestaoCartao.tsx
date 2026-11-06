@@ -60,14 +60,94 @@ function EnunciadoTexto({ q }: { q: Questao }) {
   );
 }
 
+/** Largura do print (regra do protótipo, app-atual/design/materia.js: ajustaPrint). Acima de 700 px:
+ *  - se o print inteiro + letras + Confirmar cabem na altura da tela sem o print ficar menor que 90% do tamanho natural,
+ *    ele estreita para caber sem rolar;
+ *  - nunca passa de 1,3x o tamanho natural (1,05x quando a escala da letra foi medida): um print estreito não vira letra gigante;
+ *  - senão fica na largura da coluna e a linha A–E + Confirmar fica presa ao pé da tela.
+ *  A largura vai em --q-pw no cartão: o print fica centrado e a linha da resposta acompanha a largura dele. */
+/** Distância entre as linhas do texto do print, em pixels naturais (0 se não der para medir). Os prints vêm de fontes com
+ *  escalas muito diferentes (scan com ~28 px por linha, cadernos com ~10 px); com ela o print é mostrado numa escala em que
+ *  a letra fica perto do mesmo tamanho em qualquer fonte. Mediana da distância entre os inícios de linhas escuras. */
+const PASSO = new Map<string, number>();
+function passoDasLinhas(img: HTMLImageElement): number {
+  const k = img.currentSrc || img.src;
+  const ja = PASSO.get(k);
+  if (ja !== undefined) return ja;
+  let passo = 0;
+  try {
+    const nW = img.naturalWidth, W = Math.min(nW, 900), H = Math.round((W * img.naturalHeight) / nW);
+    if (H > 0 && H <= 4000) {
+      const cv = document.createElement('canvas'); cv.width = W; cv.height = H;
+      const cx = cv.getContext('2d', { willReadFrequently: true });
+      if (cx) {
+        cx.drawImage(img, 0, 0, W, H);
+        const px = cx.getImageData(0, 0, W, H).data, minimo = Math.max(3, W * 0.012);
+        const inicios: number[] = [], alturas: number[] = [];
+        let naLinha = false, y0 = 0;
+        for (let y = 0; y < H; y++) {
+          let escuros = 0;
+          for (let x = 0; x < W; x += 2) { const o = (y * W + x) * 4; if (px[o] * 0.299 + px[o + 1] * 0.587 + px[o + 2] * 0.114 < 150) escuros += 2; }
+          if (escuros >= minimo && !naLinha) { naLinha = true; y0 = y; inicios.push(y); }
+          else if (escuros < minimo && naLinha) { naLinha = false; alturas.push(y - y0); }
+        }
+        if (inicios.length >= 4) {
+          alturas.sort((a, b) => a - b);
+          const hMed = alturas[alturas.length >> 1] || 1;
+          const difs = inicios.slice(1).map((v, i) => v - inicios[i]).filter((v) => v > hMed * 1.05 && v < hMed * 2.6).sort((a, b) => a - b);
+          if (difs.length >= 3) passo = (difs[difs.length >> 1] * nW) / W;
+        }
+      }
+    }
+  } catch { passo = 0; }   // imagem de outra origem: sem medida, escala 1
+  PASSO.set(k, passo);
+  return passo;
+}
+
+function useLarguraPrint(pr: HTMLDivElement | null, src: string | null) {
+  useEffect(() => {
+    const cartao = pr?.closest<HTMLElement>('.q-cartao');
+    const img = pr?.querySelector('img');
+    if (!pr || !cartao || !img) return;
+    let respMax = 0, atual = 0;
+    const tira = () => { atual = 0; cartao.style.removeProperty('--q-pw'); };
+    const ajusta = () => {
+      const resp = cartao.querySelector<HTMLElement>('.q-resp');
+      if (innerWidth <= 700 || !img.naturalWidth || !img.naturalHeight || resp?.classList.contains('com-texto')) { tira(); return; }
+      const cs = getComputedStyle(cartao);
+      const col = cartao.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+      // a altura da resposta depende da largura do print e vice-versa: usar a maior já vista nesta questão evita oscilar
+      respMax = Math.max(respMax, resp ? resp.offsetHeight : 0);
+      const pe = pr.querySelector<HTMLElement>('.q-print-pe');
+      const topo = pr.getBoundingClientRect().top + scrollY;
+      const baixo = (resp ? respMax + 14 : 0) + (pe ? pe.offsetHeight : 0) + 8;
+      // largura "natural" na escala de letra comum (linha de ~25 px); com escala medida, o teto é 1,05x em vez de 1,3x
+      const passo = passoDasLinhas(img), esc = passo ? Math.max(0.55, Math.min(1.9, 25 / passo)) : 1;
+      const nw = img.naturalWidth * esc, ar = img.naturalWidth / img.naturalHeight;
+      const cabe = (innerHeight - topo - baixo) * ar, alvo = Math.min(col, (esc !== 1 ? 1.05 : 1.3) * nw);
+      const pw = Math.max(320, Math.round(cabe >= 0.9 * nw ? Math.min(cabe, alvo) : alvo));
+      if (pw >= col - 1) { tira(); return; }
+      if (!atual || Math.abs(pw - atual) > 24) { atual = pw; cartao.style.setProperty('--q-pw', pw + 'px'); }   // sem tremer por poucos pixels
+    };
+    ajusta();
+    img.addEventListener('load', ajusta);
+    addEventListener('resize', ajusta);
+    const ro = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(() => ajusta()) : null;
+    ro?.observe(cartao);
+    return () => { img.removeEventListener('load', ajusta); removeEventListener('resize', ajusta); ro?.disconnect(); tira(); };
+  }, [pr, src]);
+}
+
 /** Print fiel da questão original. Sistema do protótipo: etiquetas no topo do cartão (nível, fonte, conteúdo) com o marcador
  *  à direita; o print em papel branco com o pé "Ampliar" e a fonte original (link). */
 export function EnunciadoQuestao({ m, q, numero, print, antes, depois, acao }: { m?: MateriaId; q: Questao; numero?: string; print?: string | null; antes?: ReactNode; depois?: ReactNode; acao?: ReactNode }) {
   const [lupa, setLupa] = useState(false);
   const [txt, setTxt] = useState(false);
   const [original, setOriginal] = useState(false);
+  const [prEl, setPrEl] = useState<HTMLDivElement | null>(null);
   useEffect(() => setOriginal(false), [q.id]);
   const src = print !== undefined ? print : m ? urlPrint(m, q.id) : null;
+  useLarguraPrint(prEl, src);
   const alt = textoAlternativo(q);
   const fonte = `${q.escola} ${q.ano}`;
   const detalhe = [q.fase, q.n ? `questão ${q.n}` : '', q.banca && q.banca !== q.escola ? q.banca : ''].filter(Boolean).join(' · ');
@@ -86,7 +166,7 @@ export function EnunciadoQuestao({ m, q, numero, print, antes, depois, acao }: {
           {src && <button className="q-ver-txt" onClick={() => setOriginal(true)}><Icone nome="arquivo" tam={15} /> Ver a questão original (print da prova)</button>}
         </>
       ) : src ? (
-        <div className="q-print">
+        <div className="q-print" ref={setPrEl}>
           <button className="q-print-img" onClick={() => setLupa(true)} aria-label="Ampliar a questão">
             <img src={src} alt={alt} />
           </button>

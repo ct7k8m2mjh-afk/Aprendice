@@ -91,7 +91,7 @@ export function Desempenho() {
             </Link>
           ))}
         </section>
-        <div style={{ display: 'grid', gap: 16, alignContent: 'start' }}>
+        <div className="desemp-dir">
           <section className={`bloco m-${mSel}`}>
             <h2 className="sec-tit">Por nível em {nomeMateria(mSel)}</h2>
             {niveis.map((d) => (

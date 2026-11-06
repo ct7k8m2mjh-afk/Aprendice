@@ -7,8 +7,9 @@ import { atualiza, atualizaMateria, useEstado } from '../estado/loja';
 import { planoDaProva, type PlanoSimulado } from '../logica/simulados';
 import { Carregando, formataTempo, plural, useTitulo } from '../ui/comum';
 import { Icone } from '../ui/Icone';
-import { Certeza, EnunciadoQuestao, RespostaCartao, mostraPainel, type Conf } from '../ui/QuestaoCartao';
+import { BotaoTelaCheia, Certeza, EnunciadoQuestao, RespostaCartao, mostraPainel, type Conf } from '../ui/QuestaoCartao';
 import { ResolucaoView } from '../ui/Resolucao';
+import { defineTelaCheia } from '../ui/telaCheia';
 import type { Letra, MateriaId, Questao, Resolucao } from '../dados/tipos';
 import type { ItemSimulado, SimuladoAndamento, SimuladoFeito } from '../estado/tipos';
 
@@ -186,6 +187,7 @@ export function SimuladoExec() {
       else if (ev.key === 'ArrowLeft') vai(sim.i - 1);
       else if (ev.key === 'Enter') { ev.preventDefault(); if (sim.modo === 'treino' && escolha && !revelado) setRevelado(true); else if (sim.i < sim.itens.length - 1) vai(sim.i + 1); else setConfirmaFim(true); }
       else if (k === 'P') pausa(true);
+      else if (ev.key === 'Escape') defineTelaCheia(false);
     };
     addEventListener('keydown', f);
     return () => removeEventListener('keydown', f);
@@ -204,7 +206,7 @@ export function SimuladoExec() {
         <div className="q-barq">
           <span className="g" aria-hidden><Icone nome="arquivo" /></span>
           <span className="n">{sim.titulo}</span>
-          <span className="t num">Questão <b>{sim.i + 1}</b> de {sim.itens.length} · {respondidas} respondidas</span>
+          <span className="t num"><span className="lg">Questão </span><b>{sim.i + 1}</b> de {sim.itens.length} · {respondidas} <span className="lg">respondidas</span><span className="cu">resp.</span></span>
           <span className="p" aria-hidden><i style={{ width: `${((sim.i + 1) / sim.itens.length) * 100}%` }} /></span>
         </div>
         <button className="btn sec peq folha-btn" onClick={() => mostraPainel()}><Icone nome="lista" tam={16} /><span>Folha de respostas</span></button>
@@ -212,6 +214,7 @@ export function SimuladoExec() {
           <Icone nome="pausa" tam={15} />{restante !== null ? formataTempo(restante) : formataTempo(sim.usadoSeg)}
         </button>
         <button className="btn peq" onClick={() => setConfirmaFim(true)}>Entregar</button>
+        <BotaoTelaCheia />
       </div>
 
       {sim.pausado ? (

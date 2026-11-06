@@ -5,10 +5,11 @@ import { materia as infoMateria } from '../dados/materias';
 import { atualizaMateria, pegaEstado, useMateriaEstado } from '../estado/loja';
 import { cartoesAtivos } from '../logica/estatisticas';
 import { flashVencido, marcaFlash } from '../logica/revisao';
-import { Carregando, plural, useTitulo } from '../ui/comum';
+import { Barra, Carregando, Ic3D, cap, plural, useTitulo } from '../ui/comum';
 import { Icone, type NomeIcone } from '../ui/Icone';
 import { BotaoTelaCheia } from '../ui/QuestaoCartao';
 import { FlashcardView, type Nota } from '../ui/Cartoes';
+import { CabMateria } from './Materia';
 import type { Flashcard, MateriaId } from '../dados/tipos';
 
 const N_SESSAO = 20;
@@ -24,6 +25,7 @@ export function Flashcards({ sessao = false }: { sessao?: boolean }) {
   const mc = useMateria(m);
   const s = useMateriaEstado(m);
   const [mod, setMod] = useState(qs.get('mod') || '');
+  const [area, setArea] = useState(qs.get('area') || '');
   useTitulo('Flashcards');
 
   const todos = useMemo(() => (mc ? [...mc.conteudo.flash, ...mc.conteudo.flashImg].filter((c) => !(EH_PREVIA && c.img)) : []), [mc]);
@@ -38,7 +40,8 @@ export function Flashcards({ sessao = false }: { sessao?: boolean }) {
     if (fila.length) return fila;
     const um = qs.get('c');
     const est = pegaEstado().materias[m] || s;
-    const base = ativos.filter((c) => !qs.get('mod') || c.mod === qs.get('mod'));
+    const daArea = mc.conteudo.areas.find((a) => a.id === qs.get('area'))?.mods;
+    const base = ativos.filter((c) => (!qs.get('mod') || c.mod === qs.get('mod')) && (!daArea || daArea.includes(c.mod)));
     const venc = base.filter((c) => flashVencido(est.flash[c.id])).sort((a, b) => est.flash[a.id].vence - est.flash[b.id].vence);
     const novos = base.filter((c) => !est.flash[c.id]?.hist?.length).sort((a, b) => (b.peso || 0) - (a.peso || 0));
     const l = (um ? [um] : []).concat([...venc, ...novos].map((c) => c.id).filter((x) => x !== um)).slice(0, N_SESSAO);
@@ -51,31 +54,70 @@ export function Flashcards({ sessao = false }: { sessao?: boolean }) {
   const info = infoMateria(m)!;
 
   if (!sessao) {
-    const filtrados = ativos.filter((c) => !mod || c.mod === mod);
+    // lista (sistema do protótipo): cabeçalho da matéria, capa lavada com os números e Começar, folha "Área" e folha "Tema"
+    const areas = mc.conteudo.areas.filter((a) => ativos.some((c) => a.mods.includes(c.mod)));
+    const modsArea = areas.find((a) => a.id === area)?.mods;
+    const naArea = ativos.filter((c) => !modsArea || modsArea.includes(c.mod));
+    const filtrados = naArea.filter((c) => !mod || c.mod === mod);
     const venc = filtrados.filter((c) => flashVencido(s.flash[c.id])).length;
     const novos = filtrados.filter((c) => !s.flash[c.id]?.hist?.length).length;
-    const mods = [...new Set(todos.map((c) => c.mod))].sort();
+    const firmes = filtrados.filter((c) => (s.flash[c.id]?.etapa || 0) >= 2).length;
+    const temas = mc.conteudo.modulos.filter((x) => naArea.some((c) => c.mod === x.id));
     const ocultos = todos.filter((c) => s.flg[c.id]?.g === -1).length;
+    const nSessao = Math.min(N_SESSAO, venc + novos);
+    const params = new URLSearchParams({ ...(area ? { area } : {}), ...(mod ? { mod } : {}) }).toString();
+    const escolheArea = (a: string) => { setArea(a); setMod(''); };
     return (
-      <div className={`conteudo estreito m-${m}`}>
-        <nav className="migalhas"><Link to={`/m/${m}`}>{info.nome}</Link><Icone nome="direita" tam={14} /><span>Flashcards</span></nav>
-        <div className="titulo-pag"><div><h1>Flashcards de {info.nome}</h1><p className="sub">Pergunta curta no estilo das discursivas, resposta em uma frase. Você escreve, o site corrige e você confirma.</p></div></div>
-        <div className="fl-resumo folha">
-          <div><b className="num">{venc}</b><span>para revisar hoje</span></div>
-          <div><b className="num">{novos}</b><span>novos</span></div>
-          <div><b className="num">{filtrados.length}</b><span>no total</span></div>
-          <button className="btn grande" disabled={!venc && !novos} onClick={() => nav(`/m/${m}/flashcards/sessao${mod ? `?mod=${mod}` : ''}`)}>
-            {venc ? 'Revisar agora' : novos ? 'Começar sessão' : 'Tudo em dia'} <Icone nome="direita" />
-          </button>
-        </div>
-        <section className="secao">
-          <h2 className="sec-tit">Filtrar por tema</h2>
-          <div className="chips">
-            <button className="chip" aria-pressed={!mod} onClick={() => setMod('')}>Todos</button>
-            {mods.map((x) => <button key={x} className="chip" aria-pressed={mod === x} onClick={() => setMod(x)}>{mc.conteudo.modulos.find((y) => y.id === x)?.nome || x}</button>)}
+      <div className={`conteudo m-${m}`}>
+        <CabMateria m={m} nome={info.nome} titulo={false} sub={`${plural(mc.conteudo.modulos.length, 'tema', 'temas')} · questões reais, todas com a fonte`} />
+        <section className="tp-capa fl-capa" aria-labelledby="fl-tit">
+          <div className="fl-capa-g">
+            <div className="fl-capa-txt">
+              <h1 id="fl-tit">Flashcards</h1>
+              <p>Pergunta curta no estilo das discursivas, resposta em uma frase. Você escreve, o site corrige e você confirma: vale a ideia, não a frase exata.</p>
+            </div>
+            <div className="fl-resumo" aria-label="Seus cartões">
+              <div className="ven"><b className="num">{venc}</b><span>para revisar hoje</span></div>
+              <div><b className="num">{novos}</b><span>{novos === 1 ? 'novo' : 'novos'}</span></div>
+              <div><b className="num">{firmes}</b><span>{firmes === 1 ? 'firme' : 'firmes'}</span></div>
+            </div>
+          </div>
+          <div className="tp-acoes">
+            <button className="btn tp-comecar" disabled={!nSessao} onClick={() => nav(`/m/${m}/flashcards/sessao${params ? `?${params}` : ''}`)}>
+              <Icone nome="cartas" /> {venc ? 'Revisar agora' : novos ? 'Começar' : 'Tudo em dia'}
+            </button>
+            <p className="tp-comp num">{nSessao ? `${plural(nSessao, 'cartão', 'cartões')} nesta sessão` : 'Volte amanhã para a revisão dos que você já viu.'}</p>
           </div>
         </section>
-        <p className="fraco" style={{ marginTop: 24, fontSize: 14 }}>Intervalos de revisão: 1, 3, 7, 16, 35 e 80 dias. “Quase” volta amanhã; “Errei” volta hoje.{ocultos ? ` ${plural(ocultos, 'cartão tirado', 'cartões tirados')} por “Não curti”.` : ''}</p>
+        {areas.length > 1 && (
+          <section className="tp-bloco fl-bloco" aria-labelledby="fl-area">
+            <h2 className="tp-h" id="fl-area">Área <small className="num">{plural(ativos.length, 'cartão', 'cartões')} em {info.nome}</small></h2>
+            <div className="fl-areas" role="group" aria-label="Filtrar por área">
+              <button className="fl-area" aria-pressed={!area} onClick={() => escolheArea('')}><span className="fl-area-ic"><Icone nome="cartas" /></span>Todas</button>
+              {areas.map((a) => <button key={a.id} className="fl-area" aria-pressed={area === a.id} onClick={() => escolheArea(a.id)}><Ic3D m={m} chave={a.mods[0]} tam={28} />{a.nome}</button>)}
+            </div>
+          </section>
+        )}
+        <section className="tp-bloco fl-bloco" aria-labelledby="fl-tema">
+          <h2 className="tp-h" id="fl-tema">Tema <small>{mod ? mc.conteudo.modulos.find((x) => x.id === mod)?.nome : 'todos'}</small></h2>
+          <div className="fl-temas" role="group" aria-label="Filtrar por tema">
+            <button className="fl-tema" aria-pressed={!mod} onClick={() => setMod('')}>
+              <span className="fl-tema-ic"><Icone nome="camadas" /></span>
+              <span className="t"><b>Todos os temas</b><small className="num">{plural(naArea.length, 'cartão', 'cartões')}</small></span>
+            </button>
+            {temas.map((x) => {
+              const l = naArea.filter((c) => c.mod === x.id);
+              const fm = l.filter((c) => (s.flash[c.id]?.etapa || 0) >= 2).length;
+              return (
+                <button key={x.id} className="fl-tema" aria-pressed={mod === x.id} onClick={() => setMod(x.id)}>
+                  <Ic3D m={m} chave={x.id} tam={36} />
+                  <span className="t"><b>{x.nome}</b><small className="num">{plural(l.length, 'cartão', 'cartões')} · {plural(fm, 'firme', 'firmes')}</small><Barra valor={l.length ? fm / l.length : 0} rotulo={`Cartões firmes em ${x.nome}`} /></span>
+                </button>
+              );
+            })}
+          </div>
+        </section>
+        <p className="fraco fl-nota">Intervalos de revisão: 1, 3, 7, 16, 35 e 80 dias. “Quase” volta amanhã; “Errei” volta hoje.{ocultos ? ` ${plural(ocultos, 'cartão tirado', 'cartões tirados')} por “Não curti”.` : ''}</p>
       </div>
     );
   }
@@ -117,7 +159,7 @@ export function Flashcards({ sessao = false }: { sessao?: boolean }) {
         <BotaoTelaCheia />
       </div>
       <div className="q-corpo">
-        {c && <FlashcardView m={m} c={c} todos={todos} aoNotar={(n, origem) => { notaFlash(m, c.id, n, origem); setRes((r) => ({ ...r, [c.id]: n })); setI((k) => k + 1); }} />}
+        {c && <FlashcardView m={m} c={c} todos={todos} tema={mc.conteudo.modulos.find((x) => x.id === c.mod)?.nome} conteudo={cap(mc.conteudo.modulos.find((x) => x.id === c.mod)?.subs.find((x) => x.id === c.sub)?.nome || '') || undefined} aoNotar={(n, origem) => { notaFlash(m, c.id, n, origem); setRes((r) => ({ ...r, [c.id]: n })); setI((k) => k + 1); }} />}
       </div>
     </div>
   );

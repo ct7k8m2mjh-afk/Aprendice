@@ -26,13 +26,12 @@ import { useEffect } from 'react';
 function Rotas() {
   const e = useEstado();
   const loc = useLocation();
-  // sistema do protótipo: o menu continua visível no estudo; some só na "Tela cheia" escolhida pelo aluno
-  // e no simulado em andamento (prova cronometrada, tela de foco)
+  // sistema do protótipo: o menu continua visível no estudo e no simulado em andamento; some só na "Tela cheia" escolhida pelo aluno
   const telaCheia = useTelaCheia();
-  const estudo = /^\/m\/\w+\/(q|treino)/.test(loc.pathname) || loc.pathname.includes('/flashcards/sessao');
+  const estudo = /^\/m\/\w+\/(q|treino)/.test(loc.pathname) || loc.pathname.includes('/flashcards/sessao') || loc.pathname.startsWith('/simulado/agora');
   useEffect(() => { if (!estudo) defineTelaCheia(false); }, [estudo]);
   if (!e.perfil && loc.pathname !== '/boas-vindas') return <Navigate to="/boas-vindas" replace />;
-  const foco = loc.pathname.startsWith('/simulado/agora') || (estudo && telaCheia);
+  const foco = estudo && telaCheia;
   if (loc.pathname === '/boas-vindas') return <BoasVindas />;
   // endereços antigos de Filosofia (/m/fil) e de Sociologia (/m/soc) levam à matéria unida, com o resto do caminho
   const antiga = loc.pathname.match(/^\/m\/(fil|soc)(\/.*)?$/);

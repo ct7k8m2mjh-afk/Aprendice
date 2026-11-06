@@ -56,38 +56,52 @@ export function Simulados() {
             </div>
           )}
           {eds.length > 0 && so === 'alvo' && !daAlvo.length && <p className="miolo" style={{ marginBottom: 16 }}>Suas provas-alvo ainda não têm prova completa. Mostrando todas.</p>}
-          {ordemGrupos.map(([escola, l]) => {
-            const cat = provaPorId(l[0].catalogoId);
-            return (
-              <section key={escola} className="grupo-prova">
-                <div className="cab-sec"><div><h2 style={{ fontSize: 20 }}>{escola}</h2>{cat && <p className="fraco" style={{ fontSize: 14 }}>{cat.instituicao}{l[0].banca ? ` · banca ${l[0].banca}` : ''} · {plural(l.length, 'prova', 'provas')}</p>}</div>
-                  {cat && <Link to={`/provas/${cat.id}`}>Sobre a prova <Icone nome="direita" tam={16} /></Link>}</div>
-                <div className="grade g3">
-                  {l.map((ed) => {
-                    const feito = feitos.filter((x) => x.sid === 'prova:' + ed.id).sort((a, b) => b.ts - a.ts)[0];
-                    return (
-                      <Link key={ed.id} to={`/simulados/prova/${encodeURIComponent(ed.id)}`} className="cartao-sim">
-                        <b className="cs-titulo">{ed.titulo}</b>
-                        <span className="num">{plural(ed.questoes, 'questão', 'questões')}{ed.duracao_horas ? ` · ${String(ed.duracao_horas).replace('.', ',')} h` : ''}</span>
-                        <span className="cs-mats">{Object.keys(ed.areas).slice(0, 6).map((a) => <span key={a}><i className="ponto" />{a}</span>)}{Object.keys(ed.areas).length > 6 ? <span>+{Object.keys(ed.areas).length - 6}</span> : null}</span>
-                        {feito && <span className="etq ok num">Feito · {feito.acertos}/{feito.total}</span>}
-                      </Link>
-                    );
-                  })}
-                </div>
-              </section>
-            );
-          })}
+          {ordemGrupos.length > 0 && (
+            <div className="bloco sim-folha">
+              {ordemGrupos.map(([escola, l]) => {
+                const cat = provaPorId(l[0].catalogoId);
+                return (
+                  <section key={escola} className="sim-grupo" aria-label={escola}>
+                    <div className="sim-grupo-cab">
+                      <div><h2>{escola}</h2>{cat && <p className="fraco">{cat.instituicao}{l[0].banca ? ` · banca ${l[0].banca}` : ''} · {plural(l.length, 'prova', 'provas')}</p>}</div>
+                      {cat && <Link className="link-sec" to={`/provas/${cat.id}`}>Sobre a prova <Icone nome="direita" tam={16} /></Link>}
+                    </div>
+                    {l.map((ed) => {
+                      const feito = feitos.filter((x) => x.sid === 'prova:' + ed.id).sort((a, b) => b.ts - a.ts)[0];
+                      return (
+                        <Link key={ed.id} to={`/simulados/prova/${encodeURIComponent(ed.id)}`} className="sim-linha cartao-sim">
+                          <span className="sim-ic" aria-hidden><Icone nome="arquivo" tam={26} /></span>
+                          <span className="sim-txt">
+                            <b className="cs-titulo">{ed.titulo}</b>
+                            <span className="num">{plural(ed.questoes, 'questão', 'questões')}{ed.duracao_horas ? ` · ${String(ed.duracao_horas).replace('.', ',')} h` : ''}</span>
+                            <span className="cs-mats">{Object.keys(ed.areas).slice(0, 6).map((a) => <span key={a}><i className="ponto" />{a}</span>)}{Object.keys(ed.areas).length > 6 ? <span>+{Object.keys(ed.areas).length - 6}</span> : null}</span>
+                          </span>
+                          <span className="sim-etq">{feito && <span className="etq ok num">Feito · {feito.acertos}/{feito.total}</span>}</span>
+                          <Icone nome="direita" className="sim-seta" />
+                        </Link>
+                      );
+                    })}
+                  </section>
+                );
+              })}
+            </div>
+          )}
           {!eds.length && (
             <div className="vazio" style={{ paddingTop: 12 }}>
               <h3>As provas completas estão chegando</h3>
               <p>Cada simulado é uma prova inteira, com todas as matérias, do jeito que caiu. Se esta lista não carregou, verifique a conexão e abra a página de novo.</p>
             </div>
           )}
-          <section className="secao">
-            <h2 className="sec-tit">Em preparação</h2>
-            <p className="fraco" style={{ fontSize: 14, margin: '0 0 10px' }}>Provas que ainda não entram como simulado, e o motivo.</p>
-            <div className="chips">{PROVAS_EM_PREPARO.map((p) => <Link key={p.titulo} to={`/provas/${p.catalogoId}`} className="chip" title={p.motivo}>{p.titulo}<span className="etq">{p.motivo}</span></Link>)}</div>
+          <section className="bloco sim-folha secao" aria-labelledby="sim-prep">
+            <div className="sim-grupo-cab"><div><h2 id="sim-prep">Em preparação</h2><p className="fraco">Provas que ainda não entram como simulado, e o motivo.</p></div></div>
+            {PROVAS_EM_PREPARO.map((p) => (
+              <Link key={p.titulo} to={`/provas/${p.catalogoId}`} className="sim-linha prep">
+                <span className="sim-ic" aria-hidden><Icone nome="relogio" tam={24} /></span>
+                <span className="sim-txt"><b>{p.titulo}</b><span>{p.motivo}</span></span>
+                <span className="sim-etq" />
+                <Icone nome="direita" className="sim-seta" />
+              </Link>
+            ))}
           </section>
           <p className="fraco" style={{ fontSize: 14, marginTop: 28 }}>Catálogo com {CATALOGO.length} vestibulares de todo o Brasil em <Link to="/provas">Provas e faculdades</Link>.</p>
         </>

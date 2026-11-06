@@ -5,6 +5,8 @@ import { corrigeComIA } from '../logica/ia';
 import { quandoVolta } from '../logica/revisao';
 import { atualizaMateria, useMateriaEstado } from '../estado/loja';
 import { urlFlashImg, EH_PREVIA } from '../dados/conteudo';
+import { Icone } from './Icone';
+import { Ic3D } from './comum';
 
 export type Nota = 'a' | 'q' | 'e';
 
@@ -55,7 +57,8 @@ export function BotoesNota({ aoNotar, sugestao, rec }: { aoNotar: (n: Nota) => v
 }
 
 /** Flashcard: pergunta curta no estilo das discursivas; o aluno escreve, o app corrige (local ou IA simulada) e ele confirma. */
-export function FlashcardView({ m, c, todos, aoNotar, usarIA = true }: { m: MateriaId; c: Flashcard; todos: Flashcard[]; aoNotar: (n: Nota, origem: string) => void; usarIA?: boolean }) {
+export function FlashcardView({ m, c, todos, aoNotar, usarIA = true, tema, conteudo }: { m: MateriaId; c: Flashcard; todos: Flashcard[]; aoNotar: (n: Nota, origem: string) => void; usarIA?: boolean;
+  /** nome do tema e do conteúdo do cartão: faixa no topo do cartão (sistema do protótipo) */ tema?: string; conteudo?: string }) {
   const s = useMateriaEstado(m);
   const corrige = useMemo(() => corretorDe(m, todos), [m, todos]);
   const [resp, setResp] = useState('');
@@ -80,16 +83,26 @@ export function FlashcardView({ m, c, todos, aoNotar, usarIA = true }: { m: Mate
 
   return (
     <article className="flashcard folha">
-      <div className="fc-topo"><span className="etq cor">{TIPO[c.tipo || (c.img ? 'imagem' : '')] || 'Flashcard'}</span></div>
+      {tema ? (
+        <div className="fc-faixa">
+          <Ic3D m={m} chave={c.sub || c.mod} tam={34} />
+          <span className="fc-faixa-nm"><b>{tema}</b>{conteudo && <span>{conteudo}</span>}</span>
+          <span className="fc-faixa-tg">
+            <span className="etq">{TIPO[c.tipo || (c.img ? 'imagem' : '')] || 'Flashcard'}</span>
+            {!s.flash[c.id]?.hist?.length && <span className="etq cor">Novo</span>}
+          </span>
+        </div>
+      ) : <div className="fc-topo"><span className="etq cor">{TIPO[c.tipo || (c.img ? 'imagem' : '')] || 'Flashcard'}</span></div>}
       {img && <img className="fc-img" src={img} alt="" />}
       <h2 className="fc-frente">{c.frente}</h2>
-      <label className="sr" htmlFor={'fc-' + c.id}>Sua resposta</label>
-      <textarea id={'fc-' + c.id} ref={inp} className="fc-resp" rows={2} value={resp} readOnly={fase !== 'pergunta'} placeholder="Escreva sua resposta em uma frase"
+      <label className="fc-lab" htmlFor={'fc-' + c.id}><Icone nome="caneta" tam={17} /> Sua resposta, com as suas palavras</label>
+      <textarea id={'fc-' + c.id} ref={inp} className="fc-resp" rows={3} value={resp} readOnly={fase !== 'pergunta'} placeholder="Escreva aqui o que você lembra"
         onChange={(e) => setResp(e.target.value)} onKeyDown={(e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); if (fase === 'pergunta') corrigir(); } }} />
       {fase === 'pergunta' && (
-        <div className="fc-acoes">
+        <div className="fc-acoes fc-acoes-ini">
+          <button className="btn fc-corr" onClick={() => corrigir()}><Icone nome="check" /> Corrigir</button>
           <button className="btn sec" onClick={() => corrigir(true)}>Não sei: ver a resposta</button>
-          <button className="btn" onClick={() => corrigir()}>Corrigir</button>
+          <span className="fc-tecla fraco">Enter corrige · Shift + Enter pula linha</span>
         </div>
       )}
       {fase === 'corrigindo' && <p className="fc-corrigindo fraco" role="status"><span className="giro-p" /> Corrigindo…</p>}
