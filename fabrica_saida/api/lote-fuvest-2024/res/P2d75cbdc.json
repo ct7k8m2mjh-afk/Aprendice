@@ -79,8 +79,8 @@
   "erradas": {
    "B": "12,00 sai de somar os percentuais como se fossem reais: 7 − 5 + 0 + 10 = 12. Cada porcentagem age sobre um custo diferente, então não se soma assim.",
    "C": "12,75 sai de tratar a variação de B como acréscimo: 9,80 + 1,75 + 1,20 = 12,75. O −5 % reduz o custo, então esses 1,75 devem ser subtraídos.",
-   "D": "36,00 não confere. Um aumento de 36 seria cerca de 16 % dos 226 reais do medicamento. O maior reajuste é 10 %, e 10 % de 226 dá só 22,60, então 36 é impossível.",
-   "E": "86,00 não confere. Seria um aumento de cerca de 38 % sobre os 226 reais atuais. Nenhum componente sobe mais que 10 %, então o aumento total não passa de 22,60."
+   "D": "36,00 sai de aplicar as porcentagens ao preço do grama, sem multiplicar pela quantidade: 0,07 × 700 − 0,05 × 500 + 0,10 × 120 = 49 − 25 + 12 = 36. A porcentagem age sobre o custo do componente no medicamento.",
+   "E": "86,00 sai de aplicar as porcentagens ao preço do grama e ainda somar a variação de B: 49 + 25 + 12 = 86. Há dois erros: faltou multiplicar pela quantidade, e o −5 % reduz o custo."
   },
   "armadilha": "Somar os percentuais (7 − 5 + 10 = 12) em vez de aplicar cada um ao custo do seu componente, depois de converter mg em g.",
   "alerta": "",
@@ -154,10 +154,28 @@
  "gab": "A",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "36,00 sai de aplicar as porcentagens ao preço do grama, sem multiplicar pela quantidade: 0,07 × 700 − 0,05 × 500 + 0,10 × 120 = 49 − 25 + 12 = 36. A porcentagem age sobre o custo do componente no medicamento.",
+    "motivo": "Existe um erro típico que chega exatamente a 36: aplicar o percentual direto ao R$/g da tabela I, sem converter nem multiplicar pela massa. O guia manda usar 'sai de' quando uma conta plausível chega ao valor.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "86,00 sai de aplicar as porcentagens ao preço do grama e ainda somar a variação de B: 49 + 25 + 12 = 86. Há dois erros: faltou multiplicar pela quantidade, e o −5 % reduz o custo.",
+    "motivo": "86 sai exatamente de 0,07 × 700 + 0,05 × 500 + 0,10 × 120. A origem é real e conferida, então a entrada não deve dizer 'não confere'.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "A"
  }
 }

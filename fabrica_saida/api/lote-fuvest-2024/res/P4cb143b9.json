@@ -49,7 +49,7 @@
     "faz": "Iguale as energias",
     "conta": "m × g × h = m × v² ÷ 2",
     "porque": "'Máxima velocidade' significa sem atrito: a energia mecânica se conserva do alto até o ponto mais baixo.",
-    "tipo": "aplicar"
+    "tipo": "calcular"
    },
    {
     "faz": "Cancele a massa e isole v",
@@ -74,7 +74,7 @@
   "checagem": "Confira pela unidade e pelo teste inverso: 7² ÷ 2 = 24,5 m²/s² e g × h = 10 × 2,45 = 24,5 m²/s². As energias por kg são iguais. Em queda livre de 2,45 m, o tempo é √(2 × 2,45 ÷ 10) = 0,7 s e v = 10 × 0,7 = 7 m/s, o mesmo valor.",
   "erradas": {
    "A": "3 m/s não confere: com v = 3, a energia cinética por kg seria 3² ÷ 2 = 4,5 J/kg, mas a potencial perdida é g × h = 24,5 J/kg. Daria uma altura de apenas 0,45 m, não 2,45 m.",
-   "B": "5 m/s não confere: com v = 5, a energia cinética por kg seria 25 ÷ 2 = 12,5 J/kg, bem menos que os 24,5 J/kg disponíveis. Isso corresponde a uma queda de 1,25 m, não de 2,45 m.",
+   "B": "B sai de esquecer o 2 de m × v² ÷ 2: v² = g × h = 10 × 2,45 = 24,5, e √24,5 ≈ 4,95 ≈ 5 m/s. Com o 2, v² = 49 e v = 7 m/s. Já 5 m/s exatos dariam só 12,5 J/kg, o que corresponde a uma queda de 1,25 m.",
    "D": "9 m/s não confere: com v = 9, a energia cinética por kg seria 81 ÷ 2 = 40,5 J/kg, mais que os 24,5 J/kg que a altura de 2,45 m fornece. Exigiria um desnível de 4,05 m, e o skatista não pode ganhar energia do nada.",
    "E": "11 m/s não confere: com v = 11, a energia cinética por kg seria 121 ÷ 2 = 60,5 J/kg, muito maior que os 24,5 J/kg disponíveis. Exigiria um desnível de 6,05 m."
   },
@@ -158,10 +158,28 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "calcular",
+    "motivo": "O tipo \"aplicar\" não está na lista permitida (localizar, calcular, comparar, eliminar, concluir). O passo monta a igualdade de energias que entra na conta, então o tipo certo é \"calcular\".",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "B sai de esquecer o 2 de m × v² ÷ 2: v² = g × h = 10 × 2,45 = 24,5, e √24,5 ≈ 4,95 ≈ 5 m/s. Com o 2, v² = 49 e v = 7 m/s. Já 5 m/s exatos dariam só 12,5 J/kg, o que corresponde a uma queda de 1,25 m.",
+    "motivo": "A resolução dizia que 5 m/s \"não confere\", mas existe um erro típico e real que leva a esse valor: esquecer o fator 2, que dá √24,5 ≈ 4,95 ≈ 5. O guia pede \"sai de…\" sempre que um erro real chega ao valor. Isso também combina com o \"cuidado\" do essencial, que já alerta para o fator 2.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C"
  }
 }

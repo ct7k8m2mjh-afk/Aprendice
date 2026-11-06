@@ -48,14 +48,14 @@
    {
     "faz": "Teste a hipótese recessiva",
     "conta": "Mulher afetada → pai tem de ser afetado",
-    "porque": "Mulher afetada por herança recessiva ligada ao X (XaXa) recebe um Xa do pai, que então teria o poder. Mortícia, Wandinha e as outras afetadas têm pais sem o poder. Isso elimina a recessiva ligada ao X. Na autossômica recessiva (aa), mãe afetada com pai sem poder (AA) geraria filhos todos sem poder, mas as filhas são afetadas.",
+    "porque": "Mulher afetada por herança recessiva ligada ao X (XaXa) recebe um Xa do pai, que então teria o poder. Mortícia, Wandinha e as outras afetadas têm pais sem o poder. Isso elimina a recessiva ligada ao X. Na autossômica recessiva com todos os homens AA, como diz a alternativa B, mãe afetada (aa) × pai AA geraria só filhos Aa, sem o poder. Mas as filhas são afetadas.",
     "tipo": "eliminar"
    },
    {
     "faz": "Aceite a hipótese dominante",
     "conta": "Mãe afetada → filhas afetadas",
-    "porque": "Filhas afetadas de pais sem o poder só se explicam se o alelo for dominante. A mãe afetada passa o alelo, a filha o recebe e o manifesta. Em Goody → filha → Mortícia → Wandinha, a mãe afetada tem filha afetada em cada geração.",
-    "tipo": "interpretar"
+    "porque": "Descartada a recessiva ligada ao X, a explicação mais simples para filhas afetadas de pais sem o poder é um alelo dominante: a mãe afetada passa o alelo, a filha o recebe e o manifesta. Em Goody → filha → Mortícia → Wandinha, a mãe afetada tem filha afetada em cada geração.",
+    "tipo": "comparar"
    },
    {
     "faz": "Conte os filhos homens das afetadas",
@@ -82,14 +82,14 @@
   "alerta": "",
   "essencial": {
    "pede": "O padrão de herança do poder da visão no heredograma.",
-   "chave": "Filha afetada de pai sem o poder descarta a recessiva. Afetadas só em mulheres e nenhum filho homem afetado indica dominante ligada ao X, letal em homens.",
+   "chave": "Filha afetada de pai sem o poder descarta a recessiva ligada ao X. Afetadas só em mulheres e nenhum filho homem afetado indicam dominante ligada ao X, letal em homens.",
    "cuidado": "Teste cada hipótese contra os cruzamentos do desenho, e não contra uma justificativa genérica como 'só em mulheres' ou 'aparece em todas as gerações'."
   }
  },
  "caminhos": [
   {
    "nome": "eliminação por cruzamento",
-   "ideia": "Afetadas de pais sem o poder descartam B, C e D (recessivas). Em A, a justificativa é falsa e os filhos homens deveriam aparecer afetados. Sobra E, a única que explica a ausência de homens afetados."
+   "ideia": "Afetadas de pais sem o poder descartam C e D (recessiva ligada ao X). B cai porque, com todos os homens AA, nenhuma filha de mulher aa seria afetada. Em A, a justificativa é falsa e os filhos homens deveriam aparecer afetados. Sobra E, a única que explica a ausência de homens afetados."
   },
   {
    "nome": "probabilidade",
@@ -126,7 +126,7 @@
   "cabe": true,
   "porque": "Mostrar o cruzamento XAXa × XaY ajuda a ver por que só nascem mulheres afetadas.",
   "tipo": "diagrama",
-  "roteiro": "Quadro 1: heredograma, com círculos pretos em todas as gerações e quadrados brancos em todos os homens. Quadro 2: o pai (quadrado) de uma afetada destacado, sem o poder, e a palavra 'recessiva?' riscada. Quadro 3: cruzamento XAXa × XaY em quatro caixas. Quadro 4: a caixa XAY escurece com um X vermelho, 'letal'. Quadro 5: restam XAXa (afetada), XaXa e XaY, batendo com o heredograma."
+  "roteiro": "Quadro 1: heredograma, com círculos pretos em todas as gerações e quadrados brancos em todos os homens. Quadro 2: o pai (quadrado) de uma afetada destacado, sem o poder, e a frase 'recessiva ligada ao X?' riscada. Quadro 3: cruzamento XAXa × XaY em quatro caixas. Quadro 4: a caixa XAY escurece com um X vermelho, 'letal'. Quadro 5: restam XAXa (afetada), XaXa e XaY, batendo com o heredograma."
  },
  "fontes": [],
  "confere": true,
@@ -135,10 +135,52 @@
  "gab": "E",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "Mulher afetada por herança recessiva ligada ao X (XaXa) recebe um Xa do pai, que então teria o poder. Mortícia, Wandinha e as outras afetadas têm pais sem o poder. Isso elimina a recessiva ligada ao X. Na autossômica recessiva com todos os homens AA, como diz a alternativa B, mãe afetada (aa) × pai AA geraria só filhos Aa, sem o poder. Mas as filhas são afetadas.",
+    "motivo": "Na autossômica recessiva em geral, o pai sem o poder pode ser Aa e ter filha aa. Ela só fica descartada se os homens forem AA, que é a premissa da alternativa B. O texto original apresentava AA como obrigatório.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Descartada a recessiva ligada ao X, a explicação mais simples para filhas afetadas de pais sem o poder é um alelo dominante: a mãe afetada passa o alelo, a filha o recebe e o manifesta. Em Goody → filha → Mortícia → Wandinha, a mãe afetada tem filha afetada em cada geração.",
+    "motivo": "A frase 'só se explicam se o alelo for dominante' é falsa em sentido estrito: a autossômica recessiva com pais Aa também explicaria essas filhas.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "comparar",
+    "motivo": "'interpretar' não é um tipo válido. Os tipos válidos são localizar, calcular, comparar, eliminar e concluir.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.essencial.chave",
+    "depois": "Filha afetada de pai sem o poder descarta a recessiva ligada ao X. Afetadas só em mulheres e nenhum filho homem afetado indicam dominante ligada ao X, letal em homens.",
+    "motivo": "Filha afetada de pai sem o poder descarta só a recessiva ligada ao X, não toda herança recessiva.",
+    "fonte": ""
+   },
+   {
+    "campo": "caminhos[0].ideia",
+    "depois": "Afetadas de pais sem o poder descartam C e D (recessiva ligada ao X). B cai porque, com todos os homens AA, nenhuma filha de mulher aa seria afetada. Em A, a justificativa é falsa e os filhos homens deveriam aparecer afetados. Sobra E, a única que explica a ausência de homens afetados.",
+    "motivo": "A afirmação de que pais sem o poder descartam a autossômica recessiva só vale com a premissa de B (homens AA).",
+    "fonte": ""
+   },
+   {
+    "campo": "visual.roteiro",
+    "depois": "Quadro 1: heredograma, com círculos pretos em todas as gerações e quadrados brancos em todos os homens. Quadro 2: o pai (quadrado) de uma afetada destacado, sem o poder, e a frase 'recessiva ligada ao X?' riscada. Quadro 3: cruzamento XAXa × XaY em quatro caixas. Quadro 4: a caixa XAY escurece com um X vermelho, 'letal'. Quadro 5: restam XAXa (afetada), XaXa e XaY, batendo com o heredograma.",
+    "motivo": "O pai sem o poder descarta a recessiva ligada ao X, não toda herança recessiva.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E"
  }
 }

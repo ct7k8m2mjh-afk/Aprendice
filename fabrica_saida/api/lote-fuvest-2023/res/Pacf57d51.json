@@ -8,7 +8,7 @@
  "conceito": "Ler uma tabela de fatores ambientais e identificar qual deles destoa na região mais degradada: o SO2 alto na atmosfera leva à chuva ácida.",
  "resolucao": {
   "antes": {
-   "texto": "A questão pede o fator que é pior na região I (muito degradada) do que na região II (pouco degradada). Só vale o fator em que a região I está em desvantagem. Fatores em que a região I está igual ou melhor não explicam a maior degradação. O SO2 (dióxido de enxofre) liberado na queima de combustíveis fósseis reage com a água da atmosfera e forma ácido sulfúrico, que cai como chuva ácida.",
+   "texto": "A questão pede o fator que é pior na região I (muito degradada) do que na região II (pouco degradada). Só vale o fator em que a região I está em desvantagem. Fatores em que a região I está igual ou melhor não explicam a maior degradação. O SO2 (dióxido de enxofre), liberado na queima de combustíveis fósseis, é oxidado na atmosfera e reage com a água, formando ácido sulfúrico, que cai como chuva ácida.",
    "formulas": [
     "SO2 + água da atmosfera → ácidos (ex.: ácido sulfúrico) → chuva ácida",
     "fator pior na região I = candidato a causa da maior degradação"
@@ -20,7 +20,7 @@
     ],
     [
      "CO2",
-     "gás carbônico, principal gás do efeito estufa"
+     "gás carbônico, principal gás do efeito estufa emitido pela atividade humana"
     ],
     [
      "déficit hídrico",
@@ -105,10 +105,31 @@
  "gab": "A",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "A questão pede o fator que é pior na região I (muito degradada) do que na região II (pouco degradada). Só vale o fator em que a região I está em desvantagem. Fatores em que a região I está igual ou melhor não explicam a maior degradação. O SO2 (dióxido de enxofre), liberado na queima de combustíveis fósseis, é oxidado na atmosfera e reage com a água, formando ácido sulfúrico, que cai como chuva ácida.",
+    "motivo": "O SO2 não forma ácido sulfúrico só com água. Com água ele forma ácido sulfuroso (H2SO3). O ácido sulfúrico (H2SO4) só se forma depois que o SO2 é oxidado a SO3. Isso também deixa o texto coerente com o roteiro do visual, que já cita o oxigênio.",
+    "fonte": "Química ambiental (Baird & Cann): SO2 + ½O2 → SO3; SO3 + H2O → H2SO4"
+   },
+   {
+    "campo": "resolucao.antes.simbolos[1]",
+    "depois": [
+     "CO2",
+     "gás carbônico, principal gás do efeito estufa emitido pela atividade humana"
+    ],
+    "motivo": "O vapor de água é quem mais contribui para o efeito estufa natural. O CO2 é o principal gás do efeito estufa de origem humana.",
+    "fonte": "IPCC AR6 WG1, cap. 7 (forçamento radiativo antropogênico dominado pelo CO2)"
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "A"
  }
 }

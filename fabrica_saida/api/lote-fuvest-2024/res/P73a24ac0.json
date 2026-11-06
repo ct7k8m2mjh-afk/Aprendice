@@ -8,7 +8,7 @@
  "conceito": "Relacionar a radiação ionizante a mutações no DNA de células somáticas (pele) e às feridas que isso causa. O trecho de Honwana serve só de contexto.",
  "resolucao": {
   "antes": {
-   "texto": "O trecho literário é só ambientação: o Cão Tinhoso tem feridas e o Quim as atribui à bomba atômica. A pergunta de fato é de Biologia: como a radiação ionizante lesa a pele? Ela tem energia suficiente para quebrar ligações químicas e danificar o DNA das células expostas. As células da pele (epiteliais) se dividem o tempo todo. Com o DNA danificado, o ciclo celular se altera: a célula pode morrer ou se multiplicar sem controle. O resultado é a ferida.",
+   "texto": "O trecho literário é só ambientação: o Cão Tinhoso tem feridas e o Quim as atribui à bomba atômica. A pergunta de fato é de Biologia: como a radiação ionizante lesa a pele? Ela tem energia suficiente para quebrar ligações químicas e danificar o DNA das células expostas. As células da camada basal da pele (epiteliais) se dividem com frequência para renovar o tecido. Com o DNA danificado, o ciclo celular se altera: a célula para de se dividir, morre ou se multiplica sem controle. Quando muitas células morrem ou param de se dividir, a pele não se renova e surge a ferida.",
    "formulas": [
     "radiação ionizante → lesão no DNA → mutação",
     "mutação em célula da pele → ciclo celular alterado → ferida",
@@ -53,13 +53,13 @@
     "faz": "Lembre o efeito da radiação no DNA",
     "conta": "radiação ionizante → quebras no DNA",
     "porque": "A radiação ionizante danifica o DNA das células expostas, e isso gera mutações. Como a pele é o tecido exposto, as células atingidas são as epiteliais.",
-    "tipo": "aplicar"
+    "tipo": "localizar"
    },
    {
     "faz": "Ligue a mutação ao ciclo celular",
     "conta": "mutação → ciclo alterado → morte ou proliferação",
-    "porque": "O DNA lesado pode comprometer genes que controlam a divisão. A célula então morre ou se divide de modo anormal, e o tecido se ferida.",
-    "tipo": "interpretar"
+    "porque": "O DNA lesado pode comprometer genes que controlam a divisão. A célula então para de se dividir, morre ou se divide de modo anormal. Sem reposição de células, o tecido se rompe e surge a ferida.",
+    "tipo": "comparar"
    },
    {
     "faz": "Elimine as alternativas que fogem da pele ou do indivíduo",
@@ -114,10 +114,40 @@
  "gab": "A",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "localizar",
+    "motivo": "'aplicar' não é um tipo permitido. Os tipos válidos são localizar, calcular, comparar, eliminar e concluir.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "comparar",
+    "motivo": "'interpretar' não é um tipo permitido. Os tipos válidos são localizar, calcular, comparar, eliminar e concluir.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "O DNA lesado pode comprometer genes que controlam a divisão. A célula então para de se dividir, morre ou se divide de modo anormal. Sem reposição de células, o tecido se rompe e surge a ferida.",
+    "motivo": "Corrige a forma errada 'o tecido se ferida'. Deixa claro também que a ferida vem principalmente da falta de reposição das células mortas ou bloqueadas, e não da proliferação sem controle, que leva a tumor.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "O trecho literário é só ambientação: o Cão Tinhoso tem feridas e o Quim as atribui à bomba atômica. A pergunta de fato é de Biologia: como a radiação ionizante lesa a pele? Ela tem energia suficiente para quebrar ligações químicas e danificar o DNA das células expostas. As células da camada basal da pele (epiteliais) se dividem com frequência para renovar o tecido. Com o DNA danificado, o ciclo celular se altera: a célula para de se dividir, morre ou se multiplica sem controle. Quando muitas células morrem ou param de se dividir, a pele não se renova e surge a ferida.",
+    "motivo": "Troca 'se dividem o tempo todo', que é exagero: quem se divide é a camada basal. Troca também 'O resultado é a ferida', que sugeria que a proliferação descontrolada causa a ferida. A ferida de radiação vem da morte ou do bloqueio das células que repõem o tecido; a proliferação descontrolada leva a câncer.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "A"
  }
 }

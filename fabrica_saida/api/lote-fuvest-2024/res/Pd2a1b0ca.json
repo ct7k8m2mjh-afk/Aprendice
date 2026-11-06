@@ -34,7 +34,7 @@
     "faz": "Traduza o pedido da questão",
     "conta": "menos reativa = menos polar",
     "porque": "O texto liga baixa diferença de eletronegatividade a baixa polaridade e baixa reatividade. Procure uma diferença menor que a do C-H.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Leia no gráfico os valores de C e H",
@@ -72,7 +72,7 @@
   "erradas": {
    "A": "C-N: C ≈ 2,5 e N ≈ 3,0, diferença 0,5. É maior que 0,4 da C-H, então é mais polar e mais reativa.",
    "B": "C-F: C ≈ 2,5 e F ≈ 4,0, diferença 1,5. É a maior diferença das alternativas, logo a ligação mais polar e mais reativa.",
-   "C": "S-O: S ≈ 2,5 e O ≈ 3,5, diferença 1,0. É mais polar que a C-H. Um erro típico é achar que dois não metais vizinhos teriam diferença pequena, mas o gráfico mostra 1,0.",
+   "C": "S-O: S ≈ 2,5 e O ≈ 3,5, diferença 1,0. É mais polar que a C-H. S e O estão na mesma família (grupo 16), mas o gráfico mostra uma diferença de 1,0, bem maior que 0,4.",
    "E": "P-Cl: P ≈ 2,1 e Cl ≈ 3,0, diferença 0,9. É maior que 0,4, então é mais polar e mais reativa que a C-H."
   },
   "armadilha": "Comparar o valor da eletronegatividade em vez da diferença entre os dois átomos. O que importa é a diferença: quanto menor, menos polar.",
@@ -132,10 +132,28 @@
  "gab": "D",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[0].tipo",
+    "depois": "localizar",
+    "motivo": "'interpretar' não é um tipo permitido (localizar, calcular, comparar, eliminar, concluir). Quando o primeiro passo traduz o comando, o guia manda usar 'localizar' ou 'comparar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "S-O: S ≈ 2,5 e O ≈ 3,5, diferença 1,0. É mais polar que a C-H. S e O estão na mesma família (grupo 16), mas o gráfico mostra uma diferença de 1,0, bem maior que 0,4.",
+    "motivo": "S e O não são 'vizinhos': são da mesma família, um abaixo do outro. A frase 'um erro típico é achar…' atribuía ao aluno uma origem de erro sem base, o que o guia proíbe. Troquei por um fato que dá para conferir.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "D"
  }
 }

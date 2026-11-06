@@ -46,7 +46,7 @@
    },
    {
     "faz": "Ordene pela proximidade do potencial do C",
-    "conta": "Au > Ag ≈ Ti > Cd > Al > Zn",
+    "conta": "Au > Ti > Ag > Cd > Al > Zn",
     "porque": "Quanto mais à esquerda no gráfico (perto do C), menor a diferença e menor a corrosão. Cd, Al e Zn estão na região negativa, longe do C.",
     "tipo": "comparar"
    },
@@ -65,7 +65,7 @@
    {
     "faz": "Compare a prata e o titânio",
     "conta": "Ag: 10,49 g/cm³; R$ 4×10³/kg",
-    "porque": "A prata é mais densa que o Ti (4,5 g/cm³) e quase 30 vezes mais cara (R$ 150/kg), com potencial parecido. O Ti tem boa resistência, a menor densidade entre os candidatos e custo moderado.",
+    "porque": "A prata é mais densa que o Ti (4,5 g/cm³) e quase 27 vezes mais cara (R$ 150/kg). Além disso, o Ti fica ainda mais perto do C no gráfico. O Ti tem boa resistência, a menor densidade entre os candidatos e custo moderado.",
     "tipo": "comparar"
    },
    {
@@ -79,7 +79,7 @@
   "checagem": "Teste cada metal com três perguntas: Está perto do C? É leve? É barato? O Au passa só na primeira, a Ag falha em duas, o Cd e o Zn falham na primeira. O Ti é o único que passa nas três com bom equilíbrio.",
   "erradas": {
    "A": "O ouro é o que tem potencial mais perto do C e resiste bem, mas é o mais denso (19,3 g/cm³, mais de 7 vezes o Al) e custa R$ 3,2×10⁵/kg. Falha nos critérios de menor custo e menor densidade.",
-   "C": "A prata tem potencial próximo ao do C, mas densidade de 10,49 g/cm³ e preço de R$ 4×10³/kg. O titânio tem potencial parecido, é bem mais leve (4,5 g/cm³) e custa R$ 150/kg.",
+   "C": "A prata tem potencial próximo ao do C, mas densidade de 10,49 g/cm³ e preço de R$ 4×10³/kg. O titânio fica ainda mais perto do C no gráfico, é bem mais leve (4,5 g/cm³) e custa R$ 150/kg.",
    "D": "O cádmio está em cerca de −0,7 V, longe do C (+0,2 V) e na mesma região do Al, então corrói de forma parecida. Também é mais denso (8,65 g/cm³ contra 4,5 do Ti), com o mesmo preço de R$ 150/kg.",
    "E": "O zinco, em cerca de −1,05 V, é mais negativo que o Al e fica mais longe do C, então corrói mais. Sua densidade (7,14 g/cm³) é maior que a do Al e a do Ti. Só o preço baixo (R$ 15/kg) é vantagem."
   },
@@ -144,10 +144,34 @@
  "gab": "B",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "Au > Ti > Ag > Cd > Al > Zn",
+    "motivo": "No print, o traço do Ti (≈ −0,05 V) está claramente à esquerda do traço da Ag (≈ −0,2 V). O Ti fica, portanto, mais perto do C do que a Ag, e não 'Ag ≈ Ti'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "A prata é mais densa que o Ti (4,5 g/cm³) e quase 27 vezes mais cara (R$ 150/kg). Além disso, o Ti fica ainda mais perto do C no gráfico. O Ti tem boa resistência, a menor densidade entre os candidatos e custo moderado.",
+    "motivo": "Dizer que os potenciais são 'parecidos' contradiz a leitura do gráfico, em que o Ti está mais próximo do C que a Ag. A razão de preço também foi corrigida: 4000/150 ≈ 26,7, e não 'quase 30'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "A prata tem potencial próximo ao do C, mas densidade de 10,49 g/cm³ e preço de R$ 4×10³/kg. O titânio fica ainda mais perto do C no gráfico, é bem mais leve (4,5 g/cm³) e custa R$ 150/kg.",
+    "motivo": "Pelo print, o Ti está mais próximo do C que a Ag. Ele vence a prata nos três critérios, e não apenas tem um potencial 'parecido'.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "B"
  }
 }

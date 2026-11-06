@@ -66,9 +66,9 @@
    }
   ],
   "resposta": "Alternativa C: o tracejado mede 1,25 m, que é 2,25 m (projeção do automóvel) menos 1,00 m (largura da moto).",
-  "checagem": "A moto também tem lado inclinado de 2,00 m, e 2,00 × 0,5 = 1,00 m. O topo da moto avança 1,00 m na horizontal e fica a 2,25 − 2,00 = 0,25 m da parede, o que é coerente com a figura, onde ele quase encosta na parede. O tracejado, na base, é maior que isso, pois a moto está deslocada 1,00 m em relação ao canto.",
+  "checagem": "A moto também tem lado inclinado de 2,00 m, e 2,00 × 0,5 = 1,00 m. O topo da moto avança 1,00 m na horizontal. Somando a largura de 1,00 m, o canto de cima à direita fica a 2,00 m do canto da base, ou seja, a 2,25 − 2,00 = 0,25 m da parede. Isso combina com a figura, onde ele quase encosta na parede. Na base, o tracejado é 1,00 m maior que essa folga (1,25 m), porque o topo da moto está deslocado 1,00 m para a direita em relação à base dela.",
   "erradas": {
-   "A": "0,75 m não confere. Não sai de nenhuma combinação das medidas da tabela com cos 60°. Como 2,25 − 1,50 = 0,75, equivaleria a descontar 1,50 m, medida que a moto não tem (a largura dela é 1,00 m).",
+   "A": "0,75 m não confere. A conta certa é 2,25 − 1,00 = 1,25 m. Para chegar a 0,75 m, seria preciso descontar 1,50 m de 2,25 m, e a moto não ocupa 1,50 m da base: a largura dela é 1,00 m.",
    "B": "1,15 m não confere. Descontar 1,10 m de 2,25 m também não corresponde a nenhuma medida da moto. A conta correta usa 1,00 m.",
    "D": "2,20 m é a largura da vaga de automóvel, lida direto na tabela. Ela não é a distância até a parede, que depende do lado inclinado, e o tracejado ainda fica depois da moto.",
    "E": "2,25 m é a distância do canto da vaga até a parede, a projeção 4,50 × 0,5. Falta descontar o 1,00 m que a moto ocupa na base."
@@ -136,10 +136,28 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "0,75 m não confere. A conta certa é 2,25 − 1,00 = 1,25 m. Para chegar a 0,75 m, seria preciso descontar 1,50 m de 2,25 m, e a moto não ocupa 1,50 m da base: a largura dela é 1,00 m.",
+    "motivo": "A frase 'não sai de nenhuma combinação das medidas da tabela com cos 60°' afirma algo que não dá para provar. Por exemplo, 2,25 − 1,00 − 1,00 × 0,5 = 0,75. Deixei só o teste objetivo.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "A moto também tem lado inclinado de 2,00 m, e 2,00 × 0,5 = 1,00 m. O topo da moto avança 1,00 m na horizontal. Somando a largura de 1,00 m, o canto de cima à direita fica a 2,00 m do canto da base, ou seja, a 2,25 − 2,00 = 0,25 m da parede. Isso combina com a figura, onde ele quase encosta na parede. Na base, o tracejado é 1,00 m maior que essa folga (1,25 m), porque o topo da moto está deslocado 1,00 m para a direita em relação à base dela.",
+    "motivo": "A frase 'a moto está deslocada 1,00 m em relação ao canto' estava ambígua. Quem está deslocado é o topo da moto em relação à base dela, e não a moto em relação ao canto, que é onde ela começa. Também deixei explícita a soma 1,00 + 1,00 = 2,00.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C"
  }
 }

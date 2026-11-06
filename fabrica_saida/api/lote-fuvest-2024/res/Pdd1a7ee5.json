@@ -44,13 +44,13 @@
     "faz": "Ache o problema apontado",
     "conta": "\"abismo da educação ruim\"",
     "porque": "Abrir a universidade por decreto não garante que os alunos tenham o preparo. Isso é herança de anos de ensino ruim, que o texto chama de \"dez anos de educação primária e secundária de péssimo nível\".",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Avalie as estratégias citadas",
     "conta": "bolsas, auxílios, aulas de reforço: \"um band-aid\"",
     "porque": "O personagem duvida de que essas medidas bastem. O texto não afirma que funcionam nem que fracassam de vez: expressa dúvida.",
-    "tipo": "interpretar"
+    "tipo": "comparar"
    },
    {
     "faz": "Compare com as alternativas",
@@ -60,7 +60,7 @@
    }
   ],
   "resposta": "Alternativa D: o trecho mostra dúvida sobre se bolsas e aulas de reforço bastam para enfrentar as desigualdades educacionais deixadas pelo apartheid.",
-  "checagem": "Procure no texto as marcas de dúvida: \"Mas este não pode garantir\", \"um band-aid\", \"pode compensar...?\". Nenhuma frase fala em sucesso ou em eficácia.",
+  "checagem": "Procure no texto as marcas de dúvida: \"Mas (...) este não pode garantir\", \"um band-aid\", \"O que Steve está perguntando é se (...) pode compensar\". Nenhuma frase fala em sucesso ou em eficácia.",
   "erradas": {
    "A": "Erra a época. O texto diz que as portas do ensino superior \"agora\" estão abertas por imposição da Constituição, ou seja, depois do apartheid. Os alunos de estudos africanos já estão na universidade.",
    "B": "O texto diz que a Constituição abriu a universidade a todos. Não fala em segregação formal de mulheres. A única referência é que \"são poucas as moças\" com a força de vontade de Jabu, o que descreve um fato, não uma regra da Constituição.",
@@ -99,10 +99,34 @@
  "gab": "D",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "localizar",
+    "motivo": "O tipo 'interpretar' não está na lista permitida (localizar, calcular, comparar, eliminar, concluir). O passo acha no texto o problema apontado, então o tipo certo é 'localizar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "comparar",
+    "motivo": "O tipo 'interpretar' não está na lista permitida. O passo põe as medidas citadas lado a lado com o juízo do texto ('band-aid'), então o tipo certo é 'comparar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Procure no texto as marcas de dúvida: \"Mas (...) este não pode garantir\", \"um band-aid\", \"O que Steve está perguntando é se (...) pode compensar\". Nenhuma frase fala em sucesso ou em eficácia.",
+    "motivo": "A citação \"pode compensar...?\" não está no texto. Lá a frase é uma pergunta indireta, sem ponto de interrogação. Troquei pelo trecho literal. Também acrescentei o \"(...)\" que o texto traz entre \"Mas\" e \"este\".",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "D"
  }
 }

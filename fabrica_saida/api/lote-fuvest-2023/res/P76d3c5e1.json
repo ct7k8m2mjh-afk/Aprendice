@@ -39,7 +39,7 @@
     "faz": "Isole o que é igual para as três cores",
     "conta": "mesmo raio branco → mesmo θi",
     "porque": "A luz branca chega como um único raio, e o ar tem n = 1 para todas as cores. Logo, o lado esquerdo de Snell (1 × sen θi) é igual para as três cores.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Leia o desvio de cada cor na figura",
@@ -51,19 +51,19 @@
     "faz": "Relacione desvio maior com θr menor",
     "conta": "mais desvio → θr menor",
     "porque": "Ao entrar no vidro, o raio se aproxima da normal. Quanto mais ele se aproxima, mais desviado fica e menor é θr. Então θr(cor 1) < θr(cor 2) < θr(cor 3).",
-    "tipo": "interpretar"
+    "tipo": "comparar"
    },
    {
     "faz": "Isole n na lei de Snell",
     "conta": "n = sen θi ÷ sen θr",
     "porque": "O numerador é o mesmo para as três cores. Portanto, quanto menor sen θr, maior é n.",
-    "tipo": "aplicar"
+    "tipo": "calcular"
    },
    {
     "faz": "Use o fato de o seno ser crescente",
     "conta": "θr menor → sen θr menor → n maior",
     "porque": "Entre 0° e 90°, ângulo menor tem seno menor (é o que o 'Note e adote' informa). Assim n1 > n2 > n3.",
-    "tipo": "aplicar"
+    "tipo": "comparar"
    },
    {
     "faz": "Compare com o ar e conclua",
@@ -73,7 +73,7 @@
    }
   ],
   "resposta": "Alternativa B: a cor 1 é a mais desviada, logo tem o menor θr e o maior índice de refração. Como o vidro refrata mais que o ar, todos os índices são maiores que 1: n1 > n2 > n3 > 1.",
-  "checagem": "Use um número. Com θi = 60°, sen 60° ≈ 0,87. Se θr = 30° (sen = 0,5), n = 1,73. Se θr = 35° (sen ≈ 0,57), n ≈ 1,52. O θr menor dá o n maior, e os dois resultados são maiores que 1, como a alternativa B afirma.",
+  "checagem": "Use um número. Com θi = 60°, sen 60° ≈ 0,87. Se θr = 30° (sen = 0,5), n ≈ 1,73. Se θr = 35° (sen ≈ 0,57), n ≈ 1,51. O θr menor dá o n maior, e os dois resultados são maiores que 1, como a alternativa B afirma.",
   "erradas": {
    "A": "Se n1 = n2 = n3, as três cores teriam o mesmo θr e sairiam juntas, sem se separar. A figura mostra três raios em direções diferentes, então os índices são diferentes.",
    "C": "Essa ordem diz que a cor 3 tem o maior n e deveria ser a mais desviada. Na figura, a cor 3 é a menos desviada. Quem desvia mais tem θr menor e n maior, que é a cor 1.",
@@ -150,10 +150,46 @@
  "gab": "B",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Use um número. Com θi = 60°, sen 60° ≈ 0,87. Se θr = 30° (sen = 0,5), n ≈ 1,73. Se θr = 35° (sen ≈ 0,57), n ≈ 1,51. O θr menor dá o n maior, e os dois resultados são maiores que 1, como a alternativa B afirma.",
+    "motivo": "Refiz a conta: sen 60° ÷ sen 35° = 0,8660 ÷ 0,5736 ≈ 1,51, e não 1,52. Também troquei '1,73' por '≈ 1,73', porque √3 ≈ 1,732.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[0].tipo",
+    "depois": "localizar",
+    "motivo": "O guia só aceita localizar, calcular, comparar, eliminar e concluir. Este passo acha no enunciado o dado comum às três cores (o mesmo θi).",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "comparar",
+    "motivo": "O guia não aceita o tipo 'interpretar'. Este passo compara o desvio com o θr de cada cor.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "calcular",
+    "motivo": "O guia não aceita o tipo 'aplicar'. Este passo é a manipulação algébrica da lei de Snell.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[4].tipo",
+    "depois": "comparar",
+    "motivo": "O guia não aceita o tipo 'aplicar'. Este passo compara os senos e os índices das três cores.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "B"
  }
 }

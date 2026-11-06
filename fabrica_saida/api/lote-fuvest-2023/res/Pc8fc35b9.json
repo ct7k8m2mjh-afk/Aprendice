@@ -77,8 +77,8 @@
   "erradas": {
    "A": "245 mg/kg sai de dividir por 2 em vez de multiplicar: 490 ÷ 2 = 245. O SO2 pesa o dobro do S (64 contra 32), então a massa dobra.",
    "B": "490 mg/kg é só a diferença de enxofre (500 − 10). Faltou converter S em SO2: 490 mg de S geram 980 mg de SO2.",
-   "D": "1960 mg/kg sai de multiplicar por 4: 490 × 2 × 2. Aplicou o fator 64/32 duas vezes; a conversão de S em SO2 é feita uma única vez.",
-   "E": "3920 mg/kg sai de multiplicar por 8: 490 × 8 = 3920. Não há fator 8 na reação; a razão 1:1 em mol dá só o fator 64/32 = 2."
+   "D": "1960 mg/kg não confere: exigiria multiplicar a diferença de enxofre por 4 (1960 ÷ 490 = 4). A razão em massa SO2/S é só 64/32 = 2, o que dá 980.",
+   "E": "3920 mg/kg não confere: exigiria multiplicar a diferença de enxofre por 8 (3920 ÷ 490 = 8). A razão 1:1 em mol dá, em massa, só o fator 64/32 = 2."
   },
   "armadilha": "Parar na diferença de enxofre (490 mg/kg) esquecendo que a pergunta é a massa de SO2, que é o dobro, pois o S ganha dois átomos de oxigênio.",
   "alerta": "",
@@ -141,10 +141,28 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "1960 mg/kg não confere: exigiria multiplicar a diferença de enxofre por 4 (1960 ÷ 490 = 4). A razão em massa SO2/S é só 64/32 = 2, o que dá 980.",
+    "motivo": "A resolução dizia que o fator 64/32 foi aplicado duas vezes. Não há base para dizer de onde o aluno tirou esse fator, e o guia proíbe inventar a origem do erro. Troquei pelo teste objetivo que derruba a alternativa.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "3920 mg/kg não confere: exigiria multiplicar a diferença de enxofre por 8 (3920 ÷ 490 = 8). A razão 1:1 em mol dá, em massa, só o fator 64/32 = 2.",
+    "motivo": "A resolução dizia que E 'sai de multiplicar por 8', mas não mostrava nenhum erro real que chegue a esse fator. Pelo padrão, o certo é escrever 'não confere' e mostrar o teste.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C"
  }
 }

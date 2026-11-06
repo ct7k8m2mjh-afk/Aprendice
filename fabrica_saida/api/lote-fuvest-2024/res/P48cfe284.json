@@ -50,13 +50,13 @@
    {
     "faz": "Veja a relação entre os dois versos",
     "conta": "vida pela frente → tiro por trás",
-    "porque": "Há antes e depois, com mudança de situação: de uma vida cheia de futuro a uma morte violenta. Isso é uma sequência de ações, ou seja, narração.",
-    "tipo": "interpretar"
+    "porque": "Há um antes e um depois, com mudança de situação: uma vida cheia de futuro é cortada por um tiro, que sugere a morte. Isso é uma sequência de acontecimentos, ou seja, narração.",
+    "tipo": "comparar"
    },
    {
     "faz": "Descarte os traços que não aparecem",
-    "conta": "sem adjetivos de tempo, sem falas, sem lugar, sem descrição",
-    "porque": "O texto não traz diálogo nem narradores em conversa. Também não localiza o espaço nem descreve alguém.",
+    "conta": "sem fala, cenário ou retrato",
+    "porque": "Não há adjetivo que qualifique tempo nem falas de personagens. Também não há cenário definido (rua, casa, cidade) nem descrição de alguém.",
     "tipo": "eliminar"
    },
    {
@@ -71,7 +71,7 @@
   "erradas": {
    "A": "No texto não há adjetivo que qualifique tempo. \"Inteira\" qualifica \"vida\", e \"pela frente\" e \"por trás\" são expressões de direção. Mesmo que houvesse adjetivos, eles não definem narrativa.",
    "B": "Não há diálogo nem dois narradores se falando: não há travessão, aspas de fala ou troca de turnos. O texto tem uma única voz narrativa.",
-   "C": "Não há indicação de lugar (cidade, rua, casa). \"Pela frente\" e \"por trás\" são sentidos figurados de futuro e de traição ou surpresa, não referência a espaço físico.",
+   "C": "Não há cenário (cidade, rua, casa). \"Pela frente\" tem sentido figurado de futuro, e \"por trás\" só indica de onde veio o tiro, sem situar a cena num lugar. Além disso, referência a espaço não basta para definir uma narrativa.",
    "D": "Não há descrição: ninguém é caracterizado por aparência, idade ou traços. A \"vida\" é mencionada sem qualidades físicas ou psicológicas. A personagem nem é nomeada."
   },
   "armadilha": "Achar que texto de duas linhas não pode ser narrativo, ou escolher um traço que costuma aparecer em narrativas (espaço, personagem) em vez do que as define: ações em sequência.",
@@ -106,10 +106,46 @@
  "gab": "E",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "comparar",
+    "motivo": "O tipo 'interpretar' não faz parte da lista permitida (localizar, calcular, comparar, eliminar, concluir). O passo compara os dois versos.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Há um antes e um depois, com mudança de situação: uma vida cheia de futuro é cortada por um tiro, que sugere a morte. Isso é uma sequência de acontecimentos, ou seja, narração.",
+    "motivo": "O texto não diz que houve morte; ela só se infere. A versão anterior afirmava 'morte violenta' como se fosse um fato do texto.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "sem fala, cenário ou retrato",
+    "motivo": "Dizer 'sem lugar' é impreciso, porque 'por trás' indica de onde veio o tiro. O que falta é um cenário. A conta também passava do limite de cerca de 30 caracteres.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Não há adjetivo que qualifique tempo nem falas de personagens. Também não há cenário definido (rua, casa, cidade) nem descrição de alguém.",
+    "motivo": "Mantém o descarte da alternativa A, que saiu da conta, e troca 'não localiza o espaço' por uma formulação exata.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "Não há cenário (cidade, rua, casa). \"Pela frente\" tem sentido figurado de futuro, e \"por trás\" só indica de onde veio o tiro, sem situar a cena num lugar. Além disso, referência a espaço não basta para definir uma narrativa.",
+    "motivo": "A versão anterior dizia que 'por trás' não se refere a espaço físico. Isso é falso: no texto, o tiro vem de trás em sentido literal, mesmo que a expressão também sugira traição. A expressão indica direção, não cenário.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E"
  }
 }

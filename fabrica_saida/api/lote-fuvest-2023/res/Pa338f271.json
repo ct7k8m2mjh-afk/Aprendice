@@ -39,19 +39,19 @@
   "passos": [
    {
     "faz": "Leia o que o comando pede",
-    "conta": "\"cenário nacional ao qual se refere a autora\"",
+    "conta": "\"cenário nacional\" da autora",
     "porque": "A resposta tem de descrever a situação da participação feminina na política segundo o texto, e não outro assunto.",
     "tipo": "localizar"
    },
    {
     "faz": "Ache a marca de mudança",
     "conta": "\"muita coisa mudou\"; \"cresceu\"",
-    "porque": "Há avanços: do voto de Celina Guimarães (1927) e da prefeita Alzira Soriano (1929) ao crescimento do percentual no Congresso.",
+    "porque": "Há avanços: do alistamento de Celina Guimarães (1927) e da posse da prefeita Alzira Soriano (1929) ao crescimento do percentual feminino no Congresso.",
     "tipo": "localizar"
    },
    {
     "faz": "Ache a marca de insuficiência",
-    "conta": "52% dos votantes × 15% do Congresso; 145º lugar",
+    "conta": "52% votantes × 15% Congresso",
     "porque": "A presença feminina continua muito abaixo do peso demográfico e do que se vê em outros países. A autora diz: \"é pouco\".",
     "tipo": "localizar"
    },
@@ -59,13 +59,13 @@
     "faz": "Junte as duas marcas",
     "conta": "mudou + ainda é pouco",
     "porque": "O cenário se alterou ao longo do tempo, mas a atuação das mulheres não se consolidou de forma significativa.",
-    "tipo": "interpretar"
+    "tipo": "comparar"
    },
    {
     "faz": "Descarte o distrator mais forte",
-    "conta": "D: \"adequou-se ao perfil demográfico\"",
+    "conta": "D: \"adequou-se ao perfil\"",
     "porque": "O texto diz o contrário: 52% de votantes contra 15% de parlamentares é desproporção, e não adequação.",
-    "tipo": "concluir"
+    "tipo": "eliminar"
    }
   ],
   "resposta": "Alternativa C: o cenário mudou desde 1927, mas a atuação das mulheres na política ainda não se consolidou de forma significativa.",
@@ -104,10 +104,52 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "Há avanços: do alistamento de Celina Guimarães (1927) e da posse da prefeita Alzira Soriano (1929) ao crescimento do percentual feminino no Congresso.",
+    "motivo": "O texto diz que Celina Guimarães 'se alistou para votar' em 1927, e não que votou nesse ano; ela só votou em 1928. 'Voto de Celina (1927)' atribui ao texto um fato que ele não afirma.",
+    "fonte": "Enunciado: \"a professora Celina Guimarães se alistou para votar em Mossoró, em 1927\""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "comparar",
+    "motivo": "'interpretar' não é um tipo válido. Os tipos permitidos são localizar, calcular, comparar, eliminar e concluir. Este passo cruza a marca de mudança com a de insuficiência, então é 'comparar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[4].tipo",
+    "depois": "eliminar",
+    "motivo": "O passo descarta a alternativa D ('Descarte o distrator mais forte'), então o tipo é 'eliminar', e não 'concluir'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[0].conta",
+    "depois": "\"cenário nacional\" da autora",
+    "motivo": "A conta original tinha cerca de 46 caracteres e passava do limite de ~30 da tela de 390 px. O sentido foi mantido.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "52% votantes × 15% Congresso",
+    "motivo": "A conta original tinha cerca de 47 caracteres e passava do limite de ~30. O 145º lugar continua coberto no porque ('do que se vê em outros países'), no essencial e nas erradas.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "D: \"adequou-se ao perfil\"",
+    "motivo": "A conta original tinha 38 caracteres e passava do limite de ~30. A citação continua sendo da própria alternativa D.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C"
  }
 }

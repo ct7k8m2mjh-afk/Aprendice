@@ -54,8 +54,8 @@
    {
     "faz": "Nomeie o modelo agrícola",
     "conta": "soja, milho, cana → agronegócio",
-    "porque": "São commodities de grande escala, mecanizadas e vendidas no mercado internacional (soja e milho em grãos, cana em açúcar e etanol). Exigem operadores de máquinas e técnicos qualificados.",
-    "tipo": "aplicar"
+    "porque": "São commodities de grande escala, mecanizadas e vendidas no mercado internacional (soja e milho em grãos; a cana sobretudo como açúcar). Exigem operadores de máquinas e técnicos qualificados.",
+    "tipo": "comparar"
    },
    {
     "faz": "Localize essas lavouras no território",
@@ -79,7 +79,7 @@
   "resposta": "Alternativa D: o fertilizante é usado sobretudo em lavouras mecanizadas de commodities (soja, milho, cana), voltadas ao mercado internacional, com mão de obra especializada, concentradas no Centro-Sul.",
   "checagem": "Releia a D contra o gráfico, sem contradição interna: soja e milho são lavouras mecanizadas e exportadoras (57% do total) e se concentram no Centro-Sul. Nenhuma afirmação da D vai contra isso. Nas outras letras, sempre aparece um traço que contraria o gráfico ou o modelo do agronegócio.",
   "erradas": {
-   "A": "Junta traços opostos. Lavoura que usa muito fertilizante e produz commodities para exportação é de grande propriedade, com alta tecnologia, não de pequena propriedade com baixa produtividade e pouca tecnologia. Só o final (mercado internacional e Centro-Sul) está certo.",
+   "A": "Junta traços opostos. Lavoura que usa muito fertilizante e produz commodities para exportação é de grande propriedade, com alta tecnologia, não de pequena propriedade com baixa produtividade e pouca tecnologia. O final (mercado internacional e Centro-Sul) está certo, mas não salva a letra.",
    "B": "Se contradiz. 'Elevado emprego de mão de obra' não combina com 'altíssima mecanização'. O agronegócio de grãos e cana também causa muito impacto ambiental (desmatamento, contaminação por agroquímicos), e o Norte não é o principal polo dessas lavouras.",
    "C": "Soja, milho e cana, os principais usuários de fertilizante, são destinados em grande parte à exportação, não só ao mercado interno. Têm alto impacto ambiental e se concentram no Centro-Sul, não no Nordeste. Só a mecanização e as grandes propriedades estão certas.",
    "E": "Lavouras extensivas, mercado externo, alta mecanização e mão de obra especializada estão certos. O erro está na região: os grandes polos de soja, milho e cana ficam no Centro-Sul, e Norte e Nordeste são frentes de expansão menores. Como 'majoritariamente' é o termo da questão, a letra falha."
@@ -133,10 +133,34 @@
  "gab": "D",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "comparar",
+    "motivo": "O tipo 'aplicar' não existe na lista permitida (localizar, calcular, comparar, eliminar, concluir). Este passo liga o dado do gráfico ao modelo agrícola, então o tipo certo é 'comparar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "São commodities de grande escala, mecanizadas e vendidas no mercado internacional (soja e milho em grãos; a cana sobretudo como açúcar). Exigem operadores de máquinas e técnicos qualificados.",
+    "motivo": "O texto dizia que a cana vai ao exterior como açúcar e como etanol. Isso é impreciso: o etanol brasileiro é consumido sobretudo no mercado interno, e o que a cana exporta é principalmente açúcar.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "Junta traços opostos. Lavoura que usa muito fertilizante e produz commodities para exportação é de grande propriedade, com alta tecnologia, não de pequena propriedade com baixa produtividade e pouca tecnologia. O final (mercado internacional e Centro-Sul) está certo, mas não salva a letra.",
+    "motivo": "A frase 'Só o final está certo' contradiz a própria resolução. Em `simbolos`, 'lavoura intensiva' é definida como muito insumo por hectare, o que torna verdadeiro o trecho 'lavouras intensivas' da letra A. Tirei o 'Só' para não afirmar que todo o resto da letra é falso.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "D"
  }
 }

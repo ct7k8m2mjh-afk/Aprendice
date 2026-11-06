@@ -51,19 +51,19 @@
     "faz": "Ache a ponte entre pergunta e resposta",
     "conta": "reaction = reação química / reação emocional",
     "porque": "O aluno entendeu \"reaction\" como a reação de uma pessoa diante de algo. A mesma palavra serve aos dois sentidos, e daí vem o humor.",
-    "tipo": "interpretar"
+    "tipo": "comparar"
    },
    {
     "faz": "Nomeie o recurso",
     "conta": "mesma palavra, dois sentidos = trocadilho",
     "porque": "Trocadilho é o jogo de palavras que explora essa ambiguidade. É ele que cria o efeito de sentido do meme.",
-    "tipo": "aplicar"
+    "tipo": "concluir"
    },
    {
     "faz": "Descarte as demais figuras",
     "conta": "sem semelhança, sem parte/todo, sem suavização",
     "porque": "Nenhuma das outras figuras aparece no meme: não há imagem figurada, nem conectivo comparativo, nem parte pelo todo, nem palavra suavizada.",
-    "tipo": "concluir"
+    "tipo": "eliminar"
    }
   ],
   "resposta": "Alternativa B: o humor vem do trocadilho com \"reaction\", lida como reação emocional e não como reação química.",
@@ -106,10 +106,34 @@
  "gab": "B",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "comparar",
+    "motivo": "O tipo \"interpretar\" não está na lista permitida (localizar, calcular, comparar, eliminar, concluir). O passo põe lado a lado os dois sentidos de \"reaction\", então o tipo certo é comparar.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "concluir",
+    "motivo": "O tipo \"aplicar\" não está na lista permitida. O passo nomeia o recurso que leva à letra B, então o tipo certo é concluir.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[4].tipo",
+    "depois": "eliminar",
+    "motivo": "O passo descarta metáfora, comparação, sinédoque e eufemismo, ou seja, é um passo de eliminação, não de conclusão.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "B"
  }
 }

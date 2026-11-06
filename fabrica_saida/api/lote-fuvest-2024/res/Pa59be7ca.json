@@ -45,7 +45,7 @@
     "faz": "Teste uma [H⁺] maior que 1",
     "conta": "[H⁺] = 10 mol/L",
     "porque": "Um ácido forte bem concentrado pode ter mais de 1 mol/L de H⁺.",
-    "tipo": "aplicar"
+    "tipo": "calcular"
    },
    {
     "faz": "Calcule o pH",
@@ -57,7 +57,7 @@
     "faz": "Veja o que ocorre em meio básico",
     "conta": "[H⁺] = 10^−13 → pH = 13",
     "porque": "Em meio básico [H⁺] é muito pequena, logo o pH é alto, e não negativo. A IA atribuiu o pH negativo ao meio errado.",
-    "tipo": "interpretar"
+    "tipo": "comparar"
    },
    {
     "faz": "Conclua sobre a resposta da IA",
@@ -131,10 +131,28 @@
  "gab": "A",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "calcular",
+    "motivo": "O guia só aceita estes tipos: localizar, calcular, comparar, eliminar, concluir. 'aplicar' não está entre eles. Este passo escolhe o valor de [H⁺] que entra na conta do passo seguinte.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "comparar",
+    "motivo": "'interpretar' também não está na lista de tipos aceitos. O passo compara o pH do meio básico com a afirmação da IA, então o tipo certo é 'comparar'.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "A"
  }
 }

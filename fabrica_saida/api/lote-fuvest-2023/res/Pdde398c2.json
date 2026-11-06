@@ -34,7 +34,7 @@
     "faz": "Substitua o ponto (3, 2)",
     "conta": "2 = log₂(3a + b)",
     "porque": "No ponto (3, 2), x vale 3 e y vale 2. Colocamos esses valores na fórmula da função.",
-    "tipo": "aplicar"
+    "tipo": "calcular"
    },
    {
     "faz": "Tire o logaritmo",
@@ -51,7 +51,7 @@
    {
     "faz": "Subtraia as duas equações",
     "conta": "(5a + b) − (3a + b) = 16 − 4",
-    "porque": "O b aparece nas duas equações com o mesmo sinal, então some e subtraia cancela o b: 2a = 12 e a = 6.",
+    "porque": "O b aparece nas duas equações com o mesmo sinal, então subtrair uma da outra cancela o b: 2a = 12 e a = 6.",
     "tipo": "calcular"
    },
    {
@@ -172,10 +172,28 @@
  "gab": "A",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[0].tipo",
+    "depois": "calcular",
+    "motivo": "'aplicar' não está na lista de tipos permitidos (localizar, calcular, comparar, eliminar, concluir). O passo substitui o ponto na fórmula, então o tipo certo é 'calcular'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "O b aparece nas duas equações com o mesmo sinal, então subtrair uma da outra cancela o b: 2a = 12 e a = 6.",
+    "motivo": "A frase original dizia 'então some e subtraia cancela o b', o que é confuso e sugere que somar também cancela o b. Somar não cancela: daria 8a + 2b = 20. Só a subtração cancela o b.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "A"
  }
 }

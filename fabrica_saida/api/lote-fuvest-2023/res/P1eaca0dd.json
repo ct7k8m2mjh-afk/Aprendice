@@ -32,7 +32,7 @@
     ],
     [
      "Revolução Gloriosa",
-     "troca de rei em 1688-1689, sem guerra civil, que garantiu a supremacia do Parlamento"
+     "troca de rei em 1688-1689, quase sem combates na Inglaterra, que garantiu a supremacia do Parlamento"
     ]
    ]
   },
@@ -47,7 +47,7 @@
    {
     "faz": "Localize a primeira restrição",
     "conta": "\"suspender as leis... sem consentimento do Parlamento é ilegal\"",
-    "porque": "O rei não pode mais suspender nem aplicar leis por conta própria. O Parlamento passa a controlar a legislação.",
+    "porque": "O rei não pode mais suspender leis nem deixar de aplicá-las por conta própria. O Parlamento passa a controlar a legislação.",
     "tipo": "localizar"
    },
    {
@@ -75,13 +75,13 @@
     "tipo": "concluir"
    }
   ],
-  "resposta": "Alternativa C: a Declaração de Direitos de 1689 submete o rei ao consentimento do Parlamento para suspender leis e manter exército, ou seja, impõe limites ao poder monárquico.",
+  "resposta": "Alternativa C: a Declaração de Direitos de 1689 submete o rei ao consentimento do Parlamento para suspender leis e manter exército permanente em tempo de paz, ou seja, impõe limites ao poder monárquico.",
   "checagem": "Troque os sujeitos: o texto diz que o rei não faz isso sem o Parlamento. Quem ganhou poder foi o Parlamento, e quem perdeu foi o rei. Isso só combina com a C. Além disso, o texto fala em \"autoridade real\" e \"reino\", então a monarquia continua.",
   "erradas": {
    "A": "Inverte o sentido do texto. O documento é uma declaração dos Lordes e dos Comuns, que reforça o Parlamento ao exigir seu consentimento. Nenhuma prerrogativa do Parlamento é suprimida.",
    "B": "É o contrário do que está escrito. O texto chama de ilegal suspender ou executar leis sem \"consentimento do Parlamento\", logo o aval parlamentar passa a ser obrigatório.",
    "D": "O texto não proíbe o exército. Ele diz que um exército permanente em tempo de paz é ilegal \"a menos que com o consentimento do Parlamento\", ou seja, com autorização ele é possível.",
-   "E": "Em 1689 a Inglaterra seguiu monarquia, com Guilherme de Orange e Maria II no trono, e o próprio texto fala em \"autoridade real\". A república inglesa foi a de Cromwell, de 1649 a 1660, anterior a esta Declaração."
+   "E": "Em 1689 a Inglaterra seguiu monarquia, com Guilherme de Orange e Maria II no trono, e o próprio texto fala em \"autoridade real\". A república inglesa (1649-1660), associada a Cromwell, é anterior a esta Declaração."
   },
   "armadilha": "Ler \"sem consentimento do Parlamento é ilegal\" como se o texto proibisse o exército (D) ou eliminasse o rei (E), em vez de ver que ele só condiciona o rei ao Parlamento.",
   "alerta": "",
@@ -106,7 +106,7 @@
   "cabe": true,
   "porque": "Uma linha do tempo curta organiza as datas e mostra que a Declaração fecha o processo revolucionário.",
   "tipo": "linha-do-tempo",
-  "roteiro": "Quadro 1: 1642-1649, guerra civil e execução de Carlos I. Quadro 2: 1649-1660, república de Cromwell. Quadro 3: 1660, restauração da monarquia (Carlos II). Quadro 4: 1688, Jaime II é deposto e Guilherme de Orange chega à Inglaterra. Quadro 5: 1689, Declaração de Direitos: rei com poder limitado pelo Parlamento. Destacar a seta 'rei → precisa do aval → Parlamento'."
+  "roteiro": "Quadro 1: 1642-1649, guerra civil e execução de Carlos I. Quadro 2: 1649-1660, república (Cromwell como Lorde Protetor de 1653 a 1658). Quadro 3: 1660, restauração da monarquia (Carlos II). Quadro 4: 1688, Guilherme de Orange chega à Inglaterra e Jaime II foge. Quadro 5: 1689, Declaração de Direitos: rei com poder limitado pelo Parlamento. Destacar a seta 'rei → precisa do aval → Parlamento'."
  },
  "fontes": [
   "https://avalon.law.yale.edu/17th_century/england.asp",
@@ -118,10 +118,49 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.antes.simbolos[4]",
+    "depois": [
+     "Revolução Gloriosa",
+     "troca de rei em 1688-1689, quase sem combates na Inglaterra, que garantiu a supremacia do Parlamento"
+    ],
+    "motivo": "A frase 'sem guerra civil' é forte demais. Na Inglaterra quase não houve luta, mas a troca de rei levou à guerra na Irlanda (Boyne, 1690) e a levantes na Escócia.",
+    "fonte": "https://www.britannica.com/event/Glorious-Revolution"
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "O rei não pode mais suspender leis nem deixar de aplicá-las por conta própria. O Parlamento passa a controlar a legislação.",
+    "motivo": "O original ('suspending of laws or the execution of laws by regal authority') trata do poder de suspender a aplicação das leis. Não proíbe o rei de 'aplicar leis', que continuava sendo função do Executivo.",
+    "fonte": "https://avalon.law.yale.edu/17th_century/england.asp"
+   },
+   {
+    "campo": "resolucao.resposta",
+    "depois": "Alternativa C: a Declaração de Direitos de 1689 submete o rei ao consentimento do Parlamento para suspender leis e manter exército permanente em tempo de paz, ou seja, impõe limites ao poder monárquico.",
+    "motivo": "O texto só condiciona o exército permanente em tempo de paz. A frase 'manter exército', sem essa ressalva, generaliza demais e contradiz o comentário da letra D.",
+    "fonte": "https://avalon.law.yale.edu/17th_century/england.asp"
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "Em 1689 a Inglaterra seguiu monarquia, com Guilherme de Orange e Maria II no trono, e o próprio texto fala em \"autoridade real\". A república inglesa (1649-1660), associada a Cromwell, é anterior a esta Declaração.",
+    "motivo": "Cromwell morreu em 1658 e governou como Lorde Protetor de 1653 a 1658. Dizer 'república de Cromwell, de 1649 a 1660' atribui a ele o período inteiro.",
+    "fonte": "https://www.britannica.com/biography/Oliver-Cromwell"
+   },
+   {
+    "campo": "visual.roteiro",
+    "depois": "Quadro 1: 1642-1649, guerra civil e execução de Carlos I. Quadro 2: 1649-1660, república (Cromwell como Lorde Protetor de 1653 a 1658). Quadro 3: 1660, restauração da monarquia (Carlos II). Quadro 4: 1688, Guilherme de Orange chega à Inglaterra e Jaime II foge. Quadro 5: 1689, Declaração de Direitos: rei com poder limitado pelo Parlamento. Destacar a seta 'rei → precisa do aval → Parlamento'.",
+    "motivo": "Corrige a mesma imprecisão sobre Cromwell. Também ajusta a sequência de 1688: Guilherme desembarcou e Jaime II fugiu. O trono só foi declarado vago pelo Parlamento em 1689.",
+    "fonte": "https://www.britannica.com/event/Glorious-Revolution"
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C"
  }
 }

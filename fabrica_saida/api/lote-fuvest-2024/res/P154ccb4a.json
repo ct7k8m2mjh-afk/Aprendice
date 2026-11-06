@@ -43,9 +43,9 @@
     "tipo": "eliminar"
    },
    {
-    "faz": "Descarte os fatos isolados",
+    "faz": "Descarte os fatos que o livro não narra",
     "conta": "(C) Nael a São Paulo; (D) morte de Rânia",
-    "porque": "São acontecimentos pontuais, e não o resultado geral da rivalidade. Rânia, a irmã dos gêmeos, não morre por causa da briga.",
+    "porque": "Nenhum dos dois acontece no romance. Nael não vai morar com Yaqub em São Paulo: ele fica em Manaus, num quarto nos fundos da antiga casa. Rânia, a irmã dos gêmeos, não morre. É ela quem cuida dos negócios até a casa ser vendida.",
     "tipo": "eliminar"
    },
    {
@@ -60,8 +60,8 @@
   "erradas": {
    "A": "Afirma o contrário do que o conflito produz. O livro mostra decadência da casa e da família, e não prosperidade de 'ambos'. Omar, por exemplo, leva uma vida de excessos.",
    "B": "Inverte a relação. Os laços entre os gêmeos não são reconstruídos; a rivalidade continua e a ruptura se aprofunda.",
-   "C": "É um episódio isolado e não é a consequência central da rivalidade. Nael, o narrador, é filho da empregada Domingas e acompanha a decadência da casa em Manaus. O romance não apresenta a ida a São Paulo como resultado da briga dos gêmeos.",
-   "D": "Rânia não morre por causa da disputa dos irmãos. Ela é a irmã que fica na família. A alternativa cita um personagem verdadeiro, mas o fato não é o resultado da rivalidade."
+   "C": "O fato não acontece no romance. Nael, o narrador, filho da empregada Domingas, continua em Manaus e fica com um quarto nos fundos da antiga casa. Quem vive em São Paulo é Yaqub.",
+   "D": "Rânia não morre no romance. Ela é a irmã que fica com a família, cuida da loja e acaba vendendo a casa para pagar as dívidas. A alternativa cita uma personagem verdadeira, mas o fato é falso."
   },
   "armadilha": "Marcar um fato verdadeiro da obra (um personagem, um lugar) que não responde ao comando, que pede o resultado geral da rivalidade.",
   "alerta": "",
@@ -91,10 +91,40 @@
  "gab": "E",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].faz",
+    "depois": "Descarte os fatos que o livro não narra",
+    "motivo": "Chamar C e D de 'fatos isolados' dá a entender que eles acontecem no romance. Nenhum dos dois acontece.",
+    "fonte": "Anais ENLIJE 2014 (Realize), análise de Dois irmãos: a casa vira loja de Rochiram e Nael fica com um quarto aos fundos, no quintal."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Nenhum dos dois acontece no romance. Nael não vai morar com Yaqub em São Paulo: ele fica em Manaus, num quarto nos fundos da antiga casa. Rânia, a irmã dos gêmeos, não morre. É ela quem cuida dos negócios até a casa ser vendida.",
+    "motivo": "O texto antigo tratava a ida de Nael a São Paulo e a morte de Rânia como acontecimentos pontuais. Isso está errado: Nael continua em Manaus e Rânia está viva no desfecho.",
+    "fonte": "Revista UNIESP (2017), sobre Dois irmãos: 'Nael continua a morar em um quarto ao lado da casa'; Anais ENLIJE 2014: Rânia vende a casa para pagar as dívidas."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "O fato não acontece no romance. Nael, o narrador, filho da empregada Domingas, continua em Manaus e fica com um quarto nos fundos da antiga casa. Quem vive em São Paulo é Yaqub.",
+    "motivo": "A versão antiga chamava a ida de Nael a São Paulo de 'episódio isolado', como se ela fosse narrada. Nael não sai de Manaus.",
+    "fonte": "Anais ENLIJE 2014 (Realize): Nael recebe 'um pequeno quadrado aos fundos, no quintal' da casa transformada em comércio."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "Rânia não morre no romance. Ela é a irmã que fica com a família, cuida da loja e acaba vendendo a casa para pagar as dívidas. A alternativa cita uma personagem verdadeira, mas o fato é falso.",
+    "motivo": "A frase 'não morre por causa da disputa' sugere que ela morre por outro motivo. Rânia não morre.",
+    "fonte": "Anais ENLIJE 2014 (Realize): Rânia vende a casa para quitar as dívidas."
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E"
  }
 }

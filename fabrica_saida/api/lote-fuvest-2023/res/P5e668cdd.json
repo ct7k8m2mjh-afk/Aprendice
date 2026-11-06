@@ -41,7 +41,7 @@
   "passos": [
    {
     "faz": "Localize os adjuntos de tempo",
-    "conta": "\"Presentemente\"; \"no ano passado\"; \"Ano passado eu morri\"; \"esse ano eu não morro\"",
+    "conta": "presentemente / ano passado / esse ano",
     "porque": "Todos indicam quando. Formam duas faixas: passado (sofrimento) e presente (sorte).",
     "tipo": "localizar"
    },
@@ -49,13 +49,13 @@
     "faz": "Julgue a afirmação I",
     "conta": "\"Ano passado eu morri, mas esse ano eu não morro\"",
     "porque": "O contraste passado × presente aparece assim: o passado é de dor, o presente é de sorte. O contraste reforça a metáfora de 'morrer' como sofrer muito. A afirmação está correta.",
-    "tipo": "interpretar"
+    "tipo": "comparar"
    },
    {
     "faz": "Julgue a afirmação II",
     "conta": "\"apesar de muito moço, me sinto são e salvo e forte\"",
     "porque": "'Apesar de' é concessivo: apresenta um fato contrário à expectativa. Ser muito moço faz esperar inexperiência e fragilidade, e o eu lírico se diz forte e a salvo. Há quebra de expectativa. A afirmação está correta.",
-    "tipo": "interpretar"
+    "tipo": "comparar"
    },
    {
     "faz": "Julgue a afirmação III",
@@ -106,10 +106,34 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "comparar",
+    "motivo": "'interpretar' não está na lista de tipos permitidos (localizar, calcular, comparar, eliminar, concluir). O passo confronta a afirmação I com o trecho, por isso o tipo certo é 'comparar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "comparar",
+    "motivo": "'interpretar' não está na lista de tipos permitidos. O passo confronta a afirmação II com o trecho, por isso o tipo certo é 'comparar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[0].conta",
+    "depois": "presentemente / ano passado / esse ano",
+    "motivo": "Na tela do celular a conta não quebra linha e precisa caber em cerca de 30 caracteres; a versão antiga tinha uns 80. A nova lista os mesmos adjuntos de tempo do texto.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C"
  }
 }

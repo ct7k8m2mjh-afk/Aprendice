@@ -44,8 +44,8 @@
    {
     "faz": "Observe a língua em que o poema é escrito",
     "conta": "'maise grandi', 'tuttos sabi gorgeá', 'imensidó'",
-    "porque": "A grafia mistura palavras do italiano ('tuttos', 'tuttas', 'di') com o português, imitando a fala do imigrante. Mudar a ortografia assim deforma a língua de propósito, o que produz o riso.",
-    "tipo": "interpretar"
+    "porque": "A grafia mistura ao português palavras e sons do italiano ('che', 'di', o italianizado 'tuttos'), imitando a fala do imigrante. Mudar a ortografia assim deforma a língua de propósito, o que produz o riso.",
+    "tipo": "localizar"
    },
    {
     "faz": "Veja de onde vem o elogio à terra",
@@ -57,13 +57,13 @@
     "faz": "Ligue a forma à inserção social do imigrante",
     "conta": "fala do imigrante → caricatura",
     "porque": "O imigrante aparece pelo modo como fala, e esse modo é exagerado para fazer rir. Isso mostra como a sociedade paulistana via a comunidade italiana: com humor e com o olhar de quem a achava pitoresca.",
-    "tipo": "interpretar"
+    "tipo": "comparar"
    },
    {
     "faz": "Elimine as alternativas sem apoio nos versos",
     "conta": "A: Itália? B: reconhecimento? C: revolta? D: lírico?",
     "porque": "Os versos não comparam paisagens, não reconhecem contribuição literária, não falam de revolta nem pedem aceitação. Sobra a que fala da linguagem caricata.",
-    "tipo": "eliminar"
+    "tipo": "concluir"
    }
   ],
   "resposta": "Alternativa E: a linguagem macarrônica do poema representa de modo caricato o idioma dos imigrantes italianos, o que ao mesmo tempo é humor e retrato de como a comunidade era vista.",
@@ -106,10 +106,40 @@
  "gab": "E",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "localizar",
+    "motivo": "'interpretar' não é um dos tipos válidos (localizar, calcular, comparar, eliminar, concluir). O passo localiza nos versos as marcas da grafia misturada.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "A grafia mistura ao português palavras e sons do italiano ('che', 'di', o italianizado 'tuttos'), imitando a fala do imigrante. Mudar a ortografia assim deforma a língua de propósito, o que produz o riso.",
+    "motivo": "'tuttos' e 'tuttas' não são italiano: em italiano seriam 'tutti' e 'tutte'. São formas híbridas. 'che' e 'di' são italiano de fato.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "comparar",
+    "motivo": "'interpretar' não é um tipo válido. O passo compara a forma do poema com a situação social do imigrante.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[4].tipo",
+    "depois": "concluir",
+    "motivo": "O último passo tem de ser 'concluir'. Este passo elimina as demais letras e chega à E ('Sobra a que fala da linguagem caricata').",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E"
  }
 }

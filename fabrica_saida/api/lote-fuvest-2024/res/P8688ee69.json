@@ -57,7 +57,7 @@
     "faz": "Monte a inequação",
     "conta": "2^(−(n−1)/2) < 10^−4",
     "porque": "O lado tem de ser menor que 1 décimo de milésimo de 1 cm, ou seja, menor que 10^−4.",
-    "tipo": "interpretar"
+    "tipo": "calcular"
    },
    {
     "faz": "Aplique log nos dois lados",
@@ -91,7 +91,7 @@
  "caminhos": [
   {
    "nome": "Dois passos por vez",
-   "ideia": "A cada 2 etapas o lado cai pela metade (q² = 1/2). Precisamos de 2^−k < 10^−4, ou seja, k × 0,3 > 4, logo k ≥ 14 metades. Com 13 metades (26 etapas depois da primeira) ainda não basta; 13,5 já basta, o que dá n−1 = 27 e n = 28."
+   "ideia": "A cada 2 etapas o lado cai pela metade (q² = 1/2). Escreva o lado como 2^(−k), com k = (n−1)/2 metades, que pode ser fracionário. A condição 2^(−k) < 10^(−4) vira k × 0,3 > 4, ou seja, k > 13,33. Com k = 13 (n = 27) ainda não basta. Com k = 13,5 (n − 1 = 27) já basta, logo n = 28."
   },
   {
    "nome": "Teste das alternativas",
@@ -167,10 +167,28 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "calcular",
+    "motivo": "O tipo 'interpretar' não está entre os aceitos (localizar, calcular, comparar, eliminar, concluir). Neste passo se monta a inequação, então o tipo certo é 'calcular'.",
+    "fonte": ""
+   },
+   {
+    "campo": "caminhos[0].ideia",
+    "depois": "A cada 2 etapas o lado cai pela metade (q² = 1/2). Escreva o lado como 2^(−k), com k = (n−1)/2 metades, que pode ser fracionário. A condição 2^(−k) < 10^(−4) vira k × 0,3 > 4, ou seja, k > 13,33. Com k = 13 (n = 27) ainda não basta. Com k = 13,5 (n − 1 = 27) já basta, logo n = 28.",
+    "motivo": "O texto dizia 'k ≥ 14 metades' e logo depois que 13,5 já basta, o que é contraditório. Como k = (n−1)/2 pode ser fracionário, a condição correta é k > 13,33.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C"
  }
 }

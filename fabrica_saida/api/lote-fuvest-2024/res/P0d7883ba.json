@@ -40,19 +40,19 @@
     "faz": "Escreva o equilíbrio das forças",
     "conta": "E = P + T",
     "porque": "O objeto está parado. O empuxo (para cima) equilibra o peso mais a tração (as duas para baixo).",
-    "tipo": "aplicar"
+    "tipo": "calcular"
    },
    {
     "faz": "Imponha tração nula",
     "conta": "T = 0 → E = P",
     "porque": "A questão pede a situação em que a tensão se anula.",
-    "tipo": "aplicar"
+    "tipo": "calcular"
    },
    {
     "faz": "Troque pelas expressões e simplifique",
     "conta": "d_óleo·V·g = M·g → d_óleo = M/V",
     "porque": "O g cancela. A tração é nula quando a densidade do óleo iguala a do objeto.",
-    "tipo": "aplicar"
+    "tipo": "calcular"
    },
    {
     "faz": "Calcule a densidade do objeto",
@@ -64,7 +64,7 @@
     "faz": "Leia no gráfico a temperatura de 0,90",
     "conta": "d_óleo = 0,90 → 150 °C",
     "porque": "O eixo vertical marca a densidade e o horizontal marca a temperatura. A reta laranja passa por 0,90 g/cm³ em 150 °C.",
-    "tipo": "localizar"
+    "tipo": "concluir"
    }
   ],
   "resposta": "Alternativa D: a tração se anula quando a densidade do óleo vale 0,90 g/cm³, igual à do objeto, o que ocorre em 150 °C.",
@@ -149,10 +149,40 @@
  "gab": "D",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[0].tipo",
+    "depois": "calcular",
+    "motivo": "'aplicar' não é tipo válido (localizar, calcular, comparar, eliminar, concluir).",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "calcular",
+    "motivo": "'aplicar' não é tipo válido.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "calcular",
+    "motivo": "'aplicar' não é tipo válido.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[4].tipo",
+    "depois": "concluir",
+    "motivo": "O último passo tem de ser 'concluir' e ligar o resultado à letra. Esse passo faz a leitura final que leva à alternativa D.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "D"
  }
 }

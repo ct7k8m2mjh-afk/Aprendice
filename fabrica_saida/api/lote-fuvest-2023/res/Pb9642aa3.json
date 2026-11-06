@@ -39,7 +39,7 @@
     "faz": "Identifique ácido e base",
     "conta": "limão: ácido (dá H+)",
     "porque": "O suco de limão contém ácido cítrico, que libera H+. A metilamina é a base.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Localize o par livre da base",
@@ -51,7 +51,7 @@
     "faz": "Escreva a transferência de H+",
     "conta": "CH3NH2 + H+ → CH3NH3+",
     "porque": "O par livre forma uma nova ligação N–H. O N fica com 4 ligações e sem par livre.",
-    "tipo": "aplicar"
+    "tipo": "calcular"
    },
    {
     "faz": "Confira a carga do produto",
@@ -72,7 +72,7 @@
    "A": "Tem o par livre no N (só 3 ligações, como na metilamina) e, mesmo assim, carga +. Não ganhou nenhum H, então a carga não tem origem. O cátion verdadeiro não tem par livre.",
    "B": "É a própria metilamina, CH3NH2, com o par livre e sem carga. Ela é o reagente. O enunciado pede o produto da reação com o ácido.",
    "D": "O N tem 4 ligações e sem par livre, mas a estrutura está sem o sinal de carga. Com 6 H e nenhuma carga, ela não corresponde ao que se forma: CH3NH2 + H+ resulta em carga +1.",
-   "E": "O N tem só 2 H, sem par livre e sem carga: faltam elétrons e a estrutura é inconsistente. Ela não representa nem a metilamina (que tem o par livre) nem o cátion."
+   "E": "Mostra o N com só 2 H e sem carga: é a própria metilamina, o reagente, desenhada sem o par livre. Não ganhou o H+, então não é o produto da reação."
   },
   "armadilha": "Marcar a estrutura que parece 'a mesma molécula' (B) ou esquecer que o N com 4 ligações e sem par livre exige a carga +.",
   "alerta": "",
@@ -123,10 +123,34 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[0].tipo",
+    "depois": "localizar",
+    "motivo": "O tipo 'interpretar' não está entre os permitidos (localizar, calcular, comparar, eliminar, concluir). O passo identifica no enunciado quem é o ácido e quem é a base, então o tipo certo é 'localizar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "calcular",
+    "motivo": "O tipo 'aplicar' não está entre os permitidos. O passo monta a equação da transferência de H+, que é a execução do raciocínio, então o tipo certo é 'calcular'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "Mostra o N com só 2 H e sem carga: é a própria metilamina, o reagente, desenhada sem o par livre. Não ganhou o H+, então não é o produto da reação.",
+    "motivo": "A versão anterior dizia que E não representa a metilamina e que a estrutura é inconsistente. Isso é falso: omitir o par livre é a forma usual da fórmula estrutural, e E é a metilamina (CH3–NH2) desenhada assim. O motivo certo para descartar E é que ela é o reagente, não o produto.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C"
  }
 }

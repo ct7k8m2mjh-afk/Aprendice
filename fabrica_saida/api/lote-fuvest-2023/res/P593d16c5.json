@@ -56,13 +56,13 @@
     "faz": "Traduza em efeito sobre a planta",
     "conta": "A: efeito + | B: efeito −",
     "porque": "Para a planta, A é uma interação favorável e B é uma interação desfavorável.",
-    "tipo": "interpretar"
+    "tipo": "comparar"
    },
    {
     "faz": "Escolha os interagentes",
     "conta": "A: mutualista (+) | B: herbívoro (−)",
     "porque": "Só o mutualista dá um ganho de biomassa à planta. Entre os que a prejudicam, o herbívoro consome a planta e reduz a biomassa.",
-    "tipo": "aplicar"
+    "tipo": "eliminar"
    },
    {
     "faz": "Ligue à alternativa",
@@ -111,10 +111,28 @@
  "gab": "D",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "comparar",
+    "motivo": "O tipo 'interpretar' não está entre os tipos permitidos (localizar, calcular, comparar, eliminar, concluir). Neste passo, as duas curvas são comparadas e lidas como efeito + ou − sobre a planta.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "eliminar",
+    "motivo": "O tipo 'aplicar' não está entre os tipos permitidos. Neste passo, os interagentes são escolhidos descartando os que não têm o sinal exigido por cada curva.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "D"
  }
 }

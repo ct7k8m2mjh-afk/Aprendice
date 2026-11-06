@@ -81,10 +81,10 @@
   "resposta": "Alternativa A: P = 3 × 10¹⁰ W = 30 GW.",
   "checagem": "Outro caminho: a corrente média é i = q ÷ Δt = 30 ÷ 10⁻³ = 3 × 10⁴ A. Então P = U × i = 10⁶ × 3×10⁴ = 3×10¹⁰ W = 30 GW. Dá o mesmo valor.",
   "erradas": {
-   "B": "3 GW é 3×10⁹ W, dez vezes menor que o correto. Aparece se a tensão for 10⁵ V, por exemplo usando d = 10 m em vez de 100 m: 10⁴ × 10 × 30 ÷ 10⁻³ = 3×10⁹ W.",
-   "C": "300 MW é 3×10⁸ W, cem vezes menor que o correto. Sai de tratar 10 kV/m como 10² V/m (esquecendo que quilo é 10³) e ainda errar uma potência de dez: o resultado correto é 3×10¹⁰ W.",
+   "B": "3 GW = 3×10⁹ W, dez vezes menos que o correto. Sai de ler 10 kV/m como 10³ V/m, só o kilo: U = 10³ × 100 = 10⁵ V; 30 × 10⁵ ÷ 10⁻³ = 3×10⁹ W.",
+   "C": "C não confere: 300 MW = 3×10⁸ W, cem vezes menos que P = 3×10¹⁰ W. Com U = 10⁶ V, q = 30 C e Δt = 10⁻³ s, nenhuma troca de prefixo comum leva a esse valor.",
    "D": "30 MW é 3×10⁷ W, que é a energia em joules (W = 30 × 10⁶ J), e não a potência. Faltou dividir pelo tempo de 10⁻³ s.",
-   "E": "3 MW é 3×10⁶ W, mil vezes menor que o correto. Sai de dividir a energia 3×10⁷ J por 10 em vez de por 10⁻³, ou de errar o prefixo de giga."
+   "E": "E não confere: 3 MW = 3×10⁶ W, dez mil vezes menos que P = 3×10¹⁰ W. Nem tomar a energia (3×10⁷ J) por potência chega tão baixo."
   },
   "armadilha": "Confundir a energia (3×10⁷ J, que vira 30 MW se for lida como potência) com a potência: falta dividir pelo tempo de 10⁻³ s.",
   "alerta": "",
@@ -126,7 +126,7 @@
    "nota": "30 = 3 × 10¹"
   },
   {
-   "linha": "P = \\frac{3×10⁷}{10⁻³}",
+   "linha": "P = 3×10⁷ ÷ 10⁻³",
    "nota": "potência = energia ÷ tempo (1 ms = 10⁻³ s)"
   },
   {
@@ -151,10 +151,40 @@
  "gab": "A",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "quadro[5].linha",
+    "depois": "P = 3×10⁷ ÷ 10⁻³",
+    "motivo": "A linha usava LaTeX (\\frac), que o brief proíbe e que o site não desenha. A conta continua a mesma.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "3 GW = 3×10⁹ W, dez vezes menos que o correto. Sai de ler 10 kV/m como 10³ V/m, só o kilo: U = 10³ × 100 = 10⁵ V; 30 × 10⁵ ÷ 10⁻³ = 3×10⁹ W.",
+    "motivo": "A origem dada (usar d = 10 m) é um erro artificial, porque o enunciado diz 100 m com todas as letras. Troquei por um erro real e reproduzível com o prefixo, que chega exatamente a 3×10⁹ W. Conta refeita: 10³ × 100 × 30 ÷ 10⁻³ = 3×10⁹.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "C não confere: 300 MW = 3×10⁸ W, cem vezes menos que P = 3×10¹⁰ W. Com U = 10⁶ V, q = 30 C e Δt = 10⁻³ s, nenhuma troca de prefixo comum leva a esse valor.",
+    "motivo": "O texto anterior era falso. Usar 10² V/m sozinho já dá 3×10⁸ W (10² × 100 × 30 ÷ 10⁻³ = 3×10⁸), então não é preciso 'errar mais uma potência de dez'. Além disso, 10² V/m não é uma leitura plausível de 10 kV/m. Troquei por um teste objetivo.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "E não confere: 3 MW = 3×10⁶ W, dez mil vezes menos que P = 3×10¹⁰ W. Nem tomar a energia (3×10⁷ J) por potência chega tão baixo.",
+    "motivo": "A conta estava errada: 3×10⁶ W é dez mil vezes menos que 3×10¹⁰ W, não mil. As origens dadas também eram inventadas ('dividir por 10 em vez de por 10⁻³', 'errar o prefixo de giga'), sem nenhum erro real que reproduza o valor. Troquei por um teste objetivo.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "A"
  }
 }

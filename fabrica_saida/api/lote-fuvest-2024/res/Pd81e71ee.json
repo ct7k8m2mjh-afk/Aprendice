@@ -59,7 +59,7 @@
     "faz": "Ligue a subida à causa",
     "conta": "~1800 = Revolução Industrial",
     "porque": "Carvão, petróleo e gás passaram a ser queimados em grande escala, e a agropecuária se expandiu. Isso lança CO2, CH4 e N2O na atmosfera e intensifica o efeito estufa.",
-    "tipo": "interpretar"
+    "tipo": "comparar"
    },
    {
     "faz": "Elimine as que contradizem gráfico ou ciência",
@@ -80,7 +80,7 @@
    "A": "O gráfico mostra o contrário: as três curvas continuam subindo até 2000, o metano quase na vertical. E o texto diz que o CO2 chegou a cerca de 420 ppm em 2022, bem acima dos 280 ppm originais. Não houve estabilização.",
    "B": "A Revolução Industrial se apoiou na máquina a vapor movida a carvão mineral, um combustível fóssil não renovável. Foi justamente essa queima que elevou o CO2. A alternativa fala em energias renováveis, o que está errado.",
    "C": "Árvores absorvem CO2 na fotossíntese e guardam carbono. O plantio em grande escala ajuda a reduzir o CO2 atmosférico, e não a acentuar o aquecimento. A alternativa inverte o efeito.",
-   "D": "As duas ideias são falsas. O aquecimento atual não é só recente, e o clima da Terra nunca foi constante: houve eras glaciais e períodos mais quentes ao longo da história geológica. A premissa de temperaturas constantes está errada."
+   "D": "O erro está na justificativa: o clima da Terra nunca foi constante. Houve eras glaciais e períodos mais quentes ao longo da história geológica. A alternativa apoia a conclusão numa premissa falsa."
   },
   "armadilha": "Confundir efeito estufa (natural, necessário à vida) com a sua intensificação por ação humana: a E acerta ao falar em 'intensificado'.",
   "alerta": "",
@@ -113,10 +113,28 @@
  "gab": "E",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "comparar",
+    "motivo": "O tipo 'interpretar' não existe no padrão. Os tipos válidos são localizar, calcular, comparar, eliminar e concluir. Este passo liga o dado do gráfico ao conceito, então o tipo certo é comparar.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "O erro está na justificativa: o clima da Terra nunca foi constante. Houve eras glaciais e períodos mais quentes ao longo da história geológica. A alternativa apoia a conclusão numa premissa falsa.",
+    "motivo": "A versão anterior dizia que 'as duas ideias são falsas' e que o aquecimento 'não é só recente'. Isso é impreciso: o aquecimento atual, de origem humana, é de fato recente. O erro da D está só na premissa de que as temperaturas foram sempre constantes.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E"
  }
 }

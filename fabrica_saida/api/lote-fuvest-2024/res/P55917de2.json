@@ -48,13 +48,13 @@
     "faz": "Traduza em velocidade",
     "conta": "mesmo Δt, menor distância",
     "porque": "No mesmo intervalo de tempo, o carro anda cada vez menos. Sua velocidade diminui: ele está freando, e sempre para a direita.",
-    "tipo": "interpretar"
+    "tipo": "comparar"
    },
    {
     "faz": "Monte o gráfico esperado",
     "conta": "sobe, mas cada vez mais plana",
     "porque": "A posição só aumenta, então a curva sobe. A velocidade cai, então a inclinação diminui até quase zero. A curva fica côncava para baixo e tende a um patamar.",
-    "tipo": "aplicar"
+    "tipo": "comparar"
    },
    {
     "faz": "Escolha a curva",
@@ -101,10 +101,28 @@
  "gab": "A",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "comparar",
+    "motivo": "O tipo 'interpretar' não está na lista permitida (localizar, calcular, comparar, eliminar, concluir). O passo compara distâncias percorridas em intervalos de tempo iguais e daí tira a conclusão sobre a velocidade, então o tipo certo é 'comparar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "comparar",
+    "motivo": "O tipo 'aplicar' não está na lista permitida. O passo transforma a conclusão física (posição crescente, velocidade caindo) na forma esperada da curva, para depois compará-la com as curvas da figura. Por isso o tipo certo é 'comparar'.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "A"
  }
 }

@@ -28,7 +28,7 @@
     ],
     [
      "desfavorável",
-     "que não ocorre sem que se forneça energia continuamente"
+     "reação sem tendência a acontecer, porque os produtos não ficam mais estáveis que os reagentes"
     ]
    ]
   },
@@ -38,19 +38,19 @@
     "faz": "Identifique o paradoxo",
     "conta": "Afinidade C + O2 grande, mas não reage",
     "porque": "Há tendência de a reação ocorrer, mas ela não começa sozinha à temperatura ambiente.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Ache o que freia a reação",
     "conta": "Barreira = energia de ativação",
     "porque": "Para quebrar as ligações dos reagentes é preciso fornecer energia antes; sem ela, a reação não inicia.",
-    "tipo": "aplicar"
+    "tipo": "localizar"
    },
    {
     "faz": "Explique o espalhamento do fogo",
     "conta": "Combustão libera calor",
     "porque": "O calor liberado pela reação serve de energia de ativação para as moléculas vizinhas, e a reação segue sozinha.",
-    "tipo": "aplicar"
+    "tipo": "comparar"
    },
    {
     "faz": "Confronte com as alternativas",
@@ -65,7 +65,7 @@
    "A": "Nada no texto fala em concentrar carbono. A árvore já tem carbono em abundância; o que falta é energia inicial para a reação começar.",
    "B": "O fogo não torna a reação desfavorável: a combustão é exotérmica e espontânea em termos de energia. Se fosse desfavorável, o fogo não se espalharia, como o texto afirma.",
    "C": "O CO2 é produto da combustão, não reagente. Ele só aparece depois que a reação ocorre, então não pode ser necessário para ela começar.",
-   "D": "Um átomo de carbono da árvore e um do fogo são iguais quimicamente. A diferença é a energia disponível (temperatura), não uma 'resistência' do carbono ao O2."
+   "D": "O carbono que queima no fogo é o mesmo carbono da madeira da árvore; não existem dois tipos de carbono. A diferença é a energia disponível (temperatura), não uma 'resistência' do carbono ao O2."
   },
   "armadilha": "Confundir 'reação favorável' (libera energia) com 'reação que começa sozinha': ainda é preciso vencer a energia de ativação.",
   "alerta": "",
@@ -99,10 +99,49 @@
  "gab": "E",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[0].tipo",
+    "depois": "localizar",
+    "motivo": "O tipo \"interpretar\" não está na lista permitida (localizar, calcular, comparar, eliminar, concluir). O passo acha o paradoxo no texto, então o tipo certo é localizar.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "localizar",
+    "motivo": "O tipo \"aplicar\" não está na lista permitida. O passo aponta qual é a barreira que impede a reação, então o tipo certo é localizar.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "comparar",
+    "motivo": "O tipo \"aplicar\" não está na lista permitida. O passo põe lado a lado o início da reação, que precisa de energia externa, e a propagação, que se sustenta com o calor da própria reação. Por isso o tipo é comparar.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.antes.simbolos[3]",
+    "depois": [
+     "desfavorável",
+     "reação sem tendência a acontecer, porque os produtos não ficam mais estáveis que os reagentes"
+    ],
+    "motivo": "A definição antiga (\"não ocorre sem fornecer energia continuamente\") estava imprecisa. Ela confundia a tendência termodinâmica com a necessidade de energia, e essa necessidade é exatamente a energia de ativação, que é a ideia que a questão quer separar.",
+    "fonte": "OpenStax Chemistry 2e, cap. 16.4 (Free Energy) e cap. 12.5 (Collision Theory)"
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "O carbono que queima no fogo é o mesmo carbono da madeira da árvore; não existem dois tipos de carbono. A diferença é a energia disponível (temperatura), não uma 'resistência' do carbono ao O2.",
+    "motivo": "Na árvore, o carbono está em compostos orgânicos (como a celulose), e não em átomos soltos. Dizer que \"um átomo da árvore e um do fogo são iguais\" sugeria que no fogo há carbono atômico disperso. A nova redação mantém o argumento sem essa imprecisão.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E"
  }
 }

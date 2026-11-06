@@ -45,7 +45,7 @@
     "faz": "Leia a temperatura mínima nesses meses",
     "conta": "Jan-mar e dez: cerca de 1 a 4 °C",
     "porque": "A linha laranja é baixa quando a planta está sem folhas, com cerca de 1,4 °C em janeiro, e máxima (cerca de 14 °C) em julho e agosto. Mínimas entre 1 e 14 °C mostram estações bem marcadas, com meses frios. Isso é típico de clima temperado, não de tropical, em que as mínimas ficam altas o ano todo.",
-    "tipo": "interpretar"
+    "tipo": "comparar"
    },
    {
     "faz": "Leia a pluviosidade nesses meses",
@@ -57,7 +57,7 @@
     "faz": "Relacione o clima à perda de folhas",
     "conta": "frio + pouca chuva → sem folhas",
     "porque": "Com frio e pouca água, manter folhas custa energia e perde água por transpiração. Derrubá-las é uma adaptação. A variação do número de folhas acompanha temperaturas mínimas baixas e pouca chuva nos meses mais frios.",
-    "tipo": "aplicar"
+    "tipo": "concluir"
    },
    {
     "faz": "Ligue à alternativa",
@@ -67,7 +67,7 @@
    }
   ],
   "resposta": "Alternativa D: a planta é típica de clima temperado, e a perda de folhas ocorre com temperaturas mínimas baixas e pouca chuva nos meses mais frios.",
-  "checagem": "Confira os extremos. No mês mais frio e seco (janeiro: mínima ≈ 1,4 °C, chuva ≈ 3,6 cm) o número de folhas é zero. No mês mais quente e chuvoso (julho: mínima ≈ 13,6 °C, chuva ≈ 15,7 cm) as folhas estão no máximo. A curva de folhas segue as outras duas.",
+  "checagem": "Confira os extremos. Em janeiro, o mês mais seco e um dos mais frios (mínima ≈ 1,4 °C, chuva ≈ 3,6 cm), o número de folhas é zero. Em julho, um mês quente e chuvoso (mínima ≈ 13,6 °C, chuva ≈ 15,7 cm), as folhas estão no máximo. A curva de folhas segue as outras duas.",
   "erradas": {
    "A": "Diz 'tropical' e 'muita chuva nos meses mais frios'. No gráfico, nos meses frios (jan-mar, nov-dez) a chuva é baixa, de 3,6 a 6,5 cm, e é nos meses quentes que chega a 16 cm. A mínima de 1,4 °C em janeiro também não é de clima tropical.",
    "B": "Acerta 'temperado' e 'temperaturas mínimas baixas', mas diz 'pouca chuva nos meses mais quentes'. Os meses mais quentes (junho a agosto) têm a maior chuva, cerca de 12 a 16 cm. A seca coincide com os meses frios.",
@@ -135,10 +135,34 @@
  "gab": "D",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Confira os extremos. Em janeiro, o mês mais seco e um dos mais frios (mínima ≈ 1,4 °C, chuva ≈ 3,6 cm), o número de folhas é zero. Em julho, um mês quente e chuvoso (mínima ≈ 13,6 °C, chuva ≈ 15,7 cm), as folhas estão no máximo. A curva de folhas segue as outras duas.",
+    "motivo": "Pelo gráfico, janeiro não é o mês mais frio: dezembro tem mínima menor (≈ 0,8 °C). Julho também não é o mais quente nem o mais chuvoso: agosto tem mínima um pouco maior (≈ 13,8 °C) e junho tem mais chuva (≈ 16 cm).",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "comparar",
+    "motivo": "O tipo 'interpretar' não está entre os permitidos (localizar, calcular, comparar, eliminar, concluir). Este passo compara a curva de temperatura com a de folhas.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "concluir",
+    "motivo": "O tipo 'aplicar' não está entre os permitidos. Este passo tira a conclusão da relação entre o clima e a perda de folhas.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "D"
  }
 }

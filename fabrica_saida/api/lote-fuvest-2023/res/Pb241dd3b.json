@@ -55,23 +55,23 @@
     "faz": "Classifique cada produto citado",
     "conta": "limão, vinagre: ácidos",
     "porque": "Suco de limão tem ácido cítrico e vinagre tem ácido acético, então os dois são ácidos.",
-    "tipo": "aplicar"
+    "tipo": "comparar"
    },
    {
     "faz": "Continue a classificação",
     "conta": "açúcar, sal: neutros",
     "porque": "Açúcar (sacarose) é molecular e não altera o pH da água. O sal de cozinha (NaCl) vem de ácido forte e base forte, então a solução é neutra e fica roxa.",
-    "tipo": "aplicar"
+    "tipo": "comparar"
    },
    {
     "faz": "Complete a classificação",
     "conta": "bicarbonato, soda: básicos",
     "porque": "O bicarbonato de sódio é básico fraco (pH em torno de 8, azul). A soda cáustica é base forte (pH muito alto, verde ou amarelo).",
-    "tipo": "aplicar"
+    "tipo": "comparar"
    },
    {
     "faz": "Procure a linha com ácido na 1ª coluna e base na 2ª",
-    "conta": "ácido + base → suco de limão + bicarbonato",
+    "conta": "E: limão (ácido), bicarbonato",
     "porque": "Só a alternativa E tem um ácido para o rosa/vermelho e uma base para o azul/verde.",
     "tipo": "concluir"
    }
@@ -116,10 +116,40 @@
  "gab": "E",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "comparar",
+    "motivo": "O tipo 'aplicar' não é um valor permitido (localizar, calcular, comparar, eliminar, concluir). O passo compara cada produto com a escala para dizer se ele é ácido, neutro ou básico.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "comparar",
+    "motivo": "O tipo 'aplicar' não é um valor permitido. Aqui também se classifica cada produto pela escala.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[4].tipo",
+    "depois": "comparar",
+    "motivo": "O tipo 'aplicar' não é um valor permitido. Aqui também se classifica cada produto pela escala.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[5].conta",
+    "depois": "E: limão (ácido), bicarbonato",
+    "motivo": "A conta tinha cerca de 43 caracteres e passava do limite de ~30 da tela. A seta '→' também dava a impressão de uma reação química entre ácido e base, que não acontece aqui.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E"
  }
 }

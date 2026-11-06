@@ -56,7 +56,7 @@
    {
     "faz": "Ligue o padrão a um fenômeno",
     "conta": "países em guerra ou crise → fuga",
-    "porque": "Síria, Afeganistão, Somália, Sudão e Iraque são os países de onde mais saíram pessoas em 2015. Pelos dados do ACNUR, a Síria tinha cerca de 4,9 milhões de refugiados, o Afeganistão cerca de 2,7 milhões e a Somália cerca de 1,1 milhão.",
+    "porque": "Síria, Afeganistão, Somália, Sudão e Iraque estão entre os principais países de onde as pessoas fugiram até 2015. Pelos dados do ACNUR, no fim de 2015 a Síria tinha cerca de 4,9 milhões de refugiados, o Afeganistão cerca de 2,7 milhões e a Somália cerca de 1,1 milhão.",
     "tipo": "comparar"
    },
    {
@@ -76,9 +76,9 @@
   "checagem": "Faça o teste inverso com a alternativa B. Em um mapa de PIB, EUA e China ficariam gigantes, e Síria, Somália e Burundi quase invisíveis. O mapa mostra o oposto: Somália e Burundi aparecem rotulados e visíveis, e nenhum país rico se destaca.",
   "erradas": {
    "A": "Em nascimentos vivos, os países mais populosos e de alta natalidade (Índia, China, Nigéria) dominariam o mapa. A Índia nem aparece rotulada, e uma Síria gigante não tem esse peso de nascimentos. O mapa não segue a demografia.",
-   "B": "O PIB faria EUA, China e Japão incharem. Aqui os países mais deformados (Síria, Somália, Burundi, Afeganistão) têm economias pequenas ou arrasadas pela guerra. É o oposto do esperado.",
+   "B": "O PIB faria EUA, China e Japão incharem. Aqui os países mais deformados (Síria, Afeganistão, Somália, Sudão) têm economias pequenas ou arrasadas pela guerra. É o oposto do esperado.",
    "C": "A população urbana total é liderada por países muito populosos, como China, Índia e EUA. Síria, Somália e Burundi não estariam entre os maiores do mapa.",
-   "D": "Na produção de petróleo, Arábia Saudita, EUA e Rússia ficariam enormes. A Arábia Saudita não aparece no mapa, e a Síria é produtora pequena. Iraque e Irã seriam coerentes, mas Somália, Burundi e Afeganistão não têm peso no petróleo."
+   "D": "Na produção de petróleo, Arábia Saudita, EUA e Rússia ficariam enormes. A Arábia Saudita não aparece rotulada nem inchada no mapa, e a Síria é produtora pequena. Iraque e Irã seriam coerentes, mas Somália, Burundi e Afeganistão não têm peso no petróleo."
   },
   "armadilha": "Olhar o mapa como se o tamanho dos países fosse o real: na anamorfose o tamanho é o valor do tema, e quem é grande no mundo real pode sumir.",
   "alerta": "",
@@ -114,10 +114,34 @@
  "gab": "E",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Síria, Afeganistão, Somália, Sudão e Iraque estão entre os principais países de onde as pessoas fugiram até 2015. Pelos dados do ACNUR, no fim de 2015 a Síria tinha cerca de 4,9 milhões de refugiados, o Afeganistão cerca de 2,7 milhões e a Somália cerca de 1,1 milhão.",
+    "motivo": "O texto dizia que os cinco eram 'os países de onde mais saíram pessoas'. Isso não se sustenta para o Iraque, que tinha cerca de 260 mil refugiados no fim de 2015 e ficava atrás de outros países, como Sudão do Sul, Rep. Dem. do Congo e Myanmar. A nova redação diz que eles estão entre os principais países de origem.",
+    "fonte": "ACNUR, Global Trends 2015 (https://www.unhcr.org/globaltrends2015/)"
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "O PIB faria EUA, China e Japão incharem. Aqui os países mais deformados (Síria, Afeganistão, Somália, Sudão) têm economias pequenas ou arrasadas pela guerra. É o oposto do esperado.",
+    "motivo": "No print, Burundi aparece rotulado, mas pequeno. Ele não está entre os países mais deformados.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "Na produção de petróleo, Arábia Saudita, EUA e Rússia ficariam enormes. A Arábia Saudita não aparece rotulada nem inchada no mapa, e a Síria é produtora pequena. Iraque e Irã seriam coerentes, mas Somália, Burundi e Afeganistão não têm peso no petróleo.",
+    "motivo": "Num mapa de anamorfose o país encolhe, mas não necessariamente some. O que o print mostra é que a Arábia Saudita não tem rótulo nem destaque.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E"
  }
 }

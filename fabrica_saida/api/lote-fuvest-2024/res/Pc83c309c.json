@@ -8,7 +8,7 @@
  "conceito": "Localizar no texto a crítica que o autor faz às exposições imersivas: o uso do equipamento é cobrado à parte.",
  "resolucao": {
   "antes": {
-   "texto": "A pergunta pede uma crítica que o texto realmente faz e que se liga a um dos elementos citados nas alternativas. Cada alternativa traz um assunto (TikTok, publicidade, cobrança, catálogo, investimento). Procure no texto qual deles é criticado de forma explícita. Atenção ao verbo 'brandishing a credit card machine', que é uma cena de cobrança.",
+   "texto": "A pergunta pede uma crítica que o texto realmente faz e que se liga a um dos elementos citados nas alternativas. Cada alternativa traz um assunto (TikTok, publicidade, cobrança, catálogo, investimento). Procure no texto qual deles é criticado de forma explícita. Atenção à expressão 'brandishing a credit card machine', que é uma cena de cobrança.",
    "formulas": [
     "usher = funcionário que orienta o público e recebe as pessoas",
     "brandish a credit card machine = exibir uma maquininha de cartão (cobrar)",
@@ -73,8 +73,8 @@
    {
     "faz": "Veja a cena da cobrança",
     "conta": "“an usher brandishing a credit card machine” (um funcionário exibindo uma maquininha de cartão)",
-    "porque": "O visitante, ao tentar voltar à realidade, foi duas vezes abordado para pagar. A crítica é a cobrança extra pelo equipamento.",
-    "tipo": "interpretar"
+    "porque": "O autor conta que, duas vezes, sua 'volta à realidade' veio com um funcionário mostrando a maquininha: era hora de pagar à parte. A crítica é a cobrança extra pelo equipamento.",
+    "tipo": "localizar"
    },
    {
     "faz": "Ligue à alternativa",
@@ -84,7 +84,7 @@
    }
   ],
   "resposta": "Alternativa C: o autor critica o fato de muitas exposições cobrarem à parte pelos óculos de realidade virtual, que não estão incluídos no ingresso comum.",
-  "checagem": "Veja a segunda marca: 'twice' (duas vezes) mostra que a cobrança extra se repetiu em mais de uma exposição. Nenhum outro assunto das alternativas tem cena equivalente no texto.",
+  "checagem": "Veja a segunda marca: 'many exhibitions don’t even include these' (muitas exposições nem incluem os óculos) mostra que não é um caso isolado, e 'twice' (duas vezes) mostra que o autor passou pela cobrança mais de uma vez. Nenhum outro assunto das alternativas tem cena equivalente no texto.",
   "erradas": {
    "A": "O texto liga o TikTok só à origem da moda ('latest lovechild of TikTok and enterprising warehouse landlords'). Não fala em imagens manipuladas digitalmente por usuários do TikTok.",
    "B": "O texto diz que os anúncios divulgam Van Gogh, Dalí e Kahlo, mas não afirma que as obras são usadas de forma ilícita em publicidade. 'Ilícitos' não aparece nem se sugere.",
@@ -119,10 +119,40 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "A pergunta pede uma crítica que o texto realmente faz e que se liga a um dos elementos citados nas alternativas. Cada alternativa traz um assunto (TikTok, publicidade, cobrança, catálogo, investimento). Procure no texto qual deles é criticado de forma explícita. Atenção à expressão 'brandishing a credit card machine', que é uma cena de cobrança.",
+    "motivo": "'brandishing a credit card machine' não é um verbo. É uma expressão: o particípio 'brandishing' seguido do objeto 'a credit card machine'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "localizar",
+    "motivo": "'interpretar' não está na lista de tipos permitidos (localizar, calcular, comparar, eliminar, concluir). O passo localiza e traduz um trecho do texto.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "O autor conta que, duas vezes, sua 'volta à realidade' veio com um funcionário mostrando a maquininha: era hora de pagar à parte. A crítica é a cobrança extra pelo equipamento.",
+    "motivo": "O texto diz que a volta à realidade 'has twice been accompanied by an usher'. Não diz que o autor estava 'tentando voltar à realidade'. A ironia é que a própria cobrança o tira da imersão.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Veja a segunda marca: 'many exhibitions don’t even include these' (muitas exposições nem incluem os óculos) mostra que não é um caso isolado, e 'twice' (duas vezes) mostra que o autor passou pela cobrança mais de uma vez. Nenhum outro assunto das alternativas tem cena equivalente no texto.",
+    "motivo": "'twice' indica que a cobrança aconteceu duas vezes com o autor, mas o texto não diz que foi em exposições diferentes. A generalização a várias exposições vem de 'many exhibitions'.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C"
  }
 }

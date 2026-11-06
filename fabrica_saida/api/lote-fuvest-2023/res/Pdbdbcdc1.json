@@ -47,7 +47,7 @@
     "faz": "Interprete a tendência",
     "conta": "Mortes > nascimentos; nascimentos caem desde ≈ 1960",
     "porque": "Poucos nascimentos significam base estreita. Mortes altas e crescentes indicam muitos idosos. A população fica envelhecida e começa a diminuir. Elimina-se a pirâmide triangular de base larga (A, C e D).",
-    "tipo": "interpretar"
+    "tipo": "eliminar"
    },
    {
     "faz": "Use a escala para testar a base",
@@ -74,7 +74,7 @@
    "A": "Tem formato de triângulo, típico de população jovem com muitos nascimentos. Isso contradiz 2050, quando as mortes passam os nascimentos. Também falha na escala: a base soma ≈ 110 milhões por faixa de 5 anos, ou ≈ 22 milhões por ano, bem acima dos 13 do gráfico.",
    "C": "É um triângulo de base larga, população muito jovem, o oposto de um cenário de mortes acima dos nascimentos. A base de ≈ 520 milhões por faixa de 5 anos daria ≈ 100 milhões de nascimentos por ano, muito além dos 13 milhões do gráfico.",
    "D": "Ainda é um triângulo de base larga, com mais jovens do que idosos, e não mostra o envelhecimento. A base soma ≈ 270 milhões em 5 anos, ou ≈ 54 milhões por ano, mais de quatro vezes o valor do gráfico.",
-   "E": "Tem formato de urna e parece envelhecida, mas a escala não confere: a faixa de 10 a 15 anos tem ≈ 205 milhões de pessoas, equivalente a ≈ 40 milhões de nascimentos por ano. Além disso, a base de 0 a 5 anos é menor que a faixa logo acima, o que não combina com nascimentos que só caem desde 1960."
+   "E": "Tem formato de urna e parece envelhecida, mas a escala não confere: a faixa de 10 a 15 anos tem ≈ 205 milhões de pessoas, equivalente a ≈ 40 milhões de nascimentos por ano. Além disso, a base de 0 a 5 anos é menor que a faixa logo acima, o que não combina com nascimentos em queda contínua entre 2030 e 2050."
   },
   "armadilha": "Escolher só pelo formato (B ou E) sem olhar a escala do eixo horizontal, que difere de pirâmide para pirâmide.",
   "alerta": "",
@@ -129,10 +129,28 @@
  "gab": "B",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "eliminar",
+    "motivo": "'interpretar' não é um tipo válido. Os tipos válidos são localizar, calcular, comparar, eliminar e concluir. O passo descarta A, C e D, por isso o tipo certo é 'eliminar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "Tem formato de urna e parece envelhecida, mas a escala não confere: a faixa de 10 a 15 anos tem ≈ 205 milhões de pessoas, equivalente a ≈ 40 milhões de nascimentos por ano. Além disso, a base de 0 a 5 anos é menor que a faixa logo acima, o que não combina com nascimentos em queda contínua entre 2030 e 2050.",
+    "motivo": "A frase antiga dizia que os nascimentos 'só caem desde 1960'. O gráfico desmente: a linha azul sobe um pouco por volta de 2005–2010 (de ≈ 13,7 para ≈ 14,2). A queda é contínua no período que forma a base da pirâmide de 2050, de 2030 a 2050.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "B"
  }
 }

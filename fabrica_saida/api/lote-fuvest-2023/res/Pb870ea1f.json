@@ -49,14 +49,14 @@
    {
     "faz": "Leia a pergunta do último quadro",
     "conta": "\"E hospitais, universidades, florestas, estatais?...\"",
-    "porque": "O filho cita bens públicos muito maiores do que lixeiras e placas. A reticência e a expressão dele sugerem crítica: se pequenos objetos são protegidos, a destruição desses também deveria ser crime.",
-    "tipo": "interpretar"
+    "porque": "O filho cita bens públicos muito maiores do que lixeiras e placas. As reticências sugerem crítica: se avariar pequenos objetos é crime, destruir esses bens também é dano ao patrimônio público.",
+    "tipo": "localizar"
    },
    {
     "faz": "Formule a conclusão com suas palavras",
     "conta": "patrimônio público = também hospitais, universidades, florestas, estatais",
     "porque": "A ideia implícita é que destruir esses bens é, igualmente, dano ao patrimônio público. A tira usa o contraste de tamanho para fazer a crítica.",
-    "tipo": "interpretar"
+    "tipo": "comparar"
    },
    {
     "faz": "Confronte as alternativas",
@@ -66,9 +66,9 @@
    }
   ],
   "resposta": "Alternativa D: a pergunta final do filho sugere que hospitais, universidades, florestas e estatais também são patrimônio público, e destruí-los é igualmente crime de dano.",
-  "checagem": "Troque a alternativa D pela pergunta do filho: se lixeiras e placas, que são bens pequenos, protegem o patrimônio, hospitais e florestas, bens enormes, também deveriam estar protegidos. O sentido bate com o último quadro.",
+  "checagem": "Leia a D como resposta à pergunta do filho: se avariar lixeiras e placas, bens pequenos, já é crime, destruir hospitais e florestas, bens enormes e também públicos, é dano ao patrimônio público do mesmo jeito. O sentido bate com o último quadro.",
   "erradas": {
-   "A": "A reflexão não é inócua: a pergunta final do filho amplia o conceito de patrimônio e faz uma crítica. O pai fica sem resposta, o que mostra que ela teve efeito.",
+   "A": "A reflexão não é inócua: a pergunta final do filho amplia o conceito de patrimônio e faz uma crítica pertinente. No último quadro, o pai, que antes respondeu na hora, fica sem resposta.",
    "B": "O filho menciona hospitais, universidades, florestas e estatais, que não são equipamentos das vias. Logo, a tira sugere o oposto: o patrimônio vai além das vias da cidade.",
    "C": "A notícia lida diz que avariar lixeiras e placas de trânsito é crime, isto é, esses itens são protegidos como patrimônio público. A alternativa afirma o contrário.",
    "E": "Pai e filho não discutem os efeitos da depreciação. O pai concorda que não se pode detonar o patrimônio ('claro que não, filho'), e o filho só amplia a lista de bens. Não há discordância."
@@ -101,10 +101,46 @@
  "gab": "D",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "localizar",
+    "motivo": "O guia não aceita o tipo 'interpretar'. Os tipos válidos são localizar, calcular, comparar, eliminar e concluir. Este passo localiza a fala do último quadro.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "comparar",
+    "motivo": "O guia não aceita o tipo 'interpretar'. Este passo compara a lista da notícia com a lista do filho para chegar à conclusão.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "O filho cita bens públicos muito maiores do que lixeiras e placas. As reticências sugerem crítica: se avariar pequenos objetos é crime, destruir esses bens também é dano ao patrimônio público.",
+    "motivo": "A frase antiga dizia que a destruição desses bens 'deveria ser crime', como se hoje não fosse. Isso contradiz a alternativa D, que diz que ela 'é também crime'. A frase também atribuía a crítica à 'expressão' do menino, que no print não mostra nada claro. Sobram como marca as reticências.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Leia a D como resposta à pergunta do filho: se avariar lixeiras e placas, bens pequenos, já é crime, destruir hospitais e florestas, bens enormes e também públicos, é dano ao patrimônio público do mesmo jeito. O sentido bate com o último quadro.",
+    "motivo": "A versão antiga dizia que 'lixeiras e placas protegem o patrimônio', o que é impreciso: elas são o patrimônio protegido. Dizia também que os outros bens 'deveriam estar protegidos', e a D afirma que destruí-los já é crime.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "A reflexão não é inócua: a pergunta final do filho amplia o conceito de patrimônio e faz uma crítica pertinente. No último quadro, o pai, que antes respondeu na hora, fica sem resposta.",
+    "motivo": "A frase antiga dizia que o silêncio do pai 'mostra que ela teve efeito'. A tira não sustenta isso. Ficou só o que o print mostra: o pai não tem balão no último quadro.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "D"
  }
 }

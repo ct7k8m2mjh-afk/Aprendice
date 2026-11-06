@@ -51,13 +51,13 @@
     "faz": "Entenda o que cada nó significa",
     "conta": "nó = ancestral comum extinto",
     "porque": "As pontas são espécies atuais. Uma ponta nunca é ancestral de outra: lampreia e tubarão não deram origem a ninguém do desenho.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Teste a afirmação sobre peixes e tetrápodes",
     "conta": "nó do tubarão: tubarão + perereca + lagarto + girafa + humano",
     "porque": "Esse nó é um ancestral comum ao tubarão e aos tetrápodes. Como o nó da lampreia está abaixo, a lampreia também compartilha um ancestral com os tetrápodes. Logo, os peixes têm ancestral compartilhado com os tetrápodes.",
-    "tipo": "aplicar"
+    "tipo": "comparar"
    },
    {
     "faz": "Compare o parentesco do lagarto",
@@ -95,7 +95,7 @@
   },
   {
    "nome": "contar nós até o encontro",
-   "ideia": "Para cada par, suba pelas linhas até elas se encontrarem. Quanto mais cedo (mais perto das pontas) o encontro, mais próximos são os dois: girafa e humano se encontram primeiro, lagarto depois, tubarão bem mais embaixo."
+   "ideia": "Para cada par, desça pelas linhas a partir das pontas até elas se encontrarem. Quanto mais cedo (mais perto das pontas) o encontro, mais próximos são os dois: girafa e humano se encontram primeiro, lagarto depois, tubarão bem mais embaixo."
   }
  ],
  "quadro": [],
@@ -112,10 +112,34 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "localizar",
+    "motivo": "'interpretar' não é um tipo válido. Os tipos permitidos são localizar, calcular, comparar, eliminar e concluir. Este passo lê o que o nó representa no diagrama.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "comparar",
+    "motivo": "'aplicar' não é um tipo válido. O passo confere a afirmação C contra o diagrama.",
+    "fonte": ""
+   },
+   {
+    "campo": "caminhos[1].ideia",
+    "depois": "Para cada par, desça pelas linhas a partir das pontas até elas se encontrarem. Quanto mais cedo (mais perto das pontas) o encontro, mais próximos são os dois: girafa e humano se encontram primeiro, lagarto depois, tubarão bem mais embaixo.",
+    "motivo": "No print, a raiz fica embaixo e as pontas em cima. Quem sai das pontas em busca do nó comum desce, não sobe. 'Suba' contradiz a figura.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C"
  }
 }

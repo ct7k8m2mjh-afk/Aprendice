@@ -56,7 +56,7 @@
     "faz": "Ligue a agropecuária ao metano",
     "conta": "Boi → rúmen → CH4",
     "porque": "Os microrganismos do rúmen fermentam a celulose do capim e liberam metano. No Brasil, o rebanho bovino gigantesco torna a agropecuária a principal fonte de metano.",
-    "tipo": "aplicar"
+    "tipo": "comparar"
    },
    {
     "faz": "Teste as demais alternativas",
@@ -77,7 +77,7 @@
    "B": "Resíduos agrícolas têm de fato peso pequeno (4,4%), mas os gases de sua decomposição são metano e N2O, não cloretos e sulfetos. Cloretos e sulfetos não são GEE, e o processo é decomposição de matéria orgânica, não intemperismo, que é desgaste de rocha.",
    "C": "A indústria (6,4%) emite sobretudo CO2, da queima de combustíveis e de reações como a produção de cimento e aço. O metano por ação de microrganismos sobre compostos nitrogenados não é o processo industrial típico. A alternativa troca o gás e o processo.",
    "D": "O gráfico dá 27,1% para uso da terra, não cerca de metade (50%). Além disso, a emissão vem principalmente da queima e da decomposição da vegetação derrubada, liberando CO2, e não apenas da ação de bactérias e fungos.",
-   "E": "A energia (28,9%) é, de fato, grande emissora, mas \"todos os processos de geração de energia\" é generalização falsa. Hidrelétrica, solar e eólica emitem muito pouco, e o N2O e o metano não vêm de todas as fontes."
+   "E": "A energia (28,9%) é, de fato, grande emissora, mas \"todos os processos de geração de energia\" é generalização falsa. Hidrelétrica, solar e eólica emitem muito pouco na geração. Além disso, a alternativa cita óxido nítrico (NO), que não é o óxido nitroso (N2O), este sim um GEE."
   },
   "armadilha": "Aceitar alternativas que citam um setor verdadeiro com gás ou processo errado (B, C, E) ou com número errado (D), sem checar o gráfico e o gás típico de cada setor.",
   "alerta": "",
@@ -128,10 +128,28 @@
  "gab": "A",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "comparar",
+    "motivo": "\"aplicar\" não é um tipo válido. Os tipos válidos são localizar, calcular, comparar, eliminar e concluir. Este passo liga o setor lido no gráfico ao processo que gera o gás, então o tipo certo é comparar.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "A energia (28,9%) é, de fato, grande emissora, mas \"todos os processos de geração de energia\" é generalização falsa. Hidrelétrica, solar e eólica emitem muito pouco na geração. Além disso, a alternativa cita óxido nítrico (NO), que não é o óxido nitroso (N2O), este sim um GEE.",
+    "motivo": "O texto antigo citava N2O, mas a alternativa E fala em óxido nítrico (NO), que é outro gás. A correção aponta essa troca, que também derruba a alternativa.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "A"
  }
 }

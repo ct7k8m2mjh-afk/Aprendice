@@ -50,7 +50,7 @@
    {
     "faz": "Teste a alternativa B",
     "conta": "Cinco países: ... Irã e Rússia",
-    "porque": "Os países com população curda relevante são Turquia, Iraque, Irã, Síria e Armênia. A Rússia não está no mapa nem entre eles.",
+    "porque": "O povoamento curdo se concentra em Turquia, Iraque, Irã e Síria, e há uma pequena presença na Armênia. A Rússia não está no mapa nem entre esses países.",
     "tipo": "eliminar"
    },
    {
@@ -70,7 +70,7 @@
   "checagem": "Releia o mapa: não há país curdo, só zonas de povoamento e duas regiões autônomas. Isso derruba D e E, que afirmam reconhecimento de Estado. A e B erram o tratado e o país citado, e sobra C.",
   "erradas": {
    "A": "O Tratado de Lausanne (1923) fixou as fronteiras da Turquia moderna sem prever Estado curdo. Foi o Tratado de Sèvres (1920) que previu autonomia curda, e ele nunca foi aplicado. A alternativa troca o sentido do tratado.",
-   "B": "A estimativa de dezenas de milhões e a região montanhosa estão certas, mas a lista de países falha. A Rússia não faz parte do território curdo e não aparece no mapa. O quinto país é a Armênia, citada no topo do mapa.",
+   "B": "A estimativa de dezenas de milhões e a região montanhosa estão certas, mas a lista de países falha. A Rússia não faz parte do território curdo e não aparece no mapa. O povoamento curdo se concentra em Turquia, Iraque, Irã e Síria; no mapa, a Armênia aparece só no canto, perto dessa área.",
    "D": "É verdade que as forças curdas foram centrais no combate ao Estado Islâmico a partir de 2014. Mas isso não levou ao reconhecimento de um Estado independente do Curdistão. O mapa mostra apenas regiões autônomas.",
    "E": "Não houve resolução do Conselho de Segurança da ONU em 2022 reconhecendo independência curda nem definindo fronteiras. O Curdistão não é Estado reconhecido, e as regiões do mapa são autônomas dentro da Síria e do Iraque."
   },
@@ -106,10 +106,28 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "O povoamento curdo se concentra em Turquia, Iraque, Irã e Síria, e há uma pequena presença na Armênia. A Rússia não está no mapa nem entre esses países.",
+    "motivo": "Na Armênia vive uma comunidade curda pequena, em grande parte yazidi. Ela não forma uma 'população curda relevante' comparável à dos quatro países principais. Chamá-la de 'relevante' exagera o fato.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "A estimativa de dezenas de milhões e a região montanhosa estão certas, mas a lista de países falha. A Rússia não faz parte do território curdo e não aparece no mapa. O povoamento curdo se concentra em Turquia, Iraque, Irã e Síria; no mapa, a Armênia aparece só no canto, perto dessa área.",
+    "motivo": "Dizer que 'o quinto país é a Armênia' trata como fato estabelecido uma presença curda pequena. A região curda costuma ser descrita como dividida entre quatro países. A troca evita uma afirmação discutível e mantém o motivo da eliminação (Rússia).",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C"
  }
 }

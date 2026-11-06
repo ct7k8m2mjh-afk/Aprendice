@@ -30,7 +30,7 @@
     "faz": "Decida o tipo de contagem",
     "conta": "ordem não importa → combinação",
     "porque": "O enunciado diz 'sem levar em conta a ordem'. Duas provas com as mesmas questões são a mesma prova.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Conte as escolhas de Matemática",
@@ -60,9 +60,9 @@
   "resposta": "Alternativa E: C(3,2) × C(8,6) = 3 × 28 = 84 provas distintas.",
   "checagem": "Conte pelo que fica de fora: 1 questão de Matemática entre 3 (3 modos) e 2 de Física entre 8 (28 modos). 3 × 28 = 84, o mesmo resultado.",
   "erradas": {
-   "A": "42 sai de usar C(8,2) = 28 só em parte ou de dividir o produto por 2: 84 ÷ 2 = 42. Não há divisão extra, pois a ordem de Matemática e Física já foi tratada em cada combinação.",
-   "B": "54 não confere: com 3 modos em Matemática e 28 em Física, o produto é 84, e 54 não é múltiplo de 3 vezes 28. Alguma das combinações foi calculada errado.",
-   "C": "62 não confere: não é múltiplo de 3, e o total tem de ser 3 × 28 = 84. Parece soma de valores, mas 3 + 28 = 31 e 2 × 31 = 62 não corresponde a nenhuma regra do problema.",
+   "A": "42 não confere: 42 = 3 × 14 exigiria só 14 modos em Física, mas C(8,6) = 28. Nenhuma divisão extra entra, porque cada combinação já descarta a ordem.",
+   "B": "54 não confere: 54 = 3 × 18 exigiria 18 modos em Física, mas C(8,6) = 28.",
+   "C": "62 não confere: o total é 3 vezes o número de escolhas de Física, então tem de ser múltiplo de 3, e 62 ÷ 3 não dá inteiro.",
    "D": "72 não confere: exigiria 24 modos em Física (72 ÷ 3), mas C(8,6) = 28. Falta contar 4 modos de escolher as questões de Física."
   },
   "armadilha": "Contar a ordem das questões (arranjo) em vez de só escolher quais entram, ou somar em vez de multiplicar as escolhas.",
@@ -127,10 +127,40 @@
  "gab": "E",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[0].tipo",
+    "depois": "localizar",
+    "motivo": "O tipo 'interpretar' não está na lista permitida (localizar, calcular, comparar, eliminar, concluir). O passo lê no enunciado a expressão 'sem levar em conta a ordem', então o tipo certo é localizar.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "42 não confere: 42 = 3 × 14 exigiria só 14 modos em Física, mas C(8,6) = 28. Nenhuma divisão extra entra, porque cada combinação já descarta a ordem.",
+    "motivo": "A origem dada ('usar C(8,2) só em parte ou dividir por 2') é inventada e especulativa, o que o padrão proíbe. Troquei por um teste objetivo. A frase 'a ordem de Matemática e Física já foi tratada' também estava imprecisa.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "54 não confere: 54 = 3 × 18 exigiria 18 modos em Física, mas C(8,6) = 28.",
+    "motivo": "A frase '54 não é múltiplo de 3 vezes 28' é ambígua: 54 é múltiplo de 3. A frase 'alguma das combinações foi calculada errado' é especulação. Troquei pelo teste objetivo.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "62 não confere: o total é 3 vezes o número de escolhas de Física, então tem de ser múltiplo de 3, e 62 ÷ 3 não dá inteiro.",
+    "motivo": "Removi a origem especulativa '2 × (3 + 28) = 62', que não corresponde a nenhum erro plausível. Ficou só o teste objetivo, que é verdadeiro.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E"
  }
 }

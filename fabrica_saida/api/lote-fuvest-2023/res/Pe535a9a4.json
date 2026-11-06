@@ -64,7 +64,7 @@
     "faz": "Separe os itens físicos",
     "conta": "pitch, timbre, amplitude = som",
     "porque": "Altura, timbre e amplitude são propriedades físicas da onda sonora. Melodia e harmonia são organizações musicais.",
-    "tipo": "interpretar"
+    "tipo": "eliminar"
    },
    {
     "faz": "Compare com as alternativas",
@@ -75,7 +75,7 @@
    {
     "faz": "Conclua",
     "conta": "resposta: timbre e amplitude",
-    "porque": "O texto fala de elementos que têm impacto afetivo, emocional, psicológico, cognitivo e até físico. Timbre e amplitude são os físicos da lista.",
+    "porque": "O texto fala de elementos que têm impacto afetivo, emocional, psicológico, cognitivo e até físico. Timbre e amplitude estão entre os itens físicos da lista e são o único par desses itens nas alternativas.",
     "tipo": "concluir"
    }
   ],
@@ -119,10 +119,28 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "eliminar",
+    "motivo": "O tipo \"interpretar\" não está na lista permitida (localizar, calcular, comparar, eliminar, concluir). O passo separa os itens físicos e descarta melodia e harmonia, então o tipo certo é \"eliminar\".",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "O texto fala de elementos que têm impacto afetivo, emocional, psicológico, cognitivo e até físico. Timbre e amplitude estão entre os itens físicos da lista e são o único par desses itens nas alternativas.",
+    "motivo": "A frase \"Timbre e amplitude são os físicos da lista\" dava a entender que só os dois são físicos. Mas o passo 3 já mostrou que pitch (altura) também é uma propriedade física do som. Foi preciso corrigir para tirar a contradição.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C"
  }
 }

@@ -44,7 +44,7 @@
     "faz": "Relacione vida curta e reação",
     "conta": "reagente → intermediário → produto",
     "porque": "Numa reação com várias etapas, o intermediário é formado e consumido rapidamente. Só uma técnica muito rápida o detecta.",
-    "tipo": "interpretar"
+    "tipo": "comparar"
    },
    {
     "faz": "Teste cada alternativa contra o texto",
@@ -60,7 +60,7 @@
    }
   ],
   "resposta": "Alternativa B: as reações químicas podem passar por espécies instáveis e com pouco tempo de vida, e a técnica de femtossegundos é rápida o bastante para detectá-las.",
-  "checagem": "Confira a escala: 10^−15 s é a ordem de tempo de uma vibração de ligação química. Uma técnica comum, que mede em segundos ou milissegundos, perderia o intermediário. Só a B explica por que a técnica é necessária.",
+  "checagem": "Confira a escala: as vibrações das ligações químicas e a quebra de uma ligação levam de dezenas a centenas de femtossegundos. Uma técnica comum, que mede em segundos ou milissegundos, perderia o intermediário. Só a B explica por que a técnica é necessária.",
   "erradas": {
    "A": "Generaliza demais. 'Todos os processos químicos são extremamente rápidos' é falso: enferrujar, fermentar e decompor plástico levam de horas a séculos. Também é falso que só técnicas em fs sirvam para estudar reações.",
    "C": "O texto não liga a técnica à quantidade de produto. O tempo disponível para analisar depende da vida da espécie observada, e não da quantidade de produto formada. A palavra 'apenas' também denuncia exagero.",
@@ -90,7 +90,7 @@
   "cabe": true,
   "porque": "A ideia de intermediário de vida curta fica clara ao ver a reação em etapas e o pulso de laser 'fotografando' o instante.",
   "tipo": "fluxo",
-  "roteiro": "Quadro 1: uma reação A + B → P escrita em uma linha, como aparece na equação global. Quadro 2: a seta se abre e mostra A + B → [I] → P, com [I] piscando e uma legenda 'dura ~10^−15 s'. Quadro 3: uma linha do tempo com a escala 10^0 s, 10^−3 s, 10^−15 s; um relógio comum perde [I], mas um pulso de laser de 10^−15 s aparece sobre [I] como flash. Quadro 4: destaque a frase 'reações podem passar por espécies instáveis e de pouca vida'."
+  "roteiro": "Quadro 1: uma reação A + B → P escrita em uma linha, como aparece na equação global. Quadro 2: a seta se abre e mostra A + B → [I] → P, com [I] piscando e a legenda 'dura poucos femtossegundos'. Quadro 3: uma linha do tempo com as marcas 10^0 s, 10^−3 s e 10^−15 s; um relógio comum perde [I], mas um pulso de laser de 10^−15 s aparece sobre [I] como um flash. Quadro 4: destaque a frase 'reações podem passar por espécies instáveis e de pouca vida'."
  },
  "fontes": [],
  "resposta_resolvedor": "B",
@@ -99,10 +99,34 @@
  "gab": "B",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "comparar",
+    "motivo": "O valor 'interpretar' não está na lista de tipos permitidos (localizar, calcular, comparar, eliminar, concluir). O passo põe lado a lado a vida curta das espécies e as etapas da reação, por isso o tipo certo é 'comparar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Confira a escala: as vibrações das ligações químicas e a quebra de uma ligação levam de dezenas a centenas de femtossegundos. Uma técnica comum, que mede em segundos ou milissegundos, perderia o intermediário. Só a B explica por que a técnica é necessária.",
+    "motivo": "Uma vibração de ligação dura de cerca de 10^−14 a 10^−13 s (dezenas a centenas de fs), e não 10^−15 s. O pulso precisa ser mais curto que o fenômeno observado, e não da mesma duração que ele.",
+    "fonte": "Zewail, A. H. Femtochemistry: Atomic-Scale Dynamics of the Chemical Bond. J. Phys. Chem. A 2000, 104, 5660–5694 (Nobel Lecture)"
+   },
+   {
+    "campo": "visual.roteiro",
+    "depois": "Quadro 1: uma reação A + B → P escrita em uma linha, como aparece na equação global. Quadro 2: a seta se abre e mostra A + B → [I] → P, com [I] piscando e a legenda 'dura poucos femtossegundos'. Quadro 3: uma linha do tempo com as marcas 10^0 s, 10^−3 s e 10^−15 s; um relógio comum perde [I], mas um pulso de laser de 10^−15 s aparece sobre [I] como um flash. Quadro 4: destaque a frase 'reações podem passar por espécies instáveis e de pouca vida'.",
+    "motivo": "O estado de transição e os intermediários que Zewail observou duram de dezenas a centenas de fs, e não ~10^−15 s. O valor 10^−15 s é a duração do pulso de laser. Troquei a legenda por 'dura poucos femtossegundos', que está correta e não confunde as duas escalas.",
+    "fonte": "Zewail, A. H. Nobel Lecture 1999, J. Phys. Chem. A 2000, 104, 5660"
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "B"
  }
 }

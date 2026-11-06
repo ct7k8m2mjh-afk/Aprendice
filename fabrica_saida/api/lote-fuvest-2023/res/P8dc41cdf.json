@@ -67,7 +67,7 @@
     "faz": "Use o choque perfeitamente inelástico",
     "conta": "E_dissipada = 168 J",
     "porque": "A bola para no solo, então toda a energia cinética de 168 J é dissipada no choque.",
-    "tipo": "aplicar"
+    "tipo": "concluir"
    },
    {
     "faz": "Passe o resultado para caloria",
@@ -82,7 +82,7 @@
    "A": "10 cal é só o trabalho adicional do arremesso. Faltou a energia potencial da bola, que vale 126 J = 30 cal.",
    "B": "Sai de subtrair em vez de somar: 126 − 42 = 84 J = 20 cal. O trabalho da pessoa é energia acrescentada à bola, então ele soma.",
    "C": "30 cal é só a energia potencial (126 J ÷ 4,2). Faltou somar as 10 cal que a pessoa fornece ao arremessar, pois essa energia também chega ao chão e é dissipada.",
-   "E": "50 cal = 210 J não confere. Passaria de 168 J, o que exigiria 84 J de trabalho, e o enunciado dá só 42 J (10 cal). Foi contado a mais algum termo, como o trabalho em dobro."
+   "E": "50 cal = 210 J não confere: a bola só recebe 126 J de energia potencial e 42 J do arremesso, que somam 168 J. Nenhuma outra energia entra na bola, então não há 210 J para dissipar."
   },
   "armadilha": "Medir a altura só até a cabeça (ou só até 40 cm) e esquecer o trabalho de 10 cal, que também vira energia a ser dissipada.",
   "alerta": "",
@@ -149,10 +149,28 @@
  "gab": "D",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[4].tipo",
+    "depois": "concluir",
+    "motivo": "'aplicar' não está na lista de tipos permitidos (localizar, calcular, comparar, eliminar, concluir). Neste passo se tira a conclusão física do choque perfeitamente inelástico: toda a energia cinética é dissipada.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "50 cal = 210 J não confere: a bola só recebe 126 J de energia potencial e 42 J do arremesso, que somam 168 J. Nenhuma outra energia entra na bola, então não há 210 J para dissipar.",
+    "motivo": "A versão anterior inventava a origem do distrator ('como o trabalho em dobro'). Pelo guia, quando não há origem comprovada, a entrada mostra só o teste objetivo que derruba a alternativa.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "D"
  }
 }

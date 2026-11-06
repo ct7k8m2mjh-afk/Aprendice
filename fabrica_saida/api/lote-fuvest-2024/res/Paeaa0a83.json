@@ -2,8 +2,8 @@
  "n": 72,
  "id": "Paeaa0a83",
  "materia": "fis",
- "tema": "F08",
- "conteudo": "F08.6",
+ "tema": "F07",
+ "conteudo": "F07.3",
  "nivel": 4,
  "conceito": "Montar no diagrama p × V o ciclo de quatro etapas (duas adiabáticas e duas isovolumétricas) e reconhecer seu sentido horário, característico de uma máquina térmica.",
  "resolucao": {
@@ -39,25 +39,25 @@
     "faz": "Descreva a etapa 1",
     "conta": "compressão adiabática: V↓, p↑",
     "porque": "O gás é comprimido, então o volume diminui. Sem troca de calor, ele esquenta e a pressão sobe: é uma curva que sobe para a esquerda, de V₂ até V₁.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Descreva a etapa 2",
     "conta": "aquece a V = V₁: p↑ (vertical)",
     "porque": "Volume constante dá um segmento vertical. O aquecimento aumenta a pressão, então o segmento sobe, no lado esquerdo (V₁).",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Descreva a etapa 3",
     "conta": "expansão adiabática: V↑, p↓",
     "porque": "É uma curva que desce para a direita, de V₁ até V₂. Ela parte de pressão mais alta que a da compressão, então fica acima da curva da etapa 1.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Descreva a etapa 4",
     "conta": "resfria a V = V₂: p↓ (vertical)",
     "porque": "Segmento vertical descendo no lado direito (V₂). Ele fecha o ciclo, voltando ao ponto inicial.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Dê o sentido e escolha a figura",
@@ -70,7 +70,7 @@
   "checagem": "A curva de cima (expansão) tem pressão maior que a de baixo (compressão) para o mesmo volume. Então o gás realiza mais trabalho ao se expandir do que recebe ao ser comprimido, e a máquina entrega trabalho útil. Isso só ocorre no sentido horário, como em A.",
   "erradas": {
    "B": "Tem as isovolumétricas verticais corretas, mas as duas retas horizontais são isobáricas (pressão constante). O enunciado pede adiabáticas, que são curvas com a pressão variando junto com o volume.",
-   "C": "Os lados não são verticais: o da direita é inclinado e a ligação da esquerda é uma curva, então o volume muda quando deveria ser constante. Não representa duas etapas isovolumétricas.",
+   "C": "Não tem lados verticais: à esquerda as duas curvas se encontram num ponto, e o lado da direita é inclinado. Então o volume muda onde deveria ser constante, e a figura não mostra as duas etapas isovolumétricas.",
    "D": "O formato está certo, mas a seta é anti-horária. Isso colocaria a expansão na curva de baixo (pressão menor) e a compressão na de cima (pressão maior). Seria um refrigerador, que consome trabalho, e não uma máquina térmica.",
    "E": "Combina dois erros: as horizontais são isobáricas, não adiabáticas, e a seta é anti-horária, sentido de refrigerador."
   },
@@ -127,10 +127,58 @@
  "gab": "A",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[0].tipo",
+    "depois": "localizar",
+    "motivo": "'interpretar' não é um tipo aceito. Os tipos válidos são localizar, calcular, comparar, eliminar e concluir. O passo tira do enunciado o que acontece na etapa, então o tipo é localizar.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "localizar",
+    "motivo": "'interpretar' não é um tipo aceito. O passo tira a etapa 2 do enunciado.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "localizar",
+    "motivo": "'interpretar' não é um tipo aceito. O passo tira a etapa 3 do enunciado.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "localizar",
+    "motivo": "'interpretar' não é um tipo aceito. O passo tira a etapa 4 do enunciado.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "Não tem lados verticais: à esquerda as duas curvas se encontram num ponto, e o lado da direita é inclinado. Então o volume muda onde deveria ser constante, e a figura não mostra as duas etapas isovolumétricas.",
+    "motivo": "No print da alternativa C não há uma ligação curva à esquerda. As duas curvas se encontram num vértice no alto, à esquerda. A descrição foi ajustada à figura.",
+    "fonte": ""
+   },
+   {
+    "campo": "tema",
+    "depois": "F07",
+    "motivo": "A questão é sobre um ciclo termodinâmico no diagrama p × V (tipo Otto). F08 é Óptica, o que não faz sentido aqui. Pela lista de subtemas do guia de Física, o tema certo é F07 (Gases e termodinâmica). Confirmar o id na TAXONOMIA oficial antes de gravar.",
+    "fonte": ""
+   },
+   {
+    "campo": "conteudo",
+    "depois": "F07.3",
+    "motivo": "F08.6 (óptica da visão) está errado. O conteúdo é máquina térmica e ciclo no diagrama p × V, que é F07.3 (máquinas térmicas) na lista do guia. Confirmar o id na TAXONOMIA oficial.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "A"
  }
 }

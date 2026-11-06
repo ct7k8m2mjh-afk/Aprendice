@@ -49,13 +49,13 @@
     "faz": "Descubra o ácido de origem",
     "conta": "anel–COOH = ácido benzoico",
     "porque": "O grupo que tem C=O recebe o OH do ácido de volta, formando um ácido carboxílico com anel.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Descubra o álcool de origem",
     "conta": "H–O–CH3 = metanol",
     "porque": "O oxigênio do éster ligado ao CH3 vem de um álcool com um carbono (metanol).",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Procure o par ácido benzoico + metanol",
@@ -75,7 +75,7 @@
   "erradas": {
    "B": "Traz ácido benzoico, mas o outro reagente é o CH2Cl2 (diclorometano), que não é álcool e não tem o grupo O–CH3. Sem o álcool, não se forma o éster com metila.",
    "C": "O p-xileno (anel com dois CH3) não tem COOH nem OH, e o etanol tem dois carbonos. Mesmo que reagissem, o grupo alquila seria etila, e não metila.",
-   "D": "O ácido tem cadeia linear (pentanoico) e não o anel benzênico. Com metanol, formaria pentanoato de metila, que é outro éster.",
+   "D": "O ácido tem cadeia aberta, sem o anel benzênico. Com metanol, formaria um éster de cadeia aberta (um alcanoato de metila), e não o benzoato de metila.",
    "E": "Benzeno + CH2Cl2 não é esterificação: faltam o grupo ácido carboxílico e o álcool. O benzeno sozinho não tem o C=O do éster."
   },
   "armadilha": "Olhar só o anel benzênico ou só o metanol e esquecer que o éster exige as duas partes: ácido benzoico E álcool com um carbono.",
@@ -123,10 +123,34 @@
  "gab": "A",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "localizar",
+    "motivo": "O tipo 'interpretar' não existe na lista permitida (localizar, calcular, comparar, eliminar, concluir). O passo identifica o ácido de origem a partir da estrutura, então o tipo certo é 'localizar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "localizar",
+    "motivo": "Mesmo problema: 'interpretar' não é um tipo válido. O passo identifica o álcool de origem na estrutura, então o tipo certo é 'localizar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "O ácido tem cadeia aberta, sem o anel benzênico. Com metanol, formaria um éster de cadeia aberta (um alcanoato de metila), e não o benzoato de metila.",
+    "motivo": "No print, não dá para afirmar com segurança quantos carbonos tem a cadeia em zigue-zague, então o nome 'pentanoico' pode estar errado. Tirei o nome específico; o motivo que elimina a alternativa (não tem anel benzênico) continua verdadeiro e basta.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "A"
  }
 }

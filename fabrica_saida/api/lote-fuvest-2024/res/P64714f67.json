@@ -66,13 +66,13 @@
     "faz": "Identifique de quem são os preços altos",
     "conta": "a few white males = artistas consagrados",
     "porque": "Os preços 'mega-buck' hoje vão para as obras desses homens brancos, como o Jasper Johns, citado na frase seguinte (US$ 17,7 milhões em uma só pintura).",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Entenda o efeito de 'won't ... forever'",
     "conta": "won't ... forever = não vai durar",
     "porque": "O anúncio prevê que esses preços altos podem cair no futuro. Ou seja, as obras consagradas podem se desvalorizar.",
-    "tipo": "interpretar"
+    "tipo": "concluir"
    },
    {
     "faz": "Formule a resposta e ligue à letra",
@@ -119,10 +119,28 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "localizar",
+    "motivo": "'interpretar' não é um tipo válido. Os tipos aceitos são localizar, calcular, comparar, eliminar e concluir. Este passo identifica no texto a quem vão os preços altos (a few white males, Jasper Johns), então é 'localizar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "concluir",
+    "motivo": "'interpretar' não é um tipo válido. Este passo tira de 'won't ... forever' a conclusão de que os preços podem cair, então é 'concluir'.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C"
  }
 }

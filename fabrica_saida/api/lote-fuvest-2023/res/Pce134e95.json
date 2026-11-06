@@ -20,7 +20,7 @@
     ],
     [
      "N",
-     "força normal: força que a areia faz sobre o trenó, para cima; com o trenó em superfície plana, é igual ao peso"
+     "força normal: força que a areia faz sobre o trenó, para cima; com o trenó em superfície plana e puxado na horizontal, é igual ao peso"
     ],
     [
      "atrito cinético",
@@ -40,7 +40,7 @@
     "faz": "Relacione a força de puxar ao atrito",
     "conta": "F = μ × N",
     "porque": "Em velocidade constante, a força de puxar é igual à de atrito. N é igual em todos os casos, então F é proporcional a μ.",
-    "tipo": "aplicar"
+    "tipo": "comparar"
    },
    {
     "faz": "Leia os coeficientes da tabela",
@@ -127,10 +127,28 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "comparar",
+    "motivo": "O guia só aceita localizar, calcular, comparar, eliminar ou concluir, e \"aplicar\" não está na lista. Neste passo a força é ligada ao μ, com N igual nos quatro casos, e daí sai a proporcionalidade (F proporcional a μ). Por isso o tipo é comparar.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.antes.simbolos[1][1]",
+    "depois": "força normal: força que a areia faz sobre o trenó, para cima; com o trenó em superfície plana e puxado na horizontal, é igual ao peso",
+    "motivo": "N só é igual ao peso se a força de puxar for horizontal. Se a corda estiver inclinada, a componente vertical da tração diminui N. A resolução não depende disso, porque basta N ser a mesma em todos os casos, mas a frase como estava não vale em geral.",
+    "fonte": "OpenStax College Physics, cap. 5.1 (Friction) e cap. 4 (normal force)"
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C"
  }
 }

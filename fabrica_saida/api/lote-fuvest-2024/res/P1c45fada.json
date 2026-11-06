@@ -10,7 +10,7 @@
   "antes": {
    "texto": "A tabela traz duas variáveis. A primeira é o saneamento: esgoto coletado e água tratada. Saneamento ruim aumenta o risco de doenças transmitidas por água e alimentos contaminados. A segunda é a vacinação. Cobertura vacinal baixa aumenta o risco de doenças que a vacina previne. Cada cidade deve ser lida pelas duas colunas.",
    "formulas": [
-    "saneamento baixo → risco de doenças de veiculação hídrica (cólera, leptospirose, amebíase, teníase)",
+    "saneamento baixo → risco de doenças ligadas a água, esgoto e fezes (cólera, leptospirose, amebíase, teníase)",
     "vacinação baixa → risco de doenças evitáveis por vacina (poliomielite, hepatite B, tétano, COVID, influenza, tuberculose)"
    ],
    "simbolos": [
@@ -54,13 +54,13 @@
     "faz": "Associe cada cidade ao tipo de doença",
     "conta": "I e III: doenças evitáveis por vacina\nIV: doenças de veiculação hídrica\nII: os dois tipos",
     "porque": "Onde a vacinação é baixa, sobem as doenças preveníveis por vacina. Onde o saneamento é baixo, sobem as de água e esgoto.",
-    "tipo": "aplicar"
+    "tipo": "comparar"
    },
    {
     "faz": "Elimine as letras com erro",
     "conta": "A: I leptospirose (saneamento bom)\nB: IV tuberculose (vacina alta)\nC: III cólera (saneamento bom)\nD: IV COVID (vacina alta)",
     "porque": "Cada uma dessas letras tem uma cidade com doença que a tabela não indica.",
-    "tipo": "interpretar"
+    "tipo": "eliminar"
    },
    {
     "faz": "Confira a letra restante",
@@ -75,7 +75,7 @@
    "A": "A erra em duas cidades. Leptospirose na cidade I, que tem 89% de saneamento, contradiz a tabela. Amebíase na cidade III, que tem 98% de saneamento, também. Cólera na cidade IV está certa, mas as outras duas derrubam a letra.",
    "B": "B coloca tuberculose na cidade IV, que tem 90% de vacinação (a BCG protege contra formas graves da doença). O risco da cidade IV vem do saneamento ruim, e a tuberculose não é de veiculação hídrica.",
    "C": "C coloca cólera na cidade III, que tem 98% de saneamento. A cólera é transmitida por água contaminada, então o risco ali é baixo. A cidade III é a que precisa de doença evitável por vacina.",
-   "D": "D coloca COVID na cidade IV, que tem 90% de vacinação, e o risco ali vem do saneamento. Pneumonia na cidade III é doença respiratória, não ligada ao problema da tabela (vacinação baixa). Influenza na cidade I e teníase na cidade II até serviriam, mas a cidade IV derruba a letra."
+   "D": "D coloca COVID na cidade IV, que tem 90% de vacinação. O risco ali vem do saneamento ruim, e a COVID não é de veiculação hídrica. Influenza na cidade I e teníase na cidade II até serviriam, mas a cidade IV derruba a letra."
   },
   "armadilha": "Ler só uma coluna: a cidade com esgoto bom (I e III) não está livre de doenças, porque a vacinação ali é baixa.",
   "alerta": "",
@@ -105,10 +105,40 @@
  "gab": "E",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.antes.formulas[0]",
+    "depois": "saneamento baixo → risco de doenças ligadas a água, esgoto e fezes (cólera, leptospirose, amebíase, teníase)",
+    "motivo": "A teníase não é de veiculação hídrica. A pessoa pega a doença ao comer carne crua ou malcozida com larvas. Ela se liga ao saneamento porque o gado e os porcos ingerem ovos que vêm de fezes humanas. O próprio campo simbolos já dizia isso, e a fórmula o contradizia.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "comparar",
+    "motivo": "O tipo 'aplicar' não é permitido. Os tipos válidos são localizar, calcular, comparar, eliminar e concluir.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "eliminar",
+    "motivo": "O tipo 'interpretar' não é permitido, e este passo é uma eliminação de alternativas.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "D coloca COVID na cidade IV, que tem 90% de vacinação. O risco ali vem do saneamento ruim, e a COVID não é de veiculação hídrica. Influenza na cidade I e teníase na cidade II até serviriam, mas a cidade IV derruba a letra.",
+    "motivo": "Foi retirada a frase que dizia que a pneumonia 'não é ligada' à vacinação baixa. Isso é falso: existe vacina contra a pneumonia pneumocócica (pneumocócica 10 e 23), e a vacina da influenza também previne pneumonias. O que derruba a letra D é a cidade IV.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E"
  }
 }

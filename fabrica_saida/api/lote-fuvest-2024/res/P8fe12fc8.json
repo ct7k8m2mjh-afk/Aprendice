@@ -74,7 +74,7 @@
   "resposta": "Alternativa C: R2 e R3 em paralelo dão 50 kΩ; em série com R1 (150 kΩ) resultam em 200 kΩ, e i = 5 V ÷ 200 kΩ = 25,0 μA em R1.",
   "checagem": "Tensão em R1: 25 μA × 150 kΩ = 3,75 V. Sobram 5 − 3,75 = 1,25 V para o paralelo, e 25 μA × 50 kΩ = 1,25 V. As tensões fecham em 5 V.",
   "erradas": {
-   "A": "12,5 μA exigiria resistência total de 5 V ÷ 12,5 μA = 400 kΩ. Nenhuma associação de 150, 100 e 100 kΩ dá isso: o máximo, tudo em série, é 350 kΩ.",
+   "A": "12,5 μA é a corrente em R2 (ou em R3), não em R1: os 25 μA se dividem igualmente entre os dois resistores iguais em paralelo, 25 ÷ 2 = 12,5 μA. A pergunta é sobre R1.",
    "B": "14,3 μA vem de somar as três em série: 150 + 100 + 100 = 350 kΩ, e 5 ÷ 350 000 ≈ 14,3 μA. Faltou ver que R2 e R3 ligam os mesmos nós e estão em paralelo.",
    "D": "37,5 μA exigiria resistência total de 5 V ÷ 37,5 μA ≈ 133 kΩ. Isso não sai da associação do circuito: com R1 em série, a resistência total nunca fica abaixo de 150 kΩ.",
    "E": "50 μA exigiria 100 kΩ no total. Isso é menor que R1 sozinho (150 kΩ), e R1 está em série com o resto. Seria impossível com R1 no circuito."
@@ -140,10 +140,22 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "12,5 μA é a corrente em R2 (ou em R3), não em R1: os 25 μA se dividem igualmente entre os dois resistores iguais em paralelo, 25 ÷ 2 = 12,5 μA. A pergunta é sobre R1.",
+    "motivo": "O texto antigo dizia que nenhuma associação chega a 12,5 μA. O teste estava certo, mas não bastava, porque a alternativa tem uma origem real e fácil de reproduzir: é a corrente em cada ramo do paralelo. Pela regra, quando existe uma origem real, ela tem de ser mostrada.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C"
  }
 }

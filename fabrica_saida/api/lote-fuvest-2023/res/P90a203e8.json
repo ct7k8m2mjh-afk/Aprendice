@@ -65,13 +65,13 @@
     "faz": "Identifique a partícula",
     "conta": "A = 1 e Z = 0 → ¹₀n",
     "porque": "Massa 1 e carga 0 é o nêutron. O próton teria Z = 1 e o elétron teria A ≈ 0 e Z = −1.",
-    "tipo": "interpretar"
+    "tipo": "comparar"
    },
    {
     "faz": "Dê o sinal de ΔH",
     "conta": "libera energia → ΔH < 0",
     "porque": "Se a reação libera energia, os produtos ficam com menos entalpia que os reagentes, e ΔH = H(produtos) − H(reagentes) é negativo.",
-    "tipo": "aplicar"
+    "tipo": "concluir"
    },
    {
     "faz": "Ligue à alternativa",
@@ -93,7 +93,7 @@
   "essencial": {
    "pede": "A partícula formada junto com o He-4 na fusão de deutério e trítio e o sinal de ΔH.",
    "chave": "Conservar A e Z dá A = 1 e Z = 0 (nêutron); liberar energia significa ΔH < 0.",
-   "cuidado": "Reação exotérmica tem ΔH negativo; e próton e nêutron têm a mesma massa, mas só o nêutron tem carga zero."
+   "cuidado": "Reação exotérmica tem ΔH negativo; e próton e nêutron têm o mesmo número de massa (A = 1), mas só o nêutron tem carga zero."
   }
  },
  "caminhos": [
@@ -168,10 +168,34 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "comparar",
+    "motivo": "O tipo 'interpretar' não está na lista permitida (localizar, calcular, comparar, eliminar, concluir). Neste passo, os valores A = 1 e Z = 0 são comparados com os do nêutron, do próton e do elétron.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[4].tipo",
+    "depois": "concluir",
+    "motivo": "O tipo 'aplicar' não está na lista permitida. O passo tira o sinal de ΔH a partir da informação de que a reação libera energia.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.essencial.cuidado",
+    "depois": "Reação exotérmica tem ΔH negativo; e próton e nêutron têm o mesmo número de massa (A = 1), mas só o nêutron tem carga zero.",
+    "motivo": "Próton e nêutron não têm exatamente a mesma massa (o nêutron é um pouco mais pesado). O que eles têm igual é o número de massa A = 1.",
+    "fonte": "OpenStax Chemistry 2e, Tabela 2.1 (massas: próton 1,0073 u; nêutron 1,0087 u)"
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C"
  }
 }

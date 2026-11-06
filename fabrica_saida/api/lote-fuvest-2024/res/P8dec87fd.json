@@ -45,7 +45,7 @@
     "faz": "Classifique o sentido no texto I",
     "conta": "machamba = roça, terra de cultivo",
     "porque": "A palavra tem o sentido de dicionário: lugar físico. Portanto, é literal (denotativo).",
-    "tipo": "interpretar"
+    "tipo": "comparar"
    },
    {
     "faz": "Localize a machamba no texto II",
@@ -57,7 +57,7 @@
     "faz": "Leia as pistas que sustentam a metáfora",
     "conta": "\"semeio em ti\"; \"não vejo resultado\"; \"germinou logo\"",
     "porque": "Semear, germinar e colher se aplicam à gravidez e aos filhos. O corpo de Sarnau, o útero, é a terra onde ele \"semeia\". O sentido é figurado.",
-    "tipo": "interpretar"
+    "tipo": "comparar"
    },
    {
     "faz": "Cruze com as alternativas",
@@ -85,7 +85,7 @@
  "caminhos": [
   {
    "nome": "eliminação pelo texto I",
-   "ideia": "Só B e A trazem o texto I como lugar físico. A diz \"matagal\", mas \"confusão verde\" de plantas com capataz indica terra cultivada; fica B."
+   "ideia": "A, B e D tratam a machamba do texto I como lugar físico. A diz \"matagal\", mas o capataz mostra que é terra cultivada. D diz que o texto II também é literal, só que Sarnau, uma pessoa, só pode ser machamba por comparação. Sobra B."
   },
   {
    "nome": "teste da pessoa",
@@ -106,10 +106,34 @@
  "gab": "B",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "comparar",
+    "motivo": "O tipo \"interpretar\" não existe no padrão. Os valores aceitos são localizar, calcular, comparar, eliminar e concluir. Este passo confronta o sentido do texto com o sentido de dicionário, então o tipo certo é \"comparar\".",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "comparar",
+    "motivo": "O tipo \"interpretar\" não existe no padrão. Este passo compara o campo semântico agrícola (semear, germinar, colher) com a gravidez, então o tipo certo é \"comparar\".",
+    "fonte": ""
+   },
+   {
+    "campo": "caminhos[0].ideia",
+    "depois": "A, B e D tratam a machamba do texto I como lugar físico. A diz \"matagal\", mas o capataz mostra que é terra cultivada. D diz que o texto II também é literal, só que Sarnau, uma pessoa, só pode ser machamba por comparação. Sobra B.",
+    "motivo": "A frase \"Só B e A trazem o texto I como lugar físico\" está errada. A alternativa D também diz que no texto I a machamba é um terreno agrícola, em sentido literal.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "B"
  }
 }

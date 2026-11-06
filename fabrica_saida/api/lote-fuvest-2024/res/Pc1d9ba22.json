@@ -39,19 +39,19 @@
     "faz": "Explique a cor da chama em (I)",
     "conta": "Na⁺ da solução → átomo de Na na chama",
     "porque": "A chama excita os elétrons do Na. Ao voltarem ao nível de origem, eles emitem luz amarela. A cor vem do Na, não da chama.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Use a informação do enunciado",
     "conta": "emite λ = absorve λ",
     "porque": "Os átomos de Na da chama absorvem justamente a luz amarela, que é o que a lâmpada de Na emite.",
-    "tipo": "aplicar"
+    "tipo": "localizar"
    },
    {
     "faz": "Analise a figura (II)",
     "conta": "luz da lâmpada → Na da chama",
     "porque": "Os átomos absorvem a luz da lâmpada e a reemitem em todas as direções, então pouca luz chega ao observador. A chama contrasta com o fundo brilhante e parece preta.",
-    "tipo": "interpretar"
+    "tipo": "comparar"
    },
    {
     "faz": "Compare com as alternativas",
@@ -64,7 +64,7 @@
   "checagem": "Se a chama fosse preta por combustão incompleta ou por absorver a energia da chama, ela também seria preta em (I), o que contradiz a figura. A cor muda só quando a lâmpada de Na entra em cena, então a explicação envolve a luz dela.",
   "erradas": {
    "A": "Diz que em (I) a cor vem de absorção, mas a luz amarela é emitida pelos átomos excitados. Também diz que em (II) o Na deixa de absorver; o enunciado afirma que o material absorve no mesmo λ em que emite, então ele absorve a luz da lâmpada.",
-   "B": "A chama não é amarela por natureza: a chama comum é azulada e a cor amarela vem do Na (sem Na não há chama amarela nesse experimento). Em (II) a chama preta não vem de absorver a energia da chama, e sim a luz da lâmpada.",
+   "B": "A chama não é amarela por natureza: a de um queimador a álcool, sem sódio, é azulada e quase invisível, e o amarelo vem do Na. Em (II), a chama preta não vem de absorver a energia da chama, e sim a luz da lâmpada.",
    "C": "Erra em (I): amarelo não é a cor de qualquer chama, vem da emissão do Na. Erra em (II): combustão incompleta produziria fuligem e luz amarela por incandescência, e a chama já existia em (I) sem ficar preta.",
    "D": "Acerta em (I), com a emissão pelos átomos de Na. Erra em (II): a combustão é a mesma nas duas figuras e a chama só fica preta com a lâmpada de Na ligada. A causa é a absorção da luz da lâmpada."
   },
@@ -117,10 +117,40 @@
  "gab": "E",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[0].tipo",
+    "depois": "localizar",
+    "motivo": "O valor 'interpretar' não está entre os tipos permitidos (localizar, calcular, comparar, eliminar, concluir). Este passo identifica na figura (I) de onde vem a cor da chama.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "localizar",
+    "motivo": "O valor 'aplicar' não está entre os tipos permitidos. Este passo pega uma informação dada no enunciado: o Na emite e absorve no mesmo comprimento de onda.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "comparar",
+    "motivo": "O valor 'interpretar' não está entre os tipos permitidos. Este passo compara a chama com o fundo iluminado pela lâmpada.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "A chama não é amarela por natureza: a de um queimador a álcool, sem sódio, é azulada e quase invisível, e o amarelo vem do Na. Em (II), a chama preta não vem de absorver a energia da chama, e sim a luz da lâmpada.",
+    "motivo": "A frase 'a chama comum é azulada' generaliza demais. A chama de vela, com fuligem incandescente, é amarela, como a própria resolução diz na letra C. A correção restringe a afirmação ao queimador a álcool da figura.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E"
  }
 }

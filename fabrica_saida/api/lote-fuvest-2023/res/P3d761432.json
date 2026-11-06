@@ -41,7 +41,7 @@
   "passos": [
    {
     "faz": "Localize o trecho da figura sobre o macrófago",
-    "conta": "\"forma infectante é fagocitada por macrófagos onde se multiplica\"",
+    "conta": "\"fagocitada por macrófagos\"",
     "porque": "A figura mostra o parasita dentro do macrófago, a célula que normalmente o digeriria. A pergunta é por que ele não é digerido.",
     "tipo": "localizar"
    },
@@ -49,7 +49,7 @@
     "faz": "Ligue digestão intracelular à organela",
     "conta": "enzimas digestivas → lisossomo",
     "porque": "O lisossomo guarda as hidrolases, enzimas que quebram o material engolido. Se a leishmania as inativa, a digestão é bloqueada. Lacuna I: lisossomo.",
-    "tipo": "aplicar"
+    "tipo": "concluir"
    },
    {
     "faz": "Elimine mitocôndria e núcleo",
@@ -61,11 +61,11 @@
     "faz": "Identifique como a doença é transmitida",
     "conta": "figura: mosquito pica o mamífero",
     "porque": "O ciclo mostra a transmissão pela picada do inseto. A prevenção é evitar essa picada, e o repelente faz isso.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Compare D e E e conclua",
-    "conta": "esgoto ≠ picada; repelente = menos picadas",
+    "conta": "repelente → menos picadas",
     "porque": "Tratar esgoto não impede a picada do inseto transmissor. O repelente impede. Lacuna II: utilizando repelente.",
     "tipo": "concluir"
    }
@@ -74,7 +74,7 @@
   "checagem": "Frase completa: \"inativação de enzimas do lisossomo, o que bloqueia a digestão intracelular\" faz sentido. \"Prevenir a transmissão utilizando repelente\" também, porque o mosquito é o vetor, como mostra a figura.",
   "erradas": {
    "A": "Mitocôndria produz ATP e não tem enzimas de digestão intracelular. Além disso, morar em zonas urbanas não previne a doença, que também ocorre em áreas urbanas.",
-   "B": "Mitocôndria não digere material engolido. E antibiótico age contra bactérias, enquanto a leishmania é um protozoário. Ingerir antibiótico não evita a infecção.",
+   "B": "Mitocôndria não digere material engolido. E antibiótico não é medida de prevenção da leishmaniose: a leishmania é um protozoário e tomar antibiótico não impede a picada do inseto nem a infecção.",
    "C": "O núcleo guarda o DNA e não faz digestão intracelular; essa função é do lisossomo. Mesmo que a eutanásia de cães seja citada em políticas de saúde, a lacuna I já elimina a alternativa.",
    "D": "O lisossomo está certo, mas tratar esgoto não barra a picada do inseto transmissor, que é a via de entrada mostrada na figura."
   },
@@ -110,10 +110,46 @@
  "gab": "E",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "concluir",
+    "motivo": "O tipo 'aplicar' não está entre os permitidos (localizar, calcular, comparar, eliminar, concluir). Este passo conclui a lacuna I.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "localizar",
+    "motivo": "O tipo 'interpretar' não está entre os permitidos. O passo localiza na figura a via de transmissão.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[0].conta",
+    "depois": "\"fagocitada por macrófagos\"",
+    "motivo": "A conta tinha cerca de 65 caracteres, acima do limite de cerca de 30 para a linha escrita à mão. Mantive só o trecho literal que importa da figura.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "repelente → menos picadas",
+    "motivo": "A conta tinha cerca de 42 caracteres, acima do limite de cerca de 30. O contraste com o esgoto já está no porque.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "Mitocôndria não digere material engolido. E antibiótico não é medida de prevenção da leishmaniose: a leishmania é um protozoário e tomar antibiótico não impede a picada do inseto nem a infecção.",
+    "motivo": "A frase 'antibiótico age contra bactérias' em sentido absoluto é imprecisa. A paromomicina, um antibiótico aminoglicosídeo, é usada no TRATAMENTO da leishmaniose cutânea. O motivo que derruba a alternativa é outro: antibiótico não previne a transmissão.",
+    "fonte": "OMS, Control of the leishmaniases (TRS 949, 2010): paromomicina tópica e parenteral no tratamento"
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E"
  }
 }

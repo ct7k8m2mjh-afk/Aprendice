@@ -70,13 +70,13 @@
     "faz": "Associe cada costa à corrente",
     "conta": "Oeste da Am. do Sul → Humboldt (fria)",
     "porque": "Ao lado, na costa sudoeste da África, passa a corrente de Benguela (fria). Ambas têm ressurgência, e por isso o mapa as mostra tão piscosas.",
-    "tipo": "aplicar"
+    "tipo": "comparar"
    },
    {
     "faz": "Elimine as demais",
     "conta": "A, B, C e E contrariam mapa ou conceito",
     "porque": "A inverte a relação com as correntes quentes, B erra a corrente do Golfo, C ignora que o alto-mar é pouco produtivo, e E dá uma causa errada para os polos.",
-    "tipo": "interpretar"
+    "tipo": "eliminar"
    },
    {
     "faz": "Conclua",
@@ -88,10 +88,10 @@
   "resposta": "Alternativa D: no Hemisfério Sul, as áreas mais piscosas ficam na costa oeste da América do Sul e na costa sudoeste da África, onde passam as correntes frias de Humboldt e de Benguela.",
   "checagem": "Pelo caminho inverso: correntes frias com ressurgência são ricas em peixes. Humboldt e Benguela são frias e estão no oeste dos continentes. O mapa tem justamente aí o vermelho e o vinho.",
   "erradas": {
-   "A": "Afirma que o Sul é mais piscoso na costa leste, com correntes quentes. No mapa, essas costas (leste da América do Sul, da África e da Austrália) estão em amarelo-claro, com pouca pesca. Correntes quentes têm poucos nutrientes.",
+   "A": "Afirma que, no Sul, a pesca é maior nas costas leste, com correntes quentes. No mapa, as manchas vinho-escuro do Sul ficam nas costas oeste (Peru e Chile, sudoeste da África), não nas leste. Correntes quentes são pobres em nutrientes.",
    "B": "A corrente do Golfo é quente, não fria, e banha a costa leste da América do Norte, não a oeste. A frase inverte a localização e a temperatura. A parte do Labrador (fria, costa leste) está certa, mas o conjunto está errado.",
-   "C": "O mapa mostra o contrário: as manchas mais escuras ficam junto às costas, em plataformas continentais e áreas de ressurgência. O alto-mar aparece em amarelo-claro, com valores baixos. A expressão 'independentemente das correntes' também contraria o papel das correntes frias.",
-   "E": "Dificuldade de acesso e baixa reprodução não aparecem no mapa como causa. Além disso, as correntes frias favorecem a pesca. O mapa até mostra áreas muito ricas em latitudes altas do Atlântico Norte, perto da Noruega, banhadas por águas frias."
+   "C": "O mapa mostra o contrário: as manchas mais escuras ficam junto às costas, nas plataformas continentais e nas áreas de ressurgência. O alto-mar aparece em amarelo-claro ou sem cor, com valores baixos. A expressão 'independentemente das correntes' também ignora o papel das correntes frias.",
+   "E": "A causa está errada: as correntes frias favorecem a pesca, porque trazem nutrientes, e não a reduzem. O mapa também não sustenta a ideia de pouca pesca em latitudes altas: perto da Noruega e no norte do Pacífico há manchas vermelhas e vinho."
   },
   "armadilha": "Achar que corrente fria atrapalha a pesca, ou que correntes quentes são mais produtivas, quando é o contrário: as frias com ressurgência concentram os peixes.",
   "alerta": "",
@@ -125,10 +125,46 @@
  "gab": "D",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "comparar",
+    "motivo": "O tipo 'aplicar' não existe na lista do padrão. O passo liga cada costa à sua corrente, então o tipo certo é comparar.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[4].tipo",
+    "depois": "eliminar",
+    "motivo": "O tipo 'interpretar' não existe na lista do padrão. O passo descarta as alternativas A, B, C e E, então o tipo certo é eliminar.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "Afirma que, no Sul, a pesca é maior nas costas leste, com correntes quentes. No mapa, as manchas vinho-escuro do Sul ficam nas costas oeste (Peru e Chile, sudoeste da África), não nas leste. Correntes quentes são pobres em nutrientes.",
+    "motivo": "O texto antigo dizia que todas as costas leste do Sul aparecem em amarelo-claro. O mapa não sustenta isso: há trechos laranja ou vermelhos, como na Indonésia. O que o mapa mostra com segurança é onde ficam as manchas mais escuras.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "O mapa mostra o contrário: as manchas mais escuras ficam junto às costas, nas plataformas continentais e nas áreas de ressurgência. O alto-mar aparece em amarelo-claro ou sem cor, com valores baixos. A expressão 'independentemente das correntes' também ignora o papel das correntes frias.",
+    "motivo": "No mapa, boa parte do oceano aberto fica sem cor, ou seja, abaixo de 0,05 t/km², e não só em amarelo-claro.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "A causa está errada: as correntes frias favorecem a pesca, porque trazem nutrientes, e não a reduzem. O mapa também não sustenta a ideia de pouca pesca em latitudes altas: perto da Noruega e no norte do Pacífico há manchas vermelhas e vinho.",
+    "motivo": "O texto antigo dizia que a área da Noruega é banhada por águas frias. Isso é falso: a costa norueguesa recebe a Deriva do Atlântico Norte, uma corrente quente que continua a corrente do Golfo. Tirei o erro e mantive o argumento.",
+    "fonte": "NOAA Ocean Service, 'Ocean currents' / Deriva do Atlântico Norte como continuação quente da corrente do Golfo"
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "D"
  }
 }

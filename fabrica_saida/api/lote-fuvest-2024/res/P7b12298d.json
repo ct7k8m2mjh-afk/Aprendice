@@ -28,7 +28,7 @@
     ],
     [
      "plâncton",
-     "conjunto de seres minúsculos que vivem à deriva na água"
+     "conjunto de seres que vivem à deriva na água, levados pelas correntes; a maioria é minúscula"
     ]
    ]
   },
@@ -44,7 +44,7 @@
     "faz": "Veja como o animal se move",
     "conta": "\"flutua calma no seu caminho\"",
     "porque": "Ela flutua sem pressa, à deriva. Isso exclui um nadador veloz e ativo.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Identifique a isca da caça",
@@ -56,7 +56,7 @@
     "faz": "Veja o que acontece com a presa",
     "conta": "\"Firme me amarrou\"; \"arde de matar\"",
     "porque": "Os tentáculos prendem o peixe e provocam ardência. Esse é o efeito do veneno urticante das águas-vivas.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Una as pistas e conclua",
@@ -71,7 +71,7 @@
    "A": "O camarão tem corpo com casca e pernas, nada ativamente. O texto fala em \"sino de vidro\" que \"flutua calma\" e em \"fios\" que prendem, nada disso descreve um camarão.",
    "C": "O tubarão é um nadador rápido e caça com mandíbulas. O poema descreve um corpo transparente que flutua e uma presa amarrada por fios, sem mordida nem perseguição.",
    "D": "A lula tem corpo alongado, nada por propulsão e captura com braços e tentáculos musculosos. O poema não descreve corpo alongado nem ardência, e o \"sino de vidro\" contrátil e flutuante é imagem de medusa.",
-   "E": "O plâncton é formado por organismos minúsculos à deriva. O poema descreve um ser que o peixinho enxerga de longe, com fios \"longos\" que o prendem, ou seja, um animal com tamanho suficiente para caçar um peixe."
+   "E": "Plâncton não é um animal: é o nome de um conjunto de seres que vivem à deriva, na maioria minúsculos. O poema descreve um ser específico, com corpo de sino e fios \"longos\" que prendem e queimam o peixe. A pergunta pede esse ser, e não o grupo ecológico."
   },
   "armadilha": "Procurar o nome do animal no texto: ele não aparece, e a resposta só vem juntando as imagens (sino de vidro, fios longos, ardência).",
   "alerta": "",
@@ -84,7 +84,7 @@
  "caminhos": [
   {
    "nome": "eliminação por movimento",
-   "ideia": "O predador \"flutua calma\": isso descarta tubarão, lula e camarão, que são nadadores ativos, e o plâncton, que não captura um peixe. Sobra a água-viva."
+   "ideia": "O predador \"flutua calma\": isso descarta tubarão, lula e camarão, que são nadadores ativos. Plâncton é o nome de um grupo de seres à deriva, não de um animal que tem corpo de sino e tentáculos. Sobra a água-viva."
   },
   {
    "nome": "foco na isca",
@@ -105,10 +105,49 @@
  "gab": "B",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.antes.simbolos[3]",
+    "depois": [
+     "plâncton",
+     "conjunto de seres que vivem à deriva na água, levados pelas correntes; a maioria é minúscula"
+    ],
+    "motivo": "O plâncton se define por viver à deriva, não pelo tamanho. Ele inclui organismos grandes, e as próprias águas-vivas fazem parte do zooplâncton gelatinoso. Por isso 'seres minúsculos' como definição é impreciso.",
+    "fonte": "Definição ecológica de plâncton: organismos que não vencem as correntes (ex.: verbete 'Plankton', Encyclopaedia Britannica)"
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "Plâncton não é um animal: é o nome de um conjunto de seres que vivem à deriva, na maioria minúsculos. O poema descreve um ser específico, com corpo de sino e fios \"longos\" que prendem e queimam o peixe. A pergunta pede esse ser, e não o grupo ecológico.",
+    "motivo": "Dizer que o plâncton é 'formado por organismos minúsculos', em oposição à água-viva, é falso em parte, porque a água-viva também é plâncton. O motivo correto para eliminar a E é que plâncton é uma categoria coletiva, não a identificação do animal.",
+    "fonte": "Verbete 'Plankton', Encyclopaedia Britannica (zooplâncton inclui medusas)"
+   },
+   {
+    "campo": "caminhos[0].ideia",
+    "depois": "O predador \"flutua calma\": isso descarta tubarão, lula e camarão, que são nadadores ativos. Plâncton é o nome de um grupo de seres à deriva, não de um animal que tem corpo de sino e tentáculos. Sobra a água-viva.",
+    "motivo": "A frase 'o plâncton, que não captura um peixe' é falsa, porque a água-viva também faz parte do plâncton.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "localizar",
+    "motivo": "O tipo 'interpretar' não existe na lista permitida (localizar, calcular, comparar, eliminar, concluir).",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "localizar",
+    "motivo": "O tipo 'interpretar' não existe na lista permitida.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "B"
  }
 }

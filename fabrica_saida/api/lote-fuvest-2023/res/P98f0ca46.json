@@ -25,7 +25,7 @@
     ],
     [
      "razão e/g",
-     "quantas vezes o preço do etanol cabe no da gasolina, ou seja, e dividido por g"
+     "o preço do etanol dividido pelo da gasolina: quantas vezes o preço da gasolina cabe no do etanol"
     ]
    ]
   },
@@ -79,7 +79,7 @@
   "armadilha": "Escrever o gasto de André como 'gasto de Bianca + 0,1' ou usar 0,1 em vez de 1,1. '10% maior' é multiplicar por 1,1, não por 0,1.",
   "alerta": "",
   "essencial": {
-   "pede": "A razão e/g entre o preço do litro de etanol e o do gasolina.",
+   "pede": "A razão e/g entre o preço do litro de etanol e o da gasolina.",
    "chave": "18e + 32g = 1,1 × (30e + 20g) leva a 10g = 15e, logo e/g = 2/3.",
    "cuidado": "Use o fator 1,1 (e não 0,1) e lembre que a razão pedida é etanol sobre gasolina, não o inverso."
   }
@@ -175,10 +175,31 @@
  "gab": "B",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.antes.simbolos[2]",
+    "depois": [
+     "razão e/g",
+     "o preço do etanol dividido pelo da gasolina: quantas vezes o preço da gasolina cabe no do etanol"
+    ],
+    "motivo": "A explicação dizia 'quantas vezes o preço do etanol cabe no da gasolina'. Isso é g/e, o inverso da razão pedida, e contradiz o 'e dividido por g' da mesma frase.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.essencial.pede",
+    "depois": "A razão e/g entre o preço do litro de etanol e o da gasolina.",
+    "motivo": "Correção do erro de concordância 'o do gasolina' para 'o da gasolina'.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "B"
  }
 }

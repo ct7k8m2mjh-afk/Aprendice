@@ -10,7 +10,7 @@
   "antes": {
    "texto": "O café entrou pelo Vale do Paraíba (Rio de Janeiro e leste paulista) no início do século XIX, com trabalho escravizado. Depois o solo se esgotou e a produção avançou para o oeste paulista, em busca de terras novas e férteis. Para escoar o café, surgiram ferrovias ligando o interior ao porto de Santos.",
    "formulas": [
-    "mapa: cor mais clara/verde = década mais recente; cor mais escura = mais antiga",
+    "legenda: cada cor = um período; siga do início do séc. XIX até a década de 1930",
     "café → ferrovias → porto de Santos → estruturação econômica paulista"
    ],
    "simbolos": [
@@ -44,13 +44,13 @@
     "faz": "Descreva a direção da expansão",
     "conta": "1850 → 1880 → 1920 → 1930: rumo a noroeste/oeste",
     "porque": "As áreas mais claras e a verde (1930) aparecem no interior, a oeste de Campinas, perto de Marília e Presidente Prudente. A expansão foi para o oeste paulista.",
-    "tipo": "interpretar"
+    "tipo": "comparar"
    },
    {
     "faz": "Ligue a expansão à economia",
     "conta": "café no oeste → ferrovias → Santos",
-    "porque": "Para escoar a produção do interior até o porto de Santos, o estado construiu ferrovias e ampliou o porto. Isso estruturou a economia paulista.",
-    "tipo": "aplicar"
+    "porque": "Para escoar a produção do interior até o porto de Santos, foram abertas ferrovias, muitas por companhias privadas ligadas aos cafeicultores, e o porto foi ampliado. Isso estruturou a economia paulista.",
+    "tipo": "comparar"
    },
    {
     "faz": "Elimine as alternativas com erro",
@@ -66,12 +66,12 @@
    }
   ],
   "resposta": "Alternativa E: o café avançou para o oeste paulista e impulsionou a estruturação econômica de São Paulo, com ferrovias e porto.",
-  "checagem": "Siga as cores no mapa: Vale do Paraíba (início) → faixa de 1850 em torno de Campinas → 1880 mais ao norte → 1920 → 1930 (verde) no extremo oeste. A seta da expansão aponta para o interior, e a E é a única que descreve isso.",
+  "checagem": "Siga as cores no mapa: Vale do Paraíba (início do séc. XIX e 1830), depois a faixa de 1850 em torno de São Paulo, Itu e Campinas, depois 1880 rumo a Ribeirão Preto, Araraquara e Botucatu, e por fim 1920 e 1930 (verdes) no oeste, perto de Lins, Marília e Presidente Prudente. As setas mostram o avanço seguindo para outros estados. A E é a única que descreve esse movimento para o oeste.",
   "erradas": {
    "A": "O Vale do Paraíba foi a primeira grande área do café (mapa: início do século XIX e 1830), com muito êxito e uso intenso de trabalho escravizado. A alternativa inverte isso. O clima frio e a escassez de escravizados não explicam a região.",
    "B": "No mapa, a expansão em São Paulo vai para o oeste/noroeste, e não para a zona oriental, que é o Vale do Paraíba, já ocupado desde o início. Em 1850 o trabalho ainda era escravizado, o assalariado se generalizou depois.",
    "C": "O café paulista não começou nos anos 1930 no oeste: o mapa mostra o oeste ocupado só nas últimas décadas (1920 e 1930), depois do Vale do Paraíba e de Campinas. A expansão também não veio do norte do Paraná.",
-   "D": "O mapa mostra a expansão principal em São Paulo, no Rio de Janeiro e no sul de Minas. As setas para MG e ES indicam avanço para outros estados, e não concentração. Café não precisava de variedades resistentes ao frio nessas regiões."
+   "D": "O mapa mostra a expansão principal em São Paulo e no Rio de Janeiro, com só uma faixa vizinha de Minas (Juiz de Fora). As setas para MG e ES indicam avanço para outros estados, e não concentração neles. O mapa também não trata de variedades resistentes ao frio."
   },
   "armadilha": "Trocar a ordem do tempo no mapa: o café começou no leste (Vale do Paraíba) e avançou para o oeste, e não o contrário.",
   "alerta": "",
@@ -101,10 +101,52 @@
  "gab": "E",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.antes.formulas[0]",
+    "depois": "legenda: cada cor = um período; siga do início do séc. XIX até a década de 1930",
+    "motivo": "A regra 'cor mais clara/verde = mais recente; mais escura = mais antiga' não bate com a legenda. A década de 1880 é a cor mais clara (amarelo), mas não é a mais recente. A de 1850 (bege-escuro) é mais escura que a do início do século XIX (salmão). E o verde de 1930 é mais escuro que o de 1920.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "comparar",
+    "motivo": "O tipo 'interpretar' não existe no padrão. Os tipos válidos são localizar, calcular, comparar, eliminar e concluir.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "comparar",
+    "motivo": "O tipo 'aplicar' não existe no padrão. Os tipos válidos são localizar, calcular, comparar, eliminar e concluir.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Para escoar a produção do interior até o porto de Santos, foram abertas ferrovias, muitas por companhias privadas ligadas aos cafeicultores, e o porto foi ampliado. Isso estruturou a economia paulista.",
+    "motivo": "Dizer que 'o estado construiu ferrovias' é impreciso. As principais ferrovias do café paulista (São Paulo Railway, Paulista, Mogiana) foram feitas por companhias privadas.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Siga as cores no mapa: Vale do Paraíba (início do séc. XIX e 1830), depois a faixa de 1850 em torno de São Paulo, Itu e Campinas, depois 1880 rumo a Ribeirão Preto, Araraquara e Botucatu, e por fim 1920 e 1930 (verdes) no oeste, perto de Lins, Marília e Presidente Prudente. As setas mostram o avanço seguindo para outros estados. A E é a única que descreve esse movimento para o oeste.",
+    "motivo": "O texto antigo dizia que 1880 ficava 'mais ao norte' e 1930 'no extremo oeste', o que não descreve bem o mapa. Dizia também que 'a seta aponta para o interior', mas a legenda define as setas como avanço para outros estados.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "O mapa mostra a expansão principal em São Paulo e no Rio de Janeiro, com só uma faixa vizinha de Minas (Juiz de Fora). As setas para MG e ES indicam avanço para outros estados, e não concentração neles. O mapa também não trata de variedades resistentes ao frio.",
+    "motivo": "Juiz de Fora fica na Zona da Mata mineira, não no sul de Minas. A frase 'café não precisava de variedades resistentes ao frio' é uma afirmação sem base. O café é sensível à geada.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E"
  }
 }

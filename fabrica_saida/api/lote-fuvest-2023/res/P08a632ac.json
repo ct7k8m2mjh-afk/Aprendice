@@ -64,20 +64,20 @@
    {
     "faz": "Traduza o que vem depois",
     "conta": "“It can be understood through tough thorough thought though.”",
-    "porque": "Quer dizer: “Pode ser entendido por meio de um pensamento difícil e minucioso, embora…”. O sentido importa menos que o desenho das palavras.",
-    "tipo": "interpretar"
+    "porque": "Quer dizer: “Pode ser entendido por meio de um pensamento difícil e minucioso, porém.” O sentido importa menos que o desenho das palavras.",
+    "tipo": "localizar"
    },
    {
     "faz": "Compare a escrita das cinco palavras",
     "conta": "through, tough, thorough, thought, though",
-    "porque": "Todas têm o trecho “-ough” e quase as mesmas letras. A grafia parece igual, mas elas formam um grupo visualmente parecido.",
+    "porque": "Todas têm o trecho “-ough” e quase as mesmas letras. Na escrita, formam um grupo bem parecido.",
     "tipo": "localizar"
    },
    {
     "faz": "Compare o som de cada uma",
-    "conta": "“thru”, “tâf”, “thórou”, “thót”, “dôu”",
+    "conta": "“thru”, “tâf”, “thârou”, “thót”, “dôu”",
     "porque": "Pronuncie as cinco palavras: o som de “-ough” muda em quase todas. A semelhança da escrita não vira semelhança de som.",
-    "tipo": "interpretar"
+    "tipo": "comparar"
    },
    {
     "faz": "Ligue ao que a questão pede",
@@ -87,11 +87,11 @@
    }
   ],
   "resposta": "Alternativa A: o cartaz junta palavras com a mesma terminação escrita (-ough) e sons diferentes, ilustrando a disparidade entre ortografia e fonética.",
-  "checagem": "Troque a alternativa A por cada uma das outras e procure um exemplo no cartaz: não há marcador de tempo ou modo, nem frase com ordem de palavras em debate, nem adjetivos agrupados, nem sujeito e verbo concordando ou não. Só a diferença entre escrita e som tem exemplo visível nas cinco palavras.",
+  "checagem": "Troque a alternativa A por cada uma das outras e procure um exemplo no cartaz: não há marcador de tempo, nem ordem de palavras em debate, nem locução adjetiva, nem problema de concordância entre sujeito e verbo. Só a diferença entre escrita e som tem exemplo visível nas cinco palavras.",
   "erradas": {
-   "B": "“Circunstâncias de tempo e modo” seriam advérbios, como yesterday ou quickly. “Though” aparece, mas como conectivo (embora), e não como marcador de tempo ou modo. O cartaz não trabalha com isso.",
+   "B": "“Through tough thorough thought” até indica o meio, mas não há nenhuma marca de tempo, e o cartaz não destaca circunstâncias: o foco está na escrita e no som das palavras.",
    "C": "A ordem dos elementos na oração (sujeito, verbo, complemento) não é discutida. A frase é montada com palavras parecidas, e não para mostrar como se organiza uma oração.",
-   "D": "Locução adjetiva é um grupo de palavras que funciona como adjetivo, como “of gold”. Aqui “tough” e “thorough” são adjetivos soltos. O cartaz não exemplifica um conjunto de locuções.",
+   "D": "Locução adjetiva é um grupo de palavras que funciona como adjetivo, como “of gold”. Aqui “tough” e “thorough” são adjetivos simples que qualificam “thought”, não locuções.",
    "E": "Concordância verbal é a relação entre sujeito e verbo, como “he goes” e “they go”. A frase usa “It can be understood”, que não tem erro nem dúvida de concordância, e o cartaz não a destaca."
   },
   "armadilha": "Ler a frase só pelo sentido, sem notar que o cartaz brinca com a escrita e o som das palavras em -ough.",
@@ -126,10 +126,64 @@
  "gab": "A",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "localizar",
+    "motivo": "O guia só permite os tipos localizar, calcular, comparar, eliminar e concluir. \"interpretar\" não está nessa lista.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "Quer dizer: “Pode ser entendido por meio de um pensamento difícil e minucioso, porém.” O sentido importa menos que o desenho das palavras.",
+    "motivo": "No fim da frase, though é advérbio e quer dizer \"porém, no entanto\". Não é a conjunção \"embora\", que pediria uma oração depois dela.",
+    "fonte": "Cambridge Dictionary, though (adverb): 'despite the fact just stated'"
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Todas têm o trecho “-ough” e quase as mesmas letras. Na escrita, formam um grupo bem parecido.",
+    "motivo": "O \"mas\" ligava duas ideias que não se opõem (grafia igual e grupo parecido), o que deixava a frase sem lógica.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "“thru”, “tâf”, “thârou”, “thót”, “dôu”",
+    "motivo": "Thorough se pronuncia /ˈθʌrə/ (britânico) ou /ˈθɝːoʊ/ (americano). A vogal tônica soa como \"â\" (/ʌ/) e não como \"ó\".",
+    "fonte": "Cambridge Dictionary, thorough: UK /ˈθʌr.ə/, US /ˈθɝː.oʊ/"
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "comparar",
+    "motivo": "\"interpretar\" não é um tipo permitido. O passo compara sons, então o tipo certo é comparar.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "“Through tough thorough thought” até indica o meio, mas não há nenhuma marca de tempo, e o cartaz não destaca circunstâncias: o foco está na escrita e no som das palavras.",
+    "motivo": "O texto anterior dizia que o cartaz não traz nada de modo, o que não é exato: \"through + thought\" é um adjunto de meio. Além disso, chamava though de \"embora\", quando aqui ele significa \"no entanto\".",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "Locução adjetiva é um grupo de palavras que funciona como adjetivo, como “of gold”. Aqui “tough” e “thorough” são adjetivos simples que qualificam “thought”, não locuções.",
+    "motivo": "Chamar os adjetivos de \"soltos\" estava errado, porque eles qualificam thought.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Troque a alternativa A por cada uma das outras e procure um exemplo no cartaz: não há marcador de tempo, nem ordem de palavras em debate, nem locução adjetiva, nem problema de concordância entre sujeito e verbo. Só a diferença entre escrita e som tem exemplo visível nas cinco palavras.",
+    "motivo": "O texto anterior negava que houvesse expressão de modo, mas há um adjunto de meio. Também dizia \"adjetivos agrupados\", e o cartaz tem dois adjetivos juntos. A nova redação não afirma nada que o cartaz contradiga.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "A"
  }
 }

@@ -37,31 +37,31 @@
   "passos": [
    {
     "faz": "Entenda o efeito da olestra",
-    "conta": "olestra + vit. lipossolúvel → sai do corpo",
+    "conta": "olestra leva vit. lipossolúvel",
     "porque": "A olestra funciona como gordura. Ela dissolve e carrega as vitaminas que se dissolvem em gordura. Quem não se dissolve em gordura escapa desse efeito.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Analise a estrutura A",
     "conta": "A: anel + cadeia C=C longa, 1 OH",
     "porque": "Retinol (vitamina A): quase só carbono e hidrogênio, com um único OH. Predomina a parte apolar, então é lipossolúvel.",
-    "tipo": "aplicar"
+    "tipo": "eliminar"
    },
    {
     "faz": "Analise as estruturas C, D e E",
-    "conta": "C, D, E: cadeia lateral longa saturada",
-    "porque": "C é a vitamina K, D é a vitamina D (colecalciferol), E é o tocoferol. Todas têm cadeia longa de hidrocarboneto, são apolares e lipossolúveis.",
-    "tipo": "aplicar"
+    "conta": "C, D, E: longa cadeia de C e H",
+    "porque": "C é a vitamina K, D é a vitamina D (colecalciferol), E é o tocoferol. Todas têm uma longa cadeia de hidrocarboneto e são predominantemente apolares, portanto lipossolúveis.",
+    "tipo": "eliminar"
    },
    {
     "faz": "Analise a estrutura B",
     "conta": "B: anel com N, C=O, NH e 4 OH",
     "porque": "É a riboflavina (vitamina B2). Tem vários OH e átomos de N e O, que fazem ligações de hidrogênio com a água. É hidrossolúvel, logo a olestra a leva pouco.",
-    "tipo": "aplicar"
+    "tipo": "comparar"
    },
    {
     "faz": "Conclua",
-    "conta": "menos prejudicada = hidrossolúvel = B",
+    "conta": "hidrossolúvel → B",
     "porque": "A vitamina B2 é a única hidrossolúvel das cinco. Sua absorção independe de gordura.",
     "tipo": "concluir"
    }
@@ -71,7 +71,7 @@
   "erradas": {
    "A": "É o retinol (vitamina A). A parte de carbono e hidrogênio domina e há só um OH. É lipossolúvel e a olestra a captura, então a absorção é prejudicada.",
    "C": "É a vitamina K (naftoquinona com cadeia lateral longa). A cadeia de hidrocarboneto a torna lipossolúvel e vulnerável à olestra.",
-   "D": "É a vitamina D (colecalciferol). Tem um único OH, anéis e cadeia lateral longa, tudo apolar. Lipossolúvel e prejudicada pela olestra.",
+   "D": "É a vitamina D (colecalciferol). Tem um único OH; o resto (anéis e cadeia lateral longa) é apolar. É lipossolúvel e prejudicada pela olestra.",
    "E": "É o tocoferol (vitamina E). Tem longa cadeia lateral saturada e só um OH fenólico. Lipossolúvel, a olestra a arrasta para fora."
   },
   "armadilha": "Achar que toda vitamina com um grupo OH é hidrossolúvel; um único OH não compensa uma grande cadeia de carbono apolar.",
@@ -106,10 +106,70 @@
  "gab": "B",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "C, D, E: longa cadeia de C e H",
+    "motivo": "A cadeia lateral da vitamina K (fitila) tem uma ligação dupla C=C, que aparece no print junto ao anel. Por isso, chamar a cadeia de 'saturada' é falso para C. O critério que importa é a cadeia longa de C e H.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "C é a vitamina K, D é a vitamina D (colecalciferol), E é o tocoferol. Todas têm uma longa cadeia de hidrocarboneto e são predominantemente apolares, portanto lipossolúveis.",
+    "motivo": "Tirei a ideia de cadeia saturada (falsa para a vitamina K) e troquei 'apolares' por 'predominantemente apolares', porque D e E têm um grupo OH.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "É a vitamina D (colecalciferol). Tem um único OH; o resto (anéis e cadeia lateral longa) é apolar. É lipossolúvel e prejudicada pela olestra.",
+    "motivo": "A frase original dizia 'tudo apolar', o que contradiz a presença do OH citado na mesma frase.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[0].tipo",
+    "depois": "localizar",
+    "motivo": "'interpretar' não é um tipo válido. Os válidos são localizar, calcular, comparar, eliminar e concluir.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "eliminar",
+    "motivo": "'aplicar' não é um tipo válido. O passo descarta a alternativa A.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "eliminar",
+    "motivo": "'aplicar' não é um tipo válido. O passo descarta as alternativas C, D e E.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "comparar",
+    "motivo": "'aplicar' não é um tipo válido. O passo compara a polaridade de B com a das outras estruturas.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[0].conta",
+    "depois": "olestra leva vit. lipossolúvel",
+    "motivo": "A conta original tinha cerca de 43 caracteres e não cabe em uma linha de celular (limite de cerca de 30). O conteúdo continua o mesmo.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "hidrossolúvel → B",
+    "motivo": "A conta original passava do limite de cerca de 30 caracteres. O conteúdo continua o mesmo.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "B"
  }
 }

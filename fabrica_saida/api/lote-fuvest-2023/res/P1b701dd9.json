@@ -71,13 +71,13 @@
     "faz": "Veja o exemplo que o texto dá",
     "conta": "“major scale... brighter, happier sounds” (escala maior: sons mais alegres)",
     "porque": "A escala maior comunica alegria; a menor, melancolia. O texto mostra técnicas que passam um sentimento ao ouvinte.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Formule o sentido antes das opções",
     "conta": "convey = comunicar, passar",
     "porque": "Formular a resposta antes protege contra a alternativa que parece bonita.",
-    "tipo": "interpretar"
+    "tipo": "concluir"
    },
    {
     "faz": "Substitua e conclua",
@@ -90,7 +90,7 @@
   "checagem": "Substitua: “techniques used to avoid / struggle / diminish / popularize certain moods” não faz sentido com a ideia do texto, que exemplifica escalas que trazem sons alegres ou melancólicos. Só “transmit” combina.",
   "erradas": {
    "A": "“Avoid” = evitar. A frase diz que as técnicas são usadas para ter esses climas (escala maior = som alegre), não para fugir deles. Sentido oposto ao de convey.",
-   "B": "“Struggle” = lutar, esforçar-se. É verbo intransitivo e não tem relação com passar um clima. Não cabe em “struggle certain moods”.",
+   "B": "“Struggle” = lutar, esforçar-se. Em geral é intransitivo (struggle with/against) e não tem relação com passar um clima. Não cabe em “struggle certain moods”.",
    "C": "“Diminish” = diminuir, reduzir. O texto diz que as escalas criam sons alegres ou melancólicos, e não que os reduzem.",
    "D": "“Popularize” = tornar popular. Soa parecido no tema de música, mas o texto fala de comunicar emoções, não de tornar um clima popular."
   },
@@ -126,10 +126,34 @@
  "gab": "E",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "localizar",
+    "motivo": "O tipo 'interpretar' não está na lista permitida (localizar, calcular, comparar, eliminar, concluir). Neste passo o aluno acha no texto o exemplo da escala maior, então o tipo certo é 'localizar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "concluir",
+    "motivo": "O tipo 'interpretar' não está na lista permitida. Pelo guia da matéria, o passo em que o aluno formula o sentido antes de olhar as opções é 'concluir' ou 'comparar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "“Struggle” = lutar, esforçar-se. Em geral é intransitivo (struggle with/against) e não tem relação com passar um clima. Não cabe em “struggle certain moods”.",
+    "motivo": "O texto anterior dizia que 'struggle' é verbo intransitivo, sem ressalva. Os dicionários também registram usos transitivos, embora raros (ex.: 'struggle one's way'). Escrever 'em geral' deixa a frase correta e não muda o motivo da eliminação.",
+    "fonte": "Merriam-Webster, verbete 'struggle' (intransitive verb; transitive verb)"
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E"
  }
 }

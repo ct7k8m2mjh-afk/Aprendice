@@ -53,19 +53,19 @@
     "faz": "Ligue as propriedades dos POPs ao Kow",
     "conta": "POP: pouco solúvel em água",
     "porque": "Com C_água baixa e C_octanol alta, a fração fica grande: Kow elevado.",
-    "tipo": "interpretar"
+    "tipo": "comparar"
    },
    {
     "faz": "Cheque as alternativas sobre Kow",
     "conta": "A: Kow baixo? Não. B: miscíveis? Não.",
     "porque": "POPs têm Kow alto, e octanol e água formam duas fases (por isso o Kow existe).",
-    "tipo": "aplicar"
+    "tipo": "eliminar"
    },
    {
     "faz": "Cheque as sobre teia trófica e NaCl",
     "conta": "C: maior no topo. D: NaCl é iônico.",
     "porque": "Magnificação é aumento ao subir na cadeia. NaCl é orgânico? Não, e é muito solúvel em água.",
-    "tipo": "aplicar"
+    "tipo": "eliminar"
    },
    {
     "faz": "Conclua",
@@ -131,10 +131,34 @@
  "gab": "E",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "comparar",
+    "motivo": "\"interpretar\" não está na lista de tipos permitidos (localizar, calcular, comparar, eliminar, concluir). O passo compara a concentração na água com a no octanol para concluir que o Kow é alto.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "eliminar",
+    "motivo": "\"aplicar\" não está na lista de tipos permitidos. O passo descarta as alternativas A e B.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "eliminar",
+    "motivo": "\"aplicar\" não está na lista de tipos permitidos. O passo descarta as alternativas C e D.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E"
  }
 }

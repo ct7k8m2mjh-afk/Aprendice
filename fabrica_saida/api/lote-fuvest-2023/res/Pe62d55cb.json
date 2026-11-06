@@ -45,7 +45,7 @@
   "passos": [
    {
     "faz": "Leia o que o comando pede",
-    "conta": "\"o que a noção de pólis pressupõe\"",
+    "conta": "\"…ela pressupõe\"",
     "porque": "A resposta tem de ser uma ideia que o texto de Vernant sustente, não um fato qualquer sobre a Grécia.",
     "tipo": "localizar"
    },
@@ -65,13 +65,13 @@
     "faz": "Interprete a relação entre comandar e obedecer",
     "conta": "\"mesma relação reversível\"",
     "porque": "Quem comanda hoje obedece depois. Isso só é possível se todos os cidadãos têm o mesmo direito de participar do poder.",
-    "tipo": "interpretar"
+    "tipo": "comparar"
    },
    {
     "faz": "Nomeie o conceito",
     "conta": "iguais perante o poder = isonomia",
     "porque": "Participar do poder em condições iguais é o que os gregos chamavam de isonomia.",
-    "tipo": "aplicar"
+    "tipo": "concluir"
    },
    {
     "faz": "Ligue o conceito à alternativa",
@@ -120,10 +120,34 @@
  "gab": "D",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[0].conta",
+    "depois": "\"…ela pressupõe\"",
+    "motivo": "As aspas indicam citação literal, mas o enunciado não traz o trecho \"o que a noção de pólis pressupõe\". O comando real é \"Sobre a noção de pólis expressa no texto, é correto afirmar que ela pressupõe\". Por isso a citação ficou só com a parte final, que é literal.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "comparar",
+    "motivo": "O tipo \"interpretar\" não existe no padrão. Os tipos aceitos são localizar, calcular, comparar, eliminar e concluir. Este passo põe comandar e obedecer lado a lado, então o tipo certo é comparar.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[4].tipo",
+    "depois": "concluir",
+    "motivo": "O tipo \"aplicar\" não existe no padrão. Este passo dá nome ao conceito que liga as marcas do texto (isonomia), então o tipo certo é concluir.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "D"
  }
 }

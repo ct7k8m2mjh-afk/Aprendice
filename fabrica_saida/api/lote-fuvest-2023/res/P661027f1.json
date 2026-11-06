@@ -44,19 +44,19 @@
     "faz": "Aplique a 3ª lei de Newton",
     "conta": "pata empurra a água para baixo e para trás",
     "porque": "A água reage empurrando a pata para cima e para frente. É essa reação que sustenta e impulsiona o animal.",
-    "tipo": "aplicar"
+    "tipo": "comparar"
    },
    {
     "faz": "Escreva a condição para não afundar",
     "conta": "componente vertical da reação ≈ P",
     "porque": "Se a força vertical para cima equilibra o peso (em média), o animal não afunda e a corrida é estável.",
-    "tipo": "aplicar"
+    "tipo": "comparar"
    },
    {
     "faz": "Teste as demais afirmativas",
     "conta": "Arquimedes, atrito, sal, tensão superficial",
     "porque": "Nenhuma delas descreve o mecanismo dado no enunciado, que é dinâmico (patadas), e não estático.",
-    "tipo": "interpretar"
+    "tipo": "eliminar"
    },
    {
     "faz": "Conclua",
@@ -66,9 +66,9 @@
    }
   ],
   "resposta": "Alternativa A: a componente vertical da reação da água às patadas compensa o peso do animal e o impede de afundar.",
-  "checagem": "Se o lagarto parar de bater as patas, só sobra o peso (ele é denso demais para flutuar) e afunda. Logo, a sustentação vem das patadas, como diz a A.",
+  "checagem": "Se o lagarto parar de bater as patas, ele não se mantém na superfície: afunda na água e passa a nadar. Logo, a sustentação na superfície vem das patadas, como diz a A.",
   "erradas": {
-   "B": "Equilíbrio hidrostático e Arquimedes valem para corpo parado e flutuando. O lagarto é mais denso que a água e se sustenta por forças dinâmicas das patadas, como diz o enunciado.",
+   "B": "Equilíbrio hidrostático e Arquimedes descrevem um corpo parado, que flutua com parte do volume submerso. O lagarto não fica parado mergulhado: ele se mantém na superfície por forças dinâmicas das patadas, como diz o enunciado.",
    "C": "Viscosidade não significa atrito desprezível. A água oferece resistência ao movimento das patas, e é essa interação que gera a força de reação. A frase se contradiz e não explica a sustentação.",
    "D": "O enunciado não menciona sal. A sustentação vem das forças geradas pelas patadas, e não depende da salinidade; em água doce o lagarto também corre.",
    "E": "A tensão superficial sozinha não sustenta um animal desse porte. O enunciado diz que o impulso vem das patadas, com a área ampliada pela membrana. 'Por si só' torna a afirmação falsa."
@@ -105,10 +105,46 @@
  "gab": "A",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "comparar",
+    "motivo": "O tipo 'aplicar' não está na lista permitida (localizar, calcular, comparar, eliminar, concluir). O passo põe a ação da pata ao lado da reação da água, então 'comparar' é o tipo que serve.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "comparar",
+    "motivo": "O tipo 'aplicar' não está na lista permitida. O passo põe a componente vertical da reação ao lado do peso.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "eliminar",
+    "motivo": "O tipo 'interpretar' não está na lista permitida. O passo descarta as alternativas B a E, então o tipo é 'eliminar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Se o lagarto parar de bater as patas, ele não se mantém na superfície: afunda na água e passa a nadar. Logo, a sustentação na superfície vem das patadas, como diz a A.",
+    "motivo": "A frase 'ele é denso demais para flutuar' é um fato que não dá para comprovar e provavelmente está errado. O basilisco nada bem, e a densidade de répteis fica perto da da água. O argumento continua válido sem essa afirmação.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "Equilíbrio hidrostático e Arquimedes descrevem um corpo parado, que flutua com parte do volume submerso. O lagarto não fica parado mergulhado: ele se mantém na superfície por forças dinâmicas das patadas, como diz o enunciado.",
+    "motivo": "Retirei 'O lagarto é mais denso que a água', que não tem comprovação. A alternativa continua sendo derrubada pela natureza dinâmica do mecanismo descrito no enunciado.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "A"
  }
 }

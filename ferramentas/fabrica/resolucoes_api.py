@@ -42,6 +42,8 @@ MODELO = {'resolvedor': 'claude-sonnet-5-5', 'fatos': 'claude-opus-5-5',
           'didatica': 'claude-sonnet-5-5', 'fatos-volta': 'claude-sonnet-5-5'}
 # teto geral do dono: US$ 200 de crédito na API; a fábrica para em US$ 195 (folga de US$ 5)
 TETO_GERAL_US = 195.0
+# comando 33 (essencial da revisão) tem prioridade: as resoluções param antes, em US$ 170, e deixam o resto para ele
+TETO_RESOLUCOES_US = 170.0
 ESFORCO = {'resolvedor': 'high', 'fatos': 'medium', 'didatica': 'medium', 'fatos-volta': 'medium'}
 # US$ por milhão de tokens, já com o desconto de 50% do Batches (entrada, saída, leitura de cache, escrita de cache)
 PRECO = {'claude-sonnet-5-5': (1.0, 5.0, 0.10, 1.25), 'claude-opus-5-5': (2.0, 10.0, 0.20, 2.5)}
@@ -398,9 +400,9 @@ def roda(lote, teto):
         if not e.get('batch_id'):
             previsto = est['gasto_usd'] + ESTIMATIVA_US[etapa] * len(vivos)
             geral = gasto_total() + ESTIMATIVA_US[etapa] * len(vivos)
-            if geral > TETO_GERAL_US:
-                print(f'PARADO: etapa {etapa} levaria o gasto total da fábrica a ~US$ {geral:.2f}, acima do teto geral '
-                      f'de US$ {TETO_GERAL_US:.2f}.')
+            if geral > TETO_RESOLUCOES_US:
+                print(f'PARADO: etapa {etapa} levaria o gasto total da fábrica a ~US$ {geral:.2f}, acima do teto das resoluções '
+                      f'de US$ {TETO_RESOLUCOES_US:.2f}.')
                 gravar_json(os.path.join(d, 'estado.json'), est)
                 return
             if previsto > teto:
