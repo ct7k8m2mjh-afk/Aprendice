@@ -222,3 +222,20 @@ describe('conta ou texto', () => {
     expect(contaEhTexto('Com n = 36, R = 4.')).toBe(false);
   });
 });
+
+// Auditoria da revisão em slides (rodada 1, M1): número com barra que não é fração fica em linha
+import { partesFracao as pf } from '../logica/fracao';
+describe('barra que não é fração (revisão em slides)', () => {
+  const temFrac = (s: string) => pf(s).some((p) => p.t === 'frac');
+  it('tensão de rede, lei com ano, código de avião', () => {
+    expect(temFrac('a rede 220/127 V e a de 380/220 V')).toBe(false);
+    expect(temFrac('a PEC 48/2023 tramita')).toBe(false);
+    expect(temFrac('Lei 12.519/2011 e Lei 14.759/2023')).toBe(false);
+    expect(temFrac('o caça F/A-18 rompe a barreira')).toBe(false);
+  });
+  it('fração de verdade continua empilhada', () => {
+    expect(temFrac('x = 220/11 = 20')).toBe(true);
+    expect(temFrac('a = 3/4')).toBe(true);
+    expect(temFrac('t = 400/10 = 40 s')).toBe(true);
+  });
+});

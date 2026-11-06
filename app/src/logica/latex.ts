@@ -97,6 +97,14 @@ export function analisaLatex(src: string): NoMat[][] {
       case 'sqrt': { out.push({ t: 'raiz', v: argumento() }); return; }
       case 'hat': case 'widehat': { const a = argumento(); for (const x of a) if (x.t === 'txt') txt(out, x.v + '\u0302'); else out.push(x); return; }
       case 'vec': case 'overrightarrow': { out.push({ t: 'vet', v: argumento() }); return; }
+      case 'xrightarrow': case 'xleftarrow': {
+        // seta com o que está em cima ("\xrightarrow{nitrificação}")
+        while (s[i] === ' ') i++;
+        if (s[i] === '[') { const f = s.indexOf(']', i); i = f < 0 ? i : f + 1; }
+        const topo = argumento();
+        out.push({ t: 'sobre', topo, v: [{ t: 'txt', v: nome === 'xrightarrow' ? ' → ' : ' ← ' }] });
+        return;
+      }
       case 'overset': case 'stackrel': { const topo = argumento(); const v = argumento(); out.push({ t: 'sobre', topo, v }); return; }
       case 'text': case 'textrm': case 'textit': case 'textbf': case 'mbox': case 'operatorname': {
         const t = grupoTexto();

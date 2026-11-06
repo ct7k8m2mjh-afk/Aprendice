@@ -49,6 +49,12 @@ function ehFracao(texto: string, ini: number, num: string, den: string): boolean
   // "-t²/4" (sinal de menos com hífen) pode; hífen colado a palavra ou número não
   if (charAntes && ANTES_PROIBIDO.test(charAntes) && !(charAntes === '-' && /(^|[\s=(])-$/.test(antes))) return false;
   if (charDepois && DEPOIS_PROIBIDO.test(charDepois)) return false;
+  // código com hífen e número depois ("F/A-18", nome de avião)
+  if (charDepois === '-' && /^-\d/.test(texto.slice(fim))) return false;
+  // número de lei, emenda ou processo com o ano embaixo ("PEC 48/2023", "Lei 12.519/2011", "Lei nº 3.353/1888")
+  if (/^\d+(?:[.,]\d+)*$/.test(num) && /^(1[89]|20)\d\d$/.test(den)) return false;
+  // tensão de rede trifásica ("220/127 V", "380/220 V") e par de valores com unidade elétrica depois
+  if (/^\d+$/.test(num) && /^\d+$/.test(den) && /^\s?k?V(?![A-Za-zÀ-ÿ])/.test(texto.slice(fim))) return false;
   const nNum = /^\d+$/.test(num), nDen = /^\d+$/.test(den);
   // datas e anos: "05/11", "12/03", "2024/2", "2020/21"
   if (nNum && nDen) {

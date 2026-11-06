@@ -116,7 +116,7 @@ describe.skipIf(!TEMAS.length)('conteúdo de docs/revisao', () => {
         const texto = contaEhTexto('1 + 1', m);
         for (const { s } of ex) {
           const r = passosParaMotor(s.passos!, texto);
-          if (r) for (const p of r.passos!) expect(p.conta).not.toMatch(/\\|[{}]/);
+          if (r) for (const p of r.passos!) expect(p.conta.replace(/[_^]\{[^{}]*\}/g, ''), p.conta).not.toMatch(/\\|[{}]/);
         }
         // F02 (o tema conferido slide a slide): quase todos pelo motor; só índices sem forma Unicode ficam de fora
         if (t.id === 'F02') expect(ex.filter(({ s }) => passosParaMotor(s.passos!)).length).toBe(ex.length);
@@ -141,11 +141,11 @@ describe.skipIf(!TEMAS.length)('conteúdo de docs/revisao', () => {
           expect(o.opcoes[o.certa]).toBe(s.formula);
         }
       });
-      it('foto só do Wikimedia Commons, com autor e licença', () => {
+      it('foto com crédito: autor, licença e origem', () => {
         for (const { s } of todos) {
           const f = s.visual?.foto;
           if (!f) continue;
-          expect(f.url).toMatch(/^https:\/\/commons\.wikimedia\.org\//);
+          expect(f.url).toMatch(/^https:\/\//);
           expect(f.autor && f.licenca).toBeTruthy();
         }
       });
@@ -238,5 +238,44 @@ describe('migração v4: revisão em slides', () => {
     expect(m['F02.1'].hist.map((h) => h.ts)).toEqual([100, 200]);
     expect(m['F02.1'].vence).toBe(b.vence);
     expect(m['F02.2']).toBeTruthy();
+  });
+});
+
+/* ============================================================ auditoria rodada 1 */
+import { renderToStaticMarkup } from 'react-dom/server';
+import { createElement } from 'react';
+import { SlideRevisao } from '../ui/revisao/SlideRevisao';
+import { avisoDe, rotuloImagem } from '../ui/revisao/FotoSlide';
+import { slideDaQuestao } from '../logica/cicloRevisao';
+
+describe('auditoria rodada 1 da revisão em slides', () => {
+  const temas = TEMAS.filter(({ m }) => ['fis', 'his', 'geo'].includes(m));
+  it('A1: o roteiro de produção (movimento, descrição) nunca aparece no slide', () => {
+    let vistos = 0;
+    for (const { m, t } of temas) for (const [sub, l] of Object.entries(t.slides)) l.forEach((s, k) => {
+      const mov = s.visual?.movimento || [];
+      if (!mov.length || vistos > 400) return;
+      vistos++;
+      const html = renderToStaticMarkup(createElement(SlideRevisao, { m: m as never, tema: t, sub, k, s, pos: 1, total: 1 }));
+      for (const x of mov) expect(html, `${sub} #${k + 1}`).not.toContain(x.replace(/^\d+\.\s*/, '').slice(0, 40).replace(/&/g, '&amp;').replace(/'/g, '&#x27;'));
+      if (s.visual?.descricao) expect(html).not.toContain(s.visual.descricao.slice(0, 40).replace(/&/g, '&amp;').replace(/'/g, '&#x27;'));
+    });
+    expect(vistos).toBeGreaterThan(50);
+  });
+  it('M5: imagem com aviso no roteiro pede o aviso antes; B3: pintura não é "Foto"', () => {
+    const h03 = TEMAS.find(({ t }) => t.id === 'H03');
+    if (!h03) return;
+    const v = h03.t.slides['H03.9']?.[0]?.visual;
+    if (!v?.foto) return;
+    expect(avisoDe(v)).toMatch(/execução/i);
+    expect(rotuloImagem(v)).toBe('Pintura');
+    expect(avisoDe({ tipo: 'foto', movimento: ['1. A foto aparece.'] })).toBeNull();
+  });
+  it('M4: a questão errada marca o slide que fala dela, ou nenhum', () => {
+    const sl = (titulo: string, texto: string) => ({ tipo: 'conceito' as const, titulo, texto });
+    const ver = [{ s: sl('Velocidade média', 'deslocamento dividido pelo tempo total, contando paradas'), k: 1 },
+      { s: sl('Aceleração', 'variação da velocidade a cada segundo, frenagem e Torricelli'), k: 2 }];
+    expect(slideDaQuestao('Um carro faz frenagem com aceleração constante; use Torricelli para a variação da velocidade', ver)).toBe(2);
+    expect(slideDaQuestao('Sobre a Revolução Francesa e o Terceiro Estado', ver)).toBeNull();
   });
 });

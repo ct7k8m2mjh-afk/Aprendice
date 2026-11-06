@@ -6,10 +6,11 @@ A revisão NÃO edita esses arquivos: usa só a API pública (`ResolucaoAnimada`
 o lado da revisão pronto; quando o motor atender, basta trocar a ligação indicada.
 
 ## 1. Cena animada dos slides (`visual.movimento`)
-- **Hoje:** `app/src/ui/revisao/RoteiroAnimado.tsx` toca o roteiro `visual.movimento` em cena: um passo de cada vez,
-  na ordem do arquivo, com os números do passo marcados na cor da matéria, tocar/pausar/recomeçar, linha do tempo por
-  passo e "reduzir movimento" mostrando tudo. Não desenha os objetos (carro, pista, eixos), porque o JSON descreve a
-  cena em texto livre (`visual.descricao`) e não há primitivas de cena no motor.
+- **Hoje (depois da auditoria da rodada 1, A1):** o roteiro de produção (`visual.movimento`, `visual.descricao`) NUNCA
+  aparece para o aluno. O motor anima o que existe de verdade no slide: a imagem entra (`animaEntrada`) e a fórmula e a
+  frase-chave são escritas à mão (`animaEscrita`), além da conta do exemplo (`animaPasso`). Cenas desenhadas (carro,
+  pista, eixos, gráfico que se desenha, mapa, linha do tempo) ainda não existem, porque o JSON descreve a cena em texto
+  livre; slide sem imagem fica só com o texto, a fórmula e a conta.
 - **Pedido:** uma função do motor `animaCena(el: HTMLElement, cena: Cena, vel?: number): Controle` que desenhe em SVG
   objetos simples (móvel, pista com régua, eixo com reta/parábola, área sob a curva, seta de vetor, relógio, velocímetro)
   e anime cada passo do roteiro, com a mesma regra de ouro do motor (DOM final, só transform/opacity/clip-path).
@@ -17,10 +18,12 @@ o lado da revisão pronto; quando o motor atender, basta trocar a ligação indi
   fábrica: `{"objetos":[{"id":"carro","tipo":"movel","x0":0}], "eixos":{"x":"t (s)","y":"v (m/s)"}, "passos":[{"move":"carro","ate":40,"dur":1.2,"rotulo":"40 m"}]}`.
 - **Inglês (comando 28):** a linha do tempo dos tempos verbais é o visual principal de I04; pedido igual: primitiva
   "linha do tempo" (eixo passado–agora–futuro, marcos, intervalo, ponto) animada pelo motor a partir de `visual.cena`.
-- **Ligar:** em `RoteiroAnimado.tsx`, quando `visual.cena` existir, montar `<svg>` e chamar `animaCena` no lugar do
-  palco de texto (o controle de tocar/pausar já usa a interface `Controle`).
+- **Ligar:** em `app/src/ui/revisao/SlideRevisao.tsx`, quando `visual.cena` existir, montar `<svg>` na coluna do visual e
+  chamar `animaCena` (mesma interface `Controle` de `animaEntrada` e `animaEscrita`).
 
-## 2. Índice com letras sem forma Unicode na conta (`f_{cat}`, `v_y`, `f_{roda}`)
+## 2. Índice com letras sem forma Unicode na conta (`f_{cat}`, `v_y`, `f_{roda}`) — ATENDIDO
+- 06/11/2026: o tokenizador aceita `v_{mín}` inteiro e `latexParaMotor` escreve todo índice como `_{…}`; o motor desce o
+  índice na mesma letra à mão (logica/notacao.ts). Os exemplos de F02.5 e F02.6 passaram a ir ao motor.
 - **Hoje:** `latexParaMotor` (`app/src/logica/latex.ts`) devolve `null` quando a conta tem índice que não existe em
   Unicode (c, d, y...). O slide mostra então os passos com `Formula` (fração empilhada, índice em `<sub>`), um passo de
   cada vez, sem os termos se moverem. Casos em F02: exemplo de F02.5 (`v_y`) e de F02.6 (`f_{cat}`, `f_{roda}`).
