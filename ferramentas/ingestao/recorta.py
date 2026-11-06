@@ -589,6 +589,19 @@ def processa(pid, amostra=False, so_texto=False):
         ev = eventos_do_pdf(pdf, cfg, faixa_pag)
         if cad.get('sem_suporte'):   # caderno em que os textos vêm dentro da questão, depois do número
             ev = [e for e in ev if e['tipo'] != 'suporte']
+        if cfg.get('suporte_interno'):
+            # "Questão 17" seguida logo abaixo de "TEXTO 1": o texto é da própria questão (e os textos seguintes também)
+            ok, ult_q, dentro = [], None, False
+            for e in ev:
+                if e['tipo'] == 'q':
+                    ult_q, dentro = e, False
+                elif e['tipo'] == 'suporte' and ult_q and (dentro or (e['p'] == ult_q['p'] and e['c'] == ult_q['c'] and 0 <= e['y'] - ult_q['y'] < 45)):
+                    dentro = True
+                    continue
+                elif e['tipo'] in ('corte', 'secao'):
+                    ult_q, dentro = None, False
+                ok.append(e)
+            ev = ok
         if cfg.get('sequencial'):
             ok, ult = [], (cad['questoes'][0] - cad.get('deslocamento', 0) - 1) if cad.get('questoes') else None
             for e in ev:
