@@ -15,3 +15,4 @@ Observações para a integração:
 | G06 População e demografia | aprovado (06/11/2026) | 59 |
 | G03 Clima e atmosfera | aprovado (06/11/2026) | 60 |
 | G12 Meio ambiente e sustentabilidade | aprovado (06/11/2026) | 60 |
+| G08 Geografia agrária | aprovado (06/11/2026) | 59 |
