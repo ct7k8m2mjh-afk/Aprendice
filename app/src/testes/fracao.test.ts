@@ -105,7 +105,10 @@ describe('conta ou texto', () => {
       ['pOH = o expoente positivo de [OH⁻]: se [OH⁻] = 10⁻⁵, pOH = 5', 'qui'],
       ['A espermátide não se divide mais: 100 espermátides × 1 = 100 espermatozoides.', 'bio'],
       ['Mg²⁺ e PO4³⁻. Para a soma dar zero: 3 Mg (3 × 2+ = 6+) com 2 fosfatos (2 × 3− = 6−), logo Mg3(PO4)2', 'qui'],
-      ['C16H34 dá C8H16 + C8H18, ou seja, 16 carbonos numa molécula viram 8 + 8 carbonos em duas moléculas', 'qui'],
+      // soma sem resultado é lista, não conta; rótulo curto com soma de palavras é frase
+      ['enxofre da família VI A: 2 ligações + 2 pares isolados, logo geometria angular', 'qui'],
+      ['2 H2 + O2 (reagentes) no nível Y; topo da curva no nível Z; 2 H2O (produtos) no nível X', 'qui'],
+      ['no equador, dia claro ≈ 12 horas o ano todo', 'bio'],
       ['albinismo aa × Aa: metade albina, metade com pigmentação normal', 'bio'],
       ['já saiu uma dengue, sobram 4 vírus, e chikungunya é 1 deles → 1/4', 'bio'],
       ['nitrogênio com 5 elétrons de valência: 3 ligações N–H e 1 par isolado = 4 nuvens, logo geometria piramidal; assimétrica, logo polar', 'qui'],
@@ -137,6 +140,17 @@ describe('conta ou texto', () => {
       ['3 classes de forma × 2 classes de cor = 6 classes fenotípicas.', 'bio'],
       ['1 célula → 2 → 4 → 8: o tumor cresce porque cada filha também se divide', 'bio'],
       ['Entradas = natalidade + imigração = 200 + imigração, que vai de 100 a 300. Logo as entradas vão de 300 a 500 por ano.', 'bio'],
+      // equação química com "dá" no lugar da seta e fórmula com "≈"
+      ['C16H34 dá C8H16 + C8H18, ou seja, 16 carbonos numa molécula viram 8 + 8 carbonos em duas moléculas', 'qui'],
+      ["esquema do enunciado: R-C≡C-R' + HOH dá R-C(OH)=CH-R' , que dá R-(C=O)-CH2-R'", 'qui'],
+      ['eteno C2H4 + H2 dá etano C2H6: 2 carbonos antes e 2 depois, 4 hidrogênios antes e 6 depois', 'qui'],
+      ['2 H2O com corrente elétrica dá 2 H2 + O2, e a corrente vem de energia eólica ou solar', 'qui'],
+      ['eletrólise da água: 2 H2O com corrente elétrica dá 2 H2 + O2', 'qui'],
+      ['para ácido fraco monoprótico: [H⁺] ≈ raiz quadrada de (Ka × C)', 'qui'],
+      // soma de fórmulas que fecha numa reação ou num rótulo continua conta
+      ['H2SO4 + 2 NaOH: cada 1 mol de ácido precisa de 2 mol de base', 'qui'],
+      ['H⁺ + OH⁻ forma H2O: é assim que o limão retira o OH⁻ do meio', 'qui'],
+      ['do reagente ao pico: Z − Y, que em módulo é |Y − Z|', 'qui'],
     ]) expect(contaEhTexto(s, m)).toBe(false);
   });
   it('conta, equação química e fórmula por extenso continuam à mão (Química e Biologia)', () => {

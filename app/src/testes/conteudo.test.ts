@@ -13,9 +13,12 @@ const temConteudo = existsSync(join(DEST, 'bio', 'banco.json'));
 describe.skipIf(!temConteudo)('conteúdo convertido', () => {
   for (const m of MATS) {
     describe(m, () => {
-      const orig = ler(join(ORIGEM, m, 'dados.json'));
-      // as questões das provas completas vêm depois das do protótipo (marcadas com 'prova'); aqui só as do protótipo
-      const banco = (ler(join(DEST, m, 'banco.json')) as { id: string; gab: string; alts: Record<string, string>; sub: string; url: string; escola: string; ano: string; origem: string; pendente?: string; prova?: string }[]).filter((q) => !q.prova);
+      const dados = ler(join(ORIGEM, m, 'dados.json'));
+      // comando 21: as questões de sites didáticos (tipo "site") ficam só no protótipo; aqui só as de prova do protótipo
+      const orig = { ...dados, banco: dados.banco.filter((q: { tipo?: string }) => q.tipo !== 'site') };
+      const idsOrig = new Set(orig.banco.map((q: { id: string }) => q.id));
+      // as questões das provas completas vêm depois das do protótipo; aqui só as do protótipo
+      const banco = (ler(join(DEST, m, 'banco.json')) as { id: string; gab: string; alts: Record<string, string>; sub: string; url: string; escola: string; ano: string; origem: string; pendente?: string; prova?: string }[]).filter((q) => idsOrig.has(q.id));
       const materia = ler(join(DEST, m, 'materia.json'));
 
       it('mesmas questões, mesmos ids, mesma ordem', () => {
@@ -63,10 +66,27 @@ describe.skipIf(!temConteudo)('questões das provas nos exercícios', () => {
   const bancos = Object.fromEntries(TODAS.map((m) => [m, ler(join(DEST, m, 'banco.json')) as QBanco[]]));
   const dup = ler(join(DEST, 'duplicatas-provas.json')) as Record<string, string>;
 
-  it('nenhum id do banco antigo sumiu (princípio 7)', () => {
+  it('nenhum id do banco antigo sumiu (princípio 7); as de site saíram e estão na tabela de retiradas', () => {
+    const tab = readFileSync(join(RAIZ, 'src', 'dados', 'questoesRetiradas.ts'), 'utf-8');
     for (const m of MATS) {
       const ids = new Set(bancos[m].map((q) => q.id));
-      for (const q of ler(join(ORIGEM, m, 'dados.json')).banco as { id: string }[]) expect(ids.has(q.id), `${m}/${q.id}`).toBe(true);
+      for (const q of ler(join(ORIGEM, m, 'dados.json')).banco as { id: string; tipo?: string }[]) {
+        if (q.tipo === 'site') { expect(ids.has(q.id), `${m}/${q.id} (site)`).toBe(false); expect(tab, q.id).toContain(`"${q.id}":`); }
+        else expect(ids.has(q.id), `${m}/${q.id}`).toBe(true);
+      }
+    }
+  });
+  it('duplicata: fica o id antigo, com o print, o texto e o link da prova oficial', () => {
+    for (const [pid, alvo] of Object.entries(dup)) {
+      const [m, id] = alvo.split('/');
+      const q = bancos[m].find((x) => x.id === id)! as QBanco & { provaOficial?: string };
+      expect(q.provaOficial, alvo).toBeTruthy();
+      const p = ler(join(FONTE_PROVAS, q.provaOficial!, 'prova.json')) as { questoes: { id: string; gab: string; print: string }[] };
+      const orig = p.questoes.find((x) => x.id === pid)!;
+      expect(q.gab, alvo).toBe(orig.gab);
+      expect(q.print, alvo).toBe('provas/' + q.provaOficial + '/' + orig.print);
+      expect(existsSync(join(DEST, q.print!)), q.print).toBe(true);
+      expect(q.txt, alvo).toBe(1);
     }
   });
   it('sem ids repetidos e sem a mesma questão duas vezes', () => {

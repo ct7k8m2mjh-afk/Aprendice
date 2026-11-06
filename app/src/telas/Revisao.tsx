@@ -2,7 +2,7 @@ import { Link, useSearchParams } from 'react-router-dom';
 import { useTodasMaterias } from '../dados/conteudo';
 import { MATERIAS_ATIVAS, nomeMateria } from '../dados/materias';
 import { useEstado } from '../estado/loja';
-import { questoesVencidas, resumoMateria } from '../logica/estatisticas';
+import { filaRetirada, questoesVencidas, resumoMateria } from '../logica/estatisticas';
 import { filaDe, emDias, DIA, iniDia, PASSOS_Q } from '../logica/revisao';
 import { Carregando, plural, useTitulo } from '../ui/comum';
 import { Icone } from '../ui/Icone';
@@ -21,7 +21,8 @@ export function Revisao() {
   const porMat = todas.map((mc) => {
     const s = e.materias[mc.id] || estadoMateriaVazio();
     const venc = questoesVencidas(mc, s, agora);
-    const prox = mc.banco.filter((q) => { const f = filaDe(s.q[q.id]); return f && f.vence > agora && f.vence < amanha7; });
+    const prox = mc.banco.filter((q) => { const f = filaDe(s.q[q.id]); return f && f.vence > agora && f.vence < amanha7; })
+      .concat((mc.retiradas || []).filter((q) => { const f = filaRetirada(mc, s, q); return f && f.vence > agora && f.vence < amanha7; }));
     const marcadas = mc.banco.filter((q) => s.q[q.id]?.rev);
     return { mc, s, venc, prox, marcadas, r: resumoMateria(mc, s, agora) };
   });

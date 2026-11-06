@@ -17,7 +17,8 @@ const VAZIA: EstadoMateria = { q: {}, ult: null, sims: [], flash: {}, flg: {}, s
 
 /** Próxima questão da escada onde o aluno parou. */
 export function ondeParou(todas: MateriaCarregada[], e: Estado) {
-  const ult = atividadeRecente(e, 1)[0];
+  // a última resposta pode ser de uma questão que saiu do site (comando 21): vale a mais recente que ainda existe
+  const ult = atividadeRecente(e, 50).find((x) => todas.find((y) => y.id === x.m)?.porId.has(x.id));
   if (!ult) return null;
   const mc = todas.find((x) => x.id === ult.m);
   const q = mc?.porId.get(ult.id);

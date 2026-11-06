@@ -26,7 +26,8 @@ export function Escada() {
   useTitulo(conteudo ? cap(conteudo.nome) : 'Conteúdo');
   if (!mc) return <div className="conteudo"><Carregando /></div>;
   const l = mc.porSub.get(sub) || [];
-  if (!mod || !l.length) return <div className="conteudo vazio"><h3>Conteúdo não encontrado</h3><Link className="btn sec" to={`/m/${m}`}>Voltar</Link></div>;
+  if (!mod || !conteudo) return <div className="conteudo vazio"><h3>Conteúdo não encontrado</h3><Link className="btn sec" to={`/m/${m}`}>Voltar</Link></div>;
+  if (!l.length) return <div className="conteudo vazio"><h3>{cap(conteudo.nome)}</h3><p>Este conteúdo está sem questões no momento. Questões novas estão em preparação.</p><Link className="btn sec" to={`/m/${m}/tema/${mod.id}`}>Voltar ao tema</Link></div>;
   const p = progressoEscada(l, s);
   const prox = l.find((q) => !s.q[q.id]?.tent.length);
   const cartoes = mod.cartoes.filter((c) => c.sub === sub);

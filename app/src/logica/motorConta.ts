@@ -478,9 +478,15 @@ function planoProduto(a: Lado, aL: number[], aR: number[], b: Lado, bL: number[]
   }
   for (const i of cancelados) for (const s of A[i].p.slots) riscos.push(refDe(a.l, s));
   const restoA = soltosA.filter((i) => !cancelados.has(i) && A[i].p.chave !== '1');
+  // um "1" novo só pode nascer como numerador ("AB ÷ AE = 1 ÷ 4", "a = 1"); "1 × 7 × 6" no lugar de "8 × 7 × 6" é outro caso, não conta
+  for (let j = 0; j < B.length; j++) {
+    if (par.has(j) || B[j].p.chave !== '1') continue;
+    if (B.some((x, k) => k !== j && x.lado === B[j].lado && x.p.tipo === 'mul')) return null;
+  }
   const soltosB = B.map((_, j) => j).filter((j) => !par.has(j) && B[j].p.chave !== '1');
   const entradas: Record<string, Entrada> = {};
   let atravessouNaConta = false, viraDivConta = 0, viraMulConta = 0;
+  const ladosQueCruzam = new Set<number>();
   if (restoA.length || soltosB.length) {
     if (soltosB.length !== 1 || !restoA.length) return null;
     const j = soltosB[0], lado = B[j].lado;
@@ -496,12 +502,11 @@ function planoProduto(a: Lado, aL: number[], aR: number[], b: Lado, bL: number[]
     if (Math.abs(v - alvo) > (dec ? 0.5 * Math.pow(10, -dec) : 1e-9 * Math.max(1, Math.abs(alvo)))) return null;
     const de = restoA.flatMap((i) => (A[i].p.op != null ? [{ i: A[i].p.op! }, ...A[i].p.slots] : A[i].p.slots).map((s) => refDe(a.l, s)));
     const cruza = restoA.filter((i) => A[i].lado !== lado);
-    if (cruza.length) { atravessouNaConta = true; for (const i of cruza) if (A[i].p.tipo === 'mul') viraDivConta++; else viraMulConta++; }
+    if (cruza.length) { atravessouNaConta = true; for (const i of cruza) { ladosQueCruzam.add(A[i].lado); if (A[i].p.tipo === 'mul') viraDivConta++; else viraMulConta++; } }
     for (const s of y.slots) entradas[chaveRef(s.i, s.p)] = { de, atravessa: cruza.length > 0 || undefined };
     if (y.op != null) entradas[chaveRef(y.op)] = { de, atravessa: cruza.length > 0 || undefined };
   }
   let atravessou = 0, viraDiv = 0, viraMul = 0;
-  const ladosQueCruzam = new Set<number>();
   for (const [j, i] of par) {
     const x = B[j], y = A[i], cruza = x.lado !== y.lado;
     if (cruza) { atravessou++; ladosQueCruzam.add(y.lado); if (x.p.tipo === 'div') viraDiv++; else viraMul++; }
@@ -516,7 +521,7 @@ function planoProduto(a: Lado, aL: number[], aR: number[], b: Lado, bL: number[]
   const conta = Object.keys(entradas).some((k) => entradas[k].de.length > 1);
   if (!atravessou && !riscos.length && !conta) return null;
   const fracNosDois = [aL, aR].every((lado) => lado.some((i) => a.toks[i].k === 'frac' || ehDiv(a.toks[i])));
-  const tipo: TipoTransicao = atravessou >= 2 && ladosQueCruzam.size === 2 && fracNosDois ? 'cruzada'
+  const tipo: TipoTransicao = ladosQueCruzam.size === 2 && fracNosDois ? 'cruzada'
     : atravessou || atravessouNaConta ? (viraDiv + viraDivConta >= viraMul + viraMulConta ? 'divide' : 'multiplica') : riscos.length ? 'cancela' : 'resultado';
   return { tipo, entradas, riscos };
 }
@@ -530,9 +535,11 @@ function planoResultado(a: Lado, ia: number[], b: Lado, ib: number[], aprox: boo
   while (p < A.length && p < B.length && A[p].v === B[p].v) p++;
   let s = 0;
   while (s < A.length - p && s < B.length - p && A[A.length - 1 - s].v === B[B.length - 1 - s].v) s++;
+  // o resultado pode ser igual a um pedaço da conta ("8 − 4 = 4", "7 · 2 ÷ 2 = 7"): devolve o que for preciso ao meio
+  const bom = () => B.length - s - p > 0 && A.length - s - p >= 2 && A[p].k !== 'op' && A[A.length - s - 1].k !== 'op';
+  while (!bom() && (s > 0 || p > 0)) { if (s > 0) s--; else p--; }
   const mA = A.slice(p, A.length - s), mB = B.slice(p, B.length - s);
-  if (mA.length < 2 || !mB.length) return null;
-  if (mA[0].k === 'op' && !negativo(mA[0].v)) return null;
+  if (mA.length < 2 || !mB.length || mA[0].k === 'op' || mA[mA.length - 1].k === 'op') return null;
   const v = avalia(mA);
   if (v == null || !confere(v, mB, aprox)) return null;
   // o meio tem de ser uma conta inteira dentro da expressão (precedência): 10 − 3 + 2 não vira 10 − 5
@@ -621,7 +628,7 @@ function termoChave(s: string): [number, number] | undefined {
   const m = /(?:→|⇒|=|:)\s*([^→⇒=:]+)$/.exec(s);
   if (m) {
     const t = m[1].replace(/[.\s]+$/, '');
-    if (t.trim().length >= 1 && t.length <= 48) { const i = s.lastIndexOf(t); return [i, i + t.length]; }
+    if (/[A-Za-zÀ-ÿ0-9].*[A-Za-zÀ-ÿ0-9]/.test(t) && t.length <= 48) { const i = s.lastIndexOf(t); return [i, i + t.length]; }
   }
   const t = s.trim();
   if (t.length <= 60 && t.length > 0) { const i = s.indexOf(t); return [i, i + t.length]; }

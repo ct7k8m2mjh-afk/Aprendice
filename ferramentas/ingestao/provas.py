@@ -1160,6 +1160,8 @@ def ufjf(ano, duracao=4):
         'corte': [r'(?i)DISCURSIVAS|DISSERTATIVAS', r'(?i)^QUESTÕES OBJETIVAS$', r'^Objetivas$', r'(?i)^Quest[õo]es de \d+ a \d+$', r'(?i)^REDAÇÃO$', r'(?i)^RASCUNHO'],
         'suporte': [r'(?i)(responder|responda)\s+(a|à|às|as)\s+quest', r'(?i)^TEXTO\s+([IVX]+|\d+):?\s*$'], 'texto_n_sem_faixa': True,
         'faixa_unica': True, 'suporte_ate_proximo': True, 'suporte_nao_colado': 25, 'texto_romano': True,
+        # "QUESTÃO 05 - ..." com "TEXTO III" logo abaixo: o texto é da própria questão (antes cortava o print no cabeçalho)
+        'suporte_interno': 60,
         'gabarito': gab, 'area': lambda n: 'Conhecimentos gerais',
     }
     return cfg
@@ -1218,6 +1220,15 @@ PROVAS['uema-paes-2021']['nota'] = PROVAS['uema-paes-2021']['nota'].replace('pro
 
 
 # ----------------------------------------------------------------------------------------------- UFSM
+def _ufsm_ultima(pdf):
+    import pymupdf
+    d = pymupdf.open(pdf)
+    for i, pg in enumerate(d):
+        if 'SÉRIE DOS LANTAN' in pg.get_text():
+            return i   # página anterior à da tabela (numeração a partir de 1)
+    return len(d)
+
+
 def ufsm(ano, duracao=4.5):
     def gab1(arq):
         """Pares "NN X"; as questões de língua (38–40) aparecem duas vezes: espanhol, depois inglês — vale a última."""
@@ -1237,8 +1248,9 @@ def ufsm(ano, duracao=4.5):
         'duracao_horas': duracao, 'total': 120,
         'nota': f'Universidade Federal de Santa Maria, Processo Seletivo Vestibular {ano}: Provas 1, 2 e 3 (40 questões A–E cada; '
                 'aqui numeradas 1–40, 41–80 e 81–120). Língua estrangeira: inglês. Gabarito oficial definitivo; anulada fica fora.',
-        'cadernos': [{'arquivo': f'p{k}-caderno', 'paginas': (2, 999), 'questoes': (40 * (k - 1) + 1, 40 * k), 'deslocamento': 40 * (k - 1)}
-                     for k in (1, 2, 3)],
+        # o caderno termina antes da página da tabela periódica (depois dela só há "Anotações" e a contracapa)
+        'cadernos': lambda pasta: [{'arquivo': f'p{k}-caderno', 'paginas': (2, _ufsm_ultima(pasta / f'p{k}-caderno.pdf')),
+                                    'questoes': (40 * (k - 1) + 1, 40 * k), 'deslocamento': 40 * (k - 1)} for k in (1, 2, 3)],
         'colunas': 'faixas', 'faixas_modo': 'largas', 'margem': 12, 'topo': 50, 'base': 48,
         'ancora': r'^(\d{2})$', 'ancora_dx': 310, 'sequencial': True, 'ancora_negrito': True,
         # "→ Língua Espanhola ←" / "→ Língua Inglesa ←" (com setas) abrem as seções de língua

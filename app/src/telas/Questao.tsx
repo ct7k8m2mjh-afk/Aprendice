@@ -1,9 +1,10 @@
-import { Link, useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import { Link, Navigate, useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useMateria, useQuestaoComTexto, useResolucoes } from '../dados/conteudo';
 import { materia as infoMateria } from '../dados/materias';
 import { atualizaMateria, pegaEstado, useMateriaEstado } from '../estado/loja';
 import { questoesVencidas } from '../logica/estatisticas';
+import { retirada } from '../estado/migracao';
 import { filaDe, emDias } from '../logica/revisao';
 import { ehNivel, nivelDe, nomeNivel } from '../logica/nivel';
 import { Carregando, cap, formataTempo, useTitulo } from '../ui/comum';
@@ -107,6 +108,12 @@ export function QuestaoTela() {
   });
 
   if (!mc || (q0 && qTexto === null)) return <div className="conteudo"><Carregando /></div>;
+  if (!q) {
+    // questão de site retirada (comando 21): o link antigo leva à questão de prova equivalente, ou ao conteúdo dela
+    const r = retirada(m, id);
+    if (r?.para) return <Navigate replace to={`/m/${r.para.m}/q/${r.para.id}${ctx === 'escada' ? '' : '?ctx=' + ctx}`} />;
+    if (r) return <Navigate replace to={`/m/${m}/escada/${r.sub}`} />;
+  }
   if (!q) return <div className="conteudo vazio"><h3>Questão não encontrada</h3><Link to={`/m/${m}`} className="btn sec">Voltar</Link></div>;
 
   const mod = mc.conteudo.modulos.find((x) => x.id === q.modulo);

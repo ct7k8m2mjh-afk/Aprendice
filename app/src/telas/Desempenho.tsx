@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useTodasMaterias } from '../dados/conteudo';
 import { nomeMateria } from '../dados/materias';
 import { useEstado } from '../estado/loja';
-import { resumoMateria, semana, tempoTotal } from '../logica/estatisticas';
+import { comHistorico, resumoMateria, semana, tempoTotal } from '../logica/estatisticas';
 import { desempenhoPorNivel, feedbackNiveis, nomeNivel, pontosFracos } from '../logica/nivel';
 import { Barra, Carregando, cap, horasMin, plural, useTitulo } from '../ui/comum';
 import { IconeMateria } from '../ui/IconeMateria';
@@ -39,15 +39,15 @@ export function Desempenho() {
   }
   const sel = resumos.find((x) => x.mc.id === mSel)!;
   const mods = sel.mc.conteudo.modulos.map((mod) => {
-    const qs = sel.mc.banco.filter((q) => q.modulo === mod.id);
+    const qs = comHistorico(sel.mc).filter((q) => q.modulo === mod.id); // inclui o histórico das questões de site retiradas
     let n = 0, ok = 0, feitasM = 0;
     for (const q of qs) { const t = sel.s.q[q.id]?.tent; if (t?.length) { feitasM++; n += t.length; ok += t.filter((x) => x.ok).length; } }
     return { mod, total: qs.length, feitas: feitasM, acerto: n ? ok / n : null };
   });
   const fracos = mods.filter((x) => x.acerto !== null && x.feitas >= 3).sort((a, b) => a.acerto! - b.acerto!).slice(0, 3);
-  const niveis = desempenhoPorNivel(sel.mc.banco, sel.s);
+  const niveis = desempenhoPorNivel(comHistorico(sel.mc), sel.s);
   const feedback = feedbackNiveis(niveis);
-  const grupos = sel.mc.conteudo.modulos.flatMap((mod) => mod.subs.map((sub) => ({ ref: { mod, sub }, qs: sel.mc.porSub.get(sub.id) || [] }))).filter((g) => g.qs.length);
+  const grupos = sel.mc.conteudo.modulos.flatMap((mod) => mod.subs.map((sub) => ({ ref: { mod, sub }, qs: [...(sel.mc.porSub.get(sub.id) || []), ...(sel.mc.retiradas || []).filter((q) => q.sub === sub.id)] }))).filter((g) => g.qs.length);
   const ondeErra = pontosFracos(grupos, sel.s, 5);
 
   if (!feitas) return (

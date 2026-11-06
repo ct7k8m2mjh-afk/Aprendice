@@ -470,6 +470,7 @@ def liga_provas(provas):
     res_novas = {m: {} for m in todas}
     res_antigas = {}  # resolução aprovada da prova para a questão antiga que ainda não tem
     fora = {'sem_classificacao': 0, 'conteudo_desconhecido': 0, 'gabarito_invalido': 0}
+    oficiais = []  # duplicatas: (prova, questão da prova, questão antiga que fica)
     troca = sub_troca()
     for p in provas:
         for pq in p['questoes']:
@@ -481,6 +482,7 @@ def liga_provas(provas):
                 d = dup[pq['id']]
                 if pq.get('res'):
                     res_antigas[d['id']] = (d['m'], pq['res'])
+                oficiais.append((p, pq, d))
                 continue
             if m not in bancos or not pq.get('tema') or not pq.get('conteudo') or not pq.get('nivel'):
                 fora['sem_classificacao'] += 1
@@ -499,6 +501,20 @@ def liga_provas(provas):
             textos[m].setdefault(q['sub'], {})[q['id']] = texto
             if pq.get('res'):
                 res_novas[m].setdefault(q['sub'], {})[q['id']] = pq['res']
+    # Duplicata: fica o id antigo (progresso, resolução e classificação), mas o que o aluno vê passa a ser o da prova
+    # oficial: print do PDF oficial, texto da camada de texto, transcrição, número e link (pedido do coordenador no
+    # comando 21: a antiga 7fa8608d, Fatec 2020 q4, tinha a alternativa E transcrita errada; a versão da prova vale).
+    por_id = {(m, q['id']): q for m in MATERIAS for q in bancos[m]}
+    for p, pq, d in oficiais:
+        q = por_id[(d['m'], d['id'])]
+        qn, texto = questao_da_prova(p, pq)
+        for k in ('escola', 'ano', 'n', 'banca', 'fase', 'enun', 'alts', 'url', 'origem', 'figura', 'print', 'txt'):
+            q[k] = qn[k]
+        q['provaOficial'] = p['id']  # não usa 'prova': o id continua sendo o antigo, que não está no prova.json
+        q.pop('pendente', None)
+        if qn.get('pendente'):
+            q['pendente'] = qn['pendente']
+        textos[d['m']].setdefault(q['sub'], {})[q['id']] = texto
     # resoluções aprovadas da prova para questões antigas sem resolução (mesma questão, id antigo)
     sub_antigo = {q['id']: q['sub'] for m in MATERIAS for q in bancos[m]}
     n_res_antigas = 0
@@ -525,6 +541,7 @@ def liga_provas(provas):
     rel['duplicatas'] = len(dup)
     rel['duplicatas_gabarito_diferente'] = sorted(pid for pid, d in dup.items() if not d['mesmo_gab'])
     rel['resolucoes_para_antigas'] = n_res_antigas
+    rel['duplicatas_com_conteudo_oficial'] = len(oficiais)
     rel['fora'] = fora
     # registro: questão da prova -> questão do banco antigo que ficou no lugar dela (o teste confere)
     gravar(os.path.join(DESTINO, 'duplicatas-provas.json'), {pid: d['m'] + '/' + d['id'] for pid, d in sorted(dup.items())})
