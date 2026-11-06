@@ -144,7 +144,8 @@ def converte_materia(m, amostra_ids=None):
     troca = sub_troca()
     sub_antes = {}
     for q in banco:
-        if q['id'] in troca and troca[q['id']] != q['sub']:
+        # comando 22 do dono: as 40 questões de geometria básica do ENEM ficam nos conteúdos criados para elas
+        if q['id'] in troca and troca[q['id']] != q['sub'] and q['sub'] not in ('M08.6', 'M11.6'):
             sub_antes[q['id']] = q['sub']
             q['sub'], q['modulo'] = troca[q['id']], troca[q['id']].split('.')[0]
     ids = {q['id'] for q in banco}

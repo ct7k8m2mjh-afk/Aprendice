@@ -37,3 +37,14 @@ O site oficial bloqueia o acesso automático (ou exige formulário/compra). Baix
 - **FCMSCSP** (Faculdade de Ciências Médicas da Santa Casa de São Paulo): A faculdade não publica cadernos de Medicina no próprio site (só gabaritos de outros cursos). Vunesp bloqueia acesso automático (Akamai 403 em vunesp.com.br e documento.vunesp.com.br): baixar à mão na página do concurso.
 - **São Camilo** (Centro Universitário São Camilo): São Camilo só publica listas de aprovados; caderno e gabarito oficiais só na Vunesp. Vunesp bloqueia acesso automático (Akamai 403 em vunesp.com.br e documento.vunesp.com.br): baixar à mão na página do concurso. O 2024/2
 - **Sírio-Libanês** (Faculdade Sírio-Libanês): Curso de Medicina recente (primeiras turmas 2025/2026). Caderno e gabarito oficiais só na Vunesp. Vunesp bloqueia acesso automático (Akamai 403 em vunesp.com.br e documento.vunesp.com.br): baixar à mão na página do concu
+
+## Lote 2, rodada 5 (06/11/2026): o que não deu para baixar ou usar automaticamente
+
+- **EMESCAM**: desde 2024 cadernos e gabaritos ficam no sistema da Fundep (fundep.selecao.net.br/informacoes/31, /44 e /69), protegido por desafio Cloudflare — não contornado; baixar à mão (2024/2, 2025/2, 2027/1; 2025/1, 2026/1 e 2026/2 não localizadas). A 2022/1 está no site da EMESCAM (caderno C + gabaritos A–D), mas o gabarito não diz se é o definitivo: confirmar antes de usar.
+- **Unicentro** Vestibular de 2025 (prova out/2024): o gabarito definitivo está no site, o caderno não (não está na biblioteca de mídia). Baixar à mão.
+- **UNIRG**: Medicina 2025/1 (caderno não listado na página) e 2023/1 (o arquivo "Gabarito Definitivo" é o gabarito PRELIMINAR) — baixar à mão o caderno de 2025/1 e o gabarito definitivo de 2023/1. Medicina 2027/1 aguarda o gabarito definitivo.
+- **UVA**: 2020.2 (os PDFs listados na página respondem 404). 2022.1 e 2023.1 foram baixadas, mas os cadernos são só imagem (precisam de OCR e conferência à mão).
+- **Mackenzie**: 2023/1, 2024/1, 2024/2, 2025/1 e 2025/2 só têm o gabarito no servidor; o caderno não foi localizado. Baixar à mão se o Mackenzie fornecer.
+- **Fempar**: 2025 (só o gabarito no servidor da FGV; caderno não localizado), 2022–2024 (nada localizado); 2027 aguarda o gabarito definitivo (previsto para 10/11/2026).
+- **FGV**: o site só mostra a edição vigente (2027.1, com gabarito PRELIMINAR); edições anteriores saíram do ar. Sem acervo para 2020–2026.
+- **Mauá**: a página oficial só vai até o Vestibular 2021, aplicado on-line; o caderno publicado é a prova com a resposta destacada e as alternativas SEM letras (embaralhadas por candidato) — não dá para montar o simulado A–E. Edições 2022+ sem caderno.

@@ -247,3 +247,33 @@ PUCPR (apagar o destaque azul da resposta), PUC Minas, Mackenzie, Fempar, FGV, M
 - **Não corrigido (acabamento, sem perda de conteúdo):** áreas em branco grandes no fim de alguns prints da URCA (o fio
   da coluna e o traço do pé da página impedem o corte automático) e o arco decorativo no canto da Unespar 2024 #32.
   Direitos (Brasil Escola/InfoEscola citados como fonte em UNEMAT 2022/2 #8, #9 e UEG Medicina 2025/2 #34): decisão do dono.
+
+## Rodada 5 do lote 2 (06/11/2026)
+
+Integradas e classificadas (matéria, tema, conteúdo, nível revisados questão a questão; sem resolução), contagem nos
+arquivos `prova.json`:
+
+| Prova | Questões válidas | Observação |
+|---|---|---|
+| Unicentro 2022, 2023, 2024, 2026, 2027 | 94, 95, 91, 91, 95 | Caderno único: Português 1–10, Inglês 11–15, Arte, Biologia, Filosofia, Física, Geografia, História, Matemática, Química e Sociologia (9 cada, aqui 16–96; número do caderno em `nq`). 2026 e 2027: só o caderno "com respostas" tem camada de texto (2027 sem respostas é imagem) — a resposta em vermelho (texto e fórmula) é repintada de preto no print. Anuladas pelo edital fora. 2025: caderno não publicado. |
+| UNIRG Medicina 2022/1, 2022/2, 2023/2, 2024/1, 2024/2, 2025/2, 2026/1, 2026/2 | 53, 52, 51, 54, 53, 54, 54, 52 | Campus Gurupi, caderno tipo 1, A–D; inglês. Três diagramações. 2024/1: as duas trocas de gabarito por "erro administrativo" já estão no definitivo (conferido). 2023/1 fora (só gabarito preliminar). |
+| Unitins 2022/2, 2023/2, 2024/2, 2025/2, 2026/2 | 50, 50, 48, 49, 49 | Vestibular presencial, 50 A–E; faixas largas + duas colunas. As edições "todos os câmpus" (2023/1–2026/1, cadernos 1 e 2) ficaram para depois. |
+| UVA 2024.1, 2025.1, 2026.1 | 55, 50, 54 | A–D; 2024.1 = Conhecimentos Gerais (as específicas por curso fora). 2022.1/2023.1: caderno só em imagem (fora). |
+| PUC-Rio 2024, 2025, 2026, 2027 (grupo 4) | 54, 55, 60, 60 | Inglês (1º dia, 1–10) + objetivas do 2º dia. Gabarito = caderno "com gabarito" (destaque amarelo) lido por programa; "QUESTÃO ANULADA" impressa tira a questão (2024 q25). |
+| PUCPR Medicina 2024/2, 2025/1, 2025/2, 2026/1, 2026/2 | 59, 59, 59, 57, 60 | O gabarito definitivo é o caderno com a resposta em ciano/amarelo: lido do destaque e apagado no print. Questões com carimbo vermelho de anulação ou de troca de gabarito ficam fora (o carimbo cobre o enunciado). |
+| PUC Minas Medicina 2024/1, 2025/1, 2026/1, 2027/1 | 45 cada | A–D, questões 1–45; língua (46–50) fora: o gabarito tem uma só coluna, sem dizer se é inglês ou espanhol. |
+| Mackenzie 2022/2, 2026/1, 2026/2, Medicina 2027/1 | 60 cada | A–E; 2023–2025 sem caderno no site. |
+| Fempar Medicina 2021, 2026 | 80, 80 | Banca FGV, tipo 1, inglês. 2025: só gabarito; 2027: gabarito preliminar. |
+
+- **Não integradas:** FGV (sem acervo; 2027.1 só com gabarito preliminar), Mauá (prova on-line com alternativas sem letra),
+  EMESCAM (Fundep atrás de Cloudflare; 2022/1 sem confirmação de gabarito definitivo). Detalhes em `baixar-a-mao.md`.
+- **Ferramentas novas** (`recorta.py`, opcionais por prova): `so_secao` (cada matéria de um caderno único lida como
+  caderno à parte), `ancora_bloco` (número centrado ao lado do parágrafo ou da figura), `ancora_isolada` (número de
+  parágrafo com texto na mesma linha não é questão), `largas_alternativas` (linha de alternativas lado a lado atravessa a
+  calha), `corte_espacado` (título em letras espaçadas), `ultima_continua`; `neutraliza` apaga marca-texto ciano/amarelo;
+  `trechos_coloridos` também pega fórmula desenhada; no modo `largas`, imagem de fundo de página inteira não conta.
+  `provas.gab_destacado` lê gabarito publicado como caderno com a resposta destacada (PUC-Rio, PUCPR). `baixa.py`
+  continua download interrompido (Range) e repete conexão recusada.
+- Conferência: `chk.py` (alternativas e texto depois da última) em todas; folha de contato dos prints de todas as provas
+  (inteira em parte delas) e prints suspeitos abertos; pixels vermelhos/ciano conferidos nos prints de cadernos com
+  resposta marcada; `converte.py` + testes de provas passando.

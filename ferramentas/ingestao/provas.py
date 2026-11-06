@@ -2074,7 +2074,7 @@ def fempar(ano, bloco, data):
         'corte': [r'(?i)^RASCUNHO', r'(?i)^REDA[ÇC][ÃA]O$', r'(?i)^PROPOSTA DE REDA', r'(?i)^TABELA PERI', r'(?i)^CLASSIFICA[ÇC][ÃA]O PERI',
                   r'(?i)^TECNOLOGIAS$'],
         'suporte': [r'(?i)^Read Text', r'(?i)^Read the (text|fragment)', r'(?i)(responda|responder)\b.*\bquest[õo]es', r'(?i)^textos? para as quest',
-                    r'(?i)^Leia o texto [IVX]+ ', r'^(TEXTO|Texto|TEXT|Text)\s+[IVX]+$'],
+                    r'(?i)^Leia o texto [IVX]+ ', r'^(TEXTO|Texto)\s+[IVX]+$'],
         'suporte_secao': True,   # o texto vale até o próximo texto, corte ou seção ("answer the next five questions")
         'gabarito': gab, 'area': lambda n: 'Inglês' if 16 <= n <= 25 else 'Conhecimentos gerais',
     }
