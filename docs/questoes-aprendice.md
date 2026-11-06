@@ -27,6 +27,13 @@ Decisão do dono em 02/11/2026. Questões copiadas de sites didáticos não pode
 
 Por site: Brasil Escola 587, Mundo Educação 197 (os dois são da mesma empresa), Prepara Enem 3, InfoEscola 1.
 
+## Situação (comando 21, 06/11/2026)
+
+- As 788 questões de site **saíram do site**: o conversor (`app/scripts/converte.py`) não as leva ao banco; continuam só em `app-atual/`.
+- Triagem feita (`app/scripts/triagem_site.py` → `docs/provas/triagem-questoes-site.json` e `.md`): 9 viraram questão de prova (já no site, no mesmo conteúdo), 45 têm prova oficial a baixar, 734 esperam Questão Aprendice. A contagem por conteúdo está no `.md`.
+- Progresso do aluno: migração v3 em `app/src/estado/migracao.ts` (tabela gerada `app/src/dados/questoesRetiradas.ts`). Com questão de prova equivalente, o histórico vai para ela; sem equivalente, fica no id antigo e continua contando no desempenho e na revisão do conteúdo. Quando a Questão Aprendice chegar, a tabela ganha o destino e o mesmo passo leva o histórico.
+- Duplicatas entre o banco antigo e as provas: fica o id antigo, mas o que aparece (print, texto, número, link) é o da prova oficial.
+
 ## Passo a passo para cada questão de site
 
 1. **Triagem.** Se o enunciado cita uma banca (ex.: "(Fuvest-SP)"), procurar a prova original no site oficial da banca, com ano e número.

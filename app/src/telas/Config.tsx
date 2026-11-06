@@ -99,7 +99,7 @@ export function Config() {
       <section className="bloco secao">
         <h2 className="sec-tit">Créditos e fontes</h2>
         <ul className="creditos">
-          <li>Questões: cadernos oficiais das provas e listas públicas de exercícios; cada questão traz o link da fonte e o gabarito publicado.</li>
+          <li>Questões: cadernos oficiais das provas; cada questão traz o link da fonte e o gabarito publicado.</li>
           <li>Ilustrações de flashcards: Servier Medical Art, CC BY 3.0; figuras de Matemática geradas por código.</li>
           <li>Logos de simulados: Wikimedia Commons (Fuvest, CC BY 3.0; São Camilo).</li>
           <li>Ícones de interface: Lucide (ISC). Fontes: Familjen Grotesk, Caveat e DM Sans (SIL Open Font License).</li>
