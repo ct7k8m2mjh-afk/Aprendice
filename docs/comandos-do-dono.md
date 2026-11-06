@@ -2,6 +2,8 @@
 
 Legenda: **feito** · **em andamento** · **em espera (ordem do dono)** · **aguardando o dono**
 
+> **06/11/2026, fim do dia:** todos os agentes pararam pelo limite semanal de uso do plano (volta em 12/11, 1h de Brasília). O trabalho de cada um ficou salvo no repositório; na volta, cada agente continua de onde parou (ícones das 7 matérias, revisão em slides, piloto de resoluções, lote 2 rodada 5, auditoria rodada 2 do comando 20). Nada novo foi publicado.
+
 | # | Comando | Situação | Onde conferir |
 |---|---|---|---|
 | 1 | Pesquisa São Camilo e pendências | feito | `app/conteudo-fonte/provas/saocamilo-2024-2` |
