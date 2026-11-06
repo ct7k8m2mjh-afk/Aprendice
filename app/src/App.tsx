@@ -17,6 +17,7 @@ import { SimuladoExec, SimuladoNovo } from './telas/SimuladoExec';
 import { SimuladoResultado } from './telas/SimuladoResultado';
 import { Revisao } from './telas/Revisao';
 import { RevisaoSlides } from './telas/RevisaoSlides';
+import { EssencialMateria, RevisaoEssencial } from './telas/RevisaoEssencial';
 import { Desempenho } from './telas/Desempenho';
 import { Provas, ProvaDetalhe } from './telas/Provas';
 import { Perfil } from './telas/Perfil';
@@ -30,7 +31,7 @@ function Rotas() {
   const loc = useLocation();
   // sistema do protótipo: o menu continua visível no estudo e no simulado em andamento; some só na "Tela cheia" escolhida pelo aluno
   const telaCheia = useTelaCheia();
-  const estudo = /^\/m\/\w+\/(q|treino|revisao)/.test(loc.pathname) || loc.pathname.includes('/flashcards/sessao') || loc.pathname.startsWith('/simulado/agora');
+  const estudo = /^\/m\/\w+\/(q|treino|revisao|essencial\/)/.test(loc.pathname) || loc.pathname.includes('/flashcards/sessao') || loc.pathname.startsWith('/simulado/agora');
   useEffect(() => { if (!estudo) defineTelaCheia(false); }, [estudo]);
   if (!e.perfil && loc.pathname !== '/boas-vindas') return <Navigate to="/boas-vindas" replace />;
   const foco = estudo && telaCheia;
@@ -50,6 +51,8 @@ function Rotas() {
         <Route path="/m/:m/treino" element={<Treino />} />
         <Route path="/treino-geral" element={<TreinoMisto />} />
         <Route path="/m/:m/revisao/:sub" element={<RevisaoSlides />} />
+        <Route path="/m/:m/essencial" element={<EssencialMateria />} />
+        <Route path="/m/:m/essencial/:tema" element={<RevisaoEssencial />} />
         <Route path="/m/:m/flashcards" element={<Flashcards />} />
         <Route path="/m/:m/flashcards/sessao" element={<Flashcards sessao />} />
         <Route path="/simulados" element={<Simulados />} />

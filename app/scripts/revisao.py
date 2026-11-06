@@ -86,9 +86,23 @@ def baixa_foto(arquivo, alvo):
 
 def confere_tema(m, d, arq):
     erros = []
-    for k in ('id', 'nome', 'slides'):
+    for k in ('id', 'nome'):
         if not d.get(k):
             erros.append(f'falta "{k}"')
+    if not d.get('slides') and not d.get('essencial'):
+        erros.append('falta "slides" ou "essencial"')
+    e = d.get('essencial')
+    if e:
+        if not e.get('telas'):
+            erros.append('essencial sem "telas"')
+        for t in e.get('telas', []):
+            if not str(t.get('sub', '')).startswith(d.get('id', '?') + '.'):
+                erros.append(f'tela do essencial com conteúdo {t.get("sub")} fora do tema')
+            if not t.get('titulo') or not t.get('pontos'):
+                erros.append(f'tela {t.get("sub")} sem título ou tópicos')
+        qr = e.get('questao_resolvida')
+        if qr and (qr.get('gabarito') not in 'ABCDE' or len(qr.get('alternativas', [])) < 2):
+            erros.append('questão resolvida sem gabarito ou alternativas')
     if erros:
         raise ErroRevisao(f'{arq}: ' + '; '.join(erros))
     if not re.fullmatch(r'[A-Z]\d{2}', d['id']):
@@ -125,7 +139,8 @@ def confere_tema(m, d, arq):
 def prepara_fotos(m, d, saida):
     """Copia (ou baixa uma vez) cada foto do tema e põe no slide o caminho servido pelo site."""
     n = 0
-    for lista in d['slides'].values():
+    listas = list(d['slides'].values()) + [(d.get('essencial') or {}).get('telas', [])]
+    for lista in listas:
         for s in lista:
             foto = (s.get('visual') or {}).get('foto')
             if not foto:
@@ -184,8 +199,47 @@ def alimenta_teoria(m, temas):
     return n
 
 
+# Correções pedidas pelo dono no conteúdo convertido de app-atual (que fica intacto, princípio 8): aplicadas no que o
+# site lê (public/conteudo/<m>/materia.json, só na teoria). Questão de prova NUNCA muda (princípio 1): a Unesp 2024 dá
+# R = 62,3 no enunciado e a resolução dela usa o valor dado.
+CORRECOES_TEORIA = {
+    # comando 34 (docs/revisao/qui/LEIA.md, 06/11/2026): R = 62,4 mmHg·L/(mol·K) (8,314 J/(mol·K) × 760 / 101 325)
+    'qui': [('R = 62,3 mmHg', 'R = 62,4 mmHg')],
+}
+
+
+def corrige_teoria(m):
+    p = os.path.join(DESTINO, m, 'materia.json')
+    regras = CORRECOES_TEORIA.get(m)
+    if not regras or not os.path.exists(p):
+        return 0
+    mat = ler(p)
+    n = 0
+
+    def troca(x):
+        nonlocal n
+        if isinstance(x, str):
+            for a, b in regras:
+                if a in x:
+                    n += x.count(a)
+                    x = x.replace(a, b)
+            return x
+        if isinstance(x, list):
+            return [troca(y) for y in x]
+        if isinstance(x, dict):
+            return {k: troca(v) for k, v in x.items()}
+        return x
+    mat['modulos'] = troca(mat.get('modulos', []))
+    gravar(p, mat)
+    return n
+
+
 def converte(materias=None):
     rel = {}
+    for m in CORRECOES_TEORIA:
+        n = corrige_teoria(m)
+        if n:
+            rel.setdefault('correcoes', {})[m] = n
     if not os.path.isdir(FONTE):
         return rel
     for m in sorted(os.listdir(FONTE)):
@@ -204,9 +258,9 @@ def converte(materias=None):
         fotos = 0
         for a in arqs:
             d = ler(os.path.join(pasta, a))
-            # comando 33: tema só com a revisão essencial (slides vazio) fica para a tela do essencial, fora dos slides
-            if not d.get('slides') and d.get('essencial'):
-                continue
+            # comando 33: tema só com a revisão essencial (slides vazio) também entra; o site mostra o essencial e, quando
+            # houver slides, guarda-os como "Aprofundar este conteúdo"
+            d.setdefault('slides', {})
             confere_tema(m, d, f'docs/revisao/{m}/{a}')
             fotos += prepara_fotos(m, d, saida)
             d['obra'] = OBRAS.get(m, '')
@@ -216,6 +270,8 @@ def converte(materias=None):
                 'nome': d['nome'],
                 'subs': {sub: len(l) for sub, l in d['slides'].items()},
             }
+            if d.get('essencial'):
+                indice['temas'][d['id']]['essencial'] = len(d['essencial'].get('telas', []))
         # conteúdos que têm resolução comentada publicada (res/<conteúdo>.json): o site só busca a resolução que existe
         # (nada de 404 no console; sem resolução, diz "em preparação")
         pres = os.path.join(DESTINO, m, 'res')

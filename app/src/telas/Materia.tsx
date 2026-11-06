@@ -13,6 +13,7 @@ import { ProgressoMateria } from '../ui/ProgressoMateria';
 import { useRoloHorizontal } from '../ui/rolo';
 import type { MateriaId } from '../dados/tipos';
 import type { EstadoMateria } from '../estado/tipos';
+import { useIndiceRevisao } from '../dados/revisao';
 
 export function ListaMaterias() {
   useTitulo('Matérias');
@@ -155,6 +156,9 @@ export function Materia() {
   const mc = useMateria(info?.ativa ? m : null);
   const s = useMateriaEstado(m);
   const e = useEstado();
+  // revisão essencial (comando 33): atalho quando algum tema da matéria já tem
+  const indRev = useIndiceRevisao(info?.ativa ? m : null);
+  const temEssencial = !!indRev && Object.values(indRev.temas).some((t) => t.essencial);
   useTitulo(info?.nome || 'Matéria');
   if (!info) return <div className="conteudo vazio"><h3>Matéria não encontrada</h3><Link to="/materias" className="btn sec">Ver matérias</Link></div>;
   if (!info.ativa) return <EmPreparacao m={m} />;
@@ -228,6 +232,11 @@ export function Materia() {
           <Link to={`/m/${m}/flashcards`} className="atalho">
             <Icone nome="cartas" /><span><b>Flashcards</b><small>{r.flashVencidos ? `${r.flashVencidos} para revisar hoje` : `${r.flashNovos} cartões novos`}</small></span><Icone nome="direita" className="at-seta" />
           </Link>
+          )}
+          {temEssencial && (
+            <Link to={`/m/${m}/essencial`} className="atalho">
+              <Icone nome="livro" /><span><b>Revisão essencial</b><small>O que mais cai, tema a tema</small></span><Icone nome="direita" className="at-seta" />
+            </Link>
           )}
           <Link to="/revisao" className="atalho">
             <Icone nome="repetir" /><span><b>Revisão dos erros</b><small>{r.vencidas ? plural(r.vencidas, 'questão vencida', 'questões vencidas') : 'Nada vencido hoje'}</small></span><Icone nome="direita" className="at-seta" />

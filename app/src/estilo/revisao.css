@@ -289,3 +289,78 @@ span.fm:not(.fm-bloco) .fm-linha + .fm-linha { margin-left: 1em; }
 /* conta longa do exemplo no celular: o pedaço que o motor não quebra (.ra-u) pode quebrar entre termos, para nada
    sair do caderno (achado na conferência: F01.2, F04.1, F08.3, F08.4 em 390 px) */
 @container (max-width: 440px) { .rv-conta .ra-u { white-space: normal; } }
+
+/* ===================== REVISÃO ESSENCIAL (comandos 33 e 34) ===================== */
+.es-tela .rv-slide { min-height: 0; }
+.es-tela .rv-tit { margin-bottom: 14px; }
+/* termômetro: o que mais cai, com 3 traços na cor da matéria */
+.es-termo { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
+.es-termo li { padding: 12px 0; border-top: 1px solid var(--linha); }
+.es-termo li:first-child { border-top: 0; padding-top: 0; }
+.es-termo-cab { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.es-termo-cab b { font: 600 var(--fs-tema)/1.3 var(--fonte); }
+.es-termo p { margin: 4px 0 0; font: 400 var(--fs-texto)/1.5 var(--fonte); color: var(--tinta); }
+.es-provas { display: block; margin-top: 4px; font: 400 var(--fs-info)/1.4 var(--fonte); color: var(--lapis); }
+.es-peso { display: inline-flex; align-items: center; gap: 3px; flex: none; }
+.es-peso i { width: 16px; height: 6px; border-radius: 3px; background: color-mix(in srgb, var(--tinta) 12%, transparent); }
+.es-peso.p1 i:nth-child(1), .es-peso.p2 i:nth-child(-n+2), .es-peso.p3 i { background: var(--p); }
+.es-peso small { margin-left: 6px; font: 600 var(--fs-info)/1 var(--fonte); color: var(--t); }
+/* tela de conteúdo */
+.es-pontos { margin: 0 0 4px; padding-left: 0; list-style: none; display: grid; gap: 8px; }
+.es-pontos li { position: relative; padding-left: 18px; font: 400 var(--fs-expl)/1.55 var(--fonte); }
+.es-pontos li::before { content: ''; position: absolute; left: 0; top: .62em; width: 8px; height: 8px; border-radius: 50%; background: var(--p); }
+.es-pegadinha { margin: 0; padding: 12px 14px; border-radius: var(--r-p); background: var(--aviso-bg); font: 400 var(--fs-texto)/1.5 var(--fonte); color: var(--tinta); }
+.es-pegadinha b { display: block; margin-bottom: 2px; font-weight: 700; color: var(--aviso); font-size: var(--fs-info); text-transform: uppercase; letter-spacing: .04em; }
+.es-aprofundar { border-top: 1px solid var(--linha); padding-top: 10px; }
+.es-aprofundar summary { cursor: pointer; font: 600 var(--fs-botao)/1.3 var(--fonte); color: var(--t); width: max-content; max-width: 100%; }
+.es-aprofundar p { margin: 8px 0; color: var(--lapis); font: 400 var(--fs-info)/1.4 var(--fonte); }
+@container (min-width: 860px) { .rv-corpo.es-com-vis { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 28px; } }
+/* questão resolvida */
+.es-qa { margin: 0 0 8px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font: 400 var(--fs-info)/1.4 var(--fonte); color: var(--lapis); }
+.es-alts { display: grid; gap: 8px; margin: 14px 0; }
+.es-alt { display: grid; grid-template-columns: 34px minmax(0, 1fr); align-items: center; gap: 10px; text-align: left; padding: 10px 12px; border: 1.5px solid var(--linha); border-radius: 12px; background: var(--folha);
+  font: 400 var(--fs-texto)/1.45 var(--fonte); color: var(--tinta); }
+.es-alt .alt-l { width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; font-weight: 700; background: color-mix(in srgb, var(--tinta) 6%, transparent); }
+.es-alt.sel { border-color: var(--t); background: var(--s); }
+.es-alt.certa { border-color: var(--certo); background: var(--certo-bg); }
+.es-alt.errada { border-color: var(--errado); background: var(--errado-bg); }
+.es-alt[disabled] { cursor: default; }
+@media (hover: hover) { .es-alt:not([disabled]):not(.sel):hover { border-color: color-mix(in srgb, var(--p) 45%, var(--linha)); } }
+.es-res { display: flex; flex-direction: column; gap: 14px; }
+/* conexão */
+.es-conexao { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.es-conexao li { display: grid; gap: 6px; }
+.es-conexao p { margin: 0; font: 400 var(--fs-expl)/1.55 var(--fonte); }
+/* tela do tema: chamada da revisão essencial e os slides guardados */
+.es-chamada .btn.tp-comecar { margin: 10px 0 12px; }
+.es-aprofundar-tema > summary { cursor: pointer; padding: 4px 0 10px; }
+.tp-rev-embutida { padding-bottom: 8px; }
+
+/* ---------- MAPA MENTAL (componente do sistema): celular em coluna; 640 px ou mais, radial ---------- */
+.mm { container-type: inline-size; position: relative; }
+.mm-ramos { display: none; }
+.mm-centro { display: flex; justify-content: center; margin-bottom: 14px; }
+.mm-centro span { display: inline-block; padding: 12px 18px; border-radius: 999px; background: var(--c); color: var(--ink); font: 700 var(--fs-tema)/1.25 var(--fonte); text-align: center; }
+.mm-nos { list-style: none; margin: 0; padding: 0 0 0 18px; position: relative; display: grid; gap: 10px; }
+.mm-nos::before { content: ''; position: absolute; left: 4px; top: -14px; bottom: 20px; width: 2px; border-radius: 2px; background: var(--p); }
+.mm-no { position: relative; padding: 10px 14px; border-radius: 14px; border: 1.5px solid color-mix(in srgb, var(--p) 55%, var(--linha)); background: var(--sv2); display: grid; gap: 3px; }
+.mm-no::before { content: ''; position: absolute; left: -15px; top: 20px; width: 14px; height: 2px; background: var(--p); }
+.mm-no b { font: 600 var(--fs-tema)/1.3 var(--fonte); color: var(--tinta); }
+.mm-chave { font: 400 var(--fs-info)/1.4 var(--fonte); color: var(--tinta); }
+.mm-liga-txt { font: 400 12.5px/1.35 var(--fonte); color: var(--lapis); }
+
+@container (min-width: 640px) {
+  .mm { height: clamp(460px, 62cqw, 560px); }
+  .mm-ramos { display: block; position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+  .mm-linha { stroke: var(--p); stroke-width: 2.5; vector-effect: non-scaling-stroke; stroke-dasharray: 200; stroke-dashoffset: 0; animation: mm-desenha .7s var(--curva) both; }
+  .mm-liga { fill: none; stroke: color-mix(in srgb, var(--p) 60%, var(--lapis)); stroke-width: 1.5; vector-effect: non-scaling-stroke; stroke-dasharray: 5 5; animation: mm-surge .6s var(--curva) both; }
+  .mm-centro { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); margin: 0; z-index: 1; max-width: 220px; }
+  .mm-nos { position: absolute; inset: 0; padding: 0; display: block; }
+  .mm-nos::before { display: none; }
+  .mm-nos .mm-no { position: absolute; left: var(--x) !important; top: var(--y) !important; width: clamp(150px, 26cqw, 210px); transform: translate(-50%, -50%); background: var(--folha); box-shadow: var(--sombra-folha); z-index: 1; }
+  .mm-no::before { display: none; }
+  .mm-liga-txt { display: none; }
+}
+@keyframes mm-desenha { from { stroke-dashoffset: 200; } to { stroke-dashoffset: 0; } }
+@keyframes mm-surge { from { opacity: 0; } to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .mm-linha, .mm-liga { animation: none; } }

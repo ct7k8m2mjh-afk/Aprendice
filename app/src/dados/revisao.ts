@@ -35,7 +35,18 @@ export interface Slide {
   fonte?: string;
 }
 
+/** Revisão essencial (comando 33, docs/revisao/FORMATO-ESSENCIAL.md): termômetro → mapa → telas → questão → conexão. */
+export interface TelaEssencial { sub: string; titulo: string; pontos: string[]; formula?: string; pegadinha?: string; visual?: VisualSlide }
+export interface Essencial {
+  termometro?: { sub: string; peso: 'alta' | 'media' | 'baixa'; provas?: string; como_cai?: string }[];
+  mapa?: { centro: string; ramos: { sub: string; titulo: string; chave?: string; liga?: string[] }[] };
+  telas: TelaEssencial[];
+  questao_resolvida?: { enunciado: string; alternativas: string[]; gabarito: string; passos?: PassoSlide[]; por_que_erram?: string };
+  conexao?: { materia: string; frase: string }[];
+}
+
 export interface TemaRevisao {
+  essencial?: Essencial;
   id: string;
   nome: string;
   resumo?: string;
@@ -49,7 +60,7 @@ export interface TemaRevisao {
   obra?: string;
 }
 
-export interface IndiceRevisao { materia: MateriaId; obra?: string; temas: Record<string, { nome: string; subs: Record<string, number> }>;
+export interface IndiceRevisao { materia: MateriaId; obra?: string; temas: Record<string, { nome: string; subs: Record<string, number>; essencial?: number }>;
   /** conteúdos com resolução comentada publicada (res/<conteúdo>.json) */ res?: string[] }
 
 const VAZIO: IndiceRevisao = { materia: 'fis', temas: {} };

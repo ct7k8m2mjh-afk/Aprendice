@@ -95,7 +95,10 @@ export function Tema() {
   // revisão em slides do tema (docs/revisao/<m>/<TEMA>.json): conteúdos com slides
   const revTema = indRev?.temas[mod.id];
   const subsRev = revTema ? mod.subs.filter((x) => revTema.subs[x.id]) : [];
-  const aba = abaPedida === 'teoria' && temTeoria ? 'teoria' : abaPedida === 'revisao' && subsRev.length ? 'revisao' : 'conteudos';
+  // revisão essencial (comando 33): quando o tema tem, ela é a revisão; os slides ficam como "Aprofundar"
+  const nEss = revTema?.essencial || 0;
+  const temRev = subsRev.length > 0 || nEss > 0;
+  const aba = abaPedida === 'teoria' && temTeoria ? 'teoria' : abaPedida === 'revisao' && temRev ? 'revisao' : 'conteudos';
   // Começar: o primeiro conteúdo com questão por fazer, na ordem do mais fácil ao mais difícil
   let alvo: string | undefined;
   for (const sub of subs) { const q = mc.porSub.get(sub.id)!.find((x) => !s.q[x.id]?.tent.length); if (q) { alvo = q.id; break; } }
@@ -134,13 +137,13 @@ export function Tema() {
         <div className="tp-acoes">
           {destino && <Link to={`/m/${m}/q/${destino}?ctx=escada`} className="btn tp-comecar"><Icone nome="raio" />{p.feitas === 0 ? 'Começar' : alvo ? 'Continuar' : 'Refazer'}</Link>}
           {todas.length > 0 && <p className="tp-comp num">{plural(todas.length, 'questão', 'questões')} de {plural(subs.length, 'conteúdo', 'conteúdos')} · do mais fácil ao mais difícil</p>}
-          {subsRev.length > 0 && (
+          {temRev && (
             <button className="btn sec tp-teo tp-rev" aria-pressed={aba === 'revisao'} onClick={() => setQs(aba === 'revisao' ? {} : { aba: 'revisao' }, { replace: true })}>
-              <Icone nome="play" />{aba === 'revisao' ? 'Ver os conteúdos' : 'Revisão em slides'}
+              <Icone nome="play" />{aba === 'revisao' ? 'Ver os conteúdos' : nEss ? 'Revisão' : 'Revisão em slides'}
             </button>
           )}
           {temTeoria && (
-            <button className={'btn sec tp-teo' + (subsRev.length ? ' tp-teo2' : '')} aria-pressed={aba === 'teoria'} onClick={() => setQs(aba === 'teoria' ? {} : { aba: 'teoria' }, { replace: true })}>
+            <button className={'btn sec tp-teo' + (temRev ? ' tp-teo2' : '')} aria-pressed={aba === 'teoria'} onClick={() => setQs(aba === 'teoria' ? {} : { aba: 'teoria' }, { replace: true })}>
               <Icone nome="livro" />{aba === 'teoria' ? 'Ver os conteúdos' : `Teoria em cartões · ${mod.cartoes.length}`}
             </button>
           )}
@@ -148,7 +151,20 @@ export function Tema() {
       </section>
 
       {aba === 'revisao' ? (
-        <RevisaoDoTema m={m} mod={mod} subs={subsRev.map((x) => ({ ...x, n: revTema!.subs[x.id] }))} s={s} questoes={(id) => mc.porSub.get(id)?.length || 0} />
+        <>
+          {nEss > 0 && (
+            <section className="tp-bloco es-chamada" aria-labelledby="tp-ess-tit">
+              <h2 id="tp-ess-tit" className="tp-h">Revisão essencial</h2>
+              <p className="miolo tp-rev-p">Só o que todo aluno precisa saber e o que mais cai: o termômetro, o mapa mental do tema, {plural(nEss, 'tela', 'telas')} de conteúdo, uma questão resolvida e a conexão com outras matérias.</p>
+              <Link className="btn tp-comecar" to={`/m/${m}/essencial/${mod.id}`}><Icone nome="play" />Começar a revisão</Link>
+            </section>
+          )}
+          {subsRev.length > 0 && (nEss > 0
+            ? <details className="tp-bloco es-aprofundar-tema"><summary className="tp-h">Aprofundar: revisão completa em slides</summary>
+                <RevisaoDoTema m={m} mod={mod} subs={subsRev.map((x) => ({ ...x, n: revTema!.subs[x.id] }))} s={s} questoes={(id) => mc.porSub.get(id)?.length || 0} embutida />
+              </details>
+            : <RevisaoDoTema m={m} mod={mod} subs={subsRev.map((x) => ({ ...x, n: revTema!.subs[x.id] }))} s={s} questoes={(id) => mc.porSub.get(id)?.length || 0} />)}
+        </>
       ) : aba === 'teoria' ? (
         <section className="tp-bloco" aria-labelledby="tp-teo-tit">
           <h2 id="tp-teo-tit" className="tp-h">Teoria em cartões <small className="num">{plural(mod.cartoes.length, 'cartão', 'cartões')}</small></h2>
@@ -194,11 +210,11 @@ export function Tema() {
 }
 
 /** Aba "Revisão em slides" do tema: os conteúdos com revisão, cada um com o ciclo de 5 tempos e quando volta. */
-function RevisaoDoTema({ m, mod, subs, s, questoes }: { m: MateriaId; mod: Modulo; subs: { id: string; nome: string; n: number }[]; s: EstadoMateria; questoes: (sub: string) => number }) {
+function RevisaoDoTema({ m, mod, subs, s, questoes, embutida }: { m: MateriaId; mod: Modulo; subs: { id: string; nome: string; n: number }[]; s: EstadoMateria; questoes: (sub: string) => number; embutida?: boolean }) {
   const agora = Date.now();
   return (
-    <section className="tp-bloco" aria-labelledby="tp-rev-tit">
-      <h2 id="tp-rev-tit" className="tp-h">Revisão em slides <small className="num">{plural(subs.length, 'conteúdo', 'conteúdos')}</small></h2>
+    <section className={embutida ? 'tp-rev-embutida' : 'tp-bloco'} aria-labelledby="tp-rev-tit">
+      {!embutida && <h2 id="tp-rev-tit" className="tp-h">Revisão em slides <small className="num">{plural(subs.length, 'conteúdo', 'conteúdos')}</small></h2>}
       <p className="miolo tp-rev-p">Cada conteúdo em 5 tempos: pergunta primeiro, ver acontecer, lembrar sem olhar, aplicar numa questão nova e voltar no dia certo.</p>
       <ul className="tp-enc tp-rev-l">
         {subs.map((sub) => {
