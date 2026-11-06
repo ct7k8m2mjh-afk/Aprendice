@@ -23,4 +23,8 @@ Visual (ver `exemplo-faixa-de-temas.png`, só o visual, não a ordem): o objeto 
 | "Continue de onde parei" no Início | `telas/Inicio.tsx` (`q.sub`, 150 px) | ícone do TEMA (`q.modulo`) ou a ilustração da matéria |
 
 O ícone da MATÉRIA (Início, menu, lista de matérias: `IluMateria`) não muda neste comando.
-Matérias sem ícones novos ainda: mantêm os atuais até o dono mandar os delas.
+## Salvar os novos e excluir os antigos (dono, 06/11/2026)
+- Os PNG de `docs/icones/<matéria>/` são a fonte oficial: o conversor (`app/scripts/converte.py`) passa a gerar os ícones de tema dessa matéria SÓ a partir deles (`<id>.webp`).
+- Excluir do site os ícones antigos dessa matéria: os de tema e todos os de subtema que vinham do protótipo (`app-atual/.../ic.json`) ou das pranchas (`app/conteudo-fonte/materias/ic/`), e o código que só servia a eles. Autorização expressa do dono, sem perguntar.
+- NÃO apagar nada em `app-atual/`: o protótipo continua intacto.
+- Matérias sem ícones novos ainda: mantêm os atuais até o dono mandar os delas; quando mandar, a mesma regra vale.
