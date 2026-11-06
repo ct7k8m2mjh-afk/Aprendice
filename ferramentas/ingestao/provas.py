@@ -1100,7 +1100,7 @@ def ueg(ano, sem, duracao=4.5):
         'secoes_rx': [(r'(?i)^QUEST[ÕO]ES DE \d+ A \d+ \(OP[ÇC][ÃA]O ESPANHOL\)', 'Espanhol'),
                       (r'(?i)^QUEST[ÕO]ES DE \d+ A \d+ \(OP[ÇC][ÃA]O INGL[ÊE]S\)', 'Inglês')],
         'pular_secoes': ('Espanhol',), 'pular_antes_sequencia': True,
-        'pausa': [r'(?i)^Espaço para rascunho'], 'corte': [r'^NÚMERO$', r'(?i)^TABELA PERI', r'(?i)^CLASSIFICA[ÇC][ÃA]O PERI', r'(?i)^PROVA DE REDA', r'(?i)^PROPOSTA DE REDA', r'(?i)^REDAÇÃO$', r'(?i)^Rascunho'],
+        'pausa': [r'(?i)^Espaço para rascunho'], 'corte': [r'^NÚMERO$', r'(?i)^TABELA PERI', r'^Valores de Constantes', r'^Tabela Trigonom', r'(?i)^CLASSIFICA[ÇC][ÃA]O PERI', r'(?i)^PROVA DE REDA', r'(?i)^PROPOSTA DE REDA', r'(?i)^REDAÇÃO$', r'(?i)^Rascunho'],
         'suporte': [r'(?i)(para responder|e responda|para contestar|para a[s]? quest)'], 'suporte_apos_alt': r'^e\)',
         'suporte_apos_secao': True, 'faixa_unica': True, 'suporte_nao_colado': 25,
         'gabarito': gab, 'area': lambda n: 'Conhecimentos gerais',
