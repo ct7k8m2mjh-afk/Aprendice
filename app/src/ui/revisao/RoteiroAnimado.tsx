@@ -21,7 +21,7 @@ export function RoteiroAnimado({ m, v, auto = true }: { m: MateriaId; v: VisualS
   const n = passos.length;
   const menos = typeof matchMedia !== 'undefined' && matchMedia('(prefers-reduced-motion: reduce)').matches;
   // atual: -1 antes de começar; 0..n-1 passo em cena; n = fim (tudo à vista)
-  const [atual, setAtual] = useState(menos || !auto ? n : 0);
+  const [atual, setAtual] = useState(menos ? n : auto ? 0 : -1);
   const [tocando, setTocando] = useState(!menos && auto && n > 0);
   const t = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -38,10 +38,10 @@ export function RoteiroAnimado({ m, v, auto = true }: { m: MateriaId; v: VisualS
   const foto = v.foto;
   const recomeca = () => { setAtual(0); setTocando(true); };
   const alterna = () => {
-    if (atual >= n) return recomeca();
+    if (atual >= n || atual < 0) return recomeca();
     setTocando((x) => !x);
   };
-  const rot = atual >= n ? `${n} de ${n}` : `${atual + 1} de ${n}`;
+  const rot = atual < 0 ? `${n} passos` : atual >= n ? `${n} de ${n}` : `${atual + 1} de ${n}`;
   const rotTipo = foto ? 'Foto' : v.tipo === 'grafico' ? 'Gráfico' : v.tipo === 'esquema' ? 'Esquema' : 'Animação';
 
   return (
@@ -71,7 +71,7 @@ export function RoteiroAnimado({ m, v, auto = true }: { m: MateriaId; v: VisualS
           {v.descricao && !foto && <p className="rv-cena">{limpaRoteiro(v.descricao)}</p>}
           <ol className="rv-beats">
             {passos.map((p, k) => {
-              const est = atual >= n ? 'feito' : k < atual ? 'feito' : k === atual ? 'atual' : 'futuro';
+              const est = atual >= n ? 'feito' : atual < 0 ? 'espera' : k < atual ? 'feito' : k === atual ? 'atual' : 'futuro';
               return (
                 <li key={k + ':' + (k === atual ? 'a' : 'x')} className={'rv-beat ' + est} aria-hidden={est === 'futuro' || undefined}>
                   <span className="rv-beat-n num" aria-hidden>{k + 1}</span>

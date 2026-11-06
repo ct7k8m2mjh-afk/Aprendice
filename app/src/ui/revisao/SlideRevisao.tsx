@@ -76,7 +76,7 @@ export function SlideRevisao({ m, tema, sub, k, s, pos, total, aviso, lembrou, a
             : <PassosFormula passos={s.passos} />)}
           {s.fonte && <p className="rv-fonte">Fonte: {fonteLegivel(s.fonte, tema.obra)}</p>}
         </div>
-        {temVisual && <div className="rv-vis-col"><RoteiroAnimado key={sub + k} m={m} v={s.visual!} /></div>}
+        {temVisual && <div className="rv-vis-col"><RoteiroAnimado key={sub + k} m={m} v={s.visual!} auto={!res} /></div>}
       </div>
     </article>
   );

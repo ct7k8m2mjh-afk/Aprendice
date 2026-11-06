@@ -1488,7 +1488,7 @@ def urca(ano, sem, um_gab=False, duracao=8):
         'cadernos': [{'arquivo': 'd1-caderno', 'paginas': (1, 999), 'questoes': (1, 60)},
                      {'arquivo': 'd2-caderno', 'paginas': (1, 999), 'questoes': (61, 120), 'deslocamento': 60}],
         # duas colunas, com figuras e textos de largura total em algumas páginas (como a UFSM)
-        'colunas': 'faixas', 'faixas_modo': 'largas', 'divisa': 296, 'margem': 30, 'topo': 86, 'base': 46,
+        'colunas': 'faixas', 'faixas_modo': 'largas', 'divisa': 290, 'margem': 30, 'topo': 86, 'base': 46,
         'ancora': r'^(\d{2})\.\s*\(URCA', 'ancora_dx': 20, 'sequencial': True,
         'secoes_rx': secoes, 'pular_secoes': ('Espanhol',), 'pular_antes_sequencia': True,
         'corte': [r'(?i)^RASCUNHO', r'(?i)^TABELA$', r'(?i)PROPOSTA DE REDA', r'(?i)^REDA[ÇC][ÃA]O$', r'(?i)^Texto motivador',
@@ -1496,9 +1496,11 @@ def urca(ano, sem, um_gab=False, duracao=8):
         # "Texto 2 - Influence on Others - Part II Questões de 49 a 52"
         # "Leia o texto a seguir (crônica ...) e responda às questões." sem números: vale até o próximo texto ou seção
         'suporte': [r'(?i)^Texto?\s+([IVX]+|\d+)\s*([-–:.]|$)', r'(?i)^Texto para as quest', r'(?i)(responda|responder)\s+(às|as)\s+quest[õo]es',
-                    r'(?i)^Leia (o|os|a|as) (texto|trecho|poema|fragmento|crônica|tirinha|charge)'],
+                    r'(?i)^Leia (o|os|a|as) (texto|trecho|poema|fragmento|crônica|tirinha|charge)(?!.*(marque|assinale|indique|analise))'],
         'suporte_secao': True,
-        'gabarito': gab, 'area': lambda n: 'Conhecimentos gerais',
+        # área pela posição (blocos fixos de 15 questões; os títulos de seção mudam de ano para ano)
+        'gabarito': gab, 'area_do_gabarito': True,
+        'area': lambda n: ('Física', 'Matemática', 'Química', 'Biologia', 'História', 'Geografia', 'Língua Portuguesa', 'Inglês')[(n - 1) // 15],
     }
 
 
@@ -1534,3 +1536,5 @@ for _k in ('ueg-medicina-2024-2', 'ueg-medicina-2025-2', 'ueg-medicina-2026-1'):
     # o caderno não tem títulos de matéria depois da língua: a área vem da posição (1–5 inglês)
     PROVAS[_k]['area_do_gabarito'] = True
     PROVAS[_k]['area'] = lambda n: 'Inglês' if n <= 5 else 'Conhecimentos gerais'
+# 54 (2º dia; aqui 114): "Considerando o texto na íntegra (Partes I, II e III)" — leva os Textos 1, 2 e 3 (das questões 46–53)
+PROVAS['urca-2025-3']['apoio_de'] = {114: [106, 110, 112]}

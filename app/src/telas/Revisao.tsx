@@ -7,6 +7,7 @@ import { filaDe, emDias, DIA, iniDia, PASSOS_Q } from '../logica/revisao';
 import { Carregando, plural, useTitulo } from '../ui/comum';
 import { Icone } from '../ui/Icone';
 import { estadoMateriaVazio } from '../estado/tipos';
+import { revisoesVencidas } from '../logica/cicloRevisao';
 import { numeroQuestao } from '../dados/tipos';
 
 export function Revisao() {
@@ -25,11 +26,16 @@ export function Revisao() {
     const prox = mc.banco.filter((q) => { const f = filaDe(s.q[q.id]); return f && f.vence > agora && f.vence < amanha7; })
       .concat((mc.retiradas || []).filter((q) => { const f = filaRetirada(mc, s, q); return f && f.vence > agora && f.vence < amanha7; }));
     const marcadas = mc.banco.filter((q) => s.q[q.id]?.rev);
-    return { mc, s, venc, prox, marcadas, r: resumoMateria(mc, s, agora) };
+    // revisão em slides (ciclo de 5 tempos): conteúdos que voltam hoje e os que ficaram no meio
+    const nomeSub = (sub: string) => mc.conteudo.modulos.flatMap((x) => x.subs).find((x) => x.id === sub)?.nome || sub;
+    const conteudos = [...new Set([...revisoesVencidas(s, agora), ...Object.entries(s.revs || {}).filter(([, r]) => r.and).map(([sub]) => sub)])]
+      .map((sub) => ({ sub, nome: nomeSub(sub), andamento: !!s.revs?.[sub]?.and }));
+    return { mc, s, venc, prox, marcadas, conteudos, r: resumoMateria(mc, s, agora) };
   });
   const totVenc = porMat.reduce((a, x) => a + x.venc.length, 0);
   const totFlash = porMat.reduce((a, x) => a + x.r.flashVencidos, 0);
   const totMarc = porMat.reduce((a, x) => a + x.marcadas.length, 0);
+  const totCont = porMat.reduce((a, x) => a + x.conteudos.length, 0);
 
   return (
     <div className="conteudo">
@@ -38,6 +44,7 @@ export function Revisao() {
         <button aria-pressed={aba === 'questoes'} onClick={() => setQs({}, { replace: true })}>Questões <small>{totVenc}</small></button>
         <button aria-pressed={aba === 'flash'} onClick={() => setQs({ aba: 'flash' }, { replace: true })}>Flashcards <small>{totFlash}</small></button>
         <button aria-pressed={aba === 'marcadas'} onClick={() => setQs({ aba: 'marcadas' }, { replace: true })}>Marcadas <small>{totMarc}</small></button>
+        <button aria-pressed={aba === 'conteudos'} onClick={() => setQs({ aba: 'conteudos' }, { replace: true })}>Conteúdos <small>{totCont}</small></button>
       </div>
 
       {aba === 'questoes' && (totVenc === 0 && !porMat.some((x) => x.prox.length) ? (
@@ -79,6 +86,20 @@ export function Revisao() {
           })}
         </div>
       )}
+
+      {aba === 'conteudos' && (totCont === 0 ? (
+        <div className="vazio"><h3>Nenhum conteúdo para rever hoje</h3><p>A revisão em slides de cada conteúdo (na tela do tema) marca o dia em que ele volta. Quando chegar o dia, ele aparece aqui.</p></div>
+      ) : (
+        <div className="bloco">
+          {porMat.flatMap(({ mc, conteudos }) => conteudos.map((c) => (
+            <Link key={mc.id + c.sub} to={`/m/${mc.id}/revisao/${c.sub}`} className={`linha-lista m-${mc.id}`}>
+              <span className={'etq ' + (c.andamento ? 'cor' : 'aviso')}>{c.andamento ? 'Continuar' : 'Para hoje'}</span>
+              <span><span className="tit" style={{ fontSize: 15 }}>{c.nome.charAt(0).toUpperCase() + c.nome.slice(1)}</span><br /><span className="det">{nomeMateria(mc.id)} · revisão em slides</span></span>
+              <Icone nome="direita" />
+            </Link>
+          )))}
+        </div>
+      ))}
 
       {aba === 'marcadas' && (totMarc === 0 ? (
         <div className="vazio"><h3>Nenhuma questão marcada</h3><p>Use o marcador na tela da questão para guardar as que você quer rever.</p></div>

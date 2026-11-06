@@ -187,3 +187,40 @@ Integradas e classificadas (matéria, tema, conteúdo, nível; sem resolução),
   2021/2022 sem objetiva; Vestibular 2025 só com gabarito provisório (fora).
 - Conferência: `chk.py`/`vaza.py` (alternativas e texto depois da última alternativa) em todas; amostra visual de ~10% dos
   prints; classificação revisada questão a questão sobre o rascunho do classificador (correções em ~45% das questões).
+
+Continuação da rodada 4 (mesmo dia):
+
+| Prova | Questões válidas | Observação |
+|---|---|---|
+| URCA 2023.1 | 116 | Prova I (Fís, Mat, Quí, Bio: 1–60) + Prova II (His, Geo, Por, Inglês: aqui 61–120); nulas 29, 31, 55, 97. |
+| URCA 2023.2 | 111 | Nulas 3, 9, 12, 21, 42, 46, 50, 57, 92. |
+| URCA 2024.1 | 116 | Nulas 16, 22, 23, 30. |
+| URCA 2024.2 | 109 | Gabarito do 1º dia "corrigido"; nulas 1, 27, 33, 39, 53, 84, 99, 100, 106, 113, 118. |
+| URCA 2025.1 | 118 | Gabarito único dos 2 dias; nulas 17, 35. |
+| URCA 2025.2 | 117 | Nulas 1, 9, 95. |
+| URCA PSU out/2025 (2025.2 demais campi / 2026.1 Iguatu) | 115 | id `urca-2025-3`; nulas 5, 23, 25, 57, 68. |
+| URCA 2026.1 | 117 | Nulas 4, 6, 95. |
+| UEG Medicina 2024/2 | 59 | Núcleo de Seleção, processo 332, prova tipo 1; 60 anulada. Discursiva e redação fora. |
+| UEG Medicina 2025/2 | 58 | Processo 354 (aplicação original, não a reaplicação); 24 e 53 anuladas. |
+| UEG Medicina 2026/1 | 58 | Processo 378; 31 e 34 anuladas. |
+
+- **URCA**: cadernos em LaTeX, duas colunas com figuras e textos de largura total → mesmo modo `faixas_modo: 'largas'` da
+  UFSM (calha em x≈290: a coluna direita começa em 295,5). Âncora "NN. (URCA/AAAA.S)"; área pela posição (blocos de 15).
+  Textos de apoio "Texto II - Questões 48 a 51" e "Leia o texto a seguir (...) e responda às questões" (sem números: vale
+  até o próximo texto ou seção, `suporte_secao`); "Leia o texto abaixo e marque..." é enunciado, não texto de apoio.
+  Gabarito em grade por matéria; o 2º dia recomeça em 1; o quadro de inglês vale, o de espanhol não. O texto (busca) dos
+  cadernos em LaTeX agora junta os acentos soltos ("Hist´oria" → "História") — `recorta.texto()`; falta o "´ı" (i sem
+  ponto), que ainda aparece em algumas palavras do texto de busca (o print está certo). 2022.2 sem caderno no site (fora);
+  PSU 2026.2/2027.1 só com gabarito preliminar (fora). Corrigido o caso apontado pelo teste "texto de outras questões"
+  (2023.2 q107 levava o "Texto II"): a 107 termina na alternativa E e a 108–111 recebem o Texto II.
+- **UEG Medicina**: links localizados na página de cada processo do Núcleo de Seleção (POST em `detalhe_processos.asp`
+  com o código do processo). Mesmo layout do vestibular geral; a área vem da posição (1–5 inglês), porque o caderno não
+  tem títulos de matéria. 2020/2021 (processos 254/276): Medicina 2021 suspensa, sem caderno. **Observação para quem cuida
+  das provas da UEG geral (não alterei):** nelas todas as questões ficaram com área "Inglês" (a seção de língua não
+  fecha); a matéria/conteúdo de cada questão está certa, só o rótulo de área do simulado.
+- Classificação da URCA: matéria pela posição; conteúdo e nível revisados questão a questão (1–105); inglês (106–120)
+  ficou como leitura (I01.3/I02.x) conferido por amostra.
+
+**Falta (não iniciado nesta rodada):** Unicentro (caderno único com blocos por grupo de cursos: decidir qual bloco vira
+simulado), UNIRG (4 tipos de caderno; usar o tipo 1), Unitins, UVA (até 2024.1 com prova específica por curso), PUC-Rio,
+PUCPR (apagar o destaque azul da resposta), PUC Minas, Mackenzie, Fempar, FGV, Mauá, EMESCAM.

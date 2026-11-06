@@ -63,6 +63,7 @@ export function RevisaoSlides() {
   }, [m, sub]);
 
   useEffect(() => { tick.current = Date.now(); }, [and?.fase, and?.i]);
+  useEffect(() => { setFechada(null); }, [m, sub]);
 
   if (!mc || tema === undefined) return <div className="conteudo"><Carregando /></div>;
   if (!tema || !slides?.length || !mod) {

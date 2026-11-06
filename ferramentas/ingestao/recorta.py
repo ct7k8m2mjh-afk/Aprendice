@@ -1154,6 +1154,7 @@ def processa(pid, amostra=False, so_texto=False):
             ev = limpos
         vistos = set()
         segs_de = {}
+        apoio_de = {}   # n -> texto de apoio que a questão recebeu (para 'apoio_de')
         suporte = None
         gerais = []   # instruções gerais de uma faixa larga, que seguem valendo dentro dela
         secao = None
@@ -1264,6 +1265,13 @@ def processa(pid, amostra=False, so_texto=False):
             segs_de[n] = segs
             if n in cfg.get('sem_apoio', ()):   # conferido no caderno: o texto é da própria questão
                 sup = []
+            if n in cfg.get('apoio_de', {}):
+                # questão que trata do texto inteiro dividido em partes ("Considerando o texto na íntegra (Partes I, II
+                # e III)"): leva os textos de apoio das questões indicadas, na ordem do caderno
+                extra = [sg for m_ in cfg['apoio_de'][n] for sg in apoio_de.get(m_, [])]
+                todos = list(sup) + [sg for sg in extra if sg not in sup]
+                sup = sorted(todos, key=lambda sg: (sg[0], sg[1].x0 // 200, sg[1].y0))
+            apoio_de[n] = list(sup)
             if n in cfg.get('anexa', {}) and cfg['anexa'][n] in segs_de:
                 # "ainda baseado no texto da questão anterior": o texto está dentro da questão citada, que vai junto
                 sup = [sg for sg in segs_de[cfg['anexa'][n]] if sg not in sup] + list(sup)
