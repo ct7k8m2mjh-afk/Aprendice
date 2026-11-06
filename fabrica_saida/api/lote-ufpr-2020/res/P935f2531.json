@@ -17,7 +17,7 @@
    "simbolos": [
     [
      "λ",
-     "comprimento de onda: distância que a onda percorre em um período"
+     "letra grega lambda: comprimento de onda, a distância que a onda anda em um período"
     ],
     [
      "v",
@@ -34,6 +34,14 @@
     [
      "mm",
      "milímetro, um milésimo de metro (10^−3 m)"
+    ],
+    [
+     "10^−6",
+     "0,000001, ou seja, 1 dividido por 1 milhão"
+    ],
+    [
+     "Hz",
+     "hertz: oscilações por segundo, unidade de frequência"
     ]
    ]
   },
@@ -55,7 +63,7 @@
     "faz": "Aplique λ = v × T",
     "conta": "λ = 500 × 20 × 10^−6",
     "porque": "Em um período T a onda avança exatamente um comprimento de onda, com velocidade v.",
-    "tipo": "aplicar"
+    "tipo": "calcular"
    },
    {
     "faz": "Calcule o valor em metro",
@@ -75,8 +83,8 @@
   "erradas": {
    "A": "250 mm = 0,25 m exigiria T = 0,25 ÷ 500 = 500 µs, e o período dado é 20 µs. O valor não confere com λ = v × T = 0,01 m.",
    "B": "100 mm = 0,1 m exigiria T = 0,1 ÷ 500 = 200 µs, dez vezes o período dado. Em λ = 500 × 20 × 10^−6 o resultado é 0,01 m, não 0,1 m.",
-   "C": "25 mm = 0,025 m exigiria T = 0,025 ÷ 500 = 50 µs, e não 20 µs. Também não sai de nenhuma conversão correta de 500 × 20 × 10^−6 m.",
-   "E": "1 mm = 0,001 m exigiria T = 0,001 ÷ 500 = 2 µs. Com 20 µs, o resultado é dez vezes maior: 10 mm. Esse valor sai de errar uma potência de dez, por exemplo usando 10^−7 no lugar de 10^−6 para o micro."
+   "C": "25 mm = 0,025 m exigiria T = 0,025 ÷ 500 = 50 µs, e o período dado é 20 µs. Não confere: com T = 20 µs, λ = 500 × 20 × 10^−6 = 0,01 m = 10 mm.",
+   "E": "1 mm = 0,001 m exigiria T = 0,001 ÷ 500 = 2 µs, e o período dado é 20 µs. Com 20 µs, λ = 10 mm, dez vezes maior. Quem marcou E errou uma potência de dez na conversão, por exemplo usando 10^−7 para o micro."
   },
   "armadilha": "Errar a conversão de micro (10^−6) ou de metro para milímetro faz o resultado cair numa potência de dez vizinha, como 1 mm ou 100 mm.",
   "alerta": "",
@@ -123,16 +131,7 @@
   },
   {
    "linha": "λ = 0,01 × 1000 mm",
-   "nota": "1 m = 1000 mm",
-   "mov": [
-    {
-     "termo": "1000",
-     "de": "direita",
-     "para": "direita",
-     "vira": "1000",
-     "como": "fator de conversão m → mm"
-    }
-   ]
+   "nota": "1 m = 1000 mm"
   },
   {
    "linha": "λ = 10 mm",
@@ -152,10 +151,83 @@
  "gab": "D",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "calcular",
+    "motivo": "O valor 'aplicar' não é um tipo válido. Os tipos aceitos são localizar, calcular, comparar, eliminar e concluir. Este passo substitui os valores na fórmula, então é 'calcular'.",
+    "fonte": ""
+   },
+   {
+    "campo": "quadro[6]",
+    "depois": {
+     "linha": "λ = 0,01 × 1000 mm",
+     "nota": "1 m = 1000 mm"
+    },
+    "motivo": "O 'mov' descrevia um termo que sai da direita, vai para a direita e vira ele mesmo (1000 → 1000). Isso não é movimento algébrico, é só a multiplicação pelo fator de conversão. Por isso o 'mov' foi retirado para não animar um passo que não existe.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "25 mm = 0,025 m exigiria T = 0,025 ÷ 500 = 50 µs, e o período dado é 20 µs. Não confere: com T = 20 µs, λ = 500 × 20 × 10^−6 = 0,01 m = 10 mm.",
+    "motivo": "Tirada a frase 'não sai de nenhuma conversão', que afirma sem teste. O teste objetivo ficou na própria alternativa."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "1 mm = 0,001 m exigiria T = 0,001 ÷ 500 = 2 µs, e o período dado é 20 µs. Com 20 µs, λ = 10 mm, dez vezes maior. Quem marcou E errou uma potência de dez na conversão, por exemplo usando 10^−7 para o micro.",
+    "motivo": "Frase mais direta e clara. Diz o que faltou no raciocínio de quem marcou E."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "λ",
+      "letra grega lambda: comprimento de onda, a distância que a onda anda em um período"
+     ],
+     [
+      "v",
+      "velocidade de propagação da onda no meio"
+     ],
+     [
+      "T",
+      "período: tempo de uma oscilação completa"
+     ],
+     [
+      "µs",
+      "microssegundo, um milionésimo de segundo (10^−6 s)"
+     ],
+     [
+      "mm",
+      "milímetro, um milésimo de metro (10^−3 m)"
+     ],
+     [
+      "10^−6",
+      "0,000001, ou seja, 1 dividido por 1 milhão"
+     ],
+     [
+      "Hz",
+      "hertz: oscilações por segundo, unidade de frequência"
+     ]
+    ],
+    "motivo": "A checagem usa Hz e a conta usa potências de dez, mas esses termos não estavam explicados. O λ ganhou o nome da letra."
+   }
+  ],
+  "didatica_alertas": [
+   "O tema está F09/F09.1 na resolução, mas a classificação atual é F10/F10.1 (eletrostática). A questão é de ondulatória; vale o corretor de classificação conferir."
+  ],
+  "didatica_ok": true
  }
 }

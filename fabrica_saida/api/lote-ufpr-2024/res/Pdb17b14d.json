@@ -1,0 +1,134 @@
+{
+ "n": 2,
+ "id": "Pdb17b14d",
+ "materia": "mat",
+ "tema": "M13",
+ "conteudo": "M13.1",
+ "nivel": 5,
+ "conceito": "Princípio multiplicativo com restrição: o último dígito ímpar e os dígitos 4, 6 e 8 presentes na senha.",
+ "resolucao": {
+  "antes": {
+   "texto": "A senha tem 4 posições e precisa conter os dígitos 4, 6 e 8. Sobra uma posição para um quarto dígito qualquer. O número é ímpar, então o último dígito é ímpar. Como 4, 6 e 8 são pares, eles não podem ocupar a última posição. Comece sempre pela restrição.",
+   "formulas": [
+    "total = (escolhas da 4ª posição) × (ordens dos 3 primeiros dígitos)",
+    "ordens de 3 dígitos diferentes: 3 × 2 × 1 = 6"
+   ],
+   "simbolos": [
+    [
+     "dígito",
+     "cada algarismo de 0 a 9 usado na senha"
+    ],
+    [
+     "ímpar",
+     "número terminado em 1, 3, 5, 7 ou 9"
+    ],
+    [
+     "princípio multiplicativo",
+     "se uma escolha tem m opções e outra tem n, juntas têm m × n possibilidades"
+    ]
+   ]
+  },
+  "pista": "Qual posição da senha decide se o número é ímpar? Quais dígitos podem ocupar essa posição, sabendo que 4, 6 e 8 são pares?",
+  "passos": [
+   {
+    "faz": "Entenda o que a senha precisa ter",
+    "conta": "4 posições: _ _ _ _",
+    "porque": "Ela contém 4, 6 e 8 e tem quatro posições. Sobra um dígito a mais, que ainda não sabemos qual é.",
+    "tipo": "interpretar"
+   },
+   {
+    "faz": "Escolha o último dígito",
+    "conta": "ímpar: 1, 3, 5, 7, 9 → 5 opções",
+    "porque": "Um número é ímpar quando termina em dígito ímpar. Os dígitos 4, 6 e 8 são pares e não servem para o fim. O dígito ímpar é então o quarto dígito extra.",
+    "tipo": "aplicar"
+   },
+   {
+    "faz": "Ordene 4, 6 e 8 nas três primeiras posições",
+    "conta": "3 × 2 × 1 = 6 ordens",
+    "porque": "Os três primeiros lugares devem receber 4, 6 e 8, pois o último lugar já tem um ímpar. Há 3 opções para o 1º lugar, 2 para o 2º e 1 para o 3º.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Multiplique as duas escolhas",
+    "conta": "5 × 6 = 30",
+    "porque": "Para cada um dos 5 dígitos finais existem 6 ordens dos três primeiros. As escolhas acontecem em sequência, então multiplicamos.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Ligue o resultado à alternativa",
+    "conta": "30 senhas → E",
+    "porque": "A pergunta é quantas possibilidades Ana deve considerar, e esse é o total de senhas.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa E: são 5 escolhas para o último dígito (ímpar) e 6 ordens para 4, 6 e 8 nos três primeiros lugares, ou seja, 5 × 6 = 30 senhas.",
+  "checagem": "Liste as senhas que terminam em 1: 4681, 4861, 6481, 6841, 8461 e 8641. São 6. O mesmo vale para o final 3, 5, 7 e 9. Então 5 grupos de 6 dão 30.",
+  "erradas": {
+   "A": "8 fica abaixo do total real. Só com os finais 1 e 3 já existem 12 senhas diferentes e válidas (6 terminando em 1 e 6 terminando em 3). Logo 8 não cobre as possibilidades.",
+   "B": "11 não confere. Só as senhas terminadas em 1 já são 6 (4681, 4861, 6481, 6841, 8461, 8641). Somando as terminadas em 3, passam de 11.",
+   "C": "15 não confere. Há 5 dígitos ímpares possíveis no final e 6 ordens para 4, 6 e 8. O total é 5 × 6 = 30, o dobro de 15.",
+   "D": "24 não confere. Há cinco dígitos ímpares (1, 3, 5, 7, 9), e não quatro. Com as 6 ordens de 4, 6 e 8, o total é 6 × 5 = 30. Assim, 24 deixa de fora as 6 senhas de um dos dígitos ímpares."
+  },
+  "armadilha": "Esquecer que o último dígito ímpar é o quarto dígito extra. Por isso 4, 6 e 8 só podem ficar nas três primeiras posições, em 6 ordens, e o ímpar final tem 5 opções.",
+  "alerta": "",
+  "essencial": {
+   "pede": "O número de senhas de 4 dígitos que contêm 4, 6 e 8 e formam um número ímpar.",
+   "chave": "O último dígito é ímpar (5 opções) e os três primeiros são 4, 6 e 8 em qualquer ordem (6 opções): 5 × 6 = 30.",
+   "cuidado": "Comece pela restrição do final ímpar. Como 4, 6 e 8 são pares, eles ficam nas três primeiras posições."
+  }
+ },
+ "caminhos": [
+  {
+   "nome": "listar por final",
+   "ideia": "Fixe o último dígito, por exemplo 1, e liste as 6 ordens de 4, 6 e 8. Repita para 3, 5, 7 e 9: 5 grupos de 6 senhas."
+  },
+  {
+   "nome": "posição por posição",
+   "ideia": "Multiplique as opções de cada posição, começando pela última: 5 (ímpar) × 3 × 2 × 1 = 30."
+  }
+ ],
+ "quadro": [
+  {
+   "linha": "_ _ _ _",
+   "nota": "quatro posições na senha"
+  },
+  {
+   "linha": "4ª posição: 1, 3, 5, 7, 9",
+   "nota": "ímpar: 5 opções",
+   "destaque": "5 opções"
+  },
+  {
+   "linha": "3 × 2 × 1 = 6",
+   "nota": "ordens de 4, 6 e 8 nas 3 primeiras posições",
+   "destaque": "6"
+  },
+  {
+   "linha": "5 × 6",
+   "nota": "escolhas em sequência: multiplique"
+  },
+  {
+   "linha": "= 30",
+   "nota": "total de senhas possíveis",
+   "destaque": "30"
+  }
+ ],
+ "visual": {
+  "cabe": true,
+  "porque": "Quatro caixas com a restrição visível ajudam a enxergar a contagem.",
+  "tipo": "diagrama",
+  "roteiro": "Quadro 1: quatro caixas vazias em fila. Quadro 2: a última caixa se destaca com os dígitos 1, 3, 5, 7, 9 (5 opções) e os dígitos pares 4, 6 e 8 aparecem riscados dessa caixa. Quadro 3: as três primeiras caixas se preenchem com 4, 6 e 8, mostrando as 6 ordens (3 × 2 × 1). Quadro 4: aparece a multiplicação 5 × 6 = 30."
+ },
+ "fontes": [],
+ "resposta_resolvedor": "E",
+ "confere": true,
+ "divergencia": "",
+ "gab": "E",
+ "revisao": {
+  "lentes": [
+   "resolvedor"
+  ],
+  "modelos": {
+   "resolvedor": "claude-sonnet-5-5"
+  }
+ }
+}

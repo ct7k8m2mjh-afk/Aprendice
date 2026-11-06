@@ -8,7 +8,7 @@
  "conceito": "Relacionar uma alteração ambiental (barragens e irrigação) com a parasitose cujo hospedeiro intermediário vive em água parada: esquistossomose.",
  "resolucao": {
   "antes": {
-   "texto": "Cada parasitose tem uma via de transmissão. A esquistossomose depende de caramujos (hospedeiros intermediários) que vivem em água doce parada ou de pouca correnteza. Barragens e canais de irrigação criam esse ambiente. Se fezes humanas chegam à água por falta de saneamento, o ciclo se completa.",
+   "texto": "Cada doença chega à pessoa por um caminho (via de transmissão). Na esquistossomose, o parasita precisa passar por um caramujo de água doce parada ou de pouca correnteza. Barragens e canais de irrigação criam esse ambiente. Sem saneamento, as fezes humanas chegam à água e o ciclo se completa. O trabalho real da questão é ligar a obra (barragem) ao animal que ela favorece.",
    "formulas": [
     "esquistossomose: ovos nas fezes → água → larva → caramujo Biomphalaria → cercária → penetra na pele",
     "barragem e irrigação → água parada → mais caramujos → mais casos"
@@ -28,11 +28,23 @@
     ],
     [
      "cercária",
-     "larva do Schistosoma que sai do caramujo e penetra na pele de quem entra na água"
+     "larva do Schistosoma que sai do caramujo, nada na água e penetra na pele de quem entra nela"
+    ],
+    [
+     "miracídio",
+     "larva que sai do ovo na água e penetra no caramujo"
+    ],
+    [
+     "bacteriose",
+     "doença causada por bactéria"
+    ],
+    [
+     "Schistosoma mansoni",
+     "verme causador da esquistossomose; vive nas veias do intestino"
     ]
    ]
   },
-  "pista": "A alteração feita pelo homem foi acumular e espalhar água. Qual doença da lista precisa de um animal que vive nesse tipo de água?",
+  "pista": "A obra feita pelo homem acumulou e espalhou água. Pergunte-se: qual doença da lista precisa de um animal que vive nesse tipo de água?",
   "passos": [
    {
     "faz": "Localize a mudança ambiental",
@@ -43,20 +55,20 @@
    {
     "faz": "Localize a condição sanitária",
     "conta": "\"condições ruins de saneamento básico\"",
-    "porque": "Sem esgoto tratado, fezes com ovos de parasitas chegam à água, o que é exigido por doenças de ciclo aquático.",
+    "porque": "Sem esgoto tratado, fezes com ovos de parasitas chegam à água. Isso é necessário para doenças cujo ciclo passa pela água.",
     "tipo": "localizar"
    },
    {
     "faz": "Ligue água parada a um ciclo de parasita",
     "conta": "ovos nas fezes → água → caramujo → cercária → pele",
     "porque": "O Schistosoma mansoni precisa do caramujo Biomphalaria na água doce. Mais água parada, mais caramujos e mais casos.",
-    "tipo": "aplicar"
+    "tipo": "localizar"
    },
    {
     "faz": "Descarte as doenças sem relação com água",
-    "conta": "difteria, teníase, hanseníase, Chagas",
+    "conta": "Difteria: bactéria, gotículas\nTeníase: carne mal cozida\nHanseníase: bactéria, contato\nChagas: fezes do barbeiro",
     "porque": "Nenhuma delas tem ciclo que dependa de barragem ou de hospedeiro aquático (veja as erradas).",
-    "tipo": "interpretar"
+    "tipo": "eliminar"
    },
    {
     "faz": "Conclua",
@@ -66,7 +78,7 @@
    }
   ],
   "resposta": "Alternativa D: esquistossomose, pois barragens criam água parada onde vive o caramujo hospedeiro e, sem saneamento, as fezes levam os ovos até ele.",
-  "checagem": "Pergunte: sem o caramujo e sem água, a doença existiria? Não. Nenhuma outra alternativa depende de ambiente aquático para o ciclo.",
+  "checagem": "Faça o teste inverso: sem água parada e sem caramujo, a doença existiria? Não. Nenhuma das outras quatro depende de ambiente aquático para completar o ciclo.",
   "erradas": {
    "A": "Difteria é bacteriose (Corynebacterium diphtheriae), transmitida por gotículas respiratórias. Não é parasitose e não depende de água represada.",
    "B": "Teníase vem da ingestão de carne de porco ou boi mal cozida com cisticercos. O ciclo passa pelo animal de criação, não por caramujo de barragem.",
@@ -105,10 +117,96 @@
  "gab": "D",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "localizar",
+    "motivo": "O tipo 'aplicar' não está na lista permitida (localizar, calcular, comparar, eliminar, concluir). Este passo traduz a situação no ciclo do parasita, e o guia da matéria classifica essa tradução como 'localizar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "eliminar",
+    "motivo": "O tipo 'interpretar' não está na lista permitida. O passo descarta alternativas, então o tipo certo é 'eliminar'.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Cada doença chega à pessoa por um caminho (via de transmissão). Na esquistossomose, o parasita precisa passar por um caramujo de água doce parada ou de pouca correnteza. Barragens e canais de irrigação criam esse ambiente. Sem saneamento, as fezes humanas chegam à água e o ciclo se completa. O trabalho real da questão é ligar a obra (barragem) ao animal que ela favorece.",
+    "motivo": "Frases mais curtas, 'via de transmissão' explicada e aviso do trabalho real da questão."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "parasitose",
+      "doença causada por parasita (protozoário, verme etc.)"
+     ],
+     [
+      "hospedeiro intermediário",
+      "animal onde o parasita vive uma fase do ciclo antes de chegar ao hospedeiro definitivo; na esquistossomose é o caramujo"
+     ],
+     [
+      "saneamento básico",
+      "esgoto tratado, água tratada e coleta de lixo"
+     ],
+     [
+      "cercária",
+      "larva do Schistosoma que sai do caramujo, nada na água e penetra na pele de quem entra nela"
+     ],
+     [
+      "miracídio",
+      "larva que sai do ovo na água e penetra no caramujo"
+     ],
+     [
+      "bacteriose",
+      "doença causada por bactéria"
+     ],
+     [
+      "Schistosoma mansoni",
+      "verme causador da esquistossomose; vive nas veias do intestino"
+     ]
+    ],
+    "motivo": "Termos usados nos passos e no roteiro (miracídio, bacteriose, nome do verme) não estavam explicados."
+   },
+   {
+    "campo": "resolucao.pista",
+    "depois": "A obra feita pelo homem acumulou e espalhou água. Pergunte-se: qual doença da lista precisa de um animal que vive nesse tipo de água?",
+    "motivo": "Pista mais clara, sem entregar a resposta."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "Sem esgoto tratado, fezes com ovos de parasitas chegam à água. Isso é necessário para doenças cujo ciclo passa pela água.",
+    "motivo": "Frase com sentido ambíguo ('o que é exigido') reescrita."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "Difteria: bactéria, gotículas\nTeníase: carne mal cozida\nHanseníase: bactéria, contato\nChagas: fezes do barbeiro",
+    "motivo": "A conta anterior só listava nomes; agora mostra a via de cada doença, uma por linha."
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Faça o teste inverso: sem água parada e sem caramujo, a doença existiria? Não. Nenhuma das outras quatro depende de ambiente aquático para completar o ciclo.",
+    "motivo": "Texto mais simples e direto."
+   }
+  ],
+  "didatica_alertas": [
+   "A questão pede 'parasitose', mas difteria e hanseníase são bacterioses; a resolução já trata isso, sem erro de fato.",
+   "O campo 'nivel' do JSON é 4, enquanto a classificação indicada é nível 5; conferir qual vale."
+  ],
+  "didatica_ok": true
  }
 }

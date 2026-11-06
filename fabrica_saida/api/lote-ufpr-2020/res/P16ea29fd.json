@@ -8,7 +8,7 @@
  "conceito": "Ler uma teia alimentar e dar a ordem de consumo de cada organismo, que pode mudar conforme a presa.",
  "resolucao": {
   "antes": {
-   "texto": "Na teia, a seta aponta de quem é comido para quem come. A ordem do consumidor conta quantos consumidores existem na cadeia até ele: o que come planta é de 1ª ordem, quem come esse herbívoro é de 2ª, e assim por diante. Quando um animal come presas de níveis diferentes, ele ocupa várias ordens ao mesmo tempo. Por isso a resolução tem de partir de cada presa.",
+   "texto": "Na teia, a seta aponta de quem é comido para quem come. A ordem do consumidor diz em que posição ele está depois do produtor: quem come planta é de 1ª ordem, quem come esse herbívoro é de 2ª, e assim por diante. Se o animal come presas de níveis diferentes, ele ocupa várias ordens ao mesmo tempo. Por isso é preciso olhar cada presa.",
    "formulas": [
     "herbívoro (come planta) = consumidor de 1ª ordem",
     "ordem do predador = ordem da presa + 1",
@@ -33,7 +33,7 @@
     ]
    ]
   },
-  "pista": "Comece pela base: quem come a planta? Depois suba, animal por animal, somando 1 à ordem de cada presa. Anote todas as presas de quem tem mais de uma seta chegando.",
+  "pista": "Comece pela base: quem come a planta? Depois suba animal por animal, somando 1 à ordem de cada presa. Atenção a quem tem mais de uma seta chegando.",
   "passos": [
    {
     "faz": "Leia as setas que saem da planta",
@@ -48,21 +48,21 @@
     "tipo": "calcular"
    },
    {
-    "faz": "Ache a ordem da raposa e da coruja",
-    "conta": "Raposa: coelho(1ª) → 2ª",
-    "porque": "A raposa come o coelho, logo é de 2ª ordem. A coruja come o morcego (1ª) e a cobra (2ª), portanto é de 2ª e 3ª ordem. Pela figura, a seta entre coruja e raposa aponta para a raposa: a raposa também come a coruja.",
+    "faz": "Ache a ordem da coruja",
+    "conta": "Morcego (1ª) → Coruja: 2ª\nCobra (2ª) → Coruja: 3ª",
+    "porque": "A coruja come o morcego (1ª ordem) e a cobra (2ª ordem). Ela é de 2ª e de 3ª ordem ao mesmo tempo.",
     "tipo": "calcular"
    },
    {
-    "faz": "Complete a raposa com a coruja como presa",
-    "conta": "Coruja (2ª, 3ª) → Raposa: 3ª, 4ª",
-    "porque": "Somando 1 às ordens da coruja, a raposa ganha a 3ª e a 4ª. No total, a raposa é de 2ª, 3ª e 4ª ordens.",
+    "faz": "Ache a ordem da raposa",
+    "conta": "Coelho (1ª) → Raposa: 2ª\nCoruja (2ª, 3ª) → Raposa: 3ª, 4ª\nRaposa = 2ª, 3ª e 4ª",
+    "porque": "Olhe a seta entre coruja e raposa. Ela aponta para a raposa, então a raposa come a coruja. Cada presa soma 1 à própria ordem.",
     "tipo": "calcular"
    },
    {
-    "faz": "Teste as alternativas",
-    "conta": "Coelho, rato, morcego = 1ª; raposa = 2ª, 3ª, 4ª",
-    "porque": "Isso é exatamente o que a alternativa B afirma. As demais erram a ordem de algum animal.",
+    "faz": "Procure a alternativa igual",
+    "conta": "1ª: coelho, rato, morcego\nRaposa: 2ª, 3ª, 4ª",
+    "porque": "Isso é exatamente o que a alternativa B afirma. As outras erram a ordem de pelo menos um animal.",
     "tipo": "concluir"
    }
   ],
@@ -135,10 +135,61 @@
  "gab": "B",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
+  },
+  "fatos": [],
+  "fatos_ok": true,
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[2]",
+    "depois": {
+     "faz": "Ache a ordem da coruja",
+     "conta": "Morcego (1ª) → Coruja: 2ª\nCobra (2ª) → Coruja: 3ª",
+     "porque": "A coruja come o morcego (1ª ordem) e a cobra (2ª ordem). Ela é de 2ª e de 3ª ordem ao mesmo tempo.",
+     "tipo": "calcular"
+    },
+    "motivo": "O passo misturava raposa e coruja e tinha conta truncada. Agora cada passo trata de um animal. A conta cabe na linha do celular."
+   },
+   {
+    "campo": "resolucao.passos[3]",
+    "depois": {
+     "faz": "Ache a ordem da raposa",
+     "conta": "Coelho (1ª) → Raposa: 2ª\nCoruja (2ª, 3ª) → Raposa: 3ª, 4ª\nRaposa = 2ª, 3ª e 4ª",
+     "porque": "Olhe a seta entre coruja e raposa. Ela aponta para a raposa, então a raposa come a coruja. Cada presa soma 1 à própria ordem.",
+     "tipo": "calcular"
+    },
+    "motivo": "Une a raposa em um só passo, na ordem natural: primeiro a presa coelho, depois a presa coruja. Explica como ler a seta."
+   },
+   {
+    "campo": "resolucao.passos[4]",
+    "depois": {
+     "faz": "Procure a alternativa igual",
+     "conta": "1ª: coelho, rato, morcego\nRaposa: 2ª, 3ª, 4ª",
+     "porque": "Isso é exatamente o que a alternativa B afirma. As outras erram a ordem de pelo menos um animal.",
+     "tipo": "concluir"
+    },
+    "motivo": "O passo era confuso e o campo 'conta' era longo demais para o celular. Agora está em linhas curtas."
+   },
+   {
+    "campo": "resolucao.pista",
+    "depois": "Comece pela base: quem come a planta? Depois suba animal por animal, somando 1 à ordem de cada presa. Atenção a quem tem mais de uma seta chegando.",
+    "motivo": "Texto mais simples e sem entregar a resposta."
+   },
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Na teia, a seta aponta de quem é comido para quem come. A ordem do consumidor diz em que posição ele está depois do produtor: quem come planta é de 1ª ordem, quem come esse herbívoro é de 2ª, e assim por diante. Se o animal come presas de níveis diferentes, ele ocupa várias ordens ao mesmo tempo. Por isso é preciso olhar cada presa.",
+    "motivo": "Troca a definição circular ('conta quantos consumidores existem') por uma explicação mais clara."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

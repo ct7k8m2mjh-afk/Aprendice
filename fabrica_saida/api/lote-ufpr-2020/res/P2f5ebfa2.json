@@ -18,7 +18,7 @@
    "simbolos": [
     [
      "V(t)",
-     "volume de água no reservatório (em litros) após t minutos"
+     "volume de água no reservatório (em litros) depois de t minutos"
     ],
     [
      "vazão",
@@ -27,6 +27,14 @@
     [
      "função afim",
      "função cujo gráfico é uma reta"
+    ],
+    [
+     "constante",
+     "que não muda com o tempo"
+    ],
+    [
+     "t = 0",
+     "o instante em que a torneira é aberta"
     ]
    ]
   },
@@ -41,7 +49,7 @@
    {
     "faz": "Ache o volume em t = 0",
     "conta": "V(0) = 1430 L",
-    "porque": "O gráfico deve começar no alto, perto de 1500 no eixo vertical, em t = 0. Isso elimina os gráficos que começam em 0.",
+    "porque": "Em t = 0 nada saiu ainda, então o reservatório está cheio. O gráfico deve começar no alto, perto de 1500 no eixo vertical. Isso elimina os gráficos que começam em 0.",
     "tipo": "calcular"
    },
    {
@@ -52,8 +60,8 @@
    },
    {
     "faz": "Compare com os gráficos",
-    "conta": "reta, de (0; 1430) a (65; 0)",
-    "porque": "Só um gráfico é uma reta descendente que sai do alto e chega a zero perto de t = 65, antes do 80. Os que começam em 0 (b, d) ou que são curvos (a, c) não servem.",
+    "conta": "reta de (0; 1430) a (65; 0)",
+    "porque": "Os que começam em 0 (B, D) não servem. Os curvos (A, C) também não, porque a perda por minuto muda. Sobra a reta que desce até perto de t = 65.",
     "tipo": "eliminar"
    },
    {
@@ -66,10 +74,10 @@
   "resposta": "Alternativa E: reta decrescente que parte de 1430 L e chega a 0 em t = 65 min.",
   "checagem": "Teste um ponto: em t = 20, V = 1430 − 440 = 990 L. No gráfico E, em t = 20 a reta passa perto de 1000. Fecha.",
   "erradas": {
-   "A": "A curva começa quase plana e depois cai cada vez mais rápido. Isso mostra a vazão aumentando com o tempo, e o enunciado diz que ela é constante. A perda por minuto teria que ser a mesma, o que daria uma reta.",
-   "B": "É uma reta crescente que parte de 0 e chega a cerca de 1400. Ela descreve um reservatório ENCHENDO: o volume em t = 0 deveria ser 1430 L, e não 0.",
+   "A": "A curva começa quase plana, depois cai cada vez mais rápido e só perto do fim volta a achatar. Isso mostra uma vazão que muda com o tempo, e o enunciado diz que ela é constante. Com a mesma perda a cada minuto, o gráfico seria uma reta.",
+   "B": "B é uma reta que sobe, partindo de 0 e chegando a cerca de 1400. Mostra um reservatório ENCHENDO. Em t = 0 o volume deveria ser 1430 L, e não 0.",
    "C": "A curva parte de cerca de 1400 e desce, mas bem rápido no início e devagar depois. Isso significa vazão diminuindo com o tempo. Com vazão constante a queda deveria ser igual em cada minuto: uma reta.",
-   "D": "A curva parte de 0 e sobe, curvando-se para cima. Ela mostra um volume crescente com ritmo variável; o reservatório estaria enchendo, e não esvaziando."
+   "D": "D parte de 0 e sobe, curvando-se para cima. Mostra um reservatório enchendo, e a vazão não seria constante. O correto é um volume que parte de 1430 L e diminui em reta."
   },
   "armadilha": "Confundir 'vazão constante' com qualquer curva decrescente: só reta indica perda igual por minuto, e o gráfico precisa começar no volume cheio.",
   "alerta": "",
@@ -104,7 +112,7 @@
   },
   {
    "linha": "22t = 1430",
-   "nota": "passe o 22t para o outro lado",
+   "nota": "o termo 22t passa para o outro lado",
    "mov": [
     {
      "termo": "− 22t",
@@ -112,12 +120,19 @@
      "para": "direita",
      "vira": "+ 22t",
      "como": "atravessa o igual e troca o sinal"
+    },
+    {
+     "termo": "0",
+     "de": "direita",
+     "para": "esquerda",
+     "vira": "0",
+     "como": "o 1430 passa para o outro lado e troca de sinal; fica 1430 = 22t"
     }
    ]
   },
   {
    "linha": "t = 1430 ÷ 22",
-   "nota": "o 22 passa dividindo",
+   "nota": "o 22 está multiplicando o t e passa dividindo",
    "mov": [
     {
      "termo": "22",
@@ -148,10 +163,122 @@
  "gab": "E",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "A curva começa quase plana, depois cai cada vez mais rápido e só perto do fim volta a achatar. Isso mostra uma vazão que muda com o tempo, e o enunciado diz que ela é constante. Com a mesma perda a cada minuto, o gráfico seria uma reta.",
+    "motivo": "O texto dizia que a curva A cai cada vez mais rápido até o fim, mas no print ela tem forma de S e volta a achatar perto de t = 60. O motivo certo para descartá-la é que a vazão muda com o tempo, e não que ela só aumenta.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "V(t)",
+      "volume de água no reservatório (em litros) depois de t minutos"
+     ],
+     [
+      "vazão",
+      "litros que saem por minuto; aqui, 22 L/min"
+     ],
+     [
+      "função afim",
+      "função cujo gráfico é uma reta"
+     ],
+     [
+      "constante",
+      "que não muda com o tempo"
+     ],
+     [
+      "t = 0",
+      "o instante em que a torneira é aberta"
+     ]
+    ],
+    "motivo": "Explicar 'constante' e 't = 0', palavras que o aluno pode não dominar."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "Em t = 0 nada saiu ainda, então o reservatório está cheio. O gráfico deve começar no alto, perto de 1500 no eixo vertical. Isso elimina os gráficos que começam em 0.",
+    "motivo": "Deixar claro por que o volume em t = 0 é o inicial."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "reta de (0; 1430) a (65; 0)",
+    "motivo": "Conta curta e clara para a tela do celular."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Os que começam em 0 (B, D) não servem. Os curvos (A, C) também não, porque a perda por minuto muda. Sobra a reta que desce até perto de t = 65.",
+    "motivo": "Frases mais curtas e letras em maiúscula, como nas alternativas."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "B é uma reta que sobe, partindo de 0 e chegando a cerca de 1400. Mostra um reservatório ENCHENDO. Em t = 0 o volume deveria ser 1430 L, e não 0.",
+    "motivo": "Texto mais direto, dizendo o que faltou ao aluno que marcou B: ver que o volume diminui."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "D parte de 0 e sobe, curvando-se para cima. Mostra um reservatório enchendo, e a vazão não seria constante. O correto é um volume que parte de 1430 L e diminui em reta.",
+    "motivo": "Dizer os dois erros: sentido (enche) e forma (curva)."
+   },
+   {
+    "campo": "resolucao.quadro[3]",
+    "depois": {
+     "linha": "22t = 1430",
+     "nota": "o termo 22t passa para o outro lado",
+     "mov": [
+      {
+       "termo": "− 22t",
+       "de": "esquerda",
+       "para": "direita",
+       "vira": "+ 22t",
+       "como": "atravessa o igual e troca o sinal"
+      },
+      {
+       "termo": "0",
+       "de": "direita",
+       "para": "esquerda",
+       "vira": "0",
+       "como": "o 1430 passa para o outro lado e troca de sinal; fica 1430 = 22t"
+      }
+     ]
+    },
+    "motivo": "A passagem anterior não explicava como o 1430 muda de lado; só o 22t estava no mov. Nota mais clara."
+   },
+   {
+    "campo": "resolucao.quadro[4]",
+    "depois": {
+     "linha": "t = 1430 ÷ 22",
+     "nota": "o 22 está multiplicando o t e passa dividindo",
+     "mov": [
+      {
+       "termo": "22",
+       "de": "esquerda",
+       "para": "direita",
+       "vira": "÷ 22",
+       "como": "passa dividindo"
+      }
+     ]
+    },
+    "motivo": "Explicar por que o 22 passa dividindo."
+   }
+  ],
+  "didatica_alertas": [
+   "quadro[3]: 1430 − 22t = 0 vira 22t = 1430 passando o termo 22t para a direita e o 0 para a esquerda; o mov original só cobria o 22t. Conferir se a descrição do mov de 0 fica coerente na tela, pois nada mudou em números."
+  ],
+  "didatica_ok": true
  }
 }

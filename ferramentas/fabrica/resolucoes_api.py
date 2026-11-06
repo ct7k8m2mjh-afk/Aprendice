@@ -42,8 +42,8 @@ MODELO = {'resolvedor': 'claude-sonnet-5-5', 'fatos': 'claude-opus-5-5',
           'didatica': 'claude-sonnet-5-5', 'fatos-volta': 'claude-sonnet-5-5'}
 # teto geral do dono: US$ 200 de crédito na API; a fábrica para em US$ 195 (folga de US$ 5)
 TETO_GERAL_US = 195.0
-# comando 33 (essencial da revisão) tem prioridade: as resoluções param antes, em US$ 170, e deixam o resto para ele
-TETO_RESOLUCOES_US = 170.0
+# comando 33 (essencial da revisão) tem prioridade: as resoluções param antes, em US$ 190 (essencial quase pronto: 42 de 54 temas), e deixam o resto para ele
+TETO_RESOLUCOES_US = 190.0
 ESFORCO = {'resolvedor': 'high', 'fatos': 'medium', 'didatica': 'medium', 'fatos-volta': 'medium'}
 # US$ por milhão de tokens, já com o desconto de 50% do Batches (entrada, saída, leitura de cache, escrita de cache)
 PRECO = {'claude-sonnet-5-5': (1.0, 5.0, 0.10, 1.25), 'claude-opus-5-5': (2.0, 10.0, 0.20, 2.5)}

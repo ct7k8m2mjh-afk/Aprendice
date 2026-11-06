@@ -11,17 +11,17 @@
    "texto": "Pressão é a força que atua perpendicular à superfície dividida pela área. Se a força aumenta, a pressão aumenta na mesma proporção. Se a área diminui, a pressão aumenta, porque a mesma força fica concentrada em menos espaço. Como a questão só dá razões, basta trabalhar com razões, sem números.",
    "formulas": [
     "P = F ÷ A",
-    "P1 = F ÷ A",
-    "P2 = (4F) ÷ (A/2)"
+    "P1 = F ÷ A (valores iniciais)",
+    "P2 = 4F ÷ (A ÷ 2) (valores novos)"
    ],
    "simbolos": [
     [
      "P",
-     "pressão: força perpendicular por unidade de área"
+     "pressão: força perpendicular dividida pela área"
     ],
     [
      "F",
-     "módulo da força aplicada perpendicularmente à superfície"
+     "módulo (tamanho) da força aplicada perpendicularmente à superfície"
     ],
     [
      "A",
@@ -29,7 +29,11 @@
     ],
     [
      "P1, P2",
-     "pressão antes e depois da mudança"
+     "pressão antes (P1) e depois (P2) da mudança"
+    ],
+    [
+     "Pa",
+     "pascal: unidade de pressão, 1 N de força em 1 m² de área"
     ]
    ]
   },
@@ -39,7 +43,7 @@
     "faz": "Escreva a pressão inicial",
     "conta": "P1 = F/A",
     "porque": "É a definição de pressão, com a força e a área iniciais.",
-    "tipo": "aplicar"
+    "tipo": "localizar"
    },
    {
     "faz": "Escreva os novos valores",
@@ -51,7 +55,7 @@
     "faz": "Monte a nova pressão",
     "conta": "P2 = 4F ÷ (A/2)",
     "porque": "É a mesma definição, agora com os valores novos.",
-    "tipo": "aplicar"
+    "tipo": "calcular"
    },
    {
     "faz": "Simplifique a divisão",
@@ -69,8 +73,8 @@
   "resposta": "Alternativa E: P2 = 8 P1, porque a força quadruplica (×4) e a área pela metade dobra a pressão (×2); 4 × 2 = 8.",
   "checagem": "Teste com números: F = 10 N e A = 2 m² dão P1 = 5 Pa. Com F = 40 N e A = 1 m², P2 = 40 Pa, e 40 ÷ 5 = 8.",
   "erradas": {
-   "A": "P2 = P1/2 inverteria os dois efeitos: nem a força maior nem a área menor reduzem a pressão. Com F = 10 N e A = 2 m², P1 = 5 Pa e P2 = 40 Pa, que não é 2,5 Pa.",
-   "B": "P2 = P1 só ocorreria se os dois efeitos se cancelassem, o que exigiria a área também 4 vezes maior. Aqui a área diminui, então a pressão sobe ainda mais.",
+   "A": "Sai de achar que a área menor ou a força maior diminui a pressão. Não confere: com F = 10 N e A = 2 m², P1 = 5 Pa e P2 = 40 Pa. P1 ÷ 2 seria 2,5 Pa, menor que P1, e a pressão só pode subir aqui.",
+   "B": "Sai de achar que os dois efeitos se cancelam. Isso só ocorreria se a área também ficasse 4 vezes maior. Aqui a área diminui, então os dois efeitos aumentam a pressão.",
    "C": "P2 = 2 P1 considera só o efeito da área (÷ 1/2 = ×2) e esquece que a força também quadruplicou.",
    "D": "P2 = 4 P1 considera só o efeito da força (×4) e esquece que a área reduzida a metade dobra a pressão."
   },
@@ -137,10 +141,91 @@
  "gab": "E",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[0].tipo",
+    "depois": "calcular",
+    "motivo": "O tipo 'aplicar' não está na lista permitida (localizar, calcular, comparar, eliminar, concluir). Escrever P1 = F/A é montar a expressão que entra na conta, por isso vira 'calcular'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "calcular",
+    "motivo": "O tipo 'aplicar' não está na lista permitida. Montar P2 = 4F ÷ (A/2) é um passo de cálculo.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "P = F ÷ A",
+     "P1 = F ÷ A (valores iniciais)",
+     "P2 = 4F ÷ (A ÷ 2) (valores novos)"
+    ],
+    "motivo": "Indica o que cada linha representa; o aluno não confunde as duas pressões."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "P",
+      "pressão: força perpendicular dividida pela área"
+     ],
+     [
+      "F",
+      "módulo (tamanho) da força aplicada perpendicularmente à superfície"
+     ],
+     [
+      "A",
+      "área da superfície onde a força atua"
+     ],
+     [
+      "P1, P2",
+      "pressão antes (P1) e depois (P2) da mudança"
+     ],
+     [
+      "Pa",
+      "pascal: unidade de pressão, 1 N de força em 1 m² de área"
+     ]
+    ],
+    "motivo": "Pa aparece na checagem e nas erradas e não estava explicado."
+   },
+   {
+    "campo": "resolucao.passos[0].tipo",
+    "depois": "localizar",
+    "motivo": "Este passo apenas escreve a definição com os dados iniciais, sem conta."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "P2 = 4F × 2/A = 8 × F/A",
+    "motivo": "Mantida a conta. Fração escrita de forma empilhável pelo site."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "Sai de achar que a área menor ou a força maior diminui a pressão. Não confere: com F = 10 N e A = 2 m², P1 = 5 Pa e P2 = 40 Pa. P1 ÷ 2 seria 2,5 Pa, menor que P1, e a pressão só pode subir aqui.",
+    "motivo": "Texto mais claro: diz o que faltou no raciocínio e dá o teste objetivo."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "Sai de achar que os dois efeitos se cancelam. Isso só ocorreria se a área também ficasse 4 vezes maior. Aqui a área diminui, então os dois efeitos aumentam a pressão.",
+    "motivo": "Deixa claro o que faltou: ver que os dois efeitos vão no mesmo sentido."
+   }
+  ],
+  "didatica_alertas": [
+   "A resolução usa tema F04 e conteúdo F04.3 (densidade e pressão), mas a classificação atual informada é F07/F07.1 (gases). Pressão = F/A cabe em F04.3, então a classificação da resolução está coerente e a atual parece errada. Conferir o nível 2 versus 3."
+  ],
+  "didatica_ok": true
  }
 }

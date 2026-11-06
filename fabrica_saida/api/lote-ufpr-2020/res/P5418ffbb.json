@@ -36,7 +36,7 @@
   "passos": [
    {
     "faz": "Descubra quem narra o trecho",
-    "conta": "\"deixei a família e a cidade\"",
+    "conta": "\"deixei a família e a cidade\" = Hakim",
     "porque": "Quem diz isso é Hakim, o filho de Emilie que se muda para o Sul e não volta a ver a mãe. O resto da afirmativa 1 (filho preferido, aprendeu o árabe na infância) confere com o personagem. A afirmativa 1 é verdadeira.",
     "tipo": "localizar"
    },
@@ -44,7 +44,7 @@
     "faz": "Confira quem é Dorner",
     "conta": "Dorner = alemão, fotógrafo, amigo",
     "porque": "No romance Dorner é amigo da família e de Emir, ligado à fotografia e ao estudo da região. Não é comerciante concorrente da loja Parisiense. A afirmativa 2 é falsa.",
-    "tipo": "interpretar"
+    "tipo": "eliminar"
    },
    {
     "faz": "Veja se o narrador discorda de Dorner",
@@ -55,8 +55,8 @@
    {
     "faz": "Leia \"escravidão\" como metáfora",
     "conta": "\"uma forma estranha de escravidão\"",
-    "porque": "Dorner fala de uma servidão disfarçada de convívio (comida, integração ilusória), e não de escravidão legal. Isso não data a história no século XIX. A ação do romance atravessa o século XX. A afirmativa 4 é falsa.",
-    "tipo": "interpretar"
+    "porque": "Dorner fala de uma servidão disfarçada de convívio (comida, integração ilusória), e não de escravidão legal. O trecho usa a palavra como imagem. Por isso ela não data a história no século XIX. A afirmativa 4 é falsa.",
+    "tipo": "eliminar"
    },
    {
     "faz": "Monte a combinação",
@@ -69,7 +69,7 @@
   "checagem": "A afirmativa 3 cai por uma segunda marca no texto: \"Havia alguma verdade\" mostra concordância parcial, o oposto de \"injusto\". Com 3 falsa, as alternativas B e D (que a incluem) e E também caem.",
   "erradas": {
    "B": "Diz que 2 e 3 são verdadeiras. A 3 é desmentida pelo trecho (\"Havia alguma verdade nesta sentença\"). A 2 troca Dorner, amigo alemão ligado à fotografia, por comerciante concorrente. Além disso, deixa de fora a 1, que é verdadeira.",
-   "C": "Diz que 2 e 4 são verdadeiras. A 2 faz de Dorner um rival comercial, o que o livro não diz. A 4 coloca a ação no fim do século XIX, mas a história se passa no século XX. A escravidão do trecho é metáfora. Exclui a 1, verdadeira.",
+   "C": "Diz que 2 e 4 são verdadeiras. A 2 faz de Dorner um rival comercial, e ele é amigo da família. A 4 data a ação no fim do século XIX por causa de uma metáfora. Deixa de fora a 1, que é verdadeira.",
    "D": "Junta 1 com 3 e 4. A 1 está certa, mas a 3 contradiz \"Havia alguma verdade nesta sentença\". A 4 data a história no século XIX por causa de uma metáfora. Duas afirmativas falsas bastam para derrubar a alternativa.",
    "E": "Marca todas como verdadeiras. A 2, a 3 e a 4 têm cada uma um erro: Dorner não é comerciante concorrente, o narrador concorda com ele, e a ação não é do século XIX."
   },
@@ -101,10 +101,51 @@
  "gab": "A",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "eliminar",
+    "motivo": "'interpretar' não está entre os tipos aceitos (localizar, calcular, comparar, eliminar, concluir). Este passo descarta a afirmativa 2, então o tipo é 'eliminar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "eliminar",
+    "motivo": "'interpretar' não está entre os tipos aceitos. Este passo descarta a afirmativa 4, então o tipo é 'eliminar'.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "A",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Dorner fala de uma servidão disfarçada de convívio (comida, integração ilusória), e não de escravidão legal. O trecho usa a palavra como imagem. Por isso ela não data a história no século XIX. A afirmativa 4 é falsa.",
+    "motivo": "Frase mais curta e clara; tira a afirmação solta sobre o século XX, que não vem do trecho."
+   },
+   {
+    "campo": "resolucao.passos[0].conta",
+    "depois": "\"deixei a família e a cidade\" = Hakim",
+    "motivo": "A conta mostra a ligação entre o trecho e o narrador."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "Diz que 2 e 4 são verdadeiras. A 2 faz de Dorner um rival comercial, e ele é amigo da família. A 4 data a ação no fim do século XIX por causa de uma metáfora. Deixa de fora a 1, que é verdadeira.",
+    "motivo": "Texto mais curto, sem ponto sobre a época do livro que o trecho não prova, e diz o que faltou a quem marcou C."
+   }
+  ],
+  "didatica_alertas": [
+   "Conferir no corretor 1: a afirmativa 4 diz 'final do século XIX'. O romance cobre várias décadas do século XX, e isso sustenta a falsidade da 4. A afirmativa 1 afirma que Hakim é 'filho preferido' e que Emilie 'ensinou o árabe' a ele, detalhes que dependem do livro e valem uma nova checagem."
+  ],
+  "didatica_ok": true
  }
 }

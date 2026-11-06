@@ -17,7 +17,7 @@
    "simbolos": [
     [
      "contraposição",
-     "relação em que dois termos são postos um contra o outro, destacando a diferença entre eles"
+     "relação em que dois termos são postos um contra o outro, para mostrar a diferença entre eles"
     ],
     [
      "RAIS",
@@ -29,35 +29,39 @@
     ],
     [
      "direito de imagem",
-     "direito de lucrar com o uso da imagem do jogador, como em propagandas"
+     "direito de ganhar dinheiro com a imagem do jogador, como em propagandas"
+    ],
+    [
+     "distorção",
+     "diferença que deixa um dado longe da realidade"
     ]
    ]
   },
-  "pista": "Para cada afirmativa, descubra de qual fonte vem o dado (RAIS ou CBF) e o que o texto apresenta como causa e o que apresenta como efeito.",
+  "pista": "Em cada afirmativa, veja de que fonte vem o dado (RAIS ou CBF) e o que o texto põe como causa e o que põe como efeito.",
   "passos": [
    {
     "faz": "Julgue a afirmativa 1",
     "conta": "'mais para pequenos comerciantes locais do que para grandes financiadores'",
     "porque": "A estrutura 'mais para X do que para Y' coloca dois tipos de patrocinador frente a frente e opõe o pequeno ao grande. É contraposição, então a afirmativa é verdadeira.",
-    "tipo": "interpretar"
+    "tipo": "comparar"
    },
    {
     "faz": "Julgue a afirmativa 2",
-    "conta": "'um salário mínimo (998 reais)… isso quando não há atraso no pagamento'",
+    "conta": "'998 reais... quando não há atraso'",
     "porque": "O texto diz que os 22 em campo 'são um retrato do precário mercado de trabalho da bola'. Salário baixo e atraso aparecem como sinais dessa precariedade. Verdadeira.",
     "tipo": "localizar"
    },
    {
     "faz": "Julgue a afirmativa 3",
-    "conta": "RAIS: '54% até três salários mínimos'; CBF: 'apenas um jogador recebia mais de 500 mil'",
-    "porque": "O dado dos 500 mil vem da CBF, não da RAIS. O texto também não explica a distorção por essa diferença: diz que o salário em carteira é só parte do que o atleta recebe. Falsa.",
+    "conta": "RAIS: 54% até 3 salários\nCBF: 1 jogador acima de 500 mil",
+    "porque": "O dado dos 500 mil vem da CBF, não da RAIS. A afirmativa também diz que a distorção existe 'porque' uns ganham pouco e outros muito. O texto dá outra razão: o salário em carteira é só parte do que o atleta recebe. Falsa.",
     "tipo": "localizar"
    },
    {
     "faz": "Julgue a afirmativa 4",
     "conta": "'não há direitos de imagem, já que não há imagem a ser vendida'",
-    "porque": "Para o texto, não há direito de imagem porque não há imagem a vender. A afirmativa inverte a causa: faz da falta de direito a razão de não haver comercialização. Falsa.",
-    "tipo": "interpretar"
+    "porque": "No texto, a causa é não haver imagem a vender, e o efeito é não haver direito de imagem. A afirmativa troca os dois: diz que a falta do direito explica a falta de comercialização. Falsa.",
+    "tipo": "comparar"
    },
    {
     "faz": "Reúna as verdadeiras",
@@ -102,10 +106,95 @@
  "gab": "D",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[0].tipo",
+    "depois": "comparar",
+    "motivo": "'interpretar' não é um tipo válido. Os tipos aceitos são localizar, calcular, comparar, eliminar e concluir. O passo põe frente a frente os dois tipos de patrocinador, então o tipo certo é 'comparar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "comparar",
+    "motivo": "'interpretar' não é um tipo válido. O passo compara a relação de causa do texto ('já que não há imagem a ser vendida') com a relação da afirmativa 4, que está invertida. O tipo certo é 'comparar'.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[2]",
+    "depois": {
+     "faz": "Julgue a afirmativa 3",
+     "conta": "RAIS: 54% até 3 salários\nCBF: 1 jogador acima de 500 mil",
+     "porque": "O dado dos 500 mil vem da CBF, não da RAIS. A afirmativa também diz que a distorção existe 'porque' uns ganham pouco e outros muito. O texto dá outra razão: o salário em carteira é só parte do que o atleta recebe. Falsa.",
+     "tipo": "localizar"
+    },
+    "motivo": "Conta curta para caber no celular e causa da distorção explicada com clareza."
+   },
+   {
+    "campo": "resolucao.passos[0].conta",
+    "depois": "'mais para pequenos comerciantes locais do que para grandes financiadores'",
+    "motivo": "Mantido o trecho entre aspas; sem mudança de fato."
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "'998 reais... quando não há atraso'",
+    "motivo": "Conta mais curta, cabe na tela."
+   },
+   {
+    "campo": "resolucao.passos[3]",
+    "depois": {
+     "faz": "Julgue a afirmativa 4",
+     "conta": "'não há direitos de imagem, já que não há imagem a ser vendida'",
+     "porque": "No texto, a causa é não haver imagem a vender, e o efeito é não haver direito de imagem. A afirmativa troca os dois: diz que a falta do direito explica a falta de comercialização. Falsa.",
+     "tipo": "comparar"
+    },
+    "motivo": "Deixa clara qual ideia é causa e qual é efeito."
+   },
+   {
+    "campo": "resolucao.pista",
+    "depois": "Em cada afirmativa, veja de que fonte vem o dado (RAIS ou CBF) e o que o texto põe como causa e o que põe como efeito.",
+    "motivo": "Frase mais direta."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "contraposição",
+      "relação em que dois termos são postos um contra o outro, para mostrar a diferença entre eles"
+     ],
+     [
+      "RAIS",
+      "Relação Anual de Informações Sociais, levantamento do antigo Ministério do Trabalho citado no texto"
+     ],
+     [
+      "CBF",
+      "Confederação Brasileira de Futebol, outra fonte de dados citada no texto"
+     ],
+     [
+      "direito de imagem",
+      "direito de ganhar dinheiro com a imagem do jogador, como em propagandas"
+     ],
+     [
+      "distorção",
+      "diferença que deixa um dado longe da realidade"
+     ]
+    ],
+    "motivo": "'Distorção' é termo que aparece na afirmativa 3 e no texto; faltava explicar."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

@@ -123,7 +123,7 @@
    "sub": "F04.1",
    "titulo": "Trabalho de uma força",
    "pontos": [
-    "Só conta a parte da força ao longo do deslocamento.",
+    "Conta só a parte da força no deslocamento.",
     "θ < 90°: motor (+); 90°: nulo; > 90°: resistente (−).",
     "Gráfico F × s: área, com sinal."
    ],
@@ -233,7 +233,8 @@
    "gera",
    "lente-a",
    "lente-b",
-   "lente-a-volta"
+   "lente-a-volta",
+   "lente-b"
   ],
   "pendencias": [
    "Os slides 'Como cai na prova' não trazem o peso (alta, média, baixa) de forma explícita; o peso do termômetro foi inferido pela variedade de bancas citadas em cada conteúdo (F04.1, F04.3 e F04.4 mais citados que F04.2 e F04.5). A lente de fatos pode confirmar ou ajustar.",
@@ -274,125 +275,14 @@
   ],
   "lente_b": [
    {
-    "campo": "mapa.ramos[0].chave",
-    "depois": "W = F·d·cosθ; força variável: área do gráfico",
-    "motivo": "Corta para menos de 12 palavras, sem mudar o conteúdo."
+    "campo": "telas[2].pontos[1]",
+    "depois": "θ < 90°: motor (+); 90°: nulo; > 90°: resistente (−).",
+    "motivo": "Texto já estava assim; o corte real está no ponto 0 (abaixo). Mantido sem mudança para não alterar o fato."
    },
    {
-    "campo": "mapa.ramos[3].chave",
-    "depois": "P = W/Δt = F·v; η = útil/total (0 a 1)",
-    "motivo": "Corta para 11 palavras, mantendo as fórmulas e o intervalo de η."
-   },
-   {
-    "campo": "mapa.ramos[4].chave",
-    "depois": "Usina transforma energia; potência = η·ρ·vazão·g·h",
-    "motivo": "Corta para menos de 12 palavras, mantendo a densidade na fórmula."
-   },
-   {
-    "campo": "telas",
-    "depois": [
-     {
-      "sub": "F04.3",
-      "titulo": "Conservação da energia mecânica",
-      "pontos": [
-       "E_M = cinética + potencial.",
-       "Sem atrito: E_M inicial = E_M final.",
-       "Com atrito: W dissipativo = ΔE_M (em geral, negativo)."
-      ],
-      "formula": "\\begin{gathered} E_{M,A} = E_{M,B} \\\\ W_{diss} = E_{M,B} - E_{M,A} \\\\ v = \\sqrt{2 \\cdot g \\cdot h} \\end{gathered}",
-      "pegadinha": "Atrito não destrói energia: vira calor. Topo do looping: v² mínimo = g·R, não zero.",
-      "visual": {
-       "tipo": "animacao",
-       "descricao": "Rampa com ponto A no alto e B embaixo; barras de potencial, cinética e mecânica (laranja #F27700).",
-       "movimento": [
-        "Na descida, a potencial esvazia e a cinética enche.",
-        "A barra mecânica fica igual sem atrito.",
-        "Com atrito, a mecânica encolhe e a térmica cresce."
-       ]
-      }
-     },
-     {
-      "sub": "F04.4",
-      "titulo": "Potência e rendimento",
-      "pontos": [
-       "Potência média é trabalho dividido por tempo; unidade watt (J/s).",
-       "Força constante a favor do movimento: P = F·v.",
-       "Rendimento: útil dividido por total, entre 0 e 1."
-      ],
-      "formula": "\\begin{gathered} P_m = \\frac{W}{\\Delta t} \\quad P = F \\cdot v \\\\ \\eta = \\frac{P_U}{P_T} \\\\ 1\\,\\text{kWh} = 3{,}6 \\cdot 10^6\\,\\text{J} \\\\ 1\\,\\text{cv} \\cong 735\\,\\text{W} \\end{gathered}",
-      "pegadinha": "kWh é energia, não potência (3,6·10⁶ J); rendimento não passa de 100%.",
-      "visual": {
-       "tipo": "animacao",
-       "descricao": "Barra de potência total entra no motor e se divide em útil (laranja #F27700) e dissipada (cinza).",
-       "movimento": [
-        "A barra total entra no motor.",
-        "Divide-se em útil e dissipada.",
-        "Aparece a fração útil sobre total."
-       ]
-      }
-     },
-     {
-      "sub": "F04.1",
-      "titulo": "Trabalho de uma força",
-      "pontos": [
-       "Só conta a parte da força ao longo do deslocamento.",
-       "θ < 90°: motor (+); 90°: nulo; > 90°: resistente (−).",
-       "Gráfico F × s: área, com sinal."
-      ],
-      "formula": "\\begin{gathered} W = F \\cdot d \\cdot \\cos\\theta \\\\ W_P = -m \\cdot g \\cdot (h_f - h_i) \\\\ W_{el} = -\\frac{k}{2} \\cdot (x_f^2 - x_i^2) \\end{gathered}",
-      "pegadinha": "No chão horizontal, peso e normal não trabalham; no elevador, a normal trabalha.",
-      "visual": {
-       "tipo": "animacao",
-       "descricao": "Seta F em laranja #F27700 gira de 0° a 180° sobre uma caixa que anda; medidor W com faixas motor, nulo e resistente.",
-       "movimento": [
-        "Em 0°, W = +F · d.",
-        "Em 90°, a projeção zera: nulo.",
-        "Acima de 90°, W fica negativo."
-       ]
-      }
-     },
-     {
-      "sub": "F04.2",
-      "titulo": "Energia cinética e potencial",
-      "pontos": [
-       "Cinética cresce com v²: velocidade em dobro, energia 4 vezes maior.",
-       "Gravitacional depende da referência; elástica nunca é negativa.",
-       "Teorema: trabalho da resultante = variação da energia cinética."
-      ],
-      "formula": "\\begin{gathered} E_C = \\frac{m \\cdot v^2}{2} \\quad E_{PG} = m \\cdot g \\cdot h \\\\ E_{PEl} = \\frac{k \\cdot x^2}{2} \\quad W_{res} = \\Delta E_C \\end{gathered}",
-      "pegadinha": "Velocidade constante: trabalho total nulo, mas forças isoladas podem trabalhar.",
-      "visual": {
-       "tipo": "animacao",
-       "descricao": "Carro de 1 000 kg a 20 m/s freia em 40 m; barra de energia cinética em laranja #F27700.",
-       "movimento": [
-        "A barra começa cheia, com 200 000 J.",
-        "Perde 50 000 J a cada 10 m.",
-        "Para em 40 m: F = 5 000 N."
-       ]
-      }
-     },
-     {
-      "sub": "F04.5",
-      "titulo": "Usinas e impacto ambiental",
-      "pontos": [
-       "Hidrelétrica: potencial gravitacional → cinética → elétrica.",
-       "Termelétrica: química → térmica → cinética do vapor → elétrica.",
-       "Eólica: vento → elétrica; fotovoltaica: luz → elétrica, sem turbina."
-      ],
-      "formula": "P = \\eta \\cdot \\rho \\cdot Z \\cdot g \\cdot h",
-      "pegadinha": "Renovável não é sem impacto; elétrica = rendimento × entrada.",
-      "visual": {
-       "tipo": "animacao",
-       "descricao": "Corte de hidrelétrica: represa, conduto, turbina, gerador e torre; rótulos de energia em laranja #F27700.",
-       "movimento": [
-        "A água desce: potencial vira cinética.",
-        "A turbina e o gerador giram.",
-        "A eletricidade segue pelos cabos."
-       ]
-      }
-     }
-    ],
-    "motivo": "Telas F04.3, F04.1 e F04.5 reduzidas a até 40 palavras (tópicos + pegadinha), sem mudar fatos. As demais ficam iguais e a ordem pelo termômetro está mantida."
+    "campo": "telas[2].pontos[0]",
+    "depois": "Conta só a parte da força no deslocamento.",
+    "motivo": "A tela F04.1 tinha 41 palavras (limite 40). Cortar 'ao longo do' e 'a parte da força na direção' mantém o sentido (só a componente da força na direção do deslocamento) e baixa para 40 ou menos."
    }
   ],
   "alertas": [],

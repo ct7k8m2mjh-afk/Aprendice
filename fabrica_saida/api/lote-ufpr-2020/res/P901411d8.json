@@ -13,8 +13,8 @@
    "texto": "Conectivo se escolhe pela relação entre as duas ideias que ele liga, não pela palavra solta. Em cada lacuna, pergunte o que a segunda ideia faz com a primeira: contraria, contrasta, explica ou conclui. Depois teste trocando por um conectivo-modelo e veja se o sentido se mantém.",
    "formulas": [
     "oposição: mas, porém, contudo, no entanto",
-    "conclusão: portanto, logo, por isso, então",
-    "contraste entre dois sujeitos: já (início de frase), enquanto"
+    "conclusão ou sequência: portanto, logo, por isso, então",
+    "contraste entre dois sujeitos: já (no início da frase), enquanto"
    ],
    "simbolos": [
     [
@@ -31,30 +31,30 @@
     ]
    ]
   },
-  "pista": "Em cada lacuna, ligue a ideia anterior à seguinte: a segunda contraria a primeira, contrasta com ela ou tira um resultado dela? Não esqueça que a lacuna 3 vem entre vírgulas.",
+  "pista": "Em cada lacuna, pergunte o que a segunda ideia faz com a primeira: contraria, contrasta ou é resultado dela? Atenção: a lacuna 3 está entre vírgulas, no meio da frase.",
   "passos": [
    {
     "faz": "Leia a lacuna 1 e ache a relação",
     "conta": "\"atacar as pontas ... ______ essa é a parte em que o vírus muda com mais rapidez\"",
-    "porque": "Atacar as pontas parece uma boa estratégia, mas essa é a parte que muda mais rápido, então o ataque falha. A segunda ideia quebra a expectativa criada pela primeira: é oposição, e cabe \"mas\".",
+    "porque": "Atacar as pontas parece boa estratégia. Mas essa é a parte do vírus que muda mais rápido, então o ataque falha. A segunda ideia contraria a primeira: é oposição, e cabe \"mas\".",
     "tipo": "localizar"
    },
    {
     "faz": "Veja o que a lacuna 2 faz",
     "conta": "\"anticorpos humanos ... ______ os anticorpos da lhama\"",
-    "porque": "O texto contrapõe os anticorpos humanos aos da lhama, que atacam partes que não mutam. \"Já\" no início da frase marca contraste entre dois termos e cabe. \"Mas\" também funcionaria, então esta lacuna sozinha não decide.",
+    "porque": "O texto compara os anticorpos humanos com os da lhama, que atacam partes que não mudam. \"Já\" no início da frase marca esse contraste. \"Mas\" também caberia; por isso esta lacuna sozinha não decide.",
     "tipo": "comparar"
    },
    {
     "faz": "Analise a lacuna 3",
     "conta": "\"Os cientistas, ______, identificaram quatro anticorpos\"",
-    "porque": "A frase anterior diz que a equipe infectou lhamas e analisou o sangue. Identificar os anticorpos é o resultado desse trabalho, sem oposição nenhuma, e \"então\" (conclusão ou sequência) cabe. \"Porém\" criaria um contraste que o texto não tem.",
+    "porque": "A frase anterior diz que a equipe infectou lhamas e analisou o sangue. Identificar os anticorpos é o que veio depois, sem oposição. \"Então\" (sequência ou conclusão) cabe. \"Porém\" criaria um contraste que o texto não tem.",
     "tipo": "comparar"
    },
    {
     "faz": "Elimine pelas lacunas 1 e 3",
     "conta": "\"por isso\" e \"portanto\" na 1; \"porém\" na 3",
-    "porque": "Conclusivos na lacuna 1 fariam do ataque às pontas a causa de elas mudarem rápido, o que o texto não diz. \"Porém\" na lacuna 3 inventa uma oposição. Só uma alternativa evita as duas falhas.",
+    "porque": "\"Por isso\" e \"portanto\" na lacuna 1 diriam que atacar as pontas é a causa de elas mudarem rápido, o que o texto não diz. \"Porém\" na lacuna 3 inventa uma oposição. Só a alternativa C evita as duas falhas.",
     "tipo": "eliminar"
    },
    {
@@ -102,10 +102,57 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
+  },
+  "fatos": [],
+  "fatos_ok": true,
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.pista",
+    "depois": "Em cada lacuna, pergunte o que a segunda ideia faz com a primeira: contraria, contrasta ou é resultado dela? Atenção: a lacuna 3 está entre vírgulas, no meio da frase.",
+    "motivo": "Frase mais direta; 'contrasta' e 'resultado' em palavras simples."
+   },
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "oposição: mas, porém, contudo, no entanto",
+     "conclusão ou sequência: portanto, logo, por isso, então",
+     "contraste entre dois sujeitos: já (no início da frase), enquanto"
+    ],
+    "motivo": "'Então' também marca sequência, o que sustenta a lacuna 3."
+   },
+   {
+    "campo": "resolucao.passos[0].porque",
+    "depois": "Atacar as pontas parece boa estratégia. Mas essa é a parte do vírus que muda mais rápido, então o ataque falha. A segunda ideia contraria a primeira: é oposição, e cabe \"mas\".",
+    "motivo": "Frases mais curtas, sem duplo sentido."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "O texto compara os anticorpos humanos com os da lhama, que atacam partes que não mudam. \"Já\" no início da frase marca esse contraste. \"Mas\" também caberia; por isso esta lacuna sozinha não decide.",
+    "motivo": "Clareza: 'compara' em lugar de 'contrapõe'."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "A frase anterior diz que a equipe infectou lhamas e analisou o sangue. Identificar os anticorpos é o que veio depois, sem oposição. \"Então\" (sequência ou conclusão) cabe. \"Porém\" criaria um contraste que o texto não tem.",
+    "motivo": "Simplifica e explicita a ideia de sequência."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "\"Por isso\" e \"portanto\" na lacuna 1 diriam que atacar as pontas é a causa de elas mudarem rápido, o que o texto não diz. \"Porém\" na lacuna 3 inventa uma oposição. Só a alternativa C evita as duas falhas.",
+    "motivo": "Indica a letra que sobra e usa frases curtas."
+   }
+  ],
+  "didatica_alertas": [
+   "Os campos 'tema', 'conteudo' e 'nivel' da resolução (P04, P04.2, 4) divergem da classificação atual informada (P10, P10.1, 5). Os campos não foram alterados; o corretor 1 deve conferir qual vale."
+  ],
+  "didatica_ok": true
  }
 }

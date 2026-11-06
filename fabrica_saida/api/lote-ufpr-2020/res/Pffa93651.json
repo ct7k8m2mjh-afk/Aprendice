@@ -29,7 +29,7 @@
     ]
    ]
   },
-  "pista": "Escreva primeiro a receita e o custo em função de n. Depois pergunte: o lucro é a soma ou a diferença deles? E 'no mínimo' vira que sinal?",
+  "pista": "Escreva primeiro quanto entra (receita) e quanto sai (custo) em função de n. Depois pergunte: o lucro é a soma ou a diferença dos dois? E 'no mínimo' vira qual sinal?",
   "passos": [
    {
     "faz": "Escreva a receita",
@@ -46,7 +46,7 @@
    {
     "faz": "Reescreva o custo em outra forma",
     "conta": "450 + 9n = 9(50 + n)",
-    "porque": "As alternativas usam 9(50 + n). Como 9 × 50 = 450, essa expressão é exatamente o custo total.",
+    "porque": "As alternativas escrevem o custo como 9(50 + n). Como 9 × 50 = 450, essa forma é igual a 450 + 9n. É a mesma conta, só escrita de outro jeito.",
     "tipo": "calcular"
    },
    {
@@ -66,9 +66,9 @@
   "checagem": "Teste n = 100: receita 2000, custo 450 + 900 = 1350, lucro 650, que é menor que 1000. Pela inequação: 2000 − 1350 = 650 e 650 ≥ 1000 é falso. Concordam. Teste n = 150: receita 3000, custo 450 + 1350 = 1800, lucro 1200, que é maior que 1000. A inequação diz 1200 ≥ 1000, verdadeiro. Concordam.",
   "erradas": {
    "A": "20n + 9(50 + n) ≤ 1000 soma a receita ao custo, e não existe lucro assim. Além disso, ≤ diz 'no máximo', mas o enunciado pede 'no mínimo'.",
-   "B": "10(2n − 45) − 9n = 20n − 450 − 9n, que é o lucro correto. O erro está só no sinal: ≤ significa 'no máximo 1000', e o enunciado pede 'no mínimo', ou seja, ≥.",
-   "C": "9(50 + n) − 20n é custo menos receita, o oposto do lucro (dá negativo sempre que há lucro). Assim, exigir que seja ≥ 1000 não faz sentido: o lucro é receita menos custo.",
-   "D": "10(45 + 2n) − 9n = 450 + 20n − 9n. Aqui o custo fixo de 450 foi somado à receita, e não subtraído. O correto é 20n − 450 − 9n."
+   "B": "10(2n − 45) − 9n = 20n − 450 − 9n, que é o lucro certo. Faltou só ler 'no mínimo': isso é ≥ 1000, e a alternativa usa ≤, que significa 'no máximo'.",
+   "C": "9(50 + n) − 20n é custo menos receita, o contrário do lucro. Faltou ver a ordem: lucro é o que entra menos o que sai. Aqui o resultado fica negativo quando há lucro e nunca chega a 1000.",
+   "D": "10(45 + 2n) − 9n = 450 + 20n − 9n. Aqui o 450 aparece somando, como se fosse receita. Faltou lembrar que o custo fixo é gasto e sai do lucro: o certo é 20n − 450 − 9n."
   },
   "armadilha": "Há duas pegadinhas: o lucro subtrai o custo (inclusive o fixo de 450), e 'no mínimo' é ≥, não ≤.",
   "alerta": "",
@@ -85,7 +85,7 @@
   },
   {
    "nome": "teste numérico",
-   "ideia": "Com n = 150, o lucro real é 3000 − 1800 = 1200 (≥ 1000). Só a alternativa E dá 1200 e verdadeiro: 20·150 − 9·200 = 1200 ≥ 1000. Em A, 3000 + 1800 ≤ 1000 é falso; em C, 1800 − 3000 ≥ 1000 é falso."
+   "ideia": "Com n = 150, o lucro real é 3000 − 1800 = 1200 (≥ 1000). Só a alternativa E dá 1200 e verdadeiro: 20·150 − 9·200 = 1200 ≥ 1000. Em A, 3000 + 1800 ≤ 1000 é falso; em B, 1200 ≤ 1000 é falso; em C, 1800 − 3000 ≥ 1000 é falso; em D, a expressão dá 3450 − 1350 = 2100, que não é o lucro real de 1200."
   }
  ],
  "quadro": [
@@ -125,10 +125,53 @@
  "gab": "E",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "caminhos[1].ideia",
+    "depois": "Com n = 150, o lucro real é 3000 − 1800 = 1200 (≥ 1000). Só a alternativa E dá 1200 e verdadeiro: 20·150 − 9·200 = 1200 ≥ 1000. Em A, 3000 + 1800 ≤ 1000 é falso; em B, 1200 ≤ 1000 é falso; em C, 1800 − 3000 ≥ 1000 é falso; em D, a expressão dá 3450 − 1350 = 2100, que não é o lucro real de 1200.",
+    "motivo": "O teste numérico citava só A e C. Refazendo a conta com n = 150, D dá 2100 ≥ 1000, que também é verdadeiro. Esse teste só derruba D porque o valor da expressão (2100) não é o lucro real, e não pelo sinal. Sem isso, o aluno poderia achar que o teste não serve para descartar D. Também incluí B (1200 ≤ 1000, falso).",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E",
+  "didatica": [
+   {
+    "campo": "resolucao.pista",
+    "depois": "Escreva primeiro quanto entra (receita) e quanto sai (custo) em função de n. Depois pergunte: o lucro é a soma ou a diferença dos dois? E 'no mínimo' vira qual sinal?",
+    "motivo": "Troca 'receita e custo' sem explicação por 'quanto entra e quanto sai', mais claro para o aluno."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "As alternativas escrevem o custo como 9(50 + n). Como 9 × 50 = 450, essa forma é igual a 450 + 9n. É a mesma conta, só escrita de outro jeito.",
+    "motivo": "Deixa claro que é uma reescrita equivalente, sem mudar o valor."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "9(50 + n) − 20n é custo menos receita, o contrário do lucro. Faltou ver a ordem: lucro é o que entra menos o que sai. Aqui o resultado fica negativo quando há lucro e nunca chega a 1000.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou C e evita a frase confusa 'não faz sentido'."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "10(45 + 2n) − 9n = 450 + 20n − 9n. Aqui o 450 aparece somando, como se fosse receita. Faltou lembrar que o custo fixo é gasto e sai do lucro: o certo é 20n − 450 − 9n.",
+    "motivo": "Explicita o que faltou no raciocínio de quem marcou D."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "10(2n − 45) − 9n = 20n − 450 − 9n, que é o lucro certo. Faltou só ler 'no mínimo': isso é ≥ 1000, e a alternativa usa ≤, que significa 'no máximo'.",
+    "motivo": "Frase mais curta e direta sobre o que faltou."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

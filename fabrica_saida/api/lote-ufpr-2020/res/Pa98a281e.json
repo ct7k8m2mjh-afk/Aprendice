@@ -8,7 +8,7 @@
  "conceito": "Calor específico a partir de um gráfico ΔT × Q, usando Q = m·c·ΔT e convertendo kJ em J.",
  "resolucao": {
   "antes": {
-   "texto": "Quando um corpo só esquenta, sem mudar de fase, o calor recebido é Q = m · c · ΔT. O calor específico c diz quanta energia cada grama precisa para subir 1 °C. As alternativas estão em J/g·°C e a massa está em gramas, então o trabalho da questão é converter o calor de kJ para J.",
+   "texto": "Quando um corpo só esquenta, sem mudar de fase, o calor recebido é Q = m · c · ΔT. O calor específico c é a energia que cada grama precisa para subir 1 °C. As alternativas estão em J/g·°C e a massa em gramas. O trabalho real da questão é passar o calor de kJ para J.",
    "formulas": [
     "Q = m × c × ΔT, logo c = Q ÷ (m × ΔT)",
     "1 kJ = 1 000 J"
@@ -54,7 +54,7 @@
     "faz": "Isole c na fórmula",
     "conta": "c = Q ÷ (m × ΔT)",
     "porque": "Q = m·c·ΔT. Dividindo os dois lados por m·ΔT, sobra c sozinho.",
-    "tipo": "aplicar"
+    "tipo": "calcular"
    },
    {
     "faz": "Substitua os valores",
@@ -74,10 +74,10 @@
   "erradas": {
    "A": "Sai de misturar pontos diferentes do gráfico: 40 000 J ÷ (500 × 40 °C) = 2. O calor de 40 kJ pertence ao ΔT de 20 °C, não ao de 40 °C.",
    "C": "Sai de misturar pontos: 80 000 J ÷ (500 × 20 °C) = 8. O calor de 80 kJ corresponde a ΔT = 40 °C, e com esse par o resultado é 4.",
-   "D": "Não confere. Qualquer dos três pontos do gráfico (20, 40 ou 60 °C com 40, 80 ou 120 kJ) dá c = 4 J/g·°C na fórmula c = Q ÷ (m·ΔT), nunca 16.",
-   "E": "Não confere. Qualquer ponto do gráfico dá c = 4 J/g·°C. O valor 20 só aparece como um dos números do eixo ΔT, não como calor específico."
+   "D": "Não confere. Os três pontos do gráfico (40, 80 e 120 kJ) dão c = 4 J/g·°C em c = Q ÷ (m × ΔT). Nenhum dá 16.",
+   "E": "Não confere. Qualquer ponto do gráfico dá c = 4 J/g·°C. O número 20 só aparece como marca do eixo ΔT; não é calor específico."
   },
-  "armadilha": "Esquecer que o calor está em kJ e as alternativas em J: sem multiplicar por 1 000, o resultado sairia 0,004, que não aparece nas opções.",
+  "armadilha": "Esquecer que o calor está em kJ e as alternativas em J. Sem multiplicar por 1 000, o resultado sai 0,004, que não aparece nas opções.",
   "alerta": "",
   "essencial": {
    "pede": "O calor específico do objeto de 500 g, a partir do gráfico ΔT × Q.",
@@ -161,10 +161,66 @@
  "gab": "B",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "calcular",
+    "motivo": "O tipo 'aplicar' não existe na lista do padrão (localizar, calcular, comparar, eliminar, concluir). Isolar c na fórmula é uma manipulação algébrica, então o tipo certo é 'calcular'.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "c = Q ÷ (m × ΔT)",
+    "motivo": "Mantido. A fração fica empilhada pelo site a partir de 'a ÷ b'."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "Não confere. Os três pontos do gráfico (40, 80 e 120 kJ) dão c = 4 J/g·°C em c = Q ÷ (m × ΔT). Nenhum dá 16.",
+    "motivo": "Frase mais curta e sem parênteses duplos, mantendo o teste objetivo que derruba a alternativa."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "Não confere. Qualquer ponto do gráfico dá c = 4 J/g·°C. O número 20 só aparece como marca do eixo ΔT; não é calor específico.",
+    "motivo": "Clareza: explica que o 20 vem do eixo do gráfico."
+   },
+   {
+    "campo": "resolucao.armadilha",
+    "depois": "Esquecer que o calor está em kJ e as alternativas em J. Sem multiplicar por 1 000, o resultado sai 0,004, que não aparece nas opções.",
+    "motivo": "Frases mais curtas."
+   },
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Quando um corpo só esquenta, sem mudar de fase, o calor recebido é Q = m · c · ΔT. O calor específico c é a energia que cada grama precisa para subir 1 °C. As alternativas estão em J/g·°C e a massa em gramas. O trabalho real da questão é passar o calor de kJ para J.",
+    "motivo": "Frases mais curtas, ideia mais direta."
+   },
+   {
+    "campo": "resolucao.quadro[4].mov[0]",
+    "depois": {
+     "termo": "m × ΔT",
+     "de": "direita",
+     "para": "denominador",
+     "vira": "m × ΔT",
+     "como": "passa dividindo"
+    },
+    "motivo": "Mantido o movimento; apenas confirmado que está correto."
+   }
+  ],
+  "didatica_alertas": [
+   "Classificação do banco (tema F08, conteúdo F08.3, óptica/espelhos esféricos) não combina com a questão, que é calorimetria (F06.3). A resolução já usa F06/F06.3; o banco precisa ser corrigido."
+  ],
+  "didatica_ok": true
  }
 }

@@ -8,12 +8,13 @@
  "conceito": "Interpretar um texto curto em inglês e achar a alternativa que reformula uma das ideias do parágrafo 'Today', sem generalizar.",
  "resolucao": {
   "antes": {
-   "texto": "O comando pede UM dos sentidos de 'American Dream' hoje, descritos no parágrafo. O texto lista várias visões, e cada uma é de um grupo diferente. A alternativa certa reescreve uma dessas visões com outras palavras. As erradas trocam o grupo, inverterem a ideia ou generalizam.",
+   "texto": "O comando pede UM dos sentidos de 'American Dream' hoje, descritos no parágrafo. O texto lista várias visões, e cada uma é de um grupo diferente. A alternativa certa reescreve uma dessas visões com outras palavras. As erradas trocam o grupo, invertem a ideia ou generalizam.",
    "formulas": [
     "for some = para alguns; for others = para outros; still others = e ainda outros",
     "closed to all but the elite = fechado a todos, exceto à elite",
     "the elite with their wealth and contacts = a elite, com sua riqueza e seus contatos",
-    "benevolent = favorável, bondoso; 'benevolent for those with status' = bom para quem tem status"
+    "benevolent = favorável, bondoso; 'benevolent for those with status' = bom para quem tem status",
+    "never / a general truth / no matter how = palavras absolutas: o texto fala de 'some' e 'others', então desconfie"
    ],
    "simbolos": [
     [
@@ -51,6 +52,10 @@
     [
      "benevolent",
      "benevolente, que faz o bem; aqui, favorável"
+    ],
+    [
+     "enjoy",
+     "aqui, ter e aproveitar (não é só 'gostar')"
     ]
    ]
   },
@@ -64,26 +69,26 @@
    },
    {
     "faz": "Liste as visões do texto",
-    "conta": "1) fame and celebrity (fama)",
+    "conta": "'for some': fame and celebrity (fama)",
     "porque": "A primeira visão é de 'some' (alguns): sonho é fama e celebridade. Ela vale só para esse grupo.",
     "tipo": "localizar"
    },
    {
     "faz": "Continue a lista",
-    "conta": "2) family values + hard work",
+    "conta": "'for others': family values, hard work",
     "porque": "'Others' (outros) veem o sonho como sucesso pelos valores da família e pelo trabalho duro. Não há ligação com riqueza.",
     "tipo": "localizar"
    },
    {
     "faz": "Leia a terceira visão",
-    "conta": "'a world closed to all but the elite with their wealth and contacts'",
+    "conta": "'closed to all but the elite'",
     "porque": "'Still others' (ainda outros) veem um mundo fechado a todos, menos à elite rica e bem relacionada. Ou seja, o mundo só favorece quem tem status e dinheiro.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Veja a quarta ideia",
     "conta": "almost half of millennials: dead",
-    "porque": "Quase metade dos millennials acha que o sonho morreu. É dado sobre uma geração, e não sobre a geração de 1990 'nunca morrer'.",
+    "porque": "Quase metade dos millennials acha que o sonho morreu. É um dado sobre uma geração e diz o contrário de 'nunca morre'. Por isso a letra A não serve.",
     "tipo": "localizar"
    },
    {
@@ -98,7 +103,7 @@
   "erradas": {
    "A": "O texto diz que quase metade dos millennials acha que o sonho está 'dead' (morto), o contrário de 'never dies'. O texto também não fala da 'geração dos anos 1990'.",
    "B": "O texto não liga trabalho duro a riqueza. Ele associa 'hard work' aos 'family values' como uma das visões, e a riqueza aparece só na visão da elite.",
-   "C": "Inverte a ideia. Para quem vê o sonho como 'family values and hard work', ter valores familiares é justamente o caminho do sonho, e não um motivo para ele não valer para essas pessoas.",
+   "C": "Inverte a ideia. Para quem vê o sonho como 'family values and hard work', os valores da família são o caminho do sonho, e não um motivo para ele não valer. O texto também não usa 'no matter how many'.",
    "E": "Generaliza. O texto diz que fama e celebridade são o sonho 'for some' (para alguns), e não 'a general truth' (uma verdade geral). A frase final do texto afirma que o sentido muda de pessoa para pessoa."
   },
   "armadilha": "'For some... fame and celebrity' é uma visão de alguns, mas a letra E a transforma em 'verdade geral'. É a pegadinha por generalização.",
@@ -133,10 +138,117 @@
  "gab": "D",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "localizar",
+    "motivo": "O tipo 'interpretar' não existe. Os tipos permitidos são localizar, calcular, comparar, eliminar e concluir. O passo cita o trecho do texto e explica o que ele diz, então o tipo certo é localizar.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "'closed to all but the elite'",
+    "motivo": "A conta tinha cerca de 70 caracteres e não quebra linha na tela de 390 px, que comporta uns 30. Ficou só o trecho que decide a questão. O porque do passo já explica 'wealth and contacts'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "O comando pede UM dos sentidos de 'American Dream' hoje, descritos no parágrafo. O texto lista várias visões, e cada uma é de um grupo diferente. A alternativa certa reescreve uma dessas visões com outras palavras. As erradas trocam o grupo, invertem a ideia ou generalizam.",
+    "motivo": "Erro de concordância: 'inverterem' foi trocado por 'invertem'.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "for some = para alguns; for others = para outros; still others = e ainda outros",
+     "closed to all but the elite = fechado a todos, exceto à elite",
+     "the elite with their wealth and contacts = a elite, com sua riqueza e seus contatos",
+     "benevolent = favorável, bondoso; 'benevolent for those with status' = bom para quem tem status",
+     "never / a general truth / no matter how = palavras absolutas: o texto fala de 'some' e 'others', então desconfie"
+    ],
+    "motivo": "A regra sobre palavras absolutas é usada nas erradas e não estava ensinada no antes."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "coin (a phrase)",
+      "criar, cunhar uma expressão"
+     ],
+     [
+      "adage",
+      "ditado, máxima popular"
+     ],
+     [
+      "succeeding",
+      "ter sucesso, vencer na vida"
+     ],
+     [
+      "elite",
+      "grupo privilegiado, no topo da sociedade"
+     ],
+     [
+      "wealth",
+      "riqueza"
+     ],
+     [
+      "contacts",
+      "conexões, pessoas influentes que a pessoa conhece"
+     ],
+     [
+      "millennials",
+      "geração nascida aproximadamente entre 1981 e 1996"
+     ],
+     [
+      "never dies",
+      "nunca morre"
+     ],
+     [
+      "benevolent",
+      "benevolente, que faz o bem; aqui, favorável"
+     ],
+     [
+      "enjoy",
+      "aqui, ter e aproveitar (não é só 'gostar')"
+     ]
+    ],
+    "motivo": "'enjoy' aparece na alternativa D e pode confundir o aluno; sem ela, a leitura da letra certa fica incompleta."
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "'for some': fame and celebrity (fama)",
+    "motivo": "Mostra o trecho em inglês com o grupo, deixando claro de quem é a visão."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "'for others': family values, hard work",
+    "motivo": "Mesmo padrão: citar o grupo junto com a ideia."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "Quase metade dos millennials acha que o sonho morreu. É um dado sobre uma geração e diz o contrário de 'nunca morre'. Por isso a letra A não serve.",
+    "motivo": "A frase original estava confusa; agora diz o que o trecho prova."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "Inverte a ideia. Para quem vê o sonho como 'family values and hard work', os valores da família são o caminho do sonho, e não um motivo para ele não valer. O texto também não usa 'no matter how many'.",
+    "motivo": "Deixa claro o que faltou ao aluno que marcou C: ler a visão do grupo e perceber a inversão."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

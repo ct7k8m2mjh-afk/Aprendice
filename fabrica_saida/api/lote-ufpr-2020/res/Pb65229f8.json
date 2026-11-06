@@ -24,14 +24,22 @@
     ],
     [
      "observador inercial",
-     "observador sem aceleração, que não altera a leitura do movimento aqui"
+     "observador que não está acelerando; só informa que o movimento é medido de modo correto, e não entra na conta"
+    ],
+    [
+     "trapézio",
+     "figura de quatro lados com dois lados paralelos, chamados de bases"
+    ],
+    [
+     "tracejado",
+     "linhas pontilhadas do gráfico, que ajudam a ler o valor de v em t = 5 s"
     ]
    ]
   },
   "pista": "Que figura geométrica fica entre a reta do gráfico, o eixo do tempo e as linhas verticais em t = 0 e t = 5 s?",
   "passos": [
    {
-    "faz": "Leia os valores no gráfico",
+    "faz": "Leia a velocidade em t = 0",
     "conta": "t = 0 → v = 2,0 m/s",
     "porque": "O eixo vertical marca 2,0 m/s no começo da reta, no instante t = 0.",
     "tipo": "localizar"
@@ -44,9 +52,9 @@
    },
    {
     "faz": "Identifique a figura da área",
-    "conta": "trapézio: bases 2,0 e 1,0",
+    "conta": "bases: 2,0 e 1,0; altura: 5",
     "porque": "As duas bases são as velocidades em 0 e em 5 s, que são lados paralelos (verticais). A altura é o intervalo de tempo, 5 s.",
-    "tipo": "interpretar"
+    "tipo": "comparar"
    },
    {
     "faz": "Calcule a área do trapézio",
@@ -66,8 +74,8 @@
   "erradas": {
    "A": "5,0 m sai de usar só a velocidade final: 1,0 × 5 = 5,0. Isso é a área do retângulo de altura 1,0, que ignora o triângulo acima dele. O objeto andou mais rápido que 1,0 m/s no começo.",
    "C": "10,0 m sai de usar só a velocidade inicial: 2,0 × 5 = 10,0. Isso é um retângulo de altura 2,0, mas a velocidade vai caindo, então a área real é menor. Esse valor também é o deslocamento total de 0 a 10 s, não de 0 a 5 s.",
-   "D": "12,5 m não confere: seria mais que o deslocamento total até o objeto parar em 10 s (área do triângulo = 10 m). Como v > 0, o deslocamento só cresce com o tempo, então em 5 s não pode passar de 10 m.",
-   "E": "15,0 m não confere: passa de 10 m, que é a área total do triângulo de 0 a 10 s. Seria preciso velocidade média de 3,0 m/s, maior que a máxima do gráfico (2,0 m/s)."
+   "D": "12,5 m não confere: o objeto nunca anda mais rápido que 2,0 m/s, então em 5 s não passa de 2,0 × 5 = 10 m. Além disso, a área total até parar (0 a 10 s) é só 10 m.",
+   "E": "15,0 m não confere: pediria velocidade média de 15 ÷ 5 = 3,0 m/s, mas a maior velocidade do gráfico é 2,0 m/s. Também passa dos 10 m da área total até parar."
   },
   "armadilha": "Usar um retângulo (2,0 × 5 ou 1,0 × 5) em vez do trapézio, esquecendo que a velocidade varia ao longo dos 5 s.",
   "alerta": "",
@@ -134,10 +142,81 @@
  "gab": "B",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "localizar",
+    "motivo": "O guia só aceita estes tipos: localizar, calcular, comparar, eliminar e concluir. \"interpretar\" não está na lista. O passo identifica a figura (trapézio) a partir do gráfico, por isso cabe em \"localizar\".",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "Δx",
+      "deslocamento: quanto a posição do objeto mudou entre dois instantes"
+     ],
+     [
+      "v × t",
+      "gráfico com a velocidade no eixo vertical e o tempo no horizontal"
+     ],
+     [
+      "observador inercial",
+      "observador que não está acelerando; só informa que o movimento é medido de modo correto, e não entra na conta"
+     ],
+     [
+      "trapézio",
+      "figura de quatro lados com dois lados paralelos, chamados de bases"
+     ],
+     [
+      "tracejado",
+      "linhas pontilhadas do gráfico, que ajudam a ler o valor de v em t = 5 s"
+     ]
+    ],
+    "motivo": "Explicar 'trapézio' e 'tracejado', e deixar clara a frase sobre o observador inercial, que podia ter dois sentidos."
+   },
+   {
+    "campo": "resolucao.passos[0].faz",
+    "depois": "Leia a velocidade em t = 0",
+    "motivo": "O comando fica específico e simétrico ao do passo seguinte."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "bases: 2,0 e 1,0; altura: 5",
+    "motivo": "Mostra as bases e a altura no caderno, e não só as bases."
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "comparar",
+    "motivo": "Identificar a figura é um raciocínio, não uma leitura direta do gráfico."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "12,5 m não confere: o objeto nunca anda mais rápido que 2,0 m/s, então em 5 s não passa de 2,0 × 5 = 10 m. Além disso, a área total até parar (0 a 10 s) é só 10 m.",
+    "motivo": "Teste mais direto e simples; o aluno que marcou D vê o limite máximo."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "15,0 m não confere: pediria velocidade média de 15 ÷ 5 = 3,0 m/s, mas a maior velocidade do gráfico é 2,0 m/s. Também passa dos 10 m da área total até parar.",
+    "motivo": "Mostra a conta que derruba a alternativa, de modo claro."
+   }
+  ],
+  "didatica_alertas": [
+   "A classificação (F01.4, nível 3) difere da classificação atual do banco (F02.3, nível 6); parece que o banco está errado, pois é cinemática de gráfico v × t. Conferir."
+  ],
+  "didatica_ok": true
  }
 }

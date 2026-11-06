@@ -25,11 +25,23 @@
     ],
     [
      "ANA",
-     "Agência Nacional de Águas e Saneamento Básico, órgão federal que regula os recursos hídricos"
+     "Agência Nacional de Águas e Saneamento Básico, órgão federal que cuida dos recursos hídricos"
     ],
     [
      "águas subterrâneas",
-     "água armazenada no subsolo, em aquíferos, e retirada por poços"
+     "água guardada no subsolo, em aquíferos, e retirada por poços"
+    ],
+    [
+     "aquífero",
+     "rocha ou camada de terra que guarda água em seus poros"
+    ],
+    [
+     "densidade populacional",
+     "número de habitantes por km²"
+    ],
+    [
+     "irrigação",
+     "uso de água para regar plantações"
     ]
    ]
   },
@@ -37,7 +49,7 @@
   "passos": [
    {
     "faz": "Traduza o que se pede",
-    "conta": "Pede a alternativa CORRETA",
+    "conta": "Pede a CORRETA",
     "porque": "Só uma afirmação é verdadeira. As outras têm uma parte falsa, geralmente uma generalização ou uma causa trocada.",
     "tipo": "localizar"
    },
@@ -45,17 +57,17 @@
     "faz": "Fixe a definição do enunciado",
     "conta": "retirada ÷ disponível",
     "porque": "O estresse não é só falta de chuva nem só excesso de gente. É a relação entre o que se usa e o que existe.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Teste A, B, C e E",
-    "conta": "A: só densidade? B: 'demais áreas'? C: subterrâneas? E: indústria?",
+    "conta": "A: só densidade? B: 'demais'?\nC: subterrâneas? E: indústria?",
     "porque": "A usa a densidade como único critério. B generaliza o risco baixo. C põe uma causa que não explica a África. E inverte o maior uso da água.",
     "tipo": "eliminar"
    },
    {
     "faz": "Teste a alternativa D",
-    "conta": "verão quente e seco + turistas",
+    "conta": "verão seco + turistas",
     "porque": "O turismo concentra a demanda (hotéis, piscinas, irrigação de jardins, abastecimento) justamente na estação em que há menos água.",
     "tipo": "comparar"
    },
@@ -69,10 +81,10 @@
   "resposta": "Alternativa D: no sul da Europa os verões são quentes e secos, e o turismo concentra a demanda de água na época de menor disponibilidade, o que pressiona os sistemas de abastecimento.",
   "checagem": "Releia a definição: retirada ÷ disponível. Em D, o turismo aumenta a retirada e o verão seco reduz a disponibilidade, então a razão sobe. Nas outras, a causa citada não sustenta a conclusão.",
   "erradas": {
-   "A": "Usa a densidade populacional como único critério. O estresse depende de clima e disponibilidade. O Sudeste asiático é úmido e tem muita água. Já áreas pouco povoadas, como o Oriente Médio e a Ásia Central, têm estresse alto por serem áridas.",
-   "B": "A primeira parte está certa: a ANA indica cerca de 12% da água doce do planeta. A segunda é falsa. O risco não se restringe ao semiárido: há estresse também em bacias muito povoadas e irrigadas, como as do Sudeste, e no São Francisco. A água é mal distribuída pelo território.",
-   "C": "Atribui o estresse africano a uma causa única, o uso excessivo de águas subterrâneas. O estresse na África vem sobretudo de clima árido ou irregular, secas, crescimento da demanda e falta de infraestrutura de armazenamento e distribuição. O uso de aquíferos na África é, em geral, pequeno.",
-   "E": "Inverte o maior uso. Nos países andinos, como no resto do mundo, a agricultura irrigada é o maior consumidor de água, acima da indústria e do consumo residencial."
+   "A": "Faltou ver que densidade não decide sozinha. O Sudeste asiático é úmido e tem muita água. Já áreas pouco povoadas, como o Oriente Médio e a Ásia Central, são áridas e têm estresse alto.",
+   "B": "Faltou desconfiar de 'demais áreas'. A primeira parte está certa (cerca de 12% da água doce). A segunda é falsa: há estresse também em bacias muito povoadas e irrigadas, como as do Sudeste, e no São Francisco.",
+   "C": "Faltou ver que é causa única. O estresse africano vem sobretudo de clima árido ou irregular, secas, demanda crescente e pouca infraestrutura de armazenamento. Os aquíferos africanos são, em geral, pouco explorados.",
+   "E": "Faltou lembrar quem mais usa água. Nos países andinos, como na média mundial, a agricultura irrigada costuma ser a maior usuária, acima da indústria (com a mineração) e do consumo residencial."
   },
   "armadilha": "Aceitar afirmações que parecem lógicas, como 'mais gente, mais estresse' (A) ou 'só o semiárido sofre' (B). Elas generalizam e deixam de lado o clima e a distribuição da água.",
   "alerta": "",
@@ -109,10 +121,118 @@
  "gab": "D",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "localizar",
+    "motivo": "'interpretar' não é um tipo permitido. Os tipos válidos são localizar, calcular, comparar, eliminar e concluir. Este passo fixa a definição dada no enunciado, então o tipo certo é localizar.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "Atribui o estresse africano a uma causa única, o uso excessivo de águas subterrâneas. O estresse na África vem sobretudo de clima árido ou irregular, secas, crescimento da demanda e falta de infraestrutura de armazenamento e distribuição. Os aquíferos africanos são, em geral, pouco explorados; o uso intenso fica restrito a partes do norte do continente.",
+    "motivo": "Acrescentei uma nuance. O norte da África (Líbia, Argélia, Egito) explora intensamente aquíferos fósseis, como o Sistema Aquífero Núbio. Dizer apenas que o uso é 'pequeno', sem a ressalva, ficaria impreciso. O motivo da eliminação continua o mesmo: a alternativa aponta uma causa única que não explica o continente.",
+    "fonte": "https://www.fao.org/aquastat/en/"
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "Inverte o maior uso. Nos países andinos, como na média mundial, a agricultura irrigada é, em geral, a maior usuária de água, acima da indústria (incluída a mineração) e do consumo residencial.",
+    "motivo": "Tirei a generalização 'como no resto do mundo'. Em alguns países, sobretudo europeus, a indústria e a energia superam a agricultura. O que vale é a média mundial, em que a agricultura responde por cerca de 70% das retiradas. Nos dados do AQUASTAT para os países andinos (Peru, Chile, Bolívia, Equador), a agricultura é o maior uso e a indústria fica bem abaixo.",
+    "fonte": "https://www.fao.org/aquastat/en/"
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "estresse hídrico = água retirada ÷ água disponível",
+     "mais retirada ou menos água disponível → mais estresse",
+     "no mundo, a agricultura (irrigação) é o maior uso da água doce"
+    ],
+    "motivo": "Sem mudança de conteúdo; mantido. Registro apenas de que a fórmula já está clara e sem LaTeX."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "estresse hídrico",
+      "situação em que se retira uma parte grande da água disponível de uma região"
+     ],
+     [
+      "semiárido",
+      "região de chuva escassa e irregular; no Brasil, o interior do Nordeste"
+     ],
+     [
+      "ANA",
+      "Agência Nacional de Águas e Saneamento Básico, órgão federal que cuida dos recursos hídricos"
+     ],
+     [
+      "águas subterrâneas",
+      "água guardada no subsolo, em aquíferos, e retirada por poços"
+     ],
+     [
+      "aquífero",
+      "rocha ou camada de terra que guarda água em seus poros"
+     ],
+     [
+      "densidade populacional",
+      "número de habitantes por km²"
+     ],
+     [
+      "irrigação",
+      "uso de água para regar plantações"
+     ]
+    ],
+    "motivo": "Termos que aparecem na resolução (aquífero, densidade, irrigação) não estavam explicados."
+   },
+   {
+    "campo": "resolucao.passos[0].conta",
+    "depois": "Pede a CORRETA",
+    "motivo": "Mais curta para caber na tela do celular."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "A: só densidade? B: 'demais'?\nC: subterrâneas? E: indústria?",
+    "motivo": "Conta longa demais para uma linha no celular; dividida em duas."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "verão seco + turistas",
+    "motivo": "Mais curta para caber na tela."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "Faltou ver que densidade não decide sozinha. O Sudeste asiático é úmido e tem muita água. Já áreas pouco povoadas, como o Oriente Médio e a Ásia Central, são áridas e têm estresse alto.",
+    "motivo": "Frases mais curtas e diz o que faltou no raciocínio de quem marcou A."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "Faltou desconfiar de 'demais áreas'. A primeira parte está certa (cerca de 12% da água doce). A segunda é falsa: há estresse também em bacias muito povoadas e irrigadas, como as do Sudeste, e no São Francisco.",
+    "motivo": "Frases mais curtas e foco no que faltou."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "Faltou ver que é causa única. O estresse africano vem sobretudo de clima árido ou irregular, secas, demanda crescente e pouca infraestrutura de armazenamento. Os aquíferos africanos são, em geral, pouco explorados.",
+    "motivo": "Frases mais curtas e foco no que faltou."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "Faltou lembrar quem mais usa água. Nos países andinos, como na média mundial, a agricultura irrigada costuma ser a maior usuária, acima da indústria (com a mineração) e do consumo residencial.",
+    "motivo": "Diz o que faltou no raciocínio e simplifica a frase."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }
