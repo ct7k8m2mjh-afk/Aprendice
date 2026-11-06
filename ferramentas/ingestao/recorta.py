@@ -136,6 +136,9 @@ def colunas_da_pagina(pg, cfg):
         dir_ = any(re.match(cfg['ancora'], l['t']) and l['bbox'][0] > w / 2 + 10 for l in linhas(pg))
         esq = any(re.match(cfg['ancora'], l['t']) and l['bbox'][2] < w / 2 - 10 for l in linhas(pg))
         c = [(m, w / 2 - 2), (w / 2 - 2, w - m)] if dir_ and esq else [(m, w - m)]
+    elif c == 'faixas':
+        c, ys = faixas_da_pagina(pg, cfg)
+        _cache_faixas[k] = ys
     elif callable(c):
         c = c(pg.rect)
     if larga_de(pg, cfg) is not None:
@@ -146,6 +149,58 @@ def colunas_da_pagina(pg, cfg):
         c = [(m, pg.rect.width - m)] + list(c)   # faixa de largura total no alto da página (primeira "coluna")
     _cache_cols[k] = c
     return c
+
+
+_cache_faixas = {}   # (doc, página) -> [(y0, y1)] de cada "coluna" no modo 'faixas'
+
+
+def faixas_da_pagina(pg, cfg):
+    """Página que alterna faixas de largura total e faixas de duas colunas (Fatec): cada faixa de duas colunas vira
+    duas "colunas" (esquerda, depois direita) limitadas à altura da faixa; as faixas largas são uma coluna só.
+    Faixa de duas colunas = trecho com texto que começa na metade direita (pelo menos uma âncora/instrução ou duas
+    linhas longas), limitado pelas linhas de largura total acima e abaixo. Rótulos dentro de figura larga não contam."""
+    W, H = pg.rect.width, pg.rect.height
+    m = cfg.get('margem', 15)
+    meio = W / 2
+    topo, base = topo_de(pg, cfg), limite_baixo(pg, cfg)
+    ls = [L for L in linhas(pg) if L['bbox'][1] >= topo - 2 and L['bbox'][3] <= base + 2]
+    figuras = [pymupdf.Rect(b['bbox']) for b in pg.get_image_info()
+               if b['bbox'][0] < meio - 30 and b['bbox'][2] > meio + 30 and b['bbox'][3] - b['bbox'][1] > 40]
+    dentro_fig = lambda L: any(f.contains(pymupdf.Rect(L['bbox'])) for f in figuras)
+    largas = sorted(L['bbox'][1:4:2] for L in ls if L['bbox'][0] < meio - 25 and L['bbox'][2] > meio + 25)
+    largas += sorted((f.y0, f.y1) for f in figuras)
+    direita = sorted((L for L in ls if L['bbox'][0] > meio - 12 and not dentro_fig(L)), key=lambda L: L['bbox'][1])
+    # agrupa as linhas da direita que não têm linha larga entre elas
+    grupos = []
+    for L in direita:
+        y0, y1 = L['bbox'][1], L['bbox'][3]
+        if grupos and not any(grupos[-1]['y1'] - 1 <= a and b <= y0 + 1 for a, b in largas):
+            grupos[-1]['y1'] = max(grupos[-1]['y1'], y1)
+            grupos[-1]['ls'].append(L)
+        else:
+            grupos.append({'y0': y0, 'y1': y1, 'ls': [L]})
+    faixas = []
+    for g in grupos:
+        forte = any(re.match(cfg['ancora'], L['t']) or any(re.search(rx, L['t']) for rx in cfg.get('suporte', [])) for L in g['ls'])
+        longas = sum(1 for L in g['ls'] if len(L['t']) >= 20)
+        if not (forte or longas >= 2):
+            continue
+        a = max([b for a_, b in largas if b <= g['y0'] + 1] + [topo])
+        b = min([a_ for a_, b_ in largas if a_ >= g['y1'] - 1] + [base])
+        if faixas and a <= faixas[-1][1]:
+            faixas[-1] = (faixas[-1][0], max(b, faixas[-1][1]))
+        else:
+            faixas.append((a, b))
+    cols, ys, y = [], [], topo
+    for a, b in faixas:
+        if a - y > 2:
+            cols.append((m, W - m)); ys.append((y, a))
+        div = cfg.get('divisa', meio - 2)
+        cols += [(m, div), (div, W - m)]; ys += [(a, b), (a, b)]
+        y = b
+    if base - y > 2 or not cols:
+        cols.append((m, W - m)); ys.append((y, base))
+    return cols, ys
 
 
 def larga_de(pg, cfg):
@@ -160,6 +215,15 @@ def larga_topo_de(pg, cfg):
 
 def coluna_do_ponto(pg, cfg, x0, y0, cols):
     """Coluna de uma linha, respeitando as faixas de largura total."""
+    ys = _cache_faixas.get((id(pg.parent), pg.number)) if cfg.get('colunas') == 'faixas' else None
+    if ys is not None:
+        for i, ((a, b), (ya, yb)) in enumerate(zip(cols, ys)):
+            if a - 6 <= x0 < b and ya - 1.5 <= y0 < yb - 0.5:
+                return i
+        for i, ((a, b), (ya, yb)) in enumerate(zip(cols, ys)):
+            if a - 6 <= x0 < b and ya - 3 <= y0 < yb + 1:
+                return i
+        return None
     yt = larga_topo_de(pg, cfg)
     if yt is not None:
         if y0 < yt:
@@ -171,6 +235,9 @@ def coluna_do_ponto(pg, cfg, x0, y0, cols):
 
 def faixa_vertical(pg, cfg, c, cols):
     """(topo, base) da coluna c: com faixa larga, as colunas normais param nela e a faixa vai até o pé."""
+    ys = _cache_faixas.get((id(pg.parent), pg.number)) if cfg.get('colunas') == 'faixas' else None
+    if ys is not None:
+        return ys[c]
     y_l = larga_de(pg, cfg)
     topo, base = topo_de(pg, cfg), limite_baixo(pg, cfg)
     y_t = larga_topo_de(pg, cfg)
@@ -251,6 +318,18 @@ def selos_da_pagina(pg):
         _cache_selos[k] = [pymupdf.Rect(d['rect']) for d in pg.get_drawings()
                            if 6 < d['rect'].height < 30 and d['rect'].width > 8]
     return _cache_selos[k]
+
+
+_cache_caixas = {}
+
+
+def caixas_da_pagina(pg):
+    """Retângulos pintados de até 50 pt de altura (faixas com a instrução "Leia o texto para responder às questões")."""
+    k = (id(pg.parent), pg.number)
+    if k not in _cache_caixas:
+        _cache_caixas[k] = [pymupdf.Rect(d['rect']) for d in pg.get_drawings()
+                            if d.get('fill') is not None and 8 < d['rect'].height < 50 and d['rect'].width > 120]
+    return _cache_caixas[k]
 
 
 def eventos_do_pdf(pdf, cfg, faixa=None):
@@ -349,6 +428,11 @@ def eventos_do_pdf(pdf, cfg, faixa=None):
                                     and not re.match(r'(?i)^texts?o?\s+0?\d+\s*$', t) \
                                     and not re.match(r'^\s*(?:\(?[A-Ea-e][\)\.]|\([A-E]\))', lp[li - 1]['t']):
                                 yi = lp[li - 1]['bbox'][1] - 2
+                            if cfg.get('suporte_caixa'):
+                                # instrução dentro de uma faixa pintada (Fatec): o texto de apoio começa no alto da faixa
+                                for r_ in caixas_da_pagina(pg):
+                                    if r_.y0 - 1 <= y0 <= r_.y1 and r_.x0 - 2 <= x0 <= r_.x1:
+                                        yi = min(yi, r_.y0 - 1)
                             # errata da banca: a indicação impressa aponta outras questões (conferida no caderno)
                             nums = cfg.get('faixa_errata', {}).get((cfg.get('_arquivo'), pi + 1, tuple(nums)), nums)
                             ev.append({'p': pi, 'c': c, 'y': yi, 'tipo': 'suporte', 'faixa': nums if not mt else [],
@@ -390,7 +474,7 @@ def segmentos(pdf, cfg, ev, i, faixa_pag=None):
     cols0 = colunas_da_pagina(pdf[p], cfg)
     for L in linhas(pdf[p]):
         x0_, y0_, x1_, y1_ = L['bbox']
-        if coluna_de(x0_, cols0) == c and y0_ < e['y'] - 2 and y < y1_ <= e['y'] + 0.5:
+        if coluna_do_ponto(pdf[p], cfg, x0_, y0_, cols0) == c and y0_ < e['y'] - 2 and y < y1_ <= e['y'] + 0.5:
             y = y1_ + 0.3
     ultima = len(pdf) - 1 if not faixa_pag else faixa_pag[1] - 1
     while True:
@@ -702,6 +786,8 @@ def processa(pid, amostra=False, so_texto=False):
         conserta_bbox(pdf)
         _cache_linhas.clear()
         _cache_selos.clear()
+        _cache_caixas.clear()
+        _cache_faixas.clear()
         _cache_cols.clear()  # chave usa id() do documento: não pode sobreviver de um caderno para outro
         _OCR.clear()
         _OCR_SO_TEXTO.clear()

@@ -828,9 +828,9 @@ def fatec(ano, sem, duracao=5):
                 '(retificado, quando houve), com a disciplina de cada questão; anulada fica fora. Caderno e gabarito '
                 'publicados pelo Centro Paula Souza.',
         'cadernos': [{'arquivo': 'caderno', 'paginas': (2, 999)}],
-        'colunas': 'auto', 'margem': 22, 'topo': 22, 'base': 22, 'rodape_num': False,
+        'colunas': 'faixas', 'margem': 22, 'topo': 18, 'base': 35, 'rodape_num': False, 'suporte_caixa': True,
         'apagar': [r'^VESTIBULAR \d', r'^\d{1,2}$'],
-        'ancora': r'(?i)^quest[ãa]o\s+(\d{1,3})\b', 'ancora_dx': 40, 'sequencial': True,
+        'ancora': r'(?i)^quest[ãa]o\s+(\d{1,3})\b', 'ancora_dx': 75, 'sequencial': True,
         'corte': [r'(?i)^REDAÇÃO$', r'(?i)^PROPOSTA DE REDA', r'(?i)^RASCUNHO', r'(?i)^FOLHA DE'],
         'suporte': [r'(?i)(para|responder) [àa]s quest[õo]es', r'(?i)^texto para as quest'],
         'gabarito': gab, 'area': lambda n: areas.get(n, 'Conhecimentos gerais'), 'area_do_gabarito': True,
