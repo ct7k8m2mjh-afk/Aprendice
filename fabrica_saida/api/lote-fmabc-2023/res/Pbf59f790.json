@@ -1,0 +1,308 @@
+{
+ "n": 71,
+ "id": "Pbf59f790",
+ "materia": "mat",
+ "tema": "M07",
+ "conteudo": "M07.2",
+ "nivel": 4,
+ "conceito": "Termo geral de uma PG combinado com logaritmo na base 2 para resolver uma inequação exponencial.",
+ "resolucao": {
+  "antes": {
+   "texto": "Numa PG com a₁ = 1 e razão 3/4, o n-ésimo termo é (3/4)^(n−1). O expoente é n − 1, e não n. Para achar quando esse termo fica menor que 1/100, aplicamos log na base 2 aos dois lados. Assim o expoente desce multiplicando e os valores dados (log₂3 e log₂5) entram na conta.",
+   "formulas": [
+    "termo geral: aₙ = a₁ × q^(n−1)",
+    "log de potência: log(x^k) = k × log x",
+    "log de quociente: log(a/b) = log a − log b",
+    "log₂2 = 1 e log₂4 = 2"
+   ],
+   "simbolos": [
+    [
+     "a₁",
+     "primeiro termo da PG"
+    ],
+    [
+     "q",
+     "razão: cada termo é o anterior vezes q"
+    ],
+    [
+     "log₂",
+     "logaritmo na base 2: o expoente ao qual 2 se eleva para dar o número"
+    ],
+    [
+     "aₙ",
+     "termo que ocupa a posição n"
+    ],
+    [
+     "PG",
+     "progressão geométrica: sequência em que cada termo é o anterior multiplicado pela mesma razão q"
+    ],
+    [
+     "n−1",
+     "quantas vezes multiplicamos por q para chegar ao n-ésimo termo"
+    ]
+   ]
+  },
+  "pista": "Escreva o termo geral e aplique log₂ aos dois lados da desigualdade. Como a base 2 é maior que 1, o sentido não muda nessa etapa. Cuidado com o expoente do termo geral.",
+  "passos": [
+   {
+    "faz": "Escreva o termo geral",
+    "conta": "aₙ = 1 × (3/4)^(n−1)",
+    "porque": "O 1º termo tem expoente 0, o 2º tem expoente 1, e assim por diante. Por isso o expoente é n − 1.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Monte a desigualdade",
+    "conta": "(3/4)^(n−1) < 1/100",
+    "porque": "A questão pede o primeiro termo menor que 1/100.",
+    "tipo": "localizar"
+   },
+   {
+    "faz": "Aplique log₂ nos dois lados",
+    "conta": "(n−1)·log₂(3/4) < log₂(1/100)",
+    "porque": "Aplicar log₂ nos dois lados faz o expoente n−1 descer multiplicando. O sentido se mantém porque a base 2 é maior que 1.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Calcule os dois logaritmos",
+    "conta": "log₂(3/4) = 1,6 − 2 = −0,4",
+    "porque": "log₂(3/4) = log₂3 − log₂4, e log₂4 = 2. Para 1/100: log₂(1/100) = −log₂100 = −2·(1 + 2,3) = −6,6, pois 100 = 10² e log₂10 = log₂2 + log₂5.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Isole n − 1",
+    "conta": "−0,4·(n−1) < −6,6 → n−1 > 16,5",
+    "porque": "Dividir os dois lados por −0,4, que é negativo, inverte o sentido da desigualdade: 6,6 ÷ 0,4 = 16,5.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Ache o menor n inteiro",
+    "conta": "n − 1 = 17 → n = 18",
+    "porque": "n − 1 é inteiro e maior que 16,5, então o menor valor é 17. Logo n = 18. A pergunta é o primeiro termo, ou seja, o menor n.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa B: o 18º termo, pois (3/4)^17 já é menor que 1/100 e (3/4)^16 ainda não é.",
+  "checagem": "Pelos logs dados: o 17º termo tem expoente 16, e 16 × (−0,4) = −6,4, que é maior que −6,6, então ainda não é menor que 1/100. O 18º tem expoente 17, e 17 × (−0,4) = −6,8, que é menor que −6,6. Confere. Com a calculadora: 0,75^16 ≈ 0,01002 (maior que 0,01) e 0,75^17 ≈ 0,00752 (menor).",
+  "erradas": {
+   "A": "O 19º termo é menor que 1/100: com n − 1 = 18, o expoente é 18 × (−0,4) = −7,2, que é menor que −6,6. Mas a pergunta é o PRIMEIRO termo nessa condição, e o 18º já a cumpre.",
+   "C": "O 20º termo (expoente 19, valor −7,6) é menor que 1/100, mas não é o primeiro. Antes dele, o 18º e o 19º já são menores.",
+   "D": "O 21º termo (expoente 20, valor −8,0) cumpre a condição, mas vem muito depois do 18º. A questão pede o primeiro.",
+   "E": "O 22º termo (expoente 21, valor −8,4) cumpre a condição, mas não é o primeiro. O 18º já é menor que 1/100."
+  },
+  "armadilha": "Usar o expoente n em vez de n − 1 ou aceitar n > 16,5 sem arredondar para o inteiro seguinte. A pergunta é o primeiro termo, ou seja, o menor n.",
+  "alerta": "",
+  "essencial": {
+   "pede": "A posição do primeiro termo da PG que é menor que 1/100.",
+   "chave": "(3/4)^(n−1) < 1/100, com log₂ aplicado dos dois lados: −0,4(n−1) < −6,6, logo n − 1 > 16,5.",
+   "cuidado": "O expoente é n − 1, e dividir por −0,4 inverte a desigualdade."
+  }
+ },
+ "caminhos": [
+  {
+   "nome": "teste das alternativas com os logs",
+   "ideia": "O termo de posição n vale 2^(−0,4(n−1)). Compare com 2^(−6,6). O 17º dá −6,4 (ainda maior) e o 18º dá −6,8 (já menor). Assim, o 18º é o primeiro."
+  },
+  {
+   "nome": "multiplicar na calculadora",
+   "ideia": "Multiplique por 0,75 sucessivamente. Depois de 16 multiplicações (17º termo) dá cerca de 0,0100, ainda não menor que 0,01. Na 17ª (18º termo) dá cerca de 0,0075. É trabalhoso, mas confirma."
+  }
+ ],
+ "quadro": [
+  {
+   "linha": "aₙ = (3/4)^(n−1)",
+   "nota": "termo geral com a₁ = 1 e q = 3/4"
+  },
+  {
+   "linha": "(3/4)^(n−1) < 1/100",
+   "nota": "condição pedida"
+  },
+  {
+   "linha": "(n−1)·log₂(3/4) < log₂(1/100)",
+   "nota": "log₂ dos dois lados; o expoente desce multiplicando"
+  },
+  {
+   "linha": "log₂(3/4) = 1,6 − 2 = −0,4",
+   "nota": "log₂3 − log₂4, com log₂4 = 2"
+  },
+  {
+   "linha": "log₂100 = 2·(1 + 2,3) = 6,6",
+   "nota": "log₂10 = log₂2 + log₂5 = 3,3"
+  },
+  {
+   "linha": "−0,4·(n−1) < −6,6",
+   "nota": "log₂(1/100) = −6,6"
+  },
+  {
+   "linha": "n − 1 > 16,5",
+   "nota": "divida por −0,4: a desigualdade inverte",
+   "destaque": ">",
+   "mov": [
+    {
+     "termo": "−0,4",
+     "de": "esquerda",
+     "para": "denominador",
+     "vira": "−0,4",
+     "como": "passa dividindo e inverte o sinal da desigualdade"
+    }
+   ]
+  },
+  {
+   "linha": "n − 1 = 17",
+   "nota": "n − 1 é inteiro: menor inteiro maior que 16,5"
+  },
+  {
+   "linha": "n = 18",
+   "nota": "o primeiro termo é o 18º"
+  }
+ ],
+ "visual": {
+  "cabe": false,
+  "porque": "A questão se resolve por contas com logaritmos e uma desigualdade. A animação linha a linha do quadro já mostra todo o raciocínio.",
+  "tipo": "nenhum",
+  "roteiro": ""
+ },
+ "fontes": [],
+ "confere": true,
+ "divergencia": "",
+ "resposta_resolvedor": "B",
+ "gab": "B",
+ "revisao": {
+  "lentes": [
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
+  ],
+  "modelos": {
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[0].tipo",
+    "depois": "calcular",
+    "motivo": "O tipo 'aplicar' não existe. Os tipos aceitos são localizar, calcular, comparar, eliminar e concluir. Escrever o termo geral é um passo de cálculo.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "localizar",
+    "motivo": "O tipo 'interpretar' não existe. Montar a desigualdade traduz o que o enunciado pede, e isso corresponde a 'localizar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "calcular",
+    "motivo": "O tipo 'aplicar' não existe. Aplicar log₂ nos dois lados é uma operação algébrica, então o tipo é 'calcular'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Pelos logs dados: o 17º termo tem expoente 16, e 16 × (−0,4) = −6,4, que é maior que −6,6, então ainda não é menor que 1/100. O 18º tem expoente 17, e 17 × (−0,4) = −6,8, que é menor que −6,6. Confere. Com a calculadora: 0,75^16 ≈ 0,01002 (maior que 0,01) e 0,75^17 ≈ 0,00752 (menor).",
+    "motivo": "Arredondamento errado: 0,75^17 = 0,0075169…, que arredonda para 0,00752, e não para 0,00751.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.pista",
+    "depois": "Escreva o termo geral e aplique log₂ aos dois lados da desigualdade. Como a base 2 é maior que 1, o sentido não muda nessa etapa. Cuidado com o expoente do termo geral.",
+    "motivo": "Deixa claro em que etapa o sentido se mantém, pois depois há uma inversão ao dividir por número negativo."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "a₁",
+      "primeiro termo da PG"
+     ],
+     [
+      "q",
+      "razão: cada termo é o anterior vezes q"
+     ],
+     [
+      "log₂",
+      "logaritmo na base 2: o expoente ao qual 2 se eleva para dar o número"
+     ],
+     [
+      "aₙ",
+      "termo que ocupa a posição n"
+     ],
+     [
+      "PG",
+      "progressão geométrica: sequência em que cada termo é o anterior multiplicado pela mesma razão q"
+     ],
+     [
+      "n−1",
+      "quantas vezes multiplicamos por q para chegar ao n-ésimo termo"
+     ]
+    ],
+    "motivo": "Sigla PG e o expoente n−1 não estavam explicados para um aluno de 17 anos."
+   },
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "localizar",
+    "motivo": "Mantido: o passo traduz o enunciado em desigualdade."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "(n−1)·log₂(3/4) < log₂(1/100)",
+    "motivo": "Este passo só aplica o log; as simplificações vão para os passos seguintes (um movimento por passo, conta curta)."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Aplicar log₂ nos dois lados faz o expoente n−1 descer multiplicando. O sentido se mantém porque a base 2 é maior que 1.",
+    "motivo": "Separa a ação (aplicar log) do cálculo dos valores, que vem depois."
+   },
+   {
+    "campo": "resolucao.passos[3]",
+    "depois": {
+     "faz": "Calcule os dois logaritmos",
+     "conta": "log₂(3/4) = 1,6 − 2 = −0,4",
+     "porque": "log₂(3/4) = log₂3 − log₂4, e log₂4 = 2. Para 1/100: log₂(1/100) = −log₂100 = −2·(1 + 2,3) = −6,6, pois 100 = 10² e log₂10 = log₂2 + log₂5.",
+     "tipo": "calcular"
+    },
+    "motivo": "Une os cálculos dos logs em um passo claro; a conta cabe na tela."
+   },
+   {
+    "campo": "resolucao.passos[4]",
+    "depois": {
+     "faz": "Isole n − 1",
+     "conta": "−0,4·(n−1) < −6,6 → n−1 > 16,5",
+     "porque": "Dividir os dois lados por −0,4, que é negativo, inverte o sentido da desigualdade: 6,6 ÷ 0,4 = 16,5.",
+     "tipo": "calcular"
+    },
+    "motivo": "Passo único e curto, com a inversão explicada."
+   },
+   {
+    "campo": "resolucao.passos[5].porque",
+    "depois": "n − 1 é inteiro e maior que 16,5, então o menor valor é 17. Logo n = 18. A pergunta é o primeiro termo, ou seja, o menor n.",
+    "motivo": "Frase mais direta."
+   },
+   {
+    "campo": "resolucao.passos[5].conta",
+    "depois": "n − 1 = 17 → n = 18",
+    "motivo": "O sinal ≥ causava ambiguidade; n−1 = 17 é o menor valor possível."
+   },
+   {
+    "campo": "resolucao.quadro[7].linha",
+    "depois": "n − 1 = 17",
+    "motivo": "Coerente com o passo: menor inteiro maior que 16,5."
+   },
+   {
+    "campo": "resolucao.quadro[8].linha",
+    "depois": "n = 18",
+    "motivo": "Resultado direto, sem ≥ ambíguo."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "B"
+ }
+}

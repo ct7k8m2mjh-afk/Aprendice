@@ -1,0 +1,331 @@
+{
+ "n": 74,
+ "id": "Pf7ac7be7",
+ "materia": "mat",
+ "tema": "M13",
+ "conteudo": "M13.4",
+ "nivel": 4,
+ "conceito": "Probabilidade com eventos independentes e distribuição binomial: comparar o número de acertos de dois jogadores.",
+ "confere": true,
+ "divergencia": "",
+ "resolucao": {
+  "antes": {
+   "texto": "Cada lance é independente dos outros, então multiplicamos as probabilidades. João só pode fazer 0, 1 ou 2 acertos; Tiago, 0, 1, 2 ou 3. Liste os casos em que João acerta mais do que Tiago e some as probabilidades. Dentro de um mesmo caso os eventos são 'e' (multiplica); entre casos diferentes é 'ou' (soma).",
+   "formulas": [
+    "P(k acertos em n lances) = (maneiras de escolher os k lances) × p^k × (1 − p)^(n − k)",
+    "independentes: P(A e B) = P(A) × P(B)",
+    "casos que não se misturam: P(A ou B) = P(A) + P(B)"
+   ],
+   "simbolos": [
+    [
+     "p",
+     "probabilidade de acertar um lance"
+    ],
+    [
+     "1 − p",
+     "probabilidade de errar um lance"
+    ],
+    [
+     "independentes",
+     "o resultado de um lance não muda a chance do outro"
+    ]
+   ]
+  },
+  "pista": "João só tem 0, 1 ou 2 acertos possíveis. Para cada número de acertos dele, pergunte: quantos acertos de Tiago ficam abaixo disso?",
+  "passos": [
+   {
+    "faz": "Calcule as chances de João",
+    "conta": "P(0) = 4/5 × 4/5 = 16/25",
+    "porque": "Para errar os dois lances, multiplica-se a chance de errar (4/5) duas vezes.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Continue com João: 1 e 2 acertos",
+    "conta": "P(1) = 2 × 1/5 × 4/5 = 8/25",
+    "porque": "Há 2 jeitos de acertar só um lance (o 1º ou o 2º). Para 2 acertos: P(2) = 1/5 × 1/5 = 1/25. Soma: 16 + 8 + 1 = 25, ou seja, 25/25. Fecha 100%.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Calcule as chances de Tiago",
+    "conta": "P(0) = (3/4)³ = 27/64",
+    "porque": "João acerta no máximo 2, então só interessam os casos de 0 e 1 acerto de Tiago. Zero acertos: errar os três lances, 3/4 × 3/4 × 3/4.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Tiago com 1 acerto",
+    "conta": "P(1) = 3 × 1/4 × (3/4)² = 27/64",
+    "porque": "Há 3 jeitos de escolher qual lance ele acerta, e cada jeito vale 1/4 × 3/4 × 3/4 = 9/64.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Monte os casos em que João vence",
+    "conta": "J=1 e T=0 ; J=2 e T=0 ou 1",
+    "porque": "Se João acerta 0, ele não vence ninguém. Com 1 acerto, só vence se Tiago errar tudo. Com 2, vence se Tiago tiver 0 ou 1.",
+    "tipo": "comparar"
+   },
+   {
+    "faz": "Some os casos",
+    "conta": "8/25 × 27/64 + 1/25 × 54/64",
+    "porque": "Dentro de cada caso multiplica-se (eventos independentes); entre casos soma-se. O 54/64 é T0 + T1 = 27/64 + 27/64. Depois: 216/1600 + 54/1600 = 270/1600 = 27/160.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Ligue o resultado à alternativa",
+    "conta": "27/160 → alternativa A",
+    "porque": "A pergunta é a chance de João acertar mais lances que Tiago, e é isso que a soma dos casos deu.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa A: a probabilidade de João acertar mais lances que Tiago é 27/160.",
+  "checagem": "Em decimal: 27/160 ≈ 0,169. João tem só 20% de chance por lance e Tiago, 25%, e Tiago ainda faz um lance a mais. Uma probabilidade de uns 17% é plausível.",
+  "erradas": {
+   "B": "3/160 = 30/1600 não confere: só o caso J=1 e T=0 já vale 216/1600, bem mais que isso. A soma dos casos em que João vence é 270/1600.",
+   "C": "9/160 = 90/1600 não confere: só o caso J=1 e T=0 já vale 216/1600, maior que isso. Faltou contar todos os casos em que João vence.",
+   "D": "15/160 = 150/1600 não confere: o caso J=1 e T=0 sozinho vale 216/1600, mais que 150/1600. A soma correta é 216 + 54 = 270 (sobre 1600).",
+   "E": "21/160 = 210/1600 não confere: a soma correta é 216 + 54 = 270 (sobre 1600). O caso J=1 e T=0 sozinho já vale 216/1600, maior que 210/1600."
+  },
+  "armadilha": "Contar os jeitos de escolher qual lance é acertado (2 para João, 3 para Tiago) e ver que o número de acertos de Tiago que interessa depende de João: com 1 acerto de João só vale T=0; com 2, valem T=0 e T=1.",
+  "alerta": "",
+  "essencial": {
+   "pede": "A probabilidade de o número de acertos de João ser maior que o de Tiago.",
+   "chave": "Casos: (J=1, T=0) e (J=2, T=0 ou 1). Cada um é um produto, e depois somam-se: 216/1600 + 54/1600.",
+   "cuidado": "Não esqueça os jeitos de escolher qual lance é o acertado (2 para João, 3 para Tiago)."
+  }
+ },
+ "caminhos": [
+  {
+   "nome": "Complementar",
+   "ideia": "Calcule P(João = Tiago) e P(João < Tiago) e subtraia de 1. Dá mais casos, então o caminho direto é mais curto."
+  }
+ ],
+ "quadro": [
+  {
+   "linha": "João: p = 1/5, 2 lances",
+   "nota": "dados de João"
+  },
+  {
+   "linha": "J0 = 4/5 × 4/5 = 16/25",
+   "nota": "errar os dois"
+  },
+  {
+   "linha": "J1 = 2 × 1/5 × 4/5 = 8/25",
+   "nota": "2 jeitos de acertar um"
+  },
+  {
+   "linha": "J2 = 1/5 × 1/5 = 1/25",
+   "nota": "acertar os dois"
+  },
+  {
+   "linha": "Tiago: q = 1/4, 3 lances",
+   "nota": "dados de Tiago"
+  },
+  {
+   "linha": "T0 = (3/4)³ = 27/64",
+   "nota": "errar os três"
+  },
+  {
+   "linha": "T1 = 3 × 1/4 × 9/16",
+   "nota": "3 jeitos de acertar um"
+  },
+  {
+   "linha": "T1 = 27/64",
+   "nota": "3 × 9 = 27 e 4 × 16 = 64"
+  },
+  {
+   "linha": "J vence: J1 e T0, ou J2 e (T0 ou T1)",
+   "nota": "casos"
+  },
+  {
+   "linha": "P = J1×T0 + J2×(T0+T1)",
+   "nota": "e multiplica, ou soma"
+  },
+  {
+   "linha": "P = 8/25 × 27/64 + 1/25 × 54/64",
+   "nota": "troque pelos valores"
+  },
+  {
+   "linha": "P = 216/1600 + 54/1600",
+   "nota": "8 × 27 = 216 e 25 × 64 = 1600"
+  },
+  {
+   "linha": "P = 270/1600",
+   "nota": "216 + 54 = 270"
+  },
+  {
+   "linha": "P = 27/160",
+   "nota": "divida por 10 em cima e embaixo"
+  }
+ ],
+ "visual": {
+  "cabe": false,
+  "porque": "A questão se resolve com uma lista curta de casos e contas de frações; o quadro já mostra cada passo.",
+  "tipo": "nenhum",
+  "roteiro": ""
+ },
+ "fontes": [],
+ "resposta_resolvedor": "A",
+ "gab": "A",
+ "revisao": {
+  "lentes": [
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
+  ],
+  "modelos": {
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[4].tipo",
+    "depois": "comparar",
+    "motivo": "O tipo \"interpretar\" não está na lista permitida (localizar, calcular, comparar, eliminar, concluir). O passo compara o número de acertos de João com o de Tiago para separar os casos em que João vence, então o tipo certo é \"comparar\".",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "A",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[1]",
+    "depois": {
+     "faz": "Continue com João: 1 e 2 acertos",
+     "conta": "P(1) = 2 × 1/5 × 4/5 = 8/25",
+     "porque": "Há 2 jeitos de acertar só um lance (o 1º ou o 2º). Para 2 acertos: P(2) = 1/5 × 1/5 = 1/25. Soma: 16 + 8 + 1 = 25, ou seja, 25/25. Fecha 100%.",
+     "tipo": "calcular"
+    },
+    "motivo": "Deixa claro que o passo cobre P(1) e P(2) e que a soma dá 100%."
+   },
+   {
+    "campo": "resolucao.passos[2]",
+    "depois": {
+     "faz": "Calcule as chances de Tiago",
+     "conta": "P(0) = (3/4)³ = 27/64",
+     "porque": "João acerta no máximo 2, então só interessam os casos de 0 e 1 acerto de Tiago. Zero acertos: errar os três lances, 3/4 × 3/4 × 3/4.",
+     "tipo": "calcular"
+    },
+    "motivo": "Mostra de onde vem a conta e por que só 0 e 1 importam."
+   },
+   {
+    "campo": "resolucao.passos[5]",
+    "depois": {
+     "faz": "Some os casos",
+     "conta": "8/25 × 27/64 + 1/25 × 54/64",
+     "porque": "Dentro de cada caso multiplica-se (eventos independentes); entre casos soma-se. O 54/64 é T0 + T1 = 27/64 + 27/64. Depois: 216/1600 + 54/1600 = 270/1600 = 27/160.",
+     "tipo": "calcular"
+    },
+    "motivo": "Explica o 54/64 e separa a soma da conclusão."
+   },
+   {
+    "campo": "resolucao.passos[6]",
+    "depois": {
+     "faz": "Ligue o resultado à alternativa",
+     "conta": "27/160 → alternativa A",
+     "porque": "A pergunta é a chance de João acertar mais lances que Tiago, e é isso que a soma dos casos deu.",
+     "tipo": "concluir"
+    },
+    "motivo": "O último passo deve ser concluir e ligar à letra."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "21/160 = 210/1600 não confere: a soma correta é 216 + 54 = 270 (sobre 1600). O caso J=1 e T=0 sozinho já vale 216/1600, maior que 210/1600.",
+    "motivo": "A frase original era confusa e sem sentido lógico."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "3/160 = 30/1600 não confere: só o caso J=1 e T=0 vale 216/1600, bem mais que isso. Quem marcou B provavelmente esqueceu os casos em que João vence.",
+    "motivo": "Corrige a frase confusa, que misturava casos, e diz o que faltou."
+   },
+   {
+    "campo": "resolucao.armadilha",
+    "depois": "Contar os jeitos de escolher qual lance é acertado (2 para João, 3 para Tiago) e lembrar que João só faz 2 lances, então só importam 0 e 1 acerto de Tiago em alguns casos.",
+    "motivo": "Frase mais clara."
+   },
+   {
+    "campo": "resolucao.quadro",
+    "depois": [
+     {
+      "linha": "João: p = 1/5, 2 lances",
+      "nota": "dados de João"
+     },
+     {
+      "linha": "J0 = 4/5 × 4/5 = 16/25",
+      "nota": "errar os dois"
+     },
+     {
+      "linha": "J1 = 2 × 1/5 × 4/5 = 8/25",
+      "nota": "2 jeitos de acertar um"
+     },
+     {
+      "linha": "J2 = 1/5 × 1/5 = 1/25",
+      "nota": "acertar os dois"
+     },
+     {
+      "linha": "Tiago: q = 1/4, 3 lances",
+      "nota": "dados de Tiago"
+     },
+     {
+      "linha": "T0 = (3/4)³ = 27/64",
+      "nota": "errar os três"
+     },
+     {
+      "linha": "T1 = 3 × 1/4 × 9/16",
+      "nota": "3 jeitos de acertar um"
+     },
+     {
+      "linha": "T1 = 27/64",
+      "nota": "3 × 9 = 27 e 4 × 16 = 64"
+     },
+     {
+      "linha": "J vence: J1 e T0, ou J2 e (T0 ou T1)",
+      "nota": "casos"
+     },
+     {
+      "linha": "P = J1×T0 + J2×(T0+T1)",
+      "nota": "e multiplica, ou soma"
+     },
+     {
+      "linha": "P = 8/25 × 27/64 + 1/25 × 54/64",
+      "nota": "troque pelos valores"
+     },
+     {
+      "linha": "P = 216/1600 + 54/1600",
+      "nota": "8 × 27 = 216 e 25 × 64 = 1600"
+     },
+     {
+      "linha": "P = 270/1600",
+      "nota": "216 + 54 = 270"
+     },
+     {
+      "linha": "P = 27/160",
+      "nota": "divida por 10 em cima e embaixo"
+     }
+    ],
+    "motivo": "Contas das linhas J0 e T0 mostradas por extenso, e inclusão da linha com os casos, para copiar sem pular passagem."
+   }
+  ],
+  "didatica_alertas": [
+   "O campo 'nivel' está 4 no JSON e a classificação atual diz nível 2; o corretor 1 deve conferir."
+  ],
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "3/160 = 30/1600 não confere: só o caso J=1 e T=0 já vale 216/1600, bem mais que isso. A soma dos casos em que João vence é 270/1600.",
+    "motivo": "Remove a especulação ('provavelmente'), que o guia proíbe, e mantém o teste objetivo.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.armadilha",
+    "depois": "Contar os jeitos de escolher qual lance é acertado (2 para João, 3 para Tiago) e ver que o número de acertos de Tiago que interessa depende de João: com 1 acerto de João só vale T=0; com 2, valem T=0 e T=1.",
+    "motivo": "A frase anterior era imprecisa ('em alguns casos').",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "A"
+ }
+}

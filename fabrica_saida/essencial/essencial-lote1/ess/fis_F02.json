@@ -1,0 +1,388 @@
+{
+ "termometro": [
+  {
+   "sub": "F02.3",
+   "peso": "alta",
+   "provas": "Fuvest, Unesp, UFC, UFRJ, Mackenzie",
+   "como_cai": "Área do v × t para deslocamento ou velocidade média, leitura do s × t e ligação entre os três gráficos."
+  },
+  {
+   "sub": "F02.1",
+   "peso": "alta",
+   "provas": "Fuvest, Uerj, UFRJ, Unicamp, Unesp, Enem",
+   "como_cai": "Conversão de unidades, deslocamento × distância, viagem com parada e média em trechos iguais."
+  },
+  {
+   "sub": "F02.2",
+   "peso": "alta",
+   "provas": "Unicamp, Unesp, Fuvest, Mackenzie",
+   "como_cai": "Leitura de funções horárias, frenagem e decolagem por Torricelli, tempo de reação."
+  },
+  {
+   "sub": "F02.6",
+   "peso": "alta",
+   "provas": "Fuvest, Enem, Unicamp",
+   "como_cai": "Conversão de rpm, Hz e rad/s, v = ωR, bicicleta e engrenagens (o Enem adora)."
+  },
+  {
+   "sub": "F02.5",
+   "peso": "media",
+   "provas": "Fuvest, Mackenzie, FEI, Unicamp, Famerp, Einstein, Enem",
+   "como_cai": "Conceitos em V ou F, lançamento horizontal de mesa ou avião, fórmulas do oblíquo, alvo em outro nível."
+  },
+  {
+   "sub": "F02.4",
+   "peso": "media",
+   "provas": "Fuvest, Mackenzie, Uerj, Vunesp",
+   "como_cai": "Régua do tempo de reação, torneira pingando, altura máxima, último segundo de queda."
+  },
+  {
+   "sub": "F02.7",
+   "peso": "media",
+   "provas": "Fuvest, Mackenzie, Unesp",
+   "como_cai": "Trens que se cruzam, barco no rio, escada rolante, avião com vento, roda que rola."
+  }
+ ],
+ "mapa": {
+  "centro": "Cinemática",
+  "ramos": [
+   {
+    "sub": "F02.1",
+    "titulo": "Velocidade média e MU",
+    "chave": "v_m = Δs/Δt total, com paradas; MU: s = s₀ + v·t",
+    "liga": [
+     "F02.3"
+    ]
+   },
+   {
+    "sub": "F02.2",
+    "titulo": "MUV e Torricelli",
+    "chave": "v = v₀ + a·t; sem tempo, v² = v₀² + 2a·Δs",
+    "liga": [
+     "F02.3",
+     "F02.4"
+    ]
+   },
+   {
+    "sub": "F02.3",
+    "titulo": "Gráficos",
+    "chave": "Inclinação dá v e a; área do v × t dá Δs",
+    "liga": [
+     "F02.1",
+     "F02.2"
+    ]
+   },
+   {
+    "sub": "F02.4",
+    "titulo": "Queda livre e lançamento vertical",
+    "chave": "a = g sempre; no topo, v = 0",
+    "liga": [
+     "F02.2",
+     "F02.5"
+    ]
+   },
+   {
+    "sub": "F02.5",
+    "titulo": "Lançamento horizontal e oblíquo",
+    "chave": "MU na horizontal, MUV na vertical, tempo comum",
+    "liga": [
+     "F02.4",
+     "F02.7"
+    ]
+   },
+   {
+    "sub": "F02.6",
+    "titulo": "Movimento circular",
+    "chave": "ω = 2πf, v = ωR; corrente: v igual; eixo: ω igual",
+    "liga": [
+     "F02.7"
+    ]
+   },
+   {
+    "sub": "F02.7",
+    "titulo": "Velocidade relativa",
+    "chave": "v_AB = v_AC + v_CB; mesma reta: soma ou diferença",
+    "liga": [
+     "F02.1",
+     "F02.5"
+    ]
+   }
+  ]
+ },
+ "telas": [
+  {
+   "sub": "F02.3",
+   "titulo": "Gráficos: inclinação e área",
+   "pontos": [
+    "Inclinação: s × t dá v; v × t, a.",
+    "Área: v × t dá Δs; a × t, Δv.",
+    "Abaixo do eixo, negativa; vértice do s × t: v = 0."
+   ],
+   "formula": "\\Delta s = \\text{área}_{v \\times t} \\qquad \\Delta v = \\text{área}_{a \\times t}",
+   "pegadinha": "Cruzamento no v × t não é encontro.",
+   "visual": {
+    "tipo": "grafico",
+    "descricao": "Gráfico v × t com áreas acima e abaixo do eixo e um carrinho numa régua.",
+    "movimento": [
+     "A área acima do eixo se pinta e o carrinho avança.",
+     "A área abaixo, tracejada, faz o carrinho recuar.",
+     "Contador de deslocamento desce; o de distância só sobe."
+    ]
+   }
+  },
+  {
+   "sub": "F02.1",
+   "titulo": "Velocidade média e movimento uniforme",
+   "pontos": [
+    "Média = deslocamento total / tempo total, com paradas.",
+    "MU: v constante e não nula; s × t é reta.",
+    "m/s para km/h: multiplique por 3,6; no inverso, divida."
+   ],
+   "formula": "v_m = \\frac{\\Delta s}{\\Delta t} \\qquad s = s_0 + v \\cdot t",
+   "pegadinha": "Trechos iguais, 40 e 60 km/h: média 48, não 50.",
+   "visual": {
+    "tipo": "animacao",
+    "descricao": "Ida de 120 km a 40 km/h e volta a 60 km/h, com barras de tempo.",
+    "movimento": [
+     "Barra da ida cresce até 3 h.",
+     "Barra da volta cresce até 2 h.",
+     "Ponteiro da média sai de 50 e para em 48 km/h."
+    ]
+   }
+  },
+  {
+   "sub": "F02.2",
+   "titulo": "MUV e Torricelli",
+   "pontos": [
+    "Aceleração constante: a velocidade muda o mesmo tanto em tempos iguais.",
+    "Sem tempo no enunciado, use Torricelli.",
+    "v e a com sinais iguais: acelerado; opostos: retardado."
+   ],
+   "formula": "\\begin{gathered} v = v_0 + a\\,t \\qquad s = s_0 + v_0 t + \\frac{a}{2}t^2 \\\\ v^2 = v_0^2 + 2a\\,\\Delta s \\end{gathered}",
+   "pegadinha": "Em s = 3 + 4t − 2t², a = −4 m/s², não −2.",
+   "visual": {
+    "tipo": "animacao",
+    "descricao": "Dois carros freando a 5 m/s², um a 36 km/h e outro a 72 km/h.",
+    "movimento": [
+     "O de 36 km/h para em 10 m.",
+     "O de 72 km/h só para em 40 m.",
+     "Velocidade ×2, distância de frenagem ×4."
+    ]
+   }
+  },
+  {
+   "sub": "F02.6",
+   "titulo": "Movimento circular, correias e engrenagens",
+   "pontos": [
+    "f = 1/T; de rpm para Hz, divida por 60.",
+    "ω = 2πf e v = ωR, com R em metros.",
+    "Corrente ou contato: v igual. Mesmo eixo: ω igual."
+   ],
+   "formula": "\\omega = 2\\pi f \\qquad v = \\omega R \\qquad a_{cp} = \\frac{v^2}{R}",
+   "pegadinha": "MCU tem aceleração centrípeta, v²/R, apontando para o centro.",
+   "visual": {
+    "tipo": "animacao",
+    "descricao": "Bicicleta de lado: coroa, corrente, catraca e roda com contadores de voltas.",
+    "movimento": [
+     "A coroa dá 1 volta.",
+     "A corrente faz a catraca dar 2,5 voltas.",
+     "A roda acompanha a catraca pelo eixo."
+    ]
+   }
+  },
+  {
+   "sub": "F02.5",
+   "titulo": "Lançamento horizontal e oblíquo",
+   "pontos": [
+    "Horizontal: MU. Vertical: MUV com g. O tempo vem da vertical.",
+    "Decomponha v₀: cos θ na horizontal, sen θ na vertical.",
+    "Alcance máximo a 45°, só no mesmo nível."
+   ],
+   "formula": "\\begin{gathered} v_{0x} = v_0 \\cos\\theta \\qquad v_{0y} = v_0\\,\\text{sen}\\,\\theta \\\\ t_s = \\frac{v_0\\,\\text{sen}\\,\\theta}{g} \\qquad A = \\frac{v_0^2\\,\\text{sen}\\,2\\theta}{g} \\end{gathered}",
+   "pegadinha": "No topo, v não é zero: vale v₀·cos θ.",
+   "visual": {
+    "tipo": "animacao",
+    "descricao": "Parábola com sombras da bola nos eixos x e y.",
+    "movimento": [
+     "A sombra em x anda em passos iguais.",
+     "A sombra em y sobe freando e desce acelerando.",
+     "Juntas, as duas refazem a parábola."
+    ]
+   }
+  },
+  {
+   "sub": "F02.4",
+   "titulo": "Queda livre e lançamento vertical",
+   "pontos": [
+    "Sem ar, massa não importa: g ≈ 10 m/s².",
+    "Eixo para cima: a = −g, subindo e descendo.",
+    "Do repouso, cada segundo: 5, 15, 25, 35 m."
+   ],
+   "formula": "h = \\frac{g\\,t^2}{2} \\qquad h_{máx} = \\frac{v_0^2}{2g} \\qquad t_s = \\frac{v_0}{g}",
+   "pegadinha": "No topo v = 0, mas a continua sendo g.",
+   "visual": {
+    "tipo": "animacao",
+    "descricao": "Bola lançada para cima com setas de velocidade e de aceleração.",
+    "movimento": [
+     "A seta de velocidade encolhe até zero no topo.",
+     "A seta de aceleração fica igual, para baixo.",
+     "Na descida, a velocidade cresce para baixo."
+    ]
+   }
+  },
+  {
+   "sub": "F02.7",
+   "titulo": "Referencial e velocidade relativa",
+   "pontos": [
+    "Movimento e trajetória dependem do referencial.",
+    "Mesma reta: mesmo sentido subtrai, sentidos opostos soma.",
+    "Tempo de encontro = distância / v_rel; com trens, some os comprimentos."
+   ],
+   "formula": "\\vec{v}_{AB} = \\vec{v}_{AC} + \\vec{v}_{CB} \\qquad t = \\frac{d}{v_{rel}}",
+   "pegadinha": "Rio com a proa perpendicular: a correnteza só arrasta, não muda o tempo.",
+   "visual": {
+    "tipo": "animacao",
+    "descricao": "Dois trens de 200 m e 100 m se cruzando em sentidos opostos.",
+    "movimento": [
+     "As frentes se encontram e o cronômetro dispara.",
+     "Visto de um trem, o outro passa a 25 m/s.",
+     "As traseiras se separam em 12 s."
+    ]
+   }
+  }
+ ],
+ "questao_resolvida": {
+  "enunciado": "O gráfico v × t de um carrinho em linha reta é formado por segmentos: a velocidade cresce de 0 a 10 m/s entre 0 e 2 s, fica em 10 m/s até 6 s e então diminui de modo uniforme até −10 m/s em t = 10 s. Qual é a velocidade média do carrinho de 0 a 10 s?",
+  "alternativas": [
+   "A) 4 m/s",
+   "B) 6 m/s",
+   "C) 5 m/s",
+   "D) 7 m/s",
+   "E) 10 m/s"
+  ],
+  "gabarito": "C",
+  "passos": [
+   {
+    "faz": "Área do triângulo da partida (0 a 2 s)",
+    "conta": "\\frac{2 \\cdot 10}{2} = 10\\ \\text{m}",
+    "mov": "O triângulo se pinta e o 10 m aparece."
+   },
+   {
+    "faz": "Área do retângulo (2 a 6 s)",
+    "conta": "4 \\cdot 10 = 40\\ \\text{m}",
+    "mov": "O retângulo se pinta e o 40 m aparece."
+   },
+   {
+    "faz": "A reta cruza o zero em 8 s: triângulo acima (6 a 8 s) e abaixo (8 a 10 s)",
+    "conta": "+\\frac{2 \\cdot 10}{2} = +10\\ \\text{m} \\qquad -\\frac{2 \\cdot 10}{2} = -10\\ \\text{m}",
+    "mov": "O triângulo de baixo se pinta tracejado e ganha sinal de menos."
+   },
+   {
+    "faz": "Deslocamento: soma as áreas com sinal",
+    "conta": "\\Delta s = 10 + 40 + 10 - 10 = 50\\ \\text{m}",
+    "mov": "As quatro áreas voam para a soma; o −10 entra subtraindo."
+   },
+   {
+    "faz": "Velocidade média",
+    "conta": "v_m = \\frac{50\\ \\text{m}}{10\\ \\text{s}} = 5\\ \\text{m/s}",
+    "mov": "O 50 sobe, o 10 desce e o 5 m/s aparece."
+   }
+  ],
+  "por_que_erram": "Quem marca 7 m/s soma a área abaixo do eixo como positiva (70 m) e calcula a distância; a velocidade média usa o deslocamento, que subtrai essa área."
+ },
+ "conexao": [
+  {
+   "materia": "Matemática",
+   "frase": "A posição do MUV é função do 2º grau (parábola), o deslocamento é área de triângulo e retângulo, e a velocidade resultante sai de Pitágoras."
+  },
+  {
+   "materia": "Geografia",
+   "frase": "A rotação da Terra varre cerca de 15° por hora em qualquer ponto: mesma velocidade angular, e a velocidade linear cresce com o raio."
+  }
+ ],
+ "_revisao": {
+  "lentes": [
+   "gera",
+   "lente-a",
+   "lente-b",
+   "lente-a-volta"
+  ],
+  "pendencias": [
+   "Os slides 'Como cai na prova' ordenam as instituições, mas não trazem peso numérico por conteúdo: o peso alta/media foi inferido pelo número de provas citadas e pela frase 'tipo mais frequente' (F02.3) e 'Enem adora' (F02.6). Nenhum conteúdo ficou com peso baixo.",
+   "Os cartões não indicam qual conteúdo de F02 é mais cobrado entre si; a ordem das telas dentro do mesmo peso é uma estimativa e pode ser revista com o raio-x por instituição."
+  ],
+  "lente_a": [
+   {
+    "campo": "telas[0].pontos[2]",
+    "depois": "Abaixo do eixo, área negativa; vértice da parábola s × t: v = 0.",
+    "motivo": "Falta dizer em qual gráfico está a parábola. A parábola com vértice em v = 0 é a do s × t, como diz o cartão F02.3. Sem isso, o aluno pode confundir com o v × t, que no MUV é uma reta.",
+    "slide": "cartoes[F02.3].caderno[3] ('vértice da parábola s × t: v = 0, inversão de sentido'); slides F02.3 'fixe'"
+   }
+  ],
+  "lente_b": [
+   {
+    "campo": "mapa.ramos[3].chave",
+    "depois": "a = g sempre; no topo, v = 0",
+    "motivo": "A chave tinha 13 palavras e o limite é 12. A nova tem 9 e mantém a ideia do ramo."
+   },
+   {
+    "campo": "telas[0].pontos",
+    "depois": [
+     "Inclinação: s × t dá v; v × t, a.",
+     "Área: v × t dá Δs; a × t, Δv.",
+     "Abaixo do eixo, negativa; vértice do s × t: v = 0."
+    ],
+    "motivo": "A tela tinha 45 palavras e passa a ter 39. O vértice continua no s × t, como a lente A pediu."
+   },
+   {
+    "campo": "telas[0].pegadinha",
+    "depois": "Cruzamento no v × t não é encontro.",
+    "motivo": "Corte necessário para caber em 40 palavras, sem mudar o fato."
+   },
+   {
+    "campo": "telas[1].pontos",
+    "depois": [
+     "Média = deslocamento total / tempo total, com paradas.",
+     "MU: v constante e não nula; s × t é reta.",
+     "m/s para km/h: multiplique por 3,6; no inverso, divida."
+    ],
+    "motivo": "Reduz de 42 para 39 palavras, sem tirar nenhuma ideia."
+   },
+   {
+    "campo": "telas[1].pegadinha",
+    "depois": "Trechos iguais, 40 e 60 km/h: média 48, não 50.",
+    "motivo": "Mais curta e com os mesmos números."
+   },
+   {
+    "campo": "telas[4].pontos",
+    "depois": [
+     "Horizontal: MU. Vertical: MUV com g. O tempo vem da vertical.",
+     "Decomponha v₀: cos θ na horizontal, sen θ na vertical.",
+     "Alcance máximo a 45°, só no mesmo nível."
+    ],
+    "motivo": "Reduz de 42 para 38 palavras."
+   },
+   {
+    "campo": "telas[4].pegadinha",
+    "depois": "No topo, v não é zero: vale v₀·cos θ.",
+    "motivo": "Corte de palavras para caber em 40."
+   },
+   {
+    "campo": "telas[5].pontos",
+    "depois": [
+     "Sem ar, massa não importa: g ≈ 10 m/s².",
+     "Eixo para cima: a = −g, subindo e descendo.",
+     "Do repouso, cada segundo: 5, 15, 25, 35 m."
+    ],
+    "motivo": "A tela tinha 45 palavras e passa a ter 39."
+   },
+   {
+    "campo": "telas[5].pegadinha",
+    "depois": "No topo v = 0, mas a continua sendo g.",
+    "motivo": "Corte de palavras para caber em 40."
+   }
+  ],
+  "alertas": [],
+  "lente_a_volta": []
+ }
+}

@@ -1,0 +1,220 @@
+{
+ "n": 73,
+ "id": "Pf772e2b5",
+ "materia": "mat",
+ "tema": "M13",
+ "conteudo": "M13.3",
+ "nivel": 4,
+ "conceito": "Contagem por etapas com restrição: combinações, escolhendo primeiro quem tem a condição mais forte.",
+ "resolucao": {
+  "antes": {
+   "texto": "Cada filho recebe um grupo de 3 camisas, e a ordem dentro do grupo não importa. Por isso usamos combinação. A camisa 1 já é de Henrique, e a camisa 5 é proibida para Gustavo. Comece por Gustavo, que tem a proibição: depois que ele escolhe, Henrique completa o grupo e o pai fica com a camisa que sobrar.",
+   "formulas": [
+    "combinação de n em p: C(n,p) = n! ÷ (p! × (n − p)!)",
+    "etapas seguidas que se completam: multiplique as possibilidades de cada etapa"
+   ],
+   "simbolos": [
+    [
+     "C(n,p)",
+     "número de modos de escolher p itens entre n, sem importar a ordem"
+    ],
+    [
+     "n!",
+     "fatorial: n × (n − 1) × ... × 1"
+    ]
+   ]
+  },
+  "pista": "A camisa 1 já tem dono. Quantas camisas sobram para Gustavo escolher, sem a 1 e sem a 5?",
+  "passos": [
+   {
+    "faz": "Tire a camisa 1 do jogo de Gustavo",
+    "conta": "Henrique já tem a 1",
+    "porque": "A camisa 1 já é de Henrique, então Gustavo não pode escolhê-la. Ele também não pode escolher a 5.",
+    "tipo": "localizar"
+   },
+   {
+    "faz": "Liste as opções de Gustavo",
+    "conta": "Sobram: 2, 3, 4, 6, 7 (5 camisas)",
+    "porque": "De 7 camisas, sai a 1 (de Henrique) e sai a 5 (proibida para Gustavo).",
+    "tipo": "localizar"
+   },
+   {
+    "faz": "Conte as escolhas de Gustavo",
+    "conta": "C(5,3) = 10",
+    "porque": "Ele escolhe 3 entre 5 camisas e a ordem não importa. C(5,3) = (5×4×3) ÷ (3×2×1) = 10.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Conte as escolhas de Henrique",
+    "conta": "C(3,2) = 3",
+    "porque": "Depois de Gustavo, restam 4 camisas: a 1 e mais 3. Henrique já tem a 1 e escolhe mais 2 entre as outras 3. Isso dá C(3,2) = 3.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Veja o que sobra para o pai",
+    "conta": "1 camisa: só 1 jeito",
+    "porque": "A camisa que não foi escolhida por nenhum dos filhos fica com o pai, sem nova escolha.",
+    "tipo": "localizar"
+   },
+   {
+    "faz": "Multiplique as etapas",
+    "conta": "10 × 3 = 30",
+    "porque": "Para cada escolha de Gustavo há 3 escolhas de Henrique. Logo, 30 distribuições.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa D: são 30 maneiras, pois Gustavo tem C(5,3) = 10 escolhas e, para cada uma, Henrique tem C(3,2) = 3.",
+  "checagem": "Conte pela camisa do pai. Se o pai fica com a 5 (1 caso), Gustavo escolhe 3 entre {2,3,4,6,7}: 10 jeitos, e o resto vai para Henrique. Se o pai fica com outra das 5 camisas (2, 3, 4, 6 ou 7), a 5 precisa ir para Henrique. Ele já tem a 1 e a 5, então escolhe a terceira entre 4 camisas: 4 jeitos, e Gustavo fica com as 3 restantes. Isso dá 5 × 4 = 20. Total: 10 + 20 = 30.",
+  "erradas": {
+   "A": "40 = 10 × 4 sai de deixar Henrique escolher 3 das 4 camisas que sobram, C(4,3) = 4, sem garantir a 1 no grupo dele. A 1 já é dele: ele só escolhe 2 entre as outras 3, C(3,2) = 3, e 10 × 3 = 30.",
+   "B": "35 = C(7,3) conta os grupos de 3 camisas entre as 7, sem restrição. Esse valor ignora que a 1 é de Henrique e a 5 é proibida para Gustavo. Também conta só um grupo, e não a escolha dos dois filhos.",
+   "C": "45 não confere: a conta correta é 10 × 3 = 30. Para dar 45, Henrique teria 4,5 escolhas por caso de Gustavo, o que é impossível porque o número de escolhas é inteiro.",
+   "E": "50 = 10 × 5 exigiria 5 escolhas para Henrique em cada caso. Depois de Gustavo, Henrique só tem 3 camisas livres para completar o grupo, então são 3 escolhas, não 5."
+  },
+  "armadilha": "Esquecer que a camisa 1 já pertence a Henrique: ela não pode ser escolhida por Gustavo e ocupa uma das 3 vagas de Henrique.",
+  "alerta": "",
+  "essencial": {
+   "pede": "O número de maneiras de distribuir as camisas entre Gustavo, Henrique e o pai, com as duas condições dadas.",
+   "chave": "Escolha primeiro Gustavo (C(5,3) = 10), depois Henrique completa o grupo (C(3,2) = 3), e o pai fica com a que sobrou.",
+   "cuidado": "Retire a camisa 1 (de Henrique) e a 5 (proibida) antes de contar as escolhas de Gustavo."
+  }
+ },
+ "caminhos": [
+  {
+   "nome": "começar pelo pai",
+   "ideia": "Escolha a camisa do pai. Se for a 5, Gustavo escolhe 3 entre 5: 10 jeitos. Se for outra das 5 (2, 3, 4, 6 ou 7), a 5 vai para Henrique, que escolhe mais 1 entre 4: 5 × 4 = 20 jeitos. Total: 30."
+  },
+  {
+   "nome": "começar por Henrique",
+   "ideia": "Henrique tem a 1 e escolhe 2 entre as outras 6, mas a 5 exige cuidado. Por isso o caminho mais simples é começar por Gustavo, que é quem tem a restrição."
+  }
+ ],
+ "quadro": [
+  {
+   "linha": "Henrique: camisa 1",
+   "nota": "A camisa 1 já tem dono."
+  },
+  {
+   "linha": "Gustavo: 2, 3, 4, 6, 7",
+   "nota": "Sem a 1 e sem a 5, sobram 5 camisas."
+  },
+  {
+   "linha": "C(5,3) = (5×4×3)/(3×2×1)",
+   "nota": "Gustavo escolhe 3 entre 5; a ordem não importa."
+  },
+  {
+   "linha": "C(5,3) = 10",
+   "nota": "60 ÷ 6 = 10."
+  },
+  {
+   "linha": "Restam 4: a 1 e outras 3",
+   "nota": "Henrique já tem a 1 e escolhe mais 2."
+  },
+  {
+   "linha": "C(3,2) = 3",
+   "nota": "Escolher 2 entre 3 camisas dá 3 jeitos."
+  },
+  {
+   "linha": "Pai: 1 jeito",
+   "nota": "Fica com a camisa que sobrou."
+  },
+  {
+   "linha": "10 × 3 × 1 = 30",
+   "nota": "Etapas seguidas se multiplicam.",
+   "destaque": "30"
+  }
+ ],
+ "visual": {
+  "cabe": false,
+  "porque": "A contagem é curta e fica clara na conta do caderno; uma animação não acrescentaria nada.",
+  "tipo": "nenhum",
+  "roteiro": ""
+ },
+ "fontes": [],
+ "resposta_resolvedor": "D",
+ "confere": true,
+ "divergencia": "",
+ "gab": "D",
+ "revisao": {
+  "lentes": [
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
+  ],
+  "modelos": {
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "40 = 10 × 4 sai de deixar Henrique escolher 3 das 4 camisas que sobram, C(4,3) = 4, sem garantir a 1 no grupo dele. A 1 já é dele: ele só escolhe 2 entre as outras 3, C(3,2) = 3, e 10 × 3 = 30.",
+    "motivo": "O texto antigo dizia que 40 = 10 × 4 viria de escolher 2 entre 4. Isso está errado, porque C(4,2) = 6 e daria 60. O fator 4 vem de C(4,3) = 4.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[4].tipo",
+    "depois": "calcular",
+    "motivo": "O tipo \"aplicar\" não faz parte da lista permitida (localizar, calcular, comparar, eliminar, concluir). O passo conta 1 jeito, então o tipo certo é \"calcular\".",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Cada filho recebe um grupo de 3 camisas, e a ordem dentro do grupo não importa. Por isso usamos combinação. A camisa 1 já é de Henrique, e a camisa 5 é proibida para Gustavo. Comece por Gustavo, que tem a proibição: depois que ele escolhe, Henrique completa o grupo e o pai fica com a camisa que sobrar.",
+    "motivo": "Texto mais direto, mostra a sequência das etapas."
+   },
+   {
+    "campo": "resolucao.passos[0].porque",
+    "depois": "A camisa 1 já é de Henrique, então Gustavo não pode escolhê-la. Ele também não pode escolher a 5.",
+    "motivo": "A frase anterior dizia que a 1 não podia ir para o pai, o que é confuso."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "C(5,3) = 10",
+    "motivo": "Mantido; o cálculo detalhado fica no porque."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "C(3,2) = 3",
+    "motivo": "A conta deve mostrar a operação, não só a descrição."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Depois de Gustavo, restam 4 camisas: a 1 e mais 3. Henrique já tem a 1 e escolhe mais 2 entre as outras 3. Isso dá C(3,2) = 3.",
+    "motivo": "Clareza sobre o que sobra."
+   },
+   {
+    "campo": "resolucao.passos[4].faz",
+    "depois": "Veja o que sobra para o pai",
+    "motivo": "Mantido."
+   },
+   {
+    "campo": "resolucao.passos[4].tipo",
+    "depois": "localizar",
+    "motivo": "Não há cálculo: é só ver que a camisa que sobra é do pai."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "45 não confere: a conta correta é 10 × 3 = 30. Para dar 45, Henrique teria 4,5 escolhas por caso de Gustavo, o que é impossível porque o número de escolhas é inteiro.",
+    "motivo": "O argumento '45 não é múltiplo de 10' era um teste fraco; agora o teste é objetivo."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "35 = C(7,3) conta os grupos de 3 camisas entre as 7, sem restrição. Esse valor ignora que a 1 é de Henrique e a 5 é proibida para Gustavo. Também conta só um grupo, e não a escolha dos dois filhos.",
+    "motivo": "Frase mais clara."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "D"
+ }
+}

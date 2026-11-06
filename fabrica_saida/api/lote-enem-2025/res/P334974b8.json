@@ -1,0 +1,216 @@
+{
+ "n": 155,
+ "id": "P334974b8",
+ "materia": "mat",
+ "tema": "M13",
+ "conteudo": "M13.2",
+ "nivel": 4,
+ "conceito": "Princípio multiplicativo com restrição: três cargos distintos, no máximo uma pessoa por casal.",
+ "resolucao": {
+  "antes": {
+   "texto": "Os cargos são diferentes (presidente, secretário, tesoureiro), então a ordem importa. Escolha uma pessoa de cada vez, cargo por cargo, e multiplique as possibilidades. A regra do enunciado é: cada casal ocupa no máximo um cargo. Por isso, ao escolher alguém, o parceiro dessa pessoa também sai da lista dos próximos cargos.",
+   "formulas": [
+    "total = (opções p/ presidente) × (opções p/ secretário) × (opções p/ tesoureiro)"
+   ],
+   "simbolos": [
+    [
+     "diretoria",
+     "o trio de pessoas com cargos definidos; trocar quem ocupa cada cargo gera outra diretoria"
+    ],
+    [
+     "princípio multiplicativo",
+     "se uma escolha tem m jeitos e a seguinte tem n jeitos, as duas juntas têm m × n jeitos"
+    ],
+    [
+     "parceiro",
+     "a outra pessoa do mesmo casal"
+    ]
+   ]
+  },
+  "pista": "Escolha o presidente. Depois pergunte: quantas pessoas ainda podem ser secretário, lembrando que o parceiro do presidente não pode?",
+  "passos": [
+   {
+    "faz": "Conte as pessoas disponíveis",
+    "conta": "10 casais × 2 = 20 pessoas",
+    "porque": "Cada casal tem duas pessoas, e qualquer uma delas pode ser presidente. São 10 × 2 pessoas no total.",
+    "tipo": "localizar"
+   },
+   {
+    "faz": "Escolha o presidente",
+    "conta": "20 opções",
+    "porque": "Ainda não há restrição: qualquer uma das 20 pessoas serve.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Escolha o secretário",
+    "conta": "20 − 2 = 18 opções",
+    "porque": "Saem o presidente e o seu parceiro, porque o casal dele já ocupa um cargo.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Escolha o tesoureiro",
+    "conta": "18 − 2 = 16 opções",
+    "porque": "Saem também o secretário e o parceiro dele. Já saíram 2 casais (4 pessoas), então sobram 8 casais, ou seja, 16 pessoas.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Multiplique as escolhas",
+    "conta": "20 × 18 × 16 = 5760",
+    "porque": "Cada escolha do presidente se combina com todas as escolhas do secretário e do tesoureiro. O resultado 5760 corresponde à alternativa B.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa B: 20 × 18 × 16, porque cada cargo tira da lista a pessoa escolhida e o parceiro dela.",
+  "checagem": "Outro caminho: escolha primeiro os casais em ordem (10 × 9 × 8 = 720). Em cada casal escolhido, 2 pessoas podem assumir o cargo, então multiplique por 2 × 2 × 2 = 8. Dá 720 × 8 = 5760, igual a 20 × 18 × 16.",
+  "erradas": {
+   "A": "10 × 9 × 8 = 720 conta só os casais em ordem. Falta decidir qual das 2 pessoas de cada casal ocupa o cargo: 2 × 2 × 2 = 8. Então 720 × 8 = 5760. Quem marcou A esqueceu que cada casal tem duas pessoas.",
+   "C": "20 × 19 × 18 = 6840 só impede que a mesma pessoa ocupe dois cargos. Quem marcou C esqueceu que o parceiro de quem já tem cargo também sai. O certo é descontar 2 a cada escolha: 20, 18, 16.",
+   "D": "10 × 9 × 8 × 2 = 1440 multiplica por 2 uma única vez. Quem marcou D esqueceu que há 3 cargos, e em cada casal escolhido há 2 pessoas possíveis: o fator é 2 × 2 × 2 = 8. Então 720 × 8 = 5760.",
+   "E": "20 × 18 × 16 × 2 = 11520 conta a escolha da pessoa duas vezes: 20, 18 e 16 já contam pessoas, então o fator 2 extra não existe. Quem marcou E juntou os dois caminhos de contagem. O resultado é o dobro do correto."
+  },
+  "armadilha": "Ao escolher uma pessoa, o parceiro dela também sai da lista, então a lista cai de 2 em 2 (20, 18, 16) e não de 1 em 1.",
+  "alerta": "",
+  "essencial": {
+   "pede": "O número de diretorias com 3 cargos diferentes e no máximo uma pessoa de cada casal.",
+   "chave": "Escolha cargo por cargo, tirando a pessoa e o parceiro dela a cada vez: 20 × 18 × 16.",
+   "cuidado": "Não some o fator 2 de novo: ele já está dentro dos números 20, 18 e 16."
+  }
+ },
+ "caminhos": [
+  {
+   "nome": "casais primeiro",
+   "ideia": "Escolha os 3 casais em ordem (10 × 9 × 8 = 720) e, em cada um, qual das 2 pessoas assume o cargo (2 × 2 × 2 = 8). Resultado: 720 × 8 = 5760."
+  },
+  {
+   "nome": "eliminação",
+   "ideia": "A resposta precisa descontar o parceiro a cada escolha, então a lista cai de 2 em 2, como em 20 × 18 × 16. Isso exclui A, C e D. A letra E tem um fator 2 a mais, que repete uma contagem já feita."
+  }
+ ],
+ "quadro": [
+  {
+   "linha": "pessoas = 10 × 2 = 20",
+   "nota": "são 10 casais, com 2 pessoas cada"
+  },
+  {
+   "linha": "presidente: 20",
+   "nota": "qualquer pessoa pode ser presidente"
+  },
+  {
+   "linha": "secretário: 20 − 2 = 18",
+   "nota": "saem o presidente e o parceiro dele",
+   "destaque": "20 − 2"
+  },
+  {
+   "linha": "tesoureiro: 18 − 2 = 16",
+   "nota": "saem o secretário e o parceiro dele",
+   "destaque": "18 − 2"
+  },
+  {
+   "linha": "total = 20 × 18 × 16",
+   "nota": "princípio multiplicativo"
+  },
+  {
+   "linha": "20 × 18 = 360",
+   "nota": "primeiro produto"
+  },
+  {
+   "linha": "360 × 16 = 5760",
+   "nota": "total de diretorias"
+  }
+ ],
+ "visual": {
+  "cabe": false,
+  "porque": "A contagem se resolve bem com três escolhas em sequência, e a conta animada no quadro já mostra o raciocínio.",
+  "tipo": "nenhum",
+  "roteiro": ""
+ },
+ "fontes": [],
+ "confere": true,
+ "divergencia": "",
+ "resposta_resolvedor": "B",
+ "gab": "B",
+ "revisao": {
+  "lentes": [
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
+  ],
+  "modelos": {
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [],
+  "fatos_ok": true,
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Os cargos são diferentes (presidente, secretário, tesoureiro), então a ordem importa. Escolha uma pessoa de cada vez, cargo por cargo, e multiplique as possibilidades. A regra do enunciado é: cada casal ocupa no máximo um cargo. Por isso, ao escolher alguém, o parceiro dessa pessoa também sai da lista dos próximos cargos.",
+    "motivo": "'A restrição' ficava vaga; agora o texto diz qual é a regra do enunciado."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "diretoria",
+      "o trio de pessoas com cargos definidos; trocar quem ocupa cada cargo gera outra diretoria"
+     ],
+     [
+      "princípio multiplicativo",
+      "se uma escolha tem m jeitos e a seguinte tem n jeitos, as duas juntas têm m × n jeitos"
+     ],
+     [
+      "parceiro",
+      "a outra pessoa do mesmo casal"
+     ]
+    ],
+    "motivo": "O termo 'parceiro' é usado em toda a resolução e precisava de explicação."
+   },
+   {
+    "campo": "resolucao.passos[0].porque",
+    "depois": "Cada casal tem duas pessoas, e qualquer uma delas pode ser presidente. São 10 × 2 pessoas no total.",
+    "motivo": "Liga a conta ao raciocínio de forma mais completa."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Saem também o secretário e o parceiro dele. Já saíram 2 casais (4 pessoas), então sobram 8 casais, ou seja, 16 pessoas.",
+    "motivo": "Explica por que sobram 16 pessoas."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "Cada escolha do presidente se combina com todas as escolhas do secretário e do tesoureiro. O resultado 5760 corresponde à alternativa B.",
+    "motivo": "Frase mais clara, com a ligação à alternativa."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "10 × 9 × 8 = 720 conta só os casais em ordem. Falta decidir qual das 2 pessoas de cada casal ocupa o cargo: 2 × 2 × 2 = 8. Então 720 × 8 = 5760. Quem marcou A esqueceu que cada casal tem duas pessoas.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou A."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "20 × 19 × 18 = 6840 só impede que a mesma pessoa ocupe dois cargos. Quem marcou C esqueceu que o parceiro de quem já tem cargo também sai. O certo é descontar 2 a cada escolha: 20, 18, 16.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou C."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "10 × 9 × 8 × 2 = 1440 multiplica por 2 uma única vez. Quem marcou D esqueceu que há 3 cargos, e em cada casal escolhido há 2 pessoas possíveis: o fator é 2 × 2 × 2 = 8. Então 720 × 8 = 5760.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou D."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "20 × 18 × 16 × 2 = 11520 conta a escolha da pessoa duas vezes: 20, 18 e 16 já contam pessoas, então o fator 2 extra não existe. Quem marcou E juntou os dois caminhos de contagem. O resultado é o dobro do correto.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou E."
+   }
+  ],
+  "didatica_alertas": [
+   "O campo 'nivel' da resolução (4) difere da classificação informada no enunciado (nível 8); verificar com o corretor responsável."
+  ],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "B"
+ }
+}

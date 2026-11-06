@@ -1,0 +1,154 @@
+{
+ "n": 35,
+ "id": "P40d921d1",
+ "materia": "mat",
+ "tema": "M13",
+ "conteudo": "M13.1",
+ "nivel": 5,
+ "conceito": "Princípio multiplicativo com restrições: contar horários cujos algarismos, refletidos no vidro, ainda formam um horário válido.",
+ "resolucao": {
+  "antes": {
+   "texto": "O vidro está embaixo do relógio, então a imagem é espelhada de cima para baixo (o que estava em cima vai para baixo). A ordem dos algarismos da esquerda para a direita não muda. Um horário só serve se todos os algarismos viram outro algarismo e se o horário refletido também estiver entre 00:00 e 23:59. Depois, conte hora e minuto separadamente e multiplique.",
+   "formulas": [
+    "total = (horas possíveis) × (minutos possíveis)",
+    "cada posição: conte as escolhas e multiplique"
+   ],
+   "simbolos": [
+    [
+     "reflexo vertical",
+     "inversão de cima para baixo, como o vidro sob o relógio faz"
+    ],
+    [
+     "horário válido",
+     "hora de 00 a 23 e minuto de 00 a 59"
+    ],
+    [
+     "segmento",
+     "cada traço luminoso que forma um algarismo no visor"
+    ]
+   ]
+  },
+  "pista": "Vire cada algarismo de cabeça para baixo, trocando o traço de cima pelo de baixo, e veja quais continuam sendo algarismos.",
+  "passos": [
+   {
+    "faz": "Descubra o que cada algarismo vira",
+    "conta": "0→0, 1→1, 8→8, 3→3",
+    "porque": "Esses têm traços simétricos de cima para baixo. No visor da figura, o 1 usa os traços da esquerda, que não mudam no reflexo.",
+    "tipo": "localizar"
+   },
+   {
+    "faz": "Continue com os que trocam de par",
+    "conta": "2→5, 5→2, 6→9, 9→6",
+    "porque": "No 2, o traço de cima vai para baixo e o de baixo vai para cima, e o resultado é um 5. A figura confirma: 18:02 aparece como 18:05. O mesmo acontece com 6 e 9.",
+    "tipo": "localizar"
+   },
+   {
+    "faz": "Elimine os que não funcionam",
+    "conta": "4 e 7 não viram algarismo",
+    "porque": "Virados de cima para baixo, os traços do 4 e do 7 desenhados no visor não formam nenhum numeral. Sobram 8 algarismos: 0, 1, 2, 3, 5, 6, 8, 9.",
+    "tipo": "eliminar"
+   },
+   {
+    "faz": "Conte as horas possíveis",
+    "conta": "dezena 0 ou 1: 2 × 8 = 16",
+    "porque": "A dezena 0 ou 1 reflete em 0 ou 1, e a unidade pode ser qualquer um dos 8 algarismos. A dezena 2 não serve: ela reflete em 5, e 5x passa de 23.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Conte os minutos possíveis",
+    "conta": "dezena: 0,1,2,3,5 → 5 · unidade: 8",
+    "porque": "A dezena dos minutos vai de 0 a 5. Entre os 8 algarismos, servem 0, 1, 2, 3 e 5, e o reflexo de cada um (0, 1, 5, 3, 2) também é no máximo 5. A unidade aceita os 8.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Multiplique horas por minutos",
+    "conta": "16 × 40 = 640",
+    "porque": "Cada hora possível combina com cada minuto possível (princípio multiplicativo).",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa D: 640 horários, pois há 16 horas e 40 minutos possíveis, e 16 × 40 = 640.",
+  "checagem": "Conte por outro caminho: em cada uma das 16 horas, os minutos formam 5 × 8 = 40 opções. Como 16 × 40 = 640, fecha. Teste um exemplo: 19:35 reflete em 16:32, que é válido.",
+  "erradas": {
+   "A": "96 não confere. Cada hora possível aceita 40 minutos, e 16 horas × 40 = 640. Para dar 96 seriam só 6 minutos por hora.",
+   "B": "360 não confere. Como cada hora tem 40 minutos, 360 ÷ 40 = 9 horas. Mas há 16 horas possíveis: 00 a 03, 05, 06, 08, 09 e 10 a 13, 15, 16, 18, 19.",
+   "C": "540 não confere. Com 40 minutos por hora, seriam 13,5 horas, e isso não existe. As horas possíveis são 16, e 16 × 40 = 640.",
+   "E": "960 = 24 × 40 conta todas as 24 horas como possíveis. Mas 04, 07, 14, 17 têm 4 ou 7, que não refletem em algarismo, e 20 a 23 refletem em 50 a 53, que passam de 23."
+  },
+  "armadilha": "Esquecer que a dezena da hora 2 reflete em 5 (horário inválido), ou deixar o 4 e o 7 na contagem.",
+  "alerta": "",
+  "essencial": {
+   "pede": "Quantos horários, de 00:00 a 23:59, aparecem no vidro como horário válido.",
+   "chave": "Só 0, 1, 2, 3, 5, 6, 8, 9 refletem em algarismo, com 2↔5 e 6↔9. Resultam 16 horas × 40 minutos.",
+   "cuidado": "A hora refletida também precisa estar entre 00 e 23 e o minuto refletido entre 00 e 59."
+  }
+ },
+ "caminhos": [
+  {
+   "nome": "contagem por posição",
+   "ideia": "Conte as escolhas de cada um dos quatro algarismos (hora: 2 e 8; minuto: 5 e 8) e multiplique: 2 × 8 × 5 × 8 = 640."
+  }
+ ],
+ "quadro": [
+  {
+   "linha": "Algarismos que valem:",
+   "nota": "viram outro algarismo no reflexo"
+  },
+  {
+   "linha": "0, 1, 2, 3, 5, 6, 8, 9",
+   "nota": "oito algarismos (4 e 7 não valem)"
+  },
+  {
+   "linha": "Hora: dezena 0 ou 1 → 2",
+   "nota": "a dezena 2 vira 5, inválida"
+  },
+  {
+   "linha": "Hora: unidade → 8",
+   "nota": "qualquer um dos 8"
+  },
+  {
+   "linha": "Horas = 2 × 8 = 16",
+   "nota": "princípio multiplicativo"
+  },
+  {
+   "linha": "Minuto: dezena → 5",
+   "nota": "0, 1, 2, 3, 5 (reflexos até 5)"
+  },
+  {
+   "linha": "Minuto: unidade → 8",
+   "nota": "qualquer um dos 8"
+  },
+  {
+   "linha": "Minutos = 5 × 8 = 40",
+   "nota": "opções de minutos"
+  },
+  {
+   "linha": "Total = 16 × 40",
+   "nota": "cada hora com cada minuto"
+  },
+  {
+   "linha": "Total = 640",
+   "nota": "alternativa D",
+   "destaque": "640"
+  }
+ ],
+ "visual": {
+  "cabe": true,
+  "tipo": "figura",
+  "porque": "Ver o visor virar de cima para baixo mostra quais algarismos sobrevivem.",
+  "roteiro": "Quadro 1: um visor de 7 segmentos com o 2 aceso, e uma linha de vidro embaixo. Quadro 2: os traços do 2 se espelham na linha e aparece o 5 (2↔5); repetir com 6↔9. Quadro 3: 0, 1, 8 e 3 ficam iguais. Quadro 4: 4 e 7 viram figuras sem sentido e ficam em vermelho. Quadro 5: a lista de 8 algarismos válidos e as caixas de contagem 2 × 8 : 5 × 8 = 16 × 40 = 640."
+ },
+ "fontes": [],
+ "confere": false,
+ "divergencia": "",
+ "resposta_resolvedor": "D",
+ "gab": "B",
+ "revisao": {
+  "lentes": [
+   "resolvedor"
+  ],
+  "modelos": {
+   "resolvedor": "claude-sonnet-5-5"
+  }
+ }
+}

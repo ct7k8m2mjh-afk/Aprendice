@@ -1,0 +1,226 @@
+{
+ "n": 151,
+ "id": "P4b660a80",
+ "materia": "mat",
+ "tema": "M17",
+ "conteudo": "M17.2",
+ "nivel": 2,
+ "conceito": "Montar um código numérico de 7 dígitos seguindo uma regra de posições: andar, setor, funcionário e turno.",
+ "resolucao": {
+  "antes": {
+   "texto": "O código tem 4 blocos, sempre na mesma ordem, da esquerda para a direita: andar (1 dígito), setor (2 dígitos), funcionário (3 dígitos) e turno (1 dígito). Basta pegar cada informação do enunciado e escrevê-la no seu bloco, completando com zeros à esquerda quando o número tem menos dígitos que o bloco.",
+   "formulas": [
+    "código = andar | setor (2 dígitos) | funcionário (3 dígitos) | turno",
+    "1 + 2 + 3 + 1 = 7 dígitos"
+   ],
+   "simbolos": [
+    [
+     "dígito",
+     "cada algarismo de um número; o código 2081090 tem 7 dígitos"
+    ],
+    [
+     "turno",
+     "manhã é o dígito 0; tarde é o dígito 1"
+    ]
+   ]
+  },
+  "pista": "Escreva quatro caixinhas na ordem da regra e preencha uma por vez, sem pular nenhuma.",
+  "passos": [
+   {
+    "faz": "Leia os dados do visitante",
+    "conta": "andar 2; setor 08; func. 109; 10h",
+    "porque": "O enunciado diz: 2º andar, setor 08, funcionário 109, chegada às 10 horas da manhã.",
+    "tipo": "localizar"
+   },
+   {
+    "faz": "Preencha o 1º bloco: andar",
+    "conta": "andar 2 → 2",
+    "porque": "O primeiro dígito é o andar. O visitante vai ao 2º andar, então o código começa com 2.",
+    "tipo": "localizar"
+   },
+   {
+    "faz": "Preencha o setor e o funcionário",
+    "conta": "setor 08 → 08 ; func. 109 → 109",
+    "porque": "O setor usa 2 dígitos (08, com o zero) e o funcionário usa 3 dígitos (109). Os dois já vêm no tamanho certo.",
+    "tipo": "localizar"
+   },
+   {
+    "faz": "Preencha o último bloco: turno",
+    "conta": "10h da manhã → 0",
+    "porque": "Dez horas da manhã é turno da manhã, que corresponde ao dígito 0.",
+    "tipo": "comparar"
+   },
+   {
+    "faz": "Junte os blocos na ordem",
+    "conta": "2 | 08 | 109 | 0 → 2081090",
+    "porque": "Colocando andar, setor, funcionário e turno em sequência, o código fica com 1 + 2 + 3 + 1 = 7 dígitos: 2081090. É a alternativa D.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa D: 2081090, que é andar 2, setor 08, funcionário 109 e turno da manhã 0.",
+  "checagem": "Leia o código de trás para a frente: último dígito 0 (manhã), três dígitos antes 109 (funcionário), dois antes 08 (setor), sobrou 2 (andar). Tudo bate, e são 7 dígitos.",
+  "erradas": {
+   "A": "A sai de escrever os blocos de trás para a frente: 0 (turno), 109 (funcionário), 08 (setor), 2 (andar). O código deve começar pelo andar e terminar pelo turno. Faltou seguir a ordem da regra.",
+   "B": "B não confere. Lido pela regra, vira 0 | 28 | 109 | 0: andar 0 (só existe de 1 a 4) e setor 28 (passa de 20). Faltou conferir o tamanho de cada bloco: o setor 08 ocupa 2 dígitos.",
+   "C": "C não confere. Pela regra, 1010982 vira 1 | 01 | 098 | 2: andar 1 (o visitante vai ao 2º), setor 01 (não é 08), funcionário 098 (não é 109) e turno 2 (só vale 0 ou 1). Faltou conferir cada dado no seu bloco.",
+   "E": "E não confere. Pela regra, 2810910 vira 2 | 81 | 091 | 0: o andar e o turno estão certos, mas o setor 81 passa de 20 e o funcionário 091 não é 109. Faltou conferir os blocos do meio, não só o primeiro e o último dígito."
+  },
+  "armadilha": "Esquecer o zero do setor 08 (que tem de ocupar 2 dígitos) ou trocar a ordem dos blocos.",
+  "alerta": "",
+  "essencial": {
+   "pede": "O código de 7 dígitos do visitante do 2º andar, setor 08, funcionário 109, chegada pela manhã.",
+   "chave": "Escrever, na ordem da regra: andar (2), setor (08), funcionário (109) e turno (0).",
+   "cuidado": "Respeitar o tamanho de cada bloco: o setor 08 tem 2 dígitos, com o zero à esquerda."
+  }
+ },
+ "caminhos": [
+  {
+   "nome": "eliminação pelo primeiro e pelo último dígito",
+   "ideia": "O código deve começar com 2 (andar) e terminar com 0 (manhã). Isso elimina A, B e C, mas a E (2810910) também começa com 2 e termina com 0. Ela cai porque o setor seria 81, que passa de 20. Sobra a D."
+  }
+ ],
+ "quadro": [
+  {
+   "linha": "andar: 2",
+   "nota": "2º andar → 1 dígito"
+  },
+  {
+   "linha": "setor: 08",
+   "nota": "2 dígitos, com o zero"
+  },
+  {
+   "linha": "func.: 109",
+   "nota": "3 dígitos"
+  },
+  {
+   "linha": "turno: 0",
+   "nota": "10h da manhã → 0"
+  },
+  {
+   "linha": "2 | 08 | 109 | 0",
+   "nota": "blocos na ordem da regra"
+  },
+  {
+   "linha": "código = 2081090",
+   "nota": "7 dígitos"
+  }
+ ],
+ "visual": {
+  "cabe": true,
+  "porque": "Ajuda ver o código sendo montado bloco a bloco, cada informação indo para a sua caixinha.",
+  "tipo": "diagrama",
+  "roteiro": "Quadro 1: sete casinhas vazias, agrupadas em 1 | 2 | 3 | 1, com rótulos andar, setor, funcionário, turno. Quadro 2: o 2 entra na primeira caixa. Quadro 3: 0 e 8 entram na caixa do setor. Quadro 4: 1, 0 e 9 entram na caixa do funcionário. Quadro 5: o 0 entra na última caixa (sol da manhã). Quadro 6: o código completo 2081090 aparece e destaca-se na alternativa D."
+ },
+ "fontes": [],
+ "confere": true,
+ "divergencia": "",
+ "resposta_resolvedor": "D",
+ "gab": "D",
+ "revisao": {
+  "lentes": [
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
+  ],
+  "modelos": {
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "0109082 começa com 0, mas o andar deve ser de 1 a 4 (aqui, 2), e termina em 2, que não é turno (só 0 ou 1). São os blocos em ordem inversa: 0 (turno), 109 (funcionário), 08 (setor), 2 (andar).",
+    "motivo": "O texto dizia que era 'o código lido de trás para a frente', o que é falso: 2081090 invertido dá 0901802. O que se inverteu foi a ordem dos blocos, não a dos dígitos.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "0281090 não confere. Pela regra, o código se lê 0 | 28 | 109 | 0: andar 0, que não existe (vai de 1 a 4), e setor 28, que passa de 20. Ele sai de pôr um 0 na frente e escrever o setor 8 sem o zero à esquerda.",
+    "motivo": "A leitura em blocos estava errada. O texto dava 'setor 02 e funcionário 810', mas pela regra os blocos são 0|28|109|0.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "1010982 começa com 1, mas o visitante vai ao 2º andar, e termina em 2, mas o último dígito só pode ser 0 ou 1. Pela regra, os blocos do meio seriam setor 01 e funcionário 098, e não 08 e 109.",
+    "motivo": "A leitura em blocos estava errada. O texto dava '010 e 98', mas pela regra os blocos são 1|01|098|2.",
+    "fonte": ""
+   },
+   {
+    "campo": "caminhos[0].ideia",
+    "depois": "O código deve começar com 2 (andar) e terminar com 0 (manhã). Isso elimina A, B e C, mas a E (2810910) também começa com 2 e termina com 0. Ela cai porque o setor seria 81, que passa de 20. Sobra a D.",
+    "motivo": "O texto dizia 'Só a alternativa D satisfaz as duas condições', o que é falso: a E também começa com 2 e termina com 0.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "calcular",
+    "motivo": "'aplicar' não está na lista de tipos permitidos (localizar, calcular, comparar, eliminar, concluir).",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "calcular",
+    "motivo": "'aplicar' não está na lista de tipos permitidos.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "calcular",
+    "motivo": "'aplicar' não está na lista de tipos permitidos.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "localizar",
+    "motivo": "Não há conta: o aluno só pega o dado e o coloca no bloco. 'localizar' descreve melhor a ação."
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "localizar",
+    "motivo": "Mesmo caso: copiar os dados no bloco certo, sem cálculo."
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "comparar",
+    "motivo": "O aluno decide entre manhã (0) e tarde (1) comparando com a hora dada."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "A sai de escrever os blocos de trás para a frente: 0 (turno), 109 (funcionário), 08 (setor), 2 (andar). O código deve começar pelo andar e terminar pelo turno. Faltou seguir a ordem da regra.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou A e fica mais curta."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "B não confere. Lido pela regra, vira 0 | 28 | 109 | 0: andar 0 (só existe de 1 a 4) e setor 28 (passa de 20). Faltou conferir o tamanho de cada bloco: o setor 08 ocupa 2 dígitos.",
+    "motivo": "Remove a suposição sobre a origem do erro e mantém só o teste objetivo."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "C não confere. Pela regra, 1010982 vira 1 | 01 | 098 | 2: andar 1 (o visitante vai ao 2º), setor 01 (não é 08), funcionário 098 (não é 109) e turno 2 (só vale 0 ou 1). Faltou conferir cada dado no seu bloco.",
+    "motivo": "Separa os blocos e mostra o teste completo, em linguagem mais clara."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "E não confere. Pela regra, 2810910 vira 2 | 81 | 091 | 0: o andar e o turno estão certos, mas o setor 81 passa de 20 e o funcionário 091 não é 109. Faltou conferir os blocos do meio, não só o primeiro e o último dígito.",
+    "motivo": "Mostra a leitura em blocos e o que faltou a quem só olhou as pontas."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "Colocando andar, setor, funcionário e turno em sequência, o código fica com 1 + 2 + 3 + 1 = 7 dígitos: 2081090. É a alternativa D.",
+    "motivo": "O passo conclui ligando o resultado à letra."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "D"
+ }
+}

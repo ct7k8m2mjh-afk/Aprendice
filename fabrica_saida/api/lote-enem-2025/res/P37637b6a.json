@@ -1,0 +1,301 @@
+{
+ "n": 178,
+ "id": "P37637b6a",
+ "materia": "mat",
+ "tema": "M13",
+ "conteudo": "M13.4",
+ "nivel": 6,
+ "conceito": "Probabilidade com três dados: comparar o maior valor de dois dados com um terceiro, com empate a favor de João.",
+ "confere": true,
+ "divergencia": "",
+ "resolucao": {
+  "antes": {
+   "texto": "Os três dados dão 6 × 6 × 6 = 216 resultados possíveis, todos com a mesma chance. Calcular a vitória de Artur direto é trabalhoso, porque ele depende do maior de dois dados. É mais simples calcular a vitória de João e depois usar o complementar. Como o jogo sempre tem um vencedor, a chance de Artur é 1 menos a de João. João vence quando o dado dele é maior ou igual aos dois dados de Artur, pois o empate é dele.",
+   "formulas": [
+    "probabilidade = casos favoráveis ÷ casos possíveis",
+    "P(Artur) = 1 − P(João)",
+    "João com valor j: os dois dados de Artur têm de ser ≤ j, ou seja, j × j casos"
+   ],
+   "simbolos": [
+    [
+     "complementar",
+     "o evento 'não acontecer'; as duas probabilidades somam 1"
+    ],
+    [
+     "J",
+     "número que João tirou no dado dele"
+    ],
+    [
+     "A1, A2",
+     "números dos dois dados de Artur"
+    ],
+    [
+     "≥",
+     "maior ou igual"
+    ],
+    [
+     "≤",
+     "menor ou igual"
+    ],
+    [
+     "P(João)",
+     "probabilidade de João vencer"
+    ]
+   ]
+  },
+  "pista": "Em vez de olhar para Artur, pergunte: para cada número que João tira, de quantas maneiras os dois dados de Artur ficam todos menores ou iguais a ele?",
+  "passos": [
+   {
+    "faz": "Conte os resultados possíveis",
+    "conta": "6 × 6 × 6 = 216",
+    "porque": "Cada um dos três dados tem 6 faces. O princípio multiplicativo dá o total de resultados igualmente prováveis.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Diga quando João vence",
+    "conta": "J ≥ A1 e J ≥ A2",
+    "porque": "Artur só ganha se o maior dos dois dados dele passar de J. Se o maior for menor ou igual a J, João ganha, pois o empate é dele. Isso exige que os dois dados de Artur sejam ≤ J.",
+    "tipo": "localizar"
+   },
+   {
+    "faz": "Conte os casos de João para cada J",
+    "conta": "J=1: 1×1 = 1\nJ=2: 2×2 = 4\nJ=3: 3×3 = 9\nJ=4: 4×4 = 16\nJ=5: 5×5 = 25\nJ=6: 6×6 = 36",
+    "porque": "Se João tira J, cada dado de Artur tem J faces possíveis (de 1 até J). São J × J casos para Artur.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Some e calcule P(João)",
+    "conta": "1+4+9+16+25+36 = 91\nP(João) = 91/216",
+    "porque": "Os casos de cada J são separados, então somam. 91/216 ≈ 0,42, abaixo de 1/2.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Use o complementar para Artur",
+    "conta": "P(Artur) = 1 − 91/216\nP(Artur) = 125/216",
+    "porque": "Um dos dois sempre vence. 125/216 ≈ 0,58 é maior que 91/216, então Artur é o favorito.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa E: Artur é o mais provável de vencer, com probabilidade 125/216, pois João vence em apenas 91/216.",
+  "checagem": "Confira pelo lado de Artur: a probabilidade de o maior dos dois dados dele ser ≤ j é (j/6)². Então P(Artur) = (1/6) × soma de [1 − j²/36] para j de 1 a 6 = (1/6) × (6 − 91/36) = 1 − 91/216 = 125/216. Os dois caminhos concordam.",
+  "erradas": {
+   "A": "2/3 = 144/216 não confere. João vence em 91 dos 216 casos, então Artur vence em 216 − 91 = 125, e não em 144. Ter dois dados não dá a Artur 2/3 automaticamente: é preciso contar os casos.",
+   "B": "4/9 = 96/216 não confere. A contagem dos casos de João dá 91, e não 96. Além disso, João é o menos provável de vencer, e não o mais.",
+   "C": "Atribui a Artur o valor 91/216, que é a probabilidade de João vencer (91 casos em que J ≥ A1 e J ≥ A2). A de Artur é o complementar, 216 − 91 = 125 casos.",
+   "D": "O valor 91/216 é de fato a probabilidade de João vencer, mas ela é menor que a de Artur (125/216). A pergunta pede o jogador com maior probabilidade, e esse é Artur."
+  },
+  "armadilha": "Esquecer que o empate vai para João: ele vence quando J é maior OU IGUAL aos dois dados de Artur, e é isso que dá 91/216, e não outro valor.",
+  "alerta": "",
+  "essencial": {
+   "pede": "Qual jogador tem maior probabilidade de vencer e qual é essa probabilidade.",
+   "chave": "Contar os casos de João (soma dos quadrados de 1 a 6 = 91 de 216) e usar o complementar para Artur: 125/216.",
+   "cuidado": "O empate favorece João, então a condição dele é 'maior ou igual', e não só 'maior'."
+  }
+ },
+ "caminhos": [
+  {
+   "nome": "Direto pelo máximo de Artur",
+   "ideia": "A chance de o maior dos dois dados de Artur ser no máximo j é (j/6)². Artur vence se esse máximo passa de J. Somando para cada J com peso 1/6, chega-se a 125/216."
+  },
+  {
+   "nome": "Estimativa por eliminação",
+   "ideia": "Dois dados contra um: Artur tem vantagem clara, apesar do empate ir para João. Isso descarta as opções que dão a vitória a João (B e D). Entre as de Artur, 91/216 é menor que 1/2 e cai (C). A estimativa não separa 2/3 (A) de 125/216 (E). Para decidir é preciso contar: João vence em 1+4+9+16+25+36 = 91 casos, logo Artur vence em 216 − 91 = 125, e não em 144 (que seria 2/3)."
+  }
+ ],
+ "quadro": [
+  {
+   "linha": "total = 6 × 6 × 6 = 216",
+   "nota": "resultados possíveis dos 3 dados"
+  },
+  {
+   "linha": "João vence: J ≥ A1 e J ≥ A2",
+   "nota": "o empate é dele"
+  },
+  {
+   "linha": "J=1: 1×1 = 1",
+   "nota": "Artur só pode tirar 1 e 1"
+  },
+  {
+   "linha": "J = 2: 2 × 2 = 4",
+   "nota": "cada dado de Artur: 1 ou 2"
+  },
+  {
+   "linha": "J=3: 3×3 = 9 ; J=4: 16",
+   "nota": "sempre J × J casos"
+  },
+  {
+   "linha": "J=5: 25 ; J=6: 36",
+   "nota": "sempre J × J casos"
+  },
+  {
+   "linha": "1+4+9+16+25+36 = 91",
+   "nota": "soma dos casos de João"
+  },
+  {
+   "linha": "P(João) = 91/216",
+   "nota": "favoráveis ÷ possíveis"
+  },
+  {
+   "linha": "P(Artur) = 1 − 91/216",
+   "nota": "alguém sempre vence",
+   "destaque": "1 − 91/216"
+  }
+ ],
+ "visual": {
+  "cabe": false,
+  "porque": "A resolução é uma contagem curta e a conta no quadro já mostra o raciocínio.",
+  "tipo": "nenhum",
+  "roteiro": ""
+ },
+ "fontes": [],
+ "resposta_resolvedor": "E",
+ "gab": "E",
+ "revisao": {
+  "lentes": [
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
+  ],
+  "modelos": {
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "localizar",
+    "motivo": "\"interpretar\" não é um tipo válido. Os tipos aceitos são localizar, calcular, comparar, eliminar e concluir. Este passo traduz a regra do enunciado (o empate vai para João) em condição, por isso é localizar.",
+    "fonte": ""
+   },
+   {
+    "campo": "caminhos[1].ideia",
+    "depois": "Dois dados contra um: Artur tem vantagem clara, apesar do empate ir para João. Isso descarta as opções que dão a vitória a João (B e D). Entre as de Artur, 91/216 é menor que 1/2 e cai (C). A estimativa não separa 2/3 (A) de 125/216 (E). Para decidir é preciso contar: João vence em 1+4+9+16+25+36 = 91 casos, logo Artur vence em 216 − 91 = 125, e não em 144 (que seria 2/3).",
+    "motivo": "O texto original dizia que, depois de cortar C, \"resta 125/216\". Mas a alternativa A (Artur, 2/3) também é de Artur e continuava de pé. A estimativa sozinha não a elimina, só a contagem.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Os três dados dão 6 × 6 × 6 = 216 resultados possíveis, todos com a mesma chance. Calcular a vitória de Artur direto é trabalhoso, porque ele depende do maior de dois dados. É mais simples calcular a vitória de João e depois usar o complementar. Como o jogo sempre tem um vencedor, a chance de Artur é 1 menos a de João. João vence quando o dado dele é maior ou igual aos dois dados de Artur, pois o empate é dele.",
+    "motivo": "Frases mais curtas e sem ambiguidade."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "complementar",
+      "o evento 'não acontecer'; as duas probabilidades somam 1"
+     ],
+     [
+      "J",
+      "número que João tirou no dado dele"
+     ],
+     [
+      "A1, A2",
+      "números dos dois dados de Artur"
+     ],
+     [
+      "≥",
+      "maior ou igual"
+     ],
+     [
+      "≤",
+      "menor ou igual"
+     ],
+     [
+      "P(João)",
+      "probabilidade de João vencer"
+     ]
+    ],
+    "motivo": "Símbolos ≥, ≤ e P( ) apareciam sem explicação."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "Artur só ganha se o maior dos dois dados dele passar de J. Se o maior for menor ou igual a J, João ganha, pois o empate é dele. Isso exige que os dois dados de Artur sejam ≤ J.",
+    "motivo": "Texto mais direto."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "J=1: 1×1 = 1\nJ=2: 2×2 = 4\nJ=3: 3×3 = 9\nJ=4: 4×4 = 16\nJ=5: 5×5 = 25\nJ=6: 6×6 = 36",
+    "motivo": "A linha longa não cabe na tela do celular; um caso por linha, com todas as contas à mostra."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "1+4+9+16+25+36 = 91\nP(João) = 91/216",
+    "motivo": "Cabe em 390 px."
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "P(Artur) = 1 − 91/216\nP(Artur) = 125/216",
+    "motivo": "Cabe em 390 px e mostra o passo."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "2/3 = 144/216 não confere. João vence em 91 dos 216 casos, então Artur vence em 216 − 91 = 125, e não em 144. Ter dois dados não dá a Artur 2/3 automaticamente: é preciso contar os casos.",
+    "motivo": "Retirada a origem especulativa do erro; fica o teste objetivo."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "4/9 = 96/216 não confere. A contagem dos casos de João dá 91, e não 96. Além disso, João é o menos provável de vencer, e não o mais.",
+    "motivo": "Clareza."
+   },
+   {
+    "campo": "resolucao.quadro[2].linha",
+    "depois": "J=1: 1×1 = 1",
+    "motivo": "Mais curta para caber na tela."
+   },
+   {
+    "campo": "resolucao.quadro[4].linha",
+    "depois": "J=3: 3×3 = 9 ; J=4: 16",
+    "motivo": "Mais curta para caber na tela."
+   },
+   {
+    "campo": "resolucao.quadro[5]",
+    "depois": {
+     "linha": "J=5: 25 ; J=6: 36",
+     "nota": "sempre J × J casos"
+    },
+    "motivo": "Complementa a linha anterior, sem linha comprida."
+   },
+   {
+    "campo": "resolucao.quadro[6]",
+    "depois": {
+     "linha": "1+4+9+16+25+36 = 91",
+     "nota": "soma dos casos de João"
+    },
+    "motivo": "Mantém a soma como linha própria."
+   },
+   {
+    "campo": "resolucao.quadro[7]",
+    "depois": {
+     "linha": "P(João) = 91/216",
+     "nota": "favoráveis ÷ possíveis"
+    },
+    "motivo": "Mantém a ordem do raciocínio."
+   },
+   {
+    "campo": "resolucao.quadro[8]",
+    "depois": {
+     "linha": "P(Artur) = 1 − 91/216",
+     "nota": "alguém sempre vence",
+     "destaque": "1 − 91/216"
+    },
+    "motivo": "Mantém o complemento."
+   }
+  ],
+  "didatica_alertas": [
+   "O campo `nivel` da resolução é 6, mas a classificação do cabeçalho diz nível 8. Isso é de classificação, não de fato da resolução.",
+   "No `quadro`, o item final 'P(Artur) = 125/216' (nota '(216 − 91)/216') ficou fora das substituições acima e permanece como estava."
+  ],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "E"
+ }
+}

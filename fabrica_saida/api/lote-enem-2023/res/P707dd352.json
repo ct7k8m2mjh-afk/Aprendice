@@ -1,0 +1,271 @@
+{
+ "n": 161,
+ "id": "P707dd352",
+ "materia": "mat",
+ "tema": "M03",
+ "conteudo": "M03.4",
+ "nivel": 8,
+ "conceito": "Juros compostos em parcelamento com entrada: trazer as parcelas a valor presente e resolver uma equação do 2.º grau.",
+ "resolucao": {
+  "antes": {
+   "texto": "A primeira parcela é paga na hora, então ela não rende juros. Os juros só incidem sobre o que fica devendo depois da entrada. Para comparar parcelas de datas diferentes, leve cada uma para a data da compra, dividindo por (1 + i) para cada mês de espera. A soma de tudo tem de igualar o preço à vista. Isso gera uma equação do 2.º grau.",
+   "formulas": [
+    "valor na data da compra = parcela ÷ (1 + i)^meses",
+    "preço à vista = entrada + parcela ÷ (1+i) + parcela ÷ (1+i)²",
+    "equação do 2.º grau: x = (−b + √(b² − 4ac)) ÷ (2a)"
+   ],
+   "simbolos": [
+    [
+     "i",
+     "taxa mensal de juros compostos, em forma decimal (0,10 = 10%)"
+    ],
+    [
+     "x",
+     "fator de juros, x = 1 + i. Se i = 0,10, então x = 1,10"
+    ],
+    [
+     "√28",
+     "raiz quadrada de 28, que o enunciado manda aproximar por 5,29"
+    ],
+    [
+     "delta",
+     "o valor b² − 4ac, que aparece dentro da raiz na fórmula do 2.º grau"
+    ],
+    [
+     "valor presente",
+     "quanto uma parcela futura vale hoje, já sem os juros"
+    ]
+   ]
+  },
+  "pista": "A entrada não paga juros. Depois de pagá-la, quanto ainda falta pagar em valores de hoje, e em quanto tempo chegam as duas parcelas restantes?",
+  "passos": [
+   {
+    "faz": "Calcule o valor de cada parcela",
+    "conta": "1500 × 1,2 = 1800 ; 1800 ÷ 3 = 600",
+    "porque": "O aumento de 20% multiplica o preço por 1,2. O resultado é dividido em 3 parcelas iguais.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Ache a dívida logo após a entrada",
+    "conta": "1500 − 600 = 900",
+    "porque": "À vista o produto custa 1500. Pagando 600 na hora, restam 900 em valores de hoje, a serem quitados com as duas parcelas de 600.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Monte a equação de equivalência",
+    "conta": "900 = 600 ÷ x + 600 ÷ x²",
+    "porque": "A parcela de 30 dias vale 600 ÷ (1+i) hoje, e a de 60 dias vale 600 ÷ (1+i)². Para simplificar, chame x = 1 + i.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Transforme em equação do 2.º grau",
+    "conta": "900x² = 600x + 600 → 3x² − 2x − 2 = 0",
+    "porque": "Multiplique os dois lados por x² para sumirem os denominadores: 900x² = 600x + 600. Depois divida tudo por 300.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Resolva e use √28 ≈ 5,29",
+    "conta": "x = (2 + 5,29) ÷ 6 = 1,215",
+    "porque": "Delta = (−2)² − 4·3·(−2) = 4 + 24 = 28, e a raiz é √28 ≈ 5,29. Só vale a raiz positiva, pois x = 1 + i é positivo.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Volte ao comando: a taxa",
+    "conta": "i = 1,215 − 1 = 0,215 = 21,5%",
+    "porque": "A pergunta é a taxa i, não o fator x. Corresponde à alternativa D.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa D: a taxa mensal é 21,5%, pois com x = 1,215 as duas parcelas de 600 valem 900 na data da compra.",
+  "checagem": "Substitua i = 21,5%: 600 ÷ 1,215 ≈ 493,83 e 600 ÷ 1,476 ≈ 406,4. A soma é ≈ 900,3, que bate com os 900 que faltavam (a pequena diferença vem do arredondamento de √28).",
+  "erradas": {
+   "A": "6,7% não confere. Com i = 0,067, as parcelas valem 600/1,067 ≈ 562,3 e 600/1,138 ≈ 527,0, somando ≈ 1089. Isso é bem mais que os 900 devidos, então a taxa real é maior.",
+   "B": "10% não confere. Com i = 0,10: 600/1,1 ≈ 545,5 e 600/1,21 ≈ 495,9, somando ≈ 1041. Passa de 900, então a taxa precisa ser maior que 10%.",
+   "C": "20% é só o aumento sobre o preço (1800 ÷ 1500). Não é a taxa de juros compostos do saldo. Com i = 0,20: 600/1,2 = 500 e 600/1,44 ≈ 416,7, somando ≈ 916,7, ainda acima de 900.",
+   "E": "23,3% não confere. Com i = 0,233: 600/1,233 ≈ 486,6 e 600/1,520 ≈ 394,6, somando ≈ 881,2. Fica abaixo de 900, então a taxa é menor que 23,3%."
+  },
+  "armadilha": "Aplicar juros também sobre a primeira parcela, que é paga no ato, ou tomar o aumento de 20% como a taxa mensal.",
+  "alerta": "",
+  "essencial": {
+   "pede": "A taxa mensal de juros compostos do financiamento em três parcelas, com a primeira de entrada.",
+   "chave": "Dívida após a entrada = 900 = 600 ÷ x + 600 ÷ x², com x = 1 + i, o que leva a 3x² − 2x − 2 = 0.",
+   "cuidado": "A entrada não tem juros, e a resposta é i = x − 1, não x."
+  }
+ },
+ "caminhos": [
+  {
+   "nome": "teste das alternativas",
+   "ideia": "Para cada taxa, calcule 600/(1+i) + 600/(1+i)² e veja qual dá 900. Só 21,5% fecha. As taxas de 10% e 20% dão valores acima de 900, e a de 23,3% dá abaixo."
+  },
+  {
+   "nome": "levar tudo para o dia 60",
+   "ideia": "Capitalize as parcelas até o dia 60 (600·x² para a entrada, 600·x para a do mês 1) e iguale ao valor de 1500·x². Dá 1500x² = 600x² + 600x + 600, a mesma equação do 2.º grau, 3x² − 2x − 2 = 0."
+  }
+ ],
+ "quadro": [
+  {
+   "linha": "1500 × 1,2 = 1800",
+   "nota": "aumento de 20% sobre o preço à vista"
+  },
+  {
+   "linha": "1800 ÷ 3 = 600",
+   "nota": "valor de cada parcela"
+  },
+  {
+   "linha": "1500 − 600 = 900",
+   "nota": "dívida em valor de hoje, após a entrada"
+  },
+  {
+   "linha": "900 = 600 ÷ x + 600 ÷ x²",
+   "nota": "x = 1 + i; parcelas trazidas à data da compra"
+  },
+  {
+   "linha": "900x² = 600x + 600",
+   "nota": "multiplique tudo por x²"
+  },
+  {
+   "linha": "3x² − 2x − 2 = 0",
+   "nota": "divida tudo por 300"
+  },
+  {
+   "linha": "delta = 4 + 24 = 28",
+   "nota": "b² − 4ac = (−2)² − 4·3·(−2)"
+  },
+  {
+   "linha": "x = (2 + 5,29) ÷ 6",
+   "nota": "raiz positiva, com √28 ≈ 5,29"
+  },
+  {
+   "linha": "x = 1,215",
+   "nota": "7,29 ÷ 6 = 1,215"
+  },
+  {
+   "linha": "i = 1,215 − 1 = 21,5%",
+   "nota": "a taxa é x menos 1"
+  }
+ ],
+ "visual": {
+  "cabe": true,
+  "porque": "Uma linha do tempo mostra por que a entrada não rende juros e as outras duas parcelas são descontadas por 1 e 2 meses.",
+  "tipo": "linha-do-tempo",
+  "roteiro": "Quadro 1: eixo com três pontos, dia 0, dia 30 e dia 60, cada um marcado com R$ 600. Quadro 2: o ponto do dia 0 fica como está (entrada, sem desconto). Quadro 3: setas levam o ponto do dia 30 até o dia 0, com 'dividir por (1+i)', e o do dia 60 com 'dividir por (1+i)²'. Quadro 4: aparece a soma 600 + 600/x + 600/x² = 1500, ou seja, 600/x + 600/x² = 900. Quadro 5: a equação 3x² − 2x − 2 = 0 é resolvida e surge x = 1,215, depois i = 21,5%."
+ },
+ "fontes": [],
+ "confere": true,
+ "divergencia": "",
+ "resposta_resolvedor": "D",
+ "gab": "D",
+ "revisao": {
+  "lentes": [
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
+  ],
+  "modelos": {
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Substitua i = 21,5%: 600 ÷ 1,215 ≈ 493,83 e 600 ÷ 1,476 ≈ 406,4. A soma é ≈ 900,3, que bate com os 900 que faltavam (a pequena diferença vem do arredondamento de √28).",
+    "motivo": "A conta 1,215² = 1,476225 dá 600 ÷ 1,476225 ≈ 406,44. Arredondado, isso é 406,4, e não 406,5. A soma 493,83 + 406,44 = 900,27 ≈ 900,3 continua certa.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "calcular",
+    "motivo": "O tipo 'aplicar' não faz parte da lista permitida (localizar, calcular, comparar, eliminar, concluir). Montar a equação conta como passo 'calcular'.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.formulas[1]",
+    "depois": "preço à vista = entrada + parcela ÷ (1+i) + parcela ÷ (1+i)²",
+    "motivo": "Evita fração escrita na linha com barra; deixa a leitura mais clara."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "i",
+      "taxa mensal de juros compostos, em forma decimal (0,10 = 10%)"
+     ],
+     [
+      "x",
+      "fator de juros, x = 1 + i. Se i = 0,10, então x = 1,10"
+     ],
+     [
+      "√28",
+      "raiz quadrada de 28, que o enunciado manda aproximar por 5,29"
+     ],
+     [
+      "delta",
+      "o valor b² − 4ac, que aparece dentro da raiz na fórmula do 2.º grau"
+     ],
+     [
+      "valor presente",
+      "quanto uma parcela futura vale hoje, já sem os juros"
+     ]
+    ],
+    "motivo": "Explica termos que o aluno de 17 anos pode não dominar (delta e valor de hoje)."
+   },
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "A primeira parcela é paga na hora, então ela não rende juros. Os juros só incidem sobre o que fica devendo depois da entrada. Para comparar parcelas de datas diferentes, leve cada uma para a data da compra, dividindo por (1 + i) para cada mês de espera. A soma de tudo tem de igualar o preço à vista. Isso gera uma equação do 2.º grau.",
+    "motivo": "Antecipa ao aluno que a equação final será do 2.º grau."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "900 = 600 ÷ x + 600 ÷ x²",
+    "motivo": "Sem barra na linha de fração; o site desenha a fração a partir do ÷."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "A parcela de 30 dias vale 600 ÷ (1+i) hoje, e a de 60 dias vale 600 ÷ (1+i)². Para simplificar, chame x = 1 + i.",
+    "motivo": "Texto mais claro e consistente com a notação."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Multiplique os dois lados por x² para sumirem os denominadores: 900x² = 600x + 600. Depois divida tudo por 300.",
+    "motivo": "Mostra a passagem intermediária que o aluno precisa copiar."
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "x = (2 + 5,29) ÷ 6 = 1,215",
+    "motivo": "Conta curta e copiável; a fração é desenhada pelo site."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "Delta = (−2)² − 4·3·(−2) = 4 + 24 = 28, e a raiz é √28 ≈ 5,29. Só vale a raiz positiva, pois x = 1 + i é positivo.",
+    "motivo": "Mostra de onde vem o 28 antes de usá-lo."
+   },
+   {
+    "campo": "resolucao.quadro[3].linha",
+    "depois": "900 = 600 ÷ x + 600 ÷ x²",
+    "motivo": "Sem barra na linha."
+   },
+   {
+    "campo": "resolucao.quadro[7].linha",
+    "depois": "x = (2 + 5,29) ÷ 6",
+    "motivo": "Sem barra na linha."
+   },
+   {
+    "campo": "resolucao.essencial.chave",
+    "depois": "Dívida após a entrada = 900 = 600 ÷ x + 600 ÷ x², com x = 1 + i, o que leva a 3x² − 2x − 2 = 0.",
+    "motivo": "Sem barra na linha."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "D"
+ }
+}

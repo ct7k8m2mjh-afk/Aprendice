@@ -1,0 +1,235 @@
+{
+ "n": 160,
+ "id": "Pecd7cbea",
+ "materia": "mat",
+ "tema": "M13",
+ "conteudo": "M13.4",
+ "nivel": 5,
+ "conceito": "Probabilidade de acertar uma senha ao acaso: p = 1/(total de senhas possíveis), com total obtido pelo princípio multiplicativo.",
+ "resolucao": {
+  "antes": {
+   "texto": "Só existe uma senha certa. Se há N senhas possíveis e todas têm a mesma chance, a probabilidade de acertar na primeira tentativa é 1/N. Quanto MAIOR o número de senhas possíveis, MENOR a probabilidade. A questão vira: qual tipo tem mais senhas possíveis? Para contar, preencha uma posição por vez e multiplique as opções de cada uma. Os caracteres são distintos, então a cada posição sobra um a menos.",
+   "formulas": [
+    "p = 1 ÷ N (N = número de senhas possíveis)",
+    "N = (opções da 1ª posição) × (opções da 2ª) × ...",
+    "mais senhas possíveis → menor probabilidade"
+   ],
+   "simbolos": [
+    [
+     "p1, p2, p3",
+     "probabilidade de acertar a senha do tipo I, II e III ao acaso, na primeira tentativa"
+    ],
+    [
+     "N",
+     "número total de senhas possíveis de um tipo"
+    ],
+    [
+     "distintos",
+     "todos diferentes: um caractere usado não pode ser repetido"
+    ],
+    [
+     "princípio multiplicativo",
+     "se uma escolha tem a maneiras e outra tem b, juntas têm a × b maneiras"
+    ]
+   ]
+  },
+  "pista": "Só uma senha é a certa. Se existem muitas senhas possíveis, é fácil ou difícil acertar? Conte quantas senhas cada tipo permite.",
+  "passos": [
+   {
+    "faz": "Conte os caracteres permitidos",
+    "conta": "10 + 26 + 26 + 6 = 68",
+    "porque": "Algarismos, letras minúsculas, letras maiúsculas e especiais formam o conjunto de onde se escolhe. São 68 caracteres no total. As letras somam 26 + 26 = 52.",
+    "tipo": "localizar"
+   },
+   {
+    "faz": "Conte as senhas do tipo I",
+    "conta": "N1 = 68 × 67 × 66 × 65",
+    "porque": "Qualquer um dos 68 caracteres pode ficar na 1ª posição. Depois sobram 67, 66 e 65, pois os caracteres são distintos. A ordem importa, porque 'ab' e 'ba' são senhas diferentes.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Calcule o valor de N1",
+    "conta": "68 × 67 = 4556\n66 × 65 = 4290\nN1 = 4556 × 4290 = 19 545 240",
+    "porque": "Multiplicar os pares primeiro deixa a conta mais curta. Há cerca de 19,5 milhões de senhas do tipo I.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Conte as senhas do tipo II",
+    "conta": "52 × 51 × 50 = 132 600\nN2 = 132 600 × 10 × 6\nN2 = 7 956 000",
+    "porque": "Três letras distintas entre as 52, um algarismo entre os 10 e um especial entre os 6. Cada posição tem seu grupo próprio.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Conte as senhas do tipo III",
+    "conta": "52 × 51 = 2652\n10 × 9 = 90 ; 6 × 5 = 30\nN3 = 2652 × 90 × 30 = 7 160 400",
+    "porque": "Duas letras distintas, dois algarismos distintos e dois especiais distintos. Na 2ª posição de cada grupo sobra um a menos.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Compare e conclua",
+    "conta": "N1 > N2 > N3\np1 < p2 < p3",
+    "porque": "Como p = 1/N, a ordem das probabilidades é a inversa da ordem das quantidades. O tipo I tem mais senhas, então a menor probabilidade é p1. Isso é a alternativa A.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa A: o tipo I tem o maior número de senhas possíveis (cerca de 19,5 milhões, contra 7,96 milhões e 7,16 milhões), logo p1 < p2 < p3.",
+  "checagem": "Estime N1 ≈ 68 × 67 × 66 × 65 ≈ 70⁴ × 0,8 ≈ 19 milhões. Para o tipo II, 52 × 51 × 50 ≈ 130 mil, vezes 60, dá cerca de 8 milhões. O tipo I é mais que o dobro do II, e o II é um pouco maior que o III.",
+  "erradas": {
+   "B": "A conclusão (tipo I) está certa, mas a justificativa não. Menos caracteres não torna a senha mais difícil de descobrir. O que decide é o total de senhas possíveis, e o tipo I tem 19 545 240 contra 7 956 000 do tipo II. O tipo I tem poucos caracteres, mas os escolhe entre os 68 sem restrição de grupo.",
+   "C": "O tipo II tem N2 = 7 956 000 senhas, menos que o tipo I (19 545 240). Logo p2 > p1, e o tipo II não é o mais difícil de acertar. Ter mais letras não decide: o que vale é o total de senhas possíveis.",
+   "D": "Inverte a relação. Para valer p3 < p2 < p1, seria preciso N3 > N2 > N1. Mas N1 = 19 545 240 é o maior, e N3 = 7 160 400 é o menor. A ordem correta é p1 < p2 < p3.",
+   "E": "O tipo III tem seis caracteres, mas só N3 = 7 160 400 senhas possíveis, o menor valor dos três. Menos senhas significa maior probabilidade: p3 é a maior. Mais caracteres não garantem mais senhas, porque as posições são restritas a grupos pequenos (2 algarismos entre 10, 2 especiais entre 6)."
+  },
+  "armadilha": "Achar que mais caracteres, ou mais letras, torna a senha mais difícil. O que vale é o total de senhas possíveis, e probabilidade menor significa total maior.",
+  "alerta": "",
+  "essencial": {
+   "pede": "Qual tipo de senha tem a menor probabilidade de ser descoberta ao acaso na primeira tentativa.",
+   "chave": "p = 1/N. Menor probabilidade é o maior N. N1 = 19 545 240, N2 = 7 956 000, N3 = 7 160 400.",
+   "cuidado": "Não confunda quantidade de caracteres com quantidade de senhas possíveis. Conte as opções posição por posição, sem repetir caracteres."
+  }
+ },
+ "caminhos": [
+  {
+   "nome": "Estimativa por ordem de grandeza",
+   "ideia": "Tipo I: cerca de 66⁴ ≈ 19 milhões. Tipo II: cerca de 50³ × 60 ≈ 7,5 milhões. Tipo III: cerca de 50² × 90 × 30 ≈ 6,75 milhões. Já se vê que o tipo I tem mais que o dobro de senhas."
+  },
+  {
+   "nome": "Comparar razões entre os tipos",
+   "ideia": "Compare N2 e N3 pela razão entre eles. Os fatores 52, 51, 10 e 6 aparecem nos dois produtos e se cancelam. Sobra N2/N3 = 50/(9 × 5) = 50/45 = 10/9, maior que 1, então N2 > N3. Para N1, contar direto é mais seguro."
+  }
+ ],
+ "quadro": [
+  {
+   "linha": "10 + 26 + 26 + 6 = 68",
+   "nota": "total de caracteres permitidos"
+  },
+  {
+   "linha": "letras: 26 + 26 = 52",
+   "nota": "minúsculas mais maiúsculas"
+  },
+  {
+   "linha": "N1 = 68×67×66×65",
+   "nota": "tipo I: 4 posições, sem repetir"
+  },
+  {
+   "linha": "N1 = 19 545 240",
+   "nota": "4556 × 4290"
+  },
+  {
+   "linha": "N2 = 52×51×50×10×6",
+   "nota": "tipo II: 3 letras, 1 algarismo, 1 especial"
+  },
+  {
+   "linha": "N2 = 7 956 000",
+   "nota": "132 600 × 60"
+  },
+  {
+   "linha": "N3 = 52×51×10×9×6×5",
+   "nota": "tipo III: 2 letras, 2 algarismos, 2 especiais"
+  },
+  {
+   "linha": "N3 = 7 160 400",
+   "nota": "2652 × 90 × 30"
+  },
+  {
+   "linha": "p = 1/N",
+   "nota": "probabilidade de acertar a senha certa"
+  },
+  {
+   "linha": "N1 > N2 > N3",
+   "nota": "ordem dos totais de senhas"
+  },
+  {
+   "linha": "p1 < p2 < p3",
+   "nota": "ordem inversa: o tipo I é o mais difícil de adivinhar"
+  }
+ ],
+ "visual": {
+  "cabe": false,
+  "porque": "A resolução é uma contagem com três produtos; o quadro linha por linha já mostra tudo.",
+  "tipo": "nenhum",
+  "roteiro": ""
+ },
+ "fontes": [],
+ "confere": true,
+ "divergencia": "",
+ "resposta_resolvedor": "A",
+ "gab": "A",
+ "revisao": {
+  "lentes": [
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
+  ],
+  "modelos": {
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "caminhos[1].ideia",
+    "depois": "Compare N2 e N3 pela razão entre eles. As letras 52 × 51, o algarismo 10 e o especial 6 aparecem nos dois produtos e se cancelam. Sobra N2/N3 = 50/(9 × 5) = 50/45 = 10/9, que é maior que 1, então N2 > N3. Para N1, contar direto é mais seguro e mais rápido.",
+    "motivo": "O texto deixava a razão incompleta (\"50/(9×5) × ...\"), como se faltassem fatores. Na verdade os demais fatores se cancelam e a razão é exatamente 50/45 = 10/9. Conferi: 7 956 000 ÷ 7 160 400 = 1,111…",
+    "fonte": ""
+   },
+   {
+    "campo": "caminhos[0].ideia",
+    "depois": "Tipo I: cerca de 66⁴ ≈ 19 milhões. Tipo II: cerca de 50³ × 60 ≈ 7,5 milhões. Tipo III: cerca de 50² × 90 × 30 ≈ 6,75 milhões. Já se vê que o tipo I tem mais que o dobro de senhas.",
+    "motivo": "50² × 90 × 30 = 2500 × 2700 = 6 750 000. O texto dizia 6,7 milhões; corrigi para 6,75 milhões, o valor exato da estimativa.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "A",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Só existe uma senha certa. Se há N senhas possíveis e todas têm a mesma chance, a probabilidade de acertar na primeira tentativa é 1/N. Quanto MAIOR o número de senhas possíveis, MENOR a probabilidade. A questão vira: qual tipo tem mais senhas possíveis? Para contar, preencha uma posição por vez e multiplique as opções de cada uma. Os caracteres são distintos, então a cada posição sobra um a menos.",
+    "motivo": "Frases mais curtas e diretas; remove termo técnico solto."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "Qualquer um dos 68 caracteres pode ficar na 1ª posição. Depois sobram 67, 66 e 65, pois os caracteres são distintos. A ordem importa, porque 'ab' e 'ba' são senhas diferentes.",
+    "motivo": "Explica por que a ordem importa."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "68 × 67 = 4556\n66 × 65 = 4290\nN1 = 4556 × 4290 = 19 545 240",
+    "motivo": "Um passo por linha, copiável no caderno."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "52 × 51 × 50 = 132 600\nN2 = 132 600 × 10 × 6\nN2 = 7 956 000",
+    "motivo": "Mostra a passagem intermediária sem pular; linhas curtas."
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "52 × 51 = 2652\n10 × 9 = 90 ; 6 × 5 = 30\nN3 = 2652 × 90 × 30 = 7 160 400",
+    "motivo": "Mostra cada grupo separado; linhas curtas."
+   },
+   {
+    "campo": "resolucao.passos[5].conta",
+    "depois": "N1 > N2 > N3\np1 < p2 < p3",
+    "motivo": "Mantido."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "O tipo II tem N2 = 7 956 000 senhas, menos que o tipo I (19 545 240). Logo p2 > p1, e o tipo II não é o mais difícil de acertar. Ter mais letras não decide: o que vale é o total de senhas possíveis.",
+    "motivo": "Texto mais claro, diz o que faltou no raciocínio de quem marcou C."
+   },
+   {
+    "campo": "resolucao.caminhos[1].ideia",
+    "depois": "Compare N2 e N3 pela razão entre eles. Os fatores 52, 51, 10 e 6 aparecem nos dois produtos e se cancelam. Sobra N2/N3 = 50/(9 × 5) = 50/45 = 10/9, maior que 1, então N2 > N3. Para N1, contar direto é mais seguro.",
+    "motivo": "Explicita todos os fatores que se cancelam."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "A"
+ }
+}

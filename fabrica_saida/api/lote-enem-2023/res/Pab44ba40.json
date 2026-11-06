@@ -1,0 +1,259 @@
+{
+ "n": 158,
+ "id": "Pab44ba40",
+ "materia": "mat",
+ "tema": "M04",
+ "conteudo": "M04.5",
+ "nivel": 6,
+ "conceito": "Montar o lucro como receita menos custos (fixo, ajudantes e 4% da receita) e testar quantos ajudantes atingem R$ 800,00",
+ "resolucao": {
+  "antes": {
+   "texto": "Lucro é o que sobra da receita depois de pagar tudo. Aqui há três custos: o fixo de R$ 900,00, R$ 250,00 por ajudante e 4% da receita, que vai para os ajudantes. A pergunta é o MÍNIMO de ajudantes, e só há 5 valores possíveis. Por isso, calcule o lucro de 1 em 1 ajudante até chegar a R$ 800,00. O pescador fica com 96% da receita, porque 4% saem para os ajudantes.",
+   "formulas": [
+    "pesca com n ajudantes: P = 300 + 100 × (n − 1)",
+    "receita = 5 × P",
+    "lucro = receita − 4% da receita − 900 − 250 × n",
+    "lucro = 0,96 × receita − 900 − 250 × n"
+   ],
+   "simbolos": [
+    [
+     "n",
+     "número de ajudantes contratados"
+    ],
+    [
+     "P",
+     "pesca total do dia, em kg"
+    ],
+    [
+     "L",
+     "lucro do dia, em reais"
+    ],
+    [
+     "receita",
+     "dinheiro da venda do peixe: R$ 5,00 vezes os quilogramas"
+    ],
+    [
+     "custo fixo",
+     "gasto diário de R$ 900,00 que existe sempre"
+    ],
+    [
+     "lucro",
+     "receita menos todos os custos"
+    ],
+    [
+     "4% da receita",
+     "parte da receita paga aos ajudantes; sai do bolso do pescador, além dos R$ 250,00 de cada um"
+    ]
+   ]
+  },
+  "pista": "Teste 1 ajudante, depois 2, depois 3... Para cada um, ache a pesca, a receita e desconte os três custos. Pare quando o lucro chegar a 800.",
+  "passos": [
+   {
+    "faz": "Ache a pesca para cada n",
+    "conta": "n=1: 300 kg ; n=2: 400 kg ; n=3: 500 kg ; n=4: 600 kg",
+    "porque": "Com 1 ajudante a pesca é 300 kg. Cada ajudante a partir do 2º soma 100 kg ao total. Por isso n=2 dá 400 kg, n=3 dá 500 kg e n=4 dá 600 kg.",
+    "tipo": "localizar"
+   },
+   {
+    "faz": "Monte a fórmula do lucro",
+    "conta": "L = 0,96 × 5 × P − 900 − 250n",
+    "porque": "Dos R$ 5,00 por kg, 4% vão para os ajudantes, então o pescador fica com 96%. Depois ele paga o custo fixo e R$ 250,00 por ajudante.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Calcule o lucro com 1 e 2 ajudantes",
+    "conta": "n=1: 1440 − 900 − 250 = 290 ; n=2: 1920 − 900 − 500 = 520",
+    "porque": "Com 300 kg, 0,96 × 1500 = 1440. Com 2 ajudantes e 400 kg, 0,96 × 2000 = 1920, e o lucro é 1920 − 900 − 500 = 520. Os dois ficam abaixo de 800.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Calcule o lucro com 3 ajudantes",
+    "conta": "2400 − 900 − 750 = 750",
+    "porque": "Com 500 kg a receita é R$ 2.500,00, e 96% disso dá 2.400. Como 750 é menor que 800, 3 ajudantes não bastam.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Calcule o lucro com 4 ajudantes",
+    "conta": "2880 − 900 − 1000 = 980",
+    "porque": "Com 600 kg a receita é R$ 3.000,00, e 96% disso dá 2.880. O lucro de 980 passa de 800, então 4 ajudantes atingem a meta.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Conclua com o menor número",
+    "conta": "3 → 750 (não) ; 4 → 980 (sim)",
+    "porque": "A pergunta é a quantidade mínima. 3 ajudantes não bastam e 4 já bastam, então o mínimo é 4.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa D: 4 ajudantes, pois com 3 o lucro é R$ 750,00 (abaixo da meta) e com 4 é R$ 980,00.",
+  "checagem": "Refaça o lucro de n=4 somando os custos. A receita é 600 × 5 = 3.000. Os custos são 900 + 1.000 + 4% de 3.000, que é 120, totalizando 2.020. Então 3.000 − 2.020 = 980. Fecha. Para n=3: 2.500 − (900 + 750 + 100) = 750.",
+  "erradas": {
+   "A": "Com 1 ajudante: 300 kg dão receita de R$ 1.500,00. Os custos são 900 + 250 + 60 (4% de 1.500) = 1.210, e o lucro é 290, muito abaixo de 800.",
+   "B": "Com 2 ajudantes: 400 kg dão receita de R$ 2.000,00. Os custos são 900 + 500 + 80 = 1.480, e o lucro é 520, que não chega a 800.",
+   "C": "Com 3 ajudantes: 500 kg dão receita de R$ 2.500,00. Os custos são 900 + 750 + 100 = 1.750, e o lucro é 750. Faltam R$ 50,00 para a meta. Quem esquece os 4% calcula 2.500 − 900 − 750 = 850, acha que passou de 800 e marca 3. Faltou descontar os 4% dos ajudantes.",
+   "E": "Com 5 ajudantes o lucro passa de 800 (700 kg: receita 3.500, custos 900 + 1.250 + 140 = 2.290, lucro 1.210). Mas 5 não é o mínimo, pois 4 ajudantes já atingem a meta."
+  },
+  "armadilha": "Esquecer os 4% da receita repartidos entre os ajudantes: sem eles o lucro com 3 ajudantes sai 850 e leva à resposta 3.",
+  "alerta": "",
+  "essencial": {
+   "pede": "A menor quantidade de ajudantes que dá lucro diário de pelo menos R$ 800,00.",
+   "chave": "Lucro = 0,96 × receita − 900 − 250n, com pesca de 300, 400, 500, 600... kg. Testar n = 1, 2, 3, 4.",
+   "cuidado": "Não esqueça os 4% da receita nem o custo fixo; e responda o mínimo, isto é, o primeiro n cujo lucro chega a R$ 800,00."
+  }
+ },
+ "caminhos": [
+  {
+   "nome": "inequação",
+   "ideia": "Com P = 200 + 100n, o lucro é 4,8 × (200 + 100n) − 900 − 250n = 60 + 230n. Basta resolver 60 + 230n ≥ 800, que dá n ≥ 3,22. O menor inteiro é 4."
+  },
+  {
+   "nome": "ganho por ajudante",
+   "ideia": "Cada ajudante novo (a partir do 2º) soma 100 kg, ou seja, R$ 480,00 líquidos, e custa R$ 250,00: o lucro sobe R$ 230,00 por ajudante. De 750 (n=3) passa-se a 980 (n=4)."
+  }
+ ],
+ "quadro": [
+  {
+   "linha": "P(n) = 300 + 100(n − 1)",
+   "nota": "pesca total com n ajudantes, em kg"
+  },
+  {
+   "linha": "L = 0,96 × 5P − 900 − 250n",
+   "nota": "o pescador fica com 96% da receita"
+  },
+  {
+   "linha": "n=1: 1440 − 900 − 250 = 290",
+   "nota": "P = 300: abaixo de 800"
+  },
+  {
+   "linha": "n=2: 1920 − 900 − 500 = 520",
+   "nota": "P = 400: abaixo de 800"
+  },
+  {
+   "linha": "n=3: 2400 − 900 − 750 = 750",
+   "nota": "P = 500: ainda abaixo de 800",
+   "destaque": "750"
+  },
+  {
+   "linha": "n=4: 2880 − 900 − 1000 = 980",
+   "nota": "P = 600: passou de 800",
+   "destaque": "980"
+  },
+  {
+   "linha": "mínimo = 4 ajudantes",
+   "nota": "3 não basta, 4 basta"
+  }
+ ],
+ "visual": {
+  "cabe": false,
+  "porque": "A questão se resolve com uma pequena tabela de contas, que o quadro já mostra linha por linha.",
+  "tipo": "nenhum",
+  "roteiro": ""
+ },
+ "fontes": [],
+ "confere": true,
+ "divergencia": "",
+ "resposta_resolvedor": "D",
+ "gab": "D",
+ "revisao": {
+  "lentes": [
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
+  ],
+  "modelos": {
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.essencial.cuidado",
+    "depois": "Não esqueça os 4% da receita nem o custo fixo; e responda o mínimo, isto é, o primeiro n cujo lucro chega a R$ 800,00.",
+    "motivo": "A frase antiga ('não o primeiro valor que passa de 800 por muito') era confusa e sugeria que o mínimo não é o primeiro n que atinge a meta. Na verdade, é exatamente esse: n = 4.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Lucro é o que sobra da receita depois de pagar tudo. Aqui há três custos: o fixo de R$ 900,00, R$ 250,00 por ajudante e 4% da receita, que vai para os ajudantes. A pergunta é o MÍNIMO de ajudantes, e só há 5 valores possíveis. Por isso, calcule o lucro de 1 em 1 ajudante até chegar a R$ 800,00. O pescador fica com 96% da receita, porque 4% saem para os ajudantes.",
+    "motivo": "Frase final mais clara e pedido (mínimo) explícito logo no início."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "n",
+      "número de ajudantes contratados"
+     ],
+     [
+      "P",
+      "pesca total do dia, em kg"
+     ],
+     [
+      "L",
+      "lucro do dia, em reais"
+     ],
+     [
+      "receita",
+      "dinheiro da venda do peixe: R$ 5,00 vezes os quilogramas"
+     ],
+     [
+      "custo fixo",
+      "gasto diário de R$ 900,00 que existe sempre"
+     ],
+     [
+      "lucro",
+      "receita menos todos os custos"
+     ],
+     [
+      "4% da receita",
+      "parte da receita paga aos ajudantes; sai do bolso do pescador, além dos R$ 250,00 de cada um"
+     ]
+    ],
+    "motivo": "P e L aparecem nos passos e no quadro sem estar explicados; também explica de onde sai o 4%."
+   },
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "pesca com n ajudantes: P = 300 + 100 × (n − 1)",
+     "receita = 5 × P",
+     "lucro = receita − 4% da receita − 900 − 250 × n",
+     "lucro = 0,96 × receita − 900 − 250 × n"
+    ],
+    "motivo": "Nomeia P na fórmula, para casar com os passos."
+   },
+   {
+    "campo": "resolucao.passos[0].conta",
+    "depois": "n=1: 300 kg ; n=2: 400 kg ; n=3: 500 kg ; n=4: 600 kg",
+    "motivo": "A conta mostrava só dois valores, mas o porque citava quatro. Agora a conta traz tudo."
+   },
+   {
+    "campo": "resolucao.passos[0].porque",
+    "depois": "Com 1 ajudante a pesca é 300 kg. Cada ajudante a partir do 2º soma 100 kg ao total. Por isso n=2 dá 400 kg, n=3 dá 500 kg e n=4 dá 600 kg.",
+    "motivo": "Frase mais clara e sem ambiguidade."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "n=1: 1440 − 900 − 250 = 290 ; n=2: 1920 − 900 − 500 = 520",
+    "motivo": "Os dois casos tratados no porque agora aparecem na conta."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "Com 3 ajudantes: 500 kg dão receita de R$ 2.500,00. Os custos são 900 + 750 + 100 = 1.750, e o lucro é 750. Faltam R$ 50,00 para a meta. Quem esquece os 4% calcula 2.500 − 900 − 750 = 850, acha que passou de 800 e marca 3. Faltou descontar os 4% dos ajudantes.",
+    "motivo": "Mostra a conta do erro e diz o que faltou no raciocínio (descontar os 4%)."
+   }
+  ],
+  "didatica_alertas": [
+   "O campo conteudo está M04.5 e o nível 6, enquanto a classificação atual diz M04.4 e nível 7. Divergência de metadados, não de fato; o corretor 1 deve conferir."
+  ],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "D"
+ }
+}

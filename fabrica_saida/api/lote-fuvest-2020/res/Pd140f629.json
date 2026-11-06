@@ -1,0 +1,315 @@
+{
+ "n": 75,
+ "id": "Pd140f629",
+ "materia": "fis",
+ "tema": "F11",
+ "conteudo": "F11.4",
+ "nivel": 4,
+ "conceito": "Associação de resistores em série e em paralelo e corrente na lâmpada: comparar com a corrente-limite V/(R+L).",
+ "resposta_resolvedor": "D",
+ "confere": true,
+ "divergencia": "",
+ "resolucao": {
+  "antes": {
+   "texto": "O circuito projetado seria R em série com a lâmpada L. A corrente nela seria V/(R+L), que é justamente o limite. A lâmpada só queima se a corrente passar desse valor. Com a mesma tensão V, quanto menor a resistência que a lâmpada 'enxerga' no seu ramo, maior a corrente nela. Cada resistor defeituoso vale Rd = R/2.",
+   "formulas": [
+    "Série: R_eq = soma das resistências; a corrente é a mesma em todos",
+    "Paralelo de dois resistores iguais: R_eq = R_D ÷ 2; a tensão é a mesma nos dois ramos",
+    "Lei de Ohm: i = V ÷ R_total (menor resistência, maior corrente)"
+   ],
+   "simbolos": [
+    [
+     "R_D",
+     "resistência do resistor defeituoso, igual a R/2"
+    ],
+    [
+     "L",
+     "resistência da lâmpada"
+    ],
+    [
+     "V",
+     "tensão da fonte (bateria)"
+    ],
+    [
+     "i",
+     "corrente elétrica"
+    ],
+    [
+     "corrente-limite",
+     "V/(R+L): acima dela a lâmpada queima"
+    ],
+    [
+     "//",
+     "em paralelo"
+    ]
+   ]
+  },
+  "pista": "Para cada circuito, descubra qual é a resistência total no caminho da corrente que passa pela lâmpada e compare com R + L.",
+  "passos": [
+   {
+    "faz": "Fixe o critério de queima",
+    "conta": "queima se i_L > V/(R+L)",
+    "porque": "Com a tensão V sobre o ramo da lâmpada, i_L > V/(R+L) só acontece se a resistência total desse ramo for MENOR que R + L.",
+    "tipo": "localizar"
+   },
+   {
+    "faz": "Analise o circuito 1",
+    "conta": "R_D + R_D + L = R + L",
+    "porque": "Os dois R_D e L estão em série. R_D + R_D = R/2 + R/2 = R. A corrente é V/(R+L), igual ao limite, e não superior. Não queima.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Analise o circuito 2",
+    "conta": "R_D em paralelo com R_D = R/4",
+    "porque": "Dois R_D iguais em paralelo dão R_D ÷ 2 = R/4, em série com L. Resistência total R/4 + L < R + L. A corrente V/(R/4+L) passa do limite. Queima.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Analise o circuito 3",
+    "conta": "ramo da lâmpada: R_D + L",
+    "porque": "Pela figura, a lâmpada fica em série com um R_D, e esse ramo está em paralelo com o outro R_D, ligados direto à fonte. Então a tensão V está sobre o ramo da lâmpada: i_L = V/(R/2+L), que é maior que V/(R+L). Queima.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Conclua",
+    "conta": "queimam: 2 e 3",
+    "porque": "Só o circuito 1 tem corrente exatamente igual ao limite; os circuitos 2 e 3 têm corrente maior.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa D: a lâmpada queima nos circuitos 2 e 3, onde a resistência no caminho dela é menor que R + L. No circuito 1 a corrente é só igual ao limite.",
+  "checagem": "Teste com números: R = 4, L = 4, V = 24. Limite: 24/8 = 3 A. Circuito 1: 2+2+4 = 8 Ω, 3 A (não passa). Circuito 2: 1+4 = 5 Ω, 4,8 A (passa). Circuito 3: ramo 2+4 = 6 Ω, 4 A (passa). Confirma.",
+  "erradas": {
+   "A": "Inverte o resultado: no circuito 1, R_D + R_D = R, então a resistência total é R + L e a corrente é igual ao limite, não superior. Ele não queima, e os circuitos 2 e 3 ficam de fora indevidamente.",
+   "B": "Acerta o circuito 2 (R/4 + L < R + L), mas esquece o 3. Lá o ramo da lâmpada tem R_D + L = R/2 + L, menor que R + L, e a tensão sobre o ramo é V. A corrente também ultrapassa o limite.",
+   "C": "Inclui o circuito 1 e deixa de fora o 2. No 1, a corrente é igual ao limite. No 2, a resistência total cai para R/4 + L, então a corrente passa do limite.",
+   "E": "Inclui o circuito 1, mas ele tem resistência total R + L, corrente exatamente V/(R+L). O enunciado exige corrente superior para queimar, e igual não basta."
+  },
+  "armadilha": "Achar que 'dois resistores defeituosos' no circuito 1 já bastam para queimar, esquecendo que R/2 + R/2 = R: a corrente é igual ao limite, não maior.",
+  "alerta": "",
+  "essencial": {
+   "pede": "Em quais circuitos a corrente na lâmpada passa de V/(R+L).",
+   "chave": "Compare a resistência no caminho da lâmpada com R + L: menor resistência com a mesma tensão significa corrente maior.",
+   "cuidado": "Circuito 1 dá exatamente R + L (igual, não superior); no paralelo, R_D ÷ 2 = R/4."
+  }
+ },
+ "caminhos": [
+  {
+   "nome": "números simples",
+   "ideia": "Escolha R = 4, L = 4 e V = 24. O limite é 3 A. Calcule a corrente na lâmpada em cada circuito e compare."
+  },
+  {
+   "nome": "raciocínio qualitativo",
+   "ideia": "Se a resistência no caminho da lâmpada diminui em relação ao projeto (R + L), a corrente aumenta. Só o circuito 1 mantém R + L."
+  }
+ ],
+ "quadro": [
+  {
+   "linha": "limite: i = V/(R+L)",
+   "nota": "corrente máxima da lâmpada"
+  },
+  {
+   "linha": "R_D = R/2",
+   "nota": "resistor defeituoso"
+  },
+  {
+   "linha": "(1) R_D + R_D + L",
+   "nota": "três em série: somam"
+  },
+  {
+   "linha": "= R/2 + R/2 + L",
+   "nota": "troca R_D por R/2"
+  },
+  {
+   "linha": "= R + L",
+   "nota": "igual ao projeto"
+  },
+  {
+   "linha": "i = V/(R+L)",
+   "nota": "igual ao limite: não queima"
+  },
+  {
+   "linha": "(2) R_D em paralelo com R_D",
+   "nota": "iguais: divide por 2"
+  },
+  {
+   "linha": "= (R/2) ÷ 2 = R/4",
+   "nota": "paralelo vale R/4"
+  },
+  {
+   "linha": "R_total = R/4 + L",
+   "nota": "série com a lâmpada"
+  },
+  {
+   "linha": "R/4 + L < R + L",
+   "nota": "resistência menor"
+  },
+  {
+   "linha": "i = V/(R/4 + L) > V/(R+L)",
+   "nota": "passa do limite: queima"
+  },
+  {
+   "linha": "(3) ramo da lâmpada: R_D + L",
+   "nota": "V está sobre o ramo"
+  },
+  {
+   "linha": "R/2 + L < R + L",
+   "nota": "resistência menor"
+  },
+  {
+   "linha": "i = V/(R/2 + L) > V/(R+L)",
+   "nota": "passa do limite: queima"
+  }
+ ],
+ "visual": {
+  "cabe": true,
+  "porque": "Redesenhar cada circuito com as resistências equivalentes mostra rapidamente em qual deles a corrente passa do limite.",
+  "tipo": "diagrama",
+  "roteiro": "Quadro 1: circuito ideal, R em série com L, corrente = limite (marcada em verde). Quadro 2: circuito 1, dois R_D que se fundem em um R, corrente igual ao limite. Quadro 3: circuito 2, os dois R_D em paralelo viram R/4 e a seta de corrente fica maior (vermelha). Quadro 4: circuito 3, destaque no ramo R_D + L ligado direto à fonte V, seta maior (vermelha). Quadro 5: resumo com 1 = igual, 2 e 3 = queimam."
+ },
+ "fontes": [],
+ "gab": "D",
+ "revisao": {
+  "lentes": [
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
+  ],
+  "modelos": {
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[0].tipo",
+    "depois": "localizar",
+    "motivo": "O tipo 'interpretar' não existe. Os tipos válidos são localizar, calcular, comparar, eliminar e concluir. Este passo tira do enunciado o critério de queima, então o tipo certo é localizar.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.antes.formulas[1]",
+    "depois": "Paralelo de dois resistores iguais: R_eq = R_D ÷ 2, com a mesma tensão nos ramos",
+    "motivo": "Na questão, R é a resistência projetada. Escrito como 'R_eq = R ÷ 2', a regra sugere que o paralelo do circuito 2 vale R/2. O certo é R_D ÷ 2 = R/4, como mostram os passos.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.quadro",
+    "depois": [
+     {
+      "linha": "limite: i = V/(R+L)",
+      "nota": "corrente máxima da lâmpada"
+     },
+     {
+      "linha": "R_D = R/2",
+      "nota": "resistor defeituoso"
+     },
+     {
+      "linha": "(1) R_D + R_D + L",
+      "nota": "três em série: somam"
+     },
+     {
+      "linha": "= R/2 + R/2 + L",
+      "nota": "troca R_D por R/2"
+     },
+     {
+      "linha": "= R + L",
+      "nota": "igual ao projeto"
+     },
+     {
+      "linha": "i = V/(R+L)",
+      "nota": "igual ao limite: não queima"
+     },
+     {
+      "linha": "(2) R_D em paralelo com R_D",
+      "nota": "iguais: divide por 2"
+     },
+     {
+      "linha": "= (R/2) ÷ 2 = R/4",
+      "nota": "paralelo vale R/4"
+     },
+     {
+      "linha": "R_total = R/4 + L",
+      "nota": "série com a lâmpada"
+     },
+     {
+      "linha": "R/4 + L < R + L",
+      "nota": "resistência menor"
+     },
+     {
+      "linha": "i = V/(R/4 + L) > V/(R+L)",
+      "nota": "passa do limite: queima"
+     },
+     {
+      "linha": "(3) ramo da lâmpada: R_D + L",
+      "nota": "V está sobre o ramo"
+     },
+     {
+      "linha": "R/2 + L < R + L",
+      "nota": "resistência menor"
+     },
+     {
+      "linha": "i = V/(R/2 + L) > V/(R+L)",
+      "nota": "passa do limite: queima"
+     }
+    ],
+    "motivo": "Um passo por linha, sem pular a substituição R_D = R/2, e linhas curtas para caber no celular."
+   },
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "Série: R_eq = soma das resistências; a corrente é a mesma em todos",
+     "Paralelo de dois resistores iguais: R_eq = R_D ÷ 2; a tensão é a mesma nos dois ramos",
+     "Lei de Ohm: i = V ÷ R_total (menor resistência, maior corrente)"
+    ],
+    "motivo": "Deixa a ideia central explícita, sem usar sinal ambíguo."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "R_D",
+      "resistência do resistor defeituoso, igual a R/2"
+     ],
+     [
+      "L",
+      "resistência da lâmpada"
+     ],
+     [
+      "V",
+      "tensão da fonte (bateria)"
+     ],
+     [
+      "i",
+      "corrente elétrica"
+     ],
+     [
+      "corrente-limite",
+      "V/(R+L): acima dela a lâmpada queima"
+     ],
+     [
+      "//",
+      "em paralelo"
+     ]
+    ],
+    "motivo": "Inclui 'i' e '//', usados no quadro e nos passos."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Pela figura, a lâmpada fica em série com um R_D, e esse ramo está em paralelo com o outro R_D, ligados direto à fonte. Então a tensão V está sobre o ramo da lâmpada: i_L = V/(R/2+L), que é maior que V/(R+L). Queima.",
+    "motivo": "Frase mais clara sobre a tensão no ramo."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "D"
+ }
+}

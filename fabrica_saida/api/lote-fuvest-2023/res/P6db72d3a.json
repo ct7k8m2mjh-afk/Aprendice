@@ -1,0 +1,251 @@
+{
+ "n": 84,
+ "id": "P6db72d3a",
+ "materia": "mat",
+ "tema": "M13",
+ "conteudo": "M13.3",
+ "nivel": 3,
+ "conceito": "Combinações: escolher 2 de 3 questões de Matemática e 6 de 8 de Física, multiplicando as escolhas independentes.",
+ "resolucao": {
+  "antes": {
+   "texto": "A ordem das questões na prova não importa: só interessa QUAIS questões entram. Por isso cada escolha é uma combinação. As escolhas de Matemática e de Física não dependem uma da outra, então os resultados se multiplicam. C(n,p) conta de quantos modos se escolhem p itens entre n.",
+   "formulas": [
+    "C(n,p) = n! ÷ (p! × (n−p)!)",
+    "provas = C(3,2) × C(8,6)"
+   ],
+   "simbolos": [
+    [
+     "C(n,p)",
+     "número de modos de escolher p itens entre n, sem importar a ordem. Lê-se 'combinação de n, p a p'"
+    ],
+    [
+     "n!",
+     "fatorial de n: n × (n−1) × ... × 1. Exemplo: 4! = 4 × 3 × 2 × 1 = 24"
+    ],
+    [
+     "princípio multiplicativo",
+     "se uma escolha tem a modos e outra tem b modos, juntas têm a × b modos"
+    ]
+   ]
+  },
+  "pista": "Escolher quais 2 questões entram é o mesmo que escolher qual fica de fora. Conte as escolhas de cada disciplina separadamente e depois junte.",
+  "passos": [
+   {
+    "faz": "Decida o tipo de contagem",
+    "conta": "ordem não importa → combinação",
+    "porque": "O enunciado diz 'sem levar em conta a ordem'. Duas provas com as mesmas questões são a mesma prova.",
+    "tipo": "localizar"
+   },
+   {
+    "faz": "Conte as escolhas de Matemática",
+    "conta": "C(3,2) = 3",
+    "porque": "São 3 questões de Matemática e entram 2. Escolher as 2 que entram é o mesmo que escolher a 1 que fica de fora: são 3 modos.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Conte as escolhas de Física",
+    "conta": "C(8,6) = C(8,2)",
+    "porque": "Escolher 6 para entrar é o mesmo que escolher 2 para deixar de fora. O resultado é igual.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Calcule C(8,2)",
+    "conta": "(8 × 7)/2 = 28",
+    "porque": "Há 8 modos para a primeira questão e 7 para a segunda. Isso dá 8 × 7 = 56, mas cada par foi contado 2 vezes (A e B, B e A). Divide-se por 2.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Multiplique as escolhas",
+    "conta": "3 × 28 = 84",
+    "porque": "Cada uma das 3 escolhas de Matemática pode vir com qualquer uma das 28 escolhas de Física. Por isso se multiplica: 3 × 28.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa E: C(3,2) × C(8,6) = 3 × 28 = 84 provas distintas.",
+  "checagem": "Conte pelo que fica de fora: 1 questão de Matemática entre 3 (3 modos) e 2 de Física entre 8 (28 modos). 3 × 28 = 84, o mesmo resultado.",
+  "erradas": {
+   "A": "42 não confere: 42 = 3 × 14 exigiria só 14 modos em Física, mas C(8,6) = C(8,2) = 8 × 7 ÷ 2 = 28. Dividir por 2 mais uma vez (28 ÷ 2 = 14) descarta a ordem duas vezes; a combinação já a descartou.",
+   "B": "54 não confere: 54 = 3 × 18 exigiria 18 modos em Física, mas C(8,6) = 28. Para chegar a 28, faça 8 × 7 ÷ 2, sem outra divisão ou subtração.",
+   "C": "62 não confere: o total é 3 × (escolhas de Física), então tem de ser múltiplo de 3. Como 62 ÷ 3 não é inteiro, não pode ser a resposta.",
+   "D": "72 não confere: exigiria 24 modos em Física (72 ÷ 3), mas C(8,6) = 28. Falta contar 4 dos modos de escolher as questões de Física."
+  },
+  "armadilha": "Contar a ordem das questões (arranjo) em vez de só escolher quais entram, ou somar em vez de multiplicar as escolhas.",
+  "alerta": "",
+  "essencial": {
+   "pede": "O número de provas distintas com 2 questões de Matemática e 6 de Física, sem importar a ordem.",
+   "chave": "C(3,2) × C(8,6) = 3 × 28 = 84.",
+   "cuidado": "As escolhas são independentes: multiplique, não some. C(8,6) é igual a C(8,2)."
+  }
+ },
+ "caminhos": [
+  {
+   "nome": "escolher o que fica de fora",
+   "ideia": "Em vez de escolher as que entram, escolha as que saem: 1 de Matemática (3 modos) e 2 de Física (28 modos). Total 3 × 28 = 84."
+  },
+  {
+   "nome": "fatorial direto",
+   "ideia": "C(8,6) = 8!/(6! × 2!) = (8 × 7)/2 = 28 e C(3,2) = 3!/(2! × 1!) = 3."
+  }
+ ],
+ "quadro": [
+  {
+   "linha": "provas = C(3,2) × C(8,6)",
+   "nota": "ordem não importa; multiplique as duas escolhas"
+  },
+  {
+   "linha": "C(3,2) = 3",
+   "nota": "escolher 2 de 3 = escolher 1 que fica de fora"
+  },
+  {
+   "linha": "C(8,6) = C(8,2)",
+   "nota": "escolher 6 que entram = escolher 2 que saem"
+  },
+  {
+   "linha": "C(8,2) = (8 × 7)/2",
+   "nota": "combinação de 2 itens",
+   "destaque": "(8 × 7)/2"
+  },
+  {
+   "linha": "C(8,2) = 56/2 = 28",
+   "nota": "8 × 7 = 56 e 56 ÷ 2 = 28"
+  },
+  {
+   "linha": "provas = 3 × 28",
+   "nota": "princípio multiplicativo"
+  },
+  {
+   "linha": "provas = 84",
+   "nota": "3 × 28 = 84"
+  }
+ ],
+ "visual": {
+  "cabe": false,
+  "porque": "A conta é curta e se resolve bem no quadro; a animação não acrescentaria clareza.",
+  "tipo": "nenhum",
+  "roteiro": ""
+ },
+ "fontes": [],
+ "confere": true,
+ "divergencia": "",
+ "resposta_resolvedor": "E",
+ "gab": "E",
+ "revisao": {
+  "lentes": [
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
+  ],
+  "modelos": {
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[0].tipo",
+    "depois": "localizar",
+    "motivo": "O tipo 'interpretar' não está na lista permitida (localizar, calcular, comparar, eliminar, concluir). O passo lê no enunciado a expressão 'sem levar em conta a ordem', então o tipo certo é localizar.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "42 não confere: 42 = 3 × 14 exigiria só 14 modos em Física, mas C(8,6) = 28. Nenhuma divisão extra entra, porque cada combinação já descarta a ordem.",
+    "motivo": "A origem dada ('usar C(8,2) só em parte ou dividir por 2') é inventada e especulativa, o que o padrão proíbe. Troquei por um teste objetivo. A frase 'a ordem de Matemática e Física já foi tratada' também estava imprecisa.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "54 não confere: 54 = 3 × 18 exigiria 18 modos em Física, mas C(8,6) = 28.",
+    "motivo": "A frase '54 não é múltiplo de 3 vezes 28' é ambígua: 54 é múltiplo de 3. A frase 'alguma das combinações foi calculada errado' é especulação. Troquei pelo teste objetivo.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "62 não confere: o total é 3 vezes o número de escolhas de Física, então tem de ser múltiplo de 3, e 62 ÷ 3 não dá inteiro.",
+    "motivo": "Removi a origem especulativa '2 × (3 + 28) = 62', que não corresponde a nenhum erro plausível. Ficou só o teste objetivo, que é verdadeiro.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "A ordem das questões na prova não importa: só interessa QUAIS questões entram. Por isso cada escolha é uma combinação. As escolhas de Matemática e de Física não dependem uma da outra, então os resultados se multiplicam. C(n,p) conta de quantos modos se escolhem p itens entre n.",
+    "motivo": "Frases mais curtas, sem fórmula no meio do texto e sem a palavra 'independentes' sem explicação."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "C(n,p)",
+      "número de modos de escolher p itens entre n, sem importar a ordem. Lê-se 'combinação de n, p a p'"
+     ],
+     [
+      "n!",
+      "fatorial de n: n × (n−1) × ... × 1. Exemplo: 4! = 4 × 3 × 2 × 1 = 24"
+     ],
+     [
+      "princípio multiplicativo",
+      "se uma escolha tem a modos e outra tem b modos, juntas têm a × b modos"
+     ]
+    ],
+    "motivo": "Exemplo de fatorial e explicação do princípio multiplicativo, citado nos passos."
+   },
+   {
+    "campo": "resolucao.pista",
+    "depois": "Escolher quais 2 questões entram é o mesmo que escolher qual fica de fora. Conte as escolhas de cada disciplina separadamente e depois junte.",
+    "motivo": "Pista mais direta, sem pergunta ambígua, e sem entregar a conta."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "São 3 questões de Matemática e entram 2. Escolher as 2 que entram é o mesmo que escolher a 1 que fica de fora: são 3 modos.",
+    "motivo": "Deixa claro de onde vem o 3."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Há 8 modos para a primeira questão e 7 para a segunda. Isso dá 8 × 7 = 56, mas cada par foi contado 2 vezes (A e B, B e A). Divide-se por 2.",
+    "motivo": "Explica de onde vem o 'dividido por 2', em vez de só afirmar."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "Cada uma das 3 escolhas de Matemática pode vir com qualquer uma das 28 escolhas de Física. Por isso se multiplica: 3 × 28.",
+    "motivo": "Troca o termo técnico por explicação direta."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "42 não confere: 42 = 3 × 14 exigiria só 14 modos em Física, mas C(8,6) = 28. Quem marcou provavelmente dividiu por 2 de novo, mas a combinação já descarta a ordem.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou A."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "54 não confere: 54 = 3 × 18 exigiria 18 modos em Física, mas C(8,6) = 28. Para chegar a 28, faça 8 × 7 ÷ 2, sem outra divisão ou subtração.",
+    "motivo": "Orienta o que o aluno deve corrigir."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "62 não confere: o total é 3 × (escolhas de Física), então tem de ser múltiplo de 3. Como 62 ÷ 3 não é inteiro, não pode ser a resposta.",
+    "motivo": "Frase mais curta e direta."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "72 não confere: exigiria 24 modos em Física (72 ÷ 3), mas C(8,6) = 28. Falta contar 4 dos modos de escolher as questões de Física.",
+    "motivo": "Mantém o teste objetivo, com redação mais clara."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "42 não confere: 42 = 3 × 14 exigiria só 14 modos em Física, mas C(8,6) = C(8,2) = 8 × 7 ÷ 2 = 28. Dividir por 2 mais uma vez (28 ÷ 2 = 14) descarta a ordem duas vezes; a combinação já a descartou.",
+    "motivo": "Remove 'provavelmente' (origem especulada) e mostra a conta que leva a 14 e o teste objetivo.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "E"
+ }
+}

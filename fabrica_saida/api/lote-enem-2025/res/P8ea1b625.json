@@ -1,0 +1,310 @@
+{
+ "n": 149,
+ "id": "P8ea1b625",
+ "materia": "mat",
+ "tema": "M11",
+ "conteudo": "M11.5",
+ "nivel": 6,
+ "conceito": "Contar faces na planificação e usar a relação de Euler (V − A + F = 2) para achar os vértices de um poliedro.",
+ "resolucao": {
+  "antes": {
+   "texto": "A planificação mostra todas as faces do poliedro, então dá para contá-las. Cada aresta é lado de duas faces, então o total de lados de todas as faces, dividido por 2, dá o número de arestas. Com faces e arestas, a relação de Euler entrega os vértices.",
+   "formulas": [
+    "A = (soma dos lados de todas as faces) ÷ 2",
+    "V − A + F = 2, logo V = 2 + A − F"
+   ],
+   "simbolos": [
+    [
+     "V",
+     "número de vértices (pontas, onde as arestas se encontram)"
+    ],
+    [
+     "A",
+     "número de arestas (segmentos onde duas faces se encontram)"
+    ],
+    [
+     "F",
+     "número de faces (polígonos que formam a superfície)"
+    ],
+    [
+     "Relação de Euler",
+     "vale para poliedros convexos: V − A + F = 2"
+    ],
+    [
+     "planificação",
+     "o poliedro aberto e esticado no plano, com todas as faces visíveis"
+    ],
+    [
+     "decágono",
+     "polígono de 10 lados"
+    ],
+    [
+     "pentágono",
+     "polígono de 5 lados"
+    ]
+   ]
+  },
+  "pista": "Conte as faces da planificação por tipo de polígono: decágono, pentágono, quadrados e triângulos. Depois descubra quantas arestas essas faces formam.",
+  "passos": [
+   {
+    "faz": "Conte o decágono",
+    "conta": "1 decágono (vermelho)",
+    "porque": "O decágono vermelho está no centro da planificação e aparece uma só vez.",
+    "tipo": "localizar"
+   },
+   {
+    "faz": "Conte pentágono e quadrados",
+    "conta": "1 pentágono + 5 quadrados",
+    "porque": "O pentágono verde está ligado a um quadrado, na ponta direita. Há mais 4 quadrados amarelos em volta do decágono. Total: 5 quadrados.",
+    "tipo": "localizar"
+   },
+   {
+    "faz": "Conte os triângulos azuis",
+    "conta": "10 em volta + 15 = 25",
+    "porque": "Cada um dos 10 lados do decágono encosta num triângulo: são 10. Os outros 15 ficam entre os quadrados e nas pontas. Total: 25.",
+    "tipo": "localizar"
+   },
+   {
+    "faz": "Some as faces",
+    "conta": "F = 1 + 1 + 5 + 25 = 32",
+    "porque": "Total de faces do poliedro.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Conte as arestas",
+    "conta": "lados = 10 + 5 + 20 + 75 = 110",
+    "porque": "Lados: decágono 10, pentágono 5, quadrados 5 × 4 = 20, triângulos 25 × 3 = 75. A soma é 110. Cada aresta é lado de duas faces, então foi contada duas vezes: A = 110 ÷ 2 = 55.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Aplique Euler e conclua",
+    "conta": "V = 2 + 55 − 32 = 25",
+    "porque": "V − A + F = 2 dá V = 2 + A − F, ou seja, 25 vértices.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa B: o poliedro tem 32 faces e 55 arestas, logo 2 + 55 − 32 = 25 vértices.",
+  "checagem": "Conte os vértices pela construção: a cúpula tem 5 vértices no pentágono e 10 no decágono do meio, 15 no total. O decágono vermelho, de baixo, acrescenta mais 10 vértices: 15 + 10 = 25. Os dois caminhos fecham.",
+  "erradas": {
+   "A": "21 sai de trocar o sinal na relação de Euler: 55 − 32 − 2 = 21. O certo é V = 2 + A − F = 2 + 55 − 32 = 25.",
+   "C": "55 é o número de arestas (110 ÷ 2), não o de vértices. Falta aplicar Euler para chegar aos vértices.",
+   "D": "80 sai de usar 110 como se fosse o número de arestas: 110 − 32 + 2 = 80. Mas 110 é a soma dos lados das faces, em que cada aresta é contada duas vezes. Dividindo por 2, A = 55.",
+   "E": "110 é a soma dos lados de todas as faces (10 + 5 + 20 + 75), onde cada aresta aparece duas vezes. Não é número de vértices."
+  },
+  "armadilha": "Contar como arestas a soma dos lados das faces (110) sem dividir por 2, ou confundir arestas (55) com vértices.",
+  "alerta": "",
+  "essencial": {
+   "pede": "O número de vértices do poliedro mostrado na planificação.",
+   "chave": "F = 32 e A = 110 ÷ 2 = 55; por Euler, V = 2 + 55 − 32 = 25.",
+   "cuidado": "Dividir a soma dos lados por 2 e não trocar o sinal na relação de Euler."
+  }
+ },
+ "caminhos": [
+  {
+   "nome": "construção por partes",
+   "ideia": "A cúpula pentagonal tem 15 vértices (5 + 10). A faixa de triângulos de baixo acrescenta o decágono inferior, de 10 vértices. 15 + 10 = 25."
+  },
+  {
+   "nome": "contar vértices pelos ângulos",
+   "ideia": "Conte quantas faces chegam em cada vértice. Nos 5 vértices do pentágono chegam 4 faces (pentágono, 2 quadrados, 1 triângulo). Nos 10 vértices do anel do meio chegam 5 faces (1 quadrado e 4 triângulos). Nos 10 vértices do decágono vermelho chegam 4 faces (decágono e 3 triângulos). Somando, 5 × 4 + 10 × 5 + 10 × 4 = 110, que é igual à soma dos lados das faces. Isso confirma 5 + 10 + 10 = 25 vértices, mas dá mais trabalho que Euler."
+  }
+ ],
+ "quadro": [
+  {
+   "linha": "F = 1 + 1 + 5 + 25",
+   "nota": "decágono, pentágono, quadrados, triângulos"
+  },
+  {
+   "linha": "F = 32",
+   "nota": "total de faces"
+  },
+  {
+   "linha": "lados = 10 + 5 + 20 + 75",
+   "nota": "soma dos lados das faces"
+  },
+  {
+   "linha": "lados = 110",
+   "nota": "cada aresta contada 2 vezes"
+  },
+  {
+   "linha": "A = 110 ÷ 2",
+   "nota": "divide por 2 para contar uma vez"
+  },
+  {
+   "linha": "A = 55",
+   "nota": "arestas"
+  },
+  {
+   "linha": "V − A + F = 2",
+   "nota": "relação de Euler"
+  },
+  {
+   "linha": "V = 2 + A − F",
+   "nota": "isole V: A e F passam para o outro lado"
+  },
+  {
+   "linha": "V = 2 + 55 − 32",
+   "nota": "troque pelos valores",
+   "destaque": "2 + 55 − 32"
+  },
+  {
+   "linha": "V = 25",
+   "nota": "vértices"
+  }
+ ],
+ "visual": {
+  "cabe": true,
+  "porque": "A planificação se dobra para formar o sólido, e isso ajuda a ver por que cada aresta é compartilhada por duas faces.",
+  "tipo": "figura",
+  "roteiro": "1) A planificação aparece e as faces são pintadas e contadas: decágono, pentágono, 5 quadrados, 25 triângulos, com o contador de faces chegando a 32. 2) Os lados de cada face são colados dois a dois e uma legenda mostra '110 lados → 55 arestas'. 3) A figura se dobra até virar o poliedro. 4) Os vértices acendem um a um até 25 e a equação V − A + F = 2 fecha: 25 − 55 + 32."
+ },
+ "fontes": [],
+ "resposta_resolvedor": "B",
+ "confere": true,
+ "divergencia": "",
+ "gab": "B",
+ "revisao": {
+  "lentes": [
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
+  ],
+  "modelos": {
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "caminhos[1].ideia",
+    "depois": "Conte quantas faces chegam em cada vértice. Nos 5 vértices do pentágono chegam 4 faces (pentágono, 2 quadrados, 1 triângulo). Nos 10 vértices do anel do meio chegam 5 faces (1 quadrado e 4 triângulos). Nos 10 vértices do decágono vermelho chegam 4 faces (decágono e 3 triângulos). Somando, 5 × 4 + 10 × 5 + 10 × 4 = 110, que é igual à soma dos lados das faces. Isso confirma 5 + 10 + 10 = 25 vértices, mas dá mais trabalho que Euler.",
+    "motivo": "A versão antiga dizia que chegam 4 faces em todos os vértices e que o somatório 'confere com 25' sem mostrar a conta. Os 10 vértices do anel do meio recebem 5 faces, não 4. Refiz a contagem: 20 + 50 + 40 = 110 incidências, o que bate com a soma dos lados das faces.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "V",
+      "número de vértices (pontas, onde as arestas se encontram)"
+     ],
+     [
+      "A",
+      "número de arestas (segmentos onde duas faces se encontram)"
+     ],
+     [
+      "F",
+      "número de faces (polígonos que formam a superfície)"
+     ],
+     [
+      "Relação de Euler",
+      "vale para poliedros convexos: V − A + F = 2"
+     ],
+     [
+      "planificação",
+      "o poliedro aberto e esticado no plano, com todas as faces visíveis"
+     ],
+     [
+      "decágono",
+      "polígono de 10 lados"
+     ],
+     [
+      "pentágono",
+      "polígono de 5 lados"
+     ]
+    ],
+    "motivo": "Decágono e pentágono aparecem nos passos e não estavam explicados."
+   },
+   {
+    "campo": "resolucao.passos[0].faz",
+    "depois": "Conte o decágono",
+    "motivo": "O passo trata só do decágono; o comando ficou preciso."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "O pentágono verde está ligado a um quadrado, na ponta direita. Há mais 4 quadrados amarelos em volta do decágono. Total: 5 quadrados.",
+    "motivo": "Frase mais clara, sem duplo sentido."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Cada um dos 10 lados do decágono encosta num triângulo: são 10. Os outros 15 ficam entre os quadrados e nas pontas. Total: 25.",
+    "motivo": "Texto original com frase longa e uma confusão com a figura do poliedro, que não ajuda aqui. Simplificado."
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "lados = 10 + 5 + 20 + 75 = 110",
+    "motivo": "A conta tinha só a divisão final; agora cada passo é visível. A divisão por 2 fica na linha seguinte do quadro."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "Lados: decágono 10, pentágono 5, quadrados 5 × 4 = 20, triângulos 25 × 3 = 75. A soma é 110. Cada aresta é lado de duas faces, então foi contada duas vezes: A = 110 ÷ 2 = 55.",
+    "motivo": "Explica por que dividir por 2."
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Conte os vértices pela construção: a cúpula tem 5 vértices no pentágono e 10 no decágono do meio, 15 no total. O decágono vermelho, de baixo, acrescenta mais 10 vértices: 15 + 10 = 25. Os dois caminhos fecham.",
+    "motivo": "Redação mais simples."
+   },
+   {
+    "campo": "resolucao.quadro",
+    "depois": [
+     {
+      "linha": "F = 1 + 1 + 5 + 25",
+      "nota": "decágono, pentágono, quadrados, triângulos"
+     },
+     {
+      "linha": "F = 32",
+      "nota": "total de faces"
+     },
+     {
+      "linha": "lados = 10 + 5 + 20 + 75",
+      "nota": "soma dos lados das faces"
+     },
+     {
+      "linha": "lados = 110",
+      "nota": "cada aresta contada 2 vezes"
+     },
+     {
+      "linha": "A = 110 ÷ 2",
+      "nota": "divide por 2 para contar uma vez"
+     },
+     {
+      "linha": "A = 55",
+      "nota": "arestas"
+     },
+     {
+      "linha": "V − A + F = 2",
+      "nota": "relação de Euler"
+     },
+     {
+      "linha": "V = 2 + A − F",
+      "nota": "isole V: A e F passam para o outro lado"
+     },
+     {
+      "linha": "V = 2 + 55 − 32",
+      "nota": "troque pelos valores",
+      "destaque": "2 + 55 − 32"
+     },
+     {
+      "linha": "V = 25",
+      "nota": "vértices"
+     }
+    ],
+    "motivo": "Falta de passagem: isolar V não estava mostrado, e a divisão por 2 aparecia junto com o resultado."
+   }
+  ],
+  "didatica_alertas": [
+   "O passo 3 dizia que a figura tem '5 triângulos da cúpula + 20 da faixa': na verdade, a divisão entre cúpula e faixa e o total de 25 triângulos conferem com a estrutura (cúpula: 5 triângulos + 5 quadrados; faixa: 20 triângulos), mas o corretor de fatos deve confirmar. O campo 'nivel' no JSON (6) difere da classificação informada (9)."
+  ],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "B"
+ }
+}

@@ -1,0 +1,236 @@
+{
+ "n": 180,
+ "id": "P3936ad62",
+ "materia": "mat",
+ "tema": "M13",
+ "conteudo": "M13.3",
+ "nivel": 6,
+ "conceito": "Contagem de equipes com restrição 'pelo menos': dividir em casos, combinar em cada caso, multiplicar dentro do caso e somar os casos.",
+ "resolucao": {
+  "antes": {
+   "texto": "Numa equipe, a ordem em que os médicos são escolhidos não importa. Por isso cada escolha é uma combinação. 'Pelo menos 3 cardiologistas' em 5 vagas quer dizer 3, 4 ou 5 cardiologistas. Cada possibilidade é um caso separado. Dentro de um caso, a escolha dos cardiologistas 'e' a dos neurologistas se multiplicam. Os casos, que não acontecem juntos, se somam.",
+   "formulas": [
+    "C(n, p) = n! ÷ (p! × (n − p)!)",
+    "'e' multiplica; 'ou' soma",
+    "C(7,3) = 7! ÷ (3! × 4!) = 35"
+   ],
+   "simbolos": [
+    [
+     "n!",
+     "fatorial de n: n × (n − 1) × ... × 1, com 0! = 1"
+    ],
+    [
+     "C(n, p)",
+     "número de modos de escolher p elementos entre n, sem ordem"
+    ],
+    [
+     "cardiologista / neurologista",
+     "os dois grupos de médicos do hospital: 7 e 6 pessoas"
+    ]
+   ]
+  },
+  "pista": "Quantos cardiologistas pode haver numa equipe de 5 que tenha pelo menos 3? Liste as possibilidades e veja quantos neurologistas completam cada uma.",
+  "passos": [
+   {
+    "faz": "Liste os casos possíveis",
+    "conta": "3C+2N ; 4C+1N ; 5C+0N",
+    "porque": "A equipe tem 5 médicos. Com 3, 4 ou 5 cardiologistas, os neurologistas completam as vagas restantes: 2, 1 ou 0.",
+    "tipo": "localizar"
+   },
+   {
+    "faz": "Conte o caso 3C + 2N",
+    "conta": "C(7,3) × C(6,2)",
+    "porque": "Escolhem-se 3 entre 7 cardiologistas e 2 entre 6 neurologistas. As duas escolhas acontecem juntas, então multiplica. Em fatoriais: 7!/(3!×4!) × 6!/(2!×4!), que é a alternativa B e vale 35 × 15 = 525.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Conte o caso 4C + 1N",
+    "conta": "C(7,4) × C(6,1)",
+    "porque": "Mesmo raciocínio: 4 entre 7 cardiologistas e 1 entre 6 neurologistas, multiplicando. Em fatoriais: 7!/(4!×3!) × 6!/(1!×5!) = 35 × 6 = 210.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Conte o caso 5C + 0N",
+    "conta": "C(7,5) × C(6,0)",
+    "porque": "Escolhem-se 5 entre 7 cardiologistas e nenhum neurologista. C(6,0) = 1, pois 0! = 1. Em fatoriais: 7!/(5!×2!) × 6!/(0!×6!) = 21 × 1 = 21.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Some os três casos",
+    "conta": "525 + 210 + 21 = 756",
+    "porque": "Uma equipe cai em apenas um caso, e os casos não se sobrepõem. Por isso somam-se os resultados. Essa soma de produtos é a expressão da alternativa E.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa E: soma de três produtos, um por caso (3C+2N, 4C+1N, 5C+0N). Dá 756 equipes.",
+  "checagem": "Pelo complemento: C(13,5) = 1287 equipes no total. Subtraia as com 0, 1 ou 2 cardiologistas: C(7,0)×C(6,5)=6; C(7,1)×C(6,4)=105; C(7,2)×C(6,3)=420. Total = 531. Então 1287 − 531 = 756, o mesmo valor.",
+  "erradas": {
+   "A": "A sai de 7!/4! × 6!/4! = 210 × 30 = 6300. Faltou dividir por 3! e 2!, então nem é uma combinação. Também há um único produto, e não os três casos que 'pelo menos 3' exige.",
+   "B": "7!/(3!×4!) × 6!/(2!×4!) = 35 × 15 = 525. Conta só o caso 3 cardiologistas + 2 neurologistas e deixa de fora os casos de 4 e de 5 cardiologistas, que também cumprem 'pelo menos 3'.",
+   "C": "C sai de somar em vez de multiplicar: 35 + 15 + 5 = 55. Dentro de cada caso, escolher cardiologistas 'e' neurologistas multiplica. O termo 5!/(1!×4!) também não é uma combinação deste problema.",
+   "D": "É um produto de somas: (35+15) × (35+6) × (21+1) = 45 100. Mistura os casos, como se uma equipe pudesse ser formada por 3, 4 e 5 cardiologistas ao mesmo tempo. Os casos se excluem, então devem ser somados, não multiplicados."
+  },
+  "armadilha": "Casos diferentes (3, 4 ou 5 cardiologistas) se somam, mas as escolhas dentro de um mesmo caso se multiplicam. Trocar essas operações leva às alternativas C e D.",
+  "alerta": "",
+  "essencial": {
+   "pede": "A expressão que dá o número de equipes de 5 médicos com pelo menos 3 cardiologistas.",
+   "chave": "Dividir em 3 casos, combinar em cada um, multiplicar cardiologistas por neurologistas dentro do caso e somar os casos.",
+   "cuidado": "Não esquecer os casos de 4 e 5 cardiologistas e não multiplicar os casos entre si."
+  }
+ },
+ "caminhos": [
+  {
+   "nome": "complemento",
+   "ideia": "Total de equipes C(13,5) = 1287 menos as que têm 0, 1 ou 2 cardiologistas (6 + 105 + 420 = 531) dá 756. Esse valor é igual ao da soma de produtos da alternativa E."
+  },
+  {
+   "nome": "eliminação por estrutura",
+   "ideia": "A resposta precisa somar três casos, cada um um produto. Só a alternativa E tem essa forma. A e B têm um único produto, C só soma e D multiplica somas."
+  }
+ ],
+ "quadro": [
+  {
+   "linha": "3C+2N : C(7,3) × C(6,2)",
+   "nota": "caso 1: 3 cardiologistas e 2 neurologistas"
+  },
+  {
+   "linha": "35 × 15 = 525",
+   "nota": "C(7,3) = 35 e C(6,2) = 15"
+  },
+  {
+   "linha": "4C+1N : C(7,4) × C(6,1)",
+   "nota": "caso 2: 4 cardiologistas e 1 neurologista"
+  },
+  {
+   "linha": "35 × 6 = 210",
+   "nota": "C(7,4) = 35 e C(6,1) = 6"
+  },
+  {
+   "linha": "5C+0N : C(7,5) × C(6,0)",
+   "nota": "caso 3: 5 cardiologistas e nenhum neurologista"
+  },
+  {
+   "linha": "21 × 1 = 21",
+   "nota": "C(7,5) = 21 e C(6,0) = 1"
+  },
+  {
+   "linha": "525 + 210 + 21 = 756",
+   "nota": "some os três casos",
+   "destaque": "756"
+  }
+ ],
+ "visual": {
+  "cabe": false,
+  "porque": "A questão é de contagem por casos e a resolução em linhas já mostra cada caso de forma clara.",
+  "tipo": "nenhum",
+  "roteiro": ""
+ },
+ "fontes": [],
+ "confere": true,
+ "divergencia": "",
+ "resposta_resolvedor": "E",
+ "gab": "E",
+ "revisao": {
+  "lentes": [
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
+  ],
+  "modelos": {
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[0].tipo",
+    "depois": "localizar",
+    "motivo": "'interpretar' não está na lista de tipos permitidos (localizar, calcular, comparar, eliminar, concluir). Listar os casos a partir do enunciado é 'localizar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "calcular",
+    "motivo": "'aplicar' não está na lista de tipos permitidos. O passo monta e calcula a contagem do caso.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "calcular",
+    "motivo": "'aplicar' não está na lista de tipos permitidos.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "calcular",
+    "motivo": "'aplicar' não está na lista de tipos permitidos.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "C(7,3) × C(6,2)",
+    "motivo": "A conta com fatoriais passava de 30 caracteres e não cabe na tela do celular. O valor em fatoriais vai para o porque."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "Escolhem-se 3 entre 7 cardiologistas e 2 entre 6 neurologistas. As duas escolhas acontecem juntas, então multiplica. Em fatoriais: 7!/(3!×4!) × 6!/(2!×4!), que é a alternativa B e vale 35 × 15 = 525.",
+    "motivo": "Mostra a forma com fatoriais que aparece nas alternativas, sem estourar a linha."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "C(7,4) × C(6,1)",
+    "motivo": "Conta curta para caber na tela."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Mesmo raciocínio: 4 entre 7 cardiologistas e 1 entre 6 neurologistas, multiplicando. Em fatoriais: 7!/(4!×3!) × 6!/(1!×5!) = 35 × 6 = 210.",
+    "motivo": "A forma com fatoriais passa para o porque."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "C(7,5) × C(6,0)",
+    "motivo": "Conta curta para caber na tela."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Escolhem-se 5 entre 7 cardiologistas e nenhum neurologista. C(6,0) = 1, pois 0! = 1. Em fatoriais: 7!/(5!×2!) × 6!/(0!×6!) = 21 × 1 = 21.",
+    "motivo": "A forma com fatoriais passa para o porque."
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "525 + 210 + 21 = 756",
+    "motivo": "Mantida. A conta já cabe na tela."
+   },
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "C(n, p) = n! ÷ (p! × (n − p)!)",
+     "'e' multiplica; 'ou' soma",
+     "C(7,3) = 7! ÷ (3! × 4!) = 35"
+    ],
+    "motivo": "Um exemplo numérico mostra ao aluno como o fatorial vira número."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "A sai de 7!/4! × 6!/4! = 210 × 30 = 6300. Faltou dividir por 3! e 2!, então nem é uma combinação. Também há um único produto, e não os três casos que 'pelo menos 3' exige.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou A."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "C sai de somar em vez de multiplicar: 35 + 15 + 5 = 55. Dentro de cada caso, escolher cardiologistas 'e' neurologistas multiplica. O termo 5!/(1!×4!) também não é uma combinação deste problema.",
+    "motivo": "Mais claro sobre o erro de quem marcou C."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "E"
+ }
+}

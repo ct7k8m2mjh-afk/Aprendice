@@ -1,0 +1,218 @@
+{
+ "n": 141,
+ "id": "Pe8796694",
+ "materia": "mat",
+ "tema": "M04",
+ "conteudo": "M04.5",
+ "nivel": 4,
+ "conceito": "Descobrir uma perda fixa por transporte (descarte) a partir de um pedido anterior e aplicá-la a um novo pedido, verificando a capacidade do caminhão.",
+ "resolucao": {
+  "antes": {
+   "texto": "O descarte é o mesmo em qualquer transporte, não importa a quantidade carregada. Então ele não dobra quando o pedido dobra: é um valor fixo, que se descobre no primeiro pedido. Depois, soma-se esse valor ao que o posto quer receber, desde que caiba no caminhão.",
+   "formulas": [
+    "descarte = volume enviado − volume entregue",
+    "volume a enviar = volume a entregar + descarte"
+   ],
+   "simbolos": [
+    [
+     "descarte",
+     "volume de combustível perdido por causa das impurezas em cada viagem do caminhão"
+    ],
+    [
+     "capacidade",
+     "volume máximo que o caminhão-tanque carrega: 30 000 litros"
+    ],
+    [
+     "enviado",
+     "volume que sai da distribuidora"
+    ],
+    [
+     "entregue",
+     "volume que realmente chega ao posto"
+    ]
+   ]
+  },
+  "pista": "No primeiro pedido, compare o que saiu da distribuidora com o que chegou ao posto. A diferença é a perda de cada viagem. Ela muda quando o pedido dobra?",
+  "passos": [
+   {
+    "faz": "Ache o descarte do 1º pedido",
+    "conta": "10 200 − 9 900 = 300 L",
+    "porque": "Foram enviados 10 200 L e chegaram 9 900 L. A diferença é o que ficou impuro e foi descartado.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Determine o novo pedido",
+    "conta": "2 × 10 000 = 20 000 L",
+    "porque": "O posto quer receber exatamente o dobro do volume que encomendou antes. Foram encomendados 10 000 L, e não os 9 900 L entregues.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Some o descarte, que é fixo",
+    "conta": "20 000 + 300 = 20 300 L",
+    "porque": "O enunciado diz que o descarte independe da quantidade transportada. Ele continua sendo 300 L, e não 600 L.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Confira a capacidade do caminhão",
+    "conta": "20 300 < 30 000",
+    "porque": "O caminhão carrega até 30 000 L e vamos enviar 20 300 L. Cabe em uma só viagem, então há um único descarte.",
+    "tipo": "comparar"
+   },
+   {
+    "faz": "Conclua",
+    "conta": "Enviar 20 300 L → alternativa C",
+    "porque": "Esse é o menor volume que, após descartar 300 L, deixa exatamente 20 000 L para o posto.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa C: a distribuidora deve enviar 20 300 litros, pois 20 300 − 300 de descarte = 20 000 litros entregues.",
+  "checagem": "Subtraia o descarte do que foi enviado: 20 300 − 300 = 20 000, o dobro de 10 000. Confira também o 1º pedido: 10 200 − 300 = 9 900, o que de fato chegou.",
+  "erradas": {
+   "A": "20 100 sai de usar descarte de 100 L: 20 000 + 100. Esse 100 é só a diferença entre o pedido (10 000) e o entregue (9 900). O descarte é a diferença entre o enviado e o entregue: 10 200 − 9 900 = 300. Com 20 100 chegariam 19 800 L.",
+   "B": "20 200 sai de usar descarte de 200 L: 20 000 + 200, sendo 200 = 10 200 − 10 000. Mas o descarte é medido contra o que chegou (9 900), e vale 300. Com 20 200 chegariam 19 900 L, menos que o pedido.",
+   "D": "20 400 sai de dobrar o volume enviado: 2 × 10 200 = 20 400. Assim o descarte também dobraria (600 L), mas ele é fixo, de 300 L. Chegariam 20 100 L, mais que os 20 000 L pedidos. Não é o mínimo.",
+   "E": "20 600 sai de somar dois descartes: 20 000 + 2 × 300 = 20 600. Mas 20 300 L cabem em um caminhão de 30 000 L, então há uma só viagem e um só descarte. Com 20 600 chegariam 20 300 L, mais que o pedido."
+  },
+  "armadilha": "Dobrar também o volume enviado (10 200 × 2 = 20 400), esquecendo que o descarte é fixo e não dobra.",
+  "alerta": "",
+  "essencial": {
+   "pede": "O menor volume que a distribuidora deve enviar para que o posto receba exatamente 20 000 L, usando o mesmo caminhão.",
+   "chave": "Descarte fixo de 10 200 − 9 900 = 300 L; envio = 20 000 + 300 = 20 300 L.",
+   "cuidado": "O descarte não dobra com o pedido. Verifique também que o volume cabe em um caminhão (30 000 L)."
+  }
+ },
+ "caminhos": [
+  {
+   "nome": "Eliminação por teste",
+   "ideia": "Subtraia 300 de cada alternativa e veja qual deixa 20 000. Só 20 300 − 300 = 20 000 fecha. As demais deixam 19 800, 19 900, 20 100 ou 20 300."
+  },
+  {
+   "nome": "Raciocínio direto",
+   "ideia": "Se no 1º pedido a perda foi 300 L, e a perda é a mesma sempre, basta acrescentar 300 L ao novo pedido de 20 000 L."
+  }
+ ],
+ "quadro": [
+  {
+   "linha": "descarte = enviado − entregue",
+   "nota": "o que se perde em cada transporte"
+  },
+  {
+   "linha": "descarte = 10 200 − 9 900",
+   "nota": "valores do 1º pedido"
+  },
+  {
+   "linha": "descarte = 300 L",
+   "nota": "valor fixo, não muda com a quantidade",
+   "destaque": "300 L"
+  },
+  {
+   "linha": "novo pedido = 2 × 10 000",
+   "nota": "o dobro do que foi encomendado"
+  },
+  {
+   "linha": "novo pedido = 20 000 L",
+   "nota": "volume a entregar ao posto"
+  },
+  {
+   "linha": "enviar = 20 000 + 300",
+   "nota": "soma o descarte fixo uma única vez"
+  },
+  {
+   "linha": "enviar = 20 300 L",
+   "nota": "cabe no caminhão: 20 300 < 30 000",
+   "destaque": "20 300 L"
+  }
+ ],
+ "visual": {
+  "cabe": false,
+  "porque": "A questão se resolve com duas contas simples e uma comparação de capacidade; uma animação não acrescenta clareza.",
+  "tipo": "nenhum",
+  "roteiro": ""
+ },
+ "fontes": [],
+ "resposta_resolvedor": "C",
+ "confere": true,
+ "divergencia": "",
+ "gab": "C",
+ "revisao": {
+  "lentes": [
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
+  ],
+  "modelos": {
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "tema",
+    "depois": "M04",
+    "motivo": "A questão não usa porcentagem. O enunciado vira uma conta com perda fixa: descarte = enviado − entregue, e depois envio = pedido + descarte. Isso é problema de modelagem algébrica (M04), não porcentagem simples (M03).",
+    "fonte": ""
+   },
+   {
+    "campo": "conteudo",
+    "depois": "M04.5",
+    "motivo": "O subtema certo é M04.5, problemas de modelagem algébrica, em que o texto vira uma equação. Nenhuma porcentagem aparece na resolução.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "O caminhão carrega até 30 000 L e vamos enviar 20 300 L. Cabe em uma só viagem, então há um único descarte.",
+    "motivo": "Frase mais simples e direta, sem 'transporte' repetido; o aluno liga capacidade a número de viagens."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "20 400 sai de dobrar o volume enviado: 2 × 10 200 = 20 400. Assim o descarte também dobraria (600 L), mas ele é fixo, de 300 L. Chegariam 20 100 L, mais que os 20 000 L pedidos. Não é o mínimo.",
+    "motivo": "Frases mais curtas e explicita que o erro é supor que o descarte dobra."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "20 600 sai de somar dois descartes: 20 000 + 2 × 300 = 20 600. Mas 20 300 L cabem em um caminhão de 30 000 L, então há uma só viagem e um só descarte. Com 20 600 chegariam 20 300 L, mais que o pedido.",
+    "motivo": "Deixa claro o que faltou: perceber que há uma só viagem; frases curtas."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "20 100 sai de usar descarte de 100 L: 20 000 + 100. Esse 100 é só a diferença entre o pedido (10 000) e o entregue (9 900). O descarte é a diferença entre o enviado e o entregue: 10 200 − 9 900 = 300. Com 20 100 chegariam 19 800 L.",
+    "motivo": "Deixa explícito o que faltou: o descarte compara enviado com entregue."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "descarte",
+      "volume de combustível perdido por causa das impurezas em cada viagem do caminhão"
+     ],
+     [
+      "capacidade",
+      "volume máximo que o caminhão-tanque carrega: 30 000 litros"
+     ],
+     [
+      "enviado",
+      "volume que sai da distribuidora"
+     ],
+     [
+      "entregue",
+      "volume que realmente chega ao posto"
+     ]
+    ],
+    "motivo": "Define enviado e entregue, termos usados nas fórmulas e passos."
+   }
+  ],
+  "didatica_alertas": [
+   "Metadados: tema M04 / conteúdo M04.5 / nível 4 diferem da classificação atual (M03, M03.1, nível 7). Não é erro de fato da resolução; o corretor 1 pode conferir a classificação."
+  ],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "C"
+ }
+}
