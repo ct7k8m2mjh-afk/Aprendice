@@ -18,3 +18,4 @@ Observações para a integração:
 | L04 Lógica | aprovado (06/11/2026) | 38 |
 | S07 Globalização | aprovado (06/11/2026) | 49 |
 | S08 Mídia e indústria cultural | aprovado (06/11/2026) | 48 |
+| L06 Racionalismo e empirismo | aprovado (06/11/2026) | 60 |
