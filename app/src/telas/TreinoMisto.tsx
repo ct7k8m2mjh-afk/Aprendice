@@ -76,7 +76,7 @@ export function TreinoMisto() {
         <div className="q-barq">
           <span className="g" aria-hidden><Icone nome={`m_${it.m}` as NomeIcone} /></span>
           <span className="n">{info?.nome}</span>
-          <span className="t num" title="O treino fica salvo se você sair"><b>Treino geral · todas as matérias</b> · <b>{ses.i + 1}</b> de {ses.it.length}</span>
+          <span className="t num" title="Treino geral de todas as matérias. O treino fica salvo se você sair"><b>Treino geral</b> · <b>{ses.i + 1}</b> de {ses.it.length}</span>
           <span className="p" aria-hidden><i style={{ width: `${((ses.i + 1) / ses.it.length) * 100}%` }} /></span>
         </div>
         <div className="q-progresso" aria-hidden>{ses.it.map((x, j) => { const v = ses.res[chaveMisto(x)]; return <i key={chaveMisto(x)} className={(j === ses.i ? 'atual ' : '') + (v ? (v === 'a' ? 'ok' : 'err') : '')} />; })}</div>

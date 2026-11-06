@@ -64,6 +64,15 @@ describe('treino geral de todas as matérias: sorteio', () => {
     expect(sorteiaMisto([b], est, 3, { rnd: semente(5), agora }).it).toHaveLength(3);
   });
 
+  it('prefere questões com resolução (correção em 4 blocos) e completa com as outras', () => {
+    const b: BancoMateria = { id: 'qui', banco: [q('s1'), q('r1', { cr: 1 }), q('s2'), q('r2', { cr: 1 })] };
+    for (let k = 1; k <= 10; k++) {
+      const s = sorteiaMisto([b], {}, 2, { rnd: semente(k) });
+      expect(s.it.map((x) => x.id).sort()).toEqual(['r1', 'r2']);
+    }
+    expect(sorteiaMisto([b], {}, 4, { rnd: semente(1) }).it).toHaveLength(4);
+  });
+
   it('filtro de aceitação (prévia sem print) vale', () => {
     const s = sorteiaMisto(MATS, {}, 30, { rnd: semente(9), aceita: (m) => m === 'bio' || m === 'qui' });
     expect(new Set(s.it.map((x) => x.m))).toEqual(new Set(['bio', 'qui']));

@@ -3,8 +3,9 @@
  * matéria, sorteadas e misturadas, sem sequência e sem escolher matéria. Não substitui o Treino geral de cada matéria.
  *
  * Sorteio: as matérias com questões entram num rodízio embaralhado (para a rodada não ficar tomada pela matéria de banco
- * maior); em cada volta, cada matéria cede uma questão sorteada do banco inteiro dela. Ficam de fora as questões que o
- * aluno já respondeu hoje (se ainda sobrar banco) e, na prévia de arquivo único, as que não têm print. No fim, a rodada
+ * maior); em cada volta, cada matéria cede uma questão sorteada do banco inteiro dela, primeiro entre as que já têm
+ * resolução comentada (cr: a correção em 4 blocos aparece) e não foram respondidas hoje, depois as já respondidas hoje,
+ * depois as sem resolução. Na prévia de arquivo único, só as que têm print. No fim, a rodada
  * inteira é embaralhada de novo: a ordem não segue matéria, tema nem nível.
  */
 import type { MateriaId, Questao } from '../dados/tipos';
@@ -40,13 +41,16 @@ export function sorteiaMisto(
   const rnd = opc.rnd || Math.random;
   const agora = opc.agora ?? Date.now();
   const aceita = opc.aceita || (() => true);
-  // por matéria: banco válido (questão de prova, no ar), com as não respondidas hoje primeiro
+  // por matéria: banco válido (questão de prova, no ar), na ordem de preferência abaixo
   const pilhas = new Map<MateriaId, Questao[]>();
   for (const mc of materias) {
     const validas = mc.banco.filter((q) => q.origem === 'prova' && !q.pendente && !q.retirada && aceita(mc.id, q));
     if (!validas.length) continue;
-    const novas = validas.filter((q) => !respondidaHoje(estado[mc.id], q.id, agora));
-    pilhas.set(mc.id, [...embaralha(novas, rnd), ...embaralha(validas.filter((q) => !novas.includes(q)), rnd)]);
+    // preferência: com resolução (correção em 4 blocos) e não respondida hoje; depois com resolução; depois o resto
+    const peso = (q: Questao) => (q.cr ? 0 : 2) + (respondidaHoje(estado[mc.id], q.id, agora) ? 1 : 0);
+    const grupos: Questao[][] = [[], [], [], []];
+    for (const q of validas) grupos[peso(q)].push(q);
+    pilhas.set(mc.id, grupos.flatMap((g) => embaralha(g, rnd)));
   }
   const it: SessaoMisto['it'] = [];
   const total = [...pilhas.values()].reduce((a, l) => a + l.length, 0);
