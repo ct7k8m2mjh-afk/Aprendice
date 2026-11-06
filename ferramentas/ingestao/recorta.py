@@ -93,7 +93,7 @@ def _linhas(pagina):
             if t:
                 sp0 = next((sp for sp in l['spans'] if sp['text'].strip()), {})
                 neg = bool(sp0.get('flags', 0) & 16) or bool(re.search(r'(?i)bold|black|heavy', sp0.get('font', '')))
-                out.append({'bbox': l['bbox'], 't': t, 'neg': neg})
+                out.append({'bbox': l['bbox'], 't': t, 'neg': neg, 's0': unicodedata.normalize('NFC', sp0.get('text', '')).strip()})
     # "questão" e o número em linhas separadas, lado a lado (cadernos recentes da Vunesp): uma linha só
     for L in out:
         if re.fullmatch(r'(?i)quest[ãa]o', L['t']):
@@ -488,7 +488,8 @@ def eventos_do_pdf(pdf, cfg, faixa=None):
                             # errata da banca: a indicação impressa aponta outras questões (conferida no caderno)
                             nums = cfg.get('faixa_errata', {}).get((cfg.get('_arquivo'), pi + 1, tuple(nums)), nums)
                             ev.append({'p': pi, 'c': c, 'y': yi, 'tipo': 'suporte', 'faixa': nums if not mt else [],
-                                       'num': int(mt.group(1)) if mt else None})
+                                       'num': (re.search(cfg['texto_id'], t).group(1).upper() if cfg.get('texto_id') and re.search(cfg['texto_id'], t)
+                                               else int(mt.group(1)) if mt else None)})
                             break
         if id(pdf) in _OCR_SO_TEXTO and cfg.get('suporte'):
             # camada de texto ilegível: a indicação "Texto para as questões X a Y" só aparece no OCR da página
@@ -551,7 +552,8 @@ def suportes_apos_alternativa(pdf, cfg, ev, faixa=None):
                 continue
             c = coluna_do_ponto(pg, cfg, x0, y0, cols)
             if c is not None:
-                ls.append((c, y0, x0, y1, L['t']))
+                # letra da alternativa num trecho de texto à parte (Cebraspe): só ela conta como alternativa
+                ls.append((c, y0, x0, y1, L.get('s0', '') if cfg.get('alt_span_isolada') else L['t']))
         ls.sort()
         for c, y0, x0, y1, t in ls:
             marca = next((tp for y, tp in marcados.get((pi, c), []) if abs(y - y0) < 2.5), None)
@@ -600,7 +602,13 @@ def segmentos(pdf, cfg, ev, i, faixa_pag=None):
         cols = colunas_da_pagina(pg, cfg)
         bx = faixa_vertical(pg, cfg, c, cols)[1]
         if prox and prox['p'] == p and prox['c'] == c:
-            segs.append((p, pymupdf.Rect(cols[c][0] - 4, y, cols[c][1] + 4, prox['y'] - 2)))
+            fim = prox['y'] - 2
+            # linha de cima colada na âncora seguinte (entrelinha apertada): o pé dela não pode ficar cortado
+            for L in linhas(pg):
+                x0_, y0_, x1_, y1_ = L['bbox']
+                if y0_ < prox['y'] - 4 and fim < y1_ <= prox['y'] + 1.5 and coluna_do_ponto(pg, cfg, x0_, y0_, cols) == c:
+                    fim = y1_
+            segs.append((p, pymupdf.Rect(cols[c][0] - 4, y, cols[c][1] + 4, fim)))
             return segs
         segs.append((p, pymupdf.Rect(cols[c][0] - 4, y, cols[c][1] + 4, bx)))
         c += 1
@@ -613,7 +621,9 @@ def segmentos(pdf, cfg, ev, i, faixa_pag=None):
             return segs  # última questão do caderno: não passa da própria página
 
 
-def textos_citados(enun):
+def textos_citados(enun, cfg=None):
+    if cfg and cfg.get('texto_id'):   # textos com nome próprio ("Texto 1A4-II", Cebraspe)
+        return [x.upper() for x in re.findall(cfg['texto_id'], enun)]
     """Números dos textos que o enunciado cita: "Texto 1", "Textos 2 e 3", "Text 02", "Texts 1 and 2"."""
     out = []
     for m in re.finditer(r'(?i)\b(?:textos?|texts?)\s+0?(\d)\b((?:\s*(?:,|e|and|y)\s*0?\d\b)*)', enun):
@@ -1052,13 +1062,16 @@ def processa(pid, amostra=False, so_texto=False):
                 elif len(f) < 2 and cfg.get('suporte_ate_proximo'):
                     # texto compartilhado só entra na questão que o menciona
                     enun = texto(pdf, segs)
-                    citados = textos_citados(enun)
+                    citados = textos_citados(enun, cfg)
                     if citados and all(c in textos for c in citados):
                         sup = []
                         for c in sorted(set(citados)):
                             sup += [sg for sg in textos[c] if sg not in sup]
-                    elif not citados and len(enun) < cfg.get('suporte_cita_max', 700) and re.search(r'(?i)\b(o texto|do texto|no texto|ao texto|crônica|poema|canção|reportagem|artigo|trecho|fragmento|the text|picture|comic|cartoon|tirinha|charge' + cfg.get('suporte_palavras', '') + r')\b', enun):
+                    elif not citados and not (cfg.get('suporte_cadeia') and suporte.get('quebrado')) \
+                            and len(enun) < cfg.get('suporte_cita_max', 700) and re.search(r'(?i)\b(o texto|do texto|no texto|ao texto|crônica|poema|canção|reportagem|artigo|trecho|fragmento|the text|picture|comic|cartoon|tirinha|charge' + cfg.get('suporte_palavras', '') + r')\b', re.sub(r'\s+', ' ', enun)):
                         sup = suporte['segs']
+                    if not sup:   # o bloco de questões do texto acabou: as seguintes só o levam se o citarem
+                        suporte['quebrado'] = True
                 elif len(f) < 2 and cfg.get('suporte_secao'):
                     sup = suporte['segs']   # "Texto 1" vale para todas as questões até o próximo texto, corte ou seção
                 elif len(f) < 2 and not suporte.get('usado'):
@@ -1067,7 +1080,7 @@ def processa(pid, amostra=False, so_texto=False):
             if cfg.get('suporte_ate_proximo') and textos:
                 # questão que cita "Texto 1" / "Text 2" (às vezes com número de linha) leva esses textos, mesmo
                 # quando já ganhou o texto logo antes dela
-                for c in sorted(set(textos_citados(texto(pdf, segs)))):
+                for c in sorted(set(textos_citados(texto(pdf, segs), cfg))):
                     if c in textos and not all(sg in sup for sg in textos[c]):
                         sup = list(sup) + [sg for sg in textos[c] if sg not in sup]
                 if sup:   # ordem de leitura do caderno (Texto 1 antes do Texto 2)
@@ -1076,6 +1089,8 @@ def processa(pid, amostra=False, so_texto=False):
                 if g_['faixa'][0] <= n <= g_['faixa'][1] and not all(sg in sup for sg in g_['segs']):
                     sup = [sg for sg in g_['segs'] if sg not in sup] + list(sup)
             segs_de[n] = segs
+            if n in cfg.get('sem_apoio', ()):   # conferido no caderno: o texto é da própria questão
+                sup = []
             if n in cfg.get('anexa', {}) and cfg['anexa'][n] in segs_de:
                 # "ainda baseado no texto da questão anterior": o texto está dentro da questão citada, que vai junto
                 sup = [sg for sg in segs_de[cfg['anexa'][n]] if sg not in sup] + list(sup)

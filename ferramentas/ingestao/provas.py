@@ -954,7 +954,7 @@ def utfpr(ano, duracao=5):
         'corte': [r'^(Redação|REDAÇÃO)$', r'^Rascunho$', r'^LÍNGUA ESTRANGEIRA$'],
         'suporte': [], 'suporte_apos_secao': True, 'suporte_cita_max': 2500,
         'suporte_nao_colado': 8, 'suporte_apos_alt': r'^e\)' if novo else r'^\(E\)', 'suporte_ate_proximo': True, 'suporte_primeira': True,
-        'suporte_palavras': '|versos?|newsletter|article|passage|tira|quadrinhos?',
+        'suporte_palavras': '|versos?|newsletter|passage|tira|quadrinhos?',
         'gabarito': gab, 'area': lambda n: 'Conhecimentos gerais',
     }
     cfg['total_de'] = lambda pasta: max(gab(pasta))
@@ -966,3 +966,59 @@ for _a in (2024, 2025, 2026):
 # "Ainda baseado no texto da questão anterior" / "According to the poem" (poema dentro da questão anterior)
 PROVAS['utfpr-2024']['anexa'] = {12: 11}
 PROVAS['utfpr-2025']['anexa'] = {18: 17}
+
+
+# ----------------------------------------------------------------------------------------------- UERR
+def cebraspe_grade(txt):
+    """Gabarito Cebraspe em grade: linha "Questão  1 2 3 ..." e logo abaixo "Gabarito  C X C ..." (X = anulada).
+    Número repetido (opção de língua estrangeira): vale a 1ª ocorrência — conferir no caderno qual língua vem antes."""
+    g = {}
+    linhas = txt.splitlines()
+    for k, l in enumerate(linhas):
+        if not l.strip().startswith('Questão'):
+            continue
+        ns = l.split()[1:]
+        prox = next((x for x in linhas[k + 1:k + 3] if x.strip().startswith('Gabarito')), '')
+        vs = prox.split()[1:]
+        for n, v in zip(ns, vs):
+            if n.isdigit() and int(n) > 0 and v != '0':
+                g.setdefault(int(n), v if v in 'ABCDE' and len(v) == 1 else 'X')
+    return g
+
+
+UERR_SECOES = [(r'^-*\s*LÍNGUA PORTUGUESA\s*-*$', 'Língua Portuguesa'), (r'^-*\s*LÍNGUA INGLESA\s*-*$', 'Inglês'),
+               (r'^-*\s*LÍNGUA ESPANHOLA\s*-*$', 'Espanhol'), (r'^-*\s*HISTÓRIA\s*-*$', 'História'),
+               (r'^-*\s*GEOGRAFIA\s*-*$', 'Geografia'), (r'^-*\s*BIOLOGIA\s*-*$', 'Biologia'), (r'^-*\s*QUÍMICA\s*-*$', 'Química'),
+               (r'^-*\s*FÍSICA\s*-*$', 'Física'), (r'^-*\s*MATEMÁTICA\s*-*$', 'Matemática')]
+
+
+def uerr(ano, duracao=5):
+    def gab(pasta):
+        return cebraspe_grade(texto_pdf(pasta / 'gabarito.pdf'))
+
+    cfg = {
+        'catalogo': 'uerr', 'escola': 'UERR', 'ano': str(ano), 'fase': '', 'titulo': f'UERR {ano}', 'banca': 'Cebraspe',
+        'duracao_horas': duracao,
+        'nota': f'Universidade Estadual de Roraima, Processo Seletivo Vestibular {ano} (Cebraspe): prova objetiva A–E. Língua '
+                'estrangeira: inglês (no gabarito oficial, as questões 10 a 18 aparecem duas vezes; a primeira é a do inglês, '
+                'que vem antes do espanhol no caderno). Gabarito oficial definitivo; anulada fica fora.',
+        'cadernos': [{'arquivo': 'caderno', 'paginas': (1, 999)}],
+        'colunas': lambda r: duas_colunas(r, 22), 'topo': 44, 'base': 30,
+        'ancora': r'(?i)^quest[ãa]o\s+(\d{1,2})\b', 'ancora_dx': 55, 'sequencial': True,
+        'secoes_rx': UERR_SECOES, 'pular_secoes': ('Espanhol',), 'pular_antes_sequencia': True,
+        'corte': [r'(?i)^PROPOSTA DE REDA', r'(?i)^RASCUNHO', r'^Espaço livre$'],
+        # texto de apoio: título "Texto 1A4-II" (2025) ou "Texto II" (2026), o texto logo depois do título da matéria ou
+        # depois da última alternativa de uma questão; vale para a 1ª questão seguinte e para as que citam ou mencionam o texto
+        'suporte': [r'(?i)^texts?o?\s+(\d+[A-Z]\d+-)?[IVX]+\s*$'],
+        'texto_id': r'(?i)\btexts?o?\s+(\d+[A-Z]\d+-[IVX]+)' if ano == 2025 else r'\b[Tt]exts?o?\s+([IVX]+)\b',
+        'suporte_ate_proximo': True, 'suporte_primeira': True, 'suporte_apos_secao': True, 'suporte_apos_alt': r'^E$', 'alt_span_isolada': True,
+        'alternativa_rx': r'^[A-E]$', 'suporte_cita_max': 2600, 'suporte_cadeia': True, 'suporte_palavras': '|text|texto',
+        'gabarito': gab, 'area': lambda n: 'Conhecimentos gerais',
+    }
+    cfg['total_de'] = lambda pasta: max(gab(pasta))
+    return cfg
+
+
+for _a in (2025, 2026):
+    PROVAS[f'uerr-{_a}'] = uerr(_a)
+PROVAS['uerr-2025']['sem_apoio'] = (7,)   # texto próprio (Antonio Candido), não o 1A1
