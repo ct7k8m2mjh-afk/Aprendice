@@ -16,3 +16,4 @@ Observações para a integração:
 | G03 Clima e atmosfera | aprovado (06/11/2026) | 60 |
 | G12 Meio ambiente e sustentabilidade | aprovado (06/11/2026) | 60 |
 | G08 Geografia agrária | aprovado (06/11/2026) | 59 |
+| G07 Urbanização | aprovado (06/11/2026) | 50 |
