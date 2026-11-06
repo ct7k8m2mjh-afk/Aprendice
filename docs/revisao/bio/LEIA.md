@@ -13,3 +13,4 @@ Observações para a integração:
 | B11 Evolução | aprovado (06/11/2026) | 50 |
 | B01 Citologia | aprovado (06/11/2026) | 60 |
 | B09 Ecologia | aprovado (06/11/2026) | 60 |
+| B04 Divisão celular e câncer | aprovado (06/11/2026) | 50 |
