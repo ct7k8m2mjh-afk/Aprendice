@@ -142,6 +142,7 @@ def uel(ano, total=60, duracao=4):
 
 PROVAS.update({f'uel-{a}': uel(a) for a in (2026, 2025, 2024)})
 PROVAS.update({f'uel-{a}': uel(a) for a in (2023, 2020)})
+PROVAS['uel-2025']['margem'] = 8   # "Leia o texto ... questões 2 e 3" sai à esquerda da coluna (x≈11): antes ia para o fim da questão anterior
 PROVAS['uel-2020']['base'] = 38   # rodapé "8 / 27" um pouco mais alto que nas edições recentes
 PROVAS['uel-2020']['divisa'] = 303.5   # texto da coluna esquerda vai até x≈295 e o da direita começa em x≈312
 PROVAS['uel-2023']['divisa'] = 298.5   # esquerda até x≈291, direita a partir de x≈306
@@ -334,7 +335,8 @@ def acafe(ano, sem, total=63, duracao=4.5):
         # a prova comentada pinta a alternativa correta de vermelho: volta para a cor do texto no print
         'neutralizar_cores': (0xff0000, 0xee0000, 0xed0000),
         'secoes': ACAFE_SECOES, 'pular_secoes': ('Espanhol', 'Redação'),
-        'fim': [r'^Dados da quest', r'^_{10,}'], 'corte': [r'^FORMULÁRIO DE FÍSICA', r'^CONSTANTES FÍSICAS'],
+        # separador da banca é uma linha só de traços; "____________ our brains." é lacuna do enunciado (Verão 2025 q18)
+        'fim': [r'^Dados da quest', r'^_{10,}\s*$'], 'corte': [r'^FORMULÁRIO DE FÍSICA', r'^CONSTANTES FÍSICAS'],
         'suporte': [r'^Texto \d+\s*$', r'(?i)^(leia|observe) (o|a|os|as) (texto|imagem|tirinha|charge|gráfico)'], 'suporte_ate_proximo': True,
         'gabarito': gab, 'area': lambda n: 'Conhecimentos gerais',
     }
@@ -497,7 +499,8 @@ def puccampinas(ano, duracao=5):
                 'Gabarito divulgado pela PUC-Campinas no dia da prova; reconferir após os recursos.',
         'cadernos': [{'arquivo': 'livrete', 'paginas': (3, 16), 'questoes': (1, 50)},
                      {'arquivo': 'livrete', 'paginas': (22, 29), 'questoes': (51, 70), 'deslocamento': 50}],
-        'colunas': lambda r: [(14, r.width - 14)], 'topo': 26, 'base': 20, 'rodape_num': True,
+        # rodape_ultimo: o "68" de ⁶⁸Ga no pé da página (específica q8) não é o número da página
+        'colunas': lambda r: [(14, r.width - 14)], 'topo': 26, 'base': 20, 'rodape_num': True, 'rodape_ultimo': True,
         'ancora': r'^(\d{1,2})\.$', 'ancora_dx': 30, 'sequencial': True,
         'corte': [r'^REDAÇÃO$', r'^PROVA (GERAL|ESPECÍFICA)$'], 'suporte': [r'(?i)(para|responder) [àa]s quest[õo]es'],
         'gabarito': gab, 'area': lambda n: 'Prova geral' if n <= 50 else 'Prova específica',
@@ -587,6 +590,8 @@ def pucsp(ano, duracao=5):
 
 for _a in (2026, 2025, 2024):
     PROVAS[f'pucsp-{_a}'] = pucsp(_a)
+# 2024, página 3: a questão 03 ocupa a largura toda no alto; abaixo, as 04 e 05 em duas colunas (antes o print da 03 saía cortado à direita)
+PROVAS['pucsp-2024']['larga_topo'] = {3: 355}
 
 
 # ------------------------------------------------------------------------------------------------ UFU

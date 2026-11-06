@@ -113,7 +113,7 @@ export function animaPasso(passoEl: HTMLElement, folha: HTMLElement, rt: Roteiro
       t += d;
     } else {
       // medidas da linha nova (estado final)
-      const toks = [...linhaEl.querySelectorAll<HTMLElement>(':scope > [data-i]')];
+      const toks = [...linhaEl.querySelectorAll<HTMLElement>('[data-i]')];
       const porI = new Map(toks.map((e) => [Number(e.dataset.i), e]));
       const planos = L.planos;
       let i: number;

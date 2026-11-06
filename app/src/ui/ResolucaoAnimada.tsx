@@ -111,7 +111,7 @@ export function ResolucaoAnimada({ r, materia }: { r: Resolucao; materia?: strin
         </div>
       ))}
       <div className={'ra-folha' + (atual < 0 ? ' espera' : '')} ref={folha}>
-        <ol className={'ra-passos ' + rt.origem}>
+        <ol className={'ra-passos de-' + rt.origem}>
           {rt.passos.map((p, k) => (
             <li key={k} className="ra-passo" data-passo={k} hidden={atual < 0 || k > visivel ? true : undefined}>
               {rt.origem === 'passos' && <span className="ra-n" aria-hidden>{k + 1}</span>}
@@ -149,12 +149,17 @@ function Linha({ L, l, riscos, ate }: { L: LinhaRot; l: number; riscos: Map<stri
     return k != null && k <= ate ? <span className="ra-risco" aria-hidden /> : null;
   };
   let pos = 0;
-  const out: ReactNode[] = [];
+  const fora: ReactNode[] = [];
+  let marcados: ReactNode[] | null = null;
   L.toks.forEach((t, i) => {
     const ini = pos; pos += t.v.length;
+    // os termos do marca-texto ficam juntos num traço só (com os espaços do meio)
+    const dentro = !!L.marca && ini >= L.marca[0] && pos <= L.marca[1];
+    if (dentro && !marcados) { marcados = []; fora.push(<span key={'m' + i} className="ra-marca">{marcados}</span>); }
+    if (!dentro) marcados = null;
+    const out = marcados || fora;
     if (t.k === 'esp') { out.push(t.v); return; }
-    const marca = L.marca && ini < L.marca[1] && pos > L.marca[0] ? ' ra-marca' : '';
-    const cls = 'ra-t' + (t.k === 'op' || t.k === 'rel' || t.k === 'seta' ? ' op' : '') + marca;
+    const cls = 'ra-t' + (t.k === 'op' || t.k === 'rel' || t.k === 'seta' ? ' op' : '');
     if (t.k === 'frac') {
       out.push(
         <span key={i} className={cls + ' frac'} data-i={i}>
@@ -167,7 +172,7 @@ function Linha({ L, l, riscos, ate }: { L: LinhaRot; l: number; riscos: Map<stri
       out.push(<span key={i} className={cls + (t.cola ? ' cola' : '')} data-i={i}>{t.v}{risco(i)}</span>);
     }
   });
-  return <p className="ra-linha conta" data-l={l}>{out}</p>;
+  return <p className="ra-linha conta" data-l={l}>{fora}</p>;
 }
 
 export type { Roteiro };
