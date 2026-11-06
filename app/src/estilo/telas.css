@@ -792,3 +792,43 @@ kbd { font: 600 12.5px var(--fonte); border: 1px solid var(--borda2); border-bot
 /* telas grandes: cartões da faixa de temas um pouco maiores (dono, 06/11/2026) */
 @media (min-width: 1700px) { .faixa-temas:not(.compacta) { --ft-base: 216px; } }
 @media (min-width: 2200px) { .faixa-temas:not(.compacta) { --ft-base: 232px; } }
+
+/* ---------- capa da matéria: Treino geral + Meu progresso lado a lado (dono, 06/11/2026) ---------- */
+.mat-duo { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 22px; align-items: stretch; }
+.mat-duo.so-prog { grid-template-columns: minmax(0, 1fr); }
+.mat-duo .capa-ilu { width: 170px; height: 170px; }
+@media (max-width: 1250px) { .mat-duo .capa-ilu { width: 150px; height: 150px; } }
+@media (max-width: 1100px) { .mat-duo { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 700px) { .mat-duo .capa-ilu, .mat-duo .capa-ilu.icone3d { width: 240px; height: 190px; } }
+
+.mp { display: flex; flex-direction: column; min-width: 0; padding: 22px 26px 22px; border-radius: var(--r-dest); background: var(--folha); border: 1px solid var(--linha); box-shadow: var(--sombra-folha); }
+.mp-tit { margin: 0 0 14px; padding-bottom: 14px; border-bottom: 1px solid var(--linha); font: 700 var(--fs-secao)/1.2 var(--fonte); letter-spacing: -0.005em; }
+.mp-total { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 12px; margin: 4px 0 14px; }
+.mp-total b { font-size: clamp(40px, 3.4vw, 56px); line-height: 1; font-weight: 700; letter-spacing: -0.03em; }
+.mp-total span { font-size: 17px; color: var(--lapis); }
+.mp-barra { display: flex; gap: 3px; height: 12px; border-radius: 99px; background: color-mix(in srgb, var(--tinta) 8%, transparent); overflow: hidden; }
+.mp-barra i { display: block; height: 100%; border-radius: 99px; transition: width .9s var(--curva); }
+.mp-leg { display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 12px 0 0; padding: 0; list-style: none; font-size: 15px; color: var(--lapis); }
+.mp-leg li { display: flex; align-items: center; gap: 7px; }
+.mp-leg li > span { width: 10px; height: 10px; border-radius: 50%; }
+.mp-leg b { color: var(--tinta); font-weight: 700; }
+.mp-baixo { display: flex; align-items: flex-end; justify-content: space-between; gap: 18px 24px; flex-wrap: wrap; margin-top: auto; padding-top: 20px; }
+.mp-nums { display: flex; gap: 28px; margin: 0; }
+.mp-nums div { display: flex; flex-direction: column; gap: 4px; }
+.mp-nums dt { font-size: 30px; font-weight: 700; line-height: 1; letter-spacing: -0.02em; color: var(--tinta); }
+.mp-nums dd { margin: 0; font-size: 15px; color: var(--lapis); }
+.mp-graf { margin: 0; display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+.mp-cols { display: flex; align-items: flex-end; gap: 5px; height: 74px; }
+.mp-col { display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 4px; width: 12px; height: 100%; }
+.mp-col i { display: block; width: 100%; max-height: calc(100% - 16px); border-radius: 4px 4px 2px 2px; background: color-mix(in srgb, var(--p) 55%, var(--folha)); transition: height .7s var(--curva); }
+.mp-col.hoje i { background: var(--p); }
+.mp-col small { font-size: 10px; line-height: 12px; color: var(--lapis); }
+.mp-graf figcaption { font-size: 12px; color: var(--lapis); }
+@media (max-width: 700px) { .mp { padding: 18px 18px 20px; } .mp-nums { gap: 20px; } .mp-nums dt { font-size: 26px; } .mp-graf { align-items: flex-start; } }
+@media (prefers-reduced-motion: reduce) { .mp-barra i, .mp-col i { transition: none; } }
+/* entre 1101 e 1500 px os dois cartões dividem pouco espaço: a ilustração sai para os contadores caberem inteiros */
+@media (min-width: 1101px) and (max-width: 1500px) { .mat-duo .capa-ilu { display: none; } }
+/* o gráfico ocupa o espaço que sobra ao lado dos números (até 420 px), com colunas de até 22 px */
+.mp-graf { flex: 1 1 200px; max-width: 420px; }
+.mp-cols { width: 100%; justify-content: flex-end; }
+.mp-col { flex: 1 1 0; width: auto; max-width: 22px; }

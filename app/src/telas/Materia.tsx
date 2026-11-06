@@ -8,6 +8,7 @@ import { Anel, Barra, Carregando, plural, useTitulo } from '../ui/comum';
 import { Icone } from '../ui/Icone';
 import { IconeMateria, IluMateria, temIlu } from '../ui/IconeMateria';
 import { IcTema } from '../ui/IconeTema';
+import { ProgressoMateria } from '../ui/ProgressoMateria';
 import type { MateriaId } from '../dados/tipos';
 import type { EstadoMateria } from '../estado/tipos';
 
@@ -199,6 +200,7 @@ export function Materia() {
 
       {!vazia && (
       <div className={'mat-topo' + (temTreino ? '' : ' sem-capa')}>
+        <div className={'mat-duo' + (temTreino ? '' : ' so-prog')}>
         {temTreino && (
         <Link to={`/m/${m}/treino`} className="capa-tg">
           <span className="capa-txt">
@@ -215,6 +217,8 @@ export function Materia() {
           {temIlu(m) && <IluMateria m={m} className="capa-ilu" />}
         </Link>
         )}
+        <ProgressoMateria mc={mc} s={s} />
+        </div>
         <nav className="mat-atalhos" aria-label={`Atalhos de ${info.nome}`}>
           {ultQ && (
             <Link to={`/m/${m}/q/${ultQ.id}?ctx=escada`} className="atalho">
