@@ -10,3 +10,4 @@ Observações para a integração:
 | Tema | Situação | Slides |
 |---|---|---|
 | B02 Bioquímica celular | aprovado (06/11/2026) | 50 |
+| B11 Evolução | aprovado (06/11/2026) | 50 |
