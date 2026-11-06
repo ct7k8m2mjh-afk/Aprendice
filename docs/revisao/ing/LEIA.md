@@ -1,5 +1,7 @@
 # Revisão de Inglês — situação por tema
 
+**Completa (06/11/2026): os 4 temas aprovados nas lentes, 271 slides.**
+
 Fonte: PV Língua Inglesa L1 (10 capítulos) e L2 (6 capítulos), lidos inteiros; fichamentos com página. Cada tema passa pelas lentes fato → didática → fato antes de entrar aqui. Mesmo formato da Física (`docs/revisao/FORMATO.md`). Explicações em português; frases de exemplo em inglês criadas para a revisão (nenhum texto de prova copiado). `passos` = raciocínio da questão (achar a pista, testar, riscar distratores); `formulas`/`conta` em `\text{}` para o KaTeX.
 
 | Tema | Situação | Slides |
