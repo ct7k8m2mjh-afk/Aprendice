@@ -11,3 +11,5 @@ Observações para a integração:
 |---|---|---|
 | B02 Bioquímica celular | aprovado (06/11/2026) | 50 |
 | B11 Evolução | aprovado (06/11/2026) | 50 |
+| B01 Citologia | aprovado (06/11/2026) | 60 |
+| B09 Ecologia | aprovado (06/11/2026) | 60 |
