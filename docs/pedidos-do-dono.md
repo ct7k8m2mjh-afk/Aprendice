@@ -45,3 +45,4 @@ Imagem enviada nunca é "por enviar": tem uso, e o uso fica registrado.
 - Resolução animada obrigatória: Biologia e Química animam o que acontece; Matemática escreve a conta à mão movendo os termos (x atravessa o igual, número passa dividindo, multiplicação cruzada, cancelamento riscado); fração sempre empilhada.
 - As 788 questões de sites didáticos saem; entram Questões Aprendice ou a questão de prova original (`docs/questoes-aprendice.md`).
 - 40 questões reais do ENEM de geometria básica (áreas M08.6, volumes M11.6) entraram em `app-atual/mat` com resoluções revisadas em lentes (`docs/geometria-basica-enem.md`): levar para o site.
+- 05/11/2026 (noite): guia tipográfico aprovado pelo dono em `docs/fontes/Guia-tipografico-APRENDICE.pdf`, com as fontes do site em `docs/fontes/fontes/` (Dancing Script no título da matéria, Familjen Grotesk na interface e nos temas, Literata na explicação da correção, Caveat nas contas, DM Sans só no login).
