@@ -501,7 +501,19 @@ def eventos_do_pdf(pdf, cfg, faixa=None):
                         continue
                     ns = [int(x) for x in re.findall(r'\d+', re.split(r'(?i)quest', t, maxsplit=1)[-1])]
                     ev.append({'p': pi, 'c': c, 'y': y0, 'tipo': 'suporte', 'faixa': [min(ns), max(ns)] if len(ns) >= 2 else ns, 'num': None})
+    if cfg.get('suporte_apos_alt'):
+        ev += suportes_apos_alternativa(pdf, cfg, ev, faixa)
     ev.sort(key=lambda e: (e['p'], e['c'], e['y']))
+    if cfg.get('suporte_nao_colado'):
+        # "07. Leia o texto..." na mesma linha (ou logo abaixo) do número: a instrução é da própria questão
+        ok = []
+        for e in ev:
+            ant = ok[-1] if ok else None
+            if e['tipo'] == 'suporte' and ant and ant['tipo'] == 'q' and (ant['p'], ant['c']) == (e['p'], e['c']) \
+                    and 0 <= e['y'] - ant['y'] < cfg['suporte_nao_colado']:
+                continue
+            ok.append(e)
+        ev = ok
     # camada de texto duplicada: o mesmo evento duas vezes no mesmo lugar
     unicos, vistos = [], set()
     for e in ev:
@@ -514,6 +526,60 @@ def eventos_do_pdf(pdf, cfg, faixa=None):
             dono = next(u for u in unicos if (u['p'], u['c'], round(u['y']), u['tipo'], u.get('n')) == k)
             dono.setdefault('outros', []).append(e['num'])
     return unicos
+
+
+def suportes_apos_alternativa(pdf, cfg, ev, faixa=None):
+    """Texto de apoio sem frase de indicação, impresso entre a última alternativa de uma questão e a âncora da próxima
+    (UTFPR, PUCRS...): depois da linha da última alternativa ("(E)"), a primeira linha que começa de novo na margem da
+    alternativa (sem o recuo das linhas de continuação) e não é âncora, seção nem corte abre um texto de apoio."""
+    rx_alt = cfg['suporte_apos_alt']
+    rx_letra = cfg.get('alternativa_rx', r'^\(?[A-Ea-e]\)')
+    marcados = {}
+    for e in ev:
+        marcados.setdefault((e['p'], e['c']), []).append((e['y'], e['tipo']))
+    novos, estado = [], None   # estado: x da linha da última alternativa e sua altura
+    for pi in range(len(pdf)):
+        if faixa and not (faixa[0] <= pi + 1 <= faixa[1]):
+            continue
+        pg = pdf[pi]
+        cols = colunas_da_pagina(pg, cfg)
+        baixo, topo = limite_baixo(pg, cfg), topo_de(pg, cfg)
+        ls = []
+        for L in linhas(pg):
+            x0, y0, x1, y1 = L['bbox']
+            if y1 > baixo or y0 < topo:
+                continue
+            c = coluna_do_ponto(pg, cfg, x0, y0, cols)
+            if c is not None:
+                ls.append((c, y0, x0, y1, L['t']))
+        ls.sort()
+        for c, y0, x0, y1, t in ls:
+            marca = next((tp for y, tp in marcados.get((pi, c), []) if abs(y - y0) < 2.5), None)
+            if marca:
+                # âncora, corte ou texto de apoio já marcados; depois do título de uma seção, o texto que vem antes da
+                # 1ª questão é de apoio
+                estado = ('secao', pi, c, y1) if marca == 'secao' and cfg.get('suporte_apos_secao') else None
+                continue
+            if estado and estado[0] == 'secao':
+                # começa logo abaixo do título (texto de apoio que é só imagem não tem linha de texto)
+                y_ = estado[3] + 1 if estado[1:3] == (pi, c) else y0 - 1
+                novos.append({'p': pi, 'c': c, 'y': y_, 'tipo': 'suporte', 'faixa': [], 'num': None})
+                estado = None
+                continue
+            if re.match(rx_alt, t):
+                estado = (pi, c, x0, y0)
+                continue
+            if estado is None:
+                continue
+            if (pi, c) == estado[:2] and y0 < estado[3] + 2:
+                continue   # resto da própria linha da alternativa
+            if re.match(rx_letra, t):
+                estado = None
+                continue
+            if x0 <= estado[2] + cfg.get('suporte_apos_alt_tol', 4):
+                novos.append({'p': pi, 'c': c, 'y': y0 - 1, 'tipo': 'suporte', 'faixa': [], 'num': None})
+                estado = None
+    return novos
 
 
 def segmentos(pdf, cfg, ev, i, faixa_pag=None):
@@ -913,6 +979,7 @@ def processa(pid, amostra=False, so_texto=False):
                 limpos.append(e)
             ev = limpos
         vistos = set()
+        segs_de = {}
         suporte = None
         gerais = []   # instruções gerais de uma faixa larga, que seguem valendo dentro dela
         secao = None
@@ -990,7 +1057,7 @@ def processa(pid, amostra=False, so_texto=False):
                         sup = []
                         for c in sorted(set(citados)):
                             sup += [sg for sg in textos[c] if sg not in sup]
-                    elif not citados and len(enun) < 700 and re.search(r'(?i)\b(o texto|do texto|no texto|ao texto|crônica|poema|canção|reportagem|artigo|trecho|fragmento|the text|picture|comic|cartoon|tirinha|charge)\b', enun):
+                    elif not citados and len(enun) < cfg.get('suporte_cita_max', 700) and re.search(r'(?i)\b(o texto|do texto|no texto|ao texto|crônica|poema|canção|reportagem|artigo|trecho|fragmento|the text|picture|comic|cartoon|tirinha|charge' + cfg.get('suporte_palavras', '') + r')\b', enun):
                         sup = suporte['segs']
                 elif len(f) < 2 and cfg.get('suporte_secao'):
                     sup = suporte['segs']   # "Texto 1" vale para todas as questões até o próximo texto, corte ou seção
@@ -1008,6 +1075,10 @@ def processa(pid, amostra=False, so_texto=False):
             for g_ in reversed(gerais):   # instrução geral da faixa, antes do texto próprio
                 if g_['faixa'][0] <= n <= g_['faixa'][1] and not all(sg in sup for sg in g_['segs']):
                     sup = [sg for sg in g_['segs'] if sg not in sup] + list(sup)
+            segs_de[n] = segs
+            if n in cfg.get('anexa', {}) and cfg['anexa'][n] in segs_de:
+                # "ainda baseado no texto da questão anterior": o texto está dentro da questão citada, que vai junto
+                sup = [sg for sg in segs_de[cfg['anexa'][n]] if sg not in sup] + list(sup)
             if so_texto and n in anteriores:
                 class _Img:  # medidas do print já existente
                     width, height = anteriores[n]['larg'], anteriores[n]['alt']

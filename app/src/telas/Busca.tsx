@@ -43,12 +43,16 @@ export function Busca({ aoFechar }: { aoFechar: () => void }) {
     const q = norm(t);
     if (!q) return indice.filter((x) => x.grupo === 'Matérias' || x.grupo === 'Temas').slice(0, 14);
     const ps = q.split(' ');
-    return indice
+    const porRelevancia = indice
       .map((x) => { const h = norm(x.titulo + ' ' + x.det); const ok = ps.every((p) => h.includes(p)); return ok ? { x, s: norm(x.titulo).startsWith(ps[0]) ? 0 : 1 } : null; })
       .filter(Boolean)
       .sort((a, b) => a!.s - b!.s)
       .slice(0, 40)
       .map((y) => y!.x);
+    // cada grupo aparece uma vez: os grupos na ordem do seu melhor resultado, e dentro do grupo a ordem por relevância
+    const grupos = new Map<string, Resultado[]>();
+    for (const x of porRelevancia) { const g = grupos.get(x.grupo); if (g) g.push(x); else grupos.set(x.grupo, [x]); }
+    return [...grupos.values()].flat();
   }, [t, indice]);
 
   useEffect(() => setSel(0), [t]);

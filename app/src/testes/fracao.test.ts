@@ -91,6 +91,31 @@ describe('conta ou texto', () => {
     expect(contaEhTexto('AgNO3(aq) + NaCl(s) → AgCl(s) + NaNO3(aq)', 'qui')).toBe(false);
     expect(contaEhTexto('Aa × Aa → 1/4 aa', 'bio')).toBe(false);
   });
+  it('frase explicativa com poucas expressões no meio é texto (Química e Biologia)', () => {
+    for (const [s, m] of [
+      ['86 prótons significa Z = 86. Número de massa 222 significa A = 222. E 86 elétrons, iguais aos 86 prótons.', 'qui'],
+      ['Cátion bivalente significa carga 2+, ou seja, 2 elétrons perdidos: 38 − 2 = 36 elétrons.', 'qui'],
+      ['Kw maior significa [H⁺] maior e pH menor', 'qui'],
+      ['Arrhenius: ácido libera H⁺ em água; base libera OH⁻ em água', 'qui'],
+      ['produtos abaixo dos reagentes, logo ΔH negativo, logo exotérmica, logo libera calor', 'qui'],
+      ['1 par de bases = 2 bases, então 100 pares = 200 bases', 'bio'],
+      ['16 pares = 32 cromossomos nas células somáticas, ou seja, 2n = 32', 'bio'],
+    ]) expect(contaEhTexto(s, m)).toBe(true);
+  });
+  it('conta, equação química e fórmula por extenso continuam à mão (Química e Biologia)', () => {
+    for (const [s, m] of [
+      ['massa molar do CO2 = 12 + 2 × 16 = 44 g/mol; 1,0 × 10⁷ mol × 44 g/mol = 4,4 × 10⁸ g', 'qui'],
+      ['energia de ativação = 30 kcal/mol − 20 kcal/mol = 10 kcal/mol', 'qui'],
+      ['CH4(g) + H2O(g) → CO(g) + 3 H2(g). Conferindo: 1 carbono de cada lado; 1 oxigênio de cada lado; hidrogênios: 4 + 2 = 6 à esquerda e 3 × 2 = 6 à direita', 'qui'],
+      ['carga total do cátion + carga total do ânion = 0', 'qui'],
+      ['166 = A do produto + 0, logo A do produto = 166', 'qui'],
+      ['P × M = d × R × T, logo M = d × R × T ÷ P', 'qui'],
+      ['número de códons da região codificante = bases dessa região ÷ 3', 'bio'],
+      ['Em 6 CO2 + 6 H2O → C6H12O6 + 6 O2: carbono 6 de um lado e 6 do outro; hidrogênio 12 e 12; oxigênio 12 + 6 = 18 à esquerda e 6 + 12 = 18 à direita.', 'bio'],
+    ]) expect(contaEhTexto(s, m)).toBe(false);
+    // em Matemática e Física a regra nova não vale: conta com nomes por extenso continua conta
+    expect(contaEhTexto('1 par de bases = 2 bases, então 100 pares = 200 bases', 'mat')).toBe(false);
+  });
   it('contas de Matemática ficam na letra à mão', () => {
     for (const s of ['43,18', '2, 3, 5, 7, 11, 13, ...', '(16, 1, 26, 15, 24, 25, 9)', '10 ; 10 ; 10 ; 6,5 ; 5', 'trajeto = AB + BC',
       'α + β = ângulo BCA | β + δ = ângulo DCE', "'ab' − 'ba' = (10a + b) − (10b + a) = 9a − 9b = 54", '6 lados → hexágono',

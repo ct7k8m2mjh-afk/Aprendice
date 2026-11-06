@@ -912,3 +912,57 @@ PROVAS['cederj-2022-1']['uma_coluna'] = (14, 15)   # textos de inglês em largur
 PROVAS['cederj-2021-2']['rodape_centro'] = False    # número de página no canto direito
 # 2021.2, questão 39: o caderno usa "►" como marcador do quadro de dados (não é marca de resposta); fica fora do texto
 PROVAS['cederj-2021-2']['troca_texto'] = [('►', '')]
+
+
+# ---------------------------------------------------------------------------------------------- UTFPR
+UTFPR_SECOES = {
+    'Literatura': 'Literatura', 'Língua Portuguesa': 'Língua Portuguesa', 'Inglês': 'Inglês', 'Espanhol': 'Espanhol',
+    'HISTÓRIA': 'História', 'História': 'História', 'Geografia': 'Geografia', 'GEOGRAFIA': 'Geografia',
+    'Sociologia e Filosofia': 'Filosofia e Sociologia', 'Filosofia e Sociologia': 'Filosofia e Sociologia',
+    'FILOSOFIA E SOCIOLOGIA': 'Filosofia e Sociologia', 'Biologia': 'Biologia', 'BIOLOGIA': 'Biologia', 'Química': 'Química',
+    'QUÍMICA': 'Química', 'QUIMICA': 'Química', 'Matemática': 'Matemática', 'MATEMÁTICA': 'Matemática', 'Física': 'Física', 'FÍSICA': 'Física',
+    'INGLÊS': 'Inglês', 'ESPANHOL': 'Espanhol', 'LITERATURA': 'Literatura', 'LÍNGUA PORTUGUESA': 'Língua Portuguesa',
+}
+
+
+def utfpr(ano, duracao=5):
+    def gab(pasta):
+        """Gabarito definitivo em tabela; nas questões de língua estrangeira há duas letras (Inglês, Espanhol): vale a 1ª.
+        Às vezes o número fica numa linha e as duas letras na de baixo."""
+        linhas = texto_pdf(pasta / 'gabarito.pdf').splitlines()
+        g = {}
+        for k, l in enumerate(linhas):
+            prox = linhas[k + 1] if k + 1 < len(linhas) else ''
+            ml = re.match(r'^\s*([A-E])\s+([A-E])\s*$', prox)
+            m0 = re.match(r'^\s*(\d{1,2})(?=\s{8,}\d|\s*$)', l)
+            if ml and m0:
+                g[int(m0.group(1))] = ml.group(1)
+            for m in re.finditer(r'(?<![\d,.])(\d{1,2})\s+([A-E]\b|ANULAD[AO])(?:\s+([A-E])\b)?', l):
+                g.setdefault(int(m.group(1)), m.group(2) if len(m.group(2)) == 1 else 'X')
+        return g
+
+    novo = ano >= 2026
+    cfg = {
+        'catalogo': 'utfpr', 'escola': 'UTFPR', 'ano': str(ano), 'fase': 'Verão', 'titulo': f'UTFPR {ano}', 'banca': 'UTFPR',
+        'duracao_horas': duracao,
+        'nota': f'Universidade Tecnológica Federal do Paraná, Vestibular de Verão {ano}: prova objetiva (A–E). Língua '
+                'estrangeira: inglês. Gabarito definitivo publicado pela UTFPR; anulada fica fora.',
+        'cadernos': [{'arquivo': 'caderno', 'paginas': (2, 999)}],
+        'colunas': lambda r: duas_colunas(r, 18), 'topo': 44, 'base': 10,
+        'ancora': r'^(\d{2})(\s|$)' if novo else r'^(\d{2})\.(\s|$)', 'ancora_dx': 25, 'sequencial': True, 'ancora_negrito': novo,
+        'secoes': UTFPR_SECOES, 'pular_secoes': ('Espanhol',), 'pular_antes_sequencia': True,
+        'corte': [r'^(Redação|REDAÇÃO)$', r'^Rascunho$', r'^LÍNGUA ESTRANGEIRA$'],
+        'suporte': [], 'suporte_apos_secao': True, 'suporte_cita_max': 2500,
+        'suporte_nao_colado': 8, 'suporte_apos_alt': r'^e\)' if novo else r'^\(E\)', 'suporte_ate_proximo': True, 'suporte_primeira': True,
+        'suporte_palavras': '|versos?|newsletter|article|passage|tira|quadrinhos?',
+        'gabarito': gab, 'area': lambda n: 'Conhecimentos gerais',
+    }
+    cfg['total_de'] = lambda pasta: max(gab(pasta))
+    return cfg
+
+
+for _a in (2024, 2025, 2026):
+    PROVAS[f'utfpr-{_a}'] = utfpr(_a)
+# "Ainda baseado no texto da questão anterior" / "According to the poem" (poema dentro da questão anterior)
+PROVAS['utfpr-2024']['anexa'] = {12: 11}
+PROVAS['utfpr-2025']['anexa'] = {18: 17}

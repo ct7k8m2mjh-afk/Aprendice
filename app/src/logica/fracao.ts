@@ -130,6 +130,7 @@ export function partesFracao(texto: string): ParteFracao[] {
  * conta e fórmula ("cursiva nunca em texto corrido"); texto vai na família da interface.
  * - Português, Inglês, História, Geografia e Filosofia e Sociologia: sempre texto;
  * - frase (6 a 10 palavras seguidas sem número nem sinal no meio, conforme a forma) é texto, mesmo com uma conta dentro;
+ * - fora de Matemática e Física, frase explicativa com poucas expressões no meio é texto (`fraseComPoucaConta`);
  * - só números (lista, resultado: "43,18", "2, 3, 5, 7, 11, ...") é conta;
  * - é conta quando há sinal de matemática ou química junto de número, variável ou fórmula: operador junto de
  *   número, letra de variável com "=", raiz, expoente, índice; seta e "×" só contam entre fórmulas ("Aa × Aa",
@@ -156,6 +157,39 @@ function maiorFrase(t: string): number {
     else seq = 0;
   }
   return maior;
+}
+// unidades não pesam para nenhum lado ("1 mol de cobre", "23 g")
+const UNIDADES = new Set(['mol', 'g', 'kg', 'mg', 'µg', 'L', 'mL', 'kJ', 'J', 'kcal', 'cal', 'pm', 'nm', 'cm', 'mm', 'm', 'km', 's', 'min', 'h',
+  'atm', 'mmHg', 'Pa', 'kPa', 'K', 'C', 'M', 'u', 'Da', 'ppm', 'mol/L', 'g/mol', 'g/L', 'kJ/mol', 'kcal/mol', 'g/mL', 'g/cm³', '°C', '%']);
+// palavra de ligação ou verbo de explicação: sem ela não há frase, só rótulos ("massa molar do CO2 = ...")
+const LIGACAO = /^(significa|significam|ou|seja|logo|então|portanto|porque|pois|como|que|quando|se|mas|cada|é|são|tem|têm|fica|ficam|vira|viram|sobra|sobram|sai|saem|entra|entram|perde|perdeu|ganha|ganhou|há|está|estão|corresponde|indica|mostra|dá|dão|vai|vão|leva|traz|forma|formam|iguais|igual|mesmo|mesma|assim|isto|conforme|embora|libera|liberam|doa|recebe|pertence|existe|cumpre)$/i;
+/**
+ * Frase explicativa com poucas expressões no meio ("86 prótons significa Z = 86. Número de massa 222 significa A = 222…"):
+ * conta as palavras de texto e os itens de conta (número, sinal, fórmula, variável, genótipo); unidades são neutras.
+ * É frase quando há 7 palavras ou mais, metade ou mais dos itens são palavras, nenhuma expressão seguida passa de 6
+ * itens (equação química ou conta comprida continua conta) e há palavra de ligação ou verbo; sem "=" nem seta, a
+ * frase dispensa a palavra de ligação ("Arrhenius: ácido libera H⁺ em água"). A igualdade entre nomes sem ligação é
+ * fórmula por extenso e fica à mão ("carga total do cátion + carga total do ânion = 0").
+ */
+function fraseComPoucaConta(t: string): boolean {
+  let pal = 0, conta = 0, seq = 0, maiorSeq = 0, liga = false;
+  const tks = t.split(/\s+/);
+  for (let i = 0; i < tks.length; i++) {
+    const w = tks[i].replace(/^[(\[“"'‘—–]+|[)\]”"'’.,;:!?]+$/g, '');
+    if (!w || /^[—–-]$/.test(w)) continue;
+    if (UNIDADES.has(w)) continue;
+    // "E", "A", "O" no começo da frase são palavra ("E 86 elétrons"), a não ser antes de um sinal ("A = 222")
+    const vogal = /^[EAOÉÀ]$/.test(w) && (i === 0 || /[.!?:;]$/.test(tks[i - 1])) && !/^[=+−×÷·→≈<>]/.test(tks[i + 1] || '');
+    const genotipo = !vogal && /^([A-Z])\1?$/.test(w) || /^([a-z])\1$/.test(w) || (w.length === 2 && w[0] !== w[1] && w[0].toLowerCase() === w[1]) || /^I[AB][iAB]?[AB]?$/.test(w);
+    const variavel = w.length === 1 && !/^[eoaéàEOAÉÀ]$/.test(w);
+    const elemento = /^[A-Z][a-z]?$/.test(w) && Z_DO_SIMBOLO.has(w) && !/^(No|Na|Se|As|Em|O)$/.test(w);
+    const formula = /^(?:[A-Z][a-z]?){2,}$/.test(w) && !/^[A-Z][a-zà-ÿ]+$/.test(w);
+    if (PALAVRA.test(w) && !genotipo && !variavel && !elemento && !formula) {
+      pal++; seq = 0;
+      if (LIGACAO.test(w)) liga = true;
+    } else { conta++; seq++; maiorSeq = Math.max(maiorSeq, seq); }
+  }
+  return pal >= 7 && pal >= conta && maiorSeq <= 6 && (liga || !/[=→⇒]/.test(t));
 }
 /** Matéria pelo código do tema ou do conteúdo ("M10.2" → mat, "P01" → por; L e S são Filosofia e Sociologia). */
 const PREFIXO_MATERIA: Record<string, string> = { M: 'mat', B: 'bio', Q: 'qui', P: 'por', F: 'fis', G: 'geo', H: 'his', I: 'ing', L: 'fs', S: 'fs' };
@@ -186,6 +220,8 @@ export function contaEhTexto(s: string, materia?: string): boolean {
   const formaDeFrase = /^[A-ZÀ-Ý][a-zà-ÿ]+\s/.test(t) && /[.!?]$/.test(t);
   const minimo = formaDeFrase ? 6 : /^[\d(−-]/.test(t) ? 10 : 8;
   if (frase && maiorFrase(t.replace(/\([^()]*\)/g, ' ')) >= minimo) return true;
+  // fora de Matemática e Física, frase explicativa com poucas expressões no meio também é texto
+  if (!calculo && fraseComPoucaConta(t.replace(/\([^()]*\)/g, ' '))) return true;
   const forte = /[√²³⁴⁵⁶⁷⁸⁹¹⁰⁻⁺₀₁₂₃₄₅₆₇₈₉∈≈≤≥≠ΔπΣ∑∞⇌]|\d\s*[=+−·*/^%<>÷]|[=+−·*/^<>÷]\s*\d|(?<![A-Za-zÀ-ÿ\d])-\s*\d|\d\s*-(?![A-Za-zÀ-ÿ\d])|(?<![A-Za-zÀ-ÿ])(?![aeo]\s)[a-zA-Zα-ω]\s*=(?!\s*[A-Za-zÀ-ÿ]{3})|=\s*(?![aeoé](?![A-Za-zÀ-ÿ]))[a-zA-Z](?![A-Za-zÀ-ÿ])|\b[A-Z]{2,4}\s*[+−]\s*[A-Z]{2,4}\b|[α-ω]\s*[+−]\s*[α-ω]/;
   if (forte.test(t)) return false;
   if (calculo && /[→⇒×÷]|(?<![A-Za-zÀ-ÿ])[a-zA-Zα-ωθ]\s*=|=\s*[a-zA-Zα-ωθ](?![A-Za-zÀ-ÿ])/.test(t)) return false;
