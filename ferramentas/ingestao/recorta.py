@@ -414,8 +414,9 @@ def eventos_do_pdf(pdf, cfg, faixa=None):
                 if y0 >= topo - 18 and any(re.search(rx, t) for rx in cfg.get('corte', [])):
                     ev.append({'p': pi, 'c': c, 'y': max(y0, topo), 'tipo': 'corte'})
                 continue
-            if cfg.get('secoes') and t.strip() in cfg['secoes']:
-                ev.append({'p': pi, 'c': c, 'y': y0, 'tipo': 'secao', 'nome': cfg['secoes'][t.strip()]})
+            t_sec = re.sub(r'^[\W_]+', '', t.strip()) if cfg.get('secao_sem_marcador') else t.strip()   # "\uf0b7 LÍNGUA INGLESA"
+            if cfg.get('secoes') and t_sec in cfg['secoes']:
+                ev.append({'p': pi, 'c': c, 'y': y0, 'tipo': 'secao', 'nome': cfg['secoes'][t_sec]})
                 continue
             sec_rx = next((nome for rx, nome in cfg.get('secoes_rx', []) if re.search(rx, t)), None)
             if sec_rx:
@@ -464,6 +465,8 @@ def eventos_do_pdf(pdf, cfg, faixa=None):
                                 nums = [min(ns), max(ns)] if len(ns) >= 2 else ns
                             else:
                                 nums = [int(x) for x in re.findall(r'\d+', resto)][:2]
+                            if cfg.get('texto_n_sem_faixa') and re.match(r'(?i)^texto?\s+[0-9IVX]+\s*$', t):
+                                nums = []   # "TEXT 1" sozinho: os números da linha seguinte (link, data) não são questões
                             mt = re.match(r'(?i)^texto\s+(\d+)', t)
                             if not mt and not mq and cfg.get('texto_ingles'):   # "Text 1" sozinho (sem lista de questões)
                                 mt = re.match(r'(?i)^text\s+(\d+)\s*$', t)
@@ -875,6 +878,15 @@ def processa(pid, amostra=False, so_texto=False):
                     ult_q, dentro = None, False
                 ok.append(e)
             ev = ok
+        if cfg.get('pular_antes_sequencia'):
+            # seção pulada (língua espanhola) sai antes do filtro de sequência: a numeração recomeça no inglês
+            ok, pula = [], False
+            for e in ev:
+                if e['tipo'] == 'secao':
+                    pula = e['nome'] in cfg.get('pular_secoes', ())
+                if not pula or e['tipo'] == 'secao':
+                    ok.append(e)
+            ev = ok
         if cfg.get('sequencial'):
             ok, ult = [], (cad['questoes'][0] - cad.get('deslocamento', 0) - 1) if cad.get('questoes') else None
             for e in ev:
@@ -980,6 +992,8 @@ def processa(pid, amostra=False, so_texto=False):
                             sup += [sg for sg in textos[c] if sg not in sup]
                     elif not citados and len(enun) < 700 and re.search(r'(?i)\b(o texto|do texto|no texto|ao texto|crônica|poema|canção|reportagem|artigo|trecho|fragmento|the text|picture|comic|cartoon|tirinha|charge)\b', enun):
                         sup = suporte['segs']
+                elif len(f) < 2 and cfg.get('suporte_secao'):
+                    sup = suporte['segs']   # "Texto 1" vale para todas as questões até o próximo texto, corte ou seção
                 elif len(f) < 2 and not suporte.get('usado'):
                     sup = suporte['segs']  # sem faixa declarada: vale só para a questão seguinte
                     suporte['usado'] = True

@@ -859,3 +859,56 @@ PROVAS['fatec-2025-1'].update({
     'nota': 'Vestibular Fatec 1º semestre de 2025: prova objetiva (múltipla escolha A–E), Prova Tipo A. Gabarito oficial '
             'definitivo (Tipo A); anulada fica fora. Caderno e gabarito publicados pelo Centro Paula Souza.',
 })
+
+
+# --------------------------------------------------------------------------------------------- Cederj
+CEDERJ_SECOES = {
+    'LÍNGUA PORTUGUESA E LITERATURA BRASILEIRA': 'Língua Portuguesa e Literatura', 'Língua Portuguesa e Literatura': 'Língua Portuguesa e Literatura',
+    'BIOLOGIA': 'Biologia', 'FÍSICA': 'Física', 'GEOGRAFIA': 'Geografia', 'HISTÓRIA': 'História', 'MATEMÁTICA': 'Matemática',
+    'QUÍMICA': 'Química', 'LÍNGUA ESPANHOLA': 'Espanhol', 'LÍNGUA INGLESA': 'Inglês', 'ESPANHOL': 'Espanhol', 'INGLÊS': 'Inglês',
+    'Biologia': 'Biologia', 'Física': 'Física', 'Geografia': 'Geografia', 'História': 'História', 'Matemática': 'Matemática',
+    'Química': 'Química', 'Língua Espanhola': 'Espanhol', 'Língua Inglesa': 'Inglês', 'A FÍSICA': 'Física',
+}
+
+
+def cederj(ano, sem, duracao=4, ocr=False):
+    def gab(pasta):
+        """Gabarito oficial em blocos por disciplina ("01 – C" ou "1  C"). As questões de língua estrangeira repetem a
+        numeração (espanhol, depois inglês): vale a última ocorrência, a do inglês."""
+        txt = texto_pdf(pasta / 'gabarito.pdf')
+        g = {}
+        for n, v in re.findall(r'(?<![\d,.])(\d{1,2})\s*(?:[–-]\s*|\s{2,})([A-D]\b|ANULAD[AO])', txt):
+            g[int(n)] = v if len(v) == 1 else 'X'
+        return g
+
+    cfg = {
+        'catalogo': 'cederj', 'escola': 'Cederj', 'ano': str(ano), 'fase': f'{ano}.{sem}', 'titulo': f'Cederj {ano}.{sem}',
+        'banca': 'Fundação Cecierj', 'duracao_horas': duracao, 'alternativas': 4,
+        'nota': f'Vestibular Cederj {ano}.{sem} (consórcio de universidades públicas a distância do Rio de Janeiro): prova de '
+                'múltipla escolha A–D. Língua estrangeira: inglês. Gabarito oficial publicado pela Fundação Cecierj; anulada fica fora.'
+                + (' Caderno com camada de texto ilegível ou só imagem: questões localizadas por OCR (o print é a página original).' if ocr else ''),
+        'cadernos': [{'arquivo': 'caderno', 'paginas': (2, 999), 'ocr': ocr, 'questoes': (1, 99)}],
+        'colunas': lambda r: duas_colunas(r, 25), 'topo': 40, 'cabecalho': r'^VESTIBULAR 20\d\d', 'base': 30, 'rodape_num': True, 'rodape_centro': True,
+        'ancora': r'^(\d{2})(?:\.\s*|\s+|$)(?!\d)', 'ancora_dx': 40, 'sequencial': True, 'ancora_negrito': not ocr,
+        'secoes': CEDERJ_SECOES, 'pular_secoes': ('Espanhol',), 'pular_antes_sequencia': True, 'secao_sem_marcador': True,
+        'corte': [r'^QUESTÕES DE MÚLTIPLA ESCOLHA', r'(?i)^PROPOSTA DE REDA', r'^[\W_]*REDA[ÇC][ÃA]O', r'(?i)^PROVA DE REDA', r'(?i)^RASCUNHO', r'(?i)^TABELA PERI', r'(?i)espa[çc]o reservado para rascunho',
+                  r'^LÍNGUA ESTRANGEIRA'],
+        'suporte': [r'(?i)^texto? [1-9IVX]+\s*$', r'(?i)(responda|responder|para) [àa]s? quest', r'(?i)^(re)?leia .*para responder'],
+        'suporte_secao': True, 'texto_n_sem_faixa': True, 'margem': 25,
+        # o título "Língua Portuguesa e Literatura" fica antes do quadro de questões (não é lido como seção): 1 a 6 são dela
+        'gabarito': gab, 'area': lambda n: 'Língua Portuguesa e Literatura' if n <= 6 else 'Conhecimentos gerais',
+    }
+    cfg['total_de'] = lambda pasta: max(gab(pasta))
+    return cfg
+
+
+for _a, _s in ((2020, 1), (2021, 2), (2022, 1), (2022, 2), (2023, 1), (2023, 2), (2024, 1), (2024, 2), (2025, 1), (2025, 2), (2026, 1), (2026, 2)):
+    PROVAS[f'cederj-{_a}-{_s}'] = cederj(_a, _s)
+# 2020.2 (só imagem) e 2021.1 (camada de texto corrompida): configuradas com OCR, mas FORA do site por enquanto —
+# o OCR acha os números, porém o layout (questões de largura total no meio de páginas de duas colunas) não foi conferido.
+for _a, _s in ((2020, 2), (2021, 1)):
+    PROVAS[f'cederj-{_a}-{_s}'] = cederj(_a, _s, ocr=True)
+PROVAS['cederj-2022-1']['uma_coluna'] = (14, 15)   # textos de inglês em largura total
+PROVAS['cederj-2021-2']['rodape_centro'] = False    # número de página no canto direito
+# 2021.2, questão 39: o caderno usa "►" como marcador do quadro de dados (não é marca de resposta); fica fora do texto
+PROVAS['cederj-2021-2']['troca_texto'] = [('►', '')]
