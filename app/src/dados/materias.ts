@@ -1,14 +1,22 @@
-import type { MateriaId } from './tipos';
+import { materiaAtual, type MateriaId } from './tipos';
 
 /**
- * As dez matérias do vestibular. Bio, Quí, Mat e Por têm conteúdo revisado do protótipo; Física e Geografia
- * estão ativas com os temas definidos e recebem as questões com as provas completas; as demais ainda em preparação.
+ * As nove matérias do vestibular. Bio, Quí, Mat e Por têm conteúdo revisado do protótipo; as outras estão ativas
+ * com os temas definidos e recebem as questões com as provas completas. Filosofia e Sociologia são UMA matéria
+ * ("Filosofia e Sociologia", id 'fs', comando 18 do dono); os ids antigos 'fil' e 'soc' só existem na migração.
  *
- * Sistema de cor (o mesmo do protótipo): uma cor por matéria, em dois tons por tema —
- *   c  = preenchimento (botão, barra)   t = texto sobre a página (contraste AA)   ink = texto sobre a cor.
- * Cada matéria tem uma cor bem distinta das outras (como um caderno de cada cor): verde, verde-água, amarelo, magenta,
- * azul, laranja, marrom, roxo, grafite e vermelho.
+ * Cores: paleta aprovada pelo dono (docs/cores/paleta.json e Paleta-materias-APRENDICE.pdf, versão 3, 05/11/2026).
+ * Os seis tons de cada matéria vêm EXATAMENTE do arquivo (o teste paleta.test.ts confere):
+ *   principal · texto no tema claro · texto no tema escuro · fundo suave claro · fundo suave escuro · texto sobre a principal.
+ * Como cada tom é usado (igual às telas de exemplo do PDF):
+ *   c   = preenchimento do botão: no claro, o tom do botão da tela clara do PDF (a principal, ou o texto claro quando
+ *         a principal é clara demais para letra branca, caso da Biologia); no escuro, o tom de texto escuro.
+ *   ink = letra sobre c.          t = texto na cor da matéria (título, links, ícones de interface).
+ *   p   = principal (barra de progresso, anel, marcas).   pInk = letra sobre a principal.
+ *   s   = fundo suave (etiqueta do tema ativo, fundos de destaque).
  */
+export interface Tons { c: string; ink: string; t: string; p: string; pInk: string; s: string }
+
 export interface MateriaInfo {
   id: MateriaId;
   nome: string;
@@ -16,42 +24,55 @@ export interface MateriaInfo {
   ativa: boolean;
   /** As seis matérias do menu e da tela inicial; as outras ficam em "Outras matérias". */
   principal: boolean;
-  claro: { c: string; t: string; ink: string };
-  escuro: { c: string; t: string; ink: string };
+  /** Os tons do arquivo da paleta, sem alteração. */
+  paleta: { principal: string; textoClaro: string; textoEscuro: string; fundoClaro: string; fundoEscuro: string; sobrePrincipal: string };
+  /** Botão na tela clara do PDF da paleta. */
+  botaoClaro: { c: string; ink: string };
+  claro: Tons;
+  escuro: Tons;
   descricao: string;
 }
 
+/** Letra escura do site (a mesma "tinta" do tema claro), usada sobre os botões do tema escuro, como no PDF da paleta. */
+const LETRA_ESCURA = '#17181C';
+
+function mat(id: MateriaId, nome: string, curto: string, principal: boolean, paleta: MateriaInfo['paleta'], botaoClaro: MateriaInfo['botaoClaro'], descricao: string): MateriaInfo {
+  return {
+    id, nome, curto, ativa: true, principal, paleta, botaoClaro, descricao,
+    claro: { c: botaoClaro.c, ink: botaoClaro.ink, t: paleta.textoClaro, p: paleta.principal, pInk: paleta.sobrePrincipal, s: paleta.fundoClaro },
+    escuro: { c: paleta.textoEscuro, ink: LETRA_ESCURA, t: paleta.textoEscuro, p: paleta.principal, pInk: paleta.sobrePrincipal, s: paleta.fundoEscuro },
+  };
+}
+const BRANCO = '#FFFFFF';
+
 export const MATERIAS: MateriaInfo[] = [
-  { id: 'bio', nome: 'Biologia', curto: 'Bio', ativa: true, principal: true,
-    claro: { c: '#177E36', t: '#12692C', ink: '#FFFFFF' }, escuro: { c: '#56D364', t: '#56D364', ink: '#0C0D10' },
-    descricao: 'Célula, genética, fisiologia, ecologia e evolução.' },
-  { id: 'qui', nome: 'Química', curto: 'Quí', ativa: true, principal: true,
-    claro: { c: '#C2185B', t: '#A3124B', ink: '#FFFFFF' }, escuro: { c: '#F45D9C', t: '#F45D9C', ink: '#0C0D10' },
-    descricao: 'Estequiometria, soluções, orgânica, equilíbrio e eletroquímica.' },
-  { id: 'mat', nome: 'Matemática', curto: 'Mat', ativa: true, principal: true,
-    claro: { c: '#087884', t: '#066570', ink: '#FFFFFF' }, escuro: { c: '#2CCFD0', t: '#2CCFD0', ink: '#0C0D10' },
-    descricao: 'Funções, geometria, probabilidade, estatística e porcentagem.' },
-  { id: 'por', nome: 'Português', curto: 'Por', ativa: true, principal: true,
-    claro: { c: '#F2C12E', t: '#8A6200', ink: '#17181C' }, escuro: { c: '#F7C548', t: '#F7C548', ink: '#0C0D10' },
-    descricao: 'Interpretação, gramática, literatura e linguagens.' },
-  { id: 'fis', nome: 'Física', curto: 'Fís', ativa: true, principal: true,
-    claro: { c: '#2F5BD3', t: '#2A4FB8', ink: '#FFFFFF' }, escuro: { c: '#7EA2FF', t: '#7EA2FF', ink: '#0C0D10' },
-    descricao: 'Cinemática, dinâmica, energia, termologia, óptica, ondas e eletricidade.' },
-  { id: 'geo', nome: 'Geografia', curto: 'Geo', ativa: true, principal: true,
-    claro: { c: '#E07010', t: '#A84F00', ink: '#FFFFFF' }, escuro: { c: '#FF9A3C', t: '#FF9A3C', ink: '#0C0D10' },
-    descricao: 'Cartografia, natureza, população, espaço urbano e agrário, energia e geopolítica.' },
-  { id: 'his', nome: 'História', curto: 'His', ativa: true, principal: false,
-    claro: { c: '#8A5A2B', t: '#7A4E24', ink: '#FFFFFF' }, escuro: { c: '#D6A574', t: '#D6A574', ink: '#0C0D10' },
-    descricao: 'Brasil, Geral, América e o mundo contemporâneo.' },
-  { id: 'fil', nome: 'Filosofia', curto: 'Fil', ativa: true, principal: false,
-    claro: { c: '#6A3DB8', t: '#5E35A6', ink: '#FFFFFF' }, escuro: { c: '#B79BFF', t: '#B79BFF', ink: '#0C0D10' },
-    descricao: 'Dos pré-socráticos ao existencialismo: ética, lógica, política e teoria do conhecimento.' },
-  { id: 'soc', nome: 'Sociologia', curto: 'Soc', ativa: true, principal: false,
-    claro: { c: '#4A5568', t: '#3F4859', ink: '#FFFFFF' }, escuro: { c: '#AAB4C5', t: '#AAB4C5', ink: '#0C0D10' },
-    descricao: 'Cultura, trabalho, desigualdade, poder, movimentos sociais e indústria cultural.' },
-  { id: 'ing', nome: 'Inglês', curto: 'Ing', ativa: true, principal: false,
-    claro: { c: '#D0312D', t: '#B0261F', ink: '#FFFFFF' }, escuro: { c: '#FF7A70', t: '#FF7A70', ink: '#0C0D10' },
-    descricao: 'Leitura e interpretação de textos em inglês.' },
+  mat('bio', 'Biologia', 'Bio', true,
+    { principal: '#3FA535', textoClaro: '#138404', textoEscuro: '#51A948', fundoClaro: '#E3FCE0', fundoEscuro: '#173613', sobrePrincipal: '#17181C' },
+    { c: '#138404', ink: BRANCO }, 'Célula, genética, fisiologia, ecologia e evolução.'),
+  mat('qui', 'Química', 'Quí', true,
+    { principal: '#D31A8D', textoClaro: '#D31A8D', textoEscuro: '#F65BB0', fundoClaro: '#FFEEF5', fundoEscuro: '#471D33', sobrePrincipal: '#FFFFFF' },
+    { c: '#D31A8D', ink: BRANCO }, 'Estequiometria, soluções, orgânica, equilíbrio e eletroquímica.'),
+  mat('mat', 'Matemática', 'Mat', true,
+    { principal: '#1F3FA6', textoClaro: '#1F3FA6', textoEscuro: '#6B93F6', fundoClaro: '#EEF4FF', fundoEscuro: '#1D2C51', sobrePrincipal: '#FFFFFF' },
+    { c: '#1F3FA6', ink: BRANCO }, 'Funções, geometria, probabilidade, estatística e porcentagem.'),
+  mat('por', 'Português', 'Por', true,
+    { principal: '#8A3FD1', textoClaro: '#8A3FD1', textoEscuro: '#B679FC', fundoClaro: '#F6F0FF', fundoEscuro: '#35244A', sobrePrincipal: '#FFFFFF' },
+    { c: '#8A3FD1', ink: BRANCO }, 'Interpretação, gramática, literatura e linguagens.'),
+  mat('fis', 'Física', 'Fís', true,
+    { principal: '#F27700', textoClaro: '#B2580D', textoEscuro: '#F27700', fundoClaro: '#FFF0E8', fundoEscuro: '#482206', sobrePrincipal: '#17181C' },
+    { c: '#F27700', ink: '#17181C' }, 'Cinemática, dinâmica, energia, termologia, óptica, ondas e eletricidade.'),
+  mat('geo', 'Geografia', 'Geo', true,
+    { principal: '#0F6E7A', textoClaro: '#0F6E7A', textoEscuro: '#59A0AB', fundoClaro: '#DCFAFF', fundoEscuro: '#00353B', sobrePrincipal: '#FFFFFF' },
+    { c: '#0F6E7A', ink: BRANCO }, 'Cartografia, natureza, população, espaço urbano e agrário, energia e geopolítica.'),
+  mat('his', 'História', 'His', false,
+    { principal: '#75451D', textoClaro: '#75451D', textoEscuro: '#B77B4C', fundoClaro: '#FFF0E6', fundoEscuro: '#472302', sobrePrincipal: '#FFFFFF' },
+    { c: '#75451D', ink: BRANCO }, 'Brasil, Geral, América e o mundo contemporâneo.'),
+  mat('fs', 'Filosofia e Sociologia', 'Fil e Soc', false,
+    { principal: '#E8B616', textoClaro: '#8C6C02', textoEscuro: '#E8B616', fundoClaro: '#FFF3D5', fundoEscuro: '#3B2B00', sobrePrincipal: '#17181C' },
+    { c: '#E8B616', ink: '#17181C' }, 'Filosofia, dos pré-socráticos ao existencialismo, e Sociologia: cultura, trabalho, desigualdade, poder e indústria cultural.'),
+  mat('ing', 'Inglês', 'Ing', false,
+    { principal: '#AC002A', textoClaro: '#AC002A', textoEscuro: '#FE3E3A', fundoClaro: '#FFEFEF', fundoEscuro: '#4B1D1F', sobrePrincipal: '#FFFFFF' },
+    { c: '#AC002A', ink: BRANCO }, 'Leitura e interpretação de textos em inglês.'),
 ];
 
 export const MATERIAS_ATIVAS = MATERIAS.filter((m) => m.ativa);
@@ -59,7 +80,8 @@ export const MATERIAS_PRINCIPAIS = MATERIAS.filter((m) => m.principal);
 export const OUTRAS_MATERIAS = MATERIAS.filter((m) => m.ativa && !m.principal);
 
 export function materia(id: string): MateriaInfo | undefined {
-  return MATERIAS.find((m) => m.id === id);
+  const atual = materiaAtual(id);
+  return MATERIAS.find((m) => m.id === atual);
 }
 
 export function nomeMateria(id: string): string {

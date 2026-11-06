@@ -18,8 +18,8 @@ import iluGeo from '../assets/ilu/geo.webp';
  * e em resolução menor; por isso aparecem com a classe "ilu-propria" (sem sombra extra, tamanho contido).
  * Geografia: mapa com bússola da prancha do dono (G01). Física: ícone construído (circuito, F11).
  */
-export const ILU: Record<string, string> = { bio: iluBio, qui: iluQui, mat: iluMat, por: iluPor, his: iluHis, fil: iluFil, soc: iluSoc, ing: iluIng, geo: iluGeo };
-export const ILU_PROPRIA = new Set(['his', 'fil', 'soc', 'ing', 'geo']);
+export const ILU: Record<string, string> = { bio: iluBio, qui: iluQui, mat: iluMat, por: iluPor, his: iluHis, fs: iluFil, fil: iluFil, soc: iluSoc, ing: iluIng, geo: iluGeo };
+export const ILU_PROPRIA = new Set(['his', 'fs', 'fil', 'soc', 'ing', 'geo']);
 
 /** Matérias cujo ícone principal já é CONSTRUÍDO em camadas 3D (animável); prevalece sobre a imagem. */
 export const CAMADAS_MATERIA: Record<string, string> = { bio: 'B00', fis: 'F11' };

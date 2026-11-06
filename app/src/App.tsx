@@ -2,6 +2,7 @@ import { HashRouter, Navigate, Route, Routes, useLocation } from 'react-router-d
 import { Casca } from './ui/Casca';
 import { EstiloMaterias } from './ui/comum';
 import { useEstado } from './estado/loja';
+import { materiaAtual } from './dados/tipos';
 import { BoasVindas } from './telas/BoasVindas';
 import { Inicio } from './telas/Inicio';
 import { ListaMaterias, Materia } from './telas/Materia';
@@ -26,6 +27,9 @@ function Rotas() {
   if (!e.perfil && loc.pathname !== '/boas-vindas') return <Navigate to="/boas-vindas" replace />;
   const foco = /^\/(m\/\w+\/(q|treino)|simulado\/agora)/.test(loc.pathname) || loc.pathname.includes('/flashcards/sessao');
   if (loc.pathname === '/boas-vindas') return <BoasVindas />;
+  // endereços antigos de Filosofia (/m/fil) e de Sociologia (/m/soc) levam à matéria unida, com o resto do caminho
+  const antiga = loc.pathname.match(/^\/m\/(fil|soc)(\/.*)?$/);
+  if (antiga) return <Navigate to={'/m/' + materiaAtual(antiga[1]) + (antiga[2] || '') + loc.search} replace />;
   return (
     <Casca foco={foco}>
       <Routes>

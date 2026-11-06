@@ -2,7 +2,16 @@
 
 export type MateriaId =
   | 'bio' | 'qui' | 'mat' | 'por'
-  | 'fis' | 'his' | 'geo' | 'ing' | 'fil' | 'soc';
+  | 'fis' | 'his' | 'geo' | 'ing' | 'fs';
+
+/** Ids que existiram e foram unidos (comando 18 do dono): Filosofia e Sociologia viraram 'fs'. Só a migração e as rotas antigas usam. */
+export type MateriaIdAntiga = 'fil' | 'soc';
+export const MATERIA_UNIDA: Record<MateriaIdAntiga, MateriaId> = { fil: 'fs', soc: 'fs' };
+/** Id atual de uma matéria (traduz os ids antigos de Filosofia e de Sociologia). */
+export function materiaAtual(id: string | undefined | null): MateriaId | undefined {
+  if (!id) return undefined;
+  return (MATERIA_UNIDA as Record<string, MateriaId>)[id] || (id as MateriaId);
+}
 
 export type Letra = 'A' | 'B' | 'C' | 'D' | 'E';
 

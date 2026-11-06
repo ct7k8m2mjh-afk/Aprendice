@@ -4,9 +4,9 @@
  * - Lê arquivos exportados pelo protótipo (JSON de S de uma matéria) e pelo app novo (Estado inteiro).
  * - Mescla sem apagar: tentativas são unidas por timestamp; flashcards ficam com o registro mais recente.
  */
-import type { MateriaId } from '../dados/tipos';
-import type { EstadoMateria, EstadoQuestao, Estado, FlashRec, SimuladoResultado } from './tipos';
-import { estadoMateriaVazio } from './tipos';
+import { MATERIA_UNIDA, materiaAtual, type MateriaId } from '../dados/tipos';
+import type { EstadoMateria, EstadoQuestao, Estado, FlashRec, SessaoTreino, SimuladoFeito, SimuladoResultado } from './tipos';
+import { estadoMateriaVazio, estadoVazio } from './tipos';
 
 export const CHAVES_PROTOTIPO: Record<string, MateriaId> = {
   'saocamilo.bio.v1': 'bio', 'saocamilo.qui.v1': 'qui', 'saocamilo.mat.v1': 'mat', 'saocamilo.por.v1': 'por',
@@ -102,22 +102,25 @@ export function importaArquivo(estado: Estado, texto: string, idsPorMateria: Rec
   const novo: Estado = { ...estado, materias: { ...estado.materias } };
   const r: ResultadoImportacao = { materias: [], questoes: 0, cartoes: 0 };
 
-  const junta = (m: MateriaId, s: Partial<EstadoMateria>) => {
+  const junta = (mArq: MateriaId, s: Partial<EstadoMateria>) => {
+    const m = materiaAtual(mArq) || mArq; // arquivo antigo com 'fil' ou 'soc' entra em Filosofia e Sociologia
     const ids = idsPorMateria[m];
     const q = Object.fromEntries(Object.entries(obj<Record<string, EstadoQuestao>>(s.q) || {}).filter(([id, v]) => (!ids || ids.has(id)) && v && Array.isArray(v.tent)));
     const base = novo.materias[m] || estadoMateriaVazio();
     novo.materias[m] = mesclaMateria(base, { ...s, q });
-    r.materias.push(m);
+    if (!r.materias.includes(m)) r.materias.push(m);
     r.questoes += Object.keys(q).length;
     r.cartoes += Object.keys(obj(s.flash) || {}).length;
   };
 
-  if (d.versao === 1 && obj(d.materias)) {
+  if ((d.versao === 1 || d.versao === 2) && obj(d.materias)) {
     // exportação do app novo
     for (const [m, s] of Object.entries(d.materias as Record<string, Partial<EstadoMateria>>)) junta(m as MateriaId, s);
     if (Array.isArray(d.simuladosFeitos)) {
       const vis = new Set(novo.simuladosFeitos.map((x) => x.ts));
-      novo.simuladosFeitos = [...novo.simuladosFeitos, ...(d.simuladosFeitos as Estado['simuladosFeitos']).filter((x) => !vis.has(x.ts))];
+      // simulados feitos de um arquivo antigo também passam pela migração (matérias unidas)
+      const feitos = migraEstado({ ...estadoVazio(), versao: d.versao as number, simuladosFeitos: d.simuladosFeitos as Estado['simuladosFeitos'] }).simuladosFeitos;
+      novo.simuladosFeitos = [...novo.simuladosFeitos, ...feitos.filter((x) => !vis.has(x.ts))];
     }
   } else if (obj(d.q) || obj(d.flash)) {
     // exportação do protótipo: o S de uma matéria
@@ -150,5 +153,70 @@ export function migraDoNavegador(estado: Estado, ler: (k: string) => string | nu
       e = { ...e, materias: { ...e.materias, [m]: mesclaMateria(e.materias[m] || estadoMateriaVazio(), s) }, migradoDe: [...e.migradoDe, k] };
     } catch { /* chave corrompida: deixa como está, não apaga */ }
   }
+  return e;
+}
+
+/* ============ migração versionada do estado salvo (princípio 7) ============
+ * Cada versão nova do formato ganha um passo aqui; o estado salvo passa por todos os passos que faltam, em ordem.
+ * v1 -> v2 (comando 18 do dono): Filosofia ('fil') e Sociologia ('soc') viram UMA matéria, Filosofia e Sociologia ('fs').
+ * Os ids de questões, temas e cartões não mudam; o progresso das duas é mesclado na matéria nova sem perder nada. */
+
+export const VERSAO_ATUAL = 2;
+const ANTIGAS = Object.keys(MATERIA_UNIDA) as (keyof typeof MATERIA_UNIDA)[];
+
+/** Momento da última atividade de uma matéria (tentativas, cartões, sessões), para escolher o "continuar de onde parou". */
+function ultimaAtividade(s: EstadoMateria | undefined, qid?: string | null): number {
+  if (!s) return 0;
+  if (qid) return Math.max(0, ...(s.q[qid]?.tent || []).map((t) => t.ts));
+  return Math.max(0, ...Object.values(s.q).flatMap((x) => x.tent.map((t) => t.ts)), ...s.sessoes.map((x) => x.ts));
+}
+
+function mudaM<T extends { m?: MateriaId }>(x: T): T {
+  const m = materiaAtual(x.m);
+  return m === x.m ? x : { ...x, m };
+}
+
+function v1paraV2(e: Estado): Estado {
+  const mats = { ...e.materias } as Record<string, EstadoMateria | undefined>;
+  const treino = { ...e.treino } as Record<string, SessaoTreino | undefined>;
+  for (const velha of ANTIGAS) {
+    const nova = MATERIA_UNIDA[velha];
+    const s = mats[velha];
+    if (s) {
+      const base = mats[nova] || estadoMateriaVazio();
+      const junto = mesclaMateria(base, s);
+      // "continuar de onde parou": fica a questão respondida por último entre as duas
+      const ult = ultimaAtividade(s, s.ult) > ultimaAtividade(base, base.ult) ? s.ult || base.ult : base.ult || s.ult;
+      mats[nova] = { ...junto, ult };
+      delete mats[velha];
+    }
+    const t = treino[velha];
+    if (t) {
+      const atual = treino[nova];
+      if (!atual || t.t0 > atual.t0) treino[nova] = t; // sessão de treino em andamento: fica a mais recente (as respostas já estão em q)
+      delete treino[velha];
+    }
+  }
+  const simulado = e.simulado ? { ...e.simulado, itens: e.simulado.itens.map(mudaM) } : e.simulado;
+  const simuladosFeitos = e.simuladosFeitos.map((f) => {
+    const por = { ...f.porMateria } as Record<string, { acertos: number; total: number } | undefined>;
+    for (const velha of ANTIGAS) {
+      const x = por[velha];
+      if (!x) continue;
+      const nova = MATERIA_UNIDA[velha];
+      const y = por[nova];
+      por[nova] = { acertos: x.acertos + (y?.acertos || 0), total: x.total + (y?.total || 0) };
+      delete por[velha];
+    }
+    return { ...f, porMateria: por as SimuladoFeito['porMateria'], itens: f.itens.map(mudaM) };
+  });
+  const ultimaMateria = materiaAtual(e.pref.ultimaMateria) || null;
+  return { ...e, versao: 2, materias: mats as Estado['materias'], treino: treino as Estado['treino'], simulado, simuladosFeitos, pref: { ...e.pref, ultimaMateria } };
+}
+
+/** Leva um estado salvo (de qualquer versão conhecida) ao formato atual. Estado já atual volta sem mudança. */
+export function migraEstado(d: Estado | (Omit<Estado, 'versao'> & { versao: number })): Estado {
+  let e = d as Estado;
+  if ((e.versao as number) < 2) e = v1paraV2({ ...e, versao: 2 });
   return e;
 }

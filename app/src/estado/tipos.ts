@@ -74,7 +74,8 @@ export interface SessaoTreino { it: { k: 'q' | 'f' | 'c'; id: string }[]; i: num
 export interface Preferencias { tema: 'claro' | 'escuro' | 'sistema'; menuFechado: boolean; ultimaMateria: MateriaId | null }
 
 export interface Estado {
-  versao: 1;
+  /** 1: formato inicial; 2: Filosofia e Sociologia unidas em 'fs' (migracao.ts, migraEstado). */
+  versao: 2;
   perfil: Perfil | null;
   materias: Partial<Record<MateriaId, EstadoMateria>>;
   simulado: SimuladoAndamento | null;
@@ -90,7 +91,7 @@ export function estadoMateriaVazio(): EstadoMateria {
 
 export function estadoVazio(): Estado {
   return {
-    versao: 1,
+    versao: 2,
     perfil: null,
     materias: {},
     simulado: null,

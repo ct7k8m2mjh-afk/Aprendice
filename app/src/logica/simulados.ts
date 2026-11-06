@@ -1,4 +1,5 @@
 import { materiaDaArea, type ProvaCompleta } from '../dados/provasCompletas';
+import { materiaAtual } from '../dados/tipos';
 import { provaPorId } from '../dados/provas';
 import type { ItemSimulado } from '../estado/tipos';
 
@@ -25,7 +26,7 @@ export function planoDaProva(p: ProvaCompleta): PlanoSimulado {
     sid: 'prova:' + p.id,
     titulo: p.titulo,
     descricao: 'Prova completa, na ordem original, com todas as matérias. Gabarito oficial.',
-    itens: p.questoes.map((q) => ({ id: q.id, p: p.id, a: q.area, m: q.materia || materiaDaArea(q.area) })),
+    itens: p.questoes.map((q) => ({ id: q.id, p: p.id, a: q.area, m: materiaAtual(q.materia) || materiaDaArea(q.area) })),
     segPorQuestao: tempoPorQuestao(p),
   };
 }

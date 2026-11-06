@@ -6,7 +6,7 @@
 import { useSyncExternalStore } from 'react';
 import type { Estado, EstadoMateria } from './tipos';
 import { estadoMateriaVazio, estadoVazio } from './tipos';
-import { migraDoNavegador } from './migracao';
+import { migraDoNavegador, migraEstado, VERSAO_ATUAL } from './migracao';
 import type { MateriaId } from '../dados/tipos';
 
 export const CHAVE = 'aprendice.v1';
@@ -15,13 +15,20 @@ const CHAVE_BACKUP = 'aprendice.v1.anterior';
 function lerLS(k: string): string | null { try { return localStorage.getItem(k); } catch { return null; } }
 function gravarLS(k: string, v: string): boolean { try { localStorage.setItem(k, v); return true; } catch { return false; } }
 
+let migrou = false;
+
 function carrega(): Estado {
   const bruto = lerLS(CHAVE);
   let e = estadoVazio();
   if (bruto) {
     try {
       const d = JSON.parse(bruto) as Estado;
-      if (d && d.versao === 1) e = { ...estadoVazio(), ...d, pref: { ...estadoVazio().pref, ...d.pref } };
+      if (d && typeof d.versao === 'number' && d.versao >= 1 && d.versao <= VERSAO_ATUAL) {
+        // formato antigo: guarda uma cópia intacta antes de migrar (princípio 7), uma vez por versão
+        if (d.versao < VERSAO_ATUAL && !lerLS(CHAVE + '.antes-v' + VERSAO_ATUAL)) gravarLS(CHAVE + '.antes-v' + VERSAO_ATUAL, bruto);
+        migrou = d.versao < VERSAO_ATUAL;
+        e = migraEstado({ ...estadoVazio(), ...d, versao: d.versao, pref: { ...estadoVazio().pref, ...d.pref } });
+      }
     } catch {
       // arquivo corrompido: guarda uma cópia antes de qualquer coisa, para nunca perder
       gravarLS(CHAVE + '.corrompido.' + Date.now(), bruto);
@@ -42,6 +49,9 @@ function salvaJa() {
   if (anterior && anterior !== txt) gravarLS(CHAVE_BACKUP, anterior);
   falhouSalvar = !gravarLS(CHAVE, txt);
 }
+
+// estado migrado de uma versão antiga: grava já no formato novo (a cópia antiga ficou em CHAVE.antes-vN)
+if (migrou) setTimeout(salvaJa, 0);
 
 export function atualiza(f: (e: Estado) => Estado) {
   estado = f(estado);
@@ -80,7 +90,7 @@ const VAZIO = estadoMateriaVazio();
 if (typeof window !== 'undefined') {
   window.addEventListener('storage', (ev) => {
     if (ev.key !== CHAVE || !ev.newValue) return;
-    try { estado = JSON.parse(ev.newValue); ouvintes.forEach((o) => o()); } catch { /* ignora */ }
+    try { estado = migraEstado(JSON.parse(ev.newValue)); ouvintes.forEach((o) => o()); } catch { /* ignora */ }
   });
   window.addEventListener('pagehide', () => { if (timer) { clearTimeout(timer); salvaJa(); } });
 }

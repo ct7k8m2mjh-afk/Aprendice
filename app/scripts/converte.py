@@ -20,7 +20,12 @@ AMOSTRA = '--amostra' in sys.argv
 
 MATERIAS = ['bio', 'qui', 'mat', 'por']
 # Matérias novas: estrutura (temas) em conteudo-fonte/materias/<m>.json; questões chegam com as provas completas.
-NOVAS = ['fis', 'geo', 'his', 'fil', 'soc', 'ing']
+NOVAS = ['fis', 'geo', 'his', 'fs', 'ing']
+# Filosofia e Sociologia viraram uma matéria só, 'fs' (comando 18 do dono). Ids de temas e questões não mudam;
+# as provas classificadas antes com 'fil'/'soc' passam a contar como 'fs' na saída (a fonte não é alterada).
+MATERIA_UNIDA = {'fil': 'fs', 'soc': 'fs'}
+# ícones de tema de cada matéria nova: pastas em conteudo-fonte/materias/ic/ (fs junta as pranchas das duas)
+PASTAS_IC = {'fs': ['fs', 'fil', 'soc']}
 FONTE_NOVAS = os.path.join(APP, 'conteudo-fonte', 'materias')
 ESCOLA_NORMAL = {'Mundo Educacao': 'Mundo Educação', 'FMJ': 'FMJ (Jundiaí)'}
 FASE_NORMAL = {'1fase': '1ª fase', '2fase': '2ª fase'}
@@ -199,12 +204,18 @@ def converte_materia(m, amostra_ids=None):
 
 def icones_novos(m):
     """Ícones 3D enviados pelo dono: conteudo-fonte/materias/ic/<m>/<id do tema>.png|webp -> base64 webp."""
+    out = {}
+    for nome in PASTAS_IC.get(m, [m]):
+        pasta = os.path.join(FONTE_NOVAS, 'ic', nome)
+        if os.path.isdir(pasta):
+            out.update(icones_pasta(pasta))
+    return out
+
+
+def icones_pasta(pasta):
     from io import BytesIO
     from PIL import Image
-    pasta = os.path.join(FONTE_NOVAS, 'ic', m)
     out = {}
-    if not os.path.isdir(pasta):
-        return out
     for f in sorted(os.listdir(pasta)):
         chave, ext = os.path.splitext(f)
         if ext.lower() not in ('.png', '.webp', '.jpg', '.jpeg'):
@@ -263,6 +274,9 @@ def provas_fonte():
                         for k in ('materia', 'tema', 'conteudo', 'nivel', 'conceito'):
                             if r.get(k) is not None:
                                 q[k] = r[k]
+            for q in p['questoes']:
+                if q.get('materia') in MATERIA_UNIDA:
+                    q['materia'] = MATERIA_UNIDA[q['materia']]
             out.append(p)
     return out
 

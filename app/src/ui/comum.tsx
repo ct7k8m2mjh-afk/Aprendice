@@ -1,6 +1,6 @@
 import { useEffect, useState, type CSSProperties, type ReactNode } from 'react';
 import { LOGO } from './logo-path';
-import { MATERIAS } from '../dados/materias';
+import { MATERIAS, type Tons } from '../dados/materias';
 import { urlIcone } from '../dados/conteudo';
 import type { MateriaId } from '../dados/tipos';
 import { Icone } from './Icone';
@@ -16,11 +16,13 @@ export function Logo({ className = 'logo', titulo = 'Aprendice' }: { className?:
 
 /** Variáveis de cor da matéria para os dois temas (uma fonte de verdade: dados/materias.ts). */
 export function EstiloMaterias() {
-  // os tons claros (--sv, --sv2) precisam ser recalculados em cada .m-*: variáveis derivadas não acompanham a herança
-  const tons = (c: string) => `--sv:color-mix(in srgb,${c} 13%,var(--folha));--sv2:color-mix(in srgb,${c} 7%,var(--folha))`;
+  // Tons da paleta aprovada (dados/materias.ts). Variáveis derivadas (--sv, --sv2) são recalculadas em cada .m-*,
+  // porque uma variável derivada não acompanha a herança. --sv = fundo suave exato; --sv2 = o fundo suave mais leve, sobre a folha.
+  const tons = (x: Tons) =>
+    `--c:${x.c};--ink:${x.ink};--t:${x.t};--p:${x.p};--p-ink:${x.pInk};--s:${x.s};--sv:${x.s};--sv2:color-mix(in srgb,${x.s} 55%,var(--folha))`;
   const css = MATERIAS.map((m) =>
-    `.m-${m.id},[data-theme='light'] .m-${m.id}{--c:${m.claro.c};--t:${m.claro.t};--ink:${m.claro.ink};${tons(m.claro.c)}}` +
-    `[data-theme='dark'] .m-${m.id}{--c:${m.escuro.c};--t:${m.escuro.t};--ink:${m.escuro.ink};${tons(m.escuro.c)}}`).join('\n');
+    `.m-${m.id},[data-theme='light'] .m-${m.id}{${tons(m.claro)}}` +
+    `[data-theme='dark'] .m-${m.id}{${tons(m.escuro)}}`).join('\n');
   return <style>{css}</style>;
 }
 
