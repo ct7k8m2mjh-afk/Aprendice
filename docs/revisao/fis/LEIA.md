@@ -6,6 +6,7 @@ Fonte: PV Física L1–L4 (Poliedro), 39 capítulos lidos inteiros; fichamentos 
 |---|---|---|
 | F02 Cinemática | aprovado (06/11/2026) | 69 |
 | F11 Eletricidade e circuitos | aprovado (06/11/2026) | 88 |
+| F09 Óptica | aprovado (06/11/2026) | 69 |
 | F01, F03–F12 | em produção | — |
 
 Observações para a integração:
