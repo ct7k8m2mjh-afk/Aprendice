@@ -12,6 +12,7 @@ Fonte: PV Física L1–L4 (Poliedro), 39 capítulos lidos inteiros; fichamentos 
 | F12 Magnetismo e eletromagnetismo | aprovado (06/11/2026) | 50 |
 | F04 Trabalho, energia e potência | aprovado (06/11/2026) | 49 |
 | F07 Hidrostática | aprovado (06/11/2026) | 48 |
+| F06 Gravitação e astronomia | aprovado (06/11/2026) | 40 |
 | F01, F03–F12 | em produção | — |
 
 Observações para a integração:
