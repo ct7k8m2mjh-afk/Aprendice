@@ -583,6 +583,7 @@ def eventos_do_pdf(pdf, cfg, faixa=None):
                             # errata da banca: a indicação impressa aponta outras questões (conferida no caderno)
                             nums = cfg.get('faixa_errata', {}).get((cfg.get('_arquivo'), pi + 1, tuple(nums)), nums)
                             ev.append({'p': pi, 'c': c, 'y': yi, 'tipo': 'suporte', 'faixa': nums if not mt else [],
+                                       'singular': bool(cfg.get('suporte_singular') and re.search(cfg['suporte_singular'], resto)),
                                        'num': (re.search(cfg['texto_id'], t).group(1).upper() if cfg.get('texto_id') and re.search(cfg['texto_id'], t)
                                                else int(mt.group(1)) if mt else None)})
                             break
@@ -1136,7 +1137,7 @@ def processa(pid, amostra=False, so_texto=False):
                     if suporte and len(suporte['faixa']) >= 2 and suporte['segs'] not in [g_['segs'] for g_ in gerais]:
                         # texto que declara "questões 21 a 27" segue valendo até a 27, mesmo com outro texto no meio
                         gerais.append({'segs': list(suporte['segs']), 'faixa': suporte['faixa']})
-                    suporte = {'segs': segs_s, 'faixa': e['faixa'], 'aberto': True}
+                    suporte = {'segs': segs_s, 'faixa': e['faixa'], 'aberto': True, 'singular': e.get('singular')}
                 if e.get('num') is not None:
                     for nt in [e['num']] + e.get('outros', []):
                         textos[nt] = segs_s
@@ -1186,6 +1187,11 @@ def processa(pid, amostra=False, so_texto=False):
                         sup = suporte['segs']
                     if not sup:   # o bloco de questões do texto acabou: as seguintes só o levam se o citarem
                         suporte['quebrado'] = True
+                elif len(f) < 2 and cfg.get('suporte_secao') and suporte.get('singular'):
+                    # "para responder à questão que a ele se refere" (suporte_singular): só a questão seguinte
+                    if not suporte.get('usado'):
+                        sup = suporte['segs']
+                        suporte['usado'] = True
                 elif len(f) < 2 and cfg.get('suporte_secao'):
                     sup = suporte['segs']   # "Texto 1" vale para todas as questões até o próximo texto, corte ou seção
                 elif len(f) < 2 and not suporte.get('usado'):

@@ -1349,3 +1349,49 @@ PROVAS['unemat-2023'] = unemat(2023, ingles_primeiro=False)
 PROVAS['unemat-2024-1'] = unemat(2024, 1)
 PROVAS['unemat-2025-1'] = unemat(2025, 1, alternativas=4)
 PROVAS['unemat-2026-1'] = unemat(2026, 1, alternativas=4)
+
+
+# ------------------------------------------------------------------------------------------- Unimontes
+UNIMONTES_SECOES = [(r'^PROVA DE L[ÍI]NGUA ESPANHOLA', 'Espanhol'), (r'^PROVA DE L[ÍI]NGUA INGLESA', 'Inglês'),
+                    (r'^PROVA DE L[ÍI]NGUA PORTUGUESA', 'Língua Portuguesa'), (r'^PROVA DE LITERATURA', 'Literatura'),
+                    (r'^PROVA DE FILOSOFIA', 'Filosofia'), (r'^PROVA DE SOCIOLOGIA', 'Sociologia'),
+                    (r'^PROVA DE BIOLOGIA', 'Biologia'), (r'^PROVA DE QU[ÍI]MICA', 'Química'), (r'^PROVA DE F[ÍI]SICA', 'Física'),
+                    (r'^PROVA DE MATEM[ÁA]TICA', 'Matemática'), (r'^PROVA DE HIST[ÓO]RIA', 'História'), (r'^PROVA DE GEOGRAFIA', 'Geografia')]
+
+
+def unimontes(ano, duracao=4.5):
+    """Unimontes, Vestibular Próprio (Cotec), Grupo 1, caderno 101 (Área 3 – Biológicas): 45 questões A–D em uma coluna,
+    "QUESTÃO 01" em negrito, matérias em seções "PROVA DE ...". Gabarito após recursos em grade (Nº QUESTÕES / RESPOSTAS);
+    a língua estrangeira 16–19 aparece duas vezes (espanhol, depois inglês: vale a 2ª). N = nula."""
+    def gab(pasta):
+        txt = texto_pdf(pasta / 'gabarito.pdf').split('CADERNO 102')[0]
+        linhas = txt.splitlines()
+        g = {}
+        for a, b in zip(linhas, linhas[1:]):
+            if 'QUESTÕES' in a and b.strip().startswith('RESPOSTAS'):
+                ns = [int(x) for x in re.findall(r'\b\d{2}\b', a)]
+                vs = re.findall(r'\b([A-DN])\b', b.replace('RESPOSTAS', ''))
+                assert len(ns) == len(vs), (a, b)
+                for n, v in zip(ns, vs):
+                    g[n] = v if v != 'N' else 'X'   # 16–19: o 2º bloco (inglês) sobrescreve o espanhol
+        return g
+
+    return {
+        'catalogo': 'unimontes', 'escola': 'Unimontes', 'ano': str(ano), 'fase': 'Grupo 1', 'titulo': f'Unimontes {ano}', 'banca': 'Cotec-Unimontes',
+        'duracao_horas': duracao, 'total': 45, 'alternativas': 4,
+        'nota': f'Universidade Estadual de Montes Claros, Vestibular Próprio {ano} (Edital 4/{ano}), Grupo 1, caderno 101 '
+                '(Área 3 – Biológicas): 45 questões A–D. Língua estrangeira: inglês (16 a 19). Gabarito oficial após recursos; '
+                'anulada fica fora.',
+        'cadernos': [{'arquivo': 'caderno', 'paginas': (4, 999)}],
+        'colunas': lambda r: [(24, r.width - 20)], 'margem': 24, 'topo': 36, 'base': 22,
+        'ancora': r'^QUEST[ÃA]O\s+(\d{2})\s*$', 'ancora_dx': 60, 'sequencial': True, 'ancora_negrito': True,
+        'secoes_rx': UNIMONTES_SECOES, 'pular_secoes': ('Espanhol',), 'pular_antes_sequencia': True,
+        'corte': [r'(?i)^Quest[õo]es de \d+ a \d+$', r'(?i)^CLASSIFICA[ÇC][ÃA]O PERI', r'(?i)^REDA[ÇC][ÃA]O$', r'(?i)^RASCUNHO'],
+        'suporte': [r'^INSTRUÇÃO:'], 'suporte_secao': True,
+        'suporte_singular': r'(?i)\b(à|a)\s+(esta\s+)?quest[ãa]o\b|responda à questão|considere os textos',
+        'gabarito': gab, 'area': lambda n: 'Conhecimentos gerais',
+    }
+
+
+for _a in (2024, 2025):
+    PROVAS[f'unimontes-{_a}'] = unimontes(_a)
