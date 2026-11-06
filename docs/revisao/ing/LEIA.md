@@ -10,3 +10,4 @@ Observações para a integração:
 - Linhas do tempo animadas na cor de Inglês são o visual principal dos tempos verbais (roteiro em `visual.movimento`).
 - Exemplos de questão nos slides são novos; se forem ao ar como questão, entram como "Questão Aprendice".
 - `pendencias` traz propostas de conteúdo novo (sem id criado): decisão do dono.
+| I02 Vocabulário | aprovado (06/11/2026) | 45 |
