@@ -49,12 +49,12 @@
     "faz": "Veja o que o texto diz do estilo dele",
     "conta": "\"adota um tom técnico na conversa\"",
     "porque": "O próprio texto afirma que o traço marcante é técnico, ligado ao ofício de cientista e professor da língua.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Elimine as variedades sem marca no texto",
-    "conta": "sem sotaque, sem gíria de idade, sem erro",
-    "porque": "Não há regionalismo (A de região), nem expressão típica da idade, nem linguagem rebuscada. O contexto é uma conversa informal ('né?') e a fala é técnica, não formal.",
+    "conta": "sem sotaque, gíria ou floreio",
+    "porque": "Não há regionalismo (B), nem expressão típica da idade (D), nem linguagem rebuscada (C). O contexto é uma conversa informal ('né?') e a fala é técnica, não formal (A).",
     "tipo": "eliminar"
    },
    {
@@ -104,10 +104,34 @@
  "gab": "E",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "localizar",
+    "motivo": "'interpretar' não está na lista de tipos permitidos (localizar, calcular, comparar, eliminar, concluir). O passo acha um trecho no texto, então o tipo é localizar.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "sem sotaque, gíria ou floreio",
+    "motivo": "'sem erro' não corresponde a nenhuma alternativa. A alternativa C fala em linguagem rebuscada (floreio), não em erro.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Não há regionalismo (B), nem expressão típica da idade (D), nem linguagem rebuscada (C). O contexto é uma conversa informal ('né?') e a fala é técnica, não formal (A).",
+    "motivo": "A resolução dizia 'A de região', mas a variedade regional é a alternativa B; a A é a situacional. Também faltava indicar a letra de cada variedade eliminada.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E"
  }
 }

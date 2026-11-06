@@ -50,7 +50,7 @@
     "faz": "Formule a conclusão com as suas palavras",
     "conta": "instrumento viaja → muda → nova identidade",
     "porque": "Responder antes de ler as opções evita ser atraído por frases que soam bem, mas não têm apoio no texto.",
-    "tipo": "interpretar"
+    "tipo": "comparar"
    },
    {
     "faz": "Elimine as que o texto não sustenta",
@@ -69,9 +69,9 @@
   "checagem": "Procure uma segunda marca: o texto descreve o machete como 'semelhante' ao cavaquinho minhoto, mas é outro instrumento. Isso reforça a ideia de variação e de identidade própria, sem nenhum traço de conflito.",
   "erradas": {
    "A": "O texto não menciona matéria-prima nem dependência de materiais europeus. Fala de tamanho, caixa de ressonância e origem dos instrumentos, não do material de fabricação.",
-   "C": "O texto mostra a circulação dos instrumentos, não que Portugal os inventou. Ao contrário, diz que o ukulele surgiu no Havaí no século XIX. 'Comprovam hegemonia' é conclusão sem apoio em nenhum trecho.",
+   "C": "O texto só descreve instrumentos de origem portuguesa e as mudanças que eles sofreram. Não os compara com cordófonos de outros povos nem diz que Portugal inventou esse tipo de instrumento. 'Comprovam hegemonia' é uma conclusão sem apoio em nenhum trecho.",
    "D": "Não há no texto dominação, imposição nem conflito. As palavras são 'chega', 'levados', 'emigraram', que descrevem deslocamento e transformação. 'Choque cultural' é ideia que o autor não afirma.",
-   "E": "Contradiz o texto: o instrumento muda de forma e de nome. O ukulele não leva o nome braguinha ou rajão, e o cavaquinho brasileiro difere do português. Nada se diz sobre fidelidade à confecção original."
+   "E": "Contradiz o texto: o instrumento muda de forma e, em alguns casos, de nome. O ukulele não se chama braguinha nem rajão, e o cavaquinho brasileiro é maior e tem caixa mais funda que o português. Nada se diz sobre fidelidade à confecção original."
   },
   "armadilha": "Escolher a alternativa que soa sofisticada (dominação, hegemonia), mas que o texto não afirma em nenhum trecho.",
   "alerta": "",
@@ -105,10 +105,34 @@
  "gab": "B",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "comparar",
+    "motivo": "'interpretar' não é um dos tipos permitidos (localizar, calcular, comparar, eliminar, concluir). Neste passo a conclusão sai do confronto dos dois fatos localizados antes, por isso o tipo certo é 'comparar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "O texto só descreve instrumentos de origem portuguesa e as mudanças que eles sofreram. Não os compara com cordófonos de outros povos nem diz que Portugal inventou esse tipo de instrumento. 'Comprovam hegemonia' é uma conclusão sem apoio em nenhum trecho.",
+    "motivo": "O 'Ao contrário' da versão anterior está errado. O texto diz que o ukulele tem como ancestrais instrumentos madeirenses, ou seja, portugueses, e isso não contradiz a origem portuguesa. A alternativa cai porque o texto não fala de invenção nem de supremacia, e não por um suposto contraste.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "Contradiz o texto: o instrumento muda de forma e, em alguns casos, de nome. O ukulele não se chama braguinha nem rajão, e o cavaquinho brasileiro é maior e tem caixa mais funda que o português. Nada se diz sobre fidelidade à confecção original.",
+    "motivo": "A versão anterior dizia que o instrumento muda de nome, o que é uma generalização falsa: o cavaquinho mantém o nome no Brasil. Só o ukulele ganha nome novo.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "B"
  }
 }

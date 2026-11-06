@@ -49,13 +49,13 @@
     "faz": "Note como o problema se agrava",
     "conta": "\"assimetria... multiplicada\"; \"mulher ou criança\"",
     "porque": "A vulnerabilidade aumenta com a severidade do caso e com a soma de outros grupos de risco.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Traduza o problema em necessidade ética",
     "conta": "fragilidade → proteger e valorizar",
     "porque": "Se o problema é a desproteção do mais frágil, a ética pedida é a que protege e cuida dele.",
-    "tipo": "aplicar"
+    "tipo": "comparar"
    },
    {
     "faz": "Compare com as alternativas",
@@ -69,8 +69,8 @@
   "erradas": {
    "B": "Foca em 'entendimento, perdão e tolerância dos responsáveis'. O texto trata da vulnerabilidade de quem sofre a assimetria e não pede indulgência com quem tem o poder. O centro ficou no lado errado.",
    "C": "Cerceamento, arregimentação e controle de entidades tratam de restringir e controlar organizações. O texto não fala de entidades nem de controle. Pede-se proteger pessoas, não limitar instituições.",
-   "D": "Regramento, legislação e punição de culpados são medidas legais e repressivas, que agem depois do dano. O texto descreve a condição de vulnerabilidade e pede uma ética de cuidado, não uma ética centrada em culpa.",
-   "E": "Ensimesmamento, interiorização e indulgência dos agentes significam se voltar para dentro e ser condescendente consigo. Isso ignora a relação com o outro, que é o assunto de uma ética interpessoal."
+   "D": "Regramento, legislação e responsabilização de culpados são medidas legais, que agem depois do dano. O texto descreve a condição de vulnerabilidade e pede uma ética de cuidado, não uma ética centrada em culpa.",
+   "E": "Ensimesmamento, interiorização e indulgência dos agentes significam se fechar em si e ser condescendente com quem age. Isso ignora a relação com o outro, que é o assunto de uma ética interpessoal."
   },
   "armadilha": "Escolher a alternativa que parece 'resolver' pela lei e pela punição (D), sem notar que o texto pede uma postura ética de cuidado com o vulnerável, não de culpabilização.",
   "alerta": "",
@@ -102,10 +102,40 @@
  "gab": "A",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "localizar",
+    "motivo": "O valor 'interpretar' não está entre os tipos aceitos (localizar, calcular, comparar, eliminar, concluir). O passo cita trechos do texto, então o tipo certo é 'localizar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "comparar",
+    "motivo": "O valor 'aplicar' não está entre os tipos aceitos. O passo põe o problema do texto ao lado da necessidade ética, então o tipo certo é 'comparar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "Regramento, legislação e responsabilização de culpados são medidas legais, que agem depois do dano. O texto descreve a condição de vulnerabilidade e pede uma ética de cuidado, não uma ética centrada em culpa.",
+    "motivo": "A alternativa D diz 'responsabilização de culpados', e não 'punição'. O comentário deve citar a alternativa como ela está escrita.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "Ensimesmamento, interiorização e indulgência dos agentes significam se fechar em si e ser condescendente com quem age. Isso ignora a relação com o outro, que é o assunto de uma ética interpessoal.",
+    "motivo": "A alternativa fala em 'indulgência dos agentes', ou seja, com quem age. O comentário dizia 'condescendente consigo', o que muda o sentido da alternativa.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "A"
  }
 }

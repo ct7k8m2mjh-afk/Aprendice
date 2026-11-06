@@ -2,8 +2,8 @@
  "n": 105,
  "id": "P9cf40941",
  "materia": "bio",
- "tema": "B09",
- "conteudo": "B09.1",
+ "tema": "B07",
+ "conteudo": "B07.1",
  "nivel": 2,
  "conceito": "Poluentes apolares e lipossolúveis (como pesticidas) se acumulam no tecido rico em gordura, o tecido adiposo.",
  "resolucao": {
@@ -44,13 +44,13 @@
     "faz": "Use a proporcionalidade do texto",
     "conta": "maior solubilidade → maior concentração",
     "porque": "O poluente se concentra no tecido em que é mais solúvel. Como ele é lipossolúvel, é o tecido com mais gordura.",
-    "tipo": "interpretar"
+    "tipo": "concluir"
    },
    {
     "faz": "Ligue ao tecido que guarda gordura",
     "conta": "gordura → tecido adiposo",
     "porque": "Nos vertebrados, as células do tecido adiposo armazenam lipídios em grandes gotas. É lá que o poluente se dissolve e fica retido.",
-    "tipo": "aplicar"
+    "tipo": "concluir"
    },
    {
     "faz": "Descarte os outros tecidos",
@@ -105,10 +105,40 @@
  "gab": "D",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "concluir",
+    "motivo": "'interpretar' não é um tipo válido. Os tipos aceitos são localizar, calcular, comparar, eliminar e concluir. Este passo tira do texto uma consequência: o poluente se concentra no tecido em que é mais solúvel.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "concluir",
+    "motivo": "'aplicar' não é um tipo válido. O passo liga 'lipossolúvel' ao tecido adiposo, ou seja, chega a uma conclusão.",
+    "fonte": ""
+   },
+   {
+    "campo": "tema",
+    "depois": "B07",
+    "motivo": "A questão não envolve cadeia alimentar, nível trófico nem biomagnificação entre níveis. Ela pede qual tecido de vertebrado acumula um poluente lipossolúvel, um conteúdo de tecidos (B07.1). B09.1 (cadeias e teias alimentares) não se sustenta.",
+    "fonte": ""
+   },
+   {
+    "campo": "conteudo",
+    "depois": "B07.1",
+    "motivo": "O que se cobra é reconhecer o tecido adiposo (conjuntivo) como o depósito de lipídios, entre os tecidos fundamentais, e não cadeias alimentares.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "D"
  }
 }

@@ -20,7 +20,7 @@
     ],
     [
      "populações tradicionais",
-     "grupos que vivem de modo ligado à floresta e ao território, como ribeirinhos, extrativistas e indígenas"
+     "grupos com modo de vida próprio, ligados ao território e aos recursos naturais, como ribeirinhos, extrativistas, quilombolas e indígenas"
     ],
     [
      "cadeia de abastecimento",
@@ -48,19 +48,19 @@
    },
    {
     "faz": "Localize o efeito sobre os produtores",
-    "conta": "\"integrando pequenos agricultores... a cadeias maiores\"",
+    "conta": "\"integrando pequenos agricultores\"",
     "porque": "Produtores pequenos passam a vender para mais compradores, e a produção da comunidade ganha valor e escoamento. Isso é valorizar a economia local.",
-    "tipo": "interpretar"
+    "tipo": "comparar"
    },
    {
     "faz": "Elimine o que não liga à renda",
-    "conta": "Projetos culturais, escola, qualificação: o texto não cita",
+    "conta": "B, C, D, E: o texto não cita",
     "porque": "Podem ser efeitos da internet na vida real, mas o trecho não os menciona e eles não explicam diretamente o aumento da rentabilidade.",
     "tipo": "eliminar"
    },
    {
     "faz": "Ligue à alternativa",
-    "conta": "mercados + cadeias maiores = economia local valorizada",
+    "conta": "mercados → economia local: A",
     "porque": "É a única alternativa que descreve o efeito econômico apontado no texto.",
     "tipo": "concluir"
    }
@@ -105,10 +105,46 @@
  "gab": "A",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "comparar",
+    "motivo": "\"interpretar\" não é um tipo válido. Os tipos permitidos são localizar, calcular, comparar, eliminar e concluir. Este passo liga o trecho localizado ao conceito de economia local, por isso é comparar.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "\"integrando pequenos agricultores\"",
+    "motivo": "A citação anterior cortava \"de abastecimento\" de \"a cadeias de abastecimento maiores\" sem marcar o corte, então não era fiel ao texto. Também passava de ~30 caracteres. O resto do trecho já está explicado no porque.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "B, C, D, E: o texto não cita",
+    "motivo": "O passo eliminava só B, D e E e deixava a C de fora, embora o texto também não fale em regras comerciais. A conta também passava do limite de ~30 caracteres da tela.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "mercados → economia local: A",
+    "motivo": "Não cabia em ~30 caracteres. Agora o último passo diz a letra, como pede o tipo concluir.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.antes.simbolos[1][1]",
+    "depois": "grupos com modo de vida próprio, ligados ao território e aos recursos naturais, como ribeirinhos, extrativistas, quilombolas e indígenas",
+    "motivo": "A definição anterior era estreita demais: \"ligado à floresta\". Na definição legal, povos e comunidades tradicionais são grupos culturalmente diferenciados ligados ao território e aos recursos naturais. Isso vai além da floresta e inclui, por exemplo, os quilombolas.",
+    "fonte": "Decreto nº 6.040/2007, art. 3º, I (Política Nacional de Desenvolvimento Sustentável dos Povos e Comunidades Tradicionais)"
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "A"
  }
 }
