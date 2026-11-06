@@ -1,0 +1,245 @@
+{
+ "n": 71,
+ "id": "P57de97be",
+ "materia": "mat",
+ "tema": "M13",
+ "conteudo": "M13.2",
+ "nivel": 3,
+ "conceito": "Permutação com restrição: quadros diferentes intercalados (retrato e pintura alternados) em fila.",
+ "resolucao": {
+  "antes": {
+   "texto": "Se os dois tipos têm de se alternar, só existem dois padrões de tipos para a fileira: começa por retrato (R P R P R P R P) ou começa por pintura (P R P R P R P R). Fixado o padrão, os 4 retratos ocupam as 4 posições de retrato, em qualquer ordem, e as 4 pinturas fazem o mesmo nas posições de pintura. Como os quadros são todos diferentes, a ordem dentro de cada grupo conta.",
+   "formulas": [
+    "maneiras de ordenar n objetos diferentes = n!",
+    "total = (padrões de tipos) × (ordens dos retratos) × (ordens das pinturas)"
+   ],
+   "simbolos": [
+    [
+     "n!",
+     "fatorial: n × (n−1) × … × 1; por exemplo, 4! = 4 × 3 × 2 × 1 = 24"
+    ],
+    [
+     "R",
+     "retrato de família"
+    ],
+    [
+     "P",
+     "pintura"
+    ],
+    [
+     "intercalar",
+     "alternar: nunca dois do mesmo tipo lado a lado"
+    ]
+   ]
+  },
+  "pista": "Antes de pensar em quais quadros vão onde, descubra de quantas formas os tipos (retrato e pintura) podem se alternar.",
+  "passos": [
+   {
+    "faz": "Liste os padrões de tipos possíveis",
+    "conta": "Padrão 1: R P R P R P R P",
+    "porque": "O outro padrão é P R P R P R P R. Com 4 de cada tipo e alternância obrigatória, a fileira começa por R ou por P. Não há terceira opção.",
+    "tipo": "localizar"
+   },
+   {
+    "faz": "Conte as ordens dos 4 retratos",
+    "conta": "4! = 24",
+    "porque": "Os retratos são diferentes entre si e ocupam 4 posições fixas pelo padrão: 4 × 3 × 2 × 1 = 24.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Conte as ordens das 4 pinturas",
+    "conta": "4! = 24",
+    "porque": "Mesmo raciocínio: 4 pinturas diferentes em 4 posições fixas.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Multiplique tudo",
+    "conta": "2 × 24 × 24",
+    "porque": "Para cada padrão (2), escolhe-se a ordem dos retratos (24) e a das pinturas (24); as escolhas são independentes, então multiplicam.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Ligue o resultado à alternativa",
+    "conta": "2 × 576 = 1 152 → D",
+    "porque": "24 × 24 = 576 para um padrão; dois padrões dão 1 152.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa D: são 2 padrões de tipos × 4! × 4! = 2 × 24 × 24 = 1 152 maneiras.",
+  "checagem": "Escolha o quadro de cada posição. Na 1ª há 8 opções, e isso fixa o tipo de cada posição. Na 2ª, só quadros do outro tipo: 4. Na 3ª, 3. Na 4ª, 3. Depois 2, 2, 1, 1. Produto: 8 × 4 × 3 × 3 × 2 × 2 × 1 × 1 = 1 152. Fecha.",
+  "erradas": {
+   "A": "40 320 é 8!, o total de ordens dos 8 quadros sem restrição alguma. Ignora a regra de alternar retratos e pinturas.",
+   "B": "8 192 não confere: é 2^13 e não vem de nenhuma contagem aqui. Todo resultado correto é múltiplo de 4! × 4! = 576, e 8 192 ÷ 576 não dá número inteiro.",
+   "C": "576 é 4! × 4! = 24 × 24, que vale para um só padrão (por exemplo, começando por retrato). Falta multiplicar por 2, pois a fileira também pode começar por pintura.",
+   "E": "20 160 é 8! ÷ 2, metade das ordens sem restrição. Não confere: 20 160 ÷ 576 = 35, mas só existem 2 padrões, e o certo é 2 × 576."
+  },
+  "armadilha": "Esquecer que a fileira pode começar por retrato OU por pintura, o que dobra a contagem (ficar em 576).",
+  "alerta": "",
+  "essencial": {
+   "pede": "Quantas filas de 8 quadros diferentes têm retratos e pinturas alternados.",
+   "chave": "2 padrões de tipos, e em cada um 4! ordens dos retratos × 4! ordens das pinturas.",
+   "cuidado": "Não esqueça o fator 2 (começar por R ou por P) nem que os quadros são diferentes (daí os fatoriais)."
+  }
+ },
+ "caminhos": [
+  {
+   "nome": "princípio multiplicativo posição a posição",
+   "ideia": "Posição 1: 8 opções. Depois o tipo se alterna: 4, 3, 3, 2, 2, 1, 1. Produto = 8 × 4 × 3 × 3 × 2 × 2 × 1 × 1 = 1 152."
+  },
+  {
+   "nome": "eliminação por múltiplos",
+   "ideia": "Para qualquer padrão fixo, a conta é 4! × 4! = 576. Com alternância e 4 quadros de cada tipo só existem 2 padrões (começar por R ou por P), então o total é exatamente 2 × 576 = 1 152. 576 serve para um padrão só. 20 160 = 35 × 576 e 40 320 = 70 × 576 exigiriam 35 e 70 padrões. 8 192 nem é múltiplo de 576."
+  }
+ ],
+ "quadro": [
+  {
+   "linha": "R P R P R P R P",
+   "nota": "padrão 1: começa por retrato"
+  },
+  {
+   "linha": "P R P R P R P R",
+   "nota": "padrão 2: começa por pintura"
+  },
+  {
+   "linha": "Retratos: 4! = 4 × 3 × 2 × 1",
+   "nota": "ordens dos 4 retratos nos lugares deles"
+  },
+  {
+   "linha": "4 × 3 = 12",
+   "nota": "primeiro produto"
+  },
+  {
+   "linha": "12 × 2 = 24",
+   "nota": "4! = 24 (o ×1 não muda)"
+  },
+  {
+   "linha": "Pinturas: 4! = 24",
+   "nota": "mesma conta para as pinturas"
+  },
+  {
+   "linha": "Total = 2 × 24 × 24",
+   "nota": "padrões × retratos × pinturas",
+   "destaque": "2 × 24 × 24"
+  },
+  {
+   "linha": "24 × 24 = 576",
+   "nota": "maneiras em um padrão"
+  },
+  {
+   "linha": "2 × 576 = 1 152",
+   "nota": "dois padrões: alternativa D",
+   "destaque": "1 152"
+  }
+ ],
+ "visual": {
+  "cabe": false,
+  "porque": "A contagem é curta e se resolve bem com a conta em linhas e o esquema de posições R P R P…; uma animação não acrescenta.",
+  "tipo": "nenhum",
+  "roteiro": ""
+ },
+ "fontes": [],
+ "confere": true,
+ "divergencia": "",
+ "resposta_resolvedor": "D",
+ "gab": "D",
+ "revisao": {
+  "lentes": [
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
+  ],
+  "modelos": {
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "caminhos[1].ideia",
+    "depois": "Para qualquer padrão fixo, a conta é 4! × 4! = 576. Com alternância e 4 quadros de cada tipo só existem 2 padrões (começar por R ou por P), então o total é exatamente 2 × 576 = 1 152. 576 serve para um padrão só. 20 160 = 35 × 576 e 40 320 = 70 × 576 exigiriam 35 e 70 padrões. 8 192 nem é múltiplo de 576.",
+    "motivo": "O texto antigo dizia que só 1 152 é múltiplo de 576 maior que 576. Isso é falso: 40 320 ÷ 576 = 70 e 20 160 ÷ 576 = 35 também dão inteiros. Só ser múltiplo não elimina essas letras. Quem as elimina é o número de padrões, que é exatamente 2.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.quadro",
+    "depois": [
+     {
+      "linha": "R P R P R P R P",
+      "nota": "padrão 1: começa por retrato"
+     },
+     {
+      "linha": "P R P R P R P R",
+      "nota": "padrão 2: começa por pintura"
+     },
+     {
+      "linha": "Retratos: 4! = 4 × 3 × 2 × 1",
+      "nota": "ordens dos 4 retratos nos lugares deles"
+     },
+     {
+      "linha": "4 × 3 = 12",
+      "nota": "primeiro produto"
+     },
+     {
+      "linha": "12 × 2 = 24",
+      "nota": "4! = 24 (o ×1 não muda)"
+     },
+     {
+      "linha": "Pinturas: 4! = 24",
+      "nota": "mesma conta para as pinturas"
+     },
+     {
+      "linha": "Total = 2 × 24 × 24",
+      "nota": "padrões × retratos × pinturas",
+      "destaque": "2 × 24 × 24"
+     },
+     {
+      "linha": "24 × 24 = 576",
+      "nota": "maneiras em um padrão"
+     },
+     {
+      "linha": "2 × 576 = 1 152",
+      "nota": "dois padrões: alternativa D",
+      "destaque": "1 152"
+     }
+    ],
+    "motivo": "Separar os dois padrões e cada multiplicação, um passo por linha, copiável no caderno."
+   },
+   {
+    "campo": "resolucao.passos[0].conta",
+    "depois": "Padrão 1: R P R P R P R P",
+    "motivo": "A conta não quebra linha no celular; o segundo padrão vai no porque."
+   },
+   {
+    "campo": "resolucao.passos[0].porque",
+    "depois": "O outro padrão é P R P R P R P R. Com 4 de cada tipo e alternância obrigatória, a fileira começa por R ou por P. Não há terceira opção.",
+    "motivo": "Mostrar o segundo padrão, que saiu da conta."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "8 192 não confere: é 2^13 e não vem de nenhuma contagem aqui. Todo resultado correto é múltiplo de 4! × 4! = 576, e 8 192 ÷ 576 não dá número inteiro.",
+    "motivo": "Frase mais curta e direta."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "20 160 é 8! ÷ 2, metade das ordens sem restrição. Não confere: 20 160 ÷ 576 = 35, mas só existem 2 padrões, e o certo é 2 × 576.",
+    "motivo": "Simplificar e deixar o teste claro."
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Escolha o quadro de cada posição. Na 1ª há 8 opções, e isso fixa o tipo de cada posição. Na 2ª, só quadros do outro tipo: 4. Na 3ª, 3. Na 4ª, 3. Depois 2, 2, 1, 1. Produto: 8 × 4 × 3 × 3 × 2 × 2 × 1 × 1 = 1 152. Fecha.",
+    "motivo": "Explicar por que o tipo fica fixado e encurtar as frases."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "D"
+ }
+}

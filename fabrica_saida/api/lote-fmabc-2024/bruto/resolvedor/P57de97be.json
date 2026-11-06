@@ -1,0 +1,35 @@
+{
+ "id": "msg_011CgnQqRGXfXw8nocVZScXX",
+ "container": null,
+ "content": [
+  {
+   "citations": null,
+   "text": "```json\n{\n  \"n\": 71,\n  \"id\": \"P57de97be\",\n  \"materia\": \"mat\",\n  \"tema\": \"M13\",\n  \"conteudo\": \"M13.2\",\n  \"nivel\": 3,\n  \"conceito\": \"Permutação com restrição: quadros diferentes intercalados (retrato e pintura alternados) em fila.\",\n  \"resolucao\": {\n    \"antes\": {\n      \"texto\": \"Se os dois tipos têm de se alternar, só existem dois padrões de tipos para a fileira: começa por retrato (R P R P R P R P) ou começa por pintura (P R P R P R P R). Fixado o padrão, os 4 retratos ocupam as 4 posições de retrato, em qualquer ordem, e as 4 pinturas fazem o mesmo nas posições de pintura. Como os quadros são todos diferentes, a ordem dentro de cada grupo conta.\",\n      \"formulas\": [\n        \"maneiras de ordenar n objetos diferentes = n!\",\n        \"total = (padrões de tipos) × (ordens dos retratos) × (ordens das pinturas)\"\n      ],\n      \"simbolos\": [\n        [\"n!\", \"fatorial: n × (n−1) × … × 1; por exemplo, 4! = 4 × 3 × 2 × 1 = 24\"],\n        [\"R\", \"retrato de família\"],\n        [\"P\", \"pintura\"],\n        [\"intercalar\", \"alternar: nunca dois do mesmo tipo lado a lado\"]\n      ]\n    },\n    \"pista\": \"Antes de pensar em quais quadros vão onde, descubra de quantas formas os tipos (retrato e pintura) podem se alternar.\",\n    \"passos\": [\n      {\n        \"faz\": \"Liste os padrões de tipos possíveis\",\n        \"conta\": \"R P R P R P R P / P R P R P R P R\",\n        \"porque\": \"Com 4 de cada tipo e alternância obrigatória, a fileira começa por R ou por P. Não há terceira opção.\",\n        \"tipo\": \"localizar\"\n      },\n      {\n        \"faz\": \"Conte as ordens dos 4 retratos\",\n        \"conta\": \"4! = 24\",\n        \"porque\": \"Os retratos são diferentes entre si e ocupam 4 posições fixas pelo padrão: 4 × 3 × 2 × 1 = 24.\",\n        \"tipo\": \"calcular\"\n      },\n      {\n        \"faz\": \"Conte as ordens das 4 pinturas\",\n        \"conta\": \"4! = 24\",\n        \"porque\": \"Mesmo raciocínio: 4 pinturas diferentes em 4 posições fixas.\",\n        \"tipo\": \"calcular\"\n      },\n      {\n        \"faz\": \"Multiplique tudo\",\n        \"conta\": \"2 × 24 × 24\",\n        \"porque\": \"Para cada padrão (2), escolhe-se a ordem dos retratos (24) e a das pinturas (24); as escolhas são independentes, então multiplicam.\",\n        \"tipo\": \"calcular\"\n      },\n      {\n        \"faz\": \"Ligue o resultado à alternativa\",\n        \"conta\": \"2 × 576 = 1 152 → D\",\n        \"porque\": \"24 × 24 = 576 para um padrão; dois padrões dão 1 152.\",\n        \"tipo\": \"concluir\"\n      }\n    ],\n    \"resposta\": \"Alternativa D: são 2 padrões de tipos × 4! × 4! = 2 × 24 × 24 = 1 152 maneiras.\",\n    \"checagem\": \"Confira por outro caminho: escolha o quadro de cada posição. Na posição 1 há 8 opções (qualquer quadro); isso fixa o tipo das demais. Na 2ª, só do outro tipo: 4 opções. Na 3ª, 3 do tipo da 1ª. Na 4ª, 3. Depois 2, 2, 1, 1. Produto: 8 × 4 × 3 × 3 × 2 × 2 × 1 × 1 = 1 152. Fecha.\",\n    \"erradas\": {\n      \"A\": \"40 320 é 8!, o total de ordens dos 8 quadros sem restrição alguma. Ignora a regra de alternar retratos e pinturas.\",\n      \"B\": \"8 192 não confere: não é produto de fatoriais aqui (8 192 = 2^13) e não corresponde a nenhuma contagem possível. Qualquer contagem correta tem de ser múltiplo de 4! × 4! = 576, e 8 192 ÷ 576 não é inteiro.\",\n      \"C\": \"576 é 4! × 4! = 24 × 24, que vale para um só padrão (por exemplo, começando por retrato). Falta multiplicar por 2, pois a fileira também pode começar por pintura.\",\n      \"E\": \"20 160 é 8! ÷ 2 = 40 320 ÷ 2. Não corresponde a nenhuma contagem com a alternância; além disso, 20 160 ÷ 576 = 35, e a resposta tem de ser 2 × 576.\"\n    },\n    \"armadilha\": \"Esquecer que a fileira pode começar por retrato OU por pintura, o que dobra a contagem (ficar em 576).\",\n    \"alerta\": \"\",\n    \"essencial\": {\n      \"pede\": \"Quantas filas de 8 quadros diferentes têm retratos e pinturas alternados.\",\n      \"chave\": \"2 padrões de tipos, e em cada um 4! ordens dos retratos × 4! ordens das pinturas.\",\n      \"cuidado\": \"Não esqueça o fator 2 (começar por R ou por P) nem que os quadros são diferentes (daí os fatoriais).\"\n    }\n  },\n  \"caminhos\": [\n    {\n      \"nome\": \"princípio multiplicativo posição a posição\",\n      \"ideia\": \"Posição 1: 8 opções. Depois o tipo se alterna: 4, 3, 3, 2, 2, 1, 1. Produto = 8 × 4 × 3 × 3 × 2 × 2 × 1 × 1 = 1 152.\"\n    },\n    {\n      \"nome\": \"eliminação por múltiplos\",\n      \"ideia\": \"Para qualquer padrão fixo, a conta é 4! × 4! = 576. Como há mais de um padrão, a resposta é múltiplo de 576 maior que 576. Só 1 152 serve (20 160 = 35 × 576 exigiria 35 padrões).\"\n    }\n  ],\n  \"quadro\": [\n    {\n      \"linha\": \"Padrões: RPRPRPRP ou PRPRPRPR\",\n      \"nota\": \"alternar com 4 de cada tipo: só 2 padrões\"\n    },\n    {\n      \"linha\": \"Retratos: 4! = 4×3×2×1\",\n      \"nota\": \"ordens dos 4 retratos nas posições dele\"\n    },\n    {\n      \"linha\": \"4! = 24\",\n      \"nota\": \"faça 4 × 3 = 12, 12 × 2 = 24\"\n    },\n    {\n      \"linha\": \"Pinturas: 4! = 24\",\n      \"nota\": \"mesma conta para as pinturas\"\n    },\n    {\n      \"linha\": \"Total = 2 × 24 × 24\",\n      \"nota\": \"padrões × retratos × pinturas\",\n      \"destaque\": \"2 × 24 × 24\"\n    },\n    {\n      \"linha\": \"24 × 24 = 576\",\n      \"nota\": \"um padrão\"\n    },\n    {\n      \"linha\": \"2 × 576 = 1 152\",\n      \"nota\": \"dois padrões: alternativa D\",\n      \"destaque\": \"1 152\"\n    }\n  ],\n  \"visual\": {\n    \"cabe\": false,\n    \"porque\": \"A contagem é curta e se resolve bem com a conta em linhas e o esquema de posições R P R P…; uma animação não acrescenta.\",\n    \"tipo\": \"nenhum\",\n    \"roteiro\": \"\"\n  },\n  \"fontes\": [],\n  \"confere\": null,\n  \"divergencia\": \"\",\n  \"resposta_resolvedor\": \"D\"\n}\n```",
+   "type": "text"
+  }
+ ],
+ "diagnostics": null,
+ "model": "claude-sonnet-5-5",
+ "role": "assistant",
+ "stop_details": null,
+ "stop_reason": "end_turn",
+ "stop_sequence": null,
+ "type": "message",
+ "usage": {
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 24472,
+  "inference_geo": "global",
+  "input_tokens": 891,
+  "output_tokens": 2698,
+  "output_tokens_details": {
+   "thinking_tokens": 0
+  },
+  "server_tool_use": null,
+  "service_tier": "batch",
+  "speed": "standard"
+ }
+}

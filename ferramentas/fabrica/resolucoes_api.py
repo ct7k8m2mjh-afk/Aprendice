@@ -552,8 +552,9 @@ def integra(lote):
     hoje = datetime.date.today().isoformat()
     for i in est.get('aprovadas', []):
         r = normaliza(sem_latex_frac(ler_json(os.path.join(d, 'res', i + '.json'))), r0gab(est, i))
-        banco[i] = {k: r.get(k) for k in ('n', 'materia', 'tema', 'conteudo', 'nivel', 'conceito', 'resolucao',
-                                          'caminhos', 'quadro', 'visual', 'fontes')}
+        # a classificação (matéria, tema, conteúdo, nível) é da ingestão, já auditada: a fábrica não a muda
+        # (sem a taxonomia nas instruções, a lente chegou a propor conteúdos que não existem no site)
+        banco[i] = {k: r.get(k) for k in ('n', 'conceito', 'resolucao', 'caminhos', 'quadro', 'visual', 'fontes')}
         banco[i]['aprovada'] = True
         banco[i]['revisao'] = {'lentes': r['revisao']['lentes'], 'modelos': r['revisao']['modelos'],
                                'data': hoje, 'lote': lote, 'origem': 'fabrica-api'}

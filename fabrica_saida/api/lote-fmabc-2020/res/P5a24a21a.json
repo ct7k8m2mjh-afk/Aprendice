@@ -1,0 +1,290 @@
+{
+ "n": 79,
+ "id": "P5a24a21a",
+ "materia": "mat",
+ "tema": "M12",
+ "conteudo": "M12.3",
+ "nivel": 5,
+ "conceito": "Achar um vértice de trapézio retângulo no plano cartesiano usando paralelismo (mesma direção) e perpendicularidade (produto escalar zero) para cruzar duas retas.",
+ "resolucao": {
+  "antes": {
+   "texto": "Os vértices vêm na ordem F, A, B, C. Os ângulos retos estão em F e em C. Logo, FA e CB são as bases (paralelas), e o lado FC é perpendicular a elas. O ponto C fica em duas retas ao mesmo tempo: a que passa por F perpendicular a FA e a que passa por B paralela a FA. Achar o cruzamento dessas retas dá o C.",
+   "formulas": [
+    "direção de FA = A − F (quanto anda em x e em y)",
+    "perpendiculares: produto escalar das direções = 0",
+    "reta por P(xP, yP) perpendicular ao vetor (a, b): a(x − xP) + b(y − yP) = 0"
+   ],
+   "simbolos": [
+    [
+     "vetor direção",
+     "par (Δx, Δy): quanto se anda em x e em y ao ir de um ponto a outro"
+    ],
+    [
+     "vetor normal",
+     "vetor perpendicular à reta"
+    ],
+    [
+     "produto escalar",
+     "(a, b)·(c, d) = ac + bd; vale zero quando os vetores são perpendiculares"
+    ],
+    [
+     "∥",
+     "paralelo a"
+    ],
+    [
+     "Δ",
+     "variação, isto é, valor final menos valor inicial"
+    ]
+   ]
+  },
+  "pista": "Os dois ângulos retos estão em F e em C. Quais lados são então as bases paralelas, e qual é o lado perpendicular a elas?",
+  "passos": [
+   {
+    "faz": "Ache a direção da base FA",
+    "conta": "A − F = (3+3, −1−3) = (6, −4)",
+    "porque": "A direção (6, −4) é paralela a (3, −2), que é mais simples de usar. Ela serve às duas bases.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Escreva a reta por F perpendicular a FA",
+    "conta": "3(x+3) − 2(y−3) = 0",
+    "porque": "FC é perpendicular a FA. Um ponto (x, y) de FC dá o vetor (x+3, y−3) a partir de F. Esse vetor tem produto escalar zero com (3, −2). Desenvolvendo: 3x + 9 − 2y + 6 = 0, ou seja, 3x − 2y = −15.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Escreva a reta por B paralela a FA",
+    "conta": "2(x−8) + 3(y−1) = 0",
+    "porque": "CB é paralela a FA, então tem direção (3, −2). Um vetor perpendicular a ela é (2, 3), pois 3·2 + (−2)·3 = 0. Desenvolvendo: 2x − 16 + 3y − 3 = 0, ou seja, 2x + 3y = 19.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Resolva o sistema das duas retas",
+    "conta": "1ª × 3 ; 2ª × 2",
+    "porque": "C está nas duas retas ao mesmo tempo. Multiplicando a 1ª por 3 e a 2ª por 2, os termos em y se cancelam na soma.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Some e isole x",
+    "conta": "13x = −7 → x = −7/13",
+    "porque": "9x − 6y = −45 somada a 4x + 6y = 38 dá 13x = −7. A pergunta pede só o x de C.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa B: o vértice C tem x = −7/13, que é a interseção da perpendicular a FA por F com a paralela a FA por B.",
+  "checagem": "Com x = −7/13, a 1ª equação dá y = 87/13 (cerca de 6,7). Teste na 2ª: 2·(−7/13) + 3·(87/13) = (−14 + 261)/13 = 247/13 = 19. Confere. Na figura, C fica um pouco à esquerda do eixo y e bem acima, como no desenho.",
+  "erradas": {
+   "A": "−5/13 não confere. Na perpendicular por F, y = (15+3x)/2, e a reta por B exige 2x + 3y = 19, ou seja (13x+45)/2 = 19. Com x = −5/13, o lado esquerdo vale (−5+45)/2 = 20, não 19.",
+   "C": "−11/20 não confere. Com x = −11/20, (13x+45)/2 = (45 − 7,15)/2 = 18,925, e o necessário é 19. O ponto não está sobre a reta que passa por B.",
+   "D": "−14/25 não confere. Com x = −14/25, (13x+45)/2 = (45 − 7,28)/2 = 18,86, diferente de 19. O ponto não está sobre a reta que passa por B.",
+   "E": "−6/13 não confere. Com x = −6/13, (13x+45)/2 = (45 − 6)/2 = 19,5, diferente de 19. Esse x ficaria perto do certo, mas não pertence às duas retas."
+  },
+  "armadilha": "Tomar as bases erradas: os ângulos retos estão em F e C, então FC é o lado perpendicular, e a paralela a FA passa por B (não por C ou por A).",
+  "alerta": "",
+  "essencial": {
+   "pede": "A coordenada x do vértice C do trapézio retângulo FABC.",
+   "chave": "C é a interseção da perpendicular a FA por F com a paralela a FA por B.",
+   "cuidado": "Confirmar pela figura onde estão os ângulos retos (F e C) antes de escolher quais lados são paralelos."
+  }
+ },
+ "caminhos": [
+  {
+   "nome": "Equações com coeficiente angular",
+   "ideia": "O coeficiente angular de FA é −4/6 = −2/3. A reta por B paralela a FA é y − 1 = −(2/3)(x − 8). A reta por F perpendicular tem coeficiente 3/2: y − 3 = (3/2)(x + 3). Igualando as duas, chega-se a x = −7/13."
+  },
+  {
+   "nome": "Teste das alternativas",
+   "ideia": "Em cada alternativa, calcule y pela perpendicular por F (y = (15+3x)/2) e confira se 2x + 3y = 19. Só a alternativa B satisfaz."
+  }
+ ],
+ "quadro": [
+  {
+   "linha": "FA = (6, −4) ∥ (3, −2)",
+   "nota": "direção das bases, que serve a FA e a CB"
+  },
+  {
+   "linha": "3(x+3) − 2(y−3) = 0",
+   "nota": "FC é perpendicular a FA, passando por F"
+  },
+  {
+   "linha": "3x − 2y = −15",
+   "nota": "simplifique: 9 + 6 = 15",
+   "destaque": "−15"
+  },
+  {
+   "linha": "2(x−8) + 3(y−1) = 0",
+   "nota": "CB é paralela a FA, passando por B"
+  },
+  {
+   "linha": "2x + 3y = 19",
+   "nota": "simplifique: 16 + 3 = 19 passam somando",
+   "destaque": "19"
+  },
+  {
+   "linha": "9x − 6y = −45",
+   "nota": "multiplique a 1ª equação por 3"
+  },
+  {
+   "linha": "4x + 6y = 38",
+   "nota": "multiplique a 2ª equação por 2"
+  },
+  {
+   "linha": "13x = −7",
+   "nota": "some as duas: o y se cancela",
+   "mov": [
+    {
+     "termo": "6y",
+     "de": "esquerda",
+     "para": "cancelado",
+     "vira": "0",
+     "como": "−6y + 6y se cancelam"
+    }
+   ]
+  },
+  {
+   "linha": "x = −7/13",
+   "nota": "o 13 passa dividindo",
+   "mov": [
+    {
+     "termo": "13",
+     "de": "esquerda",
+     "para": "denominador",
+     "vira": "13",
+     "como": "passa dividindo"
+    }
+   ]
+  }
+ ],
+ "visual": {
+  "cabe": true,
+  "porque": "A figura ajuda a ver quais lados são paralelos e qual é perpendicular.",
+  "tipo": "figura",
+  "roteiro": "Quadro 1: mostrar o trapézio com F, A, B e marcar os ângulos retos em F e C. Quadro 2: desenhar o vetor (3, −2) ao longo de FA e uma seta igual saindo de B. Quadro 3: traçar a perpendicular por F (direção (2, 3)) até cruzar a paralela por B. Quadro 4: marcar o cruzamento como C e destacar x = −7/13."
+ },
+ "fontes": [],
+ "resposta_resolvedor": "B",
+ "confere": true,
+ "divergencia": "",
+ "gab": "B",
+ "revisao": {
+  "lentes": [
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
+  ],
+  "modelos": {
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "calcular",
+    "motivo": "O guia só aceita os tipos localizar, calcular, comparar, eliminar e concluir, e \"aplicar\" não está entre eles. Neste passo se monta e se simplifica a equação da reta por F perpendicular a FA, que é um cálculo.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "calcular",
+    "motivo": "O guia só aceita os tipos localizar, calcular, comparar, eliminar e concluir, e \"aplicar\" não está entre eles. Neste passo se monta e se simplifica a equação da reta por B paralela a FA, que é um cálculo.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Os vértices vêm na ordem F, A, B, C. Os ângulos retos estão em F e em C. Logo, FA e CB são as bases (paralelas), e o lado FC é perpendicular a elas. O ponto C fica em duas retas ao mesmo tempo: a que passa por F perpendicular a FA e a que passa por B paralela a FA. Achar o cruzamento dessas retas dá o C.",
+    "motivo": "Frases mais curtas e explica por que o cruzamento resolve."
+   },
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "direção de FA = A − F (quanto anda em x e em y)",
+     "perpendiculares: produto escalar das direções = 0",
+     "reta por P(xP, yP) perpendicular ao vetor (a, b): a(x − xP) + b(y − yP) = 0"
+    ],
+    "motivo": "Formula coerente com o uso nos passos."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "vetor direção",
+      "par (Δx, Δy): quanto se anda em x e em y ao ir de um ponto a outro"
+     ],
+     [
+      "vetor normal",
+      "vetor perpendicular à reta"
+     ],
+     [
+      "produto escalar",
+      "(a, b)·(c, d) = ac + bd; vale zero quando os vetores são perpendiculares"
+     ],
+     [
+      "∥",
+      "paralelo a"
+     ],
+     [
+      "Δ",
+      "variação, isto é, valor final menos valor inicial"
+     ]
+    ],
+    "motivo": "Símbolos ∥ e Δ usados e não explicados."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "FC é perpendicular a FA. Um ponto (x, y) de FC dá o vetor (x+3, y−3) a partir de F. Esse vetor tem produto escalar zero com (3, −2). Desenvolvendo: 3x + 9 − 2y + 6 = 0, ou seja, 3x − 2y = −15.",
+    "motivo": "Mostra a simplificação sem pular passagem."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "CB é paralela a FA, então tem direção (3, −2). Um vetor perpendicular a ela é (2, 3), pois 3·2 + (−2)·3 = 0. Desenvolvendo: 2x − 16 + 3y − 3 = 0, ou seja, 2x + 3y = 19.",
+    "motivo": "Justifica o vetor normal e a simplificação."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "1ª × 3 ; 2ª × 2",
+    "motivo": "A conta anterior repetia o sistema; aqui mostra a ação."
+   },
+   {
+    "campo": "resolucao.quadro[4].nota",
+    "depois": "simplifique: 16 + 3 = 19 passam somando",
+    "motivo": "Nota original confusa."
+   },
+   {
+    "campo": "resolucao.quadro[8].linha",
+    "depois": "x = −7/13",
+    "motivo": "Fração empilhada."
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "13x = −7 → x = −7/13",
+    "motivo": "Fração empilhada."
+   }
+  ],
+  "didatica_alertas": [
+   "O campo conteudo do JSON está M12.3, mas a classificação indicada é M12.5; verificar. Além disso, o padrão pedido é fração empilhada; confirmar se o renderizador aceita \\frac neste formato."
+  ],
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "13x = −7 → x = −7/13",
+    "motivo": "O programa da fábrica proíbe LaTeX (\\frac) em qualquer campo. A fração deve ser escrita como numerador/denominador, e o site a desenha empilhada.",
+    "fonte": ""
+   },
+   {
+    "campo": "quadro[8].linha",
+    "depois": "x = −7/13",
+    "motivo": "Mesmo motivo: o \\frac em LaTeX não é permitido. O valor continua o mesmo.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "B"
+ }
+}
