@@ -295,6 +295,17 @@ def eventos_do_pdf(pdf, cfg, faixa=None):
                             ev.append({'p': pi, 'c': c, 'y': yi, 'tipo': 'suporte', 'faixa': nums if not mt else [],
                                        'num': int(mt.group(1)) if mt else None})
                             break
+        if id(pdf) in _OCR_SO_TEXTO and cfg.get('suporte'):
+            # camada de texto ilegível: a indicação "Texto para as questões X a Y" só aparece no OCR da página
+            for b in textpage(pg)[0].get_text('dict')['blocks']:
+                for l in b.get('lines', []):
+                    t = unicodedata.normalize('NFC', ''.join(s['text'] for s in l['spans'])).replace('\xa0', ' ').strip()
+                    x0, y0 = l['bbox'][0], l['bbox'][1]
+                    c = coluna_de(x0, cols)
+                    if c is None or y0 < topo_de(pg, cfg) or not any(re.search(rx, t) for rx in cfg['suporte']):
+                        continue
+                    ns = [int(x) for x in re.findall(r'\d+', re.split(r'(?i)quest', t, maxsplit=1)[-1])]
+                    ev.append({'p': pi, 'c': c, 'y': y0, 'tipo': 'suporte', 'faixa': [min(ns), max(ns)] if len(ns) >= 2 else ns, 'num': None})
     ev.sort(key=lambda e: (e['p'], e['c'], e['y']))
     # camada de texto duplicada: o mesmo evento duas vezes no mesmo lugar
     unicos, vistos = [], set()

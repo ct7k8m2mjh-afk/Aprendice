@@ -132,7 +132,7 @@ def uel(ano, total=60, duracao=4):
         'ancora': r'^(\d{1,2})$', 'ancora_dx': 30, 'sequencial': True,
         # "Leia o texto a seguir" vem DEPOIS do número e faz parte da questão: aqui não há texto compartilhado
         'corte': [r'(?i)redija um texto', r'(?i)^PROVA DE REDA', r'^R\s*A\s*S\s*C\s*U\s*N\s*H\s*O', r'^Boa [Ss]orte'],
-        'suporte': [r'(?i)(responda|para) [àa]s quest[õo]es'],
+        'suporte': [r'(?i)(responda|para) [àa]s quest[õo]es', r'(?i)^[àa]s quest[õo]es \d+ (a|e) \d+', r'(?i)^quest[õo]es \d+ (a|e) \d+\.?\s*$'],
         'gabarito': gab, 'area': lambda n: 'Conhecimentos gerais',
     }
 
@@ -258,7 +258,8 @@ def ufpr(ano, total=90, duracao=5, cads=None):
         'cadernos': cadernos, 'redigir': '►',
         'colunas': lambda r: [(20, r.width - 15)], 'topo': 30, 'base': 30,
         'ancora': r'^\*{0,2}\s?(\d{2})\s*-', 'ancora_dx': 30, 'sequencial': False,  # "*15 -" = anulada no próprio caderno
-        'secoes': UFPR_SECOES, 'corte': [r'^RESPOSTAS$', r'^COMPREENSÃO E PRODUÇÃO DE TEXTO$', r'^QUESTÃO DISCURSIVA$'] + [rf'^{l}$' for l in UFPR_LINGUAS if l != 'INGLÊS'], 'suporte': [r'(?i)texto (a seguir )?(é|e) referente [àa]s quest', r'(?i)^as quest[õo]es \d+ (a|e) \d+'],
+        'secoes': UFPR_SECOES, 'corte': [r'^RESPOSTAS$', r'^COMPREENSÃO E PRODUÇÃO DE TEXTO$', r'^QUESTÃO DISCURSIVA$'] + [rf'^{l}$' for l in UFPR_LINGUAS if l != 'INGLÊS'], 'suporte': [r'(?i)texto (a seguir )?(é|e) referente [àa]s quest', r'(?i)^as quest[õo]es \d+ (a|e) \d+',
+                    r'(?i)(é|e) referência para as? quest', r'(?i)\b(text|excerpt) refers? to quest'],
         'gabarito': gab, 'area': lambda n: 'Língua estrangeira' if n >= 83 else 'Conhecimentos gerais',
     }
 
@@ -390,7 +391,8 @@ for _a in (2020, 2021, 2022, 2023):
     PROVAS[f'upe-ssa3-{_a}']['rodape_ultimo'] = True   # gráficos com números no pé da página
     PROVAS[f'upe-ssa3-{_a}']['topo'] = 37   # título de seção (ex.: FILOSOFIA) colado no cabeçalho
     PROVAS[f'upe-ssa3-{_a}']['pular_secoes'] = ('Espanhol',)   # 25–34 repetem na opção espanhol: vale a do inglês
-    PROVAS[f'upe-ssa3-{_a}']['suporte'] = PROVAS[f'upe-ssa3-{_a}']['suporte'] + [r'(?i)servem? de base [àa]s? quest', r'(?i)^texts? \d+ \(quest']
+    PROVAS[f'upe-ssa3-{_a}']['suporte'] = PROVAS[f'upe-ssa3-{_a}']['suporte'] + [r'(?i)servem? de base [àa]s? quest', r'(?i)^texts? \d+ \(quest',
+        r'(?i)^texts? \d+ for quest', r'(?i)texto base para ser utilizado nas quest', r'(?i)^base [àa]s? quest', r'(?i)servem? de base [àa]s?\s*$']
 PROVAS['upe-ssa3-2023']['ancora_dx_pag'] = {('d1-caderno', 14): 240, ('d2-caderno', 22): 30}   # 10 ao lado de imagem; "45.." recuado
 PROVAS['upe-ssa3-2021']['ancora_dx_pag'] = {('d1-caderno', 24): 280}   # 34 (inglês) começa ao lado de uma imagem
 PROVAS['upe-ssa3-2022']['ancora_forcada'] = {('d1-caderno', 31): [(41, 54, 0)]}   # "41." desenhado sem camada de texto
@@ -609,7 +611,7 @@ def ufu(ano, duracao=4.5):
         'ancora': r'(?i)^quest[ãa]o\s+(\d{1,2})\b', 'ancora_dx': 320,
         'secoes': UFU_SECOES, 'pular_secoes': ('Espanhol', 'Francês'),
         'corte': [r'(?i)^PROPOSTA DE REDA', r'(?i)^RASCUNHO', r'^LÍNGUA ESTRANGEIRA$'],
-        'suporte': [r'(?i)(para|responder) [àa]s quest[õo]es', r'(?i)^texto para as quest'],
+        'suporte': [r'(?i)(para|responder) [àa]s quest[õo]es', r'(?i)^texto para as quest', r'(?i)texto abaixo refere-se [àa]s quest'],
         'gabarito': gab, 'area': lambda n: 'Conhecimentos gerais',
     }
 
@@ -693,7 +695,8 @@ def ita(ano, ocr=False, duracao=5):
         'ancora': r'^Quest\S{1,3}o\s*(\d{1,2})\s*[.,:]', 'ancora_dx': 45, 'sequencial': True,
         'corte': [r'(?i)^RASCUNHO', r'(?i)^(F.{0,3}SICA|MATEM.{1,4}TICA|QU.{1,4}MICA|PORTUGU.{1,4}S|INGL.{1,4}S)$'],
         'suporte': [r'(?i)(texto|textos|trecho) (a seguir |abaixo )?para (as|responder [àa]s) quest', r'(?i)para responder [àa]s quest',
-                    r'(?i)^as quest[õo]es \d+ (a|e) \d+'],
+                    r'(?i)^as quest[õo]es \d+ (a|e) \d+', r'(?i)^as quest[õo]es de \d+ a \d+ referem-se',
+                    r'(?i)leia o texto a seguir para responder'],
         'gabarito': gab, 'area': lambda n: areas.get(n, 'Conhecimentos gerais'),
     }
     cfg['total_de'] = lambda pasta: max(gab(pasta))

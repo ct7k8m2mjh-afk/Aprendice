@@ -280,6 +280,9 @@ def transcreve(pdf, segs, ancora, cortes=(), alternativas=5, ocr=False):
             continue
         if paras and not novo:
             prev_curta = (ant['bbox'][2] < x1c - larg * 0.18)
+            # item de lista ("II.", "3)", "IV –") começando linha depois de frase terminada: quebra a linha, como no caderno
+            if re.match(r'(?:\*\*|~~)*(?:[IVX]{1,4}|\d{1,2})\s?[\.\)–-](?:\*\*|~~)*(?:\s|$)(?!\s*ed\b)', txt) and re.search(r'\w{2}[.;:?!”"\)](?:\*\*|~~)*$', paras[-1]['t']):
+                prev_curta = True
             ultimo = paras[-1]
             if ultimo['t'].endswith('-') and not prev_curta and re.match(r'[a-zà-ú]', txt):
                 ultimo['t'] = ultimo['t'][:-1] + txt
