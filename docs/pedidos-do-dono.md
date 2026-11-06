@@ -60,3 +60,10 @@ Imagem enviada nunca é "por enviar": tem uso, e o uso fica registrado.
 ## Decisão de 06/11/2026 (tarde) — imagens na revisão em slides
 - Na revisão em slides está autorizado o uso de imagens e referências que ajudem a entender o conteúdo (obras, fotos, mapas, gravuras), decisão do dono (princípio 10). A pintura "Tiradentes esquartejado" (H03.9) está liberada.
 - Continua valendo: registrar de onde veio cada imagem (página, autor, licença ou acervo) e mostrar o crédito no slide; preferir licença livre quando houver versão equivalente.
+
+## Pedido de 06/11/2026 (17h30) — capas, ícones, aba principal e Treino geral misturado (comando 32)
+- As capas e os ícones de todas as matérias estão prontos no Google Drive (pasta APRENDICE → ICONES, uma subpasta por matéria, e CAPAS): integrar ao site.
+- A referência da aba principal está pronta (APRENDICE → ABA PRINCIPAL, duas imagens: parte de cima e parte de baixo): fazer o design da aba principal seguindo essa referência.
+- Na aba principal haverá a opção **Treino geral**: questões aleatórias de qualquer matéria, sem sequência, sem matéria específica, tudo junto e misturado aleatoriamente.
+- Fazer em paralelo às outras tarefas.
+
