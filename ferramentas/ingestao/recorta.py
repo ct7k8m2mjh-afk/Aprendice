@@ -44,9 +44,12 @@ def textpage(pagina):
     return docs[pagina.number]
 
 
+_OCR_SO_TEXTO = set()   # id(documento): âncoras e colunas pela camada de texto do PDF; só o texto da questão por OCR
+
+
 def linhas(pagina):
     out = []
-    par = textpage(pagina)
+    par = None if id(pagina.parent) in _OCR_SO_TEXTO else textpage(pagina)
     blocos = par[0].get_text('dict', textpage=par[1])['blocks'] if par else pagina.get_text('dict')['blocks']
     for b in blocos:
         for l in b.get('lines', []):
@@ -65,7 +68,10 @@ def colunas_da_pagina(pg, cfg):
     if k in _cache_cols:
         return _cache_cols[k]
     c = cfg['colunas']
-    if c == 'auto':
+    if pg.number + 1 in cfg.get('uma_coluna', ()):   # página de uma questão só, em largura total
+        m = cfg.get('margem', 15)
+        c = [(m, pg.rect.width - m)]
+    elif c == 'auto':
         w = pg.rect.width
         meio = w / 2
         ls = [l for l in linhas(pg) if cfg['topo'] <= l['bbox'][1] and l['bbox'][3] <= pg.rect.height - cfg['base'] and len(l['t']) > 12]
@@ -84,8 +90,25 @@ def colunas_da_pagina(pg, cfg):
         c = [(m, w / 2 - 2), (w / 2 - 2, w - m)] if dir_ and esq else [(m, w - m)]
     elif callable(c):
         c = c(pg.rect)
+    if larga_de(pg, cfg) is not None:
+        m = cfg.get('margem', 15)
+        c = list(c) + [(m, pg.rect.width - m)]   # faixa de largura total no pé da página (última "coluna")
     _cache_cols[k] = c
     return c
+
+
+def larga_de(pg, cfg):
+    """Altura em que a página passa a ter uma faixa de largura total (questão que ocupa as duas colunas no pé)."""
+    return cfg.get('larga', {}).get(pg.number + 1)
+
+
+def faixa_vertical(pg, cfg, c, cols):
+    """(topo, base) da coluna c: com faixa larga, as colunas normais param nela e a faixa vai até o pé."""
+    y_l = larga_de(pg, cfg)
+    topo, base = topo_de(pg, cfg), limite_baixo(pg, cfg)
+    if y_l is None:
+        return topo, base
+    return (y_l, base) if c == len(cols) - 1 else (topo, y_l - 2)
 
 
 def topo_de(pg, cfg):
@@ -155,6 +178,8 @@ def eventos_do_pdf(pdf, cfg, faixa=None):
             c = coluna_de(x0, cols)
             if c is None:
                 continue
+            if larga_de(pg, cfg) is not None and y0 >= larga_de(pg, cfg) - 1:
+                c = len(cols) - 1
             topo = topo_de(pg, cfg)
             if y0 < topo:
                 # acima da margem só valem cortes (ex.: título da redação colado no topo)
@@ -223,7 +248,7 @@ def segmentos(pdf, cfg, ev, i, faixa_pag=None):
     while True:
         pg = pdf[p]
         cols = colunas_da_pagina(pg, cfg)
-        bx = limite_baixo(pg, cfg)
+        bx = faixa_vertical(pg, cfg, c, cols)[1]
         if prox and prox['p'] == p and prox['c'] == c:
             segs.append((p, pymupdf.Rect(cols[c][0] - 4, y, cols[c][1] + 4, prox['y'] - 2)))
             return segs
@@ -233,7 +258,7 @@ def segmentos(pdf, cfg, ev, i, faixa_pag=None):
             c, p = 0, p + 1
             if p > ultima:
                 return segs
-        y = topo_de(pdf[p], cfg) if p < len(pdf) else cfg['topo']
+        y = faixa_vertical(pdf[p], cfg, c, colunas_da_pagina(pdf[p], cfg))[0] if p < len(pdf) else cfg['topo']
         if not prox and p != e['p']:
             return segs  # última questão do caderno: não passa da própria página
 
@@ -449,6 +474,10 @@ def processa(pid, amostra=False, so_texto=False):
         pdf = pymupdf.open(arq)
         _cache_cols.clear()  # chave usa id() do documento: não pode sobreviver de um caderno para outro
         _OCR.clear()
+        _OCR_SO_TEXTO.clear()
+        if cad.get('ocr_so_texto'):   # camada de texto sem mapa de caracteres: números legíveis, palavras não
+            _OCR[id(pdf)] = {}
+            _OCR_SO_TEXTO.add(id(pdf))
         sem_texto = sum(1 for pg in pdf if len(pg.get_text().strip()) < 50)
         if cad.get('ocr') or (cad.get('ocr_se_vazio') and sem_texto > len(pdf) / 2):
             _OCR[id(pdf)] = {}   # caderno sem camada de texto: localiza as questões por OCR (o print segue sendo a página)

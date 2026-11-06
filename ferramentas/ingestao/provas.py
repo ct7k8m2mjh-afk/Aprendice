@@ -82,6 +82,41 @@ def fuvest(ano, total, duracao=5):
 PROVAS.update({'fuvest-2027': fuvest(2027, 80), 'fuvest-2025': fuvest(2025, 90)})
 
 
+def fuvest_v(ano, total=90, versao='V'):
+    """Fuvest 2020–2024 e 2026: caderno da versão V (2026: V1), questões numeradas "04" (2026: "{04}").
+    Gabarito: a versão V é a 1ª coluna do PDF. Questão com duas respostas aceitas ("48 D E") fica fora,
+    como anulada: o simulado só corrige uma letra."""
+    cfg = fuvest(ano, total)
+
+    def gab(pasta):
+        g = {}
+        for linha in texto_pdf(pasta / 'fase1-gabarito.pdf').splitlines():
+            m = re.match(r'^\s*(\d{1,2})\s+([A-E](?: [A-E])?|\*|X|ANULADA|Anulada)\s+(\d{1,2})\s+([A-E](?: [A-E])?|\*|X|ANULADA|Anulada)(?=\s|$)', linha)
+            if not m:
+                continue
+            for n, v in ((m.group(1), m.group(2)), (m.group(3), m.group(4))):
+                g.setdefault(int(n), v if len(v) == 1 and v in 'ABCDE' else 'X')
+        return g
+
+    cfg.update({
+        'nota': f'Prova de Conhecimentos Gerais, versão {versao}. Gabarito oficial da Fuvest (coluna da versão {versao}); '
+                'questão anulada ou com duas respostas aceitas fica fora do simulado.',
+        'cadernos': [{'arquivo': 'fase1-caderno', 'paginas': (2, 999)}],
+        'ancora': r'^\{(\d{1,2})\}$' if ano >= 2025 else r'^(\d{2})$', 'ancora_dx': 24, 'sequencial': True,
+        'suporte': [r'(?i)^texto para as quest', r'(?i)responder [àa]s quest'],
+        'gabarito': gab,
+    })
+    return cfg
+
+
+PROVAS.update({f'fuvest-{a}': fuvest_v(a) for a in (2020, 2021, 2022, 2023, 2024)})
+PROVAS['fuvest-2021']['larga'] = {26: 574}   # questão 90 ocupa as duas colunas no pé da página 26
+# 2021: a camada de texto do caderno não tem mapa de caracteres (sai lixo): questões localizadas por OCR (o print é a página)
+PROVAS['fuvest-2021']['cadernos'] = [{'arquivo': 'fase1-caderno', 'paginas': (2, 999), 'ocr_so_texto': True}]
+PROVAS['fuvest-2021']['uma_coluna'] = (6,)   # questão 18 ocupa a página inteira
+PROVAS['fuvest-2026'] = fuvest_v(2026, versao='V1')
+
+
 # ------------------------------------------------------------------------------------------------ UEL
 def uel(ano, total=60, duracao=4):
     def gab(pasta):
