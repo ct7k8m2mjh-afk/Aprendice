@@ -2,16 +2,16 @@
 name: APRENDICE
 description: Site de estudo para vestibulares pelas questões reais das provas, em folhas brancas sobre papel cinza, uma cor por matéria.
 colors:
-  papel: "#F7F4EF"
+  papel: "#F1F1EE"
   folha: "#FFFFFF"
-  folha2: "#F9F6F2"
-  malha: "#EFEBE5"
-  linha: "#EAE5DD"
-  borda2: "#D8D3CA"
+  folha2: "#F4F4F1"
+  malha: "#EEEEEA"
+  linha: "#E5E5E0"
+  borda2: "#D6D6D0"
   campo-borda: "#878A93"
   tinta: "#17181C"
-  lapis: "#565962"
-  fraco: "#63666F"
+  lapis: "#585B64"
+  fraco: "#62656F"
   neutro-c: "#2B2D33"
   certo: "#0A7550"
   certo-bg: "#E2F6EE"
@@ -43,7 +43,8 @@ colors:
   ing-c: "#D0312D"
   ing-t: "#B0261F"
   verde-marca: "#1A8038"
-  lado-fundo: "#FBF9F6"
+  lado: "#FFFFFF"
+  lado-escuro: "#131418"
   papel-escuro: "#0C0D10"
   folha-escuro: "#16171B"
   folha2-escuro: "#1D1F24"
@@ -260,14 +261,14 @@ O **protótipo `app-atual/`** (o arquivo de estudos do dono) é o sistema de des
 
 A tela é uma mesa cinza-clara onde ficam folhas brancas: cada bloco de conteúdo é uma folha com borda fina de 1px, cantos suaves e, quando precisa se destacar, uma sombra difusa quase imperceptível. Sobre essa mesa neutra, cada matéria tem a sua cor, e essa cor só aparece no que pertence à matéria (o botão de continuar, a barra de progresso, o título da página da matéria, o anel de acerto, a lavagem suave do cartão principal). Fora de uma matéria, o "acento" é um grafite neutro (`neutro-c`), então a interface geral não tem cor de marca: a cor é informação.
 
-O tom é calmo, denso o bastante para quem estuda todos os dias, e concreto. Uma única família tipográfica (Familjen Grotesk) carrega tudo, de título a etiqueta, com hierarquia feita por tamanho e peso (400 e 600), nunca por caixa alta ou espaçamento largo. A escrita à mão (Caveat) aparece em um único lugar: a conta resolvida, escrita sobre um retalho de papel de caderno dentro da resolução. As ilustrações são objetos 3D realistas (célula, átomo, sólidos, livros com pena) apoiados em ladrilhos lavados na cor da matéria; os ícones de interface são traços Lucide finos (1.75) que nunca competem com elas.
+O tom é calmo, denso o bastante para quem estuda todos os dias, e concreto. Familjen Grotesk carrega a interface, de título a etiqueta, com hierarquia feita por tamanho e peso (400, 600 e 700); a caixa alta espaçada aparece só nos rótulos de área (13px, 0.08em) e no "Sua resposta" do painel da questão, como no protótipo. O nome da matéria, no topo de toda tela dela, é escrito em Dancing Script 700 de 44px na cor da matéria. A escrita à mão (Caveat) aparece em um único lugar: a conta resolvida, escrita sobre um retalho de papel de caderno dentro da resolução. As ilustrações são objetos 3D realistas (célula, átomo, sólidos, livros com pena) apoiados em ladrilhos lavados na cor da matéria; os ícones de interface são traços Lucide finos (1.75) que nunca competem com elas.
 
 Tema claro é o padrão; o escuro troca papel e folha por grafites quase pretos e clareia as cores das matérias para manter o contraste, sem mudar a estrutura.
 
 **Key Characteristics:**
 - Papel cinza neutro, folhas brancas com borda de 1px, sombras difusas e neutras.
 - Uma cor por matéria, usada só no que é da matéria; grafite neutro no resto.
-- Familjen Grotesk em tudo; Caveat só na conta à mão da resolução.
+- Familjen Grotesk em tudo; Dancing Script só no nome da matéria (44px, na cor dela); Caveat só na conta à mão.
 - Ilustrações 3D realistas para matérias, módulos e conteúdos; ícones de interface em traço Lucide 1.75.
 - Verde, vermelho e âmbar reservados para certo, errado e aviso.
 - Sem emoji, sem rótulos-chamada acima de títulos, sem brilho colorido.
@@ -306,15 +307,17 @@ Uma base acromática levemente quente, três cores semânticas e um círculo de 
 
 **Display Font:** Familjen Grotesk (com system-ui, -apple-system, Segoe UI, Roboto)
 **Body Font:** Familjen Grotesk
+**Título da matéria:** Dancing Script 700 (hospedada em `app/src/assets/fontes`, licença SIL OFL 1.1 em `OFL-dancing-script.txt`), só no nome da matéria
 **Mão:** Caveat (com Segoe Print, cursive), só na conta à mão
 
 **Character:** Uma grotesca de desenho firme e um pouco condensado, que dá aos títulos personalidade sem perder a leitura em 13px. A letra de mão é um traço do caderno do aluno, não uma fonte decorativa.
 
 ### Hierarchy
-- **Display** (600, clamp 28 a 38px, 1.15, -0.02em): título de página e saudação do início.
-- **Display da matéria** (600, clamp 32 a 44px): título da página de uma matéria, escrito em `--t`.
-- **Headline** (600, clamp 24 a 32px, -0.015em): título do cartão principal ("continue de onde parou", treino geral).
-- **Title** (600, 22px): título de seção; 19px dentro de uma folha; 18 a 21px em janelas, resolução e cartões de teoria.
+- **Saudação** (600, 34px, -0.4px; 24px até 640px): "Olá, ..." do início.
+- **Título da matéria** (Dancing Script 700, 44px/1.05, em `--t`, igual em todas as larguras), com a linha de apoio em 15px `lapis` 4px abaixo.
+- **Display** (600, 32px/1.15, -0.4px): título de página, de tema e de conteúdo (com o ícone 3D de 44px a 14px do texto); linha de apoio em 17px `lapis`.
+- **Capa** (700, 32px): título da capa do treino geral; **Headline** (600, 30px/1.2): título do destaque do início.
+- **Title** (600, 22px): título de seção do início ("Minhas matérias"); 19px nos títulos de folha e seção; 13px 600 caixa alta 0.08em em `--t` nos rótulos de área.
 - **Body** (400, 17px, 1.55): texto corrido; resumo de teoria a 17.5px/1.6 com máximo de 72ch.
 - **Item** (600, 15 a 17px, 1.25 a 1.35): título de linha, cartão, degrau e atalho, com metadado em 13.5 a 14px `fraco` logo abaixo.
 - **Label** (600, 12.5 a 14.5px, sem caixa alta): etiquetas, grupos da navegação, legendas, números de passo.
@@ -323,17 +326,25 @@ Uma base acromática levemente quente, três cores semânticas e um círculo de 
 Números de progresso, contagem e tempo usam algarismos tabulares (`.num`).
 
 ### Named Rules
-**A Regra de Uma Voz.** Familjen Grotesk em tudo, inclusive botões, teclas (`kbd`) e números grandes. Hierarquia por tamanho e peso; nada de caixa alta espaçada.
+**A Regra de Uma Voz.** Familjen Grotesk em tudo, inclusive botões, teclas (`kbd`) e números grandes. Hierarquia por tamanho e peso. Exceções do sistema: o nome da matéria em Dancing Script e a caixa alta espaçada dos rótulos de área.
 
 **A Regra da Conta à Mão.** Caveat só escreve a conta resolvida. Não vai em títulos, botões, destaques nem listas.
 
 ## Layout
 
-No computador, uma barra lateral fixa de 256px (recolhível para 72px) em `papel`, separada por uma linha de 1px, e uma área principal com barra superior translúcida de 64px (papel a 88% com desfoque; a linha inferior só aparece depois de rolar). O conteúdo fica centralizado em até 1240px (920px nas telas estreitas) com 28px de margem lateral. A tela da questão chega a 1200px e se divide em print à esquerda e painel de resposta fixo de 340px à direita.
+Valores aplicados em `app/src/estilo/base.css` (variáveis `--lado`, `--topo`, `--pag-*`, `--r-*`) e `app.css`, medidos no protótipo (`app-atual/design/shell.html` e `materia.css`) com o navegador.
 
-Abaixo de 960px a barra lateral some, a barra superior cai para 58px com o logo manuscrito, e surge uma barra de abas inferior fixa com cinco destinos (ícone dentro de uma pílula lavada na cor quando ativo), translúcida sobre a folha. Abaixo de 1000px o painel de resposta da questão vira uma folha presa ao rodapé, com cantos superiores de 16px. O modo foco (questão, simulado, sessão de flashcards) esconde lateral e abas.
-
-Ritmo de espaçamento em passos de 4: 4, 8, 12, 16 nos espaços internos e grades (16px entre folhas), 20 a 22px de preenchimento de folha, 28px de margem de página, 36px entre seções. Grades de 2, 3 e 4 colunas descem para 2 em 1100px e para 1 em 640px. Faixas horizontais (temas da matéria) rolam com encaixe e máscara de esmaecimento nas bordas.
+- **Menu lateral** (acima de 1180px): 244px, fundo `lado` (branco no claro, `#131418` no escuro), borda de 1px e sombra lateral leve; padding 18/12/12px. Logo de 150 x 48px; botão de recolher 34px (canto 9px). Itens de 38px: padding 9/12px, canto 9px, ícone 20px a 12px do texto, 15.5px 500 em `lapis`; ativo em 600 `tinta` sobre `tinta` a 7% (na matéria, a cor dela a 15%). Ícones das matérias na cor da matéria. Rótulo de grupo 14px 500 `fraco` com ponto de 6px, padding 18/12/6px. Rodapé: meta da semana (anel de 44px, padding 12/12/10px, linha em cima) e Configurações.
+- **Trilho** (641 a 1180px, e o menu recolhido no computador): 64px, padding 14/8px, só ícones, itens de 40px.
+- **Barra do topo**: 61px com a linha de 1px embaixo (57px até 640px), padding 0 28px (0 12px no celular), 14px entre peças. Busca à esquerda: até 520px (mín. 200px), 40px, canto 10px, ícone 17px, `Ctrl K` só acima de 1180px; ocupa o espaço livre até 900px. Tema Dia/Noite segmentado (padding 3px, canto 10px, botões 6/11px com canto 7px, 14px 500; rótulos somem até 900px). Perfil: avatar de 32px em `tinta` e o nome em 15px 500 (nome some até 900px; o perfil todo some até 640px, onde vai para as abas).
+- **Abas do celular** (até 640px): 68px, 5 destinos; botão de 56px de altura com a pílula de 56 x 32px (canto 16px) e ícone de 22px; rótulo 12px 500; ativa com a pílula em `tinta` a 9%.
+- **Página**: até 1440px, padding 22/32/48px (14/16/32px até 700px; no celular soma 68px das abas embaixo). Conteúdo estreito (conteúdo de uma escada, configurações) até 880px, alinhado à esquerda dentro da página da matéria.
+- **Início**: até 1560px, padding 26/32/40px (20px até 900px, 16px até 640px); grade de 12 colunas com 28px (24px de linha no celular): destaque em 8 colunas + evolução em 4; "Minhas matérias" (22px) e cartões em 3 colunas (2 até 1250px); desempenho em 7 + atividade e frase em 5. Até 1250px tudo em uma coluna.
+- **Matéria**: cabeçalho (nome em Dancing Script 44px + apoio 15px), faixa de temas, capa do treino geral (2/3) com os atalhos (1/3, uma coluna até 1250px), e a folha das áreas.
+- **Faixa de temas**: cartões de 196 x 204px com 14px entre eles (150 x 176px até 640px; 150px e ladrilho de 84px dentro de um tema ou conteúdo), padding 8/8/18px, canto 16px, ladrilho lavado de 128px (canto 11px) com o objeto 3D de 112px, nome 14.5px 600 em até 2 linhas, barra de 4px no pé. Rola com encaixe, máscara de 64px na borda que tem mais e setas de 40px.
+- **Folha das áreas**: padding 8/28/18px, canto 16px (14px até 700px); cada área com rótulo 13px caixa alta em `--t` e o resumo em 14px; linhas em colunas de no mínimo 340px (uma coluna até 900px), cada linha 72px de ícone + nome 17.5px 600 + barra de 6px + apoio 14px + porcentagem 16px 600 em `--t` (56px de ícone e 16px de nome até 700px).
+- **Questão**: barra de 52px presa no topo, de borda a borda, com o cronômetro e os botões de 32px; cartão do print (1.8fr) e painel de resposta (mín. 340px) com 20px entre eles, canto 18px. Alternativas de 56px (50px até 900px), canto 12px; certeza em controle segmentado de 36px; confirmar com 54px, 18px 700, canto 13px. Até 900px uma coluna e a folha de resposta presa no rodapé.
+- **Breakpoints**: 1250 (grades do início e da matéria), 1180 (menu vira trilho), 900 (questão em uma coluna, topo compacto), 700 (margens de 16px), 640 (abas do celular).
 
 ## Elevation & Depth
 
@@ -358,10 +369,10 @@ Cantos suaves e consistentes: 8px em etiquetas e retalhos de caderno, 10px em it
 
 ### Buttons
 Firmes e sem cerimônia: um bloco de cor sólida com texto em 600.
-- **Shape:** cantos de 12px (10px no pequeno), altura de 46px (38px pequeno, 54px grande).
+- **Shape:** cantos de 11px (10px no pequeno), altura de 46px e 16px 600 (38px pequeno; grande de 56px, 18px 700, canto 13px; o da capa do treino geral com 66px, 21px 700, canto 16px e no mínimo 380px, largura total até 899px).
 - **Primary:** fundo `--c`, texto `--ink`, sombra mínima de 1px. Dentro de uma matéria é a cor da matéria; fora, grafite.
 - **Hover / Focus:** brilho +5% no hover, desce 1px ao pressionar; foco com contorno de 2px em `--t`, afastado 2px. Desabilitado a 45% de opacidade.
-- **Secundário:** folha com borda `borda2` e texto `tinta`; hover em `folha2`.
+- **Secundário:** sem borda, fundo `tinta` a 7% e texto `tinta`; hover a 11%.
 - **Fantasma:** transparente, texto `lapis`; hover em `folha2`.
 - **Perigo:** fundo `errado`, texto branco.
 - **Ícone:** quadrado de 40px, borda de 1px, cantos de 11px; marcado fica com borda `--c` e fundo `--sv`.
@@ -386,12 +397,12 @@ Retângulo de 8px com texto de 13px 600: neutra em `malha`/`lapis`, da matéria 
 - **Error / Disabled:** sem estado próprio de campo; erros aparecem em blocos `errado-bg`.
 
 ### Navigation
-- **Lateral:** itens de 15.5px 500 em `lapis`, cantos de 10px; hover em `folha2`; ativo vira uma folha branca com `--sombra`. Matérias aparecem com um ponto de 10px na cor; matérias em preparação têm o ponto vazado e "em breve" em `fraco`. Grupo "Matérias" com rótulo de 13px 600 `fraco`.
-- **Superior:** busca em forma de campo largo (até 460px) com atalho de teclado, seletor de tema segmentado (Dia/Noite) em `malha`, avatar circular em `tinta`.
-- **Celular:** abas inferiores com ícone de 22px e rótulo de 12px 600; a aba ativa ganha uma pílula `--sv` atrás do ícone.
+- **Lateral:** itens de 38px, 15.5px 500 em `lapis`, cantos de 9px; hover em `tinta` a 4%; ativo em 600 sobre `tinta` a 7% (matéria: a cor dela a 15%). Cada matéria com o seu ícone de traço na cor dela; "Outras matérias" abre a lista das demais. Grupo "Estudo" com rótulo de 14px 500 `fraco` e ponto de 6px. Ver medidas em Layout.
+- **Superior:** busca de até 520px x 40px (canto 10px) à esquerda, seletor Dia/Noite segmentado em `tinta` a 6%, avatar de 32px em `tinta`.
+- **Celular:** abas inferiores com pílula de 56 x 32px, ícone de 22px e rótulo de 12px 500; a ativa com a pílula em `tinta` a 9%.
 
 ### Alternativas da questão
-Botões quadrados de 56px com a letra em 19px 600, borda de 1.5px `campo-borda`, cantos de 14px; selecionada recebe borda `--t` dupla e fundo `--sv`; depois da correção, certa e errada assumem as cores semânticas; riscada fica a 60% com a letra tachada. Com texto, viram linhas empilhadas.
+No painel de resposta, uma linha de cinco botões de 56px de altura (50px até 900px) com a letra em 20px 600, fundo `folha2`, borda de 1.5px `linha`, cantos de 12px; selecionada recebe borda `--c` e fundo `--sv`; depois da correção, certa e errada assumem as cores semânticas; riscada fica a 60% com a letra tachada. Com texto, viram linhas empilhadas.
 
 ### Resolução em passos
 Linha do tempo vertical: número do passo em círculo de 34px `--sv`/`--t`, fio de 2px `linha` ligando os passos, título em 600, a conta escrita à mão (Caveat 23px, tinta azul de caneta sobre retalho `cad-papel` com borda `cad-borda`) e o "por que" em `lapis`.
@@ -419,5 +430,5 @@ Objetos realistas renderizados, um por matéria, módulo e conteúdo, sobre ladr
 - **Don't** colocar rótulos-chamada (kicker, eyebrow) em caixa alta ou colorida acima de títulos.
 - **Don't** usar sombra ou brilho colorido; sombras são neutras.
 - **Don't** usar emoji nem ícones de glifo; nem ícones planos ou de traço no lugar da ilustração 3D de um conteúdo.
-- **Don't** usar Caveat fora da conta à mão da resolução, nem uma segunda família na interface.
+- **Don't** usar Caveat fora da conta à mão da resolução, nem Dancing Script fora do nome da matéria; nenhuma outra família na interface.
 - **Don't** escrever texto em amarelo de Português sobre folha clara; use `por-t`.
