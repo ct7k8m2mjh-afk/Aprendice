@@ -173,7 +173,7 @@ def faixas_da_pagina(pg, cfg):
     largas += [(d['rect'].y0, d['rect'].y1) for d in pg.get_drawings()
                if d['rect'].height < 3 and d['rect'].x0 < meio - 60 and d['rect'].x1 > meio + 60 and topo <= d['rect'].y0 <= base]
     largas.sort()
-    forte_ = lambda L: re.match(cfg['ancora'], L['t']) or any(re.search(rx, L['t']) for rx in cfg.get('suporte', []))
+    forte_ = lambda L: re.match(cfg['ancora'], L['t']) or any(re.search(rx, L['t']) for rx in cfg.get('suporte', []) + cfg.get('corte', []))
     # linha da metade direita; âncora/instrução recuada a partir de 30% da largura (coluna esquerda estreita) também
     direita = sorted((L for L in ls if (L['bbox'][0] > meio - 12 or (L['bbox'][0] > W * 0.3 and L['bbox'][2] < meio + 25 and forte_(L)))
                       and not dentro_fig(L)), key=lambda L: L['bbox'][1])
@@ -203,8 +203,11 @@ def faixas_da_pagina(pg, cfg):
             continue
         a = max([b for a_, b in largas if b <= g['y0'] + 1] + [topo])
         # âncora na margem esquerda abaixo do grupo ("Questão 47" logo acima do fio) também fecha a faixa
+        # (só quando a coluna esquerda da faixa não tem questão própria: ao lado de uma figura)
+        esq_ancora = any(a - 1 <= L['bbox'][1] <= g['y0'] + 5 and L['bbox'][0] < meio - 12 and re.match(cfg['ancora'], L['t']) for L in ls)
         b = min([a_ for a_, b_ in largas if a_ >= g['y1'] - 1] + [base]
-                + [L['bbox'][1] - 1 for L in ls if L['bbox'][1] >= g['y1'] - 1 and L['bbox'][0] < meio - 12 and forte_(L)])
+                + ([] if esq_ancora else
+                   [L['bbox'][1] - 1 for L in ls if L['bbox'][1] >= g['y1'] - 6 and L['bbox'][0] < meio - 12 and forte_(L)]))
         xs = min(L['bbox'][0] for L in g['ls'])
         div = min(cfg.get('divisa', meio - 2), xs - 8)
         if faixas and a <= faixas[-1][1]:
@@ -289,6 +292,10 @@ def topo_de(pg, cfg):
 def limite_baixo(pg, cfg):
     """Altura máxima útil da página: acima do número de página do rodapé, quando a prova tem um."""
     lim = pg.rect.height - cfg['base']
+    if cfg.get('rodape_rx'):   # rodapé em altura que muda por ano: a página acaba logo acima dele
+        for l in linhas(pg):
+            if l['bbox'][1] > pg.rect.height * 0.88 and re.search(cfg['rodape_rx'], l['t']):
+                lim = min(lim, l['bbox'][1] - 2)
     if cfg.get('rodape_num'):
         # rodape_ultimo: só vale o número que é a última linha da página (números de gráfico não contam)
         ultimo = max((l['bbox'][1] for l in linhas(pg)), default=0) if cfg.get('rodape_ultimo') else 0

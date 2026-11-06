@@ -1,5 +1,5 @@
 import { Link, useParams } from 'react-router-dom';
-import { useEffect, useRef, useState, type ReactNode } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState, type ReactNode } from 'react';
 import { useMateria, type MateriaCarregada } from '../dados/conteudo';
 import { MATERIAS, materia as infoMateria } from '../dados/materias';
 import { useEstado, useMateriaEstado } from '../estado/loja';
@@ -52,7 +52,28 @@ export function FaixaTemas({ mc, s, atual, compacta = false }: { mc: MateriaCarr
   const rolo = useRef<HTMLDivElement>(null);
   const [bordas, setBordas] = useState({ e: false, d: false });
   const mede = () => { const r = rolo.current; if (r) setBordas({ e: r.scrollLeft > 4, d: r.scrollLeft + r.clientWidth < r.scrollWidth - 4 }); };
-  useEffect(() => { mede(); addEventListener('resize', mede); return () => removeEventListener('resize', mede); }, [mc.id]);
+  // Todos os cartões têm a mesma altura (ícone + duas linhas de nome), em todas as matérias. O nome nunca é cortado:
+  // o cartão cujo nome pediria 3 ou mais linhas fica mais largo, de 10 em 10 px, até caber em duas.
+  const ajusta = () => {
+    const r = rolo.current; if (!r) return;
+    const itens = [...r.querySelectorAll<HTMLElement>('.ft-item')];
+    for (const it of itens) it.style.removeProperty('--ft-w');
+    for (const it of itens) {
+      const n = it.querySelector<HTMLElement>('.ft-nome'); if (!n) continue;
+      const lh = parseFloat(getComputedStyle(n).lineHeight) || 20;
+      const linhas = () => { const rg = document.createRange(); rg.selectNodeContents(n); return Math.round(rg.getBoundingClientRect().height / lh); };
+      const base = it.getBoundingClientRect().width;
+      for (let w = base; linhas() > 2 && w < base * 2; ) { w += 10; it.style.setProperty('--ft-w', `${w}px`); }
+    }
+    mede();
+  };
+  useLayoutEffect(() => {
+    ajusta();
+    let vivo = true;
+    document.fonts?.ready.then(() => { if (vivo) ajusta(); });
+    addEventListener('resize', ajusta);
+    return () => { vivo = false; removeEventListener('resize', ajusta); };
+  }, [mc.id, compacta]);
   useEffect(() => {
     const el = rolo.current?.querySelector<HTMLElement>('.ft-item.atual');
     if (el && rolo.current) rolo.current.scrollLeft = el.offsetLeft - rolo.current.clientWidth / 2 + el.clientWidth / 2;

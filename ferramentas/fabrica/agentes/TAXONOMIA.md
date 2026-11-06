@@ -2,6 +2,8 @@
 
 Use estes ids exatamente. Se nenhum conteúdo servir, use só o tema.
 
+fis, geo, his, fs e ing ganharam conteúdos em 06/11/2026. Onde o tema abriga assuntos vizinhos: física moderna (relatividade, fóton, radioatividade) fica em F01; estática em F03; fontes de energia e usinas em F04; gases e termodinâmica em F08; eletrostática em F11; MHS em F10. Em História, Renascimento, Reformas, absolutismo e expansão marítima ficam em H02; América pré-colombiana e colonial em H03; imperialismo e Revolução Russa em H07; descolonização e mundo atual em H08. Em Filosofia, helenismo e filosofia medieval ficam em L02 e Nietzsche em L08; em Sociologia, arte e patrimônio ficam em S01. Em Inglês, gêneros textuais ficam em I01 e coesão (referência, conectivos) em I03.
+
 ## bio
 - B01 Citologia: B01.1 membrana plasmática e transporte passivo, B01.2 transporte ativo e vesicular, B01.3 envoltórios e comparação celular, B01.4 sistema de endomembranas, B01.5 mitocôndria, cloroplasto e endossimbiose, B01.6 núcleo, cromatina, citoesqueleto, cílios e flagelos
 - B02 Bioquímica celular: B02.1 água e sais minerais, B02.2 carboidratos e lipídios, B02.3 proteínas: estrutura e desnaturação, B02.4 enzimas: sítio ativo, especificidade e fatores da atividade, B02.5 ácidos nucleicos, ATP e vitaminas
@@ -60,59 +62,59 @@ Use estes ids exatamente. Se nenhum conteúdo servir, use só o tema.
 - P11 Literatura: do Barroco ao Simbolismo: P11.1 Barroco e Arcadismo, P11.2 Romantismo: poesia das três gerações e prosa, P11.3 Realismo e Naturalismo, com Machado de Assis, P11.4 Parnasianismo e Simbolismo
 - P12 Literatura: Pré-Modernismo em diante: P12.1 Pré-Modernismo: Euclides da Cunha, Lima Barreto, Augusto dos Anjos, P12.2 Modernismo de 1922, vanguardas europeias e manifestos, P12.3 Modernismo de 30: romance do Nordeste, Drummond e Bandeira, P12.4 Geração de 45 e prosa de ruptura: Guimarães Rosa, Clarice Lispector, João Cabral, P12.5 literatura contemporânea e autores africanos de língua portuguesa
 ## fis
-- F01 Fundamentos e grandezas
-- F02 Cinemática
-- F03 Dinâmica e forças
-- F04 Trabalho, energia e potência
-- F05 Impulso e quantidade de movimento
-- F06 Gravitação e astronomia
-- F07 Hidrostática
-- F08 Termologia
-- F09 Óptica
-- F10 Ondulatória e acústica
-- F11 Eletricidade e circuitos
-- F12 Magnetismo e eletromagnetismo
+- F01 Fundamentos e grandezas: F01.1 grandezas, unidades do SI e conversões, F01.2 notação científica, ordem de grandeza e algarismos significativos, F01.3 vetores e análise dimensional, F01.4 relatividade restrita, F01.5 fóton, efeito fotoelétrico e modelo de Bohr, F01.6 radioatividade, meia-vida e física nuclear
+- F02 Cinemática: F02.1 velocidade média e movimento uniforme, F02.2 movimento uniformemente variado e equação de Torricelli, F02.3 gráficos s × t, v × t e a × t, F02.4 queda livre e lançamento vertical, F02.5 lançamento horizontal e oblíquo, F02.6 movimento circular, período, frequência, correias e engrenagens, F02.7 composição de movimentos e velocidade relativa
+- F03 Dinâmica e forças: F03.1 leis de Newton e diagrama de forças, F03.2 peso, normal, tração, blocos e polias, F03.3 atrito e plano inclinado, F03.4 força elástica e lei de Hooke, F03.5 força centrípeta e curvas, F03.6 estática: equilíbrio, torque e alavancas
+- F04 Trabalho, energia e potência: F04.1 trabalho de uma força, F04.2 energia cinética e energia potencial, F04.3 conservação da energia mecânica, F04.4 potência e rendimento, F04.5 fontes de energia, usinas e impacto ambiental
+- F05 Impulso e quantidade de movimento: F05.1 impulso e teorema do impulso, F05.2 conservação da quantidade de movimento, F05.3 colisões e coeficiente de restituição, F05.4 centro de massa
+- F06 Gravitação e astronomia: F06.1 leis de Kepler, F06.2 lei da gravitação universal e aceleração da gravidade, F06.3 satélites, órbitas e imponderabilidade, F06.4 sistema solar, estrelas e cosmologia
+- F07 Hidrostática: F07.1 densidade e pressão, F07.2 teorema de Stevin, pressão atmosférica e vasos comunicantes, F07.3 princípio de Pascal e prensa hidráulica, F07.4 empuxo e flutuação, F07.5 hidrodinâmica: vazão, continuidade e Bernoulli
+- F08 Termologia: F08.1 temperatura e escalas termométricas, F08.2 dilatação térmica, F08.3 calor sensível, calor latente e mudanças de estado, F08.4 trocas de calor e equilíbrio térmico, F08.5 propagação do calor, efeito estufa e conforto térmico, F08.6 gases e transformações gasosas, F08.7 trabalho de um gás e 1ª lei da termodinâmica, F08.8 máquinas térmicas, 2ª lei e ciclo de Carnot
+- F09 Óptica: F09.1 princípios da óptica, cor, sombra e câmara escura, F09.2 reflexão e espelhos planos, F09.3 espelhos esféricos, F09.4 refração, lei de Snell e reflexão total, F09.5 lentes e vergência, F09.6 óptica da visão e defeitos visuais, F09.7 instrumentos ópticos e dispersão da luz
+- F10 Ondulatória e acústica: F10.1 características das ondas e v = λ · f, F10.2 espectro eletromagnético e radiações, F10.3 reflexão, refração, difração e interferência de ondas, F10.4 ressonância e polarização, F10.5 som: altura, intensidade, timbre e nível sonoro, F10.6 cordas, tubos sonoros e ondas estacionárias, F10.7 efeito Doppler, F10.8 movimento harmônico simples e pêndulo
+- F11 Eletricidade e circuitos: F11.1 carga elétrica e processos de eletrização, F11.2 lei de Coulomb e campo elétrico, F11.3 potencial elétrico, energia e condutores em equilíbrio, F11.4 corrente elétrica, leis de Ohm e resistividade, F11.5 associação de resistores, F11.6 potência elétrica, consumo em kWh e conta de luz, F11.7 geradores, receptores e leis de Kirchhoff, F11.8 medidores, fusíveis, instalações e choque elétrico, F11.9 capacitores
+- F12 Magnetismo e eletromagnetismo: F12.1 ímãs, campo magnético e magnetismo terrestre, F12.2 força magnética sobre carga e sobre fio, F12.3 campo magnético de fio, espira e solenoide, F12.4 indução eletromagnética: Faraday e Lenz, F12.5 transformadores, geradores e motores elétricos
 ## geo
-- G01 Cartografia
-- G02 Relevo e estrutura da Terra
-- G03 Clima e atmosfera
-- G04 Hidrografia
-- G05 Biomas e vegetação
-- G06 População e demografia
-- G07 Urbanização
-- G08 Agropecuária e espaço agrário
-- G09 Indústria e energia
-- G10 Geopolítica e globalização
-- G11 Brasil e regiões brasileiras
-- G12 Meio ambiente e sustentabilidade
+- G01 Cartografia: G01.1 coordenadas geográficas, orientação e movimentos da Terra, G01.2 escala numérica e gráfica, G01.3 fusos horários, G01.4 projeções cartográficas, G01.5 curvas de nível e perfil topográfico, G01.6 mapas temáticos e anamorfoses, G01.7 sensoriamento remoto, GPS e geotecnologias
+- G02 Relevo e estrutura da Terra: G02.1 estrutura interna da Terra e tempo geológico, G02.2 tectônica de placas, sismos e vulcanismo, G02.3 rochas, minerais e recursos minerais, G02.4 intemperismo, erosão e assoreamento, G02.5 solos: formação, tipos e conservação, G02.6 relevo brasileiro e suas classificações
+- G03 Clima e atmosfera: G03.1 tempo e clima: elementos e fatores climáticos, G03.2 pressão, ventos, massas de ar e frentes, G03.3 climas do Brasil e climogramas, G03.4 climas do mundo, G03.5 El Niño, La Niña, ilha de calor e inversão térmica, G03.6 aquecimento global e mudanças climáticas
+- G04 Hidrografia: G04.1 ciclo hidrológico, bacia hidrográfica e regime dos rios, G04.2 bacias brasileiras, hidrelétricas e hidrovias, G04.3 águas subterrâneas e aquíferos, G04.4 crise hídrica, uso da água e transposição, G04.5 oceanos, mares e recursos marinhos
+- G05 Biomas e vegetação: G05.1 biomas brasileiros, G05.2 domínios morfoclimáticos de Ab'Sáber, G05.3 biomas e formações vegetais do mundo, G05.4 desmatamento, queimadas e perda de biodiversidade
+- G06 População e demografia: G06.1 conceitos e indicadores demográficos, G06.2 transição demográfica e pirâmides etárias, G06.3 migrações internacionais e refugiados, G06.4 migrações internas no Brasil, G06.5 população brasileira: composição, envelhecimento e trabalho, G06.6 IDH, desigualdade e indicadores sociais
+- G07 Urbanização: G07.1 urbanização mundial e metropolização, G07.2 rede urbana, hierarquia e cidades globais, G07.3 urbanização brasileira e êxodo rural, G07.4 problemas urbanos: segregação, favelização e gentrificação, G07.5 mobilidade e ambiente urbano
+- G08 Agropecuária e espaço agrário: G08.1 estrutura fundiária e reforma agrária, G08.2 conflitos no campo e grilagem, G08.3 Revolução Verde, agronegócio e fronteira agrícola, G08.4 agricultura familiar e agroecologia, G08.5 impactos ambientais da agropecuária, G08.6 sistemas agrícolas e agricultura no mundo
+- G09 Indústria e energia: G09.1 revoluções industriais, G09.2 fordismo, toyotismo e acumulação flexível, G09.3 industrialização brasileira e desconcentração industrial, G09.4 fontes de energia e matriz energética, G09.5 energia no Brasil: hidrelétricas, petróleo, biocombustíveis e renováveis, G09.6 transportes e logística
+- G10 Geopolítica e globalização: G10.1 globalização, redes e fluxos, G10.2 Divisão Internacional do Trabalho, desenvolvimento e comércio, G10.3 blocos econômicos e organismos internacionais, G10.4 ordem mundial: da Guerra Fria ao mundo multipolar, G10.5 conflitos atuais: Oriente Médio, Leste Europeu e África, G10.6 nacionalismos, separatismos e terrorismo, G10.7 recursos estratégicos: água, petróleo e minerais, G10.8 grandes potências e regiões do mundo
+- G11 Brasil e regiões brasileiras: G11.1 formação territorial e fronteiras, G11.2 regionalizações: IBGE e complexos geoeconômicos, G11.3 Amazônia, G11.4 Nordeste e semiárido, G11.5 Centro-Oeste, Sudeste e Sul, G11.6 terras indígenas, quilombolas e povos tradicionais, G11.7 políticas regionais e planejamento
+- G12 Meio ambiente e sustentabilidade: G12.1 conferências e acordos ambientais, G12.2 desenvolvimento sustentável e unidades de conservação, G12.3 poluição do ar, da água e do solo, G12.4 resíduos sólidos, reciclagem e saneamento, G12.5 desertificação e degradação ambiental, G12.6 justiça ambiental e movimentos socioambientais
 ## his
-- H01 Antiguidade
-- H02 Idade Média
-- H03 Brasil Colonial
-- H04 Independência e Império
-- H05 República Brasileira
-- H06 Revoluções
-- H07 Guerras Mundiais
-- H08 Guerra Fria
+- H01 Antiguidade: H01.1 história, fontes e tempo histórico, H01.2 pré-história e revolução neolítica, H01.3 Egito e Mesopotâmia, H01.4 hebreus, fenícios e persas, H01.5 Grécia: pólis, Atenas, Esparta e democracia, H01.6 cultura grega e helenismo, H01.7 Roma: monarquia e república, H01.8 Império Romano, cristianismo e crise
+- H02 Idade Média: H02.1 reinos germânicos e feudalismo, H02.2 Igreja e cultura medieval, H02.3 Império Bizantino e mundo islâmico, H02.4 reinos e impérios africanos, H02.5 Baixa Idade Média: Cruzadas, cidades e crise do século XIV, H02.6 Renascimento e humanismo, H02.7 Reformas protestantes e Contrarreforma, H02.8 Estados nacionais, absolutismo e mercantilismo, H02.9 expansão marítima europeia
+- H03 Brasil Colonial: H03.1 povos indígenas e o contato com os europeus, H03.2 povos pré-colombianos e conquista espanhola, H03.3 colonização espanhola e inglesa na América, H03.4 administração colonial: capitanias e governo-geral, H03.5 economia açucareira e escravidão africana, H03.6 resistência escravizada e quilombos, H03.7 União Ibérica, holandeses e expansão territorial, H03.8 mineração e sociedade do século XVIII, H03.9 revoltas coloniais e inconfidências
+- H04 Independência e Império: H04.1 período joanino, H04.2 independência do Brasil, H04.3 Primeiro Reinado, H04.4 período regencial e revoltas, H04.5 Segundo Reinado: política e café, H04.6 imigração e trabalho livre, H04.7 Guerra do Paraguai, H04.8 abolição da escravidão e pós-abolição, H04.9 crise do Império e proclamação da República
+- H05 República Brasileira: H05.1 República da Espada e Constituição de 1891, H05.2 coronelismo, oligarquias e café com leite, H05.3 conflitos sociais na Primeira República, H05.4 tenentismo, Semana de 1922 e crise dos anos 1920, H05.5 Revolução de 1930 e governo constitucional de Vargas, H05.6 Estado Novo e trabalhismo, H05.7 República de 1946: de Dutra a Jango, H05.8 ditadura militar: repressão, AI-5 e milagre econômico, H05.9 cultura e resistência à ditadura, H05.10 abertura, Diretas Já e Constituição de 1988, H05.11 Nova República e Brasil contemporâneo
+- H06 Revoluções: H06.1 Revoluções Inglesas do século XVII, H06.2 Iluminismo e despotismo esclarecido, H06.3 independência dos Estados Unidos, H06.4 Revolução Francesa, H06.5 Era Napoleônica e Congresso de Viena, H06.6 Revolução Industrial e mundo do trabalho, H06.7 independências da América espanhola, H06.8 liberalismo, socialismo e movimento operário, H06.9 nacionalismos, unificações e revoluções de 1848, H06.10 Estados Unidos no século XIX: expansão e Guerra de Secessão
+- H07 Guerras Mundiais: H07.1 imperialismo na África e na Ásia, H07.2 Primeira Guerra Mundial, H07.3 Revolução Russa e stalinismo, H07.4 crise de 1929, H07.5 fascismo e nazismo, H07.6 Segunda Guerra Mundial, H07.7 Holocausto e genocídios
+- H08 Guerra Fria: H08.1 origens e blocos da Guerra Fria, H08.2 Coreia, Vietnã e crise dos mísseis, H08.3 Revolução Chinesa, H08.4 descolonização da África e da Ásia, H08.5 Revolução Cubana e ditaduras na América Latina, H08.6 contracultura e direitos civis nos anos 1960, H08.7 fim da URSS e nova ordem mundial, H08.8 mundo atual: Oriente Médio, terrorismo e conflitos recentes
 ## fs (Filosofia e Sociologia: uma matéria só desde o comando 18; temas L* de Filosofia e S* de Sociologia, ids inalterados)
-- L01 Pré-socráticos
-- L02 Sócrates, Platão e Aristóteles
-- L03 Ética
-- L04 Lógica
-- L05 Filosofia política
-- L06 Racionalismo e empirismo
-- L07 Iluminismo
-- L08 Existencialismo
-- S01 Cultura e sociedade
-- S02 Socialização
-- S03 Trabalho e capitalismo
-- S04 Desigualdade social
-- S05 Poder e Estado
-- S06 Movimentos sociais
-- S07 Globalização
-- S08 Mídia e indústria cultural
+- L01 Pré-socráticos: L01.1 do mito ao logos, L01.2 escola jônica e a busca da arché, L01.3 Heráclito e Parmênides: devir e ser, L01.4 pitagóricos e atomistas, L01.5 sofistas
+- L02 Sócrates, Platão e Aristóteles: L02.1 Sócrates: ironia e maiêutica, L02.2 Platão: teoria das ideias e alegoria da caverna, L02.3 Platão: a cidade justa, L02.4 Aristóteles: metafísica, causas e conhecimento, L02.5 Aristóteles: política e o animal político, L02.6 helenismo: estoicos, epicuristas e céticos, L02.7 filosofia medieval: Agostinho e Tomás de Aquino
+- L03 Ética: L03.1 ética e moral: conceitos, L03.2 ética das virtudes de Aristóteles, L03.3 ética kantiana: dever e imperativo categórico, L03.4 utilitarismo, L03.5 bioética e ética aplicada
+- L04 Lógica: L04.1 proposições, argumentos e validade, L04.2 dedução, indução e silogismo, L04.3 falácias, L04.4 conectivos lógicos e tabela-verdade
+- L05 Filosofia política: L05.1 Maquiavel, L05.2 Hobbes e o contrato social, L05.3 Locke: direitos naturais e liberalismo, L05.4 Rousseau: vontade geral, L05.5 Montesquieu e a separação dos poderes, L05.6 Hannah Arendt e o totalitarismo, L05.7 democracia, justiça e direitos humanos
+- L06 Racionalismo e empirismo: L06.1 revolução científica e método: Bacon e Galileu, L06.2 Descartes e a dúvida metódica, L06.3 empirismo: Locke, Berkeley e Hume, L06.4 Kant: os limites da razão, L06.5 filosofia da ciência: Popper, Kuhn e pragmatismo
+- L07 Iluminismo: L07.1 razão, progresso e autonomia, L07.2 Kant: o que é esclarecimento, L07.3 Voltaire, enciclopedistas e tolerância, L07.4 crítica da razão instrumental: Escola de Frankfurt
+- L08 Existencialismo: L08.1 Kierkegaard e as origens do existencialismo, L08.2 Sartre: liberdade, má-fé e responsabilidade, L08.3 Simone de Beauvoir, L08.4 Camus e o absurdo, L08.5 Heidegger e a fenomenologia, L08.6 Nietzsche: niilismo e crítica da moral
+- S01 Cultura e sociedade: S01.1 cultura, etnocentrismo e relativismo cultural, S01.2 alteridade, diversidade e identidade, S01.3 cultura brasileira: matrizes indígenas e africanas, S01.4 religião e sociedade, S01.5 arte, patrimônio e expressões culturais, S01.6 fato social e ação social: Durkheim e Weber
+- S02 Socialização: S02.1 socialização primária e secundária, S02.2 instituições sociais: família, escola e religião, S02.3 papéis sociais, identidade e controle social, S02.4 juventude, educação e escola
+- S03 Trabalho e capitalismo: S03.1 Marx: classes, mais-valia e alienação, S03.2 Weber: ética protestante e burocracia, S03.3 Durkheim: divisão do trabalho social, S03.4 taylorismo, fordismo e toyotismo, S03.5 precarização, uberização e informalidade, S03.6 trabalho no Brasil: escravidão, CLT e desemprego
+- S04 Desigualdade social: S04.1 estratificação: classe, casta e estamento, S04.2 desigualdade de renda e pobreza no Brasil, S04.3 racismo e relações étnico-raciais, S04.4 gênero, feminismo e violência contra a mulher, S04.5 mobilidade social e meritocracia, S04.6 minorias: LGBTQIA+, pessoas com deficiência e outras
+- S05 Poder e Estado: S05.1 poder, dominação e legitimidade, S05.2 Estado moderno e formas de governo, S05.3 cidadania e direitos no Brasil, S05.4 Foucault: poder disciplinar e biopoder, S05.5 violência, segurança pública e sistema prisional, S05.6 ideologia e hegemonia
+- S06 Movimentos sociais: S06.1 conceito e tipos de movimento social, S06.2 movimento operário e sindicalismo, S06.3 movimentos do campo e luta pela terra, S06.4 movimento negro, feminista e LGBTQIA+, S06.5 movimentos indígenas e socioambientais, S06.6 novos movimentos e redes digitais
+- S07 Globalização: S07.1 globalização e sociedade em rede, S07.2 modernidade líquida e sociedade de risco, S07.3 migrações e xenofobia, S07.4 sociedade de consumo, S07.5 tecnologia, big techs e capitalismo de plataforma
+- S08 Mídia e indústria cultural: S08.1 indústria cultural: Adorno e Horkheimer, S08.2 meios de comunicação, opinião pública e espetáculo, S08.3 internet, redes sociais e desinformação, S08.4 cultura de massa, popular e erudita, S08.5 Benjamin: arte e reprodutibilidade técnica
 ## ing
-- I01 Leitura e interpretação de textos
-- I02 Vocabulário
-- I03 Gramática
-- I04 Tempos verbais
+- I01 Leitura e interpretação de textos: I01.1 tema e ideia principal, I01.2 objetivo do texto e público-alvo, I01.3 informação explícita, I01.4 inferência e sentido implícito, I01.5 título, fonte e imagem como pista de leitura, I01.6 opinião, tom e atitude do autor, I01.7 anúncio, campanha e cartaz, I01.8 tirinha, cartum, charge e meme, I01.9 poema e letra de canção, I01.10 notícia, artigo de opinião e divulgação científica, I01.11 aspectos culturais e questões interdisciplinares
+- I02 Vocabulário: I02.1 sentido da palavra no contexto e sinônimos, I02.2 falsos cognatos, I02.3 phrasal verbs, I02.4 expressões idiomáticas e provérbios, I02.5 formação de palavras: prefixos e sufixos
+- I03 Gramática: I03.1 referência pronominal: it, they, this, which, I03.2 conectivos e relações lógicas, I03.3 modais e grau de certeza, I03.4 comparativos, superlativos, intensificadores e quantificadores, I03.5 voz passiva, I03.6 discurso direto e indireto, I03.7 condicionais e orações relativas, I03.8 classes de palavras: substantivo, adjetivo, pronome e preposição, I03.9 negação e palavras de sentido restritivo
+- I04 Tempos verbais: I04.1 presente simples e contínuo, I04.2 passado simples, contínuo e used to, I04.3 present perfect × simple past, I04.4 past perfect e sequência de tempos, I04.5 futuro: will, going to e presente com valor de futuro, I04.6 verbos irregulares, gerúndio e infinitivo

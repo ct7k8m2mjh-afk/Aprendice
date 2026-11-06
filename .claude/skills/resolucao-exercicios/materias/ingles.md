@@ -4,6 +4,8 @@ Destilado de 50 anotações de vídeos de resolução (34 canais). 48 tratam de 
 
 ## Subtemas que caem
 
+**Ids oficiais: `ferramentas/fabrica/agentes/TAXONOMIA.md` (06/11/2026).** Os códigos desta seção são a proposta antiga, anterior aos temas do site, e não coincidem com os ids em uso; para classificar questão, use sempre os ids da TAXONOMIA. A lista abaixo continua valendo como guia do que mais cai e dos roteiros.
+
 **Proposta.** Ainda não há Inglês no app. A lista abaixo é uma proposta de taxonomia no formato do `nomesub` (módulos I01, I02… e conteúdos I01.1, I01.2…), para ser aprovada antes de virar `dados.json`. Ela cobre o ENEM (5 questões de leitura, com comando e alternativas em português) e os vestibulares de Medicina com Inglês (Fuvest, Unicamp, Unesp, Santa Casa, Einstein e outros). Marcas: **[muito cobrado]**, [cobrado], (aparece). As marcas são qualitativas e foram tiradas dos vídeos e das provas comentadas neles. Antes de definir a prioridade por instituição, confira o raio-x de cada prova.
 
 Perfil das provas, segundo os vídeos:

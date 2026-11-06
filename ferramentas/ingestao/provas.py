@@ -828,7 +828,7 @@ def fatec(ano, sem, duracao=5):
                 '(retificado, quando houve), com a disciplina de cada questão; anulada fica fora. Caderno e gabarito '
                 'publicados pelo Centro Paula Souza.',
         'cadernos': [{'arquivo': 'caderno', 'paginas': (2, 999)}],
-        'colunas': 'faixas', 'margem': 22, 'topo': 18, 'base': 35, 'rodape_num': False, 'suporte_caixa': True,
+        'colunas': 'faixas', 'margem': 22, 'topo': 18, 'base': 14, 'rodape_rx': r'^VESTIBULAR\s*\d', 'rodape_num': False, 'suporte_caixa': True,
         'apagar': [r'^VESTIBULAR \d', r'^\d{1,2}$'],
         'ancora': r'(?i)^quest[ãa]o\s+(\d{1,3})\b', 'ancora_dx': 75, 'sequencial': True,
         'corte': [r'(?i)^REDAÇÃO$', r'(?i)^PROPOSTA DE REDA', r'(?i)^RASCUNHO', r'(?i)^FOLHA DE'],
@@ -844,7 +844,7 @@ for _a, _s in ((2020, 1), (2022, 2), (2023, 1), (2023, 2), (2024, 1), (2024, 2),
 # 2025/1: caderno em duas colunas, numeração "6." e títulos de disciplina; gabarito por tipo (sem disciplina)
 PROVAS['fatec-2025-1'] = fatec(2025, 1)
 PROVAS['fatec-2025-1'].update({
-    'colunas': 'faixas', 'margem': 30, 'topo': 68, 'base': 36, 'apagar': [r'^VESTIBULAR \d', r'^FATEC –', r'^TIPO A$'],
+    'colunas': 'faixas', 'margem': 30, 'topo': 64, 'base': 36, 'apagar': [r'^VESTIBULAR \d', r'^FATEC –', r'^TIPO A$'],
     'ancora': r'^(\d{1,2})\.(\s|$)', 'ancora_dx': 12, 'area_do_gabarito': False,
     'secoes': {'MATEMÁTICA': 'Matemática', 'FÍSICA': 'Física', 'QUÍMICA': 'Química', 'BIOLOGIA': 'Biologia', 'HISTÓRIA': 'História',
                'GEOGRAFIA': 'Geografia', 'INGLÊS': 'Inglês', 'LÍNGUA PORTUGUESA': 'Língua Portuguesa', 'PORTUGUÊS': 'Língua Portuguesa',

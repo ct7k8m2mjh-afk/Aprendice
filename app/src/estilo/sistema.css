@@ -509,3 +509,11 @@
 @media (min-width: 1251px) and (max-width: 1400px) { .ih-arte { width: 180px; } }
 /* etiqueta do conteúdo (topo do cartão da questão): encolhe e desce de linha, nunca passa da borda do cartão */
 .q-meta .etq.q-sub { flex: 0 1 auto; min-width: 0; white-space: normal; }
+
+/* ---------- faixa de temas: altura única, sem vazio (auditoria rodada 4, item 2) ----------
+   Todo cartão da faixa tem a mesma altura em todas as matérias: ícone + espaço de duas linhas de nome + barra.
+   O nome fica centrado nesse espaço (uma linha não deixa vazio embaixo) e nunca é cortado: o cartão cujo nome
+   pediria 3 ou mais linhas fica mais largo (--ft-w, medido em FaixaTemas) até caber em duas. */
+.ft-nome, .faixa-temas.compacta .ft-nome { display: flex; align-items: center; justify-content: center; text-align: center;
+  height: 2.6em; min-height: 2.6em; flex: none; }
+.ft-item[style*='--ft-w'], .faixa-temas.compacta .ft-item[style*='--ft-w'] { flex-basis: var(--ft-w); width: var(--ft-w); }
