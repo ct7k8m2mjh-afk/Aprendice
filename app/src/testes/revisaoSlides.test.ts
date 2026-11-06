@@ -280,3 +280,35 @@ describe('auditoria rodada 1 da revisão em slides', () => {
     expect(slideDaQuestao('Sobre a Revolução Francesa e o Terceiro Estado', ver)).toBeNull();
   });
 });
+
+/* ============================================================ revisão essencial (comandos 33 e 34) */
+import { itensEssencial } from '../telas/RevisaoEssencial';
+const TEMAS_ESS: { m: string; t: TemaRevisao }[] = existsSync(PASTA)
+  ? readdirSync(PASTA).flatMap((m) => {
+    try { return readdirSync(join(PASTA, m)).filter((f) => /^[A-Z]\d{2}\.json$/.test(f)).map((f) => ({ m, t: JSON.parse(readFileSync(join(PASTA, m, f), 'utf-8')) as TemaRevisao })).filter((x) => x.t.essencial); } catch { return []; }
+  })
+  : [];
+describe('revisão essencial', () => {
+  it('há temas com essencial', () => expect(TEMAS_ESS.length).toBeGreaterThan(0));
+  for (const { m, t } of TEMAS_ESS) {
+    it(`${m}/${t.id}: ordem termômetro → mapa → conteúdos → questão → conexão; tudo se desenha`, () => {
+      const e = t.essencial!;
+      const it = itensEssencial(e).map((x) => x.t);
+      expect(it[0]).toBe(e.termometro?.length ? 'termometro' : it[0]);
+      expect(it.filter((x) => x === 'tela')).toHaveLength(e.telas.length);
+      expect(it.indexOf('questao')).toBeGreaterThan(it.lastIndexOf('tela'));
+      for (const tela of e.telas) {
+        expect(tela.pontos.length).toBeLessThanOrEqual(4);
+        if (tela.formula) expect(analisaLatex(tela.formula).map(textoDe).join(' ')).not.toMatch(/\\/);
+      }
+      const q = e.questao_resolvida;
+      if (q) {
+        expect('ABCDE').toContain(q.gabarito);
+        if (q.passos) expect(passosParaMotor(q.passos, contaEhTexto('1 + 1', m))).not.toBeNull();
+      }
+      const subs = new Set(e.telas.map((x) => x.sub));
+      for (const r of e.mapa?.ramos || []) for (const l of r.liga || []) expect(e.mapa!.ramos.some((x) => x.sub === l), l).toBe(true);
+      expect(subs.size).toBeGreaterThan(0);
+    });
+  }
+});
