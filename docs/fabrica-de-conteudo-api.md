@@ -20,11 +20,12 @@ Créditos mensais cobrem: Messages API, **Message Batches API**, Playground, Age
 O mesmo esquema vale para flashcards e frases (padrão em `docs/pesquisa/padrao_cartoes.md`) e para raio-x de provas novas.
 
 ## Regras da fábrica
-- Pasta sugerida: `ferramentas/fabrica/` (scripts) e `fabrica_saida/<lote>/` (resultados, fora do app até aprovação).
+- Pastas: `ferramentas/fabrica/` (scripts) e `fabrica_saida/api/<lote>/` (resultados, fora do site até aprovação).
+- Resoluções de questões de prova: `ferramentas/fabrica/resolucoes_api.py` (`seleciona`, `roda --teto`, `integra`). Os prompts são os briefs da banca (`ferramentas/fabrica/agentes/`) + especialista da matéria + skill `resolucao-exercicios`; aprovadas vão para `app/conteudo-fonte/provas/<prova>/resolucoes.json`.
 - **Orçamento**: cada lote declara o teto em dólares antes de rodar; o script estima o custo, para se passar do teto e registra o gasto real em `fabrica_saida/gastos.csv`. No Console, definir também limite de gasto da organização.
 - Preferir **Batches** (metade do preço, resposta em até 24 h) para tudo que não é urgente; Messages só para testes.
 - Prompts versionados em arquivo (`ferramentas/fabrica/prompts/*.md`), testados primeiro no Playground com casos difíceis.
-- A chave fica só na variável de ambiente `ANTHROPIC_API_KEY` (segredo do ambiente do Claude Code). Nunca no código, nunca no chat, nunca no repositório.
+- A chave fica só na variável de ambiente `APRENDICE_API_KEY` do ambiente "Fabrica" do Claude Code (os programas a enviam como `Authorization: Bearer`). Nunca no código, nunca no chat, nunca no repositório. Conectada e testada em 06/11/2026.
 - Saída sempre em JSON validado por esquema; resposta que não valida volta para a fila.
 - Nenhum conteúdo da fábrica é "verdade" sem fonte publicada: o gabarito vem da fonte, a resolução é conferida, as frases de teoria citam a fonte.
 
