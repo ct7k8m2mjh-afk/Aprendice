@@ -11,6 +11,7 @@ import { Icone } from '../ui/Icone';
 import { CartaoTeoriaView } from './Tema';
 import { CabMateria, subMateria, FaixaTemas } from './Materia';
 import type { MateriaId } from '../dados/tipos';
+import { numeroQuestao } from '../dados/tipos';
 
 /**
  * Conteúdo (rota antiga /escada, mantida para não quebrar links e progresso): as questões reais do conteúdo,
@@ -106,7 +107,7 @@ export function Escada() {
                       <span className="dg-n num" aria-label={ult ? (ult.ok ? 'Acertou' : 'Errou') : 'Não feita'}>{ult ? <Icone nome={ult.ok ? 'check' : 'fechar'} tam={16} /> : <i className="dg-ponto" />}</span>
                       <span className="dg-txt">
                         <b>{q.conceito || `${q.escola} ${q.ano}`}</b>
-                        <small>{q.escola} {q.ano}{q.n ? ` · questão ${q.n}` : ''}{f ? ` · revisar ${emDias(f.vence)}` : ''}</small>
+                        <small>{q.escola} {q.ano}{q.n ? ` · questão ${numeroQuestao(q)}` : ''}{f ? ` · revisar ${emDias(f.vence)}` : ''}</small>
                       </span>
                       <Icone nome="direita" />
                     </Link>

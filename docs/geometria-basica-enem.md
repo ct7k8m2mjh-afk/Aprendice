@@ -8,7 +8,7 @@ Pedido do dono (05/11/2026): questões básicas de geometria, 20 de áreas e 20 
   - **M11.6 — volumes básicos** (módulo M11, Geometria espacial): paralelepípedo, cubo, cilindro, prisma, capacidade em litros, escala de volume.
 - Todas são **questões de prova** do ENEM (2º dia, caderno 7 azul), com print fiel recortado do PDF oficial do INEP a 300 dpi e gabarito oficial do INEP. Campo `url` = PDF oficial.
 - Cada uma tem resolução completa em `app-atual/mat/res/M08.6.json` e `M11.6.json`, com explicação de todas as alternativas erradas.
-- Cartões de teoria novos em `teoria.M08.cartoes` e `teoria.M11.cartoes` (sub M08.6 e M11.6). Ícones 3D novos: `design/icones_real/foto3d/cenas/M08.6.py` (piso de ladrilhos com trena) e `M11.6.py` (bloco 3 × 2 × 2 de cubinhos).
+- Cartões de teoria novos em `teoria.M08.cartoes` e `teoria.M11.cartoes` (sub M08.6 e M11.6). Ícones 3D novos: `design/icones_real/foto3d/cenas/M08.6.py` (piso de ladrilhos com trena) e `M11.6.py` (bloco 3 × 2 × 2 de cubinhos) — só no protótipo; no site, subtema não tem ícone (pontinho na cor da matéria, `docs/icones/ONDE-USAR.md`).
 
 ## Revisão
 Escrita por 4 agentes (lotes de 10); Lente A (fatos: cada questão resolvida de novo sem olhar a resolução, toda conta em Python, transcrição contra o print); Lente B (utilidade e estilo); Lente A de novo em tudo que a Lente B mudou. Nenhuma divergência de gabarito. Material e scripts em `docs/historico/geometria-basica/`.

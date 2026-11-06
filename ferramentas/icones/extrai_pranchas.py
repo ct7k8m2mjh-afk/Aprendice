@@ -1,31 +1,22 @@
-"""Extrai os ícones 3D das pranchas aprovadas (fundo transparente, sombra de contato preservada).
+"""Extrai das pranchas aprovadas o ícone principal da MATÉRIA (História, Filosofia, Sociologia, Inglês):
+fundo transparente e sombra de contato desenhada.
 
-Uso (da pasta ferramentas/icones): python3 extrai_pranchas.py <pasta de saída> [<materia>-<chave>]
-As máscaras usadas na versão aprovada ficam em masc/ (His H01–H07: BiRefNet; demais: IS-Net/U2Net).
-Retoques manuais conferidos na prancha ampliada: FORCA (superfície branca da cor do fundo é objeto) e
-TIRA (sombra de contato marcada como objeto pelo modelo)."""
+Os ícones de TEMA não saem mais daqui: a fonte oficial é docs/icones/<matéria>/ (comandos 19 e 23 do dono,
+06/11/2026), convertida por app/scripts/icones_tema.py. Os recortes antigos de tema saíram do site e deste código.
+
+Uso (da pasta ferramentas/icones): python3 extrai_pranchas.py <pasta de saída> [<materia>-_materia]
+As máscaras usadas na versão aprovada ficam em masc/."""
 import json, os, sys, numpy as np
 from PIL import Image
 from rembg import new_session, remove
 IMG = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'app', 'conteudo-fonte', 'materias', 'ic', 'pranchas') + '/'
 OUT = sys.argv[1]
 C = [(40, 356), (392, 706), (742, 1058), (1094, 1408)]
-def grade(r1, r2, chaves):
-    out = []
-    for i, k in enumerate(chaves):
-        x0, x1 = C[i % 4]; y0, y1 = (r1 if i < 4 else r2)
-        out.append((k, (x0, y0, x1, y1)))
-    return out
 PRANCHAS = {
-    'his': ('historia.webp', grade((196, 528), (640, 945), ['H01', 'H02', 'H03', 'H04', 'H05', 'H06', 'H07', 'H08']) + [('_materia', (418, 28, 592, 168))]),
-    'fil': ('filosofia.webp', grade((232, 524), (642, 935), ['L01', 'L02', 'L03', 'L04', 'L05', 'L06', 'L07', 'L08']) + [('_materia', (646, 16, 802, 114))]),
-    'soc': ('sociologia.webp', grade((216, 500), (625, 932), ['S01', 'S02', 'S03', 'S04', 'S05', 'S06', 'S07', 'S08']) + [('_materia', (316, 16, 514, 190))]),
-    # Física e Geografia (pranchas enviadas pelo dono em 02/11): 3 linhas x 4 cartões; só a área do desenho, sem o título
-    'fis': ('fisica.webp', [(f'F{i + 1:02d}', (x0 + 6, y0, x1 - 6, y1)) for i, ((x0, x1), (y0, y1)) in enumerate(
-        [(c, r) for r in ((32, 258), (382, 598), (730, 928)) for c in ((44, 368), (388, 713), (734, 1060), (1080, 1408))])]),
-    'geo': ('geografia.webp', [(f'G{i + 1:02d}', (x0 + 6, y0, x1 - 6, y1)) for i, ((x0, x1), (y0, y1)) in enumerate(
-        [(c, r) for r in ((26, 262), (370, 600), (712, 950)) for c in ((35, 364), (385, 714), (735, 1064), (1086, 1415))])]),
-    'ing': ('ingles.webp', grade((215, 594), (635, 1014), ['_ouvir', 'I02', 'I03', 'I04', '_pronuncia', '_fala', 'I01', '_escrita']) + [('_materia', (453, 46, 646, 184))]),
+    'his': ('historia.webp', [('_materia', (418, 28, 592, 168))]),
+    'fil': ('filosofia.webp', [('_materia', (646, 16, 802, 114))]),
+    'soc': ('sociologia.webp', [('_materia', (316, 16, 514, 190))]),
+    'ing': ('ingles.webp', [('_materia', (453, 46, 646, 184))]),
 }
 sess = None
 
@@ -43,40 +34,9 @@ def fundo(a):
         B[..., c] = coef[0] * xs + coef[1] * ys + coef[2]
     return B
 
-UNIAO = {'fil-L07', 'soc-S06', 'ing-I01', 'ing-_pronuncia', 'his-H06'}
-# retoque manual (conferido na prancha ampliada): superfícies brancas da mesma cor do fundo que são objeto
-FORCA = {
-    'ing-I01': [(27, 60), (95, 52), (165, 65), (210, 50), (272, 57), (300, 85), (302, 228), (190, 240), (45, 235), (30, 220), (25, 70)],
-    'soc-S06': [(34, 197), (119, 150), (136, 220), (54, 235)],
-    'ing-_pronuncia': [(150, 170), (175, 135), (220, 120), (270, 128), (300, 160), (305, 200), (290, 240), (250, 262), (215, 262), (190, 272), (178, 265), (165, 238), (150, 210)],
-    'his-H06': [(211, 31), (227, 38), (250, 59), (247, 100), (246, 150), (230, 150), (223, 120), (197, 110), (195, 83), (209, 47)],
-    'fil-L07': [(30, 200), (80, 185), (130, 197), (190, 185), (237, 197), (257, 260), (135, 277), (15, 262)],
-}
-# retoque manual: faixas de sombra de contato que o modelo marcou como objeto (só o que é sombra sai)
-TIRA = {
-    'soc-S07': [(30, 250), (300, 250), (300, 306), (30, 306)],
-    'his-H06': [(0, 220), (80, 220), (80, 280), (304, 280), (304, 306), (0, 306)],
-    'fil-L07': [(255, 200), (316, 200), (316, 293), (0, 293), (0, 280), (140, 284), (255, 270)],
-}
-
 def mascara(chave, im):
     import os
-    if chave in UNIAO:
-        # dois modelos: cada um enxerga partes brancas diferentes; vale o que qualquer um viu
-        out = []
-        for mod in ('isnet-general-use', 'u2net'):
-            f = f'masc/{chave}.{mod}.png'
-            if not os.path.exists(f):
-                remove(im, session=new_session(mod), only_mask=True).save(f)
-            out.append(np.asarray(Image.open(f)).astype(float))
-        return Image.fromarray(np.maximum(*out).astype(np.uint8))
     f = f'masc/{chave}.png'
-    fi = f'masc/{chave}.isnet-general-use.png'
-    if os.path.exists(f) and chave.startswith('his-H0') and chave not in ('his-H08',):
-        # máscara do BiRefNet inclui a sombra da prancha: fica só o que o IS-Net também vê como objeto
-        if not os.path.exists(fi):
-            remove(im, session=new_session('isnet-general-use'), only_mask=True).save(fi)
-        return Image.open(fi)   # o BiRefNet inclui a sombra da prancha na base; o IS-Net não
     if not os.path.exists(f):
         global sess
         if sess is None:
@@ -99,10 +59,6 @@ def extrai(prancha, caixa, chave):
     cor = np.asarray(Image.fromarray((cor * 255).astype(np.uint8)).filter(ImageFilter.MaxFilter(3))).astype(float) / 255
     cor[(sat < 8)] = np.minimum(cor[(sat < 8)], m[(sat < 8)])
     m = np.maximum(m, cor)
-    if chave in ('fil-L07', 'fil-L08'):
-        # páginas e céu claros cercados pelo desenho: buraco da máscara é parte do objeto
-        from scipy import ndimage
-        m = np.maximum(m, ndimage.binary_fill_holes(m > 0.5).astype(float))
     # recorte em três zonas: interior do objeto (sempre opaco, mesmo onde é claro como o fundo),
     # fundo certo, e uma faixa fina de borda resolvida por alpha matting (cor real, sem halo do fundo)
     from scipy import ndimage
@@ -139,8 +95,6 @@ def extrai(prancha, caixa, chave):
     b2 = set(np.unique(np.r_[lab2[0], lab2[-1], lab2[:, 0], lab2[:, -1]])) - {0}
     fundo2 = np.isin(lab2, list(b2))
     obj &= ~fundo2
-    if chave == 'soc-S02':
-        obj &= ~(tipo_sombra & escuro & (grad < 2.2) & (m < 0.5))   # sombra cercada pelo desenho (dentro do anel)
     obj = ndimage.binary_opening(obj, iterations=1)
     # cinza neutro mais escuro que o fundo e rejeitado pelo modelo: é sombra da prancha, nunca objeto
     obj &= ~(escuro & (croma_d < 16) & (m < 0.5))
@@ -167,16 +121,6 @@ def extrai(prancha, caixa, chave):
         semente = set(np.unique(lab4[fora_])) - {0}
         obj &= ~(np.isin(lab4, list(semente)) & caminho)
         obj = ndimage.binary_opening(obj, iterations=1)
-    if chave in TIRA:
-        from PIL import ImageDraw
-        pm = Image.new('L', (obj.shape[1], obj.shape[0]), 0)
-        ImageDraw.Draw(pm).polygon(TIRA[chave], fill=255)
-        obj &= ~((np.asarray(pm) > 0) & escuro & (dif < 60) & (croma_d < 16))
-    if chave in FORCA:
-        from PIL import ImageDraw
-        pm = Image.new('L', (obj.shape[1], obj.shape[0]), 0)
-        ImageDraw.Draw(pm).polygon(FORCA[chave], fill=255)
-        obj |= np.asarray(pm) > 0
     obj = ndimage.binary_opening(obj, iterations=1)
     dentro = ndimage.binary_erosion(obj, iterations=3)
     fora = ~ndimage.binary_dilation(obj, iterations=3)
@@ -202,53 +146,6 @@ def extrai(prancha, caixa, chave):
     A = m + (1 - m) * s
     Cc = np.where(A[..., None] > 0, (m[..., None] * F) / np.maximum(A[..., None], 1e-6), 0)
     out = np.dstack([Cc, A * 255]).clip(0, 255).astype(np.uint8)
-    # sombra clara da prancha que ficou sob a base: em cada coluna, o que estiver abaixo do último pixel
-    # "de objeto" (escuro ou colorido) e for claro é chão/sombra, não objeto
-    if chave.startswith('his-H'):
-        lum = a.mean(2); sat_ = a.max(2) - a.min(2)
-        opaco = out[..., 3] > 0
-        solido = opaco & ((lum < 175) | (sat_ > 75))
-        ys_a = np.where(opaco.any(1))[0]
-        y0b = int(ys_a.max() - 0.3 * (ys_a.max() - ys_a.min()))
-        poupa = {'his-H03': (75, 195, 272)}.get(chave)   # arroz derramado (x0, x1, y desde): grãos brancos são objeto
-        for x in range(out.shape[1]):
-            col = np.where(solido[y0b:, x])[0]
-            ult = y0b + col.max() if len(col) else y0b
-            abaixo = np.arange(out.shape[0]) > ult + 1
-            if poupa and poupa[0] <= x <= poupa[1]:
-                abaixo &= np.arange(out.shape[0]) < poupa[2]
-            out[abaixo & (lum[:, x] >= 175) & (sat_[:, x] <= 75), x, 3] = 0
-    # retoque manual conferido na ampliação: faixas de chão claro que sobraram (só tira pixel claro e pouco colorido)
-    CHAO = {
-        'his-H02': ([(0, 305), (316, 305), (316, 332), (0, 332)], 80),
-        'his-H03': ([(15, 252), (110, 252), (110, 280), (15, 280)], 100, 150),
-        'his-H04': ([(0, 300), (316, 300), (316, 332), (0, 332)], 50),
-    }
-    if chave in CHAO:
-        from PIL import ImageDraw
-        pts, smax, lmin = (CHAO[chave] + (170,))[:3]
-        pm = Image.new('L', (out.shape[1], out.shape[0]), 0)
-        ImageDraw.Draw(pm).polygon(pts, fill=255)
-        lum = a.mean(2); sat_ = a.max(2) - a.min(2)
-        out[(np.asarray(pm) > 0) & (lum > lmin) & (sat_ < smax), 3] = 0
-    # papel quadriculado / vidro claro (F02, F07): só as linhas e contornos ficam; o fundo claro vira transparente
-    PAPEL = {'fis-F02': .62, 'fis-F07': .22}
-    if chave in PAPEL:
-        lum = a.mean(2); sat_ = a.max(2) - a.min(2)
-        zona = np.zeros(lum.shape, bool); zona[:int(lum.shape[0] * PAPEL[chave])] = True
-        claro = zona & (lum > 205) & (sat_ < 50)
-        out[claro, 3] = (np.clip((255 - lum[claro]) / 45, 0, 1) * out[claro, 3] * .9).astype(np.uint8)
-    # nuvem branca (G03): cinza-claro do desenho é objeto opaco
-    if chave == 'geo-G03':
-        from PIL import ImageDraw
-        pm = Image.new('L', (out.shape[1], out.shape[0]), 0); ImageDraw.Draw(pm).polygon([(0, 88), (108, 88), (108, 180), (0, 180)], fill=255)
-        lum = a.mean(2)
-        nuv = (np.asarray(pm) > 0) & (lum < 250.5) & (lum > 180)
-        nuv = ndimage.binary_opening(ndimage.binary_fill_holes(ndimage.binary_closing(nuv, iterations=6)), iterations=3)
-        nuv = ndimage.binary_erosion(nuv, iterations=1)
-        suave = ndimage.gaussian_filter(nuv.astype(float), 1.0)
-        out[nuv, :3] = a[nuv].astype(np.uint8)
-        out[..., 3] = np.maximum(out[..., 3], (suave * 255).astype(np.uint8))
     return Image.fromarray(out, 'RGBA')
 
 def limpa(im):
@@ -293,28 +190,13 @@ def com_sombra(im):
     tela.alpha_composite(im, (pad, pad))
     return tela
 
-def enquadra(im, lado=288, margem=10):
-    im = com_sombra(limpa(im))
-    al = np.asarray(im)[..., 3]
-    ys, xs = np.where(al > 0)
-    im = im.crop((xs.min(), ys.min(), xs.max() + 1, ys.max() + 1))
-    esc = min((lado - 2 * margem) / im.width, (lado - 2 * margem) / im.height, 1.12)
-    im = im.resize((max(1, round(im.width * esc)), max(1, round(im.height * esc))), Image.LANCZOS)
-    tela = Image.new('RGBA', (lado, lado), (0, 0, 0, 0))
-    tela.alpha_composite(im, ((lado - im.width) // 2, (lado - im.height) // 2))
-    return tela, esc
-
 rel = {}
 for m, (prancha, itens) in PRANCHAS.items():
     for k, caixa in itens:
         if len(sys.argv) > 2 and f'{m}-{k}' != sys.argv[2]:
             continue
-        im = extrai(prancha, caixa, f'{m}-{k}')
-        if k == '_materia':
-            im = com_sombra(limpa(im))
-            al = np.asarray(im)[..., 3]; ys, xs = np.where(al > 0)
-            im = im.crop((xs.min(), ys.min(), xs.max() + 1, ys.max() + 1))
-            im.save(f'{OUT}/{m}-materia.png'); rel[f'{m}/_materia'] = list(im.size); continue
-        q, esc = enquadra(im)
-        q.save(f'{OUT}/{m}-{k}.png'); rel[f'{m}/{k}'] = round(esc, 2)
+        im = com_sombra(limpa(extrai(prancha, caixa, f'{m}-{k}')))
+        al = np.asarray(im)[..., 3]; ys, xs = np.where(al > 0)
+        im = im.crop((xs.min(), ys.min(), xs.max() + 1, ys.max() + 1))
+        im.save(f'{OUT}/{m}-materia.png'); rel[f'{m}/_materia'] = list(im.size)
 print(json.dumps(rel))

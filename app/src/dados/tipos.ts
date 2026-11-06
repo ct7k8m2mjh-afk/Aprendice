@@ -47,7 +47,12 @@ export interface Questao {
   txt?: 1;
   /** questão de site retirada (comando 21): só guarda o lugar do histórico do aluno no desempenho; nunca é mostrada */
   retirada?: true;
+  /** número impresso no caderno oficial, com o dia/caderno, em provas que renumeram o 2º caderno (ex.: "9 (2º dia)") */
+  nq?: string;
 }
+
+/** Número da questão para mostrar ao aluno: o do caderno oficial quando a prova renumera cadernos; senão o da prova. */
+export function numeroQuestao(q: Pick<Questao, 'n' | 'nq'>): string { return q.nq || q.n; }
 
 /** Texto de uma questão de prova (arquivo txt/<conteúdo>.json). */
 export interface TextoQuestao { enun: string; transcricao?: Transcricao }

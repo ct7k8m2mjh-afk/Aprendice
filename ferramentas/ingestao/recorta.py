@@ -406,6 +406,9 @@ def limite_baixo(pg, cfg):
             if l['bbox'][1] < ultimo - 2:
                 continue
             centro = abs((l['bbox'][0] + l['bbox'][2]) / 2 - pg.rect.width / 2) < 30
+            if cfg.get('rodape_lado') and any(o is not l and o['bbox'][1] < l['bbox'][3] - 2 and o['bbox'][3] > l['bbox'][1] + 2
+                                               for o in linhas(pg)):
+                continue   # número de página ao lado de uma linha da prova ("QUESTÃO 32" no pé): não corta
             if re.fullmatch(r'\d{1,3}', l['t']) and l['bbox'][1] > pg.rect.height * 0.85 and (centro or not cfg.get('rodape_centro')):
                 lim = min(lim, l['bbox'][1] - cfg.get('rodape_folga', 3)) if lim > l['bbox'][1] else lim
     return lim
@@ -579,6 +582,16 @@ def eventos_do_pdf(pdf, cfg, faixa=None):
                                     and not re.match(r'(?i)^texts?o?\s+0?\d+\s*$', t) \
                                     and not re.match(r'^\s*(?:\(?[A-Ea-e][\)\.]|\([A-E]\))', lp[li - 1]['t']):
                                 yi = lp[li - 1]['bbox'][1] - 2
+                            # frase de instrução em 3 ou mais linhas, com entrelinha apertada (linhas que se sobrepõem 1 pt):
+                            # sobe até o começo da frase (FMABC: "Leia o capítulo CVI ... para res-/ponder às questões")
+                            k_ = li
+                            while cfg.get('suporte_sobe') and k_ > 0 and li - k_ < cfg['suporte_sobe'] \
+                                    and coluna_de(lp[k_ - 1]['bbox'][0], cols) == c and -3 <= lp[k_]['bbox'][1] - lp[k_ - 1]['bbox'][3] < 5 \
+                                    and lp[k_ - 1]['bbox'][1] >= cfg['topo'] and not re.match(cfg['ancora'], lp[k_ - 1]['t']) \
+                                    and not re.match(r'^\s*(?:\(?[A-Ea-e][\)\.]|\([A-E]\))', lp[k_ - 1]['t']) \
+                                    and not any(re.search(rx_, lp[k_ - 1]['t']) for rx_ in cfg.get('corte', [])):
+                                k_ -= 1
+                                yi = min(yi, lp[k_]['bbox'][1] - 2)
                             if cfg.get('suporte_caixa'):
                                 # instrução dentro de uma faixa pintada (Fatec): o texto de apoio começa no alto da faixa
                                 for r_ in caixas_da_pagina(pg):
@@ -1013,6 +1026,36 @@ def troca(x, pares):
     return x
 
 
+def rotulo_caderno(cad):
+    """Nome do caderno para o aluno, quando a prova junta cadernos de numeração própria (2º dia, período, prova 2)."""
+    if cad.get('rotulo'):
+        return cad['rotulo']
+    a = cad['arquivo']
+    m = re.match(r'^d(\d)-', a)
+    if m:
+        return f'{m.group(1)}º dia'
+    m = re.match(r'^p(\d)-', a)
+    if m:
+        return f'Prova {m.group(1)}'
+    for k in ('matutino', 'vespertino', 'noturno'):
+        if k in a:
+            return f'período {k}'
+    return a
+
+
+def numeros_do_caderno(cads, questoes):
+    """Número impresso no caderno oficial (ex.: a 51 da prova = questão 9 do caderno do 2º dia): campo 'nq' de cada
+    questão, só nas provas que renumeram um caderno (deslocamento). O 'n' (ordem na prova) e o id não mudam."""
+    if not any(c.get('deslocamento') for c in cads):
+        return
+    for q in questoes:
+        for c in cads:
+            lo, hi = c.get('questoes', (1, 999))
+            if c['arquivo'] == q.get('caderno') and lo <= q['n'] <= hi:
+                q['nq'] = f"{q['n'] - c.get('deslocamento', 0)} ({rotulo_caderno(c)})"
+                break
+
+
 def processa(pid, amostra=False, so_texto=False):
     cfg = PROVAS[pid]
     pasta = ENTRADA / pid
@@ -1201,10 +1244,14 @@ def processa(pid, amostra=False, so_texto=False):
                 elif len(f) < 2 and not suporte.get('usado'):
                     sup = suporte['segs']  # sem faixa declarada: vale só para a questão seguinte
                     suporte['usado'] = True
-            if cfg.get('suporte_ate_proximo') and textos:
+            if (cfg.get('suporte_ate_proximo') or cfg.get('cita_textos')) and textos:
                 # questão que cita "Texto 1" / "Text 2" (às vezes com número de linha) leva esses textos, mesmo
-                # quando já ganhou o texto logo antes dela
-                for c in sorted(set(textos_citados(texto(pdf, segs), cfg))):
+                # quando já ganhou o texto logo antes dela; com 'cita_textos', vale também a citação feita na
+                # instrução que a questão recebeu ("Para responder à questão 05, considere os textos 1 e 2.")
+                cit = textos_citados(texto(pdf, segs), cfg)
+                if cfg.get('cita_textos') and sup:
+                    cit += textos_citados(texto(pdf, sup), cfg)
+                for c in sorted(set(cit)):
                     if c in textos and not all(sg in sup for sg in textos[c]):
                         sup = list(sup) + [sg for sg in textos[c] if sg not in sup]
                 if sup:   # ordem de leitura do caderno (Texto 1 antes do Texto 2)
@@ -1263,6 +1310,7 @@ def processa(pid, amostra=False, so_texto=False):
         elif questoes[n]['gab'] == 'X':
             relatorio['anuladas'].append(n)
     validas = [q for q in questoes.values() if q['gab'] in tuple('ABCDE')]
+    numeros_do_caderno(cads, validas)
     for q in validas:
         h = hashlib.sha1(f"{man['arquivos'][q['caderno']]['sha256']}:{q['n']}".encode()).hexdigest()[:8]
         q['id'] = 'P' + h

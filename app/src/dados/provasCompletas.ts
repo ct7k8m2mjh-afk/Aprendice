@@ -35,6 +35,8 @@ export interface QuestaoProva {
   texto: string;
   print: string;
   caderno?: string;
+  /** número no caderno oficial com o dia/caderno (ex.: "9 (2º dia)"), quando a prova renumera cadernos */
+  nq?: string;
   transcricao?: Transcricao;
   /** resolução aprovada pela banca (resolvedor + corretores de fatos e de didática) */
   res?: Resolucao;
@@ -87,7 +89,7 @@ export function comoQuestao(p: ProvaCompleta, q: QuestaoProva): Questao {
   for (const l of LETRAS.slice(0, p.alternativas || 5)) alts[l] = q.transcricao?.alts[l] || '';
   const caderno = (q.caderno && p.fontes[q.caderno]) || Object.values(p.fontes)[0] || '';
   return {
-    id: q.id, escola: p.escola, ano: p.ano, n: String(q.n), banca: p.banca, fase: p.fase,
+    id: q.id, escola: p.escola, ano: p.ano, n: String(q.n), ...(q.nq ? { nq: q.nq } : {}), banca: p.banca, fase: p.fase,
     enun: q.texto, alts, gab: q.gab, modulo: q.tema || '', sub: q.conteudo || '', dif: q.nivel || 0, degrau: 0, conceito: q.conceito || q.area, pista: q.res?.pista || '',
     url: caderno, origem: 'prova', figura: !q.transcricao, transcricao: q.transcricao, res: q.res,
   };

@@ -14,6 +14,7 @@ import base64, json, os, re, shutil, sys, hashlib
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import icones_tema  # noqa: E402  (ícones de tema do dono: docs/icones/)
+import revisao  # noqa: E402  (revisão em slides: docs/revisao/<m>/<TEMA>.json, comandos 24 e 26)
 
 AQUI = os.path.dirname(os.path.abspath(__file__))
 APP = os.path.dirname(AQUI)
@@ -27,8 +28,6 @@ NOVAS = ['fis', 'geo', 'his', 'fs', 'ing']
 # Filosofia e Sociologia viraram uma matéria só, 'fs' (comando 18 do dono). Ids de temas e questões não mudam;
 # as provas classificadas antes com 'fil'/'soc' passam a contar como 'fs' na saída (a fonte não é alterada).
 MATERIA_UNIDA = {'fil': 'fs', 'soc': 'fs'}
-# ícones de tema de cada matéria nova: pastas em conteudo-fonte/materias/ic/ (fs junta as pranchas das duas)
-PASTAS_IC = {'fs': ['fs', 'fil', 'soc']}
 FONTE_NOVAS = os.path.join(APP, 'conteudo-fonte', 'materias')
 ESCOLA_NORMAL = {'Mundo Educacao': 'Mundo Educação', 'FMJ': 'FMJ (Jundiaí)'}
 FASE_NORMAL = {'1fase': '1ª fase', '2fase': '2ª fase'}
@@ -179,8 +178,8 @@ def converte_materia(m, amostra_ids=None):
             res_por_sub.setdefault(novo, {})[qid] = r
     res_por_sub = {k: v for k, v in res_por_sub.items() if v}
 
-    # ícones (módulo e conteúdo); com ícones novos do dono em docs/icones/, só eles (os antigos saem do site)
-    icones = icones_tema_ou(m, lambda: ler(os.path.join(src, 'ic.json')))
+    # ícones: só os de tema enviados pelo dono (docs/icones/); os antigos (ic.json do protótipo) não entram no site
+    icones = icones_da_materia(m)
 
     # figuras de teoria por módulo
     figuras = {}
@@ -256,12 +255,12 @@ def converte_materia(m, amostra_ids=None):
 _CACHE_TEMA = {}
 
 
-def icones_tema_ou(m, antigos):
-    """Ícones de tema enviados pelo dono (docs/icones/<matéria>/, comando 19) são os ÚNICOS ícones da matéria:
-    os antigos (de tema e de subtema, do protótipo ou das pranchas) não entram. Sem ícones novos, ficam os atuais."""
+def icones_da_materia(m):
+    """Ícones de tema enviados pelo dono (docs/icones/<matéria>/, comandos 19 e 23) são os ÚNICOS ícones da matéria
+    no site: os antigos (de tema e de subtema, do protótipo ou das pranchas) não entram. Todo tema precisa ter o seu."""
     if m not in _CACHE_TEMA:
         _CACHE_TEMA[m] = {k: base64.b64encode(v).decode() for k, v in icones_tema.icones_materia(m).items()}
-    return dict(_CACHE_TEMA[m]) if _CACHE_TEMA[m] else antigos()
+    return dict(_CACHE_TEMA[m])
 
 
 def gera_icones_tema_ts():
@@ -269,34 +268,9 @@ def gera_icones_tema_ts():
     mapa = {m: sorted(icones_tema.arquivos_materia(m)) for m in icones_tema.materias_com_icones()}
     alvo = os.path.join(APP, 'src', 'dados', 'iconesTema.ts')
     with open(alvo, 'w', encoding='utf-8') as f:
-        f.write('// Gerado por scripts/converte.py a partir de docs/icones/<matéria>/<id do tema>-<nome>.png (comando 19 do dono).\n')
+        f.write('// Gerado por scripts/converte.py a partir de docs/icones/<matéria>/<id do tema>-<nome>.png (comandos 19 e 23 do dono).\n')
         f.write('// Temas com ícone novo: o arquivo é public/conteudo/<m>/ic/<id>.webp e aparece inteiro dentro do círculo claro.\n')
         f.write('export const ICONES_TEMA: Record<string, readonly string[]> = ' + json.dumps(mapa, ensure_ascii=False) + ';\n')
-
-
-def icones_novos(m):
-    """Ícones 3D enviados pelo dono: conteudo-fonte/materias/ic/<m>/<id do tema>.png|webp -> base64 webp."""
-    out = {}
-    for nome in PASTAS_IC.get(m, [m]):
-        pasta = os.path.join(FONTE_NOVAS, 'ic', nome)
-        if os.path.isdir(pasta):
-            out.update(icones_pasta(pasta))
-    return out
-
-
-def icones_pasta(pasta):
-    from io import BytesIO
-    from PIL import Image
-    out = {}
-    for f in sorted(os.listdir(pasta)):
-        chave, ext = os.path.splitext(f)
-        if ext.lower() not in ('.png', '.webp', '.jpg', '.jpeg'):
-            continue
-        im = Image.open(os.path.join(pasta, f)).convert('RGBA')
-        b = BytesIO()
-        im.save(b, 'WEBP', quality=88, method=6)
-        out[chave] = base64.b64encode(b.getvalue()).decode()
-    return out
 
 
 def converte_nova(m, amostra_ids=None):
@@ -304,7 +278,7 @@ def converte_nova(m, amostra_ids=None):
     materia = ler(os.path.join(FONTE_NOVAS, m + '.json'))
     materia.pop('_sobre', None)
     banco = []
-    icones = icones_tema_ou(m, lambda: icones_novos(m))
+    icones = icones_da_materia(m)
     if amostra_ids is not None:
         return banco, materia, {}, {}, icones, {}
     saida = os.path.join(DESTINO, m)
@@ -450,6 +424,8 @@ def questao_da_prova(p, pq):
         'conceito': pq.get('conceito') or '', 'pista': '', 'url': caderno, 'origem': 'prova', 'figura': not tr,
         'print': 'provas/' + p['id'] + '/' + pq['print'], 'prova': p['id'], 'txt': 1,
     }
+    if pq.get('nq'):   # número impresso no caderno oficial, com o dia/caderno (ex.: "9 (2º dia)"); 'n' segue a ordem da prova
+        q['nq'] = pq['nq']
     if not caderno.startswith('http'):
         q['pendente'] = 'sem link da fonte'
     texto = {'enun': pq.get('texto') or ''}
@@ -714,6 +690,9 @@ def main():
     print('questões das provas nos exercícios', relatorio['exercicios'])
     relatorio['questoes_de_site'] = aplica_retiradas()
     print('questões de site fora do site', relatorio['questoes_de_site'])
+    # revisão em slides: depois das matérias (alimenta a Teoria em cartões no materia.json de cada uma)
+    relatorio['revisao'] = revisao.converte()
+    print('revisão em slides', relatorio['revisao'])
     gravar(os.path.join(DESTINO, 'relatorio.json'), relatorio)
     # versão do conteúdo (para cache)
     h = hashlib.md5(json.dumps(relatorio, sort_keys=True).encode()).hexdigest()[:8]

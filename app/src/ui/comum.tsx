@@ -1,9 +1,6 @@
-import { useEffect, useState, type CSSProperties, type ReactNode } from 'react';
+import { useEffect, type CSSProperties, type ReactNode } from 'react';
 import { LOGO } from './logo-path';
 import { MATERIAS, type Tons } from '../dados/materias';
-import { urlIcone } from '../dados/conteudo';
-import type { MateriaId } from '../dados/tipos';
-import { Icone } from './Icone';
 
 /** Logo manuscrito do APRENDICE (traço único, herda a cor do texto). */
 export function Logo({ className = 'logo', titulo = 'Aprendice' }: { className?: string; titulo?: string }) {
@@ -37,17 +34,6 @@ export function Barra({ valor, rotulo }: { valor: number; rotulo?: string }) {
       <i style={{ width: `${v * 100}%` }} />
     </div>
   );
-}
-
-/** Ícone 3D atual de um TEMA (matérias que ainda não têm os ícones novos do dono; ver ui/IconeTema.tsx).
- *  Subtemas não têm ícone (decisão do dono, 05/11). */
-export function Ic3D({ m, chave, tam = 56, alt = '' }: { m: MateriaId; chave: string; tam?: number; alt?: string }) {
-  const [falhou, setFalhou] = useState(false);
-  useEffect(() => setFalhou(false), [m, chave]);
-  const url = falhou ? null : urlIcone(m, chave);
-  // sem ícone 3D ainda (matéria nova): marcador discreto na cor da matéria, nunca um buraco
-  if (!url) return <span className={`ic3d ic3d-vazio m-${m}`} style={{ width: tam, height: tam }} aria-hidden><Icone nome="camadas" tam={Math.round(tam * 0.42)} /></span>;
-  return <img className="ic3d" src={url} width={tam} height={tam} alt={alt} loading="lazy" decoding="async" onError={() => setFalhou(true)} />;
 }
 
 export function Toast({ texto, aoFechar }: { texto: string | null; aoFechar: () => void }) {

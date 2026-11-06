@@ -450,7 +450,7 @@ def cmmg(ano, sem, ocr=False, duracao=4.5):
         # inglês: "Read the text and answer the questions from 17 to 18" / "Read and analyze the infographic and answer the
         # question 23" abre o texto daquelas questões (antes o texto das 13 a 16 ia para todas as 13 a 24)
         'suporte': [r'(?i)para responder [àa]s? quest(ão|ao|ões|oes)', r'(?i)^[A-ZÁÉÍÓÚÂÊÔÃÕÇ ]+ ?[-–] ?QUEST[ÕO]ES DE \d+ A \d+',
-                    r'(?i)^read\b.*\banswer the quest'],
+                    r'(?i)^read\b.*\banswer the quest', r'(?i)^as quest(ões|oes) de \d+ a \d+ (são|referem|se referem)'],   # "As questões de 09 a 12 são sobre a obra..."
         'gabarito': gab, 'area': lambda n: areas.get(n, 'Conhecimentos gerais'),
     }
 
@@ -479,7 +479,10 @@ def vunesp(pid_catalogo, escola, ano, fase, titulo, total, caderno='caderno-prov
         'colunas': lambda r: duas_colunas(r, 28), 'topo': 20, 'base': 32,
         'ancora': r'(?i)^quest[ãa]o\s+(\d{1,3})\b', 'ancora_dx': 34,
         'corte': [r'(?i)^CLASSIFICAÇÃO PERIÓDICA', r'(?i)^REDAÇÃO$', r'(?i)^Confidencial até'],
-        'suporte': [r'(?i)para responder [àa]s? ques', r'(?i)para respond(er|-)?\s*$', r'(?i)^er [àa]s quest', r'(?i)^responder [àa]s? quest'],
+        # "para res-/ponder às questões de 15 a 20" (FMABC 2022/2023): instrução partida no meio da palavra
+        'suporte': [r'(?i)para responder [àa]s? ques', r'(?i)para respond(er|-)?\s*$', r'(?i)^er [àa]s quest', r'(?i)^responder [àa]s? quest',
+                    r'(?i)para\s+res\w*-\s*$'],
+        'suporte_sobe': 2,
         'gabarito': gab, 'area': lambda n: 'Conhecimentos gerais',
     }
 
@@ -502,8 +505,8 @@ def puccampinas(ano, duracao=5):
         'banca': 'PUC-Campinas', 'duracao_horas': duracao, 'total': 70,
         'nota': 'Vestibular de Medicina: Prova Geral (1 a 50) e Prova Específica (numerada aqui 51 a 70). '
                 'Gabarito divulgado pela PUC-Campinas no dia da prova; reconferir após os recursos.',
-        'cadernos': [{'arquivo': 'livrete', 'paginas': (3, 16), 'questoes': (1, 50)},
-                     {'arquivo': 'livrete', 'paginas': (22, 29), 'questoes': (51, 70), 'deslocamento': 50}],
+        'cadernos': [{'arquivo': 'livrete', 'paginas': (3, 16), 'questoes': (1, 50), 'rotulo': 'Prova Geral'},
+                     {'arquivo': 'livrete', 'paginas': (22, 29), 'questoes': (51, 70), 'deslocamento': 50, 'rotulo': 'Prova Específica'}],
         # rodape_ultimo: o "68" de ⁶⁸Ga no pé da página (específica q8) não é o número da página
         'colunas': lambda r: [(14, r.width - 14)], 'topo': 26, 'base': 20, 'rodape_num': True, 'rodape_ultimo': True,
         'ancora': r'^(\d{1,2})\.$', 'ancora_dx': 30, 'sequencial': True,
@@ -597,6 +600,7 @@ for _a in (2026, 2025, 2024):
     PROVAS[f'pucsp-{_a}'] = pucsp(_a)
 # 2024, página 3: a questão 03 ocupa a largura toda no alto; abaixo, as 04 e 05 em duas colunas (antes o print da 03 saía cortado à direita)
 PROVAS['pucsp-2024']['larga_topo'] = {3: 355}
+PROVAS['pucsp-2024']['sequencial'] = True   # página 15 tem um "Questão 26" fantasma na camada de texto (cortava o Texto II e as alternativas da 27)
 
 
 # ------------------------------------------------------------------------------------------------ UFU
@@ -1356,7 +1360,7 @@ PROVAS['unemat-2026-1'] = unemat(2026, 1, alternativas=4)
 
 
 # ------------------------------------------------------------------------------------------- Unimontes
-UNIMONTES_SECOES = [(r'^PROVA DE L[ÍI]NGUA ESPANHOLA', 'Espanhol'), (r'^PROVA DE L[ÍI]NGUA INGLESA', 'Inglês'),
+UNIMONTES_SECOES = [(r'^PROVA DE (L[ÍI]NGUA ESTRANGEIRA – )?L[ÍI]NGUA ESPANHOLA', 'Espanhol'), (r'^PROVA DE (L[ÍI]NGUA ESTRANGEIRA – )?L[ÍI]NGUA INGLESA', 'Inglês'),
                     (r'^PROVA DE L[ÍI]NGUA PORTUGUESA', 'Língua Portuguesa'), (r'^PROVA DE LITERATURA', 'Literatura'),
                     (r'^PROVA DE FILOSOFIA', 'Filosofia'), (r'^PROVA DE SOCIOLOGIA', 'Sociologia'),
                     (r'^PROVA DE BIOLOGIA', 'Biologia'), (r'^PROVA DE QU[ÍI]MICA', 'Química'), (r'^PROVA DE F[ÍI]SICA', 'Física'),
@@ -1391,7 +1395,8 @@ def unimontes(ano, duracao=4.5):
         'ancora': r'^QUEST[ÃA]O\s+(\d{2})\s*$', 'ancora_dx': 60, 'sequencial': True, 'ancora_negrito': True,
         'secoes_rx': UNIMONTES_SECOES, 'pular_secoes': ('Espanhol',), 'pular_antes_sequencia': True,
         'corte': [r'(?i)^Quest[õo]es de \d+ a \d+$', r'(?i)^CLASSIFICA[ÇC][ÃA]O PERI', r'(?i)^REDA[ÇC][ÃA]O$', r'(?i)^RASCUNHO'],
-        'suporte': [r'^INSTRUÇÃO:'], 'suporte_secao': True,
+        # "Texto 1" (linha própria) numera o texto para as questões que o citam depois ("considere os textos 1 e 2")
+        'suporte': [r'^INSTRUÇÃO:', r'^Texto\s+\d+\s*(\(.*\))?$'], 'suporte_secao': True, 'cita_textos': True,
         'suporte_singular': r'(?i)\b(à|a)\s+(esta\s+)?quest[ãa]o\b|responda à questão|considere os textos',
         'gabarito': gab, 'area': lambda n: 'Conhecimentos gerais',
     }
@@ -1399,3 +1404,41 @@ def unimontes(ano, duracao=4.5):
 
 for _a in (2024, 2025):
     PROVAS[f'unimontes-{_a}'] = unimontes(_a)
+
+
+# --------------------------------------------------------------------------------------------- Unespar
+_UNESPAR_MAT = [('Ingl[êe]s', 'Inglês'), ('Espanhol', 'Espanhol'), ('Portugu[êe]s', 'Língua Portuguesa'), ('Literatura', 'Literatura'),
+                ('Artes', 'Artes'), ('Educa[çc][ãa]o F[íi]sica', 'Educação Física'), ('F[íi]sica', 'Física'), ('Qu[íi]mica', 'Química'),
+                ('Biologia', 'Biologia'), ('Hist[óo]ria', 'História'), ('Geografia', 'Geografia'), ('Filosofia', 'Filosofia'),
+                ('Sociologia', 'Sociologia'), ('Matem[áa]tica', 'Matemática')]
+
+
+def unespar(ano, duracao=4.5):
+    """Unespar, Concurso Vestibular (Grupo I): prova objetiva A–E em uma coluna, "QUESTÃO 01" em negrito; matérias em
+    seções "Questões de 05 a 11 (Português)"; língua 1–4 na opção inglês ou espanhol. Gabarito oficial em edital:
+    o inglês vem antes do espanhol (vale a 1ª ocorrência de 1–4)."""
+    def gab(pasta):
+        return pares(texto_pdf(pasta / 'gabarito.pdf'))
+
+    cfg = {
+        'catalogo': 'unespar', 'escola': 'Unespar', 'ano': str(ano), 'fase': 'Grupo I', 'titulo': f'Unespar {ano}', 'banca': 'CCCV-Unespar',
+        'duracao_horas': duracao,
+        'nota': f'Universidade Estadual do Paraná, Concurso Vestibular {ano} (Grupo I): prova objetiva A–E (redação fora). '
+                'Língua estrangeira: inglês (1 a 4). Gabarito oficial publicado em edital após os recursos; anulada fica fora.',
+        'cadernos': [{'arquivo': 'caderno', 'paginas': (6, 999)}],
+        'colunas': lambda r: [(18, r.width - 18)], 'margem': 18, 'topo': 14, 'base': 10, 'rodape_num': True, 'rodape_centro': False, 'rodape_ultimo': True, 'rodape_lado': True, 'apagar': [r'^\d{1,2}$'],
+        'ancora': r'^QUEST[ÃA]O\s+(\d{2})\s*$', 'ancora_dx': 160, 'sequencial': True, 'ancora_negrito': True,
+        'secoes_rx': [(rf'(?i)^Quest[õo]es d[eo] \d+ a\s*(\d+)?\s*\((op[çc][ãa]o )?{rx}\)', nome) for rx, nome in _UNESPAR_MAT],
+        'pular_secoes': ('Espanhol',), 'pular_antes_sequencia': True,
+        'corte': [r'(?i)^[ÁA]REA DE ', r'(?i)^Quest[õo]es$', r'(?i)^de \d+ a \d+$', r'(?i)^RASCUNHO'],
+        # "Text 2" sozinho (2024): texto em inglês sem instrução, da questão seguinte
+        'suporte': [r'(?i)^textos? (abaixo |a seguir )?(para|refere-se|referem-se)', r'(?i)(responda|responder)\s+(às|as)\s+quest[õo]es',
+                    r'(?i)refere(m)?-se\s+(à|às)\s+quest', r'^Text\s+\d+:?\s*$'], 'texto_n_sem_faixa': True,
+        'gabarito': gab, 'area': lambda n: 'Conhecimentos gerais',
+    }
+    cfg['total_de'] = lambda pasta: max(gab(pasta))
+    return cfg
+
+
+for _a in (2023, 2024, 2026):
+    PROVAS[f'unespar-{_a}'] = unespar(_a)

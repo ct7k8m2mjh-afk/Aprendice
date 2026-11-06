@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 import type { Letra, MateriaId, Questao } from '../dados/tipos';
+import { numeroQuestao } from '../dados/tipos';
 import { urlPrint } from '../dados/conteudo';
 import { Icone } from './Icone';
 import { defineTelaCheia, useTelaCheia } from './telaCheia';
@@ -150,7 +151,7 @@ export function EnunciadoQuestao({ m, q, numero, print, antes, depois, acao }: {
   useLarguraPrint(prEl, src);
   const alt = textoAlternativo(q);
   const fonte = `${q.escola} ${q.ano}`;
-  const detalhe = [q.fase, q.n ? `questão ${q.n}` : '', q.banca && q.banca !== q.escola ? q.banca : ''].filter(Boolean).join(' · ');
+  const detalhe = [q.fase, q.n ? `questão ${numeroQuestao(q)}` : '', q.banca && q.banca !== q.escola ? q.banca : ''].filter(Boolean).join(' · ');
   return (
     <div className="q-enun">
       <div className="q-meta">
@@ -227,7 +228,7 @@ export function FonteQuestao({ q }: { q: Questao }) {
   const linhas: [string, ReactNode][] = [
     ['Prova', q.escola], ['Ano', q.ano],
     ...(q.fase ? [['Fase', q.fase] as [string, ReactNode]] : []),
-    ...(q.n ? [['Questão', q.n] as [string, ReactNode]] : []),
+    ...(q.n ? [['Questão', numeroQuestao(q)] as [string, ReactNode]] : []),
     ...(q.banca && q.banca !== q.escola ? [['Banca', q.banca] as [string, ReactNode]] : []),
     ['Origem', q.origem === 'prova' ? 'Caderno da prova oficial' : 'Lista pública de exercícios'],
     ['Gabarito', 'Publicado (oficial ou resolução reconhecida)'],

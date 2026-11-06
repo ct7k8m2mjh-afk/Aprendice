@@ -7,6 +7,7 @@ import { filaDe, emDias, DIA, iniDia, PASSOS_Q } from '../logica/revisao';
 import { Carregando, plural, useTitulo } from '../ui/comum';
 import { Icone } from '../ui/Icone';
 import { estadoMateriaVazio } from '../estado/tipos';
+import { numeroQuestao } from '../dados/tipos';
 
 export function Revisao() {
   useTitulo('Revisão');
@@ -52,7 +53,7 @@ export function Revisao() {
                 return (
                   <Link key={q.id} to={`/m/${mc.id}/q/${q.id}?ctx=revisao`} className="linha-lista">
                     <span className={'etq ' + (f?.certeza ? 'err' : 'aviso')}>{f?.certeza ? 'Errou com certeza' : 'Vencida'}</span>
-                    <span><span className="tit" style={{ fontSize: 15 }}>{q.escola} {q.ano}{q.n ? ` · questão ${q.n}` : ''}</span><br /><span className="det">{mc.conteudo.modulos.find((x) => x.id === q.modulo)?.nome}</span></span>
+                    <span><span className="tit" style={{ fontSize: 15 }}>{q.escola} {q.ano}{q.n ? ` · questão ${numeroQuestao(q)}` : ''}</span><br /><span className="det">{mc.conteudo.modulos.find((x) => x.id === q.modulo)?.nome}</span></span>
                     <Icone nome="direita" />
                   </Link>
                 );
@@ -88,7 +89,7 @@ export function Revisao() {
             return (
               <Link key={q.id} to={`/m/${mc.id}/q/${q.id}?ctx=escada`} className={`linha-lista m-${mc.id}`}>
                 <span className="mini"><Icone nome="marcador" /></span>
-                <span><span className="tit" style={{ fontSize: 15 }}>{q.escola} {q.ano}{q.n ? ` · questão ${q.n}` : ''}</span><br /><span className="det">{nomeMateria(mc.id)} · {q.conceito.slice(0, 80)}{f ? ` · revisão ${emDias(f.vence)}` : ''}</span></span>
+                <span><span className="tit" style={{ fontSize: 15 }}>{q.escola} {q.ano}{q.n ? ` · questão ${numeroQuestao(q)}` : ''}</span><br /><span className="det">{nomeMateria(mc.id)} · {q.conceito.slice(0, 80)}{f ? ` · revisão ${emDias(f.vence)}` : ''}</span></span>
                 <Icone nome="direita" />
               </Link>
             );
