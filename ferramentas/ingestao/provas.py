@@ -383,7 +383,7 @@ def upe(ano, duracao=9):
     return cfg
 
 
-PROVAS.update({f'upe-ssa3-{a}': upe(a) for a in (2026, 2025, 2024)})
+PROVAS.update({f'upe-ssa3-{a}': upe(a) for a in (2026, 2025, 2024, 2023, 2022, 2021, 2020)})
 
 
 # ----------------------------------------------------------------------------------------------- CMMG
