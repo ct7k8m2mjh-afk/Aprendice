@@ -122,7 +122,7 @@ function CartaoContinue({ todas, e }: { todas: MateriaCarregada[]; e: Estado }) 
         {parou ? (<>
           <p className="in-dest-sub">{cap(parou.sub?.nome || parou.mod?.nome || '')}</p>
           <p className="in-cont-prog num"><span>{parou.prog.feitas} de {plural(parou.prog.total, 'questão', 'questões')}</span>
-            <span className="in-ponto" aria-hidden>•</span><small>{falta ? `Faltam ${falta} para concluir` : 'Conteúdo concluído'}</small></p>
+            <small><span className="in-ponto" aria-hidden>•</span>{falta ? `Faltam ${falta} para concluir` : 'Conteúdo concluído'}</small></p>
           <Barra valor={parou.prog.feitas / Math.max(1, parou.prog.total)} rotulo="Progresso no conteúdo" />
           <Link to={`/m/${parou.m}/q/${parou.prox.id}?ctx=escada`} className="btn grande">Continuar estudo <Icone nome="seta" /></Link>
         </>) : (<>
