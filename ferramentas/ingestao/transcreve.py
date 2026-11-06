@@ -366,6 +366,7 @@ def transcreve(pdf, segs, ancora, cortes=(), alternativas=5, ocr=False):
         else:
             enun.append({'a': pa['a'], 't': _limpa(pa['t'])})
     def _marcas_ok(t):
+        t = re.sub(r'[ \t]{2,}', ' ', t.replace('\xa0', ' '))
         # número do item sozinho na linha ("I." e o texto embaixo, em tabela): fica na mesma linha do texto
         t = re.sub(r'(?m)^((?:\*\*|~~)*(?:[IVX]{1,4}|\d{1,2})\s?[.)–-](?:\*\*|~~)*)\n(?=\S)', r'\1 ', t)
         for mk in ('~~', '**'):

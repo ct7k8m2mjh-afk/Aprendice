@@ -468,7 +468,7 @@ def vunesp(pid_catalogo, escola, ano, fase, titulo, total, caderno='caderno-prov
         'colunas': lambda r: duas_colunas(r, 28), 'topo': 20, 'base': 32,
         'ancora': r'(?i)^quest[ãa]o\s+(\d{1,3})\b', 'ancora_dx': 34,
         'corte': [r'(?i)^CLASSIFICAÇÃO PERIÓDICA', r'(?i)^REDAÇÃO$', r'(?i)^Confidencial até'],
-        'suporte': [r'(?i)para responder [àa]s? ques', r'(?i)para respond(er|-)?\s*$', r'(?i)^er [àa]s quest'],
+        'suporte': [r'(?i)para responder [àa]s? ques', r'(?i)para respond(er|-)?\s*$', r'(?i)^er [àa]s quest', r'(?i)^responder [àa]s? quest'],
         'gabarito': gab, 'area': lambda n: 'Conhecimentos gerais',
     }
 

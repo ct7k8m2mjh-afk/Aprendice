@@ -792,6 +792,9 @@ def processa(pid, amostra=False, so_texto=False):
                     if e['faixa']:
                         suporte['faixa'] = e['faixa']   # a indicação mais específica (a última) manda
                 else:
+                    if suporte and len(suporte['faixa']) >= 2 and suporte['segs'] not in [g_['segs'] for g_ in gerais]:
+                        # texto que declara "questões 21 a 27" segue valendo até a 27, mesmo com outro texto no meio
+                        gerais.append({'segs': list(suporte['segs']), 'faixa': suporte['faixa']})
                     suporte = {'segs': segs_s, 'faixa': e['faixa'], 'aberto': True}
                 if e.get('num') is not None:
                     for nt in [e['num']] + e.get('outros', []):
