@@ -41,14 +41,14 @@
   "passos": [
    {
     "faz": "Leia os vértices no gráfico",
-    "conta": "A(5; 20) B(10; 40)\nC(20; 40) D(15; 20)",
+    "conta": "A: V = 5, P = 20\nB: V = 10, P = 40\nC: V = 20, P = 40\nD: V = 15, P = 20",
     "porque": "Cada ponto é um par (V em m³; P em kPa), lido nos eixos pelas linhas tracejadas.",
     "tipo": "localizar"
    },
    {
     "faz": "Identifique a forma do ciclo",
     "conta": "AD e BC horizontais\nAB e CD paralelas",
-    "porque": "AD e BC são isobáricas (P constante, 20 e 40 kPa). AB e CD têm a mesma inclinação. O ciclo é um paralelogramo.",
+    "porque": "AD e BC são horizontais: a pressão fica constante (20 e 40 kPa). AB e CD sobem e descem com a mesma inclinação, então são paralelas. Dois pares de lados paralelos formam um paralelogramo.",
     "tipo": "comparar"
    },
    {
@@ -60,7 +60,7 @@
    {
     "faz": "Dê o sinal pelo sentido",
     "conta": "A→B→C→D→A: horário\nW > 0",
-    "porque": "No sentido horário, o gás se expande a pressão alta (BC) e se comprime a pressão baixa (DA). Ele realiza mais trabalho do que recebe.",
+    "porque": "No sentido horário, o gás se expande na pressão alta (BC) e se comprime na pressão baixa (DA). Ele realiza mais trabalho do que recebe, então W é positivo.",
     "tipo": "comparar"
    },
    {
@@ -74,9 +74,9 @@
   "checagem": "Some trecho a trecho. BC: 40 × 10 = +400 kJ. DA (compressão): −20 × 10 = −200 kJ. AB: média de 30 kPa × 5 m³ = +150 kJ. CD: −30 × 5 = −150 kJ. Total: 400 − 200 + 150 − 150 = 200 kJ.",
   "erradas": {
    "A": "−200 kJ tem o módulo certo, mas o sinal está trocado. Esse sinal seria o de um ciclo anti-horário. O enunciado diz que o ciclo ABCDA é horário (setas A→B→C→D→A), então W é positivo.",
-   "B": "−100 kJ não confere. Metade da área (100 kJ) seria a área de um triângulo, mas o ciclo é um paralelogramo de área 200 kJ, e o sinal também está trocado. Para ser negativo, o ciclo teria de ser anti-horário.",
-   "C": "100 kJ não confere. É a metade da área real. A área do paralelogramo é base × altura = 10 × 20 = 200 kJ, sem dividir por 2 (a divisão só vale para triângulo).",
-   "E": "400 kJ é só o trabalho do trecho BC (40 kPa × 10 m³). Esse valor ignora o trabalho negativo da compressão em DA (−200 kJ) e os trechos inclinados, que se cancelam (+150 e −150 kJ)."
+   "B": "−100 kJ não confere por dois motivos. O módulo está errado: a área do paralelogramo é 200 kJ, e não 100 kJ. O sinal também está errado: o ciclo é horário, então W é positivo.",
+   "C": "100 kJ é a metade da área real. Quem marcou dividiu por 2, como se fosse triângulo. Mas o ciclo é um paralelogramo: área = base × altura = 10 × 20 = 200 kJ.",
+   "E": "400 kJ é só o trabalho do trecho BC (40 kPa × 10 m³). Quem marcou E esqueceu a compressão DA (−200 kJ). Os trechos inclinados se cancelam (+150 e −150 kJ). O trabalho total é a soma de todos."
   },
   "armadilha": "Calcular só o trabalho da expansão BC (400 kJ) e esquecer que o trabalho total é a área interna do ciclo, ou errar o sinal ignorando o sentido horário.",
   "alerta": "",
@@ -98,12 +98,12 @@
  ],
  "quadro": [
   {
-   "linha": "A(5; 20)  B(10; 40)",
-   "nota": "pontos lidos no gráfico (m³; kPa)"
+   "linha": "A: V = 5, P = 20",
+   "nota": "lido no gráfico (V em m³, P em kPa)"
   },
   {
-   "linha": "C(20; 40)  D(15; 20)",
-   "nota": "o ciclo é um paralelogramo"
+   "linha": "B: V = 10, P = 40",
+   "nota": "mesma leitura nos eixos"
   },
   {
    "linha": "base = 15 − 5 = 10 m³",
@@ -137,11 +137,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -158,6 +160,62 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "D"
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[0].conta",
+    "depois": "A: V = 5, P = 20\nB: V = 10, P = 40\nC: V = 20, P = 40\nD: V = 15, P = 20",
+    "motivo": "Notação A(5; 20) é ambígua para o aluno; escrever V e P em cada ponto deixa claro qual número é qual."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "AD e BC são horizontais: a pressão fica constante (20 e 40 kPa). AB e CD sobem e descem com a mesma inclinação, então são paralelas. Dois pares de lados paralelos formam um paralelogramo.",
+    "motivo": "Explica por que a figura é um paralelogramo, sem usar 'isobáricas' e sem frase solta."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "No sentido horário, o gás se expande na pressão alta (BC) e se comprime na pressão baixa (DA). Ele realiza mais trabalho do que recebe, então W é positivo.",
+    "motivo": "Liga o sentido ao sinal de forma completa e simples."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "−100 kJ não confere por dois motivos. O módulo está errado: a área do paralelogramo é 200 kJ, e não 100 kJ. O sinal também está errado: o ciclo é horário, então W é positivo.",
+    "motivo": "Texto mais claro: diz o que faltou no raciocínio (módulo e sinal), sem citar triângulo sem necessidade."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "100 kJ é a metade da área real. Quem marcou dividiu por 2, como se fosse triângulo. Mas o ciclo é um paralelogramo: área = base × altura = 10 × 20 = 200 kJ.",
+    "motivo": "Mostra onde falhou o raciocínio de quem marcou C."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "400 kJ é só o trabalho do trecho BC (40 kPa × 10 m³). Quem marcou E esqueceu a compressão DA (−200 kJ). Os trechos inclinados se cancelam (+150 e −150 kJ). O trabalho total é a soma de todos.",
+    "motivo": "Frases mais curtas e foco no que faltou."
+   },
+   {
+    "campo": "resolucao.quadro[0].linha",
+    "depois": "A: V = 5, P = 20",
+    "motivo": "Uma informação por linha e sem notação ambígua."
+   },
+   {
+    "campo": "resolucao.quadro[0].nota",
+    "depois": "lido no gráfico (V em m³, P em kPa)",
+    "motivo": "Explica a ordem dos valores."
+   },
+   {
+    "campo": "resolucao.quadro[1].linha",
+    "depois": "B: V = 10, P = 40",
+    "motivo": "Um ponto por linha, copiável no caderno."
+   },
+   {
+    "campo": "resolucao.quadro[1].nota",
+    "depois": "mesma leitura nos eixos",
+    "motivo": "Nota curta e coerente com a nova linha."
+   }
+  ],
+  "didatica_alertas": [
+   "A classificação atual (tema F08, conteúdo F08.7, óptica) não combina com a questão, que é termodinâmica (ciclo de gás, F07.2). Rever a classificação. Também há divergência de nível: o campo traz 6 e a resolução traz 4."
+  ],
+  "didatica_ok": true
  }
 }

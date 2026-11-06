@@ -1,0 +1,152 @@
+{
+ "n": 7,
+ "id": "Pbd1fc13f",
+ "materia": "mat",
+ "tema": "M07",
+ "conteudo": "M07.3",
+ "nivel": 5,
+ "conceito": "Soma de termos de uma PA: termos equidistantes dos extremos têm soma igual, e a soma total é a soma dos extremos × n/2.",
+ "resolucao": {
+  "antes": {
+   "texto": "Primeiro conte os segmentos do caminho de A até B, seguindo a figura. Cada segmento é um termo da progressão aritmética (PA), na ordem em que o caminho passa por eles. Numa PA, termos igualmente distantes dos extremos somam o mesmo valor, e isso evita descobrir o primeiro termo e a razão.",
+   "formulas": [
+    "Soma de n termos de uma PA = (primeiro + último) × n ÷ 2",
+    "Em PA com 6 termos: a1 + a6 = a2 + a5 = a3 + a4"
+   ],
+   "simbolos": [
+    [
+     "PA",
+     "progressão aritmética: sequência em que cada termo é o anterior mais uma razão constante"
+    ],
+    [
+     "a1, a2, ...",
+     "primeiro termo, segundo termo, e assim por diante"
+    ],
+    [
+     "razão",
+     "valor constante que se soma de um termo ao seguinte"
+    ],
+    [
+     "caminho poligonal",
+     "caminho formado por segmentos de reta ligados em sequência"
+    ]
+   ]
+  },
+  "pista": "Siga o caminho com o dedo, de A até B, contando cada trecho reto. Em que posição da sequência estão PQ e QR?",
+  "passos": [
+   {
+    "faz": "Conte os segmentos do caminho",
+    "conta": "A→canto, canto→P, P→Q, Q→R, R→canto, canto→B",
+    "porque": "A partir de A, o caminho vai para a esquerda, desce até P, segue para a direita até Q, sobe até R, vai para a esquerda e desce até B. Cada mudança de direção começa um novo segmento. São 6 segmentos.",
+    "tipo": "localizar"
+   },
+   {
+    "faz": "Dê a posição de PQ e QR",
+    "conta": "PQ = a3 ; QR = a4",
+    "porque": "PQ é o terceiro segmento e QR é o quarto. Os dois ficam no meio da sequência de 6 termos.",
+    "tipo": "localizar"
+   },
+   {
+    "faz": "Escreva a soma total da PA",
+    "conta": "S = (a1 + a6) × 6/2 = 3·(a1 + a6)",
+    "porque": "A soma de n termos de uma PA é (primeiro + último) × n ÷ 2. O enunciado diz que a soma total vale 84/5.",
+    "tipo": "aplicar"
+   },
+   {
+    "faz": "Ache a1 + a6",
+    "conta": "3·(a1 + a6) = 84/5 → a1 + a6 = 28/5",
+    "porque": "Divida os dois lados por 3: (84/5) ÷ 3 = 84/15 = 28/5.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Troque os extremos pelo meio",
+    "conta": "a3 + a4 = a1 + a6 = 28/5",
+    "porque": "Na PA, a3 = a1 + 2r e a4 = a1 + 3r, então a3 + a4 = 2·a1 + 5r. Já a1 + a6 = a1 + (a1 + 5r) = 2·a1 + 5r. As duas somas são iguais, então PQ + QR = 28/5.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa D: PQ + QR = a3 + a4 = a1 + a6 = (84/5) ÷ 3 = 28/5.",
+  "checagem": "Medindo a figura em pixels, os segmentos têm cerca de 90, 137, 183, 225, 273 e 315, que formam uma PA de razão próxima de 45. A soma é cerca de 1223, e PQ + QR = 183 + 225 = 408. Como 1223 ÷ 3 ≈ 408, PQ + QR é mesmo um terço do total: (84/5) ÷ 3 = 28/5.",
+  "erradas": {
+   "A": "26/5 não confere: a soma de PQ e QR é um terço do total, pois a3 + a4 = a1 + a6 e 3·(a1 + a6) = 84/5. Isso dá 28/5, e 26/5 deixaria o total em 3 × 26/5 = 78/5, não 84/5.",
+   "B": "24/5 não confere: 3 × 24/5 = 72/5, que é diferente dos 84/5 do enunciado. Para a soma de PQ e QR valer 24/5, o caminho todo teria de medir 72/5.",
+   "C": "42/5 é a metade do total: (84/5) ÷ 2 = 42/5. Isso seria a soma de 3 segmentos, e a soma pedida é de só 2 dos 6 segmentos, ou seja, um terço do total.",
+   "E": "48/5 não confere: 3 × 48/5 = 144/5, bem maior que 84/5. Dois segmentos do meio não podem somar mais da metade do caminho todo (42/5)."
+  },
+  "armadilha": "Contar menos de 6 segmentos (por exemplo, esquecer o primeiro, de A até o canto, ou o último, até B) muda a razão entre a soma de PQ e QR e o total.",
+  "alerta": "",
+  "essencial": {
+   "pede": "A soma das medidas de PQ e QR no caminho poligonal de A até B.",
+   "chave": "O caminho tem 6 segmentos em PA. a3 + a4 = a1 + a6, e a soma total é 3·(a1 + a6) = 84/5.",
+   "cuidado": "Conte os 6 segmentos seguindo o caminho de A até B e identifique PQ como o 3º e QR como o 4º."
+  }
+ },
+ "caminhos": [
+  {
+   "nome": "Termo geral e razão",
+   "ideia": "Chame o primeiro segmento de a1 e a razão de r. A soma é 6·a1 + 15r = 84/5, e se pede a3 + a4 = 2·a1 + 5r. Como 6·a1 + 15r = 3·(2·a1 + 5r), o resultado é (84/5) ÷ 3 = 28/5."
+  },
+  {
+   "nome": "Simetria da PA",
+   "ideia": "Numa PA de 6 termos, os 6 termos formam 3 pares com a mesma soma: a1 + a6, a2 + a5 e a3 + a4. O total se divide em 3 partes iguais, e cada par vale (84/5) ÷ 3 = 28/5."
+  }
+ ],
+ "quadro": [
+  {
+   "linha": "6 segmentos: a1, a2, ..., a6",
+   "nota": "o caminho de A a B tem 6 trechos retos"
+  },
+  {
+   "linha": "PQ = a3 e QR = a4",
+   "nota": "terceiro e quarto segmentos"
+  },
+  {
+   "linha": "a1+a6 = a2+a5 = a3+a4",
+   "nota": "pares equidistantes dos extremos somam igual"
+  },
+  {
+   "linha": "3 × (a3 + a4) = 84/5",
+   "nota": "são 3 pares iguais no total"
+  },
+  {
+   "linha": "a3 + a4 = (84/5) ÷ 3",
+   "nota": "o 3 passa dividindo",
+   "mov": [
+    {
+     "termo": "3",
+     "de": "esquerda",
+     "para": "denominador",
+     "vira": "3",
+     "como": "passa dividindo"
+    }
+   ]
+  },
+  {
+   "linha": "a3 + a4 = 84/15",
+   "nota": "multiplique os denominadores: 5 × 3 = 15"
+  },
+  {
+   "linha": "a3 + a4 = 28/5",
+   "nota": "divida 84 e 15 por 3"
+  }
+ ],
+ "visual": {
+  "cabe": true,
+  "porque": "Ver o caminho dividido em 6 segmentos e os pares de termos ajuda a entender por que a soma de PQ e QR é um terço do total.",
+  "tipo": "figura",
+  "roteiro": "Quadro 1: a figura com o caminho de A até B; cada segmento é pintado de uma cor e numerado de 1 a 6 na ordem do percurso. Quadro 2: os segmentos são esticados em linha reta, em comprimentos crescentes, e fica claro que são uma PA. Quadro 3: os pares 1 e 6, 2 e 5, 3 e 4 são ligados por arcos, e cada arco recebe a mesma soma. Quadro 4: o total 84/5 se divide em 3 blocos iguais e o par PQ e QR mostra 28/5."
+ },
+ "fontes": [],
+ "confere": true,
+ "divergencia": "",
+ "resposta_resolvedor": "D",
+ "gab": "D",
+ "revisao": {
+  "lentes": [
+   "resolvedor"
+  ],
+  "modelos": {
+   "resolvedor": "claude-sonnet-5-5"
+  }
+ }
+}

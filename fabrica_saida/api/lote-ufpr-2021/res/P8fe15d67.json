@@ -11,8 +11,9 @@
    "texto": "Pergunta de 'according to the text' pede só o que está escrito. Cada alternativa afirma vários elementos (quem, o quê, quando, quantos), e um elemento errado derruba a alternativa. Aqui há números e datas no primeiro parágrafo, que decidem a questão.",
    "formulas": [
     "according to the text = vale só o que está escrito",
-    "as of July 31 = até 31 de julho (data de corte do registro)",
-    "um detalhe trocado derruba a alternativa inteira"
+    "as of July 31 = até 31 de julho (data em que o registro foi fechado)",
+    "um detalhe trocado derruba a alternativa inteira",
+    "the middle of 2020 = meados de 2020; 31 de julho é perto disso"
    ],
    "simbolos": [
     [
@@ -22,6 +23,10 @@
     [
      "naloxone",
      "remédio que reverte uma overdose de opioides"
+    ],
+    [
+     "opioid",
+     "droga forte, como fentanil e morfina"
     ],
     [
      "overdose",
@@ -46,6 +51,18 @@
     [
      "first responders",
      "equipes que chegam primeiro à emergência"
+    ],
+    [
+     "the middle of 2020",
+     "meados de 2020, por volta de junho e julho"
+    ],
+    [
+     "every other day",
+     "um dia sim, outro não"
+    ],
+    [
+     "to be encouraged",
+     "ser incentivado"
     ]
    ]
   },
@@ -66,13 +83,13 @@
    {
     "faz": "Veja a data de 2020",
     "conta": "“102 people were saved as of July 31”",
-    "porque": "O registro de 2020 vai até 31 de julho, ou seja, até meados do ano. Isso bate com D.",
+    "porque": "O registro de 2020 para em 31 de julho, perto do meio do ano. Por isso D, que fala em registro até meados de 2020, está de acordo com o texto.",
     "tipo": "localizar"
    },
    {
     "faz": "Confronte B, C e E com o texto",
-    "conta": "naloxone reverte overdose",
-    "porque": "O texto não fala em tratar vício (B), em cocaína como causa de atendimento (C) nem em incentivo à venda (E).",
+    "conta": "B: vício? C: cocaína? E: incentivo?",
+    "porque": "Cada alternativa traz algo que o texto não diz: tratar o vício (B), atender casos de overdose de cocaína (C) e incentivar farmácias a vender (E). Um detalhe sem apoio no texto já derruba a alternativa.",
     "tipo": "eliminar"
    },
    {
@@ -87,10 +104,10 @@
   "erradas": {
    "A": "Inverte os números: 2018 teve 165 salvos e 2019 teve 188. Foram mais pessoas salvas em 2019, não em 2018.",
    "B": "O texto diz que a naloxone reverte uma overdose (“reverse an opioid overdose”). Não diz que ela tira o vício; salvar a vida não é tratar a dependência.",
-   "C": "O texto fala de overdose de opioides, usando o naloxone quase em dias alternados (“almost every other day”). A cocaína aparece só como remédio inútil que Bonn tentou no passado (“that doesn't help”).",
-   "E": "O texto diz que o governo fez kits gratuitos nas farmácias (“available for free at pharmacies”). Não fala em incentivar farmácias a vender, nem em viciados como público único."
+   "C": "O texto trata de overdose de opioides, e a naloxone é usada “almost every other day” (um dia sim, outro não), não todo dia. A cocaína aparece só como truque inútil de Bonn no passado (“that doesn't help”).",
+   "E": "O texto diz que o governo deu kits grátis nas farmácias (“available for free at pharmacies”). Não diz que serviços médicos incentivam a venda, nem que o público seja só de viciados. Quem marcou E inventou um incentivo que o texto não traz."
   },
-  "armadilha": "Trocar os anos (2018 × 2019) ou aceitar alternativas plausíveis sobre drogas que o texto não afirma.",
+  "armadilha": "Trocar 2018 e 2019, ou marcar uma alternativa que parece lógica sobre drogas, mas que o texto não afirma.",
   "alerta": "",
   "essencial": {
    "pede": "A afirmação que está de acordo com o texto.",
@@ -132,11 +149,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -147,6 +166,106 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "D"
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "paramedics",
+      "socorristas, paramédicos"
+     ],
+     [
+      "naloxone",
+      "remédio que reverte uma overdose de opioides"
+     ],
+     [
+      "opioid",
+      "droga forte, como fentanil e morfina"
+     ],
+     [
+      "overdose",
+      "dose excessiva de droga"
+     ],
+     [
+      "as of July 31",
+      "até 31 de julho"
+     ],
+     [
+      "get rid of",
+      "livrar-se de"
+     ],
+     [
+      "addiction",
+      "vício, dependência"
+     ],
+     [
+      "drugstores / pharmacies",
+      "farmácias"
+     ],
+     [
+      "first responders",
+      "equipes que chegam primeiro à emergência"
+     ],
+     [
+      "the middle of 2020",
+      "meados de 2020, por volta de junho e julho"
+     ],
+     [
+      "every other day",
+      "um dia sim, outro não"
+     ],
+     [
+      "to be encouraged",
+      "ser incentivado"
+     ]
+    ],
+    "motivo": "Incluídos termos que aparecem nas alternativas e na resolução (opioid, middle of 2020, every other day, encouraged), para o aluno não travar nessas palavras."
+   },
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "according to the text = vale só o que está escrito",
+     "as of July 31 = até 31 de julho (data em que o registro foi fechado)",
+     "um detalhe trocado derruba a alternativa inteira",
+     "the middle of 2020 = meados de 2020; 31 de julho é perto disso"
+    ],
+    "motivo": "Liga a fórmula à alternativa D e explica a data de corte."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "O registro de 2020 para em 31 de julho, perto do meio do ano. Por isso D, que fala em registro até meados de 2020, está de acordo com o texto.",
+    "motivo": "Frase mais clara e sem ambiguidade."
+   },
+   {
+    "campo": "resolucao.passos[3]",
+    "depois": {
+     "faz": "Confronte B, C e E com o texto",
+     "conta": "B: vício? C: cocaína? E: incentivo?",
+     "porque": "Cada alternativa traz algo que o texto não diz: tratar o vício (B), atender casos de overdose de cocaína (C) e incentivar farmácias a vender (E). Um detalhe sem apoio no texto já derruba a alternativa.",
+     "tipo": "eliminar"
+    },
+    "motivo": "A conta anterior ('naloxone reverte overdose') não respondia ao que o passo faz. A nova é curta e cabe na tela."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "O texto trata de overdose de opioides, e a naloxone é usada “almost every other day” (um dia sim, outro não), não todo dia. A cocaína aparece só como truque inútil de Bonn no passado (“that doesn't help”).",
+    "motivo": "Explica o erro de 'every day' e traduz a expressão, que é o que faltou a quem marcou C."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "O texto diz que o governo deu kits grátis nas farmácias (“available for free at pharmacies”). Não diz que serviços médicos incentivam a venda, nem que o público seja só de viciados. Quem marcou E inventou um incentivo que o texto não traz.",
+    "motivo": "Deixa claro o que faltou no raciocínio de quem marcou E."
+   },
+   {
+    "campo": "resolucao.armadilha",
+    "depois": "Trocar 2018 e 2019, ou marcar uma alternativa que parece lógica sobre drogas, mas que o texto não afirma.",
+    "motivo": "Frase mais simples."
+   }
+  ],
+  "didatica_alertas": [
+   "A alternativa D traz 'the number of people who has been saved' (concordância 'has' com 'people'), erro de gramática da própria prova; não afeta o gabarito."
+  ],
+  "didatica_ok": true
  }
 }

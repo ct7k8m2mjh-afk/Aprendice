@@ -27,12 +27,24 @@
      "posição de um ser na cadeia alimentar"
     ],
     [
+     "produtor",
+     "autótrofo que inicia a cadeia, pois fabrica matéria orgânica"
+    ],
+    [
      "consumidor primário",
      "heterótrofo que come diretamente o produtor"
     ],
     [
      "consumidor secundário",
      "heterótrofo que come o consumidor primário"
+    ],
+    [
+     "fotossintetizante",
+     "ser que faz fotossíntese, isto é, usa luz para fabricar alimento"
+    ],
+    [
+     "biomassa",
+     "massa total de seres vivos de um nível da cadeia"
     ]
    ]
   },
@@ -52,14 +64,14 @@
    },
    {
     "faz": "Elimine A e B",
-    "conta": "base = autótrofo, não heterótrofo",
-    "porque": "Heterótrofos não produzem matéria orgânica, então não são a base. A diz isso e B também, ao chamar o 'herbívoro autótrofo' de base.",
+    "conta": "base = autótrofo",
+    "porque": "A base da cadeia é o produtor, que é autótrofo. A coloca os heterótrofos na base. B coloca na base um herbívoro, que é heterótrofo, pois come plantas. Por isso as duas caem.",
     "tipo": "eliminar"
    },
    {
     "faz": "Elimine C e E",
-    "conta": "autótrofo não consome autótrofo",
-    "porque": "Autótrofos produzem o próprio alimento e não são consumidores. C e E dizem que consomem ou atuam como consumidores.",
+    "conta": "consumidor = heterótrofo",
+    "porque": "Quem consome alimento pronto é heterótrofo. O autótrofo fabrica o próprio alimento e não é consumidor. C diz que o autótrofo consome seres fotossintetizantes. E diz que ele pode ser consumidor primário ou secundário. As duas erram.",
     "tipo": "eliminar"
    },
    {
@@ -73,8 +85,8 @@
   "checagem": "Troque os nomes pelo exemplo: capim (base) → gafanhoto (primário) → sapo (secundário). Isso reproduz exatamente a frase da D. Nas outras, aparece sempre um erro de posição ou de papel.",
   "erradas": {
    "A": "Diz que os heterótrofos são a base e fazem a produção primária. Produção primária é fabricação de matéria orgânica a partir de energia, feita por autótrofos. O próprio enunciado diz que no início sempre há um autótrofo.",
-   "B": "Chama de 'herbívoros autótrofos' e os coloca na base. Herbívoro é heterótrofo, pois come plantas. A base é o produtor, e a maior biomassa costuma estar nos produtores, não nos consumidores.",
-   "C": "Diz que os autótrofos 'consomem diretamente os seres fotossintetizantes'. Mas os autótrofos já são, em geral, os fotossintetizantes; eles fabricam o alimento e não consomem outros seres. O erro está na parte final da frase.",
+   "B": "Chama de 'herbívoros autótrofos' e os coloca na base. Herbívoro come plantas, então é heterótrofo. A base é o produtor. Os consumidores têm menos biomassa que os produtores, não mais.",
+   "C": "Diz que os autótrofos 'consomem diretamente os seres fotossintetizantes'. A primeira parte está certa: autótrofos são produtores e ficam na base. O erro é o final: autótrofo fabrica o alimento e não consome ninguém.",
    "E": "Diz que autótrofos podem ser consumidores primários e secundários. Por definição, consumidor é heterótrofo. Na cadeia, o papel do autótrofo é o de produtor; começar a cadeia não faz dele consumidor."
   },
   "armadilha": "Confundir 'consumidor primário' com 'primeiro da cadeia': o primeiro é o produtor; o consumidor primário é o segundo ser.",
@@ -106,11 +118,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -133,6 +147,85 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "D"
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "capim: produtor\ngafanhoto: consumidor 1º\nsapo: consumidor 2º",
+    "motivo": "Mantido. A conta tem linhas curtas e cabe na tela."
+   },
+   {
+    "campo": "resolucao.passos[2]",
+    "depois": {
+     "faz": "Elimine A e B",
+     "conta": "base = autótrofo",
+     "porque": "A base da cadeia é o produtor, que é autótrofo. A coloca os heterótrofos na base. B coloca na base um herbívoro, que é heterótrofo, pois come plantas. Por isso as duas caem.",
+     "tipo": "eliminar"
+    },
+    "motivo": "Frases mais curtas e sem ambiguidade. A conta ficou mais curta para caber na tela do celular."
+   },
+   {
+    "campo": "resolucao.passos[3]",
+    "depois": {
+     "faz": "Elimine C e E",
+     "conta": "consumidor = heterótrofo",
+     "porque": "Quem consome alimento pronto é heterótrofo. O autótrofo fabrica o próprio alimento e não é consumidor. C diz que o autótrofo consome seres fotossintetizantes. E diz que ele pode ser consumidor primário ou secundário. As duas erram.",
+     "tipo": "eliminar"
+    },
+    "motivo": "A conta anterior ('autótrofo não consome autótrofo') não cobria o erro de E. O porquê agora explica o erro das duas alternativas."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "Diz que os autótrofos 'consomem diretamente os seres fotossintetizantes'. A primeira parte está certa: autótrofos são produtores e ficam na base. O erro é o final: autótrofo fabrica o alimento e não consome ninguém.",
+    "motivo": "Deixa claro o que está certo e o que está errado na C, para quem marcou essa letra."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "Chama de 'herbívoros autótrofos' e os coloca na base. Herbívoro come plantas, então é heterótrofo. A base é o produtor. Os consumidores têm menos biomassa que os produtores, não mais.",
+    "motivo": "Frase mais direta e sem 'costuma', que deixava o sentido solto."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "autótrofo",
+      "ser que produz o próprio alimento, como plantas, algas e cianobactérias"
+     ],
+     [
+      "heterótrofo",
+      "ser que se alimenta de matéria orgânica produzida por outros seres"
+     ],
+     [
+      "nível trófico",
+      "posição de um ser na cadeia alimentar"
+     ],
+     [
+      "produtor",
+      "autótrofo que inicia a cadeia, pois fabrica matéria orgânica"
+     ],
+     [
+      "consumidor primário",
+      "heterótrofo que come diretamente o produtor"
+     ],
+     [
+      "consumidor secundário",
+      "heterótrofo que come o consumidor primário"
+     ],
+     [
+      "fotossintetizante",
+      "ser que faz fotossíntese, isto é, usa luz para fabricar alimento"
+     ],
+     [
+      "biomassa",
+      "massa total de seres vivos de um nível da cadeia"
+     ]
+    ],
+    "motivo": "Faltavam 'produtor', 'fotossintetizante' e 'biomassa', que aparecem na resolução e nas alternativas."
+   }
+  ],
+  "didatica_alertas": [
+   "A alternativa D diz 'Seres fotossintetizantes são base de cadeia'. Cadeias de quimiossíntese têm base autótrofa não fotossintetizante. Para o vestibular, a D é aceita e o gabarito está correto."
+  ],
+  "didatica_ok": true
  }
 }

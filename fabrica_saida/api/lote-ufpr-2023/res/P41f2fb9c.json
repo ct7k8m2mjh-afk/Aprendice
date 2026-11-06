@@ -8,7 +8,7 @@
  "conceito": "Substituir uma equação na outra para achar c, e depois contar as soluções inteiras positivas de a + b = constante.",
  "resolucao": {
   "antes": {
-   "texto": "As duas equações têm a + b. Como a + b vale c² na primeira, dá para trocar a + b por c² na segunda e ficar só com c. Depois que c é conhecido, resta contar os pares (a, b) de inteiros positivos com soma fixa. A ordem importa: (1, 15) e (15, 1) são triplas diferentes.",
+   "texto": "As duas equações têm a + b. Como a + b vale c² na primeira, dá para trocar a + b por c² na segunda e ficar só com c. Depois que c é conhecido, resta contar os pares (a, b) de inteiros positivos com soma fixa. A ordem importa: (1, 15) e (15, 1) são triplas diferentes. Equação do 2º grau: equação em que a letra aparece elevada ao quadrado, como c² + c − 20 = 0.",
    "formulas": [
     "a + b = c²  e  a + b + c = 20  →  c² + c = 20",
     "c² + c − 20 = 0 (equação do 2º grau)"
@@ -28,14 +28,14 @@
   "passos": [
    {
     "faz": "Substitua a + b por c²",
-    "conta": "c² + c = 20",
+    "conta": "a + b + c = 20\nc² + c = 20",
     "porque": "Na segunda equação, a + b + c é (a + b) + c. Como a + b = c², fica c² + c = 20.",
     "tipo": "calcular"
    },
    {
-    "faz": "Resolva a equação em c",
-    "conta": "c² + c − 20 = 0",
-    "porque": "Soma das raízes = −1 e produto = −20. Os números que servem são 4 e −5.",
+    "faz": "Fatore a equação em c",
+    "conta": "c² + c − 20 = 0\n(c − 4)(c + 5) = 0",
+    "porque": "Procure dois números com soma 1 e produto −20: são 5 e −4. Assim (c − 4)(c + 5) = 0, e as raízes são c = 4 e c = −5.",
     "tipo": "calcular"
    },
    {
@@ -51,8 +51,8 @@
     "tipo": "calcular"
    },
    {
-    "faz": "Conte os pares (a, b)",
-    "conta": "a = 1, 2, ..., 15",
+    "faz": "Conte os pares (a, b) e feche a resposta",
+    "conta": "a = 1, 2, ..., 15\n15 triplas → E",
     "porque": "Se a vai de 1 a 15, então b = 16 − a vai de 15 a 1, sempre positivo. O valor a = 16 daria b = 0, que não é positivo. São 15 pares, e cada um forma uma tripla com c = 4.",
     "tipo": "concluir"
    }
@@ -122,7 +122,7 @@
   },
   {
    "linha": "(c − 4)(c + 5) = 0",
-   "nota": "fatore: 4 × 5 = 20 e 5 − 4 = 1"
+   "nota": "fatore: dois números com soma 1 e produto −20"
   },
   {
    "linha": "c = 4",
@@ -155,11 +155,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -176,6 +178,57 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "E"
+  "fatos_resposta": "E",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "As duas equações têm a + b. Como a + b vale c² na primeira, dá para trocar a + b por c² na segunda e ficar só com c. Depois que c é conhecido, resta contar os pares (a, b) de inteiros positivos com soma fixa. A ordem importa: (1, 15) e (15, 1) são triplas diferentes. Equação do 2º grau: equação em que a letra aparece elevada ao quadrado, como c² + c − 20 = 0.",
+    "motivo": "Explica o termo 'equação do 2º grau' na primeira aparição."
+   },
+   {
+    "campo": "resolucao.passos[0].conta",
+    "depois": "a + b + c = 20\nc² + c = 20",
+    "motivo": "Mostra o ponto de partida e o resultado da troca; o campo não deve quebrar linha na tela, então se recomenda manter as duas linhas separadas."
+   },
+   {
+    "campo": "resolucao.passos[1].faz",
+    "depois": "Fatore a equação em c",
+    "motivo": "O passo mostra a fatoração, não a fórmula de Bhaskara; o comando fica fiel ao que se faz."
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "c² + c − 20 = 0\n(c − 4)(c + 5) = 0",
+    "motivo": "Falta mostrar a fatoração; o aluno vê de onde vêm 4 e −5."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "Procure dois números com soma 1 e produto −20: são 5 e −4. Assim (c − 4)(c + 5) = 0, e as raízes são c = 4 e c = −5.",
+    "motivo": "A frase antiga ('soma das raízes = −1') confundia soma de números com soma de raízes e invertia o sinal. Agora o raciocínio é direto e bate com o quadro."
+   },
+   {
+    "campo": "resolucao.passos[4].faz",
+    "depois": "Conte os pares (a, b) e feche a resposta",
+    "motivo": "O último passo conta e também liga à alternativa; o comando deixa isso claro."
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "a = 1, 2, ..., 15\n15 triplas → E",
+    "motivo": "Liga a contagem à letra no passo concluir."
+   },
+   {
+    "campo": "resolucao.quadro[4].nota",
+    "depois": "fatore: dois números com soma 1 e produto −20",
+    "motivo": "A nota antiga ('4 × 5 = 20 e 5 − 4 = 1') era confusa; a nova diz o que se procura."
+   },
+   {
+    "campo": "resolucao.quadro[9].linha",
+    "depois": "15 triplas → E",
+    "motivo": "Fecha o quadro ligando à alternativa."
+   }
+  ],
+  "didatica_alertas": [
+   "O campo 'conteudo' da resolução está como M04.2 e o nível como 4, enquanto a classificação atual do banco é M04.3 e nível 5; verificar qual vale. Não alterei."
+  ],
+  "didatica_ok": true
  }
 }

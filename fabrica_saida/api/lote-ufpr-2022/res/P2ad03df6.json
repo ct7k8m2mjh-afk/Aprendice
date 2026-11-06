@@ -8,11 +8,12 @@
  "conceito": "Estimar a ordem de grandeza da espessura de um celular, comparando potências de dez com objetos conhecidos.",
  "resolucao": {
   "antes": {
-   "texto": "Ordem de grandeza é a potência de dez mais próxima do valor de uma medida. Aqui não há conta exata: é preciso estimar a espessura de um celular e escrevê-la em metros, em notação de potência de dez. Compare com algo conhecido, como a largura do seu dedo.",
+   "texto": "Ordem de grandeza é a potência de dez mais próxima do valor de uma medida. Aqui não há conta exata: estime a espessura de um celular e escreva em metros, como potência de dez. Compare com algo conhecido, como a largura do seu dedo.",
    "formulas": [
     "1 cm = 10⁻² m",
     "1 mm = 10⁻³ m",
-    "valor = a × 10ⁿ m; ordem de grandeza ≈ 10ⁿ (ou 10ⁿ⁺¹ se a for maior que cerca de 3,16)"
+    "valor = a × 10ⁿ m, com a entre 1 e 10",
+    "se a for menor que cerca de 3,16, a ordem de grandeza é 10ⁿ; se for maior, é 10ⁿ⁺¹"
    ],
    "simbolos": [
     [
@@ -21,11 +22,19 @@
     ],
     [
      "10⁻²",
-     "0,01, ou seja, 1 centímetro em metros"
+     "0,01: é 1 centímetro escrito em metros"
+    ],
+    [
+     "mm",
+     "milímetro, a milésima parte do metro"
     ],
     [
      "m",
      "metro, unidade de comprimento no SI"
+    ],
+    [
+     "√10 ≈ 3,16",
+     "valor de corte: abaixo dele arredonda-se para baixo, acima dele para cima"
     ]
    ]
   },
@@ -34,7 +43,7 @@
    {
     "faz": "Estime a espessura do celular",
     "conta": "espessura ≈ 8 mm",
-    "porque": "Um celular comum é fino, mais ou menos como um dedo mindinho deitado ou menos. Fica entre 7 mm e 10 mm.",
+    "porque": "Um celular comum é fino: tem entre 7 mm e 10 mm, menos que a largura de um dedo mindinho.",
     "tipo": "localizar"
    },
    {
@@ -45,8 +54,8 @@
    },
    {
     "faz": "Escreva como 10 elevado a algo",
-    "conta": "8 × 10⁻³ ≈ 10 × 10⁻³ = 10⁻²",
-    "porque": "8 é maior que √10 ≈ 3,16, o ponto de corte entre 10⁰ e 10¹. Por isso, para a ordem de grandeza, 8 conta como 10¹, e o expoente sobe um.",
+    "conta": "8 > 3,16, então 8 → 10¹",
+    "porque": "Como 8 passa de 3,16, ele fica mais perto de 10 do que de 1. Então 8 × 10⁻³ vira 10¹ × 10⁻³ = 10⁻², pois somamos os expoentes.",
     "tipo": "calcular"
    },
    {
@@ -64,7 +73,7 @@
    "D": "10¹ m é cerca de 10 metros, o comprimento de um ônibus ou a altura de um prédio de três andares. Um celular cabe na mão e não chega perto disso.",
    "E": "10³ m é 1 quilômetro, uma distância que se percorre andando uns 12 minutos. Não tem relação com a espessura de um objeto de bolso."
   },
-  "armadilha": "Errar a conversão de unidade: o celular tem uns 8 mm, que não é 10⁻³ m, mas sim 8 × 10⁻³ m, cuja ordem de grandeza é 10⁻².",
+  "armadilha": "Esquecer de arredondar: 8 × 10⁻³ m tem ordem de grandeza 10⁻², e não 10⁻³.",
   "alerta": "",
   "essencial": {
    "pede": "A ordem de grandeza da espessura de um celular, em metros.",
@@ -119,11 +128,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -146,6 +157,71 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "C"
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Ordem de grandeza é a potência de dez mais próxima do valor de uma medida. Aqui não há conta exata: estime a espessura de um celular e escreva em metros, como potência de dez. Compare com algo conhecido, como a largura do seu dedo.",
+    "motivo": "Frase mais direta e curta, em voz ativa."
+   },
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "1 cm = 10⁻² m",
+     "1 mm = 10⁻³ m",
+     "valor = a × 10ⁿ m, com a entre 1 e 10",
+     "se a for menor que cerca de 3,16, a ordem de grandeza é 10ⁿ; se for maior, é 10ⁿ⁺¹"
+    ],
+    "motivo": "A regra estava com sentido ambíguo e numa linha só; separada fica mais clara."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "ordem de grandeza",
+      "potência de dez mais próxima do valor da grandeza"
+     ],
+     [
+      "10⁻²",
+      "0,01: é 1 centímetro escrito em metros"
+     ],
+     [
+      "mm",
+      "milímetro, a milésima parte do metro"
+     ],
+     [
+      "m",
+      "metro, unidade de comprimento no SI"
+     ],
+     [
+      "√10 ≈ 3,16",
+      "valor de corte: abaixo dele arredonda-se para baixo, acima dele para cima"
+     ]
+    ],
+    "motivo": "Incluídos mm e o corte √10, usados nos passos e não explicados."
+   },
+   {
+    "campo": "resolucao.passos[0].porque",
+    "depois": "Um celular comum é fino: tem entre 7 mm e 10 mm, menos que a largura de um dedo mindinho.",
+    "motivo": "A frase original ('mais ou menos como um dedo mindinho deitado ou menos') era confusa."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "8 > 3,16, então 8 → 10¹",
+    "motivo": "Cabe na tela e mostra a regra sem sobrecarregar."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Como 8 passa de 3,16, ele fica mais perto de 10 do que de 1. Então 8 × 10⁻³ vira 10¹ × 10⁻³ = 10⁻², pois somamos os expoentes.",
+    "motivo": "Explica o arredondamento e a soma de expoentes, em frases curtas."
+   },
+   {
+    "campo": "resolucao.armadilha",
+    "depois": "Esquecer de arredondar: 8 × 10⁻³ m tem ordem de grandeza 10⁻², e não 10⁻³.",
+    "motivo": "A armadilha original era confusa; esta é a armadilha real da questão."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

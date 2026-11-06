@@ -8,7 +8,7 @@
  "conceito": "Potência dissipada em resistor ôhmico: P = V²/R. Dobrar a tensão quadruplica a potência.",
  "resolucao": {
   "antes": {
-   "texto": "O mesmo resistor tem a mesma resistência R nas duas situações. A potência que ele dissipa depende da tensão aplicada e de R. Como R não muda, basta comparar as tensões. A questão pede uma relação entre P2 e P1, então a razão serve melhor que números absolutos.",
+   "texto": "O mesmo resistor tem a mesma resistência R nas duas situações. A potência que ele dissipa depende da tensão aplicada e de R. Como R não muda, basta comparar as tensões. A questão pede uma relação entre P2 e P1, então dividir uma pela outra (a razão) é mais simples que usar números absolutos.",
    "formulas": [
     "P = V² ÷ R (potência dissipada em um resistor)"
    ],
@@ -35,19 +35,19 @@
   "passos": [
    {
     "faz": "Escreva a potência em função de V e R",
-    "conta": "P = V² / R",
+    "conta": "P = V²/R",
     "porque": "O enunciado dá a tensão e fala do mesmo resistor, então a forma P = V²/R usa exatamente os dados disponíveis.",
     "tipo": "calcular"
    },
    {
     "faz": "Escreva P1 e P2",
-    "conta": "P1 = 5² / R = 25 / R\nP2 = 10² / R = 100 / R",
+    "conta": "P1 = 5²/R = 25/R\nP2 = 10²/R = 100/R",
     "porque": "O resistor é o mesmo, logo o R é o mesmo nas duas fórmulas.",
     "tipo": "calcular"
    },
    {
     "faz": "Divida P2 por P1",
-    "conta": "P2 / P1 = (100/R) / (25/R) = 4",
+    "conta": "P2/P1 = (100/R) ÷ (25/R) = 4",
     "porque": "O R aparece nos dois e cancela. Por isso a questão não precisa dar o valor da resistência.",
     "tipo": "calcular"
    },
@@ -64,7 +64,7 @@
    "A": "P2 = P1/2 diria que a potência cai à metade. Mas a tensão aumentou de 5 V para 10 V, e com R fixo a potência só pode aumentar. Com R = 5 Ω: P1 = 5 W, P2 = 20 W, não 2,5 W.",
    "B": "P2 = P1 só valeria se a tensão não mudasse. Aqui ela dobrou e R é o mesmo, então P = V²/R cresce: 25/R passa a 100/R.",
    "C": "P2 = 2P1 trata a potência como proporcional à tensão (V dobra, P dobra). A potência depende de V²: 10² ÷ 5² = 100 ÷ 25 = 4, e não 2.",
-   "E": "P2 = 10P1 não confere com a conta: 100/R dividido por 25/R dá 4, não 10. O fator 10 é o valor de V2, e a tensão não entra na relação como multiplicador direto."
+   "E": "P2 = 10P1 não confere: (100/R) ÷ (25/R) = 4, não 10. O 10 é só o valor de V2, e a tensão não entra na relação como multiplicador direto. Com R = 5 Ω: P1 = 5 W e P2 = 20 W, não 50 W."
   },
   "armadilha": "Achar que a potência dobra quando a tensão dobra; esquecer que V aparece ao quadrado em P = V²/R.",
   "alerta": "",
@@ -98,7 +98,7 @@
    "nota": "com V2 = 10 V"
   },
   {
-   "linha": "P2 / P1 = 100 / 25",
+   "linha": "P2/P1 = 100/25",
    "nota": "divida uma pela outra: o R cancela",
    "mov": [
     {
@@ -133,11 +133,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -148,6 +150,42 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "D"
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "O mesmo resistor tem a mesma resistência R nas duas situações. A potência que ele dissipa depende da tensão aplicada e de R. Como R não muda, basta comparar as tensões. A questão pede uma relação entre P2 e P1, então dividir uma pela outra (a razão) é mais simples que usar números absolutos.",
+    "motivo": "Troca 'razão' por explicação simples (dividir uma pela outra)."
+   },
+   {
+    "campo": "resolucao.passos[0].conta",
+    "depois": "P = V²/R",
+    "motivo": "Padroniza a fração sem espaços, como a regra de notação pede."
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "P1 = 5²/R = 25/R\nP2 = 10²/R = 100/R",
+    "motivo": "Padroniza a fração."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "P2/P1 = (100/R) ÷ (25/R) = 4",
+    "motivo": "Divisão de frações escrita de forma clara."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "P2 = 10P1 não confere: (100/R) ÷ (25/R) = 4, não 10. O 10 é só o valor de V2, e a tensão não entra na relação como multiplicador direto. Com R = 5 Ω: P1 = 5 W e P2 = 20 W, não 50 W.",
+    "motivo": "Acrescenta o teste numérico que derruba a alternativa, sem inventar origem do erro."
+   },
+   {
+    "campo": "resolucao.quadro[3].linha",
+    "depois": "P2/P1 = 100/25",
+    "motivo": "Padroniza a fração."
+   }
+  ],
+  "didatica_alertas": [
+   "O campo 'conteudo' está como F11.3 na resolução, enquanto a classificação atual informada é F11.6 (capacitores). O tema da questão é potência elétrica, então F11.3 parece correto e F11.6 parece erro de classificação. Verificar."
+  ],
+  "didatica_ok": true
  }
 }

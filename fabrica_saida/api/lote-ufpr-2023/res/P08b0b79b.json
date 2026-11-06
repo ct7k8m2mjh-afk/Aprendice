@@ -10,8 +10,8 @@
   "antes": {
    "texto": "O teste só mede a solução que foi para o tubo, e ela foi diluída com água destilada. O gráfico dá a concentração dessa solução diluída. A concentração do rio é maior, porque a água pura só aumentou o volume e não acrescentou fosfato. A quantidade de fosfato (soluto) é a mesma antes e depois de diluir.",
    "formulas": [
-    "diluição: C1 × V1 = C2 × V2",
-    "fator de diluição = V final ÷ V da amostra"
+    "diluição: C1 × V1 = C2 × V2 (a quantidade de soluto não muda)",
+    "fator de diluição = volume final ÷ volume da amostra"
    ],
    "simbolos": [
     [
@@ -37,7 +37,7 @@
    {
     "faz": "Leia a barra de intensidade 3",
     "conta": "intensidade 3 → 0,5 mg/L",
-    "porque": "No eixo vertical, a altura 3 corresponde à barra rotulada 0,5 no eixo horizontal. Essa é a concentração da solução diluída de 10 mL.",
+    "porque": "Suba até a barra de altura 3 e leia o rótulo dela embaixo: 0,5. Essa é a concentração da solução diluída de 10 mL, não a do rio.",
     "tipo": "localizar"
    },
    {
@@ -49,7 +49,7 @@
    {
     "faz": "Volte à concentração do rio",
     "conta": "C rio = 0,5 × 5 = 2,5 mg/L",
-    "porque": "Diluída a solução ficou 5 vezes menos concentrada; para voltar ao rio, multiplique por 5.",
+    "porque": "A solução testada é 5 vezes menos concentrada que o rio. Para voltar ao rio, multiplique por 5.",
     "tipo": "calcular"
    },
    {
@@ -62,9 +62,9 @@
   "resposta": "Alternativa A: a solução diluída tem 0,5 mg/L e foi diluída 5 vezes, então o rio tem 2,5 mg/L.",
   "checagem": "Reconstrua a diluição: 2 mL do rio a 2,5 mg/L têm 2,5 × 0,002 L = 0,005 mg de fosfato. Em 10 mL (0,010 L): 0,005 ÷ 0,010 = 0,5 mg/L, igual ao valor lido no gráfico.",
   "erradas": {
-   "B": "2,0 mg/L sai de usar 8 ÷ 2 = 4 como fator (água ÷ amostra): 0,5 × 4 = 2,0. O fator certo é volume final ÷ amostra = 10 ÷ 2 = 5. Além disso, 2,0 mg/L é a barra de intensidade 5, não a de 3.",
-   "C": "1,0 mg/L é a concentração da barra de intensidade 4. A intensidade medida foi 3, que corresponde a 0,5 mg/L na solução diluída. Além disso, 1,0 × 1/5 = 0,2 ≠ 0,5, então não é coerente com o gráfico.",
-   "D": "0,2 mg/L não confere: se o rio tivesse 0,2 mg/L, a solução diluída teria 0,2 ÷ 5 = 0,04 mg/L, abaixo da menor barra (0,125 mg/L, intensidade 1), e jamais daria intensidade 3.",
+   "B": "2,0 mg/L sai de usar 8 ÷ 2 = 4 como fator (água ÷ amostra): 0,5 × 4 = 2,0. Faltou ver que o volume final é 10 mL, então o fator é 10 ÷ 2 = 5.",
+   "C": "1,0 mg/L é a barra de intensidade 4. Quem marcou leu a barra errada e não aplicou a diluição: a intensidade 3 dá 0,5 mg/L na solução diluída, e só depois se multiplica por 5.",
+   "D": "0,2 mg/L não confere. Se o rio tivesse 0,2 mg/L, a solução testada teria 0,2 ÷ 5 = 0,04 mg/L, menos que a menor barra (0,125 mg/L). Nunca daria intensidade 3.",
    "E": "0,1 mg/L sai de aplicar o fator de diluição ao contrário: 0,5 × 1/5 = 0,1. Mas a amostra do rio foi diluída, então o rio é mais concentrado que a solução testada, e não menos."
   },
   "armadilha": "Marcar 0,5 mg/L lido direto no gráfico, ou dividir por 5 em vez de multiplicar: o gráfico é da solução diluída, e o rio é 5 vezes mais concentrado.",
@@ -104,7 +104,7 @@
    "destaque": "0,5 × 10"
   },
   {
-   "linha": "C1 = 5/2",
+   "linha": "C1 = \\frac{5}{2}",
    "nota": "o 2 passa dividindo",
    "mov": [
     {
@@ -135,11 +135,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -156,6 +158,58 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "A"
+  "fatos_resposta": "A",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "diluição: C1 × V1 = C2 × V2 (a quantidade de soluto não muda)",
+     "fator de diluição = volume final ÷ volume da amostra"
+    ],
+    "motivo": "Explica por que a fórmula vale, no tom de aula."
+   },
+   {
+    "campo": "resolucao.passos[0].conta",
+    "depois": "intensidade 3 → 0,5 mg/L",
+    "motivo": "Conta mantida e curta; o porque foi reescrito para ficar mais simples."
+   },
+   {
+    "campo": "resolucao.passos[0].porque",
+    "depois": "Suba até a barra de altura 3 e leia o rótulo dela embaixo: 0,5. Essa é a concentração da solução diluída de 10 mL, não a do rio.",
+    "motivo": "Frases mais curtas e passo a passo de leitura do gráfico."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "A solução testada é 5 vezes menos concentrada que o rio. Para voltar ao rio, multiplique por 5.",
+    "motivo": "Frase mais direta, sem ambiguidade."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "2,0 mg/L sai de usar 8 ÷ 2 = 4 como fator (água ÷ amostra): 0,5 × 4 = 2,0. Faltou ver que o volume final é 10 mL, então o fator é 10 ÷ 2 = 5.",
+    "motivo": "Foca no que faltou no raciocínio; remove a observação confusa sobre a barra."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "1,0 mg/L é a barra de intensidade 4. Quem marcou leu a barra errada e não aplicou a diluição: a intensidade 3 dá 0,5 mg/L na solução diluída, e só depois se multiplica por 5.",
+    "motivo": "A conta '1,0 × 1/5 = 0,2 ≠ 0,5' era confusa; troquei pelo que faltou."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "0,2 mg/L não confere. Se o rio tivesse 0,2 mg/L, a solução testada teria 0,2 ÷ 5 = 0,04 mg/L, menos que a menor barra (0,125 mg/L). Nunca daria intensidade 3.",
+    "motivo": "Texto mais simples, mesmo teste."
+   },
+   {
+    "campo": "resolucao.quadro[4].linha",
+    "depois": "C1 = \\frac{5}{2}",
+    "motivo": "Fração empilhada, como exige o padrão do site."
+   },
+   {
+    "campo": "resolucao.quadro[3].linha",
+    "depois": "C1 × 2 = 0,5 × 10",
+    "motivo": "Mantido; apenas confirmado que cabe na linha."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

@@ -11,7 +11,7 @@
    "texto": "O referente de um pronome é o termo que, posto no lugar dele, mantém o sentido e a concordância. Nem sempre é o substantivo mais próximo: é preciso reler a frase e achar o termo que o pronome retoma. Aqui são três pronomes, em ordem, e a alternativa tem de trazer os três referentes na mesma ordem (respectivamente).",
    "formulas": [
     "referente = termo que, no lugar do pronome, mantém sentido e concordância",
-    "pronome possessivo (seus, suas) concorda com a coisa possuída, não com o possuidor"
+    "seus, suas = 'dele(s)', 'dela(s)': quem é o dono do que vem depois?"
    ],
    "simbolos": [
     [
@@ -45,13 +45,13 @@
    {
     "faz": "Ache o referente de 'suas'",
     "conta": "\"uma maneira de fabricar vilões é não deixar suas histórias serem contadas\"",
-    "porque": "Quem tem histórias que não são contadas? Os vilões. 'Maneira' é singular e 'suas' concordaria com 'histórias' mesmo assim; mas o sentido exige os vilões, que são personagens a serem calados ('mantê-los em silêncio').",
+    "porque": "Quem tem histórias que podem não ser contadas? Os vilões, citados na mesma frase: 'fabricar vilões'. 'Suas' concorda com 'histórias', e 'maneira' não tem histórias. Trocando: 'não deixar as histórias dos vilões serem contadas'.",
     "tipo": "localizar"
    },
    {
     "faz": "Elimine pela ordem dos três referentes",
     "conta": "conceito · pessoa comum · vilões",
-    "porque": "Só uma alternativa traz conceito de herói, pessoa comum e vilões, nessa ordem, como pede o 'respectivamente'.",
+    "porque": "Com os três referentes (conceito de herói, pessoa comum, vilões), compare as alternativas. Só a C traz os três, nessa ordem, como pede o 'respectivamente'.",
     "tipo": "eliminar"
    },
    {
@@ -64,10 +64,10 @@
   "resposta": "Alternativa C: 'ele' retoma o conceito de herói, 'seus' retoma a pessoa comum e 'suas' retoma os vilões.",
   "checagem": "Reescreva sem pronomes: 'o conceito de herói varia muito'; 'uma pessoa comum que tem defeitos e qualidades da pessoa comum'; 'não deixar as histórias dos vilões serem contadas'. As três frases mantêm o sentido do texto.",
   "erradas": {
-   "A": "'Ele' e 'seus' estão certos, mas 'suas' não retoma 'qualidades': 'qualidades' é a palavra que 'seus' acompanha, e qualidades não têm histórias. Quem tem as histórias não contadas são os vilões.",
-   "B": "'Ele' não retoma 'herói': a frase diz 'o conceito de herói... varia de lugar para lugar'. Quem varia é o conceito. Além disso, 'suas' não se refere a 'maneira': maneira não tem histórias.",
+   "A": "'Ele' e 'seus' estão certos, mas 'suas' não retoma 'qualidades'. 'Qualidades' é o que 'seus' acompanha, e qualidades não têm histórias. Quem tem as histórias não contadas são os vilões.",
+   "B": "'Ele' não retoma 'herói': quem varia de lugar para lugar é o conceito de herói. 'Seus' não retoma 'personagem': o 'que' liga 'seus' a 'pessoa comum'. 'Suas' não retoma 'maneira': maneira não tem histórias.",
    "D": "Erra no 1º e no 2º. O que 'varia de lugar para lugar' é o conceito de herói, não o herói. E 'seus' pertence a quem 'tem' os defeitos: o 'que' retoma 'uma pessoa comum', não 'personagem'.",
-   "E": "Acerta o 1º (conceito de herói), mas erra o 2º e o 3º. 'Seus' retoma 'pessoa comum', sujeito de 'tem' pelo 'que'. E 'maneira' não tem histórias: trocar 'suas' por 'da maneira' deixa a frase sem sentido, porque as histórias são dos vilões."
+   "E": "Acerta o 1º (conceito de herói), mas erra o 2º e o 3º. 'Seus' retoma 'pessoa comum', sujeito de 'tem'. 'Suas' não retoma 'maneira': 'as histórias da maneira' não faz sentido; as histórias são dos vilões."
   },
   "armadilha": "Tomar 'herói' por referente de 'ele': o que varia de lugar para lugar é o conceito de herói, não o herói.",
   "alerta": "",
@@ -98,11 +98,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -155,6 +157,43 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "C"
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Quem tem histórias que podem não ser contadas? Os vilões, citados na mesma frase: 'fabricar vilões'. 'Suas' concorda com 'histórias', e 'maneira' não tem histórias. Trocando: 'não deixar as histórias dos vilões serem contadas'.",
+    "motivo": "O porquê anterior era confuso (frase sobre concordância e 'a serem calados'). Agora diz direto o raciocínio."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Com os três referentes (conceito de herói, pessoa comum, vilões), compare as alternativas. Só a C traz os três, nessa ordem, como pede o 'respectivamente'.",
+    "motivo": "Frase mais clara e sem repetir o passo anterior."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "'Ele' e 'seus' estão certos, mas 'suas' não retoma 'qualidades'. 'Qualidades' é o que 'seus' acompanha, e qualidades não têm histórias. Quem tem as histórias não contadas são os vilões.",
+    "motivo": "Reescrita sem ambiguidade (a frase antiga dizia que 'seus' acompanha qualidades de forma confusa)."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "'Ele' não retoma 'herói': quem varia de lugar para lugar é o conceito de herói. 'Seus' não retoma 'personagem': o 'que' liga 'seus' a 'pessoa comum'. 'Suas' não retoma 'maneira': maneira não tem histórias.",
+    "motivo": "A letra B erra os três itens; a explicação antiga omitia o segundo."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "Acerta o 1º (conceito de herói), mas erra o 2º e o 3º. 'Seus' retoma 'pessoa comum', sujeito de 'tem'. 'Suas' não retoma 'maneira': 'as histórias da maneira' não faz sentido; as histórias são dos vilões.",
+    "motivo": "Texto mais curto e direto."
+   },
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "referente = termo que, no lugar do pronome, mantém sentido e concordância",
+     "seus, suas = 'dele(s)', 'dela(s)': quem é o dono do que vem depois?"
+    ],
+    "motivo": "A fórmula anterior sobre possessivo concordar com a coisa possuída não ajuda a achar o dono. A nova mostra o teste do dono."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

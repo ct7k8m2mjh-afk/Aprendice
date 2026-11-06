@@ -16,11 +16,15 @@
    "simbolos": [
     [
      "L0",
-     "comprimento inicial da barra"
+     "comprimento inicial da barra (o 0 pequeno quer dizer 'no começo')"
     ],
     [
      "ΔL",
-     "variação (aumento) do comprimento"
+     "variação (aumento) do comprimento da barra"
+    ],
+    [
+     "Δ",
+     "letra grega delta: significa 'variação de', ou seja, valor final menos valor inicial"
     ],
     [
      "α",
@@ -29,6 +33,14 @@
     [
      "ΔT",
      "variação de temperatura, em °C"
+    ],
+    [
+     "°C^−1",
+     "'por grau Celsius': o coeficiente vale para cada 1 °C de aquecimento"
+    ],
+    [
+     "10^−6",
+     "um milionésimo: 0,000001"
     ]
    ]
   },
@@ -49,13 +61,13 @@
    {
     "faz": "Cancele L0",
     "conta": "0,002 = α × ΔT",
-    "porque": "L0 multiplica os dois lados, então o valor dele não importa. Por isso o enunciado não o fornece.",
+    "porque": "L0 multiplica os dois lados, então pode ser cortado. Por isso o enunciado não precisa dar o valor dele.",
     "tipo": "calcular"
    },
    {
     "faz": "Isole ΔT e substitua α",
-    "conta": "ΔT = 2×10^−3 ÷ 5×10^−6",
-    "porque": "Divida os dois lados por α = 5 × 10^−6 °C^−1.",
+    "conta": "ΔT = 2×10^−3 ÷ (5×10^−6)",
+    "porque": "Para isolar ΔT, divida os dois lados por α, que vale 5 × 10^−6 °C^−1.",
     "tipo": "calcular"
    },
    {
@@ -160,11 +172,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -181,6 +195,61 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "B"
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "ΔT = 2×10^−3 ÷ (5×10^−6)",
+    "motivo": "Sem parênteses, a conta podia ser lida como (2×10^−3 ÷ 5) × 10^−6. Os parênteses deixam só um sentido."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "L0",
+      "comprimento inicial da barra (o 0 pequeno quer dizer 'no começo')"
+     ],
+     [
+      "ΔL",
+      "variação (aumento) do comprimento da barra"
+     ],
+     [
+      "Δ",
+      "letra grega delta: significa 'variação de', ou seja, valor final menos valor inicial"
+     ],
+     [
+      "α",
+      "coeficiente de dilatação linear: quanto cada unidade de comprimento aumenta por grau de aquecimento"
+     ],
+     [
+      "ΔT",
+      "variação de temperatura, em °C"
+     ],
+     [
+      "°C^−1",
+      "'por grau Celsius': o coeficiente vale para cada 1 °C de aquecimento"
+     ],
+     [
+      "10^−6",
+      "um milionésimo: 0,000001"
+     ]
+    ],
+    "motivo": "Foram explicados o símbolo Δ, a unidade °C^−1 e a potência de dez negativa, que um aluno de 17 anos pode não conhecer."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "L0 multiplica os dois lados, então pode ser cortado. Por isso o enunciado não precisa dar o valor dele.",
+    "motivo": "Frase mais simples. Deixa claro que o cancelamento só é possível porque L0 aparece nos dois lados."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Para isolar ΔT, divida os dois lados por α, que vale 5 × 10^−6 °C^−1.",
+    "motivo": "O verbo 'divida' ficou mais direto, com o objetivo (isolar ΔT) dito antes."
+   }
+  ],
+  "didatica_alertas": [
+   "A classificação do banco (tema F08, conteúdo F08.2) está errada para esta questão. A resolução usa F06 (Termologia), conteúdo F06.2 (dilatação térmica), que é o correto. O nível aparece como 5 no banco e 3 na resolução. Convém o corretor 1 reconciliar tema, conteúdo e nível."
+  ],
+  "didatica_ok": true
  }
 }

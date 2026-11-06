@@ -10,7 +10,7 @@
   "antes": {
    "texto": "A questão junta duas ideias. A primeira é o volume do cone: um terço da área da base vezes a altura. A segunda é a equação logarítmica: log₂ de algo igual a um número significa que esse algo é 2 elevado a esse número. A 'área do topo' é a área da boca do cone, ou seja, a área da base do cone.",
    "formulas": [
-    "Volume do cone = (1/3) × área da base × altura",
+    "Volume do cone = base × altura ÷ 3",
     "log₂(x) = k  ⇒  x = 2^k",
     "2^(2h) = (2²)^h = 4^h"
    ],
@@ -37,13 +37,13 @@
   "passos": [
    {
     "faz": "Calcule a capacidade do cone",
-    "conta": "V_cone = (1/3) × 12 × h = 4h",
+    "conta": "V = 12 × h ÷ 3 = 4h",
     "porque": "A área do topo é a área da base do cone, 12 m². O volume do cone é um terço da base vezes a altura.",
     "tipo": "calcular"
    },
    {
     "faz": "Ache a metade da capacidade",
-    "conta": "metade = 4h ÷ 2 = 2h",
+    "conta": "4h ÷ 2 = 2h",
     "porque": "A pergunta é quando o líquido chega à metade da capacidade, não à capacidade toda.",
     "tipo": "calcular"
    },
@@ -61,7 +61,7 @@
    },
    {
     "faz": "Isole t e conclua",
-    "conta": "t² = 4^h − 1  →  t = √(4^h − 1)",
+    "conta": "t² = 4^h − 1, t = √(4^h − 1)",
     "porque": "Como t ≥ 0, fica só a raiz positiva. Isso corresponde à alternativa A.",
     "tipo": "concluir"
    }
@@ -69,16 +69,16 @@
   "resposta": "Alternativa A: t = √(4^h − 1), porque a metade da capacidade é 2h e log₂(t² + 1) = 2h dá t² + 1 = 4^h.",
   "checagem": "Teste com h = 1. A capacidade é 4 m³ e a metade é 2 m³. A fórmula dá t = √(4 − 1) = √3. Então V = log₂(3 + 1) = log₂ 4 = 2. Confere.",
   "erradas": {
-   "B": "t = 2^h − 1 não confere. Com h = 1 dá t = 1 e V = log₂(1 + 1) = 1, mas a metade da capacidade é 2. Além disso, o t está elevado ao quadrado em V(t), então a resposta tem raiz.",
-   "C": "t = √(2^h − 1) sai de igualar V(t) a h: log₂(t² + 1) = h dá t² + 1 = 2^h. Isso esquece que o volume do cone é (1/3) × 12 × h = 4h e que a metade é 2h. Com h = 1 dá V = 1, e não 2.",
+   "B": "t = 2^h − 1 não confere. Com h = 1 dá t = 1 e V = log₂(1 + 1) = 1, mas a metade da capacidade é 2. Também falta a raiz: em V(t) o t aparece ao quadrado.",
+   "C": "t = √(2^h − 1) sai de igualar V(t) a h: log₂(t² + 1) = h dá t² + 1 = 2^h. Faltou ver que a capacidade é 12 × h ÷ 3 = 4h e a metade é 2h. Com h = 1 dá V = 1, e não 2.",
    "D": "t = 4^h − 1 acerta o 4^h, mas esquece a raiz: t² = 4^h − 1, e não t. Com h = 1 dá t = 3 e V = log₂ 10 ≈ 3,32, diferente de 2.",
    "E": "t = √(4^h + 1) erra o sinal ao passar o 1 para o outro lado: de t² + 1 = 4^h sai t² = 4^h − 1. Com h = 1 dá t = √5 e V = log₂ 6 ≈ 2,58, diferente de 2."
   },
-  "armadilha": "Igualar V(t) a h, esquecendo que a capacidade é (1/3) × 12 × h = 4h e que a metade é 2h. Assim se chega em 2^h no lugar de 4^h.",
+  "armadilha": "Igualar V(t) a h, esquecendo que a capacidade é 12 × h ÷ 3 = 4h e que a metade é 2h. Assim se chega em 2^h no lugar de 4^h.",
   "alerta": "",
   "essencial": {
    "pede": "O instante t em que V(t) é igual à metade do volume do cone.",
-   "chave": "Volume do cone = (1/3) × 12 × h = 4h; metade = 2h; log₂(t² + 1) = 2h dá t² + 1 = 4^h.",
+   "chave": "Capacidade do cone = 12 × h ÷ 3 = 4h; metade = 2h; log₂(t² + 1) = 2h dá t² + 1 = 4^h.",
    "cuidado": "A metade é 2h, e não h. O expoente fica 2h, que vira 4^h, e t é a raiz de 4^h − 1."
   }
  },
@@ -90,12 +90,12 @@
  ],
  "quadro": [
   {
-   "linha": "V_cone = (1/3) × 12 × h",
-   "nota": "volume do cone: um terço da base vezes a altura"
+   "linha": "V = 12 × h ÷ 3",
+   "nota": "volume do cone: base vezes altura, dividido por 3"
   },
   {
-   "linha": "V_cone = 4h",
-   "nota": "(1/3) × 12 = 4"
+   "linha": "V = 4h",
+   "nota": "12 ÷ 3 = 4"
   },
   {
    "linha": "metade = 2h",
@@ -147,11 +147,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -168,6 +170,113 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "A"
+  "fatos_resposta": "A",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "Volume do cone = base × altura ÷ 3",
+     "log₂(x) = k  ⇒  x = 2^k",
+     "2^(2h) = (2²)^h = 4^h"
+    ],
+    "motivo": "Evita fração na linha, que não é desenhada empilhada no site."
+   },
+   {
+    "campo": "resolucao.passos[0].conta",
+    "depois": "V = 12 × h ÷ 3 = 4h",
+    "motivo": "Evita fração na linha; a conta cabe em 30 caracteres. Também evita chamar de V_cone."
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "4h ÷ 2 = 2h",
+    "motivo": "Conta mais curta e direta para caber na tela."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "t² + 1 = 2^(2h) = 4^h",
+    "motivo": "Mantém a conta curta."
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "t² = 4^h − 1, t = √(4^h − 1)",
+    "motivo": "Cabe na linha; remove espaços duplos."
+   },
+   {
+    "campo": "resolucao.passos[4].tipo",
+    "depois": "concluir",
+    "motivo": "Mantido; o passo também liga o resultado à letra A."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "t = 2^h − 1 não confere. Com h = 1 dá t = 1 e V = log₂(1 + 1) = 1, mas a metade da capacidade é 2. Também falta a raiz: em V(t) o t aparece ao quadrado.",
+    "motivo": "Frase mais clara, sem 'Além disso' ambíguo."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "t = √(2^h − 1) sai de igualar V(t) a h: log₂(t² + 1) = h dá t² + 1 = 2^h. Faltou ver que a capacidade é 12 × h ÷ 3 = 4h e a metade é 2h. Com h = 1 dá V = 1, e não 2.",
+    "motivo": "Sem fração na linha; deixa claro o que faltou."
+   },
+   {
+    "campo": "resolucao.quadro",
+    "depois": [
+     {
+      "linha": "V = 12 × h ÷ 3",
+      "nota": "volume do cone: base vezes altura, dividido por 3"
+     },
+     {
+      "linha": "V = 4h",
+      "nota": "12 ÷ 3 = 4"
+     },
+     {
+      "linha": "metade = 2h",
+      "nota": "4h dividido por 2"
+     },
+     {
+      "linha": "log₂(t² + 1) = 2h",
+      "nota": "iguale V(t) à metade"
+     },
+     {
+      "linha": "t² + 1 = 2^(2h)",
+      "nota": "desfaça o log na base 2",
+      "destaque": "2^(2h)"
+     },
+     {
+      "linha": "t² + 1 = 4^h",
+      "nota": "2^(2h) = (2²)^h = 4^h"
+     },
+     {
+      "linha": "t² = 4^h − 1",
+      "nota": "o +1 passa para o outro lado trocando o sinal",
+      "destaque": "− 1",
+      "mov": [
+       {
+        "termo": "+ 1",
+        "de": "esquerda",
+        "para": "direita",
+        "vira": "− 1",
+        "como": "atravessa o igual"
+       }
+      ]
+     },
+     {
+      "linha": "t = √(4^h − 1)",
+      "nota": "t ≥ 0, só a raiz positiva"
+     }
+    ],
+    "motivo": "Troca a fração escrita na linha por divisão; linhas curtas."
+   },
+   {
+    "campo": "resolucao.armadilha",
+    "depois": "Igualar V(t) a h, esquecendo que a capacidade é 12 × h ÷ 3 = 4h e que a metade é 2h. Assim se chega em 2^h no lugar de 4^h.",
+    "motivo": "Sem fração na linha."
+   },
+   {
+    "campo": "resolucao.essencial.chave",
+    "depois": "Capacidade do cone = 12 × h ÷ 3 = 4h; metade = 2h; log₂(t² + 1) = 2h dá t² + 1 = 4^h.",
+    "motivo": "Sem fração na linha."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

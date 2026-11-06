@@ -8,7 +8,7 @@
  "conceito": "Reconhecer o valor de 'whether ... or ...' (alternância: tanto faz um ou outro) e achar a palavra que o substitui.",
  "resolucao": {
   "antes": {
-   "texto": "'Whether' aqui não abre pergunta. Ela abre uma alternância: 'seja A, seja B'. A frase diz que o resultado é o mesmo nos dois casos. Nesse uso, 'whether' vem acompanhado de um 'or' mais adiante na frase, e a palavra que faz o mesmo papel é 'either ... or'.",
+   "texto": "'Whether' aqui não abre pergunta. Ela abre uma alternância: 'seja A, seja B'. A frase diz que o resultado é o mesmo nos dois casos. Nesse uso, 'whether' vem com um 'or' mais adiante. A palavra que faz o mesmo papel é 'either', que também se liga a um 'or' (either A or B).",
    "formulas": [
     "whether A or B = seja A, seja B (o resultado vale nos dois casos)",
     "either A or B = A ou B (uma das duas opções)",
@@ -74,7 +74,7 @@
    {
     "faz": "Teste cada opção na frase",
     "conta": "“Either used by A or B, ...”",
-    "porque": "'Either ... or' é o par que liga duas opções. Com 'whether' ou com 'either', lê-se: por um lado ou por outro, o resultado é o mesmo. As outras palavras (além disso, no entanto, caso contrário) não ligam duas opções com 'or'.",
+    "porque": "'Either ... or' liga duas opções, como 'whether ... or'. Em A, B, D e E as palavras somam, contrastam ou impõem condição, e nenhuma liga duas opções com 'or'.",
     "tipo": "comparar"
    },
    {
@@ -88,7 +88,7 @@
   "checagem": "Troque 'whether' por 'seja' em português: 'Seja usada pela comunidade ou pelas equipes de emergência, a naloxona salvou vidas'. A frase continua correta. Com 'além disso', 'no entanto' ou 'caso contrário', o sentido muda.",
   "erradas": {
    "A": "'In addition' = além disso. Soma uma ideia nova à anterior. A frase não soma nada: ela diz que o resultado vale para as duas opções (comunidade ou equipes).",
-   "B": "'Besides' = além disso (ou 'além de'). Também é de adição, e a frase tem 'or', não soma. Só poderia ser usada se o texto dissesse 'além de ser usada pela comunidade, ...'.",
+   "B": "'Besides' = além disso. Também soma uma ideia, e a frase não soma: ela traz um 'or' e diz que o resultado vale para as duas opções. 'Besides' só serviria em 'além de ser usada pela comunidade, ...'.",
    "D": "'Nevertheless' = no entanto, ainda assim. Indica contraste com a frase anterior. Aqui não há oposição: o trecho anterior só conta que a naloxona passou a ser distribuída de graça.",
    "E": "'Otherwise' = caso contrário. Pressupõe uma condição não cumprida ('use naloxona; caso contrário, haverá mortes'). A frase não apresenta condição nenhuma."
   },
@@ -97,7 +97,7 @@
   "essencial": {
    "pede": "A palavra que substitui 'whether' sem mudar o sentido na frase.",
    "chave": "'Whether A or B' dá duas opções e diz que o resultado é o mesmo em ambas; 'either ... or' faz o mesmo papel.",
-   "cuidado": "'In addition', 'besides', 'nevertheless' e 'otherwise' são conectivos de adição, contraste ou condição, e nenhum expressa alternância."
+   "cuidado": "In addition, besides, nevertheless e otherwise somam, contrastam ou impõem condição; nenhum expressa alternância entre duas opções."
   }
  },
  "caminhos": [
@@ -125,11 +125,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -158,6 +160,37 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "C"
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "'Whether' aqui não abre pergunta. Ela abre uma alternância: 'seja A, seja B'. A frase diz que o resultado é o mesmo nos dois casos. Nesse uso, 'whether' vem com um 'or' mais adiante. A palavra que faz o mesmo papel é 'either', que também se liga a um 'or' (either A or B).",
+    "motivo": "Frases mais curtas e ligação clara com a alternativa."
+   },
+   {
+    "campo": "resolucao.passos[3]",
+    "depois": {
+     "faz": "Teste cada opção na frase",
+     "conta": "“Either used by A or B, ...”",
+     "porque": "'Either ... or' liga duas opções, como 'whether ... or'. Em A, B, D e E as palavras somam, contrastam ou impõem condição, e nenhuma liga duas opções com 'or'.",
+     "tipo": "comparar"
+    },
+    "motivo": "O porque anterior era confuso (duplo sentido) e não explicava por que as outras falham."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "'Besides' = além disso. Também soma uma ideia, e a frase não soma: ela traz um 'or' e diz que o resultado vale para as duas opções. 'Besides' só serviria em 'além de ser usada pela comunidade, ...'.",
+    "motivo": "Clareza e frases curtas."
+   },
+   {
+    "campo": "resolucao.essencial.cuidado",
+    "depois": "In addition, besides, nevertheless e otherwise somam, contrastam ou impõem condição; nenhum expressa alternância entre duas opções.",
+    "motivo": "Redação mais direta."
+   }
+  ],
+  "didatica_alertas": [
+   "Fato: o campo 'tema'/'conteudo' do JSON diz I04/I04.2, mas a classificação atual informada é I03/I03.2; conferir a taxonomia. Além disso, 'either' sem 'or' após ele só substitui 'whether' de forma aproximada; o gabarito oficial é C."
+  ],
+  "didatica_ok": true
  }
 }

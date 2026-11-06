@@ -13,7 +13,7 @@
     "curvas juntas (apertadas) → encosta íngreme",
     "curvas afastadas → encosta suave",
     "curvas com espaçamento regular → declive constante",
-    "curvas de nível não se cruzam nem se dividem (só se juntam em paredões verticais)"
+    "curvas de nível de cotas diferentes não se cruzam"
    ],
    "simbolos": [
     [
@@ -22,7 +22,7 @@
     ],
     [
      "curva de nível",
-     "isolinha de altitude: todos os pontos dela estão na mesma cota"
+     "isolinha de altitude: todos os pontos dela estão na mesma altura"
     ],
     [
      "cota",
@@ -30,11 +30,19 @@
     ],
     [
      "equidistância",
-     "diferença de altitude constante entre duas curvas de nível vizinhas"
+     "diferença de altitude fixa entre duas curvas de nível vizinhas"
     ],
     [
      "declividade",
      "inclinação do terreno"
+    ],
+    [
+     "encosta",
+     "lado inclinado de um morro ou de um vale"
+    ],
+    [
+     "desnível",
+     "diferença de altura entre dois pontos"
     ]
    ]
   },
@@ -61,7 +69,7 @@
    {
     "faz": "Elimine D e E",
     "conta": "D: círculo aberto só em plano?\nE: curvas se cruzam?",
-    "porque": "Cada curva de nível tem uma altitude única. Duas altitudes diferentes não podem coincidir num ponto, então as curvas não se cruzam. Já o círculo fechado indica morro ou depressão, não relevo plano.",
+    "porque": "Cada curva de nível tem uma altitude só. Um mesmo ponto não pode ter duas altitudes, então curvas de cotas diferentes não se cruzam. Círculo fechado indica morro ou depressão, não terreno plano.",
     "tipo": "eliminar"
    },
    {
@@ -76,15 +84,15 @@
   "erradas": {
    "B": "Inverte a regra: curvas estreitamente espaçadas (muito juntas) mostram que o terreno sobe vários metros em pouca distância. Isso é encosta íngreme, não suave.",
    "C": "Também inverte a regra: curvas amplamente espaçadas indicam que a mesma altitude é vencida numa distância grande, ou seja, encosta suave, não íngreme.",
-   "D": "Falsa por duas razões. Curva de nível 'aberta' costuma ser apenas um trecho cortado pela borda do mapa. E o círculo fechado representa um morro ou uma depressão, não um relevo plano. Além disso, 'somente' é palavra absoluta.",
-   "E": "Cada curva de nível tem uma altitude única. Se duas se cruzassem, um mesmo ponto teria duas altitudes ao mesmo tempo, o que é impossível. As exceções são raras: num paredão vertical, as curvas se sobrepõem; numa rocha em balanço, podem até se cruzar. Por isso a afirmação de que isso é 'comum' está errada."
+   "D": "Falsa. O círculo fechado representa um morro ou uma depressão, não um terreno plano. Curva 'aberta' é só um trecho cortado pela borda do mapa. Além disso, 'somente' é palavra absoluta: desconfie dela.",
+   "E": "Cada curva de nível tem uma altitude só. Se duas curvas se cruzassem, um mesmo ponto teria duas altitudes ao mesmo tempo, o que é impossível. Por isso dizer que isso acontece 'comumente' está errado."
   },
   "armadilha": "Trocar a regra: achar que curvas juntas (apertadas) significam encosta suave, quando significam encosta íngreme.",
   "alerta": "",
   "essencial": {
    "pede": "Identificar a afirmação correta sobre isolinhas de altitude (curvas de nível).",
    "chave": "Com equidistância constante, a distância entre as curvas mede a inclinação: juntas = íngreme, afastadas = suave, regulares = constante.",
-   "cuidado": "Curvas de nível de cotas diferentes nunca se cruzam; e círculo fechado é morro ou depressão, não plano."
+   "cuidado": "Curvas de cotas diferentes não se cruzam. Círculo fechado é morro ou depressão, não terreno plano."
   }
  },
  "caminhos": [
@@ -112,11 +120,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -139,6 +149,76 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "A"
+  "fatos_resposta": "A",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "curvas juntas (apertadas) → encosta íngreme",
+     "curvas afastadas → encosta suave",
+     "curvas com espaçamento regular → declive constante",
+     "curvas de nível de cotas diferentes não se cruzam"
+    ],
+    "motivo": "A linha antiga dizia que curvas 'só se juntam em paredões verticais'. Era confusa e desnecessária neste ponto. Também ficou claro que a regra vale para cotas diferentes."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "isolinha",
+      "linha que liga pontos de igual valor de um fenômeno (altitude, temperatura, pressão)"
+     ],
+     [
+      "curva de nível",
+      "isolinha de altitude: todos os pontos dela estão na mesma altura"
+     ],
+     [
+      "cota",
+      "valor da altitude de um ponto ou de uma curva, em metros"
+     ],
+     [
+      "equidistância",
+      "diferença de altitude fixa entre duas curvas de nível vizinhas"
+     ],
+     [
+      "declividade",
+      "inclinação do terreno"
+     ],
+     [
+      "encosta",
+      "lado inclinado de um morro ou de um vale"
+     ],
+     [
+      "desnível",
+      "diferença de altura entre dois pontos"
+     ]
+    ],
+    "motivo": "Foram incluídas 'encosta' e 'desnível', termos usados na resolução e não explicados. A explicação de 'curva de nível' ficou mais simples."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Cada curva de nível tem uma altitude só. Um mesmo ponto não pode ter duas altitudes, então curvas de cotas diferentes não se cruzam. Círculo fechado indica morro ou depressão, não terreno plano.",
+    "motivo": "Frases mais curtas e sem ambiguidade."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "Falsa. O círculo fechado representa um morro ou uma depressão, não um terreno plano. Curva 'aberta' é só um trecho cortado pela borda do mapa. Além disso, 'somente' é palavra absoluta: desconfie dela.",
+    "motivo": "Texto mais claro. Mostra o que faltou a quem marcou D: ligar círculo fechado a morro ou depressão."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "Cada curva de nível tem uma altitude só. Se duas curvas se cruzassem, um mesmo ponto teria duas altitudes ao mesmo tempo, o que é impossível. Por isso dizer que isso acontece 'comumente' está errado.",
+    "motivo": "Removeu a menção a rocha em balanço e paredões, que confunde o aluno e foge do necessário. Manteve só o argumento central."
+   },
+   {
+    "campo": "resolucao.essencial.cuidado",
+    "depois": "Curvas de cotas diferentes não se cruzam. Círculo fechado é morro ou depressão, não terreno plano.",
+    "motivo": "Frases curtas."
+   }
+  ],
+  "didatica_alertas": [
+   "O campo 'nivel' da resolução (4) difere da classificação indicada no enunciado (5). Não foi alterado."
+  ],
+  "didatica_ok": true
  }
 }

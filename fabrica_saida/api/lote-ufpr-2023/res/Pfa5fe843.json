@@ -11,7 +11,7 @@
    "texto": "O índice de refração absoluto de um meio compara a velocidade da luz no vácuo com a velocidade da luz nesse meio. Quanto mais lenta a luz no meio, maior é n. Como a luz no vácuo é a mais rápida possível, n nunca é menor que 1. A questão só pede aplicar essa definição, cuidando das potências de dez.",
    "formulas": [
     "n = c ÷ v",
-    "10^8 ÷ 10^6 = 10^(8−6) = 10²"
+    "10^8 ÷ 10^6 = 10^(8−6) = 10²  (na divisão, subtraem-se os expoentes)"
    ],
    "simbolos": [
     [
@@ -28,7 +28,7 @@
     ]
    ]
   },
-  "pista": "O índice de refração diz quantas vezes a luz é mais rápida no vácuo do que no meio. Divida as duas velocidades e cuide das potências de dez.",
+  "pista": "O índice de refração diz quantas vezes a luz é mais rápida no vácuo do que no meio. Qual velocidade vai em cima da divisão? Cuide também das potências de dez.",
   "passos": [
    {
     "faz": "Anote os dados",
@@ -40,12 +40,12 @@
     "faz": "Escreva a definição de n",
     "conta": "n = c ÷ v",
     "porque": "Índice de refração absoluto é a razão entre a velocidade da luz no vácuo e a velocidade no meio.",
-    "tipo": "calcular"
+    "tipo": "comparar"
    },
    {
     "faz": "Divida os números e as potências",
     "conta": "n = (3 ÷ 5) × 10^(8−6)",
-    "porque": "Na divisão de potências de mesma base, subtraem-se os expoentes: 10^8 ÷ 10^6 = 10².",
+    "porque": "Divida os números (3 ÷ 5) e as potências de dez separadamente. Na divisão de potências de mesma base, os expoentes se subtraem: 10^8 ÷ 10^6 = 10².",
     "tipo": "calcular"
    },
    {
@@ -65,11 +65,11 @@
   "checagem": "Estime a ordem de grandeza: 10^8 ÷ 10^6 = 100, e 3 ÷ 5 é pouco mais da metade, logo n fica perto de 60. Confira também: v = c ÷ n = 3 × 10^8 ÷ 60 = 5 × 10^6 m/s, que é o dado do enunciado.",
   "erradas": {
    "A": "n = 6 sai de errar o expoente: usar 10^(8−6) como 10^1. O certo é 10² = 100, e 0,6 × 100 = 60, não 6.",
-   "B": "n = 12 não confere: 12 × 5 × 10^6 = 6 × 10^7, que não é c = 3 × 10^8. Nenhuma divisão correta de c por v dá 12.",
-   "C": "n = 20 não confere: 20 × 5 × 10^6 = 10^8, e c vale 3 × 10^8. Esse valor aparece se você desconsiderar o 3 do numerador, 10^8 ÷ (5 × 10^6) = 20.",
-   "D": "n = 30 não confere: 30 × 5 × 10^6 = 1,5 × 10^8, metade de c. Seria o resultado se o denominador fosse 10 × 10^6, e não 5 × 10^6."
+   "B": "n = 12 não confere: 12 × 5 × 10^6 = 6 × 10^7, e isso não é c = 3 × 10^8. Dividir c por v corretamente nunca dá 12.",
+   "C": "n = 20 sai de ignorar o 3 do numerador: 10^8 ÷ (5 × 10^6) = 20. Faltou usar c = 3 × 10^8 inteiro; com ele, 3 ÷ 5 = 0,6 e o resultado é 60.",
+   "D": "n = 30 não confere: 30 × 5 × 10^6 = 1,5 × 10^8, que é metade de c. Quem marcou provavelmente dividiu por 10 × 10^6 e não por 5 × 10^6; o teste multiplicando n por v derruba essa letra."
   },
-  "armadilha": "Errar a subtração dos expoentes (10^8 ÷ 10^6 = 10², não 10¹) ou inverter a razão (v ÷ c daria 1/60, menor que 1).",
+  "armadilha": "Errar a subtração dos expoentes (10^8 ÷ 10^6 = 10², não 10¹) ou inverter a razão (v ÷ c daria um número menor que 1, impossível para n).",
   "alerta": "",
   "essencial": {
    "pede": "O índice de refração do meio em que a luz anda a 5 × 10^6 m/s.",
@@ -132,11 +132,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -147,6 +149,60 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "E"
+  "fatos_resposta": "E",
+  "didatica": [
+   {
+    "campo": "resolucao.pista",
+    "depois": "O índice de refração diz quantas vezes a luz é mais rápida no vácuo do que no meio. Qual velocidade vai em cima da divisão? Cuide também das potências de dez.",
+    "motivo": "Pista deve fazer pensar sem dar a regra pronta; assim o aluno decide sozinho qual velocidade fica no numerador."
+   },
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "n = c ÷ v",
+     "10^8 ÷ 10^6 = 10^(8−6) = 10²  (na divisão, subtraem-se os expoentes)"
+    ],
+    "motivo": "Explica a regra das potências já na fórmula, para o aluno que não a domina."
+   },
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "comparar",
+    "motivo": "Escrever a definição é montar a razão entre as duas velocidades, não calcular."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "n = (3 ÷ 5) × 10^(8−6)",
+    "motivo": "Mantido igual; o porque abaixo ficou mais claro."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Divida os números (3 ÷ 5) e as potências de dez separadamente. Na divisão de potências de mesma base, os expoentes se subtraem: 10^8 ÷ 10^6 = 10².",
+    "motivo": "Deixa claro que são duas divisões separadas."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "n = 12 não confere: 12 × 5 × 10^6 = 6 × 10^7, e isso não é c = 3 × 10^8. Dividir c por v corretamente nunca dá 12.",
+    "motivo": "Frase mais direta, com o teste explícito."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "n = 20 sai de ignorar o 3 do numerador: 10^8 ÷ (5 × 10^6) = 20. Faltou usar c = 3 × 10^8 inteiro; com ele, 3 ÷ 5 = 0,6 e o resultado é 60.",
+    "motivo": "A origem do erro é real e reproduzível; a explicação diz o que faltou no raciocínio."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "n = 30 não confere: 30 × 5 × 10^6 = 1,5 × 10^8, que é metade de c. Quem marcou provavelmente dividiu por 10 × 10^6 e não por 5 × 10^6; o teste multiplicando n por v derruba essa letra.",
+    "motivo": "Diz o que faltou e dá o teste objetivo (n × v deve dar c)."
+   },
+   {
+    "campo": "resolucao.armadilha",
+    "depois": "Errar a subtração dos expoentes (10^8 ÷ 10^6 = 10², não 10¹) ou inverter a razão (v ÷ c daria um número menor que 1, impossível para n).",
+    "motivo": "Troca a fração 1/60 na linha por texto claro."
+   }
+  ],
+  "didatica_alertas": [
+   "O conteúdo F09.4 (som) parece inadequado: a questão é de óptica (refração, F08.4). Sugestão para o corretor 1/classificação, sem alterar aqui."
+  ],
+  "didatica_ok": true
  }
 }

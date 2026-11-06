@@ -8,7 +8,7 @@
  "conceito": "Probabilidade simples: contar casos favoráveis e casos possíveis em uma pizza circular com sabores em metades.",
  "resolucao": {
   "antes": {
-   "texto": "A pizza é um círculo de 8 fatias, e a fatia 8 é vizinha da fatia 1. Metade é mozarela (4 fatias juntas) e metade é calabresa (4 fatias juntas). Cada pessoa escolhe uma fatia diferente, do sabor de sua preferência. 'Lado a lado' quer dizer três fatias seguidas, em qualquer ordem. A probabilidade é casos favoráveis ÷ casos possíveis.",
+   "texto": "A pizza é um círculo de 8 fatias, e a fatia 8 é vizinha da fatia 1. Metade é mozarela (4 fatias juntas) e metade é calabresa (4 fatias juntas). Cada pessoa escolhe uma fatia diferente do sabor que prefere. 'Lado a lado' quer dizer três fatias seguidas, em qualquer ordem entre as pessoas. A probabilidade é casos favoráveis ÷ casos possíveis.",
    "formulas": [
     "probabilidade = casos favoráveis ÷ casos possíveis"
    ],
@@ -16,6 +16,18 @@
     [
      "fatias consecutivas",
      "fatias vizinhas, uma ao lado da outra; no círculo, a última encosta na primeira"
+    ],
+    [
+     "M e C",
+     "M é mozarela e C é calabresa"
+    ],
+    [
+     "{4,5,6}",
+     "conjunto das fatias 4, 5 e 6"
+    ],
+    [
+     "trio",
+     "grupo de três fatias seguidas"
     ]
    ]
   },
@@ -30,13 +42,13 @@
    {
     "faz": "Conte os casos possíveis",
     "conta": "4 × 4 × 3 = 48",
-    "porque": "Beatriz tem 4 fatias de mozarela. Ana tem 4 de calabresa e Carlos fica com as 3 restantes.",
+    "porque": "Beatriz tem 4 fatias de mozarela para escolher. Ana escolhe uma das 4 de calabresa. Carlos fica com uma das 3 de calabresa que sobraram.",
     "tipo": "calcular"
    },
    {
     "faz": "Ache os trios vizinhos com 1 M e 2 C",
     "conta": "{4,5,6} e {7,8,1}",
-    "porque": "Só pode haver uma mozarela no trio. Isso acontece apenas na fronteira entre os sabores, nas fatias 4–5 e 8–1.",
+    "porque": "Três fatias seguidas com 1 M e 2 C só existem onde um sabor encosta no outro. Isso acontece nas fatias 4–5 e 8–1. Um trio no meio da mozarela (como 2,3,4) teria 3 M e não serve.",
     "tipo": "localizar"
    },
    {
@@ -48,7 +60,7 @@
    {
     "faz": "Divida favoráveis por possíveis",
     "conta": "4 ÷ 48 = 1/12",
-    "porque": "Simplificando por 4, a probabilidade é 1/12, a alternativa A.",
+    "porque": "Dividindo em cima e embaixo por 4, a fração fica 1/12. É a alternativa A.",
     "tipo": "concluir"
    }
   ],
@@ -57,7 +69,7 @@
   "erradas": {
    "B": "1/6 = 2/12 seria o resultado se Beatriz estivesse numa fatia da fronteira (1 ou 4). Mas ela pode estar também nas fatias 2 e 3, e aí nenhum trio serve. A média das 4 fatias é 1/12.",
    "C": "1/4 não confere: seriam 12 casos favoráveis em 48. Só existem 2 trios com 1 mozarela e 2 calabresas, e cada um admite 2 arrumações, ou seja, 4 casos.",
-   "D": "1/3 sai de 4/12: conta-se os 4 casos favoráveis, mas o total é tomado como 12. Falta a escolha de Beatriz, que tem 4 fatias, e o total correto é 4 × 12 = 48.",
+   "D": "1/3 = 4/12 sai de contar os 4 casos favoráveis sobre só 12 casos possíveis. Esse 12 é o total de Ana e Carlos para uma Beatriz fixa. Falta a escolha de Beatriz entre 4 fatias: o total correto é 4 × 12 = 48.",
    "E": "1/2 não confere: seriam 24 favoráveis em 48. Só 4 combinações colocam os três lado a lado."
   },
   "armadilha": "Esquecer que a pizza é um círculo (8 é vizinha de 1) e que só os trios na fronteira entre os sabores têm 1 mozarela e 2 calabresas.",
@@ -134,14 +146,72 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [],
   "fatos_ok": true,
-  "fatos_resposta": "A"
+  "fatos_resposta": "A",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "A pizza é um círculo de 8 fatias, e a fatia 8 é vizinha da fatia 1. Metade é mozarela (4 fatias juntas) e metade é calabresa (4 fatias juntas). Cada pessoa escolhe uma fatia diferente do sabor que prefere. 'Lado a lado' quer dizer três fatias seguidas, em qualquer ordem entre as pessoas. A probabilidade é casos favoráveis ÷ casos possíveis.",
+    "motivo": "Frase mais clara: a ordem se refere às pessoas, não às fatias."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "fatias consecutivas",
+      "fatias vizinhas, uma ao lado da outra; no círculo, a última encosta na primeira"
+     ],
+     [
+      "M e C",
+      "M é mozarela e C é calabresa"
+     ],
+     [
+      "{4,5,6}",
+      "conjunto das fatias 4, 5 e 6"
+     ],
+     [
+      "trio",
+      "grupo de três fatias seguidas"
+     ]
+    ],
+    "motivo": "Siglas e símbolos usados nos passos precisam estar explicados."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "Beatriz tem 4 fatias de mozarela para escolher. Ana escolhe uma das 4 de calabresa. Carlos fica com uma das 3 de calabresa que sobraram.",
+    "motivo": "Mais claro sobre quem escolhe o quê."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Três fatias seguidas com 1 M e 2 C só existem onde um sabor encosta no outro. Isso acontece nas fatias 4–5 e 8–1. Um trio no meio da mozarela (como 2,3,4) teria 3 M e não serve.",
+    "motivo": "Explica por que os outros trios não servem."
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "4 ÷ 48 = 1/12",
+    "motivo": "Mantido; sem mudança de fato."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "Dividindo em cima e embaixo por 4, a fração fica 1/12. É a alternativa A.",
+    "motivo": "Clareza na simplificação."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "1/3 = 4/12 sai de contar os 4 casos favoráveis sobre só 12 casos possíveis. Esse 12 é o total de Ana e Carlos para uma Beatriz fixa. Falta a escolha de Beatriz entre 4 fatias: o total correto é 4 × 12 = 48.",
+    "motivo": "Explica de onde vem o 12 e o que faltou."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

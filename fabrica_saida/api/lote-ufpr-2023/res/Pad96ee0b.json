@@ -8,7 +8,7 @@
  "conceito": "Soma dos ângulos internos de um polígono e progressão aritmética: achar o menor e o maior termo.",
  "resolucao": {
   "antes": {
-   "texto": "A soma dos ângulos internos de um polígono de n lados é (n − 2) × 180°. Numa PA, os termos estão igualmente espaçados em torno da média. Por isso o menor e o maior ângulo ficam à mesma distância da média: um abaixo, outro acima. Com a média e a razão, você acha os dois extremos sem montar equação.",
+   "texto": "A soma dos ângulos internos de um polígono de n lados é (n − 2) × 180°. Numa PA, os termos estão igualmente espaçados em torno da média. Por isso o menor e o maior ângulo ficam à mesma distância da média: um abaixo, outro acima. Com a média e a razão, você acha os dois extremos sem montar equação. O enunciado pede o produto dos dois, e não a soma.",
    "formulas": [
     "soma dos ângulos = (n − 2) × 180°",
     "média = soma ÷ número de termos",
@@ -31,6 +31,14 @@
     [
      "a₁ e a₂₀",
      "o primeiro (menor) e o vigésimo (maior) ângulo da PA"
+    ],
+    [
+     "média",
+     "soma de todos os valores dividida pela quantidade deles"
+    ],
+    [
+     "m e d",
+     "na fórmula a·b = m² − d²: m é a média dos dois números e d é a distância de cada um até m"
     ]
    ]
   },
@@ -45,7 +53,7 @@
    {
     "faz": "Ache a média dos 20 ângulos",
     "conta": "3240 ÷ 20 = 162°",
-    "porque": "Numa PA, a média dos termos fica no meio da sequência, entre o 10º e o 11º.",
+    "porque": "Numa PA, a média dos termos fica no meio da sequência, entre o 10º e o 11º. Os termos de fora se equilibram em torno dela.",
     "tipo": "calcular"
    },
    {
@@ -70,10 +78,10 @@
   "resposta": "Alternativa C: o menor ângulo mede 124°, o maior mede 200°, e o produto é 24800.",
   "checagem": "Pelo termo geral: a₂₀ = 124 + 19 × 4 = 200. A soma da PA é (124 + 200) × 20 ÷ 2 = 3240, igual à soma dos ângulos. Também vale 162² − 38² = 26244 − 1444 = 24800.",
   "erradas": {
-   "A": "20800 não confere. Os extremos somam 2 × 162 = 324°, e o produto de dois números com essa soma e diferença 76 é 24800. Para dar 20800, a diferença entre eles não seria 76°.",
-   "B": "22600 não confere. Dois ângulos que somam 324° e diferem 76° são 124° e 200°, e seu produto é 24800. Com produto 22600, a diferença entre os ângulos não seria 76°.",
-   "D": "26600 não confere. Dois números que somam 324° têm produto no máximo 162 × 162 = 26244, quando são iguais. Como os extremos diferem 76°, o produto cai para 24800, e 26600 é impossível.",
-   "E": "26800 não confere. O produto de dois números que somam 324° nunca passa de 162² = 26244, então 26800 é impossível. Aqui o produto é 24800."
+   "A": "20800 não confere. Os extremos são 124° e 200°, que diferem 76° e somam 324°. Seu produto é 24800. Quem marcou A errou ao achar a média ou os extremos, pois com 38° de distância a conta não chega a 20800.",
+   "B": "22600 não confere. Para esse produto, os ângulos teriam de estar mais distantes da média, e a diferença entre eles não seria 76°. Quem marcou B errou a distância até a média, que é 38° (19 saltos de 4° ÷ 2).",
+   "D": "26600 não confere. Dois ângulos que somam 324° têm produto no máximo 162 × 162 = 26244, quando são iguais. Como os extremos diferem 76°, o produto é menor: 24800. Quem marcou D esqueceu de afastar os ângulos da média.",
+   "E": "26800 não confere. O produto de dois ângulos que somam 324° nunca passa de 162² = 26244, então 26800 é impossível. Quem marcou E não usou a soma dos extremos como limite."
   },
   "armadilha": "Usar a razão 4° sem perceber que o menor e o maior ângulo estão separados por 19 saltos, e não por 20 nem por 4.",
   "alerta": "Há uma inconsistência no enunciado: o maior ângulo obtido (200°) passa de 180°, e um polígono convexo só tem ângulos internos menores que 180°. A conta com a soma (n − 2) × 180° e a PA dada leva a 124° e 200°, e a alternativa C é a única compatível.",
@@ -144,14 +152,82 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [],
   "fatos_ok": true,
-  "fatos_resposta": "C"
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "A soma dos ângulos internos de um polígono de n lados é (n − 2) × 180°. Numa PA, os termos estão igualmente espaçados em torno da média. Por isso o menor e o maior ângulo ficam à mesma distância da média: um abaixo, outro acima. Com a média e a razão, você acha os dois extremos sem montar equação. O enunciado pede o produto dos dois, e não a soma.",
+    "motivo": "Deixa claro o que se pede."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "PA",
+      "progressão aritmética: sequência em que cada termo é o anterior mais um valor fixo, a razão"
+     ],
+     [
+      "razão",
+      "valor somado a cada termo para obter o seguinte; aqui, 4°"
+     ],
+     [
+      "n",
+      "número de lados do polígono (e de ângulos internos); aqui, 20"
+     ],
+     [
+      "a₁ e a₂₀",
+      "o primeiro (menor) e o vigésimo (maior) ângulo da PA"
+     ],
+     [
+      "média",
+      "soma de todos os valores dividida pela quantidade deles"
+     ],
+     [
+      "m e d",
+      "na fórmula a·b = m² − d²: m é a média dos dois números e d é a distância de cada um até m"
+     ]
+    ],
+    "motivo": "Explica m e d e média, usados na fórmula e nos passos."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "Numa PA, a média dos termos fica no meio da sequência, entre o 10º e o 11º. Os termos de fora se equilibram em torno dela.",
+    "motivo": "Mais clareza sobre a ideia de equilíbrio."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "20800 não confere. Os extremos são 124° e 200°, que diferem 76° e somam 324°. Seu produto é 24800. Quem marcou A errou ao achar a média ou os extremos, pois com 38° de distância a conta não chega a 20800.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou A, sem inventar origem."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "22600 não confere. Para esse produto, os ângulos teriam de estar mais distantes da média, e a diferença entre eles não seria 76°. Quem marcou B errou a distância até a média, que é 38° (19 saltos de 4° ÷ 2).",
+    "motivo": "Aponta o ponto do raciocínio que faltou."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "26600 não confere. Dois ângulos que somam 324° têm produto no máximo 162 × 162 = 26244, quando são iguais. Como os extremos diferem 76°, o produto é menor: 24800. Quem marcou D esqueceu de afastar os ângulos da média.",
+    "motivo": "Ligação com o erro do aluno."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "26800 não confere. O produto de dois ângulos que somam 324° nunca passa de 162² = 26244, então 26800 é impossível. Quem marcou E não usou a soma dos extremos como limite.",
+    "motivo": "Ligação com o erro do aluno."
+   }
+  ],
+  "didatica_alertas": [
+   "O maior ângulo (200°) passa de 180°, o que contradiz 'polígono convexo' no enunciado; a resolução já registra isso em alerta."
+  ],
+  "didatica_ok": true
  }
 }

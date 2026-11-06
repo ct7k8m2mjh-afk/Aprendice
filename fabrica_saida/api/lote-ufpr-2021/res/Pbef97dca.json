@@ -38,7 +38,7 @@
    {
     "faz": "Leia as posições de A e B",
     "conta": "A: x=5 em t=0; x=3 em t=7",
-    "porque": "A reta de A começa em 5 no eixo vertical e termina em 3 quando t = 7. Anote também os valores de B no passo seguinte.",
+    "porque": "A reta de A começa em 5 no eixo vertical e termina em 3 quando t = 7. Os valores de B vêm no passo seguinte.",
     "tipo": "localizar"
    },
    {
@@ -50,7 +50,7 @@
    {
     "faz": "Julgue a afirmativa 1",
     "conta": "B andou 2 − 1 = 1 m",
-    "porque": "A partícula se move em linha reta, só no eixo x. Ela foi de 1 m a 2 m, ou seja, percorreu 1 m. O número √50 é o comprimento do segmento desenhado no gráfico: √(7² + 1²) = √50. Isso não é distância percorrida. Falsa.",
+    "porque": "A partícula anda só sobre a reta x. Foi de 1 m a 2 m, então percorreu 1 m. O número √50 é o comprimento do traço desenhado no gráfico: √(7² + 1²) = √50. Esse traço não é caminho percorrido. Falsa.",
     "tipo": "eliminar"
    },
    {
@@ -66,9 +66,9 @@
     "tipo": "comparar"
    },
    {
-    "faz": "Julgue a afirmativa 4",
+    "faz": "Julgue a afirmativa 4 e conclua",
     "conta": "v_A = −2/7 ; v_B = +1/7",
-    "porque": "A velocidade de A é negativa e a de B é positiva. Então v_A = −2 × v_B, e não o dobro. Só os módulos têm razão 2. Como a pergunta trata de velocidade (com sentido), a afirmativa é falsa. Isso deixa só 2 e 3 verdadeiras.",
+    "porque": "A velocidade de A é negativa (ela desce) e a de B é positiva (ela sobe). Então v_A = −2 × v_B, e não o dobro. Só os módulos têm razão 2. A afirmativa fala de velocidade com sentido, então é falsa. Ficam verdadeiras só a 2 e a 3: alternativa C.",
     "tipo": "concluir"
    }
   ],
@@ -108,7 +108,7 @@
    "nota": "pontos lidos no gráfico"
   },
   {
-   "linha": "v_A = (3 − 5)/(7 − 0)",
+   "linha": "v_A = (3 − 5) ÷ (7 − 0)",
    "nota": "variação de x dividida pela variação de t"
   },
   {
@@ -117,27 +117,31 @@
   },
   {
    "linha": "x_A(t) = 5 − 2t/7",
-   "nota": "afirmativa 2 verdadeira"
+   "nota": "confere com os dois pontos: afirmativa 2 verdadeira"
   },
   {
-   "linha": "v_B = (2 − 1)/7 = 1/7",
+   "linha": "v_B = (2 − 1) ÷ 7 = 1/7",
    "nota": "B sobe 1 m em 7 s"
   },
   {
-   "linha": "B percorreu 1 m, não √50",
-   "nota": "afirmativa 1 falsa"
+   "linha": "B andou 2 − 1 = 1 m",
+   "nota": "não é √50: afirmativa 1 falsa"
   },
   {
-   "linha": "t=0: 5 − 1 = 4",
+   "linha": "t = 0: 5 − 1 = 4 m",
    "nota": "distância inicial entre A e B"
   },
   {
-   "linha": "t=7: 3 − 2 = 1",
-   "nota": "distância final: diminuiu, afirmativa 3 verdadeira"
+   "linha": "t = 7: 3 − 2 = 1 m",
+   "nota": "a distância diminuiu: afirmativa 3 verdadeira"
   },
   {
-   "linha": "−2/7 ≠ 2 × (1/7)",
-   "nota": "sinais opostos, afirmativa 4 falsa"
+   "linha": "2 × (1/7) = 2/7",
+   "nota": "mas v_A = −2/7: sinais opostos"
+  },
+  {
+   "linha": "−2/7 ≠ 2/7",
+   "nota": "afirmativa 4 falsa"
   }
  ],
  "visual": {
@@ -154,11 +158,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -187,6 +193,80 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "C"
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[0].porque",
+    "depois": "A reta de A começa em 5 no eixo vertical e termina em 3 quando t = 7. Os valores de B vêm no passo seguinte.",
+    "motivo": "Frase mais direta e sem ambiguidade."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "A partícula anda só sobre a reta x. Foi de 1 m a 2 m, então percorreu 1 m. O número √50 é o comprimento do traço desenhado no gráfico: √(7² + 1²) = √50. Esse traço não é caminho percorrido. Falsa.",
+    "motivo": "Frases curtas e separação clara entre traço do gráfico e distância percorrida."
+   },
+   {
+    "campo": "resolucao.passos[5].faz",
+    "depois": "Julgue a afirmativa 4 e conclua",
+    "motivo": "O passo também conclui; o comando fica coerente com o tipo."
+   },
+   {
+    "campo": "resolucao.passos[5].porque",
+    "depois": "A velocidade de A é negativa (ela desce) e a de B é positiva (ela sobe). Então v_A = −2 × v_B, e não o dobro. Só os módulos têm razão 2. A afirmativa fala de velocidade com sentido, então é falsa. Ficam verdadeiras só a 2 e a 3: alternativa C.",
+    "motivo": "Explica o sinal em palavras simples e liga à letra."
+   },
+   {
+    "campo": "resolucao.quadro",
+    "depois": [
+     {
+      "linha": "A: (0, 5) e (7, 3)",
+      "nota": "pontos lidos no gráfico"
+     },
+     {
+      "linha": "B: (0, 1) e (7, 2)",
+      "nota": "pontos lidos no gráfico"
+     },
+     {
+      "linha": "v_A = (3 − 5) ÷ (7 − 0)",
+      "nota": "variação de x dividida pela variação de t"
+     },
+     {
+      "linha": "v_A = −2/7",
+      "nota": "A desce 2 m em 7 s"
+     },
+     {
+      "linha": "x_A(t) = 5 − 2t/7",
+      "nota": "confere com os dois pontos: afirmativa 2 verdadeira"
+     },
+     {
+      "linha": "v_B = (2 − 1) ÷ 7 = 1/7",
+      "nota": "B sobe 1 m em 7 s"
+     },
+     {
+      "linha": "B andou 2 − 1 = 1 m",
+      "nota": "não é √50: afirmativa 1 falsa"
+     },
+     {
+      "linha": "t = 0: 5 − 1 = 4 m",
+      "nota": "distância inicial entre A e B"
+     },
+     {
+      "linha": "t = 7: 3 − 2 = 1 m",
+      "nota": "a distância diminuiu: afirmativa 3 verdadeira"
+     },
+     {
+      "linha": "2 × (1/7) = 2/7",
+      "nota": "mas v_A = −2/7: sinais opostos"
+     },
+     {
+      "linha": "−2/7 ≠ 2/7",
+      "nota": "afirmativa 4 falsa"
+     }
+    ],
+    "motivo": "Mantém uma passagem por linha, sem pular a comparação das velocidades."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

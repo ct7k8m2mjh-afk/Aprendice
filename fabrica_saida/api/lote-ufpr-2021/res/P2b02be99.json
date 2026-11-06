@@ -29,8 +29,16 @@
      "área de contato, em m²"
     ],
     [
+     "Pa",
+     "pascal: 1 newton de força em cada m² de área"
+    ],
+    [
      "kPa",
      "quilopascal, mil pascais"
+    ],
+    [
+     "10⁻⁴",
+     "0,0001, ou seja, 1 dividido por 10 000"
     ]
    ]
   },
@@ -44,7 +52,7 @@
    },
    {
     "faz": "Ache a força do objeto na plataforma",
-    "conta": "F = P_peso = 0,4 × 10 = 4 N",
+    "conta": "F = peso = 0,4 × 10 = 4 N",
     "porque": "Em equilíbrio e na horizontal, a força sobre a plataforma é o peso do objeto, e o enunciado manda usar g = 10 m/s².",
     "tipo": "calcular"
    },
@@ -104,19 +112,19 @@
   },
   {
    "linha": "F = 4 N",
-   "nota": "faça a conta"
+   "nota": "0,4 × 10 = 4"
   },
   {
    "linha": "A = 5 cm² = 5 × 10^−4 m²",
    "nota": "1 cm² = 10^−4 m²"
   },
   {
-   "linha": "P = F ÷ A = 4/(5 × 10^−4)",
+   "linha": "P = F ÷ A = 4 ÷ (5 × 10^−4)",
    "nota": "pressão = força ÷ área"
   },
   {
-   "linha": "P = 8 000 Pa",
-   "nota": "0,8 × 10⁴"
+   "linha": "P = 0,8 × 10⁴ = 8 000 Pa",
+   "nota": "4 ÷ 5 = 0,8; ÷ 10^−4 vira × 10⁴"
   },
   {
    "linha": "P = 8,0 kPa",
@@ -137,11 +145,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -176,6 +186,71 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "D"
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "F = peso = 0,4 × 10 = 4 N",
+    "motivo": "'P_peso' confundia com P de pressão; a conta agora usa 'peso', sem a letra P."
+   },
+   {
+    "campo": "resolucao.quadro[2]",
+    "depois": {
+     "linha": "F = 4 N",
+     "nota": "0,4 × 10 = 4"
+    },
+    "motivo": "A nota 'faça a conta' era vaga; agora mostra a multiplicação."
+   },
+   {
+    "campo": "resolucao.quadro[4]",
+    "depois": {
+     "linha": "P = F ÷ A = 4 ÷ (5 × 10^−4)",
+     "nota": "pressão = força ÷ área"
+    },
+    "motivo": "Fração escrita na linha ('4/(…)') trocada por ÷, padrão do restante do quadro."
+   },
+   {
+    "campo": "resolucao.quadro[5]",
+    "depois": {
+     "linha": "P = 0,8 × 10⁴ = 8 000 Pa",
+     "nota": "4 ÷ 5 = 0,8; ÷ 10^−4 vira × 10⁴"
+    },
+    "motivo": "Nota mais clara, mostrando por que 0,8 × 10⁴."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "P",
+      "pressão, em pascal (Pa = N/m²)"
+     ],
+     [
+      "F",
+      "força perpendicular à superfície, em newton (N)"
+     ],
+     [
+      "A",
+      "área de contato, em m²"
+     ],
+     [
+      "Pa",
+      "pascal: 1 newton de força em cada m² de área"
+     ],
+     [
+      "kPa",
+      "quilopascal, mil pascais"
+     ],
+     [
+      "10⁻⁴",
+      "0,0001, ou seja, 1 dividido por 10 000"
+     ]
+    ],
+    "motivo": "Explicar Pa e a potência 10⁻⁴, usados nos passos."
+   }
+  ],
+  "didatica_alertas": [
+   "O campo 'nivel' da resolução está 3, mas a classificação atual diz nível 5; o tema F07 (gases) também não combina com pressão = F/A, que seria F04.3. Conferir na fábrica."
+  ],
+  "didatica_ok": true
  }
 }

@@ -8,7 +8,7 @@
  "conceito": "Porcentagem simples: calcular 0,5% de 70 g e somar ao valor real para achar o máximo registrado.",
  "resolucao": {
   "antes": {
-   "texto": "O erro máximo é 0,5% do valor medido, e a balança pode errar para mais ou para menos. Para saber o MÁXIMO que ela registra, soma-se o erro máximo ao valor real. Passe 0,5% para decimal: 0,5% = 0,5 ÷ 100 = 0,005.",
+   "texto": "O erro máximo é 0,5% do valor medido. A balança pode errar para mais ou para menos. Para saber o MÁXIMO que ela registra, soma-se o erro máximo ao valor real. Passe 0,5% para decimal: 0,5% = 0,5 ÷ 100 = 0,005.",
    "formulas": [
     "porcentagem de um valor = taxa em decimal × valor",
     "valor máximo registrado = valor real + erro máximo"
@@ -25,6 +25,10 @@
     [
      "aferição",
      "ato de medir; a leitura feita pela balança"
+    ],
+    [
+     "erro máximo",
+     "o quanto a leitura da balança pode se afastar do valor real, para mais ou para menos"
     ]
    ]
   },
@@ -51,7 +55,7 @@
    {
     "faz": "Some o erro ao valor real",
     "conta": "70 + 0,35 = 70,35 g",
-    "porque": "A pergunta é o valor MÁXIMO registrado. Isso acontece quando o erro é para mais, somando 0,35 g aos 70 g.",
+    "porque": "A pergunta é o valor MÁXIMO registrado. Isso acontece quando o erro é para mais: a balança marca os 70 g mais 0,35 g.",
     "tipo": "calcular"
    },
    {
@@ -66,7 +70,7 @@
   "erradas": {
    "A": "70,035 g sai de tomar 0,05% em vez de 0,5%: 0,0005 × 70 = 0,035. Faltou uma casa na conversão: 0,5% = 0,005, e não 0,0005.",
    "C": "73,500 g sai de calcular 5% de 70 (0,05 × 70 = 3,5) e somar: 70 + 3,5 = 73,5. A taxa é 0,5%, dez vezes menor que 5%.",
-   "D": "75,000 g não confere: exigiria um erro de 5 g, e 5 ÷ 70 ≈ 7,1% de 70 g, muito acima dos 0,5% permitidos. O erro máximo é 0,35 g.",
+   "D": "75,000 g não confere: exigiria um erro de 5 g. Esse erro seria 5 ÷ 70 ≈ 0,071, ou seja, cerca de 7,1% dos 70 g, muito acima dos 0,5% permitidos. O máximo é 0,35 g.",
    "E": "75,500 g não confere: exigiria erro de 5,5 g, que é cerca de 7,9% de 70 g (5,5 ÷ 70). O máximo permitido é 0,35 g."
   },
   "armadilha": "Converter 0,5% em 0,05 ou 0,0005 em vez de 0,005, errando a casa decimal.",
@@ -130,11 +134,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -145,6 +151,54 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "B"
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "O erro máximo é 0,5% do valor medido. A balança pode errar para mais ou para menos. Para saber o MÁXIMO que ela registra, soma-se o erro máximo ao valor real. Passe 0,5% para decimal: 0,5% = 0,5 ÷ 100 = 0,005.",
+    "motivo": "Frases mais curtas, uma ideia por frase."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "g",
+      "grama, unidade de massa"
+     ],
+     [
+      "%",
+      "por cento, isto é, dividido por 100"
+     ],
+     [
+      "aferição",
+      "ato de medir; a leitura feita pela balança"
+     ],
+     [
+      "erro máximo",
+      "o quanto a leitura da balança pode se afastar do valor real, para mais ou para menos"
+     ]
+    ],
+    "motivo": "Termo 'erro máximo' é central e não estava explicado."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "A pergunta é o valor MÁXIMO registrado. Isso acontece quando o erro é para mais: a balança marca os 70 g mais 0,35 g.",
+    "motivo": "Redação mais clara."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "75,000 g não confere: exigiria um erro de 5 g. Esse erro seria 5 ÷ 70 ≈ 0,071, ou seja, cerca de 7,1% dos 70 g, muito acima dos 0,5% permitidos. O máximo é 0,35 g.",
+    "motivo": "Texto original confuso ('7,1% de 70 g'); esclarece a conta sem mudar o fato."
+   },
+   {
+    "campo": "resolucao.quadro[0].linha",
+    "depois": "0,5% = 0,5 ÷ 100",
+    "motivo": "Mantido; apenas confirmando que cada linha cabe no caderno."
+   }
+  ],
+  "didatica_alertas": [
+   "A classificação atual no cabeçalho da questão (M14.3, nível 6) difere da resolução (M03.1, nível 2); a resolução parece a correta, pois é porcentagem simples."
+  ],
+  "didatica_ok": true
  }
 }

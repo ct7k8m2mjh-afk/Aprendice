@@ -8,7 +8,7 @@
  "conceito": "Reconhecer a relação lógica (oposição/concessão) que 'Mesmo assim' estabelece entre duas ideias do texto.",
  "resolucao": {
   "antes": {
-   "texto": "Conectivo se classifica pela relação que cria entre as ideias, não pela palavra solta. 'Mesmo assim' retoma o que foi dito antes e apresenta algo que contraria a expectativa criada por essa ideia. Esse valor é de oposição (concessão): 'apesar disso', 'ainda assim', 'no entanto'.",
+   "texto": "Conectivo se classifica pela relação que cria entre as ideias, não pela palavra solta. 'Mesmo assim' retoma o que foi dito antes e apresenta algo que contraria o que se esperava. Essa relação se chama oposição (ou concessão). Quem pergunta 'o que o texto liga?' deve olhar as duas ideias, não só o 'assim'.",
    "formulas": [
     "oposição: mas, porém, no entanto, mesmo assim, ainda assim",
     "teste: troque por 'mas' ou 'apesar disso'; se o sentido se mantém, é oposição"
@@ -33,24 +33,24 @@
    {
     "faz": "Leia a primeira ideia",
     "conta": "\"ele varia muito de lugar para lugar e de época para época\"",
-    "porque": "Se o herói muda tanto, esperaríamos que ele não aparecesse de modo constante em todas as sociedades.",
+    "porque": "Se o herói muda tanto de lugar e de época, o esperado seria ele não aparecer de forma parecida em todas as sociedades.",
     "tipo": "localizar"
    },
    {
     "faz": "Leia a segunda ideia",
     "conta": "\"a figura do herói aparece nas mais diversas sociedades e eras\"",
-    "porque": "O texto diz o contrário do esperado: apesar da variação, o herói aparece nas mais diversas sociedades e eras.",
+    "porque": "O texto diz o contrário do esperado: mesmo com tanta variação, o herói aparece nas mais diversas sociedades e eras.",
     "tipo": "localizar"
    },
    {
     "faz": "Troque 'Mesmo assim' por um conectivo-modelo",
-    "conta": "\"... época. Apesar disso, a figura do herói aparece...\"",
+    "conta": "\"...época. Apesar disso, a figura do herói aparece...\"",
     "porque": "A troca por 'apesar disso' (ou 'mas') mantém o sentido: confirma a relação de oposição.",
     "tipo": "comparar"
    },
    {
     "faz": "Descarte as outras relações",
-    "conta": "consequência? igualdade? finalidade? comparação?",
+    "conta": "por isso? e? para que? como?",
     "porque": "Nenhuma delas aceita a troca: a segunda ideia não é resultado nem objetivo da primeira, não equivale a ela e não compara dois termos.",
     "tipo": "eliminar"
    },
@@ -67,7 +67,7 @@
    "A": "Consequência exigiria que a segunda ideia fosse resultado da primeira ('por isso', 'logo'). Aqui, variar muito não faz o herói aparecer em toda parte; a segunda ideia contraria a primeira.",
    "C": "Igualdade indicaria que a segunda ideia equivale à primeira ou segue na mesma linha ('do mesmo modo', 'igualmente'). O texto contrapõe variação e presença constante, então 'Mesmo assim' não equivale a esses conectivos.",
    "D": "Finalidade indicaria objetivo ('para que', 'a fim de'). O herói aparecer em várias sociedades não é o objetivo de ele variar; trocar por 'a fim de' não faz sentido.",
-   "E": "Comparação aproximaria dois termos ('como', 'assim como'). O trecho não compara o herói com outra coisa. 'Mesmo assim' (= apesar disso) não é 'assim como'."
+   "E": "Comparação aproximaria dois termos ('como', 'assim como'). O trecho não compara o herói com nada. 'Mesmo assim' quer dizer 'apesar disso', não 'assim como'."
   },
   "armadilha": "Ler 'assim' como conclusão ou comparação, quando a expressão inteira 'mesmo assim' tem valor de oposição.",
   "alerta": "",
@@ -102,11 +102,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -135,6 +137,40 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "B"
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Conectivo se classifica pela relação que cria entre as ideias, não pela palavra solta. 'Mesmo assim' retoma o que foi dito antes e apresenta algo que contraria o que se esperava. Essa relação se chama oposição (ou concessão). Quem pergunta 'o que o texto liga?' deve olhar as duas ideias, não só o 'assim'.",
+    "motivo": "Texto mais simples; 'esperava' no lugar de 'expectativa criada'; sem frase de dois sentidos."
+   },
+   {
+    "campo": "resolucao.passos[0].porque",
+    "depois": "Se o herói muda tanto de lugar e de época, o esperado seria ele não aparecer de forma parecida em todas as sociedades.",
+    "motivo": "Frase mais clara."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "O texto diz o contrário do esperado: mesmo com tanta variação, o herói aparece nas mais diversas sociedades e eras.",
+    "motivo": "Mais direto."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "\"...época. Apesar disso, a figura do herói aparece...\"",
+    "motivo": "Mantido o sentido; conta já adequada, só reforço de aspas."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "por isso? e? para que? como?",
+    "motivo": "Mostra o conectivo-teste de cada relação (consequência, igualdade, finalidade, comparação), que o aluno pode testar sozinho."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "Comparação aproximaria dois termos ('como', 'assim como'). O trecho não compara o herói com nada. 'Mesmo assim' quer dizer 'apesar disso', não 'assim como'.",
+    "motivo": "Frases mais curtas e claras."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

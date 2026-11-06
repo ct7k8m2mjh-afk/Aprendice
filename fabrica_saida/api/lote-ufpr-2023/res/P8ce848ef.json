@@ -44,13 +44,13 @@
    },
    {
     "faz": "Veja que parte de cada círculo está dentro",
-    "conta": "ângulo no vértice = 90° = 1/4",
+    "conta": "90° de 360° = um quarto",
     "porque": "Cada vértice do quadrado é um centro, e o ângulo ali mede 90°. Dentro do quadrado fica um quarto de cada círculo.",
     "tipo": "localizar"
    },
    {
     "faz": "Some os quatro quartos de círculo",
-    "conta": "4 × (1/4) × π × 1² = π cm²",
+    "conta": "4 quartos = 1 círculo = π × 1² = π",
     "porque": "Quatro quartos formam um círculo inteiro de raio 1, com área π.",
     "tipo": "calcular"
    },
@@ -64,9 +64,9 @@
   "resposta": "Alternativa D: a área cinza é 4 − π cm².",
   "checagem": "Com π ≈ 3,14, a área é 4 − 3,14 = 0,86 cm². É positiva e bem menor que o quadrado (4 cm²), como na figura, onde a região cinza é pequena. A alternativa A daria 2,14 cm², mais da metade do quadrado, o que não combina com o desenho.",
   "erradas": {
-   "A": "π − 1 ≈ 2,14 cm² é mais da metade do quadrado de 4 cm², mas a região cinza é uma pequena estrela entre os círculos. Não sai da conta quadrado − círculos.",
+   "A": "π − 1 ≈ 2,14 cm² é mais da metade do quadrado de 4 cm², mas o cinza é uma pequena estrela entre os círculos. Faltou subtrair: é quadrado menos círculo (4 − π), e não círculo menos 1.",
    "B": "π − 2 ≈ 1,14 cm² sai de calcular a parte errada. O quadrado ABCD, que liga os pontos de tangência, tem lado √2 e área 2. Ele contém o cinza e quatro pedaços de círculo, e esses pedaços somam 2 − (4 − π) = π − 2.",
-   "C": "2 − π/2 ≈ 0,43 cm² é exatamente metade do certo. Sairia de tomar um quadrado de área 2 e dois quartos de círculo, o que não bate com o quadrado de lado 2 (área 4) e os quatro quartos.",
+   "C": "2 − π/2 ≈ 0,43 cm² é exatamente metade do certo (0,86). Sairia de um quadrado de área 2 menos meio círculo. Aqui o quadrado dos centros tem lado 2, área 4, e os quatro quartos somam π.",
    "E": "4 − π/2 ≈ 2,43 cm² tiraria só dois quartos de círculo (meio círculo). Mas há um quarto em cada um dos quatro vértices, somando um círculo inteiro: π, não π/2."
   },
   "armadilha": "Esquecer que são quatro quartos de círculo (um círculo inteiro, π), e não só dois (π/2).",
@@ -89,7 +89,7 @@
  ],
  "quadro": [
   {
-   "linha": "lado = r + r = 2 cm",
+   "linha": "lado = 1 + 1 = 2 cm",
    "nota": "centros de círculos tangentes distam 2 raios"
   },
   {
@@ -98,12 +98,16 @@
    "destaque": "4"
   },
   {
-   "linha": "4 × (1/4) × π × 1²",
-   "nota": "quatro quartos de círculo dentro do quadrado"
+   "linha": "ângulo em cada centro = 90°",
+   "nota": "90° é um quarto de 360°"
   },
   {
-   "linha": "= π",
-   "nota": "quatro quartos = um círculo inteiro",
+   "linha": "4 quartos = 1 círculo",
+   "nota": "quatro quartos formam um círculo inteiro"
+  },
+  {
+   "linha": "A_círculo = π × 1² = π",
+   "nota": "área do círculo de raio 1",
    "destaque": "π"
   },
   {
@@ -135,11 +139,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -162,6 +168,74 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "D"
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "90° de 360° = um quarto",
+    "motivo": "Evita fração escrita na linha (1/4) e mostra de onde vem o um quarto."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "4 quartos = 1 círculo = π × 1² = π",
+    "motivo": "Evita fração na linha e a conta fica curta, cabendo na tela do celular."
+   },
+   {
+    "campo": "resolucao.quadro",
+    "depois": [
+     {
+      "linha": "lado = 1 + 1 = 2 cm",
+      "nota": "centros de círculos tangentes distam 2 raios"
+     },
+     {
+      "linha": "A_quadrado = 2 × 2 = 4",
+      "nota": "área do quadrado dos centros",
+      "destaque": "4"
+     },
+     {
+      "linha": "ângulo em cada centro = 90°",
+      "nota": "90° é um quarto de 360°"
+     },
+     {
+      "linha": "4 quartos = 1 círculo",
+      "nota": "quatro quartos formam um círculo inteiro"
+     },
+     {
+      "linha": "A_círculo = π × 1² = π",
+      "nota": "área do círculo de raio 1",
+      "destaque": "π"
+     },
+     {
+      "linha": "A_cinza = 4 − π",
+      "nota": "quadrado menos os quatro quartos",
+      "destaque": "4 − π",
+      "mov": [
+       {
+        "termo": "π",
+        "de": "círculos",
+        "para": "subtração",
+        "vira": "− π",
+        "como": "é retirado do quadrado"
+       }
+      ]
+     }
+    ],
+    "motivo": "Um passo por linha, sem fração escrita na linha e com linhas curtas para caber no celular."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "2 − π/2 ≈ 0,43 cm² é exatamente metade do certo (0,86). Sairia de um quadrado de área 2 menos meio círculo. Aqui o quadrado dos centros tem lado 2, área 4, e os quatro quartos somam π.",
+    "motivo": "Texto mais claro sobre o que faltou no raciocínio, sem frase confusa."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "π − 1 ≈ 2,14 cm² é mais da metade do quadrado de 4 cm², mas o cinza é uma pequena estrela entre os círculos. Faltou subtrair: é quadrado menos círculo (4 − π), e não círculo menos 1.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou A."
+   }
+  ],
+  "didatica_alertas": [
+   "O campo nivel do JSON é 4, enquanto a classificação atual diz nível 6. Conferir a divergência (não alterei)."
+  ],
+  "didatica_ok": true
  }
 }

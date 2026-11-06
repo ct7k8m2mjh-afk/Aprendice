@@ -33,7 +33,7 @@
     ]
    ]
   },
-  "pista": "Pergunte-se, para cada alternativa: o que é o menor item (um indivíduo), o que reúne esses indivíduos numa área e o que reúne várias áreas? Duas palavras decidem: 'mesma espécie' e 'mesma área'.",
+  "pista": "Compare o tamanho de cada conceito: o menor é um indivíduo sozinho; o seguinte junta indivíduos num lugar. Duas expressões decidem a questão: 'mesma espécie' e 'mesma área'.",
   "passos": [
    {
     "faz": "Defina espécime",
@@ -50,13 +50,13 @@
    {
     "faz": "Defina espécie",
     "conta": "espécie = várias populações",
-    "porque": "Uma espécie pode estar espalhada em várias áreas, e cada área tem uma população dela.",
+    "porque": "Uma espécie pode viver em várias áreas, e em cada área há uma população dela. Juntas, essas populações formam a espécie.",
     "tipo": "localizar"
    },
    {
-    "faz": "Teste as alternativas",
-    "conta": "B, C: várias espécies",
-    "porque": "B e C dizem que a população tem espécies diferentes. D e E dizem que espécime é grupo ou tipo de espécie, mas espécime é indivíduo.",
+    "faz": "Teste as alternativas B, C, D e E",
+    "conta": "B, C: população com várias espécies",
+    "porque": "B e C dizem que a população tem espécies diferentes, e isso é comunidade. D e E tratam espécime como tipo ou grupo, mas espécime é um único indivíduo.",
     "tipo": "eliminar"
    },
    {
@@ -71,8 +71,8 @@
   "erradas": {
    "B": "Diz que população é grupo de 'espécies semelhantes'. Mas população tem uma só espécie; várias espécies na mesma área formam uma comunidade.",
    "C": "Diz que a população é formada por 'diferentes espécies'. Isso é comunidade. Também erra ao dizer 'áreas geográficas semelhantes': população exige a mesma área, e não áreas parecidas.",
-   "D": "Diz que espécime é 'um tipo de espécie' distribuído em várias populações. Isso descreve a própria espécie. Espécime é um único indivíduo e vive em uma única população.",
-   "E": "Diz que espécimes são 'grupos de espécies'. Espécime é um indivíduo, não um grupo. A ordem fica invertida: são as populações que compõem uma espécie, e os espécimes compõem as populações."
+   "D": "Diz que espécime é 'um tipo de espécie' espalhado por várias populações. Isso descreve a própria espécie. Espécime é um único indivíduo e pertence a uma só população.",
+   "E": "Diz que espécimes são 'grupos de espécies'. Espécime é um indivíduo, não um grupo. A ordem correta é: espécimes formam populações, e populações formam a espécie. A alternativa inverte essa escada."
   },
   "armadilha": "Trocar os níveis: tratar espécime como grupo ou população como se tivesse várias espécies (isso é comunidade).",
   "alerta": "",
@@ -107,11 +107,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -134,6 +136,40 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "A"
+  "fatos_resposta": "A",
+  "didatica": [
+   {
+    "campo": "resolucao.pista",
+    "depois": "Compare o tamanho de cada conceito: o menor é um indivíduo sozinho; o seguinte junta indivíduos num lugar. Duas expressões decidem a questão: 'mesma espécie' e 'mesma área'.",
+    "motivo": "A pista anterior fazia uma pergunta confusa ('o que reúne várias áreas?') e quase entregava o critério. A nova só aponta por onde começar."
+   },
+   {
+    "campo": "resolucao.passos[3]",
+    "depois": {
+     "faz": "Teste as alternativas B, C, D e E",
+     "conta": "B, C: população com várias espécies",
+     "porque": "B e C dizem que a população tem espécies diferentes, e isso é comunidade. D e E tratam espécime como tipo ou grupo, mas espécime é um único indivíduo.",
+     "tipo": "eliminar"
+    },
+    "motivo": "O comando do passo ficou mais específico, e a conta ficou legível e explica o erro de B e C. As letras D e E ficam no porque."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Uma espécie pode viver em várias áreas, e em cada área há uma população dela. Juntas, essas populações formam a espécie.",
+    "motivo": "Frase mais direta, sem ambiguidade."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "Diz que espécime é 'um tipo de espécie' espalhado por várias populações. Isso descreve a própria espécie. Espécime é um único indivíduo e pertence a uma só população.",
+    "motivo": "Simplifica a frase e deixa claro onde errou quem marcou D: confundiu indivíduo com espécie."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "Diz que espécimes são 'grupos de espécies'. Espécime é um indivíduo, não um grupo. A ordem correta é: espécimes formam populações, e populações formam a espécie. A alternativa inverte essa escada.",
+    "motivo": "Deixa a escada de tamanho explícita para quem marcou E e evita a frase ambígua sobre a ordem."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

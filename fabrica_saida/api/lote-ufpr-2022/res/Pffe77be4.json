@@ -8,7 +8,7 @@
  "conceito": "Função dos sinais gráficos (travessão, itálico, aspas) num texto: isolar aposto, marcar estrangeirismo, citar ou dar sentido especial a uma palavra.",
  "resolucao": {
   "antes": {
-   "texto": "O comando pede a interpretação dos 'recursos ortográficos', isto é, o que cada sinal faz no texto. Travessões duplos isolam um termo intercalado, como o aposto. Itálico marca palavra estrangeira. Aspas marcam ironia, citação, termo em sentido especial ou distanciamento do autor. Cada sinal tem a sua função, e as alternativas só são verdadeiras se descreverem a função real de cada um no trecho.",
+   "texto": "O comando pede o que cada sinal gráfico faz no texto. Travessões duplos isolam um termo colocado no meio da frase, como o aposto. Itálico costuma marcar palavra de outra língua. Aspas podem marcar ironia, citação ou palavra usada em sentido especial. Uma alternativa só é verdadeira se descrever a função real do sinal naquele trecho.",
    "formulas": [
     "travessões duplos = isolam termo intercalado (aposto, explicação)",
     "itálico = estrangeirismo ou destaque",
@@ -17,15 +17,23 @@
    "simbolos": [
     [
      "aposto",
-     "termo que explica ou especifica outro, geralmente isolado por vírgulas, travessões ou parênteses"
+     "termo que explica outro termo da frase e vem separado por vírgulas, travessões ou parênteses"
     ],
     [
      "estrangeirismo",
-     "palavra de outra língua usada no texto, como 'background'"
+     "palavra de outra língua usada no texto em português, como 'background'"
     ],
     [
      "recursos ortográficos",
      "sinais gráficos como travessão, itálico e aspas, que orientam a leitura"
+    ],
+    [
+     "intercalado",
+     "colocado no meio de uma frase, interrompendo-a"
+    ],
+    [
+     "sentido figurado",
+     "sentido que não é o literal; a palavra é usada de modo especial ou irônico"
     ]
    ]
   },
@@ -33,7 +41,7 @@
   "passos": [
    {
     "faz": "Leia o trecho entre travessões",
-    "conta": "'a arte da guerra – desde tempos imemoriais o impiedoso árbitro final em disputas internacionais – perdeu…'",
+    "conta": "– desde tempos imemoriais o impiedoso árbitro final em disputas internacionais –",
     "porque": "O trecho entre travessões explica a expressão anterior, 'a arte da guerra', dizendo o que ela era: o 'impiedoso árbitro final'. É um aposto, isolado por travessões duplos.",
     "tipo": "localizar"
    },
@@ -51,13 +59,13 @@
    },
    {
     "faz": "Examine cada ocorrência das aspas",
-    "conta": "“se qualquer um ‘ganhar’ é o fim de ambos”; “racional”",
-    "porque": "A regra entre aspas, “se qualquer um ‘ganhar’ é o fim de ambos”, é uma citação, com 'ganhar' destacado dentro dela. 'Racional' aparece em sentido especial. Nada indica incerteza (D), e nem todas as aspas são irônicas (C).",
+    "conta": "“se qualquer um ‘ganhar’ é o fim de ambos”",
+    "porque": "A regra entre aspas é uma citação, e 'ganhar' vem destacado dentro dela. 'Racional' também recebe aspas por ter sentido especial. Nada indica incerteza (D), e nem todas as aspas são irônicas (C).",
     "tipo": "eliminar"
    },
    {
     "faz": "Conclua",
-    "conta": "A: travessões = aposto de 'a arte da guerra'",
+    "conta": "A: travessões isolam o aposto",
     "porque": "Só a alternativa A descreve uma função que o texto realmente cumpre.",
     "tipo": "concluir"
    }
@@ -102,11 +110,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -135,6 +145,61 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "A"
+  "fatos_resposta": "A",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "O comando pede o que cada sinal gráfico faz no texto. Travessões duplos isolam um termo colocado no meio da frase, como o aposto. Itálico costuma marcar palavra de outra língua. Aspas podem marcar ironia, citação ou palavra usada em sentido especial. Uma alternativa só é verdadeira se descrever a função real do sinal naquele trecho.",
+    "motivo": "Frases mais curtas e sem 'termo intercalado' sem explicação."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "aposto",
+      "termo que explica outro termo da frase e vem separado por vírgulas, travessões ou parênteses"
+     ],
+     [
+      "estrangeirismo",
+      "palavra de outra língua usada no texto em português, como 'background'"
+     ],
+     [
+      "recursos ortográficos",
+      "sinais gráficos como travessão, itálico e aspas, que orientam a leitura"
+     ],
+     [
+      "intercalado",
+      "colocado no meio de uma frase, interrompendo-a"
+     ],
+     [
+      "sentido figurado",
+      "sentido que não é o literal; a palavra é usada de modo especial ou irônico"
+     ]
+    ],
+    "motivo": "Explica 'intercalado' e 'sentido figurado', usados na resolução."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "“se qualquer um ‘ganhar’ é o fim de ambos”",
+    "motivo": "Linha curta o bastante para caber na tela; o trecho “racional” já aparece em outros campos."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "A regra entre aspas é uma citação, e 'ganhar' vem destacado dentro dela. 'Racional' também recebe aspas por ter sentido especial. Nada indica incerteza (D), e nem todas as aspas são irônicas (C).",
+    "motivo": "Texto mais claro, com a análise de 'racional' no mesmo passo."
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "A: travessões isolam o aposto",
+    "motivo": "Cabe na tela."
+   },
+   {
+    "campo": "resolucao.passos[0].conta",
+    "depois": "– desde tempos imemoriais o impiedoso árbitro final em disputas internacionais –",
+    "motivo": "Mostra só o trecho entre travessões; fica curto o bastante para a tela."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

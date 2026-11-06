@@ -8,7 +8,7 @@
  "conceito": "Razão entre a área de um setor circular e a área do triângulo formado por dois raios e o ângulo central de π/3.",
  "resolucao": {
   "antes": {
-   "texto": "Sem medida do raio no enunciado, chame o raio de r: ele vai cancelar na razão. O setor é uma fatia da pizza de ângulo α. O triângulo PCQ tem dois lados iguais a r (os raios) e o ângulo α entre eles. Calcule as duas áreas e divida.",
+   "texto": "O enunciado não dá o raio. Chame-o de r: ele vai cancelar na razão. O setor é uma fatia do círculo, limitada por dois raios. O triângulo PCQ tem dois lados iguais a r e o ângulo α entre eles. Calcule as duas áreas e divida a do setor pela do triângulo.",
    "formulas": [
     "área do setor = (α × r²) ÷ 2, com α em radianos",
     "área do triângulo = (a × b × sen do ângulo entre eles) ÷ 2",
@@ -25,11 +25,19 @@
     ],
     [
      "radiano",
-     "unidade de ângulo; π rad = 180°"
+     "unidade de ângulo; π rad = 180°, logo π/3 rad = 60°"
     ],
     [
      "setor circular",
      "região do círculo limitada por dois raios e pelo arco entre eles"
+    ],
+    [
+     "sen",
+     "seno do ângulo; sen 60° = √3/2"
+    ],
+    [
+     "racionalizar",
+     "tirar a raiz do denominador, multiplicando em cima e embaixo pela mesma raiz"
     ]
    ]
   },
@@ -63,6 +71,12 @@
     "faz": "Racionalize e simplifique",
     "conta": "2π/(3√3) = 2π√3/9",
     "porque": "Multiplicando em cima e embaixo por √3, o denominador vira 3 × 3 = 9.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Ligue o resultado à alternativa",
+    "conta": "2π√3/9 → alternativa C",
+    "porque": "A pergunta pede a razão setor ÷ triângulo, e foi isso que a conta deu. Compare com as letras e marque a C.",
     "tipo": "concluir"
    }
   ],
@@ -159,11 +173,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -177,6 +193,60 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "C"
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "O enunciado não dá o raio. Chame-o de r: ele vai cancelar na razão. O setor é uma fatia do círculo, limitada por dois raios. O triângulo PCQ tem dois lados iguais a r e o ângulo α entre eles. Calcule as duas áreas e divida a do setor pela do triângulo.",
+    "motivo": "Frases mais curtas e sem a metáfora da pizza; deixa claro que a ordem da divisão é setor ÷ triângulo."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "r",
+      "raio da circunferência; PC e QC medem r"
+     ],
+     [
+      "α",
+      "ângulo central PCQ, aqui π/3 rad (60°)"
+     ],
+     [
+      "radiano",
+      "unidade de ângulo; π rad = 180°, logo π/3 rad = 60°"
+     ],
+     [
+      "setor circular",
+      "região do círculo limitada por dois raios e pelo arco entre eles"
+     ],
+     [
+      "sen",
+      "seno do ângulo; sen 60° = √3/2"
+     ],
+     [
+      "racionalizar",
+      "tirar a raiz do denominador, multiplicando em cima e embaixo pela mesma raiz"
+     ]
+    ],
+    "motivo": "Inclui seno e racionalizar, termos usados na resolução e não explicados; explicita a conversão de π/3 para 60°."
+   },
+   {
+    "campo": "resolucao.passos[4].tipo",
+    "depois": "calcular",
+    "motivo": "O passo racionaliza; a conclusão com a letra precisa de passo próprio."
+   },
+   {
+    "campo": "resolucao.passos[5]",
+    "depois": {
+     "faz": "Ligue o resultado à alternativa",
+     "conta": "2π√3/9 → alternativa C",
+     "porque": "A pergunta pede a razão setor ÷ triângulo, e foi isso que a conta deu. Compare com as letras e marque a C.",
+     "tipo": "concluir"
+    },
+    "motivo": "Último passo deve ser concluir e ligar o resultado à letra."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

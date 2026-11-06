@@ -224,10 +224,10 @@ def roda(lote, temas, teto):
                 lista = s.get('didatica' if etapa == 'lente-b' else 'correcoes') or []
                 # a lente às vezes endereça a tela pelo conteúdo ("telas[H06.8]"): troca pela posição
                 pos = {t.get('sub'): i for i, t in enumerate(atual.get('telas') or [])}
-                for c in lista:
-                    c['campo'] = re.sub(r'telas\[([A-Z]\d\d\.\d+)\]',
-                                        lambda m: f'telas[{pos[m.group(1)]}]' if m.group(1) in pos else m.group(0),
-                                        c.get('campo') or '')
+                for mud in lista:
+                    mud['campo'] = re.sub(r'telas\[([A-Z]\d\d\.\d+)\]',
+                                          lambda m: f'telas[{pos[m.group(1)]}]' if m.group(1) in pos else m.group(0),
+                                          mud.get('campo') or '')
                 falhas = R.aplica(atual, lista)
                 rev[etapa.replace('-', '_')] = lista
                 if falhas:

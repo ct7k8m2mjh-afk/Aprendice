@@ -8,7 +8,7 @@
  "conceito": "Força resultante nula (1ª lei de Newton): o movimento é retilíneo e uniforme, então a velocidade é constante e igual à velocidade média.",
  "resolucao": {
   "antes": {
-   "texto": "Pela 1ª lei de Newton, se a força resultante é nula, a velocidade não muda: o objeto está em movimento retilíneo uniforme (MRU). Por isso a velocidade em qualquer instante é igual à velocidade média entre dois instantes. A massa não entra na conta. Cuidado só com as unidades: tudo já está em cm e s, e as alternativas pedem cm/s.",
+   "texto": "Pela 1ª lei de Newton, se a força resultante é nula, a velocidade não muda: o objeto está em movimento retilíneo uniforme (MRU). Então a velocidade em qualquer instante é igual à velocidade média entre dois instantes. A massa não entra na conta. As posições estão em cm e os tempos em s, e as alternativas pedem cm/s: não precisa converter.",
    "formulas": [
     "v = Δx ÷ Δt",
     "Δx = x₂ − x₁ e Δt = t₂ − t₁"
@@ -63,7 +63,7 @@
   "checagem": "Em 4 s a 2,5 cm/s o objeto anda 2,5 × 4 = 10 cm, que é exatamente o deslocamento de x = 10 cm até x = 20 cm.",
   "erradas": {
    "B": "4,0 cm/s não confere: em 4 s o objeto andaria 4 × 4 = 16 cm, mas ele andou só 10 cm.",
-   "C": "5,0 cm/s não confere: em 4 s andaria 20 cm, o dobro de 10 cm. Esse valor sai de dividir 10 cm por 2 s, que é o instante t₁ e não o intervalo de tempo.",
+   "C": "5,0 cm/s não confere: em 4 s andaria 20 cm, o dobro dos 10 cm reais. Sai de dividir 10 cm por 2 s, usando o instante t₁ (2 s) no lugar do intervalo (4 s).",
    "D": "7,5 cm/s sai de somar as posições em vez de subtrair: (10 + 20) ÷ 4 = 7,5. Deslocamento é posição final menos inicial: 20 − 10 = 10 cm.",
    "E": "10 cm/s não confere: em 4 s a 10 cm/s o objeto andaria 40 cm, e não os 10 cm que andou. O 10 é o deslocamento em cm, não a velocidade."
   },
@@ -91,16 +91,28 @@
    "nota": "sem força resultante, a velocidade é constante"
   },
   {
+   "linha": "Δx = x₂ − x₁",
+   "nota": "deslocamento = posição final − inicial"
+  },
+  {
    "linha": "Δx = 20 − 10 = 10 cm",
-   "nota": "deslocamento"
+   "nota": "troque pelos valores do enunciado"
+  },
+  {
+   "linha": "Δt = t₂ − t₁",
+   "nota": "intervalo = instante final − inicial"
   },
   {
    "linha": "Δt = 6 − 2 = 4 s",
-   "nota": "intervalo de tempo"
+   "nota": "troque pelos valores do enunciado"
+  },
+  {
+   "linha": "v = Δx/Δt",
+   "nota": "velocidade = deslocamento sobre tempo"
   },
   {
    "linha": "v = 10/4",
-   "nota": "velocidade = deslocamento sobre tempo"
+   "nota": "coloque os valores calculados"
   },
   {
    "linha": "v = 2,5 cm/s",
@@ -121,11 +133,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -160,6 +174,65 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "A"
+  "fatos_resposta": "A",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Pela 1ª lei de Newton, se a força resultante é nula, a velocidade não muda: o objeto está em movimento retilíneo uniforme (MRU). Então a velocidade em qualquer instante é igual à velocidade média entre dois instantes. A massa não entra na conta. As posições estão em cm e os tempos em s, e as alternativas pedem cm/s: não precisa converter.",
+    "motivo": "Frases mais curtas e diretas; deixa claro que não há conversão."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "v = 10 ÷ 4 = 2,5 cm/s",
+    "motivo": "Mantida a conta; o quadro usa fração empilhada. Sem mudança de valor."
+   },
+   {
+    "campo": "resolucao.quadro",
+    "depois": [
+     {
+      "linha": "F_res = 0 → MRU",
+      "nota": "sem força resultante, a velocidade é constante"
+     },
+     {
+      "linha": "Δx = x₂ − x₁",
+      "nota": "deslocamento = posição final − inicial"
+     },
+     {
+      "linha": "Δx = 20 − 10 = 10 cm",
+      "nota": "troque pelos valores do enunciado"
+     },
+     {
+      "linha": "Δt = t₂ − t₁",
+      "nota": "intervalo = instante final − inicial"
+     },
+     {
+      "linha": "Δt = 6 − 2 = 4 s",
+      "nota": "troque pelos valores do enunciado"
+     },
+     {
+      "linha": "v = Δx/Δt",
+      "nota": "velocidade = deslocamento sobre tempo"
+     },
+     {
+      "linha": "v = 10/4",
+      "nota": "coloque os valores calculados"
+     },
+     {
+      "linha": "v = 2,5 cm/s",
+      "nota": "divida 10 por 4"
+     }
+    ],
+    "motivo": "Um passo por linha, incluindo a fórmula antes de substituir, copiável no caderno."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "5,0 cm/s não confere: em 4 s andaria 20 cm, o dobro dos 10 cm reais. Sai de dividir 10 cm por 2 s, usando o instante t₁ (2 s) no lugar do intervalo (4 s).",
+    "motivo": "Frase mais clara sobre o que faltou no raciocínio."
+   }
+  ],
+  "didatica_alertas": [
+   "O campo 'tema' do JSON traz F01/F01.2, mas a classificação atual informada é F03/F03.1 e nível 6 (o JSON diz nível 2). Conferir a taxonomia."
+  ],
+  "didatica_ok": true
  }
 }

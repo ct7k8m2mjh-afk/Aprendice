@@ -8,7 +8,7 @@
  "conceito": "Reconhecer a estrutura de uma proteína (polipeptídeo, com ligações peptídicas e radicais R de aminoácidos) entre polímeros naturais e sintéticos.",
  "resolucao": {
   "antes": {
-   "texto": "O enunciado diz que a seda é feita de fibras proteicas, formadas por aminoácidos. Aminoácidos se unem por ligação peptídica, que é uma amida (–CO–NH–). Cada aminoácido α tem um carbono central ligado a um grupo amina, a um grupo ácido e a um radical R. Procure essa repetição na cadeia.",
+   "texto": "O enunciado diz que a seda é feita de fibras proteicas, formadas por aminoácidos. Aminoácidos se unem por ligação peptídica, que é uma amida (–CO–NH–). Cada aminoácido α tem um carbono central ligado a um grupo amina (–NH2), a um grupo ácido (–COOH) e a um radical R. Procure essa repetição na cadeia.",
    "formulas": [
     "Ligação peptídica: –C(=O)–NH–",
     "Aminoácido α: H2N–CH(R)–COOH",
@@ -34,6 +34,22 @@
     [
      "amida",
      "função com C=O ligado a um nitrogênio: –CO–NH–"
+    ],
+    [
+     "C=O",
+     "carbono com ligação dupla a um oxigênio"
+    ],
+    [
+     "poliamida",
+     "polímero em que as unidades se ligam por amidas"
+    ],
+    [
+     "hidrocarboneto",
+     "composto só de carbono e hidrogênio"
+    ],
+    [
+     "éster",
+     "função com C=O ligado a um O que se liga a outro carbono: –CO–O–"
     ]
    ]
   },
@@ -47,14 +63,14 @@
    },
    {
     "faz": "Procure amida com carbono ligado a R",
-    "conta": "A: –CH(R)–C(=O)–NH–CH(R)–",
+    "conta": "A: C(R) – C(=O) – NH – C(R)",
     "porque": "O carbono com R entre o C=O e o N–H é o esqueleto de um aminoácido α. A unidade se repete: é um polipeptídeo.",
     "tipo": "localizar"
    },
    {
     "faz": "Descarte o náilon (alternativa B)",
-    "conta": "B: –CO–(CH2)4–CO–NH–(CH2)6–NH–",
-    "porque": "Também tem amida, mas é cadeia de CH2 entre os grupos, sem carbono com R. É o náilon 6,6, sintético.",
+    "conta": "B: C=O – (CH2)4 – C=O – NH – (CH2)6",
+    "porque": "B também tem amida, mas só tem cadeias de CH2 entre os grupos, sem carbono com R. É o náilon 6,6, sintético.",
     "tipo": "eliminar"
    },
    {
@@ -73,10 +89,10 @@
   "resposta": "Alternativa A: é a única cadeia de aminoácidos ligados por ligações peptídicas (–CO–NH–), com o radical R em cada carbono central, que é a estrutura de uma proteína como a seda.",
   "checagem": "Corte a cadeia de A em cada amida: sai um pedaço H2N–CH(R)–COOH, um aminoácido. Faça o mesmo em B e você obtém um ácido com 6 carbonos e uma diamina, que não são aminoácidos.",
   "erradas": {
-   "B": "É o náilon 6,6, poliamida sintética formada por um diácido (adípico) e uma diamina (hexametilenodiamina). Tem amida, mas não tem carbono com radical R, então não vem de aminoácidos e não é a seda.",
-   "C": "É a celulose, polímero de glicose, um carboidrato (muitos –OH e ligações glicosídicas C–O–C entre os anéis). Está no algodão, que o enunciado contrasta com a seda.",
-   "D": "É o PET, poliéster formado por ligações éster (–CO–O–) entre ácido tereftálico e etilenoglicol. Não tem N, logo não tem ligação peptídica.",
-   "E": "É o polipropileno, hidrocarboneto de cadeia –CH2–CH(CH3)–. Só tem C e H, sem amida e sem aminoácidos."
+   "B": "É o náilon 6,6, poliamida sintética. Quem marcou B viu a amida e parou aí. Faltou procurar o carbono com radical R: em B só há CH2 entre as amidas, então não vem de aminoácidos e não é a seda.",
+   "C": "É a celulose, polímero de glicose (carboidrato), com muitos –OH e ligações C–O–C entre os anéis. Quem marcou C esqueceu que o enunciado contrasta o algodão (celulose) com a seda (proteína).",
+   "D": "É o PET, poliéster com ligações éster (–CO–O–). Quem marcou D confundiu éster com amida: faltou ver que não há nitrogênio, logo não há ligação peptídica.",
+   "E": "É o polipeptileno... corrigindo: é o polipropileno, hidrocarboneto de cadeia –CH2–CH(CH3)–. Quem marcou E não notou que só há C e H: sem nitrogênio não há aminoácido nem proteína."
   },
   "armadilha": "Escolher B por ver a amida –CO–NH–: o náilon também é poliamida, mas sintético e sem o carbono com radical R que marca o aminoácido.",
   "alerta": "",
@@ -111,11 +127,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -126,6 +144,92 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "A"
+  "fatos_resposta": "A",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "O enunciado diz que a seda é feita de fibras proteicas, formadas por aminoácidos. Aminoácidos se unem por ligação peptídica, que é uma amida (–CO–NH–). Cada aminoácido α tem um carbono central ligado a um grupo amina (–NH2), a um grupo ácido (–COOH) e a um radical R. Procure essa repetição na cadeia.",
+    "motivo": "Explica amina e ácido com a fórmula, sem jargão solto."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "R",
+      "radical: parte da molécula que muda de um aminoácido para outro"
+     ],
+     [
+      "ligação peptídica",
+      "ligação amida entre o C=O de um aminoácido e o N–H do seguinte"
+     ],
+     [
+      "polímero",
+      "molécula grande formada pela repetição de uma unidade, indicada entre colchetes com o índice n"
+     ],
+     [
+      "n",
+      "número de vezes que a unidade se repete"
+     ],
+     [
+      "amida",
+      "função com C=O ligado a um nitrogênio: –CO–NH–"
+     ],
+     [
+      "C=O",
+      "carbono com ligação dupla a um oxigênio"
+     ],
+     [
+      "poliamida",
+      "polímero em que as unidades se ligam por amidas"
+     ],
+     [
+      "hidrocarboneto",
+      "composto só de carbono e hidrogênio"
+     ],
+     [
+      "éster",
+      "função com C=O ligado a um O que se liga a outro carbono: –CO–O–"
+     ]
+    ],
+    "motivo": "Termos usados nos passos e nas erradas (C=O, poliamida, hidrocarboneto, éster) não estavam explicados."
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "A: C(R) – C(=O) – NH – C(R)",
+    "motivo": "Mais curto, cabe na tela do celular."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "B: C=O – (CH2)4 – C=O – NH – (CH2)6",
+    "motivo": "Mais curto, cabe na tela do celular."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "B também tem amida, mas só tem cadeias de CH2 entre os grupos, sem carbono com R. É o náilon 6,6, sintético.",
+    "motivo": "Frase mais direta."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "É o náilon 6,6, poliamida sintética. Quem marcou B viu a amida e parou aí. Faltou procurar o carbono com radical R: em B só há CH2 entre as amidas, então não vem de aminoácidos e não é a seda.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou B."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "É a celulose, polímero de glicose (carboidrato), com muitos –OH e ligações C–O–C entre os anéis. Quem marcou C esqueceu que o enunciado contrasta o algodão (celulose) com a seda (proteína).",
+    "motivo": "Mostra a falha de leitura do enunciado."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "É o PET, poliéster com ligações éster (–CO–O–). Quem marcou D confundiu éster com amida: faltou ver que não há nitrogênio, logo não há ligação peptídica.",
+    "motivo": "Aponta a confusão éster × amida."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "É o polipeptileno... corrigindo: é o polipropileno, hidrocarboneto de cadeia –CH2–CH(CH3)–. Quem marcou E não notou que só há C e H: sem nitrogênio não há aminoácido nem proteína.",
+    "motivo": "Aponta o que faltou a quem marcou E."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

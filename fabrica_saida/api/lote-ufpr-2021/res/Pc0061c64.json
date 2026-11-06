@@ -15,7 +15,7 @@
     "+ / +: mutualismo (as duas se beneficiam)",
     "+ / 0: comensalismo (uma se beneficia, a outra não ganha nem perde)",
     "− / −: competição (as duas perdem ao disputar o mesmo recurso)",
-    "+ / −: predação ou parasitismo"
+    "+ / −: predação ou parasitismo (uma ganha, a outra perde)"
    ],
    "simbolos": [
     [
@@ -44,36 +44,36 @@
   "passos": [
    {
     "faz": "Analise o par formiga e mosca-branca",
-    "conta": "formigas: ganham melada",
-    "porque": "O texto diz que as formigas protegem as moscas dos predadores, e as moscas recebem essa proteção. As duas ganham: mutualismo.",
+    "conta": "formiga: ganha melada; mosca: ganha proteção",
+    "porque": "As formigas comem a melada e protegem as moscas dos predadores. As duas ganham: mutualismo.",
     "tipo": "localizar"
    },
    {
     "faz": "Analise o par abelha e mosca-branca",
     "conta": "\"consomem a melada, mas não oferecem proteção\"",
-    "porque": "A abelha come a melada, que a mosca elimina como excreção, e não dá nada em troca. A mosca não perde nem ganha: comensalismo (+ / 0).",
+    "porque": "A abelha come a melada e não dá nada em troca. A mosca não ganha nem perde: comensalismo (+ / 0).",
     "tipo": "localizar"
    },
    {
     "faz": "Analise o par abelha e formiga",
     "conta": "\"espantam as abelhas das folhas\"",
-    "porque": "As duas buscam o mesmo alimento, a melada. As formigas afastam as abelhas para ficar com ela: competição.",
+    "porque": "Abelhas e formigas querem o mesmo alimento, a melada. As formigas espantam as abelhas para ficar com ela: competição.",
     "tipo": "localizar"
    },
    {
     "faz": "Compare com as alternativas",
-    "conta": "abelha-mosca: comensalismo",
+    "conta": "abelha-mosca: comensalismo; abelha-formiga: competição",
     "porque": "Só a alternativa B traz as duas relações do par das abelhas: comensalismo com as moscas e competição com as formigas. Nas demais, alguma relação está errada.",
     "tipo": "concluir"
    }
   ],
   "resposta": "Alternativa B: as abelhas se beneficiam da melada sem afetar as moscas (comensalismo) e disputam a melada com as formigas (competição).",
-  "checagem": "Pergunte quem é prejudicado em cada relação. Na abelha com a mosca, ninguém é prejudicado, então não pode ser predação; e a mosca não ganha nada, então também não é mutualismo. Na abelha com a formiga, as formigas agem para afastar as abelhas, então há disputa por recurso.",
+  "checagem": "Pergunte quem perde em cada par. Abelha e mosca: ninguém perde, então não é predação. A mosca não ganha nada da abelha, então não é mutualismo. Abelha e formiga: a formiga espanta a abelha, então há disputa pela melada.",
   "erradas": {
-   "A": "O texto não fala em formigas matando abelhas nem comendo moscas ou folhas. As formigas apenas espantam as abelhas e protegem as moscas. Predação exige capturar e consumir a presa.",
-   "C": "Competição entre abelhas e formigas está certa, mas as abelhas não têm mutualismo com as moscas: elas consomem a melada e não oferecem proteção, então só elas se beneficiam. O mutualismo vale só para as formigas.",
-   "D": "Nenhuma das duas se alimenta das moscas-brancas: ambas buscam a melada que elas excretam. Abelhas e formigas também não são citadas como consumidoras das folhas de mandioca.",
-   "E": "Formigas e moscas-brancas têm mutualismo, não comensalismo: as formigas ganham melada e as moscas ganham proteção. As formigas também não são predadoras das abelhas, só as espantam."
+   "A": "O texto não diz que as formigas matam abelhas, comem moscas ou comem folhas. Elas apenas espantam as abelhas e protegem as moscas. Predação exige capturar e consumir a presa. Quem marcou A viu 'agressivo' e entendeu como 'predador'.",
+   "C": "A competição está certa, mas as abelhas não têm mutualismo com as moscas: comem a melada e não dão proteção. Quem marcou C esqueceu de testar se a mosca ganha algo da abelha. Não ganha.",
+   "D": "Abelhas e formigas não comem as moscas: buscam a melada que elas liberam. O texto também não diz que consomem as folhas. Quem marcou D confundiu 'estar na folha' com 'comer a mosca ou a folha'.",
+   "E": "Formigas e moscas têm mutualismo, não comensalismo: a formiga ganha melada e a mosca ganha proteção. As formigas também não matam as abelhas, só as espantam. Quem marcou E esqueceu de olhar o ganho da mosca."
   },
   "armadilha": "Chamar de mutualismo qualquer relação com a mosca-branca, esquecendo que a abelha leva a melada e não dá proteção, e que só a formiga troca benefícios com a mosca.",
   "alerta": "",
@@ -115,11 +115,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -154,6 +156,70 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "B"
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "+ / +: mutualismo (as duas se beneficiam)",
+     "+ / 0: comensalismo (uma se beneficia, a outra não ganha nem perde)",
+     "− / −: competição (as duas perdem ao disputar o mesmo recurso)",
+     "+ / −: predação ou parasitismo (uma ganha, a outra perde)"
+    ],
+    "motivo": "Deixa claro o que o sinal − significa na linha de predação."
+   },
+   {
+    "campo": "resolucao.passos[0].conta",
+    "depois": "formiga: ganha melada; mosca: ganha proteção",
+    "motivo": "A conta anterior mostrava só um lado da relação; agora aparecem os dois sinais (+ / +)."
+   },
+   {
+    "campo": "resolucao.passos[0].porque",
+    "depois": "As formigas comem a melada e protegem as moscas dos predadores. As duas ganham: mutualismo.",
+    "motivo": "Frase mais direta, com os dois benefícios na mesma frase."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "A abelha come a melada e não dá nada em troca. A mosca não ganha nem perde: comensalismo (+ / 0).",
+    "motivo": "Simplifica e tira o termo 'excreção', que não estava explicado."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Abelhas e formigas querem o mesmo alimento, a melada. As formigas espantam as abelhas para ficar com ela: competição.",
+    "motivo": "Frases curtas e voz ativa."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "abelha-mosca: comensalismo; abelha-formiga: competição",
+    "motivo": "O passo conclui com os dois pares que a alternativa B cita."
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Pergunte quem perde em cada par. Abelha e mosca: ninguém perde, então não é predação. A mosca não ganha nada da abelha, então não é mutualismo. Abelha e formiga: a formiga espanta a abelha, então há disputa pela melada.",
+    "motivo": "Frases mais curtas e claras."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "O texto não diz que as formigas matam abelhas, comem moscas ou comem folhas. Elas apenas espantam as abelhas e protegem as moscas. Predação exige capturar e consumir a presa. Quem marcou A viu 'agressivo' e entendeu como 'predador'.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou A."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "A competição está certa, mas as abelhas não têm mutualismo com as moscas: comem a melada e não dão proteção. Quem marcou C esqueceu de testar se a mosca ganha algo da abelha. Não ganha.",
+    "motivo": "Mostra o passo de raciocínio que faltou."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "Abelhas e formigas não comem as moscas: buscam a melada que elas liberam. O texto também não diz que consomem as folhas. Quem marcou D confundiu 'estar na folha' com 'comer a mosca ou a folha'.",
+    "motivo": "Acrescenta a origem do erro."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "Formigas e moscas têm mutualismo, não comensalismo: a formiga ganha melada e a mosca ganha proteção. As formigas também não matam as abelhas, só as espantam. Quem marcou E esqueceu de olhar o ganho da mosca.",
+    "motivo": "Diz o que faltou ao aluno que marcou E."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

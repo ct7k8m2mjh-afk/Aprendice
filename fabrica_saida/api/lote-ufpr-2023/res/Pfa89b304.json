@@ -16,23 +16,31 @@
    "simbolos": [
     [
      "ano-luz",
-     "distância percorrida pela luz no vácuo durante um ano"
+     "distância que a luz percorre no vácuo durante um ano"
     ],
     [
      "atm",
-     "atmosfera, unidade de pressão"
+     "atmosfera, unidade de pressão (força que age em cada área)"
     ],
     [
      "T",
-     "tesla, unidade de campo magnético"
+     "tesla, unidade de campo magnético (a 'força' de um ímã no espaço ao redor)"
     ],
     [
      "W",
-     "watt, unidade de potência"
+     "watt, unidade de potência (quanta energia se usa por segundo)"
     ],
     [
      "Hz",
-     "hertz, unidade de frequência"
+     "hertz, unidade de frequência (quantas vezes algo se repete por segundo)"
+    ],
+    [
+     "c",
+     "velocidade da luz no vácuo, ≈ 3×10^8 m/s"
+    ],
+    [
+     "SI",
+     "Sistema Internacional de Unidades: metro, quilograma, segundo etc."
     ]
    ]
   },
@@ -46,8 +54,8 @@
    },
    {
     "faz": "Analise o ano-luz",
-    "conta": "d = c × t = 3×10^8 m/s × 1 ano",
-    "porque": "Velocidade vezes tempo dá distância. O resultado é um comprimento, ≈ 9,5 × 10^15 m.",
+    "conta": "d = 3×10^8 m/s × 1 ano",
+    "porque": "Velocidade vezes tempo dá distância. O resultado é ≈ 9,5 × 10^15 m, um comprimento. Aqui a palavra 'ano' só informa por quanto tempo a luz viaja.",
     "tipo": "calcular"
    },
    {
@@ -70,12 +78,12 @@
    }
   ],
   "resposta": "Alternativa A: o ano-luz é a distância que a luz percorre em um ano, portanto é uma unidade de comprimento.",
-  "checagem": "Veja a unidade no SI: o ano-luz vira metros (≈ 9,5 × 10^15 m). Nenhuma das outras se escreve só com metro.",
+  "checagem": "Converta cada unidade para o SI. O ano-luz vira metros (≈ 9,5 × 10^15 m). As outras viram combinações de kg, s e A, e nenhuma é só metro.",
   "erradas": {
-   "B": "A atmosfera (atm) mede pressão: 1 atm ≈ 10^5 N/m². Tem dimensão de força por área, não de comprimento.",
-   "C": "O tesla (T) mede a intensidade do campo magnético. Ele equivale a N/(A·m), não a metro.",
-   "D": "O watt (W) mede potência, isto é, energia por tempo: 1 W = 1 J/s.",
-   "E": "O hertz (Hz) mede frequência, ciclos por segundo: 1 Hz = 1 s^−1. É o inverso do tempo, não comprimento."
+   "B": "A atmosfera (atm) mede pressão: 1 atm ≈ 10^5 N/m². Quem marcou B pode ter ligado 'atmosfera' à camada de ar e à altura. Faltou perguntar o que a unidade mede: pressão é força por área, não comprimento.",
+   "C": "O tesla (T) mede o campo magnético: 1 T = 1 N/(A·m). Quem marcou C provavelmente não relacionou a unidade a nenhuma grandeza e não perguntou 'o que ela mede?'. Campo magnético não é comprimento.",
+   "D": "O watt (W) mede potência, isto é, energia por tempo: 1 W = 1 J/s. Quem marcou D esqueceu de perguntar o que a unidade mede. Energia por tempo não é distância.",
+   "E": "O hertz (Hz) mede frequência: 1 Hz = 1 s^−1, ou seja, um ciclo por segundo. Quem marcou E esqueceu de perguntar o que a unidade mede. Ela é o inverso do tempo, não um comprimento."
   },
   "armadilha": "Ver 'ano' em ano-luz e achar que é unidade de tempo; na verdade é distância.",
   "alerta": "",
@@ -119,11 +127,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -146,6 +156,79 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "A"
+  "fatos_resposta": "A",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "d = 3×10^8 m/s × 1 ano",
+    "motivo": "Mantém a conta curta e sem quebra de linha. O resultado numérico vai no porque."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "Velocidade vezes tempo dá distância. O resultado é ≈ 9,5 × 10^15 m, um comprimento. Aqui a palavra 'ano' só informa por quanto tempo a luz viaja.",
+    "motivo": "Explica por que o 'ano' no nome não torna o ano-luz uma unidade de tempo."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "ano-luz",
+      "distância que a luz percorre no vácuo durante um ano"
+     ],
+     [
+      "atm",
+      "atmosfera, unidade de pressão (força que age em cada área)"
+     ],
+     [
+      "T",
+      "tesla, unidade de campo magnético (a 'força' de um ímã no espaço ao redor)"
+     ],
+     [
+      "W",
+      "watt, unidade de potência (quanta energia se usa por segundo)"
+     ],
+     [
+      "Hz",
+      "hertz, unidade de frequência (quantas vezes algo se repete por segundo)"
+     ],
+     [
+      "c",
+      "velocidade da luz no vácuo, ≈ 3×10^8 m/s"
+     ],
+     [
+      "SI",
+      "Sistema Internacional de Unidades: metro, quilograma, segundo etc."
+     ]
+    ],
+    "motivo": "Explica 'c' e 'SI', que aparecem na resolução sem definição. Simplifica as definições das demais unidades para um aluno de 17 anos."
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Converta cada unidade para o SI. O ano-luz vira metros (≈ 9,5 × 10^15 m). As outras viram combinações de kg, s e A, e nenhuma é só metro.",
+    "motivo": "A frase original era vaga ('nenhuma se escreve só com metro'). A nova diz o que conferir."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "O tesla (T) mede o campo magnético: 1 T = 1 N/(A·m). Quem marcou C provavelmente não relacionou a unidade a nenhuma grandeza e não perguntou 'o que ela mede?'. Campo magnético não é comprimento.",
+    "motivo": "O bloco 'Por que eu errei' precisa dizer o que faltou no raciocínio de quem marcou a letra."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "A atmosfera (atm) mede pressão: 1 atm ≈ 10^5 N/m². Quem marcou B pode ter ligado 'atmosfera' à camada de ar e à altura. Faltou perguntar o que a unidade mede: pressão é força por área, não comprimento.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou B."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "O watt (W) mede potência, isto é, energia por tempo: 1 W = 1 J/s. Quem marcou D esqueceu de perguntar o que a unidade mede. Energia por tempo não é distância.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou D."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "O hertz (Hz) mede frequência: 1 Hz = 1 s^−1, ou seja, um ciclo por segundo. Quem marcou E esqueceu de perguntar o que a unidade mede. Ela é o inverso do tempo, não um comprimento.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou E."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

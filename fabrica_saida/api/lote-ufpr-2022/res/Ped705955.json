@@ -32,6 +32,14 @@
     [
      "oração reduzida",
      "oração sem conectivo, com verbo no infinitivo, gerúndio ou particípio"
+    ],
+    [
+     "valor aditivo",
+     "ideia de soma, como 'e' e 'além disso'"
+    ],
+    [
+     "advérbio de tempo",
+     "palavra que indica quando algo acontece, como 'já'"
     ]
    ]
   },
@@ -39,37 +47,37 @@
   "passos": [
    {
     "faz": "Classifique o 'que' da linha 2",
-    "conta": "\"daquela violência que se acredita\"",
-    "porque": "Dá para trocar por 'a qual' (a violência, a qual se acredita ser...). O 'que' retoma 'violência', então é pronome relativo, e não conjunção integrante. Também não existe valor aditivo.",
+    "conta": "\"violência que se acredita\" → \"violência a qual se acredita\"",
+    "porque": "O 'que' retoma 'violência' e pode ser trocado por 'a qual'. Por isso é pronome relativo, não conjunção integrante. Também não há valor aditivo (de soma, como 'e').",
     "tipo": "localizar"
    },
    {
     "faz": "Veja o que 'Assim' liga",
-    "conta": "\"...perdeu muito de sua eficácia\"",
+    "conta": "\"nenhum objetivo... justificar\" → Assim → \"perdeu eficácia\"",
     "porque": "O período anterior diz que nenhum objetivo político poderia justificar o uso do potencial destrutivo das armas. 'Assim' abre o resultado disso: a guerra perdeu eficácia. É conclusão, e não oposição.",
     "tipo": "comparar"
    },
    {
     "faz": "Compare 'ou seja' e 'quer seja'",
-    "conta": "\"entre as superpotências, ou seja, entre os que manobram...\"",
-    "porque": "'Ou seja' reformula e explica o termo anterior. 'Quer seja' pertence a 'quer... quer' e marca alternância. Os valores são diferentes.",
+    "conta": "\"ou seja\" = isto é (explica)",
+    "porque": "'Ou seja' reformula o termo anterior: 'superpotências' é explicado por 'os que manobram no plano mais alto'. 'Quer seja' vem do par 'quer... quer' e marca alternância (uma coisa ou outra). Os valores são diferentes.",
     "tipo": "comparar"
    },
    {
     "faz": "Teste 'embora' por 'por mais que'",
-    "conta": "\"embora não previsto por ninguém\"",
-    "porque": "'Embora' marca concessão: o fator não foi previsto, mas ainda assim tem igual importância. 'Por mais que' também é locução concessiva e mantém a ideia.",
+    "conta": "\"embora não previsto\" = \"por mais que não previsto\"",
+    "porque": "'Embora' admite um fato que não impede a ideia principal: o fator não foi previsto, e mesmo assim é muito importante. 'Por mais que' também expressa concessão e mantém essa relação.",
     "tipo": "comparar"
    },
    {
     "faz": "Analise o 'já não' da linha 10",
-    "conta": "\"já não sendo uma preparação para a guerra\"",
-    "porque": "'Já não' é advérbio de tempo mais negação. A oração reduzida de gerúndio dá a causa ('como já não é preparação...'), e não uma concessão como 'ainda que'.",
+    "conta": "\"já não sendo uma preparação\" = \"como já não é\"",
+    "porque": "'Já não' é advérbio de tempo mais negação. A oração reduzida de gerúndio ('sendo') dá a causa: a corrida armamentista só se justifica porque já não prepara a guerra. Não é concessão como 'ainda que'.",
     "tipo": "eliminar"
    },
    {
     "faz": "Conclua",
-    "conta": "A: não. B: não. C: não. D: sim. E: não.",
+    "conta": "A, B, C, E erram. D acerta.",
     "porque": "Só a D iguala dois termos de mesmo valor, concessivo.",
     "tipo": "concluir"
    }
@@ -111,11 +119,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -138,6 +148,90 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "D"
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[0].conta",
+    "depois": "\"violência que se acredita\" → \"violência a qual se acredita\"",
+    "motivo": "A conta tinha mais de 30 caracteres e quebraria na tela do celular. A nova mostra a troca por 'a qual' em uma linha."
+   },
+   {
+    "campo": "resolucao.passos[0].porque",
+    "depois": "O 'que' retoma 'violência' e pode ser trocado por 'a qual'. Por isso é pronome relativo, não conjunção integrante. Também não há valor aditivo (de soma, como 'e').",
+    "motivo": "Frase mais curta e clara, com o termo 'aditivo' explicado."
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "\"nenhum objetivo... justificar\" → Assim → \"perdeu eficácia\"",
+    "motivo": "A conta anterior citava só o trecho depois de 'Assim'. A nova mostra as duas ideias ligadas e deixa claro que a relação é de conclusão."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "\"ou seja\" = isto é (explica)",
+    "motivo": "O trecho citado era longo demais para a linha. A nova versão cabe e vai direto ao valor da expressão."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "'Ou seja' reformula o termo anterior: 'superpotências' é explicado por 'os que manobram no plano mais alto'. 'Quer seja' vem do par 'quer... quer' e marca alternância (uma coisa ou outra). Os valores são diferentes.",
+    "motivo": "Mostra o que é explicado e define alternância em palavras simples."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "\"embora não previsto\" = \"por mais que não previsto\"",
+    "motivo": "A nova conta mostra a troca em uma linha curta."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "'Embora' admite um fato que não impede a ideia principal: o fator não foi previsto, e mesmo assim é muito importante. 'Por mais que' também expressa concessão e mantém essa relação.",
+    "motivo": "Explica a concessão pelo texto e deixa a troca clara."
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "\"já não sendo uma preparação\" = \"como já não é\"",
+    "motivo": "A nova conta mostra a troca que prova o valor causal e cabe na linha."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "'Já não' é advérbio de tempo mais negação. A oração reduzida de gerúndio ('sendo') dá a causa: a corrida armamentista só se justifica porque já não prepara a guerra. Não é concessão como 'ainda que'.",
+    "motivo": "Explica a oração reduzida, termo já definido em simbolos, ligando-a ao sentido do texto."
+   },
+   {
+    "campo": "resolucao.passos[5].conta",
+    "depois": "A, B, C, E erram. D acerta.",
+    "motivo": "Uma linha curta e legível no celular."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "concessão",
+      "a oração admite um fato que, mesmo existindo, não impede o que se afirma na principal"
+     ],
+     [
+      "conjunção integrante",
+      "'que' que introduz oração com função de substantivo (sujeito ou complemento), equivalente a 'isso'"
+     ],
+     [
+      "pronome relativo",
+      "'que' que retoma um termo anterior e equivale a 'o qual', 'a qual'"
+     ],
+     [
+      "oração reduzida",
+      "oração sem conectivo, com verbo no infinitivo, gerúndio ou particípio"
+     ],
+     [
+      "valor aditivo",
+      "ideia de soma, como 'e' e 'além disso'"
+     ],
+     [
+      "advérbio de tempo",
+      "palavra que indica quando algo acontece, como 'já'"
+     ]
+    ],
+    "motivo": "Foram incluídos termos usados na resolução e ainda sem explicação."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

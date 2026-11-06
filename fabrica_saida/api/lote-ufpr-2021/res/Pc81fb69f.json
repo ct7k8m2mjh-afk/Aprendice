@@ -29,6 +29,18 @@
     [
      "evaporação",
      "passagem da água líquida para vapor; os sais dissolvidos não evaporam e ficam no solo"
+    ],
+    [
+     "compactação",
+     "solo apertado, com poucos espaços para a água e o ar"
+    ],
+    [
+     "assoreamento",
+     "acúmulo de terra e areia no fundo do rio, trazidas pela erosão"
+    ],
+    [
+     "acidificação",
+     "queda do pH do solo, que o deixa mais ácido"
     ]
    ]
   },
@@ -54,8 +66,8 @@
    },
    {
     "faz": "Elimine os impactos de outro tipo",
-    "conta": "pisoteio, desmatamento, queimada, adubo",
-    "porque": "Compactação, erosão, perda de matéria orgânica e acidificação são impactos reais, mas não são o mecanismo de acúmulo de sais.",
+    "conta": "A, B, D, E: outros processos",
+    "porque": "Pisoteio compacta o solo. Desmatamento da mata ciliar causa erosão. Queimada empobrece o solo. Adubo nitrogenado pode acidificá-lo. Nenhum deixa o sal acumulado na superfície.",
     "tipo": "eliminar"
    },
    {
@@ -68,10 +80,10 @@
   "resposta": "Alternativa C: a irrigação das lavouras em áreas semiáridas leva sais ao solo, e a forte evaporação os concentra na superfície.",
   "checagem": "Teste cada alternativa com a pergunta: ela coloca sais no solo e os impede de ser lavados? Só a irrigação em clima seco faz as duas coisas. As demais causam compactação, erosão ou acidificação.",
   "erradas": {
-   "A": "O pisoteio do gado compacta o solo: reduz poros e infiltração de água. É um problema físico e não leva sais ao solo.",
-   "B": "Fertilizantes nitrogenados podem acidificar o solo e contaminar a água com nitrato, mas a salinização clássica tem como causa principal a irrigação mal manejada em clima seco. O comando pede a causa principal.",
-   "D": "Sem mata ciliar, as margens do rio ficam expostas e a erosão leva sedimentos ao leito, ou seja, assoreamento. É perda e transporte de solo, não acúmulo de sais.",
-   "E": "A queimada elimina a cobertura vegetal e a matéria orgânica, deixando o solo exposto à erosão e empobrecido. Não é o mecanismo de acúmulo de sais."
+   "A": "O pisoteio do gado compacta o solo e reduz a infiltração de água. É um problema físico e não leva sais ao solo. Quem marcou A confundiu salinização com compactação.",
+   "B": "O adubo nitrogenado pode acidificar o solo e contaminar a água com nitrato, mas não é a principal causa de sal acumulado. O sal vem da água de irrigação que evapora em clima seco. O comando pede a causa principal.",
+   "D": "Sem mata ciliar, as margens do rio ficam expostas. A erosão leva terra ao leito e causa assoreamento. É perda de solo, não acúmulo de sais. Quem marcou D confundiu salinização com erosão.",
+   "E": "A queimada tira a vegetação e a matéria orgânica, e o solo fica empobrecido e sujeito à erosão. Não acrescenta sais. Quem marcou E pensou em degradação em geral, e não em acúmulo de sais."
   },
   "armadilha": "Escolher um impacto agrícola real, como adubo, queimada ou compactação, sem checar se ele é o que acumula sais.",
   "alerta": "",
@@ -106,11 +118,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -127,6 +141,76 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "C"
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "salinização",
+      "acúmulo de sais solúveis no solo, que prejudica o crescimento das plantas"
+     ],
+     [
+      "semiárido",
+      "clima com chuva escassa e irregular e forte evaporação"
+     ],
+     [
+      "mata ciliar",
+      "vegetação que margeia os rios e protege suas margens"
+     ],
+     [
+      "evaporação",
+      "passagem da água líquida para vapor; os sais dissolvidos não evaporam e ficam no solo"
+     ],
+     [
+      "compactação",
+      "solo apertado, com poucos espaços para a água e o ar"
+     ],
+     [
+      "assoreamento",
+      "acúmulo de terra e areia no fundo do rio, trazidas pela erosão"
+     ],
+     [
+      "acidificação",
+      "queda do pH do solo, que o deixa mais ácido"
+     ]
+    ],
+    "motivo": "Termos usados em passos e erradas (compactação, assoreamento, acidificação) não estavam explicados."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "A, B, D, E: outros processos",
+    "motivo": "A conta antiga era só uma lista; agora diz o que se conclui sobre as letras."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Pisoteio compacta o solo. Desmatamento da mata ciliar causa erosão. Queimada empobrece o solo. Adubo nitrogenado pode acidificá-lo. Nenhum deixa o sal acumulado na superfície.",
+    "motivo": "Frase mais simples, uma ideia por letra, sem termos não explicados."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "O adubo nitrogenado pode acidificar o solo e contaminar a água com nitrato, mas não é a principal causa de sal acumulado. O sal vem da água de irrigação que evapora em clima seco. O comando pede a causa principal.",
+    "motivo": "Dizia o que faltou no raciocínio de quem marcou B, com frases mais curtas."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "Sem mata ciliar, as margens do rio ficam expostas. A erosão leva terra ao leito e causa assoreamento. É perda de solo, não acúmulo de sais. Quem marcou D confundiu salinização com erosão.",
+    "motivo": "Explicita o erro de quem marcou D."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "A queimada tira a vegetação e a matéria orgânica, e o solo fica empobrecido e sujeito à erosão. Não acrescenta sais. Quem marcou E pensou em degradação em geral, e não em acúmulo de sais.",
+    "motivo": "Explicita o erro de quem marcou E."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "O pisoteio do gado compacta o solo e reduz a infiltração de água. É um problema físico e não leva sais ao solo. Quem marcou A confundiu salinização com compactação.",
+    "motivo": "Explicita o erro de quem marcou A."
+   }
+  ],
+  "didatica_alertas": [
+   "O campo conteudo está G02.4 no JSON, mas a classificação informada é G02.5. Conferir a taxonomia (solos = G02.4 na TAXONOMIA antiga)."
+  ],
+  "didatica_ok": true
  }
 }

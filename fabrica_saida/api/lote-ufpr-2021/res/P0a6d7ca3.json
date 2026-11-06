@@ -8,7 +8,7 @@
  "conceito": "Ler um gráfico ΔV × i de resistor não ôhmico e calcular a potência dissipada P = ΔV · i",
  "resolucao": {
   "antes": {
-   "texto": "O gráfico mostra a tensão ΔV no eixo vertical e a corrente i (em mA) no eixo horizontal. A curva não é uma reta, então o resistor não é ôhmico e não existe um único valor de R. Mesmo assim, a potência em cada ponto continua sendo P = ΔV · i. Basta achar, na curva, a corrente que corresponde a ΔV = 2 V.",
+   "texto": "O gráfico mostra a tensão ΔV no eixo vertical e a corrente i (em mA) no eixo horizontal. A curva não é uma reta, então o resistor não segue a lei de Ohm e não existe um único valor de R. Mesmo assim, em cada ponto da curva, a potência é P = ΔV · i. Basta achar, na curva, a corrente que corresponde a ΔV = 2 V.",
    "formulas": [
     "P = ΔV × i",
     "1 mA = 10⁻³ A",
@@ -17,7 +17,7 @@
    "simbolos": [
     [
      "ΔV",
-     "diferença de potencial (tensão) aplicada ao resistor, em volts"
+     "diferença de potencial (tensão) aplicada ao resistor, em volts (V)"
     ],
     [
      "i",
@@ -25,15 +25,19 @@
     ],
     [
      "mA",
-     "miliampère, milésimo de ampère"
+     "miliampère, milésimo de ampère: 1 mA = 0,001 A"
     ],
     [
      "mW",
-     "miliwatt, milésimo de watt"
+     "miliwatt, milésimo de watt: 1 mW = 0,001 W"
     ],
     [
      "resistor não ôhmico",
      "resistor cuja curva ΔV × i não é reta; a resistência muda conforme a tensão"
+    ],
+    [
+     "potência dissipada",
+     "energia por segundo que o resistor transforma em calor, em watts (W)"
     ]
    ]
   },
@@ -47,7 +51,7 @@
    },
    {
     "faz": "Siga a linha tracejada até a curva e desça",
-    "conta": "ΔV = 2 V → i = 6 mA",
+    "conta": "2 V na curva → 6 mA",
     "porque": "O tracejado horizontal em 2 V encontra a curva no ponto em que o tracejado vertical cai sobre 6 mA no eixo i.",
     "tipo": "localizar"
    },
@@ -71,9 +75,9 @@
    }
   ],
   "resposta": "Alternativa D: com ΔV = 2 V a corrente é 6 mA, e P = 2 V × 6 mA = 12 mW.",
-  "checagem": "Em mA e V o produto já dá mW: 2 × 6 = 12 mW. Como 12 mW é pequeno, o valor é plausível para um resistor de poucos miliampères.",
+  "checagem": "Confira por outro caminho: no ponto (2 V, 6 mA), R = 2 ÷ 0,006 ≈ 333 Ω. Então P = ΔV² ÷ R = 4 ÷ 333 ≈ 0,012 W = 12 mW. Também vale a unidade: V × mA dá direto mW.",
   "erradas": {
-   "A": "0,33 mW sai de dividir em vez de multiplicar: 2 ÷ 6 ≈ 0,33. Esse quociente ΔV ÷ i é a resistência no ponto (0,33 kΩ), não a potência. P = 2 × 6 = 12 mW.",
+   "A": "0,33 mW sai de dividir em vez de multiplicar: 2 ÷ 6 ≈ 0,33. Esse quociente seria a resistência no ponto, não a potência. Faltou usar P = ΔV × i = 2 × 6 = 12 mW.",
    "B": "3 mW sai de dividir a corrente pela tensão: 6 ÷ 2 = 3. Isso não é potência. Potência é o produto: P = 2 V × 6 mA = 12 mW.",
    "C": "6 mW sai de tomar a corrente lida, 6 mA, como se já fosse a potência. Faltou multiplicar pela tensão de 2 V: 2 × 6 = 12 mW.",
    "E": "72 mW sai de 2 × 6², isto é, 2 × 36. O quadrado da corrente só entra em P = R i², e aqui R não é constante. Com P = ΔV × i, o resultado é 12 mW."
@@ -103,7 +107,7 @@
   },
   {
    "linha": "i = 6 mA",
-   "nota": "valor lido no gráfico para 2 V"
+   "nota": "lido no gráfico, na curva em 2 V"
   },
   {
    "linha": "i = 6 × 10⁻³ A",
@@ -140,11 +144,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -173,6 +179,72 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "D"
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "O gráfico mostra a tensão ΔV no eixo vertical e a corrente i (em mA) no eixo horizontal. A curva não é uma reta, então o resistor não segue a lei de Ohm e não existe um único valor de R. Mesmo assim, em cada ponto da curva, a potência é P = ΔV · i. Basta achar, na curva, a corrente que corresponde a ΔV = 2 V.",
+    "motivo": "Troca 'não é ôhmico' por explicação simples (lei de Ohm), sem jargão solto."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "ΔV",
+      "diferença de potencial (tensão) aplicada ao resistor, em volts (V)"
+     ],
+     [
+      "i",
+      "corrente elétrica que passa pelo resistor"
+     ],
+     [
+      "mA",
+      "miliampère, milésimo de ampère: 1 mA = 0,001 A"
+     ],
+     [
+      "mW",
+      "miliwatt, milésimo de watt: 1 mW = 0,001 W"
+     ],
+     [
+      "resistor não ôhmico",
+      "resistor cuja curva ΔV × i não é reta; a resistência muda conforme a tensão"
+     ],
+     [
+      "potência dissipada",
+      "energia por segundo que o resistor transforma em calor, em watts (W)"
+     ]
+    ],
+    "motivo": "Explica 'potência dissipada', termo do enunciado, e as unidades."
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "2 V na curva → 6 mA",
+    "motivo": "Conta curta, cabe na tela do celular."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "P = 2 × 6×10⁻³ = 12×10⁻³ W",
+    "motivo": "Mantida; já é curta o suficiente."
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Confira por outro caminho: no ponto (2 V, 6 mA), R = 2 ÷ 0,006 ≈ 333 Ω. Então P = ΔV² ÷ R = 4 ÷ 333 ≈ 0,012 W = 12 mW. Também vale a unidade: V × mA dá direto mW.",
+    "motivo": "A checagem anterior só repetia a conta e dava um argumento fraco de plausibilidade; agora usa outro caminho."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "0,33 mW sai de dividir em vez de multiplicar: 2 ÷ 6 ≈ 0,33. Esse quociente seria a resistência no ponto, não a potência. Faltou usar P = ΔV × i = 2 × 6 = 12 mW.",
+    "motivo": "Remove a unidade '0,33 kΩ' (2 V ÷ 6 mA ≈ 0,33 kΩ é correto, mas confundia) e deixa claro o que faltou."
+   },
+   {
+    "campo": "resolucao.quadro[1].nota",
+    "depois": "lido no gráfico, na curva em 2 V",
+    "motivo": "Nota mais clara."
+   }
+  ],
+  "didatica_alertas": [
+   "O campo 'conteudo' está F11.1 na resolução, mas a classificação atual informada é F11.4 e o nível 5 (a resolução diz 4); o corretor 1 deve conferir."
+  ],
+  "didatica_ok": true
  }
 }

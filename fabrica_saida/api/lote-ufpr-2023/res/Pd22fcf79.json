@@ -8,7 +8,7 @@
  "conceito": "Identificar o valor de 'que', de 'se' e de 'por isso' no texto: classe da palavra, referente e relação lógica.",
  "resolucao": {
   "antes": {
-   "texto": "A questão pede que você descubra o que cada palavra pequena faz no texto. Para cada item, pergunte a que classe a palavra pertence e a que ela se liga. 'Que' pode ser pronome relativo, que retoma um termo anterior, ou conjunção, que só liga orações. 'Se' pode indeterminar o sujeito, apassivar o verbo ou ser parte do verbo pronominal.",
+   "texto": "A questão pede que você descubra o que cada palavra pequena faz no texto. Para cada item, pergunte a que classe a palavra pertence e a que ela se liga. 'Que' pode ser pronome relativo, que retoma um termo anterior, ou conjunção, que só liga orações. 'Se' pode indeterminar o sujeito (não dizer quem faz a ação), apassivar o verbo ou ser parte do verbo pronominal.",
    "formulas": [
     "pronome relativo: dá para trocar por 'o qual' e retoma um termo anterior",
     "'para que' = locução conjuntiva de finalidade (o 'que' não retoma ninguém)",
@@ -20,6 +20,22 @@
     [
      "referente",
      "o termo do texto que a palavra retoma ou substitui"
+    ],
+    [
+     "pronome relativo",
+     "palavra como 'que' ou 'o qual' que retoma um termo já citado e liga duas orações"
+    ],
+    [
+     "conjunção",
+     "palavra que só liga orações e não retoma nenhum termo"
+    ],
+    [
+     "locução conjuntiva",
+     "conjunção formada por mais de uma palavra, como 'para que'"
+    ],
+    [
+     "finalidade",
+     "ideia de objetivo: a oração diz para quê a ação é feita"
     ],
     [
      "indeterminação do sujeito",
@@ -40,13 +56,13 @@
    {
     "faz": "Julgue a afirmativa 1 (o 'que' de 'para que')",
     "conta": "\"Deve cuidar para que, ao comer, ele próprio não acabe comido.\"",
-    "porque": "'Para que' é locução conjuntiva: introduz a oração de finalidade. 'Ele próprio' é o sujeito de 'acabe', não o termo que o 'que' retoma. Trocar por 'o qual' dá frase sem sentido. A afirmativa é falsa.",
+    "porque": "'Para que' é locução conjuntiva: introduz a oração de finalidade. 'Ele próprio' é o sujeito de 'acabe', não o termo que o 'que' retoma. Trocar por 'o qual' dá frase sem sentido. Logo, a afirmativa é falsa.",
     "tipo": "eliminar"
    },
    {
     "faz": "Julgue a afirmativa 2 (o 'se' de 'trata-se')",
     "conta": "\"Trata-se de uma técnica de atenção\"",
-    "porque": "'Tratar' pede a preposição 'de' (tratar de algo). 'De uma técnica de atenção' é o complemento do verbo. O 'se' indetermina o sujeito e não retoma 'técnica de atenção'. A afirmativa é falsa.",
+    "porque": "'Tratar' pede a preposição 'de' (tratar de algo). 'De uma técnica de atenção' é o complemento do verbo, então não pode ser sujeito. O 'se' indetermina o sujeito e não retoma 'técnica de atenção'. A afirmativa é falsa.",
     "tipo": "eliminar"
    },
    {
@@ -105,11 +121,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -150,6 +168,63 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "A"
+  "fatos_resposta": "A",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "A questão pede que você descubra o que cada palavra pequena faz no texto. Para cada item, pergunte a que classe a palavra pertence e a que ela se liga. 'Que' pode ser pronome relativo, que retoma um termo anterior, ou conjunção, que só liga orações. 'Se' pode indeterminar o sujeito (não dizer quem faz a ação), apassivar o verbo ou ser parte do verbo pronominal.",
+    "motivo": "Explica 'indeterminar' na primeira aparição, para aluno de 17 anos."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "referente",
+      "o termo do texto que a palavra retoma ou substitui"
+     ],
+     [
+      "pronome relativo",
+      "palavra como 'que' ou 'o qual' que retoma um termo já citado e liga duas orações"
+     ],
+     [
+      "conjunção",
+      "palavra que só liga orações e não retoma nenhum termo"
+     ],
+     [
+      "locução conjuntiva",
+      "conjunção formada por mais de uma palavra, como 'para que'"
+     ],
+     [
+      "finalidade",
+      "ideia de objetivo: a oração diz para quê a ação é feita"
+     ],
+     [
+      "indeterminação do sujeito",
+      "o sujeito existe, mas não é identificado; a frase não diz quem faz a ação"
+     ],
+     [
+      "verbo pronominal",
+      "verbo que sempre vem com pronome (arrepender-se, assemelhar-se); o 'se' faz parte dele"
+     ],
+     [
+      "conclusiva",
+      "relação em que a segunda ideia é o resultado da primeira"
+     ]
+    ],
+    "motivo": "Termos técnicos usados na resolução (pronome relativo, conjunção, locução conjuntiva, finalidade) não estavam explicados."
+   },
+   {
+    "campo": "resolucao.passos[0].porque",
+    "depois": "'Para que' é locução conjuntiva: introduz a oração de finalidade. 'Ele próprio' é o sujeito de 'acabe', não o termo que o 'que' retoma. Trocar por 'o qual' dá frase sem sentido. Logo, a afirmativa é falsa.",
+    "motivo": "Frases mais claras e conectivo de conclusão."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "'Tratar' pede a preposição 'de' (tratar de algo). 'De uma técnica de atenção' é o complemento do verbo, então não pode ser sujeito. O 'se' indetermina o sujeito e não retoma 'técnica de atenção'. A afirmativa é falsa.",
+    "motivo": "Deixa claro por que o complemento não pode ser referente do 'se'."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

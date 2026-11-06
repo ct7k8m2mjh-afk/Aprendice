@@ -8,7 +8,7 @@
  "conceito": "Equação da reta, retas perpendiculares (coeficientes angulares com produto −1) e área de triângulo com base no eixo x.",
  "resolucao": {
   "antes": {
-   "texto": "O triângulo tem um lado sobre o eixo x e o vértice oposto em (3,3). Se você achar onde cada reta corta o eixo, a base é a distância entre esses dois pontos e a altura é a ordenada 3. Retas perpendiculares têm coeficientes angulares m1 e m2 com m1 × m2 = −1.",
+   "texto": "O triângulo tem um lado sobre o eixo x e o vértice oposto em (3,3). Ache onde cada reta corta o eixo x: a base é a distância entre esses dois pontos e a altura é a ordenada 3. Retas perpendiculares têm coeficientes angulares m_1 e m_2 com m_1 × m_2 = −1.",
    "formulas": [
     "coeficiente angular m = (variação de y) ÷ (variação de x)",
     "perpendiculares: m1 × m2 = −1",
@@ -26,6 +26,18 @@
     [
      "intersecta o eixo x",
      "corta o eixo x num ponto onde y = 0"
+    ],
+    [
+     "ordenada",
+     "o valor de y de um ponto; em (3,3), a ordenada é 3"
+    ],
+    [
+     "abscissa",
+     "o valor de x de um ponto; em (2,0), a abscissa é 2"
+    ],
+    [
+     "m_r, m_s",
+     "coeficiente angular da reta r e da reta s"
     ]
    ]
   },
@@ -33,8 +45,8 @@
   "passos": [
    {
     "faz": "Ache a inclinação de r",
-    "conta": "r passa por (2,0) e (3,3)",
-    "porque": "Dois pontos de r determinam sua inclinação: de (2,0) a (3,3), x sobe 1 e y sobe 3. Logo m_r = 3/1 = 3.",
+    "conta": "m_r = (3 − 0) ÷ (3 − 2) = 3",
+    "porque": "Dois pontos de r determinam sua inclinação: de (2,0) a (3,3), x sobe 1 e y sobe 3. Então m_r = 3 ÷ 1 = 3.",
     "tipo": "calcular"
    },
    {
@@ -45,8 +57,8 @@
    },
    {
     "faz": "Ache onde s corta o eixo x",
-    "conta": "0 − 3 = −1/3 × (x − 3)",
-    "porque": "s passa por (3,3) com inclinação −1/3. No eixo x, y = 0. Então −3 = −(x − 3)/3, ou seja, x − 3 = 9 e x = 12. O ponto é (12,0).",
+    "conta": "0 − 3 = (−1/3) × (x − 3)",
+    "porque": "s passa por (3,3) com inclinação −1/3. No eixo x, y = 0. Multiplicando os dois lados por −3: 9 = x − 3, então x = 12. O ponto é (12,0).",
     "tipo": "calcular"
    },
    {
@@ -67,7 +79,7 @@
   "erradas": {
    "A": "12 é a abscissa onde s corta o eixo x, não a área. Com base 10 e altura 3 a área é 15. Para dar 12 a base teria de ser 8, e a distância de 2 a 12 é 10.",
    "C": "21 sai de uma base 14: 14 × 3 ÷ 2 = 21. Mas 14 = 12 + 2 soma as abscissas. A base é a distância entre elas: 12 − 2 = 10.",
-   "D": "24 não confere. Com altura 3, exigiria base 16 (16 × 3 ÷ 2 = 24), mas a base mede 12 − 2 = 10.",
+   "D": "24 não confere: com altura 3, exigiria base 16 (16 × 3 ÷ 2 = 24). Mas a base mede 12 − 2 = 10, e nenhuma conta com esses pontos dá 16.",
    "E": "30 sai de 10 × 3 sem dividir por 2. Isso é a área do retângulo base × altura; o triângulo tem metade: 15."
   },
   "armadilha": "Esquecer o ÷ 2 da área do triângulo (dá 30), ou somar as abscissas 2 e 12 em vez de subtrair para achar a base.",
@@ -116,15 +128,15 @@
    ]
   },
   {
-   "linha": "y − 3 = −1/3 (x − 3)",
+   "linha": "y − 3 = (−1/3) × (x − 3)",
    "nota": "s passa por (3,3)"
   },
   {
-   "linha": "0 − 3 = −1/3 (x − 3)",
+   "linha": "0 − 3 = (−1/3) × (x − 3)",
    "nota": "no eixo x, y = 0"
   },
   {
-   "linha": "9 = x − 3",
+   "linha": "−3 × (−3) = x − 3, ou seja, 9 = x − 3",
    "nota": "multiplique por −3 os dois lados"
   },
   {
@@ -167,14 +179,95 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [],
   "fatos_ok": true,
-  "fatos_resposta": "B"
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "O triângulo tem um lado sobre o eixo x e o vértice oposto em (3,3). Ache onde cada reta corta o eixo x: a base é a distância entre esses dois pontos e a altura é a ordenada 3. Retas perpendiculares têm coeficientes angulares m_1 e m_2 com m_1 × m_2 = −1.",
+    "motivo": "Troca 'm1' e 'm2' por notação com índice, igual ao resto da resolução, e encurta a frase."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "coeficiente angular",
+      "número que mede a inclinação da reta: quanto y varia quando x aumenta 1"
+     ],
+     [
+      "perpendiculares",
+      "retas que se cruzam formando ângulo de 90°"
+     ],
+     [
+      "intersecta o eixo x",
+      "corta o eixo x num ponto onde y = 0"
+     ],
+     [
+      "ordenada",
+      "o valor de y de um ponto; em (3,3), a ordenada é 3"
+     ],
+     [
+      "abscissa",
+      "o valor de x de um ponto; em (2,0), a abscissa é 2"
+     ],
+     [
+      "m_r, m_s",
+      "coeficiente angular da reta r e da reta s"
+     ]
+    ],
+    "motivo": "Os termos 'ordenada', 'abscissa' e a notação m_r, m_s aparecem na resolução sem explicação."
+   },
+   {
+    "campo": "resolucao.passos[0].conta",
+    "depois": "m_r = (3 − 0) ÷ (3 − 2) = 3",
+    "motivo": "A conta anterior só repetia os pontos. Agora mostra o cálculo."
+   },
+   {
+    "campo": "resolucao.passos[0].porque",
+    "depois": "Dois pontos de r determinam sua inclinação: de (2,0) a (3,3), x sobe 1 e y sobe 3. Então m_r = 3 ÷ 1 = 3.",
+    "motivo": "Evita fração escrita na linha e deixa a conta clara."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "0 − 3 = (−1/3) × (x − 3)",
+    "motivo": "Parênteses deixam claro que −1/3 multiplica (x − 3)."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "s passa por (3,3) com inclinação −1/3. No eixo x, y = 0. Multiplicando os dois lados por −3: 9 = x − 3, então x = 12. O ponto é (12,0).",
+    "motivo": "A versão anterior misturava sinais e confundia. Agora segue as mesmas passagens do quadro."
+   },
+   {
+    "campo": "resolucao.quadro[4].linha",
+    "depois": "y − 3 = (−1/3) × (x − 3)",
+    "motivo": "Parênteses para não haver dois sentidos."
+   },
+   {
+    "campo": "resolucao.quadro[5].linha",
+    "depois": "0 − 3 = (−1/3) × (x − 3)",
+    "motivo": "Idem."
+   },
+   {
+    "campo": "resolucao.quadro[6].linha",
+    "depois": "−3 × (−3) = x − 3, ou seja, 9 = x − 3",
+    "motivo": "Mostra a multiplicação por −3 que a nota cita; antes pulava passagem."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "24 não confere: com altura 3, exigiria base 16 (16 × 3 ÷ 2 = 24). Mas a base mede 12 − 2 = 10, e nenhuma conta com esses pontos dá 16.",
+    "motivo": "Deixa o teste objetivo mais completo."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

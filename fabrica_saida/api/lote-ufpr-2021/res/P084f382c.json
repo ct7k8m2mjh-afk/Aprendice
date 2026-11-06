@@ -8,7 +8,7 @@
  "conceito": "Identificar a quem se referem expressões do texto (engraçadinho, velha, deus maior do Parnaso) a partir do contexto.",
  "resolucao": {
   "antes": {
-   "texto": "Cada expressão do enunciado precisa ser ligada a uma pessoa citada no texto. Para isso, releia a frase em volta e veja de quem ela fala. O texto menciona quatro pessoas: David Lynch, Fran Lebowitz, Martin Scorsese e Ginia Bellafante. Cada uma tem um papel diferente.",
+   "texto": "Cada expressão do enunciado precisa ser ligada a uma pessoa citada no texto. Releia a frase em volta e veja de quem ela fala. O texto cita quatro pessoas: David Lynch, Fran Lebowitz, Martin Scorsese e Ginia Bellafante. Cada uma tem um papel diferente. O enunciado pede o sentido das palavras no texto, não o que você sabe sobre essas pessoas.",
    "formulas": [
     "David Lynch = exemplo de artista \"chato\", mas grande (linha 2)",
     "Fran Lebowitz = humorista cujas opiniões irritam (linha 7)",
@@ -22,11 +22,19 @@
     ],
     [
      "Parnaso",
-     "na mitologia grega, monte das artes; \"deus do Parnaso\" é um grande artista consagrado"
+     "na mitologia grega, monte das artes; \"deus maior do Parnaso\" é um artista muito importante e consagrado"
     ],
     [
      "resmungos",
      "queixas em voz baixa, sem importância"
+    ],
+    [
+     "linha 7",
+     "o número ao lado do texto marca a linha; use-o para achar o trecho"
+    ],
+    [
+     "humorista",
+     "pessoa que trabalha fazendo as outras rirem"
     ]
    ]
   },
@@ -35,7 +43,7 @@
    {
     "faz": "Leia a frase do \"engraçadinho\"",
     "conta": "\"Nada incomoda mais do que um engraçadinho. Isso explica ... Fran Lebowitz\"",
-    "porque": "O \"Isso\" liga o engraçadinho às reações contra Fran Lebowitz, a humorista que irrita muita gente. Lynch aparece só como exemplo de artista chato, não de humorista.",
+    "porque": "O \"Isso\" retoma o que veio antes: o engraçadinho irrita. Por isso a frase seguinte cita as reações contra Fran Lebowitz. Lynch aparece só como exemplo de artista chato, e não como humorista.",
     "tipo": "localizar"
    },
    {
@@ -47,13 +55,13 @@
    {
     "faz": "Descubra quem é \"uma velha\"",
     "conta": "\"jovens que lotam teatros para escutar ... resmungos de uma velha\"",
-    "porque": "Quem é escutada nos teatros é Fran Lebowitz. Ginia só faz a pergunta e se intriga. Os \"resmungos\" são a fala de Fran, na opinião de Ginia. A afirmativa 2 é falsa.",
+    "porque": "Quem é escutada nos teatros é Fran Lebowitz. Ginia só faz a pergunta e se intriga. Os \"resmungos\" são a fala de Fran, na opinião de Ginia. Logo, a afirmativa 2 é falsa.",
     "tipo": "localizar"
    },
    {
     "faz": "Identifique o \"deus maior do Parnaso\"",
     "conta": "\"não o de um deus maior do Parnaso\" → Scorsese",
-    "porque": "A frase fala do gosto de alguém cuja admiração por uma humorista incomoda. É Scorsese, o diretor que ri na série \"Faz de conta que NY é uma cidade\". A afirmativa 3 é verdadeira.",
+    "porque": "Quem tem uma admiração que incomoda o leitor é Scorsese, o diretor que ri na série \"Faz de conta que NY é uma cidade\". A frase seguinte diz \"a admiração passional que ele tem por uma humorista\". Logo, a afirmativa 3 é verdadeira.",
     "tipo": "localizar"
    },
    {
@@ -99,11 +107,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -126,6 +136,56 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "B"
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Cada expressão do enunciado precisa ser ligada a uma pessoa citada no texto. Releia a frase em volta e veja de quem ela fala. O texto cita quatro pessoas: David Lynch, Fran Lebowitz, Martin Scorsese e Ginia Bellafante. Cada uma tem um papel diferente. O enunciado pede o sentido das palavras no texto, não o que você sabe sobre essas pessoas.",
+    "motivo": "Explicita a trava do comando e mantém o antes curto."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "engraçadinho",
+      "pessoa que tenta ser engraçada e não consegue, e por isso irrita"
+     ],
+     [
+      "Parnaso",
+      "na mitologia grega, monte das artes; \"deus maior do Parnaso\" é um artista muito importante e consagrado"
+     ],
+     [
+      "resmungos",
+      "queixas em voz baixa, sem importância"
+     ],
+     [
+      "linha 7",
+      "o número ao lado do texto marca a linha; use-o para achar o trecho"
+     ],
+     [
+      "humorista",
+      "pessoa que trabalha fazendo as outras rirem"
+     ]
+    ],
+    "motivo": "Acrescenta termos que um aluno de 17 anos pode não conhecer e evita sentido ambíguo em 'deus do Parnaso'."
+   },
+   {
+    "campo": "resolucao.passos[0].porque",
+    "depois": "O \"Isso\" retoma o que veio antes: o engraçadinho irrita. Por isso a frase seguinte cita as reações contra Fran Lebowitz. Lynch aparece só como exemplo de artista chato, e não como humorista.",
+    "motivo": "Frases mais curtas e raciocínio mais claro sobre o 'Isso'."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Quem é escutada nos teatros é Fran Lebowitz. Ginia só faz a pergunta e se intriga. Os \"resmungos\" são a fala de Fran, na opinião de Ginia. Logo, a afirmativa 2 é falsa.",
+    "motivo": "Ordem mais direta e frases curtas."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Quem tem uma admiração que incomoda o leitor é Scorsese, o diretor que ri na série \"Faz de conta que NY é uma cidade\". A frase seguinte diz \"a admiração passional que ele tem por uma humorista\". Logo, a afirmativa 3 é verdadeira.",
+    "motivo": "Liga o referente a uma marca do texto, sem repetir a checagem."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

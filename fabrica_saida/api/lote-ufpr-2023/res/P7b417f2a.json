@@ -8,12 +8,24 @@
  "conceito": "Identificar os tipos de ligação (covalente e iônica) em um sal orgânico: cátion molecular com ânions cloreto.",
  "resolucao": {
   "antes": {
-   "texto": "Ligação covalente é o compartilhamento de elétrons entre átomos (ametais entre si). Ligação iônica é a atração entre íons de cargas opostas. O Paraquat é um sal: tem um cátion orgânico (cada N com carga +) e dois ânions Cl⁻. Dentro do cátion, os átomos estão unidos por ligações covalentes. Entre o cátion e os Cl⁻, a ligação é iônica.",
+   "texto": "Ligação covalente é o compartilhamento de elétrons entre átomos (ametais entre si, ou ametal com hidrogênio). Ligação iônica é a atração entre íons de cargas opostas. O Paraquat é um sal: tem um cátion orgânico (cada N com carga +) e dois ânions Cl⁻. Dentro do cátion, os átomos estão unidos por ligações covalentes. Entre o cátion e os Cl⁻, a ligação é iônica.",
    "formulas": [
-    "ametal ou H + ametal ou H → ligação covalente",
+    "ametal + ametal (ou H) → ligação covalente",
     "cátion + ânion → ligação iônica"
    ],
    "simbolos": [
+    [
+     "cátion",
+     "íon com carga positiva"
+    ],
+    [
+     "ânion",
+     "íon com carga negativa"
+    ],
+    [
+     "ametal",
+     "elemento não metálico, como C, N, O e Cl"
+    ],
     [
      "N⁺",
      "nitrogênio com carga positiva: o cátion do composto"
@@ -24,7 +36,7 @@
     ],
     [
      "van der Waals",
-     "atração fraca ENTRE moléculas, não é ligação dentro da fórmula"
+     "atração fraca ENTRE moléculas; não é ligação dentro da fórmula"
     ],
     [
      "dicloreto",
@@ -36,15 +48,15 @@
   "passos": [
    {
     "faz": "Localize os íons na figura",
-    "conta": "Cátion: 2 N⁺ no anel",
-    "porque": "Os dois N com sinal + formam um cátion com carga 2+, e os dois Cl⁻ aparecem fora dele.",
+    "conta": "Cátion: 2 N⁺ (carga 2+)",
+    "porque": "Os dois N com sinal + dão ao cátion carga 2+. Os dois Cl⁻, fora do desenho do cátion, são os ânions.",
     "tipo": "localizar"
    },
    {
     "faz": "Classifique as ligações dentro do cátion",
-    "conta": "C–C, C=C, C–H, C–N, N–CH₃",
+    "conta": "C–C, C=C, C–H, C–N",
     "porque": "São átomos de ametais (C, N) e hidrogênio compartilhando elétrons: ligações covalentes.",
-    "tipo": "localizar"
+    "tipo": "classificar"
    },
    {
     "faz": "Classifique a ligação entre cátion e cloreto",
@@ -123,11 +135,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -174,6 +188,77 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "C"
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Ligação covalente é o compartilhamento de elétrons entre átomos (ametais entre si, ou ametal com hidrogênio). Ligação iônica é a atração entre íons de cargas opostas. O Paraquat é um sal: tem um cátion orgânico (cada N com carga +) e dois ânions Cl⁻. Dentro do cátion, os átomos estão unidos por ligações covalentes. Entre o cátion e os Cl⁻, a ligação é iônica.",
+    "motivo": "Deixa claro que o H também faz ligação covalente, sem dizer que ele é ametal."
+   },
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "ametal + ametal (ou H) → ligação covalente",
+     "cátion + ânion → ligação iônica"
+    ],
+    "motivo": "Texto mais claro e sem ambiguidade."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "cátion",
+      "íon com carga positiva"
+     ],
+     [
+      "ânion",
+      "íon com carga negativa"
+     ],
+     [
+      "ametal",
+      "elemento não metálico, como C, N, O e Cl"
+     ],
+     [
+      "N⁺",
+      "nitrogênio com carga positiva: o cátion do composto"
+     ],
+     [
+      "Cl⁻",
+      "íon cloreto, carga negativa"
+     ],
+     [
+      "van der Waals",
+      "atração fraca ENTRE moléculas; não é ligação dentro da fórmula"
+     ],
+     [
+      "dicloreto",
+      "dois íons cloreto (Cl⁻) no composto"
+     ]
+    ],
+    "motivo": "Cátion, ânion e ametal aparecem na resolução e não estavam explicados."
+   },
+   {
+    "campo": "resolucao.passos[0]",
+    "depois": {
+     "faz": "Localize os íons na figura",
+     "conta": "Cátion: 2 N⁺ (carga 2+)",
+     "porque": "Os dois N com sinal + dão ao cátion carga 2+. Os dois Cl⁻, fora do desenho do cátion, são os ânions.",
+     "tipo": "localizar"
+    },
+    "motivo": "Conta curta para caber na tela do celular; o porquê explica a carga total."
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "C–C, C=C, C–H, C–N",
+    "motivo": "Cabe na tela; N–CH₃ já é uma ligação C–N."
+   },
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "classificar",
+    "motivo": "Os tipos aceitos não incluem 'classificar'; este é o mais próximo. Se o esquema aceitar só os cinco tipos do guia, use 'comparar'."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

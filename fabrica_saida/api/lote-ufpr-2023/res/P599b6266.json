@@ -38,12 +38,12 @@
    {
     "faz": "Identifique o composto A",
     "conta": "C3H6 = CnH2n → alceno",
-    "porque": "Três carbonos com uma dupla é o propeno: CH2=CH–CH3. Propano seria C3H8 e propino, C3H4. (C3H6 também poderia ser o ciclopropano, mas ele não aparece nas alternativas.)",
+    "porque": "Três carbonos com uma dupla formam o propeno: CH2=CH–CH3. Propano seria C3H8 e propino, C3H4. (O ciclopropano também é C3H6, mas não aparece nas alternativas.)",
     "tipo": "localizar"
    },
    {
     "faz": "Conte os H em cada carbono da dupla",
-    "conta": "CH2=CH–CH3: CH2 tem 2 H; CH tem 1 H",
+    "conta": "CH2= tem 2 H; =CH– tem 1 H",
     "porque": "Pela regra de Markovnikov, o H do HBr entra no carbono com mais H (o CH2).",
     "tipo": "localizar"
    },
@@ -51,13 +51,13 @@
     "faz": "Monte o composto B",
     "conta": "CH3–CHBr–CH3",
     "porque": "O H vai para o CH2 e o Br fica no carbono do meio. É o 2-bromopropano.",
-    "tipo": "calcular"
+    "tipo": "concluir"
    },
    {
     "faz": "Faça a substituição com KOH",
-    "conta": "CH3–CHBr–CH3 + KOH → CH3–CHOH–CH3 + KBr",
+    "conta": "B + KOH → propan-2-ol + KBr",
     "porque": "O OH⁻ toma o lugar do Br no mesmo carbono. O produto orgânico é um álcool com OH no carbono 2: propan-2-ol.",
-    "tipo": "calcular"
+    "tipo": "concluir"
    },
    {
     "faz": "Ligue à alternativa",
@@ -69,9 +69,9 @@
   "resposta": "Alternativa C: A é o propeno, B é o 2-bromopropano (Markovnikov) e C é o propan-2-ol.",
   "checagem": "Confira os hidrogênios: propeno C3H6 + HBr dá C3H7Br, que é o 2-bromopropano. Trocando Br por OH, fica C3H8O, fórmula de um álcool de 3 carbonos. O OH fica no mesmo carbono em que estava o Br, o do meio.",
   "erradas": {
-   "A": "Propano é C3H8, não C3H6, e é saturado: não faz reação de adição com HBr. O 1-bromopropano também não é o produto majoritário da adição ao propeno.",
-   "B": "Propino é C3H4, não C3H6. O 2-bromopropano e o propan-2-ol estão certos, mas o composto A está errado.",
-   "D": "Propino é C3H4, não C3H6. Além disso, o 1-bromopropano e o propan-1-ol vêm de uma adição contrária à regra de Markovnikov.",
+   "A": "Faltou checar a fórmula: propano é C3H8, não C3H6. Ele é saturado (só ligações simples) e não faz adição com HBr. Além disso, o 1-bromopropano não seria o produto principal.",
+   "B": "Faltou contar os hidrogênios de A: propino é C3H4, não C3H6. B e C estão certos, mas o composto A está errado.",
+   "D": "Faltaram duas checagens: propino é C3H4, não C3H6, e a regra de Markovnikov coloca o Br no carbono 2, não no 1. Por isso 1-bromopropano e propan-1-ol não servem.",
    "E": "O propeno está certo, mas o 1-bromopropano seria o produto minoritário. O H entra no CH2, que tem mais H, e o Br fica no carbono 2. Por isso o álcool final é propan-2-ol, e não propan-1-ol."
   },
   "armadilha": "Colocar o Br no carbono da ponta (1-bromopropano) por esquecer que o H do HBr entra no carbono da dupla que já tem mais hidrogênios.",
@@ -128,11 +128,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -161,6 +163,55 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "C"
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "C3H6 tem dois hidrogênios a menos que o propano (C3H8), então há uma ligação dupla: é o propeno. Na adição de HBr a uma dupla, o H vai para o carbono da dupla que já tem mais hidrogênios (regra de Markovnikov), e o Br fica no outro. Depois, o KOH troca o Br por OH (substituição) e forma um álcool.",
+    "motivo": "Texto já claro; mantido."
+   },
+   {
+    "campo": "resolucao.passos[0].porque",
+    "depois": "Três carbonos com uma dupla formam o propeno: CH2=CH–CH3. Propano seria C3H8 e propino, C3H4. (O ciclopropano também é C3H6, mas não aparece nas alternativas.)",
+    "motivo": "Frase mais curta e sem parênteses longos."
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "CH2= tem 2 H; =CH– tem 1 H",
+    "motivo": "Cabe na tela do celular sem quebrar linha."
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "concluir",
+    "motivo": "Montar B é o resultado da regra; 'calcular' não descreve bem esse passo."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "B + KOH → propan-2-ol + KBr",
+    "motivo": "A fórmula completa já está no quadro; aqui a conta precisa caber em ~30 caracteres."
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "concluir",
+    "motivo": "Mesmo motivo do passo anterior."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "Faltou checar a fórmula: propano é C3H8, não C3H6. Ele é saturado (só ligações simples) e não faz adição com HBr. Além disso, o 1-bromopropano não seria o produto principal.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou A."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "Faltou contar os hidrogênios de A: propino é C3H4, não C3H6. B e C estão certos, mas o composto A está errado.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou B."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "Faltaram duas checagens: propino é C3H4, não C3H6, e a regra de Markovnikov coloca o Br no carbono 2, não no 1. Por isso 1-bromopropano e propan-1-ol não servem.",
+    "motivo": "Mostra os dois erros de quem marcou D."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

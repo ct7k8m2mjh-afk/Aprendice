@@ -8,7 +8,7 @@
  "conceito": "Reconhecer as funções orgânicas presentes na prolina (amina secundária cíclica e ácido carboxílico) e classificá-la como aminoácido.",
  "resolucao": {
   "antes": {
-   "texto": "Cada função orgânica é definida por um grupo de átomos. Para classificar a molécula, procure os heteroátomos (O e N) na estrutura e veja a que cada um está ligado. Um aminoácido tem, ao mesmo tempo, um grupo amina e um grupo ácido carboxílico.",
+   "texto": "Cada função orgânica é definida por um grupo de átomos. Para classificar a molécula, procure os átomos de O e N na estrutura e veja ao que cada um está ligado. Um aminoácido tem, ao mesmo tempo, um grupo amina e um grupo ácido carboxílico. Quiral e óptica são só o contexto da questão; o que se pede é a classificação pelas funções.",
    "formulas": [
     "ácido carboxílico: –COOH (C=O ligado a OH)",
     "amina: N ligado só a carbonos e/ou H, sem C=O vizinho",
@@ -21,7 +21,7 @@
     ],
     [
      "quiral",
-     "molécula que não se sobrepõe à sua imagem no espelho; em geral, por ter um carbono com 4 ligantes diferentes (na prolina, o carbono ligado ao N e ao COOH)"
+     "molécula que não se sobrepõe à sua imagem no espelho; na prolina, o carbono ligado ao N e ao COOH tem 4 ligantes diferentes"
     ],
     [
      "amina",
@@ -30,10 +30,26 @@
     [
      "amida",
      "função em que o N está ligado diretamente a um C=O"
+    ],
+    [
+     "éster",
+     "função com C=O ligado a um O que está ligado a outro carbono (C=O–O–C)"
+    ],
+    [
+     "álcool",
+     "função com OH ligado a um carbono que não tem C=O"
+    ],
+    [
+     "anilina",
+     "amina ligada diretamente a um anel de benzeno (anel aromático)"
+    ],
+    [
+     "ácido carboxílico",
+     "função com C=O e OH no mesmo carbono (–COOH)"
     ]
    ]
   },
-  "pista": "Olhe o canto direito do desenho (C com =O e OH) e o NH no anel. Que função cada um forma?",
+  "pista": "Olhe o canto direito do desenho (carbono com =O e OH) e o NH dentro do anel. Que função cada um forma?",
   "passos": [
    {
     "faz": "Localize o grupo no canto superior direito",
@@ -49,7 +65,7 @@
    },
    {
     "faz": "Confirme que não há outros grupos",
-    "conta": "sem éster, sem álcool, sem anel aromático",
+    "conta": "sem éster, álcool ou anilina",
     "porque": "O anel é só de carbonos saturados e um N, sem ligações duplas alternadas: não é benzeno nem anilina. O único OH faz parte da carboxila.",
     "tipo": "eliminar"
    },
@@ -96,6 +112,14 @@
    "nota": "N ligado a 2 C e 1 H, sem C=O"
   },
   {
+   "linha": "sem C=O–O–C → não é éster",
+   "nota": "o C=O tem OH, não O–C"
+  },
+  {
+   "linha": "sem N–C=O → não é amida",
+   "nota": "N fica fora da carboxila"
+  },
+  {
    "linha": "amina + ácido = aminoácido",
    "nota": "Alternativa C"
   }
@@ -114,11 +138,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -132,6 +158,96 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "C"
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Cada função orgânica é definida por um grupo de átomos. Para classificar a molécula, procure os átomos de O e N na estrutura e veja ao que cada um está ligado. Um aminoácido tem, ao mesmo tempo, um grupo amina e um grupo ácido carboxílico. Quiral e óptica são só o contexto da questão; o que se pede é a classificação pelas funções.",
+    "motivo": "Deixa claro que o contexto do Nobel não entra na resolução, e troca 'heteroátomos' por palavra simples."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "prolina",
+      "aminoácido natural que forma proteínas; seu N faz parte de um anel de 5 lados"
+     ],
+     [
+      "quiral",
+      "molécula que não se sobrepõe à sua imagem no espelho; na prolina, o carbono ligado ao N e ao COOH tem 4 ligantes diferentes"
+     ],
+     [
+      "amina",
+      "função com nitrogênio ligado a carbonos ou hidrogênios, sem C=O ao lado"
+     ],
+     [
+      "amida",
+      "função em que o N está ligado diretamente a um C=O"
+     ],
+     [
+      "éster",
+      "função com C=O ligado a um O que está ligado a outro carbono (C=O–O–C)"
+     ],
+     [
+      "álcool",
+      "função com OH ligado a um carbono que não tem C=O"
+     ],
+     [
+      "anilina",
+      "amina ligada diretamente a um anel de benzeno (anel aromático)"
+     ],
+     [
+      "ácido carboxílico",
+      "função com C=O e OH no mesmo carbono (–COOH)"
+     ]
+    ],
+    "motivo": "As alternativas usam éster, álcool, anilina e ácido carboxílico; o aluno precisa dessas definições antes de eliminar."
+   },
+   {
+    "campo": "resolucao.pista",
+    "depois": "Olhe o canto direito do desenho (carbono com =O e OH) e o NH dentro do anel. Que função cada um forma?",
+    "motivo": "Texto mais claro, sem entregar a resposta."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "O N está ligado a dois carbonos do anel e a um H. Nenhum desses carbonos tem C=O, então é amina (secundária), não amida.",
+    "motivo": "Mantida a ideia; frase mais direta."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "sem éster, álcool ou anilina",
+    "motivo": "Cabe em uma linha no celular."
+   },
+   {
+    "campo": "resolucao.quadro",
+    "depois": [
+     {
+      "linha": "C(=O)OH → ác. carboxílico",
+      "nota": "grupo no canto superior direito"
+     },
+     {
+      "linha": "–NH– no anel → amina",
+      "nota": "N ligado a 2 C e 1 H, sem C=O"
+     },
+     {
+      "linha": "sem C=O–O–C → não é éster",
+      "nota": "o C=O tem OH, não O–C"
+     },
+     {
+      "linha": "sem N–C=O → não é amida",
+      "nota": "N fica fora da carboxila"
+     },
+     {
+      "linha": "amina + ácido = aminoácido",
+      "nota": "Alternativa C"
+     }
+    ],
+    "motivo": "Inclui os passos de eliminação, um por linha, para copiar no caderno."
+   }
+  ],
+  "didatica_alertas": [
+   "Classificação do banco (tema Q08, conteúdo Q08.2, nível 5) parece errada: a questão é de funções orgânicas (Q11.4) e o JSON já traz tema Q11 e nível 3. Conferir."
+  ],
+  "didatica_ok": true
  }
 }

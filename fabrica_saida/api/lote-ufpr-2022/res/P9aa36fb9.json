@@ -8,7 +8,7 @@
  "conceito": "Montar a função afim do lucro: receita (28x) menos custo fixo (20.000).",
  "resolucao": {
   "antes": {
-   "texto": "Lucro é o que entra menos o que sai. O que entra é o faturamento: R$ 28,00 por par, então 28 vezes a quantidade x. O que sai é o custo fixo de R$ 20.000,00, que existe mesmo sem produzir nada. O enunciado diz que cada par produzido fatura R$ 28,00: essa é a receita por par.",
+   "texto": "Lucro é o que entra menos o que sai. O que entra é o faturamento: R$ 28,00 por par, então 28 vezes a quantidade x. O que sai é o custo fixo de R$ 20.000,00, que a fábrica paga mesmo sem produzir nada.",
    "formulas": [
     "lucro = receita − custo",
     "receita = 28 × x",
@@ -26,6 +26,14 @@
     [
      "faturar",
      "receber dinheiro com as vendas (receita)"
+    ],
+    [
+     "L(x)",
+     "lucro quando se produzem x pares; lê-se 'L de x'"
+    ],
+    [
+     "prejuízo",
+     "quando o lucro é negativo: gastou mais do que ganhou"
     ]
    ]
   },
@@ -52,23 +60,23 @@
    {
     "faz": "Teste com x = 0",
     "conta": "L(0) = −20.000",
-    "porque": "Sem produzir, a fábrica tem prejuízo de 20.000, o que faz sentido. Isso confirma a expressão.",
+    "porque": "Sem produzir, a fábrica só paga as despesas fixas: prejuízo de R$ 20.000. Isso faz sentido e confirma a expressão.",
     "tipo": "comparar"
    },
    {
     "faz": "Ligue à alternativa",
     "conta": "28x − 20.000 → alternativa B",
-    "porque": "É a única com +28x e −20.000.",
+    "porque": "É a única alternativa com +28x (ganho por par) e −20.000 (custo fixo).",
     "tipo": "concluir"
    }
   ],
   "resposta": "Alternativa B: o lucro é a receita 28x menos o custo fixo 20.000, ou seja, 28x − 20.000.",
   "checagem": "Teste x = 1.000: receita 28.000, custo 20.000, lucro 8.000. A expressão dá 28 × 1.000 − 20.000 = 8.000. Confere.",
   "erradas": {
-   "A": "20.000x − 28 multiplica o custo fixo pela quantidade e subtrai o preço de um par. Troca os papéis: o 28 é por par (vai com x) e o 20.000 é fixo (não vai com x). Com x = 1, daria 19.972, absurdo.",
+   "A": "Troca os papéis: multiplica o custo fixo (20.000) por x e subtrai o preço de um par (28). O 28 é por par e vai com x; o 20.000 é fixo e não vai com x. Com x = 1, daria 19.972, absurdo.",
    "C": "28x + 20.000 soma o custo fixo à receita, como se as despesas fossem um ganho. Com x = 0 daria lucro de 20.000 sem produzir nada.",
    "D": "−28x + 20.000 faz o lucro diminuir a cada par produzido e começar positivo em 20.000. É o contrário: cada par vendido aumenta o lucro em 28 e o custo fixo é despesa.",
-   "E": "−20.000x + 28 multiplica o custo fixo por x e tem sinais trocados. Com x = 1, daria −19.972, e o lucro cairia a cada par produzido, o que contradiz o enunciado."
+   "E": "Também troca os papéis: multiplica o custo fixo por x e põe o 28 solto. Com x = 1, daria −19.972, e o lucro cairia a cada par produzido, o que contradiz o enunciado."
   },
   "armadilha": "Colocar o custo fixo somando (ou multiplicando x) em vez de subtrair, ou trocar qual valor acompanha o x.",
   "alerta": "A redação tem uma imprecisão. O faturamento é dado por par (R$ 28,00 a cada par), mas o comando define x como o 'número x de calçados produzidos'. Se x contasse calçados avulsos, o lucro seria 14x − 20.000, que não está entre as alternativas. O gabarito B só fecha se x for o número de pares. Essa é a única leitura que as alternativas permitem.",
@@ -133,11 +141,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -160,6 +170,61 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "B"
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Lucro é o que entra menos o que sai. O que entra é o faturamento: R$ 28,00 por par, então 28 vezes a quantidade x. O que sai é o custo fixo de R$ 20.000,00, que a fábrica paga mesmo sem produzir nada.",
+    "motivo": "Retirada a frase repetida sobre os R$ 28,00 por par; o texto fica mais curto."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Sem produzir, a fábrica só paga as despesas fixas: prejuízo de R$ 20.000. Isso faz sentido e confirma a expressão.",
+    "motivo": "Frase mais direta; 'prejuízo' fica claro para quem tem 17 anos."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "É a única alternativa com +28x (ganho por par) e −20.000 (custo fixo).",
+    "motivo": "Explica o que cada termo significa, em vez de só listar os sinais."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "Troca os papéis: multiplica o custo fixo (20.000) por x e subtrai o preço de um par (28). O 28 é por par e vai com x; o 20.000 é fixo e não vai com x. Com x = 1, daria 19.972, absurdo.",
+    "motivo": "Frase mais curta e mais clara sobre o que faltou a quem marcou A."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "Também troca os papéis: multiplica o custo fixo por x e põe o 28 solto. Com x = 1, daria −19.972, e o lucro cairia a cada par produzido, o que contradiz o enunciado.",
+    "motivo": "Remove 'sinais trocados' (vago) e diz o que faltou no raciocínio."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "x",
+      "número de pares de calçados produzidos no mês"
+     ],
+     [
+      "custo fixo",
+      "despesa que não muda com a quantidade produzida (salários, aluguel)"
+     ],
+     [
+      "faturar",
+      "receber dinheiro com as vendas (receita)"
+     ],
+     [
+      "L(x)",
+      "lucro quando se produzem x pares; lê-se 'L de x'"
+     ],
+     [
+      "prejuízo",
+      "quando o lucro é negativo: gastou mais do que ganhou"
+     ]
+    ],
+    "motivo": "A resolução usa L(x) e 'prejuízo', que não estavam explicados."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }
