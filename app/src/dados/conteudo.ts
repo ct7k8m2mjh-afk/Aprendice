@@ -167,6 +167,11 @@ export function urlFlashImg(m: MateriaId, arquivo: string): string {
 
 export function urlLogo(arquivo: string): string { return BASE + 'logos/' + arquivo; }
 
+/* Capas e arte da matéria (comando 32): geradas por scripts/capas.py a partir de docs/capas/ (fora da prévia de arquivo único). */
+export function urlCapa(m: MateriaId): string | null { return PREVIA ? null : BASE + 'capas/' + m + '.webp'; }
+export function urlArteMateria(m: MateriaId): string | null { return PREVIA ? null : BASE + 'capas/ic-' + m + '.webp'; }
+export function urlArteTreinoGeral(): string | null { return PREVIA ? null : BASE + 'capas/treino-geral.webp'; }
+
 export const EH_PREVIA = PREVIA;
 
 /** Garante que o pacote da prévia está carregado antes do primeiro desenho (urlPrint/urlIcone são síncronos). */
@@ -198,7 +203,8 @@ export function useResolucoes(m: MateriaId, sub: string | undefined): Record<str
   useEffect(() => {
     let vivo = true;
     setD(null);
-    if (sub) carregaResolucoes(m, sub).then((x) => vivo && setD(x));
+    // falha na leitura (rede, ou servidor que responde a página no lugar do arquivo): sem resolução, e o cache tenta de novo depois
+    if (sub) carregaResolucoes(m, sub).then((x) => vivo && setD(x), () => vivo && setD({}));
     return () => { vivo = false; };
   }, [m, sub]);
   return d;

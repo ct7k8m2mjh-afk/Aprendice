@@ -220,8 +220,9 @@ describe('migração v4: revisão em slides', () => {
   it('estado v3 ganha revs vazio e não perde nada', () => {
     const v3 = { ...estadoVazio(), versao: 3, materias: { fis: { q: { P1: { tent: [tent(true, 5)] } }, ult: 'P1', sims: [], flash: {}, flg: {}, sessoes: [] } } } as unknown as Estado;
     const e = migraEstado(v3);
-    expect(VERSAO_ATUAL).toBe(4);
-    expect(e.versao).toBe(4);
+    // v4 ganhou revs; a migração segue até a versão atual (v5: treino geral de todas as matérias, comando 32)
+    expect(VERSAO_ATUAL).toBeGreaterThanOrEqual(4);
+    expect(e.versao).toBe(VERSAO_ATUAL);
     expect(e.materias.fis!.revs).toEqual({});
     expect(e.materias.fis!.q.P1.tent).toHaveLength(1);
     expect(e.materias.fis!.ult).toBe('P1');

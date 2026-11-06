@@ -10,6 +10,7 @@ import { Tema } from './telas/Tema';
 import { Escada } from './telas/Escada';
 import { QuestaoTela } from './telas/Questao';
 import { Treino } from './telas/Treino';
+import { TreinoMisto } from './telas/TreinoMisto';
 import { Flashcards } from './telas/Flashcards';
 import { Simulados } from './telas/Simulados';
 import { SimuladoExec, SimuladoNovo } from './telas/SimuladoExec';
@@ -47,6 +48,7 @@ function Rotas() {
         <Route path="/m/:m/escada/:sub" element={<Escada />} />
         <Route path="/m/:m/q/:id" element={<QuestaoTela />} />
         <Route path="/m/:m/treino" element={<Treino />} />
+        <Route path="/treino-geral" element={<TreinoMisto />} />
         <Route path="/m/:m/revisao/:sub" element={<RevisaoSlides />} />
         <Route path="/m/:m/flashcards" element={<Flashcards />} />
         <Route path="/m/:m/flashcards/sessao" element={<Flashcards sessao />} />

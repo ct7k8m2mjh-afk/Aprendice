@@ -36,16 +36,27 @@ ALFA_RUIDO = 8      # alfa até isto é ruído do recorte (some); vidro e sombra
 CAPAS = {
     'bio': [('FOLHA', 1570, 60, 460, True), ('MICROSCOPIO', 1603, 14, 674, False), ('CELULA', 1437, 226, 230, False)],
     'qui': [('FRASCO', 1285, 59, 606, False), ('MOLECULA', 1572, 47, 398, False)],
-    'mat': [('PIRAMIDE', 1429, 214, 352, False), ('COMPASSO', 1730, 24, 554, False), ('CUBO', 1296, 378, 246, False),
-            ('ESFERA', 1638, 413, 248, False)],
+    'mat': [('PIRAMIDE', 1429, 214, 352, False), ('COMPASSO', 1730, 24, 554, False), ('CUBO', 1268, 342, 292, False),
+            ('ESFERA', 1628, 400, 262, False)],
     'por': [('PILHA-DE-LIVROS', 1199, 61, 412, False), ('LIVRO-ROXO', 1303, 243, 368, False), ('CANETA', 1770, 231, 421, False)],
     'fis': [('IMA', 1890, 288, 232, False), ('SEM-NOME-e792b5e0', 1323, 131, 502, False), ('LAMPADA', 1218, 236, 348, False)],
     'geo': [('GLOBO-TERRA', 1260, 18, 696, False), ('MONTANHAS', 1708, 230, 362, False), ('BUSSOLA', 1585, 442, 276, False)],
-    'his': [('COLUNA-ANTIGA', 1663, 23, 504, False), ('AMPULHETA', 1384, 120, 508, False), ('PERGAMINHO', 1565, 494, 180, False)],
+    'his': [('COLUNA-ANTIGA', 1663, 23, 504, False), ('AMPULHETA', 1366, 80, 556, False), ('PERGAMINHO', 1556, 486, 196, False)],
     'ing': [('BANDEIRA-USA', 1926, 147, 256, False), ('BALAO-VERMELHO', 1370, 43, 324, False), ('BALAO-ROSE', 1600, 107, 232, False),
-            ('LIVRO-VERMELHO', 1262, 324, 392, False)],
+            ('LIVRO-VERMELHO', 1262, 306, 392, False)],
     'fs': [('BALANCA', 1518, 26, 552, False), ('BONECOS', 1708, 382, 284, False), ('CORUJA', 1191, 174, 490, False)],
 }
+
+# Sombra de contato no chão (medida nas REF claras, comando 32: o dono pediu sombra e posição iguais às referências).
+# As peças trazem só a sombra própria colada no objeto; a REF tem, além dela, uma sombra suave no chão, deslocada
+# para a direita (luz do alto à esquerda). Ela é desenhada por peça apoiada no chão: elipse sob a base, desfocada,
+# em preto translúcido (escurece o fundo suave por multiplicação; no escuro fica naturalmente discreta, como na REF
+# escura). Medidas em fração da largura da base da peça: dx/dy = centro, rx/ry = raios, sigma = desfoque, op = opacidade.
+SOMBRA = {'dx': 0.15, 'dy': -0.02, 'rx': 0.62, 'ry': 0.06, 'sigma': 0.06, 'op': 0.38}
+SOMBRA_MATERIA = {}
+# peças que flutuam ou ficam atrás de outra na REF: sem sombra de chão
+SOLTAS = {('bio', 'CELULA'), ('bio', 'FOLHA'), ('qui', 'MOLECULA'), ('ing', 'BALAO-VERMELHO'), ('ing', 'BALAO-ROSE'),
+          ('ing', 'BANDEIRA-USA')}
 
 # Ícone da matéria (referência da aba principal: um objeto por matéria no círculo): as peças da capa que entram.
 ICONE = {
@@ -82,6 +93,36 @@ def _cola(tela, m, nome, x, y, alt, esp, k=1.0):
     tela.alpha_composite(im.convert('RGBa').resize((w, h), Image.LANCZOS).convert('RGBA'), (round(x * k), round(y * k)))
 
 
+def _sombra(tela, m, nome, x, y, alt, esp, k=1.0):
+    """Sombra de contato da peça no chão, desenhada em `tela` (antes da peça)."""
+    if (m, nome) in SOLTAS:
+        return
+    import numpy as np
+    from PIL import Image, ImageDraw, ImageFilter
+    p = {**SOMBRA, **SOMBRA_MATERIA.get(m, {})}
+    im = _peca(m, nome)
+    if esp:
+        im = im.transpose(Image.FLIP_LEFT_RIGHT)
+    esc = alt / im.height
+    a = np.asarray(im.getchannel('A')) > 200
+    linhas = np.nonzero(a.any(1))[0]
+    yb = linhas.max()
+    cols = np.nonzero(a[max(0, yb - max(2, a.shape[0] // 30)):yb + 1].any(0))[0]
+    base_w = (cols.max() - cols.min()) * esc
+    cx = x + (cols.min() + cols.max()) / 2 * esc + p['dx'] * base_w
+    cy = y + yb * esc + p['dy'] * base_w
+    base_w, cx, cy = float(base_w), float(cx), float(cy)
+    rx, ry, sg = p['rx'] * base_w, max(1.5, p['ry'] * base_w), max(1.0, p['sigma'] * base_w)
+    pad = int(3 * sg + 4)
+    W, H = int(2 * (rx + pad)), int(2 * (ry + pad))
+    camada = Image.new('L', (max(1, round(W * k)), max(1, round(H * k))), 0)
+    ImageDraw.Draw(camada).ellipse([pad * k, pad * k, (W - pad) * k, (H - pad) * k], fill=round(255 * p['op']))
+    camada = camada.filter(ImageFilter.GaussianBlur(sg * k))
+    sombra = Image.new('RGBA', camada.size, (0, 0, 0, 0))
+    sombra.putalpha(camada)
+    tela.alpha_composite(sombra, (round((cx - W / 2) * k), round((cy - H / 2) * k)))
+
+
 def _webp(img, q=QUALIDADE):
     b = BytesIO()
     img.save(b, 'WEBP', quality=q, alpha_quality=90, method=6)
@@ -94,6 +135,7 @@ def capa(m):
     k = ESCALA_CAPA
     tela = Image.new('RGBA', (round(REF_W * k), round(REF_H * k)), (0, 0, 0, 0))
     for nome, x, y, alt, esp in CAPAS[m]:
+        _sombra(tela, m, nome, x, y, alt, esp, k)
         _cola(tela, m, nome, x, y, alt, esp, k)
     x0, y0, x1, y1 = tela.getchannel('A').getbbox()
     frac = (x0 / tela.width, y0 / tela.height, x1 / tela.width, y1 / tela.height)
@@ -105,6 +147,7 @@ def icone(m, lado=320):
     tela = Image.new('RGBA', (REF_W, REF_H), (0, 0, 0, 0))
     for nome, x, y, alt, esp in CAPAS[m]:
         if nome in ICONE[m]:
+            _sombra(tela, m, nome, x, y, alt, esp)
             _cola(tela, m, nome, x, y, alt, esp)
     return _webp(enquadra(tela.crop(tela.getchannel('A').getbbox()), lado), 84)
 
@@ -113,6 +156,7 @@ def treino_geral():
     from PIL import Image
     tela = Image.new('RGBA', (1200, 900), (0, 0, 0, 0))
     for m, nome, x, y, alt, esp in TREINO:
+        _sombra(tela, m, nome, x, y, alt, esp)
         _cola(tela, m, nome, x, y, alt, esp)
     tela = tela.crop(tela.getchannel('A').getbbox())
     tela.thumbnail((720, 720), Image.LANCZOS)

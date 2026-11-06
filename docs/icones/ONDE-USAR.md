@@ -38,9 +38,9 @@ Onde aparece um subtema, no lugar do ícone vai um **pontinho na cor principal d
 | "Teoria desta questão" e conteúdos relacionados | `telas/Questao.tsx`, `telas/Treino.tsx` (34 px) | ponto |
 | Faixa do cartão de flashcard | `ui/Cartoes.tsx` (34 px) | ponto |
 | Resultados da busca (conteúdos) | `telas/Busca.tsx` (32 px) | ponto |
-| "Continue de onde parei" no Início | `telas/Inicio.tsx` (150 px) | a ilustração da matéria (sem ícone de subtema) |
+| "Continue de onde parou" no Início | `telas/Inicio.tsx` | a arte da matéria (das peças das capas; sem ícone de subtema) |
 
-O ícone da MATÉRIA (Início, menu, lista de matérias: `IluMateria`) não muda neste comando.
+O ícone da MATÉRIA (cartões "Suas matérias", "Hora de revisar" e "Continue de onde parou" do Início, lista de matérias, desempenho: `IluMateria`/`CirculoMateria`) vem, desde o comando 32 (06/11/2026), das peças das capas do dono (`docs/capas/<matéria>/`, ver `docs/capas/LEIA.md`); os ícones de traço do menu continuam. Comando 32: não há ícones de tema novos além dos que já estão em `docs/icones/` (sem acesso ao Drive na sessão; considerado completo).
 ## Salvar os novos e excluir os antigos (dono, 06/11/2026)
 - Os PNG de `docs/icones/<matéria>/` são a fonte oficial: o conversor (`app/scripts/converte.py`) passa a gerar os ícones de tema dessa matéria SÓ a partir deles (`<id>.webp`).
 - Excluir do site os ícones antigos dessa matéria: os de tema e todos os de subtema que vinham do protótipo (`app-atual/.../ic.json`) ou das pranchas (`app/conteudo-fonte/materias/ic/`), e o código que só servia a eles. Autorização expressa do dono, sem perguntar.
