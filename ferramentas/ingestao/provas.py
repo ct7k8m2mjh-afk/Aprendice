@@ -758,7 +758,7 @@ def udesc(ano, sem, duracao=4):
         'corte': [r'(?i)^FOLHA DE RASCUNHO', r'^LÍNGUA ESTRANGEIRA', r'^LÍNGUA PORTUGUESA E LITERATURA', r'^(MATEMÁTICA|BIOLOGIA|FÍSICA|QUÍMICA|HISTÓRIA|GEOGRAFIA|FILOSOFIA|SOCIOLOGIA)\b',
                   r'(?i)^FORMUL[ÁA]RIO', r'(?i)^Tabela peri', r'^(Inglês|Espanhol)\s+\(\d+ quest',
                   r'(?i)^PROPOSTA DE REDA', r'(?i)^REDAÇÃO$'],
-        'suporte': [r'(?i)(responder|para) [àa]s quest', r'^Texto? \d+\s*$'], 'suporte_ate_proximo': True, 'suporte_primeira': True,
+        'suporte': [r'(?i)(responder|para) [àa]s quest', r'(?i)^texto? \d+\s*$'], 'suporte_ate_proximo': True, 'suporte_primeira': True,
         'cabecalho_imagem': r'(?i)^(UDESC|Vestibular 20\d\d)', 'texto_ingles': True,
         'gabarito': gab, 'area': lambda n: areas.get(n, 'Conhecimentos gerais'), 'total': 100,
     }
@@ -767,3 +767,4 @@ def udesc(ano, sem, duracao=4):
 
 for _a, _s in ((2020, 1), (2023, 2), (2024, 1), (2024, 2), (2025, 1), (2025, 2), (2026, 1), (2026, 2)):
     PROVAS[f'udesc-{_a}-{_s}'] = udesc(_a, _s)
+PROVAS['udesc-2026-1']['cadernos'][1]['sem_suporte'] = True   # vespertino 2026/1: "Questão N" vem antes dos textos

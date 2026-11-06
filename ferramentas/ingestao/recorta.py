@@ -34,13 +34,36 @@ _OCR = {}          # id(documento) -> {página: textpage OCR}, para cadernos pub
 os.environ.setdefault('TESSDATA_PREFIX', '/usr/share/tesseract-ocr/5/tessdata')
 
 
+class _OcrPagina:
+    """Resultado do OCR de uma página (blocos/linhas/spans), guardado em disco para não refazer o OCR a cada rodada."""
+    def __init__(self, blocos):
+        self.blocos = blocos
+
+    def get_text(self, tipo, textpage=None):
+        return {'blocks': self.blocos}
+
+
 def textpage(pagina):
-    """(página, textpage OCR) mantidos juntos: o textpage só vale para o mesmo objeto de página."""
+    """(objeto com get_text('dict'), None) para página de caderno sem camada de texto: OCR com cache em disco."""
     docs = _OCR.get(id(pagina.parent))
     if docs is None:
         return None
     if pagina.number not in docs:
-        docs[pagina.number] = (pagina, pagina.get_textpage_ocr(language='por', dpi=220, full=True))
+        cache_dir = os.environ.get('OCR_CACHE')
+        arq = None
+        if cache_dir:
+            chave = hashlib.sha1(f"{pagina.parent.name}:{pagina.number}:220".encode()).hexdigest()
+            arq = Path(cache_dir) / f'{chave}.json'
+        if arq and arq.exists():
+            blocos = json.loads(arq.read_text())
+        else:
+            tp = pagina.get_textpage_ocr(language='por', dpi=220, full=True)
+            blocos = [{'lines': [{'bbox': list(l['bbox']), 'spans': [{'text': sp['text']} for sp in l['spans']]}
+                                 for l in b.get('lines', [])]} for b in pagina.get_text('dict', textpage=tp)['blocks']]
+            if arq:
+                arq.parent.mkdir(parents=True, exist_ok=True)
+                arq.write_text(json.dumps(blocos, ensure_ascii=False))
+        docs[pagina.number] = (_OcrPagina(blocos), None)
     return docs[pagina.number]
 
 
@@ -560,6 +583,8 @@ def processa(pid, amostra=False, so_texto=False):
         faixa_pag = cad.get('paginas')
         cfg['_arquivo'] = cad['arquivo']
         ev = eventos_do_pdf(pdf, cfg, faixa_pag)
+        if cad.get('sem_suporte'):   # caderno em que os textos vêm dentro da questão, depois do número
+            ev = [e for e in ev if e['tipo'] != 'suporte']
         if cfg.get('sequencial'):
             ok, ult = [], (cad['questoes'][0] - cad.get('deslocamento', 0) - 1) if cad.get('questoes') else None
             for e in ev:
