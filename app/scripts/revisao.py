@@ -29,9 +29,9 @@ OBRAS = {'fis': 'PV Física (Poliedro)', 'bio': 'PV Biologia (Poliedro)'}  # fs:
 LARGURA_FOTO = 1280
 TEORIA_PROPRIA = {'bio', 'qui', 'mat', 'por'}
 # fotos que só vão ao ar com o OK do dono (princípio 10): o slide fica com o roteiro animado, sem a imagem e sem o link
-FOTOS_AGUARDANDO_DONO = {
-    'File:Tiradentes quartered (Tiradentes escuartejado) by Pedro Américo 1893.jpg',  # H03.9: cena de execução (pendências de H03)
-}
+# (06/11/2026: o dono liberou o uso de imagens e referências na revisão, inclusive a pintura "Tiradentes esquartejado",
+#  H03.9; a lista fica vazia e serve para uma próxima decisão)
+FOTOS_AGUARDANDO_DONO: set = set()
 
 
 class ErroRevisao(Exception):
