@@ -12,3 +12,9 @@ Observações para a integração:
 - `pendencias` de cada arquivo traz propostas de conteúdo novo (sem id criado): decisão do dono.
 | L05 Filosofia política | aprovado (06/11/2026) | 68 |
 | L07 Iluminismo | aprovado (06/11/2026) | 40 |
+| L01 Pré-socráticos | aprovado (06/11/2026) | 60 |
+| S01 Cultura e sociedade | aprovado (06/11/2026) | 55 |
+| S02 Socialização | aprovado (06/11/2026) | 37 |
+| L04 Lógica | aprovado (06/11/2026) | 38 |
+| S07 Globalização | aprovado (06/11/2026) | 49 |
+| S08 Mídia e indústria cultural | aprovado (06/11/2026) | 48 |
