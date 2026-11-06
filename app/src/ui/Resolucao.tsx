@@ -1,16 +1,24 @@
 import type { Letra, Questao, Resolucao } from '../dados/tipos';
 import { Icone } from './Icone';
-import { QuadroAnimado } from './QuadroAnimado';
+import { ResolucaoAnimada } from './ResolucaoAnimada';
 import { comFracoes } from './Fracao';
-import { contaEhTexto, materiaDoCodigo } from '../logica/fracao';
+import { materiaDoCodigo } from '../logica/fracao';
 import { materiaDaArea } from '../dados/provasCompletas';
 
-/** Resolução comentada. Princípio 5: começa pela alternativa que o aluno marcou. */
+/**
+ * Correção da questão (decisão do dono, 05/11/2026): só 4 blocos, nesta ordem —
+ * 1. Por que eu errei (res.erradas[letra marcada]; some quando acerta) · 2. Resposta correta + a pegadinha
+ * (res.resposta + res.armadilha) · 3. Resolução animada · 4. Por que as outras estão erradas (fechado).
+ * Os demais campos (antes, checagem, essencial, alerta, pista, caminhos) continuam nos dados e não ocupam a correção.
+ */
 export function ResolucaoView({ q, r, marcada }: { q: Questao; r: Resolucao | null | undefined; marcada: Letra | null }) {
   const acertou = marcada === q.gab;
   const erradaTxt = marcada && !acertou ? r?.erradas?.[marcada] : null;
   // a matéria decide se a "conta" de um passo é conta (letra à mão) ou texto (Português, Inglês, humanas)
   const mat = materiaDoCodigo(q.modulo) || materiaDoCodigo(q.sub) || materiaDaArea(q.conceito);
+  // as outras alternativas erradas (a marcada já foi explicada no bloco 1)
+  const outras = (Object.entries(r?.erradas || {}) as [Letra, string][])
+    .filter(([l, t]) => t && l !== q.gab && !(erradaTxt && l === marcada)).sort(([a], [b]) => a.localeCompare(b));
   return (
     <section className={'resolucao' + (acertou ? ' ok' : marcada ? ' err' : '')} aria-labelledby="res-tit">
       <header className="res-cab">
@@ -23,61 +31,36 @@ export function ResolucaoView({ q, r, marcada }: { q: Questao; r: Resolucao | nu
         </div>
       </header>
 
-      {erradaTxt && (
-        <div className="res-marcada">
-          <h3>Por que a {marcada} parece certa (e não é)</h3>
-          <p>{comFracoes(erradaTxt)}</p>
-        </div>
-      )}
-
       {!r && <p className="miolo">A resolução comentada desta questão está em revisão e entra quando passar por todas as lentes.</p>}
       {r && (
         <>
-          {r.resposta && <p className="res-resposta">{comFracoes(r.resposta)}</p>}
-          {r.essencial?.chave && (
-            <div className="res-chave"><b>A ideia-chave</b><p>{comFracoes(r.essencial.chave)}</p></div>
+          {/* 1. Por que eu errei: o que faltou no raciocínio de quem marcou esta letra (só quando errou) */}
+          {erradaTxt && (
+            <div className="cor-bloco cor-errei">
+              <h3 className="cor-tit">Por que eu errei</h3>
+              <p className="cor-expl">{comFracoes(erradaTxt)}</p>
+            </div>
           )}
-          {r.antes?.texto && (
-            <details className="res-antes">
-              <summary>O que você precisa saber antes</summary>
-              <p>{comFracoes(r.antes.texto)}</p>
-              {r.antes.formulas && r.antes.formulas.length > 0 && <ul className="caderno">{r.antes.formulas.map((f, i) => <li key={i} className={contaEhTexto(f, mat) ? 'texto' : undefined}>{comFracoes(f)}</li>)}</ul>}
-              {r.antes.simbolos && r.antes.simbolos.length > 0 && (
-                <dl className="simbolos">{r.antes.simbolos.map(([t, d], i) => <div key={i}><dt>{t}</dt><dd>{d}</dd></div>)}</dl>
+          {/* 2. Resposta correta + a pegadinha */}
+          {(r.resposta || r.armadilha) && (
+            <div className="cor-bloco cor-resposta">
+              <h3 className="cor-tit">Resposta correta</h3>
+              {r.resposta && <p className="cor-resp">{comFracoes(r.resposta)}</p>}
+              {r.armadilha && (
+                <div className="cor-pegadinha">
+                  <b>A pegadinha</b>
+                  <p className="cor-expl">{comFracoes(r.armadilha)}</p>
+                </div>
               )}
-            </details>
+            </div>
           )}
-          {r.passos && r.passos.length > 0 && (
-            <ol className="passos">
-              {r.passos.map((p, i) => (
-                <li key={i}>
-                  <span className="passo-n num" aria-hidden>{i + 1}</span>
-                  <div>
-                    <b>{p.faz}</b>
-                    {/* conta à mão (Caveat) só quando é conta; trecho citado ou frase vai na letra da interface (guia, p. 5) */}
-                    {p.conta && <p className={contaEhTexto(p.conta, mat) ? 'conta citacao' : 'conta'}>{comFracoes(p.conta)}</p>}
-                    {p.porque && <p className="porque">{comFracoes(p.porque)}</p>}
-                  </div>
-                </li>
-              ))}
-            </ol>
-          )}
-          {r.quadro && r.quadro.length > 0 && <QuadroAnimado quadro={r.quadro} />}
-          {r.checagem && <div className="res-bloco"><h3>Confira em 10 segundos</h3><p>{comFracoes(r.checagem)}</p></div>}
-          {r.armadilha && <div className="res-bloco armadilha"><h3>Armadilha</h3><p>{comFracoes(r.armadilha)}</p></div>}
-          {r.alerta && <div className="res-bloco"><h3>Atenção</h3><p>{comFracoes(r.alerta)}</p></div>}
-          {r.caminhos && r.caminhos.length > 0 && (
-            <details className="res-caminhos">
-              <summary>Outros jeitos de resolver</summary>
-              <ul>{r.caminhos.map((c, i) => <li key={i}><b>{c.nome}</b><span>{comFracoes(c.ideia)}</span></li>)}</ul>
-            </details>
-          )}
-          {r.erradas && Object.keys(r.erradas).length > 0 && (
-            <details className="res-erradas" open={!marcada || acertou ? false : undefined}>
-              <summary>De onde vem cada alternativa errada</summary>
-              <ul>{(Object.entries(r.erradas) as [Letra, string][]).sort(([a], [b]) => a.localeCompare(b)).map(([l, t]) => (
-                <li key={l} className={l === marcada ? 'marcada' : ''}><b>{l}</b><span>{comFracoes(t)}</span></li>
-              ))}</ul>
+          {/* 3. Resolução animada (um motor só para todas: logica/motorConta.ts) */}
+          {((r.passos && r.passos.length > 0) || (r.quadro && r.quadro.length > 0)) && <ResolucaoAnimada r={r} materia={mat} />}
+          {/* 4. Por que as outras estão erradas: fechado, abre ao clicar */}
+          {outras.length > 0 && (
+            <details className="cor-outras">
+              <summary>Por que as outras estão erradas</summary>
+              <ul>{outras.map(([l, t]) => <li key={l}><b>{l}</b><span className="cor-expl">{comFracoes(t)}</span></li>)}</ul>
             </details>
           )}
         </>

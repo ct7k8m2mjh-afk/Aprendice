@@ -439,7 +439,10 @@ def cmmg(ano, sem, ocr=False, duracao=4.5):
         'colunas': lambda r: [(14, r.width - 14)], 'topo': 50 if not ocr else 52, 'base': 20, 'rodape_num': True,
         'ancora': r'^0?(\d{1,2})\s?[.,](\s|$)', 'ancora_dx': 30, 'sequencial': True,
         'corte': [r'(?i)^PROVA DE REDA', r'(?i)^PROPOSTA DE REDA', r'^REDAÇÃO$', r'(?i)^RASCUNHO', r'^Tabela peri'],
-        'suporte': [r'(?i)para responder [àa]s? quest(ão|ao|ões|oes)', r'(?i)^[A-ZÁÉÍÓÚÂÊÔÃÕÇ ]+ ?[-–] ?QUEST[ÕO]ES DE \d+ A \d+'],
+        # inglês: "Read the text and answer the questions from 17 to 18" / "Read and analyze the infographic and answer the
+        # question 23" abre o texto daquelas questões (antes o texto das 13 a 16 ia para todas as 13 a 24)
+        'suporte': [r'(?i)para responder [àa]s? quest(ão|ao|ões|oes)', r'(?i)^[A-ZÁÉÍÓÚÂÊÔÃÕÇ ]+ ?[-–] ?QUEST[ÕO]ES DE \d+ A \d+',
+                    r'(?i)^read\b.*\banswer the quest'],
         'gabarito': gab, 'area': lambda n: areas.get(n, 'Conhecimentos gerais'),
     }
 
@@ -1268,3 +1271,7 @@ for _a in (2025, 2026):
 # UFSM: FORA DO SITE por enquanto. Páginas misturam texto de largura total (com números de linha) e duas colunas, tirinhas
 # com números em negrito no desenho e o aviso "SE VOCÊ OPTOU POR LÍNGUA INGLESA" no lugar da 37; o recorte ainda falha em
 # parte das questões (ex.: 2025: 19, 37, 81, 87, 97, 115).
+PROVAS['ufsm-2026']['divisa'] = 293.5   # números de linha da coluna direita começam em x≈294
+# Prova 3, questões 35 e 36: o parágrafo de abertura vem antes de "Com base nesse cenário, leia o texto..." e é das duas
+PROVAS['ufsm-2026']['suporte'] = PROVAS['ufsm-2026']['suporte'] + [r'^O advento das novas tecnologias tem mostrado',
+                                                          r'^A Organização das Nações Unidas para a Educação,']   # idem, Prova 1, 01 e 02

@@ -550,7 +550,7 @@ def eventos_do_pdf(pdf, cfg, faixa=None):
                             resto = re.sub(r'(\w)-\s+(\w)', r'\1\2', resto)   # "ques- tões" partido no fim da linha
                             mq = re.search(r'(?i)(quest|cuesti)\w*\W*(.*)', resto)
                             if mq:   # "Text 17 (for questions 18, 19, 20 and 21)" -> 18..21; só a lista logo após "questões"
-                                ml = re.match(r'(?i)\s*(?:de|das|dos|nos|n[ºo°]s?\.?)?\s*(\d+)((?:(?:\s*(?:,|\be\b|\ba\b|\band\b|\by\b|\bto\b|–|-))+\s*\d+)*)', mq.group(2))
+                                ml = re.match(r'(?i)\s*(?:de|das|dos|nos|from|n[ºo°]s?\.?)?\s*(\d+)((?:(?:\s*(?:,|\be\b|\ba\b|\band\b|\by\b|\bto\b|–|-))+\s*\d+)*)', mq.group(2))
                                 ns = [int(x) for x in re.findall(r'\d+', ml.group(0))] if ml else []
                                 nums = [min(ns), max(ns)] if len(ns) >= 2 else ns
                                 if len(ns) == 1 and cfg.get('faixa_unica'):   # "à questão 30": vale só para a 30
