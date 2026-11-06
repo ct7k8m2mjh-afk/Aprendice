@@ -16,6 +16,8 @@ Para cada questão, confira e melhore editando o JSON:
 - **`quadro` (conta no caderno):** em Matemática e questões com conta, cada linha deve ser copiável no caderno, um
   passo por linha, sem pular passagens, nota curta e clara. Falta de `quadro` em questão com conta = reprovar.
 - **`visual`:** a decisão faz sentido? Se um visual ajudaria muito e não foi pedido, proponha o roteiro.
+- **Biologia e Química sem `visual` com `cabe: true` = reprovar.** Matemática: falta de `mov` onde um termo muda de lado, ou fração escrita na linha ("3/5", "3 ÷ 5") em vez de `\frac{}{}` = reprovar.
+- **`erradas`:** cada uma precisa dizer o que FALTOU no raciocínio de quem marcou aquela letra — é o bloco "Por que eu errei" da correção.
 - Linguagem de aluno de 17 anos: frases curtas (≤ 30 palavras), voz ativa, sem jargão não explicado; termo técnico em
   `antes.simbolos` na primeira aparição.
 - `antes` ensina o mínimo necessário para resolver, sem resolver.

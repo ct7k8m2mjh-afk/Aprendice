@@ -18,7 +18,7 @@ Imagem enviada nunca é "por enviar": tem uso, e o uso fica registrado.
 - Resolução máxima: nada borrado em tela cheia. Recorte nunca pode cortar o objeto.
 - Sem fundo branco em volta do ícone recortado.
 - Cores das matérias bem distintas entre si (como um caderno de cada cor): nenhuma matéria com cor parecida com outra.
-- Prioridade futura: construir os ícones (3D/vetor em camadas) em vez de colar PNG, para poder animar (ex.: expandir ao passar o mouse).
+- ~~Prioridade futura: animar os ícones~~ — substituído em 05/11: ícones sem animação.
 - Redação não é matéria do site (removida em 03/11).
 - Formas decorativas (onda verde do menu) não podem aparecer cortadas.
 
@@ -30,7 +30,7 @@ Imagem enviada nunca é "por enviar": tem uso, e o uso fica registrado.
 
 - Ícones construídos precisam de textura, proporção e vida no nível da referência 3D da célula (03/11).
 
-## Regra de animação (03/11, vale para TODOS os ícones)
+## Regra de animação (03/11, vale para TODOS os ícones) — SUBSTITUÍDA em 05/11: ícones sem animação
 - Cada ícone anima de acordo com a FUNÇÃO do que representa (ex.: circuito = corrente correndo no fio e lâmpada acendendo).
 - Nunca "desmontar" peças sem sentido. Antes de animar, conferir se o próprio desenho faz sentido físico/científico
   (ex.: nuvem e vento do tamanho de continentes soltos fora da Terra NÃO fazem sentido; nuvens e ventos ficam rentes à superfície).
@@ -56,3 +56,13 @@ Imagem enviada nunca é "por enviar": tem uso, e o uso fica registrado.
 - 05/11/2026: proibido reutilizar designs de trabalhos anteriores para copiar e colar sem comando do dono; referência é para reproduzir, não copiar; não economizar esforço (CLAUDE.md, princípio 12).
 - 05/11/2026: login igual à referência (Aprendice_Login_Pacote), com a ilustração pintada do pacote (uso autorizado pelo dono) e a abertura escrita à mão. Sempre que uma aba inteira mudar, publicar a atualização no site.
 - 05/11/2026: provas de 2ª fase dissertativas ficam de fora do banco agora; as questões dissertativas serão feitas pelo Claude depois, com comando do dono. Banco de provas: só múltipla escolha.
+
+## Decisões de 05/11/2026 (noite), registradas pelo Claude da conversa de estudos a pedido do dono
+- Público: todo estudante que vai prestar ENEM ou vestibular, para qualquer curso (não só Medicina).
+- Trabalho autônomo: sem pedir aprovação, sem perguntas e sem mandar prints; parar só diante do que não tem volta (CLAUDE.md).
+- Sistema de design = o protótipo `app-atual/` (arquivo de estudos do dono): grade, alinhamento, posição, fontes (título da matéria em Dancing Script), medidas e enquadramento. É referência do sistema, não do conteúdo: matérias, telas e ícones novos continuam. Isso é comando expresso e não fere o princípio 12.
+- Ícones: sem animação; o dono vai pedir a troca (ex.: Biologia não precisa ser só a célula); sempre no lugar e enquadramento do sistema.
+- Correção da questão em 4 blocos: por que eu errei · resposta correta + pegadinha · resolução animada · por que as outras estão erradas (fechado, abre ao clicar).
+- Resolução animada obrigatória: Biologia e Química animam o que acontece; Matemática escreve a conta à mão movendo os termos (x atravessa o igual, número passa dividindo, multiplicação cruzada, cancelamento riscado); fração sempre empilhada.
+- As 788 questões de sites didáticos saem; entram Questões Aprendice ou a questão de prova original (`docs/questoes-aprendice.md`). Responde à pendência 1 de `docs/estado-app-01-11.md`.
+- 40 questões reais do ENEM de geometria básica (áreas M08.6, volumes M11.6) entraram em `app-atual/mat` com resoluções revisadas em lentes (`docs/geometria-basica-enem.md`): levar para o site.

@@ -21,11 +21,20 @@ de questões REAIS de provas (o aluno vê o print fiel da prova). Público: alun
 5. **O caminho mais simples, não a fórmula decorada.** Antes de escrever, pense em 2–3 maneiras de resolver (raciocínio
    direto, estimativa, eliminação de alternativas, desenho, regra de três, propriedade, analogia). Use como resolução
    principal a mais SIMPLES e segura para um aluno de 17 anos; registre as outras em `caminhos`.
-6. **Visual quando ajuda a entender** (`visual`): decida se uma animação/visual é cabível e necessária para entender
-   (ex.: ciclo, fluxo, gráfico que muda, transformação de figura). Se não ajudar, `cabe: false` e diga por quê.
+6. **Visual** (`visual`): em **Biologia e Química é OBRIGATÓRIO** (`cabe: true`): o roteiro anima o que acontece
+   (processo, estrutura, reação, molécula, fluxo), quadro a quadro. Nas outras matérias, decida se uma animação ajuda
+   (ciclo, fluxo, gráfico que muda, transformação de figura); se não ajudar, `cabe: false` e diga por quê.
 7. **Matemática: a conta é animada, linha por linha** (`quadro`, OBRIGATÓRIO em Matemática e em toda questão com conta
    — Física, Química): escreva a conta como o aluno escreveria no caderno, uma linha por vez, cada linha com uma nota
-   curta do que foi feito. O app mostra as linhas aparecendo em sequência para o aluno copiar e reproduzir.
+   curta do que foi feito. O site escreve as linhas à mão, em sequência, e **move os termos na tela** (CLAUDE.md,
+   "Como o site ensina"): em cada linha, `mov` diz o que se move — o x que atravessa o igual e troca de sinal, o número
+   que passa multiplicando/dividindo, os números da fração que viajam na multiplicação cruzada, o que é cancelado
+   (riscado). **Fração sempre empilhada:** escreva `\frac{numerador}{denominador}` no `quadro` e em qualquer texto;
+   nunca "3/5" nem "3 ÷ 5" na mesma linha.
+9. **O que o aluno vê na correção** (4 blocos, nesta ordem): "Por que eu errei" (vem de `erradas[letra marcada]`:
+   escreva cada uma como o que FALTOU no raciocínio de quem marcou), "Resposta correta + a pegadinha" (`resposta` +
+   `armadilha`), "Resolução animada" (`quadro`/`visual`) e "Por que as outras estão erradas" (`erradas`). Capriche
+   nesses campos; os demais continuam nos dados, mas não aparecem na correção.
 8. **Didático e curto.** Frases de até 30 palavras. Termo técnico explicado na primeira vez (`antes.simbolos`).
    A `pista` ajuda a pensar e NÃO entrega a resposta nem cita a letra.
 
@@ -54,8 +63,11 @@ de questões REAIS de provas (o aluno vê o print fiel da prova). Público: alun
   "caminhos": [ { "nome": "eliminação", "ideia": "outra maneira de chegar à resposta, em 1–2 frases" } ],
   "quadro": [                            // a conta no caderno (obrigatório em Matemática e em questões com conta)
     { "linha": "2x + 3 = 11", "nota": "o que o enunciado diz" },
-    { "linha": "2x = 11 − 3", "nota": "passe o 3 para o outro lado, trocando o sinal", "destaque": "− 3" },
-    { "linha": "x = 4", "nota": "divida por 2" }
+    { "linha": "2x = 11 − 3", "nota": "passe o 3 para o outro lado, trocando o sinal", "destaque": "− 3",
+      "mov": [ { "termo": "+ 3", "de": "esquerda", "para": "direita", "vira": "− 3", "como": "atravessa o igual" } ] },
+    { "linha": "2x = 8", "nota": "faça a conta: 11 − 3 = 8" },
+    { "linha": "x = \\frac{8}{2}", "nota": "o 2 que multiplica passa dividindo", "mov": [ { "termo": "2", "de": "esquerda", "para": "denominador", "vira": "2", "como": "passa dividindo" } ] },
+    { "linha": "x = 4", "nota": "divida 8 por 2" }
   ],
   "visual": { "cabe": false, "porque": "…", "tipo": "nenhum|diagrama|grafico|fluxo|figura|linha-do-tempo", "roteiro": "se cabe: o que aparece, quadro a quadro" },
   "fontes": []                           // URLs consultadas para fatos (vazio se tudo vem da questão)

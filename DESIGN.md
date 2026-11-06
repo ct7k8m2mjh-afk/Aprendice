@@ -190,6 +190,14 @@ components:
 ## Regra de trabalho (decisão do dono, 05/11/2026)
 Referência do dono é para **reproduzir**, não para copiar: cada tela, componente ou imagem é construído de novo até ficar igual à referência. Proibido copiar e colar código, CSS, imagens ou arquivos da referência, e proibido reaproveitar designs de trabalhos anteriores sem comando expresso do dono (`CLAUDE.md`, princípio 12).
 
+## Fonte da verdade do sistema (comando expresso do dono, 05/11/2026)
+O **protótipo `app-atual/`** (o arquivo de estudos do dono) é o sistema de design oficial. Grade, alinhamento e posição de cada elemento, hierarquia, fontes (título da matéria em Dancing Script na cor da matéria, textos em Familjen Grotesk, contas à mão em Caveat), tamanhos, pesos, cores, espaçamentos, margens, largura máxima, cantos e o comportamento em cada largura de tela seguem o protótipo, com os valores exatos de `app-atual/design/materia.css` e `app-atual/design/fontes.css`. Para ver: `PUBLICAR=1 python3 design/gera_design.py` dentro de `app-atual/` e abrir `<matéria>/index.html`.
+- É referência do **sistema**, não do conteúdo: matérias, telas, funções e ícones novos continuam e seguem esse sistema; nada volta atrás.
+- Quando um valor deste arquivo divergir do protótipo, vale o protótipo, e este arquivo é corrigido.
+- Exceção aprovada pelo dono: a tela de login segue a referência própria dela (Aprendice_Login_Pacote).
+- Ícones: sem animação; trocáveis quando o dono mandar, sempre no lugar, tamanho e enquadramento do sistema.
+- Conferência: 390, 768, 1280 e 1440 px, temas claro e escuro (CLAUDE.md, princípio 9).
+
 ## Overview
 
 **Creative North Star: "A mesa de estudo"**
