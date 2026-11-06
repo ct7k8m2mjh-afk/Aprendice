@@ -224,3 +224,26 @@ Continuação da rodada 4 (mesmo dia):
 **Falta (não iniciado nesta rodada):** Unicentro (caderno único com blocos por grupo de cursos: decidir qual bloco vira
 simulado), UNIRG (4 tipos de caderno; usar o tipo 1), Unitins, UVA (até 2024.1 com prova específica por curso), PUC-Rio,
 PUCPR (apagar o destaque azul da resposta), PUC Minas, Mackenzie, Fempar, FGV, Mauá, EMESCAM.
+
+### Correções da auditoria separada da rodada 4 (`docs/auditorias/lote2-rodada4.md`, 06/11/2026)
+
+- **URCA (8 provas): transcrição desligada** (`sem_transcricao`): o texto dos cadernos em LaTeX não sai fiel (acentos
+  soltos, resto de "NN. (URCA/…)", parágrafos partidos, "€" virando "C"); as 438 questões aparecem pelo print.
+- **Prints**: URCA 2025.1 117–120 sem o "Texto 5 – Questão 56" (novo `texto_n_com_faixa`: "Texto N – Questão X" vale
+  só para as questões que declara) e 119 com a Q58 anexada; URCA 2023.1 #118 com o Texto 3 (`apoio_de`); URCA 2023.2
+  #16 e 2024.2 #17 com a fração inteira no alto (novo `ancora_dy`: a questão começa acima do numerador); UEG Medicina
+  2026/1 #5 com a instrução e a tirinha inteira; UFSM 2025 #18 sem os "0" da outra coluna (calha da página 11).
+- **Transcrição → print**: Unespar 2023 #33 (fórmula estrutural), UNEMAT 2026/1 #6, #13, #27, UNEMAT 2023 #28, #35,
+  Unimontes 2024 #15.
+- **Classificação**: as 14 questões gerais e as 9 de inglês listadas foram corrigidas (UEG Medicina 2026/1 #46 → bio
+  B01.4 etc.); URCA 2024.1 #97 (contar fonemas) ficou só com o tema P07 (não há conteúdo de fonologia na taxonomia: fica
+  no simulado, fora dos exercícios até existir o conteúdo); URCA 2025.1 #32 (vidrarias de titulação) → Q03.5.
+  **Nível do inglês da URCA** com régua fixa por tipo: localizar informação (I01.3) 3; vocabulário (I02) 4; gêneros,
+  tirinha, título (I01.x) 4; inferência, tom e referência/conectivo (I01.4, I01.6, I03) 5.
+- **Título**: UNEMAT 2023 → "UNEMAT 2023/2" (fase 2023/2; id `unemat-2023` mantido).
+- **Rótulo de área do simulado** pela matéria da questão (`area_da_materia`): UEG geral (13 provas, antes tudo
+  "Inglês"), UFSM, UNEMAT e UEG Medicina (antes "Conhecimentos gerais").
+- Nota da UFSM 2026 Prova 3 q40 corrigida (é de língua).
+- **Não corrigido (acabamento, sem perda de conteúdo):** áreas em branco grandes no fim de alguns prints da URCA (o fio
+  da coluna e o traço do pé da página impedem o corte automático) e o arco decorativo no canto da Unespar 2024 #32.
+  Direitos (Brasil Escola/InfoEscola citados como fonte em UNEMAT 2022/2 #8, #9 e UEG Medicina 2025/2 #34): decisão do dono.
