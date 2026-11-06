@@ -11,3 +11,4 @@ Observações para a integração:
 |---|---|---|
 | H01 Antiguidade | aprovado (06/11/2026) | 80 |
 | H04 Brasil: independência e Império | aprovado (06/11/2026) | 90 |
+| H02 Idade Média e Época Moderna | aprovado (06/11/2026) | 90 |
