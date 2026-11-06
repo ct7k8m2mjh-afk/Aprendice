@@ -16,7 +16,7 @@
    "simbolos": [
     [
      "marcador discursivo",
-     "palavra ou expressão que organiza a fala (ligar partes, ganhar tempo, manter a atenção) sem acrescentar informação nova"
+     "palavra que organiza a fala (ligar partes, ganhar tempo) sem acrescentar informação nova"
     ],
     [
      "linguagem oral",
@@ -31,8 +31,16 @@
      "quem fala"
     ],
     [
+     "transcrição",
+     "fala gravada e passada para o papel, com suas pausas e repetições"
+    ],
+    [
      "...",
-     " marca da transcrição: pausa ou hesitação do falante"
+     "na transcrição, marca pausa ou hesitação de quem fala"
+    ],
+    [
+     "preconceito linguístico",
+     "julgar alguém pela forma como fala, como se certas formas fossem sinal de pouco estudo"
     ]
    ]
   },
@@ -40,26 +48,26 @@
   "passos": [
    {
     "faz": "Identifique o tipo de texto",
-    "conta": "\"I: o nome do filme é roupa suja ...\"",
+    "conta": "\"I: o nome do filme é roupa suja ...\"\nFonte: \"a língua falada\"",
     "porque": "A fonte é um corpus da 'língua falada'. As reticências marcam pausas: é fala transcrita, não texto planejado por escrito.",
     "tipo": "localizar"
    },
    {
     "faz": "Veja o que o 'daí' faz na frase",
-    "conta": "\"daí o homem levou\" / \"daí ele perguntou\" / \"daí entraram\"",
-    "porque": "Em todos os casos o 'daí' liga um fato ao seguinte, como 'e depois'. Não indica lugar nem causa: só encadeia a história.",
-    "tipo": "interpretar"
+    "conta": "\"daí ele perguntou\"\n= \"e depois ele perguntou\"",
+    "porque": "Nas ocorrências, o 'daí' liga um fato ao seguinte, como 'e depois'. Ele não indica lugar: encadeia a história.",
+    "tipo": "comparar"
    },
    {
     "faz": "Note a distribuição da repetição",
-    "conta": "\"daí ele ... daí ela ... daí ele disse ... daí entraram ... daí ficaram\"",
+    "conta": "\"daí o homem levou\"\n\"daí ela\"\n\"daí entraram\"",
     "porque": "O 'daí' aparece ao longo de todo o relato, e não só em um ponto. Isso é um hábito de organização da narrativa falada, e não destaque de uma parte.",
     "tipo": "localizar"
    },
    {
     "faz": "Elimine o que o texto não mostra",
-    "conta": "interlocutor? região? escolaridade? ênfase?",
-    "porque": "Nada indica adaptação ao ouvinte, região ou escolaridade; o 'daí' é igual em todas as partes, sem destacar nenhuma.",
+    "conta": "A: ouvinte? B: região?\nC: escolaridade? E: ênfase?",
+    "porque": "O 'daí' não adapta a fala ao ouvinte nem revela região ou escolaridade. Ele é igual em todas as partes e não destaca nenhuma.",
     "tipo": "eliminar"
    },
    {
@@ -72,9 +80,9 @@
   "resposta": "Alternativa D: a repetição de 'daí' é uma estratégia típica da linguagem oral para encadear os fatos da narrativa enquanto ela é construída.",
   "checagem": "Tente reescrever o texto como narrativa escrita: trocaria os 'daí' por 'em seguida', 'então' ou simples vírgulas e ponto. Se o 'daí' pode ser cortado ou trocado sem perda de informação, ele só organiza a fala.",
   "erradas": {
-   "A": "O texto não traz marca de ajuste ao ouvinte, como pergunta ao interlocutor, explicação ou mudança de registro. O 'daí' liga os fatos da história, não adapta a fala a quem escuta.",
-   "B": "'Daí' como conectivo narrativo é de uso amplo no português falado do Brasil. Nada no trecho (vocabulário, sotaque, expressão) aponta para uma região específica.",
-   "C": "O texto mostra só um uso da fala espontânea; não há dado sobre a escolaridade do falante. Associar 'daí' a pouca escolaridade seria preconceito linguístico, e a repetição ocorre em falantes de qualquer nível.",
+   "A": "O texto até tem um apelo ao ouvinte ('rapaz né'), mas o 'daí' não ajusta a fala a quem escuta: ele liga os fatos da história. A pergunta é sobre a repetição do 'daí'.",
+   "B": "O corpus é de Natal, mas nada no texto prova origem regional. O 'daí' narrativo é comum na fala de todo o Brasil, então não indica de onde o falante é.",
+   "C": "O texto não traz dado sobre a escolaridade. A repetição de 'daí' aparece na fala espontânea de qualquer pessoa. Ligar isso a pouco estudo é preconceito linguístico.",
    "E": "Ênfase destacaria alguns trechos. Aqui o 'daí' aparece em todo o relato, de modo uniforme, ligando um fato ao outro. Sua função é sequenciar, não realçar partes."
   },
   "armadilha": "Atribuir a repetição a escolaridade ou região, quando ela é um traço geral da fala espontânea.",
@@ -109,10 +117,140 @@
  "gab": "D",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "comparar",
+    "motivo": "'interpretar' não está na lista de tipos permitidos (localizar, calcular, comparar, eliminar, concluir).",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "\"daí ele perguntou\" = \"e depois\"",
+    "motivo": "A conta passava de ~30 caracteres e não cabia na tela. O teste de troca ('e depois') agora aparece na própria conta.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "Nas ocorrências, o 'daí' liga um fato ao seguinte, como 'e depois'. Ele não indica lugar: encadeia a história.",
+    "motivo": "'Não indica causa' era absoluto demais. Em 'pode entrar ... daí entraram', o 'daí' sequencial também tem nuance de consequência.",
+    "fonte": "Castilho, Nova Gramática do Português Brasileiro (marcadores discursivos de sequenciação)"
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "daí ele / daí ela / daí entraram",
+    "motivo": "A conta passava de ~30 caracteres e não cabia na tela. O trecho continua fiel ao print.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "O 'daí' não adapta a fala ao ouvinte nem revela região ou escolaridade. Ele é igual em todas as partes e não destaca nenhuma.",
+    "motivo": "'Nada indica adaptação ao ouvinte' é falso para o texto: 'rapaz né' é dirigido ao interlocutor. A afirmação passa a valer só para o 'daí', que é o que se pergunta.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "O texto até tem um apelo ao ouvinte ('rapaz né'), mas o 'daí' não ajusta a fala a quem escuta: ele liga os fatos da história. A pergunta é sobre a repetição do 'daí'.",
+    "motivo": "A versão anterior dizia que o texto não tem marca dirigida ao interlocutor, mas 'rapaz né' é justamente uma marca desse tipo. O motivo dado era falso e foi corrigido.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "'Daí' como conectivo narrativo é de uso amplo no português falado do Brasil, não de uma região só. O corpus é de Natal, mas o 'daí' não é traço exclusivo de lá.",
+    "motivo": "Uma transcrição não mostra sotaque. Além disso, a fonte indica a cidade (Natal), então era preciso dizer por que isso não decide a questão.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "marcador discursivo",
+      "palavra que organiza a fala (ligar partes, ganhar tempo) sem acrescentar informação nova"
+     ],
+     [
+      "linguagem oral",
+      "língua falada, planejada na hora, com hesitações e repetições"
+     ],
+     [
+      "interlocutor",
+      "a pessoa com quem se conversa"
+     ],
+     [
+      "locutor",
+      "quem fala"
+     ],
+     [
+      "transcrição",
+      "fala gravada e passada para o papel, com suas pausas e repetições"
+     ],
+     [
+      "...",
+      "na transcrição, marca pausa ou hesitação de quem fala"
+     ],
+     [
+      "preconceito linguístico",
+      "julgar alguém pela forma como fala, como se certas formas fossem sinal de pouco estudo"
+     ]
+    ],
+    "motivo": "Incluir 'transcrição' e 'preconceito linguístico', usados na resolução; tirar o espaço sobrando antes de 'marca'."
+   },
+   {
+    "campo": "resolucao.passos[0].conta",
+    "depois": "\"I: o nome do filme é roupa suja ...\"\nFonte: \"a língua falada\"",
+    "motivo": "Mostrar as duas marcas que provam que é fala: as reticências e a fonte."
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "\"daí ele perguntou\"\n= \"e depois ele perguntou\"",
+    "motivo": "Deixar a troca clara e copiável, sem o sinal de igual solto."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "\"daí o homem levou\"\n\"daí ela\"\n\"daí entraram\"",
+    "motivo": "Citar trechos do início, do meio e do fim do texto mostra que a repetição vai até o final."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "A: ouvinte? B: região?\nC: escolaridade? E: ênfase?",
+    "motivo": "Cada letra fica ligada ao que foi descartado, e a conta cabe na tela."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "O corpus é de Natal, mas nada no texto prova origem regional. O 'daí' narrativo é comum na fala de todo o Brasil, então não indica de onde o falante é.",
+    "motivo": "Dizer o que faltou: a prova de região no texto. Frase mais clara."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "O texto não traz dado sobre a escolaridade. A repetição de 'daí' aparece na fala espontânea de qualquer pessoa. Ligar isso a pouco estudo é preconceito linguístico.",
+    "motivo": "Frases mais curtas, mantendo o argumento."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "O texto até tem um apelo ao ouvinte ('rapaz né'), mas o 'daí' não ajusta a fala a quem escuta: ele liga os fatos da história. A pergunta é sobre a repetição do 'daí'.",
+    "motivo": "Sem mudança de conteúdo. Mantido: o argumento é verdadeiro e suficiente.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "D"
  }
 }

@@ -8,7 +8,7 @@
  "conceito": "Ler gráfico de barras empilhadas com porcentagens e comparar quantidades absolutas (a probabilidade depende do número de pessoas, não da soma de percentuais).",
  "resolucao": {
   "antes": {
-   "texto": "Sorteio com todos com a mesma chance: a faixa mais provável é a que tem MAIS funcionários. Então é preciso transformar cada porcentagem do gráfico em número de pessoas. As porcentagens valem para o setor onde estão, e os setores têm tamanhos diferentes, então não dá para somar percentuais direto.",
+   "texto": "No sorteio todos têm a mesma chance. Por isso a faixa mais provável é a que tem MAIS funcionários. Cada porcentagem do gráfico vale só para o setor em que aparece, e os setores têm tamanhos diferentes. Então transforme cada porcentagem em número de pessoas e só depois compare as faixas.",
    "formulas": [
     "probabilidade da faixa = funcionários da faixa ÷ 400",
     "funcionários = porcentagem × total do setor"
@@ -21,6 +21,18 @@
     [
      "barra empilhada",
      "barra dividida em partes coloridas; cada parte é uma faixa etária dentro do setor"
+    ],
+    [
+     "%",
+     "por cento: 25% de 80 é 25 ÷ 100 × 80 = 20"
+    ],
+    [
+     "probabilidade",
+     "chance de um evento: casos favoráveis ÷ casos possíveis"
+    ],
+    [
+     "eixo vertical",
+     "a linha de números na lateral do gráfico (80, 120, 200), que mostra a quantidade de funcionários"
     ]
    ]
   },
@@ -29,31 +41,31 @@
    {
     "faz": "Leia o tamanho de cada setor",
     "conta": "Adm: 80 | Log: 120 | Prod: 200",
-    "porque": "O topo de cada barra está marcado no eixo vertical: 80, 120 e 200. Soma: 80 + 120 + 200 = 400, igual ao total da empresa.",
+    "porque": "O topo de cada barra aponta para o eixo vertical: 80, 120 e 200. Conferindo, 80 + 120 + 200 = 400, o total da empresa.",
     "tipo": "localizar"
    },
    {
     "faz": "Calcule a faixa 'até 25 anos' (vermelho)",
-    "conta": "20%×80=16 ; 25%×120=30 ; 40%×200=80",
-    "porque": "Aplique a porcentagem vermelha de cada barra ao total daquele setor. Total: 16 + 30 + 80 = 126.",
+    "conta": "20% de 80 = 16 ; 25% de 120 = 30 ; 40% de 200 = 80",
+    "porque": "Cada porcentagem vermelha vale só para o total do seu setor. Somando: 16 + 30 + 80 = 126.",
     "tipo": "calcular"
    },
    {
     "faz": "Calcule a faixa 'entre 25 e 45' (amarelo)",
-    "conta": "30%×80=24 ; 40%×120=48 ; 35%×200=70",
+    "conta": "30% de 80 = 24 ; 40% de 120 = 48 ; 35% de 200 = 70",
     "porque": "Mesma ideia com a porcentagem amarela. Total: 24 + 48 + 70 = 142.",
     "tipo": "calcular"
    },
    {
     "faz": "Calcule a faixa 'a partir de 45' (azul)",
-    "conta": "50%×80=40 ; 35%×120=42 ; 25%×200=50",
+    "conta": "50% de 80 = 40 ; 35% de 120 = 42 ; 25% de 200 = 50",
     "porque": "Porcentagem azul de cada setor. Total: 40 + 42 + 50 = 132.",
     "tipo": "calcular"
    },
    {
-    "faz": "Compare e confira o total",
+    "faz": "Compare as faixas e confira o total",
     "conta": "126 + 142 + 132 = 400",
-    "porque": "A soma fecha com os 400 funcionários. A maior faixa é a de 142 pessoas (entre 25 e 45 anos), com probabilidade 142/400 = 35,5%.",
+    "porque": "A maior faixa é a de 142 pessoas (entre 25 e 45 anos), com probabilidade 142/400 = 35,5%. Isso leva à alternativa A, que justifica pela maior quantidade de funcionários.",
     "tipo": "concluir"
    }
   ],
@@ -80,7 +92,7 @@
   },
   {
    "nome": "teste das alternativas",
-   "ideia": "Todas as alternativas A e E trazem uma conclusão; basta ver que 142 é o maior total para eliminar C, D e E, e ver que B justifica com percentuais, não com quantidades."
+   "ideia": "Todas as alternativas trazem uma conclusão e uma justificativa. Como 142 é o maior total, C, D e E caem. B chega à mesma faixa que A, mas justifica com percentuais, e não com a quantidade de pessoas."
   }
  ],
  "quadro": [
@@ -134,10 +146,99 @@
  "gab": "A",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "caminhos[1].ideia",
+    "depois": "Todas as alternativas trazem uma conclusão e uma justificativa. Como 142 é o maior total, C, D e E caem. B chega à mesma faixa que A, mas justifica com percentuais, e não com a quantidade de pessoas.",
+    "motivo": "A frase original ('Todas as alternativas A e E trazem uma conclusão') estava truncada e não fazia sentido. A nova versão diz o mesmo raciocínio sem erro.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "A",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "No sorteio todos têm a mesma chance. Por isso a faixa mais provável é a que tem MAIS funcionários. Cada porcentagem do gráfico vale só para o setor em que aparece, e os setores têm tamanhos diferentes. Então transforme cada porcentagem em número de pessoas e só depois compare as faixas.",
+    "motivo": "Frases mais curtas e a ideia central na ordem em que o aluno pensa."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "faixa etária",
+      "grupo de idade: até 25 anos, entre 25 e 45 anos, a partir de 45 anos"
+     ],
+     [
+      "barra empilhada",
+      "barra dividida em partes coloridas; cada parte é uma faixa etária dentro do setor"
+     ],
+     [
+      "%",
+      "por cento: 25% de 80 é 25 ÷ 100 × 80 = 20"
+     ],
+     [
+      "probabilidade",
+      "chance de um evento: casos favoráveis ÷ casos possíveis"
+     ],
+     [
+      "eixo vertical",
+      "a linha de números na lateral do gráfico (80, 120, 200), que mostra a quantidade de funcionários"
+     ]
+    ],
+    "motivo": "Explicar % e probabilidade, termos usados na resolução, e o eixo vertical."
+   },
+   {
+    "campo": "resolucao.passos[0].porque",
+    "depois": "O topo de cada barra aponta para o eixo vertical: 80, 120 e 200. Conferindo, 80 + 120 + 200 = 400, o total da empresa.",
+    "motivo": "Frases mais claras."
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "20% de 80 = 16 ; 25% de 120 = 30 ; 40% de 200 = 80",
+    "motivo": "Troca de × por 'de' deixa o sentido da porcentagem claro; mantém os números."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "Cada porcentagem vermelha vale só para o total do seu setor. Somando: 16 + 30 + 80 = 126.",
+    "motivo": "Explica por que se usa o total de cada setor."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "30% de 80 = 24 ; 40% de 120 = 48 ; 35% de 200 = 70",
+    "motivo": "Padronização com o passo anterior."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "50% de 80 = 40 ; 35% de 120 = 42 ; 25% de 200 = 50",
+    "motivo": "Padronização com o passo anterior."
+   },
+   {
+    "campo": "resolucao.passos[4].faz",
+    "depois": "Compare as faixas e confira o total",
+    "motivo": "Passo final faz as duas coisas, comparar e ligar à letra."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "A maior faixa é a de 142 pessoas (entre 25 e 45 anos), com probabilidade 142/400 = 35,5%. Isso leva à alternativa A, que justifica pela maior quantidade de funcionários.",
+    "motivo": "Liga o resultado à letra e usa fração empilhada."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "A"
  }
 }

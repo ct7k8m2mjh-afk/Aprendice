@@ -8,7 +8,7 @@
  "conceito": "Maximizar a área de um retângulo com custo fixo de cerca, usando a função quadrática (vértice da parábola).",
  "resolucao": {
   "antes": {
-   "texto": "O retângulo tem dois lados L e dois lados C. O custo total é a soma do custo dos quatro lados e não pode passar de R$ 6 000,00. Para a maior área, gasta-se tudo. Com isso, C fica escrito em função de L, e a área vira uma parábola com a concavidade para baixo. O máximo está no vértice.",
+   "texto": "O retângulo tem dois lados L e dois lados C. O custo é a soma dos quatro lados e não pode passar de R$ 6 000,00. Para a maior área, gasta-se tudo. Assim, C fica escrito em função de L, e a área vira uma parábola aberta para baixo. O ponto mais alto dela (o vértice) dá a área máxima.",
    "formulas": [
     "custo = 2 × L × 20 + 2 × C × 15",
     "área = L × C",
@@ -18,6 +18,14 @@
     [
      "L e C",
      "os dois comprimentos diferentes do retângulo, em metro"
+    ],
+    [
+     "função quadrática",
+     "função em que aparece o x² (aqui, L²); seu gráfico é uma parábola"
+    ],
+    [
+     "parábola",
+     "curva em forma de arco; aqui ela abre para baixo, como um morro"
     ],
     [
      "vértice",
@@ -40,13 +48,13 @@
    {
     "faz": "Simplifique e isole C",
     "conta": "4L + 3C = 600",
-    "porque": "Divida tudo por 10. Daí sai C = (600 − 4L)/3.",
+    "porque": "Divida os dois lados da equação por 10 para os números ficarem menores. Depois isole C: 3C = 600 − 4L, logo C = (600 − 4L)/3.",
     "tipo": "calcular"
    },
    {
     "faz": "Escreva a área em função de L",
     "conta": "A = L × (600 − 4L)/3",
-    "porque": "É uma função quadrática em L com a negativa (−4/3), então a parábola abre para baixo e tem ponto máximo.",
+    "porque": "Ao multiplicar, aparece L², com coeficiente −4/3 (negativo). Então a parábola abre para baixo e tem ponto máximo.",
     "tipo": "calcular"
    },
    {
@@ -104,13 +112,19 @@
    "nota": "divida tudo por 10"
   },
   {
+   "linha": "3C = 600 − 4L",
+   "nota": "4L passa para o outro lado",
+   "mov": "4L"
+  },
+  {
    "linha": "C = (600 − 4L)/3",
-   "nota": "isole C",
-   "destaque": "(600 − 4L)/3"
+   "nota": "o 3 passa dividindo",
+   "destaque": "(600 − 4L)/3",
+   "mov": "3"
   },
   {
    "linha": "A = L × (600 − 4L)/3",
-   "nota": "área em função de L"
+   "nota": "área = L vezes C"
   },
   {
    "linha": "raízes: L = 0 e L = 150",
@@ -122,11 +136,11 @@
    "destaque": "75"
   },
   {
-   "linha": "C = (600 − 300)/3",
+   "linha": "C = (600 − 4 × 75)/3",
    "nota": "substitua L = 75"
   },
   {
-   "linha": "C = 100",
+   "linha": "C = 300/3 = 100",
    "nota": "o maior lado é 100 m",
    "destaque": "100"
   }
@@ -144,10 +158,163 @@
  "gab": "B",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "É uma função quadrática em L com coeficiente a = −4/3, negativo. Então a parábola abre para baixo e tem ponto máximo.",
+    "motivo": "Em \"com a negativa (−4/3)\", o \"a\" parece artigo, e a frase fica ambígua. Agora fica claro que se fala do coeficiente a.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "O retângulo tem dois lados L e dois lados C. O custo é a soma dos quatro lados e não pode passar de R$ 6 000,00. Para a maior área, gasta-se tudo. Assim, C fica escrito em função de L, e a área vira uma parábola aberta para baixo. O ponto mais alto dela (o vértice) dá a área máxima.",
+    "motivo": "Frases mais curtas e 'vértice' explicado na primeira aparição."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "L e C",
+      "os dois comprimentos diferentes do retângulo, em metro"
+     ],
+     [
+      "função quadrática",
+      "função em que aparece o x² (aqui, L²); seu gráfico é uma parábola"
+     ],
+     [
+      "parábola",
+      "curva em forma de arco; aqui ela abre para baixo, como um morro"
+     ],
+     [
+      "vértice",
+      "o ponto mais alto da parábola, onde a área é máxima"
+     ],
+     [
+      "raízes",
+      "valores de L em que a área vale zero"
+     ]
+    ],
+    "motivo": "Termos técnicos (função quadrática, parábola) não estavam explicados."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "Divida os dois lados da equação por 10 para os números ficarem menores. Depois isole C: 3C = 600 − 4L, logo C = (600 − 4L)/3.",
+    "motivo": "Explicita a passagem de isolar C, que estava só citada."
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "4L + 3C = 600",
+    "motivo": "Mantido; conta curta e copiável."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Ao multiplicar, aparece L², com coeficiente −4/3 (negativo). Então a parábola abre para baixo e tem ponto máximo.",
+    "motivo": "Liga o L² ao tipo de função, em linguagem simples."
+   },
+   {
+    "campo": "resolucao.quadro",
+    "depois": [
+     {
+      "linha": "40L + 30C = 6000",
+      "nota": "2 lados L a 20 e 2 lados C a 15"
+     },
+     {
+      "linha": "4L + 3C = 600",
+      "nota": "divida tudo por 10"
+     },
+     {
+      "linha": "3C = 600 − 4L",
+      "nota": "4L passa para o outro lado",
+      "mov": "4L"
+     },
+     {
+      "linha": "C = \\frac{600 − 4L}{3}",
+      "nota": "o 3 passa dividindo",
+      "destaque": "\\frac{600 − 4L}{3}",
+      "mov": "3"
+     },
+     {
+      "linha": "A = L × \\frac{600 − 4L}{3}",
+      "nota": "área = L vezes C"
+     },
+     {
+      "linha": "raízes: L = 0 e L = 150",
+      "nota": "600 − 4L = 0 dá L = 150"
+     },
+     {
+      "linha": "L = \\frac{0 + 150}{2} = 75",
+      "nota": "vértice: no meio das raízes",
+      "destaque": "75"
+     },
+     {
+      "linha": "C = \\frac{600 − 4 × 75}{3}",
+      "nota": "substitua L = 75"
+     },
+     {
+      "linha": "C = \\frac{300}{3} = 100",
+      "nota": "o maior lado é 100 m",
+      "destaque": "100"
+     }
+    ],
+    "motivo": "Passagem de isolar C estava pulada e faltava mov; frações empilhadas."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "quadro[3].linha",
+    "depois": "C = (600 − 4L)/3",
+    "motivo": "Sem LaTeX: fração escrita como numerador/denominador, conforme o programa da fábrica.",
+    "fonte": ""
+   },
+   {
+    "campo": "quadro[3].destaque",
+    "depois": "(600 − 4L)/3",
+    "motivo": "Sem LaTeX; deve coincidir com o trecho da linha.",
+    "fonte": ""
+   },
+   {
+    "campo": "quadro[4].linha",
+    "depois": "A = L × (600 − 4L)/3",
+    "motivo": "Sem LaTeX.",
+    "fonte": ""
+   },
+   {
+    "campo": "quadro[6].linha",
+    "depois": "L = (0 + 150)/2 = 75",
+    "motivo": "Sem LaTeX.",
+    "fonte": ""
+   },
+   {
+    "campo": "quadro[7].linha",
+    "depois": "C = (600 − 4 × 75)/3",
+    "motivo": "Sem LaTeX.",
+    "fonte": ""
+   },
+   {
+    "campo": "quadro[8].linha",
+    "depois": "C = 300/3 = 100",
+    "motivo": "Sem LaTeX.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "B"
  }
 }

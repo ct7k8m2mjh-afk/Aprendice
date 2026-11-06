@@ -8,7 +8,7 @@
  "conceito": "Cilindro dentro de prisma de base quadrada: o lado da base precisa caber o diâmetro da torta mais a folga de 1 cm de cada lado.",
  "resolucao": {
   "antes": {
-   "texto": "A torta é um cilindro e a caixa tem base quadrada. Vista de cima, a torta é um círculo dentro de um quadrado. O círculo cabe quando o lado do quadrado é maior que o diâmetro. O enunciado ainda exige 1 cm de folga entre a torta e cada parede lateral. O raio varia de 12 a 16 cm, e a caixa nova deve servir para todas as tortas. Por isso vale o pior caso, o raio de 16 cm.",
+   "texto": "Vista de cima, a torta é um círculo e a caixa é um quadrado. O círculo cabe quando o lado do quadrado é pelo menos o diâmetro (a largura do círculo). Além disso, o enunciado exige 1 cm de folga entre a torta e cada parede lateral. O raio varia de 12 a 16 cm, e a caixa nova deve servir para todas as tortas. Por isso vale o pior caso: o raio de 16 cm.",
    "formulas": [
     "diâmetro = 2 × raio",
     "lado da caixa ≥ diâmetro + 1 cm + 1 cm",
@@ -39,7 +39,7 @@
     "faz": "Escolha a maior torta",
     "conta": "raio máximo = 16 cm",
     "porque": "Se a caixa serve para a maior torta, serve para as menores.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Calcule o diâmetro dela",
@@ -56,8 +56,8 @@
    {
     "faz": "Confira a altura",
     "conta": "6 + 1 = 7 cm",
-    "porque": "A folga de 1 cm no topo pede altura de 7 cm. A caixa original já tem 7 cm, então a altura não muda. O problema está só na base.",
-    "tipo": "aplicar"
+    "porque": "A folga de 1 cm no topo pede altura de 6 + 1 = 7 cm. A caixa original já tem 7 cm, então a altura não muda. O problema está só na base.",
+    "tipo": "comparar"
    },
    {
     "faz": "Compare com a caixa original",
@@ -69,10 +69,10 @@
   "resposta": "Alternativa E: a aresta precisa ser de 34 cm, que é 20 cm maior que os 14 cm originais.",
   "checagem": "Com lado 34 cm, a torta de raio 16 cm (32 cm de largura) deixa 34 − 32 = 2 cm de sobra, ou seja, 1 cm de cada lado. Com lado 33 cm sobraria só 0,5 cm de cada lado, menos que o exigido. Logo 34 cm é o mínimo.",
   "erradas": {
-   "A": "4 cm sai de uma caixa de lado 18 cm: 16 + 2 = 18 e 18 − 14 = 4. Aí o raio (16) foi tratado como largura da torta. A largura é o diâmetro, 32 cm, e 18 cm nem comporta a torta.",
-   "B": "12 cm daria lado 26 cm = 24 + 2, que é a conta com a torta menor (raio 12, diâmetro 24). A caixa deve servir também para a de raio 16 cm, que tem 32 cm de largura e não cabe em 26 cm.",
-   "C": "16 cm daria lado 30 cm. Isso é menor que o diâmetro de 32 cm da maior torta, que nem entraria na caixa, quanto mais com folga.",
-   "D": "18 cm daria lado 32 cm = 14 + 18. Ele é só o diâmetro da torta, sem os 2 cm de folga (1 cm de cada lado). Faltou a folga exigida no enunciado."
+   "A": "4 sai de usar o raio no lugar do diâmetro: 16 + 2 = 18 e 18 − 14 = 4. Mas a largura da torta é o diâmetro, 32 cm, e uma caixa de lado 18 cm nem comporta a torta.",
+   "B": "12 sai de usar a torta menor: raio 12, diâmetro 24, lado 24 + 2 = 26 e 26 − 14 = 12. Faltou lembrar que a caixa deve servir para todas as tortas, também a de 32 cm de largura, que não cabe em 26 cm.",
+   "C": "16 daria lado 14 + 16 = 30 cm. Isso é menor que o diâmetro de 32 cm da maior torta, que nem entraria na caixa. Faltou usar o diâmetro e a folga.",
+   "D": "18 daria lado 14 + 18 = 32 cm, que é só o diâmetro da torta. Ela encostaria nas paredes. Faltou somar a folga de 1 cm de cada lado, 2 cm no total."
   },
   "armadilha": "Usar o raio no lugar do diâmetro, ou esquecer que a folga de 1 cm vale para os dois lados, e não só para um.",
   "alerta": "",
@@ -133,10 +133,80 @@
  "gab": "E",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "A torta é um cilindro e a caixa tem base quadrada. Vista de cima, a torta é um círculo dentro de um quadrado. O círculo cabe quando o lado do quadrado é pelo menos igual ao diâmetro. O enunciado ainda exige 1 cm de folga entre a torta e cada parede lateral. O raio varia de 12 a 16 cm, e a caixa nova deve servir para todas as tortas. Por isso vale o pior caso, o raio de 16 cm.",
+    "motivo": "O círculo cabe também quando o lado é igual ao diâmetro (fica encostado). Então a condição é 'lado ≥ diâmetro', e não 'maior que'. Isso também deixa o texto coerente com a fórmula do próprio campo.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[0].tipo",
+    "depois": "localizar",
+    "motivo": "'interpretar' não está entre os tipos permitidos (localizar, calcular, comparar, eliminar, concluir). O passo lê o dado no enunciado, o raio máximo de 16 cm.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "comparar",
+    "motivo": "'aplicar' não está entre os tipos permitidos. O passo compara a altura exigida (7 cm) com a altura da caixa original (7 cm).",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Vista de cima, a torta é um círculo e a caixa é um quadrado. O círculo cabe quando o lado do quadrado é pelo menos o diâmetro (a largura do círculo). Além disso, o enunciado exige 1 cm de folga entre a torta e cada parede lateral. O raio varia de 12 a 16 cm, e a caixa nova deve servir para todas as tortas. Por isso vale o pior caso: o raio de 16 cm.",
+    "motivo": "Frases mais curtas, 'diâmetro' explicado na primeira aparição e sem frase ambígua."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "A folga de 1 cm no topo pede altura de 6 + 1 = 7 cm. A caixa original já tem 7 cm, então a altura não muda. O problema está só na base.",
+    "motivo": "Frase mais direta."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "4 sai de usar o raio no lugar do diâmetro: 16 + 2 = 18 e 18 − 14 = 4. Mas a largura da torta é o diâmetro, 32 cm, e uma caixa de lado 18 cm nem comporta a torta.",
+    "motivo": "Mostra o que faltou no raciocínio de quem marcou A, em frase mais clara."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "12 sai de usar a torta menor: raio 12, diâmetro 24, lado 24 + 2 = 26 e 26 − 14 = 12. Faltou lembrar que a caixa deve servir para todas as tortas, também a de 32 cm de largura, que não cabe em 26 cm.",
+    "motivo": "Deixa claro o que faltou: o pior caso."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "16 daria lado 14 + 16 = 30 cm. Isso é menor que o diâmetro de 32 cm da maior torta, que nem entraria na caixa. Faltou usar o diâmetro e a folga.",
+    "motivo": "Indica o que faltou no raciocínio."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "18 daria lado 14 + 18 = 32 cm, que é só o diâmetro da torta. Ela encostaria nas paredes. Faltou somar a folga de 1 cm de cada lado, 2 cm no total.",
+    "motivo": "Texto mais claro sobre o que faltou."
+   },
+   {
+    "campo": "resolucao.quadro[3].linha",
+    "depois": "lado = 32 + 1 + 1",
+    "motivo": "Mantida a linha; o destaque '+ 1 + 1' já está correto. Sem mudança de conteúdo."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "E"
  }
 }

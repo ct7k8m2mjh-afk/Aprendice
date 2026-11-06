@@ -8,7 +8,7 @@
  "conceito": "Identificar a crítica que a reportagem sustenta ao relacionar memes e educação: a circulação de informação manipulada, que a leitura crítica em sala de aula busca combater.",
  "resolucao": {
   "antes": {
-   "texto": "O comando pede a crítica que a reportagem sustenta, ou seja, aquilo de que o texto discorda ou que ele quer combater. Para achá-la, veja o problema que a professora identifica e a solução que ela propõe. A resposta tem de valer para o texto inteiro, não só para um trecho.",
+   "texto": "O comando pede a crítica que a reportagem sustenta, isto é, aquilo de que o texto discorda e que quer combater. Para achá-la, veja qual problema a professora percebeu e qual solução ela propôs. A solução mostra o problema. A resposta tem de valer para o texto inteiro, não só para um trecho.",
    "formulas": [
     "crítica = o problema que o texto aponta e quer corrigir",
     "a solução proposta mostra qual é o problema"
@@ -20,15 +20,23 @@
     ],
     [
      "letramento midiático",
-     "capacidade de ler com senso crítico o que circula nas mídias"
+     "capacidade de ler com senso crítico o que circula nas mídias (redes, sites, TV)"
     ],
     [
      "intergeracional",
      "que envolve gerações diferentes, como pais e filhos"
+    ],
+    [
+     "engajamento",
+     "participação ativa e interessada em uma causa ou assunto"
+    ],
+    [
+     "manipulada",
+     "alterada ou distorcida de propósito para enganar quem lê"
     ]
    ]
   },
-  "pista": "Que problema levou a professora a criar o projeto, e o que ela quis ensinar aos alunos com ele? A crítica está no problema, não na ferramenta usada para resolvê-lo.",
+  "pista": "Que problema levou a professora a criar o projeto? E o que ela quis ensinar aos alunos? A crítica está no problema, não na ferramenta usada para combatê-lo.",
   "passos": [
    {
     "faz": "Ache o problema que motivou o projeto",
@@ -46,18 +54,18 @@
     "faz": "Veja a solução proposta",
     "conta": "\"checagem de informação e interpretação de texto\"",
     "porque": "Quem defende checar e interpretar critica o que circula sem checagem: a informação manipulada.",
-    "tipo": "interpretar"
+    "tipo": "comparar"
    },
    {
     "faz": "Elimine o que o texto não critica",
     "conta": "memes na escola = recurso usado",
-    "porque": "Os memes e o ambiente digital são o material de aula, usados pela professora, e não o alvo da crítica. Fiscalização de aplicativos não é citada. Humor e política são apenas citados como usos possíveis.",
+    "porque": "Os memes e o WhatsApp são o material de aula, não o alvo da crítica. Fiscalização de aplicativos não aparece no texto. Humor e política só aparecem numa lista de usos dos memes.",
     "tipo": "eliminar"
    },
    {
     "faz": "Conclua",
     "conta": "crítica = informação manipulada nas redes",
-    "porque": "Só a alternativa B reúne o problema (mentira, imagens manipuladas) e o meio (postagens virtuais).",
+    "porque": "Só a alternativa B junta o problema (mentira, imagens manipuladas) e o meio onde ele circula (postagens virtuais).",
     "tipo": "concluir"
    }
   ],
@@ -66,7 +74,7 @@
   "erradas": {
    "A": "O texto não fala de fiscalização nem de controle do uso de aplicativos por crianças. A professora propõe educar o olhar crítico, e não vigiar. O WhatsApp aparece só como fonte dos memes usados em aula.",
    "C": "Inverte a relação. A professora usa memes de WhatsApp como \"material gerador das discussões em sala de aula\". O texto defende o uso do recurso digital no trabalho educacional, não o critica.",
-   "D": "O humor é só citado (\"alguns apostam no humor\"). O texto diz que os memes eram \"engraçados\" para os alunos e passaram a ser vistos \"com outros olhos\". O problema não é o humor, e sim não saber ler o que há por trás dele.",
+   "D": "O humor é só citado (\"alguns apostam no humor\"). O texto diz que \"O que antes era engraçado para os alunos passou a ser visto com outros olhos\". O problema não é o humor, e sim não saber ler o que há por trás dele.",
    "E": "O \"engajamento político\" aparece só numa lista de usos dos memes, ao lado do humor e da mentira. O texto não condena a mensagem política em si; condena a falta de leitura crítica e a manipulação da informação."
   },
   "armadilha": "Escolher uma alternativa que cita um tema do texto (humor, política, aplicativos) mas que não é o problema que a professora quer combater.",
@@ -100,10 +108,85 @@
  "gab": "B",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "comparar",
+    "motivo": "'interpretar' não está entre os tipos permitidos (localizar, calcular, comparar, eliminar, concluir). O passo liga a solução proposta ao problema, então o tipo certo é 'comparar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "O humor é só citado (\"alguns apostam no humor\"). O texto diz que \"O que antes era engraçado para os alunos passou a ser visto com outros olhos\". O problema não é o humor, e sim não saber ler o que há por trás dele.",
+    "motivo": "A citação estava errada. O texto diz \"engraçado\", no singular e numa construção diferente, e não \"engraçados\". Troquei pelo trecho exato do texto.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "O comando pede a crítica que a reportagem sustenta, isto é, aquilo de que o texto discorda e que quer combater. Para achá-la, veja qual problema a professora percebeu e qual solução ela propôs. A solução mostra o problema. A resposta tem de valer para o texto inteiro, não só para um trecho.",
+    "motivo": "Frases mais curtas e ligação clara entre solução e problema."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "reportagem",
+      "texto jornalístico que apresenta um assunto com fatos, dados e falas de pessoas ouvidas"
+     ],
+     [
+      "letramento midiático",
+      "capacidade de ler com senso crítico o que circula nas mídias (redes, sites, TV)"
+     ],
+     [
+      "intergeracional",
+      "que envolve gerações diferentes, como pais e filhos"
+     ],
+     [
+      "engajamento",
+      "participação ativa e interessada em uma causa ou assunto"
+     ],
+     [
+      "manipulada",
+      "alterada ou distorcida de propósito para enganar quem lê"
+     ]
+    ],
+    "motivo": "Incluídos 'engajamento' e 'manipulada', palavras do texto e das alternativas que um aluno de 17 anos pode não dominar."
+   },
+   {
+    "campo": "resolucao.pista",
+    "depois": "Que problema levou a professora a criar o projeto? E o que ela quis ensinar aos alunos? A crítica está no problema, não na ferramenta usada para combatê-lo.",
+    "motivo": "Pista em perguntas mais diretas, sem entregar a letra."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Os memes e o WhatsApp são o material de aula, não o alvo da crítica. Fiscalização de aplicativos não aparece no texto. Humor e política só aparecem numa lista de usos dos memes.",
+    "motivo": "Frases mais curtas, uma ideia por frase."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "Só a alternativa B junta o problema (mentira, imagens manipuladas) e o meio onde ele circula (postagens virtuais).",
+    "motivo": "Mais simples e direto."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "B"
  }
 }

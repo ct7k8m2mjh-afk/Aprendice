@@ -29,6 +29,14 @@
      "polígono com todos os lados iguais e todos os ângulos iguais"
     ],
     [
+     "triângulo equilátero",
+     "triângulo com os três lados iguais"
+    ],
+    [
+     "hexágono",
+     "polígono de 6 lados"
+    ],
+    [
      "√3",
      "raiz quadrada de 3, cerca de 1,73"
     ]
@@ -38,7 +46,7 @@
   "passos": [
    {
     "faz": "Ache o lado de cada figura",
-    "conta": "Triângulo: k/3 | Quadrado: k/4 | Hexágono: k/6",
+    "conta": "Triângulo: k/3\nQuadrado: k/4\nHexágono: k/6",
     "porque": "A cerca dá a volta inteira. Dividir k pelo número de lados dá o lado de cada polígono regular.",
     "tipo": "calcular"
    },
@@ -61,8 +69,8 @@
     "tipo": "calcular"
    },
    {
-    "faz": "Compare os três números",
-    "conta": "0,0481k² < 0,0625k² < 0,0722k²",
+    "faz": "Compare as áreas e marque a maior",
+    "conta": "0,048k² < 0,0625k² < 0,072k²",
     "porque": "Com √3 ≈ 1,73, o triângulo dá 1,73/36 ≈ 0,048, o quadrado dá 1/16 = 0,0625 e o hexágono dá 1,73/24 ≈ 0,072. O hexágono é o maior.",
     "tipo": "concluir"
    }
@@ -70,7 +78,7 @@
   "resposta": "Alternativa A: o hexágono regular tem a maior área, k²√3/24 metros quadrados.",
   "checagem": "Com k = 12: o triângulo tem lado 4 e área 16·1,73/4 ≈ 6,9. O quadrado tem lado 3 e área 9. O hexágono tem lado 2 e área 6 × (4·1,73/4) ≈ 10,4. Fórmula do hexágono: 144·1,73/24 ≈ 10,4. Bate, e o hexágono é o maior. Quanto mais lados, mais a figura se aproxima do círculo, que é a de maior área para um perímetro dado.",
   "erradas": {
-   "B": "3k²√3/2 é a área de um hexágono com lado k, e não k/6: 6 × k² × √3/4 = 3k²√3/2. Com a cerca de k metros, o lado do hexágono é k/6. Essa área, cerca de 2,6k², é maior que a de um quadrado de lado k, que ocuparia mais cerca do que existe.",
+   "B": "3k²√3/2 é a área de um hexágono de lado k: 6 × k² × √3/4. Mas a cerca só dá lado k/6. Ela seria bem maior que a de qualquer figura possível com essa cerca.",
    "C": "k²/16 é, de fato, a área do quadrado de lado k/4, mas não é a maior: 1/16 = 0,0625 e o hexágono dá √3/24 ≈ 0,0722. Quadrado é a segunda maior área.",
    "D": "k²√3/36 é a área certa do triângulo equilátero de lado k/3, mas é a menor das três: √3/36 ≈ 0,048, menor que 0,0625 do quadrado e 0,0722 do hexágono.",
    "E": "k²√3/4 é a área de um triângulo equilátero de lado k, e não k/3. Com a cerca de k metros, o lado do triângulo é k/3, o que dá k²√3/36."
@@ -111,24 +119,48 @@
    "nota": "área do equilátero: lado² × √3/4"
   },
   {
-   "linha": "A_tri = k²√3/36",
-   "nota": "k²/9 × √3/4 = k²√3/36"
+   "linha": "A_tri = k²/9 × √3/4",
+   "nota": "(k/3)² = k²/9"
   },
   {
-   "linha": "A_quad = (k/4)² = k²/16",
-   "nota": "lado ao quadrado"
+   "linha": "A_tri = k²√3/36",
+   "nota": "9 × 4 = 36"
+  },
+  {
+   "linha": "A_quad = (k/4)²",
+   "nota": "área do quadrado: lado²"
+  },
+  {
+   "linha": "A_quad = k²/16",
+   "nota": "4² = 16"
   },
   {
    "linha": "A_hex = 6 × (k/6)² × √3/4",
    "nota": "6 triângulos equiláteros de lado k/6"
   },
   {
-   "linha": "A_hex = k²√3/24",
-   "nota": "6 × k²/36 × √3/4 = k²√3/24"
+   "linha": "A_hex = 6 × k²/36 × √3/4",
+   "nota": "(k/6)² = k²/36"
   },
   {
-   "linha": "0,048k² < 0,0625k² < 0,072k²",
-   "nota": "com √3 ≈ 1,73; o hexágono é o maior"
+   "linha": "A_hex = k²/6 × √3/4",
+   "nota": "6/36 = 1/6"
+  },
+  {
+   "linha": "A_hex = k²√3/24",
+   "nota": "6 × 4 = 24"
+  },
+  {
+   "linha": "tri ≈ 1,73/36 k² = 0,048k²",
+   "nota": "√3 ≈ 1,73"
+  },
+  {
+   "linha": "quad = 1/16 k² = 0,0625k²",
+   "nota": "1 ÷ 16"
+  },
+  {
+   "linha": "hex ≈ 1,73/24 k² = 0,072k²",
+   "nota": "o hexágono é o maior"
   }
  ],
  "visual": {
@@ -144,10 +176,149 @@
  "gab": "A",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [],
+  "fatos_ok": true,
+  "fatos_resposta": "A",
+  "didatica": [
+   {
+    "campo": "resolucao.quadro",
+    "depois": [
+     {
+      "linha": "triângulo: lado = k/3",
+      "nota": "3 lados dividem a cerca k"
+     },
+     {
+      "linha": "quadrado: lado = k/4",
+      "nota": "4 lados dividem a cerca k"
+     },
+     {
+      "linha": "hexágono: lado = k/6",
+      "nota": "6 lados dividem a cerca k"
+     },
+     {
+      "linha": "A_tri = (k/3)² × √3/4",
+      "nota": "área do equilátero: lado² × √3/4"
+     },
+     {
+      "linha": "A_tri = k²/9 × √3/4",
+      "nota": "(k/3)² = k²/9"
+     },
+     {
+      "linha": "A_tri = k²√3/36",
+      "nota": "9 × 4 = 36"
+     },
+     {
+      "linha": "A_quad = (k/4)²",
+      "nota": "área do quadrado: lado²"
+     },
+     {
+      "linha": "A_quad = k²/16",
+      "nota": "4² = 16"
+     },
+     {
+      "linha": "A_hex = 6 × (k/6)² × √3/4",
+      "nota": "6 triângulos equiláteros de lado k/6"
+     },
+     {
+      "linha": "A_hex = 6 × k²/36 × √3/4",
+      "nota": "(k/6)² = k²/36"
+     },
+     {
+      "linha": "A_hex = k²/6 × √3/4",
+      "nota": "6/36 = 1/6"
+     },
+     {
+      "linha": "A_hex = k²√3/24",
+      "nota": "6 × 4 = 24"
+     },
+     {
+      "linha": "tri ≈ 1,73/36 k² = 0,048k²",
+      "nota": "√3 ≈ 1,73"
+     },
+     {
+      "linha": "quad = 1/16 k² = 0,0625k²",
+      "nota": "1 ÷ 16"
+     },
+     {
+      "linha": "hex ≈ 1,73/24 k² = 0,072k²",
+      "nota": "o hexágono é o maior"
+     }
+    ],
+    "motivo": "Uma passagem por linha, sem pular contas; linhas curtas para caber na tela."
+   },
+   {
+    "campo": "resolucao.passos[0].conta",
+    "depois": "Triângulo: k/3\nQuadrado: k/4\nHexágono: k/6",
+    "motivo": "Conta curta, uma por linha, para caber no celular."
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "(k/3)² × √3/4 = k²√3/36",
+    "motivo": "Mantida; o porquê detalha a passagem."
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "0,048k² < 0,0625k² < 0,072k²",
+    "motivo": "Cabe na tela e fica coerente com o quadro."
+   },
+   {
+    "campo": "resolucao.passos[4].faz",
+    "depois": "Compare as áreas e marque a maior",
+    "motivo": "Ação mais clara; liga à alternativa."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "3k²√3/2 é a área de um hexágono de lado k: 6 × k² × √3/4. Mas a cerca só dá lado k/6. Ela seria bem maior que a de qualquer figura possível com essa cerca.",
+    "motivo": "Texto mais curto e claro sobre o que faltou: dividir k por 6."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "k",
+      "comprimento total da cerca, que é o perímetro do jardim, em metros"
+     ],
+     [
+      "perímetro",
+      "soma das medidas de todos os lados da figura"
+     ],
+     [
+      "polígono regular",
+      "polígono com todos os lados iguais e todos os ângulos iguais"
+     ],
+     [
+      "triângulo equilátero",
+      "triângulo com os três lados iguais"
+     ],
+     [
+      "hexágono",
+      "polígono de 6 lados"
+     ],
+     [
+      "√3",
+      "raiz quadrada de 3, cerca de 1,73"
+     ]
+    ],
+    "motivo": "Termos técnicos 'equilátero' e 'hexágono' explicados na primeira aparição."
+   }
+  ],
+  "didatica_alertas": [
+   "O campo nivel da resolução está 5, mas a classificação atual diz nível 6; verificar."
+  ],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "A"
  }
 }

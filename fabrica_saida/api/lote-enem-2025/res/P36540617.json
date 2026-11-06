@@ -8,7 +8,7 @@
  "conceito": "Regra de três com consumo de combustível: distância semanal e capacidade mínima do cilindro, escolhendo a menor opção que comporte a semana toda.",
  "resolucao": {
   "antes": {
-   "texto": "O cilindro precisa guardar o gás de uma semana inteira, pois haverá apenas um abastecimento por semana. Como o preço é proporcional à capacidade, o mais barato é o menor cilindro que ainda comporta esse consumo. Então: calcule o consumo semanal e escolha a primeira capacidade da lista que seja maior ou igual a ele.",
+   "texto": "O cilindro precisa guardar o gás de uma semana inteira, pois haverá só um abastecimento por semana. O preço é proporcional à capacidade, então o mais barato é o menor cilindro que ainda comporta esse consumo. Calcule o consumo semanal e escolha, na lista, a menor capacidade que seja maior ou igual a ele.",
    "formulas": [
     "distância semanal = km por dia × 7",
     "volume = distância ÷ 13 (cada 13 km gastam 1 m³)"
@@ -39,13 +39,13 @@
    {
     "faz": "Converta km em volume de gás",
     "conta": "210 ÷ 13 ≈ 16,15 m³",
-    "porque": "Cada 13 km gastam 1 m³. Basta ver quantos grupos de 13 km cabem em 210 km.",
+    "porque": "Cada 13 km gastam 1 m³. Para saber quantos m³ gastam 210 km, divida 210 por 13. A conta não é exata, por isso o resultado é aproximado.",
     "tipo": "calcular"
    },
    {
     "faz": "Veja a lista de capacidades",
     "conta": "10 · 14 · 17 · 21 · 25",
-    "porque": "O cilindro precisa ter capacidade de pelo menos 16,15 m³. Servem 17, 21 e 25. Os de 10 e 14 acabam antes do fim da semana.",
+    "porque": "O cilindro precisa ter pelo menos 16,15 m³. Servem 17, 21 e 25. Os de 10 e 14 acabam antes do fim da semana.",
     "tipo": "eliminar"
    },
    {
@@ -60,7 +60,7 @@
   "erradas": {
    "A": "10 m³ dá autonomia de 10 × 13 = 130 km. A semana pede 210 km, então o gás acaba antes do fim da semana.",
    "B": "14 m³ dá autonomia de 14 × 13 = 182 km, abaixo dos 210 km semanais. Faltariam 28 km, ou seja, 2,15 m³ (28 ÷ 13).",
-   "D": "21 m³ comporta o consumo (21 × 13 = 273 km), mas existe um cilindro menor que também serve, o de 17 m³. Como o preço é proporcional à capacidade, o de 21 m³ é mais caro sem necessidade. Repare que 21 m³ é só o número que lembra os 210 km, sem relação com o consumo.",
+   "D": "21 m³ comporta o consumo (21 × 13 = 273 km), mas existe um cilindro menor que também serve, o de 17 m³. Como o preço é proporcional à capacidade, o de 21 m³ sai mais caro sem necessidade.",
    "E": "25 m³ comporta o consumo (25 × 13 = 325 km), mas é o mais caro da lista. O enunciado pede o de menor preço entre os que servem, e o de 17 m³ já serve."
   },
   "armadilha": "Escolher o cilindro de 14 m³, arredondando 16,15 para baixo, ou pular direto para um valor maior sem testar o de 17 m³. O certo é o menor que seja maior ou igual a 16,15.",
@@ -130,10 +130,78 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [],
+  "fatos_ok": true,
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "O cilindro precisa guardar o gás de uma semana inteira, pois haverá só um abastecimento por semana. O preço é proporcional à capacidade, então o mais barato é o menor cilindro que ainda comporta esse consumo. Calcule o consumo semanal e escolha, na lista, a menor capacidade que seja maior ou igual a ele.",
+    "motivo": "Frases mais curtas e diretas; 'apenas' trocado por 'só'."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "Cada 13 km gastam 1 m³. Para saber quantos m³ gastam 210 km, divida 210 por 13. A conta não é exata, por isso o resultado é aproximado.",
+    "motivo": "Explica por que a divisão responde ao pedido e por que há aproximação."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "O cilindro precisa ter pelo menos 16,15 m³. Servem 17, 21 e 25. Os de 10 e 14 acabam antes do fim da semana.",
+    "motivo": "Texto mais simples."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "21 m³ comporta o consumo (21 × 13 = 273 km), mas existe um cilindro menor que também serve, o de 17 m³. Como o preço é proporcional à capacidade, o de 21 m³ sai mais caro sem necessidade. Quem marcou D talvez tenha se deixado levar pelo 210 km, sem relação com a capacidade.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou D: comparar com o menor que serve."
+   },
+   {
+    "campo": "resolucao.quadro[3]",
+    "depois": {
+     "linha": "x = \\frac{210}{13}",
+     "nota": "regra de três: 210 km dividido por 13 km por m³",
+     "mov": [
+      {
+       "termo": "13",
+       "de": "esquerda",
+       "para": "denominador",
+       "vira": "13",
+       "como": "passa dividindo"
+      }
+     ]
+    },
+    "motivo": "Fração empilhada, conforme o padrão da matéria."
+   }
+  ],
+  "didatica_alertas": [
+   "A conta 'x = 210/13' do quadro deve ser desenhada como fração empilhada; as instruções da API pedem 'numerador/denominador' e não LaTeX. Usei 'x = 210/13' no site se \\frac não for aceito: o corretor de formato decide."
+  ],
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "quadro[3].linha",
+    "depois": "x = 210/13",
+    "motivo": "O brief proíbe LaTeX (\\frac); a fração empilhada é desenhada a partir de 'numerador/denominador'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "21 m³ comporta o consumo (21 × 13 = 273 km), mas existe um cilindro menor que também serve, o de 17 m³. Como o preço é proporcional à capacidade, o de 21 m³ sai mais caro sem necessidade.",
+    "motivo": "Removida a especulação ('talvez'), proibida pelo guia. A frase também citava 210 km como se fosse alternativa, o que não é.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "C"
  }
 }

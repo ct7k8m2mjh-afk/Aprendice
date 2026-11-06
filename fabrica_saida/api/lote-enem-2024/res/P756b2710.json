@@ -8,7 +8,7 @@
  "conceito": "Encontro de dois móveis que vão um ao encontro do outro, combinado com frações do percurso para localizar a câmera.",
  "resolucao": {
   "antes": {
-   "texto": "Quando dois ônibus saem ao mesmo tempo de pontas opostas, os dois gastam o mesmo tempo até se encontrar. Juntos, eles cobrem a distância total, então a velocidade de aproximação é a soma das velocidades. Descoberto o ponto do encontro, falta ver em qual faixa de câmera ele cai. Para isso, as frações de cada câmera viram posições medidas a partir do Terminal 1.",
+   "texto": "Os dois ônibus saem juntos de pontas opostas, então andam o mesmo tempo até se encontrar. Juntos, eles cobrem os 9 000 m. Por isso, a distância entre eles diminui na soma das velocidades. Depois de achar o ponto do encontro, veja em qual faixa de câmera ele cai. As câmeras ocupam faixas seguidas, a partir do Terminal 1.",
    "formulas": [
     "tempo até o encontro = distância ÷ (soma das velocidades)",
     "distância percorrida = velocidade × tempo"
@@ -45,19 +45,19 @@
    {
     "faz": "Ache a posição do encontro",
     "conta": "250 × 22,5 = 5625 m",
-    "porque": "Medimos a partir do Terminal 1, de onde A saiu. É a mesma ordem em que o esquema numera as câmeras, de I (perto do Terminal 1) a V.",
+    "porque": "Medimos a partir do Terminal 1, de onde A saiu. No esquema, as câmeras vão de I (perto do Terminal 1) a V (perto do Terminal 2).",
     "tipo": "calcular"
    },
    {
-    "faz": "Converta as câmeras em metros",
-    "conta": "I: 0 a 1800 m (1/5)",
-    "porque": "Cada câmera cobre uma faixa seguida da anterior. Vamos somando os alcances: 1/5 = 1800 m, 3/10 = 2700 m, 1/10 = 900 m.",
+    "faz": "Converta a câmera I em metros",
+    "conta": "I: 1/5 × 9000 = 1800 m",
+    "porque": "Cada câmera cobre uma faixa que começa onde a anterior termina. Por isso o primeiro passo é saber o tamanho de cada faixa em metros.",
     "tipo": "calcular"
    },
    {
-    "faz": "Marque as faixas seguintes",
-    "conta": "II: 1800–4500 | III: 4500–5400 | IV: 5400–6300 | V: 6300–9000",
-    "porque": "Acumulado: 1800 + 2700 = 4500; + 900 = 5400; + 900 = 6300; + 2700 = 9000. Fecha o percurso.",
+    "faz": "Monte as faixas somando os alcances",
+    "conta": "II: 1800 a 4500 | III: 4500 a 5400 | IV: 5400 a 6300 | V: 6300 a 9000",
+    "porque": "II tem 3/10 de 9000 = 2700 m, III e IV têm 900 m cada, V tem 2700 m. Somando em ordem: 1800, 4500, 5400, 6300, 9000. Fecha o percurso.",
     "tipo": "calcular"
    },
    {
@@ -149,10 +149,56 @@
  "gab": "D",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [],
+  "fatos_ok": true,
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[3]",
+    "depois": {
+     "faz": "Converta a câmera I em metros",
+     "conta": "I: 1/5 × 9000 = 1800 m",
+     "porque": "Cada câmera cobre uma faixa que começa onde a anterior termina. Por isso o primeiro passo é saber o tamanho de cada faixa em metros.",
+     "tipo": "calcular"
+    },
+    "motivo": "O passo antigo misturava a conversão da câmera I com a explicação das demais; o novo faz um só movimento e cabe no celular."
+   },
+   {
+    "campo": "resolucao.passos[4]",
+    "depois": {
+     "faz": "Monte as faixas somando os alcances",
+     "conta": "II: 1800 a 4500 | III: 4500 a 5400 | IV: 5400 a 6300 | V: 6300 a 9000",
+     "porque": "II tem 3/10 de 9000 = 2700 m, III e IV têm 900 m cada, V tem 2700 m. Somando em ordem: 1800, 4500, 5400, 6300, 9000. Fecha o percurso.",
+     "tipo": "calcular"
+    },
+    "motivo": "Os tamanhos das faixas (2700 e 900 m) agora aparecem junto da soma, que antes estava dividida entre dois passos."
+   },
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Os dois ônibus saem juntos de pontas opostas, então andam o mesmo tempo até se encontrar. Juntos, eles cobrem os 9 000 m. Por isso, a distância entre eles diminui na soma das velocidades. Depois de achar o ponto do encontro, veja em qual faixa de câmera ele cai. As câmeras ocupam faixas seguidas, a partir do Terminal 1.",
+    "motivo": "Frases mais curtas e a ideia de faixas seguidas já aparece no início."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Medimos a partir do Terminal 1, de onde A saiu. No esquema, as câmeras vão de I (perto do Terminal 1) a V (perto do Terminal 2).",
+    "motivo": "Frase mais simples."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "D"
  }
 }

@@ -8,7 +8,7 @@
  "conceito": "Poluição térmica: a água aquecida lançada no ambiente dissolve menos oxigênio, o que prejudica a vida aquática.",
  "resolucao": {
   "antes": {
-   "texto": "Em usina termonuclear, a água de refrigeração retira calor do condensador e depois volta ao rio ou ao mar. Se o sistema é ineficiente, essa água volta mais quente do que saiu. Isso é poluição térmica. Gases dissolvem-se menos em água quente: quanto maior a temperatura, menor a quantidade de O₂ que a água segura. A questão pede a consequência para os seres vivos aquáticos, que dependem do O₂ dissolvido.",
+   "texto": "Em usina termonuclear, a água de refrigeração retira calor do condensador e depois volta ao rio ou ao mar. Se o sistema é ineficiente, essa água volta ao ambiente quente demais. Isso é poluição térmica. Gases dissolvem-se menos em água quente: quanto maior a temperatura, menor a quantidade de O₂ que a água segura. A questão pede a consequência para os seres vivos aquáticos, que dependem do O₂ dissolvido.",
    "formulas": [
     "água mais quente → menos gás dissolvido",
     "menos O₂ dissolvido → peixes e outros seres aeróbios sofrem",
@@ -25,7 +25,7 @@
     ],
     [
      "circuito primário",
-     "circuito que passa pelo reator e leva o calor ao gerador de vapor; contém o combustível"
+     "circuito que passa pelo reator, onde fica o combustível, e leva o calor ao gerador de vapor"
     ],
     [
      "pH",
@@ -43,20 +43,20 @@
    },
    {
     "faz": "Leia a figura: o que circula em cada circuito",
-    "conta": "Primário (amarelo): reator",
+    "conta": "Verde: só toca o condensador",
     "porque": "O circuito de refrigeração (verde) só encosta no condensador, que é do secundário (azul). Ele não passa pelo reator nem pelo combustível.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Ligue calor a gás dissolvido",
     "conta": "↑ temperatura → ↓ solubilidade de O₂",
     "porque": "Em água quente os gases dissolvidos escapam. Com menos O₂ dissolvido, peixes e outros seres aeróbios têm a respiração prejudicada.",
-    "tipo": "aplicar"
+    "tipo": "concluir"
    },
    {
     "faz": "Teste as demais alternativas",
     "conta": "A, B, C, D: não vêm do calor",
-    "porque": "Contaminação por combustível e elementos radioativos exigiria que a água de refrigeração entrasse em contato com o reator. Gases poluentes e queda de pH não vêm do aquecimento da água.",
+    "porque": "C e D exigiriam que a água verde tocasse o reator, e ela não toca. B: a usina não queima nada, então não emite gás. A: a água verde só leva calor, não traz ácido.",
     "tipo": "eliminar"
    },
    {
@@ -69,10 +69,10 @@
   "resposta": "Alternativa E: a água aquecida dissolve menos gás oxigênio, o que prejudica os seres vivos aquáticos.",
   "checagem": "Pense numa garrafa de refrigerante: quente, ela perde gás rápido; gelada, segura mais gás. É o mesmo princípio, só que com o O₂ da água do rio.",
   "erradas": {
-   "A": "A queda de pH exigiria um ácido ou mais CO₂ dissolvido na água. O texto trata só de calor, e a água quente dissolve menos gás, não mais. O pH não é a consequência direta.",
-   "B": "A água de refrigeração só recebe calor do condensador e não queima nada. Ela não gera gases poluentes. Calor faz os gases já dissolvidos escaparem, mas isso não é uma emissão poluente da usina.",
-   "C": "O combustível fica no reator, no circuito primário, dentro do vaso de contenção. O circuito de refrigeração não passa por ele, então não há contaminação por combustível.",
-   "D": "Elementos radioativos ficariam no circuito primário. A água de refrigeração é um circuito separado, que só troca calor no condensador. Ineficiência dela esquenta a água e não libera radioatividade."
+   "A": "Faltou notar que a água de refrigeração só leva calor. Para o pH cair, entraria ácido ou CO₂ na água, e isso não acontece. Água quente até perde CO₂ dissolvido.",
+   "B": "Faltou notar que a usina não queima nada na água de refrigeração, que só recebe calor. O calor faz escapar gás que já estava dissolvido, mas isso não é emissão de gás poluente pela usina.",
+   "C": "Faltou ler a figura: o combustível fica no reator, dentro do vaso de contenção, no circuito primário (amarelo). O circuito verde não passa por ele.",
+   "D": "Faltou separar poluição térmica de radiação. Os elementos radioativos ficam no circuito primário. O circuito verde só troca calor no condensador e, se falhar, só esquenta a água."
   },
   "armadilha": "Associar usina nuclear a radiação e escolher radioativos ou combustível, sem notar que o enunciado fala de poluição térmica e que o circuito de refrigeração não toca o reator.",
   "alerta": "",
@@ -123,10 +123,108 @@
  "gab": "E",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "localizar",
+    "motivo": "\"interpretar\" não está na lista de tipos aceitos (localizar, calcular, comparar, eliminar, concluir). Ler a figura é localizar.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "concluir",
+    "motivo": "\"aplicar\" não está na lista de tipos aceitos. O passo tira a conclusão física e biológica do aquecimento.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Em usina termonuclear, a água de refrigeração retira calor do condensador e depois volta ao rio ou ao mar. Se o sistema é ineficiente, essa água volta ao ambiente quente demais. Isso é poluição térmica. Gases dissolvem-se menos em água quente: quanto maior a temperatura, menor a quantidade de O₂ que a água segura. A questão pede a consequência para os seres vivos aquáticos, que dependem do O₂ dissolvido.",
+    "motivo": "A água de refrigeração sempre volta um pouco mais quente do que foi captada, mesmo com o sistema funcionando bem. O problema da ineficiência é ela voltar quente demais. A frase antiga (\"mais quente do que saiu\") dava a entender que o sistema eficiente devolve a água sem aquecer.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.antes.simbolos[2]",
+    "depois": [
+     "circuito primário",
+     "circuito que passa pelo reator, onde fica o combustível, e leva o calor ao gerador de vapor"
+    ],
+    "motivo": "Mais preciso: o circuito primário tem água que passa pelo reator; o combustível fica nos elementos combustíveis do reator, e não no circuito.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "Para baixar o pH, seria preciso entrar ácido ou CO₂ na água, e a água de refrigeração só recebe calor. Aquecer a água faz sair gás dissolvido, inclusive CO₂; não acidifica o ambiente.",
+    "motivo": "A frase \"a água quente dissolve menos gás, não mais\" misturava ideias. Além disso, a afirmação de que a queda de pH \"exigiria\" ácido não vale ao pé da letra: o pH da água pura cai um pouco com a temperatura, embora ela continue neutra. A nova redação fala em acidificar, que é o que a alternativa sugere.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "Verde: só toca o condensador",
+    "motivo": "A conta anterior só descrevia o circuito primário e não mostrava o que a pergunta precisa (o circuito verde). Agora a conta bate com o porque."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "A, B, C, D: não vêm do calor",
+    "motivo": "Mantida a ideia, mas o porque abaixo detalha cada grupo."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "C e D exigiriam que a água verde tocasse o reator, e ela não toca. B: a usina não queima nada, então não emite gás. A: a água verde só leva calor, não traz ácido.",
+    "motivo": "Frase mais curta e direta, com um motivo para cada grupo de alternativas."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "Faltou notar que a água de refrigeração só leva calor. Para o pH cair, entraria ácido ou CO₂ na água, e isso não acontece. Água quente até perde CO₂ dissolvido.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou A."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "Faltou notar que a usina não queima nada na água de refrigeração, que só recebe calor. O calor faz escapar gás que já estava dissolvido, mas isso não é emissão poluente.",
+    "motivo": "Mais direta e foca no que faltou ao aluno."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "Faltou ler a figura: o combustível fica no reator, dentro do vaso de contenção, no circuito primário (amarelo). O circuito verde não passa por ele.",
+    "motivo": "Aponta o que faltou: ler a figura."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "Faltou separar poluição térmica de radiação. Os elementos radioativos ficam no circuito primário. O circuito verde só troca calor no condensador e, se falhar, só esquenta a água.",
+    "motivo": "Mostra o erro de associar usina nuclear a radiação."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "conteudo",
+    "depois": "B09.7",
+    "motivo": "A classificação atual do banco é B09.6, mas poluição térmica e desequilíbrios ambientais pertencem a B09.7 (poluição e desequilíbrios). A resolução proposta já usa B09.7, então o valor foi mantido e o campo só precisa ser alinhado.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "Faltou notar que a usina não queima nada na água de refrigeração, que só recebe calor. O calor faz escapar gás que já estava dissolvido, mas isso não é emissão de gás poluente pela usina.",
+    "motivo": "Ajuste mínimo de precisão: a perda de gás dissolvido não é emissão poluente da usina. O resto da frase está correto.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "E"
  }
 }

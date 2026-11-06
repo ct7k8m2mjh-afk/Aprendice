@@ -4,11 +4,11 @@
  "materia": "mat",
  "tema": "M02",
  "conteudo": "M02.1",
- "nivel": 2,
+ "nivel": 4,
  "conceito": "Unidade de uma razão: consumo de oxigênio (mL por min) dividido pela massa (kg).",
  "resolucao": {
   "antes": {
-   "texto": "A unidade de uma razão é a unidade do numerador dividida pela unidade do denominador. Aqui o numerador já é uma razão: mL por minuto. O denominador é a massa, em kg. Não é preciso fazer conta numérica, só organizar as unidades.",
+   "texto": "A unidade de uma razão (uma divisão) é a unidade de cima dividida pela unidade de baixo. Aqui, o que está em cima já é uma divisão: mL por minuto. Embaixo vai a massa, em kg. Não há conta com números: só organizar as unidades.",
    "formulas": [
     "EC = consumo de oxigênio ÷ massa",
     "consumo de oxigênio = mL ÷ min",
@@ -51,12 +51,12 @@
     "faz": "Monte a razão das unidades",
     "conta": "EC = (mL/min) ÷ kg",
     "porque": "O EC é a razão entre o consumo e a massa, então o consumo fica no numerador e a massa no denominador.",
-    "tipo": "aplicar"
+    "tipo": "calcular"
    },
    {
     "faz": "Simplifique a fração",
-    "conta": "(mL/min) ÷ kg = mL/(min·kg)",
-    "porque": "Dividir por kg é o mesmo que multiplicar o denominador por kg. O minuto continua embaixo, junto com o kg.",
+    "conta": "(mL/min) ÷ kg = mL/(min · kg)",
+    "porque": "Dividir por kg é o mesmo que colocar o kg embaixo, multiplicando o min que já estava lá. Então o mL fica em cima, e min e kg ficam embaixo.",
     "tipo": "calcular"
    },
    {
@@ -67,10 +67,10 @@
    }
   ],
   "resposta": "Alternativa B: a unidade do EC é mL/(min·kg), isto é, mililitro de oxigênio por minuto e por quilograma.",
-  "checagem": "Teste com números: 3 000 mL/min para um atleta de 60 kg dá 3 000 ÷ 60 = 50. A unidade é mL/min dividida por kg, ou seja, 50 mL por min por kg. Leia a unidade em voz alta: 'mL por minuto por quilo', que é mL/(min·kg).",
+  "checagem": "Teste com números: 3 000 mL/min e 60 kg. A conta 3 000 ÷ 60 dá 50. A unidade fica mL/min dividido por kg. Em voz alta: 'mL por minuto por quilo', que é mL/(min · kg).",
   "erradas": {
    "A": "min/(mL·kg) tem o minuto em cima e o mL embaixo, o inverso do consumo. O enunciado dá o consumo em mL por min, com mL em cima e min embaixo.",
-   "C": "(min·mL)/kg multiplica minuto por mililitro. O consumo é mL dividido por minuto, e não multiplicado. Esse produto não corresponde a nenhuma razão do texto.",
+   "C": "(min · mL)/kg multiplica minuto por mililitro. O consumo é mL dividido por minuto, e não multiplicado. O min deveria estar embaixo, e aqui está em cima.",
    "D": "(min·kg)/mL põe a massa e o tempo em cima e o volume embaixo. A razão pedida tem o oxigênio em cima e a massa embaixo, então a massa não pode ficar no numerador.",
    "E": "(mL·kg)/min multiplica o volume pela massa. O EC divide o consumo pela massa, então o kg deve ficar no denominador, e não no numerador."
   },
@@ -89,7 +89,7 @@
   },
   {
    "nome": "eliminação",
-   "ideia": "O oxigênio (mL) é o que se mede e deve ficar em cima, o que elimina A e D. O kg só divide, então não pode ficar em cima, o que elimina C e E. Resta B."
+   "ideia": "O oxigênio (mL) é o que se mede e deve ficar em cima, o que elimina A e D. O consumo é 'por minuto', então o min fica embaixo, o que elimina C. O kg só divide, então não pode ficar em cima, o que elimina E. Resta B."
   }
  ],
  "quadro": [
@@ -133,10 +133,71 @@
  "gab": "B",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "caminhos[1].ideia",
+    "depois": "O oxigênio (mL) é o que se mede e deve ficar em cima, o que elimina A e D. O consumo é 'por minuto', então o min fica embaixo, o que elimina C. O kg só divide, então não pode ficar em cima, o que elimina E. Resta B.",
+    "motivo": "O texto dizia que 'o kg não pode ficar em cima' elimina C. Isso está errado: em C, (min·mL)/kg, o kg já está no denominador. O que elimina C é o min estar no numerador.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "calcular",
+    "motivo": "'aplicar' não é um tipo válido. Os tipos aceitos são localizar, calcular, comparar, eliminar e concluir. Montar a razão das unidades é um passo de cálculo.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "A unidade de uma razão (uma divisão) é a unidade de cima dividida pela unidade de baixo. Aqui, o que está em cima já é uma divisão: mL por minuto. Embaixo vai a massa, em kg. Não há conta com números: só organizar as unidades.",
+    "motivo": "Explica 'razão' em palavra simples e deixa a frase mais curta."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Dividir por kg é o mesmo que colocar o kg embaixo, multiplicando o min que já estava lá. Então o mL fica em cima, e min e kg ficam embaixo.",
+    "motivo": "Frase com um só sentido e que não diz 'simplifique' sem explicar."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "(mL/min) ÷ kg = mL/(min · kg)",
+    "motivo": "Mantém a conta curta e a fração empilhada no site."
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Teste com números: 3 000 mL/min e 60 kg. A conta 3 000 ÷ 60 dá 50. A unidade fica mL/min dividido por kg. Em voz alta: 'mL por minuto por quilo', que é mL/(min · kg).",
+    "motivo": "Frases mais curtas e claras."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "(min · mL)/kg multiplica minuto por mililitro. O consumo é mL dividido por minuto, e não multiplicado. O min deveria estar embaixo, e aqui está em cima.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou C, sem frase vaga."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "nivel",
+    "depois": 4,
+    "motivo": "A classificação atual do banco é nível 4. A resolução traz nivel 2 sem justificativa, e o campo `nota_dif` seria o lugar certo para discordar. Alinhei o valor ao banco. O conteúdo da resolução não muda.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "B"
  }
 }

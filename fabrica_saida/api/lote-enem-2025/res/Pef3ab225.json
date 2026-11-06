@@ -50,26 +50,26 @@
     "faz": "Retire as faces coladas",
     "conta": "base maior do tronco = base do prisma",
     "porque": "Na justaposição, essas duas faces se encostam e ficam por dentro. Não são pintadas. Sobra um hexágono grande (base livre do prisma).",
-    "tipo": "interpretar"
+    "tipo": "eliminar"
    },
    {
-    "faz": "Liste as faces externas",
-    "conta": "1 hex. grande + 6 retâng. + 6 trapézios + 1 hex. pequeno",
-    "porque": "Essas são todas as faces visíveis do protótipo. São 14 faces.",
-    "tipo": "localizar"
+    "faz": "Conte as faces externas",
+    "conta": "1 + 6 + 6 + 1 = 14",
+    "porque": "Soma: hexágono grande, 6 retângulos, 6 trapézios e hexágono pequeno. São as faces que aparecem por fora.",
+    "tipo": "calcular"
    },
    {
-    "faz": "Agrupe as congruentes",
-    "conta": "4 grupos → 4 cores",
-    "porque": "O hexágono pequeno tem tamanho diferente do grande, então não são congruentes. Retângulos e trapézios têm formatos diferentes. Cada tipo recebe uma cor.",
+    "faz": "Agrupe as faces congruentes",
+    "conta": "grande, pequeno, retâng., trapéz.",
+    "porque": "O hexágono pequeno tem tamanho diferente do grande, então não são congruentes. Retângulos e trapézios têm formatos diferentes. São 4 tipos, logo 4 cores: alternativa D.",
     "tipo": "concluir"
    }
   ],
   "resposta": "Alternativa D: 4 cores (hexágono grande, hexágono pequeno, retângulos e trapézios).",
-  "checagem": "Conte as faces: 1 + 6 + 6 + 1 = 14. Pela fórmula de Euler (V − A + F = 2), com 12 vértices do prisma e 6 do topo, V = 18 e A = 18 + 6 + 6 = 30... Mais simples: o prisma tem 18 arestas e o tronco 6 laterais mais 6 do topo, e 18 − 30 + 14 = 2 usando V = 18. Confere com 14 faces.",
+  "checagem": "Confira com a relação de Euler (V − A + F = 2; V é vértice, A é aresta, F é face). Vértices: 12 do prisma + 6 do topo do tronco = 18. Arestas: 18 do prisma + 6 laterais do tronco + 6 do topo = 30. Com 14 faces: 18 − 30 + 14 = 2. Fecha, então a lista de faces está completa.",
   "erradas": {
-   "A": "9 não confere: só se chegaria a 9 contando cores para faces que são congruentes. As 6 faces retangulares são todas iguais, e as 6 trapezoidais também. Isso dá só 2 cores para as 12 faces laterais.",
-   "B": "8 não confere: exigiria cores diferentes para faces iguais. Num prisma regular reto e num tronco de pirâmide regular, as faces laterais de cada sólido são congruentes entre si.",
+   "A": "9 não confere: exigiria cores diferentes para faces congruentes. As 6 faces retangulares são todas iguais e as 6 trapezoidais também. As 12 faces laterais precisam de só 2 cores.",
+   "B": "8 não confere: daria cores diferentes a faces iguais. Num prisma regular reto e num tronco de pirâmide regular, as faces laterais de cada sólido são congruentes. Há só 4 tipos de face: 8 passaria de 4.",
    "C": "6 não confere: seria o número de faces laterais de um dos sólidos, mas elas são congruentes e levam uma só cor. O que importa são os tipos de face, não a quantidade.",
    "E": "3 sai de agrupar os dois hexágonos numa só cor: hexágono + retângulos + trapézios = 3. Mas o hexágono da base livre do prisma é maior que o do topo do tronco. Eles não são congruentes e precisam de cores distintas."
   },
@@ -94,15 +94,15 @@
  "quadro": [
   {
    "linha": "Prisma: 2 hex. + 6 retâng.",
-   "nota": "faces do prisma hexagonal regular reto"
+   "nota": "faces do prisma"
   },
   {
-   "linha": "Tronco: 2 hex. + 6 trapézios",
-   "nota": "faces do tronco de pirâmide"
+   "linha": "Tronco: 2 hex. + 6 trapéz.",
+   "nota": "faces do tronco"
   },
   {
-   "linha": "Base maior do tronco = base do prisma",
-   "nota": "essas duas faces ficam coladas, por dentro"
+   "linha": "Base maior = base do prisma",
+   "nota": "coladas, ficam por dentro"
   },
   {
    "linha": "Externas: 1 hex. grande",
@@ -110,19 +110,19 @@
   },
   {
    "linha": "+ 6 retângulos",
-   "nota": "congruentes entre si: 1 cor"
+   "nota": "congruentes: 1 cor"
   },
   {
    "linha": "+ 6 trapézios",
-   "nota": "congruentes entre si: 1 cor"
+   "nota": "congruentes: 1 cor"
   },
   {
    "linha": "+ 1 hex. pequeno",
-   "nota": "topo do tronco, menor que o grande: outra cor"
+   "nota": "topo do tronco: outra cor"
   },
   {
    "linha": "Cores = 1 + 1 + 1 + 1 = 4",
-   "nota": "hex. grande, hex. pequeno, retângulos, trapézios",
+   "nota": "grande, pequeno, retâng., trapéz.",
    "destaque": "4"
   }
  ],
@@ -139,10 +139,134 @@
  "gab": "D",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "eliminar",
+    "motivo": "O tipo 'interpretar' não está na lista permitida (localizar, calcular, comparar, eliminar, concluir). Neste passo se descartam as faces coladas, então o tipo certo é 'eliminar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "1 + 6 + 6 + 1 = 14 faces",
+    "motivo": "A conta original tinha cerca de 55 caracteres e não cabe na tela de 390 px, onde a linha não quebra. A lista de faces já está no 'faz', no 'porque' e no quadro.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Confira a lista de faces pela relação de Euler (V − A + F = 2). Vértices: 12 do prisma mais 6 do topo do tronco, V = 18. Arestas: 18 do prisma, 6 laterais do tronco e 6 do topo, A = 30. Com F = 14, a conta dá 18 − 30 + 14 = 2. A lista de 14 faces está completa e não falta nenhum tipo de face.",
+    "motivo": "A checagem original tinha uma conta interrompida ('= 30...') e depois a refazia de forma confusa. Os números estão certos (V = 18, A = 30, F = 14), mas a redação estava truncada. Ficou a versão limpa da mesma verificação.",
+    "fonte": ""
+   },
+   {
+    "campo": "quadro[2].linha",
+    "depois": "Base maior = base do prisma",
+    "motivo": "A linha tinha 37 caracteres e passava do limite de cerca de 30 da tela. O sentido não muda.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[3]",
+    "depois": {
+     "faz": "Conte as faces externas",
+     "conta": "1 + 6 + 6 + 1 = 14",
+     "porque": "Soma: hexágono grande, 6 retângulos, 6 trapézios e hexágono pequeno. São as faces que aparecem por fora.",
+     "tipo": "calcular"
+    },
+    "motivo": "Passo estava com tipo 'localizar' e porque repetia a conta; ação mais clara, tipo calcular."
+   },
+   {
+    "campo": "resolucao.passos[4]",
+    "depois": {
+     "faz": "Agrupe as faces congruentes",
+     "conta": "grande, pequeno, retâng., trapéz.",
+     "porque": "O hexágono pequeno tem tamanho diferente do grande, então não são congruentes. Retângulos e trapézios têm formatos diferentes. São 4 tipos, logo 4 cores: alternativa D.",
+     "tipo": "concluir"
+    },
+    "motivo": "Conta curta (cabe em 30 caracteres) e ligação explícita com a alternativa."
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Confira com a relação de Euler (V − A + F = 2; V é vértice, A é aresta, F é face). Vértices: 12 do prisma + 6 do topo do tronco = 18. Arestas: 18 do prisma + 6 laterais do tronco + 6 do topo = 30. Com 14 faces: 18 − 30 + 14 = 2. Fecha, então a lista de faces está completa.",
+    "motivo": "Explica V, A e F, que o aluno pode não conhecer, e encurta as frases."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "9 não confere: exigiria cores diferentes para faces congruentes. As 6 faces retangulares são todas iguais e as 6 trapezoidais também. As 12 faces laterais precisam de só 2 cores.",
+    "motivo": "Texto mais direto sobre o que faltou no raciocínio de quem marcou A."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "8 não confere: daria cores diferentes a faces iguais. Num prisma regular reto e num tronco de pirâmide regular, as faces laterais de cada sólido são congruentes. Quem marcou B contou faces em vez de tipos de face.",
+    "motivo": "Diz o que faltou no raciocínio."
+   },
+   {
+    "campo": "resolucao.quadro",
+    "depois": [
+     {
+      "linha": "Prisma: 2 hex. + 6 retâng.",
+      "nota": "faces do prisma"
+     },
+     {
+      "linha": "Tronco: 2 hex. + 6 trapéz.",
+      "nota": "faces do tronco"
+     },
+     {
+      "linha": "Base maior = base do prisma",
+      "nota": "coladas, ficam por dentro"
+     },
+     {
+      "linha": "Externas: 1 hex. grande",
+      "nota": "base livre do prisma"
+     },
+     {
+      "linha": "+ 6 retângulos",
+      "nota": "congruentes: 1 cor"
+     },
+     {
+      "linha": "+ 6 trapézios",
+      "nota": "congruentes: 1 cor"
+     },
+     {
+      "linha": "+ 1 hex. pequeno",
+      "nota": "topo do tronco: outra cor"
+     },
+     {
+      "linha": "Cores = 1 + 1 + 1 + 1 = 4",
+      "nota": "grande, pequeno, retâng., trapéz.",
+      "destaque": "4"
+     }
+    ],
+    "motivo": "Linhas encurtadas para caber na tela do celular."
+   }
+  ],
+  "didatica_alertas": [
+   "O campo 'conteudo' está M11.5 no JSON, mas a classificação atual informada é M11.1, e o nível está 4 contra 5; o corretor 1 deve conferir."
+  ],
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "8 não confere: daria cores diferentes a faces iguais. Num prisma regular reto e num tronco de pirâmide regular, as faces laterais de cada sólido são congruentes. Há só 4 tipos de face: 8 passaria de 4.",
+    "motivo": "Retirada a especulação sobre a origem do erro, que o guia proíbe. Ficou o teste objetivo.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "D"
  }
 }

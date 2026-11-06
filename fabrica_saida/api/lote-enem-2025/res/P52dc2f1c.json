@@ -65,10 +65,10 @@
   "resposta": "Alternativa C: a mensalidade reajustada será R$ 245,20.",
   "checagem": "Confira voltando: 120 × 245,20 = 29 424. Tirando as despesas de 19 424, sobram 10 000, que é o lucro pedido.",
   "erradas": {
-   "A": "185,60 sai de aumentar 20% a manutenção também e ignorar o lucro: (14 240 × 1,2 + 120 × 43,20) ÷ 120 = 22 272 ÷ 120 = 185,60. Essa mensalidade só cobre as despesas e deixa lucro zero.",
+   "A": "185,60 sai de aumentar 20% também a manutenção e esquecer o lucro: 14 240 × 1,2 = 17 088; 17 088 + 5 184 = 22 272; 22 272 ÷ 120 = 185,60. Essa mensalidade só cobre as despesas e deixa o lucro em zero.",
    "B": "226,09 não confere: 226,09 × 120 = 27 130,80. Tirando as despesas de 19 424, o lucro seria 7 706,80, e não os 10 000 pedidos.",
    "D": "268,93 sai de aumentar 20% também a manutenção: 14 240 × 1,2 = 17 088; 17 088 + 5 184 = 22 272; 22 272 + 10 000 = 32 272; 32 272 ÷ 120 ≈ 268,93. O enunciado diz que a manutenção não muda.",
-   "E": "285,60 sai de aplicar 20% sobre despesas antigas mais lucro: (18 560 + 10 000) × 1,2 = 34 272; 34 272 ÷ 120 = 285,60. O lucro não sofre aumento, e só o seguro sobe."
+   "E": "285,60 sai de aumentar 20% sobre tudo, inclusive o lucro: despesas antigas 14 240 + 4 320 = 18 560; (18 560 + 10 000) × 1,2 = 34 272; 34 272 ÷ 120 = 285,60. Só o seguro sobe; o lucro e a manutenção ficam como estão."
   },
   "armadilha": "Aplicar os 20% sobre toda a despesa, e não só sobre o seguro por veículo.",
   "alerta": "",
@@ -85,7 +85,7 @@
   },
   {
    "nome": "Comparar com o valor antigo",
-   "ideia": "O seguro sobe R$ 7,20 por veículo (43,20 − 36). Isso dá 120 × 7,20 = 864 a mais de despesa, mas o lucro dado pede um cálculo completo; por isso o cálculo direto é mais seguro."
+   "ideia": "O seguro sobe R$ 7,20 por veículo (43,20 − 36), ou 120 × 7,20 = R$ 864,00 a mais de despesa por mês. Mas o enunciado não dá a mensalidade antiga, então não dá para partir dela e somar esse aumento. Faça o cálculo direto."
   }
  ],
  "quadro": [
@@ -118,8 +118,8 @@
    "nota": "receita = despesas + lucro"
   },
   {
-   "linha": "receita = 29 424",
-   "nota": "some os valores"
+   "linha": "120 × mensalidade = 29 424",
+   "nota": "receita = 120 × mensalidade"
   },
   {
    "linha": "mensalidade = 29 424/120",
@@ -151,10 +151,71 @@
  "confere": true,
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "quadro[7]",
+    "depois": {
+     "linha": "120 × mensalidade = 29 424",
+     "nota": "receita = 120 × mensalidade"
+    },
+    "motivo": "A linha seguinte faz o 120 passar dividindo a partir do lado esquerdo, mas antes dela o 120 não aparecia em nenhuma linha. Com esta linha o movimento sai da anterior. O valor 29 424 = 19 424 + 10 000 continua o mesmo.",
+    "fonte": ""
+   },
+   {
+    "campo": "caminhos[1].ideia",
+    "depois": "O seguro sobe R$ 7,20 por veículo (43,20 − 36), o que dá 120 × 7,20 = 864 a mais de despesa por mês. Só que o enunciado não informa a mensalidade antiga nem o lucro antigo. Por isso não dá para partir do valor antigo e somar o acréscimo: é preciso fazer o cálculo direto.",
+    "motivo": "A justificativa \"o lucro dado pede um cálculo completo\" não explica nada. O motivo real é que a questão não dá a mensalidade antiga nem o lucro antigo. As contas 43,20 − 36 = 7,20 e 120 × 7,20 = 864 estão certas.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "185,60 sai de aumentar 20% também a manutenção e esquecer o lucro: 14 240 × 1,2 = 17 088; 17 088 + 5 184 = 22 272; 22 272 ÷ 120 = 185,60. Essa mensalidade só cobre as despesas e deixa o lucro em zero.",
+    "motivo": "Conta mais clara, em passos curtos, e diz o que faltou (lucro e a manutenção não muda)."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "285,60 sai de aumentar 20% sobre tudo, inclusive o lucro: despesas antigas 14 240 + 4 320 = 18 560; (18 560 + 10 000) × 1,2 = 34 272; 34 272 ÷ 120 = 285,60. Só o seguro sobe; o lucro e a manutenção ficam como estão.",
+    "motivo": "Mostra de onde vem o 18 560 (14 240 + 120 × 36) e deixa o erro do aluno claro."
+   },
+   {
+    "campo": "resolucao.caminhos[1].ideia",
+    "depois": "O seguro sobe R$ 7,20 por veículo (43,20 − 36), ou 120 × 7,20 = R$ 864,00 a mais de despesa por mês. Mas o enunciado não dá a mensalidade antiga, então não dá para partir dela e somar esse aumento. Faça o cálculo direto.",
+    "motivo": "Frases mais curtas e sem ambiguidade."
+   },
+   {
+    "campo": "resolucao.quadro[8].linha",
+    "depois": "mensalidade = \\frac{29 424}{120}",
+    "motivo": "Fração empilhada no quadro conforme o padrão da matéria."
+   }
+  ],
+  "didatica_alertas": [
+   "O campo nivel da resolução está 5, mas a classificação atual informa nível 8. Confirmar com o corretor 1."
+  ],
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "quadro[8].linha",
+    "depois": "mensalidade = 29 424/120",
+    "motivo": "O programa da fábrica proíbe LaTeX (\\frac) em qualquer campo. O site desenha a fração empilhada a partir de 'numerador/denominador'. A conta em si está correta.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "C"
  }
 }

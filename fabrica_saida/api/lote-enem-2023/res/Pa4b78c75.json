@@ -39,19 +39,19 @@
    {
     "faz": "Escreva a probabilidade de ganhar",
     "conta": "0,20 × 4/(16 + x) ≤ 0,01",
-    "porque": "Preta em A tem 20%. Em B, as pretas continuam 4 e o total passa a ser 16 + x, pois entram x brancas.",
+    "porque": "Preta em A: 20% = 0,20. Em B, as pretas seguem 4 e o total vira 16 + x, pois entram x brancas. Ganhar é A e B, então multiplica. O resultado deve ser no máximo 1% = 0,01.",
     "tipo": "calcular"
    },
    {
     "faz": "Isole a fração da urna B",
     "conta": "4/(16 + x) ≤ 0,01/0,20 = 0,05",
-    "porque": "Divida os dois lados por 0,20. Como 0,05 = 1/20, a urna B deve ter no máximo 1 preta a cada 20 bolinhas.",
+    "porque": "Divida os dois lados por 0,20: 0,01 ÷ 0,20 = 0,05, que é 1/20. Então, em B, as pretas devem ser no máximo 1 a cada 20 bolinhas.",
     "tipo": "calcular"
    },
    {
     "faz": "Resolva a inequação",
     "conta": "16 + x ≥ 4 × 20 = 80",
-    "porque": "Se 4 dividido pelo total é no máximo 1/20, o total é no mínimo 4 × 20 = 80. Então x ≥ 80 − 16 = 64.",
+    "porque": "Se 4 dividido pelo total é no máximo 1/20, o total precisa ser grande: pelo menos 4 × 20 = 80. Como já há 16, faltam 80 − 16 = 64 brancas.",
     "tipo": "calcular"
    },
    {
@@ -119,7 +119,7 @@
   },
   {
    "linha": "16 + x ≥ 4 × 20",
-   "nota": "multiplicação cruzada; o sinal inverte porque o total fica no denominador"
+   "nota": "multiplica em cruz (tudo positivo): 4 × 20 ≤ 16 + x, o mesmo que 16 + x ≥ 80"
   },
   {
    "linha": "16 + x ≥ 80",
@@ -127,7 +127,7 @@
   },
   {
    "linha": "x ≥ 80 − 16",
-   "nota": "o 16 atravessa o igual e troca de sinal",
+   "nota": "o 16 atravessa o ≥ e troca de sinal",
    "destaque": "− 16",
    "mov": [
     {
@@ -157,10 +157,69 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "quadro[5].nota",
+    "depois": "multiplicação cruzada (tudo positivo): 4 × 20 ≤ 16 + x, lido da direita para a esquerda",
+    "motivo": "Aqui o sinal não se inverte. Os dois lados são positivos, então a multiplicação cruzada dá 4 × 20 ≤ 16 + x, e '16 + x ≥ 80' é a mesma desigualdade lida ao contrário. A nota antiga dizia que 'o sinal inverte porque o total fica no denominador', o que ensina uma regra falsa.",
+    "fonte": ""
+   },
+   {
+    "campo": "quadro[7].nota",
+    "depois": "o 16 atravessa o ≥ e troca de sinal",
+    "motivo": "Esta linha é uma inequação e não tem sinal de igual. O 16 atravessa o ≥.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "0,20 × 4/(16 + x) ≤ 0,01",
+    "motivo": "Mantida a conta; o ajuste é no porque, para explicar de onde vem a fração e o que é x."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "Preta em A: 20% = 0,20. Em B, as pretas seguem 4 e o total vira 16 + x, pois entram x brancas. Ganhar é A e B, então multiplica. O resultado deve ser no máximo 1% = 0,01.",
+    "motivo": "Explicar a multiplicação, a conversão de % em decimal e o limite de 1%."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Divida os dois lados por 0,20: 0,01 ÷ 0,20 = 0,05, que é 1/20. Então, em B, as pretas devem ser no máximo 1 a cada 20 bolinhas.",
+    "motivo": "Frases mais curtas e mostra a divisão feita."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Se 4 dividido pelo total é no máximo 1/20, o total precisa ser grande: pelo menos 4 × 20 = 80. Como já há 16, faltam 80 − 16 = 64 brancas.",
+    "motivo": "Deixar claro por que o total tem que ser no mínimo 80 e de onde vem a subtração."
+   },
+   {
+    "campo": "resolucao.quadro[5].nota",
+    "depois": "multiplica em cruz (tudo positivo): 4 × 20 ≤ 16 + x, o mesmo que 16 + x ≥ 80",
+    "motivo": "A nota original 'lido da direita para a esquerda' era confusa para um aluno de 17 anos."
+   },
+   {
+    "campo": "resolucao.quadro[3].linha",
+    "depois": "4/(16 + x) ≤ 0,01/0,20",
+    "motivo": "Mantida; o mov já mostra o 0,20 passando dividindo."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "C"
  }
 }

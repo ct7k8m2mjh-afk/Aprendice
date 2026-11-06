@@ -8,7 +8,7 @@
  "conceito": "Crescimento exponencial (multiplica por 10 a cada 3 dias) e uso de potências de 10 para achar o tempo até uma população-alvo.",
  "resolucao": {
   "antes": {
-   "texto": "Com 5 litros de produto e 1 litro para cada 200 000 larvas, o agricultor trata no máximo 5 × 200 000 = 1 000 000 de larvas de uma só vez. Como a dose toda é aplicada de uma vez, o produto deve ser aplicado quando a população chegar a esse valor. A população começa em 100 e é multiplicada por 10 a cada 3 dias.",
+   "texto": "Primeiro descubra quantas larvas os 5 litros tratam de uma vez: 1 litro serve para 200 000 larvas, então 5 litros servem para 5 × 200 000 = 1 000 000. O produto deve ser aplicado quando a população chegar a esse valor. A população começa em 100 e fica 10 vezes maior a cada 3 dias. A pergunta é em DIAS, não em quantas vezes multiplicou.",
    "formulas": [
     "população total tratada = litros × larvas por litro",
     "população após k períodos de 3 dias = 100 × 10^k"
@@ -16,11 +16,19 @@
    "simbolos": [
     [
      "10^k",
-     "10 multiplicado por ele mesmo k vezes"
+     "10 multiplicado por ele mesmo k vezes. Exemplo: 10^3 = 10 × 10 × 10 = 1 000"
+    ],
+    [
+     "k",
+     "quantas vezes a população foi multiplicada por 10 (número de períodos)"
     ],
     [
      "período",
-     "bloco de 3 dias, em que a população fica 10 vezes maior"
+     "bloco de 3 dias, no fim do qual a população fica 10 vezes maior"
+    ],
+    [
+     "10^6",
+     "1 000 000 (o 1 seguido de 6 zeros)"
     ]
    ]
   },
@@ -35,8 +43,8 @@
    {
     "faz": "Escreva a população após k períodos",
     "conta": "100 × 10^k",
-    "porque": "Começa com 100 larvas e cada período de 3 dias multiplica por 10.",
-    "tipo": "interpretar"
+    "porque": "Começa com 100 larvas e cada período de 3 dias multiplica por 10. Depois de k períodos, foram k multiplicações por 10.",
+    "tipo": "localizar"
    },
    {
     "faz": "Iguale ao valor-alvo",
@@ -47,7 +55,7 @@
    {
     "faz": "Ache k",
     "conta": "10^k = 10^4 → k = 4",
-    "porque": "Dividindo por 100 (10^2): 10^6 ÷ 10^2 = 10^4. São 4 períodos de 3 dias.",
+    "porque": "Divida os dois lados por 100, que é 10^2. Ao dividir potências de mesma base, subtraem-se os expoentes: 10^6 ÷ 10^2 = 10^4. Então k = 4 períodos.",
     "tipo": "calcular"
    },
    {
@@ -60,9 +68,9 @@
   "resposta": "Alternativa D: 12 dias, pois a população chega a 1 000 000 após 4 períodos de 3 dias.",
   "checagem": "Liste as populações: dia 0 = 100; dia 3 = 1 000; dia 6 = 10 000; dia 9 = 100 000; dia 12 = 1 000 000. Em 1 000 000 ÷ 200 000 = 5 litros, bate com o que ele tem.",
   "erradas": {
-   "A": "2 não confere: no dia 2 a população ainda está perto de 100 × 10^(2/3) ≈ 464 larvas, muito longe de 1 000 000. O 2 lembra o expoente 10^2 de 100, mas esse expoente não é o tempo.",
-   "B": "4 é o número de períodos (k = 4), não de dias. Cada período vale 3 dias, então falta multiplicar: 4 × 3 = 12.",
-   "C": "6 não confere: no dia 6 a população é 100 × 10^2 = 10 000, bem menos que 1 000 000. Isso usaria só 10 000 ÷ 200 000 = 0,05 L do produto, e ele aplica os 5 L de uma vez.",
+   "A": "2 não confere: em 2 dias nem um período de 3 dias terminou, e a população continua em 100 larvas. Seriam 100 ÷ 200 000 de litro, muito menos que os 5 L que ele aplica de uma vez. Faltou ver que o produto é aplicado quando a população chega a 1 000 000.",
+   "B": "4 é o número de períodos (k = 4), não de dias. Quem marcou B parou em k e esqueceu que cada período vale 3 dias: 4 × 3 = 12.",
+   "C": "6 não confere: no dia 6 passaram 2 períodos e a população é 100 × 10^2 = 10 000. Isso pede só 10 000 ÷ 200 000 = 0,05 L, mas ele aplica os 5 L de uma vez. Quem marcou C contou 2 períodos como se fossem 6 dias de multiplicação, ou seja, misturou 'dias' com 'períodos'.",
    "E": "18 não confere: no dia 18 são 6 períodos, 100 × 10^6 = 100 000 000 de larvas. Os 5 L tratariam só 1 000 000, e a população já seria 100 vezes maior."
   },
   "armadilha": "Parar em k = 4 (número de períodos) sem multiplicar por 3 dias cada período.",
@@ -97,9 +105,9 @@
    "nota": "população inicial × 10 por período"
   },
   {
-   "linha": "10^k = 10^6 ÷ 100",
+   "linha": "10^k = 10^6/100",
    "nota": "o 100 passa dividindo",
-   "destaque": "÷ 100",
+   "destaque": "100",
    "mov": [
     {
      "termo": "100",
@@ -111,8 +119,12 @@
    ]
   },
   {
+   "linha": "10^k = 10^6/10^2",
+   "nota": "100 = 10^2"
+  },
+  {
    "linha": "10^k = 10^4",
-   "nota": "10^6 ÷ 10^2 = 10^4"
+   "nota": "subtrai os expoentes: 6 − 2 = 4"
   },
   {
    "linha": "k = 4",
@@ -137,10 +149,162 @@
  "gab": "D",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "localizar",
+    "motivo": "O valor \"interpretar\" não está entre os tipos permitidos (localizar, calcular, comparar, eliminar, concluir). O passo traduz o enunciado em um modelo, então \"localizar\" é o tipo que mais se aproxima.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "2 não confere: em 2 dias não se completa nem um período de 3 dias. A população ainda não chegou a 1 000 larvas, muito longe de 1 000 000, e 5 L seriam dose demais.",
+    "motivo": "O texto antigo usava 100 × 10^(2/3) ≈ 464, o que supõe crescimento contínuo. O enunciado só garante que a população fica 10 vezes maior a cada 3 dias. Saiu também a origem especulativa (\"lembra o expoente 10^2\"), que o padrão proíbe.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Primeiro descubra quantas larvas os 5 litros tratam de uma vez: 1 litro serve para 200 000 larvas, então 5 litros servem para 5 × 200 000 = 1 000 000. O produto deve ser aplicado quando a população chegar a esse valor. A população começa em 100 e fica 10 vezes maior a cada 3 dias. A pergunta é em DIAS, não em quantas vezes multiplicou.",
+    "motivo": "Deixa claro o que se pede e a unidade da resposta; frases curtas."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "10^k",
+      "10 multiplicado por ele mesmo k vezes. Exemplo: 10^3 = 10 × 10 × 10 = 1 000"
+     ],
+     [
+      "k",
+      "quantas vezes a população foi multiplicada por 10 (número de períodos)"
+     ],
+     [
+      "período",
+      "bloco de 3 dias, no fim do qual a população fica 10 vezes maior"
+     ],
+     [
+      "10^6",
+      "1 000 000 (o 1 seguido de 6 zeros)"
+     ]
+    ],
+    "motivo": "Explica k e 10^6, que aparecem na resolução sem definição."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "Começa com 100 larvas e cada período de 3 dias multiplica por 10. Depois de k períodos, foram k multiplicações por 10.",
+    "motivo": "Explica de onde vem o expoente k."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Divida os dois lados por 100, que é 10^2. Ao dividir potências de mesma base, subtraem-se os expoentes: 10^6 ÷ 10^2 = 10^4. Então k = 4 períodos.",
+    "motivo": "Diz a regra usada na divisão de potências."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "2 não confere: em 2 dias nem um período de 3 dias terminou, e a população continua em 100 larvas. Seriam 100 ÷ 200 000 de litro, muito menos que os 5 L que ele aplica de uma vez. Faltou ver que o produto é aplicado quando a população chega a 1 000 000.",
+    "motivo": "Corrige a afirmação imprecisa (população 'não chegou a 1 000') e diz o que faltou no raciocínio."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "4 é o número de períodos (k = 4), não de dias. Quem marcou B parou em k e esqueceu que cada período vale 3 dias: 4 × 3 = 12.",
+    "motivo": "Mostra o que faltou ao aluno."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "6 não confere: no dia 6 passaram 2 períodos e a população é 100 × 10^2 = 10 000. Isso pede só 10 000 ÷ 200 000 = 0,05 L, mas ele aplica os 5 L de uma vez. Quem marcou C talvez tenha confundido 'dias' com 'períodos' ao contar.",
+    "motivo": "Diz o que faltou ao aluno, sem alterar a conta."
+   },
+   {
+    "campo": "resolucao.quadro",
+    "depois": [
+     {
+      "linha": "5 × 200 000 = 1 000 000",
+      "nota": "larvas que os 5 L tratam de uma vez"
+     },
+     {
+      "linha": "1 000 000 = 10^6",
+      "nota": "escreva como potência de 10"
+     },
+     {
+      "linha": "100 × 10^k = 10^6",
+      "nota": "população inicial × 10 por período"
+     },
+     {
+      "linha": "10^k = \\frac{10^6}{100}",
+      "nota": "o 100 passa dividindo",
+      "destaque": "100",
+      "mov": [
+       {
+        "termo": "100",
+        "de": "esquerda",
+        "para": "denominador",
+        "vira": "100",
+        "como": "passa dividindo"
+       }
+      ]
+     },
+     {
+      "linha": "10^k = \\frac{10^6}{10^2}",
+      "nota": "100 = 10^2"
+     },
+     {
+      "linha": "10^k = 10^4",
+      "nota": "subtrai os expoentes: 6 − 2 = 4"
+     },
+     {
+      "linha": "k = 4",
+      "nota": "bases iguais, expoentes iguais"
+     },
+     {
+      "linha": "4 × 3 = 12 dias",
+      "nota": "cada período vale 3 dias",
+      "destaque": "12"
+     }
+    ],
+    "motivo": "Fração empilhada com \\frac e passo extra 100 = 10^2, sem pular passagem."
+   }
+  ],
+  "didatica_alertas": [
+   "Classificação do banco: tema M04, conteúdo M04.5, nível 8, enquanto a resolução traz M06/M06.1, nível 5. O conteúdo exponencial (M06.1) parece o correto; o corretor 1 deve conferir.",
+   "A regra do JSON de saída pede fração como numerador/denominador, mas o brief de Matemática exige \\frac no quadro; conflito de instruções, usei \\frac apenas na linha do quadro."
+  ],
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.quadro[3].linha",
+    "depois": "10^k = 10^6/100",
+    "motivo": "A regra do programa proíbe LaTeX (\\frac) em qualquer campo, inclusive no quadro. A fração deve ser escrita como numerador/denominador, e o site a desenha empilhada.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.quadro[4].linha",
+    "depois": "10^k = 10^6/10^2",
+    "motivo": "Mesma regra: sem LaTeX. Usar numerador/denominador.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "6 não confere: no dia 6 passaram 2 períodos e a população é 100 × 10^2 = 10 000. Isso pede só 10 000 ÷ 200 000 = 0,05 L, mas ele aplica os 5 L de uma vez. Quem marcou C contou 2 períodos como se fossem 6 dias de multiplicação, ou seja, misturou 'dias' com 'períodos'.",
+    "motivo": "A palavra 'talvez' é proibida nas erradas, porque indica origem inventada. A conta já está certa (10 000 ÷ 200 000 = 0,05), e só a especulação foi retirada.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "D"
  }
 }

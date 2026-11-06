@@ -8,7 +8,7 @@
  "conceito": "Comparar volumes de cilindro e cubo, achar a aresta pela raiz cúbica e simplificar o radical.",
  "resolucao": {
   "antes": {
-   "texto": "\"Capacidade\" é volume. Calcule o volume do cilindro atual, tire 80% dele e iguale ao volume de um cubo, que é aresta × aresta × aresta. A aresta é a raiz cúbica desse volume. Para comparar com as alternativas, simplifique o radical tirando da raiz cúbica os fatores que são cubos perfeitos.",
+   "texto": "\"Capacidade\" é volume. Calcule o volume do cilindro atual, tire 80% dele e iguale ao volume de um cubo, que é aresta × aresta × aresta. A aresta é a raiz cúbica desse volume. As alternativas vêm com o radical simplificado. Por isso, depois de achar a raiz, tire dela os fatores que são cubos perfeitos (como 8, 27, 64).",
    "formulas": [
     "volume do cilindro = π × r² × h",
     "volume do cubo = a³",
@@ -29,11 +29,23 @@
     ],
     [
      "∛",
-     "raiz cúbica: o número que, multiplicado por si mesmo três vezes, dá o que está dentro"
+     "raiz cúbica: o número que, multiplicado por si mesmo três vezes, dá o que está dentro. Exemplo: ∛27 = 3, pois 3 × 3 × 3 = 27"
+    ],
+    [
+     "cubo perfeito",
+     "número que é outro número ao cubo, como 8 = 2³ e 27 = 3³"
     ],
     [
      "capacidade",
      "quanto cabe na embalagem, ou seja, o volume"
+    ],
+    [
+     "cm³",
+     "centímetro cúbico: unidade de volume"
+    ],
+    [
+     "π",
+     "número pi, que o enunciado manda usar como 3"
     ]
    ]
   },
@@ -55,12 +67,12 @@
     "faz": "Monte a equação do cubo",
     "conta": "a³ = 324",
     "porque": "O volume do cubo é aresta ao cubo. A aresta é, portanto, a raiz cúbica de 324.",
-    "tipo": "aplicar"
+    "tipo": "calcular"
    },
    {
     "faz": "Fatore 324 e procure um cubo",
     "conta": "324 = 27 × 12",
-    "porque": "27 = 3³ é cubo perfeito e sai da raiz como 3. O 12 não é cubo (2³ = 8, 3³ = 27), então fica dentro.",
+    "porque": "Teste cubos perfeitos que dividem 324: 8 não divide (324 ÷ 8 = 40,5), 27 divide (324 ÷ 27 = 12). Como 27 = 3³, ele sai da raiz como 3. O 12 não é cubo (2³ = 8, 3³ = 27), então fica dentro.",
     "tipo": "calcular"
    },
    {
@@ -74,11 +86,11 @@
   "checagem": "Eleve a resposta ao cubo: (3∛12)³ = 27 × 12 = 324. Como 324 ÷ 405 = 0,8, o volume é mesmo 80% do cilindro. Em número: ∛12 ≈ 2,29, então a ≈ 6,87 cm, e 6,87³ ≈ 324.",
   "erradas": {
    "A": "Aresta 6 dá volume 6³ = 216 cm³, que é só cerca de 53% de 405, não 80%. Para ter 324 cm³ a aresta precisa ser maior que 6 (aprox. 6,87).",
-   "B": "Aresta 18 dá volume 18³ = 5832 cm³, muito maior que os 405 cm³ do cilindro. Parece vir de misturar a altura (15) com o raio, mas o cubo não pode caber mais que 80% do cilindro.",
+   "B": "18 sai de tirar a raiz quadrada em vez da cúbica: √324 = 18. Mas 18³ = 5832 cm³, muito mais que os 405 cm³ do cilindro, e não os 324 cm³ pedidos.",
    "C": "6√6 usa raiz quadrada, mas o volume do cubo pede raiz cúbica. Elevando ao cubo: (6√6)³ = 216 × 6√6 ≈ 3174 cm³, e não 324.",
    "D": "6∛6 ao cubo dá 6³ × 6 = 216 × 6 = 1296 cm³. Isso é 4 vezes 324, ou seja, 320% do cilindro, não 80%."
   },
-  "armadilha": "Fatorar 324 mal e deixar fator que é cubo dentro da raiz (ou usar raiz quadrada), o que leva a alternativas parecidas como 6∛6 ou 6√6.",
+  "armadilha": "Usar raiz quadrada no lugar da cúbica (√324 = 18, alternativa B) ou simplificar mal a raiz cúbica de 324, chegando a formas parecidas como 6∛6.",
   "alerta": "",
   "essencial": {
    "pede": "A aresta, em cm, de um cubo com volume igual a 80% do volume do cilindro.",
@@ -110,12 +122,12 @@
    "nota": "volume em cm³"
   },
   {
-   "linha": "V_cubo = 0,8 · 405",
+   "linha": "V_cubo = 0,8 × 405",
    "nota": "80% = 0,8"
   },
   {
    "linha": "V_cubo = 324",
-   "nota": "faça a conta: 0,8 × 405 = 324"
+   "nota": "0,8 × 405 = 324"
   },
   {
    "linha": "a³ = 324",
@@ -148,10 +160,110 @@
  "gab": "E",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "18 sai de tirar a raiz quadrada em vez da cúbica: √324 = 18. Mas 18³ = 5832 cm³, muito mais que os 405 cm³ do cilindro, e não os 324 cm³ pedidos.",
+    "motivo": "A origem antiga ('misturar a altura com o raio') era um palpite e nenhuma conta chega a 18 por esse caminho. A origem real é √324 = 18.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.armadilha",
+    "depois": "Usar raiz quadrada no lugar da cúbica (√324 = 18, alternativa B) ou simplificar mal a raiz cúbica de 324, chegando a formas parecidas como 6∛6.",
+    "motivo": "O texto antigo ligava a raiz quadrada a 6√6. Quem usa raiz quadrada chega a √324 = 18 (B), e não a 6√6.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "calcular",
+    "motivo": "'aplicar' não está entre os tipos permitidos (localizar, calcular, comparar, eliminar, concluir).",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "\"Capacidade\" é volume. Calcule o volume do cilindro atual, tire 80% dele e iguale ao volume de um cubo, que é aresta × aresta × aresta. A aresta é a raiz cúbica desse volume. As alternativas vêm com o radical simplificado. Por isso, depois de achar a raiz, tire dela os fatores que são cubos perfeitos (como 8, 27, 64).",
+    "motivo": "Explica o que é cubo perfeito e deixa claro por que simplificar."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "r",
+      "raio da base do cilindro (3 cm)"
+     ],
+     [
+      "h",
+      "altura do cilindro (15 cm)"
+     ],
+     [
+      "a",
+      "aresta do cubo, o lado de uma de suas faces"
+     ],
+     [
+      "∛",
+      "raiz cúbica: o número que, multiplicado por si mesmo três vezes, dá o que está dentro. Exemplo: ∛27 = 3, pois 3 × 3 × 3 = 27"
+     ],
+     [
+      "cubo perfeito",
+      "número que é outro número ao cubo, como 8 = 2³ e 27 = 3³"
+     ],
+     [
+      "capacidade",
+      "quanto cabe na embalagem, ou seja, o volume"
+     ],
+     [
+      "cm³",
+      "centímetro cúbico: unidade de volume"
+     ],
+     [
+      "π",
+      "número pi, que o enunciado manda usar como 3"
+     ]
+    ],
+    "motivo": "Inclui cubo perfeito, cm³ e π, termos usados na resolução e não explicados."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "324 = 27 × 12",
+    "motivo": "Mantida. O porquê agora mostra como achar o 27."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Teste cubos perfeitos que dividem 324: 8 não divide (324 ÷ 8 = 40,5), 27 divide (324 ÷ 27 = 12). Como 27 = 3³, ele sai da raiz como 3. O 12 não é cubo (2³ = 8, 3³ = 27), então fica dentro.",
+    "motivo": "Mostra de onde vem o 27, em vez de aparecer pronto."
+   },
+   {
+    "campo": "resolucao.quadro[4].nota",
+    "depois": "0,8 × 405 = 324",
+    "motivo": "A nota era um comando solto; agora mostra a conta."
+   },
+   {
+    "campo": "resolucao.quadro[3].linha",
+    "depois": "V_cubo = 0,8 × 405",
+    "motivo": "Uso de × consistente com o restante, mais claro para o aluno."
+   }
+  ],
+  "didatica_alertas": [
+   "O campo \"nivel\" está 6 na resolução, mas a classificação atual diz nível 8; verificar qual vale."
+  ],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "E"
  }
 }

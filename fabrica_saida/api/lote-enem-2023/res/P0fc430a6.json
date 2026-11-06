@@ -8,7 +8,7 @@
  "conceito": "Identificar a finalidade de um anúncio publicitário: o que o texto quer que o leitor faça (função apelativa).",
  "resolucao": {
   "antes": {
-   "texto": "Finalidade é o que o texto quer provocar no leitor. Em anúncio de campanha, ela aparece nos verbos no imperativo, como 'denuncie'. As informações do cartaz (dado, canal, nome da instituição) servem a esse pedido final e não são o objetivo principal.",
+   "texto": "Finalidade é o que o texto quer que o leitor pense ou faça. Em anúncio de campanha, ela aparece nos verbos no imperativo, como 'denuncie'. Os outros dados do cartaz (alerta, telefone, nome da instituição) ajudam esse pedido final e não são o objetivo principal.",
    "formulas": [
     "imperativo (Não se cale! Denuncie!) = apelo ao leitor, ou seja, finalidade de convencer a agir",
     "informação de apoio ≠ finalidade: ela sustenta o pedido"
@@ -50,12 +50,12 @@
     "faz": "Veja o que as outras partes fazem",
     "conta": "'alerta para o aumento da violência' / 'Disque 180'",
     "porque": "O aumento da violência justifica o pedido. O Disque 180 mostra como denunciar. Ambos servem ao apelo.",
-    "tipo": "interpretar"
+    "tipo": "comparar"
    },
    {
     "faz": "Elimine finalidades parciais",
-    "conta": "divulgar canal? mostrar trabalho? alertar?",
-    "porque": "Cada uma dessas opções descreve um detalhe do cartaz. Nenhuma explica a frase final, que pede denúncia.",
+    "conta": "A: divulgar o canal / B, C: mostrar o órgão / D: alertar",
+    "porque": "Cada uma dessas opções descreve só um detalhe do cartaz. Nenhuma explica a frase final, que pede denúncia.",
     "tipo": "eliminar"
    },
    {
@@ -71,7 +71,8 @@
    "A": "O 'Disque 180' aparece, mas como meio para denunciar. O texto não se limita a divulgar o telefone: ele pede 'Não se cale! Denuncie!'. Divulgar o canal é parte do apelo, não a finalidade.",
    "B": "A frase 'A Defensoria não para!' informa a atuação do órgão, mas é secundária. O cartaz não descreve o que a Defensoria faz: ele se dirige à vítima e pede que ela denuncie.",
    "C": "Mostrar o trabalho da Defensoria é só uma frase de apoio ('A Defensoria não para!'). O cartaz não detalha esse trabalho, e o destaque está no 'não me calo' e no 'Denuncie!'.",
-   "D": "O alerta sobre o aumento da violência existe ('alerta para o aumento da violência'), mas é a justificativa do pedido. Além disso, o texto fala 'em tempos de isolamento' e não diz que o coronavírus causa a violência. O alerta serve para levar à denúncia."
+   "D": "O alerta existe ('alerta para o aumento da violência'), mas serve de motivo para o pedido de denúncia. O cartaz diz 'em tempos de isolamento social por conta da pandemia', mas não diz que o coronavírus causa a violência. D acrescenta essa causa, e o texto também não limita o objetivo a alertar.",
+   "E": ""
   },
   "armadilha": "Escolher a informação mais visível (alerta, Disque 180 ou Defensoria) em vez do objetivo final do texto, que é o apelo 'Denuncie!'.",
   "alerta": "",
@@ -105,10 +106,77 @@
  "gab": "E",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "comparar",
+    "motivo": "O guia só aceita os tipos localizar, calcular, comparar, eliminar e concluir, e 'interpretar' não está na lista. O passo põe as partes de apoio (o alerta e o Disque 180) ao lado do apelo 'Denuncie!' para mostrar que elas servem a ele, por isso o tipo certo é 'comparar'.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E",
+  "didatica": [
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "Esta é a certa. Falta de quem marcou outra letra notar que todas as outras opções descrevem uma parte do cartaz (telefone, órgão, alerta), enquanto só esta traduz o pedido final: 'Denuncie!'.",
+    "motivo": "O bloco 'erradas' traz só letras erradas; a entrada E só deve existir se a certa também for comentada. Mantive curta e sem mudar fatos (se o app só aceita letras erradas, o corretor pode descartar)."
+   },
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Finalidade é o que o texto quer que o leitor pense ou faça. Em anúncio de campanha, ela aparece nos verbos no imperativo, como 'denuncie'. Os outros dados do cartaz (alerta, telefone, nome da instituição) ajudam esse pedido final e não são o objetivo principal.",
+    "motivo": "Frases mais curtas e sem repetir o termo 'informações' de forma ambígua."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "A: divulgar o canal / B, C: mostrar a Defensoria / D: alertar",
+    "motivo": "A conta anterior eram perguntas soltas; agora liga cada letra à ideia que ela traz."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Cada uma dessas opções descreve só um detalhe do cartaz. Nenhuma explica a frase final, que pede denúncia.",
+    "motivo": "Troca 'parciais' e 'dessas opções' por frase mais direta e clara para o aluno."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "O alerta existe ('alerta para o aumento da violência'), mas serve de motivo para o pedido de denúncia. O texto também diz 'em tempos de isolamento' e não afirma que o coronavírus causa a violência: D inventa essa causa.",
+    "motivo": "Frases mais curtas e o erro de raciocínio (causa não dita no texto) ficou explícito."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "",
+    "motivo": "O bloco 'erradas' deve ter só letras erradas. E é a alternativa certa, que já é explicada em 'resposta' e nos passos. Remova a entrada.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "O alerta existe ('alerta para o aumento da violência'), mas serve de motivo para o pedido de denúncia. O cartaz diz 'em tempos de isolamento social por conta da pandemia', mas não diz que o coronavírus causa a violência. D acrescenta essa causa, e o texto também não limita o objetivo a alertar.",
+    "motivo": "O texto liga o aumento da violência ao isolamento social da pandemia, não ao vírus. A frase 'não afirma que o coronavírus causa' estava certa, mas o início 'também diz em tempos de isolamento' era confuso. Reescrevi para precisar o que o cartaz diz.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "A: divulgar o canal / B, C: mostrar o órgão / D: alertar",
+    "motivo": "Pequeno ajuste de clareza, já que B e C falam da entidade e do trabalho dela. O fato não muda.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "E"
  }
 }

@@ -8,7 +8,7 @@
  "conceito": "Diferenciar ações que removem CO2 da atmosfera (sumidouros, como a fotossíntese) de ações que apenas evitam emissões.",
  "resolucao": {
   "antes": {
-   "texto": "O texto separa dois tipos de ação mitigadora: as que reduzem as emissões de CO2 e as que reduzem os níveis de CO2 já presentes na atmosfera. A pergunta pede o segundo tipo, ou seja, uma ação que retire o gás do ar. As plantas fazem isso na fotossíntese: absorvem CO2 e o transformam em açúcares e biomassa.",
+   "texto": "O texto fala de dois tipos de ação mitigadora (ação que diminui o problema). Um tipo reduz as emissões, isto é, o CO2 que ainda vai ser lançado no ar. O outro reduz os níveis, isto é, tira do ar o CO2 que já está lá. A pergunta pede o segundo tipo. As plantas fazem isso na fotossíntese: absorvem CO2 e o transformam em açúcares e em biomassa (o corpo da planta).",
    "formulas": [
     "Fotossíntese: 6 CO2 + 6 H2O → C6H12O6 + 6 O2 (com luz)",
     "Remover CO2 do ar ≠ deixar de emitir CO2"
@@ -29,6 +29,18 @@
     [
      "combustível fóssil",
      "carvão, petróleo e gás natural, cuja queima libera CO2"
+    ],
+    [
+     "biomassa",
+     "matéria viva da planta (madeira, folhas, raízes), que guarda o carbono retirado do ar"
+    ],
+    [
+     "usina eólica",
+     "usina que gera eletricidade com a força do vento, sem queimar combustível"
+    ],
+    [
+     "sumidouro",
+     "tudo o que retira CO2 do ar e o guarda, como florestas e oceanos"
     ]
    ]
   },
@@ -36,21 +48,21 @@
   "passos": [
    {
     "faz": "Localize o que a pergunta pede",
-    "conta": "\"remoção desse gás ... reduzindo seus níveis\"",
+    "conta": "\"remoção desse gás\"",
     "porque": "O comando pede uma ação que tire CO2 da atmosfera, e não uma que só evite emissões novas.",
     "tipo": "localizar"
    },
    {
     "faz": "Separe as ações por tipo",
     "conta": "Evitam emissão: B, C, D, E",
-    "porque": "Energia eólica, energia solar, combustível fóssil no solo e menos resíduos reduzem o que é lançado no ar. Nenhuma delas retira CO2 que já está lá.",
+    "porque": "Energia eólica, energia solar, deixar o combustível fóssil no solo e gerar menos resíduos reduzem o que é lançado no ar. Nenhuma tira o CO2 que já está lá.",
     "tipo": "comparar"
    },
    {
     "faz": "Identifique a ação que remove o gás",
-    "conta": "6 CO2 + 6 H2O → C6H12O6 + 6 O2",
+    "conta": "árvore: CO2 do ar → biomassa",
     "porque": "Na fotossíntese as árvores consomem CO2 do ar e o fixam como carbono na madeira, nas folhas e nas raízes.",
-    "tipo": "aplicar"
+    "tipo": "localizar"
    },
    {
     "faz": "Conclua",
@@ -71,7 +83,7 @@
   "alerta": "",
   "essencial": {
    "pede": "A ação mitigadora que remove CO2 da atmosfera, reduzindo seus níveis.",
-   "chave": "Só as plantas retiram CO2 do ar, pela fotossíntese. As demais opções apenas evitam emitir mais.",
+   "chave": "Entre as opções, só as árvores retiram CO2 do ar, pela fotossíntese. As demais apenas evitam emitir mais.",
    "cuidado": "Distinguir reduzir emissões (prevenir) de remover o gás já emitido (sumidouro)."
   }
  },
@@ -95,13 +107,13 @@
    "nota": "reduz o nível de CO2 na atmosfera"
   },
   {
-   "linha": "eólica, solar, fóssil no solo → emitem menos",
+   "linha": "B, C, D, E → emitem menos",
    "nota": "evitam emissão, mas não removem o CO2 já emitido"
   }
  ],
  "visual": {
   "cabe": true,
-  "porque": "Mostrar o fluxo de CO2 (entradas e saídas) deixa claro que só as plantas retiram o gás do ar.",
+  "porque": "Mostrar o fluxo de CO2 (entradas e saídas) deixa claro que, entre as opções, só as plantas retiram o gás do ar.",
   "tipo": "fluxo",
   "roteiro": "Quadro 1: atmosfera como uma caixa com moléculas de CO2 (O=C=O). Quadro 2: chaminé de usina a combustível fóssil e um carro lançam CO2 para dentro da caixa (setas de entrada). Quadro 3: uma turbina eólica e um painel solar aparecem com a seta de entrada sumindo, mas as moléculas que já estavam na caixa continuam. Quadro 4: uma árvore com luz solar puxa moléculas de CO2 para as folhas (seta de saída da caixa) e libera O2; o número de moléculas na caixa diminui. Quadro 5: a árvore é destacada e o texto 'remoção de CO2' aparece."
  },
@@ -112,10 +124,106 @@
  "gab": "A",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "localizar",
+    "motivo": "O tipo 'aplicar' não existe na lista permitida (localizar, calcular, comparar, eliminar, concluir). O passo acha, entre as opções, a ação que remove CO2, então o tipo certo é 'localizar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[0].conta",
+    "depois": "\"remoção desse gás\"",
+    "motivo": "Com cerca de 45 caracteres, a linha passava do limite de ~30 da conta escrita à mão. O trecho que fica já basta para traduzir o comando.",
+    "fonte": ""
+   },
+   {
+    "campo": "quadro[2].linha",
+    "depois": "B, C, D, E → emitem menos",
+    "motivo": "A linha passava de 30 caracteres e deixava de fora a alternativa E (menos resíduos), que também só reduz emissões. Agora estão as quatro, como no passo 2.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.essencial.chave",
+    "depois": "Entre as opções, só as árvores retiram CO2 do ar, pela fotossíntese. As demais apenas evitam emitir mais.",
+    "motivo": "Dizer de forma absoluta que 'só as plantas retiram CO2 do ar' é falso: os oceanos também absorvem CO2, e existe captura direta do ar. Restringi a afirmação às alternativas da questão.",
+    "fonte": ""
+   },
+   {
+    "campo": "visual.porque",
+    "depois": "Mostrar o fluxo de CO2 (entradas e saídas) deixa claro que, entre as opções, só as plantas retiram o gás do ar.",
+    "motivo": "É a mesma generalização absoluta corrigida em essencial.chave: os oceanos e a captura tecnológica também removem CO2.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "A",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "O texto fala de dois tipos de ação mitigadora (ação que diminui o problema). Um tipo reduz as emissões, isto é, o CO2 que ainda vai ser lançado no ar. O outro reduz os níveis, isto é, tira do ar o CO2 que já está lá. A pergunta pede o segundo tipo. As plantas fazem isso na fotossíntese: absorvem CO2 e o transformam em açúcares e em biomassa (o corpo da planta).",
+    "motivo": "Frases mais curtas e sem ambiguidade; define 'níveis' e 'biomassa' para o aluno."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "mitigadora",
+      "ação que diminui a intensidade de um problema, aqui o aquecimento global"
+     ],
+     [
+      "emissão",
+      "lançamento de um gás na atmosfera, por exemplo pela queima de combustíveis"
+     ],
+     [
+      "fotossíntese",
+      "processo em que plantas e algas usam luz para transformar CO2 e água em açúcar e O2"
+     ],
+     [
+      "combustível fóssil",
+      "carvão, petróleo e gás natural, cuja queima libera CO2"
+     ],
+     [
+      "biomassa",
+      "matéria viva da planta (madeira, folhas, raízes), que guarda o carbono retirado do ar"
+     ],
+     [
+      "usina eólica",
+      "usina que gera eletricidade com a força do vento, sem queimar combustível"
+     ],
+     [
+      "sumidouro",
+      "tudo o que retira CO2 do ar e o guarda, como florestas e oceanos"
+     ]
+    ],
+    "motivo": "Termos usados na resolução (biomassa, usina eólica, sumidouro) não estavam explicados."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "árvore: CO2 do ar → biomassa",
+    "motivo": "A conta anterior era longa para a tela do celular; a equação já está em antes.formulas e no quadro."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "Energia eólica, energia solar, deixar o combustível fóssil no solo e gerar menos resíduos reduzem o que é lançado no ar. Nenhuma tira o CO2 que já está lá.",
+    "motivo": "Frases mais curtas."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "A"
  }
 }

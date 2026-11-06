@@ -8,7 +8,7 @@
  "conceito": "Reconhecer oxidação e redução nos ciclos do nitrogênio e do carbono: a nitrificação oxida o nitrogênio, e a decomposição oxida o carbono.",
  "resolucao": {
   "antes": {
-   "texto": "Reação redox é aquela em que um elemento perde elétrons (oxidação, o número de oxidação sobe) e outro ganha (redução, o número de oxidação desce). Os nitrificantes pegam NH3 e fazem NO2⁻ e depois NO3⁻. Nessas moléculas o nitrogênio passa de −3 para +3 e depois +5, então ele sobe e é oxidado. A questão pede outra etapa em que um elemento também seja oxidado, e não reduzido.",
+   "texto": "Reação redox é aquela em que um átomo perde elétrons (oxidação) e outro ganha (redução). Para saber quem perdeu ou ganhou, usamos o número de oxidação (Nox): se o Nox sobe, o átomo perdeu elétrons; se desce, ganhou. Os nitrificantes transformam NH3 em NO2⁻ e depois em NO3⁻. O Nox do nitrogênio vai de −3 para +3 e depois +5, então o nitrogênio é oxidado. A questão pede outra etapa em que ocorra oxidação, e não redução.",
    "formulas": [
     "oxidação: perde elétrons, o número de oxidação sobe",
     "redução: ganha elétrons, o número de oxidação desce",
@@ -21,8 +21,20 @@
      "reação em que há oxidação e redução ao mesmo tempo"
     ],
     [
+     "oxidação",
+     "perda de elétrons: o Nox do átomo sobe"
+    ],
+    [
+     "redução",
+     "ganho de elétrons: o Nox do átomo desce"
+    ],
+    [
      "número de oxidação (Nox)",
-     "carga que o átomo teria se os elétrons fossem do átomo mais eletronegativo"
+     "carga que o átomo teria se os elétrons de cada ligação ficassem com o átomo que os atrai mais"
+    ],
+    [
+     "CH2O",
+     "fórmula simples de um açúcar, usada aqui para representar a matéria orgânica"
     ],
     [
      "nitrificantes",
@@ -35,6 +47,10 @@
     [
      "fixadores de nitrogênio",
      "procariontes que reduzem N2 a amônia"
+    ],
+    [
+     "procariontes",
+     "seres de células sem núcleo, como as bactérias"
     ]
    ]
   },
@@ -54,12 +70,12 @@
    },
    {
     "faz": "Classifique as etapas 1 e 2",
-    "conta": "1: N2 (0) → NH3 (−3)  2: NO3⁻ (+5) → N2 (0)",
+    "conta": "1: N 0 → −3 · 2: N +5 → 0",
     "porque": "Nas duas o Nox do nitrogênio desce. São reduções, o contrário do que se pede.",
     "tipo": "calcular"
    },
    {
-    "faz": "Classifique as etapas 3 e 4",
+    "faz": "Classifique as etapas 3 e 4 (fixam CO2)",
     "conta": "CO2 (C +4) → matéria orgânica (C ≈ 0)",
     "porque": "Fixar CO2 em açúcar, por fotossíntese em plantas ou em procariontes, faz o Nox do C descer. É redução.",
     "tipo": "calcular"
@@ -67,12 +83,12 @@
    {
     "faz": "Classifique a etapa 5",
     "conta": "carbono orgânico (≈ 0) → CO2 (+4)",
-    "porque": "Decompositores respiram a matéria orgânica e liberam CO2. O Nox do C sobe, então é oxidação, como a dos nitrificantes.",
+    "porque": "Decompositores consomem a matéria orgânica e liberam CO2. O Nox do C sobe, então é oxidação, igual à do nitrogênio nos nitrificantes. Só a etapa 5 serve.",
     "tipo": "concluir"
    }
   ],
   "resposta": "Alternativa E: na etapa 5 os decompositores oxidam o carbono orgânico a CO2 (Nox do C sobe de ≈ 0 para +4), uma oxidação como a do N nos nitrificantes.",
-  "checagem": "Fixação (etapas 1, 3 e 4) e desnitrificação (etapa 2) são anabólicas ou redutoras: o elemento recebe elétrons. Só a nitrificação e a decomposição liberam energia por oxidação, e a decomposição é a etapa 5.",
+  "checagem": "Fixação (etapas 1, 3 e 4) e desnitrificação (etapa 2) reduzem o elemento acompanhado: o N ou o C recebe elétrons. Só a nitrificação e a decomposição oxidam esse elemento (N e C, respectivamente), e a decomposição é a etapa 5.",
   "erradas": {
    "A": "Etapa 1: fixação do N2 em NH3. O N vai de 0 para −3, ganha elétrons e é reduzido. Os nitrificantes fazem o contrário.",
    "B": "Etapa 2: desnitrificação de NO3⁻ em N2. O N vai de +5 para 0, ganha elétrons e é reduzido. É o caminho inverso da nitrificação.",
@@ -136,10 +152,112 @@
  "gab": "E",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Fixação (etapas 1, 3 e 4) e desnitrificação (etapa 2) reduzem o elemento acompanhado: o N ou o C recebe elétrons. Só a nitrificação e a decomposição oxidam esse elemento (N e C, respectivamente), e a decomposição é a etapa 5.",
+    "motivo": "A desnitrificação não é anabólica: é uma respiração anaeróbia, que gera energia oxidando compostos orgânicos e usa o nitrato como aceptor de elétrons. Por isso a frase 'só a nitrificação e a decomposição liberam energia por oxidação' estava errada. O texto novo restringe a comparação ao elemento que muda em cada etapa.",
+    "fonte": "OpenStax Biology 2e, cap. 46.3 (ciclo do nitrogênio); OpenStax Microbiology, cap. 8.3 (respiração anaeróbia com nitrato como aceptor final)"
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "1: N 0 → −3 · 2: N +5 → 0",
+    "motivo": "A conta anterior tinha cerca de 40 caracteres e não cabia na linha manuscrita de cerca de 30 caracteres. Os valores de Nox continuam os mesmos, e as moléculas aparecem no 'porque' e no quadro.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Reação redox é aquela em que um átomo perde elétrons (oxidação) e outro ganha (redução). Para saber quem perdeu ou ganhou, usamos o número de oxidação (Nox): se o Nox sobe, o átomo perdeu elétrons; se desce, ganhou. Os nitrificantes transformam NH3 em NO2⁻ e depois em NO3⁻. O Nox do nitrogênio vai de −3 para +3 e depois +5, então o nitrogênio é oxidado. A questão pede outra etapa em que um elemento também seja oxidado, e não reduzido.",
+    "motivo": "Explica a ligação entre Nox e elétrons antes de usar o termo, e deixa claro quem é oxidado."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "redox",
+      "reação em que há oxidação e redução ao mesmo tempo"
+     ],
+     [
+      "oxidação",
+      "perda de elétrons: o Nox do átomo sobe"
+     ],
+     [
+      "redução",
+      "ganho de elétrons: o Nox do átomo desce"
+     ],
+     [
+      "número de oxidação (Nox)",
+      "carga que o átomo teria se os elétrons ficassem com o átomo que os atrai mais"
+     ],
+     [
+      "CH2O",
+      "fórmula simples de um açúcar, usada aqui para representar a matéria orgânica"
+     ],
+     [
+      "nitrificantes",
+      "bactérias que oxidam amônia a nitrito e nitrato para obter energia"
+     ],
+     [
+      "desnitrificantes",
+      "bactérias que reduzem nitrato a N2"
+     ],
+     [
+      "fixadores de nitrogênio",
+      "procariontes que reduzem N2 a amônia"
+     ],
+     [
+      "procariontes",
+      "seres de células sem núcleo, como as bactérias"
+     ]
+    ],
+    "motivo": "Inclui oxidação, redução, CH2O e procariontes, que aparecem nos passos sem explicação."
+   },
+   {
+    "campo": "resolucao.passos[3].faz",
+    "depois": "Classifique as etapas 3 e 4 (fixam CO2)",
+    "motivo": "Deixa claro, no comando, o que essas etapas fazem."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "Decompositores consomem a matéria orgânica e liberam CO2. O Nox do C sobe, então é oxidação, igual à do nitrogênio nos nitrificantes. Só a etapa 5 serve.",
+    "motivo": "Troca 'respiram' por 'consomem', mais simples, e fecha ligando ao pedido."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Reação redox é aquela em que um átomo perde elétrons (oxidação) e outro ganha (redução). Para saber quem perdeu ou ganhou, usamos o número de oxidação (Nox): se o Nox sobe, o átomo perdeu elétrons; se desce, ganhou. Os nitrificantes transformam NH3 em NO2⁻ e depois em NO3⁻. O Nox do nitrogênio vai de −3 para +3 e depois +5, então o nitrogênio é oxidado. A questão pede outra etapa em que ocorra oxidação, e não redução.",
+    "motivo": "Ajuste mínimo: 'um elemento também seja oxidado' sugere o mesmo elemento. A etapa 5 oxida o carbono, não o nitrogênio.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.antes.simbolos[3]",
+    "depois": [
+     "número de oxidação (Nox)",
+     "carga que o átomo teria se os elétrons de cada ligação ficassem com o átomo que os atrai mais"
+    ],
+    "motivo": "A definição original era vaga ('os elétrons ficassem com o átomo'). A nova deixa claro que os elétrons são os das ligações.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "E"
  }
 }

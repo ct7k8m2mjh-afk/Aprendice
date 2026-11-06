@@ -21,6 +21,10 @@
     [
      "espaço amostral",
      "o total de cartões na urna, de onde sai o sorteio"
+    ],
+    [
+     "probabilidade",
+     "a chance de um evento acontecer, dada por uma fração entre 0 e 1"
     ]
    ]
   },
@@ -53,16 +57,16 @@
    {
     "faz": "Divida favoráveis por total",
     "conta": "300/800 = 3/8",
-    "porque": "Dividindo numerador e denominador por 100, a fração fica 3/8. Isso corresponde à alternativa E.",
+    "porque": "Dividindo o de cima e o de baixo por 100, a fração fica 3/8. Essa é a alternativa E.",
     "tipo": "concluir"
    }
   ],
   "resposta": "Alternativa E: 3/8, pois 300 dos 800 cartões da urna são de estudantes de terceiro ano.",
   "checagem": "Calcule a probabilidade de cada ano: 1º ano 200/800 = 1/4; 2º ano 300/800 = 3/8; 3º ano 300/800 = 3/8. Somando, 2/8 + 3/8 + 3/8 = 8/8 = 1. Fecha.",
   "erradas": {
-   "A": "1/2 não confere: 1/2 de 800 seriam 400 cartões, mas o 3º ano tem só 300. Também não é a soma de 2º e 3º anos, que daria 600/800 = 3/4.",
-   "B": "1/3 sai de contar estudantes, sem os pesos: 100 ÷ 450 = 2/9, que ainda não é 1/3. Mesmo ignorando os pesos, 1/3 não aparece. Com 300 favoráveis, 1/3 exigiria 900 cartões no total, mas são 800.",
-   "C": "1/8 não confere: seriam 100 cartões em 800. Esse é o número de estudantes do 3º ano, sem multiplicar por 3 cartões cada.",
+   "A": "1/2 sai de olhar só os pesos e ignorar quantos alunos há: 3 ÷ (1 + 2 + 3) = 3/6 = 1/2. Os números de estudantes mudam a conta: são 300 cartões favoráveis em 800.",
+   "B": "1/3 sai de dar a mesma chance a cada ano: são 3 anos, 1/3 para cada. Mas os anos não colocam o mesmo número de cartões: o 3º ano tem 300 dos 800.",
+   "C": "1/8 sai de pôr os 100 estudantes do 3º ano sobre os 800 cartões: 100/800 = 1/8. Faltou multiplicar por 3, porque cada um tem 3 cartões e são 300 os favoráveis.",
    "D": "2/9 sai de contar só estudantes: 100 ÷ (200 + 150 + 100) = 100/450 = 2/9. Isso ignora que cada aluno do 3º ano tem 3 cartões e que a urna tem cartões, não estudantes."
   },
   "armadilha": "Contar estudantes (100 de 450, que dá 2/9) em vez de cartões (300 de 800).",
@@ -80,7 +84,7 @@
   },
   {
    "nome": "Eliminação",
-   "ideia": "Os estudantes do 3º ano têm o maior peso (3 cartões) e são só 100 dos 450. A probabilidade fica acima de 100/450 ≈ 22%. Isso elimina 1/8 = 12,5%. Falta decidir entre 1/3, 1/2 e 3/8, o que só a contagem resolve."
+   "ideia": "Os 100 alunos do 3º ano são 100/450 ≈ 22% dos estudantes. Cada um deles tem 3 cartões, o maior peso. Então a chance real é maior que 22%. Isso elimina 1/8 = 12,5%. Para decidir entre 1/3, 1/2 e 3/8, só a contagem dos cartões resolve."
   }
  ],
  "quadro": [
@@ -109,8 +113,8 @@
    "nota": "favoráveis sobre total"
   },
   {
-   "linha": "P = 3/8",
-   "nota": "corte dois zeros de cima e de baixo: divida ambos por 100",
+   "linha": "P = 300/800 = 3/8",
+   "nota": "divida o de cima e o de baixo por 100",
    "mov": [
     {
      "termo": "00",
@@ -142,10 +146,97 @@
  "gab": "E",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "1/3 sai de dar a mesma chance a cada ano: são 3 anos, 1/3 para cada. Mas os anos não colocam o mesmo número de cartões: o 3º ano tem 300 dos 800.",
+    "motivo": "O texto antigo dizia que 1/3 \"sai de\" contar estudantes e logo depois mostrava que essa conta dá 2/9, não 1/3. As duas afirmações se contradizem. A origem real é tratar os 3 anos como igualmente prováveis.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "1/2 sai de olhar só os pesos e ignorar quantos alunos há: 3 ÷ (1 + 2 + 3) = 3/6 = 1/2. Os números de estudantes mudam a conta: são 300 cartões favoráveis em 800.",
+    "motivo": "Há um erro típico real que dá exatamente 1/2: fazer 3/(1+2+3). Pelo guia, nesse caso a explicação usa \"sai de\", e não \"não confere\".",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "1/8 sai de pôr os 100 estudantes do 3º ano sobre os 800 cartões: 100/800 = 1/8. Faltou multiplicar por 3, porque cada um tem 3 cartões e são 300 os favoráveis.",
+    "motivo": "O texto antigo dizia \"não confere\" e logo depois mostrava uma origem real para 1/8. Corrigi para \"sai de\", que é a forma coerente com essa origem.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "cartão favorável",
+      "cartão com o nome de um estudante de terceiro ano"
+     ],
+     [
+      "espaço amostral",
+      "o total de cartões na urna, de onde sai o sorteio"
+     ],
+     [
+      "probabilidade",
+      "a chance de um evento acontecer, dada por uma fração entre 0 e 1"
+     ]
+    ],
+    "motivo": "A palavra 'probabilidade' aparece em toda a resolução e merece explicação simples."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "Dividindo o de cima e o de baixo por 100, a fração fica 3/8. Essa é a alternativa E.",
+    "motivo": "Frase mais simples, com um único sentido."
+   },
+   {
+    "campo": "resolucao.caminhos[1].ideia",
+    "depois": "Os 100 alunos do 3º ano são 100/450 ≈ 22% dos estudantes. Cada um deles tem 3 cartões, o maior peso. Então a chance real é maior que 22%. Isso elimina 1/8 = 12,5%. Para decidir entre 1/3, 1/2 e 3/8, só a contagem dos cartões resolve.",
+    "motivo": "Deixa claro de onde vem o 22% e por que a chance é maior que ele."
+   },
+   {
+    "campo": "resolucao.quadro[6]",
+    "depois": {
+     "linha": "P = 300/800 = 3/8",
+     "nota": "divida o de cima e o de baixo por 100",
+     "mov": [
+      {
+       "termo": "00",
+       "de": "numerador",
+       "para": "cancelado",
+       "vira": "",
+       "como": "dividido por 100, riscado"
+      },
+      {
+       "termo": "00",
+       "de": "denominador",
+       "para": "cancelado",
+       "vira": "",
+       "como": "dividido por 100, riscado"
+      }
+     ]
+    },
+    "motivo": "Mostra a simplificação na mesma linha e usa uma nota mais clara. O resultado fica sozinho na última linha."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "E"
  }
 }

@@ -8,7 +8,7 @@
  "conceito": "Reconhecer carbono quiral (isomeria óptica) em fórmulas estruturais de fármacos.",
  "resolucao": {
   "antes": {
-   "texto": "O enunciado diz que o ibuprofeno é quiral e vem como isômero óptico puro. Logo, a isomeria espacial dele é a óptica. Ela aparece quando há carbono quiral: um carbono com 4 ligantes todos diferentes. A questão pede outro fármaco que também tenha esse tipo de carbono.",
+   "texto": "O enunciado diz que o ibuprofeno é quiral e vem como isômero óptico puro. Logo, a isomeria espacial dele é a óptica. Ela aparece quando a molécula tem carbono quiral: um carbono com 4 ligantes todos diferentes. A questão pede outro fármaco que também tenha um carbono assim.",
    "formulas": [
     "Carbono quiral = carbono saturado (só ligações simples) com 4 ligantes diferentes",
     "Sem carbono quiral (e sem outro ponto de assimetria) = sem isomeria óptica"
@@ -19,6 +19,18 @@
      "molécula que não se sobrepõe à sua imagem no espelho, como a mão direita e a esquerda"
     ],
     [
+     "carbono quiral",
+     "carbono com 4 ligantes diferentes entre si, também chamado de centro de assimetria"
+    ],
+    [
+     "ligante",
+     "átomo ou grupo de átomos preso ao carbono"
+    ],
+    [
+     "isomeria espacial",
+     "isômeros com a mesma fórmula plana, mas com átomos dispostos de modo diferente no espaço"
+    ],
+    [
      "isomeria óptica",
      "caso de isomeria espacial em que dois isômeros desviam a luz polarizada em sentidos opostos"
     ],
@@ -27,8 +39,24 @@
      "só um dos dois isômeros ópticos, sem mistura"
     ],
     [
+     "carbono saturado",
+     "carbono que faz só ligações simples"
+    ],
+    [
      "traço tracejado (H)",
      "ligação que aponta para trás do papel; mostra que o desenho tem 3 dimensões no carbono"
+    ],
+    [
+     "anel aromático",
+     "anel de 6 carbonos com ligações duplas alternadas, como o benzeno; seus carbonos não são quirais"
+    ],
+    [
+     "CH3, CH2, COOH, COOR",
+     "grupos metil, metileno, ácido carboxílico e éster (R = restante da cadeia)"
+    ],
+    [
+     "fenil",
+     "anel benzênico ligado à molécula por um carbono"
     ]
    ]
   },
@@ -43,19 +71,19 @@
    {
     "faz": "Teste fenacetina e paracetamol",
     "conta": "só CH3, CH2, C=O, anel",
-    "porque": "Os carbonos saturados têm H repetido (CH3, CH2). Os outros carbonos têm dupla ligação ou fazem parte do anel aromático. Não há carbono quiral.",
+    "porque": "Os carbonos saturados são CH3 e CH2, que têm H repetido. Os demais carbonos estão no anel aromático ou têm dupla ligação. Nenhum é quiral.",
     "tipo": "eliminar"
    },
    {
     "faz": "Teste dipirona e diclofenaco",
-    "conta": "CH3, CH2 → H repetido",
+    "conta": "CH3 e CH2: H repetido",
     "porque": "Na dipirona os carbonos saturados são CH3 e CH2, com H repetido. No diclofenaco o CH2 entre o anel e o COO⁻ tem dois H iguais. Nenhum é quiral.",
     "tipo": "eliminar"
    },
    {
     "faz": "Teste a escopolamina",
-    "conta": "C(H)(fenil)(CH2OH)(COO−)",
-    "porque": "O carbono com H tracejado liga H, fenil, CH2OH e o éster (COO−). São quatro ligantes diferentes, logo o carbono é quiral, como no ibuprofeno.",
+    "conta": "C(H)(fenil)(CH2OH)(éster)",
+    "porque": "O carbono com H tracejado liga H, fenil, CH2OH e o grupo éster (COOR). São quatro ligantes diferentes: o carbono é quiral, como no ibuprofeno.",
     "tipo": "localizar"
    },
    {
@@ -96,7 +124,7 @@
   "cabe": true,
   "porque": "A quiralidade é uma propriedade de estrutura 3D, e a animação mostra o que é um carbono com 4 ligantes diferentes.",
   "tipo": "figura",
-  "roteiro": "Quadro 1: o ibuprofeno aparece e o carbono ligado ao anel, ao CH3, ao COOH e ao H pisca com quatro setas de cores diferentes. Quadro 2: uma imagem no espelho do ibuprofeno aparece ao lado e não se sobrepõe à original (gira e não encaixa). Quadro 3: fenacetina, paracetamol, dipirona e diclofenaco passam em sequência; cada CH3 ou CH2 recebe um X vermelho porque tem H repetido. Quadro 4: na escopolamina, o carbono com H tracejado pisca, com quatro setas de cores diferentes (H, fenil, CH2OH, COO−). Selo verde: isomeria óptica, como no ibuprofeno."
+  "roteiro": "Quadro 1: o ibuprofeno aparece e o carbono ligado ao anel, ao CH3, ao COOH e ao H pisca com quatro setas de cores diferentes. Quadro 2: uma imagem no espelho do ibuprofeno aparece ao lado e não se sobrepõe à original (gira e não encaixa). Quadro 3: fenacetina, paracetamol, dipirona e diclofenaco passam em sequência; cada CH3 ou CH2 recebe um X vermelho porque tem H repetido. Quadro 4: na escopolamina, o carbono com H tracejado pisca, com quatro setas de cores diferentes (H, fenil, CH2OH, COOR do éster). Selo verde: isomeria óptica, como no ibuprofeno."
  },
  "fontes": [],
  "confere": true,
@@ -105,10 +133,125 @@
  "gab": "E",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "C(H)(fenil)(CH2OH)(COOR)",
+    "motivo": "Na escopolamina, esse carbono está ligado a um grupo éster (–C(=O)–O–R). Escrito como 'COO−', o grupo parece o íon carboxilato, com carga negativa, e o aluno pode confundi-lo com o COO⁻ Na⁺ do diclofenaco.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "O carbono com H tracejado liga H, fenil, CH2OH e o grupo éster (COOR). São quatro ligantes diferentes, logo o carbono é quiral, como no ibuprofeno.",
+    "motivo": "O éster é COOR, não COO− (que é o ânion carboxilato).",
+    "fonte": ""
+   },
+   {
+    "campo": "visual.roteiro",
+    "depois": "Quadro 1: o ibuprofeno aparece e o carbono ligado ao anel, ao CH3, ao COOH e ao H pisca com quatro setas de cores diferentes. Quadro 2: uma imagem no espelho do ibuprofeno aparece ao lado e não se sobrepõe à original (gira e não encaixa). Quadro 3: fenacetina, paracetamol, dipirona e diclofenaco passam em sequência; cada CH3 ou CH2 recebe um X vermelho porque tem H repetido. Quadro 4: na escopolamina, o carbono com H tracejado pisca, com quatro setas de cores diferentes (H, fenil, CH2OH, COOR do éster). Selo verde: isomeria óptica, como no ibuprofeno.",
+    "motivo": "É a mesma correção: o grupo ligado a esse carbono é o éster COOR, não o carboxilato COO−.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "O enunciado diz que o ibuprofeno é quiral e vem como isômero óptico puro. Logo, a isomeria espacial dele é a óptica. Ela aparece quando a molécula tem carbono quiral: um carbono com 4 ligantes todos diferentes. A questão pede outro fármaco que também tenha um carbono assim.",
+    "motivo": "Frases mais claras; 'carbono assim' evita ambiguidade."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "quiral",
+      "molécula que não se sobrepõe à sua imagem no espelho, como a mão direita e a esquerda"
+     ],
+     [
+      "carbono quiral",
+      "carbono com 4 ligantes diferentes entre si, também chamado de centro de assimetria"
+     ],
+     [
+      "ligante",
+      "átomo ou grupo de átomos preso ao carbono"
+     ],
+     [
+      "isomeria espacial",
+      "isômeros com a mesma fórmula plana, mas com átomos dispostos de modo diferente no espaço"
+     ],
+     [
+      "isomeria óptica",
+      "caso de isomeria espacial em que dois isômeros desviam a luz polarizada em sentidos opostos"
+     ],
+     [
+      "opticamente puro",
+      "só um dos dois isômeros ópticos, sem mistura"
+     ],
+     [
+      "carbono saturado",
+      "carbono que faz só ligações simples"
+     ],
+     [
+      "traço tracejado (H)",
+      "ligação que aponta para trás do papel; mostra que o desenho tem 3 dimensões no carbono"
+     ],
+     [
+      "anel aromático",
+      "anel de 6 carbonos com ligações duplas alternadas, como o benzeno; seus carbonos não são quirais"
+     ],
+     [
+      "CH3, CH2, COOH, COOR",
+      "grupos metil, metileno, ácido carboxílico e éster (R = restante da cadeia)"
+     ],
+     [
+      "fenil",
+      "anel benzênico ligado à molécula por um carbono"
+     ]
+    ],
+    "motivo": "Termos usados na resolução (ligante, carbono saturado, aromático, siglas dos grupos, isomeria espacial) não estavam explicados."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "Os carbonos saturados são CH3 e CH2, que têm H repetido. Os demais carbonos estão no anel aromático ou têm dupla ligação. Nenhum é quiral.",
+    "motivo": "Texto mais simples; o paracetamol só tem CH3 e a fenacetina tem CH3 e CH2."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "CH3 e CH2: H repetido",
+    "motivo": "Cabe na linha do celular."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "O carbono com H tracejado liga H, fenil, CH2OH e o grupo éster (COOR). São quatro ligantes diferentes: o carbono é quiral, como no ibuprofeno.",
+    "motivo": "Frase mais direta."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "C(H)(fenil)(CH2OH)(éster)",
+    "motivo": "Cabe na linha do celular."
+   },
+   {
+    "campo": "resolucao.passos[0].conta",
+    "depois": "C(H)(CH3)(COOH)(anel)",
+    "motivo": "Mantida; já cabe na linha."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "E"
  }
 }

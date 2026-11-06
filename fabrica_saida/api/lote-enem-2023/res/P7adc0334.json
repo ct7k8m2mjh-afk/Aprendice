@@ -10,7 +10,7 @@
   "antes": {
    "texto": "As vendas do produto I sobem sempre a mesma quantidade por mês, e as do II caem sempre a mesma quantidade. Cada uma é uma progressão aritmética (PA): cada termo é o anterior mais um valor fixo, a razão. A pergunta não é quando I supera II, e sim o mês SEGUINTE a isso, quando a produção do II para.",
    "formulas": [
-    "próximo mês = mês anterior + razão",
+    "vendas do próximo mês = vendas deste mês + razão",
     "razão = vendas de um mês − vendas do mês anterior"
    ],
    "simbolos": [
@@ -24,7 +24,7 @@
     ],
     [
      "superar",
-     "ter vendas estritamente maiores que as do outro produto no mesmo mês"
+     "vender mais que o outro produto no mesmo mês (maior, e não igual)"
     ]
    ]
   },
@@ -44,13 +44,13 @@
    },
    {
     "faz": "Continue as duas sequências",
-    "conta": "Jul: I = 110 ; II = 130",
+    "conta": "Jul: I = 100 + 10 = 110 ; II = 150 − 20 = 130",
     "porque": "Julho: 100 + 10 = 110 para o I e 150 − 20 = 130 para o II. O I ainda está atrás.",
     "tipo": "calcular"
    },
    {
     "faz": "Calcule agosto",
-    "conta": "Ago: I = 120 ; II = 110",
+    "conta": "Ago: I = 110 + 10 = 120 ; II = 130 − 20 = 110",
     "porque": "Agosto: 110 + 10 = 120 e 130 − 20 = 110. Agora 120 > 110, então é em agosto que o I supera o II.",
     "tipo": "calcular"
    },
@@ -62,7 +62,7 @@
    }
   ],
   "resposta": "Alternativa D: o produto I supera o II em agosto (120 contra 110), e a produção do II para no mês seguinte, setembro.",
-  "checagem": "Confira por equação: com n = 1 em abril, I = 70 + 10n e II = 210 − 20n. I > II quando 30n > 140, ou seja, n > 4,67, logo n = 5 (agosto). O mês seguinte é setembro.",
+  "checagem": "Confira pela distância entre os produtos. Em junho, II − I = 50. Essa distância cai 30 por mês: julho 20, agosto −10. Em agosto o I passa na frente, e a produção para em setembro.",
   "erradas": {
    "A": "Junho tem I = 100 e II = 150, então o I ainda vende menos. Junho é só o último mês da tabela.",
    "B": "Em julho, I = 110 e II = 130: o I ainda está atrás. Não houve superação nem no mês anterior, junho (100 contra 150).",
@@ -84,25 +84,37 @@
   },
   {
    "nome": "equação",
-   "ideia": "Com abril = 1, I = 70 + 10n e II = 210 − 20n. A condição I > II dá n > 4,67, logo n = 5, que é agosto. O mês seguinte é setembro."
+   "ideia": "Com abril = 1, I = 70 + 10n e II = 210 − 20n. A condição I > II dá n > 14/3 ≈ 4,67, logo n = 5, que é agosto. O mês seguinte é setembro."
   }
  ],
  "quadro": [
   {
-   "linha": "I: 80, 90, 100 → +10",
-   "nota": "o produto I ganha 10 por mês"
+   "linha": "I: 80, 90, 100",
+   "nota": "cada mês sobe 10: razão +10"
   },
   {
-   "linha": "II: 190, 170, 150 → −20",
-   "nota": "o produto II perde 20 por mês"
+   "linha": "II: 190, 170, 150",
+   "nota": "cada mês cai 20: razão −20"
   },
   {
-   "linha": "Jul: I = 110 ; II = 130",
-   "nota": "100 + 10 e 150 − 20; I ainda atrás"
+   "linha": "Jul: I = 100 + 10 = 110",
+   "nota": "I em julho"
   },
   {
-   "linha": "Ago: I = 120 ; II = 110",
-   "nota": "110 + 10 e 130 − 20; agora I > II",
+   "linha": "Jul: II = 150 − 20 = 130",
+   "nota": "II em julho; I ainda atrás"
+  },
+  {
+   "linha": "Ago: I = 110 + 10 = 120",
+   "nota": "I em agosto"
+  },
+  {
+   "linha": "Ago: II = 130 − 20 = 110",
+   "nota": "II em agosto"
+  },
+  {
+   "linha": "120 > 110",
+   "nota": "em agosto o I supera o II",
    "destaque": "120 > 110"
   },
   {
@@ -124,10 +136,112 @@
  "gab": "D",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Confira por equação: com n = 1 em abril, I = 70 + 10n e II = 210 − 20n. I > II quando 30n > 140, ou seja, n > 14/3 ≈ 4,67, logo n = 5 (agosto). O mês seguinte é setembro.",
+    "motivo": "Como 140 ÷ 30 = 4,666..., a desigualdade exata é n > 14/3. Escrever \"n > 4,67\" é só uma aproximação, por isso a forma exata entra junto, com \"≈\".",
+    "fonte": ""
+   },
+   {
+    "campo": "caminhos[1].ideia",
+    "depois": "Com abril = 1, I = 70 + 10n e II = 210 − 20n. A condição I > II dá n > 14/3 ≈ 4,67, logo n = 5, que é agosto. O mês seguinte é setembro.",
+    "motivo": "É a mesma imprecisão da checagem: n > 14/3 é o valor exato, e 4,67 é aproximado.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.simbolos[2]",
+    "depois": [
+     "superar",
+     "vender mais que o outro produto no mesmo mês (maior, e não igual)"
+    ],
+    "motivo": "Troca 'estritamente', palavra difícil, por linguagem simples."
+   },
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "vendas do próximo mês = vendas deste mês + razão",
+     "razão = vendas de um mês − vendas do mês anterior"
+    ],
+    "motivo": "A fórmula original falava em 'mês + razão', o que confunde: a razão se soma às vendas, não ao mês."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "Jul: I = 100 + 10 = 110 ; II = 150 − 20 = 130",
+    "motivo": "A conta mostra o passo a passo, sem pular a operação."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "Ago: I = 110 + 10 = 120 ; II = 130 − 20 = 110",
+    "motivo": "A conta mostra o passo a passo, sem pular a operação."
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Confira pela distância entre os produtos. Em junho, II − I = 50. Essa distância cai 30 por mês: julho 20, agosto −10. Em agosto o I passa na frente, e a produção para em setembro.",
+    "motivo": "A checagem original usava equação com n = 1 em abril e uma fração, mais difícil. A nova usa um caminho mais simples e diferente da conta principal."
+   },
+   {
+    "campo": "resolucao.quadro",
+    "depois": [
+     {
+      "linha": "I: 80, 90, 100",
+      "nota": "cada mês sobe 10: razão +10"
+     },
+     {
+      "linha": "II: 190, 170, 150",
+      "nota": "cada mês cai 20: razão −20"
+     },
+     {
+      "linha": "Jul: I = 100 + 10 = 110",
+      "nota": "I em julho"
+     },
+     {
+      "linha": "Jul: II = 150 − 20 = 130",
+      "nota": "II em julho; I ainda atrás"
+     },
+     {
+      "linha": "Ago: I = 110 + 10 = 120",
+      "nota": "I em agosto"
+     },
+     {
+      "linha": "Ago: II = 130 − 20 = 110",
+      "nota": "II em agosto"
+     },
+     {
+      "linha": "120 > 110",
+      "nota": "em agosto o I supera o II",
+      "destaque": "120 > 110"
+     },
+     {
+      "linha": "mês seguinte a ago = set",
+      "nota": "a produção do II para em setembro",
+      "destaque": "set"
+     }
+    ],
+    "motivo": "Uma operação por linha, copiável no caderno. As linhas curtas cabem na tela do celular."
+   }
+  ],
+  "didatica_alertas": [
+   "A checagem original dizia 'n = 1 em abril' com I = 70 + 10n, o que é correto, mas fica pesado para o aluno. Não houve erro de fato."
+  ],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "D"
  }
 }

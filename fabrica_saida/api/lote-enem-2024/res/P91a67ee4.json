@@ -8,7 +8,7 @@
  "conceito": "Média aritmética como soma ÷ quantidade; comparar a soma dividida por 4 com a soma dividida por 5.",
  "resolucao": {
   "antes": {
-   "texto": "A média é a soma das notas dividida pela quantidade de provas. A soma das notas é a mesma nas duas contas; só o divisor muda. O certo é dividir por 4 (são 4 provas). O estudante dividiu por 5 e obteve uma média 1 unidade menor.",
+   "texto": "Média é a soma das notas dividida pelo número de provas. A soma das notas é a mesma nas duas contas; só o divisor muda. O certo é dividir por 4, porque são 4 provas. O estudante dividiu por 5 e achou uma média 1 unidade menor que a certa.",
    "formulas": [
     "média correta = S ÷ 4",
     "média errada = S ÷ 5",
@@ -35,7 +35,7 @@
    },
    {
     "faz": "Escreva as duas médias",
-    "conta": "certa = S/4 ; errada = S/5",
+    "conta": "certa = S ÷ 4 ; errada = S ÷ 5",
     "porque": "São 4 provas, então o divisor correto é 4. O estudante usou 5.",
     "tipo": "calcular"
    },
@@ -48,7 +48,7 @@
    {
     "faz": "Resolva para achar S",
     "conta": "S/20 = 1 → S = 20",
-    "porque": "Com denominador comum 20: 5S/20 − 4S/20 = S/20. Esse valor é 1, logo S = 20.",
+    "porque": "Frações só se subtraem com o mesmo denominador. Com 20 embaixo: 5S/20 − 4S/20 = S/20. Esse valor é 1, logo S = 20.",
     "tipo": "calcular"
    },
    {
@@ -81,7 +81,7 @@
   },
   {
    "nome": "proporção entre as médias",
-   "ideia": "Dividir por 5 em vez de 4 multiplica a média por 4/5. A média errada é então 4/5 da certa, e a diferença é 1/5 da certa. Se 1/5 da média vale 1, a média é 5."
+   "ideia": "Dividir por 5 em vez de 4 faz a média errada valer 4/5 da certa. A diferença é então 1/5 da certa. Se 1/5 da média vale 1, a média inteira vale 5."
   }
  ],
  "quadro": [
@@ -145,10 +145,51 @@
  "gab": "B",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [],
+  "fatos_ok": true,
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Média é a soma das notas dividida pelo número de provas. A soma das notas é a mesma nas duas contas; só o divisor muda. O certo é dividir por 4, porque são 4 provas. O estudante dividiu por 5 e achou uma média 1 unidade menor que a certa.",
+    "motivo": "Frases mais curtas e sem ambiguidade."
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "certa = S ÷ 4 ; errada = S ÷ 5",
+    "motivo": "Padroniza a notação com as fórmulas do antes e evita barra na linha."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "S/4 − S/5 = 1",
+    "motivo": "Mantido como fração empilhada pelo site; o porque ficou mais claro."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Frações só se subtraem com o mesmo denominador. Com 20 embaixo: 5S/20 − 4S/20 = S/20. Esse valor é 1, logo S = 20.",
+    "motivo": "Explica por que se usa denominador comum."
+   },
+   {
+    "campo": "resolucao.caminhos[1].ideia",
+    "depois": "Dividir por 5 em vez de 4 faz a média errada valer 4/5 da certa. A diferença é então 1/5 da certa. Se 1/5 da média vale 1, a média inteira vale 5.",
+    "motivo": "Texto mais claro, sem a barra solta de fração."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "B"
  }
 }

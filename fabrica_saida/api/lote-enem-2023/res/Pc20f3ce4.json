@@ -21,7 +21,11 @@
     ],
     [
      "sistema de contagem",
-     "regra para escrever os números usando poucos símbolos ou palavras"
+     "regra para escrever os números usando poucas palavras ou símbolos"
+    ],
+    [
+     "padrão",
+     "regra que se repete e permite continuar a sequência"
     ]
    ]
   },
@@ -43,7 +47,7 @@
     "faz": "Descubra o valor de cada palavra",
     "conta": "urapum = 1 ; okosa = 2",
     "porque": "O 1 é só 'urapum'. O 2 é só 'okosa'. Conferência: 3 = 2 + 1, 4 = 2 + 2 e 6 = 2 + 2 + 2.",
-    "tipo": "interpretar"
+    "tipo": "comparar"
    },
    {
     "faz": "Monte o cinco",
@@ -67,12 +71,12 @@
   "resposta": "Alternativa C: cinco = okosa okosa urapum (2+2+1) e sete = okosa okosa okosa urapum (2+2+2+1).",
   "checagem": "Releia o 6 da figura: okosa okosa okosa = 6. O 7 é o 6 mais 1, ou seja, o mesmo balão com urapum no fim. O 5 é o 4 (okosa okosa) mais 1, com urapum no fim.",
   "erradas": {
-   "A": "O 5 'okosa urapum urapum urapum' soma 2+1+1+1 = 5, mas o 7 'okosa okosa urapum urapum urapum' soma 2+2+1+1+1 = 7. Os valores até batem, mas a figura nunca repete 'urapum': o 3 já é 'okosa urapum', e o padrão é usar okosa o máximo possível, completando com um único urapum.",
-   "B": "O 5 'okosa okosa urapum' está certo, mas o 7 'okosa okosa okosa okosa urapum' soma 2+2+2+2+1 = 9, não 7.",
-   "D": "O 5 'okosa urapum urapum' soma 2+1+1 = 4, não 5. O 7 'okosa urapum okosa urapum urapum' soma 2+1+2+1+1 = 7, mas a figura não repete urapum, então esse 7 não segue o padrão.",
-   "E": "O 5 'okosa okosa urapum' está certo, mas o 7 'okosa okosa okosa okosa' soma 2+2+2+2 = 8, não 7."
+   "A": "A confere só a soma do 5: okosa urapum urapum urapum = 2+1+1+1 = 5. O 7 também soma 7 (2+2+1+1+1), mas repete urapum. Na figura, o 3 é 'okosa urapum' e o 6 é só okosa: nunca há dois urapum. Só os balões 1, 2, 3, 4 e 6 dão pista; o padrão é okosa o máximo possível e um urapum no fim.",
+   "B": "O 5 'okosa okosa urapum' está certo. O 7 'okosa okosa okosa okosa urapum' soma 2+2+2+2+1 = 9, não 7. Quem marcou B conferiu o 5 mas não somou o 7: sobrou um okosa.",
+   "D": "No 5, okosa urapum urapum soma 2+1+1 = 4, não 5. O 7 'okosa urapum okosa urapum urapum' soma 7, mas mistura as palavras e repete urapum. Quem marcou D olhou só a soma do 7 e não conferiu o 5.",
+   "E": "O 5 'okosa okosa urapum' está certo. O 7 'okosa okosa okosa okosa' soma 2+2+2+2 = 8, não 7. Faltou usar urapum para fechar o número ímpar: com só okosa, a soma é sempre par."
   },
-  "armadilha": "Valer uma palavra por número: o 7 é montado somando valores (2+2+2+1) e não repetindo palavras sem conferir a soma.",
+  "armadilha": "Conferir só a soma não basta: em A e D o 7 também soma 7. É preciso seguir o padrão da figura: okosa o máximo possível e só um urapum no fim.",
   "alerta": "",
   "essencial": {
    "pede": "Escrever os números 5 e 7 na contagem dessa cultura, seguindo o padrão do quadrinho.",
@@ -133,10 +137,82 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "comparar",
+    "motivo": "'interpretar' não é um tipo permitido (localizar, calcular, comparar, eliminar, concluir). O passo compara os balões para deduzir o valor de cada palavra.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.armadilha",
+    "depois": "Conferir só a soma não basta: nas alternativas A e D o 7 também soma 7. O que decide é o padrão da figura, que usa okosa o máximo possível e no máximo um urapum.",
+    "motivo": "A frase original ('Valer uma palavra por número… sem conferir a soma') não faz sentido e induz ao erro. Conferindo só a soma, A e D não caem, porque seus setes somam 7. A armadilha real é ignorar o padrão de formação.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "A confere só a soma do 5: okosa urapum urapum urapum = 2+1+1+1 = 5. O 7 também soma 7 (2+2+1+1+1), mas repete urapum. Na figura, o 3 é 'okosa urapum' e o 6 é só okosa: nunca há dois urapum. Só os balões 1, 2, 3, 4 e 6 dão pista; o padrão é okosa o máximo possível e um urapum no fim.",
+    "motivo": "Frase mais clara, sem 'nunca repete' ambíguo, e liga a letra ao raciocínio de quem a marcou (só conferiu a soma)."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "No 5, okosa urapum urapum soma 2+1+1 = 4, não 5. O 7 'okosa urapum okosa urapum urapum' soma 7, mas mistura as palavras e repete urapum. Quem marcou D olhou só a soma do 7 e não conferiu o 5.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou D."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "O 5 'okosa okosa urapum' está certo. O 7 'okosa okosa okosa okosa urapum' soma 2+2+2+2+1 = 9, não 7. Quem marcou B conferiu o 5 mas não somou o 7: sobrou um okosa.",
+    "motivo": "Mostra o que faltou: conferir também o segundo numeral."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "O 5 'okosa okosa urapum' está certo. O 7 'okosa okosa okosa okosa' soma 2+2+2+2 = 8, não 7. Faltou usar urapum para fechar o número ímpar: com só okosa, a soma é sempre par.",
+    "motivo": "Explica por que a soma não fecha e o que faltou ao aluno."
+   },
+   {
+    "campo": "resolucao.armadilha",
+    "depois": "Conferir só a soma não basta: em A e D o 7 também soma 7. É preciso seguir o padrão da figura: okosa o máximo possível e só um urapum no fim.",
+    "motivo": "Frase mais curta e direta."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "okosa, urapum",
+      "palavras dessa cultura usadas para contar; a figura mostra como combiná-las"
+     ],
+     [
+      "sistema de contagem",
+      "regra para escrever os números usando poucas palavras ou símbolos"
+     ],
+     [
+      "padrão",
+      "regra que se repete e permite continuar a sequência"
+     ]
+    ],
+    "motivo": "'Padrão' aparece várias vezes e precisava de explicação."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "C"
  }
 }

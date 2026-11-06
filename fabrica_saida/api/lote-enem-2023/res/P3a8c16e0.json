@@ -11,7 +11,7 @@
    "texto": "A média dos 100 salários é a soma de todos os salários dividida por 100. Como cada setor paga um valor igual a todos, some cada salário tantas vezes quanto é o número de funcionários do setor. Isso é uma média ponderada: o número de funcionários é o peso de cada salário.",
    "formulas": [
     "média = (soma de todos os salários) ÷ (número de funcionários)",
-    "média ponderada = (valor × peso + valor × peso) ÷ soma dos pesos"
+    "média ponderada = (valor × peso + valor × peso) ÷ (soma dos pesos)"
    ],
    "simbolos": [
     [
@@ -28,7 +28,7 @@
   "passos": [
    {
     "faz": "Leia o que o quadro informa",
-    "conta": "Produção: 75 × R$ 2 000",
+    "conta": "Produção: 75 pessoas, R$ 2 000",
     "porque": "O quadro mostra o número de funcionários e o salário de cada setor. Todos do mesmo setor ganham igual.",
     "tipo": "localizar"
    },
@@ -53,15 +53,15 @@
    {
     "faz": "Divida por 100 funcionários",
     "conta": "325 000 ÷ 100 = 3 250",
-    "porque": "Média é o total dividido pelo número de funcionários. Resultado: R$ 3 250,00, alternativa C.",
+    "porque": "Média é o total dividido pelo número de funcionários. O resultado é R$ 3 250,00, alternativa C.",
     "tipo": "concluir"
    }
   ],
-  "resposta": "Alternativa C: a média ponderada é (75 × 2 000 + 25 × 7 000) ÷ 100 = R$ 3 250,00.",
+  "resposta": "Alternativa C — R$ 3 250,00",
   "checagem": "Por outro caminho: 75% ganham 2 000 e 25% ganham 7 000. Então 0,75 × 2 000 = 1 500 e 0,25 × 7 000 = 1 750, e 1 500 + 1 750 = 3 250. Além disso, a média tem de ficar entre 2 000 e 7 000, mais perto de 2 000, pois há mais gente nesse salário. 3 250 está nessa posição.",
   "erradas": {
    "A": "R$ 2 000,00 é só o salário da Produção. Ignora os 25 funcionários da Administração, que ganham mais e puxam a média para cima.",
-   "B": "R$ 2 500,00 não confere. Para a média ser 2 500, a folha total seria 250 000, mas a folha real é 150 000 + 175 000 = 325 000. A Administração pesa mais do que isso.",
+   "B": "R$ 2 500,00 não confere. Para a média ser 2 500, a folha total teria de ser 100 × 2 500 = 250 000. A folha real é 150 000 + 175 000 = 325 000, então a média é maior.",
    "D": "R$ 4 500,00 sai da média simples dos dois salários: (2 000 + 7 000) ÷ 2 = 4 500. Ela trata os setores como se tivessem o mesmo número de pessoas, mas são 75 contra 25.",
    "E": "R$ 9 000,00 sai de somar os dois salários: 2 000 + 7 000 = 9 000. Isso nem é média, pois falta dividir, e a média nunca passa do maior salário (7 000)."
   },
@@ -84,13 +84,13 @@
   },
   {
    "nome": "Eliminação",
-   "ideia": "A média fica entre 2 000 e 7 000 e mais perto de 2 000, pois há mais gente nesse salário. Isso derruba A (é o próprio salário mínimo), D (ponto médio), E (acima do maior salário). Sobram B e C, que exigem a conta."
+   "ideia": "A média fica entre 2 000 e 7 000 e mais perto de 2 000, pois há mais gente nesse salário. Isso derruba A (é o próprio menor salário), D (ponto médio) e E (acima do maior salário). Sobram B e C, que exigem a conta."
   }
  ],
  "quadro": [
   {
-   "linha": "Produção: 75 × 2 000",
-   "nota": "75 funcionários com salário de 2 000"
+   "linha": "Produção: 75 pessoas, 2 000",
+   "nota": "dados do quadro"
   },
   {
    "linha": "75 × 2 000 = 150 000",
@@ -107,7 +107,7 @@
    "nota": "soma dos dois setores: total pago"
   },
   {
-   "linha": "média = 325 000/100",
+   "linha": "média = 325 000 ÷ 100",
    "nota": "divida pelo número de funcionários",
    "mov": [
     {
@@ -138,10 +138,103 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "caminhos[2].ideia",
+    "depois": "A média fica entre 2 000 e 7 000 e mais perto de 2 000, pois há mais gente nesse salário. Isso derruba A (é o próprio menor salário), D (ponto médio) e E (acima do maior salário). Sobram B e C, que exigem a conta.",
+    "motivo": "'Salário mínimo' pode ser lido como o salário mínimo nacional. O certo é 'menor salário' do quadro.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "média = (soma de todos os salários) ÷ (número de funcionários)",
+     "média ponderada = (valor × peso + valor × peso) ÷ (soma dos pesos)"
+    ],
+    "motivo": "Parênteses na soma dos pesos deixam claro o que se divide por quê."
+   },
+   {
+    "campo": "resolucao.passos[0].conta",
+    "depois": "Produção: 75 pessoas, R$ 2 000",
+    "motivo": "A conta original já era a multiplicação do passo seguinte; este passo é só de leitura. Agora mostra os dois dados do quadro, sem repetir a conta."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "Média é o total dividido pelo número de funcionários. O resultado é R$ 3 250,00, alternativa C.",
+    "motivo": "Frase mais curta e sem ambiguidade."
+   },
+   {
+    "campo": "resolucao.resposta",
+    "depois": "Alternativa C — R$ 3 250,00",
+    "motivo": "Padrão do guia: letra e valor, sem a conta repetida."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "R$ 2 500,00 não confere. Para a média ser 2 500, a folha total teria de ser 100 × 2 500 = 250 000. A folha real é 150 000 + 175 000 = 325 000, então a média é maior.",
+    "motivo": "Teste objetivo mais claro, com a conta que derruba a alternativa."
+   },
+   {
+    "campo": "resolucao.quadro",
+    "depois": [
+     {
+      "linha": "Produção: 75 pessoas, 2 000",
+      "nota": "dados do quadro"
+     },
+     {
+      "linha": "75 × 2 000 = 150 000",
+      "nota": "folha da Produção",
+      "destaque": "150 000"
+     },
+     {
+      "linha": "Adm.: 25 × 7 000 = 175 000",
+      "nota": "folha da Administração",
+      "destaque": "175 000"
+     },
+     {
+      "linha": "150 000 + 175 000 = 325 000",
+      "nota": "soma dos dois setores: total pago"
+     },
+     {
+      "linha": "média = 325 000 ÷ 100",
+      "nota": "divida pelo número de funcionários",
+      "mov": [
+       {
+        "termo": "100",
+        "de": "esquerda",
+        "para": "denominador",
+        "vira": "100",
+        "como": "divide o total"
+       }
+      ]
+     },
+     {
+      "linha": "média = 3 250",
+      "nota": "325 000 ÷ 100 = 3 250 reais",
+      "destaque": "3 250"
+     }
+    ],
+    "motivo": "A primeira linha agora é de leitura, como o passo 1. A divisão aparece com ÷ e não como fração na linha, que o site não desenha dentro de texto corrido."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "C"
  }
 }

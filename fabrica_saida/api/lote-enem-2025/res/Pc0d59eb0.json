@@ -29,6 +29,18 @@
     [
      "mg",
      "miligrama, a milésima parte do grama"
+    ],
+    [
+     "t½",
+     "símbolo da meia-vida"
+    ],
+    [
+     "m0",
+     "massa inicial, no tempo zero"
+    ],
+    [
+     "2^5",
+     "2 elevado a 5: 2 multiplicado por ele mesmo 5 vezes"
     ]
    ]
   },
@@ -36,8 +48,8 @@
   "passos": [
    {
     "faz": "Anote os dados do enunciado",
-    "conta": "m0 = 2,00 mg; t½ = 5,3 anos",
-    "porque": "O tempo total de armazenamento é 26,5 anos. Esses três valores bastam para resolver.",
+    "conta": "m0 = 2,00 mg; t½ = 5,3 anos; t = 26,5 anos",
+    "porque": "O enunciado dá a massa inicial, a meia-vida e o tempo total de armazenamento (26,5 anos). Com esses três valores já dá para resolver.",
     "tipo": "localizar"
    },
    {
@@ -66,12 +78,12 @@
    }
   ],
   "resposta": "Alternativa E: após 5 meias-vidas restam 2,00 ÷ 32 = 0,0625 mg, mais próximo de 0,06 mg.",
-  "checagem": "Multiplique de volta: 0,0625 × 32 = 2,00 mg, a massa inicial. Outra checagem: em 5 meias-vidas a massa cai para cerca de 3% da original (1/32), e 3% de 2 mg é 0,06 mg.",
+  "checagem": "Multiplique de volta: 0,0625 × 32 = 2,00 mg, a massa inicial. Outra checagem: 5 meias-vidas deixam 1/32 da massa, cerca de 3% da original, e 3% de 2 mg é 0,06 mg.",
   "erradas": {
    "A": "2,00 mg é a massa inicial: supõe que nada se desintegrou. Mas 26,5 anos é 5 vezes a meia-vida, então a massa caiu bastante.",
    "B": "1,00 mg é a massa depois de UMA meia-vida (2,00 ÷ 2). O tempo dado equivale a 5 meias-vidas, não a 1.",
    "C": "0,40 mg sai de dividir por 5 em vez de por 2^5: 2,00 ÷ 5 = 0,40. A massa é cortada pela metade a cada meia-vida, e não dividida pelo número de meias-vidas.",
-   "D": "0,13 mg corresponde a 4 meias-vidas: 2,00 ÷ 2^4 = 2,00 ÷ 16 = 0,125 mg. Falta uma divisão por 2; o certo são 5 meias-vidas, pois 26,5 ÷ 5,3 = 5."
+   "D": "0,13 mg sai de contar só 4 meias-vidas: 2,00 ÷ 2^4 = 2,00 ÷ 16 = 0,125 mg. Faltou uma divisão por 2: 26,5 ÷ 5,3 = 5, e não 4."
   },
   "armadilha": "Dividir a massa por 5 (número de meias-vidas) em vez de por 2^5 = 32.",
   "alerta": "",
@@ -88,13 +100,13 @@
   },
   {
    "nome": "eliminação por ordem de grandeza",
-   "ideia": "O tempo é 5 vezes a meia-vida: a massa cai muito mais do que a metade, então A e B saem. Para decidir entre as demais, conte as divisões por 2."
+   "ideia": "O tempo é 5 vezes a meia-vida, então a massa cai muito mais do que a metade: A e B saem. Para decidir entre as demais, conte as divisões por 2: cinco divisões dão 1/32 da massa."
   }
  ],
  "quadro": [
   {
    "linha": "n = 26,5 ÷ 5,3",
-   "nota": "tempo total dividido pela meia-vida"
+   "nota": "tempo total ÷ meia-vida"
   },
   {
    "linha": "n = 5",
@@ -105,8 +117,16 @@
    "nota": "cada meia-vida divide por 2"
   },
   {
+   "linha": "2^5 = 2×2×2×2×2",
+   "nota": "cinco fatores 2"
+  },
+  {
+   "linha": "2^5 = 32",
+   "nota": "valor da potência"
+  },
+  {
    "linha": "m = 2,00 ÷ 32",
-   "nota": "2^5 = 2×2×2×2×2 = 32"
+   "nota": "troca a potência por 32"
   },
   {
    "linha": "m = 0,0625 mg",
@@ -130,10 +150,128 @@
  "gab": "E",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [],
+  "fatos_ok": true,
+  "fatos_resposta": "E",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[0].porque",
+    "depois": "O enunciado dá a massa inicial, a meia-vida e o tempo total de armazenamento (26,5 anos). Com esses três valores já dá para resolver.",
+    "motivo": "O 'porque' citava 'três valores' mas só dois estavam na conta; agora diz quais são os três."
+   },
+   {
+    "campo": "resolucao.passos[0].conta",
+    "depois": "m0 = 2,00 mg; t½ = 5,3 anos; t = 26,5 anos",
+    "motivo": "Incluir o tempo total na conta, para os três dados ficarem à vista e copiáveis."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "2,00 → 1,00 → 0,50 → 0,25 → 0,125 → 0,0625",
+    "motivo": "Mantido igual: cabe em cerca de 30 caracteres. Só confirmo que está correto."
+   },
+   {
+    "campo": "resolucao.quadro",
+    "depois": [
+     {
+      "linha": "n = 26,5 ÷ 5,3",
+      "nota": "tempo total ÷ meia-vida"
+     },
+     {
+      "linha": "n = 5",
+      "nota": "5 meias-vidas completas"
+     },
+     {
+      "linha": "m = 2,00 ÷ 2^5",
+      "nota": "cada meia-vida divide por 2"
+     },
+     {
+      "linha": "2^5 = 2×2×2×2×2",
+      "nota": "cinco fatores 2"
+     },
+     {
+      "linha": "2^5 = 32",
+      "nota": "valor da potência"
+     },
+     {
+      "linha": "m = 2,00 ÷ 32",
+      "nota": "troca a potência por 32"
+     },
+     {
+      "linha": "m = 0,0625 mg",
+      "nota": "resultado exato"
+     },
+     {
+      "linha": "m ≈ 0,06 mg",
+      "nota": "alternativa mais próxima: E"
+     }
+    ],
+    "motivo": "Um passo por linha, sem pular passagens: a potência 2^5 foi aberta em linhas separadas e as linhas ficam curtas para o celular."
+   },
+   {
+    "campo": "resolucao.caminhos[1].ideia",
+    "depois": "O tempo é 5 vezes a meia-vida, então a massa cai muito mais do que a metade: A e B saem. Para decidir entre as demais, conte as divisões por 2: cinco divisões dão 1/32 da massa.",
+    "motivo": "Deixa o caminho completo, ensinando a decidir entre C, D e E."
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Multiplique de volta: 0,0625 × 32 = 2,00 mg, a massa inicial. Outra checagem: 5 meias-vidas deixam 1/32 da massa, cerca de 3% da original, e 3% de 2 mg é 0,06 mg.",
+    "motivo": "Frase mais curta e com a fração 1/32 explicada."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "0,13 mg sai de contar só 4 meias-vidas: 2,00 ÷ 2^4 = 2,00 ÷ 16 = 0,125 mg. Faltou uma divisão por 2: 26,5 ÷ 5,3 = 5, e não 4.",
+    "motivo": "Diz com clareza o que faltou no raciocínio de quem marcou D."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "cobalto-60",
+      "isótopo radioativo do cobalto, com número de massa 60"
+     ],
+     [
+      "radioisótopo",
+      "isótopo que emite radiação ao se desintegrar"
+     ],
+     [
+      "meia-vida",
+      "tempo para a massa do radioisótopo cair à metade"
+     ],
+     [
+      "mg",
+      "miligrama, a milésima parte do grama"
+     ],
+     [
+      "t½",
+      "símbolo da meia-vida"
+     ],
+     [
+      "m0",
+      "massa inicial, no tempo zero"
+     ],
+     [
+      "2^5",
+      "2 elevado a 5: 2 multiplicado por ele mesmo 5 vezes"
+     ]
+    ],
+    "motivo": "Os símbolos t½, m0 e 2^5 aparecem na resolução e não estavam explicados."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "E"
  }
 }

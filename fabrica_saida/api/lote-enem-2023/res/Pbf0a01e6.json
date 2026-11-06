@@ -8,7 +8,7 @@
  "conceito": "Ângulo inscrito: pontos que enxergam o segmento AB sob o mesmo ângulo estão na mesma circunferência que passa por A e B (arco capaz).",
  "resolucao": {
   "antes": {
-   "texto": "Ângulos inscritos que enxergam a mesma corda (aqui, o segmento AB) e ficam do mesmo lado dela têm a mesma medida quando os vértices estão sobre a mesma circunferência. Quem está dentro dessa circunferência enxerga AB sob ângulo maior. Quem está fora enxerga sob ângulo menor. A figura já traz circunferências tracejadas passando por A e B. Basta ver qual delas contém Q1 e qual jogador está sobre ela.",
+   "texto": "Pontos de uma mesma circunferência que passa por A e B, do mesmo lado de AB, enxergam a trave AB sob o mesmo ângulo. Quem está dentro da circunferência enxerga a trave sob ângulo maior. Quem está fora enxerga sob ângulo menor. A figura já traz circunferências tracejadas passando por A e B. Basta achar a que passa por Q1 e ver qual jogador está sobre ela.",
    "formulas": [
     "ângulo inscrito = metade do arco que ele enxerga",
     "mesma circunferência por A e B → mesmo ângulo AQ_nB"
@@ -50,13 +50,13 @@
     "faz": "Aplique o ângulo inscrito",
     "conta": "mesmo arco AB → mesmo ângulo",
     "porque": "Qualquer ponto dessa circunferência, do mesmo lado de AB que Q1, enxerga AB com a mesma medida α. Dentro dela o ângulo é maior; fora, menor.",
-    "tipo": "aplicar"
+    "tipo": "comparar"
    },
    {
     "faz": "Localize os jogadores",
-    "conta": "Q2, Q4 dentro; Q5, Q6 fora; Q3 sobre",
-    "porque": "Q2 e Q4 ficam entre AB e essa circunferência. Q5 e Q6 ficam mais afastados, além dela. Só Q3 está sobre a circunferência de Q1.",
-    "tipo": "interpretar"
+    "conta": "dentro: Q2, Q4 | sobre: Q3 | fora: Q5, Q6",
+    "porque": "Olhe a figura: Q2 e Q4 ficam entre a trave e a circunferência de Q1. Q5 e Q6 ficam além dela. Só Q3 está em cima da linha tracejada que passa por Q1.",
+    "tipo": "localizar"
    },
    {
     "faz": "Conclua",
@@ -66,11 +66,11 @@
    }
   ],
   "resposta": "Alternativa B: Q3 está sobre a mesma circunferência que passa por A, B e Q1, então enxerga a trave sob o mesmo ângulo α.",
-  "checagem": "Pense nos extremos. Um ponto sobre o segmento AB veria a trave sob 180°, e um ponto muito longe veria quase 0°. Os ângulos são grandes perto da trave e pequenos longe. Q2 e Q4 estão mais perto, então veem ângulo maior. Q5 e Q6 estão mais longe, então veem ângulo menor. Só Q3 fica na linha de ângulo igual.",
+  "checagem": "Teste os extremos: de um ponto em cima do segmento AB, a trave é vista sob 180°. De um ponto muito longe, sob quase 0°. Então perto da trave o ângulo é grande e longe é pequeno. Q2 e Q4 estão mais perto que Q1, logo o ângulo é maior. Q5 e Q6 estão mais longe, logo é menor. Só Q3 fica na linha de ângulo igual.",
   "erradas": {
    "A": "Q2 está dentro da circunferência que passa por Q1, mais perto da trave AB. De lá o ângulo AQ2B é maior que α. Só serviria se estivesse sobre a circunferência.",
    "C": "Q4 também está dentro da circunferência de Q1, perto da trave. Ele enxerga AB sob ângulo maior que α, e não sob o mesmo ângulo.",
-   "D": "Q5 está fora da circunferência de A, B e Q1, mais afastado da trave. O ângulo AQ5B é menor que α, pois quanto mais longe, mais fechado o ângulo.",
+   "D": "Q5 está fora da circunferência de A, B e Q1, além dela. Por isso o ângulo AQ5B é menor que α.",
    "E": "Q6 está ainda mais afastado, fora da circunferência de Q1. O ângulo AQ6B é menor que α."
   },
   "armadilha": "Achar que basta estar 'em frente ao gol' ou na mesma distância de Q1. O que importa é estar sobre a mesma circunferência que passa por A e B.",
@@ -130,10 +130,72 @@
  "gab": "B",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "comparar",
+    "motivo": "'aplicar' não é um tipo permitido. Os tipos válidos são localizar, calcular, comparar, eliminar e concluir. Neste passo se compara o ângulo dentro, sobre e fora da circunferência, por isso 'comparar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "localizar",
+    "motivo": "'interpretar' não é um tipo permitido. O passo consiste em achar na figura a posição de cada jogador em relação à circunferência, por isso 'localizar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "Q5 está fora da circunferência de A, B e Q1, além dela. Por isso o ângulo AQ5B é menor que α.",
+    "motivo": "A frase 'quanto mais longe, mais fechado o ângulo' não vale como regra geral. A distância à trave sozinha não decide o ângulo, porque pontos à mesma distância podem ver AB sob ângulos diferentes. O que decide é ficar dentro, sobre ou fora do arco capaz. A frase também contradizia a própria armadilha da resolução.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Pontos de uma mesma circunferência que passa por A e B, do mesmo lado de AB, enxergam a trave AB sob o mesmo ângulo. Quem está dentro da circunferência enxerga a trave sob ângulo maior. Quem está fora enxerga sob ângulo menor. A figura já traz circunferências tracejadas passando por A e B. Basta achar a que passa por Q1 e ver qual jogador está sobre ela.",
+    "motivo": "Frases mais curtas e sem ambiguidade; remove 'quando os vértices estão sobre a mesma circunferência', que confundia causa e efeito."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "dentro: Q2, Q4 | sobre: Q3 | fora: Q5, Q6",
+    "motivo": "Conta mais curta, cabe na tela de 390 px e fica mais clara."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Olhe a figura: Q2 e Q4 ficam entre a trave e a circunferência de Q1. Q5 e Q6 ficam além dela. Só Q3 está em cima da linha tracejada que passa por Q1.",
+    "motivo": "Linguagem mais simples e apoiada na figura."
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Teste os extremos: de um ponto em cima do segmento AB, a trave é vista sob 180°. De um ponto muito longe, sob quase 0°. Então perto da trave o ângulo é grande e longe é pequeno. Q2 e Q4 estão mais perto que Q1, logo o ângulo é maior. Q5 e Q6 estão mais longe, logo é menor. Só Q3 fica na linha de ângulo igual.",
+    "motivo": "Frases curtas e explicação mais direta do raciocínio."
+   },
+   {
+    "campo": "resolucao.quadro[2].linha",
+    "depois": "sobre ela → ângulo = α",
+    "motivo": "Mantida a linha; sem mudança de fato."
+   }
+  ],
+  "didatica_alertas": [
+   "Os campos tema/conteudo do JSON (M08/M08.3) divergem da classificação indicada no cabeçalho (M09/M09.5). O conteúdo de ângulo inscrito fica em M08.3, então parece correto no JSON; vale conferir a classificação do banco."
+  ],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "B"
  }
 }

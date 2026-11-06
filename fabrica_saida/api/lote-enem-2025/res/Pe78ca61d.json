@@ -51,13 +51,13 @@
    {
     "faz": "Nomeie esse traço com outras palavras",
     "conta": "combate contra as próprias limitações = superação pessoal",
-    "porque": "Vencer as próprias limitações é superar-se. Só a luta tem isso, e por isso a diferença aparece.",
-    "tipo": "interpretar"
+    "porque": "Vencer as próprias limitações é se superar. O texto dá esse traço só à luta, e é ele que separa as duas.",
+    "tipo": "comparar"
    },
    {
     "faz": "Elimine as demais alternativas",
-    "conta": "B, C, D e E atribuem à briga ou à luta algo que o texto não diz",
-    "porque": "Cada uma erra o lado (violência na luta, regras na briga, habilidade na briga) ou usa um traço que não separa os dois.",
+    "conta": "B: violência é da briga\nC: regras não são da briga\nD: externo não separa\nE: habilidade é da luta",
+    "porque": "Cada letra erra o lado (B, C, E) ou aponta um traço que não é o que separa as duas (D). Só a A é exclusiva da luta.",
     "tipo": "eliminar"
    }
   ],
@@ -65,7 +65,7 @@
   "checagem": "Segunda marca: o texto fala em \"desenvolvimento\" na luta, que passa por orgulho, determinação e fraqueza. Nada disso é dito da briga, que só desumaniza.",
   "erradas": {
    "B": "Inverte os lados. A violência que \"desumaniza o outro e pode até matá-lo\" é da briga; da luta o texto diz que as intenções do outro são consideradas.",
-   "C": "O texto não fala em regras na briga. As \"regras\" só aparecem na pergunta inicial (juízes e medalhas), que o texto não confirma como a diferença; a briga é descrita só pela desumanização.",
+   "C": "A palavra 'regras' não aparece no texto. Só a pergunta inicial cita 'juízes e medalhas', e o texto não a confirma como a diferença. A briga é descrita só pela desumanização.",
    "D": "O desafio externo (o adversário) existe na luta, mas o texto diz que ela não é \"apenas com o outro\". O traço que diferencia é o combate interno, não o externo.",
    "E": "A habilidade é citada na luta (\"suas habilidades, enfim, sua meta de vencer\"), não na briga. A alternativa atribui à briga o que o texto liga à luta."
   },
@@ -101,10 +101,60 @@
  "gab": "A",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "comparar",
+    "motivo": "O guia não aceita o tipo 'interpretar'. Os valores permitidos são localizar, calcular, comparar, eliminar e concluir. O passo traduz o trecho localizado em 'superação pessoal' e confronta essa ideia com a alternativa, por isso o tipo certo é 'comparar'.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "A",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "B: violência é da briga\nC: regras não são da briga\nD: externo não separa\nE: habilidade é da luta",
+    "motivo": "A conta genérica não mostrava o teste de cada letra. Agora cada alternativa tem a sua razão."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "Cada letra erra o lado (B, C, E) ou usa um traço que também existe fora da diferença (D). Só a A é exclusiva da luta.",
+    "motivo": "Frase mais clara, sem o duplo sentido de 'não diz'."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Vencer as próprias limitações é se superar. O texto dá esse traço só à luta, e é ele que separa as duas.",
+    "motivo": "Frase mais direta e fácil de ler."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "A palavra 'regras' não aparece no texto. Só a pergunta inicial cita 'juízes e medalhas', e o texto não a confirma como a diferença. A briga é descrita só pela desumanização.",
+    "motivo": "Antes dizia que 'regras' aparecia na pergunta, o que não é literal. Isso podia confundir o aluno."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "Cada letra erra o lado (B, C, E) ou aponta um traço que não é o que separa as duas (D). Só a A é exclusiva da luta.",
+    "motivo": "O texto não diz que o desafio externo existe na briga. D erra porque o texto mostra que a luta vai além do outro, então o externo não é o traço distintivo.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "A"
  }
 }

@@ -19,6 +19,10 @@
      "abertura no centro da íris, por onde a luz entra no olho"
     ],
     [
+     "íris",
+     "parte colorida do olho, que abre e fecha a pupila"
+    ],
+    [
      "dilatada",
      "aberta, com diâmetro maior"
     ],
@@ -37,6 +41,10 @@
     [
      "cones",
      "células da retina que distinguem cores e atuam com luz forte"
+    ],
+    [
+     "flash",
+     "lâmpada da câmera que dá um clarão de luz branca"
     ]
    ]
   },
@@ -52,33 +60,33 @@
     "faz": "Diga como a pupila reage ao escuro",
     "conta": "escuro → pupila dilatada",
     "porque": "O olho abre a pupila para captar mais luz. É o oposto do que ocorre sob luz forte, quando ela se retrai. Isso elimina as alternativas B, C e D, que falam em pupila retraída.",
-    "tipo": "aplicar"
+    "tipo": "eliminar"
    },
    {
     "faz": "Relacione a pupila aberta ao flash",
     "conta": "pupila aberta → mais luz do flash entra",
     "porque": "O flash é uma luz forte e direta. Com a pupila aberta, muita dessa luz atinge o fundo do olho.",
-    "tipo": "interpretar"
+    "tipo": "comparar"
    },
    {
     "faz": "Ligue ao vermelho da foto",
     "conta": "luz → fundo do olho → vasos → câmera",
-    "porque": "O texto diz que o fundo do olho é repleto de vasos sanguíneos. Eles refletem a luz em tom avermelhado. Mais luz entrando significa mais luz refletida de volta à câmera.",
-    "tipo": "interpretar"
+    "porque": "O texto diz que o fundo do olho tem muitos vasos sanguíneos, que refletem a luz do flash. Mais luz entrando significa mais luz refletida de volta à câmera, e o sangue dá a cor vermelha.",
+    "tipo": "localizar"
    },
    {
     "faz": "Escolha a alternativa",
     "conta": "dilatada → mais luz à retina",
-    "porque": "Só a alternativa A diz que a pupila está dilatada e que isso faz chegar mais luz à retina. A E também fala em dilatada, mas atribui o efeito a um filtro de cores que a pupila não faz.",
+    "porque": "Só a alternativa A diz que a pupila está dilatada e que isso faz chegar mais luz à retina. A alternativa E também fala em dilatada, mas diz que chega menos luz azul e verde, o que a pupila não faz.",
     "tipo": "concluir"
    }
   ],
-  "resposta": "Alternativa A: no escuro a pupila dilata e deixa chegar mais luz do flash à retina, que a reflete avermelhada pelos vasos.",
+  "resposta": "Alternativa A: no escuro a pupila dilata e deixa chegar mais luz do flash ao fundo do olho, onde os vasos sanguíneos a refletem avermelhada de volta à câmera.",
   "checagem": "Teste o caso oposto. Ao ar livre, a pupila é pequena e entra pouca luz do flash, e quase não se vê olho vermelho. Isso confirma que o efeito vem da pupila aberta.",
   "erradas": {
    "B": "Diz que a pupila está retraída, mas no escuro ela dilata. Além disso, a pupila não seleciona a cor da luz: o flash é luz branca, e o vermelho vem da reflexão nos vasos sanguíneos.",
-   "C": "Também parte de pupila retraída, o que contradiz a reação ao escuro. A pupila não deixa passar mais luz vermelha aos bastonetes. Os bastonetes funcionam com pouca luz e não distinguem cores.",
-   "D": "A pupila retraída diminui a entrada de toda a luz, sem filtrar azul e verde. O erro de base é o mesmo: no escuro ela se dilata, e não se retrai. Os cones também atuam com luz forte, e não no escuro.",
+   "C": "Também parte de pupila retraída, o que contradiz a reação ao escuro. Além disso, a pupila não escolhe a cor da luz que passa. Os bastonetes funcionam com pouca luz e não distinguem cores.",
+   "D": "A pupila retraída diminui a entrada de toda a luz, sem separar azul e verde. O erro de base é o mesmo: no escuro a pupila se dilata. Além disso, os cones atuam com luz forte, e não no escuro. Por isso, também não faz sentido ligar o efeito à falta de luz azul e verde nos cones.",
    "E": "Acerta ao dizer que a pupila está dilatada, mas erra a consequência. Dilatada, ela deixa entrar mais luz de todas as cores, e não menos azul e verde. O flash é luz branca, e a pupila não age como filtro de cores. Os bastonetes também não distinguem cores."
   },
   "armadilha": "Achar que o olho fica fechado ou retraído no escuro, ou que a pupila filtra cores. Ela só controla a quantidade de luz.",
@@ -113,10 +121,132 @@
  "gab": "A",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
- }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.resposta",
+    "depois": "Alternativa A: no escuro a pupila dilata e deixa chegar mais luz do flash ao fundo do olho, onde os vasos sanguíneos a refletem avermelhada de volta à câmera.",
+    "motivo": "A frase antiga dizia que a retina reflete a luz em vermelho. O texto da questão atribui a reflexão a uma região do fundo do olho repleta de vasos sanguíneos, a coroide atrás da retina, e não à própria retina. Ajustei a frase para ficar fiel ao texto e à anatomia.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "eliminar",
+    "motivo": "O tipo 'aplicar' não existe na lista permitida (localizar, calcular, comparar, eliminar, concluir). O próprio passo elimina B, C e D.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "comparar",
+    "motivo": "O tipo 'interpretar' não existe na lista permitida. O passo relaciona o tamanho da pupila com a quantidade de luz que entra.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "localizar",
+    "motivo": "O tipo 'interpretar' não existe na lista permitida. O passo usa a informação do texto de que a região é repleta de vasos sanguíneos.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "A",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "Só a alternativa A diz que a pupila está dilatada e que isso faz chegar mais luz à retina. A E também fala em dilatada, mas diz que chega menos luz azul e verde, o que a pupila não faz.",
+    "motivo": "Corrige 'A E' (leitura ambígua) e a expressão 'filtro de cores', mais clara para o aluno."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "O texto diz que o fundo do olho tem muitos vasos sanguíneos, que refletem a luz do flash. Mais luz entrando significa mais luz refletida de volta à câmera, e o sangue dá a cor vermelha.",
+    "motivo": "Evita a frase vaga 'refletem a luz em tom avermelhado' e liga a cor ao sangue."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "A pupila retraída diminui a entrada de toda a luz, sem separar azul e verde. O erro de base é o mesmo: no escuro a pupila se dilata. Além disso, os cones atuam com luz forte, e não no escuro.",
+    "motivo": "Frase mais curta e sem ambiguidade; mantém o que faltou no raciocínio de quem marcou D."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "pupila",
+      "abertura no centro da íris, por onde a luz entra no olho"
+     ],
+     [
+      "íris",
+      "parte colorida do olho, que abre e fecha a pupila"
+     ],
+     [
+      "dilatada",
+      "aberta, com diâmetro maior"
+     ],
+     [
+      "retraída",
+      "fechada, com diâmetro menor (contraída)"
+     ],
+     [
+      "retina",
+      "camada no fundo do olho que recebe a luz e a transforma em sinal nervoso"
+     ],
+     [
+      "bastonetes",
+      "células da retina sensíveis a pouca luz, que não distinguem cores"
+     ],
+     [
+      "cones",
+      "células da retina que distinguem cores e atuam com luz forte"
+     ],
+     [
+      "flash",
+      "lâmpada da câmera que dá um clarão de luz branca"
+     ]
+    ],
+    "motivo": "Íris e flash aparecem no texto e não estavam explicados."
+   }
+  ],
+  "didatica_alertas": [
+   "A classificação no JSON (F08.6, nível 3) difere da atual do banco (F09.6, nível 4); o tema F08 (óptica da visão) parece o correto. O corretor 1 pode conferir."
+  ],
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "Só a alternativa A diz que a pupila está dilatada e que isso faz chegar mais luz à retina. A alternativa E também fala em dilatada, mas diz que chega menos luz azul e verde, o que a pupila não faz.",
+    "motivo": "A alteração da didática trocou 'A E' por uma redação ambígua que o corretor de fatos não consegue validar. A forma explícita 'A alternativa E' evita a leitura como 'A, E'. O conteúdo está correto.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "Também parte de pupila retraída, o que contradiz a reação ao escuro. Além disso, a pupila não escolhe a cor da luz que passa. Os bastonetes funcionam com pouca luz e não distinguem cores.",
+    "motivo": "A frase original sobre luz vermelha e bastonetes era vaga. A correção separa os dois fatos verdadeiros e suficientes: a pupila não filtra cor, e os bastonetes não distinguem cor.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "A pupila retraída diminui a entrada de toda a luz, sem separar azul e verde. O erro de base é o mesmo: no escuro a pupila se dilata. Além disso, os cones atuam com luz forte, e não no escuro. Por isso, também não faz sentido ligar o efeito à falta de luz azul e verde nos cones.",
+    "motivo": "A alternativa D é falsa porque a pupila não filtra cor, e essa razão faltava. O acréscimo é pequeno e correto.",
+    "fonte": ""
+   },
+   {
+    "campo": "tema/conteudo",
+    "depois": "tema F08, conteúdo F08.6",
+    "motivo": "A classificação do enunciado (F09.6, efeito Doppler) está errada. A questão trata de óptica da visão, então a resolução já usa F08.6, que está correta. Manter F08.6 e corrigir o registro externo do banco.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "A"
+ },
+ "tema/conteudo": "tema F08, conteúdo F08.6"
 }

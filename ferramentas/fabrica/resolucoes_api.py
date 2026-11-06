@@ -185,6 +185,19 @@ def pedido(etapa, q, prova, atual):
     return p
 
 
+def normaliza(r, gab):
+    """Só forma, nunca conteúdo: campos da resolução que vieram fora de "resolucao" voltam para dentro, e o comentário
+    da letra CERTA em "erradas" sai (o site só mostra erradas das letras erradas)."""
+    res = r.setdefault('resolucao', {})
+    for c in CAMPOS_RES:
+        if c not in res and c in r:
+            res[c] = r.pop(c)
+    if gab in (res.get('erradas') or {}):
+        r.setdefault('revisao', {}).setdefault('normalizacao', []).append(
+            {'campo': f'resolucao.erradas.{gab}', 'removido': res['erradas'].pop(gab), 'motivo': 'comentário da letra certa'})
+    return r
+
+
 def aplica(r, mudancas):
     """Aplica [{campo: 'resolucao.passos[2].conta', depois: ...}] em r. Devolve a lista de campos que não existem."""
     falhas = []
@@ -193,6 +206,8 @@ def aplica(r, mudancas):
         partes = re.findall(r'[^.\[\]]+|\[\d+\]', campo)
         if not partes or 'depois' not in m:
             falhas.append(campo); continue
+        if partes[0] == 'classificacao' and len(partes) > 1:
+            partes = partes[1:]  # tema/conteudo/nivel ficam na raiz
         if partes[0] == 'resolucao' and len(partes) > 1 and partes[1] in ('caminhos', 'quadro', 'visual', 'fontes'):
             partes = partes[1:]  # esses campos ficam fora de "resolucao"
         alvo = r
@@ -256,7 +271,7 @@ def valida(r, gab, alts):
     # fração em linha é proibida (CLAUDE.md): procura "3/5" em textos e no quadro
     tudo = json.dumps({'resolucao': res, 'quadro': r.get('quadro')}, ensure_ascii=False)
     tudo = re.sub(r'https?://\S+', '', tudo)
-    sobra = re.findall(r'\\\\[a-zA-Z]+', tudo)
+    sobra = re.findall(r'\\\\(?:d?frac|text|mathrm|cdot|times|approx|sqrt|quad|left|right|leq?|geq?|neq|Delta|pi)\b', tudo)
     if sobra:
         erros.append('LaTeX sobrando: ' + ', '.join(sorted(set(sobra))) + ' (o site lê texto com "a/b", ×, ·, ^)')
     # linha longa no celular: decide a conferência na tela (confere_tela.cjs), que usa a regra do próprio site
@@ -480,7 +495,8 @@ def roda(lote, teto):
     for i in est['questoes']:
         if i in excecoes:
             continue
-        r = sem_latex_frac(ler_json(os.path.join(res_dir, i + '.json')))
+        r = normaliza(sem_latex_frac(ler_json(os.path.join(res_dir, i + '.json'))), qs[i]['gab'])
+        gravar_json(os.path.join(res_dir, i + '.json'), r)
         prob = valida(r, qs[i]['gab'], alts)
         if prob:
             excecoes[i] = {'etapa': 'validacao', 'motivo': '; '.join(prob)}
@@ -492,6 +508,42 @@ def roda(lote, teto):
     print(f'FIM: {len(aprovadas)} aprovadas, {len(excecoes)} na fila de exceção, gasto US$ {est["gasto_usd"]:.2f}')
 
 
+def r0gab(est, i):
+    p = ler_json(os.path.join(PROVAS, est['prova'], 'prova.json'))
+    return next(q['gab'] for q in p['questoes'] if q['id'] == i)
+
+
+def revalida(lote):
+    """Questões barradas só por forma (validação) ou por caminho de correção: normaliza, reaplica e valida de novo."""
+    d = pasta(lote)
+    est = ler_json(os.path.join(d, 'estado.json'))
+    exc = ler_json(os.path.join(d, 'excecoes.json'))
+    prova = ler_json(os.path.join(PROVAS, est['prova'], 'prova.json'))
+    qs = {q['id']: q for q in prova['questoes']}
+    for i, v in list(exc.items()):
+        r = ler_json(os.path.join(d, 'res', i + '.json'))
+        if v['etapa'] != 'validacao' and 'campo inexistente' not in v['motivo']:
+            continue
+        if 'campo inexistente' in v['motivo']:
+            etapa = v['etapa']
+            if ETAPAS.index(etapa) < 3:
+                continue  # só a última etapa pode ser reaplicada sem rodar as seguintes
+            saida = extrai_json(anthropic.types.Message.model_validate(ler_json(os.path.join(d, 'bruto', etapa, i + '.json'))))
+            if aplica(r, saida.get('correcoes')) or not saida.get('fatos_ok') or (saida.get('sua_resposta') or '')[:1] != qs[i]['gab']:
+                continue
+            r['revisao']['fatos_volta'] = saida.get('correcoes', []); r['revisao']['fatos_volta_ok'] = True
+        r = normaliza(sem_latex_frac(r), qs[i]['gab'])
+        prob = valida(r, qs[i]['gab'], letras(prova))
+        gravar_json(os.path.join(d, 'res', i + '.json'), r)
+        if prob:
+            exc[i] = {'etapa': 'validacao', 'motivo': '; '.join(prob)}
+        else:
+            exc.pop(i); est.setdefault('aprovadas', []).append(i)
+    gravar_json(os.path.join(d, 'excecoes.json'), exc)
+    gravar_json(os.path.join(d, 'estado.json'), est)
+    print(f'{lote}: {len(est["aprovadas"])} aprovadas, {len(exc)} na exceção')
+
+
 def integra(lote):
     d = pasta(lote)
     est = ler_json(os.path.join(d, 'estado.json'))
@@ -499,7 +551,7 @@ def integra(lote):
     banco = ler_json(fr) if os.path.exists(fr) else {}
     hoje = datetime.date.today().isoformat()
     for i in est.get('aprovadas', []):
-        r = sem_latex_frac(ler_json(os.path.join(d, 'res', i + '.json')))
+        r = normaliza(sem_latex_frac(ler_json(os.path.join(d, 'res', i + '.json'))), r0gab(est, i))
         banco[i] = {k: r.get(k) for k in ('n', 'materia', 'tema', 'conteudo', 'nivel', 'conceito', 'resolucao',
                                           'caminhos', 'quadro', 'visual', 'fontes')}
         banco[i]['aprovada'] = True
@@ -519,6 +571,8 @@ if __name__ == '__main__':
         roda(a[1], float(a[a.index('--teto') + 1]) if '--teto' in a else 15.0)
     elif a[0] == 'volta':  # volta <lote> <origem> <etapa> <notas.json>
         volta(a[1], a[2], a[3], ler_json(a[4]))
+    elif a[0] == 'revalida':
+        revalida(a[1])
     elif a[0] == 'integra':
         integra(a[1])
     else:

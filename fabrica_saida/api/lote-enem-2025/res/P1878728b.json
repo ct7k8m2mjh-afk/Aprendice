@@ -43,6 +43,18 @@
     [
      "NH4HCO3",
      "bicarbonato de amônio, o fermento químico, sólido"
+    ],
+    [
+     "gás ideal",
+     "gás que obedece à equação P × V = n × R × T"
+    ],
+    [
+     "mol",
+     "unidade que conta partículas; a equação química só relaciona quantidades em mol"
+    ],
+    [
+     "atm",
+     "atmosfera, unidade de pressão"
     ]
    ]
   },
@@ -56,7 +68,7 @@
    },
    {
     "faz": "Faça a divisão",
-    "conta": "n = 4,00 ÷ 37,15 ≈ 0,1077 mol de gás",
+    "conta": "n = 4,00 ÷ 37,15\nn ≈ 0,1077 mol",
     "porque": "0,082 × 453 = 37,146. Esse é o total dos três gases juntos.",
     "tipo": "calcular"
    },
@@ -68,9 +80,9 @@
    },
    {
     "faz": "Inclua o rendimento de 80%",
-    "conta": "gás = 3 × 0,80 × n(sal) = 2,4 × n(sal)",
-    "porque": "De cada mol de sal colocado, só 0,80 mol reage. Para obter 0,1077 mol de gás é preciso colocar mais sal do que o cálculo ideal.",
-    "tipo": "aplicar"
+    "conta": "gás = 3 × 0,80 × n(sal)\ngás = 2,4 × n(sal)",
+    "porque": "De cada mol de sal colocado, só 0,80 mol reage. Para chegar a 0,1077 mol de gás, é preciso colocar mais sal do que no caso ideal.",
+    "tipo": "calcular"
    },
    {
     "faz": "Ache os mols de sal",
@@ -80,7 +92,7 @@
    },
    {
     "faz": "Converta para massa",
-    "conta": "m = 0,0449 × 79 ≈ 3,55 g",
+    "conta": "m = 0,0449 × 79\nm ≈ 3,55 g → 3,5 g",
     "porque": "Massa = mol × massa molar. O valor mais próximo é 3,5 g, a alternativa B.",
     "tipo": "concluir"
    }
@@ -91,7 +103,7 @@
    "A": "2,3 g sai de aplicar o rendimento no sentido errado: 0,1077 ÷ 3 × 0,80 = 0,0287 mol, e 0,0287 × 79 ≈ 2,3 g. Com 80% de rendimento é preciso colocar MAIS sal (dividir por 0,80), não menos.",
    "C": "5,9 g não confere: equivale a 5,9 ÷ 79 ≈ 0,0747 mol de sal. Com rendimento de 80% e 3 gases por mol, daria 3 × 0,80 × 0,0747 ≈ 0,179 mol de gás, ou seja, cerca de 6,7 L, e não 4,00 L.",
    "D": "6,8 g sai de esquecer que cada mol de sal gera 3 mol de gás e de multiplicar pelo rendimento: 0,1077 × 0,80 × 79 ≈ 6,8 g. Isso trata o sal como se gerasse 1 mol de gás por mol, e o rendimento entra no sentido errado.",
-   "E": "8,9 g não confere: equivale a 8,9 ÷ 79 ≈ 0,113 mol de sal, que com 80% de rendimento e 3 gases por mol daria 3 × 0,80 × 0,113 ≈ 0,27 mol de gás, cerca de 10 L, bem acima dos 4,00 L pedidos. Nem ignorando coeficiente e rendimento (0,1077 × 79 ≈ 8,5 g) se chega a ele."
+   "E": "8,9 g sai de usar a temperatura em °C (180) no lugar de 453 K: n = 4,00 ÷ (0,082 × 180) ≈ 0,271 mol de gás; ÷ 3 ÷ 0,80 ≈ 0,113 mol de sal; × 79 ≈ 8,9 g. Clapeyron exige kelvin."
   },
   "armadilha": "Esquecer que 1 mol de sal gera 3 mol de gás, ou aplicar o rendimento multiplicando em vez de dividindo.",
   "alerta": "",
@@ -117,6 +129,19 @@
    "nota": "Clapeyron para os gases juntos"
   },
   {
+   "linha": "n = P·V ÷ (R·T)",
+   "nota": "isole n",
+   "mov": [
+    {
+     "termo": "R·T",
+     "de": "direita",
+     "para": "denominador",
+     "vira": "R·T",
+     "como": "passa dividindo"
+    }
+   ]
+  },
+  {
    "linha": "n = (1,00 × 4,00) ÷ (0,082 × 453)",
    "nota": "troque pelos dados do enunciado",
    "destaque": "n ="
@@ -136,6 +161,10 @@
   {
    "linha": "gás = 3 × 0,80 × n(sal)",
    "nota": "80% de rendimento: só 0,80 mol reage por mol de sal"
+  },
+  {
+   "linha": "gás = 2,4 × n(sal)",
+   "nota": "3 × 0,80 = 2,4"
   },
   {
    "linha": "n(sal) = 0,1077 ÷ 2,4",
@@ -176,10 +205,178 @@
  "gab": "B",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "8,9 g sai de usar a temperatura em °C (180) no lugar de 453 K: n = 4,00 ÷ (0,082 × 180) ≈ 0,271 mol de gás; ÷ 3 ÷ 0,80 ≈ 0,113 mol de sal; × 79 ≈ 8,9 g. Clapeyron exige kelvin.",
+    "motivo": "A resolução dizia que nenhuma conta chega a 8,9 g. Isso é falso. Com T = 180 a conta dá 4/(0,082·180) = 0,2710 mol; 0,2710/2,4 = 0,1129 mol; 0,1129 × 79 = 8,92 g. É um erro típico real (°C não convertido), então a origem deve ser dada.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "calcular",
+    "motivo": "'aplicar' não está entre os tipos permitidos (localizar, calcular, comparar, eliminar, concluir).",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "P",
+      "pressão do gás, aqui 1,00 atm"
+     ],
+     [
+      "V",
+      "volume do gás, aqui 4,00 L"
+     ],
+     [
+      "n",
+      "quantidade de matéria, em mol"
+     ],
+     [
+      "R",
+      "constante dos gases: 0,082 atm·L/(mol·K)"
+     ],
+     [
+      "T",
+      "temperatura absoluta, em kelvin; o enunciado já dá 453 K"
+     ],
+     [
+      "rendimento",
+      "fração do reagente que realmente reage; 80% = 0,80"
+     ],
+     [
+      "NH4HCO3",
+      "bicarbonato de amônio, o fermento químico, sólido"
+     ],
+     [
+      "gás ideal",
+      "gás que obedece à equação P × V = n × R × T"
+     ],
+     [
+      "mol",
+      "unidade que conta partículas; a equação química só relaciona quantidades em mol"
+     ],
+     [
+      "atm",
+      "atmosfera, unidade de pressão"
+     ]
+    ],
+    "motivo": "Termos que o aluno pode não conhecer (gás ideal, mol, atm) entram em simbolos."
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "n = 4,00 ÷ 37,15\nn ≈ 0,1077 mol",
+    "motivo": "A conta tem de caber em ~30 caracteres, sem quebra de linha na tela."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "gás = 3 × 0,80 × n(sal)\ngás = 2,4 × n(sal)",
+    "motivo": "Conta quebrada em duas linhas para caber na tela do celular."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "De cada mol de sal colocado, só 0,80 mol reage. Para chegar a 0,1077 mol de gás, é preciso colocar mais sal do que no caso ideal.",
+    "motivo": "Frase mais direta."
+   },
+   {
+    "campo": "resolucao.passos[5].conta",
+    "depois": "m = 0,0449 × 79\nm ≈ 3,55 g → 3,5 g",
+    "motivo": "Conta mais curta, com o arredondamento visível."
+   },
+   {
+    "campo": "resolucao.quadro",
+    "depois": [
+     {
+      "linha": "P·V = n·R·T",
+      "nota": "Clapeyron para os gases juntos"
+     },
+     {
+      "linha": "n = P·V ÷ (R·T)",
+      "nota": "isole n",
+      "mov": [
+       {
+        "termo": "R·T",
+        "de": "direita",
+        "para": "denominador",
+        "vira": "R·T",
+        "como": "passa dividindo"
+       }
+      ]
+     },
+     {
+      "linha": "n = (1,00 × 4,00) ÷ (0,082 × 453)",
+      "nota": "troque pelos dados do enunciado",
+      "destaque": "n ="
+     },
+     {
+      "linha": "n = 4,00 ÷ 37,15",
+      "nota": "0,082 × 453 = 37,15"
+     },
+     {
+      "linha": "n(gás) ≈ 0,1077 mol",
+      "nota": "total dos três gases"
+     },
+     {
+      "linha": "1 sal → 3 gases",
+      "nota": "razão da equação balanceada"
+     },
+     {
+      "linha": "gás = 3 × 0,80 × n(sal)",
+      "nota": "80% de rendimento: só 0,80 mol reage por mol de sal"
+     },
+     {
+      "linha": "gás = 2,4 × n(sal)",
+      "nota": "3 × 0,80 = 2,4"
+     },
+     {
+      "linha": "n(sal) = 0,1077 ÷ 2,4",
+      "nota": "o 2,4 passa dividindo",
+      "mov": [
+       {
+        "termo": "2,4",
+        "de": "direita",
+        "para": "denominador",
+        "vira": "2,4",
+        "como": "passa dividindo"
+       }
+      ]
+     },
+     {
+      "linha": "n(sal) ≈ 0,0449 mol",
+      "nota": "divida 0,1077 por 2,4"
+     },
+     {
+      "linha": "m = 0,0449 × 79",
+      "nota": "massa = mol × massa molar"
+     },
+     {
+      "linha": "m ≈ 3,55 g → 3,5 g",
+      "nota": "alternativa B"
+     }
+    ],
+    "motivo": "Linhas curtas e um passo por linha: faltavam o isolamento de n e o produto 3 × 0,80 = 2,4."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "B"
  }
 }

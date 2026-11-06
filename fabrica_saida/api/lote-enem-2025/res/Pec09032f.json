@@ -20,19 +20,27 @@
     ],
     [
      "r",
-     "resistência interna do gerador, que gasta parte da tensão"
+     "resistência interna do gerador: parte da tensão se perde nela"
     ],
     [
      "U",
-     "tensão nos terminais, a que chega à bomba quando há corrente"
+     "tensão nos terminais: a que chega à bomba quando há corrente"
     ],
     [
      "circuito aberto",
      "sem corrente passando; a tensão medida é ε"
+    ],
+    [
+     "em série",
+     "ligadas uma após a outra, pela mesma corrente; as tensões se somam"
+    ],
+    [
+     "Ω",
+     "ohm, unidade de resistência elétrica"
     ]
    ]
   },
-  "pista": "Descubra primeiro a resistência interna de UMA placa, comparando a tensão em circuito aberto com a tensão de operação. Depois veja quantas placas precisam ficar em série para a tensão chegar à faixa da bomba.",
+  "pista": "Primeiro ache a resistência interna de UMA placa: compare a tensão em circuito aberto com a de operação. Depois veja quantas placas em série levam a tensão à faixa da bomba.",
   "passos": [
    {
     "faz": "Leia a faixa de tensão da bomba",
@@ -49,20 +57,20 @@
    {
     "faz": "Isole r",
     "conta": "r = 6 ÷ 7,5 = 0,8 Ω",
-    "porque": "Divida a queda de tensão pela corrente.",
+    "porque": "Dividir a queda de tensão (6 V) pela corrente (7,5 A) dá a resistência interna, pois r = queda ÷ i.",
     "tipo": "calcular"
    },
    {
     "faz": "Descubra o menor n de placas em série",
-    "conta": "2 × 34 = 68 V (pouco)\n3 × 34 = 102 V (ok)",
-    "porque": "A tensão de operação soma em série. 102 V está dentro de 95 a 105 V; 68 V não chega. Paralelo não ajuda, pois manteria 34 V.",
+    "conta": "2 placas: 2 × 34 = 68 V\n3 placas: 3 × 34 = 102 V",
+    "porque": "Em série, as tensões de operação somam. 102 V está entre 95 V e 105 V; 68 V não chega. Em paralelo a tensão ficaria em 34 V, então não ajuda.",
     "tipo": "calcular"
    },
    {
     "faz": "Monte o gerador equivalente",
     "conta": "ε = 3 × 40 = 120 V\nr = 3 × 0,8 = 2,4 Ω",
     "porque": "O diagrama mostra a tensão em circuito aberto (ε), não a de operação. As resistências internas em série também somam.",
-    "tipo": "aplicar"
+    "tipo": "calcular"
    },
    {
     "faz": "Ligue o resultado à alternativa",
@@ -74,8 +82,8 @@
   "resposta": "Alternativa B: três placas em série formam um gerador de ε = 120 V e r = 2,4 Ω, que entrega 102 V à bomba.",
   "checagem": "Com i = 7,5 A, o gerador equivalente entrega U = 120 − 2,4 × 7,5 = 120 − 18 = 102 V, dentro de 95 a 105 V. Com duas placas seria 80 − 1,6 × 7,5 = 68 V, fora da faixa.",
   "erradas": {
-   "A": "136 V e 3,2 Ω correspondem a 4 placas em série (4 × 40 = 160 V seria o ε; 136 = 4 × 34 é a tensão de operação, e r = 4 × 0,8 = 3,2 Ω). Quatro placas entregam 136 V à bomba, acima de 105 V, e não são o menor número.",
-   "C": "O ε de 120 V está certo, mas r = 5,3 Ω sai de 40 ÷ 7,5 = 5,33 Ω, usando ε inteiro em vez da queda 40 − 34 = 6 V. O r correto de uma placa é 0,8 Ω, e de três é 2,4 Ω.",
+   "A": "Sai de 4 placas em série: 4 × 34 = 136 V e r = 4 × 0,8 = 3,2 Ω. Esses 136 V passam de 105 V, e 4 não é o menor número de placas. O ε de 4 placas seria 160 V.",
+   "C": "O ε = 120 V está certo, mas r = 5,3 Ω sai de 40 ÷ 7,5 ≈ 5,33 Ω: usou o ε inteiro em vez da queda 40 − 34 = 6 V. O r certo de 3 placas é 3 × 0,8 = 2,4 Ω.",
    "D": "O r = 2,4 Ω está certo, mas 102 V é a tensão de operação (3 × 34 V), que chega à bomba. O diagrama do gerador mostra ε, a tensão em circuito aberto: 3 × 40 = 120 V.",
    "E": "Junta os dois erros: usa 102 V (tensão de operação) no lugar de ε = 120 V e r = 40 ÷ 7,5 ≈ 5,3 Ω no lugar de 2,4 Ω."
   },
@@ -90,7 +98,7 @@
  "caminhos": [
   {
    "nome": "eliminação",
-   "ideia": "Só A, D e E trazem tensão compatível com 3 ou 4 placas, e 136 V (A) passa de 105 V. D e E usam 102 V como ε, que é a tensão de operação. Das duas restantes (B e C), só B tem r coerente com 0,8 Ω por placa."
+   "ideia": "A traz 136 V = 4 × 34 V, ou seja, quatro placas, mais do que o necessário. D e E usam 102 V como ε, mas 102 V é a tensão de operação de 3 placas, não a de circuito aberto. Restam B e C, ambas com ε = 120 V = 3 × 40 V. Só B tem r = 3 × 0,8 = 2,4 Ω."
   },
   {
    "nome": "tentativa por número de placas",
@@ -136,10 +144,104 @@
  "gab": "B",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[4].tipo",
+    "depois": "calcular",
+    "motivo": "O tipo 'aplicar' não existe. Os tipos válidos são localizar, calcular, comparar, eliminar e concluir. O passo multiplica ε e r por 3, então o tipo certo é calcular.",
+    "fonte": ""
+   },
+   {
+    "campo": "caminhos[0].ideia",
+    "depois": "A traz 136 V = 4 × 34 V, ou seja, quatro placas, mais do que o necessário. D e E usam 102 V como ε, mas 102 V é a tensão de operação de 3 placas, não a de circuito aberto. Restam B e C, ambas com ε = 120 V = 3 × 40 V. Só B tem r = 3 × 0,8 = 2,4 Ω.",
+    "motivo": "A frase original dizia que 'só A, D e E trazem tensão compatível com 3 ou 4 placas'. Isso é falso: os 120 V de B e C equivalem a 3 × 40 V, que é justamente o ε de 3 placas. Com isso, o caminho de eliminação contradizia a própria resposta.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "40 − 34 = r × 7,5",
+    "motivo": "Mantida; ajuste só no passo seguinte para não repetir a conta."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "2 placas: 2 × 34 = 68 V\n3 placas: 3 × 34 = 102 V",
+    "motivo": "Linhas curtas, com o número de placas explícito, e sem comentário entre parênteses que estoure a largura do celular."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Em série, as tensões de operação somam. 102 V está entre 95 V e 105 V; 68 V não chega. Em paralelo a tensão ficaria em 34 V, então não ajuda.",
+    "motivo": "Frases mais curtas e sem ambiguidade."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Dividir a queda de tensão (6 V) pela corrente (7,5 A) dá a resistência interna, pois r = queda ÷ i.",
+    "motivo": "Explica a lógica em vez de só repetir a ordem."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "Sai de 4 placas em série: 4 × 34 = 136 V e r = 4 × 0,8 = 3,2 Ω. Esses 136 V passam de 105 V, e 4 não é o menor número de placas. O ε de 4 placas seria 160 V.",
+    "motivo": "Texto original confuso (misturava ε e tensão de operação na mesma frase). Reescrito de forma direta."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "O ε = 120 V está certo, mas r = 5,3 Ω sai de 40 ÷ 7,5 ≈ 5,33 Ω: usou o ε inteiro em vez da queda 40 − 34 = 6 V. O r certo de 3 placas é 3 × 0,8 = 2,4 Ω.",
+    "motivo": "Mostra com clareza o que faltou no raciocínio de quem marcou C."
+   },
+   {
+    "campo": "resolucao.pista",
+    "depois": "Primeiro ache a resistência interna de UMA placa: compare a tensão em circuito aberto com a de operação. Depois veja quantas placas em série levam a tensão à faixa da bomba.",
+    "motivo": "Frases mais curtas, ordem natural do raciocínio."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "ε",
+      "força eletromotriz: tensão do gerador em circuito aberto (sem corrente)"
+     ],
+     [
+      "r",
+      "resistência interna do gerador: parte da tensão se perde nela"
+     ],
+     [
+      "U",
+      "tensão nos terminais: a que chega à bomba quando há corrente"
+     ],
+     [
+      "circuito aberto",
+      "sem corrente passando; a tensão medida é ε"
+     ],
+     [
+      "em série",
+      "ligadas uma após a outra, pela mesma corrente; as tensões se somam"
+     ],
+     [
+      "Ω",
+      "ohm, unidade de resistência elétrica"
+     ]
+    ],
+    "motivo": "Faltavam 'em série' e 'Ω' como termos explicados."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "B"
  }
 }

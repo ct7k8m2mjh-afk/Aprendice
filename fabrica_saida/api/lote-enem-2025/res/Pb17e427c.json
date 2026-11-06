@@ -8,10 +8,11 @@
  "conceito": "Porcentagem aplicada a um total obtido da leitura de um gráfico de barras, com a distribuição percentual de um gráfico de setores.",
  "resolucao": {
   "antes": {
-   "texto": "A questão mistura dois gráficos de anos diferentes. De 2024 vem apenas o total de matrículas, que será o mesmo em 2025. De 2023 vem apenas a porcentagem de cada idioma, que será repetida em 2025. O total de 2024 é a soma das quatro barras.",
+   "texto": "A questão mistura dois gráficos de anos diferentes. Do gráfico de 2024 vem só o total de matrículas, que será o mesmo em 2025: é a soma das quatro barras. Do gráfico de 2023 vem só a porcentagem de cada idioma, que se repete em 2025. A pergunta é sobre o francês em 2025.",
    "formulas": [
     "total = soma das quatro barras",
-    "matrículas de francês em 2025 = porcentagem de francês em 2023 × total"
+    "francês em 2025 = porcentagem do francês em 2023 × total",
+    "10% = 10/100 = 0,10"
    ],
    "simbolos": [
     [
@@ -21,10 +22,14 @@
     [
      "distribuição percentual",
      "como o total se reparte, em porcentagem, entre as categorias"
+    ],
+    [
+     "matrícula",
+     "inscrição de um aluno em um curso"
     ]
    ]
   },
-  "pista": "Qual gráfico informa o total de matrículas e qual informa a porcentagem do francês? Cada um serve para uma coisa só.",
+  "pista": "Cada gráfico serve para uma coisa só: um dá o total de alunos, o outro dá a porcentagem do francês. Descubra qual é qual.",
   "passos": [
    {
     "faz": "Leia as barras de 2024",
@@ -60,10 +65,10 @@
   "resposta": "Alternativa E: o total será 400 e o francês fica com 10% dele, ou seja, 40 matrículas.",
   "checagem": "Confira as porcentagens de 2023: 60% + 25% + 10% + 5% = 100%. Aplicando-as a 400: inglês 240, espanhol 100, francês 40 e alemão 20. A soma é 240 + 100 + 40 + 20 = 400, que fecha com o total.",
   "erradas": {
-   "A": "2 não confere: a leitura de 5%, 10% ou 20 não leva a esse valor. Com 400 matrículas, nem 5% (20) dá 2. O francês, com 10% de 400, tem 40.",
-   "B": "12 não confere: seria 3% de 400, e nenhuma fatia do gráfico vale 3%. A fatia do francês é 10%, que dá 40.",
+   "A": "2 sai de aplicar os 10% à barra do francês de 2024, e não ao total: 0,10 × 20 = 2. A porcentagem incide sobre o total de 400, então o francês tem 0,10 × 400 = 40.",
+   "B": "12 não confere: seria 3% de 400 (0,03 × 400 = 12), e nenhuma fatia do gráfico vale 3%. Quem marcou não aplicou a fatia do francês, que é 10% e dá 40.",
    "C": "20 é o valor da barra do francês em 2024, mas a questão manda usar a distribuição de 2023. Também seria o alemão em 2025 (5% de 400 = 20), que é outro idioma.",
-   "D": "22 não confere: seria 5,5% de 400, valor que não aparece nos gráficos. O francês tem 10% de 400 = 40."
+   "D": "22 sai de tratar os 10% como aumento sobre a barra do francês de 2024: 20 + 0,10 × 20 = 22. Os 10% são a fatia do total, não um aumento: 10% de 400 = 40."
   },
   "armadilha": "Usar a barra do francês de 2024 (20) em vez de aplicar os 10% de 2023 ao total de 400.",
   "alerta": "",
@@ -111,7 +116,7 @@
   },
   {
    "linha": "francês = 40",
-   "nota": "400 ÷ 10 = 40"
+   "nota": "0,10 × 400 = 40"
   }
  ],
  "visual": {
@@ -127,10 +132,123 @@
  "gab": "E",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "2 sai de aplicar os 10% à barra do francês de 2024, e não ao total: 0,10 × 20 = 2. A porcentagem incide sobre o total de 400, então o francês tem 0,10 × 400 = 40.",
+    "motivo": "O texto dizia que nenhuma leitura com 10% ou 20 chega a 2. Isso é falso, porque 10% de 20 = 2. Esse é um erro típico real, então a entrada passa a dizer de onde ele vem ('sai de').",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "22 sai de tratar os 10% como aumento sobre a barra do francês de 2024: 20 + 0,10 × 20 = 22. Os 10% são a fatia do total, não um aumento: 10% de 400 = 40.",
+    "motivo": "Uma conta plausível chega exatamente a 22 (20 × 1,1 = 22). Pelo guia, quando isso acontece a entrada deve dizer de onde o valor vem, em vez de dizer que ele 'não confere'.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "A questão mistura dois gráficos de anos diferentes. Do gráfico de 2024 vem só o total de matrículas, que será o mesmo em 2025: é a soma das quatro barras. Do gráfico de 2023 vem só a porcentagem de cada idioma, que se repete em 2025. A pergunta é sobre o francês em 2025.",
+    "motivo": "Frases mais curtas e o pedido da questão dito logo no início."
+   },
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "total = soma das quatro barras",
+     "francês em 2025 = porcentagem do francês em 2023 × total",
+     "10% = 10/100 = 0,10"
+    ],
+    "motivo": "Inclui a conversão de porcentagem em decimal, usada no passo 4, escrita como se diz em aula."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "gráfico de setores (pizza)",
+      "gráfico circular em que cada fatia mostra a porcentagem de uma categoria"
+     ],
+     [
+      "distribuição percentual",
+      "como o total se reparte, em porcentagem, entre as categorias"
+     ],
+     [
+      "matrícula",
+      "inscrição de um aluno em um curso"
+     ]
+    ],
+    "motivo": "Termo 'matrícula' explicado para o aluno de 17 anos."
+   },
+   {
+    "campo": "resolucao.pista",
+    "depois": "Cada gráfico serve para uma coisa só: um dá o total de alunos, o outro dá a porcentagem do francês. Descubra qual é qual.",
+    "motivo": "Mantém a pista sem entregar a resposta, com frases mais claras."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "0,10 × 400 = 40",
+    "motivo": "Mantido igual; conferido que cabe na linha."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "12 não confere: seria 3% de 400 (0,03 × 400 = 12), e nenhuma fatia do gráfico vale 3%. Quem marcou não aplicou a fatia do francês, que é 10% e dá 40.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou B, com a conta do teste."
+   },
+   {
+    "campo": "resolucao.quadro",
+    "depois": [
+     {
+      "linha": "total = 280 + 80 + 20 + 20",
+      "nota": "soma das barras de 2024"
+     },
+     {
+      "linha": "total = 400",
+      "nota": "total que se repete em 2025"
+     },
+     {
+      "linha": "francês = 10% de 400",
+      "nota": "fatia verde do gráfico de 2023"
+     },
+     {
+      "linha": "francês = 0,10 × 400",
+      "nota": "10% vira 0,10",
+      "mov": [
+       {
+        "termo": "10%",
+        "de": "esquerda",
+        "para": "esquerda",
+        "vira": "0,10",
+        "como": "porcentagem vira decimal"
+       }
+      ]
+     },
+     {
+      "linha": "francês = 40",
+      "nota": "0,10 × 400 = 40"
+     }
+    ],
+    "motivo": "Nota do último passo ficou como a conta realmente feita na linha anterior (multiplicação)."
+   }
+  ],
+  "didatica_alertas": [
+   "Metadados: tema M03 / conteúdo M03.1 / nível 3 no JSON diferem da classificação atual (M02, M02.5, nível 5); conferir qual vale."
+  ],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "E"
  }
 }

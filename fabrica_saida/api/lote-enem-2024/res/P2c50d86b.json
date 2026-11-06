@@ -26,6 +26,14 @@
     [
      "2 horas e meia",
      "2,5 horas"
+    ],
+    [
+     "40%",
+     "40 em cada 100; vira o decimal 0,4"
+    ],
+    [
+     "h",
+     "hora"
     ]
    ]
   },
@@ -44,9 +52,15 @@
     "tipo": "calcular"
    },
    {
-    "faz": "Calcule as horas dos outros dois",
-    "conta": "II: 5 × 4 = 20 h | III: 6 × 2,5 = 15 h",
-    "porque": "Mesma conta para o II e para o III. A soma é 22 + 20 + 15 = 57 horas.",
+    "faz": "Calcule as horas do engenheiro II",
+    "conta": "II: 5 × 4 = 20 h",
+    "porque": "Mesma conta: dias vezes horas por dia.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Calcule as horas do engenheiro III e some",
+    "conta": "III: 6 × 2,5 = 15 h",
+    "porque": "2 horas e meia é 2,5. Total dos três: 22 + 20 + 15 = 57 horas.",
     "tipo": "calcular"
    },
    {
@@ -57,14 +71,14 @@
    },
    {
     "faz": "Calcule o que cada um recebe",
-    "conta": "I: 11 000 | II: 10 000 | III: 7 500",
-    "porque": "Horas × R$ 500: 22 × 500 = 11 000; 20 × 500 = 10 000; 15 × 500 = 7 500.",
+    "conta": "I: 22 × 500 = 11 000",
+    "porque": "Horas vezes R$ 500. II: 20 × 500 = 10 000. III: 15 × 500 = 7 500.",
     "tipo": "calcular"
    },
    {
     "faz": "Ache a maior diferença",
     "conta": "11 000 − 7 500 = 3 500",
-    "porque": "A maior diferença é entre quem recebeu mais (I) e quem recebeu menos (III). Isso corresponde à alternativa C.",
+    "porque": "A maior diferença é entre quem recebeu mais (I) e quem recebeu menos (III). É a alternativa C.",
     "tipo": "concluir"
    }
   ],
@@ -73,8 +87,8 @@
   "erradas": {
    "A": "1 000 é a diferença entre I e II (11 000 − 10 000), que é só 2 horas × R$ 500. A pergunta pede a MAIOR diferença, que envolve o III.",
    "B": "1 500 não confere: nenhum par de engenheiros difere em 3 horas. As diferenças de horas são 2, 5 e 7, ou seja, R$ 1 000, R$ 2 500 e R$ 3 500.",
-   "D": "3 800 não confere: dividiria em R$ 500 por hora e daria 7,6 horas, e nenhuma diferença entre engenheiros é essa. A diferença real é de 7 horas, ou R$ 3 500.",
-   "E": "5 250 não confere: seriam 10,5 horas de diferença, e a maior diferença real é de 7 horas. Usando as 57 horas e o valor de R$ 500 por hora, o maior que se obtém é 7 × 500 = 3 500."
+   "D": "3 800 não confere: dividido por R$ 500 por hora dá 7,6 horas, e nenhum par de engenheiros tem essa diferença. As diferenças são de 2, 5 e 7 horas.",
+   "E": "5 250 não confere: dividido por R$ 500 por hora dá 10,5 horas. A maior diferença real é de 7 horas (22 − 15), ou seja, R$ 3 500."
   },
   "armadilha": "Repartir os R$ 71 250,00 inteiros em vez de apenas os 40% destinados aos engenheiros.",
   "alerta": "",
@@ -146,10 +160,132 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "II: 5×4=20 | III: 6×2,5=15",
+    "motivo": "A conta tinha cerca de 38 caracteres e passava do limite de ~30 da tela de 390 px, onde a linha não quebra. O conteúdo é o mesmo, só mais curto.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "I 11000 | II 10000 | III 7500",
+    "motivo": "A conta tinha cerca de 35 caracteres e passava do limite de ~30 por linha. Os valores continuam os mesmos e estão certos (22, 20 e 15 horas × R$ 500).",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "diretamente proporcional",
+      "quem trabalha mais horas recebe mais, na mesma razão: o dobro de horas dá o dobro do valor"
+     ],
+     [
+      "5 horas e meia",
+      "5,5 horas (meia hora é 0,5 h)"
+     ],
+     [
+      "2 horas e meia",
+      "2,5 horas"
+     ],
+     [
+      "40%",
+      "40 em cada 100; vira o decimal 0,4"
+     ],
+     [
+      "h",
+      "hora"
+     ]
+    ],
+    "motivo": "Explicar 40% e a abreviação h, que aparecem na resolução."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "II: 5 × 4 = 20 h",
+    "motivo": "Uma conta por passo. O cálculo do III vai para o passo seguinte."
+   },
+   {
+    "campo": "resolucao.passos[2].faz",
+    "depois": "Calcule as horas do engenheiro II",
+    "motivo": "Um movimento por passo."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Mesma conta: dias vezes horas por dia.",
+    "motivo": "Mantém o porquê curto. A soma passa para o passo do III."
+   },
+   {
+    "campo": "resolucao.passos[3]",
+    "depois": {
+     "faz": "Calcule as horas do engenheiro III e some",
+     "conta": "III: 6 × 2,5 = 15 h",
+     "porque": "2 horas e meia é 2,5. Total dos três: 22 + 20 + 15 = 57 horas.",
+     "tipo": "calcular"
+    },
+    "motivo": "Separa a conta do III e junta a soma das horas, que é o que o passo seguinte usa."
+   },
+   {
+    "campo": "resolucao.passos[4]",
+    "depois": {
+     "faz": "Ache o valor de 1 hora",
+     "conta": "28 500 ÷ 57 = 500",
+     "porque": "Todo o dinheiro dividido por todas as horas dá o preço de cada hora: R$ 500,00.",
+     "tipo": "calcular"
+    },
+    "motivo": "Mantém o passo do valor de 1 hora, que perdeu o lugar ao desmembrar o passo das horas."
+   },
+   {
+    "campo": "resolucao.passos[5]",
+    "depois": {
+     "faz": "Calcule o que cada um recebe",
+     "conta": "I: 22 × 500 = 11 000",
+     "porque": "Horas vezes R$ 500. II: 20 × 500 = 10 000. III: 15 × 500 = 7 500.",
+     "tipo": "calcular"
+    },
+    "motivo": "Conta curta cabe na tela; os outros valores vão no porquê."
+   },
+   {
+    "campo": "resolucao.passos[6]",
+    "depois": {
+     "faz": "Ache a maior diferença",
+     "conta": "11 000 − 7 500 = 3 500",
+     "porque": "A maior diferença é entre quem recebeu mais (I) e quem recebeu menos (III). É a alternativa C.",
+     "tipo": "concluir"
+    },
+    "motivo": "Mantém o passo final que liga o resultado à letra."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "3 800 não confere: dividido por R$ 500 por hora dá 7,6 horas, e nenhum par de engenheiros tem essa diferença. As diferenças são de 2, 5 e 7 horas.",
+    "motivo": "Texto mais claro, com o teste objetivo."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "5 250 não confere: dividido por R$ 500 por hora dá 10,5 horas. A maior diferença real é de 7 horas (22 − 15), ou seja, R$ 3 500.",
+    "motivo": "Frase mais direta, com o teste objetivo."
+   }
+  ],
+  "didatica_alertas": [
+   "O campo 'conteudo' está como M02.5 no JSON (divisão proporcional), enquanto a classificação atual é M02.2. Confirmar qual é o correto; não alterei."
+  ],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "C"
  }
 }

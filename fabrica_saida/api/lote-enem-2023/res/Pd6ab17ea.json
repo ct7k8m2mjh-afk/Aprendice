@@ -8,12 +8,12 @@
  "conceito": "Associação mista de resistores: o que acontece com a corrente e a tensão nos demais conjuntos quando uma lâmpada queima (ramo em paralelo aberto).",
  "resolucao": {
   "antes": {
-   "texto": "O circuito tem três conjuntos em série. Cada conjunto é uma lâmpada em paralelo com um resistor R. Lâmpada queimada é um ramo aberto: por ela não passa corrente. Resolva pelo raciocínio: a tensão da fonte é fixa; se a resistência total muda, a corrente total muda; e a tensão em cada conjunto é a corrente vezes a resistência do conjunto. Adota-se fonte ideal, com tensão constante.",
+   "texto": "O circuito tem três conjuntos em série. Cada conjunto é uma lâmpada em paralelo com um resistor R. Lâmpada queimada é um ramo aberto: por ela não passa corrente. A fonte mantém a tensão fixa (fonte ideal). Se a resistência total muda, a corrente total muda. A tensão em cada conjunto é a corrente vezes a resistência dele. O brilho de uma lâmpada cresce com a potência que ela dissipa.",
    "formulas": [
     "Série: R_total = soma das resistências; a corrente é a mesma em todos",
-    "Paralelo de duas resistências: (r × R)/(r + R), que é menor que cada uma delas",
+    "Paralelo de duas resistências: (r × R)/(r + R), sempre menor que cada uma delas",
     "i = U/R_total",
-    "Potência na lâmpada: P = V²/r (brilho cresce com a potência)"
+    "Potência na lâmpada: P = V²/r (mais potência, mais brilho)"
    ],
    "simbolos": [
     [
@@ -38,7 +38,7 @@
     ]
    ]
   },
-  "pista": "Quando L2 queima, o conjunto 2 passa a ter uma resistência maior ou menor? E o que isso faz com a corrente que sai da fonte?",
+  "pista": "Quando L2 queima, o conjunto 2 fica com resistência maior ou menor? E o que isso faz com a corrente que sai da fonte?",
   "passos": [
    {
     "faz": "Identifique a ligação dos conjuntos",
@@ -48,21 +48,21 @@
    },
    {
     "faz": "Veja o conjunto 2 antes e depois",
-    "conta": "Antes: (r×R)/(r+R)",
+    "conta": "Antes: (r × R)/(r + R)",
     "porque": "Com L2 acesa, lâmpada e R em paralelo dão uma resistência menor que R.",
-    "tipo": "interpretar"
+    "tipo": "calcular"
    },
    {
     "faz": "Veja o conjunto 2 sem a lâmpada",
     "conta": "Depois: só R",
-    "porque": "A lâmpada queimada não conduz, então só o resistor R fica no conjunto. R é maior que (r×R)/(r+R).",
+    "porque": "A lâmpada queimada não conduz, então só o resistor R fica no conjunto. Um paralelo é sempre menor que R, então R sozinho é maior que o conjunto de antes.",
     "tipo": "comparar"
    },
    {
     "faz": "Conclua o efeito na corrente total",
     "conta": "R_total sobe → i = U/R_total cai",
     "porque": "A fonte mantém a tensão U. Com resistência total maior, a corrente que atravessa o circuito diminui.",
-    "tipo": "aplicar"
+    "tipo": "comparar"
    },
    {
     "faz": "Calcule a tensão nos conjuntos 1 e 3",
@@ -80,10 +80,10 @@
   "resposta": "Alternativa C: as lâmpadas L1 e L3 ficam menos intensas, porque a resistência total aumenta, a corrente cai e a tensão sobre elas diminui.",
   "checagem": "Teste com números: r = R = 10 Ω e U = 30 V. Antes, cada conjunto vale 5 Ω, o total é 15 Ω, i = 2 A e V = 10 V em cada lâmpada, P = 100/10 = 10 W. Depois, o conjunto 2 vale 10 Ω, o total é 20 Ω, i = 1,5 A e V = 7,5 V em L1 e L3, P = 56,25/10 ≈ 5,6 W. O brilho cai.",
   "erradas": {
-   "A": "Seria verdade se a queima de L2 não alterasse a resistência total. Mas o conjunto 2 passa de (r×R)/(r+R) para R, que é maior. A corrente cai e L1 e L3 recebem menos tensão.",
-   "B": "Confunde com o caso de ligação em paralelo, em que a queima de uma lâmpada não afeta as outras. Aqui a ligação é em série e a resistência total sobe, então a corrente diminui. Com menos corrente nos conjuntos 1 e 3, o brilho não pode aumentar.",
-   "D": "L1 e L3 estão em situação idêntica: mesma corrente, mesma resistência de conjunto. O que reduz o brilho de L1 reduz o de L3. Não há razão para L3 manter o brilho.",
-   "E": "Trata L1 e L3 de forma diferente, mas elas são simétricas no circuito. A corrente total caiu para as duas, e nenhuma delas pode brilhar mais."
+   "A": "Vale se a queima de L2 não mudasse a resistência total, como em lâmpadas de casa em paralelo. Aqui os conjuntos estão em série: o conjunto 2 passa de (r × R)/(r + R) para R, que é maior. A corrente cai e L1 e L3 recebem menos tensão.",
+   "B": "B não confere: o conjunto 2 passa de (r × R)/(r + R) para R, que é maior. A resistência total sobe e a corrente cai. Em L1 e L3 a resistência não muda, então a tensão neles diminui e o brilho não pode aumentar. Faltou notar que a lâmpada queimada aumenta a resistência total.",
+   "D": "L1 e L3 estão na mesma situação: mesma corrente e conjuntos iguais. Se o brilho de L1 cai, o de L3 também cai. Faltou ver que a corrente é a mesma em série e que ela diminuiu.",
+   "E": "L1 e L3 são simétricas no circuito, então não podem reagir de forma diferente. A corrente total caiu para as duas, e nenhuma delas brilha mais. Faltou ver que, em série, a mudança afeta todos os conjuntos do mesmo jeito."
   },
   "armadilha": "Tratar a queima como em casa, onde as lâmpadas estão em paralelo e as outras não mudam. Aqui os conjuntos estão em série: a lâmpada queimada aumenta a resistência total e reduz a corrente em todos.",
   "alerta": "",
@@ -158,10 +158,95 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "B não confere: o conjunto 2 passa de (r×R)/(r+R) para R, que é maior. A resistência total sobe e a corrente diminui. Os conjuntos 1 e 3 não mudam de resistência, então recebem menos tensão. O brilho de L1 e L3 não pode aumentar.",
+    "motivo": "A origem dada estava errada. Quem confunde com a ligação em paralelo, em que a queima não afeta as outras lâmpadas, marca A (os mesmos), e não B. Troquei por um teste objetivo e não inventei outra origem.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "calcular",
+    "motivo": "\"interpretar\" não é um tipo permitido. Os permitidos são localizar, calcular, comparar, eliminar e concluir. O passo escreve a resistência equivalente do conjunto 2 antes da queima.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "comparar",
+    "motivo": "\"aplicar\" não é um tipo permitido. O passo compara a resistência total e a corrente antes e depois da queima.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "O circuito tem três conjuntos em série. Cada conjunto é uma lâmpada em paralelo com um resistor R. Lâmpada queimada é um ramo aberto: por ela não passa corrente. A fonte mantém a tensão fixa (fonte ideal). Se a resistência total muda, a corrente total muda. A tensão em cada conjunto é a corrente vezes a resistência dele. O brilho de uma lâmpada cresce com a potência que ela dissipa.",
+    "motivo": "Frases mais curtas e ideia mais clara; tira 'Resolva pelo raciocínio'."
+   },
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "Série: R_total = soma das resistências; a corrente é a mesma em todos",
+     "Paralelo de duas resistências: (r × R)/(r + R), sempre menor que cada uma delas",
+     "i = U/R_total",
+     "Potência na lâmpada: P = V²/r (mais potência, mais brilho)"
+    ],
+    "motivo": "Deixa claro que o paralelo é menor que cada resistência e liga potência a brilho."
+   },
+   {
+    "campo": "resolucao.pista",
+    "depois": "Quando L2 queima, o conjunto 2 fica com resistência maior ou menor? E o que isso faz com a corrente que sai da fonte?",
+    "motivo": "Ajuste leve de redação."
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "Antes: (r × R)/(r + R)",
+    "motivo": "Padroniza com × e espaços."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "A lâmpada queimada não conduz, então só o resistor R fica no conjunto. Um paralelo é sempre menor que R, então R sozinho é maior que o conjunto de antes.",
+    "motivo": "Explica por que R é maior que o valor anterior."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "B não confere: o conjunto 2 passa de (r × R)/(r + R) para R, que é maior. A resistência total sobe e a corrente cai. Em L1 e L3 a resistência não muda, então a tensão neles diminui e o brilho não pode aumentar. Faltou notar que a lâmpada queimada aumenta a resistência total.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou B."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "L1 e L3 estão na mesma situação: mesma corrente e conjuntos iguais. Se o brilho de L1 cai, o de L3 também cai. Faltou ver que a corrente é a mesma em série e que ela diminuiu.",
+    "motivo": "Diz o que faltou no raciocínio."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "L1 e L3 são simétricas no circuito, então não podem reagir de forma diferente. A corrente total caiu para as duas, e nenhuma delas brilha mais. Faltou ver que, em série, a mudança afeta todos os conjuntos do mesmo jeito.",
+    "motivo": "Diz o que faltou no raciocínio."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "Vale se a queima de L2 não mudasse a resistência total, como em lâmpadas de casa em paralelo. Aqui os conjuntos estão em série: o conjunto 2 passa de (r × R)/(r + R) para R, que é maior. A corrente cai e L1 e L3 recebem menos tensão.",
+    "motivo": "Mostra o raciocínio que levou à letra A."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "C"
  }
 }

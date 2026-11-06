@@ -36,34 +36,34 @@
     "faz": "Preencha o 1º bloco: andar",
     "conta": "andar 2 → 2",
     "porque": "O primeiro dígito é o andar. O visitante vai ao 2º andar, então o código começa com 2.",
-    "tipo": "aplicar"
+    "tipo": "localizar"
    },
    {
     "faz": "Preencha o setor e o funcionário",
     "conta": "setor 08 → 08 ; func. 109 → 109",
     "porque": "O setor usa 2 dígitos (08, com o zero) e o funcionário usa 3 dígitos (109). Os dois já vêm no tamanho certo.",
-    "tipo": "aplicar"
+    "tipo": "localizar"
    },
    {
     "faz": "Preencha o último bloco: turno",
     "conta": "10h da manhã → 0",
     "porque": "Dez horas da manhã é turno da manhã, que corresponde ao dígito 0.",
-    "tipo": "aplicar"
+    "tipo": "comparar"
    },
    {
     "faz": "Junte os blocos na ordem",
     "conta": "2 | 08 | 109 | 0 → 2081090",
-    "porque": "Colocando andar, setor, funcionário e turno em sequência, o código tem 7 dígitos: 2081090.",
+    "porque": "Colocando andar, setor, funcionário e turno em sequência, o código fica com 1 + 2 + 3 + 1 = 7 dígitos: 2081090. É a alternativa D.",
     "tipo": "concluir"
    }
   ],
   "resposta": "Alternativa D: 2081090, que é andar 2, setor 08, funcionário 109 e turno da manhã 0.",
   "checagem": "Leia o código de trás para a frente: último dígito 0 (manhã), três dígitos antes 109 (funcionário), dois antes 08 (setor), sobrou 2 (andar). Tudo bate, e são 7 dígitos.",
   "erradas": {
-   "A": "0109082 começa com 0, mas o andar deve ser de 1 a 4 (aqui, 2). Os blocos estão fora de ordem: 0 (turno), 109 (funcionário), 08 (setor), 2 (andar). É o código lido de trás para a frente, e termina em 2, que não é turno (só 0 ou 1).",
-   "B": "0281090 começa com 0, que não é andar válido. Seguindo a regra, o setor seria 08, mas aqui os dígitos 2 e 8 aparecem como '02' e '81' (setor 02 e funcionário 810). Não corresponde ao setor 08 nem ao funcionário 109.",
-   "C": "1010982 começa com 1, mas o visitante vai ao 2º andar. Termina em 2, e o último dígito só pode ser 0 ou 1. Os blocos 010 e 98 também não correspondem ao setor 08 e ao funcionário 109.",
-   "E": "2810910 começa com 2 (andar certo), mas depois vêm 81 como setor, que passa de 20, e 091 como funcionário, que não é 109. Os dígitos 08 e 109 foram embaralhados, e o setor 08 e o funcionário 109 não aparecem nos seus blocos."
+   "A": "A sai de escrever os blocos de trás para a frente: 0 (turno), 109 (funcionário), 08 (setor), 2 (andar). O código deve começar pelo andar e terminar pelo turno. Faltou seguir a ordem da regra.",
+   "B": "B não confere. Lido pela regra, vira 0 | 28 | 109 | 0: andar 0 (só existe de 1 a 4) e setor 28 (passa de 20). Faltou conferir o tamanho de cada bloco: o setor 08 ocupa 2 dígitos.",
+   "C": "C não confere. Pela regra, 1010982 vira 1 | 01 | 098 | 2: andar 1 (o visitante vai ao 2º), setor 01 (não é 08), funcionário 098 (não é 109) e turno 2 (só vale 0 ou 1). Faltou conferir cada dado no seu bloco.",
+   "E": "E não confere. Pela regra, 2810910 vira 2 | 81 | 091 | 0: o andar e o turno estão certos, mas o setor 81 passa de 20 e o funcionário 091 não é 109. Faltou conferir os blocos do meio, não só o primeiro e o último dígito."
   },
   "armadilha": "Esquecer o zero do setor 08 (que tem de ocupar 2 dígitos) ou trocar a ordem dos blocos.",
   "alerta": "",
@@ -76,7 +76,7 @@
  "caminhos": [
   {
    "nome": "eliminação pelo primeiro e pelo último dígito",
-   "ideia": "O código deve começar com 2 (andar) e terminar com 0 (manhã). Só a alternativa D satisfaz as duas condições."
+   "ideia": "O código deve começar com 2 (andar) e terminar com 0 (manhã). Isso elimina A, B e C, mas a E (2810910) também começa com 2 e termina com 0. Ela cai porque o setor seria 81, que passa de 20. Sobra a D."
   }
  ],
  "quadro": [
@@ -118,10 +118,109 @@
  "gab": "D",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "0109082 começa com 0, mas o andar deve ser de 1 a 4 (aqui, 2), e termina em 2, que não é turno (só 0 ou 1). São os blocos em ordem inversa: 0 (turno), 109 (funcionário), 08 (setor), 2 (andar).",
+    "motivo": "O texto dizia que era 'o código lido de trás para a frente', o que é falso: 2081090 invertido dá 0901802. O que se inverteu foi a ordem dos blocos, não a dos dígitos.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "0281090 não confere. Pela regra, o código se lê 0 | 28 | 109 | 0: andar 0, que não existe (vai de 1 a 4), e setor 28, que passa de 20. Ele sai de pôr um 0 na frente e escrever o setor 8 sem o zero à esquerda.",
+    "motivo": "A leitura em blocos estava errada. O texto dava 'setor 02 e funcionário 810', mas pela regra os blocos são 0|28|109|0.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "1010982 começa com 1, mas o visitante vai ao 2º andar, e termina em 2, mas o último dígito só pode ser 0 ou 1. Pela regra, os blocos do meio seriam setor 01 e funcionário 098, e não 08 e 109.",
+    "motivo": "A leitura em blocos estava errada. O texto dava '010 e 98', mas pela regra os blocos são 1|01|098|2.",
+    "fonte": ""
+   },
+   {
+    "campo": "caminhos[0].ideia",
+    "depois": "O código deve começar com 2 (andar) e terminar com 0 (manhã). Isso elimina A, B e C, mas a E (2810910) também começa com 2 e termina com 0. Ela cai porque o setor seria 81, que passa de 20. Sobra a D.",
+    "motivo": "O texto dizia 'Só a alternativa D satisfaz as duas condições', o que é falso: a E também começa com 2 e termina com 0.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "calcular",
+    "motivo": "'aplicar' não está na lista de tipos permitidos (localizar, calcular, comparar, eliminar, concluir).",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "calcular",
+    "motivo": "'aplicar' não está na lista de tipos permitidos.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "calcular",
+    "motivo": "'aplicar' não está na lista de tipos permitidos.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "localizar",
+    "motivo": "Não há conta: o aluno só pega o dado e o coloca no bloco. 'localizar' descreve melhor a ação."
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "localizar",
+    "motivo": "Mesmo caso: copiar os dados no bloco certo, sem cálculo."
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "comparar",
+    "motivo": "O aluno decide entre manhã (0) e tarde (1) comparando com a hora dada."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "A sai de escrever os blocos de trás para a frente: 0 (turno), 109 (funcionário), 08 (setor), 2 (andar). O código deve começar pelo andar e terminar pelo turno. Faltou seguir a ordem da regra.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou A e fica mais curta."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "B não confere. Lido pela regra, vira 0 | 28 | 109 | 0: andar 0 (só existe de 1 a 4) e setor 28 (passa de 20). Faltou conferir o tamanho de cada bloco: o setor 08 ocupa 2 dígitos.",
+    "motivo": "Remove a suposição sobre a origem do erro e mantém só o teste objetivo."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "C não confere. Pela regra, 1010982 vira 1 | 01 | 098 | 2: andar 1 (o visitante vai ao 2º), setor 01 (não é 08), funcionário 098 (não é 109) e turno 2 (só vale 0 ou 1). Faltou conferir cada dado no seu bloco.",
+    "motivo": "Separa os blocos e mostra o teste completo, em linguagem mais clara."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "E não confere. Pela regra, 2810910 vira 2 | 81 | 091 | 0: o andar e o turno estão certos, mas o setor 81 passa de 20 e o funcionário 091 não é 109. Faltou conferir os blocos do meio, não só o primeiro e o último dígito.",
+    "motivo": "Mostra a leitura em blocos e o que faltou a quem só olhou as pontas."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "Colocando andar, setor, funcionário e turno em sequência, o código fica com 1 + 2 + 3 + 1 = 7 dígitos: 2081090. É a alternativa D.",
+    "motivo": "O passo conclui ligando o resultado à letra."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "D"
  }
 }

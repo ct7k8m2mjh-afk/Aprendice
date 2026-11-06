@@ -8,10 +8,10 @@
  "conceito": "Montar a função afim (parte fixa + parte variável) a partir de um texto de preço.",
  "resolucao": {
   "antes": {
-   "texto": "Preço com uma parte fixa e uma parte que depende da quantidade é uma função afim: y = (valor por unidade) × x + (valor fixo). A parte fixa não depende do volume. A parte variável cresce de acordo com o volume.",
+   "texto": "Quando o preço tem uma parte fixa (paga uma vez) e uma parte que cresce com a quantidade, a expressão tem a forma y = (valor por unidade) × x + (valor fixo). A pergunta é a expressão de y em função de x, e não o preço de um volume específico.",
    "formulas": [
     "preço = (preço por m³) × (volume) + taxa fixa",
-    "y = a·x + b, com a = valor por unidade e b = valor fixo"
+    "y = a·x + b, com a = preço por m³ e b = taxa fixa"
    ],
    "simbolos": [
     [
@@ -49,13 +49,13 @@
     "tipo": "calcular"
    },
    {
-    "faz": "Teste com um valor",
-    "conta": "x = 2 → 250×2 + 500 = 1000",
-    "porque": "Dois m³ custam R$ 500 de concreto mais R$ 500 de taxa, total R$ 1.000. Bate com a expressão.",
-    "tipo": "concluir"
+    "faz": "Teste e marque a alternativa",
+    "conta": "x = 2: 250×2 + 500 = 1000",
+    "porque": "Dois m³ custam R$ 500 de concreto mais R$ 500 de taxa, total R$ 1.000. A expressão dá o mesmo valor, então é a alternativa D.",
+    "tipo": "comparar"
    }
   ],
-  "resposta": "Alternativa D: y = 250x + 500, pois R$ 250,00 é cobrado por m³ (multiplica x) e R$ 500,00 é a taxa fixa (soma).",
+  "resposta": "Alternativa D — y = 250x + 500, pois R$ 250,00 é cobrado por m³ (multiplica x) e R$ 500,00 é a taxa fixa (soma).",
   "checagem": "Com x = 0 (nenhum concreto), o preço deve ser só a taxa: 250×0 + 500 = 500. Com x = 1, deve ser 500 + 250 = 750. A expressão dá os dois valores.",
   "erradas": {
    "A": "y = 250x esquece a taxa de bombeamento. Com x = 0 daria R$ 0, mas a taxa de R$ 500,00 é cobrada mesmo assim.",
@@ -93,7 +93,7 @@
   },
   {
    "linha": "y = 250x + 500",
-   "nota": "some a parte variável com a fixa",
+   "nota": "soma da parte variável com a fixa",
    "destaque": "+ 500"
   },
   {
@@ -102,11 +102,15 @@
   },
   {
    "linha": "y = 250 × 2 + 500",
-   "nota": "substitua x por 2"
+   "nota": "troque x por 2"
   },
   {
-   "linha": "y = 500 + 500 = 1000",
-   "nota": "R$ 1.000, como esperado"
+   "linha": "y = 500 + 500",
+   "nota": "250 × 2 = 500"
+  },
+  {
+   "linha": "y = 1000",
+   "nota": "R$ 1.000: confere com 2 m³"
   }
  ],
  "visual": {
@@ -122,10 +126,100 @@
  "gab": "D",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [],
+  "fatos_ok": true,
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Quando o preço tem uma parte fixa (paga uma vez) e uma parte que cresce com a quantidade, a expressão tem a forma y = (valor por unidade) × x + (valor fixo). A pergunta é a expressão de y em função de x, e não o preço de um volume específico.",
+    "motivo": "Diz o que a questão pede e usa palavras mais simples; evita 'função afim' sem explicação."
+   },
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "preço = (preço por m³) × (volume) + taxa fixa",
+     "y = a·x + b, com a = preço por m³ e b = taxa fixa"
+    ],
+    "motivo": "Deixa claro o que são a e b nesta questão."
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "comparar",
+    "motivo": "O passo testa a expressão e depois liga à alternativa; falta ligar explicitamente à letra D."
+   },
+   {
+    "campo": "resolucao.passos[3].faz",
+    "depois": "Teste e marque a alternativa",
+    "motivo": "O último passo deve concluir ligando à letra."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "x = 2: 250×2 + 500 = 1000",
+    "motivo": "Cabe melhor na tela do celular."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Dois m³ custam R$ 500 de concreto mais R$ 500 de taxa, total R$ 1.000. A expressão dá o mesmo valor, então é a alternativa D.",
+    "motivo": "Liga o teste à letra."
+   },
+   {
+    "campo": "resolucao.resposta",
+    "depois": "Alternativa D — y = 250x + 500, pois R$ 250,00 é cobrado por m³ (multiplica x) e R$ 500,00 é a taxa fixa (soma).",
+    "motivo": "Padroniza o formato da resposta."
+   },
+   {
+    "campo": "resolucao.quadro",
+    "depois": [
+     {
+      "linha": "parte fixa = 500",
+      "nota": "taxa de bombeamento, cobrada uma vez"
+     },
+     {
+      "linha": "parte variável = 250 · x",
+      "nota": "R$ 250 por m³, vezes x m³",
+      "destaque": "250 · x"
+     },
+     {
+      "linha": "y = 250x + 500",
+      "nota": "soma da parte variável com a fixa",
+      "destaque": "+ 500"
+     },
+     {
+      "linha": "x = 2",
+      "nota": "teste com 2 m³"
+     },
+     {
+      "linha": "y = 250 × 2 + 500",
+      "nota": "troque x por 2"
+     },
+     {
+      "linha": "y = 500 + 500",
+      "nota": "250 × 2 = 500"
+     },
+     {
+      "linha": "y = 1000",
+      "nota": "R$ 1.000: confere com 2 m³"
+     }
+    ],
+    "motivo": "Um passo por linha, sem pular a multiplicação 250 × 2."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "D"
  }
 }

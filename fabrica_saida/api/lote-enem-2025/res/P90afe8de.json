@@ -8,7 +8,7 @@
  "conceito": "Desvio de uma carga negativa que entra com velocidade perpendicular a um campo elétrico uniforme: a força tem sentido oposto ao do campo.",
  "resolucao": {
   "antes": {
-   "texto": "Uma carga num campo elétrico sofre força F = q · E. Se a carga é positiva, a força tem o sentido do campo. Se é negativa, como o elétron, a força tem sentido contrário ao do campo. O elétron entra na região B movendo-se para a direita, perpendicularmente às linhas do campo. A força o desvia para o lado dela, sem mudar a componente horizontal da velocidade.",
+   "texto": "Uma carga num campo elétrico sofre uma força F = q · E. Se a carga é positiva, a força tem o sentido do campo. Se é negativa, como o elétron, a força tem sentido contrário ao do campo. O elétron entra na região B indo para a direita, perpendicular às linhas do campo. A força o desvia para o lado dela. A velocidade horizontal continua a mesma.",
    "formulas": [
     "F = q · E (força elétrica)",
     "carga negativa: F tem sentido contrário ao de E"
@@ -16,7 +16,7 @@
    "simbolos": [
     [
      "E",
-     "campo elétrico: o vetor que indica para onde uma carga positiva seria empurrada"
+     "campo elétrico: vetor que indica para onde uma carga positiva seria empurrada"
     ],
     [
      "F",
@@ -29,6 +29,14 @@
     [
      "v",
      "velocidade do elétron, aqui horizontal para a direita"
+    ],
+    [
+     "feixe",
+     "fluxo estreito de elétrons que seguem juntos"
+    ],
+    [
+     "tela",
+     "parede interna do tubo que brilha onde os elétrons batem"
     ]
    ]
   },
@@ -48,19 +56,19 @@
    },
    {
     "faz": "Dê o sentido da força",
-    "conta": "q < 0 → F contrária a E → F para baixo",
+    "conta": "q < 0 → F para baixo",
     "porque": "Em carga negativa, a força elétrica tem sentido oposto ao do campo. O campo aponta para cima, logo a força aponta para baixo.",
-    "tipo": "aplicar"
+    "tipo": "comparar"
    },
    {
     "faz": "Prediga o desvio do feixe",
     "conta": "v para a frente + F para baixo",
-    "porque": "A força vertical curva a trajetória para baixo, e o feixe segue em frente com a velocidade horizontal. Ele sai de B desviado para baixo.",
-    "tipo": "interpretar"
+    "porque": "A força para baixo puxa o feixe para baixo enquanto ele segue para a frente. A trajetória se curva e o feixe sai de B desviado para baixo.",
+    "tipo": "comparar"
    },
    {
     "faz": "Ache o ponto na tela",
-    "conta": "5 é o centro; 2 está abaixo",
+    "conta": "centro = 5; abaixo = 2",
     "porque": "Na Figura 1, o ponto 5 é o centro, onde o feixe chegaria sem desvio. O ponto 1 fica acima do centro, o 2 abaixo, e o 3 e o 4 ficam nos lados, na altura do centro. Desvio para baixo leva ao ponto 2.",
     "tipo": "concluir"
    }
@@ -69,7 +77,7 @@
   "checagem": "Troque o elétron por um próton, de carga positiva. A força teria o sentido do campo e o feixe subiria até o ponto 1. Como o elétron tem carga oposta, o desvio também é oposto: para baixo, ponto 2.",
   "erradas": {
    "A": "O ponto 1 fica acima do centro. Seria atingido por carga positiva, cuja força tem o sentido do campo (para cima). Para o elétron, a força é contrária ao campo: para baixo.",
-   "C": "O ponto 3 fica ao lado do centro, na mesma altura. Chegar lá exigiria uma força horizontal, perpendicular ao plano da figura. O campo da Figura 2 é vertical e só produz força vertical.",
+   "C": "O ponto 3 fica ao lado do centro, na mesma altura. Chegar lá exigiria uma força para o lado (para dentro ou fora do papel). O campo da Figura 2 é vertical e só gera força vertical.",
    "D": "O ponto 4 também fica ao lado do centro, na mesma altura. Seria um desvio lateral, e o campo vertical da região B não produz esse desvio.",
    "E": "O ponto 5 é o centro da tela, onde o feixe chegaria sem desvio. Isso só ocorreria sem campo na região B. Como há campo e o elétron tem carga, há força e há desvio."
   },
@@ -126,10 +134,97 @@
  "gab": "B",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "comparar",
+    "motivo": "O tipo 'aplicar' não está na lista permitida (localizar, calcular, comparar, eliminar, concluir). Neste passo se compara o sentido da força com o do campo para uma carga negativa.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "comparar",
+    "motivo": "O tipo 'interpretar' não está na lista permitida. Neste passo se compara a direção da velocidade com a da força para prever o desvio. O tipo 'concluir' fica só para o último passo.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "q < 0 → F para baixo",
+    "motivo": "A conta tinha 38 caracteres e passava do limite de cerca de 30, que não quebra linha na tela de 390 px. O porque já explica que a força é contrária ao campo.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Uma carga num campo elétrico sofre uma força F = q · E. Se a carga é positiva, a força tem o sentido do campo. Se é negativa, como o elétron, a força tem sentido contrário ao do campo. O elétron entra na região B indo para a direita, perpendicular às linhas do campo. A força o desvia para o lado dela. A velocidade horizontal continua a mesma.",
+    "motivo": "Frases mais curtas e sem ambiguidade ('para o lado dela')."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "E",
+      "campo elétrico: vetor que indica para onde uma carga positiva seria empurrada"
+     ],
+     [
+      "F",
+      "força elétrica sobre a carga"
+     ],
+     [
+      "q",
+      "carga elétrica; no elétron é negativa"
+     ],
+     [
+      "v",
+      "velocidade do elétron, aqui horizontal para a direita"
+     ],
+     [
+      "feixe",
+      "fluxo estreito de elétrons que seguem juntos"
+     ],
+     [
+      "tela",
+      "parede interna do tubo que brilha onde os elétrons batem"
+     ]
+    ],
+    "motivo": "Explicar palavras do enunciado que o aluno pode não dominar."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "A força para baixo puxa o feixe para baixo enquanto ele segue para a frente. A trajetória se curva e o feixe sai de B desviado para baixo.",
+    "motivo": "Frase mais direta."
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "centro = 5; abaixo = 2",
+    "motivo": "Conta mais curta para caber na tela do celular."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "O ponto 3 fica ao lado do centro, na mesma altura. Chegar lá exigiria uma força para o lado (para dentro ou fora do papel). O campo da Figura 2 é vertical e só gera força vertical.",
+    "motivo": "A expressão 'perpendicular ao plano da figura' era confusa. Foi trocada por 'para dentro ou fora do papel', mais simples."
+   }
+  ],
+  "didatica_alertas": [
+   "No texto de passos[4].porque e nas erradas, os pontos 3 e 4 são chamados de 'laterais, na altura do centro'. Na Figura 1, o 3 e o 4 ficam em lados opostos, na direção da profundidade. O corretor 1 deve confirmar essa descrição."
+  ],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "B"
  }
 }

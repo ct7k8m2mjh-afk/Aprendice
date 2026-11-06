@@ -8,7 +8,7 @@
  "conceito": "Lugar dos pontos equidistantes de dois pontos (mediatriz) aplicado à diagonal de um quadrado no plano cartesiano, com equação da reta.",
  "resolucao": {
   "antes": {
-   "texto": "Os pontos que ficam à mesma distância de dois pontos formam a reta mediatriz do segmento que os une. Ela passa pelo ponto médio e é perpendicular ao segmento. No quadrado STUV, os vilões T e V são vértices opostos. A mediatriz de TV é então a outra diagonal, a reta SU. O herói parte de S, que já está sobre ela. Falta achar a equação dessa reta.",
+   "texto": "Os pontos que ficam à mesma distância de dois pontos formam uma reta chamada mediatriz do segmento que os une. Ela passa pelo ponto médio e é perpendicular ao segmento. No quadrado STUV, os vilões T e V são vértices opostos, então a mediatriz de TV é a outra diagonal, a reta SU. O herói parte de S, que já está nessa reta. Falta achar a equação dela.",
    "formulas": [
     "retas perpendiculares: m1 × m2 = −1",
     "inclinação m = (y2 − y1) ÷ (x2 − x1)",
@@ -25,11 +25,19 @@
     ],
     [
      "m",
-     "coeficiente angular (inclinação) da reta"
+     "coeficiente angular (inclinação) da reta: quanto y sobe quando x aumenta 1"
     ],
     [
      "diagonal",
      "segmento que liga vértices opostos do quadrado"
+    ],
+    [
+     "vetor SV",
+     "o deslocamento de S até V: quanto se anda em x e quanto em y"
+    ],
+    [
+     "perpendicular",
+     "que forma ângulo reto (90°) com outra reta"
     ]
    ]
   },
@@ -38,8 +46,8 @@
    {
     "faz": "Identifique a trajetória procurada",
     "conta": "T e V opostos → SU é a mediatriz",
-    "porque": "A ordem S, T, U, V percorre o quadrado. T e V ficam em lados opostos de U. Como as diagonais do quadrado são perpendiculares e se cortam no meio, a reta SU é a mediatriz de TV.",
-    "tipo": "interpretar"
+    "porque": "A ordem S, T, U, V percorre o quadrado, então T e V não são vizinhos: são vértices opostos, ligados pela diagonal TV. Como as diagonais do quadrado são perpendiculares e se cortam no meio, a reta SU é a mediatriz de TV.",
+    "tipo": "localizar"
    },
    {
     "faz": "Ache o vetor de S até V",
@@ -50,19 +58,19 @@
    {
     "faz": "Gire SV de 90° para achar T",
     "conta": "ST = (−4 ; 2) → T = (2 ; 4)",
-    "porque": "Girar (a ; b) de 90° dá (−b ; a). Isso concorda com a figura: T está à esquerda e entre as alturas de S e V.",
+    "porque": "Girar o deslocamento (a ; b) em 90° dá (−b ; a). O lado ST é o lado SV girado, com o mesmo tamanho. Confere com a figura: T está à esquerda de S, entre as alturas de S e V.",
     "tipo": "calcular"
    },
    {
     "faz": "Ache o vértice U",
     "conta": "U = T + V − S = (4 ; 8)",
-    "porque": "No quadrado, TU tem o mesmo vetor que SV. Então U = T + (2 ; 4) = (4 ; 8). Na figura, U fica mesmo acima, entre T e V na horizontal.",
+    "porque": "No quadrado, o lado TU é igual e paralelo ao lado SV, então U = T + (2 ; 4) = (4 ; 8). Na figura, U fica acima, entre T e V na horizontal.",
     "tipo": "calcular"
    },
    {
     "faz": "Calcule a inclinação de SU",
     "conta": "m = (8−2) ÷ (4−6) = −3",
-    "porque": "Confira: a inclinação de TV é (6−4) ÷ (8−2) = 1/3. O produto 1/3 × (−3) = −1 confirma que SU é perpendicular a TV.",
+    "porque": "Confira: a inclinação de TV é (6−4) ÷ (8−2) = 1/3. O produto 1/3 × (−3) = −1 mostra que SU é perpendicular a TV.",
     "tipo": "calcular"
    },
    {
@@ -133,7 +141,7 @@
   },
   {
    "linha": "y = −3x + 18 + 2",
-   "nota": "distribua o −3 e passe o 2 para a direita",
+   "nota": "distribua o −3 e passe o 2 para a direita (veja a linha anterior)",
    "destaque": "+ 2",
    "mov": [
     {
@@ -163,10 +171,99 @@
  "gab": "A",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[0].tipo",
+    "depois": "localizar",
+    "motivo": "O tipo 'interpretar' não está na lista permitida (localizar, calcular, comparar, eliminar, concluir). Este passo identifica, na figura, qual reta é a trajetória pedida.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[0].porque",
+    "depois": "A ordem S, T, U, V percorre o quadrado, então T e V não são vizinhos: são vértices opostos, ligados pela diagonal TV. Como as diagonais do quadrado são perpendiculares e se cortam no meio, a reta SU é a mediatriz de TV.",
+    "motivo": "A frase 'T e V ficam em lados opostos de U' é imprecisa, porque T e V são os dois vizinhos de U. O correto é dizer que T e V são vértices opostos do quadrado.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "A",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Os pontos que ficam à mesma distância de dois pontos formam uma reta chamada mediatriz do segmento que os une. Ela passa pelo ponto médio e é perpendicular ao segmento. No quadrado STUV, os vilões T e V são vértices opostos, então a mediatriz de TV é a outra diagonal, a reta SU. O herói parte de S, que já está nessa reta. Falta achar a equação dela.",
+    "motivo": "Frases mais curtas e sem repetir o termo antes de defini-lo."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "equidistante",
+      "que está à mesma distância de dois pontos"
+     ],
+     [
+      "mediatriz",
+      "reta perpendicular a um segmento, passando pelo seu ponto médio; todos os seus pontos ficam à mesma distância das extremidades"
+     ],
+     [
+      "m",
+      "coeficiente angular (inclinação) da reta: quanto y sobe quando x aumenta 1"
+     ],
+     [
+      "diagonal",
+      "segmento que liga vértices opostos do quadrado"
+     ],
+     [
+      "vetor SV",
+      "o deslocamento de S até V: quanto se anda em x e quanto em y"
+     ],
+     [
+      "perpendicular",
+      "que forma ângulo reto (90°) com outra reta"
+     ]
+    ],
+    "motivo": "Incluir vetor e perpendicular, termos usados nos passos; explicar a inclinação."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Girar o deslocamento (a ; b) em 90° dá (−b ; a). O lado ST é o lado SV girado, com o mesmo tamanho. Confere com a figura: T está à esquerda de S, entre as alturas de S e V.",
+    "motivo": "Mais simples e sem frase ambígua."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "No quadrado, o lado TU é igual e paralelo ao lado SV, então U = T + (2 ; 4) = (4 ; 8). Na figura, U fica acima, entre T e V na horizontal.",
+    "motivo": "Mais direto."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "Confira: a inclinação de TV é (6−4) ÷ (8−2) = 1/3. O produto 1/3 × (−3) = −1 mostra que SU é perpendicular a TV.",
+    "motivo": "Mantida a ideia, linguagem mais clara."
+   },
+   {
+    "campo": "resolucao.quadro[8].linha",
+    "depois": "y = −3x + 18 + 2",
+    "motivo": "Falta passo intermediário: o aluno precisa ver y − 2 = −3x + 18 antes de mover o 2."
+   },
+   {
+    "campo": "resolucao.quadro[8].nota",
+    "depois": "distribua o −3 e passe o 2 para a direita (veja a linha anterior)",
+    "motivo": "Nota curta e clara."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "A"
  }
 }

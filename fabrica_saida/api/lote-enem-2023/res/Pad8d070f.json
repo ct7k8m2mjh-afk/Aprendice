@@ -8,7 +8,7 @@
  "conceito": "Interpretar texto verbal e imagem juntos para inferir como a dança dialoga com os cultos afro-brasileiros: não imita, reelabora esteticamente.",
  "resolucao": {
   "antes": {
-   "texto": "O comando pede o que a dança exprime no diálogo com as religiões afro-brasileiras, 'sintetizado na descrição e na imagem'. Então a resposta tem de sair dos dois textos juntos. A pista decisiva é a frase final do Texto I: o espetáculo não é uma 'representação mimética', ou seja, não copia o culto. Ele o transforma em linguagem de palco.",
+   "texto": "O comando pede o que a dança exprime no diálogo com as religiões afro-brasileiras, 'sintetizado na descrição e na imagem'. Por isso a resposta tem de sair dos dois textos juntos. A pista decisiva é a última frase do Texto I: o espetáculo não é uma 'representação mimética', ou seja, não copia o culto. Ele o transforma em dança de palco, com escolhas de forma.",
    "formulas": [
     "mimética = que imita, copia fielmente",
     "diálogo com a religião, sem cópia = reelaboração artística",
@@ -21,7 +21,7 @@
     ],
     [
      "transe",
-     "estado de êxtase ou possessão, ligado a rituais religiosos"
+     "estado de êxtase em que a pessoa parece fora de si, ligado a rituais religiosos"
     ],
     [
      "reelaboração estética",
@@ -29,11 +29,15 @@
     ],
     [
      "erudito",
-     "ligado à cultura de elite, de formação artística formal, em oposição ao popular"
+     "ligado à cultura de formação artística formal, em oposição ao popular"
     ],
     [
      "volátil",
-     "que não se fixa, que passa; o que é instável"
+     "que não se fixa, que passa; instável"
+    ],
+    [
+     "culto afro-brasileiro",
+     "prática religiosa de origem africana vivida no Brasil, como o candomblé e a umbanda"
     ]
    ]
   },
@@ -54,12 +58,12 @@
    {
     "faz": "Leia a imagem",
     "conta": "Palco escuro; bailarinos em saias brancas e colares vermelhos",
-    "porque": "O branco e o vermelho remetem a elementos de religiões afro-brasileiras, mas aqui são figurino de um espetáculo coreografado, em palco, com corpos inclinados e gestos estilizados. É referência transformada em arte.",
-    "tipo": "interpretar"
+    "porque": "O branco e o vermelho lembram elementos dessas religiões. Mas aqui são figurino de um espetáculo coreografado, no palco, com corpos inclinados e gestos estilizados. É referência transformada em arte.",
+    "tipo": "localizar"
    },
    {
     "faz": "Elimine as alternativas sem apoio",
-    "conta": "A: balé clássico? B: extintos? D: ironia? E: efemeridade?",
+    "conta": "A: balé clássico? B: extintos?\nD: ironia? E: efemeridade?",
     "porque": "Nenhum dos dois textos fala em balé clássico, extinção dos rituais, ironia ou sentido da vida humana. 'Volátil' descreve o espetáculo, não a vida.",
     "tipo": "eliminar"
    },
@@ -73,8 +77,8 @@
   "resposta": "Alternativa C: a dança não imita o culto, como diz o Texto I; ela transforma práticas religiosas populares em obra de palco elaborada.",
   "checagem": "Teste o contrário: se fosse cópia do ritual, o texto não diria 'engana-se quem pensa... representação mimética'. A negação da cópia confirma a ideia de transformação artística.",
   "erradas": {
-   "A": "O Texto I e a imagem não mencionam balé clássico nem criticam padronização de movimentos. O tema é a relação com os cultos afro-brasileiros, e a crítica é um elemento sem apoio no texto.",
-   "B": "Diz 'rituais ancestrais extintos', mas o texto não afirma que os cultos acabaram, e 'representação' contraria a negação de 'representação mimética'. Nada indica extinção.",
+   "A": "Faltou ligar a alternativa ao texto: nem o Texto I nem a imagem citam balé clássico ou criticam movimentos padronizados. O assunto é a relação com os cultos afro-brasileiros.",
+   "B": "Faltou checar 'extintos'. O Texto I fala dos cultos como práticas vivas e nunca diz que acabaram. Além disso, B fala em 'representação', e o Texto I nega a representação mimética (cópia) dos cultos.",
    "D": "Não há ironia nem deboche: 'sugere o transe' e a imagem tratam o tema com seriedade e beleza. Falta marca textual de ironia, e a atmosfera mística é evocada, não ridicularizada.",
    "E": "'Volátil' qualifica o caráter do que se passará no palco, não a vida humana. O texto não fala de efemeridade da vida nem de oposição entre ela e o resgate de tradições."
   },
@@ -110,10 +114,107 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "localizar",
+    "motivo": "'interpretar' não está entre os tipos permitidos (localizar, calcular, comparar, eliminar, concluir). Ler a imagem é localizar uma informação na figura.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "Diz 'rituais ancestrais extintos', mas o Texto I fala dos cultos afro-brasileiros como práticas vivas e não diz em nenhum momento que eles acabaram. A palavra 'extintos' não tem apoio nos textos.",
+    "motivo": "O argumento de que 'representação' contraria a negação de 'representação mimética' não vale. A alternativa B fala em representação contemporânea, não em mimética, e o texto só nega a cópia fiel. O motivo que derruba a B é 'extintos'.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "O comando pede o que a dança exprime no diálogo com as religiões afro-brasileiras, 'sintetizado na descrição e na imagem'. Por isso a resposta tem de sair dos dois textos juntos. A pista decisiva é a última frase do Texto I: o espetáculo não é uma 'representação mimética', ou seja, não copia o culto. Ele o transforma em dança de palco, com escolhas de forma.",
+    "motivo": "Frases mais curtas e diretas; explica o que significa 'mimética' em palavras simples."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "representação mimética",
+      "representação que imita a realidade o mais fielmente possível"
+     ],
+     [
+      "transe",
+      "estado de êxtase em que a pessoa parece fora de si, ligado a rituais religiosos"
+     ],
+     [
+      "reelaboração estética",
+      "transformação de um material (aqui, o ritual) em obra de arte, com escolhas de forma"
+     ],
+     [
+      "erudito",
+      "ligado à cultura de formação artística formal, em oposição ao popular"
+     ],
+     [
+      "volátil",
+      "que não se fixa, que passa; instável"
+     ],
+     [
+      "culto afro-brasileiro",
+      "prática religiosa de origem africana vivida no Brasil, como o candomblé e a umbanda"
+     ]
+    ],
+    "motivo": "Explica 'culto afro-brasileiro' e simplifica 'transe'."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "O branco e o vermelho lembram elementos dessas religiões. Mas aqui são figurino de um espetáculo coreografado, no palco, com corpos inclinados e gestos estilizados. É referência transformada em arte.",
+    "motivo": "Frases mais curtas."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "A: balé clássico? B: extintos?\nD: ironia? E: efemeridade?",
+    "motivo": "Conta curta, em duas linhas, para caber na tela do celular."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "Faltou ligar a alternativa ao texto: nem o Texto I nem a imagem citam balé clássico ou criticam movimentos padronizados. O assunto é a relação com os cultos afro-brasileiros.",
+    "motivo": "Diz o que faltou a quem marcou A."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "Faltou checar 'extintos'. O Texto I fala dos cultos como práticas vivas e nunca diz que acabaram. Quem marcou B tomou 'ancestrais' por 'desaparecidos' e leu 'representação' como cópia, que o texto nega.",
+    "motivo": "Mostra o raciocínio que levou ao erro."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "O branco e o vermelho lembram elementos dessas religiões. Mas aqui são figurino de um espetáculo coreografado, no palco, com corpos inclinados e gestos estilizados. É referência transformada em arte.",
+    "motivo": "Sem mudança de conteúdo. A leitura da imagem confere com o print: saias brancas, colares ou adereços vermelhos, palco escuro. 'Colares vermelhos' é plausível, mas o vermelho aparece no pescoço e na cintura. Mantido.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "Faltou checar 'extintos'. O Texto I fala dos cultos como práticas vivas e nunca diz que acabaram. Além disso, B fala em 'representação', e o Texto I nega a representação mimética (cópia) dos cultos.",
+    "motivo": "A frase 'Quem marcou B tomou ancestrais por desaparecidos...' atribui um raciocínio sem base. O trecho foi trocado por um teste objetivo, como o guia exige. Além disso, 'representação' em B não é cópia: a alternativa diz 'representação contemporânea', e o erro principal é 'extintos'.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "C"
  }
 }

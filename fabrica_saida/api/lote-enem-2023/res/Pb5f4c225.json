@@ -17,6 +17,18 @@
    ],
    "simbolos": [
     [
+     "cartum",
+     "desenho de humor com legenda; critica algo de forma divertida ou irônica"
+    ],
+    [
+     "ironia",
+     "dizer uma coisa quando a cena mostra o contrário"
+    ],
+    [
+     "diversidade",
+     "presença de pessoas diferentes (idade, raça, gênero) no mesmo lugar"
+    ],
+    [
      "treats you any differently",
      "trata você de modo diferente"
     ],
@@ -44,25 +56,25 @@
    },
    {
     "faz": "Leia e traduza a legenda",
-    "conta": "“Nobody treats you any differently…”",
+    "conta": "“Nobody treats you any differently” (ninguém trata você diferente)",
     "porque": "Quer dizer: ninguém trata você de modo diferente por causa de idade, raça ou gênero. Quem fala parece elogiar o local de trabalho.",
     "tipo": "localizar"
    },
    {
     "faz": "Descreva as pessoas da imagem",
-    "conta": "todos: homens, terno, gravata",
-    "porque": "Os funcionários parecem iguais: mesma roupa, mesmo perfil. Não aparece mulher nem pessoa de outra etnia ou de outra faixa etária que se destaque.",
-    "tipo": "interpretar"
+    "conta": "todos: homens, de terno e gravata",
+    "porque": "Os funcionários parecem iguais: mesma roupa, mesmo perfil. Não se vê mulher nem pessoa que se destaque por outra etnia ou faixa etária.",
+    "tipo": "localizar"
    },
    {
     "faz": "Ache a quebra entre fala e imagem",
-    "conta": "fala: ninguém é discriminado / imagem: todos iguais",
+    "conta": "todos iguais → ninguém é diferente",
     "porque": "Se todos são iguais, ninguém é tratado diferente porque não existe diferença ali. A fala parece positiva, mas expõe a falta de diversidade. É a ironia do cartum.",
-    "tipo": "interpretar"
+    "tipo": "comparar"
    },
    {
     "faz": "Formule o objetivo e ligue à letra",
-    "conta": "objetivo: destacar a falta de diversidade",
+    "conta": "falta de diversidade = B",
     "porque": "O cartum quer que o leitor perceba que o ambiente é homogêneo. Isso corresponde à alternativa B.",
     "tipo": "concluir"
    }
@@ -71,8 +83,8 @@
   "checagem": "Imagine a mesma fala num escritório com pessoas de idades, raças e gêneros variados: ela não teria graça nem ironia. O humor só existe porque a imagem mostra um grupo homogêneo.",
   "erradas": {
    "A": "A roupa igual (terno e gravata) é só parte da imagem. A legenda fala de idade, raça e gênero, não de vestimenta, então o cartum não critica um padrão de roupa.",
-   "C": "A fala descreve o ambiente (ninguém é tratado de modo diferente), mas isso não é um modo de interação indicado como informação. O objetivo é criticar, de forma irônica, e não ensinar como as pessoas se relacionam.",
-   "D": "Lida só pela fala, ela parece elogiar o escritório. Mas a imagem desmente o elogio: todos são iguais, e o cartum ironiza essa situação em vez de elogiar um modelo de organização.",
+   "C": "A legenda até descreve como as pessoas se tratam, mas o cartum não quer ensinar um modo de interação. Ele ironiza: o elogio à igualdade de tratamento ('ninguém é tratado diferente') é desmentido pela imagem, onde todos são iguais.",
+   "D": "Lida só pela fala, parece elogiar o escritório. Mas a imagem desmente o elogio: todos são iguais, e o cartum ironiza essa situação em vez de elogiar um modelo de organização.",
    "E": "Não há na legenda nem na imagem cena de cooperação, como equipes trabalhando juntas. Os personagens apenas conversam e circulam, e a legenda trata de discriminação, não de colaboração."
   },
   "armadilha": "Ler só a legenda como elogio e marcar a alternativa que fala de organização ou cooperação, sem notar que a imagem mostra um grupo todo igual.",
@@ -107,10 +119,124 @@
  "gab": "B",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "localizar",
+    "motivo": "O tipo \"interpretar\" não está na lista permitida (localizar, calcular, comparar, eliminar, concluir). Descrever quem aparece na imagem é localizar a informação na figura.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "comparar",
+    "motivo": "O tipo \"interpretar\" não está na lista permitida. O passo confronta a fala com a imagem, por isso o tipo é comparar.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "“Nobody treats you… differently”",
+    "motivo": "A linha original passava de ~30 caracteres e não quebraria na tela de 390 px. Encurtei mantendo o trecho decisivo da legenda. A tradução completa já está no porque.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "fala ≠ imagem (todos iguais)",
+    "motivo": "A linha original tinha ~50 caracteres e estouraria a tela de 390 px. O conteúdo é o mesmo.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "falta de diversidade = B",
+    "motivo": "A linha original passava de 30 caracteres. Com a mudança, ela também liga o resultado à letra, como pede o passo concluir.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "cartum",
+      "desenho de humor com legenda; critica algo de forma divertida ou irônica"
+     ],
+     [
+      "ironia",
+      "dizer uma coisa quando a cena mostra o contrário"
+     ],
+     [
+      "diversidade",
+      "presença de pessoas diferentes (idade, raça, gênero) no mesmo lugar"
+     ],
+     [
+      "treats you any differently",
+      "trata você de modo diferente"
+     ],
+     [
+      "just because of",
+      "só por causa de"
+     ],
+     [
+      "age, race, or gender",
+      "idade, raça ou gênero"
+     ],
+     [
+      "you'll love working here",
+      "você vai adorar trabalhar aqui"
+     ]
+    ],
+    "motivo": "Termos como cartum, ironia e diversidade são usados na resolução e não estavam explicados."
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "“Nobody treats you any differently” (ninguém trata você diferente)",
+    "motivo": "A reticência escondia parte da frase; agora o trecho vem completo, com tradução."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "todos: homens, de terno e gravata",
+    "motivo": "Texto mais claro e curto para caber na tela."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "todos iguais → ninguém é diferente",
+    "motivo": "A conta anterior usava o símbolo ≠ sem explicação; agora é uma frase simples."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "A legenda até descreve como as pessoas se tratam, mas o cartum não quer ensinar um modo de interação. Ele ironiza: o elogio à igualdade de tratamento ('ninguém é tratado diferente') é desmentido pela imagem, onde todos são iguais.",
+    "motivo": "Texto original confuso; agora diz o que faltou a quem marcou C (ler a fala literalmente, sem a ironia)."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Os funcionários parecem iguais: mesma roupa, mesmo perfil. Não se vê mulher nem pessoa que se destaque por outra etnia ou faixa etária.",
+    "motivo": "A versão anterior afirmava com certeza que não há mulher nem pessoa de outra etnia ou faixa etária. O desenho é em preto e branco e só dá para ver o aspecto geral, então a frase ficou mais cautelosa. Também sai a expressão 'que se destaque', que era ambígua.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "Lida só pela fala, parece elogiar o escritório. Mas a imagem desmente o elogio: todos são iguais, e o cartum ironiza essa situação em vez de elogiar um modelo de organização.",
+    "motivo": "Ajuste de concordância: o 'ela' não tinha referente claro. A mudança é mínima e não altera o sentido.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "B"
  }
 }

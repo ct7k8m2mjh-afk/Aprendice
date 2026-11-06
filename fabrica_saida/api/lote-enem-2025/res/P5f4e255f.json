@@ -8,7 +8,7 @@
  "conceito": "Contagem com restrição: combinações em etapas, escolhendo primeiro quem tem a condição (princípio multiplicativo).",
  "resolucao": {
   "antes": {
-   "texto": "Os presentes são diferentes, mas o que importa é quais presentes cada filho recebe, e não a ordem em que os recebe. Por isso cada grupo de presentes é uma combinação. Comece pelo filho que tem a restrição (o mais velho). Depois distribua o que sobra. Etapas que acontecem uma após a outra se multiplicam.",
+   "texto": "Os presentes são diferentes, mas o que importa é quais presentes cada filho recebe, e não a ordem em que os recebe. Por isso cada grupo de presentes é uma combinação. Comece pelo filho que tem a restrição (o mais velho): ele leva a bicicleta ou o celular, mas não os dois. Depois distribua o que sobra. Etapas que acontecem uma após a outra se multiplicam.",
    "formulas": [
     "C(n, p) = n! ÷ (p! × (n − p)!)",
     "etapas seguidas: multiplique o número de maneiras de cada etapa"
@@ -32,8 +32,8 @@
   "passos": [
    {
     "faz": "Diga o que a questão pede",
-    "conta": "mais velho: 3 presentes\nmais novo: 3 presentes\ndo meio: 2 presentes",
-    "porque": "Os grupos têm tamanhos fixos (3, 3 e 2) e somam 8. O mais velho leva a bicicleta ou o celular, nunca os dois.",
+    "conta": "mais velho: 3 presentes",
+    "porque": "Os grupos têm tamanhos fixos: 3 (mais velho), 3 (mais novo) e 2 (do meio), somando 8. O mais velho leva a bicicleta ou o celular, nunca os dois. Queremos contar as formas de repartir os presentes.",
     "tipo": "localizar"
    },
    {
@@ -56,8 +56,8 @@
    },
    {
     "faz": "Distribua os 5 presentes restantes",
-    "conta": "C(5, 3) = 10\nmeio fica com os 2 que sobram: 1",
-    "porque": "O mais novo escolhe 3 dos 5. O filho do meio recebe os 2 restantes, sem escolha.",
+    "conta": "C(5, 3) = 10",
+    "porque": "O mais novo escolhe 3 dos 5 presentes que sobraram. O filho do meio recebe os 2 restantes, então ele tem só 1 maneira e não muda a conta.",
     "tipo": "calcular"
    },
    {
@@ -68,7 +68,7 @@
    }
   ],
   "resposta": "Alternativa C: 300 maneiras. São 2 × 15 = 30 formas para o mais velho, e para cada uma há 10 formas de escolher os presentes do mais novo.",
-  "checagem": "Outro caminho: sem restrição, as maneiras seriam C(8,3) × C(5,3) = 56 × 10 = 560. Dessas, o mais velho teria só um dos dois, ou os dois, ou nenhum. Pelas combinações dos 3 presentes dele: só 1 especial = 2 × 15 = 30; os 2 especiais = 6; nenhum = C(6,3) = 20. Total: 30 + 6 + 20 = 56. Fecha, e 30 × 10 = 300.",
+  "checagem": "Outro caminho: o mais velho pode ter 3 presentes de C(8,3) = 56 formas. Só 1 especial: 2 × 15 = 30. Os 2 especiais: 6. Nenhum especial: C(6,3) = 20. Soma: 30 + 6 + 20 = 56. Fecha. Então 30 × 10 = 300.",
   "erradas": {
    "A": "36 não confere. O mais velho sozinho já tem 30 maneiras (2 × 15), e cada uma deixa 10 maneiras para o mais novo. O total é múltiplo de 30 e é no mínimo 300; 36 nem é múltiplo de 30.",
    "B": "53 não confere. O total é o produto 30 × 10 = 300. 53 não é divisível por 30 nem por 10, então não pode ser produto dessas etapas.",
@@ -152,10 +152,59 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [],
+  "fatos_ok": true,
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Os presentes são diferentes, mas o que importa é quais presentes cada filho recebe, e não a ordem em que os recebe. Por isso cada grupo de presentes é uma combinação. Comece pelo filho que tem a restrição (o mais velho): ele leva a bicicleta ou o celular, mas não os dois. Depois distribua o que sobra. Etapas que acontecem uma após a outra se multiplicam.",
+    "motivo": "Deixa a restrição explícita desde o início e explica por que começar pelo mais velho."
+   },
+   {
+    "campo": "resolucao.passos[0].conta",
+    "depois": "mais velho: 3 presentes",
+    "motivo": "A conta não quebra linha na tela do celular; os outros dois grupos ficam no porque."
+   },
+   {
+    "campo": "resolucao.passos[0].porque",
+    "depois": "Os grupos têm tamanhos fixos: 3 (mais velho), 3 (mais novo) e 2 (do meio), somando 8. O mais velho leva a bicicleta ou o celular, nunca os dois. Queremos contar as formas de repartir os presentes.",
+    "motivo": "Os tamanhos dos três grupos passam a constar no porque. A frase final responde ao que foi pedido."
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "C(5, 3) = 10",
+    "motivo": "Cabe na tela do celular; o fato de o do meio não ter escolha vai para o porque."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "O mais novo escolhe 3 dos 5 presentes que sobraram. O filho do meio recebe os 2 restantes, então ele tem só 1 maneira e não muda a conta.",
+    "motivo": "Explica por que o do meio não entra como fator."
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Outro caminho: o mais velho pode ter 3 presentes de C(8,3) = 56 formas. Só 1 especial: 2 × 15 = 30. Os 2 especiais: 6. Nenhum especial: C(6,3) = 20. Soma: 30 + 6 + 20 = 56. Fecha. Então 30 × 10 = 300.",
+    "motivo": "Texto mais curto e mais claro, sem a repetição de 560."
+   }
+  ],
+  "didatica_alertas": [
+   "O campo 'nivel' do JSON é 6, mas a classificação atual diz nível 8. Confira a divergência (o corretor 1 volta nisso).",
+   "No JSON, o campo 'quadro' usa a notação 'C(6, 2)', não \\frac; as divisões estão com '÷', o que é aceitável aqui por serem contas curtas."
+  ],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "C"
  }
 }

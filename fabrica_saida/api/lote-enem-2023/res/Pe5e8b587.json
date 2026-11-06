@@ -8,12 +8,16 @@
  "conceito": "Inferir, a partir da regra do Comitê Olímpico, qual condição limita a inclusão de mulheres trans no esporte.",
  "resolucao": {
   "antes": {
-   "texto": "O comando pede o que 'dá os limites' da inclusão: a condição que o texto impõe para a participação de mulheres trans. A resposta está na regra do Comitê Olímpico Internacional, no fim do texto. Em questões de inferência, a alternativa certa reescreve o que o texto diz com outras palavras e não acrescenta nada.",
+   "texto": "O comando pede o que 'dá os limites' da inclusão: a condição que o texto impõe para a participação de mulheres trans. Essa condição está na regra do Comitê Olímpico Internacional (COI), no fim do texto. Em questão de inferência, a resposta certa é a conclusão que o texto obriga a tirar, sem acrescentar nada.",
    "formulas": [
     "limite = condição imposta pela regra",
     "regra do COI: testosterona abaixo de 10 nmol/L por 12 meses"
    ],
    "simbolos": [
+    [
+     "COI",
+     "Comitê Olímpico Internacional, entidade que define as regras dos Jogos Olímpicos"
+    ],
     [
      "potencial inclusivo",
      "capacidade de o esporte aceitar e incluir pessoas diferentes"
@@ -23,8 +27,12 @@
      "hormônio que aumenta a massa muscular, segundo o próprio texto"
     ],
     [
+     "nanomol por litro (nmol/L)",
+     "unidade que mede quanto de uma substância há em cada litro de sangue"
+    ],
+    [
      "substâncias exógenas",
-     "substâncias vindas de fora do organismo, como medicamentos e hormônios aplicados"
+     "substâncias vindas de fora do organismo, como remédios e hormônios aplicados"
     ],
     [
      "padronizadas",
@@ -32,7 +40,7 @@
     ]
    ]
   },
-  "pista": "Procure no texto a frase que diz sob qual condição a participação é permitida. O que essa condição exige do corpo da atleta?",
+  "pista": "Procure no texto a frase que diz sob qual condição a participação é permitida. Essa condição fala de quê: da história da atleta ou do corpo dela?",
   "passos": [
    {
     "faz": "Entenda o que o comando pede",
@@ -50,12 +58,12 @@
     "faz": "Interprete o critério",
     "conta": "'10 nanomols por litro por pelo menos 12 meses'",
     "porque": "Um número fixo vale para todas as atletas. A inclusão depende de o corpo se encaixar num parâmetro biológico padronizado.",
-    "tipo": "interpretar"
+    "tipo": "comparar"
    },
    {
-    "faz": "Elimine as alternativas sem apoio no texto",
-    "conta": "A, C, D, E",
-    "porque": "Cada uma afirma algo que o texto não diz ou contraria o que ele diz. Os motivos estão nas letras erradas.",
+    "faz": "Elimine as alternativas sem apoio",
+    "conta": "A, C, D, E: sem frase no texto",
+    "porque": "Cada uma afirma algo que o texto não diz ou contraria o que ele diz. O motivo de cada uma está em 'Por que eu errei'.",
     "tipo": "eliminar"
    },
    {
@@ -69,9 +77,9 @@
   "checagem": "Troque 'limites da inclusão' por 'condição para participar'. A condição citada é só a testosterona abaixo de 10 nmol/L, uma característica biológica com valor fixo. Nenhuma outra alternativa tem apoio numa frase do texto.",
   "erradas": {
    "A": "O texto diz que Laurel ficou fora da disputa por medalhas, mas isso é um fato isolado dela. Não é a regra do COI nem limita a inclusão.",
-   "C": "O texto diz que a participação de mulheres trans 'é permitida' desde que se cumpra a condição hormonal. Logo, a falta de categoria própria não aparece como limite.",
-   "D": "O afastamento de Laurel em 2001 foi decisão pessoal, por causa da pressão que ela sentia. O COI não exige afastamento; exige 12 meses de nível baixo de testosterona.",
-   "E": "O texto diz que a transição foi feita 'por meio de terapias hormonais', ou seja, com uso controlado de substâncias. A regra do COI admite esse controle, então ele não é impossível."
+   "C": "O texto diz que a participação de mulheres trans 'é permitida' se a condição hormonal for cumprida. O texto não fala em falta de categoria própria, então isso não aparece como limite.",
+   "D": "O texto diz que Laurel se afastou em 2001 e liga isso à pressão que sentia, ou seja, foi decisão pessoal. O COI não exige afastamento; exige testosterona abaixo de 10 nmol/L por pelo menos 12 meses.",
+   "E": "O texto diz que a transição foi feita 'por meio de terapias hormonais', isto é, com substâncias aplicadas. A regra do COI aceita a participação com nível controlado de testosterona. Logo, o uso controlado é possível, não impossível."
   },
   "armadilha": "Escolher um fato da biografia de Laurel (afastamento, resultados) em vez da regra do COI, que é o que realmente limita a inclusão.",
   "alerta": "",
@@ -101,10 +109,112 @@
  "gab": "B",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "comparar",
+    "motivo": "O guia não tem o tipo 'interpretar'. Os tipos aceitos são localizar, calcular, comparar, eliminar e concluir. O passo põe o critério numérico do COI ao lado da ideia de padrão biológico, por isso 'comparar' é o tipo que serve.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "O comando pede o que 'dá os limites' da inclusão: a condição que o texto impõe para a participação de mulheres trans. A resposta está na regra do Comitê Olímpico Internacional, no fim do texto. Em questões de inferência, a alternativa certa é a conclusão que o texto obriga a tirar, sem acrescentar nada que ele não sustente.",
+    "motivo": "Dizer que, na inferência, a alternativa certa 'reescreve o que o texto diz com outras palavras' descreve informação explícita, não inferência, e contradiz a classificação P01.2. A ideia de 'padronizadas' é uma conclusão tirada do valor fixo de testosterona, e o texto não diz isso com todas as letras.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "O comando pede o que 'dá os limites' da inclusão: a condição que o texto impõe para a participação de mulheres trans. Essa condição está na regra do Comitê Olímpico Internacional (COI), no fim do texto. Em questão de inferência, a resposta certa é a conclusão que o texto obriga a tirar, sem acrescentar nada.",
+    "motivo": "Sigla COI explicada na primeira aparição; frases mais curtas."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "COI",
+      "Comitê Olímpico Internacional, entidade que define as regras dos Jogos Olímpicos"
+     ],
+     [
+      "potencial inclusivo",
+      "capacidade de o esporte aceitar e incluir pessoas diferentes"
+     ],
+     [
+      "testosterona",
+      "hormônio que aumenta a massa muscular, segundo o próprio texto"
+     ],
+     [
+      "nanomol por litro (nmol/L)",
+      "unidade que mede quanto de uma substância há em cada litro de sangue"
+     ],
+     [
+      "substâncias exógenas",
+      "substâncias vindas de fora do organismo, como remédios e hormônios aplicados"
+     ],
+     [
+      "padronizadas",
+      "fixadas por um padrão único, igual para todos"
+     ]
+    ],
+    "motivo": "Incluídas COI e a unidade nmol/L, termos que o aluno pode não conhecer."
+   },
+   {
+    "campo": "resolucao.pista",
+    "depois": "Procure no texto a frase que diz sob qual condição a participação é permitida. Essa condição fala de quê: da história da atleta ou do corpo dela?",
+    "motivo": "Pista mais clara, sem entregar a letra."
+   },
+   {
+    "campo": "resolucao.passos[3]",
+    "depois": {
+     "faz": "Elimine as alternativas sem apoio",
+     "conta": "A, C, D, E: sem frase no texto",
+     "porque": "Cada uma afirma algo que o texto não diz ou contraria o que ele diz. O motivo de cada uma está em 'Por que eu errei'.",
+     "tipo": "eliminar"
+    },
+    "motivo": "Conta curta para caber na tela; ação mais clara."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "O texto diz que a transição foi feita 'por meio de terapias hormonais', isto é, com substâncias aplicadas. E a regra do COI permite a participação depois disso. Logo, o uso controlado é possível, não impossível.",
+    "motivo": "Explicação mais clara de onde o texto desmente a alternativa."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "O texto diz que a participação de mulheres trans 'é permitida' se a condição hormonal for cumprida. O texto não fala em falta de categoria própria, então isso não aparece como limite.",
+    "motivo": "Frase mais direta."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "O texto diz que a transição foi feita 'por meio de terapias hormonais', isto é, com substâncias aplicadas. A regra do COI aceita a participação com nível controlado de testosterona. Logo, o uso controlado é possível, não impossível.",
+    "motivo": "O texto não diz que o COI permite a participação 'depois' da terapia hormonal. Ele só fixa o limite de testosterona. A frase 'permite a participação depois disso' sugere uma sequência que o texto não afirma. A nova redação fica no que o texto sustenta.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "O texto diz que Laurel se afastou em 2001 e liga isso à pressão que sentia, ou seja, foi decisão pessoal. O COI não exige afastamento; exige testosterona abaixo de 10 nmol/L por pelo menos 12 meses.",
+    "motivo": "A frase original ('12 meses de nível baixo de testosterona') está correta, mas a nova redação deixa claro que o critério é o nível hormonal mantido por 12 meses. Ela também evita dizer que o texto afirma a causa da saída de Laurel além do que a citação mostra.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "B"
  }
 }

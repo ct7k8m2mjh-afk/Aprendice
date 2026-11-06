@@ -8,31 +8,35 @@
  "conceito": "Reconhecer o gráfico de um movimento circular uniforme: a altura da cadeira em função do tempo é uma onda senoidal (cosseno), suave nos picos e nos vales.",
  "resolucao": {
   "antes": {
-   "texto": "Na roda-gigante, a cadeira percorre uma circunferência com velocidade angular constante. A altura dela é a altura do centro mais a projeção vertical do raio. Essa projeção varia como um cosseno (ou seno), cujo gráfico é uma onda suave e repetida. Aqui o tempo começa no ponto mais alto, então a onda começa em um máximo.",
+   "texto": "A cadeira anda numa circunferência, girando sempre na mesma rapidez. A altura dela é a altura do centro mais a parte vertical do raio. Essa parte vertical varia como um cosseno, e o gráfico do cosseno é uma onda suave que se repete. Aqui o tempo começa com a cadeira no ponto mais alto, então a onda começa no máximo.",
    "formulas": [
     "altura = altura do centro + R × cos(ω × t)",
-    "O cosseno começa em 1 (máximo), desce até −1 (mínimo) e volta, sempre com curva arredondada"
+    "O cosseno começa em 1 (máximo), desce até −1 (mínimo) e volta, sempre em curva arredondada"
    ],
    "simbolos": [
     [
      "R",
-     "raio da roda-gigante"
+     "raio da roda-gigante (distância do centro até a cadeira)"
     ],
     [
      "ω",
-     "velocidade angular: o ângulo que a roda gira por unidade de tempo"
+     "velocidade angular: o ângulo que a roda gira a cada unidade de tempo"
     ],
     [
      "t",
      "tempo contado a partir do instante em que P está no ponto mais alto"
     ],
     [
+     "cos",
+     "cosseno: função que vale 1 em 0°, 0 em 90° e −1 em 180°"
+    ],
+    [
      "período",
-     "tempo de uma volta completa, depois do qual o gráfico se repete"
+     "tempo de uma volta completa; depois dele o gráfico se repete"
     ]
    ]
   },
-  "pista": "Imagine a cadeira girando perto do topo e perto do fundo: a altura muda rápido ou devagar ali? E o que isso diz sobre o formato da curva nos picos e nos vales?",
+  "pista": "Pense na cadeira passando pelo topo e pelo fundo: nesses pontos ela sobe e desce, ou anda de lado? O que isso diz sobre o formato da curva nos picos e nos vales?",
   "passos": [
    {
     "faz": "Localize o ponto de partida",
@@ -43,14 +47,14 @@
    {
     "faz": "Veja como a altura varia no topo e no fundo",
     "conta": "topo e fundo: movimento horizontal",
-    "porque": "No topo e no fundo da circunferência a cadeira anda na horizontal, então a altura quase não muda ali. A curva fica achatada e arredondada nos picos e nos vales, sem bico.",
-    "tipo": "interpretar"
+    "porque": "No topo e no fundo a velocidade da cadeira é horizontal, então a altura quase não muda ali. A curva fica arredondada nos picos e nos vales, sem bico.",
+    "tipo": "comparar"
    },
    {
     "faz": "Veja onde a altura muda mais rápido",
     "conta": "no meio da subida/descida: mais inclinada",
-    "porque": "Na altura do centro a cadeira sobe ou desce quase na vertical. Ali a curva é mais inclinada. Isso é típico de senoide, não de segmentos retos.",
-    "tipo": "interpretar"
+    "porque": "Na altura do centro, a velocidade da cadeira é vertical, então a altura muda mais rápido ali. A curva é mais inclinada nesse trecho. Isso é típico de onda suave, e não de segmentos retos.",
+    "tipo": "comparar"
    },
    {
     "faz": "Confira o mínimo",
@@ -69,7 +73,7 @@
   "checagem": "Marque quatro pontos de uma volta: topo (altura máxima), lado (altura do centro), fundo (mínima), lado de novo (altura do centro). A curva A passa por esses valores nessa ordem, suavemente, e depois repete.",
   "erradas": {
    "B": "O gráfico é feito de retas, com bicos em cima e embaixo. Isso significaria subir e descer a uma velocidade vertical constante, inclusive no topo e no fundo. Mas ali a cadeira anda na horizontal e a altura quase não varia, então os picos e vales são arredondados.",
-   "C": "O gráfico tem retas inclinadas e trechos planos de bico, como um trapézio. A altura ficaria parada por um tempo no topo e no fundo e depois mudaria a ritmo constante. Com velocidade angular constante a altura nunca fica exatamente parada: ela segue uma curva suave.",
+   "C": "O gráfico tem retas inclinadas e trechos planos. A altura ficaria parada no topo e no fundo e, entre eles, mudaria sempre no mesmo ritmo. Com a roda girando sempre na mesma rapidez, a altura nunca fica parada por um intervalo: ela segue uma curva suave. Os trechos retos não existem no movimento circular uniforme.",
    "D": "Os máximos são arredondados, mas os mínimos têm bico, com a curva chegando em V. Isso seria típico de um valor absoluto. Na roda-gigante o fundo é tão suave quanto o topo, porque ali a cadeira também anda na horizontal.",
    "E": "Os mínimos são arredondados, mas os máximos têm bico (um pico em ponta). O topo do movimento circular também é suave, e o gráfico começa justamente nesse topo. Um pico pontudo não representa a cadeira passando pelo ponto mais alto."
   },
@@ -128,10 +132,125 @@
  "gab": "A",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "comparar",
+    "motivo": "O tipo \"interpretar\" não existe na lista permitida (localizar, calcular, comparar, eliminar, concluir). O passo compara a rapidez com que a altura varia no topo e no fundo, então o tipo certo é \"comparar\".",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "comparar",
+    "motivo": "O tipo \"interpretar\" não existe na lista permitida. O passo compara a inclinação da curva no meio da subida e da descida com a dos extremos, então o tipo certo é \"comparar\".",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "A",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "A cadeira anda numa circunferência, girando sempre na mesma rapidez. A altura dela é a altura do centro mais a parte vertical do raio. Essa parte vertical varia como um cosseno, e o gráfico do cosseno é uma onda suave que se repete. Aqui o tempo começa com a cadeira no ponto mais alto, então a onda começa no máximo.",
+    "motivo": "Frases mais simples e sem dois sentidos; 'projeção' trocada por 'parte vertical'."
+   },
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "altura = altura do centro + R × cos(ω × t)",
+     "O cosseno começa em 1 (máximo), desce até −1 (mínimo) e volta, sempre em curva arredondada"
+    ],
+    "motivo": "Mantida a ideia, texto ajustado."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "R",
+      "raio da roda-gigante (distância do centro até a cadeira)"
+     ],
+     [
+      "ω",
+      "velocidade angular: o ângulo que a roda gira a cada unidade de tempo"
+     ],
+     [
+      "t",
+      "tempo contado a partir do instante em que P está no ponto mais alto"
+     ],
+     [
+      "cos",
+      "cosseno: função que vale 1 em 0°, 0 em 90° e −1 em 180°"
+     ],
+     [
+      "período",
+      "tempo de uma volta completa; depois dele o gráfico se repete"
+     ]
+    ],
+    "motivo": "Faltava explicar 'cos', usado nas fórmulas."
+   },
+   {
+    "campo": "resolucao.pista",
+    "depois": "Pense na cadeira passando pelo topo e pelo fundo: nesses pontos ela sobe e desce, ou anda de lado? O que isso diz sobre o formato da curva nos picos e nos vales?",
+    "motivo": "Pergunta mais direta, sem entregar a resposta."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "No topo e no fundo a cadeira anda na horizontal, então a altura quase não muda ali. A curva fica arredondada nos picos e nos vales, sem bico.",
+    "motivo": "Frases mais curtas."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Na altura do centro, a cadeira sobe ou desce quase na vertical. Ali a curva é mais inclinada. Isso é típico de onda suave, e não de segmentos retos.",
+    "motivo": "Trocado 'senoide' por termo simples."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "O gráfico tem retas inclinadas e trechos planos. A altura ficaria parada no topo e no fundo e depois mudaria sempre no mesmo ritmo. Com a roda girando sempre na mesma rapidez, a altura nunca fica parada: ela segue uma curva suave. Faltou notar que os trechos retos não existem no movimento circular.",
+    "motivo": "Removido 'bico' incorreto para trechos planos e incluído o que faltou no raciocínio."
+   }
+  ],
+  "didatica_alertas": [
+   "O campo nivel da resolução é 5, mas a classificação atual diz nível 6; confirmar qual vale."
+  ],
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "No topo e no fundo a velocidade da cadeira é horizontal, então a altura quase não muda ali. A curva fica arredondada nos picos e nos vales, sem bico.",
+    "motivo": "A frase 'a cadeira anda na horizontal' é imprecisa, porque a cadeira percorre um arco. O que é horizontal é a velocidade instantânea. Correção mínima de rigor.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Na altura do centro, a velocidade da cadeira é vertical, então a altura muda mais rápido ali. A curva é mais inclinada nesse trecho. Isso é típico de onda suave, e não de segmentos retos.",
+    "motivo": "'Quase na vertical' e 'sobe ou desce' são imprecisos. No nível do centro, a velocidade é exatamente vertical.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "O gráfico tem retas inclinadas e trechos planos. A altura ficaria parada no topo e no fundo e, entre eles, mudaria sempre no mesmo ritmo. Com a roda girando sempre na mesma rapidez, a altura nunca fica parada por um intervalo: ela segue uma curva suave. Os trechos retos não existem no movimento circular uniforme.",
+    "motivo": "Ajuste de precisão. A altura é momentaneamente estacionária só nos extremos, e não em um trecho. Não muda a conclusão.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Marque quatro pontos de uma volta: topo (altura máxima), lado (altura do centro), fundo (mínima), lado de novo (altura do centro). A curva A passa por esses valores nessa ordem, suavemente, e depois repete.",
+    "motivo": "Texto equivalente. Mantido sem mudança de conteúdo.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "A"
  }
 }

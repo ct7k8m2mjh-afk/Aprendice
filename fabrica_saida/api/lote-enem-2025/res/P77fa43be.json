@@ -8,7 +8,7 @@
  "conceito": "Média (razão tempo/distância): achar o tempo total para um pace dado e comparar com o que já foi gasto.",
  "resolucao": {
   "antes": {
-   "texto": "Pace é o tempo médio por quilômetro: tempo total ÷ distância. Se o pace de 281 s/km vale para a corrida inteira de 5 km, o tempo total tem de ser 281 s vezes 5. O esquema já mostra quanto tempo passou até o fim do 4º km. O que falta para fechar o total é o tempo do 5º trecho.",
+   "texto": "Pace é o tempo médio por quilômetro: tempo total ÷ distância. Se o pace de 281 s/km vale para a corrida inteira de 5 km, o tempo total é 281 s vezes 5. O esquema mostra quanto tempo passou até o fim do 4º km. O que falta para fechar o total é o tempo do 5º trecho. A pergunta pede quanto esse tempo é menor que o do 4º trecho.",
    "formulas": [
     "pace = tempo total ÷ distância",
     "tempo total = pace × distância",
@@ -33,9 +33,9 @@
   "passos": [
    {
     "faz": "Diga o que a questão pede",
-    "conta": "5º trecho = 4º trecho − ?",
+    "conta": "pedido: 4º trecho − 5º trecho",
     "porque": "A pergunta é por quantos segundos o 5º trecho precisa ser menor que o 4º. Pede uma diferença, não o tempo do 5º trecho.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Calcule o tempo total para o pace",
@@ -56,15 +56,15 @@
     "tipo": "calcular"
    },
    {
-    "faz": "Compare com o 4º trecho",
-    "conta": "288 − 273 = 15 s",
-    "porque": "O esquema mostra 288 s no 4º trecho (1 132 − 844). O 5º precisa ser 15 s menor.",
+    "faz": "Ache o tempo do 4º trecho",
+    "conta": "4º: 1 132 − 844 = 288 s",
+    "porque": "O 4º trecho vai do marco de 3 km (844 s) ao de 4 km (1 132 s). O esquema também mostra direto: 288 s.",
     "tipo": "calcular"
    },
    {
-    "faz": "Ligue à alternativa",
-    "conta": "15 s → alternativa E",
-    "porque": "A diferença pedida é 15 segundos.",
+    "faz": "Ache a diferença e marque a letra",
+    "conta": "288 − 273 = 15 s → E",
+    "porque": "O 5º trecho precisa ser 15 s menor que o 4º. Essa é a diferença pedida, que corresponde à alternativa E.",
     "tipo": "concluir"
    }
   ],
@@ -134,10 +134,73 @@
  "gab": "E",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[0].tipo",
+    "depois": "localizar",
+    "motivo": "O valor 'interpretar' não está na lista de tipos aceitos (localizar, calcular, comparar, eliminar, concluir). O guia manda usar 'localizar' no passo que diz o que a questão pede.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Pace é o tempo médio por quilômetro: tempo total ÷ distância. Se o pace de 281 s/km vale para a corrida inteira de 5 km, o tempo total é 281 s vezes 5. O esquema mostra quanto tempo passou até o fim do 4º km. O que falta para fechar o total é o tempo do 5º trecho. A pergunta pede quanto esse tempo é menor que o do 4º trecho.",
+    "motivo": "Deixa claro, logo no início, que o pedido é uma diferença entre trechos."
+   },
+   {
+    "campo": "resolucao.passos[0].conta",
+    "depois": "pedido: 4º trecho − 5º trecho",
+    "motivo": "A conta anterior ('5º = 4º − ?') tinha uma incógnita solta. A nova mostra a diferença que se quer, e é curta."
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "4º: 1 132 − 844 = 288 s",
+    "motivo": "O 288 s do 4º trecho aparece no esquema, mas o aluno deve ver de onde sai. O passo seguinte faz a diferença."
+   },
+   {
+    "campo": "resolucao.passos[4].faz",
+    "depois": "Ache o tempo do 4º trecho",
+    "motivo": "O passo mistura duas ações. Fica só o tempo do 4º trecho, e a subtração final passa para um passo próprio."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "O 4º trecho vai do marco de 3 km (844 s) ao de 4 km (1 132 s). O esquema também mostra direto: 288 s.",
+    "motivo": "Explica de onde sai o 288 s."
+   },
+   {
+    "campo": "resolucao.passos[5]",
+    "depois": {
+     "faz": "Ache a diferença e marque a letra",
+     "conta": "288 − 273 = 15 s → E",
+     "porque": "O 5º trecho precisa ser 15 s menor que o 4º. Essa é a diferença pedida, que corresponde à alternativa E.",
+     "tipo": "concluir"
+    },
+    "motivo": "A subtração e a conclusão ficam num passo final com ação única. Antes o passo de comparação repetia a conclusão."
+   },
+   {
+    "campo": "resolucao.quadro[0].linha",
+    "depois": "total = 281 × 5",
+    "motivo": "Sem mudança no texto. Linha mantida para dar continuidade."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "E"
  }
 }

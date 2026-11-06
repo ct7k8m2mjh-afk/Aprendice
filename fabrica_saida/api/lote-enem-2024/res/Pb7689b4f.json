@@ -8,10 +8,11 @@
  "conceito": "Ler um gráfico de emissões de um motor a gasolina e classificar cada gás como baixo ou alto para uma razão ar/combustível dada.",
  "resolucao": {
   "antes": {
-   "texto": "O gráfico mostra cinco curvas, uma para cada gás. O eixo horizontal é a razão ar/combustível. Para cada razão, você traça uma vertical e vê onde ela corta cada curva. Cada curva tem a sua cor e a sua seta indicando o eixo de leitura. Para dizer se um valor é alto ou baixo, compare-o com o resto da própria curva.",
+   "texto": "O gráfico tem cinco curvas, uma para cada gás. O eixo horizontal, embaixo, é a razão ar/combustível. Para cada razão, trace uma linha vertical e veja onde ela corta cada curva. As setas ao lado dos nomes mostram qual escala ler: as que apontam para a esquerda usam o eixo da esquerda, as que apontam para a direita usam o da direita. Para dizer se um valor é alto ou baixo, compare-o com o resto da própria curva.",
    "formulas": [
-    "ler o gráfico: vertical em 18 → cruza cada curva → comparar com o restante da curva",
-    "razão ar/combustível maior que a estequiométrica (cerca de 14,7) = excesso de ar"
+    "ler o gráfico: vertical em 18 → cruza cada curva → comparar com o resto da curva",
+    "razão ar/combustível maior que a estequiométrica (cerca de 15) = excesso de ar",
+    "excesso de ar → combustão mais completa → menos CO e menos HC"
    ],
    "simbolos": [
     [
@@ -20,19 +21,27 @@
     ],
     [
      "CO",
-     "monóxido de carbono, produto de combustão incompleta"
+     "monóxido de carbono, produto de combustão incompleta (falta de ar)"
+    ],
+    [
+     "CO2",
+     "dióxido de carbono, produto da combustão completa"
     ],
     [
      "NO",
-     "monóxido de nitrogênio, formado pela reação do N2 com o O2 do ar em alta temperatura"
+     "monóxido de nitrogênio, formado quando o N2 reage com o O2 do ar em alta temperatura"
     ],
     [
      "razão estequiométrica",
-     "proporção de ar e combustível em que há ar na medida exata para queimar todo o combustível; é a linha tracejada vertical, perto de 15"
+     "proporção em que o ar é suficiente para queimar todo o combustível; é a linha tracejada vertical, perto de 15"
     ],
     [
      "vppm",
      "partes por milhão em volume; é a unidade do eixo da direita"
+    ],
+    [
+     "deficiência / excesso",
+     "deficiência: falta ar (à esquerda da linha tracejada); excesso: sobra ar (à direita)"
     ]
    ]
   },
@@ -46,7 +55,7 @@
    },
    {
     "faz": "Leia a curva do CO (verde)",
-    "conta": "CO em x = 18 → quase 0 %",
+    "conta": "CO em x = 18 → perto de 0 %",
     "porque": "A curva verde cai rápido e fica colada no zero a partir de cerca de 15. Com excesso de ar, o CO queima e vira CO2. Logo, CO é baixo.",
     "tipo": "localizar"
    },
@@ -58,7 +67,7 @@
    },
    {
     "faz": "Confira os outros gases",
-    "conta": "HC ≈ mínimo; O2 ≈ 4 a 5 %; NO ≈ meio",
+    "conta": "HC mínimo; O2 sobe; NO desce",
     "porque": "O HC (vermelha) está perto do seu mínimo em 18. O O2 (azul-clara) está subindo, não é baixo. O NO já passou do pico e vem caindo.",
     "tipo": "comparar"
    },
@@ -72,10 +81,10 @@
   "resposta": "Alternativa C: em 18 a curva do CO está praticamente em zero (baixa) e a do CO2 ainda está alta (cerca de 12 %).",
   "checagem": "Raciocine pela química. Com excesso de ar há O2 de sobra e a combustão é quase completa. Isso converte CO em CO2 e queima o HC. O resultado esperado é CO baixo, HC baixo e CO2 alto, o que bate com a leitura do gráfico.",
   "erradas": {
-   "A": "O2 não é baixo em 18. A curva azul-clara está subindo e marca cerca de 4 a 5 % de O2, valor acima do que ela tem na maior parte da faixa à esquerda. O NO também não é alto: em 18 ele já caiu bem do pico (perto de 16).",
-   "B": "O NO em 18 está no meio da descida, não no ponto mais baixo. O HC não é alto: a curva vermelha está perto do mínimo, cerca de 2,5 na escala da direita. As duas afirmações falham.",
-   "D": "O HC realmente está baixo, mas o CO não está alto. A curva verde está colada no zero em 18. O CO só é alto à esquerda da razão estequiométrica (deficiência de ar), perto de 10 a 12.",
-   "E": "O CO2 não é baixo em 18: está em cerca de 12 %, próximo do máximo. O HC também não é alto, pois a curva vermelha está no seu mínimo. O HC só é alto à esquerda, na faixa de deficiência de ar."
+   "A": "A erra nos dois lados. O O2 não é baixo em 18: a curva azul-clara está subindo, em cerca de 4 %. O NO também não é alto: já caiu bem desde o pico, perto de 16.",
+   "B": "B erra nos dois lados. O NO em 18 está no meio da descida, não no ponto mais baixo. O HC não é alto: a curva vermelha está perto do seu mínimo.",
+   "D": "D acerta o HC baixo, mas erra o CO: em 18 a curva verde está colada no zero. O CO só é alto à esquerda da linha tracejada, onde falta ar. Quem marcou D leu o lado errado do gráfico.",
+   "E": "E erra nos dois lados. O CO2 em 18 está perto de 12 %, próximo do máximo, e não baixo. O HC está perto do mínimo, e não alto. O HC só é alto à esquerda, onde falta ar."
   },
   "armadilha": "Trocar o lado do gráfico: o CO e o HC são altos na deficiência de ar (esquerda). Em 18 há excesso de ar e os dois estão baixos.",
   "alerta": "",
@@ -109,10 +118,121 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "O NO em 18 está no meio da descida, não no ponto mais baixo. O HC não é alto: a curva vermelha está perto do mínimo, cerca de 1,2 × 10² vppm na escala da direita. As duas afirmações falham.",
+    "motivo": "Leitura errada da escala. No gráfico, o 7 da escala da direita fica na mesma altura do 14 da esquerda, então cada valor da direita é a metade do da esquerda. Em x = 18, a curva do HC está na altura do 2,5 da escala da esquerda, que corresponde a cerca de 1,2 na escala da direita (unidade 10² vppm). O valor 2,5 não vale para a escala da direita.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "O gráfico tem cinco curvas, uma para cada gás. O eixo horizontal, embaixo, é a razão ar/combustível. Para cada razão, trace uma linha vertical e veja onde ela corta cada curva. As setas ao lado dos nomes mostram qual escala ler: as que apontam para a esquerda usam o eixo da esquerda, as que apontam para a direita usam o da direita. Para dizer se um valor é alto ou baixo, compare-o com o resto da própria curva.",
+    "motivo": "Explica o uso das setas e das duas escalas, que o texto antigo só sugeria."
+   },
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "ler o gráfico: vertical em 18 → cruza cada curva → comparar com o resto da curva",
+     "razão ar/combustível maior que a estequiométrica (cerca de 15) = excesso de ar",
+     "excesso de ar → combustão mais completa → menos CO e menos HC"
+    ],
+    "motivo": "Usa o valor do gráfico (cerca de 15) e acrescenta a regra química que ajuda a resolver."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "HC",
+      "hidrocarbonetos: combustível que saiu do motor sem queimar"
+     ],
+     [
+      "CO",
+      "monóxido de carbono, produto de combustão incompleta (falta de ar)"
+     ],
+     [
+      "CO2",
+      "dióxido de carbono, produto da combustão completa"
+     ],
+     [
+      "NO",
+      "monóxido de nitrogênio, formado quando o N2 reage com o O2 do ar em alta temperatura"
+     ],
+     [
+      "razão estequiométrica",
+      "proporção em que o ar é suficiente para queimar todo o combustível; é a linha tracejada vertical, perto de 15"
+     ],
+     [
+      "vppm",
+      "partes por milhão em volume; é a unidade do eixo da direita"
+     ],
+     [
+      "deficiência / excesso",
+      "deficiência: falta ar (à esquerda da linha tracejada); excesso: sobra ar (à direita)"
+     ]
+    ],
+    "motivo": "Inclui CO2 e os termos deficiência e excesso, que aparecem no gráfico e na resolução."
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "CO em x = 18 → perto de 0 %",
+    "motivo": "Cabe melhor na linha do celular e evita o 'quase' solto."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "HC mínimo; O2 sobe; NO desce",
+    "motivo": "Resume os três gases sem números soltos e cabe na linha."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "A erra nos dois lados. O O2 não é baixo em 18: a curva azul-clara está subindo, em cerca de 4 a 5 %. O NO também não é alto: já caiu bem desde o pico, perto de 16.",
+    "motivo": "Frases mais curtas e diretas; diz o que faltou ao aluno que marcou A."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "B erra nos dois lados. O NO em 18 está no meio da descida, não no ponto mais baixo. O HC não é alto: a curva vermelha está perto do seu mínimo.",
+    "motivo": "Simplifica e retira o valor numérico lido na escala, que é impreciso."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "D acerta o HC baixo, mas erra o CO: em 18 a curva verde está colada no zero. O CO só é alto à esquerda da linha tracejada, onde falta ar. Quem marcou D leu o lado errado do gráfico.",
+    "motivo": "Mostra onde falhou o raciocínio de quem marcou D."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "E erra nos dois lados. O CO2 em 18 está perto de 12 %, próximo do máximo, e não baixo. O HC está perto do mínimo, e não alto. O HC só é alto à esquerda, onde falta ar.",
+    "motivo": "Frases curtas e uma conclusão clara."
+   }
+  ],
+  "didatica_alertas": [
+   "A resolução diz que o HC está perto do mínimo em 18, mas na curva vermelha o mínimo fica por volta de 18,5 a 19, ainda na descida em 18; conferir a leitura, sem mudar a conclusão (HC baixo).",
+   "O campo 'nivel' do JSON da resolução (4) difere da classificação do banco (7); revisar, sem alterar aqui."
+  ],
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "A erra nos dois lados. O O2 não é baixo em 18: a curva azul-clara está subindo, em cerca de 4 %. O NO também não é alto: já caiu bem desde o pico, perto de 16.",
+    "motivo": "Em x=18 a curva do O2 está em cerca de 4 %; 'de 4 a 5' superestima a leitura.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "C"
  }
 }

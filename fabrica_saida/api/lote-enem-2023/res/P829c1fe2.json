@@ -8,7 +8,7 @@
  "conceito": "Área total de superfícies retangulares e de um polígono em forma de escada (soma de áreas de figuras simples).",
  "resolucao": {
   "antes": {
-   "texto": "A área a revestir é a soma de três tipos de peça: os pisos (onde se pisa), os espelhos (a parte vertical de cada degrau) e as duas paredes laterais da escada. Piso e espelho são retângulos. Cada parede lateral tem formato de escada, mas pode ser decomposta em retângulos simples.",
+   "texto": "A área a revestir é a soma de três tipos de peça: os pisos (onde se pisa), os espelhos (a parte vertical de cada degrau) e as duas paredes laterais da escada. Piso e espelho são retângulos. Cada parede lateral tem formato de escada, mas pode ser cortada em retângulos simples. Lembre que a escada tem dois lados: um de cada lado do degrau.",
    "formulas": [
     "área do retângulo = base × altura",
     "área total = pisos + espelhos + paredes laterais"
@@ -28,11 +28,11 @@
     ]
    ]
   },
-  "pista": "Separe a escada em três grupos de superfícies. Antes de somar, descubra quantas paredes laterais a figura mostra e como fatiar uma delas em retângulos.",
+  "pista": "Separe a escada em três grupos de superfícies: pisos, espelhos e laterais. Na lateral, imagine cortes verticais que formam retângulos de alturas diferentes.",
   "passos": [
    {
     "faz": "Leia as medidas na figura",
-    "conta": "largura = 1,0 m",
+    "conta": "largura 1,0 m; piso 0,25 m; espelho 0,20 m",
     "porque": "A figura marca 1,0 m na largura da escada. Cada degrau tem 0,25 m de profundidade (piso) e 0,20 m de altura (espelho). São 3 degraus.",
     "tipo": "localizar"
    },
@@ -50,8 +50,8 @@
    },
    {
     "faz": "Calcule uma parede lateral",
-    "conta": "0,25×(0,2+0,4+0,6) = 0,30 m²",
-    "porque": "A lateral é uma escada. Fatie em faixas verticais de 0,25 m de largura, com alturas 0,20, 0,40 e 0,60 m. Some as áreas dessas faixas.",
+    "conta": "0,25 × (0,20 + 0,40 + 0,60) = 0,30",
+    "porque": "A lateral é uma escada. Corte em 3 faixas verticais, cada uma com 0,25 m de largura. As alturas são 0,20 m (1 degrau), 0,40 m (2 degraus) e 0,60 m (3 degraus). Some as áreas das faixas. O resultado é em m².",
     "tipo": "calcular"
    },
    {
@@ -62,12 +62,12 @@
    }
   ],
   "resposta": "Alternativa E: 1,95 m², somando 0,75 (pisos) + 0,60 (espelhos) + 0,60 (duas paredes laterais).",
-  "checagem": "Outro caminho para a lateral: ela é um triângulo-escada de base 0,75 m e altura 0,60 m. O retângulo 0,75 × 0,60 = 0,45 m² tem 3 'dentes' faltando, de 0,25 × 0,20 = 0,05 m² cada. A conta fica 0,45 − 3×0,05 = 0,30 m² (a escada cheia, sem os dentes de fora). Isso confere com a conta feita por faixas, 0,30 m².",
+  "checagem": "Outro caminho: complete a lateral até virar um retângulo de 0,75 m por 0,60 m, que tem 0,45 m². Faltam 3 quadradinhos vazios acima da escada: um de 0,25 × 0,40, um de 0,25 × 0,20 e um de 0,25 × 0,00. Em outras palavras, a soma é 0,25 × (0,40 + 0,20 + 0,00) = 0,15 m². Então 0,45 − 0,15 = 0,30 m², igual ao valor por faixas.",
   "erradas": {
    "A": "1,20 é 0,60 (espelhos) + 0,60 (duas laterais), esquecendo os três pisos de 0,75 m². Pisos também serão revestidos.",
    "B": "1,35 é 0,75 + 0,60: só pisos e espelhos. Faltam as paredes laterais, que o enunciado manda revestir (2 × 0,30 = 0,60).",
    "C": "1,65 é 1,35 + 0,30: conta apenas uma parede lateral. A escada tem duas laterais, uma de cada lado.",
-   "D": "1,80 não confere: pisos e espelhos dão 1,35, e faltaria 0,45 de laterais. Mas as duas laterais somam 2 × 0,30 = 0,60, não 0,45."
+   "D": "1,80 sai de tratar cada lateral como um triângulo: 0,75 × 0,60 ÷ 2 = 0,225 m². Com as duas, 2 × 0,225 = 0,45. Somando 1,35 + 0,45, dá 1,80. Mas a lateral é uma escada, e a área dela é 0,30 m², não 0,225."
   },
   "armadilha": "Esquecer que são duas paredes laterais, ou calcular a lateral como um retângulo inteiro em vez de uma escada.",
   "alerta": "",
@@ -80,7 +80,7 @@
  "caminhos": [
   {
    "nome": "lateral por subtração",
-   "ideia": "Área da lateral = triângulo-escada = retângulo 0,75 × 0,60 menos os 3 'dentes' de 0,25 × 0,20 vazios, ou seja, 0,45 − 0,15 = 0,30 m²."
+   "ideia": "Lateral = retângulo 0,75 × 0,60 = 0,45 m², menos o espaço vazio acima dos degraus. Esse vazio é a soma de faixas de 0,25 m de largura e alturas 0,40, 0,20 e 0 m: 0,25 × 0,60 = 0,15 m². Então 0,45 − 0,15 = 0,30 m²."
   },
   {
    "nome": "degrau a degrau",
@@ -143,10 +143,76 @@
  "gab": "E",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "1,80 sai de tratar cada lateral como um triângulo: 0,75 × 0,60 ÷ 2 = 0,225, e 2 × 0,225 = 0,45. Somando 1,35 + 0,45, dá 1,80. A lateral é uma escada com degraus, e não um triângulo. Cada uma mede 0,30 m².",
+    "motivo": "O texto dizia que D 'não confere', mas há um erro típico real que chega exatamente a 1,80: aproximar a lateral-escada por um triângulo (0,75 + 0,60 + 2 × 0,225 = 1,80). A regra é: quando uma conta plausível chega ao valor, escreve-se 'sai de'. A conta foi conferida.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "A área a revestir é a soma de três tipos de peça: os pisos (onde se pisa), os espelhos (a parte vertical de cada degrau) e as duas paredes laterais da escada. Piso e espelho são retângulos. Cada parede lateral tem formato de escada, mas pode ser cortada em retângulos simples. Lembre que a escada tem dois lados: um de cada lado do degrau.",
+    "motivo": "Deixa claro, desde o início, que são duas laterais, e troca 'decomposta' por palavra mais simples."
+   },
+   {
+    "campo": "resolucao.pista",
+    "depois": "Separe a escada em três grupos de superfícies: pisos, espelhos e laterais. Na lateral, imagine cortes verticais que formam retângulos de alturas diferentes.",
+    "motivo": "Não pergunta nem sugere a resposta sobre o número de laterais; foca no primeiro movimento."
+   },
+   {
+    "campo": "resolucao.passos[0].conta",
+    "depois": "largura 1,0 m; piso 0,25 m; espelho 0,20 m",
+    "motivo": "A conta mostra as três medidas que serão usadas, e não só a largura."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "0,25 × (0,20 + 0,40 + 0,60) = 0,30",
+    "motivo": "Mostra os parênteses de forma clara e coloca a unidade no porque."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "A lateral é uma escada. Corte em 3 faixas verticais, cada uma com 0,25 m de largura. As alturas são 0,20 m (1 degrau), 0,40 m (2 degraus) e 0,60 m (3 degraus). Some as áreas das faixas. O resultado é em m².",
+    "motivo": "Explica de onde vêm as alturas 0,20, 0,40 e 0,60."
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Outro caminho: complete a lateral até virar um retângulo de 0,75 m por 0,60 m, que tem 0,45 m². Faltam 3 quadradinhos vazios acima da escada: um de 0,25 × 0,40, um de 0,25 × 0,20 e um de 0,25 × 0,00. Em outras palavras, a soma é 0,25 × (0,40 + 0,20 + 0,00) = 0,15 m². Então 0,45 − 0,15 = 0,30 m², igual ao valor por faixas.",
+    "motivo": "A checagem anterior falava em 3 dentes de 0,05, o que não bate com a geometria (os vazios não são todos iguais): 0,45 − 3×0,05 dá 0,30 só por coincidência numérica. Reescrita com os vazios corretos."
+   },
+   {
+    "campo": "resolucao.caminhos[0].ideia",
+    "depois": "Lateral = retângulo 0,75 × 0,60 = 0,45 m², menos o espaço vazio acima dos degraus. Esse vazio é a soma de faixas de 0,25 m de largura e alturas 0,40, 0,20 e 0 m: 0,25 × 0,60 = 0,15 m². Então 0,45 − 0,15 = 0,30 m².",
+    "motivo": "A ideia anterior falava em 3 dentes iguais de 0,05, o que é geometricamente incorreto."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "1,80 sai de tratar cada lateral como um triângulo: 0,75 × 0,60 ÷ 2 = 0,225 m². Com as duas, 2 × 0,225 = 0,45. Somando 1,35 + 0,45, dá 1,80. Mas a lateral é uma escada, e a área dela é 0,30 m², não 0,225.",
+    "motivo": "Texto mais curto e direto, dizendo o que faltou no raciocínio."
+   }
+  ],
+  "didatica_alertas": [
+   "A checagem e o caminho 'subtração' falavam em 3 'dentes' iguais de 0,05 m². Os vazios sobre a escada têm áreas diferentes, mas a soma 0,15 m² dá o mesmo resultado. Reescrito acima com os vazios corretos; o corretor 1 deve conferir.",
+   "O campo conteudo está M08.5 no JSON, mas a classificação informada é M08.2 e o nível 5 versus 6; o corretor 1 deve conferir."
+  ],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "E"
  }
 }

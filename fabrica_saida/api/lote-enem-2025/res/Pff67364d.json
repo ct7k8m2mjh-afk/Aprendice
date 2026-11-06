@@ -8,7 +8,7 @@
  "conceito": "Adsorção: a eficiência do carvão ativado vem da grande superfície de contato, criada pela porosidade.",
  "resolucao": {
   "antes": {
-   "texto": "Adsorção é um fenômeno de superfície: as impurezas ficam grudadas na superfície do sólido, e não dentro dele. Quanto maior a superfície exposta, mais impureza o material prende. Poros pequenos e numerosos aumentam muito a superfície total, mesmo em um grão pequeno.",
+   "texto": "Adsorção é um fenômeno de superfície: as impurezas ficam grudadas na superfície do sólido, inclusive nas paredes internas dos poros, e não se espalham pelo interior do material. Quanto maior a superfície exposta, mais impureza o material prende. Poros pequenos e numerosos aumentam muito a superfície total, mesmo em um grão pequeno.",
    "formulas": [
     "adsorção = impureza retida na SUPERFÍCIE do sólido",
     "mais poros → mais superfície → mais adsorção"
@@ -42,21 +42,21 @@
    },
    {
     "faz": "Leia a diferença na figura",
-    "conta": "Comum: poucos poros / Ativado: muitos poros de vários tamanhos",
-    "porque": "O carvão comum tem só alguns mesoporos. O ativado tem macro, meso e microporos, com impurezas pretas presas nas paredes.",
+    "conta": "Comum: 5 poros / Ativado: muitos poros",
+    "porque": "O carvão comum tem poucos poros, todos de um só tamanho (mesoporos). O ativado tem macroporos, mesoporos e microporos, com impurezas (pontos pretos) presas nas paredes.",
     "tipo": "localizar"
    },
    {
     "faz": "Relacione poros com superfície",
     "conta": "mais poros → mais paredes expostas",
     "porque": "Cada poro tem paredes internas. Muitos poros somam uma superfície total enorme, onde as impurezas podem grudar.",
-    "tipo": "interpretar"
+    "tipo": "comparar"
    },
    {
     "faz": "Compare com as alternativas",
-    "conta": "massa, dureza, densidade, condutividade",
-    "porque": "Nenhuma dessas propriedades aparece no texto ou na figura como responsável por reter impurezas. A única ligada à adsorção é a superfície.",
-    "tipo": "aplicar"
+    "conta": "massa, dureza, densidade, condutiv.",
+    "porque": "Nem o texto nem a figura ligam essas propriedades à retenção de impurezas. Só a superfície se liga à adsorção.",
+    "tipo": "eliminar"
    },
    {
     "faz": "Conclua",
@@ -68,10 +68,10 @@
   "resposta": "Alternativa D: a superfície. O carvão ativado é poroso, tem enorme superfície de contato e por isso adsorve mais impurezas.",
   "checagem": "Pense em uma esponja cheia de buracos: ela retém mais água que um bloco liso do mesmo tamanho. O carvão ativado é o equivalente para impurezas, e o que cresce com os buracos é a superfície.",
   "erradas": {
-   "A": "Massa: a figura mostra grãos do mesmo tamanho aproximado, e o texto não relaciona massa à adsorção. Um carvão comum pesado continua com poucos poros e pouca superfície.",
+   "A": "Massa: o texto não liga massa à adsorção. A figura mostra grãos de tamanho parecido, e a diferença entre eles é a quantidade de poros. Um grão mais pesado, mas sem poros, continua com pouca superfície.",
    "B": "Dureza: é a resistência a riscos, e não tem ligação com reter impurezas. A diferença que a figura destaca é a quantidade de poros, não a resistência do material.",
-   "C": "Densidade: o texto e a figura não a mencionam. A adsorção depende da área exposta, não de quanta massa cabe em um volume.",
-   "E": "Condutividade: é a capacidade de conduzir eletricidade ou calor. A remoção de impurezas por adsorção não é um processo de condução; é retenção na superfície."
+   "C": "Densidade: é a massa que cabe em cada volume. Nem o texto nem a figura a citam. O que a figura mostra são poros, e poros mudam a área exposta, que é o que a adsorção usa.",
+   "E": "Condutividade: é a facilidade de conduzir eletricidade ou calor. Remover impurezas por adsorção é prendê-las na superfície, e isso não envolve conduzir nada."
   },
   "armadilha": "Achar que o carvão ativado funciona por ser mais pesado ou mais duro, em vez de reparar que a figura mostra poros, e poros aumentam a superfície.",
   "alerta": "",
@@ -105,10 +105,80 @@
  "gab": "D",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "comparar",
+    "motivo": "'interpretar' não é um tipo válido. Os tipos permitidos são localizar, calcular, comparar, eliminar e concluir. O passo compara a quantidade de poros com a superfície exposta.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "eliminar",
+    "motivo": "'aplicar' não é um tipo válido. O passo descarta as alternativas massa, dureza, densidade e condutividade, então o tipo é 'eliminar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Adsorção é um fenômeno de superfície: as impurezas ficam grudadas na superfície do sólido, inclusive nas paredes internas dos poros, e não se espalham pelo interior do material. Quanto maior a superfície exposta, mais impureza o material prende. Poros pequenos e numerosos aumentam muito a superfície total, mesmo em um grão pequeno.",
+    "motivo": "A frase 'e não dentro dele' contradiz a figura e o passo 3: as impurezas entram nos poros e ficam presas nas paredes internas, que fazem parte da superfície. A diferença em relação à absorção é que a substância não penetra no próprio material sólido, e não que ela fique do lado de fora do grão.",
+    "fonte": "IUPAC Gold Book, verbete 'adsorption': enriquecimento de uma substância na interface, diferente de absorption, que é a penetração no interior da fase."
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "Comum: 5 poros / Ativado: muitos poros",
+    "motivo": "Mais curto, cabe na tela do celular sem quebrar linha, e contém um dado verificável na figura."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "O carvão comum tem poucos poros, todos de um só tamanho (mesoporos). O ativado tem macroporos, mesoporos e microporos, com impurezas (pontos pretos) presas nas paredes.",
+    "motivo": "Frase mais simples, que diz o que o aluno vê na figura."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "massa, dureza, densidade, condutiv.",
+    "motivo": "Lista curta, que cabe na tela do celular."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Nem o texto nem a figura ligam essas propriedades à retenção de impurezas. Só a superfície se liga à adsorção.",
+    "motivo": "Frase mais direta e sem repetir a palavra 'nenhuma'."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "Massa: o texto não liga massa à adsorção. A figura mostra grãos de tamanho parecido, e a diferença entre eles é a quantidade de poros. Um grão mais pesado, mas sem poros, continua com pouca superfície.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou A: olhar a figura e ver que a diferença são os poros."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "Densidade: é a massa que cabe em cada volume. Nem o texto nem a figura a citam. O que a figura mostra são poros, e poros mudam a área exposta, que é o que a adsorção usa.",
+    "motivo": "Explica o conceito de densidade em palavras simples e liga ao que faltou no raciocínio."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "Condutividade: é a facilidade de conduzir eletricidade ou calor. Remover impurezas por adsorção é prendê-las na superfície, e isso não envolve conduzir nada.",
+    "motivo": "Frase mais clara, sem o jargão 'condução'."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "D"
  }
 }

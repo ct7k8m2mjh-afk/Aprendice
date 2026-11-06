@@ -8,10 +8,10 @@
  "conceito": "Composição de velocidades (nadador + corrente): tempo de cada trecho do circuito.",
  "resolucao": {
   "antes": {
-   "texto": "A velocidade do nadador em relação à margem é a soma vetorial da velocidade dele em relação à água com a da corrente. Cada aresta do retângulo tem uma situação própria. Nas arestas longas, a corrente é perpendicular ao trajeto: o nadador aponta um pouco contra ela para ser empurrado de volta à reta. Nas curtas, a corrente é paralela ao trajeto: ela ajuda ou atrapalha, e as velocidades se somam ou se subtraem. O enunciado só dá a direção inclinada para as arestas longas, então nas curtas o nadador nada ao longo da aresta.",
+   "texto": "A velocidade do nadador em relação à margem é a soma (de setas) da velocidade dele na água com a da corrente. Nas arestas longas, a corrente é perpendicular ao trajeto: o nadador aponta um pouco contra ela para não ser empurrado para fora da reta. Nas curtas, a corrente é paralela ao trajeto: ela ajuda ou atrapalha, e as velocidades se somam ou se subtraem. O enunciado só mostra direção inclinada nas arestas longas, então nas curtas o nadador nada ao longo da aresta.",
    "formulas": [
     "tempo = distância ÷ velocidade (em relação à margem)",
-    "componentes perpendiculares: v_n² = v_x² + v_y² (Pitágoras)"
+    "50² = v_x² + v_y² (Pitágoras: v_x ao longo da aresta, v_y contra a corrente)"
    ],
    "simbolos": [
     [
@@ -25,6 +25,18 @@
     [
      "anti-horário",
      "sentido contrário ao dos ponteiros do relógio: 1 → 2 → 3 → 4 → 1"
+    ],
+    [
+     "componente",
+     "parte de uma velocidade inclinada que age numa direção só (para o lado ou para cima)"
+    ],
+    [
+     "Pitágoras",
+     "num triângulo com ângulo reto: lado maior² = soma dos quadrados dos outros dois"
+    ],
+    [
+     "m/min",
+     "metros por minuto"
     ]
    ]
   },
@@ -39,7 +51,7 @@
    {
     "faz": "Ache a velocidade nas arestas longas",
     "conta": "v_y = 30 (anula a corrente)\nv_x² = 50² − 30² = 1600\nv_x = 40 m/min",
-    "porque": "Para seguir reto de 1 a 2, a parte vertical de υn deve cancelar os 30 m/min da corrente. Sobra 40 m/min ao longo da aresta (triângulo 3-4-5).",
+    "porque": "Para seguir reto de 1 a 2, a parte de υn contra a corrente deve valer 30 m/min e cancelá-la. Sobra 40 m/min ao longo da aresta (triângulo 30-40-50).",
     "tipo": "calcular"
    },
    {
@@ -71,8 +83,8 @@
   "checagem": "Distância total: 800 + 400 + 800 + 400 = 2400 m. Em 65 min, a velocidade média seria cerca de 37 m/min, valor entre os 20 e os 80 m/min dos trechos. É plausível.",
   "erradas": {
    "A": "42 min não confere. Mesmo sem nenhuma corrente, a 50 m/min os 2400 m levariam 48 min. Com a corrente, o tempo só pode ser maior que 48 min, então 42 é impossível.",
-   "C": "72 min não confere. A soma correta é 20 + 20 + 20 + 5 = 65. Para chegar em 72 seria preciso usar uma velocidade ou um tempo que não aparece em nenhum lado do circuito.",
-   "D": "105 min não confere. O trecho mais lento, a 20 m/min, leva 20 min, e nenhum outro trecho passa de 20 min. Os quatro lados somados dão 65 min, não 105.",
+   "C": "72 sai de dois erros juntos: ignorar a corrente nas arestas longas (800 ÷ 50 = 16 min cada, 32 min) e subtrair a corrente nos dois lados curtos (400 ÷ 20 = 20 min cada, 40 min). 32 + 40 = 72.",
+   "D": "105 sai de subtrair a corrente nas arestas longas, como se ela fosse contrária ao nado: 800 ÷ (50 − 30) = 40 min cada, 80 min. Somando 20 (subida) e 5 (descida), dá 105. Nas arestas longas a corrente é transversal, então vale Pitágoras: 40 m/min.",
    "E": "120 min sai de usar 20 m/min no percurso inteiro: 2400 ÷ 20 = 120. Mas 20 m/min só vale para a subida contra a corrente. Nas arestas longas a velocidade é 40 m/min e na descida é 80 m/min."
   },
   "armadilha": "Tratar todos os lados do mesmo jeito: nas arestas longas a corrente é transversal e usa-se Pitágoras (40 m/min); nas curtas ela se soma ou se subtrai de 50 m/min.",
@@ -157,10 +169,87 @@
  "gab": "B",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "72 sai de dois erros juntos: ignorar a corrente nas arestas longas (800 ÷ 50 = 16 min cada, 32 min) e subtrair a corrente nos dois lados curtos (400 ÷ 20 = 20 min cada, 40 min). 32 + 40 = 72.",
+    "motivo": "O texto dizia que nenhuma velocidade ou tempo do circuito chega a 72. Isso é falso: a conta 2 × (800 ÷ 50) + 2 × (400 ÷ 20) = 32 + 40 = 72 só usa valores do enunciado. Pelo guia, quando um erro real chega exatamente ao valor, a errada deve dizer 'sai de' e mostrar a conta.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "105 sai de subtrair a corrente nas arestas longas, como se ela fosse contrária ao nado: 800 ÷ (50 − 30) = 40 min cada, 80 min. Somando 20 (subida) e 5 (descida), dá 105. Nas arestas longas a corrente é transversal, então vale Pitágoras: 40 m/min.",
+    "motivo": "Existe um erro típico que chega exatamente a 105: tratar a corrente como contrária nas arestas longas dá 40 + 40 + 20 + 5 = 105. Pelo guia, nesse caso a errada deve dizer 'sai de' em vez de 'não confere'.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "A velocidade do nadador em relação à margem é a soma (de setas) da velocidade dele na água com a da corrente. Nas arestas longas, a corrente é perpendicular ao trajeto: o nadador aponta um pouco contra ela para não ser empurrado para fora da reta. Nas curtas, a corrente é paralela ao trajeto: ela ajuda ou atrapalha, e as velocidades se somam ou se subtraem. O enunciado só mostra direção inclinada nas arestas longas, então nas curtas o nadador nada ao longo da aresta.",
+    "motivo": "Frases mais simples; 'soma vetorial' trocada por explicação; 'empurrado de volta à reta' era ambíguo."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "υn",
+      "velocidade do nadador em relação à água: 50 m/min"
+     ],
+     [
+      "υc",
+      "velocidade da corrente marinha: 30 m/min, no sentido de 3 para 2 (para baixo no desenho)"
+     ],
+     [
+      "anti-horário",
+      "sentido contrário ao dos ponteiros do relógio: 1 → 2 → 3 → 4 → 1"
+     ],
+     [
+      "componente",
+      "parte de uma velocidade inclinada que age numa direção só (para o lado ou para cima)"
+     ],
+     [
+      "Pitágoras",
+      "num triângulo com ângulo reto: lado maior² = soma dos quadrados dos outros dois"
+     ],
+     [
+      "m/min",
+      "metros por minuto"
+     ]
+    ],
+    "motivo": "Termos 'componente' e 'Pitágoras' apareciam sem explicação."
+   },
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "tempo = distância ÷ velocidade (em relação à margem)",
+     "50² = v_x² + v_y² (Pitágoras: v_x ao longo da aresta, v_y contra a corrente)"
+    ],
+    "motivo": "Fórmula ligada aos símbolos usados nos passos."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "Para seguir reto de 1 a 2, a parte de υn contra a corrente deve valer 30 m/min e cancelá-la. Sobra 40 m/min ao longo da aresta (triângulo 30-40-50).",
+    "motivo": "Trocado 'vertical' e 'triângulo 3-4-5' por linguagem mais clara e consistente com os números."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "B"
  }
 }

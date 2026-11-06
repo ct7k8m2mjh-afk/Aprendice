@@ -10,7 +10,7 @@
   "antes": {
    "texto": "Em 5 de agosto de 1954, pistoleiros atiraram contra Carlos Lacerda, jornalista e opositor feroz de Vargas, na Rua Tonelero, no Rio de Janeiro. Lacerda foi ferido no pé e o major da Aeronáutica Rubens Vaz, que o acompanhava, morreu. A investigação apontou ligação com a guarda pessoal de Vargas. A oposição respondeu com mais ataques e pediu a renúncia do presidente.",
    "formulas": [
-    "atentado contra o maior opositor + morte de um oficial = oposição acusa o governo e aumenta a pressão",
+    "atentado contra o maior opositor + morte de um oficial = a oposição acusa o governo e aumenta a pressão",
     "5/8/1954: atentado → crise política e militar → 24/8/1954: suicídio de Vargas → comoção popular"
    ],
    "simbolos": [
@@ -42,20 +42,20 @@
    },
    {
     "faz": "Identifique a ação dos aliados",
-    "conta": "\"removê-lo\" → atentado da Rua Tonelero",
+    "conta": "\"removê-lo\" = tirar Lacerda de cena",
     "porque": "O texto diz que os seguidores de Vargas tentaram tirar Lacerda de cena. O alvo era o principal opositor, a quem os udenistas davam voz.",
     "tipo": "localizar"
    },
    {
     "faz": "Imagine a reação do alvo e do seu grupo",
     "conta": "Lacerda vivo + oficial morto + guarda de Vargas",
-    "porque": "O atentado fracassou: Lacerda sobreviveu e um major morreu. A oposição passou a acusar o governo e a pedir a renúncia.",
-    "tipo": "interpretar"
+    "porque": "O atentado falhou: Lacerda sobreviveu e o major Rubens Vaz morreu. A suspeita recaiu sobre a guarda de Vargas, e a oposição passou a acusar o governo e a pedir a renúncia.",
+    "tipo": "comparar"
    },
    {
     "faz": "Descarte a mobilização em defesa do governo",
-    "conta": "C: só após 24/8/1954",
-    "porque": "A comoção popular a favor de Vargas veio com o suicídio e a Carta-testamento, quase três semanas depois. Não é consequência imediata do atentado.",
+    "conta": "C: comoção popular = depois de 24/8/1954",
+    "porque": "A comoção popular a favor de Vargas veio com o suicídio e a Carta-testamento, em 24/8/1954, quase três semanas depois. Não é consequência imediata do atentado.",
     "tipo": "eliminar"
    },
    {
@@ -70,8 +70,8 @@
   "erradas": {
    "B": "Não há fato que ligue o atentado a uma intervenção dos sindicatos no conflito partidário. A crise de agosto de 1954 se deu entre a oposição, os militares e o governo, e o texto não menciona sindicatos.",
    "C": "Ocorreu, mas depois: a comoção popular em defesa de Vargas veio após o suicídio, em 24 de agosto de 1954. Logo após o atentado, o governo ficou na defensiva diante das acusações.",
-   "D": "O texto não fala em censura. Vargas não tinha como abrir mão de algo que não é tema do atentado. A imprensa de oposição, como a de Lacerda, seguiu criticando o governo com muita força.",
-   "E": "Inverte o efeito. O atentado deu mais motivos aos opositores para acusar o governo. Não houve apoio dos parlamentares aos candidatos oposicionistas em reação ao atentado, e o texto não trata disso."
+   "D": "O texto não fala em censura. Em 1954 a Constituição de 1946 garantia a liberdade de imprensa, e a imprensa de Lacerda atacava o governo com força. O atentado não levou a nenhuma mudança na relação do governo com a imprensa.",
+   "E": "Inverte o efeito. O atentado deu mais motivos para a oposição acusar o governo. O texto não fala de parlamentares apoiando candidatos oposicionistas, e isso não é reação ao atentado."
   },
   "armadilha": "Misturar a ordem dos fatos: a mobilização popular pró-Vargas (alternativa C) é real, mas veio depois do suicídio, e a questão pede a consequência imediata.",
   "alerta": "",
@@ -108,10 +108,85 @@
  "gab": "A",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "comparar",
+    "motivo": "O tipo \"interpretar\" não está na lista permitida (localizar, calcular, comparar, eliminar, concluir). O passo confronta o resultado do atentado com a reação da oposição, então o tipo certo é \"comparar\".",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "O texto não fala em censura, e em 1954 não havia censura oficial que o governo pudesse abandonar, porque a Constituição de 1946 garantia a liberdade de imprensa. A imprensa de oposição, como a de Lacerda, seguiu atacando o governo com muita força.",
+    "motivo": "A frase \"Vargas não tinha como abrir mão de algo que não é tema do atentado\" não dava um motivo verdadeiro e suficiente. O argumento que derruba a alternativa é que, no regime de 1946, não existia censura oficial à imprensa para ser abandonada (a censura do DIP acabou com o Estado Novo, em 1945).",
+    "fonte": "Boris Fausto, História do Brasil (capítulos sobre o fim do Estado Novo e a República de 1946)"
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "A",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "atentado contra o maior opositor + morte de um oficial = a oposição acusa o governo e aumenta a pressão",
+     "5/8/1954: atentado → crise política e militar → 24/8/1954: suicídio de Vargas → comoção popular"
+    ],
+    "motivo": "Trocar 'oposição acusa o governo e aumenta' por frase mais clara e sem ambiguidade."
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "\"removê-lo\" = tirar Lacerda de cena",
+    "motivo": "A conta anterior usava seta e misturava duas ideias. Agora mostra a leitura do trecho de forma direta."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "O atentado falhou: Lacerda sobreviveu e o major Rubens Vaz morreu. A suspeita recaiu sobre a guarda de Vargas, e a oposição passou a acusar o governo e a pedir a renúncia.",
+    "motivo": "Frases mais curtas e ligação explícita entre suspeita, acusação e pedido de renúncia."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "C: comoção popular = depois de 24/8/1954",
+    "motivo": "A conta anterior era ambígua. Agora diz o que acontece e quando."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "O texto não fala em censura. Em 1954 a Constituição de 1946 garantia a liberdade de imprensa, então não havia censura oficial a abandonar. A imprensa de Lacerda atacava o governo com força.",
+    "motivo": "Frases curtas e voz ativa; o que faltou no raciocínio de quem marcou D fica claro: confundir o atentado com mudança na relação do governo com a imprensa."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "Inverte o efeito. O atentado deu mais motivos para a oposição acusar o governo. O texto não fala de parlamentares apoiando candidatos oposicionistas, e isso não é reação ao atentado.",
+    "motivo": "Texto mais direto, sem frases com duplo sentido."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "O texto não fala em censura. Em 1954 a Constituição de 1946 garantia a liberdade de imprensa, e a imprensa de Lacerda atacava o governo com força. O atentado não levou a nenhuma mudança na relação do governo com a imprensa.",
+    "motivo": "A frase 'não havia censura oficial a abandonar' é fraca. O Estado Novo tinha censura (DIP), mas ela acabou em 1945, antes do governo de 1951–54. O trecho foi reescrito de forma mais segura, sem afirmar mais do que o necessário.",
+    "fonte": "CPDOC/FGV, verbete Segundo Governo Vargas; Constituição de 1946, art. 141, §5º"
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "A comoção popular a favor de Vargas veio com o suicídio e a Carta-testamento, em 24/8/1954, quase três semanas depois. Não é consequência imediata do atentado.",
+    "motivo": "Ajuste menor: o texto antigo não trazia a data. O resto do conteúdo está correto.",
+    "fonte": "CPDOC/FGV, Atentado da Rua Tonelero"
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "A"
  }
 }

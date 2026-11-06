@@ -8,7 +8,7 @@
  "conceito": "Identificar a ideia defendida pelas atletas a partir de informações explícitas do texto (saúde mental como parte do desempenho).",
  "resolucao": {
   "antes": {
-   "texto": "O comando pede o que as atletas 'defendem' neste texto. A resposta está no que elas dizem repetidamente: 'saúde mental', 'terapia', 'suporte psicológico'. A alternativa certa reescreve essa ideia com outras palavras, sem acrescentar nada que o texto não diga. Cuidado com alternativas que exageram ('subordinação') ou que falam de assuntos que o texto nem menciona.",
+   "texto": "O comando pede o que as atletas 'defendem' neste texto. A resposta está no que elas repetem: 'saúde mental', 'terapia', 'suporte psicológico'. A alternativa certa diz essa ideia com outras palavras e não acrescenta nada que o texto não diga. Cuidado com alternativas que exageram (como 'subordinação') ou que falam de assuntos que o texto não menciona.",
    "formulas": [
     "informação explícita: o texto diz, com outras palavras",
     "paráfrase: 'saúde mental' ≈ 'saúde emocional'"
@@ -21,15 +21,23 @@
     [
      "subordinação",
      "colocar uma coisa abaixo de outra, como dependente dela"
+    ],
+    [
+     "psicológico",
+     "relacionado à mente, às emoções e ao jeito de pensar"
+    ],
+    [
+     "medalhista de ouro",
+     "atleta que ficou em primeiro lugar na competição"
     ]
    ]
   },
-  "pista": "Procure a expressão que se repete no texto em falas e exemplos diferentes. Depois veja qual alternativa a reescreve sem exagerar nem inventar.",
+  "pista": "Procure a ideia que se repete no texto, em falas e exemplos diferentes. Depois veja qual alternativa diz essa ideia sem exagerar e sem inventar assunto novo.",
   "passos": [
    {
     "faz": "Localize a ideia central",
     "conta": "\"elas valorizam a parte psicológica\"",
-    "porque": "A frase de abertura já resume o tema: o cuidado com o lado psicológico dos atletas.",
+    "porque": "A frase de abertura já resume o tema: o cuidado com o lado psicológico das atletas.",
     "tipo": "localizar"
    },
    {
@@ -46,8 +54,8 @@
    },
    {
     "faz": "Elimine as que o texto não sustenta",
-    "conta": "equipamentos? competição? expressão corporal?",
-    "porque": "O texto não fala de equipamentos nem de estimular rivalidade. Rebeca cita 'apresentações', mas para dizer que precisa controlar a cabeça. A alternativa B exagera ao falar em 'subordinação'.",
+    "conta": "A: equipamentos? não aparece\nC: competição? não aparece\nD: expressão corporal? só detalhe",
+    "porque": "O texto não fala de equipamentos nem de estimular rivalidade. Rebeca cita 'apresentações', mas para dizer que precisa controlar a cabeça. A B exagera ao falar em 'subordinação': o texto não coloca o treino físico abaixo do mental.",
     "tipo": "eliminar"
    },
    {
@@ -60,10 +68,10 @@
   "resposta": "Alternativa E: o texto mostra as atletas valorizando a saúde mental (terapia, suporte psicológico), o que equivale à importância da saúde emocional.",
   "checagem": "Conte as marcas no texto: 'parte psicológica', 'saúde mental', 'terapia' e 'suporte psicológico'. São quatro menções à mesma ideia, e só a E a resume.",
   "erradas": {
-   "A": "O texto não menciona equipamentos nem modernização. Nenhuma atleta pede investimento material; o assunto é psicológico.",
-   "B": "O texto valoriza o lado psicológico, mas não diz que o treino físico deve ficar abaixo do mental. 'Subordinação' é exagero. Rebeca fala de controlar 'a cabeça' e 'o corpo', os dois juntos.",
-   "C": "Rebeca diz o contrário: 'não é só sobre vencer a Simone, é sobre vencer a mim mesma', ou seja, a briga é interna, não com as adversárias. Ninguém defende estimular rivalidade.",
-   "D": "Rebeca fala de 'apresentações' e de controlar o corpo, mas o foco é controlar a cabeça. Aprimorar a expressão corporal não é o que as atletas defendem; é um detalhe, não a tese."
+   "A": "Faltou voltar ao texto: ele não menciona equipamentos nem modernização. Nenhuma atleta pede investimento material; o assunto é psicológico.",
+   "B": "Faltou ver que o texto valoriza o lado psicológico, mas não coloca o físico abaixo dele. 'Subordinação' exagera: Rebeca fala de controlar 'a cabeça' e 'o corpo', os dois juntos.",
+   "C": "Faltou ler a fala de Rebeca: 'é sobre vencer a mim mesma'. A briga é interna, não contra as adversárias. Ninguém defende estimular rivalidade.",
+   "D": "Faltou separar detalhe de tese. Rebeca cita 'apresentações' e o corpo, mas o foco é controlar a cabeça. Expressão corporal não é o que as atletas defendem."
   },
   "armadilha": "Marcar B ou D por palavras soltas do texto ('corpo', 'treinamento') sem notar que a ideia repetida é a saúde mental.",
   "alerta": "",
@@ -97,10 +105,95 @@
  "gab": "E",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[0].porque",
+    "depois": "A frase de abertura já resume o tema: o cuidado com o lado psicológico das atletas.",
+    "motivo": "O texto fala de mulheres atletas ('mulheres pretas brasileiras', 'elas valorizam'). 'Dos atletas' generaliza para o masculino, e o texto não sustenta isso.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "O comando pede o que as atletas 'defendem' neste texto. A resposta está no que elas repetem: 'saúde mental', 'terapia', 'suporte psicológico'. A alternativa certa diz essa ideia com outras palavras e não acrescenta nada que o texto não diga. Cuidado com alternativas que exageram (como 'subordinação') ou que falam de assuntos que o texto não menciona.",
+    "motivo": "Frases mais curtas e diretas; 'neste texto' mantido; sem mudar o fato."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "paráfrase",
+      "dizer a mesma ideia com outras palavras"
+     ],
+     [
+      "subordinação",
+      "colocar uma coisa abaixo de outra, como dependente dela"
+     ],
+     [
+      "psicológico",
+      "relacionado à mente, às emoções e ao jeito de pensar"
+     ],
+     [
+      "medalhista de ouro",
+      "atleta que ficou em primeiro lugar na competição"
+     ]
+    ],
+    "motivo": "Explica palavras que o aluno pode não dominar e aparecem na resolução."
+   },
+   {
+    "campo": "resolucao.pista",
+    "depois": "Procure a ideia que se repete no texto, em falas e exemplos diferentes. Depois veja qual alternativa diz essa ideia sem exagerar e sem inventar assunto novo.",
+    "motivo": "Pista fala da ideia, não só da expressão, e não entrega a letra."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "O texto não fala de equipamentos nem de estimular rivalidade. Rebeca cita 'apresentações', mas para dizer que precisa controlar a cabeça. A B exagera ao falar em 'subordinação': o texto não coloca o treino físico abaixo do mental.",
+    "motivo": "Deixa claro por que B cai, em frases curtas."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "A: equipamentos? não aparece\nC: competição? não aparece\nD: expressão corporal? só detalhe",
+    "motivo": "Cada item em linha própria, mais legível no celular."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "Faltou ver que o texto valoriza o lado psicológico, mas não coloca o físico abaixo dele. 'Subordinação' exagera: Rebeca fala de controlar 'a cabeça' e 'o corpo', os dois juntos.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou B."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "Faltou voltar ao texto: ele não menciona equipamentos nem modernização. Nenhuma atleta pede investimento material; o assunto é psicológico.",
+    "motivo": "Foco no que faltou ao aluno."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "Faltou ler a fala de Rebeca: 'é sobre vencer a mim mesma'. A briga é interna, não contra as adversárias. Ninguém defende estimular rivalidade.",
+    "motivo": "Foco no que faltou ao aluno."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "Faltou separar detalhe de tese. Rebeca cita 'apresentações' e o corpo, mas o foco é controlar a cabeça. Expressão corporal não é o que as atletas defendem.",
+    "motivo": "Foco no que faltou ao aluno."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "E"
  }
 }

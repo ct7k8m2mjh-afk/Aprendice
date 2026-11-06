@@ -8,48 +8,60 @@
  "conceito": "Associação em série para dividir a tensão: resistor de proteção que reduz a tensão sobre o aparelho em 20% da tensão da fonte.",
  "resolucao": {
   "antes": {
-   "texto": "A fonte fornece 20% a mais que a tensão que o aparelho aguenta. Para o aparelho receber só a tensão recomendada, o excesso precisa ficar em outro componente. Em paralelo, todos os componentes recebem a mesma tensão da fonte. Por isso o resistor de proteção deve ficar em série com o aparelho, e a tensão se divide em proporção às resistências.",
+   "texto": "A fonte fornece 20% a mais que a tensão que o aparelho aguenta. O excesso precisa ficar em outro componente, o resistor de proteção. Em paralelo, cada componente recebe a tensão inteira da fonte. Em série, a tensão se divide entre os componentes. Nessa divisão, quem tem mais resistência fica com mais tensão, porque a corrente é a mesma.",
    "formulas": [
     "Série: a corrente é a mesma e as tensões se somam (U = U_C + U_P)",
     "Lei de Ohm: U = R × i",
-    "Em série, a tensão em cada resistor é proporcional à sua resistência"
+    "Em série, mais resistência significa mais tensão"
    ],
    "simbolos": [
     [
      "R_C",
-     "resistência elétrica do equipamento"
+     "resistência elétrica do equipamento (o aparelho)"
     ],
     [
      "R_P",
-     "resistência do resistor de proteção"
+     "resistência do resistor de proteção, ligado para 'gastar' o excesso de tensão"
     ],
     [
      "U",
-     "tensão da fonte"
+     "tensão da fonte (volts)"
     ],
     [
      "U_C",
-     "tensão sobre o equipamento (a recomendada)"
+     "tensão sobre o equipamento, que é a recomendada"
+    ],
+    [
+     "U_P",
+     "tensão sobre o resistor de proteção"
     ],
     [
      "i",
      "corrente elétrica no circuito"
+    ],
+    [
+     "série",
+     "componentes ligados um depois do outro, no mesmo caminho"
+    ],
+    [
+     "paralelo",
+     "componentes ligados em ramos separados, cada um direto na fonte"
     ]
    ]
   },
-  "pista": "Em qual tipo de associação cada componente recebe só uma parte da tensão da fonte? E quanto do total o resistor de proteção precisa 'ficar' para si?",
+  "pista": "Em qual ligação cada componente recebe só uma parte da tensão da fonte? E qual fração da tensão recomendada o resistor de proteção precisa absorver?",
   "passos": [
    {
     "faz": "Chame de U_C a tensão recomendada",
     "conta": "U = 1,2 × U_C",
     "porque": "A fonte dá 20% a mais que a tensão recomendada.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Escolha a ligação em série",
     "conta": "Paralelo: U_C = U (não serve)",
     "porque": "Em paralelo, o aparelho receberia os 1,2 U_C inteiros da fonte. Só em série a tensão se divide.",
-    "tipo": "aplicar"
+    "tipo": "eliminar"
    },
    {
     "faz": "Ache a tensão do resistor de proteção",
@@ -61,18 +73,24 @@
     "faz": "Use a mesma corrente nos dois",
     "conta": "i = U_C/R_C = U_P/R_P",
     "porque": "Em série a corrente é a mesma no aparelho e no resistor de proteção.",
-    "tipo": "aplicar"
+    "tipo": "calcular"
    },
    {
     "faz": "Isole R_P",
     "conta": "R_P = R_C × U_P/U_C",
-    "porque": "Multiplique os dois lados por R_P e por R_C e divida por U_C.",
+    "porque": "Da igualdade das correntes, U_C/R_C = U_P/R_P. Multiplique os dois lados por R_P e por R_C e divida por U_C: R_P = R_C × U_P/U_C.",
     "tipo": "calcular"
    },
    {
-    "faz": "Substitua os valores",
+    "faz": "Substitua U_P = 0,2 U_C",
     "conta": "R_P = R_C × 0,2 U_C/U_C = 0,2 R_C",
-    "porque": "O U_C cancela. O resistor de proteção é 20% do aparelho.",
+    "porque": "O U_C cancela. O resistor de proteção vale 20% da resistência do aparelho.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Ligue o resultado à letra",
+    "conta": "Série + R_P = 0,2 R_C → E",
+    "porque": "Só a alternativa E tem as duas coisas: ligação em série e R_P = 0,2 R_C.",
     "tipo": "concluir"
    }
   ],
@@ -80,8 +98,8 @@
   "checagem": "Série: R_total = R_C + 0,2 R_C = 1,2 R_C. A tensão no aparelho é R_C/(1,2 R_C) = 1/1,2 da tensão da fonte. Como a fonte vale 1,2 U_C, o aparelho recebe 1,2 U_C ÷ 1,2 = U_C. Confere.",
   "erradas": {
    "A": "O circuito está em paralelo, então o aparelho recebe a tensão inteira da fonte (20% a mais). O valor 0,2 R_C está certo, mas a ligação não divide a tensão.",
-   "B": "Em paralelo o aparelho continua com a tensão total da fonte, 20% acima da recomendada. R_P = 1,2 R_C também está errado: em paralelo nenhum valor de R_P reduz a tensão no aparelho.",
-   "C": "A ligação em série está certa, mas R_P = 1,2 R_C daria R_total = 2,2 R_C e o aparelho receberia 1,2 U_C ÷ 2,2 ≈ 0,55 U_C, tensão baixa demais. Parece vir de somar os 20% à resistência: 1 + 0,2.",
+   "B": "Em paralelo, o aparelho continua com a tensão total da fonte, 20% acima da recomendada, seja qual for o R_P. Mudar R_P para 1,2 R_C não altera a tensão no aparelho, que segue 1,2 U_C.",
+   "C": "A ligação em série está certa, mas faltou ver que R_P é só o que se soma a R_C: R_total = 1,2 R_C, logo R_P = 1,2 R_C − R_C = 0,2 R_C. Com R_P = 1,2 R_C, o aparelho receberia 1,2 U_C ÷ 2,2 ≈ 0,55 U_C.",
    "D": "Com R_P = 2,2 R_C, R_total = 3,2 R_C e o aparelho receberia 1,2 U_C ÷ 3,2 = 0,375 U_C, bem abaixo da recomendada."
   },
   "armadilha": "Achar que o resistor precisa valer 120% da resistência do aparelho, em vez de 20%; ou ligar em paralelo, onde a tensão não se divide.",
@@ -149,10 +167,188 @@
  "gab": "E",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[0].tipo",
+    "depois": "localizar",
+    "motivo": "O tipo 'interpretar' não está na lista permitida (localizar, calcular, comparar, eliminar, concluir). O passo traduz um dado do enunciado.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "eliminar",
+    "motivo": "O tipo 'aplicar' não está na lista permitida. O passo descarta a ligação em paralelo.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "calcular",
+    "motivo": "O tipo 'aplicar' não está na lista permitida. O passo monta a igualdade das correntes, que é a conta seguinte.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "Sai de confundir R_P com a resistência total: o circuito precisa de R_total = 1,2 R_C, logo R_P = 1,2 R_C − R_C = 0,2 R_C. Com R_P = 1,2 R_C, o aparelho receberia 1,2 U_C ÷ 2,2 ≈ 0,55 U_C.",
+    "motivo": "O guia proíbe origem especulativa ('Parece vir de'). Troquei por uma origem real e reproduzível: 1,2 R_C é a resistência total exigida, e não o valor de R_P. A conta 1,2/2,2 ≈ 0,545 foi conferida.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "A fonte fornece 20% a mais que a tensão que o aparelho aguenta. O excesso precisa ficar em outro componente, o resistor de proteção. Em paralelo, cada componente recebe a tensão inteira da fonte. Em série, a tensão se divide entre os componentes. Nessa divisão, quem tem mais resistência fica com mais tensão, porque a corrente é a mesma.",
+    "motivo": "Frases mais curtas e sem sentido duplo; explica por que a tensão se divide em proporção à resistência."
+   },
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "Série: a corrente é a mesma e as tensões se somam (U = U_C + U_P)",
+     "Lei de Ohm: U = R × i",
+     "Em série, mais resistência significa mais tensão"
+    ],
+    "motivo": "Linguagem mais simples."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "R_C",
+      "resistência elétrica do equipamento (o aparelho)"
+     ],
+     [
+      "R_P",
+      "resistência do resistor de proteção, ligado para 'gastar' o excesso de tensão"
+     ],
+     [
+      "U",
+      "tensão da fonte (volts)"
+     ],
+     [
+      "U_C",
+      "tensão sobre o equipamento, que é a recomendada"
+     ],
+     [
+      "U_P",
+      "tensão sobre o resistor de proteção"
+     ],
+     [
+      "i",
+      "corrente elétrica no circuito"
+     ],
+     [
+      "série",
+      "componentes ligados um depois do outro, no mesmo caminho"
+     ],
+     [
+      "paralelo",
+      "componentes ligados em ramos separados, cada um direto na fonte"
+     ]
+    ],
+    "motivo": "U_P, série e paralelo aparecem na resolução e não estavam explicados."
+   },
+   {
+    "campo": "resolucao.pista",
+    "depois": "Em qual ligação cada componente recebe só uma parte da tensão da fonte? E qual fração da tensão recomendada o resistor de proteção precisa absorver?",
+    "motivo": "Mais clara; não entrega a letra."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "Da igualdade das correntes, U_C/R_C = U_P/R_P. Multiplique os dois lados por R_P e por R_C e divida por U_C: R_P = R_C × U_P/U_C.",
+    "motivo": "Mostra a álgebra com as operações na ordem certa."
+   },
+   {
+    "campo": "resolucao.passos[5].faz",
+    "depois": "Substitua U_P = 0,2 U_C",
+    "motivo": "Comando mais preciso."
+   },
+   {
+    "campo": "resolucao.passos[5].tipo",
+    "depois": "calcular",
+    "motivo": "O passo é de cálculo; a conclusão com a letra fica no último passo."
+   },
+   {
+    "campo": "resolucao.passos",
+    "depois": [
+     {
+      "faz": "Chame de U_C a tensão recomendada",
+      "conta": "U = 1,2 × U_C",
+      "porque": "A fonte dá 20% a mais que a tensão recomendada.",
+      "tipo": "localizar"
+     },
+     {
+      "faz": "Escolha a ligação em série",
+      "conta": "Paralelo: U_C = U (não serve)",
+      "porque": "Em paralelo, o aparelho receberia os 1,2 U_C inteiros da fonte. Só em série a tensão se divide.",
+      "tipo": "eliminar"
+     },
+     {
+      "faz": "Ache a tensão do resistor de proteção",
+      "conta": "U_P = 1,2 U_C − U_C = 0,2 U_C",
+      "porque": "Em série as tensões se somam; o excesso de 20% fica no R_P.",
+      "tipo": "calcular"
+     },
+     {
+      "faz": "Use a mesma corrente nos dois",
+      "conta": "i = U_C/R_C = U_P/R_P",
+      "porque": "Em série a corrente é a mesma no aparelho e no resistor de proteção.",
+      "tipo": "calcular"
+     },
+     {
+      "faz": "Isole R_P",
+      "conta": "R_P = R_C × U_P/U_C",
+      "porque": "Da igualdade das correntes, U_C/R_C = U_P/R_P. Multiplique os dois lados por R_P e por R_C e divida por U_C: R_P = R_C × U_P/U_C.",
+      "tipo": "calcular"
+     },
+     {
+      "faz": "Substitua U_P = 0,2 U_C",
+      "conta": "R_P = R_C × 0,2 U_C/U_C = 0,2 R_C",
+      "porque": "O U_C cancela. O resistor de proteção vale 20% da resistência do aparelho.",
+      "tipo": "calcular"
+     },
+     {
+      "faz": "Ligue o resultado à letra",
+      "conta": "Série + R_P = 0,2 R_C → E",
+      "porque": "Só a alternativa E tem as duas coisas: ligação em série e R_P = 0,2 R_C.",
+      "tipo": "concluir"
+     }
+    ],
+    "motivo": "Cálculo e conclusão separados; o último passo liga o resultado à letra."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "Em paralelo, o aparelho continua com a tensão total da fonte, 20% acima da recomendada, seja qual for o R_P. O valor 1,2 R_C vem de confundir 120% da tensão com o valor do resistor.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou B."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "A ligação em série está certa, mas faltou ver que R_P é só o que se soma a R_C: R_total = 1,2 R_C, logo R_P = 1,2 R_C − R_C = 0,2 R_C. Com R_P = 1,2 R_C, o aparelho receberia 1,2 U_C ÷ 2,2 ≈ 0,55 U_C.",
+    "motivo": "Clareza sobre o erro de quem marcou C."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "Em paralelo, o aparelho continua com a tensão total da fonte, 20% acima da recomendada, seja qual for o R_P. Mudar R_P para 1,2 R_C não altera a tensão no aparelho, que segue 1,2 U_C.",
+    "motivo": "A origem 'confundir 120% da tensão com o valor do resistor' era especulação. Troquei por um teste objetivo.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "E"
  }
 }

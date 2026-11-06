@@ -8,7 +8,7 @@
  "conceito": "Área de setor circular: calcular a área de cada sensor e escolher a menor que chega a 70 m².",
  "resolucao": {
   "antes": {
-   "texto": "A região azul é um setor circular: uma 'fatia de pizza' do círculo de raio R. Uma volta completa tem 360°, então o setor ocupa a fração α/360 do círculo inteiro. Como o preço sobe com a área, o sensor mais barato entre os que cobrem pelo menos 70 m² é o de menor área acima de 70.",
+   "texto": "A região azul é um setor circular, uma 'fatia de pizza' do círculo de raio R. Uma volta completa tem 360°, então o setor ocupa a fração α/360 do círculo inteiro. O preço sobe com a área. Por isso, entre os sensores que cobrem pelo menos 70 m², o mais barato é o de menor área.",
    "formulas": [
     "área do círculo = π × R²",
     "área do setor = (α/360) × π × R²"
@@ -44,24 +44,24 @@
     "faz": "Escreva a área do setor com π = 3",
     "conta": "A = (α/360) × 3 × R²",
     "porque": "O setor é a fração α/360 do círculo inteiro, cuja área é π R².",
-    "tipo": "aplicar"
+    "tipo": "calcular"
    },
    {
     "faz": "Calcule os tipos I, II e III",
-    "conta": "I: (1/24) × 3 × 400 = 50 | II: (1/12) × 3 × 484 = 121 | III: (1/9) × 3 × 144 = 48",
+    "conta": "I: 1/24 × 3 × 400 = 50\nII: 1/12 × 3 × 484 = 121\nIII: 1/9 × 3 × 144 = 48",
     "porque": "15/360 = 1/24, 30/360 = 1/12 e 40/360 = 1/9. Os tipos I e III dão menos de 70 m², então não servem.",
     "tipo": "calcular"
    },
    {
     "faz": "Calcule os tipos IV e V",
-    "conta": "IV: (1/6) × 3 × 256 = 128 | V: (1/4) × 3 × 100 = 75",
+    "conta": "IV: 1/6 × 3 × 256 = 128\nV: 1/4 × 3 × 100 = 75",
     "porque": "60/360 = 1/6 e 90/360 = 1/4. Os dois passam de 70 m².",
     "tipo": "calcular"
    },
    {
     "faz": "Escolha o menor entre os que servem",
     "conta": "Servem: II (121), IV (128), V (75)",
-    "porque": "Todos cobrem 70 m² ou mais. O de menor área, 75 m², é o mais barato: tipo V.",
+    "porque": "Os tipos II, IV e V cobrem 70 m² ou mais. Como preço maior significa área maior, o mais barato é o de menor área: 75 m², tipo V.",
     "tipo": "concluir"
    }
   ],
@@ -71,7 +71,7 @@
    "A": "O tipo I cobre (15/360) × 3 × 20² = 50 m², menos que os 70 m² exigidos. O raio grande engana, mas o ângulo de 15° é muito pequeno.",
    "B": "O tipo II cobre (30/360) × 3 × 22² = 121 m². Passa de 70 m², mas é bem maior que os 75 m² do tipo V, então custa mais.",
    "C": "O tipo III cobre (40/360) × 3 × 12² = 48 m², menos que 70 m². Não atende ao mínimo.",
-   "D": "O tipo IV cobre (60/360) × 3 × 16² = 128 m². Atende, mas é a maior área de todas, então é o sensor mais caro."
+   "D": "O tipo IV cobre 60/360 × 3 × 16² = 128 m². Atende ao mínimo, mas tem a maior área entre os cinco. Pela regra do enunciado, é o mais caro, e não o mais barato."
   },
   "armadilha": "Marcar o sensor que cobre mais área, ou o primeiro que passa de 70 m², sem comparar todos: a pergunta é pelo MENOR preço, ou seja, a menor área que ainda atende.",
   "alerta": "",
@@ -84,7 +84,7 @@
  "caminhos": [
   {
    "nome": "Estimativa pela fração do círculo",
-   "ideia": "Compare o círculo inteiro, 3 × R², com 70 × 360/α. Para o tipo V, 300 dividido por 4 dá 75, já acima de 70. Os tipos I e III ficam longe: 1200 ÷ 24 = 50 e 432 ÷ 9 = 48."
+   "ideia": "Calcule só o círculo inteiro, 3 × R², e divida pela fração de volta. Tipo V: 300 ÷ 4 = 75, acima de 70. Tipo I: 1200 ÷ 24 = 50. Tipo III: 432 ÷ 9 = 48. Esses dois ficam abaixo de 70."
   }
  ],
  "quadro": [
@@ -147,10 +147,63 @@
  "gab": "E",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "calcular",
+    "motivo": "O tipo 'aplicar' não é um dos valores aceitos (localizar, calcular, comparar, eliminar, concluir). O passo monta a fórmula da área com π = 3, então o tipo certo é 'calcular'.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "I: 1/24 × 3 × 400 = 50\nII: 1/12 × 3 × 484 = 121\nIII: 1/9 × 3 × 144 = 48",
+    "motivo": "A conta em uma só linha é longa demais para a tela do celular, que não quebra linha. Separei em três linhas, uma por tipo."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "IV: 1/6 × 3 × 256 = 128\nV: 1/4 × 3 × 100 = 75",
+    "motivo": "A mesma razão do passo anterior: uma linha por tipo, para caber na tela."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "Os tipos II, IV e V cobrem 70 m² ou mais. Como preço maior significa área maior, o mais barato é o de menor área: 75 m², tipo V.",
+    "motivo": "A frase anterior dizia que 'todos' cobrem 70 m² ou mais, o que podia incluir I e III. Agora ela cita só os tipos que servem."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "O tipo IV cobre 60/360 × 3 × 16² = 128 m². Atende ao mínimo, mas tem a maior área entre os cinco. Pela regra do enunciado, é o mais caro, e não o mais barato.",
+    "motivo": "Deixei explícito qual regra do enunciado derruba a alternativa D: preço cresce com a área. Também reescrevi a conta com a fração empilhada."
+   },
+   {
+    "campo": "resolucao.caminhos[0].ideia",
+    "depois": "Calcule só o círculo inteiro, 3 × R², e divida pela fração de volta. Tipo V: 300 ÷ 4 = 75, acima de 70. Tipo I: 1200 ÷ 24 = 50. Tipo III: 432 ÷ 9 = 48. Esses dois ficam abaixo de 70.",
+    "motivo": "O texto original falava em comparar com 70 × 360/α sem mostrar a conta. Troquei por um passo a passo que o aluno repete na prova."
+   },
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "A região azul é um setor circular, uma 'fatia de pizza' do círculo de raio R. Uma volta completa tem 360°, então o setor ocupa a fração α/360 do círculo inteiro. O preço sobe com a área. Por isso, entre os sensores que cobrem pelo menos 70 m², o mais barato é o de menor área.",
+    "motivo": "Frases mais curtas. Também usei 'pelo menos 70 m²' no lugar de 'menor área acima de 70', porque 70 m² exatos também serviriam."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "E"
  }
 }

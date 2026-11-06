@@ -17,14 +17,31 @@ const gab = Object.fromEntries(dados.questoes.map((q) => [q.id, q.gab]));
 const MATERIA = { fil: 'fs', soc: 'fs' };
 const ids = (filtro ? filtro.split(',') : Object.keys(res)).filter((i) => res[i] && res[i].aprovada);
 const VISTAS = [[390, 844], [768, 1024], [1280, 860], [1440, 900]];
+// RAPIDO=1: toda questão em 390 e 1440 (claro), e as 8 vistas completas em 1 de cada 10 (amostra fixa pela posição)
+const RAPIDO = process.env.RAPIDO === '1';
+const PARALELO = Number(process.env.PARALELO || 6);
 
 (async () => {
   const b = await chromium.launch();
   const problemas = [];
-  for (const id of ids) {
+  const tarefas = [];
+  ids.forEach((id, k) => {
+    const completo = !RAPIDO || k % 10 === 0;
+    for (const [w, h] of VISTAS) for (const tema of ['claro', 'escuro']) {
+      if (!completo && (tema === 'escuro' || (w !== 390 && w !== 1440))) continue;
+      tarefas.push([id, w, h, tema]);
+    }
+  });
+  async function trabalha() {
+    while (tarefas.length) {
+      const [id, w, h, tema] = tarefas.shift();
+      await confere(id, w, h, tema);
+    }
+  }
+  async function confere(id, w, h, tema) {
     const mat = MATERIA[res[id].materia] || res[id].materia;
     const errada = 'ABCDE'.split('').find((l) => l !== gab[id]);
-    for (const [w, h] of VISTAS) for (const tema of ['claro', 'escuro']) {
+    {
       const ctx = await b.newContext({ viewport: { width: w, height: h } });
       const p = await ctx.newPage();
       const onde = `${prova} q${res[id].n} (${id}) ${w}px ${tema}`;
@@ -37,7 +54,7 @@ const VISTAS = [[390, 844], [768, 1024], [1280, 860], [1440, 900]];
       }, [tema]);
       await p.goto(`${BASE}#/m/${mat}/q/${id}?ctx=escada`);
       await p.waitForTimeout(1300);
-      if (await p.getByText('Questão não encontrada').count()) { problemas.push(`${onde}: questão não encontrada no site`); await ctx.close(); continue; }
+      if (await p.getByText('Questão não encontrada').count()) { problemas.push(`${onde}: questão não encontrada no site`); await ctx.close(); return; }
       await p.keyboard.press(errada); await p.keyboard.press('Enter'); await p.waitForTimeout(900);
       const sem = p.getByText(/Ver sem anima/);
       if (await sem.count()) { await sem.first().click(); await p.waitForTimeout(600); }
@@ -52,6 +69,8 @@ const VISTAS = [[390, 844], [768, 1024], [1280, 860], [1440, 900]];
       await ctx.close();
     }
   }
+  console.error(`${tarefas.length} vistas para conferir`);
+  await Promise.all(Array.from({ length: PARALELO }, trabalha));
   await b.close();
   console.log(problemas.length ? problemas.join('\n') : `sem problemas (${ids.length} questões × 8 vistas)`);
   process.exit(problemas.length ? 1 : 0);

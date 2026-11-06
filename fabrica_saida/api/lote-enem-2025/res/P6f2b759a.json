@@ -17,15 +17,27 @@
    "simbolos": [
     [
      "crônica",
-     "gênero breve que comenta, com subjetividade e leveza, fatos do dia a dia"
+     "texto curto que comenta, com leveza e de modo pessoal, fatos do dia a dia"
     ],
     [
      "interlocução",
-     "diálogo do autor com o leitor"
+     "conversa do autor com o leitor, como se falasse com ele"
     ],
     [
      "perspectiva reflexiva",
      "modo de olhar que pensa sobre o que aconteceu, em vez de só contar"
+    ],
+    [
+     "artigo de opinião",
+     "texto que defende uma tese com argumentos para convencer o leitor"
+    ],
+    [
+     "texto expositivo",
+     "texto que explica um assunto de forma neutra, sem falar de si"
+    ],
+    [
+     "cotidiano",
+     "o dia a dia: banco, casa, geladeira, bilhetes"
     ]
    ]
   },
@@ -39,20 +51,20 @@
    },
    {
     "faz": "Veja se a autora segue no plano pessoal",
-    "conta": "“minha letra está em espaços muito delimitados… bilhetes… post its”",
+    "conta": "“minha letra está em espaços muito delimitados… bilhetes”",
     "porque": "Ela fala da própria letra, da geladeira, da mesa do escritório. Os fatos continuam sendo do contexto pessoal dela.",
     "tipo": "localizar"
    },
    {
     "faz": "Veja o que ela faz com esses fatos",
-    "conta": "“Do punho ao pixel” não é frase correta. O negócio é “o punho e o pixel”.",
+    "conta": "“O negócio é mais ‘o punho e o pixel’”",
     "porque": "Dos fatos pessoais ela tira uma reflexão sobre escrita e tecnologia. Fato pessoal mais reflexão é o núcleo da crônica.",
-    "tipo": "interpretar"
+    "tipo": "comparar"
    },
    {
     "faz": "Elimine os traços que não definem a crônica",
-    "conta": "defesa de tese? exposição? segunda pessoa? ordem cronológica?",
-    "porque": "Cada um desses traços aparece em outros gêneros, ou nem está no texto de forma marcante. Só um reúne cotidiano pessoal e reflexão.",
+    "conta": "A: tese? B: só informar? D: 'você'? E: ordem do tempo?",
+    "porque": "A é traço de artigo de opinião. B é de texto expositivo. D aparece em muitos gêneros. E é de narrativa. Só C une cotidiano pessoal e reflexão.",
     "tipo": "eliminar"
    },
    {
@@ -65,10 +77,10 @@
   "resposta": "Alternativa C: o texto parte de fatos da vida pessoal da autora (a letra, os bilhetes, os post its) e os usa para refletir sobre a escrita hoje, que é o que define a crônica.",
   "checagem": "Troque o gênero: um artigo de opinião começaria com uma tese e argumentos, e um texto expositivo seria impessoal. Este começa com uma lembrança bancária e fala em 1ª pessoa de sua letra: é crônica.",
   "erradas": {
-   "A": "Defender opinião sobre tema coletivo é traço do artigo de opinião. Aqui a autora não se empenha em convencer ninguém; ela comenta a própria experiência, e o texto termina em constatação leve, não em tese.",
-   "B": "O uso de tecnologias na escrita é o assunto do texto, não o que o torna crônica. Um texto expositivo também trata desse assunto, mas de modo impessoal, enquanto aqui há 1ª pessoa e vivências da autora.",
+   "A": "Há opinião no fim (“Não adianta muito pensar sempre como se tudo fosse excludente”). Mas defender opinião sobre tema coletivo é traço do artigo de opinião. Quem marcou A esqueceu que a crônica parte da experiência pessoal da autora.",
+   "B": "O uso de tecnologias na escrita é o ASSUNTO do texto, não o que o torna crônica. Um texto expositivo trata do mesmo assunto, mas sem falar de si. Aqui há 1ª pessoa e vivências da autora.",
    "D": "Há marcas de diálogo com o leitor, como “Curioso, não?”, mas são pontuais e aparecem em vários gêneros. Não definem a crônica nem organizam o texto.",
-   "E": "O texto não segue uma sequência de acontecimentos no tempo. Vai da lembrança do banco para o presente, depois para bilhetes e post its, e fecha com reflexão. Essa ordem, aliás, é mais típica da narrativa do que da crônica."
+   "E": "O texto não segue a ordem do tempo. Parte do banco (passado), passa à letra de hoje, depois aos bilhetes e post its, e fecha com reflexão. Quem marcou E confundiu crônica com narrativa, que conta fatos em sequência."
   },
   "armadilha": "Marcar B ou D por serem verdadeiras no texto, esquecendo que a pergunta é o que define o gênero crônica.",
   "alerta": "",
@@ -102,10 +114,113 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "comparar",
+    "motivo": "O guia só aceita os tipos localizar, calcular, comparar, eliminar e concluir. 'interpretar' não está na lista, e o passo confronta os fatos pessoais com a reflexão final.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "“O negócio é mais ‘o punho e o pixel’”",
+    "motivo": "A conta vinha entre aspas como citação, mas alterava o texto: o original diz 'não é uma frase filosoficamente correta' e não 'não é frase correta'. Troquei por um trecho literal e curto.",
+    "fonte": "Texto da prova, linhas 44-45"
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "Há opinião no fim (“Não adianta muito pensar sempre como se tudo fosse excludente”), mas defender opinião sobre tema coletivo também é traço do artigo de opinião. O que torna o texto crônica é partir da experiência pessoal da autora.",
+    "motivo": "A frase 'o texto termina em constatação leve, não em tese' é falsa. O fecho expressa uma posição ('Não adianta muito pensar...', 'O negócio é mais o punho e o pixel'). A alternativa cai porque esse traço não é próprio da crônica, e não porque falte opinião no texto.",
+    "fonte": "Texto da prova, linhas 41-45"
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "crônica",
+      "texto curto que comenta, com leveza e de modo pessoal, fatos do dia a dia"
+     ],
+     [
+      "interlocução",
+      "conversa do autor com o leitor, como se falasse com ele"
+     ],
+     [
+      "perspectiva reflexiva",
+      "modo de olhar que pensa sobre o que aconteceu, em vez de só contar"
+     ],
+     [
+      "artigo de opinião",
+      "texto que defende uma tese com argumentos para convencer o leitor"
+     ],
+     [
+      "texto expositivo",
+      "texto que explica um assunto de forma neutra, sem falar de si"
+     ],
+     [
+      "cotidiano",
+      "o dia a dia: banco, casa, geladeira, bilhetes"
+     ]
+    ],
+    "motivo": "Termos usados nas fórmulas e nas erradas (artigo de opinião, expositivo, cotidiano) não estavam explicados; interlocução simplificada."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "A: tese? B: só informar? D: 'você'? E: ordem do tempo?",
+    "motivo": "A conta ficava mais clara ligando cada ideia à sua letra, e cabe melhor na tela."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "A é traço de artigo de opinião. B é de texto expositivo. D aparece em muitos gêneros. E é de narrativa. Só C une cotidiano pessoal e reflexão.",
+    "motivo": "Dava o motivo de cada letra, em frases curtas e sem ambiguidade."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "O texto não segue a ordem do tempo. Vai do banco para o presente, depois para bilhetes e post its, e fecha com reflexão. Quem marcou E confundiu crônica com narrativa, que conta fatos em sequência.",
+    "motivo": "Disse o que faltou no raciocínio de quem marcou E e simplificou a frase."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "Há opinião no fim (“Não adianta muito pensar sempre como se tudo fosse excludente”). Mas defender opinião sobre tema coletivo é traço do artigo de opinião. Quem marcou A esqueceu que a crônica parte da experiência pessoal da autora.",
+    "motivo": "Explicita o que faltou no raciocínio de quem marcou A."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "O uso de tecnologias na escrita é o ASSUNTO do texto, não o que o torna crônica. Um texto expositivo trata do mesmo assunto, mas sem falar de si. Aqui há 1ª pessoa e vivências da autora.",
+    "motivo": "Mais clareza: assunto não é o mesmo que característica do gênero."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "“minha letra está em espaços muito delimitados… bilhetes”",
+    "motivo": "A conta citava «post its» dentro das aspas com reticências, mas o texto diz «bilhetes em post its» mais adiante. A citação continua verdadeira, e o trecho de «post its» fica no porque. A mudança é mínima, para a citação não unir trechos distantes. Dá para dispensar esta correção.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "O texto não segue a ordem do tempo. Parte do banco (passado), passa à letra de hoje, depois aos bilhetes e post its, e fecha com reflexão. Quem marcou E confundiu crônica com narrativa, que conta fatos em sequência.",
+    "motivo": "A frase «Vai do banco para o presente» comparava coisas de natureza diferente. O texto vai do episódio no banco, que ficou no passado, à letra de hoje, e a nova redação deixa isso explícito.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "C"
  }
 }

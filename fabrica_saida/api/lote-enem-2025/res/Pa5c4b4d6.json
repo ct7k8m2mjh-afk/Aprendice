@@ -10,7 +10,7 @@
  "divergencia": "",
  "resolucao": {
   "antes": {
-   "texto": "Sensibilidade de um sensor é quanto a saída muda para cada grau de variação na entrada. Aqui, a saída é a resistência e a entrada é a temperatura. Na equação R(T) = A + BT, essa razão é a constante B, a inclinação da reta. Quanto mais inclinada a reta no gráfico, maior a sensibilidade. A questão pede só uma comparação de inclinações, sem precisar do valor exato.",
+   "texto": "Sensibilidade de um sensor é quanto a saída muda para cada grau de variação na entrada. Aqui, a saída é a resistência e a entrada é a temperatura. Na equação R(T) = A + BT, essa razão é a constante B, a inclinação da reta. Quanto mais inclinada a reta no gráfico, maior a sensibilidade. Basta comparar inclinações; não precisa de valor exato.",
    "formulas": [
     "R(T) = A + B·T",
     "sensibilidade = B = ΔR/ΔT (inclinação da reta)"
@@ -44,7 +44,7 @@
     "faz": "Identifique a sensibilidade na equação",
     "conta": "sensibilidade = B = ΔR/ΔT",
     "porque": "B diz quantos ohms a resistência varia por grau. Um sensor sensível acusa uma pequena mudança de temperatura com uma grande mudança de R. Isso é a inclinação da reta.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Leia os extremos do sensor 1",
@@ -55,7 +55,7 @@
    {
     "faz": "Leia os extremos dos sensores 2 e 5",
     "conta": "S2: 76 → 225 (ΔR ≈ 149 Ω)\nS5: 66 → 145 (ΔR ≈ 79 Ω)",
-    "porque": "Todas as retas vão de T = −50 °C até T ≈ 320 °C, com o mesmo ΔT ≈ 370 °C. Basta comparar o quanto R sobe em cada uma.",
+    "porque": "Todas as retas vão de T = −50 °C até T ≈ 320 °C. O ΔT (variação de temperatura) é o mesmo, ≈ 370 °C. Basta comparar quanto R sobe em cada uma.",
     "tipo": "localizar"
    },
    {
@@ -67,7 +67,7 @@
    {
     "faz": "Ordene as inclinações",
     "conta": "S2 > S5 > S4 > S3 > S1",
-    "porque": "Os dois maiores aumentos de resistência são os dos sensores 2 (≈ 0,40 Ω/°C) e 5 (≈ 0,21 Ω/°C).",
+    "porque": "Os dois maiores aumentos de resistência são os dos sensores 2 (≈ 0,40 Ω/°C) e 5 (≈ 0,21 Ω/°C). Ω/°C quer dizer ohms por grau.",
     "tipo": "comparar"
    },
    {
@@ -78,7 +78,7 @@
    }
   ],
   "resposta": "Alternativa E: os sensores 2 e 5 têm as retas mais inclinadas, logo o maior B e a maior sensibilidade.",
-  "checagem": "Confira pelo desenho. O sensor 5 começa abaixo do 4 (66 contra 91 Ω) e termina no mesmo nível (≈ 145 a 148 Ω). Logo ele precisa subir mais que o 4. O sensor 2 cruza todos os outros de baixo para cima, então é o mais inclinado. Os sensores 1 e 3 ficam quase planos.",
+  "checagem": "Confira pelo desenho. O sensor 5 começa abaixo do 4 (66 contra 91 Ω) e termina no mesmo nível (≈ 145 a 148 Ω). Então ele sobe mais que o 4. O sensor 2 começa perto da reta mais baixa e termina na mais alta, então é o mais inclinado. Os sensores 1 e 3 ficam quase planos.",
   "erradas": {
    "A": "O sensor 1 é a reta quase horizontal: sobe só ≈ 5 Ω em ≈ 370 °C, B ≈ 0,01 Ω/°C. É o MENOS sensível dos cinco, e não pode entrar entre os dois mais sensíveis.",
    "B": "Reúne os dois sensores de menor inclinação: o 1 (ΔR ≈ 5 Ω) e o 3 (ΔR ≈ 21 Ω). Ambos são retas quase planas, e a resistência quase não responde à temperatura.",
@@ -149,10 +149,64 @@
  "gab": "E",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[0].tipo",
+    "depois": "localizar",
+    "motivo": "O tipo 'interpretar' não está na lista permitida (localizar, calcular, comparar, eliminar, concluir). O passo acha no enunciado a grandeza B, por isso o tipo é 'localizar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Confira pelo desenho. O sensor 5 começa abaixo do 4 (66 contra 91 Ω) e termina no mesmo nível (≈ 145 a 148 Ω). Logo ele precisa subir mais que o 4. O sensor 2 começa perto da reta mais baixa e termina perto da mais alta, cruzando de baixo para cima as retas 4 e 3, então é o mais inclinado. Os sensores 1 e 3 ficam quase planos.",
+    "motivo": "A frase 'O sensor 2 cruza todos os outros' está errada no gráfico. A reta 2 começa acima da reta 5 (76 contra 66 Ω) e fica acima dela o tempo todo. Ela termina em ≈ 224 Ω, logo abaixo da reta 1 (≈ 229 Ω), sem cruzá-la. Ela só cruza as retas 4 (perto de 0 °C) e 3 (perto de 150 °C).",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Sensibilidade de um sensor é quanto a saída muda para cada grau de variação na entrada. Aqui, a saída é a resistência e a entrada é a temperatura. Na equação R(T) = A + BT, essa razão é a constante B, a inclinação da reta. Quanto mais inclinada a reta no gráfico, maior a sensibilidade. Basta comparar inclinações; não precisa de valor exato.",
+    "motivo": "Frase final mais simples e sem ambiguidade."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "S2: 76 → 225 (ΔR ≈ 149 Ω)\nS5: 66 → 145 (ΔR ≈ 79 Ω)",
+    "motivo": "Sem mudança de fato. A conta tem linhas curtas, mas o 'porque' abaixo ganha explicação do ΔT."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Todas as retas vão de T = −50 °C até T ≈ 320 °C. O ΔT (variação de temperatura) é o mesmo, ≈ 370 °C. Basta comparar quanto R sobe em cada uma.",
+    "motivo": "Explica ΔT na primeira aparição, em frases curtas."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "Os dois maiores aumentos de resistência são os dos sensores 2 (≈ 0,40 Ω/°C) e 5 (≈ 0,21 Ω/°C). Ω/°C quer dizer ohms por grau.",
+    "motivo": "Explica a unidade Ω/°C para o aluno."
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Confira pelo desenho. O sensor 5 começa abaixo do 4 (66 contra 91 Ω) e termina no mesmo nível (≈ 145 a 148 Ω). Então ele sobe mais que o 4. O sensor 2 começa perto da reta mais baixa e termina na mais alta, então é o mais inclinado. Os sensores 1 e 3 ficam quase planos.",
+    "motivo": "Frases mais curtas e diretas."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "E"
  }
 }

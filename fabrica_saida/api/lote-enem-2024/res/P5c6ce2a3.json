@@ -8,10 +8,10 @@
  "conceito": "Probabilidade de acertar só na 3ª tentativa, sem repetir as tentativas já erradas (produto de probabilidades condicionais).",
  "resolucao": {
   "antes": {
-   "texto": "Decifrar a Cifra de César é descobrir por qual letra o A foi trocado. Como a mensagem foi codificada, o A não ficou como A: sobram 25 padrões possíveis (as alternativas já usam 25). Quem acerta só na 3ª tentativa erra a 1ª, erra a 2ª e acerta a 3ª. Como cada tentativa errada sai da lista, o número de opções diminui a cada vez. Os três eventos acontecem em sequência (um 'e' depois do outro), então as probabilidades se multiplicam.",
+   "texto": "Decifrar a Cifra de César é descobrir por qual letra o A foi trocado. Se o A ficasse como A, a mensagem não estaria codificada. Por isso sobram 25 padrões possíveis (as alternativas já usam 25), e só um é o certo. Quem acerta só na 3ª tentativa erra a 1ª, erra a 2ª e acerta a 3ª. Cada tentativa errada sai da lista, então as opções diminuem a cada vez. Os três eventos acontecem em sequência (um 'e' depois do outro), então as probabilidades se multiplicam.",
    "formulas": [
     "probabilidade = casos favoráveis ÷ casos possíveis",
-    "evento 'e' evento (em sequência): multiplica as probabilidades"
+    "'errou' e depois 'errou' e depois 'acertou': multiplique as probabilidades de cada etapa"
    ],
    "simbolos": [
     [
@@ -57,16 +57,16 @@
    {
     "faz": "Multiplique as três etapas",
     "conta": "24/25 × 23/24 × 1/23",
-    "porque": "É errar a 1ª E errar a 2ª E acertar a 3ª. Eventos em sequência se multiplicam. Isso é a alternativa E.",
+    "porque": "Errou a 1ª E errou a 2ª E acertou a 3ª. Eventos em sequência se multiplicam. Esse produto é a alternativa E.",
     "tipo": "concluir"
    }
   ],
   "resposta": "Alternativa E: (24/25) × (23/24) × (1/23), isto é, errar a 1ª, errar a 2ª e acertar a 3ª, com os padrões errados eliminados.",
-  "checagem": "Cancelando 24 e 23, o produto dá 1/25. Isso faz sentido: com tentativas sem repetição, cada posição da ordem de teste tem a mesma chance, 1/25, de ser a do padrão certo.",
+  "checagem": "Cancele o 24 e o 23: sobra 1/25. Faz sentido por outro caminho: se os padrões são testados sem repetir, o padrão certo tem a mesma chance, 1/25, de cair em qualquer posição da ordem de teste, inclusive na 3ª.",
   "erradas": {
    "A": "1/25 + 1/25 + 1/25 = 3/25 é a probabilidade de acertar em alguma das três primeiras tentativas (1ª, 2ª ou 3ª). A questão pede acertar apenas na 3ª, o que exige errar antes.",
-   "B": "Somou as frações. Errar e acertar em sequência se multiplicam. A soma 24/25 + 23/24 + 1/23 ≈ 0,96 + 0,96 + 0,04 ≈ 1,96 passa de 1, e nenhuma probabilidade pode ser maior que 1.",
-   "C": "1/25 × 1/24 × 1/23 é a probabilidade de acertar nas três tentativas seguidas. Só existe um padrão certo, então não se acerta três vezes. Faltou errar as duas primeiras.",
+   "B": "B soma as frações, mas errar e acertar em sequência se multiplicam. A soma 24/25 + 23/24 + 1/23 é cerca de 0,96 + 0,96 + 0,04 = 1,96. Passa de 1, e nenhuma probabilidade passa de 1.",
+   "C": "1/25 × 1/24 × 1/23 multiplica três chances de acerto, como se você acertasse nas três tentativas. Isso é impossível, porque só existe um padrão certo. Faltou errar as duas primeiras (24/25 e 23/24).",
    "D": "O denominador ficou 25 nas três tentativas, como se o padrão errado pudesse ser testado de novo. O enunciado manda eliminar as tentativas frustradas, então os denominadores caem: 25, 24, 23."
   },
   "armadilha": "Esquecer de eliminar as tentativas erradas (denominador sempre 25) ou esquecer que é preciso errar as duas primeiras antes de acertar.",
@@ -127,10 +127,68 @@
  "gab": "E",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "1/25 × 1/24 × 1/23 multiplica três chances de acerto, como se você acertasse nas três tentativas. Isso é impossível, porque só existe um padrão certo. Faltou errar as duas primeiras (24/25 e 23/24).",
+    "motivo": "O texto antigo dizia que o produto 1/25 × 1/24 × 1/23 \"é a probabilidade de acertar nas três tentativas seguidas\". Isso é falso: esse evento é impossível e tem probabilidade 0, não esse produto. O novo texto descreve o erro sem dizer que o produto é uma probabilidade real.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Decifrar a Cifra de César é descobrir por qual letra o A foi trocado. Se o A ficasse como A, a mensagem não estaria codificada. Por isso sobram 25 padrões possíveis (as alternativas já usam 25), e só um é o certo. Quem acerta só na 3ª tentativa erra a 1ª, erra a 2ª e acerta a 3ª. Cada tentativa errada sai da lista, então as opções diminuem a cada vez. Os três eventos acontecem em sequência (um 'e' depois do outro), então as probabilidades se multiplicam.",
+    "motivo": "Frases mais curtas, sem ambiguidade; explica por que o A não pode ficar como A."
+   },
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "probabilidade = casos favoráveis ÷ casos possíveis",
+     "'errou' e depois 'errou' e depois 'acertou': multiplique as probabilidades de cada etapa"
+    ],
+    "motivo": "Fórmula escrita como se diz em aula."
+   },
+   {
+    "campo": "resolucao.passos[0].conta",
+    "depois": "26 letras − 1 = 25 padrões",
+    "motivo": "Mantido; apenas confirmado que cabe na linha."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "Errou a 1ª E errou a 2ª E acertou a 3ª. Eventos em sequência se multiplicam. Esse produto é a alternativa E.",
+    "motivo": "Frases curtas e voz ativa."
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Cancele o 24 e o 23: sobra 1/25. Faz sentido por outro caminho: se os padrões são testados sem repetir, o padrão certo tem a mesma chance, 1/25, de cair em qualquer posição da ordem de teste, inclusive na 3ª.",
+    "motivo": "Explica a checagem com mais clareza."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "B soma as frações, mas errar e acertar em sequência se multiplicam. A soma 24/25 + 23/24 + 1/23 é cerca de 0,96 + 0,96 + 0,04 = 1,96. Passa de 1, e nenhuma probabilidade passa de 1.",
+    "motivo": "Mostra o teste de forma direta."
+   }
+  ],
+  "didatica_alertas": [
+   "O campo 'conteudo' do JSON está M13.4, mas a classificação atual informada é M13.5 (condicional). Conferir qual é o correto; não alterei."
+  ],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "E"
  }
 }

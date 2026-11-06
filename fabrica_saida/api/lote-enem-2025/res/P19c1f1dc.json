@@ -8,11 +8,11 @@
  "conceito": "Interpretar o desvio padrão como medida de afastamento em relação à média, comparando-o com medidas de posição (média, mediana, moda, mínimo e máximo).",
  "resolucao": {
   "antes": {
-   "texto": "O critério é que pelo menos 6 das 11 mulheres (a maioria) tenham idade entre 20 e 30 anos. Só vale a certeza: o grupo escolhido precisa atender ao critério quaisquer que sejam as idades que o quadro não mostra. O desvio padrão mede o quanto as idades se afastam da média. Se ele é muito pequeno, ninguém pode estar muito longe da média.",
+   "texto": "O critério é que pelo menos 6 das 11 mulheres (a maioria) tenham de 20 a 30 anos. Só vale a certeza: o grupo precisa atender ao critério quaisquer que sejam as idades que o quadro não mostra. O desvio padrão mede o quanto as idades se afastam da média. Se ele é muito pequeno, ninguém pode estar muito longe da média.",
    "formulas": [
-    "variância = soma de (idade − média)² ÷ número de pessoas",
+    "variância = soma de (idade − média)² ÷ 11",
     "desvio padrão = raiz quadrada da variância",
-    "20 a 30 anos = até 5 anos para cima ou para baixo de 25"
+    "de 20 a 30 anos = no máximo 5 anos para cima ou para baixo de 25"
    ],
    "simbolos": [
     [
@@ -43,29 +43,29 @@
     "faz": "Traduza o critério em números",
     "conta": "maioria de 11 → pelo menos 6",
     "porque": "O grupo serve se pelo menos 6 mulheres tiverem de 20 a 30 anos. Precisamos de um grupo em que isso seja garantido.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Descarte os grupos 1 e 2",
     "conta": "G1: média 25, DP 10\nG2: mediana 25, DP 9",
-    "porque": "DP de 9 ou 10 anos mostra idades muito espalhadas, então muitas podem estar fora de 20 a 30. A mediana 25 só diz que 5 ficam abaixo e 5 acima, sem garantir nada sobre a distância.",
-    "tipo": "interpretar"
+    "porque": "Desvio padrão de 9 ou 10 anos mostra idades muito espalhadas, então muitas podem estar fora de 20 a 30. A mediana 25 só diz que pelo menos 6 idades são menores ou iguais a 25 e pelo menos 6 são maiores ou iguais a 25. Não diz nada sobre a distância até 25.",
+    "tipo": "eliminar"
    },
    {
     "faz": "Descarte os grupos 3 e 5",
     "conta": "G3: moda 25\nG5: de 20 a 35",
-    "porque": "Moda 25 só exige que o 25 apareça mais que as outras idades, o que pode ser apenas 2 vezes. No grupo 5, a maior idade (35) está fora do intervalo e nada garante que sejam poucas as que passam de 30.",
+    "porque": "Moda 25 só exige que o 25 apareça mais que as outras idades, o que pode ser apenas 2 vezes. No grupo 5, a maior idade (35) está fora do intervalo e nada garante que poucas passem de 30.",
     "tipo": "eliminar"
    },
    {
     "faz": "Calcule o limite de afastamento do grupo 4",
-    "conta": "soma (x − 25)² = 11 × 1² = 11",
-    "porque": "Com média 25 e DP 1, a variância é 1. Somando os 11 desvios ao quadrado, o total é 11.",
+    "conta": "soma de (x − 25)² = 11 × 1 = 11",
+    "porque": "Com desvio padrão 1, a variância é 1² = 1. Variância é a média dos desvios ao quadrado, então a soma dos 11 desvios ao quadrado é 11 × 1 = 11.",
     "tipo": "calcular"
    },
    {
     "faz": "Teste se alguém pode estar fora",
-    "conta": "fora de 20–30 → (x − 25)² > 25\n25 > 11: impossível",
+    "conta": "fora de 20–30: (x − 25)² > 25\n25 > 11: impossível",
     "porque": "Quem tem menos de 20 ou mais de 30 anos está a mais de 5 anos da média, e seu desvio ao quadrado passa de 25. Isso já supera o total de 11, então ninguém do grupo 4 fica fora.",
     "tipo": "calcular"
    },
@@ -77,11 +77,11 @@
    }
   ],
   "resposta": "Alternativa D: no grupo 4, média 25 e desvio padrão 1 obrigam todas as idades a ficar entre 20 e 30 anos.",
-  "checagem": "Se o desvio padrão fosse calculado dividindo por 10 (amostral), a soma dos quadrados seria 10 × 1 = 10, e ainda assim seria menor que 25. Num exemplo concreto: 10 mulheres com 25 e uma com 28 já dá DP próximo de 1, tudo dentro de 20 a 30.",
+  "checagem": "Exemplo concreto: 5 mulheres com 24, uma com 25 e 5 com 26. A média é 25. A soma dos quadrados é 10 × 1 = 10, parecida com o 11 do grupo 4. Todas ficam entre 20 e 30. Para alguém sair do intervalo, só ele já somaria mais de 25.",
   "erradas": {
    "A": "Grupo 1 (média 25, DP 10): o desvio padrão alto mostra idades muito espalhadas. É possível que a maioria esteja abaixo de 20 ou acima de 30, então não há certeza.",
-   "B": "Grupo 2 (mediana 25, DP 9): a mediana só garante que 5 mulheres têm idade ≤ 25 e 5 têm idade ≥ 25. Com DP 9, as demais podem estar longe de 20 a 30, então não há certeza.",
-   "C": "Grupo 3 (moda 25): a moda só diz que 25 é a idade mais repetida, o que pode ser apenas 2 vezes em 11. As outras 9 podem estar fora do intervalo, e o quadro não informa a média nem o DP.",
+   "B": "Grupo 2 (mediana 25, DP 9): a mediana só garante que pelo menos 6 idades são menores ou iguais a 25 e pelo menos 6 são maiores ou iguais a 25. Com DP 9, as idades podem estar longe de 20 a 30, então não há certeza.",
+   "C": "Grupo 3 (moda 25): a moda só diz que 25 é a idade mais repetida, o que pode ser apenas 2 vezes em 11. As outras 9 podem estar fora do intervalo, e o quadro não dá média nem desvio padrão.",
    "E": "Grupo 5 (mínimo 20, máximo 35): há pelo menos uma idade fora do intervalo (35), e não existe dado sobre as demais. Poderia haver 10 mulheres com mais de 30 anos."
   },
   "armadilha": "Usar mediana ou moda 25 como se garantissem que as idades estão perto de 25; só o desvio padrão pequeno do grupo 4 limita o afastamento de todas.",
@@ -99,7 +99,7 @@
   },
   {
    "nome": "leitura direta do desvio padrão",
-   "ideia": "DP 1 significa que as idades se afastam, em média, cerca de 1 ano da média 25. Para a maioria ficar fora de 20 a 30, o afastamento típico precisaria ser bem maior que 5 anos."
+   "ideia": "Para a maioria (6 mulheres) ficar fora de 20 a 30, cada uma estaria a mais de 5 anos de 25. A soma dos quadrados passaria de 6 × 25 = 150. Com desvio padrão 1, essa soma é só 11, então isso é impossível."
   }
  ],
  "quadro": [
@@ -149,10 +149,118 @@
  "gab": "D",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[0].tipo",
+    "depois": "localizar",
+    "motivo": "O tipo 'interpretar' não existe na lista permitida (localizar, calcular, comparar, eliminar, concluir). Este passo traduz o comando, então o tipo certo é 'localizar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "eliminar",
+    "motivo": "O tipo 'interpretar' não existe na lista permitida. O passo descarta alternativas, então o tipo certo é 'eliminar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "DP de 9 ou 10 anos mostra idades muito espalhadas, então muitas podem estar fora de 20 a 30. A mediana 25 só diz que pelo menos 6 idades são ≤ 25 e pelo menos 6 são ≥ 25, sem garantir nada sobre a distância.",
+    "motivo": "'5 ficam abaixo e 5 acima' é impreciso, porque pode haver idades iguais a 25. Com 11 idades, a mediana é a 6ª em ordem crescente: pelo menos 6 idades são ≤ 25 e pelo menos 6 são ≥ 25.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Se o desvio padrão fosse calculado dividindo por 10 (amostral), a soma dos quadrados seria 10 × 1 = 10, e ainda assim seria menor que 25. Num exemplo concreto: 5 mulheres com 24, uma com 25 e 5 com 26 dão média 25 e soma dos quadrados 10, com DP ≈ 0,95 (exatamente 1 dividindo por 10). Tudo fica dentro de 20 a 30.",
+    "motivo": "O exemplo antigo (10 com 25 e uma com 28) não tem média 25: a média dá 278/11 ≈ 25,27. Além disso, o DP dele é ≈ 0,86 (populacional) ou 0,90 (amostral). O novo exemplo tem média 25 exata e DP de fato próximo de 1.",
+    "fonte": ""
+   },
+   {
+    "campo": "caminhos[1].ideia",
+    "depois": "DP 1 significa que as idades ficam, tipicamente, a cerca de 1 ano da média 25. Para a maioria (6) ficar fora de 20 a 30, a soma dos quadrados passaria de 6 × 25 = 150, e o DP teria de passar de cerca de 3,7. Com DP 1, isso não acontece.",
+    "motivo": "A frase 'precisaria ser bem maior que 5 anos' é falsa. Com 6 desvios maiores que 5, a variância passa de 150/11 ≈ 13,6, então basta um DP acima de cerca de 3,7.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "O critério é que pelo menos 6 das 11 mulheres (a maioria) tenham de 20 a 30 anos. Só vale a certeza: o grupo precisa atender ao critério quaisquer que sejam as idades que o quadro não mostra. O desvio padrão mede o quanto as idades se afastam da média. Se ele é muito pequeno, ninguém pode estar muito longe da média.",
+    "motivo": "Frases mais curtas e diretas."
+   },
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "variância = soma de (idade − média)² ÷ 11",
+     "desvio padrão = raiz quadrada da variância",
+     "de 20 a 30 anos = no máximo 5 anos para cima ou para baixo de 25"
+    ],
+    "motivo": "Fórmula adaptada ao caso (11 pessoas) e frase mais clara."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "Desvio padrão de 9 ou 10 anos mostra idades muito espalhadas, então muitas podem estar fora de 20 a 30. A mediana 25 só diz que pelo menos 6 idades são menores ou iguais a 25 e pelo menos 6 são maiores ou iguais a 25. Não diz nada sobre a distância até 25.",
+    "motivo": "Trocou os símbolos ≤ e ≥ por palavras e quebrou a frase longa."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Moda 25 só exige que o 25 apareça mais que as outras idades, o que pode ser apenas 2 vezes. No grupo 5, a maior idade (35) está fora do intervalo e nada garante que poucas passem de 30.",
+    "motivo": "Frase mais simples."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "soma de (x − 25)² = 11 × 1 = 11",
+    "motivo": "Mostrar a multiplicação que gera o 11 e deixar a conta copiável."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Com desvio padrão 1, a variância é 1² = 1. Variância é a média dos desvios ao quadrado, então a soma dos 11 desvios ao quadrado é 11 × 1 = 11.",
+    "motivo": "Explicar de onde vem a soma 11."
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "fora de 20–30: (x − 25)² > 25\n25 > 11: impossível",
+    "motivo": "Cada linha cabe na tela."
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Exemplo concreto: 5 mulheres com 24, uma com 25 e 5 com 26. A média é 25. A soma dos quadrados é 10 × 1 = 10, parecida com o 11 do grupo 4. Todas ficam entre 20 e 30. Para alguém sair do intervalo, só ele já somaria mais de 25.",
+    "motivo": "A checagem anterior misturava desvio amostral e confundia o aluno; agora usa um exemplo simples."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "Grupo 2 (mediana 25, DP 9): a mediana só garante que pelo menos 6 idades são menores ou iguais a 25 e pelo menos 6 são maiores ou iguais a 25. Com DP 9, as idades podem estar longe de 20 a 30, então não há certeza.",
+    "motivo": "Corrige a contagem (a mediana de 11 valores é o 6º) e troca os símbolos por palavras."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "Grupo 3 (moda 25): a moda só diz que 25 é a idade mais repetida, o que pode ser apenas 2 vezes em 11. As outras 9 podem estar fora do intervalo, e o quadro não dá média nem desvio padrão.",
+    "motivo": "Ajuste leve de clareza."
+   },
+   {
+    "campo": "resolucao.caminhos[1].ideia",
+    "depois": "Para a maioria (6 mulheres) ficar fora de 20 a 30, cada uma estaria a mais de 5 anos de 25. A soma dos quadrados passaria de 6 × 25 = 150. Com desvio padrão 1, essa soma é só 11, então isso é impossível.",
+    "motivo": "Remove o 3,7 solto, difícil de justificar, e usa o mesmo raciocínio da resolução."
+   }
+  ],
+  "didatica_alertas": [
+   "Classificação: o conteúdo no JSON é M14.3 (dispersão e desvio padrão), enquanto o cabeçalho diz M14.1. M14.3 parece o mais adequado; o corretor 1 deve alinhar."
+  ],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "D"
  }
 }

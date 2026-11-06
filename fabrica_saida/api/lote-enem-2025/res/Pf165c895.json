@@ -61,12 +61,12 @@
    }
   ],
   "resposta": "Alternativa A: a batata chips tem 3 × 170 = 510 mg de sódio por pacote, o menor entre os cinco produtos.",
-  "checagem": "Estimativa por arredondamento: chips 3 × 170 ≈ 500; água e sal 5 × 166 ≈ 830; polvilho 6 × 175 ≈ 1050. Palitos 4 × 500 = 2000 e multigrãos 8 × 264 > 8 × 250 = 2000. Chips segue como o menor.",
+  "checagem": "Confira pela ordem de grandeza, sem a conta exata: chips 3 × 170 é cerca de 500. Água e sal 5 × 166 é cerca de 830. Polvilho 6 × 175 passa de 1000. Palitos 4 × 501 é cerca de 2000. Multigrãos 8 × 264 passa de 2000. O menor continua sendo chips.",
   "erradas": {
-   "B": "Palitos salgados têm 4 × 501 = 2004 mg por pacote. A porção é a que tem mais sódio (501 mg), e o pacote também fica entre os maiores, muito acima dos 510 mg da batata chips.",
-   "C": "Biscoito multigrãos tem 8 × 264 = 2112 mg por pacote. É o MAIOR total: são 8 porções, mais que em qualquer outro pacote.",
-   "D": "Biscoito de polvilho tem 6 × 175 = 1050 mg por pacote. É mais que o dobro dos 510 mg da batata chips, e 175 mg por porção não compensa as 6 porções.",
-   "E": "Biscoito de água e sal tem a menor quantidade de sódio por porção (166 mg), mas o pacote tem 5 porções: 5 × 166 = 830 mg. Isso é mais que os 510 mg da batata chips."
+   "B": "Palitos salgados têm 4 × 501 = 2004 mg por pacote. São 501 mg em cada porção, o maior valor por porção, e o pacote também fica muito acima dos 510 mg da batata chips. Faltou multiplicar e comparar.",
+   "C": "Biscoito multigrãos tem 8 × 264 = 2112 mg por pacote, o MAIOR total. Quem marcou C olhou o pacote de 8 porções ou deixou de multiplicar: mais porções significam mais sódio no pacote.",
+   "D": "Biscoito de polvilho tem 6 × 175 = 1050 mg por pacote, mais que o dobro dos 510 mg da batata chips. As 6 porções pesam mais que a diferença de sódio por porção (175 contra 170).",
+   "E": "Biscoito de água e sal tem o menor sódio por porção (166 mg), mas o pacote tem 5 porções: 5 × 166 = 830 mg, mais que os 510 mg da batata chips. Quem marcou E comparou só a porção e não multiplicou."
   },
   "armadilha": "Escolher o menor sódio por porção (166 mg, água e sal) em vez do menor sódio por pacote, que exige multiplicar pelo número de porções.",
   "alerta": "",
@@ -127,10 +127,56 @@
  "gab": "A",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [],
+  "fatos_ok": true,
+  "fatos_resposta": "A",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "Chips: 3 × 170 = 510 mg\nPalitos: 4 × 501 = 2004 mg",
+    "motivo": "Sem mudança de conteúdo; mantido. (Cada linha cabe em ~30 caracteres.)"
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "Palitos salgados têm 4 × 501 = 2004 mg por pacote. São 501 mg em cada porção, o maior valor por porção, e o pacote também fica muito acima dos 510 mg da batata chips. Faltou multiplicar e comparar.",
+    "motivo": "A frase original era confusa ('A porção é a que tem mais sódio'). Agora diz o que faltou a quem marcou B."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "Biscoito multigrãos tem 8 × 264 = 2112 mg por pacote, o MAIOR total. Quem marcou C olhou o pacote de 8 porções ou deixou de multiplicar: mais porções significam mais sódio no pacote.",
+    "motivo": "Explicita o que faltou no raciocínio de quem marcou C."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "Biscoito de polvilho tem 6 × 175 = 1050 mg por pacote, mais que o dobro dos 510 mg da batata chips. As 6 porções pesam mais que a diferença de sódio por porção (175 contra 170).",
+    "motivo": "Frase original ('175 mg por porção não compensa') era vaga; agora mostra a comparação concreta."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "Biscoito de água e sal tem o menor sódio por porção (166 mg), mas o pacote tem 5 porções: 5 × 166 = 830 mg, mais que os 510 mg da batata chips. Quem marcou E comparou só a porção e não multiplicou.",
+    "motivo": "Deixa claro o erro de raciocínio de quem marcou E."
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Confira pela ordem de grandeza, sem a conta exata: chips 3 × 170 é cerca de 500. Água e sal 5 × 166 é cerca de 830. Polvilho 6 × 175 passa de 1000. Palitos 4 × 501 é cerca de 2000. Multigrãos 8 × 264 passa de 2000. O menor continua sendo chips.",
+    "motivo": "Frases mais curtas e sem sinais soltos (>) no meio do texto."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "A"
  }
 }

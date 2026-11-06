@@ -8,7 +8,7 @@
  "conceito": "Comprimento de uma correia em duas polias: dois segmentos tangentes mais dois arcos de circunferência",
  "resolucao": {
   "antes": {
-   "texto": "A correia tem quatro partes. Duas são retas, os segmentos tangentes de 15 cm. Duas são arcos de circunferência, um em cada polia. O comprimento total é a soma das quatro. Um arco de x graus mede x/360 do comprimento da circunferência inteira (2πr). O trabalho real é descobrir quanto cada polia 'abraça', porque a figura só dá o ângulo de 150° na polia menor.",
+   "texto": "A correia tem quatro partes. Duas são retas: os segmentos tangentes, de 15 cm cada. Duas são arcos, um em cada polia. O comprimento total é a soma das quatro. Um arco de x graus mede x/360 da circunferência inteira (2 × π × raio). A figura só dá o ângulo da polia menor (150°). Descobrir o arco da maior é o trabalho real da questão.",
    "formulas": [
     "circunferência = 2 × π × raio",
     "arco = (ângulo ÷ 360) × circunferência",
@@ -33,7 +33,7 @@
     ]
    ]
   },
-  "pista": "A correia dá uma volta fechada. Se os dois arcos juntassem uma volta completa de cada polia, o que sobraria da outra? Veja o que o ângulo de 150° da figura marca.",
+  "pista": "A correia dá uma volta fechada. Em cada polia, o arco em contato mais o arco sem correia formam 360°. Olhe o que o ângulo de 150° da figura marca e pense em como as duas polias se relacionam.",
   "passos": [
    {
     "faz": "Leia o ângulo da polia menor",
@@ -44,7 +44,7 @@
    {
     "faz": "Ache o arco da polia maior",
     "conta": "360° − 150° = 210°",
-    "porque": "Os raios até os pontos de contato são perpendiculares às tangentes. As duas tangentes aproximam-se do lado da polia menor. Se a menor abraça 150°, que é menos que 180°, a maior abraça o que falta para 360° (210°). Isso confere com a medida: o ângulo na menor é 180° − 2×15°, e na maior 180° + 2×15°, com 15° ≈ o ângulo cujo seno é (8−4)/√241.",
+    "porque": "A tangente externa forma com a linha dos centros um ângulo θ, igual nas duas polias. A menor abraça 180° − 2θ e a maior abraça 180° + 2θ. Somando, dá 360°. Se a menor abraça 150°, a maior abraça 360° − 150° = 210°.",
     "tipo": "calcular"
    },
    {
@@ -67,11 +67,11 @@
    }
   ],
   "resposta": "Alternativa D: 68 cm, que é 30 cm de partes retas mais 10 cm do arco da polia menor mais 28 cm do arco da polia maior.",
-  "checagem": "Os dois arcos somam 150° + 210° = 360° de ângulo, como em qualquer correia sobre duas polias. As duas circunferências têm 24 e 48 cm. Os arcos 10 e 28 ficam entre 0 e esses valores, e 28 passa da metade de 48, coerente com 210° > 180°. Total: 30 + 38 = 68.",
+  "checagem": "Confira pelas frações da volta: 150° é 5/12 e 210° é 7/12 de volta. Juntas dão 12/12, uma volta inteira. Como 210° é maior que 180°, o arco da maior (28) passa da metade de 48 (que é 24). Total: 30 + 10 + 28 = 68.",
   "erradas": {
    "A": "54 não confere com a correia: 54 = 30 + 24, isto é, as duas tangentes mais uma circunferência inteira da polia menor (2×3×4 = 24). Isso ignora que a correia abraça só 150° da menor e 210° da maior.",
    "B": "60 sai de usar 150° nas duas polias: 30 + 10 + (150/360)×48 = 30 + 10 + 20 = 60. O arco da polia maior é o complemento de 150°, ou seja, 210°, e não 150°.",
-   "C": "66 não confere: com as tangentes (30 cm), faltariam 36 cm de arcos. Os arcos corretos são 10 cm e 28 cm, que somam 38 cm, e 30 + 38 = 68. Nenhuma combinação coerente de ângulos (150° e 210°) dá 36.",
+   "C": "66 sai de usar meia volta em cada polia, ignorando o ângulo: 30 + (180/360)×24 + (180/360)×48 = 30 + 12 + 24 = 66. A menor abraça 150° (10 cm) e a maior 210° (28 cm), e não 180° cada uma.",
    "E": "72 sai de usar 210° também na polia menor: 30 + (210/360)×24 + 28 = 30 + 14 + 28 = 72. Mas o ângulo de 150° da figura é justamente o arco da correia na polia menor."
   },
   "armadilha": "O ângulo de 150° é só da polia menor. A maior abraça 360° − 150° = 210°, e usar 150° nas duas dá 60.",
@@ -89,7 +89,7 @@
   },
   {
    "nome": "eliminação",
-   "ideia": "Só as tangentes dão 30 e os arcos dão pelo menos 10 + algo maior que 24 (a maior abraça mais de meia volta, mais de 24 cm). O total passa de 64, o que elimina 54, 60 e 66 e deixa 68 e 72. Para decidir, calcule o arco exato da maior (28)."
+   "ideia": "Só as tangentes dão 30. Os arcos dão 10 na menor mais algo acima de 24 na maior, porque a maior abraça mais de meia volta. Então o total passa de 64, o que elimina 54 e 60. Para decidir entre 66, 68 e 72, calcule o arco exato da maior (28): 30 + 10 + 28 = 68."
   }
  ],
  "quadro": [
@@ -157,10 +157,73 @@
  "gab": "D",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "66 sai de usar meia volta em cada polia, ignorando o ângulo: 30 + (180/360)×24 + (180/360)×48 = 30 + 12 + 24 = 66. A menor abraça 150° (10 cm) e a maior 210° (28 cm), e não 180° cada uma.",
+    "motivo": "O texto dizia que nenhuma combinação dá 36 cm de arcos e marcava a alternativa como 'não confere'. Isso está errado: meia volta em cada polia dá 12 + 24 = 36, e o total fica exatamente em 66. Esse é um erro típico real.",
+    "fonte": ""
+   },
+   {
+    "campo": "caminhos[1].ideia",
+    "depois": "Só as tangentes dão 30. Os arcos dão 10 na menor mais algo acima de 24 na maior, porque a maior abraça mais de meia volta. Então o total passa de 64, o que elimina 54 e 60. Para decidir entre 66, 68 e 72, calcule o arco exato da maior (28): 30 + 10 + 28 = 68.",
+    "motivo": "O texto dizia que um total acima de 64 elimina o 66. Não elimina, porque 66 > 64. Esse limite só derruba 54 e 60.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "A correia tem quatro partes. Duas são retas: os segmentos tangentes, de 15 cm cada. Duas são arcos, um em cada polia. O comprimento total é a soma das quatro. Um arco de x graus mede x/360 da circunferência inteira (2 × π × raio). A figura só dá o ângulo da polia menor (150°). Descobrir o arco da maior é o trabalho real da questão.",
+    "motivo": "Frases mais curtas e diretas; tira aspas e termos confusos."
+   },
+   {
+    "campo": "resolucao.pista",
+    "depois": "A correia dá uma volta fechada. Em cada polia, o arco em contato mais o arco sem correia formam 360°. Olhe o que o ângulo de 150° da figura marca e pense em como as duas polias se relacionam.",
+    "motivo": "A pista original ficava confusa; esta faz pensar sem entregar o resultado."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "As duas tangentes são paralelas à linha que une o contato das polias, e os raios até os contatos são perpendiculares a elas. Por isso, a polia maior abraça 180° mais do que a menor abraça a menos: os ângulos são complementares em relação a 360°. Se a menor abraça 150°, a maior abraça 360° − 150° = 210°.",
+    "motivo": "O texto original trazia seno, 241 e 15° sem explicação, o que confunde o aluno. Esta versão usa apenas a ideia de complemento."
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "360° − 150° = 210°",
+    "motivo": "Mantida igual, só para registro."
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Confira pelas frações da volta: 150° é 5/12 e 210° é 7/12 de volta. Juntas dão 12/12, uma volta inteira. Como 210° é maior que 180°, o arco da maior (28) passa da metade de 48 (que é 24). Total: 30 + 10 + 28 = 68.",
+    "motivo": "Checagem mais simples, por outro caminho e sem repetir a conta."
+   }
+  ],
+  "didatica_alertas": [
+   "Fato a conferir: a correia aberta tem ângulos de contato 180° − 2θ e 180° + 2θ, que só somam 360° (e não valem 150° e 210° exatos) por causa da inclinação das tangentes. Aqui o resultado 150° + 210° = 360° é consistente, mas a justificativa geométrica de que o arco maior é o complemento de 150° ficou apenas intuitiva. O corretor 1 deve verificar se vale manter."
+  ],
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "A tangente externa forma com a linha dos centros um ângulo θ, igual nas duas polias. A menor abraça 180° − 2θ e a maior abraça 180° + 2θ. Somando, dá 360°. Se a menor abraça 150°, a maior abraça 360° − 150° = 210°.",
+    "motivo": "O texto anterior dizia que as tangentes são paralelas à linha dos centros, o que é falso, e a frase sobre 180° estava sem sentido. Os valores 150° e 210° continuam corretos.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "D"
  }
 }

@@ -24,8 +24,16 @@
      "toneladas produzidas por reciclagem no mês seguinte"
     ],
     [
+     "P",
+     "custo, em reais, de uma tonelada de plástico feita de petróleo"
+    ],
+    [
      "≤",
      "menor ou igual a"
+    ],
+    [
+     "≥",
+     "maior ou igual a"
     ]
    ]
   },
@@ -56,9 +64,9 @@
     "tipo": "calcular"
    },
    {
-    "faz": "Resolva para r",
+    "faz": "Resolva a inequação para r",
     "conta": "1 900 000 − 9 500r ≤ 570 000",
-    "porque": "Isolando r: 9 500r ≥ 1 330 000, então r ≥ 140. Dividir por número positivo mantém o sentido. O mínimo é 140 t.",
+    "porque": "Passe 1 900 000 para o outro lado: −9 500r ≤ −1 330 000. Dividir por número negativo inverte o sinal: r ≥ 140. O mínimo é 140 t.",
     "tipo": "calcular"
    },
    {
@@ -87,7 +95,7 @@
  "caminhos": [
   {
    "nome": "troca de uma tonelada",
-   "ideia": "Cada tonelada que passa do petróleo para a reciclagem economiza 10 000 − 500 = R$ 9.500. É preciso economizar 570 000 além do que já se economiza. O custo se dá com 0 reciclagem: 190 × 10 000 = 1 900 000, e a meta é 570 000. Logo r = 1 330 000 ÷ 9 500 = 140."
+   "ideia": "Cada tonelada que passa do petróleo para a reciclagem economiza 10 000 − 500 = R$ 9.500. Sem nenhuma reciclagem, as 190 t custariam 190 × 10 000 = 1 900 000, e a meta é 570 000. A economia necessária é 1 900 000 − 570 000 = 1 330 000. Logo r = 1 330 000 ÷ 9 500 = 140."
   },
   {
    "nome": "testar alternativas",
@@ -100,7 +108,7 @@
    "nota": "R$ 500 é 5% do custo P do petróleo"
   },
   {
-   "linha": "P = 500 ÷ 0,05",
+   "linha": "P = 500/0,05",
    "nota": "o 0,05 passa dividindo",
    "mov": [
     {
@@ -129,7 +137,7 @@
    "nota": "soma dos dois"
   },
   {
-   "linha": "Meta ≤ 570 000",
+   "linha": "Meta: custo ≤ 570 000",
    "nota": "metade do custo atual"
   },
   {
@@ -137,16 +145,16 @@
    "nota": "r t recicladas, 190 − r de petróleo"
   },
   {
-   "linha": "500r + 1 900 000 − 10 000r",
+   "linha": "500r + 1 900 000 − 10 000r ≤ 570 000",
    "nota": "distribua o 10 000"
   },
   {
    "linha": "1 900 000 − 9 500r ≤ 570 000",
-   "nota": "junte os termos em r"
+   "nota": "500r − 10 000r = −9 500r"
   },
   {
    "linha": "−9 500r ≤ 570 000 − 1 900 000",
-   "nota": "o 1 900 000 passa para o outro lado, trocando o sinal",
+   "nota": "o 1 900 000 passa para a direita, trocando o sinal",
    "destaque": "− 1 900 000",
    "mov": [
     {
@@ -160,17 +168,17 @@
   },
   {
    "linha": "−9 500r ≤ −1 330 000",
-   "nota": "faça a conta"
+   "nota": "570 000 − 1 900 000 = −1 330 000"
   },
   {
-   "linha": "r ≥ 1 330 000 / 9 500",
-   "nota": "divida por −9 500: o sinal da desigualdade inverte",
+   "linha": "r ≥ (−1 330 000)/(−9 500)",
+   "nota": "o −9 500 passa dividindo; sendo negativo, o sinal inverte",
    "mov": [
     {
-     "termo": "9 500",
+     "termo": "−9 500",
      "de": "esquerda",
      "para": "denominador",
-     "vira": "9 500",
+     "vira": "−9 500",
      "como": "passa dividindo, inverte o sinal"
     }
    ]
@@ -193,10 +201,172 @@
  "gab": "B",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "caminhos[0].ideia",
+    "depois": "Cada tonelada que passa do petróleo para a reciclagem economiza 10 000 − 500 = R$ 9.500. Sem nenhuma reciclagem, as 190 t custariam 190 × 10 000 = 1 900 000, e a meta é 570 000. A economia necessária é 1 900 000 − 570 000 = 1 330 000. Logo r = 1 330 000 ÷ 9 500 = 140.",
+    "motivo": "O texto dizia que era preciso economizar 570 000. Isso está errado: a economia necessária, contada a partir do cenário sem reciclagem, é 1 900 000 − 570 000 = 1 330 000. A frase 'O custo se dá com 0 reciclagem' também estava truncada.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[4]",
+    "depois": {
+     "faz": "Resolva a inequação para r",
+     "conta": "1 900 000 − 9 500r ≤ 570 000",
+     "porque": "Passe 1 900 000 para o outro lado: −9 500r ≤ −1 330 000. Dividir por número negativo inverte o sinal: r ≥ 140. O mínimo é 140 t.",
+     "tipo": "calcular"
+    },
+    "motivo": "O porque original dizia que dividir por número positivo mantém o sentido, o que contradiz o quadro, que divide por −9 500. A conta também pulava a etapa de juntar 500r − 10 000r."
+   },
+   {
+    "campo": "resolucao.quadro",
+    "depois": [
+     {
+      "linha": "500 = 0,05 × P",
+      "nota": "R$ 500 é 5% do custo P do petróleo"
+     },
+     {
+      "linha": "P = \\frac{500}{0,05}",
+      "nota": "o 0,05 passa dividindo",
+      "mov": [
+       {
+        "termo": "0,05",
+        "de": "direita",
+        "para": "denominador",
+        "vira": "0,05",
+        "como": "passa dividindo"
+       }
+      ]
+     },
+     {
+      "linha": "P = 10 000",
+      "nota": "R$ 10.000 por tonelada"
+     },
+     {
+      "linha": "110 × 10 000 = 1 100 000",
+      "nota": "custo do petróleo no mês atual"
+     },
+     {
+      "linha": "80 × 500 = 40 000",
+      "nota": "custo da reciclagem no mês atual"
+     },
+     {
+      "linha": "Custo atual = 1 140 000",
+      "nota": "soma dos dois"
+     },
+     {
+      "linha": "Meta: custo ≤ 570 000",
+      "nota": "metade do custo atual"
+     },
+     {
+      "linha": "500r + 10 000(190 − r) ≤ 570 000",
+      "nota": "r t recicladas, 190 − r de petróleo"
+     },
+     {
+      "linha": "500r + 1 900 000 − 10 000r ≤ 570 000",
+      "nota": "distribua o 10 000"
+     },
+     {
+      "linha": "1 900 000 − 9 500r ≤ 570 000",
+      "nota": "500r − 10 000r = −9 500r"
+     },
+     {
+      "linha": "−9 500r ≤ 570 000 − 1 900 000",
+      "nota": "o 1 900 000 passa para a direita, trocando o sinal",
+      "destaque": "− 1 900 000",
+      "mov": [
+       {
+        "termo": "+ 1 900 000",
+        "de": "esquerda",
+        "para": "direita",
+        "vira": "− 1 900 000",
+        "como": "atravessa o ≤"
+       }
+      ]
+     },
+     {
+      "linha": "−9 500r ≤ −1 330 000",
+      "nota": "570 000 − 1 900 000 = −1 330 000"
+     },
+     {
+      "linha": "r ≥ \\frac{−1 330 000}{−9 500}",
+      "nota": "o −9 500 passa dividindo; sendo negativo, o sinal inverte",
+      "mov": [
+       {
+        "termo": "−9 500",
+        "de": "esquerda",
+        "para": "denominador",
+        "vira": "−9 500",
+        "como": "passa dividindo, inverte o sinal"
+       }
+      ]
+     },
+     {
+      "linha": "r ≥ 140",
+      "nota": "mínimo de 140 toneladas"
+     }
+    ],
+    "motivo": "Fração empilhada com \\frac. Divisão feita por −9 500 (negativo), coerente com a inversão do sinal. Linha com a distribuição completa e linha para juntar os termos."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "t",
+      "tonelada"
+     ],
+     [
+      "r",
+      "toneladas produzidas por reciclagem no mês seguinte"
+     ],
+     [
+      "P",
+      "custo, em reais, de uma tonelada de plástico feita de petróleo"
+     ],
+     [
+      "≤",
+      "menor ou igual a"
+     ],
+     [
+      "≥",
+      "maior ou igual a"
+     ]
+    ],
+    "motivo": "P e ≥ aparecem na resolução e não estavam explicados."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.quadro[1].linha",
+    "depois": "P = 500/0,05",
+    "motivo": "Formato da fábrica: fração como numerador/denominador, sem LaTeX (\\frac).",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.quadro[12].linha",
+    "depois": "r ≥ (−1 330 000)/(−9 500)",
+    "motivo": "Formato da fábrica: fração como numerador/denominador, sem LaTeX (\\frac).",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "B"
  }
 }

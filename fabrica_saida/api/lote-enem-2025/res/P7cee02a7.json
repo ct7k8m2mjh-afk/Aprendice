@@ -8,7 +8,7 @@
  "conceito": "Ler um gráfico de barras com linha e comparar o estoque total (brasileiro + estrangeiro) com a demanda de cada gênero.",
  "resolucao": {
   "antes": {
-   "texto": "A pergunta é em qual gênero o estoque NÃO cobre a demanda. O estoque de um gênero é a soma das duas barras (autor brasileiro + autor estrangeiro), porque cada barra mostra só uma parte dos livros. A demanda é o ponto azul da linha. Compare, gênero por gênero, a soma das barras com o ponto.",
+   "texto": "A pergunta é em qual gênero o estoque NÃO cobre a demanda. O estoque de um gênero é a soma das duas barras (autor brasileiro + autor estrangeiro), porque cada barra mostra só uma parte dos livros. A demanda é o ponto azul da linha. Compare, gênero por gênero, a soma das barras com o ponto. Os valores lidos no gráfico são aproximados.",
    "formulas": [
     "estoque do gênero = barra brasileira + barra estrangeira",
     "falta = demanda − estoque (só interessa se for positivo)"
@@ -33,25 +33,25 @@
    {
     "faz": "Diga o que a questão pede",
     "conta": "estoque total < demanda",
-    "porque": "Só o gênero cujo estoque não atende à demanda será encomendado. Maior demanda ou menor estoque isolados não respondem a isso.",
-    "tipo": "interpretar"
+    "porque": "O gerente só encomenda o gênero cujo estoque não atende à demanda. Ter a maior demanda ou o menor estoque, sozinho, não prova isso.",
+    "tipo": "localizar"
    },
    {
     "faz": "Leia estoque e demanda da ficção",
     "conta": "80 + 120 = 200 ; demanda 160",
-    "porque": "O eixo vertical marca as quantidades. Estoque 200 é maior que 160, então sobra livro.",
+    "porque": "Leia a altura de cada barra no eixo vertical e some as duas. 200 é maior que 160, então o estoque cobre a demanda.",
     "tipo": "localizar"
    },
    {
     "faz": "Leia a autoajuda",
     "conta": "50 + 80 = 130 ; demanda ≈ 135",
-    "porque": "O ponto azul fica um pouco acima de 130, perto de 135. Estoque 130 é menor que a demanda: falta.",
+    "porque": "O ponto azul fica um pouco acima da marca 130, perto de 135. O estoque de 130 é menor que a demanda, então falta livro.",
     "tipo": "localizar"
    },
    {
     "faz": "Leia romance e biografia",
-    "conta": "40 + 105 = 145 ; demanda 140",
-    "porque": "Romance: estoque 145 passa de 140, sobra. Biografia: 45 + 50 = 95 contra demanda 80, também sobra.",
+    "conta": "Romance: 40 + 105 = 145 ; demanda 140",
+    "porque": "Romance: 145 passa de 140, então sobra livro. Biografia: 45 + 50 = 95 contra demanda 80, e também sobra.",
     "tipo": "localizar"
    },
    {
@@ -66,8 +66,8 @@
   "erradas": {
    "A": "A ficção tem a maior demanda (160), mas o estoque é 80 + 120 = 200, maior que a demanda. Não falta livro, então não há encomenda.",
    "B": "A biografia tem a menor demanda (80), mas o estoque é 45 + 50 = 95, maior que 80. Demanda baixa não indica falta de estoque.",
-   "D": "A biografia tem mesmo o menor estoque (95), mas ele ainda supera a demanda de 80. O critério é estoque menor que a demanda, não o menor estoque.",
-   "E": "O romance tem a menor barra de autor brasileiro (40), mas a questão olha o estoque total do gênero: 40 + 105 = 145, maior que a demanda de 140."
+   "D": "A biografia tem mesmo o menor estoque (95), mas ele ainda supera a demanda de 80. Quem marcou D comparou os estoques entre gêneros, em vez de comparar o estoque de cada gênero com a sua própria demanda.",
+   "E": "O romance tem a menor barra de autor brasileiro (40), mas isso é só uma parte do estoque. Somando as duas barras, 40 + 105 = 145, que supera a demanda de 140. Quem marcou E olhou uma barra só."
   },
   "armadilha": "Comparar só uma barra com o ponto azul, ou olhar o maior ou o menor valor isolado, em vez de somar as duas barras de cada gênero.",
   "alerta": "",
@@ -103,7 +103,7 @@
   {
    "linha": "130 − 135 = −5",
    "nota": "falta livro",
-   "destaque": "− 5"
+   "destaque": "−5"
   },
   {
    "linha": "Romance: 40 + 105 = 145",
@@ -135,10 +135,79 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[0].tipo",
+    "depois": "localizar",
+    "motivo": "O tipo \"interpretar\" não existe na lista de tipos permitidos (localizar, calcular, comparar, eliminar, concluir). Este passo traduz o que a questão pede, e o guia classifica esse passo como localizar.",
+    "fonte": ""
+   },
+   {
+    "campo": "quadro[3].destaque",
+    "depois": "−5",
+    "motivo": "O destaque precisa ser um trecho da linha \"130 − 135 = −5\". Com o espaço, \"− 5\" não aparece na linha e não é encontrado.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "A pergunta é em qual gênero o estoque NÃO cobre a demanda. O estoque de um gênero é a soma das duas barras (autor brasileiro + autor estrangeiro), porque cada barra mostra só uma parte dos livros. A demanda é o ponto azul da linha. Compare, gênero por gênero, a soma das barras com o ponto. Os valores lidos no gráfico são aproximados.",
+    "motivo": "Avisar que a leitura do gráfico é aproximada, já que a demanda da autoajuda não cai exatamente numa marca do eixo."
+   },
+   {
+    "campo": "resolucao.passos[0].porque",
+    "depois": "O gerente só encomenda o gênero cujo estoque não atende à demanda. Ter a maior demanda ou o menor estoque, sozinho, não prova isso.",
+    "motivo": "Frase mais curta e sem ambiguidade."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "Leia a altura de cada barra no eixo vertical e some as duas. 200 é maior que 160, então o estoque cobre a demanda.",
+    "motivo": "Ensinar como ler o valor no gráfico."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "O ponto azul fica um pouco acima da marca 130, perto de 135. O estoque de 130 é menor que a demanda, então falta livro.",
+    "motivo": "Deixar claro onde olhar no eixo."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "Romance: 40 + 105 = 145 ; demanda 140",
+    "motivo": "A conta original misturava dois gêneros numa linha só."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Romance: 145 passa de 140, então sobra livro. Biografia: 45 + 50 = 95 contra demanda 80, e também sobra.",
+    "motivo": "Complementa o passo, pois a biografia sai do campo conta e fica explicada aqui."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "O romance tem a menor barra de autor brasileiro (40), mas isso é só uma parte do estoque. Somando as duas barras, 40 + 105 = 145, que supera a demanda de 140. Quem marcou E olhou uma barra só.",
+    "motivo": "Dizer o que faltou no raciocínio de quem marcou E."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "A biografia tem mesmo o menor estoque (95), mas ele ainda supera a demanda de 80. Quem marcou D comparou os estoques entre gêneros, em vez de comparar o estoque de cada gênero com a sua própria demanda.",
+    "motivo": "Explicitar o raciocínio que faltou."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "C"
  }
 }

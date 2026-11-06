@@ -10,7 +10,7 @@
   "antes": {
    "texto": "Cada ponto do gráfico é um estudante: a posição na horizontal é a massa e, na vertical, a altura. As médias dividem o gráfico em quatro regiões. Queremos só a região à esquerda de 80 kg e acima de 1,65 m. 'Acima da média' não inclui quem tem exatamente 1,65 m: os pontos sobre essa linha ficam de fora.",
    "formulas": [
-    "percentual = pontos que cumprem as duas condições ÷ total de pontos × 100"
+    "percentual = (pontos que cumprem as duas condições)/(total de pontos) × 100"
    ],
    "simbolos": [
     [
@@ -42,20 +42,20 @@
     "tipo": "localizar"
    },
    {
-    "faz": "Veja a altura desses 5 pontos",
+    "faz": "Veja a altura dos 2 primeiros pontos",
     "conta": "50 kg: 1,60 | 55 kg: 1,65",
     "porque": "Para ser maior que 1,65 m, o ponto precisa ficar acima da linha de 1,65. Os de 50 kg (1,60) e de 55 kg (1,65) não passam nesse teste.",
     "tipo": "localizar"
    },
    {
-    "faz": "Continue com os outros 3",
+    "faz": "Veja a altura dos outros 3 pontos",
     "conta": "60 kg: 1,65 | 65 kg: 1,68 | 68 kg: 1,70",
     "porque": "O de 60 kg está sobre a linha da média (1,65), então não está acima. Só os de 65 kg e 68 kg estão acima de 1,65.",
     "tipo": "localizar"
    },
    {
     "faz": "Calcule o percentual",
-    "conta": "2/10 = 0,20 = 20%",
+    "conta": "2/10 = 0,2 = 20%",
     "porque": "Dois estudantes em dez cumprem as duas condições. Dois em dez é 20%.",
     "tipo": "calcular"
    },
@@ -72,7 +72,7 @@
    "A": "10% corresponde a 1 estudante em 10. Mas há 2 pontos acima da linha de 1,65 m à esquerda de 80 kg: o de 65 kg (1,68 m) e o de 68 kg (1,70 m).",
    "C": "30% exigiria 3 pontos. Na região à esquerda de 80 kg e acima de 1,65 m há apenas dois (1,68 m e 1,70 m). Os pontos de 55 kg e 60 kg valem exatamente 1,65 m, que não é acima da média.",
    "D": "50% é a fração só da massa abaixo da média: 5 pontos em 10 (50, 55, 60, 65, 68 kg). Falta aplicar a segunda condição, altura acima de 1,65 m, que elimina três deles.",
-   "E": "70% é a fração só da altura: 7 pontos têm altura maior ou igual a 1,65 m, contando os três que valem exatamente 1,65 m. Isso ignora a condição da massa e inclui quem está na linha da média."
+   "E": "70% é a fração só da altura: 7 pontos têm altura de 1,65 m ou mais, contando os três que valem exatamente 1,65 m. Falta a condição da massa, e quem está sobre a linha da média não está acima dela."
   },
   "armadilha": "Contar como 'acima da média' os pontos que valem exatamente 1,65 m, que ficam sobre a linha da média e não acima dela.",
   "alerta": "",
@@ -133,10 +133,81 @@
  "gab": "B",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [],
+  "fatos_ok": true,
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "\\frac{2}{10} = 0,2 = 20%",
+    "motivo": "Fração deve aparecer empilhada, como no caderno."
+   },
+   {
+    "campo": "resolucao.quadro[4].linha",
+    "depois": "\\frac{2}{10} = 0,2",
+    "motivo": "Fração empilhada em vez de escrita na linha."
+   },
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "percentual = \\frac{pontos que cumprem as duas condições}{total de pontos} × 100"
+    ],
+    "motivo": "Fração empilhada, no formato da área."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "70% é a fração só da altura: 7 pontos têm altura de 1,65 m ou mais, contando os três que valem exatamente 1,65 m. Falta a condição da massa, e quem está sobre a linha da média não está acima dela.",
+    "motivo": "Mostra o que faltou no raciocínio de quem marcou E."
+   },
+   {
+    "campo": "resolucao.passos[2].faz",
+    "depois": "Veja a altura dos 2 primeiros pontos",
+    "motivo": "O passo trata só dos pontos de 50 e 55 kg; o título ficava confuso."
+   },
+   {
+    "campo": "resolucao.passos[3].faz",
+    "depois": "Veja a altura dos outros 3 pontos",
+    "motivo": "Clareza: os 5 pontos foram divididos em 2 e 3."
+   }
+  ],
+  "didatica_alertas": [
+   "Conferir a altura dos 3 pontos à direita de 80 kg: o gráfico mostra 1,65 e 1,625 em torno de 85 e 90 kg. Na erradas.E, 'sete pontos com altura ≥ 1,65' pode estar errado: contando 1,65 (55), 1,65 (60), 1,68, 1,70, 1,65 (85), 1,75, 1,70 dá 7, e o ponto de 90 kg (≈1,625) fica abaixo. Está correto, só vale reconferir."
+  ],
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "2/10 = 0,2 = 20%",
+    "motivo": "O programa da fábrica proíbe LaTeX (\\frac); a fração deve ser escrita como numerador/denominador.",
+    "fonte": ""
+   },
+   {
+    "campo": "quadro[4].linha",
+    "depois": "2/10 = 0,2",
+    "motivo": "O programa da fábrica proíbe LaTeX (\\frac); a fração deve ser escrita como numerador/denominador.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "percentual = (pontos que cumprem as duas condições)/(total de pontos) × 100"
+    ],
+    "motivo": "O programa da fábrica proíbe LaTeX (\\frac); a fração deve ser escrita como numerador/denominador.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "B"
  }
 }

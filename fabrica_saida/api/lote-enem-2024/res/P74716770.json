@@ -25,6 +25,10 @@
     [
      "linear (afim)",
      "a cada unidade a mais, o custo aumenta sempre o mesmo valor"
+    ],
+    [
+     "C, F, p, n",
+     "C = custo total, F = custo fixo, p = preço por mochila, n = quantidade de mochilas"
     ]
    ]
   },
@@ -65,9 +69,9 @@
   "checagem": "Teste a fórmula com o terceiro ponto da tabela, que não foi usado: 150 + 30 × 100 = 3 150. Confere com a tabela.",
   "erradas": {
    "A": "2 400 é só o custo variável: 30 × 80 = 2 400. Faltou somar o custo fixo de R$ 150,00.",
-   "B": "2 520 não confere: a fórmula 150 + 30 × n daria 2 520 para n = 79, e não para 80. Para 80 mochilas o custo é 2 550.",
-   "D": "2 700 não confere: seria 150 + 30 × n com n = 85. Com 80 mochilas o resultado é 2 550.",
-   "E": "2 800 não confere: 2 800 − 150 = 2 650 não é múltiplo de 30. Pelo custo de 30 por mochila, 2 800 não corresponde a nenhuma quantidade inteira."
+   "B": "2 520 não confere: 2 520 − 150 = 2 370, e 2 370 ÷ 30 = 79. Esse valor seria o custo de 79 mochilas, não de 80. Para 80, o custo é 2 550.",
+   "D": "2 700 não confere: 2 700 − 150 = 2 550, e 2 550 ÷ 30 = 85. Esse valor seria o custo de 85 mochilas, não de 80. Para 80, o custo é 2 550.",
+   "E": "2 800 não confere: 2 800 − 150 = 2 650, e 2 650 ÷ 30 ≈ 88,3. Não dá número inteiro de mochilas. Para 80, o custo é 2 550."
   },
   "armadilha": "Multiplicar 30 por 80 e esquecer de somar o custo fixo de R$ 150,00.",
   "alerta": "",
@@ -84,7 +88,7 @@
   },
   {
    "nome": "Interpolação proporcional",
-   "ideia": "80 está a 30 de 50 e a 50 de 100, no intervalo entre 50 e 100. A fração é 30 ÷ 50 = 0,6 do trecho. O custo sobe 0,6 × 1 500 = 900 e chega a 1 650 + 900 = 2 550."
+   "ideia": "80 fica 30 mochilas acima de 50, dentro do trecho de 50 a 100, que tem 50 mochilas. A fração é 30 ÷ 50 = 0,6 do trecho. No trecho todo, o custo sobe 3 150 − 1 650 = 1 500. Então sobe 0,6 × 1 500 = 900 e chega a 1 650 + 900 = 2 550."
   }
  ],
  "quadro": [
@@ -93,12 +97,12 @@
    "nota": "custo = fixo + preço por mochila × quantidade"
   },
   {
-   "linha": "p = (1650 − 1050)/(50 − 30)",
+   "linha": "p = (1650 − 1050) ÷ (50 − 30)",
    "nota": "taxa entre os dois pontos; o fixo some na diferença",
    "destaque": "1650 − 1050"
   },
   {
-   "linha": "p = 600/20",
+   "linha": "p = 600 ÷ 20",
    "nota": "faça as subtrações"
   },
   {
@@ -152,10 +156,80 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "caminhos[1].ideia",
+    "depois": "80 fica 30 mochilas acima de 50, dentro do trecho de 50 a 100, que tem 50 mochilas. A fração é 30 ÷ 50 = 0,6 do trecho. No trecho todo, o custo sobe 3 150 − 1 650 = 1 500. Então sobe 0,6 × 1 500 = 900 e chega a 1 650 + 900 = 2 550.",
+    "motivo": "A frase dizia que 80 está \"a 50 de 100\", mas 100 − 80 = 20. O 50 é o tamanho do trecho de 50 a 100, e não a distância de 80 até 100. As contas (0,6 × 1 500 = 900; 1 650 + 900 = 2 550) estão certas.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "2 520 não confere: 2 520 − 150 = 2 370, e 2 370 ÷ 30 = 79. Esse valor seria o custo de 79 mochilas, não de 80. Para 80, o custo é 2 550.",
+    "motivo": "Mostra a conta que derruba a alternativa, em vez de só repetir a fórmula."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "2 700 não confere: 2 700 − 150 = 2 550, e 2 550 ÷ 30 = 85. Esse valor seria o custo de 85 mochilas, não de 80. Para 80, o custo é 2 550.",
+    "motivo": "Teste objetivo que o aluno pode refazer."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "2 800 não confere: 2 800 − 150 = 2 650, e 2 650 ÷ 30 ≈ 88,3. Não dá número inteiro de mochilas. Para 80, o custo é 2 550.",
+    "motivo": "Teste mais claro, com a conta completa."
+   },
+   {
+    "campo": "resolucao.quadro[1].linha",
+    "depois": "p = (1650 − 1050) ÷ (50 − 30)",
+    "motivo": "Os campos de texto da fábrica não aceitam LaTeX; a divisão com ÷ fica legível e cabe na linha."
+   },
+   {
+    "campo": "resolucao.quadro[2].linha",
+    "depois": "p = 600 ÷ 20",
+    "motivo": "Mesma razão: escrita com ÷, sem fração na linha."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "custo fixo",
+      "parte do custo que não muda com o número de mochilas"
+     ],
+     [
+      "custo variável",
+      "parte do custo que cresce junto com o número de mochilas"
+     ],
+     [
+      "linear (afim)",
+      "a cada unidade a mais, o custo aumenta sempre o mesmo valor"
+     ],
+     [
+      "C, F, p, n",
+      "C = custo total, F = custo fixo, p = preço por mochila, n = quantidade de mochilas"
+     ]
+    ],
+    "motivo": "O quadro usa as letras C, F, p e n, que precisam ser explicadas na primeira aparição."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "C"
  }
 }

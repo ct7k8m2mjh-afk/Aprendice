@@ -8,7 +8,7 @@
  "conceito": "Dose de radiação ionizante acumulada: taxa (µSv/h) × tempo, com conversão µSv → mSv e comparação com uma radiografia.",
  "resolucao": {
   "antes": {
-   "texto": "A questão é de proporção e conversão de unidades. O texto diz que a dose de 2 µSv/h vale só para a fase de cruzeiro, que é 80% do tempo de voo. Por isso, das 1 000 horas de trabalho por ano, só 800 h entram na conta. A radiografia vem em mSv e a taxa vem em µSv, então é preciso passar tudo para a mesma unidade antes de dividir.",
+   "texto": "A questão pede uma proporção e uma conversão de unidades. O texto diz que a dose de 2 µSv/h vale só para a fase de cruzeiro, que ocupa 80% do tempo de voo. Por isso, das 1 000 horas de trabalho por ano, só 800 h entram na conta. A radiografia vem em mSv e a taxa vem em µSv. Passe tudo para a mesma unidade antes de dividir.",
    "formulas": [
     "dose = taxa (µSv/h) × tempo (h)",
     "1 mSv = 1 000 µSv",
@@ -42,7 +42,7 @@
    {
     "faz": "Ache as horas em cruzeiro por ano",
     "conta": "80% de 1 000 h = 800 h",
-    "porque": "A taxa de 2 µSv/h é medida só na fase de cruzeiro, que é 80% do tempo de voo. Só essas horas entram na dose.",
+    "porque": "A taxa de 2 µSv/h só vale na fase de cruzeiro, que é 80% do tempo de voo. Só essas horas entram na dose.",
     "tipo": "calcular"
    },
    {
@@ -76,7 +76,7 @@
    "B": "10 sai de usar as 1 000 h inteiras: 2 µSv/h × 1 000 h = 2 000 µSv = 2 mSv, e 2 ÷ 0,2 = 10. Esqueceu que a taxa de 2 µSv/h vale só para os 80% do voo em cruzeiro.",
    "C": "80 sai de errar a conversão da radiografia: 0,2 mSv foi lido como 20 µSv, em vez de 200 µSv. Então 1 600 ÷ 20 = 80. Mas 1 mSv = 1 000 µSv, logo 0,2 mSv = 200 µSv.",
    "D": "100 junta os dois erros: usou 1 000 h (2 000 µSv) e leu 0,2 mSv como 20 µSv. Então 2 000 ÷ 20 = 100.",
-   "E": "1 000 não confere. Equivaleria a 1 000 × 0,2 mSv = 200 mSv, cerca de 125 vezes a dose anual de 1,6 mSv. Parece só repetir o número de horas do enunciado, sem conta."
+   "E": "1 000 não confere. Equivaleria a 1 000 × 0,2 mSv = 200 mSv, cerca de 125 vezes a dose anual de 1,6 mSv. Nem usando as 1 000 h inteiras (2 mSv ÷ 0,2 mSv = 10) se chega perto."
   },
   "armadilha": "Usar as 1 000 h inteiras (dá 10) em vez de só os 80% em cruzeiro, ou errar a conversão µSv ↔ mSv (dá 80 ou 100).",
   "alerta": "",
@@ -148,10 +148,60 @@
  "gab": "A",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "1 000 não confere. Equivaleria a 1 000 × 0,2 mSv = 200 mSv, cerca de 125 vezes a dose anual de 1,6 mSv, e nem usando as 1 000 h inteiras (2 mSv ÷ 0,2 = 10) se chega perto disso.",
+    "motivo": "A frase 'Parece só repetir o número de horas do enunciado, sem conta' tenta adivinhar de onde veio o erro, e o guia proíbe isso. No lugar dela entrou um teste objetivo que derruba a alternativa.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "A",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "A questão pede uma proporção e uma conversão de unidades. O texto diz que a dose de 2 µSv/h vale só para a fase de cruzeiro, que ocupa 80% do tempo de voo. Por isso, das 1 000 horas de trabalho por ano, só 800 h entram na conta. A radiografia vem em mSv e a taxa vem em µSv. Passe tudo para a mesma unidade antes de dividir.",
+    "motivo": "Frases mais curtas e diretas, sem ambiguidade; a ordem das ideias fica igual."
+   },
+   {
+    "campo": "resolucao.passos[0].porque",
+    "depois": "A taxa de 2 µSv/h só vale na fase de cruzeiro, que é 80% do tempo de voo. Só essas horas entram na dose.",
+    "motivo": "Frase mais curta."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "1 000 não confere. Equivaleria a 1 000 × 0,2 mSv = 200 mSv, cerca de 125 vezes a dose anual de 1,6 mSv. Nem usando as 1 000 h inteiras (2 mSv ÷ 0,2 mSv = 10) se chega perto.",
+    "motivo": "Frases mais curtas e unidades explícitas; o teste que derruba a alternativa continua o mesmo."
+   },
+   {
+    "campo": "resolucao.quadro[5].linha",
+    "depois": "n = \\frac{1,6}{0,2}",
+    "motivo": "Fração deve ser escrita empilhada, não na linha."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "quadro[5].linha",
+    "depois": "n = 1,6/0,2",
+    "motivo": "Regra do formato: fração escrita como numerador/denominador, sem LaTeX (\\frac é proibido). O site desenha a fração empilhada a partir dessa notação.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "A"
  }
 }

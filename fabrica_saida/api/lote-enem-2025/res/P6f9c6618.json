@@ -8,12 +8,12 @@
  "conceito": "Volume de cilindro menos volume de prisma de base quadrada inscrita (diagonal do quadrado = diâmetro).",
  "resolucao": {
   "antes": {
-   "texto": "O ouro é só a parte da medalha que fica fora do prisma. Logo, volume de ouro = volume do cilindro − volume do prisma. Os dois sólidos têm a mesma altura, a espessura de 3 mm. O quadrado ABCD tem os vértices na borda do círculo, então sua diagonal é o diâmetro, 6 cm. A espessura vem em mm e as medidas da base em cm: converta antes de calcular.",
+   "texto": "O ouro é só a parte da medalha que fica fora do prisma. Logo, volume de ouro = volume do cilindro − volume do prisma. Os dois sólidos têm a mesma altura, a espessura de 3 mm. Os vértices do quadrado ABCD tocam a borda do círculo, então a diagonal AC é o diâmetro, 6 cm. A espessura vem em mm e a base em cm: converta antes de calcular.",
    "formulas": [
     "volume do cilindro = π × r² × altura",
     "área do quadrado = diagonal² ÷ 2",
     "volume do prisma = área da base × altura",
-    "1 cm = 10 mm"
+    "1 cm = 10 mm, logo mm ÷ 10 = cm"
    ],
    "simbolos": [
     [
@@ -25,8 +25,20 @@
      "segmento que liga dois vértices opostos do quadrado"
     ],
     [
+     "prisma",
+     "sólido com duas bases iguais e a mesma altura em todo o corpo; aqui, a base é o quadrado ABCD"
+    ],
+    [
+     "cilindro",
+     "sólido de base circular, como uma moeda grossa"
+    ],
+    [
      "π",
      "número pi; a questão manda usar 3,1"
+    ],
+    [
+     "cm³",
+     "centímetro cúbico, unidade de volume"
     ]
    ]
   },
@@ -40,14 +52,14 @@
    },
    {
     "faz": "Calcule o volume do cilindro",
-    "conta": "V = 3,1 × 3² × 0,3 = 8,37",
+    "conta": "3,1 × 9 × 0,3 = 8,37",
     "porque": "O diâmetro é 6 cm, então o raio é 3 cm. Área da base = 3,1 × 9 = 27,9 cm². Multiplicando pela altura 0,3, o volume é 8,37 cm³.",
     "tipo": "calcular"
    },
    {
     "faz": "Ache a área do quadrado ABCD",
     "conta": "A = 6² ÷ 2 = 18",
-    "porque": "A diagonal AC é o diâmetro, 6 cm. Todo quadrado de diagonal d tem área d² ÷ 2. Confira: lado² + lado² = 36 dá lado² = 18.",
+    "porque": "A diagonal AC é o diâmetro, 6 cm. Todo quadrado de diagonal d tem área d² ÷ 2. Confira: lado² + lado² = 6² dá lado² = 18, e a área do quadrado é lado².",
     "tipo": "calcular"
    },
    {
@@ -66,10 +78,10 @@
   "resposta": "Alternativa B: 297 cm³ de ouro para as 100 medalhas.",
   "checagem": "As quatro pontas douradas, juntas, ocupam a área do círculo menos a do quadrado: 27,9 − 18 = 9,9 cm². Vezes a espessura 0,3 dá 2,97 cm³ por medalha. Vezes 100 dá 297. Fecha pelo outro caminho.",
   "erradas": {
-   "A": "288 não confere. Para dar 288, o prisma teria de ter 5,49 cm³ por medalha, o que exigiria uma base de 18,3 cm². Mas a base do quadrado é 6² ÷ 2 = 18 cm², e o prisma tem 5,4 cm³.",
+   "A": "288 não confere. Para dar 288, cada medalha teria 2,88 cm³ de ouro, e a conta correta dá 2,97 (8,37 − 5,4). Nenhum erro típico de conta chega a 288.",
    "C": "567 sai de tomar a área do quadrado como 9 (lado = raio, 3 × 3): prisma = 9 × 0,3 = 2,7 e 8,37 − 2,7 = 5,67, vezes 100 = 567. Mas o lado não é 3: é a diagonal que mede 6, e a área é 18.",
    "D": "990 sai de esquecer a espessura: 27,9 − 18 = 9,9 cm², vezes 100 = 990. Isso é uma área, não um volume. Falta multiplicar por 0,3 cm.",
-   "E": "1 134 não confere. O cilindro de 100 medalhas tem 837 cm³ no total, então o ouro, que é só uma parte dele, não pode passar disso. Já 990 e 1 134 estão acima de 837."
+   "E": "1 134 não confere. As 100 medalhas inteiras têm 837 cm³ (8,37 × 100), e o ouro é só uma parte delas. Logo o ouro não pode passar de 837."
   },
   "armadilha": "Esquecer de converter 3 mm em 0,3 cm, ou usar o raio como lado do quadrado em vez de ver que a diagonal é o diâmetro.",
   "alerta": "",
@@ -86,7 +98,7 @@
   },
   {
    "nome": "Eliminação por limite",
-   "ideia": "O cilindro das 100 medalhas tem 837 cm³. O ouro é só uma parte menor, o que já elimina D e E. Resta calcular para escolher entre A, B e C."
+   "ideia": "As 100 medalhas inteiras têm 837 cm³. O ouro é só uma parte, então fica abaixo de 837. Isso elimina D (990) e E (1 134). Falta calcular para escolher entre A, B e C."
   }
  ],
  "quadro": [
@@ -144,10 +156,96 @@
  "gab": "B",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [],
+  "fatos_ok": true,
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "O ouro é só a parte da medalha que fica fora do prisma. Logo, volume de ouro = volume do cilindro − volume do prisma. Os dois sólidos têm a mesma altura, a espessura de 3 mm. Os vértices do quadrado ABCD tocam a borda do círculo, então a diagonal AC é o diâmetro, 6 cm. A espessura vem em mm e a base em cm: converta antes de calcular.",
+    "motivo": "Frases mais curtas e sem dois sentidos; explica por que a diagonal é o diâmetro."
+   },
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "volume do cilindro = π × r² × altura",
+     "área do quadrado = diagonal² ÷ 2",
+     "volume do prisma = área da base × altura",
+     "1 cm = 10 mm, logo mm ÷ 10 = cm"
+    ],
+    "motivo": "Deixa claro o sentido da conversão."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "r",
+      "raio do círculo, metade do diâmetro"
+     ],
+     [
+      "diagonal",
+      "segmento que liga dois vértices opostos do quadrado"
+     ],
+     [
+      "prisma",
+      "sólido com duas bases iguais e a mesma altura em todo o corpo; aqui, a base é o quadrado ABCD"
+     ],
+     [
+      "cilindro",
+      "sólido de base circular, como uma moeda grossa"
+     ],
+     [
+      "π",
+      "número pi; a questão manda usar 3,1"
+     ],
+     [
+      "cm³",
+      "centímetro cúbico, unidade de volume"
+     ]
+    ],
+    "motivo": "Termos técnicos (prisma, cilindro, cm³) estavam sem explicação."
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "3,1 × 9 × 0,3 = 8,37",
+    "motivo": "Mostra a conta completa em uma linha curta, sem a letra V."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "A diagonal AC é o diâmetro, 6 cm. Todo quadrado de diagonal d tem área d² ÷ 2. Confira: lado² + lado² = 6² dá lado² = 18, e a área do quadrado é lado².",
+    "motivo": "Explica por que lado² é a área e de onde sai o 18."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "288 não confere. Para dar 288, cada medalha teria 2,88 cm³ de ouro, e a conta correta dá 2,97 (8,37 − 5,4). Nenhum erro típico de conta chega a 288.",
+    "motivo": "A explicação anterior era confusa e continha números que não ajudavam o aluno; troca por um teste direto."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "1 134 não confere. As 100 medalhas inteiras têm 837 cm³ (8,37 × 100), e o ouro é só uma parte delas. Logo o ouro não pode passar de 837.",
+    "motivo": "Remove a frase final confusa e deixa o teste do limite claro."
+   },
+   {
+    "campo": "resolucao.caminhos[1].ideia",
+    "depois": "As 100 medalhas inteiras têm 837 cm³. O ouro é só uma parte, então fica abaixo de 837. Isso elimina D (990) e E (1 134). Falta calcular para escolher entre A, B e C.",
+    "motivo": "Deixa claro o limite e as alternativas eliminadas."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "B"
  }
 }

@@ -56,7 +56,7 @@
    {
     "faz": "Divida cada produção por 20",
     "conta": "8000 ÷ 20 = 400\n6600 ÷ 20 = 330\n11250 ÷ 20 = 562,5\n10000 ÷ 20 = 500",
-    "porque": "Resultado em toneladas: 400; 330; 562,5; 562,5; 500, nesta ordem de safras.",
+    "porque": "Resultado em toneladas, na ordem das safras: 400; 330; 562,5; 562,5; 500. A safra 14-15 repete a 13-14, por isso 11250 ÷ 20 aparece uma vez só.",
     "tipo": "calcular"
    },
    {
@@ -85,7 +85,7 @@
  "caminhos": [
   {
    "nome": "eliminação por comparação de safras",
-   "ideia": "Compare 11-12 com 12-13: a produção cai (8000 para 6600 sacas). Isso elimina C e D, que sobem. Ainda faltaria separar A, B e E pelos valores, e o cálculo de uma safra basta: 8000 sacas valem 400 t, só o gráfico A tem 400."
+   "ideia": "Calcule só a primeira safra: 200 × 40 = 8000 sacas, que valem 8000 ÷ 20 = 400 t. Entre os gráficos, só o A começa em 400. Os outros começam em 40, 200, 240 e 8."
   },
   {
    "nome": "conversão direta para toneladas por hectare",
@@ -107,7 +107,11 @@
   },
   {
    "linha": "13-14: 250 × 45 = 11250",
-   "nota": "sacas na terceira safra (a 14-15 é igual)"
+   "nota": "sacas na terceira safra"
+  },
+  {
+   "linha": "14-15: 250 × 45 = 11250",
+   "nota": "igual à anterior: mesma área e produtividade"
   },
   {
    "linha": "15-16: 200 × 50 = 10000",
@@ -115,12 +119,16 @@
   },
   {
    "linha": "t = sacas × 50 ÷ 1000",
-   "nota": "saca de 50 kg; 1 t = 1000 kg",
-   "destaque": "÷ 1000"
+   "nota": "saca de 50 kg; 1 t = 1000 kg"
+  },
+  {
+   "linha": "t = sacas × (50/1000)",
+   "nota": "50/1000 = 1/20",
+   "destaque": "1/20"
   },
   {
    "linha": "t = sacas ÷ 20",
-   "nota": "simplifique 50/1000 = 1/20"
+   "nota": "20 sacas formam 1 tonelada"
   },
   {
    "linha": "8000 ÷ 20 = 400",
@@ -132,7 +140,11 @@
   },
   {
    "linha": "11250 ÷ 20 = 562,5",
-   "nota": "toneladas em 13-14 e 14-15"
+   "nota": "toneladas em 13-14"
+  },
+  {
+   "linha": "11250 ÷ 20 = 562,5",
+   "nota": "toneladas em 14-15"
   },
   {
    "linha": "10000 ÷ 20 = 500",
@@ -152,10 +164,104 @@
  "gab": "A",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [],
+  "fatos_ok": true,
+  "fatos_resposta": "A",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "11-12: 200 × 40 = 8000\n12-13: 220 × 30 = 6600\n13-14: 250 × 45 = 11250\n14-15: 250 × 45 = 11250\n15-16: 200 × 50 = 10000",
+    "motivo": "Sem mudança no conteúdo; mantido. Cada linha cabe na tela."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Resultado em toneladas, na ordem das safras: 400; 330; 562,5; 562,5; 500. A safra 14-15 repete a 13-14, por isso 11250 ÷ 20 aparece uma vez só.",
+    "motivo": "Explicar por que há quatro contas para cinco safras."
+   },
+   {
+    "campo": "resolucao.quadro",
+    "depois": [
+     {
+      "linha": "sacas = área × produtiv.",
+      "nota": "produção total de cada safra, em sacas"
+     },
+     {
+      "linha": "11-12: 200 × 40 = 8000",
+      "nota": "sacas na primeira safra"
+     },
+     {
+      "linha": "12-13: 220 × 30 = 6600",
+      "nota": "sacas na segunda safra"
+     },
+     {
+      "linha": "13-14: 250 × 45 = 11250",
+      "nota": "sacas na terceira safra"
+     },
+     {
+      "linha": "14-15: 250 × 45 = 11250",
+      "nota": "igual à anterior: mesma área e produtividade"
+     },
+     {
+      "linha": "15-16: 200 × 50 = 10000",
+      "nota": "sacas na última safra"
+     },
+     {
+      "linha": "t = sacas × 50 ÷ 1000",
+      "nota": "saca de 50 kg; 1 t = 1000 kg"
+     },
+     {
+      "linha": "t = sacas × (50/1000)",
+      "nota": "50/1000 = 1/20",
+      "destaque": "1/20"
+     },
+     {
+      "linha": "t = sacas ÷ 20",
+      "nota": "20 sacas formam 1 tonelada"
+     },
+     {
+      "linha": "8000 ÷ 20 = 400",
+      "nota": "toneladas em 11-12"
+     },
+     {
+      "linha": "6600 ÷ 20 = 330",
+      "nota": "toneladas em 12-13"
+     },
+     {
+      "linha": "11250 ÷ 20 = 562,5",
+      "nota": "toneladas em 13-14"
+     },
+     {
+      "linha": "11250 ÷ 20 = 562,5",
+      "nota": "toneladas em 14-15"
+     },
+     {
+      "linha": "10000 ÷ 20 = 500",
+      "nota": "toneladas em 15-16"
+     }
+    ],
+    "motivo": "Um passo por linha, incluindo a safra 14-15 e a simplificação da fração, sem pular passagens."
+   },
+   {
+    "campo": "resolucao.caminhos[0].ideia",
+    "depois": "Calcule só a primeira safra: 200 × 40 = 8000 sacas, que valem 8000 ÷ 20 = 400 t. Entre os gráficos, só o A começa em 400. Os outros começam em 40, 200, 240 e 8.",
+    "motivo": "Frase original confusa (a comparação 11-12 × 12-13 não elimina só C e D). Caminho simplificado e correto."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "A"
  }
 }

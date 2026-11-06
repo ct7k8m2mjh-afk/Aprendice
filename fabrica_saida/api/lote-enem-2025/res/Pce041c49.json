@@ -8,7 +8,7 @@
  "conceito": "Corrente máxima de um fusível: converter o limite de corrente em potência máxima (P = U × i) e testar, em ordem, cada aparelho somado ao que já está ligado.",
  "resolucao": {
   "antes": {
-   "texto": "O fusível rompe quando a corrente passa de 20 A. Como a tensão é fixa (110 V), esse limite de corrente é um limite de potência total ligada: P = U × i. Basta somar as potências dos aparelhos ligados e comparar com esse limite. Atenção ao enredo: depois que o fusível rompe, a régua fica inutilizada, então as tentativas seguintes falham.",
+   "texto": "O fusível rompe quando a corrente passa de 20 A. Como a tensão é fixa (110 V), esse limite de corrente vira um limite de potência total ligada: P = U × i. Some as potências dos aparelhos ligados e compare com esse limite. Depois que o fusível rompe, a régua fica inutilizada, e as tentativas seguintes falham.",
    "formulas": [
     "P = U × i, logo i = P ÷ U",
     "P máxima = 110 V × 20 A = 2200 W"
@@ -16,11 +16,11 @@
    "simbolos": [
     [
      "P",
-     "potência elétrica, em watt (W)"
+     "potência elétrica, em watt (W): quanta energia o aparelho usa por segundo"
     ],
     [
      "U",
-     "tensão da rede, aqui 110 V"
+     "tensão da rede, aqui 110 V (volt)"
     ],
     [
      "i",
@@ -28,7 +28,11 @@
     ],
     [
      "fusível",
-     "peça que se rompe quando a corrente passa do limite, desligando o circuito"
+     "peça que se rompe quando a corrente passa do limite e desliga o circuito"
+    ],
+    [
+     "potência nominal",
+     "potência que o fabricante indica para o aparelho funcionando normalmente"
     ]
    ]
   },
@@ -49,20 +53,20 @@
    {
     "faz": "Teste a 1ª atividade: impressora",
     "conta": "1350 + 660 = 2010 W",
-    "porque": "2010 W é menor que 2200 W (corrente de 2010 ÷ 110 ≈ 18,3 A). O fusível aguenta e ela imprime.",
+    "porque": "2010 W é menor que 2200 W (corrente de 2010 ÷ 110 ≈ 18,3 A, abaixo de 20 A). O fusível aguenta e a impressora funciona.",
     "tipo": "comparar"
    },
    {
     "faz": "Teste a 2ª atividade: cafeteira",
     "conta": "1350 + 900 = 2250 W",
-    "porque": "As atividades são feitas uma de cada vez, então a impressora já foi desligada. Mas 2250 W passa de 2200 W (2250 ÷ 110 ≈ 20,5 A). O fusível rompe.",
+    "porque": "As atividades são feitas uma de cada vez, então a impressora já foi desligada e só a base fica ligada. Mas 2250 W passa de 2200 W (2250 ÷ 110 ≈ 20,5 A). O fusível rompe.",
     "tipo": "comparar"
    },
    {
     "faz": "Veja o efeito do fusível rompido",
-    "conta": "régua inutilizada",
+    "conta": "fusível rompido → régua parada",
     "porque": "O enunciado diz que o fusível rompido inutiliza a régua até haver um novo. A luminária e o secador não funcionam, mesmo que sozinhos coubessem no limite.",
-    "tipo": "interpretar"
+    "tipo": "eliminar"
    },
    {
     "faz": "Conclua",
@@ -74,9 +78,9 @@
   "resposta": "Alternativa D: só 1 atividade (a impressão). A cafeteira leva a potência a 2250 W, acima de 2200 W, e o fusível rompe.",
   "checagem": "Confira em corrente: 1350 W ÷ 110 V ≈ 12,3 A de base. A impressora soma 660 ÷ 110 = 6 A, e o total é 18,3 A, abaixo de 20 A. A cafeteira soma 900 ÷ 110 ≈ 8,2 A, e o total é 20,5 A, acima de 20 A.",
   "erradas": {
-   "A": "Supõe que a régua continua funcionando depois da cafeteira. Mas o fusível rompe na 2ª tentativa (2250 W > 2200 W) e a régua fica inutilizada, então as demais atividades não acontecem.",
+   "A": "Supõe que a régua continua funcionando depois da cafeteira. Mas o fusível rompe na 2ª tentativa (2250 W > 2200 W), a régua fica inutilizada e as outras atividades não acontecem.",
    "B": "Conta impressora, luminária e secador, como se só a cafeteira falhasse. Porém o fusível rompido inutiliza a régua. Luminária (1355 W) e secador (2100 W) até caberiam no limite, mas a régua já não funciona.",
-   "C": "Não confere. O fusível rompe na 2ª tentativa. Só a impressora foi feita antes, e nada funciona depois do rompimento.",
+   "C": "Daria 2 se a luminária também funcionasse. Mas o fusível rompe na cafeteira (2ª tentativa) e a régua fica inutilizada. A luminária, 3ª tentativa, não liga.",
    "E": "Diria que a impressora já queima o fusível, mas 1350 + 660 = 2010 W é menor que 2200 W (18,3 A < 20 A). Ela imprime sem problema."
   },
   "armadilha": "Esquecer que o fusível rompido inutiliza a régua: a luminária e o secador cabem no limite sozinhos, mas as tentativas posteriores à cafeteira falham.",
@@ -144,10 +148,89 @@
  "gab": "D",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[4].tipo",
+    "depois": "eliminar",
+    "motivo": "O tipo 'interpretar' não está na lista permitida (localizar, calcular, comparar, eliminar, concluir). Neste passo, a regra do fusível rompido serve para descartar as tentativas seguintes, por isso o tipo certo é 'eliminar'.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "O fusível rompe quando a corrente passa de 20 A. Como a tensão é fixa (110 V), esse limite de corrente vira um limite de potência total ligada: P = U × i. Some as potências dos aparelhos ligados e compare com esse limite. Depois que o fusível rompe, a régua fica inutilizada, e as tentativas seguintes falham.",
+    "motivo": "Frases mais curtas e voz ativa; remove 'Atenção ao enredo', que era vago."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "P",
+      "potência elétrica, em watt (W): quanta energia o aparelho usa por segundo"
+     ],
+     [
+      "U",
+      "tensão da rede, aqui 110 V (volt)"
+     ],
+     [
+      "i",
+      "corrente elétrica, em ampère (A)"
+     ],
+     [
+      "fusível",
+      "peça que se rompe quando a corrente passa do limite e desliga o circuito"
+     ],
+     [
+      "potência nominal",
+      "potência que o fabricante indica para o aparelho funcionando normalmente"
+     ]
+    ],
+    "motivo": "O enunciado usa 'potência nominal', termo técnico que não estava explicado."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "2010 W é menor que 2200 W (corrente de 2010 ÷ 110 ≈ 18,3 A, abaixo de 20 A). O fusível aguenta e a impressora funciona.",
+    "motivo": "Mais clara e sem ambiguidade."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "As atividades são feitas uma de cada vez, então a impressora já foi desligada e só a base fica ligada. Mas 2250 W passa de 2200 W (2250 ÷ 110 ≈ 20,5 A). O fusível rompe.",
+    "motivo": "Frase mais curta e explicita que a base permanece ligada."
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "fusível rompido → régua parada",
+    "motivo": "A conta anterior era uma frase solta; este esquema em linha mostra a causa e o efeito."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "Daria 2 se a luminária também funcionasse. Mas o fusível rompe na cafeteira (2ª tentativa) e a régua fica inutilizada. A luminária, 3ª tentativa, não liga.",
+    "motivo": "Antes dizia só 'não confere'; agora aponta a falha de raciocínio de quem marcou C."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "Supõe que a régua continua funcionando depois da cafeteira. Mas o fusível rompe na 2ª tentativa (2250 W > 2200 W), a régua fica inutilizada e as outras atividades não acontecem.",
+    "motivo": "Frase mais direta."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "D"
  }
 }

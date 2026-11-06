@@ -8,10 +8,10 @@
  "conceito": "Razão entre densidades demográficas (habitantes ÷ área) quando se conhece a fração da área e dos habitantes de uma subregião.",
  "resolucao": {
   "antes": {
-   "texto": "Densidade demográfica é habitantes divididos por área. Como o enunciado não dá números, use letras: h para os habitantes de R e A para a área de R. Escreva o que se sabe sobre Q em função de h e A e divida. No fim, compare d(Q) com d(R).",
+   "texto": "Densidade demográfica é habitantes divididos por área. O enunciado não dá números, então use letras: h para os habitantes de R e A para a área de R. Escreva os dados de Q em função de h e A e divida. No fim, compare d(Q) com d(R).",
    "formulas": [
     "densidade = habitantes ÷ área",
-    "dividir por uma fração = multiplicar pelo inverso"
+    "dividir por uma fração = multiplicar pelo inverso dela (o inverso de 4/3 é 3/4)"
    ],
    "simbolos": [
     [
@@ -55,23 +55,23 @@
    {
     "faz": "Calcule d(Q)",
     "conta": "d(Q) = (h/2) ÷ (3A/4)",
-    "porque": "Mesma definição, agora com os dados de Q. Dividir por 3A/4 é multiplicar por 4/(3A).",
+    "porque": "É a mesma definição, agora com os dados de Q. Dividir por 3A/4 é multiplicar pelo inverso, 4/(3A).",
     "tipo": "calcular"
    },
    {
-    "faz": "Simplifique e compare",
-    "conta": "d(Q) = (h × 4)/(2 × 3A) = (2/3) × h/A",
-    "porque": "4/6 simplifica para 2/3 e sobra h/A, que é d(R).",
+    "faz": "Simplifique e compare com d(R)",
+    "conta": "d(Q) = 4h/(6A) = (2/3) × h/A",
+    "porque": "4/6 simplifica para 2/3 e sobra h/A, que é d(R). Logo d(Q) = (2/3) d(R): alternativa E.",
     "tipo": "concluir"
    }
   ],
   "resposta": "Alternativa E: d(Q) = (2/3) d(R), pois Q tem metade dos habitantes numa área de três quartos.",
   "checagem": "Teste com números: R com 100 habitantes e 100 km², d(R) = 1. Q tem 50 habitantes e 75 km², d(Q) = 50/75 = 2/3. Confere.",
   "erradas": {
-   "A": "1/4 não confere. Com R de 100 hab. e 100 km², d(Q) = 50/75 = 2/3, e não 1/4 = 0,25. Esse valor não considera que a área de Q também é menor que a de R.",
+   "A": "1/4 sai de subtrair as frações: 3/4 − 1/2 = 1/4. Densidade é uma divisão, não uma subtração: (1/2) ÷ (3/4) = 2/3. No teste com 100 hab. e 100 km², d(Q) = 50/75 = 2/3, e não 0,25.",
    "B": "1/2 vem de olhar só os habitantes (metade) e esquecer a área. Mas a área de Q é 3/4 da de R, e não igual. Com os números do teste: 50/75 = 2/3, e não 1/2.",
    "C": "3/4 vem de olhar só a área e esquecer os habitantes. A razão certa é (1/2) ÷ (3/4) = 2/3. Com o teste: 50/75 = 2/3, e não 0,75.",
-   "D": "3/2 sai de multiplicar (1/2) × (3/4)... não: de inverter a divisão, (3/4) ÷ (1/2) = 3/2. A densidade é habitantes ÷ área, então a ordem é (1/2) ÷ (3/4) = 2/3."
+   "D": "3/2 sai de inverter a divisão: (3/4) ÷ (1/2) = 3/2, ou seja, área ÷ habitantes. A densidade é habitantes ÷ área, então a ordem certa é (1/2) ÷ (3/4) = 2/3."
   },
   "armadilha": "Densidade é habitantes ÷ área: a fração da área entra dividindo, então (1/2) ÷ (3/4) = 2/3, e não o produto nem o inverso.",
   "alerta": "",
@@ -115,7 +115,7 @@
   },
   {
    "linha": "d(Q) = 4h/(6A)",
-   "nota": "multiplique numeradores e denominadores"
+   "nota": "multiplique numerador por numerador e denominador por denominador"
   },
   {
    "linha": "d(Q) = (2/3) × h/A",
@@ -140,10 +140,88 @@
  "gab": "E",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "3/2 sai de inverter a divisão: (3/4) ÷ (1/2) = 3/2, ou seja, área ÷ habitantes. A densidade é habitantes ÷ área, então a ordem certa é (1/2) ÷ (3/4) = 2/3.",
+    "motivo": "O texto antigo dizia, no meio da frase, que 3/2 sai de multiplicar (1/2) × (3/4) e depois se corrigia ('... não:'). Essa afirmação é falsa, porque (1/2) × (3/4) = 3/8. Deixei só a origem correta.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "1/4 sai de subtrair as frações em vez de dividir: 3/4 − 1/2 = 1/4. A densidade é uma divisão: (1/2) ÷ (3/4) = 2/3. Com R de 100 hab. e 100 km², d(Q) = 50/75 = 2/3, e não 0,25.",
+    "motivo": "A frase 'Esse valor não considera que a área de Q também é menor' é especulação e não leva a 1/4. Existe uma conta que chega exatamente a 1/4 (3/4 − 1/2 = 1/4), então a origem passa a ser essa conta, que pode ser conferida.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "d(Q) = 4h/(6A) = (2/3)·h/A",
+    "motivo": "A conta antiga tinha cerca de 37 caracteres e passava do limite de cerca de 30 da tela (essa linha não quebra). A nova é a mesma conta, sem a etapa (h × 4)/(2 × 3A), que já aparece no quadro.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Densidade demográfica é habitantes divididos por área. O enunciado não dá números, então use letras: h para os habitantes de R e A para a área de R. Escreva os dados de Q em função de h e A e divida. No fim, compare d(Q) com d(R).",
+    "motivo": "Frases mais curtas e verbos no mesmo tempo."
+   },
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "densidade = habitantes ÷ área",
+     "dividir por uma fração = multiplicar pelo inverso dela (o inverso de 4/3 é 3/4)"
+    ],
+    "motivo": "Explica o que é 'inverso' com um exemplo."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "d(Q) = (h/2) ÷ (3A/4)",
+    "motivo": "Sem mudança de conteúdo; mantida."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "É a mesma definição, agora com os dados de Q. Dividir por 3A/4 é multiplicar pelo inverso, 4/(3A).",
+    "motivo": "Frase mais clara."
+   },
+   {
+    "campo": "resolucao.passos[4]",
+    "depois": {
+     "faz": "Simplifique e compare com d(R)",
+     "conta": "d(Q) = 4h/(6A) = (2/3) × h/A",
+     "porque": "4/6 simplifica para 2/3 e sobra h/A, que é d(R). Logo d(Q) = (2/3) d(R): alternativa E.",
+     "tipo": "concluir"
+    },
+    "motivo": "O último passo agora liga o resultado à letra."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "1/4 sai de subtrair as frações: 3/4 − 1/2 = 1/4. Densidade é uma divisão, não uma subtração: (1/2) ÷ (3/4) = 2/3. No teste com 100 hab. e 100 km², d(Q) = 50/75 = 2/3, e não 0,25.",
+    "motivo": "Frases mais curtas."
+   },
+   {
+    "campo": "resolucao.quadro[3].nota",
+    "depois": "multiplique numerador por numerador e denominador por denominador",
+    "motivo": "Mais claro para o aluno."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "E"
  }
 }

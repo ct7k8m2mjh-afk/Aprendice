@@ -8,7 +8,7 @@
  "conceito": "Parcelas em progressão geométrica crescente: escolher em que mês começar para que as parcelas pagas pela imobiliária (as de maio) somem o maior valor possível.",
  "resolucao": {
   "antes": {
-   "texto": "Cada parcela é a anterior com um acréscimo percentual fixo. Logo as parcelas formam uma PG crescente: quanto mais tarde, maior a parcela. A imobiliária paga as parcelas que caem em maio, então o cliente paga menos quando essas parcelas são as maiores possíveis. A primeira parcela é paga no mês da compra.",
+   "texto": "Cada parcela é a anterior com um acréscimo percentual fixo. Logo as parcelas formam uma PG crescente: quanto mais tarde, maior a parcela. A imobiliária paga as parcelas que caem em maio. Então o cliente paga menos quando essas parcelas somam o maior valor possível. A primeira parcela é paga no mês da compra.",
    "formulas": [
     "parcela k cai no mês da compra + (k − 1) meses",
     "maio se repete a cada 12 meses: parcelas k, k + 12, k + 24, ...",
@@ -22,6 +22,14 @@
     [
      "k",
      "número da parcela, de 1 a 100"
+    ],
+    [
+     "k0",
+     "número da primeira parcela que cai em maio (entre 1 e 12)"
+    ],
+    [
+     "acréscimo percentual",
+     "aumento em porcentagem sobre o valor anterior, por exemplo 5% a mais"
     ]
    ]
   },
@@ -31,31 +39,31 @@
     "faz": "Reconheça que as parcelas crescem",
     "conta": "parcela 1 < parcela 2 < ... < parcela 100",
     "porque": "Cada parcela é a anterior com acréscimo percentual, então é maior que ela. A última parcela é a maior de todas.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Diga o que se quer",
     "conta": "total do cliente = total − parcelas de maio",
     "porque": "O total das 100 parcelas é o mesmo em qualquer mês. Para o cliente pagar menos, as parcelas de maio devem somar o máximo.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Liste as parcelas que caem em maio",
-    "conta": "k0, k0+12, k0+24, ...",
+    "conta": "k0, k0 + 12, k0 + 24, ...",
     "porque": "O mês se repete a cada 12 parcelas. Se a parcela k0 cai em maio (k0 entre 1 e 12), as seguintes em maio são k0 + 12, k0 + 24 e assim por diante, até 100.",
-    "tipo": "aplicar"
+    "tipo": "calcular"
    },
    {
     "faz": "Conte quantas parcelas entram",
     "conta": "100 = 8 × 12 + 4",
-    "porque": "Com k0 de 1 a 4, cabem 9 parcelas de maio (a última é k0 + 96). Com k0 de 5 a 12, cabem só 8.",
+    "porque": "A conta 100 = 8 × 12 + 4 diz que há 8 anos completos e mais 4 parcelas. Com k0 de 1 a 4, cabem 9 parcelas de maio (a última é k0 + 96). Com k0 de 5 a 12, cabem só 8.",
     "tipo": "calcular"
    },
    {
     "faz": "Compare e escolha k0 = 4",
     "conta": "4, 16, ..., 100 (9 parcelas)",
-    "porque": "Com k0 = 4 a parcela 100, a maior de todas, cai em maio. Cada parcela dessa lista é maior que a correspondente de qualquer outro k0, e ela ainda tem uma parcela a mais. Logo é a melhor.",
-    "tipo": "aplicar"
+    "porque": "Com k0 = 4, a parcela 100, a maior de todas, cai em maio. Cada parcela dessa lista é maior que a correspondente de qualquer outro k0 com 9 parcelas. Os que têm 8 parcelas perdem uma parcela. Logo k0 = 4 é a melhor escolha.",
+    "tipo": "comparar"
    },
    {
     "faz": "Volte ao mês da compra",
@@ -67,10 +75,10 @@
   "resposta": "Alternativa A: comprando em fevereiro, a parcela 4 cai em maio e a parcela 100 também (4 + 96), de modo que a imobiliária paga as parcelas 4, 16, ..., 100, as maiores possíveis.",
   "checagem": "Fevereiro + 99 meses = fevereiro + 8 anos + 3 meses = maio. Então a parcela 100 cai mesmo em maio, e nenhuma outra escolha de mês consegue isso junto com 9 parcelas de maio.",
   "erradas": {
-   "B": "Abril: a parcela 1 é em abril e a 2 é em maio. Maio recebe as parcelas 2, 14, ..., 98 (9 parcelas). Cada uma é menor que a correspondente de fevereiro (4, 16, ..., 98 contra 100, para o último par), e a parcela 100 (junho do último ciclo, não maio) não entra.",
-   "C": "Maio: a parcela 1 cai em maio. As parcelas de maio são 1, 13, ..., 97, as menores entre as opções com 9 parcelas. A imobiliária pagaria menos e o cliente, mais.",
-   "D": "Junho: de junho até maio são 12 parcelas, então maio é a parcela 12. As parcelas de maio são 12, 24, ..., 96 (8 parcelas). A parcela 100 fica de fora e há uma parcela de maio a menos que em fevereiro.",
-   "E": "Agosto: de agosto até maio são 10 parcelas, então maio é a parcela 10. As parcelas de maio são 10, 22, ..., 94 (8 parcelas), todas menores que as de fevereiro (16, 28, ..., 100) e uma a menos."
+   "B": "Abril: a parcela 1 é em abril e a 2 é em maio. Maio recebe as parcelas 2, 14, ..., 98 (9 parcelas). Cada uma é menor que a correspondente de fevereiro (4, 16, ..., 100). Faltou ver que a parcela 100 cai em julho: a imobiliária não paga a maior parcela.",
+   "C": "Maio: a parcela 1 cai em maio. As de maio são 1, 13, ..., 97, as menores entre as opções com 9 parcelas. Faltou ver que o cliente quer que a imobiliária pague as parcelas maiores, não as menores.",
+   "D": "Junho: de junho até maio são 12 parcelas, então maio é a parcela 12. As de maio são 12, 24, ..., 96 (8 parcelas). Faltou notar que a parcela 100 fica de fora e que há uma parcela de maio a menos que em fevereiro.",
+   "E": "Agosto: de agosto até maio são 10 parcelas, então maio é a parcela 10. As de maio são 10, 22, ..., 94 (8 parcelas). Em fevereiro são 4, 16, ..., 100 (9 parcelas): cada parcela de agosto (10, 22, ...) é menor que a de fevereiro 6 posições adiante (16, 28, ...), e fevereiro ainda tem a parcela 4 a mais. Faltou comparar as listas e contar as parcelas."
   },
   "armadilha": "Achar que o cliente quer maio como mês da primeira parcela (ou que tanto faz o mês). O que importa é que a parcela 100, a maior, caia em maio.",
   "alerta": "",
@@ -133,10 +141,126 @@
  "gab": "A",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "Abril: a parcela 1 é em abril e a 2 é em maio. Maio recebe as parcelas 2, 14, ..., 98 (9 parcelas). Cada uma é menor que a correspondente de fevereiro (2, 14, ..., 98 contra 4, 16, ..., 100). A parcela 100 cai em julho, e não em maio, por isso não entra.",
+    "motivo": "Comprando em abril, a parcela 100 cai 99 meses depois. São 8 anos e 3 meses, ou seja, julho, e não junho. A comparação com fevereiro estava truncada ('4, 16, ..., 98 contra 100'). O certo é comparar a lista 2, 14, ..., 98 com a lista 4, 16, ..., 100, par a par.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[0].tipo",
+    "depois": "localizar",
+    "motivo": "'interpretar' não é um tipo válido. Os tipos aceitos são localizar, calcular, comparar, eliminar e concluir.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "localizar",
+    "motivo": "'interpretar' não é um tipo válido. Este passo traduz o que o enunciado pede, e isso é localizar.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "calcular",
+    "motivo": "'aplicar' não é um tipo válido. O passo lista as parcelas de 12 em 12, e isso é calcular.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[4].tipo",
+    "depois": "comparar",
+    "motivo": "'aplicar' não é um tipo válido. O passo compara as escolhas de k0, e isso é comparar.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "A",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Cada parcela é a anterior com um acréscimo percentual fixo. Logo as parcelas formam uma PG crescente: quanto mais tarde, maior a parcela. A imobiliária paga as parcelas que caem em maio. Então o cliente paga menos quando essas parcelas somam o maior valor possível. A primeira parcela é paga no mês da compra.",
+    "motivo": "Frases mais curtas e sem ambiguidade ('as maiores possíveis' passa a ser 'somam o maior valor')."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "PG",
+      "progressão geométrica: cada termo é o anterior vezes um número fixo (aqui maior que 1)"
+     ],
+     [
+      "k",
+      "número da parcela, de 1 a 100"
+     ],
+     [
+      "k0",
+      "número da primeira parcela que cai em maio (entre 1 e 12)"
+     ],
+     [
+      "acréscimo percentual",
+      "aumento em porcentagem sobre o valor anterior, por exemplo 5% a mais"
+     ]
+    ],
+    "motivo": "k0 aparece nos passos sem ser explicado; acréscimo percentual também merece explicação."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "k0, k0 + 12, k0 + 24, ...",
+    "motivo": "Padroniza a notação com espaços e sinais, facilitando a leitura."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "A conta 100 = 8 × 12 + 4 diz que há 8 anos completos e mais 4 parcelas. Com k0 de 1 a 4, cabem 9 parcelas de maio (a última é k0 + 96). Com k0 de 5 a 12, cabem só 8.",
+    "motivo": "Explica de onde vem a divisão 100 = 8 × 12 + 4."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "Com k0 = 4, a parcela 100, a maior de todas, cai em maio. Cada parcela dessa lista é maior que a correspondente de qualquer outro k0 com 9 parcelas. Os que têm 8 parcelas perdem uma parcela. Logo k0 = 4 é a melhor escolha.",
+    "motivo": "Frase mais clara e com a comparação completa."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "Abril: a parcela 1 é em abril e a 2 é em maio. Maio recebe as parcelas 2, 14, ..., 98 (9 parcelas). Cada uma é menor que a correspondente de fevereiro (4, 16, ..., 100). Faltou ver que a parcela 100 cai em julho: a imobiliária não paga a maior parcela.",
+    "motivo": "Corrige a comparação confusa e diz o que faltou no raciocínio de quem marcou B."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "Maio: a parcela 1 cai em maio. As de maio são 1, 13, ..., 97, as menores entre as opções com 9 parcelas. Faltou ver que o cliente quer que a imobiliária pague as parcelas maiores, não as menores.",
+    "motivo": "Aponta o que faltou no raciocínio."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "Junho: de junho até maio são 12 parcelas, então maio é a parcela 12. As de maio são 12, 24, ..., 96 (8 parcelas). Faltou notar que a parcela 100 fica de fora e que há uma parcela de maio a menos que em fevereiro.",
+    "motivo": "Aponta o que faltou."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "Agosto: de agosto até maio são 10 parcelas, então maio é a parcela 10. As de maio são 10, 22, ..., 94 (8 parcelas), todas menores que as de fevereiro (4, 16, ..., 100). Faltou comparar as listas e contar as parcelas.",
+    "motivo": "O texto original comparava com '16, 28, ..., 100', lista que não existe para fevereiro; a lista correta é 4, 16, ..., 100."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "Agosto: de agosto até maio são 10 parcelas, então maio é a parcela 10. As de maio são 10, 22, ..., 94 (8 parcelas). Em fevereiro são 4, 16, ..., 100 (9 parcelas): cada parcela de agosto (10, 22, ...) é menor que a de fevereiro 6 posições adiante (16, 28, ...), e fevereiro ainda tem a parcela 4 a mais. Faltou comparar as listas e contar as parcelas.",
+    "motivo": "A frase 'todas menores que as de fevereiro (4, 16, ..., 100)' é falsa se comparada termo a termo: 10 > 4, 22 > 16 e assim por diante. A comparação correta pareia 10 + 12j com 16 + 12j e acrescenta a parcela 4 de fevereiro.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "A"
  }
 }

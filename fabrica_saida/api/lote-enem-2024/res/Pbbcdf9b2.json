@@ -8,7 +8,7 @@
  "conceito": "Vazão = volume ÷ tempo; tempo 20% maior sem mudar a vazão da primeira piscina",
  "resolucao": {
   "antes": {
-   "texto": "Vazão constante é o volume que entra por minuto. Então tempo = volume ÷ vazão, e vazão = volume ÷ tempo. A questão pede a vazão da segunda piscina, mas o dado novo é sobre o TEMPO dela: 20% maior que o da primeira. Primeiro ache o tempo da primeira, depois o da segunda, e só então a vazão.",
+   "texto": "Vazão constante é o volume que entra por minuto. Então tempo = volume ÷ vazão e vazão = volume ÷ tempo. A questão pede a vazão da segunda piscina, mas o dado novo é sobre o TEMPO dela: 20% maior que o da primeira. Ache o tempo da primeira, depois o da segunda e só então a vazão.",
    "formulas": [
     "tempo = volume ÷ vazão",
     "vazão = volume ÷ tempo",
@@ -30,7 +30,7 @@
    {
     "faz": "Calcule o tempo da 1ª piscina",
     "conta": "t1 = 2 500 000 ÷ 6 000",
-    "porque": "Tempo é volume dividido pela vazão. Dá 2500/6 minutos, cerca de 416,67 min. Deixe em fração para não arredondar cedo.",
+    "porque": "Tempo é volume dividido pela vazão. Simplificando, t1 = 2500/6 minutos (cerca de 416,67). Deixe em fração para não arredondar cedo.",
     "tipo": "calcular"
    },
    {
@@ -42,7 +42,7 @@
    {
     "faz": "Calcule a vazão da 2ª piscina",
     "conta": "v2 = 2 750 000 ÷ 500",
-    "porque": "Vazão é volume dividido pelo tempo. 2 750 000 ÷ 500 = 5 500 litros por minuto.",
+    "porque": "Vazão é volume dividido pelo tempo. Como 2 750 000 ÷ 500 = 5 500, a segunda piscina recebe 5 500 litros por minuto.",
     "tipo": "calcular"
    },
    {
@@ -56,8 +56,8 @@
   "checagem": "Com 5 500 L/min, 500 min enchem 5 500 × 500 = 2 750 000 L. A 1ª piscina leva 416,67 min, e 416,67 × 1,2 = 500. Fecha.",
   "erradas": {
    "A": "8 250 sai de tomar o tempo 20% MENOR: 0,8 × 416,67 = 333,33 min e 2 750 000 ÷ 333,33 = 8 250. O enunciado diz 20% maior; com 8 250 a piscina encheria mais rápido, não mais devagar.",
-   "B": "7 920 sai de 6 000 × 1,1 × 1,2 = 7 920: aumenta a vazão em 10% (pelo volume) e em 20% (pelo tempo). Mas o tempo maior pede vazão proporcionalmente menor, não maior. Com 7 920, o tempo seria 2 750 000 ÷ 7 920 ≈ 347 min, menor que o da 1ª.",
-   "C": "6 545 não confere: com essa vazão o tempo seria 2 750 000 ÷ 6 545 ≈ 420 min, só cerca de 1% maior que 416,67 min, e não 20% maior.",
+   "B": "7 920 sai de 6 000 × 1,1 × 1,2 = 7 920: multiplicou a vazão pelo aumento do volume e também pelo do tempo. Mas tempo maior pede vazão menor. Com 7 920, o tempo seria 2 750 000 ÷ 7 920 ≈ 347 min, menor que o da 1ª piscina.",
+   "C": "6 545 sai de 6 000 × 1,2 ÷ 1,1 ≈ 6 545: trocou o fator do tempo com o do volume. Com essa vazão, o tempo seria 2 750 000 ÷ 6 545 ≈ 420 min, só cerca de 1% maior que 416,67 min, e não 20%.",
    "E": "5 280 sai de 6 000 × 1,1 × 0,8 = 5 280: aplica o 20% como redução da vazão, e não como aumento do tempo. Com 5 280, o tempo é 2 750 000 ÷ 5 280 ≈ 520,8 min, que é 25% maior que 416,67 min, e não 20%."
   },
   "armadilha": "O 20% está no tempo, não na vazão: aplicar 20% direto na vazão (ou só somar 10% do volume) leva a A, B ou E.",
@@ -118,10 +118,68 @@
  "gab": "D",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "6 545 sai de inverter a proporção: 6 000 × 1,2 ÷ 1,1 ≈ 6 545, ou seja, multiplicou pelo fator do tempo e dividiu pelo do volume. Com essa vazão, o tempo seria 2 750 000 ÷ 6 545 ≈ 420 min, só cerca de 1% maior que 416,67 min, e não 20%.",
+    "motivo": "A alternativa C tem uma origem real. 6 000 × 1,2 ÷ 1,1 = 6 545,45, que arredonda para 6 545: é o erro de trocar os fatores do volume e do tempo. Pela regra de 'erradas', quando um erro típico chega exatamente ao valor, o texto deve dizer 'sai de' e mostrar a conta. O teste numérico que já estava no texto continua certo (2 750 000 ÷ 6 545 ≈ 420,2 min; 420,2 ÷ 416,67 ≈ 1,008).",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Vazão constante é o volume que entra por minuto. Então tempo = volume ÷ vazão e vazão = volume ÷ tempo. A questão pede a vazão da segunda piscina, mas o dado novo é sobre o TEMPO dela: 20% maior que o da primeira. Ache o tempo da primeira, depois o da segunda e só então a vazão.",
+    "motivo": "Frases mais curtas e sem duplo sentido."
+   },
+   {
+    "campo": "resolucao.passos[0].conta",
+    "depois": "t1 = 2 500 000 ÷ 6 000",
+    "motivo": "Mantida a conta; o resultado em fração passa a ser mostrado no porquê."
+   },
+   {
+    "campo": "resolucao.passos[0].porque",
+    "depois": "Tempo é volume dividido pela vazão. Simplificando, t1 = 2500/6 minutos (cerca de 416,67). Deixe em fração para não arredondar cedo.",
+    "motivo": "Texto mais claro: a fração aparece como resultado da simplificação."
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "t2 = 1,2 × 2500/6 = 500 min",
+    "motivo": "Sem mudança de conteúdo; confirmado."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Vazão é volume dividido pelo tempo. Como 2 750 000 ÷ 500 = 5 500, a segunda piscina recebe 5 500 litros por minuto.",
+    "motivo": "Frase mais fluida."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "7 920 sai de 6 000 × 1,1 × 1,2 = 7 920: multiplicou a vazão pelo aumento do volume e também pelo do tempo. Mas tempo maior pede vazão menor. Com 7 920, o tempo seria 2 750 000 ÷ 7 920 ≈ 347 min, menor que o da 1ª piscina.",
+    "motivo": "Diz o que faltou no raciocínio com palavras mais simples."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "6 545 sai de 6 000 × 1,2 ÷ 1,1 ≈ 6 545: trocou o fator do tempo com o do volume. Com essa vazão, o tempo seria 2 750 000 ÷ 6 545 ≈ 420 min, só cerca de 1% maior que 416,67 min, e não 20%.",
+    "motivo": "Linguagem mais direta, mantendo as contas."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "D"
  }
 }

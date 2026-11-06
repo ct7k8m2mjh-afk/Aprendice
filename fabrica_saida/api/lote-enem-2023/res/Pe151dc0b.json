@@ -36,30 +36,30 @@
    {
     "faz": "Localize o que a bomba contém",
     "conta": "\"sementes, adubo e argila\"",
-    "porque": "As sementes são de espécies vegetais nativas. O adubo e a argila só ajudam a germinação em solo pouco fértil.",
+    "porque": "As sementes são de espécies nativas (que já existem naturalmente na região). O adubo e a argila só ajudam a semente a germinar em solo pouco fértil.",
     "tipo": "localizar"
    },
    {
     "faz": "Veja o que acontece com as sementes",
     "conta": "\"germinam até mesmo em solo pouco fértil\"",
     "porque": "Germinar produz novas plantas no local. Plantas adultas com flor passam a existir onde antes havia pouca vegetação.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Ligue as plantas à vida das abelhas",
     "conta": "flores → néctar + pólen",
     "porque": "Néctar e pólen são o alimento das abelhas. Mais plantas nativas florescendo significa mais alimento disponível.",
-    "tipo": "aplicar"
+    "tipo": "concluir"
    },
    {
     "faz": "Teste as outras alternativas",
-    "conta": "predação, pesticida, abrigo, reprodução",
+    "conta": "A, B, C, E: o texto não cita",
     "porque": "O texto não diz que a bomba afasta predadores, reduz pesticidas, oferece abrigo ou cria locais de reprodução. Nada nela age sobre esses fatores.",
-    "tipo": "interpretar"
+    "tipo": "eliminar"
    },
    {
     "faz": "Conclua",
-    "conta": "mais flores → mais alimento",
+    "conta": "mais flores → mais alimento → D",
     "porque": "O efeito direto e sustentado pelo texto é o aumento da oferta de alimento.",
     "tipo": "concluir"
    }
@@ -67,10 +67,10 @@
   "resposta": "Alternativa D: as sementes geram plantas nativas com flores, e isso aumenta a oferta de néctar e pólen, o alimento das abelhas.",
   "checagem": "Troque 'abelha' por qualquer animal: se você planta o que ele come, a oferta de alimento sobe. Já predadores, venenos e abrigo não mudam só porque se espalharam sementes.",
   "erradas": {
-   "A": "Predação é a ação de predadores (aves, vespas, aranhas) que caçam abelhas. Espalhar sementes não afasta nenhum predador, e o texto não cita isso.",
-   "B": "Pesticidas são aplicados pelo ser humano, e as bolinhas não alteram esse uso. Plantar sementes nativas não faz o agricultor usar menos veneno, e o texto não afirma isso.",
-   "C": "Competição por abrigo é disputa por locais para viver, como cavidades e troncos. O texto trata de sementes que germinam, não de abrigos, e a bomba não cria nem libera esconderijo.",
-   "E": "Os locais de reprodução das abelhas são as colmeias e os ninhos, que o texto não diz que as plantas formem. A bomba cria plantas, não ninhos."
+   "A": "Predação é a caça de abelhas por seus predadores, como aves, vespas e aranhas. Espalhar sementes não afasta nenhum predador, e o texto não cita isso. Quem marcou A pensou em 'proteger a abelha' em geral, sem ligar a bolinha ao que ela produz: plantas.",
+   "B": "Quem usa pesticida é o ser humano, e as bolinhas não mudam isso. Espalhar sementes não faz o agricultor usar menos veneno, e o texto não diz isso. Quem marcou B pensou no veneno como causa do declínio e esqueceu de perguntar o que a bomba de sementes faz de fato.",
+   "C": "Competição por abrigo é a disputa por lugares para viver, como cavidades e troncos. A bomba cria plantas, não esconderijos, e o texto não fala de abrigo. Quem marcou C achou que planta nova serve de moradia, mas o texto só fala em germinar.",
+   "E": "As abelhas se reproduzem nas colmeias e nos ninhos, e o texto não diz que as plantas formem esses locais. A bomba cria plantas, não ninhos. Quem marcou E confundiu 'ambiente melhor' com 'lugar de reprodução'."
   },
   "armadilha": "Marcar abrigo ou reprodução porque 'plantas ajudam o ambiente', sem notar que o benefício direto das flores para a abelha é o alimento.",
   "alerta": "",
@@ -104,10 +104,87 @@
  "gab": "D",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "localizar",
+    "motivo": "'interpretar' não está na lista de tipos permitidos (localizar, calcular, comparar, eliminar, concluir). O passo acha no texto a frase sobre a germinação, então o tipo é 'localizar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "concluir",
+    "motivo": "'aplicar' não é um tipo permitido. O passo tira uma conclusão: plantas com flor dão néctar e pólen, que são o alimento das abelhas.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "eliminar",
+    "motivo": "'interpretar' não é um tipo permitido. O passo descarta as alternativas A, B, C e E, então o tipo é 'eliminar'.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[0].porque",
+    "depois": "As sementes são de espécies nativas (que já existem naturalmente na região). O adubo e a argila só ajudam a semente a germinar em solo pouco fértil.",
+    "motivo": "Explica 'nativas' no ponto em que o termo aparece e deixa a frase mais direta."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "A, B, C, E: o texto não cita",
+    "motivo": "Deixa a conta curta, para caber na tela do celular, e diz o critério de eliminação."
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "mais flores → mais alimento → D",
+    "motivo": "Liga o resultado à letra no passo final."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "Quem usa pesticida é o ser humano, e as bolinhas não mudam isso. Espalhar sementes não faz o agricultor usar menos veneno, e o texto não diz isso. Quem marcou B pensou no veneno como causa do declínio e esqueceu de perguntar o que a bomba de sementes faz de fato.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou B."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "Predação é a caça de abelhas por aves, vespas e aranhas. Espalhar sementes não afasta nenhum predador, e o texto não cita isso. Quem marcou A pensou em 'proteger a abelha' em geral, sem ligar a bolinha ao que ela produz: plantas.",
+    "motivo": "Mostra a falha de raciocínio de quem marcou A."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "Competição por abrigo é a disputa por lugares para viver, como cavidades e troncos. A bomba cria plantas, não esconderijos, e o texto não fala de abrigo. Quem marcou C achou que planta nova serve de moradia, mas o texto só fala em germinar.",
+    "motivo": "Explica o que faltou no raciocínio de quem marcou C."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "As abelhas se reproduzem nas colmeias e nos ninhos, e o texto não diz que as plantas formem esses locais. A bomba cria plantas, não ninhos. Quem marcou E confundiu 'ambiente melhor' com 'lugar de reprodução'.",
+    "motivo": "Diz onde o raciocínio de quem marcou E falhou."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "Predação é a caça de abelhas por seus predadores, como aves, vespas e aranhas. Espalhar sementes não afasta nenhum predador, e o texto não cita isso. Quem marcou A pensou em 'proteger a abelha' em geral, sem ligar a bolinha ao que ela produz: plantas.",
+    "motivo": "Ajuste mínimo de redação factual: a frase original, escrita como 'caça de abelhas por aves, vespas e aranhas', dá a entender que vespas e aranhas são predadoras típicas, o que é impreciso. Vespas e aranhas predam abelhas, mas a frase ficou como definição fechada. O valor novo apenas deixa claro que são exemplos.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "D"
  }
 }

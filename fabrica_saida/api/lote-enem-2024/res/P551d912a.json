@@ -12,12 +12,13 @@
    "formulas": [
     "etapa 1: 3 figuras",
     "cada etapa: quantidade × 2",
-    "etapa n: 3 × 2^(n−1)"
+    "etapa n: 3 × 2^(n−1)",
+    "2^0 = 1"
    ],
    "simbolos": [
     [
      "PG",
-     "progressão geométrica: sequência em que cada termo é o anterior multiplicado pela mesma razão"
+     "progressão geométrica: sequência em que cada termo é o anterior multiplicado pelo mesmo número"
     ],
     [
      "razão",
@@ -25,7 +26,15 @@
     ],
     [
      "2^19",
-     "2 multiplicado por ele mesmo 19 vezes"
+     "2 multiplicado por ele mesmo 19 vezes (19 fatores iguais a 2)"
+    ],
+    [
+     "2^0",
+     "qualquer número elevado a 0 vale 1; então 3 × 2^0 = 3"
+    ],
+    [
+     "etapa n",
+     "n é um número qualquer de etapa (1, 2, 3, ...)"
     ]
    ]
   },
@@ -38,7 +47,7 @@
     "tipo": "localizar"
    },
    {
-    "faz": "Leia as etapas 2 e 3",
+    "faz": "Leia a 2ª etapa",
     "conta": "Etapa 2: 6 figuras",
     "porque": "Copiar as 3 e colar ao lado dá 3 + 3 = 6. Na figura, a 2ª etapa mostra seis rostos.",
     "tipo": "localizar"
@@ -46,14 +55,14 @@
    {
     "faz": "Confirme a 3ª etapa",
     "conta": "Etapa 3: 6 + 6 = 12",
-    "porque": "O visor da 3ª etapa mostra uma linha de 9 rostos e outra de 3, ou seja, 12. Logo, a quantidade dobra a cada etapa.",
-    "tipo": "interpretar"
+    "porque": "Na figura, o visor da 3ª etapa tem uma linha de 10 rostos e outra de 2: 10 + 2 = 12. Como 6 + 6 = 12, a quantidade dobra a cada etapa.",
+    "tipo": "localizar"
    },
    {
     "faz": "Escreva o padrão",
     "conta": "3, 3×2, 3×2², 3×2³ ...",
     "porque": "Na etapa 2 há um fator 2, na etapa 3 há dois fatores 2. O expoente é sempre uma unidade menor que o número da etapa.",
-    "tipo": "interpretar"
+    "tipo": "calcular"
    },
    {
     "faz": "Calcule a 20ª etapa",
@@ -73,8 +82,8 @@
   "erradas": {
    "B": "3 × 2^20 é o valor da 21ª etapa. Quem marcou usou o expoente igual ao número da etapa. Porém, na 1ª etapa o expoente é 0, não 1: a fórmula 3 × 2^n daria 6 na 1ª etapa, mas o visor mostra 3.",
    "C": "3 × 2^21 é o valor da 22ª etapa, dois expoentes acima do correto. Pela fórmula 3 × 2^(n−1), na etapa 20 o expoente é 19, não 21.",
-   "D": "3 × 2^20 − 1 não confere. Não corresponde a nenhuma contagem do problema. Nas etapas 1, 2 e 3 os totais são 3, 6 e 12, e nenhum tem a forma 3 × 2^k − 1. O visor também só pode ter múltiplo de 3 figuras, e 3 × 2^20 − 1 não é múltiplo de 3.",
-   "E": "3 × 2^20 − 3 = 3 × (2^20 − 1) é a soma de todas as figuras digitadas e coladas nas 20 etapas: 3 + 6 + 12 + ... + 3 × 2^19. A pergunta é o que está no visor ao fim da 20ª etapa, que é só o último termo, 3 × 2^19."
+   "D": "3 × 2^20 − 1 não confere. O visor tem 3, 6, 12, ..., sempre múltiplos de 3. Já 3 × 2^20 − 1 deixa resto 2 na divisão por 3, então não é múltiplo de 3 e não pode ser uma contagem do visor.",
+   "E": "3 × 2^20 − 3 = 3 × (2^20 − 1) é a soma dos totais do visor nas 20 etapas: 3 + 6 + 12 + ... + 3 × 2^19. A pergunta é o que está no visor ao fim da 20ª etapa, que é só o último termo, 3 × 2^19."
   },
   "armadilha": "Usar o expoente 20 por ser a 20ª etapa: a 1ª etapa já tem 3 figuras (expoente 0), então a 20ª tem expoente 19.",
   "alerta": "",
@@ -105,7 +114,7 @@
   },
   {
    "linha": "etapa 3: 6 × 2 = 12",
-   "nota": "Copiou 6 e colou 6: o visor mostra 9 + 3 = 12 rostos."
+   "nota": "Copiou 6 e colou 6: o visor mostra 10 + 2 = 12 rostos."
   },
   {
    "linha": "etapa 4: 12 × 2 = 24",
@@ -135,10 +144,125 @@
  "gab": "A",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].faz",
+    "depois": "Leia a 2ª etapa",
+    "motivo": "Este passo trata só da 2ª etapa (a conta mostra apenas a etapa 2). A 3ª etapa é conferida no passo seguinte.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "O visor da 3ª etapa mostra uma linha de 10 rostos e outra de 2, ou seja, 12. Logo, a quantidade dobra a cada etapa.",
+    "motivo": "Leitura errada da figura. No print, a 3ª etapa tem 10 rostos na primeira linha e 2 na segunda, e não 9 + 3. O total de 12 continua certo.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "localizar",
+    "motivo": "'interpretar' não é um tipo permitido (os permitidos são localizar, calcular, comparar, eliminar e concluir). O passo lê o visor da figura.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "calcular",
+    "motivo": "'interpretar' não é um tipo permitido. O passo escreve o padrão na forma de potências de 2.",
+    "fonte": ""
+   },
+   {
+    "campo": "quadro[2].nota",
+    "depois": "Copiou 6 e colou 6: o visor mostra 10 + 2 = 12 rostos.",
+    "motivo": "Mesmo erro de leitura da figura: no print, a 3ª etapa tem linhas de 10 e 2 rostos.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.antes.simbolos[2]",
+    "depois": [
+     "2^19",
+     "produto de 19 fatores iguais a 2 (2 × 2 × ... × 2, com 19 fatores)"
+    ],
+    "motivo": "Dizer '2 multiplicado por ele mesmo 19 vezes' sugere, ao pé da letra, 20 fatores. Isso é impreciso justamente na questão cuja armadilha é o expoente.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "3 × 2^20 − 3 = 3 × (2^20 − 1) é a soma dos totais do visor nas 20 etapas: 3 + 6 + 12 + ... + 3 × 2^19. A pergunta é o que está no visor ao fim da 20ª etapa, que é só o último termo, 3 × 2^19.",
+    "motivo": "A soma 3 + 6 + ... + 3 × 2^19 junta os totais do visor de cada etapa. Ela não é o número de figuras 'digitadas e coladas', que somadas dão exatamente 3 × 2^19.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "A",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "etapa 1: 3 figuras",
+     "cada etapa: quantidade × 2",
+     "etapa n: 3 × 2^(n−1)",
+     "2^0 = 1"
+    ],
+    "motivo": "O expoente 0 aparece na checagem e na armadilha; o aluno precisa saber que 2^0 = 1."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "PG",
+      "progressão geométrica: sequência em que cada termo é o anterior multiplicado pelo mesmo número"
+     ],
+     [
+      "razão",
+      "o número pelo qual se multiplica para passar ao termo seguinte; aqui, 2"
+     ],
+     [
+      "2^19",
+      "2 multiplicado por ele mesmo 19 vezes (19 fatores iguais a 2)"
+     ],
+     [
+      "2^0",
+      "qualquer número elevado a 0 vale 1; então 3 × 2^0 = 3"
+     ],
+     [
+      "etapa n",
+      "n é um número qualquer de etapa (1, 2, 3, ...)"
+     ]
+    ],
+    "motivo": "Explicar 2^0 e n, usados na fórmula e na checagem."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Na figura, o visor da 3ª etapa tem uma linha de 10 rostos e outra de 2: 10 + 2 = 12. Como 6 + 6 = 12, a quantidade dobra a cada etapa.",
+    "motivo": "Frase mais direta, mostra a conta e a conclusão."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "3 × 2^20 − 1 não confere. O visor tem 3, 6, 12, ..., sempre múltiplos de 3. Já 3 × 2^20 − 1 deixa resto 2 na divisão por 3, então não é múltiplo de 3 e não pode ser uma contagem do visor.",
+    "motivo": "Teste objetivo mais curto e claro (frases curtas)."
+   },
+   {
+    "campo": "resolucao.quadro[4].linha",
+    "depois": "etapa n: 3 × 2^(n−1)",
+    "motivo": "Mantida, sem mudança de fato; a nota já explica o expoente."
+   }
+  ],
+  "didatica_alertas": [
+   "Classificação do conteúdo: o cabeçalho diz M07.3 (soma), mas a resolução trata de M07.2 (PG, termo geral). A questão pede um termo, não uma soma; M07.2 está correto. O nível 8 do cabeçalho difere do nível 4 da resolução."
+  ],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "A"
  }
 }

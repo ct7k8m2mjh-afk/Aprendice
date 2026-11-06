@@ -1,7 +1,7 @@
 {
  "resolucao": {
   "antes": {
-   "texto": "Para achar o objetivo de um texto, pergunte quem fala, para quem fala e o que quer provocar no leitor. Numa carta aberta, o destinatário está no vocativo, a saudação do início. Os governantes aparecem só como terceiros: o texto diz que espera que eles reflitam, mas não fala com eles.",
+   "texto": "Para achar o objetivo de um texto, pergunte: quem fala, para quem fala e o que quer provocar no leitor. Numa carta aberta, o destinatário aparece no título e na saudação do início (o vocativo). Os governantes são só citados: o texto diz que espera que eles reflitam, mas não fala com eles.",
    "formulas": [
     "objetivo = quem escreve + para quem + o que quer provocar",
     "carta aberta: o destinatário está no vocativo (a saudação inicial)"
@@ -36,16 +36,16 @@
     "tipo": "localizar"
    },
    {
-    "faz": "Veja quem é o autor e o que ele faz",
+    "faz": "Veja quem escreve e o que faz",
     "conta": "SBGG 'vem a público manifestar suas preocupações'",
-    "porque": "A sociedade se manifesta publicamente para expor um problema. Divulgar-se não é o foco: o foco é o estado da saúde pública.",
-    "tipo": "interpretar"
+    "porque": "A sociedade se manifesta em público para expor um problema. Ela não faz propaganda do próprio trabalho: o foco é o estado da saúde pública. Isso descarta a alternativa C.",
+    "tipo": "eliminar"
    },
    {
     "faz": "Situe os governantes no texto",
     "conta": "'Esperamos que ... governantes ... reflitam'",
-    "porque": "Os governantes são citados na 3ª pessoa, como quem deve agir no futuro. O leitor a quem a carta fala é a população.",
-    "tipo": "interpretar"
+    "porque": "Os governantes aparecem na 3ª pessoa ('governantes ... reflitam'), como quem deve agir no futuro. A carta é dirigida à população, e eles são citados como terceiros. Isso descarta a alternativa B.",
+    "tipo": "eliminar"
    },
    {
     "faz": "Escolha a alternativa que une destinatário e assunto",
@@ -57,10 +57,10 @@
   "resposta": "Alternativa E: a carta, dirigida à população, chama a atenção para a baixa qualidade dos serviços de saúde pública para o idoso.",
   "checagem": "Troque a letra pelo título: 'Carta aberta à população brasileira' casa com 'chamar a atenção da população'. Nas demais alternativas, o destinatário ou o assunto não bate com a saudação e o diagnóstico do texto.",
   "erradas": {
-   "A": "Diz que o alvo é o idoso. A saudação é a 'Prezados Cidadãos e Cidadãs', e o texto não dá orientação de autocuidado: ele denuncia a falta de uma rede de atenção à saúde do idoso.",
-   "B": "É a mais tentadora, porque o texto cita governantes e legisladores. Mas eles aparecem só no penúltimo parágrafo, na 3ª pessoa ('Esperamos que... reflitam'). O destinatário é a população. Além disso, o texto trata da falta de atendimento, não dos 'cuidados requeridos pelo idoso'.",
-   "C": "A SBGG se identifica como autora ('vem a público manifestar suas preocupações'), mas não descreve nem promove o trabalho dela. O assunto é a saúde pública, não a instituição.",
-   "D": "O texto não fala de legislação nem de 'retrocesso'. Fala de deficiências no atendimento e de falta de integração entre os níveis de atenção. Os 'avanços' são até reconhecidos ('apesar dos indiscutíveis avanços')."
+   "A": "Diz que o alvo é o idoso. A saudação é a 'Prezados Cidadãos e Cidadãs', e o texto não dá conselho de autocuidado: ele denuncia a falta de uma rede de atenção à saúde do idoso. Faltou ler o destinatário.",
+   "B": "É a mais tentadora, porque o texto cita governantes e legisladores. Mas eles aparecem só no penúltimo parágrafo, na 3ª pessoa ('Esperamos que ... reflitam'). Quem recebe a carta é a população, chamada no título e na saudação. Além disso, o texto não descreve os cuidados que o idoso requer: ele denuncia a falha dos serviços.",
+   "C": "A SBGG assina a carta ('vem a público manifestar suas preocupações'), mas não descreve nem promove o trabalho dela. O assunto é a saúde pública. Faltou separar quem escreve do que se quer provocar.",
+   "D": "O texto cita legisladores, mas não discute leis nem fala em 'retrocesso'. Ele trata das falhas no atendimento e da falta de integração entre os níveis de atenção. Até reconhece 'indiscutíveis avanços'. Faltou conferir o assunto no texto."
   },
   "armadilha": "Escolher 'alertar os governantes' porque eles são citados: quem é citado não é, necessariamente, o destinatário. O vocativo e o título dizem a quem a carta fala.",
   "alerta": "",
@@ -101,10 +101,104 @@
  "gab": "E",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "eliminar",
+    "motivo": "'interpretar' não é um tipo válido. Os tipos aceitos são localizar, calcular, comparar, eliminar e concluir. Este passo descarta a leitura de que a carta divulga a SBGG (alternativa C).",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "eliminar",
+    "motivo": "'interpretar' não é um tipo válido. Este passo descarta os governantes como destinatários (alternativa B).",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "É a mais tentadora, porque o texto cita governantes e legisladores. Mas eles só aparecem no último parágrafo antes do fecho, e na 3ª pessoa ('Esperamos que... reflitam'). Quem recebe a carta é a população, chamada no título e na saudação.",
+    "motivo": "Chamar o parágrafo de 'penúltimo' depende de contar ou não o lema e a data, então a posição ficou ambígua. A frase 'não trata dos cuidados requeridos pelo idoso' também saiu, porque é discutível: o texto fala das necessidades de atenção à saúde do idoso. O motivo que basta é o destinatário errado.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "O texto cita legisladores, mas não discute legislação nem fala em 'retrocesso'. Ele trata das falhas no atendimento e da falta de integração entre os níveis de atenção. Os avanços são até reconhecidos ('apesar dos indiscutíveis avanços').",
+    "motivo": "A frase original dizia que o texto 'não fala de legislação', mas a palavra 'legisladores' aparece nele. Agora a frase separa a menção aos legisladores de uma discussão sobre legislação.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Para achar o objetivo de um texto, pergunte: quem fala, para quem fala e o que quer provocar no leitor. Numa carta aberta, o destinatário aparece no título e na saudação do início (o vocativo). Os governantes são só citados: o texto diz que espera que eles reflitam, mas não fala com eles.",
+    "motivo": "Frases mais curtas e diretas; o vocativo é situado no título e na saudação, sem ambiguidade."
+   },
+   {
+    "campo": "resolucao.passos[2]",
+    "depois": {
+     "faz": "Veja quem escreve e o que faz",
+     "conta": "SBGG 'vem a público manifestar suas preocupações'",
+     "porque": "A sociedade se manifesta em público para expor um problema. Ela não faz propaganda do próprio trabalho: o foco é o estado da saúde pública. Isso descarta a alternativa C.",
+     "tipo": "eliminar"
+    },
+    "motivo": "O 'porque' ligava o passo à alternativa eliminada e tinha uma frase confusa ('Divulgar-se não é o foco')."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Os governantes aparecem na 3ª pessoa ('governantes ... reflitam'), como quem deve agir no futuro. Ninguém fala com eles. A carta fala com a população. Isso descarta a alternativa B.",
+    "motivo": "Explica o que a 3ª pessoa prova e liga o passo à alternativa eliminada."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "É a mais tentadora, porque o texto cita governantes e legisladores. Mas eles aparecem só no penúltimo parágrafo, na 3ª pessoa ('Esperamos que ... reflitam'). Quem recebe a carta é a população, chamada no título e na saudação.",
+    "motivo": "Corrige a localização imprecisa ('último parágrafo antes do fecho') e encurta a frase."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "Diz que o alvo é o idoso. A saudação é a 'Prezados Cidadãos e Cidadãs', e o texto não dá conselho de autocuidado: ele denuncia a falta de uma rede de atenção à saúde do idoso. Faltou ler o destinatário.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou A."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "A SBGG assina a carta ('vem a público manifestar suas preocupações'), mas não descreve nem promove o trabalho dela. O assunto é a saúde pública. Faltou separar quem escreve do que se quer provocar.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou C."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "O texto cita legisladores, mas não discute leis nem fala em 'retrocesso'. Ele trata das falhas no atendimento e da falta de integração entre os níveis de atenção. Até reconhece 'indiscutíveis avanços'. Faltou conferir o assunto no texto.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou D."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "É a mais tentadora, porque o texto cita governantes e legisladores. Mas eles aparecem só no penúltimo parágrafo, na 3ª pessoa ('Esperamos que ... reflitam'). Quem recebe a carta é a população, chamada no título e na saudação. Além disso, o texto não descreve os cuidados que o idoso requer: ele denuncia a falha dos serviços.",
+    "motivo": "A alternativa B fala em 'cuidados requeridos pelo idoso', e o texto não trata disso. A versão anterior só refutava B pelo destinatário. O acréscimo dá o segundo motivo, que o texto sustenta. A localização 'penúltimo parágrafo' está correta: o parágrafo 'Esperamos que...' vem antes do fecho 'Dignidade à saúde do idoso!'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Os governantes aparecem na 3ª pessoa ('governantes ... reflitam'), como quem deve agir no futuro. A carta é dirigida à população, e eles são citados como terceiros. Isso descarta a alternativa B.",
+    "motivo": "A frase 'Ninguém fala com eles' era forte demais. A carta aberta tem o efeito de pressão pública sobre os governantes, mesmo sem se dirigir a eles. A versão nova mantém a lógica sem a afirmação absoluta.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "E"
  }
 }

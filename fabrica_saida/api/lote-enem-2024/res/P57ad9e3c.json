@@ -8,7 +8,7 @@
  "conceito": "Relacionar o efeito de um vírus (multiplicação descontrolada de linfócitos T) com uma doença: o câncer (leucemia/linfoma).",
  "resolucao": {
   "antes": {
-   "texto": "Câncer é a multiplicação descontrolada de células. Se um vírus estimula a produção de um tipo de célula além do normal, ele pode favorecer um câncer desse tecido. No caso de linfócitos T (glóbulos brancos), o câncer é uma leucemia ou um linfoma. O texto separa dois efeitos: o HIV destrói linfócitos T e o HTLV-1 faz esses linfócitos se multiplicarem.",
+   "texto": "Câncer é a multiplicação descontrolada de células. Se um vírus faz um tipo de célula se multiplicar além do normal, ele pode favorecer um câncer nesse tecido. Linfócitos T são glóbulos brancos; o câncer deles é a leucemia ou o linfoma. O texto separa dois efeitos: o HIV destrói linfócitos T e o HTLV-1 faz esses linfócitos se multiplicarem.",
    "formulas": [
     "HIV: destrói linfócitos T → queda da defesa → aids",
     "HTLV-1: estimula linfócitos T → proliferação excessiva → possível câncer"
@@ -16,7 +16,7 @@
    "simbolos": [
     [
      "retrovírus",
-     "vírus de RNA que copia seu material genético em DNA e o insere no DNA da célula infectada"
+     "vírus de RNA que, dentro da célula, copia seu material genético em DNA (transcriptase reversa) e o integra ao DNA da célula infectada"
     ],
     [
      "linfócito T",
@@ -29,10 +29,26 @@
     [
      "aids",
      "síndrome causada pelo HIV, em que a defesa do corpo cai porque os linfócitos T são destruídos"
+    ],
+    [
+     "leucemia",
+     "câncer dos glóbulos brancos, que se multiplicam demais no sangue e na medula do osso"
+    ],
+    [
+     "linfoma",
+     "câncer dos linfócitos que se forma principalmente nos gânglios (as 'ínguas')"
+    ],
+    [
+     "insulina",
+     "hormônio que tira o açúcar do sangue e o leva para dentro das células"
+    ],
+    [
+     "coagulação",
+     "processo que forma o 'tampão' que estanca o sangramento"
     ]
    ]
   },
-  "pista": "Compare o que cada vírus faz com os linfócitos T. Que doença é definida por células se multiplicando demais?",
+  "pista": "Compare o que cada vírus faz com os linfócitos T: um destrói e o outro aumenta. Qual doença é definida por células se multiplicando demais?",
   "passos": [
    {
     "faz": "Localize a diferença entre os vírus",
@@ -43,8 +59,8 @@
    {
     "faz": "Traduza o efeito em processo biológico",
     "conta": "mais linfócitos T → proliferação excessiva",
-    "porque": "Multiplicação excessiva e descontrolada de células de um tecido é a definição de câncer. Nos linfócitos, aparece como leucemia ou linfoma.",
-    "tipo": "interpretar"
+    "porque": "Multiplicação excessiva e descontrolada de células de um tecido é a definição de câncer. Nos linfócitos, ele aparece como leucemia ou linfoma.",
+    "tipo": "concluir"
    },
    {
     "faz": "Descarte a aids",
@@ -55,12 +71,12 @@
    {
     "faz": "Descarte as demais doenças",
     "conta": "diabetes, hepatite B, hemorragia",
-    "porque": "Nenhuma depende do aumento de linfócitos T. Diabetes é falha na insulina, hepatite B é infecção do fígado por outro vírus e hemorragia é perda de sangue.",
+    "porque": "Nenhuma depende do aumento de linfócitos T. Diabetes é falha da insulina; hepatite B é infecção do fígado por outro vírus; hemorragia é perda de sangue.",
     "tipo": "eliminar"
    },
    {
     "faz": "Conclua",
-    "conta": "proliferação de linfócitos T → câncer",
+    "conta": "mais linfócitos T → câncer",
     "porque": "O efeito descrito no texto (aumento da produção de linfócitos) leva a uma possível consequência: o câncer.",
     "tipo": "concluir"
    }
@@ -71,7 +87,7 @@
    "A": "Aids é causada pela destruição dos linfócitos T, efeito atribuído ao HIV. O texto diz que o HTLV-1 estimula o aumento dessas células, o contrário.",
    "C": "Diabetes é um distúrbio do controle da glicose, por falta de insulina ou resistência a ela. Não tem relação com a multiplicação de linfócitos T descrita no texto.",
    "D": "Hepatite B é infecção do fígado causada por outro vírus, o HBV. O HTLV-1 infecta linfócitos T, não é o agente da hepatite B.",
-   "E": "Hemorragia é saída de sangue dos vasos, ligada a lesões ou a problemas de coagulação. O texto fala em aumento de linfócitos, que não causa isso diretamente."
+   "E": "Hemorragia é saída de sangue dos vasos, ligada a lesões ou a falha na coagulação. O texto fala em aumento de linfócitos, que não causa isso diretamente."
   },
   "armadilha": "Marcar aids só porque o HTLV-1 é do mesmo grupo do HIV; o texto diz que um destrói e o outro estimula os linfócitos T.",
   "alerta": "",
@@ -105,10 +121,111 @@
  "gab": "B",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "concluir",
+    "motivo": "\"interpretar\" não está na lista de tipos permitidos (localizar, calcular, comparar, eliminar, concluir). Para o passo que traduz o efeito descrito no nome do processo, o guia de Biologia indica localizar ou concluir. Aqui o passo tira uma conclusão do trecho localizado, então o tipo certo é concluir.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Câncer é a multiplicação descontrolada de células. Se um vírus faz um tipo de célula se multiplicar além do normal, ele pode favorecer um câncer nesse tecido. Linfócitos T são glóbulos brancos; o câncer deles é a leucemia ou o linfoma. O texto separa dois efeitos: o HIV destrói linfócitos T e o HTLV-1 faz esses linfócitos se multiplicarem.",
+    "motivo": "Frases mais curtas e diretas; 'estimula a produção' trocado por 'faz se multiplicar', mais simples."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "retrovírus",
+      "vírus de RNA que copia seu material genético em DNA e o insere no DNA da célula infectada"
+     ],
+     [
+      "linfócito T",
+      "célula de defesa (glóbulo branco) que coordena e executa a resposta imunológica"
+     ],
+     [
+      "câncer",
+      "doença em que células se multiplicam sem controle"
+     ],
+     [
+      "aids",
+      "síndrome causada pelo HIV, em que a defesa do corpo cai porque os linfócitos T são destruídos"
+     ],
+     [
+      "leucemia",
+      "câncer dos glóbulos brancos, que se multiplicam demais no sangue e na medula do osso"
+     ],
+     [
+      "linfoma",
+      "câncer dos linfócitos que se forma principalmente nos gânglios (as 'ínguas')"
+     ],
+     [
+      "insulina",
+      "hormônio que tira o açúcar do sangue e o leva para dentro das células"
+     ],
+     [
+      "coagulação",
+      "processo que forma o 'tampão' que estanca o sangramento"
+     ]
+    ],
+    "motivo": "Termos usados nos passos e nas erradas (leucemia, linfoma, insulina, coagulação) não estavam explicados."
+   },
+   {
+    "campo": "resolucao.pista",
+    "depois": "Compare o que cada vírus faz com os linfócitos T: um destrói e o outro aumenta. Qual doença é definida por células se multiplicando demais?",
+    "motivo": "Deixa claro o contraste sem apontar a doença."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "Multiplicação excessiva e descontrolada de células de um tecido é a definição de câncer. Nos linfócitos, ele aparece como leucemia ou linfoma.",
+    "motivo": "Frases mais curtas e claras."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Nenhuma depende do aumento de linfócitos T. Diabetes é falha da insulina; hepatite B é infecção do fígado por outro vírus; hemorragia é perda de sangue.",
+    "motivo": "Mais simples, com termos já explicados em 'simbolos'."
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "mais linfócitos T → câncer",
+    "motivo": "Cabe na linha do celular (~30 caracteres)."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "Hemorragia é saída de sangue dos vasos, ligada a lesões ou a falha na coagulação. O texto fala em aumento de linfócitos, que não causa isso diretamente.",
+    "motivo": "Troca de 'problemas de coagulação' por forma mais direta; o termo está explicado em 'simbolos'."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.antes.simbolos[0]",
+    "depois": [
+     "retrovírus",
+     "vírus de RNA que, dentro da célula, copia seu material genético em DNA (transcriptase reversa) e o integra ao DNA da célula infectada"
+    ],
+    "motivo": "Pequena precisão: o termo transcriptase reversa explica como o RNA vira DNA. Não é erro grave, apenas um ajuste de rigor.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "B"
  }
 }

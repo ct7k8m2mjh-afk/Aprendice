@@ -8,7 +8,7 @@
  "conceito": "Área do retângulo (base × altura) e diferença entre duas áreas",
  "resolucao": {
   "antes": {
-   "texto": "A questão pede em quantos metros quadrados a área foi reduzida, ou seja, a diferença entre a área antiga e a área nova. Cada área de um retângulo é comprimento vezes largura. Não basta comparar os lados: é preciso calcular as duas áreas completas.",
+   "texto": "A questão pergunta quanto a área diminuiu. Isso é a área do campo antigo menos a área do campo novo. A área de um retângulo é comprimento vezes largura. Não basta comparar os lados: calcule as duas áreas inteiras e subtraia.",
    "formulas": [
     "área do retângulo = comprimento × largura",
     "redução = área antiga − área nova"
@@ -16,11 +16,19 @@
    "simbolos": [
     [
      "m²",
-     "metro quadrado, unidade de área"
+     "metro quadrado, unidade de área (quadrado de 1 m de lado)"
     ],
     [
      "Fifa",
-     "federação internacional de futebol, que define os padrões do campo"
+     "federação internacional de futebol, que define as medidas do campo"
+    ],
+    [
+     "área",
+     "o tamanho da superfície do campo"
+    ],
+    [
+     "redução",
+     "quanto diminuiu: valor antigo menos valor novo"
     ]
    ]
   },
@@ -41,7 +49,7 @@
    {
     "faz": "Subtraia as duas áreas",
     "conta": "8 250 − 7 140 = 1 110 m²",
-    "porque": "A redução é quanto a área antiga tinha a mais que a nova.",
+    "porque": "Redução é quanto diminuiu. Por isso, tire a área nova da área antiga.",
     "tipo": "calcular"
    },
    {
@@ -54,10 +62,10 @@
   "resposta": "Alternativa D: a área passou de 8 250 m² para 7 140 m², uma redução de 1 110 m².",
   "checagem": "Outro caminho: 105 × 68 = 105 × 70 − 105 × 2 = 7 350 − 210 = 7 140. E 110 × 75 = 100 × 75 + 10 × 75 = 7 500 + 750 = 8 250. A diferença é 1 110.",
   "erradas": {
-   "A": "24 não confere: é a soma das reduções dos lados, (110 − 105) + (75 − 68) = 5 + 7 = 12, e mesmo isso daria 12, não 24. Além disso, a redução dos lados não é a redução da área. A área antiga menos a nova dá 1 110, e não 24.",
+   "A": "24 sai de comparar o perímetro (a volta do campo): 2 × (110 + 75) − 2 × (105 + 68) = 370 − 346 = 24. Perímetro é medida em metros; a questão pede área, em m².",
    "B": "35 sai de multiplicar as reduções dos lados: (110 − 105) × (75 − 68) = 5 × 7 = 35. Isso é a área de um retângulo de 5 m por 7 m, não a diferença entre as áreas dos dois campos.",
-   "C": "555 não confere: é a metade de 1 110, e nenhuma conta do enunciado leva a esse valor. A diferença das áreas é 8 250 − 7 140 = 1 110, e não 555.",
-   "E": "1 145 não confere: 8 250 − 1 145 = 7 105, e a área nova é 7 140, então o valor não fecha. A redução correta é 1 110, 35 a menos que 1 145."
+   "C": "555 não confere: 8 250 − 555 = 7 695, mas a área nova é 7 140. Nenhuma conta com esses dados chega a 555; a redução correta é 1 110.",
+   "E": "1 145 sai de somar as faixas cortadas contando o canto duas vezes: 5 × 75 + 110 × 7 = 375 + 770 = 1 145. O canto de 5 × 7 = 35 m² entrou nas duas faixas; tirando-o, sobra 1 110."
   },
   "armadilha": "Subtrair só os lados (ou multiplicar as reduções dos lados) em vez de calcular as duas áreas inteiras e subtrair.",
   "alerta": "",
@@ -74,7 +82,7 @@
   },
   {
    "nome": "eliminação por último algarismo",
-   "ideia": "Os produtos terminam em 0 (110 × 75 = ...50) e 0 (105 × 68 = ...40), então a diferença termina em 0: sobram C (555 não, termina em 5) e D. Só D bate com a conta."
+   "ideia": "Os dois produtos terminam em 0 (110 × 75 = 8 250 e 105 × 68 = 7 140), então a diferença também termina em 0. Entre as alternativas, só D (1 110) termina em 0: A termina em 4, e B, C e E terminam em 5."
   }
  ],
  "quadro": [
@@ -102,7 +110,7 @@
   },
   {
    "linha": "redução = 1110",
-   "nota": "8 250 − 7 140 = 1 110 m²",
+   "nota": "resposta: 1 110 m²",
    "destaque": "1110"
   }
  ],
@@ -119,10 +127,135 @@
  "gab": "D",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "24 sai de calcular a redução do perímetro, e não da área: 2 × (110 + 75) − 2 × (105 + 68) = 370 − 346 = 24. A questão pede metros quadrados, ou seja, área.",
+    "motivo": "O texto se contradizia: dizia que a alternativa era a soma das reduções dos lados e logo depois admitia que essa soma dá 12. A origem real do 24 é a diferença entre os perímetros, 370 − 346 = 24.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "555 não confere: 8 250 − 555 = 7 695, e a área nova é 7 140. A diferença entre as áreas é 1 110, o dobro de 555.",
+    "motivo": "O texto afirmava, sem testar, que \"nenhuma conta do enunciado leva a esse valor\". Troquei por um teste objetivo que derruba a alternativa.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "1 145 sai de somar as faixas cortadas contando o canto duas vezes: 5 × 75 + 110 × 7 = 375 + 770 = 1 145. O canto de 5 × 7 = 35 m² entrou nas duas faixas; tirando-o, sobra 1 110.",
+    "motivo": "O valor tem uma origem real: as faixas somadas com o canto contado duas vezes (375 + 770 = 1 145, que é 35 a mais que 1 110). Isso explica o erro melhor do que \"não confere\".",
+    "fonte": ""
+   },
+   {
+    "campo": "caminhos[1].ideia",
+    "depois": "Os dois produtos terminam em 0 (110 × 75 = 8 250 e 105 × 68 = 7 140), então a diferença também termina em 0. Entre as alternativas, só D (1 110) termina em 0: A termina em 4, e B, C e E terminam em 5.",
+    "motivo": "Estava errado: dizia que sobravam C e D, mas 555 termina em 5. Só D termina em 0.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "A questão pergunta quanto a área diminuiu. Isso é a área do campo antigo menos a área do campo novo. A área de um retângulo é comprimento vezes largura. Não basta comparar os lados: calcule as duas áreas inteiras e subtraia.",
+    "motivo": "Frases mais curtas e diretas, sem a expressão 'ou seja'."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "m²",
+      "metro quadrado, unidade de área (quadrado de 1 m de lado)"
+     ],
+     [
+      "Fifa",
+      "federação internacional de futebol, que define as medidas do campo"
+     ],
+     [
+      "área",
+      "o tamanho da superfície do campo"
+     ],
+     [
+      "redução",
+      "quanto diminuiu: valor antigo menos valor novo"
+     ]
+    ],
+    "motivo": "Explicar as palavras 'área' e 'redução'."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Redução é quanto diminuiu. Por isso, tire a área nova da área antiga.",
+    "motivo": "Explicação mais clara."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "555 não confere: 8 250 − 555 = 7 695, e a área nova é 7 140. Quem marcou talvez tenha feito só metade da conta; a diferença real é 1 110, o dobro de 555.",
+    "motivo": "Mostra o que faltou no raciocínio de quem marcou C, sem inventar uma origem."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "24 sai de comparar o perímetro (a volta do campo): 2 × (110 + 75) − 2 × (105 + 68) = 370 − 346 = 24. Perímetro é medida em metros; a questão pede área, em m².",
+    "motivo": "Explica o termo 'perímetro' e o que faltou ao aluno."
+   },
+   {
+    "campo": "resolucao.quadro",
+    "depois": [
+     {
+      "linha": "A_antiga = 110 × 75",
+      "nota": "área do campo antigo"
+     },
+     {
+      "linha": "A_antiga = 8250",
+      "nota": "110 × 75 = 8 250 m²",
+      "destaque": "8250"
+     },
+     {
+      "linha": "A_nova = 105 × 68",
+      "nota": "área do campo novo"
+     },
+     {
+      "linha": "A_nova = 7140",
+      "nota": "105 × 68 = 7 140 m²",
+      "destaque": "7140"
+     },
+     {
+      "linha": "redução = 8250 − 7140",
+      "nota": "antiga menos nova"
+     },
+     {
+      "linha": "redução = 1110",
+      "nota": "resposta: 1 110 m²",
+      "destaque": "1110"
+     }
+    ],
+    "motivo": "Nota final liga o resultado à resposta, mantendo as linhas curtas."
+   }
+  ],
+  "didatica_alertas": [
+   "caminhos[0].ideia: a decomposição escrita (5 × 75 + 105 × 7 = 375 + 735) está correta, mas o roteiro do visual usa a mesma divisão da faixa em L; confira que o desenho mostra a faixa de 5 m com altura 75 e a de 7 m com largura 105. Nenhum erro numérico."
+  ],
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "555 não confere: 8 250 − 555 = 7 695, mas a área nova é 7 140. Nenhuma conta com esses dados chega a 555; a redução correta é 1 110.",
+    "motivo": "Retirar a especulação ('talvez', 'metade da conta'), proibida pelo guia, e deixar só o teste objetivo.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "D"
  }
 }

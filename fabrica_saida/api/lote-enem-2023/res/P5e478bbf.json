@@ -8,7 +8,7 @@
  "conceito": "Aplicar as propriedades do logaritmo (potência e quociente) para calcular o nível sonoro em dB e enquadrá-lo numa faixa.",
  "resolucao": {
   "antes": {
-   "texto": "A fórmula parece complicada, mas tem log de uma potência 10. Pela propriedade log(a^k) = k · log a, o 10 sai para a frente. Pela propriedade da diferença, log A − log B = log(A/B). Então N = 10 · log(I/I0). Depois é só calcular I/I0 e ver em qual faixa cai o valor de N.",
+   "texto": "Em cada logaritmo da fórmula, a intensidade está elevada a 10. Pela propriedade log(a^k) = k × log a, esse 10 sai de dentro do log e passa multiplicando. Depois, a diferença de dois logs vira o log de uma divisão. Assim, N = 10 × log(I ÷ I0). Calcule I ÷ I0 e veja em qual faixa cai o valor de N.",
    "formulas": [
     "log(a^k) = k × log a",
     "log A − log B = log(A ÷ B)",
@@ -26,11 +26,23 @@
     ],
     [
      "I0",
-     "intensidade de referência: 10^−12 W/m²"
+     "intensidade de referência: 10^−12 W/m² (o 0 pequeno é só um nome)"
+    ],
+    [
+     "W/m²",
+     "watt por metro quadrado: quanta energia do som passa por cada m² de área"
     ],
     [
      "log",
-     "logaritmo na base 10"
+     "logaritmo na base 10: o expoente a que 10 é elevado para dar o número. Ex.: log 1000 = 3"
+    ],
+    [
+     "10^−8",
+     "10 elevado a −8, ou seja, 0,00000001"
+    ],
+    [
+     "intervalo (48, 55)",
+     "valores entre 48 e 55, sem incluir o 48 nem o 55"
     ]
    ]
   },
@@ -40,13 +52,13 @@
     "faz": "Simplifique a fórmula de N",
     "conta": "N = 10·log I − 10·log I0",
     "porque": "Em log(I^10), o expoente 10 passa multiplicando o logaritmo. O mesmo vale para I0^10.",
-    "tipo": "aplicar"
+    "tipo": "calcular"
    },
    {
     "faz": "Junte os logaritmos num quociente",
     "conta": "N = 10 · log(I ÷ I0)",
     "porque": "Diferença de logaritmos de mesma base é o log do quociente. O 10 está em evidência.",
-    "tipo": "aplicar"
+    "tipo": "calcular"
    },
    {
     "faz": "Calcule I ÷ I0",
@@ -57,7 +69,7 @@
    {
     "faz": "Calcule o logaritmo",
     "conta": "log 8 = log 2³ = 3 × 0,3 = 0,9",
-    "porque": "8 = 2³, então log 8 = 3 · log 2. A questão manda usar log 2 = 0,3. Depois: log(8×10^4) = 0,9 + 4 = 4,9.",
+    "porque": "8 = 2³, então log 8 = 3 × log 2 = 0,9. Como log(8×10^4) = log 8 + log 10^4, o resultado é 0,9 + 4 = 4,9.",
     "tipo": "calcular"
    },
    {
@@ -68,12 +80,12 @@
    }
   ],
   "resposta": "Alternativa B: o nível é N = 49 dB, que está no intervalo (48 dB, 55 dB), a faixa da medida preventiva II.",
-  "checagem": "Calcule cada logaritmo separado. log I^10 = 10 × (0,9 − 8) = −71. log I0^10 = 10 × (−12) = −120. N = −71 − (−120) = 49. Dá o mesmo resultado.",
+  "checagem": "Calcule cada log separado. log(I^10) = 10 × (0,9 − 8) = 10 × (−7,1) = −71. log(I0^10) = 10 × (−12) = −120. N = −71 − (−120) = 49. Dá o mesmo resultado.",
   "erradas": {
-   "A": "A medida I vale para N = 48 dB ou menos. Se alguém usar log 8 = 2 × 0,3 = 0,6, o resultado é N = 10 × 4,6 = 46, que cairia aqui. Mas 8 = 2³, então log 8 = 0,9 e N = 49, que passa de 48.",
-   "C": "A medida III exige N entre 55 e 80 dB, ou seja, I/I0 entre 10^5,5 (cerca de 316 000) e 10^8. Aqui I/I0 = 8×10^4 = 80 000, menor que 316 000. Por isso N = 49 não chega a 55.",
-   "D": "A medida IV exige N entre 80 e 115 dB, ou seja, I/I0 de pelo menos 10^8. A máquina tem I/I0 = 8×10^4, muito abaixo. Dá 49 dB, bem longe de 80.",
-   "E": "A medida V exige N maior que 115 dB, ou seja, I/I0 maior que 10^11,5. A máquina tem I/I0 = 8×10^4, então N = 49 dB, muito menor que 115."
+   "A": "A medida I vale para N = 48 dB ou menos. Quem errou usou log 8 = 2 × 0,3 = 0,6 e achou N = 10 × 4,6 = 46, que cairia aqui. Mas 8 = 2³, então log 8 = 0,9 e N = 49, maior que 48.",
+   "C": "III não confere: essa medida exige N entre 55 e 80 dB, e N = 10 × 4,9 = 49 dB não chega a 55. Teste: para N = 55, teria de ser I ÷ I0 ≈ 3,2×10^5, quase 4 vezes os 8×10^4 da máquina.",
+   "D": "IV não confere: essa medida exige N entre 80 e 115 dB, e N = 49 dB está bem abaixo. Teste: para N = 80, teria de ser I ÷ I0 = 10^8, e a máquina tem só 8×10^4.",
+   "E": "V não confere: essa medida exige N maior que 115 dB, e N = 49 dB é muito menor. Teste: para N = 115, teria de ser I ÷ I0 = 10^11,5, enquanto a máquina tem 8×10^4."
   },
   "armadilha": "Esquecer que o expoente 10 sai do logaritmo multiplicando, ou calcular log 8 como 2 × 0,3 em vez de 3 × 0,3.",
   "alerta": "",
@@ -108,7 +120,7 @@
    "nota": "diferença de logs vira log do quociente"
   },
   {
-   "linha": "I ÷ I0 = 8×10^−8 ÷ 10^−12",
+   "linha": "I ÷ I0 = (8×10^−8) ÷ 10^−12",
    "nota": "substitua os valores"
   },
   {
@@ -142,10 +154,154 @@
  "gab": "B",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[0].tipo",
+    "depois": "calcular",
+    "motivo": "O tipo 'aplicar' não existe na lista permitida (localizar, calcular, comparar, eliminar, concluir). O passo transforma a expressão algébrica, então o tipo certo é 'calcular'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "calcular",
+    "motivo": "O tipo 'aplicar' não existe na lista permitida (localizar, calcular, comparar, eliminar, concluir). O passo transforma a expressão algébrica, então o tipo certo é 'calcular'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "A medida IV exige N entre 80 e 115 dB, ou seja, I/I0 maior que 10^8. A máquina tem I/I0 = 8×10^4, muito abaixo. Dá 49 dB, bem longe de 80.",
+    "motivo": "O intervalo (80 dB, 115 dB) é aberto, então a condição é N > 80, isto é, I/I0 > 10^8. 'Pelo menos 10^8' incluiria o 80 dB, que fica de fora.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "A fórmula parece complicada, mas cada log é de uma potência de expoente 10. Pela propriedade log(a^k) = k · log a, o 10 sai para a frente. Pela propriedade da diferença, log A − log B = log(A/B). Então N = 10 · log(I/I0). Depois é só calcular I/I0 e ver em qual faixa cai o valor de N.",
+    "motivo": "'Log de uma potência 10' pode ser lido como 'potência de 10' (10^x). O certo é I^10: o expoente é que vale 10.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Em cada logaritmo da fórmula, a intensidade está elevada a 10. Pela propriedade log(a^k) = k × log a, esse 10 sai de dentro do log e passa multiplicando. Depois, a diferença de dois logs vira o log de uma divisão. Assim, N = 10 × log(I ÷ I0). Calcule I ÷ I0 e veja em qual faixa cai o valor de N.",
+    "motivo": "Frases mais curtas e diretas; a ideia fica clara para um aluno de 17 anos."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "dB",
+      "decibel, unidade do nível sonoro N"
+     ],
+     [
+      "I",
+      "intensidade do som da máquina, em W/m²"
+     ],
+     [
+      "I0",
+      "intensidade de referência: 10^−12 W/m² (o 0 pequeno é só um nome)"
+     ],
+     [
+      "W/m²",
+      "watt por metro quadrado: quanta energia do som passa por cada m² de área"
+     ],
+     [
+      "log",
+      "logaritmo na base 10: o expoente a que 10 é elevado para dar o número. Ex.: log 1000 = 3"
+     ],
+     [
+      "10^−8",
+      "10 elevado a −8, ou seja, 0,00000001"
+     ],
+     [
+      "intervalo (48, 55)",
+      "valores entre 48 e 55, sem incluir o 48 nem o 55"
+     ]
+    ],
+    "motivo": "Faltavam W/m², potência negativa e intervalo aberto, termos usados na resolução."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "log 8 = log 2³ = 3 × 0,3 = 0,9",
+    "motivo": "Mantém a conta curta; o log(8×10^4) passa para o porquê."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "8 = 2³, então log 8 = 3 × log 2 = 0,9. Como log(8×10^4) = log 8 + log 10^4, o resultado é 0,9 + 4 = 4,9.",
+    "motivo": "Separa a conta do raciocínio e explica a soma de logs."
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "N = 10 × 4,9 = 49 dB",
+    "motivo": "A comparação com a faixa fica no porquê; a conta fica limpa."
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Calcule cada log separado. log(I^10) = 10 × (0,9 − 8) = 10 × (−7,1) = −71. log(I0^10) = 10 × (−12) = −120. N = −71 − (−120) = 49. Dá o mesmo resultado.",
+    "motivo": "Mostra de onde vem o −7,1, antes pulado."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "A medida I vale para N = 48 dB ou menos. Quem errou usou log 8 = 2 × 0,3 = 0,6 e achou N = 10 × 4,6 = 46, que cairia aqui. Mas 8 = 2³, então log 8 = 0,9 e N = 49, maior que 48.",
+    "motivo": "Diz com clareza o que faltou no raciocínio de quem marcou A."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "Quem marcou III provavelmente não terminou a conta ou errou o expoente. A medida III exige N entre 55 e 80 dB. Aqui N = 10 × 4,9 = 49, que não chega a 55. Faltou calcular I ÷ I0 = 8×10^4 e o log dele.",
+    "motivo": "Troca a comparação com 316 000, difícil para o aluno, por comparação direta de N, e indica o que faltou."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "A medida IV exige N entre 80 e 115 dB. Aqui N = 49 dB, bem abaixo de 80. Quem marcou IV talvez tenha usado o expoente 8 de I direto, sem subtrair o −12 de I0 e sem fazer N = 10 × log(I ÷ I0).",
+    "motivo": "Simplifica a explicação e aponta o que faltou."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "A medida V exige N maior que 115 dB. Aqui N = 49 dB, muito menor. Quem marcou V provavelmente esqueceu que I0 divide I, ou deixou o expoente 10 dentro do log sem usar a propriedade da potência.",
+    "motivo": "Simplifica e indica o que faltou no raciocínio."
+   },
+   {
+    "campo": "resolucao.quadro[3].linha",
+    "depois": "I ÷ I0 = (8×10^−8) ÷ 10^−12",
+    "motivo": "Parênteses deixam claro que o 8 multiplica a potência."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "III não confere: essa medida exige N entre 55 e 80 dB, e N = 10 × 4,9 = 49 dB não chega a 55. Teste: para N = 55, teria de ser I ÷ I0 ≈ 3,2×10^5, quase 4 vezes os 8×10^4 da máquina.",
+    "motivo": "Retirar 'provavelmente' (origem do erro não demonstrada) e dar teste objetivo; 10^5,5 ≈ 3,16×10^5.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "IV não confere: essa medida exige N entre 80 e 115 dB, e N = 49 dB está bem abaixo. Teste: para N = 80, teria de ser I ÷ I0 = 10^8, e a máquina tem só 8×10^4.",
+    "motivo": "Retirar 'talvez' (origem não demonstrada) e dar teste objetivo: 80 = 10·log(x) dá x = 10^8.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "V não confere: essa medida exige N maior que 115 dB, e N = 49 dB é muito menor. Teste: para N = 115, teria de ser I ÷ I0 = 10^11,5, enquanto a máquina tem 8×10^4.",
+    "motivo": "Retirar 'provavelmente' (origem não demonstrada) e dar teste objetivo: 115 = 10·log(x) dá x = 10^11,5.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "B"
  }
 }

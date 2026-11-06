@@ -25,7 +25,7 @@
     ],
     [
      "C=O",
-     "grupo carbonila; aqui aparece como cetona, com o oxigênio ligado a dois carbonos"
+     "grupo carbonila; aqui aparece como cetona: o carbono da C=O está ligado a dois outros carbonos"
     ],
     [
      "apolar",
@@ -34,6 +34,18 @@
     [
      "etinil (C≡CH)",
      "grupo com tripla ligação feito só de C e H; é um trecho apolar a mais na molécula"
+    ],
+    [
+     "anel aromático",
+     "anel de seis carbonos com ligações duplas alternadas, o hexágono à esquerda do desenho"
+    ],
+    [
+     "fenol",
+     "OH ligado direto ao anel aromático"
+    ],
+    [
+     "doar e receber ligação de hidrogênio",
+     "doar: o H do OH é puxado por um O da água; receber: o O da molécula puxa um H da água"
     ]
    ]
   },
@@ -43,18 +55,18 @@
     "faz": "Traduza a pergunta em critério",
     "conta": "maior solubilidade = mais interação com a água",
     "porque": "A água é polar e faz ligação de hidrogênio. Dissolve melhor quem tem mais pontos para fazer essa ligação.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Leia os grupos de Estradiol e Estriol",
-    "conta": "Estradiol: OH (anel) + OH → 2 OH",
+    "conta": "Estradiol: OH anel + OH = 2 OH",
     "porque": "No Estradiol há um OH de fenol no anel aromático e um OH de álcool no anel de cinco carbonos.",
     "tipo": "localizar"
    },
    {
     "faz": "Continue com o Estriol",
-    "conta": "Estriol: OH (anel) + 2 OH → 3 OH",
-    "porque": "O Estriol tem o OH do anel, o OH na ponta direita do desenho e mais um OH no anel de cinco carbonos.",
+    "conta": "Estriol: OH anel + 2 OH = 3 OH",
+    "porque": "O Estriol tem o OH do anel aromático e dois OH no anel de cinco carbonos: um no alto e um na ponta direita do desenho.",
     "tipo": "localizar"
    },
    {
@@ -65,18 +77,18 @@
    },
    {
     "faz": "Compare e escolha",
-    "conta": "3 OH (Estriol) > 2 OH > 1 OH",
+    "conta": "Estriol 3 OH > 2 OH > 1 OH",
     "porque": "O Estriol é o único com três OH, então faz mais ligações de hidrogênio com a água e tem a maior solubilidade.",
     "tipo": "concluir"
    }
   ],
   "resposta": "Alternativa B: o Estriol tem três grupos OH, o maior número de pontos de ligação de hidrogênio com a água, e por isso é o mais solúvel.",
-  "checagem": "Confira por eliminação: o Estriol é o único desenho com um OH a mais no anel de cinco carbonos. Os outros quatro têm no máximo 2 OH, e os dois que têm C=O ainda perdem um OH que doa ligação.",
+  "checagem": "Confira por eliminação: só o Estriol tem 3 OH. Os outros quatro têm no máximo 2 OH. A Estrona e a Noretindrona ainda trocam um OH por C=O, que só recebe a ligação.",
   "erradas": {
    "A": "O Estradiol tem 2 OH (um no anel aromático, um no anel de cinco carbonos). É polar, mas o Estriol tem um OH a mais e faz mais ligações de hidrogênio com a água.",
    "C": "A Estrona tem só 1 OH, o do anel aromático. No anel de cinco carbonos ela tem C=O, que só recebe ligação de hidrogênio e não doa. Tem menos interação com a água que o Estriol.",
    "D": "O Novestrol tem 2 OH, mas também o etinil (C≡CH), um trecho de C e H sem polaridade. Isso aumenta a parte que repele a água, e ele tem um OH a menos que o Estriol.",
-   "E": "A Noretindrona não tem o OH do anel aromático. Tem só 1 OH (no anel de cinco carbonos) e um C=O, além do etinil apolar. Tem poucos pontos de interação com a água."
+   "E": "A Noretindrona não tem anel aromático nem OH de fenol: no primeiro anel há um C=O. Tem só 1 OH (no anel de cinco carbonos) e o etinil apolar. Tem poucos pontos de interação com a água."
   },
   "armadilha": "Achar que qualquer grupo oxigenado conta igual: C=O não doa ligação de hidrogênio, e o etinil (C≡CH) é um trecho apolar a mais. Quem decide é a quantidade de OH.",
   "alerta": "",
@@ -114,8 +126,8 @@
    "nota": "etinil é apolar"
   },
   {
-   "linha": "Noretindrona: 1 OH + C=O",
-   "nota": "sem OH no anel aromático"
+   "linha": "Noretindrona: 1 OH + C=O + C≡CH",
+   "nota": "sem fenol: C=O no primeiro anel"
   },
   {
    "linha": "3 OH > 2 OH > 1 OH",
@@ -135,10 +147,130 @@
  "gab": "B",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[0].tipo",
+    "depois": "localizar",
+    "motivo": "O tipo 'interpretar' não existe na lista permitida (localizar, calcular, comparar, eliminar, concluir). Um passo que traduz o que o enunciado pede é do tipo 'localizar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "O Estriol tem o OH do anel aromático e dois OH no anel de cinco carbonos: um no alto e um na ponta direita do desenho.",
+    "motivo": "O texto antigo dava a entender que o OH da direita fica fora do anel de cinco carbonos. No desenho, os dois OH extras (C16 e C17) estão nesse anel.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "A Noretindrona não tem anel aromático nem OH de fenol: no primeiro anel há um C=O. Tem só 1 OH (no anel de cinco carbonos) e o etinil apolar. Tem poucos pontos de interação com a água.",
+    "motivo": "Na noretindrona o anel A é uma cetona α,β-insaturada (C=O com dupla C=C), não um anel aromático. A frase 'não tem o OH do anel aromático' sugeria que o anel aromático existe.",
+    "fonte": ""
+   },
+   {
+    "campo": "quadro[4].nota",
+    "depois": "sem fenol: C=O no primeiro anel",
+    "motivo": "A noretindrona não tem anel aromático. No lugar do fenol há uma carbonila.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.antes.simbolos[2][1]",
+    "depois": "grupo carbonila; aqui aparece como cetona: o carbono da C=O está ligado a dois outros carbonos",
+    "motivo": "Na carbonila, o oxigênio se liga a um só carbono, por ligação dupla. Quem fica ligado a dois carbonos na cetona é o carbono da carbonila.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "Estrona: 1 OH + C=O\nNovestrol: 2 OH + C≡CH\nNoretindrona: 1 OH + C=O + C≡CH",
+    "motivo": "Mantido igual: já cabe nas linhas e está correto. Sem mudança de fato."
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "Estradiol: OH anel + OH = 2 OH",
+    "motivo": "Linha mais curta, cabe na tela de 390 px sem quebrar."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "Estriol: OH anel + 2 OH = 3 OH",
+    "motivo": "Linha mais curta e consistente com o passo anterior."
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "Estriol 3 OH > 2 OH > 1 OH",
+    "motivo": "Deixa claro quem tem 3 OH e cabe na linha."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "ligação de hidrogênio",
+      "interação forte entre um H ligado a O (ou N, F) e um O de outra molécula; é a que a água faz"
+     ],
+     [
+      "OH",
+      "grupo hidroxila; aparece em álcool (carbono comum) e em fenol (carbono do anel aromático)"
+     ],
+     [
+      "C=O",
+      "grupo carbonila; aqui aparece como cetona: o carbono da C=O está ligado a dois outros carbonos"
+     ],
+     [
+      "apolar",
+      "sem polos de carga; o esqueleto de C e H dos hormônios é assim e não interage bem com a água"
+     ],
+     [
+      "etinil (C≡CH)",
+      "grupo com tripla ligação feito só de C e H; é um trecho apolar a mais na molécula"
+     ],
+     [
+      "anel aromático",
+      "anel de seis carbonos com ligações duplas alternadas, o hexágono à esquerda do desenho"
+     ],
+     [
+      "fenol",
+      "OH ligado direto ao anel aromático"
+     ],
+     [
+      "doar e receber ligação de hidrogênio",
+      "doar: o H do OH é puxado por um O da água; receber: o O da molécula puxa um H da água"
+     ]
+    ],
+    "motivo": "Termos usados nos passos (anel aromático, fenol, doar/receber) não estavam explicados para um aluno de 17 anos."
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Confira por eliminação: só o Estriol tem 3 OH. Os outros quatro têm no máximo 2 OH. A Estrona e a Noretindrona ainda trocam um OH por C=O, que só recebe a ligação.",
+    "motivo": "Frase mais curta e sem sentido duplo; a original dizia que 'os dois que têm C=O perdem um OH', o que é impreciso para a Noretindrona (que perde também o fenol)."
+   }
+  ],
+  "didatica_alertas": [
+   "O campo 'nivel' é 5 no JSON, mas o enunciado da tarefa informa nível 7: conferir qual vale.",
+   "A prova grafa 'Novestrol' no print; o nome usual do composto é mestranol/novestrol: manter o nome da prova."
+  ],
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "quadro[4].linha",
+    "depois": "Noretindrona: 1 OH + C=O + C≡CH",
+    "motivo": "Consistência com o passo 4: a linha omitia o etinil, que a molécula tem.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "B"
  }
 }

@@ -8,7 +8,7 @@
  "conceito": "Identificar a função social de uma reportagem: o que o texto põe em destaque ao tratar de um povo indígena.",
  "resolucao": {
   "antes": {
-   "texto": "A pergunta é sobre a função social da reportagem: que aspecto da realidade dos Jenipapo-Kanindé o texto coloca em evidência e, com isso, ajuda a dar visibilidade. O texto traz vários dados (famílias, Funai, estudo, doença), mas só um fio atravessa os três parágrafos: a liderança de uma mulher e a sucessão feita por mulheres.",
+   "texto": "A pergunta é sobre a função social da reportagem: que aspecto da realidade dos Jenipapo-Kanindé o texto coloca em evidência e, com isso, ajuda a dar visibilidade. O texto traz vários dados (famílias, Funai, estudo, doença), mas um fio atravessa os três parágrafos: a liderança de uma mulher e a escolha de mulheres para sucedê-la.",
    "formulas": [
     "função social da reportagem = o que ela dá a conhecer e valoriza",
     "tema = o que aparece em todas as partes do texto; o detalhe só ilustra"
@@ -55,12 +55,12 @@
    {
     "faz": "Veja o papel do reconhecimento no 2º parágrafo",
     "conta": "\"129 famílias... reconhecidas pela Funai\"",
-    "porque": "O reconhecimento é a luta de Pequena, mas aparece como parte da trajetória dela. Não é o foco dos três parágrafos.",
-    "tipo": "interpretar"
+    "porque": "O reconhecimento pela Funai é uma luta de Pequena, mas aparece só neste parágrafo, como parte da trajetória dela. Não é o foco dos três parágrafos.",
+    "tipo": "eliminar"
    },
    {
     "faz": "Elimine as demais e conclua",
-    "conta": "famílias, tradição, estudo, governo → apoio; mulher líder → eixo",
+    "conta": "famílias, tradição, estudo, Funai → apoio",
     "porque": "Os outros itens são dados que ilustram a história da cacique. Só o protagonismo feminino na sucessão organiza o texto.",
     "tipo": "concluir"
    }
@@ -68,9 +68,9 @@
   "resposta": "Alternativa D: a reportagem destaca o protagonismo feminino na linha sucessória dos Jenipapo-Kanindé, da cacique Pequena às suas filhas.",
   "checagem": "Resuma o texto em uma frase: 'uma mulher quebra a tradição, lidera o povo e será sucedida por mulheres'. Essa frase só cabe na alternativa D.",
   "erradas": {
-   "A": "A quantidade de famílias (129) aparece uma vez, no 2º parágrafo, como dado do reconhecimento. Não organiza o texto e não é o que ele valoriza.",
-   "B": "O texto fala de tradição, mas para dizer que ela foi quebrada: \"quebraram a tradição da sucessão masculina\". Destaca a ruptura, não a força da tradição.",
-   "C": "O estudo dos antropólogos é citado em um trecho (\"vieram os antropólogos\"), mas trata de reconhecer a identidade indígena, não de demarcar terras. Seria um dado, não o foco.",
+   "A": "A quantidade de famílias (129) aparece uma vez, no 2º parágrafo, como dado do reconhecimento. Quem marcou A tomou um número em destaque por tema, sem testar se ele organiza o texto todo.",
+   "B": "O texto fala de tradição, mas para mostrar que ela foi quebrada: \"quebraram a tradição da sucessão masculina\". Quem marcou B leu a palavra 'tradição' e não viu que ela aparece como ruptura, não como força.",
+   "C": "O estudo pedido à Funai (\"da nossa mãe-terra e de nós\") aparece só no 2º parágrafo, e a conclusão citada é sobre a identidade indígena (\"Nós era índio sim!\"). O texto não fala em demarcação de terras nem faz do estudo o seu foco.",
    "E": "O reconhecimento pela Funai aparece no 2º parágrafo como uma luta de Pequena. Vale só para esse trecho; o 1º e o 3º parágrafos tratam da liderança e da sucessão feminina."
   },
   "armadilha": "Escolher o dado que parece mais 'oficial' (Funai, famílias, estudo) em vez do tema que atravessa os três parágrafos.",
@@ -105,10 +105,69 @@
  "gab": "D",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "eliminar",
+    "motivo": "'interpretar' não é um tipo válido. Os tipos aceitos são localizar, calcular, comparar, eliminar e concluir. O passo afasta o reconhecimento pela Funai como foco, por isso o tipo é 'eliminar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "O estudo pedido à Funai (\"da nossa mãe-terra e de nós\") aparece só no 2º parágrafo, e a conclusão citada é sobre a identidade indígena (\"Nós era índio sim!\"). O texto não fala em demarcação de terras nem faz do estudo o seu foco.",
+    "motivo": "A versão anterior dizia que o estudo trata da identidade e não da terra. O texto, porém, diz que o estudo seria \"da nossa mãe-terra e de nós\", ou seja, incluía a terra. A alternativa cai porque o texto não menciona demarcação e porque o estudo é um dado de um parágrafo só.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "A pergunta é sobre a função social da reportagem: que aspecto da realidade dos Jenipapo-Kanindé o texto coloca em evidência e, com isso, ajuda a dar visibilidade. O texto traz vários dados (famílias, Funai, estudo, doença), mas um fio atravessa os três parágrafos: a liderança de uma mulher e a escolha de mulheres para sucedê-la.",
+    "motivo": "Frase mais curta e clara; 'só um fio' trocado por 'um fio'."
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "\"quebraram a tradição da sucessão masculina\"",
+    "motivo": "Sem mudança de conteúdo; confirmado que a conta cabe na tela."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "O reconhecimento pela Funai é uma luta de Pequena, mas aparece só neste parágrafo, como parte da trajetória dela. Não é o foco dos três parágrafos.",
+    "motivo": "Frase mais direta; explica por que o dado não é o eixo do texto."
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "famílias, tradição, estudo, Funai → apoio",
+    "motivo": "Linha mais curta e sem seta ambígua; o eixo já foi mostrado nos passos anteriores."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "O texto fala de tradição, mas para mostrar que ela foi quebrada: \"quebraram a tradição da sucessão masculina\". Quem marcou B leu a palavra 'tradição' e não viu que ela aparece como ruptura, não como força.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou a letra."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "A quantidade de famílias (129) aparece uma vez, no 2º parágrafo, como dado do reconhecimento. Quem marcou A tomou um número em destaque por tema, sem testar se ele organiza o texto todo.",
+    "motivo": "Mostra o que faltou ao aluno que marcou A."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "D"
  }
 }

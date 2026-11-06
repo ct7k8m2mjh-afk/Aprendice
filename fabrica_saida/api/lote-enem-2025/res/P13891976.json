@@ -8,7 +8,7 @@
  "conceito": "Probabilidade simples com permutações: só 1 das 4! distribuições devolve cada celular ao seu dono.",
  "resolucao": {
   "antes": {
-   "texto": "Devolver os envelopes ao acaso é o mesmo que embaralhar os 4 envelopes entre os 4 candidatos. Cada arrumação possível tem a mesma chance. Probabilidade é casos favoráveis ÷ casos possíveis. Os casos possíveis são todas as formas de distribuir 4 envelopes a 4 pessoas, uma para cada. Só uma delas dá a cada um o seu próprio celular.",
+   "texto": "Devolver os envelopes ao acaso é o mesmo que embaralhar os 4 envelopes entre os 4 candidatos. Cada arrumação possível tem a mesma chance. Probabilidade é casos favoráveis ÷ casos possíveis. Os casos possíveis são todas as formas de entregar os 4 envelopes, um para cada pessoa. Só uma delas dá a cada um o seu próprio celular.",
    "formulas": [
     "probabilidade = casos favoráveis ÷ casos possíveis",
     "formas de ordenar n objetos distintos = n × (n−1) × ... × 1 = n!"
@@ -46,8 +46,8 @@
    },
    {
     "faz": "Divida favoráveis por possíveis",
-    "conta": "P = 1/24",
-    "porque": "Definição de probabilidade com casos igualmente prováveis.",
+    "conta": "P = 1 ÷ 24",
+    "porque": "Probabilidade é favoráveis ÷ possíveis, porque todas as distribuições têm a mesma chance. Aqui: 1 ÷ 24.",
     "tipo": "calcular"
    },
    {
@@ -58,12 +58,12 @@
    }
   ],
   "resposta": "Alternativa D: há 24 distribuições possíveis e só 1 devolve a cada candidato o seu celular, então a probabilidade é 1/24.",
-  "checagem": "Pelo produto das probabilidades: o 1º acerta com 1/4, o 2º com 1/3 (restam 3 envelopes), o 3º com 1/2 e o 4º com 1. Então 1/4 × 1/3 × 1/2 × 1 = 1/24. Dá o mesmo resultado.",
+  "checagem": "Outro caminho, por etapas: o 1º candidato acerta com chance 1 em 4. O 2º, com 1 em 3 (restam 3 envelopes). O 3º, com 1 em 2. O 4º acerta com certeza. Multiplicando: 1/4 × 1/3 × 1/2 × 1 = 1/24.",
   "erradas": {
-   "A": "1/2 é muito alta. Já a chance de o 1º candidato acertar é só 1/4, e os outros acertos reduzem ainda mais. O valor 1/2 não confere: 1/2 de 24 distribuições seria 12 casos favoráveis, mas só existe 1.",
-   "B": "1/10 não confere. Para ser 1/10, seriam 10 casos possíveis, mas 4! = 24. Não há contagem correta que dê 10 distribuições.",
-   "C": "1/16 sai de tratar os 4 envelopes como se cada candidato pudesse receber qualquer um deles de novo: 4 × 4 = 16 (só para 2 candidatos). Aí são 4 × 4 × 4 × 4 = 256 casos, o que daria 1/256, e não 1/16. Mas cada envelope vai a uma só pessoa, e a conta certa é 4 × 3 × 2 × 1 = 24, não 16. Também não bate com o produto 1/4 × 1/3 × 1/2 × 1 = 1/24.",
-   "E": "1/256 sai de 4 × 4 × 4 × 4 = 256, como se cada candidato pudesse receber qualquer envelope, com repetição. Os envelopes são 4 objetos distintos, cada um entregue a uma só pessoa. Os casos possíveis são 4! = 24."
+   "A": "1/2 não confere. Com 24 distribuições, 1/2 exigiria 12 favoráveis, mas só 1 dá a cada um o seu celular. Além disso, só o 1º candidato já acerta com chance 1/4, e 1/4 já é menor que 1/2.",
+   "B": "1/10 sai de somar em vez de multiplicar: 4 + 3 + 2 + 1 = 10. Como as escolhas são feitas em sequência ('e'), as possibilidades se multiplicam: 4 × 3 × 2 × 1 = 24.",
+   "C": "1/16 sai de supor que cada candidato acerta com chance 1/2: (1/2)^4 = 1/16. Mas o 1º acerta com 1/4, e as chances mudam a cada envelope entregue. O certo é 1/4 × 1/3 × 1/2 × 1 = 1/24.",
+   "E": "1/256 sai de 4 × 4 × 4 × 4 = 256, como se um mesmo envelope pudesse ir para várias pessoas. Cada envelope vai para uma só pessoa. Os casos possíveis são 4! = 24."
   },
   "armadilha": "Contar 4^4 = 256 casos possíveis, esquecendo que cada envelope vai para uma única pessoa (são 4! = 24 casos).",
   "alerta": "",
@@ -115,10 +115,83 @@
  "gab": "D",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "1/16 sai de achar que cada candidato tem só duas saídas, acertar ou errar, com chance 1/2 cada: (1/2)^4 = 1/16. Mas o 1º acerta com 1/4, e os acertos não são independentes. A conta certa é 1/4 × 1/3 × 1/2 × 1 = 1/24.",
+    "motivo": "O texto anterior era confuso e não chegava a 1/16. Ele começava em 4 × 4 = 16 ('só para 2 candidatos'), ia para 256 e terminava em 1/256. Isso mistura a origem da letra E com uma explicação que não fecha. A origem (1/2)^4 = 1/16 chega exatamente ao valor da alternativa.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "1/10 sai de somar em vez de multiplicar: 4 + 3 + 2 + 1 = 10. Como as escolhas são feitas em sequência ('e'), as possibilidades se multiplicam: 4 × 3 × 2 × 1 = 24.",
+    "motivo": "Havia um erro típico real que chega exatamente a 10: somar 4 + 3 + 2 + 1. A frase 'não há contagem correta que dê 10' não explicava de onde vem a alternativa.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Devolver os envelopes ao acaso é o mesmo que embaralhar os 4 envelopes entre os 4 candidatos. Cada arrumação possível tem a mesma chance. Probabilidade é casos favoráveis ÷ casos possíveis. Os casos possíveis são todas as formas de entregar os 4 envelopes, um para cada pessoa. Só uma delas dá a cada um o seu próprio celular.",
+    "motivo": "Frase mais simples e sem ambiguidade."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Probabilidade é favoráveis ÷ possíveis, porque todas as distribuições têm a mesma chance. Aqui: 1 ÷ 24.",
+    "motivo": "O porquê agora explica a divisão, não só repete a definição."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "P = 1 ÷ 24",
+    "motivo": "Mostra a divisão feita, em linha curta."
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Outro caminho, por etapas: o 1º candidato acerta com chance 1 em 4. O 2º, com 1 em 3 (restam 3 envelopes). O 3º, com 1 em 2. O 4º acerta com certeza. Multiplicando: 1/4 × 1/3 × 1/2 × 1 = 1/24.",
+    "motivo": "Linguagem mais clara para o aluno."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "1/2 não confere. Com 24 distribuições, 1/2 exigiria 12 favoráveis, mas só 1 dá a cada um o seu celular. Além disso, só o 1º candidato já acerta com chance 1/4.",
+    "motivo": "Teste objetivo mais direto e curto."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "1/16 sai de supor que cada candidato acerta com chance 1/2: (1/2)^4 = 1/16. Mas o 1º acerta com 1/4, e as chances mudam a cada envelope entregue. O certo é 1/4 × 1/3 × 1/2 × 1 = 1/24.",
+    "motivo": "Evita o termo 'independentes' e explica o que faltou no raciocínio."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "1/256 sai de 4 × 4 × 4 × 4 = 256, como se um mesmo envelope pudesse ir para várias pessoas. Cada envelope vai para uma só pessoa. Os casos possíveis são 4! = 24.",
+    "motivo": "Clareza e frase mais curta."
+   }
+  ],
+  "didatica_alertas": [
+   "O campo 'nivel' do JSON é 4, mas a classificação atual informa nível 6 (não alterado)."
+  ],
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "1/2 não confere. Com 24 distribuições, 1/2 exigiria 12 favoráveis, mas só 1 dá a cada um o seu celular. Além disso, só o 1º candidato já acerta com chance 1/4, e 1/4 já é menor que 1/2.",
+    "motivo": "Correção opcional, de clareza. A frase original está correta. Só tornei explícito por que 1/4 já derruba 1/2.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "D"
  }
 }

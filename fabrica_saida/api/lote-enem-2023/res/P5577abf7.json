@@ -8,7 +8,7 @@
  "conceito": "Identificar, no texto, a causa explícita da mudança no verbete: a petição pública feita pelos cidadãos.",
  "resolucao": {
   "antes": {
-   "texto": "O comando pede o que o texto diz ('Segundo o texto'), não o que o aluno acha. Então procure o fato que levou à mudança: quem agiu e por qual meio. A notícia abre com esse fato: a petição on-line criada por um cidadão paulista 'surtiu efeito'. Ou seja, a petição foi o que impulsionou a mudança.",
+   "texto": "O comando pede o que o texto diz ('Segundo o texto'), não o que você acha. Procure o fato que levou à mudança: quem agiu e de que jeito. A notícia abre com ele: a petição on-line criada por um cidadão paulista 'surtiu efeito'. A petição foi, portanto, o que impulsionou a mudança.",
    "formulas": [
     "'Segundo o texto' = informação explícita, sem extrapolar",
     "impulsionar a mudança = causa da mudança"
@@ -25,6 +25,14 @@
     [
      "surtir efeito",
      "dar resultado; conseguir o que se pretendia"
+    ],
+    [
+     "impulsionar",
+     "dar força para algo acontecer; ser a causa"
+    ],
+    [
+     "mobilização",
+     "reunião de muitas pessoas em torno de uma ação ou de um pedido"
     ]
    ]
   },
@@ -46,12 +54,12 @@
     "faz": "Confirme com a fala do diretor",
     "conta": "'eficiência da mobilização'",
     "porque": "O diretor atribui o resultado à mobilização das pessoas pela plataforma de petições. A ação dos cidadãos é a causa apontada.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Compare as alternativas com esse fato",
-    "conta": "A, B, D, E × petição pública",
-    "porque": "Só a alternativa C nomeia o que o texto apresenta como causa: o uso da petição pelos cidadãos.",
+    "conta": "A, B, D, E: não citam a petição",
+    "porque": "Só a C nomeia o que o texto apresenta como causa: o uso da petição pelos cidadãos. As outras falam do resultado, da velocidade ou da plataforma.",
     "tipo": "eliminar"
    },
    {
@@ -64,9 +72,9 @@
   "resposta": "Alternativa C: o texto diz que a petição on-line, usada pelos cidadãos, 'surtiu efeito' e provocou a mudança no verbete.",
   "checagem": "Segunda marca no texto: o diretor fala em 'eficiência da mobilização' e diz que 'em dois dias, mudou-se uma definição'. A mobilização por petição aparece como causa em dois trechos.",
   "erradas": {
-   "A": "A inclusão de informações é o resultado da mudança (o verbete passou a dizer 'pessoas'), não o que a impulsionou. Confunde efeito com causa.",
-   "B": "O texto não fala da relevância social do casamento como motivo. A única razão dada é o pedido feito por petição. É dedução sem apoio no texto.",
-   "D": "A rapidez ('em dois dias') descreve a velocidade do resultado. Não foi ela que impulsionou a mudança. Além disso, o que circulou foi a petição, não o verbete.",
+   "A": "Quem marcou A trocou causa por efeito. A inclusão de informações é o resultado da mudança (o verbete passou a dizer 'pessoas'), não o que a impulsionou.",
+   "B": "Quem marcou B deduziu algo que o texto não diz. Em nenhum trecho a relevância social do casamento aparece como motivo; a única razão dada é o pedido por petição. 'Segundo o texto' proíbe essa dedução.",
+   "D": "Quem marcou D confundiu a velocidade do resultado ('em dois dias') com a causa dele. A rapidez descreve como foi a mudança, não o que a provocou. Além disso, o que circulou foi a petição, não o verbete.",
    "E": "A divulgação de plataformas não aparece como causa. O diretor diz que a plataforma 'serve para todos os tipos de causas', mas o que impulsionou a mudança foi a petição, não a divulgação de plataformas."
   },
   "armadilha": "Trocar a causa (a petição) pelo efeito (a nova definição) ou por um comentário do diretor (a rapidez, a plataforma).",
@@ -101,10 +109,89 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "localizar",
+    "motivo": "'interpretar' não está na lista de tipos aceitos (localizar, calcular, comparar, eliminar, concluir). O passo acha no texto o trecho 'eficiência da mobilização' para confirmar a causa, então o tipo certo é 'localizar'.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "O comando pede o que o texto diz ('Segundo o texto'), não o que você acha. Procure o fato que levou à mudança: quem agiu e de que jeito. A notícia abre com ele: a petição on-line criada por um cidadão paulista 'surtiu efeito'. A petição foi, portanto, o que impulsionou a mudança.",
+    "motivo": "Frases mais simples e voz direta ao aluno; remove 'Ou seja' e a ambiguidade de 'o que o aluno acha'."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "petição on-line",
+      "abaixo-assinado feito pela internet, em que várias pessoas pedem uma mudança"
+     ],
+     [
+      "verbete",
+      "cada entrada de um dicionário, com a palavra e sua definição"
+     ],
+     [
+      "surtir efeito",
+      "dar resultado; conseguir o que se pretendia"
+     ],
+     [
+      "impulsionar",
+      "dar força para algo acontecer; ser a causa"
+     ],
+     [
+      "mobilização",
+      "reunião de muitas pessoas em torno de uma ação ou de um pedido"
+     ]
+    ],
+    "motivo": "'Impulsionar' (palavra do comando) e 'mobilização' (usada nos passos) não estavam explicadas."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "A, B, D, E: não citam a petição",
+    "motivo": "A conta anterior ('A, B, D, E × petição pública') era confusa; agora diz o teste aplicado."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Só a C nomeia o que o texto apresenta como causa: o uso da petição pelos cidadãos. As outras falam do resultado, da velocidade ou da plataforma.",
+    "motivo": "Deixa claro por que as outras caem."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "Quem marcou D confundiu a velocidade do resultado ('em dois dias') com a causa dele. A rapidez descreve como foi a mudança, não o que a provocou. Além disso, o que circulou foi a petição, não o verbete.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou D."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "Quem marcou A trocou causa por efeito. A inclusão de informações é o resultado da mudança (o verbete passou a dizer 'pessoas'), não o que a impulsionou.",
+    "motivo": "Foca no que faltou ao aluno: separar causa de efeito."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "Quem marcou B deduziu algo que o texto não diz. Em nenhum trecho a relevância social do casamento aparece como motivo; a única razão dada é o pedido por petição. 'Segundo o texto' proíbe essa dedução.",
+    "motivo": "Liga o erro à trava do comando."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "C"
  }
 }

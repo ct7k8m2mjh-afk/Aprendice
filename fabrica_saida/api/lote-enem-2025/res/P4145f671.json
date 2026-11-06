@@ -8,7 +8,7 @@
  "conceito": "Padrão de variação por rodada: o saldo líquido de uma rodada gera uma progressão aritmética.",
  "resolucao": {
   "antes": {
-   "texto": "Em cada rodada o jogador da posição 1 entrega moedas e também recebe. O que importa é o saldo de uma rodada (recebeu menos entregou). Se o saldo é sempre o mesmo, o total cresce de modo constante, como numa progressão aritmética. Para n rodadas, o saldo se repete n vezes.",
+   "texto": "Em cada rodada o jogador da posição 1 entrega moedas e também recebe. O que importa é o saldo de uma rodada: o que ele recebeu menos o que entregou. Se o saldo é sempre o mesmo, o total cresce sempre a mesma quantidade por rodada. Depois de n rodadas, esse saldo foi somado n vezes ao valor inicial (100 moedas).",
    "formulas": [
     "saldo da rodada = moedas recebidas − moedas entregues",
     "moedas após n rodadas = moedas iniciais + n × saldo da rodada"
@@ -24,7 +24,15 @@
     ],
     [
      "posição 1",
-     "jogador que entrega 1 moeda para o 2 e recebe 4 moedas do jogador na posição 4"
+     "jogador que entrega 1 moeda ao da posição 2 e recebe 4 moedas do da posição 4"
+    ],
+    [
+     "progressão aritmética (PA)",
+     "lista de números em que cada um é o anterior mais um valor fixo"
+    ],
+    [
+     "expressão algébrica",
+     "fórmula com a letra n no lugar do número de rodadas"
     ]
    ]
   },
@@ -51,7 +59,7 @@
    {
     "faz": "Escreva a expressão para n rodadas",
     "conta": "100 + n × 3 = 100 + 3n",
-    "porque": "Ele começa com 100 e ganha 3 a cada rodada. O saldo de 3 se repete n vezes.",
+    "porque": "Ele começa com 100 e ganha 3 moedas a cada rodada. Em n rodadas ganha n × 3. Soma-se isso ao 100 inicial.",
     "tipo": "calcular"
    },
    {
@@ -67,7 +75,7 @@
    "A": "103 + 4n já começa em 103, que é o valor depois da primeira rodada, e ainda soma 4 por rodada, sem descontar a moeda entregue. Com n = 1 daria 107, mas ele termina a rodada 1 com 103.",
    "B": "103 + 3n usa o saldo certo (3), mas parte de 103, que é o valor após a rodada 1. Contando n rodadas a partir de 100, o certo é 100 + 3n. Com n = 1, B daria 106, mas o jogador tem 103.",
    "C": "100 + 4n considera só as 4 moedas recebidas e esquece a 1 moeda entregue. Com n = 1 daria 104, mas ele entrega 1 e fica com 100 − 1 + 4 = 103.",
-   "E": "99 + 4n desconta a moeda entregue só uma vez, no início, e depois conta apenas o que recebe. Com n = 1 dá 103, mas com n = 2 dá 107, enquanto o jogador tem 106, pois entrega 1 moeda em cada rodada."
+   "E": "99 + 4n desconta a moeda entregue só uma vez, no início, e depois conta apenas o que recebe. Com n = 1 dá 103 e parece certo. Com n = 2 dá 107, mas o jogador tem 106, pois entrega 1 moeda em cada rodada."
   },
   "armadilha": "Contar só o que o jogador recebe (4 por rodada) e esquecer que ele também entrega 1 moeda a cada rodada.",
   "alerta": "",
@@ -89,8 +97,12 @@
  ],
  "quadro": [
   {
-   "linha": "recebe 4 e entrega 1",
-   "nota": "leia o texto e a figura: 4 → 1 e 1 → 2"
+   "linha": "recebe 4 (da posição 4)",
+   "nota": "seta 4 → 1 na figura"
+  },
+  {
+   "linha": "entrega 1 (para a posição 2)",
+   "nota": "seta 1 → 2 na figura"
   },
   {
    "linha": "saldo = 4 − 1",
@@ -102,12 +114,12 @@
    "destaque": "3"
   },
   {
-   "linha": "após n rodadas: n × 3",
+   "linha": "em n rodadas: n × 3 = 3n",
    "nota": "o saldo se repete n vezes"
   },
   {
    "linha": "moedas = 100 + 3n",
-   "nota": "some o valor inicial (100)",
+   "nota": "soma o valor inicial (100)",
    "destaque": "100 + 3n"
   },
   {
@@ -128,10 +140,105 @@
  "gab": "D",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [],
+  "fatos_ok": true,
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Em cada rodada o jogador da posição 1 entrega moedas e também recebe. O que importa é o saldo de uma rodada: o que ele recebeu menos o que entregou. Se o saldo é sempre o mesmo, o total cresce sempre a mesma quantidade por rodada. Depois de n rodadas, esse saldo foi somado n vezes ao valor inicial (100 moedas).",
+    "motivo": "Texto mais direto e sem a ideia de PA como condição para entender; deixa claro o valor inicial."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "n",
+      "número de rodadas já completas"
+     ],
+     [
+      "saldo",
+      "o que sobra (ou falta) ao jogador depois de entregar e receber na mesma rodada"
+     ],
+     [
+      "posição 1",
+      "jogador que entrega 1 moeda ao da posição 2 e recebe 4 moedas do da posição 4"
+     ],
+     [
+      "progressão aritmética (PA)",
+      "lista de números em que cada um é o anterior mais um valor fixo"
+     ],
+     [
+      "expressão algébrica",
+      "fórmula com a letra n no lugar do número de rodadas"
+     ]
+    ],
+    "motivo": "PA e expressão algébrica aparecem na resolução e não estavam explicadas."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Ele começa com 100 e ganha 3 moedas a cada rodada. Em n rodadas ganha n × 3. Soma-se isso ao 100 inicial.",
+    "motivo": "Frase mais clara."
+   },
+   {
+    "campo": "resolucao.quadro",
+    "depois": [
+     {
+      "linha": "recebe 4 (da posição 4)",
+      "nota": "seta 4 → 1 na figura"
+     },
+     {
+      "linha": "entrega 1 (para a posição 2)",
+      "nota": "seta 1 → 2 na figura"
+     },
+     {
+      "linha": "saldo = 4 − 1",
+      "nota": "o que recebe menos o que entrega"
+     },
+     {
+      "linha": "saldo = 3",
+      "nota": "ganho por rodada",
+      "destaque": "3"
+     },
+     {
+      "linha": "em n rodadas: n × 3 = 3n",
+      "nota": "o saldo se repete n vezes"
+     },
+     {
+      "linha": "moedas = 100 + 3n",
+      "nota": "soma o valor inicial (100)",
+      "destaque": "100 + 3n"
+     },
+     {
+      "linha": "n = 1: 100 + 3 = 103",
+      "nota": "confere com 100 − 1 + 4 = 103"
+     }
+    ],
+    "motivo": "Separa recebe e entrega, um passo por linha, e mostra n × 3 = 3n sem pular passagem."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "99 + 4n desconta a moeda entregue só uma vez, no início, e depois conta apenas o que recebe. Com n = 1 dá 103 e parece certo. Com n = 2 dá 107, mas o jogador tem 106, pois entrega 1 moeda em cada rodada.",
+    "motivo": "Explica que n = 1 não derruba a alternativa; só n = 2 derruba."
+   }
+  ],
+  "didatica_alertas": [
+   "O campo 'nivel' está como 4 na resolução e 5 na classificação atual; conferir (nota_dif)."
+  ],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "D"
  }
 }

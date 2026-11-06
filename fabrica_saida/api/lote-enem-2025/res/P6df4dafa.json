@@ -28,7 +28,7 @@
     ]
    ]
   },
-  "pista": "Olhe as duas unidades lado a lado: elas são diferentes. Descubra quantos mL cabem em 1 cm³ antes de dividir.",
+  "pista": "As duas unidades são diferentes. Pense no litro: quantos cm³ e quantos mL ele tem? Isso mostra como passar de uma unidade para a outra.",
   "passos": [
    {
     "faz": "Converta o pote para mL",
@@ -45,7 +45,7 @@
    {
     "faz": "Simplifique e divida",
     "conta": "20 000 ÷ 250 = 80",
-    "porque": "Corte um zero dos dois números: 2 000/25. Como 25 × 80 = 2 000, o resultado é 80. Os mL se cancelam e sobra o número de taças.",
+    "porque": "Corte um zero dos dois números e fica 2 000 ÷ 25. Como 25 × 80 = 2 000, o resultado é 80. Os mL se cancelam e sobra só o número de taças.",
     "tipo": "calcular"
    },
    {
@@ -58,10 +58,10 @@
   "resposta": "Alternativa D: o pote tem 20 000 mL e cada taça leva 250 mL, então saem 20 000 ÷ 250 = 80 taças.",
   "checagem": "Faça o caminho inverso: 80 taças × 250 mL = 20 000 mL, o volume do pote. Outra conferência: 4 taças de 250 mL formam 1 L, e o pote tem 20 L, logo 20 × 4 = 80.",
   "erradas": {
-   "A": "5 não confere: 5 taças × 250 mL = 1 250 mL, muito menos que os 20 000 mL do pote. Esse número não é o resultado da divisão 20 000 ÷ 250 e nem de uma conversão correta.",
+   "A": "5 não confere: 5 × 250 mL = 1 250 mL, muito menos que os 20 000 mL do pote. A conta correta é 20 000 ÷ 250 = 80.",
    "B": "8 não confere: 8 × 250 mL = 2 000 mL, que é só um décimo do pote. Esse valor corresponde a um pote de 2 000 cm³ (2 L), com um zero a menos.",
-   "C": "50 não confere: 50 × 250 mL = 12 500 mL, e não 20 000 mL. A divisão exata de 20 000 por 250 dá 80, e não 50.",
-   "E": "800 não confere: 800 × 250 mL = 200 000 mL, dez vezes o pote. Sai de errar um zero na divisão, ou de tratar 1 cm³ como 0,1 mL; mas 1 cm³ é exatamente 1 mL."
+   "C": "50 não confere: 50 × 250 mL = 12 500 mL, que não é o volume do pote. Quem marcou C errou a divisão de 20 000 por 250. Teste: 80 × 250 = 20 000, e não 50 × 250.",
+   "E": "800 não confere: 800 × 250 mL = 200 000 mL, dez vezes o volume do pote. Quem marcou E pode ter tratado 1 cm³ como 10 mL, mas 1 cm³ vale exatamente 1 mL (1 L = 1 000 cm³ = 1 000 mL)."
   },
   "armadilha": "Dividir sem notar que as unidades são diferentes e errar a conversão (1 cm³ = 1 mL), o que muda o resultado por fatores de 10 ou 1 000.",
   "alerta": "",
@@ -100,7 +100,7 @@
   },
   {
    "linha": "n = 2 000/25",
-   "nota": "corte um zero em cima e embaixo",
+   "nota": "corte um zero em cima e um embaixo",
    "destaque": "2 000/25",
    "mov": [
     {
@@ -130,10 +130,70 @@
  "gab": "D",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "800 não confere: 800 × 250 mL = 200 000 mL, dez vezes o pote. Sai de errar um zero na divisão, ou de tratar 1 cm³ como 10 mL (o pote viraria 200 000 mL); mas 1 cm³ é exatamente 1 mL.",
+    "motivo": "Tratar 1 cm³ como 0,1 mL deixaria o pote com 2 000 mL, e 2 000 ÷ 250 = 8 taças, não 800. Para chegar a 800 é preciso supor 1 cm³ = 10 mL: 200 000 ÷ 250 = 800.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.pista",
+    "depois": "As duas unidades são diferentes. Pense no litro: quantos cm³ e quantos mL ele tem? Isso mostra como passar de uma unidade para a outra.",
+    "motivo": "A pista antiga mandava descobrir 'quantos mL cabem em 1 cm³' sem dar um caminho. A nova aponta o litro, que é a ponte entre as duas unidades, sem entregar o resultado."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Corte um zero dos dois números e fica 2 000 ÷ 25. Como 25 × 80 = 2 000, o resultado é 80. Os mL se cancelam e sobra só o número de taças.",
+    "motivo": "A fração '2 000/25' escrita na linha deixava a conta ambígua para o aluno. Troquei por divisão, com frases curtas."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "5 não confere: 5 × 250 mL = 1 250 mL, muito menos que os 20 000 mL do pote. Quem marcou A provavelmente não fez a divisão ou errou muitos zeros. A conta correta é 20 000 ÷ 250.",
+    "motivo": "O texto antigo só dizia o que a conta não era. Agora diz o que faltou no raciocínio de quem marcou A. Evitei afirmar uma origem sem conta."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "50 não confere: 50 × 250 mL = 12 500 mL, que não é o volume do pote. Quem marcou C errou a divisão de 20 000 por 250. Teste: 80 × 250 = 20 000, e não 50 × 250.",
+    "motivo": "Deixa claro o que faltou: conferir a divisão multiplicando de volta."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "800 não confere: 800 × 250 mL = 200 000 mL, dez vezes o volume do pote. Quem marcou E pode ter tratado 1 cm³ como 10 mL, mas 1 cm³ vale exatamente 1 mL (1 L = 1 000 cm³ = 1 000 mL).",
+    "motivo": "Frases mais curtas, sem 'sai de' impreciso, e com a razão da conversão que o aluno precisava lembrar."
+   },
+   {
+    "campo": "resolucao.quadro[4].nota",
+    "depois": "corte um zero em cima e um embaixo",
+    "motivo": "A nota ficou mais clara e fácil de copiar no caderno."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "5 não confere: 5 × 250 mL = 1 250 mL, muito menos que os 20 000 mL do pote. A conta correta é 20 000 ÷ 250 = 80.",
+    "motivo": "Remove a origem especulativa ('provavelmente'), proibida quando nenhuma conta plausível chega ao valor.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "D"
  }
 }

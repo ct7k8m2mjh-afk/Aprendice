@@ -25,6 +25,14 @@
     [
      "v",
      "velocidade do som no líquido"
+    ],
+    [
+     "Δt",
+     "intervalo de tempo: o tempo final menos o tempo inicial"
+    ],
+    [
+     "d",
+     "distância total percorrida pelo pulso"
     ]
    ]
   },
@@ -44,26 +52,26 @@
    },
    {
     "faz": "Aplique a velocidade média",
-    "conta": "v = 900 m ÷ 0,6 s",
+    "conta": "v = 900 ÷ 0,6",
     "porque": "O som se propaga com velocidade constante dentro do líquido, então v = distância ÷ tempo.",
-    "tipo": "aplicar"
+    "tipo": "calcular"
    },
    {
     "faz": "Faça a divisão",
     "conta": "v = 1 500 m/s",
-    "porque": "900 ÷ 0,6 = 9000 ÷ 6 = 1 500.",
-    "tipo": "concluir"
+    "porque": "900 ÷ 0,6 = 9 000 ÷ 6 = 1 500. Multiplicar os dois números por 10 tira a vírgula e facilita a divisão. Esse valor é a alternativa D.",
+    "tipo": "calcular"
    }
   ],
   "resposta": "Alternativa D: o som percorre 900 m (ida e volta) em 0,6 s dentro do líquido, o que dá 1 500 m/s.",
   "checagem": "Com 1 500 m/s, o som leva 450 ÷ 1 500 = 0,3 s para descer e 0,3 s para subir: 0,6 s no total. Isso bate com 1,1 − 0,5.",
   "erradas": {
-   "A": "270 vem de 450 ÷ 1,666…, ou seja, de misturar tempos; mais direto: com 270 m/s o pulso gastaria 900 ÷ 270 ≈ 3,3 s na ida e volta, e não 0,6 s. Não confere com os tempos dos ecos.",
-   "B": "540 m/s sai de 450 m ÷ 0,833 s? Não: sai de 270 × 2. O teste objetivo: 900 m ÷ 540 m/s ≈ 1,67 s, bem mais que os 0,6 s medidos. Não confere.",
-   "C": "818 m/s sai de 900 ÷ 1,1, que usa o tempo total do segundo eco. Mas esse tempo inclui a viagem pela rocha de cima, onde o som tem outra velocidade.",
-   "E": "1 800 m/s sai de 900 ÷ 0,5, que usa o tempo do primeiro eco. Esse eco nem entra no líquido: reflete no topo dele. Também seria 450 ÷ 0,25, valor sem base nos dados."
+   "A": "270 sai de multiplicar em vez de dividir: 450 × 0,6 = 270. O teste: com 270 m/s, o pulso gastaria 900 ÷ 270 ≈ 3,3 s na ida e volta pelo líquido, e não 0,6 s.",
+   "B": "540 sai de multiplicar em vez de dividir, já com a ida e volta: 900 × 0,6 = 540. O teste: 900 m ÷ 540 m/s ≈ 1,67 s, bem mais que os 0,6 s medidos.",
+   "C": "818 m/s sai de 900 ÷ 1,1 ≈ 818, que usa o tempo total do segundo eco. Esse tempo inclui a ida e volta pela rocha de cima (0,5 s), que não faz parte dos 900 m no líquido.",
+   "E": "1 800 m/s sai de 900 ÷ 0,5, que usa o tempo do primeiro eco. Esse eco nem entra no líquido: reflete no topo dele. O teste: com 1 800 m/s, o pulso gastaria 900 ÷ 1 800 = 0,5 s no líquido, e não os 0,6 s medidos."
   },
-  "armadilha": "Esquecer que o eco é ida e volta (usar 450 m em vez de 900 m, o que daria 750 m/s) ou usar o tempo total 1,1 s, que inclui a rocha.",
+  "armadilha": "O eco é ida e volta: usar 450 m em vez de 900 m daria 750 m/s. Usar o tempo total de 1,1 s também erra, porque ele inclui a ida e volta pela rocha de cima.",
   "alerta": "",
   "essencial": {
    "pede": "A velocidade do som no líquido de 450 m de espessura.",
@@ -99,7 +107,7 @@
    "nota": "distância total no líquido"
   },
   {
-   "linha": "v = 900/0,6",
+   "linha": "v = 900 ÷ 0,6",
    "nota": "velocidade = distância ÷ tempo"
   },
   {
@@ -120,10 +128,107 @@
  "gab": "D",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "270 sai de multiplicar em vez de dividir: 450 × 0,6 = 270. O teste: com 270 m/s, o pulso gastaria 900 ÷ 270 ≈ 3,3 s na ida e volta pelo líquido, e não 0,6 s.",
+    "motivo": "A origem dada (450 ÷ 1,666…) é artificial. O erro real que chega a 270 é trocar a divisão pela multiplicação: 450 × 0,6 = 270. Conferi a conta.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "540 sai de multiplicar em vez de dividir, já com a ida e volta: 900 × 0,6 = 540. O teste: 900 m ÷ 540 m/s ≈ 1,67 s, bem mais que os 0,6 s medidos.",
+    "motivo": "O texto original se contradizia ('sai de 450 ÷ 0,833 s? Não: sai de 270 × 2') e não dava um erro real. A origem real é 900 × 0,6 = 540.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "818 m/s sai de 900 ÷ 1,1 ≈ 818, que usa o tempo total do segundo eco. Esse tempo inclui a ida e volta pela rocha de cima (0,5 s), que não faz parte dos 900 m no líquido.",
+    "motivo": "O enunciado não diz que a velocidade na rocha é diferente. O erro certo é misturar o tempo na rocha com uma distância que é só a do líquido.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "calcular",
+    "motivo": "'aplicar' não é um tipo válido. Os tipos permitidos são localizar, calcular, comparar, eliminar e concluir.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "v = 900 ÷ 0,6",
+    "motivo": "Mantém a mesma notação de divisão (÷) usada no resto da resolução e cabe em uma linha."
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "calcular",
+    "motivo": "A divisão é um cálculo. Quem conclui e liga o resultado à letra é a resposta."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "900 ÷ 0,6 = 9 000 ÷ 6 = 1 500. Multiplicar os dois números por 10 tira a vírgula e facilita a divisão. Esse valor é a alternativa D.",
+    "motivo": "Explica o truque da vírgula e liga o resultado à letra."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "1 800 m/s sai de 900 ÷ 0,5, que usa o tempo do primeiro eco. Esse eco nem entra no líquido: reflete no topo dele. O teste: com 1 800 m/s, o pulso gastaria 900 ÷ 1 800 = 0,5 s no líquido, e não os 0,6 s medidos.",
+    "motivo": "A frase 'valor sem base nos dados' era confusa. Troquei por um teste objetivo."
+   },
+   {
+    "campo": "resolucao.armadilha",
+    "depois": "O eco é ida e volta: usar 450 m em vez de 900 m daria 750 m/s. Usar o tempo total de 1,1 s também erra, porque ele inclui a ida e volta pela rocha de cima.",
+    "motivo": "Frases mais curtas e diretas."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "eco",
+      "pulso que bate numa interface e volta ao detector"
+     ],
+     [
+      "interface",
+      "superfície de separação entre dois materiais"
+     ],
+     [
+      "v",
+      "velocidade do som no líquido"
+     ],
+     [
+      "Δt",
+      "intervalo de tempo: o tempo final menos o tempo inicial"
+     ],
+     [
+      "d",
+      "distância total percorrida pelo pulso"
+     ]
+    ],
+    "motivo": "Δt e d aparecem nos passos e não estavam explicados."
+   },
+   {
+    "campo": "resolucao.quadro[4].linha",
+    "depois": "v = 900 ÷ 0,6",
+    "motivo": "Padroniza a divisão no formato do resto da resolução."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "D"
  }
 }

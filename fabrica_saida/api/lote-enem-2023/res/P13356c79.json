@@ -8,7 +8,7 @@
  "conceito": "Probabilidade em etapas dependentes: o número de bolas da 2ª urna muda conforme o algarismo sorteado na 1ª.",
  "resolucao": {
   "antes": {
-   "texto": "O sorteio tem duas etapas, uma depois da outra. A probabilidade de um número sair é a da 1ª etapa multiplicada pela da 2ª. Na 2ª etapa, só ficam as bolas que formam um número de 01 a 55 com o algarismo das unidades já sorteado. Por isso, o total de bolas depende de qual unidade saiu.",
+   "texto": "O sorteio tem duas etapas, uma depois da outra. A probabilidade de um número sair é a da 1ª etapa multiplicada pela da 2ª. Na 2ª etapa, só ficam as bolas que formam um número de 01 a 55 com a unidade já sorteada. Por isso, a quantidade de bolas da 2ª urna depende de qual unidade saiu. A pergunta é a chance do 50 e a do 02, nessa ordem.",
    "formulas": [
     "P(número) = P(unidade) × P(dezena, dada a unidade)",
     "P(dezena, dada a unidade) = 1 ÷ (quantidade de bolas que sobraram na 2ª urna)"
@@ -42,8 +42,8 @@
    },
    {
     "faz": "Liste as dezenas possíveis para o 50",
-    "conta": "unidade 0: 10, 20, 30, 40, 50",
-    "porque": "O 00 não é permitido, pois a lista começa em 01. O 60 passa de 55. Sobram as dezenas 1, 2, 3, 4 e 5, ou seja, 5 bolas.",
+    "conta": "unid. 0: 10, 20, 30, 40, 50",
+    "porque": "A unidade 0 forma 00, 10, 20, 30, 40, 50 e 60. O 00 não vale, pois a lista começa em 01. O 60 passa de 55. Sobram as dezenas 1, 2, 3, 4 e 5, ou seja, 5 bolas.",
     "tipo": "localizar"
    },
    {
@@ -54,7 +54,7 @@
    },
    {
     "faz": "Liste as dezenas possíveis para o 02",
-    "conta": "unidade 2: 02, 12, 22, 32, 42, 52",
+    "conta": "unid. 2: 02, 12, 22, 32, 42, 52",
     "porque": "Todos esses números estão entre 01 e 55, inclusive o 52. As dezenas são 0, 1, 2, 3, 4 e 5, ou seja, 6 bolas.",
     "tipo": "localizar"
    },
@@ -76,7 +76,7 @@
   "erradas": {
    "B": "O 1/50 do 02 sai de supor 5 bolas na 2ª urna, como no caso do 50: 1/10 × 1/5. Com a unidade 2, as dezenas 0, 1, 2, 3, 4 e 5 servem, pois 52 ≤ 55. São 6 bolas, e o certo é 1/60.",
    "C": "O 1/10 do 02 é só a chance da 1ª urna (unidade 2). Falta a 2ª etapa: escolher a dezena 0 entre 6 bolas, 1/6. Então 1/10 × 1/6 = 1/60.",
-   "D": "1/55 e 1/54 não saem das etapas do sorteio. Com 55 candidatos, o 1/55 só valeria se todos os números fossem igualmente prováveis, e não são: cada unidade tem 1/10 e as dezenas dividem esse 1/10 de modos diferentes. O 54 não corresponde a nenhuma contagem de bolas da 2ª urna, que tem 5 ou 6 bolas.",
+   "D": "1/55 e 1/54 não saem das etapas do sorteio. O 1/55 só valeria se os 55 números fossem igualmente prováveis, e não são. Cada unidade tem 1/10, dividido entre 5 ou 6 números. O 54 não corresponde a nenhuma contagem de bolas, pois a 2ª urna tem 5 ou 6 bolas.",
    "E": "1/100 para os dois vem de supor 10 bolas na 1ª urna e 10 bolas na 2ª: 1/10 × 1/10. O enunciado diz que a 2ª urna só mantém as bolas que formam números de 01 a 55, ou seja, 5 ou 6 bolas."
   },
   "armadilha": "Usar sempre 10 bolas na 2ª urna, ou usar o mesmo número de bolas para o 50 e para o 02. A 2ª urna muda com a unidade: 5 bolas para a unidade 0 e 6 bolas para a unidade 2.",
@@ -140,10 +140,54 @@
  "gab": "A",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [],
+  "fatos_ok": true,
+  "fatos_resposta": "A",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "O sorteio tem duas etapas, uma depois da outra. A probabilidade de um número sair é a da 1ª etapa multiplicada pela da 2ª. Na 2ª etapa, só ficam as bolas que formam um número de 01 a 55 com a unidade já sorteada. Por isso, a quantidade de bolas da 2ª urna depende de qual unidade saiu. A pergunta é a chance do 50 e a do 02, nessa ordem.",
+    "motivo": "Deixa claro o que se pede e a ordem das respostas."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "A unidade 0 forma 00, 10, 20, 30, 40, 50 e 60. O 00 não vale, pois a lista começa em 01. O 60 passa de 55. Sobram as dezenas 1, 2, 3, 4 e 5, ou seja, 5 bolas.",
+    "motivo": "Explica de onde vêm os números que foram descartados."
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "unid. 0: 10, 20, 30, 40, 50",
+    "motivo": "Cabe na tela do celular."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "unid. 2: 02, 12, 22, 32, 42, 52",
+    "motivo": "Mantém o padrão e cabe na tela."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "1/55 e 1/54 não saem das etapas do sorteio. O 1/55 só valeria se os 55 números fossem igualmente prováveis, e não são. Cada unidade tem 1/10, dividido entre 5 ou 6 números. O 54 não corresponde a nenhuma contagem de bolas, pois a 2ª urna tem 5 ou 6 bolas.",
+    "motivo": "Frases mais curtas e diretas; o fato é o mesmo."
+   }
+  ],
+  "didatica_alertas": [
+   "Em resolucao.nivel consta 5, mas a classificação informada é nível 10. Isso é decisão do corretor de fatos.",
+   "Em D, a afirmação de que 1/55 'não vale' está certa, mas conferir se é interessante dizer que 1/55 seria a chance se o sorteio fosse uniforme."
+  ],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "A"
  }
 }

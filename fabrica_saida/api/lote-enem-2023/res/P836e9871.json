@@ -8,7 +8,7 @@
  "conceito": "Interpretar um texto sobre um material (plástico reciclado + casca de café) e ligar duas propriedades a vantagens: baixa condutividade térmica (não esquenta por fora) e menos resíduo não biodegradável.",
  "resolucao": {
   "antes": {
-   "texto": "A questão pede DUAS vantagens do copo em relação ao copo descartável, e as duas precisam estar no texto. Uma delas é térmica: o copo não esquenta por fora com o café quente, ou seja, o material conduz mal o calor. A outra é ambiental: o copo é reutilizável, então menos copos descartáveis viram lixo. O plástico do copo é reciclado e NÃO biodegradável, e o texto diz isso.",
+   "texto": "A questão pede DUAS vantagens do copo em relação ao copo descartável, e as duas precisam estar no texto. Uma é térmica: o copo não esquenta por fora com o café quente, então o material conduz mal o calor. A outra é ambiental: o copo é reutilizável, então menos copos descartáveis viram lixo. O plástico do copo é reciclado e NÃO biodegradável, e o texto diz isso.",
    "formulas": [
     "isolante térmico = conduz mal o calor = baixa condutividade térmica",
     "reutilizar o copo = menos copos descartados = menos resíduo"
@@ -55,12 +55,18 @@
    {
     "faz": "Cheque a biodegradabilidade do material",
     "conta": "\"50% de plástico reciclado não biodegradável\"",
-    "porque": "Metade do copo é plástico não biodegradável, então ele não é totalmente biodegradável. Isso derruba A e a ideia de aumentar o resíduo biodegradável em C.",
+    "porque": "Metade do copo é plástico não biodegradável, então ele não é totalmente biodegradável: A cai.",
+    "tipo": "eliminar"
+   },
+   {
+    "faz": "Elimine a alternativa C",
+    "conta": "C: \"aumentar o resíduo\"",
+    "porque": "O copo reutilizável diminui o lixo de plástico, que não é biodegradável. Por isso 'aumentar o resíduo biodegradável' não descreve vantagem do copo. C cai.",
     "tipo": "eliminar"
    },
    {
     "faz": "Una as duas vantagens",
-    "conta": "baixa condutividade + menos resíduo não biodegradável",
+    "conta": "baixa condução + menos plástico",
     "porque": "Só a alternativa D reúne as duas vantagens que o texto sustenta.",
     "tipo": "concluir"
    }
@@ -70,8 +76,8 @@
   "erradas": {
    "A": "O texto diz que o copo tem 50% de plástico reciclado NÃO biodegradável, então ele não é \"totalmente biodegradável\". A durabilidade semelhante à cerâmica está certa, mas a segunda parte é falsa.",
    "B": "Ser durável como a cerâmica é verdade, mas \"alta condutividade térmica\" contradiz o texto: se conduzisse bem o calor, o copo esquentaria por fora.",
-   "C": "Ser mau condutor térmico está certo, mas o copo não aumenta o resíduo biodegradável. A vantagem é diminuir o resíduo não biodegradável, que é o plástico descartável.",
-   "E": "Alta condutividade térmica contradiz o conforto de não esquentar por fora. Além disso, o material tem plástico não biodegradável, então a degradação no ambiente não é uma vantagem apontada pelo texto."
+   "C": "Ser mau condutor térmico está certo. Mas o copo não aumenta o resíduo biodegradável: ele reduz o lixo de plástico descartável, que não é biodegradável. Faltou conferir a segunda metade.",
+   "E": "Alta condutividade térmica contradiz o conforto de não esquentar por fora. Além disso, o copo tem plástico não biodegradável, então a degradação no ambiente não é vantagem apontada no texto. As duas metades estão erradas."
   },
   "armadilha": "Cada alternativa mistura uma afirmação certa com uma errada. É preciso conferir as duas metades: baixa condutividade térmica e redução do resíduo NÃO biodegradável.",
   "alerta": "",
@@ -88,7 +94,7 @@
   },
   {
    "nome": "eliminação pelo ambiente",
-   "ideia": "O texto diz que o plástico é não biodegradável. Isso derruba A (totalmente biodegradável), C (mais resíduo biodegradável) e E (degradação do material), sobrando D."
+   "ideia": "O texto diz que o plástico é não biodegradável. Isso derruba A (totalmente biodegradável) e E (degradação do material). C cai porque aumentar resíduo na natureza não é vantagem, já que o copo reutilizável reduz o lixo. Sobra D."
   }
  ],
  "quadro": [],
@@ -105,10 +111,104 @@
  "gab": "D",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Metade do copo é plástico não biodegradável, então ele não é totalmente biodegradável, e A cai. C também cai: aumentar o resíduo na natureza não é vantagem, e o copo reutilizável diminui o lixo.",
+    "motivo": "O texto anterior dizia que o plástico não biodegradável derruba C, e isso não se sustenta: a casca de café é biodegradável. C cai porque aumentar resíduo não é vantagem e porque o copo reutilizável reduz o descarte.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "\"50% de plástico (...) não biodegradável\"",
+    "motivo": "A conta tinha cerca de 46 caracteres e passava do limite da tela, que é de uns 30. O trecho foi encurtado sem mudar o que ele afirma.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "baixa condução + menos plástico",
+    "motivo": "A conta passava do limite de uns 30 caracteres da tela. O conteúdo continua o mesmo.",
+    "fonte": ""
+   },
+   {
+    "campo": "caminhos[1].ideia",
+    "depois": "O texto diz que o plástico é não biodegradável. Isso derruba A (totalmente biodegradável) e E (degradação do material). C cai porque aumentar resíduo na natureza não é vantagem, já que o copo reutilizável reduz o lixo. Sobra D.",
+    "motivo": "O argumento contra C estava errado pelo mesmo motivo do passo 4: o plástico não biodegradável não desmente o aumento de resíduo biodegradável.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "A questão pede DUAS vantagens do copo em relação ao copo descartável, e as duas precisam estar no texto. Uma é térmica: o copo não esquenta por fora com o café quente, então o material conduz mal o calor. A outra é ambiental: o copo é reutilizável, então menos copos descartáveis viram lixo. O plástico do copo é reciclado e NÃO biodegradável, e o texto diz isso.",
+    "motivo": "Frases mais diretas; remove 'ou seja' e deixa a ligação causal clara."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Metade do copo é plástico não biodegradável, então ele não é totalmente biodegradável: A cai.",
+    "motivo": "Um passo, uma ideia; a eliminação de C passa a ter passo próprio."
+   },
+   {
+    "campo": "resolucao.passos[4]",
+    "depois": {
+     "faz": "Elimine a alternativa C",
+     "conta": "C: \"aumentar o resíduo\"",
+     "porque": "O copo reutilizável diminui o lixo, e aumentar resíduo na natureza não é vantagem. C cai.",
+     "tipo": "eliminar"
+    },
+    "motivo": "Separa a eliminação de C, que estava misturada ao passo da biodegradabilidade."
+   },
+   {
+    "campo": "resolucao.passos[5]",
+    "depois": {
+     "faz": "Una as duas vantagens",
+     "conta": "baixa condução + menos plástico",
+     "porque": "Só a alternativa D reúne as duas vantagens que o texto sustenta.",
+     "tipo": "concluir"
+    },
+    "motivo": "Passo final de conclusão, que passa a ser o sexto passo depois do desdobramento."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "Ser mau condutor térmico está certo. Mas o copo não aumenta o resíduo biodegradável: ele reduz o lixo de plástico descartável, que não é biodegradável. Faltou conferir a segunda metade.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou C."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "Alta condutividade térmica contradiz o conforto de não esquentar por fora. Além disso, o copo tem plástico não biodegradável, então a degradação no ambiente não é vantagem apontada no texto. As duas metades estão erradas.",
+    "motivo": "Texto mais claro e direto."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "\"50% de plástico reciclado não biodegradável\"",
+    "motivo": "A citação com reticências não bate literalmente com o texto. O texto diz '50% de plástico reciclado não biodegradável'. A reticência escondia 'reciclado'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "O copo reutilizável diminui o lixo de plástico, que não é biodegradável. Por isso 'aumentar o resíduo biodegradável' não descreve vantagem do copo. C cai.",
+    "motivo": "O texto não afirma que o copo aumenta resíduo biodegradável. A casca de café é biodegradável, mas o ponto central é que a alternativa não traz a redução do resíduo não biodegradável. O texto original dizia que aumentar resíduo não é vantagem, o que é verdade, mas deixava de dizer por que a alternativa C é falsa ou insuficiente.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "D"
  }
 }

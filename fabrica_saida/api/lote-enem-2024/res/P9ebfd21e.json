@@ -24,10 +24,14 @@
     [
      "representação decimal",
      "o mesmo valor escrito como número com vírgula, sem o símbolo %"
+    ],
+    [
+     "crescimento populacional",
+     "quanto a população aumentou em relação ao que era no início"
     ]
    ]
   },
-  "pista": "Quanto vale 1% em forma decimal? Depois pense em quantas vezes cabe esse 1% em 135,25%.",
+  "pista": "Pense em 100%: quanto vale como número decimal? Depois veja se 135,25% fica acima ou abaixo disso.",
   "passos": [
    {
     "faz": "Identifique o que se pede",
@@ -39,12 +43,12 @@
     "faz": "Troque o % por uma divisão por 100",
     "conta": "135,25% = 135,25/100",
     "porque": "'Por cento' significa 'dividido por cem'.",
-    "tipo": "aplicar"
+    "tipo": "calcular"
    },
    {
     "faz": "Ande a vírgula duas casas à esquerda",
     "conta": "135,25 ÷ 100 = 1,3525",
-    "porque": "Dividir por 100 desloca a vírgula duas casas para a esquerda: 135,25 → 1,3525.",
+    "porque": "Dividir por 100 é andar a vírgula duas casas para a esquerda: 135,25 vira 1,3525.",
     "tipo": "calcular"
    },
    {
@@ -57,8 +61,8 @@
   "resposta": "Alternativa D: 135,25% = 135,25 ÷ 100 = 1,3525.",
   "checagem": "Volte ao percentual: 1,3525 × 100 = 135,25. Outra checagem: 100% = 1, então 135,25% tem que ser um pouco mais que 1 e menos que 2, como 1,3525.",
   "erradas": {
-   "A": "13 525,0 é 135,25 × 100: a vírgula andou duas casas para a direita, ao contrário. Conferindo: 13 525 ÷ 100 = 135,25, que ainda é a porcentagem, não o decimal.",
-   "B": "135,25 é o próprio número da porcentagem, sem dividir por 100. Esse número só vale se o símbolo % continuar ao lado dele.",
+   "A": "13 525,0 sai de andar a vírgula duas casas para a DIREITA: 135,25 × 100 = 13 525. Dividir por 100 anda para a esquerda. Esse valor, em %, seria 1 352 500%.",
+   "B": "135,25 é o número da porcentagem sem dividir por 100. Faltou trocar o % pela divisão por 100: sem o símbolo, 135,25 vale 13 525%.",
    "C": "13,525 é 135,25 ÷ 10: a vírgula andou só uma casa. Conferindo: 13,525 × 100 = 1 352,5%, e não 135,25%.",
    "E": "0,13525 é 135,25 ÷ 1000: a vírgula andou três casas. Conferindo: 0,13525 × 100 = 13,525%, e não 135,25%."
   },
@@ -122,10 +126,80 @@
  "gab": "D",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "calcular",
+    "motivo": "\"aplicar\" não está na lista de tipos permitidos (localizar, calcular, comparar, eliminar, concluir). Trocar % por uma divisão por 100 é um passo de cálculo.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.pista",
+    "depois": "Pense em 100%: quanto vale como número decimal? Depois veja se 135,25% fica acima ou abaixo disso.",
+    "motivo": "A pista antiga perguntava sobre 1%, caminho mais longo. Esta leva ao teste de ordem de grandeza (100% = 1) sem entregar a letra."
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "135,25% = 135,25/100",
+    "motivo": "Mantida a escrita em fração (o site desenha empilhada); registro apenas que está correta e cabe na linha."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Dividir por 100 é andar a vírgula duas casas para a esquerda: 135,25 vira 1,3525.",
+    "motivo": "Frase mais curta e direta, sem repetir o número duas vezes."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "13 525,0 sai de andar a vírgula duas casas para a DIREITA: 135,25 × 100 = 13 525. Dividir por 100 anda para a esquerda. Esse valor, em %, seria 1 352 500%.",
+    "motivo": "A conferência antiga (13 525 ÷ 100) não explicava o erro de quem marcou A; agora mostra o que faltou e testa a alternativa."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "135,25 é o número da porcentagem sem dividir por 100. Faltou trocar o % pela divisão por 100: sem o símbolo, 135,25 vale 13 525%.",
+    "motivo": "Deixa claro o que faltou e dá um teste numérico."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "%",
+      "por cento: 'em cada cem'"
+     ],
+     [
+      "taxa percentual",
+      "o número acompanhado do símbolo %, aqui 135,25%"
+     ],
+     [
+      "representação decimal",
+      "o mesmo valor escrito como número com vírgula, sem o símbolo %"
+     ],
+     [
+      "crescimento populacional",
+      "quanto a população aumentou em relação ao que era no início"
+     ]
+    ],
+    "motivo": "Termo do enunciado explicado para o aluno de 17 anos."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "D"
  }
 }

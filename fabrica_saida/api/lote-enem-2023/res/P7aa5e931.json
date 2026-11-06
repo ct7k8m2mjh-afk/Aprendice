@@ -32,15 +32,15 @@
   "passos": [
    {
     "faz": "Dê nome às incógnitas",
-    "conta": "a = tíquete azul (R$)",
-    "porque": "A segunda frase compara tíquetes, não cartelas. Chame o preço do tíquete vermelho de v. A cartela vermelha custará 9v.",
+    "conta": "a = tíquete azul; v = vermelho",
+    "porque": "A segunda frase compara tíquetes, não cartelas. Então a e v são preços de um tíquete. Cada cartela tem 9 tíquetes: a azul custa 9a e a vermelha custa 9v.",
     "tipo": "localizar"
    },
    {
     "faz": "Traduza a 1ª frase",
-    "conta": "2·(9a) + 9v = 32,40",
+    "conta": "2 × 9a + 9v = 32,40",
     "porque": "Duas cartelas azuis valem 2 × 9a. Uma cartela vermelha vale 9v. Tudo junto custa R$ 32,40.",
-    "tipo": "interpretar"
+    "tipo": "calcular"
    },
    {
     "faz": "Simplifique dividindo por 9",
@@ -52,12 +52,12 @@
     "faz": "Traduza a 2ª frase",
     "conta": "a − v = v + 0,05",
     "porque": "O tíquete azul menos o vermelho é igual ao vermelho mais cinco centavos. Isolando a: a = 2v + 0,05.",
-    "tipo": "interpretar"
+    "tipo": "calcular"
    },
    {
     "faz": "Substitua e ache v",
-    "conta": "2(2v + 0,05) + v = 3,60",
-    "porque": "Isso dá 5v + 0,10 = 3,60, então 5v = 3,50 e v = 0,70. O tíquete vermelho custa R$ 0,70.",
+    "conta": "5v + 0,10 = 3,60 → v = 0,70",
+    "porque": "Substituindo a por 2v + 0,05 na equação 2a + v = 3,60: 2(2v + 0,05) + v = 3,60, que dá 5v + 0,10 = 3,60. Então 5v = 3,50 e v = 0,70. O tíquete vermelho custa R$ 0,70.",
     "tipo": "calcular"
    },
    {
@@ -70,7 +70,7 @@
   "resposta": "Alternativa B: a cartela de tíquetes vermelhos custa R$ 6,30.",
   "checagem": "Com v = 0,70, o azul é a = 2 × 0,70 + 0,05 = 1,45. Duas cartelas azuis custam 18 × 1,45 = 26,10. Somando uma vermelha, 26,10 + 6,30 = 32,40, que é o valor do enunciado.",
   "erradas": {
-   "A": "4,68 não confere. Ele daria tíquete vermelho de 4,68 ÷ 9 = 0,52 e azul de (3,60 − 0,52) ÷ 2 = 1,54. Mas a relação exige azul = 2 × 0,52 + 0,05 = 1,09, e 1,54 ≠ 1,09.",
+   "A": "4,68 não confere. A cartela vale 4,68, então v = 4,68 ÷ 9 = 0,52. Pela 1ª frase, a = (3,60 − 0,52) ÷ 2 = 1,54. Pela 2ª, a deveria ser 2 × 0,52 + 0,05 = 1,09. Como 1,54 ≠ 1,09, não serve.",
    "C": "9,30 não confere. Daria v = 9,30 ÷ 9 ≈ 1,033 e azul pela 1ª frase de (3,60 − 1,033) ÷ 2 ≈ 1,283. Pela 2ª frase, o azul seria 2 × 1,033 + 0,05 ≈ 2,117. Os dois valores não coincidem.",
    "D": "10,50 não confere. Daria v ≈ 1,167 e azul pela 1ª frase de ≈ 1,217. Pela 2ª frase, o azul seria 2 × 1,167 + 0,05 ≈ 2,383. Os dois valores não coincidem.",
    "E": "10,65 não confere. Daria v ≈ 1,183 e azul pela 1ª frase de ≈ 1,208. Pela 2ª frase, o azul seria 2 × 1,183 + 0,05 ≈ 2,417. Os dois valores não coincidem."
@@ -152,7 +152,7 @@
    "nota": "3,60 − 0,10 = 3,50"
   },
   {
-   "linha": "v = \\frac{3,50}{5}",
+   "linha": "v = 3,50/5",
    "nota": "o 5 passa dividindo",
    "mov": [
     {
@@ -187,10 +187,75 @@
  "gab": "B",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "calcular",
+    "motivo": "'interpretar' não está entre os tipos permitidos (localizar, calcular, comparar, eliminar, concluir). Pelo guia da matéria, montar a equação conta como passo 'calcular'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "calcular",
+    "motivo": "'interpretar' não está entre os tipos permitidos. Montar a equação conta como passo 'calcular'.",
+    "fonte": ""
+   },
+   {
+    "campo": "quadro[9].linha",
+    "depois": "v = 3,50/5",
+    "motivo": "LaTeX (\\frac) é proibido em qualquer campo. A fração se escreve 'a/b' e o site a desenha empilhada.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[0].conta",
+    "depois": "a = tíquete azul; v = vermelho",
+    "motivo": "A conta estava incompleta: nomeava só o azul. O porque já explica a cartela 9v."
+   },
+   {
+    "campo": "resolucao.passos[0].porque",
+    "depois": "A segunda frase compara tíquetes, não cartelas. Então a e v são preços de um tíquete. Cada cartela tem 9 tíquetes: a azul custa 9a e a vermelha custa 9v.",
+    "motivo": "Mais claro e completo."
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "2 × 9a + 9v = 32,40",
+    "motivo": "Usa o × como no resto do material; é mais legível para o aluno."
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "5v + 0,10 = 3,60 → v = 0,70",
+    "motivo": "A conta mostrava só a substituição. O resultado fica visível, com o desenvolvimento no porque."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "Substituindo a por 2v + 0,05 na equação 2a + v = 3,60: 2(2v + 0,05) + v = 3,60, que dá 5v + 0,10 = 3,60. Então 5v = 3,50 e v = 0,70. O tíquete vermelho custa R$ 0,70.",
+    "motivo": "Mostra o passo da substituição que saiu da conta."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "4,68 não confere. A cartela vale 4,68, então v = 4,68 ÷ 9 = 0,52. Pela 1ª frase, a = (3,60 − 0,52) ÷ 2 = 1,54. Pela 2ª, a deveria ser 2 × 0,52 + 0,05 = 1,09. Como 1,54 ≠ 1,09, não serve.",
+    "motivo": "Texto mais claro e com o teste completo."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "B"
  }
 }

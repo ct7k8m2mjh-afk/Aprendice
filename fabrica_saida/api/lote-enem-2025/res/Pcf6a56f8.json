@@ -8,7 +8,7 @@
  "conceito": "Escala como razão entre a medida do desenho e a medida real, com conversão de cm para m.",
  "resolucao": {
   "antes": {
-   "texto": "Escala é a razão entre a medida do desenho e a medida real, as duas na mesma unidade. O desenho mede 20 cm de lado e a obra mede 30 m. Como a escala compara medidas, converta 30 m para cm antes de dividir. Essa conversão é o trabalho real da questão.",
+   "texto": "Escala é a razão entre a medida do desenho e a medida real, as duas na mesma unidade. O desenho mede 20 cm de lado e a obra mede 30 m. Converta 30 m para cm antes de dividir. Essa conversão é o trabalho real da questão.",
    "formulas": [
     "escala = medida no desenho ÷ medida real",
     "1 m = 100 cm"
@@ -29,7 +29,7 @@
    {
     "faz": "Leia as medidas na figura",
     "conta": "Desenho: 20 cm",
-    "porque": "A figura mostra 20 cm na horizontal e 20 cm na vertical. Já o enunciado diz que essas medidas foram ampliadas para 30 m na obra.",
+    "porque": "A figura mostra 20 cm na horizontal e 20 cm na vertical. O enunciado diz que essas medidas viraram 30 m na obra.",
     "tipo": "localizar"
    },
    {
@@ -40,7 +40,7 @@
    },
    {
     "faz": "Monte a razão desenho ÷ real",
-    "conta": "20/3000",
+    "conta": "escala = 20/3000",
     "porque": "Escala é medida do desenho dividida pela medida real, as duas em cm.",
     "tipo": "calcular"
    },
@@ -60,10 +60,10 @@
   "resposta": "Alternativa E: 1 : 150, pois 20 cm no desenho correspondem a 3000 cm na obra, e 20/3000 = 1/150.",
   "checagem": "Faça o caminho de volta: 150 × 20 cm = 3000 cm = 30 m. Fecha com a medida da obra.",
   "erradas": {
-   "A": "1 : 1,5 não confere. Com essa escala, 20 cm no desenho seriam 20 × 1,5 = 30 cm na obra, e não 30 m. Isso é o que acontece ao dividir 30 por 20 sem converter a unidade.",
-   "B": "1 : 2,25 não confere. Com essa escala, 20 cm virariam 20 × 2,25 = 45 cm. Isso é muito menor que os 30 m da obra.",
-   "C": "1 : 10 não confere. Com essa escala, 20 cm virariam 20 × 10 = 200 cm = 2 m, e não 30 m.",
-   "D": "1 : 100 não confere. Com essa escala, 20 cm virariam 20 × 100 = 2000 cm = 20 m, e não 30 m. Ela sai de dividir 30 m por 20 e converter só por 100: 30 ÷ 20 = 1,5 e 1,5 × 100 = 150 ficaria correto, mas aqui a conta foi feita sem usar os 30 m inteiros."
+   "A": "1 : 1,5 sai de dividir 30 por 20 sem converter a unidade (30 ÷ 20 = 1,5). Com essa escala, 20 cm virariam 30 cm, e não 30 m. Faltou passar 30 m para cm.",
+   "B": "1 : 2,25 não confere. Com essa escala, 20 cm virariam 20 × 2,25 = 45 cm, bem menos que os 30 m (3000 cm) da obra. Faltou comparar o resultado com a medida real.",
+   "C": "1 : 10 não confere. Com essa escala, 20 cm virariam 200 cm = 2 m, e não 30 m. Faltou testar a escala contra a medida real da obra.",
+   "D": "1 : 100 não confere. Com essa escala, 20 cm virariam 2000 cm = 20 m, e não 30 m. Passou perto, mas 20 × 100 não chega a 3000."
   },
   "armadilha": "Dividir 30 por 20 sem converter metros para centímetros, o que dá 1 : 1,5.",
   "alerta": "",
@@ -140,10 +140,73 @@
  "gab": "E",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "1 : 100 não confere. Com essa escala, 20 cm virariam 20 × 100 = 2000 cm = 20 m, e não 30 m.",
+    "motivo": "A segunda frase inventava uma origem para o valor e não fazia sentido: dizia que ele saía de 30 ÷ 20 com conversão e depois que a conta ficaria correta. Nenhuma conta plausível chega a 1 : 100. Por isso ficou só o teste objetivo, que já derruba a alternativa.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Escala é a razão entre a medida do desenho e a medida real, as duas na mesma unidade. O desenho mede 20 cm de lado e a obra mede 30 m. Converta 30 m para cm antes de dividir. Essa conversão é o trabalho real da questão.",
+    "motivo": "Frase mais curta e sem repetição."
+   },
+   {
+    "campo": "resolucao.passos[0].conta",
+    "depois": "Desenho: 20 cm",
+    "motivo": "Sem mudança no conteúdo."
+   },
+   {
+    "campo": "resolucao.passos[0].porque",
+    "depois": "A figura mostra 20 cm na horizontal e 20 cm na vertical. O enunciado diz que essas medidas viraram 30 m na obra.",
+    "motivo": "Frase mais direta."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "escala = 20/3000",
+    "motivo": "Deixa claro que a razão é a escala."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "1 : 1,5 sai de dividir 30 por 20 sem converter a unidade (30 ÷ 20 = 1,5). Com essa escala, 20 cm virariam 30 cm, e não 30 m. Faltou passar 30 m para cm.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou A, com origem real."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "1 : 2,25 não confere. Com essa escala, 20 cm virariam 20 × 2,25 = 45 cm, bem menos que os 30 m (3000 cm) da obra. Faltou comparar o resultado com a medida real.",
+    "motivo": "Diz o que faltou e dá o teste."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "1 : 10 não confere. Com essa escala, 20 cm virariam 200 cm = 2 m, e não 30 m. Faltou testar a escala contra a medida real da obra.",
+    "motivo": "Diz o que faltou."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "1 : 100 não confere. Com essa escala, 20 cm virariam 2000 cm = 20 m, e não 30 m. Passou perto, mas 20 × 100 não chega a 3000.",
+    "motivo": "Diz o que faltou."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "E"
  }
 }

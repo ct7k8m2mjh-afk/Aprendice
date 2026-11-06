@@ -8,7 +8,7 @@
  "conceito": "Modelar um problema de contagem com vãos (n colunas geram n+1 vãos), achar o número mínimo de colunas de cada loja e comparar os custos.",
  "resolucao": {
   "antes": {
-   "texto": "As colunas ficam alinhadas numa reta paralela ao lado menor, então a fileira cobre os 3 m = 300 cm da sala. Cada coluna ocupa o seu diâmetro, que é o dobro do raio. O resto do comprimento são os vãos, e cada vão pode ter no máximo 15 cm. Com n colunas há n + 1 vãos: n − 1 entre colunas e 2 entre as pontas e as paredes.",
+   "texto": "A fileira de colunas cobre o lado menor da sala: 3 m = 300 cm. Cada coluna ocupa o seu diâmetro, que é o dobro do raio. O que sobra do comprimento são os vãos, e cada vão pode ter no máximo 15 cm. Com n colunas há n + 1 vãos: n − 1 entre colunas e 2 entre as colunas das pontas e as paredes.",
    "formulas": [
     "diâmetro = 2 × raio",
     "n colunas → n + 1 vãos",
@@ -26,6 +26,14 @@
     [
      "n",
      "número de colunas usadas"
+    ],
+    [
+     "d",
+     "diâmetro da coluna, em cm"
+    ],
+    [
+     "≤ / ≥",
+     "≤ quer dizer 'menor ou igual a'; ≥ quer dizer 'maior ou igual a'"
     ]
    ]
   },
@@ -40,12 +48,12 @@
    {
     "faz": "Monte a condição para n colunas",
     "conta": "300 − n·d ≤ 15·(n + 1)",
-    "porque": "O que sobra depois das colunas (300 − n·d) é dividido em n + 1 vãos, cada um até 15 cm. Isso dá n ≥ 285/(d + 15).",
+    "porque": "Depois das colunas sobram 300 − n·d cm. Esse espaço se divide em n + 1 vãos, cada um com até 15 cm. Então o total dos vãos é no máximo 15·(n + 1).",
     "tipo": "calcular"
    },
    {
-    "faz": "Ache o mínimo de colunas de cada loja",
-    "conta": "I: d=10 → 285/25 = 11,4 → 12\nII: d=20 → 285/35 ≈ 8,1 → 9\nIII: d=24 → 285/39 ≈ 7,3 → 8\nIV: d=30 → 285/45 ≈ 6,3 → 7\nV: d=40 → 285/55 ≈ 5,2 → 6",
+    "faz": "Isole n e ache o mínimo de cada loja",
+    "conta": "n ≥ 285 ÷ (d + 15)\nI: d=10 → 285/25 = 11,4 → 12\nII: d=20 → 285/35 ≈ 8,1 → 9\nIII: d=24 → 285/39 ≈ 7,3 → 8\nIV: d=30 → 285/45 ≈ 6,3 → 7\nV: d=40 → 285/55 ≈ 5,2 → 6",
     "porque": "Como n é inteiro, arredonde sempre para cima: com menos colunas algum vão passaria de 15 cm.",
     "tipo": "calcular"
    },
@@ -85,7 +93,7 @@
   },
   {
    "nome": "bloco colunas + vão",
-   "ideia": "Imagine cada coluna com um vão de 15 cm ao lado: bloco de d + 15 cm. Com um vão extra no fim, 300 + 15 = 315 deve caber em n blocos, então n ≥ 315/(d + 15) é o mesmo que o primeiro método. Dá n ≥ 12,6 no caso da loja I, ou seja, n ≥ 11,4 quando se leva em conta que a primeira conta foi com 285 em vez de 315 — por isso o método principal é mais seguro."
+   "ideia": "Junte cada coluna ao vão de 15 cm à esquerda dela, formando um bloco de d + 15 cm. Falta ainda o vão entre a última coluna e a parede, então n(d + 15) + 15 ≥ 300, ou seja, n ≥ 285/(d + 15). É a mesma condição do método principal. Na loja I: 285/25 = 11,4, então são 12 colunas."
   }
  ],
  "quadro": [
@@ -98,16 +106,26 @@
    "nota": "n colunas → n + 1 vãos"
   },
   {
+   "linha": "300 − n·d ≤ 15n + 15",
+   "nota": "distribua o 15"
+  },
+  {
+   "linha": "300 − 15 ≤ 15n + n·d",
+   "nota": "15 passa subtraindo; n·d passa somando",
+   "mov": "15 e n·d atravessam o ≤"
+  },
+  {
    "linha": "285 ≤ n(d + 15)",
-   "nota": "300 − 15 = 285"
+   "nota": "n em evidência"
   },
   {
    "linha": "n ≥ 285/(d + 15)",
-   "nota": "divida pelo (d + 15)"
+   "nota": "(d + 15) passa dividindo",
+   "mov": "d + 15 passa dividindo"
   },
   {
-   "linha": "III: n ≥ 285/39 ≈ 7,3",
-   "nota": "d = 24 → n = 8"
+   "linha": "III: 285/39 ≈ 7,3",
+   "nota": "d = 24 → n = 8 (arredonda para cima)"
   },
   {
    "linha": "8 × 75 = 600",
@@ -127,10 +145,124 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "caminhos[1].ideia",
+    "depois": "Junte cada coluna ao vão de 15 cm à esquerda dela, formando um bloco de d + 15 cm. Falta ainda o vão entre a última coluna e a parede, então n(d + 15) + 15 ≥ 300, ou seja, n ≥ 285/(d + 15). É a mesma condição do método principal. Na loja I: 285/25 = 11,4, então são 12 colunas.",
+    "motivo": "O texto antigo dizia que 315 = 300 + 15 deve caber em n blocos, o que está errado: o vão extra se desconta de 300, não se soma. Com 315, a loja I daria n ≥ 12,6, ou seja, 13 colunas, e não 12. O texto ainda terminava se contradizendo. A conta correta é n(d + 15) + 15 ≥ 300, que dá n ≥ 285/(d + 15).",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "A fileira de colunas cobre o lado menor da sala: 3 m = 300 cm. Cada coluna ocupa o seu diâmetro, que é o dobro do raio. O que sobra do comprimento são os vãos, e cada vão pode ter no máximo 15 cm. Com n colunas há n + 1 vãos: n − 1 entre colunas e 2 entre as colunas das pontas e as paredes.",
+    "motivo": "Frase mais direta; deixa claro quais são os 2 vãos extras."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "vão",
+      "espaço livre entre duas colunas ou entre uma coluna e a parede"
+     ],
+     [
+      "diâmetro",
+      "largura da coluna vista de cima: 2 × raio"
+     ],
+     [
+      "n",
+      "número de colunas usadas"
+     ],
+     [
+      "d",
+      "diâmetro da coluna, em cm"
+     ],
+     [
+      "≤ / ≥",
+      "≤ quer dizer 'menor ou igual a'; ≥ quer dizer 'maior ou igual a'"
+     ]
+    ],
+    "motivo": "d, ≤ e ≥ aparecem na resolução e não estavam explicados."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "Depois das colunas sobram 300 − n·d cm. Esse espaço se divide em n + 1 vãos, cada um com até 15 cm. Então o total dos vãos é no máximo 15·(n + 1).",
+    "motivo": "A frase 'Isso dá n ≥ ...' pulava passagens; a álgebra agora está no quadro."
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "300 − n·d ≤ 15·(n + 1)",
+    "motivo": "Mantido igual; conta curta."
+   },
+   {
+    "campo": "resolucao.passos[2].faz",
+    "depois": "Isole n e ache o mínimo de cada loja",
+    "motivo": "O passo agora inclui o isolamento de n."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "n ≥ 285 ÷ (d + 15)\nI: d=10 → 285/25 = 11,4 → 12\nII: d=20 → 285/35 ≈ 8,1 → 9\nIII: d=24 → 285/39 ≈ 7,3 → 8\nIV: d=30 → 285/45 ≈ 6,3 → 7\nV: d=40 → 285/55 ≈ 5,2 → 6",
+    "motivo": "Mostra a fórmula usada antes dos valores."
+   },
+   {
+    "campo": "resolucao.quadro",
+    "depois": [
+     {
+      "linha": "300 cm de fileira",
+      "nota": "3 m = 300 cm"
+     },
+     {
+      "linha": "300 − n·d ≤ 15(n + 1)",
+      "nota": "n colunas → n + 1 vãos"
+     },
+     {
+      "linha": "300 − n·d ≤ 15n + 15",
+      "nota": "distribua o 15"
+     },
+     {
+      "linha": "300 − 15 ≤ 15n + n·d",
+      "nota": "15 passa subtraindo; n·d passa somando",
+      "mov": "15 e n·d atravessam o ≤"
+     },
+     {
+      "linha": "285 ≤ n(d + 15)",
+      "nota": "n em evidência"
+     },
+     {
+      "linha": "n ≥ 285/(d + 15)",
+      "nota": "(d + 15) passa dividindo",
+      "mov": "d + 15 passa dividindo"
+     },
+     {
+      "linha": "III: 285/39 ≈ 7,3",
+      "nota": "d = 24 → n = 8 (arredonda para cima)"
+     },
+     {
+      "linha": "8 × 75 = 600",
+      "nota": "menor total entre as lojas"
+     }
+    ],
+    "motivo": "Faltavam passagens e o movimento dos termos; cada linha agora é um passo copiável."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "C"
  }
 }

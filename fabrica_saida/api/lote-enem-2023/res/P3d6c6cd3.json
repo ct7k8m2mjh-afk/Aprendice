@@ -8,10 +8,11 @@
  "conceito": "Reconhecer setor circular: região do círculo limitada por dois raios e um arco, aqui formada pelo ângulo de 60° do triângulo equilátero com vértice no centro.",
  "resolucao": {
   "antes": {
-   "texto": "Setor circular é a 'fatia de pizza': a parte do círculo entre dois raios, limitada por um arco. Segmento circular é a parte cortada por uma corda, sem passar pelo centro. O que importa aqui é onde está o vértice do telhado: ele está no centro da lua. Os dois lados do triângulo que saem desse vértice funcionam como dois raios.",
+   "texto": "Setor circular é a 'fatia de pizza': a parte do círculo entre dois raios, limitada por um arco. Segmento circular é a parte cortada por uma única corda: tem um só lado reto e um arco. O que importa aqui é onde está o vértice do telhado: ele está no centro da lua. Os dois lados do triângulo que saem desse vértice funcionam como dois raios.",
    "formulas": [
-    "setor circular = região entre dois raios e o arco que eles determinam",
-    "ângulo interno do triângulo equilátero = 60°"
+    "setor circular = região entre dois raios e o arco entre eles",
+    "ângulo interno do triângulo equilátero = 60°",
+    "ângulo do círculo inteiro = 360°"
    ],
    "simbolos": [
     [
@@ -43,28 +44,28 @@
    {
     "faz": "Veja os lados como raios",
     "conta": "lados do telhado saem do centro",
-    "porque": "Um segmento que sai do centro e vai até a borda do círculo é um raio. Na figura, os lados do telhado (maiores que o raio) atravessam a lua e saem pela borda dela.",
-    "tipo": "interpretar"
+    "porque": "Um segmento que sai do centro e vai até a borda do círculo é um raio. Na figura, os lados do telhado saem do centro da lua e vão até a borda dela (ou até além dela).",
+    "tipo": "localizar"
    },
    {
     "faz": "Descreva a parte escondida",
     "conta": "2 raios + 1 arco, ângulo de 60°",
     "porque": "A parte da lua dentro do telhado é a região entre esses dois lados, que formam 60° no centro. Fica limitada por dois raios e pelo arco da borda da lua.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Dê o nome da região",
     "conta": "dois raios + arco = setor circular",
-    "porque": "Essa é a definição de setor circular: uma fatia de pizza com ângulo de 60°, ou seja, 1/6 do círculo.",
+    "porque": "Essa é a definição de setor circular: uma fatia de pizza. Com ângulo de 60°, ela é 1/6 do círculo.",
     "tipo": "concluir"
    }
   ],
   "resposta": "Alternativa B: a parte escondida é limitada por dois raios (os lados do telhado) e por um arco da lua, que é um setor circular de 60°.",
-  "checagem": "Complete o desenho: seis setores de 60° formam o círculo inteiro (6 × 60° = 360°), então o pedaço escondido é 1/6 da lua, uma fatia de pizza. Um segmento circular não serviria, porque sua borda reta não passa pelo centro.",
+  "checagem": "Complete o desenho: seis setores de 60° formam o círculo inteiro (6 × 60° = 360°), então o pedaço escondido é 1/6 da lua, uma fatia de pizza. Um segmento circular não serviria, porque ele tem um só lado reto (uma corda), e aqui são dois lados retos que se encontram no centro.",
   "erradas": {
    "A": "Cone é sólido, tem três dimensões. A lua e o telhado estão pintados num quadro plano, então a região escondida é uma figura plana.",
-   "C": "Segmento circular é limitado por uma corda (reta que não passa pelo centro) e um arco. Aqui os dois lados retos partem do centro da lua, ou seja, são raios, e não uma corda.",
-   "D": "Um triângulo isósceles teria os três lados retos. A parte escondida tem uma borda curva, que é a borda da lua, e os lados do telhado são maiores que o raio, então saem do círculo. Ela não é um triângulo.",
+   "C": "Segmento circular é cortado por uma única corda, então tem um só lado reto. Aqui há dois lados retos que partem do centro: são dois raios. Quem marcou C esqueceu de ver onde está o vértice do telhado.",
+   "D": "Um triângulo teria os três lados retos. A parte escondida tem um lado curvo, que é a borda da lua. Por isso ela não é um triângulo, isósceles ou de outro tipo.",
    "E": "Arco de circunferência é só a linha curva, sem região interna. A parte escondida da lua é uma superfície inteira, com dois lados retos e um lado curvo."
   },
   "armadilha": "Chamar de 'segmento circular' qualquer pedaço do círculo; o que decide é o vértice estar no centro, o que faz os lados serem raios.",
@@ -78,7 +79,7 @@
  "caminhos": [
   {
    "nome": "eliminação",
-   "ideia": "Cone é sólido, arco não tem região, triângulo não tem borda curva. Sobram setor e segmento, e o segmento exige uma corda fora do centro, o que não é o caso."
+   "ideia": "Cone é sólido, arco não tem região, triângulo não tem borda curva. Sobram setor e segmento. O segmento tem um só lado reto (uma corda), e aqui são dois lados retos partindo do centro, o que caracteriza o setor."
   },
   {
    "nome": "desenho com a fração",
@@ -116,10 +117,94 @@
  "gab": "B",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "localizar",
+    "motivo": "O valor 'interpretar' não está na lista de tipos aceitos (localizar, calcular, comparar, eliminar, concluir). O passo lê a figura, então o tipo certo é 'localizar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "localizar",
+    "motivo": "O valor 'interpretar' não está na lista de tipos aceitos. O passo descreve a região que se vê na figura, então o tipo certo é 'localizar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Setor circular é a 'fatia de pizza': a parte do círculo entre dois raios, limitada por um arco. Segmento circular é a parte cortada por uma única corda: tem um só lado reto e um arco. O que importa aqui é onde está o vértice do telhado: ele está no centro da lua. Os dois lados do triângulo que saem desse vértice funcionam como dois raios.",
+    "motivo": "Uma corda pode passar pelo centro: o diâmetro é uma corda, e o semicírculo é um segmento circular. Dizer 'sem passar pelo centro' é impreciso. O que distingue o segmento do setor é ter um só lado reto.",
+    "fonte": "Iezzi, Fundamentos de Matemática Elementar vol. 9 (definição de segmento circular)"
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "Segmento circular é limitado por uma única corda e um arco, ou seja, tem um só lado reto. Aqui são dois lados retos que partem do centro da lua e formam um ângulo de 60°: são dois raios, e não uma corda.",
+    "motivo": "Trecho falso: 'corda (reta que não passa pelo centro)'. O diâmetro também é uma corda. Troquei pelo critério correto, que é o número de lados retos.",
+    "fonte": "Iezzi, Fundamentos de Matemática Elementar vol. 9"
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Complete o desenho: seis setores de 60° formam o círculo inteiro (6 × 60° = 360°), então o pedaço escondido é 1/6 da lua, uma fatia de pizza. Um segmento circular não serviria, porque ele tem um só lado reto (uma corda), e aqui são dois lados retos que se encontram no centro.",
+    "motivo": "A frase 'sua borda reta não passa pelo centro' não vale em geral: no semicírculo, a corda é o diâmetro e passa pelo centro.",
+    "fonte": ""
+   },
+   {
+    "campo": "caminhos[0].ideia",
+    "depois": "Cone é sólido, arco não tem região, triângulo não tem borda curva. Sobram setor e segmento. O segmento tem um só lado reto (uma corda), e aqui são dois lados retos partindo do centro, o que caracteriza o setor.",
+    "motivo": "Mesma imprecisão: 'corda fora do centro'. Uma corda pode passar pelo centro (diâmetro).",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "Um segmento que sai do centro e vai até a borda do círculo é um raio. Na figura, os lados do telhado saem do centro da lua e vão até a borda dela (ou até além dela).",
+    "motivo": "Frase original pouco clara (comparava com o raio sem explicar). Simplificada sem mudar o fato."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Essa é a definição de setor circular: uma fatia de pizza. Com ângulo de 60°, ela é 1/6 do círculo.",
+    "motivo": "Frases mais curtas e diretas."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "Um triângulo teria os três lados retos. A parte escondida tem um lado curvo, que é a borda da lua. Por isso ela não é um triângulo, isósceles ou de outro tipo.",
+    "motivo": "A versão antiga dava um argumento confuso (lados maiores que o raio). Agora o argumento é só o lado curvo, e diz o que faltou a quem marcou D."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "Segmento circular é cortado por uma única corda, então tem um só lado reto. Aqui há dois lados retos que partem do centro: são dois raios. Quem marcou C esqueceu de ver onde está o vértice do telhado.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou C."
+   },
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "setor circular = região entre dois raios e o arco entre eles",
+     "ângulo interno do triângulo equilátero = 60°",
+     "ângulo do círculo inteiro = 360°"
+    ],
+    "motivo": "A checagem usa 360°, então a informação entra em 'antes'."
+   }
+  ],
+  "didatica_alertas": [
+   "O campo 'nivel' está 3 na resolução e 4 na classificação atual; conferir qual vale."
+  ],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "B"
  }
 }

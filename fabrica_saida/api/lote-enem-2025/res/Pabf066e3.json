@@ -8,20 +8,24 @@
  "conceito": "Descobrir os parâmetros k, p e m de uma função tangente deslocada a partir das assíntotas e de um ponto do gráfico.",
  "resolucao": {
   "antes": {
-   "texto": "A função tg(x) tem assíntotas verticais em x = −π/2 e x = π/2, e passa pela origem no meio delas. Em D = k + tg[p(T + m)], k sobe ou desce o gráfico, p estica ou comprime na horizontal e m desloca para os lados. Com as assíntotas e o ponto central do gráfico dá para achar os três parâmetros.",
+   "texto": "Primeiro, o que a questão pede: a fórmula D = k + tg[p(T + m)] que descreve o gráfico, ou seja, os valores de k, p e m. A tangente comum, tg(x), tem assíntotas verticais em x = −π/2 e x = π/2, e passa pela origem, bem no meio delas. Em D = k + tg[p(T + m)], k sobe ou desce o gráfico, p estica ou comprime na horizontal e m desloca para os lados. As assíntotas e o ponto central do gráfico dão os três parâmetros.",
    "formulas": [
     "distância entre assíntotas vizinhas = π ÷ p",
-    "centro da curva: p(T + m) = 0",
-    "no centro, tg = 0, então D = k"
+    "centro da curva: o argumento p(T + m) vale 0",
+    "no centro, tg(0) = 0, então D = k"
    ],
    "simbolos": [
     [
      "tg",
-     "tangente, função trigonométrica que cresce e tem assíntotas verticais"
+     "tangente: função trigonométrica que cresce e tem assíntotas verticais"
     ],
     [
      "assíntota vertical",
-     "reta que a curva se aproxima sem nunca tocar"
+     "reta vertical da qual a curva se aproxima sem nunca tocar"
+    ],
+    [
+     "argumento",
+     "a expressão dentro dos colchetes da tg, aqui p(T + m)"
     ],
     [
      "k",
@@ -34,6 +38,10 @@
     [
      "m",
      "controla o deslocamento horizontal"
+    ],
+    [
+     "π",
+     "número pi, cerca de 3,14"
     ]
    ]
   },
@@ -48,7 +56,7 @@
    {
     "faz": "Ache o centro da curva",
     "conta": "T centro = 5/2 = 2,5",
-    "porque": "O centro é a média das duas assíntotas: (5 − 2π + 5 + 2π)/4 = 10/4 = 2,5. A figura confirma: 2,5 está marcado no eixo T.",
+    "porque": "O centro fica no meio das assíntotas, ou seja, na média delas: (5 − 2π + 5 + 2π)/4 = 10/4 = 2,5. A figura confirma: 2,5 está marcado no eixo T.",
     "tipo": "calcular"
    },
    {
@@ -60,7 +68,7 @@
    {
     "faz": "Ache p pela distância entre assíntotas",
     "conta": "π/p = 2π, logo p = 1/2",
-    "porque": "A distância entre as assíntotas é (5 + 2π)/2 − (5 − 2π)/2 = 2π, que é um período da tangente.",
+    "porque": "A distância entre as assíntotas é (5 + 2π)/2 − (5 − 2π)/2 = 4π/2 = 2π. Essa distância é π ÷ p, então p = π ÷ 2π = 1/2.",
     "tipo": "calcular"
    },
    {
@@ -82,7 +90,7 @@
    "A": "Usa k = 2,5 (que é um valor de T, não de D) e p = 30. Com p = 30 a distância entre assíntotas seria π/30, muito menor que 2π. Além disso, em T = 2,5 daria D ≠ 30.",
    "B": "Usa k = 4 (que é o T final, não uma altura) e p = 30, que daria assíntotas muito próximas. Com m = 5/2 o centro estaria em T = −5/2, e não em 2,5.",
    "C": "Usa k = 4, que é um valor de T. Com p = 2,5 a distância entre assíntotas seria π/2,5 = 2π/5, bem menor que 2π. O deslocamento (5 + 2π)/2 também não coloca o centro em 2,5.",
-   "D": "Tem k = 30 e p = 1/2 certos, mas m = −5 põe o centro em T = 5 e as assíntotas em 5 ± π, não em (5 ± 2π)/2. Em T = 2,5, D = 30 + tg(−1,25) ≈ 30 − 3 = 27, e não 30."
+   "D": "Tem k = 30 e p = 1/2 certos, mas m = −5 põe o centro em T = 5, fora do gráfico. Em T = 2,5, o argumento é (1/2)(−2,5) = −1,25, e tg(−1,25) ≈ −3, então D ≈ 27 e não 30."
   },
   "armadilha": "Errar o sinal ou o valor do deslocamento: o centro está em T = 2,5, então m = −5/2. Quem usa −5 (ou +5/2) erra o ponto central.",
   "alerta": "",
@@ -153,10 +161,92 @@
  "gab": "E",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [],
+  "fatos_ok": true,
+  "fatos_resposta": "E",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Primeiro, o que a questão pede: a fórmula D = k + tg[p(T + m)] que descreve o gráfico, ou seja, os valores de k, p e m. A tangente comum, tg(x), tem assíntotas verticais em x = −π/2 e x = π/2, e passa pela origem, bem no meio delas. Em D = k + tg[p(T + m)], k sobe ou desce o gráfico, p estica ou comprime na horizontal e m desloca para os lados. As assíntotas e o ponto central do gráfico dão os três parâmetros.",
+    "motivo": "Começa pelo comando e deixa claro o que se procura."
+   },
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "distância entre assíntotas vizinhas = π ÷ p",
+     "centro da curva: o argumento p(T + m) vale 0",
+     "no centro, tg(0) = 0, então D = k"
+    ],
+    "motivo": "Escrita como se diz em aula; o argumento é o que fica dentro dos colchetes."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "tg",
+      "tangente: função trigonométrica que cresce e tem assíntotas verticais"
+     ],
+     [
+      "assíntota vertical",
+      "reta vertical da qual a curva se aproxima sem nunca tocar"
+     ],
+     [
+      "argumento",
+      "a expressão dentro dos colchetes da tg, aqui p(T + m)"
+     ],
+     [
+      "k",
+      "valor de D no centro da curva (deslocamento vertical)"
+     ],
+     [
+      "p",
+      "controla a largura: quanto maior, mais estreita é a curva"
+     ],
+     [
+      "m",
+      "controla o deslocamento horizontal"
+     ],
+     [
+      "π",
+      "número pi, cerca de 3,14"
+     ]
+    ],
+    "motivo": "Inclui argumento e π, usados na resolução sem explicação."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "A distância entre as assíntotas é (5 + 2π)/2 − (5 − 2π)/2 = 4π/2 = 2π. Essa distância é π ÷ p, então p = π ÷ 2π = 1/2.",
+    "motivo": "Mostra a conta inteira e liga à fórmula do antes; antes dizia 'período' sem explicar."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "O centro fica no meio das assíntotas, ou seja, na média delas: (5 − 2π + 5 + 2π)/4 = 10/4 = 2,5. A figura confirma: 2,5 está marcado no eixo T.",
+    "motivo": "Deixa explícito que o centro é o ponto médio."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "Tem k = 30 e p = 1/2 certos, mas m = −5 põe o centro em T = 5, fora do gráfico. Em T = 2,5, o argumento é (1/2)(−2,5) = −1,25, e tg(−1,25) ≈ −3, então D ≈ 27 e não 30.",
+    "motivo": "Contas mais claras: mostra o argumento e o resultado da tangente."
+   }
+  ],
+  "didatica_alertas": [
+   "O campo nivel está 7 na resolução, mas a classificação atual diz 9; conferir.",
+   "O texto em resolucao.erradas.A usa p = 30 e k = 2,5; verificar a leitura do enunciado pelo corretor 1 (as alternativas A e B têm 30 multiplicando o argumento)."
+  ],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "E"
  }
 }

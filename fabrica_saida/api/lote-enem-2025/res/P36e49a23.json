@@ -33,7 +33,7 @@
    {
     "faz": "Localize a casa A na figura",
     "conta": "A: coluna 3, mesma linha de S",
-    "porque": "A casa A está no canto noroeste do quarteirão da 3ª coluna, na mesma linha do quarteirão S. Em colunas, S está na 5ª, e Q e P também.",
+    "porque": "A casa A está no canto de cima e da esquerda do quarteirão da 3ª coluna. Esse quarteirão fica na mesma linha de S. Q, S e P estão todos na 5ª coluna.",
     "tipo": "localizar"
    },
    {
@@ -45,13 +45,13 @@
    {
     "faz": "Desfaça o trecho norte",
     "conta": "3 quarteirões ao sul",
-    "porque": "João andou 3 quarteirões para o norte antes de virar à esquerda. Voltando, descemos 3 quarteirões. A partir da linha de A e S (acima do ponto de virada), descemos 3 linhas.",
+    "porque": "João subiu 3 quarteirões antes de virar à esquerda e chegar à linha de A. Voltando, você desce 3 linhas a partir da linha de A e S, que é a linha da casa dele.",
     "tipo": "calcular"
    },
    {
     "faz": "Conte as linhas na coluna 5",
     "conta": "S → 1 → 2 → P (3 abaixo)",
-    "porque": "Na coluna 5, descendo a partir da linha de S, passa-se por duas linhas sem letra e se chega à linha de baixo, onde está P. Essa linha é a mesma de R e T.",
+    "porque": "Na coluna 5, a linha de S é a de partida. Desça uma linha, depois outra, e na terceira você chega a P, que fica na linha de baixo, a mesma de R e T.",
     "tipo": "calcular"
    },
    {
@@ -65,11 +65,11 @@
   "checagem": "Refaça o trajeto de ida a partir de P: oeste ao longo de P e virar à direita (norte). Passe por 3 quarteirões e vire à esquerda (oeste). O segundo quarteirão a oeste, nessa linha, é o de A (coluna 3).",
   "erradas": {
    "B": "Q está na coluna 5, a coluna certa, mas na linha do topo. Subir 3 quarteirões a partir de Q levaria para fora da figura, e dali não se chega a A seguindo o trajeto do enunciado.",
-   "C": "R está na linha de baixo, mas na coluna 1, a coluna mais ao oeste. Seguindo o trajeto, João terminaria nas colunas à esquerda da casa A, e não na coluna 3.",
-   "D": "S está na mesma linha de A, na coluna 5. Nessa posição o trajeto de João não incluiria subir 3 quarteirões ao norte, só 2 quarteirões a oeste. O norte exige que João parta 3 linhas abaixo de A.",
+   "C": "R está na linha de baixo, mas na coluna 1, a mais a oeste. Saindo de R, depois de subir 3 quarteirões e virar à esquerda, não existe quarteirão a oeste: a figura acaba. Não se chega a A.",
+   "D": "S não confere: S está na linha de A, só 2 linhas abaixo do topo da figura. Subindo 3 quarteirões a partir de S, o terceiro já cai fora da figura. Ali não há quarteirão a oeste, então não se chega a A.",
    "E": "T está na linha de baixo, mas na coluna 6. O trajeto de João a partir de T o levaria para a coluna 4 (uma a mais do que a casa A, na coluna 3), e não a A."
   },
-  "armadilha": "Contar o trajeto da ida a partir de S (a linha de A) em vez de desfazer o trajeto desde A: o trecho de 3 quarteirões ao norte exige partir 3 linhas abaixo.",
+  "armadilha": "Escolher S só porque está na mesma linha de A. O trecho de 3 quarteirões ao norte obriga a partir de 3 linhas abaixo da linha de A.",
   "alerta": "",
   "essencial": {
    "pede": "O quarteirão em que fica a casa de João, de onde ele sai.",
@@ -122,10 +122,71 @@
  "gab": "A",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "João andou 3 quarteirões para o norte antes de virar à esquerda. O ponto de virada fica na rua logo acima da linha de A e S. Os 3 quarteirões que ele passou são a linha de S e as duas linhas abaixo dela. Voltando, você desce 3 linhas a partir da linha de A e S.",
+    "motivo": "O texto dizia que a linha de A e S fica 'acima do ponto de virada'. É o contrário: João vira na rua ao norte dessa linha. A frase descrevia a figura de forma errada.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "S não confere: saindo de S, os 3 quarteirões ao norte levam à rua acima da linha de Q. Ali, o 2º quarteirão a oeste é o da coluna 3 na linha do topo, e não o de A.",
+    "motivo": "O motivo antigo ('o trajeto não incluiria subir 3 quarteirões') não é um teste objetivo. Fazer o trajeto a partir de S mostra que ele termina na linha do topo, coluna 3, longe de A.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "A",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[0].porque",
+    "depois": "A casa A está no canto de cima e da esquerda do quarteirão da 3ª coluna. Esse quarteirão fica na mesma linha de S. Q, S e P estão todos na 5ª coluna.",
+    "motivo": "Frase original confusa (\"Em colunas, S está na 5ª, e Q e P também\"). Reescrita em frases curtas."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "João subiu 3 quarteirões antes de virar à esquerda e chegar à linha de A. Voltando, você desce 3 linhas a partir da linha de A e S, que é a linha da casa dele.",
+    "motivo": "Texto original longo e confuso sobre 'rua acima da linha'. Agora diz só o que o aluno precisa fazer."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Na coluna 5, a linha de S é a de partida. Desça uma linha, depois outra, e na terceira você chega a P, que fica na linha de baixo, a mesma de R e T.",
+    "motivo": "Deixa a contagem de linhas explícita, passo a passo."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "R está na linha de baixo, mas na coluna 1, a mais a oeste. Saindo de R, depois de subir 3 quarteirões e virar à esquerda, não existe quarteirão a oeste: a figura acaba. Não se chega a A.",
+    "motivo": "Texto original dizia 'terminaria nas colunas à esquerda de A'. Isso era vago e sem teste. Agora há um teste objetivo."
+   },
+   {
+    "campo": "resolucao.armadilha",
+    "depois": "Escolher S só porque está na mesma linha de A. O trecho de 3 quarteirões ao norte obriga a partir de 3 linhas abaixo da linha de A.",
+    "motivo": "Frase original estava truncada e confusa. Agora diz o erro que leva a marcar D."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "S não confere: S está na linha de A, só 2 linhas abaixo do topo da figura. Subindo 3 quarteirões a partir de S, o terceiro já cai fora da figura. Ali não há quarteirão a oeste, então não se chega a A.",
+    "motivo": "O texto antigo dizia que os 3 quarteirões ao norte terminam na rua acima da linha de Q e que o 2º quarteirão a oeste seria o da coluna 3 na linha do topo. Isso está errado. Acima de S só existem 2 linhas de quarteirões (a de baixo e a de Q). O terceiro quarteirão ao norte fica fora da figura, e o trajeto não chega a nenhum quarteirão.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "A"
  }
 }

@@ -8,9 +8,10 @@
  "conceito": "Traduzir um texto de cobrança (valor fixo + valor por minuto + valor por km) em uma expressão algébrica.",
  "resolucao": {
   "antes": {
-   "texto": "O valor total é a soma de três parcelas: a parte fixa, a parte que depende do tempo e a parte que depende da distância. Preço por unidade multiplica a quantidade (R$ 0,26 por minuto vezes T minutos). Já o valor fixo entra sozinho, sem variável.",
+   "texto": "O valor total é a soma de três parcelas: a parte fixa, a parte do tempo e a parte da distância. Preço por unidade multiplica a quantidade: R$ 0,26 por minuto, vezes T minutos. O valor fixo entra sozinho, sem letra. A letra F só nomeia a tarifa base; neste aplicativo, F é R$ 2,00.",
    "formulas": [
-    "total = fixo + (preço por minuto × minutos) + (preço por km × km)"
+    "total = fixo + (preço por minuto × minutos) + (preço por km × km)",
+    "preço por unidade × quantidade = valor da parcela"
    ],
    "simbolos": [
     [
@@ -31,12 +32,12 @@
     ]
    ]
   },
-  "pista": "Neste aplicativo, a tarifa base F já tem um valor conhecido. Pense: o que entra na expressão no lugar dele?",
+  "pista": "O enunciado já diz quanto vale a tarifa base. Pense: o que você escreve na expressão no lugar da letra F?",
   "passos": [
    {
     "faz": "Identifique a parte fixa",
     "conta": "fixo = R$ 2,00",
-    "porque": "O valor fixo não depende de tempo nem de distância. Neste aplicativo, F vale 2,00, então a expressão começa com 2,00 puro.",
+    "porque": "O valor fixo não depende de tempo nem de distância. O enunciado diz que ele é R$ 2,00, então a expressão começa com o número 2,00, sem letra.",
     "tipo": "localizar"
    },
    {
@@ -54,13 +55,13 @@
    {
     "faz": "Some as três partes",
     "conta": "V = 2,00 + 0,26T + 1,40D",
-    "porque": "O valor total é o fixo mais o do tempo mais o da distância.",
+    "porque": "O total é o fixo, mais a parcela do tempo, mais a parcela da distância. As três se somam.",
     "tipo": "calcular"
    },
    {
     "faz": "Ligue à alternativa",
     "conta": "V = 2,00 + 0,26T + 1,40D → B",
-    "porque": "Só a alternativa B tem o 2,00 sozinho e os dois preços multiplicando T e D.",
+    "porque": "Só a alternativa B tem o 2,00 sozinho e os preços 0,26 e 1,40 multiplicando T e D.",
     "tipo": "concluir"
    }
   ],
@@ -68,9 +69,9 @@
   "checagem": "Teste uma viagem de 10 min e 5 km. Em reais: 2,00 + 2,60 + 7,00 = 11,60. Pela expressão B: 2,00 + 0,26×10 + 1,40×5 = 2,00 + 2,60 + 7,00 = 11,60. Confere.",
   "erradas": {
    "A": "2,00F multiplica o valor fixo por F. Mas F já é o valor fixo (R$ 2,00), então o certo é escrever 2,00 sozinho. Com F = 2, esta expressão cobraria 4,00 de tarifa base, o dobro do enunciado.",
-   "C": "Escreve D sem o 1,40. Cada km custa R$ 1,40, então a parcela da distância é 1,40D. Para uma viagem de 5 km, C cobraria 5 em vez de 7,00.",
-   "D": "Falta o valor fixo de R$ 2,00, cobrado no início de toda viagem. Com T = 0 e D = 0 a expressão dá 0, mas o aplicativo ainda cobraria 2,00.",
-   "E": "Soma apenas as variáveis F, T e D, sem os preços unitários (2,00 fixo, 0,26 por minuto, 1,40 por km). Soma minutos com quilômetros e reais, que não têm a mesma unidade."
+   "C": "C escreve D sem o 1,40. Cada km custa R$ 1,40, então a parcela é 1,40D. Em 10 min e 5 km, C dá 2 + 2,60 + 5 = 9,60, e não 11,60.",
+   "D": "D esquece o valor fixo de R$ 2,00. Em 10 min e 5 km, dá 2,60 + 7,00 = 9,60, e não 11,60. Faltam os 2,00 do início da viagem.",
+   "E": "E soma só as letras F, T e D, sem nenhum preço. Mistura reais, minutos e quilômetros. Para T = 10 e D = 5 não dá 11,60, pois falta multiplicar T e D pelos preços."
   },
   "armadilha": "Colocar F na expressão multiplicando 2,00: F já é o valor fixo, então ele entra como o número 2,00.",
   "alerta": "",
@@ -93,7 +94,7 @@
  "quadro": [
   {
    "linha": "fixo = 2,00",
-   "nota": "valor cobrado no início, sem variável"
+   "nota": "cobrado no início, sem letra"
   },
   {
    "linha": "tempo = 0,26 × T",
@@ -109,8 +110,16 @@
    "destaque": "2,00 + 0,26T + 1,40D"
   },
   {
-   "linha": "T=10, D=5: V = 2+2,6+7",
-   "nota": "teste numérico"
+   "linha": "Teste: T = 10 e D = 5",
+   "nota": "viagem de 10 min e 5 km"
+  },
+  {
+   "linha": "V = 2,00 + 0,26×10 + 1,40×5",
+   "nota": "troque T e D pelos valores"
+  },
+  {
+   "linha": "V = 2,00 + 2,60 + 7,00",
+   "nota": "faça cada multiplicação"
   },
   {
    "linha": "V = 11,60",
@@ -130,10 +139,118 @@
  "gab": "B",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [],
+  "fatos_ok": true,
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.pista",
+    "depois": "O enunciado já diz quanto vale a tarifa base. Pense: o que você escreve na expressão no lugar da letra F?",
+    "motivo": "A pista anterior estava confusa; agora aponta o primeiro movimento sem entregar a letra."
+   },
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "O valor total é a soma de três parcelas: a parte fixa, a parte do tempo e a parte da distância. Preço por unidade multiplica a quantidade: R$ 0,26 por minuto, vezes T minutos. O valor fixo entra sozinho, sem letra. A letra F só nomeia a tarifa base; neste aplicativo, F é R$ 2,00.",
+    "motivo": "Deixa claro que F é só o nome do valor fixo, que é a armadilha da alternativa A."
+   },
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "total = fixo + (preço por minuto × minutos) + (preço por km × km)",
+     "preço por unidade × quantidade = valor da parcela"
+    ],
+    "motivo": "Acrescenta a regra usada nos passos 2 e 3, escrita como se diz em aula."
+   },
+   {
+    "campo": "resolucao.passos[0].porque",
+    "depois": "O valor fixo não depende de tempo nem de distância. O enunciado diz que ele é R$ 2,00, então a expressão começa com o número 2,00, sem letra.",
+    "motivo": "Frase mais simples e direta."
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "0,26 × T = 0,26T",
+    "motivo": "Sem mudança no conteúdo; mantido."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "O total é o fixo, mais a parcela do tempo, mais a parcela da distância. As três se somam.",
+    "motivo": "Mais claro e com frases curtas."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "Só a alternativa B tem o 2,00 sozinho e os preços 0,26 e 1,40 multiplicando T e D.",
+    "motivo": "Mais simples e preciso."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "E soma só as letras F, T e D, sem nenhum preço. Mistura reais, minutos e quilômetros. Para T = 10 e D = 5 não dá 11,60, pois falta multiplicar T e D pelos preços.",
+    "motivo": "Diz o que faltou no raciocínio e dá um teste objetivo."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "C escreve D sem o 1,40. Cada km custa R$ 1,40, então a parcela é 1,40D. Em 10 min e 5 km, C dá 2 + 2,60 + 5 = 9,60, e não 11,60.",
+    "motivo": "Mostra a conta que derruba a alternativa, no mesmo teste da checagem."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "D esquece o valor fixo de R$ 2,00. Em 10 min e 5 km, dá 2,60 + 7,00 = 9,60, e não 11,60. Faltam os 2,00 do início da viagem.",
+    "motivo": "Teste numérico consistente com a checagem."
+   },
+   {
+    "campo": "resolucao.quadro",
+    "depois": [
+     {
+      "linha": "fixo = 2,00",
+      "nota": "cobrado no início, sem letra"
+     },
+     {
+      "linha": "tempo = 0,26 × T",
+      "nota": "R$ 0,26 por minuto, T minutos"
+     },
+     {
+      "linha": "distância = 1,40 × D",
+      "nota": "R$ 1,40 por km, D km"
+     },
+     {
+      "linha": "V = 2,00 + 0,26T + 1,40D",
+      "nota": "some as três partes",
+      "destaque": "2,00 + 0,26T + 1,40D"
+     },
+     {
+      "linha": "Teste: T = 10 e D = 5",
+      "nota": "viagem de 10 min e 5 km"
+     },
+     {
+      "linha": "V = 2,00 + 0,26×10 + 1,40×5",
+      "nota": "troque T e D pelos valores"
+     },
+     {
+      "linha": "V = 2,00 + 2,60 + 7,00",
+      "nota": "faça cada multiplicação"
+     },
+     {
+      "linha": "V = 11,60",
+      "nota": "bate com o cálculo direto do enunciado"
+     }
+    ],
+    "motivo": "Separa o teste em linhas curtas, um passo por linha, copiáveis no caderno."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "B"
  }
 }

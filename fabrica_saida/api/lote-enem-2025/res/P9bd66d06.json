@@ -8,7 +8,7 @@
  "conceito": "Regra de três composta com grandezas diretamente proporcionais (funcionários e horas por dia).",
  "resolucao": {
   "antes": {
-   "texto": "A produção depende de duas coisas: quantos funcionários trabalham e quantas horas cada um trabalha. Se todos produzem o mesmo por hora, dobrar os funcionários dobra os tijolos, e dobrar as horas também. Então a produção é proporcional ao produto funcionários × horas. A conta fica mais simples se você calcular quanto UM funcionário faz em UMA hora.",
+   "texto": "A produção depende de duas coisas: quantos funcionários trabalham e quantas horas cada um trabalha. Todos produzem o mesmo por hora. Então dobrar os funcionários dobra os tijolos, e dobrar as horas também. A produção é proporcional ao produto funcionários × horas. Calcule primeiro quanto UM funcionário faz em UMA hora.",
    "formulas": [
     "tijolos por funcionário-hora = tijolos do dia ÷ (funcionários × horas)",
     "produção nova = tijolos por funcionário-hora × funcionários × horas"
@@ -16,11 +16,15 @@
    "simbolos": [
     [
      "funcionário-hora",
-     "o trabalho de uma pessoa durante uma hora"
+     "o trabalho de uma pessoa durante uma hora. Exemplo: 2 pessoas por 3 horas = 6 funcionário-hora"
     ],
     [
      "diretamente proporcional",
      "se uma grandeza dobra, a outra também dobra"
+    ],
+    [
+     "tijolos/h",
+     "tijolos por hora: quantos tijolos uma pessoa faz em 1 hora"
     ]
    ]
   },
@@ -29,12 +33,12 @@
    {
     "faz": "Conte as horas de trabalho antes",
     "conta": "3 × 6 = 18 funcionário-hora",
-    "porque": "São 3 pessoas trabalhando 6 horas cada uma, o que dá 18 horas de trabalho somadas.",
+    "porque": "São 3 pessoas, cada uma com 6 horas. Somando o trabalho de todas, dá 3 × 6 = 18 horas de trabalho.",
     "tipo": "calcular"
    },
    {
     "faz": "Ache o ritmo de um funcionário",
-    "conta": "720 ÷ 18 = 40 tijolos/h",
+    "conta": "720 ÷ 18 = 40 tijolos por hora",
     "porque": "As 18 horas de trabalho produzem 720 tijolos. Dividindo, sai quanto uma pessoa faz em uma hora.",
     "tipo": "calcular"
    },
@@ -58,14 +62,14 @@
    }
   ],
   "resposta": "Alternativa D: com 45 funcionário-hora a 40 tijolos cada, a fábrica produz 1 800 tijolos por dia.",
-  "checagem": "Pelos fatores de aumento: funcionários 5/3 e horas 9/6 = 3/2. Então 720 × 5/3 = 1 200 e 1 200 × 3/2 = 1 800. Dá o mesmo resultado.",
+  "checagem": "Use os fatores de aumento. Funcionários: 5/3. Horas: 9/6 = 3/2. Então 720 × 5/3 = 1 200 e 1 200 × 3/2 = 1 800. Dá o mesmo resultado.",
   "erradas": {
-   "A": "800 sai de contar só o efeito das horas e pouco mais: 720 × 9/6 = 1 080 não é 800. O valor não confere, porque o aumento de 3 para 5 funcionários e de 6 para 9 horas deveria quase multiplicar por 2,5. Um aumento de apenas 720 para 800 é pequeno demais.",
+   "A": "800 sai de tratar as horas como inversamente proporcionais: 720 × 5/3 × 6/9 = 1 200 × 2/3 = 800. Mais horas por dia geram mais tijolos, então a relação é direta e o fator é 9/6, não 6/9.",
    "B": "1 080 sai de considerar só o aumento das horas: 720 × 9/6 = 1 080. Isso esquece que o número de funcionários também subiu de 3 para 5.",
    "C": "1 200 sai de considerar só o aumento dos funcionários: 720 × 5/3 = 1 200. Isso esquece que cada um passou a trabalhar 9 horas em vez de 6.",
-   "E": "2 520 sai de somar os fatores em vez de multiplicar: 720 + 720 × 2/3 + 720 × 1/2 não é o caso. A conta é 720 × 3,5 = 2 520, e 3,5 vem de somar os fatores 5/3 e 3/2 de forma errada. Os fatores se multiplicam: 5/3 × 3/2 = 2,5, que dá 1 800."
+   "E": "2 520 sai de somar a produção antiga com a nova: 720 + 1 800 = 2 520. A pergunta é quantos tijolos a fábrica faz por dia depois do aumento, e não a soma das duas situações."
   },
-  "armadilha": "Aplicar só um dos aumentos (funcionários ou horas) ou somar os aumentos em vez de multiplicar os dois fatores.",
+  "armadilha": "Aplicar só um dos aumentos (funcionários ou horas), ou tratar as horas como grandeza inversa, em vez de multiplicar os dois fatores diretos 5/3 e 3/2.",
   "alerta": "",
   "essencial": {
    "pede": "O número de tijolos produzidos por dia com 5 funcionários trabalhando 9 horas.",
@@ -86,15 +90,15 @@
  "quadro": [
   {
    "linha": "antes: 3 × 6 = 18",
-   "nota": "funcionário-hora antes do aumento"
+   "nota": "funcionário-hora antes"
   },
   {
    "linha": "720 ÷ 18 = 40",
-   "nota": "tijolos por funcionário em 1 hora"
+   "nota": "tijolos de 1 pessoa em 1 hora"
   },
   {
    "linha": "depois: 5 × 9 = 45",
-   "nota": "funcionário-hora depois do aumento"
+   "nota": "funcionário-hora depois"
   },
   {
    "linha": "45 × 40 = 1 800",
@@ -115,10 +119,108 @@
  "gab": "D",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "800 sai de tratar as horas como inversamente proporcionais: 720 × 5/3 × 6/9 = 1 200 × 2/3 = 800. Mais horas por dia geram mais tijolos, então a relação é direta e o fator é 9/6, não 6/9.",
+    "motivo": "O texto anterior se contradizia: dizia que 800 'sai de' uma conta e depois que 'não confere'. Também não dava a origem real. Refeita a conta: 720 × 5/3 = 1 200 e 1 200 × 6/9 = 800, ou seja, o erro de inverter a relação das horas chega exatamente a 800.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "2 520 sai de somar a produção antiga com a nova: 720 + 1 800 = 2 520. A pergunta é quantos tijolos a fábrica faz por dia depois do aumento, e não a soma das duas situações.",
+    "motivo": "A origem proposta é falsa. A soma dos fatores dá 5/3 + 3/2 = 19/6 ≈ 3,17, e não 3,5; com ela, 720 × 19/6 = 2 280, que não é 2 520. A conta 720 + 1 800 = 2 520 chega exatamente ao valor.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.armadilha",
+    "depois": "Aplicar só um dos aumentos (funcionários ou horas), ou tratar as horas como grandeza inversa, em vez de multiplicar os dois fatores diretos 5/3 e 3/2.",
+    "motivo": "Somar os aumentos dá 720 × (1 + 2/3 + 1/2) = 1 560, que não está entre as alternativas. A armadilha passa a descrever os erros que de fato levam às alternativas: B, C e A.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "A produção depende de duas coisas: quantos funcionários trabalham e quantas horas cada um trabalha. Todos produzem o mesmo por hora. Então dobrar os funcionários dobra os tijolos, e dobrar as horas também. A produção é proporcional ao produto funcionários × horas. Calcule primeiro quanto UM funcionário faz em UMA hora.",
+    "motivo": "Frases mais curtas e diretas, sem mudar o conteúdo."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "funcionário-hora",
+      "o trabalho de uma pessoa durante uma hora. Exemplo: 2 pessoas por 3 horas = 6 funcionário-hora"
+     ],
+     [
+      "diretamente proporcional",
+      "se uma grandeza dobra, a outra também dobra"
+     ],
+     [
+      "tijolos/h",
+      "tijolos por hora: quantos tijolos uma pessoa faz em 1 hora"
+     ]
+    ],
+    "motivo": "Dar exemplo ao termo novo e explicar o símbolo 'tijolos/h' usado nos passos."
+   },
+   {
+    "campo": "resolucao.passos[0].porque",
+    "depois": "São 3 pessoas, cada uma com 6 horas. Somando o trabalho de todas, dá 3 × 6 = 18 horas de trabalho.",
+    "motivo": "Frase mais clara."
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "720 ÷ 18 = 40 tijolos por hora",
+    "motivo": "Evitar a sigla 'tijolos/h' na conta; cabe em ~30 caracteres."
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Use os fatores de aumento. Funcionários: 5/3. Horas: 9/6 = 3/2. Então 720 × 5/3 = 1 200 e 1 200 × 3/2 = 1 800. Dá o mesmo resultado.",
+    "motivo": "Texto mais claro na checagem."
+   },
+   {
+    "campo": "resolucao.quadro",
+    "depois": [
+     {
+      "linha": "antes: 3 × 6 = 18",
+      "nota": "funcionário-hora antes"
+     },
+     {
+      "linha": "720 ÷ 18 = 40",
+      "nota": "tijolos de 1 pessoa em 1 hora"
+     },
+     {
+      "linha": "depois: 5 × 9 = 45",
+      "nota": "funcionário-hora depois"
+     },
+     {
+      "linha": "45 × 40 = 1 800",
+      "nota": "produção diária nova",
+      "destaque": "1 800"
+     }
+    ],
+    "motivo": "Notas mais claras e curtas para caber no celular."
+   }
+  ],
+  "didatica_alertas": [
+   "O campo 'nivel' do JSON é 4, mas a classificação atual informada é nível 5; conferir qual vale."
+  ],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "D"
  }
 }

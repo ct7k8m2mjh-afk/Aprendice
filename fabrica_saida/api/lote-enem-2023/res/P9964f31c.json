@@ -35,12 +35,12 @@
    {
     "faz": "Descubra quem para nas cabines",
     "conta": "Só o caminhão tem o automático",
-    "porque": "O caminhão passa direto. O carro não tem o dispositivo e para nas 10 cabines.",
-    "tipo": "interpretar"
+    "porque": "O caminhão passa direto pela cancela. O carro não tem o dispositivo e para nas 10 cabines, perdendo 3 min em cada.",
+    "tipo": "localizar"
    },
    {
     "faz": "Calcule o tempo do carro andando",
-    "conta": "t = 480/100 = 4,8 h",
+    "conta": "t = 480 ÷ 100 = 4,8 h",
     "porque": "Distância dividida pela velocidade máxima de veículo leve, 100 km/h.",
     "tipo": "calcular"
    },
@@ -58,8 +58,8 @@
    },
    {
     "faz": "Calcule o tempo do caminhão",
-    "conta": "t = 480/80 = 6 h = 360 min",
-    "porque": "Sem paradas, só o tempo andando a 80 km/h.",
+    "conta": "t = 480 ÷ 80 = 6 h",
+    "porque": "O caminhão passa pela cancela sem parar, então só conta o tempo andando a 80 km/h. Em minutos: 6 × 60 = 360 min.",
     "tipo": "calcular"
    },
    {
@@ -92,7 +92,7 @@
   },
   {
    "nome": "razão de velocidades",
-   "ideia": "Em 6 h o caminhão faz o trecho. O carro, a 100 km/h, leva 4,8 h, ou seja, 1,2 h = 72 min a menos. Descontando 30 min de parada, sobram 42 min."
+   "ideia": "O caminhão leva 6 h. O carro, a 100 km/h, leva 4,8 h, ou seja, 1,2 h = 72 min a menos. Descontando 30 min de parada do carro, sobram 42 min."
   }
  ],
  "quadro": [
@@ -101,7 +101,7 @@
    "nota": "velocidade máxima de veículo leve"
   },
   {
-   "linha": "t = 480/100 = 4,8 h",
+   "linha": "t = 480 ÷ 100 = 4,8 h",
    "nota": "tempo do carro andando"
   },
   {
@@ -117,7 +117,7 @@
    "nota": "tempo total do carro"
   },
   {
-   "linha": "caminhão: 480/80 = 6 h",
+   "linha": "caminhão: 480 ÷ 80 = 6 h",
    "nota": "sem parar, a 80 km/h"
   },
   {
@@ -140,10 +140,80 @@
  "gab": "B",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[0].tipo",
+    "depois": "localizar",
+    "motivo": "O guia só aceita os tipos localizar, calcular, comparar, eliminar e concluir. Este passo acha no enunciado quem tem o serviço automático, então é do tipo localizar.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[0].conta",
+    "depois": "Só o caminhão tem o automático",
+    "motivo": "Sem mudança de conteúdo; mantido."
+   },
+   {
+    "campo": "resolucao.passos[0].porque",
+    "depois": "O caminhão passa direto pela cancela. O carro não tem o dispositivo e para nas 10 cabines, perdendo 3 min em cada.",
+    "motivo": "Deixa claro o que o carro perde e liga ao passo seguinte."
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "t = 480 ÷ 100 = 4,8 h",
+    "motivo": "Troca fração na linha pelo símbolo ÷, como no resto da resolução, e cabe no celular."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "10 × 3 = 30 min",
+    "motivo": "Mantido; o total do carro fica no porque."
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "t = 480 ÷ 80 = 6 h",
+    "motivo": "Linha curta para caber na tela; a conversão para minutos passa a ser um passo próprio."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "O caminhão passa pela cancela sem parar, então só conta o tempo andando a 80 km/h. Em minutos: 6 × 60 = 360 min.",
+    "motivo": "Inclui a conversão em minutos, tirada da conta para a linha não ficar longa."
+   },
+   {
+    "campo": "resolucao.quadro[1].linha",
+    "depois": "t = 480 ÷ 100 = 4,8 h",
+    "motivo": "Padroniza a divisão sem fração na linha."
+   },
+   {
+    "campo": "resolucao.quadro[5].linha",
+    "depois": "caminhão: 480 ÷ 80 = 6 h",
+    "motivo": "Padroniza a divisão sem fração na linha."
+   },
+   {
+    "campo": "resolucao.caminhos[1].ideia",
+    "depois": "O caminhão leva 6 h. O carro, a 100 km/h, leva 4,8 h, ou seja, 1,2 h = 72 min a menos. Descontando 30 min de parada do carro, sobram 42 min.",
+    "motivo": "Texto mais claro: diz de quem é cada tempo."
+   }
+  ],
+  "didatica_alertas": [
+   "Classificação F02.1 (vetores e força resultante) não combina com a questão, que é cinemática (velocidade média, tema F01). Cabe ao classificador revisar."
+  ],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "B"
  }
 }

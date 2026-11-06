@@ -26,6 +26,14 @@
     [
      "v_vento",
      "velocidade do ar em relação ao chão"
+    ],
+    [
+     "componente",
+     "parte da velocidade em uma só direção (Leste–Oeste, Norte–Sul ou vertical)"
+    ],
+    [
+     "vetor",
+     "grandeza com valor, direção e sentido, como a velocidade"
     ]
    ]
   },
@@ -53,13 +61,13 @@
     "faz": "Marque o vento com sinais (Leste, Norte, cima = +)",
     "conta": "vento = (+30; −20; −1) km/h",
     "porque": "O vento sopra para Leste (+30), para Sul (−20 no eixo Norte) e de cima para baixo (−1 na vertical).",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Subtraia o vento em cada eixo",
     "conta": "Leste: 200 − 30 = 170 km/h",
-    "porque": "Como v_solo = v_ar + v_vento, o avião deve ter v_ar = v_solo − v_vento. O vento já ajuda 30 km/h para Leste, então o piloto precisa de menos.",
-    "tipo": "aplicar"
+    "porque": "Como v_solo = v_ar + v_vento, o piloto precisa de v_ar = v_solo − v_vento. O vento já ajuda com 30 km/h para Leste, então o piloto precisa de menos.",
+    "tipo": "calcular"
    },
    {
     "faz": "Complete Norte e vertical",
@@ -71,10 +79,10 @@
   "resposta": "Alternativa D: 170 km/h para Leste, 220 km/h para Norte e 11 km/h para cima.",
   "checagem": "Some de volta o vento ao resultado. Leste: 170 + 30 = 200. Norte: 220 − 20 = 200. Vertical: 11 − 1 = 10. Em 0,1 h, isso dá 20 km, 20 km e 1 km, como a torre pediu.",
   "erradas": {
-   "A": "Não confere. Somar o vento ao resultado dela dá Leste 230 + 30 = 260 km/h, e não 200. Ela também manda o avião para o Sul, que é o lado oposto ao do destino. O 230 é 200 + 30, mas o vento deve ser subtraído.",
-   "B": "Não confere. Leste: 230 + 30 = 260 km/h, e não 200 (o 230 vem de 200 + 30, sinal trocado). Norte: 180 − 20 = 160 km/h, e não 200. Vertical: 9 − 1 = 8 km/h, e não 10. Os três eixos ficam errados.",
-   "C": "Não confere. Pede 200 km/h para Oeste, mas o destino é a Leste. Com o vento de 30 para Leste, o avião andaria −200 + 30 = −170 km/h no eixo Leste. Ela só repete os 200 km/h necessários sem descontar o vento.",
-   "E": "Leste (170) e vertical (11) estão certos, mas o Norte não. Com 180 km/h para Norte, o solo teria 180 − 20 = 160 km/h, e não 200. O vento sopra para Sul, então ele soma-se contra o avião: 200 + 20 = 220, e não 200 − 20."
+   "A": "Não confere. No eixo Leste, 230 + 30 = 260 km/h no chão, e a torre pede 200. Ela também manda o avião para o Sul, o lado oposto ao do destino. O 230 sai de 200 + 30: somou o vento em vez de subtrair.",
+   "B": "Não confere. Leste: 230 + 30 = 260 km/h no chão, e a torre pede 200 (o 230 sai de 200 + 30: vento somado em vez de subtraído). Norte: 180 − 20 = 160, e não 200. Vertical: 9 − 1 = 8, e não 10.",
+   "C": "Não confere. Pede 200 km/h para Oeste, mas o destino fica a Leste. Com o vento de 30 para Leste, o avião andaria −200 + 30 = −170 km/h no eixo Leste. Quem marcou C copiou os 200 e 10 do solo sem descontar o vento nem cuidar do sentido.",
+   "E": "Leste (170) e vertical (11) estão certos, mas o Norte não. Com 180 km/h para Norte, o avião teria 180 − 20 = 160 km/h no chão, e não 200. O vento para Sul atrapalha, então o piloto precisa de 200 + 20 = 220, e não 200 − 20."
   },
   "armadilha": "Tratar o vento como se fosse somado à velocidade do piloto, ou errar o sinal do vento para Sul, que atrapalha o avião e exige 220 km/h para Norte, não 180.",
   "alerta": "",
@@ -141,10 +149,95 @@
  "gab": "D",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "localizar",
+    "motivo": "O tipo 'interpretar' não está entre os tipos permitidos (localizar, calcular, comparar, eliminar, concluir). Este passo apenas tira do enunciado as componentes do vento e lhes dá sinal.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[4].tipo",
+    "depois": "calcular",
+    "motivo": "O tipo 'aplicar' não está entre os tipos permitidos. Este passo é a subtração v_ar = v_solo − v_vento no eixo Leste.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "Leste: 20 ÷ 0,1 = 200 km/h",
+    "motivo": "Mantida. Sem mudança de conteúdo; só confirmando que o passo cabe na tela."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "v_solo",
+      "velocidade do avião em relação ao chão: é a que leva o avião ao ponto marcado pela torre"
+     ],
+     [
+      "v_ar",
+      "velocidade do avião em relação ao ar: é a que o piloto controla e que a questão pede"
+     ],
+     [
+      "v_vento",
+      "velocidade do ar em relação ao chão"
+     ],
+     [
+      "componente",
+      "parte da velocidade em uma só direção (Leste–Oeste, Norte–Sul ou vertical)"
+     ],
+     [
+      "vetor",
+      "grandeza com valor, direção e sentido, como a velocidade"
+     ]
+    ],
+    "motivo": "Explicar 'componente' e 'vetor', palavras usadas no enunciado e na resolução."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "Não confere. No eixo Leste, 230 + 30 = 260 km/h no chão, e a torre pede 200. Ela também manda o avião para o Sul, o lado oposto ao do destino. O 230 sai de 200 + 30: somou o vento em vez de subtrair.",
+    "motivo": "Frase mais clara: diz o que faltou no raciocínio de quem marcou A."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "Não confere. Leste: 230 + 30 = 260 km/h no chão, e a torre pede 200 (o 230 sai de 200 + 30: vento somado em vez de subtraído). Norte: 180 − 20 = 160, e não 200. Vertical: 9 − 1 = 8, e não 10.",
+    "motivo": "Texto reorganizado; mostra a origem do 230 e as contas de cada eixo."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "Não confere. Pede 200 km/h para Oeste, mas o destino fica a Leste. Com o vento de 30 para Leste, o avião andaria −200 + 30 = −170 km/h no eixo Leste. Quem marcou C copiou os 200 e 10 do solo sem descontar o vento nem cuidar do sentido.",
+    "motivo": "Diz o que faltou no raciocínio: desconto do vento e sentido do eixo."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "Leste (170) e vertical (11) estão certos, mas o Norte não. Com 180 km/h para Norte, o avião teria 180 − 20 = 160 km/h no chão, e não 200. O vento para Sul atrapalha, então o piloto precisa de 200 + 20 = 220, e não 200 − 20.",
+    "motivo": "Frase mais clara; remove 'soma-se contra'."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "Como v_solo = v_ar + v_vento, o piloto precisa de v_ar = v_solo − v_vento. O vento já ajuda com 30 km/h para Leste, então o piloto precisa de menos.",
+    "motivo": "Frase mais direta."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "D"
  }
 }

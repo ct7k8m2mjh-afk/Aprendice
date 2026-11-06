@@ -7,7 +7,7 @@
  "conceito": "Identificar de onde vem a energia que aquece o tacho: calor sensível (vapor esfriando de 120 °C a 100 °C) e calor latente de condensação (vapor virando líquido a 100 °C).",
  "resolucao": {
   "antes": {
-   "texto": "Calor sensível é o que muda a temperatura de uma substância sem mudar seu estado. Calor latente é o que muda o estado físico, com a temperatura parada. A questão pergunta de onde vem a energia que chega ao doce de leite. Essa energia é a que o VAPOR libera dentro da parede oca, e não a que a água do doce consome ao evaporar.",
+   "texto": "Calor sensível é a energia que muda a temperatura de uma substância sem mudar seu estado físico. Calor latente é a energia da mudança de estado, com a temperatura parada. A pergunta é de onde vem a energia que chega ao doce de leite. Essa energia é a que o VAPOR libera dentro da parede oca. Não é a que a água do doce gasta ao evaporar.",
    "formulas": [
     "calor sensível: Q = m × c × Δθ (a temperatura muda)",
     "calor latente: Q = m × L (o estado físico muda, a temperatura fica constante)"
@@ -31,25 +31,25 @@
     ]
    ]
   },
-  "pista": "Acompanhe só a água que passa pela parede oca: em que temperatura e em que estado ela entra, e em que temperatura e estado ela sai?",
+  "pista": "Acompanhe só a água que passa pela parede oca: em que temperatura e estado ela entra, e em que temperatura e estado ela sai? O que acontece com ela no meio do caminho?",
   "passos": [
    {
     "faz": "Localize o que entra e o que sai da parede oca",
-    "conta": "entra: vapor a 120 °C",
-    "porque": "Esse é o ponto de partida do fluxo de energia. O texto diz que a água sai líquida a 100 °C, em equilíbrio com o vapor.",
+    "conta": "entra: vapor a 120 °C / sai: líquido a 100 °C",
+    "porque": "Esses são os pontos de partida e de chegada da água que cede energia. Comparando os dois, você vê o que mudou no caminho.",
     "tipo": "localizar"
    },
    {
     "faz": "Identifique a primeira perda de energia do vapor",
     "conta": "vapor: 120 °C → 100 °C",
-    "porque": "A temperatura varia sem mudar de estado, então a energia liberada nesse trecho é calor sensível.",
-    "tipo": "interpretar"
+    "porque": "A temperatura cai de 120 °C a 100 °C e o vapor continua vapor. Então a energia liberada nesse trecho é calor sensível.",
+    "tipo": "comparar"
    },
    {
     "faz": "Identifique a segunda perda de energia",
     "conta": "vapor 100 °C → líquido 100 °C",
     "porque": "Aqui o estado muda com a temperatura constante, então a energia liberada é calor latente de condensação.",
-    "tipo": "interpretar"
+    "tipo": "comparar"
    },
    {
     "faz": "Verifique se sobra algum trecho de energia",
@@ -59,7 +59,7 @@
    },
    {
     "faz": "Una os dois trechos e ligue à alternativa",
-    "conta": "sensível (vapor) + latente de condensação",
+    "conta": "sensível + latente de condensação",
     "porque": "A energia que a parede entrega ao doce vem desses dois trechos. O calor latente de vaporização é consumido pela água do doce que evapora, não é fornecido por ela.",
     "tipo": "concluir"
    }
@@ -108,7 +108,7 @@
    "nota": "o líquido não esfria: não há mais calor sensível"
   },
   {
-   "linha": "energia = sensível + latente de condensação",
+   "linha": "E = sensível + latente (condens.)",
    "nota": "é isso que a parede entrega ao doce: alternativa D"
   }
  ],
@@ -126,10 +126,99 @@
  "gab": "D",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "comparar",
+    "motivo": "'interpretar' não é um tipo válido. Os válidos são localizar, calcular, comparar, eliminar e concluir. Aqui o passo compara o estado inicial e o final do vapor (120 °C → 100 °C).",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "comparar",
+    "motivo": "'interpretar' não é um tipo válido. O passo compara o estado antes e depois (vapor → líquido, à mesma temperatura).",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "sensível + latente (cond.)",
+    "motivo": "A conta tinha cerca de 41 caracteres e passava do limite de ~30 da linha escrita à mão no celular. O conteúdo continua o mesmo.",
+    "fonte": ""
+   },
+   {
+    "campo": "quadro[4].linha",
+    "depois": "E = sensível + latente (cond.)",
+    "motivo": "A linha tinha cerca de 43 caracteres e passava do limite de ~30. O conteúdo continua o mesmo, e a nota já diz por extenso 'calor latente de condensação'.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Calor sensível é a energia que muda a temperatura de uma substância sem mudar seu estado físico. Calor latente é a energia da mudança de estado, com a temperatura parada. A pergunta é de onde vem a energia que chega ao doce de leite. Essa energia é a que o VAPOR libera dentro da parede oca. Não é a que a água do doce gasta ao evaporar.",
+    "motivo": "Frases mais curtas e 'estado físico' explicado na primeira aparição."
+   },
+   {
+    "campo": "resolucao.pista",
+    "depois": "Acompanhe só a água que passa pela parede oca: em que temperatura e estado ela entra, e em que temperatura e estado ela sai? O que acontece com ela no meio do caminho?",
+    "motivo": "Leva o aluno a comparar entrada e saída sem entregar a resposta."
+   },
+   {
+    "campo": "resolucao.passos[0].conta",
+    "depois": "entra: vapor a 120 °C / sai: líquido a 100 °C",
+    "motivo": "O passo diz 'o que entra e o que sai', mas a conta mostrava só a entrada."
+   },
+   {
+    "campo": "resolucao.passos[0].porque",
+    "depois": "Esses são os pontos de partida e de chegada da água que cede energia. Comparando os dois, você vê o que mudou no caminho.",
+    "motivo": "O porquê agora explica por que listar entrada e saída, em vez de só repetir o texto."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "A temperatura cai de 120 °C a 100 °C e o vapor continua vapor. Então a energia liberada nesse trecho é calor sensível.",
+    "motivo": "Mais simples e sem ambiguidade."
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "sensível + latente de condensação",
+    "motivo": "Sem abreviação ('cond.'), que o aluno poderia não entender."
+   },
+   {
+    "campo": "resolucao.quadro[4].linha",
+    "depois": "E = sensível + latente (condens.)",
+    "motivo": "Cabe na linha do celular e fica mais legível."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "tema",
+    "depois": "F06",
+    "motivo": "A classificação atual do banco (F08, Óptica) está errada. Calor sensível e latente pertencem a Termologia, F06.3. A resolução proposta já traz F06/F06.3, então basta manter esse valor e propagar a correção ao banco.",
+    "fonte": ""
+   },
+   {
+    "campo": "conteudo",
+    "depois": "F06.3",
+    "motivo": "Calor sensível e latente são o conteúdo F06.3, não F08.3 (espelhos esféricos).",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "D"
  }
 }

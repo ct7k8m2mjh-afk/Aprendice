@@ -17,7 +17,7 @@
    "simbolos": [
     [
      "P",
-     "pressão do gás, em atm"
+     "pressão do gás, em atm (atmosfera, unidade de pressão)"
     ],
     [
      "V",
@@ -38,6 +38,14 @@
     [
      "aerossol",
      "frasco que guarda produto sob pressão, para sair em spray"
+    ],
+    [
+     "CNTP",
+     "condições normais: 0 °C (273 K) e 1 atm; nelas 1 mol de gás ocupa 22,4 L"
+    ],
+    [
+     "frasco rígido",
+     "frasco que não muda de volume; por isso V fica fixo e só a pressão sobe"
     ]
    ]
   },
@@ -63,23 +71,23 @@
    },
    {
     "faz": "Isole a pressão e substitua",
-    "conta": "P = (0,1 × 0,082 × 923)/0,1",
-    "porque": "De P × V = n × R × T, o V passa dividindo. O 0,1 mol e o 0,1 L se cancelam.",
-    "tipo": "aplicar"
+    "conta": "P = (0,1 × 0,082 × 923) / 0,1",
+    "porque": "De P × V = n × R × T, o V passa dividindo. O 0,1 mol de cima e o 0,1 L de baixo têm o mesmo número e se cortam.",
+    "tipo": "calcular"
    },
    {
-    "faz": "Calcule e compare com as alternativas",
+    "faz": "Calcule P e escolha a alternativa",
     "conta": "P = 0,082 × 923 ≈ 75,7 atm",
     "porque": "O valor mais próximo de 75,7 é 76 atm.",
     "tipo": "concluir"
    }
   ],
   "resposta": "Alternativa C: a pressão no momento da explosão é de cerca de 76 atm (0,082 × 923 ≈ 75,7).",
-  "checagem": "0,1 mol em 0,1 L dá 1 mol/L. Nas CNTP (0 °C), 1 mol/L daria cerca de 22,4 atm. A 923 K, que é uns 3,4 vezes mais quente que 273 K, a pressão fica 3,4 × 22,4 ≈ 76 atm. Bate.",
+  "checagem": "0,1 mol em 0,1 L dá 1 mol/L. Nas CNTP (273 K), 1 mol/L daria cerca de 22,4 atm. Aqui são 923 K, cerca de 3,4 vezes mais quente (923 ÷ 273). A pressão sobe na mesma proporção: 3,4 × 22,4 ≈ 76 atm. Bate.",
   "erradas": {
-   "A": "756 é cerca de dez vezes o valor correto (75,7 × 10 ≈ 757). Aparece se o volume entrar como 0,01 L, ou seja, se a conversão de mL para litro for feita errada. Com 100 mL = 0,1 L, o resultado é 75,7 atm.",
-   "B": "533 sai de usar 650 sem converter para kelvin e ainda errar o volume: 0,082 × 650 × 10 = 533. São dois erros juntos: °C no lugar de K e volume dez vezes menor que 0,1 L.",
-   "D": "53 sai de usar a temperatura em °C sem somar 273: 0,082 × 650 = 53,3. A equação dos gases exige kelvin; com 923 K o resultado é 75,7 atm.",
+   "A": "756 sai de usar o volume 0,01 L (erro na conversão de mL para L): 0,1 × 0,082 × 923 ÷ 0,01 ≈ 757. Com 100 mL = 0,1 L, o resultado é 75,7 atm.",
+   "B": "533 sai de dois erros juntos: usar 650 sem passar para kelvin e usar o volume 10 vezes menor, 0,01 L. Conta: 0,1 × 0,082 × 650 ÷ 0,01 = 533. Com 0,1 L e 923 K, o resultado é 75,7 atm.",
+   "D": "53 sai de usar 650 °C direto, sem somar 273: 0,1 × 0,082 × 650 ÷ 0,1 = 53,3. A equação dos gases exige kelvin; com 923 K o resultado é 75,7 atm.",
    "E": "13 não confere. Nas CNTP, 0,1 mol em 0,1 L já daria 22,4 atm. Como o frasco está a 650 °C, muito mais quente, a pressão tem de ser bem maior que 22,4. Nenhuma conversão do enunciado chega a 13."
   },
   "armadilha": "Usar 650 °C direto na fórmula (dá 53 atm) ou deixar 100 mL sem converter para litro.",
@@ -162,10 +170,108 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "calcular",
+    "motivo": "O tipo 'aplicar' não existe na lista permitida (localizar, calcular, comparar, eliminar, concluir). Este passo isola P e substitui os valores, então o tipo certo é 'calcular'.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "P",
+      "pressão do gás, em atm (atmosfera, unidade de pressão)"
+     ],
+     [
+      "V",
+      "volume do frasco, em litro"
+     ],
+     [
+      "n",
+      "quantidade de gás, em mol"
+     ],
+     [
+      "R",
+      "constante dos gases; aqui 0,082 L·atm/(mol·K)"
+     ],
+     [
+      "T",
+      "temperatura absoluta, em kelvin (K)"
+     ],
+     [
+      "aerossol",
+      "frasco que guarda produto sob pressão, para sair em spray"
+     ],
+     [
+      "CNTP",
+      "condições normais: 0 °C (273 K) e 1 atm; nelas 1 mol de gás ocupa 22,4 L"
+     ],
+     [
+      "frasco rígido",
+      "frasco que não muda de volume; por isso V fica fixo e só a pressão sobe"
+     ]
+    ],
+    "motivo": "A checagem usa CNTP, sigla que não estava explicada; incluí também 'frasco rígido'."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "P = (0,1 × 0,082 × 923) / 0,1",
+    "motivo": "Fração com espaços, mais legível; a linha cabe no celular."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "De P × V = n × R × T, o V passa dividindo. O 0,1 mol de cima e o 0,1 L de baixo têm o mesmo número e se cortam.",
+    "motivo": "Frase mais clara: mol e litro são unidades diferentes; o que se corta é o número."
+   },
+   {
+    "campo": "resolucao.passos[4].faz",
+    "depois": "Calcule P e escolha a alternativa",
+    "motivo": "O passo mistura cálculo e conclusão; o 'faz' agora diz as duas ações."
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "0,1 mol em 0,1 L dá 1 mol/L. Nas CNTP (273 K), 1 mol/L daria cerca de 22,4 atm. Aqui são 923 K, cerca de 3,4 vezes mais quente (923 ÷ 273). A pressão sobe na mesma proporção: 3,4 × 22,4 ≈ 76 atm. Bate.",
+    "motivo": "Frases mais curtas e o raciocínio de proporção ficou explícito."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "533 sai de dois erros juntos: usar 650 sem passar para kelvin e usar o volume 10 vezes menor, 0,01 L. Conta: 0,1 × 0,082 × 650 ÷ 0,01 = 533. Com 0,1 L e 923 K, o resultado é 75,7 atm.",
+    "motivo": "A conta estava incompleta (faltava o n e a divisão por V); agora o aluno consegue reproduzi-la."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "756 sai de usar o volume 0,01 L (erro na conversão de mL para L): 0,1 × 0,082 × 923 ÷ 0,01 ≈ 757. Com 100 mL = 0,1 L, o resultado é 75,7 atm.",
+    "motivo": "Mostra a conta completa que leva a 756, em vez de só a comparação."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "53 sai de usar 650 °C direto, sem somar 273: 0,1 × 0,082 × 650 ÷ 0,1 = 53,3. A equação dos gases exige kelvin; com 923 K o resultado é 75,7 atm.",
+    "motivo": "Conta completa, igual às outras."
+   }
+  ],
+  "didatica_alertas": [
+   "O campo 'nivel' da resolução está 4, mas a classificação atual informada é nível 7; conferir qual vale."
+  ],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "C"
  }
 }

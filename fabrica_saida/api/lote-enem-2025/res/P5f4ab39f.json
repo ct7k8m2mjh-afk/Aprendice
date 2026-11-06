@@ -8,7 +8,7 @@
  "conceito": "Velocidade média em movimento uniforme: o tempo de travessia de um corpo extenso por um feixe depende da soma do diâmetro do feixe com o comprimento do corpo.",
  "resolucao": {
   "antes": {
-   "texto": "Em movimento uniforme, tempo = distância ÷ velocidade. O receptor só vale se o 'tempo de resposta' for curto o bastante para perceber o invasor mais rápido. A travessia começa quando a frente do corpo toca o feixe e termina quando a parte de trás sai dele. Por isso a distância percorrida é o diâmetro do feixe mais a espessura do corpo, e não só uma das duas.",
+   "texto": "Em movimento com velocidade constante, tempo = distância ÷ velocidade. O receptor precisa de um tempo de resposta curto o bastante para perceber até o invasor mais rápido. O feixe fica cortado desde o instante em que a frente do corpo o toca até o instante em que a traseira sai dele. Por isso a distância percorrida é o diâmetro do feixe mais a espessura do corpo, e não só uma das duas.",
    "formulas": [
     "v = distância ÷ tempo, logo tempo = distância ÷ v",
     "1 s = 1 000 ms",
@@ -25,16 +25,24 @@
     ],
     [
      "tempo de resposta",
-     "intervalo que o receptor leva para concluir que o feixe foi cortado"
+     "tempo que o receptor leva para concluir que o feixe foi cortado"
+    ],
+    [
+     "Δs",
+     "distância percorrida pela frente do corpo"
+    ],
+    [
+     "perfil",
+     "corpo de lado, a posição em que ele é mais fino (20 cm)"
     ]
    ]
   },
-  "pista": "Imagine o corpo de perfil passando pelo feixe. Em que instante ele começa a cortar o feixe e em que instante deixa de cortá-lo? Quanto a frente do corpo andou entre esses dois instantes? E qual dos cinco movimentos dá o tempo mais curto?",
+  "pista": "Imagine o corpo de perfil passando pelo feixe. O feixe fica cortado desde o instante em que a frente do corpo o toca até o instante em que a traseira sai. Quanto a frente andou nesse intervalo? E qual movimento deixa o feixe cortado por menos tempo?",
   "passos": [
    {
     "faz": "Identifique o que se pede",
     "conta": "menor tempo de resposta",
-    "porque": "O receptor tem de responder dentro do tempo em que o feixe fica cortado. O pior caso é o invasor mais rápido, que corta o feixe por menos tempo.",
+    "porque": "A pergunta é o menor tempo de resposta que ainda detecta qualquer invasor. O caso mais difícil é o invasor mais rápido, que deixa o feixe cortado por menos tempo.",
     "tipo": "localizar"
    },
    {
@@ -72,7 +80,7 @@
   "checagem": "Faça o caminho inverso: a 5,0 m/s, em 0,07 s o corpo anda 5,0 × 0,07 = 0,35 m = 35 cm, que é 15 + 20. Confere. Também é plausível: 5 m/s equivalem a 5 mm a cada milissegundo, e 35 cm = 350 mm leva 70 ms.",
   "erradas": {
    "A": "Sai de usar só o diâmetro do feixe: 0,15 ÷ 5,0 = 0,03 s = 30 ms. Isso trata o corpo como um ponto e ignora os 20 cm de espessura, que também têm de passar pelo feixe.",
-   "C": "Sai de usar a velocidade de 1,0 m/s: 0,35 ÷ 1,0 = 0,35 s ≈ 300 ms. Ela é uma velocidade típica, mas não a mais rápida. Com 300 ms de resposta, o invasor a 5 m/s (que corta o feixe por só 70 ms) passaria sem ser detectado.",
+   "C": "Sai de usar só o diâmetro do feixe com a menor velocidade: 0,15 ÷ 0,5 = 0,3 s = 300 ms. Ignora os 20 cm do corpo e escolhe o invasor mais lento, quando o pior caso é o mais rápido.",
    "D": "Sai de usar só a espessura do corpo com a menor velocidade: 0,20 ÷ 0,5 = 0,4 s = 400 ms. São dois erros: esquece o diâmetro do feixe e escolhe o invasor mais lento, quando o pior caso é o mais rápido.",
    "E": "Sai de dividir os 35 cm pela menor velocidade: 0,35 ÷ 0,5 = 0,7 s = 700 ms. É o tempo do invasor mais lento, não do mais rápido."
   },
@@ -91,25 +99,33 @@
   },
   {
    "nome": "Eliminação",
-   "ideia": "Com 35 cm, as velocidades 0,5; 0,7; 1,0 e 2,0 m/s dão 700; 500; 350 e 175 ms. Só 5,0 m/s dá um valor entre as alternativas que é o menor da lista: 70 ms."
+   "ideia": "Com 35 cm, as velocidades 0,5; 0,7; 1,0; 2,0 e 5,0 m/s dão 700; 500; 350; 175 e 70 ms. O menor tempo, que serve para todos os casos, é 70 ms."
   }
  ],
  "quadro": [
   {
-   "linha": "d = 15 cm; esp. = 20 cm",
-   "nota": "dados da figura e do texto"
+   "linha": "d = 15 cm",
+   "nota": "diâmetro do feixe"
+  },
+  {
+   "linha": "espessura = 20 cm",
+   "nota": "corpo de perfil"
   },
   {
    "linha": "v máx = 5,0 m/s",
    "nota": "invasor mais rápido: pior caso"
   },
   {
-   "linha": "Δs = 15 + 20 = 35 cm",
-   "nota": "frente toca o feixe até traseira sair"
+   "linha": "Δs = 15 + 20",
+   "nota": "frente toca até traseira sair"
+  },
+  {
+   "linha": "Δs = 35 cm",
+   "nota": "some os dois valores"
   },
   {
    "linha": "Δs = 0,35 m",
-   "nota": "cm para m: divide por 100"
+   "nota": "cm para m: divida por 100"
   },
   {
    "linha": "t = 0,35 ÷ 5,0",
@@ -120,8 +136,12 @@
    "nota": "faça a divisão"
   },
   {
-   "linha": "t = 0,07 × 1 000 = 70 ms",
-   "nota": "s para ms: multiplica por 1 000"
+   "linha": "t = 0,07 × 1 000",
+   "nota": "s para ms: multiplique por 1 000"
+  },
+  {
+   "linha": "t = 70 ms",
+   "nota": "resposta: alternativa B"
   }
  ],
  "visual": {
@@ -137,10 +157,125 @@
  "gab": "B",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "Sai de usar só o diâmetro do feixe com a menor velocidade: 0,15 ÷ 0,5 = 0,3 s = 300 ms. Ignora os 20 cm do corpo e escolhe o invasor mais lento, quando o pior caso é o mais rápido.",
+    "motivo": "A origem proposta, 0,35 ÷ 1,0 = 350 ms, não chega a 300 ms. O valor 350 fica no meio entre 300 e 400, então não pode ser apresentado como ≈ 300. A conta 0,15 ÷ 0,5 = 0,3 s dá exatamente 300 ms e repete o padrão dos outros distratores: A = 0,15 ÷ 5 = 30 ms, D = 0,20 ÷ 0,5 = 400 ms e E = 0,35 ÷ 0,5 = 700 ms, todos conferidos.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.pista",
+    "depois": "Imagine o corpo de perfil passando pelo feixe. O feixe fica cortado desde o instante em que a frente do corpo o toca até o instante em que a traseira sai. Quanto a frente andou nesse intervalo? E qual movimento deixa o feixe cortado por menos tempo?",
+    "motivo": "Frases mais curtas e sem sentido duplo; continua sem entregar a resposta."
+   },
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Em movimento com velocidade constante, tempo = distância ÷ velocidade. O receptor precisa de um tempo de resposta curto o bastante para perceber até o invasor mais rápido. O feixe fica cortado desde o instante em que a frente do corpo o toca até o instante em que a traseira sai dele. Por isso a distância percorrida é o diâmetro do feixe mais a espessura do corpo, e não só uma das duas.",
+    "motivo": "Troca 'movimento uniforme' por explicação simples e deixa claro o intervalo em que o feixe fica cortado."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "d",
+      "diâmetro do feixe de radiação, 15 cm"
+     ],
+     [
+      "ms",
+      "milissegundo, a milésima parte do segundo (10⁻³ s)"
+     ],
+     [
+      "tempo de resposta",
+      "tempo que o receptor leva para concluir que o feixe foi cortado"
+     ],
+     [
+      "Δs",
+      "distância percorrida pela frente do corpo"
+     ],
+     [
+      "perfil",
+      "corpo de lado, a posição em que ele é mais fino (20 cm)"
+     ]
+    ],
+    "motivo": "Explica Δs e perfil, usados na resolução."
+   },
+   {
+    "campo": "resolucao.passos[0].porque",
+    "depois": "A pergunta é o menor tempo de resposta que ainda detecta qualquer invasor. O caso mais difícil é o invasor mais rápido, que deixa o feixe cortado por menos tempo.",
+    "motivo": "Texto mais direto e sem ambiguidade."
+   },
+   {
+    "campo": "resolucao.quadro",
+    "depois": [
+     {
+      "linha": "d = 15 cm",
+      "nota": "diâmetro do feixe"
+     },
+     {
+      "linha": "espessura = 20 cm",
+      "nota": "corpo de perfil"
+     },
+     {
+      "linha": "v máx = 5,0 m/s",
+      "nota": "invasor mais rápido: pior caso"
+     },
+     {
+      "linha": "Δs = 15 + 20",
+      "nota": "frente toca até traseira sair"
+     },
+     {
+      "linha": "Δs = 35 cm",
+      "nota": "some os dois valores"
+     },
+     {
+      "linha": "Δs = 0,35 m",
+      "nota": "cm para m: divida por 100"
+     },
+     {
+      "linha": "t = 0,35 ÷ 5,0",
+      "nota": "tempo = distância ÷ velocidade"
+     },
+     {
+      "linha": "t = 0,07 s",
+      "nota": "faça a divisão"
+     },
+     {
+      "linha": "t = 0,07 × 1 000",
+      "nota": "s para ms: multiplique por 1 000"
+     },
+     {
+      "linha": "t = 70 ms",
+      "nota": "resposta: alternativa B"
+     }
+    ],
+    "motivo": "Um passo por linha, linhas curtas e copiáveis no caderno."
+   },
+   {
+    "campo": "resolucao.caminhos[1].ideia",
+    "depois": "Com 35 cm, as velocidades 0,5; 0,7; 1,0; 2,0 e 5,0 m/s dão 700; 500; 350; 175 e 70 ms. O menor tempo, que serve para todos os casos, é 70 ms.",
+    "motivo": "A frase original estava confusa; esta mostra os cinco valores e a escolha."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "B"
  }
 }

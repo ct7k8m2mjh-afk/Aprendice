@@ -43,25 +43,25 @@
    {
     "faz": "Localize a mudança de postura dos falantes",
     "conta": "\"forte consciência de sua relação com a descendência africana\"",
-    "porque": "O texto mostra que os falantes passaram a se reconhecer na língua e a valorizá-la.",
+    "porque": "O texto mostra que os falantes passaram a se reconhecer na língua e a valorizá-la. Antes ela era estigmatizada.",
     "tipo": "localizar"
    },
    {
-    "faz": "Ligue essa identificação ao cuidado com a língua",
-    "conta": "\"ele passa a ver essa língua como um legado\"",
-    "porque": "Ver a língua como legado leva a \"transmiti-la para outras gerações\": é isso que a preserva.",
-    "tipo": "interpretar"
+    "faz": "Ligue a identificação ao cuidado com a língua",
+    "conta": "\"um legado recebido\" → \"transmiti-la\"",
+    "porque": "Quem vê a língua como herança da família e do grupo cuida dela e a passa adiante. É isso que a preserva.",
+    "tipo": "comparar"
    },
    {
-    "faz": "Teste as demais alternativas contra o texto",
-    "conta": "escrita? prestígio? função? idade?",
-    "porque": "O texto não menciona escrita nem prestígio. A função inicial mudou, e a faixa etária é uma informação à parte.",
-    "tipo": "aplicar"
+    "faz": "Teste as outras alternativas no texto",
+    "conta": "A: escrita? B: prestígio?",
+    "porque": "O texto não fala de escrita nem de prestígio da classe social.",
+    "tipo": "eliminar"
    },
    {
     "faz": "Conclua",
     "conta": "identidade → legado → transmissão",
-    "porque": "Só a alternativa D reúne a causa apontada pelo texto: o sentimento de pertencimento e de identidade.",
+    "porque": "Só a D traz a causa que o texto aponta: o sentimento de pertencimento e de identidade.",
     "tipo": "concluir"
    }
   ],
@@ -70,8 +70,8 @@
   "erradas": {
    "A": "O texto não diz que a língua passou da oralidade para a escrita. Ela é descrita como falada (\"conversavam\", \"fala que os identifica\"), e não há menção a registro escrito.",
    "B": "O texto fala do estigma passado e da nova consciência dos falantes, mas não afirma que a classe social ganhou prestígio. O que mudou foi a compreensão dos falantes sobre a própria língua.",
-   "C": "A função mudou. Antes era \"língua secreta\" para trocar informações e planejar fugas; hoje é vista como legado e marca de identidade. Se a função tivesse se mantido, o texto não falaria em \"mudança de compreensão\".",
-   "E": "A faixa etária (\"entre 21 e 60 anos\") é só a descrição de quem fala hoje, não a causa da preservação. O texto também não diz que o perfil \"tem se tornado\" homogêneo, e uma faixa de 40 anos nem é homogênea."
+   "C": "A função mudou. Antes era \"língua secreta\" para trocar informações e planejar fugas; hoje é vista como legado e marca de identidade. O texto liga a preservação a essa nova visão, não ao uso antigo.",
+   "E": "A faixa etária (\"entre 21 e 60 anos\") só descreve quem fala hoje, não explica a preservação. O texto também não diz que o perfil está ficando homogêneo."
   },
   "armadilha": "Marcar a alternativa que repete um dado do texto (a faixa etária ou a função antiga) em vez da que explica a causa da preservação.",
   "alerta": "",
@@ -105,10 +105,97 @@
  "gab": "D",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "comparar",
+    "motivo": "'interpretar' não é um tipo válido. Os tipos aceitos são localizar, calcular, comparar, eliminar e concluir. Este passo põe a identificação dos falantes ao lado da transmissão da língua, então o tipo certo é comparar.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "eliminar",
+    "motivo": "'aplicar' não é um tipo válido. O passo testa as alternativas erradas para descartá-las, então o tipo certo é eliminar.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "\"descendência africana\"",
+    "motivo": "A citação tinha uns 60 caracteres e não cabe na linha de cerca de 30 da tela. O trecho novo é literal e continua provando o ponto.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "\"um legado recebido\"",
+    "motivo": "A citação tinha uns 44 caracteres e não cabe na linha. O trecho novo é literal do texto e mantém a ideia de legado.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "A função mudou. Antes era \"língua secreta\" para trocar informações e planejar fugas; hoje é vista como legado e marca de identidade. O texto liga a preservação a essa nova visão, não ao uso antigo.",
+    "motivo": "No texto, \"mudança de compreensão\" se refere a como os falantes passaram a ver a língua (do estigma à consciência da origem africana), não à troca de função. Por isso o argumento antigo, que tirava a mudança de função dessa expressão, não se sustentava. A versão nova usa só o que o texto afirma.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[1]",
+    "depois": {
+     "faz": "Localize a mudança de postura dos falantes",
+     "conta": "\"forte consciência de sua relação com a descendência africana\"",
+     "porque": "O texto mostra que os falantes passaram a se reconhecer na língua e a valorizá-la. Antes ela era estigmatizada.",
+     "tipo": "localizar"
+    },
+    "motivo": "Trecho citado entre aspas deve ser literal e provar o passo; o anterior estava cortado."
+   },
+   {
+    "campo": "resolucao.passos[2]",
+    "depois": {
+     "faz": "Ligue a identificação ao cuidado com a língua",
+     "conta": "\"um legado recebido\" → \"transmiti-la\"",
+     "porque": "Quem vê a língua como herança da família e do grupo cuida dela e a passa adiante. É isso que a preserva.",
+     "tipo": "comparar"
+    },
+    "motivo": "Mostra a cadeia causal completa, com trecho literal."
+   },
+   {
+    "campo": "resolucao.passos[3]",
+    "depois": {
+     "faz": "Teste as outras alternativas no texto",
+     "conta": "A: escrita? B: prestígio?",
+     "porque": "O texto não fala de escrita nem de prestígio da classe social.",
+     "tipo": "eliminar"
+    },
+    "motivo": "Conta curta para caber na tela; C e E já são explicadas em erradas."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "Só a D traz a causa que o texto aponta: o sentimento de pertencimento e de identidade.",
+    "motivo": "Frase mais simples."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "A faixa etária (\"entre 21 e 60 anos\") só descreve quem fala hoje, não explica a preservação. O texto também não diz que o perfil está ficando homogêneo.",
+    "motivo": "Frase mais curta; remove o argumento sobre a faixa de 40 anos, que é opinião e não prova."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "D"
  }
 }

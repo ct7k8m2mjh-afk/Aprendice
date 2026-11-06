@@ -8,7 +8,7 @@
  "conceito": "Identificar a finalidade de um conjunto de minibiografias a partir do que o texto efetivamente narra.",
  "resolucao": {
   "antes": {
-   "texto": "Perguntar o 'propósito' de um texto é perguntar o que ele faz com o leitor e qual é o seu foco. Para descobrir, observe o que se repete em todas as partes do texto. Aqui, as três minibiografias seguem o mesmo molde: idade, origem, deficiência, modalidade de partida, troca de modalidade e conquista. A alternativa certa descreve esse molde, sem acrescentar objetivos que o texto não declara.",
+   "texto": "Perguntar o 'propósito' de um texto é perguntar o que ele faz com o leitor. Para descobrir, observe o que se repete em todas as partes. Aqui, as três minibiografias seguem o mesmo molde: idade, origem, deficiência, modalidade de partida, troca de modalidade e conquista. A alternativa certa descreve esse molde e não acrescenta objetivos que o texto não declara.",
    "formulas": [
     "propósito = o que o texto faz em todas as suas partes",
     "alternativa certa = não vai além do que o texto mostra"
@@ -43,14 +43,14 @@
     "tipo": "localizar"
    },
    {
-    "faz": "Junte os dados de cada atleta",
-    "conta": "goiana, santista, paraibana: todas brasileiras",
-    "porque": "Os lugares de origem (Goiás, Santos, Paraíba) e os Jogos Parapan-Americanos mostram atletas brasileiras com carreira paralímpica.",
-    "tipo": "interpretar"
+    "faz": "Confira a origem das atletas",
+    "conta": "goiana, santista, paraibana",
+    "porque": "Goiás, Santos e Paraíba são lugares do Brasil: as três são brasileiras. Os Jogos Parapan-Americanos e a 'classe F52' mostram que competem no esporte paralímpico.",
+    "tipo": "comparar"
    },
    {
     "faz": "Elimine o que o texto não faz",
-    "conta": "rotina? comparação? categorias? incentivo?",
+    "conta": "rotina de treino? comparação? categorias adequadas? incentivo?",
     "porque": "Nenhum trecho descreve treinos, compara desempenhos, indica adaptações ou convida a participar.",
     "tipo": "eliminar"
    },
@@ -67,7 +67,7 @@
    "A": "O texto não fala de rotina de treino: não há horários, exercícios nem frequência. Só aparecem as modalidades praticadas e os resultados obtidos.",
    "B": "Não há comparação. Cada atleta é apresentada em separado, sem dizer quem foi melhor, e os resultados vêm de provas diferentes: tiro com arco, lançamento de disco e taekwondo.",
    "D": "O texto não indica categorias mais adequadas a adaptações. Cita categorias ('classe F52', 'até 58 kg') apenas como dados das conquistas, sem recomendar nada.",
-   "E": "Não há apelo nem incentivo ao leitor: nenhum verbo no imperativo, nenhum convite. O texto relata fatos, ainda que possa inspirar. O título convida a 'conhecer' as histórias, não a competir."
+   "E": "O texto não pede que mulheres participem de campeonatos. O único imperativo é 'Conheça', no título, que convida a ler as histórias. O texto relata fatos; inspirar é efeito possível, não o propósito declarado."
   },
   "armadilha": "Marcar a alternativa que parece um efeito bonito da leitura (estimular mulheres) em vez da que descreve o que o texto de fato faz (contar trajetórias).",
   "alerta": "",
@@ -101,10 +101,70 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "Não há apelo para que mulheres participem de campeonatos. O único imperativo é o 'Conheça' do título, e ele convida a ler as histórias, não a competir. O texto relata fatos, ainda que possa inspirar.",
+    "motivo": "A versão anterior dizia 'nenhum verbo no imperativo', mas o título começa com 'Conheça', que é imperativo. A própria entrada se contradizia ao citar esse convite logo depois.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "comparar",
+    "motivo": "'interpretar' não é um tipo válido. Os tipos permitidos são localizar, calcular, comparar, eliminar e concluir. O passo junta os dados das três atletas, então o tipo certo é 'comparar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Os lugares de origem (Goiás, Santos, Paraíba) mostram que as três são brasileiras. Os Jogos Parapan-Americanos e a classe F52 mostram que a carreira delas é paralímpica.",
+    "motivo": "A versão anterior dava a entender que os Jogos Parapan-Americanos provam que as atletas são brasileiras. Quem prova isso é a origem delas; os Jogos provam só que a carreira é paralímpica.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Perguntar o 'propósito' de um texto é perguntar o que ele faz com o leitor. Para descobrir, observe o que se repete em todas as partes. Aqui, as três minibiografias seguem o mesmo molde: idade, origem, deficiência, modalidade de partida, troca de modalidade e conquista. A alternativa certa descreve esse molde e não acrescenta objetivos que o texto não declara.",
+    "motivo": "Frases mais curtas e sem a expressão 'foco', que repetia a ideia de propósito."
+   },
+   {
+    "campo": "resolucao.passos[2]",
+    "depois": {
+     "faz": "Confira a origem das atletas",
+     "conta": "goiana, santista, paraibana",
+     "porque": "Goiás, Santos e Paraíba são lugares do Brasil: as três são brasileiras. Os Jogos Parapan-Americanos e a 'classe F52' mostram que competem no esporte paralímpico.",
+     "tipo": "comparar"
+    },
+    "motivo": "A conta anterior trazia uma conclusão em vez de um dado. O comando ficou mais claro e a explicação separa o que cada pista prova."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "rotina de treino? comparação? categorias adequadas? incentivo?",
+    "motivo": "A conta passou a repetir o que cada alternativa afirma, e não só palavras soltas."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "O texto não pede que mulheres participem de campeonatos. O único imperativo é 'Conheça', no título, que convida a ler as histórias. O texto relata fatos; inspirar é efeito possível, não o propósito declarado.",
+    "motivo": "Frases mais curtas e a distinção entre propósito e efeito possível ficou clara para quem marcou E."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "C"
  }
 }

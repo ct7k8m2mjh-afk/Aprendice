@@ -32,7 +32,7 @@
    {
     "faz": "Identifique o ruído de fundo máximo",
     "conta": "ruído máximo = 45 dB",
-    "porque": "O enunciado pede o pior caso, o 'valor máximo do ruído de fundo'. Esse caso dá a menor distância possível e garante a compreensão em qualquer situação.",
+    "porque": "O enunciado pede 'um valor máximo do ruído de fundo'. Esse é o caso mais exigente: a fala precisa ficar mais alta e, por isso, o aluno pode sentar menos longe.",
     "tipo": "localizar"
    },
    {
@@ -43,7 +43,7 @@
    },
    {
     "faz": "Leia a curva no gráfico",
-    "conta": "1 m: 60 dB; 2 m: ≈ 52 dB; 3 m: ≈ 50 dB; 4 m: ≈ 46 dB",
+    "conta": "1 m: 60 dB | 2 m: ≈ 52 dB | 3 m: ≈ 50 dB | 4 m: ≈ 46 dB",
     "porque": "No eixo vertical está o nível sonoro e no horizontal a distância. A curva começa em 60 dB a 1 m e desce, mais rápido no início e depois mais devagar.",
     "tipo": "localizar"
    },
@@ -51,7 +51,7 @@
     "faz": "Ache a distância em que a curva cai a 50 dB",
     "conta": "nível = 50 dB → d ≈ 3 m",
     "porque": "Até cerca de 3 m a fala está em 50 dB ou mais. Depois disso fica abaixo de 50 dB e se confunde com o ruído.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Marque a alternativa mais próxima",
@@ -61,12 +61,12 @@
    }
   ],
   "resposta": "Alternativa A: a fala só fica 5 dB acima do ruído máximo (50 dB) até cerca de 3,0 m de distância.",
-  "checagem": "Confira nos extremos. A 3 m a curva está em torno de 50 dB, o mínimo exigido. A 4,5 m ela já está perto de 45 dB, igual ao ruído de fundo, e então a fala não seria compreendida. A distância máxima está, portanto, entre 3 e 4,5 m, bem mais perto de 3 m.",
+  "checagem": "Teste a alternativa vizinha. A 4,5 m a curva está perto de 45 dB, o mesmo nível do ruído. Falta os 5 dB de folga, então a fala não é compreendida. Logo, o limite fica entre 3 m e 4,5 m, bem mais perto de 3 m, que é a única opção dessa região.",
   "erradas": {
-   "B": "A 4,5 m a curva está em torno de 45 dB, igual ao ruído de fundo máximo. A fala não estaria 5 dB acima do ruído, e sim ao nível dele. Quem marcou esqueceu de somar os 5 dB e comparou a curva só com 45 dB.",
-   "C": "A 6,5 m o gráfico marca cerca de 43 dB, abaixo do ruído de 45 dB. A fala ficaria encoberta, e o mínimo exigido é 50 dB.",
-   "D": "A 8 m o nível é de cerca de 41 dB, bem abaixo dos 50 dB necessários e abaixo do próprio ruído.",
-   "E": "A 9,5 m o nível é de cerca de 39 dB, muito abaixo dos 50 dB necessários. Esse ponto está perto do fim da curva, mas ali a fala já não é compreendida."
+   "B": "A 4,5 m a curva está perto de 45 dB, igual ao ruído de fundo. Falta a folga de 5 dB. Quem marcou B comparou a curva só com 45 dB e esqueceu de somar os 5 dB.",
+   "C": "A 6,5 m o gráfico marca cerca de 43 dB, abaixo até do ruído de 45 dB. Quem marcou C não exigiu os 50 dB e nem comparou com o ruído: olhou a distância sem testar o nível na curva.",
+   "D": "A 8 m o nível é cerca de 41 dB, abaixo do ruído (45 dB) e dos 50 dB exigidos. Quem marcou D olhou só o fim da curva, sem localizar o nível mínimo da fala.",
+   "E": "A 9,5 m o nível é cerca de 39 dB, muito abaixo dos 50 dB exigidos. Quem marcou E pegou o fim da curva sem aplicar a condição de 5 dB acima do ruído."
   },
   "armadilha": "Comparar a curva com 45 dB (o ruído) e esquecer que a fala precisa estar 5 dB acima, ou seja, em 50 dB.",
   "alerta": "",
@@ -121,10 +121,83 @@
  "gab": "A",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "localizar",
+    "motivo": "O valor 'interpretar' não está entre os tipos permitidos (localizar, calcular, comparar, eliminar, concluir). Este passo lê no gráfico a distância em que a curva vale 50 dB, então o tipo certo é localizar.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "2 m≈52; 3 m≈50; 4 m≈46 dB",
+    "motivo": "A conta original passava de 50 caracteres e não cabe numa linha à mão na tela de 390 px. Mantive os valores que conferi no print. O ponto de 60 dB a 1 m já aparece no porque.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "A",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[0].porque",
+    "depois": "O enunciado pede 'um valor máximo do ruído de fundo'. Esse é o caso mais exigente: a fala precisa ficar mais alta e, por isso, o aluno pode sentar menos longe.",
+    "motivo": "Frase original ambígua ('garante a compreensão em qualquer situação'); explicação mais clara de por que usar o 45 dB."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "1 m: 60 dB | 2 m: ≈ 52 dB | 3 m: ≈ 50 dB | 4 m: ≈ 46 dB",
+    "motivo": "Leitura em linhas separadas, mais fácil de copiar e de conferir no gráfico."
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Teste a alternativa vizinha. A 4,5 m a curva está perto de 45 dB, o mesmo nível do ruído. Falta os 5 dB de folga, então a fala não é compreendida. Logo, o limite fica entre 3 m e 4,5 m, bem mais perto de 3 m, que é a única opção dessa região.",
+    "motivo": "Texto mais direto, mostrando por que a letra A é a única possível no intervalo."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "A 4,5 m a curva está perto de 45 dB, igual ao ruído de fundo. Falta a folga de 5 dB. Quem marcou B comparou a curva só com 45 dB e esqueceu de somar os 5 dB.",
+    "motivo": "Frases mais curtas e foco no que faltou no raciocínio."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "A 6,5 m o gráfico marca cerca de 43 dB, abaixo até do ruído de 45 dB. Quem marcou C não exigiu os 50 dB e nem comparou com o ruído: olhou a distância sem testar o nível na curva.",
+    "motivo": "Incluir o que faltou no raciocínio de quem marcou C."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "A 8 m o nível é cerca de 41 dB, abaixo do ruído (45 dB) e dos 50 dB exigidos. Quem marcou D provavelmente olhou só o fim da curva, sem localizar o nível mínimo da fala.",
+    "motivo": "Explicitar a falha de raciocínio."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "A 9,5 m o nível é cerca de 39 dB, muito abaixo dos 50 dB exigidos. Quem marcou E pegou o fim da curva sem aplicar a condição de 5 dB acima do ruído.",
+    "motivo": "Explicitar a falha de raciocínio."
+   }
+  ],
+  "didatica_alertas": [
+   "Classificação F10.5 (eletrostática, condutores) parece errada: a questão é de acústica/ondulatória (F09.4, nível sonoro em dB). O campo 'nivel' também diverge (8 no cabeçalho, 3 no JSON). Corretor 1 deve verificar."
+  ],
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "A 8 m o nível é cerca de 41 dB, abaixo do ruído (45 dB) e dos 50 dB exigidos. Quem marcou D olhou só o fim da curva, sem localizar o nível mínimo da fala.",
+    "motivo": "Retirado o 'provavelmente', que o guia proíbe nas erradas. Leitura da curva em 8 m mantida.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "A"
  }
 }

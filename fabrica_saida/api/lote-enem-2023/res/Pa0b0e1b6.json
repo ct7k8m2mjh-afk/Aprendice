@@ -8,7 +8,7 @@
  "conceito": "No ponto mais alto de um lançamento vertical, a velocidade é nula e a aceleração é a da gravidade (para baixo).",
  "resolucao": {
   "antes": {
-   "texto": "Depois que a esfera sai da mão, só a gravidade age sobre ela (sem resistência do ar). Por isso a aceleração é constante durante toda a trajetória: vale g e aponta para baixo, na subida, no topo e na descida. A velocidade é que muda: a esfera sobe cada vez mais devagar, para por um instante no topo e depois desce.",
+   "texto": "Depois que a esfera sai da mão, só a gravidade age sobre ela (vamos desprezar a resistência do ar). Por isso a aceleração é a mesma durante todo o voo: vale g e aponta para baixo, na subida, no topo e na descida. Só a velocidade muda: a esfera sobe cada vez mais devagar, para por um instante no topo e depois desce.",
    "formulas": [
     "v = v₀ − g·t (subindo, com o eixo para cima)",
     "a = −g (módulo g ≈ 10 m/s², sentido para baixo)"
@@ -16,11 +16,11 @@
    "simbolos": [
     [
      "v",
-     "velocidade da esfera"
+     "velocidade da esfera: quão rápido ela se move e para onde"
     ],
     [
      "a",
-     "aceleração: quanto a velocidade varia por segundo"
+     "aceleração: quanto a velocidade varia a cada segundo"
     ],
     [
      "g",
@@ -29,6 +29,18 @@
     [
      "altura máxima",
      "ponto mais alto da trajetória, onde a esfera inverte o sentido do movimento"
+    ],
+    [
+     "peso (P)",
+     "força com que a Terra puxa a esfera para baixo"
+    ],
+    [
+     "2ª lei de Newton",
+     "a aceleração tem o sentido da força resultante: a = F ÷ m"
+    ],
+    [
+     "m/s²",
+     "unidade de aceleração: metros por segundo, a cada segundo"
     ]
    ]
   },
@@ -42,15 +54,15 @@
    },
    {
     "faz": "Obtenha a aceleração em todo o voo",
-    "conta": "a = P ÷ m = g, para baixo",
+    "conta": "a = P ÷ m = g (para baixo)",
     "porque": "Pela 2ª lei de Newton, a aceleração tem o sentido da força resultante. O peso não muda, então a aceleração também não muda.",
-    "tipo": "aplicar"
+    "tipo": "calcular"
    },
    {
     "faz": "Analise a velocidade ao subir",
-    "conta": "sobe: v diminui, 10 m/s a cada s",
+    "conta": "subindo: v cai 10 m/s por s",
     "porque": "A aceleração para baixo contraria o movimento de subida e vai reduzindo a velocidade até zero.",
-    "tipo": "interpretar"
+    "tipo": "comparar"
    },
    {
     "faz": "Aplique ao instante da altura máxima",
@@ -103,8 +115,8 @@
    "nota": "já desce: sinal negativo"
   },
   {
-   "linha": "a = ΔV/Δt = −10 m/s²",
-   "nota": "mesma aceleração em todos os instantes, para baixo"
+   "linha": "a = Δv ÷ Δt = −10 m/s²",
+   "nota": "Δv = variação da velocidade; Δt = tempo. Mesma aceleração em todos os instantes, para baixo"
   }
  ],
  "visual": {
@@ -120,10 +132,110 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "calcular",
+    "motivo": "'aplicar' não está entre os tipos permitidos (localizar, calcular, comparar, eliminar, concluir). O passo obtém a aceleração por a = P ÷ m, então o tipo certo é 'calcular'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "comparar",
+    "motivo": "'interpretar' não está entre os tipos permitidos. O passo confronta o sentido da aceleração com o sentido do movimento na subida, então o tipo certo é 'comparar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "sobe: v cai g a cada segundo",
+    "motivo": "O enunciado não dá o valor de g. Escrever '10 m/s a cada s' afirma um número que a questão não fornece. O valor ≈ 10 m/s² já aparece como aproximação em antes.formulas.",
+    "fonte": ""
+   },
+   {
+    "campo": "quadro[4].linha",
+    "depois": "a = Δv/Δt = −10 m/s²",
+    "motivo": "A velocidade aparece como 'v' minúsculo em toda a resolução. 'ΔV' maiúsculo pode ser confundido com variação de volume ou de potencial.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Depois que a esfera sai da mão, só a gravidade age sobre ela (vamos desprezar a resistência do ar). Por isso a aceleração é a mesma durante todo o voo: vale g e aponta para baixo, na subida, no topo e na descida. Só a velocidade muda: a esfera sobe cada vez mais devagar, para por um instante no topo e depois desce.",
+    "motivo": "Troca 'sem resistência do ar' por frase que diz que é uma simplificação; deixa a ideia mais direta."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "v",
+      "velocidade da esfera: quão rápido ela se move e para onde"
+     ],
+     [
+      "a",
+      "aceleração: quanto a velocidade varia a cada segundo"
+     ],
+     [
+      "g",
+      "aceleração da gravidade, cerca de 10 m/s², apontando para baixo"
+     ],
+     [
+      "altura máxima",
+      "ponto mais alto da trajetória, onde a esfera inverte o sentido do movimento"
+     ],
+     [
+      "peso (P)",
+      "força com que a Terra puxa a esfera para baixo"
+     ],
+     [
+      "2ª lei de Newton",
+      "a aceleração tem o sentido da força resultante: a = F ÷ m"
+     ],
+     [
+      "m/s²",
+      "unidade de aceleração: metros por segundo, a cada segundo"
+     ]
+    ],
+    "motivo": "Explica peso, 2ª lei de Newton e a unidade m/s², termos usados nos passos e que não estavam explicados."
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "a = P ÷ m = g (para baixo)",
+    "motivo": "Deixa claro que o resultado é g, com o sentido."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "subindo: v cai 10 m/s por s",
+    "motivo": "Troca 'g' solto por valor concreto, mais fácil para o aluno visualizar."
+   },
+   {
+    "campo": "resolucao.quadro[4].linha",
+    "depois": "a = Δv ÷ Δt = −10 m/s²",
+    "motivo": "Padroniza a divisão; Δv é a variação de velocidade e Δt o tempo, a explicar na nota."
+   },
+   {
+    "campo": "resolucao.quadro[4].nota",
+    "depois": "Δv = variação da velocidade; Δt = tempo. Mesma aceleração em todos os instantes, para baixo",
+    "motivo": "Explica os símbolos Δv e Δt na primeira aparição."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "C"
  }
 }

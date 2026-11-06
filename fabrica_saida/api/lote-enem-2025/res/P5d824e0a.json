@@ -8,7 +8,7 @@
  "conceito": "Função do texto verbal em uma ilustração: a legenda explica o sentido da palavra ilustrada (relação entre texto verbal e imagem).",
  "resolucao": {
   "antes": {
-   "texto": "Em imagens com texto escrito, o texto verbal e o visual se completam. O enunciado diz que a série traz ilustrações que transmitem o sentido de palavras sem tradução. Então, ao ver o texto escrito na imagem, pergunte: o que ele faz pelo leitor? Aqui ele diz o que a palavra significa.",
+   "texto": "Em imagens com texto escrito, o texto verbal (as palavras) e o visual (o desenho) se completam. O enunciado diz que a série traz ilustrações que transmitem o sentido de palavras sem tradução. Ao ver o texto escrito na imagem, pergunte: o que ele faz pelo leitor? Aqui ele diz o que a palavra significa.",
    "formulas": [
     "texto verbal em legenda: nomeia, explica ou orienta a leitura da imagem",
     "palavra intraduzível: não tem equivalente de uma palavra só em outra língua"
@@ -37,21 +37,21 @@
     "tipo": "localizar"
    },
    {
-    "faz": "Descreva o texto verbal da imagem",
-    "conta": "(Árabe) Gufra: 'A quantidade de água que pode ser segurada com as mãos'",
+    "faz": "Localize o texto verbal da imagem",
+    "conta": "(Árabe) Gufra: 'A quantidade de água / que pode ser segurada / com as mãos'",
     "porque": "Há a palavra, a língua de origem entre parênteses e uma frase que a define.",
     "tipo": "localizar"
    },
    {
     "faz": "Ligue a frase à imagem",
-    "conta": "mãos em concha com água → 'gufra'",
+    "conta": "mãos em concha + água = 'gufra'",
     "porque": "A frase em vermelho diz em português o que a palavra árabe quer dizer. A imagem mostra a mesma ideia: a água nas mãos. O texto verbal explica o significado.",
-    "tipo": "interpretar"
+    "tipo": "comparar"
    },
    {
     "faz": "Elimine as demais funções",
-    "conta": "descrição técnica? sentidos múltiplos? equivalentes? dificuldade?",
-    "porque": "O texto não descreve a figura (não fala de cores, mãos ou menina), traz um único sentido, não dá palavras de outras línguas e não comenta dificuldade alguma.",
+    "conta": "A, B, D e E não batem com o texto",
+    "porque": "O texto não descreve a figura (não fala de cores, da menina nem do barquinho), traz um único sentido, não dá palavras de outras línguas e não comenta dificuldade alguma.",
     "tipo": "eliminar"
    },
    {
@@ -64,8 +64,8 @@
   "resposta": "Alternativa C: o texto verbal define 'gufra' como 'a quantidade de água que pode ser segurada com as mãos', explicando o significado da palavra ilustrada.",
   "checagem": "Cubra a frase em vermelho: sem ela, o leitor veria mãos com água e uma menina, mas não saberia que 'gufra' é a medida de água que cabe nas mãos. A frase é o que completa o sentido, o que confirma a função de explicar.",
   "erradas": {
-   "A": "A frase não descreve a ilustração. Ela não fala da menina, do barquinho nem das mãos em concha; define uma palavra árabe. Também não é 'técnica': é uma definição em linguagem simples.",
-   "B": "O texto traz um único sentido para 'gufra': a quantidade de água que cabe nas mãos. Não há 'múltiplos sentidos'; o enunciado diz que cada ilustração transmite o sentido de um vocábulo.",
+   "A": "A frase não descreve a ilustração. Ela não fala da menina, do barquinho nem das cores; cita as mãos só porque elas fazem parte do significado da palavra árabe. Também não é 'técnica': é uma definição em linguagem simples.",
+   "B": "O texto traz um único sentido para 'gufra': a quantidade de água que cabe nas mãos. 'Múltiplos sentidos' exigiria mais de uma definição, e não há. Quem marcou B confundiu ilustração detalhada com vários significados.",
    "D": "O texto não apresenta equivalentes em outras línguas. Ele indica só a origem (Árabe) e explica em português. O enunciado diz que nenhuma palavra única em outra língua descreve esses vocábulos.",
    "E": "O texto não comenta dificuldade nenhuma: ele ajuda a entender o termo. A intraduzibilidade é a razão de a série existir, mas não é o que a frase escrita na imagem faz."
   },
@@ -101,10 +101,77 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "comparar",
+    "motivo": "'interpretar' não está entre os tipos permitidos (localizar, calcular, comparar, eliminar, concluir). O passo põe a frase ao lado da imagem, então o tipo certo é 'comparar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "O texto não descreve a figura (não fala de cores, da menina nem do barquinho), traz um único sentido, não dá palavras de outras línguas e não comenta dificuldade alguma.",
+    "motivo": "O texto antigo dizia que a frase não fala de 'mãos', o que é falso: a frase da imagem diz 'segurada com as mãos'. Tirei 'mãos' da lista.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "A frase não descreve a ilustração. Ela não fala da menina, do barquinho nem das cores; cita as mãos só porque elas fazem parte do significado da palavra árabe. Também não é 'técnica': é uma definição em linguagem simples.",
+    "motivo": "A afirmação antiga de que a frase 'não fala [...] das mãos em concha' engana o leitor, porque a frase cita as mãos ('segurada com as mãos'). Corrigi para não desmentir o que está no print.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Em imagens com texto escrito, o texto verbal (as palavras) e o visual (o desenho) se completam. O enunciado diz que a série traz ilustrações que transmitem o sentido de palavras sem tradução. Ao ver o texto escrito na imagem, pergunte: o que ele faz pelo leitor? Aqui ele diz o que a palavra significa.",
+    "motivo": "Explicar 'texto verbal' e 'visual' já na primeira aparição e deixar as frases mais diretas."
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "(Árabe) Gufra: 'A quantidade de água / que pode ser segurada / com as mãos'",
+    "motivo": "A conta não quebra linha na tela do celular; dividir em partes curtas evita estourar a largura."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "mãos em concha + água = 'gufra'",
+    "motivo": "Deixa a conta mais curta e legível no celular."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "A, B, D e E não batem com o texto",
+    "motivo": "A versão antiga era uma lista de perguntas; agora diz o resultado do passo."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "O texto traz um único sentido para 'gufra': a quantidade de água que cabe nas mãos. 'Múltiplos sentidos' exigiria mais de uma definição, e não há. Quem marcou B confundiu ilustração detalhada com vários significados.",
+    "motivo": "Dizer o que faltou no raciocínio de quem marcou B, como pede o bloco 'Por que eu errei'."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.passos[1].faz",
+    "depois": "Localize o texto verbal da imagem",
+    "motivo": "O passo pede para localizar e transcrever o texto, não para descrevê-lo. O verbo 'descreva' pode confundir com a alternativa A, que fala em descrever a ilustração. Esta correção é de precisão, não de estilo.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "C"
  }
 }

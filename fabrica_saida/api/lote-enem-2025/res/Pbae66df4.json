@@ -8,7 +8,7 @@
  "conceito": "Enzima como catalisador: reduz a energia de ativação sem alterar a energia de reagentes e produtos (nem o ΔH).",
  "resolucao": {
   "antes": {
-   "texto": "Enzima é um catalisador biológico. Ela cria um caminho alternativo para a reação, com barreira de energia menor. Por isso a reação fica mais rápida. A enzima não muda a energia de A (reagente) nem a de B (produto), então não muda o ΔH. No gráfico, só o 'morro' (o pico) fica mais baixo.",
+   "texto": "Enzima é um catalisador biológico. Ela abre um caminho alternativo para a reação, com barreira de energia menor, e por isso a reação fica mais rápida. A enzima não muda a energia de A (reagente) nem a de B (produto), então o ΔH continua o mesmo. No gráfico, só o pico (o 'morro') fica mais baixo.",
    "formulas": [
     "Ea = energia do pico − energia dos reagentes",
     "ΔH = H dos produtos − H dos reagentes",
@@ -39,30 +39,36 @@
     "faz": "Traduza o que a enzima faz",
     "conta": "enzima → catalisador",
     "porque": "Catalisador acelera a reação abaixando a energia de ativação, isto é, o pico da curva.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Defina o que deve ficar igual",
-    "conta": "A igual; B igual; ΔH igual",
+    "conta": "A igual, B igual\nΔH igual",
     "porque": "A enzima não muda a energia dos reagentes nem a dos produtos. As duas linhas começam e terminam nos mesmos níveis.",
-    "tipo": "aplicar"
+    "tipo": "comparar"
    },
    {
     "faz": "Defina o que deve mudar",
     "conta": "pontilhada: pico mais baixo",
     "porque": "Com a enzima, a barreira de energia é menor. A linha pontilhada passa mais baixa que a contínua.",
-    "tipo": "aplicar"
+    "tipo": "comparar"
    },
    {
     "faz": "Elimine os gráficos com A ou B deslocados",
-    "conta": "A: A diferente. B: B diferente. E: A e B diferentes",
+    "conta": "A: nível de A muda\nB: nível de B muda\nE: A e B mudam",
     "porque": "Nesses três, as linhas não começam ou não terminam no mesmo nível. Isso mudaria a energia de reagente ou produto, o que a enzima não faz.",
-    "tipo": "localizar"
+    "tipo": "eliminar"
    },
    {
     "faz": "Compare os picos de C e D",
-    "conta": "C: pontilhada abaixo. D: acima",
-    "porque": "Em C o pico da pontilhada (com enzima) é mais baixo. Em D é mais alto, o que seria um inibidor, não uma enzima.",
+    "conta": "C: pontilhada abaixo\nD: pontilhada acima",
+    "porque": "Em C o pico da pontilhada (com enzima) é mais baixo: a Ea diminuiu. Em D é mais alto, o que deixaria a reação mais lenta, o contrário do que um catalisador faz.",
+    "tipo": "comparar"
+   },
+   {
+    "faz": "Ligue o resultado à letra",
+    "conta": "pico menor com enzima → C",
+    "porque": "Em C os níveis de A e B ficam iguais e o pico da pontilhada fica mais baixo. Em D os níveis também coincidem, mas o pico sobe, o que não é efeito de enzima. É o que uma enzima faz.",
     "tipo": "concluir"
    }
   ],
@@ -79,7 +85,7 @@
   "essencial": {
    "pede": "O gráfico de energia que mostra o efeito de uma enzima (catalisador) sobre a reação A → B.",
    "chave": "Enzima baixa o pico (Ea) e mantém iguais os níveis de A e B, logo o ΔH não muda.",
-   "cuidado": "Não confundir pico mais baixo (catalisador) com pico mais alto (inibidor), nem mexer nos níveis de A e B."
+   "cuidado": "Não aceitar pico mais alto com enzima (seria reação mais lenta) nem mudar os níveis de A e B."
   }
  },
  "caminhos": [
@@ -106,10 +112,105 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[0].tipo",
+    "depois": "localizar",
+    "motivo": "O tipo 'interpretar' não está na lista permitida (localizar, calcular, comparar, eliminar, concluir). Este passo traduz o que o enunciado pede.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "comparar",
+    "motivo": "O tipo 'aplicar' não está na lista permitida. O passo compara a curva com enzima e a curva sem enzima.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "comparar",
+    "motivo": "O tipo 'aplicar' não está na lista permitida. O passo compara as duas curvas.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "eliminar",
+    "motivo": "O passo descarta as alternativas A, B e E, então o tipo certo é 'eliminar', e não 'localizar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "Em C o pico da pontilhada (com enzima) é mais baixo: a Ea diminuiu. Em D é mais alto, o que deixaria a reação mais lenta, o contrário do que um catalisador faz.",
+    "motivo": "Erro conceitual. Um inibidor reduz a ação da enzima, mas não cria uma barreira maior que a da reação sem enzima. Pico acima da curva sem enzima não representa um inibidor.",
+    "fonte": "OpenStax Chemistry 2e, seção 12.7 (Catalysis)"
+   },
+   {
+    "campo": "resolucao.essencial.cuidado",
+    "depois": "Não aceitar pico mais alto com enzima (seria reação mais lenta) nem mudar os níveis de A e B.",
+    "motivo": "Retira a mesma afirmação incorreta de que pico mais alto corresponde a um inibidor.",
+    "fonte": "OpenStax Chemistry 2e, seção 12.7 (Catalysis)"
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[4]",
+    "depois": {
+     "faz": "Compare os picos de C e D",
+     "conta": "C: pontilhada abaixo\nD: pontilhada acima",
+     "porque": "Em C o pico da pontilhada (com enzima) é mais baixo: a Ea diminuiu. Em D é mais alto, o que deixaria a reação mais lenta, o contrário do que um catalisador faz.",
+     "tipo": "comparar"
+    },
+    "motivo": "Os dois gráficos são comparados; a conclusão vai em passo próprio. A conta ficou curta para caber na tela."
+   },
+   {
+    "campo": "resolucao.passos[5]",
+    "depois": {
+     "faz": "Ligue o resultado à letra",
+     "conta": "pico menor com enzima → C",
+     "porque": "Só em C os níveis de A e B ficam iguais e o pico da pontilhada fica mais baixo. É o que uma enzima faz.",
+     "tipo": "concluir"
+    },
+    "motivo": "Todo passo precisa de uma ação clara, e o último deve concluir e ligar o resultado à letra."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "A: nível de A muda\nB: nível de B muda\nE: A e B mudam",
+    "motivo": "Texto mais claro e dividido em linhas curtas, para caber na tela do celular."
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "A igual, B igual\nΔH igual",
+    "motivo": "Linha mais curta e fácil de copiar."
+   },
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Enzima é um catalisador biológico. Ela abre um caminho alternativo para a reação, com barreira de energia menor, e por isso a reação fica mais rápida. A enzima não muda a energia de A (reagente) nem a de B (produto), então o ΔH continua o mesmo. No gráfico, só o pico (o 'morro') fica mais baixo.",
+    "motivo": "Frases mais diretas e sem ambiguidade."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.passos[5].porque",
+    "depois": "Em C os níveis de A e B ficam iguais e o pico da pontilhada fica mais baixo. Em D os níveis também coincidem, mas o pico sobe, o que não é efeito de enzima. É o que uma enzima faz.",
+    "motivo": "A frase 'só em C os níveis ficam iguais' era falsa: em D os níveis de A e B também coincidem.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "C"
  }
 }

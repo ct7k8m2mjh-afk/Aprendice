@@ -8,7 +8,7 @@
  "conceito": "Divisor de tensão em fio resistivo uniforme, com o amperímetro ideal ligando o ponto entre as lâmpadas ao fio.",
  "resolucao": {
   "antes": {
-   "texto": "O amperímetro ideal tem resistência desprezível e funciona como um fio. Ao ligar P (entre as lâmpadas) ao ponto X do fio QR, cada lâmpada fica em paralelo com um pedaço do fio: L1 com o trecho QX e L2 com o trecho XR. O fio é uniforme, então a tensão se distribui de forma proporcional ao comprimento. Para cada lâmpada funcionar como especificada, ela precisa receber a sua tensão nominal.",
+   "texto": "O amperímetro ideal tem resistência desprezível e funciona como um fio. Ao ligar P (entre as lâmpadas) ao ponto X do fio QR, cada lâmpada fica em paralelo com um pedaço do fio: L1 com o trecho QX e L2 com o trecho XR. O fio é uniforme, então a tensão se divide em partes proporcionais ao comprimento. Para cada lâmpada funcionar como especificada, ela precisa receber a sua tensão nominal (a tensão escrita nela).",
    "formulas": [
     "Em paralelo, a tensão é a mesma nos dois elementos",
     "Fio uniforme: tensão no trecho = V_QR × (comprimento do trecho ÷ 48 cm)"
@@ -25,16 +25,28 @@
     [
      "segmento",
      "cada um dos 6 pedaços iguais do fio, de 8 cm cada"
+    ],
+    [
+     "tensão nominal",
+     "tensão para a qual a lâmpada foi feita (6 V na L1, 12 V na L2)"
+    ],
+    [
+     "potencial",
+     "o 'nível' elétrico de um ponto; pontos ligados por fio ideal têm o mesmo"
+    ],
+    [
+     "em paralelo",
+     "dois elementos ligados entre os mesmos dois pontos, por isso com a mesma tensão"
     ]
    ]
   },
-  "pista": "Com o amperímetro ligado, quem fica em paralelo com quem? Compare a tensão de cada lâmpada com a de um pedaço do fio.",
+  "pista": "Com o amperímetro ligado, ele vira um fio. Então cada lâmpada fica ligada nas mesmas pontas de um pedaço do fio. Compare a tensão de cada lâmpada com a do seu pedaço.",
   "passos": [
    {
     "faz": "Veja o que o amperímetro faz",
     "conta": "P ligado a X por um fio",
-    "porque": "O amperímetro ideal é um curto. P e X ficam no mesmo potencial, e cada lâmpada fica em paralelo com um trecho do fio.",
-    "tipo": "interpretar"
+    "porque": "O amperímetro ideal age como um fio. P e X ficam no mesmo potencial, e cada lâmpada fica em paralelo com um trecho do fio.",
+    "tipo": "localizar"
    },
    {
     "faz": "Liste as tensões necessárias",
@@ -44,13 +56,13 @@
    },
    {
     "faz": "Ache a fração do fio para L1",
-    "conta": "6 V ÷ 18 V = 1/3",
-    "porque": "O fio é uniforme, então o trecho QX deve ter 1/3 da tensão total, ou seja, 1/3 do comprimento.",
+    "conta": "6/18 = 1/3",
+    "porque": "O fio é uniforme, então o trecho QX deve ter 1/3 da tensão total, ou seja, 1/3 do comprimento do fio.",
     "tipo": "calcular"
    },
    {
     "faz": "Converta a fração em segmentos",
-    "conta": "1/3 de 6 segmentos = 2",
+    "conta": "1/3 × 6 = 2 segmentos",
     "porque": "O ponto X fica a 2 segmentos de Q (16 cm de 48 cm).",
     "tipo": "calcular"
    },
@@ -62,7 +74,7 @@
    }
   ],
   "resposta": "Alternativa B: a 2 segmentos de Q, L1 fica com 6 V e L2 com 12 V, as tensões nominais.",
-  "checagem": "Em B: V_QB = 18 × 2/6 = 6 V e V_BR = 18 × 4/6 = 12 V. As lâmpadas têm R1 = 6² ÷ 9 = 4 Ω e R2 = 12² ÷ 18 = 8 Ω. As correntes são 6 ÷ 4 = 1,5 A e 12 ÷ 8 = 1,5 A, as correntes nominais P ÷ V, e as potências são 9 W e 18 W.",
+  "checagem": "Em B: V_QB = 18 × 2/6 = 6 V e V_BR = 18 × 4/6 = 12 V. As lâmpadas têm R1 = 6²/9 = 4 Ω e R2 = 12²/18 = 8 Ω. As correntes são 6/4 = 1,5 A e 12/8 = 1,5 A, iguais às nominais (P ÷ V). As potências ficam 9 W e 18 W. Como as duas correntes são iguais, pelo amperímetro passa 0 A.",
   "erradas": {
    "A": "Em A, o trecho QA tem 1/6 do fio. Com 18 V, L1 recebe 3 V (e não 6 V) e L2 recebe 15 V (e não 12 V). L1 fica abaixo da especificação e L2 acima.",
    "C": "Em C, o fio é dividido ao meio. Com 18 V, cada lâmpada recebe 9 V. L1 (nominal 6 V) fica sobrecarregada e L2 (nominal 12 V) fica abaixo do nominal.",
@@ -89,24 +101,32 @@
  ],
  "quadro": [
   {
-   "linha": "V_L1 = 6 V, V_L2 = 12 V",
-   "nota": "tensões nominais das lâmpadas"
+   "linha": "V_L1 = 6 V",
+   "nota": "tensão nominal da L1"
+  },
+  {
+   "linha": "V_L2 = 12 V",
+   "nota": "tensão nominal da L2"
   },
   {
    "linha": "V_QR = 6 + 12 = 18 V",
    "nota": "o fio recebe a soma das duas tensões"
   },
   {
-   "linha": "V_QX ÷ V_QR = 6 ÷ 18 = 1/3",
+   "linha": "V_QX/V_QR = 6/18 = 1/3",
    "nota": "fração do fio que L1 ocupa"
   },
   {
-   "linha": "n = 6 × 1/3 = 2 segmentos",
-   "nota": "distância de Q até X, em segmentos"
+   "linha": "n = 1/3 × 6",
+   "nota": "fração vezes o total de segmentos"
   },
   {
-   "linha": "Q → A → B: ponto B",
-   "nota": "dois segmentos depois de Q"
+   "linha": "n = 2 segmentos",
+   "nota": "distância de Q até X"
+  },
+  {
+   "linha": "Q → A (1) → B (2): ponto B",
+   "nota": "contando a partir de Q"
   }
  ],
  "visual": {
@@ -122,10 +142,163 @@
  "gab": "B",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[0].tipo",
+    "depois": "localizar",
+    "motivo": "O tipo 'interpretar' não está na lista permitida (localizar, calcular, comparar, eliminar, concluir). O passo lê a função do amperímetro no circuito do enunciado, então o tipo é 'localizar'.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "O amperímetro ideal tem resistência desprezível e funciona como um fio. Ao ligar P (entre as lâmpadas) ao ponto X do fio QR, cada lâmpada fica em paralelo com um pedaço do fio: L1 com o trecho QX e L2 com o trecho XR. O fio é uniforme, então a tensão se divide em partes proporcionais ao comprimento. Para cada lâmpada funcionar como especificada, ela precisa receber a sua tensão nominal (a tensão escrita nela).",
+    "motivo": "Explica 'tensão nominal' e troca 'se distribui de forma proporcional' por frase mais simples."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "V_QR",
+      "tensão da bateria, aplicada entre as pontas Q e R do fio"
+     ],
+     [
+      "amperímetro ideal",
+      "aparelho que mede corrente e tem resistência desprezível, como um fio"
+     ],
+     [
+      "segmento",
+      "cada um dos 6 pedaços iguais do fio, de 8 cm cada"
+     ],
+     [
+      "tensão nominal",
+      "tensão para a qual a lâmpada foi feita (6 V na L1, 12 V na L2)"
+     ],
+     [
+      "potencial",
+      "o 'nível' elétrico de um ponto; pontos ligados por fio ideal têm o mesmo"
+     ],
+     [
+      "em paralelo",
+      "dois elementos ligados entre os mesmos dois pontos, por isso com a mesma tensão"
+     ]
+    ],
+    "motivo": "Termos 'nominal', 'potencial' e 'paralelo' apareciam sem explicação."
+   },
+   {
+    "campo": "resolucao.pista",
+    "depois": "Com o amperímetro ligado, ele vira um fio. Então cada lâmpada fica ligada nas mesmas pontas de um pedaço do fio. Compare a tensão de cada lâmpada com a do seu pedaço.",
+    "motivo": "Pista mais clara, sem entregar a resposta."
+   },
+   {
+    "campo": "resolucao.passos[0].porque",
+    "depois": "O amperímetro ideal age como um fio. P e X ficam no mesmo potencial, e cada lâmpada fica em paralelo com um trecho do fio.",
+    "motivo": "Frase mais direta."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "\\frac{6}{18} = \\frac{1}{3}",
+    "motivo": "Fração empilhada."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "O fio é uniforme, então o trecho QX deve ter 1/3 da tensão total, ou seja, 1/3 do comprimento do fio.",
+    "motivo": "Mais clareza."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "\\frac{1}{3} \\times 6 = 2 segmentos",
+    "motivo": "Fração empilhada e conta visível."
+   },
+   {
+    "campo": "resolucao.quadro",
+    "depois": [
+     {
+      "linha": "V_L1 = 6 V",
+      "nota": "tensão nominal da L1"
+     },
+     {
+      "linha": "V_L2 = 12 V",
+      "nota": "tensão nominal da L2"
+     },
+     {
+      "linha": "V_QR = 6 + 12 = 18 V",
+      "nota": "o fio recebe a soma das duas tensões"
+     },
+     {
+      "linha": "\\frac{V_QX}{V_QR} = \\frac{6}{18} = \\frac{1}{3}",
+      "nota": "fração do fio que L1 ocupa"
+     },
+     {
+      "linha": "n = \\frac{1}{3} \\times 6",
+      "nota": "fração vezes o total de segmentos"
+     },
+     {
+      "linha": "n = 2 segmentos",
+      "nota": "distância de Q até X"
+     },
+     {
+      "linha": "Q → A (1) → B (2): ponto B",
+      "nota": "contando a partir de Q"
+     }
+    ],
+    "motivo": "Um passo por linha, frações empilhadas, sem pular passagens."
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Em B: V_QB = 18 × \\frac{2}{6} = 6 V e V_BR = 18 × \\frac{4}{6} = 12 V. As lâmpadas têm R1 = \\frac{6²}{9} = 4 Ω e R2 = \\frac{12²}{18} = 8 Ω. As correntes são \\frac{6}{4} = 1,5 A e \\frac{12}{8} = 1,5 A, iguais às nominais (P ÷ V). As potências ficam 9 W e 18 W.",
+    "motivo": "Frações empilhadas."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "6/18 = 1/3",
+    "motivo": "Sem LaTeX; o site desenha a fração a partir de numerador/denominador",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "1/3 × 6 = 2 segmentos",
+    "motivo": "Sem LaTeX",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.quadro[3].linha",
+    "depois": "V_QX/V_QR = 6/18 = 1/3",
+    "motivo": "Sem LaTeX",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.quadro[4].linha",
+    "depois": "n = 1/3 × 6",
+    "motivo": "Sem LaTeX",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Em B: V_QB = 18 × 2/6 = 6 V e V_BR = 18 × 4/6 = 12 V. As lâmpadas têm R1 = 6²/9 = 4 Ω e R2 = 12²/18 = 8 Ω. As correntes são 6/4 = 1,5 A e 12/8 = 1,5 A, iguais às nominais (P ÷ V). As potências ficam 9 W e 18 W. Como as duas correntes são iguais, pelo amperímetro passa 0 A.",
+    "motivo": "Sem LaTeX; acrescenta a corrente nula no amperímetro, que é coerente com o circuito",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "B"
  }
 }

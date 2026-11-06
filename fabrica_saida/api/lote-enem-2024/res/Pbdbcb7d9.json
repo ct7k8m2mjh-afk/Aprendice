@@ -44,18 +44,18 @@
     "faz": "Interprete o texto sobre a fibra branca",
     "conta": "\"poucas mitocôndrias\" + \"menor suprimento sanguíneo\"",
     "porque": "Poucas mitocôndrias e pouco oxigênio significam pouca produção de ATP por respiração. A fibra branca serve para esforço curto e intenso, e cansa rápido.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Classifique cada prova",
-    "conta": "Triatlo, marcha, maratona, ciclismo: horas",
+    "conta": "Triatlo, marcha, maratona, ciclismo: duram horas",
     "porque": "Triatlo, marcha atlética, maratona aquática e ciclismo em estrada duram de dezenas de minutos a horas. Exigem resistência, que é função da fibra vermelha.",
     "tipo": "comparar"
    },
    {
     "faz": "Ache o esforço explosivo",
     "conta": "Salto em altura: poucos segundos",
-    "porque": "O salto em altura é uma contração muito forte e rápida, com pausa longa entre as tentativas. É o caso em que a fibra branca ajuda.",
+    "porque": "O salto em altura é uma contração muito forte e rápida, com pausa longa entre as tentativas. Não precisa manter o esforço por muito tempo. É o caso em que a fibra branca ajuda.",
     "tipo": "comparar"
    },
    {
@@ -68,10 +68,10 @@
   "resposta": "Alternativa B: salto em altura é um esforço curto e explosivo, que usa bem as fibras brancas (rápidas); as outras provas pedem resistência, função das fibras vermelhas.",
   "checagem": "Inverta a pergunta: quem tem mais fibras vermelhas (muitas mitocôndrias e muito sangue) se sairia bem em esforço longo. Os quatro esportes restantes são todos longos, e só o salto sobra como esforço curto.",
   "erradas": {
-   "A": "O triatlo soma natação, ciclismo e corrida e dura horas. Esforço contínuo e longo exige muito ATP com oxigênio, ou seja, muitas mitocôndrias e muito sangue: fibras vermelhas. Quem tem mais fibras brancas se cansa cedo.",
-   "C": "A marcha atlética é uma caminhada de longa distância, mantida por muito tempo. É prova de resistência, favorecida por fibras vermelhas, ricas em mitocôndrias e vasos sanguíneos.",
-   "D": "A maratona aquática é nado de longa distância, muitas vezes em torno de 10 km e com horas de duração. Pede resistência, função das fibras vermelhas. As fibras brancas, com poucas mitocôndrias, se esgotariam cedo.",
-   "E": "O ciclismo em estrada dura horas, com pedalada contínua. Pede produção constante de ATP com oxigênio, o que é feito pelas fibras vermelhas."
+   "A": "O triatlo soma natação, ciclismo e corrida e dura horas. Esforço longo exige ATP com oxigênio: muitas mitocôndrias e muito sangue, ou seja, fibras vermelhas. Quem tem mais fibras brancas cansa cedo. Faltou ver a duração da prova.",
+   "C": "A marcha atlética é caminhada de longa distância, mantida por muito tempo. É prova de resistência, favorecida pelas fibras vermelhas. Quem marcou C pensou em força e esqueceu que a prova é longa.",
+   "D": "A maratona aquática é nado de longa distância, com horas de duração. Pede resistência, função das fibras vermelhas. As fibras brancas, com poucas mitocôndrias, se esgotariam cedo. Faltou perceber que a palavra maratona indica esforço longo.",
+   "E": "O ciclismo em estrada dura horas, com pedalada contínua. Pede produção constante de ATP com oxigênio, feita pelas fibras vermelhas. Quem marcou E associou pedalar a força de perna e não olhou o tempo de esforço."
   },
   "armadilha": "Marcar uma prova de resistência por achar que \"mais fibras\" ou \"mais força\" sempre ajuda; a fibra branca fornece força rápida, mas cansa logo.",
   "alerta": "",
@@ -95,7 +95,7 @@
  "visual": {
   "cabe": true,
   "porque": "Comparar as duas fibras e o que cada uma faz durante o esforço ajuda a fixar a ligação entre estrutura e função.",
-  "tipo": "diagrama",
+  "tipo": "animacao",
   "roteiro": "Quadro 1: duas fibras lado a lado. A vermelha mostra muitas mitocôndrias (círculos alaranjados) e vasos sanguíneos próximos trazendo O₂; a branca mostra poucas mitocôndrias e um vaso distante. Quadro 2: uma barra de tempo. Na fibra vermelha, o ATP é produzido pelas mitocôndrias, com a barra de energia se mantendo cheia por muito tempo (símbolos de triatlo, maratona, ciclismo, marcha). Quadro 3: na fibra branca, a barra de energia começa alta, dá um pico de força e cai rápido (símbolo do salto em altura). Quadro 4: o texto 'fibra branca → esforço curto e explosivo → salto em altura' aparece destacado."
  },
  "fontes": [],
@@ -105,10 +105,80 @@
  "gab": "B",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "localizar",
+    "motivo": "O tipo 'interpretar' não faz parte da lista permitida (localizar, calcular, comparar, eliminar, concluir). Neste passo o aluno acha no texto as características da fibra branca ('poucas mitocôndrias', 'menor suprimento sanguíneo') e as lê. Por isso o tipo certo é localizar.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "O músculo esquelético tem dois tipos principais de fibra. A fibra vermelha (lenta) tem muitas mitocôndrias e muito sangue: produz ATP com oxigênio por muito tempo, então serve para esforço longo e contínuo. A fibra branca (rápida) tem poucas mitocôndrias: dá força intensa, mas cansa rápido. O trabalho real da questão é classificar cada prova como esforço longo ou esforço curto e explosivo.",
+    "motivo": "Texto já adequado; mantido sem alteração de conteúdo."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "Triatlo, marcha, maratona, ciclismo: duram horas",
+    "motivo": "Deixa claro o que se classificou; conta curta o bastante para a tela."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "O salto em altura é uma contração muito forte e rápida, com pausa longa entre as tentativas. Não precisa manter o esforço por muito tempo. É o caso em que a fibra branca ajuda.",
+    "motivo": "Explica por que a falta de resistência não atrapalha nessa prova."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "O triatlo soma natação, ciclismo e corrida e dura horas. Esforço longo exige ATP com oxigênio: muitas mitocôndrias e muito sangue, ou seja, fibras vermelhas. Quem tem mais fibras brancas cansa cedo. Faltou ver a duração da prova.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou A."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "A marcha atlética é caminhada de longa distância, mantida por muito tempo. É prova de resistência, favorecida pelas fibras vermelhas. Quem marcou C pensou em força e esqueceu que a prova é longa.",
+    "motivo": "Mostra o raciocínio faltante."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "A maratona aquática é nado de longa distância, com horas de duração. Pede resistência, função das fibras vermelhas. As fibras brancas, com poucas mitocôndrias, se esgotariam cedo. Faltou perceber que a palavra maratona indica esforço longo.",
+    "motivo": "Mostra o que faltou e evita o número solto (10 km) não necessário."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "O ciclismo em estrada dura horas, com pedalada contínua. Pede produção constante de ATP com oxigênio, feita pelas fibras vermelhas. Quem marcou E associou pedalar a força de perna e não olhou o tempo de esforço.",
+    "motivo": "Mostra o raciocínio faltante."
+   },
+   {
+    "campo": "resolucao.visual.tipo",
+    "depois": "animacao",
+    "motivo": "Em Biologia o visual deve animar o que acontece (a barra de energia caindo ou se mantendo)."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "conteudo",
+    "depois": "B07.7",
+    "motivo": "Conferido: B07.7 (músculo e esqueleto, fibras lentas e rápidas) é o código correto. A classificação atual no banco, B07.1, é a dos tecidos fundamentais. O nível 3 da resolução também é plausível. Sem alteração de conteúdo.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "B"
  }
 }

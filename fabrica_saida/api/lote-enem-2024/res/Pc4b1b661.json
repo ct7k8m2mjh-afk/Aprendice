@@ -33,13 +33,13 @@
    {
     "faz": "Ache o raio da embalagem 1",
     "conta": "h = 20 ; 2πr = 10",
-    "porque": "Na embalagem 1 a altura é 20 cm. O lado de 10 cm dá a volta na base e é o comprimento da circunferência. Daí r = 10/(2π) = 5/π cm.",
+    "porque": "Na embalagem 1 a altura é 20 cm. O lado de 10 cm dá a volta na base e é o comprimento da circunferência. Então r = 10 ÷ (2π) = 5/π cm.",
     "tipo": "calcular"
    },
    {
     "faz": "Calcule o volume da embalagem 1",
     "conta": "V1 = π × (5/π)² × 20",
-    "porque": "(5/π)² = 25/π². O π de fora cancela um dos π de baixo: V1 = 25 × 20/π = 500/π cm³.",
+    "porque": "Elevar ao quadrado: (5/π)² = 25/π². O π de fora cancela com um dos dois π de baixo. Sobra 25 × 20 ÷ π = 500/π cm³.",
     "tipo": "calcular"
    },
    {
@@ -51,18 +51,18 @@
    {
     "faz": "Calcule o volume da embalagem 2",
     "conta": "V2 = π × (10/π)² × 10",
-    "porque": "(10/π)² = 100/π². Cancelando um π: V2 = 100 × 10/π = 1000/π cm³.",
+    "porque": "Elevar ao quadrado: (10/π)² = 100/π². O π de fora cancela com um dos dois π de baixo. Sobra 100 × 10 ÷ π = 1000/π cm³.",
     "tipo": "calcular"
    },
    {
     "faz": "Compare e conclua",
     "conta": "1000/π > 500/π",
-    "porque": "A embalagem 2 tem o dobro do volume da 1. A de maior capacidade tem 1000/π cm³.",
+    "porque": "Os dois volumes têm o mesmo π embaixo, então basta comparar 1000 com 500. A embalagem 2 tem o dobro do volume da 1.",
     "tipo": "concluir"
    }
   ],
   "resposta": "Alternativa D: a embalagem 2 (altura 10 cm, raio 10/π cm) tem o maior volume, 1000/π cm³.",
-  "checagem": "O volume também é V = (C² × h)/(4π), onde C é o comprimento da circunferência. Embalagem 1: (10² × 20)/(4π) = 2000/(4π) = 500/π. Embalagem 2: (20² × 10)/(4π) = 4000/(4π) = 1000/π. Confere.",
+  "checagem": "Outro caminho: como r = C ÷ (2π), vale V = C² × h ÷ (4π), com C = comprimento da circunferência. Embalagem 1: 10² × 20 ÷ (4π) = 2000/(4π) = 500/π. Embalagem 2: 20² × 10 ÷ (4π) = 4000/(4π) = 1000/π. Confere.",
   "erradas": {
    "A": "4000π vem de usar 20 como raio e 10 como altura: π × 20² × 10 = 4000π. Mas 20 cm é o comprimento da circunferência, não o raio.",
    "B": "2000π vem de usar 10 como raio e 20 como altura: π × 10² × 20 = 2000π. Mas 10 cm é o comprimento da circunferência, não o raio.",
@@ -84,7 +84,7 @@
   },
   {
    "nome": "eliminação por raciocínio",
-   "ideia": "O raio é menor que o lado da folha (um raio de 10 ou 20 cm daria uma circunferência de 60 cm ou mais, maior que a folha). Isso derruba A e B, que têm π no numerador. Resta comparar 2 volumes."
+   "ideia": "O lado da folha é o comprimento da circunferência, então o raio é bem menor que ele (r = lado ÷ 6,28). Raio de 10 ou 20 cm daria circunferência de 63 cm ou mais, maior que a folha. Isso derruba A e B, que têm π no numerador. Resta comparar C, D e E."
   }
  ],
  "quadro": [
@@ -94,7 +94,7 @@
   },
   {
    "linha": "r = 10/(2π) = 5/π",
-   "nota": "o 2 passa dividindo"
+   "nota": "o 2π passa dividindo"
   },
   {
    "linha": "V1 = π × 25/π² × 20",
@@ -119,7 +119,7 @@
   },
   {
    "linha": "r = 20/(2π) = 10/π",
-   "nota": "o 2 passa dividindo"
+   "nota": "o 2π passa dividindo"
   },
   {
    "linha": "V2 = π × 100/π² × 10",
@@ -153,10 +153,74 @@
  "gab": "D",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "quadro[1].nota",
+    "depois": "o 2π passa dividindo",
+    "motivo": "De 2πr = 10 para r = 10/(2π), o fator que passa dividindo é o 2π inteiro, e não só o 2.",
+    "fonte": ""
+   },
+   {
+    "campo": "quadro[5].nota",
+    "depois": "o 2π passa dividindo",
+    "motivo": "De 2πr = 20 para r = 20/(2π), o fator que passa dividindo é o 2π inteiro, e não só o 2.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[0].conta",
+    "depois": "h = 20 ; 2πr = 10",
+    "motivo": "Mantida; o porque abaixo ficou mais curto e claro."
+   },
+   {
+    "campo": "resolucao.passos[0].porque",
+    "depois": "Na embalagem 1 a altura é 20 cm. O lado de 10 cm dá a volta na base e é o comprimento da circunferência. Então r = 10 ÷ (2π) = 5/π cm.",
+    "motivo": "Frase mais simples e sem 'Daí'."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "Elevar ao quadrado: (5/π)² = 25/π². O π de fora cancela com um dos dois π de baixo. Sobra 25 × 20 ÷ π = 500/π cm³.",
+    "motivo": "Explica o cancelamento passo a passo."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Elevar ao quadrado: (10/π)² = 100/π². O π de fora cancela com um dos dois π de baixo. Sobra 100 × 10 ÷ π = 1000/π cm³.",
+    "motivo": "Mesma clareza do passo da embalagem 1."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "Os dois volumes têm o mesmo π embaixo, então basta comparar 1000 com 500. A embalagem 2 tem o dobro do volume da 1.",
+    "motivo": "Explica por que a comparação é direta."
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Outro caminho: como r = C ÷ (2π), vale V = C² × h ÷ (4π), com C = comprimento da circunferência. Embalagem 1: 10² × 20 ÷ (4π) = 2000/(4π) = 500/π. Embalagem 2: 20² × 10 ÷ (4π) = 4000/(4π) = 1000/π. Confere.",
+    "motivo": "Explica o símbolo C antes de usá-lo."
+   },
+   {
+    "campo": "resolucao.caminhos[1].ideia",
+    "depois": "O lado da folha é o comprimento da circunferência, então o raio é bem menor que ele (r = lado ÷ 6,28). Raio de 10 ou 20 cm daria circunferência de 63 cm ou mais, maior que a folha. Isso derruba A e B, que têm π no numerador. Resta comparar C, D e E.",
+    "motivo": "Corrige a conta de 'raio de 10 ou 20 cm daria 60 cm' e a contagem de opções restantes (sobram 3 alternativas, não 2 volumes)."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "D"
  }
 }

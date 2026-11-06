@@ -8,7 +8,7 @@
  "conceito": "Pressão exercida por uma pilha de material: p = d × g × h (peso ÷ área), com limite de pressão da laje.",
  "resolucao": {
   "antes": {
-   "texto": "Pressão é a força (aqui, o peso do produto) dividida pela área onde ela se apoia. Para uma pilha com altura h e densidade d, o peso é m × g e a massa é d × V, com V = A × h. A área aparece no numerador e no denominador e cancela, então a pressão fica p = d × g × h. Por isso os 50 m² do enunciado não entram na conta.",
+   "texto": "Pressão é a força (aqui, o peso do produto) dividida pela área onde ela se apoia. Imagine a pilha como um bloco com base de área A e altura h. Sua massa é a densidade vezes o volume, e o volume é A × h. Na divisão peso ÷ área, o A aparece em cima e embaixo e cancela. Sobra p = d × g × h. Por isso os 50 m² do enunciado não entram na conta.",
    "formulas": [
     "p = F ÷ A",
     "F = m × g e m = d × V",
@@ -43,13 +43,13 @@
     "faz": "Escreva a pressão na laje",
     "conta": "p = F ÷ A = (m × g) ÷ A",
     "porque": "A pressão é o peso do produto espalhado sobre a área da laje.",
-    "tipo": "aplicar"
+    "tipo": "calcular"
    },
    {
     "faz": "Troque a massa por densidade × volume",
     "conta": "m = d × A × h",
     "porque": "O produto empilhado forma um bloco de base A e altura h; seu volume é A × h.",
-    "tipo": "aplicar"
+    "tipo": "calcular"
    },
    {
     "faz": "Cancele a área",
@@ -60,12 +60,12 @@
    {
     "faz": "Isole a altura e use o limite",
     "conta": "h = 10⁴ ÷ (1250 × 10)",
-    "porque": "A pressão máxima suportada é 10⁴ Pa. Nesse valor, a altura é a máxima.",
+    "porque": "A laje aguenta até 10⁴ Pa. A pilha mais alta possível é a que chega exatamente nesse valor. Por isso h = p ÷ (d × g).",
     "tipo": "calcular"
    },
    {
-    "faz": "Faça a divisão",
-    "conta": "h = 10000 ÷ 12500 = 0,80 m",
+    "faz": "Calcule o denominador e divida",
+    "conta": "1250 × 10 = 12500; h = 10000 ÷ 12500 = 0,8 m",
     "porque": "1250 × 10 = 12500, e 10000 ÷ 12500 = 0,8.",
     "tipo": "concluir"
    }
@@ -73,10 +73,10 @@
   "resposta": "Alternativa C: a altura máxima é 0,80 m, pois h = p ÷ (d × g) = 10⁴ ÷ 12 500.",
   "checagem": "Teste a unidade: kg/m³ × m/s² × m = (kg × m/s²) ÷ m² = N/m² = Pa. Teste o valor: 1250 × 10 × 0,8 = 10 000 Pa, que é exatamente o limite.",
   "erradas": {
-   "A": "0,16 m não confere. Substituindo na fórmula: p = 1250 × 10 × 0,16 = 2000 Pa, bem abaixo do limite de 10⁴ Pa. A laje aguentaria uma pilha bem mais alta.",
-   "B": "0,50 m não é o máximo. Com h = 0,5 m: p = 1250 × 10 × 0,5 = 6250 Pa, menor que 10⁴ Pa. Ainda sobra folga.",
-   "D": "1,60 m passa do limite. Com h = 1,6 m: p = 1250 × 10 × 1,6 = 20 000 Pa, o dobro de 10⁴ Pa. É o dobro da altura certa.",
-   "E": "8,00 m daria p = 1250 × 10 × 8 = 100 000 Pa, dez vezes o limite da laje. A laje não suportaria."
+   "A": "0,16 m sai de usar os 50 m² no lugar de g: 10⁴ ÷ (1250 × 50) = 0,16. A área cancela, então não entra. Teste: p = 1250 × 10 × 0,16 = 2000 Pa, muito abaixo de 10⁴ Pa, e a laje aguentaria mais.",
+   "B": "0,50 m é seguro, mas não é o máximo. Com h = 0,5 m: p = 1250 × 10 × 0,5 = 6250 Pa, menor que 10⁴ Pa. Faltou usar o limite exato da laje, e não um valor qualquer abaixo dele.",
+   "D": "1,60 m não confere: passa do limite e é o dobro da altura certa. Com h = 1,6 m: p = 1250 × 10 × 1,6 = 20 000 Pa, o dobro de 10⁴ Pa, e a laje não aguentaria.",
+   "E": "8,00 m sai de esquecer o g: 10⁴ ÷ 1250 = 8. Com h = 8 m: p = 1250 × 10 × 8 = 100 000 Pa, dez vezes o limite. Faltou incluir o g, que transforma massa em peso."
   },
   "armadilha": "Usar os 50 m² na conta como se a altura dependesse da área; a área cancela na pressão de uma pilha.",
   "alerta": "",
@@ -157,10 +157,105 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[0].tipo",
+    "depois": "calcular",
+    "motivo": "O tipo 'aplicar' não existe no padrão. Os tipos válidos são localizar, calcular, comparar, eliminar e concluir.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "calcular",
+    "motivo": "O tipo 'aplicar' não existe no padrão. Os tipos válidos são localizar, calcular, comparar, eliminar e concluir.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "0,16 m sai de usar a área de 50 m² no lugar de g: 10⁴ ÷ (1250 × 50) = 0,16. Teste: p = 1250 × 10 × 0,16 = 2000 Pa, bem abaixo de 10⁴ Pa, então a laje aguentaria uma pilha mais alta.",
+    "motivo": "Existe um erro real que chega exatamente a esse valor (10000 ÷ 62500 = 0,16). O guia pede 'sai de…' quando há essa origem.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "8,00 m sai de esquecer o g: 10⁴ ÷ 1250 = 8. Com h = 8 m, p = 1250 × 10 × 8 = 100 000 Pa, dez vezes o limite da laje.",
+    "motivo": "Existe um erro real que chega exatamente a esse valor (10000 ÷ 1250 = 8). O guia pede 'sai de…' quando há essa origem.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Pressão é a força (aqui, o peso do produto) dividida pela área onde ela se apoia. Imagine a pilha como um bloco com base de área A e altura h. Sua massa é a densidade vezes o volume, e o volume é A × h. Na divisão peso ÷ área, o A aparece em cima e embaixo e cancela. Sobra p = d × g × h. Por isso os 50 m² do enunciado não entram na conta.",
+    "motivo": "Frases mais curtas e sequência natural; a pilha é explicada como um bloco."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "h = 10⁴ ÷ (1250 × 10)",
+    "motivo": "Mantida; o ajuste está no porque."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "A laje aguenta até 10⁴ Pa. A pilha mais alta possível é a que chega exatamente nesse valor. Por isso h = p ÷ (d × g).",
+    "motivo": "Explica por que se usa o limite e por que a conta é uma divisão."
+   },
+   {
+    "campo": "resolucao.passos[4].faz",
+    "depois": "Calcule o denominador e divida",
+    "motivo": "O passo tem duas ações (multiplicar e dividir); o comando agora diz isso."
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "1250 × 10 = 12500; h = 10000 ÷ 12500 = 0,8 m",
+    "motivo": "Mostra a multiplicação e a divisão em ordem."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "0,16 m sai de usar os 50 m² no lugar de g: 10⁴ ÷ (1250 × 50) = 0,16. A área cancela, então não entra. Teste: p = 1250 × 10 × 0,16 = 2000 Pa, muito abaixo de 10⁴ Pa, e a laje aguentaria mais.",
+    "motivo": "Diz o que faltou no raciocínio: perceber que a área cancela."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "0,50 m é seguro, mas não é o máximo. Com h = 0,5 m: p = 1250 × 10 × 0,5 = 6250 Pa, menor que 10⁴ Pa. Faltou usar o limite exato da laje, e não um valor qualquer abaixo dele.",
+    "motivo": "Explica o que faltou: igualar a pressão ao limite."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "1,60 m passa do limite e é o dobro da altura certa. Com h = 1,6 m: p = 1250 × 10 × 1,6 = 20 000 Pa, o dobro de 10⁴ Pa. Provavelmente faltou conferir o resultado na fórmula.",
+    "motivo": "Mantém o teste e indica o que faltou: conferir o resultado."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "8,00 m sai de esquecer o g: 10⁴ ÷ 1250 = 8. Com h = 8 m: p = 1250 × 10 × 8 = 100 000 Pa, dez vezes o limite. Faltou incluir o g, que transforma massa em peso.",
+    "motivo": "Diz o que faltou: a aceleração da gravidade converte massa em força."
+   }
+  ],
+  "didatica_alertas": [
+   "O campo 'tema' está F04/F04.3, mas a classificação informada no cabeçalho é F07/F07.1 (gases). Para pressão e densidade, F04.3 é o correto; vale confirmar no banco."
+  ],
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "1,60 m não confere: passa do limite e é o dobro da altura certa. Com h = 1,6 m: p = 1250 × 10 × 1,6 = 20 000 Pa, o dobro de 10⁴ Pa, e a laje não aguentaria.",
+    "motivo": "Remove a especulação ('Provavelmente'), proibida no guia; mantém o teste objetivo.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "C"
  }
 }

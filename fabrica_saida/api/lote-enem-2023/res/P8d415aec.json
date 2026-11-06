@@ -33,27 +33,33 @@
     "tipo": "localizar"
    },
    {
-    "faz": "Calcule segunda e terça",
+    "faz": "Calcule o total da segunda-feira",
     "conta": "Seg: 248+382+0+984 = 1614",
-    "porque": "Segunda: 1,0×248 = 248; 0,5×764 = 382; 0×356 = 0; 2,0×492 = 984. Terça: 124+764+178+492 = 1558.",
+    "porque": "Multiplique as horas de cada atividade pelo cal/h: 1,0×248 = 248; 0,5×764 = 382; 0×356 = 0; 2,0×492 = 984. Depois some.",
     "tipo": "calcular"
    },
    {
-    "faz": "Calcule quarta",
+    "faz": "Calcule o total da terça-feira",
+    "conta": "Ter: 124+764+178+492 = 1558",
+    "porque": "0,5×248 = 124; 1,0×764 = 764; 0,5×356 = 178; 1,0×492 = 492. A soma é 1558 cal.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Calcule o total da quarta-feira",
     "conta": "Qua: 0+1146+356+246 = 1748",
-    "porque": "1,5×764 = 1146; 1,0×356 = 356; 0,5×492 = 246. A soma é 1748 cal.",
+    "porque": "1,5×764 = 1146; 1,0×356 = 356; 0,5×492 = 246. A caminhada vale 0, pois são 0,0 h. A soma é 1748 cal.",
     "tipo": "calcular"
    },
    {
     "faz": "Calcule quinta e sexta",
-    "conta": "Qui: 2×764 = 1528",
-    "porque": "Quinta só tem 2,0 h de corrida. Sexta: 0,5×764 = 382 mais 2,5×492 = 1230, total 1612.",
+    "conta": "Qui: 2,0×764 = 1528",
+    "porque": "Quinta só tem 2,0 h de corrida, então o total é 1528. Sexta: 0,5×764 = 382 e 2,5×492 = 1230. A soma é 1612.",
     "tipo": "calcular"
    },
    {
     "faz": "Compare os cinco totais",
     "conta": "1748 > 1614 > 1612 > 1558 > 1528",
-    "porque": "O maior total é o da quarta-feira, 1748 cal. É a alternativa C.",
+    "porque": "O maior total é o da quarta-feira, 1748 cal. Isso corresponde à alternativa C.",
     "tipo": "concluir"
    }
   ],
@@ -65,7 +71,7 @@
    "D": "Quinta-feira só tem 2,0 h de corrida: 2 × 764 = 1528 cal. A corrida é a atividade que mais gasta por hora, mas o dia não tem outra atividade e perde para a quarta (1748).",
    "E": "Sexta-feira soma 0,5 × 764 + 2,5 × 492 = 382 + 1230 = 1612 cal. Tem mais horas de futebol, mas fica 136 cal abaixo da quarta (1748)."
   },
-  "armadilha": "Escolher o dia pela atividade mais calórica (corrida, quinta) ou pelo dia com mais horas de exercício (sexta) em vez de calcular o total de cada dia.",
+  "armadilha": "Escolher o dia pela atividade mais calórica (corrida, quinta) ou pelo dia com mais horas de exercício (segunda, 3,5 h) em vez de calcular o total de cada dia.",
   "alerta": "",
   "essencial": {
    "pede": "O dia da semana com o maior gasto calórico total.",
@@ -85,15 +91,19 @@
  ],
  "quadro": [
   {
-   "linha": "Seg = 248 + 382 + 0 + 984",
-   "nota": "1,0×248; 0,5×764; 0; 2,0×492"
+   "linha": "Seg = 1,0×248 + 0,5×764",
+   "nota": "horas × cal/h, atividade a atividade"
   },
   {
-   "linha": "Seg = 1614",
+   "linha": "      + 0×356 + 2,0×492",
+   "nota": "continua a soma da segunda"
+  },
+  {
+   "linha": "Seg = 248+382+0+984 = 1614",
    "nota": "some as quatro parcelas"
   },
   {
-   "linha": "Ter = 124 + 764 + 178 + 492",
+   "linha": "Ter = 124+764+178+492",
    "nota": "0,5×248; 1,0×764; 0,5×356; 1,0×492"
   },
   {
@@ -101,7 +111,7 @@
    "nota": "some as quatro parcelas"
   },
   {
-   "linha": "Qua = 0 + 1146 + 356 + 246",
+   "linha": "Qua = 0+1146+356+246",
    "nota": "1,5×764; 1,0×356; 0,5×492",
    "destaque": "1146"
   },
@@ -137,10 +147,134 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.armadilha",
+    "depois": "Escolher o dia pela atividade mais calórica (corrida, quinta) ou pelo dia com mais horas de exercício (segunda, 3,5 h) em vez de calcular o total de cada dia.",
+    "motivo": "O dia com mais horas de exercício é a segunda, não a sexta. Total de horas: Seg 1,0 + 0,5 + 0 + 2,0 = 3,5 h; Ter 3,0 h; Qua 3,0 h; Qui 2,0 h; Sex 0,5 + 2,5 = 3,0 h. A sexta só lidera nas horas de futebol, como diz corretamente erradas.E.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[1]",
+    "depois": {
+     "faz": "Calcule o total da segunda-feira",
+     "conta": "Seg: 248+382+0+984 = 1614",
+     "porque": "Multiplique as horas de cada atividade pelo cal/h: 1,0×248 = 248; 0,5×764 = 382; 0×356 = 0; 2,0×492 = 984. Depois some.",
+     "tipo": "calcular"
+    },
+    "motivo": "Um passo por movimento: a terça tinha ficado escondida no porque da segunda."
+   },
+   {
+    "campo": "resolucao.passos[2]",
+    "depois": {
+     "faz": "Calcule o total da terça-feira",
+     "conta": "Ter: 124+764+178+492 = 1558",
+     "porque": "0,5×248 = 124; 1,0×764 = 764; 0,5×356 = 178; 1,0×492 = 492. A soma é 1558 cal.",
+     "tipo": "calcular"
+    },
+    "motivo": "Terça ganha passo próprio, com a conta visível."
+   },
+   {
+    "campo": "resolucao.passos[3]",
+    "depois": {
+     "faz": "Calcule o total da quarta-feira",
+     "conta": "Qua: 0+1146+356+246 = 1748",
+     "porque": "1,5×764 = 1146; 1,0×356 = 356; 0,5×492 = 246. A caminhada vale 0, pois são 0,0 h. A soma é 1748 cal.",
+     "tipo": "calcular"
+    },
+    "motivo": "Explica o zero e mantém a conta."
+   },
+   {
+    "campo": "resolucao.passos[4]",
+    "depois": {
+     "faz": "Calcule quinta e sexta",
+     "conta": "Qui: 2,0×764 = 1528",
+     "porque": "Quinta só tem 2,0 h de corrida, então o total é 1528. Sexta: 0,5×764 = 382 e 2,5×492 = 1230. A soma é 1612.",
+     "tipo": "calcular"
+    },
+    "motivo": "Deixa o total da sexta explícito no porque."
+   },
+   {
+    "campo": "resolucao.passos[5]",
+    "depois": {
+     "faz": "Compare os cinco totais",
+     "conta": "1748 > 1614 > 1612 > 1558 > 1528",
+     "porque": "O maior total é o da quarta-feira, 1748 cal. Isso corresponde à alternativa C.",
+     "tipo": "concluir"
+    },
+    "motivo": "Passo de conclusão separado dos cálculos."
+   },
+   {
+    "campo": "resolucao.quadro",
+    "depois": [
+     {
+      "linha": "Seg = 1,0×248 + 0,5×764",
+      "nota": "horas × cal/h, atividade a atividade"
+     },
+     {
+      "linha": "      + 0×356 + 2,0×492",
+      "nota": "continua a soma da segunda"
+     },
+     {
+      "linha": "Seg = 248+382+0+984 = 1614",
+      "nota": "some as quatro parcelas"
+     },
+     {
+      "linha": "Ter = 124+764+178+492",
+      "nota": "0,5×248; 1,0×764; 0,5×356; 1,0×492"
+     },
+     {
+      "linha": "Ter = 1558",
+      "nota": "some as quatro parcelas"
+     },
+     {
+      "linha": "Qua = 0+1146+356+246",
+      "nota": "1,5×764; 1,0×356; 0,5×492",
+      "destaque": "1146"
+     },
+     {
+      "linha": "Qua = 1748",
+      "nota": "maior total até aqui",
+      "destaque": "1748"
+     },
+     {
+      "linha": "Qui = 2,0 × 764 = 1528",
+      "nota": "só corre 2,0 h"
+     },
+     {
+      "linha": "Sex = 382 + 1230 = 1612",
+      "nota": "0,5×764 e 2,5×492"
+     },
+     {
+      "linha": "1748 > 1614 > 1612 > 1558 > 1528",
+      "nota": "maior: quarta-feira",
+      "destaque": "1748"
+     }
+    ],
+    "motivo": "A primeira linha da segunda mostra a conta completa; linhas curtas para caber na tela."
+   }
+  ],
+  "didatica_alertas": [
+   "A classificação do banco (M01.4, MMC/MDC, tema M01) não combina com a questão; o JSON usa M14.2, que parece o correto."
+  ],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "C"
  }
 }

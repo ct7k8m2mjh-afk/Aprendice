@@ -36,7 +36,7 @@
   "pista": "Antes de calcular, descubra o diâmetro de cada semicírculo. No Projeto 2, some as quatro medidas da base.",
   "passos": [
    {
-    "faz": "Leia os diâmetros do Projeto 1",
+    "faz": "Leia o diâmetro do túnel dos automóveis",
     "conta": "Automóveis: 12 m",
     "porque": "A seta da base do túnel de automóveis marca 12 m. Esse é o diâmetro do semicírculo maior.",
     "tipo": "localizar"
@@ -50,7 +50,7 @@
    {
     "faz": "Calcule a área do Projeto 1",
     "conta": "A1 = 3×6²÷2 + 3×3²÷2",
-    "porque": "Os raios são 6 m e 3 m (metade de 12 e de 6). Calcule: 3×36÷2 = 54 e 3×9÷2 = 13,5. A soma é 54 + 13,5 = 67,5 m².",
+    "porque": "Os raios são 6 m e 3 m, a metade de 12 e de 6. O de 6 m dá 3×36÷2 = 54. O de 3 m dá 3×9÷2 = 13,5. A soma é 67,5 m².",
     "tipo": "calcular"
    },
    {
@@ -95,7 +95,7 @@
   },
   {
    "nome": "Eliminação",
-   "ideia": "Monte a área de um dos projetos e compare com as alternativas. C e D são o dobro de A e B (círculo inteiro), então só A e B servem. Como o Projeto 1 é o de menor soma de quadrados, a resposta é A."
+   "ideia": "Note que C e D são o dobro de A e B, pois são o círculo inteiro. Assim só A e B servem como áreas de semicírculos. Como o Projeto 1 tem menor soma de quadrados dos raios (45 contra 81), a resposta é A."
   }
  ],
  "quadro": [
@@ -104,16 +104,24 @@
    "nota": "diâmetros lidos nas setas da figura"
   },
   {
-   "linha": "r = 6 e r = 3",
+   "linha": "r = 12 ÷ 2 = 6",
    "nota": "raio é a metade do diâmetro"
+  },
+  {
+   "linha": "r = 6 ÷ 2 = 3",
+   "nota": "raio do túnel das bicicletas"
   },
   {
    "linha": "A1 = 3×6²÷2 + 3×3²÷2",
    "nota": "semicírculo: (π r²) ÷ 2, com π = 3"
   },
   {
+   "linha": "A1 = 3×36÷2 + 3×9÷2",
+   "nota": "6² = 36 e 3² = 9"
+  },
+  {
    "linha": "A1 = 54 + 13,5",
-   "nota": "3×36÷2 = 54 e 3×9÷2 = 13,5"
+   "nota": "108÷2 = 54 e 27÷2 = 13,5"
   },
   {
    "linha": "A1 = 67,5 m²",
@@ -131,6 +139,10 @@
   {
    "linha": "A2 = 3×9²÷2",
    "nota": "mesma fórmula"
+  },
+  {
+   "linha": "A2 = 3×81÷2",
+   "nota": "9² = 81"
   },
   {
    "linha": "A2 = 243 ÷ 2 = 121,5 m²",
@@ -155,10 +167,108 @@
  "gab": "A",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[0].faz",
+    "depois": "Leia o diâmetro do túnel dos automóveis",
+    "motivo": "O comando falava em 'os diâmetros do Projeto 1', mas a conta e o porquê tratam só do túnel dos automóveis (12 m). O túnel das bicicletas é lido no passo seguinte.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "A",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "A1 = 3×6²÷2 + 3×3²÷2",
+    "motivo": "Mantida a conta; o porque abaixo passa a mostrar as contas por partes, uma por vez."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Os raios são 6 m e 3 m, a metade de 12 e de 6. O de 6 m dá 3×36÷2 = 54. O de 3 m dá 3×9÷2 = 13,5. A soma é 67,5 m².",
+    "motivo": "Frases mais curtas e cada semicírculo explicado separadamente."
+   },
+   {
+    "campo": "resolucao.quadro",
+    "depois": [
+     {
+      "linha": "Projeto 1: d = 12 e d = 6",
+      "nota": "diâmetros lidos nas setas da figura"
+     },
+     {
+      "linha": "r = 12 ÷ 2 = 6",
+      "nota": "raio é a metade do diâmetro"
+     },
+     {
+      "linha": "r = 6 ÷ 2 = 3",
+      "nota": "raio do túnel das bicicletas"
+     },
+     {
+      "linha": "A1 = 3×6²÷2 + 3×3²÷2",
+      "nota": "semicírculo: (π r²) ÷ 2, com π = 3"
+     },
+     {
+      "linha": "A1 = 3×36÷2 + 3×9÷2",
+      "nota": "6² = 36 e 3² = 9"
+     },
+     {
+      "linha": "A1 = 54 + 13,5",
+      "nota": "108÷2 = 54 e 27÷2 = 13,5"
+     },
+     {
+      "linha": "A1 = 67,5 m²",
+      "nota": "área do Projeto 1",
+      "destaque": "67,5"
+     },
+     {
+      "linha": "d = 3 + 6 + 6 + 3 = 18",
+      "nota": "base do túnel único do Projeto 2"
+     },
+     {
+      "linha": "r = 18 ÷ 2 = 9",
+      "nota": "raio do semicírculo"
+     },
+     {
+      "linha": "A2 = 3×9²÷2",
+      "nota": "mesma fórmula"
+     },
+     {
+      "linha": "A2 = 3×81÷2",
+      "nota": "9² = 81"
+     },
+     {
+      "linha": "A2 = 243 ÷ 2 = 121,5 m²",
+      "nota": "área do Projeto 2",
+      "destaque": "121,5"
+     },
+     {
+      "linha": "67,5 < 121,5",
+      "nota": "menor área: Projeto 1"
+     }
+    ],
+    "motivo": "Passagens que estavam puladas (raios, potências) agora aparecem uma por linha, copiáveis no caderno."
+   },
+   {
+    "campo": "resolucao.caminhos[1].ideia",
+    "depois": "Note que C e D são o dobro de A e B, pois são o círculo inteiro. Assim só A e B servem como áreas de semicírculos. Como o Projeto 1 tem menor soma de quadrados dos raios (45 contra 81), a resposta é A.",
+    "motivo": "O texto antigo dizia 'monte a área de um dos projetos', o que era vago; agora o argumento está completo."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "A"
  }
 }

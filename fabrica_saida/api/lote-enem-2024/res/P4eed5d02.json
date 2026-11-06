@@ -8,7 +8,7 @@
  "conceito": "Ler um gráfico de duas linhas, calcular o saldo (exportações − importações) em três pontos e ordenar os resultados.",
  "resolucao": {
   "antes": {
-   "texto": "O saldo é exportações menos importações no mesmo mês. No gráfico, é a distância vertical entre a linha preta e a cinza. Se a preta está acima, o saldo é positivo. Se está abaixo, o saldo é negativo. Basta ler os dois valores nos três meses marcados e subtrair.",
+   "texto": "O saldo é exportações menos importações no mesmo mês. No gráfico, é a distância vertical entre a linha preta e a cinza. Se a preta está acima, o saldo é positivo. Se está abaixo, o saldo é negativo. Leia os dois valores nos três meses marcados e subtraia.",
    "formulas": [
     "saldo = exportações − importações"
    ],
@@ -28,6 +28,10 @@
     [
      "bilhão de dólares",
      "unidade do eixo vertical; todos os valores estão nela"
+    ],
+    [
+     "≈",
+     "'aproximadamente': o valor é lido no gráfico, sem escala exata"
     ]
    ]
   },
@@ -54,13 +58,13 @@
    {
     "faz": "Leia janeiro de 2010 (S2)",
     "conta": "exp ≈ 11,3 ; imp ≈ 11,6",
-    "porque": "Em janeiro de 2010 a linha preta cai abaixo da cinza. Aqui as importações superam as exportações, então o saldo é negativo.",
+    "porque": "Em janeiro de 2010 a linha preta fica abaixo da cinza. As importações superam as exportações, então o saldo é negativo.",
     "tipo": "localizar"
    },
    {
     "faz": "Calcule S2 e S3",
     "conta": "S2 ≈ 11,3 − 11,6 = −0,3 ; S3 = 17,1 − 14,8 = 2,3",
-    "porque": "Os valores 17,1 e 14,8 estão escritos no gráfico, em junho de 2010. S2 dá negativo, um valor próximo de zero.",
+    "porque": "Os valores 17,1 e 14,8 estão escritos no gráfico, em junho de 2010. S2 dá negativo, bem perto de zero. S3 dá positivo.",
     "tipo": "calcular"
    },
    {
@@ -71,12 +75,12 @@
    }
   ],
   "resposta": "Alternativa A: S1 (≈ 4,5) é maior que S3 (2,3), que é maior que S2 (≈ −0,3), então a ordem é S1, S3, S2.",
-  "checagem": "Confira só pela distância entre as linhas. Em junho de 2009 elas estão bem afastadas, com a preta em cima. Em junho de 2010 a distância é menor, com a preta em cima. Em janeiro de 2010 elas quase se encostam, com a preta embaixo. A ordem de afastamento confirma S1, S3, S2.",
+  "checagem": "Confira só pela distância entre as linhas. Em junho de 2009 elas estão bem afastadas, preta em cima. Em junho de 2010 a distância é menor, preta em cima. Em janeiro de 2010 elas quase se encostam, preta embaixo. Ordem do maior afastamento positivo ao negativo: S1, S3, S2.",
   "erradas": {
-   "B": "S2, S1, S3 coloca S2 como o maior saldo. Mas em janeiro de 2010 a linha preta (≈ 11,3) está abaixo da cinza (≈ 11,6), então S2 é negativo e é o menor. Colocar S3 como último também falha, pois S3 = 17,1 − 14,8 = 2,3 é positivo.",
+   "B": "B (S2, S1, S3) coloca S2 como o maior saldo. Quem marcou olhou só o valor perto de 11 e esqueceu o sinal. Em janeiro de 2010 a preta (≈ 11,3) está abaixo da cinza (≈ 11,6), então S2 é negativo e é o menor, e não pode vir primeiro. Além disso, S1 ≈ 4,5 é maior que S3 = 2,3, então S3 também não pode ser o último da ordem.",
    "C": "S2, S3, S1 começa por S2, que é negativo (≈ −0,3), portanto o menor de todos. Também põe S1 no fim, mas S1 ≈ 4,5 é o maior saldo.",
-   "D": "S3, S1, S2 acerta o último lugar (S2), mas inverte os dois primeiros. S3 = 17,1 − 14,8 = 2,3 é menor que S1 ≈ 14,5 − 10 = 4,5. Quem escolheu esta alternativa deve ter tomado o valor 17,1 (o maior número do gráfico) como sinal de maior saldo, sem subtrair as importações.",
-   "E": "S3, S2, S1 está na ordem inversa da correta, ou seja, do menor para o maior. Além disso, S2 é negativo e não pode ficar no meio: S1 ≈ 4,5 e S3 = 2,3 são ambos maiores que S2 ≈ −0,3."
+   "D": "D (S3, S1, S2) sai de ordenar pelas exportações (linha preta), sem subtrair as importações: 17,1 > 14,5 > 11,3. Pelo saldo, S3 = 17,1 − 14,8 = 2,3 é menor que S1 ≈ 14,5 − 10 = 4,5.",
+   "E": "S3, S2, S1 sai de ordenar pelas importações (linha cinza), e não pelo saldo: 14,8 > 11,6 > 10. O saldo exige subtrair, e S1 ≈ 4,5 é o maior, enquanto S2 ≈ −0,3 é o menor."
   },
   "armadilha": "Em janeiro de 2010 as linhas se cruzam e a preta fica abaixo da cinza: o saldo é negativo, e não apenas pequeno.",
   "alerta": "",
@@ -147,10 +151,107 @@
  "gab": "A",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "S3, S2, S1 sai de ordenar pelas importações (linha cinza), e não pelo saldo: 14,8 > 11,6 > 10. O saldo exige subtrair, e S1 ≈ 4,5 é o maior, enquanto S2 ≈ −0,3 é o menor.",
+    "motivo": "O texto antigo dizia que E é a ordem inversa da correta. Isso é falso: o inverso de S1, S3, S2 é S2, S3, S1, que é a alternativa C. Uma conta real chega exatamente a E: ordenar só os valores de importação (14,8; 11,6; 10).",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "S3, S1, S2 sai de ordenar pelas exportações (linha preta), sem subtrair as importações: 17,1 > 14,5 > 11,3. Pelo saldo, S3 = 17,1 − 14,8 = 2,3 é menor que S1 ≈ 14,5 − 10 = 4,5.",
+    "motivo": "Troquei a origem especulativa (\"deve ter tomado\") pela origem conferida. Ordenar os três valores de exportação dá exatamente S3, S1, S2.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "A",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "O saldo é exportações menos importações no mesmo mês. No gráfico, é a distância vertical entre a linha preta e a cinza. Se a preta está acima, o saldo é positivo. Se está abaixo, o saldo é negativo. Leia os dois valores nos três meses marcados e subtraia.",
+    "motivo": "Trocou 'Basta' por verbo de comando, mais direto."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "saldo da balança comercial",
+      "diferença entre o que o país vende (exportações) e o que compra (importações) do exterior"
+     ],
+     [
+      "linha preta",
+      "exportações, segundo a legenda"
+     ],
+     [
+      "linha cinza",
+      "importações, segundo a legenda"
+     ],
+     [
+      "bilhão de dólares",
+      "unidade do eixo vertical; todos os valores estão nela"
+     ],
+     [
+      "≈",
+      "'aproximadamente': o valor é lido no gráfico, sem escala exata"
+     ]
+    ],
+    "motivo": "O símbolo ≈ aparece nas contas e não estava explicado."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Em janeiro de 2010 a linha preta fica abaixo da cinza. As importações superam as exportações, então o saldo é negativo.",
+    "motivo": "Frase mais curta."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "Os valores 17,1 e 14,8 estão escritos no gráfico, em junho de 2010. S2 dá negativo, bem perto de zero. S3 dá positivo.",
+    "motivo": "Deixa claro o sinal dos dois resultados."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "S3, S2, S1 não é esta; D é S3, S1, S2. Ela sai de ordenar pelas exportações (linha preta), sem subtrair as importações: 17,1 > 14,5 > 11,3. Pelo saldo, S3 = 17,1 − 14,8 = 2,3 é menor que S1 ≈ 14,5 − 10 = 4,5.",
+    "motivo": "Corrigido o erro de fato: a D estava descrita como S3, S1, S2, mas a frase original estava correta; manter clareza. Ver alerta."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "D (S3, S1, S2) sai de ordenar pelas exportações (linha preta), sem subtrair as importações: 17,1 > 14,5 > 11,3. Pelo saldo, S3 = 17,1 − 14,8 = 2,3 é menor que S1 ≈ 14,5 − 10 = 4,5.",
+    "motivo": "Texto final da D, sem ambiguidade, e com o raciocínio de quem marcou essa letra. Substitui a edição anterior."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "B (S2, S1, S3) coloca S2 como o maior saldo. Quem marcou olhou só o valor perto de 11 e esqueceu o sinal. Em janeiro de 2010 a preta (≈ 11,3) está abaixo da cinza (≈ 11,6), então S2 é negativo e é o menor. S3 = 17,1 − 14,8 = 2,3 também é positivo e não é o último.",
+    "motivo": "Diz o que faltou no raciocínio: o sinal do saldo."
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Confira só pela distância entre as linhas. Em junho de 2009 elas estão bem afastadas, preta em cima. Em junho de 2010 a distância é menor, preta em cima. Em janeiro de 2010 elas quase se encostam, preta embaixo. Ordem do maior afastamento positivo ao negativo: S1, S3, S2.",
+    "motivo": "Frases mais curtas e ordem explícita."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "B (S2, S1, S3) coloca S2 como o maior saldo. Quem marcou olhou só o valor perto de 11 e esqueceu o sinal. Em janeiro de 2010 a preta (≈ 11,3) está abaixo da cinza (≈ 11,6), então S2 é negativo e é o menor, e não pode vir primeiro. Além disso, S1 ≈ 4,5 é maior que S3 = 2,3, então S3 também não pode ser o último da ordem.",
+    "motivo": "A frase original dizia que S3 'não é o último', mas na ordem da letra B o S3 é o último. O texto agora diz o que de fato derruba a B: S2 é o menor e S1 > S3.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "A"
  }
 }

@@ -38,14 +38,14 @@
    },
    {
     "faz": "Calcule a média de cada par",
-    "conta": "out-nov: (250+150)/2 = 200",
+    "conta": "(250 + 150)/2 = 400/2 = 200",
     "porque": "Média de dois valores é a soma dividida por 2. Faça o mesmo para os outros pares, nas linhas abaixo.",
     "tipo": "calcular"
    },
    {
     "faz": "Continue com os demais pares",
-    "conta": "nov-dez: (150+200)/2 = 175",
-    "porque": "Veja no quadro as médias de dez-jan, jan-fev e fev-mar.",
+    "conta": "(150 + 200)/2 = 350/2 = 175",
+    "porque": "Os outros pares seguem a mesma conta: dez-jan (200 + 450)/2 = 325; jan-fev (450 + 100)/2 = 275; fev-mar (100 + 200)/2 = 150.",
     "tipo": "calcular"
    },
    {
@@ -57,7 +57,7 @@
    {
     "faz": "Responda o mês de plantio",
     "conta": "par dez-jan → plantar em dezembro",
-    "porque": "O plantio começa no primeiro mês do par, pois os dois meses seguintes à semeadura precisam ser os mais chuvosos. A pergunta é o início do plantio, não o mês de maior chuva.",
+    "porque": "A semente precisa de muita água nos dois meses depois de plantada. Então o plantio começa no primeiro mês do par vencedor. A pergunta é o mês de início, não o mês de maior chuva.",
     "tipo": "concluir"
    }
   ],
@@ -84,38 +84,42 @@
   },
   {
    "nome": "olhar o mês mais chuvoso",
-   "ideia": "Janeiro (450) tem de estar no par vencedor. Compare dez-jan (650) com jan-fev (550): ganha dez-jan."
+   "ideia": "Janeiro (450) está no par vencedor: os pares sem janeiro somam no máximo 400 (out-nov), e os pares com janeiro somam 550 ou mais. Compare dez-jan (650) com jan-fev (550): ganha dez-jan."
   }
  ],
  "quadro": [
   {
    "linha": "out+nov: 250 + 150 = 400",
-   "nota": "soma do primeiro par"
+   "nota": "soma do par 1"
   },
   {
    "linha": "nov+dez: 150 + 200 = 350",
-   "nota": "soma do segundo par"
+   "nota": "soma do par 2"
   },
   {
    "linha": "dez+jan: 200 + 450 = 650",
-   "nota": "soma do terceiro par",
+   "nota": "soma do par 3",
    "destaque": "650"
   },
   {
    "linha": "jan+fev: 450 + 100 = 550",
-   "nota": "soma do quarto par"
+   "nota": "soma do par 4"
   },
   {
    "linha": "fev+mar: 100 + 200 = 300",
-   "nota": "soma do quinto par"
+   "nota": "soma do par 5"
   },
   {
-   "linha": "média = 650/2 = 325 mm",
-   "nota": "a maior soma dá a maior média"
+   "linha": "maior soma: 650",
+   "nota": "par dez-jan"
+  },
+  {
+   "linha": "média = 650 ÷ 2 = 325 mm",
+   "nota": "maior soma dá a maior média"
   },
   {
    "linha": "plantio: início de dezembro",
-   "nota": "o par começa em dezembro"
+   "nota": "primeiro mês do par"
   }
  ],
  "visual": {
@@ -131,10 +135,98 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Os outros pares seguem a mesma conta: dez-jan (200+450)/2 = 325; jan-fev (450+100)/2 = 275; fev-mar (100+200)/2 = 150.",
+    "motivo": "O texto mandava ver no quadro as médias de dez-jan, jan-fev e fev-mar. O quadro só mostra as somas (650, 550, 300) e a média de dez-jan. As três médias agora estão escritas no próprio passo, conferidas: 325, 275 e 150.",
+    "fonte": ""
+   },
+   {
+    "campo": "caminhos[1].ideia",
+    "depois": "Janeiro (450) está no par vencedor: os pares sem janeiro somam no máximo 400 (out-nov), e os pares com janeiro somam 550 ou mais. Compare dez-jan (650) com jan-fev (550): ganha dez-jan.",
+    "motivo": "A frase dizia que janeiro 'tem de estar' no par vencedor, sem justificar. Isso não vale em geral. Aqui vale, porque o maior par sem janeiro soma 400 e o menor par com janeiro soma 550. A justificativa foi incluída.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "(250 + 150)/2 = 400/2 = 200",
+    "motivo": "Mostra a soma antes da divisão, uma passagem por linha, sem pular etapa."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "(150 + 200)/2 = 350/2 = 175",
+    "motivo": "Mesma padronização de passagens. Os demais pares ficam no porquê, como estava."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Os outros pares seguem a mesma conta: dez-jan (200 + 450)/2 = 325; jan-fev (450 + 100)/2 = 275; fev-mar (100 + 200)/2 = 150.",
+    "motivo": "Frase só reorganizada, sem mudar números: retira a repetição e mantém o texto curto."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "A semente precisa de muita água nos dois meses depois de plantada. Então o plantio começa no primeiro mês do par vencedor. A pergunta é o mês de início, não o mês de maior chuva.",
+    "motivo": "Frases mais curtas e mais diretas, a ligação com o enunciado fica explícita."
+   },
+   {
+    "campo": "resolucao.quadro",
+    "depois": [
+     {
+      "linha": "out+nov: 250 + 150 = 400",
+      "nota": "soma do par 1"
+     },
+     {
+      "linha": "nov+dez: 150 + 200 = 350",
+      "nota": "soma do par 2"
+     },
+     {
+      "linha": "dez+jan: 200 + 450 = 650",
+      "nota": "soma do par 3",
+      "destaque": "650"
+     },
+     {
+      "linha": "jan+fev: 450 + 100 = 550",
+      "nota": "soma do par 4"
+     },
+     {
+      "linha": "fev+mar: 100 + 200 = 300",
+      "nota": "soma do par 5"
+     },
+     {
+      "linha": "maior soma: 650",
+      "nota": "par dez-jan"
+     },
+     {
+      "linha": "média = 650 ÷ 2 = 325 mm",
+      "nota": "maior soma dá a maior média"
+     },
+     {
+      "linha": "plantio: início de dezembro",
+      "nota": "primeiro mês do par"
+     }
+    ],
+    "motivo": "Separa 'achar a maior soma' de 'dividir por 2', para o aluno copiar um passo por linha."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "C"
  }
 }

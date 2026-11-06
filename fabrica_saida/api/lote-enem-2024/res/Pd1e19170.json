@@ -8,7 +8,7 @@
  "conceito": "Probabilidade de eventos independentes: p × p = 4/100 dá p = 1/5. Depois, converter p em segundos e achar a redução.",
  "resolucao": {
   "antes": {
-   "texto": "Como os dois semáforos são independentes e têm a mesma probabilidade p de estar vermelhos, a probabilidade de pegar os dois vermelhos é p × p. Como p × p = 4/100, p é a raiz quadrada de 4/100. Esse p vira tempo: p × 60 s é o novo tempo de vermelho. A questão pede a REDUÇÃO, e não o novo tempo.",
+   "texto": "Os dois semáforos são independentes e, depois da redução, terão a mesma probabilidade p de estar vermelhos. A probabilidade de pegar os dois vermelhos é p × p. Como p × p = 4/100, p é a raiz quadrada de 4/100. Para virar tempo, calcule p × 60 s: é o novo tempo de vermelho. Cuidado: a questão pede a REDUÇÃO, e não o novo tempo.",
    "formulas": [
     "eventos independentes: P(A e B) = P(A) × P(B)",
     "p = (tempo vermelho) ÷ 60",
@@ -17,11 +17,15 @@
    "simbolos": [
     [
      "p",
-     "probabilidade de o ônibus encontrar UM semáforo vermelho"
+     "probabilidade de o ônibus encontrar UM semáforo vermelho (depois da redução)"
     ],
     [
      "eventos independentes",
-     "o resultado de um semáforo não muda a chance do outro"
+     "o que acontece num semáforo não muda a chance do outro"
+    ],
+    [
+     "raiz quadrada",
+     "o número que, multiplicado por ele mesmo, dá o valor. Exemplo: a raiz de 4 é 2, porque 2 × 2 = 4"
     ],
     [
      "redução",
@@ -35,7 +39,7 @@
     "faz": "Monte a equação dos dois sinais",
     "conta": "p × p = 4/100",
     "porque": "Os eventos são independentes, então a probabilidade de os dois estarem vermelhos é o produto das probabilidades. A redução é a mesma nos dois, logo o p novo é igual para ambos.",
-    "tipo": "aplicar"
+    "tipo": "calcular"
    },
    {
     "faz": "Ache p com a raiz quadrada",
@@ -67,7 +71,7 @@
   "armadilha": "Usar 4/100 como probabilidade de cada sinal, em vez de tirar a raiz. Também vale parar em 12 s, quando a pergunta é a redução.",
   "alerta": "",
   "essencial": {
-   "pede": "Quantos segundos a mais devem ser tirados do vermelho de cada sinal para que a chance de pegar os dois vermelhos seja 4/100.",
+   "pede": "Quantos segundos devem ser tirados do vermelho de cada sinal, hoje de 15 s, para que a chance de pegar os dois vermelhos seja 4/100.",
    "chave": "p × p = 4/100 dá p = 0,2, que corresponde a 12 s de vermelho em 60 s.",
    "cuidado": "A resposta é a redução, 15 − 12 = 3, e não o tempo novo de 12 s."
   }
@@ -92,8 +96,12 @@
    "nota": "tire a raiz quadrada dos dois lados"
   },
   {
-   "linha": "p = 2/10 = 0,2",
+   "linha": "p = 2/10",
    "nota": "raiz de 4 é 2; raiz de 100 é 10"
+  },
+  {
+   "linha": "p = 0,2",
+   "nota": "2 ÷ 10 = 0,2"
   },
   {
    "linha": "tempo = 0,2 × 60",
@@ -126,10 +134,105 @@
  "gab": "B",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[0].tipo",
+    "depois": "calcular",
+    "motivo": "'aplicar' não está na lista de tipos válidos (localizar, calcular, comparar, eliminar, concluir). Montar a equação conta como 'calcular'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.essencial.pede",
+    "depois": "Quantos segundos devem ser tirados do vermelho de cada sinal, hoje de 15 s, para que a chance de pegar os dois vermelhos seja 4/100.",
+    "motivo": "O texto dizia 'a mais', o que dá a entender um acréscimo à redução. O enunciado pede a redução total em relação aos 15 s atuais.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Os dois semáforos são independentes e, depois da redução, terão a mesma probabilidade p de estar vermelhos. A probabilidade de pegar os dois vermelhos é p × p. Como p × p = 4/100, p é a raiz quadrada de 4/100. Para virar tempo, calcule p × 60 s: é o novo tempo de vermelho. Cuidado: a questão pede a REDUÇÃO, e não o novo tempo.",
+    "motivo": "Deixa claro que p vale para o semáforo depois da redução e que o tempo se obtém por p × 60."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "p",
+      "probabilidade de o ônibus encontrar UM semáforo vermelho (depois da redução)"
+     ],
+     [
+      "eventos independentes",
+      "o que acontece num semáforo não muda a chance do outro"
+     ],
+     [
+      "raiz quadrada",
+      "o número que, multiplicado por ele mesmo, dá o valor. Exemplo: a raiz de 4 é 2, porque 2 × 2 = 4"
+     ],
+     [
+      "redução",
+      "quanto o tempo de vermelho diminuiu, em segundos"
+     ]
+    ],
+    "motivo": "Explica raiz quadrada, termo usado nos passos."
+   },
+   {
+    "campo": "resolucao.quadro",
+    "depois": [
+     {
+      "linha": "p × p = 4/100",
+      "nota": "dois sinais independentes: multiplica as probabilidades"
+     },
+     {
+      "linha": "p = raiz(4/100)",
+      "nota": "tire a raiz quadrada dos dois lados"
+     },
+     {
+      "linha": "p = 2/10",
+      "nota": "raiz de 4 é 2; raiz de 100 é 10"
+     },
+     {
+      "linha": "p = 0,2",
+      "nota": "2 ÷ 10 = 0,2"
+     },
+     {
+      "linha": "tempo = 0,2 × 60",
+      "nota": "p é a fração do ciclo de 60 s"
+     },
+     {
+      "linha": "tempo = 12 s",
+      "nota": "novo tempo de vermelho"
+     },
+     {
+      "linha": "redução = 15 − 12",
+      "nota": "antigo menos novo",
+      "destaque": "15 − 12"
+     },
+     {
+      "linha": "redução = 3 s",
+      "nota": "resposta: alternativa B"
+     }
+    ],
+    "motivo": "Um passo por linha, sem pular a passagem de 2/10 para 0,2."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "B"
  }
 }

@@ -8,7 +8,7 @@
  "conceito": "Ler imagens de propaganda do Estado Novo (DIP) como fonte: a revista Travel in Brazil mostra tipos regionais e folclóricos como símbolos da identidade nacional.",
  "resolucao": {
   "antes": {
-   "texto": "O DIP (Departamento de Imprensa e Propaganda) foi criado em 1939, durante o Estado Novo de Vargas. Controlava a imprensa e produzia propaganda oficial para construir uma imagem positiva do país e do regime. A revista Travel in Brazil, em inglês, era voltada ao público estrangeiro e apresentava um Brasil escolhido pelo governo.",
+   "texto": "O DIP (Departamento de Imprensa e Propaganda) foi criado em 1939, durante o Estado Novo de Vargas. Controlava a imprensa e produzia propaganda oficial para mostrar uma imagem positiva do país e do regime. A revista Travel in Brazil, em inglês, era voltada ao público estrangeiro e mostrava um Brasil escolhido pelo governo.",
    "formulas": [
     "propaganda oficial = imagem selecionada pelo governo, não retrato neutro",
     "capa de revista: descreva o que se vê antes de interpretar"
@@ -32,18 +32,18 @@
     ]
    ]
   },
-  "pista": "Descreva o que aparece nas três capas e pergunte: isso mostra o Brasil inteiro ou só alguns tipos escolhidos?",
+  "pista": "Descreva o que aparece nas três capas. Depois pergunte: elas mostram o Brasil inteiro ou só alguns tipos escolhidos, sempre repetidos?",
   "passos": [
    {
     "faz": "Leia o comando e a legenda",
     "conta": "\"O que as capas... evidenciam?\"",
-    "porque": "A pergunta é sobre o que as imagens mostram. Elas são de 1941-1944, publicadas pelo DIP, órgão de propaganda do Estado Novo.",
+    "porque": "A pergunta é sobre o que as imagens mostram, e não sobre o que o DIP fazia. As capas são de 1941-1944 e foram feitas pelo DIP, órgão de propaganda do Estado Novo.",
     "tipo": "localizar"
    },
    {
     "faz": "Descreva a capa 1",
-    "conta": "Mulher de turbante, joias e colares",
-    "porque": "Fundo colorido e festivo. A imagem lembra a figura da baiana e do carnaval, um símbolo típico associado ao Brasil.",
+    "conta": "Mulher com turbante, joias e colares",
+    "porque": "O fundo é colorido e festivo. A figura, com turbante, joias e colares, lembra a baiana e o carnaval, símbolos muito associados ao Brasil.",
     "tipo": "localizar"
    },
    {
@@ -55,14 +55,14 @@
    {
     "faz": "Reconheça o padrão",
     "conta": "baiana + gaúcho + trajes típicos",
-    "porque": "O que as três têm em comum é a seleção de tipos pitorescos e regionais para representar o país ao estrangeiro. Isso é o estereótipo cultural.",
-    "tipo": "interpretar"
+    "porque": "As três capas escolhem tipos pitorescos e regionais para representar o país ao estrangeiro. Resumir um país em poucas figuras repetidas é estereotipar.",
+    "tipo": "comparar"
    },
    {
     "faz": "Teste a alternativa mais tentadora",
     "conta": "Censura? Nenhuma capa mostra censura",
     "porque": "O DIP censurava, isso é verdade. Mas as capas não evidenciam censura: mostram a imagem que o regime quis exportar.",
-    "tipo": "interpretar"
+    "tipo": "eliminar"
    },
    {
     "faz": "Conclua",
@@ -111,10 +111,95 @@
  "gab": "A",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "comparar",
+    "motivo": "O guia não aceita o tipo \"interpretar\". Só valem localizar, calcular, comparar, eliminar e concluir. Este passo junta o que as três capas têm em comum, então o tipo certo é \"comparar\".",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[4].tipo",
+    "depois": "eliminar",
+    "motivo": "O guia não aceita o tipo \"interpretar\". Este passo descarta a alternativa D, que é a mais tentadora, então o tipo certo é \"eliminar\".",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "A",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "O DIP (Departamento de Imprensa e Propaganda) foi criado em 1939, durante o Estado Novo de Vargas. Controlava a imprensa e produzia propaganda oficial para mostrar uma imagem positiva do país e do regime. A revista Travel in Brazil, escrita em inglês, era feita para o público estrangeiro e mostrava um Brasil escolhido pelo governo.",
+    "motivo": "Troca 'construir' e 'apresentava' por palavras mais simples e deixa claro quem escolhia a imagem."
+   },
+   {
+    "campo": "resolucao.pista",
+    "depois": "Descreva o que aparece nas três capas. Depois pergunte: elas mostram o Brasil inteiro ou só alguns tipos escolhidos, sempre repetidos?",
+    "motivo": "Pista mais clara, sem entregar a resposta."
+   },
+   {
+    "campo": "resolucao.passos[0]",
+    "depois": {
+     "faz": "Leia o comando e a legenda",
+     "conta": "\"O que as capas... evidenciam?\"",
+     "porque": "A pergunta é sobre o que as imagens mostram, e não sobre o que o DIP fazia. As capas são de 1941-1944 e foram feitas pelo DIP, órgão de propaganda do Estado Novo.",
+     "tipo": "localizar"
+    },
+    "motivo": "Deixa explícito o que o comando pede e o que ele não pede."
+   },
+   {
+    "campo": "resolucao.passos[1]",
+    "depois": {
+     "faz": "Descreva a capa 1",
+     "conta": "Mulher com turbante, joias e colares",
+     "porque": "O fundo é colorido e festivo. A figura lembra a baiana e o carnaval, símbolos muito associados ao Brasil.",
+     "tipo": "localizar"
+    },
+    "motivo": "Frase mais curta e direta; 'turbante' vira descrição simples."
+   },
+   {
+    "campo": "resolucao.passos[3]",
+    "depois": {
+     "faz": "Reconheça o padrão",
+     "conta": "baiana + gaúcho + trajes típicos",
+     "porque": "As três capas escolhem tipos pitorescos e regionais para representar o país ao estrangeiro. Resumir um país em poucas figuras repetidas é estereotipar.",
+     "tipo": "comparar"
+    },
+    "motivo": "Liga o padrão ao conceito de estereótipo, já definido no 'antes'."
+   }
+  ],
+  "didatica_alertas": [
+   "Tema e conteúdo (H05 / H05.6) parecem inadequados para uma questão sobre Estado Novo; o certo seria Era Vargas (H13.2). Reclassificar na TAXONOMIA.",
+   "Capa 3: o texto descreve 'trio com roupas típicas'; o print mostra três figuras de costas e de lado em trajes regionais. A descrição vale, mas confira se a baiana da capa 1 é mesmo identificável como tal."
+  ],
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "O DIP (Departamento de Imprensa e Propaganda) foi criado em 1939, durante o Estado Novo de Vargas. Controlava a imprensa e produzia propaganda oficial para mostrar uma imagem positiva do país e do regime. A revista Travel in Brazil, em inglês, era voltada ao público estrangeiro e mostrava um Brasil escolhido pelo governo.",
+    "motivo": "O DIP foi criado pelo Decreto-Lei 1.915, de 27/12/1939, então a data está correta. Mudei só 'escrita em inglês, era feita para' por 'em inglês, era voltada ao', por precisão: o título está em inglês, mas o enunciado não diz que o texto inteiro está. Mudança mínima e opcional.",
+    "fonte": "CPDOC/FGV, verbete DIP (Decreto-Lei 1.915/1939)"
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "O fundo é colorido e festivo. A figura, com turbante, joias e colares, lembra a baiana e o carnaval, símbolos muito associados ao Brasil.",
+    "motivo": "Redação mais cautelosa. A capa lembra a imagem de baiana/Carmen Miranda e o carnaval. Afirmar que ela mostra uma baiana é interpretação, não dado da imagem.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "A"
  }
 }

@@ -8,7 +8,7 @@
  "conceito": "Espelhos côncavos associados: raios paralelos, foco e natureza real da imagem; leitura de cotas numa figura.",
  "resolucao": {
   "antes": {
-   "texto": "Num espelho côncavo, um objeto no foco gera raios refletidos paralelos ao eixo. Raios paralelos que chegam a um côncavo convergem para o foco. Imagem real é a formada por raios que de fato se cruzam. Imagem virtual é formada só pelo prolongamento dos raios. Aqui os dois espelhos têm o vértice de um no foco do outro.",
+   "texto": "Num espelho côncavo, um objeto colocado no foco gera raios refletidos paralelos ao eixo. Raios que chegam paralelos ao eixo convergem para o foco. Imagem real é a formada onde os raios de fato se cruzam. Imagem virtual é a formada só pelo prolongamento dos raios. Aqui, o vértice de cada espelho está no foco do outro.",
    "formulas": [
     "objeto no foco → raios refletidos paralelos",
     "raios paralelos → convergem no foco",
@@ -17,23 +17,31 @@
    "simbolos": [
     [
      "vértice",
-     "ponto central do espelho, onde o eixo principal o toca"
+     "ponto do espelho que fica no meio da superfície, sobre o eixo principal"
+    ],
+    [
+     "eixo principal",
+     "reta vertical que passa pelo centro dos espelhos"
     ],
     [
      "foco",
-     "ponto onde convergem os raios que chegam paralelos ao eixo"
+     "ponto onde se cruzam os raios que chegam paralelos ao eixo"
     ],
     [
      "imagem real",
-     "formada pelo cruzamento efetivo dos raios; pode ser vista no ar, como no mirascópio"
+     "formada pelo cruzamento de raios de verdade; pode ser vista no ar, como no mirascópio"
     ],
     [
      "imagem virtual",
-     "formada pelo prolongamento dos raios; só existe 'atrás' do espelho"
+     "formada pelo prolongamento dos raios; só parece estar 'atrás' do espelho"
+    ],
+    [
+     "cota",
+     "número na figura que indica uma medida, como 3,8 cm"
     ]
    ]
   },
-  "pista": "Siga o raio que sai do objeto: depois de refletir em E2, ele fica paralelo? E, ao chegar em E1, para onde ele vai? Os raios se cruzam de verdade ou só os prolongamentos?",
+  "pista": "Siga um raio que sai do objeto. Depois de refletir em E2, ele fica paralelo ao eixo? E, ao chegar em E1, ele vai para onde? Esses raios se cruzam de verdade?",
   "passos": [
    {
     "faz": "Localize objeto e imagem",
@@ -45,24 +53,24 @@
     "faz": "Siga os raios no esquema",
     "conta": "objeto → E2 → paralelos → E1",
     "porque": "O objeto está no foco de E2, então E2 devolve raios paralelos (setas verticais descendo). Esses raios chegam a E1 e convergem para o foco de E1, que é o vértice de E2.",
-    "tipo": "aplicar"
+    "tipo": "localizar"
    },
    {
     "faz": "Classifique a imagem",
     "conta": "raios se cruzam na abertura",
     "porque": "Na figura, as linhas dos raios se cruzam de fato no ponto da abertura, sem usar prolongamentos. Logo a imagem é real.",
-    "tipo": "interpretar"
+    "tipo": "concluir"
    },
    {
     "faz": "Leia as cotas verticais",
     "conta": "3,8 cm + 3,8 cm",
-    "porque": "A figura marca 3,8 cm da altura da abertura até a borda dos espelhos e 3,8 cm da borda até a base (vértice de E1).",
+    "porque": "A figura marca 3,8 cm da abertura (alto) até a borda onde os espelhos se encontram, e mais 3,8 cm dessa borda até a base (vértice de E1).",
     "tipo": "localizar"
    },
    {
     "faz": "Some as duas cotas",
     "conta": "3,8 + 3,8 = 7,6 cm",
-    "porque": "A distância vertical entre o objeto (base) e a imagem (abertura no alto) é a soma das duas cotas. Esse valor é a distância focal de cada espelho, já que cada vértice está no foco do outro.",
+    "porque": "Objeto na base e imagem no alto: a distância vertical entre eles é a soma das duas cotas. Esse valor também é a distância focal de cada espelho, pois cada vértice está no foco do outro.",
     "tipo": "concluir"
    }
   ],
@@ -94,16 +102,16 @@
  ],
  "quadro": [
   {
-   "linha": "altura até a borda: 3,8 cm",
-   "nota": "cota de cima: da abertura à borda"
+   "linha": "alto → borda: 3,8 cm",
+   "nota": "cota de cima"
   },
   {
-   "linha": "borda até a base: 3,8 cm",
-   "nota": "cota de baixo: da borda ao vértice de E1"
+   "linha": "borda → base: 3,8 cm",
+   "nota": "cota de baixo"
   },
   {
    "linha": "d = 3,8 + 3,8",
-   "nota": "objeto na base, imagem no alto: soma das duas cotas"
+   "nota": "objeto na base, imagem no alto: soma"
   },
   {
    "linha": "d = 7,6 cm",
@@ -123,10 +131,111 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "localizar",
+    "motivo": "O guia só aceita os tipos localizar, calcular, comparar, eliminar e concluir, e 'aplicar' não está entre eles. Neste passo o aluno lê o caminho dos raios no esquema, então o tipo certo é localizar.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "concluir",
+    "motivo": "'interpretar' não é um tipo permitido. Neste passo o aluno tira a natureza da imagem (real) do cruzamento efetivo dos raios, então o tipo certo é concluir.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Num espelho côncavo, um objeto colocado no foco gera raios refletidos paralelos ao eixo. Raios que chegam paralelos ao eixo convergem para o foco. Imagem real é a formada onde os raios de fato se cruzam. Imagem virtual é a formada só pelo prolongamento dos raios. Aqui, o vértice de cada espelho está no foco do outro.",
+    "motivo": "Frases mais curtas e sem ambiguidade (raios paralelos 'ao eixo')."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "vértice",
+      "ponto do espelho que fica no meio da superfície, sobre o eixo principal"
+     ],
+     [
+      "eixo principal",
+      "reta vertical que passa pelo centro dos espelhos"
+     ],
+     [
+      "foco",
+      "ponto onde se cruzam os raios que chegam paralelos ao eixo"
+     ],
+     [
+      "imagem real",
+      "formada pelo cruzamento de raios de verdade; pode ser vista no ar, como no mirascópio"
+     ],
+     [
+      "imagem virtual",
+      "formada pelo prolongamento dos raios; só parece estar 'atrás' do espelho"
+     ],
+     [
+      "cota",
+      "número na figura que indica uma medida, como 3,8 cm"
+     ]
+    ],
+    "motivo": "Incluídos 'eixo principal' e 'cota', termos usados na resolução e não explicados."
+   },
+   {
+    "campo": "resolucao.pista",
+    "depois": "Siga um raio que sai do objeto. Depois de refletir em E2, ele fica paralelo ao eixo? E, ao chegar em E1, ele vai para onde? Esses raios se cruzam de verdade?",
+    "motivo": "Perguntas mais claras, sem entregar a resposta."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "A figura marca 3,8 cm da abertura (alto) até a borda onde os espelhos se encontram, e mais 3,8 cm dessa borda até a base (vértice de E1).",
+    "motivo": "Texto mais direto."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "Objeto na base e imagem no alto: a distância vertical entre eles é a soma das duas cotas. Esse valor também é a distância focal de cada espelho, pois cada vértice está no foco do outro.",
+    "motivo": "Frases curtas e ordem natural."
+   },
+   {
+    "campo": "resolucao.quadro",
+    "depois": [
+     {
+      "linha": "alto → borda: 3,8 cm",
+      "nota": "cota de cima"
+     },
+     {
+      "linha": "borda → base: 3,8 cm",
+      "nota": "cota de baixo"
+     },
+     {
+      "linha": "d = 3,8 + 3,8",
+      "nota": "objeto na base, imagem no alto: soma"
+     },
+     {
+      "linha": "d = 7,6 cm",
+      "nota": "distância vertical objeto–imagem"
+     }
+    ],
+    "motivo": "Linhas mais curtas para caber no celular."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "C"
  }
 }

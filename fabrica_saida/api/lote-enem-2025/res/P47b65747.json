@@ -29,24 +29,24 @@
     "faz": "Diga o que a questão pede",
     "conta": "menor custo total (R$)",
     "porque": "É preciso o custo dos três produtos juntos, na mesma autoescola, e escolher o menor.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Calcule o custo da autoescola I",
-    "conta": "20×10 + 10×80 + 400 = 1400",
-    "porque": "Teóricas: 200. Práticas: 800. Aluguel: 400. Soma: 200 + 800 + 400 = 1 400.",
+    "conta": "200 + 800 + 400 = 1400",
+    "porque": "Teóricas: 20 × 10 = 200. Práticas: 10 × 80 = 800. Aluguel: 400, cobrado uma vez.",
     "tipo": "calcular"
    },
    {
     "faz": "Calcule o custo da autoescola II",
-    "conta": "20×30 + 10×50 + 200 = 1300",
-    "porque": "Teóricas: 600. Práticas: 500. Aluguel: 200. Soma: 600 + 500 + 200 = 1 300.",
+    "conta": "600 + 500 + 200 = 1300",
+    "porque": "Teóricas: 20 × 30 = 600. Práticas: 10 × 50 = 500. Aluguel: 200, cobrado uma vez.",
     "tipo": "calcular"
    },
    {
     "faz": "Calcule o custo da autoescola III",
-    "conta": "20×20 + 10×40 + 400 = 1200",
-    "porque": "Teóricas: 400. Práticas: 400. Aluguel: 400. Soma: 400 + 400 + 400 = 1 200.",
+    "conta": "400 + 400 + 400 = 1200",
+    "porque": "Teóricas: 20 × 20 = 400. Práticas: 10 × 40 = 400. Aluguel: 400, cobrado uma vez.",
     "tipo": "calcular"
    },
    {
@@ -60,7 +60,7 @@
   "checagem": "Troque a ordem da soma: em III, 400 + 400 + 400 = 1 200. Em II, 200 + 600 + 500 = 1 300. Em I, 400 + 200 + 800 = 1 400. Os totais se mantêm.",
   "erradas": {
    "A": "A autoescola I custa mesmo R$ 1 400,00 (200 + 800 + 400), mas é o MAIOR dos três totais, não o menor.",
-   "B": "R$ 280,00 não confere: seria somar só os preços de uma aula e o aluguel de II (30 + 50 + 200 = 280). Faltou multiplicar por 20 e por 10 aulas; o custo real de II é R$ 1 300,00.",
+   "B": "R$ 280,00 sai de somar só o preço de uma aula de cada tipo e o aluguel de II: 30 + 50 + 200 = 280. Faltou multiplicar por 20 e por 10 aulas; o custo real de II é R$ 1 300,00.",
    "C": "A autoescola II custa mesmo R$ 1 300,00 (600 + 500 + 200), mas existe uma mais barata: a III, com R$ 1 200,00.",
    "D": "R$ 460,00 sai de somar os preços de uma aula só: 20 + 40 + 400 = 460. Faltou multiplicar pelo número de aulas dos pacotes (20 e 10); o custo real de III é R$ 1 200,00."
   },
@@ -89,32 +89,44 @@
   },
   {
    "linha": "I: 20×10 + 10×80 + 400",
-   "nota": "troque pelos valores da autoescola I"
+   "nota": "troque pelos valores de I"
   },
   {
-   "linha": "I: 200 + 800 + 400 = 1400",
+   "linha": "I: 200 + 800 + 400",
+   "nota": "faça cada multiplicação"
+  },
+  {
+   "linha": "I: = 1400",
    "nota": "some as três parcelas"
   },
   {
    "linha": "II: 20×30 + 10×50 + 200",
-   "nota": "valores da autoescola II"
+   "nota": "troque pelos valores de II"
   },
   {
-   "linha": "II: 600 + 500 + 200 = 1300",
+   "linha": "II: 600 + 500 + 200",
+   "nota": "faça cada multiplicação"
+  },
+  {
+   "linha": "II: = 1300",
    "nota": "some as três parcelas"
   },
   {
    "linha": "III: 20×20 + 10×40 + 400",
-   "nota": "valores da autoescola III"
+   "nota": "troque pelos valores de III"
   },
   {
-   "linha": "III: 400 + 400 + 400 = 1200",
+   "linha": "III: 400 + 400 + 400",
+   "nota": "faça cada multiplicação"
+  },
+  {
+   "linha": "III: = 1200",
    "nota": "some as três parcelas",
    "destaque": "1200"
   },
   {
    "linha": "1200 < 1300 < 1400",
-   "nota": "o menor custo é o da autoescola III"
+   "nota": "o menor custo é o de III"
   }
  ],
  "visual": {
@@ -130,10 +142,129 @@
  "gab": "E",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[0].tipo",
+    "depois": "localizar",
+    "motivo": "\"interpretar\" não é um dos tipos permitidos (localizar, calcular, comparar, eliminar, concluir). O passo que diz o que a questão pede é do tipo localizar.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "R$ 280,00 sai de somar só o preço de uma aula de cada tipo e o aluguel de II: 30 + 50 + 200 = 280. Faltou multiplicar por 20 e por 10 aulas; o custo real de II é R$ 1 300,00.",
+    "motivo": "O texto dizia \"não confere\" e, logo depois, mostrava a conta que chega exatamente a 280. Pela regra do campo, quando há origem real, escreve-se \"sai de\".",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "custo = 20 × (aula teórica) + 10 × (aula prática) + aluguel"
+    ],
+    "motivo": "Mantida; já está clara e no formato pedido (sem alteração de conteúdo)."
+   },
+   {
+    "campo": "resolucao.quadro",
+    "depois": [
+     {
+      "linha": "Custo = 20·T + 10·P + A",
+      "nota": "T = aula teórica, P = aula prática, A = aluguel"
+     },
+     {
+      "linha": "I: 20×10 + 10×80 + 400",
+      "nota": "troque pelos valores de I"
+     },
+     {
+      "linha": "I: 200 + 800 + 400",
+      "nota": "faça cada multiplicação"
+     },
+     {
+      "linha": "I: = 1400",
+      "nota": "some as três parcelas"
+     },
+     {
+      "linha": "II: 20×30 + 10×50 + 200",
+      "nota": "troque pelos valores de II"
+     },
+     {
+      "linha": "II: 600 + 500 + 200",
+      "nota": "faça cada multiplicação"
+     },
+     {
+      "linha": "II: = 1300",
+      "nota": "some as três parcelas"
+     },
+     {
+      "linha": "III: 20×20 + 10×40 + 400",
+      "nota": "troque pelos valores de III"
+     },
+     {
+      "linha": "III: 400 + 400 + 400",
+      "nota": "faça cada multiplicação"
+     },
+     {
+      "linha": "III: = 1200",
+      "nota": "some as três parcelas",
+      "destaque": "1200"
+     },
+     {
+      "linha": "1200 < 1300 < 1400",
+      "nota": "o menor custo é o de III"
+     }
+    ],
+    "motivo": "Um passo por linha, sem pular a etapa das multiplicações; linhas curtas para caber no celular."
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "200 + 800 + 400 = 1400",
+    "motivo": "Cabe na tela e mostra as parcelas; a conta completa está no quadro."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "600 + 500 + 200 = 1300",
+    "motivo": "Idem, curta para o celular."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "400 + 400 + 400 = 1200",
+    "motivo": "Idem, curta para o celular."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "Teóricas: 20 × 10 = 200. Práticas: 10 × 80 = 800. Aluguel: 400, cobrado uma vez.",
+    "motivo": "Mostra de onde vem cada parcela."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Teóricas: 20 × 30 = 600. Práticas: 10 × 50 = 500. Aluguel: 200, cobrado uma vez.",
+    "motivo": "Mostra de onde vem cada parcela."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Teóricas: 20 × 20 = 400. Práticas: 10 × 40 = 400. Aluguel: 400, cobrado uma vez.",
+    "motivo": "Mostra de onde vem cada parcela."
+   }
+  ],
+  "didatica_alertas": [
+   "O campo 'nivel' do JSON está 3 e a classificação atual diz nível 4; conferir qual vale."
+  ],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "E"
  }
 }

@@ -8,7 +8,7 @@
  "conceito": "Montar a equação do lucro: faturamento dos ingressos, mais lucro das bebidas, menos o custo, igual a R$ 17 000,00.",
  "resolucao": {
   "antes": {
-   "texto": "Lucro é tudo o que entra menos o custo. Aqui entra o dinheiro dos ingressos e o lucro das bebidas. Os ingressos mudaram: as meias-entradas foram 50% a mais que o previsto (60% de 500 = 300), então o faturamento real é outro. O lucro das bebidas é 60% do valor vendido, e é esse lucro que entra na conta.",
+   "texto": "Lucro é o que entra menos o custo. Aqui entram o dinheiro dos ingressos e o lucro das bebidas. Os ingressos mudaram: as meias-entradas foram 50% a mais que o previsto. O previsto era 60% de 500 = 300. O lucro das bebidas é 60% do valor vendido, e é esse lucro que entra na conta.",
    "formulas": [
     "lucro total = faturamento dos ingressos + lucro das bebidas − custo",
     "lucro das bebidas = 60% × (500 × gasto médio por pessoa)"
@@ -39,7 +39,7 @@
    {
     "faz": "Aplique o aumento de 50%",
     "conta": "300 × 1,5 = 450 meias",
-    "porque": "Como os 500 ingressos foram vendidos, sobram 500 − 450 = 50 inteiras.",
+    "porque": "50% a mais é multiplicar por 1,5. Como os 500 ingressos foram vendidos, as inteiras são 500 − 450 = 50.",
     "tipo": "calcular"
    },
    {
@@ -63,7 +63,13 @@
    {
     "faz": "Monte a equação com o gasto médio g",
     "conta": "0,6 × 500 × g = 15 600",
-    "porque": "As 500 pessoas gastam 500g no total, e 60% disso é lucro. Então 300g = 15 600 e g = 15 600/300 = 52. Resposta: D.",
+    "porque": "As 500 pessoas gastam 500 × g no total, e 60% disso é lucro. Isso dá 300 × g = 15 600.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Resolva e ligue à alternativa",
+    "conta": "g = 15 600 ÷ 300 = 52",
+    "porque": "O 300 que multiplica g passa dividindo. O gasto médio é R$ 52,00, alternativa D.",
     "tipo": "concluir"
    }
   ],
@@ -135,7 +141,7 @@
    "nota": "0,6 × 500 = 300"
   },
   {
-   "linha": "g = 15 600/300",
+   "linha": "g = \\frac{15 600}{300}",
    "nota": "o 300 passa dividindo",
    "mov": [
     {
@@ -165,10 +171,61 @@
  "gab": "D",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [],
+  "fatos_ok": true,
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Lucro é o que entra menos o custo. Aqui entram o dinheiro dos ingressos e o lucro das bebidas. Os ingressos mudaram: as meias-entradas foram 50% a mais que o previsto. O previsto era 60% de 500 = 300. O lucro das bebidas é 60% do valor vendido, e é esse lucro que entra na conta.",
+    "motivo": "Frases mais curtas e sem ambiguidade; o fator 1,5 fica para o passo 2."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "50% a mais é multiplicar por 1,5. Como os 500 ingressos foram vendidos, as inteiras são 500 − 450 = 50.",
+    "motivo": "Explica por que 50% a mais vira × 1,5, o que faltava ao aluno."
+   },
+   {
+    "campo": "resolucao.passos[5]",
+    "depois": {
+     "faz": "Monte a equação com o gasto médio g",
+     "conta": "0,6 × 500 × g = 15 600",
+     "porque": "As 500 pessoas gastam 500 × g no total, e 60% disso é lucro. Isso dá 300 × g = 15 600.",
+     "tipo": "calcular"
+    },
+    "motivo": "Separa a montagem da equação da conclusão (cada passo com um movimento)."
+   },
+   {
+    "campo": "resolucao.passos[6]",
+    "depois": {
+     "faz": "Resolva e ligue à alternativa",
+     "conta": "g = 15 600 ÷ 300 = 52",
+     "porque": "O 300 que multiplica g passa dividindo. O gasto médio é R$ 52,00, alternativa D.",
+     "tipo": "concluir"
+    },
+    "motivo": "Passo final próprio, com a divisão explícita."
+   },
+   {
+    "campo": "resolucao.quadro[10].linha",
+    "depois": "g = \\frac{15 600}{300}",
+    "motivo": "Fração empilhada, conforme a regra da matéria."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "D"
  }
 }

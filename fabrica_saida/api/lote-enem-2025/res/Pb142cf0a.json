@@ -8,7 +8,7 @@
  "conceito": "Combinar logaritmo e função quadrática: limitar a pressão máxima P ≤ 10 no intervalo de funcionamento e achar o maior K.",
  "resolucao": {
   "antes": {
-   "texto": "A pressão P é 4 vezes o logaritmo de uma expressão. Como o log cresce junto com o logaritmando, P ≤ 10 vale se o logaritmando for no máximo 10^2,5. O logaritmando é K vezes uma parábola em t. Ela tem de respeitar o limite durante as 10 horas (0 ≤ t ≤ 10), então basta olhar o ponto de maior valor da parábola nesse intervalo.",
+   "texto": "A pressão P é 4 vezes o logaritmo de uma expressão. O logaritmo cresce junto com o número dentro dele. Assim, P ≤ 10 vale quando esse número é no máximo 10^2,5. Esse número é K vezes uma parábola em t. Ela deve respeitar o limite durante as 10 horas de uso (de t = 0 a t = 10). Por isso, olhe a hora em que a parábola é maior nesse intervalo.",
    "formulas": [
     "log x ≤ c ⇔ x ≤ 10^c (base 10)",
     "vértice da parábola: t = média das raízes",
@@ -20,8 +20,16 @@
      "logaritmo na base 10: log x = c significa x = 10^c"
     ],
     [
+     "logaritmando",
+     "o número que fica dentro do log. Aqui é −K·(t + 1)·(t − 19)"
+    ],
+    [
      "atm",
      "atmosfera, unidade de pressão"
+    ],
+    [
+     "parábola",
+     "curva do gráfico de uma expressão com t². Aqui ela abre para baixo, como um morro"
     ],
     [
      "vértice",
@@ -39,24 +47,24 @@
     "faz": "Escreva a condição da pressão",
     "conta": "4·log[ ... ] ≤ 10",
     "porque": "O fabricante pede que P não passe de 10 atm durante todo o funcionamento.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Isole o logaritmo e saia do log",
     "conta": "log[ ... ] ≤ 2,5 → [ ... ] ≤ 10^2,5",
-    "porque": "Divida por 4. Como 10^x cresce, a desigualdade mantém o sentido ao tirar o log (base 10).",
+    "porque": "Divida os dois lados por 4. Na base 10, o log mantém a ordem: se log A ≤ 2,5, então A ≤ 10^2,5. A desigualdade não muda de sentido.",
     "tipo": "calcular"
    },
    {
     "faz": "Ache onde a parábola é maior",
     "conta": "raízes −1 e 19 → vértice t = 9",
-    "porque": "O vértice fica no meio das raízes: (−1 + 19)/2 = 9. Como o termo em t² é −K·t² (K > 0), a concavidade é para baixo e o vértice é o máximo. O 9 está dentro de 0 a 10.",
+    "porque": "O vértice fica no meio das raízes: (−1 + 19)/2 = 9. O sinal de menos na frente (K > 0) faz a parábola abrir para baixo. Então o vértice é o ponto mais alto. E o 9 está dentro do intervalo de 0 a 10.",
     "tipo": "calcular"
    },
    {
     "faz": "Calcule o valor máximo",
     "conta": "−(9+1)(9−19) = −10·(−10) = 100",
-    "porque": "No pior instante, o logaritmando vale K·100.",
+    "porque": "Na hora mais crítica, o número dentro do log vale K·100. Nas outras horas, vale menos.",
     "tipo": "calcular"
    },
    {
@@ -144,7 +152,7 @@
   "cabe": true,
   "porque": "O gráfico da parábola no intervalo mostra por que o vértice (t = 9) manda no limite.",
   "tipo": "grafico",
-  "roteiro": "Quadro 1: eixo t de 0 a 10 e parábola −(t+1)(t−19) com raízes em −1 e 19. Quadro 2: marca o vértice em t = 9 com altura 100 e destaca que está dentro do intervalo [0, 10]. Quadro 3: desenha a reta horizontal do limite 10^2,5/K e mostra que a parábola multiplicada por K não pode passar dela. Quadro 4: o topo em 100K encosta no limite, dando K = 10^0,5."
+  "roteiro": "Quadro 1: eixo t de 0 a 10 e parábola −(t+1)(t−19), com raízes em −1 e 19 (fora do período) e o trecho de 0 a 10 em destaque. Quadro 2: marca o vértice em t = 9 com altura 100 e mostra que ele fica dentro do intervalo [0, 10]. Quadro 3: desenha a reta horizontal na altura 10^2,5/K e mostra que a parábola não pode passar dela. Quadro 4: o topo da parábola (100) encosta na reta, 100 = 10^2,5/K, e daí sai K = 10^0,5."
  },
  "fontes": [],
  "confere": true,
@@ -153,10 +161,91 @@
  "gab": "A",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[0].tipo",
+    "depois": "localizar",
+    "motivo": "O valor \"interpretar\" não está na lista de tipos aceitos (localizar, calcular, comparar, eliminar, concluir). O passo lê a condição do enunciado, então o tipo certo é localizar.",
+    "fonte": ""
+   },
+   {
+    "campo": "visual.roteiro",
+    "depois": "Quadro 1: eixo t de 0 a 10 e parábola −(t+1)(t−19), com raízes em −1 e 19 (fora do período) e o trecho de 0 a 10 em destaque. Quadro 2: marca o vértice em t = 9 com altura 100 e mostra que ele fica dentro do intervalo [0, 10]. Quadro 3: desenha a reta horizontal na altura 10^2,5/K e mostra que a parábola não pode passar dela. Quadro 4: o topo da parábola (100) encosta na reta, 100 = 10^2,5/K, e daí sai K = 10^0,5.",
+    "motivo": "Os quadros 3 e 4 misturavam duas escalas: comparavam a parábola multiplicada por K (topo 100K) com a reta 10^2,5/K. Isso é incoerente, porque se usa 100K a reta é 10^2,5, e se a reta é 10^2,5/K compara-se a parábola sem K (topo 100). Ficou a segunda forma em todo o roteiro.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "A",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "A pressão P é 4 vezes o logaritmo de uma expressão. O logaritmo cresce junto com o número dentro dele. Assim, P ≤ 10 vale quando esse número é no máximo 10^2,5. Esse número é K vezes uma parábola em t. Ela deve respeitar o limite durante as 10 horas de uso (de t = 0 a t = 10). Por isso, olhe a hora em que a parábola é maior nesse intervalo.",
+    "motivo": "Frases mais curtas e sem o termo 'logaritmando', que o aluno pode não conhecer."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "log",
+      "logaritmo na base 10: log x = c significa x = 10^c"
+     ],
+     [
+      "logaritmando",
+      "o número que fica dentro do log. Aqui é −K·(t + 1)·(t − 19)"
+     ],
+     [
+      "atm",
+      "atmosfera, unidade de pressão"
+     ],
+     [
+      "parábola",
+      "curva do gráfico de uma expressão com t². Aqui ela abre para baixo, como um morro"
+     ],
+     [
+      "vértice",
+      "ponto mais alto (ou mais baixo) da parábola"
+     ],
+     [
+      "raízes",
+      "valores de t que zeram a expressão: aqui t = −1 e t = 19"
+     ]
+    ],
+    "motivo": "Explicar 'logaritmando' e 'parábola', usados na resolução e ainda sem definição."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "Divida os dois lados por 4. Na base 10, o log mantém a ordem: se log A ≤ 2,5, então A ≤ 10^2,5. A desigualdade não muda de sentido.",
+    "motivo": "Texto original ('10^x cresce') estava confuso para o aluno."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "O vértice fica no meio das raízes: (−1 + 19)/2 = 9. O sinal de menos na frente (K > 0) faz a parábola abrir para baixo. Então o vértice é o ponto mais alto. E o 9 está dentro do intervalo de 0 a 10.",
+    "motivo": "Frase mais simples sobre a concavidade."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Na hora mais crítica, o número dentro do log vale K·100. Nas outras horas, vale menos.",
+    "motivo": "Evita a expressão 'pior instante' sem explicação."
+   }
+  ],
+  "didatica_alertas": [
+   "O campo 'nivel' está 7 e 'tema/conteúdo' M06/M06.4 na resolução, enquanto a classificação atual do enunciado diz M01/M01.2 e nível 8. Convém o corretor de fatos verificar."
+  ],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "A"
  }
 }

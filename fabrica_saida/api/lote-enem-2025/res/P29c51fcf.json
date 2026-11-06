@@ -8,7 +8,7 @@
  "conceito": "Identificar a finalidade de um texto multimodal (cartaz de divulgação do projeto \"Maria da Penha vai à escola\") a partir do título, da pergunta e do texto verbal.",
  "resolucao": {
   "antes": {
-   "texto": "Para achar a finalidade de um texto, pergunte: quem fala, sobre o quê e para quê? Em cartazes e materiais de divulgação, o título e o nome do projeto dizem muito. A alternativa certa é a que une o problema social (violência contra mulheres/violência de gênero) ao lugar onde o texto o coloca (a escola), sem ir além do que está escrito.",
+   "texto": "Para achar a finalidade de um texto, pergunte: quem fala, sobre o quê e para quê? Em cartazes de divulgação, o título e o nome do projeto dizem muito. A alternativa certa une o problema social (violência contra mulheres) ao lugar onde o texto o coloca (a escola). Ela não pode ir além do que está escrito.",
    "formulas": [
     "finalidade = o que o texto quer provocar no leitor",
     "título + nome do projeto + frase final = pistas da finalidade"
@@ -24,7 +24,7 @@
     ],
     [
      "texto multimodal",
-     "texto que combina palavras e imagens (aqui, o título, a flor com figura de estudante e os selos)"
+     "texto que combina palavras e imagens (aqui, o título, a flor com uma figura humana no centro e os selos)"
     ]
    ]
   },
@@ -45,18 +45,18 @@
    {
     "faz": "Leia a justificativa",
     "conta": "\"A violência de gênero afeta a vida de meninas e meninos [...] é um dos grandes empecilhos para que vivam plenamente\"",
-    "porque": "O texto apresenta o problema social e justifica por que a escola deve se engajar: ele atinge os próprios estudantes.",
-    "tipo": "interpretar"
+    "porque": "O texto apresenta o problema social e mostra por que ele importa para a escola: ele atinge a vida de meninas e meninos, isto é, dos estudantes.",
+    "tipo": "localizar"
    },
    {
     "faz": "Elimine alternativas que extrapolam ou restringem",
-    "conta": "feminicídio? comparação? segurança? estudos?",
-    "porque": "Nenhuma dessas palavras aparece no texto: ele não fala de feminicídio, não compara meninas e meninos, não trata de segurança escolar nem divulga pesquisas.",
+    "conta": "A: feminicídio? C: comparação?\nD: segurança? E: estudos?",
+    "porque": "O texto não fala de feminicídio e não compara meninas e meninos. \"Segurança\" aparece só em \"segurança e qualidade de vida\" e no selo do Anuário. Nenhuma dessas ideias é o foco do cartaz.",
     "tipo": "eliminar"
    },
    {
     "faz": "Conclua a finalidade",
-    "conta": "problema social + escola = mobilizar o setor educacional",
+    "conta": "violência de gênero + escola\n= engajar o setor educacional",
     "porque": "O texto convida a escola a assumir o combate à violência de gênero.",
     "tipo": "concluir"
    }
@@ -64,9 +64,9 @@
   "resposta": "Alternativa B: o texto divulga um projeto que leva o debate sobre violência contra mulheres à escola, buscando o engajamento do setor educacional no combate à violência.",
   "checagem": "Segunda marca no texto: o nome do projeto, \"Maria da Penha vai à escola\", e a pergunta \"na escola?\" apontam para o mesmo lugar, o ambiente escolar como espaço de enfrentamento. Os selos (dossiê, #Desafio Igualdade, Anuário) reforçam o tema, sem mudar a finalidade.",
   "erradas": {
-   "A": "O texto não fala de feminicídio nem de campanha virtual. Fala de \"violência de gênero\" e \"violência contra mulheres\", e o foco é a escola. A alternativa estreita o tema e inventa o meio.",
+   "A": "O texto fala de \"violência de gênero\" e \"violência contra mulheres\", não de feminicídio (assassinato de mulheres). A hashtag \"#DESAFIO igualdade\" é só um selo lateral. O foco do cartaz é a escola, não uma campanha virtual contra o feminicídio.",
    "C": "O texto diz que a violência afeta \"meninas e meninos\", mas não compara o impacto em cada grupo. Citar os dois não é comparar.",
-   "D": "A palavra \"segurança\" aparece apenas no selo \"Anuário Brasileiro de Segurança Pública 2019\" e na expressão \"segurança e qualidade de vida\". O texto não trata de proteger estudantes na escola, e sim de falar do tema na escola.",
+   "D": "\"Segurança\" aparece só no selo do Anuário e em \"segurança e qualidade de vida\". O texto quer falar do tema na escola, não proteger estudantes lá. Quem marcou D pegou uma palavra solta em vez do propósito do cartaz.",
    "E": "O \"Anuário Brasileiro de Segurança Pública\" é só um selo, uma fonte de apoio. O texto não dá visibilidade a estudos, mas defende discutir a violência de gênero na escola."
   },
   "armadilha": "Escolher a alternativa que reaproveita uma palavra solta do texto (segurança, Anuário, meninas e meninos) em vez da finalidade do conjunto: levar o debate sobre violência contra mulheres à escola.",
@@ -101,10 +101,94 @@
  "gab": "B",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "localizar",
+    "motivo": "O guia só admite os tipos localizar, calcular, comparar, eliminar e concluir. O passo cita um trecho do texto, então o tipo certo é localizar.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "O texto não fala de feminicídio e não compara meninas e meninos. A palavra \"segurança\" aparece, mas só em \"segurança e qualidade de vida\" e no selo do Anuário. Nenhuma dessas leituras tem como foco a segurança na escola ou a divulgação de pesquisas.",
+    "motivo": "A frase \"Nenhuma dessas palavras aparece no texto\" é falsa. O cartaz traz \"segurança\" duas vezes (no corpo e no selo \"Anuário Brasileiro de Segurança Pública 2019\"), e o Anuário é ele próprio um estudo.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "O texto não fala de feminicídio. Fala de \"violência de gênero\" e \"violência contra mulheres\", com foco na escola. A hashtag \"#DESAFIO... igualdade\" é só um selo lateral e não faz do cartaz a divulgação de uma campanha virtual. A alternativa estreita o tema e troca o foco.",
+    "motivo": "O cartaz tem uma hashtag (#DESAFIO... igualdade). Por isso não dá para dizer que nada no texto remete ao meio virtual. O motivo certo é que esse selo não é a finalidade do texto.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.antes.simbolos[2][1]",
+    "depois": "texto que combina palavras e imagens (aqui, o título, a flor com uma figura humana no centro e os selos)",
+    "motivo": "O print não deixa claro que a figura dentro da flor é um estudante. A descrição neutra é a única que o print sustenta.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Para achar a finalidade de um texto, pergunte: quem fala, sobre o quê e para quê? Em cartazes de divulgação, o título e o nome do projeto dizem muito. A alternativa certa une o problema social (violência contra mulheres) ao lugar onde o texto o coloca (a escola). Ela não pode ir além do que está escrito.",
+    "motivo": "Frases mais curtas e sem o parêntese que repetia termo do glossário."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "A: feminicídio? C: comparação?\nD: segurança? E: estudos?",
+    "motivo": "A conta original era uma lista seca de palavras, sem indicar a letra de cada uma. Assim, o aluno associa cada letra ao teste."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "O texto não fala de feminicídio e não compara meninas e meninos. \"Segurança\" aparece só em \"segurança e qualidade de vida\" e no selo do Anuário. Nenhuma dessas ideias é o foco do cartaz.",
+    "motivo": "Simplifica a frase longa e deixa claro por que cada letra cai."
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "violência de gênero + escola\n= engajar o setor educacional",
+    "motivo": "A conta original era longa para a tela do celular; agora está em duas linhas curtas."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "O texto fala de \"violência de gênero\" e \"violência contra mulheres\", não de feminicídio (assassinato de mulheres). A hashtag \"#DESAFIO igualdade\" é só um selo lateral. Falta ver que o foco é a escola, não uma campanha virtual.",
+    "motivo": "Explica o termo feminicídio, cuja diferença é a chave da letra, e diz o que faltou no raciocínio."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "\"Segurança\" aparece só no selo do Anuário e em \"segurança e qualidade de vida\". O texto quer falar do tema na escola, não proteger estudantes lá. Quem marcou D pegou uma palavra solta em vez do propósito do cartaz.",
+    "motivo": "Mostra o que faltou no raciocínio de quem marcou D."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "O texto apresenta o problema social e mostra por que ele importa para a escola: ele atinge a vida de meninas e meninos, isto é, dos estudantes.",
+    "motivo": "A frase original dizia que o texto justifica por que a escola deve se engajar. Isso vai além do que está escrito, e a própria resolução avisa que a resposta não pode ir além do texto. A nova redação fica no que o cartaz diz.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "O texto fala de \"violência de gênero\" e \"violência contra mulheres\", não de feminicídio (assassinato de mulheres). A hashtag \"#DESAFIO igualdade\" é só um selo lateral. O foco do cartaz é a escola, não uma campanha virtual contra o feminicídio.",
+    "motivo": "A última frase era vaga: dizia que \"falta ver que o foco é a escola\". A nova frase afirma o motivo objetivo que derruba a alternativa.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "B"
  }
 }

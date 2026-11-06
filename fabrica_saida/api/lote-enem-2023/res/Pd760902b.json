@@ -28,7 +28,7 @@
     ]
    ]
   },
-  "pista": "Os dois tipos de ano têm tamanhos diferentes. Que unidade você pode usar como ponte entre eles?",
+  "pista": "Um ano Haab e um ano Tzolkim têm durações diferentes. Qual unidade menor cabe nos dois e serve de ponte?",
   "passos": [
    {
     "faz": "Ache o período em anos Haab",
@@ -56,12 +56,12 @@
    }
   ],
   "resposta": "Alternativa C: a família governou por 1 460 anos Tzolkim, pois 20 × 52 × 365 ÷ 260 = 1 460.",
-  "checagem": "Confira voltando: 1 460 × 260 = 379 600 dias. E 379 600 ÷ 365 = 1 040 anos Haab, que são 20 ciclos de 52. Fecha. Também dá para simplificar: 365/260 = 73/52, então 1 040 × 73/52 = 20 × 73 = 1 460.",
+  "checagem": "Confira voltando: 1 460 × 260 = 379 600 dias. Depois, 379 600 ÷ 365 = 1 040 anos Haab, que são 20 ciclos de 52. Fecha.",
   "erradas": {
-   "A": "741 não confere. 741 anos Tzolkim são 741 × 260 = 192 660 dias, que dá cerca de 528 anos Haab. O período dado é de 1 040 anos Haab, bem maior.",
+   "A": "741 sai de inverter a conversão: 1 040 × 260 ÷ 365 ≈ 741. Essa conta multiplica pelo ano Tzolkim e divide pelo ano Haab. O certo é o contrário: 1 040 anos Haab têm 1 040 × 365 dias, e esses dias se dividem por 260.",
    "B": "1 040 é o período em anos Haab (20 × 52). Ele só vale em anos Tzolkim se os dois anos tivessem a mesma duração, mas o Tzolkim é mais curto (260 dias contra 365), então o número de anos tem de ser maior que 1 040.",
    "D": "2 100 não confere. 2 100 × 260 = 546 000 dias, que são cerca de 1 496 anos Haab, e não os 1 040 do enunciado.",
-   "E": "5 200 não confere. 5 200 × 260 = 1 352 000 dias, que são cerca de 3 704 anos Haab, muito acima dos 1 040 do enunciado. Como o ano Tzolkim é menor que o Haab, o resultado só passa um pouco de 1 040, e não chega a cinco vezes isso."
+   "E": "5 200 não confere. 5 200 × 260 = 1 352 000 dias, que são cerca de 3 704 anos Haab, muito acima dos 1 040 do enunciado. Como 365 ÷ 260 ≈ 1,4, o resultado é cerca de 1,4 vez 1 040, e não cinco vezes."
   },
   "armadilha": "Responder 1 040, tratando anos Haab e anos Tzolkim como a mesma unidade, sem passar pelos dias.",
   "alerta": "",
@@ -96,17 +96,8 @@
    "nota": "1 040 × 365 = 379 600"
   },
   {
-   "linha": "379 600/260",
-   "nota": "dias divididos pelo ano Tzolkim",
-   "mov": [
-    {
-     "termo": "260",
-     "de": "esquerda",
-     "para": "denominador",
-     "vira": "260",
-     "como": "passa dividindo"
-    }
-   ]
+   "linha": "379 600 ÷ 260",
+   "nota": "quantos anos de 260 dias cabem"
   },
   {
    "linha": "= 1 460",
@@ -126,10 +117,76 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "741 sai de inverter a conversão: 1 040 × 260 ÷ 365 ≈ 741. Essa conta multiplica pelo ano Tzolkim e divide pelo ano Haab. O certo é o contrário: 1 040 anos Haab têm 1 040 × 365 dias, e esses dias se dividem por 260.",
+    "motivo": "O texto anterior dizia que 741 'não confere'. Mas 1 040 × 260 ÷ 365 = 740,8 ≈ 741, que é a conversão feita ao contrário. Segundo o guia, quando um erro típico chega exatamente ao valor, a entrada deve dizer 'sai de' e mostrar a conta.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "5 200 não confere. 5 200 × 260 = 1 352 000 dias, que são cerca de 3 704 anos Haab, muito acima dos 1 040 do enunciado. Como 365 ÷ 260 ≈ 1,4, o resultado é cerca de 1,4 vez 1 040, e não cinco vezes.",
+    "motivo": "A frase 'só passa um pouco de 1 040' era imprecisa, porque 1 460 é cerca de 40 % maior que 1 040. A nova versão troca a expressão pelo fator correto, 365 ÷ 260 ≈ 1,40.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.quadro",
+    "depois": [
+     {
+      "linha": "20 × 52 = 1 040",
+      "nota": "20 ciclos de 52 anos Haab"
+     },
+     {
+      "linha": "1 040 × 365",
+      "nota": "cada ano Haab tem 365 dias",
+      "destaque": "× 365"
+     },
+     {
+      "linha": "= 379 600 dias",
+      "nota": "1 040 × 365 = 379 600"
+     },
+     {
+      "linha": "379 600 ÷ 260",
+      "nota": "quantos anos de 260 dias cabem"
+     },
+     {
+      "linha": "= 1 460",
+      "nota": "anos Tzolkim: alternativa C"
+     }
+    ],
+    "motivo": "Fração escrita na linha com 'mov' inventado não é um termo que muda de lado; aqui é só uma divisão. Troquei por '÷', que o guia aceita, e retirei o 'mov' sem sentido."
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Confira voltando: 1 460 × 260 = 379 600 dias. Depois, 379 600 ÷ 365 = 1 040 anos Haab, que são 20 ciclos de 52. Fecha.",
+    "motivo": "Frase mais curta e sem o segundo caminho, que já está em 'caminhos'."
+   },
+   {
+    "campo": "resolucao.pista",
+    "depois": "Um ano Haab e um ano Tzolkim têm durações diferentes. Qual unidade menor cabe nos dois e serve de ponte?",
+    "motivo": "Pista mais clara, sem entregar a resposta."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "C"
  }
 }

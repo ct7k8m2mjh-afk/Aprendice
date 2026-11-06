@@ -8,7 +8,7 @@
  "conceito": "Solubilidade por semelhança: substância apolar (lipossolúvel) se concentra em fluido rico em gordura.",
  "resolucao": {
   "antes": {
-   "texto": "Semelhante dissolve semelhante: substância de baixa polaridade se dissolve bem em meio apolar, como a gordura, e mal em meio polar, como a água. Por isso o Aldrin é lipossolúvel (se dissolve em gorduras) e se acumula nos tecidos gordurosos. A questão pede o fluido com mais gordura, que é o que mais retém essa substância.",
+   "texto": "Semelhante dissolve semelhante: substância de baixa polaridade (quase sem cargas desiguais) se dissolve bem em meio apolar, como a gordura, e mal em meio polar, como a água. Por isso o Aldrin se acumula nos tecidos gordurosos. A questão pede o fluido com mais gordura, que é o que mais retém essa substância.",
    "formulas": [
     "semelhante dissolve semelhante",
     "apolar + gordura (apolar): dissolve bem",
@@ -21,7 +21,11 @@
     ],
     [
      "polaridade",
-     "distribuição desigual das cargas na molécula; molécula polar interage com a água"
+     "distribuição desigual das cargas na molécula; molécula polar interage bem com a água"
+    ],
+    [
+     "apolar",
+     "molécula sem separação relevante de cargas; interage pouco com a água e se mistura melhor com gorduras"
     ],
     [
      "lipossolúvel",
@@ -30,6 +34,14 @@
     [
      "persistência",
      "capacidade de permanecer no ambiente sem se decompor"
+    ],
+    [
+     "forças de dispersão",
+     "atrações fracas entre moléculas apolares"
+    ],
+    [
+     "plasma",
+     "parte líquida do sangue, feita quase só de água"
     ]
    ]
   },
@@ -44,8 +56,8 @@
    {
     "faz": "Aplique a regra de solubilidade",
     "conta": "apolar dissolve em apolar",
-    "porque": "Moléculas apolares interagem entre si por forças de dispersão e quase não interagem com a água, que é polar.",
-    "tipo": "aplicar"
+    "porque": "Moléculas apolares se atraem entre si por forças de dispersão (atrações fracas) e quase não interagem com a água, que é polar.",
+    "tipo": "comparar"
    },
    {
     "faz": "Classifique os fluidos",
@@ -69,10 +81,10 @@
   "resposta": "Alternativa E: no leite, porque o alto teor de gorduras (meio apolar) dissolve bem o Aldrin, que tem baixa polaridade.",
   "checagem": "Teste cada alternativa: só a E explica a retenção pela afinidade entre apolar e apolar. As outras citam enzimas, células, sais ou ureia, que não dissolvem uma substância apolar.",
   "erradas": {
-   "A": "Saliva é praticamente água com sais e enzimas. Enzimas catalisam reações e não concentram uma substância apolar. O meio polar dissolve mal o Aldrin.",
-   "B": "O sangue é principalmente plasma, que é aquoso, e hemácias e leucócitos são células que transportam gases e defendem o corpo. Não são um meio apolar que concentre o Aldrin, que se dissolve pouco em água.",
-   "C": "Lágrima é uma solução aquosa de sais, meio polar. Sais são compostos iônicos e interagem com a água, não com uma molécula apolar. Muitos sais aumentariam a polaridade do meio, o contrário do que atrai o Aldrin.",
-   "D": "Urina é água com ureia, que é uma molécula polar, capaz de ligações de hidrogênio com a água. O Aldrin apolar não tem afinidade com esse meio e é pouco eliminado por ele."
+   "A": "Saliva é água com sais e enzimas. Enzimas aceleram reações e não concentram substância apolar. Faltou ver que o meio é polar e dissolve mal o Aldrin.",
+   "B": "O sangue é sobretudo plasma, que é água (meio polar). Hemácias e leucócitos transportam gases e defendem o corpo; não formam um meio apolar. Faltou perguntar pela polaridade do meio.",
+   "C": "Lágrima é solução aquosa de sais, meio polar. Sais são iônicos e interagem com a água, não com uma molécula apolar. Citar 'concentração de sais' não explica por que o Aldrin se acumularia ali.",
+   "D": "Urina é água com ureia, molécula polar que faz ligações de hidrogênio com a água. Esse meio polar dissolve mal o Aldrin apolar. Faltou perguntar se a ureia é polar ou apolar."
   },
   "armadilha": "Citar uma substância presente no fluido (ureia, sais, enzimas) sem perguntar se ela é polar ou apolar, quando o que decide é a afinidade com a baixa polaridade do Aldrin.",
   "alerta": "",
@@ -127,10 +139,134 @@
  "gab": "E",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "comparar",
+    "motivo": "O tipo \"aplicar\" não está na lista permitida (localizar, calcular, comparar, eliminar, concluir). Neste passo se confronta a polaridade do Aldrin com a do meio, então o tipo é comparar.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "Lágrima é uma solução aquosa de sais, meio polar. Sais são compostos iônicos e interagem com a água, não com uma molécula apolar. Sais dissolvidos deixam o meio ainda menos favorável a uma substância apolar, o contrário do que atrai o Aldrin.",
+    "motivo": "Dizer que os sais \"aumentariam a polaridade do meio\" é impreciso. O que se sabe é que sais dissolvidos diminuem a solubilidade de compostos apolares em água (efeito salting-out). A conclusão continua a mesma.",
+    "fonte": "Atkins, Princípios de Química: solubilidade e efeito do eletrólito sobre solutos apolares"
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Semelhante dissolve semelhante: substância de baixa polaridade (quase sem cargas desiguais) se dissolve bem em meio apolar, como a gordura, e mal em meio polar, como a água. Por isso o Aldrin se dissolve em gordura e se acumula nos tecidos gordurosos. A questão pede o fluido com mais gordura, que é o que mais retém essa substância.",
+    "motivo": "Frase mais simples; 'lipossolúvel' fica explicado em simbolos, sem parêntese pesado."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "organoclorado",
+      "composto orgânico (de carbono) que tem átomos de cloro na molécula"
+     ],
+     [
+      "polaridade",
+      "distribuição desigual das cargas na molécula; molécula polar interage com a água"
+     ],
+     [
+      "apolar",
+      "molécula sem cargas desiguais; não se mistura com a água"
+     ],
+     [
+      "lipossolúvel",
+      "que se dissolve em gordura (lipídio)"
+     ],
+     [
+      "persistência",
+      "capacidade de permanecer no ambiente sem se decompor"
+     ],
+     [
+      "forças de dispersão",
+      "atrações fracas entre moléculas apolares"
+     ],
+     [
+      "plasma",
+      "parte líquida do sangue, feita quase só de água"
+     ]
+    ],
+    "motivo": "Incluídos apolar, forças de dispersão e plasma, termos usados na resolução e não explicados."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "Moléculas apolares se atraem entre si por forças de dispersão (atrações fracas) e quase não interagem com a água, que é polar.",
+    "motivo": "Explica o termo técnico na primeira aparição."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "Lágrima é solução aquosa de sais, meio polar. Sais são iônicos e interagem com a água, não com uma molécula apolar. Citar 'concentração de sais' não explica por que o Aldrin se acumularia ali.",
+    "motivo": "Mais curta (≤30 palavras) e diz o que faltou no raciocínio de quem marcou C."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "O sangue é sobretudo plasma, que é água (meio polar). Hemácias e leucócitos transportam gases e defendem o corpo; não formam um meio apolar. Faltou perguntar pela polaridade do meio.",
+    "motivo": "Mais curta e aponta o que faltou."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "Urina é água com ureia, molécula polar que faz ligações de hidrogênio com a água. Esse meio não atrai o Aldrin apolar. Faltou perguntar se a ureia é polar ou apolar.",
+    "motivo": "Mais curta e aponta o que faltou."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "Saliva é água com sais e enzimas. Enzimas aceleram reações e não concentram substância apolar. Faltou ver que o meio é polar e dissolve mal o Aldrin.",
+    "motivo": "Mais curta e aponta o que faltou."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.antes.simbolos[2]",
+    "depois": [
+     "apolar",
+     "molécula sem separação relevante de cargas; interage pouco com a água e se mistura melhor com gorduras"
+    ],
+    "motivo": "A definição original dizia que a molécula apolar 'não se mistura com a água'. Isso é absoluto demais, porque a solubilidade é muito baixa, mas não é nula. Troquei por uma formulação correta.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.antes.simbolos[1]",
+    "depois": [
+     "polaridade",
+     "distribuição desigual das cargas na molécula; molécula polar interage bem com a água"
+    ],
+    "motivo": "Ajuste mínimo de precisão: 'interage bem' mostra que a polaridade favorece a interação com a água, sem torná-la exclusiva.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "Urina é água com ureia, molécula polar que faz ligações de hidrogênio com a água. Esse meio polar dissolve mal o Aldrin apolar. Faltou perguntar se a ureia é polar ou apolar.",
+    "motivo": "'Não atrai' era vago. Dizer que o meio polar dissolve mal o Aldrin é coerente com o resto da resolução.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Semelhante dissolve semelhante: substância de baixa polaridade (quase sem cargas desiguais) se dissolve bem em meio apolar, como a gordura, e mal em meio polar, como a água. Por isso o Aldrin se acumula nos tecidos gordurosos. A questão pede o fluido com mais gordura, que é o que mais retém essa substância.",
+    "motivo": "Retirei 'se dissolve em gordura e'. A frase fica mais direta e continua correta.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "E"
  }
 }

@@ -8,7 +8,7 @@
  "conceito": "Ler um gráfico de barras, somar por modalidade e usar um valor do gráfico de setores (80 basqueteiros) para descobrir quanto vale cada quadradinho.",
  "resolucao": {
   "antes": {
-   "texto": "O gráfico de barras não traz números, mas tem linhas horizontais igualmente espaçadas. Cada espaço entre linhas vale a mesma quantidade de estudantes, que chamamos de 1 unidade. Conte as unidades de cada barra. O gráfico de setores dá a única informação em número: 80 estudantes no basquete. Compare essa informação com as unidades de basquete para descobrir quanto vale 1 unidade.",
+   "texto": "O gráfico de barras não traz números, mas tem linhas horizontais igualmente espaçadas. Cada espaço entre duas linhas vale a mesma quantidade de estudantes: chamamos isso de 1 unidade. Conte as unidades de cada barra, começando do zero (a linha preta de baixo). O gráfico de setores traz um único número: 80 estudantes no basquete. Compare esse 80 com as unidades do basquete para descobrir quanto vale 1 unidade.",
    "formulas": [
     "total em unidades = futebol + vôlei + basquete",
     "valor de 1 unidade = 80 ÷ unidades do basquete",
@@ -25,7 +25,7 @@
     ]
    ]
   },
-  "pista": "Conte quantos espaços de linha tem cada barra, começando pela mais baixa (basquete da 1ª série). Depois some as barras de uma mesma cor nas três séries.",
+  "pista": "Conte quantos espaços entre linhas tem cada barra, a partir da linha preta de baixo. Comece pelo basquete e some as três séries. Depois pense: 80 estudantes correspondem a quantas unidades?",
   "passos": [
    {
     "faz": "Leia as barras do futebol",
@@ -48,13 +48,13 @@
    {
     "faz": "Descubra quanto vale 1 unidade",
     "conta": "8 unidades = 80 alunos / 1 un. = 10",
-    "porque": "O gráfico de setores diz que o basquete tem 80 estudantes. Isso corresponde às 8 unidades do gráfico de barras: 80 ÷ 8 = 10 estudantes por unidade.",
+    "porque": "O gráfico de setores diz que o basquete tem 80 estudantes. No gráfico de barras, o basquete tem 8 unidades. Então 8 unidades valem 80, e 1 unidade vale 80 ÷ 8 = 10 estudantes.",
     "tipo": "calcular"
    },
    {
     "faz": "Some tudo e converta",
-    "conta": "18 + 10 + 8 = 36 un. / 36 × 10 = 360",
-    "porque": "O total em unidades vezes 10 estudantes por unidade dá o total de alunos.",
+    "conta": "36 un. × 10 = 360 alunos",
+    "porque": "Total em unidades: 18 + 10 + 8 = 36. Cada unidade vale 10 estudantes, então o total de alunos é 36 × 10 = 360, que é a alternativa B.",
     "tipo": "concluir"
    }
   ],
@@ -62,7 +62,7 @@
   "checagem": "No gráfico de setores, o futebol ocupa metade do círculo. Em unidades, 18 de 36 é exatamente metade. O basquete, 8 de 36, é cerca de 22%, e a fatia roxa é um pouco menor que um quarto do círculo. Tudo fecha.",
   "erradas": {
    "A": "720 não confere. Equivale a 1 unidade = 20 estudantes, e então o basquete (8 unidades) teria 160, não os 80 informados. É o dobro do total correto.",
-   "C": "320 não confere. Daria 1 unidade = 320 ÷ 36 ≈ 8,9 estudantes, valor que não é inteiro e não faz o basquete (8 unidades) ter 80. 320 seria só 4 vezes os 80 do basquete, ou seja, supor que o basquete é 1/4 da escola. Ele é 8/36, menos de 1/4.",
+   "C": "320 não confere. Com 36 unidades, 1 unidade valeria 320 ÷ 36, que dá cerca de 8,9 estudantes, e o basquete (8 unidades) teria cerca de 71, não 80. Também seria supor que o basquete é 1/4 da escola, mas ele é 8/36, menos de 1/4.",
    "D": "288 não confere. Com 36 unidades, 1 unidade valeria 8 estudantes, e o basquete teria 8 × 8 = 64, não 80.",
    "E": "240 não confere. Com 36 unidades, 1 unidade valeria 240 ÷ 36 ≈ 6,7 estudantes, e o basquete teria cerca de 53, não 80. Seria 3 vezes os 80, supondo que o basquete é 1/3 da escola. Ele é 8/36, bem menos que 1/3."
   },
@@ -129,10 +129,56 @@
  "gab": "B",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
+  },
+  "fatos": [],
+  "fatos_ok": true,
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "O gráfico de barras não traz números, mas tem linhas horizontais igualmente espaçadas. Cada espaço entre duas linhas vale a mesma quantidade de estudantes: chamamos isso de 1 unidade. Conte as unidades de cada barra, começando do zero (a linha preta de baixo). O gráfico de setores traz um único número: 80 estudantes no basquete. Compare esse 80 com as unidades do basquete para descobrir quanto vale 1 unidade.",
+    "motivo": "Deixar claro de onde se começa a contar e frases mais curtas."
+   },
+   {
+    "campo": "resolucao.pista",
+    "depois": "Conte quantos espaços entre linhas tem cada barra, a partir da linha preta de baixo. Comece pelo basquete e some as três séries. Depois pense: 80 estudantes correspondem a quantas unidades?",
+    "motivo": "A pista antiga mandava somar todas as cores; a nova leva ao raciocínio-chave (o 80 do basquete) sem entregar a conta."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "O gráfico de setores diz que o basquete tem 80 estudantes. No gráfico de barras, o basquete tem 8 unidades. Então 8 unidades valem 80, e 1 unidade vale 80 ÷ 8 = 10 estudantes.",
+    "motivo": "Frases mais curtas e diretas."
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "36 un. × 10 = 360 alunos",
+    "motivo": "A conta já vem somada nos passos anteriores; o passo foca em converter e responder, e cabe na tela do celular."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "Total em unidades: 18 + 10 + 8 = 36. Cada unidade vale 10 estudantes, então o total de alunos é 36 × 10 = 360, que é a alternativa B.",
+    "motivo": "Mostrar a soma que dá 36 e ligar o resultado à letra."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "320 não confere. Com 36 unidades, 1 unidade valeria 320 ÷ 36, que dá cerca de 8,9 estudantes, e o basquete (8 unidades) teria cerca de 71, não 80. Também seria supor que o basquete é 1/4 da escola, mas ele é 8/36, menos de 1/4.",
+    "motivo": "Frase mais clara e com o teste objetivo (basquete ≈ 71), em vez de dizer que o valor não é inteiro."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "B"
  }
 }
