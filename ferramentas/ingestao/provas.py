@@ -844,7 +844,7 @@ for _a, _s in ((2020, 1), (2022, 2), (2023, 1), (2023, 2), (2024, 1), (2024, 2),
 # 2025/1: caderno em duas colunas, numeração "6." e títulos de disciplina; gabarito por tipo (sem disciplina)
 PROVAS['fatec-2025-1'] = fatec(2025, 1)
 PROVAS['fatec-2025-1'].update({
-    'colunas': lambda r: duas_colunas(r, 30), 'topo': 68, 'base': 36, 'apagar': [r'^VESTIBULAR \d', r'^FATEC –', r'^TIPO A$'],
+    'colunas': 'faixas', 'margem': 30, 'topo': 68, 'base': 36, 'apagar': [r'^VESTIBULAR \d', r'^FATEC –', r'^TIPO A$'],
     'ancora': r'^(\d{1,2})\.(\s|$)', 'ancora_dx': 12, 'area_do_gabarito': False,
     'secoes': {'MATEMÁTICA': 'Matemática', 'FÍSICA': 'Física', 'QUÍMICA': 'Química', 'BIOLOGIA': 'Biologia', 'HISTÓRIA': 'História',
                'GEOGRAFIA': 'Geografia', 'INGLÊS': 'Inglês', 'LÍNGUA PORTUGUESA': 'Língua Portuguesa', 'PORTUGUÊS': 'Língua Portuguesa',
