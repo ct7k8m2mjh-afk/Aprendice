@@ -28,8 +28,9 @@ export function MapaMental({ centro, ramos }: { centro: string; ramos: RamoMapa[
 
   useLayoutEffect(() => {
     if (!raiz.current || (typeof matchMedia !== 'undefined' && matchMedia('(prefers-reduced-motion: reduce)').matches)) return;
-    const cs = [animaEntrada(raiz.current.querySelector<HTMLElement>('.mm-centro')!, 0)];
-    raiz.current.querySelectorAll<HTMLElement>('.mm-no').forEach((el, i) => cs.push(animaEntrada(el, 350 + i * 220)));
+    // anima a caixa de dentro: a de fora guarda a posição (translate) no mapa radial
+    const cs = [animaEntrada(raiz.current.querySelector<HTMLElement>('.mm-centro > span')!, 0)];
+    raiz.current.querySelectorAll<HTMLElement>('.mm-in').forEach((el, i) => cs.push(animaEntrada(el, 350 + i * 220)));
     return () => cs.forEach((c) => c.cancela());
   }, [centro, n]);
 
@@ -39,8 +40,9 @@ export function MapaMental({ centro, ramos }: { centro: string; ramos: RamoMapa[
         {pos.map((p, i) => <line key={i} className="mm-linha" x1={50} y1={50} x2={p.x} y2={p.y} style={{ animationDelay: `${300 + i * 220}ms` }} />)}
         {ligas.map(([a, b], k) => {
           const A = pos[a], B = pos[b];
-          // curva por dentro do anel (puxada um pouco para o centro), tracejada
-          const cx = (A.x + B.x) / 2 + (50 - (A.x + B.x) / 2) * 0.45, cy = (A.y + B.y) / 2 + (50 - (A.y + B.y) / 2) * 0.45;
+          // curva por fora do anel (empurrada para longe do centro), tracejada: não cruza o tema no meio
+          const mx = (A.x + B.x) / 2, my = (A.y + B.y) / 2;
+          const cx = mx + (mx - 50) * 0.55, cy = my + (my - 50) * 0.55;
           return <path key={k} className="mm-liga" d={`M${A.x} ${A.y} Q${cx} ${cy} ${B.x} ${B.y}`} style={{ animationDelay: `${400 + n * 220 + k * 160}ms` }} />;
         })}
       </svg>
@@ -48,9 +50,11 @@ export function MapaMental({ centro, ramos }: { centro: string; ramos: RamoMapa[
       <ol className="mm-nos">
         {ramos.map((r, i) => (
           <li key={r.sub + i} className="mm-no" style={{ '--x': `${pos[i].x}%`, '--y': `${pos[i].y}%` } as CSSProperties}>
-            <b>{r.titulo}</b>
-            {r.chave && <span className="mm-chave">{r.chave}</span>}
-            {r.liga && r.liga.length > 0 && <span className="mm-liga-txt">liga com {r.liga.map(titulo).join(', ')}</span>}
+            <div className="mm-in">
+              <b>{r.titulo}</b>
+              {r.chave && <span className="mm-chave">{r.chave}</span>}
+              {r.liga && r.liga.length > 0 && <span className="mm-liga-txt">liga com {r.liga.map(titulo).join(', ')}</span>}
+            </div>
           </li>
         ))}
       </ol>
