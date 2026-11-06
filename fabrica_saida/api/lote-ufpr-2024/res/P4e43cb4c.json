@@ -55,7 +55,7 @@
     "faz": "Isole a área na definição de pressão",
     "conta": "A = F ÷ P",
     "porque": "De P = F ÷ A, a área fica no denominador. Trocando de lugar com P, ela vem dividida.",
-    "tipo": "aplicar"
+    "tipo": "calcular"
    },
    {
     "faz": "Substitua os valores",
@@ -73,8 +73,8 @@
   "resposta": "Alternativa A: A = 3,0 × 10⁻⁴ m², pois a força é o peso de 6 N e A = 6 ÷ (2,0 × 10⁴).",
   "checagem": "Faça o caminho de volta: P = F ÷ A = 6 ÷ (3,0 × 10⁻⁴) = 2,0 × 10⁴ Pa, igual ao dado. A ordem de grandeza também faz sentido: 3 cm² = 3 × 10⁻⁴ m², área pequena para um objeto de 600 g.",
   "erradas": {
-   "B": "Sai de usar F = 6 N e dividir mal: 6 ÷ 2 = 3, não 6. Também sai de multiplicar 0,6 × 10 = 6 e esquecer de dividir por 2 na pressão: 6 × 10⁻⁴. Mas A = 6 ÷ (2,0 × 10⁴) = 3,0 × 10⁻⁴, e com 6,0 × 10⁻⁴ a pressão seria 1,0 × 10⁴ Pa, não 2,0 × 10⁴.",
-   "C": "Sai de errar a potência de dez: 3,0 × 10⁻⁵. Com essa área, P = 6 ÷ (3,0 × 10⁻⁵) = 2,0 × 10⁵ Pa, dez vezes o valor dado.",
+   "B": "Sai de ignorar o fator 2,0 da pressão: 6 ÷ 10⁴ = 6,0 × 10⁻⁴ m². Com essa área, P = 6 ÷ (6,0 × 10⁻⁴) = 1,0 × 10⁴ Pa, metade do valor dado.",
+   "C": "Não confere: com A = 3,0 × 10⁻⁵ m², P = 6 ÷ (3,0 × 10⁻⁵) = 2,0 × 10⁵ Pa, dez vezes o valor dado.",
    "D": "Com A = 6,0 × 10⁻⁵ m², P = 6 ÷ (6,0 × 10⁻⁵) = 1,0 × 10⁵ Pa, cinco vezes o valor do enunciado. Não confere.",
    "E": "Com A = 3,0 × 10⁻⁶ m², P = 6 ÷ (3,0 × 10⁻⁶) = 2,0 × 10⁶ Pa, cem vezes o valor dado. Não confere."
   },
@@ -110,11 +110,11 @@
    "nota": "calcule o peso"
   },
   {
-   "linha": "P = \\frac{F}{A}",
+   "linha": "P = F/A",
    "nota": "definição de pressão"
   },
   {
-   "linha": "A = \\frac{F}{P}",
+   "linha": "A = F/P",
    "nota": "a área passa para o numerador e a pressão para o denominador",
    "mov": [
     {
@@ -134,7 +134,7 @@
    ]
   },
   {
-   "linha": "A = \\frac{6}{2,0 × 10^4}",
+   "linha": "A = 6/(2,0 × 10^4)",
    "nota": "substitua F = 6 N e P = 2,0 × 10⁴ Pa"
   },
   {
@@ -155,10 +155,52 @@
  "gab": "A",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "calcular",
+    "motivo": "O tipo 'aplicar' não está entre os tipos permitidos (localizar, calcular, comparar, eliminar, concluir). Isolar a incógnita é um passo de cálculo.",
+    "fonte": ""
+   },
+   {
+    "campo": "quadro[3].linha",
+    "depois": "P = F/A",
+    "motivo": "A linha estava em LaTeX (\\frac), que é proibido em qualquer campo. Troquei pela fração em linha, que o site desenha empilhada.",
+    "fonte": ""
+   },
+   {
+    "campo": "quadro[4].linha",
+    "depois": "A = F/P",
+    "motivo": "A linha estava em LaTeX (\\frac), que é proibido. Troquei pela fração em linha.",
+    "fonte": ""
+   },
+   {
+    "campo": "quadro[5].linha",
+    "depois": "A = 6/(2,0 × 10^4)",
+    "motivo": "A linha estava em LaTeX (\\frac), que é proibido. Troquei pela fração em linha.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "Sai de ignorar o fator 2,0 da pressão: 6 ÷ 10⁴ = 6,0 × 10⁻⁴ m². Com essa área, P = 6 ÷ (6,0 × 10⁻⁴) = 1,0 × 10⁴ Pa, metade do valor dado.",
+    "motivo": "O texto antigo dava duas origens confusas, e a primeira ('dividir mal: 6 ÷ 2 = 3, não 6') não descreve um erro real. A origem reproduzível é esquecer o 2,0 do denominador. Conta refeita: 6/10⁴ = 6×10⁻⁴; 6/(6×10⁻⁴) = 10⁴.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "Não confere: com A = 3,0 × 10⁻⁵ m², P = 6 ÷ (3,0 × 10⁻⁵) = 2,0 × 10⁵ Pa, dez vezes o valor dado.",
+    "motivo": "'Sai de errar a potência de dez' é uma origem vaga, sem uma conta que chegue ao valor. Troquei pelo teste objetivo, que já estava certo: 6/(3×10⁻⁵) = 2×10⁵.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "A"
  }
 }

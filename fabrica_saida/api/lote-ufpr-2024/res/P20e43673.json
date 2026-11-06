@@ -49,8 +49,8 @@
    {
     "faz": "Procure o evento que mobilizou o Exército",
     "conta": "Guerra do Paraguai, 1864–1870",
-    "porque": "Foi a única guerra externa de grande escala do Império. Ampliou os efetivos, deu experiência de combate e criou orgulho de corpo nos oficiais.",
-    "tipo": "aplicar"
+    "porque": "Foi a maior guerra externa do Império. Ampliou os efetivos, deu experiência de combate e criou orgulho de corpo nos oficiais.",
+    "tipo": "localizar"
    },
    {
     "faz": "Descarte os outros eventos",
@@ -70,7 +70,7 @@
   "erradas": {
    "A": "A Convenção de Itu (1873) foi uma reunião de republicanos, sobretudo paulistas, que fundou o Partido Republicano Paulista. Foi um evento político civil e não fortaleceu o Exército.",
    "B": "A Revolta da Armada (1893–1894) foi um levante da Marinha contra o presidente Floriano Peixoto, já na República. Vem depois da monarquia e envolve a Marinha, não o Exército.",
-   "C": "A Questão Christie (1862–1865) foi um conflito diplomático com a Inglaterra, ligado ao tráfico de escravizados e a incidentes envolvendo marinheiros britânicos. Não envolveu o Exército.",
+   "C": "A Questão Christie (1862–1865) foi um conflito diplomático com a Inglaterra. Começou com o saque da carga de um navio britânico naufragado no Rio Grande do Sul e com a prisão de oficiais da Marinha britânica no Rio de Janeiro. Não envolveu o Exército.",
    "D": "A Revolução Praieira (1848–1849) foi uma revolta liberal em Pernambuco, derrotada pelo governo. Foi um conflito provincial, anterior à crise da monarquia, e não deu protagonismo ao Exército."
   },
   "armadilha": "Confundir eventos do século XIX por proximidade: Itu, Praieira e Christie existiram no Império, mas só a Guerra do Paraguai fortaleceu o Exército.",
@@ -105,10 +105,34 @@
  "gab": "E",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "localizar",
+    "motivo": "O tipo 'aplicar' não existe no padrão. Os tipos válidos são localizar, calcular, comparar, eliminar e concluir. Este passo localiza o evento que responde ao comando.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Foi a maior guerra externa do Império. Ampliou os efetivos, deu experiência de combate e criou orgulho de corpo nos oficiais.",
+    "motivo": "A frase 'única guerra externa de grande escala' é imprecisa. O Império também travou a Guerra da Cisplatina (1825–1828) e a Guerra contra Oribe e Rosas (1851–1852). O que é seguro afirmar é que a do Paraguai foi a maior.",
+    "fonte": "Boris Fausto, História do Brasil (Primeiro Reinado e política platina do Segundo Reinado)"
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "A Questão Christie (1862–1865) foi um conflito diplomático com a Inglaterra. Começou com o saque da carga de um navio britânico naufragado no Rio Grande do Sul e com a prisão de oficiais da Marinha britânica no Rio de Janeiro. Não envolveu o Exército.",
+    "motivo": "Dizer que o conflito foi 'ligado ao tráfico de escravizados' é impreciso. As tensões anglo-brasileiras sobre o tráfico eram o pano de fundo, mas o que desencadeou a questão foram os dois incidentes de 1861–1862 (o naufrágio do Prince of Wales e a prisão dos oficiais do HMS Forte).",
+    "fonte": "Boris Fausto, História do Brasil (Segundo Reinado, Questão Christie)"
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E"
  }
 }

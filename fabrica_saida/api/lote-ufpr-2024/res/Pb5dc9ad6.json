@@ -50,14 +50,14 @@
    {
     "faz": "Teste a lei e o aquífero (B e E)",
     "conta": "E: topo de morro = APP\nB: custo no aquífero confinado",
-    "porque": "O Código Florestal protege topo de morro para evitar erosão, deslizamento e perda de áreas de recarga e nascentes, não para impedir 'extração de água nas áreas baixas'. A B cita um custo real, mas não é a causa geral do problema.",
+    "porque": "O Código Florestal protege topo de morro para evitar erosão, deslizamento e perda de áreas de recarga e nascentes, não para impedir 'extração de água nas áreas baixas'. A B também falha: no aquífero confinado, a água está sob pressão e sobe sozinha no poço (poço artesiano), então o custo de extração não é o obstáculo típico.",
     "tipo": "eliminar"
    },
    {
     "faz": "Reconheça a escassez econômica (D)",
     "conta": "água na natureza + falta de infraestrutura = escassez econômica",
     "porque": "Quando há disponibilidade natural, mas faltam captação, tratamento e distribuição, o problema é de investimento e gestão. É a definição de escassez econômica de água.",
-    "tipo": "aplicar"
+    "tipo": "comparar"
    },
    {
     "faz": "Ligue à alternativa",
@@ -67,14 +67,14 @@
    }
   ],
   "resposta": "Alternativa D: onde há água na natureza, mas faltam captação, tratamento e distribuição, a escassez é de ordem econômica, não física.",
-  "checagem": "Troque 'econômica' por 'física' na D: ficaria 'escassez física numa região com água disponível', o que é contraditório. A D só faz sentido como está. As demais têm erro de fato: A inverte o perfil de consumo, C superestima o uso doméstico e E erra a finalidade da lei.",
+  "checagem": "Troque 'econômica' por 'física' na D: ficaria 'escassez física numa região com água disponível', o que é contraditório. A D só faz sentido como está. As demais têm erro de fato: A inverte o perfil de consumo, B ignora que o aquífero confinado está sob pressão, C superestima o uso doméstico e E erra a finalidade da lei.",
   "erradas": {
    "A": "A generaliza. A agricultura é o maior consumidor no mundo, mas essa participação é maior nos países em desenvolvimento. Nos países de renda alta, a indústria e a energia respondem por fatia igual ou maior. A irrigação intensiva não explica o consumo nos países mais desenvolvidos como regra.",
-   "B": "Não é a resposta. O custo de extrair água de aquíferos profundos é uma dificuldade pontual e real. Mas a questão trata de escassez em geral, e as causas principais são a distribuição desigual, a poluição e a falta de infraestrutura e gestão. Sozinho, esse custo não define o problema, e a D é a afirmação que o define.",
+   "B": "B é falsa. No aquífero confinado, a água fica presa sob pressão entre camadas impermeáveis. Por isso ela sobe no poço sozinha e às vezes jorra sem bomba (poço artesiano). O custo de extração não é o grande entrave; os problemas reais são superexploração, recarga lenta e contaminação.",
    "C": "Inverte as proporções. O consumo doméstico é a menor parcela do uso global de água, bem menor que a agricultura e a indústria. O estresse hídrico em países com boa disponibilidade natural vem mais de usos agrícola e industrial, poluição e má gestão.",
    "E": "Erra a finalidade da lei. O Código Florestal define o topo de morro como Área de Preservação Permanente para reduzir erosão e deslizamentos e preservar a vegetação que protege nascentes e a recarga dos aquíferos. Ele não trata de impedir a 'extração de água nas áreas baixas onde a água se acumula'."
   },
-  "armadilha": "Marcar a B, que cita um custo real, em vez de reconhecer a D, que é a definição de escassez econômica, ou aceitar generalizações como a da A.",
+  "armadilha": "Marcar a B, que soa plausível ('aquífero profundo deve ser caro'), sem lembrar que a água do aquífero confinado está sob pressão e sobe sozinha; ou aceitar generalizações como a da A.",
   "alerta": "",
   "essencial": {
    "pede": "A afirmação correta sobre o uso e a escassez dos recursos hídricos.",
@@ -85,7 +85,7 @@
  "caminhos": [
   {
    "nome": "eliminação por fato",
-   "ideia": "Derrube A, C e E com um fato cada (perfil de consumo, parcela doméstica, finalidade da APP). Entre B e D, fica a que descreve o conceito de escassez sem depender de um custo específico."
+   "ideia": "Derrube A, C e E com um fato cada (perfil de consumo, parcela doméstica, finalidade da APP). Derrube a B pelo artesianismo: a água do aquífero confinado está sob pressão e sobe no poço, então o custo de extração não é o entrave. Sobra a D."
   },
   {
    "nome": "conceito de escassez",
@@ -109,10 +109,52 @@
  "gab": "D",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "comparar",
+    "motivo": "'aplicar' não está entre os tipos permitidos (localizar, calcular, comparar, eliminar, concluir). O passo liga a situação descrita na D ao conceito de escassez econômica, o que é um passo 'comparar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "O Código Florestal protege topo de morro para evitar erosão, deslizamento e perda de áreas de recarga e nascentes, não para impedir 'extração de água nas áreas baixas'. A B também falha: no aquífero confinado, a água está sob pressão e sobe sozinha no poço (poço artesiano), então o custo de extração não é o obstáculo típico.",
+    "motivo": "A resolução tratava a B como verdadeira ('custo real'), mas dizia que ela não respondia. Numa questão de 'é correto afirmar', uma afirmação verdadeira também seria gabarito, então essa justificativa não derruba a B. O que derruba a B é que ela é falsa: a água do aquífero confinado está sob pressão hidrostática (artesianismo), o que barateia a extração em vez de encarecê-la.",
+    "fonte": "Conceito de aquífero confinado/artesiano (água sob pressão maior que a atmosférica). Ver USGS, Aquifers and Groundwater."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "B é falsa. No aquífero confinado, a água fica presa sob pressão entre camadas impermeáveis. Por isso ela sobe no poço sozinha e às vezes jorra sem bomba (poço artesiano). O custo de extração não é o grande entrave; os problemas reais são superexploração, recarga lenta e contaminação.",
+    "motivo": "O texto anterior considerava a afirmação verdadeira ('dificuldade pontual e real'), e isso torna a eliminação logicamente inválida numa questão de 'correto'. A correção dá o motivo técnico pelo qual a afirmação é falsa.",
+    "fonte": "USGS, Aquifers and Groundwater (artesian/confined aquifers)."
+   },
+   {
+    "campo": "resolucao.armadilha",
+    "depois": "Marcar a B, que soa plausível ('aquífero profundo deve ser caro'), sem lembrar que a água do aquífero confinado está sob pressão e sobe sozinha; ou aceitar generalizações como a da A.",
+    "motivo": "Alinhar a armadilha à correção da B: ela não é um 'custo real'.",
+    "fonte": ""
+   },
+   {
+    "campo": "caminhos[0].ideia",
+    "depois": "Derrube A, C e E com um fato cada (perfil de consumo, parcela doméstica, finalidade da APP). Derrube a B pelo artesianismo: a água do aquífero confinado está sob pressão e sobe no poço, então o custo de extração não é o entrave. Sobra a D.",
+    "motivo": "O caminho antigo escolhia entre B e D por critério de abrangência, como se a B fosse verdadeira. Na verdade a B é falsa.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Troque 'econômica' por 'física' na D: ficaria 'escassez física numa região com água disponível', o que é contraditório. A D só faz sentido como está. As demais têm erro de fato: A inverte o perfil de consumo, B ignora que o aquífero confinado está sob pressão, C superestima o uso doméstico e E erra a finalidade da lei.",
+    "motivo": "A checagem omitia a B. Incluí o motivo pelo qual ela é falsa, para ficar coerente com a correção.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "D"
  }
 }

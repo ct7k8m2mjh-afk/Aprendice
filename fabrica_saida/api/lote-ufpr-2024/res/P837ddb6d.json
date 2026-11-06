@@ -62,7 +62,7 @@
    {
     "faz": "Teste a letra E",
     "conta": "Nordeste: maioria parda, não preta",
-    "porque": "Os pretos são cerca de um décimo dos nordestinos. Não existe a relação rural, preto e metade da população.",
+    "porque": "Os pretos são pouco mais de um décimo dos nordestinos. Não existe a relação rural, preto e metade da população.",
     "tipo": "eliminar"
    },
    {
@@ -76,9 +76,9 @@
   "checagem": "Pense nas outras regiões: Sul é de maioria branca, Nordeste e Centro-Oeste são de maioria parda. Nenhuma outra letra descreve uma região com a maioria certa e uma explicação aceitável.",
   "erradas": {
    "B": "Inverte a realidade do Sul. A região tem maioria branca; pretos somam bem menos de 1/5 e pardos bem menos de 2/5 da população. Esses percentuais não descrevem o Sul.",
-   "C": "A pergunta sobre cor, respondida pelo próprio entrevistado, já constava em censos anteriores, como os de 1940, 1950, 1960 e 1980. Em 1991 o quesito voltou ao questionário, depois de ficar de fora em 1970. Ligar o critério à redemocratização é explicação forçada: o regime de 1964 não aparece como causa de uma mudança de critério.",
+   "C": "A pergunta sobre cor já constava em censos anteriores, como os de 1940, 1950, 1960 e 1980; só o de 1970 a deixou de fora. Em 1991 a novidade foi a categoria indígena. Ligar o critério à redemocratização é explicação forçada: o regime de 1964 não aparece como causa de uma mudança de critério.",
    "D": "O Centro-Oeste tem maioria parda, com os brancos em segundo lugar. A população branca não se tornou predominante lá. Gaúchos migraram para a região, mas isso não fez dos brancos a maioria.",
-   "E": "Mistura dados falsos. Os pretos não são a maioria nas áreas rurais nem metade dos nordestinos: no Nordeste a maioria é parda e os pretos ficam na casa de um décimo."
+   "E": "Mistura dados falsos. Os pretos não são a maioria nas áreas rurais nem metade dos nordestinos: no Nordeste a maioria é parda e os pretos ficam em pouco mais de um décimo."
   },
   "armadilha": "Aceitar uma explicação histórica bonita (redemocratização, fronteira agrícola) sem conferir se o dado regional ou a data estão certos.",
   "alerta": "",
@@ -108,10 +108,34 @@
  "gab": "A",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "A pergunta sobre cor já constava em censos anteriores, como os de 1940, 1950, 1960 e 1980; só o de 1970 a deixou de fora. Em 1991 a novidade foi a categoria indígena. Ligar o critério à redemocratização é explicação forçada: o regime de 1964 não aparece como causa de uma mudança de critério.",
+    "motivo": "O texto antigo dizia que o quesito 'voltou em 1991' depois de sair em 1970. Está errado: ele voltou já no Censo de 1980, como o próprio texto lista. Também tirei a afirmação de que, em todos esses censos, a resposta era dada pelo entrevistado, porque ela não pôde ser conferida com segurança.",
+    "fonte": "IBGE, histórico do quesito cor ou raça nos Censos Demográficos (1940, 1950, 1960, 1980, 1991; ausente em 1970; categoria indígena incluída em 1991)"
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "Os pretos são pouco mais de um décimo dos nordestinos. Não existe a relação rural, preto e metade da população.",
+    "motivo": "No Censo 2022, os pretos são cerca de 13% da população do Nordeste. Isso fica mais perto de 'pouco mais de um décimo' do que de 'cerca de um décimo'.",
+    "fonte": "IBGE, Censo Demográfico 2022: cor ou raça por Grande Região"
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "Mistura dados falsos. Os pretos não são a maioria nas áreas rurais nem metade dos nordestinos: no Nordeste a maioria é parda e os pretos ficam em pouco mais de um décimo.",
+    "motivo": "Mesmo ajuste do passo 5: os pretos são cerca de 13% no Nordeste (Censo 2022).",
+    "fonte": "IBGE, Censo Demográfico 2022: cor ou raça por Grande Região"
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "A"
  }
 }

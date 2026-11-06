@@ -41,13 +41,13 @@
     "faz": "Troque sen²x + cos²x por 1",
     "conta": "sen²x + cos²x = 1",
     "porque": "É a relação fundamental da trigonometria, válida para qualquer ângulo.",
-    "tipo": "aplicar"
+    "tipo": "calcular"
    },
    {
     "faz": "Reconheça o arco duplo",
     "conta": "2·sen x·cos x = sen(2x)",
     "porque": "Essa é a fórmula do seno do arco duplo. O enunciado informa que sen(2x) = 3/5.",
-    "tipo": "aplicar"
+    "tipo": "calcular"
    },
    {
     "faz": "Some os dois resultados",
@@ -67,8 +67,8 @@
   "erradas": {
    "A": "0,8 não confere: seria 1 + sen(2x) com sen(2x) = −0,2. Mas o enunciado dá sen(2x) = 0,6. Além disso, (sen x + cos x)² = 1 + sen(2x) nunca é menor que 1 aqui, pois sen(2x) é positivo.",
    "B": "1,0 sai de esquecer o termo do meio: sen²x + cos²x = 1. Mas o quadrado da soma tem também o produto 2·sen x·cos x = 3/5, que precisa ser somado.",
-   "C": "1,2 sai de usar 2·sen x·cos x = 0,2 em vez de 0,6, ou seja, de 1 + 0,2. O produto 2·sen x·cos x já é sen(2x) = 3/5 = 0,6, sem dividir por 3.",
-   "D": "1,4 sai de 1 + 0,4, mas 0,4 = 2/5 não é o valor dado. O termo do meio é 2·sen x·cos x = sen(2x) = 3/5 = 0,6, então a soma é 1,6."
+   "C": "1,2 não confere: 1 + sen(2x) = 1,2 exigiria sen(2x) = 0,2, mas o enunciado dá sen(2x) = 3/5 = 0,6. O termo do meio, 2·sen x·cos x, já é o próprio sen(2x).",
+   "D": "1,4 não confere: 1 + sen(2x) = 1,4 exigiria sen(2x) = 0,4 = 2/5, mas o dado é sen(2x) = 3/5 = 0,6. Então a soma é 1 + 0,6 = 1,6."
   },
   "armadilha": "Esquecer o termo do meio do quadrado da soma, 2·sen x·cos x, e responder só 1.",
   "alerta": "",
@@ -129,10 +129,40 @@
  "gab": "E",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "calcular",
+    "motivo": "\"aplicar\" não é um tipo permitido. Os tipos válidos são localizar, calcular, comparar, eliminar e concluir. A troca de sen²x + cos²x por 1 é um passo de cálculo.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "calcular",
+    "motivo": "\"aplicar\" não é um tipo permitido. Substituir 2·sen x·cos x por sen(2x) é um passo de cálculo.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "1,2 não confere: 1 + sen(2x) = 1,2 exigiria sen(2x) = 0,2, mas o enunciado dá sen(2x) = 3/5 = 0,6. O termo do meio, 2·sen x·cos x, já é o próprio sen(2x).",
+    "motivo": "A origem apresentada (usar 0,2 \"sem dividir por 3\") foi inventada e nenhuma conta plausível a sustenta. A regra pede que se escreva \"não confere\" e se mostre um teste objetivo.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "1,4 não confere: 1 + sen(2x) = 1,4 exigiria sen(2x) = 0,4 = 2/5, mas o dado é sen(2x) = 3/5 = 0,6. Então a soma é 1 + 0,6 = 1,6.",
+    "motivo": "\"Sai de 1 + 0,4\" não mostra a origem de nenhum erro real, só repete o valor da alternativa. A frase passa para \"não confere\", com o teste objetivo.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E"
  }
 }

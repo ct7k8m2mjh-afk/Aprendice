@@ -60,8 +60,8 @@
   "erradas": {
    "B": "2 L sai de usar a razão 1 : 1: 0,28 mol ÷ 0,14 mol/L = 2 L. Isso ignora o coeficiente 2 do NaOH, que faz gastar o dobro de base.",
    "C": "1 L sai de dividir pelo coeficiente em vez de multiplicar: 0,28 ÷ 2 = 0,14 mol de NaOH, e 0,14 ÷ 0,14 = 1 L. A equação mostra que o NaOH gasto é o dobro do sal, não a metade.",
-   "D": "0,5 L não confere com nenhum caminho correto. Em 0,5 L há só 0,5 × 0,14 = 0,07 mol de NaOH, que formaria apenas 0,035 mol de sal, bem menos que 0,28 mol.",
-   "E": "0,25 L não confere. Em 0,25 L há 0,25 × 0,14 = 0,035 mol de NaOH, que formaria 0,0175 mol de sal, muito menos que 0,28 mol."
+   "D": "0,5 L sai de inverter a divisão e esquecer o coeficiente: 0,14 ÷ 0,28 = 0,5. O volume é mol ÷ concentração, não o contrário. Teste: em 0,5 L há só 0,5 × 0,14 = 0,07 mol de NaOH, que forma 0,035 mol de sal, bem menos que 0,28 mol.",
+   "E": "0,25 L sai de inverter a divisão depois de achar o mol certo de NaOH: 0,14 ÷ 0,56 = 0,25. Mol ÷ (mol/L) dá litro; (mol/L) ÷ mol não dá volume. Teste: 0,25 L × 0,14 mol/L = 0,035 mol de NaOH, longe dos 0,56 mol necessários."
   },
   "armadilha": "Esquecer o coeficiente 2 do NaOH e dividir 0,28 mol direto por 0,14 mol/L, o que dá 2 L.",
   "alerta": "",
@@ -129,10 +129,28 @@
  "gab": "A",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "0,5 L sai de inverter a divisão e esquecer o coeficiente: 0,14 ÷ 0,28 = 0,5. O volume é mol ÷ concentração, não o contrário. Teste: em 0,5 L há só 0,5 × 0,14 = 0,07 mol de NaOH, que forma 0,035 mol de sal, bem menos que 0,28 mol.",
+    "motivo": "Existe um erro típico que chega exatamente a 0,5 L: dividir a concentração pela quantidade em mol do sal (0,14 ÷ 0,28 = 0,5). O guia pede 'X sai de…' quando há uma origem real, e não 'não confere'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "0,25 L sai de inverter a divisão depois de achar o mol certo de NaOH: 0,14 ÷ 0,56 = 0,25. Mol ÷ (mol/L) dá litro; (mol/L) ÷ mol não dá volume. Teste: 0,25 L × 0,14 mol/L = 0,035 mol de NaOH, longe dos 0,56 mol necessários.",
+    "motivo": "Existe um erro típico que chega exatamente a 0,25 L: aplicar o coeficiente certo e depois inverter a divisão (0,14 ÷ 0,56 = 0,25). A origem é real, então o comentário deve dizer 'sai de…'.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "A"
  }
 }

@@ -45,7 +45,7 @@
     "faz": "Identifique o ânion de (i)",
     "conta": "Fe²⁺ e PO₄³⁻",
     "porque": "PO₄³⁻ é o fosfato, ânion do ácido H₃PO₄; o cátion é um metal. Cátion de metal + ânion diferente de OH⁻ é sal.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Confira a carga de (i)",
@@ -57,7 +57,7 @@
     "faz": "Classifique (ii)",
     "conta": "FeO → Fe e O",
     "porque": "Dois elementos, e o oxigênio é o mais eletronegativo: é óxido. Não há OH, então não é base.",
-    "tipo": "aplicar"
+    "tipo": "comparar"
    },
    {
     "faz": "Una as duas classificações",
@@ -127,10 +127,28 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "localizar",
+    "motivo": "O tipo 'interpretar' não está na lista permitida (localizar, calcular, comparar, eliminar, concluir). O passo acha o cátion e o ânion na fórmula, por isso o tipo certo é 'localizar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "comparar",
+    "motivo": "O tipo 'aplicar' não está na lista permitida. O passo põe FeO contra os critérios de óxido e de base, por isso o tipo certo é 'comparar'.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C"
  }
 }

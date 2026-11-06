@@ -45,23 +45,23 @@
     "faz": "Identifique as caixas 1 e 2",
     "conta": "1 e 2 = cloroplastos e mitocôndrias",
     "porque": "O enunciado fala nas duas organelas, e só elas podem sustentar a hipótese em 3. Assim, 1 e 2 são cloroplastos e mitocôndrias, em alguma ordem.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Siga a coluna 1 → 4 → 5",
     "conta": "cloroplastos → clorofila → fotossíntese",
     "porque": "O cloroplasto contém clorofila, e a clorofila capta a luz na fotossíntese. Isso fixa 1 = cloroplastos, 4 = clorofila e 5 = fotossíntese.",
-    "tipo": "aplicar"
+    "tipo": "localizar"
    },
    {
     "faz": "Siga a coluna 2 → 6 → 7",
     "conta": "mitocôndrias → coenzima A → ciclo de Krebs",
     "porque": "Sobraram mitocôndrias, coenzima A e ciclo de Krebs. A coenzima A entrega o acetil ao ciclo de Krebs, que ocorre na mitocôndria. Logo 2 = mitocôndrias, 6 = coenzima A e 7 = ciclo de Krebs.",
-    "tipo": "aplicar"
+    "tipo": "localizar"
    },
    {
     "faz": "Procure a alternativa com esse mapa",
-    "conta": "1 cloroplastos; 2 mitocôndrias; 3 hipótese; 4 clorofila; 5 fotossíntese; 6 coenzima A; 7 Krebs",
+    "conta": "Mapa das 7 caixas → letra A",
     "porque": "Só a alternativa A traz as sete caixas nessa ordem.",
     "tipo": "concluir"
    }
@@ -106,10 +106,40 @@
  "gab": "A",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "localizar",
+    "motivo": "'interpretar' não está entre os tipos aceitos (localizar, calcular, comparar, eliminar, concluir). Este passo identifica as caixas no diagrama.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "localizar",
+    "motivo": "'aplicar' não está entre os tipos aceitos. Este passo identifica o que vai em cada caixa da coluna 1.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "localizar",
+    "motivo": "'aplicar' não está entre os tipos aceitos. Este passo identifica o que vai em cada caixa da coluna 2.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "Mapa das 7 caixas → letra A",
+    "motivo": "A conta tinha cerca de 80 caracteres e não cabe numa linha manuscrita de cerca de 30 na tela de 390 px. O mapa completo já está nos passos anteriores e na resposta.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "A"
  }
 }

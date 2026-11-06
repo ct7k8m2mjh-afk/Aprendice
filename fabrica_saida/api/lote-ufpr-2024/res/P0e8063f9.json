@@ -8,7 +8,7 @@
  "conceito": "Características gerais dos isômeros: isomeria óptica (luz polarizada), geométrica E/Z, configuração R/S e definição de isômeros.",
  "resolucao": {
   "antes": {
-   "texto": "Isômeros são compostos com a mesma fórmula molecular e fórmulas estruturais diferentes, como diz o cordel. Podem diferir na função, na cadeia, na posição (isomeria plana) ou no arranjo no espaço (isomeria espacial). Na espacial há a geométrica (cis/trans, E/Z) e a óptica, em que o carbono quiral gira o plano da luz polarizada.",
+   "texto": "Isômeros são compostos com a mesma fórmula molecular e fórmulas estruturais diferentes, como diz o cordel. Podem diferir na função, na cadeia ou na posição (isomeria plana), ou no arranjo no espaço (isomeria espacial). Na espacial há a geométrica (cis/trans, E/Z) e a óptica, em que a substância quiral (em geral, com carbono quiral) gira o plano da luz polarizada.",
    "formulas": [
     "isômeros: mesma fórmula molecular, estrutura diferente",
     "isômero óptico: desvia o plano da luz polarizada (dextrógiro + ou levógiro −)",
@@ -59,7 +59,7 @@
    },
    {
     "faz": "Teste C",
-    "conta": "ex.: etanol + HBr → ?",
+    "conta": "etanol + Na → H2; éter: nada",
     "porque": "Isômeros têm propriedades diferentes. Sob a mesma condição, podem dar produtos que não são isômeros entre si.",
     "tipo": "eliminar"
    },
@@ -71,10 +71,10 @@
    }
   ],
   "resposta": "Alternativa A: isômeros ópticos podem ser diferenciados pelo desvio da luz polarizada (um gira o plano para a direita, o outro para a esquerda).",
-  "checagem": "Conte as marcas: a única afirmação sem generalização forçada ou erro conceitual é a A. As demais trocam definições (função, R/S) ou usam 'não é possível', 'sempre isômeros'.",
+  "checagem": "Conte as marcas: a única afirmação sem generalização forçada ou erro conceitual é a A. As demais trocam definições (função, R/S), usam termo absoluto ('não é possível') ou supõem que isômeros sempre dão produtos isômeros.",
   "erradas": {
    "B": "Falsa: E e Z se interconvertem nos dois sentidos, por exemplo com calor ou luz, que rompem a ligação pi e permitem a rotação. Não há reação proibida.",
-   "C": "Falsa: isômeros têm propriedades diferentes e podem reagir de modo diferente. Etanol e éter dimetílico (C2H6O), com HBr, dão resultados distintos; só o álcool reage.",
+   "C": "Falsa: isômeros têm propriedades diferentes e podem reagir de modo diferente. Com sódio metálico, o etanol forma etóxido de sódio e H2, enquanto o éter dimetílico (também C2H6O) não reage.",
    "D": "Falsa: isômeros precisam apenas da mesma fórmula molecular. Etanol (álcool) e éter dimetílico (éter) são isômeros com funções diferentes (isomeria de função).",
    "E": "Falsa: R e S indicam a configuração de um carbono quiral na isomeria óptica. A posição dos grupos em duplas é indicada por E/Z ou cis/trans."
   },
@@ -93,7 +93,7 @@
   },
   {
    "nome": "palavras absolutas",
-   "ideia": "B ('não é possível') e D ('devem ter as mesmas funções') são absolutas e geralmente falsas em Química. A e C ficam, e C é derrubada por um exemplo."
+   "ideia": "B ('não é possível') e D ('devem ter as mesmas funções') são absolutas e geralmente falsas em Química. Sobram A, C e E: C cai com um contraexemplo, e E troca R/S por E/Z."
   }
  ],
  "quadro": [],
@@ -110,10 +110,46 @@
  "gab": "A",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Isômeros são compostos com a mesma fórmula molecular e fórmulas estruturais diferentes, como diz o cordel. Podem diferir na função, na cadeia ou na posição (isomeria plana), ou no arranjo no espaço (isomeria espacial). Na espacial há a geométrica (cis/trans, E/Z) e a óptica, em que a substância quiral (em geral, com carbono quiral) gira o plano da luz polarizada.",
+    "motivo": "Quem gira o plano da luz polarizada é a substância quiral, não o carbono quiral isolado.",
+    "fonte": "IUPAC Gold Book, verbetes 'optical activity' e 'chirality'"
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "etanol + Na → H2; éter: nada",
+    "motivo": "O exemplo com HBr não serve: o HBr também quebra éteres (o éter dimetílico dá CH3Br + CH3OH). Já o sódio reage com o etanol, liberando H2, e não reage com éteres.",
+    "fonte": "Solomons, Química Orgânica, clivagem de éteres por HX; reação de álcoois com metais alcalinos"
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "Falsa: isômeros têm propriedades diferentes e podem reagir de modo diferente. Com sódio metálico, o etanol forma etóxido de sódio e H2, enquanto o éter dimetílico (também C2H6O) não reage.",
+    "motivo": "A frase 'só o álcool reage' com HBr é falsa, porque éteres sofrem clivagem por HBr. Troquei por um contraexemplo verdadeiro.",
+    "fonte": "Solomons, Química Orgânica, clivagem de éteres por HX; reação de álcoois com Na"
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Conte as marcas: a única afirmação sem generalização forçada ou erro conceitual é a A. As demais trocam definições (função, R/S), usam termo absoluto ('não é possível') ou supõem que isômeros sempre dão produtos isômeros.",
+    "motivo": "'sempre isômeros' aparecia entre aspas como se fosse citação, mas a expressão não está no texto da alternativa C.",
+    "fonte": ""
+   },
+   {
+    "campo": "caminhos[1].ideia",
+    "depois": "B ('não é possível') e D ('devem ter as mesmas funções') são absolutas e geralmente falsas em Química. Sobram A, C e E: C cai com um contraexemplo, e E troca R/S por E/Z.",
+    "motivo": "Pelo critério das palavras absolutas, a E não é eliminada. Portanto sobram A, C e E, e não apenas A e C.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "A"
  }
 }

@@ -37,7 +37,7 @@
   "passos": [
    {
     "faz": "Localize a ideia que abre o texto",
-    "conta": "\"Talvez estejamos muito condicionados a uma ideia de ser humano\"",
+    "conta": "\"condicionados a uma ideia\"",
     "porque": "A abertura já anuncia o alvo da crítica: a imagem fixa que temos de humanidade e de existência.",
     "tipo": "localizar"
    },
@@ -45,11 +45,11 @@
     "faz": "Veja o papel dos exemplos",
     "conta": "Pangeia; Gagarin: \"a Terra é azul\"",
     "porque": "A Terra já teve outra configuração, e Gagarin viu o que 'a gente queria ver'. São exemplos de que nosso retrato do planeta e da humanidade é uma construção, não um dado fixo.",
-    "tipo": "interpretar"
+    "tipo": "comparar"
    },
    {
     "faz": "Localize o fecho do texto",
-    "conta": "\"O nosso apego a uma ideia fixa de paisagem da Terra e de humanidade...\"",
+    "conta": "\"apego a uma ideia fixa\"",
     "porque": "A conclusão volta ao ponto inicial: o problema é nos apegarmos a uma ideia fixa de humanidade. A tese é que a humanidade que pensamos ser não corresponde ao que somos.",
     "tipo": "localizar"
    },
@@ -61,7 +61,7 @@
    },
    {
     "faz": "Confirme a alternativa que resume a tese",
-    "conta": "\"não somos a humanidade que pensamos ser\"",
+    "conta": "C: \"não somos a humanidade...\"",
     "porque": "Aparece quase com as mesmas palavras do texto ('essa humanidade que nós pensamos ser') e cobre início, meio e fim.",
     "tipo": "concluir"
    }
@@ -106,10 +106,40 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "comparar",
+    "motivo": "O tipo 'interpretar' não está na lista permitida (localizar, calcular, comparar, eliminar, concluir). Neste passo o aluno compara os exemplos com a ideia que eles sustentam, por isso o tipo correto é 'comparar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[0].conta",
+    "depois": "\"condicionados a uma ideia\"",
+    "motivo": "Com cerca de 65 caracteres, a conta passa do limite de ~30 e não quebra linha na tela de 390 px. Foi reduzida a um trecho literal do texto que mantém a prova.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "\"apego a uma ideia fixa\"",
+    "motivo": "A conta passava de ~30 caracteres. Foi reduzida a um trecho literal do último período, que continua provando a volta ao ponto inicial.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "C: \"não somos a humanidade...\"",
+    "motivo": "A conta tinha cerca de 42 caracteres e estourava o limite da linha manuscrita. O porque do passo já traz a frase inteira.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C"
  }
 }

@@ -60,7 +60,7 @@
    {
     "faz": "Teste a alternativa sobre o sarampo",
     "conta": "Sarampo: via respiratória",
-    "porque": "O sarampo passa por gotículas do ar. Saneamento básico não corta essa via; a prevenção é a vacina. Além disso, o Brasil perdeu o certificado de eliminação em 2018, com casos voltando a circular.",
+    "porque": "O sarampo passa por gotículas do ar. Saneamento básico não corta essa via; a prevenção é a vacina. Além disso, o Brasil perdeu o certificado de eliminação em 2019 e só voltou a tê-lo em novembro de 2024, depois desta prova.",
     "tipo": "eliminar"
    },
    {
@@ -73,10 +73,10 @@
   "resposta": "Alternativa E: o poliovírus é de transmissão fecal-oral, e o saneamento básico corta essa via, ajudando a prevenir a poliomielite.",
   "checagem": "Nas outras quatro há um erro verificável: Rickettsia é bactéria; o vetor da malária é o mosquito; pílula e DIU não barram o HIV; saneamento não age sobre doença respiratória. Só a E liga o agente certo à medida certa.",
   "erradas": {
-   "A": "Saneamento básico não previne o sarampo, que passa por gotículas respiratórias; a prevenção é a vacina. A afirmação de que o sarampo está erradicado também é falsa: o Brasil perdeu o certificado de eliminação em 2018.",
+   "A": "Saneamento básico não previne o sarampo, que passa por gotículas respiratórias; a prevenção é a vacina. Na época da prova, o sarampo também não estava eliminado: o Brasil perdeu o certificado em 2019 e só o recuperou em novembro de 2024.",
    "B": "Rickettsia é um gênero de bactérias, não de vírus. O carrapato é o vetor, e a bactéria é o agente, então chamar os vetores de 'vírus do gênero Rickettsia' mistura os conceitos.",
    "C": "O vetor da malária é o mosquito Anopheles, fêmea, que transmite o Plasmodium. O ser humano é o hospedeiro. Isolar a pessoa não impede a picada em outras, então a medida não é efetiva.",
-   "D": "A via sexual está certa, mas a conclusão não segue. Pílula e DIU evitam gravidez, não bloqueiam o HIV. Só o preservativo protege, porque é barreira física."
+   "D": "A via sexual está certa, mas a conclusão não segue. Pílula e DIU evitam gravidez, não bloqueiam o HIV. Entre os métodos contraceptivos, quem protege é o preservativo, porque é barreira física."
   },
   "armadilha": "Aceitar uma alternativa porque a primeira metade está certa (via sexual do HIV), sem testar se a medida proposta bloqueia a via.",
   "alerta": "",
@@ -114,10 +114,34 @@
  "gab": "E",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "O sarampo passa por gotículas do ar. Saneamento básico não corta essa via; a prevenção é a vacina. Além disso, o Brasil perdeu o certificado de eliminação em 2019 e só voltou a tê-lo em novembro de 2024, depois desta prova.",
+    "motivo": "A data estava errada. O surto começou em 2018, mas o Brasil perdeu o certificado em 2019. Também faltava dizer que o país recuperou o status em novembro de 2024, depois da aplicação da prova.",
+    "fonte": "https://fiocruz.br/noticia/2024/11/apos-cinco-anos-brasil-recupera-certificado-de-eliminacao-do-sarampo"
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "Saneamento básico não previne o sarampo, que passa por gotículas respiratórias; a prevenção é a vacina. Na época da prova, o sarampo também não estava eliminado: o Brasil perdeu o certificado em 2019 e só o recuperou em novembro de 2024.",
+    "motivo": "A data da perda do certificado é 2019, não 2018. A frase também foi situada na data da prova, porque desde novembro de 2024 o Brasil voltou a ter o certificado de eliminação.",
+    "fonte": "https://fiocruz.br/noticia/2024/11/apos-cinco-anos-brasil-recupera-certificado-de-eliminacao-do-sarampo"
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "A via sexual está certa, mas a conclusão não segue. Pílula e DIU evitam gravidez, não bloqueiam o HIV. Entre os métodos contraceptivos, quem protege é o preservativo, porque é barreira física.",
+    "motivo": "\"Só o preservativo protege\" é uma afirmação absoluta e falsa: PrEP e PEP também previnem o HIV. A frase foi limitada aos métodos contraceptivos.",
+    "fonte": "https://www.gov.br/aids/pt-br/assuntos/prevencao-combinada"
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E"
  }
 }

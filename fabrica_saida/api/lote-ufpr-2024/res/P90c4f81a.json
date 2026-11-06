@@ -59,13 +59,13 @@
     "faz": "Decifre o phrasal verb",
     "conta": "passed out = desmaiou",
     "porque": "'Pass out' é uma expressão fixa para perder a consciência de repente. O sentido literal 'passar para fora' não cabe aqui.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Ache a alternativa equivalente",
     "conta": "desmaiou = fainted",
     "porque": "'Faint' também significa desmaiar, então 'fainted' reescreve 'passed out' com outro verbo.",
-    "tipo": "aplicar"
+    "tipo": "comparar"
    },
    {
     "faz": "Conclua",
@@ -80,7 +80,7 @@
    "A": "'Died' significa morreu. O texto diz 'passed out', e não 'passed away' (que sim equivale a morrer). Se o motorista tivesse morrido, o texto diria isso.",
    "B": "'A sudden vision loss' é perda repentina de visão. Nada no trecho fala de visão: 'passed out' é perder a consciência.",
    "C": "'A nervous breakdown' é um colapso nervoso, uma crise emocional. O texto não cita estado emocional, e 'passed out' é desmaio físico.",
-   "D": "'Disappeared' significa sumiu. Se o motorista tivesse sumido, o ônibus não teria precisado ser parado por um aluno que o viu desmaiar. 'Passed out' não indica desaparecimento."
+   "D": "'Disappeared' significa sumiu. O trecho diz que o motorista 'passed out' (desmaiou): ele continuava no ônibus, mas inconsciente. Nada no texto fala em sumiço."
   },
   "armadilha": "Traduzir 'passed out' palavra por palavra (passou para fora) ou confundir com 'pass away' (morrer), levando a marcar 'died'.",
   "alerta": "",
@@ -114,10 +114,34 @@
  "gab": "E",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "localizar",
+    "motivo": "'interpretar' não está entre os tipos permitidos (localizar, calcular, comparar, eliminar, concluir). Neste passo você descobre o sentido do trecho localizado.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "comparar",
+    "motivo": "'aplicar' não está entre os tipos permitidos. Neste passo você compara o sentido encontrado com as alternativas.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "'Disappeared' significa sumiu. O trecho diz que o motorista 'passed out' (desmaiou): ele continuava no ônibus, mas inconsciente. Nada no texto fala em sumiço.",
+    "motivo": "O argumento antigo era confuso e se apoiava numa suposição ('um aluno que o viu desmaiar') que não está no trecho. Agora o motivo vem do próprio texto.",
+    "fonte": "Cambridge Dictionary, 'pass out': to become unconscious for a short time"
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E"
  }
 }

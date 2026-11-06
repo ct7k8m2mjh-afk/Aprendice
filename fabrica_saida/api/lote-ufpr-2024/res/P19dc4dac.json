@@ -49,7 +49,7 @@
     "faz": "Leia a definição do texto-base",
     "conta": "bioma = relação seres vivos × clima",
     "porque": "Bioma é um tipo de relação entre vida e clima, e não qualquer área ocupada. Por isso os 'biomas artificiais' e a ideia de deserto 'sem bioma' soam suspeitos.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Elimine as que contrariam fatos conhecidos",
@@ -77,7 +77,7 @@
    "B": "Desertos são biomas, caracterizados por clima árido e vegetação adaptada e escassa. Pouca vegetação não tira a condição de bioma: o critério é a relação entre vida e clima, e não a quantidade de espécies.",
    "C": "É a resposta correta.",
    "D": "Inverte a realidade. O dossel da floresta equatorial barra boa parte da luz, mas a Amazônia tem biodiversidade vegetal altíssima, com estratos de vegetação adaptados à pouca luz do sub-bosque.",
-   "E": "Generaliza demais. O Centro-Oeste é dominado pelo Cerrado, uma savana com árvores esparsas, estação seca marcada e vegetação em parte caducifólia. O Pantanal é uma planície de inundação. Só uma parte pequena do Centro-Oeste tem floresta amazônica."
+   "E": "Generaliza demais. O Centro-Oeste é dominado pelo Cerrado, uma savana com árvores esparsas, estação seca marcada e vegetação em parte caducifólia. O Pantanal é uma planície de inundação. A floresta amazônica aparece só no norte de Mato Grosso e não define a região."
   },
   "armadilha": "A alternativa A parece moderna e bem informada, mas chama de 'bioma antrópico' o que é um ecossistema artificial, e o texto-base define bioma como relação natural entre seres vivos e clima.",
   "alerta": "Existe o conceito de 'antromes' (biomas antrópicos) na literatura científica internacional. A questão usa a definição do texto-base, que liga bioma a clima e seres vivos, e por isso a alternativa A não se sustenta neste contexto.",
@@ -111,10 +111,28 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "Generaliza demais. O Centro-Oeste é dominado pelo Cerrado, uma savana com árvores esparsas, estação seca marcada e vegetação em parte caducifólia. O Pantanal é uma planície de inundação. A floresta amazônica aparece só no norte de Mato Grosso e não define a região.",
+    "motivo": "A frase 'Só uma parte pequena do Centro-Oeste tem floresta amazônica' está errada. O bioma Amazônia cobre cerca de 54% de Mato Grosso, o que dá aproximadamente 30% da área do Centro-Oeste. A correção diz só que a floresta fica no norte de MT e não domina a região, e isso derruba a alternativa E do mesmo jeito.",
+    "fonte": "IBGE, Mapa de Biomas do Brasil (2004), com recortes por UF: Amazônia em 54% de MT, Cerrado em 39% de MT, 61% de MS e 97% de GO, e Pantanal em 7% de MT e 25% de MS (dados compilados em pt.wikipedia.org/wiki/Biomas_do_Brasil)."
+   },
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "localizar",
+    "motivo": "O guia não aceita o tipo 'interpretar'. Os tipos válidos são localizar, calcular, comparar, eliminar e concluir. Este passo acha a definição no texto-base, então o tipo certo é 'localizar'.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C"
  }
 }

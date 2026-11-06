@@ -38,25 +38,25 @@
     "faz": "Identifique o que o enunciado pede",
     "conta": "posição de Voltaire sobre o caso Calas",
     "porque": "A questão quer a ideia do Tratado a respeito da intolerância que matou Calas, não uma opinião geral sobre pena de morte ou religião.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Lembre a tese do Tratado",
     "conta": "fanatismo perturba a sociedade → crime",
     "porque": "Voltaire diz que só é crime o que perturba a sociedade, e que o fanatismo a perturba. Assim, a intolerância deixa de ser 'direito' e passa a ser delito.",
-    "tipo": "aplicar"
+    "tipo": "comparar"
    },
    {
     "faz": "Teste a alternativa sobre a pena de morte (B)",
     "conta": "Calas: erro da Justiça ≠ abolir a pena",
     "porque": "O Tratado denuncia o erro judiciário e pede reparação, mas não propõe abolir a pena de morte. A abolição é bandeira de Beccaria.",
-    "tipo": "localizar"
+    "tipo": "eliminar"
    },
    {
     "faz": "Teste as alternativas sobre tolerar os algozes (A) e sobre as seitas (D)",
     "conta": "A: tolerar algozes / D: evitar seitas",
     "porque": "Voltaire não pede tolerância a quem persegue, e defende que muitas seitas convivendo garantem a paz. D diz o contrário disso.",
-    "tipo": "interpretar"
+    "tipo": "eliminar"
    },
    {
     "faz": "Conclua",
@@ -70,7 +70,7 @@
   "erradas": {
    "A": "Pede tolerar os algozes de Calas. O Tratado diz que a tolerância vale para as crenças, não para o fanatismo que persegue e mata. Os responsáveis são condenados moralmente e a reabilitação de Calas é exigida.",
    "B": "A pena de morte é um tema ligado ao caso, mas Voltaire, no Tratado, denuncia o erro judiciário e o fanatismo, sem pedir a abolição. Defender a abolição é a posição de Beccaria, em outra obra.",
-   "D": "Inverte Voltaire. Ele argumenta que a pluralidade de seitas é benéfica: com muitas religiões, nenhuma domina as outras e o Estado vive em paz. Uma única religião favorece o despotismo.",
+   "D": "Inverte Voltaire. No Tratado, ele argumenta que, quanto mais seitas, menos perigosa é cada uma: a multiplicidade as enfraquece, nenhuma domina as outras e o Estado vive em paz.",
    "E": "Voltaire não vê a intolerância como inerente à natureza humana. Para ele, a natureza ensina que os homens são irmãos e a intolerância não é direito natural. Ele ainda lembra que povos antigos, como gregos e romanos, eram tolerantes."
   },
   "armadilha": "Concluir que o erro judiciário leva à abolição da pena de morte (B), quando o Tratado mira a intolerância, não a pena capital.",
@@ -101,10 +101,46 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[0].tipo",
+    "depois": "localizar",
+    "motivo": "O guia só aceita os tipos localizar, calcular, comparar, eliminar e concluir. 'interpretar' não está na lista. O passo acha o comando no enunciado, então o tipo é localizar.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "comparar",
+    "motivo": "'aplicar' não está na lista de tipos aceitos. O passo põe a tese do Tratado diante do que a questão pede, então o tipo é comparar.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "eliminar",
+    "motivo": "O passo descarta a alternativa B. Isso é eliminar, não localizar.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "eliminar",
+    "motivo": "'interpretar' não está na lista de tipos aceitos. O passo descarta as alternativas A e D, então o tipo é eliminar.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "Inverte Voltaire. No Tratado, ele argumenta que, quanto mais seitas, menos perigosa é cada uma: a multiplicidade as enfraquece, nenhuma domina as outras e o Estado vive em paz.",
+    "motivo": "A frase 'uma única religião favorece o despotismo' vem das Cartas filosóficas (Carta VI, sobre a Inglaterra), não do Tratado. A questão pede a posição de Voltaire no Tratado. Mantive só o argumento do Tratado (cap. V: 'plus il y a de sectes, moins chacune est dangereuse; la multiplicité les affaiblit').",
+    "fonte": "Voltaire, Traité sur la tolérance (1763), cap. V; Lettres philosophiques (1734), Carta VI"
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C"
  }
 }

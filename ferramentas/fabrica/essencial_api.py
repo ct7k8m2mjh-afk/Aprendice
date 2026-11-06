@@ -127,7 +127,8 @@ def pedido(etapa, m, tema, atual):
             'Corte o que não cai, confira tamanho, clareza, ordem pelo termômetro e a pegadinha de cada tela. NÃO mude '
             'fatos, números, a resposta da questão nem o gabarito. Devolve {"didatica": [{"campo": "caminho", "depois": '
             '<valor novo completo>, "motivo": "..."}], "alertas": ["erro de fato visto e NÃO corrigido"], '
-            '"didatica_ok": true|false}. Para tirar uma tela inteira, use {"campo": "telas", "depois": <lista nova>}.')
+            '"didatica_ok": true|false}. Para tirar uma tela inteira, use {"campo": "telas", "depois": <lista nova>}. '
+            '"didatica_ok" vale para o essencial JÁ COM as suas mudanças. Endereço de tela pela posição: telas[0], telas[1]...')
     else:
         txt.append(
             'A lente B mudou estes campos (confira de novo cada um contra o JSON do tema):\n```json\n'
@@ -221,6 +222,12 @@ def roda(lote, temas, teto):
                 rev = atual['_revisao']
                 rev['lentes'].append(etapa)
                 lista = s.get('didatica' if etapa == 'lente-b' else 'correcoes') or []
+                # a lente às vezes endereça a tela pelo conteúdo ("telas[H06.8]"): troca pela posição
+                pos = {t.get('sub'): i for i, t in enumerate(atual.get('telas') or [])}
+                for c in lista:
+                    c['campo'] = re.sub(r'telas\[([A-Z]\d\d\.\d+)\]',
+                                        lambda m: f'telas[{pos[m.group(1)]}]' if m.group(1) in pos else m.group(0),
+                                        c.get('campo') or '')
                 falhas = R.aplica(atual, lista)
                 rev[etapa.replace('-', '_')] = lista
                 if falhas:

@@ -14,7 +14,7 @@
    "texto": "Entre 1519 e 1521, Hernán Cortés e um pequeno grupo de espanhóis derrubaram o Império Asteca. Isso só foi possível porque ele contou com aliados indígenas, inimigos dos astecas. Também ajudaram as epidemias trazidas da Europa, como a varíola, que mataram muita gente em Tenochtitlan. O texto-base mostra exatamente isso: espanhóis acompanhados de \"muitos tlaxcaltecas e cempoaltecas\".",
    "formulas": [
     "conquista do México = aliados indígenas (tlaxcaltecas) + doenças europeias + armas de aço e cavalos",
-    "Espanha conquistou o México; Portugal não participou (colonizava o Brasil)"
+    "Espanha conquistou o México; Portugal não participou"
    ],
    "simbolos": [
     [
@@ -56,14 +56,14 @@
    {
     "faz": "Ache a marca dos aliados",
     "conta": "\"muitos tlaxcaltecas e cempoaltecas\"",
-    "porque": "Povos nativos lutavam ao lado dos espanhóis. Eram rivais dos astecas, que dominavam e cobravam tributos deles. Isso aponta para a rivalidade entre nativos.",
+    "porque": "Povos nativos lutavam ao lado dos espanhóis. Eram rivais dos astecas: os tlaxcaltecas viviam em guerra com eles, e os cempoaltecas lhes pagavam tributo. Isso aponta para a rivalidade entre nativos.",
     "tipo": "localizar"
    },
    {
     "faz": "Lembre o outro fator",
     "conta": "Varíola em Tenochtitlan, 1520",
     "porque": "Os povos americanos não tinham imunidade às doenças europeias, e as epidemias mataram muita gente e enfraqueceram os astecas. Esse fator não aparece no trecho, mas é conteúdo do contexto.",
-    "tipo": "aplicar"
+    "tipo": "comparar"
    },
    {
     "faz": "Elimine as alternativas com item falso",
@@ -82,8 +82,8 @@
   "checagem": "Confira o texto: ele cita \"tlaxcaltecas e cempoaltecas\" ao lado dos espanhóis, e isso confirma a rivalidade entre nativos. Em cada uma das outras alternativas, um item é falso: rendição pacífica, auxílio português, beneditinos, ajuda dos incas.",
   "erradas": {
    "A": "O próprio texto fala em guerra: \"vinham armados, vinham vestidos para a guerra\". Não houve rendição pacífica. A resistência foi forte, e Tenochtitlan caiu em 1521 depois de cerco e combates. A superioridade tecnológica existiu (aço, cavalos, armas de fogo), mas o primeiro item torna a alternativa falsa.",
-   "C": "Os conquistadores espanhóis não toleravam outras religiões. Destruíram templos e impuseram o cristianismo. O auxílio também não foi português, porque a conquista foi feita por espanhóis, com apoio da Coroa espanhola. Portugal colonizava o Brasil.",
-   "D": "Os sacrifícios astecas existiam, mas não causaram uma queda populacional capaz de explicar a conquista. A queda veio das epidemias e da guerra. Além disso, os primeiros missionários no México foram franciscanos (como Sahagún), dominicanos e agostinianos, e não beneditinos.",
+   "C": "Os conquistadores espanhóis não toleravam outras religiões. Destruíram templos e impuseram o cristianismo. O auxílio também não foi português, porque a conquista foi feita por espanhóis, com apoio da Coroa espanhola. Portugal não participou.",
+   "D": "Os sacrifícios astecas existiam, mas não causaram uma queda populacional capaz de explicar a conquista. A queda veio das epidemias e da guerra. Além disso, a evangelização do México ficou sobretudo com franciscanos (como Sahagún), dominicanos e agostinianos, e não com beneditinos.",
    "E": "A ideia de que os astecas tomaram Cortés por um deus (Quetzalcóatl) vem de relatos posteriores à conquista, e a historiografia atual a discute. Os astecas também resistiram com armas, como o texto sugere. Os incas viviam nos Andes, na América do Sul, e não ajudaram os espanhóis contra os astecas. A conquista do Peru por Pizarro ocorreu só na década de 1530."
   },
   "armadilha": "Marcar a alternativa que tem um fator certo (superioridade tecnológica, divinização) sem checar o outro item, que é falso.",
@@ -119,10 +119,46 @@
  "gab": "B",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Povos nativos lutavam ao lado dos espanhóis. Eram rivais dos astecas: os tlaxcaltecas viviam em guerra com eles, e os cempoaltecas lhes pagavam tributo. Isso aponta para a rivalidade entre nativos.",
+    "motivo": "Tlaxcala não era dominada pelos astecas e não lhes pagava tributo. Era um território independente, em guerra constante com eles. Quem pagava tributo eram os totonacas de Cempoala.",
+    "fonte": "https://www.britannica.com/place/Tlaxcala-historical-state-Mexico"
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "comparar",
+    "motivo": "\"aplicar\" não está entre os tipos permitidos (localizar, calcular, comparar, eliminar, concluir).",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.antes.formulas[1]",
+    "depois": "Espanha conquistou o México; Portugal não participou",
+    "motivo": "Em 1519–1521 a colonização portuguesa do Brasil ainda não tinha começado de fato (começa na década de 1530). \"Colonizava o Brasil\" é impreciso para a data.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "Os conquistadores espanhóis não toleravam outras religiões. Destruíram templos e impuseram o cristianismo. O auxílio também não foi português, porque a conquista foi feita por espanhóis, com apoio da Coroa espanhola. Portugal não participou.",
+    "motivo": "Mesma imprecisão de data: em 1521 Portugal ainda não colonizava o Brasil de forma efetiva.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "Os sacrifícios astecas existiam, mas não causaram uma queda populacional capaz de explicar a conquista. A queda veio das epidemias e da guerra. Além disso, a evangelização do México ficou sobretudo com franciscanos (como Sahagún), dominicanos e agostinianos, e não com beneditinos.",
+    "motivo": "Os primeiros religiosos que chegaram com Cortés incluíam um mercedário (Bartolomé de Olmedo). Por isso \"os primeiros missionários foram franciscanos, dominicanos e agostinianos\" não é exato. A versão nova diz o que é seguro: foram essas ordens que conduziram a evangelização.",
+    "fonte": "https://www.britannica.com/biography/Bernardino-de-Sahagun"
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "B"
  }
 }

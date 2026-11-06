@@ -62,7 +62,7 @@
    {
     "faz": "Teste D: o que cabe num gameta",
     "conta": "AaBb → AB, Ab, aB, ab",
-    "porque": "O gameta é haploide: leva um alelo de cada gene. Aa e Bb juntos no mesmo gameta é impossível, porque esses pares são separados na meiose.",
+    "porque": "O gameta é haploide: leva um alelo de cada gene. Numa meiose normal, Aa e Bb não ficam juntos no mesmo gameta, porque esses pares são separados na meiose.",
     "tipo": "eliminar"
    },
    {
@@ -83,7 +83,7 @@
   "erradas": {
    "A": "Inverte a regra: em F1 aparece o traço dominante, e o recessivo só reaparece em F2. O recessivo não se manifesta em F1 porque o alelo dominante o mascara no heterozigoto.",
    "C": "Um heterozigoto Aa forma gametas A e a em proporções iguais, 50% cada. A separação dos alelos ocorre pela divisão dos cromossomos homólogos na meiose I, e não pela separação das cromátides-irmãs.",
-   "D": "O gameta é haploide e leva um alelo de cada gene. AaBb gera AB, Ab, aB e ab; os pares Aa e Bb se separam na meiose, e um gameta nunca carrega os dois alelos do mesmo gene.",
+   "D": "O gameta é haploide e leva um alelo de cada gene. AaBb gera AB, Ab, aB e ab. Os pares Aa e Bb se separam na meiose, e numa meiose normal um gameta não carrega os dois alelos do mesmo gene.",
    "E": "O crossing-over aumenta a variabilidade, mas a frase diz que ele é o que possibilita 'todas as combinações'. Se os genes estão em cromossomos diferentes, as quatro combinações já resultam da segregação independente. Ele só importa para genes ligados no mesmo cromossomo."
   },
   "armadilha": "Marcar E por ser uma frase 'bonita' sobre variabilidade, sem ver que o crossing-over não é o que gera todas as combinações de genes independentes. Outra: aceitar A por trocar de lugar dominante e recessivo.",
@@ -131,10 +131,28 @@
  "gab": "B",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "O gameta é haploide: leva um alelo de cada gene. Numa meiose normal, Aa e Bb não ficam juntos no mesmo gameta, porque esses pares são separados na meiose.",
+    "motivo": "Trocar 'impossível' por 'numa meiose normal'. A não disjunção, que é cobrada em vestibular (B04.4), gera gametas com os dois alelos do mesmo gene. A frase absoluta estava tecnicamente falsa.",
+    "fonte": "OpenStax Biology 2e, cap. 13.2 (Chromosomal Basis of Inherited Disorders: nondisjunction)"
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "O gameta é haploide e leva um alelo de cada gene. AaBb gera AB, Ab, aB e ab. Os pares Aa e Bb se separam na meiose, e numa meiose normal um gameta não carrega os dois alelos do mesmo gene.",
+    "motivo": "A frase dizia 'nunca' e por isso esbarrava no mesmo problema da não disjunção. A correção é a mesma do passo 3.",
+    "fonte": "OpenStax Biology 2e, cap. 13.2"
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "B"
  }
 }

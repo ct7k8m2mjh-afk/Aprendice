@@ -50,13 +50,13 @@
     "faz": "Note quem foi esquecido",
     "conta": "\"por circunstância de classe, raça ou nacionalidade foram relegadas ao esquecimento\"",
     "porque": "O texto afirma que o cânone excluiu mulheres. Isso derruba as alternativas que dizem que ele sempre as incluiu.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Elimine as alternativas exageradas",
     "conta": "B: banimento; C: crítica ao feminismo; D e E: sempre",
     "porque": "O texto propõe ampliar, não banir. Não critica o feminismo. Não diz que houve participação plena.",
-    "tipo": "aplicar"
+    "tipo": "eliminar"
    },
    {
     "faz": "Conclua",
@@ -105,10 +105,28 @@
  "gab": "A",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "localizar",
+    "motivo": "'interpretar' não está entre os tipos permitidos (localizar, calcular, comparar, eliminar, concluir). O passo acha um trecho do texto, então o tipo certo é 'localizar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "eliminar",
+    "motivo": "'aplicar' não está entre os tipos permitidos. O passo descarta as alternativas B, C, D e E, então o tipo certo é 'eliminar'.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "A"
  }
 }

@@ -51,7 +51,7 @@
     "faz": "Isole λ na equação da onda",
     "conta": "λ = v ÷ f",
     "porque": "Como v = λ × f, o f que multiplica passa dividindo.",
-    "tipo": "aplicar"
+    "tipo": "calcular"
    },
    {
     "faz": "Calcule o comprimento de onda",
@@ -70,9 +70,9 @@
   "checagem": "Refaça multiplicando: 7 mm = 0,007 m; 0,007 m × 50 000 Hz = 350 m/s, que é a velocidade dada. Além disso, som de 50 kHz é ultrassom, de comprimento de onda bem pequeno (milímetros), não de metros ou quilômetros.",
   "erradas": {
    "A": "7 m sai de usar a frequência como 50 Hz: 350 ÷ 50 = 7. Faltou converter os kHz em Hz (× 1 000). Com 50 000 Hz, o resultado é 0,007 m.",
-   "B": "175 m não confere: 175 × 50 000 = 8 750 000 m/s, muito acima de 350 m/s. Ficaria correto só se fosse 350 ÷ 2 e sem a conversão de f, o que não é a equação da onda.",
+   "B": "175 m não confere: 175 × 50 000 = 8 750 000 m/s, muito acima dos 350 m/s dados. A equação v = λ × f não leva a esse valor.",
    "C": "175 mm = 0,175 m. Multiplicando por 50 000 Hz dá 8 750 m/s, e não 350 m/s. A equação v = λ × f não leva a esse valor.",
-   "E": "7 km = 7 000 m. Multiplicado por 50 000 Hz daria 350 000 000 m/s, muito maior que 350 m/s. Seria o erro de converter kHz para Hz dividindo em vez de multiplicar, com a conta ainda errada em mais um fator."
+   "E": "7 km sai de converter kHz para Hz dividindo por 1 000 em vez de multiplicar: f = 0,05 Hz, e 350 ÷ 0,05 = 7 000 m = 7 km. O certo é 50 kHz = 50 000 Hz."
   },
   "armadilha": "Dividir 350 por 50 direto, esquecendo que kHz é mil hertz, e cair em 7 m.",
   "alerta": "",
@@ -114,7 +114,7 @@
    "nota": "equação fundamental da onda"
   },
   {
-   "linha": "λ = \\frac{v}{f}",
+   "linha": "λ = v/f",
    "nota": "o f que multiplica passa dividindo",
    "mov": [
     {
@@ -127,7 +127,7 @@
    ]
   },
   {
-   "linha": "λ = \\frac{350}{50 000}",
+   "linha": "λ = 350/50 000",
    "nota": "substitua os valores"
   },
   {
@@ -156,10 +156,46 @@
  "gab": "D",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "calcular",
+    "motivo": "'aplicar' não é um tipo válido. Os tipos aceitos são localizar, calcular, comparar, eliminar e concluir. Isolar λ é manipulação algébrica, por isso entra como calcular.",
+    "fonte": ""
+   },
+   {
+    "campo": "quadro[5].linha",
+    "depois": "λ = v/f",
+    "motivo": "A linha usava LaTeX (\\frac), que é proibido. A fração passa a ser escrita como 'numerador/denominador'.",
+    "fonte": ""
+   },
+   {
+    "campo": "quadro[6].linha",
+    "depois": "λ = 350/50 000",
+    "motivo": "A linha usava LaTeX (\\frac), que é proibido. A fração passa a ser escrita como 'numerador/denominador'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "175 m não confere: 175 × 50 000 = 8 750 000 m/s, muito acima dos 350 m/s dados. A equação v = λ × f não leva a esse valor.",
+    "motivo": "A frase 'Ficaria correto só se fosse 350 ÷ 2…' inventava uma origem para o valor, sem nenhum erro real que levasse a ele. Ficou só o teste objetivo.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "7 km sai de converter kHz para Hz dividindo por 1 000 em vez de multiplicar: f = 0,05 Hz, e 350 ÷ 0,05 = 7 000 m = 7 km. O certo é 50 kHz = 50 000 Hz.",
+    "motivo": "A origem antes dada estava errada ('com a conta ainda errada em mais um fator'). Dividir por 1 000 já leva exatamente a 7 km: 350 ÷ 0,05 = 7 000 m.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "D"
  }
 }

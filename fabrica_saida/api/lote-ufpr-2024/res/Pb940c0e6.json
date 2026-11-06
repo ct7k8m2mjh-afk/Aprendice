@@ -27,7 +27,7 @@
     ],
     [
      "Zona Franca de Manaus",
-     "área de incentivos fiscais criada em 1967 para atrair indústrias e ocupar a região"
+     "área de incentivos fiscais criada em 1957 e reformulada em 1967, no regime militar, para atrair indústrias e ocupar a região"
     ]
    ]
   },
@@ -43,7 +43,7 @@
     "faz": "Lembre o programa do regime",
     "conta": "PIN 1970: Transamazônica + agrovilas",
     "porque": "O governo abriu estradas e assentou colonos para ocupar a Amazônia. Esse é o núcleo do assunto.",
-    "tipo": "aplicar"
+    "tipo": "localizar"
    },
    {
     "faz": "Ligue o programa ao problema social",
@@ -65,10 +65,10 @@
    }
   ],
   "resposta": "Alternativa E: a Transamazônica e as agrovilas serviram para deslocar camponeses do Nordeste para a Amazônia, aliviando as tensões sociais no campo.",
-  "checagem": "Confira o lema do regime, 'terra sem homens para homens sem terra'. Ele liga a Amazônia (terra) ao Nordeste e ao Sul (homens sem terra) e bate com a E. Nas outras, a data não bate: acordos climáticos e biopirataria como pauta política são posteriores.",
+  "checagem": "Confira o lema do regime, 'terra sem homens para homens sem terra'. Ele liga a Amazônia (terra) ao Nordeste e ao Sul (homens sem terra) e bate com a E. Em C e D a data não bate: acordos climáticos (Convenção-Quadro de 1992) e biopirataria como pauta política são posteriores ao regime.",
   "erradas": {
-   "A": "Inverte o quadro. A questão fala de racionalizar uma fronteira que já avançava por madeireiras ilegais, mas o avanço da fronteira econômica nos anos 1970 foi induzido pelo Estado: rodovias, incentivos fiscais da Sudam, colonização e projetos agropecuários e minerais. A ação de madeireiras ilegais não é a base histórica descrita.",
-   "B": "A Zona Franca de Manaus (1967) quis atrair indústrias com incentivos fiscais e ocupar a região, e seus produtos iam em grande parte para o mercado nacional. Citar Belém como distrito industrial desse tipo e dizer que visava aos mercados urbanos regionais descaracteriza a política.",
+   "A": "Inverte o quadro. A alternativa diz que a fronteira econômica, antes das rodovias, avançava pela ação de madeireiras ilegais. Antes, a ocupação seguia os rios e o extrativismo (borracha, castanha). O avanço dos anos 1970 foi induzido pelo Estado: rodovias, incentivos fiscais da Sudam, colonização e projetos agropecuários e minerais.",
+   "B": "Erra a finalidade. A Zona Franca de Manaus, reformulada em 1967, deu incentivos fiscais para atrair indústrias e ocupar a região. Sua produção ia sobretudo para o mercado nacional (Centro-Sul), não para os mercados urbanos da própria região. Belém também não recebeu um regime equivalente.",
    "C": "Combater a biopirataria e proteger a biodiversidade para a indústria de fármacos era pauta posterior, dos anos 1990 em diante. O foco do regime era segurança nacional, integração territorial e exploração de recursos.",
    "D": "Os acordos internacionais sobre mudanças climáticas são posteriores, em especial a Convenção-Quadro de 1992. O regime militar temia a cobiça estrangeira e a 'internacionalização', mas isso não vinha de acordos climáticos."
   },
@@ -111,10 +111,49 @@
  "gab": "E",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "localizar",
+    "motivo": "'aplicar' não está entre os tipos permitidos (localizar, calcular, comparar, eliminar, concluir). O passo traz o programa do regime que serve de referência, por isso entra como 'localizar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.antes.simbolos[4]",
+    "depois": [
+     "Zona Franca de Manaus",
+     "área de incentivos fiscais criada em 1957 e reformulada em 1967, no regime militar, para atrair indústrias e ocupar a região"
+    ],
+    "motivo": "A Zona Franca foi criada pela Lei 3.173/1957 como porto livre. O Decreto-Lei 288/1967 a reformulou como polo industrial com incentivos. Dizer apenas 'criada em 1967' é impreciso.",
+    "fonte": "Lei 3.173/1957; Decreto-Lei 288/1967"
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "Inverte o quadro. A alternativa diz que a fronteira econômica, antes das rodovias, avançava pela ação de madeireiras ilegais. Antes, a ocupação seguia os rios e o extrativismo (borracha, castanha). O avanço dos anos 1970 foi induzido pelo Estado: rodovias, incentivos fiscais da Sudam, colonização e projetos agropecuários e minerais.",
+    "motivo": "Quem afirma que a fronteira avançava por madeireiras ilegais é a alternativa, não a questão. A correção também diz qual era a ocupação anterior, o que torna o motivo suficiente.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "Erra a finalidade. A Zona Franca de Manaus, reformulada em 1967, deu incentivos fiscais para atrair indústrias e ocupar a região. Sua produção ia sobretudo para o mercado nacional (Centro-Sul), não para os mercados urbanos da própria região. Belém também não recebeu um regime equivalente.",
+    "motivo": "A frase original ('citar Belém como distrito industrial desse tipo… descaracteriza') é frágil, porque Belém teve distrito industrial. O erro verificável da B é a finalidade: atender ao mercado regional.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Confira o lema do regime, 'terra sem homens para homens sem terra'. Ele liga a Amazônia (terra) ao Nordeste e ao Sul (homens sem terra) e bate com a E. Em C e D a data não bate: acordos climáticos (Convenção-Quadro de 1992) e biopirataria como pauta política são posteriores ao regime.",
+    "motivo": "'Nas outras, a data não bate' generaliza demais: A e B não erram por anacronismo. Só C e D erram por data.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E"
  }
 }

@@ -14,7 +14,7 @@
    "formulas": [
     "Representativos: grupos 1, 2 e 13 a 18",
     "Transição: grupos 3 a 12",
-    "Lantanídeos: Z de 57 a 71 (linha de baixo da tabela)"
+    "Lantanídeos: Z de 57 a 71 (1ª linha separada)"
    ],
    "simbolos": [
     [
@@ -39,7 +39,7 @@
     ],
     [
      "lantanídeo",
-     "elemento de número atômico 57 a 71, como La, Ce, Nd"
+     "elemento de número atômico 57 a 71, como La, Ce, Nd (primeira linha separada abaixo da tabela)"
     ]
    ]
   },
@@ -48,7 +48,7 @@
    {
     "faz": "Classifique os elementos na tabela",
     "conta": "Al, Ga, In: grupo 13",
-    "porque": "Al, Ga e In são metais representativos. Não há não metal nesse grupo.",
+    "porque": "Al, Ga e In são metais representativos: os três elementos do grupo 13 que estão na lista são metais.",
     "tipo": "localizar"
    },
    {
@@ -67,7 +67,7 @@
     "faz": "Identifique o metal nobre",
     "conta": "Ag (prata) = metal nobre",
     "porque": "A prata, e em certa medida o cobre, é um metal de transição pouco reativo e de alto valor econômico. Recuperá-lo traz ganho.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Teste as alternativas",
@@ -80,8 +80,8 @@
   "checagem": "Para cada letra, ache o elemento da lista que a sustentaria. A: não metal biodegradável, nenhum. C: lantanídeo, nenhum. D: óxido alcalino, nenhum dos representativos da lista forma. E: o As é tóxico. Só a B tem um elemento que a sustenta: Ag.",
   "erradas": {
    "A": "Entre os representativos da lista só o As (semimetal) está perto dos não metais; o resto são metais (Al, Ga, In). Além disso, material biodegradável não se acumula, e elemento químico não é biodegradável.",
-   "C": "Nenhum lantanídeo (Z de 57 a 71, linha de baixo da tabela) aparece na lista. Al, Cu, Ga, In, As, Ag e Ni estão no corpo principal da tabela.",
-   "D": "Os óxidos de Al e Ga são anfóteros, e o de As é ácido. Óxidos alcalinos (básicos) vêm dos grupos 1 e 2, que não aparecem na lista. E óxido corrosivo não é vantagem de reciclagem.",
+   "C": "Nenhum lantanídeo (Z de 57 a 71, primeira linha separada abaixo da tabela) aparece na lista. Al, Cu, Ga, In, As, Ag e Ni estão no corpo principal da tabela.",
+   "D": "Óxidos alcalinos (fortemente básicos) vêm dos grupos 1 e 2, ausentes na lista. Os óxidos de Al e Ga são anfóteros, e os de As têm caráter ácido. E óxido corrosivo não seria vantagem de reciclar.",
    "E": "O único semimetal da lista é o As, cujos compostos são tóxicos (o arsênio é venenoso). Dizer que são livres de toxicidade é falso."
   },
   "armadilha": "Marcar uma alternativa que usa o nome certo da classe (representativo, semimetal) mas com uma propriedade falsa, e esquecer de checar quais elementos a lista realmente tem.",
@@ -114,10 +114,52 @@
  "gab": "B",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[0].porque",
+    "depois": "Al, Ga e In são metais representativos: os três elementos do grupo 13 que estão na lista são metais.",
+    "motivo": "A frase 'Não há não metal nesse grupo' está errada. O grupo 13 tem o boro, que não é metal: os livros o classificam como semimetal ou como não metal.",
+    "fonte": "OpenStax Chemistry 2e, seção 18.1 (boro como semimetal)"
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "localizar",
+    "motivo": "O tipo 'interpretar' não existe. Os tipos aceitos são localizar, calcular, comparar, eliminar e concluir.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.antes.formulas[2]",
+    "depois": "Lantanídeos: Z de 57 a 71 (1ª linha separada)",
+    "motivo": "No print, os lantanídeos ficam na primeira das duas linhas separadas da tabela. A linha de baixo é a dos actinídeos, de 89 a 103.",
+    "fonte": "print da questão"
+   },
+   {
+    "campo": "resolucao.antes.simbolos[5][1]",
+    "depois": "elemento de número atômico 57 a 71, como La, Ce, Nd (primeira linha separada abaixo da tabela)",
+    "motivo": "Mesmo caso: no print, os lantanídeos estão na primeira linha separada, não na de baixo.",
+    "fonte": "print da questão"
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "Nenhum lantanídeo (Z de 57 a 71, primeira linha separada abaixo da tabela) aparece na lista. Al, Cu, Ga, In, As, Ag e Ni estão no corpo principal da tabela.",
+    "motivo": "A posição dos lantanídeos estava errada: a 'linha de baixo' é a dos actinídeos.",
+    "fonte": "print da questão"
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "Óxidos alcalinos (fortemente básicos) vêm dos grupos 1 e 2, ausentes na lista. Os óxidos de Al e Ga são anfóteros, e os de As têm caráter ácido. E óxido corrosivo não seria vantagem de reciclar.",
+    "motivo": "O texto dizia que o óxido de As é ácido. Mas o As2O3 é anfótero com predomínio ácido, e só o As2O5 é claramente ácido. Por isso a frase passou a dizer 'têm caráter ácido'.",
+    "fonte": "Greenwood & Earnshaw, Chemistry of the Elements, cap. 13 (óxidos de As)"
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "B"
  }
 }

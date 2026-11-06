@@ -8,7 +8,7 @@
  "conceito": "Ditaduras do Cone Sul nos anos 1970 e a Operação Condor, a coordenação repressiva entre os serviços de inteligência desses regimes.",
  "resolucao": {
   "antes": {
-   "texto": "Na Guerra Fria, os EUA apoiaram regimes anticomunistas na América Latina. Em 1973, o golpe liderado por Pinochet derrubou Allende, socialista eleito. Nos anos 1970, as ditaduras do Cone Sul (Chile, Argentina, Uruguai, Paraguai, Brasil, Bolívia) trocaram informações e perseguiram opositores juntas. Esse esquema ficou conhecido como Operação Condor.",
+   "texto": "Na Guerra Fria, os EUA apoiaram regimes anticomunistas na América Latina. Em 1973, o golpe liderado por Pinochet derrubou Allende, socialista eleito. Nos anos 1970, as ditaduras do Cone Sul e de países vizinhos (Chile, Argentina, Uruguai, Paraguai, Brasil, Bolívia) trocaram informações e perseguiram opositores juntas. Esse esquema ficou conhecido como Operação Condor.",
    "formulas": [
     "Allende (socialista, eleito) → golpe de 1973 → Pinochet",
     "ditaduras do Cone Sul + serviços de inteligência = Operação Condor",
@@ -17,7 +17,7 @@
    "simbolos": [
     [
      "Cone Sul",
-     "região do sul da América do Sul: Chile, Argentina, Uruguai, Paraguai e, por vezes, Brasil e Bolívia"
+     "parte sul da América do Sul: Argentina, Chile e Uruguai, muitas vezes também Paraguai e o sul do Brasil"
     ],
     [
      "Operação Condor",
@@ -67,7 +67,7 @@
     "faz": "Identifique a ação coordenada",
     "conta": "Operação Condor: Chile + Cone Sul",
     "porque": "Os serviços de inteligência do Chile (a DINA), da Argentina, do Uruguai, do Paraguai, da Bolívia e do Brasil trocavam informações e perseguiam opositores além das fronteiras.",
-    "tipo": "aplicar"
+    "tipo": "localizar"
    },
    {
     "faz": "Conclua",
@@ -119,10 +119,37 @@
  "gab": "E",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[4].tipo",
+    "depois": "localizar",
+    "motivo": "'aplicar' não está na lista de tipos permitidos (localizar, calcular, comparar, eliminar, concluir). O passo busca na memória o fato que a alternativa E descreve, por isso é 'localizar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.antes.simbolos[0]",
+    "depois": [
+     "Cone Sul",
+     "parte sul da América do Sul: Argentina, Chile e Uruguai, muitas vezes também Paraguai e o sul do Brasil"
+    ],
+    "motivo": "A Bolívia não costuma entrar na definição de Cone Sul. Ela participou da Operação Condor, mas como país vizinho da região.",
+    "fonte": "https://www.britannica.com/event/Operation-Condor"
+   },
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Na Guerra Fria, os EUA apoiaram regimes anticomunistas na América Latina. Em 1973, o golpe liderado por Pinochet derrubou Allende, socialista eleito. Nos anos 1970, as ditaduras do Cone Sul e de países vizinhos (Chile, Argentina, Uruguai, Paraguai, Brasil, Bolívia) trocaram informações e perseguiram opositores juntas. Esse esquema ficou conhecido como Operação Condor.",
+    "motivo": "Ajuste ligado ao anterior: a Bolívia participou da Operação Condor, mas não faz parte do Cone Sul em sentido estrito.",
+    "fonte": "https://www.britannica.com/event/Operation-Condor"
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E"
  }
 }

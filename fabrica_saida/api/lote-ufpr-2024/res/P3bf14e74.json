@@ -34,7 +34,7 @@
     "faz": "Escreva a igualdade dos dois estados",
     "conta": "P₀V₀/T₀ = PV/T",
     "porque": "A massa de gás é a mesma, então n·R é constante e P·V/T também.",
-    "tipo": "aplicar"
+    "tipo": "calcular"
    },
    {
     "faz": "Substitua P e T pelos dados",
@@ -61,7 +61,7 @@
    "A": "V = V₀ daria PV/T = 4P₀V₀/(2T₀) = 2 P₀V₀/T₀, o dobro do valor inicial. A razão PV/T não se conserva, então não serve.",
    "B": "V = V₀/4 compensaria só a pressão (4 vezes maior) e esqueceria que a temperatura também dobrou. Daria PV/T = P₀V₀/(2T₀), metade do inicial.",
    "C": "V = 4V₀ daria PV/T = 4P₀·4V₀/(2T₀) = 8 P₀V₀/T₀, oito vezes o valor inicial. O volume deveria diminuir, não aumentar.",
-   "D": "V = 2V₀ daria PV/T = 4P₀·2V₀/(2T₀) = 4 P₀V₀/T₀. Esse valor sai de inverter a relação e tratar o volume como proporcional à temperatura, esquecendo que a pressão quadruplicou."
+   "D": "D sai de olhar só a temperatura: T dobrou, então V dobraria (V = 2V₀), e a pressão 4 vezes maior fica de fora. O teste derruba: PV/T = 4P₀·2V₀/(2T₀) = 4 P₀V₀/T₀, e não P₀V₀/T₀."
   },
   "armadilha": "Considerar só a temperatura (V dobra) ou só a pressão (V cai a um quarto), em vez de combinar as duas na razão P·V/T.",
   "alerta": "",
@@ -157,10 +157,28 @@
  "gab": "E",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[0].tipo",
+    "depois": "calcular",
+    "motivo": "O tipo 'aplicar' não está na lista permitida (localizar, calcular, comparar, eliminar, concluir). Escrever a igualdade é o começo da conta, então o tipo certo é 'calcular'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "D sai de olhar só a temperatura: T dobrou, então V dobraria (V = 2V₀), e a pressão 4 vezes maior fica de fora. O teste derruba: PV/T = 4P₀·2V₀/(2T₀) = 4 P₀V₀/T₀, e não P₀V₀/T₀.",
+    "motivo": "'Inverter a relação' não descreve o erro real. V = 2V₀ sai de aplicar só o efeito da temperatura (Charles), como a própria armadilha diz. Assim o comentário fica coerente com a armadilha e sem origem inventada.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E"
  }
 }

@@ -43,13 +43,13 @@
     "faz": "Associe cada unidade à sua grandeza",
     "conta": "m: comprimento; N: força",
     "porque": "O metro mede distâncias e o newton mede forças. Nenhum dos dois mede tempo.",
-    "tipo": "interpretar"
+    "tipo": "eliminar"
    },
    {
     "faz": "Continue a associação",
     "conta": "V: tensão elétrica; K: temperatura",
     "porque": "O volt mede diferença de potencial elétrico e o kelvin mede temperatura absoluta.",
-    "tipo": "interpretar"
+    "tipo": "eliminar"
    },
    {
     "faz": "Reconheça a unidade de tempo",
@@ -94,10 +94,28 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "eliminar",
+    "motivo": "O tipo 'interpretar' não existe no padrão, que aceita localizar, calcular, comparar, eliminar e concluir. Este passo descarta as alternativas A e B, então o tipo certo é 'eliminar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "eliminar",
+    "motivo": "O tipo 'interpretar' não existe no padrão. Este passo descarta as alternativas D e E, então o tipo certo é 'eliminar'.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C"
  }
 }

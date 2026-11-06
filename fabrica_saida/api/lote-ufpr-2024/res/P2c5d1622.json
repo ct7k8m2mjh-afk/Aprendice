@@ -55,7 +55,7 @@
     "faz": "Aplique a fórmula do calor sensível",
     "conta": "Q = 300 × 0,4 × (−20)",
     "porque": "Não há mudança de estado, então só vale Q = m·c·ΔT.",
-    "tipo": "aplicar"
+    "tipo": "calcular"
    },
    {
     "faz": "Faça a conta",
@@ -73,12 +73,12 @@
   "resposta": "Alternativa C: Q = 2,4 kJ, pois 300 g × 0,4 J/(g·°C) × 20 °C = 2 400 J.",
   "checagem": "Cada grama perde 0,4 J por grau; em 20 graus, 8 J por grama. Com 300 g: 300 × 8 = 2 400 J. Mesmo valor por outro caminho.",
   "erradas": {
-   "A": "0,24 kJ = 240 J: erra um fator 10. Vem de 300 × 0,4 × 2, usando ΔT = 2 em vez de 20, ou de errar a vírgula na conversão de J para kJ.",
+   "A": "A não confere: 0,24 kJ = 240 J, que é dez vezes menos que 300 × 0,4 × 20 = 2 400 J. Esse valor só sairia dividindo 2 400 por 10 000 na conversão, mas 1 kJ = 1 000 J.",
    "B": "1,2 kJ = 1 200 J é a metade do valor correto. Vem de 300 × 0,4 × 10, usando a temperatura final (10 °C) em vez da variação ΔT = 20 °C.",
-   "D": "12 kJ = 12 000 J: dez vezes maior. Vem de um erro de potência de dez na conversão ou na conta (por exemplo 300 × 0,4 × 200 ou 120 × 100).",
-   "E": "24 kJ = 24 000 J: cem vezes maior. Vem de trocar 2 400 J por 24 000 J na conversão, ou de errar duas casas decimais."
+   "D": "D não confere: 12 kJ = 12 000 J, que é cinco vezes 2 400 J. Nenhuma etapa de m·c·ΔT com os dados (300 g, 0,4 J/(g·°C), 20 °C) nem a conversão de J para kJ chega a esse valor.",
+   "E": "Sai de dividir por 100 em vez de 1 000 na conversão: 2 400 J ÷ 100 = 24. O certo é 1 kJ = 1 000 J, e 24 kJ é dez vezes o valor correto."
   },
-  "armadilha": "A conta dá 2 400 J, mas as alternativas estão em kJ; quem esquece a conversão ou erra a casa decimal marca A, D ou E.",
+  "armadilha": "A conta dá 2 400 J, mas as alternativas estão em kJ. Quem erra a conversão (divide por 100 ou por 10 000 em vez de 1 000) marca E ou A.",
   "alerta": "",
   "essencial": {
    "pede": "O calor retirado de 300 g que esfriam de 30 °C para 10 °C, com c = 0,4 J/(g·°C).",
@@ -93,7 +93,7 @@
   },
   {
    "nome": "estimativa e eliminação",
-   "ideia": "300 × 0,4 ≈ 120 J/°C. Vezes 20 °C dá da ordem de 2 mil J, ou seja, uns 2 kJ. Só a alternativa de 2,4 kJ fica nessa ordem de grandeza."
+   "ideia": "300 × 0,4 = 120 J por °C. Vezes 20 °C dá uns 2 mil J, ou seja, cerca de 2 kJ. Isso descarta A (0,24 kJ), D (12 kJ) e E (24 kJ). Entre B (1,2 kJ) e C (2,4 kJ), a conta exata decide: 2,4 kJ."
   }
  ],
  "quadro": [
@@ -122,7 +122,7 @@
    "nota": "120 × 20 = 2 400"
   },
   {
-   "linha": "Q = \\frac{2400}{1000} kJ",
+   "linha": "Q = 2400/1000 kJ",
    "nota": "para passar de J para kJ, divide-se por 1 000",
    "mov": [
     {
@@ -152,10 +152,58 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "calcular",
+    "motivo": "O tipo 'aplicar' não existe. Os tipos válidos são localizar, calcular, comparar, eliminar e concluir.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "A não confere: 0,24 kJ = 240 J, que é dez vezes menos que 300 × 0,4 × 20 = 2 400 J. Esse valor só sairia dividindo 2 400 por 10 000 na conversão, mas 1 kJ = 1 000 J.",
+    "motivo": "Usar 'ΔT = 2 em vez de 20' é uma origem inventada, porque nenhum dado do enunciado leva a 2. Troquei pelo teste objetivo.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "D não confere: 12 kJ = 12 000 J, que é cinco vezes 2 400 J. Nenhuma etapa de m·c·ΔT com os dados (300 g, 0,4 J/(g·°C), 20 °C) nem a conversão de J para kJ chega a esse valor.",
+    "motivo": "Conta errada: 12 000 ÷ 2 400 = 5, e não 10 ('dez vezes maior'). As origens citadas (300 × 0,4 × 200, 120 × 100) também foram inventadas.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "Sai de dividir por 100 em vez de 1 000 na conversão: 2 400 J ÷ 100 = 24. O certo é 1 kJ = 1 000 J, e 24 kJ é dez vezes o valor correto.",
+    "motivo": "Conta errada: 24 000 ÷ 2 400 = 10, e não 'cem vezes maior'. Pus no lugar a origem real do erro.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.armadilha",
+    "depois": "A conta dá 2 400 J, mas as alternativas estão em kJ. Quem erra a conversão (divide por 100 ou por 10 000 em vez de 1 000) marca E ou A.",
+    "motivo": "A letra D (12 kJ) não sai de erro de casa decimal: é cinco vezes o valor correto.",
+    "fonte": ""
+   },
+   {
+    "campo": "caminhos[1].ideia",
+    "depois": "300 × 0,4 = 120 J por °C. Vezes 20 °C dá uns 2 mil J, ou seja, cerca de 2 kJ. Isso descarta A (0,24 kJ), D (12 kJ) e E (24 kJ). Entre B (1,2 kJ) e C (2,4 kJ), a conta exata decide: 2,4 kJ.",
+    "motivo": "Falso dizer que 'só 2,4 kJ fica nessa ordem de grandeza': 1,2 kJ também está na mesma ordem.",
+    "fonte": ""
+   },
+   {
+    "campo": "quadro[6].linha",
+    "depois": "Q = 2400/1000 kJ",
+    "motivo": "LaTeX (\\frac) é proibido. Usei a fração em linha, que o site desenha empilhada.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C"
  }
 }

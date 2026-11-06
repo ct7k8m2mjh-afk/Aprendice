@@ -10,7 +10,7 @@
   "antes": {
    "texto": "A pergunta pede onde Jack Teixeira mora. O texto não diz isso numa frase só: descreve a casa dele e o bairro. Procure as palavras ligadas a 'casa' (house, porch, yard) e depois o adjetivo que descreve o lugar. Cuidado: 'local' em inglês quer dizer 'da região', e não 'local' como lugar.",
    "formulas": [
-    "house, back porch, front yard = a casa dele, o fundo e o quintal da frente",
+    "house, back porch, front yard = a casa dele, a varanda dos fundos e o quintal da frente",
     "sleepy = tranquilo, pacato (num lugar, é sem agitação)",
     "exurb = zona residencial afastada da cidade grande",
     "local news station = emissora de notícias da região"
@@ -80,7 +80,7 @@
    }
   ],
   "resposta": "Alternativa C: o texto descreve a casa dele num 'sleepy, riverside exurb', isto é, um bairro pacato e tranquilo.",
-  "checagem": "Segunda marca: a cena é 'dramatic' justamente por acontecer num lugar calmo, com um cara lendo um livro na varanda. O contraste confirma o bairro tranquilo.",
+  "checagem": "Segunda marca: o texto diz que a cena dramática (agentes armados, veículo blindado) num lugar 'sleepy' (pacato) 'underscored the peculiarity' (realçou o caráter estranho) do caso. Com ele lendo um livro na varanda, esse contraste confirma o bairro tranquilo.",
   "erradas": {
    "A": "'In a busy large city' (numa cidade grande e movimentada) contradiz o texto: o lugar é 'sleepy' (pacato) e 'exurb' (zona afastada, e não centro urbano).",
    "B": "'Close to a local news station' (perto de uma emissora local) lê mal 'a helicopter from a local news station'. O helicóptero veio da emissora e filmou a cena, mas o texto não diz que a casa fica perto dela.",
@@ -115,10 +115,28 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.antes.formulas[0]",
+    "depois": "house, back porch, front yard = a casa dele, a varanda dos fundos e o quintal da frente",
+    "motivo": "'Back porch' é a varanda dos fundos, e não 'o fundo'. Assim a fórmula fica igual ao glossário em simbolos.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Segunda marca: o texto diz que a cena dramática (agentes armados, veículo blindado) num lugar 'sleepy' (pacato) 'underscored the peculiarity' (realçou o caráter estranho) do caso. Com ele lendo um livro na varanda, esse contraste confirma o bairro tranquilo.",
+    "motivo": "O texto não diz que a cena é 'dramatic' por acontecer num lugar calmo. O drama vem da operação do FBI. O que o lugar pacato faz é realçar a peculiaridade do caso ('underscored the peculiarity').",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C"
  }
 }

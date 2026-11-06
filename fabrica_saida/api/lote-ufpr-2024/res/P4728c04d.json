@@ -37,7 +37,7 @@
     "faz": "Escreva a equação-modelo do MUV",
     "conta": "x = x0 + v0·t + (a/2)·t²",
     "porque": "É a forma geral da posição no MUV; o que muda de problema para problema são os números.",
-    "tipo": "aplicar"
+    "tipo": "localizar"
    },
    {
     "faz": "Escreva a equação do enunciado",
@@ -49,13 +49,13 @@
     "faz": "Compare os termos um a um",
     "conta": "x0 = −3 km; v0 = 5 km/h",
     "porque": "Termo sem t é a posição inicial; termo com t é a velocidade inicial. O termo com t² é o que importa aqui.",
-    "tipo": "interpretar"
+    "tipo": "comparar"
    },
    {
     "faz": "Iguale o coeficiente de t²",
     "conta": "a/2 = 2",
     "porque": "Na equação-modelo, t² é multiplicado por a ÷ 2, e no enunciado por 2.",
-    "tipo": "aplicar"
+    "tipo": "comparar"
    },
    {
     "faz": "Isole a aceleração",
@@ -138,10 +138,34 @@
  "gab": "E",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[0].tipo",
+    "depois": "localizar",
+    "motivo": "'aplicar' não está entre os tipos permitidos (localizar, calcular, comparar, eliminar, concluir). O passo escreve a equação-modelo que serve de referência, então 'localizar' é o tipo que cabe.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "comparar",
+    "motivo": "'interpretar' não é um tipo permitido. O passo compara os termos das duas equações um a um.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "comparar",
+    "motivo": "'aplicar' não é um tipo permitido. O passo iguala os coeficientes de t² das duas equações, o que é uma comparação.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E"
  }
 }

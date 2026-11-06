@@ -17,7 +17,7 @@
    "simbolos": [
     [
      "aromático",
-     "anel de seis carbonos com três ligações duplas alternadas, como o benzeno"
+     "anel com ligações duplas alternadas e elétrons distribuídos por todo o anel, como o benzeno"
     ],
     [
      "hibridização",
@@ -49,19 +49,19 @@
     "faz": "Classifique o grupo C=O",
     "conta": "C=O com O–CH3 → éster",
     "porque": "O carbono da carbonila liga-se a um O que carrega um CH3. O éster deriva de ácido carboxílico (ácido + álcool, com perda de água).",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Classifique a amina",
     "conta": "N com 2 C e 1 H → secundária",
     "porque": "O N (com H) está dentro do anel, ligado a dois carbonos do anel. Dois carbonos ligados ao N = amina secundária.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Confira hibridização e polaridade",
-    "conta": "C=O: C(3,5) e O(2,0) → polar",
+    "conta": "C=O: C 2,5 e O 3,5 → polar",
     "porque": "Há carbonos sp³ (só simples) e sp² (anel aromático e C=O), mas nenhum sp, pois não há ligação tripla nem duas duplas no mesmo C. O O atrai os elétrons, então a C=O é polar.",
-    "tipo": "aplicar"
+    "tipo": "eliminar"
    },
    {
     "faz": "Escolha a alternativa verdadeira",
@@ -123,10 +123,49 @@
  "gab": "D",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "C=O: C 2,5 e O 3,5 → polar",
+    "motivo": "Os valores de eletronegatividade estavam trocados: davam C = 3,5 e O = 2,0. O certo é C ≈ 2,5 e O ≈ 3,5, como o próprio campo erradas.A já diz.",
+    "fonte": "Escala de Pauling (OpenStax Chemistry 2e, seção 7.2): C 2,55; O 3,44"
+   },
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "localizar",
+    "motivo": "O tipo \"interpretar\" não existe na lista permitida (localizar, calcular, comparar, eliminar, concluir). Neste passo, o aluno acha o grupo na estrutura.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "localizar",
+    "motivo": "O tipo \"interpretar\" não existe na lista permitida. Neste passo, o aluno conta os carbonos ligados ao N na figura.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "eliminar",
+    "motivo": "O tipo \"aplicar\" não existe na lista permitida. Neste passo, o aluno derruba as alternativas C e A.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.antes.simbolos[0]",
+    "depois": [
+     "aromático",
+     "anel com ligações duplas alternadas e elétrons distribuídos por todo o anel, como o benzeno"
+    ],
+    "motivo": "A definição \"anel de seis carbonos\" estava restrita demais: há anéis aromáticos com heteroátomo, como a piridina. A mudança é mínima e mantém o exemplo do benzeno.",
+    "fonte": "IUPAC Gold Book, verbete aromatic"
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "D"
  }
 }

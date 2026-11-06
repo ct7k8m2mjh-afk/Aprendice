@@ -34,13 +34,13 @@
     "faz": "Entenda o que a senha precisa ter",
     "conta": "4 posições: _ _ _ _",
     "porque": "Ela contém 4, 6 e 8 e tem quatro posições. Sobra um dígito a mais, que ainda não sabemos qual é.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Escolha o último dígito",
     "conta": "ímpar: 1, 3, 5, 7, 9 → 5 opções",
     "porque": "Um número é ímpar quando termina em dígito ímpar. Os dígitos 4, 6 e 8 são pares e não servem para o fim. O dígito ímpar é então o quarto dígito extra.",
-    "tipo": "aplicar"
+    "tipo": "eliminar"
    },
    {
     "faz": "Ordene 4, 6 e 8 nas três primeiras posições",
@@ -125,10 +125,28 @@
  "gab": "E",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[0].tipo",
+    "depois": "localizar",
+    "motivo": "O tipo 'interpretar' não está na lista permitida (localizar, calcular, comparar, eliminar, concluir). Este passo lê no enunciado o que a senha precisa ter, por isso o tipo certo é 'localizar'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "eliminar",
+    "motivo": "O tipo 'aplicar' não está na lista permitida. Este passo descarta 4, 6 e 8 da última posição porque são pares, então o tipo certo é 'eliminar'.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E"
  }
 }

@@ -37,7 +37,7 @@
     ],
     [
      "Revolta dos Malês",
-     "levante de escravizados muçulmanos em Salvador, em 1835"
+     "levante de africanos escravizados e libertos, em grande parte muçulmanos, em Salvador, em 1835"
     ]
    ]
   },
@@ -53,7 +53,7 @@
     "faz": "Leia a ideia dos versos",
     "conta": "\"Meu avô lá no Congo... aqui eu sou rei do Maracatu\"",
     "porque": "A tradição vem da África (Congo), mas é refeita em Pernambuco, no Maracatu. Isso é continuidade com adaptação.",
-    "tipo": "interpretar"
+    "tipo": "localizar"
    },
    {
     "faz": "Teste a alternativa sobre influência africana",
@@ -86,7 +86,7 @@
    "A": "Nega a influência africana sobre idioma e culinária, e ela existe. Palavras de origem africana entraram no português, e pratos como o acarajé e o vatapá têm raízes africanas.",
    "B": "As irmandades leigas, como a de Nossa Senhora do Rosário dos Homens Pretos, abriram espaço para negros se organizarem e festejarem, inclusive com coroação de reis do Congo. Não foram criadas para barrar festas.",
    "D": "Sincretismo é a mistura de elementos de culturas e crenças, e não o apagamento integral. Apesar da repressão, as culturas africanas se mantiveram e foram recriadas, como mostram o Maracatu e a Congada.",
-   "E": "A Revolta dos Malês ocorreu em Salvador, em 1835, já no Império, e foi feita por escravizados muçulmanos. Não foi consequência da proibição de festas bantu, e a alternativa mistura os fatos."
+   "E": "A Revolta dos Malês ocorreu em Salvador, em 1835, já no Império, e foi feita por africanos escravizados e libertos, em grande parte muçulmanos. Não foi consequência da proibição de festas bantu, e a alternativa mistura os fatos."
   },
   "armadilha": "Confundir sincretismo, que é mistura, com apagamento total da cultura africana, e atribuir a Revolta dos Malês a um motivo e a uma época que não são os dela.",
   "alerta": "",
@@ -120,10 +120,37 @@
  "gab": "C",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "localizar",
+    "motivo": "O valor \"interpretar\" não existe na lista de tipos permitidos (localizar, calcular, comparar, eliminar, concluir). Neste passo o aluno acha o trecho dos versos e lê o que ele prova, então o tipo é localizar.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.antes.simbolos[5]",
+    "depois": [
+     "Revolta dos Malês",
+     "levante de africanos escravizados e libertos, em grande parte muçulmanos, em Salvador, em 1835"
+    ],
+    "motivo": "O texto dizia só \"escravizados muçulmanos\", o que fica impreciso. Além de escravizados, o levante teve muitos africanos libertos, e nem todos os participantes eram muçulmanos, embora os líderes fossem.",
+    "fonte": "João José Reis, Rebelião escrava no Brasil: a história do levante dos malês em 1835"
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "A Revolta dos Malês ocorreu em Salvador, em 1835, já no Império, e foi feita por africanos escravizados e libertos, em grande parte muçulmanos. Não foi consequência da proibição de festas bantu, e a alternativa mistura os fatos.",
+    "motivo": "A mesma precisão sobre quem participou da revolta: não foram só escravizados.",
+    "fonte": "João José Reis, Rebelião escrava no Brasil: a história do levante dos malês em 1835"
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "C"
  }
 }

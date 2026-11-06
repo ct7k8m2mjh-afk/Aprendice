@@ -45,7 +45,7 @@
    },
    {
     "faz": "Isole a potência",
-    "conta": "30 + 150a^(−0,05t) = 90 → a^(−0,05t) = 60/150 = 2/5",
+    "conta": "a^(−0,05t) = 60/150 = 2/5",
     "porque": "Passe o 30 subtraindo (90 − 30 = 60) e divida por 150. A fração 60/150 simplifica para 2/5.",
     "tipo": "calcular"
    },
@@ -53,13 +53,13 @@
     "faz": "Aplique log na base a",
     "conta": "−0,05t = log_a (2/5)",
     "porque": "Se a^x = N, então x = log_a N. Assim o t sai do expoente.",
-    "tipo": "aplicar"
+    "tipo": "calcular"
    },
    {
     "faz": "Use a propriedade do quociente",
-    "conta": "log_a 2 − log_a 5 = 0,7 − 1,6 = −0,9",
+    "conta": "0,7 − 1,6 = −0,9",
     "porque": "O log de uma fração é o log do numerador menos o log do denominador. Os valores vêm do enunciado.",
-    "tipo": "aplicar"
+    "tipo": "calcular"
    },
    {
     "faz": "Resolva para t",
@@ -71,10 +71,10 @@
   "resposta": "Alternativa D: o bolo chega a 90 (metade de 180) em 18 minutos.",
   "checagem": "Volte ao expoente: com t = 18, −0,05 × 18 = −0,9. Então a^(−0,9) = a^(0,7 − 1,6) = a^0,7 ÷ a^1,6 = 2/5. Logo T = 30 + 150 × 2/5 = 30 + 60 = 90, metade de 180.",
   "erradas": {
-   "A": "10 minutos não confere: o expoente seria −0,05 × 10 = −0,5. Mas a equação exige a^(−0,05t) = 2/5, isto é, expoente −0,9. Com −0,5 não se chega a 90 °C.",
-   "B": "12 minutos não confere: o expoente seria −0,05 × 12 = −0,6, e o necessário é −0,9. O bolo ainda estaria acima de 90 °C, porque o expoente pedido corresponde a um tempo maior.",
+   "A": "10 minutos não confere: o expoente seria −0,05 × 10 = −0,5. Mas a equação exige a^(−0,05t) = 2/5, isto é, expoente −0,9. Com −0,5 não se chega a 90.",
+   "B": "12 minutos não confere: o expoente seria −0,05 × 12 = −0,6, e o necessário é −0,9. O bolo ainda estaria acima de 90, porque o expoente pedido corresponde a um tempo maior.",
    "C": "16 minutos não confere: o expoente seria −0,05 × 16 = −0,8, e o necessário é −0,9. Falta tempo para a potência cair até 2/5.",
-   "E": "22 minutos não confere: o expoente seria −0,05 × 22 = −1,1, mais negativo que −0,9. Nesse instante a potência já passou de 2/5 e T já está abaixo de 90 °C."
+   "E": "22 minutos não confere: o expoente seria −0,05 × 22 = −1,1, mais negativo que −0,9. Nesse instante a potência já passou de 2/5 e T já está abaixo de 90."
   },
   "armadilha": "Usar o 30 (ou 150) como 'temperatura inicial' em vez de calcular T(0) = 180 e tirar a metade, 90.",
   "alerta": "",
@@ -193,10 +193,58 @@
  "gab": "D",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "a^(−0,05t) = 60/150 = 2/5",
+    "motivo": "A linha tinha mais de 30 caracteres e não cabe na tela do celular. A montagem da equação e a passagem do 30 já estão explicadas no porque e no quadro.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].tipo",
+    "depois": "calcular",
+    "motivo": "O valor 'aplicar' não está na lista de tipos permitidos (localizar, calcular, comparar, eliminar, concluir).",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[4].tipo",
+    "depois": "calcular",
+    "motivo": "O valor 'aplicar' não está na lista de tipos permitidos (localizar, calcular, comparar, eliminar, concluir).",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "0,7 − 1,6 = −0,9",
+    "motivo": "A linha tinha mais de 30 caracteres. A propriedade log_a 2 − log_a 5 já aparece no porque e no quadro.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "10 minutos não confere: o expoente seria −0,05 × 10 = −0,5. Mas a equação exige a^(−0,05t) = 2/5, isto é, expoente −0,9. Com −0,5 não se chega a 90.",
+    "motivo": "O enunciado não diz a unidade da temperatura. Escrever °C acrescenta um dado que não está na questão.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "12 minutos não confere: o expoente seria −0,05 × 12 = −0,6, e o necessário é −0,9. O bolo ainda estaria acima de 90, porque o expoente pedido corresponde a um tempo maior.",
+    "motivo": "O enunciado não diz a unidade da temperatura. Escrever °C acrescenta um dado que não está na questão.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "22 minutos não confere: o expoente seria −0,05 × 22 = −1,1, mais negativo que −0,9. Nesse instante a potência já passou de 2/5 e T já está abaixo de 90.",
+    "motivo": "O enunciado não diz a unidade da temperatura. Escrever °C acrescenta um dado que não está na questão.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "D"
  }
 }

@@ -49,7 +49,7 @@
     "faz": "Escreva a fórmula e isole C",
     "conta": "C = 2U ÷ ΔV²",
     "porque": "A energia de um capacitor é U = C·ΔV²/2. Multiplicar por 2 e dividir por ΔV² isola C.",
-    "tipo": "aplicar"
+    "tipo": "calcular"
    },
    {
     "faz": "Calcule o quadrado da tensão",
@@ -74,7 +74,7 @@
   "checagem": "Faça o caminho inverso: com C = 1,0×10⁻³ F e ΔV = 4,0 V, U = 1,0×10⁻³ × 16 ÷ 2 = 8,0×10⁻³ J = 8,0 mJ, igual ao enunciado.",
   "erradas": {
    "A": "C = 0,5 mF dá U = 0,5×10⁻³ × 16 ÷ 2 = 4,0 mJ, metade do pedido. Sai de esquecer de multiplicar por 2: C = U ÷ ΔV² = 8×10⁻³ ÷ 16 = 0,5 mF.",
-   "C": "C = 2,0 mF dá U = 2×10⁻³ × 16 ÷ 2 = 16 mJ, o dobro do pedido. Sai de usar ΔV em vez de ΔV²: 2 × 8×10⁻³ ÷ 4 = 4 mF? Não: 8×10⁻³ ÷ 4 = 2 mF, ou seja, dividir U só por ΔV, sem o 2 e sem o quadrado.",
+   "C": "C = 2,0 mF dá U = 2×10⁻³ × 16 ÷ 2 = 16 mJ, o dobro do pedido. Sai de dividir U só por ΔV, sem o 2 e sem o quadrado: 8×10⁻³ ÷ 4 = 2×10⁻³ F = 2 mF.",
    "D": "C = 4,0 mF dá U = 4×10⁻³ × 16 ÷ 2 = 32 mJ, quatro vezes o pedido. Sai de usar 2U ÷ ΔV (tensão sem elevar ao quadrado): 2 × 8×10⁻³ ÷ 4 = 4 mF.",
    "E": "C = 8,0 mF dá U = 8×10⁻³ × 16 ÷ 2 = 64 mJ, oito vezes o pedido. O valor 8 é o da própria energia, em mJ, e não passa pela conta com ΔV²."
   },
@@ -155,10 +155,28 @@
  "gab": "B",
  "revisao": {
   "lentes": [
-   "resolvedor"
+   "resolvedor",
+   "fatos"
   ],
   "modelos": {
-   "resolvedor": "claude-sonnet-5-5"
-  }
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "C = 2,0 mF dá U = 2×10⁻³ × 16 ÷ 2 = 16 mJ, o dobro do pedido. Sai de dividir U só por ΔV, sem o 2 e sem o quadrado: 8×10⁻³ ÷ 4 = 2×10⁻³ F = 2 mF.",
+    "motivo": "O texto antigo trazia uma conta errada que depois era desfeita no próprio comentário (\"2 × 8×10⁻³ ÷ 4 = 4 mF? Não: …\"). Deixei só a origem correta do valor: 8×10⁻³ ÷ 4 = 2×10⁻³.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "calcular",
+    "motivo": "\"aplicar\" não está entre os tipos permitidos (localizar, calcular, comparar, eliminar, concluir). Isolar C é uma manipulação algébrica, então o tipo é calcular.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "B"
  }
 }
