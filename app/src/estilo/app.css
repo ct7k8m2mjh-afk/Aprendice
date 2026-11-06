@@ -25,11 +25,11 @@
 .item-nav.mat .ic { color: var(--t); }
 .item-nav .rotulo { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .item-nav.ativo { background: color-mix(in srgb, var(--tinta) 7%, var(--lado-fundo)); color: var(--tinta); font-weight: 600; }
-.item-nav.mat.ativo { background: color-mix(in srgb, var(--c) 15%, var(--lado-fundo)); }
+.item-nav.mat.ativo { background: var(--s); color: var(--t); }
 @media (hover: hover) and (pointer: fine) {
   .item-nav:hover { background: color-mix(in srgb, var(--tinta) 4%, transparent); color: var(--tinta); }
   .item-nav.ativo:hover { background: color-mix(in srgb, var(--tinta) 10%, var(--lado-fundo)); }
-  .item-nav.mat.ativo:hover { background: color-mix(in srgb, var(--c) 19%, var(--lado-fundo)); }
+  .item-nav.mat.ativo:hover { background: var(--s); color: var(--t); }
 }
 .item-nav.outras { cursor: pointer; }
 .item-nav.outras .seta { width: 16px; height: 16px; margin-left: auto; color: var(--fraco); }
@@ -48,6 +48,16 @@
 .lado-onda .o2 { fill: var(--onda2); }
 .lado::before { content: ''; left: calc(var(--lado) - 96px); bottom: 12px; width: 84px; height: 56px;
   background-image: radial-gradient(circle, var(--pontos) 1.1px, transparent 1.6px); background-size: 14px 14px; opacity: .9; }
+
+/* dentro de uma matéria (.casca.m-<id>, Casca.tsx) o site inteiro assume a cor dela: menu, abas do celular, onda do menu
+   e anel da meta usam os tons da paleta da matéria no lugar do verde da marca */
+.casca.em-materia { --verde: var(--p); --verde-forte: var(--c); --verde-claro: var(--p); --verde-t: var(--t); --verde-ink: var(--p-ink);
+  --verde-suave: var(--s); --verde-trilho: var(--linha); --verde-borda: color-mix(in srgb, var(--p) 30%, var(--linha)); --verde-nav: var(--t);
+  --onda1: color-mix(in srgb, var(--p) 13%, transparent); --onda2: color-mix(in srgb, var(--p) 26%, transparent); }
+.casca.em-materia .meta-lado span svg circle:last-child { stroke: var(--p); }
+.casca.em-materia .tabs a.ativo { color: var(--t); }
+.casca.em-materia .tabs a.ativo .bolha-ic { background: var(--s); color: var(--t); }
+.casca.em-materia .avatar { background: var(--c); color: var(--ink); }
 
 /* trilho de ícones: menu recolhido no computador e qualquer tela de 641 a 1180 px */
 .menu-fechado .lado { padding: 14px 8px; }
@@ -154,8 +164,9 @@
 .btn-ic { width: 40px; height: 40px; display: grid; place-items: center; border-radius: 11px; border: 1px solid var(--linha); background: var(--folha); color: var(--lapis); }
 .btn-ic:hover { color: var(--tinta); border-color: var(--borda2); }
 
-.barra { height: 6px; border-radius: 6px; background: color-mix(in srgb, var(--c) 16%, var(--malha)); overflow: hidden; }
-.barra > i { display: block; height: 100%; background: var(--c); border-radius: 6px; transition: width .4s var(--curva); }
+/* barra de progresso como na paleta: trilho neutro, preenchimento na cor principal da matéria */
+.barra { height: 6px; border-radius: 6px; background: var(--linha); overflow: hidden; }
+.barra > i { display: block; height: 100%; background: var(--p); border-radius: 6px; transition: width .4s var(--curva); }
 
 .etq { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 500; padding: 4px 10px; border-radius: 20px; background: var(--malha); color: var(--lapis); white-space: nowrap; }
 .etq.cor { background: var(--sv); color: var(--t); }
@@ -168,7 +179,7 @@
 .vazio .btn { margin-top: 18px; }
 
 .carregando { display: grid; place-items: center; min-height: 40vh; color: var(--fraco); }
-.carregando .giro { width: 28px; height: 28px; border-radius: 50%; border: 3px solid var(--linha); border-top-color: var(--c); animation: giro .8s linear infinite; }
+.carregando .giro { width: 28px; height: 28px; border-radius: 50%; border: 3px solid var(--linha); border-top-color: var(--p); animation: giro .8s linear infinite; }
 @keyframes giro { to { transform: rotate(360deg); } }
 
 .grade { display: grid; gap: 16px; }
@@ -188,7 +199,7 @@
 
 .abas { display: flex; gap: 4px; border-bottom: 1px solid var(--linha); margin: 0 0 20px; overflow-x: auto; scrollbar-width: none; }
 .abas button { border: 0; background: none; padding: 10px 14px; color: var(--lapis); font-weight: 600; font-size: 15.5px; border-bottom: 2px solid transparent; margin-bottom: -1px; white-space: nowrap; }
-.abas button[aria-pressed='true'] { color: var(--tinta); border-bottom-color: var(--c); }
+.abas button[aria-pressed='true'] { color: var(--tinta); border-bottom-color: var(--t); }
 .abas button small { color: var(--fraco); font-weight: 500; margin-left: 4px; }
 
 .chips { display: flex; gap: 8px; flex-wrap: wrap; }
@@ -199,7 +210,7 @@
 .campo { display: flex; flex-direction: column; gap: 6px; }
 .campo label { font-weight: 600; font-size: 15px; }
 .campo input, .campo select, .entrada { height: 48px; border-radius: 12px; border: 1px solid var(--borda2); background: var(--folha); padding: 0 14px; font-size: 16px; width: 100%; }
-.campo input:focus, .entrada:focus, .campo select:focus { outline: none; border-color: var(--t); box-shadow: 0 0 0 3px color-mix(in srgb, var(--c) 22%, transparent); }
+.campo input:focus, .entrada:focus, .campo select:focus { outline: none; border-color: var(--t); box-shadow: 0 0 0 3px color-mix(in srgb, var(--p) 22%, transparent); }
 .campo small { color: var(--fraco); font-size: 13.5px; }
 
 .toast { position: fixed; left: 50%; bottom: 28px; transform: translateX(-50%); z-index: 90; background: var(--tinta); color: var(--papel); padding: 12px 18px; border-radius: 12px; font-weight: 500; box-shadow: var(--sombra-alta); animation: sobe .25s var(--curva); max-width: calc(100vw - 32px); }
@@ -216,10 +227,10 @@
 /* ícones 3D de módulo/conteúdo */
 .ic3d { display: block; object-fit: contain; flex: none; }
 .ic3d-vazio { display: grid; place-items: center; border-radius: 22%; color: var(--t);
-  background: color-mix(in srgb, var(--c) 12%, transparent); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c) 22%, transparent); }
+  background: var(--s); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--p) 22%, transparent); }
 .ladrilho { display: grid; place-items: center; border-radius: 14px; background: var(--sv2); flex: none; overflow: hidden; }
 .item-nav .pontos { display: grid; grid-template-columns: repeat(3, 5px); gap: 2px; margin: 0 3px; flex: none; }
-.item-nav .pontos i { width: 5px; height: 5px; border-radius: 50%; background: var(--c); opacity: .75; }
+.item-nav .pontos i { width: 5px; height: 5px; border-radius: 50%; background: var(--p); opacity: .75; }
 .item-nav .rotulo { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .cab-sec a.btn { color: var(--ink); font-size: 15px; }
 .cab-sec a.btn:hover { color: var(--ink); }

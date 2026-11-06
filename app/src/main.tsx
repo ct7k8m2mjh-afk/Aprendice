@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client';
 import './estilo/base.css';
 import './estilo/app.css';
 import './estilo/telas.css';
+import './estilo/sistema.css';
 import { App } from './App';
 import { preparaConteudo } from './dados/conteudo';
 

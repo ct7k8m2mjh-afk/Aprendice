@@ -772,4 +772,4 @@ for _a, _s in ((2020, 1), (2023, 2), (2024, 1), (2024, 2), (2025, 1), (2025, 2),
     PROVAS[f'udesc-{_a}-{_s}'] = udesc(_a, _s)
 PROVAS['udesc-2026-1']['cadernos'][1]['sem_suporte'] = True   # vespertino 2026/1: "Questão N" vem antes dos textos
 for _k in ('udesc-2026-1', 'udesc-2026-2'):
-    PROVAS[_k]['suporte_interno'] = True   # 2026: em parte das questões o "TEXTO N" vem logo depois do número
+    PROVAS[_k]['suporte_interno'] = 90   # 2026: em parte das questões o "TEXTO N" vem logo depois do número

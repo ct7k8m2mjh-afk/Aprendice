@@ -50,6 +50,10 @@ export function Casca({ children, foco = false }: { children: ReactNode; foco?: 
   const [busca, setBusca] = useState(false);
   const [rolou, setRolou] = useState(false);
   const fechado = e.pref.menuFechado;
+  // trilho de ícones (641 a 1180 px): o botão do topo esconde a barra inteira e outro, no topo da página, a mostra de novo
+  // (protótipo: #b-lado-fecha / .lado-abre); preferência só deste navegador
+  const [oculto, setOculto] = useState(() => { try { return localStorage.getItem('ap-trilho-oculto') === '1'; } catch { return false; } });
+  const poeOculto = (v: boolean) => { setOculto(v); try { localStorage.setItem('ap-trilho-oculto', v ? '1' : '0'); } catch { /* sem armazenamento */ } };
   const meta = e.perfil?.meta || 150;
   const sem = semana(e);
   const nome = e.perfil?.nome || 'Estudante';
@@ -74,7 +78,7 @@ export function Casca({ children, foco = false }: { children: ReactNode; foco?: 
   useEffect(() => { if (emOutra) setOutras(true); }, [emOutra]);
 
   return (
-    <div className={'casca' + (fechado ? ' menu-fechado' : '') + (foco ? ' foco' : '')}>
+    <div className={'casca' + (fechado ? ' menu-fechado' : '') + (oculto ? ' trilho-oculto' : '') + (foco ? ' foco' : '')}>
       <a href="#principal" className="sr">Pular para o conteúdo</a>
       <aside className="lado" aria-label="Menu principal">
         <div className="marca">
@@ -82,6 +86,9 @@ export function Casca({ children, foco = false }: { children: ReactNode; foco?: 
           <button className="btn-ic" style={{ border: 0, background: 'none' }} onClick={() => atualiza((x) => ({ ...x, pref: { ...x.pref, menuFechado: !fechado } }))}
             aria-label={fechado ? 'Abrir menu' : 'Recolher menu'} title={fechado ? 'Abrir menu' : 'Recolher menu'}>
             <Icone nome={fechado ? 'direita' : 'esquerda'} />
+          </button>
+          <button className="btn-ic btn-trilho" onClick={() => poeOculto(true)} aria-label="Esconder a barra lateral" title="Esconder a barra">
+            <Icone nome="esquerda" />
           </button>
         </div>
         <nav aria-label="Início e matérias">
@@ -106,7 +113,7 @@ export function Casca({ children, foco = false }: { children: ReactNode; foco?: 
         <div className="rodape">
           <div className="meta-lado" title="Meta da semana">
             <Anel valor={sem.semana / meta}>{Math.min(100, Math.round((sem.semana / meta) * 100))}%</Anel>
-            <div><b className="num">{sem.semana} de {meta}</b><small>meta da semana · hoje {sem.hoje}</small></div>
+            <div><b className="num">{sem.semana} de {meta}</b><small>meta da semana</small><small className="num">hoje {sem.hoje} · ontem {sem.ontem}</small></div>
           </div>
           <ItemNav para="/config" icone="config">Configurações</ItemNav>
         </div>
@@ -118,6 +125,7 @@ export function Casca({ children, foco = false }: { children: ReactNode; foco?: 
 
       <div className="principal">
         <header className={'topo' + (rolou ? ' rolou' : '')}>
+          <button className="btn-ic abre-trilho" onClick={() => poeOculto(false)} aria-label="Mostrar a barra lateral" title="Mostrar a barra"><Icone nome="direita" /></button>
           <Link to="/" className="logo-cel" aria-label="Início"><Logo /></Link>
           <button className="busca-btn" onClick={() => setBusca(true)} aria-label="Buscar conteúdo, questões ou simulados" aria-keyshortcuts="Control+K">
             <Icone nome="busca" tam={20} /><span className="txt">Buscar conteúdo, questões ou simulados...</span><kbd>Ctrl K</kbd>

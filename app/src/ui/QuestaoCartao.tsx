@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, type ReactNode } from 'react';
 import type { Letra, MateriaId, Questao } from '../dados/tipos';
 import { urlPrint } from '../dados/conteudo';
 import { Icone } from './Icone';
+import { defineTelaCheia, useTelaCheia } from './telaCheia';
 import type { Tentativa } from '../estado/tipos';
 
 const LETRAS: Letra[] = ['A', 'B', 'C', 'D', 'E'];
@@ -59,22 +60,25 @@ function EnunciadoTexto({ q }: { q: Questao }) {
   );
 }
 
-/** Print fiel da questão original + cabeçalho com a fonte. */
-export function EnunciadoQuestao({ m, q, numero, print }: { m?: MateriaId; q: Questao; numero?: string; print?: string | null }) {
+/** Print fiel da questão original. Sistema do protótipo: etiquetas no topo do cartão (nível, fonte, conteúdo) com o marcador
+ *  à direita; o print em papel branco com o pé "Ampliar" e a fonte original (link). */
+export function EnunciadoQuestao({ m, q, numero, print, antes, depois, acao }: { m?: MateriaId; q: Questao; numero?: string; print?: string | null; antes?: ReactNode; depois?: ReactNode; acao?: ReactNode }) {
   const [lupa, setLupa] = useState(false);
   const [txt, setTxt] = useState(false);
   const [original, setOriginal] = useState(false);
   useEffect(() => setOriginal(false), [q.id]);
   const src = print !== undefined ? print : m ? urlPrint(m, q.id) : null;
   const alt = textoAlternativo(q);
+  const fonte = `${q.escola} ${q.ano}`;
+  const detalhe = [q.fase, q.n ? `questão ${q.n}` : '', q.banca && q.banca !== q.escola ? q.banca : ''].filter(Boolean).join(' · ');
   return (
     <div className="q-enun">
       <div className="q-meta">
-        {numero && <span className="etq">{numero}</span>}
-        <span className="q-fonte">
-          <b>{q.escola} {q.ano}</b>{q.fase ? ` · ${q.fase}` : ''}{q.n ? ` · questão ${q.n}` : ''}{q.banca && q.banca !== q.escola ? ` · ${q.banca}` : ''}
-        </span>
-        <a className="q-link" href={q.url} target="_blank" rel="noreferrer noopener" title="Abrir a fonte original"><Icone nome="externo" tam={15} /><span className="sr">Fonte original</span></a>
+        {numero && <span className="etq cor">{numero}</span>}
+        {antes}
+        <span className="etq q-fonte" title={detalhe ? `${fonte} · ${detalhe}` : fonte}><b>{fonte}</b>{detalhe ? ` · ${detalhe}` : ''}</span>
+        {depois}
+        {acao ? <span className="q-meta-acao">{acao}</span> : !src && <a className="q-link" href={q.url} target="_blank" rel="noreferrer noopener" title="Abrir a fonte original"><Icone nome="externo" tam={15} /><span className="sr">Fonte original</span></a>}
       </div>
       {q.transcricao && !original ? (
         <>
@@ -82,10 +86,15 @@ export function EnunciadoQuestao({ m, q, numero, print }: { m?: MateriaId; q: Qu
           {src && <button className="q-ver-txt" onClick={() => setOriginal(true)}><Icone nome="arquivo" tam={15} /> Ver a questão original (print da prova)</button>}
         </>
       ) : src ? (
-        <button className="q-print" onClick={() => setLupa(true)} aria-label="Ampliar a questão">
-          <img src={src} alt={alt} />
-          <span className="q-amplia"><Icone nome="lupa" tam={16} /> Ampliar</span>
-        </button>
+        <div className="q-print">
+          <button className="q-print-img" onClick={() => setLupa(true)} aria-label="Ampliar a questão">
+            <img src={src} alt={alt} />
+          </button>
+          <div className="q-print-pe">
+            <button className="q-amplia" onClick={() => setLupa(true)}><Icone nome="lupa" tam={14} /> Ampliar</button>
+            <a className="q-print-fonte" href={q.url} target="_blank" rel="noreferrer noopener" title="Abrir a fonte original">{q.escola} <Icone nome="externo" tam={13} /></a>
+          </div>
+        </div>
       ) : (
         <div className="q-texto" aria-label="Texto da questão">
           <p className="aviso-previa"><Icone nome="info" tam={15} /> Nesta prévia o print original não está incluído; o site completo mostra o print fiel da prova.</p>
@@ -101,6 +110,73 @@ export function EnunciadoQuestao({ m, q, numero, print }: { m?: MateriaId; q: Qu
       {src && txt && <div className="q-texto" style={{ whiteSpace: 'pre-line' }}>{alt}</div>}
       {lupa && src && <Lupa src={src} alt={alt} aoFechar={() => setLupa(false)} />}
     </div>
+  );
+}
+
+/** Resposta dentro do cartão (sistema do protótipo): "Sua resposta" + as cinco letras numa linha e, embaixo, a linha de ações
+ *  (certeza, dica, confirmar / próxima). Presa ao pé da tela enquanto o print rola. */
+export function RespostaCartao({ children, ...p }: { q: Questao; escolha: Letra | null; aoEscolher: (l: Letra) => void; revelado: boolean;
+  riscadas: Set<Letra>; aoRiscar: (l: Letra) => void; mostrarTexto: boolean; children?: ReactNode }) {
+  return (
+    <div className={'q-resp' + (p.mostrarTexto ? ' com-texto' : '')}>
+      <div className="q-bolhas">
+        <Alternativas q={p.q} escolhida={p.escolha} aoEscolher={p.aoEscolher} revelado={p.revelado} riscadas={p.riscadas} aoRiscar={p.aoRiscar} mostrarTexto={p.mostrarTexto} />
+      </div>
+      {children && <div className="q-acoes">{children}</div>}
+    </div>
+  );
+}
+
+export type AbaPainel = 'res' | 'teo' | 'fon';
+
+/** Abas do painel da questão: Resolução · Teoria · Fonte. */
+export function AbasPainel({ aba, aoMudar, sem }: { aba: AbaPainel; aoMudar: (a: AbaPainel) => void; sem?: AbaPainel[] }) {
+  const l = ([['res', 'Resolução'], ['teo', 'Teoria'], ['fon', 'Fonte']] as [AbaPainel, string][]).filter(([k]) => !sem?.includes(k));
+  return (
+    <div className="q-abas" role="tablist" aria-label="Resolução, teoria e fonte">
+      {l.map(([k, t]) => (
+        <button key={k} role="tab" aria-selected={aba === k} tabIndex={aba === k ? 0 : -1} onClick={() => aoMudar(k)}
+          onKeyDown={(e) => { if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return; e.preventDefault(); e.stopPropagation(); const i = l.findIndex(([x]) => x === k); const n = l[(i + (e.key === 'ArrowRight' ? 1 : l.length - 1)) % l.length][0]; aoMudar(n); (e.currentTarget.parentElement?.querySelectorAll('button')[l.findIndex(([x]) => x === n)] as HTMLElement | undefined)?.focus(); }}>{t}</button>
+      ))}
+    </div>
+  );
+}
+
+/** Aba "Fonte": de onde vem a questão, com o link da fonte original. */
+export function FonteQuestao({ q }: { q: Questao }) {
+  const linhas: [string, ReactNode][] = [
+    ['Prova', q.escola], ['Ano', q.ano],
+    ...(q.fase ? [['Fase', q.fase] as [string, ReactNode]] : []),
+    ...(q.n ? [['Questão', q.n] as [string, ReactNode]] : []),
+    ...(q.banca && q.banca !== q.escola ? [['Banca', q.banca] as [string, ReactNode]] : []),
+    ['Origem', q.origem === 'prova' ? 'Caderno da prova oficial' : 'Lista pública de exercícios'],
+    ['Gabarito', 'Publicado (oficial ou resolução reconhecida)'],
+  ];
+  return (
+    <div className="q-fonte-aba">
+      <dl className="q-props">{linhas.map(([t, d]) => <div key={t}><dt>{t}</dt><dd>{d}</dd></div>)}</dl>
+      {q.url && <a className="q-orig" href={q.url} target="_blank" rel="noreferrer noopener"><Icone nome="externo" tam={16} /> Abrir a fonte original</a>}
+    </div>
+  );
+}
+
+/** Leva o painel Resolução · Teoria · Fonte à vista (na coluna única ele fica embaixo do cartão). */
+export function mostraPainel(topo = false) {
+  const el = document.getElementById('q-lado');
+  const corpo = document.getElementById('q-lado-corpo');
+  if (corpo && topo) corpo.scrollTop = 0;
+  if (!el) return;
+  const r = el.getBoundingClientRect();
+  if (r.top > innerHeight * 0.55 || r.bottom < 120) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+/** Botão "Tela cheia" da barra de estudo: esconde o menu e deixa só a questão. */
+export function BotaoTelaCheia() {
+  const on = useTelaCheia();
+  return (
+    <button className={'q-tela' + (on ? ' on' : '')} onClick={() => defineTelaCheia(!on)} aria-pressed={on} title={on ? 'Sair da tela cheia (Esc)' : 'Tela cheia: só a questão'}>
+      <Icone nome={on ? 'sair' : 'tela'} /><span>{on ? 'Sair da tela cheia' : 'Tela cheia'}</span>
+    </button>
   );
 }
 
