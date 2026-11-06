@@ -450,7 +450,8 @@ def eventos_do_pdf(pdf, cfg, faixa=None):
             else:
                 for rx in cfg.get('corte', []):
                     if re.search(rx, t):
-                        ev.append({'p': pi, 'c': c, 'y': y0, 'tipo': 'corte'})
+                        # linha de separação feita de "____": o traço fica no pé da caixa da linha
+                        ev.append({'p': pi, 'c': c, 'y': y1 - 4 if re.fullmatch(r'_{6,}', t) else y0, 'tipo': 'corte'})
                         break
                 else:
                     for rx in cfg.get('suporte', []):
@@ -463,6 +464,8 @@ def eventos_do_pdf(pdf, cfg, faixa=None):
                                 ml = re.match(r'(?i)\s*(?:de|das|dos|nos|n[ºo°]s?\.?)?\s*(\d+)((?:(?:\s*(?:,|\be\b|\ba\b|\band\b|\by\b|\bto\b|–|-))+\s*\d+)*)', mq.group(2))
                                 ns = [int(x) for x in re.findall(r'\d+', ml.group(0))] if ml else []
                                 nums = [min(ns), max(ns)] if len(ns) >= 2 else ns
+                                if len(ns) == 1 and cfg.get('faixa_unica'):   # "à questão 30": vale só para a 30
+                                    nums = [ns[0], ns[0]]
                             else:
                                 nums = [int(x) for x in re.findall(r'\d+', resto)][:2]
                             if cfg.get('texto_n_sem_faixa') and re.match(r'(?i)^texto?\s+[0-9IVX]+\s*$', t):

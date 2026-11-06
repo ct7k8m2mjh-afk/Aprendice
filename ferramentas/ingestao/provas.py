@@ -1052,12 +1052,17 @@ def pucrs(ano, duracao=4):
         'ancora': r'(?i)^quest[ãa]o\s+(\d{1,2})\b', 'ancora_dx': 30, 'sequencial': True,
         'secoes': PUCRS_SECOES, 'pular_secoes': ('Espanhol',), 'pular_antes_sequencia': True,
         'corte': [r'^_{10,}$', r'(?i)^INSTRUÇÃO GERAL', r'(?i)^REDAÇÃO$', r'(?i)^RASCUNHO'],
-        'suporte': [r'(?i)^INSTRUÇÃO:'],
+        # "INSTRUÇÃO: Responder às questões 6 a 9 com base no texto 2." + "TEXTO 2"; "com base nos textos 1 e 2" leva os dois
+        'suporte': [r'(?i)^INSTRUÇÃO:', r'^TEXTO\s+\d+\s*$'], 'suporte_ate_proximo': True, 'texto_n_sem_faixa': True,
+        'faixa_unica': True,
         'gabarito': gab, 'area': lambda n: 'Conhecimentos gerais',
     }
     cfg['total_de'] = lambda pasta: max(gab(pasta))
     return cfg
 
 
-for _a in (2022, 2023, 2025, 2026):
+for _a, _p30, _p31 in ((2022, 12, 16), (2023, 14, 18), (2025, 12, 16), (2026, 14, 18)):
     PROVAS[f'pucrs-{_a}'] = pucrs(_a)
+    # a redação fica entre a questão 30 e a 31: as páginas dela não entram
+    PROVAS[f'pucrs-{_a}']['cadernos'] = [{'arquivo': 'caderno', 'paginas': (1, _p30), 'questoes': (1, 30)},
+                                         {'arquivo': 'caderno', 'paginas': (_p31, 999), 'questoes': (31, 70)}]
