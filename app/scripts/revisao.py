@@ -14,7 +14,7 @@ código do site muda. Este script:
 
 Uso: python3 scripts/revisao.py   (o converte.py chama no fim da conversão completa)
 """
-import json, os, re, sys, urllib.parse, urllib.request
+import json, os, re, sys, time, urllib.parse, urllib.request
 from io import BytesIO
 
 AQUI = os.path.dirname(os.path.abspath(__file__))
@@ -52,13 +52,24 @@ def nome_foto(arquivo):
 
 
 def baixa_foto(arquivo, alvo):
-    """Baixa do Commons (Special:FilePath) já reduzida e grava em WebP."""
+    """Baixa do Commons (Special:FilePath) já reduzida e grava em WebP. Tenta as larguras padrão de miniatura do
+    Commons, da maior para a menor: imagem original menor que a largura pedida vem sem redução, e esse caminho o
+    Commons limita para robôs (erro 429)."""
     from PIL import Image
     nome = re.sub(r'^(File|Arquivo):', '', arquivo)
-    url = 'https://commons.wikimedia.org/wiki/Special:FilePath/' + urllib.parse.quote(nome.replace(' ', '_')) + f'?width={LARGURA_FOTO}'
-    req = urllib.request.Request(url, headers={'User-Agent': 'AprendiceRevisao/1.0 (site de estudos; contato pelo repositório)'})
-    with urllib.request.urlopen(req, timeout=60) as r:
-        dados = r.read()
+    erro = None
+    for larg in (LARGURA_FOTO, 960, 800, 640, 500):
+        time.sleep(3)  # sem pressa com o Commons (limite de pedidos)
+        url = 'https://commons.wikimedia.org/wiki/Special:FilePath/' + urllib.parse.quote(nome.replace(' ', '_')) + f'?width={larg}'
+        req = urllib.request.Request(url, headers={'User-Agent': 'AprendiceRevisao/1.0 (site de estudos; contato pelo repositório)'})
+        try:
+            with urllib.request.urlopen(req, timeout=60) as r:
+                dados = r.read()
+            break
+        except Exception as e:  # noqa: PERF203
+            erro = e
+    else:
+        raise erro
     im = Image.open(BytesIO(dados))
     im = im.convert('RGB')
     if im.width > LARGURA_FOTO:

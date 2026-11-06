@@ -1442,3 +1442,95 @@ def unespar(ano, duracao=4.5):
 
 for _a in (2023, 2024, 2026):
     PROVAS[f'unespar-{_a}'] = unespar(_a)
+
+
+# ------------------------------------------------------------------------------------------------ URCA
+def urca_gab(textos):
+    """Grade "números / letras" por matéria; o 2º dia recomeça em 1 (aqui 61–120). O quadro de língua estrangeira vem
+    em inglês e em espanhol: vale o do inglês. "Nula" ou "*" = anulada."""
+    g, desloc, cab = {}, 0, ''
+    for txt in textos:
+        ls = [l for l in txt.splitlines() if l.strip()]
+        for a, b in zip(ls, ls[1:]):
+            na, nb = a.split(), b.split()
+            if na and all(x.isdigit() for x in na) and len(na) == len(nb) \
+                    and all(re.fullmatch(r'[A-E]|\*|NULA|ANULADA', x.upper()) for x in nb):
+                ns = [int(x) for x in na]
+                if ns[0] == 1 and g and max(g) - desloc >= 60:
+                    desloc += 60   # começa o 2º dia
+                if 'ESPANHOL' not in cab.upper():
+                    for n, v in zip(ns, nb):
+                        g[n + desloc] = v if v in 'ABCDE' else 'X'
+            elif not all(x.isdigit() for x in na) and not all(re.fullmatch(r'[A-E]|\*|NULA|ANULADA', x.upper()) for x in na):
+                cab = a
+    return g
+
+
+def urca(ano, sem, um_gab=False, duracao=8):
+    def gab(pasta):
+        arqs = [pasta / 'gabarito.pdf'] if um_gab else [pasta / 'd1-gabarito.pdf', pasta / 'd2-gabarito.pdf']
+        return urca_gab([texto_pdf(a) for a in arqs])
+
+    secoes = [(r'(?i)^PROVA DE F[ÍI]SICA', 'Física'), (r'(?i)^PROVA DE MATEM', 'Matemática'), (r'(?i)^PROVA DE QU[ÍI]MICA', 'Química'),
+              (r'(?i)^PROVA DE BIOLOGIA', 'Biologia'), (r'(?i)^PROVA DE HIST', 'História'), (r'(?i)^PROVA DE GEOGRAFIA', 'Geografia'),
+              (r'(?i)^PROVA DE L[ÍI]NGUA PORTUGUESA', 'Língua Portuguesa'), (r'(?i)^PROVA DE L[ÍI]NGUA INGLESA|^PROVA DE INGL', 'Inglês'),
+              (r'(?i)^PROVA DE L[ÍI]NGUA ESPANHOLA|^PROVA DE ESPANHOL', 'Espanhol'),
+              (r'(?i)^F[ÍI]SICA\s*[-–]\s*QUEST', 'Física'), (r'(?i)^MATEM[ÁA]TICA\s*[-–]\s*QUEST', 'Matemática'),
+              (r'(?i)^QU[ÍI]MICA\s*[-–]\s*QUEST', 'Química'), (r'(?i)^BIOLOGIA\s*[-–]\s*QUEST', 'Biologia'),
+              (r'(?i)^HIST[ÓO]RIA\s*[-–]\s*QUEST', 'História'), (r'(?i)^GEOGRAFIA\s*[-–]\s*QUEST', 'Geografia'),
+              (r'(?i)^L[ÍI]NGUA PORTUGUESA.*[-–]\s*QUEST', 'Língua Portuguesa'), (r'(?i)^L[ÍI]NGUA INGLESA.*[-–]\s*QUEST|^INGL[ÊE]S\s*[-–]\s*QUEST', 'Inglês')]
+    return {
+        'catalogo': 'urca', 'escola': 'URCA', 'ano': str(ano), 'fase': f'{ano}.{sem}', 'titulo': f'URCA {ano}.{sem}', 'banca': 'CEV-URCA',
+        'duracao_horas': duracao, 'total': 120,
+        'nota': f'Universidade Regional do Cariri, Processo Seletivo Unificado {ano}.{sem}: Prova I (Física, Matemática, Química, '
+                'Biologia; questões 1–60) e Prova II (História, Geografia, Língua Portuguesa, Inglês; aqui 61–120), A–E. '
+                'Redação fora. Gabarito oficial da CEV; questão nula fica fora.',
+        'cadernos': [{'arquivo': 'd1-caderno', 'paginas': (1, 999), 'questoes': (1, 60)},
+                     {'arquivo': 'd2-caderno', 'paginas': (1, 999), 'questoes': (61, 120), 'deslocamento': 60}],
+        # duas colunas, com figuras e textos de largura total em algumas páginas (como a UFSM)
+        'colunas': 'faixas', 'faixas_modo': 'largas', 'divisa': 296, 'margem': 30, 'topo': 86, 'base': 46,
+        'ancora': r'^(\d{2})\.\s*\(URCA', 'ancora_dx': 20, 'sequencial': True,
+        'secoes_rx': secoes, 'pular_secoes': ('Espanhol',), 'pular_antes_sequencia': True,
+        'corte': [r'(?i)^RASCUNHO', r'(?i)^TABELA$', r'(?i)PROPOSTA DE REDA', r'(?i)^REDA[ÇC][ÃA]O$', r'(?i)^Texto motivador',
+                  r'(?i)^Leia (com aten|atentamente) (as instru|o texto motivador)'],
+        # "Texto 2 - Influence on Others - Part II Questões de 49 a 52"
+        # "Leia o texto a seguir (crônica ...) e responda às questões." sem números: vale até o próximo texto ou seção
+        'suporte': [r'(?i)^Texto?\s+([IVX]+|\d+)\s*([-–:.]|$)', r'(?i)^Texto para as quest', r'(?i)(responda|responder)\s+(às|as)\s+quest[õo]es',
+                    r'(?i)^Leia (o|os|a|as) (texto|trecho|poema|fragmento|crônica|tirinha|charge)'],
+        'suporte_secao': True,
+        'gabarito': gab, 'area': lambda n: 'Conhecimentos gerais',
+    }
+
+
+for _a, _s, _u in ((2023, 1, False), (2023, 2, False), (2024, 1, False), (2024, 2, False), (2025, 1, True), (2025, 2, False), (2026, 1, False)):
+    PROVAS[f'urca-{_a}-{_s}'] = urca(_a, _s, _u)
+PROVAS['urca-2025-3'] = urca(2025, 3, True)
+PROVAS['urca-2025-3'].update({'fase': 'PSU 2025.2/2026.1 (out/2025)', 'titulo': 'URCA PSU out/2025'})
+PROVAS['urca-2025-3']['nota'] = PROVAS['urca-2025-3']['nota'].replace('Processo Seletivo Unificado 2025.3', 'Processo Seletivo Unificado 2025.2 (demais campi) e 2026.1 (Iguatu), aplicado em out/2025')
+
+
+# ---------------------------------------------------------------------------------------------- UEG Medicina
+def ueg_medicina(ano, sem, cod):
+    """Vestibular do Curso de Medicina da UEG (Núcleo de Seleção, processo {cod}): 60 objetivas A–E no mesmo layout do
+    vestibular geral (uma coluna, "Questão 1"); língua 1–5 em espanhol e inglês (vale a 2ª, o inglês). Prova tipo 1.
+    A discursiva específica e a redação ficam fora."""
+    cfg = ueg(ano, sem)
+    cfg.update({
+        'catalogo': 'ueg', 'escola': 'UEG', 'fase': f'Medicina {ano}/{sem}', 'titulo': f'UEG Medicina {ano}/{sem}',
+        'nota': f'Universidade Estadual de Goiás, Vestibular do Curso de Medicina {ano}/{sem} (Núcleo de Seleção, processo {cod}), '
+                'prova tipo 1: 60 questões objetivas A–E. Língua estrangeira: inglês (1 a 5). Discursiva específica e redação fora. '
+                'Gabarito oficial definitivo; anulada fica fora.',
+        'secoes_rx': [(r'(?i)^QUEST[ÕO]ES DE \d+ A \d+ \(OP[ÇC][ÃA]O ESPANHOL\)', 'Espanhol'),
+                      (r'(?i)^QUEST[ÕO]ES DE \d+ A \d+ \(OP[ÇC][ÃA]O INGL[ÊE]S\)', 'Inglês')],
+    })
+    cfg['corte'] = cfg['corte'] + [r'(?i)^Provas? Discursivas?', r'(?i)^PROVA DE REDA']
+    return cfg
+
+
+for _a, _s, _c in ((2024, 2, 332), (2025, 2, 354), (2026, 1, 378)):
+    PROVAS[f'ueg-medicina-{_a}-{_s}'] = ueg_medicina(_a, _s, _c)
+PROVAS['ueg-medicina-2025-2']['ancora_dx'] = 400   # "Questão 5" (inglês) à direita de uma imagem, x≈414
+for _k in ('ueg-medicina-2024-2', 'ueg-medicina-2025-2', 'ueg-medicina-2026-1'):
+    # o caderno não tem títulos de matéria depois da língua: a área vem da posição (1–5 inglês)
+    PROVAS[_k]['area_do_gabarito'] = True
+    PROVAS[_k]['area'] = lambda n: 'Inglês' if n <= 5 else 'Conhecimentos gerais'

@@ -20,6 +20,41 @@ export interface Gosto { g: 1 | -1; tipo?: string; mod?: string; ts: number }
 
 export interface SimuladoResultado { nome: string; acertos: number; total: number; seg: number; ts: number }
 
+/** Revisão em slides (comandos 24 e 26): uma resposta de questão dentro do ciclo de 5 tempos. */
+export interface RespRevisao { id: string; letra: Letra; ok: boolean; conf?: Tentativa['conf'] }
+/** "lembrar sem olhar": a = lembrou, q = quase, e = não lembrou. Chave: "<conteúdo>#<slide>" ou "<conteúdo>#<slide>:<linha>" (fixe). */
+export type Lembrou = 'a' | 'q' | 'e';
+
+/** Uma sessão completa do ciclo de 5 tempos num conteúdo. */
+export interface SessaoRevisao {
+  ts: number;
+  seg: number;
+  /** 1. pergunta primeiro */
+  pre: RespRevisao[];
+  /** 2 e 3. ver acontecer (frase-chave, fórmula) e lembrar sem olhar (o slide fixe vira 3 lacunas) */
+  lembrou: Record<string, Lembrou>;
+  /** 4. aplicar em questão nova */
+  apl: RespRevisao[];
+}
+
+/** Sessão em andamento (retomar de onde parou). fase: 0 pergunta · 1 ver · 2 lembrar · 3 aplicar · 4 voltar */
+export interface AndamentoRevisao {
+  ts0: number;
+  seg: number;
+  fase: 0 | 1 | 2 | 3 | 4;
+  /** posição dentro da fase (questão ou slide) */
+  i: number;
+  /** questões escolhidas no começo (não mudam no meio da sessão) */
+  idsPre: string[];
+  idsApl: string[];
+  pre: RespRevisao[];
+  lembrou: Record<string, Lembrou>;
+  apl: RespRevisao[];
+}
+
+/** Estado da revisão de um conteúdo. etapa/vence: quando o conteúdo volta (5. voltar no dia certo). */
+export interface RevisaoConteudo { etapa: number; vence: number; hist: SessaoRevisao[]; and?: AndamentoRevisao | null }
+
 export interface EstadoMateria {
   q: Record<string, EstadoQuestao>;
   ult: string | null;
@@ -27,6 +62,8 @@ export interface EstadoMateria {
   flash: Record<string, FlashRec>;
   flg: Record<string, Gosto>;
   sessoes: { ts: number; seg: number }[];
+  /** revisão em slides por conteúdo (sub). Opcional: estados antigos não têm; a migração v4 cria vazio. */
+  revs?: Record<string, RevisaoConteudo>;
 }
 
 export interface Perfil {
@@ -75,8 +112,9 @@ export interface Preferencias { tema: 'claro' | 'escuro' | 'sistema'; menuFechad
 
 export interface Estado {
   /** 1: formato inicial; 2: Filosofia e Sociologia unidas em 'fs'; 3: questões de sites didáticos retiradas, histórico
-   *  levado à questão de prova equivalente ou guardado no id antigo (migracao.ts, migraEstado). Estado novo nasce na 3. */
-  versao: 2 | 3;
+   *  levado à questão de prova equivalente ou guardado no id antigo (migracao.ts, migraEstado); 4: revisão em slides por
+   *  conteúdo (EstadoMateria.revs, comandos 24 e 26). Estado novo nasce na 4. */
+  versao: 2 | 3 | 4;
   perfil: Perfil | null;
   materias: Partial<Record<MateriaId, EstadoMateria>>;
   simulado: SimuladoAndamento | null;
@@ -87,12 +125,12 @@ export interface Estado {
 }
 
 export function estadoMateriaVazio(): EstadoMateria {
-  return { q: {}, ult: null, sims: [], flash: {}, flg: {}, sessoes: [] };
+  return { q: {}, ult: null, sims: [], flash: {}, flg: {}, sessoes: [], revs: {} };
 }
 
 export function estadoVazio(): Estado {
   return {
-    versao: 3,
+    versao: 4,
     perfil: null,
     materias: {},
     simulado: null,

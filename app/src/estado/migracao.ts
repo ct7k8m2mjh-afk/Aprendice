@@ -5,7 +5,7 @@
  * - Mescla sem apagar: tentativas são unidas por timestamp; flashcards ficam com o registro mais recente.
  */
 import { MATERIA_UNIDA, materiaAtual, type MateriaId } from '../dados/tipos';
-import type { EstadoMateria, EstadoQuestao, Estado, FlashRec, SessaoTreino, SimuladoFeito, SimuladoResultado } from './tipos';
+import type { EstadoMateria, EstadoQuestao, Estado, FlashRec, RevisaoConteudo, SessaoTreino, SimuladoFeito, SimuladoResultado } from './tipos';
 import { estadoMateriaVazio, estadoVazio } from './tipos';
 import { RETIRADAS, type RetiradaBruta } from '../dados/questoesRetiradas';
 
@@ -48,10 +48,29 @@ export function mesclaFlash(a: Record<string, FlashRec>, b: Record<string, Flash
   return out;
 }
 
+const ultRev = (x?: RevisaoConteudo) => (x && Array.isArray(x.hist) && x.hist.length ? x.hist[x.hist.length - 1].ts : 0);
+
+/** Revisão em slides (v4): sessões unidas por momento; quando volta e a etapa ficam com o lado de sessão mais recente;
+ *  a sessão em andamento fica com a que começou por último. */
+export function mesclaRevs(a: Record<string, RevisaoConteudo> = {}, b: Record<string, RevisaoConteudo> = {}): Record<string, RevisaoConteudo> {
+  const out: Record<string, RevisaoConteudo> = {};
+  for (const sub of new Set([...Object.keys(a), ...Object.keys(b)])) {
+    const x = obj<RevisaoConteudo>(a[sub]) || undefined, y = obj<RevisaoConteudo>(b[sub]) || undefined;
+    if (!x || !y) { const z = (x || y)!; out[sub] = { etapa: z.etapa || 0, vence: z.vence || 0, hist: Array.isArray(z.hist) ? z.hist : [], and: z.and || null }; continue; }
+    const base = ultRev(y) > ultRev(x) ? y : x;
+    const porTs = new Map<number, RevisaoConteudo['hist'][number]>();
+    [...(x.hist || []), ...(y.hist || [])].forEach((h) => h && porTs.set(h.ts, h));
+    const and = (y.and?.ts0 || 0) > (x.and?.ts0 || 0) ? y.and : x.and;
+    out[sub] = { etapa: base.etapa || 0, vence: base.vence || 0, hist: [...porTs.values()].sort((p, q) => p.ts - q.ts).slice(-20), and: and || null };
+  }
+  return out;
+}
+
 export function mesclaMateria(a: EstadoMateria, b: Partial<EstadoMateria>): EstadoMateria {
   const sessoes = [...a.sessoes, ...(b.sessoes || [])];
   const vis = new Set<number>();
   return {
+    revs: mesclaRevs(a.revs, obj<Record<string, RevisaoConteudo>>(b.revs) || {}),
     q: mesclaQ(a.q, obj<Record<string, EstadoQuestao>>(b.q) || {}),
     ult: a.ult || b.ult || null,
     sims: mesclaSims(a.sims, Array.isArray(b.sims) ? b.sims : []),
@@ -116,7 +135,7 @@ export function importaArquivo(estado: Estado, texto: string, idsPorMateria: Rec
     r.cartoes += Object.keys(obj(s.flash) || {}).length;
   };
 
-  if ((d.versao === 1 || d.versao === 2 || d.versao === 3) && obj(d.materias)) {
+  if ((d.versao === 1 || d.versao === 2 || d.versao === 3 || d.versao === 4) && obj(d.materias)) {
     // exportação do app novo
     for (const [m, s] of Object.entries(d.materias as Record<string, Partial<EstadoMateria>>)) junta(m as MateriaId, s);
     if (Array.isArray(d.simuladosFeitos)) {
@@ -164,7 +183,7 @@ export function migraDoNavegador(estado: Estado, ler: (k: string) => string | nu
  * v1 -> v2 (comando 18 do dono): Filosofia ('fil') e Sociologia ('soc') viram UMA matéria, Filosofia e Sociologia ('fs').
  * Os ids de questões, temas e cartões não mudam; o progresso das duas é mesclado na matéria nova sem perder nada. */
 
-export const VERSAO_ATUAL = 3;
+export const VERSAO_ATUAL = 4;
 const ANTIGAS = Object.keys(MATERIA_UNIDA) as (keyof typeof MATERIA_UNIDA)[];
 
 /** Momento da última atividade de uma matéria (tentativas, cartões, sessões), para escolher o "continuar de onde parou". */
@@ -304,10 +323,22 @@ export function aplicaRetiradas(e: Estado, tabela: TabelaRetiradas = RETIRADAS):
   return mudou ? { ...e, materias: mats, treino, simulado, simuladosFeitos } : e;
 }
 
+/* v3 -> v4 (comandos 24 e 26 do dono): revisão em slides com o ciclo de 5 tempos. Cada matéria ganha `revs` (por
+ * conteúdo: quando volta, sessões feitas e a sessão em andamento), vazio. Nada existente muda; ids não mudam. */
+function v3paraV4(e: Estado): Estado {
+  const mats = { ...e.materias } as Record<string, EstadoMateria | undefined>;
+  for (const [m, s] of Object.entries(mats)) {
+    if (!s) continue;
+    mats[m] = { ...s, revs: mesclaRevs(obj<Record<string, RevisaoConteudo>>(s.revs) || {}, {}) };
+  }
+  return { ...e, versao: 4, materias: mats as Estado['materias'] };
+}
+
 /** Leva um estado salvo (de qualquer versão conhecida) ao formato atual. Estado já atual volta sem mudança. */
 export function migraEstado(d: Estado | (Omit<Estado, 'versao'> & { versao: number }), tabela: TabelaRetiradas = RETIRADAS): Estado {
   let e = d as Estado;
   if ((e.versao as number) < 2) e = v1paraV2({ ...e, versao: 2 });
   if ((e.versao as number) < 3) e = { ...e, versao: 3 };
+  if ((e.versao as number) < 4) e = v3paraV4(e);
   return aplicaRetiradas(e, tabela);
 }

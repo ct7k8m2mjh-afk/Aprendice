@@ -83,6 +83,8 @@ export function analisaLatex(src: string): NoMat[][] {
     }
     const nome = m[0];
     i += nome.length;
+    // como no LaTeX, o espaço depois de um comando de letras é engolido ("\Delta s" é "Δs")
+    while (s[i] === ' ') i++;
     if (nome in ESPACOS) { out.push({ t: 'esp', w: ESPACOS[nome] }); return; }
     if (IGNORA.has(nome)) {
       if (nome === 'mathrm' || nome === 'mathit') txt(out, grupoTexto());
@@ -91,6 +93,7 @@ export function analisaLatex(src: string): NoMat[][] {
     switch (nome) {
       case 'frac': case 'dfrac': case 'tfrac': { const n = argumento(); const d = argumento(); out.push({ t: 'frac', n, d }); return; }
       case 'sqrt': { out.push({ t: 'raiz', v: argumento() }); return; }
+      case 'hat': case 'widehat': { const a = argumento(); for (const x of a) if (x.t === 'txt') txt(out, x.v + '\u0302'); else out.push(x); return; }
       case 'vec': case 'overrightarrow': { out.push({ t: 'vet', v: argumento() }); return; }
       case 'overset': case 'stackrel': { const topo = argumento(); const v = argumento(); out.push({ t: 'sobre', topo, v }); return; }
       case 'text': case 'textrm': case 'textit': case 'textbf': case 'mbox': case 'operatorname': {
@@ -102,6 +105,8 @@ export function analisaLatex(src: string): NoMat[][] {
       default:
         if (nome in SIMBOLOS) {
           const v = SIMBOLOS[nome];
+          // operação e relação ficam entre espaços ("v · t", "⇒"), como no caderno
+          if (/^[·×÷±∓⇒⇐→←≈≠≤≥∝]$/.test(v)) { txt(out, ' ' + v + ' '); return; }
           // função seguida de letra: um espaço fino ("cos θ")
           txt(out, v);
           if (/^(cos|sen|tg|log|ln)$/.test(v) && /^\s*[A-Za-z0-9\\α-ω]/.test(s.slice(i))) out.push({ t: 'esp', w: 1 });
@@ -121,7 +126,14 @@ export function analisaLatex(src: string): NoMat[][] {
         comando(out);
         continue;
       }
-      if (c === '^' || c === '_') { i++; out.push({ t: c === '^' ? 'sup' : 'sub', v: argumento() }); continue; }
+      if (c === '^' || c === '_') {
+        i++;
+        const v = argumento();
+        // ^\circ (ou ^{\circ}) é o grau: o símbolo na linha, não um expoente
+        if (c === '^' && v.length === 1 && v[0].t === 'txt' && v[0].v.trim() === '°') { txt(out, '°'); continue; }
+        out.push({ t: c === '^' ? 'sup' : 'sub', v });
+        continue;
+      }
       if (c === '{') {
         // {,} é a vírgula decimal; outro grupo só agrupa
         i++; const g = sequencia('}'); i++;
@@ -178,7 +190,7 @@ function plano(ns: NoMat[], ok: { v: boolean }, fracao: 'barra' | 'sobre'): stri
   for (const n of ns) {
     switch (n.t) {
       case 'txt': out += n.v; break;
-      case 'esp': out += n.w >= 3 ? '   ' : ' '; break;
+      case 'esp': out += n.w >= 3 ? '   ' : n.w === 1 ? '\u2009' : ' '; break;
       case 'sup': case 'sub': {
         const mapa = n.t === 'sup' ? SOBRESCRITO : SUBSCRITO;
         const t = plano(n.v, ok, fracao).replace(/\s+/g, '');
@@ -220,7 +232,10 @@ export function latexParaMotor(src: string, contaFracoes: (linha: string) => num
   const linhas = analisaLatex(src);
   const out: string[] = [];
   for (const l of linhas) {
-    const txt = plano(l, ok, 'barra').replace(/\s+/g, ' ').trim();
+    // espaço fino entre algarismos é o separador de milhar ("1\,000" → "1 000", que o motor lê como um número)
+    // e entre número e letra é produto ("10\,\Delta s" → "10Δs": o coeficiente colado, como o motor reconhece)
+    const txt = plano(l, ok, 'barra').replace(/(\d)\u2009(?=\d{3}(?!\d))/g, '$1\u202F').replace(/(\d)\u2009(?=[A-Za-zΔα-ω])/g, '$1')
+      .replace(/[^\S\u202F]+/g, ' ').trim();
     for (const parte of txt.split(/\s*⇒\s*/)) if (parte) out.push(parte);
   }
   if (!ok.v) return null;

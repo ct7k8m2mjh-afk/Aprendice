@@ -109,7 +109,7 @@ export function urlRevisao(m: MateriaId, caminho: string): string { return BASE 
 
 /** "L1-F1-C02 p. 24" → "PV Física (Poliedro), livro 1, frente 1, cap. 2, p. 24" (chaves desconhecidas ficam como estão). */
 export function fonteLegivel(fonte: string, obra?: string): string {
-  const t = fonte.replace(/\bL(\d+)-F(\d+)-C(\d+)\b/g, (_, l, f, c) => `livro ${+l}, frente ${+f}, cap. ${+c}`);
+  const t = fonte.replace(/\bL(\d+)-F(\d+)-C(\d+)\b/g, (_, l, f, c) => `livro ${+l}, frente ${+f}, cap. ${+c}`).replace(/(cap\. \d+) (p\.)/g, '$1, $2');
   return obra ? `${obra}, ${t}` : t;
 }
 

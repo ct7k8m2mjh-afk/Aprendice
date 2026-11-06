@@ -12,6 +12,10 @@ import { CabMateria, subMateria, FaixaTemas } from './Materia';
 import { comFracoes } from '../ui/Fracao';
 import { contaEhTexto, materiaDoCodigo } from '../logica/fracao';
 import type { CartaoTeoria, Figura, MateriaId, Modulo } from '../dados/tipos';
+import { Formula, TextoMat, ehLatex } from '../ui/Formula';
+import { useIndiceRevisao } from '../dados/revisao';
+import { emDias } from '../logica/revisao';
+import type { EstadoMateria } from '../estado/tipos';
 
 export function CartaoTeoriaView({ c, figs }: { c: CartaoTeoria; figs?: Figura[] }) {
   return (
@@ -21,7 +25,10 @@ export function CartaoTeoriaView({ c, figs }: { c: CartaoTeoria; figs?: Figura[]
       {c.identificar && <p><b>Como reconhecer na prova. </b>{c.identificar.replace(/^Pistas:\s*/i, '')}</p>}
       {c.exemplo && <p><b>Exemplo. </b>{c.exemplo}</p>}
       {c.caderno && c.caderno.length > 0 && (
-        <ul className="caderno">{c.caderno.map((x, i) => <li key={i} className={contaEhTexto(x, materiaDoCodigo(c.sub)) ? 'texto' : undefined}>{comFracoes(x)}</li>)}</ul>
+        <ul className="caderno">{c.caderno.map((x, i) => ehLatex(x)
+          // revisão (docs/revisao): texto na letra da interface com as fórmulas entre $…$ à mão
+          ? <li key={i} className="texto com-fm"><TextoMat t={x} /></li>
+          : <li key={i} className={contaEhTexto(x, materiaDoCodigo(c.sub)) ? 'texto' : undefined}>{comFracoes(x)}</li>)}</ul>
       )}
       {c.cuidado && <p className="cuidado"><Icone nome="info" tam={16} /> <span><b>Cuidado: </b>{c.cuidado}</span></p>}
       {figs && figs.map((f, i) => (
@@ -41,7 +48,9 @@ export function TeoriaModulo({ m, mod }: { m: MateriaId; mod: Modulo }) {
     <div className="teoria">
       <section className="bloco teoria-resumo">
         <p className="resumo-mod">{mod.resumo}</p>
-        {mod.formulas.length > 0 && (<><h3>No caderno</h3><ul className="caderno">{mod.formulas.map((f, i) => <li key={i} className={contaEhTexto(f, m) ? 'texto' : undefined}>{comFracoes(f)}</li>)}</ul></>)}
+        {mod.formulas.length > 0 && (<><h3>No caderno</h3><ul className="caderno">{mod.formulas.map((f, i) => ehLatex(f)
+          ? <li key={i}><Formula tex={f} bloco={false} /></li>
+          : <li key={i} className={contaEhTexto(f, m) ? 'texto' : undefined}>{comFracoes(f)}</li>)}</ul></>)}
         {mod.erro && <p className="cuidado"><Icone nome="info" tam={16} /> <span><b>Erro que mais derruba: </b>{mod.erro}</span></p>}
       </section>
       <div className="grade g2" style={{ marginTop: 16 }}>
@@ -64,10 +73,11 @@ function fraseDe(mod: Modulo, sub: string): string {
 export function Tema() {
   const { m, mod: modId } = useParams() as { m: MateriaId; mod: string };
   const [qs, setQs] = useSearchParams();
-  const abaPedida = qs.get('aba') === 'teoria' ? 'teoria' : 'conteudos';
+  const abaPedida = qs.get('aba') === 'teoria' ? 'teoria' : qs.get('aba') === 'revisao' ? 'revisao' : 'conteudos';
   const mc = useMateria(m);
   const s = useMateriaEstado(m);
   const mod = mc?.conteudo.modulos.find((x) => x.id === modId);
+  const indRev = useIndiceRevisao(m);
   useTitulo(mod?.nome || 'Tema');
   if (!mc) return <div className="conteudo"><Carregando /></div>;
   if (!mod) return <div className="conteudo vazio"><h3>Tema não encontrado</h3><Link className="btn sec" to={`/m/${m}`}>Voltar à matéria</Link></div>;
@@ -82,7 +92,10 @@ export function Tema() {
   const p = progressoEscada(todas, s);
   const niveis = desempenhoPorNivel(todas, s);
   const temTeoria = mod.cartoes.length > 0 || !!mod.resumo;
-  const aba = temTeoria ? abaPedida : 'conteudos';
+  // revisão em slides do tema (docs/revisao/<m>/<TEMA>.json): conteúdos com slides
+  const revTema = indRev?.temas[mod.id];
+  const subsRev = revTema ? mod.subs.filter((x) => revTema.subs[x.id]) : [];
+  const aba = abaPedida === 'teoria' && temTeoria ? 'teoria' : abaPedida === 'revisao' && subsRev.length ? 'revisao' : 'conteudos';
   // Começar: o primeiro conteúdo com questão por fazer, na ordem do mais fácil ao mais difícil
   let alvo: string | undefined;
   for (const sub of subs) { const q = mc.porSub.get(sub.id)!.find((x) => !s.q[x.id]?.tent.length); if (q) { alvo = q.id; break; } }
@@ -121,15 +134,22 @@ export function Tema() {
         <div className="tp-acoes">
           {destino && <Link to={`/m/${m}/q/${destino}?ctx=escada`} className="btn tp-comecar"><Icone nome="raio" />{p.feitas === 0 ? 'Começar' : alvo ? 'Continuar' : 'Refazer'}</Link>}
           {todas.length > 0 && <p className="tp-comp num">{plural(todas.length, 'questão', 'questões')} de {plural(subs.length, 'conteúdo', 'conteúdos')} · do mais fácil ao mais difícil</p>}
+          {subsRev.length > 0 && (
+            <button className="btn sec tp-teo tp-rev" aria-pressed={aba === 'revisao'} onClick={() => setQs(aba === 'revisao' ? {} : { aba: 'revisao' }, { replace: true })}>
+              <Icone nome="play" />{aba === 'revisao' ? 'Ver os conteúdos' : 'Revisão em slides'}
+            </button>
+          )}
           {temTeoria && (
-            <button className="btn sec tp-teo" aria-pressed={aba === 'teoria'} onClick={() => setQs(aba === 'teoria' ? {} : { aba: 'teoria' }, { replace: true })}>
+            <button className={'btn sec tp-teo' + (subsRev.length ? ' tp-teo2' : '')} aria-pressed={aba === 'teoria'} onClick={() => setQs(aba === 'teoria' ? {} : { aba: 'teoria' }, { replace: true })}>
               <Icone nome="livro" />{aba === 'teoria' ? 'Ver os conteúdos' : `Teoria em cartões · ${mod.cartoes.length}`}
             </button>
           )}
         </div>
       </section>
 
-      {aba === 'teoria' ? (
+      {aba === 'revisao' ? (
+        <RevisaoDoTema m={m} mod={mod} subs={subsRev.map((x) => ({ ...x, n: revTema!.subs[x.id] }))} s={s} questoes={(id) => mc.porSub.get(id)?.length || 0} />
+      ) : aba === 'teoria' ? (
         <section className="tp-bloco" aria-labelledby="tp-teo-tit">
           <h2 id="tp-teo-tit" className="tp-h">Teoria em cartões <small className="num">{plural(mod.cartoes.length, 'cartão', 'cartões')}</small></h2>
           <TeoriaModulo m={m} mod={mod} />
@@ -170,5 +190,33 @@ export function Tema() {
         </nav>
       )}
     </div>
+  );
+}
+
+/** Aba "Revisão em slides" do tema: os conteúdos com revisão, cada um com o ciclo de 5 tempos e quando volta. */
+function RevisaoDoTema({ m, mod, subs, s, questoes }: { m: MateriaId; mod: Modulo; subs: { id: string; nome: string; n: number }[]; s: EstadoMateria; questoes: (sub: string) => number }) {
+  const agora = Date.now();
+  return (
+    <section className="tp-bloco" aria-labelledby="tp-rev-tit">
+      <h2 id="tp-rev-tit" className="tp-h">Revisão em slides <small className="num">{plural(subs.length, 'conteúdo', 'conteúdos')}</small></h2>
+      <p className="miolo tp-rev-p">Cada conteúdo em 5 tempos: pergunta primeiro, ver acontecer, lembrar sem olhar, aplicar numa questão nova e voltar no dia certo.</p>
+      <ul className="tp-enc tp-rev-l">
+        {subs.map((sub) => {
+          const r = s.revs?.[sub.id];
+          const est = r?.and ? 'Continuar de onde parou' : !r?.hist.length ? 'Nova' : r.vence <= agora ? 'Para revisar hoje' : `Volta ${emDias(r.vence, agora)}`;
+          const nq = questoes(sub.id);
+          return (
+            <li key={sub.id}>
+              <Link to={`/m/${m}/revisao/${sub.id}`}>
+                <i className="ponto-sub" aria-hidden />
+                <span className="t"><b>{cap(sub.nome)}</b><span>{plural(sub.n, 'slide', 'slides')}{nq ? ` · ${plural(nq, 'questão', 'questões')}` : ''}{fraseDe(mod, sub.id) ? ` · ${fraseDe(mod, sub.id)}` : ''}</span></span>
+                <span className="p"><span className={'etq ' + (r?.and ? 'cor' : r?.hist.length && r.vence <= agora ? 'aviso' : '')}>{est}</span></span>
+                <Icone nome="direita" className="tp-seta" />
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
+    </section>
   );
 }

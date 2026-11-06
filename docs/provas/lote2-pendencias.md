@@ -148,3 +148,42 @@ Continuação da rodada 3 (mesmo dia):
 
 **Falta (nesta ordem):** UEG Medicina (links), UFSM (layout), UNEMAT, Unimontes, Unespar, Unicentro, UNIRG, Unitins, URCA,
 UVA, PUC-Rio, PUCPR (apagar o destaque azul da resposta), PUC Minas, Mackenzie, Fempar, FGV, Mauá, EMESCAM.
+
+## Rodada 4 do lote 2 (06/11/2026, em andamento)
+
+Integradas e classificadas (matéria, tema, conteúdo, nível; sem resolução), contagem nos arquivos `prova.json`:
+
+| Prova | Questões válidas | Observação |
+|---|---|---|
+| UFSM 2025 | 119 | Provas 1, 2 e 3 (aqui 1–40, 41–80, 81–120). 88 anulada. Língua: inglês (quadro "Língua Inglesa" do gabarito, lido pela posição na página). |
+| UFSM 2026 | 119 | 48 anulada. Prova 3: só 38–39 são de língua; a 40 é comum. |
+| UNEMAT 2022/2 | 35 | A–E. No gabarito o espanhol vem antes do inglês. |
+| UNEMAT 2023 | 32 | 5, 9 e 27 anuladas. Espanhol antes do inglês no gabarito. |
+| UNEMAT 2024/1 | 34 | 32 anulada. |
+| UNEMAT 2025/1 | 33 | A–D; 5 e 7 anuladas; 33 e 35 com a alteração do gabarito oficial (B e A). |
+| UNEMAT 2026/1 | 32 | A–D; 8, 15 e 17 anuladas. (O link "2026" do site da UNEMAT é o mesmo arquivo da 2026/1.) |
+| Unimontes 2024 | 43 | Vestibular Próprio 2024 (Edital 4/2024), Grupo 1, caderno 101 (Biológicas), A–D; 12 e 34 nulas. |
+| Unimontes 2025 | 43 | Idem 2025 (Edital 4/2025); 33 e 34 nulas. |
+| Unespar 2023 | 57 | Vestibular 2022/2023 (Grupo I); 2, 23 e 54 anuladas. Artes e Educação Física classificadas pelo assunto (arte → fs S01.5; saúde → bio B10.5 etc.). |
+| Unespar 2024 | 58 | Gabarito definitivo (Edital 48/2023); 27 e 47 anuladas. |
+| Unespar 2026 | 59 | Gabarito oficial (Edital 70/2025); 32 anulada. |
+
+- **UFSM** (resolvido): modo novo `faixas_modo: 'largas'` em `recorta.py` — a página é de duas colunas, menos as faixas
+  onde há linha de texto, figura ou fio que atravessa a calha (figura com texto da coluna direita ao lado não conta);
+  o número da questão logo acima de uma faixa larga entra nela. As 6 questões que falhavam (2025: 19, 37, 81, 87, 97, 115)
+  saem certas; a 19/87/97 tinham a instrução "Para responder à questão N" logo abaixo do número (`suporte_nao_colado` 45);
+  a 37/77/117 levavam o aviso "ATENÇÃO – SE VOCÊ OPTOU POR LÍNGUA INGLESA" (agora `corte`); as seções de língua têm setas
+  ("→ Língua Inglesa ←"). O caderno termina antes da página da tabela periódica. **Gabarito corrigido**: a leitura antiga
+  ficava com o espanhol nas questões 38–40 (o texto do PDF sai fora de ordem); agora vale o quadro "Língua Inglesa".
+  2026: dois textos de apoio com a instrução no meio do parágrafo (Prova 1, 01–02; Prova 3, 35–36) começam no início do
+  parágrafo (`faixa_errata`).
+- **UNEMAT** (2022/2–2026/1): duas colunas, "Questão 01." em negrito; "Texto para a Questão 34" (singular) é texto de apoio.
+  2020/2021 sem prova (pandemia).
+- **Unimontes**: uma coluna; seções "PROVA DE ..." dão a área. Opções novas em `recorta.py`: `suporte_singular` (instrução
+  "responder à questão que a ele se refere" vale só para a questão seguinte) e `cita_textos` ("Para responder à questão 05,
+  considere os textos 1 e 2" junta os textos 1 e 2 ao print). 2020–2023 só no arquivo antigo da Cotec (baixar à mão).
+- **Unespar**: uma coluna; seções "Questões de 05 a 11 (Português)"; o número de página no pé ao lado de "QUESTÃO 32"
+  não corta mais a página (`rodape_lado`) e é pintado de branco (`apagar`). 2019/2020 fora do período; 2020/2021 e
+  2021/2022 sem objetiva; Vestibular 2025 só com gabarito provisório (fora).
+- Conferência: `chk.py`/`vaza.py` (alternativas e texto depois da última alternativa) em todas; amostra visual de ~10% dos
+  prints; classificação revisada questão a questão sobre o rascunho do classificador (correções em ~45% das questões).

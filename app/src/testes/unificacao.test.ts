@@ -64,7 +64,7 @@ describe('migração v1 -> v2: Filosofia e Sociologia em uma matéria só', () =
   const mats = e.materias as Record<string, unknown>;
 
   it('chega na versão atual e some com as chaves antigas', () => {
-    expect(VERSAO_ATUAL).toBe(3); // v3: questões de site retiradas (comando 21, retiradas.test.ts)
+    expect(VERSAO_ATUAL).toBe(4); // v3: questões de site retiradas (comando 21, retiradas.test.ts); v4: revisão em slides (revisaoSlides.test.ts)
     expect(e.versao).toBe(VERSAO_ATUAL);
     expect(mats.fil).toBeUndefined();
     expect(mats.soc).toBeUndefined();

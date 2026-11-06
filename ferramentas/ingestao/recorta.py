@@ -928,6 +928,8 @@ def texto(pdf, segs):
     s = '\n'.join(t)
     s = re.sub(r'[ \t]+', ' ', s)
     s = re.sub(r'\n{3,}', '\n\n', s)
+    if re.search(r'[˜´`ˆ¸]', s):   # caderno em LaTeX: acento solto ("Hist´oria") junto de novo
+        s = unicodedata.normalize('NFC', acentos_latex(s))
     return s.strip()
 
 

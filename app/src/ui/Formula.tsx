@@ -1,6 +1,7 @@
 import { Fragment, type ReactNode } from 'react';
 import { analisaLatex, latexParaLeitura, type NoMat } from '../logica/latex';
 import { comFracoes } from './Fracao';
+import '../estilo/revisao.css'; // fórmulas e revisão em slides (comandos 24 e 26)
 
 /**
  * Fórmula das revisões (LaTeX das fichas) desenhada como no caderno: letra à mão (Caveat), fração SEMPRE empilhada com
