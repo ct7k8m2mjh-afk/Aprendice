@@ -12,3 +12,4 @@ Observações para a integração:
 | G10 Geopolítica e globalização | aprovado (06/11/2026) | 80 |
 | G05 Biomas e vegetação | aprovado (06/11/2026) | 39 |
 | G04 Hidrografia | aprovado (06/11/2026) | 49 |
+| G06 População e demografia | aprovado (06/11/2026) | 59 |
