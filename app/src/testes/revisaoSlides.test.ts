@@ -4,7 +4,7 @@ import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { analisaLatex, latexParaLeitura, latexParaMotor, type NoMat } from '../logica/latex';
 import { contaEhTexto, partesFracao } from '../logica/fracao';
-import { montaRoteiro } from '../logica/motorConta';
+import { montaRoteiro, tokeniza } from '../logica/motorConta';
 import {
   confereLacuna, escolheQuestoes, fechaSessao, lacuna, linhasFixe, nivelDoAluno, novoAndamento, opcoesFormula, pedeTentativa,
   proximaVolta, revisoesVencidas, sessaoBoa, slidesDoCiclo, termos, VOLTA_DIAS,
@@ -49,10 +49,11 @@ describe('LaTeX das revisões', () => {
     expect(latexParaLeitura('v_m = \\frac{\\Delta s}{\\Delta t}')).toBe('vₘ = Δs sobre Δt');
   });
   it('texto do motor: fração "a/b" que o site empilha, uma linha por ⇒', () => {
-    expect(latexParaMotor('v_0 = \\frac{72}{3{,}6} = 20\\ \\text{m/s}', contaFracoes)).toBe('v₀ = 72/3,6 = 20 m/s');
+    expect(latexParaMotor('v_0 = \\frac{72}{3{,}6} = 20\\ \\text{m/s}', contaFracoes)).toBe('v_{0} = 72/3,6 = 20 m/s');
     expect(latexParaMotor('10\\,\\Delta s = 400 \\;\\Rightarrow\\; \\Delta s = \\frac{400}{10} = 40\\ \\text{m}', contaFracoes)).toBe('10Δs = 400\nΔs = 400/10 = 40 m');
-    // índice sem forma Unicode: não dá para escrever sem perda (pedido 2 ao motor)
-    expect(latexParaMotor('f_{cat} = \\frac{10}{4}', contaFracoes)).toBeNull();
+    // índice de várias letras: "_{…}", que o motor desce inteiro na mesma letra à mão (auditoria A4)
+    expect(latexParaMotor('f_{cat} = \\frac{10}{4}', contaFracoes)).toBe('f_{cat} = 10/4');
+    expect(tokeniza('v_{mín} = 3').filter((t) => t.k === 'var').map((t) => t.v)).toEqual(['v_{mín}']);
     // Humanas: a quebra que só corta a frase some; item novo fica em linha própria
     expect(latexParaMotor('\\begin{gathered} \\text{ética: agir pelo correto,} \\\\ \\text{não por medo} \\\\ \\text{(2) outro} \\end{gathered}', contaFracoes, true))
       .toBe('ética: agir pelo correto, não por medo\n(2) outro');
@@ -118,7 +119,7 @@ describe.skipIf(!TEMAS.length)('conteúdo de docs/revisao', () => {
           if (r) for (const p of r.passos!) expect(p.conta).not.toMatch(/\\|[{}]/);
         }
         // F02 (o tema conferido slide a slide): quase todos pelo motor; só índices sem forma Unicode ficam de fora
-        if (t.id === 'F02') expect(ex.filter(({ s }) => passosParaMotor(s.passos!)).length).toBeGreaterThanOrEqual(ex.length - 2);
+        if (t.id === 'F02') expect(ex.filter(({ s }) => passosParaMotor(s.passos!)).length).toBe(ex.length);
       });
       it('lacunas: pista e resposta não vazias em toda linha do fixe e em toda frase-chave de conceito', () => {
         for (const { s } of todos) {

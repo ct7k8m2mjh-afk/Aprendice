@@ -196,6 +196,10 @@ function plano(ns: NoMat[], ok: { v: boolean }, fracao: 'barra' | 'sobre'): stri
       case 'sup': case 'sub': {
         const mapa = n.t === 'sup' ? SOBRESCRITO : SUBSCRITO;
         const t = plano(n.v, ok, fracao).replace(/\s+/g, '');
+        // motor: índice sempre como "_{…}" (o motor e logica/notacao.ts o descem na mesma letra à mão, várias letras
+        // juntas); expoente sem forma pequena como "^(…)"
+        if (fracao === 'barra' && n.t === 'sub') { out += `_{${t}}`; break; }
+        if (fracao === 'barra' && n.t === 'sup' && ![...t].every((c) => mapa[c])) { out += t.length > 1 ? `^(${t})` : `^${t}`; break; }
         const u = [...t].map((c) => mapa[c]);
         if (u.every(Boolean)) out += u.join('');
         else if (n.t === 'sub' && /^(máx|mín|max|min)$/.test(t)) out += t === 'máx' || t === 'max' ? 'ₘₐₓ' : 'ₘᵢₙ';
