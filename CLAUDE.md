@@ -35,6 +35,7 @@ Toda tela e todo conteúdo novo seguem esta lógica, construída com o dono desd
 - **A pegadinha sempre aparece:** o aluno aprende a reconhecer a armadilha que a banca usa.
 - **Ver a coisa acontecer:** resolução animada, nunca só texto (regras abaixo).
 - **O erro volta:** o que o aluno errou retorna na revisão espaçada até ele acertar.
+- **Revisar é lembrar, não reler:** o Método Aprendice de Revisão (`docs/estrategia-revisao.md`, decisão do dono 06/11/2026) — pergunta antes da explicação, certeza antes da resposta, agenda contada a partir da data da prova, o equívoco volta (não só a questão), prioridade pela prova-alvo.
 - **Confiável:** tudo tem fonte e passa pelas lentes; na dúvida, não entra.
 
 ### A correção da questão (decisão do dono, 05/11/2026)
