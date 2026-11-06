@@ -71,10 +71,27 @@ def baixa(prova, rotulo, url):
         return False
     from urllib.parse import quote
     url_req = quote(url, safe=':/?&=%#+@,;~')   # caracteres fora do ASCII no endereço ("1ª-ETAPA") vão codificados
-    req = urllib.request.Request(url_req, headers={'User-Agent': AGENTE})
-    with urllib.request.urlopen(req, context=CTX, timeout=120) as r:
-        dados = r.read()
-        tipo = r.headers.get('Content-Type', '')
+    import http.client
+    dados, tipo = b'', ''
+    for tentativa in range(8):
+        # transferência cortada no meio (proxy/servidor): continua de onde parou com Range, sem recomeçar
+        cab = {'User-Agent': AGENTE}
+        if dados:
+            cab['Range'] = f'bytes={len(dados)}-'
+        req = urllib.request.Request(url_req, headers=cab)
+        try:
+            with urllib.request.urlopen(req, context=CTX, timeout=120) as r:
+                tipo = tipo or r.headers.get('Content-Type', '')
+                if dados and r.status != 206:
+                    dados = b''   # servidor sem Range: recomeça
+                try:
+                    dados += r.read()
+                    break
+                except http.client.IncompleteRead as e:
+                    dados += e.partial
+        except (ConnectionError, TimeoutError) as e:
+            print(f'  conexão interrompida ({e}); tentando de novo')
+        time.sleep(PAUSA)
     # alguns servidores (PHP) põem quebra de linha antes do cabeçalho: tira só espaço em branco
     if dados.lstrip(b' \r\n\t').startswith(b'%PDF'):
         dados = dados.lstrip(b' \r\n\t')

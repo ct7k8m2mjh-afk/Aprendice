@@ -534,6 +534,17 @@ def eventos_do_pdf(pdf, cfg, faixa=None):
                 for r_ in selos_da_pagina(pg):
                     if r_.y0 < y0 + 1 and r_.y1 > y0 and y0 - r_.y0 < 10 and r_.x0 - 2 <= x0 <= r_.x1:
                         y0 = min(y0, r_.y0)
+                if cfg.get('ancora_bloco'):
+                    # número centrado na altura do parágrafo ao lado (texto ao lado de figura, Unicentro 2026):
+                    # a questão começa na 1ª linha do parágrafo que encosta no número
+                    viz = sorted((M for M in lp if 0 <= M['bbox'][0] - x1 < 20), key=lambda M: M['bbox'][1])
+                    acima = [M for M in viz if M['bbox'][1] < y0 - 1 and M['bbox'][3] > y0 - 40]
+                    topo_b = y0
+                    for M in sorted(viz, key=lambda M: -M['bbox'][1]):
+                        if M['bbox'][1] < topo_b - 1 and topo_b - M['bbox'][3] < 6 and M['bbox'][1] < y0:
+                            topo_b = M['bbox'][1]
+                    if acima and topo_b < y0:
+                        y0 = topo_b
                 ev.append({'p': pi, 'c': c, 'y': y0, 'tipo': 'q', 'n': int(m.group(1))})
                 continue
             if any(re.search(rx, t) for rx in cfg.get('pausa', [])):
@@ -1117,6 +1128,17 @@ def processa(pid, amostra=False, so_texto=False):
                 elif e['tipo'] in ('corte', 'secao'):
                     ult_q, dentro = None, False
                 ok.append(e)
+            ev = ok
+        if cad.get('so_secao'):
+            # caderno único com a numeração recomeçando em cada matéria (Unicentro: Biologia 1–9, Física 1–9...):
+            # cada matéria é lida como um caderno à parte; os títulos de seção ficam, para encerrar a última questão
+            ok, dentro = [], False
+            for e in ev:
+                if e['tipo'] == 'secao':
+                    dentro = e['nome'] == cad['so_secao']
+                    ok.append(e)
+                elif dentro:
+                    ok.append(e)
             ev = ok
         if cfg.get('pular_antes_sequencia'):
             # seção pulada (língua espanhola) sai antes do filtro de sequência: a numeração recomeça no inglês

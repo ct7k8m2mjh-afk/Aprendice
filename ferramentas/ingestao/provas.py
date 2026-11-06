@@ -1538,3 +1538,78 @@ for _k in ('ueg-medicina-2024-2', 'ueg-medicina-2025-2', 'ueg-medicina-2026-1'):
     PROVAS[_k]['area'] = lambda n: 'Inglês' if n <= 5 else 'Conhecimentos gerais'
 # 54 (2º dia; aqui 114): "Considerando o texto na íntegra (Partes I, II e III)" — leva os Textos 1, 2 e 3 (das questões 46–53)
 PROVAS['urca-2025-3']['apoio_de'] = {114: [106, 110, 112]}
+
+
+# ------------------------------------------------------------------------------------------------ Unicentro
+UNICENTRO_MATERIAS = [('Língua Portuguesa', r'^L[ÍI]NGUA PORTUGUESA E LITERATURA$', 10), ('Inglês', r'^L[ÍI]NGUA ESTRANGEIRA MODERNA\s*[–-]\s*INGL[ÊE]S$', 5),
+                      ('Arte', r'^ARTE$', 9), ('Biologia', r'^BIOLOGIA$', 9), ('Filosofia', r'^FILOSOFIA$', 9), ('Física', r'^F[ÍI]SICA$', 9),
+                      ('Geografia', r'^GEOGRAFIA$', 9), ('História', r'^HIST[ÓO]RIA$', 9), ('Matemática', r'^MATEM[ÁA]TICA$', 9),
+                      ('Química', r'^QU[ÍI]MICA$', 9), ('Sociologia', r'^SOCIOLOGIA$', 9)]
+_UNICENTRO_GAB = {'Língua Portuguesa': 'LÍNGUA PORTUGUESA E LITERATURA', 'Inglês': 'INGLÊS', 'Arte': 'ARTE', 'Biologia': 'BIOLOGIA',
+                  'Filosofia': 'FILOSOFIA', 'Física': 'FÍSICA', 'Geografia': 'GEOGRAFIA', 'História': 'HISTÓRIA',
+                  'Matemática': 'MATEMÁTICA', 'Química': 'QUÍMICA', 'Sociologia': 'SOCIOLOGIA'}
+
+
+def unicentro(ano, arquivo='caderno'):
+    """Unicentro, Vestibular de {ano}: caderno único com Língua Portuguesa e Literatura (1–10), língua estrangeira (1–5) e
+    as provas de 9 matérias (1–9 cada; o candidato faz as 5 do grupo do seu curso). Aqui a prova inteira, menos o espanhol:
+    Português 1–10, Inglês 11–15, Arte 16–24, Biologia 25–33, Filosofia 34–42, Física 43–51, Geografia 52–60,
+    História 61–69, Matemática 70–78, Química 79–87, Sociologia 88–96 (o número do caderno fica em 'nq').
+    Uma coluna; número da questão num quadrado preto, em linha própria. Gabarito definitivo em grade por matéria."""
+    def gab(pasta):
+        txt = texto_pdf(pasta / 'gabarito.pdf')
+        txt = txt[txt.find('GABARITO DEFINITIVO'):]
+        ls = [l for l in txt.splitlines() if l.strip()]
+        blocos = {}   # matéria -> {n: letra}
+        for i, l in enumerate(ls):
+            nomes = [x.strip() for x in re.split(r'\s{3,}', l.strip())]
+            if not all(re.fullmatch(r'[A-ZÁÉÍÓÚÂÊÔÃÕÇ ]+', x) for x in nomes) or i + 2 >= len(ls):
+                continue
+            ns = ls[i + 1].split()
+            vs = ls[i + 2].replace('*', '').split()
+            if not (ns and all(x.isdigit() for x in ns) and len(ns) == len(vs)):
+                continue
+            # "INGLÊS   ESPANHOL" na mesma linha: os 5 primeiros são do inglês
+            por = len(ns) // len(nomes)
+            for k, nome in enumerate(nomes):
+                blocos[nome] = {int(n): (v if v in 'ABCDE' else 'X') for n, v in zip(ns[k * por:(k + 1) * por], vs[k * por:(k + 1) * por])}
+        g, ini = {}, 0
+        for nome, _, qtd in UNICENTRO_MATERIAS:
+            b = blocos[_UNICENTRO_GAB[nome]]
+            assert len(b) == qtd, (nome, b)
+            for n, v in b.items():
+                g[ini + n] = v
+            ini += qtd
+        return g
+
+    cads, ini = [], 0
+    for nome, _, qtd in UNICENTRO_MATERIAS:
+        cads.append({'arquivo': arquivo, 'paginas': (3, 999), 'so_secao': nome, 'questoes': (ini + 1, ini + qtd),
+                     'deslocamento': ini, 'rotulo': nome})
+        ini += qtd
+    cfg = {
+        'catalogo': 'unicentro', 'escola': 'Unicentro', 'ano': str(ano), 'fase': 'Vestibular', 'titulo': f'Unicentro {ano}', 'banca': 'Coorps-Unicentro',
+        'duracao_horas': 5, 'total': ini,
+        'nota': f'Universidade Estadual do Centro-Oeste, Vestibular de {ano}: caderno único, A–E. Todas as provas objetivas do '
+                'caderno (Língua Portuguesa e Literatura, Inglês e as 9 matérias dos grupos de cursos), menos o espanhol; o '
+                'candidato faz Português, a língua e as 5 matérias do seu grupo. Redação fora. Gabarito definitivo em edital; '
+                'anulada fica fora.',
+        'cadernos': cads,
+        'colunas': lambda r: [(36, r.width - 30)], 'margem': 36, 'topo': 40, 'base': 59,
+        'ancora': r'^(\d{1,2})$', 'ancora_dx': 12, 'sequencial': True, 'ancora_negrito': True,
+        'ancora_bloco': True,
+        'secoes_rx': [(rx, nome) for nome, rx, _ in UNICENTRO_MATERIAS] + [(r'^L[ÍI]NGUA ESTRANGEIRA MODERNA\s*[–-]\s*ESPANHOL$', 'Espanhol')],
+        'corte': [r'^LITERATURA$', r'(?i)^RASCUNHO', r'(?i)^TABELA PERI'],
+        'suporte': [r'(?i)(responda|responder)\s+(às|as)\s+quest[õo]es'],
+        'gabarito': gab, 'area': lambda n: 'Conhecimentos gerais',
+    }
+    return cfg
+
+
+for _a in (2022, 2023, 2024):
+    PROVAS[f'unicentro-{_a}'] = unicentro(_a)
+for _a in (2026, 2027):
+    # só o caderno "com respostas" tem camada de texto (2027: o caderno sem respostas é imagem): a alternativa certa vem
+    # em vermelho e é repintada de preto no print
+    PROVAS[f'unicentro-{_a}'] = unicentro(_a, 'caderno-com-respostas')
+    PROVAS[f'unicentro-{_a}']['neutralizar_cores'] = (0xff0000,)
