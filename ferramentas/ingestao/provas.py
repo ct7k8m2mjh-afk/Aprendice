@@ -1275,7 +1275,7 @@ PROVAS['ufsm-2026']['divisa'] = 293.5   # números de linha da coluna direita co
 # Prova 3, questões 35 e 36: o parágrafo de abertura vem antes de "Com base nesse cenário, leia o texto..." e é das duas
 PROVAS['ufsm-2026']['suporte'] = PROVAS['ufsm-2026']['suporte'] + [r'^O advento das novas tecnologias tem mostrado',
                                                           r'^A Organização das Nações Unidas para a Educação,']   # idem, Prova 1, 01 e 02
-# a instrução "Leia-o para responder às questões 01 e 02" fica no meio do parágrafo de abertura (linha "correr. O texto..."):
+# a instrução "Leia-o para responder às questões 01 e 02" fica no meio do parágrafo de abertura (linha "parque. Leia-o para responder..."):
 # o texto de apoio começa no início do parágrafo, e a faixa 01–02 é dada aqui
-PROVAS['ufsm-2026']['suporte'][0] = r'(?i)^(?!correr\. O texto)(?=.*(responder|responda)\s+(a|à|às|as)\s+quest)'
+PROVAS['ufsm-2026']['suporte'][0] = r'(?i)^(?!parque\. Leia-o)(?=.*(responder|responda)\s+(a|à|às|as)\s+quest)'
 PROVAS['ufsm-2026']['faixa_errata'] = {('p1-caderno', 2, ()): [1, 2]}
