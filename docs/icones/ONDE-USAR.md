@@ -1,6 +1,21 @@
-# Ícones de tema — onde entram no site (comando 19, dono, 06/11/2026)
+# Ícones de tema — onde entram no site (comandos 19 e 23, dono, 06/11/2026)
 
-Arquivos: `docs/icones/<matéria>/<id do tema>-<nome>.png` (Biologia pronta: B01 a B12). O id no nome é o `mod.id` do site.
+Arquivos: `docs/icones/<matéria>/<id do tema>-<nome>.png`. O id no nome é o `mod.id` do site.
+
+**Todas as matérias já têm ícones novos de tema** (aprovados pelo dono; Biologia e Química em 06/11, as outras sete em 06/11/2026, comando 23):
+| Matéria | Pasta | Temas |
+|---|---|---|
+| Biologia | `docs/icones/biologia/` | B01 a B12 (12) |
+| Química | `docs/icones/quimica/` | Q01 a Q12 (12) |
+| Matemática | `docs/icones/matematica/` | M01 a M17 (17) |
+| Português | `docs/icones/portugues/` | P01 a P12 (12) |
+| Física | `docs/icones/fisica/` | F01 a F12 (12) |
+| Geografia | `docs/icones/geografia/` | G01 a G12 (12) |
+| História | `docs/icones/historia/` | H01 a H08 (8) |
+| Inglês | `docs/icones/ingles/` | I01 a I04 (4) |
+| Filosofia e Sociologia | `docs/icones/filosofia-sociologia/` | L01 a L08 e S01 a S08 (16) |
+
+Ícones com ressalva (usar o atual até o dono mandar nova versão): ver comando 23 em `docs/comandos-do-dono.md`.
 Visual (ver `exemplo-faixa-de-temas.png`, só o visual, não a ordem): o objeto fica INTEIRO DENTRO de um círculo claro; ao passar o mouse ou focar pelo teclado, o círculo com o ícone cresce ~6% e sobe levemente (animação curta e suave; com "reduzir movimento", só destaque de borda). No toque não há efeito: abre o tema.
 
 ## Recebem o ícone do tema (círculo)
@@ -28,4 +43,5 @@ O ícone da MATÉRIA (Início, menu, lista de matérias: `IluMateria`) não muda
 - Os PNG de `docs/icones/<matéria>/` são a fonte oficial: o conversor (`app/scripts/converte.py`) passa a gerar os ícones de tema dessa matéria SÓ a partir deles (`<id>.webp`).
 - Excluir do site os ícones antigos dessa matéria: os de tema e todos os de subtema que vinham do protótipo (`app-atual/.../ic.json`) ou das pranchas (`app/conteudo-fonte/materias/ic/`), e o código que só servia a eles. Autorização expressa do dono, sem perguntar.
 - NÃO apagar nada em `app-atual/`: o protótipo continua intacto.
-- Matérias sem ícones novos ainda: mantêm os atuais até o dono mandar os delas; quando mandar, a mesma regra vale.
+- Hoje todas as matérias têm ícones novos (tabela no topo): a regra vale para as nove. Se o dono mandar nova versão de algum ícone, ela substitui a anterior pelo mesmo nome de arquivo.
+- Ao gerar o WebP, apagar restos de fundo (alfa abaixo de ~30 vira 0) só no WebP; o PNG original em `docs/icones/` nunca é alterado.
