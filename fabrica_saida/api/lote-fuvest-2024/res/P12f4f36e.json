@@ -1,0 +1,162 @@
+{
+ "n": 85,
+ "id": "P12f4f36e",
+ "materia": "mat",
+ "tema": "M07",
+ "conteudo": "M07.4",
+ "nivel": 5,
+ "conceito": "Descobrir a fórmula dos números triangulares e oblongos a partir das figuras e testar cada afirmação.",
+ "resolucao": {
+  "antes": {
+   "texto": "Cada figura do enunciado é uma sequência com regra própria. Triangular: o n-ésimo triângulo tem n pontos na última fileira, então T_n = 1 + 2 + ... + n. Oblongo: n linhas e n+1 colunas, então O_n = n × (n+1). Com as duas fórmulas, cada alternativa vira uma conta curta.",
+   "formulas": [
+    "T_n = n(n+1)/2 (soma de 1 até n)",
+    "O_n = n × (n+1)",
+    "O_n = 2 × T_n"
+   ],
+   "simbolos": [
+    [
+     "T_n",
+     "n-ésimo número triangular"
+    ],
+    [
+     "O_n",
+     "n-ésimo número oblongo"
+    ],
+    [
+     "PA",
+     "progressão aritmética: sequência em que cada termo é o anterior somado a um valor fixo"
+    ],
+    [
+     "PG",
+     "progressão geométrica: sequência em que cada termo é o anterior multiplicado por um valor fixo"
+    ]
+   ]
+  },
+  "pista": "Conte os pontos de cada figura e descubra o que muda de uma para a próxima. Depois teste as alternativas com as fórmulas.",
+  "passos": [
+   {
+    "faz": "Leia a regra dos triangulares",
+    "conta": "1, 3, 6, 10: +2, +3, +4",
+    "porque": "Cada figura ganha uma fileira nova com um ponto a mais que a anterior. Logo T_n = 1+2+...+n = n(n+1)/2.",
+    "tipo": "localizar"
+   },
+   {
+    "faz": "Leia a regra dos oblongos",
+    "conta": "2=1×2, 6=2×3, 12=3×4, 20=4×5",
+    "porque": "Colunas = linhas + 1. Então O_n = n(n+1), que é o dobro de T_n.",
+    "tipo": "localizar"
+   },
+   {
+    "faz": "Teste A e B",
+    "conta": "T15 = 15×16/2 = 120",
+    "porque": "O 15º triangular é 120, não 162. Em B, T13 = 13×14/2 = 91 = 7×13, que não é primo. O30 = 30×31 = 930, par.",
+    "tipo": "eliminar"
+   },
+   {
+    "faz": "Teste C",
+    "conta": "156 = 12 × 13 = O12",
+    "porque": "156 é produto de dois números consecutivos, então é oblongo. A frase 'não é oblongo, nem triangular' fica falsa.",
+    "tipo": "eliminar"
+   },
+   {
+    "faz": "Teste D",
+    "conta": "T20 = 20×21/2 = 210",
+    "porque": "210 é triangular. Também 210 = 14 × 15 = O14, então é oblongo. D é verdadeira.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Teste E e conclua",
+    "conta": "diferenças: 2, 3, 4, 5...",
+    "porque": "A diferença entre T_(n+1) e T_n é n+1. Isso soma 1 a cada termo, o que forma uma PA e não uma PG. Só a D está correta.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa D: 210 = T20 = 20×21/2 e 210 = 14×15 = O14, portanto é triangular e oblongo.",
+  "checagem": "Confira por soma direta: 1+2+...+20 = 210, pois são 10 pares que somam 21 (10 × 21 = 210). E 14 × 15 = 210.",
+  "erradas": {
+   "A": "O 15º triangular é 15×16/2 = 120, não 162. Além disso, 162 não é triangular, pois T17 = 153 e T18 = 171.",
+   "B": "O 13º triangular é 13×14/2 = 91 = 7 × 13, composto, então não é primo. O 30º oblongo é 30×31 = 930, que é par. As duas partes são falsas.",
+   "C": "156 = 12 × 13, que é o 12º oblongo. Como é oblongo, a afirmação 'não é oblongo' é falsa.",
+   "E": "As diferenças entre triangulares consecutivos são 2, 3, 4, 5... Somam 1 a cada termo, formando uma PA de razão 1. Uma PG exigiria razão multiplicativa constante, e 3÷2 ≠ 4÷3."
+  },
+  "armadilha": "Acreditar que 'oblongo' é só uma forma de retângulo: a regra n(n+1) é o que permite testar 156 e 210.",
+  "alerta": "",
+  "essencial": {
+   "pede": "A única afirmação correta sobre números triangulares e oblongos.",
+   "chave": "T_n = n(n+1)/2 e O_n = n(n+1). Testar cada alternativa com essas fórmulas.",
+   "cuidado": "Na alternativa D, é preciso mostrar que 210 é as duas coisas (T20 e O14). Em E, a diferença forma PA, não PG."
+  }
+ },
+ "caminhos": [
+  {
+   "nome": "Testar o produto de consecutivos",
+   "ideia": "Um número N é oblongo se for produto de dois inteiros consecutivos (perto de raiz de N). Para 210, raiz ≈ 14,5 e 14 × 15 = 210. Para 156, raiz ≈ 12,5 e 12 × 13 = 156."
+  },
+  {
+   "nome": "Soma direta",
+   "ideia": "Somar 1+2+3+... até chegar em 120 (T15), 91 (T13), 210 (T20), usando o par 1+n, 2+(n−1) para abreviar."
+  }
+ ],
+ "quadro": [
+  {
+   "linha": "T_n = 1 + 2 + ... + n",
+   "nota": "cada triângulo ganha uma fileira nova"
+  },
+  {
+   "linha": "T_n = n(n+1)/2",
+   "nota": "soma de 1 até n"
+  },
+  {
+   "linha": "O_n = n × (n+1)",
+   "nota": "n linhas, n+1 colunas"
+  },
+  {
+   "linha": "T15 = 15×16/2 = 120",
+   "nota": "A é falsa: 120 ≠ 162"
+  },
+  {
+   "linha": "T13 = 13×14/2 = 91",
+   "nota": "91 = 7 × 13, não é primo"
+  },
+  {
+   "linha": "O30 = 30 × 31 = 930",
+   "nota": "par: B é falsa"
+  },
+  {
+   "linha": "156 = 12 × 13 = O12",
+   "nota": "é oblongo: C é falsa"
+  },
+  {
+   "linha": "T20 = 20×21/2 = 210",
+   "nota": "210 é triangular"
+  },
+  {
+   "linha": "210 = 14 × 15 = O14",
+   "nota": "210 também é oblongo: D é verdadeira"
+  },
+  {
+   "linha": "diferenças: 2, 3, 4, 5...",
+   "nota": "soma 1 a cada termo: PA, não PG; E é falsa"
+  }
+ ],
+ "visual": {
+  "cabe": true,
+  "porque": "Ver a figura crescer mostra de onde saem as fórmulas.",
+  "tipo": "figura",
+  "roteiro": "Quadro 1: triângulos de pontos com 1, 3, 6, 10 pontos; cada fileira nova é destacada em cor (+2, +3, +4). Quadro 2: dois triângulos iguais se encaixam formando um retângulo n × (n+1), mostrando que O_n = 2T_n. Quadro 3: o triângulo de 20 fileiras com 210 pontos e o retângulo 14 × 15 com 210 pontos lado a lado."
+ },
+ "fontes": [],
+ "confere": true,
+ "divergencia": "",
+ "resposta_resolvedor": "D",
+ "gab": "D",
+ "revisao": {
+  "lentes": [
+   "resolvedor"
+  ],
+  "modelos": {
+   "resolvedor": "claude-sonnet-5-5"
+  }
+ }
+}

@@ -84,7 +84,7 @@
    {
     "faz": "Teste as alternativas",
     "conta": "A: feminino | B: pinheiro | C: briófita | E: samambaia",
-    "porque": "Saco embrionário é feminino. Estróbilo é o cone do pinheiro. Anterozoide (gameta com cauda) é de briófitas e samambaias. Soros são de samambaias. Nenhum desses é de antera de angiosperma.",
+    "porque": "Saco embrionário é feminino. Estróbilo é o cone das gimnospermas, como o pinheiro. Anterozoide (gameta com cauda) é de briófitas e pteridófitas, como as samambaias. Soros são de samambaias. Nenhum desses é de antera de angiosperma.",
     "tipo": "eliminar"
    },
    {
@@ -98,7 +98,7 @@
   "checagem": "Siga a flor até a fecundação: antera → micrósporo → grão de pólen → tubo polínico → núcleos espermáticos. A antera está no começo da cadeia, na etapa de esporos, e não na de gametas.",
   "erradas": {
    "A": "O saco embrionário é o gametófito feminino e se forma no óvulo, dentro do ovário, não na antera. Também não existem 'núcleos polares masculinos': os núcleos polares são femininos.",
-   "B": "O estróbilo é o cone das gimnospermas, como o pinheiro, e de algumas samambaias. Angiospermas não têm estróbilo. Além disso, o esporófito é a planta diploide inteira, não uma estrutura reduzida.",
+   "B": "O estróbilo é o cone das gimnospermas, como o pinheiro, e de algumas pteridófitas (licófitas e cavalinhas). Angiospermas não têm estróbilo. Além disso, o estróbilo masculino não é um esporófito reduzido: ele é uma estrutura do esporófito, que é a planta diploide inteira.",
    "C": "Anterozoides são gametas masculinos flagelados de briófitas e pteridófitas. Nas angiospermas, os gametas masculinos são núcleos espermáticos sem flagelo, formados dentro do grão de pólen e do tubo polínico.",
    "E": "Soros são conjuntos de esporângios na face inferior das folhas das samambaias (pteridófitas). Angiospermas não têm soros; suas anteras têm sacos polínicos."
   },
@@ -138,12 +138,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -257,6 +259,28 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "O estróbilo é o cone das gimnospermas, como o pinheiro, e de algumas pteridófitas (licófitas e cavalinhas). Angiospermas não têm estróbilo. Além disso, o estróbilo masculino não é um esporófito reduzido: ele é uma estrutura do esporófito, que é a planta diploide inteira.",
+    "motivo": "Samambaias verdadeiras não têm estróbilo. Têm soros. Só licófitas e cavalinhas têm estróbilo, e as duas são pteridófitas. O trecho final também afirmava que o esporófito não é uma estrutura reduzida, o que não rebatia a alternativa. A alternativa erra ao chamar o estróbilo de esporófito reduzido.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Saco embrionário é feminino. Estróbilo é o cone das gimnospermas, como o pinheiro. Anterozoide (gameta com cauda) é de briófitas e pteridófitas, como as samambaias. Soros são de samambaias. Nenhum desses é de antera de angiosperma.",
+    "motivo": "Precisão: a alternativa B não é só do pinheiro, e os anterozoides são de briófitas e pteridófitas, o que o passo omitia ao citar apenas samambaias. Isso também deixa o passo coerente com erradas.C.",
+    "fonte": ""
+   },
+   {
+    "campo": "conteudo",
+    "depois": "B12.7",
+    "motivo": "A classificação atual no banco é B12.3 (tecidos vegetais). O conteúdo da questão é reprodução e grupos vegetais, B12.7. A resolução proposta já usa B12.7.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "D"
  }
 }

@@ -1,0 +1,192 @@
+{
+ "n": 35,
+ "id": "P87f7fedd",
+ "materia": "mat",
+ "tema": "M07",
+ "conteudo": "M07.3",
+ "nivel": 4,
+ "conceito": "Soma dos termos de uma PA em contexto de custo, que leva a uma equação do 2º grau.",
+ "resolucao": {
+  "antes": {
+   "texto": "O custo de cada metro é uma progressão aritmética (PA): começa em 1.000 e sobe 200 a cada metro. O custo total é a soma dos custos de todos os metros. Se o poço tem n metros, a soma dos n primeiros termos da PA vale 48.600, e dessa igualdade sai n.",
+   "formulas": [
+    "custo do metro n: a_n = a_1 + (n − 1) × r",
+    "soma de n termos: S = n × (a_1 + a_n) ÷ 2"
+   ],
+   "simbolos": [
+    [
+     "PA",
+     "progressão aritmética: sequência em que cada termo é o anterior mais um valor fixo"
+    ],
+    [
+     "a_1",
+     "custo do primeiro metro: R$ 1.000,00"
+    ],
+    [
+     "r",
+     "razão da PA: quanto cada metro custa a mais que o anterior, R$ 200,00"
+    ],
+    [
+     "n",
+     "número de metros, ou seja, a profundidade do poço"
+    ],
+    [
+     "S",
+     "soma dos custos de todos os metros, o custo total"
+    ]
+   ]
+  },
+  "pista": "Cada metro custa 200 a mais que o anterior, então os custos formam uma sequência regular. O custo total é a soma dessa sequência. Quantos termos ela precisa ter para somar 48.600?",
+  "passos": [
+   {
+    "faz": "Identifique a sequência",
+    "conta": "a_1 = 1000 ; r = 200",
+    "porque": "O primeiro metro custa 1.000 e cada novo metro soma 200 ao anterior. Isso é uma PA de razão 200.",
+    "tipo": "localizar"
+   },
+   {
+    "faz": "Escreva o custo do último metro",
+    "conta": "a_n = 1000 + (n − 1) × 200 = 800 + 200n",
+    "porque": "O metro n custa o primeiro mais (n − 1) acréscimos de 200. Ele entra na fórmula da soma.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Monte a equação da soma",
+    "conta": "48600 = n × (1800 + 200n) ÷ 2",
+    "porque": "a_1 + a_n = 1000 + 800 + 200n = 1800 + 200n. A soma de todos os metros deve dar o custo total, 48.600.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Simplifique até o 2º grau",
+    "conta": "48600 = n × (900 + 100n) → n² + 9n − 486 = 0",
+    "porque": "Dividir por 2 dá 900 + 100n. Dividir tudo por 100 dá 486 = n × (n + 9). Passando o 486, aparece a equação do 2º grau.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Resolva a equação",
+    "conta": "Δ = 81 + 1944 = 2025 ; √Δ = 45 ; n = (−9 + 45) ÷ 2 = 18",
+    "porque": "A outra raiz, (−9 − 45) ÷ 2 = −27, é negativa e não serve como número de metros.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Ligue ao comando",
+    "conta": "profundidade = 18 m → B",
+    "porque": "n é o número de metros construídos, que é a profundidade pedida.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa B: o poço tem 18 m, pois a soma dos 18 primeiros termos da PA (1.000, 1.200, ...) vale R$ 48.600,00.",
+  "checagem": "Pelo último metro: a_18 = 1000 + 17 × 200 = 4400. A média dos extremos é (1000 + 4400) ÷ 2 = 2700. Então 18 × 2700 = 48.600, que é o custo total.",
+  "erradas": {
+   "A": "15 m não confere: a_15 = 1000 + 14 × 200 = 3800 e S = 15 × (1000 + 3800) ÷ 2 = 36.000, menos que 48.600.",
+   "C": "21 m não confere: a_21 = 1000 + 20 × 200 = 5000 e S = 21 × (1000 + 5000) ÷ 2 = 63.000, mais que 48.600.",
+   "D": "24 m não confere: a_24 = 1000 + 23 × 200 = 5600 e S = 24 × (1000 + 5600) ÷ 2 = 79.200, bem acima de 48.600.",
+   "E": "27 m não confere: a_27 = 1000 + 26 × 200 = 6200 e S = 27 × (1000 + 6200) ÷ 2 = 97.200, o dobro de 48.600."
+  },
+  "armadilha": "Tratar 48.600 como o custo de um metro, ou esquecer que é uma soma. O total soma todos os metros, cada um mais caro que o anterior.",
+  "alerta": "",
+  "essencial": {
+   "pede": "A profundidade do poço, isto é, o número de metros n.",
+   "chave": "Custos em PA: S = n × (a_1 + a_n) ÷ 2 = 48.600 leva a n² + 9n − 486 = 0, com n = 18.",
+   "cuidado": "Descarte a raiz negativa e confira se a_n usa (n − 1) acréscimos, não n."
+  }
+ },
+ "caminhos": [
+  {
+   "nome": "testar alternativas",
+   "ideia": "Calcule a soma para n = 21: dá 63.000, alto demais. Para n = 15: dá 36.000, baixo demais. Sobra 18, que dá 48.600."
+  },
+  {
+   "nome": "soma direta pela média",
+   "ideia": "Na PA, a soma é o número de termos vezes a média entre o primeiro e o último. Como a média cresce com n, basta achar o n em que n × média = 48.600."
+  }
+ ],
+ "quadro": [
+  {
+   "linha": "a_1 = 1000 ; r = 200",
+   "nota": "PA: primeiro metro e acréscimo por metro"
+  },
+  {
+   "linha": "a_n = 1000 + (n − 1) × 200",
+   "nota": "custo do metro n"
+  },
+  {
+   "linha": "a_n = 800 + 200n",
+   "nota": "distribua o 200 e some: 1000 − 200 = 800",
+   "destaque": "800 + 200n"
+  },
+  {
+   "linha": "S = n × (a_1 + a_n) ÷ 2",
+   "nota": "soma dos n primeiros termos"
+  },
+  {
+   "linha": "48600 = n × (1800 + 200n) ÷ 2",
+   "nota": "a_1 + a_n = 1000 + 800 + 200n",
+   "destaque": "1800 + 200n"
+  },
+  {
+   "linha": "48600 = n × (900 + 100n)",
+   "nota": "divida 1800 + 200n por 2"
+  },
+  {
+   "linha": "486 = n × (9 + n)",
+   "nota": "divida os dois lados por 100",
+   "mov": [
+    {
+     "termo": "100",
+     "de": "esquerda",
+     "para": "denominador",
+     "vira": "100",
+     "como": "divide os dois lados e cancela"
+    }
+   ]
+  },
+  {
+   "linha": "n² + 9n − 486 = 0",
+   "nota": "passe o 486 para o outro lado trocando o sinal",
+   "destaque": "− 486",
+   "mov": [
+    {
+     "termo": "486",
+     "de": "esquerda",
+     "para": "direita",
+     "vira": "− 486",
+     "como": "atravessa o igual"
+    }
+   ]
+  },
+  {
+   "linha": "Δ = 9² − 4 × 1 × (−486) = 2025",
+   "nota": "81 + 1944 = 2025 e √2025 = 45"
+  },
+  {
+   "linha": "n = (−9 + 45) ÷ 2 = 18",
+   "nota": "a raiz −27 é negativa e não serve",
+   "destaque": "18"
+  }
+ ],
+ "visual": {
+  "cabe": false,
+  "porque": "A questão é uma conta de PA; a animação do quadro já mostra cada passagem.",
+  "tipo": "nenhum",
+  "roteiro": ""
+ },
+ "fontes": [],
+ "confere": true,
+ "divergencia": "",
+ "resposta_resolvedor": "B",
+ "gab": "B",
+ "revisao": {
+  "lentes": [
+   "resolvedor",
+   "fatos"
+  ],
+  "modelos": {
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [],
+  "fatos_ok": true,
+  "fatos_resposta": "B"
+ }
+}

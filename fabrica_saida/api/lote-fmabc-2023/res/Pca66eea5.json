@@ -8,7 +8,7 @@
  "conceito": "Vocabulário de epidemiologia aplicado à febre maculosa: agente etiológico, vetor, hospedeiro e reservatório.",
  "resolucao": {
   "antes": {
-   "texto": "Cada personagem no ciclo de uma doença tem um papel com nome. O agente etiológico é quem causa a doença (aqui, uma bactéria). O vetor é quem transmite o agente de um animal para outro (aqui, o carrapato, pela picada). O reservatório é o animal em que o agente vive e se mantém na natureza. O trabalho real da questão é encaixar cada nome do texto no papel certo.",
+   "texto": "Cada personagem no ciclo de uma doença tem um papel com nome. O agente etiológico é quem causa a doença (aqui, uma bactéria). O vetor é quem transmite o agente a outro organismo (aqui, o carrapato, pela picada). O reservatório é o animal em que o agente vive e se mantém na natureza. O trabalho real da questão é encaixar cada nome do texto no papel certo.",
    "formulas": [
     "agente etiológico = quem causa a doença",
     "vetor = quem transmite (carrega e inocula) o agente",
@@ -72,8 +72,8 @@
    },
    {
     "faz": "Teste as alternativas",
-    "conta": "A: bactéria = agente\nC: carrapato = vetor\nD: cavalo = reservatório\nE: roedor = reservatório\nB: gambá = reservatório",
-    "porque": "Cada alternativa errada troca um papel por outro. Só a B atribui ao gambá o papel que ele realmente tem.",
+    "conta": "A: bactéria = agente\nC: carrapato = vetor\nD: cavalo = hospedeiro\nE: roedor = hospedeiro\nB: gambá = reservatório",
+    "porque": "Cada alternativa errada troca um papel por outro. Só a B atribui ao gambá o papel que o texto sugere: animal parasitado pela bactéria, ou seja, reservatório.",
     "tipo": "eliminar"
    },
    {
@@ -86,10 +86,10 @@
   "resposta": "Alternativa B: o gambá é um dos animais em que a bactéria Rickettsia vive e se mantém na natureza, ou seja, um reservatório natural.",
   "checagem": "Monte o ciclo em setas: animal (reservatório) → carrapato (vetor) → ser humano. A bactéria é o agente. Cada nome ocupa um só lugar, e o gambá está no primeiro.",
   "erradas": {
-   "A": "A bactéria não é hospedeira: ela é o agente etiológico, que causa a doença. Hospedeiros são os organismos que a abrigam, como os animais e o ser humano.",
+   "A": "A bactéria não é hospedeira: ela é o agente etiológico, que causa a doença. Hospedeiros são os organismos que abrigam o parasita, como os animais e o ser humano.",
    "C": "O carrapato transmite a bactéria pela picada, então é o vetor. Quem causa a doença (agente etiológico) é a Rickettsia; o texto diz que o carrapato está contaminado por ela.",
-   "D": "O cavalo é parasitado pela bactéria e funciona como reservatório. Vetor é quem transmite pela picada, papel do carrapato. O texto não diz que o cavalo transmite.",
-   "E": "O roedor (capivara) é animal parasitado pela bactéria, ou seja, reservatório. O agente etiológico é a Rickettsia, não um animal."
+   "D": "O cavalo é um dos animais parasitados pela bactéria, ou seja, hospedeiro e possível reservatório. Vetor é quem transmite pela picada, papel do carrapato. O texto não diz que o cavalo transmite.",
+   "E": "O roedor (capivara) é um dos animais parasitados pela bactéria, ou seja, hospedeiro. O agente etiológico é a Rickettsia, não um animal."
   },
   "armadilha": "Misturar os papéis: chamar de vetor o animal que abriga a bactéria, ou de agente etiológico o transmissor.",
   "alerta": "Na realidade, o carrapato-estrela (Amblyomma) também é considerado reservatório da Rickettsia, porque passa a bactéria para os ovos. Capivaras e gambás atuam sobretudo como amplificadores, e o papel de reservatório desses animais ainda é discutido. A questão segue o texto, que apresenta cavalos, capivaras e gambás como animais parasitados pela bactéria. Por isso o gabarito B se sustenta.",
@@ -125,12 +125,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -215,6 +217,46 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Cada personagem no ciclo de uma doença tem um papel com nome. O agente etiológico é quem causa a doença (aqui, uma bactéria). O vetor é quem transmite o agente a outro organismo (aqui, o carrapato, pela picada). O reservatório é o animal em que o agente vive e se mantém na natureza. O trabalho real da questão é encaixar cada nome do texto no papel certo.",
+    "motivo": "O vetor transmite o agente ao ser humano, e não só de animal para animal. A frase anterior 'de um animal para outro' ficava incompleta, porque o texto fala de transmissão ao ser humano.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Cada alternativa errada troca um papel por outro. Só a B atribui ao gambá o papel que o texto sugere: animal parasitado pela bactéria, ou seja, reservatório.",
+    "motivo": "Pequeno ajuste de precisão. O papel do gambá vem do texto e do gabarito, e a questão discute esse papel no alerta.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "A bactéria não é hospedeira: ela é o agente etiológico, que causa a doença. Hospedeiros são os organismos que abrigam o parasita, como os animais e o ser humano.",
+    "motivo": "Mantém o sentido e deixa a definição de hospedeiro coerente com a do glossário.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "O cavalo é um dos animais parasitados pela bactéria, ou seja, hospedeiro e possível reservatório. Vetor é quem transmite pela picada, papel do carrapato. O texto não diz que o cavalo transmite.",
+    "motivo": "O cavalo é hospedeiro de amplificação. Chamá-lo de reservatório sem ressalva contradiz o alerta, que diz que o papel de reservatório desses animais é discutido.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "O roedor (capivara) é um dos animais parasitados pela bactéria, ou seja, hospedeiro. O agente etiológico é a Rickettsia, não um animal.",
+    "motivo": "Mesmo ajuste da D: hospedeiro é o termo seguro, e reservatório fica restrito ao que o texto sustenta para o gambá, em coerência com o alerta.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "A: bactéria = agente\nC: carrapato = vetor\nD: cavalo = hospedeiro\nE: roedor = hospedeiro\nB: gambá = reservatório",
+    "motivo": "Coerência com as correções de D e E. Todo animal parasitado é hospedeiro, e o gabarito só aceita reservatório para o gambá.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "B"
  }
 }

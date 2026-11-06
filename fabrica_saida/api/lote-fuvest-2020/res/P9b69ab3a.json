@@ -1,0 +1,154 @@
+{
+ "n": 13,
+ "id": "P9b69ab3a",
+ "materia": "mat",
+ "tema": "M13",
+ "conteudo": "M13.4",
+ "nivel": 4,
+ "conceito": "Probabilidade em caminhos de um diagrama: multiplica-se ao longo de cada caminho e somam-se os caminhos diferentes.",
+ "resolucao": {
+  "antes": {
+   "texto": "Cada seta traz a probabilidade de ir de uma cidade a outra. Para percorrer um caminho com várias setas seguidas, multiplicam-se as probabilidades das setas (é o 'e' da contagem). Se há caminhos diferentes que levam ao mesmo destino, somam-se os resultados de cada caminho (é o 'ou').",
+   "formulas": [
+    "caminho = produto das probabilidades das setas",
+    "P(A até F) = soma dos caminhos de A até F"
+   ],
+   "simbolos": [
+    [
+     "seta",
+     "ligação que só pode ser percorrida no sentido indicado"
+    ],
+    [
+     "0,6",
+     "na seta de C para F, significa que 60% dos carros que estão em C vão para F"
+    ]
+   ]
+  },
+  "pista": "Liste todos os jeitos de sair de A e chegar em F seguindo as setas. Só depois faça as contas, caminho por caminho.",
+  "passos": [
+   {
+    "faz": "Leia as setas da figura",
+    "conta": "A→B 0,8 ; A→C 0,2",
+    "porque": "De A saem duas setas. Também saem: B→C 0,1 ; B→D 0,9 ; C→E 0,4 ; C→F 0,6 ; D→F 0,3 ; D→G 0,7.",
+    "tipo": "localizar"
+   },
+   {
+    "faz": "Liste os caminhos de A até F",
+    "conta": "A-C-F ; A-B-C-F ; A-B-D-F",
+    "porque": "Só entram em F as setas vindas de C e de D. Voltando pelas setas, chega-se a A por esses três caminhos. Não há outros.",
+    "tipo": "localizar"
+   },
+   {
+    "faz": "Multiplique ao longo de cada caminho",
+    "conta": "A-C-F: 0,2 × 0,6 = 0,12",
+    "porque": "Para passar por A→C e depois C→F, multiplicam-se as duas probabilidades.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Faça o mesmo nos outros dois",
+    "conta": "A-B-C-F: 0,8×0,1×0,6 = 0,048",
+    "porque": "Três setas seguidas: 0,8 × 0,1 = 0,08, e 0,08 × 0,6 = 0,048.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Calcule o terceiro caminho",
+    "conta": "A-B-D-F: 0,8×0,9×0,3 = 0,216",
+    "porque": "0,8 × 0,9 = 0,72, e 0,72 × 0,3 = 0,216.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Some os três caminhos",
+    "conta": "0,12 + 0,048 + 0,216 = 0,384",
+    "porque": "Um carro faz um caminho OU outro, e esses eventos não acontecem juntos. Por isso as probabilidades se somam. O resultado corresponde à alternativa E.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa E: a probabilidade de ir de A a F é 0,12 + 0,048 + 0,216 = 0,384.",
+  "checagem": "Confira por outro caminho, agrupando pela cidade de onde o carro chega a F. Chegar a F é o mesmo que chegar a C e ir a F, ou chegar a D e ir a F. P(chegar a C) = 0,2 + 0,8×0,1 = 0,28, e 0,28 × 0,6 = 0,168. P(chegar a D) = 0,8×0,9 = 0,72, e 0,72 × 0,3 = 0,216. A soma é 0,168 + 0,216 = 0,384. Fecha.",
+  "erradas": {
+   "A": "0,120 é só o caminho A-C-F (0,2 × 0,6). Faltam os caminhos que passam por B: A-B-C-F e A-B-D-F.",
+   "B": "0,216 é só o caminho A-B-D-F (0,8 × 0,9 × 0,3). Faltam A-C-F (0,12) e A-B-C-F (0,048).",
+   "C": "0,264 sai de 0,048 + 0,216, ou seja, dos dois caminhos que passam por B. Esquece o caminho direto A-C-F, que vale 0,12.",
+   "D": "0,336 sai de 0,12 + 0,216. Esquece o caminho A-B-C-F, que também chega a F e vale 0,8 × 0,1 × 0,6 = 0,048."
+  },
+  "armadilha": "Esquecer o caminho A-B-C-F, que passa por B e depois por C, e somar só os dois caminhos mais óbvios.",
+  "alerta": "",
+  "essencial": {
+   "pede": "A probabilidade de um carro sair de A e chegar a F, seguindo as setas.",
+   "chave": "Multiplique as probabilidades ao longo de cada caminho e some os três caminhos possíveis.",
+   "cuidado": "Liste todos os caminhos antes de calcular. Há três, e um deles passa por B e por C."
+  }
+ },
+ "caminhos": [
+  {
+   "nome": "por cidade intermediária",
+   "ideia": "Calcule a probabilidade de chegar a C (0,2 + 0,8×0,1 = 0,28) e a D (0,8×0,9 = 0,72). Depois multiplique pela seta até F: 0,28×0,6 + 0,72×0,3 = 0,168 + 0,216 = 0,384."
+  }
+ ],
+ "quadro": [
+  {
+   "linha": "A-C-F: 0,2 × 0,6",
+   "nota": "multiplique as setas do 1.º caminho"
+  },
+  {
+   "linha": "A-C-F = 0,12",
+   "nota": "2 × 6 = 12, com duas casas decimais"
+  },
+  {
+   "linha": "A-B-C-F: 0,8 × 0,1 × 0,6",
+   "nota": "três setas seguidas"
+  },
+  {
+   "linha": "A-B-C-F = 0,048",
+   "nota": "0,8 × 0,1 = 0,08 ; × 0,6 = 0,048"
+  },
+  {
+   "linha": "A-B-D-F: 0,8 × 0,9 × 0,3",
+   "nota": "terceiro caminho"
+  },
+  {
+   "linha": "A-B-D-F = 0,216",
+   "nota": "0,8 × 0,9 = 0,72 ; × 0,3 = 0,216"
+  },
+  {
+   "linha": "0,12 + 0,048 + 0,216",
+   "nota": "caminhos diferentes: somam-se",
+   "destaque": "+"
+  },
+  {
+   "linha": "P = 0,384",
+   "nota": "0,12 + 0,048 = 0,168 ; + 0,216 = 0,384"
+  }
+ ],
+ "visual": {
+  "cabe": true,
+  "porque": "Os três caminhos ficam claros quando são destacados, um de cada vez, sobre o diagrama.",
+  "tipo": "diagrama",
+  "roteiro": "Quadro 1: aparece o diagrama com as setas e as probabilidades. Quadro 2: acende em azul o caminho A→C→F e surge 0,2 × 0,6 = 0,12. Quadro 3: apaga o azul e acende em verde A→B→C→F, com 0,8 × 0,1 × 0,6 = 0,048. Quadro 4: acende em laranja A→B→D→F, com 0,8 × 0,9 × 0,3 = 0,216. Quadro 5: os três valores deslizam para uma soma que dá 0,384."
+ },
+ "fontes": [],
+ "confere": true,
+ "divergencia": "",
+ "resposta_resolvedor": "E",
+ "gab": "E",
+ "revisao": {
+  "lentes": [
+   "resolvedor",
+   "fatos"
+  ],
+  "modelos": {
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Confira por outro caminho, agrupando pela cidade de onde o carro chega a F. Chegar a F é o mesmo que chegar a C e ir a F, ou chegar a D e ir a F. P(chegar a C) = 0,2 + 0,8×0,1 = 0,28, e 0,28 × 0,6 = 0,168. P(chegar a D) = 0,8×0,9 = 0,72, e 0,72 × 0,3 = 0,216. A soma é 0,168 + 0,216 = 0,384. Fecha.",
+    "motivo": "A checagem dizia 'Calcule pelo complemento', mas a conta não usa o evento complementar (1 − P de não chegar a F). Ela agrupa os caminhos pela cidade de onde se chega a F (C ou D). O nome do método estava errado e as contas estão certas: 0,28 × 0,6 = 0,168; 0,72 × 0,3 = 0,216; a soma dá 0,384.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "E"
+ }
+}

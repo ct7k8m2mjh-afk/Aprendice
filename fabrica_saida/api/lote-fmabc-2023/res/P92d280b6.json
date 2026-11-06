@@ -66,7 +66,7 @@
   "erradas": {
    "A": "0,5 m/s só ocorreria se saíssem 5 m de linha (linha final de 80 m). Mas a linha final é 60√2 = 84 m, então saem 9 m. Faltou calcular a linha final com Pitágoras.",
    "B": "1,5 m/s é a velocidade da pipa na horizontal, dado do enunciado. A linha sai mais devagar, porque só parte do movimento da pipa vira aumento da linha: 15 m de deslocamento viram só 9 m de linha.",
-   "C": "1,2 m/s exigiria 12 m de linha solta (linha final de 87 m). Com √2 = 1,4, a linha final é 84 m e saem 9 m. Provavelmente houve erro ao calcular 60√2.",
+   "C": "1,2 m/s exigiria 12 m de linha solta (linha final de 87 m). Com √2 = 1,4, 60√2 = 84 m, então saem 9 m, não 12 m.",
    "E": "1,8 m/s exigiria 18 m de linha solta (linha final de 93 m). Isso é maior que os 15 m que a pipa andou, o que é impossível: a linha cresce menos que o deslocamento horizontal da pipa."
   },
   "armadilha": "Usar a velocidade da pipa (1,5 m/s) como a da linha. A linha é inclinada, então ela cresce menos do que a pipa anda na horizontal.",
@@ -145,18 +145,20 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
     "campo": "quadro[9].linha",
     "depois": "v = 9/10 = 0,9 m/s",
-    "motivo": "A linha estava em LaTeX (\\frac{9}{10}), que é proibido em qualquer campo. Troquei pela notação \"numerador/denominador\", que o site desenha como fração empilhada. O valor continua o mesmo.",
+    "motivo": "A linha estava em LaTeX (9/10), que é proibido em qualquer campo. Troquei pela notação \"numerador/denominador\", que o site desenha como fração empilhada. O valor continua o mesmo.",
     "fonte": ""
    }
   ],
@@ -195,6 +197,16 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "1,2 m/s exigiria 12 m de linha solta (linha final de 87 m). Com √2 = 1,4, 60√2 = 84 m, então saem 9 m, não 12 m.",
+    "motivo": "Retirar a especulação ('Provavelmente'), trocando por teste objetivo que derruba a alternativa.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "D"
  }
 }

@@ -8,7 +8,7 @@
  "conceito": "Difusão simples: soluto pequeno atravessa a bicamada lipídica a favor do gradiente, sem proteína e sem gasto de ATP; exemplo típico é a troca de gases (O₂ e CO₂) na hematose.",
  "resolucao": {
   "antes": {
-   "texto": "Na difusão simples, o soluto atravessa direto a camada dupla de gordura (fosfolipídios) da membrana. Ele vai do lado mais concentrado para o menos concentrado. Não usa proteína nem energia (ATP). Passam assim moléculas pequenas e sem carga, como O₂ e CO₂. A questão pede em qual situação do corpo humano esse processo é intenso.",
+   "texto": "Na difusão simples, o soluto atravessa direto a camada dupla de gordura (fosfolipídios) da membrana. Ele vai do lado mais concentrado para o menos concentrado. Não usa proteína nem energia (ATP). Passam assim moléculas pequenas e sem polos de carga, como O₂ e CO₂. A questão pede em qual situação do corpo humano esse processo é intenso.",
    "formulas": [
     "difusão simples: a favor do gradiente, sem proteína, sem ATP",
     "transporte ativo: contra o gradiente, com proteína e com ATP",
@@ -29,7 +29,7 @@
     ],
     [
      "apolar",
-     "sem cargas elétricas separadas; mistura-se bem com gordura e atravessa a membrana"
+     "molécula sem polos de carga elétrica; mistura-se bem com gordura e atravessa a membrana"
     ],
     [
      "hematose",
@@ -92,7 +92,7 @@
    "B": "Endocitose é englobamento: a membrana forma uma vesícula em volta da partícula, com gasto de energia. A partícula não atravessa a bicamada sozinha, então não é difusão simples.",
    "C": "Bombeamento de íons é transporte ativo: a proteína (bomba) empurra íons contra o gradiente, com gasto de ATP. A difusão simples é a favor do gradiente e sem energia.",
    "D": "No neurônio, o impulso depende de íons Na⁺ e K⁺ passando por canais (proteínas) e pela bomba de Na⁺/K⁺. Íon não atravessa a gordura da membrana sozinho. Faltou notar a proteína: é difusão facilitada, não simples.",
-   "E": "Quem marcou E pensou que a glicose, por ir a favor do gradiente, usa difusão simples. Faltou ver que ela é grande e polar (tem cargas) e não atravessa a gordura. Entra por carreadores (GLUT): difusão facilitada."
+   "E": "Quem marcou E pensou que a glicose, por ir a favor do gradiente, usa difusão simples. Mas ela é polar e grande demais para atravessar a parte gordurosa da membrana. Entra por carreadores (GLUT), em difusão facilitada."
   },
   "armadilha": "Marcar C ou D por associar 'membrana' a 'passagem de íons', esquecendo que íons precisam de proteína, ou marcar E porque a glicose também vai a favor do gradiente (mas usa carreador).",
   "alerta": "",
@@ -128,12 +128,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -229,6 +231,37 @@
   "didatica_alertas": [
    "O campo 'conteudo' está como B01.1 no JSON, mas a classificação informada é B01.2; conferir qual vale (a questão trata de difusão simples, que combina com B01.1)."
   ],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "conteudo",
+    "depois": "B01.1",
+    "motivo": "Já está B01.1 no JSON proposto. A classificação atual (B01.2) está errada, porque a questão trata de difusão simples, que é transporte passivo e pertence a B01.1. Mantenho B01.1.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "Quem marcou E pensou que a glicose, por ir a favor do gradiente, usa difusão simples. Mas ela é polar e grande demais para atravessar a parte gordurosa da membrana. Entra por carreadores (GLUT), em difusão facilitada.",
+    "motivo": "Na frase original, 'grande e polar (tem cargas)' é impreciso: a glicose é polar, mas não tem carga líquida. Troquei por 'polar' e removi 'tem cargas'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.antes.simbolos[3]",
+    "depois": [
+     "apolar",
+     "molécula sem polos de carga elétrica; mistura-se bem com gordura e atravessa a membrana"
+    ],
+    "motivo": "'Sem cargas elétricas separadas' é aceitável, mas a nova frase é mais precisa. O CO₂ é apolar e o O₂ também.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Na difusão simples, o soluto atravessa direto a camada dupla de gordura (fosfolipídios) da membrana. Ele vai do lado mais concentrado para o menos concentrado. Não usa proteína nem energia (ATP). Passam assim moléculas pequenas e sem polos de carga, como O₂ e CO₂. A questão pede em qual situação do corpo humano esse processo é intenso.",
+    "motivo": "Troquei 'sem carga' por 'sem polos de carga'. A água e a ureia, que são pequenas e polares, também passam um pouco, mas o texto está correto para O₂ e CO₂.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "A"
  }
 }

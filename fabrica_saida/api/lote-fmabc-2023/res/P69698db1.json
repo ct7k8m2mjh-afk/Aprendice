@@ -56,7 +56,7 @@
    {
     "faz": "Leia o que o excerto mostra",
     "conta": "Cão-robô com IA faz rondas de segurança",
-    "porque": "Uma máquina faz a função de um vigilante, que é um trabalho do setor de serviços (terciário).",
+    "porque": "Uma máquina faz a função de um vigilante, que é um trabalho do setor de serviços (terciário). A mesma lógica vale para a indústria (secundário).",
     "tipo": "localizar"
    },
    {
@@ -81,9 +81,9 @@
   "resposta": "Alternativa C: a automação e a IA substituem trabalhadores na indústria e nos serviços, gerando desemprego estrutural.",
   "checagem": "Troque o cão-robô por um caixa automático ou um robô de linha de montagem: o resultado é o mesmo, o posto some. Isso confirma que o efeito é desemprego estrutural, nos dois setores.",
   "erradas": {
-   "A": "A não confere: a automação dispensa mão de obra e não cria, por si só, qualificação. O texto fala de um robô fazendo ronda, não de cursos ou de formação de pessoas. Quem marcou A viu a tecnologia como geradora de emprego qualificado e esqueceu quem perde o posto.",
+   "A": "A não confere: o excerto mostra uma máquina fazendo o trabalho de um vigilante, e isso não indica ampliação da qualificação profissional. Nos países periféricos, a automação tende a pesar sobre o emprego. Quem marcou A viu a tecnologia como geradora de emprego qualificado e esqueceu quem perde o posto.",
    "B": "B fala de jornada flexível, que vem da reestruturação produtiva (toyotismo), não da IA em si. O excerto trata de um robô no lugar de vigilantes, não de horário de trabalho. Quem marcou B pensou em mudanças gerais do trabalho e não na substituição por máquina.",
-   "D": "D fala de padrão financeiro entre países. O excerto trata de trabalho e segurança, não de finanças. Quem marcou D confundiu tecnologia com globalização financeira; além disso, a tecnologia não iguala os países.",
+   "D": "D fala de padrão financeiro entre países. O excerto trata de trabalho e segurança, não de finanças. Quem marcou D confundiu tecnologia com globalização financeira. A tecnologia também não uniformiza os países: a desigualdade tecnológica entre centro e periferia continua.",
    "E": "E inverte o processo: sedes das empresas, pesquisa e tecnologia continuam nos países centrais. Só a produção se espalha pelo mundo. Quem marcou E confundiu produção que se dispersa com poder que se transfere."
   },
   "armadilha": "Escolher uma alternativa sobre globalização em geral (finanças, poder, flexibilização) em vez da consequência direta da tecnologia: a substituição do trabalho humano.",
@@ -120,12 +120,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -209,6 +211,28 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "Uma máquina faz a função de um vigilante, que é um trabalho do setor de serviços (terciário). A mesma lógica vale para a indústria (secundário).",
+    "motivo": "A alternativa C cita os dois setores, mas o passo só tratava do terciário. O acréscimo evita que o aluno estranhe o 'secundário' da alternativa.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "A não confere: o excerto mostra uma máquina fazendo o trabalho de um vigilante, e isso não indica ampliação da qualificação profissional. Nos países periféricos, a automação tende a pesar sobre o emprego. Quem marcou A viu a tecnologia como geradora de emprego qualificado e esqueceu quem perde o posto.",
+    "motivo": "A frase original dizia que a automação não cria qualificação 'por si só' e que o texto não fala de formação de pessoas. É um argumento fraco, porque a tecnologia também exige mão de obra qualificada. Reescrito para ancorar o motivo no excerto e na direção do efeito.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "D fala de padrão financeiro entre países. O excerto trata de trabalho e segurança, não de finanças. Quem marcou D confundiu tecnologia com globalização financeira. A tecnologia também não uniformiza os países: a desigualdade tecnológica entre centro e periferia continua.",
+    "motivo": "A frase 'não iguala os países' era vaga. A nova redação explica a razão.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "C"
  }
 }

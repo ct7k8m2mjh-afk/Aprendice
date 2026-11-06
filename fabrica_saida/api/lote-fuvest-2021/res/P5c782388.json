@@ -1,0 +1,165 @@
+{
+ "n": 48,
+ "id": "P5c782388",
+ "materia": "fis",
+ "tema": "F03",
+ "conteudo": "F03.3",
+ "nivel": 4,
+ "conceito": "Potência de uma queda d'água (energia potencial por tempo), conversão para kWh por mês e balanço de energia com painéis solares.",
+ "confere": true,
+ "divergencia": "",
+ "resolucao": {
+  "antes": {
+   "texto": "Na queda d'água, a energia potencial da água que cai vira energia elétrica (eficiência de 100%). A potência é a energia por segundo: massa por segundo × g × altura. Depois é preciso passar tudo para kWh por mês, a mesma unidade dos painéis e do consumo.",
+   "formulas": [
+    "E = m × g × h (energia potencial)",
+    "P = E ÷ t = (m ÷ t) × g × h",
+    "E (kWh) = P (kW) × tempo (h)",
+    "1 MWh = 1 000 kWh"
+   ],
+   "simbolos": [
+    [
+     "P",
+     "potência: energia por segundo, em watt (W)"
+    ],
+    [
+     "m ÷ t",
+     "massa de água que cai por segundo (kg/s)"
+    ],
+    [
+     "h",
+     "altura da queda, 15 m"
+    ],
+    [
+     "MWh",
+     "megawatt-hora: 1 000 kWh"
+    ],
+    [
+     "kWh",
+     "quilowatt-hora: energia de 1 kW funcionando por 1 hora"
+    ]
+   ]
+  },
+  "pista": "Primeiro descubra quantos watts a queda d'água fornece. Depois pergunte quanto isso rende em um mês inteiro, funcionando 24 h por dia.",
+  "passos": [
+   {
+    "faz": "Passe a vazão para kg/s",
+    "conta": "10 L/s × 1 kg/L = 10 kg/s",
+    "porque": "A densidade da água é 1 kg por litro, então 10 litros por segundo são 10 kg de água caindo a cada segundo.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Calcule a potência da queda",
+    "conta": "P = 10 × 10 × 15 = 1 500 W",
+    "porque": "Em 1 s caem 10 kg de uma altura de 15 m: energia = m·g·h = 10 × 10 × 15 = 1 500 J. Em 1 s, isso dá 1 500 W, ou 1,5 kW.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Ache a energia da usina em um mês",
+    "conta": "1,5 kW × 720 h = 1 080 kWh",
+    "porque": "A usina opera 24 h por dia durante 30 dias: 24 × 30 = 720 h. Potência em kW vezes horas dá kWh.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Veja quanto falta para o consumo",
+    "conta": "2 000 − 1 080 = 920 kWh",
+    "porque": "O consumo é 2 MWh = 2 000 kWh. O que a usina não cobre precisa vir dos painéis.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Divida pela produção de um painel",
+    "conta": "920 ÷ 40 = 23 painéis",
+    "porque": "Cada painel dá 40 kWh por mês. A divisão é exata, então 23 é o número mínimo.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa B: a usina fornece 1 080 kWh por mês, faltam 920 kWh, e 920 ÷ 40 = 23 painéis.",
+  "checagem": "Teste com 23 painéis: 23 × 40 = 920 kWh. Somando com a usina: 920 + 1 080 = 2 000 kWh, exatamente o consumo. Com 22 painéis seriam 880 + 1 080 = 1 960 kWh, que não bastam.",
+  "erradas": {
+   "A": "Não confere: 12 painéis dão 12 × 40 = 480 kWh. Somados aos 1 080 kWh da usina, são 1 560 kWh, menos que os 2 000 kWh de consumo.",
+   "C": "Não é o mínimo: 30 painéis dão 1 200 kWh, e com a usina chegam a 2 280 kWh, mais que o necessário. Com 23 painéis a demanda já fecha.",
+   "D": "Não é o mínimo: 45 painéis dão 1 800 kWh, e com a usina chegam a 2 880 kWh, um excesso grande. O pedido é o menor número que supre a demanda: 23.",
+   "E": "Sai de ignorar a hidrelétrica: 2 000 kWh ÷ 40 kWh = 50 painéis. O enunciado diz que a usina supre parte da demanda e os painéis só o restante."
+  },
+  "armadilha": "Esquecer que a usina funciona 24 h por dia durante 30 dias (720 h) e dividir o consumo total pelos painéis, caindo em 50.",
+  "alerta": "",
+  "essencial": {
+   "pede": "O menor número de painéis solares para completar o consumo de 2 MWh por mês, depois de contar a energia da miniusina.",
+   "chave": "P = (m ÷ t) × g × h = 1,5 kW; em 720 h dá 1 080 kWh; faltam 920 kWh; 920 ÷ 40 = 23.",
+   "cuidado": "Converter L/s em kg/s, W em kW, dias em horas e MWh em kWh antes de dividir."
+  }
+ },
+ "caminhos": [
+  {
+   "nome": "Energia total do mês de uma vez",
+   "ideia": "Em um mês passam 10 kg/s × 2 592 000 s = 25 920 000 kg de água. A energia é m·g·h = 25 920 000 × 10 × 15 = 3,888 × 10⁹ J, que dividida por 3,6 × 10⁶ dá 1 080 kWh."
+  },
+  {
+   "nome": "Por eliminação",
+   "ideia": "A usina sozinha já fornece mais de 50% do consumo (1 080 de 2 000 kWh), então os painéis devem fornecer menos de 1 000 kWh. Isso exclui 30, 45 e 50, que dão 1 200, 1 800 e 2 000 kWh. Entre 12 e 23, só 23 completa a demanda."
+  }
+ ],
+ "quadro": [
+  {
+   "linha": "vazão = 10 L/s = 10 kg/s",
+   "nota": "1 L de água tem 1 kg"
+  },
+  {
+   "linha": "P = (m ÷ t) × g × h",
+   "nota": "energia potencial por segundo"
+  },
+  {
+   "linha": "P = 10 × 10 × 15",
+   "nota": "kg/s × m/s² × m"
+  },
+  {
+   "linha": "P = 1 500 W = 1,5 kW",
+   "nota": "passe para quilowatt"
+  },
+  {
+   "linha": "t = 24 × 30 = 720 h",
+   "nota": "horas em um mês"
+  },
+  {
+   "linha": "E = 1,5 × 720 = 1 080 kWh",
+   "nota": "energia da usina no mês"
+  },
+  {
+   "linha": "2 000 − 1 080 = 920 kWh",
+   "nota": "falta cobrir com painéis"
+  },
+  {
+   "linha": "920 ÷ 40 = 23",
+   "nota": "número de painéis"
+  }
+ ],
+ "visual": {
+  "cabe": true,
+  "porque": "Mostrar o fluxo de energia ajuda a ver de onde vem cada parcela do consumo.",
+  "tipo": "fluxo",
+  "roteiro": "Quadro 1: queda d'água de 15 m, com 10 kg caindo a cada segundo. Quadro 2: a energia potencial vira elétrica, com a legenda 1 500 W = 1,5 kW. Quadro 3: um relógio marca 720 h e a barra de energia da usina enche até 1 080 kWh. Quadro 4: uma barra de 2 000 kWh (consumo) mostra o trecho que falta, 920 kWh. Quadro 5: 23 painéis aparecem um a um, cada um somando 40 kWh, até completar a barra."
+ },
+ "fontes": [],
+ "resposta_resolvedor": "B",
+ "gab": "B",
+ "revisao": {
+  "lentes": [
+   "resolvedor",
+   "fatos"
+  ],
+  "modelos": {
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Na queda d'água, a energia potencial da água que cai vira energia elétrica (eficiência de 100%). A potência é a energia por segundo: massa por segundo × g × altura. Depois é preciso passar tudo para kWh por mês, a mesma unidade dos painéis e do consumo.",
+    "motivo": "Tirei a frase sobre a classificação F04.5 do banco. Ela é uma observação interna da resolução e não um conteúdo para o aluno. A reclassificação já está nos campos tema e conteúdo (F03/F03.3), que estão corretos: a questão é de energia potencial e potência, não de Pascal.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "B"
+ }
+}

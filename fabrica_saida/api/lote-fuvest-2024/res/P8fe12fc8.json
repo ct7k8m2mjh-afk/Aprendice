@@ -1,0 +1,149 @@
+{
+ "n": 57,
+ "id": "P8fe12fc8",
+ "materia": "fis",
+ "tema": "F11",
+ "conteudo": "F11.2",
+ "nivel": 4,
+ "conceito": "Ler um circuito numa protoboard, reconhecer a associação mista (R2 e R3 em paralelo, em série com R1) e aplicar a lei de Ohm.",
+ "resolucao": {
+  "antes": {
+   "texto": "Na protoboard, os cinco furos de uma mesma linha formam um único ponto elétrico (um nó). O truque é ver onde cada resistor liga: dois resistores com as duas pontas nos mesmos nós estão em paralelo. Resistores em série dividem a mesma corrente, e a corrente do circuito vem da lei de Ohm.",
+   "formulas": [
+    "Paralelo de dois iguais: R = R ÷ 2",
+    "Paralelo de dois: R = (Ra × Rb) ÷ (Ra + Rb)",
+    "Série: R_eq = soma das resistências",
+    "Lei de Ohm: i = U ÷ R"
+   ],
+   "simbolos": [
+    [
+     "nó",
+     "ponto do circuito onde terminais se encontram; todos os pontos de um nó têm o mesmo potencial elétrico"
+    ],
+    [
+     "kΩ",
+     "quilo-ohm, 1 000 ohms"
+    ],
+    [
+     "μA",
+     "microampère, 10⁻⁶ A"
+    ],
+    [
+     "U",
+     "tensão da fonte, aqui 5 V"
+    ],
+    [
+     "i",
+     "corrente elétrica"
+    ]
+   ]
+  },
+  "pista": "Olhe os três retângulos amarelos: cada um é um nó. Em qual par de nós cada resistor está ligado?",
+  "passos": [
+   {
+    "faz": "Identifique os três nós",
+    "conta": "Nó 1: esquerdo (cabo preto)\nNó 2: do meio\nNó 3: direito (cabo vermelho)",
+    "porque": "Cada retângulo amarelo é uma linha de furos em curto, ou seja, um único ponto elétrico.",
+    "tipo": "localizar"
+   },
+   {
+    "faz": "Veja onde cada resistor se liga",
+    "conta": "R3: nó 1 → nó 2\nR2: nó 1 → nó 2\nR1: nó 2 → nó 3",
+    "porque": "Na foto, R2 e R3 têm uma ponta no retângulo esquerdo e a outra no do meio; R1 liga o do meio ao da direita.",
+    "tipo": "localizar"
+   },
+   {
+    "faz": "Associe R2 e R3 em paralelo",
+    "conta": "R23 = 100 ÷ 2 = 50 kΩ",
+    "porque": "Os dois ligam o mesmo par de nós, então ficam em paralelo. Sendo iguais, a resistência equivalente é a metade.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Some com R1, que está em série",
+    "conta": "R_eq = 50 + 150 = 200 kΩ",
+    "porque": "Toda a corrente que passa por R2 e R3 juntos segue por R1: é uma série.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Aplique a lei de Ohm",
+    "conta": "i = 5 ÷ 200 000\ni = 0,000025 A = 25 μA",
+    "porque": "A corrente total é a mesma que passa por R1, já que R1 está em série com o conjunto R2 e R3.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa C: R2 e R3 em paralelo dão 50 kΩ; em série com R1 (150 kΩ) resultam em 200 kΩ, e i = 5 V ÷ 200 kΩ = 25,0 μA em R1.",
+  "checagem": "Tensão em R1: 25 μA × 150 kΩ = 3,75 V. Sobram 5 − 3,75 = 1,25 V para o paralelo, e 25 μA × 50 kΩ = 1,25 V. As tensões fecham em 5 V.",
+  "erradas": {
+   "A": "12,5 μA exigiria resistência total de 5 V ÷ 12,5 μA = 400 kΩ. Nenhuma associação de 150, 100 e 100 kΩ dá isso: o máximo, tudo em série, é 350 kΩ.",
+   "B": "14,3 μA vem de somar as três em série: 150 + 100 + 100 = 350 kΩ, e 5 ÷ 350 000 ≈ 14,3 μA. Faltou ver que R2 e R3 ligam os mesmos nós e estão em paralelo.",
+   "D": "37,5 μA exigiria resistência total de 5 V ÷ 37,5 μA ≈ 133 kΩ. Isso não sai da associação do circuito: com R1 em série, a resistência total nunca fica abaixo de 150 kΩ.",
+   "E": "50 μA exigiria 100 kΩ no total. Isso é menor que R1 sozinho (150 kΩ), e R1 está em série com o resto. Seria impossível com R1 no circuito."
+  },
+  "armadilha": "Somar as três resistências como se fossem uma série, sem notar que R2 e R3 ligam os mesmos dois nós e estão em paralelo.",
+  "alerta": "",
+  "essencial": {
+   "pede": "A corrente no resistor R1 do circuito montado na protoboard, com fonte de 5 V.",
+   "chave": "R2 e R3 em paralelo (50 kΩ) em série com R1 (150 kΩ): R_eq = 200 kΩ e i = 5 ÷ 200 000 = 25 μA.",
+   "cuidado": "Leia os nós pelos retângulos amarelos e converta kΩ em Ω (ou use V ÷ kΩ = mA) para acertar a potência de dez."
+  }
+ },
+ "caminhos": [
+  {
+   "nome": "Divisão de tensão",
+   "ideia": "R1 (150) em série com 50 kΩ forma um divisor: a tensão em R1 é 5 × 150 ÷ 200 = 3,75 V. Então i = 3,75 V ÷ 150 kΩ = 25 μA."
+  },
+  {
+   "nome": "Unidades em kΩ",
+   "ideia": "Com V e kΩ, a corrente sai em mA: 5 ÷ 200 = 0,025 mA = 25 μA."
+  }
+ ],
+ "quadro": [
+  {
+   "linha": "R2 e R3 em paralelo",
+   "nota": "ambos ligam o nó 1 ao nó 2"
+  },
+  {
+   "linha": "R23 = 100 ÷ 2 = 50 kΩ",
+   "nota": "dois iguais em paralelo: metade"
+  },
+  {
+   "linha": "R_eq = R23 + R1",
+   "nota": "R1 está em série com o paralelo"
+  },
+  {
+   "linha": "R_eq = 50 + 150 = 200 kΩ",
+   "nota": "soma das resistências"
+  },
+  {
+   "linha": "i = 5 ÷ 200 000",
+   "nota": "lei de Ohm, com 200 kΩ = 200 000 Ω"
+  },
+  {
+   "linha": "i = 0,000025 A",
+   "nota": "divisão"
+  },
+  {
+   "linha": "i = 25 μA",
+   "nota": "1 μA = 0,000001 A"
+  }
+ ],
+ "visual": {
+  "cabe": true,
+  "porque": "Redesenhar a foto como esquema ajuda a ver a associação.",
+  "tipo": "diagrama",
+  "roteiro": "Quadro 1: a foto com os três retângulos amarelos numerados 1, 2 e 3 (preto, meio, vermelho). Quadro 2: os resistores viram símbolos; R3 e R2 ligam o nó 1 ao nó 2, R1 liga o nó 2 ao nó 3. Quadro 3: R2 e R3 se fundem em um resistor de 50 kΩ. Quadro 4: o circuito fica em série (50 kΩ + 150 kΩ = 200 kΩ) com a fonte de 5 V. Quadro 5: seta de corrente com i = 25 μA passando por R1."
+ },
+ "fontes": [],
+ "confere": true,
+ "divergencia": "",
+ "resposta_resolvedor": "C",
+ "gab": "C",
+ "revisao": {
+  "lentes": [
+   "resolvedor"
+  ],
+  "modelos": {
+   "resolvedor": "claude-sonnet-5-5"
+  }
+ }
+}

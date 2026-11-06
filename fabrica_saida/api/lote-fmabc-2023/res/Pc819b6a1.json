@@ -8,7 +8,7 @@
  "conceito": "Adsorção viral: o vírus envelopado se liga a receptores da célula-alvo por meio de proteínas do envelope (glicoproteínas) que reconhecem proteínas ou outras moléculas da membrana celular.",
  "resolucao": {
   "antes": {
-   "texto": "Vírus envelopado tem, por fora, uma membrana (envelope) que o vírus pega da célula que o produziu. Nessa membrana ficam encaixadas proteínas do vírus. A adsorção é a primeira etapa: o vírus se prende à superfície da célula-alvo, como uma chave que se encaixa numa fechadura. A chave é uma proteína do vírus. A fechadura é um receptor (em geral uma proteína) da membrana da célula. A entrada na célula vem depois.",
+   "texto": "Vírus envelopado tem, por fora, uma membrana (envelope), que em geral o vírus leva da célula que o produziu. Nessa membrana ficam encaixadas proteínas do vírus. A adsorção é a primeira etapa: o vírus se prende à superfície da célula-alvo, como uma chave que se encaixa numa fechadura. A chave é uma proteína do vírus. A fechadura é um receptor (em geral uma proteína) da membrana da célula. A entrada na célula vem depois.",
    "formulas": [
     "adsorção = proteína do vírus + receptor da célula",
     "ordem: adsorção → entrada → cópia do vírus → montagem → saída"
@@ -119,12 +119,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -245,6 +247,28 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Vírus envelopado tem, por fora, uma membrana (envelope), que em geral o vírus leva da célula que o produziu. Nessa membrana ficam encaixadas proteínas do vírus. A adsorção é a primeira etapa: o vírus se prende à superfície da célula-alvo, como uma chave que se encaixa numa fechadura. A chave é uma proteína do vírus. A fechadura é um receptor (em geral uma proteína) da membrana da célula. A entrada na célula vem depois.",
+    "motivo": "Ajuste de precisão. Nem todo envelope viral vem da membrana plasmática. Alguns vírus o obtêm de membranas internas, como a do retículo endoplasmático ou a do Golgi. Por isso 'pega da célula' é geral demais, e 'em geral' resolve.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "B: a célula não tem capsídeo. C: vírus não tem parede. D: lipídios não reconhecem a célula. E: as enzimas do vírus agem só dentro da célula.",
+    "motivo": "Sem mudança no conteúdo: afirmação aceitável para o nível. Mantida.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "Quem marcou E esqueceu que as enzimas do vírus, como a transcriptase reversa, agem dentro da célula, depois da entrada. A adsorção é o encaixe entre proteína do envelope e receptor, não uma reação entre enzimas.",
+    "motivo": "Sem mudança no conteúdo: correto para o HIV, e o texto já vale como exemplo. Mantida.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "A"
  }
 }

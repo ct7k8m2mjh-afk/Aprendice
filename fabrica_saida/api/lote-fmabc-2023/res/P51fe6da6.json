@@ -55,7 +55,7 @@
    {
     "faz": "Elimine os outros biomas",
     "conta": "Pantanal: MT/MS; Pampa: RS",
-    "porque": "Pantanal e Pampa ficam fora dos quatro estados. A Amazônia aparece só na borda norte e oeste, e a Caatinga fica mais a leste. O Cerrado é o bioma que domina o mapa.",
+    "porque": "Pantanal e Pampa ficam fora dos quatro estados. A Amazônia ocupa só uma faixa pequena do Matopiba (cerca de 7%), no noroeste. A Caatinga ocupa área ainda menor, na borda leste. O Cerrado é o bioma que domina o mapa.",
     "tipo": "eliminar"
    },
    {
@@ -84,7 +84,7 @@
  "caminhos": [
   {
    "nome": "eliminação por localização",
-   "ideia": "Pantanal (MT/MS) e Pampa (RS) ficam fora dos quatro estados. A Amazônia fica só na borda, e a Caatinga é semiárida, onde a soja não se expande em escala. Sobra o Cerrado."
+   "ideia": "Pantanal (MT/MS) e Pampa (RS) ficam fora dos quatro estados. A Amazônia ocupa só uma faixa pequena no noroeste, e a Caatinga ocupa área ainda menor, na borda leste. Sobra o Cerrado."
   },
   {
    "nome": "conhecimento do processo",
@@ -109,12 +109,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -203,6 +205,28 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "O mapa mostra a soja produzida por município. Os valores mais altos (vermelho escuro) ficam no oeste da Bahia. Os intermediários (laranja) ficam no sul do Maranhão e do Piauí. O Tocantins aparece quase todo em amarelo, com produção baixa.",
+    "motivo": "Mantido. Esta entrada não corrige nada, pois a leitura confere com o print. Ela só registra que a conferência foi feita.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Pantanal e Pampa ficam fora dos quatro estados. A Amazônia ocupa só uma faixa pequena do Matopiba (cerca de 7%), no noroeste. A Caatinga ocupa área ainda menor, na borda leste. O Cerrado é o bioma que domina o mapa.",
+    "motivo": "A versão anterior dizia que a Amazônia aparece 'na borda norte e oeste'. Segundo a fonte da Embrapa, a Amazônia ocupa cerca de 7% do Matopiba, no noroeste do Maranhão e no extremo norte do Tocantins. Isso não é a borda oeste do mapa inteiro. A Caatinga ocupa 1,2 milhão de ha (cerca de 1,6%).",
+    "fonte": "Embrapa, Tema Matopiba, 'Sobre o Matopiba'"
+   },
+   {
+    "campo": "resolucao.caminhos[0].ideia",
+    "depois": "Pantanal (MT/MS) e Pampa (RS) ficam fora dos quatro estados. A Amazônia ocupa só uma faixa pequena no noroeste, e a Caatinga ocupa área ainda menor, na borda leste. Sobra o Cerrado.",
+    "motivo": "O texto afirmava que a soja não se expande em escala na Caatinga. Isso é uma generalização que a fonte não sustenta, pois há soja em áreas de Caatinga na Bahia. A frase foi trocada por um argumento de área.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "A"
  }
 }

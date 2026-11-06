@@ -8,10 +8,10 @@
  "conceito": "Sistema nervoso autônomo: simpático e parassimpático estimulam ou inibem os órgãos por vias com neurotransmissores diferentes (adrenérgica e colinérgica).",
  "resolucao": {
   "antes": {
-   "texto": "O sistema nervoso autônomo controla o que não depende da vontade: coração, intestino e glândulas. Tem duas divisões que costumam agir em sentidos opostos: simpático (prepara para luta ou fuga) e parassimpático (repouso e digestão). Cada divisão passa o sinal ao órgão por um neurotransmissor (substância química). O simpático usa a noradrenalina (via adrenérgica). O parassimpático usa a acetilcolina (via colinérgica). Qual das duas vias está mais ativa decide se o órgão é estimulado ou inibido.",
+   "texto": "O sistema nervoso autônomo controla o que não depende da vontade: coração, intestino e glândulas. Tem duas divisões que costumam agir em sentidos opostos: simpático (prepara para luta ou fuga) e parassimpático (repouso e digestão). Cada divisão passa o sinal ao órgão por um neurotransmissor (substância química). Nos órgãos-alvo, o simpático usa sobretudo a noradrenalina (via adrenérgica). O parassimpático usa a acetilcolina (via colinérgica). Qual das duas vias está mais ativa decide se o órgão é estimulado ou inibido.",
    "formulas": [
-    "simpático: noradrenalina (via adrenérgica)",
-    "parassimpático: acetilcolina (via colinérgica)",
+    "simpático (no órgão): noradrenalina (via adrenérgica)",
+    "parassimpático (no órgão): acetilcolina (via colinérgica)",
     "órgão estimulado ou inibido: depende de qual via está mais ativa"
    ],
    "simbolos": [
@@ -69,7 +69,7 @@
    },
    {
     "faz": "Ligue cada divisão ao neurotransmissor",
-    "conta": "simpático: noradrenalina / parassimpático: acetilcolina",
+    "conta": "simpático: noradrenalina / parassimpático: acetilcolina (no órgão)",
     "porque": "Estimular ou inibir um órgão depende de qual via (adrenérgica ou colinérgica) está ativada.",
     "tipo": "localizar"
    },
@@ -113,7 +113,7 @@
   "cabe": true,
   "porque": "O processo é uma comunicação entre neurônio e órgão que muda conforme a divisão ativada.",
   "tipo": "diagrama",
-  "roteiro": "Quadro 1: silhueta do corpo com coração, intestino e glândula digestiva. Quadro 2: neurônio simpático em laranja liberando bolinhas de noradrenalina no coração, que acelera (seta para cima), e no intestino, que desacelera. Quadro 3: neurônio parassimpático em azul liberando bolinhas de acetilcolina, e o coração desacelera enquanto o intestino acelera e as glândulas secretam. Quadro 4: legenda 'adrenérgica = estimula/inibe conforme o órgão; colinérgica = efeito oposto' e destaque: estímulo e inibição = quem está ativado."
+  "roteiro": "Quadro 1: silhueta do corpo com coração, intestino e glândula digestiva. Quadro 2: neurônio simpático em laranja liberando bolinhas de noradrenalina no coração, que acelera (seta para cima), e no intestino, que desacelera. Quadro 3: neurônio parassimpático em azul liberando bolinhas de acetilcolina, e o coração desacelera enquanto o intestino acelera e as glândulas secretam. Quadro 4: legenda 'adrenérgica: simpático; colinérgica: parassimpático; o efeito depende do órgão' e destaque: estímulo e inibição = qual via está ativada."
  },
  "fontes": [],
  "confere": true,
@@ -124,12 +124,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -271,6 +273,38 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "O sistema nervoso autônomo controla o que não depende da vontade: coração, intestino e glândulas. Tem duas divisões que costumam agir em sentidos opostos: simpático (prepara para luta ou fuga) e parassimpático (repouso e digestão). Cada divisão passa o sinal ao órgão por um neurotransmissor (substância química). Nos órgãos-alvo, o simpático usa sobretudo a noradrenalina (via adrenérgica). O parassimpático usa a acetilcolina (via colinérgica). Qual das duas vias está mais ativa decide se o órgão é estimulado ou inibido.",
+    "motivo": "Precisão: a acetilcolina também é o neurotransmissor dos neurônios pré-ganglionares do simpático, e algumas glândulas sudoríparas simpáticas são colinérgicas. A regra vale para a sinapse final no órgão.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "simpático (no órgão): noradrenalina (via adrenérgica)",
+     "parassimpático (no órgão): acetilcolina (via colinérgica)",
+     "órgão estimulado ou inibido: depende de qual via está mais ativa"
+    ],
+    "motivo": "Mesma precisão: a regra vale para o neurônio pós-ganglionar.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "simpático: noradrenalina / parassimpático: acetilcolina (no órgão)",
+    "motivo": "Mesma precisão.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.visual.roteiro",
+    "depois": "Quadro 1: silhueta do corpo com coração, intestino e glândula digestiva. Quadro 2: neurônio simpático em laranja liberando bolinhas de noradrenalina no coração, que acelera (seta para cima), e no intestino, que desacelera. Quadro 3: neurônio parassimpático em azul liberando bolinhas de acetilcolina, e o coração desacelera enquanto o intestino acelera e as glândulas secretam. Quadro 4: legenda 'adrenérgica: simpático; colinérgica: parassimpático; o efeito depende do órgão' e destaque: estímulo e inibição = qual via está ativada.",
+    "motivo": "A legenda anterior ('colinérgica = efeito oposto') era imprecisa. O efeito depende do órgão e do receptor, não é simplesmente oposto.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "C"
  }
 }

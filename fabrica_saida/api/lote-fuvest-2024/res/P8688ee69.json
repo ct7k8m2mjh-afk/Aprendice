@@ -1,0 +1,176 @@
+{
+ "n": 63,
+ "id": "P8688ee69",
+ "materia": "mat",
+ "tema": "M07",
+ "conteudo": "M07.2",
+ "nivel": 6,
+ "conceito": "Progressão geométrica de razão √2/2 (lado dos quadrados da Árvore Pitagórica), resolvida com logaritmo.",
+ "resolucao": {
+  "antes": {
+   "texto": "Em cada etapa, o lado dos novos quadrados é o lado do quadrado anterior multiplicado por um número fixo. Isso é uma progressão geométrica (PG). O lado do quadrado da etapa 1 mede 1 cm. 'Um décimo de milésimo' é 1/10 000 = 10^−4. Para comparar potências de 2 com 10^−4, use logaritmo na base 10.",
+   "formulas": [
+    "lado da etapa n = 1 × q^(n−1), com q = razão da PG",
+    "log(2^k) = k × log 2",
+    "log 2 = 0,3 (dado na prova)"
+   ],
+   "simbolos": [
+    [
+     "q",
+     "razão da PG: número pelo qual o lado é multiplicado a cada etapa"
+    ],
+    [
+     "n",
+     "número da etapa"
+    ],
+    [
+     "log",
+     "logaritmo na base 10; log(10^−4) = −4"
+    ],
+    [
+     "catetos",
+     "lados que formam o ângulo reto do triângulo retângulo"
+    ]
+   ]
+  },
+  "pista": "Se a hipotenusa mede L num triângulo retângulo isósceles, quanto mede cada cateto? A etapa 1 já é o primeiro termo, então conte quantas multiplicações foram feitas até a etapa n.",
+  "passos": [
+   {
+    "faz": "Ache a razão entre os lados",
+    "conta": "cateto = L/√2 = L·√2/2",
+    "porque": "No triângulo retângulo isósceles, a hipotenusa é o cateto vezes √2. Então cada cateto é a hipotenusa dividida por √2. Esse é o lado do novo quadrado.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Escreva a razão como potência de 2",
+    "conta": "q = 1/√2 = 2^(−1/2)",
+    "porque": "√2 = 2^(1/2). Escrever o inverso como potência de 2 permite usar log 2 = 0,3.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Escreva o lado na etapa n",
+    "conta": "l_n = 2^(−(n−1)/2)",
+    "porque": "A etapa 1 tem lado 1. A etapa 2 já tem uma multiplicação por q. A etapa n tem n−1 multiplicações, e o expoente é (n−1), não n.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Monte a inequação",
+    "conta": "2^(−(n−1)/2) < 10^−4",
+    "porque": "O lado tem de ser menor que 1 décimo de milésimo de 1 cm, ou seja, menor que 10^−4.",
+    "tipo": "interpretar"
+   },
+   {
+    "faz": "Aplique log nos dois lados",
+    "conta": "−(n−1)/2 × 0,3 < −4",
+    "porque": "log 2^k = k·log 2 e log 10^−4 = −4. O log de base 10 é crescente, então o sentido da desigualdade se mantém.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Resolva e conclua",
+    "conta": "n−1 > 4/0,15 ≈ 26,67 → n ≥ 28",
+    "porque": "Multiplicando por −1 a desigualdade inverte, e 0,15 = 0,3/2. Como n−1 é inteiro, o menor valor é 27, logo n = 28. Alternativa C.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa C: a etapa 28 é a primeira em que o lado fica menor que 10^−4 cm.",
+  "checagem": "Etapa 28: expoente −13,5, log = −13,5 × 0,3 = −4,05, que é menor que −4. Etapa 27: expoente −13, log = −3,9, que é maior que −4. Então 28 é a primeira que serve.",
+  "erradas": {
+   "A": "Etapa 26 tem expoente −(25)/2 = −12,5. Então log do lado = −12,5 × 0,3 = −3,75, que é maior que −4. O lado ainda vale cerca de 1,8 × 10^−4, acima de 10^−4.",
+   "B": "Etapa 27 tem expoente −13, log = −3,9, lado ≈ 1,26 × 10^−4, ainda maior que 10^−4. Sai de usar n em vez de n−1: n × 0,15 > 4 dá n > 26,67, ou seja, 27.",
+   "D": "Etapa 29 atende à condição (log = −14 × 0,3 = −4,2), mas não é a primeira: a etapa 28 já atende (−4,05). A pergunta pede a primeira vez.",
+   "E": "Etapa 30 atende (log = −14,5 × 0,3 = −4,35), mas a etapa 28 já atende. A pergunta pede a primeira etapa."
+  },
+  "armadilha": "A etapa 1 é o primeiro termo da PG, então o expoente na etapa n é n−1 e não n; usar n leva a 27.",
+  "alerta": "",
+  "essencial": {
+   "pede": "A primeira etapa em que o lado dos novos quadrados é menor que 10^−4 cm.",
+   "chave": "O lado vira 1/√2 do anterior a cada etapa: l_n = 2^(−(n−1)/2). Depois use log 2 = 0,3.",
+   "cuidado": "Use n−1 no expoente e converta 'décimo de milésimo' para 10^−4."
+  }
+ },
+ "caminhos": [
+  {
+   "nome": "Dois passos por vez",
+   "ideia": "A cada 2 etapas o lado cai pela metade (q² = 1/2). Precisamos de 2^−k < 10^−4, ou seja, k × 0,3 > 4, logo k ≥ 14 metades. Com 13 metades (26 etapas depois da primeira) ainda não basta; 13,5 já basta, o que dá n−1 = 27 e n = 28."
+  },
+  {
+   "nome": "Teste das alternativas",
+   "ideia": "Calcule o log do lado nas etapas 27 e 28: −3,9 e −4,05. Só a partir da 28 o log fica abaixo de −4."
+  }
+ ],
+ "quadro": [
+  {
+   "linha": "cateto = L ÷ √2",
+   "nota": "Triângulo retângulo isósceles com hipotenusa L."
+  },
+  {
+   "linha": "q = 1/√2 = 2^(−1/2)",
+   "nota": "Razão da PG, escrita como potência de 2."
+  },
+  {
+   "linha": "l_n = 2^(−(n−1)/2)",
+   "nota": "Etapa 1 tem lado 1; são n−1 multiplicações por q."
+  },
+  {
+   "linha": "2^(−(n−1)/2) < 10^(−4)",
+   "nota": "Menor que 1 décimo de milésimo."
+  },
+  {
+   "linha": "−(n−1)/2 × 0,3 < −4",
+   "nota": "Aplicamos log nos dois lados; log 2 = 0,3."
+  },
+  {
+   "linha": "(n−1) × 0,15 > 4",
+   "nota": "Multiplicamos por −1, e a desigualdade inverte.",
+   "mov": [
+    {
+     "termo": "−",
+     "de": "esquerda",
+     "para": "direita",
+     "vira": "−",
+     "como": "os dois sinais negativos se cancelam e o sinal da desigualdade inverte"
+    }
+   ]
+  },
+  {
+   "linha": "n−1 > 4/0,15 ≈ 26,67",
+   "nota": "O 0,15 passa dividindo.",
+   "mov": [
+    {
+     "termo": "0,15",
+     "de": "esquerda",
+     "para": "denominador",
+     "vira": "0,15",
+     "como": "passa dividindo"
+    }
+   ]
+  },
+  {
+   "linha": "n−1 ≥ 27 → n ≥ 28",
+   "nota": "n−1 é inteiro, então o menor valor é 27."
+  },
+  {
+   "linha": "n = 28",
+   "nota": "Teste: −13,5 × 0,3 = −4,05 < −4."
+  }
+ ],
+ "visual": {
+  "cabe": true,
+  "porque": "Mostrar o triângulo e o lado diminuindo de etapa em etapa deixa claro por que a razão é 1/√2.",
+  "tipo": "figura",
+  "roteiro": "Quadro 1: quadrado de lado L com um triângulo retângulo isósceles em cima, hipotenusa L e catetos marcados como L/√2. Quadro 2: os dois quadrados de lado L/√2 sobre os catetos. Quadro 3: fila de quadrados com lados 1, 2^(−1/2), 2^(−1), 2^(−3/2), cada um menor que o anterior. Quadro 4: reta com log do lado: etapa 27 em −3,9, etapa 28 em −4,05, e a marca −4 entre as duas."
+ },
+ "fontes": [],
+ "confere": true,
+ "divergencia": "",
+ "resposta_resolvedor": "C",
+ "gab": "C",
+ "revisao": {
+  "lentes": [
+   "resolvedor"
+  ],
+  "modelos": {
+   "resolvedor": "claude-sonnet-5-5"
+  }
+ }
+}

@@ -69,8 +69,8 @@
    },
    {
     "faz": "Observe o balão e a postura",
-    "conta": "balão de nuvem; Snoopy sentado, olhando Woodstock",
-    "porque": "O balão em nuvem indica pensamento. Snoopy está meditando sobre a vida do amigo, não falando com ele.",
+    "conta": "2º quadrinho: balão de nuvem; Snoopy olha Woodstock",
+    "porque": "No 2º quadrinho, o balão em nuvem indica pensamento: Snoopy medita sobre a vida do amigo. No 1º ele fala, mas só constata fatos, sem se dirigir a Woodstock com ordem ou ataque.",
     "tipo": "localizar"
    },
    {
@@ -89,16 +89,16 @@
   "resposta": "Alternativa E: uma reflexão. Nos dois primeiros quadrinhos, Snoopy pensa (balão de pensamento) sobre as experiências que Woodstock nunca teve.",
   "checagem": "Troque a palavra por outra: se fosse conselho, haveria um verbo de ordem (“you should…”); se fosse crítica, um julgamento negativo. O texto só tem “has never seen / never heard”, constatações. O último quadrinho confirma a reflexão ao chegar a uma conclusão.",
   "erradas": {
-   "A": "Conselho diz ao outro o que fazer. Não há “should”, “try” nem verbo no imperativo. Snoopy só lista o que Woodstock nunca viu, e o balão é de pensamento, sem destinatário.",
+   "A": "Conselho diz ao outro o que fazer. Não há “should”, “try” nem verbo no imperativo. Snoopy só lista o que Woodstock nunca viu, e Woodstock nem é o destinatário da fala.",
    "B": "Crítica aponta defeito ou erro. “Has never seen a violin” é uma constatação neutra; nenhuma palavra culpa Woodstock ou julga a vida dele. No último quadrinho, a conclusão é positiva (“a very full life”).",
    "C": "Retificação é corrigir algo dito antes. Os quadrinhos não retomam nem corrigem afirmação anterior; apenas acrescentam itens à lista. A mudança de rumo vem no quadrinho 3 (“On the other hand”), que não é o pedido.",
-   "D": "Provocação é incitar ou desafiar o outro. Snoopy não se dirige a Woodstock: o balão em nuvem mostra pensamento solitário, sem desafio nem tom de zombaria."
+   "D": "Provocação é incitar ou desafiar o outro. Snoopy não desafia Woodstock: só lista o que ele nunca viu, sem tom de zombaria. O 2º balão, em nuvem, é pensamento."
   },
   "armadilha": "Ler a lista de “nunca viu” como crítica ou pena por causa do tom de falta, sem notar que o balão é de pensamento e que o final reconhece uma vida plena.",
   "alerta": "",
   "essencial": {
    "pede": "A função das ideias dos dois primeiros quadrinhos.",
-   "chave": "Constatações num balão de pensamento, sem ordem nem ataque: Snoopy reflete sobre a vida de Woodstock.",
+   "chave": "Constatações sem ordem nem ataque, e o 2º balão é de pensamento: Snoopy reflete sobre a vida de Woodstock.",
    "cuidado": "Não confunda lista do que falta com crítica; o último quadrinho mostra que a conclusão é positiva."
   }
  },
@@ -109,7 +109,7 @@
   },
   {
    "nome": "leitura pelo balão",
-   "ideia": "O balão em forma de nuvem, com bolinhas, representa pensamento. Quem pensa sozinho sobre algo está refletindo."
+   "ideia": "O 2º quadrinho tem balão em forma de nuvem, com bolinhas, que representa pensamento. Quem pensa sobre algo, sem ordenar nem atacar, está refletindo."
   }
  ],
  "quadro": [],
@@ -128,12 +128,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -254,6 +256,52 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "2º quadrinho: balão de nuvem; Snoopy olha Woodstock",
+    "motivo": "O balão de nuvem (pensamento) está no 2º quadrinho. No 1º o balão é de fala, então a afirmação valia só para o 2º.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "No 2º quadrinho, o balão em nuvem indica pensamento: Snoopy medita sobre a vida do amigo. No 1º ele fala, mas só constata fatos, sem se dirigir a Woodstock com ordem ou ataque.",
+    "motivo": "A resolução dizia que Snoopy não fala com Woodstock, mas o 1º balão é de fala. A correção separa os dois quadrinhos.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "Conselho diz ao outro o que fazer. Não há “should”, “try” nem verbo no imperativo. Snoopy só lista o que Woodstock nunca viu, e Woodstock nem é o destinatário da fala.",
+    "motivo": "O balão do 1º quadrinho é de fala. A frase \"balão é de pensamento\" estava errada para o conjunto dos dois quadrinhos.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "Provocação é incitar ou desafiar o outro. Snoopy não desafia Woodstock: só lista o que ele nunca viu, sem tom de zombaria. O 2º balão, em nuvem, é pensamento.",
+    "motivo": "Corrige a generalização de que os dois balões são de pensamento.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Troque a palavra por outra: se fosse conselho, haveria um verbo de ordem (“you should…”); se fosse crítica, um julgamento negativo. O texto só tem “has never seen / never heard”, constatações. O último quadrinho confirma a reflexão ao chegar a uma conclusão.",
+    "motivo": "Mantém o argumento sem afirmar que ambos os balões são de pensamento.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.essencial.chave",
+    "depois": "Constatações sem ordem nem ataque, e o 2º balão é de pensamento: Snoopy reflete sobre a vida de Woodstock.",
+    "motivo": "Precisão sobre qual balão é de pensamento.",
+    "fonte": ""
+   },
+   {
+    "campo": "caminhos[1].ideia",
+    "depois": "O 2º quadrinho tem balão em forma de nuvem, com bolinhas, que representa pensamento. Quem pensa sobre algo, sem ordenar nem atacar, está refletindo.",
+    "motivo": "O balão de nuvem aparece no 2º quadrinho, não nos dois.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "E"
  }
 }

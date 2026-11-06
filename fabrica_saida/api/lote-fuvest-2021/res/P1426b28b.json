@@ -1,0 +1,164 @@
+{
+ "n": 1,
+ "id": "P1426b28b",
+ "materia": "mat",
+ "tema": "M02",
+ "conteudo": "M02.3",
+ "nivel": 3,
+ "conceito": "Comparar comprimentos de caminhos em malha quadriculada: caminhos que só andam para a direita e para baixo têm o mesmo comprimento.",
+ "resolucao": {
+  "antes": {
+   "texto": "Na malha, cada lado de quadradinho vale 1 unidade. A distância percorrida é o número de lados de quadradinho que o caminho atravessa. Um caminho que só anda para a direita e para baixo, sem voltar, percorre sempre o mesmo total horizontal e o mesmo total vertical. Se o caminho sobe ou volta, o total aumenta.",
+   "formulas": [
+    "distância do caminho = total na horizontal + total na vertical",
+    "ir de X até Y sem voltar: horizontal = 10 e vertical = 6"
+   ],
+   "simbolos": [
+    [
+     "malha",
+     "o quadriculado do fundo; cada quadradinho tem lado 1 unidade"
+    ],
+    [
+     "ortogonais",
+     "ruas que se cruzam em ângulo reto, como as linhas da malha"
+    ]
+   ]
+  },
+  "pista": "Conte os quadradinhos que cada caminho percorre na horizontal e na vertical. Algum caminho anda para um lado e depois volta?",
+  "passos": [
+   {
+    "faz": "Meça o deslocamento de X até Y",
+    "conta": "horizontal: 10 quadradinhos",
+    "porque": "Contando os quadradinhos entre a coluna de X e a coluna de Y na figura, são 10 lados. Esse é o mínimo que qualquer caminho precisa andar na horizontal.",
+    "tipo": "localizar"
+   },
+   {
+    "faz": "Meça o desnível vertical",
+    "conta": "vertical: 6 quadradinhos",
+    "porque": "Y está 6 quadradinhos abaixo de X. Esse é o mínimo que qualquer caminho precisa andar na vertical.",
+    "tipo": "localizar"
+   },
+   {
+    "faz": "Calcule o caminho azul (c)",
+    "conta": "c = 6 + 10 = 16",
+    "porque": "O azul desce 6 e depois vai 10 para a direita. Não volta em nenhum trecho.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Calcule o caminho laranja-claro (b)",
+    "conta": "dir: 4+4+2 = 10 ; baixo: 4+2 = 6",
+    "porque": "O trecho em degraus faz 4 à direita, 4 para baixo, 4 à direita, 2 para baixo e 2 à direita. Só vai para a direita e para baixo, então b = 10 + 6 = 16.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Calcule o caminho vermelho (a)",
+    "conta": "a = 2 + 10 + 8 = 20",
+    "porque": "O vermelho primeiro SOBE 2 (acima de X), vai 10 para a direita e desce 8 até Y. Os 2 de subida são recuperados na descida e contam duas vezes: 8 = 6 + 2.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Compare os três",
+    "conta": "b = c = 16 < a = 20",
+    "porque": "Os dois caminhos sem volta empatam, e o vermelho, que sobe antes de descer, é maior.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa B: b = c < a, porque azul e laranja-claro andam 10 na horizontal e 6 na vertical, enquanto o vermelho anda 2 a mais para cima e 2 a mais para baixo.",
+  "checagem": "O caminho vermelho passa 2 quadradinhos acima de X e depois desce até Y. Por isso ele excede os 16 em 2 + 2 = 4. Então a = 16 + 4 = 20, o que confere com a soma direta 2 + 10 + 8.",
+  "erradas": {
+   "A": "a = b = c exigiria que o vermelho também medisse 16. Ele sobe 2 antes de seguir para a direita e depois desce 8 em vez de 6, então mede 20, e não 16.",
+   "C": "c < b < a exigiria que o azul fosse menor que o laranja-claro. Os dois medem 16: o azul faz 6 + 10 e os degraus fazem 10 na horizontal e 6 na vertical. Os degraus não alongam o caminho, pois nunca voltam.",
+   "D": "b < c = a exigiria que o vermelho fosse igual ao azul e que os degraus fossem menores. Mas a = 20 e c = 16, e b = c = 16.",
+   "E": "c < a = b exigiria que o laranja-claro valesse 20. Mas ele faz 10 na horizontal e 6 na vertical, 16 no total, igual ao azul."
+  },
+  "armadilha": "Achar que os degraus alongam o caminho: só o trecho que sobe (ou volta) aumenta a distância, porque sempre se anda 10 na horizontal e 6 na vertical.",
+  "alerta": "",
+  "essencial": {
+   "pede": "Comparar as distâncias a, b e c dos três caminhos de X a Y.",
+   "chave": "Sem voltar, todo caminho mede 10 + 6 = 16. O vermelho sobe 2 e desce 8, então mede 20.",
+   "cuidado": "Conte os quadradinhos do vermelho com o trecho de subida e o trecho de descida (8, e não 6)."
+  }
+ },
+ "caminhos": [
+  {
+   "nome": "deslizar os trechos",
+   "ideia": "Empurre os trechos horizontais do laranja-claro para baixo, até a linha de Y: eles formam um segmento de 10. Empurre os verticais para a esquerda, até a coluna de X: formam 6. Isso reproduz exatamente o azul, então b = c."
+  },
+  {
+   "nome": "excesso do vermelho",
+   "ideia": "O vermelho é o azul com um desvio: ele sobe 2 antes e desce 2 a mais depois. Logo a = c + 4 > c, sem precisar calcular os totais."
+  }
+ ],
+ "quadro": [
+  {
+   "linha": "X até Y: 10 → e 6 ↓",
+   "nota": "deslocamento mínimo lido na malha"
+  },
+  {
+   "linha": "c = 6 + 10",
+   "nota": "azul: desce 6, vai 10 à direita"
+  },
+  {
+   "linha": "c = 16",
+   "nota": "some 6 + 10"
+  },
+  {
+   "linha": "b = (4+4+2) + (4+2)",
+   "nota": "laranja-claro: direita e depois baixo, em degraus"
+  },
+  {
+   "linha": "b = 10 + 6 = 16",
+   "nota": "mesmo total do azul"
+  },
+  {
+   "linha": "a = 2 + 10 + 8",
+   "nota": "vermelho: sobe 2, 10 à direita, desce 8"
+  },
+  {
+   "linha": "a = 20",
+   "nota": "some 2 + 10 + 8"
+  },
+  {
+   "linha": "b = c = 16 < a = 20",
+   "nota": "compare os três valores",
+   "destaque": "b = c < a"
+  }
+ ],
+ "visual": {
+  "cabe": true,
+  "porque": "Deslizar os trechos do caminho em degraus mostra que ele equivale ao caminho azul.",
+  "tipo": "figura",
+  "roteiro": "Quadro 1: a malha com X e Y e os três caminhos coloridos. Quadro 2: os trechos horizontais do caminho em degraus deslizam para baixo, até a linha de Y, e se juntam num segmento de 10; os trechos verticais deslizam para a esquerda, até a coluna de X, e viram um segmento de 6. Quadro 3: o resultado coincide com o caminho azul (16 = 16). Quadro 4: no caminho vermelho, os 2 quadradinhos de subida e os 2 extras da descida aparecem em destaque, mostrando o excesso de 4 (total 20)."
+ },
+ "fontes": [],
+ "confere": true,
+ "divergencia": "",
+ "resposta_resolvedor": "B",
+ "gab": "B",
+ "revisao": {
+  "lentes": [
+   "resolvedor",
+   "fatos"
+  ],
+  "modelos": {
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "caminhos[0].ideia",
+    "depois": "Empurre os trechos horizontais do laranja-claro para baixo, até a linha de Y: eles formam um segmento de 10. Empurre os verticais para a esquerda, até a coluna de X: formam 6. Isso reproduz exatamente o azul, então b = c.",
+    "motivo": "Se os trechos horizontais forem para a linha de X, o resultado é 'direita 10, depois desce 6'. Esse caminho tem o mesmo comprimento, mas não coincide com o azul, que desce pela coluna de X e corre pela linha de Y. Para o caminho coincidir com o azul, os horizontais precisam ir para a linha de Y.",
+    "fonte": ""
+   },
+   {
+    "campo": "visual.roteiro",
+    "depois": "Quadro 1: a malha com X e Y e os três caminhos coloridos. Quadro 2: os trechos horizontais do caminho em degraus deslizam para baixo, até a linha de Y, e se juntam num segmento de 10; os trechos verticais deslizam para a esquerda, até a coluna de X, e viram um segmento de 6. Quadro 3: o resultado coincide com o caminho azul (16 = 16). Quadro 4: no caminho vermelho, os 2 quadradinhos de subida e os 2 extras da descida aparecem em destaque, mostrando o excesso de 4 (total 20).",
+    "motivo": "O roteiro antigo deslizava os horizontais para a linha de X. Assim o Quadro 3 ('coincide com o azul') ficava falso, porque o azul passa pela coluna de X e pela linha de Y.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "B"
+ }
+}
