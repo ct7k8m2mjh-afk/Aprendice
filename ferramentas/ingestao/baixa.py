@@ -19,7 +19,7 @@ RAIZ = Path(__file__).resolve().parents[2]
 SAIDA = RAIZ / 'fabrica_saida' / 'ingestao'
 CERTS = Path(__file__).parent / 'certs'
 PAUSA = 3
-AGENTE = 'Mozilla/5.0 (compatible; Aprendice-ingestao/0.1; estudo pessoal de provas publicas)'
+AGENTE = 'Mozilla/5.0 (X11; Linux x86_64)'   # User-Agent genérico, sem dados pessoais
 
 
 def contexto_tls():

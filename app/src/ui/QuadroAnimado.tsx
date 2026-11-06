@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import type { Resolucao } from '../dados/tipos';
 import { Icone } from './Icone';
+import { comFracoes } from './Fracao';
 
 /**
  * A conta no caderno, linha por linha: cada linha aparece "escrita à mão" depois da anterior, com a nota do que foi feito.
@@ -44,8 +45,8 @@ export function QuadroAnimado({ quadro }: { quadro: NonNullable<Resolucao['quadr
 }
 
 function realce(linha: string, d?: string) {
-  if (!d) return linha;
+  if (!d) return comFracoes(linha);
   const i = linha.indexOf(d);
-  if (i < 0) return linha;
-  return <>{linha.slice(0, i)}<mark>{d}</mark>{linha.slice(i + d.length)}</>;
+  if (i < 0) return comFracoes(linha);
+  return <>{comFracoes(linha.slice(0, i))}<mark>{comFracoes(d)}</mark>{comFracoes(linha.slice(i + d.length))}</>;
 }

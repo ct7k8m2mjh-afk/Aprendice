@@ -71,12 +71,24 @@
 .caderno li { font-family: var(--mao); font-weight: 500; font-size: var(--fs-mao); }
 /* fração da conta: sempre empilhada pelo layout, nunca o recurso automático da fonte */
 .passos .conta, .q-linha, .caderno li { font-feature-settings: 'frac' 0; font-variant-numeric: normal; }
+/* fração empilhada (ui/Fracao.tsx): numerador, barra e denominador montados pelo layout, centrados na linha da conta;
+   vale na conta, nas fórmulas do caderno, no quadro animado e nos textos da resolução (guia: "em texto, fórmula e animação") */
+.frac { position: relative; display: inline-flex; flex-direction: column; align-items: stretch; vertical-align: middle; margin: 0 .12em;
+  font-size: .86em; line-height: 1.08; text-align: center; white-space: nowrap; font-feature-settings: 'frac' 0; }
+.frac-n { padding: 0 .18em .04em; border-bottom: max(1.5px, .07em) solid currentColor; }
+.frac-d { padding: .06em .18em 0; }
+/* trecho citado da prova ou frase na "conta" de um passo: texto na família da interface, não na letra à mão (guia, p. 5) */
+.passos .conta.citacao { font-family: var(--fonte); font-weight: 400; font-size: var(--fs-texto); line-height: 1.5; color: var(--tinta);
+  background: var(--folha2); border: 0; border-left: 3px solid color-mix(in srgb, var(--t) 40%, var(--linha)); border-radius: 0 8px 8px 0; padding: 8px 12px; }
 
 /* ---------- botão: Familjen 600 · 15 px · 1 ---------- */
 .btn, .btn.peq, .btn.grande, .btn.btn-capa, .q-painel .q-acoes .btn:last-child, .q-resp .q-acoes .btn-conf, .q-resp .q-acoes .btn.fantasma, .q-painel .q-acoes .btn.fantasma, .abas button, .chip,
 .certeza .chip, .q-painel .certeza .chip, .sanfona, .tema-seg button, .bv-passos li, .migalhas, .link-sec, .cab-sec a:not(.btn), .ini-link, .q-volta, .q-dica, .q-tela, .q-orig {
   font-family: var(--fonte); font-weight: 600; font-size: var(--fs-botao); line-height: 1; }
 .btn.fantasma, .q-painel .q-acoes .btn.fantasma { font-weight: 600; }
+/* botões com regra própria mais específica (auditoria rodada 3, item 9): também na medida do guia */
+.btn.tp-teo, .fl-area, .fl-area[aria-pressed='true'], .q-resp .certeza .chip, .ini-heroi .btn.grande, .sim-config .btn.grande {
+  font-family: var(--fonte); font-weight: 600; font-size: var(--fs-botao); line-height: 1; }
 .migalhas { line-height: 1.3; }
 .bv-passos li { line-height: 1.3; }
 /* menu e abas do celular: navegação na família da interface */
@@ -119,3 +131,5 @@
 .fc-tecla, .fc-faixa-nm span, .fl-tema .t small, .sim-txt > span, .sim-grupo-cab p, .tg-n > small {
   font-family: var(--fonte); font-weight: 400; font-size: var(--fs-info); line-height: 1.4; }
 .fl-tema .t b, .fc-faixa-nm b { font-family: var(--fonte); font-weight: 600; font-size: var(--fs-tema); line-height: 1.3; }
+/* item do caderno que é frase, não fórmula: letra da interface sobre o mesmo papel pautado (guia: cursiva nunca em texto corrido) */
+.caderno li.texto { font-family: var(--fonte); font-weight: 400; font-size: var(--fs-texto); }

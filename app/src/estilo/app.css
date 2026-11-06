@@ -23,7 +23,8 @@
   color: var(--lapis); font: 500 15.5px/1.3 var(--fonte); text-align: left; text-decoration: none; transition: background-color .2s, color .2s; }
 .item-nav .ic { width: 20px; height: 20px; flex: none; color: currentColor; }
 .item-nav.mat .ic { color: var(--t); }
-.item-nav .rotulo { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+/* nome nunca cortado: um nome longo ("Filosofia e Sociologia" na lista de outras matérias) quebra em 2 linhas */
+.item-nav .rotulo { min-width: 0; white-space: normal; overflow-wrap: break-word; }
 .item-nav.ativo { background: color-mix(in srgb, var(--tinta) 7%, var(--lado-fundo)); color: var(--tinta); font-weight: 600; }
 .item-nav.mat.ativo { background: var(--s); color: var(--t); }
 @media (hover: hover) and (pointer: fine) {
@@ -106,7 +107,9 @@
 
 /* página: largura máxima de 1440 px, 22/32/48 px de margem (protótipo: .wrap da matéria) */
 .conteudo { width: 100%; max-width: var(--pag-max); margin: 0 auto; padding: var(--pag-topo) var(--pag-x) var(--pag-pe); }
-.conteudo.estreito { max-width: calc(var(--pag-estreita) + 2 * var(--pag-x)); }
+/* telas de uma coluna (configuração do simulado, detalhe da prova, Config, Perfil, treino): mesma coluna das outras telas,
+   título no mesmo x; nada de coluna estreita centralizada (auditoria rodada 3, item 1) */
+.conteudo.estreito { max-width: var(--pag-max); }
 @media (max-width: 700px) { :root { --pag-x: 16px; --pag-topo: 14px; --pag-pe: 32px; } }
 
 .tabs { display: none; }
@@ -231,7 +234,6 @@
 .ladrilho { display: grid; place-items: center; border-radius: 14px; background: var(--sv2); flex: none; overflow: hidden; }
 .item-nav .pontos { display: grid; grid-template-columns: repeat(3, 5px); gap: 2px; margin: 0 3px; flex: none; }
 .item-nav .pontos i { width: 5px; height: 5px; border-radius: 50%; background: var(--p); opacity: .75; }
-.item-nav .rotulo { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .cab-sec a.btn { color: var(--ink); font-size: 15px; }
 .cab-sec a.btn:hover { color: var(--ink); }
 a.chip, a.chip:hover { text-decoration: none; }

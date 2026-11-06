@@ -74,6 +74,8 @@ def _tem_figura(pg, clip, faixa_ancora=None):
         r = pymupdf.Rect(d['rect'])
         if not (r & clip).width or not r.intersects(clip):
             continue
+        if r.height >= 6 and (r & clip).height < 6:
+            continue                   # só a beirada de um desenho de fora (selo da questão seguinte) encosta no recorte
         if r.width > pg.rect.width * 0.8 and r.height > pg.rect.height * 0.6:
             continue                   # moldura/fundo da página inteira
         if r.height < 2.5:            # fio horizontal (sublinhado, régua, barra de fração fica para a checagem de fórmula)
@@ -178,12 +180,15 @@ def transcreve(pdf, segs, ancora, cortes=(), alternativas=5, ocr=False):
     if ocr:
         return _nao('ocr')
     linhas = []
+    faixas = []
     for p, clip in segs:
         pg = pdf[p]
         faixa = None
         for l in _spans(pg, clip):
-            if re.match(ancora, ''.join(sp['text'] for sp in l['spans']).strip()):
+            t_ = ''.join(sp['text'] for sp in l['spans']).strip()
+            if re.match(ancora, t_) or re.fullmatch(r'(?i)quest[ãa]o', t_):   # "questão" e o número em linhas separadas
                 faixa = (l['bbox'][1], l['bbox'][3])
+                faixas.append((p, faixa))
                 break
         f = _tem_figura(pg, clip, faixa)
         if f:
@@ -261,6 +266,9 @@ def transcreve(pdf, segs, ancora, cortes=(), alternativas=5, ocr=False):
             continue   # pedaço de letra da coluna vizinha que entrou na borda do recorte
         if re.fullmatch(r'A{2,}', txt):
             continue
+        if any(fp == l['p'] and l['bbox'][1] < fx[1] + 2 and l['bbox'][3] > fx[0] - 2 for fp, fx in faixas) \
+                and re.fullmatch(r'(?i)(quest[ãa]o)?\s*\d{0,3}', txt):
+            continue   # "questão" / "01" do selo da questão
         m = re.match(ancora, txt)
         if m:
             resto = txt[m.end():].strip()
@@ -327,7 +335,7 @@ def transcreve(pdf, segs, ancora, cortes=(), alternativas=5, ocr=False):
         if paras and not novo:
             prev_curta = (ant['bbox'][2] < x1c - larg * 0.18)
             # item de lista ("II.", "3)", "IV –") começando linha depois de frase terminada: quebra a linha, como no caderno
-            if re.match(r'(?:\*\*|~~)*(?:[IVX]{1,4}|\d{1,2})\s?[\.\)–-](?:\*\*|~~)*(?:\s|$)(?!\s*ed\b)', txt) and re.search(r'\w{2}[.;:?!”"\)](?:\*\*|~~)*$', paras[-1]['t']):
+            if re.match(r'(?:\*\*|~~)*(?:[IVX]{1,4}|\d{1,2})\s?[\.\)–-](?:\*\*|~~)*(?:\s|$)(?!\s*ed\b)', txt) and re.search(r'(?:\w{2}[.;:?!”"\)]|[\w”"\)\]][.;:?!][”"]?)(?:\*\*|~~)*$', paras[-1]['t']):
                 prev_curta = True
             ultimo = paras[-1]
             if ultimo['t'].endswith('-') and not prev_curta and re.match(r'[a-zà-ú]', txt):

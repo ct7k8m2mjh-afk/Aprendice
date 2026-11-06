@@ -8,6 +8,8 @@ import { desempenhoPorNivel, nomeNivel } from '../logica/nivel';
 import { Barra, Carregando, Ic3D, cap, plural, useTitulo } from '../ui/comum';
 import { Icone } from '../ui/Icone';
 import { CabMateria, FaixaTemas } from './Materia';
+import { comFracoes } from '../ui/Fracao';
+import { contaEhTexto } from '../logica/fracao';
 import type { CartaoTeoria, Figura, MateriaId, Modulo } from '../dados/tipos';
 
 export function CartaoTeoriaView({ c, figs }: { c: CartaoTeoria; figs?: Figura[] }) {
@@ -18,7 +20,7 @@ export function CartaoTeoriaView({ c, figs }: { c: CartaoTeoria; figs?: Figura[]
       {c.identificar && <p><b>Como reconhecer na prova. </b>{c.identificar.replace(/^Pistas:\s*/i, '')}</p>}
       {c.exemplo && <p><b>Exemplo. </b>{c.exemplo}</p>}
       {c.caderno && c.caderno.length > 0 && (
-        <ul className="caderno">{c.caderno.map((x, i) => <li key={i}>{x}</li>)}</ul>
+        <ul className="caderno">{c.caderno.map((x, i) => <li key={i} className={contaEhTexto(x) ? 'texto' : undefined}>{comFracoes(x)}</li>)}</ul>
       )}
       {c.cuidado && <p className="cuidado"><Icone nome="info" tam={16} /> <span><b>Cuidado: </b>{c.cuidado}</span></p>}
       {figs && figs.map((f, i) => (
@@ -38,7 +40,7 @@ export function TeoriaModulo({ m, mod }: { m: MateriaId; mod: Modulo }) {
     <div className="teoria">
       <section className="bloco teoria-resumo">
         <p className="resumo-mod">{mod.resumo}</p>
-        {mod.formulas.length > 0 && (<><h3>No caderno</h3><ul className="caderno">{mod.formulas.map((f, i) => <li key={i}>{f}</li>)}</ul></>)}
+        {mod.formulas.length > 0 && (<><h3>No caderno</h3><ul className="caderno">{mod.formulas.map((f, i) => <li key={i} className={contaEhTexto(f) ? 'texto' : undefined}>{comFracoes(f)}</li>)}</ul></>)}
         {mod.erro && <p className="cuidado"><Icone nome="info" tam={16} /> <span><b>Erro que mais derruba: </b>{mod.erro}</span></p>}
       </section>
       <div className="grade g2" style={{ marginTop: 16 }}>

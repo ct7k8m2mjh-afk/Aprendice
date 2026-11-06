@@ -401,6 +401,8 @@ for _a in (2020, 2021, 2022, 2023):
         r'(?i)^texts? \d+ for quest', r'(?i)texto base para ser utilizado nas quest', r'(?i)^base [àa]s? quest', r'(?i)servem? de base [àa]s?\s*$']
 PROVAS['upe-ssa3-2023']['ancora_dx_pag'] = {('d1-caderno', 14): 240, ('d2-caderno', 22): 30}   # 10 ao lado de imagem; "45.." recuado
 PROVAS['upe-ssa3-2021']['ancora_dx_pag'] = {('d1-caderno', 24): 280}   # 34 (inglês) começa ao lado de uma imagem
+# o caderno imprime "Texto para as questões 6 e 7" antes das questões 16 e 17 (Química, TNT): erro de digitação da banca
+PROVAS['upe-ssa3-2023']['faixa_errata'] = {('d2-caderno', 11, (6, 7)): [16, 17]}
 PROVAS['upe-ssa3-2022']['ancora_forcada'] = {('d1-caderno', 31): [(41, 54, 0)]}   # "41." desenhado sem camada de texto
 
 
@@ -455,7 +457,7 @@ def vunesp(pid_catalogo, escola, ano, fase, titulo, total, caderno='caderno-prov
     duas colunas, "QUESTÃO 07", alternativas "(A)", gabarito "1 - E"."""
     def gab(pasta):
         g = {}
-        for n, v in re.findall(r'(?<![\d,.])(\d{1,2})\s*[-–]\s*([A-E]\b|\*|X\b|ANULAD[AO])', texto_pdf(pasta / (gabarito + '.pdf'))):
+        for n, v in re.findall(r'(?<![\d,.])(\d{1,2})\s*[-–]\s*([A-E]\b|\*|X\b|N\b|ANULAD[AO])', texto_pdf(pasta / (gabarito + '.pdf'))):
             g.setdefault(int(n), v if len(v) == 1 and v in 'ABCDE' else 'X')
         return g
 
@@ -466,7 +468,7 @@ def vunesp(pid_catalogo, escola, ano, fase, titulo, total, caderno='caderno-prov
         'colunas': lambda r: duas_colunas(r, 28), 'topo': 20, 'base': 32,
         'ancora': r'(?i)^quest[ãa]o\s+(\d{1,3})\b', 'ancora_dx': 34,
         'corte': [r'(?i)^CLASSIFICAÇÃO PERIÓDICA', r'(?i)^REDAÇÃO$', r'(?i)^Confidencial até'],
-        'suporte': [r'(?i)para responder [àa]s? quest'],
+        'suporte': [r'(?i)para responder [àa]s? ques', r'(?i)para respond(er|-)?\s*$', r'(?i)^er [àa]s quest'],
         'gabarito': gab, 'area': lambda n: 'Conhecimentos gerais',
     }
 
@@ -782,3 +784,71 @@ for _a, _s in ((2020, 1), (2023, 2), (2024, 1), (2024, 2), (2025, 1), (2025, 2),
 PROVAS['udesc-2026-1']['cadernos'][1]['sem_suporte'] = True   # vespertino 2026/1: "Questão N" vem antes dos textos
 for _k in ('udesc-2026-1', 'udesc-2026-2'):
     PROVAS[_k]['suporte_interno'] = 90   # 2026: em parte das questões o "TEXTO N" vem logo depois do número
+
+
+# ---------------------------------------------------------------------------------------------- FMABC
+# Caderno e gabarito oficiais da Vunesp publicados pela própria FMABC ("Provas anos anteriores"). "N" no gabarito = anulada.
+for _a in range(2020, 2026):
+    PROVAS[f'fmabc-{_a}'] = vunesp(
+        'fmabc', 'FMABC', _a, '', f'FMABC {_a}', 80, caderno='caderno', gabarito='gabarito', duracao=5,
+        nota=f'Centro Universitário FMABC, Vestibular de Medicina {_a}: Prova de Conhecimentos Gerais (80 objetivas), versão 1. '
+             'Caderno e gabarito oficiais da Vunesp, publicados pela FMABC; anulada fica fora.')
+
+
+# ---------------------------------------------------------------------------------------------- Fatec
+FATEC_DISC = {'RACIOCÍNIO LÓGICO': 'Raciocínio Lógico', 'RAC. LÓGICO': 'Raciocínio Lógico', 'MULTIDISCIPLINAR': 'Multidisciplinar', 'HISTÓRIA': 'História',
+              'GEOGRAFIA': 'Geografia', 'BIOLOGIA': 'Biologia', 'QUÍMICA': 'Química', 'FÍSICA': 'Física', 'MATEMÁTICA': 'Matemática',
+              'INGLÊS': 'Inglês', 'PORTUGUÊS': 'Língua Portuguesa', 'LÍNGUA PORTUGUESA': 'Língua Portuguesa', 'ANULADA': 'ANULADA'}
+
+
+def fatec(ano, sem, duracao=5):
+    areas = {}
+
+    def gab(pasta):
+        """Gabarito oficial em duas colunas: "001  D  História"; "ANULADA" no lugar da letra ou da disciplina = anulada.
+        2025/1: grade "01: C" por tipo de prova (vale a Prova Tipo A, a do caderno publicado)."""
+        txt = texto_pdf(pasta / 'gabarito.pdf').replace('ﬁ', 'fi')
+        g = {}
+        if 'PROVA TIPO A' in txt:
+            txt = txt.split('PROVA TIPO A', 1)[1].split('PROVA TIPO B', 1)[0]
+            for n, v in re.findall(r'(?<![\d,.])(\d{1,2}):\s*([A-E]|\*|X|ANULAD[AO])\b', txt):
+                g[int(n)] = v if v in 'ABCDE' and len(v) == 1 else 'X'
+            return g
+        for linha in txt.splitlines():
+            for m in re.finditer(r'(?<![\d,.])(\d{1,3})\s+([A-E]|ANULAD[AO])(?:\s*-\s*Retificad[ao])?\s+([A-Za-zÀ-ú][A-Za-zÀ-ú. ]*?)(?=\s{2,}\d|\s*$)', linha):
+                n, v, disc = int(m.group(1)), m.group(2), m.group(3).strip().upper()
+                g[n] = 'X' if (len(v) > 1 or disc.startswith('ANULAD')) else v
+                areas[n] = FATEC_DISC.get(disc, disc.title())
+        return g
+
+    cfg = {
+        'catalogo': 'fatec', 'escola': 'Fatec', 'ano': str(ano), 'fase': f'{sem}º semestre', 'titulo': f'Fatec {ano}/{sem}',
+        'banca': 'Centro Paula Souza', 'duracao_horas': duracao,
+        'nota': f'Vestibular Fatec {sem}º semestre de {ano}: prova objetiva (múltipla escolha A–E). Gabarito oficial '
+                '(retificado, quando houve), com a disciplina de cada questão; anulada fica fora. Caderno e gabarito '
+                'publicados pelo Centro Paula Souza.',
+        'cadernos': [{'arquivo': 'caderno', 'paginas': (2, 999)}],
+        'colunas': 'auto', 'margem': 22, 'topo': 22, 'base': 22, 'rodape_num': False,
+        'apagar': [r'^VESTIBULAR \d', r'^\d{1,2}$'],
+        'ancora': r'(?i)^quest[ãa]o\s+(\d{1,3})\b', 'ancora_dx': 40, 'sequencial': True,
+        'corte': [r'(?i)^REDAÇÃO$', r'(?i)^PROPOSTA DE REDA', r'(?i)^RASCUNHO', r'(?i)^FOLHA DE'],
+        'suporte': [r'(?i)(para|responder) [àa]s quest[õo]es', r'(?i)^texto para as quest'],
+        'gabarito': gab, 'area': lambda n: areas.get(n, 'Conhecimentos gerais'), 'area_do_gabarito': True,
+    }
+    cfg['total_de'] = lambda pasta: max(gab(pasta))
+    return cfg
+
+
+for _a, _s in ((2020, 1), (2022, 2), (2023, 1), (2023, 2), (2024, 1), (2024, 2), (2025, 2), (2026, 1), (2026, 2)):
+    PROVAS[f'fatec-{_a}-{_s}'] = fatec(_a, _s)
+# 2025/1: caderno em duas colunas, numeração "6." e títulos de disciplina; gabarito por tipo (sem disciplina)
+PROVAS['fatec-2025-1'] = fatec(2025, 1)
+PROVAS['fatec-2025-1'].update({
+    'colunas': lambda r: duas_colunas(r, 30), 'topo': 68, 'base': 36, 'apagar': [r'^VESTIBULAR \d', r'^FATEC –', r'^TIPO A$'],
+    'ancora': r'^(\d{1,2})\.(\s|$)', 'ancora_dx': 12, 'area_do_gabarito': False,
+    'secoes': {'MATEMÁTICA': 'Matemática', 'FÍSICA': 'Física', 'QUÍMICA': 'Química', 'BIOLOGIA': 'Biologia', 'HISTÓRIA': 'História',
+               'GEOGRAFIA': 'Geografia', 'INGLÊS': 'Inglês', 'LÍNGUA PORTUGUESA': 'Língua Portuguesa', 'PORTUGUÊS': 'Língua Portuguesa',
+               'RACIOCÍNIO LÓGICO': 'Raciocínio Lógico', 'MULTIDISCIPLINAR': 'Multidisciplinar', 'LÍNGUA INGLESA': 'Inglês'},
+    'nota': 'Vestibular Fatec 1º semestre de 2025: prova objetiva (múltipla escolha A–E), Prova Tipo A. Gabarito oficial '
+            'definitivo (Tipo A); anulada fica fora. Caderno e gabarito publicados pelo Centro Paula Souza.',
+})

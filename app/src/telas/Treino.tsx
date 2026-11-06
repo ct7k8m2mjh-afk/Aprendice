@@ -1,4 +1,4 @@
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, Navigate, useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { EH_PREVIA, urlPrint, useMateria, useResolucoes, type MateriaCarregada } from '../dados/conteudo';
 import { materia as infoMateria } from '../dados/materias';
@@ -101,10 +101,13 @@ export function Treino() {
   useTitulo('Treino geral');
   const ses = e.treino[m];
 
+  // matéria sem questões (ou sem nada para o treino): a tela da matéria não oferece treino, então a rota leva ao aviso "em preparação" dela
+  const semTreino = !!mc && (mc.banco.length === 0 || !(mc.conteudo.essencial.abc.length + mc.conteudo.essencial.completar.length + mc.conteudo.flash.length + mc.conteudo.flashImg.length));
   useEffect(() => {
-    if (mc && !ses) atualiza((x) => ({ ...x, treino: { ...x.treino, [m]: montaTreino(mc) } }));
-  }, [mc, ses, m]);
+    if (mc && !ses && !semTreino) atualiza((x) => ({ ...x, treino: { ...x.treino, [m]: montaTreino(mc) } }));
+  }, [mc, ses, m, semTreino]);
 
+  if (semTreino) return <Navigate to={`/m/${m}`} replace />;
   if (!mc || !ses) return <div className="conteudo"><Carregando /></div>;
   const info = infoMateria(m)!;
   const salva = (f: (s: SessaoTreino) => SessaoTreino) => atualiza((x) => ({ ...x, treino: { ...x.treino, [m]: f(x.treino[m]!) } }));

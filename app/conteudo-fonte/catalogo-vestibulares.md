@@ -8,7 +8,7 @@ Gerado em 2026-11-01. Fonte de dados: `catalogo-vestibulares.json`. Legenda: ✔
 |---|---|---|---|---|---|---|---|
 | Enem | Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira (INEP) | — | publica | Inep | enem_sisu, enem_nota | ✔ | provas_anteriores (página oficial de provas e gabaritos do Inep não confirmada) |
 
-## Sudeste (18)
+## Sudeste (28)
 
 | Prova | Instituição | UF | Rede | Banca | Ingresso | Verif. | A verificar |
 |---|---|---|---|---|---|---|---|
@@ -30,8 +30,18 @@ Gerado em 2026-11-01. Fonte de dados: `catalogo-vestibulares.json`. Legenda: ✔
 | Vestibular Próprio Unimontes / PAES | Universidade Estadual de Montes Claros (Unimontes) | MG | publica | Coteps | vestibular_proprio, seriado | ✖ | formato completo (questões, redação, duração); materias; provas_anteriores |
 | Vestibular Estadual Uerj | Universidade do Estado do Rio de Janeiro (Uerj) | RJ | publica | — | vestibular_proprio | ✖ | questoes_objetivas do Exame de Qualificação; disciplinas específicas de Medicina; duracao_horas; banca (nome oficial do órgão executor) |
 | Vestibular Medicina Emescam | Escola Superior de Ciências da Santa Casa de Misericórdia de Vitória (Emescam) | ES | privada | Fundep | vestibular_proprio | ✖ | questoes_objetivas 2027; número de discursivas 2027; duracao_horas; materias da prova objetiva |
+| Vestibular UFU | Universidade Federal de Uberlândia (UFU) | MG | publica | DIRPS-UFU | vestibular_proprio, enem_sisu | ✖ | edital 2027 (nº de questões e duração); disciplinas da 2ª fase de Medicina |
+| Vestibular ITA | Instituto Tecnológico de Aeronáutica (ITA) | SP | publica | ITA (Comissão de Exame de Admissão) | vestibular_proprio | ✖ | duracao_horas da 1ª fase; edital 2027 |
+| Vestibular Fatec | Faculdades de Tecnologia do Estado de São Paulo (Centro Paula Souza) (Fatec) | SP | publica | Centro Paula Souza | vestibular_proprio | ✖ | questoes_objetivas por edição; duracao_horas |
+| PISM (Programa de Ingresso Seletivo Misto) — Módulo III | Universidade Federal de Juiz de Fora (UFJF) | MG | publica | Copese-UFJF | seriado, enem_sisu | ✖ | questoes_objetivas do Módulo III; duracao_horas; materias |
+| Vestibular Cederj | Consórcio Cederj (Fundação Cecierj) (Cederj) | RJ | publica | Fundação Cecierj | vestibular_proprio | ✖ | duracao_horas |
+| Vestibular PUC-Rio | Pontifícia Universidade Católica do Rio de Janeiro (PUC-Rio) | RJ | privada | PUC-Rio | vestibular_proprio | ✖ | questoes_objetivas por grupo; duracao_horas |
+| Vestibular PUC Minas — Medicina | Pontifícia Universidade Católica de Minas Gerais (PUC Minas) | MG | privada | PUC Minas | vestibular_proprio | ✖ | questoes_objetivas; duracao_horas |
+| Vestibular Mackenzie | Universidade Presbiteriana Mackenzie (Mackenzie) | SP | privada | Mackenzie | vestibular_proprio, enem_nota | ✖ | questoes_objetivas; duracao_horas |
+| Vestibular Unificado FGV | Fundação Getulio Vargas (FGV) | SP | privada | FGV | vestibular_proprio, enem_nota | ✖ | questoes_objetivas por curso; duracao_horas |
+| Vestibular Mauá | Centro Universitário do Instituto Mauá de Tecnologia (Mauá) | SP | privada | Instituto Mauá de Tecnologia | vestibular_proprio, enem_nota | ✖ | questoes_objetivas; duracao_horas |
 
-## Sul (9)
+## Sul (16)
 
 | Prova | Instituição | UF | Rede | Banca | Ingresso | Verif. | A verificar |
 |---|---|---|---|---|---|---|---|
@@ -44,8 +54,15 @@ Gerado em 2026-11-01. Fonte de dados: `catalogo-vestibulares.json`. Legenda: ✔
 | Vestibular Unificado UFSC/IFC | Universidade Federal de Santa Catarina (UFSC) | SC | publica | Coperve | vestibular_proprio | ✖ | questoes_objetivas; duracao_horas; materias completas; redação (existência/formato); provas_anteriores; cidade |
 | Vestibular de Medicina Acafe | Associação Catarinense das Fundações Educacionais (Acafe) | SC | privada | Acafe | vestibular_proprio | ✖ | edital 2027; duracao_horas; materias; rede (comunitária); site (URL raiz não confirmada) |
 | Vestibular UFRGS | Universidade Federal do Rio Grande do Sul (UFRGS) | RS | publica | Coperse | vestibular_proprio | ✔ | distribuição exata das disciplinas por dia; URL exata da página de provas anteriores (menu 'Provas de Processos Seletivos' em vestibular.ufrgs.br) |
+| Vestibular UDESC (Verão e Inverno) | Universidade do Estado de Santa Catarina (UDESC) | SC | publica | Covest-UDESC | vestibular_proprio, enem_sisu | ✖ | duracao_horas de cada turno; distribuição por disciplina no edital de cada edição |
+| Vestibular UFSM | Universidade Federal de Santa Maria (UFSM) | RS | publica | UFSM (Prograd/Coperves) | vestibular_proprio, seriado, enem_sisu | ✖ | duracao_horas; materias de cada prova |
+| Vestibular de Verão UTFPR | Universidade Tecnológica Federal do Paraná (UTFPR) | PR | publica | UTFPR | vestibular_proprio, enem_sisu | ✖ | duracao_horas; materias |
+| Vestibular Unespar | Universidade Estadual do Paraná (Unespar) | PR | publica | DIG-Unespar | vestibular_proprio, enem_nota, enem_sisu | ✖ | questoes_objetivas; duracao_horas |
+| Vestibular Unicentro | Universidade Estadual do Centro-Oeste (Unicentro) | PR | publica | COORPS/Unicentro | vestibular_proprio, seriado, enem_nota | ✖ | questoes_objetivas por grupo; duracao_horas |
+| Vestibular de Verão PUCRS — Medicina | Pontifícia Universidade Católica do Rio Grande do Sul (PUCRS) | RS | privada | PUCRS | vestibular_proprio | ✖ | duracao_horas; materias |
+| Processo Seletivo Medicina Fempar | Faculdade Evangélica Mackenzie do Paraná (Fempar) | PR | privada | FGV Conhecimento | vestibular_proprio | ✖ | questoes_objetivas; duracao_horas; materias |
 
-## Nordeste (10)
+## Nordeste (12)
 
 | Prova | Instituição | UF | Rede | Banca | Ingresso | Verif. | A verificar |
 |---|---|---|---|---|---|---|---|
@@ -59,8 +76,10 @@ Gerado em 2026-11-01. Fonte de dados: `catalogo-vestibulares.json`. Legenda: ✔
 | PAES UEMA | Universidade Estadual do Maranhão (UEMA) | MA | publica | — | vestibular_proprio | ✔ | data da prova; duracao_horas; materias; vagas de Medicina; banca; cidade |
 | Vestibular Unifor Medicina | Universidade de Fortaleza (Unifor) | CE | privada | — | vestibular_proprio | ✖ | questoes_objetivas 2027.1 (dado de 2026.2); banca |
 | Sisu UERN | Universidade do Estado do Rio Grande do Norte (UERN) | RN | publica | Sisu (MEC) | enem_sisu | ✔ | pesos do Enem para Medicina 2027 |
+| Processo Seletivo Unificado URCA | Universidade Regional do Cariri (URCA) | CE | publica | CEV-URCA | vestibular_proprio | ✖ | duracao_horas |
+| Vestibular UVA | Universidade Estadual Vale do Acaraú (UVA) | CE | publica | CEPS-UVA | vestibular_proprio | ✖ | questoes_objetivas; duracao_horas |
 
-## Norte (5)
+## Norte (7)
 
 | Prova | Instituição | UF | Rede | Banca | Ingresso | Verif. | A verificar |
 |---|---|---|---|---|---|---|---|
@@ -69,8 +88,10 @@ Gerado em 2026-11-01. Fonte de dados: `catalogo-vestibulares.json`. Legenda: ✔
 | PSC (Processo Seletivo Contínuo) | Universidade Federal do Amazonas (UFAM) | AM | publica | Compec-UFAM | seriado | ✔ | duracao_horas; materias; vagas de Medicina; uso do Enem/Sisu além do PSC; cidade |
 | Vestibular UERR | Universidade Estadual de Roraima (UERR) | RR | publica | — | vestibular_proprio, enem_nota | ✖ | tabela de pesos de Medicina (texto mal formatado); materias; duracao_horas; banca |
 | Vestibular UFT / Sisu | Universidade Federal do Tocantins (UFT) | TO | publica | Copese-UFT | vestibular_proprio, enem_nota, enem_sisu | ✖ | formato completo; edital 2027; provas_anteriores |
+| Vestibular UNIRG | Universidade de Gurupi (UNIRG) | TO | publica | UNIRG | vestibular_proprio | ✖ | questoes_objetivas; duracao_horas; materias |
+| Vestibular Unitins | Universidade Estadual do Tocantins (Unitins) | TO | publica | Unitins | vestibular_proprio, enem_sisu | ✖ | questoes_objetivas; duracao_horas; materias |
 
-## Centro-Oeste (4)
+## Centro-Oeste (6)
 
 | Prova | Instituição | UF | Rede | Banca | Ingresso | Verif. | A verificar |
 |---|---|---|---|---|---|---|---|
@@ -78,3 +99,6 @@ Gerado em 2026-11-01. Fonte de dados: `catalogo-vestibulares.json`. Legenda: ✔
 | Vestibular UFG | Universidade Federal de Goiás (UFG) | GO | publica | Instituto Verbena | vestibular_proprio | ✔ | vagas de Medicina; provas_anteriores |
 | Vestibular Medicina UEG | Universidade Estadual de Goiás (UEG) | GO | publica | Núcleo de Seleção UEG | vestibular_proprio | ✖ | questoes_objetivas; número de discursivas; duracao_horas; materias |
 | UEMSVest | Universidade Estadual de Mato Grosso do Sul (UEMS) | MS | publica | Fundação Fapec | vestibular_proprio, enem_nota | ✖ | questoes_objetivas 2027; materias; Medicina no PROUEMS; provas_anteriores |
+| Vestibular UEG (semestral) | Universidade Estadual de Goiás (UEG) | GO | publica | Núcleo de Seleção UEG | vestibular_proprio | ✖ | questoes_objetivas; duracao_horas; materias |
+| Vestibular UNEMAT | Universidade do Estado de Mato Grosso (UNEMAT) | MT | publica | UNEMAT (Diretoria de Concursos e Vestibulares) | vestibular_proprio, enem_sisu | ✖ | questoes_objetivas por edição; duracao_horas; materias |
+

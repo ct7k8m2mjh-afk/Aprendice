@@ -91,8 +91,19 @@ def _linhas(pagina):
             # NFC: alguns cadernos escrevem "Ã" como "A" + til combinante
             t = unicodedata.normalize('NFC', ''.join(s['text'] for s in l['spans'])).replace('\xa0', ' ').strip()
             if t:
-                out.append({'bbox': l['bbox'], 't': t})
-    return out
+                sp0 = next((sp for sp in l['spans'] if sp['text'].strip()), {})
+                neg = bool(sp0.get('flags', 0) & 16) or bool(re.search(r'(?i)bold|black|heavy', sp0.get('font', '')))
+                out.append({'bbox': l['bbox'], 't': t, 'neg': neg})
+    # "questão" e o número em linhas separadas, lado a lado (cadernos recentes da Vunesp): uma linha só
+    for L in out:
+        if re.fullmatch(r'(?i)quest[ãa]o', L['t']):
+            for M in out:
+                if re.fullmatch(r'\d{1,3}', M['t']) and abs(M['bbox'][1] - L['bbox'][1]) < 3 and 0 <= M['bbox'][0] - L['bbox'][2] < 20:
+                    L['t'] = L['t'] + ' ' + M['t']
+                    L['bbox'] = (L['bbox'][0], min(L['bbox'][1], M['bbox'][1]), M['bbox'][2], max(L['bbox'][3], M['bbox'][3]))
+                    M['t'] = ''
+                    break
+    return [L for L in out if L['t']]
 
 
 _cache_cols = {}
@@ -230,6 +241,18 @@ def artes_sangradas(pg, lp):
     return ys
 
 
+_cache_selos = {}
+
+
+def selos_da_pagina(pg):
+    """Retângulos pintados baixos (até 30 pt) da página: selos/faixas do número da questão."""
+    k = (id(pg.parent), pg.number)
+    if k not in _cache_selos:
+        _cache_selos[k] = [pymupdf.Rect(d['rect']) for d in pg.get_drawings()
+                           if 6 < d['rect'].height < 30 and d['rect'].width > 8]
+    return _cache_selos[k]
+
+
 def eventos_do_pdf(pdf, cfg, faixa=None):
     """Lista de eventos em ordem de leitura: ('q', n) início de questão, ('fim',) fim de enunciado,
     ('corte',) cabeçalho a excluir, ('suporte', ini, fim) texto de apoio compartilhado."""
@@ -282,7 +305,13 @@ def eventos_do_pdf(pdf, cfg, faixa=None):
                     and x0 - cols[c][0] <= dx:
                 ev.append({'p': pi, 'c': c, 'y': y0, 'tipo': 'q', 'n': None})
                 continue
+            if m and cfg.get('ancora_negrito') and not L.get('neg', True):
+                m = None   # número de linha do texto (5, 10, 15), não é número de questão
             if m and x0 - cols[c][0] <= dx:
+                # selo desenhado em volta do número ("QUESTÃO 15" numa faixa colorida): a questão começa no alto do selo
+                for r_ in selos_da_pagina(pg):
+                    if r_.y0 < y0 + 1 and r_.y1 > y0 and y0 - r_.y0 < 10 and r_.x0 - 2 <= x0 <= r_.x1:
+                        y0 = min(y0, r_.y0)
                 ev.append({'p': pi, 'c': c, 'y': y0, 'tipo': 'q', 'n': int(m.group(1))})
                 continue
             for rx in cfg.get('fim', []):
@@ -299,6 +328,7 @@ def eventos_do_pdf(pdf, cfg, faixa=None):
                         m = re.search(rx, t)
                         if m:
                             resto = t[m.start():] + ' ' + (lp[li + 1]['t'] if li + 1 < len(lp) else '')
+                            resto = re.sub(r'(\w)-\s+(\w)', r'\1\2', resto)   # "ques- tões" partido no fim da linha
                             mq = re.search(r'(?i)(quest|cuesti)\w*\W*(.*)', resto)
                             if mq:   # "Text 17 (for questions 18, 19, 20 and 21)" -> 18..21; só a lista logo após "questões"
                                 ml = re.match(r'(?i)\s*(?:de|das|dos|nos|n[ºo°]s?\.?)?\s*(\d+)((?:(?:\s*(?:,|\be\b|\ba\b|\band\b|\by\b|\bto\b|–|-))+\s*\d+)*)', mq.group(2))
@@ -319,6 +349,8 @@ def eventos_do_pdf(pdf, cfg, faixa=None):
                                     and not re.match(r'(?i)^texts?o?\s+0?\d+\s*$', t) \
                                     and not re.match(r'^\s*(?:\(?[A-Ea-e][\)\.]|\([A-E]\))', lp[li - 1]['t']):
                                 yi = lp[li - 1]['bbox'][1] - 2
+                            # errata da banca: a indicação impressa aponta outras questões (conferida no caderno)
+                            nums = cfg.get('faixa_errata', {}).get((cfg.get('_arquivo'), pi + 1, tuple(nums)), nums)
                             ev.append({'p': pi, 'c': c, 'y': yi, 'tipo': 'suporte', 'faixa': nums if not mt else [],
                                        'num': int(mt.group(1)) if mt else None})
                             break
@@ -388,6 +420,26 @@ def textos_citados(enun):
     return out
 
 
+def conserta_bbox(pdf):
+    """Form XObject com /BBox invertido ([0 842 595 0], cadernos recentes da Vunesp): o MuPDF o trata como vazio e a
+    página some. Só na memória (o arquivo baixado e o seu hash não mudam)."""
+    n = 0
+    for x in range(1, pdf.xref_length()):
+        try:
+            if pdf.xref_get_key(x, 'Subtype') != ('name', '/Form'):
+                continue
+            t, v = pdf.xref_get_key(x, 'BBox')
+        except Exception:
+            continue
+        if t != 'array':
+            continue
+        b = [float(z) for z in v.strip('[]').split()]
+        if len(b) == 4 and (b[1] > b[3] or b[0] > b[2]):
+            pdf.xref_set_key(x, 'BBox', '[%g %g %g %g]' % (min(b[0], b[2]), min(b[1], b[3]), max(b[0], b[2]), max(b[1], b[3])))
+            n += 1
+    return n
+
+
 def trechos_coloridos(pdf, cores):
     """Retângulos dos trechos de texto numa cor de destaque (ex.: alternativa correta em vermelho)."""
     out = {}
@@ -425,7 +477,19 @@ def neutraliza(im, clip, rects, escala):
     return im
 
 
-def render(pdf, segs, marcas=None, coloridos=None):
+def apagaveis(pdf, cfg):
+    """Linhas a pintar de branco no print: rodapé/cabeçalho de página que encosta no fim da questão (cfg 'apagar')."""
+    out = {}
+    if not cfg.get('apagar'):
+        return out
+    for pg in pdf:
+        rs = [pymupdf.Rect(L['bbox']) for L in linhas(pg) if any(re.search(rx, L['t']) for rx in cfg['apagar'])]
+        if rs:
+            out[pg.number] = rs
+    return out
+
+
+def render(pdf, segs, marcas=None, coloridos=None, apagar=None):
     imgs = []
     for p, r in segs:
         if r.height < 8:
@@ -433,6 +497,11 @@ def render(pdf, segs, marcas=None, coloridos=None):
         pg = pdf[p]
         pix = pg.get_pixmap(clip=r, dpi=DPI)
         im = Image.open(BytesIO(pix.tobytes('png'))).convert('RGB')
+        for ra in (apagar or {}).get(p, []):
+            if ra.intersects(r):
+                e_ = DPI / 72
+                im.paste((255, 255, 255), (max(0, int((ra.x0 - r.x0) * e_) - 2), max(0, int((ra.y0 - r.y0) * e_) - 2),
+                                           min(im.width, int((ra.x1 - r.x0) * e_) + 3), min(im.height, int((ra.y1 - r.y0) * e_) + 3)))
         if marcas and p in marcas:
             im = realinha(im, r, marcas[p], DPI / 72)
         if coloridos and p in coloridos:
@@ -501,7 +570,15 @@ def texto(pdf, segs):
                         ls.append(''.join(s_['text'] for s_ in l['spans']))
             t.append('\n'.join(ls))
         else:
-            t.append(pdf[p].get_text('text', clip=r))
+            # só as linhas cujo centro está no recorte (o rótulo da questão seguinte, com fonte alta, encosta na borda)
+            ls = []
+            for b in pdf[p].get_text('dict', clip=r)['blocks']:
+                for l in b.get('lines', []):
+                    y0_, y1_ = l['bbox'][1], l['bbox'][3]
+                    lt = ''.join(s_['text'] for s_ in l['spans'])
+                    if r.y0 - 1 <= (y0_ + y1_) / 2 <= r.y1 + 1 and not re.fullmatch(r'(?i)\s*quest[ãa]o\s*', lt):
+                        ls.append(lt)
+            t.append('\n'.join(ls))
     s = '\n'.join(t)
     s = re.sub(r'[ \t]+', ' ', s)
     s = re.sub(r'\n{3,}', '\n\n', s)
@@ -622,7 +699,9 @@ def processa(pid, amostra=False, so_texto=False):
     for cad in cads:
         arq = pasta / (cad['arquivo'] + '.pdf')
         pdf = pymupdf.open(arq)
+        conserta_bbox(pdf)
         _cache_linhas.clear()
+        _cache_selos.clear()
         _cache_cols.clear()  # chave usa id() do documento: não pode sobreviver de um caderno para outro
         _OCR.clear()
         _OCR_SO_TEXTO.clear()
@@ -639,6 +718,7 @@ def processa(pid, amostra=False, so_texto=False):
             redige(pdf, cfg['redigir'])
         faixa_pag = cad.get('paginas')
         cfg['_arquivo'] = cad['arquivo']
+        apaga = apagaveis(pdf, cfg)
         ev = eventos_do_pdf(pdf, cfg, faixa_pag)
         if cad.get('sem_suporte'):   # caderno em que os textos vêm dentro da questão, depois do número
             ev = [e for e in ev if e['tipo'] != 'suporte']
@@ -780,7 +860,7 @@ def processa(pid, amostra=False, so_texto=False):
             elif so_texto:
                 continue
             else:
-                img = render(pdf, sup + segs, marcas, coloridos)
+                img = render(pdf, sup + segs, marcas, coloridos, apaga)
             if img is None:
                 relatorio['faltando'].append(n)
                 continue
@@ -790,7 +870,7 @@ def processa(pid, amostra=False, so_texto=False):
             if not so_texto and (not amostra or len(questoes) < 6):
                 img.save(destino / 'q' / f'{n:03d}.webp', 'WEBP', quality=80, method=6)
             # questão só de texto: transcrição fiel da camada de texto (nunca com figura, fórmula ou OCR)
-            estr = transcreve(pdf, sup + segs, cfg['ancora'], tuple(cfg.get('corte', [])) + tuple(cfg.get('fim', [])),
+            estr = transcreve(pdf, sup + segs, cfg['ancora'], tuple(cfg.get('corte', [])) + tuple(cfg.get('fim', [])) + tuple(cfg.get('apagar', [])),
                               cfg.get('alternativas', 5), ocr=id(pdf) in _OCR)
             g = gab.get(n)
             questoes[n] = {

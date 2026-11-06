@@ -52,3 +52,22 @@ O caderno e o gabarito de 2025 já estão baixados em `fabrica_saida/ingestao/un
 | Inverno 2026 | https://www.vestibular.uem.br/provas/in26/P1.pdf | https://www.vestibular.uem.br/provas/in26/gabdef.pdf |
 
 Nada da UEM foi baixado.
+
+## UFSC — Vestibular Unificado UFSC/IFC (somatória)
+
+Registro do lote 2 (06/11/2026). Fonte dos links: `inventario-publicas-2.json`.
+
+- **Formato:** objetivas de **somatória** (proposições 01, 02, 04, 08, 16, 32, 64; a resposta é a soma das corretas) e
+  algumas questões abertas numéricas, em três dias (P1, P2 e discursivas/redação). Cadernos por cor (referência: amarelo).
+- **Por que ficou de fora:** como na UEM, não há "a alternativa certa"; transformar em A–E alteraria a questão (princípio 1).
+- **O que o site precisa para entrar:** o mesmo tipo "somatória" da UEM (marcar proposições, mostrar a soma, nota
+  proporcional) e o tipo "resposta numérica" (00 a 99).
+- **Edições com caderno + gabarito revisto confirmados:**
+
+| Edição | Caderno (P1, amarelo) | Gabarito revisto (P1) |
+|---|---|---|
+| 2024 | https://vestibular2024.paginas.ufsc.br/files/2023/12/p1_amarela.pdf | https://vestibular2024.paginas.ufsc.br/files/2023/12/novo_gabarito_p1_amarela.pdf |
+| 2026 | https://vestibularunificado2026.paginas.ufsc.br/files/2014/12/p1_amarela.pdf | https://vestibularunificado2026.paginas.ufsc.br/files/2025/12/novo_gabarito_p1_amarela.pdf |
+
+A Prova 2 de cada ano fica na mesma pasta (`p2_amarela.pdf` + `novo_gabarito_p2_amarela.pdf`). 2020, 2022, 2023 e 2025
+estão em dados.coperve.ufsc.br, cuja cadeia de certificado não fecha fora do navegador (baixar à mão); 2021 sem prova própria.

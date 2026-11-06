@@ -1,6 +1,8 @@
 import type { Letra, Questao, Resolucao } from '../dados/tipos';
 import { Icone } from './Icone';
 import { QuadroAnimado } from './QuadroAnimado';
+import { comFracoes } from './Fracao';
+import { contaEhTexto } from '../logica/fracao';
 
 /** Resolução comentada. Princípio 5: começa pela alternativa que o aluno marcou. */
 export function ResolucaoView({ q, r, marcada }: { q: Questao; r: Resolucao | null | undefined; marcada: Letra | null }) {
@@ -21,22 +23,22 @@ export function ResolucaoView({ q, r, marcada }: { q: Questao; r: Resolucao | nu
       {erradaTxt && (
         <div className="res-marcada">
           <h3>Por que a {marcada} parece certa (e não é)</h3>
-          <p>{erradaTxt}</p>
+          <p>{comFracoes(erradaTxt)}</p>
         </div>
       )}
 
       {!r && <p className="miolo">A resolução comentada desta questão está em revisão e entra quando passar por todas as lentes.</p>}
       {r && (
         <>
-          {r.resposta && <p className="res-resposta">{r.resposta}</p>}
+          {r.resposta && <p className="res-resposta">{comFracoes(r.resposta)}</p>}
           {r.essencial?.chave && (
-            <div className="res-chave"><b>A ideia-chave</b><p>{r.essencial.chave}</p></div>
+            <div className="res-chave"><b>A ideia-chave</b><p>{comFracoes(r.essencial.chave)}</p></div>
           )}
           {r.antes?.texto && (
             <details className="res-antes">
               <summary>O que você precisa saber antes</summary>
-              <p>{r.antes.texto}</p>
-              {r.antes.formulas && r.antes.formulas.length > 0 && <ul className="caderno">{r.antes.formulas.map((f, i) => <li key={i}>{f}</li>)}</ul>}
+              <p>{comFracoes(r.antes.texto)}</p>
+              {r.antes.formulas && r.antes.formulas.length > 0 && <ul className="caderno">{r.antes.formulas.map((f, i) => <li key={i} className={contaEhTexto(f) ? 'texto' : undefined}>{comFracoes(f)}</li>)}</ul>}
               {r.antes.simbolos && r.antes.simbolos.length > 0 && (
                 <dl className="simbolos">{r.antes.simbolos.map(([t, d], i) => <div key={i}><dt>{t}</dt><dd>{d}</dd></div>)}</dl>
               )}
@@ -49,28 +51,29 @@ export function ResolucaoView({ q, r, marcada }: { q: Questao; r: Resolucao | nu
                   <span className="passo-n num" aria-hidden>{i + 1}</span>
                   <div>
                     <b>{p.faz}</b>
-                    {p.conta && <p className="conta">{p.conta}</p>}
-                    {p.porque && <p className="porque">{p.porque}</p>}
+                    {/* conta à mão (Caveat) só quando é conta; trecho citado ou frase vai na letra da interface (guia, p. 5) */}
+                    {p.conta && (contaEhTexto(p.conta) ? <p className="conta citacao">{p.conta}</p> : <p className="conta">{comFracoes(p.conta)}</p>)}
+                    {p.porque && <p className="porque">{comFracoes(p.porque)}</p>}
                   </div>
                 </li>
               ))}
             </ol>
           )}
           {r.quadro && r.quadro.length > 0 && <QuadroAnimado quadro={r.quadro} />}
-          {r.checagem && <div className="res-bloco"><h3>Confira em 10 segundos</h3><p>{r.checagem}</p></div>}
-          {r.armadilha && <div className="res-bloco armadilha"><h3>Armadilha</h3><p>{r.armadilha}</p></div>}
-          {r.alerta && <div className="res-bloco"><h3>Atenção</h3><p>{r.alerta}</p></div>}
+          {r.checagem && <div className="res-bloco"><h3>Confira em 10 segundos</h3><p>{comFracoes(r.checagem)}</p></div>}
+          {r.armadilha && <div className="res-bloco armadilha"><h3>Armadilha</h3><p>{comFracoes(r.armadilha)}</p></div>}
+          {r.alerta && <div className="res-bloco"><h3>Atenção</h3><p>{comFracoes(r.alerta)}</p></div>}
           {r.caminhos && r.caminhos.length > 0 && (
             <details className="res-caminhos">
               <summary>Outros jeitos de resolver</summary>
-              <ul>{r.caminhos.map((c, i) => <li key={i}><b>{c.nome}</b><span>{c.ideia}</span></li>)}</ul>
+              <ul>{r.caminhos.map((c, i) => <li key={i}><b>{c.nome}</b><span>{comFracoes(c.ideia)}</span></li>)}</ul>
             </details>
           )}
           {r.erradas && Object.keys(r.erradas).length > 0 && (
             <details className="res-erradas" open={!marcada || acertou ? false : undefined}>
               <summary>De onde vem cada alternativa errada</summary>
               <ul>{(Object.entries(r.erradas) as [Letra, string][]).sort(([a], [b]) => a.localeCompare(b)).map(([l, t]) => (
-                <li key={l} className={l === marcada ? 'marcada' : ''}><b>{l}</b><span>{t}</span></li>
+                <li key={l} className={l === marcada ? 'marcada' : ''}><b>{l}</b><span>{comFracoes(t)}</span></li>
               ))}</ul>
             </details>
           )}

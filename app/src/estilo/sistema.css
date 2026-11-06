@@ -345,8 +345,9 @@
 /* fim da resolução: seguir sem voltar ao cartão */
 .q-lado-fim { display: flex; justify-content: space-between; gap: 10px; margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--linha); }
 
-/* nome do tema na faixa: nunca cortado (até 3 linhas; os cartões da fileira ficam da mesma altura) */
-.ft-nome { -webkit-line-clamp: 3; line-clamp: 3; }
+/* nome do tema na faixa: nunca cortado (sem limite de linhas; os cartões da fileira ficam da mesma altura).
+   "Orgânica: reações, polímeros e ambiente" pede 4 linhas no cartão de 150 px (auditoria rodada 3, item 5) */
+.ft-nome { display: block; -webkit-line-clamp: unset; line-clamp: none; overflow: visible; overflow-wrap: break-word; }
 
 /* ---------- rodada 2 da auditoria do comando 16 ---------- */
 /* simulado em andamento: o menu continua (sem modo foco), a barra fica na coluna e a questão é um cartão só;
@@ -417,9 +418,9 @@
 }
 
 /* ---------- flashcards: sessão ----------
-   o cartão ocupa a coluna (alinhado à barra), faixa do tema no topo, rótulo da resposta, caixa de 118 px
+   o cartão tem até 920 px, centrado na coluna (protótipo #v-flash), faixa do tema no topo, rótulo da resposta, caixa de 118 px
    e, à esquerda, Corrigir (principal), "Não sei" e o atalho de teclado */
-.flashcard { max-width: none; padding: 30px 40px 34px; border-radius: 20px; gap: 0; }
+.flashcard { max-width: 920px; margin-inline: auto; padding: 30px 40px 34px; border-radius: 20px; gap: 0; }
 .flashcard > * + * { margin-top: 16px; }
 .fc-faixa { display: grid; grid-template-columns: 34px minmax(0, 1fr) auto; align-items: center; gap: 12px; padding: 8px 12px; border-radius: 12px; background: color-mix(in srgb, var(--tinta) 4%, transparent); }
 .fc-faixa .ic3d { width: 34px !important; height: 34px !important; }
