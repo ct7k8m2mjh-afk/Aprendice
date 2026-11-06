@@ -14,6 +14,7 @@ Fonte: PV Física L1–L4 (Poliedro), 39 capítulos lidos inteiros; fichamentos 
 | F07 Hidrostática | aprovado (06/11/2026) | 48 |
 | F06 Gravitação e astronomia | aprovado (06/11/2026) | 40 |
 | F03 Dinâmica e forças | aprovado (06/11/2026) | 60 |
+| F10 Ondulatória e acústica | aprovado (06/11/2026) | 77 |
 | F01, F03–F12 | em produção | — |
 
 Observações para a integração:
