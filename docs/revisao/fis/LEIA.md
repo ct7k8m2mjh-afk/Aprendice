@@ -1,5 +1,7 @@
 # Revisão de Física — situação por tema
 
+**Completa (06/11/2026): os 12 temas aprovados nas lentes, 727 slides.**
+
 Fonte: PV Física L1–L4 (Poliedro), 39 capítulos lidos inteiros; fichamentos com página. Cada tema passa pelas lentes fato → didática → fato antes de entrar aqui.
 
 | Tema | Situação | Slides |
@@ -16,7 +18,6 @@ Fonte: PV Física L1–L4 (Poliedro), 39 capítulos lidos inteiros; fichamentos 
 | F03 Dinâmica e forças | aprovado (06/11/2026) | 60 |
 | F10 Ondulatória e acústica | aprovado (06/11/2026) | 77 |
 | F01 Fundamentos e grandezas | aprovado (06/11/2026) | 60 |
-| F01, F03–F12 | em produção | — |
 
 Observações para a integração:
 - `visual.movimento` é o roteiro da animação (ordem do que entra e se move); `passos[].mov` diz como os termos se movem na conta (motor único).
