@@ -40,6 +40,8 @@ ETAPAS = ['resolvedor', 'fatos', 'didatica', 'fatos-volta']
 # orçamento do dono: US$ 200 no total (06/11/2026). A lente de fatos, a mais crítica, fica no Opus; as outras no Sonnet.
 MODELO = {'resolvedor': 'claude-sonnet-5-5', 'fatos': 'claude-opus-5-5',
           'didatica': 'claude-sonnet-5-5', 'fatos-volta': 'claude-sonnet-5-5'}
+# teto geral do dono: US$ 200 de crédito na API; a fábrica para em US$ 195 (folga de US$ 5)
+TETO_GERAL_US = 195.0
 ESFORCO = {'resolvedor': 'high', 'fatos': 'medium', 'didatica': 'medium', 'fatos-volta': 'medium'}
 # US$ por milhão de tokens, já com o desconto de 50% do Batches (entrada, saída, leitura de cache, escrita de cache)
 PRECO = {'claude-sonnet-5-5': (1.0, 5.0, 0.10, 1.25), 'claude-opus-5-5': (2.0, 10.0, 0.20, 2.5)}
@@ -191,6 +193,8 @@ def aplica(r, mudancas):
         partes = re.findall(r'[^.\[\]]+|\[\d+\]', campo)
         if not partes or 'depois' not in m:
             falhas.append(campo); continue
+        if partes[0] == 'resolucao' and len(partes) > 1 and partes[1] in ('caminhos', 'quadro', 'visual', 'fontes'):
+            partes = partes[1:]  # esses campos ficam fora de "resolucao"
         alvo = r
         try:
             for p in partes[:-1]:
@@ -255,6 +259,7 @@ def valida(r, gab, alts):
     sobra = re.findall(r'\\\\[a-zA-Z]+', tudo)
     if sobra:
         erros.append('LaTeX sobrando: ' + ', '.join(sorted(set(sobra))) + ' (o site lê texto com "a/b", ×, ·, ^)')
+    # linha longa no celular: decide a conferência na tela (confere_tela.cjs), que usa a regra do próprio site
     if r.get('materia') in ('bio', 'qui') and not (r.get('visual') or {}).get('cabe'):
         erros.append('Biologia/Química sem visual (cabe: true)')
     return erros
@@ -302,6 +307,13 @@ def custo(msg):
     buscas = getattr(getattr(u, 'server_tool_use', None), 'web_search_requests', 0) or 0
     return ((u.input_tokens * pi + u.output_tokens * po + (u.cache_read_input_tokens or 0) * pcr
              + (u.cache_creation_input_tokens or 0) * pcw) / 1e6 + buscas * BUSCA_US)
+
+
+def gasto_total():
+    if not os.path.exists(GASTOS):
+        return 0.0
+    with open(GASTOS, encoding='utf-8') as f:
+        return sum(float(r['gasto_usd']) for r in csv.DictReader(f))
 
 
 def registra_gasto(lote, etapa, n, us, batch_id):
@@ -370,6 +382,12 @@ def roda(lote, teto):
             continue
         if not e.get('batch_id'):
             previsto = est['gasto_usd'] + ESTIMATIVA_US[etapa] * len(vivos)
+            geral = gasto_total() + ESTIMATIVA_US[etapa] * len(vivos)
+            if geral > TETO_GERAL_US:
+                print(f'PARADO: etapa {etapa} levaria o gasto total da fábrica a ~US$ {geral:.2f}, acima do teto geral '
+                      f'de US$ {TETO_GERAL_US:.2f}.')
+                gravar_json(os.path.join(d, 'estado.json'), est)
+                return
             if previsto > teto:
                 print(f'PARADO: etapa {etapa} levaria o gasto a ~US$ {previsto:.2f}, acima do teto de US$ {teto:.2f}.')
                 gravar_json(os.path.join(d, 'estado.json'), est)

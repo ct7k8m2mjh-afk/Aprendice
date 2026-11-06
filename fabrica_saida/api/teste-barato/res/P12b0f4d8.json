@@ -8,10 +8,10 @@
  "conceito": "Efeito da internet sobre a renda de comunidades tradicionais: integração a mercados maiores e valorização da economia local.",
  "resolucao": {
   "antes": {
-   "texto": "O texto diz que a internet cria e fortalece mercados e integra pequenos agricultores e produtores da comunidade florestal a cadeias de abastecimento maiores. Vender mais e a melhor preço aumenta a renda, ou seja, a rentabilidade. A pergunta é por qual caminho a tecnologia amplia essa rentabilidade, e a resposta tem de sair do trecho sobre mercados e financiamento.",
+   "texto": "O texto diz que a internet cria e fortalece mercados e liga pequenos agricultores e produtores da comunidade florestal a cadeias de abastecimento maiores. Vender mais e para mais compradores aumenta a renda, ou seja, a rentabilidade. A pergunta é por qual caminho a internet aumenta essa renda. A resposta está no trecho sobre mercados e financiamento.",
    "formulas": [
-    "mais mercados e acesso a cadeias de abastecimento → mais venda → mais renda",
-    "a resposta tem de ligar a internet à renda, não a outro benefício"
+    "mais mercados e acesso a cadeias maiores → mais venda → mais renda",
+    "a resposta liga a internet à renda, não a outro benefício"
    ],
    "simbolos": [
     [
@@ -32,7 +32,7 @@
     ]
    ]
   },
-  "pista": "Separe o que o texto diz sobre visibilidade e redes sociais do que ele diz sobre mercados e financiamento. Só a segunda parte fala de dinheiro.",
+  "pista": "Separe a parte do texto sobre visibilidade e redes sociais da parte sobre mercados e financiamento. Qual das duas fala de ganhar dinheiro?",
   "passos": [
    {
     "faz": "Traduza o que se pede",
@@ -55,7 +55,7 @@
    {
     "faz": "Elimine o que não liga à renda",
     "conta": "B, C, D, E: o texto não cita",
-    "porque": "Podem ser efeitos da internet na vida real, mas o trecho não os menciona e eles não explicam diretamente o aumento da rentabilidade.",
+    "porque": "Cultura, regras, escola e qualificação podem existir na vida real, mas o texto não os cita. Também não explicam o aumento da renda que o comando pede.",
     "tipo": "eliminar"
    },
    {
@@ -69,7 +69,7 @@
   "checagem": "Teste cada letra com a pergunta: o texto diz isso e isso gera renda? Só a A tem apoio em \"mercados\" e \"cadeias de abastecimento maiores\". As demais não aparecem no trecho.",
   "erradas": {
    "B": "Projetos culturais não aparecem no texto. A parte sobre visibilidade trata de engajamento e divulgação, não de elaborar projetos, e o comando pede o que amplia a renda.",
-   "C": "O texto fala em criar e fortalecer mercados e em inovar no financiamento, não em estabelecer regras comerciais. Regra de comércio é normatização, e o texto não a cita como efeito da internet.",
+   "C": "Regras comerciais são normas de comércio. O texto fala em criar e fortalecer mercados e em inovar no financiamento, não em estabelecer regras. Por isso a C não explica o ganho de renda.",
    "D": "Infraestrutura educacional não é citada. O trecho trata de comunicação, mercado e financiamento. Escola pode ser importante, mas não é o caminho pelo qual o texto liga a internet à renda.",
    "E": "Homogeneizar a qualificação profissional não aparece no texto e contraria a ideia de valorizar comunidades tradicionais, que têm saberes próprios. O texto também não trata de qualificação."
   },
@@ -106,11 +106,15 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -145,6 +149,53 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "A"
+  "fatos_resposta": "A",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "O texto diz que a internet cria e fortalece mercados e liga pequenos agricultores e produtores da comunidade florestal a cadeias de abastecimento maiores. Vender mais e para mais compradores aumenta a renda, ou seja, a rentabilidade. A pergunta é por qual caminho a internet aumenta essa renda. A resposta está no trecho sobre mercados e financiamento.",
+    "motivo": "Frases mais curtas e claras; trocou 'a melhor preço', que o texto não diz, por 'mais compradores'."
+   },
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "mais mercados e acesso a cadeias maiores → mais venda → mais renda",
+     "a resposta liga a internet à renda, não a outro benefício"
+    ],
+    "motivo": "Linguagem mais simples, sem mudar o sentido."
+   },
+   {
+    "campo": "resolucao.pista",
+    "depois": "Separe a parte do texto sobre visibilidade e redes sociais da parte sobre mercados e financiamento. Qual das duas fala de ganhar dinheiro?",
+    "motivo": "Transforma a pista em pergunta, sem dar a resposta."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Cultura, regras, escola e qualificação podem existir na vida real, mas o texto não os cita. Também não explicam o aumento da renda que o comando pede.",
+    "motivo": "Frase mais direta, com a razão da eliminação."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "B, C, D, E: o texto não cita",
+    "motivo": "Mantido; já cabe na linha."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "Regras comerciais são normas de comércio. O texto fala em criar e fortalecer mercados e em inovar no financiamento, não em estabelecer regras. Por isso a C não explica o ganho de renda.",
+    "motivo": "Explica o que faltou a quem marcou C: confundiu 'mercados' com 'regras de mercado'."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "B, C, D, E: o texto não cita",
+    "motivo": "Sem alteração de conteúdo. Já está correto e cabe na linha.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "A"
  }
 }

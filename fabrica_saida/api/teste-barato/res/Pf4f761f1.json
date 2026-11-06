@@ -8,7 +8,7 @@
  "conceito": "Em que etapa do ciclo de Otto o gás quente realiza trabalho: a expansão adiabática, em que energia térmica vira energia útil.",
  "resolucao": {
   "antes": {
-   "texto": "Um motor térmico recebe calor e entrega trabalho mecânico, a energia útil que move o carro. No diagrama P-V, o gás só realiza trabalho quando o volume aumenta, ou seja, quando ele se expande empurrando o pistão. Se o volume não muda, o trabalho é nulo. Se o volume diminui, o pistão é quem realiza trabalho sobre o gás.",
+   "texto": "Um motor térmico recebe calor e entrega trabalho mecânico, que é a energia útil que move o carro. No diagrama P-V, o gás só realiza trabalho quando o volume aumenta, isto é, quando ele se expande e empurra o pistão. Se o volume não muda, o trabalho é nulo. Se o volume diminui, o pistão realiza trabalho sobre o gás.",
    "formulas": [
     "Trabalho do gás: W > 0 quando V aumenta (expansão)",
     "Volume constante (reta vertical no P-V): W = 0",
@@ -32,8 +32,20 @@
      "trabalho realizado pelo gás; é a energia útil que o motor entrega"
     ],
     [
+     "Q",
+     "calor trocado pelo gás com o meio"
+    ],
+    [
      "U",
      "energia interna do gás, ligada à sua temperatura"
+    ],
+    [
+     "ΔU",
+     "variação da energia interna do gás"
+    ],
+    [
+     "pistão",
+     "peça que se move dentro do cilindro e é empurrada pelo gás"
     ]
    ]
   },
@@ -60,7 +72,7 @@
    {
     "faz": "Veja onde o volume aumenta",
     "conta": "3→4: V aumenta (expansão)",
-    "porque": "O gás quente, a alta pressão, empurra o pistão e realiza trabalho positivo. Como a etapa é adiabática, Q = 0 e W = −ΔU: o gás esfria porque sua energia interna vira trabalho.",
+    "porque": "O gás quente, a alta pressão, empurra o pistão e realiza trabalho positivo. Como a etapa é adiabática, Q = 0 e W = −ΔU. Ou seja, a energia interna diminui e o gás esfria.",
     "tipo": "localizar"
    },
    {
@@ -71,12 +83,12 @@
    }
   ],
   "resposta": "Alternativa C: a energia térmica vira energia útil na etapa IV (3 a 4), a expansão adiabática, em que o gás aumenta de volume e empurra o pistão.",
-  "checagem": "Veja pelo balanço de um ciclo. O trabalho útil é a área amarela W, igual ao trabalho da expansão (curva 3→4, área maior) menos o da compressão (curva 1→2, área menor). Só a expansão fornece o trabalho positivo que sobra.",
+  "checagem": "Confira por um ciclo inteiro. O trabalho útil é a área amarela W. Ela é a área sob a curva de expansão (3→4) menos a área sob a curva de compressão (1→2). Sem a expansão, o ciclo não entregaria trabalho.",
   "erradas": {
    "A": "A etapa II (1→2) é a compressão: o volume diminui e o pistão realiza trabalho sobre o gás. O gás recebe energia, não a converte em energia útil.",
    "B": "A etapa III (2→3) é a reta vertical em que o calor da combustão entra. O volume não muda, então W = 0. Aqui a energia química vira calor, mas ainda não há trabalho.",
    "D": "A etapa V (4→1) é a reta vertical em que o calor é liberado. O volume não muda, então W = 0. É calor descartado, que não vira energia útil.",
-   "E": "A etapa VI (1→0) é a saída dos gases queimados do cilindro, a pressão constante e com volume diminuindo. Ela só esvazia o cilindro, sem produzir trabalho útil."
+   "E": "A etapa VI (1→0) é a saída dos gases queimados do cilindro, com o volume diminuindo. Ela só esvazia o cilindro e não produz trabalho útil."
   },
   "armadilha": "Escolher a etapa III porque é nela que o calor entra; mas o calor só vira trabalho quando o gás se expande, na etapa IV.",
   "alerta": "",
@@ -111,11 +123,15 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -132,6 +148,73 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "C"
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Um motor térmico recebe calor e entrega trabalho mecânico, que é a energia útil que move o carro. No diagrama P-V, o gás só realiza trabalho quando o volume aumenta, isto é, quando ele se expande e empurra o pistão. Se o volume não muda, o trabalho é nulo. Se o volume diminui, o pistão realiza trabalho sobre o gás.",
+    "motivo": "Frases mais curtas e sem ambiguidade; define energia útil."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "P-V",
+      "diagrama com pressão no eixo vertical e volume no eixo horizontal"
+     ],
+     [
+      "adiabática",
+      "transformação sem troca de calor com o meio (Q = 0)"
+     ],
+     [
+      "isobárica",
+      "transformação a pressão constante"
+     ],
+     [
+      "W",
+      "trabalho realizado pelo gás; é a energia útil que o motor entrega"
+     ],
+     [
+      "Q",
+      "calor trocado pelo gás com o meio"
+     ],
+     [
+      "U",
+      "energia interna do gás, ligada à sua temperatura"
+     ],
+     [
+      "ΔU",
+      "variação da energia interna do gás"
+     ],
+     [
+      "pistão",
+      "peça que se move dentro do cilindro e é empurrada pelo gás"
+     ]
+    ],
+    "motivo": "Q, ΔU e pistão aparecem na resolução e não estavam explicados."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "O gás quente, a alta pressão, empurra o pistão e realiza trabalho positivo. Como a etapa é adiabática, Q = 0 e W = −ΔU. Ou seja, a energia interna diminui e o gás esfria.",
+    "motivo": "Frases mais curtas e causa mais clara."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "A etapa VI (1→0) é a saída dos gases queimados do cilindro, com o volume diminuindo. Ela só esvazia o cilindro e não produz trabalho útil.",
+    "motivo": "Remove detalhe de pressão constante que não ajuda o aluno e simplifica."
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Confira por um ciclo inteiro. O trabalho útil é a área amarela W. Ela é a área sob a curva de expansão (3→4) menos a área sob a curva de compressão (1→2). Sem a expansão, o ciclo não entregaria trabalho.",
+    "motivo": "Texto mais direto e claro para o aluno."
+   }
+  ],
+  "didatica_alertas": [
+   "A etapa VI (1→0) no diagrama é a linha tracejada a pressão constante e, no quadro, é a liberação dos gases; o texto de antes da resolução diz 'volume diminuindo', coerente com o desenho. Sem erro de fato, apenas conferir."
+  ],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "C"
  }
 }

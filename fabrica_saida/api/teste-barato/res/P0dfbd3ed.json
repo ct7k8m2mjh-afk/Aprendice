@@ -8,7 +8,7 @@
  "conceito": "Ler gráficos de oscilação (senoide) e reconhecer amplitude constante em cada trecho e amplitude menor no primeiro trecho.",
  "resolucao": {
   "antes": {
-   "texto": "Amplitude é a altura da onda: a distância do eixo horizontal até o pico (ou até o vale). Amplitude constante significa que todos os picos de um trecho têm a mesma altura. O enunciado impõe duas condições: (1) amplitude constante de 0 a 9 min e de 9 a 20 min; (2) amplitude de 0 a 9 min (asfalto) menor que a de 9 a 20 min (chão). A frequência (quantas ondas por minuto) não é exigida.",
+   "texto": "Amplitude é a altura da onda: a distância do eixo horizontal até o pico (ou até o vale). Amplitude constante significa que todos os picos de um trecho têm a mesma altura. O enunciado impõe duas condições: (1) amplitude constante de 0 a 9 min e de 9 a 20 min; (2) amplitude de 0 a 9 min (asfalto) menor que a de 9 a 20 min (chão). A frequência (quantas ondas cabem em cada minuto) não é exigida.",
    "formulas": [
     "amplitude = altura do pico em relação ao eixo horizontal",
     "aprovado = amplitude constante em cada trecho + amplitude do asfalto < amplitude do chão"
@@ -24,7 +24,15 @@
     ],
     [
      "eixo horizontal",
-     "no gráfico, o tempo em minutos; a amplitude está no eixo vertical"
+     "no gráfico, é a linha do tempo em minutos; a amplitude está no eixo vertical"
+    ],
+    [
+     "pico e vale",
+     "pico é o ponto mais alto da onda; vale é o ponto mais baixo"
+    ],
+    [
+     "frequência",
+     "quantidade de ondas por minuto; onda estreita significa frequência maior"
     ]
    ]
   },
@@ -33,7 +41,7 @@
    {
     "faz": "Marque o instante da troca de piso",
     "conta": "asfalto: 0 a 9 min; chão: 9 a 20 min",
-    "porque": "O gráfico deve mudar de comportamento um pouco antes do 10 no eixo. É nesse ponto que se compara a altura dos picos.",
+    "porque": "A troca de piso acontece no minuto 9, um pouco antes do 10 no eixo. É nesse ponto que o gráfico deve mudar de altura, e é aí que se compara antes e depois.",
     "tipo": "localizar"
    },
    {
@@ -45,7 +53,7 @@
    {
     "faz": "Aplique a condição 2 (asfalto menor)",
     "conta": "altura antes do min 9 < altura depois",
-    "porque": "Das curvas que sobraram, serve a que tem ondas baixas até cerca de 9 min e ondas bem mais altas e iguais entre si depois disso. Só mudar a frequência não basta.",
+    "porque": "Entre os gráficos que sobraram, serve o que tem ondas baixas até cerca de 9 min e ondas mais altas, todas iguais entre si, depois disso. Mudar só a frequência não basta.",
     "tipo": "comparar"
    },
    {
@@ -69,7 +77,25 @@
    "pede": "O gráfico com amplitude constante em cada trecho e menor no asfalto (0 a 9 min) do que no chão (9 a 20 min).",
    "chave": "Compare a altura dos picos: iguais dentro de cada trecho e maiores no segundo trecho.",
    "cuidado": "Não confundir altura da onda com quantidade de ondas, e não deixar passar uma onda que vai diminuindo ou aumentando."
-  }
+  },
+  "quadro": [
+   {
+    "linha": "Trecho 1: 0 a 9 min (asfalto)",
+    "nota": "picos todos na mesma altura"
+   },
+   {
+    "linha": "Trecho 2: 9 a 20 min (chão)",
+    "nota": "picos todos na mesma altura"
+   },
+   {
+    "linha": "amplitude 1 < amplitude 2",
+    "nota": "picos do trecho 1 mais baixos"
+   },
+   {
+    "linha": "Gráfico A: baixa, depois alta",
+    "nota": "cumpre as duas condições"
+   }
+  ]
  },
  "caminhos": [
   {
@@ -113,14 +139,91 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [],
   "fatos_ok": true,
-  "fatos_resposta": "A"
+  "fatos_resposta": "A",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Amplitude é a altura da onda: a distância do eixo horizontal até o pico (ou até o vale). Amplitude constante significa que todos os picos de um trecho têm a mesma altura. O enunciado impõe duas condições: (1) amplitude constante de 0 a 9 min e de 9 a 20 min; (2) amplitude de 0 a 9 min (asfalto) menor que a de 9 a 20 min (chão). A frequência (quantas ondas cabem em cada minuto) não é exigida.",
+    "motivo": "Explica frequência em palavras simples."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "senoide",
+      "curva em forma de onda, que sobe e desce de modo regular"
+     ],
+     [
+      "amplitude",
+      "altura da onda, medida do eixo horizontal até o pico"
+     ],
+     [
+      "eixo horizontal",
+      "no gráfico, é a linha do tempo em minutos; a amplitude está no eixo vertical"
+     ],
+     [
+      "pico e vale",
+      "pico é o ponto mais alto da onda; vale é o ponto mais baixo"
+     ],
+     [
+      "frequência",
+      "quantidade de ondas por minuto; onda estreita significa frequência maior"
+     ]
+    ],
+    "motivo": "Termos usados na resolução (pico, vale, frequência) não estavam explicados."
+   },
+   {
+    "campo": "resolucao.passos[0].porque",
+    "depois": "A troca de piso acontece no minuto 9, um pouco antes do 10 no eixo. É nesse ponto que o gráfico deve mudar de altura, e é aí que se compara antes e depois.",
+    "motivo": "Frase mais clara e sem dupla leitura."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Entre os gráficos que sobraram, serve o que tem ondas baixas até cerca de 9 min e ondas mais altas, todas iguais entre si, depois disso. Mudar só a frequência não basta.",
+    "motivo": "Clareza."
+   },
+   {
+    "campo": "resolucao.quadro",
+    "depois": [
+     {
+      "linha": "Trecho 1: 0 a 9 min (asfalto)",
+      "nota": "picos todos na mesma altura"
+     },
+     {
+      "linha": "Trecho 2: 9 a 20 min (chão)",
+      "nota": "picos todos na mesma altura"
+     },
+     {
+      "linha": "amplitude 1 < amplitude 2",
+      "nota": "picos do trecho 1 mais baixos"
+     },
+     {
+      "linha": "Gráfico A: baixa, depois alta",
+      "nota": "cumpre as duas condições"
+     }
+    ],
+    "motivo": "Notas mais concretas, com o que olhar no gráfico."
+   }
+  ],
+  "didatica_alertas": [
+   "O campo nivel da resolução está 4, mas a classificação atual diz nível 5; conferir.",
+   "Na alternativa E, no print, as ondas parecem ter amplitude semelhante e a frequência diminui; o texto de erradas.E descreve isso, mas vale conferir. Na D, o primeiro trecho parece ter picos mais altos que o segundo; a descrição de erradas.D ('quase na mesma altura') pode estar imprecisa."
+  ],
+  "didatica_ok": true,
+  "fatos_volta": [],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "A"
  }
 }
