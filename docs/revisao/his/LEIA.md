@@ -10,3 +10,4 @@ Observações para a integração:
 | Tema | Situação | Slides |
 |---|---|---|
 | H01 Antiguidade | aprovado (06/11/2026) | 80 |
+| H04 Brasil: independência e Império | aprovado (06/11/2026) | 90 |
