@@ -10,6 +10,7 @@ Fonte: PV Física L1–L4 (Poliedro), 39 capítulos lidos inteiros; fichamentos 
 | F05 Impulso e quantidade de movimento | aprovado (06/11/2026) | 37 |
 | F08 Termologia | aprovado (06/11/2026) | 80 |
 | F12 Magnetismo e eletromagnetismo | aprovado (06/11/2026) | 50 |
+| F04 Trabalho, energia e potência | aprovado (06/11/2026) | 49 |
 | F01, F03–F12 | em produção | — |
 
 Observações para a integração:
