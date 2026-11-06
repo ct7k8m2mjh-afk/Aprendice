@@ -13,3 +13,4 @@ Observações para a integração:
 | G05 Biomas e vegetação | aprovado (06/11/2026) | 39 |
 | G04 Hidrografia | aprovado (06/11/2026) | 49 |
 | G06 População e demografia | aprovado (06/11/2026) | 59 |
+| G03 Clima e atmosfera | aprovado (06/11/2026) | 60 |
