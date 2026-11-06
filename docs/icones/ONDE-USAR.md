@@ -12,15 +12,16 @@ Visual (ver `exemplo-faixa-de-temas.png`, só o visual, não a ordem): o objeto 
 | Lista de temas por área na página da matéria | `telas/Materia.tsx` `.area-tema` | 72 px |
 | Filtro de temas nos flashcards | `telas/Flashcards.tsx` `.fl-tema` | 36 px |
 
-## Subtemas ficam SEM ícone (decisão do dono, 05/11)
+## Subtemas: ponto na cor da matéria, nunca ícone (decisão do dono, 06/11)
+Onde aparece um subtema, no lugar do ícone vai um **pontinho na cor principal da matéria** (`docs/cores/paleta.json`), igual ao do protótipo: o ponto de 6 a 8 px antes do nome nos grupos e itens do menu (`app-atual/design/shell.html`, `.grupo::before` e `.legenda span::before`). Mesmo tamanho e alinhamento em todo o site.
 | Onde | Código | O que fazer |
 |---|---|---|
-| Lista de conteúdos dentro do tema | `telas/Tema.tsx` `.tp-enc` (64 px) | tirar o ícone; ficam nome, frase, progresso |
-| Título da escada | `telas/Escada.tsx` h1 (44 px) | tirar o ícone |
-| "Teoria desta questão" e conteúdos relacionados | `telas/Questao.tsx`, `telas/Treino.tsx` (34 px) | usar o ícone do TEMA da questão, pequeno, ou nenhum |
-| Faixa do cartão de flashcard | `ui/Cartoes.tsx` (`c.sub || c.mod`, 34 px) | usar o ícone do TEMA (`c.mod`) |
-| Resultados da busca | `telas/Busca.tsx` (32 px) | ícone do TEMA do resultado |
-| "Continue de onde parei" no Início | `telas/Inicio.tsx` (`q.sub`, 150 px) | ícone do TEMA (`q.modulo`) ou a ilustração da matéria |
+| Lista de conteúdos dentro do tema | `telas/Tema.tsx` `.tp-enc` (64 px) | trocar o ícone pelo ponto; ficam ponto, nome, frase, progresso |
+| Título da escada | `telas/Escada.tsx` h1 (44 px) | tirar o ícone (o título já tem a cor da matéria) |
+| "Teoria desta questão" e conteúdos relacionados | `telas/Questao.tsx`, `telas/Treino.tsx` (34 px) | ponto |
+| Faixa do cartão de flashcard | `ui/Cartoes.tsx` (34 px) | ponto |
+| Resultados da busca (conteúdos) | `telas/Busca.tsx` (32 px) | ponto |
+| "Continue de onde parei" no Início | `telas/Inicio.tsx` (150 px) | a ilustração da matéria (sem ícone de subtema) |
 
 O ícone da MATÉRIA (Início, menu, lista de matérias: `IluMateria`) não muda neste comando.
 ## Salvar os novos e excluir os antigos (dono, 06/11/2026)
