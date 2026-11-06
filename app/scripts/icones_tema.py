@@ -22,11 +22,10 @@ AQUI = os.path.dirname(os.path.abspath(__file__))
 RAIZ = os.path.dirname(os.path.dirname(AQUI))
 PASTA_DOCS = os.path.join(RAIZ, 'docs', 'icones')
 
-# pasta em docs/icones -> id da matéria no site (as próximas matérias entram aqui quando o dono mandar)
+# pasta em docs/icones -> id da matéria no site (as nove matérias; comandos 19 e 23). fs = Filosofia e Sociologia (L*, S*)
 PASTAS = {
     'biologia': 'bio', 'quimica': 'qui', 'matematica': 'mat', 'portugues': 'por', 'fisica': 'fis',
-    'geografia': 'geo', 'historia': 'his', 'filosofia-e-sociologia': 'fs', 'filosofia': 'fs',
-    'sociologia': 'fs', 'ingles': 'ing',
+    'geografia': 'geo', 'historia': 'his', 'filosofia-sociologia': 'fs', 'ingles': 'ing',
 }
 NOME = re.compile(r'^([A-Z]+\d+)(?:-.*)?\.png$', re.I)
 

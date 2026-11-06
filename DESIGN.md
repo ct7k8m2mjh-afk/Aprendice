@@ -133,7 +133,7 @@ typography:
     lineHeight: 1.6
   conta-a-mao:
     fontFamily: "Caveat"
-    fontSize: "21px (19 a 24) / 24px (24 a 26); quadro animado 24px / 26px"
+    fontSize: "21px (19 a 24) / 24px (24 a 26); resolução animada 24px / 26px (21px até 480px)"
     fontWeight: 500
     lineHeight: "1.35 a 1.55"
   botao:
@@ -276,7 +276,7 @@ O **protótipo `app-atual/`** (o arquivo de estudos do dono) é o sistema de des
 
 A tela é uma mesa cinza-clara onde ficam folhas brancas: cada bloco de conteúdo é uma folha com borda fina de 1px, cantos suaves e, quando precisa se destacar, uma sombra difusa quase imperceptível. Sobre essa mesa neutra, cada matéria tem a sua cor, e essa cor só aparece no que pertence à matéria (o botão de continuar, a barra de progresso, o título da página da matéria, o anel de acerto, a lavagem suave do cartão principal). Fora de uma matéria, o "acento" é um grafite neutro (`neutro-c`), então a interface geral não tem cor de marca: a cor é informação.
 
-O tom é calmo, denso o bastante para quem estuda todos os dias, e concreto. Familjen Grotesk carrega a interface, de título a etiqueta, com hierarquia feita por tamanho e peso (400, 600 e 700); a caixa alta espaçada aparece só nos rótulos de área (13px, 0.08em) e no "Sua resposta" do painel da questão, como no protótipo. O nome da matéria, no topo de toda tela dela, é escrito em Dancing Script 700 (36px no celular, 44px no computador) na cor da matéria. A explicação longa da correção é em Literata, serifada de leitura em tela. A escrita à mão (Caveat) aparece só na conta: passos, quadro animado e fórmulas do caderno, sobre papel creme. As ilustrações são objetos 3D realistas (célula, átomo, sólidos, livros com pena) apoiados em ladrilhos lavados na cor da matéria; os ícones de interface são traços Lucide finos (1.75) que nunca competem com elas.
+O tom é calmo, denso o bastante para quem estuda todos os dias, e concreto. Familjen Grotesk carrega a interface, de título a etiqueta, com hierarquia feita por tamanho e peso (400, 600 e 700); a caixa alta espaçada aparece só nos rótulos de área (13px, 0.08em) e no "Sua resposta" do painel da questão, como no protótipo. O nome da matéria, no topo de toda tela dela, é escrito em Dancing Script 700 (36px no celular, 44px no computador) na cor da matéria. A explicação longa da correção é em Literata, serifada de leitura em tela. A escrita à mão (Caveat) aparece só na conta: resolução animada e fórmulas do caderno, sobre papel creme. As ilustrações são objetos 3D realistas (célula, átomo, sólidos, livros com pena) apoiados em ladrilhos lavados na cor da matéria; os ícones de interface são traços Lucide finos (1.75) que nunca competem com elas.
 
 Tema claro é o padrão; o escuro troca papel e folha por grafites quase pretos e clareia as cores das matérias para manter o contraste, sem mudar a estrutura.
 
@@ -338,8 +338,8 @@ Guia tipográfico do dono: `docs/fontes/Guia-tipografico-APRENDICE.pdf` (aplicad
 
 **Identidade:** Dancing Script 700 — só o nome da matéria, no topo de cada tela dela, na cor dela (máx. 2 palavras; nada abaixo de 24px)
 **Interface:** Familjen Grotesk 400–700 — títulos de tela e de seção, temas e conteúdos, enunciado em texto, botões, números (tabulares em cronômetro, placar e porcentagem)
-**Explicação:** Literata 400 — só os textos longos da correção ("Por que a X parece certa", armadilha, "De onde vem cada alternativa errada", o porquê de cada passo) e o texto da teoria
-**Caderno:** Caveat 500 — contas da resolução, quadro animado e fórmulas do caderno, em tinta azul sobre o papel creme
+**Explicação:** Literata 400 — só os textos longos da correção ("Por que eu errei", a pegadinha, "Por que as outras estão erradas", o porquê de cada passo) e o texto da teoria
+**Caderno:** Caveat 500 — contas da resolução animada e fórmulas do caderno, em tinta azul sobre o papel creme
 **Entrada:** DM Sans — só a tela de entrada (login); em nenhuma tela de dentro
 
 **Character:** Uma grotesca de desenho firme e um pouco condensado, que dá aos títulos personalidade sem perder a leitura em 13px. A letra de mão é um traço do caderno do aluno, não uma fonte decorativa.
@@ -362,7 +362,7 @@ Rótulos curtos e etiquetas: 600 no tamanho da informação secundária (caixa a
 ### Named Rules
 **A Regra de Um Papel por Fonte.** Identidade (Dancing Script), interface (Familjen Grotesk), explicação (Literata), caderno (Caveat). Nunca cursiva em texto corrido, botão ou etiqueta; nunca duas sem serifa na mesma tela (DM Sans só no login); nunca peso abaixo de 400 em texto; nunca letra condensada ou esticada à força.
 
-**A Regra da Conta à Mão.** Caveat só escreve a conta (passos, quadro animado, fórmulas do caderno). Não vai em títulos, botões, destaques nem listas de interface.
+**A Regra da Conta à Mão.** Caveat só escreve a conta (resolução animada, fórmulas do caderno). Não vai em títulos, botões, destaques nem listas de interface.
 
 ## Layout
 
@@ -459,8 +459,20 @@ Retângulo de 8px com texto de 13px 600: neutra em `malha`/`lapis`, da matéria 
 ### Alternativas da questão
 Dentro do cartão da questão, depois de "SUA RESPOSTA", uma linha de cinco botões de 50px de altura, fundo `folha`, borda de 1.5px `linha`, cantos de 12px; selecionada recebe borda `--c`, fundo de `--c` a 11% e anel de 3px; depois da correção, certa e errada assumem as cores semânticas; riscada fica a 60% com a letra tachada. Com texto, viram linhas empilhadas.
 
-### Resolução em passos
-Linha do tempo vertical: número do passo em círculo de 34px `--sv`/`--t`, fio de 2px `linha` ligando os passos, título em 600, a conta escrita à mão (Caveat 23px, tinta azul de caneta sobre retalho `cad-papel` com borda `cad-borda`) e o "por que" em `lapis`.
+### Correção da questão (4 blocos; decisão do dono, 05/11/2026; comando 20)
+`ui/Resolucao.tsx` + `estilo/correcao.css`. Depois do veredito ("Você marcou B. A resposta é A." e o gabarito oficial), só 4 blocos, nesta ordem, cada um com título em Familjen 600 16px e explicação em Literata 400 (`--fs-expl`, 1,6):
+1. **Por que eu errei** — `res.erradas[letra marcada]`, sobre `errado-bg`, título em `errado`. Não aparece quando o aluno acerta.
+2. **Resposta correta** — `res.resposta` (Familjen 600 17px) sobre `certo-bg`, título em `certo`; dentro, **A pegadinha** (`res.armadilha`) sobre `aviso-bg`, rótulo em `aviso`.
+3. **Resolução animada** (abaixo).
+4. **Por que as outras estão erradas** — `<details>` fechado, abre ao clicar; uma linha por letra (quadradinho de 28px com a letra + explicação), sem repetir a letra já explicada no bloco 1.
+Os demais campos de `res/` (antes, pista, checagem, essencial, alerta, caminhos, visual) continuam nos dados e não aparecem na correção. Sem resolução, fica o aviso "em revisão". A fonte (prova e link) segue no pé. Blocos com cantos de 12px e padding 16/18px.
+
+### Resolução animada (um motor só; comando 20)
+Um único motor desenha toda resolução a partir dos dados, nada feito à mão por questão: `logica/motorConta.ts` (lógica, sem DOM) monta o roteiro, `ui/motorAnima.ts` anima um passo com Web Animations, `ui/ResolucaoAnimada.tsx` desenha. Fonte: `res.quadro[{linha, nota, destaque}]` quando existe (uma linha por passo, com a nota em Familjen 14px `--cad-leg`); senão `res.passos[{faz, conta, porque}]` (número do passo em círculo de 28px com fio da tinta, "faz" em Familjen 600 16px na tinta do caderno, cada linha da conta, "porque" em Literata `--cad-leg`).
+- **Caderno:** papel `cad-papel` com a grade de 24px do protótipo (`--cad-grade`), borda `cad-borda`, canto 14px, passos separados por tracejado. Conta em Caveat 500 (`--fs-mao-grande`, 24/26px; `--fs-mao` até 480px), tinta `cad-tinta`; linha que é texto (`contaEhTexto`) em Familjen 16px com fio de 3px à esquerda. Fração sempre empilhada (`frac-n`/`frac-d`). Marca-texto `--cad-marca` (amarelo #FFE36E no claro; rgba(255,214,90,.28) no escuro) no resultado da conta (o que vem depois do último "=", "≈" ou "→", até 36 caracteres) ou no `destaque` do quadro; em texto, no termo-chave (depois da última seta, "=" ou ":"; ou a linha inteira se tiver até 60 caracteres).
+- **Antes de tocar:** faixa "Assistir resolução" (botão de 46px, "N passos, escritos à mão na sua frente" e o link "Ver sem animação"), como o `.ad-assistir` do protótipo. **Tocando:** barra presa no alto (sticky, fundo `folha` a 92% com desfoque) com Tocar/Pausar, passo anterior, próximo passo, "Passo i de n" (tabular, `aria-live`) e Recomeçar (botões de 36px, canto 9px). Teclado: espaço toca/pausa, ← e → mudam de passo (sem acionar a próxima questão). `prefers-reduced-motion`: mostra direto o estado final, sem barra.
+- **Como o motor anima:** cada linha é quebrada em termos (`tokeniza`: número, letra, sinal, fração, parênteses; coeficiente e letra separados, "7a" → 7 · a). Para cada passagem (de uma linha para a seguinte, de um trecho para o seguinte numa linha "A → B" e dentro de uma igualdade encadeada "= … = …") o motor compara as equações e diz de onde vem cada termo: **troca de lado** (termo de soma atravessa o "=" em arco, na cor `cad-caneta`, e o sinal troca no meio do caminho: "+" vira "−"); **divide / multiplica** (o fator vai para o outro lado com "×" virando "÷", ou para o denominador da fração empilhada); **multiplicação cruzada** (numerador e denominador viajam na diagonal); **cancelamento** (risco de caneta de 2px a −12° passa sobre os dois termos, que somem da linha nova); **resultado** (os pedaços da conta voam até o lugar e o valor aparece com um pulo, só se a conta conferir numericamente e respeitar a precedência); **reordenação**. O que fica igual escorrega da linha de antes para a nova; o resto é escrito à mão (a tinta corre da esquerda para a direita). Sem transformação reconhecida, a linha nova é escrita (transição padrão). Biologia, Química e Português (texto): cada passo entra em sequência, a linha é revelada e o marca-texto passa no termo-chave; nenhum desenho científico é feito por questão.
+- **Garantia:** o DOM é sempre o estado final de cada passo, igual ao texto dos dados; a animação só move, revela e risca por cima e, ao acabar, é cancelada. Testado em `src/testes/motorConta.test.ts` com todas as resoluções do site (texto de cada linha desenhada = dados), além das transformações e da ordem dos 4 blocos.
 
 ### Caderno de fórmulas
 Lista em papel creme pautado (linhas a cada 28px em 10% da tinta), tinta azul `cad-tinta`, cantos de 10px, escrita em Familjen Grotesk 16px.
