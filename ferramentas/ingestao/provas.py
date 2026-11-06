@@ -801,13 +801,13 @@ FATEC_DISC = {'RACIOCÍNIO LÓGICO': 'Raciocínio Lógico', 'RAC. LÓGICO': 'Rac
               'INGLÊS': 'Inglês', 'PORTUGUÊS': 'Língua Portuguesa', 'LÍNGUA PORTUGUESA': 'Língua Portuguesa', 'ANULADA': 'ANULADA'}
 
 
-def fatec(ano, sem, duracao=5):
+def fatec(ano, sem, duracao=5, gab_arq='gabarito'):
     areas = {}
 
     def gab(pasta):
         """Gabarito oficial em duas colunas: "001  D  História"; "ANULADA" no lugar da letra ou da disciplina = anulada.
         2025/1: grade "01: C" por tipo de prova (vale a Prova Tipo A, a do caderno publicado)."""
-        txt = texto_pdf(pasta / 'gabarito.pdf').replace('ﬁ', 'fi')
+        txt = texto_pdf(pasta / (gab_arq + '.pdf')).replace('ﬁ', 'fi')
         g = {}
         if 'PROVA TIPO A' in txt:
             txt = txt.split('PROVA TIPO A', 1)[1].split('PROVA TIPO B', 1)[0]
@@ -841,6 +841,11 @@ def fatec(ano, sem, duracao=5):
 
 for _a, _s in ((2020, 1), (2022, 2), (2023, 1), (2023, 2), (2024, 1), (2024, 2), (2025, 2), (2026, 1), (2026, 2)):
     PROVAS[f'fatec-{_a}-{_s}'] = fatec(_a, _s)
+# 2023/1: o link "Fatec_Gabarito_2023_retificado.pdf" da página oficial traz o gabarito do 2º sem/2013 (não confere com o
+# caderno: ex. questão 21, SO3 trigonal plana = A, lá "D"). Vale o gabarito oficial publicado no dia (Gabarito-Vestibular-1sem-2023).
+PROVAS['fatec-2023-1'] = fatec(2023, 1, gab_arq='gabarito-original')
+PROVAS['fatec-2023-1']['nota'] += (' Gabarito: o oficial publicado em 08/01/2023; o arquivo "retificado" da página oficial é de outra '
+                                   'edição (2º sem/2013) e não foi usado.')
 # 2025/1: caderno em duas colunas, numeração "6." e títulos de disciplina; gabarito por tipo (sem disciplina)
 PROVAS['fatec-2025-1'] = fatec(2025, 1)
 PROVAS['fatec-2025-1'].update({
