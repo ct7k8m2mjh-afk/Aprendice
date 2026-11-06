@@ -83,6 +83,24 @@ export function FaixaTemas({ mc, s, atual, compacta = false }: { mc: MateriaCarr
     if (el && rolo.current) rolo.current.scrollLeft = el.offsetLeft - rolo.current.clientWidth / 2 + el.clientWidth / 2;
     mede();
   }, [atual]);
+  // roda do mouse (pedido do dono, 06/11): rolar para baixo anda a faixa para a direita; nas pontas, a página volta a rolar
+  useEffect(() => {
+    const r = rolo.current; if (!r) return;
+    let alvo = -1, ultimo = 0; // posição pedida (a faixa rola suave; giros seguidos somam)
+    const roda = (ev: WheelEvent) => {
+      if (ev.ctrlKey || Math.abs(ev.deltaX) > Math.abs(ev.deltaY)) return; // trackpad lateral e zoom seguem o padrão
+      const max = r.scrollWidth - r.clientWidth; if (max <= 1) return;
+      const passo = (ev.deltaMode === 1 ? ev.deltaY * 40 : ev.deltaY) * 1.4;
+      const agora = performance.now();
+      const base = alvo >= 0 && agora - ultimo < 400 ? alvo : r.scrollLeft;
+      if ((passo < 0 && base <= 0) || (passo > 0 && base >= max - 1)) return;
+      ev.preventDefault();
+      alvo = Math.max(0, Math.min(max, base + passo)); ultimo = agora;
+      r.scrollTo({ left: alvo, behavior: 'smooth' });
+    };
+    r.addEventListener('wheel', roda, { passive: false });
+    return () => r.removeEventListener('wheel', roda);
+  }, [mc.id]);
   const anda = (d: number) => rolo.current?.scrollBy({ left: d * rolo.current.clientWidth * 0.8, behavior: 'smooth' });
   return (
     <nav className={'faixa-temas' + (compacta ? ' compacta' : '') + (bordas.e ? ' fe' : '') + (bordas.d ? ' fd' : '')} aria-label="Temas">

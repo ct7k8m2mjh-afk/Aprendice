@@ -504,3 +504,9 @@ Objetos realistas renderizados, um por matéria e um por tema (subtemas não tê
 - **Don't** usar emoji nem ícones de glifo; nem ícones planos ou de traço no lugar da ilustração 3D de uma matéria ou de um tema.
 - **Don't** usar Caveat fora da conta à mão da resolução, nem Dancing Script fora do nome da matéria; nenhuma outra família na interface.
 - **Don't** escrever texto em amarelo de Português sobre folha clara; use `por-t`.
+
+
+## Telas grandes e faixa de temas (dono, 06/11/2026)
+- Largura da página: até 1440 px (padrão); a partir de 1700 px de tela, até 1880 px com margem lateral de 44 px; a partir de 2200 px, até 2280 px com margem de 56 px. Vale para todas as abas (`--pag-max`, `--pag-x` em `app/src/estilo/base.css`).
+- Título da matéria (Dancing Script 700): 42 px no celular, 54 px no computador, 62 px a partir de 1700 px e 70 px a partir de 2200 px.
+- Faixa de temas: cartões de 196 px (216 px a partir de 1700 px; 232 px a partir de 2200 px). Rola com a roda do mouse (girar para baixo anda para a direita); nas pontas, a roda volta a rolar a página. As setas continuam para quem prefere clicar.
