@@ -111,6 +111,9 @@ def fuvest_v(ano, total=90, versao='V'):
 
 PROVAS.update({f'fuvest-{a}': fuvest_v(a) for a in (2020, 2021, 2022, 2023, 2024)})
 PROVAS['fuvest-2021']['larga'] = {26: 574}   # questão 90 ocupa as duas colunas no pé da página 26
+PROVAS['fuvest-2021']['larga_topo'] = {13: 580}   # questão 42 (quadro e tabela) ocupa a largura toda no alto da página 13
+PROVAS['fuvest-2021']['margem'] = 10   # números de linha dos textos (5, 10, 15) ficam na margem direita
+PROVAS['fuvest-2021']['ancora_dx'] = 40   # com a margem menor, o número da questão fica mais longe da borda da coluna
 # 2021: a camada de texto do caderno não tem mapa de caracteres (sai lixo): questões localizadas por OCR (o print é a página)
 PROVAS['fuvest-2021']['cadernos'] = [{'arquivo': 'fase1-caderno', 'paginas': (2, 999), 'ocr_so_texto': True}]
 PROVAS['fuvest-2021']['uma_coluna'] = (6,)   # questão 18 ocupa a página inteira
@@ -140,6 +143,9 @@ def uel(ano, total=60, duracao=4):
 PROVAS.update({f'uel-{a}': uel(a) for a in (2026, 2025, 2024)})
 PROVAS.update({f'uel-{a}': uel(a) for a in (2023, 2020)})
 PROVAS['uel-2020']['base'] = 38   # rodapé "8 / 27" um pouco mais alto que nas edições recentes
+PROVAS['uel-2020']['divisa'] = 303.5   # texto da coluna esquerda vai até x≈295 e o da direita começa em x≈312
+PROVAS['uel-2023']['divisa'] = 298.5   # esquerda até x≈291, direita a partir de x≈306
+PROVAS['uel-2023']['larga_topo'] = {17: 448}   # imagens e texto das questões 35 a 37 ocupam a largura toda no alto da página 17
 
 
 def uel_comentada(ano, total=50, duracao=4):

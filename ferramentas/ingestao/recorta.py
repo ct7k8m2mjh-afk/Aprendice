@@ -116,7 +116,8 @@ def colunas_da_pagina(pg, cfg):
         ancora_direita = any(re.match(cfg['ancora'], l['t']) and meio - 8 <= l['bbox'][0] <= meio + 45 for l in ls + linhas(pg))
         m = cfg.get('margem', 15)
         um = ls and cruzam / len(ls) > 0.2 and not ancora_direita
-        c = [(m, w - m)] if um else [(m, meio - 2), (meio - 2, w - m)]
+        d_ = cfg.get('divisa', meio - 2)   # linha entre as colunas (calha), quando o texto da esquerda passa do meio
+        c = [(m, w - m)] if um else [(m, d_), (d_, w - m)]
     elif c == 'por_ancora':
         # duas colunas só quando há âncora na metade direita (cabeçalhos centralizados em cada coluna)
         w = pg.rect.width
@@ -129,6 +130,9 @@ def colunas_da_pagina(pg, cfg):
     if larga_de(pg, cfg) is not None:
         m = cfg.get('margem', 15)
         c = list(c) + [(m, pg.rect.width - m)]   # faixa de largura total no pé da página (última "coluna")
+    if larga_topo_de(pg, cfg) is not None:
+        m = cfg.get('margem', 15)
+        c = [(m, pg.rect.width - m)] + list(c)   # faixa de largura total no alto da página (primeira "coluna")
     _cache_cols[k] = c
     return c
 
@@ -138,10 +142,29 @@ def larga_de(pg, cfg):
     return cfg.get('larga', {}).get(pg.number + 1)
 
 
+def larga_topo_de(pg, cfg):
+    """Altura até onde a página tem uma faixa de largura total no alto (questão larga antes das duas colunas)."""
+    return cfg.get('larga_topo', {}).get(pg.number + 1)
+
+
+def coluna_do_ponto(pg, cfg, x0, y0, cols):
+    """Coluna de uma linha, respeitando as faixas de largura total."""
+    yt = larga_topo_de(pg, cfg)
+    if yt is not None:
+        if y0 < yt:
+            return 0
+        c = coluna_de(x0, cols[1:])
+        return None if c is None else c + 1
+    return coluna_de(x0, cols)
+
+
 def faixa_vertical(pg, cfg, c, cols):
     """(topo, base) da coluna c: com faixa larga, as colunas normais param nela e a faixa vai até o pé."""
     y_l = larga_de(pg, cfg)
     topo, base = topo_de(pg, cfg), limite_baixo(pg, cfg)
+    y_t = larga_topo_de(pg, cfg)
+    if y_t is not None:
+        return (topo, y_t - 2) if c == 0 else (y_t, base)
     if y_l is None:
         return topo, base
     return (y_l, base) if c == len(cols) - 1 else (topo, y_l - 2)
@@ -233,7 +256,7 @@ def eventos_do_pdf(pdf, cfg, faixa=None):
             t = L['t']
             if y1 > baixo:
                 continue
-            c = coluna_de(x0, cols)
+            c = coluna_do_ponto(pg, cfg, x0, y0, cols)
             if c is None:
                 continue
             if larga_de(pg, cfg) is not None and y0 >= larga_de(pg, cfg) - 1:
@@ -290,7 +313,11 @@ def eventos_do_pdf(pdf, cfg, faixa=None):
                             # frase de instrução quebrada em duas linhas: começa na linha de cima
                             if li > 0 and coluna_de(lp[li - 1]['bbox'][0], cols) == c and 0 <= y0 - lp[li - 1]['bbox'][3] < 5 \
                                     and not re.match(cfg['ancora'], lp[li - 1]['t']) and lp[li - 1]['bbox'][1] >= cfg['topo'] \
-                                    and lp[li - 1]['t'].strip() not in cfg.get('secoes', {}):
+                                    and lp[li - 1]['t'].strip() not in cfg.get('secoes', {}) \
+                                    and not any(re.search(rx_, lp[li - 1]['t']) for rx_, _ in cfg.get('secoes_rx', [])) \
+                                    and not any(re.search(rx_, lp[li - 1]['t']) for rx_ in cfg.get('corte', [])) \
+                                    and not re.match(r'(?i)^texts?o?\s+0?\d+\s*$', t) \
+                                    and not re.match(r'^\s*(?:\(?[A-Ea-e][\)\.]|\([A-E]\))', lp[li - 1]['t']):
                                 yi = lp[li - 1]['bbox'][1] - 2
                             ev.append({'p': pi, 'c': c, 'y': yi, 'tipo': 'suporte', 'faixa': nums if not mt else [],
                                        'num': int(mt.group(1)) if mt else None})
@@ -327,6 +354,12 @@ def segmentos(pdf, cfg, ev, i, faixa_pag=None):
     prox = ev[i + 1] if i + 1 < len(ev) else None
     segs = []
     p, c, y = e['p'], e['c'], e['y'] - 3
+    # a folga de 3 pt não pode pegar o pé da linha de cima (fim da questão anterior)
+    cols0 = colunas_da_pagina(pdf[p], cfg)
+    for L in linhas(pdf[p]):
+        x0_, y0_, x1_, y1_ = L['bbox']
+        if coluna_de(x0_, cols0) == c and y0_ < e['y'] - 2 and y < y1_ <= e['y'] + 0.5:
+            y = y1_ + 0.3
     ultima = len(pdf) - 1 if not faixa_pag else faixa_pag[1] - 1
     while True:
         pg = pdf[p]
@@ -344,6 +377,15 @@ def segmentos(pdf, cfg, ev, i, faixa_pag=None):
         y = faixa_vertical(pdf[p], cfg, c, colunas_da_pagina(pdf[p], cfg))[0] if p < len(pdf) else cfg['topo']
         if not prox and p != e['p']:
             return segs  # última questão do caderno: não passa da própria página
+
+
+def textos_citados(enun):
+    """Números dos textos que o enunciado cita: "Texto 1", "Textos 2 e 3", "Text 02", "Texts 1 and 2"."""
+    out = []
+    for m in re.finditer(r'(?i)\b(?:textos?|texts?)\s+0?(\d)\b((?:\s*(?:,|e|and|y)\s*0?\d\b)*)', enun):
+        out.append(int(m.group(1)))
+        out += [int(x) for x in re.findall(r'\d', m.group(2))]
+    return out
 
 
 def trechos_coloridos(pdf, cores):
@@ -710,7 +752,7 @@ def processa(pid, amostra=False, so_texto=False):
                 elif len(f) < 2 and cfg.get('suporte_ate_proximo'):
                     # texto compartilhado só entra na questão que o menciona
                     enun = texto(pdf, segs)
-                    citados = [int(x) for par in re.findall(r'(?i)textos?\s+(\d)(?:\s*e\s*(\d))?', enun) for x in par if x]
+                    citados = textos_citados(enun)
                     if citados and all(c in textos for c in citados):
                         sup = []
                         for c in sorted(set(citados)):
@@ -720,6 +762,14 @@ def processa(pid, amostra=False, so_texto=False):
                 elif len(f) < 2 and not suporte.get('usado'):
                     sup = suporte['segs']  # sem faixa declarada: vale só para a questão seguinte
                     suporte['usado'] = True
+            if cfg.get('suporte_ate_proximo') and textos:
+                # questão que cita "Texto 1" / "Text 2" (às vezes com número de linha) leva esses textos, mesmo
+                # quando já ganhou o texto logo antes dela
+                for c in sorted(set(textos_citados(texto(pdf, segs)))):
+                    if c in textos and not all(sg in sup for sg in textos[c]):
+                        sup = list(sup) + [sg for sg in textos[c] if sg not in sup]
+                if sup:   # ordem de leitura do caderno (Texto 1 antes do Texto 2)
+                    sup = sorted(sup, key=lambda sg: (sg[0], sg[1].x0 // 200, sg[1].y0))
             for g_ in reversed(gerais):   # instrução geral da faixa, antes do texto próprio
                 if g_['faixa'][0] <= n <= g_['faixa'][1] and not all(sg in sup for sg in g_['segs']):
                     sup = [sg for sg in g_['segs'] if sg not in sup] + list(sup)

@@ -18,6 +18,13 @@ SIMBOLOS = set('√∑∫∏π≤≥≠±×÷→←↔⇌⇄∆Δαβγδθλμ�
 # fora do latim e da pontuação comum = notação especial (matemática, grego, codificação estranha): fica o print
 PERMITIDOS = set('“”‘’«»–—…•·°ºª§€£¢¥©®™†‡¶¿¡\u00a0\u2009\u202f\u200b\u2010\u2011\u00ad\u2032\u2033ﬁﬂﬀﬃﬄ')
 VISUAL = re.compile(r'(?i)\b(gr[áa]fico|figura|imagem|imagens|tabela|quadro|charge|tirinha|tira|mapa|esquema|ilustra\w*|fotografia|foto|cartum|quadrinhos?|infogr[áa]fico|diagrama|cartaz|an[úu]ncio|propaganda|logotipo|pintura|obra a seguir|observe)\b')
+# fórmula química no texto (CO2, H2O, NaClO3, O2) ou "Cl" que a camada de texto perdeu ("NaC,"): fica o print
+FORMULA_QUIM = re.compile(r'\b(?:[A-Z][a-z]?\d{0,3}){1,}[A-Z][a-z]?\d{1,3}\b|\b[A-Z][a-z]?\d{1,3}(?:[A-Z][a-z]?\d{0,3})+\b'
+                          r'|\b(?:H|O|N|S|P|F|I)\d\b|\b(?:[A-Z][a-z]?)?C,(?=[A-Z0-9(]|\s*[\(\[])|\b[A-Z][a-z]?C,\s')
+# o enunciado ou as alternativas apontam linhas do texto ("linha 6", "(L. 15)", "line 3"): sem a numeração, fica o print
+CITA_LINHA = re.compile(r'(?i)\blinhas?\s+\d|\(\s*l(?:s)?\.\s*\d|\blines?\s+\d|\bl\.\s*\d+\s*[\)\-–,]')
+# cabeçalho/rodapé de página que cai no meio do recorte
+CABECALHO = re.compile(r'(?i)^(vestibular|processo seletivo|concurso vestibular|exame)\b.{0,40}\b20\d\d(\s*[-–/.]\s*\d)?\s*$')
 ALT = re.compile(r'^\s*(?:\(([A-Ea-e])\)|([A-Ea-e])\s?[\)\.](?!\d)|([A-E])\t)\s*')
 
 
@@ -146,6 +153,8 @@ def _texto_estilizado(spans):
 def _limpa(t):
     """Religa palavras partidas no fim da linha e junta marcações vizinhas de mesmo estilo."""
     t = t.replace('\u00ad', '-').replace('\u2010', '-').replace('\u2011', '-')
+    t = t.replace('\xa0', ' ').replace('\u2009', ' ').replace('\u202f', ' ')
+    t = re.sub(r'[ \t]{2,}', ' ', t)
     t = t.replace('ﬁ', 'fi').replace('ﬂ', 'fl').replace('ﬀ', 'ff').replace('ﬃ', 'ffi').replace('ﬄ', 'ffl')
     t = re.sub(r'(\w)- -(\w)', r'\1-\2', t)                       # "expor- -se" -> "expor-se"
     t = re.sub(r'(\w)-[ \n]+(?=[a-zà-úç])', r'\1', t)                # "al- ternativa" -> "alternativa"
@@ -208,8 +217,13 @@ def transcreve(pdf, segs, ancora, cortes=(), alternativas=5, ocr=False):
             for c in sp['text']:
                 if ord(c) > 0x2FF and c not in PERMITIDOS:
                     return _nao('caractere especial %r' % c)
-    if VISUAL.search(' '.join(''.join(sp['text'] for sp in l['spans']) for l in linhas)):
+    tudo_txt = ' '.join(''.join(sp['text'] for sp in l['spans']) for l in linhas)
+    if VISUAL.search(tudo_txt):
         return _nao('cita elemento visual')
+    if FORMULA_QUIM.search(tudo_txt):
+        return _nao('formula quimica ' + FORMULA_QUIM.search(tudo_txt).group(0))
+    if CITA_LINHA.search(tudo_txt):
+        return _nao('cita linha do texto')
     if _tem_formula(linhas):
         return _nao('formula:' + str(_tem_formula(linhas)))
     if _linhas_numeradas(linhas):
@@ -226,12 +240,26 @@ def transcreve(pdf, segs, ancora, cortes=(), alternativas=5, ocr=False):
             for sp in l['spans']:
                 if sp['font'] == corrida:
                     sp['base'] = True
+    # texto quase todo com a marca de negrito (flag do PDF, fonte sem "Bold" no nome): o negrito é o normal
+    tot_c = sum(len(sp['text'].strip()) for l in linhas for sp in l['spans'])
+    neg_c = sum(len(sp['text'].strip()) for l in linhas for sp in l['spans'] if sp['flags'] & 16)
+    if tot_c and neg_c / tot_c > 0.6:
+        for l in linhas:
+            for sp in l['spans']:
+                if sp['flags'] & 16:
+                    sp['base'] = True
 
     # tira o número da questão (âncora) e o que for corte
     limpas = []
     for l in linhas:
         txt = ''.join(s['text'] for s in l['spans']).strip()
-        if any(re.search(rx, txt) for rx in cortes) or re.fullmatch(r'[#*•·.\-–_\s]+', txt):
+        if any(re.search(rx, txt) for rx in cortes) or re.fullmatch(r'[#*•·.\-–_\s]+', txt) or CABECALHO.match(txt):
+            continue
+        x0c_, x1c_ = l['col']
+        if len(txt) <= 4 and not re.fullmatch(r'\(?[A-Ea-e][\)\.]?|[IVX]{1,4}[\.\)]?|\d{1,3}[\.\)]?', txt) \
+                and (l['bbox'][0] - x0c_ < 9 or x1c_ - l['bbox'][2] < 9):
+            continue   # pedaço de letra da coluna vizinha que entrou na borda do recorte
+        if re.fullmatch(r'A{2,}', txt):
             continue
         m = re.match(ancora, txt)
         if m:
@@ -278,6 +306,24 @@ def transcreve(pdf, segs, ancora, cortes=(), alternativas=5, ocr=False):
         if paras and novo and ma is None and alin == paras[-1]['a'] and re.search(r'[\w]-(\*\*|~~)*$', paras[-1]['t']) and re.match(r'(\*\*|~~)*[a-zà-úç]', txt):
             paras[-1]['t'] += '\n' + txt
             continue
+        # endereço (URL) partido em dois parágrafos: continua sem espaço
+        if paras and ma is None and not paras[-1]['alt'] and re.search(r'(https?://|www\.)\S*[-/_.]$', paras[-1]['t']) and re.match(r'[\w/]', txt):
+            paras[-1]['t'] += txt
+            continue
+        # referência/fonte alinhada à direita partida em várias linhas: uma linha só
+        if paras and ma is None and paras[-1]['a'] == 'd' and not paras[-1]['alt'] and ant is not None and ant['p'] == l['p'] \
+                and 0 <= l['bbox'][1] - ant['bbox'][3] < 4 and len(paras[-1]['t']) < 300 \
+                and (alin == paras[-1]['a'] or re.search(r'(?i)https?://|www\.|dispon[íi]vel em|acesso em|\bin:', paras[-1]['t'] + ' ' + txt)) \
+                and (alin != 'e' or len(txt) < 120):
+            junta = '' if re.search(r'[/\-_.]$', paras[-1]['t']) and re.match(r'[\w/]', txt) and 'http' in paras[-1]['t'] else ' '
+            paras[-1]['t'] += junta + txt
+            continue
+        # frase partida na quebra de coluna/página/bloco: o anterior não terminou e este começa em minúscula
+        if paras and novo and ma is None and alin == 'e' and paras[-1]['a'] == 'e' and not paras[-1]['alt'] \
+                and ant is not None and (ant['p'] != l['p'] or ant['col'] != l['col'] or ant['bloco'] != l['bloco']) \
+                and not re.search(r'[.!?:;”"\)](\*\*|~~)*$', paras[-1]['t']) and re.match(r'(\*\*|~~)*[a-zà-úç(“"]', txt):
+            paras[-1]['t'] += ' ' + txt
+            continue
         if paras and not novo:
             prev_curta = (ant['bbox'][2] < x1c - larg * 0.18)
             # item de lista ("II.", "3)", "IV –") começando linha depois de frase terminada: quebra a linha, como no caderno
@@ -298,7 +344,12 @@ def transcreve(pdf, segs, ancora, cortes=(), alternativas=5, ocr=False):
             return _nao('ordem alternativas ' + ''.join(alts) + '+' + pa['alt'])
         if pa['alt']:
             # tira a letra (com ou sem marcação de estilo em volta): "**A)** texto", "(A) texto", "A texto"
-            t = re.sub(r'^\s*(?:\*\*|~~)*\s*\(?[A-Ea-e]\)?[\)\.]?\s*(?:\*\*|~~)*\s*', '', pa['t'], count=1)
+            m_ = re.match(r'^\s*(?:\*\*|~~)*\s*\(?[A-Ea-e]\)?[\)\.]?\s*(?:\*\*|~~)*\s*', pa['t'])
+            pre, t = m_.group(0), pa['t'][m_.end():]
+            for mk in ('~~', '**'):   # marcação aberta antes da letra continua valendo no texto da alternativa
+                if pre.count(mk) % 2:
+                    t = mk + t
+            t = re.sub(r'^\(\s*\)\s*', '', t)   # caixinha "( )" do cartão-resposta (UDESC)
             alts[pa['alt']] = _limpa(t)
         elif alts:
             # texto depois das alternativas: continuação da última alternativa (quebra de bloco)
@@ -306,6 +357,15 @@ def transcreve(pdf, segs, ancora, cortes=(), alternativas=5, ocr=False):
             alts[ult] += ' ' + pa['t']
         else:
             enun.append({'a': pa['a'], 't': _limpa(pa['t'])})
+    def _marcas_ok(t):
+        # número do item sozinho na linha ("I." e o texto embaixo, em tabela): fica na mesma linha do texto
+        t = re.sub(r'(?m)^((?:\*\*|~~)*(?:[IVX]{1,4}|\d{1,2})\s?[.)–-](?:\*\*|~~)*)\n(?=\S)', r'\1 ', t)
+        for mk in ('~~', '**'):
+            if t.count(mk) % 2:   # par quebrado: tira a marcação desse tipo (melhor sem estilo do que estilo trocado)
+                t = t.replace(mk, '')
+        return t
+    alts = {k: _marcas_ok(v) for k, v in alts.items()}
+    enun = [dict(b, t=_marcas_ok(b['t'])) for b in enun]
     letras = 'ABCDE'[:alternativas]
     if ''.join(alts) != letras or not enun or any(not v.strip() for v in alts.values()):
         return _nao('alternativas ' + ''.join(alts))
