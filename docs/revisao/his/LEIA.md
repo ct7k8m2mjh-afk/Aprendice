@@ -14,3 +14,4 @@ Observações para a integração:
 | H02 Idade Média e Época Moderna | aprovado (06/11/2026) | 90 |
 | H05 Brasil República (parcial: H05.1–H05.7; H05.8–H05.11 aguardam o L4) | aprovado (06/11/2026) | 70 |
 | H06 Revoluções | aprovado (06/11/2026) | 100 |
+| H07 Guerras Mundiais e imperialismo (parcial: H07.4–H07.7 aguardam o L4) | aprovado (06/11/2026) | 69 |
