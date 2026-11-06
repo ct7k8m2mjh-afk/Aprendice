@@ -5,7 +5,7 @@ import { useEstado } from '../estado/loja';
 import { filaRetirada, questoesVencidas, resumoMateria } from '../logica/estatisticas';
 import { filaDe, emDias, DIA, iniDia, PASSOS_Q } from '../logica/revisao';
 import { Carregando, plural, useTitulo } from '../ui/comum';
-import { Icone } from '../ui/Icone';
+import { Icone, type NomeIcone } from '../ui/Icone';
 import { estadoMateriaVazio } from '../estado/tipos';
 import { revisoesVencidas } from '../logica/cicloRevisao';
 import { numeroQuestao } from '../dados/tipos';
@@ -39,8 +39,10 @@ export function Revisao() {
 
   return (
     <div className="conteudo">
-      <div className="titulo-pag"><div><h1>Revisão</h1><p className="sub">Errou, chutou ou pediu pista: a questão volta em {PASSOS_Q.join(', ')} dias. Acertou na data, ela avança.</p></div></div>
-      <div className="abas" role="group" aria-label="Seções">
+      <div className="titulo-pag"><div><h1>Revisão</h1><p className="sub">{aba === 'conteudos'
+        ? 'Cada conteúdo revisado em slides volta no dia marcado no fim da revisão: amanhã quando algo não firmou, mais tarde quando firmou.'
+        : `Errou, chutou ou pediu pista: a questão volta em ${PASSOS_Q.join(', ')} dias. Acertou na data, ela avança.`}</p></div></div>
+      <div className="abas abas-rev" role="group" aria-label="Seções">
         <button aria-pressed={aba === 'questoes'} onClick={() => setQs({}, { replace: true })}>Questões <small>{totVenc}</small></button>
         <button aria-pressed={aba === 'flash'} onClick={() => setQs({ aba: 'flash' }, { replace: true })}>Flashcards <small>{totFlash}</small></button>
         <button aria-pressed={aba === 'marcadas'} onClick={() => setQs({ aba: 'marcadas' }, { replace: true })}>Marcadas <small>{totMarc}</small></button>
@@ -92,9 +94,9 @@ export function Revisao() {
       ) : (
         <div className="bloco">
           {porMat.flatMap(({ mc, conteudos }) => conteudos.map((c) => (
-            <Link key={mc.id + c.sub} to={`/m/${mc.id}/revisao/${c.sub}`} className={`linha-lista m-${mc.id}`}>
-              <span className={'etq ' + (c.andamento ? 'cor' : 'aviso')}>{c.andamento ? 'Continuar' : 'Para hoje'}</span>
-              <span><span className="tit" style={{ fontSize: 15 }}>{c.nome.charAt(0).toUpperCase() + c.nome.slice(1)}</span><br /><span className="det">{nomeMateria(mc.id)} · revisão em slides</span></span>
+            <Link key={mc.id + c.sub} to={`/m/${mc.id}/revisao/${c.sub}`} className={`linha-lista rv-linha-cont m-${mc.id}`}>
+              <span className="mini"><Icone nome={`m_${mc.id}` as NomeIcone} /></span>
+              <span><span className="tit">{c.nome.charAt(0).toUpperCase() + c.nome.slice(1)}</span><br /><span className="det">{nomeMateria(mc.id)} · revisão em slides · <b className={c.andamento ? 'rv-cont-and' : 'rv-cont-hoje'}>{c.andamento ? 'continuar' : 'para hoje'}</b></span></span>
               <Icone nome="direita" />
             </Link>
           )))}

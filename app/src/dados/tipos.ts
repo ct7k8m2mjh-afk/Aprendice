@@ -49,6 +49,8 @@ export interface Questao {
   retirada?: true;
   /** número impresso no caderno oficial, com o dia/caderno, em provas que renumeram o 2º caderno (ex.: "9 (2º dia)") */
   nq?: string;
+  /** a questão já tem resolução comentada em res/<conteúdo>.json (marcado no build; treino geral de todas as matérias) */
+  cr?: 1;
 }
 
 /** Número da questão para mostrar ao aluno: o do caderno oficial quando a prova renumera cadernos; senão o da prova. */

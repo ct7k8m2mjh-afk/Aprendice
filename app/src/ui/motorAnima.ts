@@ -397,3 +397,45 @@ export function animaPasso(passoEl: HTMLElement, folha: HTMLElement, rt: Roteiro
     fim,
   };
 }
+
+/* ============================================================== cena dos slides da revisão (comandos 24 e 26–31)
+ * Mesmas regras do passo da conta: o DOM é o estado final; só opacity, transform e clip-path se mexem, e no fim (ou ao
+ * cancelar) as animações são canceladas, ficando o DOM intacto. */
+
+function controleDe(vivas: Animation[], total: number, el: HTMLElement): Controle {
+  let acabou = false;
+  let resolve: (v: boolean) => void = () => {};
+  const fim = new Promise<boolean>((r) => { resolve = r; });
+  const termina = (ok: boolean) => { if (acabou) return; acabou = true; for (const a of vivas) { try { a.cancel(); } catch { /* ok */ } } resolve(ok); };
+  const rel = el.animate ? el.animate([], { duration: Math.max(1, total), fill: 'none' }) : null;
+  if (rel) { vivas.push(rel); rel.onfinish = () => termina(true); } else termina(true);
+  return {
+    pausa() { for (const a of vivas) { try { a.pause(); } catch { /* ok */ } } },
+    toca() { for (const a of vivas) { try { a.play(); } catch { /* ok */ } } },
+    velocidade(v: number) { for (const a of vivas) { try { a.updatePlaybackRate(v); } catch { /* ok */ } } },
+    cancela() { termina(false); },
+    fim,
+  };
+}
+
+/** A imagem do slide entra: surge e assenta (leve aproximação), como quem põe a foto na mesa. */
+export function animaEntrada(el: HTMLElement, atraso = 0): Controle {
+  const vivas: Animation[] = [];
+  if (el.animate) vivas.push(el.animate([{ opacity: 0, transform: 'scale(1.035)' }, { opacity: 1, transform: 'none' }], { duration: 900, delay: atraso, easing: 'cubic-bezier(.2,.7,.2,1)', fill: 'both' }));
+  return controleDe(vivas, atraso + 900, el);
+}
+
+/** Escreve à mão, da esquerda para a direita, cada linha de `sel` dentro de `el`, uma depois da outra (fórmula, frase-chave). */
+export function animaEscrita(el: HTMLElement, sel = '.fm-linha', atraso = 0): Controle {
+  const vivas: Animation[] = [];
+  const linhas = [...el.querySelectorAll<HTMLElement>(sel)];
+  if (!linhas.length) linhas.push(el);
+  let t = atraso;
+  for (const l of linhas) {
+    const n = Math.max(1, (l.textContent || '').trim().length);
+    const d = Math.max(380, Math.min(1500, 120 + n * 38));
+    if (l.animate) vivas.push(l.animate([{ clipPath: 'inset(-.5em 100% -.5em -.3em)' }, { clipPath: 'inset(-.5em -.3em -.5em -.3em)' }], { duration: d, delay: t, easing: 'linear', fill: 'both' }));
+    t += d + 120;
+  }
+  return controleDe(vivas, t, el);
+}

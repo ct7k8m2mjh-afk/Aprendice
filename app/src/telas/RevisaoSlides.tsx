@@ -2,13 +2,13 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useMateria, useQuestaoComTexto, useResolucoes } from '../dados/conteudo';
 import { materia as infoMateria } from '../dados/materias';
-import { useTemaRevisao, type TemaRevisao } from '../dados/revisao';
+import { useIndiceRevisao, useTemaRevisao, type TemaRevisao } from '../dados/revisao';
 import { atualizaMateria, pegaEstado, useMateriaEstado } from '../estado/loja';
 import type { AndamentoRevisao, Lembrou, RespRevisao, RevisaoConteudo } from '../estado/tipos';
 import { estadoMateriaVazio } from '../estado/tipos';
 import type { Letra, MateriaId, Questao } from '../dados/tipos';
 import {
-  CTX_SLIDES, TEMPOS, escolheQuestoes, fechaSessao, linhasFixe, novoAndamento, resumoSessao, sessaoBoa, slidesDoCiclo,
+  CTX_SLIDES, TEMPOS, escolheQuestoes, slideDaQuestao, fechaSessao, linhasFixe, novoAndamento, resumoSessao, sessaoBoa, slidesDoCiclo,
 } from '../logica/cicloRevisao';
 import { emDias } from '../logica/revisao';
 import { nivelDe, nomeNivel } from '../logica/nivel';
@@ -37,6 +37,9 @@ export function RevisaoSlides() {
   const s = useMateriaEstado(m);
   const temaId = sub.split('.')[0];
   const tema = useTemaRevisao(m, temaId);
+  // resolução comentada publicada para este conteúdo? (o índice diz; sem ela, nada de buscar arquivo que não existe)
+  const ind = useIndiceRevisao(m);
+  const temRes = !!ind?.res?.includes(sub);
   const mod = mc?.conteudo.modulos.find((x) => x.id === temaId);
   const nomeSub = mod?.subs.find((x) => x.id === sub)?.nome || sub;
   useTitulo(`Revisão · ${cap(nomeSub)}`);
@@ -64,6 +67,18 @@ export function RevisaoSlides() {
 
   useEffect(() => { tick.current = Date.now(); }, [and?.fase, and?.i]);
   useEffect(() => { setFechada(null); }, [m, sub]);
+  // Esc volta ao tema, como diz o botão "Voltar (Esc)" (auditoria M2)
+  useEffect(() => {
+    const f = (e: KeyboardEvent) => {
+      if (e.key !== 'Escape' || e.defaultPrevented) return;
+      const alvo = e.target as HTMLElement;
+      if (alvo && (alvo.tagName === 'INPUT' || alvo.tagName === 'TEXTAREA')) { alvo.blur(); return; }
+      if (document.querySelector('.lupa')) return;
+      nav(`/m/${m}/tema/${sub.split('.')[0]}?aba=revisao`);
+    };
+    addEventListener('keydown', f);
+    return () => removeEventListener('keydown', f);
+  }, [m, sub, nav]);
 
   if (!mc || tema === undefined) return <div className="conteudo"><Carregando /></div>;
   // só conteúdos que existem no site (conteúdo novo proposto nas pendências não vira id sem decisão do dono)
@@ -122,13 +137,13 @@ export function RevisaoSlides() {
       {fase < 0 ? (
         <Capa nomeMat={nomeMat} tema={tema} sub={sub} nomeSub={nomeSub} rev={rev} nQuestoes={qs.length} ciclo={ciclo} aoComecar={comeca} />
       ) : fechada || !and ? (
-        <Fim m={m} rev={pegaEstado().materias[m]?.revs?.[sub] || rev} temaId={temaId} mcBanco={mc.porId} aoRefazer={comeca} />
+        <Fim m={m} temRes={temRes} rev={pegaEstado().materias[m]?.revs?.[sub] || rev} temaId={temaId} mcBanco={mc.porId} aoRefazer={comeca} />
       ) : and.fase === 0 || and.fase === 3 ? (
-        <FaseQuestoes key={and.fase} m={m} fase={and.fase} and={and} porId={mc.porId} sub={sub}
+        <FaseQuestoes key={and.fase} m={m} fase={and.fase} and={and} porId={mc.porId} sub={sub} temRes={temRes}
           aoResponder={(q, resp) => muda((a) => (a.fase === 0 ? { ...a, pre: [...a.pre.filter((x) => x.id !== q.id), resp] } : { ...a, apl: [...a.apl.filter((x) => x.id !== q.id), resp] }))}
           aoIr={(i) => muda((a) => ({ ...a, i }))} aoFim={avanca} />
       ) : and.fase === 1 ? (
-        <FaseVer m={m} tema={tema} sub={sub} and={and} ciclo={ciclo}
+        <FaseVer m={m} tema={tema} sub={sub} and={and} ciclo={ciclo} porId={mc.porId}
           aoIr={(i) => { muda((a) => ({ ...a, i })); window.scrollTo({ top: 0 }); }}
           aoLembrar={(k, v) => muda((a) => ({ ...a, lembrou: { ...a.lembrou, [k]: v } }))} aoFim={avanca} />
       ) : (
@@ -189,7 +204,8 @@ function Capa({ nomeMat, tema, sub, nomeSub, rev, nQuestoes, ciclo, aoComecar }:
 
 /* ================================================================= tempos 1 e 4: questões */
 
-function FaseQuestoes({ m, fase, and, porId, sub, aoResponder, aoIr, aoFim }: {
+function FaseQuestoes({ m, fase, and, porId, sub, temRes, aoResponder, aoIr, aoFim }: {
+  temRes: boolean;
   m: MateriaId; fase: 0 | 3; and: AndamentoRevisao; porId: Map<string, Questao>; sub: string;
   aoResponder: (q: Questao, r: RespRevisao) => void; aoIr: (i: number) => void; aoFim: () => void;
 }) {
@@ -198,7 +214,7 @@ function FaseQuestoes({ m, fase, and, porId, sub, aoResponder, aoIr, aoFim }: {
   const i = Math.min(and.i, Math.max(0, ids.length - 1));
   const q0 = porId.get(ids[i]);
   const q = useQuestaoComTexto(m, q0) || q0;
-  const res = useResolucoes(m, sub);
+  const res = useResolucoes(m, temRes ? sub : undefined);
   const feita = resps.find((r) => r.id === q0?.id);
   const [escolha, setEscolha] = useState<Letra | null>(feita?.letra || null);
   const [conf, setConf] = useState<Conf | null>(feita?.conf || null);
@@ -270,12 +286,14 @@ function FaseQuestoes({ m, fase, and, porId, sub, aoResponder, aoIr, aoFim }: {
               <h3>{feita.ok ? 'Você acertou' : `Você marcou ${feita.letra}. A resposta é ${q.gab}.`}</h3>
               <p className="miolo">{feita.ok
                 ? (feita.conf === 'chute' ? 'Acertou no chute: para o site, ainda não é sabido. Os slides mostram o porquê.' : 'Os slides vão mostrar o porquê, passo a passo.')
-                : feita.conf === 'certeza' ? 'Errou com certeza: este é o erro que mais vale corrigir. Os slides marcados mostram onde.' : 'Os slides a seguir mostram o que faltou. A correção completa fica no fim da revisão.'}</p>
+                : feita.conf === 'certeza' ? 'Errou com certeza: este é o erro que mais vale corrigir. Os slides marcados mostram onde.' : 'Os slides a seguir mostram o que faltou. No fim, a questão fica na lista para você rever.'}</p>
             </div>
           </aside>
         ) : (
           <aside className="folha q-lado rv-lado" aria-label="Correção">
-            <div className="q-lado-corpo"><ResolucaoView q={q} r={res ? res[q.id] : undefined} marcada={feita.letra} /></div>
+            <div className="q-lado-corpo">{q.res || res?.[q.id]
+              ? <ResolucaoView q={q} r={q.res || res![q.id]} marcada={feita.letra} />
+              : <SemResolucao q={q} marcada={feita.letra} />}</div>
           </aside>
         ))}
       </div>
@@ -285,15 +303,28 @@ function FaseQuestoes({ m, fase, and, porId, sub, aoResponder, aoIr, aoFim }: {
 
 /* ================================================================= tempo 2: ver acontecer */
 
-function FaseVer({ m, tema, sub, and, ciclo, aoIr, aoLembrar, aoFim }: {
+function FaseVer({ m, tema, sub, and, ciclo, porId, aoIr, aoLembrar, aoFim }: {
+  porId: Map<string, Questao>;
   m: MateriaId; tema: TemaRevisao; sub: string; and: AndamentoRevisao; ciclo: ReturnType<typeof slidesDoCiclo>;
   aoIr: (i: number) => void; aoLembrar: (k: string, v: Lembrou) => void; aoFim: () => void;
 }) {
   const n = ciclo.ver.length;
   const i = Math.min(and.i, n - 1);
   const { s, k } = ciclo.ver[i];
-  const errosPre = and.pre.filter((r) => !r.ok || r.conf === 'chute').length;
-  const aviso = errosPre && s.tipo === 'pegadinha' ? 'Atenção aqui: você errou na pergunta inicial' : undefined;
+  // pilar 1.2: o slide que responde a cada questão errada (ou acertada no chute) no tempo 1 aparece marcado
+  const fracas = and.pre.filter((r) => !r.ok || r.conf === 'chute').map((r) => r.id);
+  const q1 = useQuestaoComTexto(m, porId.get(fracas[0] || '')), q2 = useQuestaoComTexto(m, porId.get(fracas[1] || '')), q3 = useQuestaoComTexto(m, porId.get(fracas[2] || ''));
+  const marcados = useMemo(() => {
+    const out = new Set<number>();
+    for (const q of [q1, q2, q3]) {
+      if (!q) continue;
+      const txt = [q.enun, ...Object.values(q.alts || {}), ...(q.transcricao?.enun.map((x) => x.t) || []), q.conceito].join(' ');
+      const k = slideDaQuestao(txt, ciclo.ver);
+      if (k != null) out.add(k);
+    }
+    return out;
+  }, [q1, q2, q3, ciclo.ver]);
+  const aviso = marcados.has(k) ? 'É aqui que você errou na pergunta inicial' : undefined;
   const chave = `${sub}#${k}`;
   const ant = () => { if (i > 0) aoIr(i - 1); };
   const prox = () => { if (i + 1 < n) aoIr(i + 1); else aoFim(); };
@@ -316,7 +347,7 @@ function FaseVer({ m, tema, sub, and, ciclo, aoIr, aoLembrar, aoFim }: {
       <nav className="rv-nav" aria-label="Slides">
         <button className="btn sec" onClick={ant} disabled={i === 0}><Icone nome="esquerda" /> <span>Anterior</span></button>
         <div className="rv-pontos" aria-hidden>
-          {ciclo.ver.map((x, j) => <i key={j} className={(j < i ? 'feito' : j === i ? 'atual' : '') + (x.s.tipo === 'pegadinha' && errosPre ? ' marca' : '')} />)}
+          {ciclo.ver.map((x, j) => <i key={j} className={(j < i ? 'feito' : j === i ? 'atual' : '') + (marcados.has(x.k) ? ' marca' : '')} />)}
         </div>
         <button className="btn" onClick={prox}><span>{i + 1 < n ? 'Próximo' : ciclo.fixe ? 'Lembrar sem olhar' : 'Aplicar'}</span> <Icone nome="direita" /></button>
       </nav>
@@ -357,7 +388,7 @@ function FaseLembrar({ sub, and, fixe, aoLembrar, aoFim }: {
 
 /* ================================================================= tempo 5: voltar */
 
-function Fim({ m, rev, temaId, mcBanco, aoRefazer }: { m: MateriaId; rev?: RevisaoConteudo; temaId: string; mcBanco: Map<string, Questao>; aoRefazer: () => void }) {
+function Fim({ m, temRes, rev, temaId, mcBanco, aoRefazer }: { m: MateriaId; temRes: boolean; rev?: RevisaoConteudo; temaId: string; mcBanco: Map<string, Questao>; aoRefazer: () => void }) {
   const ult = rev?.hist[rev.hist.length - 1];
   if (!ult || !rev) return null;
   const r = resumoSessao(ult);
@@ -376,8 +407,13 @@ function Fim({ m, rev, temaId, mcBanco, aoRefazer }: { m: MateriaId; rev?: Revis
       <p className="rv-fim-volta"><Icone nome="relogio" tam={18} /> <span>Volta <b>{emDias(rev.vence)}</b> ({new Date(rev.vence).toLocaleDateString('pt-BR')}). {boa ? 'Acertou a aplicação e lembrou do essencial: o intervalo cresce.' : 'Algo não firmou (aplicação, certeza errada ou lacunas): volta cedo para fixar.'}</span></p>
       {erradas.length > 0 && (
         <div className="rv-fim-err">
-          <h2 className="tp-h">Questões para rever com a correção completa</h2>
-          <ul>{erradas.map((q) => <li key={q.id}><Link to={`/m/${m}/q/${q.id}?ctx=escada`}><span>{q.escola} {q.ano}{q.n ? ` · questão ${q.n}` : ''}</span><Icone nome="direita" /></Link></li>)}</ul>
+          <h2 className="tp-h">Questões que você errou</h2>
+          <ul>{erradas.map((q) => (
+            <li key={q.id}><Link to={`/m/${m}/q/${q.id}?ctx=escada`}>
+              <span>{q.escola} {q.ano}{q.n ? ` · questão ${q.n}` : ''}<small>{q.res || temRes ? 'Gabarito oficial e resolução comentada' : `Gabarito oficial: ${q.gab} · resolução comentada em preparação`}</small></span>
+              <Icone nome="direita" />
+            </Link></li>
+          ))}</ul>
           <p className="fraco">Elas também entram na sua revisão espaçada de questões.</p>
         </div>
       )}
@@ -385,6 +421,23 @@ function Fim({ m, rev, temaId, mcBanco, aoRefazer }: { m: MateriaId; rev?: Revis
         <Link className="btn tp-comecar" to={`/m/${m}/tema/${temaId}?aba=revisao`}><Icone nome="lista" />Outros conteúdos do tema</Link>
         <button className="btn sec" onClick={aoRefazer}><Icone nome="repetir" />Revisar de novo</button>
       </div>
+    </section>
+  );
+}
+
+/** Correção sem resolução publicada: o gabarito oficial e, com honestidade, a resolução em preparação (auditoria A3). */
+function SemResolucao({ q, marcada }: { q: Questao; marcada: Letra }) {
+  const ok = marcada === q.gab;
+  return (
+    <section className={'resolucao ' + (ok ? 'ok' : 'err')} aria-labelledby="rv-sr-tit">
+      <header className="res-cab">
+        <span className={'res-selo ' + (ok ? 'ok' : 'err')}><Icone nome={ok ? 'check' : 'fechar'} tam={18} /></span>
+        <div>
+          <h2 id="rv-sr-tit">{ok ? 'Você acertou' : `Você marcou ${marcada}. A resposta é ${q.gab}.`}</h2>
+          <p className="fraco">Gabarito oficial publicado · {q.escola} {q.ano}{q.n ? `, questão ${q.n}` : ''}</p>
+        </div>
+      </header>
+      <p className="miolo rv-sr-p">A resolução comentada desta questão está em preparação: ela só entra no site depois de passar pela banca da matéria. Os slides deste conteúdo explicam a ideia que a questão cobra.</p>
     </section>
   );
 }

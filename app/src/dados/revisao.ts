@@ -49,7 +49,8 @@ export interface TemaRevisao {
   obra?: string;
 }
 
-export interface IndiceRevisao { materia: MateriaId; obra?: string; temas: Record<string, { nome: string; subs: Record<string, number> }> }
+export interface IndiceRevisao { materia: MateriaId; obra?: string; temas: Record<string, { nome: string; subs: Record<string, number> }>;
+  /** conteúdos com resolução comentada publicada (res/<conteúdo>.json) */ res?: string[] }
 
 const VAZIO: IndiceRevisao = { materia: 'fis', temas: {} };
 const cacheIndice = new Map<MateriaId, Promise<IndiceRevisao>>();

@@ -1,23 +1,23 @@
-import type { CSSProperties } from 'react';
-import type { ReactNode } from 'react';
+import { useState, type CSSProperties } from 'react';
 import { Link } from 'react-router-dom';
-import { useTodasMaterias, type MateriaCarregada } from '../dados/conteudo';
-import { MATERIAS_PRINCIPAIS, materia as infoMateria, nomeMateria } from '../dados/materias';
-import { useEstado } from '../estado/loja';
-import { atividadeRecente, materiaDeHoje, progressoEscada, resumoMateria } from '../logica/estatisticas';
+import { urlArteTreinoGeral, useTodasMaterias, type MateriaCarregada } from '../dados/conteudo';
+import { MATERIAS_ATIVAS, materia as infoMateria } from '../dados/materias';
+import { atualiza, useEstado } from '../estado/loja';
+import { materiaDeHoje, progressoEscada, questoesVencidas, resumoMateria, atividadeRecente } from '../logica/estatisticas';
+import { desempenhoPeriodo, destaque, diasDeConstancia } from '../logica/inicio';
+import { RODADA_PADRAO, RODADAS } from '../logica/treinoMisto';
 import { Barra, Carregando, cap, plural, useTitulo } from '../ui/comum';
-import { Icone, type NomeIcone } from '../ui/Icone';
+import { Icone } from '../ui/Icone';
+import { CirculoMateria, IluMateria } from '../ui/IconeMateria';
+import { useRoloHorizontal } from '../ui/rolo';
 import type { MateriaId } from '../dados/tipos';
 import type { Estado, EstadoMateria } from '../estado/tipos';
-import { ILU, IluMateria, temIlu } from '../ui/IconeMateria';
+import { estadoMateriaVazio } from '../estado/tipos';
 
-export { ILU };
+const VAZIA: EstadoMateria = estadoMateriaVazio();
 
-const VAZIA: EstadoMateria = { q: {}, ult: null, sims: [], flash: {}, flg: {}, sessoes: [] };
-
-/** Próxima questão da escada onde o aluno parou. */
+/** Próxima questão da escada onde o aluno parou (a última resposta que ainda existe no site). */
 export function ondeParou(todas: MateriaCarregada[], e: Estado) {
-  // a última resposta pode ser de uma questão que saiu do site (comando 21): vale a mais recente que ainda existe
   const ult = atividadeRecente(e, 50).find((x) => todas.find((y) => y.id === x.m)?.porId.has(x.id));
   if (!ult) return null;
   const mc = todas.find((x) => x.id === ult.m);
@@ -31,77 +31,189 @@ export function ondeParou(todas: MateriaCarregada[], e: Estado) {
   return { m: mc.id, q, prox, escada, mod, sub, prog: progressoEscada(escada, s) };
 }
 
-/** Porcentagem inteira honesta: nunca arredonda para 0% quando já há algo feito. */
-function pct(n: number, d: number): string {
-  if (!d) return '0%';
-  const v = (n / d) * 100;
-  return v > 0 && v < 1 ? '<1%' : `${Math.round(v)}%`;
-}
+const PERIODOS: { v: string; dias: number | null; nome: string }[] = [
+  { v: '7', dias: 7, nome: 'Últimos 7 dias' }, { v: '30', dias: 30, nome: 'Últimos 30 dias' }, { v: 'tudo', dias: null, nome: 'Desde o começo' },
+];
 
-const TIPO_CTX: Record<string, string> = { escada: 'Questões do conteúdo', treino: 'Treino geral', revisao: 'Revisão espaçada', simulado: 'Simulado' };
+const pctInt = (n: number, d: number) => (d ? Math.round((n / d) * 100) : 0);
 
-/** Sessões recentes: respostas seguidas no mesmo conteúdo e no mesmo modo viram uma linha. */
-function sessoesRecentes(todas: MateriaCarregada[], e: Estado, n: number) {
-  const tent: { m: MateriaId; id: string; ts: number; ok: boolean; ctx: string }[] = [];
-  for (const [m, s] of Object.entries(e.materias)) if (s) for (const [id, eq] of Object.entries(s.q))
-    for (const t of eq.tent) tent.push({ m: m as MateriaId, id, ts: t.ts, ok: t.ok, ctx: t.ctx || 'escada' });
-  tent.sort((a, b) => b.ts - a.ts);
-  const grupos: { m: MateriaId; sub: string; subNome: string; ctx: string; ts: number; n: number; certas: number; concluido: boolean }[] = [];
-  for (const t of tent) {
-    const mc = todas.find((x) => x.id === t.m);
-    const q = mc?.porId.get(t.id);
-    if (!mc || !q) continue;
-    const g = grupos[grupos.length - 1];
-    if (g && g.m === t.m && g.sub === q.sub && g.ctx === t.ctx) { g.n++; if (t.ok) g.certas++; continue; }
-    if (grupos.length === n) break;
-    const mod = mc.conteudo.modulos.find((x) => x.id === q.modulo);
-    const sub = mod?.subs.find((x) => x.id === q.sub);
-    const p = progressoEscada(mc.porSub.get(q.sub) || [], e.materias[t.m] || VAZIA);
-    grupos.push({ m: t.m, sub: q.sub, subNome: cap(sub?.nome || mod?.nome || ''), ctx: t.ctx, ts: t.ts, n: 1, certas: t.ok ? 1 : 0, concluido: p.total > 0 && p.feitas >= p.total });
-  }
-  return grupos;
-}
+/** Ordem e nomes curtos da referência da aba principal (Inglês antes de Filosofia e Sociologia; "Quím", "Fil/Soc"...). */
+const ORDEM_INICIO: MateriaId[] = ['bio', 'qui', 'mat', 'por', 'fis', 'geo', 'his', 'ing', 'fs'];
+const MATERIAS_INICIO = ORDEM_INICIO.map((id) => MATERIAS_ATIVAS.find((m) => m.id === id)).filter((m): m is (typeof MATERIAS_ATIVAS)[number] => !!m);
+const CURTO_GRAFICO: Partial<Record<MateriaId, string>> = { bio: 'Bio', qui: 'Quím', mat: 'Mat', por: 'Port', fis: 'Fís', geo: 'Geo', his: 'Hist', ing: 'Ingl', fs: 'Fil/Soc' };
 
-function quando(ts: number): string {
-  const d = new Date(ts), hoje = new Date(); hoje.setHours(0, 0, 0, 0);
-  const hora = d.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
-  const dia = new Date(ts); dia.setHours(0, 0, 0, 0);
-  const dif = Math.round((hoje.getTime() - dia.getTime()) / 864e5);
-  if (dif === 0) return `Hoje, ${hora}`;
-  if (dif === 1) return `Ontem, ${hora}`;
-  return `${d.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' })}, ${hora}`;
-}
-
-/** Três traços verdes de destaque (decorativos). */
-function Faisca({ className }: { className?: string }) {
+/** "Suas matérias": faixa com rolagem lateral (roda do mouse e setas), um cartão por matéria. */
+function SuasMaterias({ todas, e }: { todas: MateriaCarregada[]; e: Estado }) {
+  const { rolo, bordas, mede, anda } = useRoloHorizontal('inicio');
   return (
-    <svg className={'faisca ' + (className || '')} viewBox="0 0 48 30" aria-hidden>
-      <path d="M8 22 3 12M24 20V3M40 22l6-10" />
-    </svg>
+    <section className="in-mats" aria-labelledby="in-mats-tit">
+      <h2 id="in-mats-tit" className="in-sec-tit">Suas matérias</h2>
+      <div className={'in-mats-faixa' + (bordas.e ? ' fe' : '') + (bordas.d ? ' fd' : '')}>
+        {bordas.e && <button className="in-seta esq" onClick={() => anda(-1)} aria-label="Matérias anteriores"><Icone nome="esquerda" /></button>}
+        <div className="in-mats-rolo" ref={rolo} onScroll={mede} role="list">
+          {MATERIAS_INICIO.map((m) => {
+            const mc = todas.find((x) => x.id === m.id);
+            const r = mc ? resumoMateria(mc, e.materias[m.id] || VAZIA) : { total: 0, feitas: 0 };
+            return (
+              <Link key={m.id} to={`/m/${m.id}`} className={`in-mat m-${m.id}`} role="listitem"
+                aria-label={`${m.nome}: ${r.total ? `${r.feitas.toLocaleString('pt-BR')} de ${r.total.toLocaleString('pt-BR')} questões feitas` : 'questões em preparação'}`}>
+                <CirculoMateria m={m.id} tam={150} />
+                <span className="in-mat-nome">{m.nome}</span>
+                <Barra valor={r.total ? r.feitas / r.total : 0} />
+              </Link>
+            );
+          })}
+        </div>
+        {bordas.d && <button className="in-seta dir" onClick={() => anda(1)} aria-label="Próximas matérias"><Icone nome="direita" /></button>}
+      </div>
+    </section>
   );
 }
 
-/** Ícone 3D principal da matéria; sem ilustração (Física, Geografia), o marcador neutro na cor da matéria. */
-function IcMat({ m, tam, className = '' }: { m: MateriaId; tam: number; className?: string }) {
-  return temIlu(m)
-    ? <IluMateria m={m} tam={tam} className={'ini-ic ' + className} />
-    : <span className={`ic3d ic3d-vazio m-${m} ${className}`} style={{ width: tam, height: tam }} aria-hidden><Icone nome="camadas" tam={Math.round(tam * 0.42)} /></span>;
+/** Treino geral de todas as matérias: começar (ou retomar) e "Personalizar" (tamanho da rodada; nunca a matéria). */
+function CartaoTreino({ e }: { e: Estado }) {
+  const [abre, setAbre] = useState(false);
+  const n = e.pref.rodadaMisto || RODADA_PADRAO;
+  const ses = e.treinoMisto;
+  const emAndamento = !!ses && ses.i < ses.it.length;
+  const arte = urlArteTreinoGeral();
+  const escolhe = (k: number) => {
+    // rodada nova com o tamanho escolhido; a sessão em andamento (se houver) dá lugar à nova
+    atualiza((x) => ({ ...x, pref: { ...x.pref, rodadaMisto: k }, treinoMisto: x.treinoMisto && x.treinoMisto.it.length === k ? x.treinoMisto : null }));
+    setAbre(false);
+  };
+  return (
+    <section className="in-treino" aria-labelledby="in-treino-tit">
+      <div className="in-dest-txt">
+        <h2 id="in-treino-tit">Treino geral</h2>
+        <p className="in-dest-sub">Questões aleatórias de todas as matérias.</p>
+        <p className="in-dest-info num">{emAndamento ? `Rodada em andamento: ${ses!.i} de ${ses!.it.length} questões` : `${n} questões por rodada`}</p>
+        <div className="in-dest-acoes">
+          <Link to="/treino-geral" className="btn grande in-btn-treino"><Icone nome="misturar" tam={20} />{emAndamento ? 'Retomar treino' : 'Começar treino'}</Link>
+          <button type="button" className="in-personalizar" aria-expanded={abre} aria-controls="in-rodada" onClick={() => setAbre((v) => !v)}>Personalizar</button>
+        </div>
+        {abre && (
+          <div id="in-rodada" className="in-rodada" role="group" aria-label="Questões por rodada">
+            <span>Questões por rodada</span>
+            <div className="in-rodada-ops">
+              {RODADAS.map((k) => <button key={k} type="button" className="chip" aria-pressed={k === n} onClick={() => escolhe(k)}>{k}</button>)}
+            </div>
+            <small>As questões vêm de todas as matérias, sorteadas e misturadas.</small>
+          </div>
+        )}
+      </div>
+      {arte && <img className="in-treino-arte" src={arte} alt="" decoding="async" />}
+    </section>
+  );
 }
 
-function Anel({ valor, children }: { valor: number; children: ReactNode }) {
-  const tam = 112, esp = 12, r = (tam - esp) / 2, c = 2 * Math.PI * r, v = Math.max(0, Math.min(1, valor));
+/** "Continue de onde parou" (ou, sem histórico, a matéria do dia). */
+function CartaoContinue({ todas, e }: { todas: MateriaCarregada[]; e: Estado }) {
+  const parou = ondeParou(todas, e);
+  const comQuestoes = todas.filter((mc) => mc.banco.length).map((mc) => mc.id);
+  const m: MateriaId = parou ? parou.m : materiaDeHoje(e, comQuestoes.length ? comQuestoes : ['bio']);
+  const info = infoMateria(m)!;
+  const falta = parou ? Math.max(0, parou.prog.total - parou.prog.feitas) : 0;
   return (
-    <div className="evo-anel">
-      <svg viewBox={`0 0 ${tam} ${tam}`} aria-hidden>
-        <defs>
-          <linearGradient id="evo-grad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="var(--verde-claro)" /><stop offset="1" stopColor="var(--verde)" /></linearGradient>
-        </defs>
-        <circle cx={tam / 2} cy={tam / 2} r={r} fill="none" stroke="var(--verde-trilho)" strokeWidth={esp} />
-        {v > 0 && <circle cx={tam / 2} cy={tam / 2} r={r} fill="none" stroke="url(#evo-grad)" strokeWidth={esp} strokeLinecap="round"
-          strokeDasharray={c} strokeDashoffset={c * (1 - Math.max(v, 0.012))} transform={`rotate(-90 ${tam / 2} ${tam / 2})`} />}
-      </svg>
-      <div className="evo-anel-txt">{children}</div>
-    </div>
+    <section className={`in-continue m-${m}`} aria-labelledby="in-cont-tit">
+      <div className="in-dest-txt">
+        <p className="in-rotulo">{parou ? 'Continue de onde parou' : 'Comece por aqui'}</p>
+        <h2 id="in-cont-tit">{info.nome}</h2>
+        {parou ? (<>
+          <p className="in-dest-sub">{cap(parou.sub?.nome || parou.mod?.nome || '')}</p>
+          <p className="in-cont-prog num"><span>{parou.prog.feitas} de {plural(parou.prog.total, 'questão', 'questões')}</span>
+            <span className="in-ponto" aria-hidden>•</span><small>{falta ? `Faltam ${falta} para concluir` : 'Conteúdo concluído'}</small></p>
+          <Barra valor={parou.prog.feitas / Math.max(1, parou.prog.total)} rotulo="Progresso no conteúdo" />
+          <Link to={`/m/${parou.m}/q/${parou.prox.id}?ctx=escada`} className="btn grande">Continuar estudo <Icone nome="seta" /></Link>
+        </>) : (<>
+          <p className="in-dest-sub">{info.descricao}</p>
+          <Link to={`/m/${m}`} className="btn grande">Começar estudo <Icone nome="seta" /></Link>
+        </>)}
+      </div>
+      <IluMateria m={m} className="in-cont-arte" />
+    </section>
+  );
+}
+
+/** Seu desempenho por matéria: acerto (barra) e questões resolvidas no período escolhido. */
+function Desempenho({ e }: { e: Estado }) {
+  const [per, setPer] = useState('30');
+  const p = PERIODOS.find((x) => x.v === per) || PERIODOS[1];
+  const dados = desempenhoPeriodo(e, p.dias);
+  const porM = new Map(dados.map((x) => [x.m, x]));
+  const total = dados.reduce((a, x) => a + x.resolvidas, 0);
+  const dias = diasDeConstancia(e);
+  const dest = destaque(dados);
+  return (
+    <section className="in-desemp" aria-labelledby="in-desemp-tit">
+      <h2 id="in-desemp-tit" className="in-sec-tit">Seu desempenho por matéria</h2>
+      <p className="in-sec-sub">Compare seus acertos e veja onde vale reforçar.</p>
+      <label className="in-periodo">
+        <span className="sr">Período</span>
+        <select value={per} onChange={(ev) => setPer(ev.target.value)}>
+          {PERIODOS.map((x) => <option key={x.v} value={x.v}>{x.nome}</option>)}
+        </select>
+        <Icone nome="baixo" tam={18} />
+      </label>
+      <figure className="in-grafico">
+        <div className="in-graf-area">
+          <div className="in-graf-eixo" aria-hidden><span>100%</span><span>50%</span><span>0%</span></div>
+          <ul className="in-graf-barras">
+            {MATERIAS_INICIO.map((m) => {
+              const d = porM.get(m.id);
+              const v = d ? pctInt(d.acertos, d.resolvidas) : null;
+              return (
+                <li key={m.id} className={`m-${m.id}`} aria-label={`${m.nome}: ${d ? `${v}% de acerto em ${plural(d.resolvidas, 'questão resolvida', 'questões resolvidas')}` : 'sem questões resolvidas no período'}`}>
+                  <span className="in-graf-col" aria-hidden>
+                    {v !== null && <b className="num">{v}%</b>}
+                    <i style={{ '--v': v === null ? 0 : v / 100 } as CSSProperties} className={v === null ? 'vazia' : ''} />
+                  </span>
+                  <span className="in-graf-nome" aria-hidden>{CURTO_GRAFICO[m.id] || m.curto}</span>
+                  <span className="in-graf-n num" aria-hidden>{d ? d.resolvidas.toLocaleString('pt-BR') : '—'}</span>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+        <figcaption>Questões resolvidas por matéria</figcaption>
+      </figure>
+      <div className="in-desemp-nums">
+        <span><Icone nome="camadas" tam={22} /><b className="num">{plural(total, 'questão resolvida', 'questões resolvidas')}</b></span>
+        <span><Icone nome="calendario" tam={22} /><b className="num">{plural(dias, 'dia de constância', 'dias de constância')}</b></span>
+      </div>
+      {dest && <p className="in-destaque num"><i aria-hidden />Seu destaque: {infoMateria(dest.m)?.nome} · {pctInt(dest.acertos, dest.resolvidas)}% de acerto</p>}
+    </section>
+  );
+}
+
+/** Hora de revisar: as matérias de menor acerto (com pelo menos uma questão feita). */
+function HoraDeRevisar({ todas, e }: { todas: MateriaCarregada[]; e: Estado }) {
+  const lista = todas
+    .map((mc) => { const s = e.materias[mc.id] || VAZIA; const r = resumoMateria(mc, s); return { mc, r, venc: r.feitas ? questoesVencidas(mc, s) : [] }; })
+    .filter((x) => x.r.feitas > 0)
+    .sort((a, b) => a.r.acertos / a.r.feitas - b.r.acertos / b.r.feitas || b.r.feitas - a.r.feitas)
+    .slice(0, 3);
+  return (
+    <section className="in-revisar" aria-labelledby="in-rev-tit">
+      <h2 id="in-rev-tit" className="in-sec-tit">Hora de revisar</h2>
+      <p className="in-sec-sub">Transforme seus erros em aprendizado.</p>
+      {lista.length ? (<>
+        <p className="in-rev-chamada">Comece pelas matérias que precisam de atenção</p>
+        <ul className="in-rev-lista">
+          {lista.map(({ mc, r, venc }) => (
+            <li key={mc.id} className={`m-${mc.id}`}>
+              <IluMateria m={mc.id} className="in-rev-ic" />
+              <span className="in-rev-txt"><b>{infoMateria(mc.id)?.nome}</b><small className="num">{pctInt(r.acertos, r.feitas)}% de acerto</small></span>
+              <Link to={venc.length ? `/m/${mc.id}/q/${venc[0].id}?ctx=revisao` : '/revisao'} className="in-link" aria-label={`Revisar ${infoMateria(mc.id)?.nome}`}>Revisar <Icone nome="seta" tam={18} /></Link>
+            </li>
+          ))}
+        </ul>
+      </>) : (
+        <p className="in-rev-chamada">Quando você responder às primeiras questões, as matérias que pedem atenção aparecem aqui.</p>
+      )}
+      <Link to="/revisao" className="btn grande in-btn-revisar">Revisar meus erros <Icone nome="seta" /></Link>
+      <p className="in-rev-pe">Uma nova chance de fixar o conteúdo.</p>
+    </section>
   );
 }
 
@@ -109,138 +221,35 @@ export function Inicio() {
   useTitulo('Início');
   const e = useEstado();
   const todas = useTodasMaterias();
-  const nome = (e.perfil?.nome || '').trim().split(/\s+/)[0];
-
   if (!todas) return <div className="conteudo"><Carregando /></div>;
-
-  // "matéria de hoje" só entre as que já têm questões
-  const comQuestoes = todas.filter((mc) => mc.banco.length).map((mc) => mc.id);
-  const hojeId: MateriaId = materiaDeHoje(e, comQuestoes.length ? comQuestoes : ['bio']);
-  const hoje = infoMateria(hojeId)!;
-
-  const resumos = Object.fromEntries(todas.map((mc) => [mc.id, resumoMateria(mc, e.materias[mc.id] || VAZIA)]));
-  const resumoDe = (m: MateriaId) => resumos[m] || { total: 0, feitas: 0, acertos: 0 };
-  const parou = ondeParou(todas, e);
-  const totalBanco = todas.reduce((a, mc) => a + mc.banco.length, 0);
-  const totalFeitas = Object.values(resumos).reduce((a, r) => a + r.feitas, 0);
-  const emEstudo = Object.entries(e.materias).filter(([, s]) => s && (Object.values(s.q).some((x) => x.tent.length) || Object.keys(s.flash).length)).length;
-  const sessoes = sessoesRecentes(todas, e, 3);
-
-  const heroiM: MateriaId = parou ? parou.m : hojeId;
-
+  const ultima: MateriaId = (e.pref.ultimaMateria as MateriaId) || ondeParou(todas, e)?.m || 'bio';
   return (
-    <div className="conteudo inicio">
-      <div className="ini-grade">
-        <header className="ini-cab s12">
-          <h1>Olá{nome ? `, ${nome}` : ''}!<Faisca className="faisca-ola" /></h1>
-          <p>Que bom te ver por aqui! Continue firme nos seus estudos e siga evoluindo.</p>
-        </header>
-
-        <section className={`ini-heroi s8 m-${heroiM}`} aria-labelledby="heroi-tit">
-          <div className="ih-txt">
-            <span className="ih-rot"><Icone nome="play" tam={18} />{parou ? 'Continue de onde parou' : 'Comece por aqui'}</span>
-            {parou ? (<>
-              <h2 id="heroi-tit">{infoMateria(parou.m)?.nome}</h2>
-              <p className="ih-sub">{[parou.mod?.nome, parou.sub && cap(parou.sub.nome)].filter(Boolean).join(' — ')}</p>
-              <div className="ih-prog">
-                <Barra valor={parou.prog.feitas / Math.max(1, parou.prog.total)} rotulo="Progresso no conteúdo" />
-                <span className="num">{pct(parou.prog.feitas, parou.prog.total)} concluído</span>
-              </div>
-              <Link to={`/m/${parou.m}/q/${parou.prox.id}?ctx=escada`} className="btn grande">Retomar estudo <Icone nome="seta" /></Link>
-            </>) : (<>
-              <h2 id="heroi-tit">Treino geral de {hoje.nome}</h2>
-              <p className="ih-sub">O essencial da matéria, tudo misturado: questões reais de prova, frases para completar e flashcards.</p>
-              <Link to={`/m/${hojeId}/treino`} className="btn grande">Começar treino <Icone nome="seta" /></Link>
-            </>)}
-          </div>
-          <div className="ih-arte">
-            <IcMat m={heroiM} tam={150} className="ih-ilu" />
-          </div>
-        </section>
-
-        <section className="ini-painel ini-evo s4" aria-labelledby="evo-tit">
-          <h2 id="evo-tit" className="ip-tit"><Icone nome="barras" tam={20} />Acompanhe sua evolução</h2>
-          <p className="ip-sub">Questões do banco que você já resolveu, em todas as matérias.</p>
-          <div className="evo-corpo">
-            <Anel valor={totalBanco ? totalFeitas / totalBanco : 0}>
-              <b className="num">{pct(totalFeitas, totalBanco)}</b><span>de evolução</span>
-            </Anel>
-            <ul className="evo-nums">
-              <li><span className="evo-ic" aria-hidden><Icone nome="alvo" tam={18} /></span><span><b className="num">{emEstudo}</b>{emEstudo === 1 ? 'matéria em estudo' : 'matérias em estudo'}</span></li>
-              <li><span className="evo-ic" aria-hidden><Icone nome="quadcheck" tam={18} /></span><span><b className="num">{totalFeitas.toLocaleString('pt-BR')}</b>{totalFeitas === 1 ? 'questão resolvida' : 'questões resolvidas'}</span></li>
-              <li><span className="evo-ic" aria-hidden><Icone nome="raio" tam={18} /></span><span><b className="num">{e.simuladosFeitos.length}</b>{e.simuladosFeitos.length === 1 ? 'simulado realizado' : 'simulados realizados'}</span></li>
-            </ul>
-          </div>
-        </section>
-
-        <div className="ini-sec-cab s12">
-          <div>
-            <h2 id="mats-tit">Minhas matérias<Faisca className="faisca-mats" /></h2>
-            <p>Acesse o conteúdo, pratique questões e acompanhe seu progresso em cada disciplina.</p>
-          </div>
-          <Link to="/materias" className="ini-link">Ver todas as matérias <Icone nome="seta" tam={16} /></Link>
-        </div>
-        <div className="mats-grade s12" role="list" aria-labelledby="mats-tit" style={{ '--mats-col': MATERIAS_PRINCIPAIS.length % 4 === 0 || MATERIAS_PRINCIPAIS.length > 8 ? 4 : MATERIAS_PRINCIPAIS.length % 3 === 0 ? 3 : 4 } as CSSProperties}>
-          {MATERIAS_PRINCIPAIS.map((m) => {
-            const r = resumoDe(m.id);
-            return (
-              <Link key={m.id} to={`/m/${m.id}`} className={`mat-cartao m-${m.id}`} role="listitem">
-                <span className="mc-arte"><IcMat m={m.id} tam={140} className="mc-ic" /></span>
-                <span className="mc-nome"><Icone nome={`m_${m.id}` as NomeIcone} className="mc-traco" />{m.nome}</span>
-                <span className="mc-pct num">{r.total ? `${r.feitas.toLocaleString('pt-BR')} de ${r.total.toLocaleString('pt-BR')} questões` : 'Questões em preparação'}</span>
-                <span className="mc-linha">
-                  <Barra valor={r.total ? r.feitas / r.total : 0} rotulo={`Concluído em ${m.nome}`} />
-                  <span className="mc-num num">{r.total ? pct(r.feitas, r.total) : '—'}</span>
-                </span>
-              </Link>
-            );
-          })}
-        </div>
-
-        <section className="ini-painel s7" aria-labelledby="desemp-tit">
-          <h2 id="desemp-tit" className="ip-tit"><Icone nome="medalha" tam={20} />Desempenho por matéria</h2>
-          <p className="ip-sub">Seu acerto nas questões de cada disciplina.</p>
-          <ul className="desemp-lista">
-            {MATERIAS_PRINCIPAIS.map((m) => {
-              const r = resumoDe(m.id);
-              return (
-                <li key={m.id} className={`m-${m.id}`}>
-                  <IcMat m={m.id} tam={36} className="dl-ic" />
-                  <span className="dl-nome">{m.nome}</span>
-                  <Barra valor={r.feitas ? r.acertos / r.feitas : 0} rotulo={`Acerto em ${m.nome}`} />
-                  <span className="dl-pct num" title={r.feitas ? undefined : 'Sem respostas ainda'}>{r.feitas ? pct(r.acertos, r.feitas) : '—'}</span>
-                </li>
-              );
-            })}
-          </ul>
-          <Link to="/desempenho" className="ini-link desemp-mais">Ver desempenho de todas as matérias <Icone nome="seta" tam={16} /></Link>
-        </section>
-
-        <div className="ini-pilha s5">
-        <section className="ini-painel ini-ativ" aria-labelledby="ativ-tit">
-          <h2 id="ativ-tit" className="ip-tit"><Icone nome="relogio" tam={20} />Atividade recente</h2>
-          <p className="ip-sub">Retome o que você fez e mantenha o ritmo.</p>
-          {!sessoes.length && <p className="ativ-vazio">Suas últimas respostas aparecem aqui. Comece por um conteúdo ou pelo treino geral.</p>}
-          {sessoes.map((s) => (
-            <Link key={s.m + s.sub + s.ts} to={`/m/${s.m}/escada/${s.sub}`} className="ativ-linha">
-              <IcMat m={s.m} tam={36} className="ativ-ic" />
-              <span className="ativ-txt">
-                <span className="ativ-tit" title={`${nomeMateria(s.m)} — ${s.subNome}`}>{nomeMateria(s.m)} — {s.subNome}</span>
-                <span className="ativ-tipo">{TIPO_CTX[s.ctx] || 'Questões'} · {plural(s.n, 'resposta', 'respostas')}, {s.certas} {s.certas === 1 ? 'certa' : 'certas'} · {quando(s.ts)}</span>
-              </span>
-              <span className={'ativ-status' + (s.concluido ? ' ok' : '')}>{s.concluido && <Icone nome="check" tam={14} />}{s.concluido ? 'Concluído' : 'Em andamento'}</span>
-            </Link>
-          ))}
-          <Link to="/desempenho" className="ini-link desemp-mais">Ver histórico completo <Icone nome="seta" tam={16} /></Link>
-        </section>
-
-        <section className="ini-motiva" aria-labelledby="motiva-tit">
-          <Faisca className="faisca-motiva" />
-          <h2 id="motiva-tit">Seu esforço de hoje constrói sua aprovação.</h2>
-          <p>Cada sessão de estudo fortalece seu preparo. Mantenha a constância, avance por matéria e fique cada vez mais perto do seu objetivo.</p>
-        </section>
-        </div>
+    <div className="conteudo inicio-novo">
+      <header className="in-cab">
+        <h1>Vamos avançar nos estudos?</h1>
+        <p>Escolha uma matéria ou misture seus conhecimentos.</p>
+      </header>
+      <SuasMaterias todas={todas} e={e} />
+      <div className="in-destaques">
+        <CartaoTreino e={e} />
+        <CartaoContinue todas={todas} e={e} />
       </div>
+      <div className="in-duo">
+        <Desempenho e={e} />
+        <HoraDeRevisar todas={todas} e={e} />
+      </div>
+      <nav className="in-atalhos" aria-label="Atalhos">
+        <Link to={`/m/${ultima}/flashcards`} className="in-atalho">
+          <span className="in-at-ic" aria-hidden><Icone nome="cartas" tam={30} /></span>
+          <span className="in-at-txt"><b>Flashcards</b><small>Revise conceitos em poucos minutos</small></span>
+          <Icone nome="seta" tam={24} className="in-at-seta" />
+        </Link>
+        <Link to="/simulados" className="in-atalho">
+          <span className="in-at-ic" aria-hidden><Icone nome="relogio" tam={30} /></span>
+          <span className="in-at-txt"><b>Simulados</b><small>Pratique no ritmo da prova</small></span>
+          <Icone nome="seta" tam={24} className="in-at-seta" />
+        </Link>
+      </nav>
     </div>
   );
 }

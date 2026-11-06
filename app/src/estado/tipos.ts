@@ -108,18 +108,30 @@ export interface SimuladoFeito {
 
 export interface SessaoTreino { it: { k: 'q' | 'f' | 'c'; id: string }[]; i: number; res: Record<string, 'a' | 'q' | 'e'>; t0: number }
 
-export interface Preferencias { tema: 'claro' | 'escuro' | 'sistema'; menuFechado: boolean; ultimaMateria: MateriaId | null }
+/** Treino geral de TODAS as matérias (Início, comando 32): questões reais de prova sorteadas e misturadas.
+ *  Cada item traz a matéria; a resposta conta na matéria da questão (materias[m].q[id], ctx 'misto').
+ *  res: chave "<m>:<id>" -> a (acertou) | e (errou). */
+export interface SessaoMisto { it: { m: MateriaId; id: string }[]; i: number; res: Record<string, 'a' | 'e'>; t0: number }
+
+export interface Preferencias {
+  tema: 'claro' | 'escuro' | 'sistema'; menuFechado: boolean; ultimaMateria: MateriaId | null;
+  /** questões por rodada do Treino geral de todas as matérias ("Personalizar"; padrão 15) */
+  rodadaMisto?: number;
+}
 
 export interface Estado {
   /** 1: formato inicial; 2: Filosofia e Sociologia unidas em 'fs'; 3: questões de sites didáticos retiradas, histórico
    *  levado à questão de prova equivalente ou guardado no id antigo (migracao.ts, migraEstado); 4: revisão em slides por
-   *  conteúdo (EstadoMateria.revs, comandos 24 e 26). Estado novo nasce na 4. */
-  versao: 2 | 3 | 4;
+   *  conteúdo (EstadoMateria.revs, comandos 24 e 26); 5: Treino geral de todas as matérias (treinoMisto, comando 32).
+   *  Estado novo nasce na 5. */
+  versao: 2 | 3 | 4 | 5;
   perfil: Perfil | null;
   materias: Partial<Record<MateriaId, EstadoMateria>>;
   simulado: SimuladoAndamento | null;
   simuladosFeitos: SimuladoFeito[];
   treino: Partial<Record<MateriaId, SessaoTreino>>;
+  /** Treino geral de todas as matérias em andamento (v5); null quando não há */
+  treinoMisto: SessaoMisto | null;
   pref: Preferencias;
   migradoDe: string[];
 }
@@ -130,12 +142,13 @@ export function estadoMateriaVazio(): EstadoMateria {
 
 export function estadoVazio(): Estado {
   return {
-    versao: 4,
+    versao: 5,
     perfil: null,
     materias: {},
     simulado: null,
     simuladosFeitos: [],
     treino: {},
+    treinoMisto: null,
     pref: { tema: 'claro', menuFechado: false, ultimaMateria: null },
     migradoDe: [],
   };

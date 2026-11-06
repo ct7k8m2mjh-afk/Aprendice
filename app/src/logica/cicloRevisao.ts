@@ -194,3 +194,22 @@ export function resumoSessao(x: Pick<SessaoRevisao, 'apl' | 'lembrou' | 'pre'>) 
 export function revisoesVencidas(s: EstadoMateria | undefined, agora = Date.now()): string[] {
   return Object.entries(s?.revs || {}).filter(([, r]) => r.hist.length && r.vence <= agora).map(([sub]) => sub).sort();
 }
+
+/**
+ * Slide que responde a uma questão errada no tempo 1 (pilar 1.2, auditoria M4): o de mais palavras próprias em comum
+ * com o texto da questão (5 letras ou mais, sem acento). Só marca quando a ligação é clara: 3 palavras ou mais e à
+ * frente do segundo colocado; senão nenhum slide é marcado (melhor não marcar que marcar o errado).
+ */
+export function slideDaQuestao(textoQuestao: string, slides: { s: Slide; k: number }[]): number | null {
+  const pal = (x: string) => new Set(termos(x).filter((w) => w.length >= 5 && !/^\d+$/.test(w)));
+  const q = pal(textoQuestao);
+  if (q.size < 3) return null;
+  const notas = slides.filter(({ s }) => s.tipo !== 'na_prova').map(({ s, k }) => {
+    const w = pal([s.titulo, s.texto, s.destaque, ...(s.legenda || [])].filter(Boolean).join(' '));
+    let n = 0;
+    for (const x of w) if (q.has(x)) n++;
+    return { k, n };
+  }).sort((a, b) => b.n - a.n);
+  if (!notas.length || notas[0].n < 3 || (notas[1] && notas[1].n >= notas[0].n)) return null;
+  return notas[0].k;
+}

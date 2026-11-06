@@ -1,14 +1,16 @@
 import { Link, useParams } from 'react-router-dom';
-import { useEffect, useLayoutEffect, useRef, useState, type ReactNode } from 'react';
-import { useMateria, type MateriaCarregada } from '../dados/conteudo';
+import { useEffect, useLayoutEffect, type CSSProperties, type ReactNode } from 'react';
+import { urlCapa, useMateria, type MateriaCarregada } from '../dados/conteudo';
+import { CAIXA_CAPA } from '../dados/capas';
 import { MATERIAS, materia as infoMateria } from '../dados/materias';
 import { useEstado, useMateriaEstado } from '../estado/loja';
 import { progressoEscada, resumoMateria } from '../logica/estatisticas';
 import { Anel, Barra, Carregando, plural, useTitulo } from '../ui/comum';
 import { Icone } from '../ui/Icone';
-import { IconeMateria, IluMateria, temIlu } from '../ui/IconeMateria';
+import { CirculoMateria, IluMateria } from '../ui/IconeMateria';
 import { IcTema } from '../ui/IconeTema';
 import { ProgressoMateria } from '../ui/ProgressoMateria';
+import { useRoloHorizontal } from '../ui/rolo';
 import type { MateriaId } from '../dados/tipos';
 import type { EstadoMateria } from '../estado/tipos';
 
@@ -20,7 +22,7 @@ export function ListaMaterias() {
       <div className="grade g2">
         {MATERIAS.map((m) => (
           <Link key={m.id} to={`/m/${m.id}`} className={`linha-mat m-${m.id}` + (m.ativa ? '' : ' inativa')}>
-            {temIlu(m.id) ? <IluMateria m={m.id} className="lm-ilu" /> : <span className="lm-ic" aria-hidden><IconeMateria m={m.id} /></span>}
+            <CirculoMateria m={m.id} tam={56} />
             <span><b>{m.nome}</b><small>{m.ativa ? m.descricao : 'Em preparação: entra com as provas completas.'}</small></span>
             <Icone nome="direita" />
           </Link>
@@ -49,11 +51,27 @@ export function CabMateria({ m, nome, sub, titulo = true, children }: { m: Mater
   );
 }
 
+/** Capa da matéria (comando 32 do dono): faixa larga (3:1 nas referências REF-CLARO/REF-ESCURO de docs/capas/), fundo suave
+ *  da paleta, objetos à direita (montados por scripts/capas.py, na posição e com a sombra da referência) e, à esquerda,
+ *  o cabeçalho da matéria (título em Dancing Script). A caixa da arte vem de dados/capas.ts, em frações da referência. */
+export function CapaMateria({ m, nome, sub, children }: { m: MateriaId; nome: string; sub: string; children?: ReactNode }) {
+  const url = urlCapa(m);
+  const cx = CAIXA_CAPA[m];
+  const vars = cx ? { '--cl': cx[0], '--ct': cx[1], '--cr': cx[2], '--cb': cx[3] } as CSSProperties : undefined;
+  return (
+    <div className="capa-mat-env">
+      <header className={'capa-mat' + (url && cx ? ' com-arte' : '')} style={vars}>
+        <CabMateria m={m} nome={nome} sub={sub}>{children}</CabMateria>
+        {url && cx && <img className="cm-arte" src={url} alt="" decoding="async" fetchPriority="high" />}
+      </header>
+    </div>
+  );
+}
+
 /** Faixa de temas: sempre no topo da matéria (vocabulário do produto). Compacta dentro de um tema ou conteúdo. */
 export function FaixaTemas({ mc, s, atual, compacta = false }: { mc: MateriaCarregada; s: EstadoMateria; atual?: string; compacta?: boolean }) {
-  const rolo = useRef<HTMLDivElement>(null);
-  const [bordas, setBordas] = useState({ e: false, d: false });
-  const mede = () => { const r = rolo.current; if (r) setBordas({ e: r.scrollLeft > 4, d: r.scrollLeft + r.clientWidth < r.scrollWidth - 4 }); };
+  // rolagem lateral, roda do mouse (girar para baixo anda para a direita) e setas: ui/rolo.ts
+  const { rolo, bordas, mede, anda } = useRoloHorizontal(mc.id);
   // Todos os cartões têm a mesma altura (ícone + duas linhas de nome), em todas as matérias. O nome nunca é cortado:
   // o cartão cujo nome pediria 3 ou mais linhas fica mais largo, de 10 em 10 px, até caber em duas.
   const ajusta = () => {
@@ -84,25 +102,6 @@ export function FaixaTemas({ mc, s, atual, compacta = false }: { mc: MateriaCarr
     if (el && rolo.current) rolo.current.scrollLeft = el.offsetLeft - rolo.current.clientWidth / 2 + el.clientWidth / 2;
     mede();
   }, [atual]);
-  // roda do mouse (pedido do dono, 06/11): rolar para baixo anda a faixa para a direita; nas pontas, a página volta a rolar
-  useEffect(() => {
-    const r = rolo.current; if (!r) return;
-    let alvo = -1, ultimo = 0; // posição pedida (a faixa rola suave; giros seguidos somam)
-    const roda = (ev: WheelEvent) => {
-      if (ev.ctrlKey || Math.abs(ev.deltaX) > Math.abs(ev.deltaY)) return; // trackpad lateral e zoom seguem o padrão
-      const max = r.scrollWidth - r.clientWidth; if (max <= 1) return;
-      const passo = (ev.deltaMode === 1 ? ev.deltaY * 40 : ev.deltaY) * 1.4;
-      const agora = performance.now();
-      const base = alvo >= 0 && agora - ultimo < 400 ? alvo : r.scrollLeft;
-      if ((passo < 0 && base <= 0) || (passo > 0 && base >= max - 1)) return;
-      ev.preventDefault();
-      alvo = Math.max(0, Math.min(max, base + passo)); ultimo = agora;
-      r.scrollTo({ left: alvo, behavior: 'smooth' });
-    };
-    r.addEventListener('wheel', roda, { passive: false });
-    return () => r.removeEventListener('wheel', roda);
-  }, [mc.id]);
-  const anda = (d: number) => rolo.current?.scrollBy({ left: d * rolo.current.clientWidth * 0.8, behavior: 'smooth' });
   return (
     <nav className={'faixa-temas' + (compacta ? ' compacta' : '') + (bordas.e ? ' fe' : '') + (bordas.d ? ' fd' : '')} aria-label="Temas">
       {bordas.e && <button className="ft-seta esq" onClick={() => anda(-1)} aria-label="Temas anteriores"><Icone nome="esquerda" /></button>}
@@ -129,7 +128,7 @@ function EmPreparacao({ m }: { m: MateriaId }) {
   useTitulo(info.nome);
   return (
     <div className={`conteudo m-${m}`}>
-      <CabMateria m={m} nome={info.nome} sub={info.descricao} />
+      <CapaMateria m={m} nome={info.nome} sub={info.descricao} />
       <section className="bloco preparo">
         <span className="preparo-ic" aria-hidden><Icone nome="camadas" tam={28} /></span>
         <h2>Questões em preparação</h2>
@@ -183,9 +182,9 @@ export function Materia() {
 
   return (
     <div className={`conteudo m-${m}`}>
-      <CabMateria m={m} nome={info.nome} sub={subMateria(mc.conteudo.modulos.length, vazia)}>
+      <CapaMateria m={m} nome={info.nome} sub={subMateria(mc.conteudo.modulos.length, vazia)}>
         {r.feitas > 0 && <div className="mat-anel"><Anel valor={r.acertos / r.feitas} tam={58} espessura={6}>{acertoPct}%</Anel><span className="fraco">de acerto<br />{plural(r.feitas, 'questão feita', 'questões feitas')}</span></div>}
-      </CabMateria>
+      </CapaMateria>
 
       <FaixaTemas mc={mc} s={s} />
 
@@ -214,7 +213,7 @@ export function Materia() {
             <span className="btn btn-capa"><Icone nome="alvo" /> {tg ? `Retomar (${tg.i} de ${tg.it.length})` : 'Começar treino'}</span>
             <span className="tg-comp num">{porRodada} itens por rodada: {[nRq && plural(nRq, 'questão', 'questões'), nRc && plural(nRc, 'frase', 'frases'), nRf && plural(nRf, 'flashcard', 'flashcards')].filter(Boolean).join(', ').replace(/, ([^,]*)$/, ' e $1')}</span>
           </span>
-          {temIlu(m) && <IluMateria m={m} className="capa-ilu" />}
+          <IluMateria m={m} className="capa-ilu" />
         </Link>
         )}
         <ProgressoMateria mc={mc} s={s} />

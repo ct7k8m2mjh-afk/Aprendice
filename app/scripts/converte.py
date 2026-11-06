@@ -14,6 +14,7 @@ import base64, json, os, re, shutil, sys, hashlib
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import icones_tema  # noqa: E402  (ícones de tema do dono: docs/icones/)
+import capas  # noqa: E402  (capas e ícone da matéria do dono: docs/capas/, comando 32)
 import revisao  # noqa: E402  (revisão em slides: docs/revisao/<m>/<TEMA>.json, comandos 24 e 26)
 
 AQUI = os.path.dirname(os.path.abspath(__file__))
@@ -665,6 +666,33 @@ def amostra():
     print('amostra gravada:', alvo, round(os.path.getsize(alvo) / 1e6, 1), 'MB')
 
 
+def marca_resolvidas():
+    """Treino geral de todas as matérias (comando 32): marca no banco (cr = 1) as questões que já têm resolução comentada
+    em res/<conteúdo>.json, para o sorteio preferir as que mostram a correção em 4 blocos. Roda por último (as resoluções
+    mudam de lugar ao ligar provas e retirar questões de site)."""
+    total = {}
+    for m in MATERIAS + NOVAS:
+        pasta = os.path.join(DESTINO, m)
+        arq = os.path.join(pasta, 'banco.json')
+        if not os.path.exists(arq):
+            continue
+        com = set()
+        pr = os.path.join(pasta, 'res')
+        if os.path.isdir(pr):
+            for f in os.listdir(pr):
+                if f.endswith('.json'):
+                    com |= set(ler(os.path.join(pr, f)).keys())
+        banco = ler(arq)
+        for q in banco:
+            if q['id'] in com or q.get('res'):
+                q['cr'] = 1
+            else:
+                q.pop('cr', None)
+        gravar(arq, banco)
+        total[m] = sum(1 for q in banco if q.get('cr'))
+    return total
+
+
 def main():
     if '--pacotes-provas' in sys.argv:
         pacotes_provas(sys.argv[sys.argv.index('--pacotes-provas') + 1])
@@ -677,6 +705,7 @@ def main():
         return
     os.makedirs(DESTINO, exist_ok=True)
     copia_comuns()
+    capas.gera_ts(capas.gera(DESTINO))
     relatorio = {}
     for m in MATERIAS:
         relatorio[m] = converte_materia(m)
@@ -694,6 +723,8 @@ def main():
     # revisão em slides: depois das matérias (alimenta a Teoria em cartões no materia.json de cada uma)
     relatorio['revisao'] = revisao.converte()
     print('revisão em slides', relatorio['revisao'])
+    relatorio['com_resolucao'] = marca_resolvidas()
+    print('questões com resolução', relatorio['com_resolucao'])
     gravar(os.path.join(DESTINO, 'relatorio.json'), relatorio)
     # versão do conteúdo (para cache)
     h = hashlib.md5(json.dumps(relatorio, sort_keys=True).encode()).hexdigest()[:8]

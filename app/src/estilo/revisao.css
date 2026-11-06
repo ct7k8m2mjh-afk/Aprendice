@@ -254,3 +254,38 @@ span.fm:not(.fm-bloco) .fm-linha + .fm-linha { margin-left: 1em; }
 .caderno li span.fm.fm-prosa .fm-linha + .fm-linha { margin-left: 0; }
 /* folga nas pontas da linha: a seta do vetor sobre a última letra cabe dentro da linha */
 .fm-bloco .fm-linha { padding: 0 .2em; }
+
+/* ===================== auditoria rodada 1 ===================== */
+/* foto que aguarda o aluno escolher ver (imagem sensível) */
+.rv-foto-aviso { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; padding: 18px; border-radius: 12px; background: var(--aviso-bg); color: var(--tinta); }
+.rv-foto-aviso .ic { color: var(--aviso); }
+.rv-foto-aviso p { margin: 0; font: 400 var(--fs-texto)/1.5 var(--fonte); }
+/* fonte curta; o resto em "Outras fontes" */
+.rv-fonte p { margin: 0; }
+.rv-fonte-mais { margin-top: 4px; }
+.rv-fonte-mais summary { cursor: pointer; color: var(--lapis); font: 600 var(--fs-info)/1.4 var(--fonte); width: max-content; }
+.rv-fonte-mais ul { margin: 6px 0 0; padding-left: 18px; }
+.rv-fonte-mais li + li { margin-top: 4px; }
+.rv-fonte a { color: var(--lapis); }
+/* fórmula e frase-chave que o motor escreve: o bloco não pula de tamanho (o DOM é o estado final) */
+.rv-escrita { display: flex; flex-direction: column; gap: 14px; }
+.rv-escrita:empty { display: none; }
+/* teclas 1, 2, 3 nos botões da lacuna */
+.rv-notas .nota kbd { top: 50%; transform: translateY(-50%); }
+/* correção sem resolução publicada */
+.rv-sr-p { margin-top: 12px; color: var(--lapis); }
+/* tela Revisão: as 4 abas cabem no celular (2 × 2) */
+@media (max-width: 520px) {
+  .abas.abas-rev { display: grid; grid-template-columns: 1fr 1fr; overflow: visible; }
+  .abas.abas-rev button { text-align: left; padding: 10px 8px; }
+}
+.rv-linha-cont .det b { font-weight: 600; }
+.rv-cont-hoje { color: var(--aviso); }
+.rv-cont-and { color: var(--t); }
+.rv-fim-err a small { display: block; margin-top: 2px; font: 400 var(--fs-info)/1.4 var(--fonte); color: var(--lapis); }
+/* 390: o nome do tempo atual inteiro, em duas linhas se preciso */
+@media (max-width: 520px) { .rv-tempos li.atual .rv-tp-t { white-space: normal; overflow: visible; text-overflow: clip; } }
+.rv-foto.reduzida img { max-height: min(280px, 40vh); }
+/* conta longa do exemplo no celular: o pedaço que o motor não quebra (.ra-u) pode quebrar entre termos, para nada
+   sair do caderno (achado na conferência: F01.2, F04.1, F08.3, F08.4 em 390 px) */
+@container (max-width: 440px) { .rv-conta .ra-u { white-space: normal; } }

@@ -1,7 +1,7 @@
-import { useMemo, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import type { Lembrou } from '../../estado/tipos';
 import type { MateriaId, Resolucao } from '../../dados/tipos';
-import { fonteLegivel, type PassoSlide, type Slide, type TemaRevisao } from '../../dados/revisao';
+import type { PassoSlide, Slide, TemaRevisao } from '../../dados/revisao';
 import { confereLacuna, lacuna, opcoesFormula, pedeTentativa } from '../../logica/cicloRevisao';
 import { latexParaMotor } from '../../logica/latex';
 import { contaEhTexto, partesFracao } from '../../logica/fracao';
@@ -9,7 +9,9 @@ import { ResolucaoAnimada } from '../ResolucaoAnimada';
 import { comFracoes } from '../Fracao';
 import { Formula } from '../Formula';
 import { Icone } from '../Icone';
-import { RoteiroAnimado } from './RoteiroAnimado';
+import { FotoSlide } from './FotoSlide';
+import { FonteSlide } from './FonteSlide';
+import { animaEscrita } from '../motorAnima';
 
 export const NOME_TIPO: Record<Slide['tipo'], string> = {
   abertura: 'Abertura', conceito: 'Conceito', formula: 'Fórmula', grafico: 'Gráfico', exemplo: 'Exemplo',
@@ -48,8 +50,20 @@ export function SlideRevisao({ m, tema, sub, k, s, pos, total, aviso, lembrou, a
   // ("1 + 1" é conta em Física e Matemática e texto nas matérias em que o passo é sempre texto)
   const prosa = contaEhTexto('1 + 1', m);
   const res = useMemo(() => (s.passos?.length ? passosParaMotor(s.passos, prosa) : null), [s.passos, prosa]);
-  const temVisual = !!(s.visual && ((s.visual.movimento && s.visual.movimento.length) || s.visual.foto));
+  // visual: só o que o motor desenha de verdade (a foto que entra). O roteiro de produção nunca aparece (auditoria A1)
+  const temVisual = !!s.visual?.foto?.img;
   const marca = (v: Lembrou) => { aoLembrar?.(v); setRevelado(true); };
+  // ver acontecer: a fórmula e a frase-chave se escrevem à mão pelo motor quando o slide abre (ou quando são reveladas)
+  const escrita = useRef<HTMLDivElement>(null);
+  const menos = typeof matchMedia !== 'undefined' && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  useLayoutEffect(() => {
+    if (menos || !revelado || !escrita.current) return;
+    const c = animaEscrita(escrita.current, '.fm-linha, .rv-destaque', 250);
+    return () => c.cancela();
+  }, [revelado, menos]);
+  // exemplo: a frase-chave vem depois da conta, para não entregar a resposta antes (auditoria B6)
+  const destaqueDepois = s.tipo === 'exemplo' && !!s.passos?.length;
+  const destaque = s.destaque && <p className="rv-destaque">{comFracoes(s.destaque)}</p>;
 
   return (
     <article className={`rv-slide folha t-${s.tipo}` + (temVisual ? ' com-vis' : '')} aria-labelledby={`rv-tit-${k}`}>
@@ -67,11 +81,11 @@ export function SlideRevisao({ m, tema, sub, k, s, pos, total, aviso, lembrou, a
           ) : tent === 'frase' && !revelado ? (
             <CompletaFrase frase={s.destaque!} aoResponder={marca} />
           ) : (
-            <>
-              {s.destaque && <p className={'rv-destaque' + (tent === 'frase' ? ' entra' : '')}>{comFracoes(s.destaque)}</p>}
-              {s.formula && <Formula tex={s.formula} prosa={prosa} className={'rv-formula' + (tent === 'formula' ? ' entra' : '')} />}
+            <div className="rv-escrita" ref={escrita}>
+              {!destaqueDepois && destaque}
+              {s.formula && <Formula tex={s.formula} prosa={prosa} className="rv-formula" />}
               {tent && lembrou && <p className={'rv-lembrou v-' + lembrou}>{lembrou === 'a' ? 'Você lembrou.' : lembrou === 'q' ? 'Quase: releia com atenção.' : 'Esta volta na próxima revisão.'}</p>}
-            </>
+            </div>
           )}
           {s.legenda && s.legenda.length > 0 && (revelado || tent !== 'formula') && (
             <ul className="rv-leg">{s.legenda.map((l, i) => <li key={i}>{comFracoes(l)}</li>)}</ul>
@@ -79,9 +93,10 @@ export function SlideRevisao({ m, tema, sub, k, s, pos, total, aviso, lembrou, a
           {s.passos && s.passos.length > 0 && (res
             ? <div className="rv-conta"><ResolucaoAnimada r={res} materia={m} /></div>
             : <PassosFormula passos={s.passos} prosa={prosa} />)}
-          {s.fonte && <p className="rv-fonte">Fonte: {fonteLegivel(s.fonte, tema.obra)}</p>}
+          {destaqueDepois && destaque}
+          {s.fonte && <FonteSlide fonte={s.fonte} obra={tema.obra} />}
         </div>
-        {temVisual && <div className="rv-vis-col"><RoteiroAnimado key={sub + k} m={m} v={s.visual!} auto={!res} /></div>}
+        {temVisual && <div className="rv-vis-col"><FotoSlide key={sub + k} m={m} v={s.visual!} /></div>}
       </div>
     </article>
   );
@@ -153,6 +168,18 @@ export function Lacuna({ frase, id, valor, aoResponder, foco }: { frase: string;
   const [conf, setConf] = useState<Lembrou | null>(valor ? valor : null);
   const inp = useRef<HTMLInputElement>(null);
   const confere = (naoSei = false) => setConf(naoSei ? 'e' : confereLacuna(falta, txt));
+  // teclas 1, 2 e 3 escolhem Não lembrei, Quase e Lembrei depois de conferir (auditoria B5)
+  useEffect(() => {
+    if (valor || conf == null) return;
+    const f = (e: KeyboardEvent) => {
+      const alvo = e.target as HTMLElement;
+      if (alvo && (alvo.tagName === 'INPUT' || alvo.tagName === 'TEXTAREA') || e.ctrlKey || e.metaKey || e.altKey) return;
+      const v = ({ '1': 'e', '2': 'q', '3': 'a' } as Record<string, Lembrou>)[e.key];
+      if (v) { e.preventDefault(); aoResponder(v); }
+    };
+    addEventListener('keydown', f);
+    return () => removeEventListener('keydown', f);
+  }, [valor, conf, aoResponder]);
   if (valor) {
     return (
       <div className={'rv-lacuna feita v-' + valor}>
@@ -180,8 +207,8 @@ export function Lacuna({ frase, id, valor, aoResponder, foco }: { frase: string;
           {txt.trim() && <p className="rv-escreveu"><span>Você escreveu:</span> {txt}</p>}
           <div className="notas rv-notas" role="group" aria-label="Como foi">
             <span className="fraco">Como foi?</span>
-            {NOTAS.map(([v, t]) => (
-              <button key={v} type="button" className={'nota n-' + v + (conf === v ? ' sugerida' : '')} onClick={() => aoResponder(v)}><b>{t}</b></button>
+            {NOTAS.map(([v, t, k]) => (
+              <button key={v} type="button" className={'nota n-' + v + (conf === v ? ' sugerida' : '')} onClick={() => aoResponder(v)}><b>{t}</b><kbd>{k}</kbd></button>
             ))}
           </div>
         </>

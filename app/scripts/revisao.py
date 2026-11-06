@@ -14,7 +14,7 @@ código do site muda. Este script:
 
 Uso: python3 scripts/revisao.py   (o converte.py chama no fim da conversão completa)
 """
-import json, os, re, sys, time, urllib.parse, urllib.request
+import json, os, re, shutil, sys, time, urllib.parse, urllib.request
 from io import BytesIO
 
 AQUI = os.path.dirname(os.path.abspath(__file__))
@@ -28,6 +28,10 @@ TIPOS = {'abertura', 'conceito', 'formula', 'grafico', 'exemplo', 'pegadinha', '
 OBRAS = {'fis': 'PV Física (Poliedro)', 'bio': 'PV Biologia (Poliedro)'}  # fs: a chave já diz a obra (FIL-..., SOC-...), ver dados/revisao.ts
 LARGURA_FOTO = 1280
 TEORIA_PROPRIA = {'bio', 'qui', 'mat', 'por'}
+# fotos que só vão ao ar com o OK do dono (princípio 10): o slide fica com o roteiro animado, sem a imagem e sem o link
+# (06/11/2026: o dono liberou o uso de imagens e referências na revisão, inclusive a pintura "Tiradentes esquartejado",
+#  H03.9; a lista fica vazia e serve para uma próxima decisão)
+FOTOS_AGUARDANDO_DONO: set = set()
 
 
 class ErroRevisao(Exception):
@@ -112,8 +116,8 @@ def confere_tema(m, d, arq):
                 for k in ('url', 'arquivo', 'autor', 'licenca'):
                     if not foto.get(k):
                         erros.append(f'{sub} #{i + 1}: foto sem "{k}" (crédito obrigatório)')
-                if 'commons.wikimedia.org' not in foto.get('url', ''):
-                    erros.append(f'{sub} #{i + 1}: foto fora do Wikimedia Commons')
+                # fora do Commons vale com crédito e acervo (decisão do dono, 06/11/2026, FORMATO.md): a imagem vem de
+                # app/conteudo-fonte/revisao/<m>/fotos/ (posta à mão); o site não baixa de outros endereços
     if erros:
         raise ErroRevisao(f'{arq}:\n  ' + '\n  '.join(erros))
 
@@ -126,8 +130,15 @@ def prepara_fotos(m, d, saida):
             foto = (s.get('visual') or {}).get('foto')
             if not foto:
                 continue
+            if foto['arquivo'] in FOTOS_AGUARDANDO_DONO:
+                del s['visual']['foto']
+                print(f"  foto fora do ar até o OK do dono: {foto['arquivo']}")
+                continue
             nome = nome_foto(foto['arquivo'])
             fonte = os.path.join(FOTOS, m, 'fotos', nome)
+            if not os.path.exists(fonte) and 'commons.wikimedia.org' not in foto.get('url', ''):
+                print(f'  AVISO: imagem fora do Commons sem arquivo em conteudo-fonte/revisao/{m}/fotos/{nome}')
+                continue
             if not os.path.exists(fonte):
                 try:
                     tam = baixa_foto(foto['arquivo'], fonte)
@@ -185,6 +196,8 @@ def converte(materias=None):
         if not arqs:
             continue
         saida = os.path.join(DESTINO, m, 'revisao')
+        # do zero a cada conversão: foto retirada (ou que aguarda o dono) não fica esquecida na pasta servida
+        shutil.rmtree(saida, ignore_errors=True)
         os.makedirs(saida, exist_ok=True)
         indice = {'materia': m, 'obra': OBRAS.get(m, ''), 'temas': {}}
         temas = {}
@@ -200,6 +213,10 @@ def converte(materias=None):
                 'nome': d['nome'],
                 'subs': {sub: len(l) for sub, l in d['slides'].items()},
             }
+        # conteúdos que têm resolução comentada publicada (res/<conteúdo>.json): o site só busca a resolução que existe
+        # (nada de 404 no console; sem resolução, diz "em preparação")
+        pres = os.path.join(DESTINO, m, 'res')
+        indice['res'] = sorted(f[:-5] for f in os.listdir(pres) if f.endswith('.json')) if os.path.isdir(pres) else []
         gravar(os.path.join(saida, 'indice.json'), indice)
         cartoes = alimenta_teoria(m, temas)
         rel[m] = {'temas': len(temas), 'slides': sum(sum(t['subs'].values()) for t in indice['temas'].values()),

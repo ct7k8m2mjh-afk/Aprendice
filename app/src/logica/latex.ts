@@ -97,6 +97,14 @@ export function analisaLatex(src: string): NoMat[][] {
       case 'sqrt': { out.push({ t: 'raiz', v: argumento() }); return; }
       case 'hat': case 'widehat': { const a = argumento(); for (const x of a) if (x.t === 'txt') txt(out, x.v + '\u0302'); else out.push(x); return; }
       case 'vec': case 'overrightarrow': { out.push({ t: 'vet', v: argumento() }); return; }
+      case 'xrightarrow': case 'xleftarrow': {
+        // seta com o que está em cima ("\xrightarrow{nitrificação}")
+        while (s[i] === ' ') i++;
+        if (s[i] === '[') { const f = s.indexOf(']', i); i = f < 0 ? i : f + 1; }
+        const topo = argumento();
+        out.push({ t: 'sobre', topo, v: [{ t: 'txt', v: nome === 'xrightarrow' ? ' → ' : ' ← ' }] });
+        return;
+      }
       case 'overset': case 'stackrel': { const topo = argumento(); const v = argumento(); out.push({ t: 'sobre', topo, v }); return; }
       case 'text': case 'textrm': case 'textit': case 'textbf': case 'mbox': case 'operatorname': {
         const t = grupoTexto();
@@ -196,6 +204,10 @@ function plano(ns: NoMat[], ok: { v: boolean }, fracao: 'barra' | 'sobre'): stri
       case 'sup': case 'sub': {
         const mapa = n.t === 'sup' ? SOBRESCRITO : SUBSCRITO;
         const t = plano(n.v, ok, fracao).replace(/\s+/g, '');
+        // motor: índice sempre como "_{…}" (o motor e logica/notacao.ts o descem na mesma letra à mão, várias letras
+        // juntas); expoente sem forma pequena como "^(…)"
+        if (fracao === 'barra' && n.t === 'sub') { out += `_{${t}}`; break; }
+        if (fracao === 'barra' && n.t === 'sup' && ![...t].every((c) => mapa[c])) { out += t.length > 1 ? `^(${t})` : `^${t}`; break; }
         const u = [...t].map((c) => mapa[c]);
         if (u.every(Boolean)) out += u.join('');
         else if (n.t === 'sub' && /^(máx|mín|max|min)$/.test(t)) out += t === 'máx' || t === 'max' ? 'ₘₐₓ' : 'ₘᵢₙ';

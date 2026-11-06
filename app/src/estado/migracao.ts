@@ -5,7 +5,7 @@
  * - Mescla sem apagar: tentativas são unidas por timestamp; flashcards ficam com o registro mais recente.
  */
 import { MATERIA_UNIDA, materiaAtual, type MateriaId } from '../dados/tipos';
-import type { EstadoMateria, EstadoQuestao, Estado, FlashRec, RevisaoConteudo, SessaoTreino, SimuladoFeito, SimuladoResultado } from './tipos';
+import type { EstadoMateria, EstadoQuestao, Estado, FlashRec, RevisaoConteudo, SessaoMisto, SessaoTreino, SimuladoFeito, SimuladoResultado } from './tipos';
 import { estadoMateriaVazio, estadoVazio } from './tipos';
 import { RETIRADAS, type RetiradaBruta } from '../dados/questoesRetiradas';
 
@@ -135,7 +135,7 @@ export function importaArquivo(estado: Estado, texto: string, idsPorMateria: Rec
     r.cartoes += Object.keys(obj(s.flash) || {}).length;
   };
 
-  if ((d.versao === 1 || d.versao === 2 || d.versao === 3 || d.versao === 4) && obj(d.materias)) {
+  if (typeof d.versao === 'number' && d.versao >= 1 && d.versao <= VERSAO_ATUAL && obj(d.materias)) {
     // exportação do app novo
     for (const [m, s] of Object.entries(d.materias as Record<string, Partial<EstadoMateria>>)) junta(m as MateriaId, s);
     if (Array.isArray(d.simuladosFeitos)) {
@@ -183,7 +183,7 @@ export function migraDoNavegador(estado: Estado, ler: (k: string) => string | nu
  * v1 -> v2 (comando 18 do dono): Filosofia ('fil') e Sociologia ('soc') viram UMA matéria, Filosofia e Sociologia ('fs').
  * Os ids de questões, temas e cartões não mudam; o progresso das duas é mesclado na matéria nova sem perder nada. */
 
-export const VERSAO_ATUAL = 4;
+export const VERSAO_ATUAL = 5;
 const ANTIGAS = Object.keys(MATERIA_UNIDA) as (keyof typeof MATERIA_UNIDA)[];
 
 /** Momento da última atividade de uma matéria (tentativas, cartões, sessões), para escolher o "continuar de onde parou". */
@@ -312,6 +312,21 @@ export function aplicaRetiradas(e: Estado, tabela: TabelaRetiradas = RETIRADAS):
     mudou = true;
     return { ...x, m: p.m, id: p.id };
   };
+  // Treino geral de todas as matérias em andamento: item retirado vira a questão de prova (pode ser de outra matéria) ou sai
+  let treinoMisto = e.treinoMisto ?? null;
+  if (treinoMisto && treinoMisto.it.some((x) => retirada(x.m, x.id, tabela))) {
+    const t = treinoMisto;
+    const it: SessaoMisto['it'] = [];
+    let i = t.i;
+    t.it.forEach((x, k) => {
+      const r = retirada(x.m, x.id, tabela);
+      if (!r) { it.push(x); return; }
+      if (r.para) { it.push({ m: r.para.m, id: r.para.id }); return; }
+      if (k < t.i) i--;
+    });
+    treinoMisto = { ...t, it, i: Math.max(0, Math.min(i, it.length)) };
+    mudou = true;
+  }
   const simulado = e.simulado ? { ...e.simulado, itens: e.simulado.itens.map(trocaItem) } : e.simulado;
   const simuladosFeitos = e.simuladosFeitos.map((f) => ({ ...f, itens: f.itens.map(trocaItem) }));
   if (simulado && e.simulado) {
@@ -320,7 +335,7 @@ export function aplicaRetiradas(e: Estado, tabela: TabelaRetiradas = RETIRADAS):
     simulado.resp = Object.fromEntries(Object.entries(e.simulado.resp).map(([k, v]) => [novoId.get(k) || k, v]));
     simulado.marcadas = e.simulado.marcadas.map((k) => novoId.get(k) || k);
   }
-  return mudou ? { ...e, materias: mats, treino, simulado, simuladosFeitos } : e;
+  return mudou ? { ...e, materias: mats, treino, treinoMisto, simulado, simuladosFeitos } : e;
 }
 
 /* v3 -> v4 (comandos 24 e 26 do dono): revisão em slides com o ciclo de 5 tempos. Cada matéria ganha `revs` (por
@@ -334,11 +349,21 @@ function v3paraV4(e: Estado): Estado {
   return { ...e, versao: 4, materias: mats as Estado['materias'] };
 }
 
+/* v4 -> v5 (comando 32 do dono): Treino geral de todas as matérias no Início. O estado ganha `treinoMisto` (a sessão
+ * em andamento), vazio. As respostas desse treino ficam nas matérias de cada questão, no formato de sempre
+ * (materias[m].q[id].tent, ctx 'misto'): nada existente muda; ids não mudam. */
+function v4paraV5(e: Estado): Estado {
+  const t = obj<SessaoMisto>(e.treinoMisto);
+  const valida = !!t && Array.isArray(t.it) && t.it.every((x) => x && typeof x.id === 'string' && typeof x.m === 'string');
+  return { ...e, versao: 5, treinoMisto: valida ? t : null };
+}
+
 /** Leva um estado salvo (de qualquer versão conhecida) ao formato atual. Estado já atual volta sem mudança. */
 export function migraEstado(d: Estado | (Omit<Estado, 'versao'> & { versao: number }), tabela: TabelaRetiradas = RETIRADAS): Estado {
   let e = d as Estado;
   if ((e.versao as number) < 2) e = v1paraV2({ ...e, versao: 2 });
   if ((e.versao as number) < 3) e = { ...e, versao: 3 };
   if ((e.versao as number) < 4) e = v3paraV4(e);
+  if ((e.versao as number) < 5) e = v4paraV5(e);
   return aplicaRetiradas(e, tabela);
 }

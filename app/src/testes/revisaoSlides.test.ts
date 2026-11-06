@@ -4,7 +4,7 @@ import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { analisaLatex, latexParaLeitura, latexParaMotor, type NoMat } from '../logica/latex';
 import { contaEhTexto, partesFracao } from '../logica/fracao';
-import { montaRoteiro } from '../logica/motorConta';
+import { montaRoteiro, tokeniza } from '../logica/motorConta';
 import {
   confereLacuna, escolheQuestoes, fechaSessao, lacuna, linhasFixe, nivelDoAluno, novoAndamento, opcoesFormula, pedeTentativa,
   proximaVolta, revisoesVencidas, sessaoBoa, slidesDoCiclo, termos, VOLTA_DIAS,
@@ -49,10 +49,11 @@ describe('LaTeX das revisões', () => {
     expect(latexParaLeitura('v_m = \\frac{\\Delta s}{\\Delta t}')).toBe('vₘ = Δs sobre Δt');
   });
   it('texto do motor: fração "a/b" que o site empilha, uma linha por ⇒', () => {
-    expect(latexParaMotor('v_0 = \\frac{72}{3{,}6} = 20\\ \\text{m/s}', contaFracoes)).toBe('v₀ = 72/3,6 = 20 m/s');
+    expect(latexParaMotor('v_0 = \\frac{72}{3{,}6} = 20\\ \\text{m/s}', contaFracoes)).toBe('v_{0} = 72/3,6 = 20 m/s');
     expect(latexParaMotor('10\\,\\Delta s = 400 \\;\\Rightarrow\\; \\Delta s = \\frac{400}{10} = 40\\ \\text{m}', contaFracoes)).toBe('10Δs = 400\nΔs = 400/10 = 40 m');
-    // índice sem forma Unicode: não dá para escrever sem perda (pedido 2 ao motor)
-    expect(latexParaMotor('f_{cat} = \\frac{10}{4}', contaFracoes)).toBeNull();
+    // índice de várias letras: "_{…}", que o motor desce inteiro na mesma letra à mão (auditoria A4)
+    expect(latexParaMotor('f_{cat} = \\frac{10}{4}', contaFracoes)).toBe('f_{cat} = 10/4');
+    expect(tokeniza('v_{mín} = 3').filter((t) => t.k === 'var').map((t) => t.v)).toEqual(['v_{mín}']);
     // Humanas: a quebra que só corta a frase some; item novo fica em linha própria
     expect(latexParaMotor('\\begin{gathered} \\text{ética: agir pelo correto,} \\\\ \\text{não por medo} \\\\ \\text{(2) outro} \\end{gathered}', contaFracoes, true))
       .toBe('ética: agir pelo correto, não por medo\n(2) outro');
@@ -115,10 +116,10 @@ describe.skipIf(!TEMAS.length)('conteúdo de docs/revisao', () => {
         const texto = contaEhTexto('1 + 1', m);
         for (const { s } of ex) {
           const r = passosParaMotor(s.passos!, texto);
-          if (r) for (const p of r.passos!) expect(p.conta).not.toMatch(/\\|[{}]/);
+          if (r) for (const p of r.passos!) expect(p.conta.replace(/[_^]\{[^{}]*\}/g, ''), p.conta).not.toMatch(/\\|[{}]/);
         }
         // F02 (o tema conferido slide a slide): quase todos pelo motor; só índices sem forma Unicode ficam de fora
-        if (t.id === 'F02') expect(ex.filter(({ s }) => passosParaMotor(s.passos!)).length).toBeGreaterThanOrEqual(ex.length - 2);
+        if (t.id === 'F02') expect(ex.filter(({ s }) => passosParaMotor(s.passos!)).length).toBe(ex.length);
       });
       it('lacunas: pista e resposta não vazias em toda linha do fixe e em toda frase-chave de conceito', () => {
         for (const { s } of todos) {
@@ -140,11 +141,11 @@ describe.skipIf(!TEMAS.length)('conteúdo de docs/revisao', () => {
           expect(o.opcoes[o.certa]).toBe(s.formula);
         }
       });
-      it('foto só do Wikimedia Commons, com autor e licença', () => {
+      it('foto com crédito: autor, licença e origem', () => {
         for (const { s } of todos) {
           const f = s.visual?.foto;
           if (!f) continue;
-          expect(f.url).toMatch(/^https:\/\/commons\.wikimedia\.org\//);
+          expect(f.url).toMatch(/^https:\/\//);
           expect(f.autor && f.licenca).toBeTruthy();
         }
       });
@@ -219,8 +220,9 @@ describe('migração v4: revisão em slides', () => {
   it('estado v3 ganha revs vazio e não perde nada', () => {
     const v3 = { ...estadoVazio(), versao: 3, materias: { fis: { q: { P1: { tent: [tent(true, 5)] } }, ult: 'P1', sims: [], flash: {}, flg: {}, sessoes: [] } } } as unknown as Estado;
     const e = migraEstado(v3);
-    expect(VERSAO_ATUAL).toBe(4);
-    expect(e.versao).toBe(4);
+    // v4 ganhou revs; a migração segue até a versão atual (v5: treino geral de todas as matérias, comando 32)
+    expect(VERSAO_ATUAL).toBeGreaterThanOrEqual(4);
+    expect(e.versao).toBe(VERSAO_ATUAL);
     expect(e.materias.fis!.revs).toEqual({});
     expect(e.materias.fis!.q.P1.tent).toHaveLength(1);
     expect(e.materias.fis!.ult).toBe('P1');
@@ -237,5 +239,44 @@ describe('migração v4: revisão em slides', () => {
     expect(m['F02.1'].hist.map((h) => h.ts)).toEqual([100, 200]);
     expect(m['F02.1'].vence).toBe(b.vence);
     expect(m['F02.2']).toBeTruthy();
+  });
+});
+
+/* ============================================================ auditoria rodada 1 */
+import { renderToStaticMarkup } from 'react-dom/server';
+import { createElement } from 'react';
+import { SlideRevisao } from '../ui/revisao/SlideRevisao';
+import { avisoDe, rotuloImagem } from '../ui/revisao/FotoSlide';
+import { slideDaQuestao } from '../logica/cicloRevisao';
+
+describe('auditoria rodada 1 da revisão em slides', () => {
+  const temas = TEMAS.filter(({ m }) => ['fis', 'his', 'geo'].includes(m));
+  it('A1: o roteiro de produção (movimento, descrição) nunca aparece no slide', () => {
+    let vistos = 0;
+    for (const { m, t } of temas) for (const [sub, l] of Object.entries(t.slides)) l.forEach((s, k) => {
+      const mov = s.visual?.movimento || [];
+      if (!mov.length || vistos > 400) return;
+      vistos++;
+      const html = renderToStaticMarkup(createElement(SlideRevisao, { m: m as never, tema: t, sub, k, s, pos: 1, total: 1 }));
+      for (const x of mov) expect(html, `${sub} #${k + 1}`).not.toContain(x.replace(/^\d+\.\s*/, '').slice(0, 40).replace(/&/g, '&amp;').replace(/'/g, '&#x27;'));
+      if (s.visual?.descricao) expect(html).not.toContain(s.visual.descricao.slice(0, 40).replace(/&/g, '&amp;').replace(/'/g, '&#x27;'));
+    });
+    expect(vistos).toBeGreaterThan(50);
+  });
+  it('M5: imagem com aviso no roteiro pede o aviso antes; B3: pintura não é "Foto"', () => {
+    const h03 = TEMAS.find(({ t }) => t.id === 'H03');
+    if (!h03) return;
+    const v = h03.t.slides['H03.9']?.[0]?.visual;
+    if (!v?.foto) return;
+    expect(avisoDe(v)).toMatch(/execução/i);
+    expect(rotuloImagem(v)).toBe('Pintura');
+    expect(avisoDe({ tipo: 'foto', movimento: ['1. A foto aparece.'] })).toBeNull();
+  });
+  it('M4: a questão errada marca o slide que fala dela, ou nenhum', () => {
+    const sl = (titulo: string, texto: string) => ({ tipo: 'conceito' as const, titulo, texto });
+    const ver = [{ s: sl('Velocidade média', 'deslocamento dividido pelo tempo total, contando paradas'), k: 1 },
+      { s: sl('Aceleração', 'variação da velocidade a cada segundo, frenagem e Torricelli'), k: 2 }];
+    expect(slideDaQuestao('Um carro faz frenagem com aceleração constante; use Torricelli para a variação da velocidade', ver)).toBe(2);
+    expect(slideDaQuestao('Sobre a Revolução Francesa e o Terceiro Estado', ver)).toBeNull();
   });
 });

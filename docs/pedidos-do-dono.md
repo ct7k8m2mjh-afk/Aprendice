@@ -56,3 +56,19 @@ Imagem enviada nunca é "por enviar": tem uso, e o uso fica registrado.
 - Revisão de cada matéria a partir dos livros que o dono enviou (coleção PV, Poliedro): cada capítulo é lido inteiro e fichado; vira slides de revisão por conteúdo dentro dos temas já existentes (ids não mudam), escritos com nossas palavras, revisados em lentes; imagens só de licença livre (Wikimedia Commons, com crédito) ou desenhadas pelo site. Formato: `docs/revisao/FORMATO.md`.
 - Estratégia de revisão exclusiva do Aprendice: `docs/estrategia-revisao.md` (comando 24).
 - Resoluções de todas as questões de prova do site pela fábrica (comando 25).
+
+## Decisão de 06/11/2026 (tarde) — imagens na revisão em slides
+- Na revisão em slides está autorizado o uso de imagens e referências que ajudem a entender o conteúdo (obras, fotos, mapas, gravuras), decisão do dono (princípio 10). A pintura "Tiradentes esquartejado" (H03.9) está liberada.
+- Continua valendo: registrar de onde veio cada imagem (página, autor, licença ou acervo) e mostrar o crédito no slide; preferir licença livre quando houver versão equivalente.
+
+## Pedido de 06/11/2026 (17h30) — capas, ícones, aba principal e Treino geral misturado (comando 32)
+- As capas e os ícones de todas as matérias estão prontos no Google Drive (pasta APRENDICE → ICONES, uma subpasta por matéria, e CAPAS): integrar ao site.
+- A referência da aba principal está pronta (APRENDICE → ABA PRINCIPAL, duas imagens: parte de cima e parte de baixo): fazer o design da aba principal seguindo essa referência.
+- Na aba principal haverá a opção **Treino geral**: questões aleatórias de qualquer matéria, sem sequência, sem matéria específica, tudo junto e misturado aleatoriamente.
+- Fazer em paralelo às outras tarefas.
+
+## Pedido de 06/11/2026 (19h20) — revisão essencial (comando 33)
+- As revisões de cada matéria SÃO REVISÕES. Ler o Revisaí de Matemática e se basear nesse caderno de revisões para incrementar as revisões das outras matérias no site.
+- Ninguém vai ler 800 slides um a um: pegar as partes mais importantes que todo aluno deve saber e entender e que são primordiais nas provas.
+- Formato decidido a partir do Revisaí: `docs/revisao/FORMATO-ESSENCIAL.md`.
+

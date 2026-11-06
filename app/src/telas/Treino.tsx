@@ -1,6 +1,6 @@
 import { Link, Navigate, useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { EH_PREVIA, urlPrint, useMateria, useResolucoes, type MateriaCarregada } from '../dados/conteudo';
+import { EH_PREVIA, urlPrint, useMateria, useQuestaoComTexto, useResolucoes, type MateriaCarregada } from '../dados/conteudo';
 import { materia as infoMateria } from '../dados/materias';
 import { atualiza, pegaEstado, useEstado } from '../estado/loja';
 import { feitaHoje } from '../logica/revisao';
@@ -31,8 +31,12 @@ export function montaTreino(mc: MateriaCarregada): SessaoTreino {
   return { it, i: 0, res: {}, t0: Date.now() };
 }
 
-function QuestaoInline({ mc, q, aoTerminar }: { mc: MateriaCarregada; q: Questao; aoTerminar: (ok: boolean) => void }) {
+/** Uma questão real dentro de um treino (o da matéria e o de todas as matérias, comando 32): responder, confirmar e a
+ *  correção em 4 blocos. A resposta conta na matéria da questão; ctx diz de onde veio ('treino' ou 'misto'). */
+export function QuestaoInline({ mc, q: q0, aoTerminar, ctx = 'treino' }: { mc: MateriaCarregada; q: Questao; aoTerminar: (ok: boolean) => void; ctx?: string }) {
   const m = mc.id;
+  // questão de prova só de texto: a transcrição chega à parte (como na tela da questão); enquanto isso, o print
+  const q = useQuestaoComTexto(m, q0) || q0;
   const [aba, setAba] = useState<AbaPainel>('res');
   const res = useResolucoes(m, q.sub);
   const [escolha, setEscolha] = useState<Letra | null>(null);
@@ -43,7 +47,7 @@ function QuestaoInline({ mc, q, aoTerminar }: { mc: MateriaCarregada; q: Questao
   useEffect(() => { setEscolha(null); setConf(null); setRevelado(false); setRiscadas(new Set()); setAba('res'); }, [q.id]);
   const confirma = () => {
     if (!escolha || revelado) return;
-    registraTentativa(m, q.id, { letra: escolha, ok: escolha === q.gab, ts: Date.now(), seg: crono.total(), conf, ctx: 'treino' });
+    registraTentativa(m, q.id, { letra: escolha, ok: escolha === q.gab, ts: Date.now(), seg: crono.total(), conf, ctx });
     setRevelado(true);
     setAba('res');
     requestAnimationFrame(() => mostraPainel(true));
