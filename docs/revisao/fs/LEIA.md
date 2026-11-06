@@ -15,3 +15,4 @@ Observações para a integração:
 | L01 Pré-socráticos | aprovado (06/11/2026) | 60 |
 | S01 Cultura e sociedade | aprovado (06/11/2026) | 55 |
 | S02 Socialização | aprovado (06/11/2026) | 37 |
+| L04 Lógica | aprovado (06/11/2026) | 38 |
