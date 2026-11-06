@@ -27,6 +27,7 @@ TIPOS = {'abertura', 'conceito', 'formula', 'grafico', 'exemplo', 'pegadinha', '
 # de onde vêm as fichas de cada matéria (as chaves de fonte "L1-F1-C02" são livro, frente e capítulo dessa obra)
 OBRAS = {'fis': 'PV Física (Poliedro)', 'bio': 'PV Biologia (Poliedro)'}  # fs: a chave já diz a obra (FIL-..., SOC-...), ver dados/revisao.ts
 LARGURA_FOTO = 1280
+TEORIA_PROPRIA = {'bio', 'qui', 'mat', 'por'}
 
 
 class ErroRevisao(Exception):
@@ -146,7 +147,9 @@ def prepara_fotos(m, d, saida):
 def alimenta_teoria(m, temas):
     """Teoria em cartões do tema: o resumo, as fórmulas, o erro e os cartões da revisão entram no materia.json."""
     p = os.path.join(DESTINO, m, 'materia.json')
-    if not os.path.exists(p):
+    # matérias com teoria própria no site (Bio, Quí, Mat, Por): a revisão complementa e não altera a teoria sem o dono
+    # (comando 31); os cartões delas continuam só os do protótipo
+    if m in TEORIA_PROPRIA or not os.path.exists(p):
         return 0
     mat = ler(p)
     n = 0
