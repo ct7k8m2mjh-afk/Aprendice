@@ -23,3 +23,4 @@ Observações para a integração:
 | S05 Poder e Estado | aprovado (06/11/2026) | 57 |
 | S06 Movimentos sociais | aprovado (06/11/2026) | 56 |
 | L08 Existencialismo | aprovado (06/11/2026) | 58 |
+| S03 Trabalho e capitalismo | aprovado (06/11/2026) | 60 |
