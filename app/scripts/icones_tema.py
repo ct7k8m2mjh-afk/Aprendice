@@ -9,7 +9,7 @@ Para o site, cada PNG vira <id>.webp leve, pronto para ficar INTEIRO dentro do c
   2. objeto 100% opaco: alfa >= 128 vira 255 (o recorte original deixava o objeto em 249-254);
   3. sem halo/franja: a cor dos pixels da borda (alfa parcial) vem do pixel opaco mais próximo;
   4. enquadramento: o objeto é centrado e reduzido até o ponto mais distante caber num círculo de
-     RAIO_OBJETO do raio da imagem (a imagem tem o mesmo tamanho do círculo na interface);
+     RAIO_OBJETO (88%) do raio da imagem (a imagem tem o mesmo tamanho do círculo na interface);
   5. WebP de LADO px (2,9x o maior uso, 112 px), qualidade QUALIDADE.
 
 Uso direto (conferência): python3 scripts/icones_tema.py <saida>  -> grava os WebP e uma prancha.
@@ -32,7 +32,7 @@ NOME = re.compile(r'^([A-Z]+\d+)(?:-.*)?\.png$', re.I)
 
 ALFA_RESTO = 32       # alfa <= isto é resto de fundo
 ALFA_OPACO = 128      # alfa >= isto é objeto (vira 255)
-RAIO_OBJETO = 0.84    # o objeto cabe num círculo de 84% do raio
+RAIO_OBJETO = 0.88    # o objeto cabe num círculo de 88% do raio
 LADO = 320
 QUALIDADE = 84
 

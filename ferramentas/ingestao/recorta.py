@@ -298,7 +298,12 @@ def limite_baixo(pg, cfg):
     if cfg.get('rodape_rx'):   # rodapé em altura que muda por ano: a página acaba logo acima dele
         for l in linhas(pg):
             if l['bbox'][1] > pg.rect.height * 0.88 and re.search(cfg['rodape_rx'], l['t']):
-                lim = min(lim, l['bbox'][1] - 2)
+                # rodapé ao lado da última alternativa (mesma altura): não corta, só é apagado no print ('apagar')
+                lado = any(o is not l and o['bbox'][1] < l['bbox'][3] - 2 and o['bbox'][3] > l['bbox'][1] + 2
+                           and not re.search(cfg['rodape_rx'], o['t']) and not re.fullmatch(r'[\d\s•∙·|]*(Fatec)?', o['t'])
+                           for o in linhas(pg))
+                if not lado:
+                    lim = min(lim, l['bbox'][1] - 2)
     if cfg.get('rodape_num'):
         # rodape_ultimo: só vale o número que é a última linha da página (números de gráfico não contam)
         ultimo = max((l['bbox'][1] for l in linhas(pg)), default=0) if cfg.get('rodape_ultimo') else 0
