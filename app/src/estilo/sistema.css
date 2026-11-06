@@ -259,9 +259,9 @@
 .tp-enc { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 560px), 1fr)); column-gap: 28px; }
 .tp-enc li + li { background: linear-gradient(var(--linha), var(--linha)) 12px 0 / calc(100% - 24px) 1px no-repeat; }
 @media (min-width: 1502px) { .casca:not(.menu-fechado) .tp-enc li:nth-child(2) { background: none; } }
-.tp-enc a { display: grid; grid-template-columns: 64px minmax(0, 1fr) 76px 20px; align-items: center; gap: 18px; padding: 14px 12px; border-radius: 12px; color: var(--tinta); text-decoration: none; }
+/* conteúdos (subtemas) sem ícone (decisão do dono, 05/11; comando 19): nome + frase, progresso e seta */
+.tp-enc a { display: grid; grid-template-columns: minmax(0, 1fr) 76px 20px; align-items: center; gap: 18px; padding: 14px 12px; border-radius: 12px; color: var(--tinta); text-decoration: none; }
 @media (hover: hover) { .tp-enc a:hover { background: color-mix(in srgb, var(--c) 6%, var(--folha)); } }
-.tp-enc .ic3d { width: 64px !important; height: 64px !important; }
 .tp-enc .t { min-width: 0; }
 .tp-enc .t b { display: block; font-size: 18px; font-weight: 600; line-height: 1.3; }
 .tp-enc .t > span { display: block; margin-top: 3px; font-size: 16px; line-height: 1.45; color: var(--lapis); }
@@ -284,13 +284,12 @@
   .btn.tp-comecar { width: 100%; }
   .btn.tp-teo { margin-left: 0; width: 100%; }
   .tp-bloco { padding: 16px 16px 8px; border-radius: var(--r); }
-  .tp-enc a { grid-template-columns: 52px minmax(0, 1fr) 16px; gap: 6px 14px; padding: 14px 6px; align-items: start; }
-  .tp-enc .ic3d { width: 52px !important; height: 52px !important; }
+  .tp-enc a { grid-template-columns: minmax(0, 1fr) 16px; gap: 6px 14px; padding: 14px 6px; align-items: start; }
   .tp-enc .t b { font-size: 16.5px; }
   .tp-enc .t > span { font-size: 15px; }
-  .tp-enc .p { grid-column: 2; grid-row: 2; display: flex; align-items: center; gap: 10px; text-align: left; font-size: 14px; }
+  .tp-enc .p { grid-column: 1; grid-row: 2; display: flex; align-items: center; gap: 10px; text-align: left; font-size: 14px; }
   .tp-enc .p .barra { flex: 1; max-width: 140px; margin: 0; }
-  .tp-seta { grid-column: 3; grid-row: 1; align-self: center; width: 16px; height: 16px; }
+  .tp-seta { grid-column: 2; grid-row: 1; align-self: center; width: 16px; height: 16px; }
   .tp-viz a { flex: 1 1 100%; }
 }
 @media (max-width: 420px) { .tp-ic { width: 84px; height: 84px; border-radius: 20px; } .tp-ic .ic3d { width: 74px !important; height: 74px !important; } }
@@ -519,10 +518,11 @@
 .ft-item[style*='--ft-w'], .faixa-temas.compacta .ft-item[style*='--ft-w'] { flex-basis: var(--ft-w); width: var(--ft-w); }
 
 /* ---------- simulado no celular: contador em uma linha (auditoria rodada 4, item 7) ----------
-   "1 de 177 · 0 resp." cabe inteiro em uma linha: espaços entre os botões de 6 px, botões da barra mais justos */
+   "177 de 177 · 177 resp." cabe inteiro em uma linha: 14 px (o mesmo dos cronômetros da barra no celular), espaços de
+   4 px entre os botões, botão da folha de 32 px e cronômetro mais justo */
 @media (max-width: 520px) {
-  .questao-tela.simulado .q-barra { gap: 6px; }
-  .questao-tela.simulado .q-barq .t { display: block; white-space: nowrap; overflow: visible; -webkit-line-clamp: unset; line-clamp: none; }
+  .questao-tela.simulado .q-barra { gap: 4px; }
+  .questao-tela.simulado .q-barq .t { display: block; white-space: nowrap; overflow: visible; -webkit-line-clamp: unset; line-clamp: none; font-size: 14px; }
   .questao-tela.simulado .q-barra .folha-btn { width: 32px; padding: 0; justify-content: center; }
   .questao-tela.simulado .q-barra .crono { padding: 0 6px; gap: 4px; }
 }

@@ -12,6 +12,9 @@ Uso:
 """
 import base64, json, os, re, shutil, sys, hashlib
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import icones_tema  # noqa: E402  (ícones de tema do dono: docs/icones/)
+
 AQUI = os.path.dirname(os.path.abspath(__file__))
 APP = os.path.dirname(AQUI)
 ORIGEM = os.path.join(os.path.dirname(APP), 'app-atual')
@@ -130,8 +133,8 @@ def converte_materia(m, amostra_ids=None):
         if limpo:
             res_por_sub[sub] = limpo
 
-    # ícones (módulo e conteúdo)
-    icones = ler(os.path.join(src, 'ic.json'))
+    # ícones (módulo e conteúdo); com ícones novos do dono em docs/icones/, só eles (os antigos saem do site)
+    icones = icones_tema_ou(m, lambda: ler(os.path.join(src, 'ic.json')))
 
     # figuras de teoria por módulo
     figuras = {}
@@ -202,6 +205,27 @@ def converte_materia(m, amostra_ids=None):
     }
 
 
+_CACHE_TEMA = {}
+
+
+def icones_tema_ou(m, antigos):
+    """Ícones de tema enviados pelo dono (docs/icones/<matéria>/, comando 19) são os ÚNICOS ícones da matéria:
+    os antigos (de tema e de subtema, do protótipo ou das pranchas) não entram. Sem ícones novos, ficam os atuais."""
+    if m not in _CACHE_TEMA:
+        _CACHE_TEMA[m] = {k: base64.b64encode(v).decode() for k, v in icones_tema.icones_materia(m).items()}
+    return dict(_CACHE_TEMA[m]) if _CACHE_TEMA[m] else antigos()
+
+
+def gera_icones_tema_ts():
+    """src/dados/iconesTema.ts: temas que têm o ícone novo (o site desenha esses dentro do círculo claro)."""
+    mapa = {m: sorted(icones_tema.arquivos_materia(m)) for m in icones_tema.materias_com_icones()}
+    alvo = os.path.join(APP, 'src', 'dados', 'iconesTema.ts')
+    with open(alvo, 'w', encoding='utf-8') as f:
+        f.write('// Gerado por scripts/converte.py a partir de docs/icones/<matéria>/<id do tema>-<nome>.png (comando 19 do dono).\n')
+        f.write('// Temas com ícone novo: o arquivo é public/conteudo/<m>/ic/<id>.webp e aparece inteiro dentro do círculo claro.\n')
+        f.write('export const ICONES_TEMA: Record<string, readonly string[]> = ' + json.dumps(mapa, ensure_ascii=False) + ';\n')
+
+
 def icones_novos(m):
     """Ícones 3D enviados pelo dono: conteudo-fonte/materias/ic/<m>/<id do tema>.png|webp -> base64 webp."""
     out = {}
@@ -232,7 +256,7 @@ def converte_nova(m, amostra_ids=None):
     materia = ler(os.path.join(FONTE_NOVAS, m + '.json'))
     materia.pop('_sobre', None)
     banco = []
-    icones = icones_novos(m)
+    icones = icones_tema_ou(m, lambda: icones_novos(m))
     if amostra_ids is not None:
         return banco, materia, {}, {}, icones, {}
     saida = os.path.join(DESTINO, m)
@@ -403,6 +427,7 @@ def main():
         pacotes_provas(sys.argv[sys.argv.index('--pacotes-provas') + 1])
         return
     gera_logo_ts()
+    gera_icones_tema_ts()
     if AMOSTRA:
         copia_comuns()
         amostra()

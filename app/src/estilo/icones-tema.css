@@ -1,0 +1,34 @@
+/* ---------- ícones de tema novos (comando 19 do dono, 06/11/2026; docs/icones/ONDE-USAR.md) ----------
+   O objeto fica INTEIRO dentro de um círculo claro (o WebP já vem enquadrado: o objeto ocupa até 84% do raio).
+   O tamanho do círculo é o tamanho do ícone em cada lugar (regras .ic3d de cada tela).
+   Mouse ou foco pelo teclado no link/botão em volta: o círculo cresce ~6% e sobe um pouco (animação curta).
+   "Reduzir movimento": só o destaque da borda. No toque não há efeito (hover só em aparelhos com mouse). */
+.ic-tema { display: grid; place-items: center; flex: none; border-radius: 50%; overflow: hidden;
+  background: radial-gradient(circle at 50% 38%, #FFFFFF, color-mix(in srgb, var(--s) 70%, #FFFFFF) 92%);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c) 16%, transparent), 0 1px 2px rgba(20, 22, 30, .06), 0 6px 14px -8px rgba(20, 22, 30, .2);
+  transition: transform .2s var(--curva), box-shadow .2s var(--curva); }
+.ic-tema img { display: block; width: 100%; height: 100%; object-fit: contain; }
+/* no escuro o círculo continua claro (um pouco mais baixo, para não ofuscar) */
+[data-theme='dark'] .ic-tema { background: radial-gradient(circle at 50% 38%, #F1F3EF, color-mix(in srgb, var(--p) 14%, #DCE0D9) 92%);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .5), 0 6px 14px -8px rgba(0, 0, 0, .6); }
+
+/* o círculo dispensa o ladrilho de trás (faixa de temas e capa do tema) */
+.ft-item .ft-ic:has(> .ic-tema), .ft-item.atual .ft-ic:has(> .ic-tema) { background: none; }
+.tp-ic:has(> .ic-tema) { background: none; box-shadow: none; }
+
+@media (hover: hover) {
+  :is(a, button):hover .ic-tema { transform: translateY(-3px) scale(1.06);
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c) 30%, transparent), 0 2px 4px rgba(20, 22, 30, .08), 0 12px 22px -10px rgba(20, 22, 30, .3); }
+}
+:is(a, button):focus-visible .ic-tema { transform: translateY(-3px) scale(1.06);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c) 30%, transparent), 0 2px 4px rgba(20, 22, 30, .08), 0 12px 22px -10px rgba(20, 22, 30, .3); }
+/* ícones pequenos (filtros e listas): sobe só 1 px */
+@media (hover: hover) { :is(.fl-tema, .fl-area, .busca-item):hover .ic-tema { transform: translateY(-1px) scale(1.06); } }
+:is(.fl-tema, .fl-area, .busca-item):focus-visible .ic-tema { transform: translateY(-1px) scale(1.06); }
+
+@media (prefers-reduced-motion: reduce) {
+  .ic-tema { transition: none; }
+  :is(a, button):hover .ic-tema, :is(a, button):focus-visible .ic-tema,
+  :is(.fl-tema, .fl-area, .busca-item):hover .ic-tema, :is(.fl-tema, .fl-area, .busca-item):focus-visible .ic-tema {
+    transform: none; box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--c) 70%, transparent); }
+}

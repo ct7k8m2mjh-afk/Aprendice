@@ -851,6 +851,7 @@ PROVAS['fatec-2025-1'] = fatec(2025, 1)
 PROVAS['fatec-2025-1'].update({
     'colunas': 'faixas', 'margem': 30, 'topo': 64, 'base': 36, 'apagar': [r'^VESTIBULAR \d', r'^FATEC –', r'^TIPO A$'],
     'ancora': r'^(\d{1,2})\.(\s|$)', 'ancora_dx': 12, 'area_do_gabarito': False,
+    'suporte_titulo': 15,   # questões multidisciplinares (46 a 54): o texto de cada uma vem antes dela, com título centralizado
     'secoes': {'MATEMÁTICA': 'Matemática', 'FÍSICA': 'Física', 'QUÍMICA': 'Química', 'BIOLOGIA': 'Biologia', 'HISTÓRIA': 'História',
                'GEOGRAFIA': 'Geografia', 'INGLÊS': 'Inglês', 'LÍNGUA PORTUGUESA': 'Língua Portuguesa', 'PORTUGUÊS': 'Língua Portuguesa',
                'RACIOCÍNIO LÓGICO': 'Raciocínio Lógico', 'MULTIDISCIPLINAR': 'Multidisciplinar', 'LÍNGUA INGLESA': 'Inglês'},

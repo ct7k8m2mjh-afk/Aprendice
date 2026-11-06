@@ -165,7 +165,8 @@ def faixas_da_pagina(pg, cfg):
     topo, base = topo_de(pg, cfg), limite_baixo(pg, cfg)
     ls = [L for L in linhas(pg) if L['bbox'][1] >= topo - 2 and L['bbox'][3] <= base + 2]
     figuras = [pymupdf.Rect(b['bbox']) for b in pg.get_image_info()
-               if b['bbox'][0] < meio - 30 and b['bbox'][2] > meio + 30 and b['bbox'][3] - b['bbox'][1] > 40]
+               if b['bbox'][0] < meio - 60 and b['bbox'][2] > meio + 60 and b['bbox'][3] - b['bbox'][1] > 40
+               and b['bbox'][0] >= 0 and b['bbox'][2] <= W]   # imagem que sai da página está recortada: não conta
     dentro_fig = lambda L: any(f.contains(pymupdf.Rect(L['bbox'])) for f in figuras)
     largas = sorted(L['bbox'][1:4:2] for L in ls if L['bbox'][0] < meio - 25 and L['bbox'][2] > meio + 25)
     largas += sorted((f.y0, f.y1) for f in figuras)
@@ -208,6 +209,8 @@ def faixas_da_pagina(pg, cfg):
         b = min([a_ for a_, b_ in largas if a_ >= g['y1'] - 1] + [base]
                 + ([] if esq_ancora else
                    [L['bbox'][1] - 1 for L in ls if L['bbox'][1] >= g['y1'] - 6 and L['bbox'][0] < meio - 12 and forte_(L)]))
+        if any(f.y0 < b - 2 and f.y1 > a + 2 for f in figuras):
+            continue   # figura de largura total dentro da faixa (ex.: legenda/fonte à direita da arte): não divide
         xs = min(L['bbox'][0] for L in g['ls'])
         div = min(cfg.get('divisa', meio - 2), xs - 8)
         if faixas and a <= faixas[-1][1]:
@@ -403,6 +406,12 @@ def eventos_do_pdf(pdf, cfg, faixa=None):
             sec_rx = next((nome for rx, nome in cfg.get('secoes_rx', []) if re.search(rx, t)), None)
             if sec_rx:
                 ev.append({'p': pi, 'c': c, 'y': y0, 'tipo': 'secao', 'nome': sec_rx})
+                continue
+            if cfg.get('suporte_titulo') and L.get('neg') and len(t) > 6 and not re.match(cfg['ancora'], t) \
+                    and x0 - cols[c][0] > 40 and cols[c][1] - x1 > 40 and abs((x0 + x1) / 2 - (cols[c][0] + cols[c][1]) / 2) < 25 \
+                    and pi + 1 >= cfg['suporte_titulo']:
+                # título em negrito centralizado de um texto que vem ANTES da questão (Fatec 2025/1, multidisciplinar)
+                ev.append({'p': pi, 'c': c, 'y': y0, 'tipo': 'suporte', 'faixa': [], 'num': None})
                 continue
             m = re.match(cfg['ancora'], t)
             dx = cfg.get('ancora_dx_pag', {}).get((cfg.get('_arquivo'), pi + 1), cfg.get('ancora_dx', 30))

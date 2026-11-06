@@ -6,7 +6,8 @@ import { atualizaMateria, pegaEstado, useMateriaEstado } from '../estado/loja';
 import { questoesVencidas } from '../logica/estatisticas';
 import { filaDe, emDias } from '../logica/revisao';
 import { ehNivel, nivelDe, nomeNivel } from '../logica/nivel';
-import { Carregando, Ic3D, cap, formataTempo, useTitulo } from '../ui/comum';
+import { Carregando, cap, formataTempo, useTitulo } from '../ui/comum';
+import { IcTema } from '../ui/IconeTema';
 import { Icone, type NomeIcone } from '../ui/Icone';
 import { AbasPainel, BotaoTelaCheia, Certeza, EnunciadoQuestao, FonteQuestao, RespostaCartao, mostraPainel, useCronometro, type AbaPainel, type Conf } from '../ui/QuestaoCartao';
 import { CartaoTeoriaView } from './Tema';
@@ -193,7 +194,7 @@ export function QuestaoTela() {
               ))}
               {aba === 'teo' && (
                 <div className="q-teoria">
-                  <p className="q-teo-rot"><Ic3D m={m} chave={q.sub} tam={34} /><span>Teoria desta questão · <b>{cap(sub?.nome || mod?.nome || '')}</b></span></p>
+                  <p className="q-teo-rot"><IcTema m={m} tema={q.modulo} tam={34} /><span>Teoria desta questão · <b>{cap(sub?.nome || mod?.nome || '')}</b></span></p>
                   {cartoesTeoria.length ? cartoesTeoria.map((c, i) => <CartaoTeoriaView key={i} c={c} />) : <p className="miolo">A teoria deste conteúdo está em preparação.</p>}
                 </div>
               )}
@@ -203,7 +204,7 @@ export function QuestaoTela() {
                   <h3>Conteúdos relacionados</h3>
                   <div className="q-rel-g">
                     {relacionados.map((x) => (
-                      <Link key={x.id} to={`/m/${m}/escada/${x.id}`}><Ic3D m={m} chave={x.id} tam={34} /><span>{cap(x.nome)}</span></Link>
+                      <Link key={x.id} to={`/m/${m}/escada/${x.id}`}><span>{cap(x.nome)}</span></Link>
                     ))}
                   </div>
                 </nav>

@@ -4,7 +4,8 @@ import { EH_PREVIA, urlPrint, useMateria, useResolucoes, type MateriaCarregada }
 import { materia as infoMateria } from '../dados/materias';
 import { atualiza, pegaEstado, useEstado } from '../estado/loja';
 import { feitaHoje } from '../logica/revisao';
-import { Carregando, Ic3D, cap, useTitulo } from '../ui/comum';
+import { Carregando, cap, useTitulo } from '../ui/comum';
+import { IcTema } from '../ui/IconeTema';
 import { Icone, type NomeIcone } from '../ui/Icone';
 import { AbasPainel, BotaoTelaCheia, Certeza, EnunciadoQuestao, FonteQuestao, RespostaCartao, mostraPainel, useCronometro, type AbaPainel, type Conf } from '../ui/QuestaoCartao';
 import { CartaoTeoriaView } from './Tema';
@@ -82,7 +83,7 @@ function QuestaoInline({ mc, q, aoTerminar }: { mc: MateriaCarregada; q: Questao
           ))}
           {aba === 'teo' && (
             <div className="q-teoria">
-              <p className="q-teo-rot"><Ic3D m={m} chave={q.sub} tam={34} /><span>Teoria desta questão · <b>{cap(sub?.nome || mod?.nome || '')}</b></span></p>
+              <p className="q-teo-rot"><IcTema m={m} tema={q.modulo} tam={34} /><span>Teoria desta questão · <b>{cap(sub?.nome || mod?.nome || '')}</b></span></p>
               {cartoes.length ? cartoes.map((c, i) => <CartaoTeoriaView key={i} c={c} />) : <p className="miolo">A teoria deste conteúdo está em preparação.</p>}
             </div>
           )}

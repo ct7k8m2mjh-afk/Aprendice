@@ -128,7 +128,8 @@ export function partesFracao(texto: string): ParteFracao[] {
  * A "conta" de um passo às vezes é texto: um trecho citado da prova (Português), uma relação entre palavras
  * ("autor → obra", "coração × tela") ou uma frase (Biologia, Química). O guia reserva a letra à mão (Caveat) para
  * conta e fórmula ("cursiva nunca em texto corrido"); texto vai na família da interface.
- * - frase (7 palavras seguidas, sem número nem sinal no meio) é texto, mesmo com uma conta dentro;
+ * - Português, Inglês, História, Geografia e Filosofia e Sociologia: sempre texto;
+ * - frase (6 a 10 palavras seguidas sem número nem sinal no meio, conforme a forma) é texto, mesmo com uma conta dentro;
  * - só números (lista, resultado: "43,18", "2, 3, 5, 7, 11, ...") é conta;
  * - é conta quando há sinal de matemática ou química junto de número, variável ou fórmula: operador junto de
  *   número, letra de variável com "=", raiz, expoente, índice; seta e "×" só contam entre fórmulas ("Aa × Aa",
@@ -180,9 +181,8 @@ export function contaEhTexto(s: string, materia?: string): boolean {
   // em Matemática e Física, "ângulo do copo = 90° − 45°" é conta com nome por extenso; frase é só a que começa com
   // maiúscula e termina com ponto
   const frase = calculo ? /^[A-ZÀ-Ý][a-zà-ÿ]+\s/.test(t) && /[.!?]$/.test(t) : true;
-  // o comentário entre parênteses não conta ("1/2 (chance de o óvulo levar o inserto) × 1 = 1/2"); a conta que começa
-  // por número só vira frase com um trecho maior de palavras
-  // frase com cara de frase (maiúscula no começo, ponto no fim) precisa de menos palavras seguidas
+  // o comentário entre parênteses não conta ("1/2 (chance de o óvulo levar o inserto) × 1 = 1/2"); frase com cara de
+  // frase (maiúscula no começo, ponto no fim) precisa de 6 palavras seguidas, a conta que começa por número de 10
   const formaDeFrase = /^[A-ZÀ-Ý][a-zà-ÿ]+\s/.test(t) && /[.!?]$/.test(t);
   const minimo = formaDeFrase ? 6 : /^[\d(−-]/.test(t) ? 10 : 8;
   if (frase && maiorFrase(t.replace(/\([^()]*\)/g, ' ')) >= minimo) return true;

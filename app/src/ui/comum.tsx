@@ -39,16 +39,15 @@ export function Barra({ valor, rotulo }: { valor: number; rotulo?: string }) {
   );
 }
 
-/** Ícone 3D realista de módulo ou conteúdo (pipeline do protótipo). Cai para o ícone do módulo quando o conteúdo não tem um próprio. */
+/** Ícone 3D atual de um TEMA (matérias que ainda não têm os ícones novos do dono; ver ui/IconeTema.tsx).
+ *  Subtemas não têm ícone (decisão do dono, 05/11). */
 export function Ic3D({ m, chave, tam = 56, alt = '' }: { m: MateriaId; chave: string; tam?: number; alt?: string }) {
-  const [falhou, setFalhou] = useState(0);
-  useEffect(() => setFalhou(0), [m, chave]);
-  // conteúdo sem ícone próprio usa o do tema; sem repetir a mesma tentativa (senão a falha não é detectada)
-  const tentativas = [...new Set([chave, chave.split('.')[0]])];
-  const url = falhou < tentativas.length ? urlIcone(m, tentativas[falhou]) : null;
+  const [falhou, setFalhou] = useState(false);
+  useEffect(() => setFalhou(false), [m, chave]);
+  const url = falhou ? null : urlIcone(m, chave);
   // sem ícone 3D ainda (matéria nova): marcador discreto na cor da matéria, nunca um buraco
   if (!url) return <span className={`ic3d ic3d-vazio m-${m}`} style={{ width: tam, height: tam }} aria-hidden><Icone nome="camadas" tam={Math.round(tam * 0.42)} /></span>;
-  return <img className="ic3d" src={url} width={tam} height={tam} alt={alt} loading="lazy" decoding="async" onError={() => setFalhou((x) => x + 1)} />;
+  return <img className="ic3d" src={url} width={tam} height={tam} alt={alt} loading="lazy" decoding="async" onError={() => setFalhou(true)} />;
 }
 
 export function Toast({ texto, aoFechar }: { texto: string | null; aoFechar: () => void }) {

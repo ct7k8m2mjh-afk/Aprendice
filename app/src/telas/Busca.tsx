@@ -6,7 +6,7 @@ import { MATERIAS, nomeMateria } from '../dados/materias';
 import { CATALOGO } from '../dados/provas';
 import { useIndiceProvas } from '../dados/provasCompletas';
 import { norm } from '../logica/correcao';
-import { Ic3D } from '../ui/comum';
+import { IcTema } from '../ui/IconeTema';
 import type { MateriaId } from '../dados/tipos';
 
 interface Resultado { grupo: string; titulo: string; det: string; ir: string; m?: MateriaId; ic?: string }
@@ -79,7 +79,7 @@ export function Busca({ aoFechar }: { aoFechar: () => void }) {
               <div key={r.grupo + r.ir + i}>
                 {g && <div className="busca-grupo">{g}</div>}
                 <button className={'busca-item' + (i === sel ? ' sel' : '') + (r.m ? ' m-' + r.m : '')} onMouseEnter={() => setSel(i)} onClick={() => vai(r)}>
-                  {r.m && r.ic ? <Ic3D m={r.m} chave={r.ic} tam={32} /> : <span className="mini-ic"><Icone nome={r.grupo === 'Simulados' ? 'relogio' : r.grupo === 'Matérias' ? 'livro' : r.grupo === 'Cartões' ? 'cartas' : 'predio'} /></span>}
+                  {r.m && r.ic ? <IcTema m={r.m} tema={r.ic.split('.')[0]} tam={32} /> : <span className="mini-ic"><Icone nome={r.grupo === 'Simulados' ? 'relogio' : r.grupo === 'Matérias' ? 'livro' : r.grupo === 'Cartões' ? 'cartas' : 'predio'} /></span>}
                   <span><span className="tit">{r.titulo}</span><span className="det">{r.det}</span></span>
                 </button>
               </div>

@@ -6,7 +6,7 @@ import { useMateriaEstado } from '../estado/loja';
 import { progressoEscada } from '../logica/estatisticas';
 import { NIVEIS, desempenhoPorNivel, feedbackNiveis, nivelDe, nomeNivel } from '../logica/nivel';
 import { filaDe, emDias } from '../logica/revisao';
-import { Barra, Carregando, Ic3D, cap, plural, useTitulo } from '../ui/comum';
+import { Barra, Carregando, cap, plural, useTitulo } from '../ui/comum';
 import { Icone } from '../ui/Icone';
 import { CartaoTeoriaView } from './Tema';
 import { CabMateria, subMateria, FaixaTemas } from './Materia';
@@ -43,7 +43,7 @@ export function Escada() {
         <Link to={`/m/${m}/tema/${mod.id}`}>{mod.nome}</Link><Icone nome="direita" tam={14} /><span>Conteúdo</span>
       </nav>
       <div className="tema-cab">
-        <h1><Ic3D m={m} chave={sub} tam={44} />{cap(conteudo!.nome)}</h1>
+        <h1>{cap(conteudo!.nome)}</h1>
         <p className="sub num">{plural(l.length, 'questão real', 'questões reais')} · do básico ao avançado</p>
       </div>
 

@@ -5,8 +5,9 @@ import { materia as infoMateria } from '../dados/materias';
 import { atualizaMateria, pegaEstado, useMateriaEstado } from '../estado/loja';
 import { cartoesAtivos } from '../logica/estatisticas';
 import { flashVencido, marcaFlash } from '../logica/revisao';
-import { Barra, Carregando, Ic3D, cap, plural, useTitulo } from '../ui/comum';
+import { Barra, Carregando, cap, plural, useTitulo } from '../ui/comum';
 import { Icone, type NomeIcone } from '../ui/Icone';
+import { IcTema } from '../ui/IconeTema';
 import { BotaoTelaCheia } from '../ui/QuestaoCartao';
 import { FlashcardView, type Nota } from '../ui/Cartoes';
 import { CabMateria, subMateria } from './Materia';
@@ -94,7 +95,7 @@ export function Flashcards({ sessao = false }: { sessao?: boolean }) {
             <h2 className="tp-h" id="fl-area">Área <small className="num">{plural(ativos.length, 'cartão', 'cartões')} em {info.nome}</small></h2>
             <div className="fl-areas" role="group" aria-label="Filtrar por área">
               <button className="fl-area" aria-pressed={!area} onClick={() => escolheArea('')}><span className="fl-area-ic"><Icone nome="cartas" /></span>Todas</button>
-              {areas.map((a) => <button key={a.id} className="fl-area" aria-pressed={area === a.id} onClick={() => escolheArea(a.id)}><Ic3D m={m} chave={a.mods[0]} tam={28} />{a.nome}</button>)}
+              {areas.map((a) => <button key={a.id} className="fl-area" aria-pressed={area === a.id} onClick={() => escolheArea(a.id)}><IcTema m={m} tema={a.mods[0]} tam={28} />{a.nome}</button>)}
             </div>
           </section>
         )}
@@ -110,7 +111,7 @@ export function Flashcards({ sessao = false }: { sessao?: boolean }) {
               const fm = l.filter((c) => (s.flash[c.id]?.etapa || 0) >= 2).length;
               return (
                 <button key={x.id} className="fl-tema" aria-pressed={mod === x.id} onClick={() => setMod(x.id)}>
-                  <Ic3D m={m} chave={x.id} tam={36} />
+                  <IcTema m={m} tema={x.id} tam={36} />
                   <span className="t"><b>{x.nome}</b><small className="num">{plural(l.length, 'cartão', 'cartões')} · {plural(fm, 'firme', 'firmes')}</small><Barra valor={l.length ? fm / l.length : 0} rotulo={`Cartões firmes em ${x.nome}`} /></span>
                 </button>
               );

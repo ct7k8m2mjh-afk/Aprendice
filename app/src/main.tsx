@@ -4,6 +4,7 @@ import './estilo/base.css';
 import './estilo/app.css';
 import './estilo/telas.css';
 import './estilo/sistema.css';
+import './estilo/icones-tema.css'; // ícones de tema no círculo (comando 19)
 import './estilo/tipografia.css'; // guia tipográfico: carregado por último
 import { App } from './App';
 import { preparaConteudo } from './dados/conteudo';

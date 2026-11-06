@@ -4,9 +4,10 @@ import { useMateria, type MateriaCarregada } from '../dados/conteudo';
 import { MATERIAS, materia as infoMateria } from '../dados/materias';
 import { useEstado, useMateriaEstado } from '../estado/loja';
 import { progressoEscada, resumoMateria } from '../logica/estatisticas';
-import { Anel, Barra, Carregando, Ic3D, plural, useTitulo } from '../ui/comum';
+import { Anel, Barra, Carregando, plural, useTitulo } from '../ui/comum';
 import { Icone } from '../ui/Icone';
 import { IconeMateria, IluMateria, temIlu } from '../ui/IconeMateria';
+import { IcTema } from '../ui/IconeTema';
 import type { MateriaId } from '../dados/tipos';
 import type { EstadoMateria } from '../estado/tipos';
 
@@ -63,7 +64,10 @@ export function FaixaTemas({ mc, s, atual, compacta = false }: { mc: MateriaCarr
       const lh = parseFloat(getComputedStyle(n).lineHeight) || 20;
       const linhas = () => { const rg = document.createRange(); rg.selectNodeContents(n); return Math.round(rg.getBoundingClientRect().height / lh); };
       const base = it.getBoundingClientRect().width;
-      for (let w = base; linhas() > 2 && w < base * 2; ) { w += 10; it.style.setProperty('--ft-w', `${w}px`); }
+      let w = base;
+      while (linhas() > 2 && w < base * 2) { w += 10; it.style.setProperty('--ft-w', `${w}px`); }
+      // cartão alargado: mais 10 px de respiro, para a linha mais longa não encostar na borda
+      if (w > base) it.style.setProperty('--ft-w', `${w + 10}px`);
     }
     mede();
   };
@@ -89,7 +93,7 @@ export function FaixaTemas({ mc, s, atual, compacta = false }: { mc: MateriaCarr
           const p = progressoEscada(qs, s);
           return (
             <Link key={mod.id} to={`/m/${mc.id}/tema/${mod.id}`} className={'ft-item' + (atual === mod.id ? ' atual' : '')} aria-current={atual === mod.id ? 'page' : undefined}>
-              <span className="ft-ic"><Ic3D m={mc.id} chave={mod.id} tam={compacta ? 76 : 112} /></span>
+              <span className="ft-ic"><IcTema m={mc.id} tema={mod.id} tam={compacta ? 76 : 112} /></span>
               <span className="ft-nome">{mod.nome}</span>
               <Barra valor={p.total ? p.feitas / p.total : 0} rotulo={`Progresso em ${mod.nome}`} />
             </Link>
@@ -228,7 +232,7 @@ export function Materia() {
                 const v = p.total ? p.feitas / p.total : 0;
                 return (
                   <Link key={mid} to={`/m/${m}/tema/${mid}`} className="area-tema">
-                    <Ic3D m={m} chave={mid} tam={72} />
+                    <IcTema m={m} tema={mid} tam={72} />
                     <span className="at-txt">
                       <b>{mod.nome}</b>
                       <Barra valor={v} rotulo={`Progresso em ${mod.nome}`} />

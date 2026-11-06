@@ -5,8 +5,9 @@ import { materia as infoMateria } from '../dados/materias';
 import { useMateriaEstado } from '../estado/loja';
 import { progressoEscada } from '../logica/estatisticas';
 import { desempenhoPorNivel, nomeNivel } from '../logica/nivel';
-import { Barra, Carregando, Ic3D, cap, plural, useTitulo } from '../ui/comum';
+import { Barra, Carregando, cap, plural, useTitulo } from '../ui/comum';
 import { Icone } from '../ui/Icone';
+import { IcTema } from '../ui/IconeTema';
 import { CabMateria, subMateria, FaixaTemas } from './Materia';
 import { comFracoes } from '../ui/Fracao';
 import { contaEhTexto, materiaDoCodigo } from '../logica/fracao';
@@ -96,7 +97,7 @@ export function Tema() {
 
       <section className="tp-capa" aria-labelledby="tp-tit">
         <div className="tp-cab">
-          <span className="tp-ic"><Ic3D m={m} chave={mod.id} tam={100} /></span>
+          <span className="tp-ic"><IcTema m={m} tema={mod.id} tam={100} /></span>
           <div className="tp-cab-txt">
             <p className="tp-rot num">Tema {idx + 1} de {mods.length} · {nomeMat}</p>
             <h1 id="tp-tit">{mod.nome}</h1>
@@ -150,7 +151,6 @@ export function Tema() {
               return (
                 <li key={sub.id}>
                   <Link to={`/m/${m}/escada/${sub.id}`}>
-                    <Ic3D m={m} chave={sub.id} tam={64} />
                     <span className="t"><b>{cap(sub.nome)}</b>{frase && <span>{frase}</span>}</span>
                     <span className="p"><span className="num">{pe.feitas}/{pe.total}</span><Barra valor={pe.total ? pe.feitas / pe.total : 0} rotulo={`Progresso em ${sub.nome}`} /></span>
                     <Icone nome="direita" className="tp-seta" />
