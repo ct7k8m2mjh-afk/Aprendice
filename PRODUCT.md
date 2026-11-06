@@ -7,15 +7,15 @@
 
 web
 
-(Uma base web empacotada com Capacitor para iPhone e Android; a linguagem visual é a mesma nos três.)
+(Só site, no navegador de computador, celular e tablet, com layout responsivo. Aplicativo de loja está fora do plano — decisão do dono, 05/11/2026.)
 
 ## Stack
 
-delegated: React 18 + TypeScript + Vite, HashRouter, Capacitor 6. Escolhido porque o protótipo já é web (CSS e lógica reaproveitáveis), roda offline no aparelho e gera site + iOS + Android de uma base só.
+delegated: React 18 + TypeScript + Vite, HashRouter. Escolhido porque o protótipo já é web (CSS e lógica reaproveitáveis). O Capacitor que ainda estiver no projeto não é usado: o produto é só site.
 
 ## Users
 
-Estudantes que se preparam para vestibulares em todo o Brasil (ENEM e provas próprias de faculdades públicas e privadas). O produto é um **site**, usado no navegador do computador, do celular e do tablet; não é aplicativo de loja. Estudam todos os dias, muitas vezes no celular, em sessões curtas entre aulas e longas em casa; fazem muitos simulados e revisam erros.
+Todo estudante que vai prestar ENEM ou vestibular no Brasil, para qualquer curso — não só Medicina (decisão do dono, 05/11/2026). Inclui provas próprias de faculdades públicas e privadas de todas as regiões. O produto é um **site**, usado no navegador do computador, do celular e do tablet; não é aplicativo de loja. Estudam todos os dias, muitas vezes no celular, em sessões curtas entre aulas e longas em casa; fazem muitos simulados e revisam erros.
 
 ## Product Purpose
 
@@ -27,33 +27,34 @@ Questões reais de prova com fonte e gabarito publicado, mais Questões Aprendic
 
 ## Operating Context
 
-- Rotina diária: abrir, "continue de onde parou", revisões do dia, uma escada ou um treino.
+- Rotina diária: abrir, "continue de onde parou", revisões do dia, um conteúdo por nível (Treine sua evolução) ou um treino.
 - Simulados longos com cronômetro e pausa, no computador ou no celular.
 - Teclado no computador (A–E, Enter, P, H); toque no celular.
 
 ## Capabilities and Constraints
 
-- Fase atual (01/11/2026): protótipo completo rodando só localmente; sem servidor, banco na nuvem, login real ou publicação. Progresso no aparelho; login e IA simulados.
-- Vocabulário fixo: escada/degrau, treino geral, simulado, flashcard, faixa de temas.
+- Situação (05/11/2026): site publicado em https://aprendice.vercel.app (decisão do dono). Progresso no aparelho; login e IA ainda simulados até a etapa de contas e nuvem.
+- Vocabulário fixo (CLAUDE.md): nível (básico, intermediário, avançado), Treine sua evolução, treino geral, simulado (só prova inteira), flashcard, faixa de temas.
 - Ids de questão e de cartão nunca mudam; mudança de formato exige migração.
-- Matérias: Biologia, Química, Matemática, Português (com conteúdo); Física, História, Geografia, Inglês, Filosofia, Sociologia (estrutura; questões vêm da fábrica de conteúdo).
+- Matérias: Biologia, Química, Matemática, Português (com conteúdo); Física, História, Geografia, Inglês, Filosofia, Sociologia (estrutura; questões vêm da ingestão de provas e da fábrica de conteúdo). Redação não é matéria do site.
 
 ## Brand Commitments
 
 - Nome APRENDICE; logo manuscrito do fundador (`app-atual/design/marca/`).
 - Cores por matéria: Matemática verde-água, Português amarelo, Biologia verde, Química rosa/magenta.
-- Sem emoji, sem visual "de IA"; ícones 3D realistas (referência em `app-atual/design/icones_real/foto3d/ref3110/`).
+- Sem emoji, sem visual "de IA". Ícones sem animação, trocáveis quando o dono mandar, sempre no lugar e enquadramento do sistema.
+- Sistema de design = o protótipo `app-atual/` (grade, alinhamento, fontes, medidas; CLAUDE.md princípio 8).
 - Tema claro padrão e escuro.
 
 ## Evidence on Hand
 
 - 2.221 questões reais (Bio 507, Quí 569, Mat 610, Por 535) com print, fonte e gabarito; resoluções revisadas; teoria; 240 flashcards; 160 frases; dicionário (`app-atual/`).
-- Nenhuma prova completa no banco ainda; nenhum depoimento, número de usuários ou parceria: não inventar.
+- Provas completas em importação (ENEM, Fuvest, UFPR, UPE e outras do inventário de 82 instituições). Nenhum depoimento, número de usuários ou parceria: não inventar.
 
 ## Product Principles
 
 1. A prova manda: prioridade vem das provas-alvo do aluno.
-2. Errar ensina: a resolução parte da alternativa marcada.
+2. Errar ensina: a correção começa por "por que eu errei", mostra a pegadinha, anima a resolução e explica as outras alternativas (CLAUDE.md, "Como o site ensina").
 3. Rotina sem atrito: retomar, pausar, teclado, revisão espaçada.
 4. Nunca perder progresso.
 5. Zero erro em material de estudo; tudo com fonte.

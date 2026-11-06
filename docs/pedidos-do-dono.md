@@ -18,33 +18,13 @@ Imagem enviada nunca é "por enviar": tem uso, e o uso fica registrado.
 - Resolução máxima: nada borrado em tela cheia. Recorte nunca pode cortar o objeto.
 - Sem fundo branco em volta do ícone recortado.
 - Cores das matérias bem distintas entre si (como um caderno de cada cor): nenhuma matéria com cor parecida com outra.
-- Prioridade futura: construir os ícones (3D/vetor em camadas) em vez de colar PNG, para poder animar (ex.: expandir ao passar o mouse).
 - Redação não é matéria do site (removida em 03/11).
 - Formas decorativas (onda verde do menu) não podem aparecer cortadas.
-
-## Ordem de trabalho (03/11) — o que vem primeiro e por quê
-1. Feito: cores distintas por matéria, Redação removida, onda do menu sem corte (valem de qualquer jeito).
-2. Ícones CONSTRUÍDOS (3D em camadas) em vez de melhorar o copia-e-cola: não se amplia/retoca o que vai ser refeito.
-   Sombras e resolução entram já na construção (luz de frente e de cima, sombra para trás, render em alta).
-3. Animação dos ícones construídos (ex.: partes que se expandem ao passar o mouse).
-
-- Ícones construídos precisam de textura, proporção e vida no nível da referência 3D da célula (03/11).
-
-## Regra de animação (03/11, vale para TODOS os ícones)
-- Cada ícone anima de acordo com a FUNÇÃO do que representa (ex.: circuito = corrente correndo no fio e lâmpada acendendo).
-- Nunca "desmontar" peças sem sentido. Antes de animar, conferir se o próprio desenho faz sentido físico/científico
-  (ex.: nuvem e vento do tamanho de continentes soltos fora da Terra NÃO fazem sentido; nuvens e ventos ficam rentes à superfície).
-- Catálogo de cada ícone, função e animação: docs/animacoes-dos-icones.md.
-
-## Regra de criação (03/11)
-- Nada é tirado/copiado/projetado da imagem de referência: copiar perde a qualidade original.
-- Tudo é CRIADO (modelado, pintado de forma procedural em alta resolução, ou assado da nossa própria cena 3D) para ficar
-  igual à referência. A referência serve só para olhar e comparar lado a lado.
-
+- O desenho do ícone precisa estar cientificamente certo (estrutura real), não só parecido.
+- Ícones sem animação (05/11); trocáveis quando o dono mandar.
 
 ## Decisões de 05/11/2026
 - O produto é um **site** (navegador no computador, celular e tablet), não aplicativo de loja.
-- Público: vestibulares em geral de todo o Brasil, não só Medicina.
 - O site pode ter **Questões Aprendice** (criadas por ele), revisadas pela banca de especialistas e sempre identificadas.
 - Uma banca de especialistas (doutores/mestres) por matéria resolve e revisa as questões.
 - Toda mudança no `CLAUDE.md` é aplicada em todos os arquivos do projeto.
@@ -52,7 +32,16 @@ Imagem enviada nunca é "por enviar": tem uso, e o uso fica registrado.
 - Site publicado em link público por decisão do dono (05/11/2026).
 
 - 05/11/2026: tarefa da célula 3D cancelada. Decisão: o site passará a usar só ícones sem animação. Não mexer nos ícones até o dono mandar.
-- 05/11/2026: tela de login igual à referência do dono (Aprendice_Login_Pacote, versão sem a animação do pacote) e abertura com o logotipo escrito à mão (aprendice-abertura.html) no lugar da animação de entrada. Ilustração e textos da referência usados por decisão do dono.
-- 05/11/2026: proibido reutilizar designs de trabalhos anteriores para copiar e colar sem comando do dono; referência é para reproduzir, não copiar; não economizar esforço (CLAUDE.md, princípio 12).
+- 05/11/2026: referência é para reproduzir, não copiar; não economizar esforço (CLAUDE.md, princípio 12). Exceção expressa: o protótipo `app-atual/` é o sistema de design.
 - 05/11/2026: login igual à referência (Aprendice_Login_Pacote), com a ilustração pintada do pacote (uso autorizado pelo dono) e a abertura escrita à mão. Sempre que uma aba inteira mudar, publicar a atualização no site.
 - 05/11/2026: provas de 2ª fase dissertativas ficam de fora do banco agora; as questões dissertativas serão feitas pelo Claude depois, com comando do dono. Banco de provas: só múltipla escolha.
+
+## Decisões de 05/11/2026 (noite), registradas pelo Claude da conversa de estudos a pedido do dono
+- Público: todo estudante que vai prestar ENEM ou vestibular, para qualquer curso (não só Medicina).
+- Trabalho autônomo: sem pedir aprovação, sem perguntas e sem mandar prints; parar só diante do que não tem volta (CLAUDE.md).
+- Sistema de design = o protótipo `app-atual/` (arquivo de estudos do dono): grade, alinhamento, posição, fontes (título da matéria em Dancing Script), medidas e enquadramento. É referência do sistema, não do conteúdo: matérias, telas e ícones novos continuam. Isso é comando expresso e não fere o princípio 12.
+- Ícones: sem animação; o dono vai pedir a troca (ex.: Biologia não precisa ser só a célula); sempre no lugar e enquadramento do sistema.
+- Correção da questão em 4 blocos: por que eu errei · resposta correta + pegadinha · resolução animada · por que as outras estão erradas (fechado, abre ao clicar).
+- Resolução animada obrigatória: Biologia e Química animam o que acontece; Matemática escreve a conta à mão movendo os termos (x atravessa o igual, número passa dividindo, multiplicação cruzada, cancelamento riscado); fração sempre empilhada.
+- As 788 questões de sites didáticos saem; entram Questões Aprendice ou a questão de prova original (`docs/questoes-aprendice.md`).
+- 40 questões reais do ENEM de geometria básica (áreas M08.6, volumes M11.6) entraram em `app-atual/mat` com resoluções revisadas em lentes (`docs/geometria-basica-enem.md`): levar para o site.
