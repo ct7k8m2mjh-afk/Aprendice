@@ -98,9 +98,46 @@ describe('conta ou texto', () => {
       ['Kw maior significa [H⁺] maior e pH menor', 'qui'],
       ['Arrhenius: ácido libera H⁺ em água; base libera OH⁻ em água', 'qui'],
       ['produtos abaixo dos reagentes, logo ΔH negativo, logo exotérmica, logo libera calor', 'qui'],
-      ['1 par de bases = 2 bases, então 100 pares = 200 bases', 'bio'],
-      ['16 pares = 32 cromossomos nas células somáticas, ou seja, 2n = 32', 'bio'],
+      // dado solto no começo não é conta; conta no fim de uma frase também não
+      ['Z = 7 e o átomo é neutro, logo há 7 elétrons para distribuir.', 'qui'],
+      ['Z = 69 e Z = 70 caem no trecho achatado e baixo do 6º período, ambos perto de 1,2; Z = 12 e Z = 20 também ficam baixos, em torno de 1,2 e 1,0. Diferenças ≈ 0,1 e ≈ 0,2', 'qui'],
+      ['ΔH⁰ de reação = − 727 kJ/mol, valor negativo, logo a reação é exotérmica', 'qui'],
+      ['pOH = o expoente positivo de [OH⁻]: se [OH⁻] = 10⁻⁵, pOH = 5', 'qui'],
+      ['A espermátide não se divide mais: 100 espermátides × 1 = 100 espermatozoides.', 'bio'],
+      ['Mg²⁺ e PO4³⁻. Para a soma dar zero: 3 Mg (3 × 2+ = 6+) com 2 fosfatos (2 × 3− = 6−), logo Mg3(PO4)2', 'qui'],
+      ['C16H34 dá C8H16 + C8H18, ou seja, 16 carbonos numa molécula viram 8 + 8 carbonos em duas moléculas', 'qui'],
+      ['albinismo aa × Aa: metade albina, metade com pigmentação normal', 'bio'],
+      ['já saiu uma dengue, sobram 4 vírus, e chikungunya é 1 deles → 1/4', 'bio'],
+      ['nitrogênio com 5 elétrons de valência: 3 ligações N–H e 1 par isolado = 4 nuvens, logo geometria piramidal; assimétrica, logo polar', 'qui'],
+      ['n aminoácidos unidos em cadeia formam n − 1 ligações peptídicas e liberam n − 1 águas', 'bio'],
+      ['1 mol do ácido gera 18 mol de CO2. Cada CO2 tem 1 C: 18 × 1 = 18 mol de C por mol de ácido.', 'qui'],
     ]) expect(contaEhTexto(s, m)).toBe(true);
+  });
+  it('linha que começa com conta ou tem equação com seta continua à mão (Química e Biologia)', () => {
+    for (const [s, m] of [
+      ['22 átomos × 12 g/mol = 264 g de carbono em cada 423 g de losartana', 'qui'],
+      ['14 ÷ 24 = 0,583, ou seja, 58,3% da massa é ouro; os 41,7% restantes são outros metais', 'qui'],
+      ['[H⁺] = 1 × 10⁻¹⁵ mol/L, logo pH = 15, um valor alto e positivo', 'qui'],
+      ['C2H2 + 1 HCl → C2H3Cl, ou seja, 1 mol de acetileno produz 1 mol de cloreto de vinila', 'qui'],
+      ['20 °C + 273 = 293 K, e a temperatura do reservatório já é 293 K', 'qui'],
+      ['CH4(g) → C(s) + 2 H2(g), por calor, com energia solar ou nuclear', 'qui'],
+      ['corroer o ferro é Fe (s) → Fe²⁺ (aq) + 2 e⁻, isto é, o metal perde elétron.', 'qui'],
+      ['2 porções × 1 mol de Th3N4 por porção = 2 mol de Th3N4. Confira: 2 porções gastam 2 × 6 = 12 mol de C, exatamente o que havia', 'qui'],
+      ['657 milhões de toneladas − 653 milhões de toneladas = 4 milhões de toneladas por segundo de massa que some', 'qui'],
+      ['ordem global = 2 (do NO) + 1 (do Cl2) = 3; a lei de velocidade é v = k multiplicado por [NO] ao quadrado e por [Cl2]', 'qui'],
+      ['variação = +4 − (−2) = 6 por carbono; como há 1 carbono por molécula, 1 mol de CO2 envolve 6 mol de e⁻', 'qui'],
+      ['200 L da solução 2: 0,01 mol/L × 200 L = 2 mol de OH⁻, que é exatamente o necessário', 'qui'],
+      ['H: 2 × 4 = 8 dos dois lados. Se: 1 dos dois lados.', 'qui'],
+      ['A = Z + N, ou seja, número de massa = prótons + nêutrons', 'qui'],
+      ['B é consumido na etapa 2 (AY + B → AB + Y) e regenerado na etapa 3 (AB + X → AX + B)', 'qui'],
+      ['Pu-239 (Z = 94) → alfa (massa 4) + U-235 (Z = 92): sobra um núcleo de massa 235, quase o mesmo tamanho do original', 'qui'],
+      ['16 pares × 2 cromossomos por par = 32 cromossomos nas células somáticas da rainha, isto é, 2n = 32.', 'bio'],
+      ['16 pares = 32 cromossomos nas células somáticas, ou seja, 2n = 32', 'bio'],
+      ['1 par de bases = 2 bases, então 100 pares = 200 bases', 'bio'],
+      ['3 classes de forma × 2 classes de cor = 6 classes fenotípicas.', 'bio'],
+      ['1 célula → 2 → 4 → 8: o tumor cresce porque cada filha também se divide', 'bio'],
+      ['Entradas = natalidade + imigração = 200 + imigração, que vai de 100 a 300. Logo as entradas vão de 300 a 500 por ano.', 'bio'],
+    ]) expect(contaEhTexto(s, m)).toBe(false);
   });
   it('conta, equação química e fórmula por extenso continuam à mão (Química e Biologia)', () => {
     for (const [s, m] of [

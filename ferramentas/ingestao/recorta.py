@@ -581,7 +581,7 @@ def suportes_apos_alternativa(pdf, cfg, ev, faixa=None):
             if re.match(rx_letra, t):
                 estado = None
                 continue
-            if x0 <= estado[2] + cfg.get('suporte_apos_alt_tol', 4):
+            if x0 <= estado[2] + cfg.get('suporte_apos_alt_tol', 4) and x0 <= cfg.get('suporte_apos_alt_xmax', 9999):
                 novos.append({'p': pi, 'c': c, 'y': y0 - 1, 'tipo': 'suporte', 'faixa': [], 'num': None})
                 estado = None
     return novos

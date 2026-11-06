@@ -1066,3 +1066,48 @@ for _a, _p30, _p31 in ((2022, 12, 16), (2023, 14, 18), (2025, 12, 16), (2026, 14
     # a redação fica entre a questão 30 e a 31: as páginas dela não entram
     PROVAS[f'pucrs-{_a}']['cadernos'] = [{'arquivo': 'caderno', 'paginas': (1, _p30), 'questoes': (1, 30)},
                                          {'arquivo': 'caderno', 'paginas': (_p31, 999), 'questoes': (31, 70)}]
+
+
+# ------------------------------------------------------------------------------------------------ UEG
+def grade_numeros_letras(txt, letras='ABCDEX'):
+    """Gabarito em grade: uma linha de números e, logo abaixo, a linha das letras. Devolve a lista de pares em ordem."""
+    linhas = [l.split() for l in txt.splitlines() if l.strip()]
+    out = []
+    for a, b in zip(linhas, linhas[1:]):
+        if a and all(x.isdigit() for x in a) and b and len(a) == len(b) and all(re.fullmatch(rf'[{letras}]|ANULAD[AO]', x.upper().replace('–', '')) for x in b):
+            out += [(int(n), v.upper()) for n, v in zip(a, b)]
+    return out
+
+
+def ueg(ano, sem, duracao=4.5):
+    def gab(pasta):
+        """Grade "ESPANHOL 1 2 3 4" / comuns / "INGLÊS 1 2 3 4": as questões 1–4 aparecem duas vezes; a 2ª é a do inglês
+        (conferido no caderno 2025/1: inglês q1 = C). X = anulada."""
+        g = {}
+        for n, v in grade_numeros_letras(texto_pdf(pasta / 'gabarito.pdf').replace('*', '')):
+            g[n] = v if v in 'ABCDE' else 'X'
+        return g
+
+    cfg = {
+        'catalogo': 'ueg', 'escola': 'UEG', 'ano': str(ano), 'fase': f'{ano}/{sem}', 'titulo': f'UEG {ano}/{sem}', 'banca': 'Núcleo de Seleção UEG',
+        'duracao_horas': duracao,
+        'nota': f'Universidade Estadual de Goiás, Processo Seletivo {ano}/{sem}: prova objetiva A–E. Língua estrangeira: inglês. '
+                'Gabarito oficial definitivo do Núcleo de Seleção; anulada fica fora.',
+        'cadernos': [{'arquivo': 'caderno', 'paginas': (3, 999)}],
+        # página em uma coluna: imagem e questão lado a lado (tabela) ficam no mesmo recorte
+        'colunas': lambda r: [(36, r.width - 30)], 'margem': 36, 'topo': 48, 'base': 44,
+        'ancora': r'(?i)^quest[ãa]o\s+(\d{1,2})\b', 'ancora_dx': 320, 'sequencial': True, 'suporte_apos_alt_xmax': 60,
+        'secoes_rx': [(r'(?i)^QUEST[ÕO]ES DE \d+ A \d+ \(OP[ÇC][ÃA]O ESPANHOL\)', 'Espanhol'),
+                      (r'(?i)^QUEST[ÕO]ES DE \d+ A \d+ \(OP[ÇC][ÃA]O INGL[ÊE]S\)', 'Inglês')],
+        'pular_secoes': ('Espanhol',), 'pular_antes_sequencia': True,
+        'corte': [r'(?i)^Espaço para rascunho', r'(?i)^PROVA DE REDA', r'(?i)^PROPOSTA DE REDA', r'(?i)^REDAÇÃO$', r'(?i)^Rascunho'],
+        'suporte': [r'(?i)(para responder|e responda|para contestar|para a[s]? quest)'], 'suporte_apos_alt': r'^e\)',
+        'suporte_apos_secao': True, 'faixa_unica': True,
+        'gabarito': gab, 'area': lambda n: 'Conhecimentos gerais',
+    }
+    cfg['total_de'] = lambda pasta: max(gab(pasta))
+    return cfg
+
+
+for _a, _s in ((2020, 1), (2021, 1), (2021, 2), (2022, 1), (2022, 2), (2023, 1), (2023, 2), (2024, 1), (2024, 2), (2025, 1), (2025, 2), (2026, 1), (2026, 2)):
+    PROVAS[f'ueg-{_a}-{_s}'] = ueg(_a, _s)

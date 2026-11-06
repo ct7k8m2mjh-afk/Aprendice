@@ -191,6 +191,55 @@ function fraseComPoucaConta(t: string): boolean {
   }
   return pal >= 7 && pal >= conta && maiorSeq <= 6 && (liga || !/[=→⇒]/.test(t));
 }
+/**
+ * A linha que COMEÇA com uma conta continua à mão, mesmo com a explicação depois ("22 átomos × 12 g/mol = 264 g de
+ * carbono…", "14 ÷ 24 = 0,583, ou seja…", "[H⁺] = 1 × 10⁻¹⁵ mol/L, logo pH = 15"), e também a que tem equação com
+ * seta entre fórmulas ("C2H2 + 1 HCl → C2H3Cl, ou seja…"). Começar com conta é:
+ * - número ou expressão (fórmula, variável) seguido de ×, ÷, +, −, = ou → nas primeiras palavras, antes de pontuação
+ *   e de palavra de ligação ("16 pares × 2 cromossomos por par = 32", "8 elétrons do octeto − 6 elétrons…");
+ * - nome seguido de "=" e de uma operação logo depois (fórmula por extenso: "ordem global = 2 + 1 = 3",
+ *   "entalpia dos produtos = entalpia dos reagentes − 888 kcal");
+ * - um rótulo curto com dois-pontos antes disso ("H: 2 × 4 = 8", "200 L da solução 2: 0,01 mol/L × 200 L = 2 mol").
+ * Dado solto não é conta: "Z = 7 e o átomo é neutro…", "ΔH⁰ de reação = − 727 kJ/mol, valor negativo…" ficam texto.
+ */
+const OPERADOR = /^(?:×|÷|\+|−|=|→)$/;
+const OPERACAO = /^(?:×|÷|\+|−|→)$/;
+const FIM_DE_TRECHO = /[,;.:!?|]$/;
+function cabecaDeConta(t: string): boolean {
+  const tks = t.split(/\s+/).filter(Boolean);
+  if (tks.length < 3) return false;
+  const numero = /^[[(]*[−+-]?\d/.test(tks[0]);
+  const expressao = numero || /^\[/.test(tks[0]) || ehAtomo(tks[0]);
+  let k = -1;
+  for (let i = 0; i < Math.min(tks.length, 7); i++) {
+    const w = tks[i];
+    if (OPERADOR.test(w)) { k = i; break; }
+    // depois de "de" é substantivo ("3 classes de forma × 2 classes de cor")
+    if (i > 0 && LIGACAO.test(w.replace(/[.,;:!?]+$/, '')) && !/^(de|da|do)$/i.test(tks[i - 1])) return false;
+    if (FIM_DE_TRECHO.test(w)) return false;
+  }
+  if (k <= 0) return false;
+  if (tks[k] !== '=') return expressao;
+  if (numero) return true;
+  // "nome = operando operação ...": a operação vem logo depois do "=", antes de pontuação
+  for (let j = k + 2; j < Math.min(tks.length, k + 9); j++) {
+    if (OPERACAO.test(tks[j])) return true;
+    if (tks[j] === '=' || FIM_DE_TRECHO.test(tks[j - 1])) return false;
+  }
+  return false;
+}
+function comecaComConta(s: string): boolean {
+  const semFase = s.replace(/\s?\((?:aq|s|l|g|v)\)/g, '');
+  // equação com seta entre fórmulas, em qualquer lugar ("B é consumido na etapa 2 (AY + B → AB + Y)…")
+  const tks = semFase.split(/\s+/);
+  for (let i = 1; i < tks.length - 1; i++) if (tks[i] === '→' && ehAtomo(tks[i - 1]) && ehAtomo(tks[i + 1])) return true;
+  const t = semFase.replace(/\s\([^()]*\)/g, ' ').trim(); // comentário entre parênteses não conta
+  if (cabecaDeConta(t)) return true;
+  const rot = /^([^:]{1,40}):\s+(.+)$/.exec(t);
+  if (!rot) return false;
+  const pal = rot[1].trim().split(/\s+/);
+  return pal.length <= 5 && !pal.some((w) => LIGACAO.test(w)) && !/[×÷+−=→]/.test(rot[1]) && cabecaDeConta(rot[2]);
+}
 /** Matéria pelo código do tema ou do conteúdo ("M10.2" → mat, "P01" → por; L e S são Filosofia e Sociologia). */
 const PREFIXO_MATERIA: Record<string, string> = { M: 'mat', B: 'bio', Q: 'qui', P: 'por', F: 'fis', G: 'geo', H: 'his', I: 'ing', L: 'fs', S: 'fs' };
 export function materiaDoCodigo(codigo: string | undefined | null): string | undefined {
@@ -221,7 +270,8 @@ export function contaEhTexto(s: string, materia?: string): boolean {
   const minimo = formaDeFrase ? 6 : /^[\d(−-]/.test(t) ? 10 : 8;
   if (frase && maiorFrase(t.replace(/\([^()]*\)/g, ' ')) >= minimo) return true;
   // fora de Matemática e Física, frase explicativa com poucas expressões no meio também é texto
-  if (!calculo && fraseComPoucaConta(t.replace(/\([^()]*\)/g, ' '))) return true;
+  // (a não ser que a linha comece com uma conta ou tenha equação com seta: aí continua à mão)
+  if (!calculo && !comecaComConta(t) && fraseComPoucaConta(t.replace(/\([^()]*\)/g, ' '))) return true;
   const forte = /[√²³⁴⁵⁶⁷⁸⁹¹⁰⁻⁺₀₁₂₃₄₅₆₇₈₉∈≈≤≥≠ΔπΣ∑∞⇌]|\d\s*[=+−·*/^%<>÷]|[=+−·*/^<>÷]\s*\d|(?<![A-Za-zÀ-ÿ\d])-\s*\d|\d\s*-(?![A-Za-zÀ-ÿ\d])|(?<![A-Za-zÀ-ÿ])(?![aeo]\s)[a-zA-Zα-ω]\s*=(?!\s*[A-Za-zÀ-ÿ]{3})|=\s*(?![aeoé](?![A-Za-zÀ-ÿ]))[a-zA-Z](?![A-Za-zÀ-ÿ])|\b[A-Z]{2,4}\s*[+−]\s*[A-Z]{2,4}\b|[α-ω]\s*[+−]\s*[α-ω]/;
   if (forte.test(t)) return false;
   if (calculo && /[→⇒×÷]|(?<![A-Za-zÀ-ÿ])[a-zA-Zα-ωθ]\s*=|=\s*[a-zA-Zα-ωθ](?![A-Za-zÀ-ÿ])/.test(t)) return false;

@@ -72,3 +72,29 @@ Ferramentas novas em `recorta.py` (opcionais, por prova): `colunas: 'faixas'`, `
 **Falta (nesta ordem):** UTFPR, UERR, PUCRS; depois UEG (geral e Medicina), UFJF (PISM III), UEMA (PAES), UFSM, UNEMAT,
 Unimontes, Unespar, Unicentro, UNIRG, Unitins, URCA, UVA, PUC-Rio, PUCPR, PUC Minas, Mackenzie, Fempar, FGV, Mauá, EMESCAM.
 Cederj 2020.2 e 2021.1 (OCR) também ficam para depois.
+
+## Rodada 3 do lote 2 (06/11/2026, em andamento)
+
+Integradas e classificadas (matéria, tema, conteúdo, nível; sem resolução), contagem nos arquivos `prova.json`:
+
+| Prova | Questões válidas | Observação |
+|---|---|---|
+| UTFPR 2024 | 58 | 52 e 59 anuladas. Inglês 13–18 (1ª letra da coluna de língua do gabarito). |
+| UTFPR 2025 | 59 | 51 anulada. |
+| UTFPR 2026 | 39 | 34 anulada; layout novo (número em negrito, alternativas "a)"). |
+| UERR 2025 | 68 | Cebraspe. No gabarito, 10–18 aparecem duas vezes: o 1º bloco é o inglês (no caderno o inglês vem antes do espanhol). 2, 54, 57 e 62 anuladas. |
+| UERR 2026 | 69 | Idem; 43, 49 e 50 anuladas. |
+| PUCRS 2022 | 68 | Prova de Medicina, A–D; 14 e 31 anuladas. Inglês = 2ª coluna 1–10 do gabarito. |
+| PUCRS 2023 | 70 | |
+| PUCRS 2025 | 70 | Gabarito com a errata oficial (36 = D). |
+| PUCRS 2026 | 67 | 4, 33 e 43 anuladas. |
+
+- Ferramentas novas em `recorta.py` (opcionais, por prova): `suporte_apos_alt` (texto de apoio sem frase de
+  indicação, impresso entre a última alternativa e a próxima questão), `suporte_apos_secao`, `suporte_nao_colado`,
+  `alt_span_isolada`, `texto_id` (textos com nome, ex.: "Texto 1A4-II" da Cebraspe), `suporte_cadeia`,
+  `suporte_cita_max`, `suporte_palavras`, `faixa_unica` ("à questão 30" vale só para a 30), `anexa` (questão que usa o
+  texto de dentro da anterior: "Ainda baseado no texto da questão anterior" — UTFPR 2024 q12, 2025 q18), `sem_apoio`.
+- Correções gerais: o pé da última linha antes da questão seguinte não é mais cortado quando a entrelinha é apertada;
+  separador "_____" corta no traço (não na caixa da linha).
+- **Cederj 2020.2 e 2021.1 continuam fora:** no OCR a numeração é "1." (sem zero), números de questão se perdem
+  (ex.: 2020.2 questão 7) e as questões de língua vêm misturadas; o layout não fica perfeito.

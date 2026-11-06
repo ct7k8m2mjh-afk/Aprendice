@@ -224,7 +224,7 @@ export function Inicio() {
             <Link key={s.m + s.sub + s.ts} to={`/m/${s.m}/escada/${s.sub}`} className="ativ-linha">
               <IcMat m={s.m} tam={36} className="ativ-ic" />
               <span className="ativ-txt">
-                <span className="ativ-tit">{nomeMateria(s.m)} — {s.subNome}</span>
+                <span className="ativ-tit" title={`${nomeMateria(s.m)} — ${s.subNome}`}>{nomeMateria(s.m)} — {s.subNome}</span>
                 <span className="ativ-tipo">{TIPO_CTX[s.ctx] || 'Questões'} · {plural(s.n, 'resposta', 'respostas')}, {s.certas} {s.certas === 1 ? 'certa' : 'certas'} · {quando(s.ts)}</span>
               </span>
               <span className={'ativ-status' + (s.concluido ? ' ok' : '')}>{s.concluido && <Icone nome="check" tam={14} />}{s.concluido ? 'Concluído' : 'Em andamento'}</span>
