@@ -227,10 +227,18 @@ const CONTA_FRAC = /\\[dt]?frac/g;
  * null quando não dá para escrever sem perder nada: índice sem forma Unicode, fração que o leitor de frações do site
  * não reconheceria (logo, ficaria em linha) ou fração dentro de fração.
  */
-export function latexParaMotor(src: string, contaFracoes: (linha: string) => number): string | null {
+export function latexParaMotor(src: string, contaFracoes: (linha: string) => number, texto = false): string | null {
   const ok = { v: true };
   const linhas = analisaLatex(src);
   const out: string[] = [];
+  if (texto) {
+    // Humanas: passos de raciocínio em \text{}; a quebra que só corta a frase (linha seguinte em minúscula) some
+    for (const l of linhas) {
+      const t = plano(l, ok, 'barra').replace(/\s+/g, ' ').trim();
+      if (out.length && /^[a-zà-ÿ]/.test(t)) out[out.length - 1] += ' ' + t; else if (t) out.push(t);
+    }
+    return out.join('\n');
+  }
   for (const l of linhas) {
     // espaço fino entre algarismos é o separador de milhar ("1\,000" → "1 000", que o motor lê como um número)
     // e entre número e letra é produto ("10\,\Delta s" → "10Δs": o coeficiente colado, como o motor reconhece)

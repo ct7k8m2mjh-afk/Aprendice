@@ -4,7 +4,7 @@ import type { MateriaId, Resolucao } from '../../dados/tipos';
 import { fonteLegivel, type PassoSlide, type Slide, type TemaRevisao } from '../../dados/revisao';
 import { confereLacuna, lacuna, opcoesFormula, pedeTentativa } from '../../logica/cicloRevisao';
 import { latexParaMotor } from '../../logica/latex';
-import { partesFracao } from '../../logica/fracao';
+import { contaEhTexto, partesFracao } from '../../logica/fracao';
 import { ResolucaoAnimada } from '../ResolucaoAnimada';
 import { comFracoes } from '../Fracao';
 import { Formula } from '../Formula';
@@ -19,10 +19,10 @@ export const NOME_TIPO: Record<Slide['tipo'], string> = {
 const contaFracoes = (l: string) => partesFracao(l).filter((p) => p.t === 'frac').length;
 
 /** Passos do exemplo no formato do motor único (ui/ResolucaoAnimada.tsx). null: alguma conta não se escreve sem perda. */
-export function passosParaMotor(passos: PassoSlide[]): Resolucao | null {
+export function passosParaMotor(passos: PassoSlide[], texto = false): Resolucao | null {
   const out: NonNullable<Resolucao['passos']> = [];
   for (const p of passos) {
-    const conta = latexParaMotor(p.conta, contaFracoes);
+    const conta = latexParaMotor(p.conta, contaFracoes, texto);
     if (conta == null) return null;
     out.push({ faz: p.faz, conta, porque: '' });
   }
@@ -42,7 +42,9 @@ export function SlideRevisao({ m, tema, sub, k, s, pos, total, aviso, lembrou, a
 }) {
   const tent = aoLembrar ? pedeTentativa(s) : null;
   const [revelado, setRevelado] = useState(!tent || lembrou !== undefined);
-  const res = useMemo(() => (s.passos?.length ? passosParaMotor(s.passos) : null), [s.passos]);
+  // Humanas (Filosofia e Sociologia...): passos de raciocínio e "fórmulas" em frase, na letra da interface
+  const prosa = contaEhTexto('', m);
+  const res = useMemo(() => (s.passos?.length ? passosParaMotor(s.passos, prosa) : null), [s.passos, prosa]);
   const temVisual = !!(s.visual && ((s.visual.movimento && s.visual.movimento.length) || s.visual.foto));
   const marca = (v: Lembrou) => { aoLembrar?.(v); setRevelado(true); };
 
@@ -58,13 +60,13 @@ export function SlideRevisao({ m, tema, sub, k, s, pos, total, aviso, lembrou, a
           <h2 id={`rv-tit-${k}`} className="rv-tit">{s.titulo}</h2>
           {s.texto && <p className="rv-texto">{comFracoes(s.texto)}</p>}
           {tent === 'formula' && !revelado ? (
-            <EscolheFormula tema={tema} sub={sub} k={k} aoResponder={marca} />
+            <EscolheFormula tema={tema} sub={sub} k={k} prosa={prosa} aoResponder={marca} />
           ) : tent === 'frase' && !revelado ? (
             <CompletaFrase frase={s.destaque!} aoResponder={marca} />
           ) : (
             <>
               {s.destaque && <p className={'rv-destaque' + (tent === 'frase' ? ' entra' : '')}>{comFracoes(s.destaque)}</p>}
-              {s.formula && <Formula tex={s.formula} className={'rv-formula' + (tent === 'formula' ? ' entra' : '')} />}
+              {s.formula && <Formula tex={s.formula} prosa={prosa} className={'rv-formula' + (tent === 'formula' ? ' entra' : '')} />}
               {tent && lembrou && <p className={'rv-lembrou v-' + lembrou}>{lembrou === 'a' ? 'Você lembrou.' : lembrou === 'q' ? 'Quase: releia com atenção.' : 'Esta volta na próxima revisão.'}</p>}
             </>
           )}
@@ -73,7 +75,7 @@ export function SlideRevisao({ m, tema, sub, k, s, pos, total, aviso, lembrou, a
           )}
           {s.passos && s.passos.length > 0 && (res
             ? <div className="rv-conta"><ResolucaoAnimada r={res} materia={m} /></div>
-            : <PassosFormula passos={s.passos} />)}
+            : <PassosFormula passos={s.passos} prosa={prosa} />)}
           {s.fonte && <p className="rv-fonte">Fonte: {fonteLegivel(s.fonte, tema.obra)}</p>}
         </div>
         {temVisual && <div className="rv-vis-col"><RoteiroAnimado key={sub + k} m={m} v={s.visual!} auto={!res} /></div>}
@@ -83,7 +85,7 @@ export function SlideRevisao({ m, tema, sub, k, s, pos, total, aviso, lembrou, a
 }
 
 /** Saída do pedido 2 ao motor (docs/revisao/PEDIDOS-MOTOR.md): os passos com a fórmula desenhada, um de cada vez. */
-function PassosFormula({ passos }: { passos: PassoSlide[] }) {
+function PassosFormula({ passos, prosa }: { passos: PassoSlide[]; prosa: boolean }) {
   const [ate, setAte] = useState(0);
   return (
     <section className="rv-conta rv-passos" aria-label="Resolução passo a passo">
@@ -92,7 +94,7 @@ function PassosFormula({ passos }: { passos: PassoSlide[] }) {
         {passos.map((p, i) => (
           <li key={i} hidden={i > ate || undefined} className={i === ate ? 'entra' : undefined}>
             <span className="rv-passo-n num" aria-hidden>{i + 1}</span>
-            <div><b>{p.faz}</b><Formula tex={p.conta} /></div>
+            <div><b>{p.faz}</b><Formula tex={p.conta} prosa={prosa} /></div>
           </li>
         ))}
       </ol>
@@ -104,24 +106,24 @@ function PassosFormula({ passos }: { passos: PassoSlide[] }) {
 }
 
 /** Lembrar sem olhar no slide de fórmula: escolher entre 3 antes de ver. */
-function EscolheFormula({ tema, sub, k, aoResponder }: { tema: TemaRevisao; sub: string; k: number; aoResponder: (v: Lembrou) => void }) {
+function EscolheFormula({ tema, sub, k, prosa, aoResponder }: { tema: TemaRevisao; sub: string; k: number; prosa: boolean; aoResponder: (v: Lembrou) => void }) {
   const { opcoes, certa } = useMemo(() => opcoesFormula(tema, sub, k), [tema, sub, k]);
   const [esc, setEsc] = useState<number | null>(null);
   if (opcoes.length < 2) return null;
   return (
     <div className="rv-tenta" role="group" aria-labelledby={`rv-tf-${k}`}>
-      <p id={`rv-tf-${k}`} className="rv-tenta-p"><Icone nome="lampada" tam={17} /> Antes de ver: qual é a fórmula?</p>
+      <p id={`rv-tf-${k}`} className="rv-tenta-p"><Icone nome="lampada" tam={17} /> {prosa ? 'Antes de ver: qual é a ideia certa?' : 'Antes de ver: qual é a fórmula?'}</p>
       <div className="rv-opcoes">
         {opcoes.map((f, i) => (
           <button key={i} type="button" className={'rv-opcao' + (esc === i ? (i === certa ? ' certa' : ' errada') : esc != null && i === certa ? ' certa' : '')}
             disabled={esc != null} onClick={() => setEsc(i)} aria-label={`Opção ${i + 1}`}>
-            <Formula tex={f} />
+            <Formula tex={f} prosa={prosa} />
           </button>
         ))}
       </div>
       {esc == null
         ? <button type="button" className="ra-link" onClick={() => aoResponder('e')}>Não lembro: mostrar</button>
-        : <button type="button" className="btn peq" onClick={() => aoResponder(esc === certa ? 'a' : 'e')}>{esc === certa ? 'Isso. Ver o slide' : 'Ver a fórmula certa'} <Icone nome="direita" tam={15} /></button>}
+        : <button type="button" className="btn peq" onClick={() => aoResponder(esc === certa ? 'a' : 'e')}>{esc === certa ? 'Isso. Ver o slide' : prosa ? 'Ver a resposta certa' : 'Ver a fórmula certa'} <Icone nome="direita" tam={15} /></button>}
     </div>
   );
 }
