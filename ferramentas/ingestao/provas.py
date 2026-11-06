@@ -1787,15 +1787,16 @@ def uva(ano, sem, total, bloco):
                    if total == 60 else 'prova objetiva (56 questões A–D). ')
                 + 'Língua estrangeira: inglês. Redação fora. Gabarito definitivo publicado pelo Sistema UVA; questão nula fica fora.',
         'cadernos': [{'arquivo': 'caderno', 'paginas': (1, 999)}],
-        'colunas': lambda r: [(40, r.width - 30)], 'margem': 40, 'topo': 40, 'base': 45,
-        'ancora': r'^(\d{1,2})\.\s', 'ancora_dx': 14, 'sequencial': True,
+        'colunas': lambda r: [(40, r.width - 30)], 'margem': 40, 'topo': 40, 'base': 45, 'cabecalho_imagem': r'UVA',   # logotipos no alto de algumas páginas
+        'ancora': r'^(\d{1,2})\.(\s|$)', 'ancora_dx': 30, 'sequencial': True, 'suporte_secao': True,
         'secoes_rx': [(r'^L[ÍI]NGUA PORTUGUESA$', 'Língua Portuguesa'), (r'^L[ÍI]NGUA INGLESA$', 'Inglês'), (r'^L[ÍI]NGUA ESPANHOLA$', 'Espanhol'),
                       (r'^HIST[ÓO]RIA$', 'História'), (r'^GEOGRAFIA$', 'Geografia'), (r'^MATEM[ÁA]TICA$', 'Matemática'),
                       (r'^F[ÍI]SICA$', 'Física'), (r'^QU[ÍI]MICA$', 'Química'), (r'^BIOLOGIA$', 'Biologia'), (r'^FILOSOFIA$', 'Filosofia'),
                       (r'^SOCIOLOGIA$', 'Sociologia')],
         'pular_secoes': ('Espanhol',), 'pular_antes_sequencia': True,
         'corte': [r'(?i)^RASCUNHO', r'(?i)^REDA[ÇC][ÃA]O$', r'(?i)^PROPOSTA DE REDA', r'(?i)^TABELA PERI', r'(?i)^CLASSIFICA[ÇC][ÃA]O PERI'],
-        'suporte': [r'(?i)(responda|responder)\b.*\bquest[õo]es\s+\d', r'(?i)^textos? para as quest', r'(?i)answer questions\s+\d'],
+        # "Texto" (linha própria) no início da prova de Português: vale para as questões da seção
+        'suporte': [r'(?i)(responda|responder)\b.*\bquest[õo]es\s+\d', r'(?i)^textos? para as quest', r'(?i)answer questions\s+\d', r'^(Texto|TEXTO)$'],
         'gabarito': gab, 'area': lambda n: 'Conhecimentos gerais',
     }
 
@@ -1803,3 +1804,6 @@ def uva(ano, sem, total, bloco):
 PROVAS['uva-2024-1'] = uva(2024, 1, 60, 'LINGUA ESTRANGEIRA-INGLÊS')
 PROVAS['uva-2025-1'] = uva(2025, 1, 56, 'LINGUA ESTRANGEIRA-INGLÊS')
 PROVAS['uva-2026-1'] = uva(2026, 1, 56, 'LINGUA ESTRANGEIRA-INGLÊS')
+PROVAS['uva-2026-1']['cadernos'] = [{'arquivo': 'caderno', 'paginas': (2, 999)}]   # pág. 1: instruções numeradas "1."
+PROVAS['uva-2024-1'].pop('cabecalho_imagem')   # 2024.1: a caixa da imagem do cabeçalho encosta no texto (y 90); o texto começa em 85
+PROVAS['uva-2024-1']['topo'] = 82
