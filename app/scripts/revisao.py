@@ -14,7 +14,7 @@ código do site muda. Este script:
 
 Uso: python3 scripts/revisao.py   (o converte.py chama no fim da conversão completa)
 """
-import json, os, re, sys, time, urllib.parse, urllib.request
+import json, os, re, shutil, sys, time, urllib.parse, urllib.request
 from io import BytesIO
 
 AQUI = os.path.dirname(os.path.abspath(__file__))
@@ -28,6 +28,10 @@ TIPOS = {'abertura', 'conceito', 'formula', 'grafico', 'exemplo', 'pegadinha', '
 OBRAS = {'fis': 'PV Física (Poliedro)', 'bio': 'PV Biologia (Poliedro)'}  # fs: a chave já diz a obra (FIL-..., SOC-...), ver dados/revisao.ts
 LARGURA_FOTO = 1280
 TEORIA_PROPRIA = {'bio', 'qui', 'mat', 'por'}
+# fotos que só vão ao ar com o OK do dono (princípio 10): o slide fica com o roteiro animado, sem a imagem e sem o link
+FOTOS_AGUARDANDO_DONO = {
+    'File:Tiradentes quartered (Tiradentes escuartejado) by Pedro Américo 1893.jpg',  # H03.9: cena de execução (pendências de H03)
+}
 
 
 class ErroRevisao(Exception):
@@ -126,6 +130,10 @@ def prepara_fotos(m, d, saida):
             foto = (s.get('visual') or {}).get('foto')
             if not foto:
                 continue
+            if foto['arquivo'] in FOTOS_AGUARDANDO_DONO:
+                del s['visual']['foto']
+                print(f"  foto fora do ar até o OK do dono: {foto['arquivo']}")
+                continue
             nome = nome_foto(foto['arquivo'])
             fonte = os.path.join(FOTOS, m, 'fotos', nome)
             if not os.path.exists(fonte):
@@ -185,6 +193,8 @@ def converte(materias=None):
         if not arqs:
             continue
         saida = os.path.join(DESTINO, m, 'revisao')
+        # do zero a cada conversão: foto retirada (ou que aguarda o dono) não fica esquecida na pasta servida
+        shutil.rmtree(saida, ignore_errors=True)
         os.makedirs(saida, exist_ok=True)
         indice = {'materia': m, 'obra': OBRAS.get(m, ''), 'temas': {}}
         temas = {}
