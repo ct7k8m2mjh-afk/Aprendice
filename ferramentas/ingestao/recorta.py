@@ -482,6 +482,10 @@ def eventos_do_pdf(pdf, cfg, faixa=None):
         # âncora que existe no desenho da página mas não na camada de texto do PDF (conferida à mão no print)
         for n_f, y_f, c_f in cfg.get('ancora_forcada', {}).get((cfg.get('_arquivo'), pi + 1), []):
             ev.append({'p': pi, 'c': c_f, 'y': y_f, 'tipo': 'q', 'n': n_f})
+        # texto de apoio sem frase-padrão de indicação ("As três questões a seguir (02, 03 e 04)...", conferido no caderno):
+        # (y, coluna, [primeira, última]) na numeração do caderno
+        for y_f, c_f, faixa_f in cfg.get('suporte_forcado', {}).get((cfg.get('_arquivo'), pi + 1), []):
+            ev.append({'p': pi, 'c': c_f, 'y': y_f, 'tipo': 'suporte', 'faixa': list(faixa_f), 'num': None})
         for li, L in enumerate(lp):
             x0, y0, x1, y1 = L['bbox']
             t = L['t']

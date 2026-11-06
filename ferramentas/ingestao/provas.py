@@ -403,6 +403,10 @@ for _a in (2020, 2021, 2022, 2023):
     PROVAS[f'upe-ssa3-{_a}']['pular_secoes'] = ('Espanhol',)   # 25–34 repetem na opção espanhol: vale a do inglês
     PROVAS[f'upe-ssa3-{_a}']['suporte'] = PROVAS[f'upe-ssa3-{_a}']['suporte'] + [r'(?i)servem? de base [àa]s? quest', r'(?i)^texts? \d+ \(quest',
         r'(?i)^texts? \d+ for quest', r'(?i)texto base para ser utilizado nas quest', r'(?i)^base [àa]s? quest', r'(?i)servem? de base [àa]s?\s*$']
+PROVAS['upe-ssa3-2025']['suporte'] = PROVAS['upe-ssa3-2025']['suporte'] + [r'(?i)^utilize as informa[çc][õo]es a seguir para resolver as quest']
+# 2026, 2º dia: textos de apoio que não usam a frase-padrão (antes as questões 2, 7 a 9, 15 e 16 saíam sem a figura/os dados)
+PROVAS['upe-ssa3-2026']['suporte_forcado'] = {('d2-caderno', 2): [(319, 0, (2, 4))], ('d2-caderno', 5): [(56, 0, (7, 9))],
+                                             ('d2-caderno', 9): [(43.5, 0, (15, 16))]}
 PROVAS['upe-ssa3-2023']['ancora_dx_pag'] = {('d1-caderno', 14): 240, ('d2-caderno', 22): 30}   # 10 ao lado de imagem; "45.." recuado
 PROVAS['upe-ssa3-2021']['ancora_dx_pag'] = {('d1-caderno', 24): 280}   # 34 (inglês) começa ao lado de uma imagem
 # o caderno imprime "Texto para as questões 6 e 7" antes das questões 16 e 17 (Química, TNT): erro de digitação da banca
