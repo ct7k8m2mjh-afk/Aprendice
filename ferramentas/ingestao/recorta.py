@@ -273,6 +273,13 @@ def faixas_por_largas(pg, cfg, topo, base):
     meio = cfg.get('divisa', W / 2)
     ls = [L for L in linhas(pg) if L['bbox'][1] >= topo - 2 and L['bbox'][3] <= base + 2]
     larg = [(L['bbox'][1], L['bbox'][3]) for L in ls if L['bbox'][0] < meio - 20 and L['bbox'][2] > meio + 20]
+    if cfg.get('largas_alternativas'):
+        # alternativas lado a lado numa linha de largura total ("(A) A   (B) B   (C) C   (D) D   (E) E"): a camada de texto
+        # as separa em pedaços, mas a linha atravessa a calha (a da direita não começa na margem da coluna)
+        alt = [L for L in ls if re.match(r'^\(?[A-E]\)', L['t'])]
+        for L in alt:
+            if L['bbox'][0] > meio + 30 and any(M['bbox'][0] < meio - 60 and abs(M['bbox'][1] - L['bbox'][1]) < 3 for M in alt):
+                larg.append((L['bbox'][1], L['bbox'][3]))
     # figura/fio que atravessa a calha só é larga se não há texto da coluna direita ao lado dela
     ao_lado = lambda r: any(L['bbox'][0] > meio + 5 and L['bbox'][1] < r[3] - 2 and L['bbox'][3] > r[1] + 2
                             and not pymupdf.Rect(r).contains(pymupdf.Rect(L['bbox'])) for L in ls)
@@ -530,6 +537,9 @@ def eventos_do_pdf(pdf, cfg, faixa=None):
                 continue
             if m and cfg.get('ancora_negrito') and not L.get('neg', True):
                 m = None   # número de linha do texto (5, 10, 15), não é número de questão
+            if m and cfg.get('ancora_isolada') and any(
+                    M is not L and abs(M['bbox'][1] - y0) < 4 and 0 <= M['bbox'][0] - x1 < 60 for M in lp):
+                m = None   # número de parágrafo do texto (texto na mesma linha, logo à direita), não é questão
             if m and x0 - cols[c][0] <= dx:
                 # selo desenhado em volta do número ("QUESTÃO 15" numa faixa colorida): a questão começa no alto do selo
                 for r_ in selos_da_pagina(pg):

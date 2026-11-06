@@ -1807,3 +1807,105 @@ PROVAS['uva-2026-1'] = uva(2026, 1, 56, 'LINGUA ESTRANGEIRA-INGLÊS')
 PROVAS['uva-2026-1']['cadernos'] = [{'arquivo': 'caderno', 'paginas': (2, 999)}]   # pág. 1: instruções numeradas "1."
 PROVAS['uva-2024-1'].pop('cabecalho_imagem')   # 2024.1: a caixa da imagem do cabeçalho encosta no texto (y 90); o texto começa em 85
 PROVAS['uva-2024-1']['topo'] = 82
+
+
+# --------------------------------------------------------------------------------------------------- PUC-Rio
+def gab_destacado(pasta, cfg, pares_arq, letras='ABCDE'):
+    """Gabarito oficial publicado como o próprio caderno com a alternativa certa destacada em amarelo (PUC-Rio "com
+    gabarito"): o caderno destacado é recortado com a mesma configuração e, em cada questão, a letra "(X)" que fica
+    dentro do destaque é a resposta. pares_arq: [(índice do caderno em cfg['cadernos'], arquivo destacado)]."""
+    import pymupdf
+    import recorta
+    amarelo = lambda c: c and len(c) == 3 and c[0] > 0.9 and c[1] > 0.8 and c[2] < 0.35
+    g = {}
+    for ic, arq in pares_arq:
+        cad = cfg['cadernos'][ic]
+        pdf = pymupdf.open(pasta / (arq + '.pdf'))
+        recorta._cache_linhas.clear(); recorta._cache_cols.clear(); recorta._cache_faixas.clear()
+        cfg['_arquivo'] = arq
+        ev = recorta.eventos_do_pdf(pdf, cfg, cad.get('paginas'))
+        ok, pula, ult = [], False, 0
+        for e in ev:   # mesma filtragem do recorte: seção pulada (espanhol) e sequência
+            if e['tipo'] == 'secao':
+                pula = e['nome'] in cfg.get('pular_secoes', ())
+                ok.append(e)
+                continue
+            if pula:
+                continue
+            if e['tipo'] == 'q':
+                if e['n'] != ult + 1:
+                    continue
+                ult = e['n']
+            ok.append(e)
+        ev = ok
+        dest = {}
+        for pg in pdf:
+            # destaque = retângulo amarelo preenchido ou traço amarelo grosso (a caixa do traço tem altura zero)
+            dest[pg.number] = [pymupdf.Rect(d['rect']) + (0, -(d.get('width') or 0) / 2, 0, (d.get('width') or 0) / 2)
+                               for d in pg.get_drawings() if amarelo(d.get('fill')) or amarelo(d.get('color'))]
+        for i, e in enumerate(ev):
+            if e['tipo'] != 'q':
+                continue
+            achadas, anulada = set(), False
+            for p, r in recorta.segmentos(pdf, cfg, ev, i, cad.get('paginas')):
+                if re.search(r'QUEST[ÃA]O\s+ANULADA', pdf[p].get_textbox(r)):
+                    anulada = True   # aviso "QUESTÃO ANULADA" impresso no caderno com gabarito
+                for dr in dest.get(p, []):
+                    if not dr.intersects(r):
+                        continue
+                    # a letra "(X)" no começo do destaque; havendo duas linhas tocadas, vale a mais central
+                    cand = []
+                    for w in pdf[p].get_text('words'):
+                        cx, cy = (w[0] + w[2]) / 2, (w[1] + w[3]) / 2
+                        m_ = re.fullmatch(rf'\(([{letras}])\)', w[4])
+                        if m_ and dr.x0 - 6 <= w[0] <= dr.x0 + 12 and dr.y0 - 2 <= cy <= dr.y1 + 2:
+                            cand.append((abs(cy - (dr.y0 + dr.y1) / 2), m_.group(1)))
+                    if cand:
+                        achadas.add(min(cand)[1])
+            if anulada:
+                achadas = {'X', 'Y'}
+            n = e['n'] + cad.get('deslocamento', 0)
+            if len(achadas) == 1:
+                g[n] = achadas.pop()
+            elif len(achadas) > 1:
+                g[n] = 'X'   # mais de uma letra destacada (as duas aceitas): fora, como anulada
+    return g
+
+
+def pucrio(ano, n2=50, grupo=4):
+    """PUC-Rio, Vestibular {ano} (provas em outubro do ano anterior), grupo {grupo}: objetivas A–E de língua estrangeira
+    (1º dia, 10 questões; aqui o inglês) e de Matemática, Ciências da Natureza e Ciências Humanas (2º dia, 50 questões;
+    aqui 11–60). As discursivas e a redação ficam fora. Gabarito: o caderno oficial "com gabarito" (resposta destacada).
+    d1/d2: (caderno, caderno com gabarito) de cada dia, já baixados como d1-caderno etc."""
+    cfg = {
+        'catalogo': 'pucrio', 'escola': 'PUC-Rio', 'ano': str(ano), 'fase': f'Grupo {grupo}', 'titulo': f'PUC-Rio {ano}', 'banca': 'PUC-Rio',
+        'duracao_horas': 4, 'total': 10 + n2,
+        'nota': f'Pontifícia Universidade Católica do Rio de Janeiro, Vestibular {ano}, grupo {grupo}: questões objetivas A–E de '
+                'língua estrangeira (1º dia; inglês, 1–10) e ' + ('de Matemática, Ciências da Natureza e Ciências Humanas' if n2 == 50
+                else 'de Ciências da Natureza e Ciências Humanas') + f' (2º dia; aqui 11–{10 + n2}). Discursivas (inclusive a de '
+                'Matemática, quando houver) e redação fora. Gabarito: caderno oficial "com gabarito" da PUC-Rio.',
+        'cadernos': [{'arquivo': 'd1-caderno', 'paginas': (2, 999), 'questoes': (1, 10)},
+                     {'arquivo': 'd2-caderno', 'paginas': (2, 999), 'questoes': (11, 10 + n2), 'deslocamento': 10}],
+        'colunas': 'faixas', 'faixas_modo': 'largas', 'divisa': 298, 'margem': 22, 'topo': 64, 'base': 62, 'largas_alternativas': True,
+        'ancora': r'^(\d{1,2})$', 'ancora_dx': 18, 'sequencial': True, 'ancora_negrito': True, 'ancora_isolada': True,
+        'secoes_rx': [(r'^L[ÍI]NGUA ESTRANGEIRA\s*[-–]\s*INGL[ÊE]S$', 'Inglês'), (r'^L[ÍI]NGUA ESTRANGEIRA\s*[-–]\s*(ESPANHOL|FRANC[ÊE]S)$', 'Espanhol'),
+                      (r'^MATEM[ÁA]TICA$', 'Matemática'), (r'^CI[ÊE]NCIAS DA NATUREZA$', 'Ciências da Natureza'),
+                      (r'^CI[ÊE]NCIAS HUMANAS$', 'Ciências Humanas')],
+        'pular_secoes': ('Espanhol',), 'pular_antes_sequencia': True,
+        'corte': [r'^RASCUNHO$', r'(?i)^PROVA DISCURSIVA', r'(?i)^REDA[ÇC][ÃA]O$', r'(?i)^TABELA PERI', r'(?i)^CLASSIFICA[ÇC][ÃA]O PERI'],
+        'suporte': [r'(?i)(responda|responder)\b.*\bquest[õo]es', r'(?i)^textos? para as quest', r'(?i)answer questions'],
+        'area': lambda n: 'Inglês' if n <= 10 else 'Conhecimentos gerais',
+    }
+    cfg['gabarito'] = lambda pasta: gab_destacado(pasta, cfg, [(0, 'd1-gabarito'), (1, 'd2-gabarito')])
+    return cfg
+
+
+PROVAS['pucrio-2026'] = pucrio(2026)
+PROVAS['pucrio-2027'] = pucrio(2027)
+PROVAS['pucrio-2025'] = pucrio(2025, 45)
+PROVAS['pucrio-2024'] = pucrio(2024, 45)
+# o texto de inglês (sem frase de indicação) vem logo abaixo do título da seção e vale para as questões 1 a 10
+PROVAS['pucrio-2026']['suporte_forcado'] = {('d1-caderno', 2): [(94, 0, (1, 10))]}
+PROVAS['pucrio-2027']['suporte_forcado'] = {('d1-caderno', 2): [(94, 0, (1, 10))]}
+PROVAS['pucrio-2025']['suporte_forcado'] = {('d1-caderno', 2): [(94, 0, (1, 10))]}
+PROVAS['pucrio-2024']['suporte_forcado'] = {('d1-caderno', 2): [(94, 0, (1, 10))]}
