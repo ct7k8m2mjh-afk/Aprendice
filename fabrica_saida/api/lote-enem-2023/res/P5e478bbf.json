@@ -1,0 +1,151 @@
+{
+ "n": 152,
+ "id": "P5e478bbf",
+ "materia": "mat",
+ "tema": "M06",
+ "conteudo": "M06.3",
+ "nivel": 5,
+ "conceito": "Aplicar as propriedades do logaritmo (potência e quociente) para calcular o nível sonoro em dB e enquadrá-lo numa faixa.",
+ "resolucao": {
+  "antes": {
+   "texto": "A fórmula parece complicada, mas tem log de uma potência 10. Pela propriedade log(a^k) = k · log a, o 10 sai para a frente. Pela propriedade da diferença, log A − log B = log(A/B). Então N = 10 · log(I/I0). Depois é só calcular I/I0 e ver em qual faixa cai o valor de N.",
+   "formulas": [
+    "log(a^k) = k × log a",
+    "log A − log B = log(A ÷ B)",
+    "log(a × b) = log a + log b",
+    "log(10^n) = n"
+   ],
+   "simbolos": [
+    [
+     "dB",
+     "decibel, unidade do nível sonoro N"
+    ],
+    [
+     "I",
+     "intensidade do som da máquina, em W/m²"
+    ],
+    [
+     "I0",
+     "intensidade de referência: 10^−12 W/m²"
+    ],
+    [
+     "log",
+     "logaritmo na base 10"
+    ]
+   ]
+  },
+  "pista": "Antes de substituir números, use a propriedade da potência para tirar o expoente 10 de dentro dos dois logaritmos.",
+  "passos": [
+   {
+    "faz": "Simplifique a fórmula de N",
+    "conta": "N = 10·log I − 10·log I0",
+    "porque": "Em log(I^10), o expoente 10 passa multiplicando o logaritmo. O mesmo vale para I0^10.",
+    "tipo": "aplicar"
+   },
+   {
+    "faz": "Junte os logaritmos num quociente",
+    "conta": "N = 10 · log(I ÷ I0)",
+    "porque": "Diferença de logaritmos de mesma base é o log do quociente. O 10 está em evidência.",
+    "tipo": "aplicar"
+   },
+   {
+    "faz": "Calcule I ÷ I0",
+    "conta": "(8×10^−8) ÷ 10^−12 = 8×10^4",
+    "porque": "Na divisão de potências de base 10, subtraem-se os expoentes: −8 − (−12) = 4.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Calcule o logaritmo",
+    "conta": "log 8 = log 2³ = 3 × 0,3 = 0,9",
+    "porque": "8 = 2³, então log 8 = 3 · log 2. A questão manda usar log 2 = 0,3. Depois: log(8×10^4) = 0,9 + 4 = 4,9.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Obtenha N e compare com as faixas",
+    "conta": "N = 10 × 4,9 = 49 dB",
+    "porque": "49 está entre 48 e 55, a faixa do som moderado, que pede a medida preventiva II.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa B: o nível é N = 49 dB, que está no intervalo (48 dB, 55 dB), a faixa da medida preventiva II.",
+  "checagem": "Calcule cada logaritmo separado. log I^10 = 10 × (0,9 − 8) = −71. log I0^10 = 10 × (−12) = −120. N = −71 − (−120) = 49. Dá o mesmo resultado.",
+  "erradas": {
+   "A": "A medida I vale para N = 48 dB ou menos. Se alguém usar log 8 = 2 × 0,3 = 0,6, o resultado é N = 10 × 4,6 = 46, que cairia aqui. Mas 8 = 2³, então log 8 = 0,9 e N = 49, que passa de 48.",
+   "C": "A medida III exige N entre 55 e 80 dB, ou seja, I/I0 entre 10^5,5 (cerca de 316 000) e 10^8. Aqui I/I0 = 8×10^4 = 80 000, menor que 316 000. Por isso N = 49 não chega a 55.",
+   "D": "A medida IV exige N entre 80 e 115 dB, ou seja, I/I0 de pelo menos 10^8. A máquina tem I/I0 = 8×10^4, muito abaixo. Dá 49 dB, bem longe de 80.",
+   "E": "A medida V exige N maior que 115 dB, ou seja, I/I0 maior que 10^11,5. A máquina tem I/I0 = 8×10^4, então N = 49 dB, muito menor que 115."
+  },
+  "armadilha": "Esquecer que o expoente 10 sai do logaritmo multiplicando, ou calcular log 8 como 2 × 0,3 em vez de 3 × 0,3.",
+  "alerta": "",
+  "essencial": {
+   "pede": "A medida preventiva correspondente ao nível sonoro N da nova máquina.",
+   "chave": "N = 10 · log(I ÷ I0) = 10 × (0,9 + 4) = 49 dB.",
+   "cuidado": "8 = 2³ dá log 8 = 0,9, e a faixa (48, 55) exclui o 48 e inclui o 49."
+  }
+ },
+ "caminhos": [
+  {
+   "nome": "Calcular os dois logaritmos separados",
+   "ideia": "Sem simplificar a fórmula: log I^10 = 10 × (0,9 − 8) = −71 e log I0^10 = 10 × (−12) = −120. Então N = −71 + 120 = 49."
+  },
+  {
+   "nome": "Eliminação por ordem de grandeza",
+   "ideia": "I/I0 = 8×10^4 fica entre 10^4 e 10^5, então log está entre 4 e 5 e N entre 40 e 50. Isso já exclui III, IV e V. Falta conferir se passa de 48, o que o cálculo exato confirma."
+  }
+ ],
+ "quadro": [
+  {
+   "linha": "N = log I^10 − log I0^10",
+   "nota": "fórmula do enunciado"
+  },
+  {
+   "linha": "N = 10·log I − 10·log I0",
+   "nota": "o expoente 10 passa multiplicando cada log",
+   "destaque": "10·"
+  },
+  {
+   "linha": "N = 10·log(I ÷ I0)",
+   "nota": "diferença de logs vira log do quociente"
+  },
+  {
+   "linha": "I ÷ I0 = 8×10^−8 ÷ 10^−12",
+   "nota": "substitua os valores"
+  },
+  {
+   "linha": "I ÷ I0 = 8×10^4",
+   "nota": "subtraia os expoentes: −8 − (−12) = 4"
+  },
+  {
+   "linha": "log(8×10^4) = log 8 + 4",
+   "nota": "log do produto é soma de logs; log 10^4 = 4"
+  },
+  {
+   "linha": "log 8 = 3 × 0,3 = 0,9",
+   "nota": "8 = 2³ e log 2 = 0,3"
+  },
+  {
+   "linha": "N = 10 × 4,9 = 49 dB",
+   "nota": "49 está em (48, 55): medida II",
+   "destaque": "49 dB"
+  }
+ ],
+ "visual": {
+  "cabe": false,
+  "porque": "A questão é uma sequência de propriedades algébricas dos logaritmos. O quadro com a conta linha por linha já mostra tudo.",
+  "tipo": "nenhum",
+  "roteiro": ""
+ },
+ "fontes": [],
+ "confere": true,
+ "divergencia": "",
+ "resposta_resolvedor": "B",
+ "gab": "B",
+ "revisao": {
+  "lentes": [
+   "resolvedor"
+  ],
+  "modelos": {
+   "resolvedor": "claude-sonnet-5-5"
+  }
+ }
+}

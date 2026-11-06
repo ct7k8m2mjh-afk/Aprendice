@@ -1,0 +1,161 @@
+{
+ "n": 175,
+ "id": "P5f4e255f",
+ "materia": "mat",
+ "tema": "M13",
+ "conteudo": "M13.3",
+ "nivel": 6,
+ "conceito": "Contagem com restrição: combinações em etapas, escolhendo primeiro quem tem a condição (princípio multiplicativo).",
+ "resolucao": {
+  "antes": {
+   "texto": "Os presentes são diferentes, mas o que importa é quais presentes cada filho recebe, e não a ordem em que os recebe. Por isso cada grupo de presentes é uma combinação. Comece pelo filho que tem a restrição (o mais velho). Depois distribua o que sobra. Etapas que acontecem uma após a outra se multiplicam.",
+   "formulas": [
+    "C(n, p) = n! ÷ (p! × (n − p)!)",
+    "etapas seguidas: multiplique o número de maneiras de cada etapa"
+   ],
+   "simbolos": [
+    [
+     "C(n, p)",
+     "combinação: maneiras de escolher p itens entre n, sem importar a ordem"
+    ],
+    [
+     "n!",
+     "fatorial: n × (n − 1) × ... × 1"
+    ],
+    [
+     "princípio multiplicativo",
+     "se uma etapa pode ser feita de a maneiras e a seguinte de b maneiras, o total é a × b"
+    ]
+   ]
+  },
+  "pista": "Comece pelo filho mais velho, que é o que tem a regra especial. Pergunte: qual dos dois presentes (bicicleta ou celular) ele leva, e quais são os outros dois?",
+  "passos": [
+   {
+    "faz": "Diga o que a questão pede",
+    "conta": "mais velho: 3 presentes\nmais novo: 3 presentes\ndo meio: 2 presentes",
+    "porque": "Os grupos têm tamanhos fixos (3, 3 e 2) e somam 8. O mais velho leva a bicicleta ou o celular, nunca os dois.",
+    "tipo": "localizar"
+   },
+   {
+    "faz": "Escolha o presente especial do mais velho",
+    "conta": "bicicleta ou celular: 2 maneiras",
+    "porque": "Ele recebe exatamente um dos dois. Escolher um deles já resolve a restrição.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Escolha os outros 2 presentes dele",
+    "conta": "C(6, 2) = (6 × 5) ÷ 2 = 15",
+    "porque": "Esses 2 presentes não podem ser a bicicleta nem o celular. Sobram 6 presentes comuns, e a ordem não importa.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Multiplique para fechar o mais velho",
+    "conta": "2 × 15 = 30 maneiras",
+    "porque": "A escolha do presente especial e a dos outros dois são etapas seguidas, então se multiplicam.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Distribua os 5 presentes restantes",
+    "conta": "C(5, 3) = 10\nmeio fica com os 2 que sobram: 1",
+    "porque": "O mais novo escolhe 3 dos 5. O filho do meio recebe os 2 restantes, sem escolha.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Multiplique tudo",
+    "conta": "30 × 10 × 1 = 300",
+    "porque": "Cada uma das 30 formas de atender o mais velho pode ser combinada com cada uma das 10 formas de atender o mais novo. Isso dá a alternativa C.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa C: 300 maneiras. São 2 × 15 = 30 formas para o mais velho, e para cada uma há 10 formas de escolher os presentes do mais novo.",
+  "checagem": "Outro caminho: sem restrição, as maneiras seriam C(8,3) × C(5,3) = 56 × 10 = 560. Dessas, o mais velho teria só um dos dois, ou os dois, ou nenhum. Pelas combinações dos 3 presentes dele: só 1 especial = 2 × 15 = 30; os 2 especiais = 6; nenhum = C(6,3) = 20. Total: 30 + 6 + 20 = 56. Fecha, e 30 × 10 = 300.",
+  "erradas": {
+   "A": "36 não confere. O mais velho sozinho já tem 30 maneiras (2 × 15), e cada uma deixa 10 maneiras para o mais novo. O total é múltiplo de 30 e é no mínimo 300; 36 nem é múltiplo de 30.",
+   "B": "53 não confere. O total é o produto 30 × 10 = 300. 53 não é divisível por 30 nem por 10, então não pode ser produto dessas etapas.",
+   "D": "360 não confere. Esse valor é múltiplo de 30, mas exigiria 12 maneiras para os presentes do mais novo (30 × 12 = 360). Na verdade, com 5 presentes restantes, C(5,3) = 10.",
+   "E": "560 não confere com a restrição. É o resultado sem restrição: C(8,3) × C(5,3) = 56 × 10 = 560. Isso inclui os casos em que o mais velho recebe os dois presentes especiais ou nenhum, que o enunciado proíbe."
+  },
+  "armadilha": "Ignorar a restrição (dá 560) ou esquecer que os outros 2 presentes do mais velho saem só dos 6 comuns.",
+  "alerta": "",
+  "essencial": {
+   "pede": "O número de maneiras de distribuir os 8 presentes diferentes entre os 3 filhos, com as restrições dadas.",
+   "chave": "Comece pelo mais velho: 2 × C(6,2) = 30. Depois C(5,3) = 10 para o mais novo. O do meio fica com o resto. Total: 30 × 10 = 300.",
+   "cuidado": "Os 2 presentes comuns do mais velho saem de 6, e não de 8. A ordem dos presentes dentro de cada filho não importa."
+  }
+ },
+ "caminhos": [
+  {
+   "nome": "complemento (casos)",
+   "ideia": "Sem restrição, o mais velho teria C(8,3) = 56 grupos. Subtraia os que têm os dois presentes especiais (6) e os que não têm nenhum (C(6,3) = 20): 56 − 6 − 20 = 30. Depois multiplique por 10."
+  },
+  {
+   "nome": "começar por quem sobra",
+   "ideia": "Escolha primeiro os 3 presentes do mais novo entre os 5 que sobrarem. Isso exige a mesma análise de casos e é mais trabalhoso. Comece sempre por quem tem a restrição."
+  }
+ ],
+ "quadro": [
+  {
+   "linha": "mais velho: 3 presentes",
+   "nota": "exatamente 1 entre bicicleta e celular"
+  },
+  {
+   "linha": "presente especial: 2",
+   "nota": "bicicleta ou celular"
+  },
+  {
+   "linha": "outros dois: C(6, 2)",
+   "nota": "saem dos 6 presentes comuns"
+  },
+  {
+   "linha": "C(6, 2) = (6 × 5) ÷ 2 = 15",
+   "nota": "ordem não importa",
+   "destaque": "15"
+  },
+  {
+   "linha": "mais velho: 2 × 15 = 30",
+   "nota": "etapas seguidas se multiplicam",
+   "destaque": "30"
+  },
+  {
+   "linha": "restam 5 presentes",
+   "nota": "8 − 3 = 5"
+  },
+  {
+   "linha": "mais novo: C(5, 3) = 10",
+   "nota": "(5 × 4 × 3) ÷ (3 × 2 × 1) = 10",
+   "destaque": "10"
+  },
+  {
+   "linha": "do meio: 1 maneira",
+   "nota": "recebe os 2 que sobraram"
+  },
+  {
+   "linha": "total = 30 × 10 × 1",
+   "nota": "princípio multiplicativo"
+  },
+  {
+   "linha": "total = 300",
+   "nota": "alternativa C",
+   "destaque": "300"
+  }
+ ],
+ "visual": {
+  "cabe": false,
+  "porque": "A resolução é uma sequência de contas curtas de contagem, que o quadro já mostra linha a linha; uma animação não acrescentaria nada.",
+  "tipo": "nenhum",
+  "roteiro": ""
+ },
+ "fontes": [],
+ "confere": true,
+ "divergencia": "",
+ "resposta_resolvedor": "C",
+ "gab": "C",
+ "revisao": {
+  "lentes": [
+   "resolvedor"
+  ],
+  "modelos": {
+   "resolvedor": "claude-sonnet-5-5"
+  }
+ }
+}

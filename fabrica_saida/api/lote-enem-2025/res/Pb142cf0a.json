@@ -1,0 +1,162 @@
+{
+ "n": 172,
+ "id": "Pb142cf0a",
+ "materia": "mat",
+ "tema": "M06",
+ "conteudo": "M06.4",
+ "nivel": 7,
+ "conceito": "Combinar logaritmo e função quadrática: limitar a pressão máxima P ≤ 10 no intervalo de funcionamento e achar o maior K.",
+ "resolucao": {
+  "antes": {
+   "texto": "A pressão P é 4 vezes o logaritmo de uma expressão. Como o log cresce junto com o logaritmando, P ≤ 10 vale se o logaritmando for no máximo 10^2,5. O logaritmando é K vezes uma parábola em t. Ela tem de respeitar o limite durante as 10 horas (0 ≤ t ≤ 10), então basta olhar o ponto de maior valor da parábola nesse intervalo.",
+   "formulas": [
+    "log x ≤ c ⇔ x ≤ 10^c (base 10)",
+    "vértice da parábola: t = média das raízes",
+    "valor máximo de −(t + 1)(t − 19) é o valor no vértice"
+   ],
+   "simbolos": [
+    [
+     "log",
+     "logaritmo na base 10: log x = c significa x = 10^c"
+    ],
+    [
+     "atm",
+     "atmosfera, unidade de pressão"
+    ],
+    [
+     "vértice",
+     "ponto mais alto (ou mais baixo) da parábola"
+    ],
+    [
+     "raízes",
+     "valores de t que zeram a expressão: aqui t = −1 e t = 19"
+    ]
+   ]
+  },
+  "pista": "Primeiro transforme P ≤ 10 numa condição sobre o que está dentro do log. Depois pergunte em que hora essa expressão é maior.",
+  "passos": [
+   {
+    "faz": "Escreva a condição da pressão",
+    "conta": "4·log[ ... ] ≤ 10",
+    "porque": "O fabricante pede que P não passe de 10 atm durante todo o funcionamento.",
+    "tipo": "interpretar"
+   },
+   {
+    "faz": "Isole o logaritmo e saia do log",
+    "conta": "log[ ... ] ≤ 2,5 → [ ... ] ≤ 10^2,5",
+    "porque": "Divida por 4. Como 10^x cresce, a desigualdade mantém o sentido ao tirar o log (base 10).",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Ache onde a parábola é maior",
+    "conta": "raízes −1 e 19 → vértice t = 9",
+    "porque": "O vértice fica no meio das raízes: (−1 + 19)/2 = 9. Como o termo em t² é −K·t² (K > 0), a concavidade é para baixo e o vértice é o máximo. O 9 está dentro de 0 a 10.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Calcule o valor máximo",
+    "conta": "−(9+1)(9−19) = −10·(−10) = 100",
+    "porque": "No pior instante, o logaritmando vale K·100.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Imponha o limite no pior instante",
+    "conta": "100·K ≤ 10^2,5 → K ≤ 10^2,5/100",
+    "porque": "Se vale no instante mais crítico, vale em todos os outros.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Simplifique e conclua",
+    "conta": "10^2,5/10² = 10^0,5",
+    "porque": "Divisão de potências de mesma base: subtraem-se os expoentes (2,5 − 2 = 0,5). O maior K é 10^0,5.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa A: o maior K é 10^0,5, porque a pressão máxima ocorre em t = 9 h, onde o logaritmando vale 100·K, e 100·K ≤ 10^2,5.",
+  "checagem": "Com K = 10^0,5, em t = 9: 100 × 10^0,5 = 10^2,5. Então P = 4 × 2,5 = 10 atm, exatamente o limite. Em qualquer outra hora o logaritmando é menor e P < 10.",
+  "erradas": {
+   "B": "10^8 sai de esquecer o fator 4: com log[ ... ] ≤ 10, teríamos 100·K ≤ 10^10 e K ≤ 10^8. Mas a pressão é 4·log, então o log deve ser ≤ 10/4 = 2,5.",
+   "C": "10^2,5/84 vem de usar t = 5, onde (t + 1)(19 − t) = 6 × 14 = 84. Esse t não é o ponto mais alto da parábola. Em t = 9 o valor é 100 e, com K = 10^2,5/84, P passaria de 10 atm.",
+   "D": "10^2,5/99 vem de usar só o último instante, t = 10, onde (11)(9) = 99. A parábola cresce até t = 9 e o vértice está dentro do período. Em t = 9 o logaritmando seria 100·K = 100 × 10^2,5/99, maior que 10^2,5, e P passaria de 10.",
+   "E": "25 × 10^−2 = 0,25 não confere como o maior valor. Com K = 0,25 o logaritmando máximo é 25 e P = 4·log 25 ≈ 5,6 atm, abaixo de 10. Atende à recomendação, mas existe K maior: 10^0,5 ≈ 3,16."
+  },
+  "armadilha": "Testar só o fim do período (t = 10) em vez de achar o máximo da parábola, que ocorre em t = 9.",
+  "alerta": "",
+  "essencial": {
+   "pede": "O maior K tal que a pressão não passe de 10 atm durante as 10 horas de uso.",
+   "chave": "P ≤ 10 vira logaritmando ≤ 10^2,5; o pior caso é o vértice t = 9, onde o fator vale 100, logo K ≤ 10^2,5/100 = 10^0,5.",
+   "cuidado": "Use o máximo da parábola dentro do intervalo, não uma ponta; e lembre do fator 4 antes de sair do log."
+  }
+ },
+ "caminhos": [
+  {
+   "nome": "testar as alternativas",
+   "ideia": "Substitua cada K em t = 9 (logaritmando = 100·K): só A dá P = 10 exato. C e D ultrapassam 10, B ultrapassa muito (P = 40 atm), e E fica abaixo, mas não é o maior."
+  },
+  {
+   "nome": "completar quadrado",
+   "ideia": "−(t + 1)(t − 19) = −t² + 18t + 19 = 100 − (t − 9)². O máximo é 100, quando t = 9."
+  }
+ ],
+ "quadro": [
+  {
+   "linha": "4·log[...] ≤ 10",
+   "nota": "limite de pressão do fabricante"
+  },
+  {
+   "linha": "log[...] ≤ 10/4 = 2,5",
+   "nota": "divida por 4"
+  },
+  {
+   "linha": "[...] ≤ 10^2,5",
+   "nota": "saia do log (base 10)"
+  },
+  {
+   "linha": "raízes: t = −1 e t = 19",
+   "nota": "zeros da parábola"
+  },
+  {
+   "linha": "vértice: t = (−1+19)/2 = 9",
+   "nota": "meio das raízes"
+  },
+  {
+   "linha": "−(10)(−10) = 100",
+   "nota": "valor máximo do fator em t"
+  },
+  {
+   "linha": "100·K ≤ 10^2,5",
+   "nota": "limite no pior instante"
+  },
+  {
+   "linha": "K ≤ 10^2,5/100",
+   "nota": "o 100 passa dividindo"
+  },
+  {
+   "linha": "K ≤ 10^2,5/10²",
+   "nota": "100 = 10²"
+  },
+  {
+   "linha": "K ≤ 10^0,5",
+   "nota": "subtraia os expoentes: 2,5 − 2"
+  }
+ ],
+ "visual": {
+  "cabe": true,
+  "porque": "O gráfico da parábola no intervalo mostra por que o vértice (t = 9) manda no limite.",
+  "tipo": "grafico",
+  "roteiro": "Quadro 1: eixo t de 0 a 10 e parábola −(t+1)(t−19) com raízes em −1 e 19. Quadro 2: marca o vértice em t = 9 com altura 100 e destaca que está dentro do intervalo [0, 10]. Quadro 3: desenha a reta horizontal do limite 10^2,5/K e mostra que a parábola multiplicada por K não pode passar dela. Quadro 4: o topo em 100K encosta no limite, dando K = 10^0,5."
+ },
+ "fontes": [],
+ "confere": true,
+ "divergencia": "",
+ "resposta_resolvedor": "A",
+ "gab": "A",
+ "revisao": {
+  "lentes": [
+   "resolvedor"
+  ],
+  "modelos": {
+   "resolvedor": "claude-sonnet-5-5"
+  }
+ }
+}

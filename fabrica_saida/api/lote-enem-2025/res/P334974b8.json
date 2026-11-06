@@ -1,0 +1,136 @@
+{
+ "n": 155,
+ "id": "P334974b8",
+ "materia": "mat",
+ "tema": "M13",
+ "conteudo": "M13.2",
+ "nivel": 4,
+ "conceito": "Princípio multiplicativo com restrição: três cargos distintos, no máximo uma pessoa por casal.",
+ "resolucao": {
+  "antes": {
+   "texto": "Os cargos são diferentes (presidente, secretário, tesoureiro), então a ordem importa. Escolha uma pessoa de cada vez, cargo por cargo, e multiplique as possibilidades. A restrição é que cada casal ocupa no máximo um cargo. Por isso, ao escolher alguém, o parceiro dessa pessoa também sai da lista dos próximos cargos.",
+   "formulas": [
+    "total = (opções p/ presidente) × (opções p/ secretário) × (opções p/ tesoureiro)"
+   ],
+   "simbolos": [
+    [
+     "diretoria",
+     "o trio de pessoas com cargos definidos; trocar quem ocupa cada cargo gera outra diretoria"
+    ],
+    [
+     "princípio multiplicativo",
+     "se uma escolha tem m jeitos e a seguinte tem n jeitos, o par de escolhas tem m × n jeitos"
+    ]
+   ]
+  },
+  "pista": "Escolha o presidente. Depois pergunte: quantas pessoas ainda podem ser secretário, lembrando que o parceiro do presidente não pode?",
+  "passos": [
+   {
+    "faz": "Conte as pessoas disponíveis",
+    "conta": "10 casais × 2 = 20 pessoas",
+    "porque": "Cada casal tem duas pessoas, e qualquer uma delas pode ser presidente.",
+    "tipo": "localizar"
+   },
+   {
+    "faz": "Escolha o presidente",
+    "conta": "20 opções",
+    "porque": "Ainda não há restrição: qualquer uma das 20 pessoas serve.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Escolha o secretário",
+    "conta": "20 − 2 = 18 opções",
+    "porque": "Saem o presidente e o seu parceiro, porque o casal dele já ocupa um cargo.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Escolha o tesoureiro",
+    "conta": "18 − 2 = 16 opções",
+    "porque": "Saem também o secretário e o parceiro dele. Sobram 8 casais, ou seja, 16 pessoas.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Multiplique as escolhas",
+    "conta": "20 × 18 × 16 = 5760",
+    "porque": "Cada escolha anterior se combina com todas as seguintes. Isso corresponde à alternativa B.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa B: 20 × 18 × 16, porque cada cargo tira da lista a pessoa escolhida e o parceiro dela.",
+  "checagem": "Outro caminho: escolha primeiro os casais em ordem (10 × 9 × 8 = 720). Em cada casal escolhido, 2 pessoas podem assumir o cargo, então multiplique por 2 × 2 × 2 = 8. Dá 720 × 8 = 5760, igual a 20 × 18 × 16.",
+  "erradas": {
+   "A": "10 × 9 × 8 = 720 conta só os casais em ordem. Falta decidir qual das 2 pessoas de cada casal ocupa o cargo, ou seja, multiplicar por 2 × 2 × 2 = 8. Com isso, 720 × 8 = 5760.",
+   "C": "20 × 19 × 18 = 6840 só impede que a mesma pessoa ocupe dois cargos. Mas o enunciado proíbe também o parceiro do presidente de ser secretário. O correto é descontar 2 pessoas a cada escolha: 20, 18, 16.",
+   "D": "10 × 9 × 8 × 2 = 1440 multiplica por 2 uma única vez. São três cargos, e em cada casal escolhido há 2 pessoas possíveis, então o fator é 2³ = 8. O valor correto de 720 × 8 é 5760, não 1440.",
+   "E": "20 × 18 × 16 × 2 = 11520 já contém as 2 pessoas de cada casal, pois o 20, o 18 e o 16 contam pessoas. O fator 2 extra conta a escolha da pessoa uma segunda vez. Por isso o resultado é o dobro do correto, 5760."
+  },
+  "armadilha": "Ao escolher uma pessoa, o parceiro dela também sai da lista, então a lista cai de 2 em 2 (20, 18, 16) e não de 1 em 1.",
+  "alerta": "",
+  "essencial": {
+   "pede": "O número de diretorias com 3 cargos diferentes e no máximo uma pessoa de cada casal.",
+   "chave": "Escolha cargo por cargo, tirando a pessoa e o parceiro dela a cada vez: 20 × 18 × 16.",
+   "cuidado": "Não some o fator 2 de novo: ele já está dentro dos números 20, 18 e 16."
+  }
+ },
+ "caminhos": [
+  {
+   "nome": "casais primeiro",
+   "ideia": "Escolha os 3 casais em ordem (10 × 9 × 8 = 720) e, em cada um, qual das 2 pessoas assume o cargo (2 × 2 × 2 = 8). Resultado: 720 × 8 = 5760."
+  },
+  {
+   "nome": "eliminação",
+   "ideia": "A resposta precisa descontar o parceiro a cada escolha, então a lista cai de 2 em 2, como em 20 × 18 × 16. Isso exclui A, C e D. A letra E tem um fator 2 a mais, que repete uma contagem já feita."
+  }
+ ],
+ "quadro": [
+  {
+   "linha": "pessoas = 10 × 2 = 20",
+   "nota": "são 10 casais, com 2 pessoas cada"
+  },
+  {
+   "linha": "presidente: 20",
+   "nota": "qualquer pessoa pode ser presidente"
+  },
+  {
+   "linha": "secretário: 20 − 2 = 18",
+   "nota": "saem o presidente e o parceiro dele",
+   "destaque": "20 − 2"
+  },
+  {
+   "linha": "tesoureiro: 18 − 2 = 16",
+   "nota": "saem o secretário e o parceiro dele",
+   "destaque": "18 − 2"
+  },
+  {
+   "linha": "total = 20 × 18 × 16",
+   "nota": "princípio multiplicativo"
+  },
+  {
+   "linha": "20 × 18 = 360",
+   "nota": "primeiro produto"
+  },
+  {
+   "linha": "360 × 16 = 5760",
+   "nota": "total de diretorias"
+  }
+ ],
+ "visual": {
+  "cabe": false,
+  "porque": "A contagem se resolve bem com três escolhas em sequência, e a conta animada no quadro já mostra o raciocínio.",
+  "tipo": "nenhum",
+  "roteiro": ""
+ },
+ "fontes": [],
+ "confere": true,
+ "divergencia": "",
+ "resposta_resolvedor": "B",
+ "gab": "B",
+ "revisao": {
+  "lentes": [
+   "resolvedor"
+  ],
+  "modelos": {
+   "resolvedor": "claude-sonnet-5-5"
+  }
+ }
+}

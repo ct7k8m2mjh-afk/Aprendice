@@ -1,0 +1,136 @@
+{
+ "n": 150,
+ "id": "P0b926498",
+ "materia": "mat",
+ "tema": "M04",
+ "conteudo": "M04.5",
+ "nivel": 4,
+ "conceito": "Modelar um problema de contagem com vãos (n colunas geram n+1 vãos), achar o número mínimo de colunas de cada loja e comparar os custos.",
+ "resolucao": {
+  "antes": {
+   "texto": "As colunas ficam alinhadas numa reta paralela ao lado menor, então a fileira cobre os 3 m = 300 cm da sala. Cada coluna ocupa o seu diâmetro, que é o dobro do raio. O resto do comprimento são os vãos, e cada vão pode ter no máximo 15 cm. Com n colunas há n + 1 vãos: n − 1 entre colunas e 2 entre as pontas e as paredes.",
+   "formulas": [
+    "diâmetro = 2 × raio",
+    "n colunas → n + 1 vãos",
+    "300 = n × diâmetro + soma dos vãos, e cada vão ≤ 15 cm"
+   ],
+   "simbolos": [
+    [
+     "vão",
+     "espaço livre entre duas colunas ou entre uma coluna e a parede"
+    ],
+    [
+     "diâmetro",
+     "largura da coluna vista de cima: 2 × raio"
+    ],
+    [
+     "n",
+     "número de colunas usadas"
+    ]
+   ]
+  },
+  "pista": "Com 3 colunas enfileiradas, quantos vãos existem contando as duas paredes? Depois pergunte: quantas colunas, no mínimo, para que cada vão fique em até 15 cm?",
+  "passos": [
+   {
+    "faz": "Descubra o comprimento a preencher",
+    "conta": "3 m = 300 cm",
+    "porque": "A reta dos centros é paralela ao lado de 3 m, então a fileira vai de parede a parede ao longo dos 300 cm.",
+    "tipo": "localizar"
+   },
+   {
+    "faz": "Monte a condição para n colunas",
+    "conta": "300 − n·d ≤ 15·(n + 1)",
+    "porque": "O que sobra depois das colunas (300 − n·d) é dividido em n + 1 vãos, cada um até 15 cm. Isso dá n ≥ 285/(d + 15).",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Ache o mínimo de colunas de cada loja",
+    "conta": "I: d=10 → 285/25 = 11,4 → 12\nII: d=20 → 285/35 ≈ 8,1 → 9\nIII: d=24 → 285/39 ≈ 7,3 → 8\nIV: d=30 → 285/45 ≈ 6,3 → 7\nV: d=40 → 285/55 ≈ 5,2 → 6",
+    "porque": "Como n é inteiro, arredonde sempre para cima: com menos colunas algum vão passaria de 15 cm.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Multiplique pelo preço unitário",
+    "conta": "I: 12×60 = 720\nII: 9×70 = 630\nIII: 8×75 = 600\nIV: 7×90 = 630\nV: 6×120 = 720",
+    "porque": "O orçamento total é o número de colunas vezes o preço de cada uma.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Escolha o menor total",
+    "conta": "menor: R$ 600 → loja III",
+    "porque": "A pergunta é a loja de menor valor total, não a coluna mais barata nem a mais larga.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa C: a loja III precisa de 8 colunas e cobra R$ 600, o menor total.",
+  "checagem": "Loja III com 8 colunas: 8 × 24 = 192 cm de colunas, sobram 108 cm em 9 vãos, ou seja, 12 cm cada, que é menor que 15. Com 7 colunas: 300 − 168 = 132 cm em 8 vãos = 16,5 cm, que passa de 15. Então 8 é o mínimo.",
+  "erradas": {
+   "A": "A loja I tem coluna fina (diâmetro 10 cm). Com 11 colunas os vãos teriam (300 − 110)/12 ≈ 15,8 cm, que passa de 15 cm. Precisa de 12 colunas: 12 × 60 = R$ 720, mais caro que R$ 600.",
+   "B": "A loja II exige 9 colunas, porque com 8 os vãos seriam (300 − 160)/9 ≈ 15,6 cm. O total é 9 × 70 = R$ 630, maior que R$ 600.",
+   "D": "A loja IV exige 7 colunas, porque com 6 os vãos seriam (300 − 180)/7 ≈ 17,1 cm. O total é 7 × 90 = R$ 630, maior que R$ 600.",
+   "E": "A loja V exige 6 colunas, porque com 5 os vãos seriam (300 − 200)/6 ≈ 16,7 cm. O total é 6 × 120 = R$ 720, maior que R$ 600."
+  },
+  "armadilha": "Contar n − 1 vãos e esquecer os dois vãos entre as colunas das pontas e as paredes (são n + 1), ou usar o raio como se fosse a largura da coluna.",
+  "alerta": "",
+  "essencial": {
+   "pede": "A loja cujo total gasto nas colunas é o menor possível.",
+   "chave": "Com n colunas de diâmetro d há n + 1 vãos de até 15 cm, então n ≥ 285/(d + 15); depois multiplique n pelo preço.",
+   "cuidado": "Arredonde n para cima, use o diâmetro (2 × raio) e conte n + 1 vãos."
+  }
+ },
+ "caminhos": [
+  {
+   "nome": "testar o vão",
+   "ideia": "Para cada loja, teste n e calcule o vão = (300 − n × diâmetro)/(n + 1). O menor n com vão ≤ 15 cm é o mínimo. Por exemplo, na loja III, n = 8 dá 12 cm e n = 7 dá 16,5 cm."
+  },
+  {
+   "nome": "bloco colunas + vão",
+   "ideia": "Imagine cada coluna com um vão de 15 cm ao lado: bloco de d + 15 cm. Com um vão extra no fim, 300 + 15 = 315 deve caber em n blocos, então n ≥ 315/(d + 15) é o mesmo que o primeiro método. Dá n ≥ 12,6 no caso da loja I, ou seja, n ≥ 11,4 quando se leva em conta que a primeira conta foi com 285 em vez de 315 — por isso o método principal é mais seguro."
+  }
+ ],
+ "quadro": [
+  {
+   "linha": "300 cm de fileira",
+   "nota": "3 m = 300 cm"
+  },
+  {
+   "linha": "300 − n·d ≤ 15(n + 1)",
+   "nota": "n colunas → n + 1 vãos"
+  },
+  {
+   "linha": "285 ≤ n(d + 15)",
+   "nota": "300 − 15 = 285"
+  },
+  {
+   "linha": "n ≥ 285/(d + 15)",
+   "nota": "divida pelo (d + 15)"
+  },
+  {
+   "linha": "III: n ≥ 285/39 ≈ 7,3",
+   "nota": "d = 24 → n = 8"
+  },
+  {
+   "linha": "8 × 75 = 600",
+   "nota": "menor total entre as lojas"
+  }
+ ],
+ "visual": {
+  "cabe": true,
+  "porque": "Desenhar a fileira de colunas e os vãos mostra por que há n + 1 vãos.",
+  "tipo": "figura",
+  "roteiro": "Quadro 1: faixa de 300 cm entre duas paredes. Quadro 2: entram as colunas azuis de diâmetro d, com vãos marcados em amarelo, incluindo os dois das pontas. Quadro 3: contador mostra n colunas e n + 1 vãos. Quadro 4: para a loja III, 7 colunas dão vãos de 16,5 cm (vermelho) e 8 colunas dão 12 cm (verde)."
+ },
+ "fontes": [],
+ "confere": true,
+ "divergencia": "",
+ "resposta_resolvedor": "C",
+ "gab": "C",
+ "revisao": {
+  "lentes": [
+   "resolvedor"
+  ],
+  "modelos": {
+   "resolvedor": "claude-sonnet-5-5"
+  }
+ }
+}

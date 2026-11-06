@@ -1,0 +1,144 @@
+{
+ "n": 142,
+ "id": "P551d912a",
+ "materia": "mat",
+ "tema": "M07",
+ "conteudo": "M07.2",
+ "nivel": 4,
+ "conceito": "Reconhecer uma progressão geométrica de razão 2 (dobra a cada etapa) e calcular o termo da 20ª etapa.",
+ "resolucao": {
+  "antes": {
+   "texto": "Copiar o que está no visor e colar ao lado faz a quantidade de figuras dobrar. A questão pede o total de figuras no visor ao fim da 20ª etapa, não a soma das figuras de todas as etapas. Como o número dobra a cada etapa, o total é uma potência de 2 multiplicada por 3.",
+   "formulas": [
+    "etapa 1: 3 figuras",
+    "cada etapa: quantidade × 2",
+    "etapa n: 3 × 2^(n−1)"
+   ],
+   "simbolos": [
+    [
+     "PG",
+     "progressão geométrica: sequência em que cada termo é o anterior multiplicado pela mesma razão"
+    ],
+    [
+     "razão",
+     "o número pelo qual se multiplica para passar ao termo seguinte; aqui, 2"
+    ],
+    [
+     "2^19",
+     "2 multiplicado por ele mesmo 19 vezes"
+    ]
+   ]
+  },
+  "pista": "Conte as figuras no visor ao fim das etapas 1, 2 e 3 e veja o que acontece com a quantidade de uma etapa para a outra. Depois descubra quantas vezes ela dobra até a 20ª etapa.",
+  "passos": [
+   {
+    "faz": "Leia a 1ª etapa",
+    "conta": "Etapa 1: 3 figuras",
+    "porque": "O visor começa com três figuras inseridas diretamente.",
+    "tipo": "localizar"
+   },
+   {
+    "faz": "Leia as etapas 2 e 3",
+    "conta": "Etapa 2: 6 figuras",
+    "porque": "Copiar as 3 e colar ao lado dá 3 + 3 = 6. Na figura, a 2ª etapa mostra seis rostos.",
+    "tipo": "localizar"
+   },
+   {
+    "faz": "Confirme a 3ª etapa",
+    "conta": "Etapa 3: 6 + 6 = 12",
+    "porque": "O visor da 3ª etapa mostra uma linha de 9 rostos e outra de 3, ou seja, 12. Logo, a quantidade dobra a cada etapa.",
+    "tipo": "interpretar"
+   },
+   {
+    "faz": "Escreva o padrão",
+    "conta": "3, 3×2, 3×2², 3×2³ ...",
+    "porque": "Na etapa 2 há um fator 2, na etapa 3 há dois fatores 2. O expoente é sempre uma unidade menor que o número da etapa.",
+    "tipo": "interpretar"
+   },
+   {
+    "faz": "Calcule a 20ª etapa",
+    "conta": "Etapa 20: 3 × 2^19",
+    "porque": "Na etapa n há n − 1 fatores 2. Para n = 20, o expoente é 19.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Ligue à alternativa",
+    "conta": "3 × 2^19 → alternativa A",
+    "porque": "A mensagem enviada é o que está no visor ao fim da 20ª etapa.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa A: o visor da 20ª etapa tem 3 × 2^19 figuras, porque a quantidade dobra a cada etapa a partir de 3 na etapa 1.",
+  "checagem": "Teste a fórmula 3 × 2^(n−1) nas etapas que a figura mostra. Para n = 1 dá 3 × 2^0 = 3. Para n = 2 dá 3 × 2 = 6. Para n = 3 dá 3 × 4 = 12. Os três valores batem com o visor.",
+  "erradas": {
+   "B": "3 × 2^20 é o valor da 21ª etapa. Quem marcou usou o expoente igual ao número da etapa. Porém, na 1ª etapa o expoente é 0, não 1: a fórmula 3 × 2^n daria 6 na 1ª etapa, mas o visor mostra 3.",
+   "C": "3 × 2^21 é o valor da 22ª etapa, dois expoentes acima do correto. Pela fórmula 3 × 2^(n−1), na etapa 20 o expoente é 19, não 21.",
+   "D": "3 × 2^20 − 1 não confere. Não corresponde a nenhuma contagem do problema. Nas etapas 1, 2 e 3 os totais são 3, 6 e 12, e nenhum tem a forma 3 × 2^k − 1. O visor também só pode ter múltiplo de 3 figuras, e 3 × 2^20 − 1 não é múltiplo de 3.",
+   "E": "3 × 2^20 − 3 = 3 × (2^20 − 1) é a soma de todas as figuras digitadas e coladas nas 20 etapas: 3 + 6 + 12 + ... + 3 × 2^19. A pergunta é o que está no visor ao fim da 20ª etapa, que é só o último termo, 3 × 2^19."
+  },
+  "armadilha": "Usar o expoente 20 por ser a 20ª etapa: a 1ª etapa já tem 3 figuras (expoente 0), então a 20ª tem expoente 19.",
+  "alerta": "",
+  "essencial": {
+   "pede": "O total de figuras no visor ao fim da 20ª etapa.",
+   "chave": "A quantidade dobra a cada etapa: etapa n tem 3 × 2^(n−1) figuras.",
+   "cuidado": "Não confunda o termo da 20ª etapa com a soma de todas as etapas, e lembre que o expoente é n − 1."
+  }
+ },
+ "caminhos": [
+  {
+   "nome": "listar as etapas",
+   "ideia": "Escreva 3, 6, 12, 24, 48... e perceba que cada etapa multiplica por 2 mais uma vez. Chegando à etapa 20, houve 19 multiplicações por 2, logo 3 × 2^19."
+  },
+  {
+   "nome": "termo geral da PG",
+   "ideia": "É uma PG com a₁ = 3 e razão q = 2. Pelo termo geral, a_n = a₁ × q^(n−1). Para n = 20, a₂₀ = 3 × 2^19."
+  }
+ ],
+ "quadro": [
+  {
+   "linha": "etapa 1: 3",
+   "nota": "O visor começa com 3 figuras."
+  },
+  {
+   "linha": "etapa 2: 3 × 2 = 6",
+   "nota": "Copiou 3 e colou 3 ao lado: 3 + 3 = 6."
+  },
+  {
+   "linha": "etapa 3: 6 × 2 = 12",
+   "nota": "Copiou 6 e colou 6: o visor mostra 9 + 3 = 12 rostos."
+  },
+  {
+   "linha": "etapa 4: 12 × 2 = 24",
+   "nota": "O padrão continua: dobra a cada etapa."
+  },
+  {
+   "linha": "etapa n: 3 × 2^(n−1)",
+   "nota": "Na etapa n há n − 1 fatores 2.",
+   "destaque": "n−1"
+  },
+  {
+   "linha": "etapa 20: 3 × 2^19",
+   "nota": "Substitua n = 20: 20 − 1 = 19. Alternativa A.",
+   "destaque": "2^19"
+  }
+ ],
+ "visual": {
+  "cabe": true,
+  "porque": "Mostrar o visor dobrando a cada etapa deixa claro por que o expoente é n − 1.",
+  "tipo": "diagrama",
+  "roteiro": "Quadro 1: aparecem 3 rostos e a legenda 'etapa 1: 3 = 3 × 2^0'. Quadro 2: o bloco de 3 é copiado e colado ao lado, formando 6, com a legenda '3 × 2^1'. Quadro 3: o bloco de 6 é copiado e colado, formando 12, com a legenda '3 × 2^2'. Quadro 4: reticências e a legenda 'etapa n: 3 × 2^(n−1)'. Quadro 5: o bloco final da etapa 20 é destacado com a legenda '3 × 2^19'."
+ },
+ "fontes": [],
+ "resposta_resolvedor": "A",
+ "confere": true,
+ "divergencia": "",
+ "gab": "A",
+ "revisao": {
+  "lentes": [
+   "resolvedor"
+  ],
+  "modelos": {
+   "resolvedor": "claude-sonnet-5-5"
+  }
+ }
+}

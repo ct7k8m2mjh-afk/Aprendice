@@ -1,0 +1,149 @@
+{
+ "n": 168,
+ "id": "P13356c79",
+ "materia": "mat",
+ "tema": "M13",
+ "conteudo": "M13.4",
+ "nivel": 5,
+ "conceito": "Probabilidade em etapas dependentes: o número de bolas da 2ª urna muda conforme o algarismo sorteado na 1ª.",
+ "resolucao": {
+  "antes": {
+   "texto": "O sorteio tem duas etapas, uma depois da outra. A probabilidade de um número sair é a da 1ª etapa multiplicada pela da 2ª. Na 2ª etapa, só ficam as bolas que formam um número de 01 a 55 com o algarismo das unidades já sorteado. Por isso, o total de bolas depende de qual unidade saiu.",
+   "formulas": [
+    "P(número) = P(unidade) × P(dezena, dada a unidade)",
+    "P(dezena, dada a unidade) = 1 ÷ (quantidade de bolas que sobraram na 2ª urna)"
+   ],
+   "simbolos": [
+    [
+     "algarismo das unidades",
+     "o último algarismo do número. Em 50, é o 0; em 02, é o 2."
+    ],
+    [
+     "algarismo das dezenas",
+     "o primeiro algarismo do número de dois dígitos. Em 50, é o 5; em 02, é o 0."
+    ],
+    [
+     "1ª urna",
+     "tem as bolas de 0 a 9 e define a unidade."
+    ],
+    [
+     "2ª urna",
+     "define a dezena. Só ficam as bolas que permitem formar um número de 01 a 55."
+    ]
+   ]
+  },
+  "pista": "Primeiro responda: com a unidade já sorteada, quais dezenas ainda formam um número de 01 a 55? Conte as bolas que sobram na 2ª urna.",
+  "passos": [
+   {
+    "faz": "Calcule a chance da unidade",
+    "conta": "10 bolas → 1/10",
+    "porque": "A 1ª urna tem as bolas de 0 a 9, todas com a mesma chance. Isso vale para qualquer número sorteado.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Liste as dezenas possíveis para o 50",
+    "conta": "unidade 0: 10, 20, 30, 40, 50",
+    "porque": "O 00 não é permitido, pois a lista começa em 01. O 60 passa de 55. Sobram as dezenas 1, 2, 3, 4 e 5, ou seja, 5 bolas.",
+    "tipo": "localizar"
+   },
+   {
+    "faz": "Calcule a probabilidade do 50",
+    "conta": "1/10 × 1/5 = 1/50",
+    "porque": "O 50 exige a unidade 0 (1/10) e, depois, a dezena 5 entre as 5 bolas que restaram (1/5).",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Liste as dezenas possíveis para o 02",
+    "conta": "unidade 2: 02, 12, 22, 32, 42, 52",
+    "porque": "Todos esses números estão entre 01 e 55, inclusive o 52. As dezenas são 0, 1, 2, 3, 4 e 5, ou seja, 6 bolas.",
+    "tipo": "localizar"
+   },
+   {
+    "faz": "Calcule a probabilidade do 02",
+    "conta": "1/10 × 1/6 = 1/60",
+    "porque": "O 02 exige a unidade 2 (1/10) e, depois, a dezena 0 entre as 6 bolas que restaram (1/6).",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Ligue ao gabarito",
+    "conta": "50 → 1/50 ; 02 → 1/60",
+    "porque": "Os dois valores aparecem juntos apenas na alternativa A.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa A: o 50 tem probabilidade 1/50 (5 dezenas possíveis) e o 02 tem 1/60 (6 dezenas possíveis).",
+  "checagem": "Some as bolas da 2ª urna para cada unidade. A unidade 0 dá 5 números, as unidades 1 a 5 dão 6 cada (30) e as unidades 6 a 9 dão 5 cada (20). O total é 5 + 30 + 20 = 55, que é o número de candidatos. Fecha.",
+  "erradas": {
+   "B": "O 1/50 do 02 sai de supor 5 bolas na 2ª urna, como no caso do 50: 1/10 × 1/5. Com a unidade 2, as dezenas 0, 1, 2, 3, 4 e 5 servem, pois 52 ≤ 55. São 6 bolas, e o certo é 1/60.",
+   "C": "O 1/10 do 02 é só a chance da 1ª urna (unidade 2). Falta a 2ª etapa: escolher a dezena 0 entre 6 bolas, 1/6. Então 1/10 × 1/6 = 1/60.",
+   "D": "1/55 e 1/54 não saem das etapas do sorteio. Com 55 candidatos, o 1/55 só valeria se todos os números fossem igualmente prováveis, e não são: cada unidade tem 1/10 e as dezenas dividem esse 1/10 de modos diferentes. O 54 não corresponde a nenhuma contagem de bolas da 2ª urna, que tem 5 ou 6 bolas.",
+   "E": "1/100 para os dois vem de supor 10 bolas na 1ª urna e 10 bolas na 2ª: 1/10 × 1/10. O enunciado diz que a 2ª urna só mantém as bolas que formam números de 01 a 55, ou seja, 5 ou 6 bolas."
+  },
+  "armadilha": "Usar sempre 10 bolas na 2ª urna, ou usar o mesmo número de bolas para o 50 e para o 02. A 2ª urna muda com a unidade: 5 bolas para a unidade 0 e 6 bolas para a unidade 2.",
+  "alerta": "",
+  "essencial": {
+   "pede": "A probabilidade de sair o número 50 e a de sair o número 02, nesse sorteio em duas etapas.",
+   "chave": "P = 1/10 (unidade) × 1/(bolas que restam na 2ª urna). Para o 50 restam 5 bolas, e para o 02 restam 6.",
+   "cuidado": "Conte direito as dezenas válidas: o 00 não existe e o 52 existe, pois a lista vai até 55."
+  }
+ },
+ "caminhos": [
+  {
+   "nome": "Árvore de possibilidades",
+   "ideia": "Desenhe a 1ª urna com 10 ramos, cada um com 1/10. Do ramo 0 saem 5 ramos (dezenas 1 a 5). Do ramo 2 saem 6 ramos (dezenas 0 a 5). Multiplique os valores ao longo do caminho."
+  },
+  {
+   "nome": "Contagem por unidade",
+   "ideia": "Cada unidade recebe 1/10 da probabilidade total e a divide igualmente entre os números que a terminam. Na unidade 0 são 5 números e na unidade 2 são 6."
+  }
+ ],
+ "quadro": [
+  {
+   "linha": "P(unidade) = 1/10",
+   "nota": "1ª urna: bolas de 0 a 9."
+  },
+  {
+   "linha": "Unid. 0: dezenas 1,2,3,4,5",
+   "nota": "10, 20, 30, 40 e 50. O 00 não vale."
+  },
+  {
+   "linha": "P(50) = 1/10 × 1/5",
+   "nota": "unidade 0 e depois dezena 5, entre 5 bolas."
+  },
+  {
+   "linha": "P(50) = 1/50",
+   "nota": "10 × 5 = 50 no denominador."
+  },
+  {
+   "linha": "Unid. 2: dezenas 0,1,2,3,4,5",
+   "nota": "02, 12, 22, 32, 42 e 52. São 6 bolas."
+  },
+  {
+   "linha": "P(02) = 1/10 × 1/6",
+   "nota": "unidade 2 e depois dezena 0, entre 6 bolas."
+  },
+  {
+   "linha": "P(02) = 1/60",
+   "nota": "10 × 6 = 60 no denominador."
+  }
+ ],
+ "visual": {
+  "cabe": true,
+  "porque": "Uma árvore mostra que o número de ramos da 2ª etapa depende do ramo da 1ª.",
+  "tipo": "diagrama",
+  "roteiro": "Quadro 1: aparece a 1ª urna com 10 ramos (0 a 9), cada um marcado 1/10. Quadro 2: o ramo 0 se abre em 5 ramos (dezenas 1 a 5), cada um com 1/5; o ramo 5 é destacado e forma 50. Quadro 3: o ramo 2 se abre em 6 ramos (dezenas 0 a 5), cada um com 1/6; o ramo 0 é destacado e forma 02. Quadro 4: multiplicam-se as frações ao longo dos caminhos: 1/50 e 1/60."
+ },
+ "fontes": [],
+ "resposta_resolvedor": "A",
+ "confere": true,
+ "divergencia": "",
+ "gab": "A",
+ "revisao": {
+  "lentes": [
+   "resolvedor"
+  ],
+  "modelos": {
+   "resolvedor": "claude-sonnet-5-5"
+  }
+ }
+}

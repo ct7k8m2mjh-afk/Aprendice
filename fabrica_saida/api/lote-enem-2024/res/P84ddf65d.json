@@ -1,0 +1,143 @@
+{
+ "n": 138,
+ "id": "P84ddf65d",
+ "materia": "mat",
+ "tema": "M13",
+ "conteudo": "M13.1",
+ "nivel": 4,
+ "conceito": "Princípio multiplicativo: contar senhas com algarismos distintos e letras diferentes, escolhendo os caracteres só entre as teclas permitidas.",
+ "confere": true,
+ "divergencia": "",
+ "resolucao": {
+  "antes": {
+   "texto": "O trabalho real da questão é descobrir quais caracteres podem ser usados. Só valem as teclas 1, 2, 5, 7 e 0, junto com as letras que elas trazem. Depois, em cada posição da senha, conte quantas opções restam. O princípio multiplicativo manda multiplicar essas quantidades.",
+   "formulas": [
+    "total = (opções da 1ª posição) × (opções da 2ª) × ... × (opções da 5ª)",
+    "sem repetição: cada escolha tira uma opção das seguintes"
+   ],
+   "simbolos": [
+    [
+     "algarismo",
+     "um dos dígitos 0 a 9"
+    ],
+    [
+     "distintos / diferentes",
+     "sem repetição: o mesmo caractere não pode aparecer duas vezes"
+    ],
+    [
+     "princípio multiplicativo",
+     "se uma etapa tem m formas e a seguinte tem n, juntas elas têm m × n formas"
+    ]
+   ]
+  },
+  "pista": "Antes de contar posições, liste as letras que cada tecla permitida mostra. Atenção: nem toda tecla tem letras.",
+  "passos": [
+   {
+    "faz": "Liste os algarismos permitidos",
+    "conta": "1, 2, 5, 7, 0 → 5 algarismos",
+    "porque": "O enunciado limita o funcionário a essas cinco teclas. Cada uma mostra o seu número no primeiro toque.",
+    "tipo": "localizar"
+   },
+   {
+    "faz": "Liste as letras permitidas",
+    "conta": "2: ABC (3)  5: JKL (3)",
+    "porque": "Na figura, a tecla 2 traz A, B, C e a tecla 5 traz J, K, L.",
+    "tipo": "localizar"
+   },
+   {
+    "faz": "Complete a lista de letras",
+    "conta": "7: PQRS (4)  1 e 0: nenhuma",
+    "porque": "Na figura, a tecla 7 traz P, Q, R, S, e as teclas 1 e 0 não trazem letras. Total: 3 + 3 + 4 = 10 letras.",
+    "tipo": "localizar"
+   },
+   {
+    "faz": "Conte os 2 algarismos distintos",
+    "conta": "5 × 4 = 20",
+    "porque": "O 1º algarismo tem 5 opções. Como o 2º deve ser diferente, restam 4.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Conte as 3 letras diferentes",
+    "conta": "10 × 9 × 8 = 720",
+    "porque": "A 1ª letra tem 10 opções, a 2ª tem 9 e a 3ª tem 8, pois não pode repetir.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Multiplique as duas partes",
+    "conta": "20 × 720 = 14 400",
+    "porque": "A senha tem a parte numérica e depois a parte de letras, nessa ordem. Cada par de algarismos combina com qualquer trio de letras.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa B: são 20 pares de algarismos e 720 trios de letras, o que dá 14 400 senhas.",
+  "checagem": "Conte pelas 5 posições: 5 × 4 × 10 × 9 × 8. Fazendo 5 × 4 × 10 = 200 e 9 × 8 = 72, tem-se 200 × 72 = 14 400. A ordem de grandeza também confere: cerca de 20 pares vezes cerca de 700 trios dá cerca de 14 mil.",
+  "erradas": {
+   "A": "11 520 não confere. Dividido por 20 pares de algarismos, daria 576 trios de letras, e 576 não é produto de três números consecutivos decrescentes. Com 10 letras, o correto é 10 × 9 × 8 = 720.",
+   "C": "18 000 sai de permitir algarismos repetidos: 5 × 5 = 25 pares, e 25 × 720 = 18 000. O enunciado exige algarismos distintos, então o segundo tem só 4 opções.",
+   "D": "312 000 sai de usar as 26 letras do alfabeto: 26 × 25 × 24 = 15 600, e 20 × 15 600 = 312 000. Só valem as letras das teclas 2, 5 e 7, ou seja, 10 letras.",
+   "E": "390 000 sai de dois erros juntos: 26 letras (26 × 25 × 24 = 15 600) e algarismos repetidos (5 × 5 = 25). Assim, 25 × 15 600 = 390 000. Os dois contrariam o enunciado."
+  },
+  "armadilha": "Usar as 26 letras do alfabeto, ou esquecer que só as teclas 2, 5 e 7 têm letras (10 no total), em vez de 3 + 3 + 4.",
+  "alerta": "",
+  "essencial": {
+   "pede": "O número de senhas de 2 algarismos distintos e 3 letras diferentes, nessa ordem, usando só as teclas 1, 2, 5, 7 e 0.",
+   "chave": "5 × 4 para os algarismos e 10 × 9 × 8 para as letras: 20 × 720 = 14 400.",
+   "cuidado": "Conte só as letras das teclas permitidas (2, 5 e 7) e não repita algarismo nem letra."
+  }
+ },
+ "caminhos": [
+  {
+   "nome": "Por posição",
+   "ideia": "Escreva cinco casinhas e preencha: 5, 4, 10, 9, 8. Multiplique tudo: 5 × 4 × 10 × 9 × 8 = 14 400."
+  },
+  {
+   "nome": "Eliminação por ordem de grandeza",
+   "ideia": "Com 10 letras, os trios são 720, e os pares de algarismos são menos de 25. O total fica abaixo de 18 000, o que elimina C, D e E. Resta distinguir A de B pela conta exata."
+  }
+ ],
+ "quadro": [
+  {
+   "linha": "algarismos: 1, 2, 5, 7, 0",
+   "nota": "são 5 algarismos permitidos"
+  },
+  {
+   "linha": "letras: ABC + JKL + PQRS",
+   "nota": "teclas 2, 5 e 7; 1 e 0 não têm letras"
+  },
+  {
+   "linha": "3 + 3 + 4 = 10 letras",
+   "nota": "total de letras disponíveis",
+   "destaque": "10"
+  },
+  {
+   "linha": "algarismos: 5 × 4 = 20",
+   "nota": "o 2º tem de ser distinto do 1º"
+  },
+  {
+   "linha": "letras: 10 × 9 × 8 = 720",
+   "nota": "letras diferentes, sem repetir"
+  },
+  {
+   "linha": "20 × 720 = 14 400",
+   "nota": "multiplique as duas partes da senha",
+   "destaque": "14 400"
+  }
+ ],
+ "visual": {
+  "cabe": false,
+  "porque": "A contagem se resolve com cinco casinhas e uma multiplicação; uma animação não acrescenta nada.",
+  "tipo": "nenhum",
+  "roteiro": ""
+ },
+ "fontes": [],
+ "resposta_resolvedor": "B",
+ "gab": "B",
+ "revisao": {
+  "lentes": [
+   "resolvedor"
+  ],
+  "modelos": {
+   "resolvedor": "claude-sonnet-5-5"
+  }
+ }
+}

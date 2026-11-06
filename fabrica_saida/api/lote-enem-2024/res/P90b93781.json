@@ -1,0 +1,147 @@
+{
+ "n": 174,
+ "id": "P90b93781",
+ "materia": "mat",
+ "tema": "M11",
+ "conteudo": "M11.5",
+ "nivel": 6,
+ "conceito": "Projeção ortogonal de uma trajetória no espaço sobre o plano da base, usando a malha das paredes para achar profundidade e lado de cada ponto.",
+ "resolucao": {
+  "antes": {
+   "texto": "Projetar ortogonalmente sobre a base é olhar a trajetória de cima. A altura de cada ponto some, e só sobram duas informações: o lado (parede esquerda ou direita) e a profundidade (da frente da base até o fundo). As linhas verticais das paredes marcam a profundidade, porque cada uma delas está a uma distância fixa da frente. Por isso, pontos na mesma vertical têm a mesma projeção.",
+   "formulas": [
+    "projeção de um ponto = (lado, profundidade); a altura é descartada",
+    "segmento vertical (paralelo à altura) vira um ponto"
+   ],
+   "simbolos": [
+    [
+     "projeção ortogonal",
+     "sombra do ponto sobre o plano da base, obtida descendo uma reta perpendicular a esse plano"
+    ],
+    [
+     "profundidade",
+     "distância do ponto até a aresta da frente da base; aqui vai de 0 (frente) a 4 (fundo), em quadradinhos da malha"
+    ],
+    [
+     "plano ortogonal à base",
+     "parede em pé, perpendicular ao chão"
+    ]
+   ]
+  },
+  "pista": "Olhe de cima: em qual parede cada ponto está e em qual linha vertical da malha da parede ele cai? Uma descida reta (de B para C) deixa rastro na vista de cima?",
+  "passos": [
+   {
+    "faz": "Monte a vista de cima",
+    "conta": "Esquerda = parede de B e C",
+    "porque": "Vista de cima, a base é um quadrado 4×4. A parede esquerda é o lado esquerdo e a direita é o lado direito. A frente da figura é a parte de baixo e o fundo é a parte de cima.",
+    "tipo": "interpretar"
+   },
+   {
+    "faz": "Leia a profundidade dos pontos da parede direita",
+    "conta": "A: 4 · D: 2 · E: 1",
+    "porque": "Na figura, A está na vertical do fundo da parede (profundidade 4). D está na 2ª linha vertical a partir da frente e E na 1ª. As linhas verticais da parede têm profundidade constante.",
+    "tipo": "localizar"
+   },
+   {
+    "faz": "Leia B, C e F",
+    "conta": "B = C: esq., prof. 3 · F: meio da frente",
+    "porque": "B e C estão na mesma vertical da parede esquerda, a 1 quadradinho do fundo (profundidade 3). Como BC é um segmento vertical, ele vira um único ponto. F está na frente da base (profundidade 0), no meio, a 2 quadradinhos de cada lado.",
+    "tipo": "localizar"
+   },
+   {
+    "faz": "Escreva as projeções em ordem",
+    "conta": "A(4,4) B=C(0,3) D(4,2) E(4,1) F(2,0)",
+    "porque": "Cada par é (lado, profundidade), com lado 0 = esquerda e 4 = direita. A altura foi descartada.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Una os pontos e compare com as figuras",
+    "conta": "A→B: topo dir. até esq., 1 abaixo do topo",
+    "porque": "A→BC sai do canto superior direito até a esquerda, 1 quadradinho abaixo do topo. BC→D desce até o meio da direita. D→E é um trecho vertical de 1 quadradinho no lado direito. E→F vai à base, no meio. Só a alternativa C tem esse desenho.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa C: a vista de cima tem A no canto superior direito, B=C na esquerda a 1 quadradinho do topo, D no meio da direita, um trecho vertical DE na direita e E ligado a F no meio da frente.",
+  "checagem": "Conte os segmentos da vista de cima. A trajetória ABCDEF tem 5 segmentos, mas BC é vertical e some. Restam 4: AB, CD, DE e EF. A alternativa C tem exatamente 4 segmentos, e DE aparece como trecho vertical na lateral direita, já que D e E estão na mesma parede.",
+  "erradas": {
+   "A": "Mostra C→D horizontal, ao nível do ponto B/C (profundidade 3), e depois um único segmento até F, sem trecho vertical na direita. Na figura, D está na 2ª linha vertical da parede (profundidade 2, não 3) e E na 1ª, então DE aparece como segmento vertical de 1 quadradinho.",
+   "B": "Leva C até a direita na profundidade 2 (ponto D) e dali segue direto até F, sem trecho vertical DE. Mas D e E estão em verticais diferentes da parede direita (profundidades 2 e 1), então DE se projeta num segmento de 1 quadradinho ao longo da parede.",
+   "D": "Desenha um segmento vertical na parede esquerda, como se B e C tivessem profundidades diferentes. Na figura, B e C estão na mesma linha vertical, então BC é um segmento paralelo à altura e se projeta num ponto só.",
+   "E": "Coloca C→D horizontal, com D a 1 quadradinho do topo (profundidade 3), e DE descendo dali. Na figura, D está na 2ª linha vertical a partir da frente (profundidade 2). Por isso CD desce 1 quadradinho na vista de cima e DE fica entre as profundidades 2 e 1."
+  },
+  "armadilha": "Achar que o segmento vertical BC aparece na vista de cima. Altura não aparece na projeção sobre a base, então BC vira um ponto.",
+  "alerta": "",
+  "essencial": {
+   "pede": "A vista de cima (projeção sobre a base) da trajetória ABCDEF.",
+   "chave": "Cada ponto vira (lado, profundidade): A(4,4), B=C(0,3), D(4,2), E(4,1), F(2,0), e segmentos verticais viram pontos.",
+   "cuidado": "Descartar BC e usar as linhas verticais da malha de cada parede para ler a profundidade de D e E."
+  }
+ },
+ "caminhos": [
+  {
+   "nome": "eliminação por características",
+   "ideia": "BC é vertical, então não pode haver segmento na parede esquerda: isso elimina D. CD tem de descer na vista de cima, porque D é mais próximo da frente que C: isso elimina A e E. Só falta existir um trecho vertical DE na direita, e B não o tem: sobra C."
+  }
+ ],
+ "quadro": [
+  {
+   "linha": "Pontos: (lado, profundidade)",
+   "nota": "lado: 0 = esquerda, 4 = direita; profundidade: 0 = frente, 4 = fundo"
+  },
+  {
+   "linha": "A = (4 , 4)",
+   "nota": "parede direita, no fundo"
+  },
+  {
+   "linha": "B = C = (0 , 3)",
+   "nota": "BC é vertical: vira um ponto"
+  },
+  {
+   "linha": "D = (4 , 2)",
+   "nota": "parede direita, 2ª vertical"
+  },
+  {
+   "linha": "E = (4 , 1)",
+   "nota": "parede direita, 1ª vertical"
+  },
+  {
+   "linha": "F = (2 , 0)",
+   "nota": "meio da frente da base"
+  },
+  {
+   "linha": "A→B : (4,4) → (0,3)",
+   "nota": "desce 1 e vai para a esquerda"
+  },
+  {
+   "linha": "C→D : (0,3) → (4,2)",
+   "nota": "desce mais 1 e volta à direita"
+  },
+  {
+   "linha": "D→E : (4,2) → (4,1)",
+   "nota": "trecho vertical na lateral direita"
+  },
+  {
+   "linha": "E→F : (4,1) → (2,0)",
+   "nota": "vai ao meio da frente"
+  }
+ ],
+ "visual": {
+  "cabe": true,
+  "tipo": "figura",
+  "porque": "A projeção é uma transformação de figura: mostrar os pontos descendo até o chão ajuda a entender a vista de cima.",
+  "roteiro": "Quadro 1: as duas paredes e a trajetória ABCDEF em perspectiva, com as linhas verticais da malha destacadas. Quadro 2: cada ponto desce por uma reta perpendicular até a base e deixa uma marca no chão; BC desce e fica no mesmo ponto. Quadro 3: a base vista de cima, quadrado 4×4, com as marcas A(4,4), B=C(0,3), D(4,2), E(4,1), F(2,0). Quadro 4: os segmentos AB, CD, DE e EF são desenhados em sequência, formando a figura da alternativa C."
+ },
+ "fontes": [],
+ "confere": true,
+ "divergencia": "",
+ "resposta_resolvedor": "C",
+ "gab": "C",
+ "revisao": {
+  "lentes": [
+   "resolvedor"
+  ],
+  "modelos": {
+   "resolvedor": "claude-sonnet-5-5"
+  }
+ }
+}

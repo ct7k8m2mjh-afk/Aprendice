@@ -1,0 +1,142 @@
+{
+ "n": 162,
+ "id": "Pd8e0ebd3",
+ "materia": "mat",
+ "tema": "M07",
+ "conteudo": "M07.2",
+ "nivel": 6,
+ "conceito": "Parcelas em progressão geométrica crescente: escolher em que mês começar para que as parcelas pagas pela imobiliária (as de maio) somem o maior valor possível.",
+ "resolucao": {
+  "antes": {
+   "texto": "Cada parcela é a anterior com um acréscimo percentual fixo. Logo as parcelas formam uma PG crescente: quanto mais tarde, maior a parcela. A imobiliária paga as parcelas que caem em maio, então o cliente paga menos quando essas parcelas são as maiores possíveis. A primeira parcela é paga no mês da compra.",
+   "formulas": [
+    "parcela k cai no mês da compra + (k − 1) meses",
+    "maio se repete a cada 12 meses: parcelas k, k + 12, k + 24, ...",
+    "total pago pelo cliente = total das 100 parcelas − parcelas de maio"
+   ],
+   "simbolos": [
+    [
+     "PG",
+     "progressão geométrica: cada termo é o anterior vezes um número fixo (aqui maior que 1)"
+    ],
+    [
+     "k",
+     "número da parcela, de 1 a 100"
+    ]
+   ]
+  },
+  "pista": "Se as parcelas só crescem, quais delas você gostaria que a imobiliária pagasse? Depois veja de que mês precisa começar para que essas caiam em maio.",
+  "passos": [
+   {
+    "faz": "Reconheça que as parcelas crescem",
+    "conta": "parcela 1 < parcela 2 < ... < parcela 100",
+    "porque": "Cada parcela é a anterior com acréscimo percentual, então é maior que ela. A última parcela é a maior de todas.",
+    "tipo": "interpretar"
+   },
+   {
+    "faz": "Diga o que se quer",
+    "conta": "total do cliente = total − parcelas de maio",
+    "porque": "O total das 100 parcelas é o mesmo em qualquer mês. Para o cliente pagar menos, as parcelas de maio devem somar o máximo.",
+    "tipo": "interpretar"
+   },
+   {
+    "faz": "Liste as parcelas que caem em maio",
+    "conta": "k0, k0+12, k0+24, ...",
+    "porque": "O mês se repete a cada 12 parcelas. Se a parcela k0 cai em maio (k0 entre 1 e 12), as seguintes em maio são k0 + 12, k0 + 24 e assim por diante, até 100.",
+    "tipo": "aplicar"
+   },
+   {
+    "faz": "Conte quantas parcelas entram",
+    "conta": "100 = 8 × 12 + 4",
+    "porque": "Com k0 de 1 a 4, cabem 9 parcelas de maio (a última é k0 + 96). Com k0 de 5 a 12, cabem só 8.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Compare e escolha k0 = 4",
+    "conta": "4, 16, ..., 100 (9 parcelas)",
+    "porque": "Com k0 = 4 a parcela 100, a maior de todas, cai em maio. Cada parcela dessa lista é maior que a correspondente de qualquer outro k0, e ela ainda tem uma parcela a mais. Logo é a melhor.",
+    "tipo": "aplicar"
+   },
+   {
+    "faz": "Volte ao mês da compra",
+    "conta": "parcela 4 = maio → parcela 1 = fevereiro",
+    "porque": "Fevereiro (parcela 1), março (2), abril (3), maio (4). A compra deve ser em fevereiro.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa A: comprando em fevereiro, a parcela 4 cai em maio e a parcela 100 também (4 + 96), de modo que a imobiliária paga as parcelas 4, 16, ..., 100, as maiores possíveis.",
+  "checagem": "Fevereiro + 99 meses = fevereiro + 8 anos + 3 meses = maio. Então a parcela 100 cai mesmo em maio, e nenhuma outra escolha de mês consegue isso junto com 9 parcelas de maio.",
+  "erradas": {
+   "B": "Abril: a parcela 1 é em abril e a 2 é em maio. Maio recebe as parcelas 2, 14, ..., 98 (9 parcelas). Cada uma é menor que a correspondente de fevereiro (4, 16, ..., 98 contra 100, para o último par), e a parcela 100 (junho do último ciclo, não maio) não entra.",
+   "C": "Maio: a parcela 1 cai em maio. As parcelas de maio são 1, 13, ..., 97, as menores entre as opções com 9 parcelas. A imobiliária pagaria menos e o cliente, mais.",
+   "D": "Junho: de junho até maio são 12 parcelas, então maio é a parcela 12. As parcelas de maio são 12, 24, ..., 96 (8 parcelas). A parcela 100 fica de fora e há uma parcela de maio a menos que em fevereiro.",
+   "E": "Agosto: de agosto até maio são 10 parcelas, então maio é a parcela 10. As parcelas de maio são 10, 22, ..., 94 (8 parcelas), todas menores que as de fevereiro (16, 28, ..., 100) e uma a menos."
+  },
+  "armadilha": "Achar que o cliente quer maio como mês da primeira parcela (ou que tanto faz o mês). O que importa é que a parcela 100, a maior, caia em maio.",
+  "alerta": "",
+  "essencial": {
+   "pede": "O mês de compra que faz o cliente pagar o menor total, sabendo que a imobiliária paga as parcelas que caem em maio.",
+   "chave": "Parcelas crescem; as de maio devem ser as maiores possíveis, incluindo a 100. Isso dá parcelas 4, 16, ..., 100 em maio.",
+   "cuidado": "A parcela 1 cai no mês da compra, não no mês seguinte. Por isso a parcela 4 está 3 meses depois, e fevereiro é o mês certo."
+  }
+ },
+ "caminhos": [
+  {
+   "nome": "testar as alternativas",
+   "ideia": "Para cada mês, ache em que parcela cai o primeiro maio (A: 4, B: 2, C: 1, D: 12, E: 10) e liste as parcelas de maio. Só A e B têm 9 parcelas. A leva vantagem porque cada parcela é maior que a da lista de B."
+  },
+  {
+   "nome": "contar de trás para frente",
+   "ideia": "Faça a parcela 100 cair em maio e recue de 12 em 12: 100, 88, ..., 4. Chegando à parcela 4, volte 3 meses a partir de maio: fevereiro."
+  }
+ ],
+ "quadro": [
+  {
+   "linha": "parcelas formam PG crescente",
+   "nota": "cada parcela é maior que a anterior"
+  },
+  {
+   "linha": "maio em k0, k0+12, k0+24, ...",
+   "nota": "maio se repete a cada 12 meses"
+  },
+  {
+   "linha": "100 = 8 × 12 + 4",
+   "nota": "com k0 ≤ 4 cabem 9 parcelas de maio"
+  },
+  {
+   "linha": "k0 + 96 = 100 → k0 = 4",
+   "nota": "a parcela 100 (a maior) cai em maio"
+  },
+  {
+   "linha": "parcelas de maio: 4, 16, ..., 100",
+   "nota": "as maiores possíveis"
+  },
+  {
+   "linha": "parcela 1 = maio − 3 meses",
+   "nota": "recue 3 meses a partir de maio"
+  },
+  {
+   "linha": "mês da compra: fevereiro",
+   "nota": "fev (1), mar (2), abr (3), mai (4)"
+  }
+ ],
+ "visual": {
+  "cabe": true,
+  "porque": "Uma linha do tempo com as parcelas e os meses mostra de uma vez onde cai cada maio.",
+  "tipo": "linha-do-tempo",
+  "roteiro": "Quadro 1: faixa com 100 quadradinhos numerados, altura crescente (as parcelas aumentam). Quadro 2: comprando em maio, os maios são 1, 13, ..., 97, pintados de azul (parcelas baixas). Quadro 3: comprando em fevereiro, os maios são 4, 16, ..., 100 (inclui a parcela 100, a mais alta). Quadro 4: lado a lado com junho (12, ..., 96, só 8 parcelas) e destaque de que fevereiro tem a maior soma. Quadro 5: selo 'Fevereiro'."
+ },
+ "fontes": [],
+ "confere": true,
+ "divergencia": "",
+ "resposta_resolvedor": "A",
+ "gab": "A",
+ "revisao": {
+  "lentes": [
+   "resolvedor"
+  ],
+  "modelos": {
+   "resolvedor": "claude-sonnet-5-5"
+  }
+ }
+}

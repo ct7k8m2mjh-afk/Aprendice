@@ -1,0 +1,127 @@
+{
+ "n": 151,
+ "id": "P4b660a80",
+ "materia": "mat",
+ "tema": "M17",
+ "conteudo": "M17.2",
+ "nivel": 2,
+ "conceito": "Montar um código numérico de 7 dígitos seguindo uma regra de posições: andar, setor, funcionário e turno.",
+ "resolucao": {
+  "antes": {
+   "texto": "O código tem 4 blocos, sempre na mesma ordem, da esquerda para a direita: andar (1 dígito), setor (2 dígitos), funcionário (3 dígitos) e turno (1 dígito). Basta pegar cada informação do enunciado e escrevê-la no seu bloco, completando com zeros à esquerda quando o número tem menos dígitos que o bloco.",
+   "formulas": [
+    "código = andar | setor (2 dígitos) | funcionário (3 dígitos) | turno",
+    "1 + 2 + 3 + 1 = 7 dígitos"
+   ],
+   "simbolos": [
+    [
+     "dígito",
+     "cada algarismo de um número; o código 2081090 tem 7 dígitos"
+    ],
+    [
+     "turno",
+     "manhã é o dígito 0; tarde é o dígito 1"
+    ]
+   ]
+  },
+  "pista": "Escreva quatro caixinhas na ordem da regra e preencha uma por vez, sem pular nenhuma.",
+  "passos": [
+   {
+    "faz": "Leia os dados do visitante",
+    "conta": "andar 2; setor 08; func. 109; 10h",
+    "porque": "O enunciado diz: 2º andar, setor 08, funcionário 109, chegada às 10 horas da manhã.",
+    "tipo": "localizar"
+   },
+   {
+    "faz": "Preencha o 1º bloco: andar",
+    "conta": "andar 2 → 2",
+    "porque": "O primeiro dígito é o andar. O visitante vai ao 2º andar, então o código começa com 2.",
+    "tipo": "aplicar"
+   },
+   {
+    "faz": "Preencha o setor e o funcionário",
+    "conta": "setor 08 → 08 ; func. 109 → 109",
+    "porque": "O setor usa 2 dígitos (08, com o zero) e o funcionário usa 3 dígitos (109). Os dois já vêm no tamanho certo.",
+    "tipo": "aplicar"
+   },
+   {
+    "faz": "Preencha o último bloco: turno",
+    "conta": "10h da manhã → 0",
+    "porque": "Dez horas da manhã é turno da manhã, que corresponde ao dígito 0.",
+    "tipo": "aplicar"
+   },
+   {
+    "faz": "Junte os blocos na ordem",
+    "conta": "2 | 08 | 109 | 0 → 2081090",
+    "porque": "Colocando andar, setor, funcionário e turno em sequência, o código tem 7 dígitos: 2081090.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa D: 2081090, que é andar 2, setor 08, funcionário 109 e turno da manhã 0.",
+  "checagem": "Leia o código de trás para a frente: último dígito 0 (manhã), três dígitos antes 109 (funcionário), dois antes 08 (setor), sobrou 2 (andar). Tudo bate, e são 7 dígitos.",
+  "erradas": {
+   "A": "0109082 começa com 0, mas o andar deve ser de 1 a 4 (aqui, 2). Os blocos estão fora de ordem: 0 (turno), 109 (funcionário), 08 (setor), 2 (andar). É o código lido de trás para a frente, e termina em 2, que não é turno (só 0 ou 1).",
+   "B": "0281090 começa com 0, que não é andar válido. Seguindo a regra, o setor seria 08, mas aqui os dígitos 2 e 8 aparecem como '02' e '81' (setor 02 e funcionário 810). Não corresponde ao setor 08 nem ao funcionário 109.",
+   "C": "1010982 começa com 1, mas o visitante vai ao 2º andar. Termina em 2, e o último dígito só pode ser 0 ou 1. Os blocos 010 e 98 também não correspondem ao setor 08 e ao funcionário 109.",
+   "E": "2810910 começa com 2 (andar certo), mas depois vêm 81 como setor, que passa de 20, e 091 como funcionário, que não é 109. Os dígitos 08 e 109 foram embaralhados, e o setor 08 e o funcionário 109 não aparecem nos seus blocos."
+  },
+  "armadilha": "Esquecer o zero do setor 08 (que tem de ocupar 2 dígitos) ou trocar a ordem dos blocos.",
+  "alerta": "",
+  "essencial": {
+   "pede": "O código de 7 dígitos do visitante do 2º andar, setor 08, funcionário 109, chegada pela manhã.",
+   "chave": "Escrever, na ordem da regra: andar (2), setor (08), funcionário (109) e turno (0).",
+   "cuidado": "Respeitar o tamanho de cada bloco: o setor 08 tem 2 dígitos, com o zero à esquerda."
+  }
+ },
+ "caminhos": [
+  {
+   "nome": "eliminação pelo primeiro e pelo último dígito",
+   "ideia": "O código deve começar com 2 (andar) e terminar com 0 (manhã). Só a alternativa D satisfaz as duas condições."
+  }
+ ],
+ "quadro": [
+  {
+   "linha": "andar: 2",
+   "nota": "2º andar → 1 dígito"
+  },
+  {
+   "linha": "setor: 08",
+   "nota": "2 dígitos, com o zero"
+  },
+  {
+   "linha": "func.: 109",
+   "nota": "3 dígitos"
+  },
+  {
+   "linha": "turno: 0",
+   "nota": "10h da manhã → 0"
+  },
+  {
+   "linha": "2 | 08 | 109 | 0",
+   "nota": "blocos na ordem da regra"
+  },
+  {
+   "linha": "código = 2081090",
+   "nota": "7 dígitos"
+  }
+ ],
+ "visual": {
+  "cabe": true,
+  "porque": "Ajuda ver o código sendo montado bloco a bloco, cada informação indo para a sua caixinha.",
+  "tipo": "diagrama",
+  "roteiro": "Quadro 1: sete casinhas vazias, agrupadas em 1 | 2 | 3 | 1, com rótulos andar, setor, funcionário, turno. Quadro 2: o 2 entra na primeira caixa. Quadro 3: 0 e 8 entram na caixa do setor. Quadro 4: 1, 0 e 9 entram na caixa do funcionário. Quadro 5: o 0 entra na última caixa (sol da manhã). Quadro 6: o código completo 2081090 aparece e destaca-se na alternativa D."
+ },
+ "fontes": [],
+ "confere": true,
+ "divergencia": "",
+ "resposta_resolvedor": "D",
+ "gab": "D",
+ "revisao": {
+  "lentes": [
+   "resolvedor"
+  ],
+  "modelos": {
+   "resolvedor": "claude-sonnet-5-5"
+  }
+ }
+}

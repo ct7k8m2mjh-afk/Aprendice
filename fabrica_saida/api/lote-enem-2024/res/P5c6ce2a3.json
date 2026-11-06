@@ -1,0 +1,136 @@
+{
+ "n": 169,
+ "id": "P5c6ce2a3",
+ "materia": "mat",
+ "tema": "M13",
+ "conteudo": "M13.4",
+ "nivel": 4,
+ "conceito": "Probabilidade de acertar só na 3ª tentativa, sem repetir as tentativas já erradas (produto de probabilidades condicionais).",
+ "resolucao": {
+  "antes": {
+   "texto": "Decifrar a Cifra de César é descobrir por qual letra o A foi trocado. Como a mensagem foi codificada, o A não ficou como A: sobram 25 padrões possíveis (as alternativas já usam 25). Quem acerta só na 3ª tentativa erra a 1ª, erra a 2ª e acerta a 3ª. Como cada tentativa errada sai da lista, o número de opções diminui a cada vez. Os três eventos acontecem em sequência (um 'e' depois do outro), então as probabilidades se multiplicam.",
+   "formulas": [
+    "probabilidade = casos favoráveis ÷ casos possíveis",
+    "evento 'e' evento (em sequência): multiplica as probabilidades"
+   ],
+   "simbolos": [
+    [
+     "padrão",
+     "a letra pela qual o A foi substituído; define toda a cifra"
+    ],
+    [
+     "tentativa frustrada",
+     "tentativa em que o padrão escolhido estava errado"
+    ],
+    [
+     "eliminada",
+     "não pode ser escolhida de novo nas tentativas seguintes"
+    ]
+   ]
+  },
+  "pista": "Quantos padrões ainda restam antes de cada tentativa, se os já testados e errados saem da lista?",
+  "passos": [
+   {
+    "faz": "Conte os padrões possíveis",
+    "conta": "26 letras − 1 = 25 padrões",
+    "porque": "O A trocado por ele mesmo não codifica nada. Restam 25 letras possíveis para o A, e só uma é a certa.",
+    "tipo": "localizar"
+   },
+   {
+    "faz": "Calcule errar a 1ª tentativa",
+    "conta": "P(errar 1ª) = 24/25",
+    "porque": "Entre 25 padrões, 24 estão errados.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Calcule errar a 2ª tentativa",
+    "conta": "P(errar 2ª) = 23/24",
+    "porque": "O padrão errado da 1ª foi eliminado. Restam 24 padrões, dos quais 23 estão errados.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Calcule acertar a 3ª tentativa",
+    "conta": "P(acertar 3ª) = 1/23",
+    "porque": "Dois padrões errados foram eliminados. Restam 23 padrões e só 1 é o certo.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Multiplique as três etapas",
+    "conta": "24/25 × 23/24 × 1/23",
+    "porque": "É errar a 1ª E errar a 2ª E acertar a 3ª. Eventos em sequência se multiplicam. Isso é a alternativa E.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa E: (24/25) × (23/24) × (1/23), isto é, errar a 1ª, errar a 2ª e acertar a 3ª, com os padrões errados eliminados.",
+  "checagem": "Cancelando 24 e 23, o produto dá 1/25. Isso faz sentido: com tentativas sem repetição, cada posição da ordem de teste tem a mesma chance, 1/25, de ser a do padrão certo.",
+  "erradas": {
+   "A": "1/25 + 1/25 + 1/25 = 3/25 é a probabilidade de acertar em alguma das três primeiras tentativas (1ª, 2ª ou 3ª). A questão pede acertar apenas na 3ª, o que exige errar antes.",
+   "B": "Somou as frações. Errar e acertar em sequência se multiplicam. A soma 24/25 + 23/24 + 1/23 ≈ 0,96 + 0,96 + 0,04 ≈ 1,96 passa de 1, e nenhuma probabilidade pode ser maior que 1.",
+   "C": "1/25 × 1/24 × 1/23 é a probabilidade de acertar nas três tentativas seguidas. Só existe um padrão certo, então não se acerta três vezes. Faltou errar as duas primeiras.",
+   "D": "O denominador ficou 25 nas três tentativas, como se o padrão errado pudesse ser testado de novo. O enunciado manda eliminar as tentativas frustradas, então os denominadores caem: 25, 24, 23."
+  },
+  "armadilha": "Esquecer de eliminar as tentativas erradas (denominador sempre 25) ou esquecer que é preciso errar as duas primeiras antes de acertar.",
+  "alerta": "",
+  "essencial": {
+   "pede": "A probabilidade de descobrir o padrão só na 3ª tentativa, sem repetir tentativas erradas.",
+   "chave": "Errar a 1ª (24/25), errar a 2ª (23/24) e acertar a 3ª (1/23), multiplicando as três.",
+   "cuidado": "Os denominadores diminuem (25, 24, 23) porque cada erro sai da lista, e as etapas se multiplicam, não se somam."
+  }
+ },
+ "caminhos": [
+  {
+   "nome": "simetria da ordem",
+   "ideia": "Se os padrões são testados sem repetição, o padrão certo tem a mesma chance de estar em qualquer posição da ordem de teste: 1/25 para a 3ª. O produto 24/25 × 23/24 × 1/23 também dá 1/25."
+  },
+  {
+   "nome": "eliminação",
+   "ideia": "A soma passa de 1 (B) e não é a pedida (A). O produto só de 1/25, 1/24 e 1/23 ignora os erros (C). O denominador fixo 25 ignora a eliminação (D). Sobra E."
+  }
+ ],
+ "quadro": [
+  {
+   "linha": "padrões possíveis = 25",
+   "nota": "26 letras menos o A→A"
+  },
+  {
+   "linha": "1ª tentativa errada: 24/25",
+   "nota": "24 erradas entre 25"
+  },
+  {
+   "linha": "2ª tentativa errada: 23/24",
+   "nota": "restam 24; 23 erradas"
+  },
+  {
+   "linha": "3ª tentativa certa: 1/23",
+   "nota": "restam 23; 1 certa"
+  },
+  {
+   "linha": "P = 24/25 × 23/24 × 1/23",
+   "nota": "errou, errou, acertou: multiplica"
+  },
+  {
+   "linha": "P = 1/25",
+   "nota": "cancele 24 com 24 e 23 com 23",
+   "destaque": "1/25"
+  }
+ ],
+ "visual": {
+  "cabe": true,
+  "porque": "A lista de padrões que diminui a cada tentativa errada mostra por que os denominadores caem.",
+  "tipo": "fluxo",
+  "roteiro": "Quadro 1: 25 fichas, uma dourada (padrão certo). Quadro 2: 1ª tentativa, tira uma ficha cinza; escreve 24/25. Quadro 3: restam 24 fichas, tira outra cinza; escreve 23/24. Quadro 4: restam 23 fichas, tira a dourada; escreve 1/23. Quadro 5: as três frações se juntam com × e os números iguais se cancelam, restando 1/25."
+ },
+ "fontes": [],
+ "confere": true,
+ "divergencia": "",
+ "resposta_resolvedor": "E",
+ "gab": "E",
+ "revisao": {
+  "lentes": [
+   "resolvedor"
+  ],
+  "modelos": {
+   "resolvedor": "claude-sonnet-5-5"
+  }
+ }
+}
