@@ -17,3 +17,4 @@ Observações para a integração:
 | S02 Socialização | aprovado (06/11/2026) | 37 |
 | L04 Lógica | aprovado (06/11/2026) | 38 |
 | S07 Globalização | aprovado (06/11/2026) | 49 |
+| S08 Mídia e indústria cultural | aprovado (06/11/2026) | 48 |
