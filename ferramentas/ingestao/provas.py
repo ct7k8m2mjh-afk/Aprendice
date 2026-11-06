@@ -1635,3 +1635,75 @@ PROVAS['unemat-2026-1']['sem_transcricao'] = (6, 13, 27)
 PROVAS['unemat-2023']['sem_transcricao'] = (28, 35)
 PROVAS['unimontes-2024']['sem_transcricao'] = (15,)
 PROVAS['ufsm-2025']['faixas_pag'] = {('p1-caderno', 11): [(50, 794, 289.5)]}   # números de linha da 19 começam em x≈292
+
+
+# ---------------------------------------------------------------------------------------------------- UNIRG
+def _cx(rx):
+    """título de seção em caixa alta ou só com a inicial maiúscula (nunca a palavra solta de um texto justificado)"""
+    return rf'^(?:{rx.upper()}|{rx[0].upper() + rx[1:]})$'
+
+
+_UNIRG_SEC = [(r'^(L[ÍI]NGUA PORTUGUESA|L[íi]ngua Portuguesa)$', 'Língua Portuguesa'), (r'^(LITERATURA BRASILEIRA|Literatura Brasileira)$', 'Literatura'),
+              (r'^(L[ÍI]NGUA ESTRANGEIRA\s*\(?ESPANHOL\)?|L[íi]ngua Estrangeira\s*\(Espanhol\))$', 'Espanhol'),
+              (r'^(L[ÍI]NGUA ESTRANGEIRA(\s*\(?INGL[ÊE]S\)?)?|L[íi]ngua Estrangeira\s*\(Ingl[êe]s\))$', 'Inglês'),
+              (_cx('biologia'), 'Biologia'), (r'^(F[ÍI]SICA|F[íi]sica)$', 'Física'), (r'^(QU[ÍI]MICA|Qu[íi]mica)$', 'Química'),
+              (r'^(MATEM[ÁA]TICA|Matem[áa]tica)$', 'Matemática'), (_cx('geografia'), 'Geografia'), (r'^(HIST[ÓO]RIA|Hist[óo]ria)$', 'História')]
+
+
+def unirg(ano, sem, formato):
+    """UNIRG (Universidade de Gurupi), Processo Seletivo de Medicina, campus Gurupi, caderno tipo 1: 54 questões A–D
+    (Língua Portuguesa, Literatura, língua estrangeira, Biologia, Física, Química, Matemática, Geografia e História, 6 de cada).
+    Três diagramações: 'unirg' (2022–2023, duas colunas, "Questão 01"; inglês e espanhol no mesmo caderno, numerados 13–18),
+    'ipefae' (2024/1–2026/1, duas colunas, "Q. 25", caderno só com inglês) e 'tipo1' (2026/2, uma coluna, "QUESTÃO 1";
+    espanhol e inglês numerados 7–12). Gabarito definitivo do tipo 1; '*' ou NULA/Anulada = anulada."""
+    def gab(pasta):
+        txt = texto_pdf(pasta / 'gabarito.pdf')
+        g = {}
+        if formato == 'unirg':
+            bloco = re.split(r'PROVA\s+TIPO\s+2', txt)[0]
+            for n, v in re.findall(r'(?<!\d)(\d{1,2})\s*[–-]\s*([A-D]\b|\*|ANULADA)', bloco):
+                g.setdefault(int(n), v if v in 'ABCD' else 'X')   # na mesma linha o inglês vem antes do espanhol
+        elif formato == 'ipefae':
+            ini = txt.index('GABARITO', txt.index('SEGUE'))
+            bloco = re.split(r'(?m)^\s*PROVA 1\s*$', txt[ini:])[1]
+            bloco = re.split(r'(?m)^\s*PROVA 2\s*$', bloco)[0]
+            for n, v in re.findall(r'(\d{2}):\s*([A-D]\b|Anulada|ANULADA|\*)', bloco):
+                g[int(n)] = v if v in 'ABCD' else 'X'
+        else:   # tipo1: espanhol 7–12 e depois inglês 7–12: vale o último
+            for n, v in re.findall(r'(?<![\d,.])(\d{1,2})\s+([A-D]\b|NULA)', txt):
+                g[int(n)] = v if v in 'ABCD' else 'X'
+        return g
+
+    cfg = {
+        'catalogo': 'unirg', 'escola': 'UNIRG', 'ano': str(ano), 'fase': f'Medicina {ano}/{sem}', 'titulo': f'UNIRG Medicina {ano}/{sem}',
+        'banca': 'UNIRG' if formato != 'ipefae' else 'Ipefae', 'duracao_horas': 4.5, 'total': 54, 'alternativas': 4,
+        'nota': f'Universidade de Gurupi (TO), Processo Seletivo {ano}/{sem} do curso de Medicina, campus Gurupi, caderno tipo 1: '
+                '54 questões A–D, 6 por matéria. Língua estrangeira: inglês. Redação fora. Gabarito definitivo publicado pela '
+                'Comissão Permanente de Processo Seletivo; anulada fica fora.',
+        'cadernos': [{'arquivo': 'caderno', 'paginas': (2, 999)}],
+        'secoes_rx': _UNIRG_SEC, 'pular_secoes': ('Espanhol',), 'pular_antes_sequencia': True, 'sequencial': True, 'ancora_negrito': True,
+        'corte': [r'(?i)^(LINGUAGENS,? C[ÓO]DIGOS|CI[ÊE]NCIAS DA NATUREZA|CI[ÊE]NCIAS HUMANAS|MATEM[ÁA]TICA E SUAS)', r'(?i)^Reda[çc][ãa]o$',
+                  r'(?i)PROPOSTA DE REDA', r'(?i)^REDA[ÇC][ÃA]O EM L', r'(?i)^TABELA PERI', r'(?i)^Classifica[çc][ãa]o Peri',
+                  r'(?i)^Espa[çc]o para Rascunho', r'(?i)^RASCUNHO'],
+        'suporte': [r'(?i)(responda|responder)\b.*\bquest[õo]es', r'(?i)answer\b.*\bquestions', r'(?i)^textos? para as quest',
+                    r'(?i)^texts? for (the )?questions', r'(?i)^(Leia atentamente|As informa[çc][õo]es a seguir|Os? textos? a seguir)'],
+        # área pela posição (6 por matéria): nem todo caderno traz o título de cada matéria (2023/2 não tem "Matemática")
+        'gabarito': gab, 'area_do_gabarito': True,
+        'area': lambda n: (('Língua Portuguesa', 'Literatura', 'Inglês') if formato == 'unirg' else ('Língua Portuguesa', 'Inglês', 'Literatura'))[(n - 1) // 6]
+                if n <= 18 else ('Biologia', 'Física', 'Química', 'Matemática', 'Geografia', 'História')[(n - 19) // 6],
+    }
+    if formato == 'unirg':
+        cfg.update({'colunas': lambda r: [(36, 298), (298, r.width - 30)], 'margem': 36, 'topo': 32, 'base': 30,
+                    'ancora': r'(?i)^Quest[ãa]o\s+(\d{1,2})$', 'ancora_dx': 14})
+    elif formato == 'ipefae':
+        cfg.update({'colunas': lambda r: [(30, 300), (300, r.width - 26)], 'margem': 30, 'topo': 31, 'base': 28,
+                    'ancora': r'^Q\.\s*(\d{1,2})$', 'ancora_dx': 22})
+    else:
+        cfg.update({'colunas': lambda r: [(38, r.width - 36)], 'margem': 38, 'topo': 30, 'base': 40,
+                    'ancora': r'^QUEST[ÃA]O\s+(\d{1,2})$', 'ancora_dx': 12})
+    return cfg
+
+
+for _a, _s, _f in ((2022, 1, 'unirg'), (2022, 2, 'unirg'), (2023, 2, 'unirg'), (2024, 1, 'ipefae'), (2024, 2, 'ipefae'),
+                   (2025, 2, 'ipefae'), (2026, 1, 'ipefae'), (2026, 2, 'tipo1')):
+    PROVAS[f'unirg-{_a}-{_s}'] = unirg(_a, _s, _f)
