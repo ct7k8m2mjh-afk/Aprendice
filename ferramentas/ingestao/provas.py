@@ -1858,7 +1858,7 @@ def gab_destacado(pasta, cfg, pares_arq, letras='ABCDE'):
                     for w in pdf[p].get_text('words'):
                         cx, cy = (w[0] + w[2]) / 2, (w[1] + w[3]) / 2
                         m_ = re.fullmatch(rf'\(([{letras}])\)', w[4])
-                        if m_ and dr.x0 - 6 <= w[0] <= dr.x0 + 12 and dr.y0 - 2 <= cy <= dr.y1 + 2:
+                        if m_ and dr.x0 - 6 <= w[0] <= dr.x0 + 12 and dr.y0 - 2 <= cy <= dr.y1 + 2 and r.contains(pymupdf.Point(cx, cy)):
                             cand.append((abs(cy - (dr.y0 + dr.y1) / 2), m_.group(1)))
                     if cand:
                         achadas.add(min(cand)[1])
