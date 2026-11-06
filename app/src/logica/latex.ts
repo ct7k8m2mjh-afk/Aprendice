@@ -235,7 +235,7 @@ export function latexParaMotor(src: string, contaFracoes: (linha: string) => num
     // Humanas: passos de raciocínio em \text{}; a quebra que só corta a frase (linha seguinte em minúscula) some
     for (const l of linhas) {
       const t = plano(l, ok, 'barra').replace(/\s+/g, ' ').trim();
-      if (out.length && /^[a-zà-ÿ]/.test(t)) out[out.length - 1] += ' ' + t; else if (t) out.push(t);
+      if (out.length && continuaFrase(out[out.length - 1], t)) out[out.length - 1] += ' ' + t; else if (t) out.push(t);
     }
     return out.join('\n');
   }
@@ -250,4 +250,12 @@ export function latexParaMotor(src: string, contaFracoes: (linha: string) => num
   const esperado = (src.match(CONTA_FRAC) || []).length;
   if (esperado !== out.reduce((a, l) => a + contaFracoes(l), 0)) return null;
   return out.join('\n');
+}
+
+/** A linha de baixo continua a frase de cima (começa em minúscula) ou é um item novo da lista (começa com a mesma palavra
+ *  da de cima: "risca 'a': ..." / "risca 'b': ...")? */
+export function continuaFrase(ant: string, prox: string): boolean {
+  if (!/^[a-zà-ÿ]/.test(prox)) return false;
+  const p1 = ant.trim().split(/\s+/)[0], p2 = prox.trim().split(/\s+/)[0];
+  return p1.toLowerCase() !== p2.toLowerCase();
 }

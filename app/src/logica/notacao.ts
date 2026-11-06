@@ -24,6 +24,10 @@ const RE_INDICE = /_\{([^{}\n]{1,20})\}|_([A-Za-z0-9áéíóúâêôãõç]+)/g;
 const RE_VARIND = /(?<![A-Za-zÀ-ÿ0-9_#.,])([a-zα-ω])(\d{1,2})(?![A-Za-zÀ-ÿ0-9#_^]|[.,]\d)/g;
 
 /** é uma fórmula química de verdade (todos os pedaços são símbolos de elementos; tem índice ou carga)? */
+export function ehFormulaQuimica(f: string): boolean {
+  const m = /^(.*?)(\^?\d?[+−-])?$/.exec(f)!;
+  return ehFormula(m[1], m[2]);
+}
 function ehFormula(f: string, carga: string | undefined): boolean {
   const simb = f.replace(/[()\d]/g, ' ').trim().split(/\s+|(?=[A-Z])/).filter(Boolean);
   if (!simb.length || !simb.every((x) => SIMBOLOS.has(x))) return false;
@@ -39,19 +43,7 @@ export function partesNotacao(s: string): ParteNotacao[] {
   if (!/[\^_\d+−-]/.test(s)) return [{ t: 'txt', v: s }];
   const pedacos: Pedaco[] = [];
   const livre = (a: number, b: number) => !pedacos.some((p) => a < p.fim && p.ini < b);
-  // 1) expoente e índice escritos ("^", "_")
-  for (const [re, t] of [[RE_EXPO, 'sup'], [RE_INDICE, 'sub']] as const) {
-    re.lastIndex = 0;
-    for (let m = re.exec(s); m; m = re.exec(s)) {
-      if (m.index === 0 || /\s/.test(s[m.index - 1])) continue; // "^" solto não é expoente
-      const chave = m[1] != null;
-      const v = chave ? m[1] : m[2];
-      const pre = t === 'sup' ? (chave ? '^(' : '^') : (chave ? '_{' : '_');
-      const pos = chave ? (t === 'sup' ? ')' : '}') : '';
-      if (livre(m.index, m.index + m[0].length)) pedacos.push({ ini: m.index, fim: m.index + m[0].length, partes: [{ t, v, pre, pos }] });
-    }
-  }
-  // 2) fórmula química: o número depois do símbolo (ou do parêntese) desce; a carga sobe
+  // 1) fórmula química: o número depois do símbolo (ou do parêntese) desce; a carga sobe
   RE_FORMULA.lastIndex = 0;
   for (let m = RE_FORMULA.exec(s); m; m = RE_FORMULA.exec(s)) {
     const f = m[1], carga = m[2];
@@ -75,6 +67,18 @@ export function partesNotacao(s: string): ParteNotacao[] {
       partes.push(c.startsWith('^') ? { t: 'sup', v: c.slice(1), pre: '^', pos: '' } : { t: 'sup', v: c, pre: '', pos: '' });
     }
     pedacos.push({ ini, fim, partes });
+  }
+  // 2) expoente e índice escritos ("^", "_")
+  for (const [re, t] of [[RE_EXPO, 'sup'], [RE_INDICE, 'sub']] as const) {
+    re.lastIndex = 0;
+    for (let m = re.exec(s); m; m = re.exec(s)) {
+      if (m.index === 0 || /\s/.test(s[m.index - 1])) continue; // "^" solto não é expoente
+      const chave = m[1] != null;
+      const v = chave ? m[1] : m[2];
+      const pre = t === 'sup' ? (chave ? '^(' : '^') : (chave ? '_{' : '_');
+      const pos = chave ? (t === 'sup' ? ')' : '}') : '';
+      if (livre(m.index, m.index + m[0].length)) pedacos.push({ ini: m.index, fim: m.index + m[0].length, partes: [{ t, v, pre, pos }] });
+    }
   }
   // 3) variável com índice colado ("m0", "a1")
   RE_VARIND.lastIndex = 0;

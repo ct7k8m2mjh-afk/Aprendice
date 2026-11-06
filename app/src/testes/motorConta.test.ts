@@ -81,10 +81,10 @@ describe('transformações que o motor anima', () => {
     expect(p.trocas).toEqual(['+']);
   });
   it('o número que multiplica vai para o outro lado dividindo', () => {
+    // "224 ÷ 7" é fração empilhada: o 7 desce para o denominador
     const [p] = movimentos('7a = 224 → a = 224 ÷ 7');
     expect(p.tipo).toBe('divide');
-    expect(p.cruza).toEqual(expect.arrayContaining(['÷', '7']));
-    expect(p.trocas).toEqual(['×']);
+    expect(p.cruza).toEqual(['7']);
     // para o denominador de uma fração empilhada
     const [f] = movimentos('7a = 224 → a = 224/7');
     expect(f.tipo).toBe('divide');
@@ -135,6 +135,51 @@ describe('transformações que o motor anima', () => {
   });
 });
 
+describe('rodada 2 da auditoria (comando 20)', () => {
+  const quadro = (ls: string[], m = 'fis') => montaRoteiro({ quadro: ls.map((linha) => ({ linha })) }, m);
+  it('multiplicação cruzada com as frações escritas "a / b" e os lados trocados (São Camilo 2024/2, Q34)', () => {
+    const rt = quadro(['7,0 mm / f = 7 / 800', '7 · f = 7,0 · 800', 'f = 800 mm']);
+    expect(rt.linhas[1].planos[0].tipo).toBe('cruzada');
+    expect(rt.linhas[2].planos.length).toBe(1);
+  });
+  it('"corte o 18 de cima e de baixo": os dois 18 são riscados (Q40)', () => {
+    const rt = quadro(['média = 18·(15 + 16 + 17) ÷ (18·3)', 'média = (15 + 16 + 17) ÷ 3'], 'mat');
+    const p = rt.linhas[1].planos[0];
+    expect(p.tipo).toBe('cancela');
+    expect(p.riscos.map((r) => (r.p ? (r.p === 'n' ? rt.linhas[0].toks[r.i].nt! : rt.linhas[0].toks[r.i].dt!)[r.s!].v : rt.linhas[0].toks[r.i].v)).filter((v) => v !== '·')).toEqual(['18', '18']);
+  });
+  it('mesmo nome dos dois lados: a conta da direita é feita ("ΔH = 20 − 5" → "ΔH = +15 kcal/mol", Q28)', () => {
+    const rt = quadro(['ΔH = 20 − 5', 'ΔH = +15 kcal/mol'], 'qui');
+    expect(rt.linhas[1].planos[0].tipo).toBe('resultado');
+  });
+  it('conta com o nome da quantidade ("36 dias ÷ 3 = 12 dias", "200 kg − 156 kg = 44 kg de CO2")', () => {
+    expect(movimentos('36 dias ÷ 3 = 12 dias', 'qui')[0].tipo).toBe('resultado');
+    expect(movimentos('200 kg − 156 kg = 44 kg de CO2', 'qui')[0].tipo).toBe('resultado');
+  });
+  it('destaque no termo inteiro, nunca dentro de outro (Q29 "4", Q37 "SQ", Q40 "÷ 3")', () => {
+    const q29 = montaRoteiro({ quadro: [{ linha: '240 ÷ 60 = 4', destaque: '4' }] }, 'qui').linhas[0];
+    expect(q29.texto.slice(...q29.marca!)).toBe('4');
+    expect(q29.marca![0]).toBe(q29.texto.length - 1);
+    const q37 = montaRoteiro({ quadro: [{ linha: 'Área(PQRS) = Área(SPQ) + Área(SQR)', destaque: 'SQ' }] }, 'mat').linhas[0];
+    expect(q37.marca).toBeUndefined();
+    const q40 = montaRoteiro({ quadro: [{ linha: 'média = 18·(15 + 16 + 17) ÷ (18·3)', destaque: '18·' }] }, 'mat').linhas[0];
+    expect(q40.texto.slice(...q40.marca!)).toBe('18');
+  });
+  it('processo desenhado pelo mesmo motor: reação, fluxo, cadeia, pares, contraste e etapas', () => {
+    const tipo = (s: string, m = 'bio') => montaRoteiro({ passos: [{ faz: '', conta: s, porque: '' }] }, m).linhas[0].diagrama?.tipo;
+    expect(tipo('aminoácido + aminoácido → peptídeo + água', 'qui')).toBe('reacao');
+    expect(tipo('inversa: C + D → A + B', 'qui')).toBe('reacao');
+    expect(tipo('cápsula (2n) → meiose → esporos (n)')).toBe('fluxo');
+    expect(tipo('HS–CH2–CH2–CH(NH2)–COOH', 'qui')).toBe('cadeia');
+    expect(tipo('algas: 0  |  peixes, moluscos, pessoas: −')).toBe('pares');
+    expect(tipo('genes ativados × genes inativados')).toBe('contraste');
+    expect(tipo('O gene tinha íntrons e éxons. Os íntrons são retirados no processamento.')).toBe('etapas');
+    // conta com "=" continua com o motor da conta; Português não ganha diagrama
+    expect(tipo('n = 4,86 g ÷ 24,32 g/mol ≈ 0,2 mol', 'qui')).toBeUndefined();
+    expect(tipo('autor → obra', 'por')).toBeUndefined();
+  });
+});
+
 describe.skipIf(!tem)('todas as resoluções do site', () => {
   const itens = todas();
   it('o motor nunca produz uma linha diferente da linha final dos dados', () => {
@@ -172,7 +217,12 @@ describe.skipIf(!tem)('todas as resoluções do site', () => {
       const doc = dp.parseFromString(`<div>${html}</div>`, 'text/html');
       const ls = [...doc.querySelectorAll<HTMLElement>('[data-l]')];
       expect(ls.length, id).toBe(rt.linhas.length);
-      ls.forEach((el) => expect(el.textContent, id).toBe(rt.linhas[Number(el.dataset.l)].texto));
+      // o que se lê (sem os desenhos aria-hidden: sinal à mão, número pequeno) é o texto dos dados
+      ls.forEach((el) => {
+        const c = el.cloneNode(true) as HTMLElement;
+        c.querySelectorAll('[aria-hidden="true"]').forEach((x) => x.remove());
+        expect(c.textContent, id).toBe(rt.linhas[Number(el.dataset.l)].texto);
+      });
     }
   });
   it('cobertura: resoluções de Matemática com pelo menos uma transição animada', () => {
@@ -187,6 +237,20 @@ describe.skipIf(!tem)('todas as resoluções do site', () => {
     }
     console.log(`[motor] Matemática: ${com} de ${mat.length} resoluções com transição animada; ${comMov} com termo trocando de lado, dividindo, cruzando ou cancelando`, tipos);
     expect(com / mat.length).toBeGreaterThan(0.7);
+  });
+  it('cobertura: Biologia, Química e Física com processo ou conta animada', () => {
+    for (const m of ['bio', 'qui', 'fis']) {
+      const xs = itens.filter((x) => x.m === m);
+      if (!xs.length) continue;
+      let conta = 0, processo = 0, alguma = 0;
+      for (const { r } of xs) {
+        const rt = montaRoteiro(r, m);
+        const c = rt.linhas.some((l) => l.planos.length), p = rt.linhas.some((l) => l.diagrama);
+        if (c) conta++; if (p) processo++; if (c || p) alguma++;
+      }
+      console.log(`[motor] ${m}: ${alguma} de ${xs.length} com animação (${conta} com conta em movimento, ${processo} com processo desenhado)`);
+      expect(alguma / xs.length).toBeGreaterThan(0.6);
+    }
   });
 });
 

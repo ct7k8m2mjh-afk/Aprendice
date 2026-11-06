@@ -56,6 +56,8 @@ describe('LaTeX das revisões', () => {
     // Humanas: a quebra que só corta a frase some; item novo fica em linha própria
     expect(latexParaMotor('\\begin{gathered} \\text{ética: agir pelo correto,} \\\\ \\text{não por medo} \\\\ \\text{(2) outro} \\end{gathered}', contaFracoes, true))
       .toBe('ética: agir pelo correto, não por medo\n(2) outro');
+    // item novo de lista que começa com a mesma palavra fica na sua linha
+    expect(latexParaMotor('\\begin{gathered} \\text{risca a: errada} \\\\ \\text{risca b: exagera} \\end{gathered}', contaFracoes, true)).toBe('risca a: errada\nrisca b: exagera');
   });
   it('o motor anima a passagem do 10 que multiplica para o outro lado dividindo', () => {
     const conta = latexParaMotor('10\\,\\Delta s = 400 \\;\\Rightarrow\\; \\Delta s = \\frac{400}{10} = 40\\ \\text{m}', contaFracoes)!;

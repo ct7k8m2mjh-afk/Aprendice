@@ -89,7 +89,7 @@ def baixa(prova, rotulo, url):
                     break
                 except http.client.IncompleteRead as e:
                     dados += e.partial
-        except (ConnectionError, TimeoutError) as e:
+        except (ConnectionError, TimeoutError, urllib.error.URLError) as e:
             print(f'  conexão interrompida ({e}); tentando de novo')
         time.sleep(PAUSA)
     # alguns servidores (PHP) põem quebra de linha antes do cabeçalho: tira só espaço em branco

@@ -1707,3 +1707,55 @@ def unirg(ano, sem, formato):
 for _a, _s, _f in ((2022, 1, 'unirg'), (2022, 2, 'unirg'), (2023, 2, 'unirg'), (2024, 1, 'ipefae'), (2024, 2, 'ipefae'),
                    (2025, 2, 'ipefae'), (2026, 1, 'ipefae'), (2026, 2, 'tipo1')):
     PROVAS[f'unirg-{_a}-{_s}'] = unirg(_a, _s, _f)
+
+
+# -------------------------------------------------------------------------------------------------- Unitins
+def unitins(ano, sem, ordem=('Física', 'Biologia', 'Matemática', 'História', 'Geografia', 'Química')):
+    """Unitins, Vestibular Presencial {ano}/{sem}: 50 questões A–E — 6 matérias com 5 questões cada (1–30), Língua
+    Portuguesa e Literatura Brasileira (31–45) e língua estrangeira (46–50, inglês ou espanhol: vale o inglês).
+    Página com faixas de largura total e trechos em duas colunas (modo 'faixas'); "QUESTÃO 1"/"Questão 01" em negrito.
+    Gabarito definitivo: grade "número letra" (até 2023) ou linhas "Questão"/"Gabarito" por matéria (desde 2024)."""
+    def gab(pasta):
+        txt = texto_pdf(pasta / 'gabarito.pdf')
+        txt = re.split(r'(?m)^\s*Espanhol\s*$', txt)[0]   # quadro do espanhol (2024+) fica fora
+        g = {}
+        ls = txt.splitlines()
+        for a, b in zip(ls, ls[1:]):
+            if a.strip().startswith('Questão') and b.strip().startswith('Gabarito'):
+                ns = [int(x) for x in a.split()[1:]]
+                vs = re.findall(r'\*?Anul(?:ada|\.)|\*?[A-E]\b', b.split('Gabarito', 1)[1])
+                assert len(ns) == len(vs), (a, b)
+                for n, v in zip(ns, vs):
+                    v = v.lstrip('*')
+                    g[n] = v if v in 'ABCDE' else 'X'
+        if not g:
+            # grade antiga: "46 A E" (inglês, espanhol) — vale a 1ª letra
+            for n, v in re.findall(r'(?<![\d,.])(\d{1,2})\s+([A-E])\*?(?=\s|$)', txt):
+                g.setdefault(int(n), v)
+        return g
+
+    nomes = list(ordem) + ['Língua Portuguesa'] * 3 + ['Inglês']
+    sec = [(r'^(L[ÍI]NGUA ESPANHOLA|ESPANHOL|Espanhol|L[íi]ngua Espanhola)$', 'Espanhol'),
+           (r'^(L[ÍI]NGUA INGLESA|INGL[ÊE]S|Ingl[êe]s|L[íi]ngua Inglesa)$', 'Inglês')]
+    return {
+        'catalogo': 'unitins', 'escola': 'Unitins', 'ano': str(ano), 'fase': f'Vestibular {ano}/{sem}', 'titulo': f'Unitins {ano}/{sem}',
+        'banca': 'Unitins', 'duracao_horas': 4.5, 'total': 50,
+        'nota': f'Universidade Estadual do Tocantins, Vestibular Presencial {ano}/{sem}: 50 questões A–E (Física, Biologia, '
+                'Matemática, História, Geografia, Química, Língua Portuguesa e Literatura Brasileira, língua estrangeira). '
+                'Língua estrangeira: inglês. Redação fora. Gabarito definitivo; anulada fica fora.',
+        'cadernos': [{'arquivo': 'caderno', 'paginas': (2, 999)}],
+        'colunas': 'faixas', 'faixas_modo': 'largas', 'divisa': 297, 'margem': 20, 'topo': 24, 'base': 24,
+        'ancora': r'(?i)^QUEST[ÃA]O\s+(\d{1,2})$', 'ancora_dx': 32, 'sequencial': True, 'ancora_negrito': True,
+        'secoes_rx': sec, 'pular_secoes': ('Espanhol',), 'pular_antes_sequencia': True,
+        'corte': [r'(?i)^REDA[ÇC][ÃA]O$', r'(?i)^TEXTOS DE APOIO$', r'(?i)^FOLHA DE RASCUNHO', r'(?i)^RASCUNHO',
+                  r'^(F[ÍI]SICA|BIOLOGIA|MATEM[ÁA]TICA|HIST[ÓO]RIA|GEOGRAFIA|QU[ÍI]MICA|L[ÍI]NGUA PORTUGUESA|LITERATURA( BRASILEIRA)?)$',
+                  r'^(F[íi]sica|Biologia|Matem[áa]tica|Hist[óo]ria|Geografia|Qu[íi]mica|L[íi]ngua Portuguesa( e Literatura( Brasileira)?)?|Literatura( Brasileira)?)$'],
+        'suporte': [r'(?i)(responda|responder)\b.*\bquest[õo]es', r'(?i)^textos? para as quest', r'(?i)^(leia|read) .*\bquest[õo]es',
+                    r'(?i)^Leia (o|a|os|as)\b.*(para responder|e responda)', r'(?i)^Textos? para responder'],
+        'gabarito': gab, 'area_do_gabarito': True, 'area': lambda n: nomes[(n - 1) // 5],
+    }
+
+
+for _a, _s in ((2022, 2), (2024, 2), (2025, 2), (2026, 2)):
+    PROVAS[f'unitins-{_a}-{_s}'] = unitins(_a, _s)
+PROVAS['unitins-2023-2'] = unitins(2023, 2, ('Física', 'Matemática', 'Química', 'Biologia', 'História', 'Geografia'))

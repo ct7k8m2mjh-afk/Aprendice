@@ -5,6 +5,33 @@ const fr = (s: string) => partesFracao(s).filter((p) => p.t === 'frac').map((p) 
 const junta = (s: string) => partesFracao(s).map((p) => (p.t === 'txt' ? p.v : p.orig)).join('');
 const nuc = (s: string) => partesFracao(s).filter((p) => p.t === 'nuc').map((p) => (p.t === 'nuc' ? `${p.a}|${p.z}` : ''));
 
+describe('divisão com "÷" e com "/" entre espaços também empilha (comando 20, auditoria A1)', () => {
+  it('casos das resoluções', () => {
+    expect(fr('(47 + C) ÷ (272 − C) = 3 ÷ 8')).toEqual(['47 + C|272 − C', '3|8']);
+    expect(fr('C = 440 ÷ 11 = 40')).toEqual(['440|11']);
+    expect(fr('72 ÷ 247 ≈ 0,29')).toEqual(['72|247']);
+    expect(fr('1 g ÷ 2^4 = 0,0625 g')).toEqual(['1 g|2^4']);
+    expect(fr('d = m / V')).toEqual(['m|V']);
+    expect(fr('i / f = o / p')).toEqual(['i|f', 'o|p']);
+    expect(fr('3 500 / 400 000 = 7 / 800')).toEqual(['3 500|400 000', '7|800']);
+    expect(fr('7,0 mm / f = 7 / 800')).toEqual(['7,0 mm|f', '7|800']);
+    expect(fr('f₁ / f₅ = 330 / 110')).toEqual(['f₁|f₅', '330|110']);
+    expect(fr('média = (18·15 + 18·16 + 18·17) ÷ (18 + 18 + 18)')).toEqual(['18·15 + 18·16 + 18·17|18 + 18 + 18']);
+    expect(fr('n = log 2 ÷ log 1,1')).toEqual(['log 2|log 1,1']);
+    // a de fora primeiro; a de dentro empilha dentro dela
+    expect(fr('6 = 2 × (x ÷ 6) ÷ (1 − x² ÷ 36)')).toEqual(['x ÷ 6|1 − x² ÷ 36']);
+    // divisão encadeada: (a ÷ b) ÷ c, a primeira dentro do numerador
+    expect(fr('a ÷ b ÷ c')).toEqual(['a ÷ b|c']);
+  });
+  it('o texto não muda', () => {
+    for (const s of ['(47 + C) ÷ (272 − C) = 3 ÷ 8', 'd = m / V', 'a ÷ b ÷ c', '1 g ÷ 2^4 = 0,0625 g'])
+      expect(partesFracao(s).map((p) => (p.t === 'txt' ? p.v : p.orig)).join('')).toBe(s);
+  });
+  it('verso, unidade e alternativas com " / " ficam na linha', () => {
+    for (const s of ['calaste dez mil enganos, / tu roubaste', '10 m / s', 'e / ou', 'A / B', 'de 3 / 4 de maio']) expect(fr(s), s).toEqual(s === 'de 3 / 4 de maio' ? ['3|4'] : []);
+  });
+});
+
 describe('fração empilhada', () => {
   it('acha frações numéricas e algébricas simples', () => {
     expect(fr('2/5 × 1/8')).toEqual(['2|5', '1|8']);

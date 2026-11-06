@@ -135,7 +135,7 @@ export function partesFracao(texto: string): ParteFracao[] {
 // ou número com unidade ("1 g ÷ 2^4")
 const EXPO = String.raw`(?:\^\([^()\n]{1,24}\)|\^[−\-+]?[0-9a-zA-Z,]+[+−]?|[²³⁴⁵⁶⁷⁸⁹¹⁰⁻⁺]+)?`;
 const SIMPLES = String.raw`(?:(?:log|ln|sen|cos|tg)\s?)?(?:\d{1,3}(?:[ \u00a0\u202f]\d{3})+(?:,\d+)?|\d+(?:[.,]\d+)*)?√?(?:\d+(?:[.,]\d+)*)?(?:[A-Z]{2}|[A-Z][a-z]|[xy][A-Z]|[a-zA-Zα-ωπθμΔ](?:_[A-Za-z0-9]+)?)?[₀-₉]*` + EXPO + '%?';
-const UNID = String.raw`\d+(?:[.,]\d+)?\s(?:g|mg|kg|mL|L|mol|cm|m|km|s|h|min)`;
+const UNID = String.raw`\d+(?:[.,]\d+)?\s(?:mg|kg|μg|µg|g|mL|L|mol|mm|cm|km|nm|m|min|s|h|J|kJ|kcal|atm|K|C|A|V)`;
 const RE_ESQ = new RegExp(`(?:${UNID}|${SIMPLES})$`, 'u');
 const RE_DIR = new RegExp(`^(?:${UNID}(?![A-Za-z])|${SIMPLES})`, 'u');
 const RE_OP = /\s*÷\s*| \/ /g;
@@ -208,7 +208,7 @@ function divisoes(s: string): ParteFracao[] {
       // "A / B" entre alternativas, unidade ("10 m / s"), verso ("enganos, / tu"), palavras
       const so = (x: string) => /^[A-Za-zα-ωμ]+$/.test(x);
       if (/^[A-E]$/.test(num) && /^[A-E]$/.test(den)) continue;
-      if (new RegExp(`^${UNID}$`, 'u').test(num)) continue;
+      if (new RegExp(`^${UNID}$`, 'u').test(num) && /^(?:s|h|min|L|mL|mol|kg|g|m|cm|km)$/.test(den)) continue;
       if (so(num) && /\d\s+$/.test(antes)) continue;
       if (so(num) && so(den) && !/(^|[=+−\-×·(≈])\s*$/.test(antes) && !/^\s*[=≈]/.test(depois)) continue;
     }

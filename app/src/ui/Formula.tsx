@@ -1,5 +1,5 @@
 import { Fragment, type ReactNode } from 'react';
-import { analisaLatex, latexParaLeitura, type NoMat } from '../logica/latex';
+import { analisaLatex, continuaFrase, latexParaLeitura, type NoMat } from '../logica/latex';
 import { comFracoes } from './Fracao';
 import '../estilo/revisao.css'; // fórmulas e revisão em slides (comandos 24 e 26)
 
@@ -24,8 +24,8 @@ export function Formula({ tex, className, bloco = true, prosa = false }: { tex: 
 function juntaFrases(ls: NoMat[][]): NoMat[][] {
   const out: NoMat[][] = [];
   for (const l of ls) {
-    const ini = l[0] && l[0].t === 'txt' ? l[0].v.trimStart() : '';
-    if (out.length && /^[a-zà-ÿ]/.test(ini)) out[out.length - 1] = [...out[out.length - 1], { t: 'txt', v: ' ' }, ...l];
+    const txt = (x: NoMat[]) => x.map((n) => (n.t === 'txt' ? n.v : ' ')).join('').trim();
+    if (out.length && continuaFrase(txt(out[out.length - 1]), txt(l))) out[out.length - 1] = [...out[out.length - 1], { t: 'txt', v: ' ' }, ...l];
     else out.push(l);
   }
   return out;

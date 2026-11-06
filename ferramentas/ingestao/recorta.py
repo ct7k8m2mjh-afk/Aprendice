@@ -278,6 +278,7 @@ def faixas_por_largas(pg, cfg, topo, base):
                             and not pymupdf.Rect(r).contains(pymupdf.Rect(L['bbox'])) for L in ls)
     larg += [(b['bbox'][1], b['bbox'][3]) for b in pg.get_image_info()
              if b['bbox'][0] < meio - 30 and b['bbox'][2] > meio + 30 and topo - 5 < b['bbox'][3] and b['bbox'][1] < base + 5
+             and b['bbox'][3] - b['bbox'][1] < base - topo - 50   # fundo de página inteira (moldura em imagem) não conta
              and not ao_lado(b['bbox'])]
     larg += [(d['rect'].y0, d['rect'].y1) for d in pg.get_drawings()
              if d['rect'].x0 < meio - 30 and d['rect'].x1 > meio + 30 and topo <= d['rect'].y0 <= base and d['rect'].height < base - topo - 50
