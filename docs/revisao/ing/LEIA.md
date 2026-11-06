@@ -11,3 +11,4 @@ Observações para a integração:
 - Exemplos de questão nos slides são novos; se forem ao ar como questão, entram como "Questão Aprendice".
 - `pendencias` traz propostas de conteúdo novo (sem id criado): decisão do dono.
 | I02 Vocabulário | aprovado (06/11/2026) | 45 |
+| I03 Gramática | aprovado (06/11/2026) | 86 |
