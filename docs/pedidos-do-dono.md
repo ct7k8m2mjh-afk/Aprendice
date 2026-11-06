@@ -56,3 +56,7 @@ Imagem enviada nunca é "por enviar": tem uso, e o uso fica registrado.
 - Revisão de cada matéria a partir dos livros que o dono enviou (coleção PV, Poliedro): cada capítulo é lido inteiro e fichado; vira slides de revisão por conteúdo dentro dos temas já existentes (ids não mudam), escritos com nossas palavras, revisados em lentes; imagens só de licença livre (Wikimedia Commons, com crédito) ou desenhadas pelo site. Formato: `docs/revisao/FORMATO.md`.
 - Estratégia de revisão exclusiva do Aprendice: `docs/estrategia-revisao.md` (comando 24).
 - Resoluções de todas as questões de prova do site pela fábrica (comando 25).
+
+## Decisão de 06/11/2026 (tarde) — imagens na revisão em slides
+- Na revisão em slides está autorizado o uso de imagens e referências que ajudem a entender o conteúdo (obras, fotos, mapas, gravuras), decisão do dono (princípio 10). A pintura "Tiradentes esquartejado" (H03.9) está liberada.
+- Continua valendo: registrar de onde veio cada imagem (página, autor, licença ou acervo) e mostrar o crédito no slide; preferir licença livre quando houver versão equivalente.

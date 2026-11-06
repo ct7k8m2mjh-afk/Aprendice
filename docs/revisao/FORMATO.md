@@ -50,7 +50,7 @@ Sequência por conteúdo (6 a 10 slides; nem todo conteúdo usa todos os tipos):
 
 ### Visual (obrigatório em todo slide exceto `na_prova` e `fixe`)
 - A regra do site é "ver a coisa acontecer": prefira `animacao` (o site desenha em SVG e anima com um único motor). Descreva o visual como um roteiro de animação: objetos, posições, o que se move, em que ordem, o que muda nos números ao lado. Use as ideias de animação das fichas e melhore-as.
-- `foto` só de licença livre no Wikimedia Commons, com página, autor e licença conferidos (use WebSearch/WebFetch em commons.wikimedia.org). Nada de imagem do Google, de livro ou de site comercial. Se não achar foto livre boa, use animação ou esquema.
+- `foto`: o dono autorizou (06/11/2026) imagens e referências que ajudem a compreensão (obras, fotos, mapas, gravuras). Prefira licença livre (Wikimedia Commons) quando houver versão equivalente; em qualquer caso registre página, autor e licença ou acervo e mostre o crédito no slide.
 - Nada de emoji, nada de visual "de IA", nada de texto dentro de imagem que dependa de inglês.
 
 ## Convenções
