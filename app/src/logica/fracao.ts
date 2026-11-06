@@ -199,10 +199,16 @@ function fraseComPoucaConta(t: string): boolean {
  *   e de palavra de ligação ("16 pares × 2 cromossomos por par = 32", "8 elétrons do octeto − 6 elétrons…");
  * - nome seguido de "=" e de uma operação logo depois (fórmula por extenso: "ordem global = 2 + 1 = 3",
  *   "entalpia dos produtos = entalpia dos reagentes − 888 kcal");
- * - um rótulo curto com dois-pontos antes disso ("H: 2 × 4 = 8", "200 L da solução 2: 0,01 mol/L × 200 L = 2 mol").
- * Dado solto não é conta: "Z = 7 e o átomo é neutro…", "ΔH⁰ de reação = − 727 kJ/mol, valor negativo…" ficam texto.
+ * - um rótulo curto com dois-pontos antes disso ("H: 2 × 4 = 8", "200 L da solução 2: 0,01 mol/L × 200 L = 2 mol"),
+ *   desde que a conta depois do rótulo chegue a um "=", "≈" ou seta antes de fechar o trecho
+ *   ("enxofre da família VI A: 2 ligações + 2 pares isolados, logo…" é frase);
+ * - equação química escrita com "dá" no lugar da seta ("C16H34 dá C8H16 + C8H18", "2 H2O com corrente elétrica dá
+ *   2 H2 + O2"): fórmula pouco antes do "dá" e fórmula logo depois.
+ * Dado solto não é conta: "Z = 7 e o átomo é neutro…", "ΔH⁰ de reação = − 727 kJ/mol, valor negativo…" ficam texto;
+ * lista de reagentes e produtos também não ("2 H2 + O2 (reagentes) no nível Y; topo da curva…": a soma não chega a
+ * "=" nem a seta).
  */
-const OPERADOR = /^(?:×|÷|\+|−|=|→)$/;
+const OPERADOR = /^(?:×|÷|\+|−|=|≈|→)$/;
 const OPERACAO = /^(?:×|÷|\+|−|→)$/;
 const FIM_DE_TRECHO = /[,;.:!?|]$/;
 function cabecaDeConta(t: string): boolean {
@@ -219,6 +225,16 @@ function cabecaDeConta(t: string): boolean {
     if (FIM_DE_TRECHO.test(w)) return false;
   }
   if (k <= 0) return false;
+  if (tks[k] === '+') {
+    // soma sem resultado no mesmo trecho é lista ("2 H2 + O2 no nível Y;", "2 ligações + 2 pares isolados,"), não conta;
+    // com "=", seta ou outra fórmula depois da parcela é conta ou reação ("H2SO4 + 2 NaOH:", "H⁺ + OH⁻ forma H2O")
+    let fecha = false;
+    for (let j = k + 1; j < tks.length; j++) {
+      if (/^(?:=|≈|→)$/.test(tks[j]) || (j > k + 1 && ehFormulaQuimica(tks[j]))) { fecha = true; break; }
+      if (FIM_DE_TRECHO.test(tks[j])) break;
+    }
+    if (!fecha) return false;
+  }
   if (tks[k] !== '=') return expressao;
   if (numero) return true;
   // "nome = operando operação ...": a operação vem logo depois do "=", antes de pontuação
@@ -228,11 +244,23 @@ function cabecaDeConta(t: string): boolean {
   }
   return false;
 }
+// fórmula química ou esquema de reação: "H2O", "C8H16", "HOH", "R-C(OH)=CH-R'" (sem palavra minúscula comprida)
+function ehFormulaQuimica(tk: string): boolean {
+  const t = tk.replace(/[.,;:!?]+$/, '');
+  if (!/^[A-Z][A-Za-z0-9()=≡'+⁺⁻²³-]*$/.test(t) || /[a-z]{3}/.test(t)) return false;
+  return /\d/.test(t) || (t.match(/[A-Z]/g) || []).length >= 2;
+}
 function comecaComConta(s: string): boolean {
   const semFase = s.replace(/\s?\((?:aq|s|l|g|v)\)/g, '');
   // equação com seta entre fórmulas, em qualquer lugar ("B é consumido na etapa 2 (AY + B → AB + Y)…")
   const tks = semFase.split(/\s+/);
   for (let i = 1; i < tks.length - 1; i++) if (tks[i] === '→' && ehAtomo(tks[i - 1]) && ehAtomo(tks[i + 1])) return true;
+  // "dá" no lugar da seta: fórmula até 4 palavras antes e fórmula logo depois (ou depois do nome: "dá etano C2H6")
+  for (let i = 1; i < tks.length - 1; i++) {
+    if (tks[i] !== 'dá') continue;
+    const antes = tks.slice(Math.max(0, i - 4), i), depois = tks.slice(i + 1, i + 3);
+    if (antes.some(ehFormulaQuimica) && depois.some(ehFormulaQuimica)) return true;
+  }
   const t = semFase.replace(/\s\([^()]*\)/g, ' ').trim(); // comentário entre parênteses não conta
   if (cabecaDeConta(t)) return true;
   const rot = /^([^:]{1,40}):\s+(.+)$/.exec(t);

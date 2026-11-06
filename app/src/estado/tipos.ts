@@ -74,8 +74,9 @@ export interface SessaoTreino { it: { k: 'q' | 'f' | 'c'; id: string }[]; i: num
 export interface Preferencias { tema: 'claro' | 'escuro' | 'sistema'; menuFechado: boolean; ultimaMateria: MateriaId | null }
 
 export interface Estado {
-  /** 1: formato inicial; 2: Filosofia e Sociologia unidas em 'fs' (migracao.ts, migraEstado). */
-  versao: 2;
+  /** 1: formato inicial; 2: Filosofia e Sociologia unidas em 'fs'; 3: questões de sites didáticos retiradas, histórico
+   *  levado à questão de prova equivalente ou guardado no id antigo (migracao.ts, migraEstado). Estado novo nasce na 3. */
+  versao: 2 | 3;
   perfil: Perfil | null;
   materias: Partial<Record<MateriaId, EstadoMateria>>;
   simulado: SimuladoAndamento | null;
@@ -91,7 +92,7 @@ export function estadoMateriaVazio(): EstadoMateria {
 
 export function estadoVazio(): Estado {
   return {
-    versao: 2,
+    versao: 3,
     perfil: null,
     materias: {},
     simulado: null,

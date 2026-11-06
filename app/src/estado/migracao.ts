@@ -7,6 +7,7 @@
 import { MATERIA_UNIDA, materiaAtual, type MateriaId } from '../dados/tipos';
 import type { EstadoMateria, EstadoQuestao, Estado, FlashRec, SessaoTreino, SimuladoFeito, SimuladoResultado } from './tipos';
 import { estadoMateriaVazio, estadoVazio } from './tipos';
+import { RETIRADAS, type RetiradaBruta } from '../dados/questoesRetiradas';
 
 export const CHAVES_PROTOTIPO: Record<string, MateriaId> = {
   'saocamilo.bio.v1': 'bio', 'saocamilo.qui.v1': 'qui', 'saocamilo.mat.v1': 'mat', 'saocamilo.por.v1': 'por',
@@ -101,6 +102,8 @@ export function importaArquivo(estado: Estado, texto: string, idsPorMateria: Rec
 
   const novo: Estado = { ...estado, materias: { ...estado.materias } };
   const r: ResultadoImportacao = { materias: [], questoes: 0, cartoes: 0 };
+  // ids de questões de site retiradas (comando 21) continuam valendo num arquivo antigo: o histórico entra e segue a tabela
+  idsPorMateria = comRetiradas(idsPorMateria);
 
   const junta = (mArq: MateriaId, s: Partial<EstadoMateria>) => {
     const m = materiaAtual(mArq) || mArq; // arquivo antigo com 'fil' ou 'soc' entra em Filosofia e Sociologia
@@ -113,7 +116,7 @@ export function importaArquivo(estado: Estado, texto: string, idsPorMateria: Rec
     r.cartoes += Object.keys(obj(s.flash) || {}).length;
   };
 
-  if ((d.versao === 1 || d.versao === 2) && obj(d.materias)) {
+  if ((d.versao === 1 || d.versao === 2 || d.versao === 3) && obj(d.materias)) {
     // exportação do app novo
     for (const [m, s] of Object.entries(d.materias as Record<string, Partial<EstadoMateria>>)) junta(m as MateriaId, s);
     if (Array.isArray(d.simuladosFeitos)) {
@@ -138,7 +141,7 @@ export function importaArquivo(estado: Estado, texto: string, idsPorMateria: Rec
     }
     if (!achou) return { estado, r: { ...r, erro: 'Não encontrei progresso do APRENDICE neste arquivo.' } };
   }
-  return { estado: novo, r };
+  return { estado: aplicaRetiradas(novo), r };
 }
 
 /** Na primeira abertura no mesmo navegador do protótipo, puxa as chaves antigas (sem apagá-las). */
@@ -153,7 +156,7 @@ export function migraDoNavegador(estado: Estado, ler: (k: string) => string | nu
       e = { ...e, materias: { ...e.materias, [m]: mesclaMateria(e.materias[m] || estadoMateriaVazio(), s) }, migradoDe: [...e.migradoDe, k] };
     } catch { /* chave corrompida: deixa como está, não apaga */ }
   }
-  return e;
+  return e === estado ? e : aplicaRetiradas(e);
 }
 
 /* ============ migração versionada do estado salvo (princípio 7) ============
@@ -161,7 +164,7 @@ export function migraDoNavegador(estado: Estado, ler: (k: string) => string | nu
  * v1 -> v2 (comando 18 do dono): Filosofia ('fil') e Sociologia ('soc') viram UMA matéria, Filosofia e Sociologia ('fs').
  * Os ids de questões, temas e cartões não mudam; o progresso das duas é mesclado na matéria nova sem perder nada. */
 
-export const VERSAO_ATUAL = 2;
+export const VERSAO_ATUAL = 3;
 const ANTIGAS = Object.keys(MATERIA_UNIDA) as (keyof typeof MATERIA_UNIDA)[];
 
 /** Momento da última atividade de uma matéria (tentativas, cartões, sessões), para escolher o "continuar de onde parou". */
@@ -214,9 +217,97 @@ function v1paraV2(e: Estado): Estado {
   return { ...e, versao: 2, materias: mats as Estado['materias'], treino: treino as Estado['treino'], simulado, simuladosFeitos, pref: { ...e.pref, ultimaMateria } };
 }
 
+/* v2 -> v3 (comando 21 do dono): as questões copiadas de sites didáticos saíram do site (docs/questoes-aprendice.md).
+ * - Com questão de prova equivalente (mesma questão, achada na triagem): o histórico (tentativas, revisão espaçada,
+ *   marcada, "continuar de onde parou", treino e simulado em andamento) passa para o id da questão de prova.
+ * - Sem equivalente: o histórico fica guardado no id antigo (nada é apagado) e continua contando no desempenho e na
+ *   revisão do conteúdo (logica/estatisticas.ts). Quando a Questão Aprendice do conteúdo chegar, a tabela ganha o
+ *   destino e este mesmo passo leva o histórico até ela.
+ * A tabela cresce com o tempo (provas novas, Questões Aprendice), por isso o passo roda em toda carga: é idempotente. */
+
+export interface Retirada { m: MateriaId; sub: string; dif: number; para?: { m: MateriaId; id: string } }
+export type TabelaRetiradas = Partial<Record<MateriaId, Record<string, RetiradaBruta>>>;
+
+function leRetirada(m: MateriaId, r: RetiradaBruta | undefined): Retirada | null {
+  if (!r) return null;
+  return { m, sub: r[0], dif: r[1], ...(r[2] && r[3] ? { para: { m: r[2], id: r[3] } } : {}) };
+}
+
+/** A questão de site retirada (ou null se o id não é de uma questão retirada). */
+export function retirada(m: MateriaId, id: string, tabela: TabelaRetiradas = RETIRADAS): Retirada | null {
+  return leRetirada(m, tabela[m]?.[id]);
+}
+
+/** Todas as questões retiradas de uma matéria. */
+export function retiradasDe(m: MateriaId, tabela: TabelaRetiradas = RETIRADAS): (Retirada & { id: string })[] {
+  return Object.entries(tabela[m] || {}).map(([id, r]) => ({ id, ...leRetirada(m, r)! }));
+}
+
+function comRetiradas(ids: Record<string, Set<string>>, tabela: TabelaRetiradas = RETIRADAS): Record<string, Set<string>> {
+  const out: Record<string, Set<string>> = { ...ids };
+  for (const [m, t] of Object.entries(tabela)) if (t) out[m] = new Set([...(ids[m] || []), ...Object.keys(t)]);
+  return out;
+}
+
+/** Passo v2 -> v3: leva o histórico das questões de site retiradas à questão de prova equivalente (quando existe). */
+export function aplicaRetiradas(e: Estado, tabela: TabelaRetiradas = RETIRADAS): Estado {
+  const destino = (m: MateriaId | undefined, id: string) => (m ? retirada(m, id, tabela)?.para : undefined);
+  let mats = e.materias;
+  let mudou = false;
+  for (const [mm, s] of Object.entries(e.materias)) {
+    const m = mm as MateriaId;
+    if (!s || !tabela[m]) continue;
+    for (const id of Object.keys(s.q)) {
+      const p = destino(m, id);
+      if (!p) continue;
+      const hist = mats[m]!.q[id];
+      const q = { ...mats[m]!.q };
+      delete q[id];
+      const ult = mats[m]!.ult === id ? (p.m === m ? p.id : mats[m]!.ult) : mats[m]!.ult;
+      mats = { ...mats, [m]: { ...mats[m]!, q, ult } };
+      const alvo = mats[p.m] || estadoMateriaVazio();
+      mats = { ...mats, [p.m]: { ...alvo, q: mesclaQ(alvo.q, { [p.id]: hist }) } };
+      mudou = true;
+    }
+  }
+  // treino geral em andamento: item de site vira a questão de prova (mesma matéria) ou sai da sessão
+  let treino = e.treino;
+  for (const [mm, t] of Object.entries(e.treino)) {
+    const m = mm as MateriaId;
+    if (!t || !t.it.some((x) => x.k === 'q' && retirada(m, x.id, tabela))) continue;
+    const it: typeof t.it = [];
+    let i = t.i;
+    t.it.forEach((x, k) => {
+      const r = x.k === 'q' ? retirada(m, x.id, tabela) : null;
+      if (!r) { it.push(x); return; }
+      if (r.para && r.para.m === m) { it.push({ ...x, id: r.para.id }); return; }
+      if (k < t.i) i--; // item já feito saiu: a posição atual recua junto
+    });
+    treino = { ...treino, [m]: { ...t, it, i: Math.max(0, Math.min(i, it.length)) } };
+    mudou = true;
+  }
+  // simulados (em andamento e feitos): os itens de questões do banco apontam para o id novo
+  const trocaItem = <T extends { m?: MateriaId; id: string; p?: string }>(x: T): T => {
+    const p = x.p ? undefined : destino(x.m, x.id);
+    if (!p) return x;
+    mudou = true;
+    return { ...x, m: p.m, id: p.id };
+  };
+  const simulado = e.simulado ? { ...e.simulado, itens: e.simulado.itens.map(trocaItem) } : e.simulado;
+  const simuladosFeitos = e.simuladosFeitos.map((f) => ({ ...f, itens: f.itens.map(trocaItem) }));
+  if (simulado && e.simulado) {
+    // respostas e marcações do simulado em andamento são guardadas pelo id do item
+    const novoId = new Map(e.simulado.itens.map((x, k) => [x.id, simulado.itens[k].id]));
+    simulado.resp = Object.fromEntries(Object.entries(e.simulado.resp).map(([k, v]) => [novoId.get(k) || k, v]));
+    simulado.marcadas = e.simulado.marcadas.map((k) => novoId.get(k) || k);
+  }
+  return mudou ? { ...e, materias: mats, treino, simulado, simuladosFeitos } : e;
+}
+
 /** Leva um estado salvo (de qualquer versão conhecida) ao formato atual. Estado já atual volta sem mudança. */
-export function migraEstado(d: Estado | (Omit<Estado, 'versao'> & { versao: number })): Estado {
+export function migraEstado(d: Estado | (Omit<Estado, 'versao'> & { versao: number }), tabela: TabelaRetiradas = RETIRADAS): Estado {
   let e = d as Estado;
   if ((e.versao as number) < 2) e = v1paraV2({ ...e, versao: 2 });
-  return e;
+  if ((e.versao as number) < 3) e = { ...e, versao: 3 };
+  return aplicaRetiradas(e, tabela);
 }

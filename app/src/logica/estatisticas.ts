@@ -1,7 +1,23 @@
 import type { EstadoMateria, Estado } from '../estado/tipos';
 import type { MateriaCarregada } from '../dados/conteudo';
 import type { MateriaId, Questao } from '../dados/tipos';
-import { filaDe, flashVencido, iniDia, DIA } from './revisao';
+import { filaDe, flashVencido, iniDia, DIA, type Fila } from './revisao';
+
+/** Questões em que o aluno pode ter histórico: as do banco e as de site retiradas sem equivalente (comando 21),
+ *  que não aparecem mais mas continuam contando no desempenho (nunca mostrar a lista: use mc.banco para isso). */
+export function comHistorico(mc: MateriaCarregada): Questao[] {
+  return mc.retiradas?.length ? [...mc.banco, ...mc.retiradas] : mc.banco;
+}
+
+/** Revisão de uma questão retirada: vale pelo conteúdo. As respostas dadas depois a outras questões do mesmo
+ *  conteúdo contam como a revisão dela (acertou na data, avança; errou, volta a 1 dia). */
+export function filaRetirada(mc: MateriaCarregada, s: EstadoMateria, r: Questao): Fila | null {
+  const eq = s.q[r.id];
+  if (!eq?.tent.length) return null;
+  const ult = eq.tent[eq.tent.length - 1].ts;
+  const depois = (mc.porSub.get(r.sub) || []).flatMap((q) => (s.q[q.id]?.tent || []).filter((t) => t.ts > ult));
+  return filaDe({ tent: [...eq.tent, ...depois].sort((a, b) => a.ts - b.ts) });
+}
 
 export interface ResumoMateria {
   total: number;
@@ -15,17 +31,16 @@ export interface ResumoMateria {
 }
 
 export function resumoMateria(mc: MateriaCarregada, s: EstadoMateria, agora = Date.now()): ResumoMateria {
-  let feitas = 0, acertos = 0, tentativas = 0, acertoTentativas = 0, vencidas = 0;
-  for (const q of mc.banco) {
+  let feitas = 0, acertos = 0, tentativas = 0, acertoTentativas = 0;
+  for (const q of comHistorico(mc)) {
     const eq = s.q[q.id];
     if (!eq || !eq.tent.length) continue;
     feitas++;
     if (eq.tent[eq.tent.length - 1].ok) acertos++;
     tentativas += eq.tent.length;
     acertoTentativas += eq.tent.filter((t) => t.ok).length;
-    const f = filaDe(eq);
-    if (f && f.vence <= agora) vencidas++;
   }
+  const vencidas = questoesVencidas(mc, s, agora).length;
   const cartoes = cartoesAtivos(mc, s);
   const flashVencidos = cartoes.filter((c) => flashVencido(s.flash[c.id], agora)).length;
   const flashNovos = cartoes.filter((c) => !s.flash[c.id]?.hist?.length).length;
@@ -38,11 +53,21 @@ export function cartoesAtivos(mc: MateriaCarregada, s: EstadoMateria) {
 }
 
 export function questoesVencidas(mc: MateriaCarregada, s: EstadoMateria, ate = Date.now()): Questao[] {
-  return mc.banco
-    .map((q) => ({ q, f: filaDe(s.q[q.id]) }))
-    .filter((x) => x.f && x.f.vence <= ate)
-    .sort((a, b) => a.f!.vence - b.f!.vence)
-    .map((x) => x.q);
+  const l = mc.banco
+    .map((q) => ({ q, vence: filaDe(s.q[q.id])?.vence }))
+    .filter((x): x is { q: Questao; vence: number } => x.vence !== undefined && x.vence <= ate);
+  // questão retirada vencida: entra no lugar dela outra questão do mesmo conteúdo, da dificuldade mais próxima
+  const usadas = new Set(l.map((x) => x.q.id));
+  for (const r of mc.retiradas || []) {
+    const f = filaRetirada(mc, s, r);
+    if (!f || f.vence > ate) continue;
+    const q = (mc.porSub.get(r.sub) || []).filter((x) => !usadas.has(x.id))
+      .sort((a, b) => Math.abs(a.dif - r.dif) - Math.abs(b.dif - r.dif) || (s.q[a.id]?.tent.length || 0) - (s.q[b.id]?.tent.length || 0))[0];
+    if (!q) continue;
+    usadas.add(q.id);
+    l.push({ q, vence: f.vence });
+  }
+  return l.sort((a, b) => a.vence - b.vence).map((x) => x.q);
 }
 
 /** Progresso de uma escada: degraus distintos e quantos já foram acertados. */

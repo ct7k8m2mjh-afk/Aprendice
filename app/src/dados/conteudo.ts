@@ -6,6 +6,7 @@
 import { useEffect, useState } from 'react';
 import type { Figura, MateriaConteudo, MateriaId, Questao, Resolucao, TextoQuestao } from './tipos';
 import { ordemEvolucao } from '../logica/nivel';
+import { retiradasDe } from '../estado/migracao';
 
 const PREVIA = import.meta.env.VITE_PREVIA === '1';
 const BASE = import.meta.env.BASE_URL + 'conteudo/';
@@ -37,6 +38,15 @@ export interface MateriaCarregada {
   /** questões por conteúdo (sub), do mais fácil ao mais difícil (ordem do "Treine sua evolução") */
   porSub: Map<string, Questao[]>;
   amostra?: string[];
+  /** questões de site retiradas sem questão de prova equivalente (comando 21): nunca aparecem; o histórico do aluno
+   *  nelas continua contando no desempenho e na revisão do conteúdo (logica/estatisticas.ts) */
+  retiradas?: Questao[];
+}
+
+/** Marcador de uma questão retirada: só conteúdo, tema e dificuldade (o texto e o print não existem no site). */
+function marcadorRetirada(id: string, sub: string, dif: number): Questao {
+  return { id, escola: '', ano: '', n: '', banca: '', fase: '', enun: '', alts: {}, gab: 'A', modulo: sub.split('.')[0], sub, dif,
+    degrau: 0, conceito: '', pista: '', url: '', origem: 'site', figura: false, retirada: true };
 }
 
 const cache = new Map<MateriaId, Promise<MateriaCarregada>>();
@@ -53,7 +63,8 @@ function monta(id: MateriaId, bancoTodo: Questao[], conteudo: MateriaConteudo, a
   }
   for (const l of porSub.values()) l.sort(ordemEvolucao);
   for (const q of banco) if (q.print) PRINTS_PROVA.set(q.id, q.print);
-  return { id, banco, porId: new Map(banco.map((q) => [q.id, q])), conteudo, porSub, amostra };
+  const retiradas = retiradasDe(id).filter((r) => !r.para).map((r) => marcadorRetirada(r.id, r.sub, r.dif));
+  return { id, banco, porId: new Map(banco.map((q) => [q.id, q])), conteudo, porSub, amostra, retiradas };
 }
 
 export function carregaMateria(id: MateriaId): Promise<MateriaCarregada> {

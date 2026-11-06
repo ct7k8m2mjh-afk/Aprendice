@@ -45,6 +45,8 @@ export interface Questao {
   prova?: string;
   /** texto e transcrição ficam em <m>/txt/<conteúdo>.json (carregados com a questão, para o banco ficar leve) */
   txt?: 1;
+  /** questão de site retirada (comando 21): só guarda o lugar do histórico do aluno no desempenho; nunca é mostrada */
+  retirada?: true;
 }
 
 /** Texto de uma questão de prova (arquivo txt/<conteúdo>.json). */

@@ -197,8 +197,9 @@ function ehPalavra(t: Tok): boolean {
   if (t.k !== 'var') return false;
   const [b] = separaExpoente(t.v);
   if (FUNCOES.has(b)) return false;
-  if (b === 'e' || b === 'é') return true;
-  return /^[A-Za-zÀ-ÿ]{2,}$/.test(b) && /[a-zà-ÿ]{2}/.test(b) && !/^[A-Z]/.test(b) || /^(ou|de|da|do|em|se)$/.test(b);
+  if (b === 'e' || b === 'é' || /^(ou|de|da|do|em|se|no|na|os|as)$/.test(b)) return true;
+  // palavra de 3 letras ou mais com minúsculas ("saltos", "Área", "logo"); "SP", "PQRS", "ab", "xP" são nomes da conta
+  return /^[A-Za-zÀ-ÿ]{3,}$/.test(b) && /[a-zà-ÿ]{2}/.test(b);
 }
 const ehSoma = (t: Tok) => t.k === 'op' && (t.v === '+' || t.v === '−' || t.v === '-');
 const ehVezes = (t: Tok) => t.k === 'op' && (t.v === '×' || t.v === '·' || t.v === '*');
@@ -234,11 +235,9 @@ function termosSoma(ts: Tok[], idx: number[]): Peca[] | null {
   return out;
 }
 function peca(ts: Tok[], idx: number[], tipo: Peca['tipo'], op: number | null): Peca {
-  let ini = 0, fim = idx.length;
   // o grupo inteiro entre parênteses vale pelo de dentro na comparação ("(a + b)" é "a + b")
   const chave = idx.map((i) => ts[i].v).join('');
   const sem = /^\((.*)\)$/.test(chave) && parenteseExterno(ts, idx) ? chave.slice(1, -1) : chave;
-  void ini; void fim;
   return { slots: idx.map((i) => ({ i })), chave: sem.replace(/-/g, '−'), op, tipo, num: avalia(idx.map((i) => ts[i])), idx };
 }
 function parenteseExterno(ts: Tok[], idx: number[]): boolean {
@@ -313,7 +312,7 @@ export interface Plano {
   ini: number; fim: number;
 }
 
-interface Equacao { L: number[]; R: number[] }
+interface Equacao { L: number[]; R: number[]; eq: number }
 interface Lado { toks: Tok[]; l: number }
 
 function semEsp(ts: Tok[], a: number, b: number): number[] {
@@ -343,11 +342,10 @@ function membros(ts: Tok[], idx: number[]): { m: number[][]; rel: number[] } | n
 const temPalavra = (ts: Tok[], idx: number[]) => idx.some((i) => ehPalavra(ts[i]) || ts[i].k === 'txt' || ts[i].k === 'nuc' || ts[i].k === 'pont');
 /** tira a unidade do fim de um membro ("8 cm" → "8"): a unidade nova é só escrita */
 function tiraUnidade(ts: Tok[], idx: number[]): [number[], number[]] {
-  const u: number[] = [];
-  let k = idx.length;
-  while (k > 1 && ts[idx[k - 1]].k === 'var' && UNIDADES.has(ts[idx[k - 1]].v) && !ts[idx[k - 1]].cola) { u.unshift(idx[k - 1]); k--; }
-  if (k > 1 && ts[idx[k - 1]].k === 'var' && ts[idx[k - 1]].cola && UNIDADES.has(ts[idx[k - 1]].v) && ts[idx[k - 2]].k === 'num') { u.unshift(idx[k - 1]); k--; }
-  return [idx.slice(0, k), u];
+  // só depois de um número ("8 cm", "24 g"): "p + g" continua com o g
+  const k = idx.length;
+  if (k > 1 && ts[idx[k - 1]].k === 'var' && UNIDADES.has(ts[idx[k - 1]].v) && ts[idx[k - 2]].k === 'num') return [idx.slice(0, k - 1), [idx[k - 1]]];
+  return [idx, []];
 }
 
 const refDe = (l: number, s: { i: number; p?: 'n' | 'd' }): Ref => (s.p ? { l, i: s.i, p: s.p } : { l, i: s.i });
@@ -357,12 +355,13 @@ const refDe = (l: number, s: { i: number; p?: 'n' | 'd' }): Ref => (s.p ? { l, i
  * A: equação de antes (termos `a.toks`, linha `a.l`); B: equação nova (linha `b.l`).
  */
 function planoEquacao(a: Lado, ea: Equacao, b: Lado, eb: Equacao): Omit<Plano, 'ini' | 'fim'> | null {
-  if ([ea.L, ea.R].some((x) => temPalavra(a.toks, x))) return null;
-  const [bL, uL] = tiraUnidade(b.toks, eb.L), [bR, uR] = tiraUnidade(b.toks, eb.R);
+  const [bL] = tiraUnidade(b.toks, eb.L), [bR] = tiraUnidade(b.toks, eb.R);
   const [aL] = tiraUnidade(a.toks, ea.L), [aR] = tiraUnidade(a.toks, ea.R);
-  if ([bL, bR].some((x) => temPalavra(b.toks, x))) return null;
-  void uL; void uR;
-  return planoSoma(a, aL, aR, b, bL, bR) || planoProduto(a, aL, aR, b, bL, bR);
+  if ([aL, aR].some((x) => temPalavra(a.toks, x)) || [bL, bR].some((x) => temPalavra(b.toks, x))) return null;
+  const p = planoSoma(a, aL, aR, b, bL, bR) || planoProduto(a, aL, aR, b, bL, bR);
+  // o sinal de igual fica onde está (é a âncora: os termos passam por cima dele)
+  if (p) p.entradas[chaveRef(eb.eq)] = { de: [{ l: a.l, i: ea.eq }] };
+  return p;
 }
 
 function planoSoma(a: Lado, aL: number[], aR: number[], b: Lado, bL: number[], bR: number[]): Omit<Plano, 'ini' | 'fim'> | null {
@@ -394,6 +393,7 @@ function planoSoma(a: Lado, aL: number[], aR: number[], b: Lado, bL: number[], b
   const restoA = soltosA.filter((i) => !cancelados.has(i) && A[i].p.chave !== '0');
   const soltosB = B.map((_, j) => j).filter((j) => !par.has(j) && B[j].p.chave !== '0');
   const entradas: Record<string, Entrada> = {};
+  let atravessouNaConta = false;
   // conta feita junto: o que sobrou de A (números) vira um número só num dos lados de B
   if (restoA.length || soltosB.length) {
     if (soltosB.length !== 1 || !restoA.length) return null;
@@ -407,15 +407,16 @@ function planoSoma(a: Lado, aL: number[], aR: number[], b: Lado, bL: number[], b
     const sB = B[j].p.tipo === '−' ? -1 : 1;
     if (B[j].p.num == null || Math.abs(soma - sB * B[j].p.num) > 1e-9 * Math.max(1, Math.abs(soma))) return null;
     const de = restoA.flatMap((i) => pedacosCom(A[i].p).map((s) => refDe(a.l, s)));
-    for (const s of B[j].p.slots) entradas[chaveRef(s.i, s.p)] = { de };
-    if (B[j].p.op != null) entradas[chaveRef(B[j].p.op)] = { de };
+    const cruza = restoA.some((i) => A[i].lado !== lado) || undefined;
+    if (cruza) atravessouNaConta = true;
+    for (const s of B[j].p.slots) entradas[chaveRef(s.i, s.p)] = { de, atravessa: cruza };
+    if (B[j].p.op != null) entradas[chaveRef(B[j].p.op)] = { de, atravessa: cruza };
   }
   let atravessou = 0, mudouOrdem = false;
   for (const [j, i] of par) {
     const x = B[j], y = A[i], cruza = x.lado !== y.lado;
     if (cruza) atravessou++;
-    if (!cruza && (i !== j - (B.filter((z, jj) => jj < j && z.lado !== x.lado).length - A.filter((z, ii) => ii < i && z.lado !== y.lado).length))) mudouOrdem = true;
-    x.p.slots.forEach((s, k) => { entradas[chaveRef(s.i, s.p)] = { de: [refDe(a.l, y.p.slots[k])], atravessa: cruza || undefined }; });
+    liga(entradas, a.l, x.p, y.p, cruza);
     if (x.p.op != null) {
       const antes = y.p.op != null ? a.toks[y.p.op].v : '+';
       const de = y.p.op != null ? [{ l: a.l, i: y.p.op }] : [refDe(a.l, y.p.slots[0])];
@@ -427,8 +428,16 @@ function planoSoma(a: Lado, aL: number[], aR: number[], b: Lado, bL: number[], b
   if (ordem.some((v, k) => k > 0 && v < ordem[k - 1])) mudouOrdem = true;
   const conta = Object.keys(entradas).some((k) => entradas[k].de.length > 1);
   if (!atravessou && !riscos.length && !conta && !mudouOrdem) return null;
-  const tipo: TipoTransicao = atravessou ? 'troca-lado' : riscos.length ? 'cancela' : conta ? 'resultado' : 'reordena';
+  const tipo: TipoTransicao = atravessou || atravessouNaConta ? 'troca-lado' : riscos.length ? 'cancela' : conta ? 'resultado' : 'reordena';
   return { tipo, entradas, riscos };
+}
+
+/** liga os pedaços de um termo da linha nova aos do termo igual da linha de antes */
+function liga(entradas: Record<string, Entrada>, l: number, x: Peca, y: Peca, cruza: boolean) {
+  const mesmo = x.slots.length === y.slots.length;
+  x.slots.forEach((s, k) => {
+    entradas[chaveRef(s.i, s.p)] = { de: mesmo ? [refDe(l, y.slots[k])] : y.slots.map((z) => refDe(l, z)), atravessa: cruza || undefined };
+  });
 }
 
 /** os pedaços de um termo, com o sinal que o acompanha */
@@ -471,6 +480,7 @@ function planoProduto(a: Lado, aL: number[], aR: number[], b: Lado, bL: number[]
   const restoA = soltosA.filter((i) => !cancelados.has(i) && A[i].p.chave !== '1');
   const soltosB = B.map((_, j) => j).filter((j) => !par.has(j) && B[j].p.chave !== '1');
   const entradas: Record<string, Entrada> = {};
+  let atravessouNaConta = false, viraDivConta = 0, viraMulConta = 0;
   if (restoA.length || soltosB.length) {
     if (soltosB.length !== 1 || !restoA.length) return null;
     const j = soltosB[0], lado = B[j].lado;
@@ -485,15 +495,17 @@ function planoProduto(a: Lado, aL: number[], aR: number[], b: Lado, bL: number[]
     const dec = casasDecimais(y.slots.map((s) => (s.p ? '' : b.toks[s.i].v)).join(''));
     if (Math.abs(v - alvo) > (dec ? 0.5 * Math.pow(10, -dec) : 1e-9 * Math.max(1, Math.abs(alvo)))) return null;
     const de = restoA.flatMap((i) => (A[i].p.op != null ? [{ i: A[i].p.op! }, ...A[i].p.slots] : A[i].p.slots).map((s) => refDe(a.l, s)));
-    for (const s of y.slots) entradas[chaveRef(s.i, s.p)] = { de };
-    if (y.op != null) entradas[chaveRef(y.op)] = { de };
+    const cruza = restoA.filter((i) => A[i].lado !== lado);
+    if (cruza.length) { atravessouNaConta = true; for (const i of cruza) if (A[i].p.tipo === 'mul') viraDivConta++; else viraMulConta++; }
+    for (const s of y.slots) entradas[chaveRef(s.i, s.p)] = { de, atravessa: cruza.length > 0 || undefined };
+    if (y.op != null) entradas[chaveRef(y.op)] = { de, atravessa: cruza.length > 0 || undefined };
   }
   let atravessou = 0, viraDiv = 0, viraMul = 0;
   const ladosQueCruzam = new Set<number>();
   for (const [j, i] of par) {
     const x = B[j], y = A[i], cruza = x.lado !== y.lado;
     if (cruza) { atravessou++; ladosQueCruzam.add(y.lado); if (x.p.tipo === 'div') viraDiv++; else viraMul++; }
-    x.p.slots.forEach((s, k) => { entradas[chaveRef(s.i, s.p)] = { de: [refDe(a.l, y.p.slots[Math.min(k, y.p.slots.length - 1)])], atravessa: cruza || undefined }; });
+    liga(entradas, a.l, x.p, y.p, cruza);
     if (x.p.op != null) {
       const antes = y.p.op != null ? a.toks[y.p.op].v : '×';
       const de = y.p.op != null ? [{ l: a.l, i: y.p.op }] : [refDe(a.l, y.p.slots[0])];
@@ -505,19 +517,19 @@ function planoProduto(a: Lado, aL: number[], aR: number[], b: Lado, bL: number[]
   if (!atravessou && !riscos.length && !conta) return null;
   const fracNosDois = [aL, aR].every((lado) => lado.some((i) => a.toks[i].k === 'frac' || ehDiv(a.toks[i])));
   const tipo: TipoTransicao = atravessou >= 2 && ladosQueCruzam.size === 2 && fracNosDois ? 'cruzada'
-    : atravessou ? (viraDiv >= viraMul ? 'divide' : 'multiplica') : riscos.length ? 'cancela' : 'resultado';
+    : atravessou || atravessouNaConta ? (viraDiv + viraDivConta >= viraMul + viraMulConta ? 'divide' : 'multiplica') : riscos.length ? 'cancela' : 'resultado';
   return { tipo, entradas, riscos };
 }
 
 /** "a operação foi feita": prefixo e sufixo iguais, o meio de A é conta numérica e o meio de B é o valor dela */
 function planoResultado(a: Lado, ia: number[], b: Lado, ib: number[], aprox: boolean): Omit<Plano, 'ini' | 'fim'> | null {
+  // unidade nova no fim do resultado ("= 6 cm") é só escrita
+  if (!(a.toks[ia[ia.length - 1]].k === 'var' && UNIDADES.has(a.toks[ia[ia.length - 1]].v))) ib = tiraUnidade(b.toks, ib)[0];
   const A = ia.map((i) => a.toks[i]), B = ib.map((i) => b.toks[i]);
   let p = 0;
   while (p < A.length && p < B.length && A[p].v === B[p].v) p++;
   let s = 0;
   while (s < A.length - p && s < B.length - p && A[A.length - 1 - s].v === B[B.length - 1 - s].v) s++;
-  // o sinal de menos do resultado fica no meio
-  if (p > 0 && B[p - 1].k === 'op' && negativo(B[p - 1].v) && p < B.length && B[p].k === 'num' && A[p - 1].k === 'op') p--;
   const mA = A.slice(p, A.length - s), mB = B.slice(p, B.length - s);
   if (mA.length < 2 || !mB.length) return null;
   if (mA[0].k === 'op' && !negativo(mA[0].v)) return null;
@@ -637,7 +649,7 @@ function planejaLinha(linhas: LinhaRot[], l: number, anterior: number | null) {
     const z = zona(toks, sg, lado);
     const mm = z.length ? membros(toks, z) : null;
     if (!mm || mm.m.length < 2 || mm.rel.some((i) => toks[i].v !== '=')) return null;
-    return lado === 'fim' ? { L: mm.m[0], R: mm.m[mm.m.length - 1], ultimo: mm.m[mm.m.length - 1] } : { L: mm.m[0], R: mm.m[1], ultimo: mm.m[1] };
+    return lado === 'fim' ? { L: mm.m[0], R: mm.m[mm.m.length - 1], eq: mm.rel[mm.rel.length - 1] } : { L: mm.m[0], R: mm.m[1], eq: mm.rel[0] };
   };
   const ocupados: [number, number][] = [];
   const livre = (a: number, b: number) => !ocupados.some(([x, y]) => a < y && x < b);
