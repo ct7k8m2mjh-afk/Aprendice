@@ -1810,13 +1810,13 @@ PROVAS['uva-2024-1']['topo'] = 82
 
 
 # --------------------------------------------------------------------------------------------------- PUC-Rio
-def gab_destacado(pasta, cfg, pares_arq, letras='ABCDE'):
+def gab_destacado(pasta, cfg, pares_arq, letras='ABCDE', cor=None, rx_letra=r'\(([A-E])\)', carimbo=None):
     """Gabarito oficial publicado como o próprio caderno com a alternativa certa destacada em amarelo (PUC-Rio "com
     gabarito"): o caderno destacado é recortado com a mesma configuração e, em cada questão, a letra "(X)" que fica
     dentro do destaque é a resposta. pares_arq: [(índice do caderno em cfg['cadernos'], arquivo destacado)]."""
     import pymupdf
     import recorta
-    amarelo = lambda c: c and len(c) == 3 and c[0] > 0.9 and c[1] > 0.8 and c[2] < 0.35
+    amarelo = cor or (lambda c: c and len(c) == 3 and c[0] > 0.9 and c[1] > 0.8 and c[2] < 0.35)
     g = {}
     for ic, arq in pares_arq:
         cad = cfg['cadernos'][ic]
@@ -1850,6 +1850,8 @@ def gab_destacado(pasta, cfg, pares_arq, letras='ABCDE'):
             for p, r in recorta.segmentos(pdf, cfg, ev, i, cad.get('paginas')):
                 if re.search(r'QUEST[ÃA]O\s+ANULADA', pdf[p].get_textbox(r)):
                     anulada = True   # aviso "QUESTÃO ANULADA" impresso no caderno com gabarito
+                if carimbo and any(carimbo(d.get('fill')) and pymupdf.Rect(d['rect']).intersects(r) for d in pdf[p].get_drawings()):
+                    anulada = True   # carimbo "QUESTÃO ANULADA" desenhado (sem camada de texto), em vermelho
                 for dr in dest.get(p, []):
                     if not dr.intersects(r):
                         continue
@@ -1857,9 +1859,17 @@ def gab_destacado(pasta, cfg, pares_arq, letras='ABCDE'):
                     cand = []
                     for w in pdf[p].get_text('words'):
                         cx, cy = (w[0] + w[2]) / 2, (w[1] + w[3]) / 2
-                        m_ = re.fullmatch(rf'\(([{letras}])\)', w[4])
+                        m_ = re.fullmatch(rx_letra, w[4])
                         if m_ and dr.x0 - 6 <= w[0] <= dr.x0 + 12 and dr.y0 - 2 <= cy <= dr.y1 + 2 and r.contains(pymupdf.Point(cx, cy)):
                             cand.append((abs(cy - (dr.y0 + dr.y1) / 2), m_.group(1)))
+                    if not cand:
+                        # destaque só sobre o conteúdo da alternativa (fração, fórmula): a letra fica logo à esquerda
+                        for w in pdf[p].get_text('words'):
+                            cy = (w[1] + w[3]) / 2
+                            m_ = re.fullmatch(rx_letra, w[4])
+                            if m_ and w[2] <= dr.x0 + 4 and dr.x0 - w[2] < 60 and dr.y0 - 3 <= cy <= dr.y1 + 3 \
+                                    and r.contains(pymupdf.Point((w[0] + w[2]) / 2, cy)):
+                                cand.append((dr.x0 - w[2], m_.group(1)))
                     if cand:
                         achadas.add(min(cand)[1])
             if anulada:
@@ -1909,3 +1919,42 @@ PROVAS['pucrio-2026']['suporte_forcado'] = {('d1-caderno', 2): [(94, 0, (1, 10))
 PROVAS['pucrio-2027']['suporte_forcado'] = {('d1-caderno', 2): [(94, 0, (1, 10))]}
 PROVAS['pucrio-2025']['suporte_forcado'] = {('d1-caderno', 2): [(94, 0, (1, 10))]}
 PROVAS['pucrio-2024']['suporte_forcado'] = {('d1-caderno', 2): [(94, 0, (1, 10))]}
+
+
+# ---------------------------------------------------------------------------------------------------- PUCPR
+_PUCPR_SEC = [(r'^L[ÍI]NGUA PORTUGUESA$', 'Língua Portuguesa'), (r'^LITERATURA( BRASILEIRA)?$', 'Literatura'), (r'^BIOLOGIA$', 'Biologia'),
+              (r'^QU[ÍI]MICA$', 'Química'), (r'^MATEM[ÁA]TICA$', 'Matemática'), (r'^F[ÍI]SICA$', 'Física'), (r'^HIST[ÓO]RIA$', 'História'),
+              (r'^GEOGRAFIA$', 'Geografia'), (r'^FILOSOFIA$', 'Filosofia'), (r'^SOCIOLOGIA$', 'Sociologia'),
+              (r'^L[ÍI]NGUA INGLESA$', 'Inglês'), (r'^L[ÍI]NGUA ESPANHOLA$', 'Espanhol')]
+
+
+def pucpr(ano, sem, rotulo):
+    """PUCPR, Processo Seletivo de Medicina {ano}/{sem} ({rotulo}), prova 1 branca: 60 questões A–E em uma coluna,
+    "6. As citações..." (número com ponto, em negrito), matérias em seções. A PUCPR publica como gabarito definitivo o
+    próprio caderno com a alternativa certa marcada em ciano: o gabarito é lido desse destaque (gab_destacado) e, no
+    print, o fundo ciano vira branco (neutralizar_cores)."""
+    cfg = {
+        'catalogo': 'pucpr', 'escola': 'PUCPR', 'ano': str(ano), 'fase': f'Medicina {ano}/{sem}', 'titulo': f'PUCPR Medicina {ano}/{sem}',
+        'banca': 'PUCPR', 'duracao_horas': 5, 'total': 60,
+        'nota': f'Pontifícia Universidade Católica do Paraná, Processo Seletivo de Medicina {ano}/{sem} ({rotulo}), prova 1 (branca): '
+                '60 questões A–E. Língua estrangeira: inglês. Redação fora. Gabarito definitivo: o caderno oficial com a alternativa '
+                'certa destacada (o destaque é apagado no print). Questão com carimbo de anulação ou de troca de gabarito '
+                'fica fora (o carimbo cobre parte do enunciado).',
+        'cadernos': [{'arquivo': 'caderno-gabarito', 'paginas': (2, 999)}],
+        'colunas': lambda r: [(22, r.width - 20)], 'margem': 22, 'topo': 56, 'base': 20, 'rodape_rx': r'^VESTIBULAR DE (VER[ÃA]O|INVERNO)',
+        'ancora': r'^(\d{1,2})\.(\s|$)', 'ancora_dx': 12, 'sequencial': True,
+        'secoes_rx': _PUCPR_SEC, 'pular_secoes': ('Espanhol',), 'pular_antes_sequencia': True,
+        'corte': [r'(?i)^REDA[ÇC][ÃA]O$', r'(?i)^F[ÓO]RMULAS E CONSTANTES', r'(?i)^TABELA PERI', r'(?i)^CLASSIFICA[ÇC][ÃA]O PERI', r'(?i)^RASCUNHO'],
+        'suporte': [r'(?i)(responda|responder)\b.*\bquest[õo]es\s+\d', r'(?i)^textos? para as quest', r'(?i)refer[êe]ncia para as quest[õo]es\s+\d'],
+        'neutralizar_cores': (0x00ffff, 0xffff00),
+        'area': lambda n: 'Conhecimentos gerais',
+    }
+    ciano = lambda c: c and len(c) == 3 and ((c[0] < 0.2 and c[1] > 0.85 and c[2] > 0.85) or (c[0] > 0.9 and c[1] > 0.9 and c[2] < 0.2))   # ciano ou amarelo
+    cfg['gabarito'] = lambda pasta: gab_destacado(pasta, cfg, [(0, 'caderno-gabarito')], cor=ciano, rx_letra=r'^([A-E])\)?$',
+                                                     carimbo=lambda c: c and len(c) == 3 and c[0] > 0.9 and c[1] < 0.15 and c[2] < 0.15)
+    return cfg
+
+
+for _a, _s, _r in ((2024, 2, 'Vestibular de Inverno 2024'), (2025, 1, 'Vestibular de Verão 2024'), (2025, 2, 'Vestibular de Inverno 2025'),
+                   (2026, 1, 'Vestibular de Verão 2025'), (2026, 2, 'Vestibular de Inverno 2026')):
+    PROVAS[f'pucpr-{_a}-{_s}'] = pucpr(_a, _s, _r)

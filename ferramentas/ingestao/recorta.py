@@ -852,7 +852,13 @@ def neutraliza(im, clip, rects, escala):
         for y in range(y0, y1):
             for x in range(x0, x1):
                 rr, g, b = px[x, y]
-                if b - max(rr, g) > 30:          # destaque azul: escurece na proporção da tinta
+                if min(g, b) - rr > 60:          # fundo ciano de marca-texto (PUCPR): vira branco, a tinta preta fica
+                    v = min(g, b)
+                    px[x, y] = (v, v, v)
+                elif min(rr, g) - b > 60:        # fundo amarelo de marca-texto: idem
+                    v = min(rr, g)
+                    px[x, y] = (v, v, v)
+                elif b - max(rr, g) > 30:          # destaque azul: escurece na proporção da tinta
                     t = min(1.0, (255 - min(rr, g)) / 200)
                     v = int(255 - t * 220)
                     px[x, y] = (v, v, v)
