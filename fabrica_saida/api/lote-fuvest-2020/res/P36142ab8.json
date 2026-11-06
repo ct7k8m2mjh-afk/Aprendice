@@ -35,6 +35,14 @@
     [
      "J",
      "joule, unidade de energia: N·m"
+    ],
+    [
+     "kg, m, s",
+     "quilograma, metro e segundo, as unidades de base usadas na resposta"
+    ],
+    [
+     "m²",
+     "metro ao quadrado; o 2 em cima do m é o expoente"
     ]
    ]
   },
@@ -75,9 +83,9 @@
   "checagem": "Outro caminho: h tem unidade de energia × tempo (J·s), a mesma de momento angular (kg·m/s × m = kg m²/s). As duas dão kg m²/s.",
   "erradas": {
    "B": "kg s/m² não confere: tem m² embaixo e s em cima. O joule tem m² em cima (força × distância = kg m/s² × m), e h = J·s fica com s embaixo: kg m²/s.",
-   "C": "m²s/kg não confere: põe o kg embaixo e o s em cima. No joule a massa fica em cima (F = m a), e em h = J·s sobra um s embaixo. Em relação a kg m²/s, o kg e o s estão trocados de lugar.",
+   "C": "m²s/kg não confere: o kg está embaixo e o s em cima. No joule a massa fica em cima (F = m × a), e h = J·s deixa um s embaixo. Quem marcou C trocou de lugar o kg e o s.",
    "D": "kg s/m tem o expoente do metro errado: o joule tem m² (força em kg m/s² vezes distância em m). O correto é m² em cima, não m embaixo.",
-   "E": "kg m²/s³ é a unidade de potência (J/s = watt), não de h. Aqui ocorreu o oposto: dividiu-se o joule por s em vez de por Hz (1/s). Como f = 1/s, dividir por f multiplica por s, e o expoente de s fica 1 embaixo: s⁻²·s = s⁻¹."
+   "E": "kg m²/s³ é a unidade de potência (J ÷ s = watt), não de h. Quem marcou E dividiu o joule por s, quando o certo é dividir por Hz (1/s). Dividir por 1/s é multiplicar por s, então sobra s¹ embaixo, e não s³."
   },
   "armadilha": "Dividir por f (1/s) é multiplicar por s: quem esquece isso e divide por s chega ao kg m²/s³ (potência).",
   "alerta": "",
@@ -132,7 +140,7 @@
    "nota": "substitua as unidades"
   },
   {
-   "linha": "h = kg m² s / s²",
+   "linha": "h = kg m² × s / s²",
    "nota": "dividir por 1/s é multiplicar por s",
    "mov": [
     {
@@ -146,7 +154,7 @@
   },
   {
    "linha": "h = kg m²/s",
-   "nota": "cancele um s: s/s² = 1/s",
+   "nota": "s ÷ s² = 1/s (corta um s)",
    "destaque": "kg m²/s"
   }
  ],
@@ -164,11 +172,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -191,6 +201,64 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "A"
+  "fatos_resposta": "A",
+  "didatica": [
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "kg m²/s³ é a unidade de potência (J ÷ s = watt), não de h. Quem marcou E dividiu o joule por s, quando o certo é dividir por Hz (1/s). Dividir por 1/s é multiplicar por s, então sobra s¹ embaixo, e não s³.",
+    "motivo": "O texto anterior estava confuso e terminava com uma conta solta (s⁻²·s = s⁻¹). Agora diz o que faltou no raciocínio de quem marcou E."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "m²s/kg não confere: o kg está embaixo e o s em cima. No joule a massa fica em cima (F = m × a), e h = J·s deixa um s embaixo. Quem marcou C trocou de lugar o kg e o s.",
+    "motivo": "Texto mais curto, com a falha do raciocínio dita de forma direta."
+   },
+   {
+    "campo": "resolucao.quadro[6].linha",
+    "depois": "h = kg m² × s / s²",
+    "motivo": "Deixa claro que o s multiplica o numerador e que o s² continua embaixo."
+   },
+   {
+    "campo": "resolucao.quadro[7].nota",
+    "depois": "s ÷ s² = 1/s (corta um s)",
+    "motivo": "Nota mais clara, copiável no caderno."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "h",
+      "constante de Planck, a grandeza cuja unidade se procura"
+     ],
+     [
+      "E",
+      "energia do fóton, medida em joule (J)"
+     ],
+     [
+      "f",
+      "frequência, quantas oscilações por segundo; unidade hertz (Hz = 1/s)"
+     ],
+     [
+      "N",
+      "newton, unidade de força: kg·m/s²"
+     ],
+     [
+      "J",
+      "joule, unidade de energia: N·m"
+     ],
+     [
+      "kg, m, s",
+      "quilograma, metro e segundo, as unidades de base usadas na resposta"
+     ],
+     [
+      "m²",
+      "metro ao quadrado; o 2 em cima do m é o expoente"
+     ]
+    ],
+    "motivo": "Explica as unidades de base e o expoente, para o aluno que não domina a notação."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

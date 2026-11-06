@@ -8,7 +8,7 @@
  "conceito": "Soma de uma PA: o comprimento de cada volta é 2πr, e o raio cresce 0,01 cm a cada volta.",
  "resolucao": {
   "antes": {
-   "texto": "Uma volta de fita é uma circunferência, e seu comprimento é 2πr. Como o raio cresce a cada volta, cada volta é um pouco maior que a anterior. Os comprimentos das 100 voltas formam uma progressão aritmética (PA), e o comprimento total é a soma dela. Uma PA com termos muito próximos pode ser resolvida pelo raio médio.",
+   "texto": "Uma volta de fita é uma circunferência, e seu comprimento é 2πr. O raio cresce a cada volta, então cada volta é um pouco maior que a anterior. Os comprimentos das 100 voltas formam uma progressão aritmética (PA), e o total é a soma dela. O enunciado diz que o raio cresce 0,01 cm por volta. Isso permite achar o primeiro e o último termo.",
    "formulas": [
     "comprimento de uma volta = 2 × π × raio",
     "soma da PA = n × (primeiro + último) ÷ 2"
@@ -44,20 +44,20 @@
    },
    {
     "faz": "Ache o comprimento da 100ª volta",
-    "conta": "18,84 + 99 × 0,0628 = 25,0572 cm",
-    "porque": "Da 1ª até a 100ª volta há 99 saltos de 0,0628 cm. Com o raio 3,99 cm: 2 × 3,14 × 3,99 = 25,0572 cm.",
+    "conta": "18,84 + 99 × 0,0628 = 25,06 cm",
+    "porque": "Da 1ª até a 100ª volta há 99 saltos de 0,0628 cm. Confira pelo raio: a 100ª volta tem raio 3 + 99 × 0,01 = 3,99 cm, e 2 × 3,14 × 3,99 ≈ 25,06 cm.",
     "tipo": "calcular"
    },
    {
     "faz": "Some os 100 termos da PA",
-    "conta": "100 × (18,84 + 25,0572) ÷ 2",
+    "conta": "100 × (18,84 + 25,06) ÷ 2 = 2195 cm",
     "porque": "Soma da PA: número de termos vezes a média entre o primeiro e o último termo.",
     "tipo": "calcular"
    },
    {
     "faz": "Converta para metros e conclua",
-    "conta": "2194,86 cm ≈ 21,95 m ≈ 22,0 m",
-    "porque": "Dividindo por 100, 2194,86 cm dão cerca de 21,9 m, o que é aproximadamente 22,0 m, valor da alternativa D.",
+    "conta": "2195 cm ÷ 100 ≈ 22 m",
+    "porque": "1 m tem 100 cm. Então 2195 cm dão cerca de 22 m, que é a alternativa D.",
     "tipo": "concluir"
    }
   ],
@@ -90,7 +90,7 @@
  "quadro": [
   {
    "linha": "C_1 = 2 × 3,14 × 3",
-   "nota": "comprimento da 1ª volta (raio 3 cm)"
+   "nota": "1ª volta, raio 3 cm"
   },
   {
    "linha": "C_1 = 18,84 cm",
@@ -98,7 +98,7 @@
   },
   {
    "linha": "r = 2 × 3,14 × 0,01",
-   "nota": "razão: 2π vezes o crescimento do raio"
+   "nota": "razão: 2π vezes 0,01 cm"
   },
   {
    "linha": "r = 0,0628 cm",
@@ -109,20 +109,28 @@
    "nota": "99 saltos até a 100ª volta"
   },
   {
-   "linha": "C_100 = 25,0572 cm",
+   "linha": "C_100 = 18,84 + 6,2172",
+   "nota": "99 × 0,0628 = 6,2172"
+  },
+  {
+   "linha": "C_100 ≈ 25,06 cm",
    "nota": "último termo da PA"
   },
   {
-   "linha": "S = 100 × (18,84 + 25,0572)/2",
+   "linha": "S = 100 × (18,84 + 25,06) ÷ 2",
    "nota": "soma da PA"
   },
   {
-   "linha": "S = 50 × 43,8972",
-   "nota": "100 ÷ 2 = 50; 18,84 + 25,0572 = 43,8972"
+   "linha": "S = 50 × 43,90",
+   "nota": "100 ÷ 2 = 50; 18,84 + 25,06 = 43,90"
   },
   {
-   "linha": "S = 2194,86 cm ≈ 22 m",
-   "nota": "divide por 100 para ter metros"
+   "linha": "S = 2195 cm",
+   "nota": "50 × 43,90"
+  },
+  {
+   "linha": "S = 2195 ÷ 100 ≈ 22 m",
+   "nota": "cm para m: divide por 100"
   }
  ],
  "visual": {
@@ -139,11 +147,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -154,6 +164,90 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "D"
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "18,84 + 99 × 0,0628 = 25,06 cm",
+    "motivo": "Cabe na tela. 99 × 0,0628 = 6,2172 e 18,84 + 6,2172 = 25,0572, que arredonda para 25,06."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Da 1ª até a 100ª volta há 99 saltos de 0,0628 cm. Confira pelo raio: a 100ª volta tem raio 3 + 99 × 0,01 = 3,99 cm, e 2 × 3,14 × 3,99 ≈ 25,06 cm.",
+    "motivo": "Mostra de onde vem o raio da última volta e confere o resultado por outro caminho."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "100 × (18,84 + 25,06) ÷ 2 = 2195 cm",
+    "motivo": "A conta fica completa, com o resultado, e cabe na linha."
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "2195 cm ÷ 100 ≈ 22 m",
+    "motivo": "Mostra a divisão por 100, que converte cm em m."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "1 m tem 100 cm. Então 2195 cm dão cerca de 22 m, que é a alternativa D.",
+    "motivo": "O texto antigo dizia 21,9 m e 22,0 m, o que confundia; assim fica uma só ideia."
+   },
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Uma volta de fita é uma circunferência, e seu comprimento é 2πr. O raio cresce a cada volta, então cada volta é um pouco maior que a anterior. Os comprimentos das 100 voltas formam uma progressão aritmética (PA), e o total é a soma dela. O enunciado diz que o raio cresce 0,01 cm por volta. Isso permite achar o primeiro e o último termo.",
+    "motivo": "Frases mais curtas e ligação direta com o dado do enunciado. Foi retirada a frase do raio médio, que já aparece em caminhos."
+   },
+   {
+    "campo": "resolucao.quadro",
+    "depois": [
+     {
+      "linha": "C_1 = 2 × 3,14 × 3",
+      "nota": "1ª volta, raio 3 cm"
+     },
+     {
+      "linha": "C_1 = 18,84 cm",
+      "nota": "primeiro termo da PA"
+     },
+     {
+      "linha": "r = 2 × 3,14 × 0,01",
+      "nota": "razão: 2π vezes 0,01 cm"
+     },
+     {
+      "linha": "r = 0,0628 cm",
+      "nota": "cada volta é 0,0628 cm maior"
+     },
+     {
+      "linha": "C_100 = 18,84 + 99 × 0,0628",
+      "nota": "99 saltos até a 100ª volta"
+     },
+     {
+      "linha": "C_100 = 18,84 + 6,2172",
+      "nota": "99 × 0,0628 = 6,2172"
+     },
+     {
+      "linha": "C_100 ≈ 25,06 cm",
+      "nota": "último termo da PA"
+     },
+     {
+      "linha": "S = 100 × (18,84 + 25,06) ÷ 2",
+      "nota": "soma da PA"
+     },
+     {
+      "linha": "S = 50 × 43,90",
+      "nota": "100 ÷ 2 = 50; 18,84 + 25,06 = 43,90"
+     },
+     {
+      "linha": "S = 2195 cm",
+      "nota": "50 × 43,90"
+     },
+     {
+      "linha": "S = 2195 ÷ 100 ≈ 22 m",
+      "nota": "cm para m: divide por 100"
+     }
+    ],
+    "motivo": "Uma passagem por linha, sem pular a conta 99 × 0,0628, com valores arredondados de modo coerente com os passos."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

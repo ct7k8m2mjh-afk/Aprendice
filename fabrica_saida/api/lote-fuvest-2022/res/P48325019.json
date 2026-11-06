@@ -8,7 +8,7 @@
  "conceito": "Interpretar um gráfico de dispersão com três retas e decidir o que ele permite inferir sobre cada grupo de dias.",
  "resolucao": {
   "antes": {
-   "texto": "Cada símbolo é um dia. A posição horizontal é a energia sísmica média; a vertical é F, a fração de pessoas que saiu de casa. Triângulos são domingos e feriados, quadrados são sábados e círculos são dias úteis. Cada alternativa fala de um grupo, então teste uma por vez só com os símbolos daquele grupo. Para comparar grupos, fixe um valor de F e olhe para quem está mais à direita.",
+   "texto": "Cada símbolo é um dia. A posição horizontal é a energia sísmica média; a vertical é F, a fração de pessoas que saiu de casa. Triângulos são domingos e feriados, quadrados são sábados e círculos são dias úteis. Cada alternativa fala de um grupo, então teste uma letra por vez, olhando só os símbolos daquele grupo. Para comparar grupos, escolha um valor de F e veja qual grupo está mais à direita.",
    "formulas": [
     "fração que ficou em casa = 1 − F",
     "mesmo F: compare a posição horizontal (energia) dos grupos"
@@ -49,7 +49,7 @@
    {
     "faz": "Teste B: dias úteis (círculos)",
     "conta": "círculo mais alto: F ≈ 0,86",
-    "porque": "Se F é 0,86, ficaram em casa 1 − 0,86 = 0,14, ou seja, 14%. Isso é menos que 20%. Para valer B, nenhum círculo poderia passar de F = 0,8, e há vários acima disso.",
+    "porque": "Se F é 0,86, ficaram em casa 1 − 0,86 = 0,14, ou seja, 14%. Isso é menos que 20%. Para B valer, nenhum círculo poderia passar de F = 0,8, e há vários acima disso.",
     "tipo": "calcular"
    },
    {
@@ -93,23 +93,23 @@
  ],
  "quadro": [
   {
-   "linha": "A: quadrado máx ≈ 440 > 380",
-   "nota": "há sábado acima de 380: A falsa"
+   "linha": "A: quadrado mais à direita ≈ 440",
+   "nota": "440 > 380, então A é falsa"
   },
   {
-   "linha": "C: triângulo máx ≈ 330 < 600",
-   "nota": "nenhum domingo passa de 600: C falsa"
+   "linha": "C: triângulo mais à direita ≈ 330",
+   "nota": "330 < 600, então C é falsa"
   },
   {
-   "linha": "B: F máx ≈ 0,86",
+   "linha": "B: F máximo ≈ 0,86",
    "nota": "círculo mais alto do gráfico"
   },
   {
    "linha": "1 − 0,86 = 0,14",
-   "nota": "só 14% em casa, menos que 20%: B falsa"
+   "nota": "14% em casa, menos que 20%: B falsa"
   },
   {
-   "linha": "E: reta azul em 190 → F ≈ 0,35",
+   "linha": "E: reta azul em 190, F ≈ 0,35",
    "nota": "35% é menos que 60%: E falsa"
   },
   {
@@ -131,11 +131,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -212,6 +214,50 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "D"
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Cada símbolo é um dia. A posição horizontal é a energia sísmica média; a vertical é F, a fração de pessoas que saiu de casa. Triângulos são domingos e feriados, quadrados são sábados e círculos são dias úteis. Cada alternativa fala de um grupo, então teste uma letra por vez, olhando só os símbolos daquele grupo. Para comparar grupos, escolha um valor de F e veja qual grupo está mais à direita.",
+    "motivo": "Frase mais direta e sem ambiguidade."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Se F é 0,86, ficaram em casa 1 − 0,86 = 0,14, ou seja, 14%. Isso é menos que 20%. Para B valer, nenhum círculo poderia passar de F = 0,8, e há vários acima disso.",
+    "motivo": "Mantém o fato e deixa a frase mais clara."
+   },
+   {
+    "campo": "resolucao.quadro",
+    "depois": [
+     {
+      "linha": "A: quadrado mais à direita ≈ 440",
+      "nota": "440 > 380, então A é falsa"
+     },
+     {
+      "linha": "C: triângulo mais à direita ≈ 330",
+      "nota": "330 < 600, então C é falsa"
+     },
+     {
+      "linha": "B: F máximo ≈ 0,86",
+      "nota": "círculo mais alto do gráfico"
+     },
+     {
+      "linha": "1 − 0,86 = 0,14",
+      "nota": "14% em casa, menos que 20%: B falsa"
+     },
+     {
+      "linha": "E: reta azul em 190, F ≈ 0,35",
+      "nota": "35% é menos que 60%: E falsa"
+     },
+     {
+      "linha": "F = 0,6: △ < □ < ○ (energia)",
+      "nota": "dias úteis têm a maior energia: D verdadeira"
+     }
+    ],
+    "motivo": "Linhas mais legíveis, sem símbolos soltos como '>' no meio do texto; uma ideia por linha."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

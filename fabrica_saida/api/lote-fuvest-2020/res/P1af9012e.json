@@ -8,7 +8,7 @@
  "conceito": "Regra de Chargaff: no DNA de fita dupla, A = T e C = G; calcular as quantidades de cada base a partir de uma delas.",
  "resolucao": {
   "antes": {
-   "texto": "O DNA tem duas fitas pareadas. Uma adenina (A) sempre pareia com uma timina (T), e uma citosina (C) sempre pareia com uma guanina (G). Por isso, em DNA de fita dupla, a quantidade de A é igual à de T, e a de C é igual à de G. O enunciado fala em 100 pares de bases, ou seja, 200 bases no total (100 em cada fita).",
+   "texto": "O DNA tem duas fitas unidas. Cada degrau da escada é um par de bases: uma adenina (A) sempre liga com uma timina (T), e uma citosina (C) sempre liga com uma guanina (G). Por isso, no DNA de fita dupla, há tantas A quanto T, e tantas C quanto G. O enunciado fala em 100 pares de bases, ou seja, 100 degraus e 200 bases no total (100 em cada fita).",
    "formulas": [
     "A = T",
     "C = G",
@@ -17,28 +17,36 @@
    "simbolos": [
     [
      "par de bases",
-     "duas bases que se ligam entre as fitas: A com T, ou C com G"
+     "um degrau da escada do DNA: duas bases ligadas entre as fitas, A com T ou C com G"
+    ],
+    [
+     "base nitrogenada",
+     "cada 'letra' do DNA: A, T, C ou G"
     ],
     [
      "timina (T)",
-     "base nitrogenada do DNA que pareia com a adenina"
-    ],
-    [
-     "citosina (C) e guanina (G)",
-     "bases nitrogenadas que pareiam entre si"
+     "base que pareia com a adenina"
     ],
     [
      "adenina (A)",
-     "base nitrogenada que pareia com a timina"
+     "base que pareia com a timina"
+    ],
+    [
+     "citosina (C) e guanina (G)",
+     "bases que pareiam uma com a outra"
+    ],
+    [
+     "fita dupla",
+     "as duas cadeias de DNA enroladas e ligadas pelos pares de bases"
     ]
    ]
   },
-  "pista": "Cada par de bases tem duas bases. Quantos pares são do tipo A–T e quantos sobram para o tipo C–G?",
+  "pista": "Cada degrau do DNA tem duas bases. Se 32 degraus são do tipo A–T, quantos degraus sobram para o tipo C–G?",
   "passos": [
    {
     "faz": "Leia o dado do enunciado",
     "conta": "100 pares; T = 32",
-    "porque": "A quantidade de pares (100) é a quantidade de posições; cada posição tem um par A–T ou um par C–G.",
+    "porque": "São 100 degraus. Cada degrau é A–T ou C–G. Cada T está em um degrau A–T, então 32 T significam 32 degraus A–T.",
     "tipo": "localizar"
    },
    {
@@ -69,12 +77,12 @@
   "resposta": "Alternativa C: 68 citosinas, 68 guaninas e 32 adeninas, pois A = T = 32 e C = G = (100 − 32) = 68.",
   "checagem": "Some tudo: 32 T + 32 A + 68 C + 68 G = 200 bases, que são as 100 de cada fita nos 100 pares.",
   "erradas": {
-   "A": "32, 68, 68 põe 32 citosinas e 68 adeninas. Não confere: A tem de ser igual a T (32, não 68) e C igual a G (32 ≠ 68). A soma com T até fecha 200, mas os pares estão trocados.",
+   "A": "32, 68, 68 dá 32 citosinas e 68 adeninas. Não confere: A tem de ser igual a T (32, não 68) e C igual a G (68), mas aqui C = 32. Os pares estão trocados.",
    "B": "68, 32, 68 dá 32 guaninas e 68 adeninas. Isso quebra as duas regras: G tem de ser igual a C (68, não 32) e A igual a T (32, não 68).",
-   "D": "32, 18, 18 não confere: C = 32 é diferente de G = 18, e A = 18 é diferente de T = 32, contrariando A = T e C = G. Somando com T, dá 32 + 32 + 18 + 18 = 100 bases, e não 200.",
+   "D": "32, 18, 18 não confere: C = 32 e G = 18 não são iguais, e A = 18 não é igual a T = 32. A soma também falha: 32 + 32 + 18 + 18 = 100 bases, mas o total deve ser 200.",
    "E": "18, 32, 18 dá C = 18 e G = 32, que não são iguais, contrariando C = G. Além disso A = 18 não é igual a T = 32."
   },
-  "armadilha": "Achar que as bases restantes (100 − 32 = 68) são só citosinas ou só adenina, esquecendo que A = T e C = G e que a ordem pedida é C, G, A.",
+  "armadilha": "Achar que as 68 que sobram (100 − 32) são todas de um tipo só, ou errar a ordem pedida (C, G, A). Lembre: os 68 degraus restantes têm uma C e uma G cada.",
   "alerta": "",
   "essencial": {
    "pede": "Quantidade de C, G e A numa sequência de DNA de 100 pares de bases com 32 timinas.",
@@ -98,8 +106,16 @@
    "nota": "dado do enunciado"
   },
   {
-   "linha": "A = T = 32",
+   "linha": "A = T",
    "nota": "A pareia com T"
+  },
+  {
+   "linha": "A = 32",
+   "nota": "são 32 adeninas"
+  },
+  {
+   "linha": "pares A–T = 32",
+   "nota": "cada par tem 1 T"
   },
   {
    "linha": "100 − 32 = 68",
@@ -107,11 +123,11 @@
   },
   {
    "linha": "C = G = 68",
-   "nota": "cada par C–G tem uma C e uma G"
+   "nota": "cada par C–G tem 1 C e 1 G"
   },
   {
    "linha": "C, G, A = 68, 68, 32",
-   "nota": "ordem pedida no enunciado"
+   "nota": "ordem pedida"
   }
  ],
  "visual": {
@@ -128,11 +144,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -161,6 +179,104 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "C"
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "O DNA tem duas fitas unidas. Cada degrau da escada é um par de bases: uma adenina (A) sempre liga com uma timina (T), e uma citosina (C) sempre liga com uma guanina (G). Por isso, no DNA de fita dupla, há tantas A quanto T, e tantas C quanto G. O enunciado fala em 100 pares de bases, ou seja, 100 degraus e 200 bases no total (100 em cada fita).",
+    "motivo": "Explicar 'par' como degrau e deixar claro o que são 100 pares; frases mais curtas."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "par de bases",
+      "um degrau da escada do DNA: duas bases ligadas entre as fitas, A com T ou C com G"
+     ],
+     [
+      "base nitrogenada",
+      "cada 'letra' do DNA: A, T, C ou G"
+     ],
+     [
+      "timina (T)",
+      "base que pareia com a adenina"
+     ],
+     [
+      "adenina (A)",
+      "base que pareia com a timina"
+     ],
+     [
+      "citosina (C) e guanina (G)",
+      "bases que pareiam uma com a outra"
+     ],
+     [
+      "fita dupla",
+      "as duas cadeias de DNA enroladas e ligadas pelos pares de bases"
+     ]
+    ],
+    "motivo": "Incluir 'base nitrogenada' e 'fita dupla', termos usados e não explicados; ordem mais natural."
+   },
+   {
+    "campo": "resolucao.pista",
+    "depois": "Cada degrau do DNA tem duas bases. Se 32 degraus são do tipo A–T, quantos degraus sobram para o tipo C–G?",
+    "motivo": "Usa a imagem do degrau e não entrega a resposta."
+   },
+   {
+    "campo": "resolucao.passos[0].porque",
+    "depois": "São 100 degraus. Cada degrau é A–T ou C–G. Cada T está em um degrau A–T, então 32 T significam 32 degraus A–T.",
+    "motivo": "Liga o dado T = 32 ao número de degraus A–T, base do raciocínio seguinte."
+   },
+   {
+    "campo": "resolucao.armadilha",
+    "depois": "Achar que as 68 que sobram (100 − 32) são todas de um tipo só, ou errar a ordem pedida (C, G, A). Lembre: os 68 degraus restantes têm uma C e uma G cada.",
+    "motivo": "Frase original estava confusa (68 'só adenina'); reescrita clara."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "32, 68, 68 dá 32 citosinas e 68 adeninas. Não confere: A tem de ser igual a T (32, não 68) e C igual a G (68), mas aqui C = 32. Os pares estão trocados.",
+    "motivo": "Corrige a frase confusa que dizia 'C igual a G (32 ≠ 68)' e remove o comentário solto sobre a soma."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "32, 18, 18 não confere: C = 32 e G = 18 não são iguais, e A = 18 não é igual a T = 32. A soma também falha: 32 + 32 + 18 + 18 = 100 bases, mas o total deve ser 200.",
+    "motivo": "Frase mais clara."
+   },
+   {
+    "campo": "resolucao.quadro",
+    "depois": [
+     {
+      "linha": "T = 32",
+      "nota": "dado do enunciado"
+     },
+     {
+      "linha": "A = T",
+      "nota": "A pareia com T"
+     },
+     {
+      "linha": "A = 32",
+      "nota": "são 32 adeninas"
+     },
+     {
+      "linha": "pares A–T = 32",
+      "nota": "cada par tem 1 T"
+     },
+     {
+      "linha": "100 − 32 = 68",
+      "nota": "pares que sobram são C–G"
+     },
+     {
+      "linha": "C = G = 68",
+      "nota": "cada par C–G tem 1 C e 1 G"
+     },
+     {
+      "linha": "C, G, A = 68, 68, 32",
+      "nota": "ordem pedida"
+     }
+    ],
+    "motivo": "Um passo por linha, sem pular a passagem de A = T para A = 32."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

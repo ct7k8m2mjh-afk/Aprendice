@@ -8,16 +8,17 @@
  "conceito": "Relacionar IST, agente causador (grupo), sintoma e existência de vacina preventiva.",
  "resolucao": {
   "antes": {
-   "texto": "Cada linha da tabela tem quatro informações: a IST, o causador, um sintoma e se existe vacina. A resposta certa é a linha em que as quatro estão corretas ao mesmo tempo. Basta uma informação errada para eliminar a linha. Comece pelo grupo do causador (bactéria, vírus ou verme), que é o erro mais fácil de achar, e depois confira a vacina.",
+   "texto": "Cada linha da tabela tem quatro informações: a IST, o causador, um sintoma e se existe vacina. A resposta certa é a linha em que as informações estão todas corretas ao mesmo tempo. Basta uma errada para eliminar a linha. Comece pelo grupo do causador (bactéria, vírus ou verme), onde o erro é mais fácil de achar, e depois confira a vacina.",
    "formulas": [
-    "Bactérias: gonorreia, sífilis, clamídia (tratam-se com antibiótico)",
+    "Bactérias: gonorreia, sífilis, clamídia (tratadas com antibiótico)",
     "Vírus: AIDS (HIV), hepatite B e C, herpes genital, condiloma (HPV)",
-    "Vacina disponível no SUS: HPV e hepatite B. Não há vacina para gonorreia, sífilis, hepatite C e HIV"
+    "Vacina no SUS: HPV e hepatite B",
+    "Sem vacina: gonorreia, sífilis, hepatite C e HIV"
    ],
    "simbolos": [
     [
      "IST",
-     "infecção sexualmente transmissível"
+     "infecção sexualmente transmissível: passa de uma pessoa para outra na relação sexual"
     ],
     [
      "HCV",
@@ -37,7 +38,19 @@
     ],
     [
      "Treponema pallidum",
-     "bactéria espiralada (espiroqueta) da sífilis"
+     "bactéria em forma de espiral, causadora da sífilis"
+    ],
+    [
+     "purulenta",
+     "com pus"
+    ],
+    [
+     "erupção cutânea",
+     "manchas ou feridas na pele"
+    ],
+    [
+     "vacina preventiva",
+     "vacina que protege antes de a pessoa se infectar"
     ]
    ]
   },
@@ -46,13 +59,13 @@
    {
     "faz": "Confira o grupo do causador",
     "conta": "HCV = vírus; Treponema = bactéria",
-    "porque": "Hepatite C é causada por vírus, e a sífilis, por bactéria. As linhas B (HCV 'bactéria') e D (Treponema 'verme') já caem.",
+    "porque": "Hepatite C é causada por vírus, e a sífilis, por bactéria. Então a linha B (HCV 'bactéria') e a linha D (Treponema 'verme') caem.",
     "tipo": "eliminar"
    },
    {
     "faz": "Confira a vacina da gonorreia",
     "conta": "Gonorreia: sem vacina",
-    "porque": "Não existe vacina preventiva contra Neisseria gonorrhoeae. A linha A diz 'Sim' e erra nesse item, embora causador e sintoma estejam certos.",
+    "porque": "Não existe vacina contra a bactéria da gonorreia. A linha A diz 'Sim' e erra nesse item, embora causador e sintoma estejam certos.",
     "tipo": "eliminar"
    },
    {
@@ -64,7 +77,7 @@
    {
     "faz": "Confira a linha do condiloma",
     "conta": "HPV (vírus); verrugas genitais; vacina: sim",
-    "porque": "O condiloma acuminado é causado pelo vírus HPV e se manifesta como verrugas na região genital. Há vacina contra o HPV, oferecida pelo SUS.",
+    "porque": "O condiloma acuminado é causado pelo vírus HPV e aparece como verrugas na região genital. Existe vacina contra o HPV, oferecida pelo SUS.",
     "tipo": "localizar"
    },
    {
@@ -77,10 +90,10 @@
   "resposta": "Alternativa E: o condiloma acuminado é causado pelo vírus HPV, provoca verrugas genitais e há vacina preventiva.",
   "checagem": "Pense nas vacinas do calendário do SUS usadas na prevenção de ISTs: HPV e hepatite B. Entre as linhas da tabela, só o HPV aparece, e ele está na linha E.",
   "erradas": {
-   "A": "Causador (bactéria) e sintoma (ardor na uretra, secreção purulenta) estão certos, mas não existe vacina específica contra a gonorreia. A prevenção é preservativo e tratamento com antibiótico, por isso o 'Sim' derruba a linha.",
-   "B": "O HCV é um vírus, não uma bactéria. Os sintomas hepáticos e a ausência de vacina estão certos, mas o grupo do causador está errado.",
-   "C": "O HIV é vírus e a erupção cutânea pode ocorrer, mas não existe vacina contra o HIV. O 'Sim' é o erro.",
-   "D": "O Treponema pallidum é uma bactéria (espiroqueta), não um verme. O cancro genital e a ausência de vacina estão certos, mas o grupo do causador está errado."
+   "A": "Causador (bactéria) e sintoma (ardor na uretra e pus) estão certos, mas não existe vacina contra a gonorreia. Quem marcou A confiou nos dois acertos e não conferiu a vacina. A prevenção é camisinha e tratamento com antibiótico.",
+   "B": "O HCV é um vírus, não uma bactéria. Quem marcou B viu sintoma e falta de vacina certos e não conferiu o grupo do causador.",
+   "C": "O HIV é vírus e a erupção na pele pode ocorrer, mas não existe vacina contra o HIV. Quem marcou C não conferiu a coluna da vacina.",
+   "D": "O Treponema pallidum é uma bactéria, não um verme. Quem marcou D viu o cancro e a falta de vacina certos e não conferiu o grupo do causador."
   },
   "armadilha": "Linhas com três colunas certas e uma errada (A, B, C e D) enganam quem confere só o sintoma; é preciso checar o grupo do causador e a vacina.",
   "alerta": "",
@@ -118,11 +131,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -157,6 +172,102 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "E"
+  "fatos_resposta": "E",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Cada linha da tabela tem quatro informações: a IST, o causador, um sintoma e se existe vacina. A resposta certa é a linha em que as informações estão todas corretas ao mesmo tempo. Basta uma errada para eliminar a linha. Comece pelo grupo do causador (bactéria, vírus ou verme), onde o erro é mais fácil de achar, e depois confira a vacina.",
+    "motivo": "Texto mais direto, sem repetir 'quatro' duas vezes."
+   },
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "Bactérias: gonorreia, sífilis, clamídia (tratadas com antibiótico)",
+     "Vírus: AIDS (HIV), hepatite B e C, herpes genital, condiloma (HPV)",
+     "Vacina no SUS: HPV e hepatite B",
+     "Sem vacina: gonorreia, sífilis, hepatite C e HIV"
+    ],
+    "motivo": "Separar em linhas curtas as ISTs com vacina e sem vacina, para o aluno memorizar."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "IST",
+      "infecção sexualmente transmissível: passa de uma pessoa para outra na relação sexual"
+     ],
+     [
+      "HCV",
+      "vírus da hepatite C"
+     ],
+     [
+      "HIV",
+      "vírus da imunodeficiência humana, causador da AIDS"
+     ],
+     [
+      "HPV",
+      "papilomavírus humano, causador do condiloma acuminado"
+     ],
+     [
+      "cancro",
+      "ferida geralmente indolor da sífilis primária"
+     ],
+     [
+      "Treponema pallidum",
+      "bactéria em forma de espiral, causadora da sífilis"
+     ],
+     [
+      "purulenta",
+      "com pus"
+     ],
+     [
+      "erupção cutânea",
+      "manchas ou feridas na pele"
+     ],
+     [
+      "vacina preventiva",
+      "vacina que protege antes de a pessoa se infectar"
+     ]
+    ],
+    "motivo": "Explicar palavras difíceis que aparecem na tabela (purulenta, erupção, vacina preventiva)."
+   },
+   {
+    "campo": "resolucao.passos[0].porque",
+    "depois": "Hepatite C é causada por vírus, e a sífilis, por bactéria. Então a linha B (HCV 'bactéria') e a linha D (Treponema 'verme') caem.",
+    "motivo": "Frase mais clara e voz ativa."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "Não existe vacina contra a bactéria da gonorreia. A linha A diz 'Sim' e erra nesse item, embora causador e sintoma estejam certos.",
+    "motivo": "Simplificação."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "O condiloma acuminado é causado pelo vírus HPV e aparece como verrugas na região genital. Existe vacina contra o HPV, oferecida pelo SUS.",
+    "motivo": "Frase mais curta."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "Causador (bactéria) e sintoma (ardor na uretra e pus) estão certos, mas não existe vacina contra a gonorreia. Quem marcou A confiou nos dois acertos e não conferiu a vacina. A prevenção é camisinha e tratamento com antibiótico.",
+    "motivo": "Dizer o que faltou no raciocínio de quem marcou A."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "O HCV é um vírus, não uma bactéria. Quem marcou B viu sintoma e falta de vacina certos e não conferiu o grupo do causador.",
+    "motivo": "Mostrar o que faltou."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "O HIV é vírus e a erupção na pele pode ocorrer, mas não existe vacina contra o HIV. Quem marcou C não conferiu a coluna da vacina.",
+    "motivo": "Mostrar o que faltou."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "O Treponema pallidum é uma bactéria, não um verme. Quem marcou D viu o cancro e a falta de vacina certos e não conferiu o grupo do causador.",
+    "motivo": "Mostrar o que faltou; termo 'espiroqueta' trocado por explicação simples."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

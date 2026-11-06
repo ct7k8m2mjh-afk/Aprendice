@@ -43,38 +43,38 @@
    },
    {
     "faz": "Leia o tecido 2",
-    "conta": "Intérfase ≈ 10%; divisão ≈ 90%",
-    "porque": "Mais de 80% das células estão em prófase, metáfase, anáfase ou telófase. A divisão é intensa, como num tumor.",
+    "conta": "Intérfase ≈ 10%\nDivisão ≈ 90%",
+    "porque": "Cerca de 90% das células estão em prófase, metáfase, anáfase ou telófase. A divisão é intensa, como num tumor, que se multiplica sem controle.",
     "tipo": "localizar"
    },
    {
     "faz": "Leia o tecido 2 tratado",
-    "conta": "Hachurado (prófase) ≈ 100%",
+    "conta": "Prófase (hachurado) ≈ 100%",
     "porque": "Com a substância, todas as células ficam presas na prófase. A divisão não avança e as células não se multiplicam.",
     "tipo": "localizar"
    },
    {
     "faz": "Relacione ao uso médico",
     "conta": "Trava a divisão → quimioterapia",
-    "porque": "Frear a multiplicação de células tumorais é o objetivo da quimioterapia. Isso combina com tecido 2 tumoral.",
+    "porque": "A quimioterapia usa drogas que impedem a multiplicação das células do câncer. A substância do gráfico faz isso, então combina com o tecido 2 tumoral.",
     "tipo": "comparar"
    },
    {
     "faz": "Escolha o tecido 1",
     "conta": "Pouca divisão → muscular",
-    "porque": "O tecido muscular (esquelético ou cardíaco) quase não se divide, como mostra o tecido 1. Isso fecha com a alternativa A.",
+    "porque": "O tecido muscular quase não se divide, como o tecido 1 mostra. Com o tecido 2 tumoral e a quimioterapia, fecha a alternativa A.",
     "tipo": "concluir"
    }
   ],
   "resposta": "Alternativa A: o tecido 1 se divide pouco (muscular), o tecido 2 se divide muito (tumoral) e a substância que trava a divisão tem uso na quimioterapia.",
   "checagem": "Teste a ordem dos tecidos: se o tecido 1 fosse tumoral, ele teria muitas células em divisão, mas a barra mostra o contrário. Só A e C põem o tumoral como tecido 2. Entre as duas, só a quimioterapia usa uma substância para frear a divisão das células do tumor.",
   "erradas": {
-   "B": "Tecido ovariano não tem divisão intensa e contínua como o tecido 2. A fertilização in vitro une espermatozoide e ovócito fora do corpo; não usa droga que trava a divisão. Não serve.",
-   "C": "Tecido nervoso adulto quase não se divide, o que combina com o tecido 1, e o tecido 2 é mesmo tumoral. Mas o transplante consiste em trocar um órgão ou tecido. Usar uma substância para parar a divisão de células tumorais é o princípio da quimioterapia.",
-   "D": "Tecido ósseo se renova de forma moderada, não com 90% das células em divisão. Transfusão sanguínea é repor sangue e não bloqueia divisão. Também falha ao pôr epitelial como tecido 1: epitélio se renova rápido e teria mais células em divisão.",
-   "E": "Inverte os tecidos: o tecido 1 tem quase tudo em intérfase, então não é o tumoral. O tecido 2 tem muita divisão, então não é nervoso. A radioterapia atua em células em divisão, mas a ordem está errada."
+   "B": "O tecido 2 tem 90% das células em divisão, o que indica tumor, e não um tecido ovariano normal. A fertilização in vitro junta espermatozoide e ovócito fora do corpo; não usa droga que trava a divisão.",
+   "C": "Tecido nervoso e tecido 2 tumoral combinam com o gráfico. O erro está na aplicação: transplante troca um órgão ou tecido e não usa droga para travar a divisão. Quem trava a divisão do tumor é a quimioterapia.",
+   "D": "O tecido 2, com 90% das células em divisão, não é ósseo, que se renova de forma moderada. Transfusão apenas repõe sangue e não bloqueia divisão. O tecido 1 não é epitelial: o epitélio se renova rápido e teria mais células dividindo.",
+   "E": "Inverte os tecidos. O tecido 1 tem quase tudo em intérfase, então não é o tumoral. O tecido 2 tem muita divisão, então não é nervoso. A radioterapia também age em células em divisão, mas aqui a ordem dos tecidos já derruba a letra."
   },
-  "armadilha": "Achar que o tecido com mais células em divisão é o normal, ou que a barra de intérfase maior indica um tumor; é o contrário.",
+  "armadilha": "Achar que muita célula em intérfase indica tumor. É o contrário: tumor tem muitas células dividindo, e o tecido normal tem a maioria em intérfase.",
   "alerta": "",
   "essencial": {
    "pede": "Identificar o tecido de pouca divisão, o de muita divisão e o uso médico de uma droga que trava a divisão.",
@@ -107,11 +107,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -152,6 +154,62 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "A"
+  "fatos_resposta": "A",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "Intérfase ≈ 10%\nDivisão ≈ 90%",
+    "motivo": "Conta mais curta, com um dado por linha, para caber na tela do celular."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "Cerca de 90% das células estão em prófase, metáfase, anáfase ou telófase. A divisão é intensa, como num tumor, que se multiplica sem controle.",
+    "motivo": "O texto antigo dizia 'mais de 80%', que destoava dos 90% da conta. Agora os dois números batem."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "Prófase (hachurado) ≈ 100%",
+    "motivo": "Deixa claro qual é a fase e qual é o padrão visual no gráfico."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "A quimioterapia usa drogas que impedem a multiplicação das células do câncer. A substância do gráfico faz isso, então combina com o tecido 2 tumoral.",
+    "motivo": "Frase mais direta, ligando a droga do gráfico à quimioterapia."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "O tecido muscular quase não se divide, como o tecido 1 mostra. Com o tecido 2 tumoral e a quimioterapia, fecha a alternativa A.",
+    "motivo": "Une os três achados antes de dar a letra e evita a frase ambígua 'Isso fecha'."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "O tecido 2 tem 90% das células em divisão, o que indica tumor, e não um tecido ovariano normal. A fertilização in vitro junta espermatozoide e ovócito fora do corpo; não usa droga que trava a divisão.",
+    "motivo": "Diz o que faltou ao raciocínio: ler o 90% de divisão como sinal de tumor."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "Tecido nervoso e tecido 2 tumoral combinam com o gráfico. O erro está na aplicação: transplante troca um órgão ou tecido e não usa droga para travar a divisão. Quem trava a divisão do tumor é a quimioterapia.",
+    "motivo": "Reorganiza em frases curtas e mostra o que faltou: ligar a droga à quimioterapia."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "O tecido 2, com 90% das células em divisão, não é ósseo, que se renova de forma moderada. Transfusão apenas repõe sangue e não bloqueia divisão. O tecido 1 não é epitelial: o epitélio se renova rápido e teria mais células dividindo.",
+    "motivo": "Frases mais curtas e com um motivo claro para cada erro."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "Inverte os tecidos. O tecido 1 tem quase tudo em intérfase, então não é o tumoral. O tecido 2 tem muita divisão, então não é nervoso. A radioterapia também age em células em divisão, mas aqui a ordem dos tecidos já derruba a letra.",
+    "motivo": "Texto mais claro e sem a frase solta 'a ordem está errada'."
+   },
+   {
+    "campo": "resolucao.armadilha",
+    "depois": "Achar que muita célula em intérfase indica tumor. É o contrário: tumor tem muitas células dividindo, e o tecido normal tem a maioria em intérfase.",
+    "motivo": "A frase anterior era confusa e podia ser lida de dois jeitos."
+   }
+  ],
+  "didatica_alertas": [
+   "O tecido 1 tem muitas células em intérfase. Isso mostra pouca divisão, mas tecido muscular e tecido nervoso adultos não se dividem quase nada. O gráfico não distingue entre eles, e a alternativa A só fecha com o tecido 2 tumoral e a quimioterapia."
+  ],
+  "didatica_ok": true
  }
 }

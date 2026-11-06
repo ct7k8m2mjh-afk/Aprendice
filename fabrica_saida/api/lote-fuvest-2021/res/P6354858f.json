@@ -8,7 +8,7 @@
  "conceito": "Leis de Newton: aceleração no ponto mais alto de um lançamento, resultante em MRU e pares ação-reação.",
  "resolucao": {
   "antes": {
-   "texto": "Pela 2ª lei de Newton, a força resultante é igual à massa vezes a aceleração. Velocidade constante em linha reta significa aceleração zero, logo resultante zero. Na 3ª lei, ação e reação são forças de mesmo tipo, aplicadas em corpos diferentes. Durante um lançamento, só o peso age no corpo, e ele não desaparece no ponto mais alto.",
+   "texto": "Pela 2ª lei de Newton, a força resultante é igual à massa vezes a aceleração. Velocidade constante em linha reta significa aceleração zero, logo resultante zero. Na 3ª lei, ação e reação são forças de mesmo tipo, aplicadas em corpos diferentes. Durante um lançamento, depois que a pessoa sai do trampolim, só o peso age nela. O peso não desaparece no ponto mais alto.",
    "formulas": [
     "F_resultante = m × a",
     "Ação e reação: corpos diferentes, mesma natureza, mesmo módulo, sentidos opostos"
@@ -20,7 +20,15 @@
     ],
     [
      "a",
-     "aceleração: taxa de variação da velocidade"
+     "aceleração: quanto a velocidade muda a cada segundo"
+    ],
+    [
+     "g",
+     "aceleração da gravidade: cerca de 10 m/s², para baixo"
+    ],
+    [
+     "MRU",
+     "movimento retilíneo uniforme: reta, com velocidade constante"
     ],
     [
      "par ação-reação",
@@ -37,7 +45,7 @@
    {
     "faz": "Analise a afirmação I",
     "conta": "No topo: v_vertical = 0, mas P ≠ 0",
-    "porque": "No ponto mais alto o corpo só para por um instante. O peso continua agindo, então a aceleração é g, cerca de 10 m/s² para baixo. A afirmação é falsa.",
+    "porque": "No ponto mais alto a pessoa só para de subir por um instante. O peso continua agindo, então a aceleração é g, cerca de 10 m/s², para baixo. A afirmação é falsa.",
     "tipo": "eliminar"
    },
    {
@@ -48,8 +56,8 @@
    },
    {
     "faz": "Analise a afirmação III",
-    "conta": "P: Terra puxa o livro\nN: mesa empurra o livro",
-    "porque": "Peso e normal agem no mesmo corpo (o livro) e têm naturezas diferentes. O par do peso é a atração do livro sobre a Terra. O par da normal é a força do livro sobre a mesa. Falsa.",
+    "conta": "P: Terra puxa o livro\nN: mesa empurra o livro\nAmbas agem no livro",
+    "porque": "Peso e normal agem no mesmo corpo, o livro, e têm naturezas diferentes. O par do peso é a atração do livro sobre a Terra. O par da normal é a força do livro sobre a mesa. Afirmação falsa.",
     "tipo": "eliminar"
    },
    {
@@ -60,7 +68,7 @@
    }
   ],
   "resposta": "Alternativa E: as três afirmações são falsas. No topo a aceleração é g, a resultante em velocidade constante é zero, e peso e normal agem no mesmo corpo.",
-  "checagem": "Teste cada frase com um caso conhecido. Uma bola lançada para cima tem aceleração g no topo, senão ficaria parada no ar. Um carro em MRU não muda de velocidade, então não há resultante. E peso e normal se anulam sobre o livro, o que só ocorre com forças aplicadas no mesmo corpo.",
+  "checagem": "Teste cada frase com um caso conhecido. Uma bola lançada para cima tem aceleração g no topo, senão ficaria parada no ar. Um carro em velocidade constante não muda de velocidade, então não tem resultante. Peso e normal se anulam sobre o livro parado, e isso só acontece com forças aplicadas no mesmo corpo.",
   "erradas": {
    "A": "Diz que I e II são corretas. I falha porque no topo só a velocidade vertical é zero, e a aceleração é g. II falha porque velocidade constante em linha reta dá resultante nula.",
    "B": "Diz que I e III são corretas. I falha porque o peso age no topo e a aceleração é g. III falha porque peso e normal agem no mesmo livro, e um par ação-reação age em corpos diferentes.",
@@ -100,11 +108,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -145,6 +155,67 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "E"
+  "fatos_resposta": "E",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Pela 2ª lei de Newton, a força resultante é igual à massa vezes a aceleração. Velocidade constante em linha reta significa aceleração zero, logo resultante zero. Na 3ª lei, ação e reação são forças de mesmo tipo, aplicadas em corpos diferentes. Durante um lançamento, depois que a pessoa sai do trampolim, só o peso age nela. O peso não desaparece no ponto mais alto.",
+    "motivo": "Deixa claro que a pessoa já está no ar, sem contato com o trampolim, e que só o peso age nela."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "F_resultante",
+      "soma vetorial de todas as forças que atuam no corpo"
+     ],
+     [
+      "a",
+      "aceleração: quanto a velocidade muda a cada segundo"
+     ],
+     [
+      "g",
+      "aceleração da gravidade: cerca de 10 m/s², para baixo"
+     ],
+     [
+      "MRU",
+      "movimento retilíneo uniforme: reta, com velocidade constante"
+     ],
+     [
+      "par ação-reação",
+      "duas forças da 3ª lei: A faz força em B e B faz força em A"
+     ],
+     [
+      "normal",
+      "força de contato que a superfície faz sobre o corpo, perpendicular a ela"
+     ]
+    ],
+    "motivo": "g e MRU aparecem nos passos e na checagem sem explicação. A definição de aceleração ficou mais simples."
+   },
+   {
+    "campo": "resolucao.passos[0].porque",
+    "depois": "No ponto mais alto a pessoa só para de subir por um instante. O peso continua agindo, então a aceleração é g, cerca de 10 m/s², para baixo. A afirmação é falsa.",
+    "motivo": "Troca o 'corpo' por 'pessoa' e reduz as frases a uma ideia cada."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "P: Terra puxa o livro\nN: mesa empurra o livro\nAmbas agem no livro",
+    "motivo": "Mostra na conta que as duas forças agem no mesmo corpo, que é o ponto central do passo."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Peso e normal agem no mesmo corpo, o livro, e têm naturezas diferentes. O par do peso é a atração do livro sobre a Terra. O par da normal é a força do livro sobre a mesa. Afirmação falsa.",
+    "motivo": "Frases mais curtas e sem ambiguidade."
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Teste cada frase com um caso conhecido. Uma bola lançada para cima tem aceleração g no topo, senão ficaria parada no ar. Um carro em velocidade constante não muda de velocidade, então não tem resultante. Peso e normal se anulam sobre o livro parado, e isso só acontece com forças aplicadas no mesmo corpo.",
+    "motivo": "Usa a mesma linguagem do restante do texto e deixa a ideia da anulação mais direta."
+   }
+  ],
+  "didatica_alertas": [
+   "O JSON traz tema F02 / conteúdo F02.2, mas a classificação do banco informada no cabeçalho é F03 / F03.1. Verificar qual vale. Não mexi."
+  ],
+  "didatica_ok": true
  }
 }

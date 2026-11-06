@@ -29,6 +29,22 @@
     [
      "frequência",
      "quantas plantas, em proporção, têm determinada característica"
+    ],
+    [
+     "savana",
+     "vegetação aberta, com árvores espaçadas e muito capim"
+    ],
+    [
+     "coriácea",
+     "folha dura e grossa, parecida com couro, que perde pouca água"
+    ],
+    [
+     "sub-bosque",
+     "parte baixa da floresta, perto do chão, onde chega pouca luz"
+    ],
+    [
+     "rebrota",
+     "capacidade de a planta brotar de novo depois de queimada"
     ]
    ]
   },
@@ -48,19 +64,19 @@
    },
    {
     "faz": "Dê o sentido de cada mudança",
-    "conta": "Cerrado → Mata: tortuosos ↓; folhas largas ↑; sol direto ↓; fogo ↓; epífitas ↑",
+    "conta": "Cerrado → Mata:\ntortuosos ↓\nfolhas largas ↑\nsol direto ↓\nfogo ↓\nepífitas ↑",
     "porque": "Ao passar de um bioma aberto e seco para um fechado e úmido, cada característica muda no sentido do novo ambiente.",
     "tipo": "comparar"
    },
    {
     "faz": "Teste as alternativas contra a lista",
-    "conta": "A: tortuosos ↑ ✗ | B: sol ↑ ✗ | D: epífitas ↓ ✗ | E: sol ↓ ✓, fogo ↑ ✗",
-    "porque": "Só uma alternativa tem os dois itens no sentido correto: caules tortuosos diminuem e folhas largas aumentam.",
+    "conta": "A: tortuosos ↑ ✗\nB: sol ↑ ✗\nD: epífitas ↓ ✗\nE: fogo ↑ ✗\nC: tortuosos ↓, folhas largas ↑ ✓",
+    "porque": "Cada alternativa erra pelo menos um item. Só a C acerta os dois: caules tortuosos diminuem e folhas largas aumentam.",
     "tipo": "eliminar"
    },
    {
     "faz": "Conclua",
-    "conta": "tortuosos ↓ e folhas largas ↑ → C",
+    "conta": "tortuosos ↓ e folhas largas ↑\n→ alternativa C",
     "porque": "Fora do Cerrado, o fogo deixa de pressionar, e a sombra favorece plantas de folhas largas.",
     "tipo": "concluir"
    }
@@ -84,7 +100,7 @@
  "caminhos": [
   {
    "nome": "eliminação por um item",
-   "ideia": "Basta saber um item: caules tortuosos são do Cerrado e diminuem na mata. Isso elimina A, que diz que eles aumentam. B cai porque na mata há menos luz direta no chão e mais folhas largas. E cai porque o fogo é raro na mata, e D cai pela presença de epífitas."
+   "ideia": "Basta saber um item: caules tortuosos são do Cerrado e diminuem na mata. Isso elimina A. B cai porque, na mata, há menos luz direta no chão e mais folhas largas. D cai porque as epífitas aumentam. E cai porque o fogo é raro na mata."
   },
   {
    "nome": "imagem mental dos dois biomas",
@@ -106,11 +122,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -127,6 +145,73 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "C"
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "epífita",
+      "planta que vive sobre outra planta só para se apoiar, sem parasitá-la (bromélias, orquídeas)"
+     ],
+     [
+      "dossel",
+      "camada formada pelas copas das árvores mais altas, que intercepta a luz"
+     ],
+     [
+      "caule tortuoso",
+      "tronco e galhos retorcidos, típicos das árvores do Cerrado"
+     ],
+     [
+      "frequência",
+      "quantas plantas, em proporção, têm determinada característica"
+     ],
+     [
+      "savana",
+      "vegetação aberta, com árvores espaçadas e muito capim"
+     ],
+     [
+      "coriácea",
+      "folha dura e grossa, parecida com couro, que perde pouca água"
+     ],
+     [
+      "sub-bosque",
+      "parte baixa da floresta, perto do chão, onde chega pouca luz"
+     ],
+     [
+      "rebrota",
+      "capacidade de a planta brotar de novo depois de queimada"
+     ]
+    ],
+    "motivo": "Termos usados nos passos (savana, coriácea, rebrota, sub-bosque) não estavam explicados."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "Cerrado → Mata:\ntortuosos ↓\nfolhas largas ↑\nsol direto ↓\nfogo ↓\nepífitas ↑",
+    "motivo": "A conta não cabe em uma linha no celular; fica uma ideia por linha."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "A: tortuosos ↑ ✗\nB: sol ↑ ✗\nD: epífitas ↓ ✗\nE: fogo ↑ ✗\nC: tortuosos ↓, folhas largas ↑ ✓",
+    "motivo": "Uma alternativa por linha, para caber na tela e deixar C visível; antes C não aparecia no teste."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Cada alternativa erra pelo menos um item. Só a C acerta os dois: caules tortuosos diminuem e folhas largas aumentam.",
+    "motivo": "Frase mais clara e coerente com a nova conta."
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "tortuosos ↓ e folhas largas ↑\n→ alternativa C",
+    "motivo": "Cabe na tela do celular."
+   },
+   {
+    "campo": "resolucao.caminhos[0].ideia",
+    "depois": "Basta saber um item: caules tortuosos são do Cerrado e diminuem na mata. Isso elimina A. B cai porque, na mata, há menos luz direta no chão e mais folhas largas. D cai porque as epífitas aumentam. E cai porque o fogo é raro na mata.",
+    "motivo": "Texto reorganizado, sem frase ambígua sobre D e E."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

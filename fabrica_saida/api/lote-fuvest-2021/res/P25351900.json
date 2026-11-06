@@ -8,7 +8,7 @@
  "conceito": "Semelhança de triângulos: quadrado inscrito no canto reto de um triângulo retângulo.",
  "resolucao": {
   "antes": {
-   "texto": "O quadrado fica no canto do ângulo reto. O vértice oposto a esse canto toca a hipotenusa. Isso corta o triângulo grande e deixa, à direita do quadrado, um triângulo menor com os mesmos ângulos do grande. Triângulos com os mesmos ângulos são semelhantes, e seus lados correspondentes são proporcionais.",
+   "texto": "O quadrado fica no canto do ângulo reto. O vértice do quadrado oposto a esse canto toca a hipotenusa (o lado maior, oposto ao ângulo reto). Sobra, à direita do quadrado, um triângulo menor com os mesmos ângulos do triângulo grande. Triângulos com os mesmos ângulos são semelhantes, e seus lados correspondentes são proporcionais.",
    "formulas": [
     "Semelhança: lado ÷ lado correspondente é igual nos dois triângulos",
     "Triângulo grande: catetos 12 (vertical) e 35 (horizontal)",
@@ -26,6 +26,14 @@
     [
      "semelhantes",
      "triângulos com os mesmos ângulos, de lados proporcionais"
+    ],
+    [
+     "hipotenusa",
+     "o lado maior do triângulo retângulo, oposto ao ângulo reto"
+    ],
+    [
+     "cateto",
+     "cada um dos dois lados que formam o ângulo reto"
     ]
    ]
   },
@@ -46,13 +54,13 @@
    {
     "faz": "Monte a proporção",
     "conta": "x/12 = (35 − x)/35",
-    "porque": "Os dois triângulos têm o ângulo reto e o ângulo da ponta direita, que é comum. Logo são semelhantes. O cateto vertical x corresponde ao de 12, e o horizontal 35 − x corresponde ao de 35.",
+    "porque": "Os dois triângulos têm o ângulo reto e o ângulo da ponta direita, que é comum. Logo são semelhantes. O cateto vertical x corresponde ao de 12, e o horizontal 35 − x corresponde ao de 35. Compare vertical com vertical e horizontal com horizontal.",
     "tipo": "calcular"
    },
    {
     "faz": "Resolva a equação",
     "conta": "35x = 12 × (35 − x)",
-    "porque": "Multiplicação cruzada. Depois 35x = 420 − 12x, então 47x = 420 e x = 420/47 ≈ 8,94.",
+    "porque": "Multiplicação cruzada. Depois 35x = 420 − 12x, então 47x = 420 e x = 420/47 ≈ 8,94. O quadro mostra cada passagem.",
     "tipo": "calcular"
    },
    {
@@ -67,8 +75,8 @@
   "erradas": {
    "A": "8,0 cm não confere. Com x = 8, x/12 ≈ 0,667 e (35 − 8)/35 ≈ 0,771. As razões deveriam ser iguais, e não são. Esse quadrado é pequeno demais.",
    "B": "8,5 cm não confere. Com x = 8,5, x/12 ≈ 0,708 e (35 − 8,5)/35 ≈ 0,757. As razões diferem, e o valor correto 8,94 está bem mais perto de 9,0.",
-   "D": "9,5 cm não confere. Com x = 9,5, x/12 ≈ 0,792 e (35 − 9,5)/35 ≈ 0,729. Esse quadrado passaria da hipotenusa, e 8,94 está mais perto de 9,0 do que de 9,5.",
-   "E": "10,0 cm não confere. Com x = 10, x/12 ≈ 0,833 e (35 − 10)/35 ≈ 0,714. O quadrado ultrapassaria a hipotenusa: o lado máximo é 8,94 cm."
+   "D": "9,5 cm não confere. Com x = 9,5, x/12 ≈ 0,792 e (35 − 9,5)/35 ≈ 0,729. As razões deveriam ser iguais, e não são. O valor correto, 8,94, está mais perto de 9,0 do que de 9,5.",
+   "E": "10,0 cm não confere. Com x = 10, x/12 ≈ 0,833 e (35 − 10)/35 ≈ 0,714. As razões deveriam ser iguais, e não são. O lado máximo é 8,94 cm, então 10 cm é grande demais."
   },
   "armadilha": "Usar x/12 = x/35 ou esquecer que a base do triângulo menor é 35 − x (e não 35) leva a um valor errado.",
   "alerta": "",
@@ -171,11 +179,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -186,6 +196,66 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "C"
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "O quadrado fica no canto do ângulo reto. O vértice do quadrado oposto a esse canto toca a hipotenusa (o lado maior, oposto ao ângulo reto). Sobra, à direita do quadrado, um triângulo menor com os mesmos ângulos do triângulo grande. Triângulos com os mesmos ângulos são semelhantes, e seus lados correspondentes são proporcionais.",
+    "motivo": "Explica hipotenusa e deixa a frase com um só sentido."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "x",
+      "lado do quadrado, o que queremos achar"
+     ],
+     [
+      "35 − x",
+      "o que sobra da base de 35 cm depois do quadrado, que ocupa x"
+     ],
+     [
+      "semelhantes",
+      "triângulos com os mesmos ângulos, de lados proporcionais"
+     ],
+     [
+      "hipotenusa",
+      "o lado maior do triângulo retângulo, oposto ao ângulo reto"
+     ],
+     [
+      "cateto",
+      "cada um dos dois lados que formam o ângulo reto"
+     ]
+    ],
+    "motivo": "Termos técnicos usados na resolução estavam sem explicação."
+   },
+   {
+    "campo": "resolucao.passos[3]",
+    "depois": {
+     "faz": "Resolva a equação",
+     "conta": "35x = 12 × (35 − x)",
+     "porque": "Multiplicação cruzada. Depois 35x = 420 − 12x, então 47x = 420 e x = 420/47 ≈ 8,94. O quadro mostra cada passagem.",
+     "tipo": "calcular"
+    },
+    "motivo": "Remete ao quadro, onde cada passagem aparece uma por linha."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Os dois triângulos têm o ângulo reto e o ângulo da ponta direita, que é comum. Logo são semelhantes. O cateto vertical x corresponde ao de 12, e o horizontal 35 − x corresponde ao de 35. Compare vertical com vertical e horizontal com horizontal.",
+    "motivo": "Deixa claro o critério de correspondência."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "9,5 cm não confere. Com x = 9,5, x/12 ≈ 0,792 e (35 − 9,5)/35 ≈ 0,729. As razões deveriam ser iguais, e não são. O valor correto, 8,94, está mais perto de 9,0 do que de 9,5.",
+    "motivo": "A frase sobre o quadrado passar da hipotenusa não ficava clara; o teste das razões basta."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "10,0 cm não confere. Com x = 10, x/12 ≈ 0,833 e (35 − 10)/35 ≈ 0,714. As razões deveriam ser iguais, e não são. O lado máximo é 8,94 cm, então 10 cm é grande demais.",
+    "motivo": "Mesmo critério das outras letras, em frase mais clara."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

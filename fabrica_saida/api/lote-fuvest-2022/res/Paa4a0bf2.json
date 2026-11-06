@@ -8,7 +8,7 @@
  "conceito": "Razão entre grandezas de unidades diferentes (micrômetro e nanômetro) e ordem de grandeza com potências de 10.",
  "resolucao": {
   "antes": {
-   "texto": "Para dividir duas medidas, elas precisam estar na mesma unidade. Aqui uma vem em micrômetro e a outra em nanômetro. Converta uma delas e depois divida. 'Da ordem de' pede a potência de 10 mais próxima do resultado.",
+   "texto": "Para dividir duas medidas, elas precisam estar na mesma unidade. Aqui uma vem em micrômetro e a outra em nanômetro. Converta uma delas e depois divida. 'Da ordem de' pede a potência de 10 mais próxima do resultado. A pergunta é a razão entre o foco da luz e a ponta da nanoantena, nessa ordem.",
    "formulas": [
     "1 µm = 1000 nm = 10^3 nm",
     "razão = diâmetro do foco ÷ diâmetro da ponta"
@@ -68,9 +68,9 @@
   "resposta": "Alternativa D: o foco tem 1000 nm e a ponta tem 10 nm, então a razão é 100.",
   "checagem": "Cem pontas de 10 nm lado a lado ocupam 100 × 10 = 1000 nm, que é 1 µm. Fecha com o foco.",
   "erradas": {
-   "A": "0,0001 é 10^−4. Não confere: não é a razão nem o seu inverso. O inverso (ponta ÷ foco) é 10 ÷ 1000 = 0,01, e a questão pede foco ÷ ponta.",
+   "A": "0,0001 é 10^−4 e não confere. Nem a razão (100) nem o seu inverso (10 ÷ 1000 = 0,01) dão esse valor. Só sairia de uma conversão com três zeros a mais.",
    "B": "0,01 sai de inverter a razão: ponta ÷ foco = 10 nm ÷ 1000 nm = 0,01. A questão pede o foco dividido pela ponta, não o contrário.",
-   "C": "1 não confere: razão 1 significaria foco e ponta do mesmo tamanho. Mas 1 µm = 1000 nm, que é 100 vezes os 10 nm da ponta. Dividir 1 por 10 sem converter daria 0,1, e não 1.",
+   "C": "1 não confere: razão 1 significaria foco e ponta do mesmo tamanho. Mas 1 µm = 1000 nm, que é 100 vezes os 10 nm da ponta. Quem marca C costuma esquecer de converter a unidade e comparar só os números.",
    "E": "10000 não confere: exigiria um foco de 100 000 nm (100 µm). Com 1 µm = 1000 nm, a razão é 1000 ÷ 10 = 100."
   },
   "armadilha": "Dividir 1 por 10 sem converter micrômetro em nanômetro, ou inverter a razão.",
@@ -106,7 +106,7 @@
    "destaque": "1000 nm"
   },
   {
-   "linha": "razão = 1000/10",
+   "linha": "razão = \\frac{1000}{10}",
    "nota": "foco sobre ponta, agora na mesma unidade",
    "mov": [
     {
@@ -145,11 +145,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -166,6 +168,30 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "D"
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Para dividir duas medidas, elas precisam estar na mesma unidade. Aqui uma vem em micrômetro e a outra em nanômetro. Converta uma delas e depois divida. 'Da ordem de' pede a potência de 10 mais próxima do resultado. A pergunta é a razão entre o foco da luz e a ponta da nanoantena, nessa ordem.",
+    "motivo": "Deixa claro o que se pede e a ordem da razão logo no início."
+   },
+   {
+    "campo": "resolucao.quadro[3].linha",
+    "depois": "razão = \\frac{1000}{10}",
+    "motivo": "Fração deve ser escrita empilhada, não na linha."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "0,0001 é 10^−4 e não confere. Nem a razão (100) nem o seu inverso (10 ÷ 1000 = 0,01) dão esse valor. Só sairia de uma conversão com três zeros a mais.",
+    "motivo": "Explica o que faltou no raciocínio de quem marcou A, sem frase solta."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "1 não confere: razão 1 significaria foco e ponta do mesmo tamanho. Mas 1 µm = 1000 nm, que é 100 vezes os 10 nm da ponta. Quem marca C costuma esquecer de converter a unidade e comparar só os números.",
+    "motivo": "Mostra o erro de raciocínio de forma direta. A frase antiga sobre 0,1 era confusa e foi tirada."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

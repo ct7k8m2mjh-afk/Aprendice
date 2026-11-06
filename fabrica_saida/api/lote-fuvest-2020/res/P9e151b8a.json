@@ -20,6 +20,10 @@
      "milissegundo, 0,001 s"
     ],
     [
+     "pulso nervoso",
+     "o sinal elétrico que viaja pelo nervo levando a informação do estímulo"
+    ],
+    [
      "nervo ciático",
      "nervo que leva o pulso do pé até a base do tronco"
     ],
@@ -30,6 +34,10 @@
     [
      "v",
      "velocidade média, em m/s"
+    ],
+    [
+     "razão 0,6",
+     "os membros inferiores medem 0,6 da altura da pessoa"
     ]
    ]
   },
@@ -55,13 +63,13 @@
    },
    {
     "faz": "Calcule a velocidade do pé ao cérebro",
-    "conta": "v = 1,70 / 0,030 ≈ 57 m/s",
+    "conta": "v = 1,70 ÷ 0,030 ≈ 57 m/s",
     "porque": "Distância total dividida pelo tempo total, com 30 ms = 0,030 s.",
     "tipo": "calcular"
    },
    {
     "faz": "Calcule a velocidade da base do tronco ao cérebro",
-    "conta": "v = 0,68 / 0,010 = 68 m/s",
+    "conta": "v = 0,68 ÷ 0,010 = 68 m/s",
     "porque": "Distância da medula dividida pelo tempo da medula, com 10 ms = 0,010 s.",
     "tipo": "calcular"
    },
@@ -76,7 +84,7 @@
   "checagem": "Veja o trecho do ciático: 1,02 m em 20 ms dá 51 m/s. A média de 57 m/s fica entre 51 m/s (ciático) e 68 m/s (medula), como deve ser. Os tempos também fecham: 1,02/51 = 0,020 s e 0,68/68 = 0,010 s, total de 30 ms.",
   "erradas": {
    "A": "51 m/s é a velocidade só do nervo ciático (1,02 m ÷ 0,020 s). Essa alternativa usa esse valor para os dois casos. Mas o percurso pé–cérebro tem 1,70 m em 30 ms, que dá 57 m/s, e a medula leva 0,68 m em 10 ms, que dá 68 m/s.",
-   "B": "O 51 m/s é a velocidade do trecho pé–base do tronco, não a do pé até o cérebro (1,70 m ÷ 0,030 s ≈ 57 m/s). O 57 m/s da segunda posição é a velocidade média do percurso total, não a do trecho da medula (0,68 m ÷ 0,010 s = 68 m/s).",
+   "B": "Acertou o 57 m/s da segunda posição só por coincidência com o total, mas errou a primeira: 51 m/s é só o ciático (1,02 m em 20 ms). Pé–cérebro é 1,70 m em 30 ms ≈ 57 m/s. E a medula dá 0,68 m em 10 ms = 68 m/s, não 57.",
    "C": "57 m/s vale para o percurso inteiro, mas não para o trecho da medula. Nele a distância é 0,68 m e o tempo é 30 − 20 = 10 ms, o que dá 68 m/s. A velocidade média do trecho final não é igual à média do trajeto todo.",
    "E": "68 m/s é a velocidade só da medula (0,68 m ÷ 0,010 s). Repetir esse valor para o percurso pé–cérebro ignora os 1,02 m mais lentos do ciático: 1,70 m ÷ 0,030 s ≈ 57 m/s."
   },
@@ -116,11 +124,15 @@
    "nota": "1,70 − 1,02 = 0,68"
   },
   {
-   "linha": "t_med = 30 − 20 = 10 ms",
-   "nota": "tempo do trecho da medula"
+   "linha": "t_med = 30 − 20",
+   "nota": "tempo total menos tempo do ciático"
   },
   {
-   "linha": "v_total = 1,70 / 0,030",
+   "linha": "t_med = 10 ms = 0,010 s",
+   "nota": "1 ms = 0,001 s"
+  },
+  {
+   "linha": "v_total = 1,70 ÷ 0,030",
    "nota": "30 ms = 0,030 s"
   },
   {
@@ -128,8 +140,8 @@
    "nota": "1,70 ÷ 0,030 ≈ 56,7"
   },
   {
-   "linha": "v_med = 0,68 / 0,010",
-   "nota": "10 ms = 0,010 s"
+   "linha": "v_med = 0,68 ÷ 0,010",
+   "nota": "distância da medula ÷ tempo da medula"
   },
   {
    "linha": "v_med = 68 m/s",
@@ -150,14 +162,113 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [],
   "fatos_ok": true,
-  "fatos_resposta": "D"
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "ms",
+      "milissegundo, 0,001 s"
+     ],
+     [
+      "pulso nervoso",
+      "o sinal elétrico que viaja pelo nervo levando a informação do estímulo"
+     ],
+     [
+      "nervo ciático",
+      "nervo que leva o pulso do pé até a base do tronco"
+     ],
+     [
+      "medula espinhal",
+      "trecho que leva o pulso da base do tronco até o cérebro"
+     ],
+     [
+      "v",
+      "velocidade média, em m/s"
+     ],
+     [
+      "razão 0,6",
+      "os membros inferiores medem 0,6 da altura da pessoa"
+     ]
+    ],
+    "motivo": "Explicar 'pulso nervoso' e 'razão', termos que o aluno pode não dominar."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "v = 1,70 ÷ 0,030 ≈ 57 m/s",
+    "motivo": "Padronizar a divisão (sem barra na linha) e manter a conta curta."
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "v = 0,68 ÷ 0,010 = 68 m/s",
+    "motivo": "Padronizar a divisão."
+   },
+   {
+    "campo": "resolucao.quadro",
+    "depois": [
+     {
+      "linha": "L_inf = 0,6 × 1,70",
+      "nota": "comprimento dos membros inferiores"
+     },
+     {
+      "linha": "L_inf = 1,02 m",
+      "nota": "0,6 × 1,70 = 1,02"
+     },
+     {
+      "linha": "L_med = 1,70 − 1,02",
+      "nota": "o que resta é a medula"
+     },
+     {
+      "linha": "L_med = 0,68 m",
+      "nota": "1,70 − 1,02 = 0,68"
+     },
+     {
+      "linha": "t_med = 30 − 20",
+      "nota": "tempo total menos tempo do ciático"
+     },
+     {
+      "linha": "t_med = 10 ms = 0,010 s",
+      "nota": "1 ms = 0,001 s"
+     },
+     {
+      "linha": "v_total = 1,70 ÷ 0,030",
+      "nota": "30 ms = 0,030 s"
+     },
+     {
+      "linha": "v_total ≈ 57 m/s",
+      "nota": "1,70 ÷ 0,030 ≈ 56,7"
+     },
+     {
+      "linha": "v_med = 0,68 ÷ 0,010",
+      "nota": "distância da medula ÷ tempo da medula"
+     },
+     {
+      "linha": "v_med = 68 m/s",
+      "nota": "0,68 ÷ 0,010 = 68"
+     }
+    ],
+    "motivo": "Separar a conversão de ms em s do cálculo do tempo e usar ÷ em vez de barra na linha."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "Acertou o 57 m/s da segunda posição só por coincidência com o total, mas errou a primeira: 51 m/s é só o ciático (1,02 m em 20 ms). Pé–cérebro é 1,70 m em 30 ms ≈ 57 m/s. E a medula dá 0,68 m em 10 ms = 68 m/s, não 57.",
+    "motivo": "Texto original estava confuso e invertia o que cada número representa; foi reorganizado."
+   }
+  ],
+  "didatica_alertas": [
+   "O campo 'tema' do JSON (F01/F01.2) difere da classificação do cabeçalho (F02/F02.1); a F01.2 (velocidade média) parece a correta. Verificar a classificação."
+  ],
+  "didatica_ok": true
  }
 }

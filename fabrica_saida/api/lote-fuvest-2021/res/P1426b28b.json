@@ -8,7 +8,7 @@
  "conceito": "Comparar comprimentos de caminhos em malha quadriculada: caminhos que só andam para a direita e para baixo têm o mesmo comprimento.",
  "resolucao": {
   "antes": {
-   "texto": "Na malha, cada lado de quadradinho vale 1 unidade. A distância percorrida é o número de lados de quadradinho que o caminho atravessa. Um caminho que só anda para a direita e para baixo, sem voltar, percorre sempre o mesmo total horizontal e o mesmo total vertical. Se o caminho sobe ou volta, o total aumenta.",
+   "texto": "Na malha, cada lado de quadradinho vale 1 unidade. A distância de um caminho é o número de lados de quadradinho que ele percorre. Um caminho que só anda para a direita e para baixo, sem voltar, sempre percorre o mesmo total na horizontal e o mesmo total na vertical. Se o caminho sobe, ele precisa descer a mais depois, e o total aumenta.",
    "formulas": [
     "distância do caminho = total na horizontal + total na vertical",
     "ir de X até Y sem voltar: horizontal = 10 e vertical = 6"
@@ -46,14 +46,14 @@
    },
    {
     "faz": "Calcule o caminho laranja-claro (b)",
-    "conta": "dir: 4+4+2 = 10 ; baixo: 4+2 = 6",
-    "porque": "O trecho em degraus faz 4 à direita, 4 para baixo, 4 à direita, 2 para baixo e 2 à direita. Só vai para a direita e para baixo, então b = 10 + 6 = 16.",
+    "conta": "→: 4+4+2 = 10 ; ↓: 4+2 = 6",
+    "porque": "Nos degraus, os trechos para a direita somam 10 e os trechos para baixo somam 6. Ele nunca sobe nem volta. Então b = 10 + 6 = 16.",
     "tipo": "calcular"
    },
    {
     "faz": "Calcule o caminho vermelho (a)",
     "conta": "a = 2 + 10 + 8 = 20",
-    "porque": "O vermelho primeiro SOBE 2 (acima de X), vai 10 para a direita e desce 8 até Y. Os 2 de subida são recuperados na descida e contam duas vezes: 8 = 6 + 2.",
+    "porque": "O vermelho primeiro SOBE 2 (acima de X), vai 10 para a direita e desce 8 até Y. Para chegar a Y, ele desce os 2 que subiu mais os 6 do desnível: 2 + 6 = 8. Por isso a soma passa de 16.",
     "tipo": "calcular"
    },
    {
@@ -64,7 +64,7 @@
    }
   ],
   "resposta": "Alternativa B: b = c < a, porque azul e laranja-claro andam 10 na horizontal e 6 na vertical, enquanto o vermelho anda 2 a mais para cima e 2 a mais para baixo.",
-  "checagem": "O caminho vermelho passa 2 quadradinhos acima de X e depois desce até Y. Por isso ele excede os 16 em 2 + 2 = 4. Então a = 16 + 4 = 20, o que confere com a soma direta 2 + 10 + 8.",
+  "checagem": "Por outro caminho: o vermelho é igual ao azul (16) mais um desvio. Ele sobe 2 a mais e desce 2 a mais: 16 + 2 + 2 = 20. Confere com a soma direta 2 + 10 + 8 = 20.",
   "erradas": {
    "A": "a = b = c exigiria que o vermelho também medisse 16. Ele sobe 2 antes de seguir para a direita e depois desce 8 em vez de 6, então mede 20, e não 16.",
    "C": "c < b < a exigiria que o azul fosse menor que o laranja-claro. Os dois medem 16: o azul faz 6 + 10 e os degraus fazem 10 na horizontal e 6 na vertical. Os degraus não alongam o caminho, pois nunca voltam.",
@@ -104,7 +104,7 @@
   },
   {
    "linha": "b = (4+4+2) + (4+2)",
-   "nota": "laranja-claro: direita e depois baixo, em degraus"
+   "nota": "laranja-claro: direita (10) e baixo (6)"
   },
   {
    "linha": "b = 10 + 6 = 16",
@@ -138,11 +138,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -159,6 +161,47 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "B"
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Na malha, cada lado de quadradinho vale 1 unidade. A distância de um caminho é o número de lados de quadradinho que ele percorre. Um caminho que só anda para a direita e para baixo, sem voltar, sempre percorre o mesmo total na horizontal e o mesmo total na vertical. Se o caminho sobe, ele precisa descer a mais depois, e o total aumenta.",
+    "motivo": "Frases mais curtas e ligação clara entre 'subir' e 'descer a mais'."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "→: 4+4+2 = 10 ; ↓: 4+2 = 6",
+    "motivo": "Os rótulos 'dir' e 'baixo' eram abreviações pouco claras; setas deixam a conta legível e curta."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Nos degraus, os trechos para a direita somam 10 e os trechos para baixo somam 6. Ele nunca sobe nem volta. Então b = 10 + 6 = 16.",
+    "motivo": "A descrição dos degraus (4, 4, 4, 2, 2) não bate com a conta mostrada e confundia; agora o porquê usa só os totais da conta."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "O vermelho primeiro SOBE 2 (acima de X), vai 10 para a direita e desce 8 até Y. Para chegar a Y, ele desce os 2 que subiu mais os 6 do desnível: 2 + 6 = 8. Por isso a soma passa de 16.",
+    "motivo": "Explicação mais direta de por que a descida vale 8."
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Por outro caminho: o vermelho é igual ao azul (16) mais um desvio. Ele sobe 2 a mais e desce 2 a mais: 16 + 2 + 2 = 20. Confere com a soma direta 2 + 10 + 8 = 20.",
+    "motivo": "Texto mais claro, partindo do azul como referência."
+   },
+   {
+    "campo": "resolucao.quadro[3].linha",
+    "depois": "b = (4+4+2) + (4+2)",
+    "motivo": "Sem mudança de conteúdo; mantido. Nota ajustada abaixo."
+   },
+   {
+    "campo": "resolucao.quadro[3].nota",
+    "depois": "laranja-claro: direita (10) e baixo (6)",
+    "motivo": "Nota mais clara, ligando cada parênteses ao seu sentido."
+   }
+  ],
+  "didatica_alertas": [
+   "A soma 4+4+2 = 10 (direita) e 4+2 = 6 (baixo) do caminho laranja-claro deve ser conferida contra a figura: pela imagem os trechos horizontais parecem 4, 4 e 2, mas os verticais parecem 4 e 2 com um trecho de 2 em baixo; só os totais 10 e 6 importam e batem com o gabarito."
+  ],
+  "didatica_ok": true
  }
 }

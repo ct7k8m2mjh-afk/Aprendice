@@ -8,7 +8,7 @@
  "conceito": "Dinâmica de populações: o tamanho muda pelo saldo entre o que entra (natalidade + imigração) e o que sai (mortalidade + emigração).",
  "resolucao": {
   "antes": {
-   "texto": "O tamanho de uma população só muda pelo saldo de quatro fluxos. Entram indivíduos por nascimento (natalidade) e por chegada de fora (imigração). Saem por morte (mortalidade) e por ida para fora (emigração). Se o que entra for igual ao que sai, o tamanho não muda. O trabalho real é somar os dois lados em cada instante, e não olhar um gráfico isolado.",
+   "texto": "O tamanho de uma população só muda pelo saldo de quatro fluxos. Entram indivíduos por nascimento (natalidade) e por chegada de fora (imigração). Saem por morte (mortalidade) e por ida para fora (emigração). Se entra o mesmo tanto que sai, o tamanho não muda. O trabalho real é somar os dois lados em cada ano, em vez de olhar um gráfico só.",
    "formulas": [
     "variação = (natalidade + imigração) − (mortalidade + emigração)",
     "entra = sai → população constante",
@@ -37,17 +37,17 @@
     ]
    ]
   },
-  "pista": "Não compare um gráfico com outro de forma solta. Pergunte, em cada ano, quantos indivíduos entram e quantos saem. Veja se algum fluxo anula outro.",
+  "pista": "Não olhe um gráfico sozinho. Escolha um ano e pergunte: quantos indivíduos entram e quantos saem? Depois veja se algum gráfico tem o mesmo valor de outro.",
   "passos": [
    {
     "faz": "Leia os gráficos que ficam parados",
-    "conta": "Emigração = 200 (reta)",
+    "conta": "Emigração = 200; natalidade = 200",
     "porque": "O gráfico da emigração é uma reta horizontal em 200 indivíduos/ano durante os 20 anos. A natalidade também é uma reta horizontal, em 200.",
     "tipo": "localizar"
    },
    {
     "faz": "Leia os gráficos que sobem",
-    "conta": "Imigração: 100 → 300",
+    "conta": "Imigração e mortalidade: 100 → 300",
     "porque": "A imigração começa em 100 no ano 0 e sobe em linha reta até cerca de 300 no ano 20. A mortalidade faz o mesmo: parte de 100 e chega a cerca de 300.",
     "tipo": "localizar"
    },
@@ -66,7 +66,7 @@
    {
     "faz": "Compare os dois lados",
     "conta": "(200 + I) − (M + 200) = I − M",
-    "porque": "Os 200 da natalidade e os 200 da emigração se cancelam. Sobra imigração menos mortalidade. As duas retas coincidem (100 → 300), então a diferença é zero em todos os anos.",
+    "porque": "Os 200 da natalidade e os 200 da emigração se cancelam. Sobra imigração menos mortalidade. As duas retas são iguais (100 → 300), então a diferença é zero em todos os anos.",
     "tipo": "calcular"
    },
    {
@@ -146,7 +146,7 @@
   },
   {
    "linha": "população constante",
-   "nota": "saldo zero nos 20 anos"
+   "nota": "entra = sai em todo ano, então o tamanho não muda"
   }
  ],
  "visual": {
@@ -163,11 +163,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -178,6 +180,40 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "D"
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "O tamanho de uma população só muda pelo saldo de quatro fluxos. Entram indivíduos por nascimento (natalidade) e por chegada de fora (imigração). Saem por morte (mortalidade) e por ida para fora (emigração). Se entra o mesmo tanto que sai, o tamanho não muda. O trabalho real é somar os dois lados em cada ano, em vez de olhar um gráfico só.",
+    "motivo": "Frases mais curtas; 'instante' trocado por 'ano'; 'entra = sai' dito de forma direta."
+   },
+   {
+    "campo": "resolucao.pista",
+    "depois": "Não olhe um gráfico sozinho. Escolha um ano e pergunte: quantos indivíduos entram e quantos saem? Depois veja se algum gráfico tem o mesmo valor de outro.",
+    "motivo": "Pista mais concreta (escolher um ano), sem entregar a conclusão."
+   },
+   {
+    "campo": "resolucao.passos[0].conta",
+    "depois": "Emigração = 200; natalidade = 200",
+    "motivo": "O passo fala de dois gráficos, e a conta mostrava só um."
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "Imigração e mortalidade: 100 → 300",
+    "motivo": "O passo fala de dois gráficos, e a conta mostrava só um."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "Os 200 da natalidade e os 200 da emigração se cancelam. Sobra imigração menos mortalidade. As duas retas são iguais (100 → 300), então a diferença é zero em todos os anos.",
+    "motivo": "Frase mais simples."
+   },
+   {
+    "campo": "resolucao.quadro[8].nota",
+    "depois": "entra = sai em todo ano, então o tamanho não muda",
+    "motivo": "Nota mais clara para o aluno copiar no caderno."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

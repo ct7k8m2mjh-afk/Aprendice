@@ -8,10 +8,10 @@
  "conceito": "Soma dos termos de uma PA em contexto de custo, que leva a uma equação do 2º grau.",
  "resolucao": {
   "antes": {
-   "texto": "O custo de cada metro é uma progressão aritmética (PA): começa em 1.000 e sobe 200 a cada metro. O custo total é a soma dos custos de todos os metros. Se o poço tem n metros, a soma dos n primeiros termos da PA vale 48.600, e dessa igualdade sai n.",
+   "texto": "Os custos dos metros formam uma progressão aritmética (PA): o primeiro metro custa 1.000 e cada metro seguinte custa 200 a mais que o anterior. O custo total é a soma dos custos de todos os metros. Se o poço tem n metros, a soma dos n primeiros termos vale 48.600. É dessa igualdade que sai n.",
    "formulas": [
     "custo do metro n: a_n = a_1 + (n − 1) × r",
-    "soma de n termos: S = n × (a_1 + a_n) ÷ 2"
+    "soma de n termos: S = n × (a_1 + a_n) ÷ 2, isto é, n vezes a média entre o primeiro e o último"
    ],
    "simbolos": [
     [
@@ -21,6 +21,10 @@
     [
      "a_1",
      "custo do primeiro metro: R$ 1.000,00"
+    ],
+    [
+     "a_n",
+     "custo do metro de número n; o último metro é o de número n"
     ],
     [
      "r",
@@ -33,10 +37,14 @@
     [
      "S",
      "soma dos custos de todos os metros, o custo total"
+    ],
+    [
+     "Δ",
+     "delta: o número b² − 4ac, usado na fórmula de Bhaskara para resolver equação do 2º grau"
     ]
    ]
   },
-  "pista": "Cada metro custa 200 a mais que o anterior, então os custos formam uma sequência regular. O custo total é a soma dessa sequência. Quantos termos ela precisa ter para somar 48.600?",
+  "pista": "Cada metro custa 200 a mais que o anterior, então os custos seguem uma sequência regular. O custo total é a soma dela. Quantos metros a soma precisa ter para chegar a 48.600?",
   "passos": [
    {
     "faz": "Identifique a sequência",
@@ -46,27 +54,33 @@
    },
    {
     "faz": "Escreva o custo do último metro",
-    "conta": "a_n = 1000 + (n − 1) × 200 = 800 + 200n",
-    "porque": "O metro n custa o primeiro mais (n − 1) acréscimos de 200. Ele entra na fórmula da soma.",
+    "conta": "a_n = 1000 + (n − 1) × 200",
+    "porque": "O metro n custa o primeiro mais (n − 1) acréscimos de 200. Distribuindo, fica 1000 + 200n − 200 = 800 + 200n. Esse valor entra na fórmula da soma.",
     "tipo": "calcular"
    },
    {
     "faz": "Monte a equação da soma",
     "conta": "48600 = n × (1800 + 200n) ÷ 2",
-    "porque": "a_1 + a_n = 1000 + 800 + 200n = 1800 + 200n. A soma de todos os metros deve dar o custo total, 48.600.",
+    "porque": "Some o primeiro e o último custo: 1000 + 800 + 200n = 1800 + 200n. A soma de todos os metros precisa dar o custo total, 48.600.",
     "tipo": "calcular"
    },
    {
-    "faz": "Simplifique até o 2º grau",
-    "conta": "48600 = n × (900 + 100n) → n² + 9n − 486 = 0",
-    "porque": "Dividir por 2 dá 900 + 100n. Dividir tudo por 100 dá 486 = n × (n + 9). Passando o 486, aparece a equação do 2º grau.",
+    "faz": "Divida a soma por 2",
+    "conta": "48600 = n × (900 + 100n)",
+    "porque": "(1800 + 200n) ÷ 2 = 900 + 100n. O 2 do denominador some e a conta fica mais simples.",
     "tipo": "calcular"
    },
    {
-    "faz": "Resolva a equação",
-    "conta": "Δ = 81 + 1944 = 2025 ; √Δ = 45 ; n = (−9 + 45) ÷ 2 = 18",
-    "porque": "A outra raiz, (−9 − 45) ÷ 2 = −27, é negativa e não serve como número de metros.",
+    "faz": "Monte a equação do 2º grau",
+    "conta": "486 = n × (9 + n)",
+    "porque": "Dividindo os dois lados por 100, 48600 vira 486 e 900 + 100n vira 9 + n. Depois n × (9 + n) = n² + 9n. Passando o 486 para o outro lado com sinal trocado, fica n² + 9n − 486 = 0.",
     "tipo": "calcular"
+   },
+   {
+    "faz": "Resolva com Bhaskara",
+    "conta": "Δ = 81 + 1944 = 2025 ; √2025 = 45",
+    "porque": "Δ = 9² − 4 × 1 × (−486) = 81 + 1944. Depois n = (−9 + 45) ÷ 2 = 18. A outra raiz, (−9 − 45) ÷ 2 = −27, é negativa e não serve como número de metros.",
+    "tipo": "concluir"
    },
    {
     "faz": "Ligue ao comando",
@@ -179,14 +193,147 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [],
   "fatos_ok": true,
-  "fatos_resposta": "B"
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Os custos dos metros formam uma progressão aritmética (PA): o primeiro metro custa 1.000 e cada metro seguinte custa 200 a mais que o anterior. O custo total é a soma dos custos de todos os metros. Se o poço tem n metros, a soma dos n primeiros termos vale 48.600. É dessa igualdade que sai n.",
+    "motivo": "Frases mais curtas e o termo 'PA' explicado logo na primeira aparição."
+   },
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "custo do metro n: a_n = a_1 + (n − 1) × r",
+     "soma de n termos: S = n × (a_1 + a_n) ÷ 2, isto é, n vezes a média entre o primeiro e o último"
+    ],
+    "motivo": "Diz de onde vem a fórmula da soma, em linguagem de aula."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "PA",
+      "progressão aritmética: sequência em que cada termo é o anterior mais um valor fixo"
+     ],
+     [
+      "a_1",
+      "custo do primeiro metro: R$ 1.000,00"
+     ],
+     [
+      "a_n",
+      "custo do metro de número n; o último metro é o de número n"
+     ],
+     [
+      "r",
+      "razão da PA: quanto cada metro custa a mais que o anterior, R$ 200,00"
+     ],
+     [
+      "n",
+      "número de metros, ou seja, a profundidade do poço"
+     ],
+     [
+      "S",
+      "soma dos custos de todos os metros, o custo total"
+     ],
+     [
+      "Δ",
+      "delta: o número b² − 4ac, usado na fórmula de Bhaskara para resolver equação do 2º grau"
+     ]
+    ],
+    "motivo": "a_n e Δ aparecem na resolução e não estavam explicados."
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "a_n = 1000 + (n − 1) × 200",
+    "motivo": "Cabe na linha do celular; a simplificação para 800 + 200n vai para o porque e para o passo seguinte."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "O metro n custa o primeiro mais (n − 1) acréscimos de 200. Distribuindo, fica 1000 + 200n − 200 = 800 + 200n. Esse valor entra na fórmula da soma.",
+    "motivo": "Mostra a distribuição que antes ficava pulada."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "48600 = n × (1800 + 200n) ÷ 2",
+    "motivo": "Mantida; o porque foi reescrito para ficar mais claro."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Some o primeiro e o último custo: 1000 + 800 + 200n = 1800 + 200n. A soma de todos os metros precisa dar o custo total, 48.600.",
+    "motivo": "Frases curtas, com a soma separada da conclusão."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "48600 = n × (900 + 100n)",
+    "motivo": "Um movimento por passo: este passo só divide por 2."
+   },
+   {
+    "campo": "resolucao.passos[3].faz",
+    "depois": "Divida a soma por 2",
+    "motivo": "Ajustado ao novo conteúdo do passo."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "(1800 + 200n) ÷ 2 = 900 + 100n. O 2 do denominador some e a conta fica mais simples.",
+    "motivo": "Separa as passagens, que estavam juntas num só passo."
+   },
+   {
+    "campo": "resolucao.passos[4].faz",
+    "depois": "Monte a equação do 2º grau",
+    "motivo": "Novo passo que reúne a divisão por 100 e a passagem do 486."
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "486 = n × (9 + n)",
+    "motivo": "Primeiro movimento: dividir tudo por 100."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "Dividindo os dois lados por 100, 48600 vira 486 e 900 + 100n vira 9 + n. Depois n × (9 + n) = n² + 9n. Passando o 486 para o outro lado com sinal trocado, fica n² + 9n − 486 = 0.",
+    "motivo": "Explica as duas passagens que antes eram um salto."
+   },
+   {
+    "campo": "resolucao.passos[5].conta",
+    "depois": "Δ = 81 + 1944 = 2025 ; √2025 = 45",
+    "motivo": "Cabe na linha do celular."
+   },
+   {
+    "campo": "resolucao.passos[5].faz",
+    "depois": "Resolva com Bhaskara",
+    "motivo": "Nomeia o método."
+   },
+   {
+    "campo": "resolucao.passos[5].porque",
+    "depois": "Δ = 9² − 4 × 1 × (−486) = 81 + 1944. Depois n = (−9 + 45) ÷ 2 = 18. A outra raiz, (−9 − 45) ÷ 2 = −27, é negativa e não serve como número de metros.",
+    "motivo": "Mostra de onde vem o Δ e o cálculo de n, que estavam fora da conta."
+   },
+   {
+    "campo": "resolucao.passos[6]",
+    "depois": {
+     "faz": "Ligue ao comando",
+     "conta": "profundidade = 18 m → B",
+     "porque": "n é o número de metros construídos, que é a profundidade pedida.",
+     "tipo": "concluir"
+    },
+    "motivo": "O passo concluir passa a ser o sétimo, e o total fica dentro do limite de 7."
+   },
+   {
+    "campo": "resolucao.pista",
+    "depois": "Cada metro custa 200 a mais que o anterior, então os custos seguem uma sequência regular. O custo total é a soma dela. Quantos metros a soma precisa ter para chegar a 48.600?",
+    "motivo": "Mantém a pista sem entregar a resposta, com redação mais direta."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

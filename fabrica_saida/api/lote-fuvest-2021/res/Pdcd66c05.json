@@ -25,6 +25,18 @@
     [
      "aresta",
      "cada segmento onde duas faces se encontram; no cubo, todas medem o mesmo"
+    ],
+    [
+     "número natural",
+     "número inteiro não negativo: 0, 1, 2, 3..."
+    ],
+    [
+     "fatorar",
+     "escrever o número como produto de números primos"
+    ],
+    [
+     "cm³",
+     "centímetro cúbico: unidade de volume"
     ]
    ]
   },
@@ -39,19 +51,19 @@
    {
     "faz": "Fatore as três medidas",
     "conta": "60 = 2² × 3 × 5",
-    "porque": "Na fatoração, o MDC usa só os fatores comuns aos três números, com o menor expoente.",
+    "porque": "Fatorar é escrever o número como produto de primos (2, 3, 5...). Assim dá para ver o que 60, 24 e 18 têm em comum. O MDC usa só os primos presentes nos três, com o menor expoente.",
     "tipo": "calcular"
    },
    {
-    "faz": "Continue a fatoração",
-    "conta": "24 = 2³ × 3  e  18 = 2 × 3²",
-    "porque": "O 2 aparece nos três (menor expoente: 1). O 3 aparece nos três (menor expoente: 1). O 5 aparece só no 60.",
+    "faz": "Fatore o 24 e o 18",
+    "conta": "24 = 2³ × 3",
+    "porque": "24 = 2³ × 3 e 18 = 2 × 3². O 2 está nos três números (menor expoente: 1) e o 3 também (menor expoente: 1). O 5 está só no 60, então fica de fora.",
     "tipo": "calcular"
    },
    {
     "faz": "Calcule o MDC",
     "conta": "MDC = 2 × 3 = 6 cm",
-    "porque": "O maior cubo tem aresta 6 cm. Ele cabe 10 vezes em 60, 4 vezes em 24 e 3 vezes em 18.",
+    "porque": "O maior cubo tem aresta 6 cm. Conferindo: 60 ÷ 6 = 10, 24 ÷ 6 = 4 e 18 ÷ 6 = 3, todas as divisões exatas.",
     "tipo": "calcular"
    },
    {
@@ -70,7 +82,7 @@
   "resposta": "Alternativa E: o maior cubo possível tem aresta 6 cm (MDC de 60, 24 e 18), e cabem 10 × 4 × 3 = 120 cubos.",
   "checagem": "Pelo volume: 60 × 24 × 18 = 25 920 cm³ e o cubo tem 6³ = 216 cm³. Então 25 920 ÷ 216 = 120. Fecha com a contagem direta.",
   "erradas": {
-   "A": "60 não confere. Seriam 60 cubos de volume 25 920 ÷ 60 = 432 cm³, que não é cubo perfeito (7,56³ ≈ 432), e a aresta não seria natural. Além disso, 60 é só uma das medidas, não a contagem de cubos.",
+   "A": "60 não confere. Com 60 cubos, cada um teria 25 920 ÷ 60 = 432 cm³. Como 7³ = 343 e 8³ = 512, não existe aresta natural com esse volume.",
    "B": "72 não confere. Daria cubos de 25 920 ÷ 72 = 360 cm³, e a raiz cúbica de 360 não é um número natural (7³ = 343 e 8³ = 512). A aresta tem de ser natural.",
    "C": "80 não confere. Daria cubos de 25 920 ÷ 80 = 324 cm³, e 324 fica entre 6³ = 216 e 7³ = 343, então a aresta não é natural.",
    "D": "96 não confere. Daria cubos de 25 920 ÷ 96 = 270 cm³, e 270 fica entre 6³ = 216 e 7³ = 343, então a aresta não é natural."
@@ -143,11 +155,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -164,6 +178,75 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "E"
+  "fatos_resposta": "E",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "60 = 2² × 3 × 5",
+    "motivo": "Mantida. Faltava dizer como fatorar: o porque agora explica o que é fatorar."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "Fatorar é escrever o número como produto de primos (2, 3, 5...). Assim dá para ver o que 60, 24 e 18 têm em comum. O MDC usa só os primos presentes nos três, com o menor expoente.",
+    "motivo": "Aluno de 17 anos pode não lembrar o que é fatorar nem por que o menor expoente."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "24 = 2³ × 3",
+    "motivo": "Conta longa demais para a tela de 30 caracteres; dividida em dois passos de uma linha só."
+   },
+   {
+    "campo": "resolucao.passos[2].faz",
+    "depois": "Fatore o 24 e o 18",
+    "motivo": "O comando antigo, 'continue', era vago."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "24 = 2³ × 3 e 18 = 2 × 3². O 2 está nos três números (menor expoente: 1) e o 3 também (menor expoente: 1). O 5 está só no 60, então fica de fora.",
+    "motivo": "Traz as duas fatorações para o porque, já que a conta ficou numa linha só, e mantém a explicação dos expoentes."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "O maior cubo tem aresta 6 cm. Conferindo: 60 ÷ 6 = 10, 24 ÷ 6 = 4 e 18 ÷ 6 = 3, todas as divisões exatas.",
+    "motivo": "Mostra a verificação de que 6 cabe em cada medida."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "60 não confere. Com 60 cubos, cada um teria 25 920 ÷ 60 = 432 cm³. Como 7³ = 343 e 8³ = 512, não existe aresta natural com esse volume.",
+    "motivo": "Texto mais claro, sem '7,56³' e sem a frase confusa sobre 60 ser medida da caixa."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "paralelepípedo reto retângulo",
+      "caixa em forma de tijolo, com todas as faces retangulares"
+     ],
+     [
+      "MDC",
+      "máximo divisor comum: o maior número que divide todos os números dados"
+     ],
+     [
+      "aresta",
+      "cada segmento onde duas faces se encontram; no cubo, todas medem o mesmo"
+     ],
+     [
+      "número natural",
+      "número inteiro não negativo: 0, 1, 2, 3..."
+     ],
+     [
+      "fatorar",
+      "escrever o número como produto de números primos"
+     ],
+     [
+      "cm³",
+      "centímetro cúbico: unidade de volume"
+     ]
+    ],
+    "motivo": "Termos usados na resolução (natural, fatorar, cm³) não estavam explicados."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

@@ -10,7 +10,7 @@
   "antes": {
    "texto": "Provérbio não se traduz palavra por palavra: a imagem literal (galinhas, mão, nuvem) serve para ensinar uma lição. Para resolver, imagine a cena, depois diga a lição em uma palavra. Só então compare com as alternativas, que trazem três palavras na ordem dos provérbios.",
    "formulas": [
-    "count your chickens before they hatch/lay eggs = contar com algo antes de acontecer → precipitação",
+    "count your chickens before they lay eggs = contar com algo antes de acontecer → precipitação",
     "bite the hand that feeds you = ferir quem te ajuda → ingratidão",
     "every cloud has a silver lining = toda nuvem tem um forro prateado → há algo bom até no mau momento → esperança"
    ],
@@ -29,7 +29,7 @@
     ],
     [
      "the hand that feeds you",
-     "a mão que te alimenta, quem te sustenta ou ajuda"
+     "a mão que te alimenta: quem te sustenta ou ajuda"
     ],
     [
      "cloud",
@@ -37,7 +37,19 @@
     ],
     [
      "silver lining",
-     "borda prateada da nuvem, o lado bom de uma situação ruim"
+     "borda prateada da nuvem: o lado bom de uma situação ruim"
+    ],
+    [
+     "provérbio",
+     "frase curta e popular que ensina uma lição, usando uma imagem do dia a dia"
+    ],
+    [
+     "precipitação",
+     "pressa: agir ou decidir antes da hora"
+    ],
+    [
+     "ingratidão",
+     "falta de gratidão: tratar mal quem te ajudou"
     ]
    ]
   },
@@ -64,18 +76,18 @@
    {
     "faz": "Monte a sequência de ideias",
     "conta": "precipitação; ingratidão; esperança",
-    "porque": "Respondemos antes de olhar as opções, para que nenhuma palavra bonita nos desvie.",
+    "porque": "Responda antes de olhar as alternativas, para que nenhuma palavra bonita desvie você.",
     "tipo": "comparar"
    },
    {
     "faz": "Procure essa sequência nas alternativas",
     "conta": "(B) Precipitação; ingratidão; esperança",
-    "porque": "As três palavras coincidem, na ordem, com o que concluímos.",
+    "porque": "As três palavras coincidem, na ordem, com a sequência que você montou. As outras letras erram pelo menos um dos três.",
     "tipo": "concluir"
    }
   ],
   "resposta": "Alternativa B: os provérbios expressam, na ordem, precipitação (contar com o que ainda não aconteceu), ingratidão (ferir quem ajuda) e esperança (há um lado bom em toda dificuldade).",
-  "checagem": "Faça o caminho inverso: 'ingratidão' combina com morder a mão de quem alimenta? Sim. 'Esperança' combina com a nuvem de borda prateada? Sim. A letra B é a única em que o 2º e o 3º termos servem aos dois provérbios.",
+  "checagem": "Faça o caminho inverso: 'ingratidão' combina com morder a mão de quem alimenta? Sim. 'Esperança' combina com a nuvem de borda prateada? Sim. Nas outras letras, o 2º e o 3º termos falham em pelo menos um provérbio.",
   "erradas": {
    "A": "O 1º provérbio não fala de esperteza: quem conta galinhas antes da hora age com pressa, não com astúcia. O 2º não trata de desconfiança, e sim de ferir quem ajuda. O 3º não pede foco, mas otimismo.",
    "C": "O 1º provérbio não trata de observação, e sim de dar como certo o que ainda não ocorreu. O 2º não fala de certeza; o 3º não fala de experiência, mas de ver o lado bom de uma situação ruim.",
@@ -115,11 +127,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -154,6 +168,72 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "B"
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.formulas[0]",
+    "depois": "count your chickens before they lay eggs = contar com algo antes de acontecer → precipitação",
+    "motivo": "A fórmula citava 'hatch', que não aparece na prova; assim ela fica igual ao provérbio da questão."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "to count",
+      "contar (aqui, contar com, dar como certo)"
+     ],
+     [
+      "to lay eggs",
+      "botar ovos"
+     ],
+     [
+      "to bite",
+      "morder"
+     ],
+     [
+      "the hand that feeds you",
+      "a mão que te alimenta: quem te sustenta ou ajuda"
+     ],
+     [
+      "cloud",
+      "nuvem"
+     ],
+     [
+      "silver lining",
+      "borda prateada da nuvem: o lado bom de uma situação ruim"
+     ],
+     [
+      "provérbio",
+      "frase curta e popular que ensina uma lição, usando uma imagem do dia a dia"
+     ],
+     [
+      "precipitação",
+      "pressa: agir ou decidir antes da hora"
+     ],
+     [
+      "ingratidão",
+      "falta de gratidão: tratar mal quem te ajudou"
+     ]
+    ],
+    "motivo": "Explicar os termos 'provérbio', 'precipitação' e 'ingratidão', que aparecem na resolução e podem não ser claros para um aluno de 17 anos."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Responda antes de olhar as alternativas, para que nenhuma palavra bonita desvie você.",
+    "motivo": "A voz 'respondemos' ficou ambígua; o comando direto ao aluno é mais claro."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "As três palavras coincidem, na ordem, com a sequência que você montou. As outras letras erram pelo menos um dos três.",
+    "motivo": "Liga o passo final à eliminação das demais alternativas."
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Faça o caminho inverso: 'ingratidão' combina com morder a mão de quem alimenta? Sim. 'Esperança' combina com a nuvem de borda prateada? Sim. Nas outras letras, o 2º e o 3º termos falham em pelo menos um provérbio.",
+    "motivo": "A frase antiga dizia que B era a única em que o 2º e o 3º termos servem aos dois provérbios. Isso era confuso, pois cada termo serve a um só provérbio."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

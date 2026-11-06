@@ -34,6 +34,10 @@
     [
      "match",
      "combinar, ser igual a"
+    ],
+    [
+     "parâmetro",
+     "padrão ou critério usado para comparar e avaliar"
     ]
    ]
   },
@@ -47,8 +51,8 @@
    },
    {
     "faz": "Entenda a palavra yardstick",
-    "conta": "yard (jarda) + stick (vara) = régua",
-    "porque": "Régua serve para medir e comparar. No sentido figurado, yardstick é o padrão usado para avaliar outras coisas.",
+    "conta": "yard (jarda) + stick (vara)",
+    "porque": "Yardstick é uma régua, e régua serve para medir e comparar. No sentido figurado, é o padrão usado para avaliar outras coisas.",
     "tipo": "localizar"
    },
    {
@@ -59,8 +63,8 @@
    },
    {
     "faz": "Procure uma segunda marca",
-    "conta": "“judged stars normal… match the sun's” (estrelas julgadas normais se a composição for igual à do Sol)",
-    "porque": "Aqui o Sol é o modelo de comparação para dizer se uma estrela é normal. Isso também é um padrão de medida.",
+    "conta": "“judged stars normal… match the sun's”",
+    "porque": "O texto diz que as estrelas são julgadas normais se a composição for igual à do Sol. Aqui o Sol é o modelo de comparação, ou seja, um padrão de medida.",
     "tipo": "localizar"
    },
    {
@@ -75,7 +79,7 @@
   "erradas": {
    "A": "Mistério não serve. O texto diz que os cientistas não sabem ao certo do que o Sol é feito, mas a frase de Asplund trata de outra coisa: o Sol como ponto de referência para medir as outras estrelas.",
    "B": "Estrutura vem de ler a metáfora como objeto físico (uma vara, uma régua). O texto fala de composição química e de comparação, não de uma estrutura.",
-   "C": "Processo não aparece no texto como descrição do Sol. Os processos citados (vida e morte das estrelas, formação de planetas, surgimento da vida) dependem da composição química e não são o que o Sol representa para Asplund.",
+   "C": "Processo não serve. Os processos do texto (vida e morte das estrelas, formação de planetas) dependem da composição química. Asplund não os chama de yardstick: ele usa o Sol como referência para comparar.",
    "D": "Sistema não cabe. O texto fala do Sol dentro da Via Láctea, mas Asplund não o descreve como conjunto de partes, e sim como ponto de comparação."
   },
   "armadilha": "Ficar na tradução literal de yardstick (régua, objeto) em vez de ler o sentido figurado que a frase seguinte explica: ponto de referência.",
@@ -111,11 +115,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -144,6 +150,75 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "E"
+  "fatos_resposta": "E",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "yard (jarda) + stick (vara)",
+    "motivo": "A conta cabe em ~30 caracteres e não quebra no celular. A conclusão 'régua' passa para o porque."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "Yardstick é uma régua, e régua serve para medir e comparar. No sentido figurado, é o padrão usado para avaliar outras coisas.",
+    "motivo": "Incorpora o 'régua' retirado da conta e deixa a ideia completa."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "“judged stars normal… match the sun's”",
+    "motivo": "Conta mais curta, para caber na tela. A tradução vai para o porque."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "O texto diz que as estrelas são julgadas normais se a composição for igual à do Sol. Aqui o Sol é o modelo de comparação, ou seja, um padrão de medida.",
+    "motivo": "Traz a tradução que saiu da conta e mantém a ligação com o padrão de comparação."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "“we use the sun as a reference point” (usamos o Sol como ponto de referência)",
+    "motivo": "Mantido. A tradução entre parênteses já ajuda o aluno e a linha continua curta o bastante."
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "ponto de referência = parâmetro",
+    "motivo": "Mantido. A linha é curta e direta."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "yardstick",
+      "régua de medir; figurado: padrão de comparação"
+     ],
+     [
+      "abundance",
+      "abundância, quantidade presente de um elemento"
+     ],
+     [
+      "reference point",
+      "ponto de referência, padrão para comparar"
+     ],
+     [
+      "touchstone",
+      "pedra de toque, critério pelo qual se avalia algo"
+     ],
+     [
+      "match",
+      "combinar, ser igual a"
+     ],
+     [
+      "parâmetro",
+      "padrão ou critério usado para comparar e avaliar"
+     ]
+    ],
+    "motivo": "A palavra 'parâmetro' é a resposta e pode ser nova para um aluno de 17 anos. Agora ela está explicada."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "Processo não serve. Os processos do texto (vida e morte das estrelas, formação de planetas) dependem da composição química. Asplund não os chama de yardstick: ele usa o Sol como referência para comparar.",
+    "motivo": "Frase mais clara e curta. Diz o que faltou ao aluno que marcou C."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

@@ -8,7 +8,7 @@
  "conceito": "Média ponderada pela área: chuva em mm é altura (volume por área), então os setores entram com peso igual à área.",
  "resolucao": {
   "antes": {
-   "texto": "Chuva em mm é uma altura de água, ou seja, volume por área: 1 mm sobre 1 m² dá 1 litro. Por isso não se pode somar nem tirar a média simples de 7 mm e 11 mm. O setor maior (Norte) pesa mais. O total da cidade é a média dos setores ponderada pela área, ou seja, o volume total dividido pela área total.",
+   "texto": "Chuva em mm é uma altura de água, ou seja, volume dividido por área: 1 mm sobre 1 m² dá 1 litro. Por isso a cidade não tem a média simples de 16 mm e 28 mm. O setor maior (Norte) pesa mais. O total da cidade é a média dos setores com peso igual à área, ou seja, o volume total dividido pela área total.",
    "formulas": [
     "total da cidade = (volume do Sul + volume do Norte) ÷ área total",
     "volume = altura da chuva × área do setor"
@@ -16,7 +16,7 @@
    "simbolos": [
     [
      "mm (pluviométrico)",
-     "altura que a água da chuva atingiria numa superfície plana, sem escorrer nem infiltrar; 1 mm equivale a 1 litro por m²"
+     "altura que a água da chuva alcançaria no chão, se não escorresse nem entrasse na terra; 1 mm equivale a 1 litro por m²"
     ],
     [
      "km²",
@@ -24,7 +24,7 @@
     ],
     [
      "média ponderada",
-     "média em que cada valor conta com um peso; aqui, o peso é a área"
+     "média em que cada valor conta com um peso; aqui, o peso é a área do setor"
     ]
    ]
   },
@@ -44,14 +44,14 @@
    },
    {
     "faz": "Pese cada setor pela área",
-    "conta": "16 × 10 + 28 × 30",
-    "porque": "Altura × área dá o volume de água. O Norte tem 3 vezes a área do Sul, então pesa 3 vezes mais.",
+    "conta": "16 × 10 = 160",
+    "porque": "Altura × área dá o volume de água. O Norte tem 3 vezes a área do Sul, então pesa 3 vezes mais. Aqui o Sul: 16 mm × 10 km².",
     "tipo": "calcular"
    },
    {
-    "faz": "Calcule o volume total",
-    "conta": "160 + 840 = 1000",
-    "porque": "Unidade: mm × km², proporcional ao volume de água.",
+    "faz": "Calcule o volume do Norte e some",
+    "conta": "28 × 30 = 840 ; 160 + 840 = 1000",
+    "porque": "O resultado está em mm × km², que é proporcional ao volume de água. Serve para comparar os setores.",
     "tipo": "calcular"
    },
    {
@@ -62,10 +62,10 @@
    }
   ],
   "resposta": "Alternativa D: 25 mm, média das chuvas dos setores ponderada pelas áreas (1000 ÷ 40).",
-  "checagem": "A cidade tem 3/4 de Norte e 1/4 de Sul: 3/4 × 28 + 1/4 × 16 = 21 + 4 = 25. O resultado fica entre 16 e 28, mais perto de 28, como esperado.",
+  "checagem": "Outro caminho: o Sul é 1/4 da cidade e o Norte é 3/4. Então 1/4 × 16 + 3/4 × 28 = 4 + 21 = 25. O resultado fica entre 16 e 28, mais perto de 28, como esperado.",
   "erradas": {
-   "A": "15 mm não confere: ficaria abaixo dos 16 mm do Sul, que é a menor chuva acumulada entre os setores. Uma média da cidade não pode ser menor que o menor dos dois valores.",
-   "B": "17 mm não confere: está pouco acima do Sul (16 mm), como se o Sul pesasse muito mais. Mas o Sul é só 10 de 40 km², um quarto da cidade.",
+   "A": "15 mm não confere: é menor que 16 mm, a menor chuva entre os setores. A média da cidade nunca fica abaixo do menor valor.",
+   "B": "17 mm não confere: fica quase igual ao Sul (16 mm), como se o Sul fosse a maior parte da cidade. Mas o Sul tem só 10 dos 40 km², um quarto.",
    "C": "22 mm sai da média simples dos setores: (16 + 28) ÷ 2 = 22. Ela trata Sul e Norte como se tivessem a mesma área, mas o Norte é 3 vezes maior.",
    "E": "28 mm é a chuva do Norte sozinho. Ignora o Sul, que também faz parte da cidade e teve só 16 mm."
   },
@@ -128,11 +128,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -149,6 +151,68 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "D"
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Chuva em mm é uma altura de água, ou seja, volume dividido por área: 1 mm sobre 1 m² dá 1 litro. Por isso a cidade não tem a média simples de 16 mm e 28 mm. O setor maior (Norte) pesa mais. O total da cidade é a média dos setores com peso igual à área, ou seja, o volume total dividido pela área total.",
+    "motivo": "Troca 'volume por área' (ambíguo) por 'volume dividido por área' e deixa claro que a média simples não serve."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "mm (pluviométrico)",
+      "altura que a água da chuva alcançaria no chão, se não escorresse nem entrasse na terra; 1 mm equivale a 1 litro por m²"
+     ],
+     [
+      "km²",
+      "quilômetro quadrado, unidade de área"
+     ],
+     [
+      "média ponderada",
+      "média em que cada valor conta com um peso; aqui, o peso é a área do setor"
+     ]
+    ],
+    "motivo": "Explicação mais simples para um aluno de 17 anos."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "16 × 10 = 160",
+    "motivo": "Um passo por linha: a conta do Sul fica pronta, sem misturar com a do Norte."
+   },
+   {
+    "campo": "resolucao.passos[3]",
+    "depois": {
+     "faz": "Calcule o volume do Norte e some",
+     "conta": "28 × 30 = 840 ; 160 + 840 = 1000",
+     "porque": "O resultado está em mm × km², que é proporcional ao volume de água. Serve para comparar os setores.",
+     "tipo": "calcular"
+    },
+    "motivo": "Completa a conta do Norte, antes ausente, e deixa a ordem natural."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Altura × área dá o volume de água. O Norte tem 3 vezes a área do Sul, então pesa 3 vezes mais. Aqui o Sul: 16 mm × 10 km².",
+    "motivo": "Alinha o porquê com a conta do Sul."
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Outro caminho: o Sul é 1/4 da cidade e o Norte é 3/4. Então 1/4 × 16 + 3/4 × 28 = 4 + 21 = 25. O resultado fica entre 16 e 28, mais perto de 28, como esperado.",
+    "motivo": "Deixa claro que é um segundo caminho."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "15 mm não confere: é menor que 16 mm, a menor chuva entre os setores. A média da cidade nunca fica abaixo do menor valor.",
+    "motivo": "Frase mais curta e direta."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "17 mm não confere: fica quase igual ao Sul (16 mm), como se o Sul fosse a maior parte da cidade. Mas o Sul tem só 10 dos 40 km², um quarto.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou B."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

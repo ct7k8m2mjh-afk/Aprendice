@@ -8,11 +8,12 @@
  "conceito": "Interpretar uma tirinha combinando imagem e fala: ironia (sarcasmo) de quem é ignorada por alguém preso ao celular.",
  "resolucao": {
   "antes": {
-   "texto": "Em tirinha, o sentido nasce da soma de imagem e texto. Aqui a fala sozinha parece um pedido estranho, mas o desenho mostra o homem olhando o celular enquanto a mulher o observa de braços cruzados. A fala é uma ironia: ela pede algo absurdo para dizer o que realmente sente.",
+   "texto": "Em tirinha, o sentido nasce da soma de imagem e fala. Aqui a fala sozinha parece um pedido estranho. O desenho mostra o homem olhando o celular enquanto a mulher o observa de braços cruzados. A fala é irônica: ela diz algo absurdo para mostrar o que sente de verdade.",
    "formulas": [
-    "ironia/sarcasmo = dizer uma coisa para criticar o contrário dela",
+    "ironia = dizer uma coisa para criticar justamente o contrário dela",
     "imagem + fala = sentido da tira",
-    "strap X to Y = prender X em Y"
+    "strap X to Y = prender X em Y",
+    "pretend = fingir (não é 'pretender')"
    ],
    "simbolos": [
     [
@@ -50,13 +51,13 @@
    {
     "faz": "Descreva a cena do desenho",
     "conta": "Homem: olhos no celular",
-    "porque": "Os dois estão à mesa com cafés, mas ele olha só para o aparelho. Ela está de braços cruzados, com expressão séria, sem ser atendida.",
+    "porque": "Os dois estão à mesa com cafés, mas ele olha só para o aparelho. Ela está de braços cruzados e séria, sem receber atenção.",
     "tipo": "localizar"
    },
    {
     "faz": "Traduza a fala da mulher",
-    "conta": "“so I can pretend” = fingir",
-    "porque": "Significa: 'Você se importa se eu prender seu celular na minha testa para eu fingir que você está olhando para mim quando eu falo?'. Pretend é fingir.",
+    "conta": "“so I can pretend” = para eu fingir",
+    "porque": "A fala quer dizer: 'Você se importa se eu prender seu celular na minha testa, para eu fingir que você olha para mim quando eu falo?'. Ela quer ser olhada.",
     "tipo": "localizar"
    },
    {
@@ -67,7 +68,7 @@
    },
    {
     "faz": "Formule a resposta e compare",
-    "conta": "sarcasmo por falta de conversa",
+    "conta": "protesto por falta de conversa = E",
     "porque": "Ela protesta contra a falta de atenção, ou seja, a ausência de diálogo entre os dois. Isso corresponde à alternativa E.",
     "tipo": "concluir"
    }
@@ -77,8 +78,8 @@
   "erradas": {
    "A": "O texto e o desenho não falam do local. O café é apenas o cenário, e a queixa é sobre a atenção do homem, não sobre o lugar do encontro.",
    "B": "Ela não demonstra inferioridade nem falta de celular. Ela só imagina o aparelho do homem na testa para ser olhada. O problema é a atenção dele, não o fato de ela ter ou não um telefone.",
-   "C": "Inverte a relação: a fala critica o celular que atrapalha a relação pessoal, e não diz que relações pessoais levam à exclusão das redes sociais.",
-   "D": "Não há apelo por troca de informações no quadro. Ela não pede que ele divulgue dados; ela quer ser olhada enquanto fala."
+   "C": "Inverte a ideia. A fala critica o celular que atrapalha a relação entre as pessoas. Não diz que ter relações pessoais leva à exclusão das redes sociais.",
+   "D": "Ninguém pede troca de informações na tira. Ela não quer dados do homem: quer ser olhada enquanto fala. Quem marcou D leu 'phone' como troca de dados, e não como atenção."
   }
  },
  "armadilha": "Ler a fala ao pé da letra (como pedido sério ou sinal de inveja do celular) em vez de perceber a ironia que a imagem do homem preso ao telefone revela.",
@@ -113,11 +114,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -140,6 +143,65 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "E"
+  "fatos_resposta": "E",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Em tirinha, o sentido nasce da soma de imagem e fala. Aqui a fala sozinha parece um pedido estranho. O desenho mostra o homem olhando o celular enquanto a mulher o observa de braços cruzados. A fala é irônica: ela diz algo absurdo para mostrar o que sente de verdade.",
+    "motivo": "Frases mais curtas e diretas; 'sente' no lugar de ideia vaga."
+   },
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "ironia = dizer uma coisa para criticar justamente o contrário dela",
+     "imagem + fala = sentido da tira",
+     "strap X to Y = prender X em Y",
+     "pretend = fingir (não é 'pretender')"
+    ],
+    "motivo": "Troca 'ironia/sarcasmo' por uma definição que o aluno entende, e destaca o falso cognato, que decide a leitura da fala."
+   },
+   {
+    "campo": "resolucao.passos[0].conta",
+    "depois": "Homem: olhos no celular",
+    "motivo": "Mantido o dado curto; o resto fica no porque."
+   },
+   {
+    "campo": "resolucao.passos[0].porque",
+    "depois": "Os dois estão à mesa com cafés, mas ele olha só para o aparelho. Ela está de braços cruzados e séria, sem receber atenção.",
+    "motivo": "Frases mais curtas."
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "“so I can pretend” = para eu fingir",
+    "motivo": "Traduz o trecho inteiro, não só a palavra."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "A fala quer dizer: 'Você se importa se eu prender seu celular na minha testa, para eu fingir que você olha para mim quando eu falo?'. Ela quer ser olhada.",
+    "motivo": "Mostra o que a fala pede, sem ambiguidade."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Ninguém prenderia o celular na testa de verdade. Ela exagera para criticar: ele só olha para o telefone e não conversa com ela.",
+    "motivo": "Mais claro."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "protesto por falta de conversa = E",
+    "motivo": "Liga o resultado à letra."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "Inverte a ideia. A fala critica o celular que atrapalha a relação entre as pessoas. Não diz que ter relações pessoais leva à exclusão das redes sociais.",
+    "motivo": "Explica o que faltou a quem marcou C: ver quem atrapalha quem."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "Ninguém pede troca de informações na tira. Ela não quer dados do homem: quer ser olhada enquanto fala. Quem marcou D leu 'phone' como troca de dados, e não como atenção.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou D."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

@@ -8,10 +8,11 @@
  "conceito": "Mudar a base de cálculo de uma concentração em mg/kg: de solo úmido para solo seco, descontando a água.",
  "resolucao": {
   "antes": {
-   "texto": "A massa de naftaleno é a mesma na amostra úmida e na seca: secar o solo tira só a água. O que muda é o 'por kg de quê'. Como a massa de solo diminui e a de naftaleno fica igual, a concentração por kg de solo seco tem de ser maior.",
+   "texto": "A massa de naftaleno é a mesma na amostra úmida e na seca: secar o solo tira só a água. O que muda é o 'por kg de quê'. Como a massa de solo diminui e a de naftaleno fica igual, a concentração por kg de solo seco tem de ser maior. A análise foi feita 'de forma integral': todo o naftaleno da amostra foi medido, nada ficou de fora.",
    "formulas": [
     "concentração = massa de naftaleno ÷ massa de solo",
     "solo úmido = solo seco + água",
+    "20% de água = 0,20 do solo úmido",
     "massa de naftaleno não muda ao secar"
    ],
    "simbolos": [
@@ -48,8 +49,8 @@
     "tipo": "localizar"
    },
    {
-    "faz": "Calcule a massa de solo seco",
-    "conta": "100% − 20% = 80%",
+    "faz": "Ache a parte de solo seco",
+    "conta": "água: 20% de 1 kg = 0,20 kg",
     "porque": "20% do kg é água; sobram 80% de solo seco.",
     "tipo": "calcular"
    },
@@ -104,11 +105,19 @@
    "nota": "tome 1 kg de solo úmido"
   },
   {
-   "linha": "água = 20% de 1 kg = 0,20 kg",
+   "linha": "água = 0,20 × 1 kg",
+   "nota": "20% do kg é água"
+  },
+  {
+   "linha": "água = 0,20 kg",
    "nota": "parte que será retirada"
   },
   {
-   "linha": "solo seco = 1 − 0,20 = 0,80 kg",
+   "linha": "solo seco = 1 − 0,20",
+   "nota": "tire a água do 1 kg"
+  },
+  {
+   "linha": "solo seco = 0,80 kg",
    "nota": "massa de solo que sobra"
   },
   {
@@ -134,11 +143,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -161,6 +172,79 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "E"
+  "fatos_resposta": "E",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "A massa de naftaleno é a mesma na amostra úmida e na seca: secar o solo tira só a água. O que muda é o 'por kg de quê'. Como a massa de solo diminui e a de naftaleno fica igual, a concentração por kg de solo seco tem de ser maior. A análise foi feita 'de forma integral': todo o naftaleno da amostra foi medido, nada ficou de fora.",
+    "motivo": "Explica a expressão 'de forma integral' do enunciado, que dá a base para dizer que a massa de naftaleno não muda."
+   },
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "concentração = massa de naftaleno ÷ massa de solo",
+     "solo úmido = solo seco + água",
+     "20% de água = 0,20 do solo úmido",
+     "massa de naftaleno não muda ao secar"
+    ],
+    "motivo": "Mostra como porcentagem vira número decimal, que o aluno usa nos passos."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "água: 20% de 1 kg = 0,20 kg",
+    "motivo": "A conta anterior (100% − 20%) já pulava a ideia de água; agora o aluno vê a água em kg antes de subtrair."
+   },
+   {
+    "campo": "resolucao.passos[2].faz",
+    "depois": "Ache a parte de solo seco",
+    "motivo": "Deixa o comando mais simples e fiel à conta."
+   },
+   {
+    "campo": "resolucao.passos[3].faz",
+    "depois": "Passe 80% para quilogramas",
+    "motivo": "Mantido; sem mudança de sentido."
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "2,0 mg ÷ 0,80 kg = 2,5 mg/kg",
+    "motivo": "Mantido; sem mudança."
+   },
+   {
+    "campo": "resolucao.quadro",
+    "depois": [
+     {
+      "linha": "1 kg úmido: 2,0 mg naftaleno",
+      "nota": "tome 1 kg de solo úmido"
+     },
+     {
+      "linha": "água = 0,20 × 1 kg",
+      "nota": "20% do kg é água"
+     },
+     {
+      "linha": "água = 0,20 kg",
+      "nota": "parte que será retirada"
+     },
+     {
+      "linha": "solo seco = 1 − 0,20",
+      "nota": "tire a água do 1 kg"
+     },
+     {
+      "linha": "solo seco = 0,80 kg",
+      "nota": "massa de solo que sobra"
+     },
+     {
+      "linha": "C = 2,0 mg ÷ 0,80 kg",
+      "nota": "mesmo naftaleno, menos solo"
+     },
+     {
+      "linha": "C = 2,5 mg/kg",
+      "nota": "divida 2,0 por 0,80"
+     }
+    ],
+    "motivo": "Um passo por linha, sem pular a passagem, cada linha curta o bastante para a tela do celular."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

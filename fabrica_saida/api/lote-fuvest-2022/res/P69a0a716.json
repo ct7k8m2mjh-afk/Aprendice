@@ -8,7 +8,7 @@
  "conceito": "Trocas de calor entre líquidos de mesmo calor específico: o calor que o café perde é o que o leite ganha, até o equilíbrio térmico.",
  "resolucao": {
   "antes": {
-   "texto": "Quando dois líquidos se misturam sem perder calor para fora, o que um perde o outro ganha. O café esfria e o leite esquenta, até os dois ficarem a 65 °C. O enunciado diz que o calor específico e a densidade são iguais, então o calor específico cancela e o volume em mL faz o papel da massa.",
+   "texto": "Quando dois líquidos se misturam sem perder calor para fora, o calor que um perde é o que o outro ganha. O café esfria e o leite esquenta, até os dois ficarem a 65 °C. O enunciado diz que o calor específico e a densidade são iguais. Por isso o calor específico cancela e o volume em mL vale como massa.",
    "formulas": [
     "Q = m × c × Δθ",
     "Q do café + Q do leite = 0 (ou: calor cedido = calor recebido)",
@@ -32,8 +32,20 @@
      "variação de temperatura (final menos inicial)"
     ],
     [
+     "θ",
+     "letra grega theta, usada para temperatura"
+    ],
+    [
      "equilíbrio térmico",
      "situação em que os dois líquidos chegam à mesma temperatura"
+    ],
+    [
+     "densidade",
+     "massa por volume; se for igual, volumes iguais têm massas iguais"
+    ],
+    [
+     "x",
+     "o volume de leite, em mL, que queremos descobrir"
     ]
    ]
   },
@@ -53,24 +65,24 @@
    },
    {
     "faz": "Iguale o calor cedido ao recebido",
-    "conta": "60 × c × 15 = x × c × 60",
-    "porque": "Sem perdas para o ambiente, o calor que o café perde é o que o leite ganha. Usamos o volume em mL no lugar da massa porque a densidade é a mesma.",
+    "conta": "café cede = leite recebe",
+    "porque": "Sem perdas para o ambiente, o calor que o café perde é o que o leite ganha. Aqui usamos os tamanhos das variações, 15 °C e 60 °C, sem sinal. Como a densidade é a mesma, o volume em mL vale como massa.",
     "tipo": "calcular"
    },
    {
     "faz": "Cancele o que se repete",
-    "conta": "60 × 15 = x × 60",
+    "conta": "60·c·15 = x·c·60 → 60×15 = x×60",
     "porque": "O calor específico c aparece dos dois lados e cancela. Por isso o enunciado não dá o valor dele.",
     "tipo": "calcular"
    },
    {
     "faz": "Isole x",
     "conta": "x = 15 mL",
-    "porque": "Dividindo os dois lados por 60, sobra x = 15. A variação do café (15 °C) é 4 vezes menor que a do leite (60 °C), então o leite necessário é 4 vezes menor que o café: 60 ÷ 4 = 15 mL.",
+    "porque": "Dividindo os dois lados por 60, sobra x = 15. Confira pela ideia: o café varia 4 vezes menos que o leite (15 contra 60 °C), então precisa de 4 vezes mais líquido. O leite é 1/4 do café: 60 ÷ 4 = 15 mL.",
     "tipo": "concluir"
    }
   ],
-  "resposta": "Alternativa C: 15 mL de leite gelado, pois o leite varia 60 °C e o café 15 °C, e o volume de leite é proporcional ao inverso dessas variações.",
+  "resposta": "Alternativa C: 15 mL de leite gelado.",
   "checagem": "Calcule a temperatura da mistura pela média ponderada dos volumes: (60 × 80 + 15 × 5) ÷ (60 + 15) = 4875 ÷ 75 = 65 °C. Bate com o enunciado.",
   "erradas": {
    "A": "Com 5 mL de leite, a mistura ficaria em (60 × 80 + 5 × 5) ÷ 65 = 4825 ÷ 65 ≈ 74,2 °C. Isso é leite de menos, e a temperatura fica bem acima de 65 °C.",
@@ -161,11 +173,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -182,6 +196,80 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "C"
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Quando dois líquidos se misturam sem perder calor para fora, o calor que um perde é o que o outro ganha. O café esfria e o leite esquenta, até os dois ficarem a 65 °C. O enunciado diz que o calor específico e a densidade são iguais. Por isso o calor específico cancela e o volume em mL vale como massa.",
+    "motivo": "Frases mais curtas e sem ambiguidade."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "Q",
+      "quantidade de calor trocada"
+     ],
+     [
+      "m",
+      "massa do líquido"
+     ],
+     [
+      "c",
+      "calor específico: quanto calor 1 g precisa para variar 1 °C"
+     ],
+     [
+      "Δθ",
+      "variação de temperatura (final menos inicial)"
+     ],
+     [
+      "θ",
+      "letra grega theta, usada para temperatura"
+     ],
+     [
+      "equilíbrio térmico",
+      "situação em que os dois líquidos chegam à mesma temperatura"
+     ],
+     [
+      "densidade",
+      "massa por volume; se for igual, volumes iguais têm massas iguais"
+     ],
+     [
+      "x",
+      "o volume de leite, em mL, que queremos descobrir"
+     ]
+    ],
+    "motivo": "Explicar θ, densidade e x, usados na resolução."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "café cede = leite recebe",
+    "motivo": "A conta anterior ignorava o sinal negativo de Δθ do café e podia confundir. Fica a ideia; a equação vai ao passo seguinte."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Sem perdas para o ambiente, o calor que o café perde é o que o leite ganha. Aqui usamos os tamanhos das variações, 15 °C e 60 °C, sem sinal. Como a densidade é a mesma, o volume em mL vale como massa.",
+    "motivo": "Explicar que os sinais são tirados de propósito."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "60·c·15 = x·c·60 → 60×15 = x×60",
+    "motivo": "Mostrar a equação antes e depois do cancelamento, em uma linha curta."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "Dividindo os dois lados por 60, sobra x = 15. Confira pela ideia: o café varia 4 vezes menos que o leite (15 contra 60 °C), então precisa de 4 vezes mais líquido. O leite é 1/4 do café: 60 ÷ 4 = 15 mL.",
+    "motivo": "Frase mais clara e correta na lógica da proporção."
+   },
+   {
+    "campo": "resolucao.resposta",
+    "depois": "Alternativa C: 15 mL de leite gelado.",
+    "motivo": "Resposta direta; a explicação já está nos passos."
+   }
+  ],
+  "didatica_alertas": [
+   "Classificação do banco (tema F08, conteúdo F08.4, nível 4) não bate com a questão, que é calorimetria (F06.4); a resolução já usa F06/F06.4 e nível 3. O corretor 1 deve alinhar."
+  ],
+  "didatica_ok": true
  }
 }

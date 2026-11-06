@@ -8,7 +8,7 @@
  "conceito": "Identificar, no texto, a sequência de causas e consequências que o 'efeito cascata' resume.",
  "resolucao": {
   "antes": {
-   "texto": "'Efeito cascata' é uma cadeia de acontecimentos em que cada um provoca o seguinte. A questão pede a ordem dos eventos que o próprio texto apresenta. Por isso, cada elo da alternativa precisa ter apoio em um trecho. A pergunta traz uma trava: 'de acordo com o texto'.",
+   "texto": "'Efeito cascata' é uma cadeia de acontecimentos em que cada um provoca o seguinte. A questão pede a ordem dos eventos que o próprio texto apresenta. Por isso, cada elo da alternativa precisa ter apoio em um trecho. A trava está em 'de acordo com o texto': vale o que o texto diz, não o que parece lógico.",
    "formulas": [
     "efeito cascata: A causa B, B causa C, C causa D",
     "texto → ordem dos eventos: imposto → preço → vendas → editoras → investimento"
@@ -39,13 +39,13 @@
    {
     "faz": "Localize o 2º elo",
     "conta": "\"Livros mais caros também resultam em queda de vendas\"",
-    "porque": "Livro caro vende menos. O elo é 'queda de vendas', isto é, contração, e não equilíbrio nem aumento.",
+    "porque": "Livro caro vende menos. O elo é 'queda de vendas' (contração), e não equilíbrio nem aumento.",
     "tipo": "localizar"
    },
    {
     "faz": "Localize o 3º elo",
     "conta": "\"enfraquece ainda mais editoras\"",
-    "porque": "A queda das vendas debilita as editoras, que já estavam em crise.",
+    "porque": "A queda das vendas deixa as editoras mais fracas, e elas já estavam em crise. Por isso a alternativa certa pode chamar isso de 'esgotamento'.",
     "tipo": "localizar"
    },
    {
@@ -56,24 +56,24 @@
    },
    {
     "faz": "Elimine as que trocam um elo",
-    "conta": "estímulo, aumento, expansão, equilíbrio",
+    "conta": "A: estímulo às editoras\nB: aumento do investimento\nC: expansão das publicações\nE: equilíbrio nas vendas",
     "porque": "Cada uma dessas palavras diz o oposto do que o texto afirma sobre algum elo da cadeia.",
     "tipo": "eliminar"
    },
    {
     "faz": "Conclua",
-    "conta": "preço↑ → vendas↓ → editoras fracas → sem investir",
+    "conta": "preço sobe → vendas caem\n→ editoras fracas\n→ sem investir",
     "porque": "Só uma alternativa reproduz os quatro elos na ordem e com o sentido do texto.",
     "tipo": "concluir"
    }
   ],
-  "resposta": "Alternativa D: encarecimento do produto final, contração nas vendas, enfraquecimento das editoras (esgotamento) e falta de investimento em novas publicações. É a sequência do texto.",
+  "resposta": "Alternativa D — produto final mais caro, vendas em queda, editoras enfraquecidas (esgotamento) e falta de investimento em novas publicações.",
   "checagem": "Releia o texto e marque os quatro elos: 'aumento no valor', 'queda de vendas', 'enfraquece editoras', 'impede de investir'. A alternativa D traz os quatro, na mesma ordem e com o mesmo sentido.",
   "erradas": {
    "A": "Diz 'estímulo às editoras', mas o texto afirma que a queda de vendas 'enfraquece ainda mais editoras'. O terceiro elo está invertido.",
    "B": "Termina em 'aumento do investimento em novas obras'. O texto diz que as editoras ficam impedidas de investir em novas publicações.",
    "C": "Fala em 'expansão das publicações'. O texto diz o contrário: sem investimento, há menos publicações, sobretudo as de menor apelo comercial. 'Instabilidade nas vendas' também não é o que o texto diz: ele fala em queda.",
-   "E": "Diz 'equilíbrio nas vendas', mas o texto fala em 'queda de vendas'. Os elos seguintes ('diminuição das editoras') não vêm do texto, que diz que elas ficam enfraquecidas, não que diminuem."
+   "E": "Diz 'equilíbrio nas vendas', mas o texto fala em 'queda de vendas'. Também diz que as editoras 'diminuem', e o texto diz que elas ficam enfraquecidas, não que diminuem."
   },
   "armadilha": "Alternativas que acertam parte dos elos e trocam um ou dois por palavra contrária ao texto (estímulo, aumento, expansão, equilíbrio); é preciso conferir os quatro elos.",
   "alerta": "",
@@ -108,11 +108,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -135,6 +137,45 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "D"
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "'Efeito cascata' é uma cadeia de acontecimentos em que cada um provoca o seguinte. A questão pede a ordem dos eventos que o próprio texto apresenta. Por isso, cada elo da alternativa precisa ter apoio em um trecho. A trava está em 'de acordo com o texto': vale o que o texto diz, não o que parece lógico.",
+    "motivo": "Deixa clara a trava do comando e o que ela exige do aluno."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "Livro caro vende menos. O elo é 'queda de vendas' (contração), e não equilíbrio nem aumento.",
+    "motivo": "Troca 'isto é' por uma explicação mais curta, sem dar duplo sentido."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "A queda das vendas deixa as editoras mais fracas, e elas já estavam em crise. Por isso a alternativa certa pode chamar isso de 'esgotamento'.",
+    "motivo": "Explica por que 'esgotamento' (D) equivale a 'enfraquece', já que a palavra é difícil."
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "A: estímulo às editoras\nB: aumento do investimento\nC: expansão das publicações\nE: equilíbrio nas vendas",
+    "motivo": "Mostra cada alternativa errada com a palavra que a derruba, em linhas curtas."
+   },
+   {
+    "campo": "resolucao.passos[5].conta",
+    "depois": "preço sobe → vendas caem\n→ editoras fracas\n→ sem investir",
+    "motivo": "A linha original era longa e não cabe no celular."
+   },
+   {
+    "campo": "resolucao.resposta",
+    "depois": "Alternativa D — produto final mais caro, vendas em queda, editoras enfraquecidas (esgotamento) e falta de investimento em novas publicações.",
+    "motivo": "Frase mais curta e no formato padrão."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "Diz 'equilíbrio nas vendas', mas o texto fala em 'queda de vendas'. Também diz que as editoras 'diminuem', e o texto diz que elas ficam enfraquecidas, não que diminuem.",
+    "motivo": "Deixa claro o que faltou ao aluno que marcou E, em frases curtas e diretas."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

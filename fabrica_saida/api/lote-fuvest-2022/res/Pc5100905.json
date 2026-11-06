@@ -8,9 +8,9 @@
  "conceito": "Porcentagem aplicada a uma tabela de dupla entrada: calcular os defeituosos por cor e obter os bons por subtração.",
  "resolucao": {
   "antes": {
-   "texto": "A tabela dá as cadeiras por modelo e cor, mas a taxa de defeito depende só do modelo. Por isso, calcule o defeito de cada modelo dentro de cada cor e some por cor. As cadeiras boas são o total da cor menos as com defeito.",
+   "texto": "A tabela dá as cadeiras por modelo e cor, mas a taxa de defeito depende só do modelo. Por isso, calcule o defeito de cada modelo dentro de cada cor e some por cor. As cadeiras boas são o total da cor menos as com defeito. A pergunta pede duas linhas (D e B) e duas colunas (P e V).",
    "formulas": [
-    "defeituosas = porcentagem × quantidade",
+    "defeituosas = taxa × quantidade (2% de 500 = 0,02 × 500)",
     "boas = total da cor − defeituosas da cor"
    ],
    "simbolos": [
@@ -46,14 +46,14 @@
    },
    {
     "faz": "Calcule os defeitos das pretas",
-    "conta": "2% de 500 = 10; 5% de 400 = 20; 8% de 250 = 20",
-    "porque": "Aplique a taxa de cada modelo à quantidade preta desse modelo. Soma: 10 + 20 + 20 = 50.",
+    "conta": "2% de 500 = 10 | 5% de 400 = 20 | 8% de 250 = 20",
+    "porque": "Aplique a taxa de cada modelo à quantidade preta desse modelo. Depois some: 10 + 20 + 20 = 50 pretas com defeito.",
     "tipo": "calcular"
    },
    {
     "faz": "Calcule os defeitos das vermelhas",
-    "conta": "2% de 200 = 4; 5% de 220 = 11; 8% de 300 = 24",
-    "porque": "Mesmo raciocínio, agora com a coluna V. Soma: 4 + 11 + 24 = 39.",
+    "conta": "2% de 200 = 4 | 5% de 220 = 11 | 8% de 300 = 24",
+    "porque": "Mesmo raciocínio, agora com a coluna V. Soma: 4 + 11 + 24 = 39 vermelhas com defeito.",
     "tipo": "calcular"
    },
    {
@@ -65,7 +65,7 @@
    {
     "faz": "Monte a tabela e escolha a letra",
     "conta": "D: 50 e 39 | B: 1100 e 681",
-    "porque": "Esses valores aparecem na alternativa C.",
+    "porque": "Só a alternativa C traz D = 50 e 39 e B = 1100 e 681.",
     "tipo": "concluir"
    }
   ],
@@ -97,36 +97,52 @@
  ],
  "quadro": [
   {
-   "linha": "P: 0,02×500 = 10",
-   "nota": "M1 preta com defeito"
+   "linha": "Pretas (P):",
+   "nota": "taxa de cada modelo × quantidade"
   },
   {
-   "linha": "P: 0,05×400 = 20",
-   "nota": "M2 preta com defeito"
+   "linha": "0,02 × 500 = 10",
+   "nota": "M1 com defeito"
   },
   {
-   "linha": "P: 0,08×250 = 20",
-   "nota": "M3 preta com defeito"
+   "linha": "0,05 × 400 = 20",
+   "nota": "M2 com defeito"
   },
   {
-   "linha": "D_P = 10+20+20 = 50",
-   "nota": "defeitos nas pretas"
+   "linha": "0,08 × 250 = 20",
+   "nota": "M3 com defeito"
   },
   {
-   "linha": "V: 0,02×200 = 4",
-   "nota": "M1 vermelha com defeito"
+   "linha": "D_P = 10 + 20 + 20 = 50",
+   "nota": "pretas com defeito"
   },
   {
-   "linha": "V: 0,05×220 = 11",
-   "nota": "M2 vermelha com defeito"
+   "linha": "Vermelhas (V):",
+   "nota": "mesma conta"
   },
   {
-   "linha": "V: 0,08×300 = 24",
-   "nota": "M3 vermelha com defeito"
+   "linha": "0,02 × 200 = 4",
+   "nota": "M1 com defeito"
   },
   {
-   "linha": "D_V = 4+11+24 = 39",
-   "nota": "defeitos nas vermelhas"
+   "linha": "0,05 × 220 = 11",
+   "nota": "M2 com defeito"
+  },
+  {
+   "linha": "0,08 × 300 = 24",
+   "nota": "M3 com defeito"
+  },
+  {
+   "linha": "D_V = 4 + 11 + 24 = 39",
+   "nota": "vermelhas com defeito"
+  },
+  {
+   "linha": "500 + 400 + 250 = 1150",
+   "nota": "total de pretas"
+  },
+  {
+   "linha": "200 + 220 + 300 = 720",
+   "nota": "total de vermelhas"
   },
   {
    "linha": "B_P = 1150 − 50 = 1100",
@@ -151,11 +167,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -166,6 +184,115 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "C"
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "A tabela dá as cadeiras por modelo e cor, mas a taxa de defeito depende só do modelo. Por isso, calcule o defeito de cada modelo dentro de cada cor e some por cor. As cadeiras boas são o total da cor menos as com defeito. A pergunta pede duas linhas (D e B) e duas colunas (P e V).",
+    "motivo": "Diz de forma explícita o formato do que é pedido."
+   },
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "defeituosas = taxa × quantidade (2% de 500 = 0,02 × 500)",
+     "boas = total da cor − defeituosas da cor"
+    ],
+    "motivo": "Mostra como a porcentagem vira conta."
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "2% de 500 = 10 | 5% de 400 = 20 | 8% de 250 = 20",
+    "motivo": "Separa as contas em itens legíveis."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "Aplique a taxa de cada modelo à quantidade preta desse modelo. Depois some: 10 + 20 + 20 = 50 pretas com defeito.",
+    "motivo": "Deixa claro o que a soma representa."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "2% de 200 = 4 | 5% de 220 = 11 | 8% de 300 = 24",
+    "motivo": "Mesmo formato do passo anterior."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Mesmo raciocínio, agora com a coluna V. Soma: 4 + 11 + 24 = 39 vermelhas com defeito.",
+    "motivo": "Deixa claro o que a soma representa."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "P: 1150 − 50 = 1100 | V: 720 − 39 = 681",
+    "motivo": "Sem mudança de fato; apenas confirma o formato."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "Só a alternativa C traz D = 50 e 39 e B = 1100 e 681.",
+    "motivo": "Liga o resultado à letra com a justificativa."
+   },
+   {
+    "campo": "resolucao.quadro",
+    "depois": [
+     {
+      "linha": "Pretas (P):",
+      "nota": "taxa de cada modelo × quantidade"
+     },
+     {
+      "linha": "0,02 × 500 = 10",
+      "nota": "M1 com defeito"
+     },
+     {
+      "linha": "0,05 × 400 = 20",
+      "nota": "M2 com defeito"
+     },
+     {
+      "linha": "0,08 × 250 = 20",
+      "nota": "M3 com defeito"
+     },
+     {
+      "linha": "D_P = 10 + 20 + 20 = 50",
+      "nota": "pretas com defeito"
+     },
+     {
+      "linha": "Vermelhas (V):",
+      "nota": "mesma conta"
+     },
+     {
+      "linha": "0,02 × 200 = 4",
+      "nota": "M1 com defeito"
+     },
+     {
+      "linha": "0,05 × 220 = 11",
+      "nota": "M2 com defeito"
+     },
+     {
+      "linha": "0,08 × 300 = 24",
+      "nota": "M3 com defeito"
+     },
+     {
+      "linha": "D_V = 4 + 11 + 24 = 39",
+      "nota": "vermelhas com defeito"
+     },
+     {
+      "linha": "500 + 400 + 250 = 1150",
+      "nota": "total de pretas"
+     },
+     {
+      "linha": "200 + 220 + 300 = 720",
+      "nota": "total de vermelhas"
+     },
+     {
+      "linha": "B_P = 1150 − 50 = 1100",
+      "nota": "pretas boas"
+     },
+     {
+      "linha": "B_V = 720 − 39 = 681",
+      "nota": "vermelhas boas"
+     }
+    ],
+    "motivo": "Inclui as somas dos totais, antes puladas, e agrupa por cor."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

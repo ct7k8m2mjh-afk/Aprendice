@@ -8,7 +8,7 @@
  "conceito": "Princípio multiplicativo: contar as placas de cada sistema e comparar as quantidades pela razão.",
  "resolucao": {
   "antes": {
-   "texto": "Cada posição da placa pode ser preenchida de forma independente. Com repetição permitida, o total de placas é o produto do número de opções de cada posição. A pergunta compara dois totais, então o resultado é uma divisão. Antes de calcular, veja que as duas placas têm 3 letras e 3 algarismos em comum. A única diferença é que o Mercosul troca um algarismo por uma letra.",
+   "texto": "Cada posição da placa é preenchida sem depender das outras. Como pode repetir, o total de placas é o produto das opções de cada posição. A pergunta compara dois totais, então o resultado é uma divisão. As duas placas têm 3 letras e 3 algarismos em comum. A única diferença é que o Mercosul troca um algarismo por uma letra.",
    "formulas": [
     "total = (opções da posição 1) × (opções da posição 2) × ...",
     "letra: 26 opções · algarismo: 10 opções",
@@ -21,11 +21,19 @@
     ],
     [
      "26^3",
-     "26 × 26 × 26, ou seja, três letras escolhidas de 26 opções cada"
+     "26 × 26 × 26: três letras, cada uma com 26 opções"
+    ],
+    [
+     "26^4 e 10^3",
+     "26 × 26 × 26 × 26 e 10 × 10 × 10: o número pequeno no alto diz quantas vezes o número se repete na multiplicação"
     ],
     [
      "razão",
      "resultado da divisão de um total pelo outro; diz quantas vezes um cabe no outro"
+    ],
+    [
+     "algarismo",
+     "cada símbolo de 0 a 9: são 10 opções"
     ]
    ]
   },
@@ -52,7 +60,7 @@
    {
     "faz": "Cancele os fatores repetidos",
     "conta": "26^4/26^3 = 26 ; 10^3/10^4 = 1/10",
-    "porque": "Na divisão de potências de mesma base, subtraem-se os expoentes. Sobra 26 em cima e 10 embaixo.",
+    "porque": "Na divisão de potências de mesma base, subtraem-se os expoentes: 26^(4−3) = 26 e 10^(3−4) = 1/10. Sobra 26 em cima e 10 embaixo.",
     "tipo": "calcular"
    },
    {
@@ -70,8 +78,8 @@
    "D": "2,8 não confere. A razão 26/10 = 2,6 é exata. O valor 2,8 exigiria 28 opções para a letra extra, mas o alfabeto do enunciado tem 26.",
    "E": "3 não confere. A razão é 26/10 = 2,6, e 3 × 175 760 000 = 527 280 000, diferente dos 456 976 000 do Mercosul. O valor 3 exigiria 30 letras."
   },
-  "armadilha": "Calcular os dois totais inteiros à mão e errar a conta. O cancelamento mostra que só a letra extra (26) e o algarismo a menos (10) importam.",
-  "alerta": "A expressão 'maior em 2,6 vezes' é imprecisa. Em sentido estrito, 'maior em 1,6 vez' seria o acréscimo. A alternativa 2,6 é a razão entre os totais, e é isso que a banca quer.",
+  "armadilha": "Tentar calcular os dois totais enormes à mão e errar a conta. Cancelando, só importam a letra a mais (26) e o algarismo a menos (10).",
+  "alerta": "A expressão 'maior em 2,6 vezes' é imprecisa: em rigor, 'maior em 1,6 vez' seria o acréscimo. A alternativa 2,6 é a razão entre os totais, e é isso que a banca quer.",
   "essencial": {
    "pede": "Quantas vezes o total de placas do Mercosul é maior que o do sistema anterior.",
    "chave": "Princípio multiplicativo: 26^4 × 10^3 contra 26^3 × 10^4. A razão é 26/10 = 2,6.",
@@ -141,11 +149,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -162,6 +172,56 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "C"
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Cada posição da placa é preenchida sem depender das outras. Como pode repetir, o total de placas é o produto das opções de cada posição. A pergunta compara dois totais, então o resultado é uma divisão. As duas placas têm 3 letras e 3 algarismos em comum. A única diferença é que o Mercosul troca um algarismo por uma letra.",
+    "motivo": "Frases mais curtas e diretas; 'de forma independente' trocado por linguagem simples."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "princípio multiplicativo",
+      "se uma escolha tem m modos e outra tem n modos, juntas têm m × n modos"
+     ],
+     [
+      "26^3",
+      "26 × 26 × 26: três letras, cada uma com 26 opções"
+     ],
+     [
+      "26^4 e 10^3",
+      "26 × 26 × 26 × 26 e 10 × 10 × 10: o número pequeno no alto diz quantas vezes o número se repete na multiplicação"
+     ],
+     [
+      "razão",
+      "resultado da divisão de um total pelo outro; diz quantas vezes um cabe no outro"
+     ],
+     [
+      "algarismo",
+      "cada símbolo de 0 a 9: são 10 opções"
+     ]
+    ],
+    "motivo": "Explicar a notação de potência e o termo 'algarismo' para o aluno."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Na divisão de potências de mesma base, subtraem-se os expoentes: 26^(4−3) = 26 e 10^(3−4) = 1/10. Sobra 26 em cima e 10 embaixo.",
+    "motivo": "Mostrar de onde vêm os resultados do cancelamento."
+   },
+   {
+    "campo": "resolucao.armadilha",
+    "depois": "Tentar calcular os dois totais enormes à mão e errar a conta. Cancelando, só importam a letra a mais (26) e o algarismo a menos (10).",
+    "motivo": "Frase mais clara e curta."
+   },
+   {
+    "campo": "resolucao.alerta",
+    "depois": "A expressão 'maior em 2,6 vezes' é imprecisa: em rigor, 'maior em 1,6 vez' seria o acréscimo. A alternativa 2,6 é a razão entre os totais, e é isso que a banca quer.",
+    "motivo": "Simplificação da redação."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

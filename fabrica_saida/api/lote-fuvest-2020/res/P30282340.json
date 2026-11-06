@@ -8,10 +8,10 @@
  "conceito": "Traduzir um texto em inglês para uma equação de distâncias e considerar as duas posições possíveis de B na reta.",
  "resolucao": {
   "antes": {
-   "texto": "Leia o quadrinho: A está duas vezes mais longe de C do que B está de A. Se AB = d, então AC = 2d. Como os três pontos estão na mesma reta, B e C podem ficar do mesmo lado de A ou em lados opostos. Cada posição dá uma equação, e a questão pede as duas soluções para AC.",
+   "texto": "O quadrinho diz: a distância de A até C é o dobro da distância de B até A. Se AB = d, então AC = 2d. Os três pontos estão na mesma reta, então B e C podem ficar do mesmo lado de A ou em lados opostos. Cada posição dá uma equação. A questão pede as duas soluções para AC.",
    "formulas": [
     "AC = 2 × AB",
-    "BC = 5 polegadas",
+    "BC = 5 polegadas (dado)",
     "mesmo lado de A: BC = 2d − d = d",
     "lados opostos de A: BC = 2d + d = 3d"
    ],
@@ -30,7 +30,7 @@
     ]
    ]
   },
-  "pista": "Ponha A no zero da reta e coloque B e C a distâncias d e 2d de A. Em que lados de A cada um pode ficar?",
+  "pista": "Ponha A no zero da reta. B fica a uma distância d de A e C a 2d. Cada um pode ficar à direita ou à esquerda de A. Quantas combinações existem e quanto vale BC em cada uma?",
   "passos": [
    {
     "faz": "Traduza o texto do quadrinho",
@@ -53,7 +53,7 @@
    {
     "faz": "Caso 2: B e C em lados opostos de A",
     "conta": "BC = d + 2d = 3d = 5",
-    "porque": "A fica entre B e C, então as distâncias se somam. Então d = 5/3 e AC = 2 × 5/3 = 10/3.",
+    "porque": "A fica entre B e C, então as distâncias se somam. De 3d = 5 vem d = 5/3. Então AC = 2 × 5/3 = 10/3.",
     "tipo": "calcular"
    },
    {
@@ -66,10 +66,10 @@
   "resposta": "Alternativa A: as soluções para a distância de A a C são 10/3 e 10 polegadas.",
   "checagem": "Caso 1: AB = 5, AC = 10 e BC = 10 − 5 = 5. Caso 2: AB = 5/3, AC = 10/3 e BC = 5/3 + 10/3 = 15/3 = 5. As duas posições respeitam o enunciado.",
   "erradas": {
-   "B": "Inclui o 5, que é AB no caso 1 (d = 5) e também o valor dado de BC. A pergunta é AC, que nesse caso vale 10, e não existe caso em que AC = 5.",
+   "B": "O 5 não é AC: é o BC dado e também o AB do caso 1. Em nenhum caso AC = 5. Quem marcou B confundiu AB, BC e AC, e esqueceu que a pergunta é AC.",
    "C": "Inclui 5/3, que é AB no caso 2 (d = 5/3), não AC. O valor de AC nesse caso é o dobro: 10/3.",
-   "D": "Os números 5/3 e 10 misturam os dois casos. 5/3 é AB (d) no caso dos lados opostos, e o AC correspondente é 10/3. Já o 10 está certo, mas fica faltando o 10/3.",
-   "E": "10/3 está certo, mas o 5 não é AC. Em nenhuma das duas posições AC vale 5: o 5 é o BC dado e também o AB do caso 1. O correto é AC = 10."
+   "D": "Falta o 10/3. O 5/3 é AB (d) no caso dos lados opostos, não AC. O AC desse caso é o dobro: 10/3. Quem marcou D parou em d e não multiplicou por 2.",
+   "E": "O 10/3 está certo, mas o 5 não é AC. O 5 é o BC dado e também o AB do caso 1. O AC desse caso vale 10. Faltou multiplicar d por 2."
   },
   "armadilha": "Esquecer que B pode estar do lado oposto de A (BC = 3d) ou responder AB (d) em vez de AC (2d).",
   "alerta": "",
@@ -150,11 +150,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -177,6 +179,60 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "A"
+  "fatos_resposta": "A",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "O quadrinho diz: a distância de A até C é o dobro da distância de B até A. Se AB = d, então AC = 2d. Os três pontos estão na mesma reta, então B e C podem ficar do mesmo lado de A ou em lados opostos. Cada posição dá uma equação. A questão pede as duas soluções para AC.",
+    "motivo": "Frase original ambígua ('duas vezes mais longe de C do que B está de A'); reescrita com o sentido exato e frases curtas."
+   },
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "AC = 2 × AB",
+     "BC = 5 polegadas (dado)",
+     "mesmo lado de A: BC = 2d − d = d",
+     "lados opostos de A: BC = 2d + d = 3d"
+    ],
+    "motivo": "Deixa claro que BC = 5 é dado do problema."
+   },
+   {
+    "campo": "resolucao.pista",
+    "depois": "Ponha A no zero da reta. B fica a uma distância d de A e C a 2d. Cada um pode ficar à direita ou à esquerda de A. Quantas combinações existem e quanto vale BC em cada uma?",
+    "motivo": "Pista mais clara, sem entregar o resultado."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "BC = d + 2d = 3d = 5",
+    "motivo": "Usa 'conta' curta; a fração vai para o porque."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "A fica entre B e C, então as distâncias se somam. De 3d = 5 vem d = 5/3. Então AC = 2 × 5/3 = 10/3.",
+    "motivo": "Frase mais direta, sem 'Então' repetido."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "A pergunta é a distância de A a C, não de A a B. Por isso 5 e 5/3 (valores de AB) ficam de fora.",
+    "motivo": "Mantido o sentido; revisado para clareza."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "Falta o 10/3. O 5/3 é AB (d) no caso dos lados opostos, não AC. O AC desse caso é o dobro: 10/3. Quem marcou D parou em d e não multiplicou por 2.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou D."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "O 5 não é AC: é o BC dado e também o AB do caso 1. Em nenhum caso AC = 5. Quem marcou B confundiu AB, BC e AC, e esqueceu que a pergunta é AC.",
+    "motivo": "Mostra o erro de raciocínio de quem marcou B."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "O 10/3 está certo, mas o 5 não é AC. O 5 é o BC dado e também o AB do caso 1. O AC desse caso vale 10. Faltou multiplicar d por 2.",
+    "motivo": "Explica o erro de quem marcou E."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

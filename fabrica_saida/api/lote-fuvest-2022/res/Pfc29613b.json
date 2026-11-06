@@ -29,11 +29,19 @@
     ],
     [
      "g",
-     "aceleração da gravidade, igual para todos os corpos no mesmo lugar"
+     "aceleração da gravidade, a mesma para todos os corpos no mesmo lugar (≈ 10 m/s²)"
     ],
     [
      "h",
      "altura da queda, a mesma para as duas maçãs"
+    ],
+    [
+     "v",
+     "velocidade da maçã"
+    ],
+    [
+     "J",
+     "joule: unidade de energia"
     ]
    ]
   },
@@ -46,10 +54,10 @@
     "tipo": "localizar"
    },
    {
-    "faz": "Use a conservação da energia",
+    "faz": "Iguale a energia no chão à do alto",
     "conta": "Ec(chão) = Ep(alto) = m·g·h",
     "porque": "Sem resistência do ar, não há perda: toda a energia potencial vira cinética.",
-    "tipo": "calcular"
+    "tipo": "comparar"
    },
    {
     "faz": "Calcule a energia de cada maçã",
@@ -74,9 +82,9 @@
   "checagem": "Confira pela velocidade. Na queda livre, v = √(2gh) não depende da massa, então as duas chegam com a mesma v. Com Ec = m·v² ÷ 2 e v igual, a energia é proporcional à massa: massa dobrada, energia dobrada.",
   "erradas": {
    "A": "Confunde 'mesma velocidade' com 'mesma energia'. As velocidades finais são iguais, mas Ec = m·v² ÷ 2 depende da massa. Com o dobro da massa e a mesma v, a energia dobra.",
-   "C": "Inverte a relação. A energia cinética cresce com a massa, não diminui. A maçã mais pesada teria a metade só se a massa dela fosse a metade da outra.",
+   "C": "Troca a relação: a energia cinética aumenta com a massa (Ec = m·g·h). A pesada tem o dobro da energia da leve, não a metade. Quem marcou C pôs a massa dividindo, e não multiplicando.",
    "D": "O quádruplo viria de elevar a massa ao quadrado, como se Ec fosse proporcional a m². O quadrado está na velocidade (v²), e v é igual para as duas. Ec é proporcional a m, então o fator é 2.",
-   "E": "Um quarto exigiria que a energia diminuísse com o quadrado da massa, o que não acontece. Ec = m·g·h cresce com m: a pesada tem mais energia, não menos."
+   "E": "Um quarto exigiria que a energia diminuísse quando a massa aumenta, e isso não acontece. Ec = m·g·h cresce com m: a maçã pesada tem mais energia. Quem marcou E inverteu a relação e ainda a elevou ao quadrado."
   },
   "armadilha": "Saber que todos os corpos caem com a mesma velocidade e concluir que têm a mesma energia cinética, esquecendo que Ec depende também da massa.",
   "alerta": "",
@@ -145,11 +153,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -160,6 +170,66 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "B"
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[1].faz",
+    "depois": "Iguale a energia no chão à do alto",
+    "motivo": "O tipo era 'calcular', mas o passo é de raciocínio; o comando fica mais claro assim."
+   },
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "comparar",
+    "motivo": "O passo compara a energia do alto com a do chão; não faz conta numérica."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "Troca a relação: a energia cinética aumenta com a massa (Ec = m·g·h). A pesada tem o dobro da energia da leve, não a metade. Quem marcou C pôs a massa dividindo, e não multiplicando.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou C, de forma mais direta."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "Um quarto exigiria que a energia diminuísse quando a massa aumenta, e isso não acontece. Ec = m·g·h cresce com m: a maçã pesada tem mais energia. Quem marcou E inverteu a relação e ainda a elevou ao quadrado.",
+    "motivo": "Explica o que faltou em quem marcou E: inverteu a proporção e juntou um quadrado sem motivo."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "Ec",
+      "energia cinética: energia do movimento"
+     ],
+     [
+      "Ep",
+      "energia potencial gravitacional: energia guardada pela altura"
+     ],
+     [
+      "m",
+      "massa da maçã"
+     ],
+     [
+      "g",
+      "aceleração da gravidade, a mesma para todos os corpos no mesmo lugar (≈ 10 m/s²)"
+     ],
+     [
+      "h",
+      "altura da queda, a mesma para as duas maçãs"
+     ],
+     [
+      "v",
+      "velocidade da maçã"
+     ],
+     [
+      "J",
+      "joule: unidade de energia"
+     ]
+    ],
+    "motivo": "v e J aparecem na checagem e nos caminhos e não estavam explicados."
+   }
+  ],
+  "didatica_alertas": [
+   "Classificação do banco (tema F04, conteúdo F04.2, torque e alavancas) não combina com a questão, que é de energia mecânica (F03.2). Corrigir na taxonomia."
+  ],
+  "didatica_ok": true
  }
 }

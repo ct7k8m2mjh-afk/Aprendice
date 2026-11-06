@@ -69,7 +69,7 @@
    {
     "faz": "Divida e converta em porcentagem",
     "conta": "1200 ÷ 1920 = 0,625 ≈ 62%",
-    "porque": "A fração da energia total gasta só na vaporização é 0,625, ou 62,5%.",
+    "porque": "A fração é a parte dividida pelo total: 0,625, ou seja, 62,5%. Isso liga o resultado à alternativa E.",
     "tipo": "concluir"
    }
   ],
@@ -77,9 +77,9 @@
   "checagem": "Estimativa: 1200 é um pouco mais da metade de 1920 (a metade seria 960), então a fração fica entre 50% e 75%. Só a alternativa E cabe nessa faixa.",
   "erradas": {
    "A": "0,04% não confere: a vaporização (1200 kJ) passa da metade da energia total (1920 kJ), então a fração fica entre 50% e 100%, e não em centésimos de por cento.",
-   "B": "0,062% sai de misturar unidades: usar a vaporização em kJ como se fosse J (1200) e dividir pela energia total em J: 1200 ÷ 1 920 000 = 0,000625 = 0,0625%.",
+   "B": "0,062% sai de misturar unidades: dividir 1200 (kJ da vaporização) pela energia total em J, 1 920 000. A conta dá 1200 ÷ 1 920 000 = 0,000625, que é 0,0625%. Os dois valores precisam estar em kJ.",
    "C": "4,6% não confere: 1200 kJ ÷ 1920 kJ = 0,625, e não 0,046. A energia de vaporização de 30 mol é grande, quase dois terços do total.",
-   "D": "40% não confere: 1200 ÷ 1920 = 0,625. A parte que NÃO vaporiza a água é 720 ÷ 1920 = 37,5%; esse valor fica perto de 40%, mas não é o que se pede."
+   "D": "40% não confere: 1200 ÷ 1920 = 0,625, ou 62,5%. O valor 37,5% (720 ÷ 1920) é a parte que NÃO vaporiza a água, e fica perto de 40%. Quem marcou D provavelmente olhou a fração errada. A pergunta é sobre a parte que vaporiza."
   },
   "armadilha": "Esquecer de converter minutos em segundos ou kJ em J, ou usar 540 g como se fossem 540 mol, desloca o resultado por fatores de 10, 60 ou 1000.",
   "alerta": "",
@@ -96,13 +96,17 @@
   },
   {
    "nome": "Estimativa por eliminação",
-   "ideia": "Vaporizar 30 mol exige 1200 kJ. O aparelho gasta 1600 W durante 20 min, algo próximo de 2000 kJ. Como 1200 é um pouco mais da metade de 2000, só 62% serve."
+   "ideia": "Aproxime a energia total: 1600 W × 1200 s é cerca de 2000 kJ. Como 1200 é um pouco mais que a metade de 2000, só 62% serve."
   }
  ],
  "quadro": [
   {
-   "linha": "t = 20 × 60 = 1200 s",
-   "nota": "passe os minutos para segundos"
+   "linha": "t = 20 × 60",
+   "nota": "minutos para segundos"
+  },
+  {
+   "linha": "t = 1200 s",
+   "nota": "watt exige segundos"
   },
   {
    "linha": "E_total = 1600 × 1200",
@@ -114,27 +118,43 @@
   },
   {
    "linha": "E_total = 1920 kJ",
-   "nota": "divida por 1000 para ter kJ"
+   "nota": "divida por 1000"
   },
   {
-   "linha": "m = 540 mL × 1 g/mL = 540 g",
-   "nota": "use a densidade da água"
+   "linha": "m = 540 × 1",
+   "nota": "volume × densidade"
   },
   {
-   "linha": "n = 540 ÷ 18 = 30 mol",
-   "nota": "massa dividida pela massa molar"
+   "linha": "m = 540 g",
+   "nota": "massa de água"
   },
   {
-   "linha": "E_vap = 30 × 40 = 1200 kJ",
-   "nota": "mol × entalpia de vaporização"
+   "linha": "n = 540 ÷ 18",
+   "nota": "massa ÷ massa molar"
+  },
+  {
+   "linha": "n = 30 mol",
+   "nota": "quantidade de água"
+  },
+  {
+   "linha": "E_vap = 30 × 40",
+   "nota": "mol × entalpia"
+  },
+  {
+   "linha": "E_vap = 1200 kJ",
+   "nota": "energia só da vaporização"
   },
   {
    "linha": "fração = 1200/1920",
-   "nota": "parte dividida pelo total"
+   "nota": "parte ÷ total"
   },
   {
-   "linha": "fração = 0,625 ≈ 62%",
-   "nota": "multiplique por 100 para ter porcentagem"
+   "linha": "fração = 0,625",
+   "nota": "divida"
+  },
+  {
+   "linha": "fração = 62,5% ≈ 62%",
+   "nota": "multiplique por 100"
   }
  ],
  "visual": {
@@ -151,11 +171,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -184,6 +206,92 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "E"
+  "fatos_resposta": "E",
+  "didatica": [
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "0,062% sai de misturar unidades: dividir 1200 (kJ da vaporização) pela energia total em J, 1 920 000. A conta dá 1200 ÷ 1 920 000 = 0,000625, que é 0,0625%. Os dois valores precisam estar em kJ.",
+    "motivo": "Texto mais claro e com a unidade correta explicada."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "40% não confere: 1200 ÷ 1920 = 0,625, ou 62,5%. O valor 37,5% (720 ÷ 1920) é a parte que NÃO vaporiza a água, e fica perto de 40%. Quem marcou D provavelmente olhou a fração errada. A pergunta é sobre a parte que vaporiza.",
+    "motivo": "Explica o que faltou a quem marcou D, sem mudar fatos."
+   },
+   {
+    "campo": "resolucao.quadro",
+    "depois": [
+     {
+      "linha": "t = 20 × 60",
+      "nota": "minutos para segundos"
+     },
+     {
+      "linha": "t = 1200 s",
+      "nota": "watt exige segundos"
+     },
+     {
+      "linha": "E_total = 1600 × 1200",
+      "nota": "energia = potência × tempo"
+     },
+     {
+      "linha": "E_total = 1 920 000 J",
+      "nota": "multiplique"
+     },
+     {
+      "linha": "E_total = 1920 kJ",
+      "nota": "divida por 1000"
+     },
+     {
+      "linha": "m = 540 × 1",
+      "nota": "volume × densidade"
+     },
+     {
+      "linha": "m = 540 g",
+      "nota": "massa de água"
+     },
+     {
+      "linha": "n = 540 ÷ 18",
+      "nota": "massa ÷ massa molar"
+     },
+     {
+      "linha": "n = 30 mol",
+      "nota": "quantidade de água"
+     },
+     {
+      "linha": "E_vap = 30 × 40",
+      "nota": "mol × entalpia"
+     },
+     {
+      "linha": "E_vap = 1200 kJ",
+      "nota": "energia só da vaporização"
+     },
+     {
+      "linha": "fração = 1200/1920",
+      "nota": "parte ÷ total"
+     },
+     {
+      "linha": "fração = 0,625",
+      "nota": "divida"
+     },
+     {
+      "linha": "fração = 62,5% ≈ 62%",
+      "nota": "multiplique por 100"
+     }
+    ],
+    "motivo": "Linhas curtas (cabem no celular), um passo por linha, copiáveis no caderno."
+   },
+   {
+    "campo": "resolucao.passos[5].porque",
+    "depois": "A fração é a parte dividida pelo total: 0,625, ou seja, 62,5%. Isso liga o resultado à alternativa E.",
+    "motivo": "Frase mais direta."
+   },
+   {
+    "campo": "resolucao.caminhos[1].ideia",
+    "depois": "Aproxime a energia total: 1600 W × 1200 s é cerca de 2000 kJ. Como 1200 é um pouco mais que a metade de 2000, só 62% serve.",
+    "motivo": "Mais claro; sem repetir dados já calculados."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

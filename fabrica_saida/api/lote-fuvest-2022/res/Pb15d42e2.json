@@ -8,7 +8,7 @@
  "conceito": "Ler dois mapas temáticos lado a lado (incidência de doenças tropicais negligenciadas × PIB per capita) e relacionar pobreza e doença por continente e região.",
  "resolucao": {
   "antes": {
-   "texto": "A questão pede que você cruze dois mapas. O primeiro mostra casos de doenças tropicais negligenciadas por milhão de habitantes: quanto mais escuro, mais casos. O segundo mostra o PIB per capita: nele, quanto mais escuro, MENOR a renda. As escalas de cor têm sentidos opostos, e o erro mais comum é ler as duas como se escuro significasse a mesma coisa. A relação geral é: renda baixa, incidência alta.",
+   "texto": "A questão pede que você cruze dois mapas. O primeiro mostra casos de doenças tropicais negligenciadas por milhão de habitantes: quanto mais escuro, mais casos. O segundo mostra o PIB per capita: nele, quanto mais escuro, MENOR a renda. As cores têm sentidos opostos, e o erro mais comum é ler as duas como se escuro significasse a mesma coisa. A relação geral é: renda baixa, incidência alta.",
    "formulas": [
     "mapa 1: escuro = muitos casos por milhão de habitantes",
     "mapa 2: escuro = PIB per capita baixo; claro = PIB per capita alto",
@@ -63,14 +63,14 @@
    },
    {
     "faz": "Compare América do Norte e Oriente Médio",
-    "conta": "EUA e Canadá: amarelo claro nos dois",
-    "porque": "Os dois países têm PIB alto (> 20 mil US$) e incidência muito baixa, nos tons mais claros da legenda. No Oriente Médio a incidência aparece em tons mais escuros que esse amarelo claro. A comparação da alternativa D é verdadeira.",
+    "conta": "EUA e Canadá: claros nos 2 mapas",
+    "porque": "EUA e Canadá têm PIB alto (> 20 mil US$) e incidência muito baixa, nos tons mais claros da legenda. No Oriente Médio, a incidência aparece em tons mais escuros que o da América do Norte. Então a incidência na América do Norte é menor, como diz a D.",
     "tipo": "comparar"
    },
    {
     "faz": "Elimine as demais",
-    "conta": "Ásia, A. Platina e Austrália",
-    "porque": "Cada uma inverte a relação ou erra a renda de uma região. Os detalhes estão em 'erradas'.",
+    "conta": "B, C, E: erram renda ou incidência",
+    "porque": "Cada uma inverte a relação entre renda e doença ou erra a renda de uma região. A letra A já foi descartada no passo da África. Os detalhes estão em 'erradas'.",
     "tipo": "eliminar"
    },
    {
@@ -84,7 +84,7 @@
   "checagem": "Reveja o padrão geral dos mapas: onde o segundo mapa é escuro (renda baixa, como a África subsaariana), o primeiro também é. Onde o segundo é amarelo claro (EUA, Canadá, Austrália), o primeiro é claro. A D segue esse padrão e as outras o contrariam.",
   "erradas": {
    "A": "Inverte a relação. Na África, os países de menor PIB per capita (tons escuros no segundo mapa), sobretudo os subsaarianos, são os de maior incidência (tons escuros no primeiro). O texto diz 'maior PIB', mas é o menor.",
-   "B": "Na Ásia, os países de menor renda, como Afeganistão, partes do sul e do sudeste asiático, têm incidência maior, não menor. A Ásia Setentrional (Rússia) tem incidência baixa, mas porque seu PIB per capita é mais alto, não baixo.",
+   "B": "Inverte a relação. Na Ásia, os países de menor renda, como o Afeganistão e partes do sul e do sudeste asiático, têm incidência maior, não menor. A Ásia Setentrional (Rússia) tem incidência baixa porque a renda é mais alta, não mais baixa.",
    "C": "O primeiro trecho se sustenta: a porção platina, sobretudo Argentina e Uruguai, tem tons claros de incidência. O erro está em dizer que esses países têm os menores PIB da região. Argentina e Uruguai estão entre os mais ricos da América do Sul no segundo mapa, e os menores PIB estão em países como a Bolívia e outros andinos e amazônicos.",
    "E": "Austrália e Nova Zelândia têm PIB elevado (amarelo claro, > 20 mil US$) e incidência baixa, no nível mais claro do primeiro mapa. A alta incidência da Oceania está em Papua-Nova Guiné e ilhas vizinhas, não na Austrália."
   },
@@ -99,7 +99,7 @@
  "caminhos": [
   {
    "nome": "eliminação pelo padrão geral",
-   "ideia": "Se a doença acompanha a pobreza, descarte as alternativas que a ligam à riqueza (A, E) ou à pobreza com incidência baixa (B). Sobram C e D. A C erra a renda da Argentina, que é alta, e a D fecha."
+   "ideia": "Se a doença acompanha a pobreza, descarte as letras que a ligam à riqueza (A, E) ou à pobreza com incidência baixa (B). Sobram C e D. A C erra a renda da Argentina, que é alta, e a D confere nos dois mapas."
   },
   {
    "nome": "regiões de referência",
@@ -121,11 +121,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -142,6 +144,48 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "D"
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "A questão pede que você cruze dois mapas. O primeiro mostra casos de doenças tropicais negligenciadas por milhão de habitantes: quanto mais escuro, mais casos. O segundo mostra o PIB per capita: nele, quanto mais escuro, MENOR a renda. As cores têm sentidos opostos, e o erro mais comum é ler as duas como se escuro significasse a mesma coisa. A relação geral é: renda baixa, incidência alta.",
+    "motivo": "Frase mais curta e direta (\"as cores\" em vez de \"as escalas de cor\")."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "EUA e Canadá: claros nos 2 mapas",
+    "motivo": "A conta anterior só citava o amarelo claro; agora cabe na tela e mostra que os dois mapas foram lidos."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "EUA e Canadá têm PIB alto (> 20 mil US$) e incidência muito baixa, nos tons mais claros da legenda. No Oriente Médio, a incidência aparece em tons mais escuros que o da América do Norte. Então a incidência na América do Norte é menor, como diz a D.",
+    "motivo": "Frases mais curtas e a conclusão fica ligada ao que a letra D afirma."
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "B, C, E: erram renda ou incidência",
+    "motivo": "A conta anterior listava regiões; agora diz o que há de errado em cada letra eliminada."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "Cada uma inverte a relação entre renda e doença ou erra a renda de uma região. A letra A já foi descartada no passo da África. Os detalhes estão em 'erradas'.",
+    "motivo": "Deixa claro que A já saiu e que as demais são tratadas em 'erradas'."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "Inverte a relação. Na Ásia, os países de menor renda, como o Afeganistão e partes do sul e do sudeste asiático, têm incidência maior, não menor. A Ásia Setentrional (Rússia) tem incidência baixa porque a renda é mais alta, não mais baixa.",
+    "motivo": "Mostra o que faltou a quem marcou B: ler que renda baixa leva a incidência alta."
+   },
+   {
+    "campo": "resolucao.caminhos[0].ideia",
+    "depois": "Se a doença acompanha a pobreza, descarte as letras que a ligam à riqueza (A, E) ou à pobreza com incidência baixa (B). Sobram C e D. A C erra a renda da Argentina, que é alta, e a D confere nos dois mapas.",
+    "motivo": "Texto mais claro no fechamento."
+   }
+  ],
+  "didatica_alertas": [
+   "Em 'erradas.C' e no passo da África há generalizações dependentes da leitura visual dos mapas (Bolívia e países andinos como menores PIB da América do Sul); vale conferir no print. O Paraguai, também platino, tem PIB per capita baixo.",
+   "Na alternativa C, o Paraguai integra a América Platina e tem renda baixa, o que reforça que o erro está em dizer que a região tem os menores PIB."
+  ],
+  "didatica_ok": true
  }
 }

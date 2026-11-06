@@ -10,7 +10,7 @@
  "divergencia": "",
  "resolucao": {
   "antes": {
-   "texto": "Na queda d'água, a energia potencial da água que cai vira energia elétrica (eficiência de 100%). A potência é a energia por segundo: massa por segundo × g × altura. Depois é preciso passar tudo para kWh por mês, a mesma unidade dos painéis e do consumo.",
+   "texto": "Na queda d'água, a energia potencial da água que cai vira energia elétrica (eficiência de 100%). Potência é a energia por segundo: massa por segundo × g × altura. Depois, passe tudo para kWh por mês, a mesma unidade do consumo e dos painéis.",
    "formulas": [
     "E = m × g × h (energia potencial)",
     "P = E ÷ t = (m ÷ t) × g × h",
@@ -31,12 +31,24 @@
      "altura da queda, 15 m"
     ],
     [
+     "g",
+     "aceleração da gravidade, 10 m/s²"
+    ],
+    [
+     "J",
+     "joule: unidade de energia; 1 W = 1 J por segundo"
+    ],
+    [
      "MWh",
      "megawatt-hora: 1 000 kWh"
     ],
     [
      "kWh",
      "quilowatt-hora: energia de 1 kW funcionando por 1 hora"
+    ],
+    [
+     "vazão",
+     "volume de água que passa por segundo"
     ]
    ]
   },
@@ -50,8 +62,8 @@
    },
    {
     "faz": "Calcule a potência da queda",
-    "conta": "P = 10 × 10 × 15 = 1 500 W",
-    "porque": "Em 1 s caem 10 kg de uma altura de 15 m: energia = m·g·h = 10 × 10 × 15 = 1 500 J. Em 1 s, isso dá 1 500 W, ou 1,5 kW.",
+    "conta": "E em 1 s = 10 × 10 × 15 = 1 500 J",
+    "porque": "Em 1 s caem 10 kg de uma altura de 15 m: m·g·h = 1 500 J. Como 1 W é 1 J por segundo, a potência é 1 500 W, ou 1,5 kW.",
     "tipo": "calcular"
    },
    {
@@ -76,9 +88,9 @@
   "resposta": "Alternativa B: a usina fornece 1 080 kWh por mês, faltam 920 kWh, e 920 ÷ 40 = 23 painéis.",
   "checagem": "Teste com 23 painéis: 23 × 40 = 920 kWh. Somando com a usina: 920 + 1 080 = 2 000 kWh, exatamente o consumo. Com 22 painéis seriam 880 + 1 080 = 1 960 kWh, que não bastam.",
   "erradas": {
-   "A": "Não confere: 12 painéis dão 12 × 40 = 480 kWh. Somados aos 1 080 kWh da usina, são 1 560 kWh, menos que os 2 000 kWh de consumo.",
-   "C": "Não é o mínimo: 30 painéis dão 1 200 kWh, e com a usina chegam a 2 280 kWh, mais que o necessário. Com 23 painéis a demanda já fecha.",
-   "D": "Não é o mínimo: 45 painéis dão 1 800 kWh, e com a usina chegam a 2 880 kWh, um excesso grande. O pedido é o menor número que supre a demanda: 23.",
+   "A": "12 painéis dão 480 kWh; com os 1 080 kWh da usina, são 1 560 kWh, menos que 2 000 kWh. Faltou calcular quanto a usina fornece e completar a diferença.",
+   "C": "30 painéis dão 1 200 kWh, e com a usina chegam a 2 280 kWh. Isso supre a demanda, mas não é o mínimo: com 23 já fecha 2 000 kWh. Quem marcou C provavelmente não calculou a sobra.",
+   "D": "45 painéis dão 1 800 kWh, e com a usina chegam a 2 880 kWh. Supre a demanda com muito excesso. A pergunta pede o MENOR número, que é 23.",
    "E": "Sai de ignorar a hidrelétrica: 2 000 kWh ÷ 40 kWh = 50 painéis. O enunciado diz que a usina supre parte da demanda e os painéis só o restante."
   },
   "armadilha": "Esquecer que a usina funciona 24 h por dia durante 30 dias (720 h) e dividir o consumo total pelos painéis, caindo em 50.",
@@ -145,11 +157,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -160,6 +174,85 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "B"
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Na queda d'água, a energia potencial da água que cai vira energia elétrica (eficiência de 100%). Potência é a energia por segundo: massa por segundo × g × altura. Depois, passe tudo para kWh por mês, a mesma unidade do consumo e dos painéis.",
+    "motivo": "Frases mais curtas e diretas."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "P",
+      "potência: energia por segundo, em watt (W)"
+     ],
+     [
+      "m ÷ t",
+      "massa de água que cai por segundo (kg/s)"
+     ],
+     [
+      "h",
+      "altura da queda, 15 m"
+     ],
+     [
+      "g",
+      "aceleração da gravidade, 10 m/s²"
+     ],
+     [
+      "J",
+      "joule: unidade de energia; 1 W = 1 J por segundo"
+     ],
+     [
+      "MWh",
+      "megawatt-hora: 1 000 kWh"
+     ],
+     [
+      "kWh",
+      "quilowatt-hora: energia de 1 kW funcionando por 1 hora"
+     ],
+     [
+      "vazão",
+      "volume de água que passa por segundo"
+     ]
+    ],
+    "motivo": "Faltavam g, J e vazão, que aparecem na resolução."
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "E em 1 s = 10 × 10 × 15 = 1 500 J",
+    "motivo": "Conta curta cabe na tela; a conversão para watt vai no porque."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "Em 1 s caem 10 kg de uma altura de 15 m: m·g·h = 1 500 J. Como 1 W é 1 J por segundo, a potência é 1 500 W, ou 1,5 kW.",
+    "motivo": "Deixa clara a passagem de joule para watt."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "1,5 kW × 720 h = 1 080 kWh",
+    "motivo": "Sem mudança de valor; confirmado que cabe na tela."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "30 painéis dão 1 200 kWh, e com a usina chegam a 2 280 kWh. Isso supre a demanda, mas não é o mínimo: com 23 já fecha 2 000 kWh. Quem marcou C provavelmente não calculou a sobra.",
+    "motivo": "Diz o que faltou no raciocínio: comparar com o mínimo."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "45 painéis dão 1 800 kWh, e com a usina chegam a 2 880 kWh. Supre a demanda com muito excesso. A pergunta pede o MENOR número, que é 23.",
+    "motivo": "Foco no que faltou: o pedido é o mínimo."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "12 painéis dão 480 kWh; com os 1 080 kWh da usina, são 1 560 kWh, menos que 2 000 kWh. Faltou calcular quanto a usina fornece e completar a diferença.",
+    "motivo": "Explica o que faltou, além do teste."
+   }
+  ],
+  "didatica_alertas": [
+   "Classificação atual no banco é F04/F04.5, mas a resolução usa F03/F03.3 (potência e energia). Verificar qual é a certa."
+  ],
+  "didatica_ok": true
  }
 }

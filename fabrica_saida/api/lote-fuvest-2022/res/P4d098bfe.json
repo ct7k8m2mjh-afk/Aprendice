@@ -8,7 +8,7 @@
  "conceito": "Catalisador ácido aumenta a velocidade da hidrólise do éster, mas não altera a quantidade final de produto; leitura de gráfico de quantidade × tempo.",
  "resolucao": {
   "antes": {
-   "texto": "O enunciado diz que o ácido (H⁺) catalisa a hidrólise do éster e que a reação é mais lenta perto da neutralidade. pH = 2 é bem ácido, com muito H⁺. pH = 6 é quase neutro, com pouco H⁺. Catalisador muda a rapidez com que se chega ao equilíbrio, não a quantidade final. Como as reações são idênticas, a quantidade final de ácido graxo é a mesma nas duas.",
+   "texto": "O enunciado diz que o ácido (H⁺) acelera a hidrólise do éster e que a reação é mais lenta perto da neutralidade. pH 2 é bem ácido, com muito H⁺. pH 6 é quase neutro, com pouco H⁺. O catalisador muda a rapidez com que a reação chega ao fim, não a quantidade final. As duas reações são idênticas, então formam a mesma quantidade final de ácido graxo.",
    "formulas": [
     "mais H⁺ (pH menor) → reação mais rápida",
     "catalisador não muda a quantidade final de produto",
@@ -43,8 +43,8 @@
    },
    {
     "faz": "Compare a acidez dos dois meios",
-    "conta": "pH 2: [H⁺] = 10^−2 mol/L",
-    "porque": "Em pH 6, [H⁺] = 10^−6 mol/L. O meio de pH 2 tem 10 000 vezes mais H⁺, ou seja, muito mais catalisador.",
+    "conta": "pH 2 → 10^−2 mol/L de H⁺",
+    "porque": "pH = 6 dá 10^−6 mol/L de H⁺. O pH 2 tem 10 000 vezes mais H⁺, ou seja, muito mais catalisador.",
     "tipo": "calcular"
    },
    {
@@ -61,15 +61,15 @@
    },
    {
     "faz": "Escolha o gráfico",
-    "conta": "sobe de zero; pH 2 mais íngreme",
+    "conta": "A: sobe de zero, pH 2 mais rápida",
     "porque": "O gráfico A tem as duas curvas subindo de zero, a de pH 2 (verde contínua) mais rápida e a de pH 6 (vermelha tracejada) mais lenta, ambas tendendo ao mesmo valor.",
     "tipo": "concluir"
    }
   ],
   "resposta": "Alternativa A: o pH 2 tem mais H⁺, que catalisa a hidrólise, então a curva sobe mais rápido. Ambas partem de zero e tendem à mesma quantidade final de ácido graxo.",
-  "checagem": "Troque os papéis: se o pH 6 fosse o mais rápido, contrariaria o enunciado, que diz que perto da neutralidade a reação é mais lenta. Além disso, produto não pode começar em quantidade alta.",
+  "checagem": "Troque os papéis: se o pH 6 fosse o mais rápido, contrariaria o enunciado, que diz que perto da neutralidade a reação é mais lenta. Além disso, o produto não pode começar em quantidade alta, pois ainda não se formou.",
   "erradas": {
-   "B": "A curva vermelha (pH 6) começa em valor alto e cai, como se o ácido graxo fosse consumido. Ele é produto: parte de zero e aumenta. As duas curvas também terminam em patamares diferentes, e catalisador não muda o final.",
+   "B": "Só a curva vermelha (pH 6) começa alta e cai, como se o ácido graxo fosse consumido. Ele é produto e parte de zero. Além disso, as curvas terminam em patamares diferentes, e o catalisador não muda o valor final.",
    "C": "Parte de zero e sobe, mas inverte a velocidade: coloca o pH 6 (tracejada) subindo mais rápido. O enunciado diz que perto da neutralidade a reação é mais lenta, e o pH 2 tem muito mais H⁺ catalisando.",
    "D": "As duas curvas começam em valor alto e caem, o que representaria consumo, típico de reagente (o éster), e não do ácido graxo formado. Além disso, a de pH 6 cai mais rápido, o contrário do que o catalisador ácido faz.",
    "E": "As curvas começam em valor alto e caem, como se o ácido graxo fosse consumido. Ele é produto e deve começar em zero. Só acerta ao colocar o pH 2 como o mais rápido, mas o formato descendente é o de um reagente."
@@ -128,11 +128,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -155,6 +157,40 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "A"
+  "fatos_resposta": "A",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "O enunciado diz que o ácido (H⁺) acelera a hidrólise do éster e que a reação é mais lenta perto da neutralidade. pH 2 é bem ácido, com muito H⁺. pH 6 é quase neutro, com pouco H⁺. O catalisador muda a rapidez com que a reação chega ao fim, não a quantidade final. As duas reações são idênticas, então formam a mesma quantidade final de ácido graxo.",
+    "motivo": "Frases mais curtas; troca 'equilíbrio' por 'chega ao fim', termo mais simples."
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "pH 2 → 10^−2 mol/L de H⁺",
+    "motivo": "A conta ficava incompleta, sem o símbolo da concentração, e a linha não cabe no celular."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "pH = 6 dá 10^−6 mol/L de H⁺. O pH 2 tem 10 000 vezes mais H⁺, ou seja, muito mais catalisador.",
+    "motivo": "Deixa a comparação completa e clara."
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "A: sobe de zero, pH 2 mais rápida",
+    "motivo": "Linha mais curta, para caber na tela do celular."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "Só a curva vermelha (pH 6) começa alta e cai, como se o ácido graxo fosse consumido. Ele é produto e parte de zero. Além disso, as curvas terminam em patamares diferentes, e o catalisador não muda o valor final.",
+    "motivo": "No gráfico B só a curva de pH 6 desce; a verde sobe. A versão anterior dizia que as duas tinham o mesmo comportamento."
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Troque os papéis: se o pH 6 fosse o mais rápido, contrariaria o enunciado, que diz que perto da neutralidade a reação é mais lenta. Além disso, o produto não pode começar em quantidade alta, pois ainda não se formou.",
+    "motivo": "Explica por que o produto começa em zero."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

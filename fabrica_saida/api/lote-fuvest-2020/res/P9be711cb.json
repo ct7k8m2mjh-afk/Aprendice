@@ -8,10 +8,10 @@
  "conceito": "Esfera circunscrita a um paralelepípedo: o diâmetro é a diagonal do paralelepípedo.",
  "resolucao": {
   "antes": {
-   "texto": "Se o paralelepípedo está inscrito na esfera, os 8 vértices tocam a esfera. A menor esfera que o contém tem o centro no centro da caixa. Seu diâmetro é a maior distância entre dois vértices, isto é, a diagonal do paralelepípedo (de um canto ao canto oposto).",
+   "texto": "Se a caixa está inscrita na esfera, os 8 vértices tocam a esfera. A menor esfera que a contém tem o centro no centro da caixa. O diâmetro é então a diagonal da caixa, o segmento que vai de um canto ao canto oposto passando pelo centro.",
    "formulas": [
-    "diagonal² = a² + b² + c²",
-    "diâmetro = diagonal"
+    "diagonal da caixa² = aresta1² + aresta2² + aresta3²",
+    "diâmetro da esfera = diagonal da caixa"
    ],
    "simbolos": [
     [
@@ -39,13 +39,13 @@
    {
     "faz": "Ache a diagonal da base",
     "conta": "d² = 7² + 4² = 65",
-    "porque": "A base é um retângulo 7 × 4. Pitágoras dá a diagonal dela ao quadrado.",
+    "porque": "A base é um retângulo 7 × 4. A diagonal dela é a hipotenusa de um triângulo com catetos 7 e 4. Por isso o teorema de Pitágoras dá o quadrado dela. Ainda não tire a raiz.",
     "tipo": "calcular"
    },
    {
     "faz": "Suba para a diagonal da caixa",
     "conta": "D² = 65 + 4² = 81",
-    "porque": "A diagonal da base e a altura 4 formam um triângulo retângulo. A diagonal da caixa é a hipotenusa.",
+    "porque": "A diagonal da base (d) fica deitada no chão e a altura 4 fica de pé. Elas formam um triângulo retângulo, e a diagonal da caixa (D) é a hipotenusa dele.",
     "tipo": "calcular"
    },
    {
@@ -67,7 +67,7 @@
    "B": "10 cm não confere: 10² = 100, mas 7² + 4² + 4² = 81. Uma diagonal de 10 cm só existiria numa caixa com a soma dos quadrados igual a 100.",
    "C": "11 cm não confere: 11² = 121, e a soma dos quadrados das arestas é 81. Daria diagonal de 11 cm se as arestas fossem, por exemplo, 7, 6 e 6 (49 + 36 + 36 = 121).",
    "D": "12 cm não confere: 12² = 144, e a soma dos quadrados é 81. A diagonal da caixa não pode passar de 9 cm com essas arestas.",
-   "E": "15 cm sai de somar as arestas: 7 + 4 + 4 = 15. Mas a diagonal é a hipotenusa de triângulos retângulos, e a hipotenusa é menor que a soma dos catetos. O correto é somar os quadrados e tirar a raiz."
+   "E": "15 sai de somar as arestas: 7 + 4 + 4 = 15. Mas a diagonal é hipotenusa, e ela é menor que a soma dos catetos. O certo é somar os quadrados e tirar a raiz."
   },
   "armadilha": "Somar as arestas (7 + 4 + 4 = 15) em vez de somar os quadrados e extrair a raiz.",
   "alerta": "",
@@ -90,24 +90,32 @@
  "quadro": [
   {
    "linha": "d² = 7² + 4²",
-   "nota": "diagonal da base (retângulo 7 × 4)"
+   "nota": "d = diagonal da base 7 × 4"
   },
   {
-   "linha": "d² = 49 + 16 = 65",
-   "nota": "faça as contas"
+   "linha": "d² = 49 + 16",
+   "nota": "eleve ao quadrado"
+  },
+  {
+   "linha": "d² = 65",
+   "nota": "some"
   },
   {
    "linha": "D² = d² + 4²",
-   "nota": "diagonal da caixa: d e altura 4 são os catetos",
+   "nota": "D = diagonal da caixa",
    "destaque": "4²"
   },
   {
-   "linha": "D² = 65 + 16 = 81",
+   "linha": "D² = 65 + 16",
+   "nota": "troque d² por 65"
+  },
+  {
+   "linha": "D² = 81",
    "nota": "some"
   },
   {
    "linha": "D = √81 = 9",
-   "nota": "tire a raiz: diâmetro de 9 cm"
+   "nota": "diâmetro: 9 cm"
   }
  ],
  "visual": {
@@ -124,11 +132,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -139,6 +149,78 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "A"
+  "fatos_resposta": "A",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Se a caixa está inscrita na esfera, os 8 vértices tocam a esfera. A menor esfera que a contém tem o centro no centro da caixa. O diâmetro é então a diagonal da caixa, o segmento que vai de um canto ao canto oposto passando pelo centro.",
+    "motivo": "Frases mais curtas; tira a expressão 'maior distância entre vértices', que o aluno não precisa."
+   },
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "diagonal da caixa² = aresta1² + aresta2² + aresta3²",
+     "diâmetro da esfera = diagonal da caixa"
+    ],
+    "motivo": "Escreve a regra como se diz em aula, sem letras soltas."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "A base é um retângulo 7 × 4. A diagonal dela é a hipotenusa de um triângulo com catetos 7 e 4. Por isso o teorema de Pitágoras dá o quadrado dela. Ainda não tire a raiz.",
+    "motivo": "Explica Pitágoras e avisa que a raiz fica para o fim, evitando arredondar cedo."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "D² = 65 + 4² = 81",
+    "motivo": "Mantido; D e d precisam estar definidos."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "A diagonal da base (d) fica deitada no chão e a altura 4 fica de pé. Elas formam um triângulo retângulo, e a diagonal da caixa (D) é a hipotenusa dele.",
+    "motivo": "Define d e D e deixa a imagem 3D mais clara."
+   },
+   {
+    "campo": "resolucao.quadro",
+    "depois": [
+     {
+      "linha": "d² = 7² + 4²",
+      "nota": "d = diagonal da base 7 × 4"
+     },
+     {
+      "linha": "d² = 49 + 16",
+      "nota": "eleve ao quadrado"
+     },
+     {
+      "linha": "d² = 65",
+      "nota": "some"
+     },
+     {
+      "linha": "D² = d² + 4²",
+      "nota": "D = diagonal da caixa",
+      "destaque": "4²"
+     },
+     {
+      "linha": "D² = 65 + 16",
+      "nota": "troque d² por 65"
+     },
+     {
+      "linha": "D² = 81",
+      "nota": "some"
+     },
+     {
+      "linha": "D = √81 = 9",
+      "nota": "diâmetro: 9 cm"
+     }
+    ],
+    "motivo": "Um passo por linha, sem pular a passagem de substituição."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "15 sai de somar as arestas: 7 + 4 + 4 = 15. Mas a diagonal é hipotenusa, e ela é menor que a soma dos catetos. O certo é somar os quadrados e tirar a raiz.",
+    "motivo": "Frases mais curtas e diretas."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

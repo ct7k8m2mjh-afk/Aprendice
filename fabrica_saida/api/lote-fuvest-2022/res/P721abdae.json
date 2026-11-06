@@ -23,12 +23,16 @@
      "número de pessoas que ficaram depois das duas desistências"
     ],
     [
+     "÷",
+     "sinal de divisão"
+    ],
+    [
      "Bhaskara",
-     "fórmula que resolve equações do tipo ax² + bx + c = 0"
+     "fórmula que resolve equações do tipo ax² + bx + c = 0 (não será necessária aqui)"
     ]
    ]
   },
-  "pista": "Teste as alternativas: se cada um que ficou paga certo valor, quantas pessoas ficaram? E quanto pagariam antes das duas saírem?",
+  "pista": "Chame de n o número de pessoas do grupo original. Escreva quanto cada uma pagaria com n pessoas e quanto paga com duas a menos. A diferença é R$ 5,00.",
   "passos": [
    {
     "faz": "Dê nome ao que não se sabe",
@@ -45,19 +49,19 @@
    {
     "faz": "Elimine os denominadores",
     "conta": "200n = 200(n − 2) + 5n(n − 2)",
-    "porque": "Multiplique tudo por n(n − 2). Assim, 200/(n − 2) vira 200n, 200/n vira 200(n − 2), e o 5 vira 5n(n − 2).",
+    "porque": "Multiplique os dois lados por n(n − 2) para sumir com as frações. Cada termo é multiplicado: 200/(n − 2) vira 200n, 200/n vira 200(n − 2) e 5 vira 5n(n − 2).",
     "tipo": "calcular"
    },
    {
     "faz": "Simplifique até o 2º grau",
-    "conta": "0 = −400 + 5n² − 10n",
-    "porque": "200n − 200n + 400 = 5n² − 10n. Dividindo por 5, fica n² − 2n − 80 = 0.",
+    "conta": "5n² − 10n − 400 = 0",
+    "porque": "Distribua: 200n = 200n − 400 + 5n² − 10n. O 200n cancela nos dois lados. Dividindo tudo por 5, fica n² − 2n − 80 = 0.",
     "tipo": "calcular"
    },
    {
     "faz": "Resolva a equação",
     "conta": "n² − 2n − 80 = 0 → n = 10",
-    "porque": "Procure dois números de soma 2 e produto −80: são 10 e −8. A raiz negativa não serve, pois n é número de pessoas. Logo n = 10.",
+    "porque": "Procure dois números com soma 2 e produto −80: são 10 e −8. Então (n − 10)(n + 8) = 0, e n = 10 ou n = −8. Número de pessoas não é negativo, logo n = 10.",
     "tipo": "calcular"
    },
    {
@@ -70,8 +74,8 @@
   "resposta": "Alternativa D: cada pessoa que ficou pagou R$ 25,00 (eram 10 pessoas, ficaram 8).",
   "checagem": "Antes: 200 ÷ 10 = 20. Depois: 200 ÷ 8 = 25. A diferença é 25 − 20 = 5, como diz o enunciado.",
   "erradas": {
-   "A": "R$ 10,00 não confere: com 10 reais cada, teriam ficado 200 ÷ 10 = 20 pessoas, e o grupo original teria 22. O valor previsto seria 200 ÷ 22 ≈ R$ 9,09, e a diferença não é R$ 5,00.",
-   "B": "R$ 15,00 não confere: 200 ÷ 15 ≈ 13,3 não é um número inteiro de pessoas. Pelo outro lado, um valor previsto de R$ 10,00 daria 20 pessoas; saindo 2, ficariam 18, e cada uma pagaria 200 ÷ 18 ≈ R$ 11,11, não R$ 15,00.",
+   "A": "R$ 10,00 não confere. Se cada um que ficou pagasse 10, ficariam 200 ÷ 10 = 20 pessoas e o grupo original teria 22. O valor previsto seria 200 ÷ 22 ≈ 9,09, só cerca de R$ 0,91 a menos, e não R$ 5,00.",
+   "B": "R$ 15,00 não confere. Se cada um que ficou pagasse 15, ficariam 200 ÷ 15 ≈ 13,3 pessoas, número que não é inteiro. Não existe grupo com essa divisão.",
    "C": "R$ 20,00 é o valor previsto para o grupo original de 10 pessoas (200 ÷ 10), antes das desistências. Quem ficou pagou R$ 5,00 a mais: 20 + 5 = 25.",
    "E": "R$ 40,00 não confere: 200 ÷ 40 = 5 pessoas ficaram, então eram 7. O valor previsto seria 200 ÷ 7 ≈ R$ 28,57, e a diferença para 40 não é R$ 5,00."
   },
@@ -142,11 +146,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -163,6 +169,72 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "D"
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "n",
+      "número de funcionários no grupo original"
+     ],
+     [
+      "n − 2",
+      "número de pessoas que ficaram depois das duas desistências"
+     ],
+     [
+      "÷",
+      "sinal de divisão"
+     ],
+     [
+      "Bhaskara",
+      "fórmula que resolve equações do tipo ax² + bx + c = 0 (não será necessária aqui)"
+     ]
+    ],
+    "motivo": "Explicar o sinal ÷ e avisar que Bhaskara não é usada (a resolução usa soma e produto), sem deixar símbolo solto."
+   },
+   {
+    "campo": "resolucao.pista",
+    "depois": "Chame de n o número de pessoas do grupo original. Escreva quanto cada uma pagaria com n pessoas e quanto paga com duas a menos. A diferença é R$ 5,00.",
+    "motivo": "A pista antiga sugeria testar alternativas, mas o caminho principal é a equação. A nova aponta o primeiro movimento sem dar a resposta."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "200n = 200(n − 2) + 5n(n − 2)",
+    "motivo": "Mantido o texto. Só a explicação do porquê foi reescrita (ver próximo item)."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Multiplique os dois lados por n(n − 2) para sumir com as frações. Cada termo é multiplicado: 200/(n − 2) vira 200n, 200/n vira 200(n − 2) e 5 vira 5n(n − 2).",
+    "motivo": "Frase mais clara, sem sentido duplo, indicando que a multiplicação vale para os dois lados."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "5n² − 10n − 400 = 0",
+    "motivo": "Forma mais natural de uma equação do 2º grau e mais curta para o celular, coerente com o quadro."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Distribua: 200n = 200n − 400 + 5n² − 10n. O 200n cancela nos dois lados. Dividindo tudo por 5, fica n² − 2n − 80 = 0.",
+    "motivo": "Passo a passo na ordem do caderno, sem pular a distributiva."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "Procure dois números com soma 2 e produto −80: são 10 e −8. Então (n − 10)(n + 8) = 0, e n = 10 ou n = −8. Número de pessoas não é negativo, logo n = 10.",
+    "motivo": "Mostra a fatoração, explica de onde vêm as duas raízes e por que uma é descartada."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "R$ 10,00 não confere. Se cada um que ficou pagasse 10, ficariam 200 ÷ 10 = 20 pessoas e o grupo original teria 22. O valor previsto seria 200 ÷ 22 ≈ 9,09, só cerca de R$ 0,91 a menos, e não R$ 5,00.",
+    "motivo": "Deixa claro que o teste falha porque a diferença não é 5, para quem escolheu A."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "R$ 15,00 não confere. Se cada um que ficou pagasse 15, ficariam 200 ÷ 15 ≈ 13,3 pessoas, número que não é inteiro. Não existe grupo com essa divisão.",
+    "motivo": "Teste único e direto; o texto antigo misturava dois testes e confundia."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

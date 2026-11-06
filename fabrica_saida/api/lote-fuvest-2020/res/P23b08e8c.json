@@ -8,7 +8,7 @@
  "conceito": "Período de um satélite em órbita circular, com a gravitação universal como força centrípeta (3ª lei de Kepler).",
  "resolucao": {
   "antes": {
-   "texto": "O Columbia gira em círculo em volta da Lua. A única força sobre ele é a atração gravitacional da Lua, e ela faz o papel de força centrípeta. Por isso a velocidade da órbita fica definida pelo raio: v² = GM/r. A Lua gira muito devagar (cerca de 27 dias por volta). Assim, voltar ao mesmo ponto da superfície leva praticamente um período orbital. O raio da órbita é medido a partir do CENTRO da Lua, e o enunciado dá a altitude acima da superfície.",
+   "texto": "O Columbia gira em círculo em volta da Lua. A única força sobre ele é a atração da Lua, e ela faz o papel de força centrípeta (a força que aponta para o centro e faz o corpo curvar). Por isso a velocidade da órbita fica definida pelo raio: v² = GM/r. A Lua gira muito devagar (cerca de 27 dias por volta). Assim, voltar ao mesmo ponto da superfície leva praticamente um período orbital. O raio da órbita conta a partir do CENTRO da Lua, e o enunciado dá a altitude acima da superfície.",
    "formulas": [
     "r = raio da Lua + altitude",
     "G·M·m ÷ r² = m·v² ÷ r, logo v² = G·M ÷ r",
@@ -24,6 +24,10 @@
      "massa da Lua (8 × 10²² kg)"
     ],
     [
+     "m",
+     "massa do Columbia; ela cancela na conta"
+    ],
+    [
      "r",
      "raio da órbita, do centro da Lua até o satélite"
     ],
@@ -34,6 +38,14 @@
     [
      "T",
      "período: tempo de uma volta completa"
+    ],
+    [
+     "π",
+     "número pi, vale cerca de 3 nesta prova"
+    ],
+    [
+     "força centrípeta",
+     "força que aponta para o centro da curva e faz o corpo girar"
     ]
    ]
   },
@@ -47,8 +59,8 @@
    },
    {
     "faz": "Calcule o produto G·M",
-    "conta": "G·M = 9×10⁻¹³ × 8×10²²",
-    "porque": "Multiplique 9 × 8 = 72 e some os expoentes: −13 + 22 = 9. Dá 72 × 10⁹ = 7,2 × 10¹⁰ km³/h². As unidades já estão em km e h, então não há conversão.",
+    "conta": "GM = 9×10⁻¹³ × 8×10²² = 7,2×10¹⁰",
+    "porque": "Multiplique 9 × 8 = 72 e some os expoentes: −13 + 22 = 9. Dá 72 × 10⁹ = 7,2 × 10¹⁰ km³/h². G já está em km e h, então não precisa converter.",
     "tipo": "calcular"
    },
    {
@@ -59,7 +71,7 @@
    },
    {
     "faz": "Calcule o período",
-    "conta": "T = 2·3·2000 ÷ 6000 = 2 h",
+    "conta": "T = (2·3·2000) ÷ 6000 = 2 h",
     "porque": "Uma volta tem comprimento 2πr = 2 × 3 × 2000 = 12 000 km. Percorrida a 6 000 km/h, leva 2 h.",
     "tipo": "calcular"
    },
@@ -156,11 +168,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -171,6 +185,70 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "B"
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "O Columbia gira em círculo em volta da Lua. A única força sobre ele é a atração da Lua, e ela faz o papel de força centrípeta (a força que aponta para o centro e faz o corpo curvar). Por isso a velocidade da órbita fica definida pelo raio: v² = GM/r. A Lua gira muito devagar (cerca de 27 dias por volta). Assim, voltar ao mesmo ponto da superfície leva praticamente um período orbital. O raio da órbita conta a partir do CENTRO da Lua, e o enunciado dá a altitude acima da superfície.",
+    "motivo": "Explica 'força centrípeta' na primeira aparição e encurta frases."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "G",
+      "constante gravitacional, dada em km³/(kg·h²)"
+     ],
+     [
+      "M",
+      "massa da Lua (8 × 10²² kg)"
+     ],
+     [
+      "m",
+      "massa do Columbia; ela cancela na conta"
+     ],
+     [
+      "r",
+      "raio da órbita, do centro da Lua até o satélite"
+     ],
+     [
+      "v",
+      "velocidade escalar do satélite na órbita"
+     ],
+     [
+      "T",
+      "período: tempo de uma volta completa"
+     ],
+     [
+      "π",
+      "número pi, vale cerca de 3 nesta prova"
+     ],
+     [
+      "força centrípeta",
+      "força que aponta para o centro da curva e faz o corpo girar"
+     ]
+    ],
+    "motivo": "Faltavam m (aparece nas fórmulas), π e força centrípeta."
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "GM = 9×10⁻¹³ × 8×10²² = 7,2×10¹⁰",
+    "motivo": "A conta do passo deve mostrar o resultado; o porque explica só a razão."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "Multiplique 9 × 8 = 72 e some os expoentes: −13 + 22 = 9. Dá 72 × 10⁹ = 7,2 × 10¹⁰ km³/h². G já está em km e h, então não precisa converter.",
+    "motivo": "Frases mais curtas e claras."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "T = (2·3·2000) ÷ 6000 = 2 h",
+    "motivo": "Parênteses deixam claro o que se divide por 6000."
+   }
+  ],
+  "didatica_alertas": [
+   "Classificação do banco (F06.3, calor) está errada para esta questão; o JSON já usa F05.2 (gravitação). Ajustar no banco."
+  ],
+  "didatica_ok": true
  }
 }

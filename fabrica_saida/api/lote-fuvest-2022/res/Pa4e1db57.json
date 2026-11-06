@@ -19,12 +19,24 @@
      "grande conjunto de vida (plantas e animais) de uma região, com clima e vegetação típicos"
     ],
     [
+     "Cerrado",
+     "bioma brasileiro de savana, com estação seca marcada, árvores de tronco retorcido e capim"
+    ],
+    [
      "biodiversidade",
      "variedade de espécies de seres vivos em um ambiente"
     ],
     [
      "gramíneas",
      "plantas da família do capim"
+    ],
+    [
+     "rebrotar",
+     "voltar a brotar depois de queimada ou cortada"
+    ],
+    [
+     "Estação Ecológica",
+     "área protegida do governo, usada para pesquisa e conservação da natureza"
     ],
     [
      "agricultura itinerante",
@@ -53,13 +65,13 @@
    {
     "faz": "Leia os números do experimento",
     "conta": "Gramíneas: 38 → 44",
-    "porque": "O número de espécies subiu, em vez de cair.",
+    "porque": "O número de espécies de gramíneas subiu de 38 para 44. Não caiu.",
     "tipo": "localizar"
    },
    {
     "faz": "Leia o segundo número",
     "conta": "Outras ervas: 68 → 74",
-    "porque": "Também subiu. Mais espécies significa mais biodiversidade, ou seja, a prática ajuda a mantê-la.",
+    "porque": "Também subiu. Mais espécies no mesmo lugar é mais biodiversidade. Logo, o fogo controlado ajuda a mantê-la.",
     "tipo": "localizar"
    },
    {
@@ -79,9 +91,9 @@
   "checagem": "A frase de abertura já diz que a queimada controlada é uma forma de conservação do Cerrado. Conservar é manter a biodiversidade, e os números (38→44 e 68→74) confirmam.",
   "erradas": {
    "B": "O texto não fala de plantio agrícola. O experimento foi em uma Estação Ecológica, área de conservação, e avaliou só o efeito sobre a vegetação nativa.",
-   "C": "A agricultura itinerante é queimar para plantar e mudar de área, e o texto não a menciona. Aqui o fogo é um experimento científico de conservação, não uma técnica tradicional de cultivo.",
+   "C": "Agricultura itinerante é queimar a mata, plantar por poucos anos e mudar de área. O texto não fala disso. Aqui o fogo é um experimento científico de conservação.",
    "D": "O texto não cita pecuária. O objetivo declarado é a conservação, simulando o ciclo natural do fogo, e não abrir pasto para o gado.",
-   "E": "Inverte o texto: ele diz que a prática é benéfica para a flora (plantas rebrotam e há aumento de espécies), e não que traz desvantagem."
+   "E": "Inverte o texto. Ele diz que a prática é benéfica para a flora: as plantas rebrotam e o número de espécies aumenta. Não aponta desvantagem."
   },
   "armadilha": "Associar queimada a desmatamento agrícola ou pecuário e marcar uma alternativa econômica, quando o texto trata de queimada controlada como conservação.",
   "alerta": "",
@@ -133,11 +145,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -148,6 +162,73 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "A"
+  "fatos_resposta": "A",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[3]",
+    "depois": {
+     "faz": "Leia o segundo número",
+     "conta": "Outras ervas: 68 → 74",
+     "porque": "Também subiu. Mais espécies no mesmo lugar é mais biodiversidade. Logo, o fogo controlado ajuda a mantê-la.",
+     "tipo": "localizar"
+    },
+    "motivo": "Frase mais clara, sem 'ou seja' ambíguo, e liga o dado à conclusão."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "O número de espécies de gramíneas subiu de 38 para 44. Não caiu.",
+    "motivo": "Troca 'em vez de cair' por frase direta."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "Agricultura itinerante é queimar a mata, plantar por poucos anos e mudar de área. O texto não fala disso. Aqui o fogo é um experimento científico de conservação.",
+    "motivo": "Frases mais curtas (até 30 palavras) e voz direta."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "Inverte o texto. Ele diz que a prática é benéfica para a flora: as plantas rebrotam e o número de espécies aumenta. Não aponta desvantagem.",
+    "motivo": "Diz o que faltou ao aluno: ler que 'benéfica' é o oposto de 'desvantagem'."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "bioma",
+      "grande conjunto de vida (plantas e animais) de uma região, com clima e vegetação típicos"
+     ],
+     [
+      "Cerrado",
+      "bioma brasileiro de savana, com estação seca marcada, árvores de tronco retorcido e capim"
+     ],
+     [
+      "biodiversidade",
+      "variedade de espécies de seres vivos em um ambiente"
+     ],
+     [
+      "gramíneas",
+      "plantas da família do capim"
+     ],
+     [
+      "rebrotar",
+      "voltar a brotar depois de queimada ou cortada"
+     ],
+     [
+      "Estação Ecológica",
+      "área protegida do governo, usada para pesquisa e conservação da natureza"
+     ],
+     [
+      "agricultura itinerante",
+      "cultivo em que o agricultor queima a mata, planta por poucos anos e muda de lugar"
+     ],
+     [
+      "pecuária extensiva",
+      "criação de gado em grandes áreas, com pouca tecnologia"
+     ]
+    ],
+    "motivo": "Inclui termos que o aluno pode não saber (Cerrado, rebrotar, Estação Ecológica), usados na resolução."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

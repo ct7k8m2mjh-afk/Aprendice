@@ -60,8 +60,8 @@
    },
    {
     "faz": "Confirme com outro ponto",
-    "conta": "i = 0,25 A → U ≈ 0,2 V; 0,2 ÷ 0,25 = 0,8 Ω",
-    "porque": "Dois pontos do mesmo trecho dão o mesmo valor, o que confirma que a razão é constante ali.",
+    "conta": "i = 0,25 A → U ≈ 0,2 V",
+    "porque": "Faça 0,2 ÷ 0,25 = 0,8 Ω. Dois pontos do mesmo trecho dão o mesmo valor, o que confirma que a razão U/i é constante ali.",
     "tipo": "calcular"
    },
    {
@@ -75,9 +75,9 @@
   "checagem": "Compare com um ponto fora do trecho reto: em i = 2 A, U ≈ 0,92 V e U/i ≈ 0,46 Ω, bem diferente de 0,8 Ω. Isso mostra que ali o componente não é ôhmico, e que o trecho certo é o do início.",
   "erradas": {
    "A": "0,4 Ω é o valor da ddp (0,4 V) lido em i = 0,5 A, sem dividir pela corrente. Também fica perto de U/i no fim do gráfico (0,92 ÷ 2 ≈ 0,46 Ω), que está fora da região ôhmica.",
-   "B": "0,6 Ω não corresponde a nenhum ponto do trecho reto. Em i = 0,5 A, U ÷ i = 0,4 ÷ 0,5 = 0,8 Ω, e em i = 0,25 A o resultado é o mesmo. Em i = 1 A (U ≈ 0,65 V) a razão é 0,65 Ω, mas esse ponto já está na parte curva.",
-   "D": "1,0 Ω seria U = 0,5 V em 0,5 A, mas a curva marca cerca de 0,4 V ali. Também seria a leitura de que a corrente em 1 A corresponde à ddp de 1 V, o que o gráfico não mostra (em 1 A, U ≈ 0,65 V).",
-   "E": "1,2 Ω daria U = 0,6 V em 0,5 A, mas a curva está em cerca de 0,4 V. Esse valor está bem acima de qualquer razão U/i que o gráfico apresenta."
+   "B": "0,6 Ω não confere: no trecho reto, U ÷ i = 0,4 ÷ 0,5 = 0,8 Ω e 0,2 ÷ 0,25 = 0,8 Ω. Só dá perto de 0,6 Ω mais adiante, na parte curva, onde U/i já não é constante. Em i = 1 A (U ≈ 0,65 V), a razão é 0,65 Ω.",
+   "D": "1,0 Ω não confere. Daria U = 0,5 V em 0,5 A, mas a curva marca cerca de 0,4 V ali. Quem marcou D provavelmente leu 1 V no eixo vertical como se fosse a resistência, sem dividir pela corrente.",
+   "E": "1,2 Ω não confere. Daria U = 0,6 V em i = 0,5 A, mas a curva marca cerca de 0,4 V. Em nenhum ponto do gráfico U/i chega a 1,2 Ω: o maior valor é cerca de 0,8 Ω, perto da origem."
   },
   "armadilha": "Calcular U/i em um ponto qualquer da curva, em vez de usar só o trecho reto inicial, onde o componente é ôhmico.",
   "alerta": "",
@@ -111,8 +111,8 @@
    "nota": "1ª lei de Ohm"
   },
   {
-   "linha": "R = 0,4/0,5",
-   "nota": "Substitua os valores lidos",
+   "linha": "R = \\frac{0,4}{0,5}",
+   "nota": "Substitua os valores lidos no gráfico",
    "mov": [
     {
      "termo": "i = 0,5",
@@ -140,14 +140,65 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [],
   "fatos_ok": true,
-  "fatos_resposta": "C"
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "i = 0,25 A → U ≈ 0,2 V",
+    "motivo": "A conta tinha mais de 30 caracteres e não quebra linha no celular. A divisão fica numa linha separada."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Faça 0,2 ÷ 0,25 = 0,8 Ω. Dois pontos do mesmo trecho dão o mesmo valor, o que confirma que a razão U/i é constante ali.",
+    "motivo": "A divisão saiu da conta, que era longa, e foi para o porque."
+   },
+   {
+    "campo": "resolucao.quadro[3]",
+    "depois": {
+     "linha": "R = \\frac{0,4}{0,5}",
+     "nota": "Substitua os valores lidos no gráfico",
+     "mov": [
+      {
+       "termo": "i = 0,5",
+       "de": "esquerda",
+       "para": "denominador",
+       "vira": "0,5",
+       "como": "a corrente vai para baixo da fração"
+      }
+     ]
+    },
+    "motivo": "A fração estava escrita na linha, e a regra pede \\frac. Se a etapa de formato da fábrica exigir 'numerador/denominador' em vez de LaTeX, use 'R = 0,4/0,5'."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "0,6 Ω não confere: no trecho reto, U ÷ i = 0,4 ÷ 0,5 = 0,8 Ω e 0,2 ÷ 0,25 = 0,8 Ω. Só dá perto de 0,6 Ω mais adiante, na parte curva, onde U/i já não é constante. Em i = 1 A (U ≈ 0,65 V), a razão é 0,65 Ω.",
+    "motivo": "Texto mais claro: diz o que faltou a quem marcou B (usar um ponto da parte curva)."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "1,0 Ω não confere. Daria U = 0,5 V em 0,5 A, mas a curva marca cerca de 0,4 V ali. Quem marcou D provavelmente leu 1 V no eixo vertical como se fosse a resistência, sem dividir pela corrente.",
+    "motivo": "Texto reorganizado, sem frase confusa."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "1,2 Ω não confere. Daria U = 0,6 V em i = 0,5 A, mas a curva marca cerca de 0,4 V. Em nenhum ponto do gráfico U/i chega a 1,2 Ω: o maior valor é cerca de 0,8 Ω, perto da origem.",
+    "motivo": "Afirmação mais objetiva e verificável."
+   }
+  ],
+  "didatica_alertas": [
+   "O campo conteudo do JSON diz F11.1, mas o enunciado da tarefa informa F11.4. Confirmar a classificação na TAXONOMIA.",
+   "Em erradas.A, a explicação 'sem dividir pela corrente' funciona porque a corrente vale 0,5 A e a razão dá 0,8 Ω. O valor 0,4 Ω coincide com a ddp lida, não com uma conta típica. O corretor 1 pode revisar a origem."
+  ],
+  "didatica_ok": true
  }
 }

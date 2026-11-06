@@ -49,25 +49,25 @@
    {
     "faz": "Continue a leitura",
     "conta": "Guiné Equatorial, Gabão, Congo, Angola",
-    "porque": "Mais países africanos, quase todos produtores de petróleo no Golfo da Guiné e em Angola.",
+    "porque": "São mais quatro países da África. Todos têm petróleo, no Golfo da Guiné (costa oeste africana) e em Angola.",
     "tipo": "localizar"
    },
    {
     "faz": "Complete a lista",
     "conta": "Iraque, Irã, Arábia Saudita, Kuwait, Emirados",
-    "porque": "O Oriente Médio concentra as maiores reservas de petróleo do mundo. Os 13 países do mapa são os membros da OPEP em 2020.",
+    "porque": "O Oriente Médio tem as maiores reservas de petróleo do mundo. Somando todos os países citados, são 13 no mapa, e os 13 eram membros da OPEP em 2020.",
     "tipo": "localizar"
    },
    {
     "faz": "Compare com as siglas",
     "conta": "13 países = membros da OPEP em 2020",
-    "porque": "O traço comum é o petróleo, e a organização que reúne seus exportadores é a OPEP. BRICS, OTAN e OCDE não incluem esse conjunto.",
+    "porque": "O ponto em comum é o petróleo. A organização que reúne exportadores de petróleo é a OPEP. BRICS, OTAN e OCDE não incluem esse conjunto de países.",
     "tipo": "comparar"
    },
    {
     "faz": "Elimine as outras siglas",
     "conta": "BRICS, OCDE, OMC, OTAN: não batem",
-    "porque": "Nenhum país do mapa é do BRICS, da OTAN ou entrou na OCDE em 2020. A OMC aceita a maioria deles como membros.",
+    "porque": "Nenhum país do mapa é do BRICS ou da OTAN, e nenhum entrou na OCDE em 2020. A OMC tem como membros a maioria deles, então não é o que os une.",
     "tipo": "eliminar"
    },
    {
@@ -78,11 +78,11 @@
    }
   ],
   "resposta": "Alternativa D: os países destacados são membros da OPEP, a organização dos exportadores de petróleo.",
-  "checagem": "Pense em países que não estão pintados e são grandes produtores de petróleo: EUA e Rússia. Eles não estão no mapa porque não pertencem à OPEP. Isso confirma que o critério do mapa é a organização, e não ser produtor em geral.",
+  "checagem": "Pense em grandes produtores de petróleo que NÃO estão pintados: EUA e Rússia. Eles não aparecem porque não são da OPEP. Isso confirma que o mapa mostra os membros da organização, e não os produtores em geral.",
   "erradas": {
    "A": "O BRICS tem cinco membros: Brasil, Rússia, Índia, China e África do Sul. Nenhum desses países está pintado no mapa, e nenhum dos pintados é do BRICS.",
-   "B": "A OCDE reúne países de economia desenvolvida, a maioria europeus. Seus integrantes mais recentes (Letônia, Lituânia, Colômbia) não aparecem no mapa, que mostra exportadores de petróleo da África, do Oriente Médio e a Venezuela.",
-   "C": "A OMC tem como membros a maioria dos países do mapa (Venezuela, Nigéria, Angola, Arábia Saudita, Kuwait, Emirados e outros). Só alguns, como Irã, Iraque, Argélia e Líbia, estavam fora em 2020, mas nem por isso formam o conjunto: o critério comum é o petróleo.",
+   "B": "A OCDE reúne países de economia desenvolvida, a maioria europeus. Seus novos integrantes (Letônia, Lituânia, Colômbia) não estão no mapa. Quem marcou B pensou em 'organização econômica' sem conferir os nomes pintados, que são exportadores de petróleo.",
+   "C": "A OMC tem como membros a maioria dos países do mapa (Venezuela, Nigéria, Angola, Arábia Saudita, Kuwait, Emirados e outros). Só alguns estavam fora em 2020, como Irã, Iraque, Argélia e Líbia. Então 'países excluídos da OMC' não descreve o conjunto. Quem marcou C esqueceu de testar a sigla contra todos os países, e não só contra alguns.",
    "E": "A OTAN é aliança militar entre América do Norte e Europa. Nenhum país do mapa pertence a ela; eles estão na América do Sul, na África e no Oriente Médio."
   },
   "armadilha": "Escolher uma sigla pelo tema econômico geral (OMC ou OCDE) sem ver que o único critério comum aos 13 países é a exportação de petróleo.",
@@ -118,11 +118,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -163,6 +165,50 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "D"
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[0].conta",
+    "depois": "Venezuela, Argélia, Líbia, Nigéria",
+    "motivo": "Mantido; a lista já cabe na linha do celular."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "São mais quatro países da África. Todos têm petróleo, no Golfo da Guiné (costa oeste africana) e em Angola.",
+    "motivo": "Troca 'quase todos' por frase sem ambiguidade e explica o Golfo da Guiné."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "O Oriente Médio tem as maiores reservas de petróleo do mundo. Somando todos os países citados, são 13 no mapa, e os 13 eram membros da OPEP em 2020.",
+    "motivo": "A frase original misturava a reserva do Oriente Médio com a contagem; agora há uma ideia por vez."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "O ponto em comum é o petróleo. A organização que reúne exportadores de petróleo é a OPEP. BRICS, OTAN e OCDE não incluem esse conjunto de países.",
+    "motivo": "Frases mais curtas e diretas."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "Nenhum país do mapa é do BRICS ou da OTAN, e nenhum entrou na OCDE em 2020. A OMC tem como membros a maioria deles, então não é o que os une.",
+    "motivo": "Explicita que a OMC não é o critério comum, em vez de dizer só que 'aceita'."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "A OMC tem como membros a maioria dos países do mapa (Venezuela, Nigéria, Angola, Arábia Saudita, Kuwait, Emirados e outros). Só alguns estavam fora em 2020, como Irã, Iraque, Argélia e Líbia. Então 'países excluídos da OMC' não descreve o conjunto. Quem marcou C esqueceu de testar a sigla contra todos os países, e não só contra alguns.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou C."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "A OCDE reúne países de economia desenvolvida, a maioria europeus. Seus novos integrantes (Letônia, Lituânia, Colômbia) não estão no mapa. Quem marcou B pensou em 'organização econômica' sem conferir os nomes pintados, que são exportadores de petróleo.",
+    "motivo": "Acrescenta o que faltou no raciocínio."
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Pense em grandes produtores de petróleo que NÃO estão pintados: EUA e Rússia. Eles não aparecem porque não são da OPEP. Isso confirma que o mapa mostra os membros da organização, e não os produtores em geral.",
+    "motivo": "Frases mais curtas e claras."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

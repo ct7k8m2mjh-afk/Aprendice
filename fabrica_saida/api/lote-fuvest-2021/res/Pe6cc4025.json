@@ -31,6 +31,14 @@
     [
      "Equador",
      "linha de latitude 0°, a maior circunferência da Terra"
+    ],
+    [
+     "latitude",
+     "distância em graus ao Equador, de 0° (Equador) a 90° (polos)"
+    ],
+    [
+     "arco",
+     "pedaço de uma circunferência"
     ]
    ]
   },
@@ -38,7 +46,7 @@
   "passos": [
    {
     "faz": "Liste os três trechos",
-    "conta": "1) Polo → Equador (Greenwich)\n2) Equador, 0° → 45°L\n3) Equador → Polo (45°L)",
+    "conta": "1) Polo → Equador (0°)\n2) Equador: 0° → 45°L\n3) Equador → Polo (45°L)",
     "porque": "O trajeto é a soma de dois trechos de meridiano e um trecho do Equador.",
     "tipo": "localizar"
    },
@@ -50,7 +58,7 @@
    },
    {
     "faz": "Calcule o trecho do Equador",
-    "conta": "45/360 × 40.000 = 5.000 km",
+    "conta": "45 ÷ 360 = 1/8\n1/8 × 40.000 = 5.000 km",
     "porque": "45° é 1/8 de 360°. Um oitavo do Equador dá 40.000 ÷ 8 = 5.000 km.",
     "tipo": "calcular"
    },
@@ -72,8 +80,8 @@
   "erradas": {
    "A": "15.000 km sai de contar só um meridiano: 10.000 + 5.000 = 15.000. O trajeto desce ao Equador e volta ao Polo, então são dois meridianos.",
    "B": "20.000 km é só a soma dos dois meridianos (10.000 + 10.000). Esquece o trecho do Equador entre 0° e 45°L, que são 5.000 km.",
-   "D": "30.000 km sai de usar 10.000 km para o trecho do Equador, como se fosse 90° de longitude (10.000 × 3). Mas 45° é 1/8 da volta, não 1/4: o arco é 5.000 km.",
-   "E": "35.000 km não confere: exigiria 35.000 − 20.000 = 15.000 km no Equador, ou seja, 135° de longitude. O trecho vai só de 0° a 45°L, que vale 5.000 km."
+   "D": "30.000 km sai de tratar o trecho do Equador como 10.000 km, ou seja, 90° de longitude: 10.000 + 10.000 + 10.000. Mas 45° é 1/8 da volta, não 1/4: o arco é 5.000 km.",
+   "E": "35.000 km não confere: com os dois meridianos (20.000 km), sobrariam 15.000 km no Equador, o que dá 135° de longitude. O trecho da questão vai só de 0° a 45°L e vale 5.000 km."
   },
   "armadilha": "Esquecer que o Polo Norte ao Equador é um quarto de volta (10.000 km) e que o trajeto usa dois meridianos.",
   "alerta": "",
@@ -103,12 +111,12 @@
    "nota": "vale para ida e para volta"
   },
   {
-   "linha": "Equador: 45/360 × 40.000",
+   "linha": "Equador: 45/360 = 1/8",
    "nota": "45° é a parte da volta no Equador"
   },
   {
-   "linha": "Equador = 5.000 km",
-   "nota": "45/360 = 1/8; 40.000 ÷ 8"
+   "linha": "1/8 × 40.000 = 5.000 km",
+   "nota": "trecho do Equador de 0° a 45°L"
   },
   {
    "linha": "10.000 + 5.000 + 10.000",
@@ -134,11 +142,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -149,6 +159,75 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "C"
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[0].conta",
+    "depois": "1) Polo → Equador (0°)\n2) Equador: 0° → 45°L\n3) Equador → Polo (45°L)",
+    "motivo": "Linhas mais curtas, para caber na tela do celular sem quebrar."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "45 ÷ 360 = 1/8\n1/8 × 40.000 = 5.000 km",
+    "motivo": "Um passo por linha, sem pular a simplificação da fração. A 'conta' fica curta para o celular."
+   },
+   {
+    "campo": "resolucao.quadro[2].linha",
+    "depois": "Equador: 45/360 = 1/8",
+    "motivo": "Separa a simplificação da fração em uma linha própria, como se copia no caderno."
+   },
+   {
+    "campo": "resolucao.quadro[3]",
+    "depois": {
+     "linha": "1/8 × 40.000 = 5.000 km",
+     "nota": "trecho do Equador de 0° a 45°L"
+    },
+    "motivo": "Mostra a multiplicação completa, sem pular passagem."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "meridiano",
+      "linha imaginária que liga o Polo Norte ao Polo Sul; marca a longitude"
+     ],
+     [
+      "Meridiano de Greenwich",
+      "meridiano de 0°, referência para contar a longitude"
+     ],
+     [
+      "45°L",
+      "45 graus de longitude a leste de Greenwich"
+     ],
+     [
+      "Equador",
+      "linha de latitude 0°, a maior circunferência da Terra"
+     ],
+     [
+      "latitude",
+      "distância em graus ao Equador, de 0° (Equador) a 90° (polos)"
+     ],
+     [
+      "arco",
+      "pedaço de uma circunferência"
+     ]
+    ],
+    "motivo": "O texto usa 'latitude' e 'arco' sem explicar; incluídos para um aluno de 17 anos."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "30.000 km sai de tratar o trecho do Equador como 10.000 km, ou seja, 90° de longitude: 10.000 + 10.000 + 10.000. Mas 45° é 1/8 da volta, não 1/4: o arco é 5.000 km.",
+    "motivo": "Mostra a conta exata do erro e mantém a linguagem simples."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "35.000 km não confere: com os dois meridianos (20.000 km), sobrariam 15.000 km no Equador, o que dá 135° de longitude. O trecho da questão vai só de 0° a 45°L e vale 5.000 km.",
+    "motivo": "Frase mais clara, com o teste objetivo que derruba a alternativa."
+   }
+  ],
+  "didatica_alertas": [
+   "O campo 'nivel' do JSON é 3, mas a classificação atual informa nível 4. Verificar a divergência."
+  ],
+  "didatica_ok": true
  }
 }

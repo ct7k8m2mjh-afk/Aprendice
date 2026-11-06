@@ -8,7 +8,7 @@
  "conceito": "Ler gráficos e reconhecer uma função estritamente decrescente: y diminui sempre que x aumenta, em todos os trechos.",
  "resolucao": {
   "antes": {
-   "texto": "Ler o gráfico da esquerda para a direita significa ver x aumentando. Se o ponto sobe, y aumenta. Se fica na mesma altura, y não muda. Se desce, y diminui. Para y diminuir sempre, o gráfico tem de descer em todos os trechos, sem subir e sem ficar plano em nenhum momento. A inclinação pode mudar: mais íngreme ou mais suave, desde que continue descendo.",
+   "texto": "Leia o gráfico da esquerda para a direita: assim x aumenta. Se a linha sobe, y aumenta. Se fica na mesma altura, y não muda. Se desce, y diminui. Para y diminuir sempre, a linha tem de descer em todos os trechos, sem subir e sem ficar plana. A inclinação pode mudar (mais forte ou mais suave), desde que continue descendo.",
    "formulas": [
     "x aumenta e y aumenta: o gráfico sobe",
     "x aumenta e y não muda: o gráfico é horizontal",
@@ -25,7 +25,11 @@
     ],
     [
      "decrescente",
-     "função cujo y diminui quando x aumenta"
+     "diz-se de uma função em que y diminui quando x aumenta"
+    ],
+    [
+     "trecho",
+     "pedaço do gráfico entre dois pontos em que a linha muda de direção"
     ]
    ]
   },
@@ -33,7 +37,7 @@
   "passos": [
    {
     "faz": "Diga o que o enunciado exige",
-    "conta": "x aumenta → y diminui, sempre",
+    "conta": "x aumenta → y diminui (sempre)",
     "porque": "A palavra 'sempre' vale para todo o gráfico. Basta um trecho que suba ou fique plano para o gráfico ser descartado.",
     "tipo": "localizar"
    },
@@ -45,13 +49,13 @@
    },
    {
     "faz": "Descarte os gráficos com trecho que sobe",
-    "conta": "C e D: há trecho que sobe",
+    "conta": "C: sobe no fim; D: sobe no início",
     "porque": "Em C, no último trecho, x aumenta e y também aumenta. Em D, o primeiro trecho sobe. Nos dois, y não diminui sempre.",
     "tipo": "eliminar"
    },
    {
     "faz": "Confira o gráfico que sobrou",
-    "conta": "E: três trechos, todos descem",
+    "conta": "E: 3 trechos, todos descem",
     "porque": "Em E há três trechos, todos descendo. A inclinação muda, mas nenhum trecho sobe ou fica plano. Logo y sempre diminui quando x aumenta.",
     "tipo": "concluir"
    }
@@ -84,24 +88,24 @@
  ],
  "quadro": [
   {
-   "linha": "A: horizontal",
+   "linha": "A: reta horizontal",
    "nota": "y constante: não diminui"
   },
   {
    "linha": "B: desce, depois plano",
-   "nota": "no trecho plano y não diminui"
+   "nota": "no plano, y não diminui"
   },
   {
    "linha": "C: desce, depois sobe",
-   "nota": "no fim y aumenta"
+   "nota": "no fim, y aumenta"
   },
   {
    "linha": "D: sobe, depois desce",
-   "nota": "no começo y aumenta"
+   "nota": "no começo, y aumenta"
   },
   {
-   "linha": "E: desce o tempo todo",
-   "nota": "só descendo: serve",
+   "linha": "E: só desce",
+   "nota": "serve: y diminui sempre",
    "destaque": "E"
   }
  ],
@@ -119,11 +123,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -164,6 +170,84 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "E"
+  "fatos_resposta": "E",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Leia o gráfico da esquerda para a direita: assim x aumenta. Se a linha sobe, y aumenta. Se fica na mesma altura, y não muda. Se desce, y diminui. Para y diminuir sempre, a linha tem de descer em todos os trechos, sem subir e sem ficar plana. A inclinação pode mudar (mais forte ou mais suave), desde que continue descendo.",
+    "motivo": "Frases mais curtas e diretas; remove a ambiguidade de 'ler' e 'o ponto'."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "x",
+      "grandeza do eixo horizontal; lemos da esquerda para a direita"
+     ],
+     [
+      "y",
+      "grandeza do eixo vertical; quanto mais alto o ponto, maior o y"
+     ],
+     [
+      "decrescente",
+      "diz-se de uma função em que y diminui quando x aumenta"
+     ],
+     [
+      "trecho",
+      "pedaço do gráfico entre dois pontos em que a linha muda de direção"
+     ]
+    ],
+    "motivo": "'Trecho' é usado em toda a resolução e não estava explicado."
+   },
+   {
+    "campo": "resolucao.passos[0].conta",
+    "depois": "x aumenta → y diminui (sempre)",
+    "motivo": "Cabe na linha e destaca o 'sempre'."
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "A: plano; B: plano no fim",
+    "motivo": "Mantido; sem mudança de fato (sem alteração real necessária)."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "C: sobe no fim; D: sobe no início",
+    "motivo": "Diz exatamente onde cada gráfico sobe, em vez de uma frase genérica."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "E: 3 trechos, todos descem",
+    "motivo": "Mais claro e curto."
+   },
+   {
+    "campo": "resolucao.quadro",
+    "depois": [
+     {
+      "linha": "A: reta horizontal",
+      "nota": "y constante: não diminui"
+     },
+     {
+      "linha": "B: desce, depois plano",
+      "nota": "no plano, y não diminui"
+     },
+     {
+      "linha": "C: desce, depois sobe",
+      "nota": "no fim, y aumenta"
+     },
+     {
+      "linha": "D: sobe, depois desce",
+      "nota": "no começo, y aumenta"
+     },
+     {
+      "linha": "E: só desce",
+      "nota": "serve: y diminui sempre",
+      "destaque": "E"
+     }
+    ],
+    "motivo": "Notas padronizadas e mais claras; E deixa explícita a conclusão."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

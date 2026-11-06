@@ -8,7 +8,7 @@
  "conceito": "Ler um mapa com curvas de nível, legenda e cobertura vegetal e prever a paisagem vista de um ponto, numa direção dada.",
  "resolucao": {
   "antes": {
-   "texto": "Para transformar um mapa em paisagem, siga três passos. Primeiro, marque onde o observador está e para que lado ele olha. Depois, leia a legenda: o que há no primeiro plano (água), no meio (vegetação) e ao fundo (relevo). Por fim, use as curvas de nível para saber se o terreno sobe ou desce naquela direção. Curvas de nível ligam pontos de mesma altitude.",
+   "texto": "Para transformar um mapa em paisagem, siga três passos. Primeiro, marque onde o observador está e para que lado ele olha. Depois, leia a legenda: o que há bem à frente (água), no meio (vegetação) e ao fundo (relevo). Por fim, use as curvas de nível para saber se o terreno sobe ou desce naquela direção. Curvas de nível são linhas que ligam pontos de mesma altitude.",
    "formulas": [
     "curvas de nível: números maiores na direção em que o terreno sobe",
     "mata ciliar: faixa de mata ao longo de rios e represas",
@@ -46,25 +46,25 @@
    {
     "faz": "Localize o observador",
     "conta": "Observador: margem do lago azul",
-    "porque": "O símbolo laranja está colado ao lago (símbolo azul, na legenda 'Lago ou represa'), perto do rio. Logo, o primeiro plano da foto é água calma, e não só terra seca.",
+    "porque": "O símbolo laranja está colado ao lago (símbolo azul na legenda 'Lago ou represa'), perto do rio. Logo, a foto deve mostrar água na frente do observador.",
     "tipo": "localizar"
    },
    {
     "faz": "Siga o olhar para o nordeste",
     "conta": "NE = acima e à direita do observador",
-    "porque": "Nessa direção, logo depois da água, aparece uma faixa verde-escura de mata ciliar. Mais ao fundo, só pastagem em verde-claro. Há uma edificação na encosta, um pouco à direita da linha de visão.",
+    "porque": "Nessa direção, logo depois da água, aparece uma faixa verde-escura de mata ciliar. Mais ao fundo há só pastagem, em verde-claro. Há também uma casa na encosta.",
     "tipo": "localizar"
    },
    {
     "faz": "Leia o relevo pelas curvas",
     "conta": "Rio ~605 m → 640 m → 660 m (NE)",
-    "porque": "As cotas crescem rumo ao nordeste. O terreno forma uma encosta suave de morro, de uns 50 m acima do rio. Não há montanha alta, pois o maior ponto cotado é 662 m.",
+    "porque": "As cotas crescem rumo ao nordeste. O terreno forma uma encosta suave de morro, uns 50 m acima do rio. Não há montanha alta: o maior ponto cotado é 662 m.",
     "tipo": "localizar"
    },
    {
     "faz": "Monte a imagem esperada",
     "conta": "água calma + mata na margem + morro de pasto + casa",
-    "porque": "A imagem deve mostrar uma água sem corredeiras, vegetação na margem e uma encosta de pasto atrás, com construção. Não deve ter serra ao fundo nem mata cobrindo o morro todo.",
+    "porque": "A imagem deve mostrar água sem corredeira, mata na margem e uma encosta de pasto atrás, com uma casa. Não deve ter serra ao fundo nem mata cobrindo o morro todo.",
     "tipo": "comparar"
    },
    {
@@ -77,10 +77,10 @@
   "resposta": "Alternativa B: o observador está na margem de um lago ou represa. Ao nordeste ficam mata ciliar, uma encosta suave de pasto e uma casa, e é isso que a foto B mostra.",
   "checagem": "Confira com o que o mapa NÃO mostra. Não há serra alta (máximo de 662 m), nem corredeira marcada, nem mata cobrindo o morro, pois a mata fica só junto à água. Só a B respeita tudo isso.",
   "erradas": {
-   "A": "Mostra corredeira, que exige rio com desnível e água agitada. O observador está na margem de um lago, de água quase parada. A encosta aparece sem edificação, e o mapa marca uma casa na encosta a nordeste.",
-   "C": "Mostra montanhas altas e distantes ao fundo. O mapa tem relevo suave, com altitude entre 605 m e 662 m, e nenhuma serra. A foto também não traz a encosta de pasto nem a casa.",
-   "D": "Não mostra água e traz um morro alto e coberto de mata ao fundo. No mapa, a mata é só uma faixa ao longo da água e a encosta a nordeste é de pastagem (verde-claro).",
-   "E": "Não mostra água, embora o observador esteja na margem do lago. A mata na foto ocupa a encosta, e não a margem. Falta o primeiro plano de lago ou rio, que o mapa indica."
+   "A": "A mostra corredeira, que pede rio com desnível e água agitada. Quem marcou A viu só 'rio e morro' e não leu a legenda: o observador está na margem de um lago, de água quase parada. O morro aparece sem casa, e o mapa marca uma casa na encosta a nordeste.",
+   "C": "C mostra montanhas altas e distantes ao fundo. Quem marcou C esqueceu de conferir as altitudes: o relevo do mapa é suave (605 m a 662 m), sem serra. Falta também a encosta de pasto com casa.",
+   "D": "D não mostra água e traz um morro alto coberto de mata. Quem marcou D não separou a legenda: a mata é só uma faixa ao longo da água, e a encosta a nordeste é pastagem (verde-claro).",
+   "E": "E não mostra água, mas o observador está na margem do lago. Quem marcou E olhou só o morro com casa e esqueceu o que está na frente dele. Além disso, a mata da foto cobre a encosta, e no mapa ela fica só na margem."
   },
   "armadilha": "Olhar só o morro e a casa, e esquecer de ler a legenda do ponto onde o observador está (a água) e da cobertura vegetal (mata só na margem).",
   "alerta": "",
@@ -115,11 +115,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -142,6 +144,57 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "B"
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Para transformar um mapa em paisagem, siga três passos. Primeiro, marque onde o observador está e para que lado ele olha. Depois, leia a legenda: o que há bem à frente (água), no meio (vegetação) e ao fundo (relevo). Por fim, use as curvas de nível para saber se o terreno sobe ou desce naquela direção. Curvas de nível são linhas que ligam pontos de mesma altitude.",
+    "motivo": "Troca 'primeiro plano' por expressão mais simples e define curva de nível já no texto."
+   },
+   {
+    "campo": "resolucao.passos[0].porque",
+    "depois": "O símbolo laranja está colado ao lago (símbolo azul na legenda 'Lago ou represa'), perto do rio. Logo, a foto deve mostrar água na frente do observador.",
+    "motivo": "Frase mais curta e sem sentido duplo."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "Nessa direção, logo depois da água, aparece uma faixa verde-escura de mata ciliar. Mais ao fundo há só pastagem, em verde-claro. Há também uma casa na encosta.",
+    "motivo": "Simplifica; evita a localização 'à direita da linha de visão', que é imprecisa no mapa."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "As cotas crescem rumo ao nordeste. O terreno forma uma encosta suave de morro, uns 50 m acima do rio. Não há montanha alta: o maior ponto cotado é 662 m.",
+    "motivo": "Frases mais curtas; 'cota' é a altitude escrita na curva."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "A imagem deve mostrar água sem corredeira, mata na margem e uma encosta de pasto atrás, com uma casa. Não deve ter serra ao fundo nem mata cobrindo o morro todo.",
+    "motivo": "Voz mais direta."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "A mostra corredeira, que pede rio com desnível e água agitada. Quem marcou A viu só 'rio e morro' e não leu a legenda: o observador está na margem de um lago, de água quase parada. O morro aparece sem casa, e o mapa marca uma casa na encosta a nordeste.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou A."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "C mostra montanhas altas e distantes ao fundo. Quem marcou C esqueceu de conferir as altitudes: o relevo do mapa é suave (605 m a 662 m), sem serra. Falta também a encosta de pasto com casa.",
+    "motivo": "Aponta o que faltou no raciocínio."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "D não mostra água e traz um morro alto coberto de mata. Quem marcou D não separou a legenda: a mata é só uma faixa ao longo da água, e a encosta a nordeste é pastagem (verde-claro).",
+    "motivo": "Aponta o que faltou no raciocínio."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "E não mostra água, mas o observador está na margem do lago. Quem marcou E olhou só o morro com casa e esqueceu o que está na frente dele. Além disso, a mata da foto cobre a encosta, e no mapa ela fica só na margem.",
+    "motivo": "Aponta o que faltou no raciocínio e remove termo técnico."
+   }
+  ],
+  "didatica_alertas": [
+   "Conferir com o print se a foto A realmente não tem edificação e se a B mostra casa na encosta; a resolução depende dessa leitura das fotos."
+  ],
+  "didatica_ok": true
  }
 }

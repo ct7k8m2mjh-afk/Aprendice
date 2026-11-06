@@ -8,7 +8,7 @@
  "conceito": "Traduzir um texto em equações e resolver o sistema: Paris é o dobro dos outros dois destinos juntos e Roma é a metade de Lisboa mais 2.",
  "resolucao": {
   "antes": {
-   "texto": "A frase 'Paris foi o dobro dos outros dois juntos' liga Paris ao grupo Lisboa + Roma. Se Paris vale 2 partes e os outros dois valem 1 parte, o total tem 3 partes. Isso dá a soma Lisboa + Roma sem precisar de equação complicada. Atenção ao que se pede: Paris + Roma, não Roma sozinha.",
+   "texto": "A frase 'Paris foi o dobro dos outros dois juntos' liga Paris ao grupo Lisboa + Roma. Se Lisboa + Roma valem 1 parte, Paris vale 2 partes e o total tem 3 partes. Isso dá Lisboa + Roma sem equação complicada. Atenção ao que se pede: Paris + Roma, não Lisboa + Roma.",
    "formulas": [
     "Paris + Lisboa + Roma = 78",
     "Paris = 2 × (Lisboa + Roma)",
@@ -22,6 +22,10 @@
     [
      "conjuntamente",
      "somando os dois destinos citados"
+    ],
+    [
+     "L/2",
+     "a metade de L (L dividido por 2)"
     ]
    ]
   },
@@ -48,7 +52,7 @@
    {
     "faz": "Ache Lisboa e Roma",
     "conta": "L + L/2 + 2 = 26 → L = 16",
-    "porque": "Troque R por L/2 + 2 em L + R = 26. Fica 3L/2 = 24, então L = 16 e R = 26 − 16 = 10.",
+    "porque": "Troque R por L/2 + 2 em L + R = 26. Fica L + L/2 + 2 = 26. Passe o 2 para o outro lado: 3L/2 = 24. Então L = 16 e R = 26 − 16 = 10.",
     "tipo": "calcular"
    },
    {
@@ -62,7 +66,7 @@
   "checagem": "Lisboa 16, Paris 52, Roma 10: 16 + 52 + 10 = 78. Paris: 2 × (16 + 10) = 52. Roma: 16 ÷ 2 + 2 = 10. Tudo fecha.",
   "erradas": {
    "A": "26 é Lisboa + Roma (16 + 10), as 'outras duas' que a frase compara com Paris. A pergunta é por Paris e Roma.",
-   "B": "38 não confere. Paris sozinha já vendeu 52 passagens (o dobro de 26), então Paris + Roma não pode ser menor que 52.",
+   "B": "38 não confere: Paris sozinha vendeu 52 (o dobro de 26). Paris + Roma não pode ser menor que 52. Essa é a conta que derruba a letra.",
    "C": "42 não confere pelo mesmo motivo: Paris sozinha vendeu 52, maior que 42. Qualquer soma que inclua Paris é pelo menos 52.",
    "E": "68 sai de somar Paris com Lisboa: 52 + 16 = 68. O enunciado pede Paris com Roma (52 + 10 = 62)."
   },
@@ -94,7 +98,7 @@
    "nota": "Paris é o dobro dos outros dois"
   },
   {
-   "linha": "R = L/2 + 2",
+   "linha": "R = \\frac{L}{2} + 2",
    "nota": "Roma: metade de Lisboa mais 2"
   },
   {
@@ -107,7 +111,7 @@
    "nota": "junte: 2 partes + 1 parte = 3 partes"
   },
   {
-   "linha": "L + R = 78/3",
+   "linha": "L + R = \\frac{78}{3}",
    "nota": "o 3 passa dividindo",
    "mov": [
     {
@@ -128,12 +132,12 @@
    "nota": "Paris"
   },
   {
-   "linha": "L + L/2 + 2 = 26",
+   "linha": "L + \\frac{L}{2} + 2 = 26",
    "nota": "troque R por L/2 + 2"
   },
   {
-   "linha": "3L/2 = 24",
-   "nota": "o 2 passa para o outro lado com sinal trocado",
+   "linha": "L + \\frac{L}{2} = 26 - 2",
+   "nota": "o + 2 atravessa o igual e vira − 2",
    "mov": [
     {
      "termo": "+ 2",
@@ -145,11 +149,37 @@
    ]
   },
   {
-   "linha": "L = 24 × 2/3 = 16",
-   "nota": "o 3 e o 2 trocam de lado: L = 16"
+   "linha": "\\frac{3L}{2} = 24",
+   "nota": "L + L/2 = 3L/2 e 26 − 2 = 24"
   },
   {
-   "linha": "R = 26 − 16 = 10",
+   "linha": "3L = 24 × 2",
+   "nota": "o 2 passa multiplicando",
+   "mov": [
+    {
+     "termo": "2",
+     "de": "denominador",
+     "para": "direita",
+     "vira": "× 2",
+     "como": "passa multiplicando"
+    }
+   ]
+  },
+  {
+   "linha": "L = \\frac{48}{3} = 16",
+   "nota": "o 3 passa dividindo: Lisboa",
+   "mov": [
+    {
+     "termo": "3",
+     "de": "esquerda",
+     "para": "denominador",
+     "vira": "3",
+     "como": "passa dividindo"
+    }
+   ]
+  },
+  {
+   "linha": "R = 26 - 16 = 10",
    "nota": "Roma"
   },
   {
@@ -171,11 +201,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -186,6 +218,146 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "D"
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "A frase 'Paris foi o dobro dos outros dois juntos' liga Paris ao grupo Lisboa + Roma. Se Lisboa + Roma valem 1 parte, Paris vale 2 partes e o total tem 3 partes. Isso dá Lisboa + Roma sem equação complicada. Atenção ao que se pede: Paris + Roma, não Lisboa + Roma.",
+    "motivo": "Frase mais clara e o cuidado final fica correto (pedido é Paris + Roma, não 'Roma sozinha')."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "P, L, R",
+      "número de passagens vendidas para Paris, Lisboa e Roma"
+     ],
+     [
+      "conjuntamente",
+      "somando os dois destinos citados"
+     ],
+     [
+      "L/2",
+      "a metade de L (L dividido por 2)"
+     ]
+    ],
+    "motivo": "Explica a notação de fração usada nos passos."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Troque R por L/2 + 2 em L + R = 26. Fica L + L/2 + 2 = 26. Passe o 2 para o outro lado: 3L/2 = 24. Então L = 16 e R = 26 − 16 = 10.",
+    "motivo": "Mostra a passagem intermediária que estava pulada."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "38 não confere: Paris sozinha vendeu 52 (o dobro de 26). Paris + Roma não pode ser menor que 52. Essa é a conta que derruba a letra.",
+    "motivo": "Mais direto para o aluno que marcou B."
+   },
+   {
+    "campo": "resolucao.quadro",
+    "depois": [
+     {
+      "linha": "P + L + R = 78",
+      "nota": "total de passagens"
+     },
+     {
+      "linha": "P = 2(L + R)",
+      "nota": "Paris é o dobro dos outros dois"
+     },
+     {
+      "linha": "R = \\frac{L}{2} + 2",
+      "nota": "Roma: metade de Lisboa mais 2"
+     },
+     {
+      "linha": "2(L + R) + (L + R) = 78",
+      "nota": "troque P por 2(L + R)",
+      "destaque": "2(L + R)"
+     },
+     {
+      "linha": "3(L + R) = 78",
+      "nota": "junte: 2 partes + 1 parte = 3 partes"
+     },
+     {
+      "linha": "L + R = \\frac{78}{3}",
+      "nota": "o 3 passa dividindo",
+      "mov": [
+       {
+        "termo": "3",
+        "de": "esquerda",
+        "para": "denominador",
+        "vira": "3",
+        "como": "passa dividindo"
+       }
+      ]
+     },
+     {
+      "linha": "L + R = 26",
+      "nota": "78 ÷ 3 = 26"
+     },
+     {
+      "linha": "P = 2 × 26 = 52",
+      "nota": "Paris"
+     },
+     {
+      "linha": "L + \\frac{L}{2} + 2 = 26",
+      "nota": "troque R por L/2 + 2"
+     },
+     {
+      "linha": "L + \\frac{L}{2} = 26 - 2",
+      "nota": "o + 2 atravessa o igual e vira − 2",
+      "mov": [
+       {
+        "termo": "+ 2",
+        "de": "esquerda",
+        "para": "direita",
+        "vira": "− 2",
+        "como": "atravessa o igual"
+       }
+      ]
+     },
+     {
+      "linha": "\\frac{3L}{2} = 24",
+      "nota": "L + L/2 = 3L/2 e 26 − 2 = 24"
+     },
+     {
+      "linha": "3L = 24 × 2",
+      "nota": "o 2 passa multiplicando",
+      "mov": [
+       {
+        "termo": "2",
+        "de": "denominador",
+        "para": "direita",
+        "vira": "× 2",
+        "como": "passa multiplicando"
+       }
+      ]
+     },
+     {
+      "linha": "L = \\frac{48}{3} = 16",
+      "nota": "o 3 passa dividindo: Lisboa",
+      "mov": [
+       {
+        "termo": "3",
+        "de": "esquerda",
+        "para": "denominador",
+        "vira": "3",
+        "como": "passa dividindo"
+       }
+      ]
+     },
+     {
+      "linha": "R = 26 - 16 = 10",
+      "nota": "Roma"
+     },
+     {
+      "linha": "P + R = 52 + 10 = 62",
+      "nota": "o que a questão pede"
+     }
+    ],
+    "motivo": "Frações em \\frac e cada passagem escrita (mov do 2, do 3, do +2), sem pular etapas."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

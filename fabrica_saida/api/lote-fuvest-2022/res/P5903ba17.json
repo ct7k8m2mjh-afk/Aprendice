@@ -8,7 +8,7 @@
  "conceito": "Equilíbrio com velocidade constante (1ª lei de Newton) e polia fixa: a força no fio iguala o peso da caixa.",
  "resolucao": {
   "antes": {
-   "texto": "Velocidade constante significa aceleração zero. Pela 1ª lei de Newton, a força resultante sobre a caixa é nula: a tração do fio para cima tem o mesmo valor do peso para baixo. A polia da figura está presa ao teto (é fixa) e só muda a direção do fio, sem reduzir a força. O motor puxa a outra ponta do mesmo fio, então a força dele é igual à tração.",
+   "texto": "Velocidade constante significa aceleração zero. Pela 1ª lei de Newton, a força resultante sobre a caixa é nula: a tração do fio, para cima, tem o mesmo valor do peso, para baixo. A polia da figura está presa ao teto (é fixa) e só muda a direção do fio, sem reduzir a força. O motor puxa a outra ponta do mesmo fio, então a força dele é igual à tração.",
    "formulas": [
     "Peso: P = m × g",
     "Velocidade constante: força resultante = 0, logo T = P",
@@ -30,6 +30,14 @@
     [
      "N",
      "newton, unidade de força"
+    ],
+    [
+     "1ª lei de Newton",
+     "se a resultante é zero, o corpo fica parado ou em velocidade constante"
+    ],
+    [
+     "resultante",
+     "soma de todas as forças que agem no corpo, levando em conta o sentido"
     ]
    ]
   },
@@ -49,7 +57,7 @@
    },
    {
     "faz": "Use a velocidade constante",
-    "conta": "a = 0, logo T − P = 0",
+    "conta": "a = 0 → T − P = 0",
     "porque": "Sem aceleração, a resultante é nula. A tração para cima equilibra o peso para baixo.",
     "tipo": "calcular"
    },
@@ -70,8 +78,8 @@
   "checagem": "Confira os casos extremos. Se o motor puxasse com mais de 120 N, a caixa aceleraria para cima. Se puxasse com menos, ela aceleraria para baixo. Só 120 N mantém a velocidade constante. Unidade: kg × m/s² = N.",
   "erradas": {
    "A": "0 N esqueceria o peso da caixa. Sem força do motor, só o peso de 120 N agiria sobre ela, e ela cairia. Velocidade constante não quer dizer ausência de força, e sim resultante nula.",
-   "B": "30 N seria 120 ÷ 4, uma redução por 4. A figura tem só uma polia fixa, que não reduz força nenhuma. Com 30 N, a resultante seria de 90 N para baixo, e a caixa ganharia aceleração para baixo em vez de manter a velocidade.",
-   "C": "60 N seria 120 ÷ 2, valor de uma polia móvel, em que dois trechos de fio sustentam a carga. Na figura a polia está presa ao teto e a caixa pende de um só trecho de fio. Com 60 N, sobraria resultante de 60 N para baixo, e a caixa não subiria com velocidade constante.",
+   "B": "30 N seria 120 ÷ 4, como se a figura reduzisse a força 4 vezes. Ela tem só uma polia fixa, que não reduz força. Com 30 N, a resultante seria 90 N para baixo, e a caixa aceleraria para baixo.",
+   "C": "60 N seria 120 ÷ 2, valor de polia móvel (dois trechos de fio sustentam a carga). Aqui a polia está presa ao teto e a caixa pende de um só trecho. Com 60 N, a resultante seria 60 N para baixo.",
    "E": "240 N seria o dobro do peso. Nada na figura multiplica a força, e uma força de 240 N daria à caixa aceleração para cima de 10 m/s². Isso contradiz a velocidade constante."
   },
   "armadilha": "Achar que a polia diminui (ou multiplica) a força: a polia fixa só muda a direção, e a velocidade constante pede força igual ao peso.",
@@ -120,7 +128,7 @@
   },
   {
    "linha": "F_motor = T = 120 N",
-   "nota": "polia fixa não muda o valor da força"
+   "nota": "polia fixa só desvia o fio: mesma força"
   }
  ],
  "visual": {
@@ -137,11 +145,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -164,6 +174,65 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "D"
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Velocidade constante significa aceleração zero. Pela 1ª lei de Newton, a força resultante sobre a caixa é nula: a tração do fio, para cima, tem o mesmo valor do peso, para baixo. A polia da figura está presa ao teto (é fixa) e só muda a direção do fio, sem reduzir a força. O motor puxa a outra ponta do mesmo fio, então a força dele é igual à tração.",
+    "motivo": "Vírgula que desfaz ambiguidade entre as duas forças e seus sentidos."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "T",
+      "tração: força que o fio faz sobre a caixa e sobre o motor"
+     ],
+     [
+      "P",
+      "peso da caixa, força da gravidade sobre ela"
+     ],
+     [
+      "polia fixa",
+      "polia presa ao teto, que só muda a direção da força"
+     ],
+     [
+      "N",
+      "newton, unidade de força"
+     ],
+     [
+      "1ª lei de Newton",
+      "se a resultante é zero, o corpo fica parado ou em velocidade constante"
+     ],
+     [
+      "resultante",
+      "soma de todas as forças que agem no corpo, levando em conta o sentido"
+     ]
+    ],
+    "motivo": "Termos técnicos usados na resolução (1ª lei, resultante) não estavam explicados."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "a = 0 → T − P = 0",
+    "motivo": "Mostra de onde vem a equação e fica copiável no caderno."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "30 N seria 120 ÷ 4, como se a figura reduzisse a força 4 vezes. Ela tem só uma polia fixa, que não reduz força. Com 30 N, a resultante seria 90 N para baixo, e a caixa aceleraria para baixo.",
+    "motivo": "Frase mais curta (≤ 30 palavras) e mais direta."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "60 N seria 120 ÷ 2, valor de polia móvel (dois trechos de fio sustentam a carga). Aqui a polia está presa ao teto e a caixa pende de um só trecho. Com 60 N, a resultante seria 60 N para baixo.",
+    "motivo": "Frase mais curta e direta."
+   },
+   {
+    "campo": "resolucao.quadro[6].nota",
+    "depois": "polia fixa só desvia o fio: mesma força",
+    "motivo": "Nota mais clara para o aluno."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

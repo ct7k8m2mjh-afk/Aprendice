@@ -8,7 +8,7 @@
  "conceito": "Interpretar o perfil de radioatividade de um marcador (24Na) em um cano: o aumento localizado do sinal indica acúmulo do marcador fora do cano.",
  "resolucao": {
   "antes": {
-   "texto": "Um marcador radioativo é uma substância que emite radiação e pode ser seguida por um detector. Onde há mais marcador, o detector marca mais contagens por minuto. A água leva o marcador junto com o fluxo. Então o perfil mostra onde o marcador está, e não uma reação química. O decaimento radioativo é um processo do núcleo do átomo e não depende de reação química.",
+   "texto": "Um marcador radioativo é uma substância que emite radiação e pode ser seguida por um detector. Onde há mais marcador, o detector registra mais contagens por minuto. A água leva o marcador junto com o fluxo. Então o gráfico mostra onde o marcador está. O decaimento radioativo acontece no núcleo do átomo e não depende de reação química.",
    "formulas": [
     "mais marcador sob o detector = mais contagens por minuto",
     "o marcador acompanha o sentido do fluxo da água",
@@ -60,13 +60,13 @@
    {
     "faz": "Leia o trecho 3 e compare",
     "conta": "3: patamar menor, mas > 0",
-    "porque": "Depois do pico passa menos marcador, mas ainda passa. Parte saiu do cano no trecho 2 e o resto seguiu em frente.",
+    "porque": "Depois do pico, o sinal fica menor que no trecho 1, mas não zera. Parte do marcador saiu do cano no trecho 2 e o resto seguiu em frente.",
     "tipo": "comparar"
    },
    {
     "faz": "Interprete o conjunto",
     "conta": "fissura em 2 → acúmulo no solo",
-    "porque": "Uma fissura deixa a água marcada vazar e se acumular no solo ao redor, o que explica o pico. O que sobra no cano explica o patamar menor em 3.",
+    "porque": "Uma fissura deixa a água com marcador vazar e se acumular no solo ao redor. Isso explica o pico. O que continua no cano explica o patamar menor em 3.",
     "tipo": "concluir"
    }
   ],
@@ -74,7 +74,7 @@
   "checagem": "Teste a hipótese contrária. Se o cano estivesse inteiro, o sinal seria um patamar contínuo, sem pico. Se estivesse entupido, não haveria sinal depois do bloqueio. Só a fissura dá pico no meio e sinal menor, porém não nulo, depois dele.",
   "erradas": {
    "A": "Entupimento completo impediria o marcador de passar. Mas no trecho 3 o gráfico mostra sinal acima de zero, então o marcador passou.",
-   "C": "A injeção está à esquerda e o sinal aparece à direita dela, na mesma direção do fluxo (seta apontando para a direita). O marcador não vai contra a água, e um acúmulo 'no meio do cano' não explica o pico localizado.",
+   "C": "O sinal aparece à direita da injeção, na mesma direção do fluxo da água. Portanto o marcador não vai contra a água. Além disso, o gráfico mostra um pico em um ponto só, e não acúmulo no meio do cano.",
    "D": "O decaimento radioativo acontece no núcleo e não depende de reação química. Reação química não consome radioatividade. Além disso, no trecho 2 o sinal aumenta, o que contradiz qualquer 'consumo' ali.",
    "E": "No trecho 2 a radioatividade AUMENTA (pico), não diminui. A meia-vida de 15 horas causa uma queda lenta e contínua com o tempo, e não um pico localizado em um ponto do percurso."
   },
@@ -128,11 +128,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -143,6 +145,35 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "B"
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[3]",
+    "depois": {
+     "faz": "Leia o trecho 3 e compare",
+     "conta": "3: patamar menor, mas > 0",
+     "porque": "Depois do pico, o sinal fica menor que no trecho 1, mas não zera. Parte do marcador saiu do cano no trecho 2 e o resto seguiu em frente.",
+     "tipo": "comparar"
+    },
+    "motivo": "Deixa claro que a comparação é com o trecho 1 e que o sinal não zera."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "Uma fissura deixa a água com marcador vazar e se acumular no solo ao redor. Isso explica o pico. O que continua no cano explica o patamar menor em 3.",
+    "motivo": "Frase mais curta e direta."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "O sinal aparece à direita da injeção, na mesma direção do fluxo da água. Portanto o marcador não vai contra a água. Além disso, o gráfico mostra um pico em um ponto só, e não acúmulo no meio do cano.",
+    "motivo": "Texto mais claro: diz o que falta no raciocínio de quem marcou C."
+   },
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Um marcador radioativo é uma substância que emite radiação e pode ser seguida por um detector. Onde há mais marcador, o detector registra mais contagens por minuto. A água leva o marcador junto com o fluxo. Então o gráfico mostra onde o marcador está. O decaimento radioativo acontece no núcleo do átomo e não depende de reação química.",
+    "motivo": "Frases mais curtas e sem repetir a ideia da reação química."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

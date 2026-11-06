@@ -51,7 +51,7 @@
    {
     "faz": "Converta cm para km",
     "conta": "6.000.000 ÷ 100.000 = 60 km",
-    "porque": "1 km tem 100.000 cm (1.000 m × 100 cm). Dividir pelo número de cm de um km dá o resultado em km.",
+    "porque": "1 km tem 1.000 m, e cada metro tem 100 cm: 1.000 × 100 = 100.000 cm. Dividir por 100.000 transforma cm em km.",
     "tipo": "calcular"
    },
    {
@@ -64,9 +64,9 @@
   "resposta": "Alternativa D: 6 cm × 1.000.000 = 6.000.000 cm, que correspondem a 60 km.",
   "checagem": "Caminho inverso: 60 km = 6.000.000 cm; dividindo pelo denominador 1.000.000, volta 6 cm, a medida do mapa. Ordem de grandeza: em 1 : 1.000.000, 1 cm vale 10 km, então 6 cm vale 60 km.",
   "erradas": {
-   "A": "0,6 km sai de errar a conversão por dois zeros a mais na divisão (6.000.000 ÷ 10.000.000 = 0,6). Com 1 km = 100.000 cm, o resultado é 60 km, não 0,6 km.",
+   "A": "A sai de errar a conversão: dividir 6.000.000 cm por 10.000.000 dá 0,6. Esse número de cm não é o de 1 km. O certo é 100.000 cm por km, que dá 60 km.",
    "B": "6 km sai de dividir 6.000.000 cm por 1.000.000, como se 1 km tivesse 1.000.000 cm. Mas 1 km tem 100.000 cm, e a divisão correta dá 60 km.",
-   "C": "6,6 km não confere com nenhuma conta da escala: a relação é só multiplicação (6 × 1.000.000) e mudança de unidade; não há parcela a somar ao 6.",
+   "C": "C não confere: não existe conta de escala que dê 6,6. A escala só pede multiplicar (6 × 1.000.000) e mudar a unidade. Quem marcou C provavelmente somou algo ao 6 sem base na conta.",
    "E": "600 km sai de usar 1 km = 10.000 cm (6.000.000 ÷ 10.000 = 600). Faltou um zero: 1 km = 1.000 m × 100 cm = 100.000 cm."
   },
   "armadilha": "Errar o número de zeros na conversão de cm para km (1 km = 100.000 cm, e não 10.000 nem 1.000.000).",
@@ -84,7 +84,7 @@
   },
   {
    "nome": "Eliminação por ordem de grandeza",
-   "ideia": "Do denominador 1.000.000, corte os 5 zeros da conversão de cm para km (1 km = 100.000 cm): sobra 10, ou seja, 1 cm = 10 km. Qualquer resposta menor que 10 km (A, B, C) é impossível para 6 cm, pois já 1 cm vale 10 km."
+   "ideia": "Primeiro descubra quanto vale 1 cm do mapa: 1.000.000 cm = 10 km. Como 6 cm vale 6 × 10 = 60 km, qualquer resposta menor que 10 km (A, B, C) é impossível, já que 1 cm sozinho vale 10 km."
   }
  ],
  "quadro": [
@@ -106,7 +106,7 @@
   },
   {
    "linha": "real = 6.000.000/100.000",
-   "nota": "divida pelo número de cm de 1 km",
+   "nota": "divida pelos cm de 1 km",
    "mov": [
     {
      "termo": "100.000",
@@ -119,7 +119,7 @@
   },
   {
    "linha": "real = 60 km",
-   "nota": "cancele cinco zeros: 60/1"
+   "nota": "corte 5 zeros de cima e de baixo: 60/1"
   }
  ],
  "visual": {
@@ -136,11 +136,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -163,6 +165,40 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "D"
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "1 km tem 1.000 m, e cada metro tem 100 cm: 1.000 × 100 = 100.000 cm. Dividir por 100.000 transforma cm em km.",
+    "motivo": "Explicita a conta do número de cm em 1 km, em frase mais clara."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "A sai de errar a conversão: dividir 6.000.000 cm por 10.000.000 dá 0,6. Esse número de cm não é o de 1 km. O certo é 100.000 cm por km, que dá 60 km.",
+    "motivo": "Diz com clareza o que faltou no raciocínio de quem marcou A."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "C não confere: não existe conta de escala que dê 6,6. A escala só pede multiplicar (6 × 1.000.000) e mudar a unidade. Quem marcou C provavelmente somou algo ao 6 sem base na conta.",
+    "motivo": "Mantém o teste objetivo e aponta o que faltou no raciocínio de quem marcou C."
+   },
+   {
+    "campo": "resolucao.caminhos[1].ideia",
+    "depois": "Primeiro descubra quanto vale 1 cm do mapa: 1.000.000 cm = 10 km. Como 6 cm vale 6 × 10 = 60 km, qualquer resposta menor que 10 km (A, B, C) é impossível, já que 1 cm sozinho vale 10 km.",
+    "motivo": "A frase original sobre cortar zeros era confusa para um aluno de 17 anos."
+   },
+   {
+    "campo": "resolucao.quadro[4].nota",
+    "depois": "divida pelos cm de 1 km",
+    "motivo": "Nota mais curta, para caber na tela do celular."
+   },
+   {
+    "campo": "resolucao.quadro[5].nota",
+    "depois": "corte 5 zeros de cima e de baixo: 60/1",
+    "motivo": "Deixa claro o que é cancelar os zeros."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

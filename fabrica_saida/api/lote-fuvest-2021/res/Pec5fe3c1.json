@@ -29,15 +29,15 @@
     ],
     [
      "metais nobres",
-     "metais pouco reativos, como Pd, Pt e Au"
+     "metais pouco reativos, que quase não reagem com outras substâncias, como Pd, Pt e Au"
     ],
     [
      "H2SO4 1% e 10%",
-     "ácido sulfúrico mais diluído (1%) e mais concentrado (10%)"
+     "ácido sulfúrico mais diluído (1%) e mais concentrado (10%); % é a parte de ácido na solução"
     ],
     [
      "*",
-     "o texto diz 'não foi possível medir'; a tabela não informa o motivo"
+     "a tabela diz apenas 'não foi possível medir'; não explica o motivo"
     ]
    ]
   },
@@ -58,13 +58,13 @@
    {
     "faz": "Ordene os metais em H2SO4 10%",
     "conta": "Pd 26 < Rh 145 < Pt 166 < Ru 187",
-    "porque": "São as quatro menores taxas, bem abaixo de 3950. Em 1% todos têm '< 2', o que também é muito baixo.",
+    "porque": "São as quatro menores taxas, bem abaixo de 3950. Em 1% todos têm '< 2', também muito baixo.",
     "tipo": "comparar"
    },
    {
     "faz": "Veja os piores resultados",
-    "conta": "Au 1050 > Cu 470 > Ti puro 460",
-    "porque": "Em H2SO4 1%, Cu e Au deixam a taxa maior que a do Ti puro. Em 10% nem foi possível medir. Nessas ligas a corrosão é pior que no Ti puro.",
+    "conta": "1%: Au 1050 > Cu 470 > 460",
+    "porque": "Em H2SO4 1%, Cu (470) e Au (1050) deixam a taxa maior que a do Ti puro (460). Em 10% nem foi possível medir. Nessas ligas a corrosão é pior que no Ti puro.",
     "tipo": "comparar"
    },
    {
@@ -77,10 +77,10 @@
   "resposta": "Alternativa D: Pd, Rh, Pt e Ru reduzem muito a corrosão do Ti (taxas de 26 a 187 em H2SO4 10%, contra 3950 do Ti puro). Cu e Au não protegem: em 1%, as taxas 470 e 1050 passam a do Ti puro (460).",
   "checagem": "Compare cada metal com o Ti puro. Em 10%: Pd 26, Rh 145, Pt 166 e Ru 187 estão muito abaixo de 3950. Em 1%: Cu 470 e Au 1050 estão acima de 460. Isso confirma Pd, Rh, Pt e Ru como melhores, e Cu e Au como piores.",
   "erradas": {
-   "A": "A primeira parte é verdadeira (Ti puro: 460 → 3950). A segunda é falsa: com Pd, Rh e Pt as taxas SOBEM de < 2 para 26, 145 e 166. O Ti é mais corroído com ácido mais concentrado, mesmo com esses metais. A diferença é que ele continua muito menos corroído que o Ti puro.",
-   "B": "A tabela só diz que não foi possível medir (*), sem dar motivo. Re, Cu e Au já têm taxas altas em 1% (235, 470, 1050), nada de reação lenta. Com ácido mais concentrado a corrosão tende a ser MAIOR, e não a demorar para acontecer.",
-   "C": "A escala está invertida. Au, com a maior taxa (1050), é o pior anticorrosivo, e não o melhor. Pela tabela, o melhor é o de menor taxa: em 10%, Pd (26) < Rh (145). Na escala da alternativa, Pd e Rh aparecem nas últimas posições, com ordem diferente da tabela.",
-   "E": "O Ti puro NÃO é muito resistente: sua taxa em 10% é 3950, a maior da tabela. Adicionar 0,01% de Pd, por exemplo, reduz essa taxa para 26. Portanto, os metais adicionados fazem muita diferença."
+   "A": "A primeira parte é verdadeira (Ti puro: 460 → 3950). A segunda é falsa: com Pd, Rh e Pt as taxas SOBEM de < 2 para 26, 145 e 166. Ou seja, o Ti dessas ligas também é mais corroído no ácido concentrado. Faltou conferir as DUAS partes da frase.",
+   "B": "A tabela só diz que não foi possível medir (*), sem dar motivo. Re, Cu e Au já têm taxas altas em 1% (235, 470, 1050): não há reação lenta. Faltou ver que, com mais ácido, a corrosão tende a ser MAIOR.",
+   "C": "A escala está invertida. Au, com a maior taxa (1050), é o pior anticorrosivo, não o melhor. Em 10%, o melhor é Pd (26), depois Rh (145). Faltou lembrar que taxa BAIXA é bom resultado.",
+   "E": "O Ti puro NÃO é muito resistente: em 10% sua taxa é 3950, a maior da tabela. Com 0,01% de Pd cai para 26. Faltou comparar a linha do Ti puro com as ligas."
   },
   "armadilha": "Ler taxa de corrosão alta como 'melhor resultado'. O bom anticorrosivo é o de menor taxa, e o Ti puro é a referência.",
   "alerta": "",
@@ -145,11 +145,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -160,6 +162,72 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "D"
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.simbolos[4]",
+    "depois": [
+     "H2SO4 1% e 10%",
+     "ácido sulfúrico mais diluído (1%) e mais concentrado (10%); % é a parte de ácido na solução"
+    ],
+    "motivo": "Explica o símbolo % em linguagem simples."
+   },
+   {
+    "campo": "resolucao.antes.simbolos[3]",
+    "depois": [
+     "metais nobres",
+     "metais pouco reativos, que quase não reagem com outras substâncias, como Pd, Pt e Au"
+    ],
+    "motivo": "Define 'pouco reativos' para o aluno."
+   },
+   {
+    "campo": "resolucao.antes.simbolos[5]",
+    "depois": [
+     "*",
+     "a tabela diz apenas 'não foi possível medir'; não explica o motivo"
+    ],
+    "motivo": "Frase mais direta, sem aspas aninhadas."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Em H2SO4 1%, Cu (470) e Au (1050) deixam a taxa maior que a do Ti puro (460). Em 10% nem foi possível medir. Nessas ligas a corrosão é pior que no Ti puro.",
+    "motivo": "Frases mais curtas e claras."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "1%: Au 1050 > Cu 470 > 460",
+    "motivo": "Deixa claro que a comparação é na coluna de 1% e cabe na linha."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "São as quatro menores taxas, bem abaixo de 3950. Em 1% todos têm '< 2', também muito baixo.",
+    "motivo": "Frases curtas."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "A primeira parte é verdadeira (Ti puro: 460 → 3950). A segunda é falsa: com Pd, Rh e Pt as taxas SOBEM de < 2 para 26, 145 e 166. Ou seja, o Ti dessas ligas também é mais corroído no ácido concentrado. Faltou conferir as DUAS partes da frase.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou A, com frases curtas."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "A tabela só diz que não foi possível medir (*), sem dar motivo. Re, Cu e Au já têm taxas altas em 1% (235, 470, 1050): não há reação lenta. Faltou ver que, com mais ácido, a corrosão tende a ser MAIOR.",
+    "motivo": "Mostra o que faltou ao aluno e encurta."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "A escala está invertida. Au, com a maior taxa (1050), é o pior anticorrosivo, não o melhor. Em 10%, o melhor é Pd (26), depois Rh (145). Faltou lembrar que taxa BAIXA é bom resultado.",
+    "motivo": "Remove trecho confuso e diz o que faltou."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "O Ti puro NÃO é muito resistente: em 10% sua taxa é 3950, a maior da tabela. Com 0,01% de Pd cai para 26. Faltou comparar a linha do Ti puro com as ligas.",
+    "motivo": "Diz o que faltou no raciocínio."
+   }
+  ],
+  "didatica_alertas": [
+   "Classificação do banco (Q01.5, propriedades periódicas) diverge da resolução (Q09.3, corrosão); o conteúdo é leitura de tabela, sugerir revisar tema/conteúdo.",
+   "Passo 'Veja os piores resultados' compara Cu e Au na coluna de 1%; em 10% não foi medido, então 'piores' vale só para 1%."
+  ],
+  "didatica_ok": true
  }
 }

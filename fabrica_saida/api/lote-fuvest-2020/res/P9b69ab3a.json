@@ -8,7 +8,7 @@
  "conceito": "Probabilidade em caminhos de um diagrama: multiplica-se ao longo de cada caminho e somam-se os caminhos diferentes.",
  "resolucao": {
   "antes": {
-   "texto": "Cada seta traz a probabilidade de ir de uma cidade a outra. Para percorrer um caminho com várias setas seguidas, multiplicam-se as probabilidades das setas (é o 'e' da contagem). Se há caminhos diferentes que levam ao mesmo destino, somam-se os resultados de cada caminho (é o 'ou').",
+   "texto": "Cada seta traz a probabilidade de ir de uma cidade a outra. Num caminho com várias setas seguidas, multiplicam-se as probabilidades das setas: o carro faz a 1.ª seta E depois a 2.ª. Se há caminhos diferentes até o mesmo destino, somam-se os resultados de cada caminho: o carro faz um caminho OU outro.",
    "formulas": [
     "caminho = produto das probabilidades das setas",
     "P(A até F) = soma dos caminhos de A até F"
@@ -20,7 +20,11 @@
     ],
     [
      "0,6",
-     "na seta de C para F, significa que 60% dos carros que estão em C vão para F"
+     "na seta de C para F: 60% dos carros que estão em C vão para F"
+    ],
+    [
+     "A-C-F",
+     "caminho que sai de A, passa por C e chega a F"
     ]
    ]
   },
@@ -28,14 +32,14 @@
   "passos": [
    {
     "faz": "Leia as setas da figura",
-    "conta": "A→B 0,8 ; A→C 0,2",
-    "porque": "De A saem duas setas. Também saem: B→C 0,1 ; B→D 0,9 ; C→E 0,4 ; C→F 0,6 ; D→F 0,3 ; D→G 0,7.",
+    "conta": "A→B 0,8 ; A→C 0,2\nB→C 0,1 ; B→D 0,9\nC→E 0,4 ; C→F 0,6\nD→F 0,3 ; D→G 0,7",
+    "porque": "Anote todas as setas com sua probabilidade. Assim você não perde nenhum caminho depois.",
     "tipo": "localizar"
    },
    {
     "faz": "Liste os caminhos de A até F",
     "conta": "A-C-F ; A-B-C-F ; A-B-D-F",
-    "porque": "Só entram em F as setas vindas de C e de D. Voltando pelas setas, chega-se a A por esses três caminhos. Não há outros.",
+    "porque": "Só chegam a F as setas vindas de C e de D. Voltando por elas até A, aparecem três caminhos. Não há outros.",
     "tipo": "localizar"
    },
    {
@@ -45,30 +49,30 @@
     "tipo": "calcular"
    },
    {
-    "faz": "Faça o mesmo nos outros dois",
-    "conta": "A-B-C-F: 0,8×0,1×0,6 = 0,048",
-    "porque": "Três setas seguidas: 0,8 × 0,1 = 0,08, e 0,08 × 0,6 = 0,048.",
+    "faz": "Faça o mesmo no 2.º caminho",
+    "conta": "A-B-C-F: 0,8 × 0,1 × 0,6\n= 0,08 × 0,6 = 0,048",
+    "porque": "São três setas seguidas. Multiplique duas de cada vez.",
     "tipo": "calcular"
    },
    {
-    "faz": "Calcule o terceiro caminho",
-    "conta": "A-B-D-F: 0,8×0,9×0,3 = 0,216",
-    "porque": "0,8 × 0,9 = 0,72, e 0,72 × 0,3 = 0,216.",
+    "faz": "Calcule o 3.º caminho",
+    "conta": "A-B-D-F: 0,8 × 0,9 × 0,3\n= 0,72 × 0,3 = 0,216",
+    "porque": "Mesmo processo: multiplique duas probabilidades e depois a terceira.",
     "tipo": "calcular"
    },
    {
     "faz": "Some os três caminhos",
     "conta": "0,12 + 0,048 + 0,216 = 0,384",
-    "porque": "Um carro faz um caminho OU outro, e esses eventos não acontecem juntos. Por isso as probabilidades se somam. O resultado corresponde à alternativa E.",
+    "porque": "Um carro faz um caminho OU outro, nunca dois ao mesmo tempo. Por isso as probabilidades se somam. O resultado é a alternativa E.",
     "tipo": "concluir"
    }
   ],
   "resposta": "Alternativa E: a probabilidade de ir de A a F é 0,12 + 0,048 + 0,216 = 0,384.",
-  "checagem": "Confira por outro caminho, agrupando pela cidade de onde o carro chega a F. Chegar a F é o mesmo que chegar a C e ir a F, ou chegar a D e ir a F. P(chegar a C) = 0,2 + 0,8×0,1 = 0,28, e 0,28 × 0,6 = 0,168. P(chegar a D) = 0,8×0,9 = 0,72, e 0,72 × 0,3 = 0,216. A soma é 0,168 + 0,216 = 0,384. Fecha.",
+  "checagem": "Confira agrupando pela cidade de onde o carro chega a F. Chegar a C: 0,2 + 0,8 × 0,1 = 0,28, e 0,28 × 0,6 = 0,168. Chegar a D: 0,8 × 0,9 = 0,72, e 0,72 × 0,3 = 0,216. Soma: 0,168 + 0,216 = 0,384. Fecha.",
   "erradas": {
    "A": "0,120 é só o caminho A-C-F (0,2 × 0,6). Faltam os caminhos que passam por B: A-B-C-F e A-B-D-F.",
    "B": "0,216 é só o caminho A-B-D-F (0,8 × 0,9 × 0,3). Faltam A-C-F (0,12) e A-B-C-F (0,048).",
-   "C": "0,264 sai de 0,048 + 0,216, ou seja, dos dois caminhos que passam por B. Esquece o caminho direto A-C-F, que vale 0,12.",
+   "C": "0,264 = 0,048 + 0,216: soma só os dois caminhos que passam por B. Falta o caminho direto A-C-F, que vale 0,12.",
    "D": "0,336 sai de 0,12 + 0,216. Esquece o caminho A-B-C-F, que também chega a F e vale 0,8 × 0,1 × 0,6 = 0,048."
   },
   "armadilha": "Esquecer o caminho A-B-C-F, que passa por B e depois por C, e somar só os dois caminhos mais óbvios.",
@@ -92,32 +96,44 @@
   },
   {
    "linha": "A-C-F = 0,12",
-   "nota": "2 × 6 = 12, com duas casas decimais"
+   "nota": "2 × 6 = 12; duas casas decimais: 0,12"
   },
   {
    "linha": "A-B-C-F: 0,8 × 0,1 × 0,6",
    "nota": "três setas seguidas"
   },
   {
-   "linha": "A-B-C-F = 0,048",
-   "nota": "0,8 × 0,1 = 0,08 ; × 0,6 = 0,048"
+   "linha": "0,8 × 0,1 = 0,08",
+   "nota": "primeiro par de setas"
+  },
+  {
+   "linha": "A-B-C-F = 0,08 × 0,6 = 0,048",
+   "nota": "multiplique pela última seta"
   },
   {
    "linha": "A-B-D-F: 0,8 × 0,9 × 0,3",
-   "nota": "terceiro caminho"
+   "nota": "3.º caminho"
   },
   {
-   "linha": "A-B-D-F = 0,216",
-   "nota": "0,8 × 0,9 = 0,72 ; × 0,3 = 0,216"
+   "linha": "0,8 × 0,9 = 0,72",
+   "nota": "primeiro par de setas"
   },
   {
-   "linha": "0,12 + 0,048 + 0,216",
+   "linha": "A-B-D-F = 0,72 × 0,3 = 0,216",
+   "nota": "multiplique pela última seta"
+  },
+  {
+   "linha": "P = 0,12 + 0,048 + 0,216",
    "nota": "caminhos diferentes: somam-se",
    "destaque": "+"
   },
   {
-   "linha": "P = 0,384",
-   "nota": "0,12 + 0,048 = 0,168 ; + 0,216 = 0,384"
+   "linha": "0,12 + 0,048 = 0,168",
+   "nota": "soma das duas primeiras"
+  },
+  {
+   "linha": "P = 0,168 + 0,216 = 0,384",
+   "nota": "alternativa E"
   }
  ],
  "visual": {
@@ -134,11 +150,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -149,6 +167,139 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "E"
+  "fatos_resposta": "E",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Cada seta traz a probabilidade de ir de uma cidade a outra. Num caminho com várias setas seguidas, multiplicam-se as probabilidades das setas: o carro faz a 1.ª seta E depois a 2.ª. Se há caminhos diferentes até o mesmo destino, somam-se os resultados de cada caminho: o carro faz um caminho OU outro.",
+    "motivo": "Frases mais curtas, 'e' e 'ou' explicados com a situação do carro."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "seta",
+      "ligação que só pode ser percorrida no sentido indicado"
+     ],
+     [
+      "0,6",
+      "na seta de C para F: 60% dos carros que estão em C vão para F"
+     ],
+     [
+      "A-C-F",
+      "caminho que sai de A, passa por C e chega a F"
+     ]
+    ],
+    "motivo": "Explica a notação de caminho usada nos passos."
+   },
+   {
+    "campo": "resolucao.passos[0]",
+    "depois": {
+     "faz": "Leia as setas da figura",
+     "conta": "A→B 0,8 ; A→C 0,2\nB→C 0,1 ; B→D 0,9\nC→E 0,4 ; C→F 0,6\nD→F 0,3 ; D→G 0,7",
+     "porque": "Anote todas as setas com sua probabilidade. Assim você não perde nenhum caminho depois.",
+     "tipo": "localizar"
+    },
+    "motivo": "Todas as setas ficam em linhas curtas na conta; o porquê não mistura dados."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "Só chegam a F as setas vindas de C e de D. Voltando por elas até A, aparecem três caminhos. Não há outros.",
+    "motivo": "Texto mais claro."
+   },
+   {
+    "campo": "resolucao.passos[3]",
+    "depois": {
+     "faz": "Faça o mesmo no 2.º caminho",
+     "conta": "A-B-C-F: 0,8 × 0,1 × 0,6\n= 0,08 × 0,6 = 0,048",
+     "porque": "São três setas seguidas. Multiplique duas de cada vez.",
+     "tipo": "calcular"
+    },
+    "motivo": "Conta mais curta por linha e passo identificado como 2.º caminho."
+   },
+   {
+    "campo": "resolucao.passos[4]",
+    "depois": {
+     "faz": "Calcule o 3.º caminho",
+     "conta": "A-B-D-F: 0,8 × 0,9 × 0,3\n= 0,72 × 0,3 = 0,216",
+     "porque": "Mesmo processo: multiplique duas probabilidades e depois a terceira.",
+     "tipo": "calcular"
+    },
+    "motivo": "Conta cabe na tela do celular."
+   },
+   {
+    "campo": "resolucao.passos[5]",
+    "depois": {
+     "faz": "Some os três caminhos",
+     "conta": "0,12 + 0,048 + 0,216 = 0,384",
+     "porque": "Um carro faz um caminho OU outro, nunca dois ao mesmo tempo. Por isso as probabilidades se somam. O resultado é a alternativa E.",
+     "tipo": "concluir"
+    },
+    "motivo": "Texto mais simples."
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Confira agrupando pela cidade de onde o carro chega a F. Chegar a C: 0,2 + 0,8 × 0,1 = 0,28, e 0,28 × 0,6 = 0,168. Chegar a D: 0,8 × 0,9 = 0,72, e 0,72 × 0,3 = 0,216. Soma: 0,168 + 0,216 = 0,384. Fecha.",
+    "motivo": "Frases mais curtas."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "0,264 = 0,048 + 0,216: soma só os dois caminhos que passam por B. Falta o caminho direto A-C-F, que vale 0,12.",
+    "motivo": "Mais direto."
+   },
+   {
+    "campo": "quadro",
+    "depois": [
+     {
+      "linha": "A-C-F: 0,2 × 0,6",
+      "nota": "multiplique as setas do 1.º caminho"
+     },
+     {
+      "linha": "A-C-F = 0,12",
+      "nota": "2 × 6 = 12; duas casas decimais: 0,12"
+     },
+     {
+      "linha": "A-B-C-F: 0,8 × 0,1 × 0,6",
+      "nota": "três setas seguidas"
+     },
+     {
+      "linha": "0,8 × 0,1 = 0,08",
+      "nota": "primeiro par de setas"
+     },
+     {
+      "linha": "A-B-C-F = 0,08 × 0,6 = 0,048",
+      "nota": "multiplique pela última seta"
+     },
+     {
+      "linha": "A-B-D-F: 0,8 × 0,9 × 0,3",
+      "nota": "3.º caminho"
+     },
+     {
+      "linha": "0,8 × 0,9 = 0,72",
+      "nota": "primeiro par de setas"
+     },
+     {
+      "linha": "A-B-D-F = 0,72 × 0,3 = 0,216",
+      "nota": "multiplique pela última seta"
+     },
+     {
+      "linha": "P = 0,12 + 0,048 + 0,216",
+      "nota": "caminhos diferentes: somam-se",
+      "destaque": "+"
+     },
+     {
+      "linha": "0,12 + 0,048 = 0,168",
+      "nota": "soma das duas primeiras"
+     },
+     {
+      "linha": "P = 0,168 + 0,216 = 0,384",
+      "nota": "alternativa E"
+     }
+    ],
+    "motivo": "Um passo por linha, sem pular a passagem intermediária."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

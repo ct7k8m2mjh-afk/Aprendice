@@ -38,7 +38,7 @@
   "passos": [
    {
     "faz": "Localize a primeira expressão",
-    "conta": "\"faz de tal modo parte... que poderia servir de definição\"",
+    "conta": "\"de tal modo parte... que poderia servir\"",
     "porque": "A primeira oração traz uma intensidade (a escrita faz parte da civilização 'de tal modo'). A segunda traz o resultado dessa intensidade.",
     "tipo": "localizar"
    },
@@ -62,8 +62,8 @@
    },
    {
     "faz": "Descarte condição, conformidade, dúvida e negação",
-    "conta": "não há 'se', 'conforme', 'talvez' ligados a essas expressões",
-    "porque": "A negação do trecho ('não existe') está no verbo, não em 'sobretudo'. A dúvida ('talvez') aparece em outra frase, sobre a terceira era.",
+    "conta": "sem 'se', 'conforme' ou 'talvez'",
+    "porque": "Nenhuma das duas expressões traz hipótese, fonte ou dúvida. O 'não' de 'não existe' pertence ao verbo, não a 'sobretudo'. O 'talvez' está em outra frase, sobre a terceira era.",
     "tipo": "eliminar"
    },
    {
@@ -74,9 +74,9 @@
    }
   ],
   "resposta": "Alternativa B: 'de tal modo... que' expressa consequência e 'sobretudo' expressa realce.",
-  "checagem": "Reescreva: 'A escrita faz tanto parte de nossa civilização que poderia servir de definição dela. E, principalmente, não existe história que não se funde sobre textos.' O sentido do texto se mantém.",
+  "checagem": "Reescreva com os termos trocados: 'A escrita faz tanto parte de nossa civilização que poderia servir de definição dela. E, principalmente, não existe história sem textos.' O sentido do texto se mantém.",
   "erradas": {
-   "A": "Conformidade seria a ideia de 'conforme' ou 'segundo', e não há nada a que a escrita se conforme. 'Sobretudo' também não indica dúvida: a dúvida está em 'talvez', na frase sobre a terceira era.",
+   "A": "Conformidade seria a ideia de 'conforme' ou 'segundo', e nada no texto indica que a escrita se ajuste a algo. 'Sobretudo' também não indica dúvida: a dúvida está em 'talvez', em outra frase.",
    "C": "Condição exigiria 'se' ou 'caso', e a oração com 'que' não é uma hipótese, e sim um resultado afirmado. 'Sobretudo' não nega nada: a negação 'não existe' está no verbo.",
    "D": "Acerta consequência para 'de tal modo... que', mas erra a segunda: 'sobretudo' não nega. O 'não' de 'não existe história' está no verbo, e 'sobretudo' só destaca a ideia.",
    "E": "Acerta realce para 'sobretudo', mas erra a primeira: 'de tal modo... que' não traz hipótese. Com 'se' a frase mudaria de sentido, enquanto 'tanto que' a mantém."
@@ -114,11 +114,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -135,6 +137,35 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "B"
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[4]",
+    "depois": {
+     "faz": "Descarte condição, conformidade, dúvida e negação",
+     "conta": "sem 'se', 'conforme' ou 'talvez'",
+     "porque": "Nenhuma das duas expressões traz hipótese, fonte ou dúvida. O 'não' de 'não existe' pertence ao verbo, não a 'sobretudo'. O 'talvez' está em outra frase, sobre a terceira era.",
+     "tipo": "eliminar"
+    },
+    "motivo": "A conta ficava longa para o celular (cabe ~30 caracteres) e o porquê ficou mais direto."
+   },
+   {
+    "campo": "resolucao.passos[0].conta",
+    "depois": "\"de tal modo parte... que poderia servir\"",
+    "motivo": "A conta fica curta para caber na tela do celular e usa o trecho exato do texto, sem reticências desnecessárias."
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Reescreva com os termos trocados: 'A escrita faz tanto parte de nossa civilização que poderia servir de definição dela. E, principalmente, não existe história sem textos.' O sentido do texto se mantém.",
+    "motivo": "Reescrever o texto com mais palavras do que o original tornava a checagem menos clara; a versão nova é mais curta e fiel ao sentido."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "Conformidade seria a ideia de 'conforme' ou 'segundo', e nada no texto indica que a escrita se ajuste a algo. 'Sobretudo' também não indica dúvida: a dúvida está em 'talvez', em outra frase.",
+    "motivo": "Frase mais clara; troca de 'a que a escrita se conforme', que era ambígua, por redação direta."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

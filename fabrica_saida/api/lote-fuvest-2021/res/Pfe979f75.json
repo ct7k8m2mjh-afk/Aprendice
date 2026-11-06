@@ -8,7 +8,7 @@
  "conceito": "Princípio multiplicativo (26^10 códigos) e ordem de grandeza com logaritmo decimal",
  "resolucao": {
   "antes": {
-   "texto": "Cada uma das 10 posições do código pode receber qualquer uma das 26 letras, e as letras podem se repetir. Pelo princípio multiplicativo, o total é 26 × 26 × ... × 26 (10 vezes) = 26^10. O número é enorme. Para saber entre quais potências de 10 ele está, use o logaritmo decimal: se log N = 14,14, então N = 10^14,14, que fica entre 10^14 e 10^15.",
+   "texto": "Cada uma das 10 posições do código recebe uma das 26 letras, e as letras podem se repetir. Pelo princípio multiplicativo, o total é 26 × 26 × ... × 26 (10 vezes) = 26^10. Esse número é enorme, então vamos descobrir entre quais potências de 10 ele fica. Para isso, usamos o logaritmo decimal: se log N = 14,14, então N = 10^14,14, que fica entre 10^14 e 10^15.",
    "formulas": [
     "total = 26^10",
     "log(a × b) = log a + log b",
@@ -18,7 +18,11 @@
    "simbolos": [
     [
      "log",
-     "logaritmo na base 10: o expoente a que se eleva 10 para obter o número"
+     "logaritmo na base 10: o expoente ao qual se eleva 10 para obter o número. Exemplo: log 1000 = 3"
+    ],
+    [
+     "26^10",
+     "26 multiplicado por ele mesmo 10 vezes"
     ],
     [
      "bilhão",
@@ -49,7 +53,7 @@
    {
     "faz": "Traduza as faixas para potências de 10",
     "conta": "100 trilhões = 10^14",
-    "porque": "1 trilhão = 10^12, então 100 trilhões = 10^14. 1 quatrilhão = 10^15. A alternativa E é entre 10^14 e 10^15.",
+    "porque": "Trilhão é 10^12, então 100 trilhões é 10^14. Quatrilhão é 10^15. A alternativa E vai de 10^14 a 10^15. As outras faixas ficam abaixo disso.",
     "tipo": "localizar"
    },
    {
@@ -66,8 +70,8 @@
    },
    {
     "faz": "Some o efeito do 2^10",
-    "conta": "2^10 = 1024 ≈ 10^3 → 14,14",
-    "porque": "Multiplicar números soma os logaritmos: 11,14 + 3 = 14,14. Como 1024 é um pouco maior que 1000, o log real é um pouco maior que 14,14, mas ainda bem abaixo de 15.",
+    "conta": "2^10 = 1024 ≈ 10^3",
+    "porque": "Como 1024 é quase 1000, seu log é quase 3. Multiplicar números soma os logs: 11,14 + 3 = 14,14. O valor real é um pouco maior, mas bem abaixo de 15.",
     "tipo": "calcular"
    },
    {
@@ -78,7 +82,7 @@
    }
   ],
   "resposta": "Alternativa E: 26^10 ≈ 1,4 × 10^14, que está entre 100 trilhões e 1 quatrilhão.",
-  "checagem": "Veja pelo caminho de baixo: 26^10 > 20^10 = 2^10 × 10^10 = 1024 × 10^10 ≈ 10^13. Isso só garante mais de 10 trilhões, então não basta. Por outro lado, 26^10 < 30^10 = 3^10 × 10^10 = 59 049 × 10^10 ≈ 5,9 × 10^14, que é menor que 10^15. Com o log dado, o valor fica em 1,4 × 10^14, e o cálculo exato é 26^10 = 141 167 095 653 376. Fecha com E.",
+  "checagem": "Compare com potências redondas. 26^10 < 30^10 = 3^10 × 10^10 = 59 049 × 10^10 ≈ 5,9 × 10^14, que é menor que 10^15. Isso derruba só a possibilidade de passar de 1 quatrilhão. O valor exato é 26^10 = 141 167 095 653 376 ≈ 1,4 × 10^14, entre 10^14 e 10^15. Fecha com E.",
   "erradas": {
    "A": "10 a 100 bilhões é 10^10 a 10^11. O total vale cerca de 1,4 × 10^14, mais de mil vezes maior. Até 13^10 ≈ 1,4 × 10^11 já passa de 100 bilhões.",
    "B": "100 bilhões a 1 trilhão é 10^11 a 10^12. Esse intervalo contém 13^10 ≈ 10^11,14, que é só uma parte da conta. Faltou multiplicar por 2^10 = 1024, o que sobe o expoente em cerca de 3 e leva a 10^14,14.",
@@ -151,11 +155,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -166,6 +172,70 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "E"
+  "fatos_resposta": "E",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Cada uma das 10 posições do código recebe uma das 26 letras, e as letras podem se repetir. Pelo princípio multiplicativo, o total é 26 × 26 × ... × 26 (10 vezes) = 26^10. Esse número é enorme, então vamos descobrir entre quais potências de 10 ele fica. Para isso, usamos o logaritmo decimal: se log N = 14,14, então N = 10^14,14, que fica entre 10^14 e 10^15.",
+    "motivo": "Frases mais curtas e o plano da resolução explícito."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "log",
+      "logaritmo na base 10: o expoente ao qual se eleva 10 para obter o número. Exemplo: log 1000 = 3"
+     ],
+     [
+      "26^10",
+      "26 multiplicado por ele mesmo 10 vezes"
+     ],
+     [
+      "bilhão",
+      "10^9 (dado no quadro Note e adote)"
+     ],
+     [
+      "trilhão",
+      "10^12 (mil bilhões)"
+     ],
+     [
+      "quatrilhão",
+      "10^15 (mil trilhões)"
+     ],
+     [
+      "≈",
+      "aproximadamente igual"
+     ]
+    ],
+    "motivo": "Explicar o log com exemplo e incluir 26^10, que aparece em todo o texto."
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "100 trilhões = 10^14",
+    "motivo": "Mantido. Conta curta já cabe na tela."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "Trilhão é 10^12, então 100 trilhões é 10^14. Quatrilhão é 10^15. A alternativa E vai de 10^14 a 10^15. As outras faixas ficam abaixo disso.",
+    "motivo": "Ligar a conversão ao uso nas demais alternativas."
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "2^10 = 1024 ≈ 10^3",
+    "motivo": "A conta anterior misturava duas ideias; o resultado 14,14 vai para o passo seguinte."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "Como 1024 é quase 1000, seu log é quase 3. Multiplicar números soma os logs: 11,14 + 3 = 14,14. O valor real é um pouco maior, mas bem abaixo de 15.",
+    "motivo": "Frases mais curtas e o resultado 14,14 agora aparece no porque."
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Compare com potências redondas. 26^10 < 30^10 = 3^10 × 10^10 = 59 049 × 10^10 ≈ 5,9 × 10^14, que é menor que 10^15. Isso derruba só a possibilidade de passar de 1 quatrilhão. O valor exato é 26^10 = 141 167 095 653 376 ≈ 1,4 × 10^14, entre 10^14 e 10^15. Fecha com E.",
+    "motivo": "Retirar o trecho de 20^10, que confundia o aluno (ele dava só 10^13), e deixar a checagem objetiva."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

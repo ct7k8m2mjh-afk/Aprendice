@@ -8,7 +8,7 @@
  "conceito": "Porcentagem: desconto de 6% sobre o preço novo (não sobre o antigo), o que leva a uma divisão por 0,94.",
  "resolucao": {
   "antes": {
-   "texto": "A operadora cobra 6% sobre o valor da venda, ou seja, sobre o preço novo V. Ficam com o comerciante 94% de V. Ele quer que esses 94% sejam iguais ao preço antigo P. Escreva a igualdade e isole V.",
+   "texto": "A operadora cobra 6% sobre o valor da venda, ou seja, sobre o preço novo V, e não sobre P. Ficam com o comerciante 94% de V. Ele quer que esses 94% sejam iguais ao preço antigo P. Escreva essa igualdade e isole V.",
    "formulas": [
     "valor que sobra = 0,94 × V",
     "valor que sobra = P"
@@ -56,16 +56,16 @@
    },
    {
     "faz": "Ligue à alternativa",
-    "conta": "V = P/0,94",
+    "conta": "V = P ÷ 0,94 (alternativa D)",
     "porque": "Essa expressão aparece na alternativa D.",
     "tipo": "concluir"
    }
   ],
-  "resposta": "Alternativa D: V = P/0,94, pois 94% do novo preço V precisam ser iguais a P.",
+  "resposta": "Alternativa D — V = P ÷ 0,94, pois 94% do novo preço V precisam ser iguais a P.",
   "checagem": "Teste com P = 94 reais: V = 94 ÷ 0,94 = 100. A taxa de 6% sobre 100 é 6 reais, e 100 − 6 = 94 = P. Confere.",
   "erradas": {
    "A": "V = P + 0,06 soma 0,06 reais ao preço, e não 6%. Com P = 94, V = 94,06; a taxa seria 5,64 e sobrariam 88,42, menos que 94.",
-   "B": "V = 0,94 · 1,06 · P = 0,9964 · P é menor que P. Com P = 100, V = 99,64: o preço cairia, e ainda sobraria menos após a taxa. Além disso, 1,06 aumentaria P em 6%, mas a taxa incide sobre V.",
+   "B": "B não confere: 0,94 · 1,06 · P = 0,9964 · P, menor que P. Com P = 100, V = 99,64 e, tirando 6%, sobram só 93,66. O 1,06 aumenta P em 6%, mas a taxa incide sobre V, não sobre P.",
    "C": "V = 1,6 · P é um aumento de 60%, e não de 6%. Com P = 100, V = 160, e depois da taxa sobrariam 150,40, bem mais que 100.",
    "E": "V = 0,94 · P diminui o preço em vez de reajustá-lo. Com P = 100, V = 94, e depois da taxa sobrariam 88,36, menos que 100."
   },
@@ -73,7 +73,7 @@
   "alerta": "",
   "essencial": {
    "pede": "A expressão do novo preço V para que, descontada a taxa de 6%, o comerciante receba P.",
-   "chave": "0,94 × V = P, logo V = P/0,94.",
+   "chave": "0,94 × V = P, logo V = P ÷ 0,94.",
    "cuidado": "A taxa incide sobre V, e não sobre P: por isso não vale multiplicar P por 1,06."
   }
  },
@@ -102,7 +102,7 @@
    "nota": "tem de receber o preço antigo"
   },
   {
-   "linha": "V = P/0,94",
+   "linha": "V = P ÷ 0,94",
    "nota": "o 0,94 passa dividindo",
    "mov": [
     {
@@ -129,11 +129,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -144,6 +146,40 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "D"
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "A operadora cobra 6% sobre o valor da venda, ou seja, sobre o preço novo V, e não sobre P. Ficam com o comerciante 94% de V. Ele quer que esses 94% sejam iguais ao preço antigo P. Escreva essa igualdade e isole V.",
+    "motivo": "Deixa explícito de onde vem o 6% e o que se pede (a fórmula de V)."
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "V = P ÷ 0,94 (alternativa D)",
+    "motivo": "A fração P/0,94 na linha vira a forma ÷, que o site desenha empilhada; evita repetir o passo anterior."
+   },
+   {
+    "campo": "resolucao.resposta",
+    "depois": "Alternativa D — V = P ÷ 0,94, pois 94% do novo preço V precisam ser iguais a P.",
+    "motivo": "Padroniza o formato da resposta."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "B não confere: 0,94 · 1,06 · P = 0,9964 · P, menor que P. Com P = 100, V = 99,64 e, tirando 6%, sobram só 93,66. O 1,06 aumenta P em 6%, mas a taxa incide sobre V, não sobre P.",
+    "motivo": "Texto mais claro, com a conta final do teste (99,64 × 0,94 = 93,66) e o que faltou no raciocínio de quem marcou B."
+   },
+   {
+    "campo": "resolucao.quadro[3].linha",
+    "depois": "V = P ÷ 0,94",
+    "motivo": "Evita fração escrita na linha; o site desenha a fração empilhada."
+   },
+   {
+    "campo": "resolucao.essencial.chave",
+    "depois": "0,94 × V = P, logo V = P ÷ 0,94.",
+    "motivo": "Padroniza a notação de fração."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

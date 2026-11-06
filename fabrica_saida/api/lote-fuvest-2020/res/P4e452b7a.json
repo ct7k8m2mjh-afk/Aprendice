@@ -49,14 +49,14 @@
   "passos": [
    {
     "faz": "Compare o centro da biliverdina e da bilirrubina",
-    "conta": "biliverdina: ponte =CH–  com N=",
-    "porque": "Na biliverdina a ponte entre os anéis do meio tem dupla ligação e um N sem H (N=). Na bilirrubina aparecem NH e uma ponte CH2.",
+    "conta": "biliverdina: ponte =CH– e N=",
+    "porque": "Na biliverdina, a ponte entre os anéis do meio tem dupla ligação e há um N sem H (N=). Na bilirrubina, a ponte é CH2 e o N tem H (NH).",
     "tipo": "localizar"
    },
    {
     "faz": "Veja se houve ganho ou perda de H",
     "conta": "bilirrubina = biliverdina + 2 H",
-    "porque": "A biliverdina é C33H34N4O6 e a bilirrubina é C33H36N4O6: o carbono da ponte ganhou H (=CH– virou –CH2–).",
+    "porque": "Biliverdina: C33H34N4O6. Bilirrubina: C33H36N4O6. A diferença é 2 H a mais: um vai para a ponte (=CH– vira –CH2–) e outro para o N (N= vira NH).",
     "tipo": "comparar"
    },
    {
@@ -67,14 +67,14 @@
    },
    {
     "faz": "Analise os C=O das estruturas",
-    "conta": "C=O ligado a N → amida (lactama)",
-    "porque": "Na biliverdina e na bilirrubina, cada C=O dos anéis das pontas está colado a um NH, o que é amida (cíclica), não cetona. O heme não tem esse C=O: só tem C=O de ácido (COOH).",
+    "conta": "C=O colado em N → amida",
+    "porque": "Na biliverdina e na bilirrubina, cada C=O dos anéis das pontas está ligado a um NH. Isso é amida (aqui em anel, chamada lactama), não cetona. O heme só tem C=O de ácido (COOH). Isso derruba C e D.",
     "tipo": "eliminar"
    },
    {
     "faz": "Descarte as demais alternativas",
-    "conta": "Fe, O e H mudam entre as três",
-    "porque": "O heme tem Fe e não tem O nos anéis, e a bilirrubina difere da biliverdina em 2 H. Logo, não são isômeros. Além disso, só o heme tem o Fe que prende o O2; a biliverdina não tem.",
+    "conta": "heme tem Fe; as fórmulas diferem",
+    "porque": "O heme tem Fe, e as outras duas não. A bilirrubina tem 2 H a mais que a biliverdina. Fórmulas diferentes: não são isômeros (E). Só o heme tem o Fe que prende o O2 (B).",
     "tipo": "eliminar"
    },
    {
@@ -87,10 +87,10 @@
   "resposta": "Alternativa A: a biliverdina vira bilirrubina ao ganhar 2 H. Um H vai para o carbono da ponte central (=CH– passa a –CH2–) e o outro para o N do anel (N= passa a NH). Ganhar hidrogênio é redução.",
   "checagem": "Conte os H nas fórmulas: biliverdina C33H34N4O6 e bilirrubina C33H36N4O6. A bilirrubina tem 2 H a mais e o mesmo número dos outros átomos, o que confirma a redução. Isso também mostra que os dois não são isômeros.",
   "erradas": {
-   "B": "A biliverdina não transporta O2. O oxigênio que aparece nela está nos grupos C=O (amida) e COOH, ligado ao carbono por ligação covalente. O transporte de O2 na hemoglobina ocorre pelo ferro (Fe) do heme, e a biliverdina não tem Fe.",
-   "C": "O heme não tem amida. Os únicos C=O que ele tem são os dos grupos COOH (ácido carboxílico), e os N dos anéis estão ligados a carbonos, sem C=O ao lado. A amida só aparece na biliverdina e na bilirrubina, onde há C=O ligado a NH.",
-   "D": "Os dois C=O que surgem na biliverdina estão ligados a um N (C(=O)–NH), então são amidas (lactamas), não cetonas. Cetona exige C=O com carbono dos dois lados.",
-   "E": "Isômeros têm a mesma fórmula molecular. O heme tem Fe e não tem os O dos anéis, então sua fórmula é diferente. Biliverdina (C33H34N4O6) e bilirrubina (C33H36N4O6) também diferem em 2 H."
+   "B": "A biliverdina não transporta O2. O oxigênio dela está em C=O (amida) e COOH, preso ao carbono por ligação covalente. Quem prende O2 na hemoglobina é o ferro do heme, e a biliverdina não tem Fe. Faltou separar 'ter O na molécula' de 'carregar O2'.",
+   "C": "O heme não tem amida: seus únicos C=O estão nos COOH (ácido). Os N dos anéis ligam-se só a carbonos, sem C=O ao lado. Faltou conferir cada uma das três estruturas, e não só a biliverdina e a bilirrubina.",
+   "D": "Os C=O da biliverdina estão ligados a N (C(=O)–NH): são amidas, não cetonas. Cetona exige carbono dos dois lados do C=O. Faltou olhar o vizinho do C=O.",
+   "E": "Isômeros têm a mesma fórmula molecular. O heme tem Fe e a biliverdina não. Biliverdina (C33H34N4O6) e bilirrubina (C33H36N4O6) diferem em 2 H. Faltou contar os átomos antes de chamar de isômeros."
   },
   "armadilha": "Chamar de cetona o C=O que está ligado a N: o vizinho do C=O decide a função, e aqui é amida.",
   "alerta": "",
@@ -146,11 +146,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -197,6 +199,73 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "A"
+  "fatos_resposta": "A",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[0].conta",
+    "depois": "biliverdina: ponte =CH– e N=",
+    "motivo": "Texto mais claro e curto; cabe na tela do celular."
+   },
+   {
+    "campo": "resolucao.passos[0].porque",
+    "depois": "Na biliverdina, a ponte entre os anéis do meio tem dupla ligação e há um N sem H (N=). Na bilirrubina, a ponte é CH2 e o N tem H (NH).",
+    "motivo": "Frases mais curtas e sem ambiguidade."
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "bilirrubina = biliverdina + 2 H",
+    "motivo": "Mantida; passo ajustado no porque."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "Biliverdina: C33H34N4O6. Bilirrubina: C33H36N4O6. A diferença é 2 H a mais: um vai para a ponte (=CH– vira –CH2–) e outro para o N (N= vira NH).",
+    "motivo": "Diz onde entram os dois H, o que o aluno precisa ver."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "C=O colado em N → amida",
+    "motivo": "Mais curta e sem termo extra."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Na biliverdina e na bilirrubina, cada C=O dos anéis das pontas está ligado a um NH. Isso é amida (aqui em anel, chamada lactama), não cetona. O heme só tem C=O de ácido (COOH). Isso derruba C e D.",
+    "motivo": "Liga o passo às alternativas que ele elimina."
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "heme tem Fe; as fórmulas diferem",
+    "motivo": "A conta anterior ('Fe, O e H mudam') era imprecisa."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "O heme tem Fe, e as outras duas não. A bilirrubina tem 2 H a mais que a biliverdina. Fórmulas diferentes: não são isômeros (E). Só o heme tem o Fe que prende o O2 (B).",
+    "motivo": "Frases curtas, com as alternativas B e E ligadas ao motivo."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "A biliverdina não transporta O2. O oxigênio dela está em C=O (amida) e COOH, preso ao carbono por ligação covalente. Quem prende O2 na hemoglobina é o ferro do heme, e a biliverdina não tem Fe. Faltou separar 'ter O na molécula' de 'carregar O2'.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou B."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "O heme não tem amida: seus únicos C=O estão nos COOH (ácido). Os N dos anéis ligam-se só a carbonos, sem C=O ao lado. Faltou conferir cada uma das três estruturas, e não só a biliverdina e a bilirrubina.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou C."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "Os C=O da biliverdina estão ligados a N (C(=O)–NH): são amidas, não cetonas. Cetona exige carbono dos dois lados do C=O. Faltou olhar o vizinho do C=O.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou D."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "Isômeros têm a mesma fórmula molecular. O heme tem Fe e a biliverdina não. Biliverdina (C33H34N4O6) e bilirrubina (C33H36N4O6) diferem em 2 H. Faltou contar os átomos antes de chamar de isômeros.",
+    "motivo": "Diz o que faltou no raciocínio de quem marcou E."
+   }
+  ],
+  "didatica_alertas": [
+   "Na erradas.B e no passo 4, o texto diz que 'o heme não tem O nos anéis' e que a abertura do anel cria os C=O. Isso é coerente com a figura, mas vale o corretor 1 confirmar as fórmulas C33H34N4O6 e C33H36N4O6 citadas.",
+   "O quadro e a resolução usam 'C(=O)–NH' e 'N=' em linhas curtas; confira se o heme tem mesmo 'COOH' como único C=O (a figura mostra só os dois COOH)."
+  ],
+  "didatica_ok": true
  }
 }

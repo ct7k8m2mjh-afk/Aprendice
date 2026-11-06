@@ -34,7 +34,7 @@
     ],
     [
      "zettabyte",
-     "unidade de dados: 1 zettabyte = 1 trilhão de gigabytes"
+     "unidade de medida de dados, enorme: 1 zettabyte = 1 trilhão de gigabytes"
     ],
     [
      "data deluge",
@@ -47,6 +47,14 @@
     [
      "silicon",
      "silício, material dos chips de computador"
+    ],
+    [
+     "to read / to write",
+     "ler / gravar dados"
+    ],
+    [
+     "cheaper",
+     "mais barato"
     ]
    ]
   },
@@ -55,13 +63,13 @@
    {
     "faz": "Traduza o comando",
     "conta": "“Afirma-se no texto… no futuro”",
-    "porque": "A pergunta é de informação explícita sobre o futuro. A resposta deve estar escrita, com verbo de futuro ou possibilidade.",
+    "porque": "A pergunta é de informação explícita: o que o texto diz sobre o futuro do DNA. A resposta deve estar escrita, com verbo de futuro ou de possibilidade (could, will, is expected).",
     "tipo": "localizar"
    },
    {
     "faz": "Localize a frase sobre o futuro",
     "conta": "“DNA storage could be the answer to…”",
-    "porque": "Significa: o armazenamento em DNA poderia ser a resposta para... É a frase que fala do futuro do DNA.",
+    "porque": "Quer dizer: o armazenamento em DNA poderia ser a resposta para um problema. É a frase que fala do futuro do DNA, e o 'If successful' diz que depende de dar certo.",
     "tipo": "localizar"
    },
    {
@@ -73,7 +81,7 @@
    {
     "faz": "Confirme que a infraestrutura atual não dá conta",
     "conta": "“Current infrastructure can handle only a fraction”",
-    "porque": "A infraestrutura atual lida só com uma fração do volume futuro. Falta espaço, e o DNA, mais denso, responde a isso.",
+    "porque": "A infraestrutura atual dá conta de só uma parte do volume futuro de dados. Falta espaço para guardar tudo, e o DNA, bem mais denso, responde a isso.",
     "tipo": "localizar"
    },
    {
@@ -88,8 +96,8 @@
   "erradas": {
    "A": "O texto não fala de sequenciar moléculas nem de pesquisa médica. Os 500 trilhões de moléculas são usados para escrever um terabyte de dados por dia, não para sequenciar.",
    "B": "O texto não menciona genética nem áreas afins. O DNA é tratado como meio de guardar dados digitais, ao lado dos chips de silício e das fitas magnéticas.",
-   "C": "Inverte a ideia. O texto diz que o DNA terá de ficar muito mais barato (“a lot cheaper”) para substituir as tecnologias atuais, e que a Catalog constrói uma máquina para isso. Não afirma que continuará inviável.",
-   "D": "Inverte o que precisa mudar. O que o texto diz é que o DNA terá de ficar mais barato para ler, escrever e empacotar com previsibilidade. Não diz que a tecnologia terá de ser adaptada para esse propósito."
+   "C": "Inverte a ideia. O texto diz que o DNA terá de ficar muito mais barato (“a lot cheaper”) para substituir as tecnologias atuais, e a Catalog constrói uma máquina para isso. O texto não afirma que ele continuará inviável; diz que 'could be the answer'.",
+   "D": "Troca o que precisa mudar. No texto, o DNA terá de ficar mais barato para ler, gravar e empacotar com previsibilidade. Ninguém diz que a tecnologia terá de ser adaptada. Quem marcou D pegou 'read, write' e não viu que a exigência é de preço."
   },
   "armadilha": "Alternativas que usam palavras do texto (moléculas, DNA, ler, write) mas dizem outra coisa. A letra D reaproveita 'read, write' e muda quem precisa mudar, que no texto é o preço.",
   "alerta": "",
@@ -120,11 +128,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -141,6 +151,89 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "E"
+  "fatos_resposta": "E",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.simbolos[4]",
+    "depois": [
+     "zettabyte",
+     "unidade de medida de dados, enorme: 1 zettabyte = 1 trilhão de gigabytes"
+    ],
+    "motivo": "Explica que a unidade é muito grande, sem alterar o fato."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "touted",
+      "elogiado, apontado como vantagem"
+     ],
+     [
+      "storage medium",
+      "meio de armazenamento"
+     ],
+     [
+      "spinoff",
+      "empresa derivada de uma instituição, aqui do MIT"
+     ],
+     [
+      "information overload",
+      "sobrecarga de informação"
+     ],
+     [
+      "zettabyte",
+      "unidade de medida de dados, enorme: 1 zettabyte = 1 trilhão de gigabytes"
+     ],
+     [
+      "data deluge",
+      "dilúvio de dados, volume enorme de dados"
+     ],
+     [
+      "sugar cube",
+      "cubinho de açúcar"
+     ],
+     [
+      "silicon",
+      "silício, material dos chips de computador"
+     ],
+     [
+      "to read / to write",
+      "ler / gravar dados"
+     ],
+     [
+      "cheaper",
+      "mais barato"
+     ]
+    ],
+    "motivo": "Inclui termos usados nas erradas (read, write, cheaper), que apareciam sem explicação."
+   },
+   {
+    "campo": "resolucao.passos[0].porque",
+    "depois": "A pergunta é de informação explícita: o que o texto diz sobre o futuro do DNA. A resposta deve estar escrita, com verbo de futuro ou de possibilidade (could, will, is expected).",
+    "motivo": "Frase mais clara, com as marcas de futuro que o aluno vai procurar."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "Quer dizer: o armazenamento em DNA poderia ser a resposta para um problema. É a frase que fala do futuro do DNA, e o 'If successful' diz que depende de dar certo.",
+    "motivo": "Liga a possibilidade à condição, sem frase vaga."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "A infraestrutura atual dá conta de só uma parte do volume futuro de dados. Falta espaço para guardar tudo, e o DNA, bem mais denso, responde a isso.",
+    "motivo": "Frases curtas e voz ativa; evita a construção truncada."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "Inverte a ideia. O texto diz que o DNA terá de ficar muito mais barato (“a lot cheaper”) para substituir as tecnologias atuais, e a Catalog constrói uma máquina para isso. O texto não afirma que ele continuará inviável; diz que 'could be the answer'.",
+    "motivo": "Mostra o que faltou ao aluno: perceber que o texto trata o preço como condição, não como destino."
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "Troca o que precisa mudar. No texto, o DNA terá de ficar mais barato para ler, gravar e empacotar com previsibilidade. Ninguém diz que a tecnologia terá de ser adaptada. Quem marcou D pegou 'read, write' e não viu que a exigência é de preço.",
+    "motivo": "Explicita o que faltou no raciocínio de quem marcou D e usa 'gravar' no lugar de 'escrever', coerente com o comando."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

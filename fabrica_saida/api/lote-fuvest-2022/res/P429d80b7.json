@@ -11,7 +11,7 @@
    "texto": "Com velocidade constante, tempo = distância ÷ velocidade. O enunciado mistura km (distância) e cm por ano (velocidade). A conversão de unidades é o trabalho real da questão. O 'Note e adote' avisa que só a ordem de grandeza importa.",
    "formulas": [
     "tempo = distância ÷ velocidade",
-    "1 km = 1.000 m = 100.000 cm",
+    "1 km = 1.000 m e 1 m = 100 cm, logo 1 km = 100.000 cm",
     "5.000 km = 5.000 × 100.000 cm"
    ],
    "simbolos": [
@@ -21,11 +21,19 @@
     ],
     [
      "ordem de grandeza",
-     "a potência de 10 mais próxima do valor; diz se o número tem milhares, milhões ou bilhões"
+     "a potência de 10 mais próxima do valor; diz se o número está na casa dos milhares, milhões ou bilhões"
     ],
     [
      "supercontinente",
      "massa continental única, formada quando os continentes estavam unidos"
+    ],
+    [
+     "10^8",
+     "1 seguido de 8 zeros, ou seja, 100.000.000 (cem milhões)"
+    ],
+    [
+     "cm/ano",
+     "centímetros por ano: quanto a distância cresce em um ano"
     ]
    ]
   },
@@ -33,13 +41,13 @@
   "passos": [
    {
     "faz": "Traduza o que se pede",
-    "conta": "Quanto tempo para afastar 5.000 km?",
+    "conta": "Pede: tempo para afastar 5.000 km",
     "porque": "Com velocidade constante, o tempo é a distância percorrida dividida pela velocidade.",
     "tipo": "localizar"
    },
    {
     "faz": "Converta km para cm",
-    "conta": "5.000 km × 100.000 = 5×10^8 cm",
+    "conta": "5.000 × 100.000 = 5×10^8 cm",
     "porque": "1 km tem 1.000 m e cada metro tem 100 cm. Assim a distância fica na mesma unidade da velocidade.",
     "tipo": "calcular"
    },
@@ -58,7 +66,7 @@
    {
     "faz": "Ligue à alternativa",
     "conta": "250.000.000 anos = D",
-    "porque": "É o único valor igual ao calculado. 250 milhões de anos fica na ordem de grandeza aceita pelo 'Note e adote'.",
+    "porque": "É o único valor igual ao calculado. Além disso, 250 milhões de anos tem a mesma ordem de grandeza que o 'Note e adote' aceita.",
     "tipo": "concluir"
    }
   ],
@@ -68,7 +76,7 @@
    "A": "250.000 anos é mil vezes menor. Sai de converter 1 km para 100 cm (faltam três zeros): 5.000 × 100 = 500.000 cm; 500.000 ÷ 2 = 250.000 anos.",
    "B": "2.500.000 anos é cem vezes menor. Sai de usar 1 km = 1.000 cm: 5.000 × 1.000 = 5.000.000 cm; 5.000.000 ÷ 2 = 2.500.000 anos.",
    "C": "25.000.000 anos é dez vezes menor. Sai de usar 1 km = 10.000 cm, com um zero a menos: 5.000 × 10.000 = 5×10^7 cm; 5×10^7 ÷ 2 = 25.000.000 anos.",
-   "E": "2.500.000.000 anos é dez vezes maior. Sai de usar 1 km = 1.000.000 cm, com um zero a mais: 5.000 × 1.000.000 = 5×10^9 cm; 5×10^9 ÷ 2 = 2,5 bilhões de anos. Isso passaria a idade da Pangeia, que se fragmentou há cerca de 200 milhões de anos."
+   "E": "2.500.000.000 anos é dez vezes maior. Sai de usar 1 km = 1.000.000 cm (um zero a mais): 5.000 × 1.000.000 = 5×10^9 cm; 5×10^9 ÷ 2 = 2,5 bilhões de anos."
   },
   "armadilha": "Errar os zeros na conversão de km para cm (1 km = 100.000 cm) e cair numa alternativa dez, cem ou mil vezes diferente.",
   "alerta": "",
@@ -104,24 +112,19 @@
   },
   {
    "linha": "d = 500.000.000 cm",
-   "nota": "multiplique: 5 seguido de 8 zeros"
+   "nota": "5 seguido de 8 zeros"
+  },
+  {
+   "linha": "t = d ÷ v",
+   "nota": "tempo = distância dividida pela velocidade"
   },
   {
    "linha": "t = 500.000.000 ÷ 2",
-   "nota": "tempo = distância ÷ velocidade",
-   "mov": [
-    {
-     "termo": "2",
-     "de": "esquerda",
-     "para": "denominador",
-     "vira": "2",
-     "como": "a velocidade passa dividindo"
-    }
-   ]
+   "nota": "troca d e v pelos valores"
   },
   {
    "linha": "t = 250.000.000 anos",
-   "nota": "divida: 500 milhões ÷ 2 = 250 milhões"
+   "nota": "500 milhões ÷ 2 = 250 milhões"
   }
  ],
  "visual": {
@@ -140,11 +143,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -163,6 +168,110 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "D"
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "tempo = distância ÷ velocidade",
+     "1 km = 1.000 m e 1 m = 100 cm, logo 1 km = 100.000 cm",
+     "5.000 km = 5.000 × 100.000 cm"
+    ],
+    "motivo": "Mostra de onde vêm os 100.000 cm, em vez de apenas afirmar a conversão."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "placas tectônicas",
+      "grandes blocos da crosta terrestre que se movem lentamente sobre o manto"
+     ],
+     [
+      "ordem de grandeza",
+      "a potência de 10 mais próxima do valor; diz se o número está na casa dos milhares, milhões ou bilhões"
+     ],
+     [
+      "supercontinente",
+      "massa continental única, formada quando os continentes estavam unidos"
+     ],
+     [
+      "10^8",
+      "1 seguido de 8 zeros, ou seja, 100.000.000 (cem milhões)"
+     ],
+     [
+      "cm/ano",
+      "centímetros por ano: quanto a distância cresce em um ano"
+     ]
+    ],
+    "motivo": "A notação 10^8 e a unidade cm/ano aparecem nos passos e não estavam explicadas."
+   },
+   {
+    "campo": "resolucao.passos[0].conta",
+    "depois": "Pede: tempo para afastar 5.000 km",
+    "motivo": "Cabe na linha do celular e diz o que a questão pergunta."
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "5.000 × 100.000 = 5×10^8 cm",
+    "motivo": "Conta explícita, curta e sem ambiguidade."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "5×10^8 ÷ 2 = 2,5×10^8 anos",
+    "motivo": "Mantém a conta do passo, só ajustando a escrita."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "2,5×10^8 = 250.000.000 anos",
+    "motivo": "Sem mudança de valor; confirma a forma por extenso."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "É o único valor igual ao calculado. Além disso, 250 milhões de anos tem a mesma ordem de grandeza que o 'Note e adote' aceita.",
+    "motivo": "Frase mais simples, com um único sentido."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "2.500.000.000 anos é dez vezes maior. Sai de usar 1 km = 1.000.000 cm (um zero a mais): 5.000 × 1.000.000 = 5×10^9 cm; 5×10^9 ÷ 2 = 2,5 bilhões de anos.",
+    "motivo": "Foca o que faltou no raciocínio (zeros na conversão). A comparação com a Pangeia fica nos caminhos."
+   },
+   {
+    "campo": "resolucao.quadro",
+    "depois": [
+     {
+      "linha": "v = 2 cm/ano",
+      "nota": "velocidade dada no enunciado"
+     },
+     {
+      "linha": "d = 5.000 km",
+      "nota": "distância atual entre os continentes"
+     },
+     {
+      "linha": "d = 5.000 × 100.000 cm",
+      "nota": "1 km = 100.000 cm",
+      "destaque": "100.000"
+     },
+     {
+      "linha": "d = 500.000.000 cm",
+      "nota": "5 seguido de 8 zeros"
+     },
+     {
+      "linha": "t = d ÷ v",
+      "nota": "tempo = distância dividida pela velocidade"
+     },
+     {
+      "linha": "t = 500.000.000 ÷ 2",
+      "nota": "troca d e v pelos valores"
+     },
+     {
+      "linha": "t = 250.000.000 anos",
+      "nota": "500 milhões ÷ 2 = 250 milhões"
+     }
+    ],
+    "motivo": "Incluí o passo da fórmula t = d ÷ v antes de substituir, sem pular passagem. Removi o mov, que não tinha termo mudando de lado."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

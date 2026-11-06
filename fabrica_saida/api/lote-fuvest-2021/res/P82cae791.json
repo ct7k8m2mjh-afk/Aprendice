@@ -8,7 +8,7 @@
  "conceito": "Trabalho de uma força: peso numa subida vertical e força elétrica perpendicular ao deslocamento.",
  "resolucao": {
   "antes": {
-   "texto": "O trabalho de uma força constante é a força vezes o deslocamento, vezes o cosseno do ângulo entre os dois. Se a força é perpendicular ao deslocamento, o trabalho é nulo. Se a força aponta contra o deslocamento, o trabalho é negativo. A esfera sobe na vertical, e o campo elétrico é horizontal.",
+   "texto": "O trabalho de uma força constante é a força vezes o deslocamento, vezes o cosseno do ângulo entre as duas direções. Se a força é perpendicular ao deslocamento, o trabalho é nulo. Se a força aponta contra o deslocamento, o trabalho é negativo. Aqui a esfera sobe na vertical e o campo elétrico é horizontal.",
    "formulas": [
     "W = F × d × cos θ",
     "Peso: P = m × g",
@@ -17,19 +17,39 @@
    "simbolos": [
     [
      "W",
-     "trabalho da força, em joules"
+     "trabalho da força, em joules (energia que a força passa ao corpo)"
     ],
     [
      "θ",
      "ângulo entre a força e o deslocamento"
     ],
     [
+     "cos θ",
+     "cosseno do ângulo: vale 1 em 0°, 0 em 90° e −1 em 180°"
+    ],
+    [
      "E",
      "intensidade do campo elétrico"
     ],
     [
+     "q",
+     "carga elétrica da esfera"
+    ],
+    [
+     "m",
+     "massa da esfera"
+    ],
+    [
+     "g",
+     "aceleração da gravidade"
+    ],
+    [
      "h",
      "altura total da subida"
+    ],
+    [
+     "força elétrica",
+     "força que o campo faz sobre a carga: F = q × E, na direção do campo"
     ]
    ]
   },
@@ -56,24 +76,24 @@
    {
     "faz": "Ache o ângulo da força elétrica",
     "conta": "F_e = qE, horizontal, θ = 90°",
-    "porque": "O campo é horizontal, então a força elétrica é horizontal, perpendicular à subida. Vale cos 90° = 0.",
+    "porque": "O campo é horizontal, então a força elétrica é horizontal. Ela forma 90° com a subida vertical, e cos 90° = 0.",
     "tipo": "localizar"
    },
    {
     "faz": "Calcule o trabalho elétrico",
     "conta": "W_e = qE·h·0 = 0",
-    "porque": "Uma força perpendicular ao deslocamento não realiza trabalho. O campo é uniforme, então isso vale em toda a subida.",
+    "porque": "Força perpendicular ao deslocamento não realiza trabalho. Como o campo é uniforme, a força elétrica é a mesma em toda a subida, e o resultado vale o tempo todo.",
     "tipo": "calcular"
    },
    {
     "faz": "Conclua",
     "conta": "W_P = −mgh e W_e = 0",
-    "porque": "Essa é a combinação −mgh e 0.",
+    "porque": "Peso: −mgh. Força elétrica: 0. Isso corresponde à alternativa B.",
     "tipo": "concluir"
    }
   ],
   "resposta": "Alternativa B: o trabalho do peso é −mgh e o da força elétrica é 0.",
-  "checagem": "A esfera sobe com velocidade constante. Então o trabalho total é zero (teorema da energia cinética). A barra faz +mgh para cancelar o −mgh do peso, e a força elétrica, perpendicular, não contribui. Fecha.",
+  "checagem": "A esfera sobe com velocidade constante, então a energia cinética não muda e a soma dos trabalhos de todas as forças é zero. A barra faz +mgh e cancela o −mgh do peso. A força elétrica, perpendicular, não entra na soma. Fecha.",
   "erradas": {
    "A": "Põe o peso com sinal positivo e a força elétrica com valor qEh. A gravidade age contra a subida, então seu trabalho é negativo. A força elétrica é horizontal e a subida é vertical, então seu trabalho é zero.",
    "C": "Inverte os papéis: diz que o peso não realiza trabalho e que a força elétrica realiza −qEh. O peso é vertical e o deslocamento também, então W = −mgh. A força elétrica é perpendicular ao deslocamento, então W = 0.",
@@ -95,7 +115,7 @@
   },
   {
    "nome": "Teorema da energia cinética",
-   "ideia": "Velocidade constante significa W_total = 0. O peso dá −mgh e a barra isolante dá +mgh. A barra é isolante e não troca carga, e a força elétrica não tem componente vertical, então ela não contribui."
+   "ideia": "Velocidade constante significa que a soma dos trabalhos é zero. O peso dá −mgh e a barra dá +mgh. A força elétrica não tem componente vertical, então não contribui."
   }
  ],
  "quadro": [
@@ -142,11 +162,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -175,6 +197,84 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "B"
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "O trabalho de uma força constante é a força vezes o deslocamento, vezes o cosseno do ângulo entre as duas direções. Se a força é perpendicular ao deslocamento, o trabalho é nulo. Se a força aponta contra o deslocamento, o trabalho é negativo. Aqui a esfera sobe na vertical e o campo elétrico é horizontal.",
+    "motivo": "Frase mais clara; 'as duas direções' evita ambiguidade."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "W",
+      "trabalho da força, em joules (energia que a força passa ao corpo)"
+     ],
+     [
+      "θ",
+      "ângulo entre a força e o deslocamento"
+     ],
+     [
+      "cos θ",
+      "cosseno do ângulo: vale 1 em 0°, 0 em 90° e −1 em 180°"
+     ],
+     [
+      "E",
+      "intensidade do campo elétrico"
+     ],
+     [
+      "q",
+      "carga elétrica da esfera"
+     ],
+     [
+      "m",
+      "massa da esfera"
+     ],
+     [
+      "g",
+      "aceleração da gravidade"
+     ],
+     [
+      "h",
+      "altura total da subida"
+     ],
+     [
+      "força elétrica",
+      "força que o campo faz sobre a carga: F = q × E, na direção do campo"
+     ]
+    ],
+    "motivo": "Faltavam q, m, g, cosseno e a ideia de força elétrica; o aluno precisa dos valores de cos para resolver."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "O campo é horizontal, então a força elétrica é horizontal. Ela forma 90° com a subida vertical, e cos 90° = 0.",
+    "motivo": "Frases mais curtas e diretas."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "Força perpendicular ao deslocamento não realiza trabalho. Como o campo é uniforme, a força elétrica é a mesma em toda a subida, e o resultado vale o tempo todo.",
+    "motivo": "Explica por que 'uniforme' importa."
+   },
+   {
+    "campo": "resolucao.passos[5].porque",
+    "depois": "Peso: −mgh. Força elétrica: 0. Isso corresponde à alternativa B.",
+    "motivo": "Liga o resultado à letra de forma explícita."
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "A esfera sobe com velocidade constante, então a energia cinética não muda e a soma dos trabalhos de todas as forças é zero. A barra faz +mgh e cancela o −mgh do peso. A força elétrica, perpendicular, não entra na soma. Fecha.",
+    "motivo": "Texto mais claro; explica por que a soma é zero sem citar o nome do teorema como único argumento."
+   },
+   {
+    "campo": "resolucao.caminhos[1].ideia",
+    "depois": "Velocidade constante significa que a soma dos trabalhos é zero. O peso dá −mgh e a barra dá +mgh. A força elétrica não tem componente vertical, então não contribui.",
+    "motivo": "Simplificado; retira trecho confuso sobre troca de carga."
+   }
+  ],
+  "didatica_alertas": [
+   "O campo 'nivel' do JSON da resolução é 4, mas a classificação atual informada é nível 5; verificar qual vale."
+  ],
+  "didatica_ok": true
  }
 }

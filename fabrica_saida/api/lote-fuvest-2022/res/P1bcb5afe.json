@@ -8,12 +8,12 @@
  "conceito": "Localizar no texto a informação explícita sobre como os fatbergs bloqueiam o esgoto.",
  "resolucao": {
   "antes": {
-   "texto": "A pergunta pede o mecanismo do bloqueio, isto é, como ele acontece. Procure no texto o trecho que explica como o fatberg se forma e prende o esgoto. Nesse tipo de questão, tudo o que a alternativa afirma precisa estar escrito no texto. O que é só plausível não vale.",
+   "texto": "A pergunta pede o mecanismo do bloqueio, isto é, como o entupimento acontece. Procure no texto a frase que explica como o fatberg se forma dentro dos canos. Em 'de acordo com o texto', só vale o que está escrito: o que é apenas plausível não serve.",
    "formulas": [
     "stick to the side = grudar na lateral, aderir à parede",
     "pipes = canos, tubulação; sewer = esgoto",
     "layer upon layer = camada sobre camada",
-    "de acordo com o texto = só vale o que está escrito"
+    "congealing = endurecendo, coagulando (a gordura); não é congelar"
    ],
    "simbolos": [
     [
@@ -43,6 +43,18 @@
     [
      "stuck",
      "preso, agarrado"
+    ],
+    [
+     "at their core",
+     "em essência, no fundo"
+    ],
+    [
+     "congealing",
+     "endurecendo, coagulando"
+    ],
+    [
+     "utilities companies",
+     "empresas de serviços públicos, como água e esgoto"
     ]
    ]
   },
@@ -51,19 +63,19 @@
    {
     "faz": "Traduza o comando",
     "conta": "bloqueio do fluxo = como o entupimento ocorre",
-    "porque": "A pergunta é sobre o processo, ou seja, como o fatberg se forma e tranca o esgoto. Não pergunta quem causa nem onde.",
+    "porque": "A pergunta é sobre o processo: como o fatberg se forma e tranca o esgoto. Ela não pergunta quem causa nem onde acontece.",
     "tipo": "localizar"
    },
    {
     "faz": "Ache o parágrafo do mecanismo",
     "conta": "“At their core, fatbergs are the accumulation of oil and grease” (em essência, são o acúmulo de óleo e gordura)",
-    "porque": "A expressão 'at their core' introduz a explicação central do que é o fatberg.",
+    "porque": "'At their core' (em essência) abre a explicação central do que é o fatberg.",
     "tipo": "localizar"
    },
    {
     "faz": "Leia a frase que descreve o processo",
     "conta": "“When fat sticks to the side of sewage pipes, the wipes and other detritus get stuck” (quando a gordura gruda na lateral dos canos, os lenços e outros detritos ficam presos)",
-    "porque": "Mostra o mecanismo: a gordura gruda na parede do cano e prende os detritos, e cada camada nova aumenta a massa.",
+    "porque": "Aqui está o mecanismo: a gordura gruda na parede do cano e prende os detritos. Cada camada nova aumenta a massa.",
     "tipo": "localizar"
    },
    {
@@ -120,11 +132,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -147,6 +161,86 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "D"
+  "fatos_resposta": "D",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "A pergunta pede o mecanismo do bloqueio, isto é, como o entupimento acontece. Procure no texto a frase que explica como o fatberg se forma dentro dos canos. Em 'de acordo com o texto', só vale o que está escrito: o que é apenas plausível não serve.",
+    "motivo": "Frases mais curtas e sem ambiguidade."
+   },
+   {
+    "campo": "resolucao.antes.formulas",
+    "depois": [
+     "stick to the side = grudar na lateral, aderir à parede",
+     "pipes = canos, tubulação; sewer = esgoto",
+     "layer upon layer = camada sobre camada",
+     "congealing = endurecendo, coagulando (a gordura); não é congelar"
+    ],
+    "motivo": "A última linha 'de acordo com o texto' não era fórmula e já está no texto; entrou o termo congealing, que a armadilha usa."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "fatberg",
+      "massa gigante de gordura e lixo que entope o esgoto"
+     ],
+     [
+      "grease",
+      "gordura, graxa"
+     ],
+     [
+      "wipes",
+      "lenços umedecidos"
+     ],
+     [
+      "detritus / gunk / debris",
+      "detritos, sujeira, restos"
+     ],
+     [
+      "sewage pipes",
+      "canos de esgoto"
+     ],
+     [
+      "snowball effect",
+      "efeito bola de neve: algo que cresce acumulando mais"
+     ],
+     [
+      "stuck",
+      "preso, agarrado"
+     ],
+     [
+      "at their core",
+      "em essência, no fundo"
+     ],
+     [
+      "congealing",
+      "endurecendo, coagulando"
+     ],
+     [
+      "utilities companies",
+      "empresas de serviços públicos, como água e esgoto"
+     ]
+    ],
+    "motivo": "Termos usados na resolução e nas erradas não estavam explicados."
+   },
+   {
+    "campo": "resolucao.passos[0].porque",
+    "depois": "A pergunta é sobre o processo: como o fatberg se forma e tranca o esgoto. Ela não pergunta quem causa nem onde acontece.",
+    "motivo": "Mais simples e direto."
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "'At their core' (em essência) abre a explicação central do que é o fatberg.",
+    "motivo": "Clareza."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Aqui está o mecanismo: a gordura gruda na parede do cano e prende os detritos. Cada camada nova aumenta a massa.",
+    "motivo": "Frases curtas."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

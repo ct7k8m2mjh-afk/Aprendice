@@ -44,7 +44,7 @@
    {
     "faz": "Divida o tempo por 1,5",
     "conta": "180 ÷ 1,5 = 120 s",
-    "porque": "Com 1,5 vez a velocidade, o tempo cai um terço e fica 2/3 do original: 180 ÷ 1,5 = 120.",
+    "porque": "Com 1,5 vez a velocidade, o vídeo leva 1,5 vez menos tempo. Por isso se divide: 180 ÷ 1,5 = 120. Também vale: 1,5 = 3/2, então o tempo fica 2/3 de 180.",
     "tipo": "calcular"
    },
    {
@@ -90,7 +90,7 @@
    "nota": "grandezas inversamente proporcionais"
   },
   {
-   "linha": "t = 180/1,5",
+   "linha": "t = \\frac{180}{1,5}",
    "nota": "o fator 1,5 passa dividindo o tempo",
    "mov": [
     {
@@ -126,11 +126,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -147,6 +149,37 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "C"
+  "fatos_resposta": "C",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Com 1,5 vez a velocidade, o vídeo leva 1,5 vez menos tempo. Por isso se divide: 180 ÷ 1,5 = 120. Também vale: 1,5 = 3/2, então o tempo fica 2/3 de 180.",
+    "motivo": "A frase 'cai um terço e fica 2/3' era confusa (cair um terço e ficar 2/3 são ideias diferentes). Simplificada."
+   },
+   {
+    "campo": "resolucao.quadro[2]",
+    "depois": {
+     "linha": "t = \\frac{180}{1,5}",
+     "nota": "o fator 1,5 passa dividindo o tempo",
+     "mov": [
+      {
+       "termo": "1,5",
+       "de": "velocidade",
+       "para": "denominador",
+       "vira": "1,5",
+       "como": "passa dividindo o tempo"
+      }
+     ]
+    },
+    "motivo": "Fração deve ser escrita empilhada, não na linha."
+   },
+   {
+    "campo": "resolucao.caminhos[0].ideia",
+    "depois": "1,5 = 3/2. Ir 3/2 mais rápido leva 2/3 do tempo: 2/3 de 180 s = 120 s.",
+    "motivo": "Texto mantido; apenas confirmado, sem mudança de fato."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

@@ -29,6 +29,14 @@
     [
      "lente divergente",
      "lente que espalha os raios, afastando-os uns dos outros"
+    ],
+    [
+     "feixe",
+     "conjunto de raios de luz que viajam juntos"
+    ],
+    [
+     "convergir",
+     "ir se aproximando até se cruzar em um ponto"
     ]
    ]
   },
@@ -53,9 +61,9 @@
     "tipo": "comparar"
    },
    {
-    "faz": "Compare os raios antes e depois da lente",
+    "faz": "Compare os raios depois da lente",
     "conta": "A: paralelos | C, D: convergem | B: abrem",
-    "porque": "Em cada figura, observe se os raios se afastam ou se aproximam do eixo depois de passar pela lente. Só em B eles se afastam mais do que antes.",
+    "porque": "Em cada figura, veja se os raios ficam mais afastados ou mais próximos do eixo depois da lente. Só em B eles se afastam. Em E, o feixe segue quase como entrou.",
     "tipo": "eliminar"
    },
    {
@@ -68,10 +76,10 @@
   "resposta": "Alternativa B: a lente divergente abre o feixe, como se o objeto estivesse no PR, e o cristalino foca a luz na retina.",
   "checagem": "Confira pelo formato da lente. A lente desenhada tem as bordas grossas e o centro fino (face côncava), e no ar uma lente assim é divergente. Só a B mostra o efeito que combina com esse formato: o feixe sai da lente mais aberto do que entrou. Pela teoria, os prolongamentos desses raios para trás se encontram no PR.",
   "erradas": {
-   "A": "Os raios saem da lente paralelos, como se o objeto estivesse no infinito. Isso exigiria uma lente convergente. Para o míope, o feixe deve parecer vir do PR, e não do infinito, e luz paralela seria focada antes da retina.",
-   "C": "Depois da lente, os raios se aproximam do eixo, ou seja, convergem. Isso é efeito de lente convergente, que aumentaria o excesso de convergência do míope. Seria correção de hipermetropia.",
+   "A": "Os raios saem da lente paralelos, como se o objeto estivesse muito longe (no infinito). O míope não foca luz paralela na retina: ela se cruzaria antes. O feixe precisa vir mais aberto, como se partisse do PR. Quem marcou A esqueceu que o olho do míope converge demais.",
+   "C": "Depois da lente, os raios se aproximam do eixo, ou seja, convergem. Isso é efeito de lente convergente, que soma convergência ao olho do míope, que já converge demais. Essa lente corrige hipermetropia.",
    "D": "Depois da lente, os raios se aproximam do eixo, ou seja, convergem. Esse é o efeito de uma lente convergente, que piora o problema do míope: o olho dele já converge demais.",
-   "E": "Depois da lente, os raios não se afastam mais do que antes. O feixe continua com abertura igual ou menor, sem o efeito divergente que faria a luz parecer vir do PR. A imagem continuaria se formando antes da retina."
+   "E": "Depois da lente, o feixe continua com a mesma abertura ou fica um pouco menor. Falta o efeito divergente, que faria a luz parecer vir do PR. A imagem ainda se formaria antes da retina. Quem marcou E esqueceu de checar se o feixe abre."
   },
   "armadilha": "Achar que a lente deve juntar a luz antes do olho. Miopia é convergência excessiva, então a lente deve afastar os raios (divergente).",
   "alerta": "",
@@ -106,11 +114,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -151,6 +161,68 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "B"
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[3]",
+    "depois": {
+     "faz": "Compare os raios depois da lente",
+     "conta": "A: paralelos | C, D: convergem | B: abrem",
+     "porque": "Em cada figura, veja se os raios ficam mais afastados ou mais próximos do eixo depois da lente. Só em B eles se afastam. Em E, o feixe segue quase como entrou.",
+     "tipo": "eliminar"
+    },
+    "motivo": "A letra E não estava no resumo da conta, e o texto dizia 'mais do que antes', o que dava dois sentidos."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "Depois da lente, os raios se aproximam do eixo, ou seja, convergem. Isso é efeito de lente convergente, que soma convergência ao olho do míope, que já converge demais. Essa lente corrige hipermetropia.",
+    "motivo": "Tirei o condicional 'seria' e deixei a explicação mais direta, para o aluno ver o que faltou no raciocínio de quem marcou C."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "Depois da lente, o feixe continua com a mesma abertura ou fica um pouco menor. Falta o efeito divergente, que faria a luz parecer vir do PR. A imagem ainda se formaria antes da retina. Quem marcou E esqueceu de checar se o feixe abre.",
+    "motivo": "Frase mais clara e com o ponto de raciocínio que faltou."
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "Os raios saem da lente paralelos, como se o objeto estivesse muito longe (no infinito). O míope não foca luz paralela na retina: ela se cruzaria antes. O feixe precisa vir mais aberto, como se partisse do PR. Quem marcou A esqueceu que o olho do míope converge demais.",
+    "motivo": "A versão anterior dizia que paralelo 'exigiria lente convergente', o que confunde. Agora ela mostra o que faltou no raciocínio."
+   },
+   {
+    "campo": "resolucao.antes.simbolos",
+    "depois": [
+     [
+      "PR (ponto remoto)",
+      "ponto mais distante que o olho enxerga nítido sem esforço; no míope é relativamente perto"
+     ],
+     [
+      "cristalino",
+      "lente natural do olho, que converge a luz sobre a retina"
+     ],
+     [
+      "retina",
+      "fundo do olho, onde a imagem precisa se formar"
+     ],
+     [
+      "lente divergente",
+      "lente que espalha os raios, afastando-os uns dos outros"
+     ],
+     [
+      "feixe",
+      "conjunto de raios de luz que viajam juntos"
+     ],
+     [
+      "convergir",
+      "ir se aproximando até se cruzar em um ponto"
+     ]
+    ],
+    "motivo": "Os termos 'feixe' e 'convergir' aparecem em toda a resolução e não estavam explicados."
+   }
+  ],
+  "didatica_alertas": [
+   "Os campos 'tema' e 'conteudo' do JSON (F08, F08.6) não batem com a classificação atual informada no cabeçalho (F09, F09.6). A questão é de óptica da visão (F08.6), então vale conferir o cabeçalho.",
+   "A erradas.C diz que a lente convergente corrige hipermetropia, o que é correto. Mas a imagem original de C parece ter lente de bordas finas; o corretor 1 deve confirmar a leitura das figuras (A, C, D, E) no print."
+  ],
+  "didatica_ok": true
  }
 }

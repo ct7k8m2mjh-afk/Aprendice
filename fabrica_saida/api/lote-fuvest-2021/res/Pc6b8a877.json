@@ -43,14 +43,14 @@
    },
    {
     "faz": "Analise os circuitos (1) e (3)",
-    "conta": "(1): 1 chave, lâmpadas em paralelo\n(3): 2 chaves, tudo em série",
+    "conta": "(1): 1 chave p/ as 2 lâmpadas\n(3): 2 chaves, lâmpadas em série",
     "porque": "No (1) as lâmpadas estão em paralelo, mas uma única chave comanda as duas: ou acendem juntas, ou ficam as duas apagadas. Não dá para acender só uma. No (3), com as duas chaves em série e as lâmpadas no mesmo caminho, uma lâmpada só acende com a outra.",
     "tipo": "eliminar"
    },
    {
     "faz": "Analise os circuitos (4) e (5)",
-    "conta": "(4): um só caminho, A e B em série\n(5): fio em curto sobre a chave 2 e a lâmpada B",
-    "porque": "No (4), a corrente atravessa chave 1, lâmpada A, chave 2 e lâmpada B em sequência, então a tensão se divide. No (5), o fio liga o ponto após a lâmpada A ao fio de retorno e curto-circuita o ramo com a chave 2 e a lâmpada B.",
+    "conta": "(4): um só caminho, A e B em série\n(5): fio em curto na chave 2 e B",
+    "porque": "No (4), a corrente passa por chave 1, lâmpada A, chave 2 e lâmpada B, uma depois da outra. Então a tensão se divide. No (5), um fio liga o ponto depois da lâmpada A ao fio de retorno. A corrente passa por esse fio, que não tem resistência, e a chave 2 e a lâmpada B ficam sem corrente: curto-circuito.",
     "tipo": "eliminar"
    },
    {
@@ -70,9 +70,9 @@
   "checagem": "No circuito (2), abra a chave 2: a lâmpada 1 continua ligada à bateria pelo seu ramo e tem a tensão total. Abra a chave 1: acontece o mesmo com a lâmpada 2. Com as duas fechadas, cada ramo ainda está ligado aos mesmos dois pontos, então a tensão em cada lâmpada não muda.",
   "erradas": {
    "A": "No circuito (1), as duas lâmpadas estão em paralelo, e cada uma recebe a tensão total. Só que uma única chave comanda as duas: fechada, acendem juntas; aberta, apagam juntas. Não dá para acender só uma.",
-   "C": "No circuito (3), as chaves e as lâmpadas formam um único caminho. Uma lâmpada só acende com a chave e a lâmpada da outra também em condições de conduzir, e quando as duas acendem a tensão se divide, então o brilho muda. Não atende à exigência do enunciado.",
+   "C": "No (3), chaves e lâmpadas formam um único caminho, em série. Para uma lâmpada acender, as duas chaves precisam estar fechadas, então não dá para acender só uma. Se a outra lâmpada fosse acesa junto, a tensão se dividiria e o brilho mudaria.",
    "D": "No circuito (4), a corrente faz um único caminho: chave 1, lâmpada A, chave 2 e lâmpada B. As lâmpadas estão em série, não funcionam de forma independente e, acesas juntas, cada uma recebe só parte da tensão.",
-   "E": "No circuito (5), o fio ligado em torno da chave 2 e da lâmpada B forma um curto-circuito sobre esse trecho. A lâmpada B não recebe a tensão nominal por esse ramo, então o arranjo não funciona como descrito."
+   "E": "No (5), o fio em volta da chave 2 e da lâmpada B é um curto-circuito: a corrente passa por ele e não pela lâmpada B. A lâmpada B nunca acende, então o arranjo não permite acender as duas."
   },
   "armadilha": "Achar que basta ter duas chaves e duas lâmpadas: se as lâmpadas estiverem em série, elas dependem uma da outra e dividem a tensão.",
   "alerta": "",
@@ -94,16 +94,24 @@
  ],
  "quadro": [
   {
-   "linha": "Série (2 lâmpadas iguais): U = U₁ + U₂",
+   "linha": "Série, 2 lâmpadas iguais",
+   "nota": "mesma corrente nas duas"
+  },
+  {
+   "linha": "U = U₁ + U₂",
    "nota": "a tensão da bateria se divide"
   },
   {
    "linha": "U₁ = U₂ = U/2",
-   "nota": "cada lâmpada fica com metade da tensão"
+   "nota": "iguais: cada uma fica com metade"
   },
   {
-   "linha": "P = U²/R → P' = (U/2)²/R",
-   "nota": "a potência cai"
+   "linha": "P = U²/R",
+   "nota": "potência com a tensão nominal"
+  },
+  {
+   "linha": "P' = (U/2)²/R = U²/(4R)",
+   "nota": "com metade da tensão"
   },
   {
    "linha": "P' = P/4",
@@ -128,11 +136,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -167,6 +177,69 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "B"
+  "fatos_resposta": "B",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "(1): 1 chave p/ as 2 lâmpadas\n(3): 2 chaves, lâmpadas em série",
+    "motivo": "Texto curto e sem ambiguidade, e cabe na tela do celular."
+   },
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "(4): um só caminho, A e B em série\n(5): fio em curto na chave 2 e B",
+    "motivo": "Mais curto para caber na linha do celular e mais claro."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "No (4), a corrente passa por chave 1, lâmpada A, chave 2 e lâmpada B, uma depois da outra. Então a tensão se divide. No (5), um fio liga o ponto depois da lâmpada A ao fio de retorno. A corrente passa por esse fio, que não tem resistência, e a chave 2 e a lâmpada B ficam sem corrente: curto-circuito.",
+    "motivo": "Explica o curto-circuito em palavras simples, dizendo por que a lâmpada B apaga."
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "No (3), chaves e lâmpadas formam um único caminho, em série. Para uma lâmpada acender, as duas chaves precisam estar fechadas, então não dá para acender só uma. Se a outra lâmpada fosse acesa junto, a tensão se dividiria e o brilho mudaria.",
+    "motivo": "A frase original estava confusa. Agora diz o que faltou a quem marcou C."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "No (5), o fio em volta da chave 2 e da lâmpada B é um curto-circuito: a corrente passa por ele e não pela lâmpada B. A lâmpada B nunca acende, então o arranjo não permite acender as duas.",
+    "motivo": "Diz claramente a consequência do curto, que é a lâmpada B não acender."
+   },
+   {
+    "campo": "resolucao.quadro",
+    "depois": [
+     {
+      "linha": "Série, 2 lâmpadas iguais",
+      "nota": "mesma corrente nas duas"
+     },
+     {
+      "linha": "U = U₁ + U₂",
+      "nota": "a tensão da bateria se divide"
+     },
+     {
+      "linha": "U₁ = U₂ = U/2",
+      "nota": "iguais: cada uma fica com metade"
+     },
+     {
+      "linha": "P = U²/R",
+      "nota": "potência com a tensão nominal"
+     },
+     {
+      "linha": "P' = (U/2)²/R = U²/(4R)",
+      "nota": "com metade da tensão"
+     },
+     {
+      "linha": "P' = P/4",
+      "nota": "brilho menor: não serve"
+     },
+     {
+      "linha": "Paralelo: U₁ = U₂ = U",
+      "nota": "cada lâmpada recebe a tensão nominal"
+     }
+    ],
+    "motivo": "Separa a passagem de P para P' em linhas, uma por passo, e fica copiável no caderno."
+   }
+  ],
+  "didatica_alertas": [],
+  "didatica_ok": true
  }
 }

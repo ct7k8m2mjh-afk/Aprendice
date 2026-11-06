@@ -43,13 +43,13 @@
    {
     "faz": "Ache o torque de P em relação a A",
     "conta": "τ_P = P × d",
-    "porque": "P é vertical e atua à distância d de A. Ela empurra o palito para baixo à esquerda de A e tende a girá-lo no sentido anti-horário.",
+    "porque": "P é vertical e atua à distância d de A, do mesmo lado da mesa que o palito 2. Ela puxa o palito para baixo e tende a girá-lo no sentido anti-horário em torno de A.",
     "tipo": "calcular"
    },
    {
     "faz": "Decomponha F em vertical e horizontal",
     "conta": "F_vert = F cos(θ)",
-    "porque": "θ é medido com a vertical, então a componente vertical é F cos(θ). A componente horizontal fica ao longo do palito 1 e tem braço zero: não gera torque.",
+    "porque": "θ é medido com a vertical, então a componente vertical é F cos(θ). A componente horizontal fica ao longo do palito 1, e a linha dela passa por A. Ela tem braço zero e não gera torque.",
     "tipo": "calcular"
    },
    {
@@ -60,13 +60,13 @@
    },
    {
     "faz": "Iguale os torques e isole F",
-    "conta": "F cos(θ) L = P d",
-    "porque": "Equilíbrio na iminência de girar: horário = anti-horário. Passando L cos(θ) para o outro lado dividindo, sai F = P d ÷ (L cos(θ)).",
+    "conta": "F cos(θ) × L = P × d",
+    "porque": "Na iminência de girar, torque horário = torque anti-horário. Divida os dois lados por L cos(θ) para deixar F sozinho: F = P d ÷ (L cos(θ)).",
     "tipo": "concluir"
    }
   ],
-  "resposta": "Alternativa A: |F| = |P| d ÷ (L cos(θ)), porque o torque da componente vertical de F, F cos(θ) × L, equilibra o torque de P, P × d, em torno de A.",
-  "checagem": "Veja o caso limite θ = 0, com F vertical: F = P d ÷ L, a regra da alavanca. Como d < L, F é menor que P, e a mesa em A ainda empurra para cima com P − F. Isso é coerente. Pela unidade: P × (d ÷ L) é força, e d ÷ L não tem unidade.",
+  "resposta": "Alternativa A: |F| = |P| d ÷ (L cos(θ)).",
+  "checagem": "Teste o caso θ = 0, com F vertical: F = P d ÷ L, a regra da alavanca. Como d < L, F é menor que P. Isso é coerente, porque a mesa em A ainda empurra para cima com P − F. Na unidade, d ÷ L é um número puro e P é força, então F é força.",
   "erradas": {
    "B": "Usa sen(θ), que é a componente horizontal de F. Essa componente está ao longo do palito 1 e tem braço zero em relação a A, então não entra no torque. Quem equilibra P é a componente vertical, F cos(θ).",
    "C": "C não confere: |F| = |P| cos(θ) não depende de d nem de L. Com θ = 0, daria F = P, mas a alavanca em A dá F = P d ÷ L, menor que P. Nem o equilíbrio só das forças verticais leva a C: ele daria F = P ÷ cos(θ).",
@@ -110,7 +110,7 @@
    "destaque": "F cos(θ) × L"
   },
   {
-   "linha": "F = P × d ÷ (L cos(θ))",
+   "linha": "F = (P × d)/(L cos(θ))",
    "nota": "L e cos(θ) passam dividindo",
    "mov": [
     {
@@ -137,11 +137,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -170,6 +172,47 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "A"
+  "fatos_resposta": "A",
+  "didatica": [
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "P é vertical e atua à distância d de A, do mesmo lado da mesa que o palito 2. Ela puxa o palito para baixo e tende a girá-lo no sentido anti-horário em torno de A.",
+    "motivo": "A frase antiga ('à esquerda de A') estava ambígua. Agora o sentido do giro fica claro e ligado à figura."
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "θ é medido com a vertical, então a componente vertical é F cos(θ). A componente horizontal fica ao longo do palito 1, e a linha dela passa por A. Ela tem braço zero e não gera torque.",
+    "motivo": "Explica por que o braço é zero, em vez de só afirmar."
+   },
+   {
+    "campo": "resolucao.passos[4].conta",
+    "depois": "F cos(θ) × L = P × d",
+    "motivo": "A conta do último passo mostrava só uma parte da igualdade. O passo agora tem a conta completa e o aluno copia no caderno."
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "Na iminência de girar, torque horário = torque anti-horário. Divida os dois lados por L cos(θ) para deixar F sozinho: F = P d ÷ (L cos(θ)).",
+    "motivo": "'Passar dividindo' ficava vago. Agora diz o que se divide e por quê."
+   },
+   {
+    "campo": "resolucao.quadro[4].linha",
+    "depois": "F = (P × d)/(L cos(θ))",
+    "motivo": "A fração aparece no formato empilhado do site, em vez de '÷'."
+   },
+   {
+    "campo": "resolucao.resposta",
+    "depois": "Alternativa A: |F| = |P| d ÷ (L cos(θ)).",
+    "motivo": "Texto mais curto. A explicação já está nos passos."
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Teste o caso θ = 0, com F vertical: F = P d ÷ L, a regra da alavanca. Como d < L, F é menor que P. Isso é coerente, porque a mesa em A ainda empurra para cima com P − F. Na unidade, d ÷ L é um número puro e P é força, então F é força.",
+    "motivo": "Texto mais simples, com a unidade em frase direta."
+   }
+  ],
+  "didatica_alertas": [
+   "Na figura, F aponta para cima e para a esquerda e P para baixo. Com F à esquerda de P e de A, o torque de F em torno de A é horário e o de P é anti-horário. A tradução em palavras do enunciado ('L do ponto A') está ok. Sem erro de fato."
+  ],
+  "didatica_ok": true
  }
 }

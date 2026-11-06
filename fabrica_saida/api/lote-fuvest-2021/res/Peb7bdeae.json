@@ -8,7 +8,7 @@
  "conceito": "Ler o gráfico do tempo de decomposição e ligar cada resíduo (papel, PET, vidro) ao grupo certo e à destinação recomendada.",
  "resolucao": {
   "antes": {
-   "texto": "Cada resíduo leva um tempo diferente para se decompor. Papel decompõe em meses. Plástico PET leva em torno de 400 anos. Vidro leva tanto tempo que passa muito de qualquer escala do gráfico. Quanto mais lenta a decomposição, mais o descarte comum no solo se acumula. Por isso a destinação recomendada para esses materiais é evitar o lixo: reusar e reciclar.",
+   "texto": "Cada resíduo leva um tempo diferente para se decompor. O papel leva poucos meses. O plástico PET leva cerca de 400 anos. O vidro leva tanto tempo que passa de qualquer valor do gráfico. Quanto mais lenta a decomposição, mais o lixo se acumula no ambiente. Por isso, para esses materiais, o melhor é evitar o lixo: reusar e reciclar.",
    "formulas": [
     "Grupo X: decompõe em até cerca de 100 anos (papel).",
     "Grupo Y: decompõe em cerca de 180 a 520 anos (plástico PET).",
@@ -38,7 +38,7 @@
     ]
    ]
   },
-  "pista": "Primeiro leia o eixo vertical e veja quantos anos cada grupo vai de ponta a ponta. Depois lembre quanto tempo papel, PET e vidro levam para se decompor.",
+  "pista": "Leia o eixo vertical e veja de quantos a quantos anos vai cada grupo. Depois lembre quanto tempo o papel, o PET e o vidro levam para se decompor.",
   "passos": [
    {
     "faz": "Localize o que se pede",
@@ -60,8 +60,8 @@
    },
    {
     "faz": "Classifique cada resíduo",
-    "conta": "Papel: meses → X\nPET: ~400 anos → Y\nVidro: milhares de anos → fora",
-    "porque": "O papel decompõe em meses, então cabe em X. A garrafa PET tem cerca de 400 anos, então cabe em Y. O vidro passa muito de 520 anos, então não está em X nem em Y.",
+    "conta": "Papel: meses → X\nPET: ~400 anos → Y\nVidro: muito mais → fora",
+    "porque": "O papel leva meses e cabe em X. A garrafa PET leva cerca de 400 anos e cabe em Y. O vidro passa muito de 520 anos, então não está em X nem em Y.",
     "tipo": "comparar"
    },
    {
@@ -80,10 +80,10 @@
   "resposta": "Alternativa A: as garrafas PET levam cerca de 400 anos para se decompor, ficam no grupo Y (180 a 520 anos), e o reuso e a reciclagem são a destinação recomendada.",
   "checagem": "Teste o contrário. Se a PET fosse do grupo X, ela se decomporia em no máximo 100 anos. Isso contradiz o tempo conhecido de cerca de 400 anos. Logo a PET só cabe em Y.",
   "erradas": {
-   "B": "Coloca o papel no grupo Y, mas o papel decompõe em meses, o que cabe em X (até 100 anos). Além disso, a incineração não é a destinação recomendada para o papel: ele é reciclável.",
+   "B": "Coloca o papel no grupo Y, mas o papel leva meses para se decompor e cabe em X (até 100 anos). A destinação também falha: o papel é reciclável, não se recomenda incinerar.",
    "C": "Coloca a PET no grupo X, que vai só até cerca de 100 anos. A PET leva cerca de 400 anos, então é do Y. Além disso, aterro sanitário não é a destinação recomendada: o PET deve ser reciclado.",
    "D": "A destinação (reuso e reciclagem) está certa para o papel, mas o grupo está errado. O papel decompõe em meses, então é do grupo X. Y tem decomposição de séculos.",
-   "E": "O vidro leva milhares de anos para se decompor, muito acima do limite de X (cerca de 100 anos). Além disso, o vidro não queima na incineração comum e é totalmente reciclável, então a destinação recomendada é reuso e reciclagem."
+   "E": "O vidro leva muito mais que 100 anos para se decompor, então não é do grupo X. Além disso, o vidro é reciclável: a destinação recomendada é reuso e reciclagem, não a incineração."
   },
   "armadilha": "Marcar a alternativa que tem a destinação certa mas o grupo errado (D), ou o contrário: é preciso acertar grupo e destinação juntos.",
   "alerta": "",
@@ -118,11 +118,13 @@
  "revisao": {
   "lentes": [
    "resolvedor",
-   "fatos"
+   "fatos",
+   "didatica"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
-   "fatos": "claude-opus-5-5"
+   "fatos": "claude-opus-5-5",
+   "didatica": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -139,6 +141,42 @@
    }
   ],
   "fatos_ok": true,
-  "fatos_resposta": "A"
+  "fatos_resposta": "A",
+  "didatica": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Cada resíduo leva um tempo diferente para se decompor. O papel leva poucos meses. O plástico PET leva cerca de 400 anos. O vidro leva tanto tempo que passa de qualquer valor do gráfico. Quanto mais lenta a decomposição, mais o lixo se acumula no ambiente. Por isso, para esses materiais, o melhor é evitar o lixo: reusar e reciclar.",
+    "motivo": "Frases mais curtas e diretas; 'descarte comum no solo' era vago."
+   },
+   {
+    "campo": "resolucao.pista",
+    "depois": "Leia o eixo vertical e veja de quantos a quantos anos vai cada grupo. Depois lembre quanto tempo o papel, o PET e o vidro levam para se decompor.",
+    "motivo": "Pista mais simples, sem entregar a resposta."
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "Papel: meses → X\nPET: ~400 anos → Y\nVidro: muito mais → fora",
+    "motivo": "'Milhares de anos' é impreciso; combina com o texto do antes."
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "O papel leva meses e cabe em X. A garrafa PET leva cerca de 400 anos e cabe em Y. O vidro passa muito de 520 anos, então não está em X nem em Y.",
+    "motivo": "Texto mais curto e claro."
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "O vidro leva muito mais que 100 anos para se decompor, então não é do grupo X. Além disso, o vidro é reciclável: a destinação recomendada é reuso e reciclagem, não a incineração.",
+    "motivo": "Remove a afirmação 'não queima na incineração comum', que é desnecessária e pode confundir; o aluno que marcou E entende os dois erros."
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "Coloca o papel no grupo Y, mas o papel leva meses para se decompor e cabe em X (até 100 anos). A destinação também falha: o papel é reciclável, não se recomenda incinerar.",
+    "motivo": "Linguagem mais direta."
+   }
+  ],
+  "didatica_alertas": [
+   "A questão depende de conhecimento externo (tempos de decomposição) que o gráfico não traz. O vidro está fora de X e Y. A afirmação de que a decomposição do PET é 'cerca de 400 anos' é estimativa, não valor exato. Não corrigi."
+  ],
+  "didatica_ok": true
  }
 }
