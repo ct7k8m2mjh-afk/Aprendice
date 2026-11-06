@@ -9,7 +9,9 @@
 
 export type ParteFracao =
   | { t: 'txt'; v: string }
-  | { t: 'frac'; n: string; d: string; orig: string }
+  /** sep: o sinal escrito entre os dois ("/", " ÷ ", " / "); pn/pd: o numerador/denominador estava entre parênteses
+   *  (o layout tira os parênteses; quem desenha guarda-os escondidos, para o texto continuar o mesmo) */
+  | { t: 'frac'; n: string; d: string; orig: string; sep?: string; pn?: boolean; pd?: boolean }
   /** notação de nuclídeo ("207/82 Pb"): número de massa em cima, número atômico embaixo, antes do símbolo; sem barra */
   | { t: 'nuc'; a: string; z: string; orig: string };
 
@@ -117,11 +119,111 @@ export function partesFracao(texto: string): ParteFracao[] {
       continue;
     }
     if (m.index > ult) out.push({ t: 'txt', v: texto.slice(ult, m.index) });
-    out.push({ t: 'frac', n: semParenteses(num), d: semParenteses(den), orig });
+    out.push({ t: 'frac', n: semParenteses(num), d: semParenteses(den), orig, sep: '/', pn: num !== semParenteses(num), pd: den !== semParenteses(den) });
     ult = m.index + orig.length;
   }
   if (ult < texto.length) out.push({ t: 'txt', v: texto.slice(ult) });
-  return out.length ? out : [{ t: 'txt', v: texto }];
+  // 2ª passada: divisão escrita com "÷" ou com "/" entre espaços também é fração empilhada (regra do dono: nunca
+  // "3 ÷ 5" nem "3 / 5" na mesma linha)
+  const fim: ParteFracao[] = [];
+  for (const p of out) if (p.t === 'txt') fim.push(...divisoes(p.v)); else fim.push(p);
+  return fim.length ? fim : [{ t: 'txt', v: texto }];
+}
+
+/* ---------------------------------------------------------------- divisão com "÷" e " / " */
+// operando simples: função opcional, número (milhar com espaço, decimal), raiz, letra(s), índice, expoente, porcentagem;
+// ou número com unidade ("1 g ÷ 2^4")
+const EXPO = String.raw`(?:\^\([^()\n]{1,24}\)|\^[−\-+]?[0-9a-zA-Z,]+[+−]?|[²³⁴⁵⁶⁷⁸⁹¹⁰⁻⁺]+)?`;
+const SIMPLES = String.raw`(?:(?:log|ln|sen|cos|tg)\s?)?(?:\d{1,3}(?:[ \u00a0\u202f]\d{3})+(?:,\d+)?|\d+(?:[.,]\d+)*)?√?(?:\d+(?:[.,]\d+)*)?(?:[A-Z]{2}|[A-Z][a-z]|[xy][A-Z]|[a-zA-Zα-ωπθμΔ](?:_[A-Za-z0-9]+)?)?[₀-₉]*` + EXPO + '%?';
+const UNID = String.raw`\d+(?:[.,]\d+)?\s(?:g|mg|kg|mL|L|mol|cm|m|km|s|h|min)`;
+const RE_ESQ = new RegExp(`(?:${UNID}|${SIMPLES})$`, 'u');
+const RE_DIR = new RegExp(`^(?:${UNID}(?![A-Za-z])|${SIMPLES})`, 'u');
+const RE_OP = /\s*÷\s*| \/ /g;
+const temValor = (x: string) => /[0-9a-zA-Zα-ωπθμΔ]/.test(x);
+
+/** operando que termina em `fim` (grupo entre parênteses com expoente, ou simples) */
+function opEsq(s: string, fim: number): number | null {
+  const pre = s.slice(0, fim);
+  let k = fim;
+  const sup = /[²³⁴⁵⁶⁷⁸⁹¹⁰⁻⁺]*$/.exec(pre)![0];
+  k -= sup.length;
+  if (pre[k - 1] === ')') {
+    let p = 0;
+    for (let i = k - 1; i >= 0; i--) {
+      if (s[i] === ')') p++;
+      else if (s[i] === '(') { p--; if (p === 0) return i; }
+    }
+    return null;
+  }
+  const m = RE_ESQ.exec(pre);
+  if (!m || !temValor(m[0])) return null;
+  return fim - m[0].length;
+}
+/** operando que começa em `ini` */
+function opDir(s: string, ini: number): number | null {
+  if (s[ini] === '(') {
+    let p = 0;
+    for (let i = ini; i < s.length; i++) {
+      if (s[i] === '(') p++;
+      else if (s[i] === ')') { p--; if (p === 0) { const sup = /^[²³⁴⁵⁶⁷⁸⁹¹⁰⁻⁺]*/.exec(s.slice(i + 1))![0]; return i + 1 + sup.length; } }
+    }
+    return null;
+  }
+  const m = RE_DIR.exec(s.slice(ini));
+  if (!m || !temValor(m[0])) return null;
+  return ini + m[0].length;
+}
+function divisoes(s: string): ParteFracao[] {
+  if (!/÷| \/ /.test(s)) return [{ t: 'txt', v: s }];
+  // as divisões de fora primeiro (menor profundidade de parênteses): "(x ÷ 6) ÷ (1 − x²)" empilha a de fora, e a de
+  // dentro empilha dentro do numerador quando ele é desenhado
+  const ops: { ini: number; fim: number; txt: string; prof: number }[] = [];
+  RE_OP.lastIndex = 0;
+  for (let m = RE_OP.exec(s); m; m = RE_OP.exec(s)) {
+    let prof = 0;
+    for (let i = 0; i < m.index; i++) { if (s[i] === '(') prof++; else if (s[i] === ')') prof--; }
+    ops.push({ ini: m.index, fim: m.index + m[0].length, txt: m[0], prof });
+  }
+  ops.sort((x, y) => x.prof - y.prof || y.ini - x.ini);
+  const feitas: { a: number; b: number; p: ParteFracao }[] = [];
+  const livre = (a: number, b: number) => !feitas.some((f) => a < f.b && f.a < b);
+  for (const o of ops) {
+    if (!livre(o.ini, o.fim)) continue;
+    let a = opEsq(s, o.ini);
+    const b = opDir(s, o.fim);
+    // divisão encadeada (a ÷ b ÷ c = (a ÷ b) ÷ c): o numerador leva a divisão de antes, que empilha dentro dele
+    for (let m = a == null ? null : /\s*÷\s*$/.exec(s.slice(0, a)); a != null && m; m = /\s*÷\s*$/.exec(s.slice(0, a))) {
+      const a2 = opEsq(s, m.index);
+      if (a2 == null) break;
+      a = a2;
+    }
+    if (a == null || b == null || !livre(a, b)) continue;
+    const num = s.slice(a, o.ini), den = s.slice(o.fim, b);
+    const antes = s.slice(0, a), depois = s.slice(b);
+    // colado a palavra, número, índice ou outra divisão: não é um operando inteiro
+    if (/[A-Za-zÀ-ÿ0-9.,_^\\/÷]$/.test(antes) || /^[A-Za-zÀ-ÿ0-9(_^/]/.test(depois)) continue;
+    if (/\s\/\s*$/.test(antes)) continue;
+    const espacada = !o.txt.includes('÷');
+    if (espacada) {
+      // "A / B" entre alternativas, unidade ("10 m / s"), verso ("enganos, / tu"), palavras
+      const so = (x: string) => /^[A-Za-zα-ωμ]+$/.test(x);
+      if (/^[A-E]$/.test(num) && /^[A-E]$/.test(den)) continue;
+      if (new RegExp(`^${UNID}$`, 'u').test(num)) continue;
+      if (so(num) && /\d\s+$/.test(antes)) continue;
+      if (so(num) && so(den) && !/(^|[=+−\-×·(≈])\s*$/.test(antes) && !/^\s*[=≈]/.test(depois)) continue;
+    }
+    feitas.push({ a, b, p: { t: 'frac', n: semParenteses(num), d: semParenteses(den), orig: s.slice(a, b), sep: o.txt, pn: num !== semParenteses(num), pd: den !== semParenteses(den) } });
+  }
+  feitas.sort((x, y) => x.a - y.a);
+  const out: ParteFracao[] = [];
+  let ult = 0;
+  for (const f of feitas) {
+    if (f.a > ult) out.push({ t: 'txt', v: s.slice(ult, f.a) });
+    out.push(f.p);
+    ult = f.b;
+  }
+  if (ult < s.length) out.push({ t: 'txt', v: s.slice(ult) });
+  return out;
 }
 
 /**

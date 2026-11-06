@@ -8,7 +8,7 @@ const nuc = (s: string) => partesFracao(s).filter((p) => p.t === 'nuc').map((p) 
 describe('fração empilhada', () => {
   it('acha frações numéricas e algébricas simples', () => {
     expect(fr('2/5 × 1/8')).toEqual(['2|5', '1|8']);
-    expect(fr('(2 × 1) ÷ (5 × 8) = 2/40')).toEqual(['2|40']);
+    expect(fr('(2 × 1) ÷ (5 × 8) = 2/40')).toEqual(['2 × 1|5 × 8', '2|40']); // ÷ também empilha (comando 20)
     expect(fr('a/b × c/d = …')).toEqual(['a|b', 'c|d']);
     expect(fr('(1/5)·90 + (1/8)·144 + (1/7)·126 = 18 + 18 + 18 = 54')).toEqual(['1|5', '1|8', '1|7']);
     expect(fr('decompondo nos quadrículos: 2·7 + (2·1)/2 + (2·8)/2')).toEqual(['2·1|2', '2·8|2']);
@@ -28,12 +28,12 @@ describe('fração empilhada', () => {
   it('coeficiente e raiz ficam juntos no numerador (6√5/5 é (6√5) ÷ 5)', () => {
     // casos reais das resoluções de Matemática (M10.2, M10.3, M08.2) e da teoria
     expect(fr('Alternativa E — BC = 6√5/5 cm, que é aproximadamente 2,68 cm')).toEqual(['6√5|5']);
-    expect(fr('(6 × √5) ÷ 5 = 6√5/5 ≈ 2,68 cm')).toEqual(['6√5|5']);
-    expect(fr('3 × (3 ÷ 5) ÷ (2 ÷ √5) = 9√5/10 ≈ 2,01 cm')).toEqual(['9√5|10']);
+    expect(fr('(6 × √5) ÷ 5 = 6√5/5 ≈ 2,68 cm')).toEqual(['6 × √5|5', '6√5|5']);
+    expect(fr('3 × (3 ÷ 5) ÷ (2 ÷ √5) = 9√5/10 ≈ 2,01 cm')).toEqual(['3 ÷ 5|2 ÷ √5', '9√5|10']);
     expect(fr('= 12√5/5 ≈ 5,37 cm')).toEqual(['12√5|5']);
     expect(fr('7√3/2 não confere')).toEqual(['7√3|2']);
-    expect(fr('3√34/85 é 6 ÷ (5√34)')).toEqual(['3√34|85']);
-    expect(fr('5√34/85 é 10 ÷ (5√34)')).toEqual(['5√34|85']);
+    expect(fr('3√34/85 é 6 ÷ (5√34)')).toEqual(['3√34|85', '6|5√34']);
+    expect(fr('5√34/85 é 10 ÷ (5√34)')).toEqual(['5√34|85', '10|5√34']);
     expect(fr('A = 16√3/4 = 4√3')).toEqual(['16√3|4']);
     expect(fr('(2π − 3√3/2)')).toEqual(['3√3|2']);
     expect(fr('√2/2')).toEqual(['√2|2']);

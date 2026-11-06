@@ -239,10 +239,16 @@
 .fm-prosa { font-family: var(--fonte); font-weight: 500; font-size: var(--fs-texto); line-height: 1.5; color: var(--tinta); }
 .fm-prosa.fm-bloco { align-items: flex-start; gap: .25em; }
 .fm-prosa .fm-linha { text-align: left; }
-.fm-prosa .fm-texto { font-size: 1em; }
+.fm-prosa .fm-texto { font-size: 1em; font-weight: inherit; }
+.caderno li .fm-prosa { font-weight: 400; }
 .rv-formula.fm-prosa { font-size: var(--fs-expl); background: var(--sv2); border-color: color-mix(in srgb, var(--p) 30%, var(--linha)); color: var(--tinta); }
 .rv-opcao .fm-prosa, .rv-passos .fm-prosa { font-size: var(--fs-texto); color: var(--tinta); }
 .rv-opcao:has(.fm-prosa) { text-align: left; }
 /* fonte com endereço longo e seta de vetor na ponta da linha: nada sai da caixa no celular */
 .rv-fonte, .rv-texto, .rv-leg li, .rv-beat-t, .rv-cena { overflow-wrap: anywhere; }
 .fm-vet { padding: 0 .1em; }
+/* fórmula em linha (caderno da Teoria em cartões): fica no fluxo do texto, à esquerda, junto do marcador */
+span.fm:not(.fm-bloco) .fm-linha { display: inline; text-align: left; }
+span.fm:not(.fm-bloco) .fm-linha + .fm-linha { margin-left: 1em; }
+.caderno li span.fm.fm-prosa .fm-linha { display: block; }
+.caderno li span.fm.fm-prosa .fm-linha + .fm-linha { margin-left: 0; }
