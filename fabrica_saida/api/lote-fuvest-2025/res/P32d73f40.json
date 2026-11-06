@@ -67,7 +67,7 @@
    {
     "faz": "Elimine A e B pelas palavras absolutas",
     "conta": "A: \"único\" é falso; B: \"todas\" é falso",
-    "porque": "\"Único\" e \"todas\" não aceitam exceção. Basta um contraexemplo: a batata guarda amido, e a semente não tem todas as vitaminas.",
+    "porque": "\"Único\" e \"todas\" não aceitam exceção. Basta um contraexemplo: a batata (tubérculo) guarda amido, e a semente não tem todas as vitaminas, como a B12.",
     "tipo": "eliminar"
    },
    {
@@ -88,7 +88,7 @@
   "erradas": {
    "A": "O amido não é guardado só nas sementes. Raízes (mandioca), tubérculos (batata) e caules também armazenam amido. A palavra \"único\" derruba a alternativa.",
    "B": "Semente não guarda \"todas\" as vitaminas e nutrientes. Planta e ser humano precisam de coisas diferentes: nós precisamos de vitamina B12, que nenhuma planta produz. A palavra \"todas\" derruba a alternativa.",
-   "C": "O DNA existe em todas as células, mas não é nutriente essencial para o ser humano. Nós sintetizamos nossos próprios nucleotídeos. O que nos sustenta é a energia dos carboidratos, proteínas e lipídios.",
+   "C": "O DNA existe em todas as células, mas não é um nutriente sem o qual a espécie humana não sobrevive: o que nos sustenta é a energia dos carboidratos, proteínas e lipídios. Nós sintetizamos nossos próprios nucleotídeos.",
    "E": "As enzimas da semente atuam na germinação, quebrando a reserva para o embrião. Não são elas que digerem o alimento em nós: usamos as nossas próprias enzimas (amilase, proteases). Afirmar que são \"usadas\" na digestão humana é falso."
   },
   "armadilha": "Marcar a alternativa que confunde as enzimas ou o DNA da semente com os nutrientes que nos alimentam.",
@@ -125,12 +125,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -242,6 +244,22 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "O DNA existe em todas as células, mas não é um nutriente sem o qual a espécie humana não sobrevive: o que nos sustenta é a energia dos carboidratos, proteínas e lipídios. Nós sintetizamos nossos próprios nucleotídeos.",
+    "motivo": "A frase original dizia que o DNA 'não é nutriente essencial'. Isso é impreciso, porque os nucleotídeos da dieta são aproveitáveis, embora não sejam essenciais. A nova redação diz o que realmente derruba a alternativa: o DNA não é indispensável à sobrevivência humana.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "\"Único\" e \"todas\" não aceitam exceção. Basta um contraexemplo: a batata (tubérculo) guarda amido, e a semente não tem todas as vitaminas, como a B12.",
+    "motivo": "O contraexemplo sobre as vitaminas ficava sem exemplo concreto. A B12 é a vitamina que nenhuma planta produz, e isso liga o passo à explicação da alternativa B.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "D"
  }
 }

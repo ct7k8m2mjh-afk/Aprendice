@@ -54,7 +54,7 @@
    {
     "faz": "Compare o número de linhas",
     "conta": "Pretas: centenas de áreas",
-    "porque": "Vermelhas: pouco mais de 50 países. Há muito mais territórios étnicos do que Estados. Isso derruba a D, que diz o contrário. A E também cai: as linhas vermelhas cortam áreas pretas.",
+    "porque": "Vermelhas: cerca de 50 países. Há muito mais territórios étnicos do que Estados. Isso derruba a D, que diz o contrário. A E também cai: as linhas vermelhas cortam áreas pretas.",
     "tipo": "comparar"
    },
    {
@@ -79,9 +79,9 @@
   "resposta": "Alternativa C: o mapa mostra poucas e grandes áreas étnicas no norte do continente, ou seja, menor diversidade étnica do que no resto da África.",
   "checagem": "Conte, de olho, as linhas pretas no Saara e em Gana ou na Nigéria: no norte são poucas e enormes, no oeste e no centro são muitas e pequenas. Depois confira se alguma outra letra se sustenta só com o mapa: nenhuma se sustenta.",
   "erradas": {
-   "A": "O mapa não mostra tráfico de escravizados. Além disso, o tráfico transatlântico se concentrou na África Ocidental e na Centro-Ocidental, e menos no Sudeste. O extremo sul ficou de fora. Faltou checar se o mapa sustenta a frase.",
+   "A": "O mapa não mostra tráfico de escravizados. Além disso, o tráfico transatlântico se concentrou na África Ocidental e na Centro-Ocidental, com menos peso no Sudeste (Moçambique) e muito pouco no extremo sul. Faltou checar se o mapa sustenta a frase.",
    "B": "O mapa mostra só fronteiras, não guerras. Quem marcou B usou conhecimento de fora do mapa. Os países do Chifre existem como Estados, então dizer que as guerras impediram unidades nacionais é exagero.",
-   "D": "Inverte os números. Há centenas de territórios étnicos (linhas pretas) e pouco mais de 50 países (linhas vermelhas). Quem marcou D trocou o que cada cor conta.",
+   "D": "Inverte os números. Há centenas de territórios étnicos (linhas pretas) e cerca de 50 países (linhas vermelhas). Quem marcou D trocou o que cada cor conta.",
    "E": "Inverte a história. As linhas vermelhas atravessam várias áreas pretas, separando um mesmo povo ou juntando povos diferentes. Elas vêm da partilha colonial, e a emancipação manteve esses limites."
   },
   "armadilha": "Marcar uma alternativa verdadeira na história (tráfico, guerras no Chifre) que o mapa não mostra, ou trocar o sentido do contraste entre etnias e países.",
@@ -118,12 +118,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -206,6 +208,28 @@
   "didatica_alertas": [
    "Alternativa C: 'população branca' é imprecisa, como o alerta já registra. O gabarito oficial é C."
   ],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Vermelhas: cerca de 50 países. Há muito mais territórios étnicos do que Estados. Isso derruba a D, que diz o contrário. A E também cai: as linhas vermelhas cortam áreas pretas.",
+    "motivo": "A África tem 54 países reconhecidos pela ONU, e o mapa é de data incerta. 'Pouco mais de 50' é uma contagem imprecisa. 'Cerca de 50' é seguro.",
+    "fonte": "ONU: 54 Estados-membros africanos"
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "Inverte os números. Há centenas de territórios étnicos (linhas pretas) e cerca de 50 países (linhas vermelhas). Quem marcou D trocou o que cada cor conta.",
+    "motivo": "Mesma imprecisão numérica.",
+    "fonte": "ONU: 54 Estados-membros africanos"
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "O mapa não mostra tráfico de escravizados. Além disso, o tráfico transatlântico se concentrou na África Ocidental e na Centro-Ocidental, com menos peso no Sudeste (Moçambique) e muito pouco no extremo sul. Faltou checar se o mapa sustenta a frase.",
+    "motivo": "O tráfico atingiu o Sudeste africano, sobretudo Moçambique, no século XIX. Dizer que o extremo sul 'ficou de fora' sem nuance era impreciso.",
+    "fonte": "Slave Voyages (slavevoyages.org)"
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "C"
  }
 }

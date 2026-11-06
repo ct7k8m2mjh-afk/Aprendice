@@ -56,7 +56,7 @@
    {
     "faz": "Ligue o gráfico ao conceito",
     "conta": "garimpo perto da água → mercúrio",
-    "porque": "O garimpo usa água para separar o ouro e usa mercúrio nessa separação. O mercúrio contamina rios e peixes e chega às pessoas. É risco alto para gente e animais.",
+    "porque": "O garimpo de ouro usa água e, em geral, mercúrio para separar o ouro. O mercúrio contamina rios e peixes e chega às pessoas pela alimentação. É risco alto para gente e animais.",
     "tipo": "comparar"
    },
    {
@@ -73,10 +73,10 @@
    }
   ],
   "resposta": "Alternativa B: o garimpo ilegal contamina águas e alimentos com substâncias como o mercúrio, o que é risco alto para pessoas e animais, e ocorre em áreas ainda muito preservadas, o que aumenta o impacto ambiental.",
-  "checagem": "Teste cada alternativa contra o gráfico. A C diz que o garimpo é distante da água, mas em duas de três terras a barra escura passa de 60%. A E diz que o garimpo não depende da água, mas a proximidade dos rios mostra o contrário. A A (desertificação, terras indígenas desmatadas) e a D (baixo impacto) já caem pela realidade da Amazônia. Sobra só a B.",
+  "checagem": "Teste cada alternativa contra o gráfico. A C diz que o garimpo é distante da água, mas em duas de três terras a barra escura passa de 60%. A E diz que o garimpo não depende da água, mas o garimpo de ouro usa água para separar o ouro, e as barras escuras mostram a proximidade dos rios. A A (desertificação, terras indígenas desmatadas) e a D (baixo impacto) já caem pela realidade da Amazônia. Sobra só a B.",
   "erradas": {
    "A": "Erra duas vezes. As terras indígenas estão entre as áreas mais preservadas da Amazônia, não entre as mais desmatadas. E desertificação ocorre em áreas secas; a Amazônia é úmida, e o dano do garimpo ali é desmatamento e contaminação, não desertificação.",
-   "C": "Contradiz o gráfico: 70% (Kayapó) e 64% (Yanomami) do garimpo ficam a até 500 m da água, ou seja, perto dos rios. Quem marcou C leu a distância pelo rio Amazonas e esqueceu os rios menores e os lagos, que contam como corpos d'água. O mercúrio contamina esses rios.",
+   "C": "Contradiz o gráfico: 70% (Kayapó) e 64% (Yanomami) do garimpo ficam a até 500 m da água, ou seja, perto dos rios. A alternativa também sugere que só o Amazonas e seus afluentes principais contam como corpos d'água, mas rios menores e lagos também contam. O mercúrio contamina esses rios.",
    "D": "O garimpo ilegal tem impacto alto: contamina a água com mercúrio e ameaça os povos indígenas. A proximidade dos rios vem do uso da água no processo, não de rota de fuga. Nem o gráfico nem o texto sustentam essa ideia.",
    "E": "Inverte a relação. O garimpo depende da água para separar o ouro do sedimento, e por isso se instala perto dos rios e lagos, como mostram as barras escuras. A relação é direta, e não por as populações indígenas saberem onde há ouro."
   },
@@ -114,12 +114,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -196,6 +198,28 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "Contradiz o gráfico: 70% (Kayapó) e 64% (Yanomami) do garimpo ficam a até 500 m da água, ou seja, perto dos rios. A alternativa também sugere que só o Amazonas e seus afluentes principais contam como corpos d'água, mas rios menores e lagos também contam. O mercúrio contamina esses rios.",
+    "motivo": "A frase 'Quem marcou C leu a distância pelo rio Amazonas...' inventava uma origem para o erro, o que o guia proíbe. Troquei por um teste objetivo que derruba a alternativa.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "O garimpo de ouro usa água e, em geral, mercúrio para separar o ouro. O mercúrio contamina rios e peixes e chega às pessoas pela alimentação. É risco alto para gente e animais.",
+    "motivo": "Ajuste menor de precisão. O mercúrio é usado com frequência no garimpo, mas não em todos os processos. 'Em geral' evita a generalização absoluta.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Teste cada alternativa contra o gráfico. A C diz que o garimpo é distante da água, mas em duas de três terras a barra escura passa de 60%. A E diz que o garimpo não depende da água, mas o garimpo de ouro usa água para separar o ouro, e as barras escuras mostram a proximidade dos rios. A A (desertificação, terras indígenas desmatadas) e a D (baixo impacto) já caem pela realidade da Amazônia. Sobra só a B.",
+    "motivo": "A frase original ('a proximidade dos rios mostra o contrário') usava a proximidade como prova de dependência. Isso é inferência, não dado do gráfico. Separei o fato (uso de água no processo) do dado do gráfico.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "B"
  }
 }

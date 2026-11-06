@@ -58,7 +58,7 @@
     "faz": "Explique por que o fogo se espalha",
     "conta": "Combustão libera calor",
     "porque": "O calor liberado pela reação serve de energia de ativação para as moléculas vizinhas, e a reação segue sozinha.",
-    "tipo": "calcular"
+    "tipo": "comparar"
    },
    {
     "faz": "Confronte com as alternativas",
@@ -81,7 +81,8 @@
    "pede": "Explicar por que a árvore não queima espontaneamente, embora a combustão seja favorável, e por que o fogo se espalha depois de iniciado.",
    "chave": "Energia de ativação para iniciar; o calor liberado pela combustão fornece essa energia às moléculas vizinhas.",
    "cuidado": "Liberar energia no final não quer dizer começar sozinha: o início exige energia de ativação."
-  }
+  },
+  "tema": "Q08"
  },
  "caminhos": [
   {
@@ -109,12 +110,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -259,6 +262,22 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.passos[2].tipo",
+    "depois": "comparar",
+    "motivo": "O passo não tem conta, só explica por que o fogo se espalha. O tipo 'calcular' não serve. A justificativa da didática dizia 'localizar', mas o valor gravado foi 'calcular'. Esse passo relaciona o calor liberado com a energia de ativação das moléculas vizinhas, então 'comparar' descreve melhor. Se preferir, 'localizar' também serve.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.tema",
+    "depois": "Q08",
+    "motivo": "Sem alteração: a classificação Q08.2 (energia de ativação) é adequada. O cabeçalho do banco diz Q12.5, mas a questão trata de cinética. Fica registrado apenas como observação.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "E"
  }
 }

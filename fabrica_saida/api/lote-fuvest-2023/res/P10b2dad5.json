@@ -71,7 +71,7 @@
    {
     "faz": "Localize a solução já existente",
     "conta": "“We already have one kind of renewable energy storage… pumped-storage hydropower”",
-    "porque": "O terceiro parágrafo apresenta a hidrelétrica de bombeamento como o armazenamento de energia renovável que já existe, com mais de 90% da capacidade mundial.",
+    "porque": "O terceiro parágrafo apresenta a hidrelétrica de bombeamento como o armazenamento de energia renovável que já existe: mais de 90% da capacidade mundial de armazenamento está nela.",
     "tipo": "localizar"
    },
    {
@@ -93,7 +93,7 @@
    "A": "O texto não menciona energia nuclear em nenhum parágrafo. As soluções citadas são as baterias e a hidrelétrica de bombeamento (pumped hydro).",
    "B": "O texto não fala de calor nem de conversão em energia térmica. A turbina que gira gera “power”, isto é, eletricidade, e não calor.",
    "D": "Energia solar é justamente a que falha nos “dark doldrums” (“at night solar cells do little”). Converter solar em mecânica não é uma alternativa para quando ela é insuficiente.",
-   "E": "O texto cita baterias como 'solução óbvia', mas não diz que energia elas convertem. Mostra só os limites: acabam em 3 ou 4 horas e perdem capacidade. O mecanismo explicado em detalhe é o da turbina movida pela água."
+   "E": "O texto cita baterias como “solução óbvia”, mas não diz que energia elas convertem. Mostra só os limites: esgotam a carga em 3 ou 4 horas de potência máxima e perdem capacidade a cada recarga. O mecanismo explicado em detalhe é o da turbina movida pela água."
   },
   "armadilha": "Pensar em baterias, a “solução óbvia” do segundo parágrafo, e marcar energia química sem notar que o texto só explica o mecanismo da água que gira a turbina.",
   "alerta": "",
@@ -125,12 +125,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -234,6 +236,22 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "O terceiro parágrafo apresenta a hidrelétrica de bombeamento como o armazenamento de energia renovável que já existe: mais de 90% da capacidade mundial de armazenamento está nela.",
+    "motivo": "O texto diz que mais de 90% da capacidade de ARMAZENAMENTO está em reservatórios (pumped hydro), e não da capacidade mundial de energia. A redação original podia ser lida como 90% da energia mundial.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "O texto cita baterias como “solução óbvia”, mas não diz que energia elas convertem. Mostra só os limites: esgotam a carga em 3 ou 4 horas de potência máxima e perdem capacidade a cada recarga. O mecanismo explicado em detalhe é o da turbina movida pela água.",
+    "motivo": "Precisão: o texto diz “three or four hours of maximum output”, não “3 ou 4 horas” em geral. Além disso, a capacidade cai com cada recarga, e não de forma genérica.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "C"
  }
 }

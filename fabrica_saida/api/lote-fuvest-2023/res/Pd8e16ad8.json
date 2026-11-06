@@ -8,7 +8,7 @@
  "conceito": "Pesca seletiva dos peixes maiores atua como seleção artificial e, com o tempo, favorece peixes menores na população.",
  "resolucao": {
   "antes": {
-   "texto": "Seleção artificial acontece quando uma atividade humana decide quais indivíduos sobrevivem e se reproduzem. Se a pesca retira os peixes grandes, os pequenos deixam mais descendentes. Se o tamanho passa de pais para filhos (é hereditário), as gerações seguintes terão mais peixes pequenos. O trabalho real da questão é comparar o tamanho dos peixes nos três momentos da figura.",
+   "texto": "Seleção artificial acontece quando uma atividade humana decide quais indivíduos sobrevivem e se reproduzem. Se a pesca retira os peixes grandes, os pequenos deixam mais descendentes. Se o tamanho tem base hereditária (passa de pais para filhos), as gerações seguintes terão mais peixes pequenos. O trabalho real da questão é comparar o tamanho dos peixes nos três momentos da figura.",
    "formulas": [
     "pesca remove os grandes → os pequenos se reproduzem mais → a população futura tem mais pequenos"
    ],
@@ -51,8 +51,8 @@
    },
    {
     "faz": "Leia o momento III",
-    "conta": "III: mais peixes, quase todos pequenos",
-    "porque": "Depois de várias gerações, o número de peixes voltou a subir, mas o tamanho médio ficou menor que em I. Os pequenos sobreviventes deixaram os descendentes.",
+    "conta": "III: população volta, mas menor",
+    "porque": "Depois de alguns ciclos de reprodução, o número de peixes quase voltou ao de I. Mas os maiores de I não reaparecem e predominam peixes pequenos e médios. O tamanho médio ficou menor que em I.",
     "tipo": "comparar"
    },
    {
@@ -69,10 +69,10 @@
    }
   ],
   "resposta": "Alternativa E: a pesca retirou os peixes maiores, o que é seleção artificial e leva a uma população de peixes menores ao longo do tempo.",
-  "checagem": "Conte os peixes grandes: há vários em I, nenhum em II e nenhum em III. Os pequenos aparecem nos três momentos. Logo, o tamanho médio cai de I para III, como diz a alternativa E.",
+  "checagem": "Compare os maiores peixes. Em I há vários, em II nenhum e em III só alguns de porte bem menor que os de I. Os pequenos e médios aparecem nos três momentos e predominam em III. Logo, o tamanho médio cai de I para III, como diz a alternativa E.",
   "erradas": {
    "A": "A figura mostra só peixes adultos, não mostra produtividade primária (produção das algas). O tamanho menor se explica pela retirada dos grandes, não por falta de alimento.",
-   "B": "Quem marcou B leu só o número e esqueceu a conclusão: em III há tantos peixes quanto em I, ou mais. A abundância voltou; o que mudou foi o tamanho. Colapso não aparece na figura.",
+   "B": "Quem marcou B leu só o número e esqueceu a conclusão: em III há quase tantos peixes quanto em I. A abundância voltou; o que mudou foi o tamanho. Colapso não aparece na figura.",
    "C": "Nada na figura diz que os grandes deixam de se reproduzir por estresse. Eles somem em II porque foram pescados, não porque ficaram estéreis. Quem marcou C inventou uma causa que o texto não dá.",
    "D": "Quem marcou D olhou só o número de peixes. Há impacto claro: o tamanho médio caiu de I para III. Dizer que a pesca não causa impacto contradiz a figura."
   },
@@ -110,12 +110,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -226,6 +228,40 @@
   "didatica_alertas": [
    "Na figura (print), o momento III parece mostrar alguns peixes médios/grandes (os três do alto e os do meio-direita), não apenas pequenos. A resolução afirma 'nenhum grande em III'; vale o corretor 1 conferir. O gabarito E continua valendo, pois o tamanho médio é menor que em I."
   ],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "III: população volta, mas menor",
+    "motivo": "No print, o momento III não tem só peixes pequenos. Há médios e alguns de porte maior, mas nenhum do tamanho dos maiores de I. Tem aproximadamente o mesmo número de peixes que I, não 'mais'.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Depois de alguns ciclos de reprodução, o número de peixes quase voltou ao de I. Mas os maiores de I não reaparecem e predominam peixes pequenos e médios. O tamanho médio ficou menor que em I.",
+    "motivo": "Ajusta a leitura da figura. Em III existem alguns peixes médios-grandes, mas os maiores de I ficaram ausentes.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.checagem",
+    "depois": "Compare os maiores peixes. Em I há vários, em II nenhum e em III só alguns de porte bem menor que os de I. Os pequenos e médios aparecem nos três momentos e predominam em III. Logo, o tamanho médio cai de I para III, como diz a alternativa E.",
+    "motivo": "A frase 'nenhum em III' contradiz o print, onde há alguns peixes de porte maior em III.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "Quem marcou B leu só o número e esqueceu a conclusão: em III há quase tantos peixes quanto em I. A abundância voltou; o que mudou foi o tamanho. Colapso não aparece na figura.",
+    "motivo": "Diz 'tantos quanto em I, ou mais', mas a contagem no print mostra números parecidos, não maiores.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Seleção artificial acontece quando uma atividade humana decide quais indivíduos sobrevivem e se reproduzem. Se a pesca retira os peixes grandes, os pequenos deixam mais descendentes. Se o tamanho tem base hereditária (passa de pais para filhos), as gerações seguintes terão mais peixes pequenos. O trabalho real da questão é comparar o tamanho dos peixes nos três momentos da figura.",
+    "motivo": "A conclusão sobre as gerações seguintes só vale se o tamanho tiver base genética. 'Se' marca essa condição, e foi mantido com a explicação simples. Apenas troquei 'é hereditário' por 'tem base hereditária', para a condição ficar mais precisa.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "E"
  }
 }

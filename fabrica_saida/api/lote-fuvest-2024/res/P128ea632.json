@@ -22,7 +22,7 @@
     ],
     [
      "trovador",
-     "poeta medieval que cantava o amor; no poema, representa a poesia tradicional"
+     "poeta medieval que cantava o amor; no poema, simboliza a poesia lírica tradicional, que o poeta dá como extinta"
     ],
     [
      "lírica",
@@ -38,7 +38,7 @@
     ],
     [
      "percevejo",
-     "inseto pequeno e comum; no poema, compara-se a vida humana a algo descartável"
+     "inseto pequeno e comum; no poema, os homens se matam como percevejos, ou seja, a vida humana vira algo descartável"
     ]
    ]
   },
@@ -71,7 +71,7 @@
    {
     "faz": "Elimine as demais",
     "conta": "A, B, C, D contra o texto",
-    "porque": "Cada uma afirma algo que o texto desmente: o mundo não tira os entraves, o último trovador morreu, as máquinas são complicadas e inúteis, e só os percevejos renascem.",
+    "porque": "Cada uma afirma algo que o texto desmente: o mundo continua cheio de entraves (A), o último trovador morreu (B), as máquinas são complicadas e inúteis e o sábio diz que falta cultura (C), e só os percevejos renascem, não os heróis humanos (D).",
     "tipo": "eliminar"
    }
   ],
@@ -115,12 +115,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -224,6 +226,34 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.antes.simbolos[1]",
+    "depois": [
+     "trovador",
+     "poeta medieval que cantava o amor; no poema, simboliza a poesia lírica tradicional, que o poeta dá como extinta"
+    ],
+    "motivo": "Ajuste pequeno de precisão: o trovador é figura medieval e simboliza a poesia tradicional, que o texto dá como acabada. A versão anterior não tinha erro factual grave, mas esta evita a leitura de que o poema o valoriza.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.antes.simbolos[5]",
+    "depois": [
+     "percevejo",
+     "inseto pequeno e comum; no poema, os homens se matam como percevejos, ou seja, a vida humana vira algo descartável"
+    ],
+    "motivo": "A frase anterior dizia que o poema compara a vida humana a algo descartável. Essa comparação vem de 'matam-se como percevejos', e a nova redação deixa isso explícito.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "Cada uma afirma algo que o texto desmente: o mundo continua cheio de entraves (A), o último trovador morreu (B), as máquinas são complicadas e inúteis e o sábio diz que falta cultura (C), e só os percevejos renascem, não os heróis humanos (D).",
+    "motivo": "A redação anterior misturava as letras. A nova a associa a cada alternativa, na ordem.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "E"
  }
 }

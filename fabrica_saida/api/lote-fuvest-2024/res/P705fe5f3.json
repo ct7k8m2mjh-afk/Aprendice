@@ -67,8 +67,8 @@
    },
    {
     "faz": "Leia a resposta de Candelaria",
-    "conta": "“But Candelaria argues that… she had been sold by her own mother into slavery” (Mas Candelaria argumenta que… ela fora vendida pela própria mãe à escravidão)",
-    "porque": "O 'But' marca o contraste: dar as costas ao seu povo faz sentido psicológico porque a própria família a rejeitou.",
+    "conta": "“But Candelaria argues that… she had been sold by her own mother into slavery”",
+    "porque": "Tradução: “Mas Candelaria argumenta que… ela fora vendida pela própria mãe à escravidão”. O 'But' marca o contraste: dar as costas ao seu povo faz sentido psicológico porque a própria mãe a vendeu.",
     "tipo": "localizar"
    },
    {
@@ -98,7 +98,8 @@
    "pede": "O argumento de Candelaria sobre a imagem de traidora.",
    "chave": "Depois de 'But Candelaria argues', ela explica a suposta traição pela venda à escravidão feita pela própria mãe.",
    "cuidado": "A habilidade com idiomas é fato do texto, mas não é a justificativa que Candelaria dá."
-  }
+  },
+  "conteudo": "I01.3"
  },
  "caminhos": [
   {
@@ -122,12 +123,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -226,6 +229,28 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "“But Candelaria argues that… she had been sold by her own mother into slavery”",
+    "motivo": "A conta tinha a citação e a tradução na mesma linha, e isso não cabe nos ~30 caracteres da tela. A tradução vai para o porque. A mudança é de formato e o conteúdo não muda.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Tradução: “Mas Candelaria argumenta que… ela fora vendida pela própria mãe à escravidão”. O 'But' marca o contraste: dar as costas ao seu povo faz sentido psicológico porque a própria mãe a vendeu.",
+    "motivo": "O porque anterior dizia que a família a rejeitou. Isso é inferência, e o texto só diz que a mãe a vendeu. A mudança também recebe a tradução tirada da conta.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.conteudo",
+    "depois": "I01.3",
+    "motivo": "A classificação atual é I01.5, e a resolução já usa I01.3 (informação explícita). Mantive I01.3, que está correto.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "A"
  }
 }

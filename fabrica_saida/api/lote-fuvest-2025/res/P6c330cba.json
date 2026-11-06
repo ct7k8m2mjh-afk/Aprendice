@@ -40,14 +40,14 @@
   "passos": [
    {
     "faz": "Leia a cor da Rússia e da Austrália",
-    "conta": "Rússia: vermelho, 13,0–14,4%",
+    "conta": "Rússia: 13,0–14,4% (vermelho)",
     "porque": "Procure os dois países no mapa e compare a cor de cada um com a legenda. A Rússia está na faixa 13,0–14,4% da energia diária. A Austrália também aparece em cor de faixa alta, bem acima dos verdes.",
     "tipo": "localizar"
    },
    {
     "faz": "Compare com o resto do mapa",
     "conta": "Verdes: de <4,0 a 9,9%",
-    "porque": "Grande parte da América do Sul, da África e da Ásia está em verde, com consumo baixo. Os dois países estão entre os maiores consumos.",
+    "porque": "Grande parte da América do Sul, da África e da Ásia tem tons verdes, com consumo baixo ou moderado. Os dois países estão entre os maiores consumos do mapa.",
     "tipo": "comparar"
    },
    {
@@ -74,7 +74,7 @@
   "erradas": {
    "A": "Doenças renais (dos rins) vêm sobretudo de diabetes, pressão alta e infecções. O mapa mostra só gordura saturada, e ela não é a causa clássica desse grupo. Falta ligar o dado ao colesterol e às artérias.",
    "B": "Doenças respiratórias (asma, bronquite) vêm de fumo, poluição e infecções. Quem marcou B pensou em doença comum, mas a gordura da dieta não é fator clássico dos pulmões. Falta ligar gordura a colesterol e artérias.",
-   "D": "O AVC (derrame) atinge o cérebro, mas nasce de um vaso entupido ou rompido. Ou seja, é uma doença dos vasos, do grupo cardiovascular. Quem marcou D parou no órgão atingido e não olhou a causa: a aterosclerose. 'Cardiovasculares' é o grupo que inclui o AVC.",
+   "D": "O AVC (derrame) atinge o cérebro, mas nasce de um vaso entupido ou rompido. Por isso, é classificado como doença cardiovascular (circulatória). 'Cerebrais' é uma categoria menos precisa para o efeito da gordura saturada, que age pela aterosclerose. Quem marcou D parou no órgão atingido e não olhou a causa.",
    "E": "Doenças neuromusculares (distrofias, miastenia) são em geral genéticas ou autoimunes (o corpo ataca a si mesmo). A gordura da dieta não as causa. Quem marcou E não ligou o dado ao colesterol e às artérias."
   },
   "armadilha": "Escolher 'cerebrais' porque o AVC atinge o cérebro, esquecendo que ele nasce de problema nos vasos, que é o grupo cardiovascular.",
@@ -111,12 +111,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -214,6 +216,28 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.passos[0].conta",
+    "depois": "Rússia: 13,0–14,4% (vermelho)",
+    "motivo": "A conta afirmava só a Rússia; a ordem foi ajustada para destacar a faixa numérica. Mudança mínima e opcional. A Rússia aparece no mapa em vermelho-alaranjado, faixa 13,0–14,4%, o que está correto.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "Grande parte da América do Sul, da África e da Ásia tem tons verdes, com consumo baixo ou moderado. Os dois países estão entre os maiores consumos do mapa.",
+    "motivo": "Na figura há também áreas amarelas e laranja na África e na Ásia, então 'está em verde' generaliza demais. A reescrita é mais fiel ao print. A Austrália está em laranja (11,5–12,9%), não entre os maiores valores absolutos do mapa. 'Entre os maiores' fica aceitável, porque é uma faixa alta.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "O AVC (derrame) atinge o cérebro, mas nasce de um vaso entupido ou rompido. Por isso, é classificado como doença cardiovascular (circulatória). 'Cerebrais' é uma categoria menos precisa para o efeito da gordura saturada, que age pela aterosclerose. Quem marcou D parou no órgão atingido e não olhou a causa.",
+    "motivo": "Texto original dizia que 'cardiovasculares' inclui o AVC, o que é correto. A reescrita só deixa explícito que a classificação do AVC é circulatória e que a gordura age pela aterosclerose. Mudança pequena para evitar a leitura de que D seria falsa em absoluto.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "C"
  }
 }

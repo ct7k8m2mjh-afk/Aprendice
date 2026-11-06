@@ -8,7 +8,7 @@
  "conceito": "Sentido literal (denotativo) × figurado (conotativo) da palavra \"machamba\" em dois textos de autores moçambicanos.",
  "resolucao": {
   "antes": {
-   "texto": "\"Machamba\" é palavra de origem africana, usada em Moçambique. Significa terreno de cultivo, a roça da família. A questão pede que você veja, em cada texto, se a palavra tem o sentido de dicionário (literal) ou um sentido transferido, por comparação (figurado). Quem decide é o contexto: o que acontece ao redor da palavra.",
+   "texto": "\"Machamba\" é palavra de origem africana (bantu), usada em Moçambique. Significa terreno de cultivo, roça. A questão pede que você veja, em cada texto, se a palavra tem o sentido de dicionário (literal) ou um sentido transferido, por comparação (figurado). Quem decide é o contexto: o que acontece ao redor da palavra.",
    "formulas": [
     "sentido literal (denotativo): o sentido próprio da palavra, de dicionário",
     "sentido figurado (conotativo): a palavra é usada por comparação, com outro sentido",
@@ -17,7 +17,7 @@
    "simbolos": [
     [
      "machamba",
-     "em Moçambique, terreno agrícola de cultivo, geralmente familiar"
+     "em Moçambique, terreno de cultivo, geralmente de pequena produção familiar"
     ],
     [
      "capataz",
@@ -50,7 +50,7 @@
    {
     "faz": "Localize a machamba no texto I",
     "conta": "\"Na confusão verde do fundo da machamba\"",
-    "porque": "Há um capataz, \"confusão verde\" de plantas e uma mulher no fundo do terreno. A machamba é o lugar de cultivo, real, onde a cena acontece.",
+    "porque": "Há um capataz, uma 'confusão verde' de plantas e uma mulher no fundo do terreno. A machamba é o lugar de cultivo, real, onde a cena acontece.",
     "tipo": "localizar"
    },
    {
@@ -83,7 +83,7 @@
   "erradas": {
    "A": "Erra os dois textos. No texto I a machamba não é matagal: é terra cultivada, como mostram a \"confusão verde\" de plantas e o capataz. No texto II ela não é o \"papel de esposa\": o que Nguila \"semeia\" é o corpo de Sarnau, em busca de filhos.",
    "C": "Inverte tudo. No texto I a machamba é o lugar da cena, o terreno, e não a colheita; é literal. No texto II, Sarnau é chamada de \"machamba difícil\" por comparação, logo o sentido é figurado, e o que se compara é o corpo dela, não um \"problema\".",
-   "D": "Acerta o texto I, mas erra o II. Sarnau é uma mulher e não um terreno agrícola: dizer \"pareces ser uma machamba\", \"semeio em ti\", só tem sentido como metáfora do corpo feminino que deve gerar filhos.",
+   "D": "Acerta o texto I, mas erra o II. Sarnau é uma mulher e não um terreno agrícola: 'pareces ser uma machamba' e 'semeio em ti' só têm sentido como metáfora do corpo feminino que deve gerar filhos. Além disso, 'produção familiar' não aparece em nenhum dos textos.",
    "E": "Não confere em nenhum dos textos. No texto I a machamba é terreno de cultivo concreto, sentido literal. Nenhum trecho cita portugueses ou terras ocupadas por eles; no texto II o sentido figurado é o útero de Sarnau."
   },
   "armadilha": "Achar que a palavra tem o mesmo sentido nos dois textos só porque é a mesma palavra; é o contexto de cada trecho que decide se é literal ou figurado.",
@@ -120,12 +120,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -206,6 +208,37 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.antes.simbolos[0]",
+    "depois": [
+     "machamba",
+     "em Moçambique, terreno de cultivo, geralmente de pequena produção familiar"
+    ],
+    "motivo": "Ajuste leve de precisão. 'Machamba' designa a roça ou terreno agrícola, não só o familiar. A mudança evita afirmar o que o dicionário não restringe.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "\"Machamba\" é palavra de origem africana (bantu), usada em Moçambique. Significa terreno de cultivo, roça. A questão pede que você veja, em cada texto, se a palavra tem o sentido de dicionário (literal) ou um sentido transferido, por comparação (figurado). Quem decide é o contexto: o que acontece ao redor da palavra.",
+    "motivo": "Retirei 'a roça da família' como definição da palavra, porque a questão não exige esse traço. A alternativa D afirma 'produção familiar' e a resolução não deve parecer endossá-la como parte do sentido.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "Acerta o texto I, mas erra o II. Sarnau é uma mulher e não um terreno agrícola: 'pareces ser uma machamba' e 'semeio em ti' só têm sentido como metáfora do corpo feminino que deve gerar filhos. Além disso, 'produção familiar' não aparece em nenhum dos textos.",
+    "motivo": "Acrescentei o segundo defeito real da alternativa D. O primeiro texto fala de capataz e de uma machamba de trabalho, sem indicar produção familiar.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[0].porque",
+    "depois": "Há um capataz, uma 'confusão verde' de plantas e uma mulher no fundo do terreno. A machamba é o lugar de cultivo, real, onde a cena acontece.",
+    "motivo": "Troquei 'de plantas' por aspas na expressão e retirei a afirmação implícita. A 'confusão verde' é interpretação plausível, mas o texto não diz 'plantas'. O restante permanece.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "B"
  }
 }

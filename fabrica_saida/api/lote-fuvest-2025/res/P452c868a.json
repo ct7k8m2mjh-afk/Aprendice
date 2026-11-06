@@ -50,14 +50,14 @@
    },
    {
     "faz": "Leia as curvas do gráfico",
-    "conta": "Sem antib.: sobe de ~55 a ~130\nAntib. 2: cai a 0 no dia 9\nAntib. 1: sobe até ~88, cai a 0 no dia 16\nAntib. 3: cai a ~10 no dia 10, sobe a ~120 no dia 16",
+    "conta": "Sem antib.: sobe de ~55 a ~130\nAntib. 2: cai a 0 no dia 9\nAntib. 1: sobe até ~88 (dia 9), cai a 0 no dia 16\nAntib. 3: cai a ~10 no dia 10, sobe a ~120 no dia 16",
     "porque": "O eixo vertical é o número de bactérias (milhões) e o horizontal é o tempo (dias). Com o antibiótico 3, a população volta a crescer: a bactéria passou a resistir a ele.",
     "tipo": "localizar"
    },
    {
     "faz": "Teste D e E contra o gráfico",
     "conta": "Dia 16: antib. 3 ≈ 120 milhões\nAntib. 2 zera no dia 9\nAntib. 1 zera no dia 16",
-    "porque": "No dia 16, o antibiótico 3 está em cerca de 120 milhões: as bactérias voltaram a crescer, ou seja, resistem a ele. Por isso D é falsa. Em E, o antibiótico 3 é o pior, pois não elimina a população. Mas o 1 também zera a população, só que mais devagar. Assim, E erra ao chamar o 1 de menos eficiente.",
+    "porque": "No dia 16, o antibiótico 3 está em cerca de 120 milhões: as bactérias voltaram a crescer, ou seja, resistem a ele. Por isso D é falsa. Em E, o 2 zera a população mais rápido (dia 9), mas o 1 também a leva a zero (dia 16), e o pior é o 3, que não elimina a população. Assim, E erra ao chamar o 1 de o menos eficiente.",
     "tipo": "eliminar"
    },
    {
@@ -76,7 +76,7 @@
   "resposta": "Alternativa C: mutações aleatórias, somadas à exposição prolongada aos antibióticos, contribuem para a seleção de bactérias resistentes.",
   "checagem": "Conte o que o texto diz: dose ou tempo insuficientes deixam sobreviventes que se multiplicam e acumulam alterações genéticas. Isso é mutação ao acaso mais seleção. O gráfico mostra o mesmo: com o antibiótico 3, a população se recupera após o dia 10.",
   "erradas": {
-   "A": "Faltou lembrar que mutações surgem ao acaso, com ou sem antibiótico. Combinar fármacos não muda a chance de surgirem mutantes, e o texto não traz dado sobre a quantidade lançada no esgoto. O antibiótico só seleciona os resistentes que já existem.",
+   "A": "A afirmação não tem base no texto: combinar antibióticos não reduz a quantidade lançada no esgoto, e as mutações surgem ao acaso, com ou sem o fármaco. O antibiótico só seleciona os resistentes que já existem.",
    "B": "Aumentar a concentração de antibióticos na natureza amplia o contato das bactérias com os fármacos. O texto diz que esse contato \"favorece a seleção das variedades resistentes\", então a medida pioraria o problema.",
    "D": "No dia 16 a curva do antibiótico 3 está em cerca de 120 milhões, quase igual à de crescimento livre. As bactérias sobreviventes e multiplicadas nessa cultura são resistentes a ele, então ele não será eficiente contra essas linhagens.",
    "E": "Faltou olhar a curva do antibiótico 3. O 2 zera a população no dia 9, mas o 1 também a leva a zero, no dia 16. Então o 1 não é o menos eficiente: o pior é o 3, cuja população volta a crescer."
@@ -111,12 +111,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -197,6 +199,28 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "Sem antib.: sobe de ~55 a ~130\nAntib. 2: cai a 0 no dia 9\nAntib. 1: sobe até ~88 (dia 9), cai a 0 no dia 16\nAntib. 3: cai a ~10 no dia 10, sobe a ~120 no dia 16",
+    "motivo": "Precisão: o pico de ~88 do antibiótico 1 ocorre no dia 9. A leitura do gráfico confere nos demais valores. Correção opcional, só para completar a informação.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "No dia 16, o antibiótico 3 está em cerca de 120 milhões: as bactérias voltaram a crescer, ou seja, resistem a ele. Por isso D é falsa. Em E, o 2 zera a população mais rápido (dia 9), mas o 1 também a leva a zero (dia 16), e o pior é o 3, que não elimina a população. Assim, E erra ao chamar o 1 de o menos eficiente.",
+    "motivo": "Redação mais clara e fiel ao gráfico. O texto anterior dizia que o 1 zera 'mais devagar' sem dizer em relação a quê. Também foi dito que o 2 zera primeiro. O sentido não muda.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "A afirmação não tem base no texto: combinar antibióticos não reduz a quantidade lançada no esgoto, e as mutações surgem ao acaso, com ou sem o fármaco. O antibiótico só seleciona os resistentes que já existem.",
+    "motivo": "A versão anterior dizia que 'combinar fármacos não muda a chance de surgirem mutantes' como fato categórico. Isso é plausível, mas a justificativa mais segura é a falta de sustentação no texto e a natureza aleatória das mutações. Também se tirou a frase 'Faltou lembrar', que não explica a alternativa.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "C"
  }
 }

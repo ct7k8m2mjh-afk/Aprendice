@@ -90,10 +90,10 @@
   "resposta": "Alternativa B: o texto diz que os cortes de gastos e a mudança de prioridades em algumas escolas públicas reduziram as aulas de educação física e os esportes organizados.",
   "checagem": "Use a fala final de Solomon: “if they don’t have access to sports within the school setting, where are they going to get their physical activity?” […] “The answer is nowhere.” (se não têm acesso ao esporte na escola, onde farão atividade física? Em lugar nenhum.) Ela reforça que a perda do esporte na escola pública pesa na disparidade.",
   "erradas": {
-   "A": "Quem marcou A confundiu o 'digital divide' (acesso à tecnologia) com outro tipo de desigualdade. O texto não compara notas de ricos e pobres em nenhum trecho.",
-   "C": "Quem marcou C inventou uma seleção por talento. O texto fala só do custo do esporte privado (taxas, uniformes, viagens, treinador). Não menciona preferência por jogadores melhores.",
-   "D": "Quem marcou D trouxe bolsas de estudo, assunto que o texto não cita (nem 'scholarship', nem linha de pobreza). O corte citado é de gastos nas escolas públicas, que reduziu as aulas de educação física.",
-   "E": "Quem marcou E viu 'tournaments' (torneios) e puxou o tema. No texto, torneios aparecem só como gasto de viagem das famílias. Não há campeonatos, ONGs nem doações."
+   "A": "O texto não compara notas de ricos e pobres em nenhum trecho. O 'digital divide' é sobre acesso à tecnologia, e hoje essa diferença diminuiu bastante. Não há 'abismo persistente' de notas.",
+   "C": "O texto não menciona preferência por jogadores melhores. Ele fala só do custo do esporte privado: taxas de clube, uniformes, equipamento, viagens e treinador particular.",
+   "D": "O texto não fala de bolsas de estudo nem de linha de pobreza. O corte citado é de gastos em algumas escolas públicas, que reduziu as aulas de educação física e os esportes organizados.",
+   "E": "O texto não fala de campeonatos com doações de ONGs. 'Tournaments' aparece só na lista de gastos das famílias ('travel to tournaments', viagens a torneios). Não há ONGs nem doações."
   },
   "armadilha": "Escolher alternativa plausível sobre desigualdade (bolsas, notas, ONGs) que o texto não menciona; a resposta é a que está escrita no trecho dos fatores.",
   "alerta": "",
@@ -125,12 +125,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -268,6 +270,34 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "O texto não compara notas de ricos e pobres em nenhum trecho. O 'digital divide' é sobre acesso à tecnologia, e hoje essa diferença diminuiu bastante. Não há 'abismo persistente' de notas.",
+    "motivo": "A frase 'quem marcou A confundiu...' atribuía um raciocínio sem prova. Troquei por um teste objetivo: o texto não fala de notas, e o digital divide está diminuindo, não persistindo.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "O texto não menciona preferência por jogadores melhores. Ele fala só do custo do esporte privado: taxas de clube, uniformes, equipamento, viagens e treinador particular.",
+    "motivo": "Retirei 'quem marcou C inventou', que especula sobre a origem do erro. Mantive o teste objetivo.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "O texto não fala de bolsas de estudo nem de linha de pobreza. O corte citado é de gastos em algumas escolas públicas, que reduziu as aulas de educação física e os esportes organizados.",
+    "motivo": "Retirei a especulação sobre quem marcou D. Mantive o teste objetivo.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "O texto não fala de campeonatos com doações de ONGs. 'Tournaments' aparece só na lista de gastos das famílias ('travel to tournaments', viagens a torneios). Não há ONGs nem doações.",
+    "motivo": "Retirei a especulação sobre quem marcou E e corrigi 'não há campeonatos': a palavra tournaments existe no texto, mas como gasto de viagem.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "B"
  }
 }

@@ -90,7 +90,7 @@
    "A": "10 cal é só o trabalho adicional do arremesso. Faltou a energia potencial da bola, que vale 126 J = 30 cal.",
    "B": "Sai de subtrair em vez de somar: 126 − 42 = 84 J = 20 cal. O trabalho da pessoa é energia acrescentada à bola, então ele soma.",
    "C": "30 cal é só a energia potencial (126 J ÷ 4,2). Faltou somar as 10 cal que a pessoa fornece ao arremessar, pois essa energia também chega ao chão e é dissipada.",
-   "E": "50 cal = 210 J não confere: a bola só recebe 126 J de energia potencial e 42 J do arremesso, somando 168 J. Quem marcou E provavelmente somou uma energia a mais que não existe; só há essas duas fontes."
+   "E": "50 cal = 210 J não confere: a bola só tem 126 J de energia potencial e 42 J do arremesso, somando 168 J = 40 cal. Nenhuma outra energia entra, então 210 J passaria do total disponível."
   },
   "armadilha": "Medir a altura só até a cabeça (ou só até 40 cm) e esquecer o trabalho de 10 cal, que também vira energia a ser dissipada.",
   "alerta": "",
@@ -107,7 +107,7 @@
   },
   {
    "nome": "eliminação",
-   "ideia": "A energia é maior que só a potencial (30 cal), pois há trabalho adicional. Isso descarta A, B e C. Ela também não pode superar 30 + 10 = 40 cal, o que descarta E."
+   "ideia": "A energia é maior que só a potencial (30 cal), pois há trabalho adicional. Isso descarta A, B e C. Como as duas únicas fontes somam 30 + 10 = 40 cal, 50 cal teria de vir de energia que não existe, o que descarta E."
   }
  ],
  "quadro": [
@@ -159,12 +159,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -241,6 +243,22 @@
   "didatica_alertas": [
    "A classificação do banco (F04.3, pressão) não combina com a questão, que é de energia e conservação (F03.2). A resolução já usa F03/F03.2; o banco precisa ser corrigido."
   ],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "50 cal = 210 J não confere: a bola só tem 126 J de energia potencial e 42 J do arremesso, somando 168 J = 40 cal. Nenhuma outra energia entra, então 210 J passaria do total disponível.",
+    "motivo": "Retira o 'provavelmente' (proibido) e dá um teste objetivo.",
+    "fonte": ""
+   },
+   {
+    "campo": "caminhos[1].ideia",
+    "depois": "A energia é maior que só a potencial (30 cal), pois há trabalho adicional. Isso descarta A, B e C. Como as duas únicas fontes somam 30 + 10 = 40 cal, 50 cal teria de vir de energia que não existe, o que descarta E.",
+    "motivo": "O argumento anterior era circular: 'não pode superar 40' pressupunha a resposta.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "D"
  }
 }

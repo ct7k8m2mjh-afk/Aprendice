@@ -30,7 +30,7 @@
     ],
     [
      "organismos pioneiros",
-     "primeiros seres a ocupar um local, como líquens e musgos na rocha nua"
+     "primeiros seres a ocupar um local, como líquens e musgos em rocha nua, ou plantas de crescimento rápido em solo exposto"
     ],
     [
      "biomassa",
@@ -87,8 +87,8 @@
   "checagem": "Cada uma das outras quatro alternativas tem um erro verificável: A diz que eventos assim são raros, B diz que uma floresta madura surge em poucos anos, C diz que a região tem baixa umidade, E diz que fotossíntese e respiração ficam equivalentes durante a sucessão. Só a D não tem erro.",
   "erradas": {
    "A": "Inverte a realidade. Na Serra do Mar, as encostas íngremes, os solos rasos sobre rocha e as chuvas fortes tornam os deslizamentos frequentes. A vegetação ajuda a segurar o solo, mas não torna o evento raro, e o texto fala de \"muitos deslizamentos\".",
-   "B": "Uma floresta madura leva décadas ou séculos, não \"poucos anos\". Além disso, o local ainda tem solo, ainda que removido em parte, o que torna difícil dizer que a sucessão será primária. A rapidez prometida já derruba a alternativa.",
-   "C": "O litoral norte de SP é muito úmido: foram mais de 600 mm em um dia. A baixa umidade não existe ali. Líquens são pioneiros típicos de rocha nua, mas a alternativa erra ao atribuir o atraso à baixa umidade.",
+   "B": "Uma floresta madura leva décadas ou séculos, não \"poucos anos\". Isso já derruba a alternativa. O tipo de sucessão também é duvidoso: a sucessão primária ocorre em substrato sem solo, e em muitos deslizamentos sobra solo ou banco de sementes.",
+   "C": "O litoral norte de SP é muito úmido: foram mais de 600 mm em um dia. A baixa umidade não existe ali, e o solo exposto não é estéril. Líquens são pioneiros típicos de rocha nua, mas a alternativa erra ao atribuir o atraso à baixa umidade e à falta de nutrientes.",
    "E": "Na sucessão, a biomassa aumenta porque a fotossíntese supera a respiração (produção maior que consumo). Elas só ficam equivalentes na comunidade madura. Dizer que permanecem equivalentes durante o aumento é contraditório."
   },
   "armadilha": "Marcar alternativa que mistura um fato verdadeiro com um erro de ecologia (tempo da sucessão, saldo fotossíntese-respiração) sem notar a palavra que a derruba.",
@@ -125,12 +125,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -215,6 +217,31 @@
   "didatica_alertas": [
    "Na erradas B, 'o local ainda tem solo... torna difícil dizer que a sucessão será primária' é argumento de ecologia discutível; o erro seguro da B é 'poucos anos' para floresta madura."
   ],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "Uma floresta madura leva décadas ou séculos, não \"poucos anos\". Isso já derruba a alternativa. O tipo de sucessão também é duvidoso: a sucessão primária ocorre em substrato sem solo, e em muitos deslizamentos sobra solo ou banco de sementes.",
+    "motivo": "O texto original dizia que o solo \"ainda tem solo, ainda que removido em parte\", o que era confuso. A nova redação deixa o erro do prazo como motivo suficiente e trata o tipo de sucessão como ressalva.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.antes.simbolos[3]",
+    "depois": [
+     "organismos pioneiros",
+     "primeiros seres a ocupar um local, como líquens e musgos em rocha nua, ou plantas de crescimento rápido em solo exposto"
+    ],
+    "motivo": "Pioneiros não são só líquens. No solo exposto de um deslizamento, plantas de crescimento rápido também iniciam a sucessão.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "O litoral norte de SP é muito úmido: foram mais de 600 mm em um dia. A baixa umidade não existe ali, e o solo exposto não é estéril. Líquens são pioneiros típicos de rocha nua, mas a alternativa erra ao atribuir o atraso à baixa umidade e à falta de nutrientes.",
+    "motivo": "A resolução só desmentia a baixa umidade. A nova redação também desmente a indisponibilidade de nutrientes, que a alternativa C afirma.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "D"
  }
 }

@@ -21,7 +21,7 @@
     ],
     [
      "narrador-protagonista",
-     "narrador que conta a história em 1ª pessoa (\"eu\") e também é o personagem central"
+     "narrador que conta a história em 1ª pessoa (\"eu\") e também é o personagem central; se o \"eu\" só observa, é narrador-testemunha"
     ],
     [
      "narrador em 3ª pessoa",
@@ -64,7 +64,7 @@
    {
     "faz": "Teste o foco narrativo",
     "conta": "(B) \"narradores-protagonistas\"",
-    "porque": "Nem todos os contos têm narrador em 1ª pessoa. Em \"Nós matamos o Cão Tinhoso!\" e \"Papá, cobra e eu\", um menino conta a própria história. \"Dina\" e \"Nhinguitimo\" têm narrador de fora da história, em 3ª pessoa. Logo, B não vale para os quatro.",
+    "porque": "Nem todos os contos têm narrador-protagonista. Em \"Nós matamos o Cão Tinhoso!\" e \"Papá, cobra e eu\", o menino Ginho conta a própria história. Em \"Nhinguitimo\", o narrador está em 1ª pessoa, mas só observa os fatos: o protagonista é outro, Vírgula Oito. \"Dina\" tem narrador em 3ª pessoa. Logo, B não vale para os quatro.",
     "tipo": "eliminar"
    },
    {
@@ -78,7 +78,7 @@
   "checagem": "Cada uma das outras quatro falha por um detalhe verificável: animais que falam (D), idade (A), lugar (E), foco narrativo, porque nem todos os contos são em 1ª pessoa (B). Só C é um traço temático que atravessa o livro.",
   "erradas": {
    "A": "Generaliza. \"Dina\", por exemplo, não tem criança como protagonista. Basta um conto em que isso falhe para a afirmação cair.",
-   "B": "Não vale para os quatro. \"Dina\" e \"Nhinguitimo\" são narrados em 3ª pessoa, por um narrador que não participa da história. Só contos como \"Nós matamos o Cão Tinhoso!\" e \"Papá, cobra e eu\" têm narrador-protagonista.",
+   "B": "Não vale para os quatro. \"Dina\" é narrado em 3ª pessoa. Em \"Nhinguitimo\", o narrador está em 1ª pessoa, mas é testemunha e não protagonista. Só em \"Nós matamos o Cão Tinhoso!\" e \"Papá, cobra e eu\" o narrador (Ginho) é o protagonista.",
    "D": "Os contos de Honwana não são fábulas: não têm animais que agem como gente nem moral explícita. O cão do primeiro conto é um animal doente, morto por crianças.",
    "E": "O espaço não é o das grandes cidades. Os contos se passam em lugares pequenos da Moçambique colonial, como escola, casa e arredores. O foco é a opressão colonial."
   },
@@ -112,12 +112,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -201,6 +203,31 @@
   "didatica_alertas": [
    "A resolução afirma que \"Dina\" não tem criança como protagonista e que \"Dina\" e \"Nhinguitimo\" são narrados em 3ª pessoa; confirmar no texto dos contos (o corretor 1 deve checar)."
   ],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "Nem todos os contos têm narrador-protagonista. Em \"Nós matamos o Cão Tinhoso!\" e \"Papá, cobra e eu\", o menino Ginho conta a própria história. Em \"Nhinguitimo\", o narrador está em 1ª pessoa, mas só observa os fatos: o protagonista é outro, Vírgula Oito. \"Dina\" tem narrador em 3ª pessoa. Logo, B não vale para os quatro.",
+    "motivo": "A resolução dizia que \"Nhinguitimo\" tem narrador em 3ª pessoa. Isso está errado: o narrador é um adulto em 1ª pessoa que testemunha a história, e não é o protagonista. Só \"Dina\" é narrado em 3ª pessoa.",
+    "fonte": "Resolução Elite, Fuvest 2024 q. 37 (sisq.elitecampinas.com.br); Terra e Pravaler (resumos da obra): só \"Dina\" está em 3ª pessoa"
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "Não vale para os quatro. \"Dina\" é narrado em 3ª pessoa. Em \"Nhinguitimo\", o narrador está em 1ª pessoa, mas é testemunha e não protagonista. Só em \"Nós matamos o Cão Tinhoso!\" e \"Papá, cobra e eu\" o narrador (Ginho) é o protagonista.",
+    "motivo": "Corrige a mesma afirmação falsa sobre \"Nhinguitimo\". A alternativa B falha por dois motivos diferentes: \"Dina\" tem narrador em 3ª pessoa e \"Nhinguitimo\" tem narrador que não é o protagonista.",
+    "fonte": "Resolução Elite, Fuvest 2024 q. 37 (sisq.elitecampinas.com.br)"
+   },
+   {
+    "campo": "resolucao.antes.simbolos[1]",
+    "depois": [
+     "narrador-protagonista",
+     "narrador que conta a história em 1ª pessoa (\"eu\") e também é o personagem central; se o \"eu\" só observa, é narrador-testemunha"
+    ],
+    "motivo": "A distinção entre narrador-protagonista e narrador-testemunha passa a ser usada na correção do passo 4 e de B.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "C"
  }
 }

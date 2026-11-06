@@ -1,0 +1,173 @@
+{
+ "n": 32,
+ "id": "Pbb4b28e1",
+ "materia": "mat",
+ "tema": "M06",
+ "conteudo": "M06.5",
+ "nivel": 5,
+ "conceito": "Meia-vida como decaimento exponencial: descobrir quantas meias-vidas são necessárias para a massa cair abaixo de 0,1% usando log 2 = 0,3.",
+ "resolucao": {
+  "antes": {
+   "texto": "A cada meia-vida a massa cai pela metade. Depois de n meias-vidas, sobra a fração (1/2)^n da massa inicial. A questão pede o tempo até sobrar menos de 0,1% = 1/1000. O valor 19,26 g é dado, mas não muda a resposta: só importa a fração que sobra.",
+   "formulas": [
+    "massa final = massa inicial × (1/2)^n",
+    "n = número de meias-vidas = tempo ÷ 30 anos",
+    "0,1% = 0,1/100 = 1/1000 = 10^−3"
+   ],
+   "simbolos": [
+    [
+     "meia-vida",
+     "tempo para a quantidade cair à metade; aqui, 30 anos"
+    ],
+    [
+     "n",
+     "quantidade de meias-vidas que se passaram"
+    ],
+    [
+     "log 2 = 0,3",
+     "dado: 10^0,3 é aproximadamente 2"
+    ],
+    [
+     "0,1%",
+     "uma parte em mil da massa inicial"
+    ]
+   ]
+  },
+  "pista": "Escreva a condição 'sobra menos de 1/1000' com potência de 2 e use o log para achar n.",
+  "passos": [
+   {
+    "faz": "Traduza 0,1% em fração",
+    "conta": "0,1% = 1/1000",
+    "porque": "0,1 por cento é 0,1 ÷ 100 = 0,001, ou seja, uma parte em mil da massa inicial.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Monte a condição das meias-vidas",
+    "conta": "(1/2)^n < 1/1000",
+    "porque": "Depois de n meias-vidas sobra (1/2)^n da massa inicial. Essa fração precisa ser menor que 1/1000.",
+    "tipo": "aplicar"
+   },
+   {
+    "faz": "Inverta os dois lados",
+    "conta": "2^n > 1000",
+    "porque": "Ao inverter uma desigualdade entre números positivos, o sentido dela se troca.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Aplique log nos dois lados",
+    "conta": "n × log 2 > log 1000 = 3",
+    "porque": "log 1000 = 3 porque 10³ = 1000. O expoente n desce multiplicando o log 2.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Isole n com o dado",
+    "conta": "n > 3/0,3 = 10",
+    "porque": "Com log 2 = 0,3, a divisão dá 10 meias-vidas.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Converta em anos",
+    "conta": "t = 10 × 30 = 300 anos",
+    "porque": "Na conta com o dado, n = 10 é o limite. Na verdade 2^10 = 1024 > 1000, então com 10 meias-vidas já sobra menos de 0,1%. O tempo mínimo é 300 anos: alternativa D.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa D: são necessárias 10 meias-vidas de 30 anos, ou seja, 300 anos.",
+  "checagem": "Em 300 anos sobram 19,26 ÷ 1024 ≈ 0,0188 g. O limite é 0,1% de 19,26 = 0,01926 g, e 0,0188 < 0,01926. Em 270 anos (9 meias-vidas) sobram 19,26 ÷ 512 ≈ 0,0376 g, que ainda passa do limite. Logo 300 é o mínimo entre as opções.",
+  "erradas": {
+   "A": "100 anos são 100/30 ≈ 3,3 meias-vidas. Como 2^3,3 ≈ 10, sobra cerca de 1/10 da massa (10%), muito acima de 0,1%. Sobram cerca de 1,9 g, e o limite é 0,019 g.",
+   "B": "200 anos são 200/30 ≈ 6,7 meias-vidas. Como 2^6,7 ≈ 100, sobra cerca de 1% da massa, ainda 10 vezes acima do limite de 0,1%.",
+   "C": "225 anos são 7,5 meias-vidas. Como 2^7,5 ≈ 181, sobra cerca de 0,55% da massa, ainda mais que 0,1%. Sobram cerca de 0,106 g, e o limite é 0,019 g.",
+   "E": "325 anos são cerca de 10,8 meias-vidas e a massa já está abaixo de 0,1% (2^10,8 ≈ 1800). Mas a pergunta pede o tempo mínimo, e 300 anos já bastam. Esperar 325 anos é esperar mais que o necessário."
+  },
+  "armadilha": "Achar que 10 meias-vidas 'não bastam' porque o dado dá n = 10 exato no limite; na realidade 2^10 = 1024 > 1000, então 300 anos já servem.",
+  "alerta": "Com log 2 = 0,3 exato, n = 10 dá exatamente 0,1%, o que não seria 'menor que'. Mas 0,3 é aproximação: log 2 ≈ 0,301 e 2^10 = 1024 > 1000. A única opção coerente é 300 anos.",
+  "essencial": {
+   "pede": "O tempo mínimo para a massa de césio-137 ficar abaixo de 0,1% da inicial, com meia-vida de 30 anos.",
+   "chave": "(1/2)^n < 1/1000 leva a 2^n > 1000, depois n × 0,3 > 3, logo n > 10 meias-vidas e t = 10 × 30 = 300 anos.",
+   "cuidado": "O 19,26 g não entra na conta. Lembre de converter meias-vidas em anos no final."
+  }
+ },
+ "caminhos": [
+  {
+   "nome": "Estimar com potências",
+   "ideia": "2^10 = 1024 é quase 1000. Então 10 meias-vidas reduzem a massa a cerca de 1/1000, e 10 × 30 = 300 anos."
+  },
+  {
+   "nome": "Dividir por 10 a cada 100 anos",
+   "ideia": "Como 2^(10/3) ≈ 10, a cada cerca de 100 anos a massa cai a um décimo. Para chegar a 1/1000 são três períodos de 100 anos: 300 anos."
+  },
+  {
+   "nome": "Testar as alternativas",
+   "ideia": "Calcule n = t/30 e a fração 1/2^n de cada opção. 100 anos dá cerca de 1/10, 200 dá cerca de 1/100 e 300 dá cerca de 1/1000, que já passa do limite."
+  }
+ ],
+ "quadro": [
+  {
+   "linha": "0,1% = 1/1000",
+   "nota": "limite de massa que sobra"
+  },
+  {
+   "linha": "(1/2)^n < 1/1000",
+   "nota": "n meias-vidas deixam (1/2)^n da massa"
+  },
+  {
+   "linha": "2^n > 1000",
+   "nota": "inverta os dois lados; o sinal troca",
+   "destaque": "2^n > 1000"
+  },
+  {
+   "linha": "n × log 2 > log 1000",
+   "nota": "aplique log; o n desce multiplicando"
+  },
+  {
+   "linha": "n × 0,3 > 3",
+   "nota": "log 2 = 0,3 e log 1000 = 3"
+  },
+  {
+   "linha": "n > 3/0,3",
+   "nota": "o 0,3 passa dividindo",
+   "mov": [
+    {
+     "termo": "0,3",
+     "de": "esquerda",
+     "para": "denominador",
+     "vira": "0,3",
+     "como": "passa dividindo"
+    }
+   ]
+  },
+  {
+   "linha": "n > 10",
+   "nota": "3 ÷ 0,3 = 10"
+  },
+  {
+   "linha": "t = 10 × 30",
+   "nota": "cada meia-vida dura 30 anos"
+  },
+  {
+   "linha": "t = 300 anos",
+   "nota": "alternativa D",
+   "destaque": "300 anos"
+  }
+ ],
+ "visual": {
+  "cabe": true,
+  "tipo": "grafico",
+  "porque": "O decaimento por meias-vidas fica claro numa curva que cai passo a passo.",
+  "roteiro": "Quadro 1: barra com 100% da massa no ano 0. Quadro 2: a cada 30 anos a barra cai pela metade (50%, 25%, 12,5%...), com o rótulo 'meia-vida'. Quadro 3: linha horizontal tracejada em 0,1% do eixo vertical. Quadro 4: após 10 meias-vidas (ano 300) a barra fica em cerca de 0,098%, abaixo da linha tracejada. Quadro 5: destaca 'ano 300 = alternativa D'."
+ },
+ "fontes": [],
+ "resposta_resolvedor": "D",
+ "confere": true,
+ "divergencia": "",
+ "gab": "D",
+ "revisao": {
+  "lentes": [
+   "resolvedor"
+  ],
+  "modelos": {
+   "resolvedor": "claude-sonnet-5-5"
+  }
+ }
+}

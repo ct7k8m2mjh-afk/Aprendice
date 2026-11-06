@@ -37,7 +37,7 @@
     ],
     [
      "espécies de dias longos",
-     "plantas que florescem quando as noites são curtas, em geral no verão; é uma regra do florescimento, não uma condição de sobrevivência"
+     "plantas que florescem quando o período de luz do dia passa de um certo número de horas (noites curtas), em geral no verão; é uma regra do florescimento, não uma condição de sobrevivência"
     ],
     [
      "acaso",
@@ -49,7 +49,7 @@
   "passos": [
    {
     "faz": "Localize o que o texto informa",
-    "conta": "\"Earth doesn't spin at a perfectly constant speed\"",
+    "conta": "\"Earth doesn't spin at a perfectly constant speed\" (rotação varia pouco)",
     "porque": "O texto fala de uma mudança pequena e lenta no tamanho do dia. Não fala de extinção, nem de continentes submersos, nem de horas de luz que decidam a sobrevivência.",
     "tipo": "localizar"
    },
@@ -76,7 +76,7 @@
   "checagem": "Pense nas extinções em massa do passado: muitas espécies desapareceram, o que derruba A (nem toda espécie se adapta), e outras sobreviveram e se diversificaram, o que derruba D. Só C admite os dois resultados, sobreviver ou se extinguir, conforme as variações disponíveis.",
   "erradas": {
    "A": "'Necessariamente' é falso. Adaptar-se exige que já exista variação herdável vantajosa; sem ela, a população se extingue, como muitas espécies já fizeram. Quem marcou A achou que o organismo se adapta porque precisa.",
-   "B": "'Dias longos' e 'dias curtos' dizem respeito ao florescimento de plantas, e o texto trata de um dia que muda frações de segundo. Nada indica que só espécies de dias longos sobreviveriam; 'somente' é absoluto e sem base.",
+   "B": "'Dias longos' é termo do florescimento das plantas: quem precisa de mais horas de luz para florescer. O texto trata de um dia que muda frações de segundo, e nada indica que só espécies de dias longos sobreviveriam. 'Somente' é absoluto e sem base.",
    "D": "'Nenhuma espécie sobreviverá' exagera: o texto descreve uma mudança pequena e lenta. Quem marcou D esqueceu que, com variações vantajosas já existentes, muitas populações sobrevivem.",
    "E": "Parte de um dado falso: o texto fala de gelo derretendo e massa de água se deslocando para o equador, e não diz que \"todos os continentes submergirão\". Além disso, ser aquática não dá vantagem adaptativa automática."
   },
@@ -114,12 +114,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -225,6 +227,31 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.antes.simbolos[5]",
+    "depois": [
+     "espécies de dias longos",
+     "plantas que florescem quando o período de luz do dia passa de um certo número de horas (noites curtas), em geral no verão; é uma regra do florescimento, não uma condição de sobrevivência"
+    ],
+    "motivo": "A definição original não está errada, mas pode confundir. Planta de dia longo é definida pelo fotoperíodo crítico (horas de luz), então vale dizer isso explicitamente. Fiz uma correção mínima de precisão.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[0].conta",
+    "depois": "\"Earth doesn't spin at a perfectly constant speed\" (rotação varia pouco)",
+    "motivo": "A citação sozinha não sustenta o que o `porque` afirma: a mudança é pequena e lenta. O texto fala em 'slight changes' e em um dia 'a bit longer'. A correção é pequena e opcional.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "'Dias longos' é termo do florescimento das plantas: quem precisa de mais horas de luz para florescer. O texto trata de um dia que muda frações de segundo, e nada indica que só espécies de dias longos sobreviveriam. 'Somente' é absoluto e sem base.",
+    "motivo": "A redação original dizia que 'dias longos' e 'dias curtos' dizem respeito ao florescimento. Isso está certo, mas ficou impreciso ao ligar a ideia de sobrevivência. A nova versão deixa claro que se trata de florescimento.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "C"
  }
 }

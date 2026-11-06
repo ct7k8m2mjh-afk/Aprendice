@@ -1,0 +1,151 @@
+{
+ "n": 37,
+ "id": "Paed92e89",
+ "materia": "mat",
+ "tema": "M13",
+ "conteudo": "M13.4",
+ "nivel": 6,
+ "conceito": "Probabilidade com anagramas: permutação com letra repetida no total e bloco consecutivo nos casos favoráveis.",
+ "confere": true,
+ "divergencia": "",
+ "resolucao": {
+  "antes": {
+   "texto": "Probabilidade = casos favoráveis ÷ casos possíveis. Os casos possíveis são todos os anagramas de MACKENZIE, e o E aparece duas vezes. Os favoráveis são os que trazem MACKE colado, nessa ordem: trate MACKE como uma única peça e permute as peças.",
+   "formulas": [
+    "probabilidade = casos favoráveis ÷ casos possíveis",
+    "anagramas com letra repetida: n! ÷ (repetições)!",
+    "bloco colado = uma peça só"
+   ],
+   "simbolos": [
+    [
+     "anagrama",
+     "qualquer palavra, com ou sem sentido, formada trocando a ordem das letras"
+    ],
+    [
+     "n!",
+     "fatorial: n × (n − 1) × ... × 1; por exemplo, 5! = 120"
+    ],
+    [
+     "bloco",
+     "letras que ficam juntas e em ordem fixa, como se fossem uma letra só"
+    ]
+   ]
+  },
+  "pista": "MACKENZIE tem uma letra repetida. Ela entra na contagem do total, e uma das duas cópias é gasta dentro do bloco MACKE.",
+  "passos": [
+   {
+    "faz": "Conte as letras e ache a repetida",
+    "conta": "M A C K E N Z I E: 9 letras",
+    "porque": "Só o E aparece duas vezes. As outras sete letras são todas diferentes.",
+    "tipo": "localizar"
+   },
+   {
+    "faz": "Calcule os casos possíveis",
+    "conta": "9! ÷ 2! = 362880 ÷ 2 = 181440",
+    "porque": "Trocar os dois E de lugar não gera anagrama novo, então divide-se por 2!.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Cole MACKE numa peça só",
+    "conta": "peças: [MACKE], N, Z, I, E",
+    "porque": "O bloco gasta um dos E. Sobram 4 letras avulsas (N, Z, I e o outro E), e junto com o bloco são 5 peças.",
+    "tipo": "interpretar"
+   },
+   {
+    "faz": "Calcule os casos favoráveis",
+    "conta": "5! = 120",
+    "porque": "As 5 peças são diferentes entre si (o E avulso é um só), então não há divisão. Como o M aparece uma vez, cada arrumação gera um anagrama diferente.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Divida e simplifique",
+    "conta": "120 ÷ 181440 = 1/1512",
+    "porque": "181440 ÷ 120 = 1512, então a fração simplifica para 1 sobre 1512.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa D: a probabilidade é 120/181440 = 1/1512.",
+  "checagem": "Outro caminho: escolha a posição do bloco e preencha o resto. Probabilidade = (5! × 2) ÷ 9! = 240 ÷ 362880 = 1/1512. Dá o mesmo valor, contando as letras como se os dois E fossem distintos.",
+  "erradas": {
+   "A": "1/7560 sai de usar só 4! = 24 casos favoráveis: 24/181440 = 1/7560. Quem marcou esqueceu que sobra um E avulso. São 5 peças, não 4.",
+   "B": "1/6048 sai de dividir os favoráveis por 2 (60) mas deixar o total sem dividir por 2 (9! = 362880): 60/362880 = 1/6048. A divisão pelo E repetido tem de ser coerente no total e nos favoráveis, e com o E avulso os favoráveis são 120.",
+   "C": "1/3024 sai de 5!/9! = 120/362880 = 1/3024. O total ignorou a repetição do E: o correto é 9!/2! = 181440, e não 9!.",
+   "E": "5/126 não confere: daria 7200 anagramas favoráveis (181440 × 5/126 = 7200), mas só existem 120 com MACKE colado. A probabilidade de uma sequência de 5 letras específica não pode ser tão alta."
+  },
+  "armadilha": "Esquecer o outro E: o bloco MACKE gasta só um E, e sobra um E avulso que deve ser contado entre as peças.",
+  "alerta": "",
+  "essencial": {
+   "pede": "A probabilidade de o anagrama sorteado conter MACKE colado e nessa ordem.",
+   "chave": "Total: 9!/2! = 181440. Favoráveis: bloco + N, Z, I, E = 5! = 120.",
+   "cuidado": "O total divide pela repetição do E; os favoráveis não, porque o E avulso é único."
+  }
+ },
+ "caminhos": [
+  {
+   "nome": "Contar posições e completar",
+   "ideia": "Imagine os dois E distintos (E1 e E2). Total: 9! = 362880. Favoráveis: bloco com E1 ou com E2 (2 modos) × 5! = 240. Divida: 240/362880 = 1/1512."
+  },
+  {
+   "nome": "Probabilidade por sorteio de letras",
+   "ideia": "Sorteando as 9 posições em ordem, a chance de cair MACKE em posições vizinhas e depois arrumar o resto leva à mesma razão 120/181440."
+  }
+ ],
+ "quadro": [
+  {
+   "linha": "MACKENZIE: 9 letras, E repete 2×",
+   "nota": "só o E se repete"
+  },
+  {
+   "linha": "Total = 9! ÷ 2!",
+   "nota": "divide pelas trocas dos dois E"
+  },
+  {
+   "linha": "Total = 362880 ÷ 2 = 181440",
+   "nota": "faça a conta",
+   "destaque": "181440"
+  },
+  {
+   "linha": "Peças: [MACKE] N Z I E",
+   "nota": "bloco gasta um E; sobra um E avulso"
+  },
+  {
+   "linha": "Favoráveis = 5! = 120",
+   "nota": "5 peças diferentes",
+   "destaque": "120"
+  },
+  {
+   "linha": "P = 120/181440",
+   "nota": "favoráveis sobre possíveis"
+  },
+  {
+   "linha": "P = 1/1512",
+   "nota": "181440 ÷ 120 = 1512; divida os dois por 120",
+   "mov": [
+    {
+     "termo": "120",
+     "de": "numerador",
+     "para": "cancelado",
+     "vira": "1",
+     "como": "dividido por 120 em cima e embaixo"
+    }
+   ]
+  }
+ ],
+ "visual": {
+  "cabe": true,
+  "tipo": "diagrama",
+  "porque": "Ver as letras se colando num bloco deixa claro por que são 5 peças e não 4.",
+  "roteiro": "Quadro 1: as 9 letras M A C K E N Z I E em fila, os dois E coloridos de azul. Quadro 2: M, A, C, K e o primeiro E se juntam num retângulo rotulado MACKE. Quadro 3: sobram N, Z, I e o E azul avulso; aparecem 5 caixas (bloco, N, Z, I, E). Quadro 4: as 5 caixas trocam de ordem em 2 ou 3 exemplos, e surge 5! = 120. Quadro 5: aparece a fração 120/181440 e simplifica para 1/1512."
+ },
+ "fontes": [],
+ "resposta_resolvedor": "D",
+ "gab": "D",
+ "revisao": {
+  "lentes": [
+   "resolvedor"
+  ],
+  "modelos": {
+   "resolvedor": "claude-sonnet-5-5"
+  }
+ }
+}

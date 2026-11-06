@@ -45,13 +45,13 @@
    {
     "faz": "Leia a pergunta do filho",
     "conta": "\"Pode detonar o patrimônio público, pai?\"",
-    "porque": "A tira abre com a dúvida do menino: ele quer saber se destruir o patrimônio público é permitido. O pai responde que claro que não.",
+    "porque": "A tira abre com a pergunta do menino: ele quer saber se pode destruir o patrimônio público. O pai se espanta e responde que claro que não.",
     "tipo": "localizar"
    },
    {
     "faz": "Veja o exemplo que o filho lê",
     "conta": "\"Avariar lixeiras e placas de trânsito... é crime!\"",
-    "porque": "O pai e o filho estão olhando um jornal. A notícia lida pelo filho cita só lixeiras e placas de trânsito como bens protegidos por lei.",
+    "porque": "O filho lê um jornal. O trecho que ele lê cita só lixeiras e placas de trânsito como bens cuja avaria é crime.",
     "tipo": "localizar"
    },
    {
@@ -76,7 +76,7 @@
   "resposta": "Alternativa D: a pergunta final do filho sugere que hospitais, universidades, florestas e estatais também são patrimônio público, e destruí-los é igualmente crime de dano.",
   "checagem": "Leia a D como resposta à pergunta do filho: se avariar lixeiras e placas, bens pequenos, já é crime, destruir hospitais e florestas, bens enormes e também públicos, é dano ao patrimônio público do mesmo jeito. O sentido bate com o último quadro.",
   "erradas": {
-   "A": "'Inócua' é inútil, e a reflexão não é: a pergunta final do filho amplia a ideia de patrimônio público e deixa o pai sem resposta. Quem marcou A não viu a crítica no último quadro.",
+   "A": "\"Inócua\" é inútil, e a reflexão não é: a pergunta final do filho amplia a ideia de patrimônio público e mostra que a lista do jornal é incompleta. Quem marcou A não viu a crítica no último quadro.",
    "B": "O filho menciona hospitais, universidades, florestas e estatais, que não são equipamentos das vias. Logo, a tira sugere o oposto: o patrimônio vai além das vias da cidade.",
    "C": "A notícia lida diz que avariar lixeiras e placas de trânsito é crime, isto é, esses itens são protegidos como patrimônio público. A alternativa afirma o contrário.",
    "E": "Os dois não discordam. O pai diz 'Claro que não, filho!' e o filho só amplia a lista de bens. Ninguém discute os efeitos da depreciação (perda de valor). Quem marcou E inventou um conflito."
@@ -111,12 +111,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -220,6 +222,28 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.passos[0].porque",
+    "depois": "A tira abre com a pergunta do menino: ele quer saber se pode destruir o patrimônio público. O pai se espanta e responde que claro que não.",
+    "motivo": "A fala \"Pode detonar...\" é do filho e a resposta \"Quê?! Claro que não, filho!\" é do pai. O texto original já dizia isso, mas \"dúvida\" e \"permitido\" davam a entender uma incerteza que a tira não mostra. Troquei por uma redação mais fiel ao quadro.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "O filho lê um jornal. O trecho que ele lê cita só lixeiras e placas de trânsito como bens cuja avaria é crime.",
+    "motivo": "Na tira, o filho está lendo o jornal e o pai aparece só pelas pernas. Não dá para afirmar que os dois olham o jornal juntos, nem que o trecho é uma \"notícia\".",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "\"Inócua\" é inútil, e a reflexão não é: a pergunta final do filho amplia a ideia de patrimônio público e mostra que a lista do jornal é incompleta. Quem marcou A não viu a crítica no último quadro.",
+    "motivo": "A tira não mostra o pai calado nem \"sem resposta\". Isso é uma suposição, e a tira termina com reticências.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "D"
  }
 }

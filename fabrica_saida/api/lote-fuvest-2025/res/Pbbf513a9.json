@@ -113,7 +113,7 @@
    "nota": "um ciclo: o argumento avança 2π"
   },
   {
-   "linha": "T = \\frac{2π}{2π f}",
+   "linha": "T = 2π/(2π f)",
    "nota": "isole T",
    "mov": [
     {
@@ -126,7 +126,7 @@
    ]
   },
   {
-   "linha": "T = \\frac{1}{f}",
+   "linha": "T = 1/f",
    "nota": "cancele 2π em cima e embaixo",
    "mov": [
     {
@@ -139,11 +139,11 @@
    ]
   },
   {
-   "linha": "f → 3f: T' = \\frac{1}{3f}",
+   "linha": "f → 3f: T' = 1/(3f)",
    "nota": "troque f por 3f"
   },
   {
-   "linha": "T' = \\frac{T}{3}",
+   "linha": "T' = T/3",
    "nota": "período três vezes menor: contração horizontal"
   }
  ],
@@ -162,12 +162,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -259,26 +261,54 @@
    },
    {
     "campo": "resolucao.quadro[2].linha",
-    "depois": "T = \\frac{2π}{2π f}",
+    "depois": "T = 2π/(2π f)",
     "motivo": "Fração empilhada, como exige o padrão de Matemática."
    },
    {
     "campo": "resolucao.quadro[3].linha",
-    "depois": "T = \\frac{1}{f}",
+    "depois": "T = 1/f",
     "motivo": "Fração empilhada."
    },
    {
     "campo": "resolucao.quadro[4].linha",
-    "depois": "f → 3f: T' = \\frac{1}{3f}",
+    "depois": "f → 3f: T' = 1/3f",
     "motivo": "Fração empilhada."
    },
    {
     "campo": "resolucao.quadro[5].linha",
-    "depois": "T' = \\frac{T}{3}",
+    "depois": "T' = T/3",
     "motivo": "Fração empilhada."
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "quadro[2].linha",
+    "depois": "T = 2π/(2π f)",
+    "motivo": "Brief proíbe LaTeX (\\frac); o site desenha a fração empilhada a partir de numerador/denominador.",
+    "fonte": ""
+   },
+   {
+    "campo": "quadro[3].linha",
+    "depois": "T = 1/f",
+    "motivo": "Mesmo motivo: sem LaTeX.",
+    "fonte": ""
+   },
+   {
+    "campo": "quadro[4].linha",
+    "depois": "f → 3f: T' = 1/(3f)",
+    "motivo": "Mesmo motivo: sem LaTeX.",
+    "fonte": ""
+   },
+   {
+    "campo": "quadro[5].linha",
+    "depois": "T' = T/3",
+    "motivo": "Mesmo motivo: sem LaTeX.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "D"
  }
 }

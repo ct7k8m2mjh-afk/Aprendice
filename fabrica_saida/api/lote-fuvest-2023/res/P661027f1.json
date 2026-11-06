@@ -32,7 +32,7 @@
     ],
     [
      "empuxo (Arquimedes)",
-     "força para cima que a água faz em um corpo mergulhado nela. É igual ao peso da água que o corpo desloca. Vale para corpo parado, boiando."
+     "força para cima que o fluido faz em um corpo mergulhado nele. É igual ao peso do fluido deslocado. É a força que sustenta um corpo parado, boiando."
     ],
     [
      "equilíbrio hidrostático",
@@ -88,8 +88,8 @@
   "resposta": "Alternativa A: a componente vertical da reação da água às patadas compensa o peso do animal e o impede de afundar.",
   "checagem": "Teste um caso extremo: se o lagarto parasse de bater as patas, ele afundaria. Então o que o sustenta são as patadas, como diz a A.",
   "erradas": {
-   "B": "Equilíbrio hidrostático e Arquimedes valem para corpo parado, boiando. O lagarto corre: o enunciado diz que as patadas geram as forças que o sustentam. Quem marcou B associou 'água' a 'flutuar'.",
-   "C": "Viscosidade é resistência ao movimento, então não é atrito desprezível. A frase se contradiz. Essa resistência da água às patas é justamente o que gera a força de reação.",
+   "B": "Equilíbrio hidrostático e Arquimedes descrevem o corpo em repouso no fluido, boiando. O lagarto corre, e o enunciado diz que as forças de suporte vêm do movimento das patas. Quem marcou B associou 'água' a 'flutuar'.",
+   "C": "A água é viscosa, e a viscosidade é resistência ao movimento. Por isso o atrito não é desprezível, e a frase se contradiz. Essa resistência da água às patas ajuda a gerar a força de reação.",
    "D": "O enunciado não fala de sal. A sustentação vem da reação às patadas, e não de a água ser salgada. Salinidade não é condição necessária.",
    "E": "O enunciado diz que o impulso vem das patadas, com a membrana aumentando a área. 'Por si só' deixa a frase falsa: só a tensão superficial não sustentaria o lagarto."
   },
@@ -127,12 +127,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -288,6 +290,31 @@
    "O campo 'nivel' do JSON é 4, mas a classificação atual informada é nível 5; conferir qual vale.",
    "O tema F03/F03.1 (trabalho de uma força) parece inadequado: a questão trata de leis de Newton (F02.2) e conceitos de fluidos. Conferir a classificação."
   ],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "A água é viscosa, e a viscosidade é resistência ao movimento. Por isso o atrito não é desprezível, e a frase se contradiz. Essa resistência da água às patas ajuda a gerar a força de reação.",
+    "motivo": "O texto antigo dizia que a resistência é 'justamente o que gera' a reação. Isso é forte demais, porque a reação também tem origem na inércia da água deslocada, ou seja, na pressão de impacto e na massa de água acelerada. O trecho foi suavizado e deixou de afirmar uma causa única.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "Equilíbrio hidrostático e Arquimedes descrevem o corpo em repouso no fluido, boiando. O lagarto corre, e o enunciado diz que as forças de suporte vêm do movimento das patas. Quem marcou B associou 'água' a 'flutuar'.",
+    "motivo": "Troquei 'valem para corpo parado' por 'descrevem o corpo em repouso'. A redação original tornava a afirmação sobre a validade do princípio mais rígida do que é correto. A correção é pequena e só ajusta o rigor.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.antes.simbolos[4]",
+    "depois": [
+     "empuxo (Arquimedes)",
+     "força para cima que o fluido faz em um corpo mergulhado nele. É igual ao peso do fluido deslocado. É a força que sustenta um corpo parado, boiando."
+    ],
+    "motivo": "Troquei 'Vale para corpo parado' por uma redação que não sugere que o princípio deixa de valer em movimento. O princípio de Arquimedes vale para fluido em repouso, e o corpo pode estar em movimento.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "A"
  }
 }

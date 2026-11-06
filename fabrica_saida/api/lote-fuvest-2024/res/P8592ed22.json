@@ -59,7 +59,7 @@
    },
    {
     "faz": "Veja o que está sendo comparado",
-    "conta": "“poor children… participating far less in sports… than more affluent youngsters”",
+    "conta": "“poor children and adolescents are participating far less in sports… than more affluent youngsters are”",
     "porque": "A frase compara a participação de crianças pobres e de jovens mais ricos em esportes. Fala de quantidade, não de lugar nem de tempo.",
     "tipo": "comparar"
    },
@@ -118,12 +118,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -226,6 +228,23 @@
   "didatica_alertas": [
    "A classificação no JSON (I05/I05.3) difere da atual do banco (I03/I03.4). Confirmar com a TAXONOMIA qual vale."
   ],
-  "didatica_ok": true
- }
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "tema/conteudo/nivel (classificação)",
+    "depois": "tema I05, conteúdo I05.3, nível 3",
+    "motivo": "A classificação atual (I03.4, nível 4) é de expressão idiomática. A resolução já usa I05.3 (intensificadores e quantificadores) e nível 3, que é o correto: 'far' é intensificador de comparativo e a questão é simples. Mantenha I05.3 e nível 3 no banco.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[1].conta",
+    "depois": "“poor children and adolescents are participating far less in sports… than more affluent youngsters are”",
+    "motivo": "A citação do texto é 'poor children and adolescents are participating far less in sports and fitness activities than more affluent youngsters are'. A versão anterior omitia 'and adolescents' e o verbo 'are', mas marcava a elipse só em parte. Esta versão fica fiel e continua curta. Se a linha ficar longa no celular, use as duas linhas: 'poor children… are participating' / 'far less in sports… than more affluent'.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "D"
+ },
+ "tema/conteudo/nivel (classificação)": "tema I05, conteúdo I05.3, nível 3"
 }

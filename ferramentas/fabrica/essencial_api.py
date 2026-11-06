@@ -116,7 +116,9 @@ def pedido(etapa, m, tema, atual):
                          ensure_ascii=False) + '\n```\n'
             'Devolva {"sua_resposta": "letra", "excecao": "" ou o motivo, "correcoes": [{"campo": "caminho, ex.: '
             'telas[2].pontos[1], questao_resolvida.passos[0].conta, termometro[1].peso", "depois": <valor novo completo>, '
-            '"motivo": "...", "slide": "onde está no JSON"}], "fatos_ok": true|false}. Só as correções, menor mudança.')
+            '"motivo": "...", "slide": "onde está no JSON"}], "fatos_ok": true|false}. Só as correções, menor mudança. '
+            '"fatos_ok" vale para o essencial JÁ COM as suas correções: true se, corrigido, você assina embaixo de cada '
+            'frase; false só se sobrar algo que você não conseguiu corrigir (explique em "excecao").')
     elif etapa == 'lente-b':
         lint = L.problemas(dict(tema, essencial=atual))
         txt.append(
@@ -131,7 +133,8 @@ def pedido(etapa, m, tema, atual):
             'A lente B mudou estes campos (confira de novo cada um contra o JSON do tema):\n```json\n'
             + json.dumps(atual.get('_revisao', {}).get('lente_b', []), ensure_ascii=False) + '\n```\nEssencial atual:\n```json\n'
             + json.dumps({k: v for k, v in atual.items() if k != '_revisao'}, ensure_ascii=False) + '\n```\n'
-            'Devolva {"correcoes": [...], "fatos_ok": true|false} (mesmo formato da lente A; só correções).')
+            'Devolva {"correcoes": [...], "fatos_ok": true|false} (mesmo formato da lente A; só correções; "fatos_ok" '
+            'vale para o texto já com as suas correções).')
     return dict(model=MODELO[etapa], max_tokens=32000,
                 system=[{'type': 'text', 'text': sistema(etapa, m, tema['id']), 'cache_control': {'type': 'ephemeral'}}],
                 messages=[{'role': 'user', 'content': '\n\n'.join(txt)}],
@@ -256,6 +259,21 @@ def roda(lote, temas, teto):
     print(f'FIM: {len(aprovados)} temas aprovados, {len(exc)} na exceção, US$ {est["gasto_usd"]:.2f}')
 
 
+def volta(lote, origem, etapa, temas):
+    """Novo lote que reaproveita o essencial de <origem> (já com as correções aplicadas) e roda de <etapa> em diante."""
+    import shutil
+    d = pasta(lote)
+    est = {'lote': lote, 'temas': temas, 'etapas': {}, 'gasto_usd': 0.0, 'origem': origem,
+           'criado': datetime.date.today().isoformat()}
+    for e in ETAPAS[:ETAPAS.index(etapa)]:
+        est['etapas'][e] = {'fim': 'reaproveitada de ' + origem}
+    os.makedirs(os.path.join(d, 'ess'), exist_ok=True)
+    for k in temas:
+        n = k.replace('/', '_') + '.json'
+        shutil.copy(os.path.join(pasta(origem), 'ess', n), os.path.join(d, 'ess', n))
+    R.gravar_json(os.path.join(d, 'estado.json'), est)
+
+
 def grava(lote):
     """Grava o essencial aprovado no JSON do tema (os slides e o resto não mudam). Imprime os temas gravados."""
     d = pasta(lote)
@@ -281,6 +299,8 @@ if __name__ == '__main__':
         teto = float(a[a.index('--teto') + 1]) if '--teto' in a else 20.0
         temas = [x for x in a[2:] if '/' in x]
         roda(a[1], temas, teto)
+    elif a and a[0] == 'volta':  # volta <lote> <origem> <etapa> <matéria/TEMA> ...
+        volta(a[1], a[2], a[3], a[4:])
     elif a and a[0] == 'grava':
         grava(a[1])
     else:

@@ -1,0 +1,176 @@
+{
+ "n": 38,
+ "id": "Peb78cf30",
+ "materia": "mat",
+ "tema": "M17",
+ "conteudo": "M17.1",
+ "nivel": 4,
+ "conceito": "Raciocínio lógico: ordenar cinco pessoas em andares distintos a partir de pistas de posição (antes, depois, 2 andares acima).",
+ "resolucao": {
+  "antes": {
+   "texto": "Os cinco sobem juntos pela escada, então chega primeiro quem tem aula no andar mais baixo. Assim, 'chegar antes' quer dizer 'andar menor', e 'subir 2 andares depois' quer dizer 'andar 2 números acima'. Cada pessoa fica em um andar diferente, de 1 a 5.",
+   "formulas": [
+    "chega antes = andar menor",
+    "Henrique = Sandro + 2",
+    "Paulo = Elias + 2"
+   ],
+   "simbolos": [
+    [
+     "E, S, P, H, C",
+     "andar de Elias, Sandro, Paulo, Henrique e Cláudio"
+    ],
+    [
+     "<",
+     "'menor que': o andar da esquerda é mais baixo e a pessoa chega antes"
+    ]
+   ]
+  },
+  "pista": "Traduza cada frase em uma relação entre andares. Comece pela pessoa que está presa dos dois lados: Henrique, que tem alguém antes e alguém depois.",
+  "passos": [
+   {
+    "faz": "Traduza as frases em relações",
+    "conta": "E < H < C",
+    "porque": "Henrique chega depois de Elias e antes de Cláudio, então seu andar fica entre o de Elias e o de Cláudio.",
+    "tipo": "localizar"
+   },
+   {
+    "faz": "Traduza as pistas de '2 andares'",
+    "conta": "H = S + 2 ; P = E + 2",
+    "porque": "Henrique sobe 2 andares depois de Sandro. Paulo sobe 2 andares depois de Elias. Isso dá a diferença exata entre os andares.",
+    "tipo": "localizar"
+   },
+   {
+    "faz": "Fixe Cláudio e Henrique",
+    "conta": "S ≥ 2 → H = S+2 ≥ 4",
+    "porque": "Sandro não está no 1º andar, então S ≥ 2 e H ≥ 4. Como C é maior que H e o máximo é 5, temos H = 4 e C = 5. Logo S = 4 − 2 = 2.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Descubra o andar de Elias",
+    "conta": "E < 4 e E ≠ 2 → E = 1 ou 3",
+    "porque": "Elias chega antes de Henrique (andar 4) e o 2º andar já é de Sandro. Se E = 3, então P = 5, que é o andar de Cláudio. Isso é impossível, pois os andares são diferentes. Logo E = 1.",
+    "tipo": "eliminar"
+   },
+   {
+    "faz": "Calcule o andar de Paulo",
+    "conta": "P = E + 2 = 1 + 2 = 3",
+    "porque": "Paulo sobe 2 andares depois de Elias. Os andares ficam: Elias 1, Sandro 2, Paulo 3, Henrique 4, Cláudio 5.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa A: Paulo tem aulas no 3º andar, pois Elias está no 1º e Paulo fica 2 andares acima dele.",
+  "checagem": "Teste todas as pistas com E1, S2, P3, H4, C5. Elias (1) < Henrique (4) < Cláudio (5): ok. H = S + 2 = 4: ok. P = E + 2 = 3: ok. Sandro não está no 1º: ok. Os andares são todos diferentes: ok.",
+  "erradas": {
+   "B": "O 1º andar é o de Elias. Como Paulo chega 2 andares depois dele, Paulo não pode estar no 1º, nem no mesmo andar que Elias.",
+   "C": "O 2º andar é o de Sandro: de H = S + 2 = 4 e H = 4, resulta S = 2. Cada um tem um andar diferente, então Paulo não fica aí.",
+   "D": "O 5º andar é o de Cláudio, que precisa estar acima de Henrique (4º). Paulo só ficaria no 5º com Elias no 3º (P = E + 2), mas aí Paulo repetiria o andar de Cláudio, o que é proibido.",
+   "E": "O 4º andar é o de Henrique, que está 2 andares acima de Sandro (2º). Paulo teria de estar no mesmo andar que ele, e os andares são diferentes."
+  },
+  "armadilha": "Esquecer que 'sobem juntos' faz 'chegar antes' significar 'andar menor', e não testar o caso E = 3, que daria Paulo no mesmo andar de Cláudio.",
+  "alerta": "",
+  "essencial": {
+   "pede": "O andar em que Paulo tem aulas.",
+   "chave": "Chegar antes = andar menor; H = S + 2 e P = E + 2. A condição S ≠ 1 fixa H = 4, C = 5, S = 2.",
+   "cuidado": "Teste as duas possibilidades de Elias (1 ou 3) e descarte a que repete andar."
+  }
+ },
+ "caminhos": [
+  {
+   "nome": "Testar alternativas",
+   "ideia": "Teste cada andar para Paulo, tomando E = P − 2. Só P = 3 (E = 1) é compatível com E < H < C, H = S + 2, S ≠ 1 e andares todos diferentes."
+  },
+  {
+   "nome": "Tabela de andares",
+   "ideia": "Desenhe 5 casas, de 1 a 5. Como Sandro não está no 1º, H = S + 2 ≥ 4; e H precisa de Cláudio acima, então H = 4 e C = 5. Depois encaixe S = 2 e os pares E, P = (1, 3)."
+  }
+ ],
+ "quadro": [
+  {
+   "linha": "E < H < C",
+   "nota": "Henrique entre Elias e Cláudio"
+  },
+  {
+   "linha": "H = S + 2",
+   "nota": "Henrique 2 andares acima de Sandro"
+  },
+  {
+   "linha": "P = E + 2",
+   "nota": "Paulo 2 andares acima de Elias"
+  },
+  {
+   "linha": "S ≥ 2 → H ≥ 4",
+   "nota": "Sandro não está no 1º"
+  },
+  {
+   "linha": "H = 4 e C = 5",
+   "nota": "C precisa estar acima de H"
+  },
+  {
+   "linha": "S = 4 − 2 = 2",
+   "nota": "Sandro no 2º andar"
+  },
+  {
+   "linha": "E = 3 → P = 5 (repete C)",
+   "nota": "Caso impossível, pois C é o 5º"
+  },
+  {
+   "linha": "E = 1 → P = 1 + 2 = 3",
+   "nota": "Paulo no 3º andar"
+  }
+ ],
+ "visual": {
+  "cabe": true,
+  "porque": "Um prédio com cinco andares mostra a ordem das pessoas e ajuda a ver a eliminação.",
+  "tipo": "diagrama",
+  "roteiro": "Quadro 1: prédio com 5 andares vazios, numerados de baixo para cima. Quadro 2: Cláudio no 5º e Henrique no 4º (setas 'antes' e 'depois'). Quadro 3: seta de 2 andares para baixo a partir de Henrique, que leva Sandro ao 2º. Quadro 4: Elias tentando o 3º; seta de 2 andares leva Paulo ao 5º, que já está ocupado, e o X aparece. Quadro 5: Elias no 1º, seta de 2 andares leva Paulo ao 3º, que fica destacado."
+ },
+ "fontes": [],
+ "resposta_resolvedor": "A",
+ "confere": true,
+ "divergencia": "",
+ "gab": "A",
+ "revisao": {
+  "lentes": [
+   "resolvedor",
+   "fatos"
+  ],
+  "modelos": {
+   "resolvedor": "claude-sonnet-5-5",
+   "fatos": "claude-opus-5-5"
+  },
+  "fatos": [
+   {
+    "campo": "resolucao.passos[0].tipo",
+    "depois": "localizar",
+    "motivo": "'interpretar' não é um tipo válido. Os tipos aceitos são localizar, calcular, comparar, eliminar e concluir. Traduzir a frase do enunciado em relação é localizar a informação.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[1].tipo",
+    "depois": "localizar",
+    "motivo": "'interpretar' não é um tipo válido. Os tipos aceitos são localizar, calcular, comparar, eliminar e concluir.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.resposta",
+    "depois": "Alternativa A: Paulo tem aulas no 3º andar, pois Elias está no 1º e Paulo fica 2 andares acima dele.",
+    "motivo": "A frase estava truncada e sem verbo ('pois Elias (1º) e Paulo está...'). A informação é a mesma, só corrigi a construção.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "O 5º andar é o de Cláudio, que precisa estar acima de Henrique (4º). Paulo só ficaria no 5º com Elias no 3º (P = E + 2), mas aí Paulo repetiria o andar de Cláudio, o que é proibido.",
+    "motivo": "O texto tinha um trecho quebrado e sem sentido ('mas aí o 2º e o 3º...').",
+    "fonte": ""
+   },
+   {
+    "campo": "caminhos[1].ideia",
+    "depois": "Desenhe 5 casas, de 1 a 5. Como Sandro não está no 1º, H = S + 2 ≥ 4; e H precisa de Cláudio acima, então H = 4 e C = 5. Depois encaixe S = 2 e os pares E, P = (1, 3).",
+    "motivo": "A justificativa estava incompleta. 'H precisa de alguém acima' sozinho não fixa H = 4, porque H = 3 também teria alguém acima. É a condição S ≥ 2 que obriga H ≥ 4.",
+    "fonte": ""
+   }
+  ],
+  "fatos_ok": true,
+  "fatos_resposta": "A"
+ }
+}

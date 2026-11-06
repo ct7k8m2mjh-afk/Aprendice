@@ -11,7 +11,7 @@
    "texto": "Bioma é um grande conjunto de vida (vegetação, fauna e clima) com características próprias. O enunciado dá várias pistas da paisagem e do uso da terra. Cada pista aponta para alguns biomas e exclui outros. Cruzando todas, sobra um só.",
    "formulas": [
     "Pampa: campos (capins), extremo sul, clima subtropical, solos arenosos com arenização",
-    "Cerrado e Caatinga: árvores e arbustos dominam, não campos",
+    "Cerrado: savana com árvores esparsas e arbustos. Caatinga: arbustos e árvores baixas. Nenhum dos dois é de campos",
     "Mata Atlântica: floresta úmida. Pantanal: planície que alaga"
    ],
    "simbolos": [
@@ -74,7 +74,7 @@
    {
     "faz": "Elimine os demais",
     "conta": "Caatinga, Cerrado, Mata Atlântica, Pantanal",
-    "porque": "Nenhum deles tem campos como vegetação original dominante. Nenhum tem como marca principal os areais com arroz e eucalipto.",
+    "porque": "Nenhum deles tem campos como vegetação original dominante. Nenhum tem como marca principal a arenização, com arroz e eucalipto, nem a posição de bioma menos protegido por UCs.",
     "tipo": "eliminar"
    },
    {
@@ -90,7 +90,7 @@
    "A": "Caatinga: a vegetação original é de arbustos e árvores baixas, que perdem as folhas na seca, e não de campos. O problema típico dela é a desertificação, não areais com arroz e eucalipto.",
    "B": "Cerrado: tem muita soja, mas a vegetação original é de árvores esparsas e arbustos, não de campos. Arroz, eucalipto e areais não são sua marca. Quem marcou B olhou só a soja e não leu 'campestre'.",
    "C": "Mata Atlântica: a vegetação original é floresta. O texto diz que a floresta de eucalipto SUBSTITUI a vegetação campestre, então o bioma original não é florestal. Quem marcou C não viu esse contraste.",
-   "E": "Pantanal: é planície que alaga com a cheia, no Centro-Oeste. A pressão principal é a pecuária, não soja, arroz e eucalipto sobre areais. Quem marcou E não comparou com a cheia, marca do bioma."
+   "E": "Pantanal: é planície que alaga com a cheia, no Centro-Oeste. Sua vegetação original não é de campos de solo arenoso com areais. A pressão principal é a pecuária, não a soja, o arroz e o eucalipto sobre areais. Quem marcou E não comparou com a cheia, marca do bioma."
   },
   "armadilha": "Escolher o Cerrado só porque tem soja, ignorando que a vegetação original do texto é campestre e que há areais e arroz.",
   "alerta": "",
@@ -126,12 +126,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -237,6 +239,28 @@
   "didatica_alertas": [
    "A frase 'Pantanal: vegetação mista' é correta, mas a alternativa B ('Cerrado... também não é o bioma menos protegido por UCs') depende de dado de proteção que seria bom ter com fonte (MMA/CNUC). Não foi alterada."
   ],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.antes.formulas[1]",
+    "depois": "Cerrado: savana com árvores esparsas e arbustos. Caatinga: arbustos e árvores baixas. Nenhum dos dois é de campos",
+    "motivo": "A frase original diz que o Cerrado e a Caatinga têm 'árvores e arbustos dominam, não campos'. Isso simplifica demais. O Cerrado tem formações campestres e savânicas, e a fisionomia dominante é a savana. A nova redação evita a afirmação absoluta de que não há campos no Cerrado.",
+    "fonte": "IBGE, Mapa de Biomas do Brasil"
+   },
+   {
+    "campo": "resolucao.passos[4].porque",
+    "depois": "Nenhum deles tem campos como vegetação original dominante. Nenhum tem como marca principal a arenização, com arroz e eucalipto, nem a posição de bioma menos protegido por UCs.",
+    "motivo": "A frase original deixava de fora a segunda marca do texto, o fato de ser o bioma menos protegido por UCs. Isso está certo para o Pampa, que tem cerca de 3% da área protegida.",
+    "fonte": "MMA/CNUC; IBGE"
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "Pantanal: é planície que alaga com a cheia, no Centro-Oeste. Sua vegetação original não é de campos de solo arenoso com areais. A pressão principal é a pecuária, não a soja, o arroz e o eucalipto sobre areais. Quem marcou E não comparou com a cheia, marca do bioma.",
+    "motivo": "Ajuste mínimo. O Pantanal tem áreas de campo inundável, então a eliminação precisa se apoiar nos areais e na arenização, e não só na ausência de campos.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "D"
  }
 }

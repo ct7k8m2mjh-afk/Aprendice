@@ -37,7 +37,7 @@
     ],
     [
      "Pradarias",
-     "domínio dos campos do extremo sul (coxilhas gaúchas), também subtropical"
+     "domínio dos campos do extremo sul (coxilhas gaúchas), de clima subtropical"
     ],
     [
      "Mares de Morros",
@@ -89,7 +89,7 @@
   "resposta": "Alternativa A: semiárido = Caatingas, tropical = Cerrado e subtropical = Araucárias.",
   "checagem": "Reveja o primeiro domínio de cada letra com o clima dado: Pradarias (B), Cerrado (C e E) e Mares de Morros (D) não são semiáridos. Só Caatingas é semiárido, e isso já restringe a escolha à letra A.",
   "erradas": {
-   "B": "Pradarias é domínio subtropical dos campos do extremo sul, não semiárido (1). Caatingas é semiárido, não tropical (2). Amazônico é equatorial, não subtropical (3). As três estão fora do clima indicado.",
+   "B": "B não confere: Pradarias é subtropical, não semiárido (1). Caatingas é semiárido, não tropical com estação seca (2). Amazônico é equatorial, não subtropical (3). As três estão fora do clima indicado.",
    "C": "C troca as duas primeiras: Cerrado é tropical, mas a imagem 1 é semiárido (Caatingas). Caatingas na posição 2 repete o erro. Pradarias é subtropical, mas é de campos, e a imagem 3 mostra araucárias.",
    "D": "Mares de Morros é tropical úmido de fachada atlântica, e o semiárido (1) não é isso. Pradarias é subtropical, não tropical (2). O Amazônico é equatorial, não subtropical (3).",
    "E": "Cerrado é tropical, não semiárido (1). Araucárias é subtropical, não tropical (2). Mares de Morros é tropical úmido, não subtropical (3). Os três domínios estão trocados de lugar."
@@ -128,12 +128,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -220,6 +222,31 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "conteudo",
+    "depois": "G05.1",
+    "motivo": "A classificação original trazia G05.2 (grandes biomas do mundo). A questão trata de domínios morfoclimáticos brasileiros, que são G05.1. A resolução proposta já usa G05.1, e a classificação no banco precisa ficar igual a ela.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.antes.simbolos[5]",
+    "depois": [
+     "Pradarias",
+     "domínio dos campos do extremo sul (coxilhas gaúchas), de clima subtropical"
+    ],
+    "motivo": "O 'também' remetia a Araucárias na lista, mas não precisava estar lá. Retirei para não sugerir que Pradarias e Araucárias são equivalentes. Mudança só de redação, sem alterar o fato.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "B não confere: Pradarias é subtropical, não semiárido (1). Caatingas é semiárido, não tropical com estação seca (2). Amazônico é equatorial, não subtropical (3). As três estão fora do clima indicado.",
+    "motivo": "O texto antigo tratava Caatingas como 'não tropical', o que é impreciso, já que o semiárido é uma variante quente e seca do clima tropical. Troquei por uma formulação que não gera ambiguidade.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "A"
  }
 }

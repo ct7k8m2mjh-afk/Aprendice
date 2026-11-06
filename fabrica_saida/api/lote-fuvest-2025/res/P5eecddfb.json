@@ -64,7 +64,7 @@
    },
    {
     "faz": "Ligue a endogamia aos alelos recessivos",
-    "conta": "Aa × Aa → 1/4 aa (doente)",
+    "conta": "Aa × Aa → 1/4 aa (doente)\nem parentes, Aa × Aa é mais comum",
     "porque": "Parentes têm mais chance de carregar o mesmo alelo recessivo raro, herdado de um ancestral comum. Quando se cruzam, cresce a chance de filhos aa, que manifestam a doença.",
     "tipo": "calcular"
    },
@@ -85,7 +85,7 @@
   "checagem": "Pense em animais de zoológico ou raças puras de cães: cruzamentos entre parentes elevam a frequência de doenças genéticas recessivas. É o mesmo princípio.",
   "erradas": {
    "A": "A variabilidade genética diminui, não aumenta. Populações pequenas perdem alelos por deriva genética e não recebem alelos novos de outro grupo, porque estão isoladas.",
-   "C": "A taxa de mutação depende de erros de cópia do DNA e de agentes mutagênicos, não do tamanho da população. A frequência de mutações por indivíduo não cai com a fragmentação.",
+   "C": "A taxa de mutação depende de erros de cópia do DNA e de agentes mutagênicos, não do tamanho da população. A fragmentação não reduz a frequência de mutações por indivíduo.",
    "D": "A seleção natural não favorece uma característica só por ser dominante. Ela favorece quem tem maior sobrevivência e reprodução, seja dominante ou recessivo. A figura também não mostra seleção por dominância.",
    "E": "A barreira separa os grupos e impede o cruzamento entre eles. Ocorre o contrário: o fluxo gênico diminui e a mistura entre as populações é dificultada."
   },
@@ -123,12 +123,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -251,6 +253,22 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.passos[2].conta",
+    "depois": "Aa × Aa → 1/4 aa (doente)\nem parentes, Aa × Aa é mais comum",
+    "motivo": "Aa × Aa dá 1/4 aa tanto em população grande quanto em pequena. O que a endogamia muda é a frequência desse cruzamento entre portadores. A conta isolada podia sugerir que a probabilidade 1/4 aumenta.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "A taxa de mutação depende de erros de cópia do DNA e de agentes mutagênicos, não do tamanho da população. A fragmentação não reduz a frequência de mutações por indivíduo.",
+    "motivo": "Mantém a ideia original. Só remove a repetição e deixa explícito que a taxa por indivíduo não muda. Em número absoluto, populações menores têm menos mutações novas, mas essa não é a ideia da alternativa.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "B"
  }
 }

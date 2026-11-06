@@ -80,7 +80,7 @@
   "erradas": {
    "B": "Erra a origem da fuligem: ela vem da combustão incompleta, não da completa. A combustão completa produz CO₂ e H₂O, sem fuligem. Também não é a fuligem que aquece a parede até a incandescência.",
    "C": "Troca a causa. O preto na parede é fuligem depositada, e não falta de luz das chamas. É verdade que o brilho cresce com a temperatura, mas isso não explica por que a parede clara só aparece quando o depósito preto some.",
-   "D": "A fuligem é carbono sólido. Em pressão ambiente ele não funde: só sublima por volta de 3 600 °C. Um forno de pizza chega a poucas centenas de graus, então a fuligem não escorre. Ela some porque reage com o O₂.",
+   "D": "A fuligem é carbono sólido, que não funde em pressão ambiente. Ele só passaria a líquido em condições extremas, bem acima do que um forno de pizza atinge (poucas centenas de °C). Então a fuligem não escorre. Ela some porque reage com o O₂.",
    "E": "O gás carbônico (CO₂) é incolor e transparente. Ele não forma névoa nem bloqueia a luz. O escuro das paredes vem da fuligem depositada, não de uma névoa de CO₂."
   },
   "armadilha": "Escolher uma explicação só de óptica (luz das chamas) e esquecer que o preto é carbono, que desaparece ao queimar com O₂ em temperatura alta.",
@@ -113,12 +113,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -228,7 +230,23 @@
    "A classificação (F08 / F08.5, óptica de lentes) não bate com o conteúdo: a questão é de Química (combustão). O corretor de fatos ou a classificação deve reclassificar pela TAXONOMIA.",
    "No `conteudo`, o valor null e o `confere` ficam para o corretor 1 revisar."
   ],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "A fuligem é carbono sólido, que não funde em pressão ambiente. Ele só passaria a líquido em condições extremas, bem acima do que um forno de pizza atinge (poucas centenas de °C). Então a fuligem não escorre. Ela some porque reage com o O₂.",
+    "motivo": "A frase 'só sublima por volta de 3 600 °C' é imprecisa. À pressão ambiente o carbono sublima a cerca de 3 600 °C, mas esse número é secundário e foi dado como fato sem fonte. A nova redação fica correta sem depender dele: o carbono não funde nem sublima nas temperaturas de um forno de pizza.",
+    "fonte": "Atkins, Princípios de Química: o carbono (grafite) sublima a cerca de 3 600 °C à pressão ambiente."
+   },
+   {
+    "campo": "nota_classificacao",
+    "depois": "A classificação atual (F08 / F08.5, lentes) não bate com a questão. O fenômeno é a combustão incompleta e a oxidação da fuligem com a temperatura, que é conteúdo de Química (combustão). Não há óptica de lentes. Sugiro reclassificar pela TAXONOMIA oficial.",
+    "motivo": "Ajuste de redação, sem mudança de fato. Mantém a observação correta sobre a classificação.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "A"
  },
- "nota_classificacao": "A classificação atual (F08 / F08.5, lentes) não bate com a questão. O fenômeno é a combustão incompleta e a oxidação da fuligem com a temperatura, conteúdo de Química (combustão), ou no máximo de Termologia. Não há óptica de lentes. Sugiro reclassificar pela TAXONOMIA oficial."
+ "nota_classificacao": "A classificação atual (F08 / F08.5, lentes) não bate com a questão. O fenômeno é a combustão incompleta e a oxidação da fuligem com a temperatura, que é conteúdo de Química (combustão). Não há óptica de lentes. Sugiro reclassificar pela TAXONOMIA oficial."
 }

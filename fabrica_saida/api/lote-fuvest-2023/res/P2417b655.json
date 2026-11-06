@@ -80,8 +80,7 @@
    "A": "Faltou ler a razão. Kow baixo significaria mais soluto na água que no octanol, o contrário do que o texto diz dos POPs. Eles se dissolvem no octanol e nos lipídeos, então 'não se solubilizam' é falso.",
    "B": "Faltou notar que octanol e água não se misturam: formam duas fases. Essa separação permite medir C_octanol e C_água. O enunciado diz 'após a mistura e separação das fases'.",
    "C": "Faltou ligar magnificação ao topo da cadeia. A concentração aumenta a cada nível, então é maior nos predadores de topo. Os produtores primários estão na base, com a menor concentração.",
-   "D": "O NaCl é um composto iônico inorgânico, muito solúvel em água, e não é composto orgânico clorado. POP é orgânico e pouco solúvel em água, então o NaCl não pode ser considerado um POP.",
-   "E": "Alternativa correta: não é uma errada."
+   "D": "O NaCl é um composto iônico inorgânico, muito solúvel em água. Não é composto orgânico clorado, então não pode ser um POP. Ser 'pouco solúvel em água' não basta para ser POP."
   },
   "armadilha": "Ler 'Kow' como se o baixo indicasse afinidade com lipídeos, quando a razão octanol ÷ água é ALTA para quem prefere gordura.",
   "alerta": "",
@@ -134,12 +133,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -216,6 +217,29 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "Alternativa correta: não é uma errada. POPs têm Kow elevado e se dissolvem mais no octanol, por serem lipossolúveis.",
+    "motivo": "A entrada deve explicar o acerto, não só dizer que não é errada. Isso não muda nenhum fato.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "O NaCl é um composto iônico inorgânico, muito solúvel em água. Não é composto orgânico clorado, então não pode ser um POP. Ser 'pouco solúvel em água' não basta para ser POP.",
+    "motivo": "Deixa claro que o erro da alternativa está na conclusão. A premissa 'compostos clorados são pouco solúveis' é aceitável no contexto do texto. O NaCl não é orgânico e não é pouco solúvel.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "E",
+  "normalizacao": [
+   {
+    "campo": "resolucao.erradas.E",
+    "removido": "Alternativa correta: não é uma errada. POPs têm Kow elevado e se dissolvem mais no octanol, por serem lipossolúveis.",
+    "motivo": "comentário da letra certa"
+   }
+  ]
  }
 }

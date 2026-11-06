@@ -64,7 +64,7 @@
   "resposta": "Alternativa E: C(3,2) × C(8,6) = 3 × 28 = 84 provas distintas.",
   "checagem": "Conte pelo que fica de fora: 1 questão de Matemática entre 3 (3 modos) e 2 de Física entre 8 (28 modos). 3 × 28 = 84, o mesmo resultado.",
   "erradas": {
-   "A": "42 não confere: 42 = 3 × 14 exigiria só 14 modos em Física, mas C(8,6) = 28. Quem marcou provavelmente dividiu por 2 de novo, mas a combinação já descarta a ordem.",
+   "A": "42 não confere: 42 = 3 × 14 exigiria só 14 modos em Física, mas C(8,6) = C(8,2) = 8 × 7 ÷ 2 = 28. Dividir por 2 mais uma vez (28 ÷ 2 = 14) descarta a ordem duas vezes; a combinação já a descartou.",
    "B": "54 não confere: 54 = 3 × 18 exigiria 18 modos em Física, mas C(8,6) = 28. Para chegar a 28, faça 8 × 7 ÷ 2, sem outra divisão ou subtração.",
    "C": "62 não confere: o total é 3 × (escolhas de Física), então tem de ser múltiplo de 3. Como 62 ÷ 3 não é inteiro, não pode ser a resposta.",
    "D": "72 não confere: exigiria 24 modos em Física (72 ÷ 3), mas C(8,6) = 28. Falta contar 4 dos modos de escolher as questões de Física."
@@ -133,12 +133,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -234,6 +236,16 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "42 não confere: 42 = 3 × 14 exigiria só 14 modos em Física, mas C(8,6) = C(8,2) = 8 × 7 ÷ 2 = 28. Dividir por 2 mais uma vez (28 ÷ 2 = 14) descarta a ordem duas vezes; a combinação já a descartou.",
+    "motivo": "Remove 'provavelmente' (origem especulada) e mostra a conta que leva a 14 e o teste objetivo.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "E"
  }
 }

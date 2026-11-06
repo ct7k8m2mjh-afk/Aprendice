@@ -89,9 +89,9 @@
   "checagem": "Pelo caminho inverso: correntes frias com ressurgência são ricas em peixes. Humboldt e Benguela são frias e estão no oeste dos continentes. O mapa tem justamente aí o vermelho e o vinho.",
   "erradas": {
    "A": "Quem marcou A achou que correntes quentes trazem peixe. Falta lembrar que elas são pobres em nutrientes. No mapa, as manchas escuras do Sul ficam nas costas oeste (Peru, Chile, sudoeste da África), não nas costas leste.",
-   "B": "O Golfo é corrente quente e passa pela costa leste da América do Norte, não pela oeste. A frase também trata o Golfo como fria. O Labrador (fria, costa leste) está certo, mas a frase toda fica errada. Falta lembrar a temperatura de cada corrente.",
-   "C": "Quem marcou C esqueceu de olhar a distribuição das cores. No mapa, as manchas mais escuras ficam junto às costas e o alto-mar aparece em amarelo-claro. Além disso, 'independentemente das correntes' ignora o papel das correntes frias.",
-   "E": "Quem marcou E acha que corrente fria reduz a pesca. É o contrário: ela traz nutrientes. O mapa também mostra manchas vermelhas e vinho em latitudes altas, perto da Noruega e no norte do Pacífico, o que contraria 'potencial reduzido'."
+   "B": "O Golfo é corrente quente e passa pela costa leste da América do Norte, não pela oeste. A frase também trata o Golfo como fria. O Labrador é fria e banha a costa leste, mas a frase toda fica errada. Além disso, o mapa mostra manchas escuras na costa oeste da América do Norte, no Pacífico, e não há corrente do Golfo ali.",
+   "C": "Quem marcou C esqueceu de olhar a distribuição das cores. No mapa, as manchas mais escuras ficam junto às costas e plataformas continentais, e o mar aberto aparece em amarelo-claro. Além disso, 'independentemente das correntes' ignora o papel das correntes frias.",
+   "E": "Quem marcou E acha que corrente fria reduz a pesca. É o contrário: ela traz nutrientes. O mapa também mostra manchas vermelhas e vinho em latitudes altas do Hemisfério Norte, perto da Noruega e no norte do Pacífico (Japão), o que contraria 'potencial reduzido' para as regiões de altas latitudes. A alternativa ainda generaliza as regiões polares."
   },
   "armadilha": "Achar que corrente fria atrapalha a pesca, ou que correntes quentes são mais produtivas, quando é o contrário: as frias com ressurgência concentram os peixes.",
   "alerta": "",
@@ -127,12 +127,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -218,6 +220,28 @@
   "didatica_alertas": [
    "Alerta de fato: o mapa mostra a mancha escura do Sul na costa sudoeste da África (região de Benguela) e não em toda a costa oeste africana. O texto da alternativa D diz 'costa oeste'. Não alterei, mas o corretor 1 pode conferir. Também vale conferir se a letra E, sobre as regiões polares, pode ser contestada, já que o mapa mostra pesca alta no Ártico perto da Noruega."
   ],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.erradas.B",
+    "depois": "O Golfo é corrente quente e passa pela costa leste da América do Norte, não pela oeste. A frase também trata o Golfo como fria. O Labrador é fria e banha a costa leste, mas a frase toda fica errada. Além disso, o mapa mostra manchas escuras na costa oeste da América do Norte, no Pacífico, e não há corrente do Golfo ali.",
+    "motivo": "Texto antigo dizia que o Labrador 'está certo', mas a frase diz 'costa leste e oeste, respectivamente'. O Labrador está na costa leste, mas o Golfo não está na oeste. A correção deixa o raciocínio coerente.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "Quem marcou C esqueceu de olhar a distribuição das cores. No mapa, as manchas mais escuras ficam junto às costas e plataformas continentais, e o mar aberto aparece em amarelo-claro. Além disso, 'independentemente das correntes' ignora o papel das correntes frias.",
+    "motivo": "No mapa há áreas amarelas (0,05 a 0,2) no alto-mar, mas algumas áreas de alto-mar têm tom mais forte, por exemplo faixas alaranjadas no Atlântico Norte. Foi preciso trocar 'alto-mar' por 'mar aberto' para evitar generalização e ligar ao conceito de plataforma continental.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.E",
+    "depois": "Quem marcou E acha que corrente fria reduz a pesca. É o contrário: ela traz nutrientes. O mapa também mostra manchas vermelhas e vinho em latitudes altas do Hemisfério Norte, perto da Noruega e no norte do Pacífico (Japão), o que contraria 'potencial reduzido' para as regiões de altas latitudes. A alternativa ainda generaliza as regiões polares.",
+    "motivo": "Noruega e Japão não são regiões polares propriamente ditas; 'norte do Pacífico' é vago. A correção usa a leitura do mapa e aponta a generalização, que é o motivo certo.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "D"
  }
 }

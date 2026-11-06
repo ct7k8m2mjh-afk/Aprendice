@@ -12,7 +12,7 @@
    "formulas": [
     "boca: pH em torno de 6,5 a 7 (amilase salivar, digere amido)",
     "estômago: pH em torno de 1,5 a 2 (pepsina, digere proteína)",
-    "duodeno: pH em torno de 8 (enzimas do suco pancreático e bile)"
+    "duodeno: meio básico, pH em torno de 8 no suco pancreático e na bile (enzimas do pâncreas)"
    ],
    "simbolos": [
     [
@@ -59,7 +59,7 @@
    },
    {
     "faz": "Teste as alternativas",
-    "conta": "A: amilase em pH ≈ 2,5? não\nB: lipase na boca p/ II? não\nD: bile não é enzima\nE: II em pH 2 = 100%",
+    "conta": "A: nada indica amilase em I\nB: lipase na boca p/ II? não\nD: bile não é enzima\nE: II em pH 2 = 100%",
     "porque": "Cada alternativa errada tem um fato que a derruba: o pH da curva, a função da bile ou a ausência de digestão em pH 2.",
     "tipo": "eliminar"
    },
@@ -73,13 +73,13 @@
   "resposta": "Alternativa C: a substância III é digerida a partir de pH próximo de 6,5 a 7, o pH da boca, onde a amilase salivar digere amido.",
   "checagem": "A amilase salivar tem pH ótimo perto de 6,8. A curva III cai exatamente nessa região. Já no estômago (pH ≈ 2) a curva III está em 100% não digerido, então a substância III não é digerida ali. Isso é coerente com o amido, que é digerido na boca e não no estômago.",
   "erradas": {
-   "A": "Falta olhar o pH da amilase. A curva I cai em pH ≈ 2,5, que é ácido. A amilase age perto do neutro (6,5 a 7,5), e o duodeno tem pH ≈ 8. O perfil de I é de enzima de meio ácido, como a pepsina do estômago.",
+   "A": "Falta separar o que o gráfico mostra do que ele não mostra. A curva I já desce em pH ≈ 2,5 e chega a cerca de 5% perto de pH 3,5. Isso só diz que I é digerida em pH acima de ≈ 3. O gráfico não identifica I como amido nem aponta o duodeno ou a amilase. Pelo pH da curva, I não casa com a amilase como III casa com a boca.",
    "B": "Falta ligar o pH da curva ao local. A curva II só cai em pH ≈ 4,5, e a boca tem pH ≈ 7. Em pH 7 a substância II já está digerida, mas isso não indica lipase: o gráfico não diz que II é gordura. A alternativa inventa uma enzima.",
    "D": "Diz que a substância IV é uma proteína digerida pela bile no estômago. Há dois erros. A bile não é enzima: ela só emulsifica gorduras e não digere proteína. E no estômago (pH ≈ 2) a curva IV está em 100% não digerido. IV só cai entre pH 8 e 9, que é meio básico.",
    "E": "Falta testar o pH do estômago. Em pH ≈ 2 a curva II está em 100% não digerido, então II não é digerida lá. Também falha a ordem: I cai em pH ácido (estômago), III perto do neutro (boca) e não no duodeno."
   },
   "armadilha": "Ler a curva como 'onde a substância é digerida' quando o eixo mostra o que NÃO foi digerido: a digestão ocorre onde a curva cai, à direita da queda, e não onde ela está em 100%.",
-  "alerta": "Se você ler o gráfico ao pé da letra, toda curva fica perto de 5% em qualquer pH acima da queda. Assim, a substância I também apareceria digerida em pH 8, o pH do duodeno, o que poderia sustentar a alternativa A. A banca quer que se use o pH em que cada curva cai como o pH de ação da enzima: I em meio ácido (estômago), III perto do neutro (boca) e IV em meio básico (duodeno). É essa leitura que torna o gabarito C único.",
+  "alerta": "Lido ao pé da letra, o gráfico mostra que cada substância é digerida em qualquer pH acima da queda da sua curva. Assim, I e II também aparecem digeridas em pH 7, o pH da boca. O gráfico não diz qual é a substância nem qual é a enzima. A alternativa C é a única sem contradição com o gráfico: III é digerida em pH ≈ 6,5 a 7, que é o pH da boca, e a amilase salivar digere amido. A, B, D e E são derrubadas por fatos: B tem lipase na boca sem apoio no gráfico, D tem bile como enzima, E tem II digerida em pH 2, e A não tem apoio no gráfico. O item é fraco, porque o dado do gráfico sozinho não identifica o amido.",
   "essencial": {
    "pede": "A conclusão correta sobre as substâncias a partir do gráfico de % não digerido × pH.",
    "chave": "Digestão acontece onde o % não digerido cai; compare esse pH com o do local e a enzima certa (amilase salivar, pH ≈ 7, amido).",
@@ -142,12 +142,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -225,6 +227,34 @@
    "O 'alerta' da resolução e o passo 2 usam o pH de queda como pH de ação da enzima. Pela leitura literal do gráfico, a curva I (≈5% em pH 8) também apareceria digerida no pH do duodeno, o que daria brecha para a alternativa A. Isso é uma discussão de fato e o corretor 1 deve revisar. Além disso, o texto de 'erradas.E' afirma que I seria do estômago: o gráfico não diz isso, apenas que I cai em pH ácido.",
    "A 'checagem' diz que em pH 2 a curva III está em 100% não digerido; isso está de acordo com o gráfico. Já o passo 3 cita III 'já desceu bastante em pH 7'; no gráfico, em pH 7 a curva III está em torno de 20% a 30%, e a conclusão continua válida."
   ],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.erradas.A",
+    "depois": "Falta separar o que o gráfico mostra do que ele não mostra. A curva I já desce em pH ≈ 2,5 e chega a cerca de 5% perto de pH 3,5. Isso só diz que I é digerida em pH acima de ≈ 3. O gráfico não identifica I como amido nem aponta o duodeno ou a amilase. Pelo pH da curva, I não casa com a amilase como III casa com a boca.",
+    "motivo": "O texto antigo dizia que I tem 'perfil de enzima de meio ácido, como a pepsina'. Isso contradiz a leitura do gráfico: em pH 2 a curva I ainda está quase em 100% não digerido, e a digestão ocorre onde a curva cai, em pH mais alto.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.passos[3].conta",
+    "depois": "A: nada indica amilase em I\nB: lipase na boca p/ II? não\nD: bile não é enzima\nE: II em pH 2 = 100%",
+    "motivo": "'A: amilase em pH ≈ 2,5? não' era um teste enganoso. A amilase não age em pH 2,5, mas a alternativa A fala de digestão no duodeno, que tem pH mais alto. O que derruba A é a falta de dado no gráfico.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.antes.formulas[2]",
+    "depois": "duodeno: meio básico, pH em torno de 8 no suco pancreático e na bile (enzimas do pâncreas)",
+    "motivo": "O pH do conteúdo do duodeno fica perto do neutro, pois o suco gástrico é neutralizado. O valor ≈ 8 é do suco pancreático e da bile, não do duodeno inteiro.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.alerta",
+    "depois": "Lido ao pé da letra, o gráfico mostra que cada substância é digerida em qualquer pH acima da queda da sua curva. Assim, I e II também aparecem digeridas em pH 7, o pH da boca. O gráfico não diz qual é a substância nem qual é a enzima. A alternativa C é a única sem contradição com o gráfico: III é digerida em pH ≈ 6,5 a 7, que é o pH da boca, e a amilase salivar digere amido. A, B, D e E são derrubadas por fatos: B tem lipase na boca sem apoio no gráfico, D tem bile como enzima, E tem II digerida em pH 2, e A não tem apoio no gráfico. O item é fraco, porque o dado do gráfico sozinho não identifica o amido.",
+    "motivo": "O alerta antigo dizia que a banca quer I em meio ácido (estômago) e IV no duodeno. Isso não decorre do gráfico, é especulação sobre a banca, e contradiz a leitura usada nos passos.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "C"
  }
 }

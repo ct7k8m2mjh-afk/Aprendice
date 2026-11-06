@@ -8,7 +8,7 @@
  "conceito": "Pesca em águas internacionais: sobrepesca, poluição e ameaça à reposição natural das espécies marinhas.",
  "resolucao": {
   "antes": {
-   "texto": "Águas internacionais (alto-mar) ficam fora da zona econômica exclusiva (ZEE) de qualquer país. A fiscalização ali é difícil. Sobrepesca é pescar mais rápido do que a espécie consegue se reproduzir, e por isso o estoque de peixes diminui. Frotas grandes e distantes também deixam resíduos no mar: óleo, lixo e redes abandonadas.",
+   "texto": "Águas internacionais (alto-mar) ficam fora da zona econômica exclusiva (ZEE) de qualquer país. A fiscalização ali é difícil. Sobrepesca é pescar mais rápido do que a espécie consegue se reproduzir, e por isso o estoque de peixes diminui. Frotas grandes e distantes também podem deixar resíduos no mar: óleo, lixo e redes abandonadas.",
    "formulas": [
     "pesca > reposição natural → sobrepesca → estoque cai",
     "alto-mar: fiscalização difícil → risco de pesca ilegal"
@@ -16,7 +16,7 @@
    "simbolos": [
     [
      "águas internacionais",
-     "alto-mar, além da zona econômica exclusiva (ZEE) de 200 milhas náuticas, onde nenhum país manda"
+     "alto-mar, além da zona econômica exclusiva (ZEE) de 200 milhas náuticas; nenhum país tem soberania sobre elas"
     ],
     [
      "ZEE (zona econômica exclusiva)",
@@ -67,7 +67,7 @@
    {
     "faz": "Elimine as que contrariam os fatos",
     "conta": "A: \"pouca oferta\"\nD: \"não se sustenta\"",
-    "porque": "Águas frias trazem nutrientes e têm muito peixe, então A erra. O texto mostra frota chinesa a 1.000 km do continente. Se ela está lá, a pesca compensa, então D erra.",
+    "porque": "As Galápagos recebem correntes frias ricas em nutrientes (Humboldt, Cromwell), e águas frias costumam ser muito piscosas, então A erra. O texto mostra frota chinesa a 1.000 km do continente. Se ela está lá, a pesca compensa, então D erra.",
     "tipo": "eliminar"
    },
    {
@@ -81,7 +81,7 @@
   "checagem": "Releia o comando: \"o que é correto\". Só B concorda com a preocupação do texto; as outras quatro dizem que o risco é baixo, que não há peixe ou que não compensa pescar.",
   "erradas": {
    "A": "Erra o fato: nas Galápagos, correntes frias (Humboldt e Cromwell) trazem nutrientes, e águas frias são em geral muito piscosas. A oferta de pescado é alta, e é isso que atrai a frota.",
-   "C": "Quem marcou C ignorou o tom de alerta. O texto diz que os navios estão em alto-mar, onde o controle é fraco, e perto da reserva. Isso preocupa as autoridades; logo o risco não é baixo.",
+   "C": "Quem marcou C ignorou o tom de alerta. O texto diz que os navios estão em águas internacionais, perto da reserva, e isso preocupa as autoridades; logo o risco não é baixo. Afirmar 'rígido controle' também não tem apoio no texto.",
    "D": "Erra por ignorar o texto: a frota chinesa já opera a 1.000 km do continente equatoriano, sinal de que a pesca compensa. Navios-fábrica trabalham longe de casa, e a distância não a torna inviável.",
    "E": "Quem marcou E confundiu quantidade pescada com reposição. Pescar muito é justamente o que causa sobrepesca: o estoque cai porque a natureza não repõe tão rápido."
   },
@@ -91,7 +91,8 @@
    "pede": "A afirmação correta sobre a pesca em águas oceânicas internacionais.",
    "chave": "Pesca industrial em alto-mar, de difícil fiscalização, gera sobrepesca e poluição.",
    "cuidado": "Desconfie de alternativas que dizem que o risco é baixo ou que não há problema, pois o texto fala em preocupação."
-  }
+  },
+  "nivel": 6
  },
  "caminhos": [
   {
@@ -119,12 +120,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [],
   "fatos_ok": true,
@@ -204,6 +207,43 @@
    "O campo 'nivel' da resolução está 4, mas a classificação indica nível 6 e o conteúdo é G04.5; conferir a taxonomia.",
    "Os termos 'correntes de Humboldt e Cromwell' em erradas.A são fato correto para as Galápagos, mas a água fria vem em parte do afloramento; manter conferido pelo corretor 1."
   ],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.antes.texto",
+    "depois": "Águas internacionais (alto-mar) ficam fora da zona econômica exclusiva (ZEE) de qualquer país. A fiscalização ali é difícil. Sobrepesca é pescar mais rápido do que a espécie consegue se reproduzir, e por isso o estoque de peixes diminui. Frotas grandes e distantes também podem deixar resíduos no mar: óleo, lixo e redes abandonadas.",
+    "motivo": "O texto da questão não fala de poluição. Dizer que as frotas 'deixam' resíduos como fato certo vai além do suporte. Com 'podem', fica coerente com o 'risco de poluição' da alternativa B.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.antes.simbolos[0]",
+    "depois": [
+     "águas internacionais",
+     "alto-mar, além da zona econômica exclusiva (ZEE) de 200 milhas náuticas; nenhum país tem soberania sobre elas"
+    ],
+    "motivo": "'Onde nenhum país manda' é impreciso. A Convenção do Mar (CNUDM) garante liberdade de pesca no alto-mar, com regras e deveres de cooperação. O que falta é soberania, não regra.",
+    "fonte": "Convenção das Nações Unidas sobre o Direito do Mar (1982), Parte VII"
+   },
+   {
+    "campo": "resolucao.passos[3].porque",
+    "depois": "As Galápagos recebem correntes frias ricas em nutrientes (Humboldt, Cromwell), e águas frias costumam ser muito piscosas, então A erra. O texto mostra frota chinesa a 1.000 km do continente. Se ela está lá, a pesca compensa, então D erra.",
+    "motivo": "Menciona a causa específica (correntes) e evita generalizar que águas frias sempre têm muito peixe. É coerente com a errada A.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.C",
+    "depois": "Quem marcou C ignorou o tom de alerta. O texto diz que os navios estão em águas internacionais, perto da reserva, e isso preocupa as autoridades; logo o risco não é baixo. Afirmar 'rígido controle' também não tem apoio no texto.",
+    "motivo": "A versão anterior dizia que 'o texto diz' que o controle é fraco em alto-mar. O texto não diz isso. Foi trocada por uma afirmação que o texto sustenta.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.nivel",
+    "depois": 6,
+    "motivo": "A classificação atual informada é nível 6. O JSON traz 4, o que é inconsistente. O nível e o degrau pertencem ao banco e não devem ser mudados por conta própria. Alinhar ao banco mantém o registro coerente. Verifique se o campo é mesmo editável.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "B"
  }
 }

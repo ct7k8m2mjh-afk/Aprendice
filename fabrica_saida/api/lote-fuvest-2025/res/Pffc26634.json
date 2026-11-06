@@ -44,7 +44,7 @@
    {
     "faz": "Obtenha a reação global",
     "conta": "CO2 + 4H2 → CH4 + 2H2O",
-    "porque": "Na2CO3 e 2 NaOH se cancelam, e uma H2O também. Sobram só CO2 e H2 como reagentes. O NaOH é gasto na etapa I e volta na II, então é reaproveitado.",
+    "porque": "Na2CO3 e 2 NaOH aparecem nos dois lados e se cancelam. As duas H2O (uma de cada etapa) ficam nos produtos: 2 H2O. Sobram só CO2 e H2 como reagentes. O NaOH é gasto na etapa I e volta na II, então é reaproveitado.",
     "tipo": "calcular"
    },
    {
@@ -72,8 +72,7 @@
    "A": "O catalisador não se decompõe em NaOH. Quem vira NaOH é o Na2CO3, que é reagente da etapa II. Catalisador acelera a reação e sai dela inalterado.",
    "B": "A combustão do CH4 emite CO2 (CH4 + 2 O2 → CO2 + 2 H2O). A proposta é limpa porque esse CO2 já havia sido capturado antes, e não porque a queima não emite.",
    "C": "A combustão de 1 mol de CH4 emite 1 mol de CO2, igual ao 1 mol capturado na síntese (1 C em cada molécula). Não emite mais, então o saldo é nulo.",
-   "D": "Usar o H2 como combustível não retira CO2 do ar: ele queima formando só H2O. Na proposta, o CO2 é capturado e depois devolvido na queima, então o saldo é zero. A retirada nunca é maior com o H2 sozinho.",
-   "E": "Esta é a correta. O carbono captado volta ao ar na queima do CH4, num ciclo fechado. O etanol funciona igual: a cana tira CO2 do ar e a queima o devolve."
+   "D": "Usar o H2 como combustível não retira CO2 do ar: ele queima formando só H2O. Na proposta, o CO2 é capturado e depois devolvido na queima, então o saldo é zero. A retirada nunca é maior com o H2 sozinho."
   },
   "armadilha": "Achar que 'limpa' significa 'não emite CO2' (B); a matriz é limpa porque o saldo de CO2 é zero.",
   "alerta": "",
@@ -103,7 +102,7 @@
    "nota": "etapa II, continua na linha de baixo"
   },
   {
-   "linha": "     CH4 + 2NaOH + H2O",
+   "linha": " CH4 + 2NaOH + H2O",
    "nota": "o NaOH volta a se formar"
   },
   {
@@ -134,12 +133,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -199,7 +200,7 @@
       "nota": "etapa II, continua na linha de baixo"
      },
      {
-      "linha": "     CH4 + 2NaOH + H2O",
+      "linha": " CH4 + 2NaOH + H2O",
       "nota": "o NaOH volta a se formar"
      },
      {
@@ -224,6 +225,23 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.passos[1].porque",
+    "depois": "Na2CO3 e 2 NaOH aparecem nos dois lados e se cancelam. As duas H2O (uma de cada etapa) ficam nos produtos: 2 H2O. Sobram só CO2 e H2 como reagentes. O NaOH é gasto na etapa I e volta na II, então é reaproveitado.",
+    "motivo": "A água não se cancela: há uma H2O em cada etapa, ambas nos produtos, somando 2 H2O (conforme a equação global escrita).",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "E",
+  "normalizacao": [
+   {
+    "campo": "resolucao.erradas.E",
+    "removido": "Esta é a correta. O carbono captado volta ao ar na queima do CH4, num ciclo fechado. O etanol funciona igual: a cana tira CO2 do ar e a queima o devolve.",
+    "motivo": "comentário da letra certa"
+   }
+  ]
  }
 }

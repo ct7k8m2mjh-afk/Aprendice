@@ -1,0 +1,148 @@
+{
+ "n": 38,
+ "id": "Pb0b64def",
+ "materia": "mat",
+ "tema": "M07",
+ "conteudo": "M07.2",
+ "nivel": 4,
+ "conceito": "Comparar uma progressão aritmética (soma fixa) com uma progressão geométrica (multiplicação fixa) e achar o dia em que os termos coincidem.",
+ "resolucao": {
+  "antes": {
+   "texto": "A carga de A sobe somando 2 kg por dia: é uma progressão aritmética (PA). A carga de B sobe multiplicando por 2 por dia: é uma progressão geométrica (PG). Como os dias são poucos, o caminho mais seguro é listar as cargas dia a dia e ver onde os números se encontram. Cuidado: o 1º dia é o dia inicial, então no dia n já houve n − 1 aumentos.",
+   "formulas": [
+    "Amigo A (PA): carga no dia n = 22 + 2 × (n − 1)",
+    "Amigo B (PG): carga no dia n = 1 × 2^(n − 1)"
+   ],
+   "simbolos": [
+    [
+     "PA",
+     "progressão aritmética: cada termo é o anterior mais um valor fixo"
+    ],
+    [
+     "PG",
+     "progressão geométrica: cada termo é o anterior vezes um valor fixo"
+    ],
+    [
+     "n",
+     "número do dia de treino, contado a partir do 1º"
+    ],
+    [
+     "2^(n − 1)",
+     "o número 2 multiplicado por ele mesmo n − 1 vezes"
+    ]
+   ]
+  },
+  "pista": "Escreva as cargas dos dois amigos dia após dia, em duas linhas, e olhe quando a segunda alcança a primeira.",
+  "passos": [
+   {
+    "faz": "Liste a carga de A",
+    "conta": "A: 22, 24, 26, 28, 30, 32",
+    "porque": "No dia 1 ele usa 22 kg e, a cada dia, soma 2 kg ao dia anterior.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Liste a carga de B",
+    "conta": "B: 1, 2, 4, 8, 16, 32",
+    "porque": "No dia 1 ele usa 1 kg e, a cada dia, dobra a carga do dia anterior.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Compare dia a dia",
+    "conta": "dia 5: A=30, B=16",
+    "porque": "Até o dia 5, A ainda está acima de B. B cresce mais rápido e vai alcançá-lo.",
+    "tipo": "comparar"
+   },
+   {
+    "faz": "Ache o dia em que são iguais",
+    "conta": "dia 6: A=32, B=32",
+    "porque": "No 6º dia, A tem 22 + 2 × 5 = 32 kg e B tem 2^5 = 32 kg.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Confirme que não há outro dia antes",
+    "conta": "dias 1 a 5: A > B",
+    "porque": "Nos dias 1 a 5, A tem mais carga que B, então o primeiro encontro é no 6º dia.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa E: no 6º dia os dois usam 32 kg.",
+  "checagem": "Pelas fórmulas: A no dia 6 = 22 + 2 × 5 = 32 e B no dia 6 = 2^5 = 32. As duas dão 32 kg.",
+  "erradas": {
+   "A": "22º não serve: no 22º dia A usa 22 + 2 × 21 = 64 kg, e B usa 2^21 = 2 097 152 kg. Ficam muito distantes.",
+   "B": "16º não serve: no 16º dia A usa 22 + 2 × 15 = 52 kg, e B usa 2^15 = 32 768 kg.",
+   "C": "12º não serve: no 12º dia A usa 22 + 2 × 11 = 44 kg, e B usa 2^11 = 2 048 kg.",
+   "D": "8º não serve: no 8º dia A usa 22 + 2 × 7 = 36 kg, e B usa 2^7 = 128 kg. B já passou A, então o encontro foi antes."
+  },
+  "armadilha": "Usar n em vez de n − 1 nas fórmulas: no dia n houve n − 1 aumentos, e o 1º dia é o inicial. Além disso, B passa A depois de igualá-lo, então só um dia serve.",
+  "alerta": "",
+  "essencial": {
+   "pede": "O dia de treino em que A e B usam a mesma carga.",
+   "chave": "A é PA (soma 2) e B é PG (dobra): liste os valores e ache o dia em que coincidem.",
+   "cuidado": "O 1º dia é o inicial, sem aumento: no dia n há n − 1 aumentos."
+  }
+ },
+ "caminhos": [
+  {
+   "nome": "Equação com as fórmulas",
+   "ideia": "Iguale 22 + 2(n − 1) = 2^(n − 1), ou seja, 2n + 20 = 2^(n − 1), e teste as alternativas: só n = 6 dá 32 dos dois lados."
+  },
+  {
+   "nome": "Testar as alternativas",
+   "ideia": "Do menor dia para o maior: n = 6 já dá 32 = 32. Os demais dias dão cargas bem diferentes."
+  }
+ ],
+ "quadro": [
+  {
+   "linha": "A: 22 + 2 × (n − 1)",
+   "nota": "PA: começa em 22 e soma 2 por dia"
+  },
+  {
+   "linha": "B: 1 × 2^(n − 1)",
+   "nota": "PG: começa em 1 e dobra por dia"
+  },
+  {
+   "linha": "dia 1: A = 22 ; B = 1",
+   "nota": "A está bem acima"
+  },
+  {
+   "linha": "dia 2: A = 24 ; B = 2",
+   "nota": "A soma 2, B dobra"
+  },
+  {
+   "linha": "dia 3: A = 26 ; B = 4",
+   "nota": "continue a lista"
+  },
+  {
+   "linha": "dia 4: A = 28 ; B = 8",
+   "nota": "B acelera"
+  },
+  {
+   "linha": "dia 5: A = 30 ; B = 16",
+   "nota": "A ainda na frente"
+  },
+  {
+   "linha": "dia 6: A = 32 ; B = 32",
+   "nota": "as cargas se igualam",
+   "destaque": "32"
+  }
+ ],
+ "visual": {
+  "cabe": false,
+  "porque": "A tabela dia a dia no quadro já mostra o encontro das duas sequências.",
+  "tipo": "nenhum",
+  "roteiro": ""
+ },
+ "fontes": [],
+ "confere": true,
+ "divergencia": "",
+ "resposta_resolvedor": "E",
+ "gab": "E",
+ "revisao": {
+  "lentes": [
+   "resolvedor"
+  ],
+  "modelos": {
+   "resolvedor": "claude-sonnet-5-5"
+  }
+ }
+}

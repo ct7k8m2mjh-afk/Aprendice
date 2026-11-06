@@ -64,7 +64,7 @@
    {
     "faz": "Monte a razão e/g",
     "conta": "e/g = 10/15 = 2/3",
-    "porque": "De 10g = 15e, divida os dois lados por 15g. À esquerda sobra e/g (o g cancela) e à direita 10/15. Simplificando por 5, dá 2/3, que é a alternativa B.",
+    "porque": "De 10g = 15e, divida os dois lados por 15g. Num lado sobra 10/15 (o g cancela) e no outro sobra e/g (o 15 cancela). Então e/g = 10/15 = 2/3, simplificando por 5. Alternativa B.",
     "tipo": "concluir"
    }
   ],
@@ -139,7 +139,7 @@
   },
   {
    "linha": "e/g = 10/15",
-   "nota": "divida os dois lados por 15g: o g sai da esquerda e o 15 sai da direita",
+   "nota": "divida os dois lados por 15g: de um lado sobra 10/15, do outro e/g",
    "mov": [
     {
      "termo": "g",
@@ -177,12 +177,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -231,6 +233,22 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.passos[5].porque",
+    "depois": "De 10g = 15e, divida os dois lados por 15g. Num lado sobra 10/15 (o g cancela) e no outro sobra e/g (o 15 cancela). Então e/g = 10/15 = 2/3, simplificando por 5. Alternativa B.",
+    "motivo": "A frase anterior dizia que e/g ficava à esquerda e 10/15 à direita, mas com 10g = 15e dividido por 15g a esquerda fica 10/15 e a direita e/g. Troca de lados na descrição, sem mudar o resultado.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.quadro[6].nota",
+    "depois": "divida os dois lados por 15g: de um lado sobra 10/15, do outro e/g",
+    "motivo": "A nota original descrevia o cancelamento no lado trocado.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "B"
  }
 }

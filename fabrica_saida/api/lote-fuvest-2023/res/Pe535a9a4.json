@@ -63,7 +63,7 @@
    {
     "faz": "Separe os itens físicos",
     "conta": "físicos: pitch, timbre, amplitude",
-    "porque": "Altura (pitch), timbre e amplitude são propriedades da onda sonora. Melodia e harmonia são formas de organizar os sons na música.",
+    "porque": "Altura (pitch), timbre e amplitude são propriedades da onda sonora. Melodia e harmonia dependem mais da organização dos sons na música. Mesmo assim, entre as alternativas, só o par timbre + amplitude é todo de propriedades físicas e está na lista.",
     "tipo": "eliminar"
    },
    {
@@ -84,7 +84,7 @@
   "erradas": {
    "A": "Faltou checar a lista. “Sound symbolism” (simbolismo sonoro) é o estudo da relação entre sons e significado, não um elemento do som. “Breathing” (respiração) é um efeito no corpo, citado na entrainment (sincronização). Nenhum dos dois está na lista.",
    "B": "Faltou checar a lista. Letra e idioma são aspectos da linguagem, e o texto diz que não entender o idioma da letra (“Not knowing the language of the lyrics”) não impede de gostar da música. Nenhum dos dois está na lista.",
-   "D": "Faltou ler o contexto de “brighter”. Melodia está na lista, mas “brilho” não: “brighter” só descreve o som das escalas maiores (“brighter, happier sounds”). Melodia também é organização musical, não propriedade física do som.",
+   "D": "Faltou ler o contexto de “brighter”. Melodia está na lista, mas “brilho” não: “brighter” só descreve o som das escalas maiores (“brighter, happier sounds”). Por isso o par não fecha.",
    "E": "Faltou separar elemento do som de ideia sobre sentido. O texto diz que a música deve ser entendida como “a discourse between musical elements” (um discurso entre elementos musicais), e “meaning” (significado) é o que ela acrescenta aos textos. Nenhum dos dois é um aspecto físico."
   },
   "armadilha": "Escolher alternativas com palavras que aparecem no texto (respiração, discurso, brighter) sem conferir se estão na lista de elementos do som e da música.",
@@ -121,12 +121,14 @@
   "lentes": [
    "resolvedor",
    "fatos",
-   "didatica"
+   "didatica",
+   "fatos-volta"
   ],
   "modelos": {
    "resolvedor": "claude-sonnet-5-5",
    "fatos": "claude-opus-5-5",
-   "didatica": "claude-sonnet-5-5"
+   "didatica": "claude-sonnet-5-5",
+   "fatos-volta": "claude-sonnet-5-5"
   },
   "fatos": [
    {
@@ -217,6 +219,22 @@
    }
   ],
   "didatica_alertas": [],
-  "didatica_ok": true
+  "didatica_ok": true,
+  "fatos_volta": [
+   {
+    "campo": "resolucao.passos[2].porque",
+    "depois": "Altura (pitch), timbre e amplitude são propriedades da onda sonora. Melodia e harmonia dependem mais da organização dos sons na música. Mesmo assim, entre as alternativas, só o par timbre + amplitude é todo de propriedades físicas e está na lista.",
+    "motivo": "Evita afirmar que o texto separa melodia e harmonia como não físicos; o que decide é a lista e a alternativa D conter 'brilho', que não está nela.",
+    "fonte": ""
+   },
+   {
+    "campo": "resolucao.erradas.D",
+    "depois": "Faltou ler o contexto de “brighter”. Melodia está na lista, mas “brilho” não: “brighter” só descreve o som das escalas maiores (“brighter, happier sounds”). Por isso o par não fecha.",
+    "motivo": "O texto não afirma que melodia não é física; o erro de D é só o 'brilho'.",
+    "fonte": ""
+   }
+  ],
+  "fatos_volta_ok": true,
+  "fatos_volta_resposta": "C"
  }
 }
