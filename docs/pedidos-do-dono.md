@@ -72,3 +72,7 @@ Imagem enviada nunca é "por enviar": tem uso, e o uso fica registrado.
 - Ninguém vai ler 800 slides um a um: pegar as partes mais importantes que todo aluno deve saber e entender e que são primordiais nas provas.
 - Formato decidido a partir do Revisaí: `docs/revisao/FORMATO-ESSENCIAL.md`.
 
+## Pedido de 06/11/2026 (19h25) — Química hoje
+- Terminar Química hoje e publicar no site a revisão de Química (formato essencial, comando 33, arquivos chegando em `docs/revisao/qui/` tema a tema) e as questões de Química que já estão resolvidas.
+- Prioridade do Claude do site: assim que cada tema de Química chegar em `docs/revisao/qui/`, integrar e publicar no link; publicar já as resoluções de Química prontas (comando 25).
+
