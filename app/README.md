@@ -73,26 +73,6 @@ DEMO=1 node scripts/prints.cjs pasta-de-saida
 
 Tira os prints de todas as telas nos temas claro e escuro, em celular (390 px) e computador. Com `DEMO=1`, usa progresso de demonstração.
 
-## Apps de celular (fora do plano)
-
-O produto é um **site** (decisão do dono, 05/11/2026); aplicativo de loja não está no plano. Os comandos abaixo ficam só como registro técnico.
-```bash
-npm run build
-```
-
-```bash
-npx cap add android
-```
-
-```bash
-npx cap add ios
-```
-
-- O **Android** abre no Android Studio, a partir da pasta `android/`.
-- O **iPhone** precisa de um Mac com Xcode, a partir da pasta `ios/`.
-
-Este ambiente de nuvem não tem o Android SDK nem o Xcode, então os apps instaláveis ainda não foram gerados.
-
 ## Onde está cada coisa
 | Pasta | O que tem |
 |---|---|

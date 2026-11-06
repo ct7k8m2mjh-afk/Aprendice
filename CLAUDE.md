@@ -78,13 +78,12 @@ Trabalho de volume (classificar questões, rascunhar resoluções, flashcards, r
 - `design/icones_real/` — ícones 3D (módulo: 53; conteúdo: 255) e o pipeline que os gera.
 - `app-atual/*.py` — integração de questões e cartões (`integra_*.py`, `dados_util.py`; caminhos absolutos do ambiente antigo, ajustar antes de usar).
 - `app-atual/conteudo_fonte/` — fonte editável dos flashcards e frases (já integrados no dados.json).
-- `docs/` — `estado-escadas-01-11.md` (leia primeiro), `pesquisa/` (mapa de 352 discursivas reais, padrão dos cartões), `historico/` (briefs, revisões e auditorias que geraram o conteúdo atual). Raio-x completos de provas (Santa Casa, Einstein, ENEM) estão no Project "ESTUDOS" do claude.ai.
+- `docs/` — `pedidos-do-dono.md` e `comandos-do-dono.md` (leia primeiro), `pesquisa/` (mapa de 352 discursivas reais, padrão dos cartões), `historico/` (briefs, revisões e auditorias que geraram o conteúdo atual). Raio-x completos de provas (Santa Casa, Einstein, ENEM) estão no Project "ESTUDOS" do claude.ai.
 
 Banco do protótipo: Bio 507 · Quí 569 · Mat 650 · Por 535 questões (concentradas em SP: Fuvest, Unesp/Vunesp, Santa Casa, Einstein, São Camilo, Famema, listas públicas); 60 flashcards + 40 frases por matéria. Em Mat, 40 são do ENEM (05/11/2026): conteúdos novos "áreas básicas" (M08.6) e "volumes básicos" (M11.6), lista em `docs/geometria-basica-enem.md` — ainda precisam ser levados para o site.
 
 ## O que precisa mudar para virar produto público
-- Tirar tudo que é pessoal do protótipo: nome fixo na saudação, a arte de capa de Biologia com o rosto do aluno, a prioridade fixa em São Camilo (vira escolha do usuário: provas-alvo).
 - Banco nacional: ENEM e vestibulares de todas as regiões, com raio-x por instituição; mesmo padrão de fonte e gabarito.
 - Manter registrada a origem de cada print (prova oficial, PDF de cursinho), para o dono decidir sobre direitos de uso; a decisão de publicar é do dono. Os prints das bancas ficam por enquanto (decisão do dono, 05/11/2026).
 - **Questões de sites didáticos saem (decisão do dono, 05/11/2026):** as 788 questões de Brasil Escola, Mundo Educação, Prepara Enem e InfoEscola não podem aparecer no site — nem print, nem foto, nem logo, nem nome. No lugar delas entram Questões Aprendice (questão nova sobre o mesmo conceito, com contexto, números e alternativas próprios) ou a questão de prova original. Plano em `docs/questoes-aprendice.md`.
-- Pendências herdadas: logo da Unesp; mais visuais em Mat e Por; lacunas de flashcards em `docs/estado-escadas-01-11.md`.
+- Pendências herdadas: logo da Unesp; mais visuais em Mat e Por; lacunas de flashcards — Bio (proporções F2 de epistasia/ligação, zoologia, rim/ADH), Quí (polímeros de condensação, Le Châtelier com temperatura, estrutura com imagem), Mat (leitura de gráfico/tabela), Por (expressão idiomática, união de orações, literatura contemporânea).

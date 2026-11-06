@@ -49,7 +49,7 @@ Questões reais de prova com fonte e gabarito publicado, mais Questões Aprendic
 ## Evidence on Hand
 
 - 2.221 questões reais (Bio 507, Quí 569, Mat 610, Por 535) com print, fonte e gabarito; resoluções revisadas; teoria; 240 flashcards; 160 frases; dicionário (`app-atual/`).
-- Nenhuma prova completa no banco ainda; nenhum depoimento, número de usuários ou parceria: não inventar.
+- Provas completas em importação (ENEM, Fuvest, UFPR, UPE e outras do inventário de 82 instituições). Nenhum depoimento, número de usuários ou parceria: não inventar.
 
 ## Product Principles
 
