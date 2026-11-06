@@ -667,7 +667,12 @@ def processa(pid, amostra=False, so_texto=False):
                         textos[nt] = segs_s
                 continue
             if e['tipo'] == 'corte':
-                suporte = None   # texto de apoio não atravessa um corte (troca de seção, opção de língua)
+                # texto de apoio não atravessa um corte (troca de seção, opção de língua), salvo quando declara as
+                # questões a que serve ("às questões 34 e 35"): aí segue valendo só para elas (ex.: quadro de rascunho no pé da coluna)
+                if not (suporte and len(suporte['faixa']) >= 2):
+                    suporte = None
+                elif suporte:
+                    suporte['aberto'] = False
                 continue
             if e['tipo'] != 'q':
                 continue
