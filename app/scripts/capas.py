@@ -42,8 +42,8 @@ CAPAS = {
     'fis': [('IMA', 1890, 288, 232, False), ('SEM-NOME-e792b5e0', 1323, 131, 502, False), ('LAMPADA', 1218, 236, 348, False)],
     'geo': [('GLOBO-TERRA', 1260, 18, 696, False), ('MONTANHAS', 1708, 230, 362, False), ('BUSSOLA', 1585, 442, 276, False)],
     'his': [('COLUNA-ANTIGA', 1663, 23, 504, False), ('AMPULHETA', 1366, 80, 556, False), ('PERGAMINHO', 1556, 486, 196, False)],
-    'ing': [('BANDEIRA-USA', 1926, 147, 256, False), ('BALAO-VERMELHO', 1370, 43, 324, False), ('BALAO-ROSE', 1600, 107, 232, False),
-            ('LIVRO-VERMELHO', 1262, 306, 392, False)],
+    'ing': [('LIVRO-VERMELHO', 1262, 330, 362, False), ('BALAO-VERMELHO', 1370, 43, 324, False), ('BALAO-ROSE', 1588, 92, 276, False),
+            ('BANDEIRA-USA', 1900, 128, 280, False)],
     'fs': [('BALANCA', 1518, 26, 552, False), ('BONECOS', 1708, 382, 284, False), ('CORUJA', 1191, 174, 490, False)],
 }
 
@@ -93,9 +93,10 @@ def _cola(tela, m, nome, x, y, alt, esp, k=1.0):
     tela.alpha_composite(im.convert('RGBa').resize((w, h), Image.LANCZOS).convert('RGBA'), (round(x * k), round(y * k)))
 
 
-def _sombra(tela, m, nome, x, y, alt, esp, k=1.0):
-    """Sombra de contato da peça no chão, desenhada em `tela` (antes da peça)."""
-    if (m, nome) in SOLTAS:
+def _sombra(tela, m, nome, x, y, alt, esp, k=1.0, sempre=False):
+    """Sombra de contato da peça no chão, desenhada em `tela` (antes da peça). sempre: também nas peças que flutuam
+    (ícone da matéria: na referência da aba principal todo objeto do círculo tem a sombra suave embaixo)."""
+    if (m, nome) in SOLTAS and not sempre:
         return
     import numpy as np
     from PIL import Image, ImageDraw, ImageFilter
@@ -147,7 +148,7 @@ def icone(m, lado=320):
     tela = Image.new('RGBA', (REF_W, REF_H), (0, 0, 0, 0))
     for nome, x, y, alt, esp in CAPAS[m]:
         if nome in ICONE[m]:
-            _sombra(tela, m, nome, x, y, alt, esp)
+            _sombra(tela, m, nome, x, y, alt, esp, sempre=True)
             _cola(tela, m, nome, x, y, alt, esp)
     return _webp(enquadra(tela.crop(tela.getchannel('A').getbbox()), lado), 84)
 
