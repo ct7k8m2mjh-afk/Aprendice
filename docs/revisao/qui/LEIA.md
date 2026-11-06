@@ -5,3 +5,4 @@ Cada tema é um `Qxx.json` com o campo `essencial` (termômetro → mapa mental 
 | Tema | Telas | Situação |
 |---|---|---|
 | Q01 Átomo e tabela periódica | 12 | aprovado (06/11) |
+| Q06 Gases | 12 | aprovado (06/11) — corrigir no site R = 62,3 → 62,4 mmHg·L/(mol·K) (dados.json, res/Q06.2, res/Q06.3, app.js) |
