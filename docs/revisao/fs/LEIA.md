@@ -14,3 +14,4 @@ Observações para a integração:
 | L07 Iluminismo | aprovado (06/11/2026) | 40 |
 | L01 Pré-socráticos | aprovado (06/11/2026) | 60 |
 | S01 Cultura e sociedade | aprovado (06/11/2026) | 55 |
+| S02 Socialização | aprovado (06/11/2026) | 37 |
