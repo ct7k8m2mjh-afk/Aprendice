@@ -6,6 +6,7 @@ import './estilo/telas.css';
 import './estilo/sistema.css';
 import './estilo/icones-tema.css'; // ícones de tema no círculo (comando 19)
 import './estilo/tipografia.css'; // guia tipográfico: carregado por último
+import './estilo/correcao.css'; // correção em 4 blocos + resolução animada (comando 20)
 import { App } from './App';
 import { preparaConteudo } from './dados/conteudo';
 

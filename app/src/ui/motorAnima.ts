@@ -140,7 +140,7 @@ export function animaPasso(passoEl: HTMLElement, folha: HTMLElement, rt: Roteiro
           for (const r of p.riscos) {
             const el = elDe(r);
             const risco = el?.querySelector<HTMLElement>(':scope > .ra-risco');
-            if (risco) anima(risco, [{ transform: 'scaleX(0)' }, { transform: 'scaleX(1)' }], { duration: V(320), delay: tR, easing: CURVA });
+            if (risco) anima(risco, [{ transform: 'rotate(-12deg) scaleX(0)' }, { transform: 'rotate(-12deg) scaleX(1)' }], { duration: V(320), delay: tR, easing: CURVA });
             tR += V(110);
           }
           tR += V(300);

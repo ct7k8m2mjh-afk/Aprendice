@@ -507,7 +507,8 @@ def liga_provas(provas):
     por_id = {(m, q['id']): q for m in MATERIAS for q in bancos[m]}
     for p, pq, d in oficiais:
         q = por_id[(d['m'], d['id'])]
-        qn, texto = questao_da_prova(p, pq)
+        # a classificação é a da antiga (a duplicata pode nem ter sido classificada)
+        qn, texto = questao_da_prova(p, dict(pq, tema=q['modulo'], conteudo=q['sub'], nivel=q['dif']))
         for k in ('escola', 'ano', 'n', 'banca', 'fase', 'enun', 'alts', 'url', 'origem', 'figura', 'print', 'txt'):
             q[k] = qn[k]
         q['provaOficial'] = p['id']  # não usa 'prova': o id continua sendo o antigo, que não está no prova.json
