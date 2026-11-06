@@ -1,6 +1,6 @@
 import { Link, useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { useMateria, useResolucoes } from '../dados/conteudo';
+import { useMateria, useQuestaoComTexto, useResolucoes } from '../dados/conteudo';
 import { materia as infoMateria } from '../dados/materias';
 import { atualizaMateria, pegaEstado, useMateriaEstado } from '../estado/loja';
 import { questoesVencidas } from '../logica/estatisticas';
@@ -40,7 +40,10 @@ export function QuestaoTela() {
   const nav = useNavigate();
   const mc = useMateria(m);
   const s = useMateriaEstado(m);
-  const q = mc?.porId.get(id);
+  const q0 = mc?.porId.get(id);
+  // questões das provas: o texto e a transcrição chegam à parte (txt/<conteúdo>.json)
+  const qTexto = useQuestaoComTexto(m, q0);
+  const q = qTexto || q0;
   const res = useResolucoes(m, q?.sub);
   const [escolha, setEscolha] = useState<Letra | null>(null);
   const [conf, setConf] = useState<Conf | null>(null);
@@ -103,7 +106,7 @@ export function QuestaoTela() {
     return () => removeEventListener('keydown', f);
   });
 
-  if (!mc) return <div className="conteudo"><Carregando /></div>;
+  if (!mc || (q0 && qTexto === null)) return <div className="conteudo"><Carregando /></div>;
   if (!q) return <div className="conteudo vazio"><h3>Questão não encontrada</h3><Link to={`/m/${m}`} className="btn sec">Voltar</Link></div>;
 
   const mod = mc.conteudo.modulos.find((x) => x.id === q.modulo);
@@ -155,7 +158,7 @@ export function QuestaoTela() {
               acao={<button className={'q-marca' + (eq?.rev ? ' marcado' : '')} onClick={() => alternaMarcada(m, q.id)} aria-pressed={!!eq?.rev} aria-label="Revisar depois" title="Revisar depois"><Icone nome="marcador" /></button>} />
             <RespostaCartao q={q} escolha={escolha} aoEscolher={setEscolha} revelado={revelado} riscadas={riscadas}
               aoRiscar={(l) => setRiscadas((rr) => { const n = new Set(rr); n.has(l) ? n.delete(l) : n.add(l); return n; })}
-              mostrarTexto={!urlPrint(m, q.id)}>
+              mostrarTexto={!!q.transcricao || !urlPrint(m, q.id)}>
               {!revelado ? (
                 <>
                   <Certeza valor={conf} aoMudar={setConf} />

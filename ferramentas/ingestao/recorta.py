@@ -576,9 +576,12 @@ def suportes_apos_alternativa(pdf, cfg, ev, faixa=None):
             c = coluna_do_ponto(pg, cfg, x0, y0, cols)
             if c is not None:
                 # letra da alternativa num trecho de texto à parte (Cebraspe): só ela conta como alternativa
-                ls.append((c, y0, x0, y1, L.get('s0', '') if cfg.get('alt_span_isolada') else L['t']))
+                ls.append((c, y0, x0, y1, L.get('s0', '') if cfg.get('alt_span_isolada') else L['t'], bool(L.get('neg'))))
         ls.sort()
-        for c, y0, x0, y1, t in ls:
+        ant_y1 = {}
+        for c, y0, x0, y1, t, neg in ls:
+            gap_ok = y0 - ant_y1.get(c, -99) >= cfg.get('suporte_apos_alt_gap', 0)
+            ant_y1[c] = max(ant_y1.get(c, -99), y1)
             marca = next((tp for y, tp in marcados.get((pi, c), []) if abs(y - y0) < 2.5), None)
             if marca:
                 # âncora, corte ou texto de apoio já marcados; depois do título de uma seção, o texto que vem antes da
@@ -601,7 +604,8 @@ def suportes_apos_alternativa(pdf, cfg, ev, faixa=None):
             if re.match(rx_letra, t):
                 estado = None
                 continue
-            if x0 <= estado[2] + cfg.get('suporte_apos_alt_tol', 4) and x0 <= cfg.get('suporte_apos_alt_xmax', 9999):
+            titulo = cfg.get('suporte_apos_alt_negrito') and neg and len(t) > 6 and gap_ok
+            if titulo or (x0 <= estado[2] + cfg.get('suporte_apos_alt_tol', 4) and x0 <= cfg.get('suporte_apos_alt_xmax', 9999) and gap_ok):
                 novos.append({'p': pi, 'c': c, 'y': y0 - 1, 'tipo': 'suporte', 'faixa': [], 'num': None})
                 estado = None
     return novos

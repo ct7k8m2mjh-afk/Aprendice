@@ -284,6 +284,11 @@ def provas_fonte():
         f = os.path.join(FONTE_PROVAS, pid, 'prova.json')
         if os.path.exists(f):
             p = ler(f)
+            # prova ainda sendo gravada (outro processo recortando): sem todos os prints, fica para a próxima conversão
+            falta = [q['print'] for q in p['questoes'] if not os.path.exists(os.path.join(FONTE_PROVAS, pid, q['print']))]
+            if falta:
+                print(f'  prova {pid} ignorada: {len(falta)} prints ainda não gravados')
+                continue
             # resoluções aprovadas pela banca (resolvedor + corretor de fatos + corretor de didática + fatos de novo)
             fr = os.path.join(FONTE_PROVAS, pid, 'resolucoes.json')
             if os.path.exists(fr):
@@ -313,13 +318,13 @@ def entrada_indice(p):
                                   'alternativas', 'total_oficial')} | {'questoes': len(p['questoes']), 'areas': areas}
 
 
-def copia_provas():
+def copia_provas(provas=None):
     """App completo: public/conteudo/provas/<id>/prova.json + q/<n>.webp e o índice."""
     destino = os.path.join(DESTINO, 'provas')
     if os.path.isdir(destino):
         shutil.rmtree(destino)
     indice = []
-    for p in provas_fonte():
+    for p in (provas if provas is not None else provas_fonte()):
         d = os.path.join(destino, p['id'])
         os.makedirs(os.path.join(d, 'q'), exist_ok=True)
         for q in p['questoes']:
@@ -328,6 +333,150 @@ def copia_provas():
         indice.append(entrada_indice(p))
     gravar(os.path.join(destino, 'indice.json'), indice)
     return {'provas': len(indice), 'questoes': sum(x['questoes'] for x in indice)}
+
+
+# ---------------------------------------------------------------------------------------------------------------
+# Questões das provas completas nos exercícios das matérias (comando 14 do dono: "para simulados e exercícios").
+# Cada questão de prova classificada (materia, tema, conteudo, nivel) entra no banco da matéria com o id da prova
+# (estável), a fonte (caderno oficial), o print e o gabarito oficial. A questão que JÁ existe no banco antigo
+# (mesma prova, mesmo número e mesmo texto) não entra de novo: fica a antiga, com o id dela (princípio 7) e a
+# resolução aprovada. Texto e transcrição (pesados) ficam em <m>/txt/<conteúdo>.json, lidos com a questão.
+
+# escola do banco antigo -> id do catálogo (o mesmo de src/dados/provas.ts, mais a Fatec)
+CATALOGO_ESCOLA = {'Fuvest': 'fuvest', 'Unesp': 'unesp', 'Santa Casa (FCMSCSP)': 'santacasa', 'Albert Einstein': 'einstein',
+                   'São Camilo': 'saocamilo', 'Famema': 'famema', 'FMJ (Jundiaí)': 'fmj', 'ENEM': 'enem', 'Enem': 'enem',
+                   'Fatec': 'fatec'}
+LETRAS = 'ABCDE'
+
+
+def palavras(s):
+    import unicodedata
+    s = unicodedata.normalize('NFKD', s or '').encode('ascii', 'ignore').decode().lower()
+    return {w for w in re.findall(r'[a-z0-9]+', s) if len(w) >= 4}
+
+
+def parecido(a, b):
+    """Quanto do texto menor aparece no maior (0 a 1)."""
+    return len(a & b) / min(len(a), len(b)) if a and b else 0.0
+
+
+def acha_duplicatas(provas, antigos):
+    """Questão de prova -> questão do banco antigo que é a mesma. Mesma instituição e ano, e:
+    mesmo número com texto parecido (>= 0,5), ou texto quase igual (>= 0,9) e mesmo gabarito
+    (cadernos com numeração diferente, como as cores do ENEM). Um para um, do par mais parecido ao menos.
+    Questões que só dividem o texto-base (63, 64, 65 sobre o mesmo poema) têm números e gabaritos diferentes."""
+    por_chave = {}
+    for m, banco in antigos.items():
+        for q in banco:
+            q = dict(q, _m=m, _w=palavras(q['enun'] + ' ' + ' '.join(q['alts'].values())))
+            for esc in {CATALOGO_ESCOLA.get(q['escola'], q['escola']), q['escola']}:
+                por_chave.setdefault((esc, q['ano'][:4]), []).append(q)
+    pares = []
+    for p in provas:
+        cand = {id(q): q for esc in (p.get('catalogoId'), p['escola']) for q in por_chave.get((esc, str(p['ano'])[:4]), [])}.values()
+        if not cand:
+            continue
+        for pq in p['questoes']:
+            w = palavras(pq.get('texto', ''))
+            for q in cand:
+                s = parecido(w, q['_w'])
+                if (q['n'] == str(pq['n']) and s >= 0.5) or (s >= 0.9 and q['gab'] == pq['gab']):
+                    pares.append((s + (1 if q['n'] == str(pq['n']) else 0), pq['id'], q['id'], q['_m'], q['gab'] == pq['gab']))
+    dup, usados = {}, set()
+    for _, pid, qid, m, mesmo_gab in sorted(pares, reverse=True):
+        if pid in dup or qid in usados:
+            continue
+        dup[pid] = {'m': m, 'id': qid, 'mesmo_gab': mesmo_gab}
+        usados.add(qid)
+    return dup
+
+
+def questao_da_prova(p, pq):
+    """Questão de prova no formato do banco (leve) e o texto dela (vai para txt/<conteúdo>.json)."""
+    caderno = (pq.get('caderno') and p['fontes'].get(pq['caderno'])) or next(iter(p['fontes'].values()), '')
+    tr = pq.get('transcricao')
+    q = {
+        'id': pq['id'], 'escola': p['escola'], 'ano': str(p['ano']), 'n': str(pq['n']), 'banca': p.get('banca') or '',
+        'fase': p.get('fase') or '', 'enun': '', 'alts': {l: '' for l in LETRAS[:p.get('alternativas') or 5]},
+        'gab': pq['gab'], 'modulo': pq['tema'], 'sub': pq['conteudo'], 'dif': inteiro(pq.get('nivel'), 5), 'degrau': 0,
+        'conceito': pq.get('conceito') or '', 'pista': '', 'url': caderno, 'origem': 'prova', 'figura': not tr,
+        'print': 'provas/' + p['id'] + '/' + pq['print'], 'prova': p['id'], 'txt': 1,
+    }
+    if not caderno.startswith('http'):
+        q['pendente'] = 'sem link da fonte'
+    texto = {'enun': pq.get('texto') or ''}
+    if tr:
+        texto['transcricao'] = tr
+    return q, texto
+
+
+def liga_provas(provas):
+    """Grava as questões das provas no banco de cada matéria (depois de converter as matérias e copiar as provas)."""
+    todas = MATERIAS + NOVAS
+    bancos = {m: ler(os.path.join(DESTINO, m, 'banco.json')) for m in todas}
+    subs = {m: {s['id'] for x in ler(os.path.join(DESTINO, m, 'materia.json'))['modulos'] for s in x['subs']} for m in todas}
+    dup = acha_duplicatas(provas, {m: bancos[m] for m in MATERIAS})
+    ids = {q['id'] for b in bancos.values() for q in b}
+    antes = {m: len(bancos[m]) for m in todas}
+    textos = {m: {} for m in todas}
+    res_novas = {m: {} for m in todas}
+    res_antigas = {}  # resolução aprovada da prova para a questão antiga que ainda não tem
+    fora = {'sem_classificacao': 0, 'conteudo_desconhecido': 0, 'gabarito_invalido': 0}
+    for p in provas:
+        for pq in p['questoes']:
+            m = pq.get('materia')
+            if pq['id'] in dup:
+                d = dup[pq['id']]
+                if pq.get('res'):
+                    res_antigas[d['id']] = (d['m'], pq['res'])
+                continue
+            if m not in bancos or not pq.get('tema') or not pq.get('conteudo') or not pq.get('nivel'):
+                fora['sem_classificacao'] += 1
+                continue
+            if pq['conteudo'] not in subs[m]:
+                fora['conteudo_desconhecido'] += 1
+                continue
+            if pq.get('gab') not in LETRAS:
+                fora['gabarito_invalido'] += 1
+                continue
+            if pq['id'] in ids:
+                raise SystemExit(f"id repetido entre o banco e a prova {p['id']}: {pq['id']}")
+            ids.add(pq['id'])
+            q, texto = questao_da_prova(p, pq)
+            bancos[m].append(q)
+            textos[m].setdefault(q['sub'], {})[q['id']] = texto
+            if pq.get('res'):
+                res_novas[m].setdefault(q['sub'], {})[q['id']] = pq['res']
+    # resoluções aprovadas da prova para questões antigas sem resolução (mesma questão, id antigo)
+    sub_antigo = {q['id']: q['sub'] for m in MATERIAS for q in bancos[m]}
+    n_res_antigas = 0
+    for qid, (m, r) in res_antigas.items():
+        f = os.path.join(DESTINO, m, 'res', sub_antigo[qid] + '.json')
+        atual = ler(f) if os.path.exists(f) else {}
+        if qid not in atual:
+            atual[qid] = r
+            gravar(f, atual)
+            n_res_antigas += 1
+    for m in todas:
+        gravar(os.path.join(DESTINO, m, 'banco.json'), bancos[m])
+        pasta = os.path.join(DESTINO, m, 'txt')
+        if os.path.isdir(pasta):
+            shutil.rmtree(pasta)
+        for sub, t in textos[m].items():
+            gravar(os.path.join(pasta, sub + '.json'), t)
+        for sub, r in res_novas[m].items():
+            f = os.path.join(DESTINO, m, 'res', sub + '.json')
+            atual = ler(f) if os.path.exists(f) else {}
+            atual.update(r)
+            gravar(f, atual)
+    rel = {m: {'antes': antes[m], 'depois': len(bancos[m])} for m in todas}
+    rel['duplicatas'] = len(dup)
+    rel['duplicatas_gabarito_diferente'] = sorted(pid for pid, d in dup.items() if not d['mesmo_gab'])
+    rel['resolucoes_para_antigas'] = n_res_antigas
+    rel['fora'] = fora
+    # registro: questão da prova -> questão do banco antigo que ficou no lugar dela (o teste confere)
+    gravar(os.path.join(DESTINO, 'duplicatas-provas.json'), {pid: d['m'] + '/' + d['id'] for pid, d in sorted(dup.items())})
+    return rel
 
 
 def pacotes_provas(pasta):
@@ -441,8 +590,11 @@ def main():
     for m in NOVAS:
         relatorio[m] = converte_nova(m)
         print(m, relatorio[m])
-    relatorio['provas'] = copia_provas()
+    provas = provas_fonte()
+    relatorio['provas'] = copia_provas(provas)
     print('provas completas', relatorio['provas'])
+    relatorio['exercicios'] = liga_provas(provas)
+    print('questões das provas nos exercícios', relatorio['exercicios'])
     gravar(os.path.join(DESTINO, 'relatorio.json'), relatorio)
     # versão do conteúdo (para cache)
     h = hashlib.md5(json.dumps(relatorio, sort_keys=True).encode()).hexdigest()[:8]

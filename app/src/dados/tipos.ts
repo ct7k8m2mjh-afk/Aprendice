@@ -40,7 +40,15 @@ export interface Questao {
   transcricao?: Transcricao;
   /** resolução embutida (questões de prova completa aprovadas pela banca) */
   res?: Resolucao;
+  /** questão vinda de uma prova completa: print em conteudo/<print> e id da prova (provas/<prova>/) */
+  print?: string;
+  prova?: string;
+  /** texto e transcrição ficam em <m>/txt/<conteúdo>.json (carregados com a questão, para o banco ficar leve) */
+  txt?: 1;
 }
+
+/** Texto de uma questão de prova (arquivo txt/<conteúdo>.json). */
+export interface TextoQuestao { enun: string; transcricao?: Transcricao }
 
 /** Parágrafo transcrito: a = alinhamento (e esquerda, c centro, d direita); t com **negrito**, ~~itálico~~ e quebras \n. */
 export interface Transcricao { enun: { a: 'e' | 'c' | 'd'; t: string }[]; alts: Partial<Record<Letra, string>> }

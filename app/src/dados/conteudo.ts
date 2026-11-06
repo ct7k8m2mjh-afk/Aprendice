@@ -4,7 +4,7 @@
  * Prévia de arquivo único (VITE_PREVIA): amostra embutida no próprio HTML.
  */
 import { useEffect, useState } from 'react';
-import type { Figura, MateriaConteudo, MateriaId, Questao, Resolucao } from './tipos';
+import type { Figura, MateriaConteudo, MateriaId, Questao, Resolucao, TextoQuestao } from './tipos';
 import { ordemEvolucao } from '../logica/nivel';
 
 const PREVIA = import.meta.env.VITE_PREVIA === '1';
@@ -40,6 +40,8 @@ export interface MateriaCarregada {
 }
 
 const cache = new Map<MateriaId, Promise<MateriaCarregada>>();
+/** Print das questões que vieram das provas completas (id -> caminho dentro de conteudo/). */
+const PRINTS_PROVA = new Map<string, string>();
 
 function monta(id: MateriaId, bancoTodo: Questao[], conteudo: MateriaConteudo, amostra?: string[]): MateriaCarregada {
   const banco = bancoTodo.filter((q) => !q.pendente);
@@ -50,6 +52,7 @@ function monta(id: MateriaId, bancoTodo: Questao[], conteudo: MateriaConteudo, a
     porSub.set(q.sub, l);
   }
   for (const l of porSub.values()) l.sort(ordemEvolucao);
+  for (const q of banco) if (q.print) PRINTS_PROVA.set(q.id, q.print);
   return { id, banco, porId: new Map(banco.map((q) => [q.id, q])), conteudo, porSub, amostra };
 }
 
@@ -87,6 +90,41 @@ export function carregaResolucoes(m: MateriaId, sub: string): Promise<Record<str
   return p;
 }
 
+const cacheTxt = new Map<string, Promise<Record<string, TextoQuestao>>>();
+const txtPronto = new Map<string, Record<string, TextoQuestao>>();
+function carregaTextos(m: MateriaId, sub: string): Promise<Record<string, TextoQuestao>> {
+  const k = m + '/' + sub;
+  let p = cacheTxt.get(k);
+  if (!p) {
+    p = fetch(BASE + m + '/txt/' + sub + '.json').then((r) => (r.ok ? r.json() : {})).catch(() => ({}))
+      .then((x: Record<string, TextoQuestao>) => { txtPronto.set(k, x); return x; });
+    cacheTxt.set(k, p);
+  }
+  return p;
+}
+
+function comTexto(q: Questao, t: TextoQuestao | undefined): Questao {
+  if (!t) return q;
+  const tr = t.transcricao;
+  return { ...q, enun: t.enun, transcricao: tr, alts: tr ? { ...q.alts, ...tr.alts } : q.alts };
+}
+
+/** A questão com o texto e a transcrição (questões das provas guardam o texto à parte, em txt/<conteúdo>.json).
+ *  Enquanto o texto carrega devolve null, para a questão só de texto não aparecer primeiro como print. */
+export function useQuestaoComTexto(m: MateriaId, q: Questao | undefined): Questao | null | undefined {
+  const precisa = !!q?.txt && !PREVIA;
+  const k = q ? m + '/' + q.sub : '';
+  const [, setPronto] = useState('');
+  useEffect(() => {
+    let vivo = true;
+    if (precisa && !txtPronto.has(k)) carregaTextos(m, k.slice(m.length + 1)).then(() => vivo && setPronto(k));
+    return () => { vivo = false; };
+  }, [m, k, precisa]);
+  if (!q || !precisa) return q;
+  const mapa = txtPronto.get(k);
+  return mapa ? comTexto(q, mapa[q.id]) : null;
+}
+
 const cacheFig = new Map<MateriaId, Promise<Record<string, Figura[]>>>();
 export function carregaFiguras(m: MateriaId): Promise<Record<string, Figura[]>> {
   let p = cacheFig.get(m);
@@ -100,7 +138,8 @@ export function carregaFiguras(m: MateriaId): Promise<Record<string, Figura[]>> 
 /** Endereço do print da questão original (null quando a prévia não traz o print). */
 export function urlPrint(m: MateriaId, id: string): string | null {
   if (PREVIA) return previa?.materias[m]?.prints[id] || null;
-  return BASE + m + '/prints/' + id + '.webp';
+  const p = PRINTS_PROVA.get(id);
+  return BASE + (p || m + '/prints/' + id + '.webp');
 }
 
 export function urlIcone(m: MateriaId, chave: string): string | null {

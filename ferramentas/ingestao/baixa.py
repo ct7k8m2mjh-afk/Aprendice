@@ -69,7 +69,9 @@ def baixa(prova, rotulo, url):
     if not pode(url):
         print(f'  BLOQUEADO pelo robots.txt: {url}')
         return False
-    req = urllib.request.Request(url, headers={'User-Agent': AGENTE})
+    from urllib.parse import quote
+    url_req = quote(url, safe=':/?&=%#+@,;~')   # caracteres fora do ASCII no endereço ("1ª-ETAPA") vão codificados
+    req = urllib.request.Request(url_req, headers={'User-Agent': AGENTE})
     with urllib.request.urlopen(req, context=CTX, timeout=120) as r:
         dados = r.read()
         tipo = r.headers.get('Content-Type', '')

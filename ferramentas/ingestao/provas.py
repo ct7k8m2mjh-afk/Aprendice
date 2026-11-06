@@ -1101,7 +1101,8 @@ def ueg(ano, sem, duracao=4.5):
                       (r'(?i)^QUEST[ÕO]ES DE \d+ A \d+ \(OP[ÇC][ÃA]O INGL[ÊE]S\)', 'Inglês')],
         'pular_secoes': ('Espanhol',), 'pular_antes_sequencia': True,
         'pausa': [r'(?i)^Espaço para rascunho'], 'corte': [r'^NÚMERO$', r'(?i)^TABELA PERI', r'^Valores de Constantes', r'^Tabela Trigonom', r'(?i)^CLASSIFICA[ÇC][ÃA]O PERI', r'(?i)^PROVA DE REDA', r'(?i)^PROPOSTA DE REDA', r'(?i)^REDAÇÃO$', r'(?i)^Rascunho'],
-        'suporte': [r'(?i)(para responder|e responda|para contestar|para a[s]? quest)'], 'suporte_apos_alt': r'^e\)',
+        'suporte': [r'(?i)(para responder|e responda|para contestar|para a[s]? quest)', r'(?i)\banswer (the )?questions?\s+\d'],
+        'suporte_apos_alt': r'^e\)',
         'suporte_apos_secao': True, 'faixa_unica': True, 'suporte_nao_colado': 25,
         'gabarito': gab, 'area': lambda n: 'Conhecimentos gerais',
     }
@@ -1111,6 +1112,7 @@ def ueg(ano, sem, duracao=4.5):
 
 for _a, _s in ((2020, 1), (2021, 1), (2021, 2), (2022, 1), (2022, 2), (2023, 1), (2023, 2), (2024, 1), (2024, 2), (2025, 1), (2025, 2), (2026, 1), (2026, 2)):
     PROVAS[f'ueg-{_a}-{_s}'] = ueg(_a, _s)
+PROVAS['ueg-2022-1']['faixa_errata'] = {('caderno', 26, (4, 4)): [48, 48]}   # o caderno diz "questão 4" antes da 48
 PROVAS['ueg-2025-1']['anexa'] = {11: 10}   # "Observe a imagem ... questões 10 e 11": a imagem está no recorte da 10
 
 
@@ -1149,9 +1151,13 @@ def ufjf(ano, duracao=4):
         'cadernos': [{'arquivo': 'd1-caderno', 'paginas': (2, 999), 'questoes': (1, 20)},
                      {'arquivo': 'd2-caderno', 'paginas': (2, 999), 'questoes': (21, 40), 'deslocamento': 20}],
         # até 2024: uma coluna, "QUESTÃO 01 -"; 2025 em diante (LaTeX): duas colunas, "Questão 1."
-        'colunas': (lambda r: duas_colunas(r, 26)) if ano >= 2025 else (lambda r: [(26, r.width - 26)]), 'topo': 48, 'base': 40,
-        'ancora': r'(?i)^quest[ãa]o\s+0?(\d{1,2})\b', 'ancora_dx': 30, 'sequencial': True,
-        'corte': [r'(?i)DISCURSIVAS|DISSERTATIVAS', r'(?i)^QUESTÕES OBJETIVAS$', r'(?i)^REDAÇÃO$', r'(?i)^RASCUNHO'],
+        'colunas': (lambda r: duas_colunas(r, 26)) if ano >= 2025 else (lambda r: [(26, r.width - 26)]),
+        'topo': {2025: 66, 2026: 52}.get(ano, 55), 'base': 46,
+        'secoes': {k: k.title() for k in ('LÍNGUA PORTUGUESA', 'LITERATURA', 'LITERATURAS', 'BIOLOGIA', 'MATEMÁTICA', 'FÍSICA',
+                                         'QUÍMICA', 'GEOGRAFIA', 'HISTÓRIA')},
+        'secoes_rx': [(r'^(LÍNGUA PORTUGUESA|LITERATURAS?|BIOLOGIA|MATEMÁTICA|FÍSICA|QUÍMICA|GEOGRAFIA|HISTÓRIA)\s*[-–]\s*OBJETIVAS', 'Objetivas')],
+        'ancora': r'(?i)^quest[ãa]o\s+0?(\d{1,2})\b', 'ancora_dx': 40, 'sequencial': True,
+        'corte': [r'(?i)DISCURSIVAS|DISSERTATIVAS', r'(?i)^QUESTÕES OBJETIVAS$', r'^Objetivas$', r'(?i)^Quest[õo]es de \d+ a \d+$', r'(?i)^REDAÇÃO$', r'(?i)^RASCUNHO'],
         'suporte': [r'(?i)(responder|responda)\s+(a|à|às|as)\s+quest', r'(?i)^TEXTO\s+([IVX]+|\d+):?\s*$'], 'texto_n_sem_faixa': True,
         'faixa_unica': True, 'suporte_ate_proximo': True, 'suporte_nao_colado': 25, 'texto_romano': True,
         'gabarito': gab, 'area': lambda n: 'Conhecimentos gerais',
@@ -1161,3 +1167,91 @@ def ufjf(ano, duracao=4):
 
 for _a in (2020, 2022, 2023, 2024, 2025, 2026):
     PROVAS[f'ufjf-pism3-{_a}'] = ufjf(_a)
+# 2023, 2º dia: a questão 16 está impressa como "QUESTÃO 1 –" (erro de numeração do caderno; conferido no gabarito e na ordem)
+PROVAS['ufjf-pism3-2023']['ancora_forcada'] = {('d2-caderno', 13): [(16, 145, 0)]}
+
+
+# ----------------------------------------------------------------------------------------- UEMA (PAES)
+def uema(ano, dias=1, duracao=5):
+    def gab1(arq):
+        """Pares "NN X" em colunas; 16–20 (língua) aparecem duas vezes por linha: inglês, depois espanhol — vale o 1º."""
+        g = {}
+        for n, v in re.findall(r'(?<![\d,.])(\d{1,2})\s+([A-E]\b|ANULAD[AO]|[Nn]ula|NULA|X\b|\*)', texto_pdf(arq)):
+            g.setdefault(int(n), v if len(v) == 1 and v in 'ABCDE' else 'X')
+        return g
+
+    def gab(pasta):
+        if dias == 1:
+            return gab1(pasta / 'gabarito.pdf')
+        g1 = gab1(pasta / 'd1-gabarito.pdf')
+        return {**g1, **{n + max(g1): v for n, v in gab1(pasta / 'd2-gabarito.pdf').items()}}
+
+    cad = [{'arquivo': 'caderno', 'paginas': (2, 999)}] if dias == 1 else None
+    cfg = {
+        'catalogo': 'uema', 'escola': 'UEMA', 'ano': str(ano), 'fase': 'PAES', 'titulo': f'UEMA PAES {ano}', 'banca': 'UEMA (ASCONS)',
+        'duracao_horas': duracao,
+        'nota': f'Universidade Estadual do Maranhão, Processo Seletivo de Acesso à Educação Superior (PAES {ano}): prova objetiva A–E. '
+                'Língua estrangeira: inglês. Gabarito oficial definitivo (retificado, quando houve); anulada fica fora.',
+        'cadernos': cad,
+        'colunas': lambda r: [(22, r.width - 22)], 'topo': 8, 'base': 50,
+        'ancora': r'(?i)^quest[ãa]o\s+0?(\d{1,2})\b', 'ancora_dx': 40, 'sequencial': True,
+        'secoes_rx': [(r'(?i)^L[ÍI]NGUA ESPANHOLA', 'Espanhol'), (r'(?i)^L[ÍI]NGUA INGLESA', 'Inglês'),
+                      (r'^CIÊNCIAS HUMANAS E SUAS', 'Ciências Humanas'), (r'^MATEMÁTICA,? (E )?CIÊNCIAS DA NATUREZA', 'Matemática e Natureza'),
+                      (r'^CIÊNCIAS DA NATUREZA E SUAS', 'Ciências da Natureza'), (r'^MATEMÁTICA E SUAS', 'Matemática')],
+        'pular_secoes': ('Espanhol',), 'pular_antes_sequencia': True,
+        'corte': [r'(?i)^PRODUÇÃO TEXTUAL', r'(?i)^REDAÇÃO$', r'(?i)^RASCUNHO', r'(?i)^PROPOSTA'],
+        'suporte': [r'(?i)(responder|responda)\s+(a|à|às|as)\s+quest[õo]es'], 'faixa_unica': True, 'suporte_nao_colado': 30,
+        'suporte_apos_alt': r'^e\)', 'suporte_apos_alt_gap': 6, 'suporte_apos_alt_negrito': True,
+        'gabarito': gab, 'area': lambda n: 'Conhecimentos gerais',
+    }
+    cfg['total_de'] = lambda pasta: max(gab(pasta))
+    return cfg
+
+
+for _a in (2020, 2022, 2024, 2026):
+    PROVAS[f'uema-paes-{_a}'] = uema(_a)
+PROVAS['uema-paes-2021'] = uema(2021, dias=2)
+PROVAS['uema-paes-2021']['cadernos'] = lambda pasta: [
+    {'arquivo': 'd1-caderno', 'paginas': (2, 999), 'questoes': (1, 44)},
+    {'arquivo': 'd2-caderno', 'paginas': (2, 999), 'questoes': (45, 999), 'deslocamento': 44}]   # 1º dia: 44 questões
+PROVAS['uema-paes-2021']['nota'] = PROVAS['uema-paes-2021']['nota'].replace('prova objetiva A–E.', 'prova objetiva A–E em dois dias (o 2º dia numerado aqui a partir do fim do 1º).')
+
+
+# ----------------------------------------------------------------------------------------------- UFSM
+def ufsm(ano, duracao=4.5):
+    def gab1(arq):
+        """Pares "NN X"; as questões de língua (38–40) aparecem duas vezes: espanhol, depois inglês — vale a última."""
+        g = {}
+        for n, v in re.findall(r'(?<![\d,.])(\d{2})\s+([A-E]\b|ANULAD[AO]|X\b|\*)', texto_pdf(arq, layout=False)):
+            g[int(n)] = v if len(v) == 1 and v in 'ABCDE' else 'X'
+        return g
+
+    def gab(pasta):
+        g = {}
+        for k in (1, 2, 3):
+            g.update({n + 40 * (k - 1): v for n, v in gab1(pasta / f'p{k}-gabarito.pdf').items()})
+        return g
+
+    cfg = {
+        'catalogo': 'ufsm', 'escola': 'UFSM', 'ano': str(ano), 'fase': '', 'titulo': f'UFSM {ano}', 'banca': 'Coperves-UFSM',
+        'duracao_horas': duracao, 'total': 120,
+        'nota': f'Universidade Federal de Santa Maria, Processo Seletivo Vestibular {ano}: Provas 1, 2 e 3 (40 questões A–E cada; '
+                'aqui numeradas 1–40, 41–80 e 81–120). Língua estrangeira: inglês. Gabarito oficial definitivo; anulada fica fora.',
+        'cadernos': [{'arquivo': f'p{k}-caderno', 'paginas': (2, 999), 'questoes': (40 * (k - 1) + 1, 40 * k), 'deslocamento': 40 * (k - 1)}
+                     for k in (1, 2, 3)],
+        'colunas': 'faixas', 'margem': 12, 'topo': 50, 'base': 48,
+        'ancora': r'^(\d{2})$', 'ancora_dx': 310, 'sequencial': True, 'ancora_negrito': True,
+        'secoes_rx': [(r'^L[ÍI]NGUA ESPANHOLA$|^Língua Espanhola$', 'Espanhol'), (r'^L[ÍI]NGUA INGLESA$|^Língua Inglesa$', 'Inglês')],
+        'pular_secoes': ('Espanhol',), 'pular_antes_sequencia': True,
+        'pausa': [r'^Anotações$'], 'corte': [r'(?i)^PROPOSTA DE REDA', r'(?i)^REDAÇÃO$', r'(?i)^RASCUNHO', r'(?i)^CLASSIFICAÇÃO PERIÓDICA'],
+        'suporte': [r'(?i)(responder|responda)\s+(a|à|às|as)\s+quest'], 'faixa_unica': True, 'suporte_nao_colado': 20,
+        'gabarito': gab, 'area': lambda n: 'Conhecimentos gerais',
+    }
+    return cfg
+
+
+for _a in (2025, 2026):
+    PROVAS[f'ufsm-{_a}'] = ufsm(_a)
+# UFSM: FORA DO SITE por enquanto. Páginas misturam texto de largura total (com números de linha) e duas colunas, tirinhas
+# com números em negrito no desenho e o aviso "SE VOCÊ OPTOU POR LÍNGUA INGLESA" no lugar da 37; o recorte ainda falha em
+# parte das questões (ex.: 2025: 19, 37, 81, 87, 97, 115).
