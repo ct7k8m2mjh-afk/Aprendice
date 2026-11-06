@@ -1599,7 +1599,7 @@ def unicentro(ano, arquivo='caderno'):
         'ancora': r'^(\d{1,2})$', 'ancora_dx': 12, 'sequencial': True, 'ancora_negrito': True,
         'ancora_bloco': True,
         'secoes_rx': [(rx, nome) for nome, rx, _ in UNICENTRO_MATERIAS] + [(r'^L[ÍI]NGUA ESTRANGEIRA MODERNA\s*[–-]\s*ESPANHOL$', 'Espanhol')],
-        'corte': [r'^LITERATURA$', r'(?i)^RASCUNHO', r'(?i)^TABELA PERI'],
+        'corte': [r'^LITERATURA$', r'(?i)^RASCUNHO', r'(?i)^TABELA[- ]PERI', r'(?i)^CLASSIFICA[ÇC][ÃA]O PERI'],
         'suporte': [r'(?i)(responda|responder)\s+(às|as)\s+quest[õo]es'],
         'gabarito': gab, 'area': lambda n: 'Conhecimentos gerais',
     }
