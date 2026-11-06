@@ -8,7 +8,7 @@ import { DIA, iniDia } from '../logica/revisao';
 const NIVEIS = [
   { nome: 'Básico', de: 1, ate: 3, tom: 'var(--p)' },
   { nome: 'Intermediário', de: 4, ate: 6, tom: 'color-mix(in srgb, var(--p) 62%, var(--folha))' },
-  { nome: 'Avançado', de: 7, ate: 10, tom: 'color-mix(in srgb, var(--p) 32%, var(--folha))' },
+  { nome: 'Avançado', de: 7, ate: 10, tom: 'color-mix(in srgb, var(--p) 42%, var(--folha))' },
 ];
 const SEMANA = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
 
