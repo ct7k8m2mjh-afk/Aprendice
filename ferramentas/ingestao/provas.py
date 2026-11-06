@@ -103,7 +103,7 @@ def fuvest_v(ano, total=90, versao='V'):
                 'questão anulada ou com duas respostas aceitas fica fora do simulado.',
         'cadernos': [{'arquivo': 'fase1-caderno', 'paginas': (2, 999)}],
         'ancora': r'^\{(\d{1,2})\}$' if ano >= 2025 else r'^(\d{2})$', 'ancora_dx': 24, 'sequencial': True,
-        'suporte': [r'(?i)^texto para as quest', r'(?i)responder [àa]s quest'],
+        'suporte': [r'(?i)^textos? para as quest', r'(?i)responder [àa]s quest'],
         'gabarito': gab,
     })
     return cfg
@@ -115,6 +115,7 @@ PROVAS['fuvest-2021']['larga'] = {26: 574}   # questão 90 ocupa as duas colunas
 PROVAS['fuvest-2021']['cadernos'] = [{'arquivo': 'fase1-caderno', 'paginas': (2, 999), 'ocr_so_texto': True}]
 PROVAS['fuvest-2021']['uma_coluna'] = (6,)   # questão 18 ocupa a página inteira
 PROVAS['fuvest-2026'] = fuvest_v(2026, versao='V1')
+PROVAS['fuvest-2026']['troca_texto'] = [('¬', ' ')]   # o PDF usa "¬" no lugar do espaço
 
 
 # ------------------------------------------------------------------------------------------------ UEL
@@ -154,7 +155,7 @@ def uel_comentada(ano, total=50, duracao=4):
         'cadernos': [{'arquivo': 'fase1-caderno-definitivo-tipo1', 'paginas': (3, 999)}],
         'colunas': lambda r: [(36, r.width - 30)], 'topo': 36, 'base': 40, 'margem': 36,
         'ancora': r'^(\d{1,2})$', 'ancora_dx': 14, 'sequencial': True,
-        'fim': [r'^Alternativa correta'],
+        'fim': [r'^Alternativa correta'], 'ignora_apos_fim': True,
         'neutralizar_cores': (0x3553a4, 0x0000ff),
         'corte': [r'(?i)^O tema desta prova', r'(?i)redija um texto', r'(?i)^PROVA DE REDA'],
     })
@@ -345,6 +346,7 @@ UPE_SECOES = {
     'HISTÓRIA': 'História', 'GEOGRAFIA': 'Geografia', 'SOCIOLOGIA': 'Sociologia', 'FILOSOFIA': 'Filosofia',
     'LÍNGUA PORTUGUESA': 'Língua Portuguesa', 'LITERATURA': 'Literatura', 'INGLÊS': 'Inglês', 'LÍNGUA INGLESA': 'Inglês',
     'ESPANHOL': 'Espanhol', 'LÍNGUA ESPANHOLA': 'Espanhol', 'ARTES': 'Artes', 'EDUCAÇÃO FÍSICA': 'Educação Física',
+    'LÌNGUA PORTUGUESA': 'Língua Portuguesa',   # grafia do caderno 2022
 }
 
 
@@ -384,7 +386,13 @@ def upe(ano, duracao=9):
 
 
 PROVAS.update({f'upe-ssa3-{a}': upe(a) for a in (2026, 2025, 2024, 2023, 2022, 2021, 2020)})
+for _a in (2020, 2021, 2022, 2023):
+    PROVAS[f'upe-ssa3-{_a}']['rodape_ultimo'] = True   # gráficos com números no pé da página
+    PROVAS[f'upe-ssa3-{_a}']['topo'] = 37   # título de seção (ex.: FILOSOFIA) colado no cabeçalho
+    PROVAS[f'upe-ssa3-{_a}']['pular_secoes'] = ('Espanhol',)   # 25–34 repetem na opção espanhol: vale a do inglês
+    PROVAS[f'upe-ssa3-{_a}']['suporte'] = PROVAS[f'upe-ssa3-{_a}']['suporte'] + [r'(?i)servem? de base [àa]s? quest', r'(?i)^texts? \d+ \(quest']
 PROVAS['upe-ssa3-2023']['ancora_dx_pag'] = {('d1-caderno', 14): 240, ('d2-caderno', 22): 30}   # 10 ao lado de imagem; "45.." recuado
+PROVAS['upe-ssa3-2021']['ancora_dx_pag'] = {('d1-caderno', 24): 280}   # 34 (inglês) começa ao lado de uma imagem
 PROVAS['upe-ssa3-2022']['ancora_forcada'] = {('d1-caderno', 31): [(41, 54, 0)]}   # "41." desenhado sem camada de texto
 
 
@@ -649,3 +657,113 @@ def ufam(ano, duracao=5):
 
 
 PROVAS.update({f'ufam-psc3-{a}': ufam(a) for a in range(2020, 2027)})
+
+
+# ------------------------------------------------------------------------------------------------ ITA
+ITA_MATERIAS = ['Matemática', 'Física', 'Química', 'Português', 'Inglês']
+
+
+def ita(ano, ocr=False, duracao=5):
+    areas = {}
+
+    def gab(pasta):
+        """Gabarito em colunas, uma por matéria: a matéria de cada questão é a do cabeçalho da sua coluna.
+        (*) e (**) = anulada (nota de rodapé do próprio gabarito)."""
+        linhas = texto_pdf(pasta / 'fase1-gabarito.pdf').splitlines()
+        cab = next(l for l in linhas if sum(m in l for m in ITA_MATERIAS) >= 4)
+        pos = sorted((cab.find(m) + len(m) / 2, m) for m in ITA_MATERIAS if m in cab)
+        g = {}
+        for l in linhas:
+            if l is cab:
+                continue
+            for mm in re.finditer(r'(?<![\d,.(])(\d{1,2})\s+([A-E]\b|\(\*+\))', l):
+                n, v = int(mm.group(1)), mm.group(2)
+                g.setdefault(n, v if len(v) == 1 else 'X')
+                centro = (mm.start() + mm.end()) / 2
+                areas[n] = min(pos, key=lambda p: abs(p[0] - centro))[1]
+        return g
+
+    cfg = {
+        'catalogo': 'ita', 'escola': 'ITA', 'ano': str(ano), 'fase': '1ª fase', 'titulo': f'ITA {ano}', 'banca': 'ITA',
+        'duracao_horas': duracao,
+        'nota': 'Instituto Tecnológico de Aeronáutica, 1ª fase (questões objetivas). Gabarito oficial do ITA; anuladas ficam fora.'
+                + (' Caderno publicado como imagem: questões localizadas por OCR (o print é a página original).' if ocr else ''),
+        'cadernos': [{'arquivo': 'fase1-caderno', 'paginas': (2, 999), 'ocr': ocr}],
+        'colunas': lambda r: [(20, r.width - 20)], 'topo': 24, 'base': 30, 'rodape_num': True, 'rodape_ultimo': True,
+        'ancora': r'^Quest\S{1,3}o\s*(\d{1,2})\s*[.,:]', 'ancora_dx': 45, 'sequencial': True,
+        'corte': [r'(?i)^RASCUNHO', r'(?i)^(F.{0,3}SICA|MATEM.{1,4}TICA|QU.{1,4}MICA|PORTUGU.{1,4}S|INGL.{1,4}S)$'],
+        'suporte': [r'(?i)(texto|textos|trecho) (a seguir |abaixo )?para (as|responder [àa]s) quest', r'(?i)para responder [àa]s quest',
+                    r'(?i)^as quest[õo]es \d+ (a|e) \d+'],
+        'gabarito': gab, 'area': lambda n: areas.get(n, 'Conhecimentos gerais'),
+    }
+    cfg['total_de'] = lambda pasta: max(gab(pasta))
+    return cfg
+
+
+PROVAS.update({f'ita-{a}': ita(a, ocr=a in (2020, 2026)) for a in range(2020, 2027)})
+for _a in (2020, 2026):   # cadernos só em imagem: OCR às vezes perde o número ao lado de "Questão"; página começa no alto
+    PROVAS[f'ita-{_a}'].update({'ancora_sem_numero': r'^Quest\S{1,3}o\s*$', 'topo': 2, 'ancora_dx': 60})
+
+
+# ---------------------------------------------------------------------------------------------- UDESC
+UDESC_NOMES = [('MATEM', 'Matemática'), ('BIOLOG', 'Biologia'), ('INGL', 'Inglês'), ('ESPAN', 'Espanhol'),
+               ('LÍNGUA', 'Língua Portuguesa e Literatura'), ('FÍSICA', 'Física'), ('QUÍMICA', 'Química'),
+               ('HISTÓRIA', 'História'), ('GEOGRAFIA', 'Geografia'), ('FILOSOFIA', 'Filosofia'), ('SOCIOLOGIA', 'Sociologia')]
+
+
+def udesc(ano, sem, duracao=4):
+    areas = {}
+
+    def gab(pasta):
+        """Gabarito oficial em colunas por matéria (matutino 1–50, vespertino 1–50, aqui 51–100). Cada resposta
+        vai para o cabeçalho de coluna mais próximo; a coluna Espanhol é descartada (vale a do inglês)."""
+        txt = texto_pdf(pasta / 'gabarito-oficial.pdf')
+        i = txt.find('Vespertino')
+        g = {}
+        for parte, desl in ((txt[:i], 0), (txt[i:], 50)):
+            cabs = []
+            for l in parte.splitlines():
+                novos = []
+                for chave, nome in UDESC_NOMES:
+                    k = l.upper().find(chave)
+                    if k >= 0 and not re.search(r'\d', l[max(0, k - 3):k + 12]):
+                        novos.append((k + len(chave) / 2 + 3, nome))
+                for m in re.finditer(r'(?<![\d(])(\d{1,2})(?:\.|ª Questão)?\s+\(?([A-E]|Anulad[ao]|ANULAD[AO])\)?(?!\w)', l):
+                    if not cabs:   # respostas na mesma linha de um cabeçalho novo seguem as colunas de cima
+                        continue
+                    centro = (m.start() + m.end()) / 2
+                    nome = min(cabs, key=lambda c: abs(c[0] - centro))[1]
+                    if nome == 'Espanhol':
+                        continue
+                    n = int(m.group(1)) + desl
+                    g[n] = m.group(2) if len(m.group(2)) == 1 else 'X'
+                    areas[n] = nome
+                if novos:
+                    cabs = [c for c in cabs if all(abs(c[0] - nv[0]) > 12 for nv in novos)] + novos
+        return g
+
+    nome = 'Verão' if sem == 1 else 'Inverno'
+    cfg = {
+        'catalogo': 'udesc', 'escola': 'UDESC', 'ano': str(ano), 'fase': f'{nome} {ano}.{sem}', 'titulo': f'UDESC {ano}.{sem}',
+        'banca': 'Covest-UDESC', 'duracao_horas': duracao,
+        'nota': f'Vestibular de {nome} {ano}.{sem}: prova do período matutino (questões 1 a 50) e do vespertino (aqui 51 a 100). '
+                'Língua estrangeira: inglês. Gabarito oficial publicado na página de provas anteriores (pós-recursos). '
+                'Cadernos publicados só como imagem têm as questões localizadas por OCR (o print é a página original).',
+        'cadernos': [{'arquivo': 'caderno-matutino', 'paginas': (2, 999), 'questoes': (1, 50), 'ocr_se_vazio': True},
+                     {'arquivo': 'caderno-vespertino', 'paginas': (2, 999), 'questoes': (51, 100), 'deslocamento': 50, 'ocr_se_vazio': True}],
+        'colunas': lambda r: [(25, r.width - 25)], 'topo': 30, 'base': 30, 'rodape_num': True, 'rodape_ultimo': True,
+        'ancora': r'(?i)^(?:quest\S{1,3}o|question)\s+(\d{1,2})\b', 'ancora_dx': 75, 'sequencial': True,
+        'secoes': {'Inglês': 'Inglês', 'Espanhol': 'Espanhol', 'INGLÊS': 'Inglês', 'ESPANHOL': 'Espanhol'},
+        'pular_secoes': ('Espanhol',), 'area_do_gabarito': True,
+        'corte': [r'(?i)^FOLHA DE RASCUNHO', r'^LÍNGUA ESTRANGEIRA', r'^LÍNGUA PORTUGUESA E LITERATURA', r'^(MATEMÁTICA|BIOLOGIA|FÍSICA|QUÍMICA|HISTÓRIA|GEOGRAFIA|FILOSOFIA|SOCIOLOGIA)\b',
+                  r'(?i)^FORMUL[ÁA]RIO', r'(?i)^Tabela peri', r'^(Inglês|Espanhol)\s+\(\d+ quest',
+                  r'(?i)^PROPOSTA DE REDA', r'(?i)^REDAÇÃO$'],
+        'suporte': [r'(?i)(responder|para) [àa]s quest', r'^Texto? \d+\s*$'], 'suporte_ate_proximo': True, 'suporte_primeira': True,
+        'cabecalho_imagem': r'(?i)^(UDESC|Vestibular 20\d\d)', 'texto_ingles': True,
+        'gabarito': gab, 'area': lambda n: areas.get(n, 'Conhecimentos gerais'), 'total': 100,
+    }
+    return cfg
+
+
+for _a, _s in ((2020, 1), (2023, 2), (2024, 1), (2024, 2), (2025, 1), (2025, 2), (2026, 1), (2026, 2)):
+    PROVAS[f'udesc-{_a}-{_s}'] = udesc(_a, _s)

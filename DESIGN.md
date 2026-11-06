@@ -2,16 +2,16 @@
 name: APRENDICE
 description: Site de estudo para vestibulares pelas questões reais das provas, em folhas brancas sobre papel cinza, uma cor por matéria.
 colors:
-  papel: "#F1F1EE"
+  papel: "#F7F4EF"
   folha: "#FFFFFF"
-  folha2: "#F6F6F3"
-  malha: "#EEEEEA"
-  linha: "#E5E5E0"
-  borda2: "#D6D6D0"
+  folha2: "#F9F6F2"
+  malha: "#EFEBE5"
+  linha: "#EAE5DD"
+  borda2: "#D8D3CA"
   campo-borda: "#878A93"
   tinta: "#17181C"
-  lapis: "#585B64"
-  fraco: "#646771"
+  lapis: "#565962"
+  fraco: "#63666F"
   neutro-c: "#2B2D33"
   certo: "#0A7550"
   certo-bg: "#E2F6EE"
@@ -31,11 +31,19 @@ colors:
   por-c: "#F2C12E"
   por-t: "#8A6200"
   fis-c: "#2F5BD3"
-  his-c: "#9A4A1C"
-  geo-c: "#5E7A12"
-  ing-c: "#5B3FC4"
-  fil-c: "#7A5C3E"
-  red-c: "#3D4A5C"
+  fis-t: "#2A4FB8"
+  geo-c: "#E07010"
+  geo-t: "#A84F00"
+  his-c: "#8A5A2B"
+  his-t: "#7A4E24"
+  fil-c: "#6A3DB8"
+  fil-t: "#5E35A6"
+  soc-c: "#4A5568"
+  soc-t: "#3F4859"
+  ing-c: "#D0312D"
+  ing-t: "#B0261F"
+  verde-marca: "#1A8038"
+  lado-fundo: "#FBF9F6"
   papel-escuro: "#0C0D10"
   folha-escuro: "#16171B"
   folha2-escuro: "#1D1F24"
@@ -51,35 +59,54 @@ colors:
   errado-escuro: "#FF7B6B"
   aviso-escuro: "#F5C451"
 typography:
-  display:
+  saudacao:
     fontFamily: "Familjen Grotesk, system-ui, -apple-system, Segoe UI, Roboto, sans-serif"
-    fontSize: "clamp(28px, 4vw, 38px)"
+    fontSize: "34px (24px até 640px)"
     fontWeight: 600
-    lineHeight: 1.15
-    letterSpacing: "-0.02em"
-  display-materia:
+    lineHeight: 1.25
+    letterSpacing: "-0.4px"
+  titulo-materia:
+    fontFamily: "Dancing Script, Familjen Grotesk"
+    fontSize: "44px (em todas as larguras)"
+    fontWeight: 700
+    lineHeight: 1.05
+    letterSpacing: "0"
+    color: "{colors.<materia>-t}"
+  display:
     fontFamily: "Familjen Grotesk, system-ui, sans-serif"
-    fontSize: "clamp(32px, 5vw, 44px)"
+    fontSize: "32px"
     fontWeight: 600
     lineHeight: 1.15
-    letterSpacing: "-0.02em"
+    letterSpacing: "-0.4px"
+  capa:
+    fontFamily: "Familjen Grotesk, system-ui, sans-serif"
+    fontSize: "32px"
+    fontWeight: 700
+    lineHeight: 1.15
+    letterSpacing: "-0.4px"
   headline:
     fontFamily: "Familjen Grotesk, system-ui, sans-serif"
-    fontSize: "clamp(24px, 3vw, 32px)"
+    fontSize: "30px"
     fontWeight: 600
-    lineHeight: 1.15
-    letterSpacing: "-0.015em"
+    lineHeight: 1.2
+    letterSpacing: "-0.3px"
   title:
     fontFamily: "Familjen Grotesk, system-ui, sans-serif"
     fontSize: "22px"
     fontWeight: 600
-    lineHeight: 1.15
-    letterSpacing: "-0.01em"
+    lineHeight: 1.25
   title-bloco:
     fontFamily: "Familjen Grotesk, system-ui, sans-serif"
     fontSize: "19px"
     fontWeight: 600
     lineHeight: 1.15
+    letterSpacing: "-0.1px"
+  rotulo-area:
+    fontFamily: "Familjen Grotesk, system-ui, sans-serif"
+    fontSize: "13px"
+    fontWeight: 600
+    letterSpacing: "0.08em"
+    textTransform: "uppercase"
   body:
     fontFamily: "Familjen Grotesk, system-ui, sans-serif"
     fontSize: "17px"
@@ -101,10 +128,12 @@ typography:
     fontWeight: 400
     lineHeight: 1.3
 rounded:
-  etiqueta: "8px"
+  item-menu: "9px"
   p: "10px"
-  controle: "12px"
+  controle: "11px"
+  grande: "13px"
   r: "14px"
+  bloco: "16px"
   destaque: "18px"
   pilula: "20px"
 spacing:
@@ -113,8 +142,19 @@ spacing:
   md: "12px"
   lg: "16px"
   bloco-x: "22px"
-  pagina-x: "28px"
-  secao: "36px"
+  pagina-x: "32px (16px até 700px)"
+  pagina-topo: "22px (14px até 700px)"
+  pagina-pe: "48px (32px até 700px)"
+  grade: "28px"
+  secao: "28px"
+layout:
+  menu-lateral: "244px (acima de 1180px)"
+  trilho: "64px (641 a 1180px, e menu recolhido)"
+  abas-celular: "68px, até 640px"
+  topo: "61px (57px até 640px)"
+  pagina-max: "1440px"
+  inicio-max: "1560px, 12 colunas, 28px"
+  conteudo-max: "880px"
 components:
   button-primary:
     backgroundColor: "{colors.neutro-c}"
@@ -123,6 +163,17 @@ components:
     rounded: "{rounded.controle}"
     padding: "0 20px"
     height: "46px"
+  button-grande:
+    typography: "18px 700"
+    rounded: "{rounded.grande}"
+    padding: "0 30px"
+    height: "56px"
+  button-capa:
+    typography: "21px 700"
+    rounded: "{rounded.bloco}"
+    padding: "16px 40px"
+    height: "66px"
+    minWidth: "380px"
   button-primary-materia:
     backgroundColor: "{colors.bio-c}"
     textColor: "{colors.folha}"
@@ -130,13 +181,13 @@ components:
     padding: "0 20px"
     height: "46px"
   button-secondary:
-    backgroundColor: "{colors.folha}"
+    backgroundColor: "tinta a 7%"
     textColor: "{colors.tinta}"
     rounded: "{rounded.controle}"
     padding: "0 20px"
     height: "46px"
   button-secondary-hover:
-    backgroundColor: "{colors.folha2}"
+    backgroundColor: "tinta a 11%"
   button-ghost:
     backgroundColor: "transparent"
     textColor: "{colors.lapis}"
@@ -165,18 +216,23 @@ components:
   etiqueta:
     backgroundColor: "{colors.malha}"
     textColor: "{colors.lapis}"
-    typography: "{typography.label}"
-    rounded: "{rounded.etiqueta}"
-    padding: "3px 9px"
+    typography: "13px 500"
+    rounded: "{rounded.pilula}"
+    padding: "4px 10px"
   folha:
     backgroundColor: "{colors.folha}"
-    rounded: "{rounded.r}"
-    padding: "20px 22px"
+    rounded: "{rounded.bloco}"
+    padding: "18px 22px"
+  cartao-tema:
+    size: "196 x 204px (150 x 176px até 640px; 150px compacto)"
+    rounded: "{rounded.bloco}"
+    padding: "8px 8px 18px"
+    ladrilho: "128px de altura, canto 11px, objeto 3D de 112px"
   alternativa:
-    backgroundColor: "{colors.folha}"
+    backgroundColor: "{colors.folha2}"
     textColor: "{colors.tinta}"
-    rounded: "{rounded.r}"
-    height: "56px"
+    rounded: "12px"
+    height: "56px (50px até 900px)"
   conta-a-mao:
     backgroundColor: "{colors.cad-papel}"
     textColor: "{colors.cad-tinta}"

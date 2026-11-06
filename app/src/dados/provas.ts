@@ -89,8 +89,8 @@ export function nomeEdicao(e: Pick<Edicao, 'escola' | 'ano' | 'fase'>): string {
  * Viram simulado quando todas as questões entram no banco. Fonte: fabrica_saida/ingestao/<prova>/manifesto.json.
  */
 export const PROVAS_EM_PREPARO: { catalogoId: string; titulo: string; motivo: string }[] = [
-  { catalogoId: 'unb', titulo: 'UnB PAS 3 2025', motivo: 'itens de certo ou errado (formato Cebraspe)' },
-  { catalogoId: 'fuvest', titulo: 'Fuvest 2026, 2024 e 2023', motivo: 'caderno a baixar manualmente' },
+  { catalogoId: 'unb', titulo: 'UnB PAS 3 2020 a 2026', motivo: 'itens de certo ou errado (formato Cebraspe)' },
+  { catalogoId: 'uem', titulo: 'UEM 2020 a 2026', motivo: 'questões de somatória (01, 02, 04, 08, 16)' },
   { catalogoId: 'saocamilo', titulo: 'São Camilo 2020 a 2026 (outros semestres)', motivo: 'caderno a baixar manualmente (site da Vunesp)' },
   { catalogoId: 'santacasa', titulo: 'Santa Casa 2020 a 2026', motivo: 'caderno a baixar manualmente (site da Vunesp)' },
   { catalogoId: 'einstein', titulo: 'Einstein 2020 a 2026', motivo: 'caderno a baixar manualmente (site da Vunesp)' },

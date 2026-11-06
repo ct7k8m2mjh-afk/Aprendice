@@ -6,7 +6,7 @@ import { useMateriaEstado } from '../estado/loja';
 import { progressoEscada } from '../logica/estatisticas';
 import { Barra, Carregando, Ic3D, cap, plural, useTitulo } from '../ui/comum';
 import { Icone } from '../ui/Icone';
-import { FaixaTemas } from './Materia';
+import { CabMateria, FaixaTemas } from './Materia';
 import type { CartaoTeoria, Figura, MateriaId, Modulo } from '../dados/tipos';
 
 export function CartaoTeoriaView({ c, figs }: { c: CartaoTeoria; figs?: Figura[] }) {
@@ -66,15 +66,13 @@ export function Tema() {
 
   return (
     <div className={`conteudo m-${m}`}>
+      <CabMateria m={m} nome={infoMateria(m)?.nome || ''} sub={`${plural(mc.conteudo.modulos.length, 'tema', 'temas')} · questões reais, todas com a fonte`} titulo={false} />
+      <FaixaTemas mc={mc} s={s} atual={mod.id} compacta />
       <nav className="migalhas" aria-label="Você está em"><Link to={`/m/${m}`}>{infoMateria(m)?.nome}</Link><Icone nome="direita" tam={14} /><span>{mod.nome}</span></nav>
       <div className="tema-cab">
-        <Ic3D m={m} chave={mod.id} tam={96} />
-        <div>
-          <h1>{mod.nome}</h1>
-          <p className="sub num">{subs.length ? `${plural(subs.length, 'conteúdo', 'conteúdos')} · ${p.feitas} ${p.feitas === 1 ? 'questão feita' : 'questões feitas'}` : 'Questões em preparação'}</p>
-        </div>
+        <h1><Ic3D m={m} chave={mod.id} tam={44} />{mod.nome}</h1>
+        <p className="sub num">{subs.length ? `${plural(subs.length, 'conteúdo', 'conteúdos')} · ${p.feitas} ${p.feitas === 1 ? 'questão feita' : 'questões feitas'}` : 'Questões em preparação'}</p>
       </div>
-      <FaixaTemas mc={mc} s={s} atual={mod.id} />
       {temTeoria && (
         <div className="abas" role="group" aria-label="Seções">
           <button aria-pressed={aba === 'conteudos'} onClick={() => setQs({}, { replace: true })}>Conteúdos <small>{subs.length}</small></button>

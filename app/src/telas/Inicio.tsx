@@ -87,7 +87,7 @@ function IcMat({ m, tam, className = '' }: { m: MateriaId; tam: number; classNam
 }
 
 function Anel({ valor, children }: { valor: number; children: ReactNode }) {
-  const tam = 176, esp = 18, r = (tam - esp) / 2, c = 2 * Math.PI * r, v = Math.max(0, Math.min(1, valor));
+  const tam = 112, esp = 12, r = (tam - esp) / 2, c = 2 * Math.PI * r, v = Math.max(0, Math.min(1, valor));
   return (
     <div className="evo-anel">
       <svg viewBox={`0 0 ${tam} ${tam}`} aria-hidden>
@@ -124,139 +124,120 @@ export function Inicio() {
   const emEstudo = Object.entries(e.materias).filter(([, s]) => s && (Object.values(s.q).some((x) => x.tent.length) || Object.keys(s.flash).length)).length;
   const sessoes = sessoesRecentes(todas, e, 3);
 
+  const heroiM: MateriaId = parou ? parou.m : hojeId;
+
   return (
     <div className="conteudo inicio">
       <div className="ini-grade">
-        <div className="ini-col">
-          <header className="ini-cab">
-            <h1>Olá{nome ? `, ${nome}` : ''}!<Faisca className="faisca-ola" /></h1>
-            <p>Que bom te ver por aqui! Continue firme nos seus estudos e siga evoluindo.</p>
-          </header>
+        <header className="ini-cab s12">
+          <h1>Olá{nome ? `, ${nome}` : ''}!<Faisca className="faisca-ola" /></h1>
+          <p>Que bom te ver por aqui! Continue firme nos seus estudos e siga evoluindo.</p>
+        </header>
 
-          {parou ? (
-            <section className="ini-heroi" aria-labelledby="heroi-tit">
-              <div className="ih-txt">
-                <span className="ih-chip"><span className="ih-play" aria-hidden><Icone nome="play" tam={10} /></span>Continue de onde parou</span>
-                <h2 id="heroi-tit">{infoMateria(parou.m)?.nome}</h2>
-                <p className="ih-sub">{[parou.mod?.nome, parou.sub && cap(parou.sub.nome)].filter(Boolean).join(' — ')}</p>
-                <div className="ih-prog">
-                  <Barra valor={parou.prog.feitas / Math.max(1, parou.prog.total)} rotulo="Progresso no conteúdo" />
-                  <span className="num">{pct(parou.prog.feitas, parou.prog.total)} concluído</span>
-                </div>
-                <Link to={`/m/${parou.m}/q/${parou.prox.id}?ctx=escada`} className="btn btn-verde">Retomar estudo <Icone nome="seta" /></Link>
+        <section className={`ini-heroi s8 m-${heroiM}`} aria-labelledby="heroi-tit">
+          <div className="ih-txt">
+            <span className="ih-rot"><Icone nome="play" tam={18} />{parou ? 'Continue de onde parou' : 'Comece por aqui'}</span>
+            {parou ? (<>
+              <h2 id="heroi-tit">{infoMateria(parou.m)?.nome}</h2>
+              <p className="ih-sub">{[parou.mod?.nome, parou.sub && cap(parou.sub.nome)].filter(Boolean).join(' — ')}</p>
+              <div className="ih-prog">
+                <Barra valor={parou.prog.feitas / Math.max(1, parou.prog.total)} rotulo="Progresso no conteúdo" />
+                <span className="num">{pct(parou.prog.feitas, parou.prog.total)} concluído</span>
               </div>
-              <div className="ih-arte">
-                {temIlu(parou.m) ? <IluMateria m={parou.m} className="ih-ilu" /> : <Ic3D m={parou.m} chave={parou.q.sub} tam={150} />}
-              </div>
-            </section>
-          ) : (
-            <section className="ini-heroi" aria-labelledby="heroi-tit">
-              <div className="ih-txt">
-                <span className="ih-chip"><span className="ih-play" aria-hidden><Icone nome="play" tam={10} /></span>Comece por aqui</span>
-                <h2 id="heroi-tit">Treino geral de {hoje.nome}</h2>
-                <p className="ih-sub">O essencial da matéria, tudo misturado: questões reais de prova, frases para completar e flashcards.</p>
-                <Link to={`/m/${hojeId}/treino`} className="btn btn-verde">Começar treino <Icone nome="seta" /></Link>
-              </div>
-              <div className="ih-arte"><IcMat m={hojeId} tam={150} className="ih-ilu" /></div>
-            </section>
-          )}
+              <Link to={`/m/${parou.m}/q/${parou.prox.id}?ctx=escada`} className="btn grande">Retomar estudo <Icone nome="seta" /></Link>
+            </>) : (<>
+              <h2 id="heroi-tit">Treino geral de {hoje.nome}</h2>
+              <p className="ih-sub">O essencial da matéria, tudo misturado: questões reais de prova, frases para completar e flashcards.</p>
+              <Link to={`/m/${hojeId}/treino`} className="btn grande">Começar treino <Icone nome="seta" /></Link>
+            </>)}
+          </div>
+          <div className="ih-arte">
+            {parou && !temIlu(parou.m) ? <Ic3D m={parou.m} chave={parou.q.sub} tam={150} /> : <IcMat m={heroiM} tam={150} className="ih-ilu" />}
+          </div>
+        </section>
 
-          <section className="ini-mats" aria-labelledby="mats-tit">
-            <div className="ini-sec-cab">
-              <div>
-                <h2 id="mats-tit">Minhas matérias<Faisca className="faisca-mats" /></h2>
-                <p>Acesse o conteúdo, pratique questões e acompanhe seu progresso em cada disciplina.</p>
-              </div>
-              <Link to="/materias" className="ini-link">Ver todas as matérias <Icone nome="seta" tam={16} /></Link>
-            </div>
-            <div className="mats-grade">
-              {MATERIAS_PRINCIPAIS.map((m) => {
-                const r = resumoDe(m.id);
-                return (
-                  <Link key={m.id} to={`/m/${m.id}`} className="mat-cartao">
-                    <IcMat m={m.id} tam={84} className="mc-ic" />
-                    <span className="mc-txt">
-                      <span className="mc-nome">{m.nome}</span>
-                      <span className="mc-pct num">{r.total ? `${pct(r.feitas, r.total)} concluído` : 'Questões em preparação'}</span>
-                      <span className="mc-linha">
-                        <Barra valor={r.total ? r.feitas / r.total : 0} rotulo={`Concluído em ${m.nome}`} />
-                        <span className="mc-seta" aria-hidden><Icone nome="seta" tam={15} /></span>
-                      </span>
-                    </span>
-                  </Link>
-                );
-              })}
-            </div>
-          </section>
+        <section className="ini-painel ini-evo s4" aria-labelledby="evo-tit">
+          <h2 id="evo-tit" className="ip-tit"><Icone nome="barras" tam={20} />Acompanhe sua evolução</h2>
+          <p className="ip-sub">Questões do banco que você já resolveu, em todas as matérias.</p>
+          <div className="evo-corpo">
+            <Anel valor={totalBanco ? totalFeitas / totalBanco : 0}>
+              <b className="num">{pct(totalFeitas, totalBanco)}</b><span>de evolução</span>
+            </Anel>
+            <ul className="evo-nums">
+              <li><span className="evo-ic" aria-hidden><Icone nome="alvo" tam={18} /></span><span><b className="num">{emEstudo}</b>{emEstudo === 1 ? 'matéria em estudo' : 'matérias em estudo'}</span></li>
+              <li><span className="evo-ic" aria-hidden><Icone nome="quadcheck" tam={18} /></span><span><b className="num">{totalFeitas.toLocaleString('pt-BR')}</b>{totalFeitas === 1 ? 'questão resolvida' : 'questões resolvidas'}</span></li>
+              <li><span className="evo-ic" aria-hidden><Icone nome="raio" tam={18} /></span><span><b className="num">{e.simuladosFeitos.length}</b>{e.simuladosFeitos.length === 1 ? 'simulado realizado' : 'simulados realizados'}</span></li>
+            </ul>
+          </div>
+        </section>
 
-          <section className="ini-painel ini-ativ" aria-labelledby="ativ-tit">
-            <div className="ini-sec-cab">
-              <div className="ip-tit">
-                <span className="ip-ic" aria-hidden><Icone nome="relogio" tam={24} /></span>
-                <div><h2 id="ativ-tit">Atividade recente</h2><p>Retome o que você fez e mantenha o ritmo.</p></div>
-              </div>
-              <Link to="/desempenho" className="ini-link">Ver histórico completo <Icone nome="seta" tam={16} /></Link>
-            </div>
-            {!sessoes.length && <p className="ativ-vazio">Suas últimas respostas aparecem aqui. Comece por um conteúdo ou pelo treino geral.</p>}
-            {sessoes.map((s) => (
-              <Link key={s.m + s.sub + s.ts} to={`/m/${s.m}/escada/${s.sub}`} className="ativ-linha">
-                <IcMat m={s.m} tam={34} className="ativ-ic" />
-                <span className="ativ-txt">
-                  <span className="ativ-tit">{nomeMateria(s.m)} — {s.subNome}</span>
-                  <span className="ativ-tipo">{TIPO_CTX[s.ctx] || 'Questões'} · {plural(s.n, 'resposta', 'respostas')}, {s.certas} {s.certas === 1 ? 'certa' : 'certas'}</span>
+        <div className="ini-sec-cab s12">
+          <div>
+            <h2 id="mats-tit">Minhas matérias<Faisca className="faisca-mats" /></h2>
+            <p>Acesse o conteúdo, pratique questões e acompanhe seu progresso em cada disciplina.</p>
+          </div>
+          <Link to="/materias" className="ini-link">Ver todas as matérias <Icone nome="seta" tam={16} /></Link>
+        </div>
+        <div className="mats-grade s12" role="list" aria-labelledby="mats-tit">
+          {MATERIAS_PRINCIPAIS.map((m) => {
+            const r = resumoDe(m.id);
+            return (
+              <Link key={m.id} to={`/m/${m.id}`} className={`mat-cartao m-${m.id}`} role="listitem">
+                <span className="mc-arte"><IcMat m={m.id} tam={140} className="mc-ic" /></span>
+                <span className="mc-nome">{m.nome}</span>
+                <span className="mc-pct num">{r.total ? `${r.feitas.toLocaleString('pt-BR')} de ${r.total.toLocaleString('pt-BR')} questões` : 'Questões em preparação'}</span>
+                <span className="mc-linha">
+                  <Barra valor={r.total ? r.feitas / r.total : 0} rotulo={`Concluído em ${m.nome}`} />
+                  <span className="mc-num num">{r.total ? pct(r.feitas, r.total) : '—'}</span>
                 </span>
-                <span className="ativ-data num">{quando(s.ts)}</span>
-                <span className={'ativ-status' + (s.concluido ? ' ok' : '')}>{s.concluido && <Icone nome="check" tam={14} />}{s.concluido ? 'Concluído' : 'Em andamento'}</span>
               </Link>
-            ))}
-          </section>
+            );
+          })}
         </div>
 
-        <aside className="ini-col ini-dir" aria-label="Seu progresso">
-          <section className="ini-painel" aria-labelledby="evo-tit">
-            <div className="ip-tit">
-              <span className="ip-ic" aria-hidden><Icone nome="barras" tam={24} /></span>
-              <div><h2 id="evo-tit">Acompanhe sua evolução</h2><p>Questões do banco que você já resolveu, em todas as matérias.</p></div>
-            </div>
-            <div className="evo-corpo">
-              <Anel valor={totalBanco ? totalFeitas / totalBanco : 0}>
-                <b className="num">{pct(totalFeitas, totalBanco)}</b><span>de evolução</span>
-              </Anel>
-              <ul className="evo-nums">
-                <li><span className="evo-ic" aria-hidden><Icone nome="alvo" tam={20} /></span><span><b className="num">{emEstudo}</b>{emEstudo === 1 ? 'matéria em estudo' : 'matérias em estudo'}</span></li>
-                <li><span className="evo-ic" aria-hidden><Icone nome="quadcheck" tam={20} /></span><span><b className="num">{totalFeitas.toLocaleString('pt-BR')}</b>{totalFeitas === 1 ? 'questão resolvida' : 'questões resolvidas'}</span></li>
-                <li><span className="evo-ic" aria-hidden><Icone nome="raio" tam={20} /></span><span><b className="num">{e.simuladosFeitos.length}</b>{e.simuladosFeitos.length === 1 ? 'simulado realizado' : 'simulados realizados'}</span></li>
-              </ul>
-            </div>
-          </section>
+        <section className="ini-painel s7" aria-labelledby="desemp-tit">
+          <h2 id="desemp-tit" className="ip-tit"><Icone nome="medalha" tam={20} />Desempenho por matéria</h2>
+          <p className="ip-sub">Seu acerto nas questões de cada disciplina.</p>
+          <ul className="desemp-lista">
+            {MATERIAS_PRINCIPAIS.map((m) => {
+              const r = resumoDe(m.id);
+              return (
+                <li key={m.id} className={`m-${m.id}`}>
+                  <IcMat m={m.id} tam={36} className="dl-ic" />
+                  <span className="dl-nome">{m.nome}</span>
+                  <Barra valor={r.feitas ? r.acertos / r.feitas : 0} rotulo={`Acerto em ${m.nome}`} />
+                  <span className="dl-pct num" title={r.feitas ? undefined : 'Sem respostas ainda'}>{r.feitas ? pct(r.acertos, r.feitas) : '—'}</span>
+                </li>
+              );
+            })}
+          </ul>
+          <Link to="/desempenho" className="ini-link desemp-mais">Ver desempenho de todas as matérias <Icone nome="seta" tam={16} /></Link>
+        </section>
 
-          <section className="ini-painel" aria-labelledby="desemp-tit">
-            <div className="ip-tit">
-              <span className="ip-ic" aria-hidden><Icone nome="medalha" tam={24} /></span>
-              <div><h2 id="desemp-tit">Desempenho por matéria</h2><p>Seu acerto nas questões de cada disciplina.</p></div>
-            </div>
-            <ul className="desemp-lista">
-              {MATERIAS_PRINCIPAIS.map((m) => {
-                const r = resumoDe(m.id);
-                return (
-                  <li key={m.id}>
-                    <IcMat m={m.id} tam={44} className="dl-ic" />
-                    <span className="dl-nome">{m.nome}</span>
-                    <Barra valor={r.feitas ? r.acertos / r.feitas : 0} rotulo={`Acerto em ${m.nome}`} />
-                    <span className="dl-pct num" title={r.feitas ? undefined : 'Sem respostas ainda'}>{r.feitas ? pct(r.acertos, r.feitas) : '—'}</span>
-                  </li>
-                );
-              })}
-            </ul>
-            <Link to="/desempenho" className="ini-link desemp-mais">Ver desempenho de todas as matérias <Icone nome="seta" tam={16} /></Link>
-          </section>
+        <div className="ini-pilha s5">
+        <section className="ini-painel ini-ativ" aria-labelledby="ativ-tit">
+          <h2 id="ativ-tit" className="ip-tit"><Icone nome="relogio" tam={20} />Atividade recente</h2>
+          <p className="ip-sub">Retome o que você fez e mantenha o ritmo.</p>
+          {!sessoes.length && <p className="ativ-vazio">Suas últimas respostas aparecem aqui. Comece por um conteúdo ou pelo treino geral.</p>}
+          {sessoes.map((s) => (
+            <Link key={s.m + s.sub + s.ts} to={`/m/${s.m}/escada/${s.sub}`} className="ativ-linha">
+              <IcMat m={s.m} tam={36} className="ativ-ic" />
+              <span className="ativ-txt">
+                <span className="ativ-tit">{nomeMateria(s.m)} — {s.subNome}</span>
+                <span className="ativ-tipo">{TIPO_CTX[s.ctx] || 'Questões'} · {plural(s.n, 'resposta', 'respostas')}, {s.certas} {s.certas === 1 ? 'certa' : 'certas'} · {quando(s.ts)}</span>
+              </span>
+              <span className={'ativ-status' + (s.concluido ? ' ok' : '')}>{s.concluido && <Icone nome="check" tam={14} />}{s.concluido ? 'Concluído' : 'Em andamento'}</span>
+            </Link>
+          ))}
+          <Link to="/desempenho" className="ini-link desemp-mais">Ver histórico completo <Icone nome="seta" tam={16} /></Link>
+        </section>
 
-          <section className="ini-motiva" aria-labelledby="motiva-tit">
-            <Faisca className="faisca-motiva" />
-            <h2 id="motiva-tit">Seu esforço de hoje constrói sua aprovação.</h2>
-            <p>Cada sessão de estudo fortalece seu preparo. Mantenha a constância, avance por matéria e fique cada vez mais perto do seu objetivo.</p>
-          </section>
-        </aside>
+        <section className="ini-motiva" aria-labelledby="motiva-tit">
+          <Faisca className="faisca-motiva" />
+          <h2 id="motiva-tit">Seu esforço de hoje constrói sua aprovação.</h2>
+          <p>Cada sessão de estudo fortalece seu preparo. Mantenha a constância, avance por matéria e fique cada vez mais perto do seu objetivo.</p>
+        </section>
+        </div>
       </div>
     </div>
   );

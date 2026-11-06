@@ -9,6 +9,7 @@ import { filaDe, emDias } from '../logica/revisao';
 import { Barra, Carregando, Ic3D, cap, plural, useTitulo } from '../ui/comum';
 import { Icone } from '../ui/Icone';
 import { CartaoTeoriaView } from './Tema';
+import { CabMateria, FaixaTemas } from './Materia';
 import type { MateriaId } from '../dados/tipos';
 
 /**
@@ -33,17 +34,17 @@ export function Escada() {
   const feedback = feedbackNiveis(niveis);
 
   return (
-    <div className={`conteudo estreito m-${m}`}>
+    <div className={`conteudo m-${m}`}>
+      <CabMateria m={m} nome={infoMateria(m)?.nome || ''} sub={`${plural(mc.conteudo.modulos.length, 'tema', 'temas')} · questões reais, todas com a fonte`} titulo={false} />
+      <FaixaTemas mc={mc} s={s} atual={mod.id} compacta />
+      <div className="pag-estreita">
       <nav className="migalhas" aria-label="Você está em">
         <Link to={`/m/${m}`}>{infoMateria(m)?.nome}</Link><Icone nome="direita" tam={14} />
         <Link to={`/m/${m}/tema/${mod.id}`}>{mod.nome}</Link><Icone nome="direita" tam={14} /><span>Conteúdo</span>
       </nav>
       <div className="tema-cab">
-        <Ic3D m={m} chave={sub} tam={88} />
-        <div>
-          <h1>{cap(conteudo!.nome)}</h1>
-          <p className="sub num">{plural(l.length, 'questão real', 'questões reais')} · do básico ao avançado</p>
-        </div>
+        <h1><Ic3D m={m} chave={sub} tam={44} />{cap(conteudo!.nome)}</h1>
+        <p className="sub num">{plural(l.length, 'questão real', 'questões reais')} · do básico ao avançado</p>
       </div>
 
       <div className="escada-acao folha">
@@ -115,6 +116,7 @@ export function Escada() {
           </section>
         );
       })}
+      </div>
     </div>
   );
 }

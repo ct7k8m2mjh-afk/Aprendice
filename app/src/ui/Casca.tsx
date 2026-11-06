@@ -20,7 +20,7 @@ function usaTema() {
   const escuro = pref === 'escuro' || (pref === 'sistema' && sistemaEscuro);
   useEffect(() => {
     document.documentElement.dataset.theme = escuro ? 'dark' : 'light';
-    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', escuro ? '#0C0D10' : '#F7F4EF');
+    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', escuro ? '#0C0D10' : '#F1F1EE');
   }, [escuro]);
   return escuro;
 }

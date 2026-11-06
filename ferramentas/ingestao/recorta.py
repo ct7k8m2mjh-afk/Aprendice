@@ -66,7 +66,7 @@ def _linhas(pagina):
     for b in blocos:
         for l in b.get('lines', []):
             # NFC: alguns cadernos escrevem "Ã" como "A" + til combinante
-            t = unicodedata.normalize('NFC', ''.join(s['text'] for s in l['spans'])).strip()
+            t = unicodedata.normalize('NFC', ''.join(s['text'] for s in l['spans'])).replace('\xa0', ' ').strip()
             if t:
                 out.append({'bbox': l['bbox'], 't': t})
     return out
@@ -127,6 +127,15 @@ def faixa_vertical(pg, cfg, c, cols):
 def topo_de(pg, cfg):
     """Margem de cima da página (algumas provas têm quadro de instruções no alto da 1ª página de questões)."""
     t = cfg.get('topo_pag', {}).get(pg.number + 1, cfg['topo'])
+    if cfg.get('cabecalho_imagem'):   # logotipo no alto de algumas páginas: a página começa abaixo dele
+        for b in pg.get_image_info():
+            x0, y0, x1, y1 = b['bbox']
+            if y1 < 100 and y1 - y0 < 80:
+                t = max(t, y1 + 2)
+        # caderno só em imagem: o logotipo vem pelo OCR ("UDESC", "Vestibular 2024.2")
+        for L in (linhas(pg) if id(pg.parent) in _OCR else []):
+            if L['bbox'][3] < 100 and re.search(cfg['cabecalho_imagem'], L['t']):
+                t = max(t, L['bbox'][3] + 2)
     if cfg.get('cabecalho'):   # cabeçalho de altura variável: a página começa logo abaixo dele
         for L in linhas(pg):
             if L['bbox'][1] < 90 and re.search(cfg['cabecalho'], L['t']):
@@ -138,7 +147,11 @@ def limite_baixo(pg, cfg):
     """Altura máxima útil da página: acima do número de página do rodapé, quando a prova tem um."""
     lim = pg.rect.height - cfg['base']
     if cfg.get('rodape_num'):
+        # rodape_ultimo: só vale o número que é a última linha da página (números de gráfico não contam)
+        ultimo = max((l['bbox'][1] for l in linhas(pg)), default=0) if cfg.get('rodape_ultimo') else 0
         for l in linhas(pg):
+            if l['bbox'][1] < ultimo - 2:
+                continue
             centro = abs((l['bbox'][0] + l['bbox'][2]) / 2 - pg.rect.width / 2) < 30
             if re.fullmatch(r'\d{1,3}', l['t']) and l['bbox'][1] > pg.rect.height * 0.85 and (centro or not cfg.get('rodape_centro')):
                 lim = min(lim, l['bbox'][1] - cfg.get('rodape_folga', 3)) if lim > l['bbox'][1] else lim
@@ -179,7 +192,7 @@ def eventos_do_pdf(pdf, cfg, faixa=None):
         if faixa and not (faixa[0] <= pi + 1 <= faixa[1]):
             continue
         pg = pdf[pi]
-        if pagina_cartaz(pg):
+        if pagina_cartaz(pg) and id(pdf) not in _OCR:   # caderno só em imagem: toda página é "cartaz", não corta
             # página só com arte de página inteira (ex.: aviso "IMPORTANTE" antes da redação): encerra a questão
             ev.append({'p': pi, 'c': 0, 'y': 0, 'tipo': 'corte'})
             continue
@@ -215,6 +228,10 @@ def eventos_do_pdf(pdf, cfg, faixa=None):
                 continue
             m = re.match(cfg['ancora'], t)
             dx = cfg.get('ancora_dx_pag', {}).get((cfg.get('_arquivo'), pi + 1), cfg.get('ancora_dx', 30))
+            if not m and cfg.get('sequencial') and cfg.get('ancora_sem_numero') and re.match(cfg['ancora_sem_numero'], t) \
+                    and x0 - cols[c][0] <= dx:
+                ev.append({'p': pi, 'c': c, 'y': y0, 'tipo': 'q', 'n': None})
+                continue
             if m and x0 - cols[c][0] <= dx:
                 ev.append({'p': pi, 'c': c, 'y': y0, 'tipo': 'q', 'n': int(m.group(1))})
                 continue
@@ -240,6 +257,8 @@ def eventos_do_pdf(pdf, cfg, faixa=None):
                             else:
                                 nums = [int(x) for x in re.findall(r'\d+', resto)][:2]
                             mt = re.match(r'(?i)^texto\s+(\d+)', t)
+                            if not mt and not mq and cfg.get('texto_ingles'):   # "Text 1" sozinho (sem lista de questões)
+                                mt = re.match(r'(?i)^text\s+(\d+)\s*$', t)
                             yi = y0
                             # frase de instrução quebrada em duas linhas: começa na linha de cima
                             if li > 0 and coluna_de(lp[li - 1]['bbox'][0], cols) == c and 0 <= y0 - lp[li - 1]['bbox'][3] < 5 \
@@ -393,7 +412,16 @@ def texto(pdf, segs):
     t = []
     for p, r in segs:
         par = textpage(pdf[p])
-        t.append(par[0].get_text('text', clip=r, textpage=par[1]) if par else pdf[p].get_text('text', clip=r))
+        if par:   # o textpage de OCR ignora o clip: filtra as linhas pela posição
+            ls = []
+            for b in par[0].get_text('dict', textpage=par[1])['blocks']:
+                for l in b.get('lines', []):
+                    x0, y0, x1, y1 = l['bbox']
+                    if r.x0 - 2 <= (x0 + x1) / 2 <= r.x1 + 2 and r.y0 - 2 <= (y0 + y1) / 2 <= r.y1 + 2:
+                        ls.append(''.join(s_['text'] for s_ in l['spans']))
+            t.append('\n'.join(ls))
+        else:
+            t.append(pdf[p].get_text('text', clip=r))
     s = '\n'.join(t)
     s = re.sub(r'[ \t]+', ' ', s)
     s = re.sub(r'\n{3,}', '\n\n', s)
@@ -483,6 +511,18 @@ def redige(pdf, glifo):
     return n
 
 
+def troca(x, pares):
+    if isinstance(x, str):
+        for a, b in pares:
+            x = x.replace(a, b)
+        return re.sub(r'[ \t]{2,}', ' ', x).strip() if '\n' not in x else re.sub(r'[ \t]{2,}', ' ', x)
+    if isinstance(x, list):
+        return [troca(v, pares) for v in x]
+    if isinstance(x, dict):
+        return {k: troca(v, pares) for k, v in x.items()}
+    return x
+
+
 def processa(pid, amostra=False, so_texto=False):
     cfg = PROVAS[pid]
     pasta = ENTRADA / pid
@@ -524,6 +564,10 @@ def processa(pid, amostra=False, so_texto=False):
             ok, ult = [], (cad['questoes'][0] - cad.get('deslocamento', 0) - 1) if cad.get('questoes') else None
             for e in ev:
                 if e['tipo'] == 'q':
+                    if e['n'] is None:
+                        if ult is None:
+                            continue
+                        e['n'] = ult + 1   # "Questão" sem o número legível (OCR): é a próxima da sequência
                     if ult is not None and e['n'] != ult + 1:
                         continue
                     ult = e['n']
@@ -536,6 +580,9 @@ def processa(pid, amostra=False, so_texto=False):
                     prox = next((x for x in ev[k + 1:] if x['tipo'] != 'suporte'), None)
                     if prox and prox['tipo'] == 'fim':
                         continue  # o texto está dentro do enunciado da questão corrente
+                    ant = next((x for x in reversed(ev[:k]) if x['tipo'] != 'suporte'), None)
+                    if cfg.get('ignora_apos_fim') and ant and ant['tipo'] == 'fim' and not e['faixa']:
+                        continue  # frase da justificativa da banca, não é texto de apoio
                 limpos.append(e)
             ev = limpos
         vistos = set()
@@ -588,6 +635,9 @@ def processa(pid, amostra=False, so_texto=False):
                 f = suporte['faixa']
                 if len(f) >= 2 and f[0] <= n <= f[1]:
                     sup = suporte['segs']
+                elif len(f) < 2 and cfg.get('suporte_ate_proximo') and cfg.get('suporte_primeira') and not suporte.get('usado'):
+                    sup = suporte['segs']   # o texto logo antes da questão é dela (tirinha, gráfico), mesmo sem citação
+                    suporte['usado'] = True
                 elif len(f) < 2 and cfg.get('suporte_ate_proximo'):
                     # texto compartilhado só entra na questão que o menciona
                     enun = texto(pdf, segs)
@@ -596,7 +646,7 @@ def processa(pid, amostra=False, so_texto=False):
                         sup = []
                         for c in sorted(set(citados)):
                             sup += [sg for sg in textos[c] if sg not in sup]
-                    elif not citados and len(enun) < 700 and re.search(r'(?i)\b(o texto|do texto|no texto|ao texto|crônica|poema|canção|reportagem|artigo|trecho|fragmento)\b', enun):
+                    elif not citados and len(enun) < 700 and re.search(r'(?i)\b(o texto|do texto|no texto|ao texto|crônica|poema|canção|reportagem|artigo|trecho|fragmento|the text|picture|comic|cartoon|tirinha|charge)\b', enun):
                         sup = suporte['segs']
                 elif len(f) < 2 and not suporte.get('usado'):
                     sup = suporte['segs']  # sem faixa declarada: vale só para a questão seguinte
@@ -622,11 +672,16 @@ def processa(pid, amostra=False, so_texto=False):
                               cfg.get('alternativas', 5), ocr=id(pdf) in _OCR)
             g = gab.get(n)
             questoes[n] = {
-                'n': n, 'area': secao or cfg['area'](n), 'gab': g,
+                'n': n, 'area': cfg['area'](n) if cfg.get('area_do_gabarito') else (secao or cfg['area'](n)), 'gab': g,
                 'paginas': sorted({p + 1 for p, _ in segs}), 'caderno': cad['arquivo'],
                 'texto': texto(pdf, sup + segs),
                 'print': f'q/{n:03d}.webp', 'larg': img.width, 'alt': img.height,
             }
+            if cfg.get('troca_texto'):   # caractere usado no PDF no lugar do espaço (ex.: "¬" na Fuvest 2026)
+                questoes[n]['texto'] = troca(questoes[n]['texto'], cfg['troca_texto'])
+                if estr:
+                    estr = troca(estr, cfg['troca_texto'])
+                    estr['enun'] = [b for b in estr.get('enun', []) if not isinstance(b, dict) or str(b.get('t', 'x')).strip()]
             if estr:
                 questoes[n]['transcricao'] = estr
             elif os.environ.get('MOTIVOS'):
