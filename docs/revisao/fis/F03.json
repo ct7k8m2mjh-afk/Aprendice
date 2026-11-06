@@ -1,0 +1,1313 @@
+{
+ "id": "F03",
+ "nome": "Dinâmica e forças",
+ "resumo": "Dinâmica explica por que o movimento muda: a força resultante produz aceleração, tanto menor quanto maior a massa. Com as três leis de Newton e o diagrama de forças de cada corpo, resolvem-se blocos, polias, rampas com atrito, molas, curvas e loops; com a soma dos torques, o equilíbrio de barras, gangorras e alavancas. A banca cobra o conceito (inércia, ação e reação, peso × normal), contas de resultante = m·a em sistemas ligados e situações reais como frenagem, elevador, curva, slackline e bíceps.",
+ "formulas": [
+  "\\vec F_R = m \\cdot \\vec a \\qquad 1\\ \\text{N} = 1\\ \\text{kg} \\cdot \\text{m/s}^2",
+  "P = m \\cdot g \\qquad \\text{elevador: } N - P = m \\cdot a",
+  "\\text{polias móveis: } F = \\frac{P}{2^n}",
+  "F_{at,e} \\le \\mu_e \\cdot N \\qquad F_{at,d} = \\mu_d \\cdot N",
+  "\\text{rampa: } P_x = P\\,\\text{sen}\\,\\theta \\quad N = P\\cos\\theta",
+  "\\text{rampa: } a_{liso} = g\\,\\text{sen}\\,\\theta",
+  "\\text{iminência na rampa: } \\mu_e = \\text{tg}\\,\\theta",
+  "v_{lim} = \\sqrt{\\frac{m \\cdot g}{k}}",
+  "\\text{Hooke: } F = k \\cdot x",
+  "\\text{série: } \\frac{1}{k_{eq}} = \\frac{1}{k_1} + \\frac{1}{k_2}",
+  "\\text{paralelo: } k_{eq} = k_1 + k_2",
+  "F_{cp} = \\frac{m v^2}{R} = m\\,\\omega^2 R",
+  "\\text{loop: } v_{mín} = \\sqrt{R g}",
+  "\\text{curva plana: } v_{máx} = \\sqrt{\\mu g R}",
+  "\\text{sobrelevada: } \\text{tg}\\,\\theta = \\frac{v^2}{R g}",
+  "\\text{pêndulo cônico: } \\text{tg}\\,\\theta = \\frac{\\omega^2 R}{g}",
+  "\\text{rotor: } \\omega_{mín} = \\sqrt{\\frac{g}{\\mu r}}",
+  "\\text{Lamy: } \\frac{F_1}{\\text{sen}\\,\\alpha_1} = \\frac{F_2}{\\text{sen}\\,\\alpha_2} = \\frac{F_3}{\\text{sen}\\,\\alpha_3}",
+  "\\alpha_i = \\text{ângulo entre as outras duas forças}",
+  "M = F \\cdot b",
+  "\\text{equilíbrio: } \\sum \\vec F = \\vec 0 \\text{ e } \\sum M = 0",
+  "\\text{alavanca: } F_P \\cdot b_P = F_R \\cdot b_R"
+ ],
+ "erro": "Achar que peso e normal formam par ação-reação, ou que o atrito estático vale sempre μe·N. Peso e normal agem no mesmo corpo; e, parado, o atrito é só o necessário para equilibrar a força que tenta mover o corpo.",
+ "cartoes": [
+  {
+   "sub": "F03.1",
+   "titulo": "Leis de Newton e diagrama de forças",
+   "oque": "As três leis de Newton ligam força e movimento: sem resultante a velocidade não muda; com resultante há aceleração na mesma direção e sentido; toda força tem seu par no outro corpo. O diagrama de forças, com o corpo isolado, organiza a conta.",
+   "identificar": "Pistas: ‘velocidade constante’ (resultante nula), ‘passageiro jogado para a frente’ (inércia), ‘força que o corpo exerce sobre’ (ação e reação), massa e aceleração dadas (resultante = m·a).",
+   "exemplo": "Carro de 1 000 kg vai de 36 km/h a 72 km/h em 5 s: a aceleração é 2 m/s² e a resultante média, 2 000 N.",
+   "caderno": [
+    "$\\vec F_R = m \\cdot \\vec a$; $1\\ \\text{N} = 1\\ \\text{kg} \\cdot \\text{m/s}^2$",
+    "resultante nula: repouso ou MRU",
+    "par ação-reação: corpos diferentes, mesma natureza, não se anulam",
+    "diagrama: peso + cada contato vira uma força (normal, tração, atrito)"
+   ],
+   "cuidado": "Peso e normal do livro na mesa têm o mesmo módulo, mas não são par ação-reação: os dois agem no livro."
+  },
+  {
+   "sub": "F03.2",
+   "titulo": "Peso, normal, tração, blocos e polias",
+   "oque": "Peso é a atração da Terra, massa vezes g; normal e tração são forças de contato que empurram e puxam. Em blocos com a mesma aceleração, resolve-se o conjunto e depois isola-se um corpo para achar as forças entre eles.",
+   "identificar": "Pistas: ‘fio ideal’ (tração igual em todo o fio), ‘polia móvel’ (metade da força), ‘balança no elevador’ (mede a normal), ‘blocos encostados ou ligados’ (sistema e corpo isolado).",
+   "exemplo": "Bloco de 3 kg numa mesa lisa ligado a outro de 2 kg pendurado: a = 4 m/s² e T = 12 N, menor que os 20 N do peso pendurado.",
+   "caderno": [
+    "$P = m \\cdot g$; a massa não muda, o peso muda com g",
+    "elevador: $N - P = m \\cdot a$ (aceleração para cima positiva)",
+    "polia fixa só muda a direção; o suporte segura $2T$",
+    "$n$ polias móveis: $F = \\frac{P}{2^n}$",
+    "sistema: $F_{ext} = (m_A + m_B) \\cdot a$"
+   ],
+   "cuidado": "A tração no fio do bloco pendurado só é igual ao peso dele com o sistema parado ou em velocidade constante."
+  },
+  {
+   "sub": "F03.3",
+   "titulo": "Atrito e plano inclinado",
+   "oque": "O atrito é a força paralela às superfícies que se opõe ao deslizamento: parado, é estático e se ajusta à força até μe·N; deslizando, é dinâmico e vale μd·N. No plano inclinado, o peso se divide em P·sen θ ao longo da rampa e P·cos θ contra ela.",
+   "identificar": "Pistas: ‘iminência de movimento’ (atrito máximo), ‘desliza’ ou ‘velocidade constante’ (dinâmico), ‘rampa’ ou ‘ângulo’ (decompor o peso), ‘paraquedista’ (velocidade limite, resultante nula).",
+   "exemplo": "Caixa de 4 kg desce rampa com sen θ = 0,6 e μd = 0,25: atrito de 8 N, resultante de 16 N e aceleração de 4 m/s².",
+   "caderno": [
+    "estático: $0 \\le F_{at,e} \\le \\mu_e N$; dinâmico: $F_{at,d} = \\mu_d N$",
+    "μ não tem unidade nem depende da área; em geral, $\\mu_d < \\mu_e$",
+    "rampa: $P_x = P\\,\\text{sen}\\,\\theta$, $N = P\\cos\\theta$; lisa: $a = g\\,\\text{sen}\\,\\theta$",
+    "iminência na rampa: $\\mu_e = \\text{tg}\\,\\theta$",
+    "frenagem: $a = \\mu g$ e $d = \\frac{v_0^2}{2 \\mu g}$ (não depende da massa)"
+   ],
+   "cuidado": "Antes de usar μ·N, compare a força com o atrito máximo: se for menor, o corpo fica parado e o atrito é igual à força."
+  },
+  {
+   "sub": "F03.4",
+   "titulo": "Força elástica e lei de Hooke",
+   "oque": "Na região elástica, a mola faz força proporcional à deformação: F = k·x. A constante k mede a dureza da mola e depende só do material e do formato.",
+   "identificar": "Pistas: ‘mola’, ‘dinamômetro’, ‘constante elástica’, gráfico F × x em reta pela origem (inclinação = k), molas uma após a outra (série) ou lado a lado (paralelo).",
+   "exemplo": "Bloco de 4 kg em duas molas em série, de 300 N/m e 600 N/m: k equivalente de 200 N/m e alongamento total de 20 cm.",
+   "caderno": [
+    "$F = k \\cdot x$, com $x = L - L_0$ em metros",
+    "k em N/m: inclinação do gráfico F × x",
+    "série (mesma força): $\\frac{1}{k_{eq}} = \\frac{1}{k_1} + \\frac{1}{k_2}$",
+    "paralelo (mesma deformação): $k_{eq} = k_1 + k_2$",
+    "mola cortada ao meio: cada metade tem $2k$"
+   ],
+   "cuidado": "Dinamômetro puxado com 100 N de cada lado marca 100 N, não 200 N nem zero."
+  },
+  {
+   "sub": "F03.5",
+   "titulo": "Força centrípeta e curvas",
+   "oque": "Em toda curva a velocidade muda de direção, e isso exige uma resultante apontando para o centro, a centrípeta. Ela não é uma força nova: é o papel de forças reais, como atrito, tração, normal ou peso.",
+   "identificar": "Pistas: ‘curva’, ‘loop’, ‘globo da morte’, ‘gira’, ‘MCU’, ‘pêndulo’, ‘pista inclinada’, ‘rotor’, ‘velocidade mínima no topo’ (normal igual a zero).",
+   "exemplo": "Loop de raio 3,6 m: velocidade mínima de 6 m/s no topo. Passando assim pelo topo, um carrinho de 200 kg chega ao fundo com v² = 180 m²/s²: normal de 12 000 N, seis vezes o peso.",
+   "caderno": [
+    "$F_{cp} = \\frac{m v^2}{R} = m\\,\\omega^2 R$, para o centro",
+    "curva plana: $v_{máx} = \\sqrt{\\mu g R}$",
+    "sobrelevada: $\\text{tg}\\,\\theta = \\frac{v^2}{R g}$; pêndulo cônico: $\\text{tg}\\,\\theta = \\frac{\\omega^2 R}{g}$",
+    "loop: topo $v_{mín} = \\sqrt{R g}$; fundo $N = \\frac{m v^2}{R} + m g$",
+    "rotor: $\\omega_{mín} = \\sqrt{\\frac{g}{\\mu r}}$"
+   ],
+   "cuidado": "Não desenhe força centrífuga nem uma ‘centrípeta’ a mais no diagrama: só as forças reais, cuja soma aponta para o centro."
+  },
+  {
+   "sub": "F03.6",
+   "titulo": "Estática: equilíbrio, torque e alavancas",
+   "oque": "Um ponto material está em equilíbrio quando a resultante é nula. Um corpo extenso precisa também de torque resultante nulo; torque é a força vezes o braço perpendicular até o eixo.",
+   "identificar": "Pistas: ‘em equilíbrio’, ‘fios’, ‘nó’, ‘gangorra’, ‘barra apoiada’, ‘alavanca’, ‘bíceps’, ‘prestes a tombar’ (normal na quina; o outro apoio vai a zero).",
+   "exemplo": "Tábua de 3 m e 100 N apoiada nas pontas A e B, com pessoa de 600 N a 1 m de A: A sustenta 450 N e B, 250 N.",
+   "caderno": [
+    "ponto: $\\sum F_x = 0$ e $\\sum F_y = 0$",
+    "$M = F \\cdot b$ (b perpendicular à linha de ação)",
+    "corpo extenso: $\\sum \\vec F = \\vec 0$ e $\\sum M = 0$",
+    "alavanca: $F_P \\cdot b_P = F_R \\cdot b_R$",
+    "fio quase horizontal: $T = \\frac{P}{2\\,\\text{sen}\\,\\alpha}$ fica enorme"
+   ],
+   "cuidado": "Algumas provas adotam o horário como positivo: leia a convenção do enunciado antes de somar os torques."
+  }
+ ],
+ "slides": {
+  "F03.1": [
+   {
+    "tipo": "abertura",
+    "titulo": "Ônibus freia, você vai para a frente",
+    "texto": "Quando o ônibus freia, ninguém empurra o passageiro para a frente. É o ônibus que perde velocidade; o corpo tende a continuar como estava. Essa tendência é a inércia, a 1ª lei de Newton.",
+    "destaque": "Sem força resultante, a velocidade não muda.",
+    "visual": {
+     "tipo": "animacao",
+     "descricao": "Vista lateral de um ônibus numa rua, com um passageiro em pé, sem segurar na barra. Na cena da arrancada, uma linha tracejada vertical, fixa no asfalto, marca onde o passageiro está em relação à rua.",
+     "movimento": [
+      "1. Ônibus e passageiro andam juntos a 36 km/h.",
+      "2. O ônibus freia: sua seta de velocidade, em cinza, encolhe.",
+      "3. O passageiro tende a manter a velocidade (seta laranja #F27700) e avança em relação aos bancos.",
+      "4. Ele segura a barra: a barra aplica nele uma seta de força para trás, e só então ele freia junto.",
+      "5. Cena inversa: o ônibus arranca do ponto; o passageiro fica parado em relação à rua e o ônibus anda por baixo dele, como se ele fosse para trás."
+     ],
+     "alt": "Ônibus freando com um passageiro em pé: o passageiro continua com a velocidade que tinha e avança em relação aos bancos, até a barra de apoio aplicar uma força para trás nele."
+    },
+    "fonte": "L2-F1-C08 p. 74–75"
+   },
+   {
+    "tipo": "conceito",
+    "titulo": "Resultante: uma força no lugar de todas",
+    "texto": "Várias forças num corpo podem ser trocadas por uma só, a resultante: a soma vetorial delas. Ela não é uma força a mais. Mesma direção: some ou subtraia. Perpendiculares: use Pitágoras.",
+    "destaque": "A resultante pode ser nula mesmo com várias forças agindo.",
+    "formula": "F_R = \\sqrt{30^2 + 40^2} = \\sqrt{2\\,500} = 50\\ \\text{N}",
+    "visual": {
+     "tipo": "animacao",
+     "descricao": "Duas caixas vistas de cima. Na primeira, uma seta de 30 N para a direita e outra de 40 N para cima, em cinza. Na segunda, 30 N para a direita e 30 N para a esquerda.",
+     "movimento": [
+      "1. Na primeira caixa, as duas setas deslizam e se encaixam ponta com cauda.",
+      "2. Nasce a resultante, em laranja #F27700, ligando o começo da primeira ao fim da segunda: 50 N, na diagonal.",
+      "3. As setas cinza somem e só a resultante fica; a caixa faz exatamente o mesmo movimento.",
+      "4. Na segunda caixa, as setas opostas e iguais se encaixam e voltam ao ponto de partida: resultante zero, e a caixa continua parada."
+     ],
+     "alt": "Forças de 30 e 40 newtons perpendiculares somadas ponta com cauda dão uma resultante de 50 newtons; duas forças iguais e opostas dão resultante zero."
+    },
+    "fonte": "L2-F1-C08 p. 73"
+   },
+   {
+    "tipo": "conceito",
+    "titulo": "1ª lei: inércia e saída pela tangente",
+    "texto": "Com resultante nula, o corpo fica em repouso ou em movimento retilíneo uniforme. Para mudar a velocidade em módulo, direção ou sentido, é preciso força. Se o atrito sumisse na curva, o carro seguiria reto, pela tangente.",
+    "destaque": "Velocidade constante significa resultante nula, não ausência de forças.",
+    "visual": {
+     "tipo": "animacao",
+     "descricao": "Pista circular vista de cima, com um carro e uma seta de atrito, em laranja #F27700, apontando para o centro da curva.",
+     "movimento": [
+      "1. O carro faz a curva com velocidade de módulo constante; a seta de atrito gira junto, sempre para o centro.",
+      "2. Um trecho da pista ganha listras cinza e o rótulo 'sem atrito (caso ideal)'; ao entrar nele, a seta de atrito some.",
+      "3. O carro segue em linha reta, tangente à curva, com a mesma velocidade, e sai da pista.",
+      "4. Rótulo final: resultante zero, velocidade constante."
+     ],
+     "alt": "Carro em curva com o atrito apontando para o centro; num trecho ideal sem atrito, a seta some e o carro sai pela tangente em linha reta."
+    },
+    "fonte": "L2-F1-C08 p. 74–75"
+   },
+   {
+    "tipo": "formula",
+    "titulo": "2ª lei: resultante e aceleração",
+    "texto": "A aceleração tem a mesma direção e o mesmo sentido da resultante. Com a mesma força, quem tem mais massa acelera menos: a massa mede a inércia. Um newton dá 1 m/s² a 1 kg.",
+    "formula": "\\vec F_R = m \\cdot \\vec a",
+    "legenda": [
+     "FR: força resultante (N)",
+     "m: massa (kg)",
+     "a: aceleração (m/s²)",
+     "1 N = 1 kg · 1 m/s²"
+    ],
+    "visual": {
+     "tipo": "animacao",
+     "descricao": "Dois carrinhos de supermercado lado a lado, um vazio (10 kg) e um cheio (40 kg), cada um empurrado por uma mão com uma seta de 20 N. Ao lado, um mostrador com a conta da aceleração em fração empilhada.",
+     "movimento": [
+      "1. As duas setas de 20 N aparecem iguais, em laranja #F27700.",
+      "2. O vazio sai rápido: o mostrador monta 20 sobre 10 e marca 2 m/s².",
+      "3. O cheio sai devagar: 20 sobre 40 dá 0,5 m/s².",
+      "4. Uma régua mostra que, em 2 s, o vazio andou 4 m e o cheio, 1 m."
+     ],
+     "alt": "Mesma força de 20 newtons em dois carrinhos: o de 10 quilos acelera 2 metros por segundo ao quadrado e o de 40 quilos, 0,5."
+    },
+    "fonte": "L2-F1-C08 p. 75–76"
+   },
+   {
+    "tipo": "conceito",
+    "titulo": "3ª lei: ação e reação",
+    "texto": "Se A empurra B, B empurra A com força de mesmo módulo e sentido oposto. As duas surgem juntas, têm a mesma natureza e agem em corpos diferentes, por isso não se anulam. Andamos porque o chão nos empurra.",
+    "destaque": "Par ação-reação nunca atua no mesmo corpo.",
+    "visual": {
+     "tipo": "animacao",
+     "descricao": "Pessoa andando, vista de lado, com zoom no pé apoiado no chão. Num segundo quadro, um foguete na plataforma.",
+     "movimento": [
+      "1. O pé empurra o chão para trás: seta cinza aplicada no chão.",
+      "2. No mesmo instante, o chão empurra o pé para a frente: seta laranja #F27700 do mesmo tamanho, aplicada no pé.",
+      "3. A pessoa avança.",
+      "4. No gelo liso, as duas setas quase somem e o pé escorrega sem avançar.",
+      "5. No foguete: o motor empurra os gases para baixo e os gases empurram o foguete para cima."
+     ],
+     "alt": "O pé empurra o chão para trás e o chão empurra o pé para a frente com força igual; no foguete, os gases são empurrados para baixo e empurram o foguete para cima."
+    },
+    "fonte": "L2-F1-C08 p. 76–77"
+   },
+   {
+    "tipo": "conceito",
+    "titulo": "Diagrama de forças: isole o corpo",
+    "texto": "Desenhe o corpo sozinho. Ponha o peso e troque cada coisa que encosta nele pela força que ela faz: normal, tração, atrito. Na direção da aceleração, resultante = m·a; na outra, soma zero.",
+    "visual": {
+     "tipo": "animacao",
+     "descricao": "Livro sobre uma mesa, que está sobre o chão. Ao lado, um quadro vazio para o diagrama.",
+     "movimento": [
+      "1. Uma linha tracejada recorta só o livro e o leva para o quadro.",
+      "2. Do centro do livro sai o peso P, para baixo, ligado por uma linha fina à Terra, que o causa.",
+      "3. A mesa some do desenho e, no lugar dela, surge a normal N, para cima, em laranja #F27700.",
+      "4. Aparecem os eixos: na vertical não há aceleração, então N − P = 0 e N = P."
+     ],
+     "alt": "Livro recortado da mesa e desenhado sozinho, com o peso para baixo e a normal para cima: na vertical, sem aceleração, a normal iguala o peso."
+    },
+    "fonte": "L2-F1-C08 p. 82–84 (resolvidos 3 e 7)"
+   },
+   {
+    "tipo": "exemplo",
+    "titulo": "Carro acelerando: qual a força?",
+    "texto": "Um carro de 1 000 kg vai de 36 km/h a 72 km/h em 5 s, em linha reta. Qual a força resultante média sobre ele?",
+    "destaque": "Converta para m/s antes de usar a 2ª lei.",
+    "passos": [
+     {
+      "faz": "Converte as velocidades",
+      "conta": "v_0 = \\frac{36}{3{,}6} = 10\\ \\text{m/s} \\qquad v = \\frac{72}{3{,}6} = 20\\ \\text{m/s}",
+      "mov": "O 3,6 entra embaixo de cada velocidade, dividindo; os resultados 10 e 20 aparecem no lugar das frações."
+     },
+     {
+      "faz": "Calcula a aceleração",
+      "conta": "a = \\frac{v - v_0}{\\Delta t} = \\frac{20 - 10}{5} = \\frac{10}{5} = 2\\ \\text{m/s}^2",
+      "mov": "O 10 é subtraído do 20 no numerador; o 10 que sobra encontra o 5 embaixo e vira 2."
+     },
+     {
+      "faz": "Aplica a 2ª lei",
+      "conta": "F_R = m \\cdot a = 1\\,000 \\cdot 2",
+      "mov": "A massa e a aceleração entram na fórmula, lado a lado."
+     },
+     {
+      "faz": "Multiplica: é a resposta",
+      "conta": "F_R = 2\\,000\\ \\text{N}",
+      "mov": "Os dois fatores se juntam e o 2 000 N aparece no lugar."
+     }
+    ],
+    "visual": {
+     "tipo": "animacao",
+     "descricao": "Carro numa estrada reta, com velocímetro em km/h e, embaixo, a mesma leitura em m/s. Acima do carro, a seta da força resultante.",
+     "movimento": [
+      "1. O velocímetro vai de 36 a 72 km/h em 5 s; embaixo, a leitura em m/s vai de 10 a 20.",
+      "2. A cada segundo acende um degrau de +2 m/s.",
+      "3. A seta da resultante, em laranja #F27700, aparece apontando para a frente, com 2 000 N."
+     ],
+     "alt": "Carro de mil quilos que passa de 10 para 20 metros por segundo em 5 segundos: aceleração de 2 e resultante de 2 mil newtons para a frente."
+    },
+    "fonte": "L2-F1-C08 p. 75–76 e 82 (resolvido 1, com outros números)"
+   },
+   {
+    "tipo": "pegadinha",
+    "titulo": "Peso e normal não são par",
+    "texto": "Livro parado na mesa: P e N têm o mesmo módulo e sentidos opostos, mas não são par ação-reação. Os dois agem no livro. O par do peso está na Terra; o par da normal, na mesa.",
+    "destaque": "Par ação-reação exige corpos diferentes.",
+    "visual": {
+     "tipo": "animacao",
+     "descricao": "Livro sobre uma mesa, com a Terra em miniatura embaixo. No livro, P para baixo (cinza) e N para cima (laranja #F27700).",
+     "movimento": [
+      "1. Um colchete tenta ligar P e N como par, treme e se desfaz: os dois estão no mesmo corpo.",
+      "2. Toque em P: a Terra acende e surge −P, puxando a Terra para cima, aplicada no centro dela.",
+      "3. Toque em N: a mesa acende e surge −N, empurrando o tampo para baixo.",
+      "4. Formam-se os pares certos, P com −P e N com −N; a ligação entre P e N é riscada."
+     ],
+     "alt": "Livro na mesa com peso e normal: o par do peso é a força do livro sobre a Terra, e o par da normal é a força do livro sobre a mesa."
+    },
+    "fonte": "L2-F1-C08 p. 77"
+   },
+   {
+    "tipo": "na_prova",
+    "titulo": "Como cai na prova",
+    "texto": "UFRJ, Fuvest e Uerj lideram; Enem PPL 2021, Famema 2023 e Unicamp 2024 também cobram. Do básico ao difícil: V ou F das três leis, resultante com cinemática, gráfico F × a e referencial acelerado.",
+    "destaque": "Medicina cobra conceito: inércia, peso × normal, velocidade constante.",
+    "fonte": "L2-F1-C08 (O que as provas cobram), exercícios p. 88–128"
+   },
+   {
+    "tipo": "fixe",
+    "titulo": "Para levar",
+    "texto": "Resultante nula: repouso ou movimento retilíneo uniforme.\nResultante = massa × aceleração, na mesma direção e sentido.\nAção e reação: corpos diferentes, nunca se anulam; P e N não são par.",
+    "fonte": "L2-F1-C08 p. 74–77"
+   }
+  ],
+  "F03.2": [
+   {
+    "tipo": "abertura",
+    "titulo": "Talha: menos força, mais corda",
+    "texto": "Barcos e guindastes erguem cargas pesadas com talhas: roldanas e uma corda que passa várias vezes entre elas. Cada trecho de corda que segura a carga divide o esforço. O preço é puxar mais corda.",
+    "destaque": "Polia móvel troca força por deslocamento.",
+    "visual": {
+     "tipo": "foto",
+     "descricao": "Foto de uma talha real: duas caixas de roldanas, uma presa no alto e outra embaixo, ligadas por uma corda azul que passa várias vezes entre elas. Depois, no mesmo quadro, um esquema animado de uma polia móvel erguendo um balde de 30 N.",
+     "movimento": [
+      "1. A foto aparece inteira por 2 s.",
+      "2. Os trechos de corda entre as duas caixas ganham contorno laranja #F27700, um por um; a foto esmaece e, no lugar dela, surge o esquema.",
+      "3. No esquema, o balde pende de dois ramos de corda, cada um com 15 N.",
+      "4. A mão puxa 2 m de corda e o balde sobe 1 m."
+     ],
+     "foto": {
+      "url": "https://commons.wikimedia.org/wiki/File:Palans.jpg",
+      "arquivo": "File:Palans.jpg",
+      "autor": "Ludovic Péron",
+      "licenca": "CC BY-SA 3.0 e GFDL",
+      "por_que": "Talha real, sem texto na imagem: mostra os vários trechos de corda entre a roldana fixa e a móvel, que é onde está o ganho de força."
+     },
+     "alt": "Talha com duas caixas de roldanas e uma corda que passa várias vezes entre elas; em seguida, uma polia móvel em que cada ramo de corda segura metade do peso do balde."
+    },
+    "fonte": "L2-F1-C08 p. 78–79"
+   },
+   {
+    "tipo": "formula",
+    "titulo": "Peso: a força da gravidade",
+    "texto": "Peso é a força com que a Terra puxa o corpo. Massa é a quantidade de matéria e não muda de lugar para lugar. Na Lua, o astronauta tem a mesma massa e um sexto do peso.",
+    "formula": "P = m \\cdot g = 70 \\cdot 10 = 700\\ \\text{N}",
+    "legenda": [
+     "P: peso (N)",
+     "m: massa (kg)",
+     "g: aceleração da gravidade (na Terra, cerca de 10 m/s²)"
+    ],
+    "visual": {
+     "tipo": "animacao",
+     "descricao": "Um astronauta de 70 kg e duas balanças: uma de braços iguais, que compara massas, e uma de mola, que mede força.",
+     "movimento": [
+      "1. Na Terra, a balança de braços iguais equilibra 70 kg; a de mola marca 700 N.",
+      "2. A cena vai para a Lua: a de braços continua equilibrada com os mesmos 70 kg.",
+      "3. A de mola desce para cerca de 117 N, um sexto, e o número fica laranja #F27700."
+     ],
+     "alt": "Astronauta de 70 quilos: na Terra e na Lua a balança de braços marca a mesma massa, mas a balança de mola cai de 700 para cerca de 117 newtons na Lua."
+    },
+    "fonte": "L2-F1-C08 p. 73 e 76–77"
+   },
+   {
+    "tipo": "conceito",
+    "titulo": "Normal e tração: forças de contato",
+    "texto": "A normal é perpendicular à superfície e só empurra. A tração vai ao longo do fio e só puxa. Num fio ideal, sem massa, a tração é a mesma em todo ele, mesmo acelerando. Polia fixa só muda a direção.",
+    "destaque": "A normal não é sempre igual ao peso.",
+    "visual": {
+     "tipo": "animacao",
+     "descricao": "Três quadros: bloco no chão; bloco pendurado num fio com medidores ao longo dele; fio passando por uma polia fixa presa ao teto.",
+     "movimento": [
+      "1. Bloco no chão: N para cima, perpendicular ao piso, em laranja #F27700, igual a P.",
+      "2. Uma mão aperta o bloco para baixo: N cresce e fica maior que P.",
+      "3. Bloco pendurado: os medidores ao longo do fio mostram o mesmo valor T, inclusive quando o bloco acelera.",
+      "4. Polia fixa: a mão puxa para baixo e o bloco sobe; o suporte da polia mostra 2T, a soma dos dois ramos."
+     ],
+     "alt": "Normal perpendicular ao piso que cresce quando se aperta o bloco; tração igual ao longo de um fio ideal; polia fixa que só muda a direção e cujo suporte segura o dobro da tração."
+    },
+    "fonte": "L2-F1-C08 p. 77–78"
+   },
+   {
+    "tipo": "conceito",
+    "titulo": "Polias móveis: metade a cada polia",
+    "texto": "Na polia móvel, a carga fica presa por dois ramos de corda, e cada um segura metade. Com n polias móveis em cascata, a força cai 2ⁿ vezes. Com 20 polias, mais de um milhão de vezes.",
+    "destaque": "Metade da força, o dobro de corda puxada.",
+    "formula": "F = \\frac{P}{2^n} \\qquad 2^{20} = 1\\,048\\,576",
+    "visual": {
+     "tipo": "animacao",
+     "descricao": "Cascata de polias móveis sob um teto, com uma carga de 800 N pendurada na última.",
+     "movimento": [
+      "1. Com uma polia móvel, cada ramo acima da carga mostra 400 N.",
+      "2. Uma segunda polia móvel entra acima: 200 N.",
+      "3. Terceira polia: a mão puxa só 100 N, em laranja #F27700.",
+      "4. Um contador mostra 2, 4, 8 e salta para 2²⁰ = 1 048 576.",
+      "5. Uma régua mostra o custo: com três polias, a mão puxa 8 m de corda para a carga subir 1 m."
+     ],
+     "alt": "Carga de 800 newtons em polias móveis em cascata: cada polia divide a força por 2, chegando a 100 newtons com três polias, mas a mão precisa puxar 8 metros de corda para a carga subir 1 metro."
+    },
+    "fonte": "L2-F1-C08 p. 78–79"
+   },
+   {
+    "tipo": "conceito",
+    "titulo": "Blocos ligados: sistema primeiro",
+    "texto": "Corpos com a mesma aceleração podem ser tratados como um só: força externa = massa total × a. Depois, isole um corpo para achar a força entre eles. Forças internas não entram na conta do sistema.",
+    "formula": "\\begin{gathered} 30 = (4 + 2) \\cdot a \\Rightarrow a = 5\\ \\text{m/s}^2 \\\\ F_{AB} = 2 \\cdot 5 = 10\\ \\text{N} \\end{gathered}",
+    "visual": {
+     "tipo": "animacao",
+     "descricao": "Mão empurrando dois blocos encostados num piso liso: A (4 kg) atrás e B (2 kg) na frente.",
+     "movimento": [
+      "1. A mão aplica 30 N em A; os dois blocos aceleram juntos.",
+      "2. Um contorno laranja #F27700 envolve os dois: sistema de 6 kg, a = 5 m/s².",
+      "3. O contorno se abre e B fica sozinho: só a força de A sobre B, 10 N, o acelera.",
+      "4. A mão passa a empurrar B pelo outro lado: agora a força entre os blocos é 20 N, porque precisa acelerar os 4 kg de A."
+     ],
+     "alt": "Dois blocos encostados empurrados com 30 newtons aceleram juntos a 5; a força entre eles é 10 newtons quando se empurra o bloco maior e 20 quando se empurra o menor."
+    },
+    "fonte": "L2-F1-C08 p. 82–83 (resolvidos 3 e 4)"
+   },
+   {
+    "tipo": "grafico",
+    "titulo": "Elevador: o que a balança marca",
+    "texto": "No elevador, a balança mede a normal, não o peso. Aceleração para cima: N maior que P. Para baixo: N menor. Velocidade constante: N igual a P. Em queda livre, a balança marca zero.",
+    "formula": "\\begin{gathered} N - P = m \\cdot a \\\\ \\Rightarrow N = 60 \\cdot (10 + 2) = 720\\ \\text{N} \\end{gathered}",
+    "visual": {
+     "tipo": "grafico",
+     "descricao": "Gráfico v × t de um elevador que sobe: reta crescendo de 0 a 4 m/s entre 0 e 2 s, horizontal entre 2 e 8 s, decrescendo até 0 entre 8 e 10 s. Eixos em cinza. Ao lado, uma pessoa de 60 kg sobre uma balança com visor.",
+     "movimento": [
+      "1. Um cursor percorre o trecho inicial (a = 2 m/s² para cima): o visor marca 720 N, em laranja #F27700.",
+      "2. No trecho horizontal, o visor volta para 600 N, o peso.",
+      "3. Na freada (a = 2 m/s² para baixo), o visor cai para 480 N.",
+      "4. Botão 'cabo rompeu': o visor vai a zero e um chaveiro flutua dentro do elevador."
+     ],
+     "alt": "Gráfico de velocidade de um elevador subindo e balança de uma pessoa de 60 quilos: marca 720 newtons acelerando, 600 em velocidade constante, 480 freando e zero em queda livre."
+    },
+    "fonte": "L2-F1-C08 p. 84 (resolvido 6) e exercícios de elevador p. 88–128"
+   },
+   {
+    "tipo": "exemplo",
+    "titulo": "Bloco na mesa puxado por outro",
+    "texto": "Um bloco B de 3 kg está numa mesa lisa, ligado por um fio que passa por uma polia a um bloco A de 2 kg pendurado. Ache a aceleração e a tração no fio. Use g = 10 m/s².",
+    "passos": [
+     {
+      "faz": "Só o peso de A move o sistema",
+      "conta": "P_A = (m_A + m_B) \\cdot a \\;\\Rightarrow\\; 20 = 5 \\cdot a",
+      "mov": "O peso 20 N fica à esquerda; as massas 2 e 3 se somam e viram 5."
+     },
+     {
+      "faz": "Isola a aceleração",
+      "conta": "a = \\frac{20}{5} = 4\\ \\text{m/s}^2",
+      "mov": "O 5 que multiplica a atravessa o '=' e vai para baixo do 20, dividindo; o 4 aparece no lugar."
+     },
+     {
+      "faz": "Isola B: só a tração o acelera",
+      "conta": "T = m_B \\cdot a = 3 \\cdot 4 = 12\\ \\text{N}",
+      "mov": "O 3 e o 4 se juntam e o 12 N aparece na seta do fio."
+     },
+     {
+      "faz": "Confere em A: a = 4 m/s² e T = 12 N",
+      "conta": "P_A - T = m_A \\cdot a \\;\\Rightarrow\\; 20 - 12 = 2 \\cdot 4 = 8",
+      "mov": "Os dois lados viram 8 e um sinal de conferido acende."
+     }
+    ],
+    "visual": {
+     "tipo": "animacao",
+     "descricao": "Mesa vista de lado com B sobre ela; o fio passa por uma polia na borda e desce até A. Setas: peso de A e tração nos dois trechos do fio.",
+     "movimento": [
+      "1. Os blocos são soltos; a seta do peso de A, 20 N, acende.",
+      "2. Um contorno envolve os dois blocos e o fio: 5 kg, a = 4 m/s².",
+      "3. O fio ganha um medidor: 12 N, em laranja #F27700, menor que os 20 N do peso de A.",
+      "4. Os dois blocos andam sempre a mesma distância, cada um no seu trecho do fio."
+     ],
+     "alt": "Bloco de 3 quilos numa mesa lisa puxado por um bloco de 2 quilos pendurado: aceleração de 4 metros por segundo ao quadrado e tração de 12 newtons."
+    },
+    "fonte": "L2-F1-C08 p. 85–86 (resolvido 9, com outros números)"
+   },
+   {
+    "tipo": "pegadinha",
+    "titulo": "A tração não é o peso pendurado",
+    "texto": "No exemplo, o fio puxa A com 12 N, não com 20 N. Se a tração fosse igual ao peso, A estaria em equilíbrio e nada aceleraria. Tração igual ao peso, só parado ou em velocidade constante.",
+    "destaque": "Bloco pendurado descendo acelerado: tração menor que o peso.",
+    "visual": {
+     "tipo": "animacao",
+     "descricao": "Bloco A pendurado num fio, com o peso P (cinza, 20 N) e a tração T (laranja #F27700).",
+     "movimento": [
+      "1. Uma etiqueta errada 'T = 20 N' aparece; com T igual a P, o bloco fica parado: rótulo 'equilíbrio'.",
+      "2. O fio é ligado ao bloco B, na mesa: T encolhe para 12 N.",
+      "3. A diferença de 8 N vira a seta da resultante, para baixo, e A desce acelerando."
+     ],
+     "alt": "Bloco pendurado: se a tração fosse igual ao peso, ele ficaria parado; acelerando para baixo, a tração cai para 12 newtons e sobram 8 newtons de resultante."
+    },
+    "fonte": "L2-F1-C08 p. 83 (Atenção) e 85–86"
+   },
+   {
+    "tipo": "na_prova",
+    "titulo": "Como cai na prova",
+    "texto": "No capítulo de Dinâmica, UFRJ, Fuvest e Uerj lideram. Do básico ao difícil: massa × peso, blocos e vagões, elevador, máquina de Atwood, roldana com limite de tração (Famerp 2020), polia móvel e vínculos.",
+    "destaque": "Elevador e blocos ligados são os favoritos de Medicina.",
+    "fonte": "L2-F1-C08 (O que as provas cobram), exercícios p. 88–128"
+   },
+   {
+    "tipo": "fixe",
+    "titulo": "Para levar",
+    "texto": "Peso = massa × g: a massa não muda; o peso muda com o lugar.\nFio ideal: mesma tração em todo ele; cada polia móvel divide a força por 2.\nMesma aceleração: resolva o sistema, depois isole um corpo.",
+    "fonte": "L2-F1-C08 p. 76–79 e 82–87"
+   }
+  ],
+  "F03.3": [
+   {
+    "tipo": "abertura",
+    "titulo": "Por que o freio ABS para antes",
+    "texto": "Roda travada desliza no asfalto e usa o atrito dinâmico, menor. O ABS alivia e reaplica o freio muitas vezes por segundo: a roda não trava e o pneu aproveita o atrito estático, maior. Em geral, o carro para antes.",
+    "destaque": "Pneu que não desliza usa atrito estático, mesmo com o carro andando.",
+    "visual": {
+     "tipo": "animacao",
+     "descricao": "Duas pistas paralelas vistas de cima, com dois carros iguais a 72 km/h. O de cima tem as rodas travadas; o de baixo, ABS. Um selo no canto avisa: coeficientes hipotéticos, para comparar.",
+     "movimento": [
+      "1. Os dois começam a frear na mesma linha.",
+      "2. O de cima deixa marcas pretas de pneu: atrito dinâmico, μ = 0,5 (valor hipotético); para em 40 m.",
+      "3. O de baixo, com as rodas girando e sem marcas: atrito estático, μ = 0,8 (valor hipotético); para em 25 m, com a faixa em laranja #F27700.",
+      "4. Uma régua compara as duas distâncias: 25 m e 40 m."
+     ],
+     "alt": "Dois carros a 72 quilômetros por hora freando, com coeficientes de atrito hipotéticos: o de rodas travadas para em 40 metros; o com ABS, que mantém o atrito estático, para em 25 metros."
+    },
+    "fonte": "L3-F1-C09 p. 8–10 e exercícios p. 20 (Enem, ABS)"
+   },
+   {
+    "tipo": "conceito",
+    "titulo": "Atrito estático: só o necessário",
+    "texto": "Parado, o bloco recebe atrito estático igual à força que tenta movê-lo, em sentido contrário. Empurre com 10 N: atrito de 10 N. Com 30 N: 30 N. Ele cresce até um máximo, na iminência de movimento.",
+    "destaque": "Sem força tentando mover, o atrito é zero.",
+    "visual": {
+     "tipo": "animacao",
+     "descricao": "Bloco de 10 kg sobre o piso; uma mão com dinamômetro puxa para a direita. Uma lupa mostra as duas superfícies serrilhadas encaixadas.",
+     "movimento": [
+      "1. Sem puxar: só P e N; nenhuma seta de atrito.",
+      "2. A mão puxa 10 N: surge atrito de 10 N para a esquerda, em laranja #F27700; o bloco não anda.",
+      "3. A força sobe para 30 N e o atrito acompanha, igual.",
+      "4. Na lupa, os picos se deformam e travam: é a iminência, com 50 N.",
+      "5. Passando do máximo, os picos pulam uns sobre os outros e o bloco desliza."
+     ],
+     "alt": "Bloco puxado com força crescente: enquanto está parado, o atrito estático cresce junto e fica igual à força, até o máximo; depois o bloco desliza."
+    },
+    "fonte": "L3-F1-C09 p. 6–7"
+   },
+   {
+    "tipo": "formula",
+    "titulo": "Atrito máximo e atrito dinâmico",
+    "texto": "Os dois dependem da normal e de um coeficiente sem unidade. O coeficiente depende dos materiais e do polimento, não da área de contato. Em geral, o dinâmico é menor que o estático máximo.",
+    "formula": "\\begin{gathered} F_{at,e\\,máx} = \\mu_e \\cdot N \\qquad F_{at,d} = \\mu_d \\cdot N \\\\ \\mu_d < \\mu_e\\ \\text{(em geral)} \\end{gathered}",
+    "legenda": [
+     "μe: coeficiente de atrito estático (sem unidade)",
+     "μd: coeficiente de atrito dinâmico (sem unidade)",
+     "N: força normal (N)",
+     "parado: 0 ≤ Fat,e ≤ μe · N"
+    ],
+    "visual": {
+     "tipo": "animacao",
+     "descricao": "Duas caixas iguais sobre o mesmo piso, uma deitada (área de contato grande) e outra em pé (área pequena). Ao lado, um tijolo com o mesmo peso de uma caixa.",
+     "movimento": [
+      "1. As duas são puxadas até a iminência: os dinamômetros marcam o mesmo valor; a área não muda o atrito.",
+      "2. O tijolo vai para cima de uma caixa: a normal dobra e o atrito máximo dobra, em laranja #F27700.",
+      "3. Rótulo: muda a força de atrito, não o coeficiente."
+     ],
+     "alt": "Caixa deitada e caixa em pé têm o mesmo atrito máximo; colocar um tijolo em cima dobra a normal e dobra o atrito, sem mudar o coeficiente."
+    },
+    "fonte": "L3-F1-C09 p. 7–9"
+   },
+   {
+    "tipo": "grafico",
+    "titulo": "Gráfico do atrito contra a força",
+    "texto": "Bloco de 10 kg com μe = 0,5 e μd = 0,4. Parado, atrito igual à força: reta inclinada pela origem. No máximo, 50 N, o bloco escapa e o atrito cai para 40 N, constante.",
+    "formula": "\\begin{gathered} F_{at,e\\,máx} = 0{,}5 \\cdot 100 = 50\\ \\text{N} \\\\ F_{at,d} = 0{,}4 \\cdot 100 = 40\\ \\text{N} \\end{gathered}",
+    "visual": {
+     "tipo": "grafico",
+     "descricao": "Eixos em cinza: força aplicada F na horizontal (0 a 80 N) e força de atrito na vertical (0 a 60 N), mesma escala nos dois. Ao lado, o bloco puxado por um dinamômetro.",
+     "movimento": [
+      "1. F cresce de 0 a 50 N; um ponto laranja #F27700 sobe pela reta de 45° e o bloco fica parado.",
+      "2. Em 50 N aparece o rótulo 'iminência'; o bloco dá um tranco.",
+      "3. O ponto cai para 40 N e segue na horizontal até 80 N, linha tracejada, com o bloco deslizando.",
+      "4. Com F = 70 N, surge a resultante: 70 − 40 = 30 N, e a = 3 m/s²."
+     ],
+     "alt": "Gráfico da força de atrito contra a força aplicada: sobe em reta até 50 newtons, cai para 40 newtons quando o bloco começa a deslizar e fica constante."
+    },
+    "fonte": "L3-F1-C09 p. 8 e 10 (resolvido 1)"
+   },
+   {
+    "tipo": "conceito",
+    "titulo": "Resistência do ar e velocidade limite",
+    "texto": "A resistência do ar cresce com a velocidade; k depende da densidade do ar, da área e da forma do corpo. Quando a aceleração cai de g a zero, chega-se à velocidade limite. Valores hipotéticos: 80 kg, k = 0,32 kg/m.",
+    "destaque": "Na velocidade limite, a resultante é nula.",
+    "formula": "\\begin{gathered} F_{ar} = k \\cdot v^2 \\\\ v_{lim} = \\sqrt{\\frac{m \\cdot g}{k}} = \\sqrt{\\frac{80 \\cdot 10}{0{,}32}} = 50\\ \\text{m/s} \\end{gathered}",
+    "visual": {
+     "tipo": "foto",
+     "descricao": "Foto de paraquedistas saltando da rampa traseira de um avião, em queda livre sobre campos. Depois, no mesmo quadro, uma animação: um paraquedista de 80 kg (k = 0,32 kg/m, valor hipotético) com P (cinza, fixo) e a resistência do ar (laranja #F27700, crescendo), e os gráficos v × t e a × t desenhados ao mesmo tempo.",
+     "movimento": [
+      "1. A foto aparece inteira por 2 s e esmaece; no lugar dela surge a animação. Em t = 0 só há o peso: a = 10 m/s².",
+      "2. A seta do ar cresce e a resultante encolhe; no gráfico a × t, a curva desce de 10 até 0.",
+      "3. No v × t, a curva sobe e encosta numa linha tracejada em 50 m/s, a velocidade limite.",
+      "4. O paraquedas abre: a seta do ar fica maior que P, a resultante aponta para cima e v cai até um novo limite, bem menor."
+     ],
+     "foto": {
+      "url": "https://commons.wikimedia.org/wiki/File:Operation_Toy_Drop_(Freefall)_151207-A-RR223-377.jpg",
+      "arquivo": "File:Operation Toy Drop (Freefall) 151207-A-RR223-377.jpg",
+      "autor": "Pfc. Sharell Madden (Exército dos EUA)",
+      "licenca": "domínio público (PD-USGov-Military-Army)",
+      "por_que": "Queda livre real com ar: os saltadores logo após sair do avião, quando a resistência do ar ainda está crescendo rumo à velocidade limite."
+     },
+     "alt": "Paraquedistas saltando de um avião; em seguida, numa animação, a resistência do ar cresce até igualar o peso, a aceleração cai a zero e a velocidade se estabiliza em 50 metros por segundo, num exemplo com valores hipotéticos, e cai mais ao abrir o paraquedas."
+    },
+    "fonte": "L3-F1-C09 p. 9 e exercícios p. 23 (Enem, paraquedista)"
+   },
+   {
+    "tipo": "conceito",
+    "titulo": "Plano inclinado: decomponha o peso",
+    "texto": "Na rampa, o peso se divide em P·sen θ, ao longo dela, e P·cos θ, contra ela, que a normal equilibra. Sem atrito, a = g·sen θ, qualquer que seja a massa.",
+    "formula": "\\begin{gathered} N = P\\cos\\theta \\qquad a_{liso} = g\\,\\text{sen}\\,\\theta \\\\ \\mu_e = \\text{tg}\\,\\theta\\ \\text{(iminência)} \\end{gathered}",
+    "visual": {
+     "tipo": "animacao",
+     "descricao": "Rampa com ângulo θ ajustável e um bloco sobre ela; o peso P sai do centro do bloco, vertical.",
+     "movimento": [
+      "1. P se decompõe: uma seta ao longo da rampa (P·sen θ, em laranja #F27700) e outra contra a rampa (P·cos θ, cinza).",
+      "2. A normal surge e cancela P·cos θ.",
+      "3. θ aumenta: a seta ao longo da rampa cresce e a normal diminui.",
+      "4. Com atrito, o bloco fica parado até um ângulo-limite; nesse ângulo aparece μe = tg θ."
+     ],
+     "alt": "Bloco numa rampa com o peso dividido em uma parte ao longo da rampa e outra perpendicular; ao aumentar o ângulo, a parte ao longo cresce até o bloco escorregar."
+    },
+    "fonte": "L2-F1-C08 p. 84 (resolvido 7); L3-F1-C09 p. 7–8"
+   },
+   {
+    "tipo": "exemplo",
+    "titulo": "Caixa descendo rampa com atrito",
+    "texto": "Uma caixa de 4 kg desce uma rampa com sen θ = 0,6 e cos θ = 0,8. O coeficiente de atrito dinâmico é 0,25. Qual a aceleração? Use g = 10 m/s².",
+    "destaque": "Sem atrito seriam 6 m/s², isto é, g·sen θ.",
+    "passos": [
+     {
+      "faz": "Decompõe o peso, P = 40 N",
+      "conta": "\\begin{gathered} P_x = 40 \\cdot 0{,}6 = 24\\ \\text{N} \\\\ N = P_y = 40 \\cdot 0{,}8 = 32\\ \\text{N} \\end{gathered}",
+      "mov": "A seta do peso se divide em duas; os valores 24 e 32 aparecem sobre elas."
+     },
+     {
+      "faz": "Calcula o atrito dinâmico",
+      "conta": "F_{at} = \\mu_d \\cdot N = 0{,}25 \\cdot 32 = 8\\ \\text{N}",
+      "mov": "O 32 da normal viaja até a fórmula do atrito e o 8 aparece numa seta rampa acima."
+     },
+     {
+      "faz": "Resultante ao longo da rampa",
+      "conta": "F_R = 24 - 8 = 16\\ \\text{N}",
+      "mov": "A seta de 8 N se encosta à de 24 N, em sentido oposto, e sobram 16 N."
+     },
+     {
+      "faz": "Aplica a 2ª lei: é a resposta",
+      "conta": "16 = 4 \\cdot a \\;\\Rightarrow\\; a = \\frac{16}{4} = 4\\ \\text{m/s}^2",
+      "mov": "O 4 que multiplica a vai para baixo do 16, dividindo; o 4 m/s² aparece no lugar."
+     }
+    ],
+    "visual": {
+     "tipo": "animacao",
+     "descricao": "Rampa com a caixa; setas do peso decomposto, da normal e do atrito.",
+     "movimento": [
+      "1. O peso de 40 N se decompõe em 24 N ao longo da rampa e 32 N contra ela.",
+      "2. A normal de 32 N aparece; o atrito de 8 N surge apontando rampa acima.",
+      "3. A resultante de 16 N, em laranja #F27700, aponta rampa abaixo.",
+      "4. A caixa desce ganhando 4 m/s a cada segundo."
+     ],
+     "alt": "Caixa de 4 quilos descendo uma rampa: 24 newtons puxam rampa abaixo, o atrito de 8 newtons segura, e a resultante de 16 newtons dá aceleração de 4 metros por segundo ao quadrado."
+    },
+    "fonte": "L3-F1-C09 p. 7–8 e 11–12 (resolvido 5, com outros números)"
+   },
+   {
+    "tipo": "pegadinha",
+    "titulo": "Atrito estático não é sempre μe·N",
+    "texto": "Bloco de 8 kg parado, μe = 0,5: o máximo é 40 N. Empurrado com 25 N, o atrito vale 25 N, não 40 N. Compare antes: abaixo do máximo, o bloco fica parado e o atrito iguala a força.",
+    "destaque": "μe·N é o teto, não o valor do atrito.",
+    "visual": {
+     "tipo": "animacao",
+     "descricao": "Bloco num piso com um medidor de atrito em forma de barra; a marca do máximo, 40 N, aparece tracejada.",
+     "movimento": [
+      "1. Uma etiqueta errada 'atrito = 40 N' aparece e é riscada.",
+      "2. A mão empurra com 25 N; a barra sobe só até 25 N, em laranja #F27700, abaixo da marca de 40 N.",
+      "3. O bloco não se move: resultante zero."
+     ],
+     "alt": "Bloco com atrito máximo de 40 newtons empurrado com 25 newtons: o atrito vale 25 newtons e o bloco fica parado."
+    },
+    "fonte": "L3-F1-C09 p. 7 e 10 (resolvido 1)"
+   },
+   {
+    "tipo": "na_prova",
+    "titulo": "Como cai na prova",
+    "texto": "Fuvest lidera; o Enem cobrou moedas na parede, ABS e paraquedista. Do básico ao difícil: gráfico do atrito, parado ou andando, frenagem, força inclinada que muda a normal, rampa, polias e blocos sobrepostos.",
+    "destaque": "No bloco de cima, o atrito pode apontar para a frente.",
+    "fonte": "L3-F1-C09 (O que as provas cobram), exercícios p. 14–46"
+   },
+   {
+    "tipo": "fixe",
+    "titulo": "Para levar",
+    "texto": "Parado: atrito estático igual à força que tenta mover, até μe·N.\nDeslizando: atrito dinâmico = μd·N, constante e, em geral, menor.\nRampa: P·sen θ ao longo e P·cos θ contra; sem atrito, a = g·sen θ.",
+    "fonte": "L3-F1-C09 p. 6–9; L2-F1-C08 p. 84"
+   }
+  ],
+  "F03.4": [
+   {
+    "tipo": "abertura",
+    "titulo": "A balança de gancho da feira",
+    "texto": "Na feira, o peixe pendurado no gancho estica uma mola e o ponteiro mostra o peso. Funciona porque a mola estica na proporção da força: o dobro de força, o dobro de alongamento.",
+    "destaque": "Mola é um medidor de força.",
+    "visual": {
+     "tipo": "foto",
+     "descricao": "Foto de uma balança de gancho de mola, com argola em cima, gancho embaixo e escala numerada ao longo de uma janela. Depois, no mesmo quadro, um esquema animado da mola dentro dela, com uma régua.",
+     "movimento": [
+      "1. A foto aparece inteira por 2 s; a janela da escala ganha contorno laranja #F27700. A foto esmaece e, no lugar dela, surge a mola com a régua.",
+      "2. Pendura-se um peixe de 1,5 kg: a mola estica 1 cm e o ponteiro marca 15 N.",
+      "3. Entra um segundo peixe igual: a mola estica 2 cm e o ponteiro vai a 30 N, em laranja #F27700.",
+      "4. Os pontos (1 cm; 15 N) e (2 cm; 30 N) aparecem num gráfico pequeno, alinhados com a origem."
+     ],
+     "foto": {
+      "url": "https://commons.wikimedia.org/wiki/File:Weeghaak.JPG",
+      "arquivo": "File:Weeghaak.JPG",
+      "autor": "Briain (autor presumido pelo Commons)",
+      "licenca": "domínio público (PD-self)",
+      "por_que": "Balança de gancho real, só com números na escala: o aluno reconhece o objeto da feira e vê que dentro dele há uma mola."
+     },
+     "alt": "Balança de gancho de mola com escala numerada; em seguida, num esquema, um peixe estica a mola 1 centímetro e marca 15 newtons, e dois peixes esticam 2 centímetros e marcam 30."
+    },
+    "fonte": "L2-F1-C08 p. 79–80"
+   },
+   {
+    "tipo": "conceito",
+    "titulo": "Deformação: quanto a mola mudou",
+    "texto": "A mola tem um comprimento natural L₀, sem esticar nem comprimir. A deformação x é quanto o comprimento mudou: x = L − L₀. Se, solta, a mola volta, a deformação foi elástica.",
+    "visual": {
+     "tipo": "animacao",
+     "descricao": "Mola presa a uma parede, sobre uma régua em cm, com o comprimento natural de 10 cm marcado.",
+     "movimento": [
+      "1. A mola em repouso mede 10 cm: é L₀.",
+      "2. A mão estica até 14 cm; a faixa entre 10 e 14 cm se pinta de laranja #F27700: x = 4 cm.",
+      "3. A mão comprime até 7 cm: x = −3 cm, faixa tracejada.",
+      "4. Esticada demais, a mola não volta aos 10 cm: saiu da região elástica."
+     ],
+     "alt": "Mola de 10 centímetros esticada até 14 (deformação de 4 centímetros) e comprimida até 7 (deformação de menos 3); esticada demais, não volta ao tamanho natural."
+    },
+    "fonte": "L2-F1-C08 p. 79"
+   },
+   {
+    "tipo": "formula",
+    "titulo": "Lei de Hooke",
+    "texto": "Na região elástica, a força é proporcional à deformação. A constante k mede a dureza da mola: depende do material e do formato, não da força. Mola dura, k grande; mola mole, k pequeno.",
+    "formula": "F = k \\cdot x",
+    "legenda": [
+     "F: força elástica (N)",
+     "k: constante elástica (N/m)",
+     "x: deformação (m), não o comprimento total"
+    ],
+    "visual": {
+     "tipo": "animacao",
+     "descricao": "Duas molas lado a lado, uma grossa (k = 200 N/m) e uma fina (k = 50 N/m), cada uma com um peso de 10 N.",
+     "movimento": [
+      "1. As duas recebem os 10 N ao mesmo tempo.",
+      "2. A grossa estica 5 cm.",
+      "3. A fina estica 20 cm, com a faixa em laranja #F27700.",
+      "4. Rótulo: mesma força; k quatro vezes maior, deformação quatro vezes menor."
+     ],
+     "alt": "Mesmo peso de 10 newtons em duas molas: a de 200 newtons por metro estica 5 centímetros e a de 50 newtons por metro estica 20."
+    },
+    "fonte": "L2-F1-C08 p. 79"
+   },
+   {
+    "tipo": "grafico",
+    "titulo": "Gráfico F × x: inclinação é k",
+    "texto": "O gráfico da força contra a deformação é uma reta que passa pela origem. A inclinação dessa reta é a constante elástica. Esticar e comprimir ficam dos dois lados do zero.",
+    "formula": "k = \\frac{F}{x} = \\frac{10\\ \\text{N}}{0{,}2\\ \\text{m}} = 50\\ \\text{N/m}",
+    "visual": {
+     "tipo": "grafico",
+     "descricao": "Eixos em cinza: deformação x na horizontal (−0,2 a 0,3 m) e força F na vertical. Ao lado, a mola presa à parede com a mão.",
+     "movimento": [
+      "1. A mão estica 0,1, 0,2 e 0,3 m; os pontos de 5, 10 e 15 N se marcam.",
+      "2. Uma reta laranja #F27700 liga os pontos e passa pela origem.",
+      "3. Um triângulo de inclinação aparece: sobe 10 N em 0,2 m, logo k = 50 N/m.",
+      "4. A mão comprime 0,1 m: o ponto (−0,1 m; −5 N) cai na mesma reta."
+     ],
+     "alt": "Gráfico de força contra deformação de uma mola: reta pela origem que passa por 10 newtons em 0,2 metro, inclinação de 50 newtons por metro."
+    },
+    "fonte": "L2-F1-C08 p. 79"
+   },
+   {
+    "tipo": "conceito",
+    "titulo": "Dinamômetro: a mola que mede força",
+    "texto": "O dinamômetro é uma mola com escala. A mola ideal não tem massa e transmite a força inteira, como o fio ideal. Puxado com 100 N de cada lado, ele marca 100 N: um lado puxa, o outro segura.",
+    "destaque": "Dois lados puxando 100 N: leitura de 100 N, nem 200 nem zero.",
+    "visual": {
+     "tipo": "animacao",
+     "descricao": "Dinamômetro preso a uma parede, puxado por uma pessoa; depois, o mesmo dinamômetro puxado por duas pessoas, uma de cada lado.",
+     "movimento": [
+      "1. Preso na parede, a pessoa puxa 100 N: leitura de 100 N.",
+      "2. A parede se transforma numa segunda pessoa puxando 100 N para o outro lado.",
+      "3. O ponteiro não muda: 100 N, em laranja #F27700.",
+      "4. Rótulo: a parede também puxava com 100 N."
+     ],
+     "alt": "Dinamômetro puxado contra uma parede e depois por duas pessoas, cada uma com 100 newtons: nos dois casos a leitura é 100 newtons."
+    },
+    "fonte": "L2-F1-C08 p. 80 e exercícios p. 109–127 (FEI)"
+   },
+   {
+    "tipo": "conceito",
+    "titulo": "Molas em série e em paralelo",
+    "texto": "Em série, todas recebem a mesma força e as deformações se somam: o conjunto fica mais mole. Em paralelo, a deformação é a mesma e as forças se somam: fica mais duro. Mola cortada ao meio tem k dobrado.",
+    "formula": "\\begin{gathered} \\text{série: } \\frac{1}{k_{eq}} = \\frac{1}{k_1} + \\frac{1}{k_2} \\\\ \\text{paralelo: } k_{eq} = k_1 + k_2 \\end{gathered}",
+    "visual": {
+     "tipo": "animacao",
+     "descricao": "Duas molas iguais, de 100 N/m, e um peso de 20 N, montadas primeiro uma embaixo da outra e depois lado a lado.",
+     "movimento": [
+      "1. Em série: cada mola recebe 20 N e estica 20 cm; o total é 40 cm e k equivalente vale 50 N/m.",
+      "2. Em paralelo: cada mola segura 10 N e estica 10 cm; k equivalente vale 200 N/m, em laranja #F27700.",
+      "3. Uma mola é cortada ao meio: com a mesma força, cada metade estica metade, então k vira 200 N/m."
+     ],
+     "alt": "Duas molas de 100 newtons por metro: em série esticam 40 centímetros com 20 newtons (equivalente de 50); em paralelo, 10 centímetros (equivalente de 200)."
+    },
+    "fonte": "L2-F1-C08 p. 80–81 e 86 (resolvido 11)"
+   },
+   {
+    "tipo": "exemplo",
+    "titulo": "Duas molas em série seguram bloco",
+    "texto": "Um bloco de 4 kg pende de duas molas em série, de 300 N/m e 600 N/m. Quanto o conjunto estica? Use g = 10 m/s².",
+    "destaque": "Em série, a mola mais mole estica mais.",
+    "passos": [
+     {
+      "faz": "Mola equivalente em série",
+      "conta": "\\frac{1}{k_{eq}} = \\frac{1}{300} + \\frac{1}{600} = \\frac{2 + 1}{600} = \\frac{3}{600}",
+      "mov": "O 1 sobre 300 vira 2 sobre 600 (em cima e embaixo vezes 2). Com o mesmo 600 embaixo, os numeradores 2 e 1 se somam e viram 3."
+     },
+     {
+      "faz": "Inverte a fração",
+      "conta": "k_{eq} = \\frac{600}{3} = 200\\ \\text{N/m}",
+      "mov": "A fração vira de cabeça para baixo; 600 dividido por 3 dá 200."
+     },
+     {
+      "faz": "A mola segura o peso",
+      "conta": "F = P = 4 \\cdot 10 = 40\\ \\text{N}",
+      "mov": "O 4 e o 10 se juntam e o 40 aparece no lugar."
+     },
+     {
+      "faz": "Hooke: isola x",
+      "conta": "40 = 200 \\cdot x \\;\\Rightarrow\\; x = \\frac{40}{200} = 0{,}2\\ \\text{m}",
+      "mov": "O 200 que multiplica x atravessa o '=' e vai para baixo do 40, dividindo; 0,2 m aparece no lugar."
+     },
+     {
+      "faz": "Confere mola a mola: o conjunto estica 20 cm",
+      "conta": "\\begin{gathered} x_1 = \\frac{40}{300} \\approx 0{,}133\\ \\text{m} \\\\ x_2 = \\frac{40}{600} \\approx 0{,}067\\ \\text{m} \\end{gathered}",
+      "mov": "As duas faixas se empilham e somam 0,2 m, isto é, 20 cm."
+     }
+    ],
+    "visual": {
+     "tipo": "animacao",
+     "descricao": "Teto com a mola de 300 N/m, abaixo dela a de 600 N/m e o bloco no fim; régua em cm ao lado.",
+     "movimento": [
+      "1. O bloco é pendurado; as duas molas recebem a mesma força de 40 N.",
+      "2. A de cima estica cerca de 13,3 cm; a de baixo, cerca de 6,7 cm.",
+      "3. As duas faixas se juntam: 20 cm, em laranja #F27700."
+     ],
+     "alt": "Bloco de 4 quilos em duas molas em série de 300 e 600 newtons por metro: a primeira estica cerca de 13 centímetros, a segunda cerca de 7, total de 20."
+    },
+    "fonte": "L2-F1-C08 p. 79–81"
+   },
+   {
+    "tipo": "pegadinha",
+    "titulo": "x é deformação, não comprimento",
+    "texto": "Mola de 400 N/m e 20 cm passa a medir 25 cm com o bloco. Em F = k·x entra x = 5 cm, em metros: 0,05 m. Usar 25 cm, ou o 5 sem converter, é o erro clássico.",
+    "formula": "F = 400 \\cdot 0{,}05 = 20\\ \\text{N}",
+    "visual": {
+     "tipo": "animacao",
+     "descricao": "Mola de 20 cm sobre uma régua; um bloco é pendurado e ela passa a medir 25 cm.",
+     "movimento": [
+      "1. Uma etiqueta errada 'x = 25 cm' aparece e é riscada.",
+      "2. A faixa de 20 a 25 cm se pinta de laranja #F27700: x = 5 cm.",
+      "3. O 5 cm vira 0,05 m e entra na conta: 20 N."
+     ],
+     "alt": "Mola de 20 centímetros que passa a 25: a deformação é 5 centímetros, ou 0,05 metro, e a força é 20 newtons."
+    },
+    "fonte": "L2-F1-C08 p. 79 e 86 (resolvido 10)"
+   },
+   {
+    "tipo": "na_prova",
+    "titulo": "Como cai na prova",
+    "texto": "Do básico ao difícil: Hooke direto, associação em série e paralelo com gráfico, dinamômetros e mola em veículo acelerado. Famerp 2023 (mola puxada dos dois lados), PUC-RS 2023 (Pilates), Unicamp (hemácia) e Uece (colchão).",
+    "destaque": "Leia k pela inclinação do gráfico F × x.",
+    "fonte": "L2-F1-C08 (O que as provas cobram), exercícios p. 88–128"
+   },
+   {
+    "tipo": "fixe",
+    "titulo": "Para levar",
+    "texto": "F = k·x, com x = deformação, em metros.\nGráfico F × x: reta pela origem; a inclinação é k.\nSérie: mesma força, conjunto mais mole; paralelo: mesma deformação, mais duro.",
+    "fonte": "L2-F1-C08 p. 79–81"
+   }
+  ],
+  "F03.5": [
+   {
+    "tipo": "abertura",
+    "titulo": "De cabeça para baixo, sem cair",
+    "texto": "No alto do loop, o carrinho passa de cabeça para baixo e ninguém cai. Lá, peso e normal do trilho apontam para o centro da curva e só fazem a trajetória curvar. Rápido o bastante, ele segue colado ao trilho.",
+    "destaque": "Abaixo da velocidade mínima no topo, o carrinho perderia o contato com o trilho.",
+    "visual": {
+     "tipo": "foto",
+     "descricao": "Foto de um trem de montanha-russa de cabeça para baixo no alto de um loop vertical laranja, em forma de gota (mais fechado no alto). Sobre a foto, setas desenhadas.",
+     "movimento": [
+      "1. A foto aparece inteira por 2 s.",
+      "2. Um círculo tracejado se ajusta à curva do alto do loop e marca o centro dessa curva.",
+      "3. No carrinho do alto surgem as setas P e N, as duas para baixo, rumo ao centro, em laranja #F27700."
+     ],
+     "foto": {
+      "url": "https://commons.wikimedia.org/wiki/File:A_Rougarou_train_upside_down_at_the_top_of_the_vertical_loop_at_Cedar_Point,_May_2018.jpg",
+      "arquivo": "File:A Rougarou train upside down at the top of the vertical loop at Cedar Point, May 2018.jpg",
+      "autor": "ThrillZing",
+      "licenca": "CC BY 4.0",
+      "por_que": "O trem está exatamente no topo do loop, de cabeça para baixo, com o loop inteiro visível: a situação em que peso e normal juntos fazem a centrípeta."
+     },
+     "alt": "Trem de montanha-russa de cabeça para baixo no alto de um loop em forma de gota; setas mostram o peso e a normal apontando para o centro da curva."
+    },
+    "fonte": "L3-F1-C09 p. 13–14 (resolvido 9); OpenStax, College Physics, seção 6.3 (loops reais são mais fechados no alto que nos lados)"
+   },
+   {
+    "tipo": "formula",
+    "titulo": "Resultante centrípeta: aponta para o centro",
+    "texto": "Em toda curva a direção da velocidade muda, então há aceleração para o centro, mesmo com o módulo constante. A resultante nessa direção é a centrípeta. Mudar o módulo da velocidade é papel da tangencial.",
+    "formula": "F_{cp} = \\frac{m \\cdot v^2}{R} = m \\cdot \\omega^2 \\cdot R",
+    "legenda": [
+     "Fcp: resultante centrípeta (N)",
+     "m: massa (kg)",
+     "v: velocidade (m/s)",
+     "R: raio da curva (m)",
+     "ω: velocidade angular (rad/s)"
+    ],
+    "visual": {
+     "tipo": "animacao",
+     "descricao": "Bolinha numa pista circular vista de cima, com a seta da velocidade (cinza, tangente) e a seta da aceleração.",
+     "movimento": [
+      "1. Em MCU, a seta da velocidade gira sem mudar de tamanho; a aceleração aponta sempre para o centro, em laranja #F27700.",
+      "2. A bolinha passa a ganhar velocidade: a aceleração inclina para a frente e se divide em tangencial e centrípeta.",
+      "3. Com a velocidade dobrada, a seta centrípeta fica quatro vezes maior."
+     ],
+     "alt": "Bolinha em movimento circular: a velocidade é tangente e a aceleração centrípeta aponta para o centro; dobrar a velocidade quadruplica a centrípeta."
+    },
+    "fonte": "L3-F1-C09 p. 9–10"
+   },
+   {
+    "tipo": "conceito",
+    "titulo": "Curva plana: o atrito faz a centrípeta",
+    "texto": "Numa curva plana, só o atrito entre pneu e asfalto aponta para o centro. A velocidade máxima é a que pede o atrito máximo, e não depende da massa. Raio de 100 m e μ = 0,4: 72 km/h.",
+    "destaque": "Sem a força, o corpo sai pela tangente, nunca pelo raio.",
+    "formula": "\\begin{gathered} \\mu \\cdot m \\cdot g = \\frac{m \\cdot v^2}{R} \\Rightarrow v_{máx} = \\sqrt{\\mu g R} \\\\ = \\sqrt{0{,}4 \\cdot 10 \\cdot 100} = 20\\ \\text{m/s} \\end{gathered}",
+    "visual": {
+     "tipo": "animacao",
+     "descricao": "Carro numa curva plana de raio 100 m, vista de cima, com o atrito apontando para o centro. Ao lado, um velocímetro.",
+     "movimento": [
+      "1. A 54 km/h, a seta do atrito, em laranja #F27700, fica abaixo do máximo e o carro contorna a curva.",
+      "2. A 72 km/h, a seta atinge o máximo.",
+      "3. Acima disso, o atrito não basta: o carro derrapa e abre a curva, num raio maior.",
+      "4. Um caminhão com o triplo da massa tem o mesmo limite: na conta, a massa é riscada dos dois lados."
+     ],
+     "alt": "Carro em curva plana com o atrito para o centro: até 72 quilômetros por hora contorna a curva; acima disso derrapa e abre a curva, qualquer que seja a massa."
+    },
+    "fonte": "L3-F1-C09 p. 9–10 e 13 (resolvido 8); exercícios p. 38 (UFSC); conferido em OpenStax, College Physics, seção 6.3 (atrito como centrípeta na curva plana)"
+   },
+   {
+    "tipo": "conceito",
+    "titulo": "Curva sobrelevada: a pista inclina",
+    "texto": "Em pista inclinada para dentro, como a de velódromos, a normal inclina: a parte vertical equilibra o peso e a horizontal faz a centrípeta. Na velocidade de projeto, dispensa atrito. Curva de 160 m para 72 km/h: θ ≈ 14°.",
+    "destaque": "Pista inclinada: parte da normal faz a centrípeta.",
+    "formula": "\\text{tg}\\,\\theta = \\frac{v^2}{R \\cdot g} = \\frac{20^2}{160 \\cdot 10} = 0{,}25",
+    "visual": {
+     "tipo": "animacao",
+     "descricao": "Carro visto de frente sobre uma pista inclinada de ângulo θ. Do carro saem P (cinza, vertical) e N (perpendicular à pista).",
+     "movimento": [
+      "1. A normal se decompõe: N·cos θ para cima, igual a P; N·sen θ para o centro da curva, em laranja #F27700.",
+      "2. Rótulo: a parte horizontal da normal é a centrípeta.",
+      "3. A pista inclina mais: a parte horizontal cresce e a curva aceita mais velocidade.",
+      "4. O mesmo desenho vale para o avião que inclina as asas na curva, com a sustentação no lugar da normal."
+     ],
+     "alt": "Carro numa pista inclinada: a normal tem uma parte vertical que equilibra o peso e uma parte horizontal que aponta para o centro da curva."
+    },
+    "fonte": "L3-F1-C09 p. 10 e exercícios p. 14–46 (Fuvest, Famerp 2018, UFRJ); conferido em OpenStax, College Physics, seção 6.3 (curva sobrelevada ideal: tg θ = v² dividido por r·g, sem atrito)"
+   },
+   {
+    "tipo": "conceito",
+    "titulo": "Pêndulo cônico: a tração inclinada",
+    "texto": "Uma bolinha presa a um fio gira num círculo horizontal, com o fio inclinado. A parte vertical da tração equilibra o peso; a horizontal aponta para o centro. Com 5 rad/s num círculo de 0,3 m, θ ≈ 37°.",
+    "destaque": "Girando mais rápido, o fio abre mais.",
+    "formula": "\\text{tg}\\,\\theta = \\frac{\\omega^2 \\cdot R}{g} = \\frac{5^2 \\cdot 0{,}3}{10} = 0{,}75",
+    "visual": {
+     "tipo": "animacao",
+     "descricao": "Vista em perspectiva de uma bolinha que gira num círculo horizontal, presa a um fio de 0,5 m que sai de um ponto fixo no teto.",
+     "movimento": [
+      "1. A tração T se decompõe: T·cos θ para cima, igual ao peso; T·sen θ para o centro, em laranja #F27700.",
+      "2. O controle de ω sobe: o fio abre e o raio do círculo cresce.",
+      "3. Em ω = 5 rad/s, o raio chega a 0,3 m e o ângulo com a vertical para em cerca de 37°."
+     ],
+     "alt": "Pêndulo cônico: a tração do fio tem uma parte vertical que equilibra o peso e uma horizontal que aponta para o centro; quanto mais rápido gira, mais o fio abre."
+    },
+    "fonte": "L3-F1-C09 p. 14 (resolvido 10, com outros números); conferido em R. Fitzpatrick, notas de Física da Univ. do Texas em Austin, \"Conical pendulum\" (farside.ph.utexas.edu/teaching/301/lectures/node88.html); fio de 0,5 m: raio 0,3 m e ω = 5 rad/s coerentes"
+   },
+   {
+    "tipo": "conceito",
+    "titulo": "Rotor: a parede segura você",
+    "texto": "No rotor do parque, o cilindro gira e o piso desce. A normal da parede aponta para o centro e faz a centrípeta; o atrito estático, para cima, segura o peso. Abaixo de uma rotação mínima, a pessoa escorrega.",
+    "destaque": "A massa se cancela: vale para criança e adulto.",
+    "formula": "\\begin{gathered} \\mu \\cdot m \\omega^2 r \\ge m g \\Rightarrow \\omega_{mín} = \\sqrt{\\frac{g}{\\mu \\cdot r}} \\\\ = \\sqrt{\\frac{10}{0{,}25 \\cdot 2{,}5}} = 4\\ \\text{rad/s} \\end{gathered}",
+    "visual": {
+     "tipo": "animacao",
+     "descricao": "Cilindro de raio 2,5 m em corte lateral, com uma pessoa encostada na parede; coeficiente de atrito de 0,25 entre roupa e parede.",
+     "movimento": [
+      "1. O cilindro gira; a normal da parede aponta para o centro, em laranja #F27700, e cresce com o quadrado de ω.",
+      "2. O piso desce; o atrito, para cima, aparece igual ao peso.",
+      "3. Reduzindo ω abaixo de 4 rad/s, o atrito máximo fica menor que o peso e a pessoa desliza parede abaixo."
+     ],
+     "alt": "Rotor de parque: a parede empurra a pessoa para o centro e o atrito com a parede segura o peso; abaixo de 4 radianos por segundo, a pessoa escorrega."
+    },
+    "fonte": "L3-F1-C09 p. 14–16 (Revisando 16) e propostos p. 17–29 (UEM); conferido em L. Tremblay, Collège Mérici, Mechanics cap. 6, exemplo 6.3.5 (rotor: normal centrípeta, atrito segura o peso)"
+   },
+   {
+    "tipo": "exemplo",
+    "titulo": "Loop: velocidade mínima e normal",
+    "texto": "Carrinho de 200 kg, loop sem atrito de raio 3,6 m, g = 10 m/s². a) Qual a velocidade mínima no topo? b) Passando no topo com ela, chega ao fundo com v² = 180 m²/s². Qual a normal no fundo?",
+    "destaque": "No fundo, o trilho empurra com seis vezes o peso.",
+    "passos": [
+     {
+      "faz": "No topo, P e N apontam para o centro",
+      "conta": "N + P = \\frac{m \\cdot v^2}{R}",
+      "mov": "As setas P e N, as duas para baixo, se somam e viram a centrípeta."
+     },
+     {
+      "faz": "Velocidade mínima: N vai a zero",
+      "conta": "m \\cdot g = \\frac{m \\cdot v^2}{R} \\;\\Rightarrow\\; v_{mín} = \\sqrt{R \\cdot g}",
+      "mov": "O N some; o m dos dois lados é riscado; o R que divide atravessa o '=' e vai multiplicar o g."
+     },
+     {
+      "faz": "Põe os números: resposta do item a",
+      "conta": "v_{mín} = \\sqrt{3{,}6 \\cdot 10} = \\sqrt{36} = 6\\ \\text{m/s}",
+      "mov": "O 3,6 e o 10 viram 36 dentro da raiz, e o 6 aparece no lugar."
+     },
+     {
+      "faz": "No fundo, N para cima e P para baixo",
+      "conta": "N - P = \\frac{m \\cdot v^2}{R} \\;\\Rightarrow\\; N = \\frac{m \\cdot v^2}{R} + m \\cdot g",
+      "mov": "O −P atravessa o '=' e vira +P, isto é, + m·g."
+     },
+     {
+      "faz": "Calcula a normal no fundo: resposta do item b",
+      "conta": "\\begin{gathered} N = \\frac{200 \\cdot 180}{3{,}6} + 200 \\cdot 10 \\\\ = 10\\,000 + 2\\,000 = 12\\,000\\ \\text{N} \\end{gathered}",
+      "mov": "O 200 multiplica o 180 e o 3,6 embaixo divide: aparece 10 000. Na linha de baixo, somado aos 2 000 do peso, surge 12 000 N, seis vezes o peso."
+     }
+    ],
+    "visual": {
+     "tipo": "animacao",
+     "descricao": "Loop vertical com o carrinho; um mostrador de 'peso aparente' acompanha a volta.",
+     "movimento": [
+      "1. No topo, P e N apontam para baixo; em voltas cada vez mais lentas, a seta N no topo encolhe até sumir em 6 m/s.",
+      "2. Numa volta com um pouco menos de energia, a normal zeraria antes do topo, ainda na metade de cima: o carrinho descolaria ali e cairia por dentro do loop, numa parábola tracejada.",
+      "3. Com 6 m/s no topo, ele desce e chega ao fundo a cerca de 13,4 m/s; ali N aponta para cima com seis vezes o tamanho de P, em laranja #F27700.",
+      "4. O mostrador marca 12 000 N."
+     ],
+     "alt": "Carrinho num loop de raio 3,6 metros: no topo, a velocidade mínima é 6 metros por segundo; passando assim pelo topo, chega ao fundo com cerca de 13,4 metros por segundo e a normal lá vale 12 mil newtons, seis vezes o peso."
+    },
+    "fonte": "L3-F1-C09 p. 13–14 (resolvido 9, com outros números); conferido em Monash University, \"Vertical circular motion\" (normal no topo e no fundo; v mínima = raiz de g·r) e UCL, \"Loop-the-loop on a motorcycle\" (fundo a 6 g quando o topo é feito na velocidade mínima); G. U. Varieschi, Loyola Marymount University, \"The projectile inside the loop\" (arXiv physics/0506032): sem velocidade suficiente, o contato se perde antes do topo, na metade de cima, e o corpo segue uma parábola"
+   },
+   {
+    "tipo": "pegadinha",
+    "titulo": "Centrífuga não entra no diagrama",
+    "texto": "Para quem está no chão, não existe força centrífuga puxando para fora. E a centrípeta não é uma força a mais: é o papel de uma força real. No diagrama, só forças reais: peso, normal, atrito, tração, elástica.",
+    "destaque": "Quem se sente jogado para fora está só tentando seguir reto.",
+    "visual": {
+     "tipo": "animacao",
+     "descricao": "Carro numa curva visto de cima e, ao lado, o passageiro dentro dele.",
+     "movimento": [
+      "1. Uma seta 'centrífuga' para fora aparece e é riscada.",
+      "2. Ficam só P, N e o atrito para o centro, em laranja #F27700.",
+      "3. O passageiro tende a seguir reto, pela tangente; a porta do carro encosta nele e o empurra para o centro."
+     ],
+     "alt": "Carro em curva: a força centrífuga é riscada do diagrama; ficam o peso, a normal e o atrito para o centro, e a porta empurra o passageiro para dentro da curva."
+    },
+    "fonte": "L3-F1-C09 p. 10 e exercícios p. 38 (UFSC)"
+   },
+   {
+    "tipo": "na_prova",
+    "titulo": "Como cai na prova",
+    "texto": "Fuvest lidera, depois ITA e UFSC; Unicamp: avião em arco e estação girante. Do básico ao difícil: centrípeta e centrífuga, MCU com fio ou mola, loop e roda-gigante, pêndulo, curva sobrelevada e pêndulo cônico (Famerp 2018), rotor e curva plana.",
+    "destaque": "Santa Casa 2021 cobrou pêndulo: no extremo, a resultante é tangente.",
+    "fonte": "L3-F1-C09 (O que as provas cobram), exercícios p. 14–46"
+   },
+   {
+    "tipo": "fixe",
+    "titulo": "Para levar",
+    "texto": "Toda curva pede resultante para o centro: m vezes v² dividido por R.\nCentrípeta é papel de força real; centrífuga não existe para quem está no chão.\nTopo do loop: velocidade mínima é a raiz de R vezes g.",
+    "fonte": "L3-F1-C09 p. 9–14"
+   }
+  ],
+  "F03.6": [
+   {
+    "tipo": "abertura",
+    "titulo": "Slackline: fita reta arrebenta",
+    "texto": "Na slackline, quanto mais esticada e horizontal a fita, maior a tração: só as partes verticais das duas metades seguram o peso. Com a fita a uns 6° da horizontal, a tração chega a cinco vezes o peso.",
+    "destaque": "Fio quase horizontal: tração enorme.",
+    "formula": "T = \\frac{P}{2\\,\\text{sen}\\,\\alpha} = \\frac{600}{2 \\cdot 0{,}1} = 3\\,000\\ \\text{N}",
+    "visual": {
+     "tipo": "foto",
+     "descricao": "Foto de um rapaz se equilibrando numa slackline num parque; a fita forma um V raso sob os pés dele. Sobre a foto, setas e o ângulo desenhados.",
+     "movimento": [
+      "1. A foto aparece inteira.",
+      "2. Sobre as duas metades da fita surgem as trações, em laranja #F27700, e o ângulo α com a horizontal.",
+      "3. Cada tração se divide numa parte vertical, curta, e numa horizontal, longa.",
+      "4. As duas partes verticais somadas igualam o peso; ao lado, a conta mostra 3 000 N para 600 N de peso com sen α = 0,1."
+     ],
+     "foto": {
+      "url": "https://commons.wikimedia.org/wiki/File:Slackline_Parc.jpg",
+      "arquivo": "File:Slackline Parc.jpg",
+      "autor": "KlemanGellek",
+      "licenca": "CC BY-SA 4.0",
+      "por_que": "Slackline real com o V da fita bem visível sob os pés: é o caso cobrado pelo Enem 2019, de ângulo pequeno e tração grande."
+     },
+     "alt": "Rapaz numa slackline com a fita em V raso; as trações nas duas metades têm uma pequena parte vertical que segura o peso e uma grande parte horizontal."
+    },
+    "fonte": "L4-F2-C11 p. 63–64 (resolvido 5) e Revisando p. 79–80 (Enem 2019)"
+   },
+   {
+    "tipo": "conceito",
+    "titulo": "Equilíbrio do ponto: forças fecham triângulo",
+    "texto": "Ponto em equilíbrio: resultante nula. Decomponha as forças: soma em x zero e soma em y zero. Três forças em equilíbrio, encaixadas ponta com cauda, fecham um triângulo.",
+    "destaque": "Lamy: cada força sobre o seno do ângulo entre as outras duas.",
+    "formula": "\\frac{F_1}{\\text{sen}\\,\\alpha_1} = \\frac{F_2}{\\text{sen}\\,\\alpha_2} = \\frac{F_3}{\\text{sen}\\,\\alpha_3}",
+    "legenda": [
+     "α₁: ângulo entre F₂ e F₃",
+     "α₂: ângulo entre F₁ e F₃",
+     "α₃: ângulo entre F₁ e F₂"
+    ],
+    "visual": {
+     "tipo": "animacao",
+     "descricao": "Luminária de 50 N presa por dois fios que formam 120° entre si; o peso faz 120° com cada fio.",
+     "movimento": [
+      "1. Do nó saem as três forças: T₁, T₂ e P, separadas por 120°.",
+      "2. As três setas deslizam e se encaixam ponta com cauda, formando um triângulo fechado, em laranja #F27700.",
+      "3. Cada ângulo oposto acende com a cor da sua força; como os três valem 120°, as três forças são iguais: cada fio puxa 50 N."
+     ],
+     "alt": "Luminária de 50 newtons presa por dois fios a 120 graus: as três forças se encaixam num triângulo fechado e, como os ângulos são iguais, cada fio puxa 50 newtons."
+    },
+    "fonte": "L4-F2-C11 p. 62–65"
+   },
+   {
+    "tipo": "conceito",
+    "titulo": "Torque: por que a maçaneta fica longe",
+    "texto": "Empurre a porta perto da dobradiça: ela quase não gira. Empurre na borda: gira fácil. Aponte a força para a dobradiça: nada acontece. O efeito de girar depende da força e da distância até o eixo.",
+    "visual": {
+     "tipo": "animacao",
+     "descricao": "Porta vista de cima, com a dobradiça à esquerda. Uma seta de força de tamanho fixo pode ser arrastada ao longo da porta.",
+     "movimento": [
+      "1. Força junto à dobradiça: a porta não se mexe; o medidor de torque fica em zero.",
+      "2. Força no meio: a porta gira devagar.",
+      "3. Força na borda: gira rápido; o medidor chega ao máximo, em laranja #F27700.",
+      "4. Na borda, a seta gira até apontar para a dobradiça: o braço vira zero e a porta para."
+     ],
+     "alt": "Porta vista de cima: a mesma força quase não gira a porta junto à dobradiça, gira bem na borda e não gira nada quando aponta para a dobradiça."
+    },
+    "fonte": "L4-F2-C11 p. 67–68"
+   },
+   {
+    "tipo": "formula",
+    "titulo": "Torque e condições de equilíbrio",
+    "texto": "Torque é força vezes braço: a distância perpendicular do eixo à linha de ação da força. Anti-horário, positivo; horário, negativo. Corpo extenso em equilíbrio: soma das forças zero e soma dos torques zero.",
+    "formula": "M = F \\cdot b \\qquad \\sum \\vec F = \\vec 0 \\quad \\text{e} \\quad \\sum M = 0",
+    "legenda": [
+     "M: torque ou momento (N·m, não joule)",
+     "F: força (N)",
+     "b: braço, distância perpendicular do eixo à linha de ação (m)"
+    ],
+    "visual": {
+     "tipo": "animacao",
+     "descricao": "Chave de roda presa a um parafuso, com uma força de 100 N na ponta, a 0,4 m do eixo.",
+     "movimento": [
+      "1. Força perpendicular à chave: braço de 0,4 m e torque de 40 N·m, em laranja #F27700.",
+      "2. A força passa a fazer 30° com a chave: a linha de ação fica tracejada e o braço perpendicular encolhe para 0,2 m; torque de 20 N·m.",
+      "3. Um cano prolonga a chave até 0,8 m: com a força perpendicular, 80 N·m."
+     ],
+     "alt": "Chave de roda com força de 100 newtons: perpendicular a 0,4 metro dá 40 newtons-metro; inclinada a 30 graus, o braço cai para 0,2 metro e o torque para 20; com cano de 0,8 metro, 80."
+    },
+    "fonte": "L4-F2-C11 p. 68–72"
+   },
+   {
+    "tipo": "conceito",
+    "titulo": "Alavancas: no corpo e nas ferramentas",
+    "texto": "Alavanca: força potente vezes seu braço igual à resistente vezes o dela. Interfixa: apoio no meio (tesoura, cabeça). Inter-resistente: carga no meio (quebra-nozes, pé na ponta). Interpotente: força no meio (pinça, bíceps).",
+    "destaque": "Interpotente perde força e ganha velocidade.",
+    "formula": "\\begin{gathered} F_P \\cdot b_P = F_R \\cdot b_R \\\\ \\Rightarrow F_{bíceps} = \\frac{50 \\cdot 36}{4} = 450\\ \\text{N} \\end{gathered}",
+    "visual": {
+     "tipo": "animacao",
+     "descricao": "Antebraço com o cotovelo como apoio, o bíceps preso a 4 cm dele e um peso de 50 N na mão, a 36 cm.",
+     "movimento": [
+      "1. Apoio no cotovelo (cinza), carga na mão e força do bíceps entre os dois, em laranja #F27700.",
+      "2. A seta do bíceps cresce até 450 N, nove vezes o peso.",
+      "3. O antebraço sobe: a mão percorre um arco grande, enquanto o ponto do bíceps quase não se move.",
+      "4. Troca de cena: cabeça (interfixa) e pé na ponta (inter-resistente), com as mesmas cores para apoio, força e carga."
+     ],
+     "alt": "Antebraço como alavanca interpotente: com o bíceps a 4 centímetros do cotovelo e 50 newtons na mão a 36 centímetros, o músculo faz 450 newtons."
+    },
+    "fonte": "L4-F2-C11 p. 70 e 92–93"
+   },
+   {
+    "tipo": "conceito",
+    "titulo": "Tombar ou não: a vertical do centro",
+    "texto": "O corpo apoiado fica de pé enquanto a vertical do centro de gravidade cai dentro da base. Base larga e centro baixo dão estabilidade. Tirado do lugar: se volta, é estável; se cai, instável; se fica, indiferente.",
+    "visual": {
+     "tipo": "animacao",
+     "descricao": "Dois blocos sobre um plano que inclina devagar: um alto e estreito, outro baixo e largo. Uma linha vertical sai do centro de gravidade de cada um.",
+     "movimento": [
+      "1. O plano inclina; as linhas verticais andam em direção à quina de baixo.",
+      "2. A linha do bloco alto passa da quina primeiro, em laranja #F27700: ele tomba.",
+      "3. O bloco baixo continua de pé.",
+      "4. Cena final: bolinha no fundo de uma concha volta (estável), no topo de uma cúpula rola para longe (instável), no plano fica onde está (indiferente)."
+     ],
+     "alt": "Bloco alto e bloco baixo num plano que inclina: o alto tomba quando a vertical do centro de gravidade passa da quina; ao lado, bolinhas em equilíbrio estável, instável e indiferente."
+    },
+    "fonte": "L4-F2-C11 p. 74–77; L2-F1-C08 p. 81"
+   },
+   {
+    "tipo": "exemplo",
+    "titulo": "Tábua sobre dois apoios",
+    "texto": "Uma tábua homogênea de 3 m e 100 N está apoiada nas pontas A e B. Uma pessoa de 600 N fica a 1 m de A. Quanto cada apoio sustenta?",
+    "destaque": "O apoio mais perto da pessoa segura mais.",
+    "passos": [
+     {
+      "faz": "Torques em relação a A (a normal em A tem braço zero)",
+      "conta": "N_B \\cdot 3 = 100 \\cdot 1{,}5 + 600 \\cdot 1",
+      "mov": "A normal em A some da conta; o peso da tábua entra no meio, a 1,5 m, e o da pessoa, a 1 m."
+     },
+     {
+      "faz": "Multiplica e soma",
+      "conta": "3 \\cdot N_B = 150 + 600 = 750",
+      "mov": "O 150 e o 600 se juntam e viram 750."
+     },
+     {
+      "faz": "Isola a normal em B",
+      "conta": "N_B = \\frac{750}{3} = 250\\ \\text{N}",
+      "mov": "O 3 que multiplica a normal em B atravessa o '=' e vai para baixo do 750, dividindo; aparece 250 N."
+     },
+     {
+      "faz": "Soma das forças verticais: acha a normal em A",
+      "conta": "\\begin{gathered} N_A + 250 = 100 + 600 \\\\ \\Rightarrow\\; N_A = 700 - 250 = 450\\ \\text{N} \\end{gathered}",
+      "mov": "O 100 e o 600 se somam e viram 700; o 250 atravessa o '=' e troca de sinal; 700 − 250 dá 450 N."
+     }
+    ],
+    "visual": {
+     "tipo": "animacao",
+     "descricao": "Tábua horizontal sobre dois apoios, A à esquerda e B à direita, cada um em cima de uma balança.",
+     "movimento": [
+      "1. Só a tábua: cada balança marca 50 N.",
+      "2. A pessoa sobe a 1 m de A: A marca 450 N, em laranja #F27700, e B marca 250 N.",
+      "3. A pessoa caminha até B: a leitura passa de A para B, e a soma fica sempre em 700 N."
+     ],
+     "alt": "Tábua de 3 metros sobre dois apoios com uma pessoa a 1 metro de A: o apoio A sustenta 450 newtons e o B, 250."
+    },
+    "fonte": "L4-F2-C11 p. 73–74 (resolvido 13, com outros números)"
+   },
+   {
+    "tipo": "pegadinha",
+    "titulo": "Soma das forças zero não basta",
+    "texto": "No volante, as mãos fazem forças iguais e opostas: a resultante é zero, mas o volante gira. É o binário, com torque igual à força vezes a distância entre as linhas de ação. Corpo extenso exige torques somando zero.",
+    "destaque": "Ponto material: resultante nula basta. Corpo extenso: confira o torque.",
+    "formula": "M_{binário} = F \\cdot d",
+    "visual": {
+     "tipo": "animacao",
+     "descricao": "Volante de carro visto de frente, com as duas mãos.",
+     "movimento": [
+      "1. A mão esquerda empurra para cima e a direita puxa para baixo, com setas iguais.",
+      "2. O contador 'soma das forças' marca zero, em cinza.",
+      "3. O volante gira sem sair do lugar; o contador de torque marca F·d, diferente de zero, em laranja #F27700."
+     ],
+     "alt": "Volante com duas forças iguais e opostas: a soma das forças é zero, mas o volante gira, porque o torque do binário não é zero."
+    },
+    "fonte": "L4-F2-C11 p. 72"
+   },
+   {
+    "tipo": "na_prova",
+    "titulo": "Como cai na prova",
+    "texto": "Fuvest e Unicamp lideram; o Enem cobrou slackline (2019), polia móvel (2023) e tipos de alavanca (2018). Do básico ao difícil: fios e nós, torque, gangorras, barras biapoiadas, escadas, alavancas do corpo e tombamento.",
+    "destaque": "Medicina adora biomecânica: bíceps, tendão do calcanhar, mandíbula.",
+    "fonte": "L4-F2-C11 (O que as provas cobram), exercícios p. 79–107"
+   },
+   {
+    "tipo": "fixe",
+    "titulo": "Para levar",
+    "texto": "Ponto em equilíbrio: soma das forças em x e em y igual a zero.\nTorque = força × braço perpendicular; corpo extenso pede torques somando zero.\nFica de pé se a vertical do centro de gravidade cai dentro da base.",
+    "fonte": "L4-F2-C11 p. 62–77"
+   }
+  ]
+ },
+ "fontes": [
+  {
+   "chave": "L2-F1-C08",
+   "paginas": "72–128 (teoria p. 73–81; resolvidos p. 82–87; exercícios p. 88–128)"
+  },
+  {
+   "chave": "L3-F1-C09",
+   "paginas": "5–46 (teoria p. 6–10; resolvidos p. 10–14; exercícios p. 14–46)"
+  },
+  {
+   "chave": "L4-F2-C11",
+   "paginas": "58–107 (equilíbrio, torque, alavancas e tombamento p. 62–77 e 92–93; exercícios p. 79–107; centro de massa fica para F05)"
+  }
+ ],
+ "pendencias": [
+  "F03.3: resistência do ar e velocidade limite não têm conteúdo próprio no site; entraram em F03.3 como conceito (base L3-F1-C09 p. 9). O valor k = 0,32 kg/m do paraquedista é didático (escolhido para dar 50 m/s) e aparece no slide como hipotético.",
+  "F03.3: o ABS está no modelo do livro e do Enem (roda que não trava usa atrito estático); os coeficientes 0,8 e 0,5 do slide de abertura são didáticos e aparecem no slide como hipotéticos.",
+  "F03.5: curva sobrelevada, pêndulo cônico, rotor e loop não têm teoria própria no livro (só os resolvidos 8, 9 e 10 e exercícios de L3-F1-C09). Lente A conferiu cada fórmula e conclusão contra fontes externas citadas nos slides (OpenStax College Physics 6.3; Fitzpatrick/UT Austin; Tremblay/Collège Mérici; Monash; UCL) e refez o exemplo do loop para ficar fisicamente coerente.",
+  "F03.5: a página do Revisando 16 (rotor) foi citada como p. 14–16, faixa do Revisando; a ficha não dá a página exata.",
+  "F03.6: o quadro do teorema de Lamy no livro (L4-F2-C11 p. 65) tem erro de digitação; o slide usa a regra correta (cada força dividida pelo seno do ângulo formado pelas outras duas).",
+  "F03.6: centro de massa não entrou (é de F05.4); o centro de gravidade aparece só como ponto de aplicação do peso e na regra de tombamento.",
+  "L3-F1-C09 resolvido 6c: o livro dá 8,8 m/s² para A, mas o certo, com 6 kg, é cerca de 7,3 m/s²; esse resolvido não foi usado nos slides.",
+  "Números de 'na prova' (instituições e anos) vêm da contagem das fichas, não das provas originais.",
+  "F03.5: o resolvido 9b do livro (p. 14) usa no fundo a mesma velocidade do topo (5 m/s), o que só é possível com motor; a revisão não repete isso: o exemplo do loop usa a velocidade do fundo coerente com a conservação de energia.",
+  "Lente B (06/11/2026): fórmulas largas quebradas em linhas para 390 px; ordem de F03.3 ajustada (velocidade limite antes do plano inclinado, para o slide da rampa ficar junto do exemplo da rampa). Frase nova em F03.3 #5 sobre o k; a lente A2 incluiu a densidade do ar, como na ficha (L3-F1-C09 p. 9: k depende da densidade do fluido, da área e da geometria do corpo).",
+  "Lente A2 (06/11/2026): curva de F03.1 #3 virou caso ideal ('se o atrito sumisse'; pista molhada só reduz o atrito); μd < μe marcado 'em geral' em todo o tema (ficha L3-F1-C09 p. 8: 'na maioria dos casos'); animação do loop (F03.5 #7) mostra o descolamento antes do topo, como na física real."
+ ]
+}

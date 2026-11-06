@@ -1,0 +1,185 @@
+/* =====================================================================================================
+   CORREÇÃO DA QUESTÃO EM 4 BLOCOS + RESOLUÇÃO ANIMADA (comando 20; decisão do dono, 05/11/2026)
+   1. Por que eu errei · 2. Resposta correta + a pegadinha · 3. Resolução animada · 4. Por que as outras estão erradas
+   Fontes do guia: explicação em Literata, conta em Caveat sobre o papel do caderno (grade do protótipo), interface em
+   Familjen. Medidas do "Assistir resolução" do protótipo (app-atual/design/materia.css: .ad-assistir, .ad-play2,
+   .bloco.ad-tocando). Carregado depois de tipografia.css.
+   ===================================================================================================== */
+:root, [data-theme='light'] {
+  --cad-marca: #FFE36E; --cad-grade: color-mix(in srgb, #D6E4F0 38%, #FBF7EA); --cad-leg: #5A5F7A;
+}
+[data-theme='dark'] {
+  --cad-marca: rgba(255, 214, 90, .28); --cad-grade: color-mix(in srgb, #2E2C27 45%, #1C1B18); --cad-leg: #B9B3A0;
+}
+
+/* título de cada bloco: Familjen 600 */
+.cor-tit { font-family: var(--fonte); font-weight: 600; font-size: 16px; line-height: 1.3; margin: 0 0 6px; color: var(--tinta); }
+/* explicação longa da correção: Literata 400 · 16,5 / 17 px · 1,6 */
+.cor-expl { font-family: var(--leitura); font-weight: 400; font-size: var(--fs-expl); line-height: 1.6; letter-spacing: 0; overflow-wrap: break-word; }
+.cor-bloco { padding: 16px 18px; border-radius: 12px; min-width: 0; }
+
+/* 1. Por que eu errei */
+.cor-errei { background: var(--errado-bg); }
+.cor-errei .cor-tit { color: var(--errado); }
+
+/* 2. Resposta correta + a pegadinha */
+.cor-resposta { background: var(--certo-bg); }
+.cor-resposta > .cor-tit { color: var(--certo); }
+.cor-resp { font-family: var(--fonte); font-weight: 600; font-size: 17px; line-height: 1.5; color: var(--tinta); overflow-wrap: break-word; }
+.cor-pegadinha { margin-top: 12px; padding: 12px 14px; border-radius: 10px; background: var(--aviso-bg); }
+.cor-pegadinha b { display: block; font-family: var(--fonte); font-weight: 600; font-size: 15px; color: var(--aviso); margin-bottom: 2px; }
+
+/* 4. Por que as outras estão erradas (fechado) */
+.cor-outras { border-top: 1px solid var(--linha); }
+.cor-outras summary { cursor: pointer; font-family: var(--fonte); font-weight: 600; font-size: 15.5px; padding: 13px 0; list-style: none; display: flex; align-items: center; gap: 8px; }
+.cor-outras summary::-webkit-details-marker { display: none; }
+/* seta Lucide (chevron, traço 1,75) no lugar do triângulo do navegador; gira ao abrir */
+.cor-outras summary::before { content: ''; width: 18px; height: 18px; flex: none; background-color: currentColor; transition: transform .2s var(--curva);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m9 18 6-6-6-6'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m9 18 6-6-6-6'/%3E%3C/svg%3E") center / contain no-repeat; }
+.cor-outras[open] summary::before { transform: rotate(90deg); }
+.cor-outras summary:focus-visible { outline: 2px solid var(--c); outline-offset: 2px; border-radius: 6px; }
+.cor-outras ul { list-style: none; padding: 0; margin: 0 0 6px; display: grid; gap: 10px; }
+.cor-outras li { display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 10px; padding: 8px 10px; border-radius: 10px; }
+.cor-outras li b { width: 28px; height: 28px; border-radius: 8px; display: grid; place-items: center; background: var(--malha); font-family: var(--fonte); font-weight: 600; font-size: 14px; }
+
+/* ---------------------------------------------------------------- 3. Resolução animada */
+.ra { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.ra > .cor-tit { margin: 0; }
+/* chamada "Assistir resolução" (protótipo: .ad-assistir) */
+.ra-assistir { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; padding: 16px 18px; border-radius: 14px;
+  background: var(--cad-papel); border: 1px solid var(--cad-borda); }
+.ra-assistir .btn { font-size: 17px; padding: 13px 22px; box-shadow: none; }
+.ra-ass-txt { font-size: 15px; color: var(--cad-leg); }
+.ra-link { margin-left: auto; border: 0; background: none; padding: 6px 2px; font: 500 14px var(--fonte); color: var(--lapis); text-decoration: underline;
+  text-underline-offset: 3px; cursor: pointer; white-space: nowrap; min-height: 32px; }
+.ra-link:hover { color: var(--tinta); }
+/* controles durante a reprodução (protótipo: .ad-play2), presos no alto enquanto a conta rola */
+.ra-ctl { position: relative; z-index: 14; display: flex; align-items: center; flex-wrap: wrap; gap: 8px; padding: 8px 10px; border-radius: 12px;
+  background: color-mix(in srgb, var(--folha) 92%, transparent); border: 1px solid var(--linha); backdrop-filter: blur(6px); }
+.ra-bt { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 36px; min-width: 36px; border: 0; border-radius: 9px; padding: 0 12px;
+  font: 600 14px var(--fonte); cursor: pointer; background: color-mix(in srgb, var(--tinta) 7%, transparent); color: var(--tinta); }
+.ra-bt.ic { padding: 0; width: 36px; }
+.ra-bt:hover:not([disabled]) { background: color-mix(in srgb, var(--tinta) 12%, transparent); }
+.ra-bt[aria-disabled='true'] { opacity: .4; cursor: default; }
+.ra-bt.vel { font-variant-numeric: tabular-nums; min-width: 48px; padding: 0 8px; }
+.ra-bt:focus-visible, .ra-link:focus-visible, .ra-assistir .btn:focus-visible { outline: 2px solid var(--c); outline-offset: 2px; }
+.ra-pp { font-size: 14px; color: var(--lapis); font-variant-numeric: tabular-nums; margin-left: auto; }
+.ra-ctl .ra-bt:last-child { margin-left: 0; }
+
+/* o caderno: papel creme quadriculado (protótipo: .bloco.ad-tocando), um passo embaixo do outro */
+.ra-folha { position: relative; border: 1px solid var(--cad-borda); border-radius: 14px; padding: 6px 18px 14px;
+  background-color: var(--cad-papel); background-image: linear-gradient(var(--cad-grade) 1px, transparent 1px), linear-gradient(90deg, var(--cad-grade) 1px, transparent 1px);
+  background-size: 24px 24px; background-position: -1px -1px; overflow: hidden; min-width: 0; }
+.ra-folha.espera { display: none; }
+.ra-fantasmas { position: absolute; inset: 0; pointer-events: none; z-index: 2; }
+.ra-fantasma { z-index: 2; }
+.ra-passos { list-style: none; margin: 0; padding: 0; }
+.ra-passo { display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 12px; padding: 12px 0; }
+.ra-passo[hidden] { display: none; }
+.ra-passos.de-quadro .ra-passo { grid-template-columns: minmax(0, 1fr); padding: 6px 0; }
+.ra-passo + .ra-passo { border-top: 1px dashed color-mix(in srgb, var(--cad-tinta) 18%, transparent); }
+.ra-passos.de-quadro .ra-passo + .ra-passo { border-top: 0; }
+.ra-n { width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; margin-top: 1px; font: 600 14px var(--fonte);
+  color: var(--cad-tinta); border: 1.5px solid color-mix(in srgb, var(--cad-tinta) 40%, transparent); font-variant-numeric: tabular-nums; }
+.ra-corpo { min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+.ra-faz { display: block; font: 600 16px/1.35 var(--fonte); color: var(--cad-tinta); margin-top: 3px; }
+.ra-lin { display: flex; flex-wrap: wrap; align-items: baseline; column-gap: 14px; min-width: 0; }
+.ra-nota { font-size: 14px; line-height: 1.4; color: var(--cad-leg); }
+.ra-porque { font-family: var(--leitura); font-weight: 400; font-size: var(--fs-expl); line-height: 1.6; color: var(--cad-leg); margin-top: 2px; }
+
+/* a conta à mão: Caveat 500 · 21 / 24 px; cada termo é uma peça que pode viajar */
+.ra-linha { margin: 0; min-width: 0; max-width: 100%; }
+.ra-linha.conta { font-family: var(--mao); font-weight: 500; font-size: var(--fs-mao-grande); line-height: 1.5; color: var(--cad-tinta);
+  font-feature-settings: 'frac' 0; font-variant-numeric: normal; }
+/* pedaço que não quebra (só quebra depois de seta, vírgula, dois-pontos, e antes de "=" numa igualdade encadeada) */
+.ra-u { white-space: nowrap; }
+.ra-t { display: inline-block; position: relative; white-space: pre; will-change: transform; }
+.ra-t .ra-st { display: inline-block; position: relative; white-space: pre; }
+.ra-esp { display: inline-block; white-space: pre; }
+.ra-t.op { padding: 0 .02em; }
+.ra-t.frac { display: inline-flex; vertical-align: middle; }
+.ra-t.frac > span { position: relative; }
+/* texto (trecho, frase): Familjen, como a "citação" do passo */
+.ra-linha.texto { font-family: var(--fonte); font-weight: 400; font-size: var(--fs-texto); line-height: 1.55; color: var(--tinta); overflow-wrap: break-word;
+  background: color-mix(in srgb, var(--folha) 70%, transparent); border-left: 3px solid color-mix(in srgb, var(--t) 40%, var(--linha)); border-radius: 0 8px 8px 0; padding: 6px 12px; margin: 2px 0; }
+/* marca-texto: o resultado da conta ou o termo-chave do passo */
+.ra-marca { background-image: linear-gradient(transparent 56%, var(--cad-marca) 56%, var(--cad-marca) 92%, transparent 92%); background-repeat: no-repeat;
+  background-size: 100% 100%; -webkit-box-decoration-break: clone; box-decoration-break: clone; color: inherit; background-color: transparent; }
+mark.ra-marca { padding: 0 .12em; }
+/* fração marcada: o marca-texto cobre a altura toda (numerador e denominador) */
+.ra-t.frac.ra-marca { background-image: linear-gradient(transparent 4%, var(--cad-marca) 4%, var(--cad-marca) 96%, transparent 96%); border-radius: 3px; }
+/* risco de caneta sobre o que se cancela */
+.ra-risco { position: absolute; left: -2px; right: -2px; top: 52%; height: 2px; border-radius: 2px; background: var(--cad-caneta); transform: rotate(-12deg); transform-origin: 0 50%; pointer-events: none; }
+
+@media (min-width: 900px) {
+  .ra-folha { padding: 8px 22px 16px; }
+}
+@media (max-width: 480px) {
+  .ra-folha { padding: 4px 12px 12px; }
+  .ra-passo { grid-template-columns: 26px minmax(0, 1fr); gap: 10px; }
+  .ra-n { width: 26px; height: 26px; font-size: 13px; }
+  .ra-assistir { padding: 14px; }
+  .ra-link { margin-left: 0; }
+  .ra-linha.conta { font-size: var(--fs-mao); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ra-t { will-change: auto; }
+}
+
+/* ---------------------------------------------------------------- comando 20, rodada 2 */
+/* a barra presa (ui/ResolucaoAnimada.tsx prende logo abaixo da barra da questão) ganha sombra para se separar da conta */
+.ra-ctl.presa { box-shadow: var(--sombra-alta); background: color-mix(in srgb, var(--folha) 96%, transparent); }
+.ra-ctl-lugar { height: 0; margin: 0 !important; }
+/* expoente e índice de verdade (logica/notacao.ts): "10^−2", "V_R", "H2SO4", "H+" */
+.nt-sup, .nt-sub { font-size: .66em; line-height: 0; position: relative; vertical-align: baseline; }
+.nt-sup { top: -.62em; }
+.nt-sub { top: .3em; }
+/* sinais que a Caveat não tem, desenhados no mesmo traço da caneta (ui/maoGlifos.tsx) */
+.mao-g { display: inline-block; height: 1em; vertical-align: -.16em; overflow: visible; }
+.mao-g path { fill: none; stroke: currentColor; stroke-width: 7; stroke-linecap: round; stroke-linejoin: round; }
+/* o que voa leva um halo do papel: não se mistura com o texto por onde passa */
+.ra-fantasma { z-index: 2; border-radius: 4px; background: var(--cad-papel); box-shadow: 0 0 0 3px var(--cad-papel); }
+.ra-fantasma .ra-risco { display: none; }
+/* fração dentro de texto corrido não abre a entrelinha (auditoria B5) */
+.cor-expl .frac, .cor-resp .frac, .ra-porque .frac, .ra-nota .frac, .ra-faz .frac, .ra-linha.texto .frac, .cor-outras .frac {
+  font-size: .8em; line-height: 1.02; vertical-align: middle; margin-block: -.55em; }
+
+/* ---- processo desenhado (Biologia, Química, Física): fluxo, reação, cadeia, pares, contraste, etapas */
+.ra-linha.diag { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 4px; background: none; border: 0; padding: 4px 0; }
+.ra-linha.diag.texto { font-family: var(--fonte); font-size: var(--fs-texto); line-height: 1.45; color: var(--tinta); }
+.dg-item, .dg-valor, .dg-rotulo { position: relative; display: inline-block; max-width: 100%; overflow-wrap: break-word; border-radius: 9px; }
+.dg-item, .dg-valor { padding: 4px 10px; border: 1.5px solid color-mix(in srgb, var(--cad-tinta) 32%, transparent);
+  background-color: color-mix(in srgb, var(--cad-papel) 80%, var(--folha)); }
+.ra-linha.diag.conta .dg-item { border-style: dashed; padding: 0 8px; }
+.dg-rotulo { padding: 4px 2px 4px 0; color: var(--cad-leg); font-weight: 600; }
+.dg-seta { display: inline-flex; align-items: center; width: 34px; height: 1.2em; flex: none; color: var(--cad-caneta); }
+.dg-seta svg { width: 34px; height: 14px; overflow: visible; }
+.dg-seta path { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 60; stroke-dashoffset: 0; }
+.dg-mais, .dg-vs { color: var(--cad-caneta); font-weight: 600; padding: 0 2px; white-space: pre; }
+.dg-liga { color: var(--cad-caneta); display: inline-block; transform-origin: 0 50%; }
+.dg-div { white-space: pre; }
+.dg-pares .dg-div { width: 10px; }
+.dg-chave { background-image: linear-gradient(var(--cad-marca), var(--cad-marca)); background-repeat: no-repeat; background-size: 100% 100%;
+  border-color: color-mix(in srgb, var(--cad-caneta) 45%, transparent); }
+.ra-linha.diag.conta.dg-cadeia { gap: 0; }
+.dg-cadeia .dg-item { border: 0; background: none; padding: 0 1px; }
+.ra-linha.diag.texto.dg-cadeia .dg-item { border: 1.5px solid color-mix(in srgb, var(--cad-tinta) 32%, transparent); padding: 2px 8px; background-color: color-mix(in srgb, var(--cad-papel) 80%, var(--folha)); }
+.ra-linha.diag.texto.dg-cadeia { gap: 4px 2px; }
+/* etapas: uma linha do tempo, cada etapa com o seu ponto e o fio que a liga à anterior */
+.ra-linha.dg-etapas { display: flex; flex-direction: column; align-items: stretch; gap: 0; padding: 2px 0 2px 2px; }
+.dg-etapas .dg-div { display: none; }
+.dg-etapas .dg-item { display: block; border: 0; background-color: transparent; padding: 3px 8px 3px 22px; border-radius: 8px; }
+.dg-etapas .dg-item::before { content: ''; position: absolute; left: 4px; top: .78em; width: 9px; height: 9px; border-radius: 50%; background: var(--cad-tinta); }
+.dg-etapas .dg-item::after { content: ''; position: absolute; left: 8px; top: -.5em; height: calc(.5em + .78em); width: 1.5px; background: color-mix(in srgb, var(--cad-tinta) 35%, transparent); transform-origin: 50% 0; }
+.dg-etapas .dg-item:first-child::after { display: none; }
+.dg-etapas .dg-item.dg-chave { background-image: none; }
+.dg-contraste .dg-item[data-lado='0'] { border-color: color-mix(in srgb, var(--cad-tinta) 45%, transparent); }
+.dg-contraste .dg-item[data-lado='1'] { border-color: color-mix(in srgb, var(--cad-caneta) 45%, transparent); }
+@media (max-width: 480px) {
+  .ra-bt .rot { display: none; }
+  .ra-bt:first-child { padding: 0; width: 36px; }
+  .ra-pp .longo { display: none; }
+  .ra-ctl { gap: 6px; padding: 6px 8px; flex-wrap: nowrap; }
+}
+@media (min-width: 481px) { .ra-pp .curto { display: none; } }
