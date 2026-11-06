@@ -1,5 +1,5 @@
 import { Link, useParams } from 'react-router-dom';
-import { useRef } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { useMateria, type MateriaCarregada } from '../dados/conteudo';
 import { MATERIAS, materia as infoMateria } from '../dados/materias';
 import { useEstado, useMateriaEstado } from '../estado/loja';
@@ -28,27 +28,48 @@ export function ListaMaterias() {
   );
 }
 
-/** Faixa de temas: sempre no topo da matéria (vocabulário do produto). */
-export function FaixaTemas({ mc, s, atual }: { mc: MateriaCarregada; s: EstadoMateria; atual?: string }) {
+/** Cabeçalho de toda tela da matéria (sistema do protótipo): nome em Dancing Script na cor da matéria e a linha de apoio. */
+export function CabMateria({ m, nome, sub, titulo = true, children }: { m: MateriaId; nome: string; sub: string; titulo?: boolean; children?: ReactNode }) {
+  return (
+    <div className="mat-cab">
+      <div className="mat-cab-txt">
+        {titulo ? <h1 className="tit-mat">{nome}</h1> : <Link to={`/m/${m}`} className="tit-mat">{nome}</Link>}
+        <p className="mat-sub num">{sub}</p>
+      </div>
+      {children}
+    </div>
+  );
+}
+
+/** Faixa de temas: sempre no topo da matéria (vocabulário do produto). Compacta dentro de um tema ou conteúdo. */
+export function FaixaTemas({ mc, s, atual, compacta = false }: { mc: MateriaCarregada; s: EstadoMateria; atual?: string; compacta?: boolean }) {
   const rolo = useRef<HTMLDivElement>(null);
+  const [bordas, setBordas] = useState({ e: false, d: false });
+  const mede = () => { const r = rolo.current; if (r) setBordas({ e: r.scrollLeft > 4, d: r.scrollLeft + r.clientWidth < r.scrollWidth - 4 }); };
+  useEffect(() => { mede(); addEventListener('resize', mede); return () => removeEventListener('resize', mede); }, [mc.id]);
+  useEffect(() => {
+    const el = rolo.current?.querySelector<HTMLElement>('.ft-item.atual');
+    if (el && rolo.current) rolo.current.scrollLeft = el.offsetLeft - rolo.current.clientWidth / 2 + el.clientWidth / 2;
+    mede();
+  }, [atual]);
   const anda = (d: number) => rolo.current?.scrollBy({ left: d * rolo.current.clientWidth * 0.8, behavior: 'smooth' });
   return (
-    <nav className="faixa-temas" aria-label="Temas">
-      <button className="ft-seta esq btn-ic" onClick={() => anda(-1)} aria-label="Temas anteriores"><Icone nome="esquerda" /></button>
-      <div className="ft-rolo" ref={rolo}>
+    <nav className={'faixa-temas' + (compacta ? ' compacta' : '') + (bordas.e ? ' fe' : '') + (bordas.d ? ' fd' : '')} aria-label="Temas">
+      {bordas.e && <button className="ft-seta esq" onClick={() => anda(-1)} aria-label="Temas anteriores"><Icone nome="esquerda" /></button>}
+      <div className="ft-rolo" ref={rolo} onScroll={mede}>
         {mc.conteudo.modulos.map((mod) => {
           const qs = mc.banco.filter((q) => q.modulo === mod.id);
           const p = progressoEscada(qs, s);
           return (
             <Link key={mod.id} to={`/m/${mc.id}/tema/${mod.id}`} className={'ft-item' + (atual === mod.id ? ' atual' : '')} aria-current={atual === mod.id ? 'page' : undefined}>
-              <span className="ft-ic"><Ic3D m={mc.id} chave={mod.id} tam={64} /></span>
+              <span className="ft-ic"><Ic3D m={mc.id} chave={mod.id} tam={compacta ? 72 : 112} /></span>
               <span className="ft-nome">{mod.nome}</span>
               <Barra valor={p.total ? p.feitas / p.total : 0} rotulo={`Progresso em ${mod.nome}`} />
             </Link>
           );
         })}
       </div>
-      <button className="ft-seta dir btn-ic" onClick={() => anda(1)} aria-label="Próximos temas"><Icone nome="direita" /></button>
+      {bordas.d && <button className="ft-seta dir" onClick={() => anda(1)} aria-label="Próximos temas"><Icone nome="direita" /></button>}
     </nav>
   );
 }
