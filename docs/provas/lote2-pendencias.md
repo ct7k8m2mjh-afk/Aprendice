@@ -7,7 +7,8 @@ Só entram edições com caderno + gabarito oficial e download livre; anulada ou
 
 | Prova | Questões válidas | Observação |
 |---|---|---|
-| FMABC 2020 a 2025 | ver `app/conteudo-fonte/provas/fmabc-*` | Cadernos e gabaritos oficiais da Vunesp publicados pela FMABC ("N" no gabarito = anulada). |
+| FMABC 2020, 2021, 2022, 2023, 2024 | 80 cada | Cadernos e gabaritos oficiais da Vunesp publicados pela FMABC. |
+| FMABC 2025 | 78 | Questões 65 e 66 anuladas ("N" no gabarito oficial). |
 
 ## Baixado, mas não integrado nesta rodada (motivo técnico)
 
