@@ -2,12 +2,15 @@ import type { Letra, Questao, Resolucao } from '../dados/tipos';
 import { Icone } from './Icone';
 import { QuadroAnimado } from './QuadroAnimado';
 import { comFracoes } from './Fracao';
-import { contaEhTexto } from '../logica/fracao';
+import { contaEhTexto, materiaDoCodigo } from '../logica/fracao';
+import { materiaDaArea } from '../dados/provasCompletas';
 
 /** Resolução comentada. Princípio 5: começa pela alternativa que o aluno marcou. */
 export function ResolucaoView({ q, r, marcada }: { q: Questao; r: Resolucao | null | undefined; marcada: Letra | null }) {
   const acertou = marcada === q.gab;
   const erradaTxt = marcada && !acertou ? r?.erradas?.[marcada] : null;
+  // a matéria decide se a "conta" de um passo é conta (letra à mão) ou texto (Português, Inglês, humanas)
+  const mat = materiaDoCodigo(q.modulo) || materiaDoCodigo(q.sub) || materiaDaArea(q.conceito);
   return (
     <section className={'resolucao' + (acertou ? ' ok' : marcada ? ' err' : '')} aria-labelledby="res-tit">
       <header className="res-cab">
@@ -38,7 +41,7 @@ export function ResolucaoView({ q, r, marcada }: { q: Questao; r: Resolucao | nu
             <details className="res-antes">
               <summary>O que você precisa saber antes</summary>
               <p>{comFracoes(r.antes.texto)}</p>
-              {r.antes.formulas && r.antes.formulas.length > 0 && <ul className="caderno">{r.antes.formulas.map((f, i) => <li key={i} className={contaEhTexto(f) ? 'texto' : undefined}>{comFracoes(f)}</li>)}</ul>}
+              {r.antes.formulas && r.antes.formulas.length > 0 && <ul className="caderno">{r.antes.formulas.map((f, i) => <li key={i} className={contaEhTexto(f, mat) ? 'texto' : undefined}>{comFracoes(f)}</li>)}</ul>}
               {r.antes.simbolos && r.antes.simbolos.length > 0 && (
                 <dl className="simbolos">{r.antes.simbolos.map(([t, d], i) => <div key={i}><dt>{t}</dt><dd>{d}</dd></div>)}</dl>
               )}
@@ -52,7 +55,7 @@ export function ResolucaoView({ q, r, marcada }: { q: Questao; r: Resolucao | nu
                   <div>
                     <b>{p.faz}</b>
                     {/* conta à mão (Caveat) só quando é conta; trecho citado ou frase vai na letra da interface (guia, p. 5) */}
-                    {p.conta && (contaEhTexto(p.conta) ? <p className="conta citacao">{p.conta}</p> : <p className="conta">{comFracoes(p.conta)}</p>)}
+                    {p.conta && <p className={contaEhTexto(p.conta, mat) ? 'conta citacao' : 'conta'}>{comFracoes(p.conta)}</p>}
                     {p.porque && <p className="porque">{comFracoes(p.porque)}</p>}
                   </div>
                 </li>

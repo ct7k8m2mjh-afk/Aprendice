@@ -9,7 +9,7 @@ import { filaDe, emDias } from '../logica/revisao';
 import { Barra, Carregando, Ic3D, cap, plural, useTitulo } from '../ui/comum';
 import { Icone } from '../ui/Icone';
 import { CartaoTeoriaView } from './Tema';
-import { CabMateria, FaixaTemas } from './Materia';
+import { CabMateria, subMateria, FaixaTemas } from './Materia';
 import type { MateriaId } from '../dados/tipos';
 
 /**
@@ -35,7 +35,7 @@ export function Escada() {
 
   return (
     <div className={`conteudo m-${m}`}>
-      <CabMateria m={m} nome={infoMateria(m)?.nome || ''} sub={`${plural(mc.conteudo.modulos.length, 'tema', 'temas')} · questões reais, todas com a fonte`} titulo={false} />
+      <CabMateria m={m} nome={infoMateria(m)?.nome || ''} sub={subMateria(mc.conteudo.modulos.length, mc.banco.length === 0)} titulo={false} />
       <FaixaTemas mc={mc} s={s} atual={mod.id} compacta />
       <div className="pag-estreita">
       <nav className="migalhas" aria-label="Você está em">

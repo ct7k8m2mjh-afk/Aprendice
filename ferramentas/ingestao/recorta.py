@@ -169,7 +169,14 @@ def faixas_da_pagina(pg, cfg):
     dentro_fig = lambda L: any(f.contains(pymupdf.Rect(L['bbox'])) for f in figuras)
     largas = sorted(L['bbox'][1:4:2] for L in ls if L['bbox'][0] < meio - 25 and L['bbox'][2] > meio + 25)
     largas += sorted((f.y0, f.y1) for f in figuras)
-    direita = sorted((L for L in ls if L['bbox'][0] > meio - 12 and not dentro_fig(L)), key=lambda L: L['bbox'][1])
+    # fios horizontais de largura total (linha sob "Questão 27") também separam faixas
+    largas += [(d['rect'].y0, d['rect'].y1) for d in pg.get_drawings()
+               if d['rect'].height < 3 and d['rect'].x0 < meio - 60 and d['rect'].x1 > meio + 60 and topo <= d['rect'].y0 <= base]
+    largas.sort()
+    forte_ = lambda L: re.match(cfg['ancora'], L['t']) or any(re.search(rx, L['t']) for rx in cfg.get('suporte', []))
+    # linha da metade direita; âncora/instrução recuada a partir de 30% da largura (coluna esquerda estreita) também
+    direita = sorted((L for L in ls if (L['bbox'][0] > meio - 12 or (L['bbox'][0] > W * 0.3 and L['bbox'][2] < meio + 25 and forte_(L)))
+                      and not dentro_fig(L)), key=lambda L: L['bbox'][1])
     # agrupa as linhas da direita que não têm linha larga entre elas
     grupos = []
     for L in direita:
@@ -179,23 +186,35 @@ def faixas_da_pagina(pg, cfg):
             grupos[-1]['ls'].append(L)
         else:
             grupos.append({'y0': y0, 'y1': y1, 'ls': [L]})
+    # linhas um pouco à esquerda do meio, coladas às de um grupo (alternativas da coluna direita estreita)
+    for g in grupos:
+        xs = min(L['bbox'][0] for L in g['ls'])
+        if xs < meio - 12:
+            for L in ls:
+                if abs(L['bbox'][0] - xs) < 4 and g['y0'] - 1 <= L['bbox'][1] and L not in g['ls'] and not dentro_fig(L) \
+                        and not any(g['y0'] <= a and b <= L['bbox'][1] for a, b in largas):
+                    g['y1'] = max(g['y1'], L['bbox'][3])
+                    g['ls'].append(L)
     faixas = []
     for g in grupos:
-        forte = any(re.match(cfg['ancora'], L['t']) or any(re.search(rx, L['t']) for rx in cfg.get('suporte', [])) for L in g['ls'])
+        forte = any(forte_(L) for L in g['ls'])
         longas = sum(1 for L in g['ls'] if len(L['t']) >= 20)
         if not (forte or longas >= 2):
             continue
         a = max([b for a_, b in largas if b <= g['y0'] + 1] + [topo])
-        b = min([a_ for a_, b_ in largas if a_ >= g['y1'] - 1] + [base])
+        # âncora na margem esquerda abaixo do grupo ("Questão 47" logo acima do fio) também fecha a faixa
+        b = min([a_ for a_, b_ in largas if a_ >= g['y1'] - 1] + [base]
+                + [L['bbox'][1] - 1 for L in ls if L['bbox'][1] >= g['y1'] - 1 and L['bbox'][0] < meio - 12 and forte_(L)])
+        xs = min(L['bbox'][0] for L in g['ls'])
+        div = min(cfg.get('divisa', meio - 2), xs - 8)
         if faixas and a <= faixas[-1][1]:
-            faixas[-1] = (faixas[-1][0], max(b, faixas[-1][1]))
+            faixas[-1] = (faixas[-1][0], max(b, faixas[-1][1]), min(div, faixas[-1][2]))
         else:
-            faixas.append((a, b))
+            faixas.append((a, b, div))
     cols, ys, y = [], [], topo
-    for a, b in faixas:
+    for a, b, div in faixas:
         if a - y > 2:
             cols.append((m, W - m)); ys.append((y, a))
-        div = cfg.get('divisa', meio - 2)
         cols += [(m, div), (div, W - m)]; ys += [(a, b), (a, b)]
         y = b
     if base - y > 2 or not cols:

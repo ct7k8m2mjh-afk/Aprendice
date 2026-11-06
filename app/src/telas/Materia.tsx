@@ -28,6 +28,12 @@ export function ListaMaterias() {
   );
 }
 
+/** Linha de apoio do cabeçalho: número de temas e, se a matéria ainda não tem questões, "questões em preparação"
+ *  (o mesmo texto em todas as telas da matéria; nunca "questões reais" numa matéria sem questão). */
+export function subMateria(nTemas: number, vazia: boolean): string {
+  return `${plural(nTemas, 'tema', 'temas')} · ${vazia ? 'questões em preparação' : 'questões reais, todas com a fonte'}`;
+}
+
 /** Cabeçalho de toda tela da matéria (sistema do protótipo): nome em Dancing Script na cor da matéria e a linha de apoio. */
 export function CabMateria({ m, nome, sub, titulo = true, children }: { m: MateriaId; nome: string; sub: string; titulo?: boolean; children?: ReactNode }) {
   return (
@@ -133,7 +139,7 @@ export function Materia() {
 
   return (
     <div className={`conteudo m-${m}`}>
-      <CabMateria m={m} nome={info.nome} sub={`${plural(mc.conteudo.modulos.length, 'tema', 'temas')} · ${vazia ? 'questões em preparação' : 'questões reais, todas com a fonte'}`}>
+      <CabMateria m={m} nome={info.nome} sub={subMateria(mc.conteudo.modulos.length, vazia)}>
         {r.feitas > 0 && <div className="mat-anel"><Anel valor={r.acertos / r.feitas} tam={58} espessura={6}>{acertoPct}%</Anel><span className="fraco">de acerto<br />{plural(r.feitas, 'questão feita', 'questões feitas')}</span></div>}
       </CabMateria>
 

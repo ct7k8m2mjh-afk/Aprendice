@@ -9,7 +9,7 @@ import { Barra, Carregando, Ic3D, cap, plural, useTitulo } from '../ui/comum';
 import { Icone, type NomeIcone } from '../ui/Icone';
 import { BotaoTelaCheia } from '../ui/QuestaoCartao';
 import { FlashcardView, type Nota } from '../ui/Cartoes';
-import { CabMateria } from './Materia';
+import { CabMateria, subMateria } from './Materia';
 import type { Flashcard, MateriaId } from '../dados/tipos';
 
 const N_SESSAO = 20;
@@ -69,7 +69,7 @@ export function Flashcards({ sessao = false }: { sessao?: boolean }) {
     const escolheArea = (a: string) => { setArea(a); setMod(''); };
     return (
       <div className={`conteudo m-${m}`}>
-        <CabMateria m={m} nome={info.nome} titulo={false} sub={`${plural(mc.conteudo.modulos.length, 'tema', 'temas')} · questões reais, todas com a fonte`} />
+        <CabMateria m={m} nome={info.nome} titulo={false} sub={subMateria(mc.conteudo.modulos.length, mc.banco.length === 0)} />
         <section className="tp-capa fl-capa" aria-labelledby="fl-tit">
           <div className="fl-capa-g">
             <div className="fl-capa-txt">
