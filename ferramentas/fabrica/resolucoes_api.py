@@ -84,10 +84,13 @@ ADAPTA = """
 - Não há arquivos nem ferramenta Read: o print fiel da questão vem ANEXADO como imagem, junto com o texto extraído
   do PDF oficial (o texto pode ter lixo de diagramação; o print manda).
 - Responda SOMENTE com um objeto JSON válido, dentro de um bloco ```json ... ```, sem texto fora do bloco.
-- Fração sempre empilhada (CLAUDE.md, regra que não se quebra): toda divisão entre números ou expressões é escrita
-  \\frac{numerador}{denominador} — em `texto`, `formulas`, `passos`, `resposta`, `checagem`, `erradas`, `essencial`,
-  `caminhos` e `quadro`. PROIBIDO "1/6", "119 ÷ 6", "a/b" ou "(soma) ÷ (quantidade)" na mesma linha.
-  No JSON, a barra invertida vai dobrada: "\\\\frac{119}{6}".
+- Fração (CLAUDE.md: sempre empilhada na tela): escreva "numerador/denominador" ("119/6", "(60 + 64)/2", "x/(x + 1)")
+  ou "a ÷ b"; o site desenha a fração empilhada a partir disso. Nunca use LaTeX (\\frac, \\cdot, \\text) em nenhum
+  campo, nem no `quadro`: use ×, ·, ≈, ², ³, "10^−3", "R_2026", como no caderno.
+- Tela de celular (390 px): `passos[].conta` e `quadro[].linha` são escritos À MÃO pelo site e NÃO quebram linha.
+  Cada um cabe em ~30 caracteres: conta curta ("C=O no anel → cetona"); frase vai no `porque`; conta longa vira duas
+  linhas ("m = 1,4 × 2000" / "m = 2800 mg"). Lista de itens: "Composto 1: fenol, ácido" em linhas separadas.
+- Se o JSON trouxer "nota_conferencia", ela vem da conferência na tela: resolva exatamente o que ela aponta.
 - Questão Aprendice NÃO é o caso aqui: esta é questão REAL de prova; nunca altere o enunciado.
 """
 
@@ -136,7 +139,9 @@ def pedido(etapa, q, prova, atual):
     if etapa == 'resolvedor':
         conteudo.append({'type': 'text', 'text': (
             'Resolva esta questão e escreva a resolução no formato do BRIEF. O gabarito oficial NÃO é mostrado nesta '
-            'etapa: preencha "resposta_resolvedor" com a letra que VOCÊ concluiu; deixe "confere" como null e '
+            'etapa. ORDEM DOS CAMPOS: escreva primeiro "resolucao" (e "quadro", "caminhos", "visual"), e só no FIM do '
+            'objeto o campo "resposta_resolvedor", com a mesma letra da sua frase "resposta" (nunca anote a letra antes '
+            'de resolver). Deixe "confere" como null e '
             '"divergencia" vazio (o programa compara com o gabarito publicado). Em "erradas", comente TODAS as letras '
             'diferentes da sua resposta.')})
     elif etapa in ('fatos', 'fatos-volta'):
@@ -217,11 +222,48 @@ def valida(r, gab, alts):
     # fração em linha é proibida (CLAUDE.md): procura "3/5" em textos e no quadro
     tudo = json.dumps({'resolucao': res, 'quadro': r.get('quadro')}, ensure_ascii=False)
     tudo = re.sub(r'https?://\S+', '', tudo)
-    if re.search(r'(?<![\w/])\d+\s*/\s*\d+(?![\w/])', tudo) or '÷' in tudo:
-        erros.append('fração escrita em linha (use \\frac{}{})')
+    sobra = re.findall(r'\\\\[a-zA-Z]+', tudo)
+    if sobra:
+        erros.append('LaTeX sobrando: ' + ', '.join(sorted(set(sobra))) + ' (o site lê texto com "a/b", ×, ·, ^)')
     if r.get('materia') in ('bio', 'qui') and not (r.get('visual') or {}).get('cabe'):
         erros.append('Biologia/Química sem visual (cabe: true)')
     return erros
+
+
+# o resto do LaTeX que aparece nos rascunhos vira a notação de texto que o site já desenha (Fracao.tsx/notacao.ts)
+LATEX_SIMPLES = [
+    (r'\\text\s*\{([^{}]*)\}', r'\1'), (r'\\mathrm\s*\{([^{}]*)\}', r'\1'),
+    (r'\\times', '×'), (r'\\cdot', '·'), (r'\\approx', '≈'), (r'\\neq', '≠'), (r'\\leq?', '≤'), (r'\\geq?', '≥'),
+    (r'\\Rightarrow', '⇒'), (r'\\rightarrow|\\to\b', '→'), (r'\\Delta', 'Δ'), (r'\\pi', 'π'), (r'\\%', '%'),
+    (r'\\quad|\\qquad', '   '), (r'\\[ ,;:!]', ' '), (r'\{,\}', ','), (r'\^\{([^{}]*)\}', r'^\1'), (r'_\{([^{}]*)\}', r'_\1'),
+    (r'\\left|\\right', ''), (r'  +', ' '),
+]
+
+
+def _frac_simples(t):
+    m = re.search(r'\\[dt]?frac\s*\{([^{}]*)\}\s*\{([^{}]*)\}', t)
+    if not m:
+        return t, False
+    def emb(x):
+        x = x.strip()
+        return x if re.fullmatch(r'[\w,.√²³π°%-]+', x) else f'({x})'
+    return t[:m.start()] + emb(m.group(1)) + '/' + emb(m.group(2)) + t[m.end():], True
+
+
+def sem_latex_frac(v):
+    """\\frac{a}{b} → a/b (formato que o site empilha); de dentro para fora; o resto do texto não muda."""
+    if isinstance(v, str):
+        for a, b in LATEX_SIMPLES:
+            v = re.sub(a, b, v)
+        mudou = True
+        while mudou:
+            v, mudou = _frac_simples(v)
+        return v
+    if isinstance(v, list):
+        return [sem_latex_frac(x) for x in v]
+    if isinstance(v, dict):
+        return {k: sem_latex_frac(x) for k, x in v.items()}
+    return v
 
 
 def custo(msg):
@@ -260,6 +302,21 @@ def seleciona(lote, prova_id, nums):
           ', '.join(f"{q['n']}({q['materia']},n{q['nivel']})" for q in sel))
 
 
+def volta(lote, origem, etapa, notas):
+    """Novo lote que reaproveita a resolução de <origem> e roda de <etapa> em diante, com a nota da conferência."""
+    eo = ler_json(os.path.join(pasta(origem), 'estado.json'))
+    est = {'lote': lote, 'prova': eo['prova'], 'criado': datetime.date.today().isoformat(), 'origem': origem,
+           'questoes': list(notas), 'etapas': {}, 'gasto_usd': 0.0}
+    for e in ETAPAS[:ETAPAS.index(etapa)]:
+        est['etapas'][e] = {'fim': 'reaproveitada de ' + origem}
+    for i, nota in notas.items():
+        r = ler_json(os.path.join(pasta(origem), 'res', i + '.json'))
+        r['nota_conferencia'] = nota
+        gravar_json(os.path.join(pasta(lote), 'res', i + '.json'), r)
+    gravar_json(os.path.join(pasta(lote), 'estado.json'), est)
+    print(f'{lote}: {len(notas)} questões voltam para {etapa} (origem {origem})')
+
+
 def roda(lote, teto):
     d = pasta(lote)
     est = ler_json(os.path.join(d, 'estado.json'))
@@ -277,6 +334,10 @@ def roda(lote, teto):
         if e.get('fim'):
             continue
         vivos = [i for i in est['questoes'] if i not in excecoes]
+        if not vivos and not e.get('batch_id'):
+            e['fim'] = datetime.datetime.now().isoformat(timespec='seconds')
+            print(f'{etapa}: nenhuma questão para esta etapa (todas na fila de exceção)')
+            continue
         if not e.get('batch_id'):
             previsto = est['gasto_usd'] + ESTIMATIVA_US[etapa] * len(vivos)
             if previsto > teto:
@@ -321,9 +382,15 @@ def roda(lote, teto):
                 atual = saida
                 atual['id'], atual['n'] = i, q['n']
                 atual['gab'] = q['gab']
-                atual['confere'] = (atual.get('resposta_resolvedor') or '').strip().upper()[:1] == q['gab']
-                if not atual['confere']:
-                    excecoes[i] = {'etapa': etapa, 'motivo': f"resolvedor marcou {atual.get('resposta_resolvedor')}, "
+                marcada = (atual.get('resposta_resolvedor') or '').strip().upper()[:1]
+                m = re.match(r'\s*Alternativa\s+([A-E])', (atual.get('resolucao') or {}).get('resposta') or '')
+                escrita = m.group(1) if m else marcada
+                atual['confere'] = marcada == q['gab'] and escrita == q['gab']
+                if marcada != escrita:
+                    excecoes[i] = {'etapa': etapa, 'motivo': f'resolvedor inconsistente: anotou {marcada}, mas a resposta '
+                                                             f'escrita é {escrita} (gabarito {q["gab"]}); refazer do zero'}
+                elif not atual['confere']:
+                    excecoes[i] = {'etapa': etapa, 'motivo': f"resolvedor marcou {marcada}, "
                                                              f"gabarito {q['gab']}", 'divergencia': atual.get('divergencia')}
                 atual['revisao'] = {'lentes': ['resolvedor'], 'modelos': {'resolvedor': msg.model}}
             else:
@@ -366,7 +433,7 @@ def roda(lote, teto):
     for i in est['questoes']:
         if i in excecoes:
             continue
-        r = ler_json(os.path.join(res_dir, i + '.json'))
+        r = sem_latex_frac(ler_json(os.path.join(res_dir, i + '.json')))
         prob = valida(r, qs[i]['gab'], alts)
         if prob:
             excecoes[i] = {'etapa': 'validacao', 'motivo': '; '.join(prob)}
@@ -385,7 +452,7 @@ def integra(lote):
     banco = ler_json(fr) if os.path.exists(fr) else {}
     hoje = datetime.date.today().isoformat()
     for i in est.get('aprovadas', []):
-        r = ler_json(os.path.join(d, 'res', i + '.json'))
+        r = sem_latex_frac(ler_json(os.path.join(d, 'res', i + '.json')))
         banco[i] = {k: r.get(k) for k in ('n', 'materia', 'tema', 'conteudo', 'nivel', 'conceito', 'resolucao',
                                           'caminhos', 'quadro', 'visual', 'fontes')}
         banco[i]['aprovada'] = True
@@ -403,6 +470,8 @@ if __name__ == '__main__':
         seleciona(a[1], a[2], a[3])
     elif a[0] == 'roda':
         roda(a[1], float(a[a.index('--teto') + 1]) if '--teto' in a else 15.0)
+    elif a[0] == 'volta':  # volta <lote> <origem> <etapa> <notas.json>
+        volta(a[1], a[2], a[3], ler_json(a[4]))
     elif a[0] == 'integra':
         integra(a[1])
     else:
