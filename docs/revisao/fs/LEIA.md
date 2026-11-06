@@ -12,3 +12,4 @@ Observações para a integração:
 - `pendencias` de cada arquivo traz propostas de conteúdo novo (sem id criado): decisão do dono.
 | L05 Filosofia política | aprovado (06/11/2026) | 68 |
 | L07 Iluminismo | aprovado (06/11/2026) | 40 |
+| L01 Pré-socráticos | aprovado (06/11/2026) | 60 |
