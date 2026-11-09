@@ -14,6 +14,8 @@ import type { MateriaId } from '../dados/tipos';
 import { numeroQuestao } from '../dados/tipos';
 import { useResumos } from '../dados/revisao';
 import { ResumoSubtemaView } from '../ui/revisao/ResumoSubtema';
+import { AvisoRegiao, FiltroRegiaoChips, useRegiao } from '../ui/FiltroRegiao';
+import { filtraRegiao } from '../logica/regiao';
 
 /**
  * Conteúdo (rota antiga /escada, mantida para não quebrar links e progresso): as questões reais do conteúdo,
@@ -24,12 +26,16 @@ export function Escada() {
   const mc = useMateria(m);
   const s = useMateriaEstado(m);
   const [teoria, setTeoria] = useState(false);
+  const rg = useRegiao();
   const resumos = useResumos(m); // comando 35: resumo curto do conteúdo
   const mod = mc?.conteudo.modulos.find((x) => x.id === sub.split('.')[0]);
   const conteudo = mod?.subs.find((x) => x.id === sub);
   useTitulo(conteudo ? cap(conteudo.nome) : 'Conteúdo');
   if (!mc) return <div className="conteudo"><Carregando /></div>;
-  const l = mc.porSub.get(sub) || [];
+  const todasRegioes = mc.porSub.get(sub) || [];
+  // pedido do dono (09/11/2026): o aluno pratica com as provas da região dele (+ ENEM); sem nenhuma, todas as regiões
+  const fr = filtraRegiao(todasRegioes, rg.conj);
+  const l = fr.l;
   if (!mod || !conteudo) return <div className="conteudo vazio"><h3>Conteúdo não encontrado</h3><Link className="btn sec" to={`/m/${m}`}>Voltar</Link></div>;
   if (!l.length) return <div className="conteudo vazio"><h3>{cap(conteudo.nome)}</h3><p>Este conteúdo está sem questões no momento. Questões novas estão em preparação.</p><Link className="btn sec" to={`/m/${m}/tema/${mod.id}`}>Voltar ao tema</Link></div>;
   const p = progressoEscada(l, s);
@@ -51,6 +57,8 @@ export function Escada() {
         <h1>{cap(conteudo!.nome)}</h1>
         <p className="sub num">{plural(l.length, 'questão real', 'questões reais')} · do básico ao avançado</p>
       </div>
+      <FiltroRegiaoChips />
+      <AvisoRegiao f={fr} />
 
       <div className="escada-acao folha">
         <div style={{ flex: 1 }}>
@@ -74,13 +82,16 @@ export function Escada() {
         <div className="niveis">
           {niveis.map((d) => {
             const lv = l.filter((q) => nivelDe(q.dif) === d.nivel);
-            const pv = lv.find((q) => !s.q[q.id]?.tent.length) || lv[0];
+            // nível sem questão da região: o botão treina o nível com as de outras regiões (nunca sem questão)
+            const lvOutras = lv.length ? [] : todasRegioes.filter((q) => nivelDe(q.dif) === d.nivel);
+            const pv = lv.find((q) => !s.q[q.id]?.tent.length) || lv[0] || lvOutras[0];
             const fraco = d.acerto !== null && d.feitas >= 3 && d.acerto < 0.6;
             return (
               <div key={d.nivel} className={'nivel-cartao' + (lv.length ? '' : ' vazio')}>
                 <span className={`nivel-etq n-${d.nivel}`}>{nomeNivel(d.nivel)}</span>
                 {lv.length > 0 && <span className="num nv-qtd">{plural(d.total, 'questão', 'questões')}</span>}
                 {lv.length > 0 && <span className={'num nv-acerto' + (fraco ? ' err' : '')}>{d.acerto === null ? 'Ainda sem respostas' : `${Math.round(d.acerto * 100)}% de acerto · ${plural(d.feitas, 'feita', 'feitas')}`}</span>}
+                {lvOutras.length > 0 && <span className="fraco nv-outras">{plural(lvOutras.length, 'questão', 'questões')} de outras regiões</span>}
                 {pv
                   ? <Link to={`/m/${m}/q/${pv.id}?ctx=nivel&nv=${d.nivel}`} className="btn peq sec">Treinar {nomeNivel(d.nivel).toLowerCase()}</Link>
                   : <span className="fraco" style={{ fontSize: 14 }}>Ainda sem questões neste nível</span>}

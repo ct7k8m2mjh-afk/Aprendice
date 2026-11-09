@@ -16,6 +16,8 @@ import { ResolucaoView } from '../ui/Resolucao';
 import { urlPrint } from '../dados/conteudo';
 import type { Letra, MateriaId, Questao } from '../dados/tipos';
 import type { Tentativa } from '../estado/tipos';
+import { regiaoDoEstado } from '../ui/FiltroRegiao';
+import { filtraRegiao } from '../logica/regiao';
 
 export function registraTentativa(m: MateriaId, id: string, t: Tentativa) {
   atualizaMateria(m, (s) => {
@@ -65,8 +67,12 @@ export function QuestaoTela() {
   const fila = useMemo<Questao[]>(() => {
     if (!mc || !q) return [];
     if (ctx === 'revisao') { const v = questoesVencidas(mc, pegaEstado().materias[m] || s); return v.some((x) => x.id === q.id) ? v : [q, ...v]; }
-    const l = mc.porSub.get(q.sub) || [q];
-    return nv ? l.filter((x) => nivelDe(x.dif) === nv) : l;
+    const l0 = mc.porSub.get(q.sub) || [q];
+    const l = nv ? l0.filter((x) => nivelDe(x.dif) === nv) : l0;
+    // a mesma lista que a tela do conteúdo mostra: só a região do aluno (+ ENEM), com reserva de todas as regiões;
+    // a questão aberta de outra região (aluno pediu "ver de outras regiões" ou veio por link) segue na lista inteira
+    const f = filtraRegiao(l, regiaoDoEstado(pegaEstado()).conj).l;
+    return f.some((x) => x.id === q.id) ? f : l;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mc, q?.sub, ctx, nv]);
 
