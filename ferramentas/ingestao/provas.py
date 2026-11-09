@@ -2257,3 +2257,31 @@ PROVAS['pucpr-2023-2']['ancora_forcada'] = {('caderno-gabarito', 15): [(27, 59, 
 PROVAS['pucrio-2023'] = pucrio(2023)
 PROVAS['pucrio-2023']['suporte_forcado'] = {('d1-caderno', 2): [(94, 0, (1, 10))]}
 PROVAS['pucrio-2020'] = pucrio(2020)
+PROVAS['pucrio-2023'] = pucrio(2023, 45)
+PROVAS['pucrio-2023']['suporte_forcado'] = {('d1-caderno', 2): [(94, 0, (1, 10))]}
+
+
+def _pucrio2020_gab(pasta):
+    """Vestibular 2020: gabarito comentado ("12) Resposta: (A) ..."); 1º dia só a parte de inglês; anulada fica fora."""
+    t1 = texto_pdf(pasta / 'd1-gabarito.pdf', layout=False)
+    t1 = t1[t1.index('GABARITO – INGLÊS') if 'GABARITO – INGLÊS' in t1 else t1.index('INGLÊS'):]
+    t1 = re.split(r'GABARITO\s*[–-]?\s*ESPANHOL', t1)[0]
+    g = {}
+    for n, v in re.findall(r'(?m)^\s*(\d{1,2})\)\s*(?:Resposta:?\s*)?\(([A-E])\)', t1):
+        g.setdefault(int(n), v)
+    t2 = texto_pdf(pasta / 'd2-gabarito.pdf', layout=False)
+    for n, v in re.findall(r'(?m)^\s*(\d{1,2})\)\s*(?:Resposta:?\s*)?\(([A-E]|QUEST[ÃA]O ANULADA)\)', t2):
+        g.setdefault(int(n) + 10, v if len(v) == 1 else 'X')
+    return g
+
+
+PROVAS['pucrio-2020'] = pucrio(2020, 45)
+PROVAS['pucrio-2020']['gabarito'] = _pucrio2020_gab
+PROVAS['pucrio-2020']['nota'] = PROVAS['pucrio-2020']['nota'].replace('Gabarito: caderno oficial "com gabarito" da PUC-Rio.',
+                                                                    'Gabarito: gabarito comentado oficial da PUC-Rio; anulada fica fora.')
+_pucrio2023_gab = PROVAS['pucrio-2023']['gabarito']
+# q22 do 2º dia (aqui 32): o destaque amarelo cobre só a fração da alternativa (E); conferido no caderno com gabarito
+PROVAS['pucrio-2023']['gabarito'] = lambda pasta: _pucrio2023_gab(pasta) | {32: 'E'}
+for _a in (2020, 2023):
+    PROVAS[f'pucrio-{_a}']['area_da_materia'] = True
+PROVAS['pucrio-2020']['suporte_forcado'] = {('d1-caderno', 2): [(92, 0, (1, 10))]}
