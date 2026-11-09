@@ -216,7 +216,7 @@ export function Materia() {
               ))}
             </span>
             <span className="btn btn-capa"><Icone nome="alvo" /> {tg ? `Retomar (${tg.i} de ${tg.it.length})` : 'Começar treino'}</span>
-            <span className="tg-comp num">{porRodada} itens por rodada: {[nRq && plural(nRq, 'questão', 'questões'), nRc && plural(nRc, 'frase', 'frases'), nRf && plural(nRf, 'flashcard', 'flashcards')].filter(Boolean).join(', ').replace(/, ([^,]*)$/, ' e $1')}</span>
+            <span className="tg-comp num">{porRodada === nRq ? `${plural(nRq, 'questão', 'questões')} por rodada` : `${porRodada} itens por rodada: ${[nRq && plural(nRq, 'questão', 'questões'), nRc && plural(nRc, 'frase', 'frases'), nRf && plural(nRf, 'flashcard', 'flashcards')].filter(Boolean).join(', ').replace(/, ([^,]*)$/, ' e $1')}`}</span>
           </span>
           <IluMateria m={m} className="capa-ilu" />
         </Link>
