@@ -45,6 +45,8 @@ def base(catalogo, escola, ano, fase, titulo, total, nota, caderno='caderno', ga
     cfg['gabarito'] = _gab_vunesp(gabarito)
     # "... para responder às / questões de 28 a 30.": instrução partida logo depois de "às"
     cfg['suporte'] = cfg['suporte'] + [r'(?i)para responder [àa]s?\s*$']
+    # "Classificação Periódica" dentro de uma questão (Unesp 2025/2 q68) não é o título da tabela: corte só em maiúsculas
+    cfg['corte'] = [r'^CLASSIFICAÇÃO PERIÓDICA' if 'PERIÓDICA' in c else c for c in cfg['corte']]
     cfg['area_da_materia'] = True   # o caderno não separa por matéria: o rótulo do simulado vem da matéria da questão
     return cfg
 
