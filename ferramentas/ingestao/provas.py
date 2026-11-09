@@ -70,6 +70,8 @@ def enem_2020_2022(ano):
     if ano == 2021:
         # camada de texto com fonte sem mapa de caracteres em boa parte do caderno ("•£Üèîé..."): só o print
         cfg['sem_transcricao'] = True
+        # o texto de busca da questão vem por OCR do próprio caderno (âncoras e colunas seguem pela camada de texto)
+        cfg['cadernos'] = [dict(c, ocr_so_texto=True) for c in cfg['cadernos']]
     return cfg
 
 
@@ -2234,3 +2236,13 @@ def _pucminas_gab_medicina(pasta):
 PROVAS['pucminas-2023-1']['gabarito'] = _pucminas_gab_medicina
 for _a, _s in ((2021, 2), (2022, 2), (2023, 1)):
     PROVAS[f'pucminas-{_a}-{_s}']['area_da_materia'] = True
+
+
+# PUCPR Medicina 2022/1 a 2024/1 (rodada 6): caderno com a resposta destacada, como 2024/2+
+# 2022/1 e 2022/2 fora: o caderno-gabarito dessas edições não tem as letras das alternativas (só a resposta em ciano
+# e um X vermelho nas erradas), não dá para montar o simulado A–E sem alterar a prova.
+for _a, _s, _r in ((2023, 1, 'Vestibular de Verão 2022'),
+                   (2023, 2, 'Vestibular de Inverno 2023'), (2024, 1, 'Vestibular de Verão 2023')):
+    PROVAS[f'pucpr-{_a}-{_s}'] = pucpr(_a, _s, _r)
+    PROVAS[f'pucpr-{_a}-{_s}']['area_da_materia'] = True
+PROVAS['pucpr-2023-2']['ancora_forcada'] = {('caderno-gabarito', 15): [(27, 59, 0)]}   # "27." no alto da página não sai como âncora
