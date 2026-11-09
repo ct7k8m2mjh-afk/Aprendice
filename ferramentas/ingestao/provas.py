@@ -2203,3 +2203,14 @@ PROVAS['fempar-2021'] = fempar(2021, 'Tipo 1 (Língua Estrangeira: Inglesa)', '2
 PROVAS['fempar-2026'] = fempar(2026, 'Medicina (I) - TIPO 1', '28/09/2025')
 PROVAS['acafe-2021-verao']['ancora_forcada'] = {('caderno', 20): [(32, 341, 0)]}   # "32 A Energia..." sem o ")"
 PROVAS['acafe-2023-verao']['suporte_interno'] = 60   # "02) Leia o texto a seguir." / "05) Leia os textos a seguir.": os textos são da questão
+
+
+# FCM-MG 2021/2 a 2023/2 (rodada 6): mesmo layout das edições recentes; gabarito definitivo por matéria
+for _a, _s in ((2021, 2), (2022, 1), (2023, 1), (2023, 2)):
+    _c = cmmg(_a, _s)
+    _c['total_de'] = (lambda c: (lambda pasta: max(c['gabarito'](pasta))))(_c)
+    PROVAS[f'cmmg-{_a}-{_s}'] = _c
+for _a, _s in ((2021, 2), (2022, 1), (2023, 1)):
+    # margem esquerda larga (x≈64–86) e número colado ao enunciado ("01.Assinale")
+    PROVAS[f'cmmg-{_a}-{_s}'].update({'colunas': lambda r: [(56, r.width - 40)], 'ancora_dx': 34,
+                                      'ancora': r'^0?(\d{1,2})\s?[.,](\s|$|(?=[A-ZÁÉÍÓÚ“"]))'})
