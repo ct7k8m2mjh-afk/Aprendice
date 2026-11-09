@@ -2,15 +2,28 @@
 
 Atualizado em 09/11/2026 (lote 2, rodada 6). Meta do dono: provas de 2020 a 2026 de cada instituição (privadas
 incluídas); onde não houver, no mínimo 3 anos; anos anteriores a 2020 não entram. Só múltipla escolha (certo/errado e
-somatória ficam fora). Fonte das instituições: `inventario-publicas-1.json` (28), `inventario-publicas-2.json` (27) e
+somatória ficam fora). Instituições: `inventario-publicas-1.json` (28), `inventario-publicas-2.json` (27) e
 `inventario-privadas.json` (25), mais ENEM e Unifor, que já estavam no site: 82 ao todo.
 
 Leitura da tabela: o ano é o **ano de ingresso** (ex.: Fuvest 2026 = prova aplicada no fim de 2025). ✓ = uma prova
-integrada naquele ano (matéria, tema, conteúdo e nível em todas as questões; print fiel; gabarito oficial); ✓2 = duas
-edições no ano (semestres, verão/inverno). "Anos" conta os anos de 2020 a 2026 com prova; "Provas" e "Questões" contam
-tudo o que está em `app/conteudo-fonte/provas/` (inclusive edições 2027). Meta: **completa** = os 7 anos; **≥ 3 anos**
-= atingiu o mínimo; **abaixo** = 1 ou 2 anos; **nenhum** = nada integrado. A última coluna diz por que falta.
+integrada naquele ano (matéria, tema, conteúdo e nível em todas as questões; print fiel; gabarito oficial); ✓2/✓3 =
+duas ou três edições no ano. "Anos" conta os anos de 2020 a 2026 com prova; "Provas" e "Questões" contam tudo o que está
+em `app/conteudo-fonte/provas/` (inclusive edições 2027). Meta: **completa** = os 7 anos; **≥ 3 anos** = atingiu o
+mínimo; **abaixo** = 1 ou 2 anos; **nenhum** = nada integrado. A última coluna diz por que falta.
 
+## Resumo
+
+- **Completa (9):** USP (Fuvest), UPE, UFPR, UFAM, UFU, UEL, UEG, Cederj, ITA.
+- **≥ 3 anos (22):** Fatec, UEMA, UFJF, UTFPR, UDESC, UNEMAT, Unespar, Unicentro, UNIRG, Unitins, URCA, UVA, PUC-Rio,
+  Acafe, FCM-MG, FMABC, PUC Minas, PUC-Campinas, PUC-SP, PUCPR, PUCRS, ENEM (o ENEM está com o outro agente).
+- **Abaixo de 3 anos (10):** UECE, UFSM, Unifesp, Fema, UERR, Unimontes, Fempar, Mackenzie, São Camilo, Unifor — em todas,
+  os anos que faltam não têm caderno + gabarito definitivo públicos (ou o vestibular próprio não existia).
+- **Nenhum ano (41):** bloqueio automático (Vunesp, Insper, Cloudflare, robots.txt — baixar à mão ou, nas da Vunesp, cópia
+  pública com origem registrada, pedido do dono de 09/11), formato fora do escopo (UnB, UEM, UFSC), sem prova própria
+  (UEMASUL, UFNT, FURG, FECAP, Inteli), gabarito só preliminar (UEMS, FGV, EMESCAM), venda (UFRGS: o dono não compra)
+  e layout que o recorte ainda não resolve (UNEB).
+- Rodada 6: 29 provas novas (1.485 questões): PUC-Campinas 6, Acafe 6, FCM-MG 4, PUC Minas 3, PUCPR 3, PUC-Rio 2,
+  Unifesp 2, Fema 2, UECE 1. Detalhes em `lote2-pendencias.md`.
 
 ### Públicas (grupo 1)
 
@@ -33,7 +46,7 @@ tudo o que está em `app/conteudo-fonte/provas/` (inclusive edições 2027). Met
 | EsPCEx | Escola Preparatória de Cadetes do Exército | — | — | — | — | — | — | — | 0 | 0 | 0 | nenhum | robots.txt 'Disallow: /': baixar à mão. |
 | UNEB | Universidade do Estado da Bahia | — | — | — | — | — | — | — | 0 | 0 | 0 | nenhum | 2022 e 2023 baixadas (caderno + gabarito pós-recursos), FORA: duas colunas com textos, imagens e páginas de largura total intercalados; o recorte automático troca pedaços entre questões. 2024–2026: gabarito só no sistema com Cloudflare. |
 | UFU | Universidade Federal de Uberlândia | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | 7 | 7 | 586 | completa | Completa (vestibular de meio de ano). |
-| UFRGS | Universidade Federal do Rio Grande do Sul | — | — | — | — | — | — | — | 0 | 0 | 0 | nenhum | Servidor recusa conexão (retestado 09/11); a Coperse vende as provas 2022–2026 (decisão do dono). |
+| UFRGS | Universidade Federal do Rio Grande do Sul | — | — | — | — | — | — | — | 0 | 0 | 0 | nenhum | Servidor recusa conexão (retestado 09/11) e a Coperse vende as provas 2022–2026: o dono decidiu não comprar (fica fora). |
 | UnB | Universidade de Brasília | — | — | — | — | — | — | — | 0 | 0 | 0 | nenhum | PAS 3 é quase todo certo/errado (Cebraspe): fora por decisão do dono (só múltipla escolha). Os poucos itens tipo C (A–D) não foram separados nesta rodada (ver formatos-pendentes.md). |
 | UEL | Universidade Estadual de Londrina | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | 7 | 7 | 397 | completa | Completa. |
 | UEG | Universidade Estadual de Goiás | ✓ | ✓2 | ✓2 | ✓2 | ✓3 | ✓3 | ✓3 | 7 | 16 | 840 | completa | Vestibular geral (13 edições) + Medicina (2024/2–2026/1). |

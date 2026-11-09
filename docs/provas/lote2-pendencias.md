@@ -312,3 +312,52 @@ Integradas e classificadas (matéria, tema, conteúdo, nível; sem resolução),
   (`questoesRetiradas.ts`, gerado pelo `converte.py`); ids não mudam.
 - **Ficou de fora:** ENEM PPL, digital e reaplicação (todas as edições); ENEM 2003–2019; Unitins 2021/1 (caderno em
   manutenção no site — `baixar-a-mao.md`); questão W3ecc05a (ENEM 2020, não está na aplicação regular).
+
+## Rodada 6 do lote 2 (09/11/2026)
+
+Meta (comando 14, 09/11): cada instituição com provas de 2020 a 2026 ou, onde não houver, no mínimo 3 anos; só a partir
+de 2020; só múltipla escolha. Tabela completa por instituição e ano: `cobertura.md`. ENEM ficou com o outro agente.
+
+Integradas e classificadas (matéria, tema, conteúdo, nível revisados questão a questão; sem resolução):
+
+| Prova | Questões válidas | Observação |
+|---|---|---|
+| PUC-Campinas Medicina 2021, 2022, 2023, 2024 | 40 cada | Prova Geral (a Específica dessas edições é discursiva). Gabarito oficial publicado como imagem: transcrito e conferido na imagem ampliada. 2023 e 2024 sem texto legível no PDF: OCR só para localizar (print = página). |
+| PUC-Campinas Medicina 2025, 2026 | 70, 70 | Prova Geral (1–50) + Específica (aqui 51–70). 2026: gabaritos em imagem. |
+| Acafe Medicina Verão e Inverno 2021, Inverno 2022, Verão e Inverno 2023, Verão 2024 | 62, 59, 58, 60, 60, 61 | A–D, inglês. Verão 2024: gabarito retificado (q21 = D, conferido). Fora: 2020 (pacote só com gabarito PRELIMINAR) e Verão 2022 (o "gabarito oficial" é o preliminar). |
+| FCM-MG Medicina 2021/2, 2022/1, 2023/1, 2023/2 | 54, 54, 53, 58 | A–D; matéria pela coluna do gabarito definitivo. |
+| PUC Minas Medicina 2021/2, 2022/2, 2023/1 | 45 cada | 1–45 (língua fora, como nas outras edições). 2023/1: gabarito com Medicina e outros cursos no mesmo PDF (lido só o de Medicina). |
+| PUCPR Medicina 2023/1, 2023/2, 2024/1 | 60, 60, 57 | Destaque ciano/amarelo lido e apagado. 2024/1: 12, 26, 43 com carimbo de anulação. |
+| PUC-Rio 2020 e 2023 (grupo 4) | 54, 55 | 2020: gabarito comentado oficial (q36 do 2º dia anulada). 2023: q22 do 2º dia (aqui 32) com destaque só na fração — conferida (E). |
+| UECE 2024.1 (1ª fase) | 85 | A–D, inglês, gabarito 1. Única edição com gabarito DEFINITIVO em PDF (Comunicado 237/2023; q26 = C). Educação Física classificada pelo assunto (esporte → S01.5; fisiologia → Biologia). |
+| Unifesp Medicina 2022 e 2026 | 25, 25 | Sistema Misto, prova 1 objetiva (Português e Inglês), versão 1, Vunesp. 2022 q23 leva também o texto das questões 16–22, que ela compara. |
+| Fema (Assis) Processo Seletivo 2021 e 2022 | 25, 25 | Cursos gerais; gabarito na última página do PDF oficial. |
+
+Total da rodada: **29 provas, 1.485 questões**. Também classificadas as 40 questões da São Camilo 2024/2 (que estavam sem
+matéria) e 14 avulsas que só tinham o tema (FMABC, Cederj, Fatec, UDESC); a São Camilo segue o tema das resoluções
+aprovadas onde elas já o fixavam. Fica sem conteúdo só a URCA 2024.1 q97 (fonemas: não há conteúdo de fonologia).
+
+- **Tentadas e deixadas de fora (motivo técnico, com arquivos baixados):** UNEB 2022 e 2023 (duas colunas com textos,
+  imagens e páginas de largura total intercalados: o recorte troca pedaços entre questões vizinhas); PUC-SP Verão 2020
+  (diagramação de revista) e 2021–2023 (prova on-line publicada só como "correção", sem número nem letra nas
+  alternativas); PUCPR 2022/1 e 2022/2 (caderno-gabarito sem as letras das alternativas) e 2021 (Vestibular 4.0
+  digital); PUC-Rio 2021 e 2022 (só pacote .zip com gabarito comentado em outro formato).
+- **Gabarito não definitivo (princípio 2):** UECE 2020.1, 2020.2, 2023.1, 2023.2, 2024.2, 2025.2, 2026.1 (só preliminar em
+  PDF); Acafe 2020 e Verão 2022; UEMS (só 2023 tem definitivo, e o caderno correspondente não foi identificado com
+  segurança).
+- **Certo/errado e somatória (fora por decisão do dono):** UnB PAS 3, UEM e UFSC (registradas em `formatos-pendentes.md`).
+  Os poucos itens tipo C (A–D) da UnB não foram separados nesta rodada.
+- **Baixar à mão: retestado em 09/11 com User-Agent genérico, sem contornar bloqueio:** UEMG (403), UFRGS (conexão
+  recusada; e o dono decidiu não comprar provas), UEPG (sem resposta), AFA/EFOMM/EN (desafio Cloudflare), Vunesp e
+  Insper (403 Akamai), Fundep/EMESCAM (Cloudflare). Unesp, Unicamp, UERJ, EsPCEx e Unioeste continuam proibidos pelo
+  robots.txt. **Novo pedido do dono (09/11):** buscar as provas da Vunesp (Einstein, Santa Casa, Unesp, Famerp, Famema,
+  FMJ, FACISB, São Camilo, FAI, Anhembi, Sírio-Libanês, Uni-Facef, UEA, FMABC 2026) em cópias públicas de outros sites,
+  registrando a origem — fica para a próxima rodada.
+- **Ferramentas:** `recorta.py` lê "questões de números 14 a 16" e "questões números 16 a 18" (o texto passa a valer para
+  toda a faixa). Em `provas.py`: `_gab_str` (gabarito publicado como imagem, transcrito), configurações novas por prova.
+- **Conferência:** alternativas e texto depois da última alternativa por programa em todas; folha de contato de todas as
+  provas novas, prints suspeitos abertos (cortes de rodapé/cabeçalho e textos de apoio corrigidos); pixels vermelhos/
+  ciano/amarelo conferidos nos cadernos com resposta marcada; `converte.py` + `tsc` + `vitest` (659 testes) passando.
+  Exceção nova no teste de provas, conferida no print: Unifesp 2022 q23. Auditoria separada: amostra sorteada em
+  `docs/auditorias/lote2-rodada6-amostra.md` (o agente separado não pôde ser aberto a partir desta sessão — fica para
+  o coordenador disparar).

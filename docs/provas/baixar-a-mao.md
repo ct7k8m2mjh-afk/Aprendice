@@ -53,3 +53,12 @@ O site oficial bloqueia o acesso automático (ou exige formulário/compra). Baix
 
 - **Unitins Vestibular 2021/1** (questão de site W5d49e70, "Unitins Tarde/2021.1"): a página da Unitins aponta os arquivos de 2021/1 para "Concursos/Manutencao/arquivo.html" (em manutenção). Os cadernos de Medicina 2021/2 e do Vestibular 2022/1 foram conferidos e não têm a questão. Baixar à mão o caderno e o gabarito definitivo de 2021/1, se a Unitins republicar.
 - **ENEM 2020, questão de site W3ecc05a** ("Escrever não é uma questão apenas de satisfação pessoal"): não está no caderno azul da aplicação regular de 2020 (integrado); deve ser da aplicação digital ou da reaplicação de 2020, que ficaram fora (decisão do dono: do ENEM, só a aplicação regular 2020–2022).
+
+## Lote 2, rodada 6 (09/11/2026): retestes
+
+- Retestado com User-Agent genérico, sem contornar bloqueio: UEMG (403), UFRGS (conexão recusada; o dono decidiu não
+  comprar provas — fica fora), UEPG (sem resposta), AFA/EFOMM/EN (desafio Cloudflare em fab.mil.br e marinha.mil.br),
+  Vunesp e Insper (403 Akamai), Fundep/EMESCAM (Cloudflare). Unesp, Unicamp, UERJ, EsPCEx e Unioeste: robots.txt proíbe.
+- **Pedido do dono (09/11):** provas da Vunesp em cópias públicas de outros sites (cursinhos, portais), com a origem
+  registrada; o dono decide os direitos. Próxima rodada.
+- UNEB 2024–2026: gabarito só em uneb.selecao.net.br (Cloudflare). UECE 2026.2: prova só no sistema on-line da CEV.
