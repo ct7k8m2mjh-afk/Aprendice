@@ -51,6 +51,10 @@ export interface Questao {
   nq?: string;
   /** a questão já tem resolução comentada em res/<conteúdo>.json (marcado no build; treino geral de todas as matérias) */
   cr?: 1;
+  /** região de prática da prova da questão (scripts/converte.py, marca_regioes): nac (ENEM), sp, se (RJ, MG, ES), sul, ne, no, co */
+  rg?: 'nac' | 'sp' | 'se' | 'sul' | 'ne' | 'no' | 'co';
+  /** estado (UF) da prova; o ENEM não tem */
+  uf?: string;
 }
 
 /** Número da questão para mostrar ao aluno: o do caderno oficial quando a prova renumera cadernos; senão o da prova. */

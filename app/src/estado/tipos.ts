@@ -1,4 +1,5 @@
 import type { Letra, MateriaId } from '../dados/tipos';
+import type { FiltroRegiao, RegiaoId } from '../logica/regiao';
 
 /** Mesmo formato do protótipo (S.q[id].tent), para a migração não perder nada. */
 export interface Tentativa {
@@ -117,14 +118,18 @@ export interface Preferencias {
   tema: 'claro' | 'escuro' | 'sistema'; menuFechado: boolean; ultimaMateria: MateriaId | null;
   /** questões por rodada do Treino geral de todas as matérias ("Personalizar"; padrão 15) */
   rodadaMisto?: number;
+  /** região das minhas provas escolhida à mão (v6; null = automática, pelas provas-alvo). logica/regiao.ts */
+  regioes?: RegiaoId[] | null;
+  /** filtro de região onde o aluno pratica (v6): minha região (+ ENEM), todas, ou uma região só */
+  filtroRegiao?: FiltroRegiao;
 }
 
 export interface Estado {
   /** 1: formato inicial; 2: Filosofia e Sociologia unidas em 'fs'; 3: questões de sites didáticos retiradas, histórico
    *  levado à questão de prova equivalente ou guardado no id antigo (migracao.ts, migraEstado); 4: revisão em slides por
    *  conteúdo (EstadoMateria.revs, comandos 24 e 26); 5: Treino geral de todas as matérias (treinoMisto, comando 32).
-   *  Estado novo nasce na 5. */
-  versao: 2 | 3 | 4 | 5;
+   *  6: região das provas (pref.regioes, pref.filtroRegiao; pedido do dono de 09/11/2026). Estado novo nasce na 6. */
+  versao: 2 | 3 | 4 | 5 | 6;
   perfil: Perfil | null;
   materias: Partial<Record<MateriaId, EstadoMateria>>;
   simulado: SimuladoAndamento | null;
@@ -142,14 +147,14 @@ export function estadoMateriaVazio(): EstadoMateria {
 
 export function estadoVazio(): Estado {
   return {
-    versao: 5,
+    versao: 6,
     perfil: null,
     materias: {},
     simulado: null,
     simuladosFeitos: [],
     treino: {},
     treinoMisto: null,
-    pref: { tema: 'claro', menuFechado: false, ultimaMateria: null },
+    pref: { tema: 'claro', menuFechado: false, ultimaMateria: null, regioes: null, filtroRegiao: 'minha' },
     migradoDe: [],
   };
 }

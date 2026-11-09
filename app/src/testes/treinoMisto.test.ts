@@ -94,10 +94,10 @@ describe('migração v5 (princípio 7): treino geral de todas as matérias', () 
     materias: { bio: { ...estadoMateriaVazio(), q: { P1: { tent: [tent], rev: true } }, ult: 'P1' } },
     treino: { bio: { it: [{ k: 'q' as const, id: 'P1' }], i: 0, res: {}, t0: 5 } } } as unknown as Estado;
 
-  it('estado v4 vai à v5 com treinoMisto vazio, sem perder nada e sem mudar ids', () => {
+  it('estado v4 vai à versão atual com treinoMisto vazio, sem perder nada e sem mudar ids', () => {
     const e = migraEstado(v4);
-    expect(VERSAO_ATUAL).toBe(5);
-    expect(e.versao).toBe(5);
+    expect(VERSAO_ATUAL).toBeGreaterThanOrEqual(5); // v6: região das provas (regiao.test.ts)
+    expect(e.versao).toBe(VERSAO_ATUAL);
     expect(e.treinoMisto).toBeNull();
     expect(e.materias.bio!.q.P1).toEqual({ tent: [tent], rev: true });
     expect(e.materias.bio!.ult).toBe('P1');

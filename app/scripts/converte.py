@@ -527,6 +527,80 @@ def liga_provas(provas):
     return rel
 
 
+# ---------------------------------------------------------------------------------------------------------------
+# Região da prova de cada questão (pedido do dono, 09/11/2026: "o aluno que vai fazer prova no Sul pratica com provas do
+# Sul; o de São Paulo, com provas de São Paulo"). Regiões de prática: nac (ENEM), sp (São Paulo, separado do Sudeste),
+# se (RJ, MG, ES), sul, ne, no, co. Cada questão do banco ganha 'rg' (região) e 'uf' (estado da prova; ENEM sem uf).
+# De onde vem: a prova completa da questão (prova.json -> catalogoId -> catálogo); a escola do banco antigo
+# (CATALOGO_ESCOLA -> catálogo); ou a tabela ESCOLA_UF abaixo, para provas que não estão no catálogo.
+REGIAO_DA_UF = {
+    'SP': 'sp', 'RJ': 'se', 'MG': 'se', 'ES': 'se', 'PR': 'sul', 'SC': 'sul', 'RS': 'sul',
+    'BA': 'ne', 'SE': 'ne', 'AL': 'ne', 'PE': 'ne', 'PB': 'ne', 'RN': 'ne', 'CE': 'ne', 'PI': 'ne', 'MA': 'ne',
+    'AM': 'no', 'PA': 'no', 'AC': 'no', 'RO': 'no', 'RR': 'no', 'AP': 'no', 'TO': 'no',
+    'GO': 'co', 'MT': 'co', 'MS': 'co', 'DF': 'co',
+}
+# provas fora do catálogo nacional (catalogoId sem ficha) ou escolas antigas sem catalogoId
+ESCOLA_UF = {'Fema': 'SP', 'fema': 'SP', 'Sírio-Libanês': 'SP', 'FMJ (Jundiaí)': 'SP', 'Fatec': 'SP'}
+CATALOGO_ARQ = os.path.join(APP, 'conteudo-fonte', 'catalogo-vestibulares.json')
+
+
+def regiao_de(uf, regiao_catalogo=None):
+    """(rg, uf) a partir do estado; ENEM (regiao 'Nacional' no catálogo) -> nac, sem uf."""
+    if regiao_catalogo == 'Nacional':
+        return 'nac', None
+    rg = REGIAO_DA_UF.get((uf or '').upper())
+    return (rg, uf.upper()) if rg else (None, None)
+
+
+def marca_regioes():
+    """Grava 'rg' e 'uf' em toda questão no ar do banco de cada matéria. Questão sem região derrubaria o filtro do aluno:
+    a conversão para com erro se alguma ficar sem (as retiradas, que nunca aparecem, não precisam)."""
+    cat = {p['id']: p for p in ler(CATALOGO_ARQ)['provas']}
+    cat_prova = {}
+    if os.path.isdir(FONTE_PROVAS):
+        for pid in os.listdir(FONTE_PROVAS):
+            f = os.path.join(FONTE_PROVAS, pid, 'prova.json')
+            if os.path.exists(f):
+                cat_prova[pid] = ler(f).get('catalogoId')
+
+    def de_catalogo(cid):
+        c = cat.get(cid)
+        if c:
+            return regiao_de(c.get('uf'), c.get('regiao'))
+        return regiao_de(ESCOLA_UF.get(cid or ''))
+
+    rel, sem = {}, []
+    for m in MATERIAS + NOVAS:
+        arq = os.path.join(DESTINO, m, 'banco.json')
+        if not os.path.exists(arq):
+            continue
+        banco = ler(arq)
+        conta = {}
+        for q in banco:
+            rg = uf = None
+            pv = q.get('prova') or q.get('provaOficial')
+            if pv:
+                rg, uf = de_catalogo(cat_prova.get(pv) or pv.rsplit('-', 1)[0])
+            if not rg:
+                rg, uf = de_catalogo(CATALOGO_ESCOLA.get(q['escola']))
+            if not rg:
+                rg, uf = regiao_de(ESCOLA_UF.get(q['escola']))
+            q.pop('rg', None)
+            q.pop('uf', None)
+            if rg:
+                q['rg'] = rg
+                if uf:
+                    q['uf'] = uf
+                conta[rg] = conta.get(rg, 0) + 1
+            elif not q.get('retirada') and not q.get('pendente'):
+                sem.append(f"{m}/{q['id']} ({q['escola']} {q['ano']})")
+        gravar(arq, banco)
+        rel[m] = dict(sorted(conta.items()))
+    if sem:
+        raise SystemExit(f'{len(sem)} questões sem região da prova (ajuste ESCOLA_UF em converte.py): ' + ', '.join(sem[:20]))
+    return rel
+
+
 def aplica_retiradas():
     """Comando 21, depois de montar os bancos: (1) confere que nenhuma questão de site entrou; (2) o treino geral
     (essencial.abc) troca cada id de site pela questão de prova equivalente da mesma matéria, ou tira da lista;
@@ -806,6 +880,8 @@ def main():
     print('questões das provas nos exercícios', relatorio['exercicios'])
     relatorio['questoes_de_site'] = aplica_retiradas()
     print('questões de site fora do site', relatorio['questoes_de_site'])
+    relatorio['regioes'] = marca_regioes()
+    print('região da prova de cada questão', relatorio['regioes'])
     # revisão em slides: depois das matérias (alimenta a Teoria em cartões no materia.json de cada uma)
     relatorio['revisao'] = revisao.converte()
     print('revisão em slides', relatorio['revisao'])

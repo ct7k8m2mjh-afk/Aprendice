@@ -8,6 +8,7 @@ import { MATERIA_UNIDA, materiaAtual, type MateriaId } from '../dados/tipos';
 import type { EstadoMateria, EstadoQuestao, Estado, FlashRec, RevisaoConteudo, SessaoMisto, SessaoTreino, SimuladoFeito, SimuladoResultado } from './tipos';
 import { estadoMateriaVazio, estadoVazio } from './tipos';
 import { RETIRADAS, type RetiradaBruta } from '../dados/questoesRetiradas';
+import { ehFiltro, ehRegiao } from '../logica/regiao';
 
 export const CHAVES_PROTOTIPO: Record<string, MateriaId> = {
   'saocamilo.bio.v1': 'bio', 'saocamilo.qui.v1': 'qui', 'saocamilo.mat.v1': 'mat', 'saocamilo.por.v1': 'por',
@@ -183,7 +184,7 @@ export function migraDoNavegador(estado: Estado, ler: (k: string) => string | nu
  * v1 -> v2 (comando 18 do dono): Filosofia ('fil') e Sociologia ('soc') viram UMA matéria, Filosofia e Sociologia ('fs').
  * Os ids de questões, temas e cartões não mudam; o progresso das duas é mesclado na matéria nova sem perder nada. */
 
-export const VERSAO_ATUAL = 5;
+export const VERSAO_ATUAL = 6;
 const ANTIGAS = Object.keys(MATERIA_UNIDA) as (keyof typeof MATERIA_UNIDA)[];
 
 /** Momento da última atividade de uma matéria (tentativas, cartões, sessões), para escolher o "continuar de onde parou". */
@@ -358,6 +359,17 @@ function v4paraV5(e: Estado): Estado {
   return { ...e, versao: 5, treinoMisto: valida ? t : null };
 }
 
+/* v5 -> v6 (pedido do dono, 09/11/2026): região das provas. As preferências ganham `regioes` (região das minhas provas
+ * escolhida à mão; null = automática, pelas provas-alvo) e `filtroRegiao` (o chip escolhido onde o aluno pratica;
+ * começa em "Minha região"). Só preferências: tentativas, revisões, simulados e ids não mudam. Valor estranho
+ * (arquivo editado, versão futura) volta ao padrão sem derrubar o resto. */
+export function v5paraV6(e: Estado): Estado {
+  const pref = obj<Estado['pref']>(e.pref) || estadoVazio().pref;
+  const regioes = Array.isArray(pref.regioes) ? pref.regioes.filter(ehRegiao) : [];
+  const filtroRegiao = ehFiltro(pref.filtroRegiao) ? pref.filtroRegiao : 'minha';
+  return { ...e, versao: 6, pref: { ...pref, regioes: regioes.length ? regioes : null, filtroRegiao } };
+}
+
 /** Leva um estado salvo (de qualquer versão conhecida) ao formato atual. Estado já atual volta sem mudança. */
 export function migraEstado(d: Estado | (Omit<Estado, 'versao'> & { versao: number }), tabela: TabelaRetiradas = RETIRADAS): Estado {
   let e = d as Estado;
@@ -365,5 +377,6 @@ export function migraEstado(d: Estado | (Omit<Estado, 'versao'> & { versao: numb
   if ((e.versao as number) < 3) e = { ...e, versao: 3 };
   if ((e.versao as number) < 4) e = v3paraV4(e);
   if ((e.versao as number) < 5) e = v4paraV5(e);
+  if ((e.versao as number) < 6) e = v5paraV6(e);
   return aplicaRetiradas(e, tabela);
 }
