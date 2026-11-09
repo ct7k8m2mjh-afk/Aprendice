@@ -66,7 +66,11 @@ export function QuestaoTela() {
   // a fila da revisão é fixada ao abrir (responder não muda a ordem no meio da sessão)
   const fila = useMemo<Questao[]>(() => {
     if (!mc || !q) return [];
-    if (ctx === 'revisao') { const v = questoesVencidas(mc, pegaEstado().materias[m] || s); return v.some((x) => x.id === q.id) ? v : [q, ...v]; }
+    if (ctx === 'revisao') {
+      const v0 = questoesVencidas(mc, pegaEstado().materias[m] || s);
+      const v = filtraRegiao(v0, regiaoDoEstado(pegaEstado()).conj).l;
+      return v.some((x) => x.id === q.id) ? v : v0.some((x) => x.id === q.id) ? v0 : [q, ...v];
+    }
     const l0 = mc.porSub.get(q.sub) || [q];
     const l = nv ? l0.filter((x) => nivelDe(x.dif) === nv) : l0;
     // a mesma lista que a tela do conteúdo mostra: só a região do aluno (+ ENEM), com reserva de todas as regiões;
