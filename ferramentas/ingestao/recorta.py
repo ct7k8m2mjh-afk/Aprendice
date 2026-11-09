@@ -983,6 +983,19 @@ def apara(im):
     return im.crop((max(0, x0 - 6), max(0, y0 - 6), min(im.width, x1 + 6), min(im.height, y1 + 6)))
 
 
+def ocr_imagem(img):
+    """Texto (para busca) lido por OCR do próprio print: caderno com camada de texto em codificação própria
+    (cfg 'texto_ocr_print', ENEM 2021)."""
+    b = BytesIO()
+    img.convert('RGB').save(b, 'PNG')
+    doc = pymupdf.open(stream=b.getvalue(), filetype='png')
+    pdf = pymupdf.open('pdf', doc.convert_to_pdf())
+    pg = pdf[0]
+    t = pg.get_text(textpage=pg.get_textpage_ocr(language='por', dpi=150, full=True))
+    t = re.sub(r'[ \t]+', ' ', t)
+    return re.sub(r'\n{3,}', '\n\n', t).strip()
+
+
 _GIRADO_RX = None   # cfg 'apagar_girado' da prova em processamento
 
 
@@ -1414,6 +1427,8 @@ def processa(pid, amostra=False, so_texto=False):
                 'texto': texto(pdf, sup + segs),
                 'print': f'q/{n:03d}.webp', 'larg': img.width, 'alt': img.height,
             }
+            if cfg.get('texto_ocr_print') and not so_texto:
+                questoes[n]['texto'] = ocr_imagem(img)
             if cfg.get('troca_texto'):   # caractere usado no PDF no lugar do espaço (ex.: "¬" na Fuvest 2026)
                 questoes[n]['texto'] = troca(questoes[n]['texto'], cfg['troca_texto'])
                 if estr:

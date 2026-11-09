@@ -70,8 +70,8 @@ def enem_2020_2022(ano):
     if ano == 2021:
         # camada de texto com fonte sem mapa de caracteres em boa parte do caderno ("•£Üèîé..."): só o print
         cfg['sem_transcricao'] = True
-        # o texto de busca da questão vem por OCR do próprio caderno (âncoras e colunas seguem pela camada de texto)
-        cfg['cadernos'] = [dict(c, ocr_so_texto=True) for c in cfg['cadernos']]
+        # o texto de busca vem do OCR do próprio print da questão (o OCR da página mistura as duas colunas)
+        cfg['texto_ocr_print'] = True
     return cfg
 
 
