@@ -9,6 +9,8 @@ import { Icone, type NomeIcone } from '../ui/Icone';
 import { estadoMateriaVazio } from '../estado/tipos';
 import { revisoesVencidas } from '../logica/cicloRevisao';
 import { numeroQuestao } from '../dados/tipos';
+import { FiltroRegiaoChips, defineFiltroRegiao, useRegiao } from '../ui/FiltroRegiao';
+import { descreveFiltro, filtraRegiao } from '../logica/regiao';
 
 export function Revisao() {
   useTitulo('Revisão');
@@ -16,23 +18,27 @@ export function Revisao() {
   const e = useEstado();
   const [qs, setQs] = useSearchParams();
   const aba = qs.get('aba') || 'questoes';
+  const rg = useRegiao();
   if (!todas) return <div className="conteudo"><Carregando /></div>;
   const agora = Date.now();
   const amanha7 = iniDia(agora) + 8 * DIA;
 
   const porMat = todas.map((mc) => {
     const s = e.materias[mc.id] || estadoMateriaVazio();
-    const venc = questoesVencidas(mc, s, agora);
-    const prox = mc.banco.filter((q) => { const f = filaDe(s.q[q.id]); return f && f.vence > agora && f.vence < amanha7; })
+    // pedido do dono (09/11/2026): a revisão segue o filtro de região; sem nenhuma da região, mostra todas (reserva)
+    const vencTodas = questoesVencidas(mc, s, agora);
+    const venc = filtraRegiao(vencTodas, rg.conj).l;
+    const prox = filtraRegiao(mc.banco.filter((q) => { const f = filaDe(s.q[q.id]); return f && f.vence > agora && f.vence < amanha7; }), rg.conj).l
       .concat((mc.retiradas || []).filter((q) => { const f = filaRetirada(mc, s, q); return f && f.vence > agora && f.vence < amanha7; }));
     const marcadas = mc.banco.filter((q) => s.q[q.id]?.rev);
     // revisão em slides (ciclo de 5 tempos): conteúdos que voltam hoje e os que ficaram no meio
     const nomeSub = (sub: string) => mc.conteudo.modulos.flatMap((x) => x.subs).find((x) => x.id === sub)?.nome || sub;
     const conteudos = [...new Set([...revisoesVencidas(s, agora), ...Object.entries(s.revs || {}).filter(([, r]) => r.and).map(([sub]) => sub)])]
       .map((sub) => ({ sub, nome: nomeSub(sub), andamento: !!s.revs?.[sub]?.and }));
-    return { mc, s, venc, prox, marcadas, conteudos, r: resumoMateria(mc, s, agora) };
+    return { mc, s, venc, outras: vencTodas.length - venc.length, prox, marcadas, conteudos, r: resumoMateria(mc, s, agora) };
   });
   const totVenc = porMat.reduce((a, x) => a + x.venc.length, 0);
+  const totOutras = porMat.reduce((a, x) => a + x.outras, 0);
   const totFlash = porMat.reduce((a, x) => a + x.r.flashVencidos, 0);
   const totMarc = porMat.reduce((a, x) => a + x.marcadas.length, 0);
   const totCont = porMat.reduce((a, x) => a + x.conteudos.length, 0);
@@ -48,6 +54,11 @@ export function Revisao() {
         <button aria-pressed={aba === 'marcadas'} onClick={() => setQs({ aba: 'marcadas' }, { replace: true })}>Marcadas <small>{totMarc}</small></button>
         <button aria-pressed={aba === 'conteudos'} onClick={() => setQs({ aba: 'conteudos' }, { replace: true })}>Conteúdos <small>{totCont}</small></button>
       </div>
+
+      {aba === 'questoes' && <div className="rv-regiao"><FiltroRegiaoChips />{totOutras > 0 && (
+        <p className="fr-aviso" role="status"><span>{plural(totOutras, 'questão', 'questões')} de fora de {descreveFiltro(rg.filtro, rg.minhas)} também {totOutras === 1 ? 'vence' : 'vencem'} hoje.</span>
+          <button className="link-sec" onClick={() => defineFiltroRegiao('todas')}>Ver de outras regiões</button></p>
+      )}</div>}
 
       {aba === 'questoes' && (totVenc === 0 && !porMat.some((x) => x.prox.length) ? (
         <div className="vazio"><h3>Nada para revisar hoje</h3><p>Quando você errar, chutar ou usar uma pista, a questão aparece aqui no dia certo.</p><Link to="/" className="btn sec">Voltar ao início</Link></div>

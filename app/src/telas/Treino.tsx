@@ -15,6 +15,8 @@ import { registraTentativa } from './Questao';
 import { notaFlash } from './Flashcards';
 import type { Letra, MateriaId, Questao } from '../dados/tipos';
 import type { SessaoTreino } from '../estado/tipos';
+import { FiltroRegiaoChips, regiaoDoEstado } from '../ui/FiltroRegiao';
+import { questoesTreinoGeral } from '../logica/regiao';
 
 function embaralha<T>(l: T[]): T[] { const a = [...l]; for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
 
@@ -24,7 +26,9 @@ function embaralha<T>(l: T[]): T[] { const a = [...l]; for (let i = a.length - 1
 export function montaTreino(mc: MateriaCarregada): SessaoTreino {
   const est = pegaEstado().materias[mc.id];
   const gosto = (id: string) => est?.flg[id]?.g !== -1;
-  const abc = mc.conteudo.essencial.abc.filter((id) => mc.porId.has(id) && (!EH_PREVIA || !!urlPrint(mc.id, id)));
+  // pedido do dono (09/11/2026): as questões reais vêm da região do aluno (+ ENEM), com reserva (logica/regiao.ts)
+  const abc = questoesTreinoGeral(mc.conteudo.essencial.abc, mc.banco, regiaoDoEstado(pegaEstado()).conj)
+    .filter((id) => mc.porId.has(id) && (!EH_PREVIA || !!urlPrint(mc.id, id)));
   const comImg = embaralha(mc.conteudo.flashImg.filter((c) => gosto(c.id) && !EH_PREVIA)).slice(0, 2);
   const fs = [...comImg, ...embaralha(mc.conteudo.flash.filter((c) => gosto(c.id)))].slice(0, RODADA.f);
   const cz = embaralha(mc.conteudo.essencial.completar.filter((c) => gosto(c.id) && c.frase.split('___').length === 2)).slice(0, RODADA.c);
@@ -139,6 +143,7 @@ export function Treino() {
             ))}
           </div>
           <p className="miolo">Erros e chutes entram na revisão espaçada automaticamente.</p>
+          <div className="tm-regiao"><FiltroRegiaoChips compacto /></div>
           <div className="fc-acoes"><button className="btn sec" onClick={encerrar}>Voltar a {info.nome}</button><button className="btn" onClick={recomecar}>Novo treino</button></div>
         </div>
       </div>
@@ -161,6 +166,7 @@ export function Treino() {
         <button className="btn fantasma peq" onClick={recomecar}>Recomeçar</button>
         <BotaoTelaCheia />
       </div>
+      {ses.i === 0 && <div className="q-regiao"><FiltroRegiaoChips compacto aoMudar={recomecar} /></div>}
       <div className="q-corpo">
         {it.k === 'q' && mc.porId.get(it.id) && <QuestaoInline mc={mc} q={mc.porId.get(it.id)!} aoTerminar={(ok) => avanca(it.id, ok ? 'a' : 'e')} />}
         {it.k === 'f' && (() => { const c = todos.find((x) => x.id === it.id); const md = c && mc.conteudo.modulos.find((x) => x.id === c.mod); return c ? <FlashcardView m={m} c={c} todos={todos} tema={md?.nome} conteudo={cap(md?.subs.find((x) => x.id === c.sub)?.nome || '') || undefined} aoNotar={(n, o) => { notaFlash(m, c.id, n, o); avanca(c.id, n); }} /> : null; })()}

@@ -128,3 +128,32 @@ export function descreveFiltro(f: FiltroRegiao, minhas: RegiaoId[]): string {
 export function juntaE(l: string[]): string {
   return l.length <= 1 ? l.join('') : l.slice(0, -1).join(', ') + ' e ' + l[l.length - 1];
 }
+
+/** Quantas questões a lista do Treino geral da matéria procura ter na região antes de completar com as de outras. */
+export const TREINO_REGIAO_N = 40;
+
+/**
+ * Questões do Treino geral de uma matéria para o filtro do aluno. A lista base (essencial.abc: as questões reais dos
+ * temas que mais caem) foi montada com o banco antigo, quase todo de São Paulo; por isso, na região do aluno:
+ * 1. as da lista base que são da região;
+ * 2. completa com questões da região, dos mesmos temas da lista base, níveis 1 a 6, primeiro as com resolução comentada
+ *    (ordem estável pelo id, sem sorteio aqui);
+ * 3. sem nenhuma da região, a lista base inteira (nunca deixa o aluno sem treino).
+ * Sem filtro (todas as regiões), é a lista base.
+ */
+export function questoesTreinoGeral<T extends Pick<Questao, 'id' | 'escola' | 'modulo' | 'dif' | 'origem'> & { rg?: string; cr?: 1; pendente?: string; retirada?: true }>(
+  abc: string[], banco: T[], conj: Set<RegiaoId> | null,
+): string[] {
+  if (!conj) return abc;
+  const porId = new Map(banco.map((q) => [q.id, q]));
+  const base = abc.filter((id) => { const q = porId.get(id); return !!q && passa(q, conj); });
+  if (base.length < TREINO_REGIAO_N) {
+    const temas = new Set(abc.map((id) => porId.get(id)?.modulo).filter(Boolean));
+    const ja = new Set(base);
+    const extra = banco.filter((q) => !ja.has(q.id) && q.origem === 'prova' && !q.pendente && !q.retirada && q.dif <= 6
+      && (!temas.size || temas.has(q.modulo)) && regiaoDaQuestao(q) !== null && conj.has(regiaoDaQuestao(q)!))
+      .sort((a, b) => (a.cr ? 0 : 1) - (b.cr ? 0 : 1) || a.id.localeCompare(b.id));
+    base.push(...extra.slice(0, TREINO_REGIAO_N - base.length).map((q) => q.id));
+  }
+  return base.length ? base : abc;
+}

@@ -2388,3 +2388,9 @@ for _a in (2020, 2021):
 for _k in ('pucpr-2023-1', 'pucpr-2023-2', 'pucpr-2024-1'):
     PROVAS[_k]['suporte'] = PROVAS[_k]['suporte'] + [r'(?i)texto a seguir ser[áa] base para as quest']
 PROVAS['unifesp-2022']['apoio_de'] = {23: [16]}   # a 23 compara o anúncio com o texto das questões 16 a 22: os dois textos no print
+
+
+# ------------------------------------------------------------------------- Vunesp (cópias fora do portal da Vunesp)
+# Unesp, Famerp, Famema, Einstein, Santa Casa, Sírio-Libanês, FMJ, FACISB, UEA... (decisão do dono, 09/11/2026)
+from provas_vunesp import mais_provas as _mais_vunesp  # noqa: E402
+PROVAS.update(_mais_vunesp())

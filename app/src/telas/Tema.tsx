@@ -17,6 +17,8 @@ import { useIndiceRevisao, useResumos } from '../dados/revisao';
 import { ResumoSubtemaView } from '../ui/revisao/ResumoSubtema';
 import { emDias } from '../logica/revisao';
 import type { EstadoMateria } from '../estado/tipos';
+import { AvisoRegiao, FiltroRegiaoChips, useRegiao } from '../ui/FiltroRegiao';
+import { POUCAS, filtraRegiao } from '../logica/regiao';
 
 export function CartaoTeoriaView({ c, figs }: { c: CartaoTeoria; figs?: Figura[] }) {
   return (
@@ -80,6 +82,7 @@ export function Tema() {
   const mod = mc?.conteudo.modulos.find((x) => x.id === modId);
   const indRev = useIndiceRevisao(m);
   const resumos = useResumos(m);
+  const rg = useRegiao();
   useTitulo(mod?.nome || 'Tema');
   if (!mc) return <div className="conteudo"><Carregando /></div>;
   if (!mod) return <div className="conteudo vazio"><h3>Tema não encontrado</h3><Link className="btn sec" to={`/m/${m}`}>Voltar à matéria</Link></div>;
@@ -90,7 +93,12 @@ export function Tema() {
   const ant = idx > 0 ? mods[idx - 1] : undefined;
   const prox = idx < mods.length - 1 ? mods[idx + 1] : undefined;
   const subs = mod.subs.filter((x) => mc.porSub.get(x.id)?.length);
-  const todas = mc.banco.filter((q) => q.modulo === mod.id);
+  // pedido do dono (09/11/2026): questões da região do aluno (+ ENEM); conteúdo sem nenhuma da região usa todas (reserva)
+  const porSubR = new Map(subs.map((x) => [x.id, filtraRegiao(mc.porSub.get(x.id)!, rg.conj)]));
+  const qsDe = (id: string) => porSubR.get(id)?.l || [];
+  const todas = subs.flatMap((x) => qsDe(x.id));
+  const daRegiao = subs.reduce((a, x) => a + porSubR.get(x.id)!.daRegiao, 0), totalTema = subs.reduce((a, x) => a + porSubR.get(x.id)!.total, 0);
+  const avisoTema = { daRegiao, total: totalTema, reserva: !!rg.conj && !daRegiao && totalTema > 0, poucas: !!rg.conj && daRegiao < POUCAS && totalTema > daRegiao };
   const p = progressoEscada(todas, s);
   const niveis = desempenhoPorNivel(todas, s);
   const temTeoria = mod.cartoes.length > 0 || !!mod.resumo;
@@ -104,8 +112,8 @@ export function Tema() {
   const aba = abaPedida === 'teoria' && temTeoria ? 'teoria' : abaPedida === 'revisao' && temRev ? 'revisao' : 'conteudos';
   // Começar: o primeiro conteúdo com questão por fazer, na ordem do mais fácil ao mais difícil
   let alvo: string | undefined;
-  for (const sub of subs) { const q = mc.porSub.get(sub.id)!.find((x) => !s.q[x.id]?.tent.length); if (q) { alvo = q.id; break; } }
-  const primeira = subs.length ? mc.porSub.get(subs[0].id)![0].id : undefined;
+  for (const sub of subs) { const q = qsDe(sub.id).find((x) => !s.q[x.id]?.tent.length); if (q) { alvo = q.id; break; } }
+  const primeira = subs.length ? qsDe(subs[0].id)[0].id : undefined;
   const destino = alvo || primeira;
 
   return (
@@ -113,6 +121,7 @@ export function Tema() {
       <CabMateria m={m} nome={nomeMat} sub={subMateria(mods.length, mc.banco.length === 0)} titulo={false} />
       <FaixaTemas mc={mc} s={s} atual={mod.id} compacta />
       <div className="tp-topo"><Link to={`/m/${m}`} className="tp-volta"><Icone nome="esquerda" />Todos os temas</Link></div>
+      {subs.length > 0 && <div className="tp-regiao"><FiltroRegiaoChips /><AvisoRegiao f={avisoTema} onde="neste tema" /></div>}
 
       <section className="tp-capa" aria-labelledby="tp-tit">
         <div className="tp-cab">
@@ -170,9 +179,9 @@ export function Tema() {
           )}
           {subsRev.length > 0 && (nEss > 0
             ? <details className="tp-bloco es-aprofundar-tema"><summary className="tp-h">Aprofundar: revisão completa em slides</summary>
-                <RevisaoDoTema m={m} mod={mod} subs={subsRev.map((x) => ({ ...x, n: revTema!.subs[x.id] }))} s={s} questoes={(id) => mc.porSub.get(id)?.length || 0} embutida />
+                <RevisaoDoTema m={m} mod={mod} subs={subsRev.map((x) => ({ ...x, n: revTema!.subs[x.id] }))} s={s} questoes={(id) => (porSubR.get(id)?.l.length ?? mc.porSub.get(id)?.length) || 0} embutida />
               </details>
-            : <RevisaoDoTema m={m} mod={mod} subs={subsRev.map((x) => ({ ...x, n: revTema!.subs[x.id] }))} s={s} questoes={(id) => mc.porSub.get(id)?.length || 0} />)}
+            : <RevisaoDoTema m={m} mod={mod} subs={subsRev.map((x) => ({ ...x, n: revTema!.subs[x.id] }))} s={s} questoes={(id) => (porSubR.get(id)?.l.length ?? mc.porSub.get(id)?.length) || 0} />)}
         </>
       ) : aba === 'teoria' ? (
         <section className="tp-bloco" aria-labelledby="tp-teo-tit">
@@ -190,7 +199,7 @@ export function Tema() {
           <h2 id="tp-enc-tit" className="tp-h">O que você vai encontrar <small className="num">{plural(subs.length, 'conteúdo', 'conteúdos')}</small></h2>
           <ul className="tp-enc">
             {subs.map((sub) => {
-              const l = mc.porSub.get(sub.id)!;
+              const l = qsDe(sub.id);
               const pe = progressoEscada(l, s);
               const frase = fraseDe(mod, sub.id);
               return (

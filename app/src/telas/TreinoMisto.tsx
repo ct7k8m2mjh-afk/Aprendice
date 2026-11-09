@@ -10,11 +10,22 @@ import { BotaoTelaCheia } from '../ui/QuestaoCartao';
 import { QuestaoInline } from './Treino';
 import type { MateriaCarregada } from '../dados/conteudo';
 import type { SessaoMisto } from '../estado/tipos';
+import type { Questao } from '../dados/tipos';
+import { FiltroRegiaoChips, regiaoDoEstado } from '../ui/FiltroRegiao';
+import { passa } from '../logica/regiao';
 
 /** Nova rodada do treino geral de todas as matérias, com o tamanho escolhido em "Personalizar". */
 export function novaRodadaMisto(todas: MateriaCarregada[]): SessaoMisto {
   const e = pegaEstado();
-  return sorteiaMisto(todas, e.materias, e.pref.rodadaMisto || RODADA_PADRAO, { aceita: (m, q) => !EH_PREVIA || !!urlPrint(m, q.id) });
+  const conj = regiaoDoEstado(e).conj;
+  const n = e.pref.rodadaMisto || RODADA_PADRAO;
+  const ok = (m: MateriaCarregada['id'], q: Questao) => !EH_PREVIA || !!urlPrint(m, q.id);
+  // pedido do dono (09/11/2026): questões da região do aluno (+ ENEM); se faltarem, completa com as de outras regiões
+  const s = sorteiaMisto(todas, e.materias, n, { aceita: (m, q) => ok(m, q) && passa(q, conj) });
+  if (!conj || s.it.length >= n) return s;
+  const ja = new Set(s.it.map(chaveMisto));
+  const resto = sorteiaMisto(todas, e.materias, n, { aceita: (m, q) => ok(m, q) && !ja.has(chaveMisto({ m, id: q.id })) });
+  return { ...s, it: [...s.it, ...resto.it.slice(0, n - s.it.length)] };
 }
 
 /** Treino geral de TODAS as matérias (comando 32): questões reais de prova sorteadas e misturadas, correção em 4 blocos.
@@ -58,6 +69,7 @@ export function TreinoMisto() {
             ))}
           </ul>
           <p className="miolo">Cada resposta já conta no progresso da matéria da questão. Erros e chutes entram na revisão espaçada.</p>
+          <div className="tm-regiao"><FiltroRegiaoChips compacto /></div>
           <div className="fc-acoes"><button className="btn sec" onClick={encerrar}>Voltar ao início</button><button className="btn" onClick={recomecar}>Nova rodada</button></div>
         </div>
       </div>
@@ -83,6 +95,7 @@ export function TreinoMisto() {
         <button className="btn fantasma peq" onClick={recomecar}>Nova rodada</button>
         <BotaoTelaCheia />
       </div>
+      {ses.i === 0 && <div className="q-regiao"><FiltroRegiaoChips compacto aoMudar={recomecar} /></div>}
       <div className="q-corpo">
         {mc && q
           ? <QuestaoInline key={k} mc={mc} q={q} ctx="misto" aoTerminar={(ok) => avanca(k, ok)} />

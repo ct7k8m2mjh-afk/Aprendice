@@ -1,3 +1,5 @@
+import { useRegiao } from '../ui/FiltroRegiao';
+import { questoesTreinoGeral } from '../logica/regiao';
 import { Link, useParams } from 'react-router-dom';
 import { useEffect, useLayoutEffect, type CSSProperties, type ReactNode } from 'react';
 import { urlCapa, useMateria, type MateriaCarregada } from '../dados/conteudo';
@@ -157,6 +159,7 @@ export function Materia() {
   const mc = useMateria(info?.ativa ? m : null);
   const s = useMateriaEstado(m);
   const e = useEstado();
+  const rg = useRegiao();
   // revisão essencial (comando 33): atalho quando algum tema da matéria já tem
   const indRev = useIndiceRevisao(info?.ativa ? m : null);
   const temEssencial = !!indRev && Object.values(indRev.temas).some((t) => t.essencial);
@@ -167,16 +170,18 @@ export function Materia() {
 
   const r = resumoMateria(mc, s);
   const tg = e.treino[m];
-  const nAbc = mc.conteudo.essencial.abc.length, nComp = mc.conteudo.essencial.completar.length;
+  // questões do treino geral na região do aluno (+ ENEM), as mesmas que a rodada sorteia (logica/regiao.ts)
+  const abc = questoesTreinoGeral(mc.conteudo.essencial.abc, mc.banco, rg.conj);
+  const nAbc = abc.length, nComp = mc.conteudo.essencial.completar.length;
   const nFlash = mc.conteudo.flash.length + mc.conteudo.flashImg.length;
   const ultQ = s.ult ? mc.porId.get(s.ult) : null;
   // contadores da capa do treino geral (protótipo: .ad-tg-n) e a composição de uma rodada (logica/rodadaTreino.ts: 6 questões, 4 frases, 5 flashcards; sem frases e flashcards, mais questões)
-  const feitoAbc = mc.conteudo.essencial.abc.filter((id) => s.q[id]?.tent.length).length;
+  const feitoAbc = abc.filter((id) => s.q[id]?.tent.length).length;
   const feitoComp = mc.conteudo.essencial.completar.filter((c) => s.flash[c.id]).length;
   const feitoFlash = [...mc.conteudo.flash, ...mc.conteudo.flashImg].filter((c) => s.flash[c.id]).length;
   // acertos (última resposta certa): quarta linha de cada contador, como no protótipo
   const ultFlashOk = (id: string) => { const h = s.flash[id]?.hist; return !!h?.length && h[h.length - 1].v === 'a'; };
-  const okAbc = mc.conteudo.essencial.abc.filter((id) => { const t = s.q[id]?.tent; return !!t?.length && t[t.length - 1].ok; }).length;
+  const okAbc = abc.filter((id) => { const t = s.q[id]?.tent; return !!t?.length && t[t.length - 1].ok; }).length;
   const okComp = mc.conteudo.essencial.completar.filter((c) => ultFlashOk(c.id)).length;
   const okFlash = [...mc.conteudo.flash, ...mc.conteudo.flashImg].filter((c) => ultFlashOk(c.id)).length;
   const { q: nRq, c: nRc, f: nRf } = composicaoRodada(nAbc, nFlash, nComp), porRodada = nRq + nRc + nRf;
