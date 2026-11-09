@@ -367,3 +367,25 @@ span.fm:not(.fm-bloco) .fm-linha + .fm-linha { margin-left: 1em; }
 @keyframes mm-surge { from { opacity: 0; } to { opacity: 1; } }
 @media (prefers-reduced-motion: reduce) { .mm-linha, .mm-liga { animation: none; } }
 .es-tela .rv-cab .etq { white-space: normal; max-width: 100%; }
+
+/* ===================== RESUMO DO SUBTEMA (comando 35) ===================== */
+.rs { container-type: inline-size; display: grid; gap: 14px; padding: 16px 0; }
+.rs + .rs { border-top: 1px solid var(--linha); }
+.rs-txt { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.rs-tit { margin: 0; font: 600 var(--fs-tema)/1.3 var(--fonte); color: var(--tinta); }
+.rs-pontos { margin: 0; padding: 0; list-style: none; display: grid; gap: 6px; }
+.rs-pontos li { position: relative; padding-left: 16px; font: 400 var(--fs-texto)/1.55 var(--fonte); overflow-wrap: anywhere; }
+.rs-pontos li::before { content: ''; position: absolute; left: 0; top: .62em; width: 7px; height: 7px; border-radius: 50%; background: var(--p); }
+.rs-pontos .fm-em-linha { font-size: 1.25em; }
+.rs-formula { font-size: var(--fs-mao); }
+.rs-fig { margin: 0; min-width: 0; }
+.rs-fig img { display: block; width: 100%; height: auto; border-radius: 12px; background: var(--folha2); }
+/* caixa tracejada: o que será ilustrado, até a imagem chegar */
+.rs-caixa { display: flex; gap: 10px; align-items: flex-start; min-height: 120px; padding: 14px 16px; border: 1.5px dashed color-mix(in srgb, var(--p) 50%, var(--borda2)); border-radius: 12px;
+  background: var(--sv2); color: var(--lapis); font: 400 var(--fs-info)/1.45 var(--fonte); }
+.rs-caixa .ic { flex: none; margin-top: 1px; color: var(--t); }
+.rs-caixa b { display: block; margin-bottom: 2px; color: var(--t); font-weight: 600; }
+@container (min-width: 700px) { .rs { grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 24px; align-items: start; } }
+.rs-grade { display: grid; grid-template-columns: minmax(0, 1fr); }
+.rs-secao .rs:first-of-type, .rs-fim .rs:first-of-type { padding-top: 4px; }
+.rs-fim { margin-top: 18px; }

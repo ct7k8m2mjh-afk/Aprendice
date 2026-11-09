@@ -39,3 +39,5 @@ Tudo o que o dono envia (texto, imagem, prancha) tem uso e fica registrado com d
 - `docs/referencias/menu-lateral.webp` (03/11) — ícones de linha do menu.
 - `docs/referencias/tela-inicial.webp` (03/11) — onda e pontilhado no pé do menu; a tela inicial em si foi substituída pela aba Início de 06/11.
 - Pranchas de 02–03/11 em `app/conteudo-fonte/materias/ic/pranchas/` — só arquivo; os ícones delas saíram do site (ícones novos de 06/11).
+
+- 09/11/2026: resolução animada (vídeo) só em Biologia, Química, Matemática e Física; Português, Geografia, História, Inglês e Filosofia e Sociologia têm resolução em texto, com imagem da web só se necessária (com crédito).

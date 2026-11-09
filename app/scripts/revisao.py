@@ -234,6 +234,42 @@ def corrige_teoria(m):
     return n
 
 
+IMAGENS = os.path.join(RAIZ, 'docs', 'imagens')
+
+
+def resumos_materia(m, saida):
+    """Comando 35: resumos curtos por subtema (docs/revisao/<m>/resumos.json) para public/conteudo/<m>/revisao/resumos.json,
+    agrupados por subtema (Química tem mais de um por subtema). A imagem enviada pelo dono em docs/imagens/<m>/<sub>.png
+    vira WebP leve em revisao/imagens/<sub>.webp e substitui a caixa tracejada; sem ela, o site mostra a descrição."""
+    f = os.path.join(FONTE, m, 'resumos.json')
+    if not os.path.exists(f):
+        return 0, 0
+    from PIL import Image
+    dados = ler(f)
+    out = {}
+    imgs = 0
+    for tema in dados.values():
+        for r in tema.get('subtemas', []):
+            sub = r.get('sub')
+            if not sub or not r.get('titulo'):
+                raise ErroRevisao(f'docs/revisao/{m}/resumos.json: subtema sem "sub" ou "titulo"')
+            r = dict(r)
+            png = os.path.join(IMAGENS, m, sub + '.png')
+            if os.path.exists(png):
+                alvo = os.path.join(saida, 'imagens', sub + '.webp')
+                os.makedirs(os.path.dirname(alvo), exist_ok=True)
+                im = Image.open(png)
+                im = im.convert('RGBA' if im.mode in ('RGBA', 'LA', 'P') else 'RGB')
+                if im.width > 1200:
+                    im = im.resize((1200, round(im.height * 1200 / im.width)), Image.LANCZOS)
+                im.save(alvo, 'WEBP', quality=80, method=6)
+                r['imagem'] = {**(r.get('imagem') or {}), 'img': 'revisao/imagens/' + sub + '.webp'}
+                imgs += 1
+            out.setdefault(sub, []).append(r)
+    gravar(os.path.join(saida, 'resumos.json'), out)
+    return len(out), imgs
+
+
 def converte(materias=None):
     rel = {}
     for m in CORRECOES_TEORIA:
@@ -247,13 +283,15 @@ def converte(materias=None):
         if not os.path.isdir(pasta) or (materias and m not in materias):
             continue
         arqs = sorted(f for f in os.listdir(pasta) if re.fullmatch(r'[A-Z]\d{2}\.json', f))
-        if not arqs:
+        if not arqs and not os.path.exists(os.path.join(pasta, 'resumos.json')):
             continue
         saida = os.path.join(DESTINO, m, 'revisao')
         # do zero a cada conversão: foto retirada (ou que aguarda o dono) não fica esquecida na pasta servida
         shutil.rmtree(saida, ignore_errors=True)
         os.makedirs(saida, exist_ok=True)
         indice = {'materia': m, 'obra': OBRAS.get(m, ''), 'temas': {}}
+        n_res, n_img = resumos_materia(m, saida)
+        indice['resumos'] = n_res > 0
         temas = {}
         fotos = 0
         for a in arqs:
@@ -279,7 +317,7 @@ def converte(materias=None):
         gravar(os.path.join(saida, 'indice.json'), indice)
         cartoes = alimenta_teoria(m, temas)
         rel[m] = {'temas': len(temas), 'slides': sum(sum(t['subs'].values()) for t in indice['temas'].values()),
-                  'fotos': fotos, 'cartoes_teoria': cartoes}
+                  'fotos': fotos, 'cartoes_teoria': cartoes, 'resumos': n_res, 'imagens_resumo': n_img}
     return rel
 
 

@@ -2,7 +2,8 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useMateria, useQuestaoComTexto, useResolucoes } from '../dados/conteudo';
 import { materia as infoMateria } from '../dados/materias';
-import { useIndiceRevisao, useTemaRevisao, type TemaRevisao } from '../dados/revisao';
+import { useIndiceRevisao, useResumos, useTemaRevisao, type ResumoSubtema, type TemaRevisao } from '../dados/revisao';
+import { ResumoSubtemaView } from '../ui/revisao/ResumoSubtema';
 import { atualizaMateria, pegaEstado, useMateriaEstado } from '../estado/loja';
 import type { AndamentoRevisao, Lembrou, RespRevisao, RevisaoConteudo } from '../estado/tipos';
 import { estadoMateriaVazio } from '../estado/tipos';
@@ -40,6 +41,7 @@ export function RevisaoSlides() {
   // resolução comentada publicada para este conteúdo? (o índice diz; sem ela, nada de buscar arquivo que não existe)
   const ind = useIndiceRevisao(m);
   const temRes = !!ind?.res?.includes(sub);
+  const resumos = useResumos(m);
   const mod = mc?.conteudo.modulos.find((x) => x.id === temaId);
   const nomeSub = mod?.subs.find((x) => x.id === sub)?.nome || sub;
   useTitulo(`Revisão · ${cap(nomeSub)}`);
@@ -137,7 +139,7 @@ export function RevisaoSlides() {
       {fase < 0 ? (
         <Capa nomeMat={nomeMat} tema={tema} sub={sub} nomeSub={nomeSub} rev={rev} nQuestoes={qs.length} ciclo={ciclo} aoComecar={comeca} />
       ) : fechada || !and ? (
-        <Fim m={m} temRes={temRes} rev={pegaEstado().materias[m]?.revs?.[sub] || rev} temaId={temaId} mcBanco={mc.porId} aoRefazer={comeca} />
+        <Fim m={m} resumos={resumos?.[sub]} temRes={temRes} rev={pegaEstado().materias[m]?.revs?.[sub] || rev} temaId={temaId} mcBanco={mc.porId} aoRefazer={comeca} />
       ) : and.fase === 0 || and.fase === 3 ? (
         <FaseQuestoes key={and.fase} m={m} fase={and.fase} and={and} porId={mc.porId} sub={sub} temRes={temRes}
           aoResponder={(q, resp) => muda((a) => (a.fase === 0 ? { ...a, pre: [...a.pre.filter((x) => x.id !== q.id), resp] } : { ...a, apl: [...a.apl.filter((x) => x.id !== q.id), resp] }))}
@@ -388,7 +390,7 @@ function FaseLembrar({ sub, and, fixe, aoLembrar, aoFim }: {
 
 /* ================================================================= tempo 5: voltar */
 
-function Fim({ m, temRes, rev, temaId, mcBanco, aoRefazer }: { m: MateriaId; temRes: boolean; rev?: RevisaoConteudo; temaId: string; mcBanco: Map<string, Questao>; aoRefazer: () => void }) {
+function Fim({ m, resumos, temRes, rev, temaId, mcBanco, aoRefazer }: { m: MateriaId; resumos?: ResumoSubtema[]; temRes: boolean; rev?: RevisaoConteudo; temaId: string; mcBanco: Map<string, Questao>; aoRefazer: () => void }) {
   const ult = rev?.hist[rev.hist.length - 1];
   if (!ult || !rev) return null;
   const r = resumoSessao(ult);
@@ -396,6 +398,7 @@ function Fim({ m, temRes, rev, temaId, mcBanco, aoRefazer }: { m: MateriaId; tem
   const erradas = [...ult.pre, ...ult.apl].filter((x) => !x.ok).map((x) => mcBanco.get(x.id)).filter((q): q is Questao => !!q);
   const min = Math.max(1, Math.round(ult.seg / 60));
   return (
+    <>
     <section className="tp-capa rv-fim" aria-labelledby="rv-fim-tit">
       <p className="tp-rot num">Revisão concluída · {plural(min, 'minuto', 'minutos')}</p>
       <h1 id="rv-fim-tit">{boa ? 'Conteúdo firme por enquanto' : 'Este conteúdo volta logo'}</h1>
@@ -422,6 +425,13 @@ function Fim({ m, temRes, rev, temaId, mcBanco, aoRefazer }: { m: MateriaId; tem
         <button className="btn sec" onClick={aoRefazer}><Icone nome="repetir" />Revisar de novo</button>
       </div>
     </section>
+    {resumos && resumos.length > 0 && (
+      <section className="tp-bloco rs-fim" aria-labelledby="rv-rs-tit">
+        <h2 id="rv-rs-tit" className="tp-h">Resumo para levar</h2>
+        {resumos.map((x, k) => <ResumoSubtemaView key={k} m={m} r={x} />)}
+      </section>
+    )}
+    </>
   );
 }
 

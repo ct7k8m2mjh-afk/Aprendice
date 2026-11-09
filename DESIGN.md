@@ -193,3 +193,8 @@ Outros campos de `res/` não aparecem; sem resolução, aviso "em revisão"; fon
 - Ícones: saíram a sombra dos círculos, o contorno, o "cresce 6% e sobe 3px" e a sombra de contato das capas e dos ícones de matéria (commit ed144a47, decisão de 09/11). Com "reduzir movimento" não há mais contorno de 2px (fica anulado pelo `box-shadow: none`).
 - Rótulo do grupo do menu: o código usa 14px 500 (o texto também dizia 13.5px 600).
 - Faixa de temas: a altura do cartão vem do conteúdo (o texto antigo dizia 204 e 210px).
+
+
+## Resolução por matéria (dono, 09/11/2026)
+- Animada pelo motor único: bio, qui, mat, fis.
+- Texto passo a passo (`.cor-texto`, lista numerada; trecho citado em itálico com fio à esquerda na cor da matéria): por, geo, his, ing, fs.

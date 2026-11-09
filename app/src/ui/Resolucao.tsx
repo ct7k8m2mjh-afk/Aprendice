@@ -11,6 +11,29 @@ import { materiaDaArea } from '../dados/provasCompletas';
  * (res.resposta + res.armadilha) · 3. Resolução animada · 4. Por que as outras estão erradas (fechado).
  * Os demais campos (antes, checagem, essencial, alerta, pista, caminhos) continuam nos dados e não ocupam a correção.
  */
+/** Resolução animada (vídeo) só em Biologia, Química, Matemática e Física (dono, 09/11/2026);
+ *  nas outras matérias a resolução é texto, passo a passo. */
+const ANIMADAS = new Set(['bio', 'qui', 'mat', 'fis']);
+
+function ResolucaoTexto({ r }: { r: Resolucao }) {
+  const passos = (r.passos || []).filter((p) => p.faz || p.conta || p.porque);
+  if (!passos.length) return null;
+  return (
+    <div className="cor-bloco cor-texto">
+      <h3 className="cor-tit">Resolução</h3>
+      <ol className="cor-passos">
+        {passos.map((p, i) => (
+          <li key={i}>
+            {p.faz && <p className="cor-expl"><b>{comFracoes(p.faz)}</b></p>}
+            {p.conta && <p className="cor-expl cor-trecho">{comFracoes(p.conta)}</p>}
+            {p.porque && <p className="cor-expl">{comFracoes(p.porque)}</p>}
+          </li>
+        ))}
+      </ol>
+    </div>
+  );
+}
+
 export function ResolucaoView({ q, r, marcada }: { q: Questao; r: Resolucao | null | undefined; marcada: Letra | null }) {
   const acertou = marcada === q.gab;
   const erradaTxt = marcada && !acertou ? r?.erradas?.[marcada] : null;
@@ -55,7 +78,9 @@ export function ResolucaoView({ q, r, marcada }: { q: Questao; r: Resolucao | nu
             </div>
           )}
           {/* 3. Resolução animada (um motor só para todas: logica/motorConta.ts) */}
-          {((r.passos && r.passos.length > 0) || (r.quadro && r.quadro.length > 0)) && <ResolucaoAnimada r={r} materia={mat} />}
+          {((r.passos && r.passos.length > 0) || (r.quadro && r.quadro.length > 0)) && (ANIMADAS.has(mat || '')
+            ? <ResolucaoAnimada r={r} materia={mat} />
+            : <ResolucaoTexto r={r} />)}
           {/* 4. Por que as outras estão erradas: fechado, abre ao clicar */}
           {outras.length > 0 && (
             <details className="cor-outras">

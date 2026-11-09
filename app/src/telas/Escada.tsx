@@ -12,6 +12,8 @@ import { CartaoTeoriaView } from './Tema';
 import { CabMateria, subMateria, FaixaTemas } from './Materia';
 import type { MateriaId } from '../dados/tipos';
 import { numeroQuestao } from '../dados/tipos';
+import { useResumos } from '../dados/revisao';
+import { ResumoSubtemaView } from '../ui/revisao/ResumoSubtema';
 
 /**
  * Conteúdo (rota antiga /escada, mantida para não quebrar links e progresso): as questões reais do conteúdo,
@@ -22,6 +24,7 @@ export function Escada() {
   const mc = useMateria(m);
   const s = useMateriaEstado(m);
   const [teoria, setTeoria] = useState(false);
+  const resumos = useResumos(m); // comando 35: resumo curto do conteúdo
   const mod = mc?.conteudo.modulos.find((x) => x.id === sub.split('.')[0]);
   const conteudo = mod?.subs.find((x) => x.id === sub);
   useTitulo(conteudo ? cap(conteudo.nome) : 'Conteúdo');
@@ -58,6 +61,13 @@ export function Escada() {
         </div>
         <Link to={`/m/${m}/q/${(prox || l[0]).id}?ctx=escada`} className="btn">{p.feitas === 0 ? 'Começar' : prox ? 'Continuar' : 'Refazer do início'} <Icone nome="direita" /></Link>
       </div>
+
+      {resumos?.[sub]?.length ? (
+        <section className="secao rs-secao" aria-label="Resumo do conteúdo">
+          <h2 className="sec-tit">Resumo</h2>
+          {resumos[sub].map((r, k) => <ResumoSubtemaView key={k} m={m} r={r} />)}
+        </section>
+      ) : null}
 
       <section className="secao">
         <h2 className="sec-tit">Por nível</h2>

@@ -60,8 +60,13 @@ export interface TemaRevisao {
   obra?: string;
 }
 
+/** Resumo curto de um subtema (comando 35, docs/revisao/<m>/resumos.json): pontos, pegadinha e a imagem (ou a caixa
+ *  tracejada com a descrição do que será ilustrado, até o dono enviar docs/imagens/<m>/<sub>.png). */
+export interface ResumoSubtema { sub: string; titulo: string; pontos: string[]; pegadinha?: string; formula?: string; imagem?: { descricao?: string; img?: string } }
+
 export interface IndiceRevisao { materia: MateriaId; obra?: string; temas: Record<string, { nome: string; subs: Record<string, number>; essencial?: number }>;
-  /** conteúdos com resolução comentada publicada (res/<conteúdo>.json) */ res?: string[] }
+  /** conteúdos com resolução comentada publicada (res/<conteúdo>.json) */ res?: string[];
+  /** há resumos por subtema (revisao/resumos.json) */ resumos?: boolean }
 
 const VAZIO: IndiceRevisao = { materia: 'fis', temas: {} };
 const cacheIndice = new Map<MateriaId, Promise<IndiceRevisao>>();
@@ -121,6 +126,29 @@ export function urlRevisao(m: MateriaId, caminho: string): string { return BASE 
 
 /** obras com prefixo na chave (Filosofia e Sociologia: "FIL-L1-F1-C01", "SOC-L1-F1-C03") */
 const OBRA_PREFIXO: Record<string, string> = { FIL: 'PV Filosofia (Poliedro)', SOC: 'PV Sociologia (Poliedro)', ING: 'PV Língua Inglesa (Poliedro)', GEO: 'PV Geografia (Poliedro)', HIS: 'PV História (Poliedro)' };
+
+const cacheResumos = new Map<MateriaId, Promise<Record<string, ResumoSubtema[]>>>();
+/** Resumos da matéria, por subtema (só busca quando o índice diz que existem: nada de 404). */
+export function carregaResumos(m: MateriaId): Promise<Record<string, ResumoSubtema[]>> {
+  let p = cacheResumos.get(m);
+  if (!p) {
+    p = carregaIndiceRevisao(m).then((ind) => (ind.resumos && !PREVIA
+      ? fetch(BASE + m + '/revisao/resumos.json').then((r) => (r.ok ? r.json() : {})).catch(() => ({}))
+      : {}));
+    cacheResumos.set(m, p);
+  }
+  return p;
+}
+export function useResumos(m: MateriaId | null | undefined): Record<string, ResumoSubtema[]> | null {
+  const [x, setX] = useState<Record<string, ResumoSubtema[]> | null>(null);
+  useEffect(() => {
+    if (!m) return;
+    let vivo = true;
+    carregaResumos(m).then((r) => { if (vivo) setX(r); });
+    return () => { vivo = false; };
+  }, [m]);
+  return x;
+}
 
 /** "L1-F1-C02 p. 24" → "PV Física (Poliedro), livro 1, frente 1, cap. 2, p. 24"; "FIL-L1-F1-C01 p. 11" → "PV Filosofia
  *  (Poliedro), livro 1, ..." (chaves desconhecidas ficam como estão). */

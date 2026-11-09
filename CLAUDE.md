@@ -33,7 +33,7 @@ Toda tela e todo conteúdo novo seguem esta lógica, construída com o dono desd
 - **Do mais fácil ao mais difícil:** cada conteúdo começa no básico e sobe de nível; o aluno vê onde trava.
 - **Errar ensina:** a correção começa pela letra que o aluno marcou e mostra o que faltou no raciocínio dele.
 - **A pegadinha sempre aparece:** o aluno aprende a reconhecer a armadilha que a banca usa.
-- **Ver a coisa acontecer:** resolução animada, nunca só texto (regras abaixo).
+- **Ver a coisa acontecer:** em Biologia, Química, Matemática e Física, resolução animada, nunca só texto; nas outras matérias, texto passo a passo (regras abaixo).
 - **O erro volta:** o que o aluno errou retorna na revisão espaçada até ele acertar.
 - **Revisar é lembrar, não reler:** o Método Aprendice de Revisão (`docs/estrategia-revisao.md`, decisão do dono 06/11/2026) — pergunta antes da explicação, certeza antes da resposta, agenda contada a partir da data da prova, o equívoco volta (não só a questão), prioridade pela prova-alvo.
 - **Confiável:** tudo tem fonte e passa pelas lentes; na dúvida, não entra.
@@ -42,11 +42,12 @@ Toda tela e todo conteúdo novo seguem esta lógica, construída com o dono desd
 Depois de responder, o aluno vê só 4 blocos, nesta ordem:
 1. **Por que eu errei** — o que faltou no raciocínio de quem marcou aquela letra (não aparece quando o aluno acerta).
 2. **Resposta correta + a pegadinha** da questão.
-3. **Resolução animada.**
+3. **Resolução animada** (Bio, Quí, Mat, Fís) **ou resolução em texto** (demais matérias).
 4. **Por que as outras estão erradas** — fechado; abre ao clicar.
 Os demais campos de `res/` (antes, checagem, essencial, alerta…) continuam nos dados, mas não ocupam a correção; podem aparecer só onde o dono pedir.
 
-### Resolução animada (obrigatória)
+### Resolução animada (obrigatória só em Biologia, Química, Matemática e Física)
+**Decisão do dono (09/11/2026):** só Química, Matemática, Física e Biologia têm a resolução ilustrada como vídeo, animada, mostrando o que acontece e como. As outras matérias (Português, Geografia, História, Inglês, Filosofia e Sociologia) têm resolução só em texto, passo a passo; imagens da web só quando forem necessárias (com crédito, princípio 10).
 - **Biologia e Química:** animação do que acontece — processo, estrutura, reação, molécula, fluxo.
 - **Matemática (e toda conta em Física e Química):** a conta escrita à mão, passo a passo, como o "Assistir resolução" do protótipo, e cada passagem **move os termos na tela**: o x atravessa o sinal de igual e troca de sinal; o número que multiplica vai para o outro lado dividindo; os números da fração viajam até onde são multiplicados (multiplicação cruzada); o que se cancela é riscado; o resultado novo aparece no lugar.
 - **Fração sempre empilhada:** numerador em cima, barra, denominador embaixo — nunca "3/5" ou "3 ÷ 5" na mesma linha, em textos, fórmulas e animações.

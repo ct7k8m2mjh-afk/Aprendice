@@ -4,6 +4,7 @@ import { EH_PREVIA, urlPrint, useMateria, useQuestaoComTexto, useResolucoes, typ
 import { materia as infoMateria } from '../dados/materias';
 import { atualiza, pegaEstado, useEstado } from '../estado/loja';
 import { feitaHoje } from '../logica/revisao';
+import { RODADA, composicaoRodada } from '../logica/rodadaTreino';
 import { Carregando, cap, useTitulo } from '../ui/comum';
 import { Icone, type NomeIcone } from '../ui/Icone';
 import { AbasPainel, BotaoTelaCheia, Certeza, EnunciadoQuestao, FonteQuestao, RespostaCartao, mostraPainel, useCronometro, type AbaPainel, type Conf } from '../ui/QuestaoCartao';
@@ -17,14 +18,18 @@ import type { SessaoTreino } from '../estado/tipos';
 
 function embaralha<T>(l: T[]): T[] { const a = [...l]; for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
 
-/** Monta o treino geral: 6 questões reais do "essencial", 5 flashcards (no máximo 2 com imagem) e 4 frases, intercalados. */
+/** Monta o treino geral: 6 questões reais do "essencial", 5 flashcards (no máximo 2 com imagem) e 4 frases, intercalados.
+ *  Matéria sem flashcards ou frases aprovados completa a rodada com mais questões reais (logica/rodadaTreino.ts); as
+ *  questões não respondidas hoje vêm primeiro e, se faltarem, entram as já respondidas hoje. */
 export function montaTreino(mc: MateriaCarregada): SessaoTreino {
   const est = pegaEstado().materias[mc.id];
   const gosto = (id: string) => est?.flg[id]?.g !== -1;
-  const qs = embaralha(mc.conteudo.essencial.abc.filter((id) => mc.porId.has(id) && !feitaHoje(est?.q[id]) && (!EH_PREVIA || !!urlPrint(mc.id, id)))).slice(0, 6);
+  const abc = mc.conteudo.essencial.abc.filter((id) => mc.porId.has(id) && (!EH_PREVIA || !!urlPrint(mc.id, id)));
   const comImg = embaralha(mc.conteudo.flashImg.filter((c) => gosto(c.id) && !EH_PREVIA)).slice(0, 2);
-  const fs = [...comImg, ...embaralha(mc.conteudo.flash.filter((c) => gosto(c.id)))].slice(0, 5);
-  const cz = embaralha(mc.conteudo.essencial.completar.filter((c) => gosto(c.id) && c.frase.split('___').length === 2)).slice(0, 4);
+  const fs = [...comImg, ...embaralha(mc.conteudo.flash.filter((c) => gosto(c.id)))].slice(0, RODADA.f);
+  const cz = embaralha(mc.conteudo.essencial.completar.filter((c) => gosto(c.id) && c.frase.split('___').length === 2)).slice(0, RODADA.c);
+  const nq = composicaoRodada(abc.length, fs.length, cz.length).q;
+  const qs = [...embaralha(abc.filter((id) => !feitaHoje(est?.q[id]))), ...embaralha(abc.filter((id) => feitaHoje(est?.q[id])))].slice(0, nq);
   const it: SessaoTreino['it'] = [];
   const pilhas: SessaoTreino['it'][] = [qs.map((id) => ({ k: 'q' as const, id })), embaralha(fs).map((c) => ({ k: 'f' as const, id: c.id })), cz.map((c) => ({ k: 'c' as const, id: c.id }))];
   while (pilhas.some((p) => p.length)) for (const p of pilhas) { const x = p.shift(); if (x) it.push(x); }
@@ -129,9 +134,9 @@ export function Treino() {
           <h1>Treino concluído</h1>
           <p className="miolo">{v.filter((x) => x === 'a').length} de {v.length} itens certos.</p>
           <div className="rf-nums">
-            <div><b className="num">{q.ok}/{q.n}</b><span>questões de prova</span></div>
-            <div><b className="num">{f.ok}/{f.n}</b><span>flashcards</span></div>
-            <div><b className="num">{c.ok}/{c.n}</b><span>frases</span></div>
+            {([[q, 'questões de prova'], [f, 'flashcards'], [c, 'frases']] as [{ n: number; ok: number }, string][]).filter(([x]) => x.n > 0).map(([x, t]) => (
+              <div key={t}><b className="num">{x.ok}/{x.n}</b><span>{t}</span></div>
+            ))}
           </div>
           <p className="miolo">Erros e chutes entram na revisão espaçada automaticamente.</p>
           <div className="fc-acoes"><button className="btn sec" onClick={encerrar}>Voltar a {info.nome}</button><button className="btn" onClick={recomecar}>Novo treino</button></div>

@@ -1,6 +1,6 @@
 # Imagens para gerar (caixa de imagem de cada subtema)
 
-Cada linha diz o que ilustrar. Nome sugerido do arquivo: `<id do subtema>.png` (ex.: B01.1.png). Rótulos curtos em português, sem texto longo dentro da imagem.
+Cada linha diz o que ilustrar. Nome do arquivo: `<id do subtema>.png` (ex.: B01.1.png), salvo em `docs/imagens/<matéria>/` (ex.: `docs/imagens/bio/B01.1.png`); no próximo build ele substitui a caixa tracejada no site. Rótulos curtos em português, sem texto longo dentro da imagem.
 
 
 ## Biologia

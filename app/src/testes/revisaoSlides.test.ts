@@ -312,3 +312,24 @@ describe('revisão essencial', () => {
     });
   }
 });
+
+/* ============================================================ resumos por subtema (comando 35) */
+describe('resumos por subtema', () => {
+  const mats = existsSync(PASTA) ? readdirSync(PASTA).filter((m) => existsSync(join(PASTA, m, 'resumos.json'))) : [];
+  it('há resumos', () => expect(mats.length).toBeGreaterThan(0));
+  for (const m of mats) {
+    it(`${m}: título, pontos e caixa de imagem; fórmulas dos pontos sem comando sobrando e fração empilhada`, () => {
+      const d = JSON.parse(readFileSync(join(PASTA, m, 'resumos.json'), 'utf-8')) as Record<string, { subtemas: { sub: string; titulo: string; pontos: string[]; pegadinha?: string; imagem?: { descricao?: string } }[] }>;
+      for (const [tema, v] of Object.entries(d)) for (const r of v.subtemas) {
+        expect(r.sub.startsWith(tema + '.'), r.sub).toBe(true);
+        expect(r.titulo && r.pontos.length, r.sub).toBeTruthy();
+        expect(r.imagem?.descricao, r.sub).toBeTruthy();
+        for (const p of [...r.pontos, r.pegadinha || '']) for (const [, x] of p.matchAll(/\$([^$]+)\$/g)) {
+          const ls = analisaLatex(x);
+          expect(ls.map(textoDe).join(' '), x).not.toMatch(/\\|[{}]/);
+          expect(ls.reduce((a, l) => a + temFrac(l), 0), x).toBe((x.match(/\\[dt]?frac/g) || []).length);
+        }
+      }
+    });
+  }
+});

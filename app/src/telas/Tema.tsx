@@ -13,7 +13,8 @@ import { comFracoes } from '../ui/Fracao';
 import { contaEhTexto, materiaDoCodigo } from '../logica/fracao';
 import type { CartaoTeoria, Figura, MateriaId, Modulo } from '../dados/tipos';
 import { Formula, TextoMat, ehLatex } from '../ui/Formula';
-import { useIndiceRevisao } from '../dados/revisao';
+import { useIndiceRevisao, useResumos } from '../dados/revisao';
+import { ResumoSubtemaView } from '../ui/revisao/ResumoSubtema';
 import { emDias } from '../logica/revisao';
 import type { EstadoMateria } from '../estado/tipos';
 
@@ -78,6 +79,7 @@ export function Tema() {
   const s = useMateriaEstado(m);
   const mod = mc?.conteudo.modulos.find((x) => x.id === modId);
   const indRev = useIndiceRevisao(m);
+  const resumos = useResumos(m);
   useTitulo(mod?.nome || 'Tema');
   if (!mc) return <div className="conteudo"><Carregando /></div>;
   if (!mod) return <div className="conteudo vazio"><h3>Tema não encontrado</h3><Link className="btn sec" to={`/m/${m}`}>Voltar à matéria</Link></div>;
@@ -97,7 +99,8 @@ export function Tema() {
   const subsRev = revTema ? mod.subs.filter((x) => revTema.subs[x.id]) : [];
   // revisão essencial (comando 33): quando o tema tem, ela é a revisão; os slides ficam como "Aprofundar"
   const nEss = revTema?.essencial || 0;
-  const temRev = subsRev.length > 0 || nEss > 0;
+  const subsResumo = resumos ? mod.subs.filter((x) => resumos[x.id]?.length) : [];
+  const temRev = subsRev.length > 0 || nEss > 0 || subsResumo.length > 0;
   const aba = abaPedida === 'teoria' && temTeoria ? 'teoria' : abaPedida === 'revisao' && temRev ? 'revisao' : 'conteudos';
   // Começar: o primeiro conteúdo com questão por fazer, na ordem do mais fácil ao mais difícil
   let alvo: string | undefined;
@@ -139,7 +142,7 @@ export function Tema() {
           {todas.length > 0 && <p className="tp-comp num">{plural(todas.length, 'questão', 'questões')} de {plural(subs.length, 'conteúdo', 'conteúdos')} · do mais fácil ao mais difícil</p>}
           {temRev && (
             <button className="btn sec tp-teo tp-rev" aria-pressed={aba === 'revisao'} onClick={() => setQs(aba === 'revisao' ? {} : { aba: 'revisao' }, { replace: true })}>
-              <Icone nome="play" />{aba === 'revisao' ? 'Ver os conteúdos' : nEss ? 'Revisão' : 'Revisão em slides'}
+              <Icone nome="play" />{aba === 'revisao' ? 'Ver os conteúdos' : nEss || !subsRev.length ? 'Revisão' : 'Revisão em slides'}
             </button>
           )}
           {temTeoria && (
@@ -157,6 +160,12 @@ export function Tema() {
               <h2 id="tp-ess-tit" className="tp-h">Revisão essencial</h2>
               <p className="miolo tp-rev-p">Só o que todo aluno precisa saber e o que mais cai: o termômetro, o mapa mental do tema, {plural(nEss, 'tela', 'telas')} de conteúdo, uma questão resolvida e a conexão com outras matérias.</p>
               <Link className="btn tp-comecar" to={`/m/${m}/essencial/${mod.id}`}><Icone nome="play" />Começar a revisão</Link>
+            </section>
+          )}
+          {subsResumo.length > 0 && !nEss && (
+            <section className="tp-bloco rs-tema" aria-labelledby="tp-rs-tit">
+              <h2 id="tp-rs-tit" className="tp-h">Resumo de cada conteúdo <small className="num">{plural(subsResumo.length, 'conteúdo', 'conteúdos')}</small></h2>
+              <div className="rs-grade">{subsResumo.flatMap((x) => resumos![x.id].map((r, k) => <ResumoSubtemaView key={x.id + k} m={m} r={r} compacto />))}</div>
             </section>
           )}
           {subsRev.length > 0 && (nEss > 0

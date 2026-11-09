@@ -693,6 +693,92 @@ def marca_resolvidas():
     return total
 
 
+TREINO_N = 40          # questões do treino geral por matéria nova
+TREINO_COBERTURA = 0.6  # temas que mais caem: os de maior frequência no banco até cobrir 60% das questões (no mínimo 4)
+
+
+def treino_geral_novas():
+    """Treino geral das matérias novas (Física, Geografia, História, Inglês, Filosofia e Sociologia): só conteúdo já
+    aprovado. Questões: ~40 questões reais de prova do banco, dos temas que mais caem (frequência no banco), níveis 1-6
+    (metade básico, metade intermediário), preferindo as que têm resolução; escolha determinística (hash do id), sem
+    mudar id nenhum. Flashcards e frases para completar NÃO são gerados: os cartões da revisão (docs/revisao/<m>/) são
+    cartões de teoria (título, o que é, como identificar, exemplo, caderno, cuidado), sem pergunta curta nem resposta de
+    uma frase, e as linhas dos slides "fixe" são frases longas sem um termo curto para a lacuna; virar flashcard ou frase
+    exigiria escrever texto novo, que não passou pelas lentes (princípio 3). Roda depois de marca_resolvidas (usa cr)."""
+    rel = {}
+    for m in NOVAS:
+        f = os.path.join(DESTINO, m, 'materia.json')
+        if not os.path.exists(f):
+            continue
+        mat, banco = ler(f), ler(os.path.join(DESTINO, m, 'banco.json'))
+        if mat['essencial'].get('abc'):
+            rel[m] = {'questoes': len(mat['essencial']['abc']), 'obs': 'lista já existente mantida'}
+            continue
+
+        def valida(q):
+            g = q.get('gab') or ''
+            return (q.get('origem') == 'prova' and not q.get('pendente') and not q.get('retirada') and len(g) == 1
+                    and g in 'ABCDE' and 'ABCDE'.index(g) < len(q.get('alts') or []))
+        validas = [q for q in banco if valida(q)]
+        freq = {}
+        for q in validas:
+            freq[q['modulo']] = freq.get(q['modulo'], 0) + 1
+        ordem = sorted(freq, key=lambda k: (-freq[k], k))
+        temas, soma = [], 0
+        for k in ordem:
+            if len(temas) >= 4 and soma >= TREINO_COBERTURA * len(validas):
+                break
+            temas.append(k)
+            soma += freq[k]
+        # vagas por tema, proporcionais à frequência (maiores restos), no mínimo 2
+        alvo = {k: TREINO_N * freq[k] / soma for k in temas}
+        vagas = {k: max(2, int(alvo[k])) for k in temas}
+        for k in sorted(temas, key=lambda k: (-(alvo[k] - int(alvo[k])), k)):
+            if sum(vagas.values()) >= TREINO_N:
+                break
+            vagas[k] += 1
+        while sum(vagas.values()) > TREINO_N:
+            k = max(temas, key=lambda k: (vagas[k] - alvo[k], k))
+            vagas[k] -= 1
+        h = lambda q: hashlib.md5(q['id'].encode()).hexdigest()
+        escolhidas = {}
+        for k in temas:
+            qs = [q for q in validas if q['modulo'] == k and 1 <= int(q.get('dif') or 0) <= 6]
+            # por conteúdo (o que mais cai primeiro), cada um com a fila básico / intermediário
+            por_sub = {}
+            for q in qs:
+                por_sub.setdefault(q['sub'], {'b': [], 'i': []})['b' if int(q['dif']) <= 3 else 'i'].append(q)
+            for v in por_sub.values():
+                for l in v.values():
+                    l.sort(key=lambda q: (0 if q.get('cr') else 1, h(q)))
+            subs = sorted(por_sub, key=lambda s: (-sum(len(l) for l in por_sub[s].values()), s))
+            lista, nivel = [], 0
+            while len(lista) < vagas[k] and any(l for v in por_sub.values() for l in v.values()):
+                for s in subs:
+                    if len(lista) >= vagas[k]:
+                        break
+                    fila = por_sub[s]['bi'[nivel % 2]] or por_sub[s]['ib'[nivel % 2]]
+                    if fila:
+                        lista.append(fila.pop(0))
+                        nivel += 1
+            escolhidas[k] = lista
+        # intercala os temas (a ordem final é sorteada no site a cada rodada)
+        abc = []
+        while any(escolhidas.values()):
+            for k in temas:
+                if escolhidas[k]:
+                    abc.append(escolhidas[k].pop(0)['id'])
+        mat['essencial']['abc'] = abc
+        gravar(f, mat)
+        porid = {q['id']: q for q in banco}
+        rel[m] = {'questoes': len(abc), 'temas': temas, 'basico': sum(1 for i in abc if int(porid[i]['dif']) <= 3),
+                  'intermediario': sum(1 for i in abc if int(porid[i]['dif']) >= 4), 'com_resolucao': sum(1 for i in abc if porid[i].get('cr')),
+                  'flashcards': 0, 'frases': 0,
+                  'obs': 'sem flashcards e sem frases: os cartões e os slides "fixe" da revisão não têm o formato (pergunta curta / '
+                         'resposta de uma frase; lacuna de um termo) sem escrever texto novo'}
+    return rel
+
+
 def main():
     if '--pacotes-provas' in sys.argv:
         pacotes_provas(sys.argv[sys.argv.index('--pacotes-provas') + 1])
@@ -725,6 +811,8 @@ def main():
     print('revisão em slides', relatorio['revisao'])
     relatorio['com_resolucao'] = marca_resolvidas()
     print('questões com resolução', relatorio['com_resolucao'])
+    relatorio['treino_geral'] = treino_geral_novas()
+    print('treino geral das matérias novas', {m: v['questoes'] for m, v in relatorio['treino_geral'].items()})
     gravar(os.path.join(DESTINO, 'relatorio.json'), relatorio)
     # versão do conteúdo (para cache)
     h = hashlib.md5(json.dumps(relatorio, sort_keys=True).encode()).hexdigest()[:8]

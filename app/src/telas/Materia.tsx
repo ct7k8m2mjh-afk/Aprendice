@@ -14,6 +14,7 @@ import { useRoloHorizontal } from '../ui/rolo';
 import type { MateriaId } from '../dados/tipos';
 import type { EstadoMateria } from '../estado/tipos';
 import { useIndiceRevisao } from '../dados/revisao';
+import { composicaoRodada, descreveTreino } from '../logica/rodadaTreino';
 
 export function ListaMaterias() {
   useTitulo('Matérias');
@@ -169,7 +170,7 @@ export function Materia() {
   const nAbc = mc.conteudo.essencial.abc.length, nComp = mc.conteudo.essencial.completar.length;
   const nFlash = mc.conteudo.flash.length + mc.conteudo.flashImg.length;
   const ultQ = s.ult ? mc.porId.get(s.ult) : null;
-  // contadores da capa do treino geral (protótipo: .ad-tg-n) e a composição de uma rodada (Treino.tsx: 6 questões, 4 frases, 5 flashcards)
+  // contadores da capa do treino geral (protótipo: .ad-tg-n) e a composição de uma rodada (logica/rodadaTreino.ts: 6 questões, 4 frases, 5 flashcards; sem frases e flashcards, mais questões)
   const feitoAbc = mc.conteudo.essencial.abc.filter((id) => s.q[id]?.tent.length).length;
   const feitoComp = mc.conteudo.essencial.completar.filter((c) => s.flash[c.id]).length;
   const feitoFlash = [...mc.conteudo.flash, ...mc.conteudo.flashImg].filter((c) => s.flash[c.id]).length;
@@ -178,7 +179,7 @@ export function Materia() {
   const okAbc = mc.conteudo.essencial.abc.filter((id) => { const t = s.q[id]?.tent; return !!t?.length && t[t.length - 1].ok; }).length;
   const okComp = mc.conteudo.essencial.completar.filter((c) => ultFlashOk(c.id)).length;
   const okFlash = [...mc.conteudo.flash, ...mc.conteudo.flashImg].filter((c) => ultFlashOk(c.id)).length;
-  const nRq = Math.min(6, nAbc), nRc = Math.min(4, nComp), nRf = Math.min(5, nFlash), porRodada = nRq + nRc + nRf;
+  const { q: nRq, c: nRc, f: nRf } = composicaoRodada(nAbc, nFlash, nComp), porRodada = nRq + nRc + nRf;
 
   const vazia = mc.banco.length === 0;
   const temTreino = nAbc + nComp + nFlash > 0;
@@ -208,7 +209,7 @@ export function Materia() {
         <Link to={`/m/${m}/treino`} className="capa-tg">
           <span className="capa-txt">
             <h2>Treino geral de {info.nome}</h2>
-            <span className="capa-p">{tg ? 'Seu treino está salvo onde você parou. ' : ''}Questões reais de prova, frases para completar e flashcards dos temas que mais caem, tudo misturado.</span>
+            <span className="capa-p">{tg ? 'Seu treino está salvo onde você parou. ' : ''}{descreveTreino(nAbc, nComp, nFlash)}</span>
             <span className="tg-nums">
               {([['Questões de prova', feitoAbc, nAbc, okAbc], ['Completar a frase', feitoComp, nComp, okComp], ['Flashcards', feitoFlash, nFlash, okFlash]] as [string, number, number, number][]).filter(([, , n]) => n > 0).map(([t, f, n, ok]) => (
                 <span key={t} className="tg-n"><i>{t}</i><b className="num">{f}<small> de {n}</small></b><span className="barra" aria-hidden><i style={{ width: `${n ? (f / n) * 100 : 0}%` }} /></span><small className="num">{f ? plural(ok, 'acerto', 'acertos') : '\u00a0'}</small></span>

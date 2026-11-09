@@ -33,7 +33,7 @@ de questões REAIS de provas (o aluno vê o print fiel da prova). Público: alun
    nunca "3/5" nem "3 ÷ 5" na mesma linha.
 9. **O que o aluno vê na correção** (4 blocos, nesta ordem): "Por que eu errei" (vem de `erradas[letra marcada]`:
    escreva cada uma como o que FALTOU no raciocínio de quem marcou), "Resposta correta + a pegadinha" (`resposta` +
-   `armadilha`), "Resolução animada" (`quadro`/`visual`) e "Por que as outras estão erradas" (`erradas`). Capriche
+   `armadilha`), "Resolução animada" (`quadro`/`visual`; animada só em Biologia, Química, Matemática e Física — nas outras matérias a resolução é texto passo a passo, decisão do dono 09/11/2026) e "Por que as outras estão erradas" (`erradas`). Capriche
    nesses campos; os demais continuam nos dados, mas não aparecem na correção.
 8. **Didático e curto.** Frases de até 30 palavras. Termo técnico explicado na primeira vez (`antes.simbolos`).
    A `pista` ajuda a pensar e NÃO entrega a resposta nem cita a letra.
