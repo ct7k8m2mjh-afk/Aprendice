@@ -32,6 +32,7 @@ Uma linha por decisão, com a data. Só a versão mais nova de cada regra; o que
 - 06/11 — Capas e ícones vêm do Drive (APRENDICE → ICONES, uma pasta por matéria, e CAPAS); capas em `docs/capas/<matéria>/` (`docs/capas/LEIA.md`); ícone novo que chegar vai para `docs/icones/<matéria>/` com a origem registrada.
 - 06/11 — Aba Início reproduz `docs/referencias/aba-principal/ref-aba-principal-em-cima.png` e `-em-baixo.png`.
 - 09/11 — **Nenhum ícone tem sombra** (círculos, artes das matérias, capas). Ao passar o mouse, o ícone **salta 10 px para cima e fica no alto** enquanto o mouse estiver em cima (substitui o "cresce ~6% e sobe levemente" de 06/11 e a regra antiga de sombra dos ícones 3D).
+- 09/11 — **Revisão curta por subtema com caixa de imagem** (comando 35): resumos curtos de cada subtema (só o essencial para quem revisa); em cada um, uma caixa de imagem com a escrita do que ilustrar. O dono gera as imagens e envia ao Code depois. Sem texto desnecessário.
 
 ## Referências guardadas
 Tudo o que o dono envia (texto, imagem, prancha) tem uso e fica registrado com data.
