@@ -42,3 +42,4 @@ Tudo o que o dono envia (texto, imagem, prancha) tem uso e fica registrado com d
 
 - 09/11/2026: resolução animada (vídeo) só em Biologia, Química, Matemática e Física; Português, Geografia, História, Inglês e Filosofia e Sociologia têm resolução em texto, com imagem da web só se necessária (com crédito).
 - 09/11/2026: baixar provas só a partir de 2020; anos anteriores não são necessários (vale também para o ENEM).
+- 09/11/2026: não comprar provas (UFRGS fica fora). Provas da banca Vunesp são essenciais: buscar cópias públicas em outros sites (cursinhos, portais), registrando a origem; o dono decide os direitos.
