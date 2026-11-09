@@ -12,6 +12,8 @@ import { CirculoMateria, IluMateria } from '../ui/IconeMateria';
 import { useRoloHorizontal } from '../ui/rolo';
 import type { MateriaId } from '../dados/tipos';
 import type { Estado, EstadoMateria } from '../estado/tipos';
+import { regiaoDoEstado } from '../ui/FiltroRegiao';
+import { filtraRegiao } from '../logica/regiao';
 import { estadoMateriaVazio } from '../estado/tipos';
 
 const VAZIA: EstadoMateria = estadoMateriaVazio();
@@ -23,7 +25,10 @@ export function ondeParou(todas: MateriaCarregada[], e: Estado) {
   const mc = todas.find((x) => x.id === ult.m);
   const q = mc?.porId.get(ult.id);
   if (!mc || !q) return null;
-  const escada = mc.porSub.get(q.sub) || [];
+  const todasRegioes = mc.porSub.get(q.sub) || [];
+  // a escada do conteúdo na região do aluno (+ ENEM), como a tela do conteúdo mostra (pedido do dono, 09/11/2026)
+  const f = filtraRegiao(todasRegioes, regiaoDoEstado(e).conj).l;
+  const escada = f.some((x) => x.id === q.id) ? f : todasRegioes;
   const s = e.materias[mc.id]!;
   const prox = escada.find((x) => !s.q[x.id]?.tent.length) || q;
   const mod = mc.conteudo.modulos.find((x) => x.id === q.modulo);

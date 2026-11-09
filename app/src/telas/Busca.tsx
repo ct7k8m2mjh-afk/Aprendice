@@ -7,12 +7,15 @@ import { CATALOGO } from '../dados/provas';
 import { useIndiceProvas } from '../dados/provasCompletas';
 import { norm } from '../logica/correcao';
 import { IcTema } from '../ui/IconeTema';
+import { useRegiao } from '../ui/FiltroRegiao';
+import { filtraRegiao } from '../logica/regiao';
 import type { MateriaId } from '../dados/tipos';
 
 interface Resultado { grupo: string; titulo: string; det: string; ir: string; m?: MateriaId; ic?: string }
 
 export function Busca({ aoFechar }: { aoFechar: () => void }) {
   const todas = useTodasMaterias();
+  const rg = useRegiao();
   const provasCompletas = useIndiceProvas();
   const nav = useNavigate();
   const [t, setT] = useState('');
@@ -28,7 +31,7 @@ export function Busca({ aoFechar }: { aoFechar: () => void }) {
       for (const mod of mc.conteudo.modulos) {
         r.push({ grupo: 'Temas', titulo: mod.nome, det: nomeMateria(mc.id), ir: `/m/${mc.id}/tema/${mod.id}`, m: mc.id, ic: mod.id });
         for (const s of mod.subs) {
-          const n = mc.porSub.get(s.id)?.length || 0;
+          const n = filtraRegiao(mc.porSub.get(s.id) || [], rg.conj).l.length;
           if (n) r.push({ grupo: 'Conteúdos', titulo: s.nome.charAt(0).toUpperCase() + s.nome.slice(1), det: `${nomeMateria(mc.id)} · ${mod.nome} · ${n} ${n === 1 ? 'questão' : 'questões'}`, ir: `/m/${mc.id}/escada/${s.id}`, m: mc.id, ic: s.id });
         }
       }
@@ -37,7 +40,7 @@ export function Busca({ aoFechar }: { aoFechar: () => void }) {
     for (const e of provasCompletas || []) r.push({ grupo: 'Simulados', titulo: e.titulo, det: `Prova completa · ${e.questoes} questões`, ir: `/simulados/prova/${encodeURIComponent(e.id)}` });
     for (const p of CATALOGO) r.push({ grupo: 'Provas e faculdades', titulo: `${p.prova} · ${p.sigla || p.instituicao}`, det: [p.cidade, p.uf].filter(Boolean).join(' · ') || p.regiao, ir: `/provas/${p.id}` });
     return r;
-  }, [todas, provasCompletas]);
+  }, [todas, provasCompletas, rg.conj]);
 
   const lista = useMemo(() => {
     const q = norm(t);

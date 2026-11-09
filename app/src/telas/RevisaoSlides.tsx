@@ -20,6 +20,8 @@ import { BotaoTelaCheia, Certeza, EnunciadoQuestao, RespostaCartao, type Conf } 
 import { ResolucaoView } from '../ui/Resolucao';
 import { urlPrint } from '../dados/conteudo';
 import { registraTentativa } from './Questao';
+import { regiaoDoEstado } from '../ui/FiltroRegiao';
+import { filtraRegiao } from '../logica/regiao';
 import { Lacuna, SlideRevisao } from '../ui/revisao/SlideRevisao';
 
 /** Grava a revisão do conteúdo no estado do aluno (salvo a cada passo: fechar a aba não perde nada). */
@@ -95,7 +97,10 @@ export function RevisaoSlides() {
     );
   }
 
-  const qs = mc.porSub.get(sub) || [];
+  // questões da região do aluno (+ ENEM); com menos de 4, as de todas as regiões (o ciclo usa pergunta e aplicação)
+  const qsTodas = mc.porSub.get(sub) || [];
+  const frg = filtraRegiao(qsTodas, regiaoDoEstado(pegaEstado()).conj);
+  const qs = frg.daRegiao >= 4 ? frg.l : qsTodas;
   const comeca = () => {
     const e = escolheQuestoes(qs, pegaEstado().materias[m] || estadoMateriaVazio());
     tick.current = Date.now();
