@@ -56,76 +56,16 @@ def enem(ano):
 PROVAS = {f'enem-{a}': enem(a) for a in (2025, 2024, 2023)}
 
 
-def itens_inep(pasta, ano):
-    """Microdados do INEP (ITENS_PROVA_<ano>.csv, tirado do zip oficial): {CO_PROVA: [(posição, área, gabarito,
-    anulado, língua, param_b)]}. Serve para o gabarito de 2010 (o INEP publicou só o caderno marcado) e para conferir
-    os demais anos."""
-    import csv
-    arq = pasta.parent / 'enem-itens' / f'ITENS_PROVA_{ano}.csv'
-    if not arq.exists():
-        return {}
-    out = {}
-    with open(arq, encoding='latin-1') as f:
-        for r in csv.DictReader(f, delimiter=';'):
-            out.setdefault(r['CO_PROVA'], []).append(r)
-    return out
+def enem_2020_2022(ano):
+    """ENEM 2020–2022, aplicação regular (decisão do dono, 09/11/2026: só provas de 2020 em diante): caderno azul do
+    1º dia (1: LC 1–45, língua 1–5 na opção inglês, CH 46–90) e do 2º dia (7: CN 91–135, MT 136–180).
+    Mesma diagramação da 2023; o fio do cabeçalho e o do rodapé mudam de altura por ano."""
+    cfg = enem(ano)
+    cfg.update({'topo': {2020: 70, 2021: 70, 2022: 63}[ano], 'base': {2020: 34, 2021: 31, 2022: 38}[ano]})
+    return cfg
 
 
-def enem_antigo(ano, tipo='regular'):
-    """ENEM 2009–2022 (aplicação regular), PPL e digital: caderno azul do 1º dia (1) e do 2º dia (7); inglês.
-    Ordem das áreas: 2009 CN, CH | LC, MT (sem língua estrangeira); 2010–2016 CH, CN | LC (91–95 língua), MT;
-    2017 em diante LC (1–5 língua), CH | CN, MT."""
-    if ano == 2009:
-        areas = ['Ciências da Natureza', 'Ciências Humanas', 'Linguagens', 'Matemática']
-    elif ano <= 2016:
-        areas = ['Ciências Humanas', 'Ciências da Natureza', 'Linguagens', 'Matemática']
-    else:
-        areas = ['Linguagens', 'Ciências Humanas', 'Ciências da Natureza', 'Matemática']
-
-    def area(n):
-        return areas[min(3, (n - 1) // 45)]
-
-    def gab(pasta):
-        if ano == 2010 and tipo == 'regular':
-            # gabarito oficial publicado só como caderno marcado: lido dos microdados oficiais (ITENS_PROVA_2010),
-            # aplicação regular = cadernos azuis de menor código (85 CH, 89 CN, 95 LC, 99 MT); conferido com o caderno marcado
-            it = itens_inep(pasta, 2010)
-            g = {}
-            for cod, base in (('85', 0), ('89', 45), ('95', 90), ('99', 135)):
-                for r in it[cod]:
-                    if r.get('TP_LINGUA') == '1':
-                        continue   # espanhol
-                    n = int(r['CO_POSICAO'])
-                    g[n] = 'X' if r['IN_ITEM_ABAN'] == '1' else r['TX_GABARITO']
-            return g
-        g1 = 'd1-gabarito' if ano == 2009 else 'd1-gabarito-1'
-        g2 = 'd2-gabarito' if ano == 2009 else 'd2-gabarito-7'
-        g = {n: v for n, v in pares(texto_pdf(pasta / f'{g1}.pdf')).items() if n <= 90}
-        g.update({n: v for n, v in pares(texto_pdf(pasta / f'{g2}.pdf')).items() if 91 <= n <= 180})
-        return g
-
-    nome = {'regular': 'ENEM', 'ppl': 'ENEM PPL', 'digital': 'ENEM Digital'}[tipo]
-    lingua = '' if ano == 2009 else (' Questões 1 a 5 na opção inglês.' if ano >= 2017 else ' Questões 91 a 95 na opção inglês.')
-    aplic = {'regular': 'Aplicação regular', 'ppl': 'Reaplicação/PPL (pessoas privadas de liberdade e reaplicação)',
-             'digital': 'Aplicação digital'}[tipo]
-    return {
-        'catalogo': 'enem', 'escola': 'ENEM', 'ano': str(ano), 'fase': '' if tipo == 'regular' else nome[5:],
-        'titulo': f'{nome} {ano}', 'banca': 'Inep', 'duracao_horas': 10, 'total': 180,
-        'nota': f'{aplic}. Caderno azul (1º dia: caderno 1; 2º dia: caderno 7).{lingua} Redação fora do simulado.',
-        'cadernos': [{'arquivo': 'd1-caderno-1', 'questoes': (1, 90)}, {'arquivo': 'd2-caderno-7', 'questoes': (91, 180)}],
-        'colunas': 'auto', 'topo': 20, 'base': 8,
-        'cabecalho': r'^\*[A-Za-z0-9]+\*$|^20\d\d$|^ENEM\s*20\d\d$',
-        'rodape_rx': r'(?i)caderno\s*\d+\s*[-–•]|p[áa]gina\s+\d+|^\s*(CN|CH|LC|MT|MT\s*-\s*LC)\s*[-–•|]|[12]º\s*dia|^ENEM\s*20\d\d$',
-        'ancora': r'(?i)^quest[ãa]o\s+(\d{1,3})\b', 'ancora_dx': 22,
-        'corte': [r'(?i)^quest[õo]es de \d+ a \d+', r'PROPOSTA DE REDA', r'INSTRUÇÕES PARA A REDAÇÃO', r'^CIÊNCIAS (HUMANAS|DA NATUREZA)', r'^MATEMÁTICA E SUAS', r'^LINGUAGENS, CÓDIGOS'],
-        'suporte': [r'(?i)^texto para as quest'],
-        'gabarito': gab, 'area': area,
-    }
-
-
-PROVAS.update({f'enem-{a}': enem_antigo(a) for a in range(2009, 2023)})
-PROVAS.update({f'enem-ppl-{a}': enem_antigo(a, 'ppl') for a in (2021, 2022, 2023, 2024)})
-PROVAS['enem-digital-2020'] = enem_antigo(2020, 'digital')
+PROVAS.update({f'enem-{a}': enem_2020_2022(a) for a in (2020, 2021, 2022)})
 
 
 # --------------------------------------------------------------------------------------------- Fuvest
@@ -629,7 +569,7 @@ def puccampinas_antiga(ano, ocr=False, duracao=5):
         'gabarito': lambda pasta: _gab_str(_PUCC_GAB[ano][0]),
         'area': lambda n: 'Prova geral',
     })
-    cfg['suporte'] = [r'(?i)^(aten[çc][ãa]o:\s*)?para responder [àa]s? quest\S+ de n']
+    cfg['suporte'] = [r'(?i)^(aten[çc][ãa]o:\s*)?para responder [àa]s? quest\S+ (de )?n[úu]mero', r'(?i)^as quest[õo]es de n[úu]meros? \d+ a \d+ referem']
     cfg['corte'] = cfg['corte'] + [r'^Matem[áa]tica e Racioc[íi]nio L[óo]gico\s*$']
     if ocr:   # no OCR o número e a 1ª palavra do enunciado podem sair na mesma linha ("14. A palavra")
         cfg['ancora'] = r'^(\d{1,2})\.(\s|$)'
