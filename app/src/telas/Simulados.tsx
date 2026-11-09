@@ -5,6 +5,8 @@ import { useIndiceProvas, type IndiceProva } from '../dados/provasCompletas';
 import { useEstado } from '../estado/loja';
 import { Carregando, formataTempo, plural, useTitulo } from '../ui/comum';
 import { Icone } from '../ui/Icone';
+import { useRegiao } from '../ui/FiltroRegiao';
+import { REGIOES_PRATICA, descreveFiltro, ehFiltro, regiaoDaProva, regiaoDaQuestao, regioesDoFiltro, type FiltroRegiao } from '../logica/regiao';
 
 export function Simulados() {
   useTitulo('Simulados');
@@ -12,14 +14,20 @@ export function Simulados() {
   const e = useEstado();
   const [qs, setQs] = useSearchParams();
   const aba = qs.get('aba') === 'historico' ? 'historico' : 'prova';
-  const [so, setSo] = useState<'alvo' | 'todas'>('alvo');
+  // pedido do dono (09/11/2026): abre na região das provas do aluno (+ ENEM); "Minhas provas-alvo" continua como opção
+  const rg = useRegiao();
+  const [so, setSo] = useState<'alvo' | FiltroRegiao>(rg.minhas.length ? 'minha' : 'todas');
   const alvo = useMemo(() => new Set(e.perfil?.provasAlvo || []), [e.perfil?.provasAlvo]);
   // só provas inteiras, com todas as matérias
   const eds: IndiceProva[] = useMemo(() => indice || [], [indice]);
   if (!indice) return <div className="conteudo"><Carregando /></div>;
 
   const daAlvo = eds.filter((x) => alvo.has(x.catalogoId));
-  const lista = so === 'alvo' && daAlvo.length ? daAlvo : eds;
+  const conj = so === 'alvo' ? null : regioesDoFiltro(so, rg.minhas);
+  const regiaoEd = (x: IndiceProva) => { const c = provaPorId(x.catalogoId); return c ? regiaoDaProva(c) : regiaoDaQuestao({ escola: x.escola }); };
+  const daRegiao = conj ? eds.filter((x) => { const r = regiaoEd(x); return !r || conj.has(r); }) : eds;
+  // nunca sem prova: região sem simulado ainda mostra todos (com aviso)
+  const lista = so === 'alvo' ? (daAlvo.length ? daAlvo : eds) : daRegiao.length ? daRegiao : eds;
   const andamento = e.simulado;
   const feitos = [...e.simuladosFeitos].sort((a, b) => b.ts - a.ts);
 
@@ -49,12 +57,15 @@ export function Simulados() {
       {aba === 'prova' && (
         <>
           {eds.length > 0 && (
-            <div className="chips" style={{ margin: '16px 0 20px' }}>
+            <div className="chips fr-chips" style={{ marginTop: 16, marginBottom: 20 }}>
               <button className="chip" aria-pressed={so === 'alvo'} onClick={() => setSo('alvo')}>Minhas provas-alvo{daAlvo.length ? ` (${daAlvo.length})` : ''}</button>
-              <button className="chip" aria-pressed={so === 'todas'} onClick={() => setSo('todas')}>Todas as provas ({eds.length})</button>
+              {rg.minhas.length > 0 && <button className="chip" aria-pressed={so === 'minha'} onClick={() => setSo('minha')} title={descreveFiltro('minha', rg.minhas)}>Minha região</button>}
+              <button className="chip" aria-pressed={so === 'todas'} onClick={() => setSo('todas')}>Todas as regiões ({eds.length})</button>
+              {REGIOES_PRATICA.map((r) => <button key={r.id} className="chip" aria-pressed={so === r.id} onClick={() => setSo(r.id)}>{r.curto}</button>)}
               <Link to="/perfil" className="chip"><Icone nome="config" tam={15} /> Mudar provas-alvo</Link>
             </div>
           )}
+          {eds.length > 0 && ehFiltro(so) && so !== 'todas' && !daRegiao.length && <p className="miolo" style={{ marginBottom: 16 }}>Ainda não há prova completa de {descreveFiltro(so, rg.minhas)}. Mostrando todas as regiões.</p>}
           {eds.length > 0 && so === 'alvo' && !daAlvo.length && <p className="miolo" style={{ marginBottom: 16 }}>Suas provas-alvo ainda não têm prova completa. Mostrando todas.</p>}
           {ordemGrupos.length > 0 && (
             <div className="bloco sim-folha">

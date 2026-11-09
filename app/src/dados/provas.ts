@@ -29,7 +29,8 @@ export interface ProvaCatalogo {
 }
 
 export const CATALOGO: ProvaCatalogo[] = (catalogoBruto as { provas: ProvaCatalogo[] }).provas;
-export const REGIOES = ['Nacional', 'Sudeste', 'Sul', 'Nordeste', 'Norte', 'Centro-Oeste'];
+/** Regiões de prática (pedido do dono, 09/11/2026): São Paulo separado do Sudeste. Ids e regras em logica/regiao.ts. */
+export { REGIOES_PRATICA as REGIOES } from '../logica/regiao';
 
 /** Nome da escola no banco -> id do catálogo. */
 const ESCOLA_PARA_ID: Record<string, string> = {
@@ -100,10 +101,18 @@ export const PROVAS_EM_PREPARO: { catalogoId: string; titulo: string; motivo: st
 export function escolasComQuestoes(materias: MateriaCarregada[]): Map<string, number> {
   const n = new Map<string, number>();
   for (const mc of materias) for (const q of mc.banco) {
-    const id = idDaEscola(q.escola);
+    const id = idDaEscola(q.escola) || catalogoDaProva(q.prova || (q as { provaOficial?: string }).provaOficial);
     if (id) n.set(id, (n.get(id) || 0) + 1);
   }
   return n;
+}
+
+/** Id do catálogo de uma prova completa ("ufpr-2024" -> "ufpr", "upe-ssa3-2025" -> "upe"): o id mais longo que é prefixo. */
+export function catalogoDaProva(prova: string | undefined): string | null {
+  if (!prova) return null;
+  let melhor: string | null = null;
+  for (const p of CATALOGO) if ((prova === p.id || prova.startsWith(p.id + '-')) && (!melhor || p.id.length > melhor.length)) melhor = p.id;
+  return melhor;
 }
 
 /** Traduz os nomes de campo da pesquisa ("formato.materias") para português de gente. */

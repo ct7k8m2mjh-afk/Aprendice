@@ -4,6 +4,8 @@ import { atualiza, useEstado } from '../estado/loja';
 import { useTitulo } from '../ui/comum';
 import { Icone } from '../ui/Icone';
 import { EscolhaProvas } from './EscolhaProvas';
+import { SeletorMinhaRegiao, useRegiao } from '../ui/FiltroRegiao';
+import { descreveFiltro } from '../logica/regiao';
 
 export function Perfil() {
   useTitulo('Perfil');
@@ -13,6 +15,7 @@ export function Perfil() {
   const [nome, setNome] = useState(p.nome);
   const [email, setEmail] = useState(p.email);
   const [salvo, setSalvo] = useState(false);
+  const rg = useRegiao();
   const muda = (f: Partial<typeof p>) => atualiza((x) => (x.perfil ? { ...x, perfil: { ...x.perfil, ...f } } : x));
 
   return (
@@ -35,6 +38,14 @@ export function Perfil() {
         <h2 className="sec-tit">Provas-alvo</h2>
         <p className="miolo" style={{ marginBottom: 14 }}>O início, os simulados sugeridos e o simulado “Minhas provas-alvo” seguem esta lista.</p>
         <EscolhaProvas valor={p.provasAlvo} aoMudar={(v) => muda({ provasAlvo: v })} />
+      </section>
+
+      <section className="bloco secao">
+        <h2 className="sec-tit">Região das minhas provas</h2>
+        <p className="miolo" style={{ marginBottom: 14 }}>{rg.minhas.length
+          ? <>Você pratica com questões de <b>{descreveFiltro('minha', rg.minhas)}</b>{rg.automatica ? ', pelas suas provas-alvo' : ''}. Nas listas de questões, os chips trocam para outra região ou para todas.</>
+          : 'Sem provas-alvo nem região escolhida, você pratica com as questões de todas as regiões.'}</p>
+        <SeletorMinhaRegiao semTitulo />
       </section>
 
       <section className="bloco secao">

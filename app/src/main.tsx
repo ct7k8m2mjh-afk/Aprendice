@@ -6,6 +6,7 @@ import './estilo/telas.css';
 import './estilo/sistema.css';
 import './estilo/icones-tema.css'; // ícones de tema no círculo (comando 19)
 import './estilo/inicio.css'; // aba Início, capa da matéria e arte da matéria (comando 32)
+import './estilo/regiao.css'; // filtro de região onde o aluno pratica (pedido do dono, 09/11/2026)
 import './estilo/tipografia.css'; // guia tipográfico: carregado por último
 import './estilo/correcao.css'; // correção em 4 blocos + resolução animada (comando 20)
 import { App } from './App';

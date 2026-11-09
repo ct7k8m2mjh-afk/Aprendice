@@ -120,7 +120,7 @@ export function descreveFiltro(f: FiltroRegiao, minhas: RegiaoId[]): string {
   if (f === 'todas' || (f === 'minha' && !minhas.length)) return 'todas as regiões';
   if (f === 'minha') {
     const nomes = minhas.filter((r) => r !== 'nac').map((r) => nomeRegiao(r));
-    return nomes.length ? `${juntaE(nomes)} e ENEM` : 'ENEM';
+    return juntaE([...nomes, 'ENEM']);
   }
   return f === 'nac' ? 'ENEM' : nomeRegiao(f);
 }

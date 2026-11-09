@@ -67,7 +67,7 @@ export function FiltroRegiaoChips({ aoMudar, compacto }: { aoMudar?: (f: FiltroR
 }
 
 /** Seletor da "região das minhas provas": automático (pelas provas-alvo) ou as regiões marcadas à mão. */
-export function SeletorMinhaRegiao({ aoMudou }: { aoMudou?: () => void }) {
+export function SeletorMinhaRegiao({ aoMudou, semTitulo }: { aoMudou?: () => void; semTitulo?: boolean }) {
   const e = useEstado();
   const r = useRegiao();
   const auto = regioesDasProvas(e.perfil?.provasAlvo || [], CATALOGO);
@@ -80,7 +80,7 @@ export function SeletorMinhaRegiao({ aoMudou }: { aoMudou?: () => void }) {
   };
   return (
     <div className="fr-seletor" role="group" aria-label="Região das minhas provas">
-      <p className="fr-seletor-tit">Onde você vai prestar a prova?</p>
+      {!semTitulo && <p className="fr-seletor-tit">Onde você vai prestar a prova?</p>}
       <div className="chips">
         <button className="chip" aria-pressed={r.automatica} onClick={() => { defineMinhasRegioes(null); aoMudou?.(); }}>
           Pelas provas-alvo{auto.length ? ` (${auto.map((x) => nomeRegiao(x)).join(', ')})` : ''}

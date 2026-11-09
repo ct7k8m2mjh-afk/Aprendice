@@ -7,6 +7,8 @@ import { atualiza, useEstado } from '../estado/loja';
 import { norm } from '../logica/correcao';
 import { plural, useTitulo } from '../ui/comum';
 import { Icone } from '../ui/Icone';
+import { useRegiao } from '../ui/FiltroRegiao';
+import { descreveFiltro, regiaoDaProva, regioesDoFiltro, type FiltroRegiao } from '../logica/regiao';
 
 const INGRESSO: Record<string, string> = { vestibular_proprio: 'Vestibular próprio', enem_sisu: 'ENEM/Sisu', enem_nota: 'Nota do ENEM', seriado: 'Seriado' };
 
@@ -17,20 +19,25 @@ export function Provas() {
   const nQ = useMemo(() => (todas ? escolasComQuestoes(todas) : new Map<string, number>()), [todas]);
   const indiceL = useIndiceProvas();
   const nSim = useMemo(() => { const m = new Map<string, number>(); for (const x of indiceL || []) m.set(x.catalogoId, (m.get(x.catalogoId) || 0) + 1); return m; }, [indiceL]);
-  const [regiao, setRegiao] = useState('Todas');
+  // pedido do dono (09/11/2026): abre na região das provas do aluno (+ ENEM); São Paulo separado do Sudeste
+  const rg = useRegiao();
+  const [regiao, setRegiao] = useState<FiltroRegiao>(rg.minhas.length ? 'minha' : 'todas');
+  const conj = regioesDoFiltro(regiao, rg.minhas);
   const [rede, setRede] = useState('');
   const [t, setT] = useState('');
   const alvo = new Set(e.perfil?.provasAlvo || []);
-  const lista = CATALOGO.filter((p) => (regiao === 'Todas' || p.regiao === regiao) && (!rede || p.rede === rede) && (!t || norm([p.prova, p.instituicao, p.sigla, p.cidade, p.uf, p.banca].join(' ')).includes(norm(t))));
-  const porReg = REGIOES.map((r) => ({ r, l: lista.filter((p) => p.regiao === r) })).filter((x) => x.l.length);
+  const lista = CATALOGO.filter((p) => (!conj || conj.has(regiaoDaProva(p)!)) && (!rede || p.rede === rede) && (!t || norm([p.prova, p.instituicao, p.sigla, p.cidade, p.uf, p.banca].join(' ')).includes(norm(t))));
+  const porReg = REGIOES.map((r) => ({ r: r.nome, l: lista.filter((p) => regiaoDaProva(p) === r.id) })).filter((x) => x.l.length);
 
   return (
     <div className="conteudo">
       <div className="titulo-pag"><div><h1>Provas e faculdades</h1><p className="sub">{CATALOGO.length} vestibulares de todas as regiões, com banca, formato e fonte. Escolha suas provas-alvo e o site prioriza por elas.</p></div></div>
       <div className="ep-filtros" style={{ marginBottom: 20 }}>
         <label className="ep-busca"><Icone nome="busca" /><span className="sr">Buscar</span><input value={t} onChange={(ev) => setT(ev.target.value)} placeholder="Buscar faculdade, cidade, estado ou banca" /></label>
-        <div className="chips">
-          {['Todas', ...REGIOES].map((r) => <button key={r} className="chip" aria-pressed={regiao === r} onClick={() => setRegiao(r)}>{r}</button>)}
+        <div className="chips fr-chips">
+          {rg.minhas.length > 0 && <button className="chip" aria-pressed={regiao === 'minha'} onClick={() => setRegiao('minha')} title={descreveFiltro('minha', rg.minhas)}>Minha região</button>}
+          <button className="chip" aria-pressed={regiao === 'todas'} onClick={() => setRegiao('todas')}>Todas as regiões</button>
+          {REGIOES.map((r) => <button key={r.id} className="chip" aria-pressed={regiao === r.id} onClick={() => setRegiao(r.id)}>{r.curto}</button>)}
           <span style={{ width: 8 }} />
           <button className="chip" aria-pressed={rede === 'publica'} onClick={() => setRede(rede === 'publica' ? '' : 'publica')}>Públicas</button>
           <button className="chip" aria-pressed={rede === 'privada'} onClick={() => setRede(rede === 'privada' ? '' : 'privada')}>Privadas</button>

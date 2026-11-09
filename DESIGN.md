@@ -165,6 +165,14 @@ Outros campos de `res/` não aparecem; sem resolução, aviso "em revisão"; fon
 ### Outras telas
 - Nada cortado: objetivo do degrau e nome da instituição (provas-alvo do Perfil) quebram de linha, sem reticências. Desempenho: as duas colunas terminam juntas. Treino de matéria sem questões leva à matéria com o aviso "em preparação".
 
+### Filtro de região (pedido do dono, 09/11/2026; `ui/FiltroRegiao.tsx`, `logica/regiao.ts`, `estilo/regiao.css`)
+- Regiões de prática: Nacional (ENEM), **São Paulo (separado)**, Sudeste (RJ, MG, ES), Sul, Nordeste, Norte, Centro-Oeste. Cada questão do banco tem `rg`/`uf` (gerados por `converte.py: marca_regioes`).
+- **Região das minhas provas**: automática pelas provas-alvo (todas de SP → São Paulo; mistura → as regiões delas; o ENEM entra sempre junto) ou escolhida à mão (`pref.regioes`, estado v6). Seletor no Perfil e no "Trocar" do filtro.
+- **Chips** "Minha região · Todas as regiões · <cada região>" (chip do sistema: pílula 20, 14.5px 500, 7/14; selecionado tinta/papel; compacto 5/12 14px nos treinos) no topo do conteúdo (Escada, abaixo do título), do tema (antes da capa), da revisão (aba Questões) e dos treinos (abaixo da barra, só antes da 1ª questão e no fim da rodada; trocar refaz a rodada). Embaixo, frase 14px `lapis` "Minha região: **São Paulo e ENEM**, pelas suas provas-alvo." + "Trocar" (600, sublinhado). Filtro vale para o site inteiro (`pref.filtroRegiao`).
+- ≤700px: os chips ficam numa linha só, rolando por dentro (sangram até a borda, a página não rola para o lado).
+- **Aviso** (região com menos de 5 questões ali): faixa `aviso-bg`/`aviso`, canto 12, padding 10/14, 14px, com "Ver de outras regiões (N)". Região sem nenhuma questão: a lista vira a de todas as regiões, com o aviso; nível sem questão da região treina com as de outras regiões ("N questões de outras regiões"). Nunca sem questão.
+- Contagens dos conteúdos (lista do tema, Escada, busca, "Continue de onde parou") seguem o filtro. Provas e faculdades e Simulados abrem em "Minha região", com o chip São Paulo.
+
 ### Flashcards
 - Lista: capa lavada com números (revisar hoje / novos / firmes; gap 28, mín. 76; descem ≤700), Começar 60px; "Área" (chips 48px, ícone 28px) e "Tema" em lista (ícone 36px, barra 6px).
 - Sessão: cartão até 920px centrado, padding 30/40/34 (18/16/20 ≤640), canto 20; faixa do tema (ponto 8px, padding 8/12, canto 12); caixa de resposta mín. 118px; Corrigir 52px, "Não sei", atalho de teclado (some no toque). O mesmo cartão no treino geral.
