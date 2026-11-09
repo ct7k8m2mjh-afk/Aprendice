@@ -30,6 +30,8 @@ LIMIAR, MIN_PALAVRAS = 0.85, 12
 # pares conferidos a olho (texto do site x print do PDF oficial) no comando 21
 CONFERIDOS = {
     'W943f6db', 'W0118eab', 'W1316955', 'W0a9fd2f', 'W491d7ba', 'W50e87d5', 'W0ddd0b4', 'Wd135a0d', 'W821d598',
+    # ENEM 2020, URCA 2025.1, Unitins 2025/1 e PUC-Rio 2024 grupo 2 (09/11/2026): texto e print conferidos
+    'W845df46', 'W18d5d4d', 'Wc4a3e7e', 'Wa98db9a', 'W4f69629', 'W237add0', 'W39cb2bf',
 }
 
 
@@ -74,7 +76,7 @@ PREFIXO_SITE = {'USP': 'fuvest', 'ENEM': 'enem', 'PUC-SP': 'pucsp', 'PUCRS': 'pu
                 'UTFPR': 'utfpr', 'UFPR': 'ufpr', 'UEL': 'uel', 'UFU': 'ufu', 'UDESC': 'udesc', 'Fatec': 'fatec',
                 'ITA': 'ita', 'Unifor': 'unifor', 'UERR': 'uerr', 'UPE': 'upe-ssa3', 'UEG': 'ueg', 'UEMA': 'uema-paes',
                 'UFAM': 'ufam-psc3', 'UFJF': 'ufjf-pism3', 'FMABC': 'fmabc', 'Cederj': 'cederj', 'ACAFE': 'acafe',
-                'FCMMG': 'cmmg', 'São Camilo': 'saocamilo'}
+                'FCMMG': 'cmmg', 'São Camilo': 'saocamilo', 'URCA': 'urca', 'Unitins': 'unitins', 'PUC-Rio': 'pucrio'}
 
 
 def citacao(enun):
@@ -101,7 +103,7 @@ def ano_citado(cit):
 def variante_enem(cit):
     """Aplicações do ENEM com caderno próprio (PPL, digital, Libras): não são a prova regular que o site tem."""
     c = sem_acento(cit or '').lower()
-    return 'PPL' if 'ppl' in c else 'Digital' if 'digital' in c else 'Libras' if 'libras' in c else None
+    return 'PPL' if ('ppl' in c or re.search(r'2\W*a\W*aplica|reaplica', c)) else 'Digital' if 'digital' in c else 'Libras' if 'libras' in c else None
 
 
 def inventario():

@@ -277,3 +277,38 @@ arquivos `prova.json`:
 - Conferência: `chk.py` (alternativas e texto depois da última) em todas; folha de contato dos prints de todas as provas
   (inteira em parte delas) e prints suspeitos abertos; pixels vermelhos/ciano conferidos nos prints de cadernos com
   resposta marcada; `converte.py` + testes de provas passando.
+
+## ENEM 2020–2022 e triagem (09/11/2026)
+
+Decisão do dono (09/11/2026): baixar provas só a partir de 2020. Do ENEM, só a aplicação regular de 2020, 2021 e 2022
+(PPL, digital e reaplicação ficam fora); das demais provas da triagem do comando 21, só as de 2020 em diante. O ENEM
+2003–2019 não entra: os arquivos parciais baixados nesta tarefa foram apagados (nenhuma prova já integrada foi tocada) e as
+questões de site ligadas a essas edições continuam como estão (viram Questão Aprendice depois).
+
+Integradas e classificadas (matéria, tema, conteúdo, nível; sem resolução), contagem nos arquivos `prova.json`:
+
+| Prova | Questões válidas | Observação |
+|---|---|---|
+| ENEM 2020 | 178 | Caderno azul (1º dia: 1; 2º dia: 7), inglês. 135 e 157 anuladas. |
+| ENEM 2021 | 179 | 138 anulada. Camada de texto do caderno em codificação própria: o texto de busca vem do OCR do próprio print (`texto_ocr_print`); sem transcrição (só o print). |
+| ENEM 2022 | 179 | 157 anulada. Marca-d'água "ENEM 2022" girada na calha apagada do print e do texto (`apagar_girado`). |
+| Unitins 2025/1 (Todos os Câmpus, caderno 1) | 46 | 10, 24, 26 e 28 anuladas. A questão de site W237add0 é a 30. Gabarito com linha quebrada lido por `_unitins_gab_quebrado`. |
+| PUC-Rio 2024 – Grupo 2 | 45 | Manhã: inglês (1–10) + Matemática e Ciências da Natureza do 2º dia (aqui 11–45). A questão de site W39cb2bf é a 40. |
+
+- **Gabarito do ENEM** conferido questão a questão com os microdados oficiais do INEP (`ITENS_PROVA_<ano>.csv`, lido por
+  HTTP Range de dentro do zip, em `fabrica_saida/ingestao/enem-itens/`): 100% iguais ao PDF do gabarito azul.
+- **Nível do ENEM** (1–10) pelo parâmetro de dificuldade da TRI (`NU_PARAM_B`) de cada item, em quantis por área com a
+  mesma distribuição usada no ENEM 2023–2025; os 9 itens sem parâmetro (retirados do cálculo da nota pelo INEP) receberam
+  nível por avaliação da questão. Matéria/tema/conteúdo revisados questão a questão (texto e, nas de figura, o print).
+- **Recorte do ENEM 2020–2022** (`enem_2020_2022` em `provas.py`): modo `faixas`/`largas` (questão de largura total no meio
+  de páginas em duas colunas) + `faixas_uma_auto` (página inteira de largura total vira uma coluna só); fio do cabeçalho e do
+  rodapé por ano; `ancora_folga` (entrelinha apertada: a última linha da questão anterior não entra no print seguinte e não
+  é cortada). Folha de contato de todos os prints das três provas conferida; prints sem letra de alternativa na camada de
+  texto (alternativas em figura) abertos um a um e registrados no teste (`SEM_LETRA_NO_TEXTO`).
+- **Triagem** (`app/scripts/triagem_site.py`): prefixos URCA, Unitins e PUC-Rio passam a contar como provas no site; "2ª
+  aplicação"/"reaplicação" do ENEM conta como PPL. Viraram questão de prova (texto e print conferidos): W845df46, W18d5d4d
+  ("Enem 2021" = ENEM 2020, aplicado em jan/2021), Wc4a3e7e, Wa98db9a (ENEM 2020), W4f69629 (URCA 2025.1 q45), W237add0
+  (Unitins 2025/1 q30) e W39cb2bf (PUC-Rio 2024 grupo 2 q40). O progresso do aluno vai para elas pela migração existente
+  (`questoesRetiradas.ts`, gerado pelo `converte.py`); ids não mudam.
+- **Ficou de fora:** ENEM PPL, digital e reaplicação (todas as edições); ENEM 2003–2019; Unitins 2021/1 (caderno em
+  manutenção no site — `baixar-a-mao.md`); questão W3ecc05a (ENEM 2020, não está na aplicação regular).

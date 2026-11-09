@@ -48,3 +48,8 @@ O site oficial bloqueia o acesso automático (ou exige formulário/compra). Baix
 - **Fempar**: 2025 (só o gabarito no servidor da FGV; caderno não localizado), 2022–2024 (nada localizado); 2027 aguarda o gabarito definitivo (previsto para 10/11/2026).
 - **FGV**: o site só mostra a edição vigente (2027.1, com gabarito PRELIMINAR); edições anteriores saíram do ar. Sem acervo para 2020–2026.
 - **Mauá**: a página oficial só vai até o Vestibular 2021, aplicado on-line; o caderno publicado é a prova com a resposta destacada e as alternativas SEM letras (embaralhadas por candidato) — não dá para montar o simulado A–E. Edições 2022+ sem caderno.
+
+## ENEM 2020–2022 e triagem do comando 21 (09/11/2026)
+
+- **Unitins Vestibular 2021/1** (questão de site W5d49e70, "Unitins Tarde/2021.1"): a página da Unitins aponta os arquivos de 2021/1 para "Concursos/Manutencao/arquivo.html" (em manutenção). Os cadernos de Medicina 2021/2 e do Vestibular 2022/1 foram conferidos e não têm a questão. Baixar à mão o caderno e o gabarito definitivo de 2021/1, se a Unitins republicar.
+- **ENEM 2020, questão de site W3ecc05a** ("Escrever não é uma questão apenas de satisfação pessoal"): não está no caderno azul da aplicação regular de 2020 (integrado); deve ser da aplicação digital ou da reaplicação de 2020, que ficaram fora (decisão do dono: do ENEM, só a aplicação regular 2020–2022).

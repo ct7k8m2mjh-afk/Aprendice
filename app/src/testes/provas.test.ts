@@ -69,7 +69,7 @@ describe.skipIf(!temProvas)('provas completas (recorte oficial)', () => {
 // imagem ou em fórmula sem a letra na camada de texto, texto lido por OCR (Fuvest 2021), citação de obra ("questões 84-89"
 // da Suma de Teologia) e errata impressa no caderno (UPE 2023: "questões 6 e 7" no lugar de 16 e 17).
 const SEM_LETRA_NO_TEXTO: Record<string, number[]> = {
-  'cmmg-2025-1': [59], 'enem-2020': [176, 177], 'enem-2021': [105, 137], 'enem-2022': [156, 160, 180], 'enem-2024': [112, 127, 131, 161, 168, 174], 'enem-2025': [107, 108, 119, 127, 130, 135, 138, 169],
+  'cmmg-2025-1': [59], 'enem-2020': [176, 177], 'enem-2022': [156, 160, 180], 'enem-2024': [112, 127, 131, 161, 168, 174], 'enem-2025': [107, 108, 119, 127, 130, 135, 138, 169],
   'fuvest-2021': [4, 5, 10, 11, 18, 28, 48, 55, 87], 'udesc-2024-1': [4], 'udesc-2024-2': [8, 11, 14], 'udesc-2025-1': [1, 9, 28],
   'udesc-2026-2': [8],
 };
