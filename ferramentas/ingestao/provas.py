@@ -61,7 +61,13 @@ def enem_2020_2022(ano):
     1º dia (1: LC 1–45, língua 1–5 na opção inglês, CH 46–90) e do 2º dia (7: CN 91–135, MT 136–180).
     Mesma diagramação da 2023; o fio do cabeçalho e o do rodapé mudam de altura por ano."""
     cfg = enem(ano)
-    cfg.update({'topo': {2020: 70, 2021: 70, 2022: 63}[ano], 'base': {2020: 34, 2021: 31, 2022: 38}[ano]})
+    # páginas com questão de largura total (enunciado ou gráfico atravessando a calha) misturadas a duas colunas
+    cfg.update({'topo': {2020: 70, 2021: 70, 2022: 63}[ano], 'base': {2020: 36, 2021: 34, 2022: 40}[ano],
+                'colunas': 'faixas', 'faixas_modo': 'largas', 'margem': 22, 'ancora_folga': 2.5, 'faixas_uma_auto': True})
+    # 2020 e 2021: letras das alternativas em bolinhas desenhadas (a transcrição não separa as alternativas): só o print
+    if ano == 2021:
+        # camada de texto com fonte sem mapa de caracteres em boa parte do caderno ("•£Üèîé..."): só o print
+        cfg['sem_transcricao'] = True
     return cfg
 
 
@@ -360,6 +366,38 @@ PROVAS.update({
     'acafe-2025-inverno': acafe(2025, 2), 'acafe-2025-verao': acafe(2025, 1), 'acafe-2024-inverno': acafe(2024, 2),
 })
 
+
+
+def acafe_antiga(ano, sem, arquivo='caderno', comentada=False):
+    """Acafe Medicina, edições 2021–2024 (rodada 6): mesmo layout das recentes ("01)" em negrito, seções por matéria,
+    A–D). Onde a Acafe publicou só a prova sem comentário, o print é a prova; o gabarito é sempre o oficial."""
+    cfg = acafe(ano, sem)
+
+    def gab(pasta):
+        ocorr = {}
+        for n, v in re.findall(r'(?<![\d,.])(\d{1,2})\s+([A-E]\b|\*|X\b|ANULADA|Anulada)', texto_pdf(pasta / 'gabarito-oficial.pdf')):
+            ocorr.setdefault(int(n), []).append(v if len(v) == 1 and v in 'ABCDE' else 'X')
+        return {n: (l[1] if len(l) > 1 and 15 <= n <= 21 else l[0]) for n, l in ocorr.items()}
+
+    cfg['cadernos'] = [{'arquivo': arquivo}]
+    cfg['gabarito'] = gab
+    cfg['fim'] = cfg['fim'] + [r'^Informa[çc][õo]es da quest']
+    cfg['corte'] = cfg['corte'] + [r'^TABELA PERI[ÓO]DICA', r'(?i)^F[óo]rm?ul[áa]rio de F[íi]sica']
+    cfg['area_da_materia'] = True
+    cfg['suporte'] = [r'(?i)^Texto \d+\s*:?\s*$'] + cfg['suporte'][1:]   # "TEXTO 1" em maiúsculas nas edições antigas
+    if not comentada:
+        # sem comentário da banca: a linha de traços separa questões E textos de apoio (não é fim de enunciado)
+        cfg['fim'] = [r'^Informa[çc][õo]es da quest']
+        cfg['nota'] = ('Vestibular de Medicina Acafe. Língua estrangeira: inglês. Print da prova oficial; gabarito oficial da Acafe '
+                       '(anulada fica fora).')
+    return cfg
+
+
+PROVAS.update({
+    'acafe-2024-verao': acafe_antiga(2024, 1, comentada=True), 'acafe-2023-inverno': acafe_antiga(2023, 2, 'caderno-comentado', True),
+    'acafe-2023-verao': acafe_antiga(2023, 1), 'acafe-2022-inverno': acafe_antiga(2022, 2),
+    'acafe-2021-inverno': acafe_antiga(2021, 2), 'acafe-2021-verao': acafe_antiga(2021, 1),
+})
 
 # ------------------------------------------------------------------------------------------ UPE (SSA3)
 UPE_SECOES = {
@@ -2163,3 +2201,5 @@ def fempar(ano, bloco, data):
 
 PROVAS['fempar-2021'] = fempar(2021, 'Tipo 1 (Língua Estrangeira: Inglesa)', '20/02/2021')
 PROVAS['fempar-2026'] = fempar(2026, 'Medicina (I) - TIPO 1', '28/09/2025')
+PROVAS['acafe-2021-verao']['ancora_forcada'] = {('caderno', 20): [(32, 341, 0)]}   # "32 A Energia..." sem o ")"
+PROVAS['acafe-2023-verao']['suporte_interno'] = 60   # "02) Leia o texto a seguir." / "05) Leia os textos a seguir.": os textos são da questão
