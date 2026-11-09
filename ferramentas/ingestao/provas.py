@@ -591,6 +591,8 @@ for _a in (2025, 2026):
     PROVAS[f'puccampinas-{_a}']['corte'] = (PROVAS['puccampinas-2021']['corte']
                                            + [r'^(F[íi]sica|Filosofia|Sociologia|Hist[óo]ria|Geografia|Biologia|Qu[íi]mica)\s*$'])
     PROVAS[f'puccampinas-{_a}']['suporte'] = PROVAS['puccampinas-2021']['suporte']
+for _a in range(2021, 2027):
+    PROVAS[f'puccampinas-{_a}']['area_da_materia'] = True   # rótulo de área do simulado pela matéria da questão
 PROVAS['puccampinas-2026']['gabarito'] = lambda pasta: _gab_str(_PUCC_GAB[2026][0]) | _gab_str(_PUCC_GAB[2026][1], 51)
 for _a in (2025, 2026):
     PROVAS[f'puccampinas-{_a}']['nota'] = ('Vestibular de Medicina: Prova Geral (1 a 50) e Prova Específica (numerada aqui 51 a 70), '
