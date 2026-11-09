@@ -56,6 +56,78 @@ def enem(ano):
 PROVAS = {f'enem-{a}': enem(a) for a in (2025, 2024, 2023)}
 
 
+def itens_inep(pasta, ano):
+    """Microdados do INEP (ITENS_PROVA_<ano>.csv, tirado do zip oficial): {CO_PROVA: [(posição, área, gabarito,
+    anulado, língua, param_b)]}. Serve para o gabarito de 2010 (o INEP publicou só o caderno marcado) e para conferir
+    os demais anos."""
+    import csv
+    arq = pasta.parent / 'enem-itens' / f'ITENS_PROVA_{ano}.csv'
+    if not arq.exists():
+        return {}
+    out = {}
+    with open(arq, encoding='latin-1') as f:
+        for r in csv.DictReader(f, delimiter=';'):
+            out.setdefault(r['CO_PROVA'], []).append(r)
+    return out
+
+
+def enem_antigo(ano, tipo='regular'):
+    """ENEM 2009–2022 (aplicação regular), PPL e digital: caderno azul do 1º dia (1) e do 2º dia (7); inglês.
+    Ordem das áreas: 2009 CN, CH | LC, MT (sem língua estrangeira); 2010–2016 CH, CN | LC (91–95 língua), MT;
+    2017 em diante LC (1–5 língua), CH | CN, MT."""
+    if ano == 2009:
+        areas = ['Ciências da Natureza', 'Ciências Humanas', 'Linguagens', 'Matemática']
+    elif ano <= 2016:
+        areas = ['Ciências Humanas', 'Ciências da Natureza', 'Linguagens', 'Matemática']
+    else:
+        areas = ['Linguagens', 'Ciências Humanas', 'Ciências da Natureza', 'Matemática']
+
+    def area(n):
+        return areas[min(3, (n - 1) // 45)]
+
+    def gab(pasta):
+        if ano == 2010 and tipo == 'regular':
+            # gabarito oficial publicado só como caderno marcado: lido dos microdados oficiais (ITENS_PROVA_2010),
+            # aplicação regular = cadernos azuis de menor código (85 CH, 89 CN, 95 LC, 99 MT); conferido com o caderno marcado
+            it = itens_inep(pasta, 2010)
+            g = {}
+            for cod, base in (('85', 0), ('89', 45), ('95', 90), ('99', 135)):
+                for r in it[cod]:
+                    if r.get('TP_LINGUA') == '1':
+                        continue   # espanhol
+                    n = int(r['CO_POSICAO'])
+                    g[n] = 'X' if r['IN_ITEM_ABAN'] == '1' else r['TX_GABARITO']
+            return g
+        g1 = 'd1-gabarito' if ano == 2009 else 'd1-gabarito-1'
+        g2 = 'd2-gabarito' if ano == 2009 else 'd2-gabarito-7'
+        g = {n: v for n, v in pares(texto_pdf(pasta / f'{g1}.pdf')).items() if n <= 90}
+        g.update({n: v for n, v in pares(texto_pdf(pasta / f'{g2}.pdf')).items() if 91 <= n <= 180})
+        return g
+
+    nome = {'regular': 'ENEM', 'ppl': 'ENEM PPL', 'digital': 'ENEM Digital'}[tipo]
+    lingua = '' if ano == 2009 else (' Questões 1 a 5 na opção inglês.' if ano >= 2017 else ' Questões 91 a 95 na opção inglês.')
+    aplic = {'regular': 'Aplicação regular', 'ppl': 'Reaplicação/PPL (pessoas privadas de liberdade e reaplicação)',
+             'digital': 'Aplicação digital'}[tipo]
+    return {
+        'catalogo': 'enem', 'escola': 'ENEM', 'ano': str(ano), 'fase': '' if tipo == 'regular' else nome[5:],
+        'titulo': f'{nome} {ano}', 'banca': 'Inep', 'duracao_horas': 10, 'total': 180,
+        'nota': f'{aplic}. Caderno azul (1º dia: caderno 1; 2º dia: caderno 7).{lingua} Redação fora do simulado.',
+        'cadernos': [{'arquivo': 'd1-caderno-1', 'questoes': (1, 90)}, {'arquivo': 'd2-caderno-7', 'questoes': (91, 180)}],
+        'colunas': 'auto', 'topo': 20, 'base': 8,
+        'cabecalho': r'^\*[A-Za-z0-9]+\*$|^20\d\d$|^ENEM\s*20\d\d$',
+        'rodape_rx': r'(?i)caderno\s*\d+\s*[-–•]|p[áa]gina\s+\d+|^\s*(CN|CH|LC|MT|MT\s*-\s*LC)\s*[-–•|]|[12]º\s*dia|^ENEM\s*20\d\d$',
+        'ancora': r'(?i)^quest[ãa]o\s+(\d{1,3})\b', 'ancora_dx': 22,
+        'corte': [r'(?i)^quest[õo]es de \d+ a \d+', r'PROPOSTA DE REDA', r'INSTRUÇÕES PARA A REDAÇÃO', r'^CIÊNCIAS (HUMANAS|DA NATUREZA)', r'^MATEMÁTICA E SUAS', r'^LINGUAGENS, CÓDIGOS'],
+        'suporte': [r'(?i)^texto para as quest'],
+        'gabarito': gab, 'area': area,
+    }
+
+
+PROVAS.update({f'enem-{a}': enem_antigo(a) for a in range(2009, 2023)})
+PROVAS.update({f'enem-ppl-{a}': enem_antigo(a, 'ppl') for a in (2021, 2022, 2023, 2024)})
+PROVAS['enem-digital-2020'] = enem_antigo(2020, 'digital')
+
+
 # --------------------------------------------------------------------------------------------- Fuvest
 def fuvest(ano, total, duracao=5):
     def gab(pasta):
@@ -516,6 +588,71 @@ def puccampinas(ano, duracao=5):
 
 
 PROVAS['puccampinas-2027'] = puccampinas(2027)
+
+
+def _gab_str(s, inicio=1):
+    """Gabarito oficial publicado só como imagem (tabela): transcrito à mão do PDF oficial, conferido na imagem ampliada."""
+    s = s.replace(' ', '')
+    return {i + inicio: (v if v in 'ABCDE' else 'X') for i, v in enumerate(s)}
+
+
+# Gabaritos da PUC-Campinas publicados como imagem (rodada 6, 09/11/2026): Prova Geral e Prova Específica de Medicina
+_PUCC_GAB = {
+    2021: ('BECADBDEBC DDCAECDECA EDDBDECCCA ABCCDACEAD', None),
+    2022: ('CEBDEBACCD AADDEBDAEC CDBCACDEEB CACABEBADE', None),
+    2023: ('EDCBBADCBD ABEDBAECED ABBDCACABE EADCBEAEBB', None),
+    2024: ('CDBAECBDCB ADADBECCBD DEABDAECDD BCBDCBEBAD', None),
+    2026: ('CBDEACEABC ACBDBACDEB DEDBCADCEC BDACBEADDB EAADCCEBCA', 'ACDEAEDADB BCDBEEBDCA'),
+}
+
+
+_PUCC_SEC = [(r'^L[ÍI]NGUA PORTUGUESA', 'Língua Portuguesa'), (r'^LITERATURA BRASILEIRA\s*$', 'Literatura'),
+             (r'^L[ÍI]NGUA INGLESA\s*$', 'Inglês'), (r'^BIOLOGIA\s*$', 'Biologia'), (r'^QU[ÍI]MICA\s*$', 'Química'),
+             (r'^MATEM[ÁA]TICA( E RACIOC[ÍI]NIO L[ÓO]GICO)?\s*$', 'Matemática'), (r'^F[ÍI]SICA\s*$', 'Física'),
+             (r'^HIST[ÓO]RIA\s*$', 'História'), (r'^GEOGRAFIA\s*$', 'Geografia'), (r'^CONHECIMENTOS GERAIS\s*$', 'Prova geral')]
+
+
+def puccampinas_antiga(ano, ocr=False, duracao=5):
+    """PUC-Campinas, Vestibular {ano} de Medicina: Prova Geral de 40 questões A–E (Língua Portuguesa, Literatura, inglês,
+    matemática, ciências e humanas), "12." como âncora. A Prova Específica dessas edições é discursiva (fica fora).
+    Gabarito oficial publicado como imagem (transcrito em _PUCC_GAB)."""
+    cfg = puccampinas(ano, duracao)
+    cfg.update({
+        'total': 40,
+        'nota': 'Vestibular de Medicina: Prova Geral (40 questões objetivas A–E). A Prova Específica desta edição é discursiva e '
+                'fica fora; redação fora. Gabarito oficial da PUC-Campinas (publicado como imagem).'
+                + (' Caderno sem camada de texto legível: questões localizadas por OCR (o print é a página original).' if ocr else ''),
+        'cadernos': [{'arquivo': 'livrete', 'paginas': (2, 999), 'questoes': (1, 40), 'rotulo': 'Prova Geral', 'ocr': ocr}],
+        'corte': [r'^REDAÇÃO\s*$', r'^PROVA ESPECÍFICA', r'(?i)^INSTRUÇÕES GERAIS', r'(?i)^CLASSIFICA[ÇC][ÃA]O PERI[ÓO]DICA',
+                  r'^(Hist[óo]ria|Biologia|Matem[áa]tica e Racioc[íi]nio L[óo]gico|L[íi]ngua Portuguesa|L[íi]ngua Inglesa|Qu[íi]mica|F[íi]sica|Literatura Brasileira)\s*[–−—-]+\s*[A-ZÁÉÍÓÚ]\w+'],
+        'secoes_rx': _PUCC_SEC,
+        'gabarito': lambda pasta: _gab_str(_PUCC_GAB[ano][0]),
+        'area': lambda n: 'Prova geral',
+    })
+    cfg['suporte'] = [r'(?i)^(aten[çc][ãa]o:\s*)?para responder [àa]s? quest\S+ de n']
+    cfg['corte'] = cfg['corte'] + [r'^Matem[áa]tica e Racioc[íi]nio L[óo]gico\s*$']
+    if ocr:   # no OCR o número e a 1ª palavra do enunciado podem sair na mesma linha ("14. A palavra")
+        cfg['ancora'] = r'^(\d{1,2})\.(\s|$)'
+    return cfg
+
+
+for _a in (2021, 2022):
+    PROVAS[f'puccampinas-{_a}'] = puccampinas_antiga(_a)
+for _a in (2023, 2024):
+    PROVAS[f'puccampinas-{_a}'] = puccampinas_antiga(_a, ocr=True)
+PROVAS['puccampinas-2025'] = puccampinas(2025)
+PROVAS['puccampinas-2025']['cadernos'] = [{'arquivo': 'livrete', 'paginas': (3, 19), 'questoes': (1, 50), 'rotulo': 'Prova Geral'},
+                                          {'arquivo': 'livrete', 'paginas': (24, 30), 'questoes': (51, 70), 'deslocamento': 50, 'rotulo': 'Prova Específica'}]
+PROVAS['puccampinas-2026'] = puccampinas(2026)
+PROVAS['puccampinas-2026']['cadernos'] = [{'arquivo': 'livrete', 'paginas': (3, 16), 'questoes': (1, 50), 'rotulo': 'Prova Geral'},
+                                          {'arquivo': 'livrete', 'paginas': (22, 29), 'questoes': (51, 70), 'deslocamento': 50, 'rotulo': 'Prova Específica'}]
+for _a in (2025, 2026):
+    PROVAS[f'puccampinas-{_a}']['secoes_rx'] = _PUCC_SEC
+    PROVAS[f'puccampinas-{_a}']['corte'] = PROVAS[f'puccampinas-{_a}']['corte'] + [r'(?i)^CLASSIFICA[ÇC][ÃA]O PERI[ÓO]DICA', r'(?i)^INSTRUÇÕES GERAIS']
+PROVAS['puccampinas-2026']['gabarito'] = lambda pasta: _gab_str(_PUCC_GAB[2026][0]) | _gab_str(_PUCC_GAB[2026][1], 51)
+for _a in (2025, 2026):
+    PROVAS[f'puccampinas-{_a}']['nota'] = ('Vestibular de Medicina: Prova Geral (1 a 50) e Prova Específica (numerada aqui 51 a 70), '
+                                          'objetivas A–E. Redação fora. Gabarito oficial da PUC-Campinas.')
 
 
 # ---------------------------------------------------------------------------------------------- Unifor
