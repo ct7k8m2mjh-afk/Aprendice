@@ -606,7 +606,7 @@ def puccampinas_antiga(ano, ocr=False, duracao=5):
                 + (' Caderno sem camada de texto legível: questões localizadas por OCR (o print é a página original).' if ocr else ''),
         'cadernos': [{'arquivo': 'livrete', 'paginas': (2, 999), 'questoes': (1, 40), 'rotulo': 'Prova Geral', 'ocr': ocr}],
         'corte': [r'^REDAÇÃO\s*$', r'^PROVA ESPECÍFICA', r'(?i)^INSTRUÇÕES GERAIS', r'(?i)^CLASSIFICA[ÇC][ÃA]O PERI[ÓO]DICA',
-                  r'^(Hist[óo]ria|Biologia|Matem[áa]tica e Racioc[íi]nio L[óo]gico|L[íi]ngua Portuguesa|L[íi]ngua Inglesa|Qu[íi]mica|F[íi]sica|Literatura Brasileira)\s*[–−—-]+\s*[A-ZÁÉÍÓÚ]\w+'],
+                  r'^(Hist[óo]ria|Biologia|Matem[áa]tica e Racioc[íi]nio L[óo]gico|L[íi]ngua Portuguesa|L[íi]ngua Inglesa|Qu[íi]mica|F[íi]sica|Literatura Brasileira)\s*[–−—-]+\s*(Hist[óo]ria|Geografia|Biologia|Qu[íi]mica|F[íi]sica|L[íi]ngua Inglesa|Literatura Brasileira)\s*$'],
         'secoes_rx': _PUCC_SEC,
         'gabarito': lambda pasta: _gab_str(_PUCC_GAB[ano][0]),
         'area': lambda n: 'Prova geral',
@@ -2367,9 +2367,9 @@ def fema(ano, data, online=False):
                 f'{"on-line " if online else ""}de {data}): 25 questões A–E de conhecimentos gerais, Português e Inglês. Redação fora. '
                 'Gabarito oficial publicado pela Fema no próprio PDF da prova.',
         'cadernos': [{'arquivo': 'caderno', 'paginas': (2, 999)}],
-        'colunas': lambda r: [(24, r.width - 20)], 'margem': 24, 'topo': 30, 'base': 40, 'rodape_num': True,
+        'colunas': lambda r: [(24, r.width - 20)], 'margem': 24, 'topo': 30, 'base': 86, 'rodape_num': True,   # rodapé com endereço em y≈760
         'ancora': r'^(\d{2})\.(\s|$)', 'ancora_dx': 40, 'sequencial': True, 'ancora_negrito': True,
-        'corte': [r'(?i)^GABARITO', r'(?i)^REDA[ÇC][ÃA]O', r'(?i)^PROPOSTA', r'(?i)^RASCUNHO', r'(?i)^Avenida Get[úu]lio'],
+        'corte': [r'(?i)^GABARITO', r'(?i)^REDA[ÇC][ÃA]O', r'(?i)^PROPOSTA', r'(?i)^RASCUNHO'],
         'suporte': [r'(?i)(leia|responda|responder)\b.*\bquest[õo]es\s+\d', r'(?i)^textos? para as quest', r'(?i)^Texto\s+(\d+|[IVX]+)\s*$'],
         'gabarito': gab, 'area': lambda n: 'Conhecimentos gerais', 'area_da_materia': True, 'alternativa_rx': r'^[a-e]\)',
     }
@@ -2381,3 +2381,9 @@ PROVAS['fema-2020']['topo'] = 26   # "16." no alto da página 6 (y≈29)
 for _a in (2020, 2021):
     PROVAS[f'fema-{_a}']['secoes_rx'] = [(r'^(MATEM[ÁA]TICA|BIOLOGIA|GEOGRAFIA|HIST[ÓO]RIA|QU[ÍI]MICA|F[ÍI]SICA|L[ÍI]NGUA PORTUGUESA|L[ÍI]NGUA INGLESA|'
                                           r'CONHECIMENTOS GERAIS|PORTUGU[ÊE]S|INGL[ÊE]S)\s*$', 'Conhecimentos gerais')]
+# "As questões de 11 a 15 relacionam-se com os livros..." (2023/2): instrução das questões seguintes, não fim da 10
+PROVAS['cmmg-2023-2']['suporte'] = PROVAS['cmmg-2023-2']['suporte'] + [r'(?i)^as quest(ões|oes) de \d+ a \d+ relacionam']
+for _a in (2020, 2021):
+    PROVAS[f'fema-{_a}']['cabecalho_imagem'] = r'(?i)fema'   # logotipo da Fema no alto das páginas
+for _k in ('pucpr-2023-1', 'pucpr-2023-2', 'pucpr-2024-1'):
+    PROVAS[_k]['suporte'] = PROVAS[_k]['suporte'] + [r'(?i)texto a seguir ser[áa] base para as quest']
