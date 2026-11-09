@@ -178,6 +178,14 @@ def faixas_da_pagina(pg, cfg):
     meio = W / 2
     topo, base = topo_de(pg, cfg), limite_baixo(pg, cfg)
     manual = cfg.get('faixas_pag', {}).get((Path(pg.parent.name).stem, pg.number + 1))
+    if manual is None and cfg.get('faixas_uma_auto'):
+        # página toda em largura total (ENEM 2020–2022: questões de largura total na página inteira): mesmo critério
+        # do modo 'auto' — muitas linhas atravessam o meio e nenhuma questão começa na metade direita
+        ls = [L for L in linhas(pg) if topo <= L['bbox'][1] and L['bbox'][3] <= base and len(L['t']) > 12]
+        cruzam = sum(1 for L in ls if L['bbox'][0] < meio - 25 and L['bbox'][2] > meio + 25)
+        direita = any(re.match(cfg['ancora'], L['t']) and meio - 8 <= L['bbox'][0] <= meio + 45 for L in linhas(pg))
+        if ls and cruzam / len(ls) > 0.2 and not direita:
+            manual = [(topo, base, None)]
     if manual is None and cfg.get('faixas_modo') == 'largas':
         manual = faixas_por_largas(pg, cfg, topo, base)
     if manual is not None:   # [(y0, y1, divisa ou None = largura total)], de cima para baixo
@@ -761,11 +769,12 @@ def segmentos(pdf, cfg, ev, i, faixa_pag=None):
     prox = ev[k] if k < len(ev) else None
     segs = []
     p, c, y = e['p'], e['c'], e['y'] - 3
-    # a folga de 3 pt não pode pegar o pé da linha de cima (fim da questão anterior)
+    # a folga de 3 pt não pode pegar o pé da linha de cima (fim da questão anterior); 'ancora_folga': quanto a caixa
+    # da linha de cima pode invadir a da âncora (entrelinha apertada, ENEM 2020–2022)
     cols0 = colunas_da_pagina(pdf[p], cfg)
     for L in linhas(pdf[p]):
         x0_, y0_, x1_, y1_ = L['bbox']
-        if coluna_do_ponto(pdf[p], cfg, x0_, y0_, cols0) == c and y0_ < e['y'] - 2 and y < y1_ <= e['y'] + 0.5:
+        if coluna_do_ponto(pdf[p], cfg, x0_, y0_, cols0) == c and y0_ < e['y'] - 2 and y < y1_ <= e['y'] + cfg.get('ancora_folga', 0.5):
             y = y1_ + 0.3
     ultima = len(pdf) - 1 if not faixa_pag else min(len(pdf), faixa_pag[1]) - 1
     while True:
@@ -777,7 +786,7 @@ def segmentos(pdf, cfg, ev, i, faixa_pag=None):
             # linha de cima colada na âncora seguinte (entrelinha apertada): o pé dela não pode ficar cortado
             for L in linhas(pg):
                 x0_, y0_, x1_, y1_ = L['bbox']
-                if y0_ < prox['y'] - 4 and fim < y1_ <= prox['y'] + 1.5 and coluna_do_ponto(pg, cfg, x0_, y0_, cols) == c:
+                if y0_ < prox['y'] - 4 and fim < y1_ <= prox['y'] + max(1.5, cfg.get('ancora_folga', 0)) and coluna_do_ponto(pg, cfg, x0_, y0_, cols) == c:
                     fim = y1_
             segs.append((p, pymupdf.Rect(cols[c][0] - 4, y, cols[c][1] + 4, fim)))
             return segs
@@ -848,7 +857,7 @@ def trechos_coloridos(pdf, cores):
                     rs.append(pymupdf.Rect(dr['rect']) + (-1, -1, 1, 1))
                     break
         if rs:
-            out[pg.number] = rs
+            out.setdefault(pg.number, []).extend(rs)
     return out
 
 
@@ -883,6 +892,13 @@ def neutraliza(im, clip, rects, escala):
 def apagaveis(pdf, cfg):
     """Linhas a pintar de branco no print: rodapé/cabeçalho de página que encosta no fim da questão (cfg 'apagar')."""
     out = {}
+    if cfg.get('apagar_girado'):
+        # marca-d'água em texto girado ao longo da calha ("ENEM 2022 ENEM 2022 ..."): pintada de branco em toda a página
+        for pg in pdf:
+            rs = [pymupdf.Rect(l['bbox']) for b in pg.get_text('dict')['blocks'] for l in b.get('lines', [])
+                  if abs(l['dir'][1]) > 0.9 and re.search(cfg['apagar_girado'], ''.join(s_['text'] for s_ in l['spans']))]
+            if rs:
+                out.setdefault(pg.number, []).extend(rs)
     if not cfg.get('apagar'):
         return out
     for pg in pdf:
@@ -891,7 +907,7 @@ def apagaveis(pdf, cfg):
         rs = [pymupdf.Rect(L['bbox']) for L in linhas(pg) if any(re.search(rx, L['t']) for rx in cfg['apagar'])
               and (L['bbox'][1] > H * 0.82 or L['bbox'][3] < H * 0.1)]
         if rs:
-            out[pg.number] = rs
+            out.setdefault(pg.number, []).extend(rs)
     return out
 
 

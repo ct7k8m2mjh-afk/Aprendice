@@ -65,6 +65,8 @@ def enem_2020_2022(ano):
     cfg.update({'topo': {2020: 70, 2021: 70, 2022: 63}[ano], 'base': {2020: 36, 2021: 34, 2022: 40}[ano],
                 'colunas': 'faixas', 'faixas_modo': 'largas', 'margem': 22, 'ancora_folga': 2.5, 'faixas_uma_auto': True})
     # 2020 e 2021: letras das alternativas em bolinhas desenhadas (a transcrição não separa as alternativas): só o print
+    if ano == 2022:
+        cfg['apagar_girado'] = r'ENEM 2022'   # marca-d'água vertical na calha
     if ano == 2021:
         # camada de texto com fonte sem mapa de caracteres em boa parte do caderno ("•£Üèîé..."): só o print
         cfg['sem_transcricao'] = True
@@ -2214,3 +2216,19 @@ for _a, _s in ((2021, 2), (2022, 1), (2023, 1)):
     # margem esquerda larga (x≈64–86) e número colado ao enunciado ("01.Assinale")
     PROVAS[f'cmmg-{_a}-{_s}'].update({'colunas': lambda r: [(56, r.width - 40)], 'ancora_dx': 34,
                                       'ancora': r'^0?(\d{1,2})\s?[.,](\s|$|(?=[A-ZÁÉÍÓÚ“"]))'})
+
+
+# PUC Minas Medicina 2021/2, 2022/2 e 2023/1 (rodada 6): mesmo layout de 2024+
+for _a, _s in ((2021, 2), (2022, 2), (2023, 1)):
+    PROVAS[f'pucminas-{_a}-{_s}'] = pucminas(_a, _s)
+
+
+def _pucminas_gab_medicina(pasta):
+    """Gabarito com a página de Medicina primeiro e a de outros cursos depois: só o bloco 'CURSO: MEDICINA'."""
+    txt = texto_pdf(pasta / 'gabarito.pdf')
+    txt = txt[txt.index('MEDICINA'):]
+    txt = re.split(r'CURSOS?:', txt)[0]
+    return {int(n): v for n, v in re.findall(r'(?<![\d,.])(\d{2})\s+([A-D])(?=\s|$)', txt) if int(n) <= 45}
+
+
+PROVAS['pucminas-2023-1']['gabarito'] = _pucminas_gab_medicina
