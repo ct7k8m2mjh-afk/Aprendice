@@ -334,3 +334,40 @@ describe('resumos por subtema', () => {
     });
   }
 });
+
+/* ============================================================ auditoria dos resumos (rodada 1, G1) */
+import { comandoConhecido } from '../logica/latex';
+describe('todo comando LaTeX de docs/revisao é desenhado (nenhum sai cru)', () => {
+  it('varre fórmulas, contas e $…$ de todos os arquivos', () => {
+    const faltam = new Map<string, string>();
+    const walk = (x: unknown, k = ''): void => {
+      if (Array.isArray(x)) x.forEach((y) => walk(y, k));
+      else if (x && typeof x === 'object') Object.entries(x).forEach(([kk, v]) => walk(v, kk));
+      else if (typeof x === 'string') {
+        const tex = ['formula', 'conta', 'formulas'].includes(k) ? [x] : [...x.matchAll(/\$([^$]+)\$/g)].map((r) => r[1]);
+        for (const t of tex) for (const [, n] of t.matchAll(/\\([A-Za-z]+)/g)) if (!comandoConhecido(n)) faltam.set(n, t);
+      }
+    };
+    for (const m of existsSync(PASTA) ? readdirSync(PASTA) : []) {
+      let fs: string[] = [];
+      try { fs = readdirSync(join(PASTA, m)).filter((f) => f.endsWith('.json')); } catch { continue; }
+      for (const f of fs) walk(JSON.parse(readFileSync(join(PASTA, m, f), 'utf-8')));
+    }
+    expect([...faltam.entries()]).toEqual([]);
+  });
+  it('símbolos novos e "&" de alinhamento', () => {
+    const t = (x: string) => analisaLatex(x).map(textoDe).join(' | ');
+    expect(t('\\sum F_x = 0')).toContain('ΣF');
+    expect(t('p \\wedge q \\vee r')).toBe('p ∧ q ∨ r');
+    expect(t('m_\\ell')).toBe('mℓ');
+    expect(t('\\begin{aligned} T &: P_1V_1 = P_2V_2 \\end{aligned}')).not.toContain('&');
+    expect(t('2ab\\cos\\theta')).toBe('2ab cos θ');
+  });
+});
+import { semFracaoUnicode } from '../ui/Formula';
+describe('fração de um caractere (auditoria dos resumos M2)', () => {
+  it('½ vira 1/2, que o site empilha', () => {
+    expect(semFracaoUnicode('spin +½ e −½; H₂ + ½ O₂')).toBe('spin +1/2 e −1/2; H₂ + 1/2 O₂');
+    expect(partesFracao(semFracaoUnicode('spin +½')).some((p) => p.t === 'frac')).toBe(true);
+  });
+});

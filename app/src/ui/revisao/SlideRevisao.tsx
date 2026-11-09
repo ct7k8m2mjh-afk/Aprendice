@@ -6,8 +6,8 @@ import { confereLacuna, lacuna, opcoesFormula, pedeTentativa } from '../../logic
 import { latexParaMotor } from '../../logica/latex';
 import { contaEhTexto, partesFracao } from '../../logica/fracao';
 import { ResolucaoAnimada } from '../ResolucaoAnimada';
-import { comFracoes } from '../Fracao';
-import { Formula } from '../Formula';
+
+import { Formula, textoRev } from '../Formula';
 import { Icone } from '../Icone';
 import { FotoSlide } from './FotoSlide';
 import { FonteSlide } from './FonteSlide';
@@ -65,7 +65,7 @@ export function SlideRevisao({ m, tema, sub, k, s, pos, total, aviso, lembrou, a
   }, [revelado, menos, anima]);
   // exemplo: a frase-chave vem depois da conta, para não entregar a resposta antes (auditoria B6)
   const destaqueDepois = s.tipo === 'exemplo' && !!s.passos?.length;
-  const destaque = s.destaque && <p className="rv-destaque">{comFracoes(s.destaque)}</p>;
+  const destaque = s.destaque && <p className="rv-destaque">{textoRev(s.destaque)}</p>;
 
   return (
     <article className={`rv-slide folha t-${s.tipo}` + (temVisual ? ' com-vis' : '')} aria-labelledby={`rv-tit-${k}`}>
@@ -77,7 +77,7 @@ export function SlideRevisao({ m, tema, sub, k, s, pos, total, aviso, lembrou, a
       <div className="rv-corpo">
         <div className="rv-txt">
           <h2 id={`rv-tit-${k}`} className="rv-tit">{s.titulo}</h2>
-          {s.texto && <p className="rv-texto">{comFracoes(s.texto)}</p>}
+          {s.texto && <p className="rv-texto">{textoRev(s.texto)}</p>}
           {tent === 'formula' && !revelado ? (
             <EscolheFormula tema={tema} sub={sub} k={k} prosa={prosa} aoResponder={marca} />
           ) : tent === 'frase' && !revelado ? (
@@ -90,7 +90,7 @@ export function SlideRevisao({ m, tema, sub, k, s, pos, total, aviso, lembrou, a
             </div>
           )}
           {s.legenda && s.legenda.length > 0 && (revelado || tent !== 'formula') && (
-            <ul className="rv-leg">{s.legenda.map((l, i) => <li key={i}>{comFracoes(l)}</li>)}</ul>
+            <ul className="rv-leg">{s.legenda.map((l, i) => <li key={i}>{textoRev(l)}</li>)}</ul>
           )}
           {s.passos && s.passos.length > 0 && (res && anima
             ? <div className="rv-conta"><ResolucaoAnimada r={res} materia={m} /></div>
@@ -186,7 +186,7 @@ export function Lacuna({ frase, id, valor, aoResponder, foco }: { frase: string;
   if (valor) {
     return (
       <div className={'rv-lacuna feita v-' + valor}>
-        <p className="rv-lacuna-l"><span className="rv-pista">{comFracoes(pista)}</span> <mark className="rv-falta">{comFracoes(falta)}</mark></p>
+        <p className="rv-lacuna-l"><span className="rv-pista">{textoRev(pista)}</span> <mark className="rv-falta">{textoRev(falta)}</mark></p>
         <span className={'rv-selo v-' + valor}>{NOTAS.find((x) => x[0] === valor)![1]}</span>
       </div>
     );
@@ -194,11 +194,11 @@ export function Lacuna({ frase, id, valor, aoResponder, foco }: { frase: string;
   return (
     <div className="rv-lacuna">
       <p className="rv-lacuna-l">
-        <span className="rv-pista">{comFracoes(pista)}</span>
+        <span className="rv-pista">{textoRev(pista)}</span>
         {conf == null
           ? <input id={id} ref={inp} className="rv-in" value={txt} autoFocus={foco} onChange={(e) => setTxt(e.target.value)} placeholder="complete de memória" autoComplete="off"
               aria-label={`Complete: ${pista}`} onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); e.stopPropagation(); confere(); } }} />
-          : <mark className="rv-falta">{comFracoes(falta)}</mark>}
+          : <mark className="rv-falta">{textoRev(falta)}</mark>}
       </p>
       {conf == null ? (
         <div className="rv-tenta-acoes">

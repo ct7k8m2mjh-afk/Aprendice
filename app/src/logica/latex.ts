@@ -25,6 +25,10 @@ const SIMBOLOS: Record<string, string> = {
   cdot: '·', times: '×', div: '÷', pm: '±', mp: '∓', Rightarrow: '⇒', Leftarrow: '⇐', rightarrow: '→', to: '→',
   leftarrow: '←', approx: '≈', neq: '≠', ne: '≠', leq: '≤', le: '≤', geq: '≥', ge: '≥', infty: '∞', circ: '°', degree: '°',
   ldots: '…', cdots: '⋯', dots: '…', propto: '∝', parallel: '∥', perp: '⊥',
+  sum: 'Σ', prod: 'Π', ell: 'ℓ', wedge: '∧', land: '∧', vee: '∨', lor: '∨', neg: '¬', lnot: '¬', therefore: '∴', because: '∵',
+  uparrow: '↑', downarrow: '↓', updownarrow: '↕', leftrightarrow: '↔', longleftrightarrow: '⟷', Leftrightarrow: '⇔', iff: '⇔',
+  longrightarrow: '⟶', nrightarrow: '↛', rightleftharpoons: '⇌', cong: '≅', equiv: '≡', sim: '∼', simeq: '≃', in: '∈', notin: '∉',
+  subset: '⊂', cup: '∪', cap: '∩', emptyset: '∅', partial: '∂', nabla: '∇', hbar: 'ℏ', angle: '∠', triangle: '△', bullet: '•',
   alpha: 'α', beta: 'β', gamma: 'γ', delta: 'δ', epsilon: 'ε', varepsilon: 'ε', theta: 'θ', lambda: 'λ', mu: 'μ', pi: 'π',
   rho: 'ρ', sigma: 'σ', tau: 'τ', phi: 'φ', varphi: 'φ', omega: 'ω', eta: 'η', nu: 'ν', kappa: 'κ', xi: 'ξ', zeta: 'ζ', chi: 'χ', psi: 'ψ',
   Delta: 'Δ', Omega: 'Ω', Sigma: 'Σ', Phi: 'Φ', Theta: 'Θ', Lambda: 'Λ', Pi: 'Π', Gamma: 'Γ', Psi: 'Ψ',
@@ -32,7 +36,7 @@ const SIMBOLOS: Record<string, string> = {
   cos: 'cos', sin: 'sen', sen: 'sen', tan: 'tg', tg: 'tg', log: 'log', ln: 'ln',
 };
 const ESPACOS: Record<string, 1 | 2 | 3 | 4> = { ',': 1, ':': 1, '>': 1, ';': 2, ' ': 2, quad: 3, qquad: 4 };
-const IGNORA = new Set(['left', 'right', 'displaystyle', 'textstyle', 'big', 'Big', 'bigl', 'bigr', 'mathrm', 'mathit']);
+const IGNORA = new Set(['left', 'right', 'displaystyle', 'textstyle', 'big', 'Big', 'bigl', 'bigr', 'mathrm', 'mathit', 'hline', 'limits', 'nolimits']);
 
 /** Analisa uma fórmula. Devolve as linhas (um "\\" dentro de gathered/aligned quebra a linha). */
 export function analisaLatex(src: string): NoMat[][] {
@@ -116,8 +120,10 @@ export function analisaLatex(src: string): NoMat[][] {
         if (nome in SIMBOLOS) {
           const v = SIMBOLOS[nome];
           // operação e relação ficam entre espaços ("v · t", "⇒"), como no caderno
-          if (/^[·×÷±∓⇒⇐→←≈≠≤≥∝]$/.test(v)) { txt(out, ' ' + v + ' '); return; }
-          // função seguida de letra: um espaço fino ("cos θ")
+          if (/^[·×÷±∓⇒⇐→←≈≠≤≥∝∧∨↔⟷⇔⟶↛⇌≅≡∼≃∈∉⊂∪∩]$/.test(v)) { txt(out, ' ' + v + ' '); return; }
+          // função colada a letra ou número antes ("2ab cos θ") e seguida de letra: espaços finos
+          const ult = out[out.length - 1];
+          if (/^(cos|sen|tg|log|ln)$/.test(v) && ult && ult.t === 'txt' && /[A-Za-z0-9)]$/.test(ult.v)) out.push({ t: 'esp', w: 1 });
           txt(out, v);
           if (/^(cos|sen|tg|log|ln)$/.test(v) && /^\s*[A-Za-z0-9\\α-ω]/.test(s.slice(i))) out.push({ t: 'esp', w: 1 });
           return;
@@ -152,6 +158,8 @@ export function analisaLatex(src: string): NoMat[][] {
       }
       if (c === '}') { i++; continue; }
       if (c === '~') { out.push({ t: 'esp', w: 2 }); i++; continue; }
+      // "&" de alinhamento (aligned, array): no site cada linha é centrada; vira só um espaço
+      if (c === '&') { out.push({ t: 'esp', w: 2 }); i++; continue; }
       if (c === ' ') { i++; if (out.length && !(out[out.length - 1].t === 'esp')) txt(out, ' '); continue; }
       txt(out, c === '-' ? '−' : c === "'" ? '′' : c);
       i++;
@@ -275,3 +283,10 @@ export function continuaFrase(ant: string, prox: string): boolean {
   const p1 = ant.trim().split(/\s+/)[0], p2 = prox.trim().split(/\s+/)[0];
   return p1.toLowerCase() !== p2.toLowerCase();
 }
+
+/** O comando é desenhado (símbolo, espaço, estrutura) e não sai cru? Usado no teste que varre docs/revisao. */
+export function comandoConhecido(nome: string): boolean {
+  return nome in SIMBOLOS || nome in ESPACOS || IGNORA.has(nome) || ESTRUTURA.has(nome);
+}
+const ESTRUTURA = new Set(['frac', 'dfrac', 'tfrac', 'sqrt', 'vec', 'overrightarrow', 'overset', 'stackrel', 'text', 'textrm', 'textit',
+  'textbf', 'mbox', 'operatorname', 'hat', 'widehat', 'xrightarrow', 'xleftarrow', 'mathrm', 'mathit', 'mathbf', 'ce', 'begin', 'end']);

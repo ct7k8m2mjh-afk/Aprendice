@@ -1,5 +1,6 @@
 import { numeroQuestao, type Letra, type Questao, type Resolucao } from '../dados/tipos';
 import { Icone } from './Icone';
+import { MATERIAS_ANIMADAS } from '../dados/revisao';
 import { ResolucaoAnimada } from './ResolucaoAnimada';
 import { comFracoes } from './Fracao';
 import { materiaDoCodigo } from '../logica/fracao';
@@ -13,7 +14,8 @@ import { materiaDaArea } from '../dados/provasCompletas';
  */
 /** Resolução animada (vídeo) só em Biologia, Química, Matemática e Física (dono, 09/11/2026);
  *  nas outras matérias a resolução é texto, passo a passo. */
-const ANIMADAS = new Set(['bio', 'qui', 'mat', 'fis']);
+// a regra das matérias animadas mora num lugar só (dados/revisao.ts, decisão do dono 09/11/2026)
+const ANIMADAS = MATERIAS_ANIMADAS;
 
 function ResolucaoTexto({ r }: { r: Resolucao }) {
   const passos = (r.passos || []).filter((p) => p.faz || p.conta || p.porque);

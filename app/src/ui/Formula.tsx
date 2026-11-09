@@ -55,7 +55,16 @@ function nos(ns: NoMat[]): ReactNode[] {
  * Texto com fórmulas entre $…$ (caderno dos cartões das revisões): o texto na letra da interface, a fórmula à mão.
  * Sem $, cai no comFracoes (texto simples com as frações empilhadas).
  */
-export function TextoMat({ t, prosa = false }: { t: string; prosa?: boolean }) {
+const FRAC_UNI: Record<string, string> = { '½': '1/2', '⅓': '1/3', '⅔': '2/3', '¼': '1/4', '¾': '3/4', '⅕': '1/5', '⅛': '1/8' };
+/** "½" de um caractere vira "1/2", que o site empilha (fração sempre empilhada, auditoria dos resumos M2) */
+export function semFracaoUnicode(t: string): string {
+  return t.replace(/[½⅓⅔¼¾⅕⅛]/g, (c) => FRAC_UNI[c]);
+}
+/** texto da revisão: frações empilhadas, inclusive as de um caractere */
+export function textoRev(t: string): ReactNode { return comFracoes(semFracaoUnicode(t)); }
+
+export function TextoMat({ t: t0, prosa = false }: { t: string; prosa?: boolean }) {
+  const t = semFracaoUnicode(t0);
   if (!t.includes('$')) return <>{comFracoes(t)}</>;
   const partes = t.split(/\$([^$]+)\$/);
   return <>{partes.map((p, i) => (i % 2 ? <Formula key={i} tex={p} bloco={false} prosa={prosa} className={prosa ? undefined : 'fm-em-linha'} /> : <Fragment key={i}>{comFracoes(p)}</Fragment>))}</>;

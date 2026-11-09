@@ -16,7 +16,7 @@ export function ResumoSubtemaView({ m, r, compacto }: { m: MateriaId; r: ResumoS
     <article className={'rs' + (compacto ? ' compacto' : '')} aria-label={`Resumo: ${r.titulo}`}>
       <div className="rs-txt">
         <h3 className="rs-tit">{r.titulo}</h3>
-        <ul className="rs-pontos">{r.pontos.map((p, k) => <li key={k}><TextoMat t={p} prosa={prosa} /></li>)}</ul>
+        <ul className="rs-pontos">{r.pontos.map((p, k) => <li key={k}><span className="rs-p"><TextoMat t={p} prosa={prosa} /></span></li>)}</ul>
         {r.formula && <Formula tex={r.formula} prosa={prosa} className="rv-formula rs-formula" />}
         {r.pegadinha && <p className="es-pegadinha"><b>Pegadinha</b><TextoMat t={r.pegadinha} prosa={prosa} /></p>}
       </div>

@@ -63,7 +63,7 @@ export function Escada() {
       </div>
 
       {resumos?.[sub]?.length ? (
-        <section className="secao rs-secao" aria-label="Resumo do conteúdo">
+        <section className="secao tp-bloco rs-secao" aria-label="Resumo do conteúdo">
           <h2 className="sec-tit">Resumo</h2>
           {resumos[sub].map((r, k) => <ResumoSubtemaView key={k} m={m} r={r} />)}
         </section>

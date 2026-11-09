@@ -8,8 +8,8 @@ import { contaEhTexto } from '../logica/fracao';
 import { Carregando, cap, plural, useTitulo } from '../ui/comum';
 import { Icone, type NomeIcone } from '../ui/Icone';
 import { BotaoTelaCheia } from '../ui/QuestaoCartao';
-import { comFracoes } from '../ui/Fracao';
-import { Formula } from '../ui/Formula';
+
+import { Formula, textoRev } from '../ui/Formula';
 import { ResolucaoAnimada } from '../ui/ResolucaoAnimada';
 import { animaEscrita } from '../ui/motorAnima';
 import { MapaMental } from '../ui/revisao/MapaMental';
@@ -78,7 +78,7 @@ export function RevisaoEssencial() {
   const vai = (k: number) => { setI(k); window.scrollTo({ top: 0 }); };
 
   return (
-    <div className={`questao-tela rv-tela es-tela m-${m}`}>
+    <div className={`questao-tela rv-tela es-tela m-${m}` + (MATERIAS_ANIMADAS.has(m) ? '' : ' sem-anima')}>
       <div className="q-barra">
         <button className="q-volta" onClick={() => nav(voltar)} aria-label="Voltar" title="Voltar (Esc)"><Icone nome="esquerda" /><span>Voltar</span></button>
         <div className="q-barq">
@@ -108,7 +108,7 @@ export function RevisaoEssencial() {
         {it.t === 'conexao' && (
           <>
             <h2 id="es-tit" className="rv-tit">Conexão com outras matérias</h2>
-            <ul className="es-conexao">{tema.essencial.conexao!.map((c, k) => <li key={k}><span className="etq">{c.materia}</span><p>{comFracoes(c.frase)}</p></li>)}</ul>
+            <ul className="es-conexao">{tema.essencial.conexao!.map((c, k) => <li key={k}><span className="etq">{c.materia}</span><p>{textoRev(c.frase)}</p></li>)}</ul>
           </>
         )}
       </article>
@@ -139,7 +139,7 @@ function Termometro({ e, nomeSub }: { e: Essencial; nomeSub: (s: string) => stri
                 <b>{cap(nomeSub(t.sub))}</b>
                 <span className={'es-peso p' + nv} role="img" aria-label={rot}><i /><i /><i /><small>{rot}</small></span>
               </div>
-              {t.como_cai && <p>{comFracoes(t.como_cai)}</p>}
+              {t.como_cai && <p>{textoRev(t.como_cai)}</p>}
               {t.provas && <small className="es-provas">{t.provas}</small>}
             </li>
           );
@@ -163,9 +163,9 @@ function TelaConteudo({ m, tema, tela }: { m: MateriaId; tema: TemaRevisao; tela
     <div className={'rv-corpo' + (temVisual ? ' es-com-vis' : '')}>
       <div className="rv-txt">
         <h2 id="es-tit" className="rv-tit">{tela.titulo}</h2>
-        <ul className="es-pontos">{tela.pontos.map((p, k) => <li key={k}>{comFracoes(p)}</li>)}</ul>
+        <ul className="es-pontos">{tela.pontos.map((p, k) => <li key={k}>{textoRev(p)}</li>)}</ul>
         {tela.formula && <div ref={ref}><Formula tex={tela.formula} prosa={prosa} className="rv-formula" /></div>}
-        {tela.pegadinha && <p className="es-pegadinha"><b>Pegadinha</b>{comFracoes(tela.pegadinha)}</p>}
+        {tela.pegadinha && <p className="es-pegadinha"><b>Pegadinha</b>{textoRev(tela.pegadinha)}</p>}
         {slides > 0 && (
           <details className="es-aprofundar">
             <summary>Aprofundar este conteúdo</summary>
@@ -193,13 +193,13 @@ function QuestaoResolvida({ m, e }: { m: MateriaId; e: Essencial }) {
     <>
       <h2 id="es-tit" className="rv-tit">Questão resolvida</h2>
       <p className="es-qa"><span className="etq">Questão Aprendice</span> Questão nova, no estilo das provas, escrita para esta revisão.</p>
-      <p className="rv-texto">{comFracoes(enun)}</p>
+      <p className="rv-texto">{textoRev(enun)}</p>
       <div className="es-alts" role="radiogroup" aria-label="Alternativas">
         {alts.map(({ l, t }) => (
           <button key={l} type="button" role="radio" aria-checked={esc === l} disabled={ver}
             className={'es-alt' + (esc === l ? ' sel' : '') + (ver && l === q.gabarito ? ' certa' : '') + (ver && esc === l && l !== q.gabarito ? ' errada' : '')}
             onClick={() => setEsc(l)}>
-            <span className="alt-l">{l}</span><span>{comFracoes(t)}</span>
+            <span className="alt-l">{l}</span><span>{textoRev(t)}</span>
           </button>
         ))}
       </div>
@@ -214,7 +214,7 @@ function QuestaoResolvida({ m, e }: { m: MateriaId; e: Essencial }) {
           {res && (MATERIAS_ANIMADAS.has(m)
             ? <div className="rv-conta"><ResolucaoAnimada r={res} materia={m} /></div>
             : <ol className="rv-passos es-passos-txt">{q.passos!.map((p, k) => <li key={k}><span className="rv-passo-n num" aria-hidden>{k + 1}</span><div><b>{p.faz}</b><Formula tex={p.conta} prosa={prosa} /></div></li>)}</ol>)}
-          {q.por_que_erram && <p className="es-pegadinha"><b>Por que erram</b>{comFracoes(q.por_que_erram)}</p>}
+          {q.por_que_erram && <p className="es-pegadinha"><b>Por que erram</b>{textoRev(q.por_que_erram)}</p>}
         </div>
       )}
     </>
