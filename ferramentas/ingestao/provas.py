@@ -2232,3 +2232,5 @@ def _pucminas_gab_medicina(pasta):
 
 
 PROVAS['pucminas-2023-1']['gabarito'] = _pucminas_gab_medicina
+for _a, _s in ((2021, 2), (2022, 2), (2023, 1)):
+    PROVAS[f'pucminas-{_a}-{_s}']['area_da_materia'] = True
