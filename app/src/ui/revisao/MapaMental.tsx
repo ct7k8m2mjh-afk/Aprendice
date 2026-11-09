@@ -10,7 +10,7 @@ export interface RamoMapa { sub: string; titulo: string; chave?: string; liga?: 
  * conteúdos em coluna, presos a um tronco; as ligações viram "liga com" embaixo de cada nó.
  * O motor único faz os nós entrarem um a um e os ramos se desenharem; com "reduzir movimento", tudo parado.
  */
-export function MapaMental({ centro, ramos }: { centro: string; ramos: RamoMapa[] }) {
+export function MapaMental({ centro, ramos, anima = true }: { centro: string; ramos: RamoMapa[]; anima?: boolean }) {
   const raiz = useRef<HTMLDivElement>(null);
   const n = ramos.length;
   // posições (em % da caixa) num anel em volta do centro, começando em cima e girando no sentido do relógio
@@ -27,15 +27,15 @@ export function MapaMental({ centro, ramos }: { centro: string; ramos: RamoMapa[
   const titulo = (s: string) => ramos.find((r) => r.sub === s)?.titulo || s;
 
   useLayoutEffect(() => {
-    if (!raiz.current || (typeof matchMedia !== 'undefined' && matchMedia('(prefers-reduced-motion: reduce)').matches)) return;
+    if (!raiz.current || !anima || (typeof matchMedia !== 'undefined' && matchMedia('(prefers-reduced-motion: reduce)').matches)) return;
     // anima a caixa de dentro: a de fora guarda a posição (translate) no mapa radial
     const cs = [animaEntrada(raiz.current.querySelector<HTMLElement>('.mm-centro > span')!, 0)];
     raiz.current.querySelectorAll<HTMLElement>('.mm-in').forEach((el, i) => cs.push(animaEntrada(el, 350 + i * 220)));
     return () => cs.forEach((c) => c.cancela());
-  }, [centro, n]);
+  }, [centro, n, anima]);
 
   return (
-    <div className="mm" ref={raiz} role="group" aria-label={`Mapa mental: ${centro}`}>
+    <div className={'mm' + (anima ? '' : ' parado')} ref={raiz} role="group" aria-label={`Mapa mental: ${centro}`}>
       <svg className="mm-ramos" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden focusable="false">
         {pos.map((p, i) => <line key={i} className="mm-linha" x1={50} y1={50} x2={p.x} y2={p.y} style={{ animationDelay: `${300 + i * 220}ms` }} />)}
         {ligas.map(([a, b], k) => {

@@ -10,17 +10,17 @@ import { Icone } from '../Icone';
  * para o aluno (auditoria A1): o que o motor ainda não desenha fica pedido em docs/revisao/PEDIDOS-MOTOR.md.
  * Imagem sensível (o roteiro pede um aviso antes): primeiro o aviso, a imagem só quando o aluno escolhe ver.
  */
-export function FotoSlide({ m, v }: { m: MateriaId; v: VisualSlide }) {
+export function FotoSlide({ m, v, anima = true }: { m: MateriaId; v: VisualSlide; anima?: boolean }) {
   const foto = v.foto!;
   const aviso = avisoDe(v);
   const [ver, setVer] = useState(!aviso);
   const img = useRef<HTMLImageElement>(null);
   const menos = typeof matchMedia !== 'undefined' && matchMedia('(prefers-reduced-motion: reduce)').matches;
   useLayoutEffect(() => {
-    if (!ver || menos || !img.current) return;
+    if (!ver || menos || !anima || !img.current) return;
     const c = animaEntrada(img.current);
     return () => c.cancela();
-  }, [ver, menos]);
+  }, [ver, menos, anima]);
   return (
     <figure className={'rv-vis rv-foto' + (reduzida(v) ? ' reduzida' : '')}>
       {ver ? (

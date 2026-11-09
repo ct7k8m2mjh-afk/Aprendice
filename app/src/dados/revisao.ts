@@ -60,6 +60,10 @@ export interface TemaRevisao {
   obra?: string;
 }
 
+/** Decisão do dono (09/11/2026): só Biologia, Química, Matemática e Física têm resolução e visual animados; as outras
+ *  matérias ficam com texto (e imagem com crédito quando ajudar), como na correção da questão (ui/Resolucao.tsx). */
+export const MATERIAS_ANIMADAS = new Set(['bio', 'qui', 'mat', 'fis']);
+
 /** Resumo curto de um subtema (comando 35, docs/revisao/<m>/resumos.json): pontos, pegadinha e a imagem (ou a caixa
  *  tracejada com a descrição do que será ilustrado, até o dono enviar docs/imagens/<m>/<sub>.png). */
 export interface ResumoSubtema { sub: string; titulo: string; pontos: string[]; pegadinha?: string; formula?: string; imagem?: { descricao?: string; img?: string } }

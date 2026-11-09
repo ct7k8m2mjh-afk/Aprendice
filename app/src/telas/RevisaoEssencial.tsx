@@ -2,7 +2,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { useMateria } from '../dados/conteudo';
 import { materia as infoMateria } from '../dados/materias';
-import { useIndiceRevisao, useTemaRevisao, type Essencial, type TelaEssencial, type TemaRevisao } from '../dados/revisao';
+import { MATERIAS_ANIMADAS, useIndiceRevisao, useTemaRevisao, type Essencial, type TelaEssencial, type TemaRevisao } from '../dados/revisao';
 import type { MateriaId } from '../dados/tipos';
 import { contaEhTexto } from '../logica/fracao';
 import { Carregando, cap, plural, useTitulo } from '../ui/comum';
@@ -100,7 +100,7 @@ export function RevisaoEssencial() {
         {it.t === 'mapa' && (
           <>
             <h2 id="es-tit" className="rv-tit">{tema.essencial.mapa!.centro}</h2>
-            <MapaMental centro={tema.essencial.mapa!.centro} ramos={tema.essencial.mapa!.ramos} />
+            <MapaMental centro={tema.essencial.mapa!.centro} ramos={tema.essencial.mapa!.ramos} anima={MATERIAS_ANIMADAS.has(m)} />
           </>
         )}
         {it.t === 'tela' && <TelaConteudo m={m} tema={tema} tela={it.tela} />}
@@ -153,10 +153,10 @@ function TelaConteudo({ m, tema, tela }: { m: MateriaId; tema: TemaRevisao; tela
   const prosa = contaEhTexto('1 + 1', m);
   const ref = useRef<HTMLDivElement>(null);
   useLayoutEffect(() => {
-    if (!ref.current || (typeof matchMedia !== 'undefined' && matchMedia('(prefers-reduced-motion: reduce)').matches)) return;
+    if (!ref.current || !MATERIAS_ANIMADAS.has(m) || (typeof matchMedia !== 'undefined' && matchMedia('(prefers-reduced-motion: reduce)').matches)) return;
     const c = animaEscrita(ref.current, '.fm-linha', 300);
     return () => c.cancela();
-  }, [tela]);
+  }, [tela, m]);
   const temVisual = !!tela.visual?.foto?.img;
   const slides = tema.slides?.[tela.sub]?.length || 0;
   return (
@@ -174,7 +174,7 @@ function TelaConteudo({ m, tema, tela }: { m: MateriaId; tema: TemaRevisao; tela
           </details>
         )}
       </div>
-      {temVisual && <div className="rv-vis-col"><FotoSlide m={m} v={tela.visual!} /></div>}
+      {temVisual && <div className="rv-vis-col"><FotoSlide m={m} v={tela.visual!} anima={MATERIAS_ANIMADAS.has(m)} /></div>}
     </div>
   );
 }
@@ -211,7 +211,9 @@ function QuestaoResolvida({ m, e }: { m: MateriaId; e: Essencial }) {
       ) : (
         <div className="es-res">
           <p className={'rv-lembrou ' + (esc === q.gabarito ? 'v-a' : esc ? 'v-e' : 'v-q')}>{esc === q.gabarito ? 'Você acertou.' : esc ? `Você marcou ${esc}. A resposta é ${q.gabarito}.` : `A resposta é ${q.gabarito}.`}</p>
-          {res && <div className="rv-conta"><ResolucaoAnimada r={res} materia={m} /></div>}
+          {res && (MATERIAS_ANIMADAS.has(m)
+            ? <div className="rv-conta"><ResolucaoAnimada r={res} materia={m} /></div>
+            : <ol className="rv-passos es-passos-txt">{q.passos!.map((p, k) => <li key={k}><span className="rv-passo-n num" aria-hidden>{k + 1}</span><div><b>{p.faz}</b><Formula tex={p.conta} prosa={prosa} /></div></li>)}</ol>)}
           {q.por_que_erram && <p className="es-pegadinha"><b>Por que erram</b>{comFracoes(q.por_que_erram)}</p>}
         </div>
       )}

@@ -1,7 +1,7 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import type { Lembrou } from '../../estado/tipos';
 import type { MateriaId, Resolucao } from '../../dados/tipos';
-import type { PassoSlide, Slide, TemaRevisao } from '../../dados/revisao';
+import { MATERIAS_ANIMADAS, type PassoSlide, type Slide, type TemaRevisao } from '../../dados/revisao';
 import { confereLacuna, lacuna, opcoesFormula, pedeTentativa } from '../../logica/cicloRevisao';
 import { latexParaMotor } from '../../logica/latex';
 import { contaEhTexto, partesFracao } from '../../logica/fracao';
@@ -49,6 +49,8 @@ export function SlideRevisao({ m, tema, sub, k, s, pos, total, aviso, lembrou, a
   // Humanas (Filosofia e Sociologia...): passos de raciocínio e "fórmulas" em frase, na letra da interface
   // ("1 + 1" é conta em Física e Matemática e texto nas matérias em que o passo é sempre texto)
   const prosa = contaEhTexto('1 + 1', m);
+  // só Bio, Quí, Mat e Fís animam (decisão do dono, 09/11/2026); as outras ficam com texto
+  const anima = MATERIAS_ANIMADAS.has(m);
   const res = useMemo(() => (s.passos?.length ? passosParaMotor(s.passos, prosa) : null), [s.passos, prosa]);
   // visual: só o que o motor desenha de verdade (a foto que entra). O roteiro de produção nunca aparece (auditoria A1)
   const temVisual = !!s.visual?.foto?.img;
@@ -57,10 +59,10 @@ export function SlideRevisao({ m, tema, sub, k, s, pos, total, aviso, lembrou, a
   const escrita = useRef<HTMLDivElement>(null);
   const menos = typeof matchMedia !== 'undefined' && matchMedia('(prefers-reduced-motion: reduce)').matches;
   useLayoutEffect(() => {
-    if (menos || !revelado || !escrita.current) return;
+    if (menos || !anima || !revelado || !escrita.current) return;
     const c = animaEscrita(escrita.current, '.fm-linha, .rv-destaque', 250);
     return () => c.cancela();
-  }, [revelado, menos]);
+  }, [revelado, menos, anima]);
   // exemplo: a frase-chave vem depois da conta, para não entregar a resposta antes (auditoria B6)
   const destaqueDepois = s.tipo === 'exemplo' && !!s.passos?.length;
   const destaque = s.destaque && <p className="rv-destaque">{comFracoes(s.destaque)}</p>;
@@ -90,27 +92,28 @@ export function SlideRevisao({ m, tema, sub, k, s, pos, total, aviso, lembrou, a
           {s.legenda && s.legenda.length > 0 && (revelado || tent !== 'formula') && (
             <ul className="rv-leg">{s.legenda.map((l, i) => <li key={i}>{comFracoes(l)}</li>)}</ul>
           )}
-          {s.passos && s.passos.length > 0 && (res
+          {s.passos && s.passos.length > 0 && (res && anima
             ? <div className="rv-conta"><ResolucaoAnimada r={res} materia={m} /></div>
-            : <PassosFormula passos={s.passos} prosa={prosa} />)}
+            : <PassosFormula passos={s.passos} prosa={prosa} todos={!anima} />)}
           {destaqueDepois && destaque}
           {s.fonte && <FonteSlide fonte={s.fonte} obra={tema.obra} />}
         </div>
-        {temVisual && <div className="rv-vis-col"><FotoSlide key={sub + k} m={m} v={s.visual!} /></div>}
+        {temVisual && <div className="rv-vis-col"><FotoSlide key={sub + k} m={m} v={s.visual!} anima={anima} /></div>}
       </div>
     </article>
   );
 }
 
 /** Saída do pedido 2 ao motor (docs/revisao/PEDIDOS-MOTOR.md): os passos com a fórmula desenhada, um de cada vez. */
-function PassosFormula({ passos, prosa }: { passos: PassoSlide[]; prosa: boolean }) {
-  const [ate, setAte] = useState(0);
+function PassosFormula({ passos, prosa, todos }: { passos: PassoSlide[]; prosa: boolean; todos?: boolean }) {
+  // todos: matéria sem animação (texto): os passos aparecem juntos, sem revelar um a um
+  const [ate, setAte] = useState(todos ? passos.length - 1 : 0);
   return (
     <section className="rv-conta rv-passos" aria-label="Resolução passo a passo">
-      <h3 className="cor-tit">Resolução passo a passo</h3>
+      <h3 className="cor-tit">{todos ? 'Resolução' : 'Resolução passo a passo'}</h3>
       <ol>
         {passos.map((p, i) => (
-          <li key={i} hidden={i > ate || undefined} className={i === ate ? 'entra' : undefined}>
+          <li key={i} hidden={i > ate || undefined} className={i === ate && !todos ? 'entra' : undefined}>
             <span className="rv-passo-n num" aria-hidden>{i + 1}</span>
             <div><b>{p.faz}</b><Formula tex={p.conta} prosa={prosa} /></div>
           </li>

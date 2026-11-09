@@ -134,7 +134,7 @@ export function RevisaoSlides() {
         <BotaoTelaCheia />
       </div>
 
-      {fase >= 0 && <Tempos fase={fase} />}
+      {fase >= 0 && <Tempos fase={fase} anima={MATERIAS_ANIMADAS.has(m)} />}
 
       {fase < 0 ? (
         <Capa nomeMat={nomeMat} tema={tema} sub={sub} nomeSub={nomeSub} rev={rev} nQuestoes={qs.length} ciclo={ciclo} aoComecar={comeca} />
@@ -156,10 +156,10 @@ export function RevisaoSlides() {
 }
 
 /** Os 5 tempos do ciclo, com o atual marcado. */
-function Tempos({ fase }: { fase: number }) {
+function Tempos({ fase, anima }: { fase: number; anima: boolean }) {
   return (
     <ol className="rv-tempos" aria-label="Os 5 tempos da revisão">
-      {TEMPOS.map((t, i) => (
+      {TEMPOS.map((t0, i) => { const t = i === 1 && !anima ? 'Rever os pontos' : t0; return (
         <li key={t} className={i < fase ? 'feito' : i === fase ? 'atual' : ''} aria-current={i === fase ? 'step' : undefined}>
           <span className="rv-tp-n num">{i < fase ? <Icone nome="check" tam={13} /> : i + 1}</span><span className="rv-tp-t">{t}</span>
         </li>
