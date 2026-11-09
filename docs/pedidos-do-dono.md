@@ -34,6 +34,7 @@ Uma linha por decisão, com a data. Só a versão mais nova de cada regra; o que
 - 09/11 — **Nenhum ícone tem sombra** (círculos, artes das matérias, capas). Ao passar o mouse, o ícone **salta 10 px para cima e fica no alto** enquanto o mouse estiver em cima (substitui o "cresce ~6% e sobe levemente" de 06/11 e a regra antiga de sombra dos ícones 3D).
 
 ## Referências guardadas
+Tudo o que o dono envia (texto, imagem, prancha) tem uso e fica registrado com data.
 - `docs/referencias/menu-lateral.webp` (03/11) — ícones de linha do menu.
 - `docs/referencias/tela-inicial.webp` (03/11) — onda e pontilhado no pé do menu; a tela inicial em si foi substituída pela aba Início de 06/11.
 - Pranchas de 02–03/11 em `app/conteudo-fonte/materias/ic/pranchas/` — só arquivo; os ícones delas saíram do site (ícones novos de 06/11).
