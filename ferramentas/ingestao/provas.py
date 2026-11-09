@@ -2339,3 +2339,13 @@ PROVAS['pucrio-2024-g2'].update({
 })
 PROVAS['uece-2024-1']['base'] = 64   # rodapé "O número do gabarito deste caderno de prova é 1." (y≈782) fica fora
 PROVAS['uece-2024-1']['topo'] = 60   # cabeçalho de duas linhas vai até y≈55
+
+
+# Unifesp Medicina (Sistema Misto), prova 1 objetiva de Língua Portuguesa e Língua Inglesa, versão 1 (rodada 6)
+for _a, _d in ((2022, '20/01/2022'), (2026, '18/12/2025')):
+    PROVAS[f'unifesp-{_a}'] = vunesp(
+        'unifesp', 'Unifesp', _a, 'Medicina – Misto', f'Unifesp Medicina {_a}', 25, caderno='caderno', duracao=4,
+        nota=f'Universidade Federal de São Paulo, Sistema Misto de Medicina {_a} (prova de {_d}, banca Vunesp): prova 1, versão 1, '
+             '25 questões objetivas de Língua Portuguesa e Língua Inglesa. Redação e Conhecimentos Específicos (discursiva) fora. '
+             'Gabarito oficial publicado pela Unifesp.')
+    PROVAS[f'unifesp-{_a}']['area_da_materia'] = True
