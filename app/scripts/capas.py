@@ -52,6 +52,8 @@ CAPAS = {
 # para a direita (luz do alto à esquerda). Ela é desenhada por peça apoiada no chão: elipse sob a base, desfocada,
 # em preto translúcido (escurece o fundo suave por multiplicação; no escuro fica naturalmente discreta, como na REF
 # escura). Medidas em fração da largura da base da peça: dx/dy = centro, rx/ry = raios, sigma = desfoque, op = opacidade.
+# dono, 09/11/2026: sem nenhuma sombra acrescentada nos ícones e capas (as peças ficam só com o que o PNG original traz)
+SEM_SOMBRA = True
 SOMBRA = {'dx': 0.15, 'dy': -0.02, 'rx': 0.62, 'ry': 0.06, 'sigma': 0.06, 'op': 0.38}
 # História: na REF a luz vem da direita e a sombra de chão vai para a esquerda, atrás da base da ampulheta
 SOMBRA_MATERIA = {'his': {'dx': -0.16, 'sigma': 0.09, 'op': 0.3}}
@@ -97,6 +99,8 @@ def _cola(tela, m, nome, x, y, alt, esp, k=1.0):
 def _sombra(tela, m, nome, x, y, alt, esp, k=1.0, sempre=False):
     """Sombra de contato da peça no chão, desenhada em `tela` (antes da peça). sempre: também nas peças que flutuam
     (ícone da matéria: na referência da aba principal todo objeto do círculo tem a sombra suave embaixo)."""
+    if SEM_SOMBRA:
+        return
     if (m, nome) in SOLTAS and not sempre:
         return
     import numpy as np
