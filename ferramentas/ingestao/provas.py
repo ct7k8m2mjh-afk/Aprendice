@@ -2285,3 +2285,57 @@ PROVAS['pucrio-2023']['gabarito'] = lambda pasta: _pucrio2023_gab(pasta) | {32: 
 for _a in (2020, 2023):
     PROVAS[f'pucrio-{_a}']['area_da_materia'] = True
 PROVAS['pucrio-2020']['suporte_forcado'] = {('d1-caderno', 2): [(92, 0, (1, 10))]}
+
+
+# UNEB 2022/2023 (rodada 6): baixadas (caderno + gabarito pós-recursos), FORA do site: diagramação em duas colunas com
+# textos, imagens e páginas de largura total intercalados; o recorte automático troca pedaços entre questões vizinhas.
+
+
+# ------------------------------------------------------------------------------------------------- UECE (rodada 6)
+def _uece_gab(pasta):
+    """Comunicado do gabarito definitivo: blocos por língua; vale o 'Língua Inglesa', GABARITO 1 (linhas de números e de letras)."""
+    txt = texto_pdf(pasta / 'comunicado-definitivo.pdf')
+    txt = txt[txt.index('Língua Inglesa'):]
+    txt = txt[txt.index('GABARITO 1'):]
+    txt = txt.split('GABARITO 2')[0]
+    ls = [l.split() for l in txt.splitlines() if l.strip()]
+    g = {}
+    for a, b in zip(ls, ls[1:]):
+        nums = [x.rstrip('*') for x in a]
+        if nums and all(x.isdigit() for x in nums) and len(nums) == len(b) and all(re.fullmatch(r'[A-D]|\*|X|ANULADA', x) for x in b):
+            for n, v in zip(nums, b):
+                g[int(n)] = v if v in 'ABCD' else 'X'
+    return g
+
+
+PROVAS['uece-2024-1'] = {
+    'catalogo': 'uece', 'escola': 'UECE', 'ano': '2024', 'fase': '2024.1 – 1ª fase', 'titulo': 'UECE 2024.1', 'banca': 'CEV-UECE',
+    'duracao_horas': 4, 'total': 85, 'alternativas': 4,
+    'nota': 'Universidade Estadual do Ceará, Vestibular 2024.1, 1ª fase (Prova de Conhecimentos Gerais, gabarito 1), 85 questões A–D. '
+            'Língua estrangeira: inglês. Gabarito oficial definitivo (Comunicado 237/2023-CEV/UECE, após recursos: q26 = C).',
+    'cadernos': [{'arquivo': 'caderno', 'paginas': (3, 999)}],
+    'colunas': lambda r: duas_colunas(r, 30), 'margem': 30, 'topo': 50, 'base': 40,
+    'ancora': r'^(\d{2})\.(\s|$)', 'ancora_dx': 14, 'sequencial': True,
+    'secoes_rx': [(r'^LÍNGUA PORTUGUESA$', 'Língua Portuguesa'), (r'^MATEMÁTICA$', 'Matemática'), (r'^HISTÓRIA$', 'História'),
+                  (r'^GEOGRAFIA$', 'Geografia'), (r'^FÍSICA$', 'Física'), (r'^QUÍMICA$', 'Química'), (r'^BIOLOGIA$', 'Biologia'),
+                  (r'^EDUCAÇÃO FÍSICA$', 'Educação Física'), (r'^FILOSOFIA$', 'Filosofia'), (r'^SOCIOLOGIA$', 'Sociologia'),
+                  (r'^LÍNGUA (ESPANHOLA|FRANCESA)$', 'Outra língua'), (r'^LÍNGUA INGLESA$', 'Inglês')],
+    'pular_secoes': ('Outra língua',), 'pular_antes_sequencia': True,
+    'corte': [r'^R A S C U N H O$', r'(?i)^DADOS QUE PODEM SER USADOS', r'^LÍNGUA ESTRANGEIRA$'],
+    'suporte': [r'^Texto\s+\d+\s*$', r'^T E X T\s*\d*$', r'(?i)(responda|responder)\b.*\bquest[õo]es'],
+    'gabarito': _uece_gab, 'area': lambda n: 'Conhecimentos gerais', 'area_da_materia': True,
+}
+PROVAS['uece-2024-1']['ancora_dx'] = 24   # coluna direita: número em x≈312 (a coluna começa em x≈298)
+
+
+# PUC-Rio Vestibular 2024, grupo 2 (manhã; triagem do comando 21: a questão W39cb2bf do Brasil Escola é deste caderno).
+# 1º dia: inglês (1–10); 2º dia: objetivas de Matemática (10) e Ciências da Natureza (25), aqui 11–45.
+PROVAS['pucrio-2024-g2'] = pucrio(2024, 35, grupo=2)
+PROVAS['pucrio-2024-g2'].update({
+    'titulo': 'PUC-Rio 2024 – Grupo 2', 'suporte_forcado': {('d1-caderno', 2): [(94, 0, (1, 10))]},
+    'nota': 'Pontifícia Universidade Católica do Rio de Janeiro, Vestibular 2024 (outubro de 2023), grupo 2 (manhã): questões '
+            'objetivas A–E de língua estrangeira (1º dia; inglês, 1–10) e de Matemática e Ciências da Natureza (2º dia; aqui '
+            '11–45). Discursivas e redação fora. Gabarito: caderno oficial "com gabarito" da PUC-Rio.',
+})
+PROVAS['uece-2024-1']['base'] = 64   # rodapé "O número do gabarito deste caderno de prova é 1." (y≈782) fica fora
+PROVAS['uece-2024-1']['topo'] = 60   # cabeçalho de duas linhas vai até y≈55
