@@ -270,6 +270,8 @@ export function latexParaMotor(src: string, contaFracoes: (linha: string) => num
  *  da de cima: "risca 'a': ..." / "risca 'b': ...")? */
 export function continuaFrase(ant: string, prox: string): boolean {
   if (!/^[a-zà-ÿ]/.test(prox)) return false;
+  // duas relações em paralelo ("a = b" / "c = d"): itens, não a mesma frase
+  if (/[=→⇒×]/.test(ant) && /[=→⇒×]/.test(prox)) return false;
   const p1 = ant.trim().split(/\s+/)[0], p2 = prox.trim().split(/\s+/)[0];
   return p1.toLowerCase() !== p2.toLowerCase();
 }

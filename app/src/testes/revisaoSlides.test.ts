@@ -59,6 +59,7 @@ describe('LaTeX das revisões', () => {
       .toBe('ética: agir pelo correto, não por medo\n(2) outro');
     // item novo de lista que começa com a mesma palavra fica na sua linha
     expect(latexParaMotor('\\begin{gathered} \\text{risca a: errada} \\\\ \\text{risca b: exagera} \\end{gathered}', contaFracoes, true)).toBe('risca a: errada\nrisca b: exagera');
+    expect(latexParaMotor('\\begin{gathered} \\text{qual deus = teogonia} \\\\ \\text{de que é feito = arché} \\end{gathered}', contaFracoes, true)).toBe('qual deus = teogonia\nde que é feito = arché');
   });
   it('o motor anima a passagem do 10 que multiplica para o outro lado dividindo', () => {
     const conta = latexParaMotor('10\\,\\Delta s = 400 \\;\\Rightarrow\\; \\Delta s = \\frac{400}{10} = 40\\ \\text{m}', contaFracoes)!;

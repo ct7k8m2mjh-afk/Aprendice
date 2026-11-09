@@ -121,7 +121,7 @@ function PassosFormula({ passos, prosa, todos }: { passos: PassoSlide[]; prosa: 
       </ol>
       {ate < passos.length - 1
         ? <button type="button" className="btn sec peq" onClick={() => setAte(ate + 1)}>Próximo passo <Icone nome="direita" tam={15} /></button>
-        : passos.length > 1 && <button type="button" className="ra-link" onClick={() => setAte(0)}>Ver do começo</button>}
+        : passos.length > 1 && !todos && <button type="button" className="ra-link" onClick={() => setAte(0)}>Ver do começo</button>}
     </section>
   );
 }
