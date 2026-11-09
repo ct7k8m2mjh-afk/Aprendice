@@ -18,7 +18,7 @@ Arquivos: `docs/icones/<matéria>/<id do tema>-<nome>.png`. O id no nome é o `m
 Ícones com ressalva (usar o atual até o dono mandar nova versão): ver comando 23 em `docs/comandos-do-dono.md`.
 
 **No site (comando 23 feito):** as nove matérias usam só estes ícones de tema (`app/scripts/icones_tema.py` gera `public/conteudo/<m>/ic/<id>.webp` e `app/src/dados/iconesTema.ts`; Filosofia e Sociologia é a matéria `fs`, pasta `filosofia-sociologia/`). G03-clima: o véu quase transparente do quadro (alfa até 29) é apagado no WebP (alfa até 32 vira 0). H07: o capacete sozinho. Os recortes antigos de tema das pranchas (`app/conteudo-fonte/materias/ic/<m>/`) e o código que os gerava foram excluídos; as pranchas continuam como fonte do ícone da matéria.
-Visual (ver `exemplo-faixa-de-temas.png`, só o visual, não a ordem): o objeto fica INTEIRO DENTRO de um círculo claro; ao passar o mouse ou focar pelo teclado, o círculo com o ícone cresce ~6% e sobe levemente (animação curta e suave; com "reduzir movimento", só destaque de borda). No toque não há efeito: abre o tema.
+Visual (ver `exemplo-faixa-de-temas.png`, só o visual, não a ordem): o objeto fica INTEIRO DENTRO de um círculo claro; sem sombra; ao passar o mouse ou focar pelo teclado, o círculo com o ícone salta 10 px para cima e fica no alto enquanto o mouse estiver em cima (dono, 09/11/2026; com "reduzir movimento", não se move). No toque não há efeito: abre o tema.
 
 ## Recebem o ícone do tema (círculo)
 | Onde | Código | Tamanho atual |
