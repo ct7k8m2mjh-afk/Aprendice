@@ -2349,3 +2349,35 @@ for _a, _d in ((2022, '20/01/2022'), (2026, '18/12/2025')):
              '25 questões objetivas de Língua Portuguesa e Língua Inglesa. Redação e Conhecimentos Específicos (discursiva) fora. '
              'Gabarito oficial publicado pela Unifesp.')
     PROVAS[f'unifesp-{_a}']['area_da_materia'] = True
+
+
+# ---------------------------------------------------------------------------------------------- Fema (rodada 6)
+def fema(ano, data, online=False):
+    """Fundação Educacional do Município de Assis, Processo Seletivo {ano+1} (cursos gerais, prova de {data}): 25 questões
+    A–E em uma coluna ("01." em negrito, alternativas "a)"); gabarito publicado pela Fema na última página do caderno."""
+    def gab(pasta):
+        pdf = texto_pdf(pasta / 'caderno.pdf')
+        fim = pdf[pdf.upper().rindex('GABARITO'):]
+        return {int(n): v for n, v in re.findall(r'(?m)^\s*(\d{1,2})\s+([A-E])\s*$', fim) if int(n) <= 25}
+
+    return {
+        'catalogo': 'fema', 'escola': 'Fema', 'ano': str(ano), 'fase': f'Processo Seletivo {ano + 1}', 'titulo': f'Fema {ano + 1}',
+        'banca': 'Fema', 'duracao_horas': 2, 'total': 25,
+        'nota': f'Fundação Educacional do Município de Assis (SP), Processo Seletivo {ano + 1} dos cursos gerais (prova '
+                f'{"on-line " if online else ""}de {data}): 25 questões A–E de conhecimentos gerais, Português e Inglês. Redação fora. '
+                'Gabarito oficial publicado pela Fema no próprio PDF da prova.',
+        'cadernos': [{'arquivo': 'caderno', 'paginas': (2, 999)}],
+        'colunas': lambda r: [(24, r.width - 20)], 'margem': 24, 'topo': 30, 'base': 40, 'rodape_num': True,
+        'ancora': r'^(\d{2})\.(\s|$)', 'ancora_dx': 40, 'sequencial': True, 'ancora_negrito': True,
+        'corte': [r'(?i)^GABARITO', r'(?i)^REDA[ÇC][ÃA]O', r'(?i)^PROPOSTA', r'(?i)^RASCUNHO', r'(?i)^Avenida Get[úu]lio'],
+        'suporte': [r'(?i)(leia|responda|responder)\b.*\bquest[õo]es\s+\d', r'(?i)^textos? para as quest', r'(?i)^Texto\s+(\d+|[IVX]+)\s*$'],
+        'gabarito': gab, 'area': lambda n: 'Conhecimentos gerais', 'area_da_materia': True, 'alternativa_rx': r'^[a-e]\)',
+    }
+
+
+PROVAS['fema-2020'] = fema(2020, 'nov/2020')
+PROVAS['fema-2021'] = fema(2021, '16/11/2021', online=True)
+PROVAS['fema-2020']['topo'] = 26   # "16." no alto da página 6 (y≈29)
+for _a in (2020, 2021):
+    PROVAS[f'fema-{_a}']['secoes_rx'] = [(r'^(MATEM[ÁA]TICA|BIOLOGIA|GEOGRAFIA|HIST[ÓO]RIA|QU[ÍI]MICA|F[ÍI]SICA|L[ÍI]NGUA PORTUGUESA|L[ÍI]NGUA INGLESA|'
+                                          r'CONHECIMENTOS GERAIS|PORTUGU[ÊE]S|INGL[ÊE]S)\s*$', 'Conhecimentos gerais')]
