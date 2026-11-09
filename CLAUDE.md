@@ -61,7 +61,7 @@ Os demais campos de `res/` (antes, checagem, essencial, alerta…) continuam nos
   - Quantidade de questões aparece só nos conteúdos (subtemas), não na matéria nem no tema.
   - **Treino geral**: mistura questões reais + frases para completar + flashcards dos temas que mais caem.
   - **Plataforma**: estamos construindo um **site**, não um aplicativo. Ele funciona no navegador de qualquer aparelho (computador, celular, iPad e outros), com layout responsivo; aplicativo nas lojas está fora do plano (decisão do dono, 05/11/2026).
-  - **Simulado**: só prova inteira, com todas as matérias, escolhida por instituição e ano (título com o ano). Sem simulado por objetivo ou por conteúdo. Meta: provas de 2020 a 2026 (privadas incluídas); onde não houver, no mínimo 3 anos por instituição.
+  - **Simulado**: só prova inteira, com todas as matérias, escolhida por instituição e ano (título com o ano). Sem simulado por objetivo ou por conteúdo. Meta: provas de 2020 a 2026 (privadas incluídas); provas anteriores a 2020 não são baixadas (dono, 09/11/2026).
   - **Flashcard**: pergunta curta no estilo das discursivas, resposta em uma frase; correção por IA ou local; no verso, fonte e "Curtiu este cartão? Sim/Não" (Não tira das próximas sessões).
   - Faixa de temas sempre no topo da matéria.
 

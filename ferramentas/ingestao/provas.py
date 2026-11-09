@@ -648,7 +648,9 @@ PROVAS['puccampinas-2026']['cadernos'] = [{'arquivo': 'livrete', 'paginas': (3, 
                                           {'arquivo': 'livrete', 'paginas': (22, 29), 'questoes': (51, 70), 'deslocamento': 50, 'rotulo': 'Prova Específica'}]
 for _a in (2025, 2026):
     PROVAS[f'puccampinas-{_a}']['secoes_rx'] = _PUCC_SEC
-    PROVAS[f'puccampinas-{_a}']['corte'] = PROVAS[f'puccampinas-{_a}']['corte'] + [r'(?i)^CLASSIFICA[ÇC][ÃA]O PERI[ÓO]DICA', r'(?i)^INSTRUÇÕES GERAIS']
+    PROVAS[f'puccampinas-{_a}']['corte'] = (PROVAS['puccampinas-2021']['corte']
+                                           + [r'^(F[íi]sica|Filosofia|Sociologia|Hist[óo]ria|Geografia|Biologia|Qu[íi]mica)\s*$'])
+    PROVAS[f'puccampinas-{_a}']['suporte'] = PROVAS['puccampinas-2021']['suporte']
 PROVAS['puccampinas-2026']['gabarito'] = lambda pasta: _gab_str(_PUCC_GAB[2026][0]) | _gab_str(_PUCC_GAB[2026][1], 51)
 for _a in (2025, 2026):
     PROVAS[f'puccampinas-{_a}']['nota'] = ('Vestibular de Medicina: Prova Geral (1 a 50) e Prova Específica (numerada aqui 51 a 70), '

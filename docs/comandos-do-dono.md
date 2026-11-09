@@ -19,7 +19,7 @@ Toda tarefa visual termina igual (princípio 9 + regra de publicação): 390/768
 | 11 | Link público | feito; produção só de `app-prototipo-completo` | https://aprendice.vercel.app |
 | 12 | Login da referência + abertura à mão | feito e publicado | tela de entrada |
 | 13 | Publicar quando uma aba inteira mudar | regra | `CLAUDE.md` |
-| 14 | 82 instituições: baixar provas, separar matérias, classificar nível e subtema (sem resolução) | **em andamento (dono, 09/11: terminar tudo e publicar por matéria e subtema, sem resoluções)** — dois agentes: (a) ENEM 2003–2022 e provas da triagem; (b) cobertura das 82 instituições (2020–2026 ou ≥3 anos), itens de baixar-a-mão, questões sem classificação e auditoria separada. Certo/errado e somatória ficam fora (só múltipla escolha). Publicar ao fim | `docs/provas/inventario-*.md` |
+| 14 | 82 instituições: baixar provas, separar matérias, classificar nível e subtema (sem resolução) | **em andamento (dono, 09/11: terminar tudo e publicar por matéria e subtema, sem resoluções)** — dois agentes: (a) ENEM 2020–2022 e provas da triagem de 2020 em diante (dono, 09/11: nada antes de 2020); (b) cobertura das 82 instituições (2020–2026 ou ≥3 anos), itens de baixar-a-mão, questões sem classificação e auditoria separada. Certo/errado e somatória ficam fora (só múltipla escolha). Publicar ao fim | `docs/provas/inventario-*.md` |
 | 15 | Revisão periódica dos comandos | em andamento (loop de 1 h) | este arquivo |
 | 16 | Design pelo sistema do protótipo | feito e publicado (06/11); falta a verificação final separada | `DESIGN.md` |
 | 17 | (substituído pelo 18) | — | — |
