@@ -2,7 +2,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useMateria, useQuestaoComTexto, useResolucoes } from '../dados/conteudo';
 import { materia as infoMateria } from '../dados/materias';
-import { useIndiceRevisao, useResumos, useTemaRevisao, type ResumoSubtema, type TemaRevisao } from '../dados/revisao';
+import { MATERIAS_ANIMADAS, useIndiceRevisao, useResumos, useTemaRevisao, type ResumoSubtema, type TemaRevisao } from '../dados/revisao';
 import { ResumoSubtemaView } from '../ui/revisao/ResumoSubtema';
 import { atualizaMateria, pegaEstado, useMateriaEstado } from '../estado/loja';
 import type { AndamentoRevisao, Lembrou, RespRevisao, RevisaoConteudo } from '../estado/tipos';
@@ -12,6 +12,7 @@ import {
   CTX_SLIDES, TEMPOS, escolheQuestoes, slideDaQuestao, fechaSessao, linhasFixe, novoAndamento, resumoSessao, sessaoBoa, slidesDoCiclo,
 } from '../logica/cicloRevisao';
 import { emDias } from '../logica/revisao';
+import { materiaDoCodigo } from '../logica/fracao';
 import { nivelDe, nomeNivel } from '../logica/nivel';
 import { Carregando, cap, plural, useTitulo } from '../ui/comum';
 import { Icone, type NomeIcone } from '../ui/Icone';
@@ -163,7 +164,7 @@ function Tempos({ fase, anima }: { fase: number; anima: boolean }) {
         <li key={t} className={i < fase ? 'feito' : i === fase ? 'atual' : ''} aria-current={i === fase ? 'step' : undefined}>
           <span className="rv-tp-n num">{i < fase ? <Icone nome="check" tam={13} /> : i + 1}</span><span className="rv-tp-t">{t}</span>
         </li>
-      ))}
+      ); })}
     </ol>
   );
 }
@@ -178,7 +179,9 @@ function Capa({ nomeMat, tema, sub, nomeSub, rev, nQuestoes, ciclo, aoComecar }:
   const r = ult && resumoSessao(ult);
   const passos: [string, string][] = [
     ['Pergunta primeiro', nQuestoes ? 'Questões reais deste conteúdo, antes de qualquer explicação. Marque a sua certeza.' : 'Quando houver questões deste conteúdo, a revisão começa por elas.'],
-    ['Ver acontecer', `${plural(ciclo.ver.length, 'slide animado', 'slides animados')}. Nos de conceito e de fórmula, você tenta lembrar antes de ver.`],
+    MATERIAS_ANIMADAS.has(materiaDoCodigo(sub) || '')
+      ? ['Ver acontecer', `${plural(ciclo.ver.length, 'slide animado', 'slides animados')}. Nos de conceito e de fórmula, você tenta lembrar antes de ver.`]
+      : ['Rever os pontos', `${plural(ciclo.ver.length, 'slide', 'slides')}. Nos de conceito, você tenta lembrar a frase-chave antes de ver.`],
     ['Lembrar sem olhar', ciclo.fixe ? 'As 3 linhas para levar viram 3 lacunas para completar de memória.' : 'As frases-chave para completar de memória.'],
     ['Aplicar', 'Questões novas do mesmo conteúdo, diferentes das do começo.'],
     ['Voltar', 'O site marca o dia em que este conteúdo volta.'],
