@@ -73,7 +73,7 @@ const SEM_LETRA_NO_TEXTO: Record<string, number[]> = {
   'fuvest-2021': [4, 5, 10, 11, 18, 28, 48, 55, 87], 'udesc-2024-1': [4], 'udesc-2024-2': [8, 11, 14], 'udesc-2025-1': [1, 9, 28],
   'udesc-2026-2': [8],
 };
-const FAIXA_CONFERIDA: Record<string, number[]> = { 'fuvest-2021': [82], 'ufu-2022': [13], 'upe-ssa3-2023': [58, 59], 'urca-2025-3': [114], 'urca-2023-1': [118] };
+const FAIXA_CONFERIDA: Record<string, number[]> = { 'fuvest-2021': [82], 'unifesp-2022': [23], 'ufu-2022': [13], 'upe-ssa3-2023': [58, 59], 'urca-2025-3': [114], 'urca-2023-1': [118] };
 type QPrint = { n: number; nq?: string; alt: number; larg: number; texto: string; print: string };
 const letrasNoTexto = (t: string) => {
   const s = new Set<string>();
