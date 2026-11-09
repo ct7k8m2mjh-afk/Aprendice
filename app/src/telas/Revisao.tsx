@@ -10,7 +10,7 @@ import { estadoMateriaVazio } from '../estado/tipos';
 import { revisoesVencidas } from '../logica/cicloRevisao';
 import { numeroQuestao } from '../dados/tipos';
 import { FiltroRegiaoChips, defineFiltroRegiao, useRegiao } from '../ui/FiltroRegiao';
-import { descreveFiltro, filtraRegiao } from '../logica/regiao';
+import { deFiltro, filtraRegiao } from '../logica/regiao';
 
 export function Revisao() {
   useTitulo('Revisão');
@@ -56,7 +56,7 @@ export function Revisao() {
       </div>
 
       {aba === 'questoes' && <div className="rv-regiao"><FiltroRegiaoChips />{totOutras > 0 && (
-        <p className="fr-aviso" role="status"><span>{plural(totOutras, 'questão', 'questões')} de fora de {descreveFiltro(rg.filtro, rg.minhas)} também {totOutras === 1 ? 'vence' : 'vencem'} hoje.</span>
+        <p className="fr-aviso" role="status"><span>{plural(totOutras, 'questão', 'questões')} de fora {deFiltro(rg.filtro, rg.minhas)} também {totOutras === 1 ? 'vence' : 'vencem'} hoje.</span>
           <button className="link-sec" onClick={() => defineFiltroRegiao('todas')}>Ver de outras regiões</button></p>
       )}</div>}
 

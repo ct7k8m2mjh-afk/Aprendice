@@ -7,7 +7,7 @@ import { useMemo, useState } from 'react';
 import { CATALOGO } from '../dados/provas';
 import { atualiza, useEstado } from '../estado/loja';
 import {
-  REGIOES_PRATICA, descreveFiltro, ehFiltro, minhasRegioes, regioesDasProvas, regioesDoFiltro, nomeRegiao,
+  REGIOES_PRATICA, deFiltro, descreveFiltro, ehFiltro, minhasRegioes, regioesDasProvas, regioesDoFiltro, nomeRegiao,
   type FiltroRegiao, type Filtrado, type RegiaoId,
 } from '../logica/regiao';
 import type { Estado } from '../estado/tipos';
@@ -98,13 +98,13 @@ export function SeletorMinhaRegiao({ aoMudou, semTitulo }: { aoMudou?: () => voi
 export function AvisoRegiao({ f, onde = 'neste conteúdo', aoVerOutras }: { f: Pick<Filtrado<unknown>, 'daRegiao' | 'total' | 'reserva' | 'poucas'>; onde?: string; aoVerOutras?: () => void }) {
   const r = useRegiao();
   if (!r.conj || (!f.reserva && !f.poucas)) return null;
-  const nome = descreveFiltro(r.filtro, r.minhas);
+  const nome = deFiltro(r.filtro, r.minhas);
   const ver = () => { defineFiltroRegiao('todas'); aoVerOutras?.(); };
   return (
     <p className="fr-aviso" role="status">
       <span>{f.reserva
-        ? <>Ainda não há questões de {nome} {onde}. Mostrando as de todas as regiões.</>
-        : <>Só {f.daRegiao === 1 ? '1 questão' : `${f.daRegiao} questões`} de {nome} {onde}.</>}</span>
+        ? <>Ainda não há questões {nome} {onde}. Mostrando as de todas as regiões.</>
+        : <>Só {f.daRegiao === 1 ? '1 questão' : `${f.daRegiao} questões`} {nome} {onde}.</>}</span>
       {!f.reserva && <button className="link-sec" onClick={ver}>Ver de outras regiões ({f.total - f.daRegiao})</button>}
     </p>
   );

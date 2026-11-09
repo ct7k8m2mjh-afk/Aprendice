@@ -6,7 +6,7 @@ import { useEstado } from '../estado/loja';
 import { Carregando, formataTempo, plural, useTitulo } from '../ui/comum';
 import { Icone } from '../ui/Icone';
 import { useRegiao } from '../ui/FiltroRegiao';
-import { REGIOES_PRATICA, descreveFiltro, ehFiltro, regiaoDaProva, regiaoDaQuestao, regioesDoFiltro, type FiltroRegiao } from '../logica/regiao';
+import { REGIOES_PRATICA, deFiltro, descreveFiltro, ehFiltro, regiaoDaProva, regiaoDaQuestao, regioesDoFiltro, type FiltroRegiao } from '../logica/regiao';
 
 export function Simulados() {
   useTitulo('Simulados');
@@ -65,7 +65,7 @@ export function Simulados() {
               <Link to="/perfil" className="chip"><Icone nome="config" tam={15} /> Mudar provas-alvo</Link>
             </div>
           )}
-          {eds.length > 0 && ehFiltro(so) && so !== 'todas' && !daRegiao.length && <p className="miolo" style={{ marginBottom: 16 }}>Ainda não há prova completa de {descreveFiltro(so, rg.minhas)}. Mostrando todas as regiões.</p>}
+          {eds.length > 0 && ehFiltro(so) && so !== 'todas' && !daRegiao.length && <p className="miolo" style={{ marginBottom: 16 }}>Ainda não há prova completa {deFiltro(so, rg.minhas)}. Mostrando todas as regiões.</p>}
           {eds.length > 0 && so === 'alvo' && !daAlvo.length && <p className="miolo" style={{ marginBottom: 16 }}>Suas provas-alvo ainda não têm prova completa. Mostrando todas.</p>}
           {ordemGrupos.length > 0 && (
             <div className="bloco sim-folha">

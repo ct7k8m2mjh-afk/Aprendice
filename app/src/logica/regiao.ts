@@ -125,6 +125,14 @@ export function descreveFiltro(f: FiltroRegiao, minhas: RegiaoId[]): string {
   return f === 'nac' ? 'ENEM' : nomeRegiao(f);
 }
 
+/** O filtro com a preposição certa: "de São Paulo", "do Sul", "do ENEM", "de todas as regiões". */
+export function deFiltro(f: FiltroRegiao, minhas: RegiaoId[]): string {
+  const de = (n: string) => (n === 'São Paulo' || n === 'todas as regiões' ? 'de ' : 'do ') + n;
+  if (f === 'todas' || (f === 'minha' && !minhas.length)) return de('todas as regiões');
+  if (f === 'minha') return juntaE([...minhas.filter((r) => r !== 'nac').map((r) => de(nomeRegiao(r))), de('ENEM')]);
+  return de(f === 'nac' ? 'ENEM' : nomeRegiao(f));
+}
+
 export function juntaE(l: string[]): string {
   return l.length <= 1 ? l.join('') : l.slice(0, -1).join(', ') + ' e ' + l[l.length - 1];
 }
