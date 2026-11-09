@@ -41,7 +41,7 @@ Questões reais de prova com fonte e gabarito publicado, mais Questões Aprendic
 ## Brand Commitments
 
 - Nome APRENDICE; logo manuscrito do fundador (`app-atual/design/marca/`).
-- Cores por matéria: Matemática verde-água, Português amarelo, Biologia verde, Química rosa/magenta.
+- Cores por matéria: paleta aprovada em `docs/cores/paleta.json` (aplicada no site): Biologia verde-folha, Química magenta, Matemática azul-marinho vivo, Português roxo, Física laranja, História marrom cor de couro, Geografia azul-petróleo, Inglês vermelho-cereja, Filosofia e Sociologia amarelo-ouro.
 - Sem emoji, sem visual "de IA". Ícones sem animação, trocáveis quando o dono mandar, sempre no lugar e enquadramento do sistema.
 - Sistema de design = o protótipo `app-atual/` (grade, alinhamento, fontes, medidas; CLAUDE.md princípio 8).
 - Tema claro padrão e escuro.

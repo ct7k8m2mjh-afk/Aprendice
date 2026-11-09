@@ -53,7 +53,7 @@ Os demais campos de `res/` (antes, checagem, essencial, alerta…) continuam nos
 - Um único motor de animação desenha tudo a partir dos passos de cada resolução (nada feito à mão questão por questão), para todas ficarem iguais e corretas.
 
 ## Identidade
-- Cores por matéria: Matemática verde-água · Português amarelo · Biologia verde · Química rosa/magenta. Definir as das novas matérias seguindo o mesmo sistema.
+- Cores por matéria: a paleta aprovada pelo dono (05/11/2026) em `docs/cores/paleta.json`, já aplicada no site — Biologia verde-folha · Química magenta · Matemática azul-marinho vivo · Português roxo · Física laranja · História marrom cor de couro · Geografia azul-petróleo · Inglês vermelho-cereja · Filosofia e Sociologia amarelo-ouro. Ao entrar numa matéria o site assume a cor dela.
 - Vocabulário (manter):
   - **Nível**: cada questão tem um nível de dificuldade — básico (dif 1–3), intermediário (4–6) ou avançado (7–10). Sem limite de questões por conteúdo e sem meta de degraus (decisão do dono, 02/11/2026).
   - **Treine sua evolução**: percorre o conteúdo do mais fácil ao mais difícil; dá para treinar um nível só. O desempenho por nível alimenta o feedback "onde você mais erra".
