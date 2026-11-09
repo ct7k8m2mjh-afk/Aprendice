@@ -2246,3 +2246,14 @@ for _a, _s, _r in ((2023, 1, 'Vestibular de Verão 2022'),
     PROVAS[f'pucpr-{_a}-{_s}'] = pucpr(_a, _s, _r)
     PROVAS[f'pucpr-{_a}-{_s}']['area_da_materia'] = True
 PROVAS['pucpr-2023-2']['ancora_forcada'] = {('caderno-gabarito', 15): [(27, 59, 0)]}   # "27." no alto da página não sai como âncora
+
+
+# PUC-SP 2020–2023 (rodada 6): fora. 2020: caderno diagramado como revista (quadros de questão em posições variadas,
+# colunas que mudam a cada página): o recorte automático mistura colunas. 2021–2023: provas on-line; o NucVest só
+# publica a "correção", sem número nem letra nas alternativas.
+
+
+# PUC-Rio 2020 e 2023, grupo 4 (rodada 6)
+PROVAS['pucrio-2023'] = pucrio(2023)
+PROVAS['pucrio-2023']['suporte_forcado'] = {('d1-caderno', 2): [(94, 0, (1, 10))]}
+PROVAS['pucrio-2020'] = pucrio(2020)

@@ -983,6 +983,9 @@ def apara(im):
     return im.crop((max(0, x0 - 6), max(0, y0 - 6), min(im.width, x1 + 6), min(im.height, y1 + 6)))
 
 
+_GIRADO_RX = None   # cfg 'apagar_girado' da prova em processamento
+
+
 def texto(pdf, segs):
     t = []
     for p, r in segs:
@@ -1002,6 +1005,8 @@ def texto(pdf, segs):
                 for l in b.get('lines', []):
                     y0_, y1_ = l['bbox'][1], l['bbox'][3]
                     lt = ''.join(s_['text'] for s_ in l['spans'])
+                    if _GIRADO_RX and abs(l['dir'][1]) > 0.9 and re.search(_GIRADO_RX, lt):
+                        continue   # marca-d'água girada ('apagar_girado'): não é texto da questão
                     if r.y0 - 1 <= (y0_ + y1_) / 2 <= r.y1 + 1 and not re.fullmatch(r'(?i)\s*quest[ãa]o\s*', lt):
                         ls.append(lt)
             t.append('\n'.join(ls))
@@ -1140,6 +1145,8 @@ def numeros_do_caderno(cads, questoes):
 
 def processa(pid, amostra=False, so_texto=False):
     cfg = PROVAS[pid]
+    global _GIRADO_RX
+    _GIRADO_RX = cfg.get('apagar_girado')
     pasta = ENTRADA / pid
     man = json.loads((pasta / 'manifesto.json').read_text())
     destino = SAIDA / pid
