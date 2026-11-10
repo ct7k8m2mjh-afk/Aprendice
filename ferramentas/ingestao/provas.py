@@ -2105,7 +2105,7 @@ def pucminas(ano, sem):
                 '(Língua Portuguesa, Biologia, Química, Física e Matemática), A–D. As de língua estrangeira (46–50) ficam fora: '
                 'o gabarito oficial não diz se a coluna 46–50 é a do inglês ou a do espanhol. Redação fora.',
         'cadernos': [{'arquivo': 'caderno', 'paginas': (3, 999)}],
-        'colunas': lambda r: [(50, r.width - 40)], 'margem': 50, 'topo': 50, 'base': 30,
+        'colunas': lambda r: [(50, r.width - 14)], 'margem': 50, 'topo': 50, 'base': 30,   # texto vai até x≈574
         'ancora': r'^QUEST[ÃA]O\s+(\d{1,2})$', 'ancora_dx': 20, 'sequencial': True, 'ancora_negrito': True,
         'secoes_rx': [(r'^PROVA DE L[ÍI]NGUA PORTUGUESA$', 'Língua Portuguesa'), (r'^PROVA DE BIOLOGIA$', 'Biologia'),
                       (r'^PROVA DE QU[ÍI]MICA$', 'Química'), (r'^PROVA DE F[ÍI]SICA$', 'Física'), (r'^PROVA DE MATEM[ÁA]TICA$', 'Matemática'),

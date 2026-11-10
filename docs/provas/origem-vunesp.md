@@ -5,7 +5,10 @@ disponíveis em outros lugares da web sem ser no site oficial" e "não compre pr
 (vunesp.com.br e documento.vunesp.com.br) bloqueia acesso automático (Akamai 403); por isso os cadernos e gabaritos
 oficiais abaixo foram baixados de **cópias públicas hospedadas por terceiros**. Nada foi comprado; não houve login,
 paywall, Cloudflare ou bloqueio contornado; robots.txt respeitado (curso-objetivo.br e sistemas.objetivo.br não têm
-robots.txt; vestibulares.estrategia.com só proíbe áreas do WordPress, não `wp-content/uploads`); User-Agent genérico.
+robots.txt); User-Agent genérico. Sites encontrados mas **não usados** por regra de acesso: Estratégia Vestibulares
+(o robots.txt proíbe `/*.pdf`), Etapa Resolve (o robots.txt proíbe expressamente agentes da Anthropic — `ClaudeBot`,
+`anthropic-ai`), páginas do qConcursos (desafio Cloudflare; só os arquivos públicos em `arquivos.qconcursos.com`,
+sem robots.txt, foram usados).
 
 **Quem decide os direitos de uso é o dono** (princípio 10). Esta tabela registra a origem de cada arquivo para essa
 decisão. Risco objetivo: são cadernos e gabaritos da Fundação Vunesp (e das instituições), hospedados por cursinhos

@@ -10,7 +10,7 @@ import re
 import provas as _p   # módulo parcialmente carregado: vunesp(), texto_pdf() e pares() já existem quando isto roda
 
 OBJETIVO = 'cópia hospedada pelo Curso Objetivo (curso-objetivo.br, página de resolução comentada)'
-ESTRATEGIA = 'cópia hospedada pelo Estratégia Vestibulares (vestibulares.estrategia.com)'
+QCONCURSOS = 'cópia hospedada pelo Qconcursos (arquivos.qconcursos.com, arquivo público)'
 
 
 def _gab_vunesp(*arquivos, desloc=None):
@@ -73,4 +73,12 @@ def mais_provas():
         unesp(f'unesp-{a}-2', a, '1ª fase – meio de ano', f'Unesp {a}/2', ' do Vestibular de meio de ano')
     # p. 17: figura de três mapas em largura total (q51) com rótulos "MOMENTO" em versalete; q52 e q53 em duas colunas
     P['unesp-2020']['faixas_pag'] = {('caderno', 17): [(0, 470, None), (470, 9999, 297)]}
+
+    # ------------------------------------------------------------- Famerp (1º dia, Conhecimentos Gerais, 80)
+    for a in range(2020, 2027):
+        P[f'famerp-{a}'] = base(
+            'famerp', 'Famerp', a, '', f'Famerp {a}', 80,
+            nota=f'Faculdade de Medicina de São José do Rio Preto, Vestibular {a}: Prova de Conhecimentos Gerais (1º dia, '
+                 f'80 questões objetivas), versão 1. Caderno e gabarito oficiais da Vunesp, em {OBJETIVO}: o portal da '
+                 'Vunesp bloqueia acesso automático. O 2º dia (discursivas) fica fora.')
     return P
