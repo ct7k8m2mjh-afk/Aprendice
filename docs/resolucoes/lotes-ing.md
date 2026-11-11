@@ -1,6 +1,6 @@
 # Inglês: resoluções (gerado por lote.py em 2026-11-11)
 
-Faltam 1781 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 625; demais nível 1-6 970; ENEM nível 7-10 2; provas-alvo nível 7-10 83; demais nível 7-10 101.
+Faltam 1751 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 595; demais nível 1-6 970; ENEM nível 7-10 2; provas-alvo nível 7-10 83; demais nível 7-10 101.
 
 ## Lotes
 
@@ -18,12 +18,11 @@ Faltam 1781 questões sem resolução (fora as que estão em lote, pendentes ou 
 | ing-0010 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | ing-0011 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | ing-0012 | provas-alvo nível 1-6 | 30 | gravado | 29 | 1 | 0 |
+| ing-0013 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 
 ## Pendentes (falta de certeza absoluta)
 
-| Questão | Prova | Conteúdo | Motivo |
-|---|---|---|---|
-| Pa123bbc9 | Mackenzie 2027 2027/1 · questão 10 | I01.3 informação explícita (tema I01 Leitura e interpretação de textos) | Mackenzie 2027/1, questão 10: o texto do site da OPAS (PAHO) sobre o sarampo, base da questão, não aparece em nenhum print da prova (q/009.webp tem os textos em português das questões 6 a 9; q/010.webp e q/011.webp só trazem o enunciado e as alternativas). Sem o texto, não há como resolver sem inventar. |
+Nenhuma.
 
 ## Divergências de gabarito (o dono decide)
 
