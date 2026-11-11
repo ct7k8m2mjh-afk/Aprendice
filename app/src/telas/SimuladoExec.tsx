@@ -1,10 +1,12 @@
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { carregaResolucoes, urlPrint, useTodasMaterias, type MateriaCarregada } from '../dados/conteudo';
+import { carregaResolucoes, urlPrint, useMateria, useTodasMaterias, type MateriaCarregada } from '../dados/conteudo';
 import { nomeMateria } from '../dados/materias';
 import { comoQuestao, urlPrintProva, useProvaCompleta, type ProvaCompleta } from '../dados/provasCompletas';
 import { atualiza, atualizaMateria, useEstado } from '../estado/loja';
-import { planoDaProva, type PlanoSimulado } from '../logica/simulados';
+import { planoDaProva, planoDoConteudo, type PlanoSimulado } from '../logica/simulados';
+import { filtraRegiao } from '../logica/regiao';
+import { useRegiao } from '../ui/FiltroRegiao';
 import { Carregando, formataTempo, plural, useTitulo } from '../ui/comum';
 import { Icone } from '../ui/Icone';
 import { BotaoTelaCheia, Certeza, EnunciadoQuestao, RespostaCartao, mostraPainel, type Conf } from '../ui/QuestaoCartao';
@@ -30,10 +32,6 @@ export function questaoDoItem(it: ItemSimulado | undefined, prova: ProvaCompleta
 export function SimuladoNovo() {
   const { chave } = useParams();
   const prova = useProvaCompleta(chave ? decodeURIComponent(chave) : null);
-  const e = useEstado();
-  const nav = useNavigate();
-  const [modo, setModo] = useState<'prova' | 'treino'>('prova');
-  const [cronometrado, setCron] = useState(true);
   const plano = useMemo<PlanoSimulado | null>(() => (prova ? planoDaProva(prova) : null), [prova]);
   useTitulo(plano?.titulo || 'Simulado');
   if (prova === undefined) return <div className="conteudo"><Carregando /></div>;
@@ -46,6 +44,15 @@ export function SimuladoNovo() {
     </div>
   );
 
+  return <ConfigSimulado plano={plano} nota={prova?.nota} />;
+}
+
+/** Tela de configuração (correção, cronômetro, começar): igual para prova inteira e simulado por conteúdo. */
+function ConfigSimulado({ plano, nota, migalha }: { plano: PlanoSimulado; nota?: string; migalha?: string }) {
+  const e = useEstado();
+  const nav = useNavigate();
+  const [modo, setModo] = useState<'prova' | 'treino'>('prova');
+  const [cronometrado, setCron] = useState(true);
   const limite = cronometrado ? plano.itens.length * plano.segPorQuestao : null;
   const porGrupo = plano.itens.reduce<Record<string, number>>((a, x) => { const g = grupoDoItem(x); a[g] = (a[g] || 0) + 1; return a; }, {});
 
@@ -57,11 +64,11 @@ export function SimuladoNovo() {
 
   return (
     <div className="conteudo estreito">
-      <nav className="migalhas"><Link to="/simulados">Simulados</Link><Icone nome="direita" tam={14} /><span>{plano.titulo}</span></nav>
+      <nav className="migalhas"><Link to={migalha ? '/simulados?aba=conteudo' : '/simulados'}>{migalha || 'Simulados'}</Link><Icone nome="direita" tam={14} /><span>{plano.titulo}</span></nav>
       <div className="titulo-pag"><div><h1>{plano.titulo}</h1><p className="sub">{plano.descricao}</p></div></div>
       <div className="sim-config folha">
         <div className="sc-linha"><span className="fraco">Questões</span><b className="num">{plano.itens.length}</b><span className="sc-mats">{Object.entries(porGrupo).map(([g, n]) => <span key={g}><i className="ponto" />{g} {n}</span>)}</span></div>
-        {prova?.nota && <p className="fraco" style={{ fontSize: 14, margin: 0 }}>{prova.nota}</p>}
+        {nota && <p className="fraco" style={{ fontSize: 14, margin: 0 }}>{nota}</p>}
         <fieldset className="sc-grupo">
           <legend>Correção</legend>
           <label className={'opcao' + (modo === 'prova' ? ' sel' : '')}><input type="radio" name="modo" checked={modo === 'prova'} onChange={() => setModo('prova')} /><span><b>Como na prova</b><small>Folha de respostas, pode pular e voltar; resultado e resoluções no fim.</small></span></label>
@@ -74,6 +81,37 @@ export function SimuladoNovo() {
       </div>
     </div>
   );
+}
+
+/** Simulado por conteúdo (pedido do dono, 11/11/2026): /simulados/conteudo?m=bio&c=B01.1,B01.2&n=20 */
+export function SimuladoConteudo() {
+  const [qs] = useSearchParams();
+  const m = qs.get('m') as MateriaId | null;
+  const subs = (qs.get('c') || '').split(',').filter(Boolean);
+  const n = Math.max(1, Math.min(90, Number(qs.get('n')) || 20));
+  const mc = useMateria(m);
+  const e = useEstado();
+  const rg = useRegiao();
+  // sorteio feito uma vez ao abrir (recarregar a página sorteia de novo)
+  const [plano, setPlano] = useState<PlanoSimulado | null>(null);
+  useEffect(() => {
+    if (!mc || !m || plano) return;
+    const nomes = Object.fromEntries(mc.conteudo.modulos.flatMap((x) => x.subs).map((x) => [x.id, x.nome.charAt(0).toUpperCase() + x.nome.slice(1)]));
+    const pool = filtraRegiao(mc.banco.filter((q) => subs.includes(q.sub)), rg.conj).l;
+    const respondidas = new Set(Object.entries(e.materias[m]?.q || {}).filter(([, v]) => v.tent.length).map(([id]) => id));
+    setPlano(planoDoConteudo(m, pool, subs, n, nomes, { respondidas }));
+  }, [mc]); // eslint-disable-line react-hooks/exhaustive-deps
+  useTitulo(plano?.titulo || 'Simulado por conteúdo');
+  if (!m || !subs.length) return <div className="conteudo vazio"><h3>Escolha os conteúdos</h3><p>Monte o simulado escolhendo a matéria e os conteúdos.</p><Link className="btn sec" to="/simulados?aba=conteudo">Simulado por conteúdo</Link></div>;
+  if (!plano) return <div className="conteudo"><Carregando /></div>;
+  if (!plano.itens.length) return (
+    <div className="conteudo estreito vazio">
+      <h3>{plano.titulo}</h3>
+      <p>Ainda não há questões de prova nestes conteúdos.</p>
+      <Link className="btn sec" to="/simulados?aba=conteudo">Escolher outros conteúdos</Link>
+    </div>
+  );
+  return <ConfigSimulado plano={plano} migalha="Simulado por conteúdo" />;
 }
 
 function finaliza(sim: SimuladoAndamento, todas: MateriaCarregada[], prova: ProvaCompleta | null | undefined): SimuladoFeito {

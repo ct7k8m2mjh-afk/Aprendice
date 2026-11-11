@@ -44,7 +44,7 @@ export function SimuladoResultado() {
         </div>
       </div>
       <section className="secao">
-        <h2 className="sec-tit">{f.porArea ? 'Por área da prova' : 'Por matéria'}</h2>
+        <h2 className="sec-tit">{f.sid.startsWith('conteudo:') ? 'Por conteúdo' : f.porArea ? 'Por área da prova' : 'Por matéria'}</h2>
         <div className="por-materia">
           {(f.porArea ? Object.entries(f.porArea) : (Object.entries(f.porMateria) as [MateriaId, { acertos: number; total: number }][]).map(([m, p]) => [nomeMateria(m), p] as const))
             .map(([g, p]) => (

@@ -19,7 +19,7 @@ Todo estudante que vai prestar ENEM ou vestibular no Brasil, para qualquer curso
 
 ## Product Purpose
 
-Estudar pelas questões reais das provas: questões organizadas por nível de dificuldade (básico, intermediário, avançado), resolução comentada que explica a alternativa marcada, teoria em cartões, flashcards curtos, treino geral e simulados (só prova inteira, por instituição e ano), com revisão espaçada dos erros. Sucesso = o aluno volta todo dia, retoma de onde parou e erra menos o que já errou.
+Estudar pelas questões reais das provas: questões organizadas por nível de dificuldade (básico, intermediário, avançado), resolução comentada que explica a alternativa marcada, teoria em cartões, flashcards curtos, treino geral e simulados (prova inteira por instituição e ano, ou por conteúdo escolhido pelo aluno), com revisão espaçada dos erros. Sucesso = o aluno volta todo dia, retoma de onde parou e erra menos o que já errou.
 
 ## Positioning
 
@@ -34,7 +34,7 @@ Questões reais de prova com fonte e gabarito publicado, mais Questões Aprendic
 ## Capabilities and Constraints
 
 - Situação (05/11/2026): site publicado em https://aprendice.vercel.app (decisão do dono). Progresso no aparelho; login e IA ainda simulados até a etapa de contas e nuvem.
-- Vocabulário fixo (CLAUDE.md): nível (básico, intermediário, avançado), Treine sua evolução, treino geral, simulado (só prova inteira), flashcard, faixa de temas.
+- Vocabulário fixo (CLAUDE.md): nível (básico, intermediário, avançado), Treine sua evolução, treino geral, simulado (prova inteira ou por conteúdo), flashcard, faixa de temas.
 - Ids de questão e de cartão nunca mudam; mudança de formato exige migração.
 - Matérias: Biologia, Química, Matemática, Português (com conteúdo); Física, História, Geografia, Inglês, Filosofia e Sociologia (uma matéria só, desde o comando 18; estrutura; questões vêm da ingestão de provas e da fábrica de conteúdo). Redação não é matéria do site.
 

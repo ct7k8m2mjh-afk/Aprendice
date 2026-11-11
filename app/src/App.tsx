@@ -13,7 +13,7 @@ import { Treino } from './telas/Treino';
 import { TreinoMisto } from './telas/TreinoMisto';
 import { Flashcards } from './telas/Flashcards';
 import { Simulados } from './telas/Simulados';
-import { SimuladoExec, SimuladoNovo } from './telas/SimuladoExec';
+import { SimuladoExec, SimuladoNovo, SimuladoConteudo } from './telas/SimuladoExec';
 import { SimuladoResultado } from './telas/SimuladoResultado';
 import { Revisao } from './telas/Revisao';
 import { RevisaoSlides } from './telas/RevisaoSlides';
@@ -61,6 +61,7 @@ function Rotas() {
         <Route path="/m/:m/flashcards/sessao" element={<Flashcards sessao />} />
         <Route path="/simulados" element={<Simulados />} />
         <Route path="/simulados/prova/:chave" element={<SimuladoNovo />} />
+        <Route path="/simulados/conteudo" element={<SimuladoConteudo />} />
         <Route path="/simulado/agora" element={<SimuladoExec />} />
         <Route path="/simulado/resultado/:ts" element={<SimuladoResultado />} />
         <Route path="/hoje" element={<Hoje />} />

@@ -59,3 +59,6 @@ Tudo o que o dono envia (texto, imagem, prancha) tem uso e fica registrado com d
 ## 11/11/2026 — divisão do trabalho de questões
 - Dono: "Você irá pegar as questões, colocá-las no site e ranqueá-las por dificuldade. O Fable irá resolver as questões e fazer as animações." Nenhuma das duas sessões refaz o que a outra já fez (`ferramentas/resolucoes/lote.py` pula o que tem resolução aprovada ou está nos pendentes do Fable).
 - Nível do ENEM pela dificuldade oficial do INEP (TRI): `docs/provas/nivel-tri.md`.
+- Nada vai ao ar sem a permissão do dono (11/11/2026, enquanto ele estiver fora): a rotina das 2 horas só confere; publicar quando ele pedir.
+- Simulado por conteúdo (11/11/2026): o aluno escolhe a matéria, os conteúdos e a quantidade; muda a regra "só prova inteira" do CLAUDE.md.
+- Revisão geral (11/11/2026): o botão estava pequeno demais; precisa de destaque na aba Revisão, porque ali o aluno tem o conteúdo para responder todas as questões ("certifique-se disso").

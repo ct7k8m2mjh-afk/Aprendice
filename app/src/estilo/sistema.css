@@ -485,3 +485,26 @@
   .questao-tela.simulado .q-barra .folha-btn { width: 32px; padding: 0; justify-content: center; }
   .questao-tela.simulado .q-barra .crono { padding: 0 6px; gap: 4px; }
 }
+
+/* ============ Simulado por conteúdo (pedido do dono, 11/11/2026) ============
+ * Lista de conteúdos no mesmo desenho das linhas de simulado (.sim-linha): fio de 1px entre linhas, ponto da cor da
+ * matéria (.ponto-sub, como no menu do protótipo), quantidade à direita; barra de montar fixa no pé. */
+.sc-sub { display: grid; grid-template-columns: auto auto minmax(0, 1fr) auto; align-items: center; gap: 12px; padding: 12px 4px; border-top: 1px solid var(--linha); cursor: pointer; }
+.sim-grupo-cab + .sc-sub { border-top: 0; }
+.sc-sub input { width: 18px; height: 18px; margin: 0; accent-color: var(--tinta); }
+.sc-sub-nome { font-size: var(--fs-info); line-height: 1.35; color: var(--tinta); }
+.sc-sub.sel .sc-sub-nome { font-weight: 600; }
+.sc-sub-n { font-size: 14px; color: var(--lapis); white-space: nowrap; }
+.sc-barra { position: sticky; bottom: 12px; z-index: 5; display: flex; align-items: center; flex-wrap: wrap; gap: 12px 22px; margin-top: 16px; padding: 16px 22px; border-radius: var(--r-dest); border: 1px solid var(--linha); box-shadow: var(--sombra-folha); }
+.sc-qtd { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+.sc-qtd > .fraco { margin-right: 4px; }
+.sc-resumo { flex: 1; min-width: 160px; font-size: 14px; }
+@media (max-width: 700px) {
+  .sc-sub { grid-template-columns: auto auto minmax(0, 1fr); }
+  .sc-sub-n { grid-column: 3; }
+  .sc-barra { bottom: calc(76px + env(safe-area-inset-bottom, 0px)); padding: 14px 16px; }
+  .sc-barra .btn { width: 100%; justify-content: center; }
+}
+/* "Marcar o tema": botão com cara de link, igual ao "Trocar" da região (.fr-trocar) */
+.sc-tema .sim-grupo-cab .link-sec { padding: 0; border: 0; background: none; font-size: 14px; font-weight: 600; color: var(--t, var(--tinta)); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.sc-tema .sim-grupo-cab .link-sec:hover { color: var(--tinta); }

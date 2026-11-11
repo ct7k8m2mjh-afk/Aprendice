@@ -63,7 +63,7 @@ Com o `npm run dev` rodando, esse script percorre no navegador os fluxos princip
 4. revisão;
 5. flashcard;
 6. treino geral;
-7. simulados (só prova inteira);
+7. simulados (prova inteira ou por conteúdo);
 8. importação do progresso do protótipo;
 9. tema escuro e busca.
 

@@ -62,6 +62,21 @@ export function Revisao() {
           ? 'O que você domina, está aprendendo ou esqueceu, pelos acertos em dias diferentes, cada um na data marcada.'
           : `Errou, chutou ou pediu pista: a questão volta no dia certo. Sai da revisão depois de ${SAIDA} acertos em dias diferentes, cada um na data marcada.`}</p></div>
         <Link to="/hoje" className="btn sec peq rv-hoje"><Icone nome="calendario" />O que estudar hoje</Link></div>
+      {/* pedido do dono (11/11/2026): a revisão geral em destaque, porque nela está o conteúdo de todas as questões */}
+      {aba !== 'geral' && (
+        <section className="bloco rv-geral-dest" aria-labelledby="rv-gd-tit">
+          <div className="rv-gd-txt">
+            <h2 id="rv-gd-tit">Revisão geral</h2>
+            <p>Todo o conteúdo de cada matéria em tópicos curtos, com o essencial, a pegadinha da banca e busca. É o que você precisa saber para responder as questões das provas.</p>
+          </div>
+          <div className="rv-gd-acao">
+            <button type="button" className="btn grande" onClick={() => { setQs({ aba: 'geral' }, { replace: true }); window.scrollTo({ top: 0 }); }}>Abrir a revisão geral <Icone nome="direita" /></button>
+          </div>
+          <nav className="rv-gd-mats" aria-label="Revisão geral por matéria">
+            {MATERIAS_ATIVAS.map((m) => <Link key={m.id} to={`/m/${m.id}/geral`} className={`chip m-${m.id}`}><i className="ponto" />{m.nome}</Link>)}
+          </nav>
+        </section>
+      )}
       <AgendaRevisao ag={ag} hoje={totVenc} futuras={futuras} agora={agora} />
       <div className="abas abas-rev" role="group" aria-label="Seções">
         <button aria-pressed={aba === 'questoes'} onClick={() => setQs({}, { replace: true })}>Questões <small>{totVenc}</small></button>
