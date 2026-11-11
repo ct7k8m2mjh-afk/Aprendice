@@ -174,6 +174,114 @@ ufrr('ufrr-2025', 2025, 'Nº 96/24', 'Nº 97/24')
 ufrr('ufrr-2026', 2026, 'Nº 89/25', 'Nº 93/25')
 
 
+# ------------------------------------------------------------------------------------------------------------- IME
+def _ime_pre(pasta):
+    g = {int(n): v for n, v in re.findall(r'(?<![\d,.])(\d{1,2})\s+([A-E])\b', _p.texto_pdf(pasta / 'preliminar.pdf'))}
+    assert sorted(g) == list(range(1, 41)), sorted(g)
+    return g
+
+
+def ime(pid, ano):
+    nota = (f'Instituto Militar de Engenharia, Concurso de Admissão {ano - 1}/{ano} aos cursos de Formação e Graduação: prova '
+            'objetiva da 1ª fase, 40 questões A–E (Matemática 1–15, Física 16–30, Química 31–40). A 2ª fase fica fora. No '
+            'pacote, só o gabarito PRELIMINAR do IME; o definitivo foi publicado no site do IME, que não abre daqui (cadeia '
+            'TLS incompleta), e as cópias achadas estão em servidor que proíbe robôs: anulações do definitivo não conferidas.')
+    PROVAS[pid] = sem_gabarito(_p.PROVAS['ime-2023'], _ime_pre, nota, ano=str(ano),
+                               fase=f'Concurso {ano - 1}/{ano} – 1ª fase (objetiva)', titulo=f'IME {ano - 1}/{ano}')
+
+
+IME = 'https://www.ime.eb.mil.br/'
+_m('ime-2024', IME, caderno='ime/provas-e-gabaritos-ime-2023-2024/caderno-provas-ime-2024.pdf',
+   preliminar='ime/provas-e-gabaritos-ime-2023-2024/gabarito-preliminar-ime-2024.pdf')
+_m('ime-2025', IME, caderno='ime/provas-e-gabaritos-ime-2024-2025/provas-gabaritos-vestibular-2025-ime/prova-vestibular-2025-ime.pdf',
+   preliminar='ime/provas-e-gabaritos-ime-2024-2025/provas-gabaritos-vestibular-2025-ime/gabarito-preliminar-ime-2025.pdf')
+ime('ime-2024', 2024)
+ime('ime-2025', 2025)
+
+
+# ------------------------------------------------------------------------------------------- UECE, 1ª fase (CEV-UECE)
+# Os comunicados de resultado dos recursos (www.cev.uece.br) trazem o gabarito oficial DEFINITIVO de 2023.1, 2023.2,
+# 2024.2, 2025.1 e 2026.1: essas entram normalmente, com gab. A 2025.2 só tem o preliminar + os pareceres (Comunicado
+# 81/2025: 22, 55 e 82 anuladas, nenhuma letra alterada): entra com gab null e gab_preliminar.
+CEV = 'https://www.cev.uece.br/'
+
+
+def _uece_blocos(txt, n_total=85):
+    """Blocos 'LÍNGUA INGLESA - GABARITO [DEFINITIVO] 1 [– DEFINITIVO]' (qualquer caixa) com linhas de números e de letras."""
+    m = re.search(r'(?i)L[ÍI]NGUA INGLESA\s*[-–]\s*GABARITO\s+(?:DEFINITIVO\s+)?1\b', txt)
+    assert m, 'sem bloco do inglês, gabarito 1'
+    bloco = re.split(r'(?i)GABARITO', txt[m.end():])[0]
+    ls = [l.split() for l in bloco.splitlines() if l.strip()]
+    g = {}
+    for a, b in zip(ls, ls[1:]):
+        if a and all(x.isdigit() for x in a) and len(a) == len(b) and all(re.fullmatch(r'[A-D]|[Xx]|\*', x) for x in b):
+            for n, v in zip(a, b):
+                g[int(n)] = v if v in 'ABCD' else 'X'
+    assert sorted(g) == list(range(1, n_total + 1)), sorted(g)
+    return g
+
+
+def _uece_tabela(txt):
+    """Tabela 'Questão Disciplina Gab 1 Gab 2 Gab 3 Gab 4' (duas por linha); na língua (78–85) vale a Língua Inglesa."""
+    g = {}
+    for n, disc, v in re.findall(r'(?<!\d)(\d{1,2})\s+([A-ZÀ-Úa-zà-ú][A-Za-zÀ-ú ]+?)\s+([A-DX])\s+[A-DX]\s+[A-DX]\s+[A-DX]\b', txt):
+        n = int(n)
+        if n >= 78 and 'Inglesa' not in disc:
+            continue
+        g[n] = v
+    assert sorted(g) == list(range(1, 86)), sorted(g)
+    return g
+
+
+def _uece_gab(arquivo, formato):
+    def gab(pasta):
+        txt = _p.texto_pdf(pasta / f'{arquivo}.pdf')
+        return _uece_blocos(txt) if formato == 'blocos' else _uece_tabela(txt)
+    return gab
+
+
+def uece1(pid, ano, sem, data, comunicado=None, formato='blocos', **extra):
+    cfg = dict(_p.PROVAS['uece-2024-1'])
+    nota = (f'Universidade Estadual do Ceará, Vestibular {ano}.{sem}, 1ª fase (Prova de Conhecimentos Gerais aplicada em '
+            f'{data}, caderno do gabarito 1), 85 questões A–D. Língua estrangeira: inglês. ')
+    cfg.update({'ano': str(ano), 'fase': f'{ano}.{sem} – 1ª fase', 'titulo': f'UECE {ano}.{sem}',
+                # 2025.2: "TEXTO II" (algarismo romano) também abre texto de apoio
+                'suporte': cfg['suporte'] + [r'^TEXTO\s+\d+\s*$', r'(?i)^TEXTO\s+[IVX]+\s*$'], 'suporte_secao': True,
+                'cita_textos': True})
+    if comunicado:
+        cfg.update({'gabarito': _uece_gab('gabarito', formato),
+                    'nota': nota + f'Gabarito oficial definitivo (Comunicado {comunicado}-CEV/UECE, após recursos); anuladas ficam fora.'})
+    else:
+        cfg = sem_gabarito(cfg, _uece_gab('preliminar', formato), nota + extra.pop('nota_pre'), extra.pop('anuladas', ()))
+    cfg.update(extra)
+    PROVAS[pid] = cfg
+
+
+_C = 'https://www.cev.uece.br/wp-content/uploads/'
+_m('uece-2023-1', CEV, caderno=('url', _C + '2022/11/vtb20231f1g1.pdf', 'uece/vtb20231f1g1.pdf'),
+   gabarito=('url', _C + '2022/11/comunicado2092022cev.pdf', 'uece/comunicado2092022cev.pdf'))
+_m('uece-2023-2', CEV, caderno=('url', _C + '2023/04/vtb20232f1g1.pdf', 'uece/vtb20232f1g1.pdf'),
+   gabarito=('url', _C + '2023/05/comunicado512023cev.pdf', 'uece/comunicado512023cev.pdf'))
+_m('uece-2024-2', CEV, caderno=('url', _C + '2024/04/vtb2024f1gab1.pdf', 'uece/vtb2024f1gab1.pdf'),
+   gabarito=('url', _C + '2024/05/Comunicado-49.2024-Resultado-Definitivo-dos-Recursos-Prova-1a-Fase-do-Vestibular-2024.2.pdf',
+             'uece/Comunicado-49.2024-Resultado-Definitivo-dos-Recursos-Prova-1a-Fase-do-Vestibular-2024.2.pdf'))
+_m('uece-2025-1', CEV, caderno='uece/provas-uece-1-fase-2025/1ª fase prova uece 2025 gabarito 1.pdf',
+   gabarito=('url', _C + '2024/12/comunicado1532024cevuece.pdf', 'uece/comunicado1532024cevuece.pdf'))
+_m('uece-2025-2', CEV, caderno=('url', _C + '2025/04/v20252f1g1.pdf', 'uece/v20252f1g1.pdf'),
+   preliminar=('url', _C + '2025/04/v2025v2f1gabpre.pdf', 'uece/v2025v2f1gabpre.pdf'))
+_m('uece-2026-1', CEV, caderno=('url', _C + '2025/10/vtb20261f1g1.pdf', 'uece/vtb20261f1g1.pdf'),
+   gabarito=('url', _C + '2025/10/comunicado1902025cev.pdf', 'uece/comunicado1902025cev.pdf'))
+uece1('uece-2023-1', 2023, 1, '06/11/2022', '209/2022', formato='tabela', topo=50, base=38)   # cabeçalho mais baixo: "09." em y≈56
+uece1('uece-2023-2', 2023, 2, '30/04/2023', '51/2023')
+uece1('uece-2024-2', 2024, 2, '28/04/2024', '49/2024')
+uece1('uece-2025-1', 2025, 1, '17/11/2024', '153/2024')
+uece1('uece-2026-1', 2026, 1, '12/10/2025', '190/2025')
+uece1('uece-2025-2', 2025, 2, '27/04/2025', formato='tabela', anuladas=(22, 55, 82),
+      nota_pre='Só o gabarito oficial PRELIMINAR (site da CEV) e os pareceres dos recursos (Comunicado 81/2025-CEV/UECE: '
+               'questões 22, 55 e 82 anuladas, nenhuma letra alterada); o comunicado com o gabarito definitivo não foi '
+               'localizado. A letra do preliminar vai em gab_preliminar.')
+
+
 if __name__ == '__main__':
     if sys.argv[1:2] == ['prepara']:
         for pid in (sys.argv[2:] or list(MANUAIS)):
