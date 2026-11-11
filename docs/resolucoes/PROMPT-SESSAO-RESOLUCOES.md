@@ -9,7 +9,7 @@ O trabalho de bastidor já está feito. A ferramenta `ferramentas/resolucoes/lot
 </preparado_para_voce>
 
 <divisao>
-Duas sessões resolvem ao mesmo tempo, sem repetir questão. ESTA sessão (Fable) faz as matérias animadas: Matemática, Biologia, Química e Física (`lote.py proximo animadas`). A sessão do Claude Code faz Português, Geografia, História, Inglês e Filosofia e Sociologia. As resoluções que você já gravou (lotes 01 a 03) e as pendências de pendentes.md continuam valendo: a ferramenta não as repete.
+Você resolve TODAS as matérias. A sessão do Claude Code só organiza (lotes, ferramenta, prints com defeito) e não resolve questão. As resoluções que você já gravou (lotes 01 a 03) e as pendências de pendentes.md continuam valendo: a ferramenta não as repete.
 </divisao>
 
 <leia_uma_vez>
@@ -44,7 +44,7 @@ Português, Geografia, História, Inglês e Filosofia e Sociologia: texto passo 
 
 <ciclo_de_cada_lote>
 Comece com `cd app && python3 scripts/converte.py && cd ..` (uma vez por sessão).
-1. `python3 ferramentas/resolucoes/lote.py proximo animadas` abre o lote (30 questões) e mostra os caminhos de entrada e de saída.
+1. `python3 ferramentas/resolucoes/lote.py proximo` abre (ou `proximo <matéria>` para escolher: mat bio qui fis por geo his ing fs) o lote (30 questões) e mostra os caminhos de entrada e de saída.
 2. Resolva as questões, sem olhar resolução pronta, e escreva a saída no formato abaixo. Antes de dar uma questão por pronta: (a) a letra é a do gabarito oficial; (b) todas as contas foram refeitas em python; (c) você releu cada frase perguntando "tenho certeza absoluta disto?".
 3. `python3 ferramentas/resolucoes/lote.py valida <saida>` (com `"conferido": false`, só o erro do conferido deve aparecer). Corrija o que ela apontar.
 4. UM agente conferente, que não resolveu, confere o lote inteiro numa só passada, conforme docs/resolucoes/CONFERENTE.md, e devolve só a lista do que está errado ou duvidoso.
