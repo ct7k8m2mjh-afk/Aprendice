@@ -22,6 +22,14 @@ oficial quando o pacote só trazia o preliminar. Configuração: `ferramentas/in
 | Unioeste 2022 (`unioeste-2022`) | 72 de 77 | Idem; 5, 16, 52, 70 e 76 anuladas (as "alteradas" após recurso entram com a letra nova). |
 | UEMG 2024 (`uemg-2024`) | 47 de 48 | Conhecimentos Gerais, inglês; gabarito definitivo; 24 anulada. |
 
+Conferência: folha de contato e prints suspeitos abertos em todas; letras das alternativas e texto depois da última
+alternativa por programa. Auditoria separada (outra sessão, 11/11): gabarito das 9 provas inteiras conferido com o
+oficial definitivo (tudo igual, anuladas iguais); na amostra de 80 questões achou 13 classificações a corrigir
+(corrigidas), o texto compartilhado da UECE indo só para a 1ª questão do grupo (corrigido: agora vale até o próximo
+texto ou seção, e a questão que cita outro texto o leva também — corrigido também na UECE 2024.1, da rodada 6) e o quadro
+de anotações vazio à direita nas páginas de uma coluna da Unioeste (cortado). Colchetes e fios de diagramação da
+Unioeste continuam no print (são do caderno).
+
 Já estavam no site e não foram duplicadas: UECE 2024.1, Unimontes 2024 (Edital 4/2024) e 2025 (Edital 4/2025 — é o
 pacote "Unimontes 2026" do Brasil Escola), UVA 2024.1, 2025.1 e 2026.1.
 
