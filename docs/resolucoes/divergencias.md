@@ -3,3 +3,10 @@
 Questões em que a resposta da banca não bateu com o gabarito oficial, ou em que a questão parece ambígua ou com erro. Nenhuma delas é publicada.
 
 Até o lote geo-0003 (11/11/2026): **nenhuma divergência**. Nas 393 questões resolvidas, a resposta final da banca e a do conferente coincidiram com a letra oficial. Em três delas (ENEM 2020 q90 de Geografia, ENEM 2024 q96 de Física, ainda em conferência, e uma leitura de estrutura na ENEM 2021 q135 de Química) a primeira leitura da banca estava errada e foi corrigida antes de gravar, com conferência independente.
+
+## Depois do lote geo-0003
+
+A partir daqui, cada divergência fica registrada pela ferramenta em `registro-<matéria>.json` e aparece em `lotes-<matéria>.md`, com o motivo completo. Resumo das que existem nas matérias desta sessão (11/11/2026):
+
+- **Unesp 2021 (1ª fase, Exatas e Humanidades), questão 70 — Matemática.** A massa da folha de ouro dá 4,465 × 10⁻⁵ g. O gabarito oficial é A (10⁻⁵ g); pelo critério de √10 a ordem de grandeza seria 10⁻⁴ g, que também está entre as alternativas (E). Não publicada.
+- **Fuvest 2025 (1ª fase), questão 16 — Matemática.** A letra oficial C exige ler o quadro ao pé da letra; pelo título do quadro ("desnível máximo") cabe a leitura em que a resposta seria B. A resolução está pronta e pode entrar com alerta se o dono decidir. Não publicada.
