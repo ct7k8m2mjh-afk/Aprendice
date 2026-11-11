@@ -55,3 +55,7 @@ Tudo o que o dono envia (texto, imagem, prancha) tem uso e fica registrado com d
 - 10/11 22h16 — **Caixa de imagem das revisões:** em vez de só 'EM CONSTRUÇÃO', escrever **EM CONSTRUÇÃO... (o que será colocado: <descrição da imagem>)**. Substitui a regra de não mostrar a descrição. Aplicar em todas as matérias com resumos.json e geral.json.
 - 11/11/2026: QUALQUER alteração de design precisa da permissão do dono antes. O cartão Treino geral fica como está (na super revisão, autorizadas só propostas para as bordas).
 - 11/11/2026: resoluções na sessão Fable com poucos agentes: o resolvedor confere a si mesmo (gabarito oficial, contas por programa, certeza absoluta de cada frase) e UM conferente por lote faz fatos+didática numa passada, reconferindo só o que foi corrigido. Sem rodadas extras; na dúvida, a questão fica pendente. Nada inventado.
+
+## 11/11/2026 — divisão do trabalho de questões
+- Dono: "Você irá pegar as questões, colocá-las no site e ranqueá-las por dificuldade. O Fable irá resolver as questões e fazer as animações." Nenhuma das duas sessões refaz o que a outra já fez (`ferramentas/resolucoes/lote.py` pula o que tem resolução aprovada ou está nos pendentes do Fable).
+- Nível do ENEM pela dificuldade oficial do INEP (TRI): `docs/provas/nivel-tri.md`.
