@@ -102,8 +102,17 @@ def faixa(q):
     return base + (3 if alto else 0)
 
 
+def prioridade():
+    """Provas que o dono mandou passar na frente (docs/resolucoes/prioridade.json: {"provas": ["saocamilo-", ...]},
+    prefixos de id de prova). Ex.: São Camilo, prioridade máxima (dono, 11/11/2026)."""
+    return tuple(ler(os.path.join(DOCS, 'prioridade.json'), {}).get('provas') or ())
+
+
 def chave(q):
     alvo = ALVO.index(q['escola']) if q['escola'] in ALVO else len(ALVO)
+    pri = prioridade()
+    if pri and str(q.get('prova', '')).startswith(pri):
+        return (-1, q.get('prova', ''), int(re.sub(r'\D', '', str(q.get('n'))) or 0), q['sub'], alvo, q['escola'], '', '', 0)
     return (faixa(q), q['sub'], alvo, q['escola'], str(q.get('ano')), q.get('prova', ''), int(re.sub(r'\D', '', str(q.get('n'))) or 0))
 
 
