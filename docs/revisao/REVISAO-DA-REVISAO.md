@@ -130,6 +130,7 @@ Limites desta revisão: o livro não foi consultado (por instrução). Segunda r
 | LK19, IK12, IK14, IK16 | questão de prova retirada do tópico | só se resolvem com o texto ou a imagem da prova, que não estão no arquivo | — | 1 |
 | campo subs | 126 de 139 tópicos ligados a subtemas: os 50 que já existem no site (P01.1–P12.5) e 10 novos propostos (P01.5, P04.5, P07.5, P07.6, P09.6, P10.6, P10.7, P11.5, P11.6, P12.6); criado por/subtemas.json | pedido do dono (12/11/2026): definir os subtemas de Português a partir dos tópicos, para o aluno se localizar entre a revisão por subtema e a da matéria inteira | app-atual/por/dados.json (nomesub) | 2 |
 | RK01–RK05, RK08–RK12, RK20–RK22 | registrado que ficam só na revisão geral da matéria, sem subtema | decisão do dono (12/11/2026): redação não terá subtema no site | — | 2 |
+| campo subs | retirados os 10 subtemas novos propostos; ficam só os 50 que já existem no site; 33 tópicos sem subtema aparecem só na revisão geral | decisão do dono (12/11/2026): não criar subtemas novos | — | 2 |
 
 ### Itens marcados "conferir" (estão em `lacunas` do arquivo)
 
@@ -140,7 +141,6 @@ Limites desta revisão: o livro não foi consultado (por instrução). Segunda r
 ### Pendências de decisão do dono
 
 - As descrições de imagem de alguns tópicos ainda citam 'questão resolvida' (o campo imagem foi preservado). Ao produzir essas imagens, não incluir a questão: ela saiu do tópico.
-- Subtemas novos de Português: para ligar os 139 tópicos, usei os 50 subtemas que já existem no site e propus 10 novos (P01.5 funções da linguagem; P04.5 intertextualidade; P07.5 artigo, numeral, preposição, conjunção e interjeição; P07.6 estrutura das palavras; P09.6 funções do 'que' e do 'se'; P10.6 ortografia, hífen, homônimos e parônimos; P10.7 acentuação gráfica; P11.5 Trovadorismo, Humanismo e Classicismo; P11.6 Quinhentismo; P12.6 Modernismo em Portugal e Fernando Pessoa). Eles ainda não existem no site: aprovar, renomear ou recusar antes de irem ao ar (lista em docs/revisao/por/subtemas.json).
 
 ## Matemática
 
@@ -351,7 +351,6 @@ Limites desta revisão: o livro não foi consultado (por instrução). Segunda r
 ### Pendências de decisão do dono
 
 - GK43: manter o corte do livro para cidade média (100 mil a 1 milhão) ou adotar o do IBGE/Ipea (100 mil a 500 mil)?
-- Subtemas: não há na lista do site os temas de pensamento geográfico, cartografia e geologia/relevo; ficaram sem subtema GK01 a GK08 e GK22.
 
 ## História
 
@@ -429,7 +428,6 @@ Limites desta revisão: o livro não foi consultado (por instrução). Segunda r
 ### Pendências de decisão do dono
 
 - HK24: o livro erra o rei de Pombal (D. João V); o tópico agora traz D. José I. Se o site reproduzir alguma página do livro sobre o tema, o erro reaparece.
-- Subtemas: a lista do site vai até as Guerras Mundiais e a República de 1946; ficaram sem subtema HK50 (Guerra Fria), HK51 (populismo), HK54 (ditaduras), HK55 e HK56 (Nova República) e HK57 (América Latina no século XXI).
 
 ## Filosofia e Sociologia
 
@@ -478,7 +476,6 @@ Limites desta revisão: o livro não foi consultado (por instrução). Segunda r
 
 - SK41: manter a atribuição do livro (mobilização de recursos = Tilly) ou corrigir para a atribuição usual (McCarthy e Zald; Tilly = processo político)?
 - Os tópicos de Filosofia e Sociologia são longos (vários pontos com mais de 400 caracteres). Foram mantidos para não perder conteúdo; se o site precisar de pontos mais curtos, o corte deve ser feito na tela, não no arquivo, ou em nova rodada de edição.
-- Subtemas: ficaram sem subtema FK18 (Renascimento), FK38 (inteligência artificial), SK02 (métodos de pesquisa), SK32 (Sociologia no Brasil), SK35 (Sociologia urbana) e SK37 (Norbert Elias), que não têm correspondente na lista do site.
 
 ## Inglês
 

@@ -6,7 +6,7 @@ Catálogo gerado dos arquivos da pasta. Serve para organizar o conteúdo para o 
 - **Temas e subtemas sem arquivo por tema**: subtemas que existem no site ou em `resumos.json`, mas ainda não têm arquivo `<TEMA>.json` nesta pasta (Química Q02–Q05 e Q08–Q12, Matemática, Biologia B03, B05–B08, B10 e B12, Português).
 - **Tópicos da revisão geral** (`geral.json`): id, capítulo e título de cada tópico, com o campo `subs`: os subtemas em que o tópico se encaixa (o primeiro é o principal).
 
-Atualizado em 12/11/2026 pelo revisor: o mapeamento tópico → subtema está feito em todas as matérias. Onde a coluna `subs` traz "—", não há subtema correspondente no site (lista em `INTEGRACAO-SITE.md`, seção 6). Em Português, os subtemas marcados [NOVO] foram propostos pelo revisor e ainda não existem no site (`por/subtemas.json`).
+Atualizado em 12/11/2026 pelo revisor: o mapeamento tópico → subtema está feito em todas as matérias. Onde a coluna `subs` traz "—", não há subtema correspondente no site e, por decisão do dono, o tópico aparece só na revisão geral da matéria (não se criam subtemas novos).
 
 
 ## Português (`por`)
@@ -17,18 +17,18 @@ _Sem arquivos por tema nesta matéria (só `geral.json` e `subtemas.json`)._
 
 | tema | nome | subtemas (id: título) | origem |
 |---|---|---|---|
-| P01 | Leitura e compreensão | P01.1: tema, tese e ideia principal do texto; P01.2: informação explícita × inferência; P01.3: título, fonte, data e paratexto como pista de leitura; P01.4: finalidade do texto e interlocutor; P01.5: funções da linguagem [NOVO] | site (app-atual/por/dados.json) + 10 novos propostos; ver por/subtemas.json |
-| P02 | Argumentação | P02.1: tipos de argumento e como o autor sustenta a tese; P02.2: ponto de vista, modalização e marcas de opinião; P02.3: ironia, humor e sentido implícito; P02.4: contra-argumento, concessão e refutação | site (app-atual/por/dados.json) + 10 novos propostos; ver por/subtemas.json |
-| P03 | Gêneros e tipos textuais | P03.1: tipos textuais: narração, descrição, dissertação e injunção; P03.2: gêneros jornalísticos: notícia, reportagem, editorial e crônica; P03.3: charge, tirinha, cartaz e infográfico; P03.4: divulgação científica e texto digital | site (app-atual/por/dados.json) + 10 novos propostos; ver por/subtemas.json |
-| P04 | Coesão e coerência | P04.1: referência: pronome, elipse e substituição lexical; P04.2: conjunções e relações lógicas; P04.3: progressão temática, parágrafo e ordem das ideias; P04.4: ambiguidade, redundância e quebra de coerência; P04.5: intertextualidade: citação, alusão, paráfrase e paródia [NOVO] | site (app-atual/por/dados.json) + 10 novos propostos; ver por/subtemas.json |
-| P05 | Semântica e vocabulário | P05.1: sentido da palavra no contexto e substituição sem mudar o sentido; P05.2: denotação, conotação e polissemia; P05.3: sinonímia, antonímia e campo semântico; P05.4: variação linguística, registro e adequação | site (app-atual/por/dados.json) + 10 novos propostos; ver por/subtemas.json |
-| P06 | Figuras de linguagem | P06.1: metáfora, comparação e metonímia; P06.2: figuras de pensamento: ironia, antítese, paradoxo, eufemismo, hipérbole, personificação; P06.3: figuras de som e de construção: aliteração, anáfora, elipse, hipérbato, zeugma, pleonasmo | site (app-atual/por/dados.json) + 10 novos propostos; ver por/subtemas.json |
-| P07 | Morfologia | P07.1: substantivo, adjetivo e advérbio: classificação e função; P07.2: pronomes: classificação e emprego; P07.3: verbo: tempo, modo, aspecto e flexão; P07.4: formação de palavras: derivação, composição e sentido do afixo; P07.5: artigo, numeral, preposição, conjunção e interjeição [NOVO]; P07.6: estrutura das palavras: radical, afixos e desinências [NOVO] | site (app-atual/por/dados.json) + 10 novos propostos; ver por/subtemas.json |
-| P08 | Período simples | P08.1: sujeito e predicado, inclusive sujeito oculto e oração sem sujeito; P08.2: objeto direto e indireto, complemento nominal e agente da passiva; P08.3: adjunto adnominal e adverbial, aposto e vocativo; P08.4: transitividade verbal e predicação | site (app-atual/por/dados.json) + 10 novos propostos; ver por/subtemas.json |
-| P09 | Período composto | P09.1: coordenação e o sentido de cada conjunção coordenativa; P09.2: orações subordinadas substantivas; P09.3: orações subordinadas adjetivas: restritiva × explicativa; P09.4: orações subordinadas adverbiais; P09.5: orações reduzidas de infinitivo, gerúndio e particípio; P09.6: funções do 'que' e do 'se' [NOVO] | site (app-atual/por/dados.json) + 10 novos propostos; ver por/subtemas.json |
-| P10 | Norma e emprego | P10.1: concordância verbal e nominal; P10.2: regência verbal e nominal, e crase; P10.3: colocação pronominal: próclise, mesóclise e ênclise; P10.4: pontuação: vírgula, ponto e vírgula, dois-pontos e travessão; P10.5: vozes verbais e discurso direto, indireto e indireto livre; P10.6: ortografia, hífen, homônimos e parônimos [NOVO]; P10.7: acentuação gráfica [NOVO] | site (app-atual/por/dados.json) + 10 novos propostos; ver por/subtemas.json |
-| P11 | Literatura: do Barroco ao Simbolismo | P11.1: Barroco e Arcadismo; P11.2: Romantismo: poesia das três gerações e prosa; P11.3: Realismo e Naturalismo, com Machado de Assis; P11.4: Parnasianismo e Simbolismo; P11.5: Trovadorismo, Humanismo e Classicismo [NOVO]; P11.6: Quinhentismo: literatura de informação e jesuítica [NOVO] | site (app-atual/por/dados.json) + 10 novos propostos; ver por/subtemas.json |
-| P12 | Literatura: Pré-Modernismo em diante | P12.1: Pré-Modernismo: Euclides da Cunha, Lima Barreto, Augusto dos Anjos; P12.2: Modernismo de 1922, vanguardas europeias e manifestos; P12.3: Modernismo de 30: romance do Nordeste, Drummond e Bandeira; P12.4: Geração de 45 e prosa de ruptura: Guimarães Rosa, Clarice Lispector, João Cabral; P12.5: literatura contemporânea e autores africanos de língua portuguesa; P12.6: Modernismo em Portugal e Fernando Pessoa [NOVO] | site (app-atual/por/dados.json) + 10 novos propostos; ver por/subtemas.json |
+| P01 | Leitura e compreensão | P01.1: tema, tese e ideia principal do texto; P01.2: informação explícita × inferência; P01.3: título, fonte, data e paratexto como pista de leitura; P01.4: finalidade do texto e interlocutor | site (app-atual/por/dados.json); ver por/subtemas.json |
+| P02 | Argumentação | P02.1: tipos de argumento e como o autor sustenta a tese; P02.2: ponto de vista, modalização e marcas de opinião; P02.3: ironia, humor e sentido implícito; P02.4: contra-argumento, concessão e refutação | site (app-atual/por/dados.json); ver por/subtemas.json |
+| P03 | Gêneros e tipos textuais | P03.1: tipos textuais: narração, descrição, dissertação e injunção; P03.2: gêneros jornalísticos: notícia, reportagem, editorial e crônica; P03.3: charge, tirinha, cartaz e infográfico; P03.4: divulgação científica e texto digital | site (app-atual/por/dados.json); ver por/subtemas.json |
+| P04 | Coesão e coerência | P04.1: referência: pronome, elipse e substituição lexical; P04.2: conjunções e relações lógicas; P04.3: progressão temática, parágrafo e ordem das ideias; P04.4: ambiguidade, redundância e quebra de coerência | site (app-atual/por/dados.json); ver por/subtemas.json |
+| P05 | Semântica e vocabulário | P05.1: sentido da palavra no contexto e substituição sem mudar o sentido; P05.2: denotação, conotação e polissemia; P05.3: sinonímia, antonímia e campo semântico; P05.4: variação linguística, registro e adequação | site (app-atual/por/dados.json); ver por/subtemas.json |
+| P06 | Figuras de linguagem | P06.1: metáfora, comparação e metonímia; P06.2: figuras de pensamento: ironia, antítese, paradoxo, eufemismo, hipérbole, personificação; P06.3: figuras de som e de construção: aliteração, anáfora, elipse, hipérbato, zeugma, pleonasmo | site (app-atual/por/dados.json); ver por/subtemas.json |
+| P07 | Morfologia | P07.1: substantivo, adjetivo e advérbio: classificação e função; P07.2: pronomes: classificação e emprego; P07.3: verbo: tempo, modo, aspecto e flexão; P07.4: formação de palavras: derivação, composição e sentido do afixo | site (app-atual/por/dados.json); ver por/subtemas.json |
+| P08 | Período simples | P08.1: sujeito e predicado, inclusive sujeito oculto e oração sem sujeito; P08.2: objeto direto e indireto, complemento nominal e agente da passiva; P08.3: adjunto adnominal e adverbial, aposto e vocativo; P08.4: transitividade verbal e predicação | site (app-atual/por/dados.json); ver por/subtemas.json |
+| P09 | Período composto | P09.1: coordenação e o sentido de cada conjunção coordenativa; P09.2: orações subordinadas substantivas; P09.3: orações subordinadas adjetivas: restritiva × explicativa; P09.4: orações subordinadas adverbiais; P09.5: orações reduzidas de infinitivo, gerúndio e particípio | site (app-atual/por/dados.json); ver por/subtemas.json |
+| P10 | Norma e emprego | P10.1: concordância verbal e nominal; P10.2: regência verbal e nominal, e crase; P10.3: colocação pronominal: próclise, mesóclise e ênclise; P10.4: pontuação: vírgula, ponto e vírgula, dois-pontos e travessão; P10.5: vozes verbais e discurso direto, indireto e indireto livre | site (app-atual/por/dados.json); ver por/subtemas.json |
+| P11 | Literatura: do Barroco ao Simbolismo | P11.1: Barroco e Arcadismo; P11.2: Romantismo: poesia das três gerações e prosa; P11.3: Realismo e Naturalismo, com Machado de Assis; P11.4: Parnasianismo e Simbolismo | site (app-atual/por/dados.json); ver por/subtemas.json |
+| P12 | Literatura: Pré-Modernismo em diante | P12.1: Pré-Modernismo: Euclides da Cunha, Lima Barreto, Augusto dos Anjos; P12.2: Modernismo de 1922, vanguardas europeias e manifestos; P12.3: Modernismo de 30: romance do Nordeste, Drummond e Bandeira; P12.4: Geração de 45 e prosa de ruptura: Guimarães Rosa, Clarice Lispector, João Cabral; P12.5: literatura contemporânea e autores africanos de língua portuguesa | site (app-atual/por/dados.json); ver por/subtemas.json |
 
 ### Tópicos da revisão geral
 
@@ -38,14 +38,14 @@ _Sem arquivos por tema nesta matéria (só `geral.json` e `subtemas.json`)._
 | PK02 | Gramática – Classes de palavras | Substantivos: classificações semânticas e quanto à forma | P07.1 |
 | PK03 | Gramática – Classes de palavras | Substantivos: flexão de gênero, número e grau | P07.1 |
 | PK04 | Gramática – Classes de palavras | Adjetivos: flexão de gênero, número e grau | P07.1 |
-| PK05 | Gramática – Classes de palavras | Artigos: definidos, indefinidos, contração e funções | P07.5 |
-| PK06 | Gramática – Classes de palavras | Numerais: cardinal, ordinal, multiplicativo e fracionário | P07.5 |
+| PK05 | Gramática – Classes de palavras | Artigos: definidos, indefinidos, contração e funções | — |
+| PK06 | Gramática – Classes de palavras | Numerais: cardinal, ordinal, multiplicativo e fracionário | — |
 | PK07 | Gramática – Classes de palavras | Pronomes pessoais e pronomes de tratamento | P07.2 |
 | PK08 | Gramática – Classes de palavras | Pronomes possessivos, indefinidos e interrogativos | P07.2 |
 | PK09 | Gramática – Classes de palavras | Pronomes demonstrativos e relativos | P07.2, P04.1 |
 | PK10 | Gramática – Classes de palavras | Verbos e advérbios (classificação, graus e palavras denotativas) | P07.3, P07.1 |
-| PK11 | Gramática – Classes de palavras | Preposições, conjunções e interjeições | P07.5, P04.2 |
-| PK12 | Gramática – Estrutura e formação de palavras | Estrutura das palavras: morfemas, radical, vogal temática e desinências | P07.6, P07.4 |
+| PK11 | Gramática – Classes de palavras | Preposições, conjunções e interjeições | P04.2 |
+| PK12 | Gramática – Estrutura e formação de palavras | Estrutura das palavras: morfemas, radical, vogal temática e desinências | P07.4 |
 | PK13 | Gramática – Estrutura e formação de palavras | Formação de palavras: derivação, composição e outros processos | P07.4 |
 | PK14 | Gramática – Termos constituintes da oração | Frase, oração e período (simples e composto) | P08.1 |
 | PK15 | Gramática – Termos constituintes da oração | Sujeito: simples, composto, oculto, indeterminado e oração sem sujeito | P08.1 |
@@ -64,8 +64,8 @@ _Sem arquivos por tema nesta matéria (só `geral.json` e `subtemas.json`)._
 | PK28 | Gramática – Orações subordinadas | Orações subordinadas substantivas (desenvolvidas e reduzidas) | P09.2, P09.5 |
 | PK29 | Gramática – Orações subordinadas | Orações subordinadas adjetivas: explicativas e restritivas (e reduzidas) | P09.3, P09.5 |
 | PK30 | Gramática – Orações subordinadas | Orações subordinadas adverbiais (nove tipos) e reduzidas | P09.4, P09.5 |
-| PK31 | Gramática – Funções do que e do se | Funções do 'que' | P09.6 |
-| PK32 | Gramática – Funções do que e do se | Funções do 'se' | P09.6 |
+| PK31 | Gramática – Funções do que e do se | Funções do 'que' | — |
+| PK32 | Gramática – Funções do que e do se | Funções do 'se' | — |
 | PK33 | Gramática – Concordância verbal | Concordância verbal: sujeito simples, pronomes 'que' e 'quem', verbos impessoais | P10.1 |
 | PK34 | Gramática – Concordância verbal | Concordância com o verbo 'ser' e na voz passiva sintética | P10.1 |
 | PK35 | Gramática – Concordância verbal | Concordância verbal com sujeito composto, coletivo e substantivos de sentido singular ou plural | P10.1 |
@@ -78,21 +78,21 @@ _Sem arquivos por tema nesta matéria (só `geral.json` e `subtemas.json`)._
 | PK42 | Gramática – Crase | Crase facultativa, casos especiais (casa, terra, distância) e contextos ambíguos | P10.2 |
 | PK43 | Gramática – Colocação pronominal | Colocação pronominal: próclise e palavras atrativas | P10.3 |
 | PK44 | Gramática – Colocação pronominal | Mesóclise, ênclise e colocação nas locuções verbais | P10.3 |
-| PK45 | Gramática – Ortografia | Ortografia: grafias dos sons /ʒ/, /ʃ/, /s/ e /z/ | P10.6 |
-| PK46 | Gramática – Ortografia | Emprego do hífen (prefixos e palavras compostas) | P10.6 |
-| PK47 | Gramática – Ortografia | Homônimos e parônimos | P10.6, P05.3 |
-| PK48 | Gramática – Ortografia | Dúvidas comuns: por que/por quê/porque/porquê, onde/aonde, mau/mal, senão/se não, mas/mais, a fim de/afim | P10.6 |
-| PK49 | Gramática – Acentuação | Acentuação gráfica: tonicidade, regras por classe, hiatos e acento diferencial | P10.7 |
+| PK45 | Gramática – Ortografia | Ortografia: grafias dos sons /ʒ/, /ʃ/, /s/ e /z/ | — |
+| PK46 | Gramática – Ortografia | Emprego do hífen (prefixos e palavras compostas) | — |
+| PK47 | Gramática – Ortografia | Homônimos e parônimos | P05.3 |
+| PK48 | Gramática – Ortografia | Dúvidas comuns: por que/por quê/porque/porquê, onde/aonde, mau/mal, senão/se não, mas/mais, a fim de/afim | — |
+| PK49 | Gramática – Acentuação | Acentuação gráfica: tonicidade, regras por classe, hiatos e acento diferencial | — |
 | PK50 | Gramática – Pontuação | Vírgula: usos e proibições | P10.4 |
 | PK51 | Gramática – Pontuação | Outros sinais de pontuação | P10.4 |
 | PK52 | Gramática – Vícios de linguagem | Vícios de linguagem: queísmo, pleonasmo, barbarismo, estrangeirismo, solecismo, gerundismo, ambiguidade, eco, cacofonia | P04.4 |
 | LK01 | Literatura – Fundamentos da linguagem literária | Linguagem literária: efeito estético, mimesis, gêneros e literariedade | P03.1, P05.2 |
 | LK02 | Literatura – Fundamentos da linguagem literária | Elementos da narrativa: narrador, personagens, enredo, tempo, espaço e discurso | P03.1 |
-| LK03 | Literatura – Literatura medieval | Trovadorismo: cantigas líricas e satíricas, trovador, jogral e menestrel | P11.5 |
-| LK04 | Literatura – Literatura medieval | Humanismo: transição para o Renascimento, Fernão Lopes e Gil Vicente | P11.5 |
-| LK05 | Literatura – Origens da literatura em língua portuguesa | Classicismo: Renascimento, Camões épico e lírico | P11.5 |
-| LK06 | Literatura – Origens da literatura em língua portuguesa | Classicismo em resumo: contexto, características e a épica e a lírica de Camões | P11.5 |
-| LK07 | Literatura – Literatura de formação no Brasil | Quinhentismo: Carta de Caminha e literatura jesuítica (Anchieta) | P11.6 |
+| LK03 | Literatura – Literatura medieval | Trovadorismo: cantigas líricas e satíricas, trovador, jogral e menestrel | — |
+| LK04 | Literatura – Literatura medieval | Humanismo: transição para o Renascimento, Fernão Lopes e Gil Vicente | — |
+| LK05 | Literatura – Origens da literatura em língua portuguesa | Classicismo: Renascimento, Camões épico e lírico | — |
+| LK06 | Literatura – Origens da literatura em língua portuguesa | Classicismo em resumo: contexto, características e a épica e a lírica de Camões | — |
+| LK07 | Literatura – Literatura de formação no Brasil | Quinhentismo: Carta de Caminha e literatura jesuítica (Anchieta) | — |
 | LK08 | Literatura – Barroco | Barroco: contexto, cultismo e conceptismo, Vieira e Gregório de Matos | P11.1 |
 | LK09 | Literatura – Arcadismo | Arcadismo: Neoclassicismo, fingimento poético, Inconfidência e os árcades brasileiros | P11.1 |
 | LK10 | Literatura – Romantismo | Romantismo no Brasil: contexto histórico e as três gerações poéticas | P11.2 |
@@ -105,8 +105,8 @@ _Sem arquivos por tema nesta matéria (só `geral.json` e `subtemas.json`)._
 | LK17 | Literatura – Parnasianismo e Simbolismo | Simbolismo: poesia das sensações, musicalidade e simbolistas brasileiros | P11.4 |
 | LK18 | Literatura – Pré-Modernismo | Pré-Modernismo: transição, Euclides da Cunha, Lima Barreto, Monteiro Lobato e Augusto dos Anjos | P12.1 |
 | LK19 | Literatura – Vanguardas europeias | Vanguardas europeias: Futurismo, Expressionismo, Cubismo, Dadaísmo e Surrealismo | P12.2 |
-| LK20 | Literatura – Modernismo em Portugal | Modernismo em Portugal: revista Orpheu e contexto | P12.6 |
-| LK21 | Literatura – Modernismo em Portugal | Fernando Pessoa: poesia ortônima e heterônimos (Caeiro, Reis, Campos) | P12.6 |
+| LK20 | Literatura – Modernismo em Portugal | Modernismo em Portugal: revista Orpheu e contexto | — |
+| LK21 | Literatura – Modernismo em Portugal | Fernando Pessoa: poesia ortônima e heterônimos (Caeiro, Reis, Campos) | — |
 | LK22 | Literatura – Modernismo no Brasil | Modernismo no Brasil: Semana de 1922 e primeira geração (Mário, Oswald, Bandeira) | P12.2 |
 | LK23 | Literatura – Modernismo no Brasil | Segunda geração modernista (1930) e Carlos Drummond de Andrade (três fases) | P12.3 |
 | LK24 | Literatura – Modernismo no Brasil | Poesia da segunda geração: Cecília Meireles, Vinicius de Moraes, Jorge de Lima e Murilo Mendes | P12.3 |
@@ -138,16 +138,16 @@ _Sem arquivos por tema nesta matéria (só `geral.json` e `subtemas.json`)._
 | IK12 | Interpretação de Texto – Tipos de discurso | Discurso indireto livre | P10.5 |
 | IK13 | Interpretação de Texto – Gêneros textuais | Gêneros textuais: características composicionais e esferas jornalística e propagandística | P03.2 |
 | IK14 | Interpretação de Texto – Gêneros textuais | Gêneros da esfera digital: divulgação científica, podcast e memes | P03.4 |
-| IK15 | Interpretação de Texto – Funções da linguagem | Funções da linguagem: elementos da comunicação, emotiva e apelativa (conativa) | P01.5 |
-| IK16 | Interpretação de Texto – Funções da linguagem | Funções fática, poética, referencial e metalinguística | P01.5 |
+| IK15 | Interpretação de Texto – Funções da linguagem | Funções da linguagem: elementos da comunicação, emotiva e apelativa (conativa) | — |
+| IK16 | Interpretação de Texto – Funções da linguagem | Funções fática, poética, referencial e metalinguística | — |
 | IK17 | Interpretação de Texto – Coesão textual | Coesão textual: relações de progressão e conectores subordinativos | P04.2 |
 | IK18 | Interpretação de Texto – Coesão textual | Conectores coordenativos e coesão por remissão (anafórica) | P04.2, P04.1 |
 | IK19 | Interpretação de Texto – Coesão textual | Coesão por antecipação (catafórica) | P04.1 |
 | IK20 | Interpretação de Texto – Ambiguidade textual | Ambiguidade semântica: polissemia, duplo sentido e homonímia | P04.4, P05.2 |
 | IK21 | Interpretação de Texto – Ambiguidade textual | Ambiguidade sintática: qualificador, pronome e elipse | P04.4 |
-| IK22 | Interpretação de Texto – Intertextualidade | Intertextualidade explícita: citação e epígrafe | P04.5 |
-| IK23 | Interpretação de Texto – Intertextualidade | Intertextualidade implícita: alusão, paráfrase e paródia | P04.5 |
-| IK24 | Interpretação de Texto – Intertextualidade | Paráfrase × paródia na prática e quadro das intertextualidades implícitas | P04.5 |
+| IK22 | Interpretação de Texto – Intertextualidade | Intertextualidade explícita: citação e epígrafe | — |
+| IK23 | Interpretação de Texto – Intertextualidade | Intertextualidade implícita: alusão, paráfrase e paródia | — |
+| IK24 | Interpretação de Texto – Intertextualidade | Paráfrase × paródia na prática e quadro das intertextualidades implícitas | — |
 | IK25 | Interpretação de Texto – Variações linguísticas | Tipos de variação linguística: geográfica, histórica, situacional e social | P05.4 |
 | IK26 | Interpretação de Texto – Variações linguísticas | Preconceito linguístico | P05.4 |
 | IK27 | Interpretação de Texto – Tipos de questão | Tipos de questão: paráfrase, inferência, síntese analítica e síntese comparativa | P01.2, P01.1 |
