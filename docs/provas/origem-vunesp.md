@@ -47,6 +47,32 @@ comentada do Curso Objetivo); **cópia de portal** = PDF oficial hospedado por p
 | Unesp 2026, 1ª fase (`unesp-2026`) | 2026 | …/unesp/2026/1fase/UNESP2026_1fase_prova.pdf | …/unesp/2026/1fase/UNESP2026_1fase_gabarito.pdf (oficial, VNSP2504) | cópia de cursinho (Objetivo) |
 | Unesp 2026/2, 1ª fase – meio de ano (`unesp-2026-2`) | 2026 | …/unesp/2026_2/1fase/UNESP2026_2_1fase_prova.pdf | …/unesp/2026_2/1fase/UNESP2026_2_1fase_gabarito.pdf (oficial, VNSP2513) | cópia de cursinho (Objetivo) |
 
+| Famerp 2020, Conhecimentos Gerais (`famerp-2020`) | 2020 | …/famerp/2020/1dia/famerp2020_1dia_prova.pdf | …/famerp/2020/1dia/famerp2020_1dia_gabarito.pdf (oficial, FMRP1901) | cópia de cursinho (Objetivo) |
+| Famerp 2021, Conhecimentos Gerais (`famerp-2021`) | 2021 | …/famerp/2021/1dia/famerp2021_1dia_prova.pdf | …/famerp/2021/1dia/famerp2021_1dia_gabarito.pdf (oficial, FMRP2001) | cópia de cursinho (Objetivo) |
+| Famerp 2022, Conhecimentos Gerais (`famerp-2022`) | 2022 | …/famerp/2022/1dia/famerp2022_1dia_prova.pdf | …/famerp/2022/1dia/famerp2022_1dia_gabarito.pdf (oficial, FMRP2101) | cópia de cursinho (Objetivo) |
+| Famerp 2023, Conhecimentos Gerais (`famerp-2023`) | 2023 | …/famerp/2023/1dia/famerp2023_1dia_prova.pdf | …/famerp/2023/1dia/famerp2023_1dia_gabarito.pdf (oficial, FMRP2201) | cópia de cursinho (Objetivo) |
+| Famerp 2024, Conhecimentos Gerais (`famerp-2024`) | 2024 | …/famerp/2024/1dia/famerp2024_1dia_prova.pdf | …/famerp/2024/1dia/famerp2024_1dia_gabarito.pdf (oficial, FMRP2301) | cópia de cursinho (Objetivo) |
+| Famerp 2025, Conhecimentos Gerais (`famerp-2025`) | 2025 | …/famerp/2025/1dia/famerp2025_1dia_prova.pdf | …/famerp/2025/1dia/famerp2025_1dia_gabarito.pdf (oficial, FMRP2401) | cópia de cursinho (Objetivo) |
+| Famerp 2026, Conhecimentos Gerais (`famerp-2026`) | 2026 | …/famerp/2026/1dia/famerp2026_1dia_prova.pdf | …/famerp/2026/1dia/famerp2026_1dia_gabarito.pdf (oficial, FMRP2501) | cópia de cursinho (Objetivo) |
+
 "…" = `https://www.curso-objetivo.br/vestibular/resolucao-comentada`. As páginas do Objetivo carregam a lista de
 arquivos por um serviço público do próprio site (`sistemas.objetivo.br/ResolucaoComentadaApi/templates/prova/<n>`),
 o mesmo que o navegador usa ao abrir a página.
+
+## O que não entrou (busca parada por ordem do dono, 10/11/2026: ele vai baixar à mão)
+
+Cópias públicas **localizadas, mas não integradas** (os PDFs baixados foram descartados quando a busca parou; os links
+ficam aqui para o download à mão). Todos os links do Objetivo seguem o padrão
+`…/<instituição>/<ano>/...` da página de resolução comentada de cada instituição:
+
+| Instituição | O que existe e onde | Observação |
+|---|---|---|
+| Einstein | Objetivo: 2020 (`alberteinstein2020_prova.pdf` + gabarito), 2021–2027 (`…_prova_I.pdf` = 50 objetivas + gabarito), 2023/2 Enfermagem | Prova I objetiva; Prova II discursiva fica fora. |
+| Santa Casa (FCMSCSP) | Objetivo: 2020 (2º dia = 80 objetivas + gabarito), 2021–2027 (1º dia = 80 objetivas + gabarito) | |
+| Sírio-Libanês | Objetivo: 2025/2, 2026, 2027 (`…_prova_II.pdf` = 40 objetivas + gabarito) | Prova I discursiva fica fora. |
+| FMJ | Objetivo: 2024–2027 (`fmj<ano>_prova_II.pdf` = objetivas: 60 em 2024, 40 depois + gabarito) | Só a parte objetiva. |
+| Famema | Objetivo: 2020, 2021, 2025, 2026 (o `famema<ano>_prova.pdf` traz Prova I e Prova II; gabarito da Prova II) | 2024: o PDF do Objetivo repete a Prova I (falta a II); 2023: só a resolução no Objetivo; 2022 foi da FGV (não Vunesp). |
+| UEA | Qconcursos (arquivo público): Vestibular 2024/acesso 2025 Conhecimentos Gerais `arquivos.qconcursos.com/prova/arquivo_prova/132690/vunesp-2024-uea-vestibular-conhecimentos-gerais-prova.pdf`; gabarito acesso 2026 `…/arquivo_gabarito/153668/vunesp-2025-uea-vestibular-conhecimentos-gerais-gabarito.pdf` | Estratégia tem 2025–2027, mas o robots.txt proíbe PDF. |
+| FACISB | Só no Estratégia (2025; robots.txt proíbe PDF) | Não usado. |
+| São Camilo (outros anos) | Qconcursos só 2019/2 e 2020/1 (antes de 2020 ou na fronteira); Objetivo só 2024/2 (já no site) | |
+| FAI, Uni-Facef, Anhembi Morumbi, Fema Medicina | Nada localizado fora da Vunesp | Baixar à mão. |

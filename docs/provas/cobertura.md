@@ -1,6 +1,6 @@
 # Cobertura das provas por instituição (2020–2026)
 
-Atualizado em 09/11/2026 (lote 2, rodada 6). Meta do dono: provas de 2020 a 2026 de cada instituição (privadas
+Atualizado em 09/11/2026 (lote 2, rodada 6); Unesp e Famerp em 10/11/2026 (cópias públicas da Vunesp, `origem-vunesp.md`). Meta do dono: provas de 2020 a 2026 de cada instituição (privadas
 incluídas); onde não houver, no mínimo 3 anos; anos anteriores a 2020 não entram. Só múltipla escolha (certo/errado e
 somatória ficam fora). Instituições: `inventario-publicas-1.json` (28), `inventario-publicas-2.json` (27) e
 `inventario-privadas.json` (25), mais ENEM e Unifor, que já estavam no site: 82 ao todo.
@@ -32,7 +32,7 @@ mínimo; **abaixo** = 1 ou 2 anos; **nenhum** = nada integrado. A última coluna
 | USP | Universidade de São Paulo | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | 7 | 8 | 706 | completa (+2027) | Fuvest 1ª fase completa. |
 | UEA | Universidade do Estado do Amazonas | — | — | — | — | — | — | — | 0 | 0 | 0 | nenhum | Vunesp/portal UEA bloqueiam acesso automático (403): baixar à mão. |
 | UPE | Universidade de Pernambuco | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | 7 | 7 | 675 | completa | SSA 3 (etapa de ingresso). |
-| Unesp | Universidade Estadual Paulista | — | — | — | — | — | — | — | 0 | 0 | 0 | nenhum | robots.txt proíbe /Home/ e Vunesp responde 403: baixar à mão. |
+| Unesp | Universidade Estadual Paulista | ✓ | ✓2 | ✓2 | ✓ | ✓2 | ✓2 | ✓2 | 7 | 12 | 1080 | completa | 1ª fase; 2021 e 2022 com as duas provas (Biológicas; Exatas e Humanidades); 2024–2026 também meio de ano. Cópias do Curso Objetivo (`origem-vunesp.md`). |
 | Fatec | Faculdades de Tecnologia do Estado de São Paulo (Centro Paula Souza) | ✓ | — | ✓ | ✓2 | ✓2 | ✓2 | ✓2 | 6 | 10 | 559 | ≥ 3 anos | 2021 e 1º sem/2022 sem prova (pandemia). |
 | Unicamp | Universidade Estadual de Campinas | — | — | — | — | — | — | — | 0 | 0 | 0 | nenhum | robots.txt da Comvest é 'Disallow: /': baixar à mão. |
 | UEMA | Universidade Estadual do Maranhão | ✓ | ✓ | ✓ | — | ✓ | — | ✓ | 5 | 5 | 325 | ≥ 3 anos | PAES 2023 e 2025 sem caderno no site oficial. |
@@ -51,7 +51,7 @@ mínimo; **abaixo** = 1 ou 2 anos; **nenhum** = nada integrado. A última coluna
 | UEL | Universidade Estadual de Londrina | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | 7 | 7 | 397 | completa | Completa. |
 | UEG | Universidade Estadual de Goiás | ✓ | ✓2 | ✓2 | ✓2 | ✓3 | ✓3 | ✓3 | 7 | 16 | 840 | completa | Vestibular geral (13 edições) + Medicina (2024/2–2026/1). |
 | Unioeste | Universidade Estadual do Oeste do Paraná | — | — | — | — | — | — | — | 0 | 0 | 0 | nenhum | PDFs em /portal/arq/, proibido pelo robots.txt: baixar à mão. |
-| Famerp | Faculdade de Medicina de São José do Rio Preto | — | — | — | — | — | — | — | 0 | 0 | 0 | nenhum | Provas só na Vunesp (403): baixar à mão. |
+| Famerp | Faculdade de Medicina de São José do Rio Preto | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | 7 | 7 | 560 | completa | Conhecimentos Gerais (1º dia). Cópias do Curso Objetivo (`origem-vunesp.md`). |
 | UFSM | Universidade Federal de Santa Maria | — | — | — | — | — | ✓ | ✓ | 2 | 2 | 238 | abaixo | Vestibular próprio só em 2025 e 2026 (antes, só PSS/Sisu). |
 | UESB | Universidade Estadual do Sudoeste da Bahia | — | — | — | — | — | — | — | 0 | 0 | 0 | nenhum | Gabarito oficial só no site da banca (app JavaScript, sem PDF): baixar à mão. |
 | Unifesp | Universidade Federal de São Paulo | — | — | ✓ | — | — | — | ✓ | 2 | 2 | 50 | abaixo | Medicina (Sistema Misto), prova 1 objetiva de Português e Inglês. 2023 e 2025 sem gabarito publicado; 2024 sem caderno. |
