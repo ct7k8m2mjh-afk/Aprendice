@@ -12,6 +12,10 @@ Saída (public/conteudo/capas/, gerada no build; nada disto é versionado):
   ic-<m>.webp        ícone da matéria (cartões "Suas matérias", "Hora de revisar", desempenho): uma peça ou um grupo,
                      enquadrado para caber inteiro no círculo claro (mesma regra dos ícones de tema);
   treino-geral.webp  arte do Treino geral de todas as matérias (Início): peças de várias matérias juntas.
+  tg-<m>-claro.webp, tg-<m>-escuro.webp
+                     arte do cartão "Treino geral de <matéria>" na página da matéria (dono, 10/11/2026): a ilustração
+                     exclusiva de cada matéria, uma para o tema claro e outra para o escuro (docs/capas/treino-geral/<m>/),
+                     com a transparência recortada e os pontinhos soltos do recorte apagados; sem sombra acrescentada.
 E src/dados/capas.ts (versionado): onde a arte fica dentro da faixa da capa, em frações da REF.
 
 Só usa pillow e numpy (o build da Vercel instala pillow, numpy e scipy).
@@ -169,6 +173,39 @@ def treino_geral():
     return _webp(tela)
 
 
+PASTA_TG = os.path.join(PASTA, 'treino-geral')
+TG_LARGURA = 680     # o cartão mostra a arte com até ~320 px de largura: nítida até ~2x
+TG_ALFA = 40         # acima disto é desenho; o que fica abaixo e longe do desenho é ruído do recorte
+TG_MARGEM = 6        # px (no original) de borda suave mantida em volta do desenho
+
+
+TG_FEITAS = {}       # matéria -> (largura, altura) da arte clara gravada por gera()
+
+
+def treino_materia(m, tema):
+    """WebP da arte do Treino geral da matéria (docs/capas/treino-geral/<m>/<tema>.png) ou None se não houver PNG."""
+    import numpy as np
+    from PIL import Image
+    from scipy import ndimage
+    pasta = os.path.join(PASTA_TG, m)
+    if not os.path.isdir(pasta):
+        return None
+    nomes = {f.lower(): f for f in os.listdir(pasta)}
+    if tema + '.png' not in nomes:
+        return None
+    im = Image.open(os.path.join(pasta, nomes[tema + '.png'])).convert('RGBA')
+    a = np.array(im)
+    desenho = a[..., 3] > TG_ALFA
+    perto = ndimage.binary_dilation(desenho, iterations=TG_MARGEM)
+    a[..., 3][~perto | (a[..., 3] <= ALFA_RUIDO)] = 0
+    im = Image.fromarray(a, 'RGBA')
+    im = im.crop(Image.fromarray((desenho * 255).astype('uint8')).getbbox())
+    if im.width > TG_LARGURA:
+        h = round(im.height * TG_LARGURA / im.width)
+        im = im.convert('RGBa').resize((TG_LARGURA, h), Image.LANCZOS).convert('RGBA')
+    return _webp(im)
+
+
 def gera(destino):
     """Grava os WebP em <destino>/capas/ e devolve {m: caixa} (frações da REF)."""
     pasta = os.path.join(destino, 'capas')
@@ -183,6 +220,18 @@ def gera(destino):
             f.write(icone(m))
     with open(os.path.join(pasta, 'treino-geral.webp'), 'wb') as f:
         f.write(treino_geral())
+    for m in CAPAS:
+        for tema in ('claro', 'escuro'):
+            b = treino_materia(m, tema)
+            alvo = os.path.join(pasta, f'tg-{m}-{tema}.webp')
+            if b:
+                with open(alvo, 'wb') as f:
+                    f.write(b)
+                if tema == 'claro':
+                    from PIL import Image
+                    TG_FEITAS[m] = Image.open(BytesIO(b)).size
+            elif os.path.exists(alvo):
+                os.remove(alvo)
     return caixas
 
 
@@ -194,6 +243,10 @@ def gera_ts(caixas):
         f.write('// Caixa ocupada pelos objetos na capa de referência (2172 x 724, 3:1), em frações: esquerda, topo, direita, base.\n')
         f.write('export const CAIXA_CAPA: Record<string, readonly [number, number, number, number]> = '
                 + json.dumps({m: list(c) for m, c in sorted(caixas.items())}) + ';\n')
+        f.write('// Arte do cartão "Treino geral de <matéria>" (docs/capas/treino-geral/<m>/): matérias que têm a arte, com\n'
+                '// largura e altura do WebP (capas/tg-<m>-claro.webp e tg-<m>-escuro.webp). Matéria fora daqui: arte da matéria.\n')
+        f.write('export const ARTE_TREINO: Record<string, readonly [number, number]> = '
+                + json.dumps({m: list(v) for m, v in sorted(TG_FEITAS.items())}) + ';\n')
 
 
 if __name__ == '__main__':

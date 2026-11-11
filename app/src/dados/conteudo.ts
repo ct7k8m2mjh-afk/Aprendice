@@ -171,6 +171,8 @@ export function urlLogo(arquivo: string): string { return BASE + 'logos/' + arqu
 export function urlCapa(m: MateriaId): string | null { return PREVIA ? null : BASE + 'capas/' + m + '.webp'; }
 export function urlArteMateria(m: MateriaId): string | null { return PREVIA ? null : BASE + 'capas/ic-' + m + '.webp'; }
 export function urlArteTreinoGeral(): string | null { return PREVIA ? null : BASE + 'capas/treino-geral.webp'; }
+/** Arte do cartão "Treino geral de <matéria>" (dono, 10/11/2026): uma por matéria e por tema (claro/escuro). */
+export function urlArteTreinoMateria(m: MateriaId, tema: 'claro' | 'escuro'): string | null { return PREVIA ? null : BASE + 'capas/tg-' + m + '-' + tema + '.webp'; }
 
 export const EH_PREVIA = PREVIA;
 

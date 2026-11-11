@@ -1,5 +1,6 @@
 import { materiaAtual, type MateriaId } from '../dados/tipos';
-import { urlArteMateria } from '../dados/conteudo';
+import { urlArteMateria, urlArteTreinoMateria } from '../dados/conteudo';
+import { ARTE_TREINO } from '../dados/capas';
 
 /**
  * Arte da MATÉRIA (comando 32 do dono, 06/11/2026): um objeto por matéria, montado por scripts/capas.py com as peças
@@ -30,4 +31,23 @@ export function CirculoMateria({ m, tam }: { m: string; tam: number }) {
 /** Arte da matéria em tamanho pequeno (listas, desempenho). */
 export function IconeMateria({ m, tam = 28 }: { m: string; tam?: number }) {
   return <IluMateria m={m} tam={tam} className="ic-materia" />;
+}
+
+/**
+ * Arte do cartão "Treino geral de <matéria>" na página da matéria (dono, 10/11/2026): a ilustração exclusiva da
+ * matéria (docs/capas/treino-geral/<m>/), uma para o tema claro e outra para o escuro; o CSS mostra a do tema ativo
+ * (a escondida, com loading="lazy", nem é baixada). Matéria sem a arte nova: a arte da matéria, como antes.
+ */
+export function ArteTreinoMateria({ m, className = '' }: { m: string; className?: string }) {
+  const id = materiaAtual(m) as MateriaId | null;
+  const tam = id ? ARTE_TREINO[id] : undefined;
+  const claro = id && tam ? urlArteTreinoMateria(id, 'claro') : null;
+  const escuro = id && tam ? urlArteTreinoMateria(id, 'escuro') : null;
+  if (!tam || !claro || !escuro) return <IluMateria m={m} className={className} />;
+  return (
+    <span className={'arte-tg ' + className} aria-hidden>
+      <img src={claro} alt="" width={tam[0]} height={tam[1]} className="arte-tg-claro" loading="lazy" decoding="async" />
+      <img src={escuro} alt="" width={tam[0]} height={tam[1]} className="arte-tg-escuro" loading="lazy" decoding="async" />
+    </span>
+  );
 }
