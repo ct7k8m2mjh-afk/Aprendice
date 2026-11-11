@@ -810,3 +810,36 @@ _Base: livro Revisaí – Matemática (pp. 4–112 lidas)._
 
 - **M17.1** Raciocínio lógico e dedução: Diagramas de Venn para 'todo A é B', 'algum A é B' e 'nenhum A é B', com a negação de cada um escrita embaixo.
 - **M17.2** Algoritmos e sistemas de numeração: Divisão sucessiva por 2 do número 13, com os restos 1, 0, 1, 1 e a leitura de baixo para cima formando 1101.
+
+### Matemática — tópicos extras da revisão geral (arquivo <id>.png, ex.: G08.png)
+
+- **G30** Radiciação: propriedades e racionalização: Fração $\frac{1}{\sqrt3+\sqrt2}$ sendo multiplicada em cima e embaixo pelo conjugado, passo a passo.
+- **G02** Divisibilidade, primos, MMC e MDC (detalhe): Árvore de fatoração de 360 com os expoentes e a conta (3+1)(2+1)(1+1) = 24 divisores.
+- **G01** Teoria dos conjuntos e operações: Diagrama de Venn com três círculos, as oito regiões numeradas e a ordem de preenchimento (do centro para fora).
+- **G03** Sentenças, equações e identidades: Duas colunas: equação (x = 3 marca um ponto) e identidade (vale para toda a reta real).
+- **G04** Fatoração e produtos notáveis: Quadrado de lado a+b dividido em quatro regiões (a², b² e dois retângulos ab) mostrando $(a+b)^2$.
+- **G07** Inequações, estudo do sinal e forma fatorada: Quadro de sinais de $(x-1)(x-3)/(x+2)$ com três linhas e o resultado na reta real.
+- **G08** Parábola (lugar geométrico): Parábola com foco, diretriz, vértice e eixo de simetria, e um ponto P com duas setas iguais (a P-foco e a P-diretriz).
+- **G05** Par ordenado, produto cartesiano, relação e função: Diagrama de flechas de A para B com domínio, contradomínio e imagem pintados em cores diferentes.
+- **G06** Classificação das funções: sobrejetora, injetora, monotonicidade, paridade, periodicidade: Seis mini-gráficos: sobrejetora, injetora, bijetora, par, ímpar e periódica, cada um com a condição escrita.
+- **G29** Inequações exponencial e logarítmica, cologaritmo: Dois gráficos (base 2 e base 1/2) com um intervalo no eixo x e a desigualdade resultante em cada caso.
+- **G14** Classificação, existência e ângulos do triângulo: Triângulo com o ângulo externo marcado e a igualdade com os dois internos opostos; ao lado, 3 palitos (2, 3, 6) que não fecham.
+- **G15** Pontos notáveis do triângulo: Quatro triângulos, um para cada ponto notável, com as cevianas correspondentes em cores.
+- **G16** Congruência e teoremas da Geometria plana: Triângulo com os pontos médios de dois lados ligados (base média) e um trapézio com a base média e o segmento das diagonais.
+- **G28** Transformações trigonométricas: Ciclo com dois arcos a e b somando e um quadro com as três fórmulas de soma em cores.
+- **G17** Geometria de posição e poliedros: Os cinco poliedros de Platão em linha, com F, A e V escritos embaixo de cada um.
+- **G18** Pirâmide regular, tronco e inscrições de sólidos: Pirâmide quadrangular com h, g e a em um triângulo retângulo, e ao lado a esfera dentro de um cilindro equilátero.
+- **G13** Bissetrizes e ângulo entre retas: Duas retas concorrentes com as duas bissetrizes (perpendiculares entre si) e a distância do ponto às retas.
+- **G09** Elipse: Elipse com focos, os eixos 2a e 2b, a distância focal 2c e o triângulo retângulo a, b, c destacado.
+- **G10** Hipérbole: Hipérbole com focos, vértices, retângulo de lados 2a e 2b e as duas assíntotas tracejadas.
+- **G11** Inequações com duas variáveis e regiões do plano: Plano com uma elipse e um círculo, a região interior comum pintada, e o ponto teste (0,0) marcado.
+- **G12** Área de polígono por coordenadas e alinhamento: Quadrilátero no plano com os vértices numerados em ordem e a tabela das multiplicações cruzadas.
+- **G20** Experimento, espaço amostral e produto de probabilidades: Árvore de probabilidades com dois sorteios sem reposição, mostrando a multiplicação ao longo dos ramos.
+- **G19** Fatorial, binomial, Pascal e Newton: Triângulo de Pascal até a linha 6 com Stifel e uma diagonal somada marcados em cores.
+- **G21** Definições, frequências e tabelas: Tabela de distribuição de frequências com colunas f, fr, Fac e Frac coloridas e uma linha preenchida passo a passo.
+- **G22** Média geométrica, harmônica e ponderada: Três balanças: aritmética, geométrica e harmônica, cada uma com a fórmula e um exemplo curto.
+- **G25** Tipos de matrizes e propriedades da transposta: Matrizes 3×3 coloridas mostrando onde ficam os zeros em cada tipo (diagonal, triangular sup., inf., identidade).
+- **G26** Determinantes: propriedades, Laplace, Chió e Vandermonde: Matriz 3×3 com a fila de maior número de zeros destacada e os cofatores com sinais alternados em xadrez (+ − +).
+- **G27** Matriz inversa, Cramer e escalonamento: Sistema 3×3 sendo escalonado em três quadros, com o pivô circulado em cada etapa.
+- **G23** Equações polinomiais: raízes e teoremas: Gráfico de um polinômio cúbico cruzando o eixo x em três pontos, com Girard escrito ao lado.
+- **G24** Divisão de polinômios, Briot-Ruffini e teoremas: Dispositivo de Briot-Ruffini com a raiz à esquerda, os coeficientes em linha e o resto destacado.
