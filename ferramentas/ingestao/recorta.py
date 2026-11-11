@@ -559,6 +559,9 @@ def eventos_do_pdf(pdf, cfg, faixa=None):
             if m and cfg.get('ancora_isolada') and any(
                     M is not L and abs(M['bbox'][1] - y0) < 4 and 0 <= M['bbox'][0] - x1 < 60 for M in lp):
                 m = None   # número de parágrafo do texto (texto na mesma linha, logo à direita), não é questão
+            if m and cfg.get('ancora_coluna_dir') and c + 1 < len(cols) and cols[c + 1][0] == cols[c][1] \
+                    and cols[c][1] - cfg['ancora_coluna_dir'] <= x0 < cols[c][1]:
+                c += 1   # número num selo que começa um pouco antes da divisa (Unitins 2021/2: "QUESTÃO 31" em x≈292)
             if m and x0 - cols[c][0] <= dx:
                 # selo desenhado em volta do número ("QUESTÃO 15" numa faixa colorida): a questão começa no alto do selo
                 for r_ in selos_da_pagina(pg):
@@ -951,6 +954,26 @@ def render(pdf, segs, marcas=None, coloridos=None, apagar=None):
 
 NOME_MATERIA = {'bio': 'Biologia', 'qui': 'Química', 'mat': 'Matemática', 'por': 'Língua Portuguesa', 'fis': 'Física',
                 'geo': 'Geografia', 'his': 'História', 'fs': 'Filosofia e Sociologia', 'ing': 'Inglês'}
+
+
+def corta_pe_cor(im, cor, tol=14, zona=70):
+    """Selo da questão seguinte (faixa colorida) que sobrou no pé do print: corta a partir do 1º pixel dessa cor nos
+    últimos `zona` px, desde que haja uma linha branca logo acima (o selo está separado do texto da questão)."""
+    import numpy as np
+    a = np.asarray(im.convert('RGB')).astype(int)
+    h = a.shape[0]
+    z0 = max(0, h - zona)
+    m = (np.abs(a[z0:] - np.array(cor)).max(axis=2) <= tol).sum(axis=1) > 6
+    if not m.any():
+        return im
+    r0 = z0 + int(np.argmax(m))
+    branco = (a[:r0] >= 245).all(axis=(1, 2))
+    k = r0
+    while k > 0 and branco[k - 1]:
+        k -= 1
+    if k == r0 or k < 20:
+        return im
+    return im.crop((0, 0, im.width, k + 6))
 
 
 def apara(im):
@@ -1423,6 +1446,8 @@ def processa(pid, amostra=False, so_texto=False):
                 continue
             else:
                 img = render(pdf, sup + segs, marcas, coloridos, apaga)
+                if img is not None and cfg.get('pe_cor'):
+                    img = corta_pe_cor(img, cfg['pe_cor'])
             if img is None:
                 relatorio['faltando'].append(n)
                 continue

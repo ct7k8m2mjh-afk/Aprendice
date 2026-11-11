@@ -33,6 +33,15 @@ MANUAIS = {
         'manha': 'uft/provas-e-gabaritos-uft-2024-1/provas-e-gabaritos-uft-2024-1/Vestibular UFT_UFNT 2024_1 Manha.pdf',
         'tarde': 'uft/provas-e-gabaritos-uft-2024-1/provas-e-gabaritos-uft-2024-1/Vestibular UFT_UFNT 2024_1 Tarde.pdf',
         'gabarito': 'uft/provas-e-gabaritos-uft-2024-1/provas-e-gabaritos-uft-2024-1/gabarito-definitivo-uft-2024-1.pdf'}),
+    'ufrr-2021': ('ufrr/47328', {
+        'caderno': 'ufrr/provas-e-gabaritos-ufrr-2021/Caderno de Provas - E3_PI - Vestibular 2021.pdf',
+        'gabarito': 'ufrr/provas-e-gabaritos-ufrr-2021/Edital N 22-21 Gabarito Oficial e recursos- Vestibular 2021.pdf'}),
+    'ufrr-2022': ('ufrr/47465', {
+        'caderno': 'ufrr/provas-e-gabaritos-ufrr-2022/Caderno de Provas - E3_PI - 0A Vestibular 2022.pdf',
+        'gabarito': 'ufrr/provas-e-gabaritos-ufrr-2022/Edital N 14-22 Gabarito Oficial e recursos- Vestibular 2022.pdf'}),
+    'ufrr-2023': ('ufrr/47562', {
+        'caderno': 'ufrr/provas-e-gabaritos-ufrr-2023/provas-e-gabaritos-ufrr-2023/Vestibular 2023 - E3-PI.pdf',
+        'gabarito': 'ufrr/provas-e-gabaritos-ufrr-2023/provas-e-gabaritos-ufrr-2023/gabarito-oficial-ufrr-2023.pdf'}),
 }
 
 

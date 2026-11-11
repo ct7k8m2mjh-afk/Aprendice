@@ -80,6 +80,7 @@ def mais_provas():
         tit = f'Unitins {ano}/{sem}' + (f' – {rotulo}' if rotulo else '')
         c.update({'titulo': tit, 'fase': f'Vestibular {ano}/{sem}' + (f' – {rotulo}' if rotulo else ''),
                   'gabarito': _gab_unitins(pagina)})
+        c['suporte'] = c['suporte'] + [r'(?i)^textos? para (as )?quest']   # "Texto para questões 35 a 38."
         c['nota'] = (f'Universidade Estadual do Tocantins, Vestibular {ano}/{sem}' + (f' ({rotulo})' if rotulo else '') +
                      ': 50 questões A–E (Física, Biologia, Matemática, História, Geografia, Química, Língua Portuguesa e '
                      'Literatura Brasileira, língua estrangeira). Língua estrangeira: inglês. Redação fora. Gabarito '
@@ -101,11 +102,14 @@ def mais_provas():
     for k in ('unitins-2021-2', 'unitins-2022-1', 'unitins-2022-1-med'):
         P[k]['suporte'] = [r'(?i)(responda|responder)\b.*\bquest[õo]es\b', r'(?i)^textos? para as quest[õo]es',
                            r'(?i)^(leia|read)\b.*\bquest[õo]es\b', r'(?i)\bpara responder [àa]s\s*$']
+    # selo (faixa azul-clara) do número da questão seguinte que sobra no pé do print
+    for k in ('unitins-2021-2', 'unitins-2022-1', 'unitins-2022-1-med', 'unitins-2023-1', 'unitins-2023-1-c2'):
+        P[k]['pe_cor'] = (185, 210, 214)
     # 2021/1: número da questão no começo da linha do enunciado ("01 - ", "16. ", "22- "), sem negrito
     P['unitins-2021-1'].update({'ancora': r'^(\d{2})\s*[-–.]\s*\S', 'ancora_negrito': False, 'ancora_dx': 40})
     P['unitins-2021-1']['suporte'] = P['unitins-2021-1']['suporte'] + [r'^Leia\b']   # "Leia, a seguir, o soneto...", "Leia o trecho a seguir..."
     for k in ('unitins-2021-2', 'unitins-2022-1-med'):
-        P[k].update({'divisa': 290, 'ancora_dx': 40})   # "QUESTÃO 20"/"QUESTÃO 31" numa faixa cinza que começa em x≈292 (coluna direita)
+        P[k]['ancora_coluna_dir'] = 10   # "QUESTÃO 20"/"QUESTÃO 31" num selo que começa em x≈292, antes da divisa (297)
 
     # ------------------------------------------------------------------------------------------------ UFT
     # Vestibular UFT/UFNT (Copese): prova da manhã (Linguagens 01–16, língua 17–24 — vale o inglês —, Matemática 25–32)
@@ -152,6 +156,54 @@ def mais_provas():
     # 2022/2: "Texto II" depois da questão 07 é o texto da 08 (que relaciona os textos I e II)
     P['uft-2022-2']['suporte'] = P['uft-2022-2']['suporte'] + [r'^Texto II\s*$']
     P['uft-2022-2']['apoio_de'] = {8: [7]}
+
+    # ----------------------------------------------------------------------------------------------- UFRR
+    # Vestibular UFRR (CPV): Prova Integral (PI), que é a mesma da etapa 3 do seriado (E3): 72 questões A–E em 9
+    # matérias; língua 64–72 (espanhol, inglês ou francês: vale o inglês). As etapas E1 e E2 do seriado ficam fora (como
+    # no PISM da UFJF, só a etapa final). Gabarito oficial: anexo "GABARITO OFICIAL DA PROVA INTEGRAL" do edital.
+    def ufrr(pid, ano):
+        def gab(pasta):
+            txt = _p.texto_pdf(pasta / 'gabarito.pdf')
+            ini = re.search(r'GABARITO OFICIAL DA PROVA INTEGRAL', txt)
+            assert ini, 'sem gabarito oficial da PI'
+            bloco = re.split(r'ANEXO', txt[ini.end():])[0]
+            g, disc = {}, ''
+            ls = bloco.splitlines()
+            for a, b in zip(ls, ls[1:]):
+                if a.strip().startswith('Disciplina'):
+                    disc = a
+                if a.strip().startswith('Questão') and b.strip().startswith('Gabarito'):
+                    if re.search(r'ESPANHOL|FRANC', disc):
+                        continue
+                    ns = [int(x) for x in a.split()[1:]]
+                    vs = re.findall(r'(?<!\w)(?:[A-E]|N\*?)(?!\w)', b.split('Gabarito', 1)[1])
+                    assert len(ns) == len(vs), (a, b)
+                    for n, v in zip(ns, vs):
+                        g[n] = v if v in 'ABCDE' else 'X'
+            assert sorted(g) == list(range(1, 73)), sorted(g)
+            return g
+        secs = [(r'^PORTUGU[ÊE]S$', 'Língua Portuguesa'), (r'^MATEM[ÁA]TICA$', 'Matemática'), (r'^BIOLOGIA$', 'Biologia'),
+                (r'^F[ÍI]SICA$', 'Física'), (r'^GEOGRAFIA$', 'Geografia'), (r'^HIST[ÓO]RIA$', 'História'),
+                (r'^QU[ÍI]MICA$', 'Química'), (r'^ESPA[ÑN]OL$', 'Espanhol'), (r'^ENGLISH$', 'Inglês'), (r'^FRAN[ÇC]AIS$', 'Francês')]
+        P[pid] = {
+            'catalogo': 'ufrr', 'escola': 'UFRR', 'ano': str(ano), 'fase': f'Vestibular {ano} – Prova Integral',
+            'titulo': f'UFRR {ano}', 'banca': 'CPV/UFRR', 'duracao_horas': 5, 'total': 72,
+            'nota': f'Universidade Federal de Roraima, Vestibular {ano} (Comissão Permanente de Vestibular): Prova Integral '
+                    '(a mesma da etapa 3 do seriado), 72 questões A–E de Português, Matemática, Biologia, Física, Geografia, '
+                    'História, Química e língua estrangeira (inglês). Redação fora. Gabarito oficial publicado após os '
+                    'recursos; anulada fica fora.',
+            'cadernos': [{'arquivo': 'caderno', 'paginas': (2, 999)}],
+            'colunas': lambda r: [(24, r.width / 2), (r.width / 2, r.width - 20)], 'margem': 24, 'topo': 40, 'base': 30,
+            'ancora': r'(?i)^(?:QUEST[ÃA]O|QUESTION|PREGUNTA)\s+(\d{1,2})$', 'ancora_dx': 130, 'sequencial': True,   # número centrado na coluna
+            'secoes_rx': secs, 'pular_secoes': ('Espanhol', 'Francês'), 'pular_antes_sequencia': True,
+            'corte': [r'(?i)^PROPOSTA DE REDA', r'(?i)^REDA[ÇC][ÃA]O$', r'(?i)^RASCUNHO', r'(?i)^FOLHA DE RASCUNHO'],
+            'suporte': [r'(?i)(responda|responder)\b.*\bquest[õo]es', r'(?i)\bpara responder( [àa]s?)?\s*$',
+                        r'(?i)^textos? para as quest', r'(?i)\bto answer\b.*\bquestions'],
+            'gabarito': gab, 'area_do_gabarito': False, 'area': lambda n: 'Conhecimentos gerais',
+        }
+    ufrr('ufrr-2021', 2021)
+    ufrr('ufrr-2022', 2022)
+    ufrr('ufrr-2023', 2023)
 
     # ------------------------------------------------------------------------------------------- UNIRG
     # 2025/2: ícones do título "Text for questions..." entravam no pé do print das questões 4, 9 e 15
