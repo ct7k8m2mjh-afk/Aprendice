@@ -1,0 +1,458 @@
+#!/usr/bin/env python3
+"""Lotes de resolução para a sessão de resoluções (Fable, sem API).
+
+Entrega cada lote pronto (questão, gabarito oficial, texto, print), confere o que a sessão escreveu e grava no lugar
+que o site já lê (app/conteudo-fonte/provas/<prova>/resolucoes.json). Pendentes e divergências ficam registrados e não
+voltam em lote nenhum.
+
+Antes de tudo: `cd app && python3 scripts/converte.py` (o banco montado em app/public/conteudo é a base dos lotes).
+
+  python3 ferramentas/resolucoes/lote.py status             quantas faltam, por matéria e faixa de prioridade
+  python3 ferramentas/resolucoes/lote.py proximo [grupo]    abre o próximo lote (escolhe a matéria pela prioridade;
+                                                            grupo: animadas = mat bio qui fis, texto = por geo his ing fs)
+  python3 ferramentas/resolucoes/lote.py proximo <m> [N]    abre o próximo lote da matéria (N questões, padrão 30)
+  python3 ferramentas/resolucoes/lote.py valida <saida>     confere o arquivo de saída sem gravar
+  python3 ferramentas/resolucoes/lote.py grava <saida>      confere e grava (só depois da conferência do lote)
+  python3 ferramentas/resolucoes/lote.py relatorio          refaz lotes-andamento.md, lotes-pendentes.md e lotes-divergencias.md
+
+Matérias: bio qui mat fis (resolução animada) · por geo his ing fs (resolução em texto).
+"""
+import datetime
+import glob
+import json
+import os
+import re
+import sys
+
+RAIZ = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+PUB = os.path.join(RAIZ, 'app', 'public', 'conteudo')
+PROVAS = os.path.join(RAIZ, 'app', 'conteudo-fonte', 'provas')
+DOCS = os.path.join(RAIZ, 'docs', 'resolucoes')
+TRAB = os.path.join(DOCS, 'trabalho')  # lotes abertos (fora do git; refeitos a partir do registro se sumirem)
+REGISTRO = os.path.join(DOCS, 'registro.json')
+
+MATERIAS = ['bio', 'qui', 'mat', 'fis', 'por', 'geo', 'his', 'ing', 'fs']
+NOMES = {'bio': 'Biologia', 'qui': 'Química', 'mat': 'Matemática', 'fis': 'Física', 'por': 'Português',
+         'geo': 'Geografia', 'his': 'História', 'ing': 'Inglês', 'fs': 'Filosofia e Sociologia'}
+ANIMADAS = {'bio', 'qui', 'mat', 'fis'}
+# provas-alvo mais procuradas depois do ENEM (ordem de prioridade; o resto vem depois)
+ALVO = ['Fuvest', 'Unicamp', 'Unesp', 'UERJ', 'Unifesp', 'UFPR', 'UEL', 'UFU', 'Famerp', 'Santa Casa',
+        'Santa Casa (FCMSCSP)', 'Einstein', 'Albert Einstein', 'Famema', 'São Camilo', 'FMABC', 'Sírio-Libanês',
+        'PUC-SP', 'PUC-Campinas', 'Mackenzie', 'UPE', 'UECE', 'UEA', 'UDESC', 'Acafe']
+FAIXAS = ['ENEM nível 1-6', 'provas-alvo nível 1-6', 'demais nível 1-6', 'ENEM nível 7-10',
+          'provas-alvo nível 7-10', 'demais nível 7-10']
+TIPOS = {'localizar', 'calcular', 'comparar', 'eliminar', 'concluir'}
+PROIBIDAS = re.compile(r'\b(provavelmente|talvez|chute|distrator)\b', re.I)
+EMOJI = re.compile('[\U0001F300-\U0001FAFF☀-➿⭐✅]')
+CAMPOS = ['antes', 'pista', 'passos', 'resposta', 'checagem', 'erradas', 'armadilha', 'alerta', 'essencial']
+
+
+def ler(f, padrao=None):
+    if not os.path.exists(f):
+        return padrao
+    with open(f, encoding='utf-8') as h:
+        return json.load(h)
+
+
+def gravar(f, d):
+    os.makedirs(os.path.dirname(f), exist_ok=True)
+    tmp = f + '.tmp'
+    with open(tmp, 'w', encoding='utf-8') as h:
+        json.dump(d, h, ensure_ascii=False, indent=1)
+        h.write('\n')
+    os.replace(tmp, f)
+
+
+def registro():
+    return ler(REGISTRO, {'lotes': {}, 'pendentes': {}, 'divergencias': {}})
+
+
+def faixa(q):
+    alto = int(q.get('dif') or 0) >= 7
+    base = 0 if q['escola'] == 'ENEM' else (1 if q['escola'] in ALVO else 2)
+    return base + (3 if alto else 0)
+
+
+def chave(q):
+    alvo = ALVO.index(q['escola']) if q['escola'] in ALVO else len(ALVO)
+    return (faixa(q), q['sub'], alvo, q['escola'], str(q.get('ano')), q.get('prova', ''), int(re.sub(r'\D', '', str(q.get('n'))) or 0))
+
+
+def resolvidas_em_provas():
+    ids = set()
+    for f in glob.glob(os.path.join(PROVAS, '*', 'resolucoes.json')):
+        ids |= {k for k, v in ler(f).items() if v.get('aprovada')}
+    return ids
+
+
+def banco(m):
+    """Questões de prova da matéria ainda sem resolução e fora de qualquer lote, pendência ou divergência."""
+    if not os.path.exists(os.path.join(PUB, m, 'banco.json')):
+        sys.exit('Falta o banco montado. Rode antes: cd app && python3 scripts/converte.py')
+    b = ler(os.path.join(PUB, m, 'banco.json'))
+    feitas = set()
+    for f in glob.glob(os.path.join(PUB, m, 'res', '*.json')):
+        feitas |= set(ler(f))
+    return b, feitas
+
+
+def ocupadas(reg):
+    ids = set(reg['pendentes']) | set(reg['divergencias'])
+    # pendências e divergências registradas à mão pela sessão do Fable (pendentes.md, divergencias.md)
+    for f in ('pendentes.md', 'divergencias.md'):
+        c = os.path.join(DOCS, f)
+        if os.path.exists(c):
+            ids |= set(re.findall(r'\bP[0-9a-f]{8}\b', open(c, encoding='utf-8').read()))
+    for l in reg['lotes'].values():
+        ids |= set(l['ids'])
+    return ids
+
+
+def faltam(m, reg, feitas_provas):
+    b, feitas = banco(m)
+    ocup = ocupadas(reg)
+    return [q for q in b if q.get('prova') and q['id'] not in feitas and q['id'] not in feitas_provas and q['id'] not in ocup]
+
+
+def nomes_materia(m):
+    mat = ler(os.path.join(PUB, m, 'materia.json'))
+    temas = {x['id']: x['nome'] for x in mat['modulos']}
+    subs = {s['id']: s['nome'] for x in mat['modulos'] for s in x['subs']}
+    return temas, subs
+
+
+def limpa(s):
+    s = re.sub(r'[ \t]+\n', '\n', s or '')
+    s = re.sub(r'\n{3,}', '\n\n', s)
+    s = re.sub(r'_{8,}', '', s)
+    return s.strip()
+
+
+def entrada(m, qs):
+    temas, subs = nomes_materia(m)
+    txt = {}
+    out = []
+    for q in qs:
+        if q['sub'] not in txt:
+            txt[q['sub']] = ler(os.path.join(PUB, m, 'txt', q['sub'] + '.json'), {})
+        t = txt[q['sub']].get(q['id'], {})
+        e = {
+            'id': q['id'],
+            'prova': f"{q['escola']} {q['ano']}" + (f" {q['fase']}" if q.get('fase') else '') + f" · questão {q['n']}",
+            'conteudo': f"{q['sub']} {subs.get(q['sub'], '')} (tema {q['modulo']} {temas.get(q['modulo'], '')})",
+            'nivel': q.get('dif'),
+            'gabarito_oficial': q['gab'],
+            'letras': sorted(q['alts']),
+            'print': os.path.join('app', 'conteudo-fonte', q['print']),
+            'tem_figura': bool(q.get('figura')),
+        }
+        tr = t.get('transcricao')
+        if isinstance(tr, dict) and tr.get('enun'):
+            # transcrição organizada da prova oficial (mais limpa que a camada de texto)
+            enun = tr['enun']
+            e['texto_da_prova'] = limpa('\n\n'.join(b.get('t', '') for b in enun) if isinstance(enun, list) else str(enun))
+            e['alternativas'] = {L: limpa(texto_todo(v)) for L, v in (tr.get('alts') or {}).items()}
+        else:
+            e['texto_da_prova'] = limpa(t.get('enun', ''))
+        out.append(e)
+    return out
+
+
+def caminho_entrada(lote):
+    return os.path.join(TRAB, lote + '.entrada.json')
+
+
+def caminho_saida(lote):
+    return os.path.join(TRAB, lote + '.saida.json')
+
+
+def cmd_status():
+    reg = registro()
+    fp = resolvidas_em_provas()
+    print(f"{'matéria':24} {'faltam':>7}  " + '  '.join(f'f{i}' for i in range(len(FAIXAS))))
+    total = 0
+    for m in MATERIAS:
+        qs = faltam(m, reg, fp)
+        total += len(qs)
+        por = [sum(1 for q in qs if faixa(q) == i) for i in range(len(FAIXAS))]
+        print(f'{NOMES[m]:24} {len(qs):7}  ' + '  '.join(f'{n:>4}' for n in por))
+    print(f"{'total':24} {total:7}")
+    print('faixas: ' + ' · '.join(f'f{i} {n}' for i, n in enumerate(FAIXAS)))
+    abertos = [k for k, v in reg['lotes'].items() if v['estado'] == 'aberto']
+    print(f"lotes gravados: {sum(1 for v in reg['lotes'].values() if v['estado'] == 'gravado')} · abertos: {', '.join(abertos) or 'nenhum'}"
+          f" · pendentes: {len(reg['pendentes'])} · divergências: {len(reg['divergencias'])}")
+
+
+GRUPOS = {'animadas': ['mat', 'bio', 'qui', 'fis'], 'texto': ['por', 'geo', 'his', 'ing', 'fs']}
+
+
+def escolhe_materia(reg, grupo=None):
+    """Sem matéria: o lote aberto, se houver; senão a matéria com a questão de faixa mais alta na prioridade
+    (ENEM nível 1-6 de todas as matérias primeiro, depois provas-alvo...), em empate na ordem de MATERIAS."""
+    lista = GRUPOS.get(grupo, MATERIAS)
+    for l in reg['lotes'].values():
+        if l['estado'] == 'aberto' and l['materia'] in lista:
+            return l['materia']
+    fp = resolvidas_em_provas()
+    melhor = None
+    for m in lista:
+        qs = faltam(m, reg, fp)
+        if qs:
+            f = min(faixa(q) for q in qs)
+            if melhor is None or f < melhor[0]:
+                melhor = (f, m)
+    return melhor[1] if melhor else None
+
+
+def cmd_proximo(m=None, n=30):
+    reg = registro()
+    if m is None or m in GRUPOS:
+        m = escolhe_materia(reg, m)
+        if m is None:
+            print('Nenhuma questão sem resolução.')
+            return
+    if m not in MATERIAS:
+        sys.exit(f'matéria inválida: {m} (use {" ".join(MATERIAS)})')
+    # lote aberto da matéria: devolve o mesmo (refaz a entrada se o arquivo sumiu)
+    for nome, l in reg['lotes'].items():
+        if l['materia'] == m and l['estado'] == 'aberto':
+            b, _ = banco(m)
+            por_id = {q['id']: q for q in b}
+            gravar(caminho_entrada(nome), {'lote': nome, 'materia': m, 'animada': m in ANIMADAS,
+                                           'questoes': entrada(m, [por_id[i] for i in l['ids'] if i in por_id])})
+            print(f'Lote {nome} já estava aberto: {caminho_entrada(nome)}')
+            print(f'Saída: {caminho_saida(nome)}')
+            return
+    qs = sorted(faltam(m, reg, resolvidas_em_provas()), key=chave)[:n]
+    if not qs:
+        print(f'{NOMES[m]}: nenhuma questão sem resolução.')
+        return
+    k = 1 + sum(1 for v in reg['lotes'].values() if v['materia'] == m)
+    nome = f'{m}-{k:04d}'
+    reg['lotes'][nome] = {'materia': m, 'ids': [q['id'] for q in qs], 'estado': 'aberto',
+                          'aberto_em': datetime.date.today().isoformat(), 'faixa': FAIXAS[faixa(qs[0])]}
+    gravar(caminho_entrada(nome), {'lote': nome, 'materia': m, 'animada': m in ANIMADAS, 'questoes': entrada(m, qs)})
+    gravar(REGISTRO, reg)
+    print(f'Lote {nome}: {len(qs)} questões ({FAIXAS[faixa(qs[0])]}, conteúdos {", ".join(sorted({q["sub"] for q in qs}))})')
+    print(f'Entrada: {caminho_entrada(nome)}')
+    print(f'Saída (você escreve): {caminho_saida(nome)}')
+
+
+def palavras(s):
+    return len(str(s).split())
+
+
+def texto_todo(x):
+    if isinstance(x, str):
+        return x
+    if isinstance(x, dict):
+        return ' '.join(texto_todo(v) for v in x.values())
+    if isinstance(x, list):
+        return ' '.join(texto_todo(v) for v in x)
+    return ''
+
+
+def confere(saida):
+    """Devolve (erros, avisos, lote, entrada). Erro impede gravar; aviso é para olhar."""
+    d = ler(saida)
+    if d is None:
+        sys.exit(f'arquivo não encontrado: {saida}')
+    lote = d.get('lote')
+    reg = registro()
+    if lote not in reg['lotes']:
+        sys.exit(f'lote desconhecido no registro: {lote}')
+    ent = {q['id']: q for q in ler(caminho_entrada(lote), {}).get('questoes', [])}
+    if not ent:
+        sys.exit(f'falta a entrada do lote; rode: lote.py proximo {reg["lotes"][lote]["materia"]}')
+    erros, avisos = [], []
+    vistos = set()
+    for q in d.get('questoes', []):
+        qid = q.get('id')
+        e = ent.get(qid)
+        if not e:
+            erros.append(f'{qid}: não é deste lote')
+            continue
+        vistos.add(qid)
+        st = q.get('status')
+        if st in ('pendente', 'divergencia'):
+            if not str(q.get('motivo', '')).strip():
+                erros.append(f'{qid}: {st} sem motivo')
+            continue
+        if st != 'ok':
+            erros.append(f'{qid}: status deve ser ok, pendente ou divergencia')
+            continue
+        r = q.get('resolucao') or {}
+        falta = [c for c in CAMPOS if c not in r]
+        if falta:
+            erros.append(f'{qid}: faltam campos {falta}')
+            continue
+        gab = e['gabarito_oficial']
+        if not re.match(rf'^Alternativa {gab}\b', str(r['resposta'])):
+            erros.append(f'{qid}: resposta tem de começar por "Alternativa {gab}" (gabarito oficial)')
+        erradas = r['erradas'] if isinstance(r['erradas'], dict) else {}
+        esperadas = set(e['letras']) - {gab}
+        if set(erradas) != esperadas:
+            erros.append(f'{qid}: erradas deve ter exatamente as letras {sorted(esperadas)} (tem {sorted(erradas)})')
+        for L, t in erradas.items():
+            if not str(t).strip():
+                erros.append(f'{qid}: errada {L} vazia')
+            elif palavras(t) > 45:
+                avisos.append(f'{qid}: errada {L} com {palavras(t)} palavras (alvo até ~30)')
+        a = r['antes'] if isinstance(r['antes'], dict) else {}
+        if not str(a.get('texto', '')).strip():
+            erros.append(f'{qid}: antes.texto vazio')
+        if not isinstance(a.get('formulas', []), list) or not isinstance(a.get('simbolos', []), list):
+            erros.append(f'{qid}: antes.formulas e antes.simbolos são listas')
+        elif any(not (isinstance(p, list) and len(p) == 2) for p in a.get('simbolos', [])):
+            erros.append(f'{qid}: antes.simbolos é lista de pares [termo, explicação]')
+        ps = r['passos'] if isinstance(r['passos'], list) else []
+        if not 2 <= len(ps) <= 8:
+            erros.append(f'{qid}: {len(ps)} passos (de 2 a 8; normal 3 a 6)')
+        for i, p in enumerate(ps, 1):
+            if not str(p.get('faz', '')).strip() or not str(p.get('porque', '')).strip():
+                erros.append(f'{qid}: passo {i} sem faz ou porque')
+            if p.get('tipo') not in TIPOS:
+                erros.append(f'{qid}: passo {i} com tipo inválido ({p.get("tipo")})')
+            if 'conta' not in p:
+                erros.append(f'{qid}: passo {i} sem o campo conta (vazio "" é aceito)')
+        if ps and ps[-1].get('tipo') != 'concluir':
+            avisos.append(f'{qid}: o último passo normalmente é concluir')
+        ess = r['essencial'] if isinstance(r['essencial'], dict) else {}
+        if any(not str(ess.get(k, '')).strip() for k in ('pede', 'chave', 'cuidado')):
+            erros.append(f'{qid}: essencial precisa de pede, chave e cuidado')
+        for c in ('pista', 'checagem', 'armadilha'):
+            if not str(r[c]).strip():
+                erros.append(f'{qid}: {c} vazio')
+        eq = q.get('equivocos') if isinstance(q.get('equivocos'), dict) else {}
+        if set(eq) != esperadas:
+            erros.append(f'{qid}: equivocos deve ter exatamente as letras {sorted(esperadas)}')
+        elif any(not re.match(r'^[A-Z]{1,2}\d{2}\.\d+:[a-z0-9-]+$', str(v)) for v in eq.values()):
+            erros.append(f'{qid}: equivocos no formato <conteúdo>:<equívoco-em-minúsculas-com-hífen> (ex.: M01.1:dividiu-por-10)')
+        if PROIBIDAS.search(texto_todo(erradas)):
+            erros.append(f'{qid}: erradas com palavra proibida (provavelmente/talvez/chute/distrator)')
+        tudo = texto_todo(r)
+        if EMOJI.search(tudo):
+            erros.append(f'{qid}: tem emoji')
+        if re.search(r'\b(Brasil Escola|Mundo Educação|Prepara Enem|InfoEscola)\b', tudo, re.I):
+            erros.append(f'{qid}: cita site didático')
+    falta = set(ent) - vistos
+    if falta:
+        erros.append(f'questões do lote sem saída: {sorted(falta)}')
+    if not d.get('conferido'):
+        erros.append('"conferido": true só depois que o conferente aprovou o lote (e os itens corrigidos)')
+    return erros, avisos, lote, ent, d
+
+
+def cmd_valida(saida):
+    erros, avisos, lote, _, d = confere(saida)
+    for a in avisos:
+        print('aviso:', a)
+    for e in erros:
+        print('ERRO:', e)
+    ok = sum(1 for q in d.get('questoes', []) if q.get('status') == 'ok')
+    print(f'{lote}: {ok} ok · {len(erros)} erro(s) · {len(avisos)} aviso(s)')
+    return not erros
+
+
+def cmd_grava(saida):
+    erros, avisos, lote, ent, d = confere(saida)
+    for a in avisos:
+        print('aviso:', a)
+    if erros:
+        for e in erros:
+            print('ERRO:', e)
+        sys.exit(f'{lote}: nada gravado ({len(erros)} erro(s)).')
+    reg = registro()
+    m = reg['lotes'][lote]['materia']
+    b, _ = banco(m)
+    por_id = {q['id']: q for q in b}
+    hoje = datetime.date.today().isoformat()
+    por_prova = {}
+    for q in d['questoes']:
+        if q['status'] != 'ok':
+            alvo = 'pendentes' if q['status'] == 'pendente' else 'divergencias'
+            e = ent[q['id']]
+            reg[alvo][q['id']] = {'materia': m, 'prova': e['prova'], 'conteudo': e['conteudo'], 'motivo': q['motivo'],
+                                  'lote': lote, 'data': hoje}
+            continue
+        bq = por_id[q['id']]
+        reg_q = {
+            'n': bq['n'],
+            'conceito': q.get('conceito', ''),
+            'equivocos': q.get('equivocos', {}),
+            'resolucao': q['resolucao'],
+            'caminhos': q.get('caminhos') or [],
+            'quadro': q.get('quadro'),
+            'visual': q.get('visual'),
+            'fontes': q.get('fontes') or [],
+            'aprovada': True,
+            'revisao': {'lentes': ['resolvedor-autoconferencia', 'conferente-fatos-e-didatica'], 'data': hoje, 'lote': lote},
+        }
+        por_prova.setdefault(bq['prova'], {})[q['id']] = reg_q
+    for pid, novos in por_prova.items():
+        f = os.path.join(PROVAS, pid, 'resolucoes.json')
+        atual = ler(f, {})
+        atual.update(novos)
+        gravar(f, atual)
+    reg['lotes'][lote].update(estado='gravado', gravado_em=hoje,
+                              ok=sum(len(v) for v in por_prova.values()),
+                              pendentes=sum(1 for q in d['questoes'] if q['status'] == 'pendente'),
+                              divergencias=sum(1 for q in d['questoes'] if q['status'] == 'divergencia'))
+    gravar(REGISTRO, reg)
+    cmd_relatorio(silencioso=True)
+    l = reg['lotes'][lote]
+    print(f"{lote} gravado: {l['ok']} resoluções em {len(por_prova)} prova(s) · {l['pendentes']} pendente(s) · {l['divergencias']} divergência(s)")
+    print('Agora: cd app && python3 scripts/converte.py && npx tsc --noEmit -p . && npx vitest run')
+
+
+def cmd_relatorio(silencioso=False):
+    reg = registro()
+    hoje = datetime.date.today().isoformat()
+    fp = resolvidas_em_provas()
+    linhas = [f'# Andamento das resoluções (gerado por lote.py em {hoje})', '',
+              '## Quantas faltam', '',
+              '| Matéria | Faltam | ' + ' | '.join(FAIXAS) + ' |', '|---|---|' + '---|' * len(FAIXAS)]
+    total = 0
+    for m in MATERIAS:
+        qs = faltam(m, reg, fp)
+        total += len(qs)
+        linhas.append(f'| {NOMES[m]} | {len(qs)} | ' + ' | '.join(str(sum(1 for q in qs if faixa(q) == i)) for i in range(len(FAIXAS))) + ' |')
+    linhas += [f'| **Total** | **{total}** |' + ' |' * len(FAIXAS), '',
+               '"Faltam" não conta as questões já em lote, pendentes ou com divergência.', '', '## Lotes', '',
+               '| Lote | Matéria | Faixa | Questões | Estado | OK | Pendentes | Divergências |', '|---|---|---|---|---|---|---|---|']
+    for nome, l in sorted(reg['lotes'].items()):
+        linhas.append(f"| {nome} | {NOMES[l['materia']]} | {l.get('faixa', '')} | {len(l['ids'])} | {l['estado']} | "
+                      f"{l.get('ok', '')} | {l.get('pendentes', '')} | {l.get('divergencias', '')} |")
+    gravar_md(os.path.join(DOCS, 'lotes-andamento.md'), linhas)
+    for alvo, titulo, expl in (('pendentes', 'Pendentes', 'Questões deixadas para depois por falta de certeza absoluta.'),
+                               ('divergencias', 'Divergências de gabarito', 'Questões em que o raciocínio não chega à letra oficial, ou a questão parece ambígua ou com erro. O dono decide.')):
+        ls = [f'# {titulo} (gerado por lote.py em {hoje})', '', expl, '', '| Questão | Matéria | Prova | Conteúdo | Motivo |', '|---|---|---|---|---|']
+        for qid, x in sorted(reg[alvo].items(), key=lambda kv: (kv[1]['materia'], kv[1]['prova'])):
+            ls.append(f"| {qid} | {NOMES[x['materia']]} | {x['prova']} | {x['conteudo']} | {x['motivo'].replace('|', '/')} |")
+        gravar_md(os.path.join(DOCS, 'lotes-' + alvo + '.md'), ls)
+    if not silencioso:
+        print('lotes-andamento.md, lotes-pendentes.md e lotes-divergencias.md refeitos.')
+
+
+def gravar_md(f, linhas):
+    with open(f, 'w', encoding='utf-8') as h:
+        h.write('\n'.join(linhas) + '\n')
+
+
+if __name__ == '__main__':
+    a = sys.argv[1:]
+    if not a:
+        print(__doc__)
+    elif a[0] == 'status':
+        cmd_status()
+    elif a[0] == 'proximo':
+        cmd_proximo(a[1] if len(a) > 1 else None, int(a[2]) if len(a) > 2 else 30)
+    elif a[0] == 'valida' and len(a) == 2:
+        sys.exit(0 if cmd_valida(a[1]) else 1)
+    elif a[0] == 'grava' and len(a) == 2:
+        cmd_grava(a[1])
+    elif a[0] == 'relatorio':
+        cmd_relatorio()
+    else:
+        print(__doc__)
+        sys.exit(1)
