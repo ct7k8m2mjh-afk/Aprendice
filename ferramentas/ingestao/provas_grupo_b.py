@@ -111,7 +111,7 @@ def mais_provas():
     # 2023/1 caderno 1: o texto sobre Michael Jackson vem logo abaixo do título "Língua Inglesa", sem frase de indicação,
     # e é o texto da questão 46 (conferido no caderno, p. 18)
     P['unitins-2023-1']['suporte_forcado'] = {('caderno', 18): [(356, 3, [46, 46])]}
-    P['unitins-2023-1-c2']['suporte_forcado'] = {('caderno', 23): [(95, 0, [46, 46])]}   # letra de "The Show Must Go On"
+    P['unitins-2023-1-c2']['suporte_forcado'] = {('caderno', 23): [(95, 3, [46, 46])]}   # letra de "The Show Must Go On"
     for k in ('unitins-2023-1', 'unitins-2023-1-c2'):
         P[k]['apagar_girado'] = r'Vestibular Unitins'   # rodapé vertical na margem direita
         P[k]['base'] = 31   # barra cinza no pé (y 812–820)
@@ -128,6 +128,7 @@ def mais_provas():
     for k in [x for x in P if x.startswith('unitins-')]:
         P[k]['faixas_ajuste'] = True
         P[k]['caixa_vazia'] = True   # moldura vazia no pé do print
+        P[k]['apagar_molduras'] = True
     # diagramação antiga (selos azuis, páginas de uma coluna misturadas a duas, texto justificado partido na calha)
     for k in ('unitins-2021-2', 'unitins-2022-1', 'unitins-2022-1-med'):
         P[k]['faixas_uma_auto'] = True      # página toda de uma coluna (texto atravessa a calha, nenhuma questão começa à direita)

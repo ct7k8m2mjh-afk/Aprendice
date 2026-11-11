@@ -1003,6 +1003,34 @@ def apagaveis(pdf, cfg):
                   if abs(l['dir'][1]) > 0.9 and re.search(cfg['apagar_girado'], ''.join(s_['text'] for s_ in l['spans']))]
             if rs:
                 out.setdefault(pg.number, []).extend(rs)
+    if cfg.get('apagar_molduras'):
+        # moldura de coluna/caixa (retângulo alto sem preenchimento, Unitins): as 4 bordas saem do print — quando o
+        # recorte junta pedaços de caixas, as bordas viravam fios e caixas vazias soltas no meio da questão
+        for pg in pdf:
+            txt_ = [pymupdf.Rect(L['bbox']) for L in linhas(pg)]
+            for d_ in pg.get_drawings():
+                r_ = pymupdf.Rect(d_['rect'])
+                if d_.get('fill') is None and r_.height > 60 and r_.width > 120 and d_.get('type') in ('s', 'fs', None):
+                    e_ = 0.9
+                    bordas = [pymupdf.Rect(r_.x0 - e_, r_.y0 - e_, r_.x1 + e_, r_.y0 + e_), pymupdf.Rect(r_.x0 - e_, r_.y1 - e_, r_.x1 + e_, r_.y1 + e_),
+                              pymupdf.Rect(r_.x0 - e_, r_.y0 - e_, r_.x0 + e_, r_.y1 + e_), pymupdf.Rect(r_.x1 - e_, r_.y0 - e_, r_.x1 + e_, r_.y1 + e_)]
+                    for b_ in bordas:
+                        # onde o fio encosta numa linha de texto ele fica (pintar ali levaria o alto das letras junto)
+                        hor = b_.width > b_.height
+                        pedacos = [(b_.x0, b_.x1) if hor else (b_.y0, b_.y1)]
+                        for t_ in txt_:
+                            c_ = (b_.y0 + b_.y1) / 2 if hor else (b_.x0 + b_.x1) / 2
+                            if hor and t_.x0 < b_.x1 and t_.x1 > b_.x0 and t_.y0 - 2 < b_.y1 and t_.y1 + 1 > b_.y0:
+                                a_, z_ = t_.x0 - 3, t_.x1 + 3
+                            elif not hor and t_.y0 < b_.y1 and t_.y1 > b_.y0 and t_.x0 + 1 < c_ < t_.x1 - 1:
+                                a_, z_ = t_.y0 - 1, t_.y1 + 1
+                            else:
+                                continue
+                            pedacos = [q_ for p0, p1 in pedacos for q_ in ((p0, min(p1, a_)), (max(p0, z_), p1)) if q_[1] - q_[0] > 1]
+                            if hor:   # junto da letra: só a espessura do fio, sem folga
+                                out.setdefault(pg.number, []).append(('fino', pymupdf.Rect(max(b_.x0, a_), c_ - 0.45, min(b_.x1, z_), c_ + 0.45)))
+                        for p0, p1 in pedacos:
+                            out.setdefault(pg.number, []).append(pymupdf.Rect(p0, b_.y0, p1, b_.y1) if hor else pymupdf.Rect(b_.x0, p0, b_.x1, p1))
     if not cfg.get('apagar'):
         return out
     for pg in pdf:
@@ -1024,6 +1052,13 @@ def render(pdf, segs, marcas=None, coloridos=None, apagar=None):
         pix = pg.get_pixmap(clip=r, dpi=DPI)
         im = Image.open(BytesIO(pix.tobytes('png'))).convert('RGB')
         for ra in (apagar or {}).get(p, []):
+            if isinstance(ra, tuple):   # ('fino', rect): pinta exatamente o retângulo, sem folga
+                ra = ra[1]
+                if ra.intersects(r):
+                    e_ = DPI / 72
+                    im.paste((255, 255, 255), (max(0, round((ra.x0 - r.x0) * e_)), max(0, round((ra.y0 - r.y0) * e_)),
+                                               min(im.width, round((ra.x1 - r.x0) * e_)), min(im.height, round((ra.y1 - r.y0) * e_))))
+                continue
             if ra.intersects(r):
                 e_ = DPI / 72
                 im.paste((255, 255, 255), (max(0, int((ra.x0 - r.x0) * e_) - 2), max(0, int((ra.y0 - r.y0) * e_) - 2),
@@ -1058,7 +1093,7 @@ def encolhe_vazios(im, max_px=40, fica=24):
     """Trecho vazio dentro de moldura (só os fios laterais, sem texto) mais alto que `max_px`: encolhe para `fica` px."""
     import numpy as np
     from PIL import Image as _I
-    d = np.asarray(im.convert('L')) < 170
+    d = np.asarray(im.convert('L')) < 235
     h, w = d.shape
     def vazio(row):
         xs = np.nonzero(row)[0]
@@ -1066,8 +1101,38 @@ def encolhe_vazios(im, max_px=40, fica=24):
             return True
         g = np.split(xs, np.nonzero(np.diff(xs) > 2)[0] + 1)
         # só bordas da moldura: traços verticais perto das laterais ou fios de quase toda a largura
-        return all((len(x) <= 4 and (x[0] < 30 or x[-1] > w - 30)) or len(x) > w * 0.5 for x in g)
+        return all((len(x) <= 4 and (x[0] < w * 0.12 or x[-1] > w * 0.88)) or len(x) > w * 0.3 for x in g)
     v = [vazio(d[r]) for r in range(h)]
+    # fio = linha fina: faixa larga com mais de 4 px de altura é figura/fundo colorido, não moldura
+    larga = [bool(d[r].mean() > 0.3) for r in range(h)]
+    r = 0
+    while r < h:
+        if larga[r]:
+            a_ = r
+            while r < h and larga[r]:
+                r += 1
+            if r - a_ > 4:
+                for k_ in range(a_, r):
+                    v[k_] = False
+        else:
+            r += 1
+    # fio solto (borda de caixa vazia) longe de qualquer conteúdo, acima e abaixo: sai do print (fica branco)
+    conteudo = [not v[r] for r in range(h)]
+    fio = [v[r] and bool(d[r].mean() > 0.3) for r in range(h)]
+    idx = [r for r in range(h) if conteudo[r]]
+    import bisect
+    if any(fio) and idx:
+        im = im.copy()
+        px = im.load()
+        for r in range(h):
+            if not fio[r]:
+                continue
+            k_ = bisect.bisect_left(idx, r)
+            acima_ = r - idx[k_ - 1] if k_ > 0 else 10 ** 6
+            abaixo_ = idx[k_] - r if k_ < len(idx) else 10 ** 6
+            if acima_ > 12 and abaixo_ > 12:
+                for x_ in range(w):
+                    px[x_, r] = (255, 255, 255) if im.mode == 'RGB' else 255
     cortes, r = [], 0
     while r < h:
         if v[r]:
@@ -1144,9 +1209,21 @@ def corta_caixa_vazia(im):
     """Moldura vazia no pé do print (quadro de rascunho, caixa da questão seguinte, borda de página — Unitins): o bloco
     final em que só há fios (linhas horizontais longas e traços verticais nas bordas), sem nada dentro, sai do print."""
     import numpy as np
-    d = np.asarray(im.convert('L')) < 170
+    d = np.asarray(im.convert('L')) < 235
     h, w = d.shape
-    linha_cheia = d.mean(axis=1) > 0.5
+    linha_cheia = d.mean(axis=1) > 0.3
+    # só fio fino (até 4 px de altura) conta como moldura; faixa cheia mais alta é figura/fundo colorido
+    r = 0
+    while r < h:
+        if linha_cheia[r]:
+            a_ = r
+            while r < h and linha_cheia[r]:
+                r += 1
+            if r - a_ > 4:
+                linha_cheia[a_:r] = False
+                d[a_:r, w // 2] = True   # e a linha passa a ter "conteúdo"
+        else:
+            r += 1
     r = h - 1
     while r > 0 and not d[r].any():
         r -= 1
@@ -1163,7 +1240,7 @@ def corta_caixa_vazia(im):
         xs = np.nonzero(row)[0]
         # só traços verticais (no máximo 4 grupos estreitos), sem texto
         grupos = np.split(xs, np.nonzero(np.diff(xs) > 2)[0] + 1)
-        if all((len(g) <= 4 and (g[0] < 30 or g[-1] > w - 30)) or len(g) > w * 0.5 for g in grupos):   # bordas ou fios
+        if all((len(g) <= 4 and (g[0] < w * 0.12 or g[-1] > w * 0.88)) or len(g) > w * 0.3 for g in grupos):   # bordas ou fios
             k -= 1
             continue
         break
