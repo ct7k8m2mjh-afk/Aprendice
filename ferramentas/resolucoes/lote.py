@@ -190,18 +190,28 @@ def info_da_prova(q):
 
 
 def separa_alternativas(texto, letras):
-    """Tenta separar enunciado e alternativas da camada de texto: marcadores '(A)', 'A)', 'a)', 'A.', 'A ⇒' em ordem."""
-    pos, ini = {}, 0
-    for L in letras:
-        r = re.compile(rf'(?:^|\n)\s*\(?(?:{L}|{L.lower()})\s*(?:\)|\.|⇒|=>|-|–)\s*', re.M)
-        m = None
-        for x in r.finditer(texto, ini):
-            m = x
+    """Tenta separar enunciado e alternativas da camada de texto: marcadores '(A)', 'A)', 'a)', 'A.', 'A ⇒' em ordem.
+    Usa o ÚLTIMO marcador da primeira letra que ainda tem as outras em ordem depois dele: nas questões de associar
+    (I–IV com características A–D antes das alternativas a–e), as características não passam por alternativas."""
+    rx = {L: re.compile(rf'(?:^|\n)\s*\(?(?:{L}|{L.lower()})\s*(?:\)|\.|⇒|=>|-|–)\s*', re.M) for L in letras}
+
+    def cadeia(ini):
+        pos = {}
+        for L in letras:
+            m = rx[L].search(texto, ini)
+            if not m:
+                return None
+            pos[L] = (m.start(), m.end())
+            ini = m.end()
+        return pos
+
+    pos = None
+    for m in reversed(list(rx[letras[0]].finditer(texto))):
+        pos = cadeia(m.start())
+        if pos:
             break
-        if not m:
-            return None
-        pos[L] = (m.start(), m.end())
-        ini = m.end()
+    if not pos:
+        return None
     enun = texto[:pos[letras[0]][0]].strip()
     alts = {}
     for i, L in enumerate(letras):
