@@ -764,6 +764,15 @@ def suportes_apos_alternativa(pdf, cfg, ev, faixa=None):
 
 
 def segmentos(pdf, cfg, ev, i, faixa_pag=None):
+    segs = _segmentos(pdf, cfg, ev, i, faixa_pag)
+    if cfg.get('seg_min') and len(segs) > 1:
+        # pedaço de página só com o fio de uma moldura (IME: a questão termina no pé e a página seguinte abre com o
+        # quadro do cabeçalho de seção): fica fora
+        segs = segs[:1] + [sg for sg in segs[1:] if sg[1].height >= cfg['seg_min']]
+    return segs
+
+
+def _segmentos(pdf, cfg, ev, i, faixa_pag=None):
     """Regiões (página, retângulo) entre o evento i e o próximo, em ordem de leitura."""
     e = ev[i]
     # "pausa" (ex.: quadro "Espaço para rascunho" no pé da página): o recorte pula o resto da coluna e segue adiante

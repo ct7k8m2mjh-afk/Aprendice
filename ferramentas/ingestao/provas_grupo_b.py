@@ -224,7 +224,7 @@ def mais_provas():
             'colunas': lambda r: [(28, r.width - 24)], 'margem': 28, 'topo': 30, 'base': 30,
             'ancora': r'^(\d{1,2})\s*ª\s*QUEST', 'ancora_dx': 20, 'sequencial': True,
             'corte': [r'(?i)^QUEST\s*\S?\s*[ÕO]\s*ES DE \d+ A \d+', r'^MATEM', r'^F[ÍI´]\s*\S*SICA$', r'^QU[ÍI´]', r'(?i)^RASCUNHO', r'^CONCURSO DE ADMISS'],
-            'suporte': [], 'aperta_moldura': True,
+            'suporte': [], 'aperta_moldura': True, 'seg_min': 20,
             'gabarito': lambda pasta: {int(n): (v if len(v) == 1 else 'X') for n, v in re.findall(
                 r'(?<![\d,.])(\d{1,2})\s+([A-E]\b|[Aa][Nn][Uu][Ll][Aa][Dd][AaOo])', _p.texto_pdf(pasta / 'gabarito.pdf'))},
             'area': lambda n: 'Matemática' if n <= 15 else 'Física' if n <= 30 else 'Química',
