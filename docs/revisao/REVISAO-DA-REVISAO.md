@@ -10,7 +10,7 @@ Revisão em 3 lentes sucessivas (fatos → compreensão do aluno → fatos de no
 | Matemática | `docs/revisao/mat/geral.json` | 112 de 112 | 112 | 0 | revisada completa |
 | Biologia | `docs/revisao/bio/geral.json` | 58 de 58 | 58 | 2 | revisada completa, com "conferir" |
 | Física | `docs/revisao/fis/geral.json` | 50 de 50 | 50 | 1 | revisada completa, com "conferir" |
-| Química | `docs/revisao/qui/geral.json` | 0 de 58 | — | — | **não revisada** (retomar aqui) |
+| Química | `docs/revisao/qui/geral.json` | 58 de 58 | 58 | 2 | revisada completa, com "conferir" |
 | Geografia | `docs/revisao/geo/geral.json` | 0 de 45 | — | — | **não revisada** (retomar aqui) |
 | História | `docs/revisao/his/geral.json` | 0 de 57 | — | — | **não revisada** (retomar aqui) |
 | Filosofia e Sociologia | `docs/revisao/fs/geral.json` | 0 de 86 | — | — | **não revisada** (retomar aqui) |
@@ -248,4 +248,43 @@ Revisão em 3 lentes sucessivas (fatos → compreensão do aluno → fatos de no
 ### Pendências de decisão do dono
 
 - FK21 (Santa Casa 2024): o exemplo cita "resultado 5 no livro" sem os dados do enunciado. Decidir se fica assim, se sai do tópico ou se entra a questão completa (com print fiel).
+
+## Química
+
+### Erros de fato encontrados no trabalho anterior (7)
+
+1. QK18 — NaOH dado como exemplo de curva de solubilidade decrescente; a solubilidade do NaOH aumenta com a temperatura (exemplos corretos: Ca(OH)2, Ce2(SO4)3).
+2. QK21 — conta de energia de ligação com um "2·" a mais (2·(413 + 358 + 463) daria 2468, não 1234) e frase da lei de Hess truncada, ilegível.
+3. QK17 — fila de reatividade dos metais sem o hidrogênio, que é o que decide quem reage com ácido.
+4. QK08 — tópico de propriedades periódicas sem dizer em que sentido cada propriedade varia na tabela.
+5. QK10 — pegadinha usava CH4 como exemplo de "ligações polares em molécula apolar" (a ligação C–H é praticamente apolar).
+6. QK28 — "Kh = Kw" para sal que não sofre hidrólise.
+7. QK03 — Demócrito com nascimento em 450 a.C. (c. 460); QK45 — "metoxi-metano".
+
+### Todas as alterações
+
+| id | o que mudou | por quê | fonte | lente |
+|---|---|---|---|---|
+| QK03 | datas de Demócrito: c. 460–370 a.C. | nascimento dado como 450 a.C. | Stanford Encyclopedia of Philosophy, https://plato.stanford.edu/entries/democritus/ | 1 |
+| QK08 | ponto novo com o sentido de variação de cada propriedade; pegadinha com raio de íons | o tópico definia as propriedades mas não dizia como variam na tabela (isso só estava na imagem que falta) | Atkins & Jones, Princípios de Química; Feltre, Química (Moderna) | 2 |
+| QK10 | pegadinha: CO2 × H2O no lugar de CH4 | o exemplo 'CH4 tem ligações polares' é fraco (a ligação C–H é quase apolar); o par clássico é CO2 × H2O | Atkins & Jones, Princípios de Química; Feltre, Química (Moderna) | 1 |
+| QK17 | hidrogênio incluído na fila de reatividade | sem a posição do H a fila não permite decidir quais metais reagem com ácidos | Atkins & Jones, Princípios de Química; Feltre, Química (Moderna) | 1 |
+| QK18 | exemplo de curva decrescente: NaOH → Ca(OH)2 e Ce2(SO4)3 | erro: a dissolução do NaOH libera calor, mas a solubilidade dele aumenta com a temperatura; os exemplos de curva decrescente são Ca(OH)2 e Ce2(SO4)3 | IUPAC-NIST Solubility Database, https://srdata.nist.gov/solubility/ ; CRC Handbook of Chemistry and Physics | 1 |
+| QK21 | conta da energia de ligação (sem o "2·") e frase da lei de Hess reescrita | erro de conta: 2·(413 + 358 + 463) daria 2468, não 1234; a frase da lei de Hess estava truncada ("inverso da fermentação a etapa inversa...") | conta refeita; Atkins & Jones, Princípios de Química; Feltre, Química (Moderna) | 1 |
+| QK28 | retirado "Kh = Kw" do sal de ácido forte e base forte | se não há hidrólise, não há Kh | Atkins & Jones, Princípios de Química; Feltre, Química (Moderna) | 1 |
+| QK39 | ano da síntese de Wöhler (1828) | data cobrada em prova | Atkins & Jones, Princípios de Química; Feltre, Química (Moderna) | 2 |
+| QK45 | 'metoxi-metano' → 'metoximetano' | grafia da nomenclatura IUPAC (sem hífen) | IUPAC, Compendium of Chemical Terminology (Gold Book), https://goldbook.iupac.org | 1 |
+| QK52 | pegadinha: desidratação intra × intermolecular | contraste clássico (170 °C alceno × 140 °C éter) ausente | Atkins & Jones, Princípios de Química; Feltre, Química (Moderna) | 2 |
+| QK33 | pegadinha: pilha × eletrólise com o sentido dos elétrons | contraste reforçado | Atkins & Jones, Princípios de Química; Feltre, Química (Moderna) | 2 |
+| todos os 58 tópicos | busca[] ampliada | faltavam os nomes que o aluno digita (sinônimos como "pontes de hidrogênio", fórmulas como "PV = nRT", grafias como "Bronsted" e "Saytzeff") | — | 2 |
+
+### Itens marcados "conferir" (estão em `lacunas` do arquivo)
+
+- conferir: QK18 — a descrição da imagem do livro cita curvas de solubilidade de KNO3, NaOH e NaCl. Se o gráfico do livro mostrar a curva do NaOH como decrescente, a imagem não deve ser reproduzida assim (a solubilidade do NaOH cresce com a temperatura).
+- conferir: gabaritos por letra das questões resolvidas (QK14, QK18, QK21, QK22 Unicamp 2021, QK23 UFJF 2020, QK24 PUC-Rio 2022 e UEA 2024, QK27, QK30 Unesp 2024, QK32 Uerr 2023, QK34 UPF 2023, QK35 Uece 2022, QK36 Unesp 2021 e FMABC 2025, QK38 Uerj 2023, QK39, QK41 UEL 2023, QK43 Udesc 2023, QK48 UEPG 2022, QK51 Unisc 2022, QK53 FCMMG 2022, QK58 UEPG 2023): todas as contas e classificações foram refeitas e batem com a resposta citada, mas a letra vem só do livro. QK14, QK18, QK21 e QK27 trazem 'exemplo do livro' sem prova e ano.
+
+### Pendências de decisão do dono
+
+- QK18: se a imagem do livro mostrar a curva do NaOH como decrescente, não reproduzir; decidir qual gráfico entra.
+- QK14, QK18, QK21 e QK27 citam "exemplo do livro" com alternativa, sem prova e ano. Pela regra, questão de prova só com identificação: decidir se viram exemplo sem letra ou se saem.
 
