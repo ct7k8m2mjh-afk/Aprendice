@@ -1248,3 +1248,149 @@ Cada item aparece no site como EM CONSTRUÇÃO... (o que será colocado: ...). E
 | SK46 | Sociedade da informação, Revolução 4.0 e riscos contemporâneos | Esquema da Quarta Revolução Industrial (IA, robótica, biotecnologia) e seus desafios éticos. |
 | SK47 | Interpretações da globalização: Bauman e Ulrich Beck | Foto dos destroços de uma escola infantil perto da usina de Chernobyl (explosão em 1986). |
 | SK48 | Mundo do trabalho, globalização e impactos culturais, econômicos e sociais | Mapa mental Mundo do trabalho, globalização e impactos culturais, econômicos e sociais. |
+
+## Português (caderno Revisaí) — imagens que faltam
+
+Cada item aparece no site como EM CONSTRUÇÃO... (o que será colocado: ...). Enviar como `<id>.png`.
+
+| id | título | imagem desejada |
+|---|---|---|
+| PK01 | As dez classes de palavras: variáveis e invariáveis | Esquema do livro: quadro com as 10 classes divididas em variáveis e invariáveis. |
+| LK01 | Linguagem literária: efeito estético, mimesis, gêneros e literariedade | Busto de Aristóteles (Museu Nacional de Roma) e quadro dos elementos da narrativa. |
+| IK01 | Linguagem conotativa e figuras semânticas de comparação | Fotos de 'coração de pedra' e 'asa da xícara'; quadro dos tipos de metonímia. |
+| RK01 | Formato da prova e as 5 competências da redação do Enem | Esquema do caderno de prova e das 5 competências. |
+| PK02 | Substantivos: classificações semânticas e quanto à forma | Quadros do livro com as classificações semânticas e quanto à forma; ilustração freepik. |
+| LK02 | Elementos da narrativa: narrador, personagens, enredo, tempo, espaço e discurso | Quadro do livro: elementos da narrativa com características. |
+| IK02 | Figuras de oposição: antítese, paradoxo, ironia, sarcasmo e preterição | Quadro de Caravaggio (A ceia de Emaús) e quadro de Matisse/arte moderna do box. |
+| RK02 | Estrutura da redação Enem: 4 parágrafos, tese e conclusão | Esquema macro e microestrutura da redação. |
+| PK03 | Substantivos: flexão de gênero, número e grau | Quadro 'Flexão de plural dos substantivos conforme a terminação' do livro. |
+| LK03 | Trovadorismo: cantigas líricas e satíricas, trovador, jogral e menestrel | Fac-símile da cantiga de D. Dinis no Cancioneiro da Vaticana; tabuleta cuneiforme da Epopeia de Gilgamesh (Museu Britânico). |
+| IK03 | Figuras de intensidade e realce: hipérbole, eufemismo, gradação, sinestesia, apóstrofe e oximoro | Quadro de Kandinsky; mapa mental das figuras semânticas. |
+| RK03 | Abordagem do tema: temas 2016–2025 e como problematizar | Lista de temas Enem 2016–2025 e quadro de perguntas. |
+| PK04 | Adjetivos: flexão de gênero, número e grau | Quadros do livro: gênero de adjetivos, tipos de comparativo e de superlativo. |
+| LK04 | Humanismo: transição para o Renascimento, Fernão Lopes e Gil Vicente | Prólogo do Cancioneiro Geral Português; trecho do Auto da Barca do Inferno (diálogo do Frade com o Diabo). |
+| IK04 | Figuras sintáticas de apagamento: elipse, zeugma e assíndeto | Quadro das figuras sintáticas (apagamento, repetição, ruptura, inversão). |
+| RK04 | Introdução: contexto, ponte e tese (progressão argumentativa) | Quadro 'contexto, ponte e tese' com os quatro modelos de contextualização. |
+| PK05 | Artigos: definidos, indefinidos, contração e funções | Exemplos do livro de contração de preposição + artigo. |
+| LK05 | Classicismo: Renascimento, Camões épico e lírico | Estátua Davi, de Michelangelo, como exemplo do ideal renascentista; trecho de Os Lusíadas (episódio da Máquina do Mundo). |
+| IK05 | Figuras sintáticas de repetição: polissíndeto, anáfora, epístrofe e pleonasmo | Quadro 'Figuras sintáticas' do livro. |
+| RK05 | Repertório sociocultural na Competência 2: legitimado, pertinente e produtivo | Fluxograma de avaliação do repertório (níveis 2 a 5). |
+| PK06 | Numerais: cardinal, ordinal, multiplicativo e fracionário | Quadro do livro: classificação e função dos numerais com exemplos. |
+| LK06 | Classicismo em resumo: contexto, características e a épica e a lírica de Camões | O Homem vitruviano, de Leonardo da Vinci; esquemas do livro sobre Classicismo e as lírica e épica camonianas. |
+| IK06 | Figuras sintáticas de ruptura e inversão: silepse, anacoluto, quiasmo e hipérbato | Foto das pirâmides invertidas do Louvre; esquema ABBA do poema parnasiano. |
+| RK06 | Parágrafo argumentativo: TF, expansão, repertório e fecho; tipos de argumento e lacunas | Esquema do parágrafo TF–EXP–REP–FECHO com exemplos de redações nota 1000. |
+| PK07 | Pronomes pessoais e pronomes de tratamento | Quadro do livro: pronomes retos e oblíquos; ilustrações de Shutterstock. |
+| LK07 | Quinhentismo: Carta de Caminha e literatura jesuítica (Anchieta) | Fac-símile da Carta de Caminha (Arquivo Nacional de Portugal, Lisboa); retrato do Padre Anchieta por Benedito Calixto (Museu Paulista). |
+| IK07 | Figuras sonoras: assonância, aliteração, onomatopeia, cacofonia e paronomásia | Quadrinho de paronomásia e mapa mental das figuras sintáticas e sonoras. |
+| RK07 | Recursos coesivos referenciais e sequenciais (operadores argumentativos) — Competência 4 | Tabela dos oito tipos de operadores argumentativos. |
+| PK08 | Pronomes possessivos, indefinidos e interrogativos | Quadros do livro de possessivos, indefinidos e interrogativos. |
+| LK08 | Barroco: contexto, cultismo e conceptismo, Vieira e Gregório de Matos | Pieter Claesz, Vanitas Still Life (1630); Caravaggio, O sepultamento de Cristo (1602); desfile Dolce & Gabbana inspirado no Barroco; mapa mental do Barroco. |
+| IK08 | Texto narrativo: foco narrativo, tempo e quebras da progressão temporal | Tirinha de Andre Dahmer; linha do tempo linear × não linear. |
+| RK08 | Proposta de intervenção: os 5 elementos e três modelos de frase | Quadro dos 5 elementos e exemplo de proposta nota 1000. |
+| PK09 | Pronomes demonstrativos e relativos | Quadro do livro: relação de proximidade/distanciamento dos demonstrativos; ilustração Shutterstock. |
+| LK09 | Arcadismo: Neoclassicismo, fingimento poético, Inconfidência e os árcades brasileiros | Pedro Américo, Tiradentes esquartejado (1893); poemas de Cláudio Manuel da Costa e Tomás Antônio Gonzaga reproduzidos no livro. |
+| IK09 | Texto descritivo, injuntivo e prescritivo | Tirinha de Adão Iturrusgarai sobre velocidade. |
+| RK09 | Passo a passo: como fazer uma boa redação no Enem | Fluxograma 'Como fazer uma boa redação no Enem'. |
+| PK10 | Verbos e advérbios (classificação, graus e palavras denotativas) | Quadro do livro: classificação dos advérbios e locuções. |
+| LK10 | Romantismo no Brasil: contexto histórico e as três gerações poéticas | Delacroix, A liberdade guiando o povo (1830); trechos de I-Juca-Pirama, 'Se eu morresse amanhã' e O navio negreiro no livro. |
+| IK10 | Texto dissertativo: argumentativo × expositivo e desenvolvimento dedutivo × indutivo (+ questão FCMSCSP 2020) | Mapa mental da tipologia textual. |
+| RK10 | Dissertação clássica: quem cobra, estrutura e estratégias de introdução e conclusão | Esquema 'Estrutura da dissertação sem proposta de intervenção'. |
+| PK11 | Preposições, conjunções e interjeições | Exemplo do livro: texto de redação nota 1000 do Enem 2019 com conjunções destacadas. |
+| LK11 | Prosa romântica: folhetim, romances de costumes, José de Alencar e Maria Firmina dos Reis | José Maria de Medeiros, Iracema (1884); trecho de Iracema (diálogo Araquém e Martim). |
+| IK11 | Discurso direto e indireto e a conversão entre eles | Quadro de conversão entre discursos. |
+| RK11 | Leitura da coletânea, assunto × tema e ampliação temática | Tabela de assuntos e recortes e fluxo da ampliação temática (página lida por captura de tela, pois o texto não estava disponível). |
+| PK12 | Estrutura das palavras: morfemas, radical, vogal temática e desinências | Quadros do livro: desinências número-pessoais, modo-temporais e verbonominais. |
+| LK12 | Romantismo em resumo: contexto, gerações e prosa (esquema do livro) | Mapa mental do Romantismo no Brasil (características, contexto, três gerações, prosa). |
+| IK12 | Discurso indireto livre (+ questão ITA-SP 2022) | Mapa mental 'Discurso textual'. |
+| RK12 | Como expandir argumentos e recursos de autoria: campo semântico (exemplo Fuvest 2025) | Redação 50/50 da Fuvest 2025 anotada e mapa mental 'resumão'. |
+| PK13 | Formação de palavras: derivação, composição e outros processos | Quadros do livro com exemplos de cada processo de formação. |
+| LK13 | Realismo: contexto científico, Portugal (Questão Coimbrã, Eça) e Brasil (Machado, Júlia Lopes) | Prólogo 'Ao leitor' de Memórias póstumas (leitor incluso); trecho de Memórias de Martha. |
+| IK13 | Gêneros textuais: características composicionais e esferas jornalística e propagandística | Quadro de gêneros textuais. |
+| RK13 | Gêneros textuais: conceito, interlocutores, prática social e vestibulares que cobram | Mapa 'Tipos de texto: funções e gêneros textuais'. |
+| PK14 | Frase, oração e período (simples e composto) | Quadro do livro: frase, oração, período simples e composto. |
+| LK14 | Naturalismo: romance de tese, zoomorfização, Aluísio Azevedo e Raul Pompeia | Almeida Júnior, Caipira picando fumo (1893), Pinacoteca de São Paulo. |
+| IK14 | Gêneros da esfera digital: divulgação científica, podcast e memes (+ questão Enem Digital 2020) | Peça publicitária da questão; mapa mental dos gêneros textuais. |
+| RK14 | Texto narrativo: enredo, narrador, personagem, espaço e tempo | Esquema dos 5 elementos da narrativa. |
+| PK15 | Sujeito: simples, composto, oculto, indeterminado e oração sem sujeito | Esquemas do livro de análise de sujeito simples, composto, oculto e indeterminado. |
+| LK15 | Realismo x Naturalismo: quadro comparativo | Quadro-resumo do livro comparando Realismo e Naturalismo em Portugal e no Brasil. |
+| IK15 | Funções da linguagem: elementos da comunicação, emotiva e apelativa (conativa) | Esquema do circuito de comunicação com as seis funções. |
+| RK15 | Gêneros narrativos: narrativa clássica, conto, crônica, relato pessoal, diário e carta pessoal | Mapa dos gêneros narrativos. |
+| PK16 | Vocativo e predicado (nominal, verbal e verbo-nominal) | Esquemas de análise sintática do livro (sujeito, predicativo, verbo de ligação). |
+| LK16 | Parnasianismo: arte pela arte, forma fixa e Olavo Bilac | Soneto 'Via Láctea' (XIII), de Bilac, reproduzido no livro. |
+| IK16 | Funções fática, poética, referencial e metalinguística (+ questão Enem Digital 2020) | Poema concreto 'Anti-ruído', peça publicitária da urna eletrônica e mapa mental das funções. |
+| RK16 | Gêneros expositivos: notícia, reportagem, divulgação científica, resumo, verbete e relatório | Mapa dos gêneros expositivos. |
+| PK17 | Transitividade verbal e complementos (objeto direto e indireto) | Esquemas do livro de análise de objeto direto e indireto. |
+| LK17 | Simbolismo: poesia das sensações, musicalidade e simbolistas brasileiros | Poema 'Balada', de Francisca Júlia (Mármores), reproduzido no livro. |
+| IK17 | Coesão textual: relações de progressão e conectores subordinativos | Tabela de conectores subordinativos. |
+| RK17 | Gêneros argumentativos: artigo de opinião, cartas, abaixo-assinado | Quadro dos tipos de carta (remetente, destinatário, propósito). |
+| PK18 | Adjunto adverbial e agente da passiva | Esquema do livro: transposição da voz passiva para a ativa (o cavalo/os bombeiros). |
+| LK18 | Pré-Modernismo: transição, Euclides da Cunha, Lima Barreto, Monteiro Lobato e Augusto dos Anjos | Trecho de Triste fim de Policarpo Quaresma e poema 'Psicologia de um vencido', de Augusto dos Anjos. |
+| IK18 | Conectores coordenativos e coesão por remissão (anafórica) | Tabela de conectores coordenativos. |
+| RK18 | Postagem em fórum, post em rede social, resenha crítica, manifesto e discurso político | Quadro de postagens e esquema da resenha. |
+| PK19 | Adjunto adnominal e complemento nominal | Esquemas do livro: adjunto adnominal em volta do núcleo; complemento nominal com adjetivo, advérbio e substantivo. |
+| LK19 | Vanguardas europeias: Futurismo, Expressionismo, Cubismo, Dadaísmo e Surrealismo | Munch, O grito (1893); Dalí, A persistência da memória (1931); Duchamp, A fonte (1917); retratos de Marinetti, Picasso e Breton. |
+| IK19 | Coesão por antecipação (catafórica) | Quadro das três relações de coesão. |
+| RK19 | Gêneros injuntivos: texto instrucional, receita culinária e guia de viagem | Mapa dos gêneros injuntivos. |
+| PK20 | Aposto e predicativo (do sujeito e do objeto) | Quadros do livro: tipos de aposto; esquemas de predicativo do sujeito e do objeto. |
+| LK20 | Modernismo em Portugal: revista Orpheu e contexto | Capa da primeira edição da revista Orpheu (1915). |
+| IK20 | Ambiguidade semântica: polissemia, duplo sentido e homonímia | Imagem pato/coelho, tirinha da Mafalda e quadro de homofonias. |
+| RK20 | Redação por tarefas específicas (UFPR): comandos identifique, sintetize, inicie e finalize | Quadro de comandos e a prova UFPR 2025. |
+| PK21 | Funções sintáticas dos pronomes pessoais (retos e oblíquos) | Esquema do livro: mapa das funções sintáticas dos pronomes pessoais. |
+| LK21 | Fernando Pessoa: poesia ortônima e heterônimos (Caeiro, Reis, Campos) | Poemas 'Autopsicografia' e 'Poema em linha reta' reproduzidos no livro; capa de Mensagem (1934); mapa mental de Pessoa. |
+| IK21 | Ambiguidade sintática: qualificador, pronome e elipse | Mapa mental 'Ambiguidade textual'. |
+| RK21 | Resposta argumentativa × resposta interpretativa (UEM) | Mapa 'Redação em outros padrões'. |
+| PK22 | Classificação dos verbos: regulares, irregulares, anômalos, defectivos, abundantes e semântica | Quadros do livro: classificação morfológica e semântica dos verbos. |
+| LK22 | Modernismo no Brasil: Semana de 1922 e primeira geração (Mário, Oswald, Bandeira) | Fotografia do almoço em homenagem a Paulo Prado (1924); trechos de Macunaíma e do Manifesto Antropófago; entrevista de Bandeira sobre 'Os sapos'. |
+| IK22 | Intertextualidade explícita: citação e epígrafe | Quadro 'Relações explícitas e implícitas'. |
+| RK22 | Checklist da redação: todas as etapas | Checklist ilustrado da redação. |
+| PK23 | Estrutura do verbo, conjugações, transitividade e formas nominais | Quadro do livro: formas nominais do verbo e esquemas de conjugação. |
+| LK23 | Segunda geração modernista (1930) e Carlos Drummond de Andrade (três fases) | Capas e folha de rosto das primeiras edições de Alguma poesia, A rosa do povo e Claro enigma; esquema das três fases. |
+| IK23 | Intertextualidade implícita: alusão, paráfrase e paródia (+ questão UFU-MG) | Cartaz 'We Can Do It!' e a paródia 'Yes I Cat!'; comparação 'Canção do Exílio' x Hino Nacional. |
+| PK24 | Tempo, modo, aspecto e perífrase verbal | Quadro do livro: modos verbais (indicativo, subjuntivo, imperativo) com exemplos. |
+| LK24 | Poesia da segunda geração: Cecília Meireles, Vinicius de Moraes, Jorge de Lima e Murilo Mendes; questão Fuvest 2018 | Poema 'Essa negra Fulô' (Jorge de Lima) reproduzido no livro; questão resolvida da Fuvest 2018. |
+| IK24 | Paráfrase × paródia na prática (+ questão Unicamp 2024) e quadro das intertextualidades implícitas | Textos 1 (miojo) e 2 (Canção do Exílio) da questão; mapa de intertextualidade. |
+| PK25 | Vozes verbais: ativa, passiva (analítica e sintética), reflexiva e o 'se' | Esquema do livro: vozes verbais (ativa, reflexiva, passiva analítica e sintética). |
+| LK25 | Romance de 30: Rachel de Queiroz, Jorge Amado, Graciliano Ramos, José Lins do Rego e Erico Verissimo | Mapa do livro de autores do romance de 30. |
+| IK25 | Tipos de variação linguística: geográfica, histórica, situacional e social | Mapa 'Variação linguística' e linha de mudança de 'Virgem Maria' a 'iti malia'. |
+| PK26 | Correlação verbal (tempos e modos que combinam no período) | Quadro do livro: pares de correlação verbal com exemplos. |
+| LK26 | Terceira geração (1945): Clarice Lispector e João Cabral de Melo Neto | Quadros-resumo da terceira geração. |
+| IK26 | Preconceito linguístico (+ questão Fuvest 2022) | Quadro de variação linguística com balões de gírias. |
+| PK27 | Orações coordenadas assindéticas e sindéticas (aditiva, alternativa, adversativa, explicativa, conclusiva) | Quadro do livro com as sindéticas, exemplos e conectivos; questão resolvida da Unemat-MT. |
+| LK27 | Guimarães Rosa: regionalismo universalista, neologismos e obras principais; questão Unimontes 2024 | Capa da primeira edição de Grande sertão: veredas (1956); esquema de obras e características. |
+| IK27 | Tipos de questão: paráfrase, inferência, síntese analítica e síntese comparativa | Mapa mental 'Tipos de questão'. |
+| PK28 | Orações subordinadas substantivas (desenvolvidas e reduzidas) | Quadro do livro: sete funções das substantivas com exemplos. |
+| LK28 | Concretismo, Neoconcretismo e Ferreira Gullar | Fotografia de Augusto de Campos, Décio Pignatari e Haroldo de Campos (1996). |
+| PK29 | Orações subordinadas adjetivas: explicativas e restritivas (e reduzidas) | Quadro do livro: adjetivas reduzidas de particípio, gerúndio e infinitivo. |
+| LK29 | Narrativas contemporâneas: urbanas, realismo insólito, Hatoum e Bernardo Carvalho | Foto de Milton Hatoum (Folhapress). |
+| PK30 | Orações subordinadas adverbiais (nove tipos) e reduzidas | Quadro do livro: nove tipos de adverbiais com conjunções e exemplos. |
+| LK30 | Literatura escrita por mulheres: Geração Mimeógrafo, Ana Cristina Cesar, Adélia Prado, Lygia, Sophia | Mimeógrafo e capas de livros do período. |
+| PK31 | Funções do 'que' | Quadro do livro: funções do 'que' com exemplos. |
+| LK31 | Literatura afrodescendente: Carolina Maria de Jesus, Conceição Evaristo, Ana Maria Gonçalves e outros; questão Fuvest 2024 | Poema 'Tempo de nos aquilombar' (Conceição Evaristo) reproduzido no livro. |
+| PK32 | Funções do 'se' | Quadro do livro: funções do 'se' com exemplos. |
+| LK32 | Literatura marginalizada ou periférica: Ferréz, Cooperifa, Racionais, slam | Foto de sarau e capas das obras citadas. |
+| PK33 | Concordância verbal: sujeito simples, pronomes 'que' e 'quem', verbos impessoais | Esquemas do livro: sujeito, verbo e objeto direto nas frases com haver/fazer. |
+| LK33 | Literaturas africanas de língua portuguesa: contexto e quatro momentos | Mapa mental das literaturas africanas. |
+| PK34 | Concordância com o verbo 'ser' e na voz passiva sintética | Quadros do livro sobre o verbo 'ser' e sobre passiva sintética x indeterminação. |
+| LK34 | Literatura moçambicana: fases colonial, nacionalista e pós-colonial | Mapa de autores moçambicanos. |
+| PK35 | Concordância verbal com sujeito composto, coletivo e substantivos de sentido singular ou plural | Quadros do livro: concordância com substantivos de sentido singular/plural e com sujeito composto. |
+| LK35 | Literatura angolana pós-colonial: Pepetela, Agualusa, Ondjaki e Djaimilia Pereira de Almeida | Trecho de A visão das plantas reproduzido no livro. |
+| PK36 | Concordância nominal: adjetivo com dois ou mais substantivos e predicativo | Quadro do livro: adjetivo posposto aos substantivos conforme gênero e número. |
+| LK36 | Literaturas indígenas: linha do tempo, Lei 11.645/2008, escrita como tradução cultural | Linha do tempo das literaturas indígenas; foto de Joênia Wapichana na ONU; capa de Histórias de índio. |
+| PK37 | Concordância nominal: casos de dúvida (mesmo, anexo, obrigado, meio, bastante, é proibido) e silepse | Quadros do livro de casos de dúvida; questão resolvida UFMS 2018. |
+| LK37 | Território, cosmologia e identidade: Kopenawa, Krenak, Kambeba, Dorrico, Potiguara e Graúna | Trechos dos poemas 'Ay kakyri tama', 'Eu sou macuxi' e 'Eu não tenho minha aldeia'. |
+| PK38 | Regência verbal: verbos que geram dúvida, pronome relativo e complemento comum | Quadro do livro: verbos com dúvidas de regência e suas preposições. |
+| LK38 | Oralidade e tradição: Daniel Munduruku, Kaká Werá Jecupé e síntese temática | Mapa mental 'Literaturas indígenas' com os sete autores e três eixos. |
+| PK39 | Regência nominal e questão resolvida (Acafe-SC 2023) | Quadro do livro: regências de substantivos e adjetivos; questão resolvida Acafe-SC 2023. |
+| PK40 | Crase: conceito e uso obrigatório | Quadro do livro: usos obrigatórios da crase com exemplos. |
+| PK41 | Crase: uso proibido | Quadro do livro: usos proibidos da crase. |
+| PK42 | Crase facultativa, casos especiais (casa, terra, distância) e contextos ambíguos; questão EEAR 2023 | Quadros do livro: casos especiais e contextos ambíguos; questão resolvida EEAR-SP 2023. |
+| PK43 | Colocação pronominal: próclise e palavras atrativas | Quadro do livro: casos de próclise com exemplos. |
+| PK44 | Mesóclise, ênclise e colocação nas locuções verbais; questão resolvida | Esquemas do livro: colocação do pronome em locuções verbais com infinitivo, gerúndio e particípio. |
+| PK45 | Ortografia: grafias dos sons /ʒ/, /ʃ/, /s/ e /z/ | Quadro do livro: grafias possíveis para cada som com exemplos. |
+| PK46 | Emprego do hífen (prefixos e palavras compostas) | Quadro do livro: regras do hífen por critérios ortográficos e fonéticos. |
+| PK47 | Homônimos e parônimos | Quadro do livro: parônimos que mais geram dúvidas. |
+| PK48 | Dúvidas comuns: por que/por quê/porque/porquê, onde/aonde, mau/mal, senão/se não, mas/mais, a fim de/afim | Quadros do livro de dúvidas comuns com exemplos. |
+| PK49 | Acentuação gráfica: tonicidade, regras por classe, hiatos e acento diferencial | Quadros do livro: classificação quanto à tonicidade e regras de acentuação. |
+| PK50 | Vírgula: usos e proibições | Esquemas do livro: posição do adjunto adverbial e uso de vírgula na subordinada adverbial. |
+| PK51 | Outros sinais de pontuação | Quadro do livro: sinais de pontuação e suas funções; ilustração Shutterstock. |
+| PK52 | Vícios de linguagem: queísmo, pleonasmo, barbarismo, estrangeirismo, solecismo, gerundismo, ambiguidade, eco, cacofonia | Quadro do livro de vícios de linguagem com exemplos. |
