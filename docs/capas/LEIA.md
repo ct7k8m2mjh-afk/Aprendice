@@ -18,3 +18,6 @@ Referência da aba principal (Início): `docs/referencias/aba-principal/ref-aba-
 - Peças que ficaram de fora das capas (não aparecem nas referências): Biologia `BORBOLETA`, `PLANETA-TERRA`, `PLANTA`; Química `BICO-DE-BUNSEN`, `CRISTAL`, `TUBO-DE-ENSAIO`; Matemática `ABACO`, `TRANSFERIDOR`; Português `MAQUINA-DE-ESCREVER`, `PAPEL-ANTIGO`, `PORTA-TINTA`; Física `FORCA`, `POLIA`, `TELESCOPIO`; Geografia `MAPA`, `SATELITE`, `VULCAO`; História `LIVRO-ANTIGO`, `VASO-ANTIGO`; Filosofia e Sociologia `APERTO-DE-MAO`, `AUDITORIO`, `PENSADOR`. A peça de Física sem nome (`SEM-NOME-e792b5e0.png`) é o pêndulo de Newton da capa.
 - Ícones do Drive (`APRENDICE` → `ICONES`): a sessão do comando 32 não tinha acesso ao Drive; considerou-se que `docs/icones/<matéria>/` já tem todos os ícones de tema do dono (comandos 19 e 23).
 - Origem e direitos: artes do próprio dono (Drive), sem material de terceiros.
+
+## Treino geral de cada matéria (dono, 10/11/2026)
+- A arte do cartão "Treino geral de <matéria>" na página da matéria passou a ser a ilustração exclusiva de cada matéria (claro e escuro), em `docs/capas/treino-geral/` (origem e uso: `treino-geral/LEIA.md`). O `ic-<m>.webp` continua nos outros lugares; o `treino-geral.webp` continua no Início.
