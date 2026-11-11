@@ -17,6 +17,22 @@ MANUAIS = {
     'unitins-2021-1': ('unitins/47310', {
         'caderno': 'unitins/prova-e-gabarito-unitins-2021/prova_geral_final.pdf',
         'gabarito': 'unitins/prova-e-gabarito-unitins-2021/Gabarito DEfinitivo 2021_1.pdf'}),
+    'uft-2022-1': ('uft/47451', {
+        'manha': 'uft/provas-e-gabaritos-uft-2022-1/vestibular_UFT_2022.1_prova_manha.pdf',
+        'tarde': 'uft/provas-e-gabaritos-uft-2022-1/vestibular_UFT_2022.1_prova_tarde.pdf',
+        'gabarito': 'uft/provas-e-gabaritos-uft-2022-1/vestibular_UFT_2022_1_gabarito_definitivo.pdf'}),
+    'uft-2022-2': ('uft/47488', {
+        'manha': 'uft/provas-e-gabaritos-uft-2022-2/Vestibular_2022_2_ProvaManha.pdf',
+        'tarde': 'uft/provas-e-gabaritos-uft-2022-2/Vestibular_2022_2_ProvaTarde.pdf',
+        'gabarito': 'uft/provas-e-gabaritos-uft-2022-2/Vest2022.2_-_Gabarito_Definitivo.pdf'}),
+    'uft-2023-1': ('uft/47548', {
+        'manha': 'uft/provas-e-gabaritos-uft-2023/Vestibular 2023.1 Prova Manh╞.pdf',
+        'tarde': 'uft/provas-e-gabaritos-uft-2023/Vestibular 2023.1 Prova Tarde.pdf',
+        'gabarito': 'uft/provas-e-gabaritos-uft-2023/vestibular 2023_1_GABARITO_DEFINITIVO.pdf'}),
+    'uft-2024-1': ('uft/47617', {
+        'manha': 'uft/provas-e-gabaritos-uft-2024-1/provas-e-gabaritos-uft-2024-1/Vestibular UFT_UFNT 2024_1 Manha.pdf',
+        'tarde': 'uft/provas-e-gabaritos-uft-2024-1/provas-e-gabaritos-uft-2024-1/Vestibular UFT_UFNT 2024_1 Tarde.pdf',
+        'gabarito': 'uft/provas-e-gabaritos-uft-2024-1/provas-e-gabaritos-uft-2024-1/gabarito-definitivo-uft-2024-1.pdf'}),
 }
 
 

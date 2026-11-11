@@ -40,6 +40,24 @@ def _gab_unitins(pagina=None):
     return gab
 
 
+def _gab_grade(txt, letras='ABCDE'):
+    """Grade "linha de números / linha de letras" (UFT/Copese): para cada linha de números, a próxima linha (até 3
+    abaixo) com o mesmo número de letras/Anulada. Repetição do número (língua: inglês antes do espanhol) = vale a 1ª."""
+    g = {}
+    ls = [l for l in txt.splitlines() if l.strip()]
+    for i, a in enumerate(ls):
+        ns = [int(x) for x in re.findall(r'(?<![\d/,.-])(\d{1,2})(?![\d/,.-])', a)]
+        if len(ns) < 2 or re.search(rf'(?<![\w(])[{letras}](?![\w)])', a):
+            continue
+        for b in ls[i + 1:i + 4]:
+            vs = re.findall(rf'(?<![\w(])(?:[{letras}]|Anulada|ANULADA)(?![\w)])', b)
+            if len(vs) == len(ns):
+                for n, v in zip(ns, vs):
+                    g.setdefault(n, v if v in letras else 'X')
+                break
+    return g
+
+
 BE = 'cópia do arquivo oficial baixada da página de downloads do Brasil Escola (vestibular.brasilescola.uol.com.br), link do dono'
 
 
@@ -88,6 +106,52 @@ def mais_provas():
     P['unitins-2021-1']['suporte'] = P['unitins-2021-1']['suporte'] + [r'^Leia\b']   # "Leia, a seguir, o soneto...", "Leia o trecho a seguir..."
     for k in ('unitins-2021-2', 'unitins-2022-1-med'):
         P[k].update({'divisa': 290, 'ancora_dx': 40})   # "QUESTÃO 20"/"QUESTÃO 31" numa faixa cinza que começa em x≈292 (coluna direita)
+
+    # ------------------------------------------------------------------------------------------------ UFT
+    # Vestibular UFT/UFNT (Copese): prova da manhã (Linguagens 01–16, língua 17–24 — vale o inglês —, Matemática 25–32)
+    # e da tarde (Ciências Humanas e da Natureza, 01–44, aqui 33–76). Duas colunas, "QUESTÃO 01" em negrito.
+    def uft(pid, ano, sem, nota_extra='', total_manha=32):
+        def gab(pasta):
+            txt = _p.texto_pdf(pasta / 'gabarito.pdf')
+            m, t = re.split(r'PROVA\s+TARDE', txt)
+            g = _gab_grade(m)
+            g.update({n + total_manha: v for n, v in _gab_grade(t).items()})
+            assert sorted(g) == list(range(1, total_manha + 45)), sorted(g)
+            return g
+        secs = [(r'^PROVA DE (L[ÍI]NGUA INGLESA|INGL[ÊE]S)', 'Inglês'), (r'^PROVA DE (L[ÍI]NGUA ESPANHOLA|ESPANHOL)', 'Espanhol'),
+                (r'^(PROVA DE )?LINGUAGENS,', 'Linguagens'), (r'^(PROVA DE )?MATEM[ÁA]TICA E SUAS', 'Matemática'),
+                (r'^(PROVA DE )?CI[ÊE]NCIAS HUMANAS', 'Ciências Humanas'), (r'^(PROVA DE )?CI[ÊE]NCIAS DA NATUREZA', 'Ciências da Natureza')]
+        P[pid] = {
+            'catalogo': 'uft', 'escola': 'UFT', 'ano': str(ano), 'fase': f'Vestibular {ano}/{sem}', 'titulo': f'UFT {ano}/{sem}',
+            'banca': 'Copese/UFT', 'duracao_horas': 9, 'total': total_manha + 44,
+            'nota': f'Universidade Federal do Tocantins (com a UFNT), Vestibular {ano}.{sem} (Copese): prova da manhã '
+                    '(Linguagens, língua estrangeira e Matemática, 32 questões) e da tarde (Ciências Humanas e da Natureza, '
+                    '44 questões, aqui 33–76), A–D. Língua estrangeira: inglês. Redação fora. Gabarito definitivo; anulada '
+                    'fica fora.' + nota_extra,
+            'alternativas': 4,
+            'cadernos': [{'arquivo': 'manha', 'paginas': (2, 999), 'questoes': (1, total_manha), 'rotulo': 'manhã'},
+                         {'arquivo': 'tarde', 'paginas': (2, 999), 'questoes': (total_manha + 1, total_manha + 44),
+                          'deslocamento': total_manha, 'rotulo': 'tarde'}],
+            'colunas': lambda r: [(24, 298), (298, r.width - 20)], 'margem': 24, 'topo': 42, 'base': 30,
+            'ancora': r'(?i)^(?:QUEST[ÃA]O|QUESTION|PREGUNTA|CUESTI[ÓO]N)\s+(\d{1,2})$', 'ancora_dx': 14,
+            'ancora_negrito': True, 'sequencial': True,
+            'secoes_rx': secs, 'pular_secoes': ('Espanhol',), 'pular_antes_sequencia': True,
+            'corte': [r'(?i)^PROPOSTA DE REDA', r'(?i)^REDA[ÇC][ÃA]O$', r'(?i)^PROVA DE REDA', r'(?i)^INSTRU[ÇC][ÕO]ES PARA A REDA',
+                      r'(?i)^RASCUNHO', r'(?i)^Aten[çc][ãa]o: Responda apenas'],
+            'suporte': [r'(?i)(responda|responder)\b.*\bquest', r'(?i)\bpara responder( [àa]s?)?\s*$', r'(?i)\bin order to answer\b',
+                        r'(?i)\bto answer\s+(the\s+)?questions?\b', r'(?i)^textos? para as quest'],
+            'gabarito': gab, 'area': lambda n: 'Conhecimentos gerais',
+        }
+    uft('uft-2022-1', 2022, 1)
+    uft('uft-2022-2', 2022, 2)
+    uft('uft-2023-1', 2023, 1)
+    uft('uft-2024-1', 2024, 1)
+    # 2022/1 (tarde): "QUESTÃO 04" e logo abaixo "Leia os textos I e II para responder a QUESTÃO 04.": a instrução é da
+    # própria questão (só na mesma coluna: a instrução no alto da página seguinte abre o texto das questões seguintes)
+    P['uft-2022-1'].update({'suporte_interno': 30, 'suporte_interno_mesma_pagina': True})
+    # 2022/2: "Texto II" depois da questão 07 é o texto da 08 (que relaciona os textos I e II)
+    P['uft-2022-2']['suporte'] = P['uft-2022-2']['suporte'] + [r'^Texto II\s*$']
+    P['uft-2022-2']['apoio_de'] = {8: [7]}
 
     # ------------------------------------------------------------------------------------------- UNIRG
     # 2025/2: ícones do título "Text for questions..." entravam no pé do print das questões 4, 9 e 15

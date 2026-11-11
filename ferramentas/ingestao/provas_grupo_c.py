@@ -201,8 +201,8 @@ def unioeste(ano, nota_extra=''):
                 'Questões A–E. Redação fora. Gabarito definitivo oficial; anuladas ficam fora.' + nota_extra,
         'cadernos': [{'arquivo': 'manha', 'paginas': (2, 999), 'questoes': (1, 21), 'rotulo': '1ª etapa'},
                      {'arquivo': 'tarde', 'paginas': (2, 999), 'questoes': (22, 77), 'deslocamento': 21, 'rotulo': '2ª etapa'}],
-        # páginas ímpares da tarde: uma coluna larga com "Espaço destinado a anotações" à direita; as outras, duas colunas
-        'colunas': 'auto', 'margem': 20, 'topo': 48.5, 'base': 36,   # faixa preta do cabeçalho vai até y≈48–49; "08." da 2021 em y≈48,8
+        # duas colunas, menos as páginas com "Espaço destinado a anotações" à direita (uma coluna larga): 'uma_coluna'
+        'colunas': lambda r: _p.duas_colunas(r, 20), 'margem': 20, 'topo': 48.5, 'base': 28,   # faixa preta do cabeçalho vai até y≈48–49; "08." da 2021 em y≈48,8
         # 2021: "9." sem o zero; "50.As" sem espaço
         'ancora': r'^(\d{1,2})\.(\s|$|(?=[A-ZÀ-Ú]))', 'ancora_dx': 32, 'sequencial': True, 'ancora_negrito': True,
         # faixa preta com o nome da matéria seguinte, no meio da coluna, encerra a questão anterior
@@ -213,6 +213,8 @@ def unioeste(ano, nota_extra=''):
                     r'(?i)^(leia|responda).*\bquest[õo]es\s+\d'],
         'gabarito': _unioeste_gab, 'area': lambda n: 'Conhecimentos gerais', 'area_da_materia': True,
         'alternativa_rx': r'^[a-e]\)',
+        # a última linha da coluna desce até y≈813, ao lado do rodapé (y≈810): o rodapé é pintado de branco no print
+        'apagar': [r'Universidade Estadual do Oeste', r'^Concurso Vestibular', r'^\d{1,2}$'],
     }
 
 
@@ -248,9 +250,69 @@ PROVAS['unioeste-2021']['topo_pag'] = _TopoPorCaderno(PROVAS['unioeste-2021'], {
     ('manha', 2): 57, ('manha', 6): 55, ('tarde', 9): 50, ('tarde', 12): 50, ('tarde', 20): 50})
 PROVAS['unioeste-2022']['topo_pag'] = _TopoPorCaderno(PROVAS['unioeste-2022'], {
     ('manha', 2): 57, ('manha', 5): 55, ('tarde', 9): 50.5, ('tarde', 19): 50, ('tarde', 20): 26})
+
+
+class _UmaColuna:
+    """Páginas de uma coluna só, por caderno: as que trazem "Espaço destinado a anotações" no alto (lidas do PDF)."""
+    def __init__(self, cfg, pid):
+        self.cfg, self.pid, self.paginas = cfg, pid, None
+
+    def __contains__(self, pagina):
+        if self.paginas is None:
+            import pymupdf
+            self.paginas = set()
+            for cad in ('manha', 'tarde'):
+                for i, pg in enumerate(pymupdf.open(ENTRADA / self.pid / f'{cad}.pdf')):
+                    if re.search(r'Espa[çc]o destinado a anota', pg.get_text()):
+                        self.paginas.add((cad, i + 1))
+        return (self.cfg.get('_arquivo'), pagina) in self.paginas
+
+
+for _k in ('unioeste-2021', 'unioeste-2022'):
+    PROVAS[_k]['uma_coluna'] = _UmaColuna(PROVAS[_k], _k)
 # título do texto de Língua Portuguesa em largura total, acima das duas colunas
 PROVAS['unioeste-2021']['larga_topo'] = _TopoPorCaderno(PROVAS['unioeste-2021'], {('manha', 5): 86})
 PROVAS['unioeste-2022']['larga_topo'] = _TopoPorCaderno(PROVAS['unioeste-2022'], {('manha', 4): 104})
+
+
+# ----------------------------------------------------------------------------------------------- UEMG (2024)
+UEMG = 'https://vestibular.uemg.br/'
+
+
+def _uemg_gab(pasta):
+    """Gabarito definitivo (tabela COMPONENTE / QUESTÃO / RESPOSTA): primeiro a prova com espanhol, depois a com inglês
+    (vale a 2ª). 'X' = anulada."""
+    txt = _p.texto_pdf(pasta / 'gabarito.pdf')
+    txt = txt[txt.index('CONHECIMENTOS GERAIS - INGLÊS'):]
+    g = {}
+    for n, v in re.findall(r'(?m)^\s*[A-ZÁÉÍÓÚÂÊÔÃÕÇ ]+?\s{2,}(\d{1,2})\s+([A-DX])\s+\d+ Pontos', txt):
+        g[int(n)] = v if v != 'X' else 'X'
+    assert len(g) == 48, len(g)
+    return g
+
+
+_UE = 'uemg/provas-e-gabaritos-do-vestibular-2024-da-uemg/provas-e-gabaritos-do-vestibular-2024-uemg/'
+_m('uemg-2024', 'uemg/47650', UEMG, caderno=_UE + 'prova-conhecimentos-gerais-uemg-2024.pdf',
+   gabarito=_UE + 'gabarito-definitivo-uemg-2024.pdf')
+PROVAS['uemg-2024'] = {
+    'catalogo': 'uemg', 'escola': 'UEMG', 'ano': '2024', 'fase': 'Vestibular 2024', 'titulo': 'UEMG 2024', 'banca': 'UEMG',
+    'duracao_horas': 4, 'total': 48, 'alternativas': 4,
+    'nota': 'Universidade do Estado de Minas Gerais, Vestibular 2024: Prova de Conhecimentos Gerais, 48 questões A–D '
+            '(Língua Portuguesa e Literatura, língua estrangeira, Física, Química, Biologia, Geografia, História e Matemática). '
+            'Língua estrangeira: inglês (7 a 12). Redação fora. Gabarito definitivo oficial; anulada fica fora.',
+    'cadernos': [{'arquivo': 'caderno', 'paginas': (2, 999)}],
+    'colunas': lambda r: [(30, r.width - 22)], 'margem': 30, 'topo': 34, 'base': 40,
+    'ancora': r'^(\d{2})\.\s', 'ancora_dx': 20, 'sequencial': True,
+    'secoes_rx': [(r'^L[ÍI]NGUA ESTRANGEIRA\s*-\s*INGL[ÊE]S', 'Inglês'), (r'^L[ÍI]NGUA ESTRANGEIRA\s*-\s*ESPANHOL', 'Outra língua'),
+                  (r'^(F[ÍI]SICA|QU[ÍI]MICA|BIOLOGIA|GEOGRAFIA|HIST[ÓO]RIA|MATEM[ÁA]TICA)\.?\s*$', 'Conhecimentos gerais')],
+    'pular_secoes': ('Outra língua',), 'pular_antes_sequencia': True,
+    'corte': [r'(?i)^REDA[ÇC][ÃA]O\.?\s*$', r'(?i)^RASCUNHO'],
+    'suporte': [r'(?i)^(leia|de acordo|observe|analise|considere).*\bquest(ões|oes|ão|ao)\s+\d', r'(?i)\bresponda (às|as|à|a) quest'],
+    'faixa_unica': True,
+    # a tirinha do inglês vem logo abaixo do título da seção, sem frase de indicação (pág. 3, conferido): vale para a 07
+    'suporte_forcado': {('caderno', 3): [(431, 0, (7, 7))]},
+    'gabarito': _uemg_gab, 'area': lambda n: 'Conhecimentos gerais', 'area_da_materia': True, 'alternativa_rx': r'^[a-d]\)',
+}
 
 
 if __name__ == '__main__':
