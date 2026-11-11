@@ -1,57 +1,68 @@
 # Revisão geral — hand-off para o site
 
-Para quem vai levar a "revisão geral" (caderno Revisaí) para o site. Tudo aqui está em `docs/revisao/`; nada fora dessa pasta foi alterado. O que mudou em cada tópico, e por quê, está em `docs/revisao/REVISAO-DA-REVISAO.md`.
+Para quem vai levar a "revisão geral" para o site. Tudo aqui está em `docs/revisao/`; nada fora dessa pasta foi alterado. O que mudou em cada tópico, e por quê, está em `docs/revisao/REVISAO-DA-REVISAO.md`.
 
 ## 1. Arquivos prontos
 
 | Matéria | Arquivo | Tópicos | Prefixos de id | Estado |
 |---|---|---|---|---|
-| Português | `docs/revisao/por/geral.json` | 139 | PK (Gramática, 52), LK (Literatura, 38), IK (Interpretação, 27), RK (Produção de Texto, 22) | revisada completa, com 8 item(ns) "conferir" |
-| Matemática | `docs/revisao/mat/geral.json` | 112 | ids de subtema (M01.1 … M17.2) e ids G01 … G32 (complementos) | revisada completa |
+| Português | `docs/revisao/por/geral.json` | 139 | PK (Gramática, 52), LK (Literatura, 38), IK (Interpretação, 27), RK (Produção de Texto, 22) | revisada completa, com 3 item(ns) "conferir" |
+| Matemática | `docs/revisao/mat/geral.json` | 112 | ids de subtema (M01.1 … M17.2) e G01 … G32 (complementos) | revisada completa |
 | Biologia | `docs/revisao/bio/geral.json` | 58 | BK01 … BK46, com sufixos de letra (BK09b, BK14a, BK21a–e, BK26a–b, BK45b) | revisada completa, com 2 item(ns) "conferir" |
-| Física | `docs/revisao/fis/geral.json` | 50 | FK01 … FK42, com sufixos de letra (FK02b, FK05b, FK09b, FK11b, FK15b–c, FK21b, FK29b) | revisada completa, com 1 item(ns) "conferir" |
-| Química | `docs/revisao/qui/geral.json` | 58 | QK01 … QK58 | revisada completa, com 2 item(ns) "conferir" |
-| Geografia | `docs/revisao/geo/geral.json` | 45 | GK01 … GK45 | revisada completa, com 3 item(ns) "conferir" |
-| História | `docs/revisao/his/geral.json` | 57 | HK01 … HK57 | revisada completa, com 3 item(ns) "conferir" |
+| Física | `docs/revisao/fis/geral.json` | 50 | FK01 … FK42, com sufixos de letra (FK02b, FK05b, FK09b, FK11b, FK15b–c, FK21b, FK29b) | revisada completa |
+| Química | `docs/revisao/qui/geral.json` | 58 | QK01 … QK58 | revisada completa, com 1 item(ns) "conferir" |
+| Geografia | `docs/revisao/geo/geral.json` | 45 | GK01 … GK45 | revisada completa, com 2 item(ns) "conferir" |
+| História | `docs/revisao/his/geral.json` | 57 | HK01 … HK57 | revisada completa, com 2 item(ns) "conferir" |
 | Filosofia e Sociologia | `docs/revisao/fs/geral.json` | 86 | FK01 … FK38 (Filosofia) e SK01 … SK48 (Sociologia) | revisada completa, com 2 item(ns) "conferir" |
-| Inglês | `docs/revisao/ing/geral.json` | 31 | — | **não revisada** (não estava na lista desta revisão) |
+| Inglês | `docs/revisao/ing/geral.json` | 49 | ids de subtema (I01.1 … I04.6) e IG01 … IG18 (complementos novos) | revisada e ampliada (31 tópicos do site + 18 novos) |
 
-Total revisado: 605 tópicos em 8 arquivos. Nenhuma matéria ficou parcial.
+Total: 654 tópicos em 9 arquivos. Nenhuma matéria ficou parcial.
 
-"Revisada completa" = os 100% dos tópicos passaram pelas 3 lentes (fatos → compreensão do aluno → fatos de novo no que mudou) e pelo validador. "Conferir" = dado que só existe no livro ou gabarito por letra que não pôde ser checado em fonte pública; a lista fica no campo `lacunas` do próprio arquivo, em linhas que contêm `conferir:`.
+"Revisada completa" = os 100% dos tópicos passaram pelas 3 lentes (fatos → compreensão do aluno → fatos de novo no que mudou) e pelo validador. "Conferir" = dado que só existe no livro e não pôde ser checado em fonte pública; a lista fica no campo `lacunas` do próprio arquivo, em linhas que contêm `conferir:`.
+
+Segunda rodada (12/11/2026, decisões do dono):
+
+- **Questões de prova**: nenhuma letra de gabarito ficou nos arquivos. Onde a questão pôde ser resolvida aqui (contas de Física e Química, a escala de Geografia), ficou como "Exemplo" com a resolução e o nome da prova indicado pelo livro. Onde dependia do texto ou da imagem da prova, a questão saiu, e o conteúdo que ela ensinava ficou como ponto comum ou exemplo próprio. A questão da Santa Casa 2020 (Português, IK10) saiu.
+- **Fórmulas**: Física, Química e Biologia agora trazem as fórmulas em LaTeX entre cifrões, com toda fração empilhada (`\frac`), como Matemática. Não é preciso converter nada no site.
+- **Inglês**: revisado e ampliado com 18 tópicos novos.
 
 ## 2. Esquema dos campos
 
-Topo do arquivo: `materia`, `base`, `como_usar`, `topicos` (lista, na ordem do livro) e `lacunas` (lista de textos; uso interno, não é conteúdo para o aluno).
+Topo do arquivo: `materia`, `base`, `como_usar`, `topicos` (lista, na ordem de exibição) e `lacunas` (lista de textos; uso interno, não é conteúdo para o aluno). Inglês tem também `cobertura_temas`.
 
 Cada tópico tem exatamente estes campos, nesta ordem:
 
 | Campo | Tipo | O que é |
 |---|---|---|
 | `id` | texto | Identificador fixo do tópico (ver regras abaixo). |
-| `capitulo` | texto | Capítulo ou frente do livro; serve para agrupar. |
+| `capitulo` | texto | Capítulo ou frente; serve para agrupar. |
 | `titulo` | texto | Título do tópico. |
-| `subs` | lista de textos | Ids de subtemas do site ligados ao tópico (ex.: `B01.4`, `M05.2`). Preenchido em Matemática (todos) e em parte de Biologia; vazio nas demais. |
+| `subs` | lista de textos | Ids de subtemas do site ligados ao tópico (ex.: `B01.4`, `M05.2`, `I03.2`). Preenchido em Matemática e Inglês (todos) e em parte de Biologia; vazio nas demais. |
 | `busca` | lista de textos | Termos que levam ao tópico na busca: nomes técnicos, sinônimos, nomes populares, siglas, perguntas ("quando usar crase") e grafias erradas comuns ("báskara", "in media res"). Comparar sem diferenciar maiúsculas e acentos. Uma grafia errada pode estar aqui de propósito e não deve ser mostrada ao aluno como texto. |
 | `pontos` | lista de textos | O conteúdo: um ponto por item, do simples ao complexo. |
 | `pegadinha` | texto | O que a banca costuma fazer e como evitar. |
-| `imagem` | objeto | `tipo` (sempre `caixa_imagem`), `descricao` (o que a imagem deve mostrar) e, fora de Matemática, `falta_imagem` (verdadeiro/falso) e `aviso` (texto "EM CONSTRUÇÃO…"). |
+| `imagem` | objeto | `tipo` (sempre `caixa_imagem`), `descricao` (o que a imagem deve mostrar) e, fora de Matemática e Inglês, `falta_imagem` (verdadeiro/falso) e `aviso` (texto "EM CONSTRUÇÃO…"). |
+
+Fórmulas e texto:
+
+- **Matemática, Física, Química e Biologia**: fórmulas em LaTeX entre cifrões (`$v_m=\frac{\Delta s}{\Delta t}$`), com fração sempre empilhada (`\frac`), vírgula decimal como `{,}`, multiplicação como `\cdot`, seno como `\text{sen}`, índices com chaves (`v_{0x}`, `K_{ps}`, `d_{líquido}`). Usam o mesmo renderizador de fórmulas do resto do site. Há três fórmulas com fração dentro de fração (relatividade, em `fis:FK39`); se o motor de animação não as aceitar, vale a saída estática descrita em `PEDIDOS-MOTOR.md`, item 3.
+- **Química**: só a matemática foi para LaTeX. Fórmulas químicas e equações de reação continuam em texto simples (`H2O`, `CO2`, `2 H2 + O2 → 2 H2O`), como nos demais conteúdos; íons dentro de constantes de equilíbrio estão em LaTeX (`[H^+]`).
+- **Unidades** ficam fora dos cifrões, em texto (`m/s`, `mol/L`, `N·m²/C²`): a barra de unidade não é fração de conta.
+- **Inglês**: palavras e frases em inglês vêm no próprio texto do ponto, seguidas da tradução; dois pontos antigos usam `$\text{…}$` para montar estrutura de frase.
+- Os demais arquivos são texto simples, com exemplos entre aspas simples. Não há HTML nem markdown em nenhum arquivo.
 
 Diferenças entre matérias que o site precisa tratar:
 
-- **Matemática**: o campo `imagem` só tem `tipo` e `descricao` (não tem `falta_imagem` nem `aviso`). Tratar a ausência como "imagem ainda não feita". Os pontos usam fórmulas em LaTeX entre cifrões (`$\frac{a}{b}$`), com frações sempre empilhadas (`\frac`), como manda o CLAUDE.md; precisam do mesmo renderizador de fórmulas do resto do site.
-- **Matemática**: o campo `lacunas` não existia e foi criado nesta revisão (igual ao das outras matérias).
-- **Física, Química e demais**: fórmulas em texto simples (`v = v0 + a·t`, `H2O`, `10^-14`), sem LaTeX. Se o motor de fórmulas for usado, a conversão é tarefa do site; o conteúdo está correto. Atenção à regra do CLAUDE.md de fração sempre empilhada: nesses arquivos as frações estão escritas com barra (`vm = Δs/Δt`, `1/f = 1/p + 1/p'`), como vieram do trabalho anterior; para a tela, o site precisa passá-las pelo motor de fórmulas. Não foram reescritas aqui para não mudar o formato do arquivo sem decisão do dono (ver seção 6).
-- **Filosofia e Sociologia** estão no mesmo arquivo (`fs`); o prefixo do id separa as duas (FK × SK). Atenção: `FK` também é o prefixo de Física (`fis`). O id só é único dentro do arquivo; para uma chave global, usar `<matéria>:<id>` (ex.: `fis:FK01`, `fs:FK01`).
-- Os textos de `pontos` trazem citações curtas entre aspas simples (exemplos de frases). Não há HTML nem markdown.
+- **Matemática e Inglês**: o campo `imagem` só tem `tipo` e `descricao` (não tem `falta_imagem` nem `aviso`). Tratar a ausência como "imagem ainda não feita".
+- **Filosofia e Sociologia** estão no mesmo arquivo (`fs`); o prefixo do id separa as duas (FK × SK). Atenção: `FK` também é o prefixo de Física (`fis`) e `IK` é Interpretação em Português. O id só é único dentro do arquivo; para uma chave global, usar `<matéria>:<id>` (ex.: `fis:FK01`, `fs:FK01`).
 
 ## 3. Regras de ids
 
-1. Os ids não mudaram nesta revisão e **não podem mudar**: são a chave para progresso, favoritos e revisão espaçada do aluno (princípio 7 do CLAUDE.md).
+1. Os ids não mudaram e **não podem mudar**: são a chave para progresso, favoritos e revisão espaçada do aluno (princípio 7 do CLAUDE.md).
 2. Nenhum tópico foi apagado nem renumerado; a ordem da lista é a ordem de exibição.
-3. Tópico novo só entra no fim da sequência do seu prefixo (ex.: depois de `PK52` vem `PK53`), nunca reaproveitando número. Nesta revisão não foi criado nenhum.
-4. Os ids não são únicos entre arquivos (ver `FK` acima). Use a matéria junto.
-5. `subs` aponta para ids de subtemas do site; não foram alterados.
+3. Tópico novo só entra no fim da sequência, nunca reaproveitando número. Os únicos criados nesta revisão são `IG01` a `IG18`, em Inglês (complementos, como os `G01`–`G32` de Matemática).
+4. Os ids não são únicos entre arquivos. Use a matéria junto.
+5. `subs` aponta para ids de subtemas do site; os existentes não foram alterados.
 
 ## 4. Como conferir
 
@@ -59,40 +70,35 @@ Diferenças entre matérias que o site precisa tratar:
 python3 docs/revisao/valida_geral.py
 ```
 
-O script confere JSON válido, ids únicos, campos na ordem do esquema e nenhum campo vazio. Deve imprimir "ok" para todas as matérias.
+O script confere JSON válido, ids únicos, campos na ordem do esquema, nenhum campo vazio, cifrões e chaves de LaTeX balanceados e ausência de fração com barra dentro de fórmula. Deve imprimir "ok" para todas as matérias.
 
 ## 5. Imagens que faltam
 
-- Nenhum tópico da revisão geral tem imagem pronta: 605 caixas de imagem estão marcadas como faltando (em Matemática o campo não traz a marca, mas as 112 também faltam). Enquanto a imagem não existir, o site deve mostrar a caixa "EM CONSTRUÇÃO" com o texto de `imagem.aviso` (ou, em Matemática, de `imagem.descricao`).
+- Nenhum tópico da revisão geral tem imagem pronta (654 caixas). Enquanto a imagem não existir, o site deve mostrar a caixa "EM CONSTRUÇÃO" com o texto de `imagem.aviso` (ou, em Matemática e Inglês, de `imagem.descricao`).
 - `docs/revisao/IMAGENS-PARA-GERAR.md` lista as imagens **por subtema** (ex.: `B01.1.png`, em `docs/imagens/<matéria>/`). Ela não cobre os tópicos da revisão geral, cujos ids são outros.
-- A lista por tópico da revisão geral está no fim deste arquivo (seção 8), gerada a partir de `imagem.descricao`. A descrição diz o que o livro mostrava; por direito autoral, a imagem do livro não é copiada: é refeita no padrão do site (princípios 10 e 12). Nenhuma descrição foi alterada nesta revisão.
+- A lista por tópico da revisão geral está no fim deste arquivo (seção 8), gerada a partir de `imagem.descricao`. A descrição diz o que o livro mostrava; por direito autoral, a imagem do livro não é copiada: é refeita no padrão do site (princípios 10 e 12). As descrições antigas não foram alteradas.
+- Algumas descrições antigas ainda citam "questão resolvida" de uma prova. Essas questões saíram dos tópicos: ao produzir a imagem, não incluir a questão.
 - Atenção em `qui:QK18`: a descrição cita uma curva de solubilidade do NaOH; se o original a mostra decrescente, não reproduzir assim (ver `lacunas`).
 
 ## 6. Decisões pendentes do dono
 
-- **Português** — IK10 (Santa Casa 2020): a letra do gabarito (D impressa × E do comentário) só se resolve com o caderno oficial. O tópico está correto quanto ao conteúdo e não cita letra. Decidir se a questão entra no site só depois dessa conferência.
-- **Português** — Dez gabaritos por letra de questões resolvidas (lista em `lacunas`) vêm só do livro. Decidir se o site mostra a letra antes da conferência no gabarito oficial.
-- **Português** — PK27 (Unemat-MT) e IK23 (UFU-MG): questões citadas sem ano. Pela regra, questão de prova só entra com prova e ano.
+- **Português** — As descrições de imagem de alguns tópicos ainda citam 'questão resolvida' (o campo imagem foi preservado). Ao produzir essas imagens, não incluir a questão: ela saiu do tópico.
 - **Matemática** — Matemática: o campo `imagem` não tem `falta_imagem` nem `aviso`, ao contrário das outras matérias. Não foi alterado (a regra é preservar o campo). Decidir se o site trata a ausência como "imagem ainda não feita" ou se o campo deve ser igualado.
 - **Matemática** — Matemática: o campo `lacunas` foi criado (não existia) para registrar a revisão, como nas outras matérias.
 - **Biologia** — BK12: decidir se o site mostra 32 ATP (contagem atual) ou também 36/38, usados por provas antigas.
-- **Física** — FK21 (Santa Casa 2024): o exemplo cita "resultado 5 no livro" sem os dados do enunciado. Decidir se fica assim, se sai do tópico ou se entra a questão completa (com print fiel).
 - **Química** — QK18: se a imagem do livro mostrar a curva do NaOH como decrescente, não reproduzir; decidir qual gráfico entra.
-- **Química** — QK14, QK18, QK21 e QK27 citam "exemplo do livro" com alternativa, sem prova e ano. Pela regra, questão de prova só com identificação: decidir se viram exemplo sem letra ou se saem.
 - **Geografia** — GK43: manter o corte do livro para cidade média (100 mil a 1 milhão) ou adotar o do IBGE/Ipea (100 mil a 500 mil)?
 - **História** — HK24: o livro erra o rei de Pombal (D. João V); o tópico agora traz D. José I. Se o site reproduzir alguma página do livro sobre o tema, o erro reaparece.
 - **Filosofia e Sociologia** — SK41: manter a atribuição do livro (mobilização de recursos = Tilly) ou corrigir para a atribuição usual (McCarthy e Zald; Tilly = processo político)?
 - **Filosofia e Sociologia** — Os tópicos de Filosofia e Sociologia são longos (vários pontos com mais de 400 caracteres). Foram mantidos para não perder conteúdo; se o site precisar de pontos mais curtos, o corte deve ser feito na tela, não no arquivo, ou em nova rodada de edição.
-- **Geral** — Gabaritos por letra de questões resolvidas (provas e anos citados nos tópicos) vêm só do livro. As explicações e as contas foram conferidas, mas a letra não. Sugestão: o site mostrar a explicação sem a letra até a conferência no gabarito oficial de cada banca.
-- **Física, Química, Biologia** — As fórmulas estão em texto simples, com frações em barra (`Δs/Δt`). A regra do produto é fração empilhada. Decidir: o site converte na exibição (motor de fórmulas) ou os arquivos devem ser reescritos em LaTeX, como Matemática?
-- **Geral** — Inglês (`ing/geral.json`, 31 tópicos) não entrou nesta revisão. Decidir se passa pelas mesmas 3 lentes antes de ir ao site.
+- **Inglês** — Inglês: os 18 tópicos novos usam ids IG01–IG18 (complementos, como os G01–G32 de Matemática). Se o site preferir que virem subtemas (I05…), a troca tem de ser feita antes de irem ao ar, porque depois o id não muda.
 
 ## 7. O que o site não deve fazer
 
 - Não mostrar `lacunas` ao aluno: são notas de trabalho.
 - Não mostrar ao aluno os termos de `busca` como se fossem conteúdo (há grafias erradas propositais).
 - Não renumerar, fundir ou dividir tópicos sem migração do progresso do aluno.
-- Não apresentar exemplo ou questão do caderno como "questão de prova" sem prova, ano e fonte (princípio 1).
+- Não apresentar os "Exemplos" como questão de prova com gabarito: eles não trazem alternativas nem letra; são resoluções feitas na revisão (princípios 1 e 2).
 
 ## 8. Lista de imagens por tópico da revisão geral
 
@@ -136,12 +142,12 @@ O script confere JSON válido, ids únicos, campos na ordem do esquema e nenhum 
 - `PK36` Concordância nominal: adjetivo com dois ou mais substantivos e predicativo: Quadro do livro: adjetivo posposto aos substantivos conforme gênero e número.
 - `PK37` Concordância nominal: casos de dúvida (mesmo, anexo, obrigado, meio, bastante, é proibido) e silepse: Quadros do livro de casos de dúvida; questão resolvida UFMS 2018.
 - `PK38` Regência verbal: verbos que geram dúvida, pronome relativo e complemento comum: Quadro do livro: verbos com dúvidas de regência e suas preposições.
-- `PK39` Regência nominal e questão resolvida (Acafe-SC 2023): Quadro do livro: regências de substantivos e adjetivos; questão resolvida Acafe-SC 2023.
+- `PK39` Regência nominal: a preposição que cada nome pede: Quadro do livro: regências de substantivos e adjetivos; questão resolvida Acafe-SC 2023.
 - `PK40` Crase: conceito e uso obrigatório: Quadro do livro: usos obrigatórios da crase com exemplos.
 - `PK41` Crase: uso proibido: Quadro do livro: usos proibidos da crase.
-- `PK42` Crase facultativa, casos especiais (casa, terra, distância) e contextos ambíguos; questão EEAR 2023: Quadros do livro: casos especiais e contextos ambíguos; questão resolvida EEAR-SP 2023.
+- `PK42` Crase facultativa, casos especiais (casa, terra, distância) e contextos ambíguos: Quadros do livro: casos especiais e contextos ambíguos; questão resolvida EEAR-SP 2023.
 - `PK43` Colocação pronominal: próclise e palavras atrativas: Quadro do livro: casos de próclise com exemplos.
-- `PK44` Mesóclise, ênclise e colocação nas locuções verbais; questão resolvida: Esquemas do livro: colocação do pronome em locuções verbais com infinitivo, gerúndio e particípio.
+- `PK44` Mesóclise, ênclise e colocação nas locuções verbais: Esquemas do livro: colocação do pronome em locuções verbais com infinitivo, gerúndio e particípio.
 - `PK45` Ortografia: grafias dos sons /ʒ/, /ʃ/, /s/ e /z/: Quadro do livro: grafias possíveis para cada som com exemplos.
 - `PK46` Emprego do hífen (prefixos e palavras compostas): Quadro do livro: regras do hífen por critérios ortográficos e fonéticos.
 - `PK47` Homônimos e parônimos: Quadro do livro: parônimos que mais geram dúvidas.
@@ -173,14 +179,14 @@ O script confere JSON válido, ids únicos, campos na ordem do esquema e nenhum 
 - `LK21` Fernando Pessoa: poesia ortônima e heterônimos (Caeiro, Reis, Campos): Poemas 'Autopsicografia' e 'Poema em linha reta' reproduzidos no livro; capa de Mensagem (1934); mapa mental de Pessoa.
 - `LK22` Modernismo no Brasil: Semana de 1922 e primeira geração (Mário, Oswald, Bandeira): Fotografia do almoço em homenagem a Paulo Prado (1924); trechos de Macunaíma e do Manifesto Antropófago; entrevista de Bandeira sobre 'Os sapos'.
 - `LK23` Segunda geração modernista (1930) e Carlos Drummond de Andrade (três fases): Capas e folha de rosto das primeiras edições de Alguma poesia, A rosa do povo e Claro enigma; esquema das três fases.
-- `LK24` Poesia da segunda geração: Cecília Meireles, Vinicius de Moraes, Jorge de Lima e Murilo Mendes; questão Fuvest 2018: Poema 'Essa negra Fulô' (Jorge de Lima) reproduzido no livro; questão resolvida da Fuvest 2018.
+- `LK24` Poesia da segunda geração: Cecília Meireles, Vinicius de Moraes, Jorge de Lima e Murilo Mendes: Poema 'Essa negra Fulô' (Jorge de Lima) reproduzido no livro; questão resolvida da Fuvest 2018.
 - `LK25` Romance de 30: Rachel de Queiroz, Jorge Amado, Graciliano Ramos, José Lins do Rego e Erico Verissimo: Mapa do livro de autores do romance de 30.
 - `LK26` Terceira geração (1945): Clarice Lispector e João Cabral de Melo Neto: Quadros-resumo da terceira geração.
-- `LK27` Guimarães Rosa: regionalismo universalista, neologismos e obras principais; questão Unimontes 2024: Capa da primeira edição de Grande sertão: veredas (1956); esquema de obras e características.
+- `LK27` Guimarães Rosa: regionalismo universalista, neologismos e obras principais: Capa da primeira edição de Grande sertão: veredas (1956); esquema de obras e características.
 - `LK28` Concretismo, Neoconcretismo e Ferreira Gullar: Fotografia de Augusto de Campos, Décio Pignatari e Haroldo de Campos (1996).
 - `LK29` Narrativas contemporâneas: urbanas, realismo insólito, Hatoum e Bernardo Carvalho: Foto de Milton Hatoum (Folhapress).
 - `LK30` Literatura escrita por mulheres: Geração Mimeógrafo, Ana Cristina Cesar, Adélia Prado, Lygia, Sophia: Mimeógrafo e capas de livros do período.
-- `LK31` Literatura afrodescendente: Carolina Maria de Jesus, Conceição Evaristo, Ana Maria Gonçalves e outros; questão Fuvest 2024: Poema 'Tempo de nos aquilombar' (Conceição Evaristo) reproduzido no livro.
+- `LK31` Literatura afrodescendente: Carolina Maria de Jesus, Conceição Evaristo, Ana Maria Gonçalves e outros: Poema 'Tempo de nos aquilombar' (Conceição Evaristo) reproduzido no livro.
 - `LK32` Literatura marginalizada ou periférica: Ferréz, Cooperifa, Racionais, slam: Foto de sarau e capas das obras citadas.
 - `LK33` Literaturas africanas de língua portuguesa: contexto e quatro momentos: Mapa mental das literaturas africanas.
 - `LK34` Literatura moçambicana: fases colonial, nacionalista e pós-colonial: Mapa de autores moçambicanos.
@@ -197,23 +203,23 @@ O script confere JSON válido, ids únicos, campos na ordem do esquema e nenhum 
 - `IK07` Figuras sonoras: assonância, aliteração, onomatopeia, cacofonia e paronomásia: Quadrinho de paronomásia e mapa mental das figuras sintáticas e sonoras.
 - `IK08` Texto narrativo: foco narrativo, tempo e quebras da progressão temporal: Tirinha de Andre Dahmer; linha do tempo linear × não linear.
 - `IK09` Texto descritivo, injuntivo e prescritivo: Tirinha de Adão Iturrusgarai sobre velocidade.
-- `IK10` Texto dissertativo: argumentativo × expositivo e desenvolvimento dedutivo × indutivo (+ questão FCMSCSP 2020): Mapa mental da tipologia textual.
+- `IK10` Texto dissertativo: argumentativo × expositivo e desenvolvimento dedutivo × indutivo: Mapa mental da tipologia textual.
 - `IK11` Discurso direto e indireto e a conversão entre eles: Quadro de conversão entre discursos.
-- `IK12` Discurso indireto livre (+ questão ITA-SP 2022): Mapa mental 'Discurso textual'.
+- `IK12` Discurso indireto livre: Mapa mental 'Discurso textual'.
 - `IK13` Gêneros textuais: características composicionais e esferas jornalística e propagandística: Quadro de gêneros textuais.
-- `IK14` Gêneros da esfera digital: divulgação científica, podcast e memes (+ questão Enem Digital 2020): Peça publicitária da questão; mapa mental dos gêneros textuais.
+- `IK14` Gêneros da esfera digital: divulgação científica, podcast e memes: Peça publicitária da questão; mapa mental dos gêneros textuais.
 - `IK15` Funções da linguagem: elementos da comunicação, emotiva e apelativa (conativa): Esquema do circuito de comunicação com as seis funções.
-- `IK16` Funções fática, poética, referencial e metalinguística (+ questão Enem Digital 2020): Poema concreto 'Anti-ruído', peça publicitária da urna eletrônica e mapa mental das funções.
+- `IK16` Funções fática, poética, referencial e metalinguística: Poema concreto 'Anti-ruído', peça publicitária da urna eletrônica e mapa mental das funções.
 - `IK17` Coesão textual: relações de progressão e conectores subordinativos: Tabela de conectores subordinativos.
 - `IK18` Conectores coordenativos e coesão por remissão (anafórica): Tabela de conectores coordenativos.
 - `IK19` Coesão por antecipação (catafórica): Quadro das três relações de coesão.
 - `IK20` Ambiguidade semântica: polissemia, duplo sentido e homonímia: Imagem pato/coelho, tirinha da Mafalda e quadro de homofonias.
 - `IK21` Ambiguidade sintática: qualificador, pronome e elipse: Mapa mental 'Ambiguidade textual'.
 - `IK22` Intertextualidade explícita: citação e epígrafe: Quadro 'Relações explícitas e implícitas'.
-- `IK23` Intertextualidade implícita: alusão, paráfrase e paródia (+ questão UFU-MG): Cartaz 'We Can Do It!' e a paródia 'Yes I Cat!'; comparação 'Canção do Exílio' x Hino Nacional.
-- `IK24` Paráfrase × paródia na prática (+ questão Unicamp 2024) e quadro das intertextualidades implícitas: Textos 1 (miojo) e 2 (Canção do Exílio) da questão; mapa de intertextualidade.
+- `IK23` Intertextualidade implícita: alusão, paráfrase e paródia: Cartaz 'We Can Do It!' e a paródia 'Yes I Cat!'; comparação 'Canção do Exílio' x Hino Nacional.
+- `IK24` Paráfrase × paródia na prática e quadro das intertextualidades implícitas: Textos 1 (miojo) e 2 (Canção do Exílio) da questão; mapa de intertextualidade.
 - `IK25` Tipos de variação linguística: geográfica, histórica, situacional e social: Mapa 'Variação linguística' e linha de mudança de 'Virgem Maria' a 'iti malia'.
-- `IK26` Preconceito linguístico (+ questão Fuvest 2022): Quadro de variação linguística com balões de gírias.
+- `IK26` Preconceito linguístico: Quadro de variação linguística com balões de gírias.
 - `IK27` Tipos de questão: paráfrase, inferência, síntese analítica e síntese comparativa: Mapa mental 'Tipos de questão'.
 - `RK01` Formato da prova e as 5 competências da redação do Enem: Esquema do caderno de prova e das 5 competências.
 - `RK02` Estrutura da redação Enem: 4 parágrafos, tese e conclusão: Esquema macro e microestrutura da redação.
@@ -724,4 +730,56 @@ O script confere JSON válido, ids únicos, campos na ordem do esquema e nenhum 
 - `SK46` Sociedade da informação, Revolução 4.0 e riscos contemporâneos: Esquema da Quarta Revolução Industrial (IA, robótica, biotecnologia) e seus desafios éticos.
 - `SK47` Interpretações da globalização: Bauman e Ulrich Beck: Foto dos destroços de uma escola infantil perto da usina de Chernobyl (explosão em 1986).
 - `SK48` Mundo do trabalho, globalização e impactos culturais, econômicos e sociais: Mapa mental Mundo do trabalho, globalização e impactos culturais, econômicos e sociais.
+
+### Inglês (`ing`) — 49 imagens
+
+- `I01.1` Tema e ideia principal: Um texto curto em inglês com a frase de tema destacada em cor e um quadro que liga as ideias a uma ideia principal.
+- `I01.2` Objetivo do texto e público-alvo: Um texto com duas setas, uma para quem escreveu (objetivo) e outra para quem lê (público-alvo), e três verbos de objetivo: informar, convencer, entreter.
+- `I01.3` Informação explícita: Um texto curto com um trecho grifado que responde diretamente a uma pergunta, com a seta ligando a pergunta à resposta explícita.
+- `I01.4` Inferência e sentido implícito: Um iceberg: a parte de cima é o que está escrito, a de baixo é o sentido implícito, com setas que levam do texto à inferência.
+- `I01.5` Título, fonte e imagem como pista: Uma página com título, fonte e imagem circulados, cada elemento apontando para uma pista sobre o conteúdo antes de ler.
+- `I01.6` Opinião, tom e atitude do autor: Um texto com palavras de tom (however, unfortunately, clearly) destacadas e uma escala de tom da crítica ao elogio.
+- `I01.7` Anúncio, campanha e cartaz: Um anúncio com slogan, imagem e logo, e setas explicando a intenção do anunciante e o público.
+- `I01.8` Tirinha, cartum, charge e meme: Uma tirinha com três quadros e um balão, e as pistas visuais (expressão, ironia) apontadas, com o humor explicado.
+- `I01.9` Poema e letra de canção: Um verso de poema com palavras de imagem destacadas e uma pauta musical, mostrando tema, tom e figuras.
+- `I01.10` Notícia, opinião e divulgação científica: Três recortes de jornal rotulados notícia (fatos), opinião (ponto de vista) e divulgação científica (explicação de pesquisa).
+- `I01.11` Aspectos culturais e interdisciplinares: Um globo com tópicos culturais (festas, música, esporte) e ligações com outras matérias, mostrando um texto sobre cultura.
+- `I02.1` Sentido da palavra no contexto e sinônimos: Uma palavra em duas frases com sentidos diferentes, ligada ao significado de cada contexto, e setas para sinônimos.
+- `I02.2` Falsos cognatos: Pares de palavras lado a lado (actually/atualmente, pretend/pretender, push/puxar) com a tradução enganosa riscada e a correta ao lado.
+- `I02.3` Phrasal verbs: Um verbo base mudando de sentido com cada partícula (give up, give in, give away), cada combinação numa pequena cena.
+- `I02.4` Expressões idiomáticas e provérbios: Cartas com expressões idiomáticas (it's raining cats and dogs, a piece of cake) e o desenho literal ao lado do sentido real.
+- `I02.5` Formação de palavras: prefixos e sufixos: Uma palavra-raiz com prefixos e sufixos formando palavras novas (happy, unhappy, happiness), mostrando como o sentido muda.
+- `I03.1` Referência pronominal: it, they, this, which: Uma frase com setas curvas ligando it, they, this e which ao termo que cada um retoma, em cores diferentes.
+- `I03.2` Conectivos e relações lógicas: Quatro grupos de conectivos (adição, contraste, causa, consequência) em quatro caixas, cada uma com exemplos.
+- `I03.3` Modais e grau de certeza: Uma escala de certeza com modais, must e can't no alto, should e may no meio, might e could embaixo, com exemplos.
+- `I03.4` Comparativos, superlativos, intensificadores e quantificadores: Duas torres de tamanhos diferentes com tall, taller, the tallest, e quantificadores (much, many, few, little) em jarros de quantidade.
+- `I03.5` Voz passiva: Uma frase ativa virando passiva, com setas que trocam sujeito e objeto e a estrutura be + particípio destacada.
+- `I03.6` Discurso direto e indireto: Dois balões de fala viram uma frase reportada, com a mudança de tempo verbal, pronome e advérbio marcada por setas.
+- `I03.7` Condicionais e orações relativas: Quatro tipos de condicional (zero, 1º, 2º, 3º) como uma escada de probabilidade, e uma oração relativa com who, which e that.
+- `I03.8` Classes de palavras: substantivo, adjetivo, pronome e preposição: Uma frase com cada palavra colorida segundo a classe (substantivo, adjetivo, pronome, preposição) e um quadro de funções.
+- `I03.9` Negação e palavras de sentido restritivo: Frases com not, never, hardly e only, a palavra de negação ou restrição destacada, com uma pequena escala de força da negação.
+- `I04.1` Presente simples e contínuo: Duas cenas, uma rotina diária (presente simples) e uma ação no momento (contínuo), com a marca temporal de cada.
+- `I04.2` Passado simples, contínuo e used to: Uma linha do tempo com um passado simples, uma ação em curso interrompida por outra e um hábito antigo (used to).
+- `I04.3` Present perfect × simple past: Uma linha do tempo com uma data fixa no passado (simple past) e uma ação ligada ao presente (present perfect), com as palavras-pista.
+- `I04.4` Past perfect e sequência de tempos: Uma linha do tempo com duas ações no passado, a primeira em past perfect e a segunda em simple past.
+- `I04.5` Futuro: will, going to e presente: Três cenas de futuro, uma decisão na hora (will), um plano já feito (going to) e um horário marcado (presente), com as formas.
+- `I04.6` Irregulares, gerúndio e infinitivo: Uma lista de verbos irregulares com as três formas e uma caixa de quando usar gerúndio ou infinitivo.
+- `IG01` Como o inglês é cobrado no ENEM e nos vestibulares: Quadro lado a lado: questão no modelo ENEM (texto em inglês, pergunta em português) e questão de vestibular com pergunta em inglês.
+- `IG02` Passo a passo para resolver uma questão de leitura: Fluxograma com os cinco passos, do enunciado até a eliminação de alternativas.
+- `IG03` Cognatos: as palavras que você já conhece: Parágrafo curto em inglês com os cognatos destacados em cor, mostrando quanto do texto já se entende.
+- `IG04` Falsos cognatos: lista ampliada: Tabela de três colunas: palavra em inglês, o que parece ser e o que realmente significa.
+- `IG05` Prefixos e sufixos: quadro ampliado: Uma palavra-raiz (use) no centro e, em volta, as palavras formadas: useful, useless, user, reuse, misuse, usable.
+- `IG06` Pares de palavras que a prova confunde: Pares de palavras ligados por uma seta dupla, cada um com um exemplo curto.
+- `IG07` Comandos de questão em inglês: Lista de comandos em inglês, cada um ligado ao tipo de pergunta (explícita, inferência, vocabulário, referência).
+- `IG08` Temas que mais aparecem nos textos da prova: Cinco blocos temáticos, cada um com seis palavras-chave em inglês e a tradução.
+- `IG09` Pronomes: sujeito, objeto, possessivos e reflexivos: Tabela de pronomes em cinco colunas (sujeito, objeto, possessivo adjetivo, possessivo pronome, reflexivo), linha por pessoa.
+- `IG10` Substantivos: plural, contáveis e caso genitivo: Dois quadros: plurais irregulares com desenho (one child, two children) e o 's ligando o dono à coisa.
+- `IG11` Adjetivos e advérbios: posição, -ed × -ing e frequência: Duas figuras: pessoa entediada (bored) diante de uma aula chata (boring), e uma régua de frequência de never a always.
+- `IG12` Perguntas: palavras interrogativas, ordem e question tags: Esquema da ordem da pergunta em blocos coloridos (interrogativa, auxiliar, sujeito, verbo) com dois exemplos.
+- `IG13` Conectivos: quadro ampliado: Quadro de conectivos em seis colunas por relação lógica (adição, contraste, causa, resultado, finalidade, condição).
+- `IG14` Orações relativas em detalhe: Duas frases quase iguais, com e sem vírgulas, mostrando a mudança de sentido entre restritiva e explicativa.
+- `IG15` Quadro-resumo dos tempos verbais: Linha do tempo (passado, agora, futuro) com os quatro aspectos marcados por pontos, intervalos e setas.
+- `IG16` Verbos irregulares mais cobrados: Tabela de verbos irregulares em três colunas (base, passado, particípio), agrupados por padrão de mudança.
+- `IG17` Desejo e hipótese: wish, if only, would rather e had better: Balão de pensamento com 'I wish I had…' ao lado da situação real, mostrando o contraste entre desejo e realidade.
+- `IG18` Inglês como língua global e variedades do inglês: Mapa-múndi destacando países onde o inglês é língua materna, língua oficial ou língua estrangeira estudada.
 

@@ -3,7 +3,7 @@
 Uso, a partir da raiz do repositório:  python3 docs/revisao/valida_geral.py
 Sai com código 1 se houver erro. Não altera nenhum arquivo.
 """
-import json, os, sys
+import json, os, re, sys
 
 RAIZ = os.path.dirname(os.path.abspath(__file__))
 MATERIAS = ["por", "mat", "bio", "fis", "qui", "geo", "his", "fs", "ing"]
@@ -32,6 +32,14 @@ for m in MATERIAS:
             problemas.append(f"{i}: busca vazio")
         if not {"tipo", "descricao"} <= set(t["imagem"]):
             problemas.append(f"{i}: imagem sem tipo ou descricao")
+        for texto in t["pontos"] + [t["pegadinha"]]:
+            if texto.count("$") % 2:
+                problemas.append(f"{i}: cifrão sem par")
+            for formula in re.findall(r"\$([^$]*)\$", texto):
+                if formula.count("{") != formula.count("}"):
+                    problemas.append(f"{i}: chaves desbalanceadas em {formula}")
+                if "/" in re.sub(r"\\text\{[^}]*\}", "", formula):
+                    problemas.append(f"{i}: fração com barra em {formula}")
     print(f"{m}: {len(ids)} tópicos, {'ok' if not problemas else problemas[:10]}")
     erros += len(problemas)
 sys.exit(1 if erros else 0)

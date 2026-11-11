@@ -1,25 +1,26 @@
 # Revisão da revisão geral (caderno Revisaí)
 
-Revisão em 3 lentes sucessivas (fatos → compreensão do aluno → fatos de novo em tudo o que mudou) dos arquivos `docs/revisao/<matéria>/geral.json`. O revisor não teve acesso ao livro: os fatos foram conferidos em fontes públicas (indicadas em cada linha). Ids, ordem e esquema não mudaram; nenhum tópico foi apagado.
+Revisão em 3 lentes sucessivas (fatos → compreensão do aluno → fatos de novo em tudo o que mudou) dos 9 arquivos `docs/revisao/<matéria>/geral.json`. O revisor não teve acesso ao livro: os fatos foram conferidos em fontes públicas (indicadas em cada linha). Ids, ordem e esquema não mudaram; nenhum tópico foi apagado.
 
 ## Situação por matéria
 
 | Matéria | Arquivo | Tópicos revisados | Com mudança de conteúdo (pontos, pegadinha ou título) | Com busca[] ampliada | Erros de fato | Itens "conferir" | Estado |
 |---|---|---|---|---|---|---|---|
-| Português | `docs/revisao/por/geral.json` | 139 de 139 | 64 | 139 | 29 | 8 | revisada completa, com "conferir" |
+| Português | `docs/revisao/por/geral.json` | 139 de 139 | 72 | 139 | 29 | 3 | revisada completa, com "conferir" |
 | Matemática | `docs/revisao/mat/geral.json` | 112 de 112 | 13 | 112 | 6 | 0 | revisada completa |
-| Biologia | `docs/revisao/bio/geral.json` | 58 de 58 | 15 | 58 | 9 | 2 | revisada completa, com "conferir" |
-| Física | `docs/revisao/fis/geral.json` | 50 de 50 | 12 | 50 | 7 | 1 | revisada completa, com "conferir" |
-| Química | `docs/revisao/qui/geral.json` | 58 de 58 | 12 | 58 | 7 | 2 | revisada completa, com "conferir" |
-| Geografia | `docs/revisao/geo/geral.json` | 45 de 45 | 14 | 45 | 6 | 3 | revisada completa, com "conferir" |
-| História | `docs/revisao/his/geral.json` | 57 de 57 | 32 | 57 | 23 | 3 | revisada completa, com "conferir" |
-| Filosofia e Sociologia | `docs/revisao/fs/geral.json` | 86 de 86 | 17 | 86 | 7 | 2 | revisada completa, com "conferir" |
+| Biologia | `docs/revisao/bio/geral.json` | 58 de 58 | 17 | 58 | 9 | 2 | revisada completa, com "conferir" |
+| Física | `docs/revisao/fis/geral.json` | 50 de 50 | 49 | 50 | 8 | 0 | revisada completa |
+| Química | `docs/revisao/qui/geral.json` | 58 de 58 | 40 | 58 | 7 | 1 | revisada completa, com "conferir" |
+| Geografia | `docs/revisao/geo/geral.json` | 45 de 45 | 20 | 45 | 6 | 2 | revisada completa, com "conferir" |
+| História | `docs/revisao/his/geral.json` | 57 de 57 | 34 | 57 | 23 | 2 | revisada completa, com "conferir" |
+| Filosofia e Sociologia | `docs/revisao/fs/geral.json` | 86 de 86 | 18 | 86 | 7 | 2 | revisada completa, com "conferir" |
+| Inglês | `docs/revisao/ing/geral.json` | 49 de 49 | 24 | 49 | 2 | 0 | revisada (31 tópicos do site) e ampliada com 18 tópicos novos (IG01–IG18) |
 
-**Total:** 605 tópicos revisados nas 3 lentes; 179 com mudança de conteúdo; 94 registros de erro de fato no trabalho anterior (um registro pode reunir mais de um erro do mesmo tópico); 21 itens marcados "conferir". Nenhum id mudou, nenhum tópico foi apagado, a ordem e o esquema foram mantidos.
+**Total:** 654 tópicos revisados nas 3 lentes; 287 com mudança de conteúdo; 97 registros de erro de fato no trabalho anterior (um registro pode reunir mais de um erro do mesmo tópico); 12 itens marcados "conferir". Nenhum id mudou, nenhum tópico foi apagado, a ordem e o esquema foram mantidos.
 
 Como ler a coluna "lente": 1 = correção de fato; 2 = clareza para o aluno (definição, contraste, exemplo, busca). Tudo o que a lente 2 escreveu foi reconferido pela lente 1 antes de salvar.
 
-Limites desta revisão: o livro não foi consultado (por instrução); gabaritos por letra de questões resolvidas e dados que só existem no livro ficaram marcados "conferir" em `lacunas` de cada arquivo. `docs/revisao/ing/geral.json` (Inglês) existe, mas não estava na lista pedida e não foi revisado.
+Limites desta revisão: o livro não foi consultado (por instrução). Segunda rodada (12/11/2026, decisões do dono): as letras de gabarito de questões resolvidas foram todas retiradas (ficou a resolução refeita aqui, ou a questão saiu); as fórmulas de Física, Química e Biologia foram reescritas em LaTeX com fração empilhada; Inglês foi revisado e ampliado. O que ainda depende de dado que só existe no livro está marcado "conferir" em `lacunas` de cada arquivo.
 
 ## Português
 
@@ -125,23 +126,18 @@ Limites desta revisão: o livro não foi consultado (por instrução); gabaritos
 | RK05 | níveis 4 e 5 da Competência 2 separados | "160 ou 200, se também for pertinente e produtivo" misturava os dois níveis | Inep, A Redação do Enem – Cartilha do Participante, https://www.gov.br/inep/pt-br/areas-de-atuacao/avaliacao-e-exames-educacionais/enem/outros-documentos | 1 |
 | todos os tópicos (PK, LK, IK, RK) | busca[] ampliada | faltavam os termos que o aluno digita: perguntas ("quando usar crase"), dúvidas ("mal ou mau"), nomes populares, personagens e obras-chave | — | 2 |
 | LK35, IK02, IK06, IK16, RK05, RK20 | ressalvas editoriais retiradas do conteúdo ("o livro cita/mostra/usa...") | o aluno não tem o livro; a frase deve valer sozinha (a observação sobre o livro, quando importa, está em lacunas) | — | 2 |
+| PK27, PK37, PK39, PK42, LK24, LK27, LK31, IK10, IK23, IK24, IK26 | questão de prova trocada por exemplo ou ponto de conteúdo, sem prova e sem letra; títulos e busca[] ajustados | pedido do dono: resolver a questão ou tirar; sem o caderno da prova a letra não se confirma, mas o conteúdo ensinado vale por si | Cunha & Cintra; Bosi; Bagno, Preconceito Linguístico | 1 |
+| LK19, IK12, IK14, IK16 | questão de prova retirada do tópico | só se resolvem com o texto ou a imagem da prova, que não estão no arquivo | — | 1 |
 
 ### Itens marcados "conferir" (estão em `lacunas` do arquivo)
 
-- Inconsistência no livro (Interpretação, questão FCMSCSP 2020, IK10): gabarito impresso D, mas o comentário descreve dissertação argumentativa com elementos descritivos. Ver o item 'conferir: IK10' abaixo.
-- conferir: PK27 cita questão resolvida da Unemat-MT sem o ano da prova (não consta no tópico e não foi possível identificar sem o livro).
 - conferir: LK22 — o livro afirmaria que a metáfora da antropofagia vem de uma 'Carta antropofágica' (1927) de Plínio Salgado; a afirmação foi retirada do tópico por falta de fonte confiável.
-- conferir: IK23 cita questão resolvida da UFU-MG sem o ano da prova.
-- conferir: IK10 (FCMSCSP 2020) — o livro imprime gabarito D, mas o comentário descreve a alternativa de texto dissertativo-argumentativo com elementos descritivos (E, segundo o agente anterior). O tópico agora traz só a classificação, sem letra. Confirmar a letra no caderno e no gabarito oficial da Santa Casa (Vunesp) antes de usar como questão.
-- conferir: gabaritos de questões resolvidas citados com letra (PK37 UFMS 2018; PK39 Acafe-SC 2023; PK42 EEAR-SP 2023; LK19 Unesp 2023; LK27 Unimontes-MG 2024; LK31 Fuvest 2024; IK12 ITA-SP 2022; IK14 e IK16 Enem Digital 2020; IK26 Fuvest 2022) vêm do livro e não foram conferidos no gabarito oficial de cada banca, porque os enunciados não estão no arquivo. As explicações foram conferidas e são coerentes com a letra; conferir a letra antes de transformar em questão do site.
 - conferir: RK12 (tema e nota da redação Fuvest 2025) e RK20 (pontuação e formato das questões discursivas da UFPR) vêm só do livro; confirmar nos manuais do candidato da Fuvest e do NC-UFPR.
 - conferir: IK16 cita o poema concreto 'Anti-ruído', de Augusto de Campos, com data de 1964; título e data não foram localizados em fonte pública.
 
 ### Pendências de decisão do dono
 
-- IK10 (Santa Casa 2020): a letra do gabarito (D impressa × E do comentário) só se resolve com o caderno oficial. O tópico está correto quanto ao conteúdo e não cita letra. Decidir se a questão entra no site só depois dessa conferência.
-- Dez gabaritos por letra de questões resolvidas (lista em `lacunas`) vêm só do livro. Decidir se o site mostra a letra antes da conferência no gabarito oficial.
-- PK27 (Unemat-MT) e IK23 (UFU-MG): questões citadas sem ano. Pela regra, questão de prova só entra com prova e ano.
+- As descrições de imagem de alguns tópicos ainda citam 'questão resolvida' (o campo imagem foi preservado). Ao produzir essas imagens, não incluir a questão: ela saiu do tópico.
 
 ## Matemática
 
@@ -212,6 +208,7 @@ Limites desta revisão: o livro não foi consultado (por instrução); gabaritos
 | BK42 | hábitat × nicho com a analogia endereço/profissão | nicho definido como "condições necessárias" era vago | Campbell et al., Biologia (Artmed); Amabis & Martho, Biologia Moderna; Odum, Fundamentos de Ecologia | 2 |
 | BK10b | pegadinha: contraste mitose × meiose em números | contraste clássico pedido na lente 2 | Campbell et al., Biologia (Artmed); Amabis & Martho, Biologia Moderna | 2 |
 | todos os 58 tópicos | busca[] ampliada | faltavam os nomes que o aluno digita (nomes populares de doenças, sinônimos como "sistema circulatório", siglas e mnemônicos) | — | 2 |
+| BK36 e BK38 | fórmulas em LaTeX, com fração empilhada | pedido do dono; são as duas únicas fórmulas com conta em Biologia | conferência direta | 2 |
 
 ### Itens marcados "conferir" (estão em `lacunas` do arquivo)
 
@@ -224,7 +221,7 @@ Limites desta revisão: o livro não foi consultado (por instrução); gabaritos
 
 ## Física
 
-### Erros de fato encontrados no trabalho anterior (7)
+### Erros de fato encontrados no trabalho anterior (8)
 
 1. FK28 — pulso em cordas de densidades diferentes: dizia que o pulso refratado inverte quando μ1 > μ2. O refratado nunca inverte; o refletido inverte quando a segunda corda é mais densa.
 2. FK25 — vergência da lente do hipermétrope com sinal trocado ("V = 1/dH − 4"; certo: V = 4 − 1/dH).
@@ -233,6 +230,7 @@ Limites desta revisão: o livro não foi consultado (por instrução); gabaritos
 5. FK15c — garrafa térmica: redução da condução atribuída ao espelhamento (é do vácuo).
 6. FK29 — fórmula do efeito Doppler sem convenção de sinais (± em cima e embaixo) e "som é mais rápido em meios mais densos".
 7. FK15b — ponto crítico sem a condição "acima da temperatura crítica"; FK36 — temperatura de Curie descrita como "o magnetismo enfraquece".
+8. FK18 — Q_F/W dado como eficiência da bomba de calor (é a do refrigerador); achado pelo revisor independente na segunda rodada.
 
 ### Todas as alterações
 
@@ -251,15 +249,15 @@ Limites desta revisão: o livro não foi consultado (por instrução); gabaritos
 | FK05b | pegadinha: peso × normal e massa × peso | confusões clássicas ausentes | Halliday, Resnick & Walker, Fundamentos de Física; Ramalho, Nicolau & Toledo, Os Fundamentos da Física | 2 |
 | todos os 50 tópicos | busca[] ampliada | faltavam os nomes que o aluno digita (fórmulas como "U = R i", macetes como "sorvete" e "que macete", sinônimos como ddp/tensão) | — | 2 |
 | FK21 | ressalvas editoriais retiradas do conteúdo ("o livro cita/mostra/usa...") | o aluno não tem o livro; a frase deve valer sozinha (a observação sobre o livro, quando importa, está em lacunas) | — | 2 |
+| 46 tópicos de Física (todos os que têm fórmula) | fórmulas reescritas em LaTeX entre cifrões, com toda fração empilhada (\frac), como em Matemática | pedido do dono: entregar pronto, sem o site ter de converter; regra do CLAUDE.md (fração sempre empilhada) | conferência fórmula a fórmula contra Halliday, Resnick & Walker | 2 (+1 de novo) |
+| FK21 | exemplo da Santa Casa 2024 reescrito só com a parte que fecha na conta (p = 20 cm, p' = 60 cm, f = 15 cm) | a primeira metade citava um resultado sem os dados; ficou só o que foi resolvido aqui | conta refeita | 1 |
+| FK09b | retirada a letra do gabarito (alternativa E) | pedido do dono: sem letra não conferida; a conta foi refeita e dá 400 g | conta refeita | 1 |
+| FK18 | eficiência: Q_F/W é do refrigerador; a da bomba de calor é Q_Q/W | erro herdado, apontado pelo revisor independente | Halliday, Resnick & Walker, cap. de entropia e máquinas térmicas | 1 (2º revisor) |
+| FK10 | retirado o exemplo da Santa Casa 2022 | o ponto não trazia as distâncias; a conta não pôde ser refeita (pedido do dono: resolver ou tirar) | — | 1 |
+| FK09, FK11, FK11b, FK13, FK35, FK40 | índices com acento passaram a \text{…} dentro da fórmula | letra acentuada solta em modo matemático pode falhar no renderizador (apontado pelo revisor independente) | documentação do KaTeX | 2 |
 
 ### Itens marcados "conferir" (estão em `lacunas` do arquivo)
 
-- conferir: FK09b (Unesp 2023), FK10 (FCMSCSP 2022) e FK21/FK22 (FCMSCSP 2024) — os cálculos foram refeitos e fecham com os valores citados, mas as letras de gabarito e os enunciados vêm só do livro. FK21 cita 'resultado 5 no livro' para a razão imagem/objeto sem os dados do enunciado: conferir no caderno da prova.
-
-### Pendências de decisão do dono
-
-- FK21 (Santa Casa 2024): o exemplo cita "resultado 5 no livro" sem os dados do enunciado. Decidir se fica assim, se sai do tópico ou se entra a questão completa (com print fiel).
-- Física (e também Química e Biologia): as fórmulas estão em texto simples, com frações em barra (Δs/Δt), e não em LaTeX como em Matemática. A regra do produto é fração empilhada: decidir se o site converte na exibição ou se os arquivos devem ser reescritos em LaTeX.
 
 ## Química
 
@@ -290,16 +288,19 @@ Limites desta revisão: o livro não foi consultado (por instrução); gabaritos
 | QK33 | pegadinha: pilha × eletrólise com o sentido dos elétrons | contraste reforçado | Atkins & Jones, Princípios de Química; Feltre, Química (Moderna) | 2 |
 | todos os 58 tópicos | busca[] ampliada | faltavam os nomes que o aluno digita (sinônimos como "pontes de hidrogênio", fórmulas como "PV = nRT", grafias como "Bronsted" e "Saytzeff") | — | 2 |
 | QK23 | ressalvas editoriais retiradas do conteúdo ("o livro cita/mostra/usa...") | o aluno não tem o livro; a frase deve valer sozinha (a observação sobre o livro, quando importa, está em lacunas) | — | 2 |
+| QK04–QK51 (25 tópicos com contas) | fórmulas matemáticas reescritas em LaTeX entre cifrões, com fração empilhada (\frac) e potências de dez; fórmulas químicas (H2O, CO2) continuam em texto | pedido do dono: entregar pronto, sem conversão no site | contas refeitas uma a uma | 2 (+1 de novo) |
+| QK14, QK18, QK21–QK24, QK27, QK30, QK32, QK34–QK36, QK38, QK39, QK41, QK48, QK51, QK53, QK58 | retiradas as letras de gabarito; cada exemplo ficou com a resolução feita aqui (conta ou classificação refeita) | pedido do dono: resolver a questão ou tirar; a letra dependia do caderno de prova | contas e classificações refeitas (Atkins & Jones; Feltre) | 1 |
+| QK43 | retirada a questão Udesc 2023 | as afirmações (faixas de carbonos e temperaturas das frações) não puderam ser conferidas sem o enunciado; pedido do dono: tirar o que não se resolve | — | 1 |
+| QK22 | exemplo da Unicamp 2021: 9 950 L em 995 min (não 1000 min) | conta refeita: ficam 50 L no cilindro | conta refeita | 1 |
+| QK01, QK14, QK35 | densidade em LaTeX; reação do exemplo explicitada; arredondamento da carga corrigido (44 970 C) | apontado pelo revisor independente | contas refeitas | 1 (2º revisor) |
 
 ### Itens marcados "conferir" (estão em `lacunas` do arquivo)
 
 - conferir: QK18 — a descrição da imagem do livro cita curvas de solubilidade de KNO3, NaOH e NaCl. Se o gráfico do livro mostrar a curva do NaOH como decrescente, a imagem não deve ser reproduzida assim (a solubilidade do NaOH cresce com a temperatura).
-- conferir: gabaritos por letra das questões resolvidas (QK14, QK18, QK21, QK22 Unicamp 2021, QK23 UFJF 2020, QK24 PUC-Rio 2022 e UEA 2024, QK27, QK30 Unesp 2024, QK32 Uerr 2023, QK34 UPF 2023, QK35 Uece 2022, QK36 Unesp 2021 e FMABC 2025, QK38 Uerj 2023, QK39, QK41 UEL 2023, QK43 Udesc 2023, QK48 UEPG 2022, QK51 Unisc 2022, QK53 FCMMG 2022, QK58 UEPG 2023): todas as contas e classificações foram refeitas e batem com a resposta citada, mas a letra vem só do livro. QK14, QK18, QK21 e QK27 trazem 'exemplo do livro' sem prova e ano.
 
 ### Pendências de decisão do dono
 
 - QK18: se a imagem do livro mostrar a curva do NaOH como decrescente, não reproduzir; decidir qual gráfico entra.
-- QK14, QK18, QK21 e QK27 citam "exemplo do livro" com alternativa, sem prova e ano. Pela regra, questão de prova só com identificação: decidir se viram exemplo sem letra ou se saem.
 
 ## Geografia
 
@@ -331,12 +332,13 @@ Limites desta revisão: o livro não foi consultado (por instrução); gabaritos
 | GK45 | "internet 2.0" identificada como Web 2.0 | o termo consagrado é Web 2.0 | O’Reilly, "What Is Web 2.0" (2005) | 1 |
 | todos os 45 tópicos | busca[] ampliada | faltavam termos que o aluno digita (uberização, rios voadores, MATOPIBA, marco temporal, siglas e nomes de conferências) | — | 2 |
 | GK01, GK43, GK45 | ressalvas editoriais retiradas do conteúdo ("o livro cita/mostra/usa...") | o aluno não tem o livro; a frase deve valer sozinha (a observação sobre o livro, quando importa, está em lacunas) | — | 2 |
+| GK01, GK07, GK18, GK22, GK33, GK40, GK42 | referência à questão de prova e letra retiradas; ficou o conteúdo | pedido do dono: resolver ou tirar; sem o caderno da prova a letra não se confirma | IBGE; FAO, https://www.fao.org/agroecology | 1 |
+| GK03 | exemplo da escala com fração empilhada e sem letra | conta refeita; regra da fração empilhada | conta refeita | 1 |
 
 ### Itens marcados "conferir" (estão em `lacunas` do arquivo)
 
 - conferir: GK43 — o livro define cidade média como a de 100 mil a 1 milhão de habitantes; o corte mais usado (IBGE/Ipea) é 100 mil a 500 mil. O ponto mantém o do livro e a pegadinha avisa.
 - conferir: os percentuais de vegetação remanescente por bioma (GK14), a população de povos e comunidades tradicionais (GK33, 'cerca de 4,5 milhões') e o número de agrupamentos quilombolas (GK26) seguem o livro; conferir no MapBiomas e no IBGE antes de usar em questão.
-- conferir: gabaritos por letra das questões resolvidas (GK01 Uece 2023; GK03 Fuvest 2025; GK07 Unicamp 2025; GK18 Famerp 2023; GK22 Enem 2025; GK33 Unicamp 2024; GK40 UFJF 2021; GK42 UFPR 2022) vêm só do livro. As explicações foram conferidas e são coerentes; a conta da escala (GK03) foi refeita.
 
 ### Pendências de decisão do dono
 
@@ -407,10 +409,10 @@ Limites desta revisão: o livro não foi consultado (por instrução); gabaritos
 | HK54 | ditadura uruguaia: 1973–1985; Somoza no poder a partir de 1936; datas do fim da ditadura brasileira | erro de data: a ditadura uruguaia terminou em 1985, não em 1990 | Enciclopédia Britannica, https://www.britannica.com/place/Uruguay/The-military-regime ; FGV CPDOC, Dicionário Histórico-Biográfico Brasileiro, https://cpdoc.fgv.br/acervo/dhbb | 1 |
 | HK55 | tripé macroeconômico datado em 1999 (FHC), não no Plano Real de 1994; MST fundado em 1984 | erro: o Plano Real usou câmbio controlado (âncora cambial); câmbio flutuante e metas de inflação são de 1999. O MST não "surgiu" no governo FHC | Banco Central do Brasil, https://www.bcb.gov.br/controleinflacao/historicometas ; FGV CPDOC, Dicionário Histórico-Biográfico Brasileiro, https://cpdoc.fgv.br/acervo/dhbb | 1 |
 | todos os 57 tópicos | busca[] ampliada | faltavam os nomes que o aluno digita (República Velha, Guerra dos Farrapos, Jango, anos de chumbo, causas e consequências) | — | 2 |
+| HK12, HK20, HK28, HK48, HK54 | referência à questão de prova e letra retiradas; ficou o conteúdo | pedido do dono: resolver ou tirar; sem o caderno da prova a letra não se confirma | Britannica; FGV CPDOC (Vladimir Herzog) | 1 |
 
 ### Itens marcados "conferir" (estão em `lacunas` do arquivo)
 
-- conferir: gabaritos por letra das questões resolvidas (HK12 Unicamp 2022; HK20 Fuvest 2024; HK28 FICSAE 2023; HK48 Unesp 2024; HK54 UCS 2014 e Unicamp 2024) vêm só do livro; as explicações foram conferidas e são coerentes.
 - conferir: HK52 — o livro atribui o Plano Salte (1947) a empréstimos do FMI; a informação não foi confirmada em fonte pública e foi mantida como está no livro.
 - conferir: HK55 — a inflação de 1989 aparece como 1700%; os índices oficiais variam conforme a medida (IPCA de 1989: cerca de 1 970%; INPC: cerca de 1 860%). Conferir o índice antes de usar em questão.
 
@@ -453,6 +455,7 @@ Limites desta revisão: o livro não foi consultado (por instrução); gabaritos
 | SK45 | datas do Brexit (2016 e 2020) | faltavam as datas | Parlamento do Reino Unido, https://www.parliament.uk/business/publications/research/eu-referendum/ | 2 |
 | todos os 86 tópicos (FK e SK) | busca[] ampliada | faltavam os nomes que o aluno digita (mito da caverna, penso logo existo, Deus está morto, jeitinho brasileiro, uberização, grafias como "falseabilidade" e "Thomas Morus") | — | 2 |
 | FK09 | ressalvas editoriais retiradas do conteúdo ("o livro cita/mostra/usa...") | o aluno não tem o livro; a frase deve valer sozinha (a observação sobre o livro, quando importa, está em lacunas) | — | 2 |
+| SK27 | valores escritos como "2.000 reais" em vez de "R$ 2.000" | o cifrão de "R$" seria lido pelo site como início de fórmula | — | 2 |
 
 ### Itens marcados "conferir" (estão em `lacunas` do arquivo)
 
@@ -463,4 +466,28 @@ Limites desta revisão: o livro não foi consultado (por instrução); gabaritos
 
 - SK41: manter a atribuição do livro (mobilização de recursos = Tilly) ou corrigir para a atribuição usual (McCarthy e Zald; Tilly = processo político)?
 - Os tópicos de Filosofia e Sociologia são longos (vários pontos com mais de 400 caracteres). Foram mantidos para não perder conteúdo; se o site precisar de pontos mais curtos, o corte deve ser feito na tela, não no arquivo, ou em nova rodada de edição.
+
+## Inglês
+
+### Erros de fato encontrados no trabalho anterior (2)
+
+1. Os 31 tópicos existentes (I01–I04) não tinham erro de fato; o problema era de uso: busca[] era o título quebrado em palavras e vários termos técnicos (skimming, scanning, topic sentence, lead, stative verbs) vinham sem tradução.
+2. O arquivo cobria só leitura, vocabulário, gramática e tempos verbais por subtema; faltavam visão da prova, estratégia de resolução, pronomes, plural e genitivo, perguntas, quadro geral dos tempos e lista de irregulares, que entraram como IG01–IG18.
+
+### Todas as alterações
+
+| id | o que mudou | por quê | fonte | lente |
+|---|---|---|---|---|
+| I01.1, I01.3, I01.10, I01.11, I03.9, I04.1 | termos técnicos traduzidos na primeira vez (skimming, scanning, topic sentence, headline, lead, stative verbs) e exemplos para any | termo técnico sem definição | Cambridge Dictionary, https://dictionary.cambridge.org | 2 |
+| todos os 31 tópicos I01–I04 | busca[] ampliada | a busca era o título quebrado em palavras; entraram os nomes em inglês e em português que o aluno digita (false friends, reported speech, if clauses, will x going to) | — | 2 |
+| IG01–IG18 (novos) | 18 tópicos criados no fim do arquivo: prova e estratégia (IG01, IG02, IG07, IG08), vocabulário (IG03–IG06), gramática (IG09–IG14, IG17), tempos verbais (IG15, IG16) e inglês como língua global (IG18) | pedido do dono (12/11/2026): criar a revisão de Inglês no padrão das outras matérias; o arquivo não cobria esses conteúdos | Murphy, English Grammar in Use; Swan, Practical English Usage; Cambridge Dictionary; Inep (provas e matriz do Enem), https://www.gov.br/inep/pt-br/areas-de-atuacao/avaliacao-e-exames-educacionais/enem | 1 e 2 |
+| arquivo | campos `base` e `lacunas` atualizados | registrar a origem de cada grupo de tópicos | — | 2 |
+| IG02, IG10, IG12, IG13, IG15 | sete ajustes de precisão (scanning, plural em -o e -f, auxiliar da question tag, otherwise e whether, auxiliar e marca de tempo) | apontados pelo revisor independente (segunda lente de fatos) | Swan, Practical English Usage; Cambridge Dictionary | 1 (2º revisor) |
+
+### Itens marcados "conferir" (estão em `lacunas` do arquivo)
+
+
+### Pendências de decisão do dono
+
+- Inglês: os 18 tópicos novos usam ids IG01–IG18 (complementos, como os G01–G32 de Matemática). Se o site preferir que virem subtemas (I05…), a troca tem de ser feita antes de irem ao ar, porque depois o id não muda.
 
