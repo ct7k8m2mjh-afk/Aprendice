@@ -10,7 +10,7 @@ Arquivos: `docs/icones/<matéria>/<id do tema>-<nome>.png`. O id no nome é o `m
 | Matemática | `docs/icones/matematica/` | M01 a M17 (17) |
 | Português | `docs/icones/portugues/` | P01 a P12 (12) |
 | Física | `docs/icones/fisica/` | F01 a F12 (12) |
-| Geografia | `docs/icones/geografia/` | G01 a G12 (12) |
+| Geografia | `docs/icones/geografia/` | G01 a G13 (13; G13 Pensamento geográfico, 11/11/2026) |
 | História | `docs/icones/historia/` | H01 a H08 (8) |
 | Inglês | `docs/icones/ingles/` | I01 a I04 (4) |
 | Filosofia e Sociologia | `docs/icones/filosofia-sociologia/` | L01 a L08 e S01 a S08 (16) |

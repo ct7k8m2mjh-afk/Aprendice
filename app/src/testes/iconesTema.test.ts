@@ -14,7 +14,7 @@ const PASTA: Record<string, string> = {
 const seq = (l: string, n: number) => Array.from({ length: n }, (_, i) => l + String(i + 1).padStart(2, '0'));
 // temas de cada matéria (TAXONOMIA.md); fs = Filosofia (L) e Sociologia (S) numa matéria só
 const TEMAS: Record<string, string[]> = {
-  bio: seq('B', 12), qui: seq('Q', 12), mat: seq('M', 17), por: seq('P', 12), fis: seq('F', 12), geo: seq('G', 12),
+  bio: seq('B', 12), qui: seq('Q', 12), mat: seq('M', 17), por: seq('P', 12), fis: seq('F', 12), geo: seq('G', 13),
   his: seq('H', 8), ing: seq('I', 4), fs: [...seq('L', 8), ...seq('S', 8)],
 };
 

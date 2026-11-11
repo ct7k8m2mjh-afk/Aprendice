@@ -1,7 +1,9 @@
 // Princípio 7: nunca perder progresso. Migração do formato do protótipo e mesclagem.
 import { describe, expect, it } from 'vitest';
-import { aplicaAlias, importaArquivo, mesclaQ, migraDoNavegador } from '../estado/migracao';
-import { estadoVazio } from '../estado/tipos';
+import { existsSync, readFileSync } from 'node:fs';
+import { join } from 'node:path';
+import { aplicaAlias, importaArquivo, mesclaQ, migraDoNavegador, migraEstado, VERSAO_ATUAL } from '../estado/migracao';
+import { estadoMateriaVazio, estadoVazio } from '../estado/tipos';
 
 const ids = { bio: new Set(['P0a240e7', 'P4f909ea', 'P051777a']), qui: new Set(['Pea7d145']), mat: new Set(['d463edb8']), por: new Set(['Pabc0001']) };
 
@@ -71,5 +73,36 @@ describe('migração do protótipo', () => {
   it('mesclaQ une por instante da tentativa', () => {
     const r = mesclaQ({ x: { tent: [{ letra: 'A', ok: false, ts: 1, seg: 1 }] } }, { x: { tent: [{ letra: 'A', ok: false, ts: 1, seg: 1 }, { letra: 'B', ok: true, ts: 2, seg: 1 }] } });
     expect(r.x.tent.map((t) => t.ts)).toEqual([1, 2]);
+  });
+});
+
+/* Tema novo G13 Pensamento geográfico (dono, 11/11/2026): 30 questões de Geografia mudaram de conteúdo (G01.1, G10.1,
+ * G11.2 e outros -> G13.1/G13.2). O progresso é guardado pelo id da questão (materias.geo.q[id]) e o conteúdo de cada
+ * questão vem sempre do banco, então nada precisa ser migrado: os ids não mudam e as tentativas passam a contar em G13.
+ * As revisões em slides (revs) são por conteúdo e continuam valendo para o conteúdo antigo, que segue existindo. */
+const BANCO_GEO = join(__dirname, '..', '..', 'public', 'conteudo', 'geo', 'banco.json');
+const PARA_G13: Record<string, string> = {
+  P57bb73c6: 'G13.1', Pea2d2a81: 'G13.1', P28635b52: 'G13.1', P1b033809: 'G13.1', // estavam em G11.2 (UECE)
+  Pdda91616: 'G13.2', P5465952f: 'G13.2', P68ce70cd: 'G13.2', // estavam em G11.2 (UECE)
+  P28ffd480: 'G13.2', P2cb91213: 'G13.2', Pf0cfa1b9: 'G13.1', P02c1fd72: 'G13.1', // estavam em G01.1 (URCA)
+};
+
+describe('G13 Pensamento geográfico: reclassificação sem perder progresso', () => {
+  it('o progresso segue o id: migrar o estado não mexe nas tentativas das questões que mudaram de conteúdo', () => {
+    const tent = (ok: boolean, ts: number) => ({ letra: 'A' as const, ok, ts, seg: 30 });
+    const q = Object.fromEntries(Object.keys(PARA_G13).map((id, k) => [id, { tent: [tent(k % 2 === 0, 1762000000000 + k)], rev: k % 3 === 0 }]));
+    const e = { ...estadoVazio(), versao: VERSAO_ATUAL, materias: { geo: { ...estadoMateriaVazio(), q, ult: 'P57bb73c6' } } };
+    const m = migraEstado(e).materias.geo!;
+    expect(m.q).toEqual(q);
+    expect(m.ult).toBe('P57bb73c6');
+  });
+  it.skipIf(!existsSync(BANCO_GEO))('as questões estão no banco com o mesmo id, agora no tema G13', () => {
+    const banco = JSON.parse(readFileSync(BANCO_GEO, 'utf-8')) as { id: string; modulo: string; sub: string }[];
+    const por = new Map(banco.map((x) => [x.id, x]));
+    for (const [id, sub] of Object.entries(PARA_G13)) {
+      expect(por.get(id)?.sub, id).toBe(sub);
+      expect(por.get(id)?.modulo, id).toBe('G13');
+    }
+    expect(banco.filter((x) => x.modulo === 'G13').length).toBeGreaterThanOrEqual(30);
   });
 });
