@@ -16,7 +16,9 @@ Onde ficam: `app/conteudo-fonte/provas/<prova>/resolucoes.json` (uma entrada por
 | 05 | Matemática | ENEM 2020–2025, 24 questões (nível 5 na classificação anterior) | 24 | 24 | 0 | 0 | 0 |
 | 06 (mat-0001) | Matemática | ENEM 2020–2025, 24 questões pela ferramenta de lotes (níveis oficiais do INEP) | 24 | 24 | 0 | 0 | 0 |
 | 07 (mat-0002) | Matemática | ENEM 2020–2025, 24 questões com figura (funções, sequências, geometria) | 24 | 24 | 0 | 0 | 0 |
-| **Total** | | | **198** | **198** | **0** | **0** | **0** |
+| 08 (mat-0003) | Matemática | ENEM 2020–2025, as 18 últimas dos níveis 1 a 6 (contagem, probabilidade, estatística, espaço) | 18 | 18 | 0 | 0 | 0 |
+| 09 (bio-0001) | Biologia | ENEM 2020–2025, 22 questões, níveis 3 a 6 (citologia a fisiologia) | 22 | 22 | 0 | 0 | 0 |
+| **Total** | | | **238** | **238** | **0** | **0** | **0** |
 
 No site montado: Biologia passou de 195 para 229 questões com resolução; Matemática, de 552 para 711 (depois do lote 07). Quatro das 92 de Matemática são a mesma questão que já existia no banco antigo com resolução (ENEM 2024 q145, ENEM 2021 q178, ENEM 2020 q168 e ENEM 2023 q155); a resolução antiga continua valendo nelas.
 
@@ -48,6 +50,22 @@ No site montado: Biologia passou de 195 para 229 questões com resolução; Mate
 - q175 (gráfico do lucro): resolvida pela diferença ponto a ponto; letra oficial A.
 - q176 (projeções de um sólido de quatro cubos): cada alternativa foi recortada e ampliada; banca e conferente contaram os quadrados de cada sombra, separadamente, e chegaram às mesmas leituras (C e D espelhadas, A com alturas diferentes nas duas paredes, B com a sombra da parede esquerda uma coluna deslocada); letra oficial E.
 - Conferente: conferência completa das duas; 2 ajustes de redação na q176. Aprovadas.
+
+## Lote 09 (bio-0001) — Biologia, ENEM, 22 questões (11/11/2026)
+
+- As 22 respostas da banca, dadas antes de abrir o gabarito, bateram com a letra oficial; o conferente também chegou às 22.
+- Conferente (uma passada): 3 erros de precisão (ENEM 2021 q96, "deleção desloca a leitura" valia só para 1 ou 2 nucleotídeos; ENEM 2022 q122, efeito atribuído à proteína quando o enunciado fala do veneno; ENEM 2021 q114, neuro-hipófise tratada como parte do encéfalo) e ajustes de clareza em 12 questões. Tudo corrigido e aprovado na volta do mesmo conferente.
+- Leituras de figura medidas pelo conferente: eletrocardiograma (ENEM 2021 q131: 5 quadradinhos de 0,2 s entre picos), tubos (ENEM 2024 q124), Engelmann (ENEM 2020 q121), círculo de cores (ENEM 2021 q120), heredogramas (ENEM 2024 q112) e joaninhas (ENEM 2025 q107).
+- Alertas registrados na resolução: ENEM 2022 q120 (ótimo da catalase em 15 °C é dado do enunciado) e ENEM 2022 q125 (alternativa D é próxima; gabarito oficial E).
+- **Para a sessão principal (classificação):** ENEM 2025 q107 (P89bf00ae) está em "B06.2 2ª lei de Mendel", mas é um gene só, sem dominância. Os códigos de equívoco seguem o conteúdo atual.
+- Site: `converte.py`, `tsc` e `vitest` (766 testes) verdes; Biologia com 251 questões com resolução. Abertas em 390 px: ENEM 2021 q96, ENEM 2021 q131 e ENEM 2024 q112 — 4 blocos na ordem, animação até o fim, sem rolagem lateral, 0 erros de página.
+
+## Lote 08 (mat-0003) — Matemática, ENEM, 18 questões (11/11/2026)
+
+- Fecha Matemática do ENEM nos níveis 1 a 6. As 18 respostas da banca bateram com a letra oficial; o conferente também chegou às 18.
+- Conferente (uma passada): 1 erro (ENEM 2025 q165, contraexemplo com desvio padrão diferente do quadro; ficou sem números) e ajustes em 14 questões, a maioria trocando "não confere" pela conta exata que gera a alternativa. Tudo corrigido e aprovado na volta.
+- ENEM 2025 q138 (cubo e projeções): posição inicial e as cinco figuras medidas em pixels pela banca e pelo conferente, com o mesmo resultado.
+- Site: `converte.py`, `tsc` e `vitest` (766 testes) verdes; Matemática com 729 questões com resolução. Abertas em 390 px: ENEM 2024 q164, ENEM 2025 q138 e ENEM 2025 q152 — 4 blocos na ordem, frações empilhadas, animação até o fim, 0 erros de página.
 
 ## Lote 07 (mat-0002) — Matemática, ENEM, 24 questões com figura (11/11/2026)
 
@@ -83,5 +101,6 @@ No site montado: Biologia passou de 195 para 229 questões com resolução; Mate
 
 ## O que falta (Matemática e Biologia do ENEM, níveis 1 a 6)
 
-- Matemática e Biologia do ENEM: seguir a ordem de `python3 ferramentas/resolucoes/lote.py proximo mat` (e depois `bio`), que já usa os níveis oficiais do INEP.
+- Matemática do ENEM, níveis 1 a 6: **concluída** (lote 08). Faltam em Matemática 2 789 questões de outras provas e níveis.
+- Biologia do ENEM, níveis 1 a 6: faltam 21 (`python3 ferramentas/resolucoes/lote.py proximo bio`).
 - Depois: demais matérias do ENEM e as provas-alvo mais comuns (ver `levantamento.md`).

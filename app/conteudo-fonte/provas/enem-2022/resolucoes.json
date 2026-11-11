@@ -2304,5 +2304,945 @@
    "data": "2026-11-11",
    "lote": "mat-0002"
   }
+ },
+ "P3356b7d3": {
+  "n": "155",
+  "conceito": "Combinação: escolher 2 entre os 6 apartamentos com sol da manhã em um andar, para cada um dos 9 andares.",
+  "equivocos": {
+   "A": "M13.3:arranjo-por-combinacao",
+   "C": "M13.3:conjunto-incompleto",
+   "D": "M13.3:conjunto-incompleto",
+   "E": "M13.3:complementar-mal-contado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Em cada andar, servem os apartamentos em que pelo menos um quarto recebe sol de manhã: os que terminam em 1, 2, 3, 4, 5 ou 6. São 6 por andar. A pessoa escolhe 2 deles, e a ordem da escolha não importa: combinação. Como o andar pode ser qualquer um dos 9, multiplica-se por 9.",
+    "formulas": [
+     "C(n, k) = n! ÷ ((n − k)! · k!)"
+    ],
+    "simbolos": [
+     [
+      "combinação",
+      "escolha em que a ordem não importa: C(n, k) = n! ÷ ((n − k)! · k!)"
+     ]
+    ]
+   },
+   "pista": "Quais finais de apartamento têm pelo menos um quarto com sol de manhã? Comprar o 31 e o 32 é diferente de comprar o 32 e o 31?",
+   "passos": [
+    {
+     "faz": "Conte os apartamentos que servem por andar",
+     "conta": "finais 1, 2 (dois quartos) e 3, 4, 5, 6 (um quarto) → 6",
+     "porque": "Os de final 7 e 8 só recebem sol à tarde.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Escolha 2 entre 6, sem ordem",
+     "conta": "6! ÷ ((6 − 2)! × 2!)",
+     "porque": "Combinação de 6 tomados 2 a 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Considere os andares",
+     "conta": "9 × 6! ÷ ((6 − 2)! × 2!)",
+     "porque": "Os dois apartamentos ficam no mesmo andar, que pode ser qualquer um dos 9.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "expressão da alternativa B",
+     "porque": "Em número: 9 × 15 = 135.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B: em cada andar há C(6, 2) = 15 pares possíveis; em 9 andares, 9 × 6!/((6 − 2)! × 2!).",
+   "checagem": "Em número: C(6, 2) = 6 × 5 ÷ 2 = 15 e 9 × 15 = 135 maneiras.",
+   "erradas": {
+    "A": "9 × 6!/(6 − 2)! conta os pares com ordem: 30 por andar. Comprar o 31 e o 32 é o mesmo que comprar o 32 e o 31: divide-se por 2!.",
+    "C": "Usa só 4 apartamentos por andar: os de final 3 a 6. Os de final 1 e 2 também servem, pois ambos os quartos recebem sol de manhã.",
+    "D": "Usa só 2 apartamentos por andar: os de final 1 e 2. Os de final 3 a 6 também servem: “pelo menos um” quarto com sol de manhã.",
+    "E": "Dos 28 pares entre os 8 apartamentos, tira só o par 7 e 8: 27 por andar. Os pares proibidos são 13, todos os que incluem final 7 ou 8: 28 − 13 = 15."
+   },
+   "armadilha": "Ler “pelo menos um quarto” como “apenas um quarto” e deixar de fora os apartamentos de final 1 e 2.",
+   "alerta": "",
+   "essencial": {
+    "pede": "o número de maneiras de escolher os 2 apartamentos",
+    "chave": "9 andares × C(6, 2)",
+    "cuidado": "“pelo menos um” inclui os que têm os dois quartos com sol de manhã"
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "em número",
+    "ideia": "Por andar: 6 × 5 ÷ 2 = 15 pares. Em 9 andares: 135."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "finais 1 a 6: 6 apartamentos por andar",
+    "nota": "pelo menos um quarto com sol de manhã"
+   },
+   {
+    "linha": "C(6, 2) = 6!/((6 − 2)! × 2!) = 15",
+    "nota": "pares em um andar"
+   },
+   {
+    "linha": "9 × 15 = 135",
+    "nota": "pares no prédio"
+   }
+  ],
+  "visual": {
+   "cabe": false,
+   "tipo": "nenhum",
+   "porque": "O quadro já mostra a conta inteira, linha por linha; uma figura a mais não acrescentaria nada.",
+   "roteiro": ""
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-11",
+   "lote": "mat-0003"
+  }
+ },
+ "P610b4304": {
+  "n": "138",
+  "conceito": "Lucro = receita − despesa em cada mês; mediana dos lucros (só os meses com diferença positiva).",
+  "equivocos": {
+   "A": "M14.1:incluiu-os-prejuizos",
+   "B": "M14.1:sem-origem-identificada",
+   "C": "M14.1:media-por-mediana",
+   "E": "M14.1:mediana-da-grandeza-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Lucro é quando a receita supera a despesa. Calcule a diferença em cada mês e separe os meses com lucro (diferença positiva); os de prejuízo não entram. A mediana é o valor central dos lucros em ordem crescente; com quantidade par, a média dos dois centrais.",
+    "formulas": [],
+    "simbolos": [
+     [
+      "lucro",
+      "diferença positiva entre receita e despesa"
+     ],
+     [
+      "prejuízo",
+      "diferença negativa"
+     ],
+     [
+      "mediana",
+      "valor central dos dados ordenados"
+     ]
+    ]
+   },
+   "pista": "Em quais meses a barra da receita é mais alta que a da despesa? De quanto é a diferença em cada um?",
+   "passos": [
+    {
+     "faz": "Calcule a diferença de janeiro a junho",
+     "conta": "jan 6 − 3 = 3 · fev 4 − 5 = −1 · mar 3 − 2 = 1 · abr 5 − 6 = −1 · mai 6 − 1 = 5 · jun 5 − 2 = 3",
+     "porque": "Receita menos despesa, lidas no gráfico.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a diferença de julho a dezembro",
+     "conta": "jul 6 − 4 = 2 · ago 2 − 4 = −2 · set 7 − 3 = 4 · out 2 − 4 = −2 · nov 8 − 7 = 1 · dez 6 − 2 = 4",
+     "porque": "Diferença negativa é prejuízo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Fique só com os lucros",
+     "conta": "3, 1, 5, 3, 2, 4, 1, 4",
+     "porque": "Oito meses tiveram lucro; quatro, prejuízo.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Ordene",
+     "conta": "1, 1, 2, 3, 3, 4, 4, 5",
+     "porque": "Mediana só se lê nos dados em ordem.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tire a mediana",
+     "conta": "(3 + 3) ÷ 2 = 3",
+     "porque": "4º e 5º valores. É a alternativa D.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D: os oito lucros, em ordem, são 1, 1, 2, 3, 3, 4, 4, 5; a mediana é 3,0 milhões.",
+   "checagem": "Três lucros ficam abaixo de 3 (1, 1, 2) e três acima (4, 4, 5), com dois valores iguais a 3 no meio.",
+   "erradas": {
+    "A": "1,5 é a mediana das 12 diferenças, incluindo os quatro prejuízos: (1 + 2) ÷ 2. A pergunta é a mediana dos LUCROS.",
+    "B": "2,0 não confere: em ordem, os oito lucros têm 3 e 3 nas posições centrais.",
+    "C": "2,9 é a MÉDIA dos lucros: 23 ÷ 8 ≈ 2,9. A pergunta pede a mediana.",
+    "E": "5,5 é a mediana das RECEITAS dos doze meses, (5 + 6) ÷ 2. O lucro é a receita menos a despesa."
+   },
+   "armadilha": "Incluir os meses de prejuízo entre os “lucros”: a mediana cairia para 1,5.",
+   "alerta": "",
+   "essencial": {
+    "pede": "a mediana dos lucros do ano",
+    "chave": "oito lucros: 1, 1, 2, 3, 3, 4, 4, 5 → mediana 3",
+    "cuidado": "prejuízo não é lucro; mediana não é média"
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "contando",
+    "ideia": "Lucros menores que 3: três (1, 1, 2). Maiores que 3: três (4, 4, 5). Sobram dois valores 3 no centro."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "lucros: 3, 1, 5, 3, 2, 4, 1, 4",
+    "nota": "meses com receita maior que despesa"
+   },
+   {
+    "linha": "1, 1, 2, 3, 3, 4, 4, 5",
+    "nota": "em ordem crescente"
+   },
+   {
+    "linha": "(3 + 3)/2 = 3",
+    "nota": "mediana, em milhão de reais"
+   }
+  ],
+  "visual": {
+   "cabe": false,
+   "tipo": "nenhum",
+   "porque": "O quadro já mostra a conta inteira, linha por linha; uma figura a mais não acrescentaria nada.",
+   "roteiro": ""
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-11",
+   "lote": "mat-0003"
+  }
+ },
+ "P20376667": {
+  "n": "149",
+  "conceito": "Mediana em tabela de frequências: localizar os dois valores centrais (500º e 501º) pela frequência acumulada.",
+  "equivocos": {
+   "A": "M14.1:moda-por-mediana",
+   "C": "M14.1:media-por-mediana",
+   "D": "M14.1:media-sem-as-familias-de-zero",
+   "E": "M14.1:mediana-sem-as-frequencias"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "São 1 000 famílias. Com quantidade par de dados, a mediana é a média do 500º e do 501º valores, em ordem crescente. Use a frequência acumulada para descobrir em que número de crianças cada um deles cai.",
+    "formulas": [],
+    "simbolos": [
+     [
+      "frequência",
+      "número de famílias com aquela quantidade de crianças"
+     ],
+     [
+      "frequência acumulada",
+      "soma das frequências até aquele valor"
+     ]
+    ]
+   },
+   "pista": "Quantas famílias há ao todo? Quais posições ficam no meio? Até que posição vão as famílias com 0 ou 1 criança?",
+   "passos": [
+    {
+     "faz": "Conte as famílias",
+     "conta": "100 + 400 + 200 + 150 + 100 + 50 = 1 000",
+     "porque": "Total de dados.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache as posições centrais",
+     "conta": "500ª e 501ª",
+     "porque": "Quantidade par: dois valores centrais.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Acumule",
+     "conta": "0 criança: até a 100ª · 1 criança: até a 500ª · 2 crianças: da 501ª à 700ª",
+     "porque": "100 + 400 = 500.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tire a mediana",
+     "conta": "500ª = 1 e 501ª = 2 → (1 + 2) ÷ 2 = 1,5",
+     "porque": "É a alternativa B.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B: a 500ª família tem 1 criança e a 501ª tem 2; a mediana é 1,5.",
+   "checagem": "Exatamente metade das famílias (500) tem 0 ou 1 criança e a outra metade tem 2 ou mais: a mediana fica entre 1 e 2.",
+   "erradas": {
+    "A": "1,0 é a moda: o número de crianças mais frequente (400 famílias). A mediana usa as posições centrais, 500ª e 501ª.",
+    "C": "1,9 é a média: 1 900 crianças ÷ 1 000 famílias. A pergunta pede a mediana.",
+    "D": "2,1 é a média só das famílias com criança: 1 900 ÷ 900 ≈ 2,1. Deixou de fora as 100 famílias sem criança, e a pergunta pede a mediana.",
+    "E": "2,5 é a mediana dos números 0, 1, 2, 3, 4 e 5, sem as frequências. Cada valor pesa pelo número de famílias."
+   },
+   "armadilha": "Fazer a mediana dos valores 0 a 5 sem considerar quantas famílias há em cada um.",
+   "alerta": "",
+   "essencial": {
+    "pede": "a mediana do número de crianças por família",
+    "chave": "1 000 famílias: média da 500ª (1) e da 501ª (2)",
+    "cuidado": "usar a frequência acumulada"
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pela metade",
+    "ideia": "Famílias com até 1 criança: 500, exatamente a metade. O corte fica entre 1 e 2: mediana 1,5."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "100 + 400 + 200 + 150 + 100 + 50 = 1 000",
+    "nota": "famílias"
+   },
+   {
+    "linha": "100 + 400 = 500",
+    "nota": "famílias com 0 ou 1 criança"
+   },
+   {
+    "linha": "500ª: 1 criança · 501ª: 2 crianças",
+    "nota": "valores centrais"
+   },
+   {
+    "linha": "(1 + 2)/2 = 1,5",
+    "nota": "mediana"
+   }
+  ],
+  "visual": {
+   "cabe": false,
+   "tipo": "nenhum",
+   "porque": "O quadro já mostra a conta inteira, linha por linha; uma figura a mais não acrescentaria nada.",
+   "roteiro": ""
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-11",
+   "lote": "mat-0003"
+  }
+ },
+ "Pa7cb2b41": {
+  "n": "114",
+  "conceito": "Osmose em célula vegetal: em meio hipotônico a água entra, o vacúolo aumenta e o pigmento fica mais diluído; a parede impede o rompimento.",
+  "equivocos": {
+   "A": "B01.1:organela-se-fragmenta",
+   "B": "B01.1:celula-vegetal-como-animal",
+   "D": "B01.1:parede-se-rompe",
+   "E": "B01.1:hipotonico-por-hipertonico"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Meio hipotônico é o que tem menos soluto que o interior da célula. Por osmose, a água passa do meio menos concentrado para o mais concentrado: entra na célula e vai para o vacúolo. Na célula vegetal, a parede celular é rígida e segura a célula, que incha sem estourar.",
+    "formulas": [
+     "hipotônico: entra água, o volume sobe",
+     "hipertônico: sai água, a célula murcha"
+    ],
+    "simbolos": [
+     [
+      "hipotônico",
+      "meio com menor concentração de solutos que o interior da célula"
+     ],
+     [
+      "osmose",
+      "passagem de água pela membrana, do meio menos concentrado para o mais concentrado"
+     ],
+     [
+      "vacúolo",
+      "bolsa da célula vegetal que guarda água e substâncias, como pigmentos"
+     ],
+     [
+      "citosol",
+      "líquido que preenche a célula"
+     ]
+    ]
+   },
+   "pista": "Em meio hipotônico, a água entra ou sai da célula? O que acontece com a concentração do pigmento se a quantidade de água no vacúolo muda?",
+   "passos": [
+    {
+     "faz": "Identifique o meio",
+     "conta": "“imerso em ambiente hipotônico”",
+     "porque": "O meio de fora tem menos soluto que a célula.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Defina o sentido da água",
+     "conta": "hipotônico: a água entra na célula",
+     "porque": "Na osmose, a água vai para o lado mais concentrado, que é o interior.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Veja o efeito no vacúolo",
+     "conta": "mais água no vacúolo → vacúolo maior e pigmento mais diluído",
+     "porque": "A quantidade de pigmento é a mesma, em um volume maior de água.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Considere a parede celular",
+     "conta": "célula vegetal: incha, mas não rompe",
+     "porque": "A parede rígida segura a célula. Isso descarta rompimento e quebra.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "aumento do vacúolo com diluição do pigmento",
+     "porque": "É a alternativa C.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C: em meio hipotônico a água entra, o vacúolo aumenta e o pigmento fica mais diluído.",
+   "checagem": "Situação oposta para comparar: em meio hipertônico a água sai, o vacúolo encolhe e a célula murcha. É o murchamento citado na alternativa E; mesmo aí o pigmento não é expulso do vacúolo.",
+   "erradas": {
+    "A": "O solvente (água) realmente se acumula, mas o vacúolo não se fragmenta: ele aumenta de volume e continua inteiro.",
+    "B": "Romper a membrana e liberar o citosol, por entrada de água, acontece em célula animal. Na célula vegetal, a parede celular impede o rompimento.",
+    "D": "A parede celular é a estrutura que resiste à entrada de água. Ela não se quebra, e o pigmento continua dentro do vacúolo.",
+    "E": "Murchar acontece em meio hipertônico, quando a água sai da célula. Em meio hipotônico a água entra. E o pigmento não é expulso do vacúolo."
+   },
+   "armadilha": "Inverter os termos: em meio HIPOtônico a célula ganha água; quem murcha é a célula em meio HIPERtônico.",
+   "alerta": "",
+   "essencial": {
+    "pede": "o que se vê na célula vegetal colocada em meio hipotônico",
+    "chave": "a água entra: vacúolo maior, pigmento mais diluído",
+    "cuidado": "hipotônico incha, hipertônico murcha; célula vegetal não estoura"
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "eliminação",
+    "ideia": "Hipotônico: a água entra. Sai E (murchamento). Célula vegetal tem parede e não rompe: saem B e D. Entre A e C, o vacúolo não se fragmenta: C."
+   }
+  ],
+  "quadro": null,
+  "visual": {
+   "cabe": true,
+   "tipo": "processo",
+   "porque": "Mostra a água entrando e o vacúolo crescendo dentro da parede.",
+   "roteiro": "Quadro 1: célula vegetal com parede, membrana e vacúolo roxo; fora, poucas partículas de soluto (meio hipotônico). Quadro 2: setas de água entram pela membrana até o vacúolo. Quadro 3: o vacúolo cresce e o roxo fica mais claro; a parede continua no mesmo lugar. Quadro 4: ao lado, uma célula animal no mesmo meio se rompe, para comparar."
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-11",
+   "lote": "bio-0001"
+  }
+ },
+ "Pdf01fa5e": {
+  "n": "120",
+  "conceito": "Atividade enzimática e temperatura: acima da temperatura ótima, a enzima perde a forma tridimensional (desnaturação) e a atividade cai.",
+  "equivocos": {
+   "A": "B02.4:variavel-que-nao-mudou",
+   "B": "B02.4:energia-de-ativacao-como-causa",
+   "C": "B02.4:enzima-consumida",
+   "D": "B02.4:variavel-que-nao-mudou"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Enzima é proteína, e só funciona com a forma tridimensional certa, que encaixa o substrato. Cada enzima tem uma temperatura em que trabalha melhor. Acima dela, o calor altera a forma da molécula e a atividade cai. Nos ensaios, só a temperatura mudou.",
+    "formulas": [
+     "acima da temperatura ótima: a enzima muda de forma e a atividade cai"
+    ],
+    "simbolos": [
+     [
+      "catalase",
+      "enzima que decompõe a água oxigenada (H₂O₂) em água e oxigênio"
+     ],
+     [
+      "atividade catalítica",
+      "velocidade com que a enzima faz a reação acontecer"
+     ],
+     [
+      "estrutura tridimensional",
+      "forma da molécula no espaço"
+     ],
+     [
+      "substrato",
+      "substância sobre a qual a enzima age"
+     ]
+    ]
+   },
+   "pista": "O que foi a única coisa que mudou de um ensaio para outro? Em que temperatura a enzima trabalhou melhor?",
+   "passos": [
+    {
+     "faz": "Ache a variável",
+     "conta": "“variando-se apenas a temperatura”",
+     "porque": "pH, substrato e enzima são os mesmos nos seis ensaios.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Leia o quadro",
+     "conta": "10 °C: 8,0 · 15 °C: 10,5 · 20 °C: 9,5 · 25 °C: 5,0 · 30 °C: 3,6 · 35 °C: 3,1",
+     "porque": "A atividade sobe até 15 °C e depois cai. A subida vem da maior agitação das moléculas: mais encontros entre enzima e substrato.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Explique a queda",
+     "conta": "temperatura acima da ótima → a enzima muda de forma",
+     "porque": "A temperatura altera a estrutura tridimensional da proteína, e o encaixe com o substrato piora.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Descarte o que não variou",
+     "conta": "pH e concentração de substrato: iguais em todos",
+     "porque": "Isso elimina A e D.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "modificação da estrutura tridimensional da enzima",
+     "porque": "É a alternativa E.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E: só a temperatura variou; acima da temperatura ótima (15 °C no quadro), o calor altera a estrutura tridimensional da enzima e a atividade cai.",
+   "checagem": "O maior valor do quadro é 10,5, a 15 °C. A 35 °C a atividade é 3,1, menos de um terço da máxima.",
+   "erradas": {
+    "A": "O pH não variou: os ensaios foram feitos nas mesmas condições, mudando apenas a temperatura.",
+    "B": "A enzima diminui a energia de ativação da reação. A queda da atividade vem da alteração da forma da enzima pelo calor.",
+    "C": "Enzima não é consumida na reação: ela sai inteira e pode agir de novo.",
+    "D": "A concentração do substrato foi a mesma nos seis ensaios; só a temperatura mudou."
+   },
+   "armadilha": "Procurar a causa em algo que não variou (pH, substrato); o enunciado diz que só a temperatura mudou.",
+   "alerta": "O quadro põe a maior atividade da catalase em 15 °C, com queda forte já a 25 °C. São valores deste enunciado, não um dado geral sobre a enzima.",
+   "essencial": {
+    "pede": "o que explica os resultados diferentes dos ensaios",
+    "chave": "temperatura muda a forma da enzima, e a forma define a atividade",
+    "cuidado": "enzima não é consumida; as outras condições eram iguais"
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "eliminação",
+    "ideia": "Só a temperatura variou: saem A e D. Enzima não é gasta: sai C. Enzima baixa a energia de ativação: sai B. Fica E."
+   }
+  ],
+  "quadro": null,
+  "visual": {
+   "cabe": true,
+   "tipo": "grafico",
+   "porque": "Transforma o quadro em curva e mostra a enzima mudando de forma.",
+   "roteiro": "Quadro 1: gráfico atividade × temperatura com os seis pontos do quadro; pico em 15 °C. Quadro 2: ao lado do pico, a enzima com o sítio ativo encaixando a H₂O₂. Quadro 3: nos pontos de 25 °C a 35 °C, a enzima com a forma alterada, e a H₂O₂ sem encaixar. Quadro 4: destaque da queda de 10,5 para 3,1."
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-11",
+   "lote": "bio-0001"
+  }
+ },
+ "P4c462574": {
+  "n": "127",
+  "conceito": "Fosforilação oxidativa: os prótons voltam à matriz pela ATP sintase; a termogenina desvia esse retorno e a energia sai como calor.",
+  "equivocos": {
+   "A": "B03.2:etapa-fora-da-mitocondria",
+   "B": "B03.2:etapa-fora-da-mitocondria",
+   "C": "B03.2:etapa-mitocondrial-errada",
+   "D": "B03.2:etapa-mitocondrial-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Na última etapa da respiração celular, a cadeia de transporte de elétrons bombeia prótons (H⁺) para fora da matriz da mitocôndria. Eles voltam passando pela ATP sintase, e essa passagem produz ATP. O conjunto dessas duas partes chama-se fosforilação oxidativa.",
+    "formulas": [
+     "cadeia de elétrons bombeia H⁺ → H⁺ volta pela ATP sintase → ATP"
+    ],
+    "simbolos": [
+     [
+      "ATP sintase (ou sintetase)",
+      "enzima da membrana interna da mitocôndria que produz ATP com a passagem dos prótons"
+     ],
+     [
+      "próton",
+      "íon H⁺"
+     ],
+     [
+      "termogenina",
+      "proteína da mitocôndria que deixa os prótons voltarem sem passar pela ATP sintase"
+     ]
+    ]
+   },
+   "pista": "Em qual etapa da respiração celular a ATP sintase trabalha, movida pela passagem de prótons?",
+   "passos": [
+    {
+     "faz": "Ache o alvo da termogenina",
+     "conta": "“impede a chegada dos prótons até a ATP sintetase”",
+     "porque": "A interferência é no caminho dos prótons até a enzima que produz ATP.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Localize a ATP sintase",
+     "conta": "membrana interna da mitocôndria, fim da respiração celular",
+     "porque": "É ali que os prótons bombeados pela cadeia de elétrons retornam.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Dê o nome da etapa",
+     "conta": "cadeia de elétrons + ATP sintase = fosforilação oxidativa",
+     "porque": "É a etapa em que o fluxo de prótons produz ATP.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "fosforilação oxidativa",
+     "porque": "É a alternativa E.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E: a ATP sintase e o fluxo de prótons fazem parte da fosforilação oxidativa; é nela que a termogenina interfere.",
+   "checagem": "Coerência com o texto: se os prótons não passam pela ATP sintase, a energia não vira ATP e é liberada como calor, como o enunciado diz.",
+   "erradas": {
+    "A": "A glicólise ocorre no citosol e não usa a ATP sintase nem fluxo de prótons pela membrana da mitocôndria.",
+    "B": "A fermentação lática ocorre no citosol, sem participação da mitocôndria. A termogenina é uma proteína mitocondrial.",
+    "C": "O ciclo do ácido cítrico ocorre na matriz da mitocôndria e não é a etapa em que os prótons passam pela ATP sintase.",
+    "D": "A oxidação do piruvato transforma piruvato em acetil-CoA. Ela não envolve a passagem de prótons pela ATP sintase."
+   },
+   "armadilha": "Marcar o ciclo do ácido cítrico só porque ele também ocorre na mitocôndria; a pista é a ATP sintase.",
+   "alerta": "",
+   "essencial": {
+    "pede": "a etapa da respiração em que a termogenina interfere",
+    "chave": "prótons + ATP sintase = fosforilação oxidativa",
+    "cuidado": "nem tudo que é da mitocôndria é ciclo de Krebs"
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "eliminação",
+    "ideia": "Glicólise e fermentação são do citosol: saem A e B. Entre as etapas da mitocôndria, só a fosforilação oxidativa usa prótons e ATP sintase."
+   }
+  ],
+  "quadro": null,
+  "visual": {
+   "cabe": true,
+   "tipo": "processo",
+   "porque": "Mostra os prótons voltando pela ATP sintase e pelo desvio da termogenina.",
+   "roteiro": "Quadro 1: membrana interna da mitocôndria; a cadeia de elétrons bombeia H⁺ para fora da matriz. Quadro 2: os H⁺ voltam pela ATP sintase, que gira e solta ATP. Quadro 3: entra a termogenina; os H⁺ passam por ela e não pela ATP sintase. Quadro 4: no lugar do ATP aparece calor."
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-11",
+   "lote": "bio-0001"
+  }
+ },
+ "P8fb9e5e0": {
+  "n": "125",
+  "conceito": "Inativação aleatória do X: mulheres heterozigotas são mosaicos e manifestam a característica em graus diferentes (expressividade variável).",
+  "equivocos": {
+   "A": "B06.5:conceito-de-genetica-trocado",
+   "B": "B06.5:inativacao-como-mutacao",
+   "C": "B06.5:conceito-de-genetica-trocado",
+   "D": "B06.5:penetrancia-por-expressividade"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Em cada célula da mulher, um dos dois cromossomos X é desligado ao acaso. Na heterozigota, algumas células ficam com o X do alelo normal ativo e outras com o X do alelo da doença ativo. A proporção entre esses dois tipos de célula muda de mulher para mulher e de tecido para tecido.",
+    "formulas": [
+     "em cada célula, um dos dois X é inativado ao acaso",
+     "mesmo genótipo, intensidades diferentes = expressividade variável"
+    ],
+    "simbolos": [
+     [
+      "heterozigota",
+      "tem um alelo normal e um alelo da doença"
+     ],
+     [
+      "mosaicismo",
+      "presença, no mesmo corpo, de células com funcionamento genético diferente"
+     ],
+     [
+      "expressividade variável",
+      "o mesmo genótipo se manifesta com intensidades diferentes"
+     ],
+     [
+      "penetrância incompleta",
+      "parte dos indivíduos com o genótipo não manifesta a característica"
+     ]
+    ]
+   },
+   "pista": "Se a proporção de células com o alelo da doença ativo muda de uma mulher para outra, o que muda na manifestação da doença?",
+   "passos": [
+    {
+     "faz": "Leia a figura",
+     "conta": "amostras do corpo: umas com o X paterno inativado, outras com o X materno inativado",
+     "porque": "O corpo é um mosaico dos dois tipos de célula.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Aplique à heterozigota",
+     "conta": "parte das células usa o alelo normal; parte usa o alelo da doença",
+     "porque": "Em cada célula, só o X ativo se expressa.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Tire a consequência",
+     "conta": "proporções diferentes → manifestação em graus diferentes",
+     "porque": "Mulheres com o mesmo genótipo podem ter sinais mais leves ou mais fortes, conforme a proporção de células.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Dê o nome",
+     "conta": "mesmo genótipo, intensidades diferentes = expressividade variável",
+     "porque": "É a alternativa E.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E: como a inativação é aleatória, a proporção de células com o alelo da doença ativo varia, e a característica aparece em graus diferentes.",
+   "checagem": "A inativação não muda o DNA (não é mutação) nem envolve outro gene (não é interação gênica): muda só quanto do alelo se expressa no corpo.",
+   "erradas": {
+    "A": "Pleiotropia é um único gene afetando várias características. A figura trata de qual cromossomo X fica ativo em cada célula.",
+    "B": "Mutação gênica é alteração na sequência do DNA. A inativação desliga o cromossomo, sem alterar a sequência dos genes.",
+    "C": "Interação gênica é quando dois ou mais genes determinam uma característica. Aqui se trata de um gene, em um X ativo ou inativo.",
+    "D": "Penetrância incompleta trata de manifestar ou não. A consequência do mosaico é a manifestação em graus diferentes, conforme a proporção de células."
+   },
+   "armadilha": "Confundir penetrância (manifesta ou não) com expressividade (quanto manifesta).",
+   "alerta": "A alternativa D é próxima: uma heterozigota pode até não manifestar a doença. O gabarito oficial é E, pela variação de intensidade que o mosaico produz.",
+   "essencial": {
+    "pede": "a consequência da inativação aleatória do X em heterozigotas",
+    "chave": "mosaico com proporções diferentes de células: graus diferentes de manifestação",
+    "cuidado": "expressividade = intensidade; penetrância = sim ou não"
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "eliminação",
+    "ideia": "Não há mudança no DNA (B), nem vários genes (C), nem um gene com vários efeitos (A). Entre D e E, o mosaico gradua a intensidade: E."
+   }
+  ],
+  "quadro": null,
+  "visual": {
+   "cabe": true,
+   "tipo": "esquema",
+   "porque": "Mostra o sorteio do X em cada célula e dois corpos com proporções diferentes.",
+   "roteiro": "Quadro 1: zigoto com dois X, um com o alelo normal e um com o alelo da doença. Quadro 2: na blástula, cada célula desliga um dos X ao acaso. Quadro 3: as células se multiplicam e formam manchas dos dois tipos pelo corpo. Quadro 4: duas mulheres heterozigotas, uma com poucas células usando o alelo da doença e outra com muitas."
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-11",
+   "lote": "bio-0001"
+  }
+ },
+ "Pb6b4788e": {
+  "n": "104",
+  "conceito": "Eritropoietina estimula a produção de hemácias; mais hemácias, mais oxigênio transportado pelo sangue.",
+  "equivocos": {
+   "A": "B07.5:efeito-em-outro-orgao",
+   "B": "B07.5:efeito-em-outro-orgao",
+   "C": "B07.5:tipo-de-doping-trocado",
+   "D": "B07.5:aerobico-por-anaerobico"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O texto diz que a eritropoietina regula a eritropoiese. Eritropoiese é a produção de hemácias (eritrócitos), as células vermelhas do sangue. Hemácias carregam o oxigênio. Com dose extra do hormônio, o corpo produz mais hemácias e leva mais oxigênio aos músculos.",
+    "formulas": [
+     "eritropoietina → mais hemácias → mais oxigênio transportado"
+    ],
+    "simbolos": [
+     [
+      "eritropoietina",
+      "hormônio que estimula a produção de hemácias"
+     ],
+     [
+      "eritropoiese",
+      "produção de hemácias"
+     ],
+     [
+      "hemácia (eritrócito)",
+      "célula vermelha do sangue, que transporta oxigênio"
+     ],
+     [
+      "doping",
+      "uso de substância proibida para melhorar o desempenho"
+     ]
+    ]
+   },
+   "pista": "O que é eritropoiese? Qual é a função das células produzidas nesse processo?",
+   "passos": [
+    {
+     "faz": "Ache a ação do hormônio",
+     "conta": "“sua principal ação é regular o processo de eritropoiese”",
+     "porque": "Eritropoiese é a produção de hemácias.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Lembre a função das hemácias",
+     "conta": "hemácias transportam oxigênio",
+     "porque": "A hemoglobina das hemácias carrega o oxigênio.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Ligue ao desempenho",
+     "conta": "mais hormônio → mais hemácias → mais oxigênio para os músculos",
+     "porque": "Com mais oxigênio, o músculo produz energia por mais tempo.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "taxa de transporte de oxigênio pelo sangue",
+     "porque": "É a alternativa E.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E: a eritropoietina aumenta a produção de hemácias e, com isso, o transporte de oxigênio pelo sangue.",
+   "checagem": "O nome do doping já indica o alvo: “doping sanguíneo”. O efeito está no sangue, não no coração, no pulmão ou no músculo.",
+   "erradas": {
+    "A": "A eritropoietina não age aumentando a frequência cardíaca: ela estimula a produção de hemácias.",
+    "B": "A capacidade pulmonar não muda com o hormônio. O que aumenta é a quantidade de hemácias no sangue.",
+    "C": "Aumento de massa muscular é efeito de outro tipo de substância, os anabolizantes. A eritropoietina age na produção de hemácias.",
+    "D": "O ganho é em oxigênio disponível: favorece a atividade aeróbica do músculo, não a anaeróbica."
+   },
+   "armadilha": "Parar em “aumenta a capacidade de exercício” e marcar músculo ou pulmão, sem traduzir a palavra eritropoiese.",
+   "alerta": "",
+   "essencial": {
+    "pede": "o efeito direto do doping com eritropoietina",
+    "chave": "eritropoiese = produção de hemácias = mais transporte de oxigênio",
+    "cuidado": "traduzir o termo técnico do enunciado"
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pelo nome",
+    "ideia": "“Eritro” vem de eritrócito, a hemácia. Hormônio que regula a produção de hemácias mexe no transporte de oxigênio."
+   }
+  ],
+  "quadro": null,
+  "visual": {
+   "cabe": true,
+   "tipo": "fluxo",
+   "porque": "Mostra o caminho do hormônio até o aumento de oxigênio no músculo.",
+   "roteiro": "Quadro 1: a eritropoietina entra na corrente sanguínea. Quadro 2: ela chega à medula óssea, que passa a liberar mais hemácias. Quadro 3: vaso sanguíneo antes e depois, com mais hemácias carregando oxigênio. Quadro 4: o músculo recebe mais oxigênio durante o exercício."
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-11",
+   "lote": "bio-0001"
+  }
+ },
+ "P489ef42e": {
+  "n": "122",
+  "conceito": "Coagulação e trombos: um fármaco que modula (reduz) a coagulação pode evitar a formação de coágulos que entopem vasos.",
+  "equivocos": {
+   "B": "B07.5:efeito-oposto-ao-do-farmaco",
+   "C": "B07.5:processo-sem-relacao-com-coagulacao",
+   "D": "B07.5:processo-sem-relacao-com-coagulacao",
+   "E": "B07.5:processo-sem-relacao-com-coagulacao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O veneno da cascavel causa hemorragia: ele atrapalha a coagulação do sangue. Uma proteína do veneno deu origem a um fármaco capaz de modular a coagulação. Coágulo que se forma dentro de um vaso e o entope chama-se trombo. Procure a alternativa que trata de coagulação.",
+    "formulas": [
+     "coágulo dentro do vaso = trombo"
+    ],
+    "simbolos": [
+     [
+      "coagulação",
+      "formação de coágulo, que estanca o sangramento"
+     ],
+     [
+      "trombo",
+      "coágulo formado dentro de um vaso, que pode entupi-lo"
+     ],
+     [
+      "modular",
+      "regular, ajustar"
+     ],
+     [
+      "acidente vascular cerebral",
+      "lesão no cérebro por entupimento ou rompimento de um vaso"
+     ]
+    ]
+   },
+   "pista": "Sobre qual processo do sangue o fármaco age? Qual das aplicações depende desse processo?",
+   "passos": [
+    {
+     "faz": "Ache a ação do fármaco",
+     "conta": "“capaz de modular a coagulação sanguínea”",
+     "porque": "O alvo é a coagulação.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Veja o sentido da ação",
+     "conta": "“veneno da cascavel pode causar hemorragia”",
+     "porque": "A hemorragia mostra que o veneno interfere na coagulação.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Ligue a uma doença",
+     "conta": "coagulação dentro do vaso = trombo",
+     "porque": "Um fármaco que modula a coagulação pode evitar coágulos indesejados.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "impedir a formação de trombos",
+     "porque": "É a alternativa A.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A: um fármaco que modula a coagulação pode impedir a formação de trombos, coágulos que entopem vasos.",
+   "checagem": "Só a alternativa A fala de coagulação. As outras tratam de anemia, alergia, linfonodos e pressão arterial.",
+   "erradas": {
+    "B": "Anemia por perda de sangue pede reposição de sangue. Um fármaco que modula a coagulação não repõe o sangue perdido.",
+    "C": "Urticária é reação alérgica. O texto fala de coagulação, não de alergia.",
+    "D": "Inchaço de linfonodos é parte da resposta imune a infecções, sem relação com a coagulação do sangue.",
+    "E": "O fármaco modula a coagulação, não a pressão arterial."
+   },
+   "armadilha": "Pensar que, por vir de um veneno que causa hemorragia, o fármaco serviria para tratar perda de sangue.",
+   "alerta": "",
+   "essencial": {
+    "pede": "a possível aplicação do fármaco",
+    "chave": "modula a coagulação → evita coágulos indesejados (trombos)",
+    "cuidado": "ligar o efeito do fármaco ao processo citado no texto"
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pela palavra-chave",
+    "ideia": "O texto fala em coagulação. Entre as alternativas, só “trombos” é um problema de coagulação."
+   }
+  ],
+  "quadro": null,
+  "visual": {
+   "cabe": true,
+   "tipo": "processo",
+   "porque": "Mostra o coágulo se formando no vaso e o fármaco impedindo.",
+   "roteiro": "Quadro 1: vaso sanguíneo com o sangue fluindo. Quadro 2: sem o fármaco, forma-se um coágulo (trombo) que entope o vaso. Quadro 3: com o fármaco no sangue, a coagulação é reduzida. Quadro 4: o vaso continua aberto e o sangue chega ao cérebro."
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-11",
+   "lote": "bio-0001"
+  }
  }
 }
