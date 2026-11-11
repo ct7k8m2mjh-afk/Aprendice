@@ -1,6 +1,6 @@
 # Português: resoluções (gerado por lote.py em 2026-11-11)
 
-Faltam 3367 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 1060; demais nível 1-6 1768; ENEM nível 7-10 53; provas-alvo nível 7-10 225; demais nível 7-10 261.
+Faltam 3337 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 1030; demais nível 1-6 1768; ENEM nível 7-10 53; provas-alvo nível 7-10 225; demais nível 7-10 261.
 
 ## Lotes
 
@@ -32,15 +32,13 @@ Faltam 3367 questões sem resolução (fora as que estão em lote, pendentes ou 
 | por-0024 | provas-alvo nível 1-6 | 30 | gravado | 25 | 5 | 0 |
 | por-0025 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | por-0026 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| por-0027 | provas-alvo nível 1-6 | 30 | aberto |  |  |  |
 
 ## Pendentes (falta de certeza absoluta)
 
 | Questão | Prova | Conteúdo | Motivo |
 |---|---|---|---|
 | P93df8fac | Acafe 2024 Inverno · questão 11 | P01.1 tema, tese e ideia principal do texto (tema P01 Leitura e compreensão) | A questão traz só a frase "A vida do século XXI ficou medicalizada"; a alternativa do gabarito (prescrição excessiva impulsionada por interesses econômicos) depende do contexto do livro, que não está na prova. Sem o trecho, não há como fundamentar a resposta nem as eliminações. |
-| P3c834c10 | Acafe 2024 Verão · questão 7 | P03.3 charge, tirinha, cartaz e infográfico (tema P03 Gêneros e tipos textuais) | print: a questão se baseia no "texto 4" (dados sobre estratégias de controle da SARS-COV-2), que não está no print nem no texto da prova; só aparecem o comando e as alternativas. |
-| Pc886c37f | Acafe 2026 Inverno · questão 10 | P03.3 charge, tirinha, cartaz e infográfico (tema P03 Gêneros e tipos textuais) | print: a questão pede a análise das imagens das Figuras 1 (balé contemporâneo) e 2 (capoeira), que não estão no print; só aparecem o comando e as alternativas. |
-| Pd233a30a | Acafe 2026 Inverno · questão 9 | P03.3 charge, tirinha, cartaz e infográfico (tema P03 Gêneros e tipos textuais) | print: a questão pede comparar as Figuras 1 (balé contemporâneo) e 2 (capoeira), mas as figuras não estão no print; só aparecem o comando e as alternativas. |
 | Pb66a8695 | Acafe 2026 Verão · questão 13 | P01.2 informação explícita × inferência (tema P01 Leitura e compreensão) | O comando pede a alternativa correta "considerando o contexto da obra" O exercício da incerteza, mas a questão traz só uma frase do livro; a alternativa do gabarito (B) fala em estudo contínuo e humanização do paciente, que não se deduzem da frase citada. Resolver exigiria afirmar o conteúdo do livro, que não está na questão. |
 | Pa7a2c5de | Fuvest 2026 1ª fase · questão 11 | P03.2 gêneros jornalísticos: notícia, reportagem, editorial e crônica (tema P03 Gêneros e tipos textuais) | A questão pede julgamento "a partir da leitura dos excertos e das obras citadas": as alternativas afirmam o conteúdo das obras inteiras (defesa do abolicionismo, ascensão da protagonista, obras seminais do feminismo) e a época delas (século XIX), que não estão nos excertos. Sem fonte conferida sobre as duas obras, não há como fundamentar a E nem as eliminações. |
 | P53983658 | Fuvest 2027 1ª fase · questão 51 | P03.4 divulgação científica e texto digital (tema P03 Gêneros e tipos textuais) | classificação: é de Inglês. O texto-base está em inglês ("Black hole stars challenge our idea of the universe") e a questão pede a compreensão desse texto. |
