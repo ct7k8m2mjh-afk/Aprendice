@@ -677,7 +677,7 @@ Cada linha diz o que ilustrar. Nome do arquivo: `<id do subtema>.png` (ex.: B01.
 
 ## Matemática
 
-_Base: livro Revisaí – Matemática (pp. 4–76 lidas; M10.2–M12.5 e M17 seguem o conteúdo padrão do sumário do livro, sem leitura integral das pp. 88–112)._
+_Base: livro Revisaí – Matemática (pp. 4–112 lidas)._
 
 
 ### M01 Fundamentos
@@ -757,24 +757,24 @@ _Base: livro Revisaí – Matemática (pp. 4–76 lidas; M10.2–M12.5 e M17 seg
 - **M10.1** Razões trigonométricas no triângulo retângulo: Triângulo retângulo com o ângulo α marcado, cateto oposto, adjacente e hipotenusa em cores e as três razões escritas.
 - **M10.2** Lei dos senos: Triângulo qualquer inscrito numa circunferência, com lados e ângulos opostos de mesma cor e o raio R indicado.
 - **M10.3** Lei dos cossenos: Triângulo ABC com os lados b e c e o ângulo A entre eles, e a seta apontando para o lado oposto a.
-- **M10.4** Ciclo trigonométrico e arcos: Circunferência trigonométrica com os ângulos notáveis do primeiro quadrante e as coordenadas (cos, sen) de cada ponto.
-- **M10.5** Funções trigonométricas e gráficos: Dois gráficos (seno e cosseno) em um período, com amplitude, período e a imagem marcados.
+- **M10.4** Ciclo trigonométrico e arcos: Circunferência trigonométrica com os ângulos notáveis de 0° a 360° e as coordenadas (cos, sen) de cada ponto do primeiro quadrante.
+- **M10.5** Funções trigonométricas e gráficos: Gráfico do seno em um período, com amplitude, período e imagem marcados, e uma segunda curva deslocada e esticada para comparar.
 
 ### M11 Geometria espacial
 
-- **M11.1** Prismas e cubos: Cubo e paralelepípedo com a diagonal da face e a diagonal do sólido tracejadas, e as fórmulas ao lado.
+- **M11.1** Prismas e cubos: Cubo e paralelepípedo com a diagonal da face e a do sólido tracejadas, e um poliedro com V, A e F contados.
 - **M11.2** Cilindros: Cilindro planificado: dois círculos e um retângulo de comprimento 2πr, com r e h marcados.
 - **M11.3** Pirâmides e cones: Cone com r, h e geratriz g, e uma pirâmide ao lado com a altura e o apótema, cada uma dentro do prisma correspondente em linha tracejada.
-- **M11.4** Esfera: Esfera com um plano cortando e o triângulo retângulo R, d e r formado na secção.
-- **M11.5** Troncos, sólidos compostos e densidade/volume: Cone cortado por um plano paralelo à base, com o cone pequeno retirado tracejado e o tronco colorido.
+- **M11.4** Esfera: Esfera com plano de corte, o triângulo retângulo R, d e r da secção, e uma cunha e um fuso destacados em cores.
+- **M11.5** Troncos, sólidos compostos e densidade/volume: Cone cortado por plano paralelo à base: cone menor tracejado, tronco colorido, com r, R e h marcados.
 - **M11.6** Volumes básicos: Painel com os seis sólidos básicos e a fórmula do volume sob cada um.
 
 ### M12 Geometria analítica
 
 - **M12.1** Distância entre pontos e ponto médio: Plano cartesiano com dois pontos, o triângulo retângulo formado pelos catetos Δx e Δy e o ponto médio marcado.
 - **M12.2** Equação da reta: Reta no plano com dois pontos, o triângulo do coeficiente angular e o ângulo α com o eixo x.
-- **M12.3** Posição relativa e paralelismo: Três pares de retas: paralelas, concorrentes e perpendiculares, com os coeficientes angulares escritos.
-- **M12.4** Circunferência no plano cartesiano: Circunferência no plano com centro (a,b), raio r e a equação escrita sobre o gráfico.
+- **M12.3** Posição relativa e paralelismo: Três pares de retas (paralelas, concorrentes, perpendiculares) com os coeficientes angulares escritos.
+- **M12.4** Circunferência no plano cartesiano: Circunferência no plano com centro, raio, uma reta tangente e outra secante, e a distância d do centro às retas marcada.
 - **M12.5** Áreas por coordenadas: Triângulo de vértices (0,0), (4,0), (0,3) com a malha do plano e o determinante ao lado dando a área 6.
 
 ### M13 Combinatória e probabilidade
