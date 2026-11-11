@@ -1,6 +1,6 @@
 # Português: resoluções (gerado por lote.py em 2026-11-11)
 
-Faltam 3487 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 1180; demais nível 1-6 1768; ENEM nível 7-10 53; provas-alvo nível 7-10 225; demais nível 7-10 261.
+Faltam 3457 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 1150; demais nível 1-6 1768; ENEM nível 7-10 53; provas-alvo nível 7-10 225; demais nível 7-10 261.
 
 ## Lotes
 
@@ -28,6 +28,7 @@ Faltam 3487 questões sem resolução (fora as que estão em lote, pendentes ou 
 | por-0020 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | por-0021 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | por-0022 | provas-alvo nível 1-6 | 30 | gravado | 27 | 3 | 0 |
+| por-0023 | provas-alvo nível 1-6 | 30 | gravado | 29 | 1 | 0 |
 
 ## Pendentes (falta de certeza absoluta)
 
@@ -40,6 +41,7 @@ Faltam 3487 questões sem resolução (fora as que estão em lote, pendentes ou 
 | Pd0bef1cb | UDESC 2024 Verão 2024.1 · questão 37 | P01.2 informação explícita × inferência (tema P01 Leitura e compreensão) | O gabarito oficial (C) considera as cinco proposições verdadeiras, e duas delas (3ª e 5ª) afirmam características da obra inteira de Cora Coralina (temáticas, personagens periféricos, mistura de prosa e poesia em conto popular) que não estão no poema transcrito; a 1ª também afirma alusão a perdas de terra "ainda hoje" sem apoio no texto. Não há como confirmar a sequência só com o que a questão traz. |
 | P93ec458e | UDESC 2025 Inverno 2025.2 · questão 44 | P03.2 gêneros jornalísticos: notícia, reportagem, editorial e crônica (tema P03 Gêneros e tipos textuais) | A 1ª proposição afirma influências literárias de Rubem Braga (segunda geração modernista nas crônicas, características parnasianas nos contos), dado que não está na questão; ela decide entre D e E. A 5ª também é discutível (classificação de "Mas" como adjunto adnominal). Sem fonte conferida, não há como fundamentar a sequência. |
 | Pd23309d1 | UFU 2023 1ª fase · questão 59 | P01.1 tema, tese e ideia principal do texto (tema P01 Leitura e compreensão) | A resposta depende do enredo de "Bom dia, camaradas" (papel de cada personagem: Amadou, Cláudio, António, Ondalu), que não está na questão; sem fonte conferida no lote para afirmar com certeza o que faz cada personagem. |
+| P5dcad9ec | UFU 2025 1ª fase · questão 62 | P03.3 charge, tirinha, cartaz e infográfico (tema P03 Gêneros e tipos textuais) | A resposta depende do conteúdo do livro "O Karaíba: uma história do pré-Brasil" (narrar o período anterior à chegada dos portugueses pela visão indígena), que não está na questão; o print traz só o quadro de Oscar Pereira da Silva. Sem fonte conferida sobre o livro, não há como fundamentar a B nem as eliminações. |
 
 ## Divergências de gabarito (o dono decide)
 
