@@ -202,8 +202,8 @@ describe('migração v6 -> v7 (princípio 7: nada se perde, ids iguais)', () => 
 
   it('vai para a versão atual com o corte e as datas vazias', () => {
     const e = migraEstado(v6(), {}, corte);
-    expect(VERSAO_ATUAL).toBe(7);
-    expect(e.versao).toBe(7);
+    expect(VERSAO_ATUAL).toBe(8); // v8: revisão geral (revisaoGeral.test.ts)
+    expect(e.versao).toBe(8);
     expect(e.revisaoDesde).toBe(corte);
     expect(e.perfil!.datasProva).toEqual({});
   });
@@ -216,7 +216,10 @@ describe('migração v6 -> v7 (princípio 7: nada se perde, ids iguais)', () => 
     expect(e.materias.bio!.revs).toEqual(antes.materias.bio!.revs);
     expect(e.materias.bio!.sessoes).toEqual(antes.materias.bio!.sessoes);
     expect(e.materias.bio!.ult).toBe('P1');
-    expect(sem({ ...e, versao: 6, perfil: antes.perfil } as Estado)).toEqual(sem(antes));
+    // v8 só acrescenta `geral` vazio em cada matéria (revisão geral, revisaoGeral.test.ts)
+    const { geral, ...bio } = e.materias.bio!;
+    expect(geral).toEqual({});
+    expect(sem({ ...e, versao: 6, perfil: antes.perfil, materias: { bio } } as Estado)).toEqual(sem(antes));
   });
   it('a agenda no momento da migração é a mesma da regra antiga (mesmo dia marcado)', () => {
     const e = migraEstado(v6(), {}, corte);
@@ -257,15 +260,15 @@ describe('migração v6 -> v7 (princípio 7: nada se perde, ids iguais)', () => 
     x.perfil = { ...x.perfil!, datasProva: { enem: '2026-11-08', fuvest: 'amanhã', unicamp: 7 as unknown as string } };
     expect(migraEstado(x, {}, corte).perfil!.datasProva).toEqual({ enem: '2026-11-08' });
   });
-  it('estado de versões antigas (v4) chega à v7 passando por todos os passos', () => {
+  it('estado de versões antigas (v4) chega à versão atual passando por todos os passos', () => {
     const e = migraEstado({ ...v6(), versao: 4 } as Estado, {}, corte);
-    expect(e.versao).toBe(7);
+    expect(e.versao).toBe(VERSAO_ATUAL);
     expect(e.pref.filtroRegiao).toBe('minha');
     expect(e.revisaoDesde).toBe(corte);
     expect(e.materias.bio!.q.P1.tent).toHaveLength(3);
   });
-  it('estado novo nasce na v7 sem corte: tudo pela regra nova', () => {
-    expect(estadoVazio().versao).toBe(7);
+  it('estado novo nasce na versão atual sem corte: tudo pela regra nova', () => {
+    expect(estadoVazio().versao).toBe(VERSAO_ATUAL);
     expect(estadoVazio().revisaoDesde).toBe(0);
   });
 });

@@ -18,6 +18,7 @@ import type { MateriaId } from '../dados/tipos';
 import type { EstadoMateria } from '../estado/tipos';
 import { useIndiceRevisao } from '../dados/revisao';
 import { composicaoRodada, descreveTreino } from '../logica/rodadaTreino';
+import { AtalhosGeral } from './RevisaoGeral';
 
 export function ListaMaterias() {
   useTitulo('Matérias');
@@ -207,6 +208,8 @@ export function Materia() {
           <div className="preparo-acoes"><Link to="/simulados" className="btn sec">Ver simulados</Link></div>
         </section>
       )}
+      {/* revisão geral (comando 37): visível mesmo antes das questões chegarem */}
+      {vazia && <nav className="mat-atalhos mat-atalhos-geral" aria-label={`Revisão de ${info.nome}`}><AtalhosGeral m={m} /></nav>}
 
       {!vazia && (
       <div className={'mat-topo' + (temTreino ? '' : ' sem-capa')}>
@@ -240,6 +243,7 @@ export function Materia() {
             <Icone nome="cartas" /><span><b>Flashcards</b><small>{r.flashVencidos ? `${r.flashVencidos} para revisar hoje` : `${r.flashNovos} cartões novos`}</small></span><Icone nome="direita" className="at-seta" />
           </Link>
           )}
+          <AtalhosGeral m={m} />
           {temEssencial && (
             <Link to={`/m/${m}/essencial`} className="atalho">
               <Icone nome="livro" /><span><b>Revisão essencial</b><small>O que mais cai, tema a tema</small></span><Icone nome="direita" className="at-seta" />

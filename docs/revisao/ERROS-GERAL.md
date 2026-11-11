@@ -1,0 +1,11 @@
+# Revisão geral — problemas de conteúdo encontrados na integração ao site
+
+Encontrados ao levar `docs/revisao/<m>/geral.json` para o site (comando 37, 11/11/2026). Os JSON **não foram alterados**: cada item fica aqui para o revisor (ou o dono) decidir. O site mostra o arquivo como está.
+
+| # | Matéria | Tópico(s) | Problema | O que o site faz hoje | Sugestão |
+|---|---|---|---|---|---|
+| 1 | Filosofia e Sociologia (`fs`) | FK01 (`subs`: L01.6), FK30 (`subs`: L06.6) | Os subtemas L01.6 e L06.6 não existem no site (`public/conteudo/fs/materia.json`). | O link para esses subtemas não aparece no tópico; o tópico continua na lista e na busca. | Trocar pelo subtema certo de L01/L06 ou deixar `subs` vazio. |
+| 2 | Português (`por`) | PK01–PK52, LK02, LK06, LK09, LK10, LK15, LK16, LK17, LK21, LK24, LK25, LK31, LK35, IK05 (65 tópicos) | `imagem.descricao` foi escrita para quem vai produzir a imagem e fala do livro de origem ("Quadro do livro…", "reproduzido no livro", "ilustração Shutterstock/freepik") e, em PK27, PK37, PK39, PK42 e LK24, de "questão resolvida" que já saiu do tópico. Como a caixa "EM CONSTRUÇÃO — <descrição>" mostra esse texto ao aluno, ele lê referências a um livro que não está no site. | Mostra a descrição como está (regra do dono: a descrição aparece na caixa até a imagem chegar). | Reescrever essas 65 descrições dizendo o que a imagem vai mostrar, sem citar o livro, a fonte das ilustrações nem a questão retirada (como já está em Matemática, Biologia, Química, Geografia e História). |
+| 3 | Física (`fis`) e Filosofia e Sociologia (`fs`) | fis:FK06, fs:SK23, fs:SK27 | Falso positivo verificado: "livro" aqui é o objeto da figura (bloco sobre a mesa em FK06; capas das obras de Durkheim e Marx em SK23 e SK27), não referência ao livro de origem. | Mostra a descrição. | Nada a fazer. |
+
+Conferido também, sem problema: ids únicos dentro de cada arquivo; todo tópico tem título, pontos, pegadinha e descrição da imagem; nenhum ponto ou pegadinha traz letra de gabarito; os demais `subs` existem no site; nenhum título repetido.

@@ -74,7 +74,7 @@ O script confere JSON válido, ids únicos, campos na ordem do esquema, nenhum c
 
 ## 5. Imagens que faltam
 
-- Nenhum tópico da revisão geral tem imagem pronta (654 caixas). Enquanto a imagem não existir, o site deve mostrar a caixa "EM CONSTRUÇÃO" com o texto de `imagem.aviso` (ou, em Matemática e Inglês, de `imagem.descricao`).
+- Nenhum tópico da revisão geral tem imagem pronta (654 caixas). Enquanto a imagem não existir, o site mostra a caixa "EM CONSTRUÇÃO — " + `imagem.descricao` (em todas as matérias; ver 7a para onde salvar a imagem).
 - `docs/revisao/IMAGENS-PARA-GERAR.md` lista as imagens **por subtema** (ex.: `B01.1.png`, em `docs/imagens/<matéria>/`). Ela não cobre os tópicos da revisão geral, cujos ids são outros.
 - A lista por tópico da revisão geral está no fim deste arquivo (seção 8), gerada a partir de `imagem.descricao`. A descrição diz o que o livro mostrava; por direito autoral, a imagem do livro não é copiada: é refeita no padrão do site (princípios 10 e 12). As descrições antigas não foram alteradas.
 - Algumas descrições antigas ainda citam "questão resolvida" de uma prova. Essas questões saíram dos tópicos: ao produzir a imagem, não incluir a questão.
@@ -102,6 +102,15 @@ Decisões já tomadas pelo dono (12/11/2026):
 - Não mostrar ao aluno os termos de `busca` como se fossem conteúdo (há grafias erradas propositais).
 - Não renumerar, fundir ou dividir tópicos sem migração do progresso do aluno.
 - Não apresentar os "Exemplos" como questão de prova com gabarito: eles não trazem alternativas nem letra; são resoluções feitas na revisão (princípios 1 e 2).
+
+## 7a. Como a revisão geral está no site (comando 37, 11/11/2026)
+
+- **Conversão**: `app/scripts/revisao.py` (`geral_materia`, chamado pelo `converte.py`) lê `docs/revisao/<m>/geral.json` e grava `app/public/conteudo/<m>/revisao/geral.json` só com `id, capitulo, titulo, subs, busca, pontos, pegadinha, imagem` (sem `lacunas`, `como_usar`, `base`). O índice `revisao/indice.json` ganha `geral: {n, imagens, partes}` (`partes` só em `fs`: Filosofia 38, Sociologia 48). Os JSON de `docs/revisao/` não são alterados.
+- **Telas**: `/m/<m>/geral` (Matemática, Biologia, Física, Química, Geografia, História, Português, Inglês) e, em Filosofia e Sociologia, `/m/fs/geral/filosofia` (ids `FK…`) e `/m/fs/geral/sociologia` (ids `SK…`). Código: `app/src/telas/RevisaoGeral.tsx`, regras em `app/src/logica/revisaoGeral.ts`, estilo em `app/src/estilo/geral.css`. Entradas: atalho "Revisão geral" na página da matéria e aba "Revisão geral" na Revisão.
+- **Busca**: instantânea sobre `titulo`, `subs` (id e nome do subtema) e `busca[]`, sem diferenciar acento e maiúscula, aceitando pedaço de palavra; todas as palavras digitadas precisam aparecer. Os termos de `busca[]` nunca aparecem na tela.
+- **Imagem do tópico — convenção de nome** (a mesma pasta dos resumos): salve o PNG em `docs/imagens/<matéria>/<id do tópico>.png` (ex.: `docs/imagens/his/HK02.png`, `docs/imagens/fs/SK23.png`) e rode o conversor (`cd app && flock /tmp/converte.lock python3 scripts/converte.py`). Ele gera `revisao/geral/<id>.webp` (até 1200 px) e a imagem aparece no lugar do aviso, sem mexer em código. Em Matemática e Inglês o id do tópico é igual ao do subtema (`M04.2`, `I01.1`), então a mesma imagem serve ao resumo do subtema e ao tópico; para uma imagem só da revisão geral, use `docs/imagens/<matéria>/geral/<id>.png` (vale primeiro). Sem imagem, ou se ela não carregar, a caixa mostra **"EM CONSTRUÇÃO — " + `imagem.descricao`**.
+- **Progresso do aluno**: lido e marcado para rever, por tópico, em `materias[<m>].geral[<id>]` do estado salvo (estado v8, migração `v7paraV8` em `app/src/estado/migracao.ts`; testes em `app/src/testes/revisaoGeral.test.ts`). Por isso os ids não podem mudar.
+- Problemas de conteúdo achados na integração: `docs/revisao/ERROS-GERAL.md`.
 
 ## 8. Lista de imagens por tópico da revisão geral
 

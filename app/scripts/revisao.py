@@ -270,6 +270,72 @@ def resumos_materia(m, saida):
     return len(out), imgs
 
 
+# Comando 37: revisão geral da matéria inteira (docs/revisao/<m>/geral.json). Campos que o site usa; `lacunas`,
+# `como_usar` e `base` são notas de trabalho e não vão ao ar (INTEGRACAO-SITE.md, seção 7).
+CAMPOS_GERAL = ('id', 'capitulo', 'titulo', 'subs', 'busca', 'pontos', 'pegadinha')
+# Filosofia e Sociologia no mesmo arquivo: o prefixo do id separa as duas telas (FK = Filosofia, SK = Sociologia)
+PARTES_GERAL = {'fs': {'filosofia': 'FK', 'sociologia': 'SK'}}
+
+
+def imagem_geral(m, tid):
+    """PNG do dono para o tópico da revisão geral. Mesma convenção dos resumos (docs/imagens/<m>/<id>.png); em
+    docs/imagens/<m>/geral/<id>.png fica a imagem só da revisão geral (vale primeiro), útil em Matemática e Inglês,
+    onde o id do tópico é igual ao do subtema e a imagem do resumo serviria aos dois."""
+    for p in (os.path.join(IMAGENS, m, 'geral', tid + '.png'), os.path.join(IMAGENS, m, tid + '.png')):
+        if os.path.exists(p):
+            return p
+    return None
+
+
+def geral_materia(m, saida):
+    """docs/revisao/<m>/geral.json -> public/conteudo/<m>/revisao/geral.json (só os campos do site). Imagem do dono,
+    quando existe, vira WebP em revisao/geral/<id>.webp e entra em imagem.img; sem ela, o site mostra o aviso
+    "EM CONSTRUÇÃO — <descrição>". Os JSON de docs/revisao não são alterados."""
+    f = os.path.join(FONTE, m, 'geral.json')
+    if not os.path.exists(f):
+        return None
+    from PIL import Image
+    d = ler(f)
+    ids = set()
+    topicos = []
+    imgs = 0
+    for t in d.get('topicos', []):
+        falta = [k for k in ('id', 'titulo', 'pontos') if not t.get(k)]
+        if falta:
+            raise ErroRevisao(f'docs/revisao/{m}/geral.json: tópico {t.get("id", "?")} sem {", ".join(falta)}')
+        if t['id'] in ids:
+            raise ErroRevisao(f'docs/revisao/{m}/geral.json: id repetido {t["id"]}')
+        ids.add(t['id'])
+        x = {k: t.get(k) for k in CAMPOS_GERAL}
+        x['capitulo'] = x['capitulo'] or ''
+        x['subs'] = list(x['subs'] or [])
+        x['busca'] = list(x['busca'] or [])
+        x['pegadinha'] = x['pegadinha'] or ''
+        im = t.get('imagem') or {}
+        img = {'descricao': im.get('descricao', '')}
+        # Matemática e Inglês não têm falta_imagem: a ausência vale "imagem ainda não feita"
+        img['falta_imagem'] = bool(im.get('falta_imagem', True))
+        png = imagem_geral(m, t['id'])
+        if png:
+            alvo = os.path.join(saida, 'geral', t['id'] + '.webp')
+            os.makedirs(os.path.dirname(alvo), exist_ok=True)
+            pi = Image.open(png)
+            pi = pi.convert('RGBA' if pi.mode in ('RGBA', 'LA', 'P') else 'RGB')
+            if pi.width > 1200:
+                pi = pi.resize((1200, round(pi.height * 1200 / pi.width)), Image.LANCZOS)
+            pi.save(alvo, 'WEBP', quality=80, method=6)
+            img['img'] = 'revisao/geral/' + t['id'] + '.webp'
+            imgs += 1
+        x['imagem'] = img
+        topicos.append(x)
+    gravar(os.path.join(saida, 'geral.json'), {'materia': m, 'topicos': topicos})
+    info = {'n': len(topicos), 'imagens': imgs}
+    partes = PARTES_GERAL.get(m)
+    if partes:
+        info['partes'] = {p: sum(1 for t in topicos if t['id'].startswith(pre)) for p, pre in partes.items()}
+    return info
+
+
 def converte(materias=None):
     rel = {}
     for m in CORRECOES_TEORIA:
@@ -283,7 +349,7 @@ def converte(materias=None):
         if not os.path.isdir(pasta) or (materias and m not in materias):
             continue
         arqs = sorted(f for f in os.listdir(pasta) if re.fullmatch(r'[A-Z]\d{2}\.json', f))
-        if not arqs and not os.path.exists(os.path.join(pasta, 'resumos.json')):
+        if not arqs and not os.path.exists(os.path.join(pasta, 'resumos.json')) and not os.path.exists(os.path.join(pasta, 'geral.json')):
             continue
         saida = os.path.join(DESTINO, m, 'revisao')
         # do zero a cada conversão: foto retirada (ou que aguarda o dono) não fica esquecida na pasta servida
@@ -292,6 +358,9 @@ def converte(materias=None):
         indice = {'materia': m, 'obra': OBRAS.get(m, ''), 'temas': {}}
         n_res, n_img = resumos_materia(m, saida)
         indice['resumos'] = n_res > 0
+        geral = geral_materia(m, saida)
+        if geral:
+            indice['geral'] = geral
         temas = {}
         fotos = 0
         for a in arqs:
@@ -317,7 +386,8 @@ def converte(materias=None):
         gravar(os.path.join(saida, 'indice.json'), indice)
         cartoes = alimenta_teoria(m, temas)
         rel[m] = {'temas': len(temas), 'slides': sum(sum(t['subs'].values()) for t in indice['temas'].values()),
-                  'fotos': fotos, 'cartoes_teoria': cartoes, 'resumos': n_res, 'imagens_resumo': n_img}
+                  'fotos': fotos, 'cartoes_teoria': cartoes, 'resumos': n_res, 'imagens_resumo': n_img,
+                  'geral': (geral or {}).get('n', 0), 'imagens_geral': (geral or {}).get('imagens', 0)}
     return rel
 
 

@@ -18,6 +18,7 @@ import { SimuladoResultado } from './telas/SimuladoResultado';
 import { Revisao } from './telas/Revisao';
 import { RevisaoSlides } from './telas/RevisaoSlides';
 import { EssencialMateria, RevisaoEssencial } from './telas/RevisaoEssencial';
+import { RevisaoGeralTela } from './telas/RevisaoGeral';
 import { Desempenho } from './telas/Desempenho';
 import { Hoje, SessaoHojeTela } from './telas/Hoje';
 import { Provas, ProvaDetalhe } from './telas/Provas';
@@ -54,6 +55,8 @@ function Rotas() {
         <Route path="/m/:m/revisao/:sub" element={<RevisaoSlides />} />
         <Route path="/m/:m/essencial" element={<EssencialMateria />} />
         <Route path="/m/:m/essencial/:tema" element={<RevisaoEssencial />} />
+        <Route path="/m/:m/geral" element={<RevisaoGeralTela />} />
+        <Route path="/m/:m/geral/:parte" element={<RevisaoGeralTela />} />
         <Route path="/m/:m/flashcards" element={<Flashcards />} />
         <Route path="/m/:m/flashcards/sessao" element={<Flashcards sessao />} />
         <Route path="/simulados" element={<Simulados />} />

@@ -13,6 +13,7 @@ import { revisoesVencidas } from '../logica/cicloRevisao';
 import { numeroQuestao } from '../dados/tipos';
 import { FiltroRegiaoChips, defineFiltroRegiao, useRegiao } from '../ui/FiltroRegiao';
 import { deFiltro, filtraRegiao } from '../logica/regiao';
+import { CartoesGeral } from './RevisaoGeral';
 
 export function Revisao() {
   useTitulo('Revisão');
@@ -55,7 +56,9 @@ export function Revisao() {
     <div className="conteudo">
       <div className="titulo-pag"><div><h1>Revisão</h1><p className="sub">{aba === 'conteudos'
         ? 'Cada conteúdo revisado em slides volta no dia marcado no fim da revisão: amanhã quando algo não firmou, mais tarde quando firmou.'
-        : aba === 'dominio'
+        : aba === 'geral'
+          ? 'A matéria inteira em tópicos curtos, com busca: o essencial, a pegadinha da banca e a imagem de cada tópico. Filosofia e Sociologia em duas listas.'
+          : aba === 'dominio'
           ? 'O que você domina, está aprendendo ou esqueceu, pelos acertos em dias diferentes, cada um na data marcada.'
           : `Errou, chutou ou pediu pista: a questão volta no dia certo. Sai da revisão depois de ${SAIDA} acertos em dias diferentes, cada um na data marcada.`}</p></div>
         <Link to="/hoje" className="btn sec peq rv-hoje"><Icone nome="calendario" />O que estudar hoje</Link></div>
@@ -66,7 +69,14 @@ export function Revisao() {
         <button aria-pressed={aba === 'marcadas'} onClick={() => setQs({ aba: 'marcadas' }, { replace: true })}>Marcadas <small>{totMarc}</small></button>
         <button aria-pressed={aba === 'conteudos'} onClick={() => setQs({ aba: 'conteudos' }, { replace: true })}>Conteúdos <small>{totCont}</small></button>
         <button aria-pressed={aba === 'dominio'} onClick={() => setQs({ aba: 'dominio' }, { replace: true })}>Domínio</button>
+        <button aria-pressed={aba === 'geral'} onClick={() => setQs({ aba: 'geral' }, { replace: true })}>Revisão geral</button>
       </div>
+
+      {aba === 'geral' && (
+        <div className="grade g2 rv-geral">
+          {MATERIAS_ATIVAS.map((m) => <CartoesGeral key={m.id} m={m.id} />)}
+        </div>
+      )}
 
       {aba === 'dominio' && <PainelDominio todas={todas} e={e} ag={ag} agora={agora} />}
 

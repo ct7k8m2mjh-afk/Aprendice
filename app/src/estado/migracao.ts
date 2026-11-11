@@ -9,6 +9,7 @@ import type { EstadoMateria, EstadoQuestao, Estado, FlashRec, RevisaoConteudo, S
 import { estadoMateriaVazio, estadoVazio } from './tipos';
 import { RETIRADAS, type RetiradaBruta } from '../dados/questoesRetiradas';
 import { ehFiltro, ehRegiao } from '../logica/regiao';
+import { mesclaGeral, normalizaGeral } from '../logica/revisaoGeral';
 
 export const CHAVES_PROTOTIPO: Record<string, MateriaId> = {
   'saocamilo.bio.v1': 'bio', 'saocamilo.qui.v1': 'qui', 'saocamilo.mat.v1': 'mat', 'saocamilo.por.v1': 'por',
@@ -72,6 +73,8 @@ export function mesclaMateria(a: EstadoMateria, b: Partial<EstadoMateria>): Esta
   const vis = new Set<number>();
   return {
     revs: mesclaRevs(a.revs, obj<Record<string, RevisaoConteudo>>(b.revs) || {}),
+    // revisão geral (v8): por tópico fica a mudança mais recente; arquivo antigo sem o campo não apaga nada
+    geral: mesclaGeral(a.geral, b.geral),
     q: mesclaQ(a.q, obj<Record<string, EstadoQuestao>>(b.q) || {}),
     ult: a.ult || b.ult || null,
     sims: mesclaSims(a.sims, Array.isArray(b.sims) ? b.sims : []),
@@ -184,7 +187,7 @@ export function migraDoNavegador(estado: Estado, ler: (k: string) => string | nu
  * v1 -> v2 (comando 18 do dono): Filosofia ('fil') e Sociologia ('soc') viram UMA matéria, Filosofia e Sociologia ('fs').
  * Os ids de questões, temas e cartões não mudam; o progresso das duas é mesclado na matéria nova sem perder nada. */
 
-export const VERSAO_ATUAL = 7;
+export const VERSAO_ATUAL = 8;
 const ANTIGAS = Object.keys(MATERIA_UNIDA) as (keyof typeof MATERIA_UNIDA)[];
 
 /** Momento da última atividade de uma matéria (tentativas, cartões, sessões), para escolher o "continuar de onde parou". */
@@ -385,6 +388,18 @@ export function v6paraV7(e: Estado, agora = Date.now()): Estado {
   return { ...e, versao: 7, perfil: perfil ? { ...perfil, datasProva } : e.perfil, revisaoDesde: desde };
 }
 
+/* v7 -> v8 (comando 37 do dono): revisão geral da matéria inteira. Cada matéria ganha `geral` (progresso por tópico:
+ * lido, marcado para rever), vazio; um valor já gravado (arquivo de outra versão, migração repetida) é mantido e só as
+ * entradas estranhas saem. Tentativas, revisões, flashcards e ids NÃO mudam. */
+export function v7paraV8(e: Estado): Estado {
+  const mats = { ...e.materias } as Record<string, EstadoMateria | undefined>;
+  for (const [m, s] of Object.entries(mats)) {
+    if (!s) continue;
+    mats[m] = { ...s, geral: normalizaGeral(s.geral) };
+  }
+  return { ...e, versao: 8, materias: mats as Estado['materias'] };
+}
+
 /** Leva um estado salvo (de qualquer versão conhecida) ao formato atual. Estado já atual volta sem mudança. */
 export function migraEstado(d: Estado | (Omit<Estado, 'versao'> & { versao: number }), tabela: TabelaRetiradas = RETIRADAS, agora = Date.now()): Estado {
   let e = d as Estado;
@@ -394,5 +409,6 @@ export function migraEstado(d: Estado | (Omit<Estado, 'versao'> & { versao: numb
   if ((e.versao as number) < 5) e = v4paraV5(e);
   if ((e.versao as number) < 6) e = v5paraV6(e);
   if ((e.versao as number) < 7) e = v6paraV7(e, agora);
+  if ((e.versao as number) < 8) e = v7paraV8(e);
   return aplicaRetiradas(e, tabela);
 }

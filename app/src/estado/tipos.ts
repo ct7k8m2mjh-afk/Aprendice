@@ -1,5 +1,6 @@
 import type { Letra, MateriaId } from '../dados/tipos';
 import type { FiltroRegiao, RegiaoId } from '../logica/regiao';
+import type { ProgressoGeral } from '../logica/revisaoGeral';
 
 /** Mesmo formato do protótipo (S.q[id].tent), para a migração não perder nada. */
 export interface Tentativa {
@@ -65,6 +66,10 @@ export interface EstadoMateria {
   sessoes: { ts: number; seg: number }[];
   /** revisão em slides por conteúdo (sub). Opcional: estados antigos não têm; a migração v4 cria vazio. */
   revs?: Record<string, RevisaoConteudo>;
+  /** revisão geral da matéria (comando 37): progresso por tópico (id do tópico em docs/revisao/<m>/geral.json; em fs os
+   *  prefixos FK e SK separam Filosofia e Sociologia). Lido, marcado para rever e o momento da mudança. A migração v8
+   *  cria vazio; estados antigos não têm. */
+  geral?: ProgressoGeral;
 }
 
 export interface Perfil {
@@ -137,8 +142,9 @@ export interface Estado {
    *  levado à questão de prova equivalente ou guardado no id antigo (migracao.ts, migraEstado); 4: revisão em slides por
    *  conteúdo (EstadoMateria.revs, comandos 24 e 26); 5: Treino geral de todas as matérias (treinoMisto, comando 32).
    *  6: região das provas (pref.regioes, pref.filtroRegiao; pedido do dono de 09/11/2026).
-   *  7: agenda pela data da prova (perfil.datasProva, revisaoDesde; comando 24 fase 2). Estado novo nasce na 7. */
-  versao: 2 | 3 | 4 | 5 | 6 | 7;
+   *  7: agenda pela data da prova (perfil.datasProva, revisaoDesde; comando 24 fase 2).
+   *  8: revisão geral da matéria (EstadoMateria.geral, comando 37). Estado novo nasce na 8. */
+  versao: 2 | 3 | 4 | 5 | 6 | 7 | 8;
   perfil: Perfil | null;
   materias: Partial<Record<MateriaId, EstadoMateria>>;
   simulado: SimuladoAndamento | null;
@@ -156,12 +162,12 @@ export interface Estado {
 }
 
 export function estadoMateriaVazio(): EstadoMateria {
-  return { q: {}, ult: null, sims: [], flash: {}, flg: {}, sessoes: [], revs: {} };
+  return { q: {}, ult: null, sims: [], flash: {}, flg: {}, sessoes: [], revs: {}, geral: {} };
 }
 
 export function estadoVazio(): Estado {
   return {
-    versao: 7,
+    versao: 8,
     perfil: null,
     materias: {},
     simulado: null,

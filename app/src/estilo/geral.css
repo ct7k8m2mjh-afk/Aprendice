@@ -1,0 +1,110 @@
+/* ============================================================================================================
+ * REVISÃO GERAL DA MATÉRIA (comando 37; telas/RevisaoGeral.tsx). Sistema do protótipo: capa do tema (.tp-capa),
+ * folhas (.tp-bloco), título da tela em --fs-tela, tópico/conteúdo em --fs-tema, ponto 8px em --p no lugar de ícone
+ * (subtema sem ícone), campo 48px canto 12, chips do sistema, pegadinha em aviso-bg. Só espaços da escala
+ * (4, 8, 12, 16, 22, 28). Sem animação em nenhuma matéria (só o fundo do hover/foco, como no resto do site).
+ * ============================================================================================================ */
+
+.rg-capa-g { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px 28px; flex-wrap: wrap; }
+.rg-capa-txt { min-width: 0; flex: 1 1 420px; }
+.rg-apoio { margin: 8px 0 0; max-width: 72ch; font-size: var(--fs-texto); line-height: 1.5; color: var(--lapis); }
+.rg-capa .tp-stat b:first-child { color: var(--t); }
+
+/* Filosofia | Sociologia: as duas telas de fs (chip do sistema; a atual como o chip selecionado) */
+.rg-partes { display: flex; gap: 8px; flex-wrap: wrap; }
+.rg-partes .chip { background: var(--folha); }
+.rg-partes .chip[aria-current='page'] { background: var(--tinta); border-color: var(--tinta); color: var(--papel); }
+
+/* busca: campo do sistema (48px, canto 12, borda campo-borda, rótulo 600 acima, foco borda --t + anel 3px) */
+.rg-busca { display: flex; flex-direction: column; gap: 8px; margin-top: 22px; max-width: 720px; }
+.rg-busca label { font-weight: 600; font-size: 15px; color: var(--tinta); }
+.rg-busca-cx { position: relative; }
+.rg-busca-cx > .ic { position: absolute; left: 14px; top: 50%; width: 18px; height: 18px; transform: translateY(-50%); color: var(--lapis); pointer-events: none; }
+.rg-busca input { width: 100%; height: 48px; padding: 0 48px 0 44px; border-radius: 12px; border: 1px solid var(--campo-borda); background: var(--folha);
+  color: var(--tinta); font: 400 16px var(--fonte); -webkit-appearance: none; appearance: none; }
+.rg-busca input::-webkit-search-cancel-button { display: none; }
+.rg-busca input:focus { outline: none; border-color: var(--t); box-shadow: 0 0 0 3px color-mix(in srgb, var(--p) 22%, transparent); }
+.rg-limpa { position: absolute; right: 6px; top: 50%; transform: translateY(-50%); width: 36px; height: 36px; display: grid; place-items: center;
+  border: 0; border-radius: 9px; background: transparent; color: var(--lapis); cursor: pointer; }
+.rg-limpa:hover { background: var(--folha2); color: var(--tinta); }
+.rg-limpa .ic { width: 18px; height: 18px; }
+.rg-busca small { font-size: var(--fs-info); line-height: 1.4; color: var(--fraco); }
+
+/* lista (índice) | tópico */
+.rg-grade { display: grid; grid-template-columns: minmax(0, 1fr); gap: 28px; margin-top: 28px; align-items: start; }
+.rg-grade > .tp-bloco { margin-top: 0; min-width: 0; }
+@media (min-width: 901px) {
+  .rg-grade { grid-template-columns: minmax(300px, 1fr) minmax(0, 1.55fr); }
+  /* o tópico fica preso no alto e rola por dentro, como o painel da questão */
+  .rg-topico { position: sticky; top: calc(var(--topo) + 16px); max-height: calc(100vh - var(--topo) - 32px); max-height: calc(100dvh - var(--topo) - 32px); overflow: auto; overscroll-behavior: contain; }
+  .rg-volta { display: none !important; }
+}
+@media (max-width: 900px) {
+  .rg-grade.aberto .rg-indice, .rg-grade:not(.aberto) .rg-topico { display: none; }
+}
+
+.rg-filtros { margin: 0 0 8px; }
+.rg-filtros .chip { cursor: pointer; }
+
+.rg-cap + .rg-cap { margin-top: 16px; }
+.rg-cap-t { margin: 0; padding: 12px 12px 4px; font: 600 13px/1.3 var(--fonte); letter-spacing: .08em; text-transform: uppercase; color: var(--t); }
+.rg-lista { list-style: none; margin: 0; padding: 0; }
+.rg-lista li + li { background: linear-gradient(var(--linha), var(--linha)) 12px 0 / calc(100% - 24px) 1px no-repeat; }
+.rg-item { display: grid; grid-template-columns: 8px minmax(0, 1fr) auto; align-items: start; gap: 8px; padding: 12px; border-radius: 12px; color: var(--tinta); text-decoration: none; }
+.rg-item .ponto-sub { margin-top: calc((1.3em - 8px) / 2); font-size: var(--fs-tema); }
+.rg-item .t { min-width: 0; font: 600 var(--fs-tema)/1.3 var(--fonte); overflow-wrap: anywhere; }
+@media (hover: hover) { .rg-item:hover { background: color-mix(in srgb, var(--c) 6%, var(--folha)); text-decoration: none; } }
+.rg-item.atual { background: var(--sv2); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--p) 45%, transparent); }
+.rg-item.atual .t { color: var(--t); }
+.rg-item mark { padding: 0 1px; border-radius: 3px; background: color-mix(in srgb, var(--p) 26%, transparent); color: inherit; }
+.rg-est { display: flex; gap: 6px; align-items: center; min-height: calc(var(--fs-tema) * 1.3); color: var(--t); }
+.rg-est .ic { width: 16px; height: 16px; }
+.rg-nada { padding: 8px 12px 16px; }
+.rg-nada p { margin: 0 0 8px; color: var(--lapis); }
+.rg-nada p b { color: var(--tinta); font-weight: 600; }
+
+/* tópico aberto */
+.rg-topico { padding-bottom: 16px; scroll-margin-top: calc(var(--topo) + 12px); }
+.rg-volta { margin: -4px 0 12px; }
+.rg-top-cab { display: flex; align-items: center; justify-content: space-between; gap: 8px 12px; flex-wrap: wrap; margin: 0 0 12px; }
+.rg-top-cab .etq { white-space: normal; max-width: 100%; }
+.rg-pos { font-size: var(--fs-info); color: var(--fraco); }
+.rg-tit { margin: 0; font: 700 var(--fs-tela)/1.15 var(--fonte); letter-spacing: -0.02em; color: var(--tinta); overflow-wrap: anywhere; }
+.rg-tit:focus { outline: none; }
+.rg-tit:focus-visible { outline: 2px solid var(--t); outline-offset: 4px; border-radius: 6px; }
+.rg-subs { list-style: none; display: flex; flex-wrap: wrap; gap: 8px 16px; margin: 12px 0 0; padding: 0; }
+.rg-subs a { display: inline-flex; align-items: baseline; gap: 8px; font-size: var(--fs-info); line-height: 1.4; color: var(--lapis); text-decoration: none; }
+.rg-subs a .ponto-sub { align-self: center; }
+.rg-subs a:hover { color: var(--t); text-decoration: underline; }
+.rg-pontos { list-style: none; margin: 22px 0 0; padding: 0; display: grid; gap: 12px; }
+.rg-pontos li { display: flex; align-items: baseline; gap: 12px; font: 400 var(--fs-expl)/1.55 var(--fonte); color: var(--tinta); }
+.rg-pontos li::before { content: ''; flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--p); transform: translateY(-.22em); }
+.rg-p { min-width: 0; overflow-wrap: anywhere; }
+.rg-pontos .fm-em-linha { font-size: 1.2em; }
+.rg-peg { margin-top: 22px; }
+.rg-fig { margin: 22px 0 0; min-width: 0; }
+.rg-fig img { display: block; width: 100%; height: auto; border-radius: 12px; border: 1px solid var(--linha); background: var(--folha2); }
+.rg-caixa { min-height: 120px; }
+.rg-caixa b { display: inline; margin: 0; letter-spacing: .04em; }
+.rg-acoes { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px; }
+.rg-acoes .btn .ic { width: 18px; height: 18px; }
+.rg-acoes .btn[aria-pressed='true'].sec { background: var(--sv); color: var(--t); }
+.rg-viz { margin: 22px 0 0; padding-top: 12px; border-top: 1px solid var(--linha); flex-wrap: nowrap; }
+.rg-viz a { max-width: 48%; align-items: flex-start; }
+.rg-viz a .ic { margin-top: 2px; }
+.rg-viz b { font-size: var(--fs-texto); overflow-wrap: anywhere; }
+
+@media (max-width: 700px) {
+  .rg-busca { margin-top: 16px; }
+  .rg-grade { margin-top: 22px; gap: 22px; }
+  .rg-item { padding: 12px 6px; }
+  .rg-cap-t { padding: 12px 6px 4px; }
+  .rg-pontos { margin-top: 16px; }
+}
+@media (max-width: 520px) {
+  .rg-acoes .btn { width: 100%; }
+  .rg-viz { flex-direction: column; gap: 4px; }
+  .rg-viz a { max-width: 100%; }
+  .rg-viz a.d { margin-left: 0; }
+}
+.mat-atalhos-geral { margin-top: 28px; }

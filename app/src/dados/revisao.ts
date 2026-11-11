@@ -5,6 +5,7 @@
  */
 import { useEffect, useState } from 'react';
 import type { CartaoTeoria, MateriaId } from './tipos';
+import type { RevisaoGeral } from '../logica/revisaoGeral';
 
 const PREVIA = import.meta.env.VITE_PREVIA === '1';
 const BASE = import.meta.env.BASE_URL + 'conteudo/';
@@ -70,7 +71,10 @@ export interface ResumoSubtema { sub: string; titulo: string; pontos: string[]; 
 
 export interface IndiceRevisao { materia: MateriaId; obra?: string; temas: Record<string, { nome: string; subs: Record<string, number>; essencial?: number }>;
   /** conteúdos com resolução comentada publicada (res/<conteúdo>.json) */ res?: string[];
-  /** há resumos por subtema (revisao/resumos.json) */ resumos?: boolean }
+  /** há resumos por subtema (revisao/resumos.json) */ resumos?: boolean;
+  /** revisão geral da matéria (comando 37, revisao/geral.json): número de tópicos, imagens do dono já convertidas e,
+   *  em Filosofia e Sociologia, quantos tópicos em cada parte */
+  geral?: { n: number; imagens?: number; partes?: Record<string, number> } }
 
 const VAZIO: IndiceRevisao = { materia: 'fis', temas: {} };
 const cacheIndice = new Map<MateriaId, Promise<IndiceRevisao>>();
@@ -169,4 +173,29 @@ export function fonteLegivel(fonte: string, obra?: string): string {
 /** Tira do texto do roteiro o código de cor ("laranja #F27700" → "laranja"): o aluno vê a cor, não o código. */
 export function limpaRoteiro(t: string): string {
   return t.replace(/\s*\(?#[0-9A-Fa-f]{6}\)?/g, '').replace(/^\d+\.\s*/, '').replace(/\s+([,.;:])/g, '$1').trim();
+}
+
+const cacheGeral = new Map<MateriaId, Promise<RevisaoGeral | null>>();
+/** Revisão geral da matéria (comando 37): só busca quando o índice diz que existe (nada de 404). */
+export function carregaGeral(m: MateriaId): Promise<RevisaoGeral | null> {
+  let p = cacheGeral.get(m);
+  if (!p) {
+    p = carregaIndiceRevisao(m).then((ind) => (ind.geral?.n && !PREVIA
+      ? fetch(BASE + m + '/revisao/geral.json').then((r) => (r.ok ? r.json() : null)).catch(() => null)
+      : null));
+    cacheGeral.set(m, p);
+  }
+  return p;
+}
+/** undefined = carregando; null = a matéria ainda não tem revisão geral */
+export function useGeral(m: MateriaId | null | undefined): RevisaoGeral | null | undefined {
+  const [x, setX] = useState<RevisaoGeral | null | undefined>(undefined);
+  useEffect(() => {
+    setX(undefined);
+    if (!m) { setX(null); return; }
+    let vivo = true;
+    carregaGeral(m).then((r) => { if (vivo) setX(r); });
+    return () => { vivo = false; };
+  }, [m]);
+  return x;
 }
