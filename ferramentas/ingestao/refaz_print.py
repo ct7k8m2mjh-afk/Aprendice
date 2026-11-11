@@ -98,6 +98,10 @@ def sem_vermelho(im):
     return Image.fromarray(a.astype('uint8'))
 
 
+def texto_dos_trechos(doc, segs):
+    return '\n'.join(doc[i].get_text('text', clip=r).strip() for i, r in segs).strip()
+
+
 def render(doc, segs):
     larg_pt = max(r.width for _, r in segs)
     z = LARG / larg_pt
@@ -147,6 +151,9 @@ def main():
     im.save(dst, 'WEBP', quality=88, method=6)
     q['larg'], q['alt'] = im.size
     q['paginas'] = sorted({i + 1 for i, _ in segs})
+    # texto guardado da questão = camada de texto dos mesmos trechos (o que as sessões de resolução e a busca leem);
+    # caderno sem camada de texto: fica vazio, e quem resolve lê o print
+    q['texto'] = texto_dos_trechos(doc, segs)
     txt = open(fp, encoding='utf-8').read()
     ind = 1 if txt[:200].count('\n "') else (2 if txt[:200].count('\n  "') else None)
     with open(fp, 'w', encoding='utf-8') as h:
