@@ -54,9 +54,9 @@ def prepara(pid):
     arqs = {}
     for papel, rel in m['arquivos'].items():
         if isinstance(rel, tuple):
-            _, url, local = rel
+            _, url, local = rel[:3]
             src = CACHE / local
-            origem = url + ' (site oficial, baixado em 11/11/2026)'
+            origem = url + ' (site oficial, baixado em 11/11/2026' + (f'; {rel[3]}' if len(rel) > 3 else '') + ')'
         else:
             src = FONTE / rel
             reg = _registro(rel)
@@ -395,6 +395,53 @@ PROVAS['unirg-2027-1'] = sem_gabarito(
     _nota_unirg(2027, 1, 'Gurupi', '01/11/2026', 'Só o gabarito PRELIMINAR (site da UNIRG, 11/11/2026); a letra dele vai em '
                 'gab_preliminar.'),
     fase='Medicina 2027/1', titulo='UNIRG Medicina 2027/1', ano='2027')
+
+
+# ---------------------------------------------------------------------------------------------- Unespar 2025
+# O arquivo publicado como "gabarito-provisorio-2025.pdf" é o EDITAL N. 045/2024 – CCCV, "Gabarito oficial da Prova
+# Objetiva" (com a anulada marcada), o mesmo tipo de documento usado na Unespar 2024 (Edital 48): entra normalmente.
+_UP = 'https://vestibular.unespar.edu.br/vestibulares-anteriores/vestibular-2024-2025/vestibular-2025/outros-arquivos/provas-e-gabarito/'
+_m('unespar-2025', 'https://vestibular.unespar.edu.br/vestibulares-anteriores/vestibular-2024-2025/vestibular-2025',
+   caderno=('url', _UP + 'caderno-de-provas-grupo-i-redacao-e-objetiva-de-multipla-escolha.pdf',
+            'unespar/caderno-de-provas-grupo-i-redacao-e-objetiva-de-multipla-escolha.pdf'),
+   gabarito=('url', _UP + 'gabarito-provisorio-2025.pdf', 'unespar/gabarito-provisorio-2025.pdf'))
+
+
+def _unespar25_gab(pasta):
+    return _p.pares(_p.texto_pdf(pasta / 'gabarito.pdf').replace('anulada', 'ANULADA'))
+
+
+PROVAS['unespar-2025'] = _p.unespar(2025)
+PROVAS['unespar-2025'].update({'gabarito': _unespar25_gab, 'total_de': lambda pasta: max(_unespar25_gab(pasta)),
+                               'nota': PROVAS['unespar-2025']['nota'].replace(
+                                   'Gabarito oficial publicado em edital após os recursos',
+                                   'Gabarito oficial (Edital 045/2024-CCCV, publicado com o nome de arquivo "gabarito-provisorio-2025")')})
+
+
+# ------------------------------------------------------------------------------------------------- Acafe (Medicina)
+# Verão 2022 (14/11/2021): os arquivos "gabarito oficial" da Acafe trazem o gabarito
+# PRELIMINAR; o definitivo não foi localizado. 15–21: espanhol e depois inglês (vale o inglês).
+def _acafe_pre(pasta):
+    ocorr = {}
+    txt = _p.texto_pdf(pasta / 'preliminar.pdf')
+    for n, v in re.findall(r'(?<![\d,.])(\d{1,2})\s+([A-E]\b|\*|X\b|ANULADA|Anulada)', txt):
+        ocorr.setdefault(int(n), []).append(v if len(v) == 1 and v in 'ABCDE' else 'X')
+    g = {n: (l[1] if len(l) > 1 and 15 <= n <= 21 else l[0]) for n, l in ocorr.items()}
+    assert sorted(g) == list(range(1, 64)), sorted(g)
+    return g
+
+
+_AC = 'https://storage.acafe.org.br/concurso/vestibular/'
+# Verão 2020: fica fora — o único caderno publicado é a prova comentada, com a justificativa da banca (e a letra certa)
+# colada ao fim de cada questão, sem marca de fim de enunciado que o recorte reconheça (anotado em faltantes-por-ano.md).
+_m('acafe-2022-verao', 'https://www.acafe.org.br/',
+   caderno=('url', _AC + '2022/1/05%20-%20Provas/5.3%20-%20Prova%20Medicina%2022_1.pdf', 'acafe/acafe-2022-verao-caderno.pdf'),
+   preliminar=('url', _AC + '2022/1/05%20-%20Provas/5.1%20-%20Gabarito%20oficial%2022_1.pdf', 'acafe/acafe-2022-verao-preliminar.pdf'))
+PROVAS['acafe-2022-verao'] = sem_gabarito(
+    _p.acafe_antiga(2022, 1), _acafe_pre,
+    'Vestibular de Medicina Acafe, Verão 2022 (prova de 14/11/2021). Língua estrangeira: inglês. Print da prova oficial. O '
+    'arquivo "Gabarito oficial 22_1" da Acafe é o gabarito PRELIMINAR (31 anulada nele); a letra dele vai em gab_preliminar.')
+PROVAS['acafe-2022-verao']['suporte_forcado'] = {('caderno', 16): [(162, 0, (18, 21))]}   # "Text 3 ... The Hippocratic Oath" (p. 16): texto das 18–21
 
 
 if __name__ == '__main__':
