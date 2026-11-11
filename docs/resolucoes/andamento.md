@@ -15,9 +15,10 @@ Onde ficam: `app/conteudo-fonte/provas/<prova>/resolucoes.json` (uma entrada por
 | 04b | Matemática | as 2 pendentes do lote 02, com prints refeitos | 2 | 2 | 0 | 0 | 0 |
 | 05 | Matemática | ENEM 2020–2025, 24 questões (nível 5 na classificação anterior) | 24 | 24 | 0 | 0 | 0 |
 | 06 (mat-0001) | Matemática | ENEM 2020–2025, 24 questões pela ferramenta de lotes (níveis oficiais do INEP) | 24 | 24 | 0 | 0 | 0 |
-| **Total** | | | **174** | **174** | **0** | **0** | **0** |
+| 07 (mat-0002) | Matemática | ENEM 2020–2025, 24 questões com figura (funções, sequências, geometria) | 24 | 24 | 0 | 0 | 0 |
+| **Total** | | | **198** | **198** | **0** | **0** | **0** |
 
-No site montado: Biologia passou de 195 para 229 questões com resolução; Matemática, de 552 para 687 (depois do lote 06). Quatro das 92 de Matemática são a mesma questão que já existia no banco antigo com resolução (ENEM 2024 q145, ENEM 2021 q178, ENEM 2020 q168 e ENEM 2023 q155); a resolução antiga continua valendo nelas.
+No site montado: Biologia passou de 195 para 229 questões com resolução; Matemática, de 552 para 711 (depois do lote 07). Quatro das 92 de Matemática são a mesma questão que já existia no banco antigo com resolução (ENEM 2024 q145, ENEM 2021 q178, ENEM 2020 q168 e ENEM 2023 q155); a resolução antiga continua valendo nelas.
 
 ## Lote 01 — Biologia, ENEM, níveis 1 a 3 (11/11/2026)
 
@@ -47,6 +48,13 @@ No site montado: Biologia passou de 195 para 229 questões com resolução; Mate
 - q175 (gráfico do lucro): resolvida pela diferença ponto a ponto; letra oficial A.
 - q176 (projeções de um sólido de quatro cubos): cada alternativa foi recortada e ampliada; banca e conferente contaram os quadrados de cada sombra, separadamente, e chegaram às mesmas leituras (C e D espelhadas, A com alturas diferentes nas duas paredes, B com a sombra da parede esquerda uma coluna deslocada); letra oficial E.
 - Conferente: conferência completa das duas; 2 ajustes de redação na q176. Aprovadas.
+
+## Lote 07 (mat-0002) — Matemática, ENEM, 24 questões com figura (11/11/2026)
+
+- 24 questões (gráficos, sequências, geometria plana e espacial, projeções, planificação do octaedro, rota por bússola); as 24 bateram com o gabarito oficial.
+- Conferente: abriu os 24 prints e confirmou todas as leituras de figura; 8 limpas; cerca de 30 apontamentos (nenhum de gabarito nem de conta). Erros de fato corrigidos: na ENEM 2025 q180, o teste "com n = 1 dá 103" não separava a alternativa D da E (entrou o teste com n = 2); na ENEM 2025 q148, "maior escala" estava usado ao contrário (1 : 100 é a escala maior), trocado por "maior denominador da escala". Várias alternativas com teste ganharam a origem exata (83 = 51 + 16 + 16; 6 = usar a área lateral 2πrh como volume; 1,80 = lateral tratada como triângulo). Na ENEM 2025 q164 a direção 135 passou a ter conta. Volta: 24 aprovadas.
+- Site: `converte.py`, `tsc` e `vitest` verdes (766 testes). No navegador (390 px): ENEM 2021 q168, ENEM 2025 q164 e ENEM 2024 q163 com os 4 blocos e frações empilhadas; animação até o fim em ENEM 2025 q164 (6/6), ENEM 2024 q163 (5/5) e ENEM 2023 q169 (5/5).
+- **Para a sessão principal (classificação):** três questões deste lote estão com o conteúdo trocado. ENEM 2024 q167 (P8c8fd819) é subtração de números mistos e ENEM 2025 q148 (P5c534dc5) é escala, as duas em "M09.1 teorema de Pitágoras"; ENEM 2025 q136 (P36540617) é consumo e divisão, em "M11.2 cilindros". A banca de resoluções não altera classificação; os códigos de equívoco dessas três seguem o conteúdo atual e devem ser ajustados junto.
 
 ## Lote 06 (mat-0001) — Matemática, ENEM, 24 questões (11/11/2026)
 

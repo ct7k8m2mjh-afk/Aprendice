@@ -2424,5 +2424,541 @@
    "data": "2026-11-11",
    "lote": "mat-0001"
   }
+ },
+ "P4145f671": {
+  "n": "180",
+  "conceito": "Variação constante por rodada: o jogador 1 recebe 4 e entrega 1, ganhando 3 moedas a cada rodada.",
+  "equivocos": {
+   "A": "M07.4:sem-origem-identificada",
+   "B": "M07.4:termo-inicial-errado",
+   "C": "M07.4:so-o-que-recebe",
+   "E": "M07.4:desconto-aplicado-uma-vez"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Veja só o que acontece com o jogador da posição 1 em uma rodada: ele entrega 1 moeda e recebe 4. O saldo é o mesmo em todas as rodadas, então o total cresce de forma constante a partir das 100 moedas iniciais.",
+    "formulas": [],
+    "simbolos": [
+     [
+      "n",
+      "número de rodadas já concluídas"
+     ]
+    ]
+   },
+   "pista": "Em uma rodada, quantas moedas o jogador 1 entrega? Quantas recebe? Qual é o saldo?",
+   "passos": [
+    {
+     "faz": "Veja o que sai",
+     "conta": "entrega 1 moeda ao jogador 2",
+     "porque": "Primeira transferência da rodada.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Veja o que entra",
+     "conta": "recebe 4 moedas do jogador 4",
+     "porque": "Última transferência da rodada.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule o saldo por rodada",
+     "conta": "4 − 1 = +3",
+     "porque": "Ganha 3 moedas a cada rodada.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte a expressão",
+     "conta": "100 + 3n",
+     "porque": "Começa com 100 e ganha 3 por rodada. É a alternativa D.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D: o jogador 1 começa com 100 moedas e ganha 3 a cada rodada: 100 + 3n.",
+   "checagem": "Teste: depois de 1 rodada, 100 − 1 + 4 = 103 = 100 + 3 × 1. Depois de 2 rodadas, 106 = 100 + 3 × 2.",
+   "erradas": {
+    "A": "103 + 4n dá 107 moedas depois de 1 rodada. O jogador 1 tem 100 − 1 + 4 = 103.",
+    "B": "103 + 3n tem o ganho certo por rodada, mas já começa em 103. Com n = 1 daria 106; o certo é 103.",
+    "C": "100 + 4n conta só as 4 moedas recebidas. O jogador 1 também entrega 1 moeda a cada rodada: o saldo é 3.",
+    "E": "99 + 4n desconta a moeda entregue uma vez só. Com n = 1 dá 103, mas com n = 2 dá 107; o certo é 106."
+   },
+   "armadilha": "Contar só as moedas recebidas e esquecer a que ele entrega em cada rodada.",
+   "alerta": "",
+   "essencial": {
+    "pede": "as moedas do jogador 1 depois de n rodadas",
+    "chave": "saldo por rodada: +4 − 1 = +3 → 100 + 3n",
+    "cuidado": "testar com n = 1 e n = 2: tem de dar 103 e 106"
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste de valores",
+    "ideia": "Depois de 1 rodada o jogador 1 tem 103; depois de 2, tem 106. A alternativa E também dá 103 para n = 1, mas dá 107 para n = 2. Só a D passa nos dois testes."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "−1 + 4 = +3",
+    "nota": "saldo do jogador 1 em cada rodada"
+   },
+   {
+    "linha": "100 + 3 · n",
+    "nota": "moedas depois de n rodadas"
+   }
+  ],
+  "visual": {
+   "cabe": false,
+   "tipo": "nenhum",
+   "porque": "O quadro já mostra a conta inteira, linha por linha; uma figura a mais não acrescentaria nada.",
+   "roteiro": ""
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-11",
+   "lote": "mat-0002"
+  }
+ },
+ "P7d6534d2": {
+  "n": "173",
+  "conceito": "Área de semicírculos: dois túneis (diâmetros 12 m e 6 m) contra um túnel (diâmetro 18 m).",
+  "equivocos": {
+   "B": "M08.5:maior-por-menor",
+   "C": "M08.5:circulo-inteiro-por-semicirculo",
+   "D": "M08.5:circulo-inteiro-por-semicirculo",
+   "E": "M08.5:area-proporcional-ao-raio"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A seção de cada túnel é um semicírculo: metade de π r². O raio é metade da largura. No Projeto 2 as larguras se somam (3 + 6 + 6 + 3 = 18 m), mas a área cresce com o QUADRADO do raio: juntar tudo em um túnel só dá área maior.",
+    "formulas": [
+     "área do semicírculo = π · r²/2"
+    ],
+    "simbolos": [
+     [
+      "seção transversal",
+      "figura que aparece ao cortar o túnel de frente; aqui, um semicírculo"
+     ],
+     [
+      "raio",
+      "metade do diâmetro"
+     ]
+    ]
+   },
+   "pista": "Qual é o raio de cada semicírculo? Áreas de círculos somam como os raios?",
+   "passos": [
+    {
+     "faz": "Projeto 1, túnel de automóveis",
+     "conta": "raio 6 → 3 × 6² ÷ 2 = 54 m²",
+     "porque": "Diâmetro 12 m.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Projeto 1, túnel de bicicletas",
+     "conta": "raio 3 → 3 × 3² ÷ 2 = 13,5 m²",
+     "porque": "Diâmetro 6 m.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Projeto 2",
+     "conta": "diâmetro 3 + 6 + 6 + 3 = 18 → raio 9 → 3 × 9² ÷ 2 = 121,5 m²",
+     "porque": "Um único semicírculo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare",
+     "conta": "54 + 13,5 = 67,5 < 121,5",
+     "porque": "O Projeto 1 retira menos material. É a alternativa A.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A: o Projeto 1 tem seção de 54 + 13,5 = 67,5 m², menor que os 121,5 m² do Projeto 2.",
+   "checagem": "Compare só os quadrados dos raios: 6² + 3² = 45 contra 9² = 81. O túnel único é quase o dobro.",
+   "erradas": {
+    "B": "121,5 m² é mesmo a área do Projeto 2, mas ela é MAIOR que a do Projeto 1 (67,5 m²). Aprova-se o de menor área.",
+    "C": "135 m² é a área dos círculos inteiros do Projeto 1 (108 + 27). Os túneis são semicírculos: metade disso.",
+    "D": "243 m² é a área do círculo inteiro do Projeto 2 (3 × 81). O túnel é um semicírculo, e ainda assim maior que o Projeto 1.",
+    "E": "As larguras somam 18 m nos dois projetos, mas as áreas não são iguais: a área depende do quadrado do raio (45 contra 81)."
+   },
+   "armadilha": "Achar que larguras iguais dão áreas iguais; a área cresce com o quadrado do raio.",
+   "alerta": "",
+   "essencial": {
+    "pede": "o projeto de menor seção transversal e a área",
+    "chave": "semicírculo = π r² ÷ 2: 54 + 13,5 contra 121,5",
+    "cuidado": "raio = metade da largura; dividir por 2"
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pelos quadrados",
+    "ideia": "Área proporcional a r²: 36 + 9 = 45 no Projeto 1 e 81 no Projeto 2. Vezes 3 ÷ 2: 67,5 e 121,5."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "3 × 6²/2 = 54",
+    "nota": "túnel de automóveis, em m²"
+   },
+   {
+    "linha": "3 × 3²/2 = 13,5",
+    "nota": "túnel de bicicletas"
+   },
+   {
+    "linha": "54 + 13,5 = 67,5",
+    "nota": "Projeto 1"
+   },
+   {
+    "linha": "3 × 9²/2 = 121,5",
+    "nota": "Projeto 2"
+   },
+   {
+    "linha": "67,5 < 121,5",
+    "nota": "aprova-se o Projeto 1"
+   }
+  ],
+  "visual": {
+   "cabe": false,
+   "tipo": "nenhum",
+   "porque": "O quadro já mostra a conta inteira, linha por linha; uma figura a mais não acrescentaria nada.",
+   "roteiro": ""
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-11",
+   "lote": "mat-0002"
+  }
+ },
+ "P5c534dc5": {
+  "n": "148",
+  "conceito": "Escala: comprimento real = comprimento na tela × denominador da escala; comparar cinco deslocamentos.",
+  "equivocos": {
+   "A": "M09.1:medida-na-tela-por-medida-real",
+   "B": "M09.1:produto-nao-calculado",
+   "D": "M09.1:produto-nao-calculado",
+   "E": "M09.1:maior-denominador-por-maior-medida"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A escala 1 : x diz que cada centímetro da tela vale x centímetros reais. O comprimento real é o comprimento na tela vezes x. A tela usa uma escala diferente em cada deslocamento, então o maior desenho não é o maior deslocamento.",
+    "formulas": [
+     "medida real = medida na tela × denominador da escala"
+    ],
+    "simbolos": [
+     [
+      "escala 1 : x",
+      "1 cm na tela representa x cm reais"
+     ]
+    ]
+   },
+   "pista": "Cada figura traz dois números: o comprimento na tela e a escala. Que conta dá o comprimento real?",
+   "passos": [
+    {
+     "faz": "Monte a conta",
+     "conta": "real = comprimento na tela × denominador da escala",
+     "porque": "Definição de escala.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule os cinco",
+     "conta": "I: 9 × 100 = 900 · II: 5 × 300 = 1 500 · III: 5 × 600 = 3 000 · IV: 3 × 700 = 2 100 · V: 2 × 1 000 = 2 000",
+     "porque": "Em centímetros.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare",
+     "conta": "3 000 > 2 100 > 2 000 > 1 500 > 900",
+     "porque": "O maior é o deslocamento III. É a alternativa C.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C: o deslocamento III mede 5 × 600 = 3 000 cm (30 m), o maior dos cinco.",
+   "checagem": "O deslocamento I é o mais comprido na tela (9 cm), mas cada centímetro dele vale só 100 cm reais: são 9 m.",
+   "erradas": {
+    "A": "I é o maior na tela (9 cm), mas na escala 1 : 100 são só 900 cm reais, o menor deslocamento.",
+    "B": "II mede 5 × 300 = 1 500 cm, metade do deslocamento III.",
+    "D": "IV mede 3 × 700 = 2 100 cm, menos que os 3 000 cm do III.",
+    "E": "V tem o maior denominador de escala (1 : 1 000), mas só 2 cm na tela: 2 000 cm reais, menos que III."
+   },
+   "armadilha": "Escolher pelo maior desenho (I) ou pelo maior denominador da escala (V) sem multiplicar.",
+   "alerta": "",
+   "essencial": {
+    "pede": "o maior deslocamento real",
+    "chave": "tela × escala: 900, 1 500, 3 000, 2 100, 2 000",
+    "cuidado": "os dois números têm de ser usados juntos"
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "em metros",
+    "ideia": "I: 9 m · II: 15 m · III: 30 m · IV: 21 m · V: 20 m."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "I: 9 × 100 = 900",
+    "nota": "cm reais"
+   },
+   {
+    "linha": "II: 5 × 300 = 1 500",
+    "nota": ""
+   },
+   {
+    "linha": "III: 5 × 600 = 3 000",
+    "nota": "o maior"
+   },
+   {
+    "linha": "IV: 3 × 700 = 2 100",
+    "nota": ""
+   },
+   {
+    "linha": "V: 2 × 1 000 = 2 000",
+    "nota": ""
+   }
+  ],
+  "visual": {
+   "cabe": false,
+   "tipo": "nenhum",
+   "porque": "O quadro já mostra a conta inteira, linha por linha; uma figura a mais não acrescentaria nada.",
+   "roteiro": ""
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-11",
+   "lote": "mat-0002"
+  }
+ },
+ "Pcd274c93": {
+  "n": "164",
+  "conceito": "Vetores e lei dos cossenos: o trecho TR equivale à diferença entre os primeiros deslocamentos planejado e executado.",
+  "equivocos": {
+   "B": "M10.3:direcao-oposta-na-bussola",
+   "C": "M10.3:soma-de-tempos-por-distancia",
+   "D": "M10.3:soma-de-tempos-por-distancia",
+   "E": "M10.3:direcao-oposta-na-bussola"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os segundos deslocamentos são iguais nas duas rotas (direção 90, 2 horas). Então o que separa T de R é só a diferença entre os primeiros: 4 horas na direção 110 contra 4 horas na direção 340. Esses dois trechos, de mesmo comprimento, formam com TR um triângulo isósceles. O ângulo entre eles é 110 + 20 = 130°. Como a velocidade é constante, a distância é proporcional ao tempo: dá para medir os lados em horas.",
+    "formulas": [
+     "a² = b² + c² − 2 · b · c · cos Â"
+    ],
+    "simbolos": [
+     [
+      "direção 110",
+      "ângulo medido na bússola, a partir do norte, no sentido horário"
+     ],
+     [
+      "lei dos cossenos",
+      "a² = b² + c² − 2 · b · c · cos do ângulo entre b e c"
+     ]
+    ]
+   },
+   "pista": "Os segundos trechos são idênticos. Compare só os primeiros: qual é o ângulo entre as direções 110 e 340?",
+   "passos": [
+    {
+     "faz": "Reduza o problema",
+     "conta": "TR tem o mesmo tamanho e a mesma direção de SQ",
+     "porque": "S → T e Q → R são deslocamentos iguais: STRQ é um paralelogramo.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Ache o ângulo entre PQ e PS",
+     "conta": "de 340 até 360 são 20°; de 0 até 110 são 110° → 130°",
+     "porque": "Leitura na bússola.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Aplique a lei dos cossenos, em horas de navegação",
+     "conta": "SQ² = 4² + 4² − 2 × 4 × 4 × cos 130° = 32 + 32 × 0,64 = 52,48",
+     "porque": "cos 130° = −cos 50° = −0,64.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tire a raiz",
+     "conta": "SQ ≈ 7,25 horas = 7 h 15 min",
+     "porque": "7,25² = 52,56.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a direção",
+     "conta": "oposto de 340: 340 − 180 = 160 · (110 + 160) ÷ 2 = 135",
+     "porque": "Ir de S a Q é desfazer o trecho PS (direção 160) e fazer o PQ (direção 110), de mesmo tamanho: a direção fica no meio. É a alternativa A.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A: de T até R são cerca de 7 h 15 min de navegação, na direção 135 (sudeste).",
+   "checagem": "Na figura, R está abaixo e à direita de T: a direção tem de estar entre 90 (leste) e 180 (sul). Isso descarta a direção 45.",
+   "erradas": {
+    "B": "O tempo está certo, mas a direção 45 aponta para o nordeste. R fica a sudeste de T: direção 135.",
+    "C": "12 horas soma todos os trechos (4 + 2 + 4 + 2). TR é o terceiro lado do triângulo de lados 4 e 4: cerca de 7,25.",
+    "D": "6 horas é o tempo de cada rota (4 + 2). A distância TR sai da lei dos cossenos: √52,48 ≈ 7,25 horas.",
+    "E": "Nem a direção (45 aponta para o nordeste) nem o tempo (6 h é a duração de cada rota) conferem."
+   },
+   "armadilha": "Somar os tempos dos trechos em vez de calcular o terceiro lado do triângulo.",
+   "alerta": "",
+   "essencial": {
+    "pede": "a direção e o tempo de T até R",
+    "chave": "TR = SQ; triângulo isósceles de lados 4 e 4 com ângulo de 130°",
+    "cuidado": "cos 130° = −cos 50°"
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pelos ângulos da base",
+    "ideia": "No triângulo isósceles PSQ, os ângulos da base medem (180 − 130) ÷ 2 = 25°. De S, o ponto P fica na direção 160; girando 25° para o lado de Q (leste): 160 − 25 = 135."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "ângulo entre PQ e PS: 20° + 110° = 130°",
+    "nota": "direções 340 e 110"
+   },
+   {
+    "linha": "SQ² = 4² + 4² − 2 · 4 · 4 · cos 130°",
+    "nota": "lei dos cossenos"
+   },
+   {
+    "linha": "SQ² = 32 + 32 × 0,64",
+    "nota": "cos 130° = −0,64"
+   },
+   {
+    "linha": "SQ² = 52,48",
+    "nota": ""
+   },
+   {
+    "linha": "SQ ≈ 7,25",
+    "nota": "horas: 7 h 15 min"
+   },
+   {
+    "linha": "(110 + 160)/2 = 135",
+    "nota": "direção: meio entre 110 e o oposto de 340"
+   }
+  ],
+  "visual": {
+   "cabe": true,
+   "tipo": "diagrama",
+   "porque": "Mostra o paralelogramo e o triângulo isósceles da rota.",
+   "roteiro": "Quadro 1: os pontos P, Q, R, S e T com as duas rotas. Quadro 2: os trechos ST e QR, iguais e paralelos, acendem; o trecho TR desliza até coincidir com SQ. Quadro 3: o triângulo PSQ aparece, com dois lados de 4 horas e o ângulo de 130° em P. Quadro 4: a medida 7,25 h surge em SQ, e a seta de direção 135 aparece na bússola."
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-11",
+   "lote": "mat-0002"
+  }
+ },
+ "P36540617": {
+  "n": "136",
+  "conceito": "Consumo semanal (km ÷ rendimento) e menor capacidade disponível que o cobre.",
+  "equivocos": {
+   "A": "M11.2:capacidade-insuficiente",
+   "B": "M11.2:capacidade-insuficiente",
+   "D": "M11.2:nao-e-o-menor-preco",
+   "E": "M11.2:nao-e-o-menor-preco"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Calcule quantos quilômetros o carro roda por semana e quantos metros cúbicos de gás isso consome. O cilindro tem de guardar pelo menos esse volume, para um abastecimento por semana. Como o preço cresce com a capacidade, escolha a menor capacidade que basta.",
+    "formulas": [],
+    "simbolos": [
+     [
+      "GNV",
+      "gás natural veicular"
+     ],
+     [
+      "1 m³ a cada 13 km",
+      "o carro roda 13 km com 1 metro cúbico de gás"
+     ]
+    ]
+   },
+   "pista": "Quantos quilômetros o carro roda em uma semana? Quantos m³ de gás isso gasta?",
+   "passos": [
+    {
+     "faz": "Quilômetros por semana",
+     "conta": "30 × 7 = 210 km",
+     "porque": "30 km por dia, 7 dias.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Gás por semana",
+     "conta": "210 ÷ 13 ≈ 16,2 m³",
+     "porque": "1 m³ a cada 13 km.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escolha a menor capacidade suficiente",
+     "conta": "10 e 14 não bastam; 17 basta",
+     "porque": "Menor capacidade, menor preço. É a alternativa C.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C: o carro gasta cerca de 16,2 m³ por semana; o menor cilindro que dá conta é o de 17 m³.",
+   "checagem": "Com 17 m³ o carro roda 17 × 13 = 221 km, mais que os 210 km da semana. Com 14 m³ rodaria só 182 km.",
+   "erradas": {
+    "A": "Com 10 m³ o carro roda 130 km, menos que os 210 km da semana.",
+    "B": "Com 14 m³ o carro roda 182 km, menos que os 210 km da semana. Seria preciso abastecer duas vezes.",
+    "D": "21 m³ bastam, mas o cilindro de 17 m³ também, e é mais barato.",
+    "E": "25 m³ bastam, mas é o cilindro mais caro. O de 17 m³ já cobre a semana."
+   },
+   "armadilha": "Arredondar 16,2 para baixo e achar que 14 m³ quase bastam; a capacidade tem de cobrir a semana inteira.",
+   "alerta": "",
+   "essencial": {
+    "pede": "a capacidade do cilindro escolhido",
+    "chave": "210 km ÷ 13 ≈ 16,2 m³ → menor capacidade que cobre: 17",
+    "cuidado": "tem de cobrir, não “quase cobrir”"
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste das capacidades",
+    "ideia": "Multiplique por 13: 130, 182, 221, 273 e 325 km. A primeira que passa de 210 é a de 17 m³."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "30 × 7 = 210",
+    "nota": "km por semana"
+   },
+   {
+    "linha": "210/13 ≈ 16,2",
+    "nota": "m³ de gás por semana"
+   },
+   {
+    "linha": "17 ≥ 16,2",
+    "nota": "menor capacidade que basta"
+   }
+  ],
+  "visual": {
+   "cabe": false,
+   "tipo": "nenhum",
+   "porque": "O quadro já mostra a conta inteira, linha por linha; uma figura a mais não acrescentaria nada.",
+   "roteiro": ""
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-11",
+   "lote": "mat-0002"
+  }
  }
 }
