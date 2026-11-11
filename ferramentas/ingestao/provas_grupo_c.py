@@ -93,6 +93,10 @@ def uece1(ano, sem, comunicado, data):
         'cadernos': [{'arquivo': 'caderno', 'paginas': (4, 999)}],
         'gabarito': _uece_gab_ingles(),
         'suporte': cfg['suporte'] + [r'^TEXTO\s+\d+\s*$'],   # 2020.2 e 2022.1: "TEXTO 2" em maiúsculas
+        # texto compartilhado (Texto 1..4 de Português, texto do inglês) vale para todas as questões até o próximo texto
+        # ou seção; a questão que cita outro texto ("textos 2 e 3") leva também esse (auditoria de 11/11: antes o texto
+        # ia só para a 1ª questão do grupo)
+        'suporte_secao': True, 'cita_textos': True,
     })
     return cfg
 
@@ -107,6 +111,8 @@ _m('uece-2022-1', 'uece/47410', CEV, caderno=_U + 'provas-e-gabaritos-uece-2022-
 PROVAS['uece-2020-2'] = uece1(2020, 2, '48/2020', '06/12/2020')
 PROVAS['uece-2021-1'] = uece1(2021, 1, '31/2021', '20/06/2021')
 PROVAS['uece-2022-1'] = uece1(2022, 1, '75/2021', '15/11/2021')
+# a UECE 2024.1 (rodada 6) tinha o mesmo defeito: o texto compartilhado só ia para a 1ª questão do grupo
+_p.PROVAS['uece-2024-1'].update({'suporte_secao': True, 'cita_textos': True})
 
 
 def _uece_gab_unico(pasta):
@@ -300,6 +306,7 @@ class _UmaColuna:
 
 for _k in ('unioeste-2021', 'unioeste-2022'):
     PROVAS[_k]['uma_coluna'] = _UmaColuna(PROVAS[_k], _k)
+    PROVAS[_k]['uma_coluna_fim'] = 442   # o texto vai até x≈435; o quadro "Espaço destinado a anotações" começa em x≈449
 # título do texto de Língua Portuguesa em largura total, acima das duas colunas
 PROVAS['unioeste-2021']['larga_topo'] = _TopoPorCaderno(PROVAS['unioeste-2021'], {('manha', 5): 86})
 PROVAS['unioeste-2022']['larga_topo'] = _TopoPorCaderno(PROVAS['unioeste-2022'], {('manha', 4): 104})
