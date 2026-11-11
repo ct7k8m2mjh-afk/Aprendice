@@ -444,6 +444,9 @@ def questao_da_prova(p, pq):
     if not pq.get('gab'):
         q['gab'] = ''
         q['pendente'] = 'gabarito do Aprendice em preparação'
+    # decisão do dono (11/11/2026): questão marcada como indisponível na prova sai do ar (nada é apagado; tirar a marca a devolve)
+    if pq.get('indisponivel'):
+        q['pendente'] = 'indisponível: ' + str(pq['indisponivel'])
     texto = {'enun': pq.get('texto') or ''}
     if tr:
         texto['transcricao'] = tr
