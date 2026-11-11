@@ -14,7 +14,7 @@ Revisão em 3 lentes sucessivas (fatos → compreensão do aluno → fatos de no
 | Geografia | `docs/revisao/geo/geral.json` | 45 de 45 | 20 | 45 | 6 | 2 | revisada completa, com "conferir" |
 | História | `docs/revisao/his/geral.json` | 57 de 57 | 34 | 57 | 23 | 2 | revisada completa, com "conferir" |
 | Filosofia e Sociologia | `docs/revisao/fs/geral.json` | 86 de 86 | 18 | 86 | 7 | 2 | revisada completa, com "conferir" |
-| Inglês | `docs/revisao/ing/geral.json` | 49 de 49 | 24 | 49 | 2 | 0 | revisada (31 tópicos do site) e ampliada com 18 tópicos novos (IG01–IG18) |
+| Inglês | `docs/revisao/ing/geral.json` | 49 de 49 | 24 | 49 | 2 | 0 | revisada (31 tópicos do site) e ampliada com 18 tópicos novos, nomeados pelo subtema (ex.: I02.2b) |
 
 **Total:** 654 tópicos revisados nas 3 lentes; 287 com mudança de conteúdo; 97 registros de erro de fato no trabalho anterior (um registro pode reunir mais de um erro do mesmo tópico); 12 itens marcados "conferir". Nenhum id mudou, nenhum tópico foi apagado, a ordem e o esquema foram mantidos.
 
@@ -128,6 +128,7 @@ Limites desta revisão: o livro não foi consultado (por instrução). Segunda r
 | LK35, IK02, IK06, IK16, RK05, RK20 | ressalvas editoriais retiradas do conteúdo ("o livro cita/mostra/usa...") | o aluno não tem o livro; a frase deve valer sozinha (a observação sobre o livro, quando importa, está em lacunas) | — | 2 |
 | PK27, PK37, PK39, PK42, LK24, LK27, LK31, IK10, IK23, IK24, IK26 | questão de prova trocada por exemplo ou ponto de conteúdo, sem prova e sem letra; títulos e busca[] ajustados | pedido do dono: resolver a questão ou tirar; sem o caderno da prova a letra não se confirma, mas o conteúdo ensinado vale por si | Cunha & Cintra; Bosi; Bagno, Preconceito Linguístico | 1 |
 | LK19, IK12, IK14, IK16 | questão de prova retirada do tópico | só se resolvem com o texto ou a imagem da prova, que não estão no arquivo | — | 1 |
+| campo subs | 126 de 139 tópicos ligados a subtemas: os 50 que já existem no site (P01.1–P12.5) e 10 novos propostos (P01.5, P04.5, P07.5, P07.6, P09.6, P10.6, P10.7, P11.5, P11.6, P12.6); criado por/subtemas.json | pedido do dono (12/11/2026): definir os subtemas de Português a partir dos tópicos, para o aluno se localizar entre a revisão por subtema e a da matéria inteira | app-atual/por/dados.json (nomesub) | 2 |
 
 ### Itens marcados "conferir" (estão em `lacunas` do arquivo)
 
@@ -138,6 +139,8 @@ Limites desta revisão: o livro não foi consultado (por instrução). Segunda r
 ### Pendências de decisão do dono
 
 - As descrições de imagem de alguns tópicos ainda citam 'questão resolvida' (o campo imagem foi preservado). Ao produzir essas imagens, não incluir a questão: ela saiu do tópico.
+- Subtemas novos de Português: para ligar os 139 tópicos, usei os 50 subtemas que já existem no site e propus 10 novos (P01.5 funções da linguagem; P04.5 intertextualidade; P07.5 artigo, numeral, preposição, conjunção e interjeição; P07.6 estrutura das palavras; P09.6 funções do 'que' e do 'se'; P10.6 ortografia, hífen, homônimos e parônimos; P10.7 acentuação gráfica; P11.5 Trovadorismo, Humanismo e Classicismo; P11.6 Quinhentismo; P12.6 Modernismo em Portugal e Fernando Pessoa). Eles ainda não existem no site: aprovar, renomear ou recusar antes de irem ao ar (lista em docs/revisao/por/subtemas.json).
+- Produção de Texto: 13 tópicos voltados à redação (RK01–RK05, RK08–RK12, RK20–RK22) ficaram sem subtema, porque Redação não é matéria do site (decisão de 03/11/2026). Decidir se aparecem só na revisão da matéria inteira ou se saem.
 
 ## Matemática
 
@@ -209,6 +212,8 @@ Limites desta revisão: o livro não foi consultado (por instrução). Segunda r
 | BK10b | pegadinha: contraste mitose × meiose em números | contraste clássico pedido na lente 2 | Campbell et al., Biologia (Artmed); Amabis & Martho, Biologia Moderna | 2 |
 | todos os 58 tópicos | busca[] ampliada | faltavam os nomes que o aluno digita (nomes populares de doenças, sinônimos como "sistema circulatório", siglas e mnemônicos) | — | 2 |
 | BK36 e BK38 | fórmulas em LaTeX, com fração empilhada | pedido do dono; são as duas únicas fórmulas com conta em Biologia | conferência direta | 2 |
+| campo subs | BK01 ligado a B09.1 (os demais já tinham ou não têm tema no site) (o primeiro da lista é o principal) | pedido do dono (12/11/2026): o aluno revisa por subtema ou a matéria inteira e precisa se localizar entre os dois | lista de subtemas em docs/revisao/bio/resumos.json | 2 |
+| campo subs | os 36 tópicos que faltavam foram ligados aos subtemas que já existem no site (B03, B05–B08, B10, B12); agora 58 de 58 | o catálogo do dono mostrou que só 5 temas tinham arquivo; os demais subtemas existem em app-atual/bio/dados.json | app-atual/bio/dados.json (nomesub) | 2 |
 
 ### Itens marcados "conferir" (estão em `lacunas` do arquivo)
 
@@ -255,6 +260,7 @@ Limites desta revisão: o livro não foi consultado (por instrução). Segunda r
 | FK18 | eficiência: Q_F/W é do refrigerador; a da bomba de calor é Q_Q/W | erro herdado, apontado pelo revisor independente | Halliday, Resnick & Walker, cap. de entropia e máquinas térmicas | 1 (2º revisor) |
 | FK10 | retirado o exemplo da Santa Casa 2022 | o ponto não trazia as distâncias; a conta não pôde ser refeita (pedido do dono: resolver ou tirar) | — | 1 |
 | FK09, FK11, FK11b, FK13, FK35, FK40 | índices com acento passaram a \text{…} dentro da fórmula | letra acentuada solta em modo matemático pode falhar no renderizador (apontado pelo revisor independente) | documentação do KaTeX | 2 |
+| campo subs | 50 tópicos ligados a subtemas F01–F12 (o primeiro da lista é o principal) | pedido do dono (12/11/2026): o aluno revisa por subtema ou a matéria inteira e precisa se localizar entre os dois | lista de subtemas em docs/revisao/fis/resumos.json | 2 |
 
 ### Itens marcados "conferir" (estão em `lacunas` do arquivo)
 
@@ -293,6 +299,7 @@ Limites desta revisão: o livro não foi consultado (por instrução). Segunda r
 | QK43 | retirada a questão Udesc 2023 | as afirmações (faixas de carbonos e temperaturas das frações) não puderam ser conferidas sem o enunciado; pedido do dono: tirar o que não se resolve | — | 1 |
 | QK22 | exemplo da Unicamp 2021: 9 950 L em 995 min (não 1000 min) | conta refeita: ficam 50 L no cilindro | conta refeita | 1 |
 | QK01, QK14, QK35 | densidade em LaTeX; reação do exemplo explicitada; arredondamento da carga corrigido (44 970 C) | apontado pelo revisor independente | contas refeitas | 1 (2º revisor) |
+| campo subs | 58 tópicos ligados a subtemas Q01–Q12 (o primeiro da lista é o principal) | pedido do dono (12/11/2026): o aluno revisa por subtema ou a matéria inteira e precisa se localizar entre os dois | lista de subtemas em docs/revisao/qui/resumos.json | 2 |
 
 ### Itens marcados "conferir" (estão em `lacunas` do arquivo)
 
@@ -334,6 +341,7 @@ Limites desta revisão: o livro não foi consultado (por instrução). Segunda r
 | GK01, GK43, GK45 | ressalvas editoriais retiradas do conteúdo ("o livro cita/mostra/usa...") | o aluno não tem o livro; a frase deve valer sozinha (a observação sobre o livro, quando importa, está em lacunas) | — | 2 |
 | GK01, GK07, GK18, GK22, GK33, GK40, GK42 | referência à questão de prova e letra retiradas; ficou o conteúdo | pedido do dono: resolver ou tirar; sem o caderno da prova a letra não se confirma | IBGE; FAO, https://www.fao.org/agroecology | 1 |
 | GK03 | exemplo da escala com fração empilhada e sem letra | conta refeita; regra da fração empilhada | conta refeita | 1 |
+| campo subs | 36 de 45 tópicos ligados a subtemas G03–G12 (o primeiro da lista é o principal) | pedido do dono (12/11/2026): o aluno revisa por subtema ou a matéria inteira e precisa se localizar entre os dois | lista de subtemas em docs/revisao/geo/resumos.json | 2 |
 
 ### Itens marcados "conferir" (estão em `lacunas` do arquivo)
 
@@ -343,6 +351,7 @@ Limites desta revisão: o livro não foi consultado (por instrução). Segunda r
 ### Pendências de decisão do dono
 
 - GK43: manter o corte do livro para cidade média (100 mil a 1 milhão) ou adotar o do IBGE/Ipea (100 mil a 500 mil)?
+- Subtemas: não há na lista do site os temas de pensamento geográfico, cartografia e geologia/relevo; ficaram sem subtema GK01 a GK08 e GK22.
 
 ## História
 
@@ -410,6 +419,7 @@ Limites desta revisão: o livro não foi consultado (por instrução). Segunda r
 | HK55 | tripé macroeconômico datado em 1999 (FHC), não no Plano Real de 1994; MST fundado em 1984 | erro: o Plano Real usou câmbio controlado (âncora cambial); câmbio flutuante e metas de inflação são de 1999. O MST não "surgiu" no governo FHC | Banco Central do Brasil, https://www.bcb.gov.br/controleinflacao/historicometas ; FGV CPDOC, Dicionário Histórico-Biográfico Brasileiro, https://cpdoc.fgv.br/acervo/dhbb | 1 |
 | todos os 57 tópicos | busca[] ampliada | faltavam os nomes que o aluno digita (República Velha, Guerra dos Farrapos, Jango, anos de chumbo, causas e consequências) | — | 2 |
 | HK12, HK20, HK28, HK48, HK54 | referência à questão de prova e letra retiradas; ficou o conteúdo | pedido do dono: resolver ou tirar; sem o caderno da prova a letra não se confirma | Britannica; FGV CPDOC (Vladimir Herzog) | 1 |
+| campo subs | 51 de 57 tópicos ligados a subtemas H01–H07 (o primeiro da lista é o principal) | pedido do dono (12/11/2026): o aluno revisa por subtema ou a matéria inteira e precisa se localizar entre os dois | lista de subtemas em docs/revisao/his/resumos.json | 2 |
 
 ### Itens marcados "conferir" (estão em `lacunas` do arquivo)
 
@@ -419,6 +429,7 @@ Limites desta revisão: o livro não foi consultado (por instrução). Segunda r
 ### Pendências de decisão do dono
 
 - HK24: o livro erra o rei de Pombal (D. João V); o tópico agora traz D. José I. Se o site reproduzir alguma página do livro sobre o tema, o erro reaparece.
+- Subtemas: a lista do site vai até as Guerras Mundiais e a República de 1946; ficaram sem subtema HK50 (Guerra Fria), HK51 (populismo), HK54 (ditaduras), HK55 e HK56 (Nova República) e HK57 (América Latina no século XXI).
 
 ## Filosofia e Sociologia
 
@@ -456,6 +467,7 @@ Limites desta revisão: o livro não foi consultado (por instrução). Segunda r
 | todos os 86 tópicos (FK e SK) | busca[] ampliada | faltavam os nomes que o aluno digita (mito da caverna, penso logo existo, Deus está morto, jeitinho brasileiro, uberização, grafias como "falseabilidade" e "Thomas Morus") | — | 2 |
 | FK09 | ressalvas editoriais retiradas do conteúdo ("o livro cita/mostra/usa...") | o aluno não tem o livro; a frase deve valer sozinha (a observação sobre o livro, quando importa, está em lacunas) | — | 2 |
 | SK27 | valores escritos como "2.000 reais" em vez de "R$ 2.000" | o cifrão de "R$" seria lido pelo site como início de fórmula | — | 2 |
+| campo subs | 80 de 86 tópicos ligados a subtemas L01–L08 e S01–S08 (o primeiro da lista é o principal) | pedido do dono (12/11/2026): o aluno revisa por subtema ou a matéria inteira e precisa se localizar entre os dois | lista de subtemas em docs/revisao/fs/resumos.json | 2 |
 
 ### Itens marcados "conferir" (estão em `lacunas` do arquivo)
 
@@ -466,13 +478,14 @@ Limites desta revisão: o livro não foi consultado (por instrução). Segunda r
 
 - SK41: manter a atribuição do livro (mobilização de recursos = Tilly) ou corrigir para a atribuição usual (McCarthy e Zald; Tilly = processo político)?
 - Os tópicos de Filosofia e Sociologia são longos (vários pontos com mais de 400 caracteres). Foram mantidos para não perder conteúdo; se o site precisar de pontos mais curtos, o corte deve ser feito na tela, não no arquivo, ou em nova rodada de edição.
+- Subtemas: ficaram sem subtema FK18 (Renascimento), FK38 (inteligência artificial), SK02 (métodos de pesquisa), SK32 (Sociologia no Brasil), SK35 (Sociologia urbana) e SK37 (Norbert Elias), que não têm correspondente na lista do site.
 
 ## Inglês
 
 ### Erros de fato encontrados no trabalho anterior (2)
 
 1. Os 31 tópicos existentes (I01–I04) não tinham erro de fato; o problema era de uso: busca[] era o título quebrado em palavras e vários termos técnicos (skimming, scanning, topic sentence, lead, stative verbs) vinham sem tradução.
-2. O arquivo cobria só leitura, vocabulário, gramática e tempos verbais por subtema; faltavam visão da prova, estratégia de resolução, pronomes, plural e genitivo, perguntas, quadro geral dos tempos e lista de irregulares, que entraram como IG01–IG18.
+2. O arquivo cobria só leitura, vocabulário, gramática e tempos verbais por subtema; faltavam visão da prova, estratégia de resolução, pronomes, plural e genitivo, perguntas, quadro geral dos tempos e lista de irregulares, que entraram como 18 tópicos novos, cada um com o id do seu subtema e uma letra no fim.
 
 ### Todas as alterações
 
@@ -480,14 +493,11 @@ Limites desta revisão: o livro não foi consultado (por instrução). Segunda r
 |---|---|---|---|---|
 | I01.1, I01.3, I01.10, I01.11, I03.9, I04.1 | termos técnicos traduzidos na primeira vez (skimming, scanning, topic sentence, headline, lead, stative verbs) e exemplos para any | termo técnico sem definição | Cambridge Dictionary, https://dictionary.cambridge.org | 2 |
 | todos os 31 tópicos I01–I04 | busca[] ampliada | a busca era o título quebrado em palavras; entraram os nomes em inglês e em português que o aluno digita (false friends, reported speech, if clauses, will x going to) | — | 2 |
-| IG01–IG18 (novos) | 18 tópicos criados no fim do arquivo: prova e estratégia (IG01, IG02, IG07, IG08), vocabulário (IG03–IG06), gramática (IG09–IG14, IG17), tempos verbais (IG15, IG16) e inglês como língua global (IG18) | pedido do dono (12/11/2026): criar a revisão de Inglês no padrão das outras matérias; o arquivo não cobria esses conteúdos | Murphy, English Grammar in Use; Swan, Practical English Usage; Cambridge Dictionary; Inep (provas e matriz do Enem), https://www.gov.br/inep/pt-br/areas-de-atuacao/avaliacao-e-exames-educacionais/enem | 1 e 2 |
+| 18 tópicos novos | 18 tópicos criados no fim do arquivo: prova e estratégia, vocabulário, gramática, tempos verbais e inglês como língua global | pedido do dono (12/11/2026): criar a revisão de Inglês no padrão das outras matérias; o arquivo não cobria esses conteúdos | Murphy, English Grammar in Use; Swan, Practical English Usage; Cambridge Dictionary; Inep (provas e matriz do Enem), https://www.gov.br/inep/pt-br/areas-de-atuacao/avaliacao-e-exames-educacionais/enem | 1 e 2 |
 | arquivo | campos `base` e `lacunas` atualizados | registrar a origem de cada grupo de tópicos | — | 2 |
-| IG02, IG10, IG12, IG13, IG15 | sete ajustes de precisão (scanning, plural em -o e -f, auxiliar da question tag, otherwise e whether, auxiliar e marca de tempo) | apontados pelo revisor independente (segunda lente de fatos) | Swan, Practical English Usage; Cambridge Dictionary | 1 (2º revisor) |
+| I01.1b, I03.8b, I03.9b, I03.2b, I04.1b | sete ajustes de precisão (scanning, plural em -o e -f, auxiliar da question tag, otherwise e whether, auxiliar e marca de tempo) | apontados pelo revisor independente (segunda lente de fatos) | Swan, Practical English Usage; Cambridge Dictionary | 1 (2º revisor) |
+| 18 tópicos novos | ids trocados de IG01–IG18 para o id do subtema com letra (I01.1b, I01.2b, I01.3b, I01.11b, I01.11c, I02.1b, I02.2b, I02.2c, I02.5b, I03.1b, I03.2b, I03.7b, I03.7c, I03.8b, I03.8c, I03.9b, I04.1b, I04.6b), cada um logo depois do tópico do seu subtema | pedido do dono: nomear pelos subtemas para o aluno se localizar; os ids IG nunca foram ao ar | — | 2 |
 
 ### Itens marcados "conferir" (estão em `lacunas` do arquivo)
 
-
-### Pendências de decisão do dono
-
-- Inglês: os 18 tópicos novos usam ids IG01–IG18 (complementos, como os G01–G32 de Matemática). Se o site preferir que virem subtemas (I05…), a troca tem de ser feita antes de irem ao ar, porque depois o id não muda.
 
