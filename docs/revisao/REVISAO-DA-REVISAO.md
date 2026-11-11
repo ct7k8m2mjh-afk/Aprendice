@@ -8,7 +8,7 @@ Revisão em 3 lentes sucessivas (fatos → compreensão do aluno → fatos de no
 |---|---|---|---|---|---|
 | Português | `docs/revisao/por/geral.json` | 139 de 139 | 139 | 7 | revisada completa, com "conferir" |
 | Matemática | `docs/revisao/mat/geral.json` | 112 de 112 | 112 | 0 | revisada completa |
-| Biologia | `docs/revisao/bio/geral.json` | 0 de 58 | — | — | **não revisada** (retomar aqui) |
+| Biologia | `docs/revisao/bio/geral.json` | 58 de 58 | 58 | 2 | revisada completa, com "conferir" |
 | Física | `docs/revisao/fis/geral.json` | 0 de 50 | — | — | **não revisada** (retomar aqui) |
 | Química | `docs/revisao/qui/geral.json` | 0 de 58 | — | — | **não revisada** (retomar aqui) |
 | Geografia | `docs/revisao/geo/geral.json` | 0 de 45 | — | — | **não revisada** (retomar aqui) |
@@ -168,4 +168,47 @@ Revisão em 3 lentes sucessivas (fatos → compreensão do aluno → fatos de no
 
 - Matemática: o campo `imagem` não tem `falta_imagem` nem `aviso`, ao contrário das outras matérias. Não foi alterado (a regra é preservar o campo). Decidir se o site trata a ausência como "imagem ainda não feita" ou se o campo deve ser igualado.
 - Matemática: o campo `lacunas` foi criado (não existia) para registrar a revisão, como nas outras matérias.
+
+## Biologia
+
+### Erros de fato encontrados no trabalho anterior (9)
+
+1. BK22 — ácido úrico dado como excreta de todos os amniotas; mamíferos excretam ureia.
+2. BK29 — pegadinha afirmava que só a febre amarela tem vacina; a vacina da dengue está no SUS desde 2024.
+3. BK27 — GH aparecia colado à neuro-hipófise (é da adeno-hipófise); grafia "neuroipófise".
+4. BK09 — cariótipo humano como "22 pares de autossomos + X e Y" (vale só para o homem); nucléolo definido como "DNA ribossomal".
+5. BK21c — trematódeos descritos como dioicos; a maioria é monoica (dioico é o esquistossomo).
+6. BK20 — seiva elaborada como "água e glicose" (o açúcar transportado é a sacarose).
+7. BK41 — "pH ácido" como condição de fossilização.
+8. BK21b — poríferos como exclusivamente marinhos.
+9. BK02 — "anemia férrica" (ferropriva); BK02 e BK07 — pegadinhas comentavam o livro ("o texto do livro cita...") em vez de ensinar a armadilha.
+
+### Todas as alterações
+
+| id | o que mudou | por quê | fonte | lente |
+|---|---|---|---|---|
+| BK02 | 'anemia férrica' → 'anemia ferropriva'; pegadinha reescrita | nome da doença errado; a pegadinha comentava o texto do livro em vez de ensinar a armadilha | Campbell et al., Biologia (Artmed); Amabis & Martho, Biologia Moderna; Ministério da Saúde, https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z | 1 |
+| BK06 | transcriptase reversa acrescentada ao dogma central | exceção sempre cobrada junto do dogma | Campbell et al., Biologia (Artmed); Amabis & Martho, Biologia Moderna | 2 |
+| BK07 | pegadinha reescrita | comentava o livro ("o livro os cita em...") e generalizava: musgos e samambaias têm centríolos nas células que formam gametas flagelados | Campbell et al., Biologia (Artmed); Amabis & Martho, Biologia Moderna | 1 |
+| BK09 | nucléolo e cariótipo humano corrigidos | "22 pares + X e Y" valia só para o homem; nucléolo definido como "DNA ribossomal" era impreciso | Campbell et al., Biologia (Artmed); Amabis & Martho, Biologia Moderna | 1 |
+| BK20 | seiva elaborada: sacarose, não glicose | o açúcar transportado no floema é sobretudo a sacarose | Campbell et al., Biologia (Artmed); Amabis & Martho, Biologia Moderna; Taiz & Zeiger, Fisiologia Vegetal | 1 |
+| BK21b | poríferos: "marinhos" → "aquáticos, a maioria marinha" | há esponjas de água doce | Campbell et al., Biologia (Artmed); Amabis & Martho, Biologia Moderna | 1 |
+| BK21c | trematódeos: maioria monoica; dioico é o esquistossomo | generalizava para a classe uma característica que é exceção (Schistosoma) | Campbell et al., Biologia (Artmed); Amabis & Martho, Biologia Moderna; Rey, Parasitologia | 1 |
+| BK22 | excreção dos amniotas corrigida; pegadinha com as três excretas | erro: dava ácido úrico para todos os amniotas; mamíferos excretam ureia | Campbell et al., Biologia (Artmed); Amabis & Martho, Biologia Moderna | 1 |
+| BK25 | veias cavas; sangue das artérias e veias pulmonares; pegadinha artéria × veia e vacina × soro | contrastes clássicos ausentes; só a veia cava superior era citada | Campbell et al., Biologia (Artmed); Amabis & Martho, Biologia Moderna | 2 |
+| BK27 | hipófise reescrita (GH é da adeno-hipófise); 'neuroipófise' → 'neuro-hipófise'; contraste insulina × glucagon | a frase juntava GH à neuro-hipófise; grafia do VOLP é neuro-hipófise | Campbell et al., Biologia (Artmed); Amabis & Martho, Biologia Moderna; VOLP/ABL | 1 |
+| BK29 | pegadinha atualizada: existe vacina contra a dengue | dizia que só a febre amarela tem vacina; a vacina da dengue foi incorporada ao SUS em 2024 | Ministério da Saúde, https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z (dengue; febre amarela) | 1 |
+| BK41 | condições de fossilização | "pH ácido" não é condição de fossilização (meio ácido dissolve ossos e conchas) | Campbell et al., Biologia (Artmed); Amabis & Martho, Biologia Moderna | 1 |
+| BK42 | hábitat × nicho com a analogia endereço/profissão | nicho definido como "condições necessárias" era vago | Campbell et al., Biologia (Artmed); Amabis & Martho, Biologia Moderna; Odum, Fundamentos de Ecologia | 2 |
+| BK10b | pegadinha: contraste mitose × meiose em números | contraste clássico pedido na lente 2 | Campbell et al., Biologia (Artmed); Amabis & Martho, Biologia Moderna | 2 |
+| todos os 58 tópicos | busca[] ampliada | faltavam os nomes que o aluno digita (nomes populares de doenças, sinônimos como "sistema circulatório", siglas e mnemônicos) | — | 2 |
+
+### Itens marcados "conferir" (estão em `lacunas` do arquivo)
+
+- conferir: BK12 — o saldo de 32 ATP por glicose segue a contagem atual (30 a 32); livros mais antigos e algumas provas ainda usam 36 ou 38. Conferir qual número a prova-alvo adota.
+- conferir: BK21b — cnidários classificados como protostômios, como faz o livro; parte da literatura reserva protostômio/deuterostômio aos animais bilaterais (triblásticos). Não foi alterado.
+
+### Pendências de decisão do dono
+
+- BK12: decidir se o site mostra 32 ATP (contagem atual) ou também 36/38, usados por provas antigas.
 
