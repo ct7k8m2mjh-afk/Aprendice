@@ -2,7 +2,8 @@
 """Lotes de resolução para a sessão de resoluções (Fable, sem API).
 
 Entrega cada lote pronto (questão, gabarito oficial, texto, print), confere o que a sessão escreveu e grava no lugar
-que o site já lê (app/conteudo-fonte/provas/<prova>/resolucoes.json). Pendentes e divergências ficam registrados e não
+que o site já lê (app/conteudo-fonte/provas/<prova>/resolucoes-<matéria>.json; um arquivo e um registro por matéria,
+para várias sessões resolverem ao mesmo tempo sem conflito no git). Pendentes e divergências ficam registrados e não
 voltam em lote nenhum.
 
 Antes de tudo: `cd app && python3 scripts/converte.py` (o banco montado em app/public/conteudo é a base dos lotes).
@@ -13,7 +14,7 @@ Antes de tudo: `cd app && python3 scripts/converte.py` (o banco montado em app/p
   python3 ferramentas/resolucoes/lote.py proximo <m> [N]    abre o próximo lote da matéria (N questões, padrão 30)
   python3 ferramentas/resolucoes/lote.py valida <saida>     confere o arquivo de saída sem gravar
   python3 ferramentas/resolucoes/lote.py grava <saida>      confere e grava (só depois da conferência do lote)
-  python3 ferramentas/resolucoes/lote.py relatorio          refaz lotes-andamento.md, lotes-pendentes.md e lotes-divergencias.md
+  python3 ferramentas/resolucoes/lote.py relatorio          refaz docs/resolucoes/lotes-<matéria>.md
 
 Matérias: bio qui mat fis (resolução animada) · por geo his ing fs (resolução em texto).
 """
@@ -29,7 +30,7 @@ PUB = os.path.join(RAIZ, 'app', 'public', 'conteudo')
 PROVAS = os.path.join(RAIZ, 'app', 'conteudo-fonte', 'provas')
 DOCS = os.path.join(RAIZ, 'docs', 'resolucoes')
 TRAB = os.path.join(DOCS, 'trabalho')  # lotes abertos (fora do git; refeitos a partir do registro se sumirem)
-REGISTRO = os.path.join(DOCS, 'registro.json')
+REGISTRO_ANTIGO = os.path.join(DOCS, 'registro.json')  # um só para todas (até 11/11/2026); hoje um por matéria
 
 MATERIAS = ['bio', 'qui', 'mat', 'fis', 'por', 'geo', 'his', 'ing', 'fs']
 NOMES = {'bio': 'Biologia', 'qui': 'Química', 'mat': 'Matemática', 'fis': 'Física', 'por': 'Português',
@@ -63,8 +64,36 @@ def gravar(f, d):
     os.replace(tmp, f)
 
 
-def registro():
-    return ler(REGISTRO, {'lotes': {}, 'pendentes': {}, 'divergencias': {}})
+def caminho_registro(m):
+    return os.path.join(DOCS, f'registro-{m}.json')
+
+
+def _migra_registro():
+    """registro.json único -> um por matéria (várias sessões gravam ao mesmo tempo sem conflito no git)."""
+    if not os.path.exists(REGISTRO_ANTIGO):
+        return
+    velho = ler(REGISTRO_ANTIGO)
+    for m in MATERIAS:
+        r = ler(caminho_registro(m), {'lotes': {}, 'pendentes': {}, 'divergencias': {}})
+        r['lotes'].update({k: v for k, v in velho['lotes'].items() if v['materia'] == m})
+        for alvo in ('pendentes', 'divergencias'):
+            r[alvo].update({k: v for k, v in velho[alvo].items() if v['materia'] == m})
+        if r['lotes'] or r['pendentes'] or r['divergencias']:
+            gravar(caminho_registro(m), r)
+    os.remove(REGISTRO_ANTIGO)
+
+
+def registro(m=None):
+    """Registro de uma matéria; sem matéria, a soma de todas (só para ler)."""
+    _migra_registro()
+    if m:
+        return ler(caminho_registro(m), {'lotes': {}, 'pendentes': {}, 'divergencias': {}})
+    tudo = {'lotes': {}, 'pendentes': {}, 'divergencias': {}}
+    for x in MATERIAS:
+        r = registro(x)
+        for k in tudo:
+            tudo[k].update(r[k])
+    return tudo
 
 
 def faixa(q):
@@ -80,7 +109,7 @@ def chave(q):
 
 def resolvidas_em_provas():
     ids = set()
-    for f in glob.glob(os.path.join(PROVAS, '*', 'resolucoes.json')):
+    for f in glob.glob(os.path.join(PROVAS, '*', 'resolucoes*.json')):
         ids |= {k for k, v in ler(f).items() if v.get('aprovada')}
     return ids
 
@@ -213,6 +242,7 @@ def cmd_proximo(m=None, n=30):
             return
     if m not in MATERIAS:
         sys.exit(f'matéria inválida: {m} (use {" ".join(MATERIAS)})')
+    reg = registro(m)
     # lote aberto da matéria: devolve o mesmo (refaz a entrada se o arquivo sumiu)
     for nome, l in reg['lotes'].items():
         if l['materia'] == m and l['estado'] == 'aberto':
@@ -232,7 +262,7 @@ def cmd_proximo(m=None, n=30):
     reg['lotes'][nome] = {'materia': m, 'ids': [q['id'] for q in qs], 'estado': 'aberto',
                           'aberto_em': datetime.date.today().isoformat(), 'faixa': FAIXAS[faixa(qs[0])]}
     gravar(caminho_entrada(nome), {'lote': nome, 'materia': m, 'animada': m in ANIMADAS, 'questoes': entrada(m, qs)})
-    gravar(REGISTRO, reg)
+    gravar(caminho_registro(m), reg)
     print(f'Lote {nome}: {len(qs)} questões ({FAIXAS[faixa(qs[0])]}, conteúdos {", ".join(sorted({q["sub"] for q in qs}))})')
     print(f'Entrada: {caminho_entrada(nome)}')
     print(f'Saída (você escreve): {caminho_saida(nome)}')
@@ -258,7 +288,7 @@ def confere(saida):
     if d is None:
         sys.exit(f'arquivo não encontrado: {saida}')
     lote = d.get('lote')
-    reg = registro()
+    reg = registro(str(lote).split('-')[0])
     if lote not in reg['lotes']:
         sys.exit(f'lote desconhecido no registro: {lote}')
     ent = {q['id']: q for q in ler(caminho_entrada(lote), {}).get('questoes', [])}
@@ -362,8 +392,8 @@ def cmd_grava(saida):
         for e in erros:
             print('ERRO:', e)
         sys.exit(f'{lote}: nada gravado ({len(erros)} erro(s)).')
-    reg = registro()
-    m = reg['lotes'][lote]['materia']
+    m = lote.split('-')[0]
+    reg = registro(m)
     b, _ = banco(m)
     por_id = {q['id']: q for q in b}
     hoje = datetime.date.today().isoformat()
@@ -390,7 +420,7 @@ def cmd_grava(saida):
         }
         por_prova.setdefault(bq['prova'], {})[q['id']] = reg_q
     for pid, novos in por_prova.items():
-        f = os.path.join(PROVAS, pid, 'resolucoes.json')
+        f = os.path.join(PROVAS, pid, f'resolucoes-{m}.json')  # um arquivo por matéria: sessões em paralelo sem conflito
         atual = ler(f, {})
         atual.update(novos)
         gravar(f, atual)
@@ -398,40 +428,38 @@ def cmd_grava(saida):
                               ok=sum(len(v) for v in por_prova.values()),
                               pendentes=sum(1 for q in d['questoes'] if q['status'] == 'pendente'),
                               divergencias=sum(1 for q in d['questoes'] if q['status'] == 'divergencia'))
-    gravar(REGISTRO, reg)
-    cmd_relatorio(silencioso=True)
+    gravar(caminho_registro(m), reg)
+    cmd_relatorio(m, silencioso=True)
     l = reg['lotes'][lote]
     print(f"{lote} gravado: {l['ok']} resoluções em {len(por_prova)} prova(s) · {l['pendentes']} pendente(s) · {l['divergencias']} divergência(s)")
     print('Agora: cd app && python3 scripts/converte.py && npx tsc --noEmit -p . && npx vitest run')
 
 
-def cmd_relatorio(silencioso=False):
-    reg = registro()
+def cmd_relatorio(m=None, silencioso=False):
+    """docs/resolucoes/lotes-<m>.md: o que falta, os lotes, pendentes e divergências da matéria."""
     hoje = datetime.date.today().isoformat()
     fp = resolvidas_em_provas()
-    linhas = [f'# Andamento das resoluções (gerado por lote.py em {hoje})', '',
-              '## Quantas faltam', '',
-              '| Matéria | Faltam | ' + ' | '.join(FAIXAS) + ' |', '|---|---|' + '---|' * len(FAIXAS)]
-    total = 0
-    for m in MATERIAS:
-        qs = faltam(m, reg, fp)
-        total += len(qs)
-        linhas.append(f'| {NOMES[m]} | {len(qs)} | ' + ' | '.join(str(sum(1 for q in qs if faixa(q) == i)) for i in range(len(FAIXAS))) + ' |')
-    linhas += [f'| **Total** | **{total}** |' + ' |' * len(FAIXAS), '',
-               '"Faltam" não conta as questões já em lote, pendentes ou com divergência.', '', '## Lotes', '',
-               '| Lote | Matéria | Faixa | Questões | Estado | OK | Pendentes | Divergências |', '|---|---|---|---|---|---|---|---|']
-    for nome, l in sorted(reg['lotes'].items()):
-        linhas.append(f"| {nome} | {NOMES[l['materia']]} | {l.get('faixa', '')} | {len(l['ids'])} | {l['estado']} | "
-                      f"{l.get('ok', '')} | {l.get('pendentes', '')} | {l.get('divergencias', '')} |")
-    gravar_md(os.path.join(DOCS, 'lotes-andamento.md'), linhas)
-    for alvo, titulo, expl in (('pendentes', 'Pendentes', 'Questões deixadas para depois por falta de certeza absoluta.'),
-                               ('divergencias', 'Divergências de gabarito', 'Questões em que o raciocínio não chega à letra oficial, ou a questão parece ambígua ou com erro. O dono decide.')):
-        ls = [f'# {titulo} (gerado por lote.py em {hoje})', '', expl, '', '| Questão | Matéria | Prova | Conteúdo | Motivo |', '|---|---|---|---|---|']
-        for qid, x in sorted(reg[alvo].items(), key=lambda kv: (kv[1]['materia'], kv[1]['prova'])):
-            ls.append(f"| {qid} | {NOMES[x['materia']]} | {x['prova']} | {x['conteudo']} | {x['motivo'].replace('|', '/')} |")
-        gravar_md(os.path.join(DOCS, 'lotes-' + alvo + '.md'), ls)
+    for x in ([m] if m else MATERIAS):
+        reg = registro(x)
+        qs = faltam(x, reg, fp)
+        linhas = [f'# {NOMES[x]}: resoluções (gerado por lote.py em {hoje})', '',
+                  f'Faltam {len(qs)} questões sem resolução (fora as que estão em lote, pendentes ou com divergência): '
+                  + '; '.join(f'{FAIXAS[i]} {sum(1 for q in qs if faixa(q) == i)}' for i in range(len(FAIXAS))) + '.', '',
+                  '## Lotes', '', '| Lote | Faixa | Questões | Estado | OK | Pendentes | Divergências |', '|---|---|---|---|---|---|---|']
+        for nome, l in sorted(reg['lotes'].items()):
+            linhas.append(f"| {nome} | {l.get('faixa', '')} | {len(l['ids'])} | {l['estado']} | {l.get('ok', '')} | {l.get('pendentes', '')} | {l.get('divergencias', '')} |")
+        for alvo, titulo in (('pendentes', 'Pendentes (falta de certeza absoluta)'), ('divergencias', 'Divergências de gabarito (o dono decide)')):
+            linhas += ['', f'## {titulo}', '']
+            if not reg[alvo]:
+                linhas.append('Nenhuma.')
+                continue
+            linhas += ['| Questão | Prova | Conteúdo | Motivo |', '|---|---|---|---|']
+            for qid, y in sorted(reg[alvo].items(), key=lambda kv: kv[1]['prova']):
+                linhas.append(f"| {qid} | {y['prova']} | {y['conteudo']} | {y['motivo'].replace('|', '/')} |")
+        if reg['lotes'] or reg['pendentes'] or reg['divergencias']:
+            gravar_md(os.path.join(DOCS, f'lotes-{x}.md'), linhas)
     if not silencioso:
-        print('lotes-andamento.md, lotes-pendentes.md e lotes-divergencias.md refeitos.')
+        print('docs/resolucoes/lotes-<matéria>.md refeitos.')
 
 
 def gravar_md(f, linhas):

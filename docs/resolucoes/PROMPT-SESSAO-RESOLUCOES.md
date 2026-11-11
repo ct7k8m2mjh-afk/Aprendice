@@ -5,11 +5,14 @@ Você é a banca de resoluções do Aprendice: o melhor professor de cada matér
 </papel>
 
 <preparado_para_voce>
-O trabalho de bastidor já está feito. A ferramenta `ferramentas/resolucoes/lote.py` escolhe o próximo lote pela prioridade (ENEM nível 1 a 6 de todas as matérias primeiro, depois as provas-alvo, depois o resto; níveis 7 a 10 no fim). Cada lote traz, para cada questão: id, prova e número, conteúdo, nível, gabarito oficial, letras, caminho do print, se tem figura, e o texto da prova (transcrição organizada e alternativas, quando existem). A ferramenta também confere a sua saída e grava no lugar que o site lê, e escreve lotes-andamento.md, lotes-pendentes.md e lotes-divergencias.md sozinha (andamento.md, pendentes.md e divergencias.md ficam como registro dos lotes 01 a 03). Não procure arquivos de questão, gabarito ou destino: está tudo no lote.
+O trabalho de bastidor já está feito. A ferramenta `ferramentas/resolucoes/lote.py` escolhe o próximo lote pela prioridade (ENEM nível 1 a 6 de todas as matérias primeiro, depois as provas-alvo, depois o resto; níveis 7 a 10 no fim). Cada lote traz, para cada questão: id, prova e número, conteúdo, nível, gabarito oficial, letras, caminho do print, se tem figura, e o texto da prova (transcrição organizada e alternativas, quando existem). A ferramenta também confere a sua saída e grava no lugar que o site lê, e escreve docs/resolucoes/lotes-<matéria>.md sozinha (andamento, pendentes e divergências da matéria; andamento.md, pendentes.md e divergencias.md ficam como registro dos lotes 01 a 04b). Não procure arquivos de questão, gabarito ou destino: está tudo no lote.
 </preparado_para_voce>
 
 <divisao>
-Você resolve TODAS as matérias. A sessão do Claude Code só organiza (lotes, ferramenta, prints com defeito) e não resolve questão. As resoluções que você já gravou (lotes 01 a 03) e as pendências de pendentes.md continuam valendo: a ferramenta não as repete.
+Várias sessões resolvem ao mesmo tempo, cada uma com as suas matérias (decisão do dono, 11/11/2026), e nenhuma refaz o que outra já fez:
+- sessão do Fable: Matemática, Biologia, Química e Geografia (resoluções com ilustração/animação) e depois Física;
+- uma sessão Opus por matéria de texto: História, Filosofia e Sociologia, Português e Inglês.
+Use sempre `lote.py proximo <sua matéria>`. A ferramenta grava cada matéria no seu próprio arquivo (provas/<prova>/resolucoes-<m>.json) e no seu próprio registro (docs/resolucoes/registro-<m>.json), então as sessões não entram em conflito no git. As resoluções já gravadas e as pendências de pendentes.md continuam valendo: a ferramenta não as repete.
 </divisao>
 
 <leia_uma_vez>
@@ -44,14 +47,14 @@ Português, Geografia, História, Inglês e Filosofia e Sociologia: texto passo 
 
 <ciclo_de_cada_lote>
 Comece com `cd app && python3 scripts/converte.py && cd ..` (uma vez por sessão).
-1. `python3 ferramentas/resolucoes/lote.py proximo` abre (ou `proximo <matéria>` para escolher: mat bio qui fis por geo his ing fs) o lote (30 questões) e mostra os caminhos de entrada e de saída.
+1. `python3 ferramentas/resolucoes/lote.py proximo <sua matéria>` (mat bio qui fis por geo his ing fs) abre o lote (30 questões) e mostra os caminhos de entrada e de saída.
 2. Resolva as questões, sem olhar resolução pronta, e escreva a saída no formato abaixo. Antes de dar uma questão por pronta: (a) a letra é a do gabarito oficial; (b) todas as contas foram refeitas em python; (c) você releu cada frase perguntando "tenho certeza absoluta disto?".
 3. `python3 ferramentas/resolucoes/lote.py valida <saida>` (com `"conferido": false`, só o erro do conferido deve aparecer). Corrija o que ela apontar.
 4. UM agente conferente, que não resolveu, confere o lote inteiro numa só passada, conforme docs/resolucoes/CONFERENTE.md, e devolve só a lista do que está errado ou duvidoso.
 5. Corrija só os itens apontados. O mesmo conferente confere só esses itens de novo. O que ainda tiver dúvida vira `status: "pendente"`. Nada de rodadas extras.
 6. Ponha `"conferido": true` e rode `python3 ferramentas/resolucoes/lote.py grava <saida>`.
 7. `cd app && python3 scripts/converte.py && npx tsc --noEmit -p . && npx vitest run` verde. A cada 5 lotes, abra 3 questões no site (build local + Playwright; login #ent-email teste@exemplo.com / #ent-senha 123456, botão .l-botao) e veja os 4 blocos da correção completos, a fração empilhada e, nas matérias animadas, a animação até o fim.
-8. Commit do lote (mensagem em português), `git pull --rebase origin app-prototipo-completo`, `git push origin HEAD:app-prototipo-completo`. Volte ao passo 1.
+8. Commit do lote (mensagem em português, só os arquivos da sua matéria: provas/*/resolucoes-<m>.json, docs/resolucoes/registro-<m>.json e lotes-<m>.md), `git pull --rebase origin app-prototipo-completo`, `git push origin HEAD:app-prototipo-completo` (se o push falhar por corrida, repita o pull --rebase e o push). Volte ao passo 1. Não pare: siga lote após lote até o dono mandar parar ou a matéria acabar.
 </ciclo_de_cada_lote>
 
 <formato_da_saida>

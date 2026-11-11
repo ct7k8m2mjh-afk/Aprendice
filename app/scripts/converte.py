@@ -10,7 +10,7 @@ Uso:
   python3 scripts/converte.py            # conteúdo completo em public/conteudo
   python3 scripts/converte.py --amostra  # amostra pequena embutida em src/previa/dados.json (prévia de arquivo único)
 """
-import base64, json, os, re, shutil, sys, hashlib
+import base64, glob, json, os, re, shutil, sys, hashlib
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import icones_tema  # noqa: E402  (ícones de tema do dono: docs/icones/)
@@ -314,9 +314,11 @@ def provas_fonte():
                 print(f'  prova {pid} ignorada: {len(falta)} prints ainda não gravados')
                 continue
             # resoluções aprovadas pela banca (resolvedor + corretor de fatos + corretor de didática + fatos de novo)
-            fr = os.path.join(FONTE_PROVAS, pid, 'resolucoes.json')
-            if os.path.exists(fr):
-                res = ler(fr)
+            # resolucoes.json (lotes antigos) + resolucoes-<matéria>.json (um por matéria, sessões em paralelo)
+            res = {}
+            for fr in sorted(glob.glob(os.path.join(FONTE_PROVAS, pid, 'resolucoes*.json'))):
+                res.update(ler(fr))
+            if res:
                 for q in p['questoes']:
                     r = res.get(q['id'])
                     if r and r.get('aprovada'):
