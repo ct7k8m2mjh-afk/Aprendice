@@ -1,6 +1,6 @@
 # Provas para o dono baixar à mão
 
-O site oficial bloqueia o acesso automático (ou exige formulário/compra). Baixe os PDFs (caderno + gabarito definitivo) e coloque no Google Drive do dono em `APRENDICE/PROVAS-MANUAIS/<sigla>/<ano>/` (dono, 10/11/2026: ele baixa depois; lista em https://claude.ai/artifact/374KjYRbGGNBoDbkfb3wtp). Detalhes e links de partida nos inventários.
+O site oficial bloqueia o acesso automático (ou exige formulário/compra). Baixe os PDFs (caderno + gabarito definitivo) e coloque no Google Drive do dono em `APRENDICE/PROVAS-MANUAIS/<sigla>/<ano>/` (dono, 10/11/2026: ele baixa depois; lista atualizada em 11/11/2026: https://claude.ai/artifact/V7ezT2vfWQE5dGZyquAdhV — a anterior, 374KjYRbGGNBoDbkfb3wtp, está desatualizada). Detalhes e links de partida nos inventários.
 
 - **UEA** (Universidade do Estado do Amazonas): Página oficial do vestibular aponta para as páginas da Vunesp (UEAM2501, UEAM2502), que respondem 403 a acesso automatizado. Edições anteriores (até acesso 2024) ficam no portal selecao1.uea.edu.br, que lista editais e r
 - **Unesp** (Universidade Estadual Paulista): robots.txt de vestibular.unesp.br proíbe /Home/ (onde ficam todos os PDFs) e a página de provas anteriores é montada por JavaScript; vunesp.com.br responde 403. Baixar à mão pela página 'Provas anteriores'. Links abaixo 
