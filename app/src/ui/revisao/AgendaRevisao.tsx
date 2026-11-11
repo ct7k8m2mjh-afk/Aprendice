@@ -31,6 +31,7 @@ export function AgendaRevisao({ ag, hoje, futuras, agora }: { ag: Agenda; hoje: 
   const falta = ag.prova ? diasEntre(agora, ag.prova) : 0;
   const maior = ag.prova ? Math.max(1, Math.min(PASSOS_Q[SAIDA - 1], Math.round(fracaoIdeal(falta) * falta), falta - 1)) : PASSOS_Q[SAIDA - 1];
   const total = dias.reduce((a, x) => a + x.n, 0);
+  const total7 = dias.slice(0, 7).reduce((a, x) => a + x.n, 0);
 
   return (
     <section className="bloco ag" aria-labelledby="ag-tit">
@@ -57,7 +58,10 @@ export function AgendaRevisao({ ag, hoje, futuras, agora }: { ag: Agenda; hoje: 
             );
           })}
         </ol>
-        <figcaption className="ag-leg">{total ? <>{plural(total, 'questão volta', 'questões voltam')} nos próximos 14 dias{hoje ? <>, {hoje} hoje</> : ''}.</> : 'Nenhuma questão marcada para os próximos 14 dias.'}</figcaption>
+        {/* no celular o gráfico mostra 7 dias: a legenda conta o mesmo período */}
+        <figcaption className="ag-leg">{[{ n: 14, t: total, c: 'ag-leg-14' }, { n: 7, t: total7, c: 'ag-leg-7' }].map((x) => (
+          <span key={x.n} className={x.c}>{x.t ? <>{plural(x.t, 'questão volta', 'questões voltam')} nos próximos {x.n} dias{hoje ? <>, {hoje} hoje</> : ''}.</> : `Nenhuma questão marcada para os próximos ${x.n} dias.`}</span>
+        ))}</figcaption>
       </figure>
     </section>
   );

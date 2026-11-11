@@ -42,6 +42,18 @@ MANUAIS = {
     'ufrr-2023': ('ufrr/47562', {
         'caderno': 'ufrr/provas-e-gabaritos-ufrr-2023/provas-e-gabaritos-ufrr-2023/Vestibular 2023 - E3-PI.pdf',
         'gabarito': 'ufrr/provas-e-gabaritos-ufrr-2023/provas-e-gabaritos-ufrr-2023/gabarito-oficial-ufrr-2023.pdf'}),
+    'ime-2021': ('ime/47265', {
+        'caderno': 'ime/provas-e-gabaritos-ime-2020-2021/1ª fase/Prova_Objetiva_-_1ª_FASE.pdf',
+        'gabarito': 'ime/provas-e-gabaritos-ime-2020-2021/1ª fase/Gabarito_definitivo_(Prova_Objetiva_-_1ª_FASE).pdf'}),
+    'ime-2022': ('ime/47386', {
+        'caderno': 'ime/provas-e-gabaritos-ime-2021-2022/1ª fase/CFG-objetiva-CQ.pdf',
+        'gabarito': 'ime/provas-e-gabaritos-ime-2021-2022/1ª fase/Gabarito_definitivo_-_1a_Fase.pdf'}),
+    'ime-2023': ('ime/47545', {
+        'caderno': 'ime/provas-e-gabaritos-ime-2022-2023/prova-vestibular-2023-ime.pdf',
+        'gabarito': 'ime/provas-e-gabaritos-ime-2022-2023/gabarito-oficial-vestibular-2023-ime.pdf'}),
+    'ime-2026': ('ime/47767', {
+        'caderno': 'ime/provas-e-gabaritos-ime-2025-2026/provas-e-gabaritos-ime-2025-2026/prova-1-fase-ime-2026.pdf',
+        'gabarito': 'ime/provas-e-gabaritos-ime-2025-2026/provas-e-gabaritos-ime-2025-2026/gabarito-definitivo-1-fase-ime-2026.pdf'}),
 }
 
 

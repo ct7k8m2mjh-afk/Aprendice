@@ -80,7 +80,8 @@ def mais_provas():
         tit = f'Unitins {ano}/{sem}' + (f' – {rotulo}' if rotulo else '')
         c.update({'titulo': tit, 'fase': f'Vestibular {ano}/{sem}' + (f' – {rotulo}' if rotulo else ''),
                   'gabarito': _gab_unitins(pagina)})
-        c['suporte'] = c['suporte'] + [r'(?i)^textos? para (as )?quest']   # "Texto para questões 35 a 38."
+        c['suporte'] = c['suporte'] + [r'(?i)^textos? para (as )?quest']
+        c['corte'] = c['corte'] + [r'(?i)^L[ÍI]NGUA PORTUGUESA E LITERATURA']   # faixa de seção   # "Texto para questões 35 a 38."
         c['nota'] = (f'Universidade Estadual do Tocantins, Vestibular {ano}/{sem}' + (f' ({rotulo})' if rotulo else '') +
                      ': 50 questões A–E (Física, Biologia, Matemática, História, Geografia, Química, Língua Portuguesa e '
                      'Literatura Brasileira, língua estrangeira). Língua estrangeira: inglês. Redação fora. Gabarito '
@@ -193,17 +194,46 @@ def mais_provas():
                     'História, Química e língua estrangeira (inglês). Redação fora. Gabarito oficial publicado após os '
                     'recursos; anulada fica fora.',
             'cadernos': [{'arquivo': 'caderno', 'paginas': (2, 999)}],
-            'colunas': lambda r: [(24, r.width / 2), (r.width / 2, r.width - 20)], 'margem': 24, 'topo': 40, 'base': 30,
+            'colunas': lambda r: [(24, r.width / 2), (r.width / 2, r.width - 20)], 'margem': 24, 'topo': 32, 'base': 30,
             'ancora': r'(?i)^(?:QUEST[ÃA]O|QUESTION|PREGUNTA)\s+(\d{1,2})$', 'ancora_dx': 130, 'sequencial': True,   # número centrado na coluna
             'secoes_rx': secs, 'pular_secoes': ('Espanhol', 'Francês'), 'pular_antes_sequencia': True,
             'corte': [r'(?i)^PROPOSTA DE REDA', r'(?i)^REDA[ÇC][ÃA]O$', r'(?i)^RASCUNHO', r'(?i)^FOLHA DE RASCUNHO'],
             'suporte': [r'(?i)(responda|responder)\b.*\bquest[õo]es', r'(?i)\bpara responder( [àa]s?)?\s*$',
-                        r'(?i)^textos? para as quest', r'(?i)\bto answer\b.*\bquestions'],
+                        r'(?i)^textos? para as quest', r'(?i)\bto answer\b.*\bquestions', r'^TEXTO?\s+[IVX]+\s*$'],
+            # "TEXTO II" (título, sem frase de indicação): vale para a questão logo depois e para as que o citam
+            'texto_romano': True, 'texto_n_sem_faixa': True, 'suporte_ate_proximo': True, 'suporte_primeira': True,
+            'suporte_interno': 60,   # "QUESTÃO 25 / Leia os textos a seguir..." com os textos logo abaixo: são da questão
             'gabarito': gab, 'area_do_gabarito': False, 'area': lambda n: 'Conhecimentos gerais',
         }
     ufrr('ufrr-2021', 2021)
     ufrr('ufrr-2022', 2022)
     ufrr('ufrr-2023', 2023)
+
+    # ------------------------------------------------------------------------------------------------ IME
+    # Concurso de Admissão (Formação e Graduação), 1ª fase: prova objetiva de 40 questões A–E (Matemática 1–15, Física
+    # 16–30, Química 31–40), uma coluna, "1ª QUESTÃO" (LaTeX). Gabarito definitivo/final do IME. A 2ª fase (discursivas
+    # e Português/Inglês) fica fora. Ano do vestibular = ano de ingresso (concurso 2020/2021 = IME 2021).
+    def ime(pid, ano, rotulo_gab):
+        P[pid] = {
+            'catalogo': 'ime', 'escola': 'IME', 'ano': str(ano), 'fase': f'Concurso {ano - 1}/{ano} – 1ª fase (objetiva)',
+            'titulo': f'IME {ano - 1}/{ano}', 'banca': 'IME', 'duracao_horas': 4, 'total': 40,
+            'nota': f'Instituto Militar de Engenharia, Concurso de Admissão {ano - 1}/{ano} aos cursos de Formação e Graduação: '
+                    'prova objetiva da 1ª fase, 40 questões A–E (Matemática 1–15, Física 16–30, Química 31–40). '
+                    f'Gabarito {rotulo_gab} do IME; anulada fica fora. A 2ª fase (discursivas e Português/Inglês) fica fora.',
+            'cadernos': [{'arquivo': 'caderno', 'paginas': (2, 999)}],
+            'colunas': lambda r: [(28, r.width - 24)], 'margem': 28, 'topo': 30, 'base': 30,
+            'ancora': r'^(\d{1,2})\s*ª\s*QUEST', 'ancora_dx': 20, 'sequencial': True,
+            'corte': [r'(?i)^QUEST\s*\S?\s*[ÕO]\s*ES DE \d+ A \d+', r'^MATEM', r'^F[ÍI´]\s*\S*SICA$', r'^QU[ÍI´]', r'(?i)^RASCUNHO', r'^CONCURSO DE ADMISS'],
+            'suporte': [], 'aperta_moldura': True,
+            'gabarito': lambda pasta: {int(n): (v if len(v) == 1 else 'X') for n, v in re.findall(
+                r'(?<![\d,.])(\d{1,2})\s+([A-E]\b|[Aa][Nn][Uu][Ll][Aa][Dd][AaOo])', _p.texto_pdf(pasta / 'gabarito.pdf'))},
+            'area': lambda n: 'Matemática' if n <= 15 else 'Física' if n <= 30 else 'Química',
+            'area_do_gabarito': True,
+        }
+    ime('ime-2021', 2021, 'definitivo')
+    ime('ime-2022', 2022, 'definitivo')
+    ime('ime-2023', 2023, 'oficial definitivo')
+    ime('ime-2026', 2026, 'final')
 
     # ------------------------------------------------------------------------------------------- UNIRG
     # 2025/2: ícones do título "Text for questions..." entravam no pé do print das questões 4, 9 e 15

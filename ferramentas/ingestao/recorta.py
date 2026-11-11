@@ -624,8 +624,8 @@ def eventos_do_pdf(pdf, cfg, faixa=None):
                             if cfg.get('texto_n_sem_faixa') and re.match(r'(?i)^texto?\s+[0-9IVX]+:?\s*$', t):
                                 nums = []   # "TEXT 1" sozinho: os números da linha seguinte (link, data) não são questões
                             mt = re.match(r'(?i)^texto\s+(\d+)', t)
-                            if not mt and cfg.get('texto_romano') and re.match(r'^TEXTO\s+([IVX]+)\b', t, re.I):
-                                mt = re.match(r'(?i)^texto\s+([IVX]+)\b', t)
+                            if not mt and cfg.get('texto_romano') and re.match(r'^TEXTO?\s+([IVX]+)\b', t, re.I):
+                                mt = re.match(r'(?i)^texto?\s+([IVX]+)\b', t)
                                 mt = type('M', (), {'group': lambda self, k, _v=ROMANO.get(mt.group(1).upper()): _v})()
                             if not mt and not mq and cfg.get('texto_ingles'):   # "Text 1" sozinho (sem lista de questões)
                                 mt = re.match(r'(?i)^text\s+(\d+)\s*$', t)
@@ -817,7 +817,7 @@ def textos_citados(enun, cfg=None):
     """Números dos textos que o enunciado cita: "Texto 1", "Textos 2 e 3", "Text 02", "Texts 1 and 2"."""
     out = []
     if cfg and cfg.get('texto_romano'):   # "texto II", "textos I e III"
-        for m in re.finditer(r'\b(?:[Tt]extos?|TEXTOS?)\s+([IVX]+)\b((?:\s*(?:,|e)\s*[IVX]+\b)*)', enun):
+        for m in re.finditer(r'\b(?:[Tt]extos?|TEXTOS?|[Tt]exts?|TEXTS?)\s+([IVX]+)\b((?:\s*(?:,|e)\s*[IVX]+\b)*)', enun):
             out += [ROMANO[x] for x in [m.group(1)] + re.findall(r'[IVX]+', m.group(2)) if x in ROMANO]
     for m in re.finditer(r'(?i)\b(?:textos?|texts?)\s+0?(\d)\b((?:\s*(?:,|e|and|y)\s*0?\d\b)*)', enun):
         out.append(int(m.group(1)))
@@ -954,6 +954,34 @@ def render(pdf, segs, marcas=None, coloridos=None, apagar=None):
 
 NOME_MATERIA = {'bio': 'Biologia', 'qui': 'Química', 'mat': 'Matemática', 'por': 'Língua Portuguesa', 'fis': 'Física',
                 'geo': 'Geografia', 'his': 'História', 'fs': 'Filosofia e Sociologia', 'ing': 'Inglês'}
+
+
+def aperta_moldura(im, folga=80):
+    """Questão dentro de uma moldura que vai até o pé da página (IME): o espaço vazio entre o fim do conteúdo e o fio de
+    baixo da moldura sai do print (fica o fio, para a moldura continuar fechada)."""
+    import numpy as np
+    a = np.asarray(im.convert('L')) < 140
+    h, w = a.shape
+    if h < 200:
+        return im
+    vert = a.mean(axis=0) > 0.5
+    linha = a.mean(axis=1) > 0.8
+    fios = [r for r in range(h - 1, max(h - 15, 0), -1) if linha[r]]
+    if not fios:
+        return im
+    L = min(fios)
+    while L > 0 and linha[L - 1]:
+        L -= 1
+    cont = a[:, ~vert].any(axis=1) & ~linha
+    acima = np.nonzero(cont[:L])[0]
+    if not len(acima) or L - acima[-1] < folga:
+        return im
+    C = acima[-1]
+    from PIL import Image as _I
+    out = _I.new(im.mode, (w, C + 24 + (h - L)), 'white')
+    out.paste(im.crop((0, 0, w, C + 24)), (0, 0))
+    out.paste(im.crop((0, L, w, h)), (0, C + 24))
+    return out
 
 
 def corta_pe_cor(im, cor, tol=14, zona=70):
@@ -1448,6 +1476,8 @@ def processa(pid, amostra=False, so_texto=False):
                 img = render(pdf, sup + segs, marcas, coloridos, apaga)
                 if img is not None and cfg.get('pe_cor'):
                     img = corta_pe_cor(img, cfg['pe_cor'])
+                if img is not None and cfg.get('aperta_moldura'):
+                    img = aperta_moldura(img)
             if img is None:
                 relatorio['faltando'].append(n)
                 continue
