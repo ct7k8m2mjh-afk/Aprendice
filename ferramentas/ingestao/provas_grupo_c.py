@@ -228,7 +228,25 @@ PROVAS['unioeste-2022'] = unioeste(2022)
 # 2021: o texto de Língua Portuguesa (pág. 5 da manhã) começa pelo título; a instrução "responda as questões de 08 a 14"
 # vem no fim do texto (conferido no caderno)
 PROVAS['unioeste-2021']['suporte_forcado'] = {('manha', 5): [(50, 0, (8, 14))]}
-PROVAS['unioeste-2022']['topo_pag'] = {20: 26}   # pág. 20 da tarde sem cabeçalho: "44." em y≈29
+
+
+class _TopoPorCaderno(dict):
+    """'topo_pag' por (caderno, página): o recorte só consulta o número da página; o caderno em processamento está em
+    cfg['_arquivo']."""
+    def __init__(self, cfg, mapa):
+        super().__init__()
+        self.cfg, self.mapa = cfg, mapa
+
+    def get(self, k, padrao=None):
+        return self.mapa.get((self.cfg.get('_arquivo'), k), padrao)
+
+
+# faixa preta do cabeçalho mais baixa em algumas páginas (1ª página de cada etapa e de algumas matérias): o texto começa
+# logo abaixo dela (medido no desenho do PDF); 2022, pág. 20 da tarde sem cabeçalho: "44." em y≈29
+PROVAS['unioeste-2021']['topo_pag'] = _TopoPorCaderno(PROVAS['unioeste-2021'], {
+    ('manha', 2): 57, ('manha', 6): 55, ('tarde', 9): 50, ('tarde', 12): 50, ('tarde', 20): 50})
+PROVAS['unioeste-2022']['topo_pag'] = _TopoPorCaderno(PROVAS['unioeste-2022'], {
+    ('manha', 2): 57, ('manha', 5): 55, ('tarde', 9): 50.5, ('tarde', 19): 50, ('tarde', 20): 26})
 
 
 if __name__ == '__main__':
