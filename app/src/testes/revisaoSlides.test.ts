@@ -345,7 +345,7 @@ describe('todo comando LaTeX de docs/revisao é desenhado (nenhum sai cru)', () 
       else if (x && typeof x === 'object') Object.entries(x).forEach(([kk, v]) => walk(v, kk));
       else if (typeof x === 'string') {
         const tex = ['formula', 'conta', 'formulas'].includes(k) ? [x] : [...x.matchAll(/\$([^$]+)\$/g)].map((r) => r[1]);
-        for (const t of tex) for (const [, n] of t.matchAll(/\\([A-Za-z]+)/g)) if (!comandoConhecido(n)) faltam.set(n, t);
+        for (const t of tex) for (const [, n] of t.replace(/\\\\/g, ' ').matchAll(/\\([A-Za-z]+)/g)) if (!comandoConhecido(n)) faltam.set(n, t); // "\\" é quebra de linha
       }
     };
     for (const m of existsSync(PASTA) ? readdirSync(PASTA) : []) {

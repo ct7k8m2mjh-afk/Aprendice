@@ -1,11 +1,15 @@
-import { Link, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import { atualiza, useEstado } from '../estado/loja';
 import { useTitulo } from '../ui/comum';
 import { Icone } from '../ui/Icone';
 import { EscolhaProvas } from './EscolhaProvas';
 import { SeletorMinhaRegiao, useRegiao } from '../ui/FiltroRegiao';
 import { descreveFiltro } from '../logica/regiao';
+import { diasEntre, proximaProva } from '../logica/revisao';
+import { CATALOGO } from '../dados/provas';
+import { plural } from '../ui/comum';
+import { nomeProva } from '../ui/revisao/AgendaRevisao';
 
 export function Perfil() {
   useTitulo('Perfil');
@@ -40,6 +44,8 @@ export function Perfil() {
         <EscolhaProvas valor={p.provasAlvo} aoMudar={(v) => muda({ provasAlvo: v })} />
       </section>
 
+      <DatasProva />
+
       <section className="bloco secao">
         <h2 className="sec-tit">Região das minhas provas</h2>
         <p className="miolo" style={{ marginBottom: 14 }}>{rg.minhas.length
@@ -63,5 +69,43 @@ export function Perfil() {
       </section>
       <p className="fraco" style={{ fontSize: 14, marginTop: 10 }}>Sair não apaga o seu progresso: ele continua salvo neste aparelho e volta quando você entrar de novo.</p>
     </div>
+  );
+}
+
+const DATA_LONGA = new Intl.DateTimeFormat('pt-BR', { day: 'numeric', month: 'long', year: 'numeric' });
+
+/** Datas das provas-alvo (comando 24, fase 2): a agenda da revisão conta a partir da próxima. */
+function DatasProva() {
+  const e = useEstado();
+  const p = e.perfil!;
+  const datas = p.datasProva || {};
+  const { hash } = useLocation();
+  useEffect(() => { if (hash === '#datas-prova') document.getElementById('datas-prova')?.scrollIntoView({ block: 'start' }); }, [hash]);
+  const muda = (id: string, v: string) => atualiza((x) => {
+    if (!x.perfil) return x;
+    const d = { ...(x.perfil.datasProva || {}) };
+    if (v) d[id] = v; else delete d[id];
+    return { ...x, perfil: { ...x.perfil, datasProva: d } };
+  });
+  const prox = proximaProva(p.provasAlvo, datas);
+  return (
+    <section className="bloco secao" id="datas-prova" style={{ scrollMarginTop: 80 }}>
+      <h2 className="sec-tit">Datas das provas</h2>
+      <p className="miolo" style={{ marginBottom: 14 }}>A revisão conta a partir da sua próxima prova: quanto mais perto, mais curto o intervalo entre uma revisão e outra. Sem data, vale a escala de 1, 3 e 7 dias.</p>
+      {p.provasAlvo.length ? (
+        <ul className="dp-lista">
+          {p.provasAlvo.map((id) => {
+            const c = CATALOGO.find((x) => x.id === id);
+            return (
+              <li key={id}>
+                <label className="dp-nome" htmlFor={'dp-' + id}>{nomeProva(id)}{c && c.instituicao !== nomeProva(id) && <small>{c.instituicao}</small>}</label>
+                <input id={'dp-' + id} type="date" value={datas[id] || ''} onChange={(ev) => muda(id, ev.target.value)} />
+              </li>
+            );
+          })}
+        </ul>
+      ) : <p className="fraco" style={{ fontSize: 15 }}>Escolha suas provas-alvo acima para informar as datas.</p>}
+      {prox && <p className="dp-prox" role="status">A agenda conta a partir de <b>{nomeProva(prox.id)}</b>, em {DATA_LONGA.format(prox.dia)}: faltam {plural(diasEntre(Date.now(), prox.dia), 'dia', 'dias')}.</p>}
+    </section>
   );
 }

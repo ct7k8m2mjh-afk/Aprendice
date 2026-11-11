@@ -3,7 +3,9 @@ import { useTodasMaterias } from '../dados/conteudo';
 import { MATERIAS_ATIVAS, nomeMateria } from '../dados/materias';
 import { useEstado } from '../estado/loja';
 import { filaRetirada, questoesVencidas, resumoMateria } from '../logica/estatisticas';
-import { filaDe, emDias, DIA, iniDia, PASSOS_Q } from '../logica/revisao';
+import { agendaDe, filaDe, emDias, DIA, iniDia, SAIDA } from '../logica/revisao';
+import { AgendaRevisao } from '../ui/revisao/AgendaRevisao';
+import { PainelDominio } from '../ui/revisao/PainelDominio';
 import { Carregando, plural, useTitulo } from '../ui/comum';
 import { Icone, type NomeIcone } from '../ui/Icone';
 import { estadoMateriaVazio } from '../estado/tipos';
@@ -21,39 +23,51 @@ export function Revisao() {
   const rg = useRegiao();
   if (!todas) return <div className="conteudo"><Carregando /></div>;
   const agora = Date.now();
+  const ag = agendaDe(e, agora);
+  const ate14 = iniDia(agora) + 14 * DIA;
   const amanha7 = iniDia(agora) + 8 * DIA;
 
   const porMat = todas.map((mc) => {
     const s = e.materias[mc.id] || estadoMateriaVazio();
     // pedido do dono (09/11/2026): a revisão segue o filtro de região; sem nenhuma da região, mostra todas (reserva)
-    const vencTodas = questoesVencidas(mc, s, agora);
+    const vencTodas = questoesVencidas(mc, s, agora, ag);
     const venc = filtraRegiao(vencTodas, rg.conj).l;
-    const prox = filtraRegiao(mc.banco.filter((q) => { const f = filaDe(s.q[q.id]); return f && f.vence > agora && f.vence < amanha7; }), rg.conj).l
-      .concat((mc.retiradas || []).filter((q) => { const f = filaRetirada(mc, s, q); return f && f.vence > agora && f.vence < amanha7; }));
+    // agenda dos próximos 14 dias (pilar 2): o dia em que cada questão volta, pela regra nova
+    const futuras = filtraRegiao(mc.banco.filter((q) => { const f = filaDe(s.q[q.id], ag); return f && f.vence > agora && f.vence < ate14; }), rg.conj).l
+      .map((q) => filaDe(s.q[q.id], ag)!.vence)
+      .concat((mc.retiradas || []).map((q) => filaRetirada(mc, s, q, ag)?.vence || 0).filter((v) => v > agora && v < ate14));
+    const prox = futuras.filter((v) => v < amanha7);
     const marcadas = mc.banco.filter((q) => s.q[q.id]?.rev);
     // revisão em slides (ciclo de 5 tempos): conteúdos que voltam hoje e os que ficaram no meio
     const nomeSub = (sub: string) => mc.conteudo.modulos.flatMap((x) => x.subs).find((x) => x.id === sub)?.nome || sub;
     const conteudos = [...new Set([...revisoesVencidas(s, agora), ...Object.entries(s.revs || {}).filter(([, r]) => r.and).map(([sub]) => sub)])]
       .map((sub) => ({ sub, nome: nomeSub(sub), andamento: !!s.revs?.[sub]?.and }));
-    return { mc, s, venc, outras: vencTodas.length - venc.length, prox, marcadas, conteudos, r: resumoMateria(mc, s, agora) };
+    return { mc, s, venc, outras: vencTodas.length - venc.length, prox, futuras, marcadas, conteudos, r: resumoMateria(mc, s, agora, ag) };
   });
   const totVenc = porMat.reduce((a, x) => a + x.venc.length, 0);
   const totOutras = porMat.reduce((a, x) => a + x.outras, 0);
   const totFlash = porMat.reduce((a, x) => a + x.r.flashVencidos, 0);
   const totMarc = porMat.reduce((a, x) => a + x.marcadas.length, 0);
   const totCont = porMat.reduce((a, x) => a + x.conteudos.length, 0);
+  const futuras = porMat.flatMap((x) => x.futuras);
 
   return (
     <div className="conteudo">
       <div className="titulo-pag"><div><h1>Revisão</h1><p className="sub">{aba === 'conteudos'
         ? 'Cada conteúdo revisado em slides volta no dia marcado no fim da revisão: amanhã quando algo não firmou, mais tarde quando firmou.'
-        : `Errou, chutou ou pediu pista: a questão volta em ${PASSOS_Q.join(', ')} dias. Acertou na data, ela avança.`}</p></div></div>
+        : aba === 'dominio'
+          ? 'O que você domina, está aprendendo ou esqueceu, pelos acertos em dias diferentes, cada um na data marcada.'
+          : `Errou, chutou ou pediu pista: a questão volta no dia certo. Sai da revisão depois de ${SAIDA} acertos em dias diferentes, cada um na data marcada.`}</p></div></div>
+      <AgendaRevisao ag={ag} hoje={totVenc} futuras={futuras} agora={agora} />
       <div className="abas abas-rev" role="group" aria-label="Seções">
         <button aria-pressed={aba === 'questoes'} onClick={() => setQs({}, { replace: true })}>Questões <small>{totVenc}</small></button>
         <button aria-pressed={aba === 'flash'} onClick={() => setQs({ aba: 'flash' }, { replace: true })}>Flashcards <small>{totFlash}</small></button>
         <button aria-pressed={aba === 'marcadas'} onClick={() => setQs({ aba: 'marcadas' }, { replace: true })}>Marcadas <small>{totMarc}</small></button>
         <button aria-pressed={aba === 'conteudos'} onClick={() => setQs({ aba: 'conteudos' }, { replace: true })}>Conteúdos <small>{totCont}</small></button>
+        <button aria-pressed={aba === 'dominio'} onClick={() => setQs({ aba: 'dominio' }, { replace: true })}>Domínio</button>
       </div>
+
+      {aba === 'dominio' && <PainelDominio todas={todas} e={e} ag={ag} agora={agora} />}
 
       {aba === 'questoes' && <div className="rv-regiao"><FiltroRegiaoChips />{totOutras > 0 && (
         <p className="fr-aviso" role="status"><span>{plural(totOutras, 'questão', 'questões')} de fora {deFiltro(rg.filtro, rg.minhas)} também {totOutras === 1 ? 'vence' : 'vencem'} hoje.</span>
@@ -69,10 +83,10 @@ export function Revisao() {
               <div className="cab-sec"><h2 style={{ fontSize: 19 }}><i className="ponto" style={{ marginRight: 8 }} />{nomeMateria(mc.id)}</h2>
                 {venc.length > 0 && <Link to={`/m/${mc.id}/q/${venc[0].id}?ctx=revisao`} className="btn peq">Revisar {venc.length}</Link>}</div>
               {venc.slice(0, 5).map((q) => {
-                const f = filaDe(s.q[q.id]);
+                const f = filaDe(s.q[q.id], ag);
                 return (
                   <Link key={q.id} to={`/m/${mc.id}/q/${q.id}?ctx=revisao`} className="linha-lista">
-                    <span className={'etq ' + (f?.certeza ? 'err' : 'aviso')}>{f?.certeza ? 'Errou com certeza' : 'Vencida'}</span>
+                    <span className={'etq ' + (f?.certeza ? 'err' : 'aviso')}>{f?.certeza ? 'Errou com certeza' : f && f.etapa > 0 ? `${f.etapa} de ${SAIDA} acertos` : 'Vencida'}</span>
                     <span><span className="tit" style={{ fontSize: 15 }}>{q.escola} {q.ano}{q.n ? ` · questão ${numeroQuestao(q)}` : ''}</span><br /><span className="det">{mc.conteudo.modulos.find((x) => x.id === q.modulo)?.nome}</span></span>
                     <Icone nome="direita" />
                   </Link>
@@ -119,7 +133,7 @@ export function Revisao() {
       ) : (
         <div className="bloco">
           {porMat.flatMap(({ mc, marcadas, s }) => marcadas.map((q) => {
-            const f = filaDe(s.q[q.id]);
+            const f = filaDe(s.q[q.id], ag);
             return (
               <Link key={q.id} to={`/m/${mc.id}/q/${q.id}?ctx=escada`} className={`linha-lista m-${mc.id}`}>
                 <span className="mini"><Icone nome="marcador" /></span>

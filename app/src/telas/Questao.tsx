@@ -5,7 +5,7 @@ import { materia as infoMateria } from '../dados/materias';
 import { atualizaMateria, pegaEstado, useMateriaEstado } from '../estado/loja';
 import { questoesVencidas } from '../logica/estatisticas';
 import { retirada } from '../estado/migracao';
-import { filaDe, emDias } from '../logica/revisao';
+import { agendaDe, filaDe, emDias } from '../logica/revisao';
 import { ehNivel, nivelDe, nomeNivel } from '../logica/nivel';
 import { Carregando, cap, formataTempo, useTitulo } from '../ui/comum';
 import { Icone, type NomeIcone } from '../ui/Icone';
@@ -67,7 +67,7 @@ export function QuestaoTela() {
   const fila = useMemo<Questao[]>(() => {
     if (!mc || !q) return [];
     if (ctx === 'revisao') {
-      const v0 = questoesVencidas(mc, pegaEstado().materias[m] || s);
+      const v0 = questoesVencidas(mc, pegaEstado().materias[m] || s, Date.now(), agendaDe(pegaEstado()));
       const v = filtraRegiao(v0, regiaoDoEstado(pegaEstado()).conj).l;
       return v.some((x) => x.id === q.id) ? v : v0.some((x) => x.id === q.id) ? v0 : [q, ...v];
     }
@@ -132,7 +132,7 @@ export function QuestaoTela() {
   const textoPista = q.pista || r?.pista;
   const eq = s.q[q.id];
   const anteriores = (eq?.tent.length || 0) - (revelado ? 1 : 0);
-  const f = filaDe(eq);
+  const f = filaDe(eq, agendaDe(pegaEstado()));
 
   const nomeMat = infoMateria(m)?.nome || '';
   const totalSeg = acum.current + crono.seg;

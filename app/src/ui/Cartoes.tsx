@@ -2,7 +2,8 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import type { Completar, Flashcard, MateriaId } from '../dados/tipos';
 import { confereCompletar, criaCorretor, type Correcao, type Veredito } from '../logica/correcao';
 import { corrigeComIA } from '../logica/ia';
-import { quandoVolta } from '../logica/revisao';
+import { agendaDe, quandoVolta } from '../logica/revisao';
+import { pegaEstado } from '../estado/loja';
 import { atualizaMateria, useMateriaEstado } from '../estado/loja';
 import { urlFlashImg, EH_PREVIA } from '../dados/conteudo';
 import { Icone } from './Icone';
@@ -48,7 +49,7 @@ export function BotoesNota({ aoNotar, sugestao, rec }: { aoNotar: (n: Nota) => v
       <span className="fraco">Como foi?</span>
       {([['e', 'Errei', 1], ['q', 'Quase', 2], ['a', 'Acertei', 3]] as [Nota, string, number][]).map(([n, t, k]) => (
         <button key={n} className={'nota n-' + n + (sugestao === n ? ' sugerida' : '')} onClick={() => aoNotar(n)}>
-          <b>{t}</b><small>{quandoVolta(rec, n)}</small><kbd>{k}</kbd>
+          <b>{t}</b><small>{quandoVolta(rec, n, Date.now(), agendaDe(pegaEstado()))}</small><kbd>{k}</kbd>
         </button>
       ))}
     </div>

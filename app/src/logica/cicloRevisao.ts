@@ -8,16 +8,16 @@
  *   5. voltar no dia certo — o conteúdo ganha a data de volta.
  * As respostas às questões entram também em `q[id].tent` (ctx "slides"): o que o aluno erra, chuta ou erra com certeza
  * entra na revisão espaçada que já existe (pilar 3: a certeza já decide a fila em logica/revisao.ts).
- * A agenda pela data da prova (pilar 2) é a fase 2: aqui a volta usa a escada simples abaixo.
+ * Fase 2 (pilar 2): a volta do conteúdo usa a escada abaixo encurtada pela data da prova (logica/revisao.ts, intervalo).
  */
 import type { Questao } from '../dados/tipos';
 import type { Slide, TemaRevisao } from '../dados/revisao';
 import type { AndamentoRevisao, EstadoMateria, Lembrou, RespRevisao, RevisaoConteudo, SessaoRevisao } from '../estado/tipos';
 import { nivelDe, NIVEIS, type Nivel } from './nivel';
-import { emNDias } from './revisao';
+import { emNDias, intervalo, SEM_AGENDA, type Agenda } from './revisao';
 
 export const TEMPOS = ['Pergunta primeiro', 'Ver acontecer', 'Lembrar sem olhar', 'Aplicar', 'Voltar'] as const;
-/** dias até o conteúdo voltar, por etapa (fase 1; a fase 2 troca pela agenda contada a partir da data da prova) */
+/** dias até o conteúdo voltar, por etapa (sem data de prova; com data, encurtados por `intervalo`) */
 export const VOLTA_DIAS = [1, 3, 7, 16, 35];
 export const MAX_SESSOES = 20;
 export const CTX_SLIDES = 'slides';
@@ -168,9 +168,9 @@ export function sessaoBoa(x: Pick<SessaoRevisao, 'apl' | 'lembrou' | 'pre'>): bo
 }
 
 /** Próxima volta do conteúdo: sessão boa sobe um degrau (1ª boa: 3 dias); ruim volta ao começo (amanhã). */
-export function proximaVolta(r: RevisaoConteudo | undefined, boa: boolean, ts: number): { etapa: number; vence: number } {
+export function proximaVolta(r: RevisaoConteudo | undefined, boa: boolean, ts: number, ag: Agenda = SEM_AGENDA): { etapa: number; vence: number } {
   const etapa = boa ? Math.min(VOLTA_DIAS.length - 1, r && r.hist.length ? r.etapa + 1 : 1) : 0;
-  return { etapa, vence: emNDias(ts, VOLTA_DIAS[etapa]) };
+  return { etapa, vence: emNDias(ts, intervalo(VOLTA_DIAS[etapa], ts, ag)) };
 }
 
 export function novoAndamento(pre: string[], apl: string[], agora = Date.now()): AndamentoRevisao {
@@ -178,9 +178,9 @@ export function novoAndamento(pre: string[], apl: string[], agora = Date.now()):
 }
 
 /** Fecha a sessão: grava no histórico do conteúdo, calcula a volta e limpa o andamento. */
-export function fechaSessao(r: RevisaoConteudo | undefined, a: AndamentoRevisao, agora = Date.now()): RevisaoConteudo {
+export function fechaSessao(r: RevisaoConteudo | undefined, a: AndamentoRevisao, agora = Date.now(), ag: Agenda = SEM_AGENDA): RevisaoConteudo {
   const sessao: SessaoRevisao = { ts: agora, seg: a.seg, pre: a.pre, lembrou: a.lembrou, apl: a.apl };
-  const v = proximaVolta(r, sessaoBoa(sessao), agora);
+  const v = proximaVolta(r, sessaoBoa(sessao), agora, ag);
   return { etapa: v.etapa, vence: v.vence, hist: [...(r?.hist || []), sessao].slice(-MAX_SESSOES), and: null };
 }
 

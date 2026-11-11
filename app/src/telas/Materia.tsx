@@ -7,6 +7,7 @@ import { CAIXA_CAPA } from '../dados/capas';
 import { MATERIAS, materia as infoMateria } from '../dados/materias';
 import { useEstado, useMateriaEstado } from '../estado/loja';
 import { progressoEscada, resumoMateria } from '../logica/estatisticas';
+import { agendaDe } from '../logica/revisao';
 import { Anel, Barra, Carregando, plural, useTitulo } from '../ui/comum';
 import { Icone } from '../ui/Icone';
 import { ArteTreinoMateria, CirculoMateria } from '../ui/IconeMateria';
@@ -168,7 +169,7 @@ export function Materia() {
   if (!info.ativa) return <EmPreparacao m={m} />;
   if (!mc) return <div className="conteudo"><Carregando /></div>;
 
-  const r = resumoMateria(mc, s);
+  const r = resumoMateria(mc, s, Date.now(), agendaDe(e));
   const tg = e.treino[m];
   // questões do treino geral na região do aluno (+ ENEM), as mesmas que a rodada sorteia (logica/regiao.ts)
   const abc = questoesTreinoGeral(mc.conteudo.essencial.abc, mc.banco, rg.conj);

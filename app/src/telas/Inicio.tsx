@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { urlArteTreinoGeral, useTodasMaterias, type MateriaCarregada } from '../dados/conteudo';
 import { MATERIAS_ATIVAS, materia as infoMateria } from '../dados/materias';
 import { atualiza, useEstado } from '../estado/loja';
+import { agendaDe } from '../logica/revisao';
 import { materiaDeHoje, progressoEscada, questoesVencidas, resumoMateria, atividadeRecente } from '../logica/estatisticas';
 import { desempenhoPeriodo, destaque, diasDeConstancia } from '../logica/inicio';
 import { RODADA_PADRAO, RODADAS } from '../logica/treinoMisto';
@@ -58,7 +59,7 @@ function SuasMaterias({ todas, e }: { todas: MateriaCarregada[]; e: Estado }) {
         <div className="in-mats-rolo" ref={rolo} onScroll={mede} role="list">
           {MATERIAS_INICIO.map((m) => {
             const mc = todas.find((x) => x.id === m.id);
-            const r = mc ? resumoMateria(mc, e.materias[m.id] || VAZIA) : { total: 0, feitas: 0 };
+            const r = mc ? resumoMateria(mc, e.materias[m.id] || VAZIA, Date.now(), agendaDe(e)) : { total: 0, feitas: 0 };
             return (
               <Link key={m.id} to={`/m/${m.id}`} className={`in-mat m-${m.id}`} role="listitem"
                 aria-label={`${m.nome}: ${r.total ? `${r.feitas.toLocaleString('pt-BR')} de ${r.total.toLocaleString('pt-BR')} questões feitas` : 'questões em preparação'}`}>
@@ -194,7 +195,7 @@ function Desempenho({ e }: { e: Estado }) {
 /** Hora de revisar: as matérias de menor acerto (com pelo menos uma questão feita). */
 function HoraDeRevisar({ todas, e }: { todas: MateriaCarregada[]; e: Estado }) {
   const lista = todas
-    .map((mc) => { const s = e.materias[mc.id] || VAZIA; const r = resumoMateria(mc, s); return { mc, r, venc: r.feitas ? questoesVencidas(mc, s) : [] }; })
+    .map((mc) => { const s = e.materias[mc.id] || VAZIA; const ag = agendaDe(e); const r = resumoMateria(mc, s, Date.now(), ag); return { mc, r, venc: r.feitas ? questoesVencidas(mc, s, Date.now(), ag) : [] }; })
     .filter((x) => x.r.feitas > 0)
     .sort((a, b) => a.r.acertos / a.r.feitas - b.r.acertos / b.r.feitas || b.r.feitas - a.r.feitas)
     .slice(0, 3);

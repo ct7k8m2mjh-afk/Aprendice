@@ -11,7 +11,7 @@ import type { Letra, MateriaId, Questao } from '../dados/tipos';
 import {
   CTX_SLIDES, TEMPOS, escolheQuestoes, slideDaQuestao, fechaSessao, linhasFixe, novoAndamento, resumoSessao, sessaoBoa, slidesDoCiclo,
 } from '../logica/cicloRevisao';
-import { emDias } from '../logica/revisao';
+import { agendaDe, emDias } from '../logica/revisao';
 import { materiaDoCodigo } from '../logica/fracao';
 import { nivelDe, nomeNivel } from '../logica/nivel';
 import { Carregando, cap, plural, useTitulo } from '../ui/comum';
@@ -119,7 +119,7 @@ export function RevisaoSlides() {
     if (n.fase === 4) {
       const agora = Date.now();
       const dt = Math.min(600, Math.round((agora - tick.current) / 1000));
-      gravaRev(m, sub, (r) => fechaSessao(r, { ...n, seg: n.seg + dt }, agora));
+      gravaRev(m, sub, (r) => fechaSessao(r, { ...n, seg: n.seg + dt }, agora, agendaDe(pegaEstado(), agora)));
       setFechada(agora);
     } else muda(() => n);
     window.scrollTo({ top: 0 });

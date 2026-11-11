@@ -28,19 +28,20 @@ const SIMBOLOS: Record<string, string> = {
   sum: 'Σ', prod: 'Π', ell: 'ℓ', wedge: '∧', land: '∧', vee: '∨', lor: '∨', neg: '¬', lnot: '¬', therefore: '∴', because: '∵',
   uparrow: '↑', downarrow: '↓', updownarrow: '↕', leftrightarrow: '↔', longleftrightarrow: '⟷', Leftrightarrow: '⇔', iff: '⇔',
   longrightarrow: '⟶', nrightarrow: '↛', rightleftharpoons: '⇌', cong: '≅', equiv: '≡', sim: '∼', simeq: '≃', in: '∈', notin: '∉',
-  subset: '⊂', cup: '∪', cap: '∩', emptyset: '∅', partial: '∂', nabla: '∇', hbar: 'ℏ', angle: '∠', triangle: '△', bullet: '•',
+  subset: '⊂', supset: '⊃', mid: '∣', vdash: '⊢', cup: '∪', cap: '∩', emptyset: '∅', partial: '∂', nabla: '∇', hbar: 'ℏ', angle: '∠', triangle: '△', bullet: '•',
   alpha: 'α', beta: 'β', gamma: 'γ', delta: 'δ', epsilon: 'ε', varepsilon: 'ε', theta: 'θ', lambda: 'λ', mu: 'μ', pi: 'π',
   rho: 'ρ', sigma: 'σ', tau: 'τ', phi: 'φ', varphi: 'φ', omega: 'ω', eta: 'η', nu: 'ν', kappa: 'κ', xi: 'ξ', zeta: 'ζ', chi: 'χ', psi: 'ψ',
   Delta: 'Δ', Omega: 'Ω', Sigma: 'Σ', Phi: 'Φ', Theta: 'Θ', Lambda: 'Λ', Pi: 'Π', Gamma: 'Γ', Psi: 'Ψ',
   // funções: escritas em pé, como no caderno
-  cos: 'cos', sin: 'sen', sen: 'sen', tan: 'tg', tg: 'tg', log: 'log', ln: 'ln',
+  cos: 'cos', sin: 'sen', sen: 'sen', tan: 'tg', tg: 'tg', log: 'log', ln: 'ln', sec: 'sec', det: 'det',
 };
+const CONJUNTOS: Record<string, string> = { N: 'ℕ', Z: 'ℤ', Q: 'ℚ', R: 'ℝ', C: 'ℂ', I: 'I' };
 const ESPACOS: Record<string, 1 | 2 | 3 | 4> = { ',': 1, ':': 1, '>': 1, ';': 2, ' ': 2, quad: 3, qquad: 4 };
 const IGNORA = new Set(['left', 'right', 'displaystyle', 'textstyle', 'big', 'Big', 'bigl', 'bigr', 'mathrm', 'mathit', 'hline', 'limits', 'nolimits']);
 
 /** Analisa uma fórmula. Devolve as linhas (um "\\" dentro de gathered/aligned quebra a linha). */
 export function analisaLatex(src: string): NoMat[][] {
-  const s = src.replace(/\\begin\{(?:gathered|aligned|array|matrix)\}(?:\{[^}]*\})?/g, '').replace(/\\end\{(?:gathered|aligned|array|matrix)\}/g, '');
+  const s = src.replace(/\\begin\{(?:gathered|aligned|array|[pbvB]?matrix)\}(?:\{[^}]*\})?/g, '').replace(/\\end\{(?:gathered|aligned|array|[pbvB]?matrix)\}/g, '');
   let i = 0;
   const linhas: NoMat[][] = [[]];
 
@@ -101,6 +102,9 @@ export function analisaLatex(src: string): NoMat[][] {
       case 'sqrt': { out.push({ t: 'raiz', v: argumento() }); return; }
       case 'hat': case 'widehat': { const a = argumento(); for (const x of a) if (x.t === 'txt') txt(out, x.v + '\u0302'); else out.push(x); return; }
       case 'vec': case 'overrightarrow': { out.push({ t: 'vet', v: argumento() }); return; }
+      case 'overline': case 'bar': { const a = argumento(); for (const x of a) if (x.t === 'txt') txt(out, [...x.v].map((c) => c + '\u0305').join('')); else out.push(x); return; }
+      case 'mathbb': { const a = grupoTexto(); txt(out, [...a].map((c) => CONJUNTOS[c] || c).join('')); return; }
+      case 'binom': { const n = argumento(); const k = argumento(); txt(out, '('); out.push({ t: 'sobre', topo: n, v: k }); txt(out, ')'); return; }
       case 'xrightarrow': case 'xleftarrow': {
         // seta com o que está em cima ("\xrightarrow{nitrificação}")
         while (s[i] === ' ') i++;
@@ -120,12 +124,12 @@ export function analisaLatex(src: string): NoMat[][] {
         if (nome in SIMBOLOS) {
           const v = SIMBOLOS[nome];
           // operação e relação ficam entre espaços ("v · t", "⇒"), como no caderno
-          if (/^[·×÷±∓⇒⇐→←≈≠≤≥∝∧∨↔⟷⇔⟶↛⇌≅≡∼≃∈∉⊂∪∩]$/.test(v)) { txt(out, ' ' + v + ' '); return; }
+          if (/^[·×÷±∓⇒⇐→←≈≠≤≥∝∧∨↔⟷⇔⟶↛⇌≅≡∼≃∈∉⊂⊃∣⊢∪∩]$/.test(v)) { txt(out, ' ' + v + ' '); return; }
           // função colada a letra ou número antes ("2ab cos θ") e seguida de letra: espaços finos
           const ult = out[out.length - 1];
-          if (/^(cos|sen|tg|log|ln)$/.test(v) && ult && ult.t === 'txt' && /[A-Za-z0-9)]$/.test(ult.v)) out.push({ t: 'esp', w: 1 });
+          if (/^(cos|sen|tg|log|ln|sec|det)$/.test(v) && ult && ult.t === 'txt' && /[A-Za-z0-9)]$/.test(ult.v)) out.push({ t: 'esp', w: 1 });
           txt(out, v);
-          if (/^(cos|sen|tg|log|ln)$/.test(v) && /^\s*[A-Za-z0-9\\α-ω]/.test(s.slice(i))) out.push({ t: 'esp', w: 1 });
+          if (/^(cos|sen|tg|log|ln|sec|det)$/.test(v) && /^\s*[A-Za-z0-9\\α-ω]/.test(s.slice(i))) out.push({ t: 'esp', w: 1 });
           return;
         }
         txt(out, nome); // comando desconhecido: o nome, para não sumir nada
@@ -289,4 +293,4 @@ export function comandoConhecido(nome: string): boolean {
   return nome in SIMBOLOS || nome in ESPACOS || IGNORA.has(nome) || ESTRUTURA.has(nome);
 }
 const ESTRUTURA = new Set(['frac', 'dfrac', 'tfrac', 'sqrt', 'vec', 'overrightarrow', 'overset', 'stackrel', 'text', 'textrm', 'textit',
-  'textbf', 'mbox', 'operatorname', 'hat', 'widehat', 'xrightarrow', 'xleftarrow', 'mathrm', 'mathit', 'mathbf', 'ce', 'begin', 'end']);
+  'textbf', 'mbox', 'operatorname', 'hat', 'widehat', 'overline', 'bar', 'mathbb', 'binom', 'xrightarrow', 'xleftarrow', 'mathrm', 'mathit', 'mathbf', 'ce', 'begin', 'end']);

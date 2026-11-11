@@ -73,6 +73,8 @@ export interface Perfil {
   provasAlvo: string[];
   meta: number; // questões por semana
   criadoEm: number;
+  /** data de cada prova-alvo, "AAAA-MM-DD" (v7, comando 24 fase 2): a agenda da revisão conta a partir da próxima */
+  datasProva?: Record<string, string>;
 }
 
 /** Item de simulado. Questões do banco por matéria trazem m; questões de prova completa trazem p (id da prova),
@@ -128,8 +130,9 @@ export interface Estado {
   /** 1: formato inicial; 2: Filosofia e Sociologia unidas em 'fs'; 3: questões de sites didáticos retiradas, histórico
    *  levado à questão de prova equivalente ou guardado no id antigo (migracao.ts, migraEstado); 4: revisão em slides por
    *  conteúdo (EstadoMateria.revs, comandos 24 e 26); 5: Treino geral de todas as matérias (treinoMisto, comando 32).
-   *  6: região das provas (pref.regioes, pref.filtroRegiao; pedido do dono de 09/11/2026). Estado novo nasce na 6. */
-  versao: 2 | 3 | 4 | 5 | 6;
+   *  6: região das provas (pref.regioes, pref.filtroRegiao; pedido do dono de 09/11/2026).
+   *  7: agenda pela data da prova (perfil.datasProva, revisaoDesde; comando 24 fase 2). Estado novo nasce na 7. */
+  versao: 2 | 3 | 4 | 5 | 6 | 7;
   perfil: Perfil | null;
   materias: Partial<Record<MateriaId, EstadoMateria>>;
   simulado: SimuladoAndamento | null;
@@ -139,6 +142,9 @@ export interface Estado {
   treinoMisto: SessaoMisto | null;
   pref: Preferencias;
   migradoDe: string[];
+  /** v7: momento em que a revisão passou para a regra nova (agenda pela data da prova, saída com 3 acertos espaçados).
+   *  Tentativas anteriores seguem a regra antiga até esse momento (logica/revisao.ts, memoriaDe). 0 = estado novo. */
+  revisaoDesde?: number;
 }
 
 export function estadoMateriaVazio(): EstadoMateria {
@@ -147,7 +153,7 @@ export function estadoMateriaVazio(): EstadoMateria {
 
 export function estadoVazio(): Estado {
   return {
-    versao: 6,
+    versao: 7,
     perfil: null,
     materias: {},
     simulado: null,
@@ -156,5 +162,6 @@ export function estadoVazio(): Estado {
     treinoMisto: null,
     pref: { tema: 'claro', menuFechado: false, ultimaMateria: null, regioes: null, filtroRegiao: 'minha' },
     migradoDe: [],
+    revisaoDesde: 0,
   };
 }

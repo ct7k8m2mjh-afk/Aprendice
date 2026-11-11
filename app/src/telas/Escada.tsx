@@ -2,10 +2,10 @@ import { Link, useParams } from 'react-router-dom';
 import { useState } from 'react';
 import { useMateria } from '../dados/conteudo';
 import { materia as infoMateria } from '../dados/materias';
-import { useMateriaEstado } from '../estado/loja';
+import { pegaEstado, useMateriaEstado } from '../estado/loja';
 import { progressoEscada } from '../logica/estatisticas';
 import { NIVEIS, desempenhoPorNivel, feedbackNiveis, nivelDe, nomeNivel } from '../logica/nivel';
-import { filaDe, emDias } from '../logica/revisao';
+import { agendaDe, filaDe, emDias } from '../logica/revisao';
 import { Barra, Carregando, cap, plural, useTitulo } from '../ui/comum';
 import { Icone } from '../ui/Icone';
 import { CartaoTeoriaView } from './Tema';
@@ -25,6 +25,7 @@ export function Escada() {
   const { m, sub } = useParams() as { m: MateriaId; sub: string };
   const mc = useMateria(m);
   const s = useMateriaEstado(m);
+  const ag = agendaDe(pegaEstado());
   const [teoria, setTeoria] = useState(false);
   const rg = useRegiao();
   const resumos = useResumos(m); // comando 35: resumo curto do conteúdo
@@ -121,7 +122,7 @@ export function Escada() {
               {lv.map((q) => {
                 const t = s.q[q.id]?.tent || [];
                 const ult = t[t.length - 1];
-                const f = filaDe(s.q[q.id]);
+                const f = filaDe(s.q[q.id], ag);
                 return (
                   <li key={q.id}>
                     <Link to={`/m/${m}/q/${q.id}?ctx=escada`} className={'degrau' + (ult ? (ult.ok ? ' ok' : ' err') : '') + (q.id === prox?.id ? ' prox' : '')}>

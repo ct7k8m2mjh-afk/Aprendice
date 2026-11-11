@@ -166,8 +166,8 @@ describe('migração v5 -> v6 (região nas preferências)', () => {
     materias: { bio: { ...estadoMateriaVazio(), q: { P1: { tent: [tent], rev: true } }, ult: 'P1' } } } as unknown as Estado;
   it('ganha filtro "Minha região" e região automática, sem perder nada nem mudar ids', () => {
     const e = migraEstado(v5);
-    expect(VERSAO_ATUAL).toBe(6);
-    expect(e.versao).toBe(6);
+    expect(VERSAO_ATUAL).toBe(7);
+    expect(e.versao).toBe(7);
     expect(e.pref).toEqual({ tema: 'escuro', menuFechado: true, ultimaMateria: 'bio', regioes: null, filtroRegiao: 'minha' });
     expect(e.materias.bio!.q.P1).toEqual({ tent: [tent], rev: true });
     expect(e.materias.bio!.ult).toBe('P1');
@@ -180,9 +180,9 @@ describe('migração v5 -> v6 (região nas preferências)', () => {
     const ok = migraEstado({ ...v5, pref: { ...v5.pref, regioes: ['ne'], filtroRegiao: 'todas' } } as Estado);
     expect(ok.pref).toMatchObject({ regioes: ['ne'], filtroRegiao: 'todas' });
   });
-  it('estado novo já nasce na v6 e não muda ao migrar', () => {
+  it('estado novo já nasce na versão atual (v7) e não muda ao migrar', () => {
     const e = estadoVazio();
-    expect(e.versao).toBe(6);
+    expect(e.versao).toBe(7);
     expect(migraEstado(e)).toEqual(e);
   });
 });

@@ -4,6 +4,7 @@ import { useTodasMaterias } from '../dados/conteudo';
 import { nomeMateria } from '../dados/materias';
 import { useEstado } from '../estado/loja';
 import { comHistorico, resumoMateria, semana, tempoTotal } from '../logica/estatisticas';
+import { agendaDe } from '../logica/revisao';
 import { desempenhoPorNivel, feedbackNiveis, nomeNivel, pontosFracos } from '../logica/nivel';
 import { Barra, Carregando, cap, horasMin, plural, useTitulo } from '../ui/comum';
 import { IconeMateria } from '../ui/IconeMateria';
@@ -19,7 +20,7 @@ export function Desempenho() {
   if (!todas) return <div className="conteudo"><Carregando /></div>;
 
   const sem = semana(e);
-  const resumos = todas.map((mc) => ({ mc, s: e.materias[mc.id] || estadoMateriaVazio(), r: resumoMateria(mc, e.materias[mc.id] || estadoMateriaVazio()) }));
+  const resumos = todas.map((mc) => ({ mc, s: e.materias[mc.id] || estadoMateriaVazio(), r: resumoMateria(mc, e.materias[mc.id] || estadoMateriaVazio(), Date.now(), agendaDe(e)) }));
   const feitas = resumos.reduce((a, x) => a + x.r.feitas, 0);
   const tent = resumos.reduce((a, x) => a + x.r.tentativas, 0);
   const okT = resumos.reduce((a, x) => a + x.r.acertoTentativas, 0);

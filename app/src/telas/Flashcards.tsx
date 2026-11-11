@@ -4,7 +4,7 @@ import { EH_PREVIA, useMateria } from '../dados/conteudo';
 import { materia as infoMateria } from '../dados/materias';
 import { atualizaMateria, pegaEstado, useMateriaEstado } from '../estado/loja';
 import { cartoesAtivos } from '../logica/estatisticas';
-import { flashVencido, marcaFlash } from '../logica/revisao';
+import { agendaDe, flashVencido, marcaFlash } from '../logica/revisao';
 import { Barra, Carregando, cap, plural, useTitulo } from '../ui/comum';
 import { Icone, type NomeIcone } from '../ui/Icone';
 import { IcTema } from '../ui/IconeTema';
@@ -16,7 +16,7 @@ import type { Flashcard, MateriaId } from '../dados/tipos';
 const N_SESSAO = 20;
 
 export function notaFlash(m: MateriaId, id: string, n: Nota, origem: string) {
-  atualizaMateria(m, (s) => ({ ...s, flash: { ...s.flash, [id]: marcaFlash(s.flash[id], n, Date.now(), origem) } }));
+  atualizaMateria(m, (s) => ({ ...s, flash: { ...s.flash, [id]: marcaFlash(s.flash[id], n, Date.now(), origem, agendaDe(pegaEstado())) } }));
 }
 
 export function Flashcards({ sessao = false }: { sessao?: boolean }) {

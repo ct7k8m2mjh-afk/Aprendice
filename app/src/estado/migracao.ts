@@ -184,7 +184,7 @@ export function migraDoNavegador(estado: Estado, ler: (k: string) => string | nu
  * v1 -> v2 (comando 18 do dono): Filosofia ('fil') e Sociologia ('soc') viram UMA matéria, Filosofia e Sociologia ('fs').
  * Os ids de questões, temas e cartões não mudam; o progresso das duas é mesclado na matéria nova sem perder nada. */
 
-export const VERSAO_ATUAL = 6;
+export const VERSAO_ATUAL = 7;
 const ANTIGAS = Object.keys(MATERIA_UNIDA) as (keyof typeof MATERIA_UNIDA)[];
 
 /** Momento da última atividade de uma matéria (tentativas, cartões, sessões), para escolher o "continuar de onde parou". */
@@ -370,13 +370,29 @@ export function v5paraV6(e: Estado): Estado {
   return { ...e, versao: 6, pref: { ...pref, regioes: regioes.length ? regioes : null, filtroRegiao } };
 }
 
+/* v6 -> v7 (comando 24, fase 2 do Método Aprendice de Revisão): agenda pela data da prova, painel de domínio e saída
+ * da revisão com 3 acertos espaçados. As tentativas, as revisões de conteúdo, os flashcards e os ids NÃO mudam: a fila
+ * da revisão é sempre refeita a partir das tentativas (logica/revisao.ts, memoriaDe). O estado ganha só:
+ * - `revisaoDesde` = o momento da migração: tentativas anteriores seguem a regra antiga (1, 3, 7, 16, 35 dias) até ali;
+ *   no corte, a etapa antiga vira os acertos espaçados e o dia marcado continua o mesmo (o histórico vira o ponto de
+ *   partida da memória). Um corte já gravado (arquivo de outra versão, migração repetida) é mantido;
+ * - `perfil.datasProva` = datas das provas-alvo, vazio (o aluno informa no Perfil; datas inválidas saem). */
+export function v6paraV7(e: Estado, agora = Date.now()): Estado {
+  const perfil = obj<NonNullable<Estado['perfil']>>(e.perfil);
+  const datas = obj<Record<string, unknown>>(perfil?.datasProva) || {};
+  const datasProva = Object.fromEntries(Object.entries(datas).filter((x): x is [string, string] => typeof x[1] === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(x[1])));
+  const desde = typeof e.revisaoDesde === 'number' && e.revisaoDesde > 0 ? e.revisaoDesde : agora;
+  return { ...e, versao: 7, perfil: perfil ? { ...perfil, datasProva } : e.perfil, revisaoDesde: desde };
+}
+
 /** Leva um estado salvo (de qualquer versão conhecida) ao formato atual. Estado já atual volta sem mudança. */
-export function migraEstado(d: Estado | (Omit<Estado, 'versao'> & { versao: number }), tabela: TabelaRetiradas = RETIRADAS): Estado {
+export function migraEstado(d: Estado | (Omit<Estado, 'versao'> & { versao: number }), tabela: TabelaRetiradas = RETIRADAS, agora = Date.now()): Estado {
   let e = d as Estado;
   if ((e.versao as number) < 2) e = v1paraV2({ ...e, versao: 2 });
   if ((e.versao as number) < 3) e = { ...e, versao: 3 };
   if ((e.versao as number) < 4) e = v3paraV4(e);
   if ((e.versao as number) < 5) e = v4paraV5(e);
   if ((e.versao as number) < 6) e = v5paraV6(e);
+  if ((e.versao as number) < 7) e = v6paraV7(e, agora);
   return aplicaRetiradas(e, tabela);
 }

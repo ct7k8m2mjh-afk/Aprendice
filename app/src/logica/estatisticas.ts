@@ -1,7 +1,7 @@
 import type { EstadoMateria, Estado } from '../estado/tipos';
 import type { MateriaCarregada } from '../dados/conteudo';
 import type { MateriaId, Questao } from '../dados/tipos';
-import { filaDe, flashVencido, iniDia, DIA, type Fila } from './revisao';
+import { filaDe, flashVencido, iniDia, DIA, SEM_AGENDA, type Agenda, type Fila } from './revisao';
 
 /** Questões em que o aluno pode ter histórico: as do banco e as de site retiradas sem equivalente (comando 21),
  *  que não aparecem mais mas continuam contando no desempenho (nunca mostrar a lista: use mc.banco para isso). */
@@ -11,12 +11,12 @@ export function comHistorico(mc: MateriaCarregada): Questao[] {
 
 /** Revisão de uma questão retirada: vale pelo conteúdo. As respostas dadas depois a outras questões do mesmo
  *  conteúdo contam como a revisão dela (acertou na data, avança; errou, volta a 1 dia). */
-export function filaRetirada(mc: MateriaCarregada, s: EstadoMateria, r: Questao): Fila | null {
+export function filaRetirada(mc: MateriaCarregada, s: EstadoMateria, r: Questao, ag: Agenda = SEM_AGENDA): Fila | null {
   const eq = s.q[r.id];
   if (!eq?.tent.length) return null;
   const ult = eq.tent[eq.tent.length - 1].ts;
   const depois = (mc.porSub.get(r.sub) || []).flatMap((q) => (s.q[q.id]?.tent || []).filter((t) => t.ts > ult));
-  return filaDe({ tent: [...eq.tent, ...depois].sort((a, b) => a.ts - b.ts) });
+  return filaDe({ tent: [...eq.tent, ...depois].sort((a, b) => a.ts - b.ts) }, ag);
 }
 
 export interface ResumoMateria {
@@ -30,7 +30,7 @@ export interface ResumoMateria {
   flashNovos: number;
 }
 
-export function resumoMateria(mc: MateriaCarregada, s: EstadoMateria, agora = Date.now()): ResumoMateria {
+export function resumoMateria(mc: MateriaCarregada, s: EstadoMateria, agora = Date.now(), ag: Agenda = SEM_AGENDA): ResumoMateria {
   let feitas = 0, acertos = 0, tentativas = 0, acertoTentativas = 0;
   for (const q of comHistorico(mc)) {
     const eq = s.q[q.id];
@@ -40,7 +40,7 @@ export function resumoMateria(mc: MateriaCarregada, s: EstadoMateria, agora = Da
     tentativas += eq.tent.length;
     acertoTentativas += eq.tent.filter((t) => t.ok).length;
   }
-  const vencidas = questoesVencidas(mc, s, agora).length;
+  const vencidas = questoesVencidas(mc, s, agora, ag).length;
   const cartoes = cartoesAtivos(mc, s);
   const flashVencidos = cartoes.filter((c) => flashVencido(s.flash[c.id], agora)).length;
   const flashNovos = cartoes.filter((c) => !s.flash[c.id]?.hist?.length).length;
@@ -52,22 +52,24 @@ export function cartoesAtivos(mc: MateriaCarregada, s: EstadoMateria) {
   return [...mc.conteudo.flash, ...mc.conteudo.flashImg].filter((c) => s.flg[c.id]?.g !== -1);
 }
 
-export function questoesVencidas(mc: MateriaCarregada, s: EstadoMateria, ate = Date.now()): Questao[] {
+export function questoesVencidas(mc: MateriaCarregada, s: EstadoMateria, ate = Date.now(), ag: Agenda = SEM_AGENDA): Questao[] {
   const l = mc.banco
-    .map((q) => ({ q, vence: filaDe(s.q[q.id])?.vence }))
-    .filter((x): x is { q: Questao; vence: number } => x.vence !== undefined && x.vence <= ate);
+    .map((q) => ({ q, f: filaDe(s.q[q.id], ag) }))
+    .map(({ q, f }) => ({ q, vence: f?.vence, certeza: !!f?.certeza }))
+    .filter((x): x is { q: Questao; vence: number; certeza: boolean } => x.vence !== undefined && x.vence <= ate);
   // questão retirada vencida: entra no lugar dela outra questão do mesmo conteúdo, da dificuldade mais próxima
   const usadas = new Set(l.map((x) => x.q.id));
   for (const r of mc.retiradas || []) {
-    const f = filaRetirada(mc, s, r);
+    const f = filaRetirada(mc, s, r, ag);
     if (!f || f.vence > ate) continue;
     const q = (mc.porSub.get(r.sub) || []).filter((x) => !usadas.has(x.id))
       .sort((a, b) => Math.abs(a.dif - r.dif) - Math.abs(b.dif - r.dif) || (s.q[a.id]?.tent.length || 0) - (s.q[b.id]?.tent.length || 0))[0];
     if (!q) continue;
     usadas.add(q.id);
-    l.push({ q, vence: f.vence });
+    l.push({ q, vence: f.vence, certeza: f.certeza });
   }
-  return l.sort((a, b) => a.vence - b.vence).map((x) => x.q);
+  // pilar 3: o erro com certeza vem primeiro; depois a que venceu há mais tempo
+  return l.sort((a, b) => Number(b.certeza) - Number(a.certeza) || a.vence - b.vence).map((x) => x.q);
 }
 
 /** Progresso de uma escada: degraus distintos e quantos já foram acertados. */
