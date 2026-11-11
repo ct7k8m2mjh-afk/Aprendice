@@ -460,12 +460,17 @@ def artes_sangradas(pg, lp):
 _cache_selos = {}
 
 
-def selos_da_pagina(pg):
-    """Retângulos pintados baixos (até 30 pt) da página: selos/faixas do número da questão."""
-    k = (id(pg.parent), pg.number)
+def selos_da_pagina(pg, linha_grossa=False):
+    """Retângulos pintados baixos (até 30 pt) da página: selos/faixas do número da questão. Com linha_grossa, também a
+    faixa desenhada como traço grosso (Einstein: traço de 14 pt atrás de "QUESTÃO NN")."""
+    k = (id(pg.parent), pg.number, linha_grossa)
     if k not in _cache_selos:
         _cache_selos[k] = [pymupdf.Rect(d['rect']) for d in pg.get_drawings()
                            if 6 < d['rect'].height < 30 and d['rect'].width > 8]
+        if linha_grossa:
+            _cache_selos[k] += [pymupdf.Rect(d['rect'].x0, d['rect'].y0 - d['width'] / 2, d['rect'].x1, d['rect'].y1 + d['width'] / 2)
+                                for d in pg.get_drawings() if d['rect'].height < 1 and 6 < (d.get('width') or 0) < 30
+                                and d['rect'].width > 8]
     return _cache_selos[k]
 
 
@@ -565,8 +570,8 @@ def eventos_do_pdf(pdf, cfg, faixa=None):
                 c += 1   # número num selo que começa um pouco antes da divisa (Unitins 2021/2: "QUESTÃO 31" em x≈292)
             if m and x0 - cols[c][0] <= dx:
                 # selo desenhado em volta do número ("QUESTÃO 15" numa faixa colorida): a questão começa no alto do selo
-                for r_ in selos_da_pagina(pg):
-                    if r_.y0 < y0 + 1 and r_.y1 > y0 and y0 - r_.y0 < 10 and r_.x0 - 2 <= x0 <= r_.x1:
+                for r_ in selos_da_pagina(pg, cfg.get('selo_linha_grossa', False)):
+                    if r_.y0 < y0 + 1 and r_.y1 > y0 and y0 - r_.y0 < 10 and r_.x0 - 2 <= x0 <= r_.x1 + cfg.get('selo_dx', 0):
                         y0 = min(y0, r_.y0)
                 if cfg.get('ancora_bloco'):
                     # número centrado na altura do parágrafo ao lado (texto ao lado de figura, Unicentro 2026):
@@ -632,7 +637,7 @@ def eventos_do_pdf(pdf, cfg, faixa=None):
                                 mt = re.match(r'(?i)^text\s+(\d+)\s*$', t)
                             yi = y0
                             # frase de instrução quebrada em duas linhas: começa na linha de cima
-                            if li > 0 and coluna_de(lp[li - 1]['bbox'][0], cols) == c and (-3 if cfg.get('suporte_aperto') else 0) <= y0 - lp[li - 1]['bbox'][3] < 5 \
+                            if li > 0 and coluna_de(lp[li - 1]['bbox'][0], cols) == c and (-4 if cfg.get('suporte_aperto') else 0) <= y0 - lp[li - 1]['bbox'][3] < 5 \
                                     and not re.match(cfg['ancora'], lp[li - 1]['t']) and lp[li - 1]['bbox'][1] >= cfg['topo'] \
                                     and lp[li - 1]['t'].strip() not in cfg.get('secoes', {}) \
                                     and not any(re.search(rx_, lp[li - 1]['t']) for rx_, _ in cfg.get('secoes_rx', [])) \

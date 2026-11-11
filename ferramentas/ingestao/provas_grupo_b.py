@@ -117,12 +117,13 @@ def mais_provas():
     P['unitins-2024-1-c2']['suporte'] = P['unitins-2024-1-c2']['suporte'] + [r'(?i)^texto as quest']   # "Texto as questões de 31 a 34."
     # Prints que a emenda de colunas/faixas não deixa fiéis (fórmula, tabela, figura ou linha partida; alternativa
     # faltando), conferidos na folha de contato e pela conferência separada: ficam fora até serem refeitos à mão
-    EXCL = {'unitins-2021-1': (11, 17, 20, 21, 23), 'unitins-2021-2': (4, 8, 17, 18, 19, 21, 26),
-            'unitins-2022-1': (13, 14, 25, 28, 30, 31, 37), 'unitins-2023-1': (10, 47), 'unitins-2023-1-c2': (8, 9, 30),
+    EXCL = {'unitins-2021-1': (11, 17, 20, 21, 23, 39), 'unitins-2021-2': (4, 8, 17, 18, 19, 21, 26),
+            'unitins-2022-1': (13, 14, 25, 28, 30, 31, 37), 'unitins-2023-1': (3, 10, 47), 'unitins-2023-1-c2': (8, 9, 30),
             'unitins-2024-1': (13, 15, 24), 'unitins-2024-1-c2': (11, 13, 25, 27, 29), 'unitins-2025-1-c2': (23, 24, 45),
             'unitins-2026-1': (4, 30), 'unitins-2026-1-c2': (2, 4, 28)}
     for k, ns in EXCL.items():
         P[k]['excluir'] = {n: 'recorte' for n in ns}
+    P['unitins-2026-1-c2']['aperta_moldura'] = True   # moldura vazia até o pé da página (q45)
     # selo (faixa azul-clara) do número da questão seguinte que sobra no pé do print
     for k in ('unitins-2021-2', 'unitins-2022-1', 'unitins-2022-1-med', 'unitins-2023-1', 'unitins-2023-1-c2'):
         P[k]['pe_cor'] = (185, 210, 214)
@@ -264,6 +265,9 @@ def mais_provas():
     ufrr('ufrr-2021', 2021)
     ufrr('ufrr-2022', 2022)
     ufrr('ufrr-2023', 2023)
+    # auditoria separada: verso/linha partidos na emenda das fatias, conferidos no print
+    P['ufrr-2021']['excluir'] = {52: 'recorte'}
+    P['ufrr-2023']['excluir'] = {64: 'recorte'}
 
     # ------------------------------------------------------------------------------------------------ IME
     # Concurso de Admissão (Formação e Graduação), 1ª fase: prova objetiva de 40 questões A–E (Matemática 1–15, Física
@@ -359,7 +363,7 @@ def mais_provas():
                 'da UFG): 54 questões A–D. Língua estrangeira: inglês. Redação fora. Gabarito oficial (edital 97/2019); '
                 'anulada fica fora.',
         'cadernos': [{'arquivo': 'caderno', 'paginas': (3, 999)}],
-        'colunas': lambda r: [(24, 297), (297, r.width - 24)], 'margem': 24, 'topo': 44, 'base': 30,
+        'colunas': lambda r: [(24, 297), (297, r.width - 24)], 'margem': 24, 'topo': 44, 'base': 40,
         'ancora': r'^▬?\s*QUEST[ÃA]O\s+(\d{1,2})\b', 'ancora_dx': 14, 'sequencial': True,
         'secoes_rx': secs20, 'pular_secoes': ('Espanhol',), 'pular_antes_sequencia': True,
         'corte': [r'^▬?\s*RASCUNHO', r'(?i)^REDA[ÇC][ÃA]O$', r'-Tipo 1$'],

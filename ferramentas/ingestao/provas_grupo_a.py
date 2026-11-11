@@ -375,3 +375,11 @@ PROVAS['einstein-2021-2-enf']['cadernos'] = [{'arquivo': 'caderno', 'paginas': (
 for _k in ('santacasa-2021', 'santacasa-2022', 'santacasa-2022-demais', 'einstein-2021', 'einstein-2021-2-enf', 'einstein-2022-2-enf',
            'einstein-2023', 'fmj-2021', 'fmj-2022', 'saocamilo-2021-2', 'saocamilo-2022-2', 'anhembi-2022'):
     PROVAS[_k]['suporte'] = PROVAS[_k]['suporte'] + [r'(?i)^as quest[õo]es (de )?\d+ (e|a) \d+ referem']
+# Selo redondo à esquerda de "QUESTÃO NN" (Vunesp 2021–2023, Anhembi 2022): o círculo começa ~7 pt acima do texto e
+# termina 1 pt antes dele; a questão começa no alto do selo (a anterior não leva o arco do selo da seguinte)
+for _k in ('santacasa-2021', 'santacasa-2022', 'santacasa-2022-demais', 'einstein-2021', 'einstein-2021-2-enf', 'einstein-2022-2-enf',
+           'einstein-2023', 'fmj-2021', 'fmj-2022', 'saocamilo-2021-2', 'saocamilo-2022-2', 'anhembi-2022'):
+    PROVAS[_k]['selo_dx'] = 4
+for _k in ('einstein-2021', 'einstein-2021-2-enf', 'einstein-2022-2-enf', 'einstein-2023'):
+    PROVAS[_k]['selo_linha_grossa'] = True   # faixa de "QUESTÃO NN" é um traço de 14 pt que sobe 2 pt acima do texto
+PROVAS['anhembi-2022']['selo_dx'] = 12        # círculo azul a ~10 pt à esquerda de "QUESTÃO"
