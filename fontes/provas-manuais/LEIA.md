@@ -6,6 +6,7 @@ No site a fonte mostrada é a da prova (instituição, banca, ano); a origem do 
 
 | Sigla | Ano | Arquivos | Origem (link do dono, 11/11/2026) | Situação |
 |---|---|---|---|---|
+| — | — | — | — | Lista completa (129 arquivos de 26 instituições, 2020+) em `manifesto.json`; os PDFs ficam fora do git: `python3 ferramentas/ingestao/baixa_brasilescola.py sigla=slug ...` baixa de novo (slugs no manifesto, campo origem) |
 | einstein | 2021-1 | prova-1.pdf, prova-2.pdf, gabarito-prova-1.pdf | vestibular.brasilescola.uol.com.br/baixar/47298 | baixado; cadernos oficiais (Vunesp) |
 | einstein | 2021-2-enfermagem | caderno-e-gabarito.pdf | /baixar/47363 | baixado |
 | einstein | 2022-2-enfermagem | CADERNO_..., GABARITO_... | /baixar/47524 | baixado |
