@@ -5,6 +5,7 @@
   python3 ferramentas/ingestao/refaz_print.py <prova> <n> --seg P:x0,y0,x1,y1 [--seg ...]   trechos à mão (pontos do PDF,
                                                                                página P contada a partir de 1), empilhados
   --previa   só gera a imagem em /tmp para conferir, sem gravar
+  --sem-vermelho   caderno comentado (resposta marcada em vermelho): o vermelho vira cinza-escuro, para não entregar a letra
   --zoom     grava também uma ampliação 2x em docs/resolucoes/apoio/<id>.png (questões de figura miúda)
 
 O PDF vem do link oficial em prova.json (fontes[caderno]) e fica em fontes/cache-pdf/ (fora do git).
@@ -84,6 +85,19 @@ def regiao_auto(pg, hit):
     return [(pg.number, fitz.Rect(x0 - 2, hit.y0 - 4, x1 + 2, yb + 6))]
 
 
+def sem_vermelho(im):
+    """Pixel avermelhado (r bem acima de g e b) vira cinza com a luminância de min(g, b): texto vermelho fica preto,
+    a borda suavizada fica cinza. Usado nos cadernos comentados, que pintam a alternativa certa de vermelho."""
+    import numpy as np
+    a = np.asarray(im.convert('RGB')).astype(int)
+    r, g, b = a[..., 0], a[..., 1], a[..., 2]
+    m = (r - np.maximum(g, b) > 50)
+    v = np.minimum(g, b)
+    for k in range(3):
+        a[..., k] = np.where(m, v, a[..., k])
+    return Image.fromarray(a.astype('uint8'))
+
+
 def render(doc, segs):
     larg_pt = max(r.width for _, r in segs)
     z = LARG / larg_pt
@@ -121,6 +135,8 @@ def main():
         i, hit = acha_questao(doc, n, q.get('paginas') or [])
         segs = regiao_auto(doc[i], hit)
     im, z = render(doc, segs)
+    if '--sem-vermelho' in a:
+        im = sem_vermelho(im)
     if previa:
         out = f'/tmp/previa-{pid}-{n}.png'
         im.save(out)
