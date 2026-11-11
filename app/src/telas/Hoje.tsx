@@ -50,7 +50,7 @@ function EscudoTri({ esc, aoComecar }: { esc: Escudo; aoComecar: () => void }) {
           <h2 id="hj-esc-tit">Escudo TRI</h2>
           <p>No ENEM, quem erra a fácil e acerta a difícil ganha menos pontos que quem acerta as duas fáceis: a TRI confere a coerência das respostas. Garanta primeiro as questões fáceis (nível 1 a {FACIL_MAX}) dos conteúdos que o ENEM cobra.</p>
         </div>
-        {esc.erradas > 0 && <button className="btn hj-esc-btn" onClick={aoComecar}>Revisar as fáceis <span className="num">({esc.sessao.length})</span></button>}
+        {esc.erradas > 0 && <button className="btn sec hj-esc-btn" onClick={aoComecar}>{`Revisar as fáceis (${esc.sessao.length})`}</button>}
       </div>
       <dl className="hj-esc-nums">
         <div className={esc.erradas ? 'err' : ''}><dt>Fáceis erradas</dt><dd className="num">{esc.erradas}</dd></div>
