@@ -12,7 +12,7 @@ Revisão em 3 lentes sucessivas (fatos → compreensão do aluno → fatos de no
 | Física | `docs/revisao/fis/geral.json` | 50 de 50 | 50 | 1 | revisada completa, com "conferir" |
 | Química | `docs/revisao/qui/geral.json` | 58 de 58 | 58 | 2 | revisada completa, com "conferir" |
 | Geografia | `docs/revisao/geo/geral.json` | 45 de 45 | 45 | 3 | revisada completa, com "conferir" |
-| História | `docs/revisao/his/geral.json` | 0 de 57 | — | — | **não revisada** (retomar aqui) |
+| História | `docs/revisao/his/geral.json` | 57 de 57 | 57 | 3 | revisada completa, com "conferir" |
 | Filosofia e Sociologia | `docs/revisao/fs/geral.json` | 0 de 86 | — | — | **não revisada** (retomar aqui) |
 
 ## Português
@@ -327,4 +327,80 @@ Revisão em 3 lentes sucessivas (fatos → compreensão do aluno → fatos de no
 ### Pendências de decisão do dono
 
 - GK43: manter o corte do livro para cidade média (100 mil a 1 milhão) ou adotar o do IBGE/Ipea (100 mil a 500 mil)?
+
+## História
+
+### Erros de fato encontrados no trabalho anterior (23)
+
+1. HK32 — os estados da França do Antigo Regime estavam trocados: "primeiro estado (nobreza), segundo (clero)". O primeiro estado é o clero; o segundo, a nobreza. A Convenção aparecia como 1792–1794 (vai até 1795).
+2. HK49 — "Yalta criou a ONU" (a ONU foi fundada na Conferência de São Francisco, em 1945); "Mussolini deposto em 1943, com participação brasileira" (a FEB só chegou à Itália em 1944); "mais de 300 mil civis mortos" pelas bombas atômicas (estimativas: 110 a 210 mil até o fim de 1945); Potsdam como criadora do Tribunal de Nuremberg.
+3. HK12 — peste negra teria matado "entre 8 e 10 milhões de pessoas, quase metade da população europeia" (estimativas: 25 milhões ou mais, cerca de um terço).
+4. HK08 — "árabes dominaram regiões do império, incluindo Constantinopla": os árabes nunca tomaram Constantinopla (cruzados em 1204, otomanos em 1453).
+5. HK09 — Carlos Magno "imperador do Sacro Império Romano-Germânico": foi coroado imperador dos romanos em 800; o Sacro Império é de 962.
+6. HK55 — tripé macroeconômico atribuído ao Plano Real e ao governo Itamar (é de 1999, segundo governo FHC); "surgimento do MST" no governo FHC (o MST é de 1984).
+7. HK14 — Carlos V "aliou-se aos luteranos"; Zwinglio listado como anabatista; Igreja anglicana criada "em 1529" (Ato de Supremacia, 1534).
+8. HK34 — escravidão nos EUA "abolida em 1862" (Proclamação de Emancipação, 1863; 13ª Emenda, 1865); Havaí estado "em 1957" (1959).
+9. HK36 — D. Pedro II com "15 anos" no Golpe da Maioridade (tinha 14); Balaiada iniciada em 1837 (1838).
+10. HK16 — casamento de Fernando e Isabel "em 1496" (1469).
+11. HK21 — holandeses em Salvador "1624–1645" (1624–1625).
+12. HK53 — plebiscito do presidencialismo "em 1962" (6 de janeiro de 1963).
+13. HK54 — ditadura uruguaia "1973–1990" (1973–1985); Nicarágua desde 1934 (Somoza chega ao poder em 1936).
+14. HK40 — República Oligárquica "1889–1930" (1894–1930).
+15. HK25 — "retorno dos jesuítas" depois da queda de Pombal (não houve; a ordem só foi restaurada em 1814).
+16. HK29 — "Gustavo II" como déspota esclarecido (é Gustavo III).
+17. HK39 — portugueses expulsos da Índia "exceto Bombaim" (mantiveram Goa, Damão e Diu; Bombaim foi cedida à Inglaterra).
+18. HK04 — Guerras Médicas "496–448 a.C." (499–449 a.C.); período homérico até 700 a.C. (c. 800 a.C.).
+19. HK07 — café no comércio da Arábia pré-islâmica (anacronismo de quase mil anos).
+20. HK20 — pecuária entre as atividades dos povos indígenas antes da colonização.
+21. HK43 — governo provisório russo "liderado por mencheviques".
+22. HK06 — capital do Império do Oriente como "Bizâncio"; faltava Teodósio (cristianismo oficial em 380).
+23. HK15 — Revolução Puritana "1642–1648" (1649); HK30 — guerra de independência dos EUA iniciada "em 1776" (1775); HK33 — Código Civil antes do consulado vitalício; HK52 — "Rubem Vaz" (Rubens Vaz).
+
+### Todas as alterações
+
+| id | o que mudou | por quê | fonte | lente |
+|---|---|---|---|---|
+| HK02 | Luzia: "um dos mais antigos" e idade aproximada | "o crânio mais antigo da América" é afirmação absoluta que achados posteriores contestam; a idade é estimativa | Museu Nacional/UFRJ, https://www.museunacional.ufrj.br | 1 |
+| HK04 | datas das Guerras Médicas (499–449 a.C.) e dos períodos homérico e arcaico (limite em c. 800 a.C.); pegadinha Atenas × Esparta | datas erradas: "496–448 a.C." e período homérico até 700 a.C. | Enciclopédia Britannica, https://www.britannica.com/event/Greco-Persian-Wars | 1 |
+| HK06 | Editos de Milão (313) e Tessalônica (380), divisão de 395 e capital do Oriente (Constantinopla) | faltava Teodósio e a oficialização do cristianismo; a capital do Oriente estava como "Bizâncio", nome anterior a Constantino | Enciclopédia Britannica, https://www.britannica.com/place/Roman-Empire | 1 |
+| HK07 | retirado o café do comércio da Arábia pré-islâmica | anacronismo: o café só passa a ser consumido e comerciado na Arábia por volta do século XV | Enciclopédia Britannica, https://www.britannica.com/topic/coffee | 1 |
+| HK08 | Constantinopla não foi tomada pelos árabes | erro: os árabes cercaram Constantinopla (674–678 e 717–718) e foram repelidos; a cidade caiu para os cruzados (1204) e para os otomanos (1453) | Enciclopédia Britannica, https://www.britannica.com/place/Byzantine-Empire | 1 |
+| HK09 | Carlos Magno: imperador dos romanos (800), não do Sacro Império Romano-Germânico | erro: o Sacro Império Romano-Germânico é de 962 (Oto I); Carlos Magno governou o Império Carolíngio | Enciclopédia Britannica, https://www.britannica.com/biography/Charlemagne | 1 |
+| HK12 | mortos pela peste negra | erro de número: 8 a 10 milhões não é "quase metade" da Europa da época; as estimativas falam em 25 milhões ou mais, cerca de um terço da população | Enciclopédia Britannica, https://www.britannica.com/event/Black-Death | 1 |
+| HK14 | Carlos V e os luteranos; Zwinglio não era anabatista; Igreja anglicana criada em 1534 | erros: Carlos V combateu os luteranos (só fez concessões); Zwinglio perseguiu os anabatistas; a Igreja anglicana nasce com o Ato de Supremacia (1534), não em 1529 | Enciclopédia Britannica, https://www.britannica.com/event/Reformation | 1 |
+| HK15 | Revolução Puritana: 1642–1649 | Carlos I foi executado em 1649 | Enciclopédia Britannica, https://www.britannica.com/event/English-Civil-Wars | 1 |
+| HK16 | casamento de Fernando e Isabel: 1469 (1496 é o título de Reis Católicos); Granada, 1492 | erro de data | Enciclopédia Britannica, https://www.britannica.com/biography/Ferdinand-II-king-of-Spain | 1 |
+| HK19 | chapetones definidos | "ou descendentes diretos" confundia chapetones com criollos | Enciclopédia Britannica, https://www.britannica.com/topic/Creole | 1 |
+| HK20 | retirada a pecuária dos povos indígenas | os povos indígenas do Brasil não criavam gado antes da colonização | Boris Fausto, História do Brasil (Edusp) | 1 |
+| HK21 | holandeses em Salvador: 1624–1625 | erro de data (1645) | Boris Fausto, História do Brasil (Edusp) | 1 |
+| HK24 | Pombal: ministro de D. José I (1750–1777); expulsão dos jesuítas em 1759 | o tópico omitia o rei porque o livro cita D. João V, errado | Enciclopédia Britannica, https://www.britannica.com/biography/Sebastiao-Jose-de-Carvalho-e-Mello-marques-de-Pombal | 1 |
+| HK25 | retirado o "retorno dos jesuítas"; Alvará de 1785; execução de Tiradentes em 1792 | erro: os jesuítas não voltaram com a queda de Pombal (a ordem só foi restaurada em 1814) | Boris Fausto, História do Brasil (Edusp); Arquivo Nacional, http://historiacolonial.arquivonacional.gov.br | 1 |
+| HK29 | Gustavo II → Gustavo III; Émilie du Châtelet pelo nome usual | erro: o déspota esclarecido sueco é Gustavo III (1771–1792); Gustavo II é do século XVII | Enciclopédia Britannica, https://www.britannica.com/biography/Gustav-III | 1 |
+| HK30 | Segundo Congresso Continental e início da guerra: 1775 | a guerra começou em 1775, um ano antes da Declaração | Enciclopédia Britannica, https://www.britannica.com/topic/Continental-Congress | 1 |
+| HK31 | ano do início da revolta (1791) | faltava a data inicial | Enciclopédia Britannica, https://www.britannica.com/topic/Haitian-Revolution | 2 |
+| HK32 | primeiro estado = clero, segundo = nobreza; Convenção 1792–1795; Terror 1793–1794 | erro: os dois primeiros estados estavam trocados; a Convenção vai até 1795 | Enciclopédia Britannica, https://www.britannica.com/event/French-Revolution | 1 |
+| HK33 | ordem dos fatos: cônsul vitalício (1802), Código Civil e Império (1804) | a frase punha o Código Civil antes de 1802 | Enciclopédia Britannica, https://www.britannica.com/biography/Napoleon-I | 1 |
+| HK34 | Proclamação de Emancipação (1863); Havaí estado em 1959; Filipinas 1898–1946; ocupações do Haiti e da República Dominicana | erros de data: abolição "em 1862" e Havaí estado "em 1957" | Enciclopédia Britannica, https://www.britannica.com/event/Emancipation-Proclamation ; Enciclopédia Britannica, https://www.britannica.com/place/Hawaii-state | 1 |
+| HK35 | datas da Confederação do Equador e da Guerra da Cisplatina | faltavam as datas | Boris Fausto, História do Brasil (Edusp) | 2 |
+| HK36 | D. Pedro II tinha 14 anos no Golpe da Maioridade; Balaiada 1838–1841 | erro: nascido em 2/12/1825, D. Pedro II tinha 14 anos em julho de 1840 | Boris Fausto, História do Brasil (Edusp); Senado Federal, https://www12.senado.leg.br/noticias | 1 |
+| HK37 | datas da tarifa Alves Branco e da Guerra do Paraguai; pegadinha sobre os limites de cada lei | tópico sem datas-chave; a pegadinha não tratava das leis abolicionistas | Boris Fausto, História do Brasil (Edusp) | 2 |
+| HK39 | portugueses na Índia; campos de concentração da Guerra dos Bôeres; Revolta dos Cipaios (1857) | erro: Bombaim não foi a única posição portuguesa mantida (Goa, Damão e Diu ficaram portuguesas até 1961); quem ficou nos campos britânicos foram civis bôeres e africanos | Enciclopédia Britannica, https://www.britannica.com/place/Goa ; Enciclopédia Britannica, https://www.britannica.com/event/South-African-War | 1 |
+| HK40 | República Oligárquica: 1894–1930 (República da Espada: 1889–1894) | erro de data: os dois períodos estavam sobrepostos | Boris Fausto, História do Brasil (Edusp) | 1 |
+| HK43 | governo provisório: liberais e socialistas moderados; pegadinha fevereiro × outubro | o governo provisório não era "liderado por mencheviques": começou com liberais (príncipe Lvov) e passou a Kerenski | Enciclopédia Britannica, https://www.britannica.com/event/Russian-Revolution | 1 |
+| HK49 | ONU fundada em São Francisco (1945); Mussolini deposto sem participação brasileira; mortos das bombas atômicas; Nuremberg | erros: a ONU não foi "criada em Yalta"; a FEB só chegou à Itália em 1944, um ano depois da queda de Mussolini; "mais de 300 mil mortos" não bate com as estimativas (110 a 210 mil até o fim de 1945) | ONU, https://www.un.org/en/about-us/history-of-the-un ; FGV CPDOC, Dicionário Histórico-Biográfico Brasileiro, https://cpdoc.fgv.br/acervo/dhbb (FEB); Atomic Heritage Foundation / Enciclopédia Britannica, https://www.britannica.com/event/atomic-bombings-of-Hiroshima-and-Nagasaki | 1 |
+| HK52 | 'Rubem Vaz' → 'Rubens Vaz' | nome grafado errado | FGV CPDOC, Dicionário Histórico-Biográfico Brasileiro, https://cpdoc.fgv.br/acervo/dhbb | 1 |
+| HK53 | plebiscito do presidencialismo: janeiro de 1963 | erro de data (1962); "plebiscito de 1962" ficou só em busca[] como grafia que o aluno pode digitar | FGV CPDOC, Dicionário Histórico-Biográfico Brasileiro, https://cpdoc.fgv.br/acervo/dhbb | 1 |
+| HK54 | ditadura uruguaia: 1973–1985; Somoza no poder a partir de 1936; datas do fim da ditadura brasileira | erro de data: a ditadura uruguaia terminou em 1985, não em 1990 | Enciclopédia Britannica, https://www.britannica.com/place/Uruguay/The-military-regime ; FGV CPDOC, Dicionário Histórico-Biográfico Brasileiro, https://cpdoc.fgv.br/acervo/dhbb | 1 |
+| HK55 | tripé macroeconômico datado em 1999 (FHC), não no Plano Real de 1994; MST fundado em 1984 | erro: o Plano Real usou câmbio controlado (âncora cambial); câmbio flutuante e metas de inflação são de 1999. O MST não "surgiu" no governo FHC | Banco Central do Brasil, https://www.bcb.gov.br/controleinflacao/historicometas ; FGV CPDOC, Dicionário Histórico-Biográfico Brasileiro, https://cpdoc.fgv.br/acervo/dhbb | 1 |
+| todos os 57 tópicos | busca[] ampliada | faltavam os nomes que o aluno digita (República Velha, Guerra dos Farrapos, Jango, anos de chumbo, causas e consequências) | — | 2 |
+
+### Itens marcados "conferir" (estão em `lacunas` do arquivo)
+
+- conferir: gabaritos por letra das questões resolvidas (HK12 Unicamp 2022; HK20 Fuvest 2024; HK28 FICSAE 2023; HK48 Unesp 2024; HK54 UCS 2014 e Unicamp 2024) vêm só do livro; as explicações foram conferidas e são coerentes.
+- conferir: HK52 — o livro atribui o Plano Salte (1947) a empréstimos do FMI; a informação não foi confirmada em fonte pública e foi mantida como está no livro.
+- conferir: HK55 — a inflação de 1989 aparece como 1700%; os índices oficiais variam conforme a medida (IPCA de 1989: cerca de 1 970%; INPC: cerca de 1 860%). Conferir o índice antes de usar em questão.
+
+### Pendências de decisão do dono
+
+- HK24: o livro erra o rei de Pombal (D. João V); o tópico agora traz D. José I. Se o site reproduzir alguma página do livro sobre o tema, o erro reaparece.
 
