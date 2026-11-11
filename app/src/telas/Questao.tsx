@@ -124,7 +124,7 @@ export function QuestaoTela() {
     if (r?.para) return <Navigate replace to={`/m/${r.para.m}/q/${r.para.id}${ctx === 'escada' ? '' : '?ctx=' + ctx}`} />;
     if (r) return <Navigate replace to={`/m/${m}/escada/${r.sub}`} />;
   }
-  if (!q) return <div className="conteudo vazio"><h3>Questão não encontrada</h3><Link to={`/m/${m}`} className="btn sec">Voltar</Link></div>;
+  if (!q) return <div className="conteudo vazio"><h1 className="sr">Questão não encontrada</h1><h3 aria-hidden>Questão não encontrada</h3><Link to={`/m/${m}`} className="btn sec">Voltar</Link></div>;
 
   const mod = mc.conteudo.modulos.find((x) => x.id === q.modulo);
   const sub = mod?.subs.find((x) => x.id === q.sub);
@@ -142,12 +142,14 @@ export function QuestaoTela() {
 
   return (
     <div className={`questao-tela m-${m}`}>
+      {/* D07: título da tela para leitor de tela (invisível) */}
+      <h1 className="sr">Questão {pos + 1} de {fila.length} — {cap(mod?.nome || sub?.nome || nomeMat)}</h1>
       <div className="q-barra">
         <button className="q-volta" onClick={() => nav(voltarPara)} aria-label="Voltar" title="Voltar (Esc)"><Icone nome="esquerda" /><span>Voltar</span></button>
         <div className="q-barq">
           <span className="g" aria-hidden><Icone nome={`m_${m}` as NomeIcone} /></span>
           <span className="n">{ctx === 'revisao' ? 'Revisão' : nomeMat}</span>
-          <span className="t num"><b>{cap(mod?.nome || sub?.nome || '')}</b>{nv ? ` · ${nomeNivel(nv)}` : ctx !== 'revisao' ? ` · ${nomeNivel(nivelDe(q.dif))}` : ''} · <b>{pos + 1}</b> de {fila.length}</span>
+          <span className="t num com-pos" title={`${cap(mod?.nome || sub?.nome || '')}${nv ? ` · ${nomeNivel(nv)}` : ctx !== 'revisao' ? ` · ${nomeNivel(nivelDe(q.dif))}` : ''} · ${pos + 1} de ${fila.length}`}><span className="t-nome"><b>{cap(mod?.nome || sub?.nome || '')}</b>{nv ? ` · ${nomeNivel(nv)}` : ctx !== 'revisao' ? ` · ${nomeNivel(nivelDe(q.dif))}` : ''}</span><span className="t-pos"> · <b>{pos + 1}</b> de {fila.length}</span></span>
           <span className="p" aria-hidden><i style={{ width: `${fila.length ? ((pos + 1) / fila.length) * 100 : 0}%` }} /></span>
         </div>
         <span className="q-ajuda" role="img" tabIndex={0} title={TECLAS} aria-label={TECLAS}><Icone nome="teclado" /></span>

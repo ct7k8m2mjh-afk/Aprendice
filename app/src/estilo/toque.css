@@ -1,0 +1,21 @@
+/* ÁREA DE TOQUE (auditoria de design, item D01, 11/11/2026). Só em aparelho de toque (pointer: coarse): cada controle
+   pequeno ganha uma área invisível de --alvo-min × --alvo-min centrada nele. O desenho não muda: tamanho, posição e
+   ícone ficam iguais. Ficam de fora, por decisão do dono: tela de entrada, aba Início e o cartão do Treino geral. */
+@media (pointer: coarse) {
+  :where(.chip, .q-volta, .q-pausa, .q-tela, .q-ajuda, .q-marca, .q-amplia, .q-ver-txt, .q-ant, .q-dica, .q-orig, .q-print-fonte,
+    .ra-bt, .ra-link, .ft-seta, .btn-ic, .tema-seg button, .abas button, .btn.peq, .btn.sec, .btn.fantasma, .q-rel-g a,
+    .link-sec, .migalhas a, .tp-volta, .sanfona, .rg-limpa, .item-nav, .tema-desemp, .q-barra .crono, .folha-btn) { position: relative; }
+  :is(.chip, .q-volta, .q-pausa, .q-tela, .q-ajuda, .q-marca, .q-amplia, .q-ver-txt, .q-ant, .q-dica, .q-orig, .q-print-fonte,
+    .ra-bt, .ra-link, .ft-seta, .btn-ic, .tema-seg button, .abas button, .btn.peq, .btn.sec, .btn.fantasma, .q-rel-g a,
+    .link-sec, .migalhas a, .tp-volta, .sanfona, .rg-limpa, .item-nav, .tema-desemp, .q-barra .crono, .folha-btn)::after {
+    content: ''; position: absolute; left: 50%; top: 50%; width: max(100%, var(--alvo-min)); height: max(100%, var(--alvo-min));
+    transform: translate(-50%, -50%); }
+  /* fileiras que rolam de lado ou cortam o que sai: folga interna compensada por margem, para a área não ser cortada
+     nem criar rolagem para cima e para baixo */
+  .abas { padding-top: 7px; margin-top: -7px; }
+  .q-resp .certeza { overflow-x: clip; overflow-y: visible; }
+}
+@media (pointer: coarse) and (max-width: 700px) {
+  .fr-chips { padding-top: 7px; padding-bottom: 7px; margin-top: -7px; margin-bottom: -5px; }
+  .tm-regiao .fr-chips { padding-top: 7px; padding-bottom: 7px; margin-top: -7px; margin-bottom: -7px; }
+}

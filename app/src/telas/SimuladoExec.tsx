@@ -201,6 +201,7 @@ export function SimuladoExec() {
 
   return (
     <div className="questao-tela simulado">
+      <h1 className="sr">Simulado — questão {sim.i + 1} de {sim.itens.length}</h1>
       <div className="q-barra">
         <button className="q-volta" onClick={() => nav('/simulados')} aria-label="Sair (o simulado fica salvo)" title="Sair (fica salvo)"><Icone nome="esquerda" /><span>Sair</span></button>
         <div className="q-barq">

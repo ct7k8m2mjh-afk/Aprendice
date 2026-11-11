@@ -186,7 +186,7 @@ export function ResolucaoAnimada({ r, materia }: { r: Resolucao; materia?: strin
           <button type="button" className="ra-bt ic" onClick={anterior} aria-disabled={atual <= 0} aria-label="Passo anterior" title="Passo anterior (←)"><Icone nome="esquerda" tam={17} /></button>
           <button type="button" className="ra-bt ic" onClick={proximo} aria-disabled={atual < 0 || atual >= n - 1} aria-label="Próximo passo" title="Próximo passo (→)"><Icone nome="direita" tam={17} /></button>
           <button type="button" className="ra-bt vel" onClick={trocaVel} aria-label={`Velocidade da escrita: ${rotVel}`} title="Velocidade da escrita">{rotVel}</button>
-          <span className="ra-pp" aria-live="polite"><span className="longo">{rotPasso}</span><span className="curto" aria-hidden>{atual >= n ? `${n}/${n}` : `${atual + 1}/${n}`}</span></span>
+          <span className="ra-pp" aria-live="polite"><span className="longo">{rotPasso}</span><span className="curto" aria-hidden>{atual >= n ? `${n} de ${n}` : `${atual + 1} de ${n}`}</span></span>
           {atual < n && <button type="button" className="ra-bt ic" onClick={tudo} aria-label="Pular para o quadro final" title="Pular para o quadro final"><Icone nome="lista" tam={16} /></button>}
           <button type="button" className="ra-bt ic" onClick={comeca} aria-label="Recomeçar" title="Recomeçar"><Icone nome="repetir" tam={16} /></button>
         </div></>

@@ -95,6 +95,7 @@ export function RodadaQuestoes({ ses, rotulo, dica, ctx, voltar, aoAvancar, topo
   const info = infoMateria(it.m);
   return (
     <div className={`questao-tela m-${it.m}`}>
+      <h1 className="sr">{rotulo} — questão {ses.i + 1} de {ses.it.length}</h1>
       <div className="q-barra">
         <button className="q-volta" onClick={() => nav(voltar)} aria-label={`Voltar (${rotulo.toLowerCase()} fica salvo)`} title="Voltar (fica salvo)"><Icone nome="esquerda" /><span>Voltar</span></button>
         <div className="q-barq">

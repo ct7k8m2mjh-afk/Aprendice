@@ -91,7 +91,7 @@ export function Revisao() {
         <div className="grade g2">
           {porMat.filter((x) => x.venc.length || x.prox.length).map(({ mc, venc, prox, s }) => (
             <section key={mc.id} className={`bloco m-${mc.id}`}>
-              <div className="cab-sec"><h2 style={{ fontSize: 19 }}><i className="ponto" style={{ marginRight: 8 }} />{nomeMateria(mc.id)}</h2>
+              <div className="cab-sec"><h2><i className="ponto" style={{ marginRight: 8 }} />{nomeMateria(mc.id)}</h2>
                 {venc.length > 0 && <Link to={`/m/${mc.id}/q/${venc[0].id}?ctx=revisao`} className="btn peq">Revisar {venc.length}</Link>}</div>
               {venc.slice(0, 5).map((q) => {
                 const f = filaDe(s.q[q.id], ag);

@@ -148,6 +148,7 @@ export function Flashcards({ sessao = false }: { sessao?: boolean }) {
   const c = todos.find((x) => x.id === ids[i]) as Flashcard;
   return (
     <div className={`questao-tela m-${m}`}>
+      <h1 className="sr">Flashcards — cartão {i + 1} de {ids.length}</h1>
       <div className="q-barra">
         <button className="q-volta" onClick={() => nav(`/m/${m}/flashcards`)} aria-label="Sair da sessão" title="Sair da sessão"><Icone nome="esquerda" /><span>Voltar</span></button>
         <div className="q-barq">

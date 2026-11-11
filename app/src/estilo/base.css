@@ -105,6 +105,20 @@
   --lado: 244px;
   --lado-trilho: 64px;
   --topo: 61px;
+  /* TOKENS DA PADRONIZAÇÃO (auditoria de design, 11/11/2026, itens D01 a D19; docs/design/AUDITORIA-DESIGN.md).
+     Todos com valores que já existiam no site ou no protótipo; mudar aqui muda em todo lugar. */
+  --alvo-min: 44px;                                   /* D01: área de toque mínima (só em aparelho de toque) */
+  --fs-micro: 12px; --fs-etq: 13px; --fs-destaque: 18px; /* D12: tamanhos do protótipo que o guia não nomeia */
+  --ls-titulo: -0.02em; --ls-sub: -0.01em; --ls-rotulo: .02em; --ls-caps-p: .04em; --ls-caps: .08em; /* D14 */
+  --r-etq: 8px; --r-campo: 12px; --r-btn-g: 13px; --r-chip: 20px; --r-pilula: 999px; /* D15 (com --r-item 9, --r-p 10, --r-ctl 11, --r 14, --r-bloco 16, --r-dest 18) */
+  --sombra-botao: 0 1px 2px rgba(0, 0, 0, .08); --sombra-seta: 0 4px 14px -4px rgba(20, 22, 30, .25); --sombra-alt: 0 1px 0 rgba(20, 22, 30, .04); /* D16 */
+  --preto: #000; --branco: #FFF;                      /* D17: preto e branco de máscaras, misturas e do papel do print */
+  --print-pe: #FBFAF7; --print-borda: #DAD5C8; --print-chip: #F1EEE6; --print-chip-hover: #E9E5DA; --print-tinta: #3E3A31; --print-tinta2: #5F5B50;
+  --cinza-4a: #4A4D55; --cinza-6b: #6B6E77; --abertura-claro: #FBF7F3; --abertura-escuro: #101410;
+  --e-2: 2px; --e-4: 4px; --e-6: 6px; --e-8: 8px; --e-10: 10px; --e-12: 12px; --e-14: 14px; --e-16: 16px; --e-18: 18px; --e-20: 20px; --e-22: 22px; --e-28: 28px; --e-32: 32px; /* D18 */
+  --medida-leitura: 68ch; --medida-apoio: 62ch;       /* D06: largura máxima da explicação (protótipo) e do texto de apoio */
+  --faixa-foco: 72px;                                 /* D19: recuo de rolagem da faixa de temas (cartão em foco fora da máscara de 64px) */
+  --etq-cor-fundo: var(--folha); --etq-cor-fio: 30%;  /* D05: texto pequeno na cor da matéria fica sobre a folha, com fio fino na cor */
 }
 @media (min-width: 701px) {
   :root { --fs-materia: 54px; --fs-tela: 32px; --fs-secao: 21px; --fs-tema: 17px; --fs-info: 14px; --fs-expl: 17px; --fs-mao: 24px; --fs-mao-grande: 26px; }
@@ -123,12 +137,12 @@ a { color: var(--t); text-underline-offset: 3px; }
 button, input, textarea, select { font: inherit; color: inherit; }
 button { cursor: pointer; }
 img { max-width: 100%; }
-h1, h2, h3 { line-height: 1.2; margin: 0; letter-spacing: -0.01em; text-wrap: balance; font-weight: 700; }
+h1, h2, h3 { line-height: 1.2; margin: 0; letter-spacing: var(--ls-sub); text-wrap: balance; font-weight: 700; }
 p { margin: 0; text-wrap: pretty; }
 .num, [data-num] { font-variant-numeric: tabular-nums; }
 * { scrollbar-width: thin; scrollbar-color: var(--borda2) transparent; }
 ::-webkit-scrollbar { width: 10px; height: 10px; }
-::-webkit-scrollbar-thumb { background: var(--borda2); border-radius: 10px; border: 3px solid var(--papel); }
+::-webkit-scrollbar-thumb { background: var(--borda2); border-radius: var(--r-p); border: 3px solid var(--papel); }
 .sr { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
 @media (prefers-reduced-motion: reduce) {
