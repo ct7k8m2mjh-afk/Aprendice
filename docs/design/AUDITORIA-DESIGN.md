@@ -402,7 +402,7 @@ Data: 11/11/2026 · Etapa 1 (só auditoria; nenhum arquivo do site foi alterado)
 | Cor da matéria sobre o papel (`.fr-trocar` "Trocar", `.in-rotulo`, `.rv-tp-n`) | Bio #138404; Quí #D31A8D; Fís #B2580D; Fil-Soc #8C6C02 / #F1F1EE | 4,29; 4,31; 4,32; 4,36 | claro | paleta aprovada |
 | Rodapé do login `.l-rodape` (10 px) | #9B9397 / fundo com gradiente | 2,96 (não medido com segurança) | — | tela protegida |
 
-Passam: `tinta`, `lapis` (5,99 sobre o papel) e `fraco` (5,14 sobre o papel) nos dois temas; certo, errado e aviso sobre seus fundos (4,88 a 9,57); letra dos botões sobre a cor da matéria (4,85 a 9,40); cor das 9 matérias sobre a folha branca (4,85 a 9,05). Ficam de fora por serem controles desabilitados (a WCAG dispensa): alternativas não escolhidas depois da resposta (`opacity .45`), "Tudo em dia" dos flashcards, "Anterior" na primeira tela da revisão.
+Passam: `tinta`, `lapis` (5,99 sobre o papel) e `fraco` (5,14 sobre o papel) nos dois temas; certo, errado e aviso sobre seus fundos (4,88 a 9,57); letra dos botões sobre a cor da matéria (4,85 a 9,40); cor das 9 matérias sobre a folha branca (4,85 a 9,05). Ficam de fora por serem controles desabilitados (a WCAG dispensa): alternativas não escolhidas depois da resposta (`opacity .45`), "Tudo em dia" dos flashcards, "Anterior" na primeira tela da revisão e "Confirmar resposta" antes de marcar uma alternativa.
 
 **Medida de linha** (caracteres por linha, texto de 3 linhas ou mais)
 
@@ -444,7 +444,7 @@ A 768 px somam-se os itens do menu em trilho (47 × 40). As abas de baixo do cel
 
 ## Itens
 
-Ordem: do maior para o menor impacto no aluno. Grupos que se resolvem juntos: **acessibilidade** (D01, D04, D07, D19), **variáveis de tipografia** (D09 a D14 e D20), **variáveis de forma** (D15 a D18).
+Ordem: do maior para o menor impacto no aluno. Grupos que se resolvem juntos: **acessibilidade** (D01, D04, D07, D19), **variáveis de tipografia** (D09 a D12 e D14), **variáveis de forma** (D15 a D18). D13 e D20 foram retirados depois da revisão; os ids foram mantidos.
 
 ### D01 — Alvos de toque menores que 44 px no celular
 - **Tela e seletor:** todas; lista na tabela acima (`.chip`, `.q-volta`, `.q-pausa`, `.q-tela`, `.q-marca`, `.q-amplia`, `.q-ver-txt`, `.q-ant`, `.ra-bt`, `.ft-seta`, `.abas button`, `.fr-trocar`, `.link-sec`, `.in-link`, `.tema-seg button`, `.btn.peq`, `.q-rel-g a`…). Arquivos: `sistema.css`, `app.css`, `telas.css`, `regiao.css`, `correcao.css`.
@@ -526,6 +526,7 @@ Ordem: do maior para o menor impacto no aluno. Grupos que se resolvem juntos: **
 ### D08 — Bordas do botão "Treino geral"
 Ver a seção própria abaixo (propostas A, B e C).
 - **Categoria:** modernizar.
+- **Risco:** baixo em A e B (nenhum canto muda); alto em C (muda o canto pedido pelo dono em 30/10).
 - AUTORIZO: ( ) A ( ) B ( ) C ( ) não ( ) com ajuste: ____
 
 ### D09 — A etiqueta tem três aparências
@@ -571,11 +572,11 @@ Ver a seção própria abaixo (propostas A, B e C).
 - AUTORIZO: ( ) sim ( ) não ( ) com ajuste: ____
 
 ### D13 — Entrelinhas (RETIRADO depois da revisão)
-- Propunha trocar 1,25 → 1,3; 1,45 → 1,5; 1,55 → 1,5. O revisor mostrou que esses três valores existem no protótipo (1,25 três vezes, 1,45 seis, 1,55 nove) e que o 1,55 da Revisão geral está no `DESIGN.md` (linha 193). Como o protótipo é o sistema, não há o que padronizar. O inventário de entrelinha fica só como registro.
+- Propunha trocar 1,25 → 1,3; 1,45 → 1,5; 1,55 → 1,5. O revisor mostrou que esses três valores existem no protótipo (conferido em `materia.css`: 1,25 três vezes, 1,45 seis, 1,55 nove) e que o `DESIGN.md` documenta 1,55 na Revisão geral. Como o protótipo é o sistema, não há o que padronizar. O inventário de entrelinha fica só como registro.
 
 ### D14 — Espaçamento entre letras em variáveis (sem mudar valores)
 - **Tela e seletor:** títulos, números e rótulos em caixa alta (`telas.css`, `sistema.css`, `inicio.css`, `revisao.css`, `geral.css`).
-- **Valor atual (medido em texto visível a 1280 px):** −0,03 · −0,02 · −0,01 · −0,009 · −0,007 · −0,006 · −0,005 · 0 · 0,02 · 0,04 · 0,08 em. Os de três casas vêm de valores em px (−0,4 px, −0,2 px, −0,1 px). O programa não mede pseudo-elemento: no CSS há ainda 0,06 em nos rótulos "Correta" e "Sua" (`sistema.css` linha 134). Os valores 0,04 e 0,06 em vêm do protótipo (`materia.css` linhas 1648, 1785 e 1816).
+- **Valor atual (medido em texto visível a 1280 px):** −0,03 · −0,02 · −0,01 · −0,009 · −0,007 · −0,006 · −0,005 · 0 · 0,02 · 0,04 · 0,08 em. Os de três casas vêm de valores em px (−0,4 px, −0,2 px, −0,1 px). O programa não mede pseudo-elemento: no CSS há ainda 0,06 em nos rótulos "Correta" e "Sua" (`sistema.css` linha 134). Os valores 0,04 e 0,06 em existem no protótipo (`materia.css` linhas 1648, 1785 e 1816).
 - **Problema:** onze valores escritos à mão, alguns em px e outros em em.
 - **Proposta:** só nomear, sem converter nenhum valor: `--ls-titulo: -0.02em`, `--ls-sub: -0.01em`, `--ls-rotulo: .02em`, `--ls-caps-p: .04em`, `--ls-caps: .08em`, e trocar os números por essas variáveis onde o valor é igual. Os valores em px ficam como estão.
 - **Efeito esperado:** nenhuma mudança visível.
@@ -637,58 +638,60 @@ Ver a seção própria abaixo (propostas A, B e C).
 - AUTORIZO: ( ) sim ( ) não ( ) com ajuste: ____
 
 ### D20 — Letras abaixo de 12 px (RETIRADO depois da revisão)
-- Propunha subir para 12 px os rótulos "Correta" e "Sua" (11,5 px) e a tecla das notas do flashcard (11 px). O revisor mostrou que 11,5 px e 11 px são valores do protótipo (`materia.css` linhas 1785 e 1816). Fica só o registro no inventário.
+- Propunha subir para 12 px os rótulos "Correta" e "Sua" (11,5 px) e a tecla das notas do flashcard (11 px). O revisor mostrou que 11,5 px e 11 px são tamanhos que existem no protótipo (11,5 px aparece 7 vezes em `materia.css`, por exemplo na linha 1816). Fica só o registro no inventário.
 
 ## Botão Treino geral
 
-A ilustração não entra em nenhuma proposta: arquivo, tamanho, enquadramento e posição ficam como estão (`.arte-tg`, 230 × 190 px a 1280; 290 × 220 a 390).
+A ilustração não entra em nenhuma proposta: arquivo, tamanho, enquadramento e posição ficam como estão (`.arte-tg`, medida 230 × 190 px a 1280 e 290 × 220 a 390). Texto, altura (66 px), largura mínima (380 px) e letra (21 px, peso 700) do botão também ficam.
 
 **Como está hoje (medido, Matemática):**
 
 | Parte | Medida |
 |---|---|
-| Cartão clicável `a.capa-tg` | 605 × 495 px a 1280; 358 × 673 a 390; canto 18 px; borda 1 px na cor principal a 24 %; sem sombra; fundo em gradiente do fundo suave |
-| Cartão, mouse em cima | nenhuma mudança (medido: idêntico ao normal) |
+| Cartão clicável `a.capa-tg` | 605 × 495 px a 1280; 358 × 673 a 390; canto 18 px; borda 1 px na cor principal `--p` a 24 % (`telas.css` linha 111; igual ao protótipo, `materia.css` linha 134); sem sombra; fundo em gradiente do fundo suave |
+| Cartão, mouse em cima | nenhuma mudança (medido: estilos idênticos ao estado normal) |
 | Cartão, foco do teclado | contorno 2 px na cor de texto da matéria, afastado 2 px |
-| Cartão, tema escuro | a borda continua vindo da cor principal clara (#1F3FA6 a 24 %) sobre fundo #1D2C51: quase não aparece |
-| Botão dentro dele `.btn.btn-capa` | 293 × 66 px (316 × 66 a 390); canto 16 px; sem borda; sem sombra; letra 21 px peso 700 |
+| Cartão, tema escuro | a borda continua vindo de `--p` (#1F3FA6 a 24 %) sobre o fundo #1D2C51: contraste borda × fundo 1,09:1 (no claro é 1,50:1) |
+| Botão dentro dele `.btn.btn-capa` | 293 × 66 px (316 × 66 a 390); canto 16 px; sem borda; sem sombra; letra 21 px peso 700; padding 16/40 |
 | Botão, mouse em cima / apertado | brilho +5 % / desce 1 px |
 | Vizinho "Meu progresso" `.mp` | canto 18 px; borda 1 px `linha`; sombra `--sombra-folha` |
-| No protótipo | capa: canto 18, borda 1 px a 24 %, sem sombra; botão da capa: 56 px, canto 13, sombra colorida `--sombra-pri`, sobe 1 px com o mouse |
+| No protótipo | o botão do Treino geral da capa tem os mesmos 66 px, canto 16, letra 700 21 px, padding 16/40 e mínimo de 380 px (`materia.css` linhas 1540 a 1542, comentário "30/10 (pedido do dono): só o Treino geral na capa, botão maior"); recebe a sombra colorida `--sombra-pri` (linha 1122), brilho +7 % e sobe 1 px com o mouse (linhas 639 e 1132) |
 
 Imagens de hoje: `evidencias/tg-atual-1280-claro.jpg`, `tg-atual-1280-escuro.jpg`, `tg-atual-390-claro.jpg`, `tg-atual-foco-1280-claro.jpg`.
 
-As três propostas usam só valores que já existem no sistema. Em todas: a borda do cartão passa a nascer de `--c` (que clareia no tema escuro) a 30 % — o valor que o `DESIGN.md` dá para "destaque da matéria" — e o foco continua 2 px na cor de texto da matéria, afastado 2 px.
+As três propostas usam só valores que já existem no site ou no protótipo. Em todas: no tema claro a borda do cartão fica como está (`--p` a 24 %); no tema escuro ela passa a nascer de `--c` (o tom claro da matéria no escuro), também a 24 %, e o contraste borda × fundo sobe de 1,09 para 1,46:1; o foco continua 2 px na cor de texto da matéria, afastado 2 px; desabilitado, opacidade 45 % (regra dos botões).
 
-| | **A — Folha do sistema** (recomendada) | **B — Anel** | **C — Pílula** |
+| | **A — Mesmo canto, com resposta ao mouse** | **B — Anel** | **C — Pílula** |
 |---|---|---|---|
-| Cartão: canto | 18 px (igual) | 18 px (igual) | 18 px (igual) |
-| Cartão: borda | 1 px, `--c` a 30 % | 1 px, `--c` a 30 % | 1 px, `--c` a 30 % |
-| Cartão: sombra | `--sombra-folha` (igual ao vizinho "Meu progresso") | nenhuma (igual a hoje) | `--sombra-folha` |
-| Cartão: mouse em cima | borda `--c` a 45 % e sobe 1 px | igual ao normal | igual ao normal |
-| Botão: canto | 13 px (o do botão grande do sistema e do protótipo) | 16 px (igual a hoje) | 999 px (pílula) |
-| Botão: contorno | nenhum | anel de 3 px em `--c` a 16 % (o mesmo da alternativa marcada) | nenhum |
-| Botão: sombra | `0 1px 2px rgba(0,0,0,.08)` (a dos botões do sistema) | só o anel | `0 1px 2px rgba(0,0,0,.08)` |
-| Botão: mouse em cima | brilho +5 % e sobe 1 px (como no protótipo) | anel a 22 % e brilho +5 % | brilho +5 % e sobe 1 px |
+| Cartão: canto e borda | 18 px; 1 px a 24 % (igual) | 18 px; 1 px a 24 % (igual) | 18 px; 1 px a 24 % (igual) |
+| Cartão: sombra | `--sombra-folha` (a mesma do vizinho "Meu progresso") | nenhuma (igual a hoje) | `--sombra-folha` |
+| Cartão: mouse em cima | borda `--c` a 45 % sobre `linha` (o valor da alternativa com mouse em cima, `sistema.css` linha 126) e sobe 1 px | igual ao normal | borda a 45 % e sobe 1 px |
+| Botão: canto | 16 px (igual; valor do protótipo) | 16 px (igual) | 999 px |
+| Botão: contorno | nenhum | anel de 3 px em `--c` a 16 % (o mesmo anel da alternativa marcada, `sistema.css` linha 127) | nenhum |
+| Botão: sombra | `0 1px 2px rgba(0,0,0,.08)` (a dos botões `.btn`) | só o anel | `0 1px 2px rgba(0,0,0,.08)` |
+| Botão: mouse em cima | brilho +5 % (igual a hoje) e sobe 1 px (protótipo, linha 1132) | anel a 22 % (o valor do anel de foco dos campos) e brilho +5 % | brilho +5 % e sobe 1 px |
 | Botão: apertado | desce 1 px (igual a hoje) | desce 1 px | desce 1 px |
-| Desabilitado | opacidade 45 % (regra do sistema) | idem | idem |
+| O que muda do protótipo | nada na forma; acrescenta a sombra neutra de 1 px e o movimento do cartão | acrescenta o anel | **muda o canto de 16 px do pedido de 30/10** |
 | Imagens (antes: `tg-atual-…`) | `tg-proposta-A-1280-claro.jpg`, `-A-hover-1280-claro.jpg`, `-A-1280-escuro.jpg`, `-A-390-claro.jpg` | `tg-proposta-B-…` (mesmos quatro) | `tg-proposta-C-…` (mesmos quatro) |
 
-- **A** é a mais coerente: o cartão passa a casar com o "Meu progresso" ao lado e a responder ao mouse, e o botão ganha o canto e a sombra dos outros botões grandes.
-- **B** mantém a forma de hoje e só acrescenta o anel; muda menos.
-- **C** é a mais diferente: seria o único botão em pílula do site (hoje a pílula só existe em chips e filtros).
-- A sombra colorida do protótipo (`--sombra-pri`) não foi proposta porque o `DESIGN.md` proíbe sombra colorida; se o dono preferir o protótipo nesse ponto, ela entra em A no lugar da sombra neutra.
-- O cartão "Treino geral" do Início (`.in-treino`: canto 18, borda 1 px #D3DFF7, sem sombra; botão 208 × 60, canto 10, sombra 1 px) não entra nestas propostas; ver Dúvidas, item 4. Imagens: `tg-inicio-atual-1280-claro.jpg`, `-escuro.jpg`, `tg-inicio-atual-390-claro.jpg`.
-- **Risco:** baixo (uma peça, uma tela por matéria). **Categoria:** modernizar.
+- **A** e **B** mantêm o canto de 16 px; **C** seria o único botão em pílula do site (hoje a pílula existe em chips, filtros e no "Ampliar") e desfaz a forma pedida em 30/10, por isso tem risco alto.
+- **Sombra colorida:** o protótipo põe `--sombra-pri` (colorida) nesse botão; o `DESIGN.md` (linha 15) proíbe sombra colorida e o site hoje não tem sombra nenhuma. É um conflito entre os dois documentos; ver Dúvidas, item 2. As propostas usam a sombra neutra.
+- O cartão "Treino geral" do Início (`.in-treino`: canto 18, borda 1 px #D3DFF7, sem sombra; botão 208 × 60, canto 10, sombra 1 px) não entra nestas propostas, porque a aba Início segue as referências do dono de 06/11. Imagens: `tg-inicio-atual-1280-claro.jpg`, `-escuro.jpg`, `tg-inicio-atual-390-claro.jpg`.
+- **Registro (sem proposta):** o `DESIGN.md` (linha 134) diz que a arte do Treino geral tem 170 px e some entre 1101 e 1500 px; no site ela aparece com 230 × 190 a 1280 (`telas.css` linhas 675 e 681 passam por cima da linha 642). Há também um `drop-shadow` sem efeito em `.capa-ilu` (`telas.css` linha 117, anulado por `icones-tema.css`). O documento está atrás do código nesse ponto; não toquei em nada.
 
 ## Protegido, não será alterado
 
 Identificado na revisão como decisão do dono; nenhuma proposta acima toca nisto.
 
-- **Fontes do guia tipográfico (05/11):** Dancing Script no nome da matéria (42 px no celular, 54 px no computador, na cor da matéria), Familjen Grotesk na interface, Literata na explicação da correção e na teoria, Caveat só na conta e na fórmula do caderno, DM Sans só no login. Medido: nenhuma outra família aparece; Caveat só em `.ra-t`, `.ra-st`, `.fm-linha` e frações do caderno; Dancing Script só em `.tit-mat`.
+- **Fontes do guia tipográfico (05/11, `docs/pedidos-do-dono.md`):** são cinco, não três. O pedido desta revisão citava três famílias; segui o guia aprovado. Dancing Script no nome da matéria (42 px no celular, 54 px no computador, 62 px a partir de 1700 px e 70 px a partir de 2200 px, na cor da matéria), Familjen Grotesk na interface, Literata na explicação da correção e na teoria, Caveat só na conta e na fórmula do caderno, DM Sans só no login. Medido: nenhuma outra família aparece; Caveat só em `.ra-t`, `.ra-st`, `.fm-linha` e frações do caderno; Dancing Script só em `.tit-mat`.
 - **Paleta das 9 matérias (05/11)** e o site inteiro assumindo a cor da matéria; azul "todas as matérias" do Início.
 - **Ícones de tema** (`docs/icones/`), círculo claro, sem sombra, salto de 10 px com o mouse; **ícones das matérias e capas** (`docs/capas/`); **pontinho de 8 px** do subtema; ícones de traço do menu; onda verde e pontilhado do menu.
 - **Arte do Treino geral** de cada matéria e do Início (arquivo, tamanho, enquadramento, posição).
+- **Botão do Treino geral da matéria:** 66 px de altura, canto 16, letra 21 px peso 700, mínimo de 380 px (pedido de 30/10). Só as bordas estão liberadas para proposta (D08).
+- **Treino geral do Início:** sem escolher matéria; "Personalizar" só escolhe a quantidade de questões por rodada.
+- **Print fiel da questão**, com o original sempre disponível, "Ampliar" e a fonte.
+- **Quantidade de questões só nos conteúdos (subtemas)**, não na matéria nem no tema.
+- **Cores das matérias bem distintas entre si** e **formas decorativas nunca cortadas** (03/11).
 - **Tela de login** (referência Aprendice_Login_Pacote): sempre clara, ilustração pintada, medidas próprias.
 - **Tema claro como padrão** (medido: com o aparelho em modo escuro o site abre claro; o escuro é escolha do aluno em Dia/Noite ou em Configurações).
 - **Aba Início** conforme as referências de 06/11: ordem das seções, títulos, "Vamos avançar nos estudos?", botões, setas de 46 px, tamanhos que crescem de 1440 a 1920 px.
@@ -703,15 +706,54 @@ Identificado na revisão como decisão do dono; nenhuma proposta acima toca nist
 
 Só o que a medição não decide.
 
-1. **Três ou cinco fontes?** O `CLAUDE.md` cita três (Dancing Script, Familjen Grotesk, Caveat). O guia tipográfico aprovado em 05/11 e o site usam cinco (mais Literata na explicação e DM Sans no login). Tratei as cinco como protegidas. Confirma? Se sim, vale ajustar a frase do `CLAUDE.md`.
-2. **Cor da matéria em letra pequena (D05):** aceita trocar o fundo dessas etiquetas para branco, prefere manter como está, ou quer rever os tons de texto da paleta?
+1. **Cor da matéria em letra pequena (D05):** aceita trocar o fundo dessas etiquetas para branco, prefere manter como está, ou quer rever os tons de texto da paleta?
+2. **Sombra do botão do Treino geral:** o protótipo tem sombra colorida nesse botão; o `DESIGN.md` proíbe sombra colorida; o site hoje não tem sombra. Qual vale? (As propostas A e C de D08 usam a sombra neutra de 1 px.)
 3. **Contadores com barra:** a lista do tema mostra "0/13" (feitas/total) e, no celular, o passo da animação mostra "5/5". Não são frações, mas usam a barra. Passam a "0 de 13" e "5 de 5", como no resto do site, ou ficam?
-4. **Botões do Início:** os botões grandes do Início têm canto 10 px e 60 px de altura; o botão grande do sistema tem canto 13 px e 56 px. Isso veio das referências de 06/11? Se foi intencional, fica; se não, igualo ao sistema (e o botão "Começar treino" do Início acompanha a proposta escolhida em D08).
-5. **Coluna da resolução a 1440 px:** com a questão em duas colunas (1,45 : 1), a explicação fica com 33 a 44 caracteres por linha, abaixo do confortável. Corrigir exige mudar a proporção das colunas, que é decisão de layout. Quer que eu proponha uma proporção nova?
-6. **Login:** o rodapé "Versão de demonstração…" tem 10 px e contraste perto de 2,96:1, e três alvos de toque são menores que 44 px. A tela segue a referência do dono. Quer que eu proponha ajuste só nesses pontos?
-7. **Arte do Treino geral no tema escuro:** na arte de Matemática, o globo e o quadrado tracejado quase somem sobre o fundo escuro (`evidencias/tg-atual-1280-escuro.jpg`). Não toquei na ilustração; só informo.
-8. **Site publicado × ramo:** a auditoria mediu o código do ramo `app-prototipo-completo`. Há trabalho feito e ainda não publicado (Hoje, Domínio, filtro de região, Revisão geral). Se quiser, repito as medições direto no link público depois da próxima publicação.
+4. **Canto dos botões grandes do Início:** têm canto 10 px (`inicio.css` linha 79); o botão grande do resto do site tem 13 px. A altura de 60 px está documentada como parte da referência de 06/11. O canto de 10 px também veio da referência? Se sim, fica.
+5. **Coluna da resolução a 1440 px:** com a questão em duas colunas (1,45 : 1), a explicação fica com 33 a 44 caracteres por linha (coluna de 376 px). Corrigir exige mudar a proporção das colunas, que é decisão de layout. Quer que eu proponha uma proporção nova?
+6. **Login:** o rodapé "Versão de demonstração…" tem 10 px e contraste perto de 2,96:1 (medição incerta, por estar sobre gradiente), e três alvos de toque são menores que 44 px. A tela segue a referência do dono. Quer que eu proponha ajuste só nesses pontos?
+7. **Arte do Treino geral no tema escuro:** na arte de Matemática há traços escuros (o globo e o quadrado tracejado) sobre o fundo escuro do cartão; ver `evidencias/tg-atual-1280-escuro.jpg`. Contraste não medido (é imagem). Não toquei na ilustração; só informo.
+8. **Mínimo de toque:** 44 px (critério desta revisão) ou 24 px (mínimo da WCAG 2.2 AA)? Muda o tamanho de D01.
+9. **Site publicado × ramo:** a auditoria mediu o código do ramo `app-prototipo-completo`. Há trabalho feito e ainda não publicado (Hoje, Domínio, filtro de região, Revisão geral). Se quiser, repito as medições direto no link público depois da próxima publicação.
 
 ## Revisão por agente separado
 
-Em andamento: o relatório e as evidências foram entregues a um agente revisor separado, que não participou da auditoria. O resultado e as correções entram nesta seção.
+Um agente revisor que não participou da auditoria (sessão separada, só leitura) conferiu o relatório e as evidências contra o protótipo, o `DESIGN.md`, o `CLAUDE.md`, `docs/pedidos-do-dono.md` e o código. Devolveu 26 pontos. Cada um foi reconferido no código ou por nova medição antes de entrar aqui.
+
+**Aceitos e corrigidos no relatório**
+
+| Ponto do revisor | O que mudou |
+|---|---|
+| Só "TOTAL" tem 3,85:1; "QUESTÃO" dá 7,96:1 e passa | Resumo, tabela de contraste e D04 corrigidos |
+| A opacidade 0,8 do rótulo vem do protótipo (`materia.css` linha 1648) | D04(a) passou a avisar que mexe num valor do protótipo; risco médio |
+| `.btn-conf` desabilitado não devia estar na lista de contraste | Retirado da tabela e de D05 |
+| D06 propunha 620 px e 540 px, valores que não existem no sistema | Trocados por 68ch (protótipo) e 62ch (site), com o efeito medido de novo |
+| D09: a etiqueta do sistema tem 13 px, peso 600 (`DESIGN.md` linha 109 e protótipo), não 14 px | Proposta refeita para 13 px, peso 600; origens citadas |
+| D11: os 19 px vêm de estilo escrito em `Revisao.tsx` linha 94 | Causa e correção corrigidas |
+| D12: 12,5 px e 14,5 px existem no protótipo | Deixaram de ser tratados como acidentais; ficam |
+| D13: 1,25, 1,45 e 1,55 existem no protótipo | Item retirado |
+| D14: 0,04 em e 0,06 em também vêm do protótipo e aparecem em mais lugares | Proposta virou só nomear, sem converter valores |
+| D16: `.in-mat` e `.in-seta` são do Início (referências de 06/11) | Saíram da proposta |
+| D19: a faixa está em `telas.css` linha 73 e já tem `scroll-padding-inline: 10px` | Arquivo e proposta corrigidos; risco médio |
+| D20: 11,5 px e 11 px existem no protótipo | Item retirado |
+| Treino geral: o botão de 66 px e canto 16 é do protótipo (pedido de 30/10), não 56 px e canto 13 | Tabela corrigida; a proposta A passou a manter o canto 16; a C ficou marcada com risco alto |
+| Treino geral: 30 % de borda não é o valor dessa peça; o brilho do protótipo é +7 %, não +5 % | Borda mantida em 24 %; texto do brilho corrigido; conflito da sombra colorida virou dúvida |
+| Arte do Treino geral: `DESIGN.md` diz 170 px e o site mostra 230 × 190 | Registrado na seção do botão, sem proposta |
+| D01: "o projeto pede 44 px" não está no `CLAUDE.md` nem no `DESIGN.md` | Reescrito como critério desta revisão; mínimo de 24 px da WCAG citado; virou dúvida 8 |
+| Frases sem medida ("a leitura cansa", "quase não aparece", "a mais coerente", "quase somem") | Retiradas ou trocadas por número (contraste da borda 1,09 → 1,46) |
+| Dúvida sobre três ou cinco fontes: já decidido em `docs/pedidos-do-dono.md` | Saiu das dúvidas; está em "Protegido" |
+| Dúvida sobre os botões do Início: 60 px já documentado | Dúvida reduzida ao canto de 10 px |
+| Faltavam itens em "Protegido" | Acrescentados: botão do Treino geral (30/10), regra do Treino geral do Início, print fiel, quantidade só nos conteúdos, cores distintas, formas não cortadas, título da matéria em telas grandes |
+
+**Não aceitos, com o motivo (reconferidos por medição)**
+
+| Ponto do revisor | Por que fica como estava |
+|---|---|
+| O rótulo "TOTAL" teria 11,5 px, peso 500 (`sistema.css` linha 43) | O estilo computado é 14 px, peso 600: `tipografia.css` linha 97 é carregado depois e passa por cima |
+| As etiquetas `.etq.cor`, `.nivel-etq` e `.hj-n` estariam sobre `--sv` = 13 % da cor (contrastes 3,96 a 4,55) | Dentro da matéria, `--sv` é redefinida com o mesmo valor de `--s` (`ui/comum.tsx`, função `tons`). Fundo computado medido: `rgb(227, 252, 224)` em Biologia, `rgb(238, 244, 255)` em Matemática. Os contrastes do relatório (4,37 a 4,47) ficam |
+
+O revisor recalculou 22 pares de contraste pela fórmula da WCAG e todos bateram com o relatório (diferença de até 0,02). Itens que ele conferiu sem diferença: D02, D03, D07, D10, D15, D17, D18 e a forma do botão na proposta B.
+
+**Segunda leitura de fatos (medições alteradas):** medida de linha com 68ch e 62ch (`metodo/p6.cjs`, `p7.cjs`); contraste borda × fundo do cartão do Treino geral; novas capturas das propostas A, B e C (`metodo/ev2.cjs`); linhas de código citadas em D04, D06, D09, D11, D14, D16 e D19 abertas uma a uma.
+
+**Contagem final:** 18 itens ativos — acessibilidade 5 (D01, D04, D05, D07, D19), corrigir 3 (D02, D03, D06), modernizar 1 (D08, com três propostas), padronizar 9 (D09, D10, D11, D12, D14, D15, D16, D17, D18). Retirados: D13 e D20.
