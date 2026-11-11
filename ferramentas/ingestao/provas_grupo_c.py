@@ -97,9 +97,6 @@ def uece1(ano, sem, comunicado, data):
         # ou seção; a questão que cita outro texto ("textos 2 e 3") leva também esse (auditoria de 11/11: antes o texto
         # ia só para a 1ª questão do grupo)
         'suporte_secao': True, 'cita_textos': True,
-        # 2022.2: "Texto 4" centrado com espaços à esquerda (a linha começa em x≈15): margem menor
-        'colunas': lambda r: _p.duas_colunas(r, 12), 'margem': 12, 'ancora_dx': 32,
-        'ultima_continua': True,   # a última questão de um caderno pode terminar na página seguinte (2022.2, Geo/His e Fil/Soc)
     })
     return cfg
 
@@ -411,8 +408,11 @@ def uece2(ano, sem, comunicado, dias):
         'cadernos': [{'arquivo': arq, 'paginas': (3, 999), 'questoes': (_F2_DESLOC[arq] + 1, _F2_DESLOC[arq] + qtd),
                       'deslocamento': _F2_DESLOC[arq], 'rotulo': rot} for arq, _, qtd, rot in _F2],
         'gabarito': _uece2_gab,
-        'suporte': cfg['suporte'] + [r'^TEXTO\s+\d+\s*$'],
+        # texto do inglês: "TEXT" sozinho (2020.2, 2022) ou logo abaixo de "PROVA II – LÍNGUA INGLESA" (2021.1)
+        'suporte': cfg['suporte'] + [r'^TEXTO\s+\d+\s*$', r'^TEXT\s*$', r'^PROVA II\s*[–-]\s*L[ÍI]NGUA INGLESA'],
         'suporte_secao': True, 'cita_textos': True,
+        # título de prova no meio do caderno ("PROVA IV – SOCIOLOGIA") encerra a questão anterior
+        'corte': cfg['corte'] + [r'^PROVA [IVX]+\s*[–-](?!\s*L[ÍI]NGUA INGLESA)'],
         # 2022.2: "Texto 4" centrado com espaços à esquerda (a linha começa em x≈15): margem menor
         'colunas': lambda r: _p.duas_colunas(r, 12), 'margem': 12, 'ancora_dx': 32,
         'ultima_continua': True,   # a última questão de um caderno pode terminar na página seguinte (2022.2, Geo/His e Fil/Soc)
