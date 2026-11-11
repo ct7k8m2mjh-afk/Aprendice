@@ -3,7 +3,7 @@
 import { describe, expect, it } from 'vitest';
 import {
   agendaDe, diaDaData, dominioDe, emNDias, filaAntiga, filaDe, fracaoIdeal, intervalo, memoriaDe, proximaProva,
-  retencao, DIA, SAIDA, SEM_AGENDA, type Agenda,
+  retencao, projetaAte, DIA, SAIDA, SEM_AGENDA, type Agenda,
 } from '../logica/revisao';
 import { proximaVolta, VOLTA_DIAS } from '../logica/cicloRevisao';
 import { marcaFlash } from '../logica/revisao';
@@ -155,6 +155,32 @@ describe('domínio real (não é contagem de acertos)', () => {
     expect(p).toBeGreaterThan(0);
     expect(p).toBeLessThan(100);
     expect(previsao(dominioMateria(mc, s, SEM_AGENDA, dia(12)).c)).toBeNull();
+  });
+});
+
+describe('previsão para o dia da prova, se fizer as revisões marcadas', () => {
+  const ag = comProva(21);
+  it('errou hoje: com as revisões marcadas até a prova, a lembrança no dia é bem maior que parando agora', () => {
+    const m = memoriaDe({ tent: [tent(t0, false)] }, ag)!;
+    const p = projetaAte(m, ag.prova!, ag, t0);
+    expect(p.acertos).toBeGreaterThanOrEqual(SAIDA); // as 3 revisões cabem antes da prova
+    expect(p.fila).toBe(false);
+    expect(retencao(p, ag.prova!)).toBeGreaterThan(retencao(m, ag.prova!) + 0.3);
+  });
+  it('nenhuma revisão é contada no dia da prova ou depois', () => {
+    const m = memoriaDe({ tent: [tent(t0, false)] }, comProva(2))!;
+    const p = projetaAte(m, emNDias(t0, 2), comProva(2), t0);
+    expect(p.ultima).toBeLessThan(emNDias(t0, 2));
+    expect(p.acertos).toBe(1);
+  });
+  it('fora da revisão nada muda', () => {
+    const m = memoriaDe({ tent: [tent(t0, true)] }, ag)!;
+    expect(projetaAte(m, ag.prova!, ag, t0)).toEqual(m);
+  });
+  it('vencida conta como revisão hoje (não no passado)', () => {
+    const m = memoriaDe({ tent: [tent(t0, false)] }, ag)!;
+    const p = projetaAte(m, ag.prova!, ag, dia(5));
+    expect(p.ultima).toBeGreaterThanOrEqual(dia(5));
   });
 });
 

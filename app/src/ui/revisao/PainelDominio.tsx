@@ -56,7 +56,7 @@ export function PainelDominio({ todas, e, ag, agora }: { todas: MateriaCarregada
         <Barra c={geral} />
         <p className="dm-expl">
           A barra mostra as {geral.domina + geral.aprendendo + geral.esqueceu} questões que você já fez. <b>Domina</b>: {SAIDA} acertos em dias diferentes, cada um na data marcada, e a lembrança ainda firme. <b>Aprendendo</b>: errou da primeira vez ou ainda não completou os {SAIDA} acertos. <b>Esqueceu</b>: errou depois de já ter acertado, ou passou tanto tempo da data que a lembrança provavelmente caiu.
-          {prev != null && <> <b>No dia da prova</b>: quanto você ainda deve lembrar das questões que já fez no dia da prova ({nomeProva(ag.provaId)}), se parar de revisar hoje.</>}
+          {prev != null && <> <b>No dia da prova</b>: quanto você deve lembrar das questões que já fez no dia da prova ({nomeProva(ag.provaId)}), se fizer as revisões marcadas.</>}
         </p>
       </section>
 

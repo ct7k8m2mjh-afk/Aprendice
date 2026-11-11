@@ -2,12 +2,13 @@
  * Painel de domínio real (Método Aprendice de Revisão, pilar 8; comando 24 fase 2).
  * Por matéria, tema e conteúdo: quantas questões o aluno domina, está aprendendo ou esqueceu — pela memória de cada
  * questão (acertos espaçados, estabilidade, erros depois de já ter acertado; logica/revisao.ts), não por contagem de
- * acertos. Com data de prova: a previsão de quanto ele lembra no dia da prova (média de R = e^(−t/S)).
+ * acertos. Com data de prova: a previsão de quanto ele lembra no dia da prova (média de R = e^(−t/S)), supondo que
+ * ele faça as revisões já marcadas até lá (logica/revisao.ts, projetaAte).
  */
 import type { MateriaCarregada } from '../dados/conteudo';
 import type { EstadoMateria } from '../estado/tipos';
 import { comHistorico } from './estatisticas';
-import { dominioDe, memoriaDe, retencao, SEM_AGENDA, type Agenda } from './revisao';
+import { dominioDe, memoriaDe, projetaAte, retencao, SEM_AGENDA, type Agenda } from './revisao';
 
 export interface ContaDominio {
   domina: number;
@@ -46,7 +47,7 @@ export function dominioMateria(mc: MateriaCarregada, s: EstadoMateria, ag: Agend
     const m = memoriaDe(s.q[q.id], ag);
     if (!m) { if (noBanco.has(q.id)) c.nunca++; continue; }
     c[dominioDe(m, agora)]++;
-    if (ag.prova) { c.somaR += retencao(m, Math.max(agora, ag.prova)); c.nR++; }
+    if (ag.prova) { const dia = Math.max(agora, ag.prova); c.somaR += retencao(projetaAte(m, dia, ag, agora), dia); c.nR++; }
   }
   const temas: DominioTema[] = mc.conteudo.modulos.map((mod) => {
     const subs = mod.subs.map((x) => ({ id: x.id, nome: x.nome, c: porSub.get(x.id) || contaVazia() })).filter((x) => x.c.total || feitasDe(x.c));

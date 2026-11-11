@@ -166,6 +166,21 @@ export function retencao(m: Memoria, quando: number): number {
   return Math.exp(-Math.max(0, (quando - m.ultima) / DIA) / m.S);
 }
 
+/**
+ * Memória projetada para um momento (o dia da prova), supondo que o aluno faça as revisões já marcadas e acerte:
+ * enquanto a questão está na revisão e a próxima volta cai antes do momento, conta um acerto na data (vencida = hoje).
+ * Fora da revisão, nada é marcado: a memória segue como está.
+ */
+export function projetaAte(m: Memoria, quando: number, ag: Agenda = SEM_AGENDA, agora = Date.now()): Memoria {
+  let x = m;
+  for (let k = 0; k < 12 && x.fila; k++) {
+    const ts = Math.max(x.vence, agora);
+    if (iniDia(ts) >= iniDia(quando)) break;
+    x = passo(x, { letra: 'A', ok: true, ts, seg: 0, conf: 'certeza' }, ag);
+  }
+  return x;
+}
+
 /* ============================================================ domínio (pilar 8) */
 
 export type Dominio = 'domina' | 'aprendendo' | 'esqueceu';
