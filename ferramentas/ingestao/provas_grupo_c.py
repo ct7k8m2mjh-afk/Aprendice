@@ -109,6 +109,36 @@ PROVAS['uece-2021-1'] = uece1(2021, 1, '31/2021', '20/06/2021')
 PROVAS['uece-2022-1'] = uece1(2022, 1, '75/2021', '15/11/2021')
 
 
+def _uece_gab_unico(pasta):
+    """Comunicado com 'GABARITO DEFINITIVO 1' (sem blocos por língua): linhas de números e de letras até o gabarito 2."""
+    txt = _p.texto_pdf(pasta / 'gabarito.pdf')
+    bloco = txt.split('GABARITO DEFINITIVO 1')[1].split('GABARITO DEFINITIVO 2')[0]
+    ls = [l.split() for l in bloco.splitlines() if l.strip()]
+    g = {}
+    for a, b in zip(ls, ls[1:]):
+        if a and all(x.isdigit() for x in a) and len(a) == len(b) and all(re.fullmatch(r'[A-D]|X|\*', x) for x in b):
+            for n, v in zip(a, b):
+                g[int(n)] = v if v in 'ABCD' else 'X'
+    return g
+
+
+_m('uece-ead-2022', 'uece/47528', CEV, caderno=_U + 'prova-e-gabarito-uece-ead-2022-2/prova.pdf',
+   gabarito=_U + 'prova-e-gabarito-uece-ead-2022-2/gabarito-oficial-uece-ead-2022.pdf')
+PROVAS['uece-ead-2022'] = uece1(2022, 2, '139/2022', '03/07/2022')
+PROVAS['uece-ead-2022'].update({
+    'fase': 'Vestibular Especial 2022 (EaD)', 'titulo': 'UECE 2022 – Vestibular Especial (EaD)', 'total': 45,
+    'duracao_horas': 4,
+    'nota': 'Universidade Estadual do Ceará, Vestibular Especial 2022 para os cursos de graduação a distância (Prova de '
+            'Conhecimentos Gerais aplicada em 03/07/2022, caderno do gabarito 1): 45 questões A–D de Língua Portuguesa, '
+            'Língua Inglesa, Matemática, História, Geografia, Física, Química e Biologia. Redação fora. Gabarito oficial '
+            'definitivo (Comunicado 139/2022-CEV/UECE).',
+    'gabarito': _uece_gab_unico,
+    'topo': 67,   # cabeçalho de três linhas (vai até y≈65)
+    # o texto de Língua Portuguesa vem logo abaixo do título da seção, sem "Texto 1" (pág. 5, conferido): vale para 01–10
+    'suporte_forcado': {('caderno', 5): [(92, 0, (1, 10))]},
+})
+
+
 # ------------------------------------------------------------------------------------- Unimontes (Cotec/Coteps)
 COTEPS = 'https://www.coteps.unimontes.br/'
 
