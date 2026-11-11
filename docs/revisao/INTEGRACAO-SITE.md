@@ -84,7 +84,6 @@ O script confere JSON válido, ids únicos, campos na ordem do esquema, nenhum c
 
 - **Português** — As descrições de imagem de alguns tópicos ainda citam 'questão resolvida' (o campo imagem foi preservado). Ao produzir essas imagens, não incluir a questão: ela saiu do tópico.
 - **Português** — Subtemas novos de Português: para ligar os 139 tópicos, usei os 50 subtemas que já existem no site e propus 10 novos (P01.5 funções da linguagem; P04.5 intertextualidade; P07.5 artigo, numeral, preposição, conjunção e interjeição; P07.6 estrutura das palavras; P09.6 funções do 'que' e do 'se'; P10.6 ortografia, hífen, homônimos e parônimos; P10.7 acentuação gráfica; P11.5 Trovadorismo, Humanismo e Classicismo; P11.6 Quinhentismo; P12.6 Modernismo em Portugal e Fernando Pessoa). Eles ainda não existem no site: aprovar, renomear ou recusar antes de irem ao ar (lista em docs/revisao/por/subtemas.json).
-- **Português** — Produção de Texto: 13 tópicos voltados à redação (RK01–RK05, RK08–RK12, RK20–RK22) ficaram sem subtema, porque Redação não é matéria do site (decisão de 03/11/2026). Decidir se aparecem só na revisão da matéria inteira ou se saem.
 - **Matemática** — Matemática: o campo `imagem` não tem `falta_imagem` nem `aviso`, ao contrário das outras matérias. Não foi alterado (a regra é preservar o campo). Decidir se o site trata a ausência como "imagem ainda não feita" ou se o campo deve ser igualado.
 - **Matemática** — Matemática: o campo `lacunas` foi criado (não existia) para registrar a revisão, como nas outras matérias.
 - **Biologia** — BK12: decidir se o site mostra 32 ATP (contagem atual) ou também 36/38, usados por provas antigas.
@@ -96,6 +95,10 @@ O script confere JSON válido, ids únicos, campos na ordem do esquema, nenhum c
 - **Filosofia e Sociologia** — SK41: manter a atribuição do livro (mobilização de recursos = Tilly) ou corrigir para a atribuição usual (McCarthy e Zald; Tilly = processo político)?
 - **Filosofia e Sociologia** — Os tópicos de Filosofia e Sociologia são longos (vários pontos com mais de 400 caracteres). Foram mantidos para não perder conteúdo; se o site precisar de pontos mais curtos, o corte deve ser feito na tela, não no arquivo, ou em nova rodada de edição.
 - **Filosofia e Sociologia** — Subtemas: ficaram sem subtema FK18 (Renascimento), FK38 (inteligência artificial), SK02 (métodos de pesquisa), SK32 (Sociologia no Brasil), SK35 (Sociologia urbana) e SK37 (Norbert Elias), que não têm correspondente na lista do site.
+
+Decisões já tomadas pelo dono (12/11/2026):
+
+- **Redação** não terá subtema no site: os 13 tópicos de Produção de Texto voltados à redação (`RK01`–`RK05`, `RK08`–`RK12`, `RK20`–`RK22`) aparecem só na revisão geral de Português, com `subs` vazio de propósito. Na tela da matéria inteira eles entram normalmente; na revisão por subtema, não aparecem.
 
 ## 7. O que o site não deve fazer
 

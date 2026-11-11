@@ -129,6 +129,7 @@ Limites desta revisão: o livro não foi consultado (por instrução). Segunda r
 | PK27, PK37, PK39, PK42, LK24, LK27, LK31, IK10, IK23, IK24, IK26 | questão de prova trocada por exemplo ou ponto de conteúdo, sem prova e sem letra; títulos e busca[] ajustados | pedido do dono: resolver a questão ou tirar; sem o caderno da prova a letra não se confirma, mas o conteúdo ensinado vale por si | Cunha & Cintra; Bosi; Bagno, Preconceito Linguístico | 1 |
 | LK19, IK12, IK14, IK16 | questão de prova retirada do tópico | só se resolvem com o texto ou a imagem da prova, que não estão no arquivo | — | 1 |
 | campo subs | 126 de 139 tópicos ligados a subtemas: os 50 que já existem no site (P01.1–P12.5) e 10 novos propostos (P01.5, P04.5, P07.5, P07.6, P09.6, P10.6, P10.7, P11.5, P11.6, P12.6); criado por/subtemas.json | pedido do dono (12/11/2026): definir os subtemas de Português a partir dos tópicos, para o aluno se localizar entre a revisão por subtema e a da matéria inteira | app-atual/por/dados.json (nomesub) | 2 |
+| RK01–RK05, RK08–RK12, RK20–RK22 | registrado que ficam só na revisão geral da matéria, sem subtema | decisão do dono (12/11/2026): redação não terá subtema no site | — | 2 |
 
 ### Itens marcados "conferir" (estão em `lacunas` do arquivo)
 
@@ -140,7 +141,6 @@ Limites desta revisão: o livro não foi consultado (por instrução). Segunda r
 
 - As descrições de imagem de alguns tópicos ainda citam 'questão resolvida' (o campo imagem foi preservado). Ao produzir essas imagens, não incluir a questão: ela saiu do tópico.
 - Subtemas novos de Português: para ligar os 139 tópicos, usei os 50 subtemas que já existem no site e propus 10 novos (P01.5 funções da linguagem; P04.5 intertextualidade; P07.5 artigo, numeral, preposição, conjunção e interjeição; P07.6 estrutura das palavras; P09.6 funções do 'que' e do 'se'; P10.6 ortografia, hífen, homônimos e parônimos; P10.7 acentuação gráfica; P11.5 Trovadorismo, Humanismo e Classicismo; P11.6 Quinhentismo; P12.6 Modernismo em Portugal e Fernando Pessoa). Eles ainda não existem no site: aprovar, renomear ou recusar antes de irem ao ar (lista em docs/revisao/por/subtemas.json).
-- Produção de Texto: 13 tópicos voltados à redação (RK01–RK05, RK08–RK12, RK20–RK22) ficaram sem subtema, porque Redação não é matéria do site (decisão de 03/11/2026). Decidir se aparecem só na revisão da matéria inteira ou se saem.
 
 ## Matemática
 
