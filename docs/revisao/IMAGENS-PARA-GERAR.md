@@ -1032,3 +1032,219 @@ Cada item aparece no site como EM CONSTRUÇÃO... (o que será colocado: ...). E
 | QK56 | Aminoácidos, ligação peptídica e proteínas | Fórmula do α-aminoácido, zwitterion, formação da ligação peptídica, hélice alfa e folha beta e proteína nativa versus desnaturada. |
 | QK57 | Lipídeos: ácidos graxos, triacilgliceróis e fosfolipídeos | Reação de glicerol com três ácidos graxos formando triacilglicerol e a estrutura do fosfolipídeo com cabeça fosfato hidrofílica. |
 | QK58 | Carboidratos: monossacarídeos, dissacarídeos e polissacarídeos | Estruturas da D-glicose (aldose) e D-frutose (cetose) abertas e cíclicas (α e β-glicopiranose), formação da sacarose com ligação glicosídica e os trechos de amido, glicogênio e celulose. |
+
+## Geografia (caderno Revisaí) — imagens que faltam
+
+Cada item aparece no site como EM CONSTRUÇÃO... (o que será colocado: ...). Enviar como `<id>.png`.
+
+| id | título | imagem desejada |
+|---|---|---|
+| GK01 | Origens da Geografia: clássica, determinismo, possibilismo e Geografia crítica | Fotos de Ratzel, Vidal de la Blache e Milton Santos e um quadro comparando Geografia clássica, determinismo, possibilismo e Geografia crítica. |
+| GK02 | Linguagem geográfica, espaço vivido e cidadania | Imagem de satélite de Manaus mostrando o contraste entre a cidade e a Floresta Amazônica. |
+| GK03 | Escala, coordenadas, meridianos e paralelos | Esquema de paralelos (latitude) e meridianos (longitude) com Equador, Greenwich, Norte, Sul, Leste e Oeste. |
+| GK04 | Projeções cartográficas, tipos de mapa e elementos do mapa | Mapa-múndi nas projeções de Mercator e de Peters lado a lado e um mapa com título, escala numérica e gráfica, legenda, orientação e projeção. |
+| GK05 | Tecnologias na representação espacial | Esquema de camadas de informação espacial (rede viária, edificações, vegetação) integradas em um SIG. |
+| GK06 | Estrutura da Terra, placas tectônicas e forças endógenas | Esquema da estrutura interna da Terra (núcleo, manto, astenosfera, crosta, litosfera, sial e sima), dobramentos (anticlinal e sinclinal) e tipos de falha (normal, lateral, horst e graben). |
+| GK07 | Forças exógenas, ciclo das rochas e riscos naturais | Esquema do ciclo das rochas, tipos de falha tectônica e o mapa dos escudos cristalinos nos continentes (questão Unicamp). |
+| GK08 | Relevo do Brasil (classificação de Jurandyr Ross) | Mapa do relevo do Brasil segundo Jurandyr Ross com os 28 compartimentos numerados (planaltos, depressões e planícies) e fotos de cada tipo. |
+| GK09 | Clima: elementos, fatores e tipos de chuva | Mapa das correntes marítimas quentes e frias e foto de nuvens densas sobre São Paulo indicando chuva convectiva. |
+| GK10 | Zonas climáticas, climas e vegetação | Mapas do mundo de climas e de vegetação original com legenda completa. |
+| GK11 | Mudanças climáticas, efeito estufa e ilhas de calor | Gráfico do aquecimento global com concentração de gases de efeito estufa e esquema de ilha de calor em perfil urbano e rural. |
+| GK12 | Hidrografia, bacias hidrográficas e aquíferos | Mapa do Brasil com as regiões hidrográficas e esquema do ciclo da água com nascentes e aquíferos. |
+| GK13 | Questões ambientais contemporâneas: escasseamento, crise hídrica e poluição | Esquema do ciclo da eutrofização e fotos de desmatamento, microplástico e poluição de rio. |
+| GK14 | Biomas brasileiros, desmatamento e políticas ambientais | Gráfico da queda da vegetação nativa no Brasil de 1985 a 2024 e mapa dos biomas brasileiros com as porcentagens remanescentes. |
+| GK15 | Revoluções industriais e modelos industriais | Linha do tempo das quatro revoluções industriais e esquemas de linha de montagem (fordismo) e de produção just in time (toyotismo). |
+| GK16 | Urbanização, metropolização e segregação socioespacial | Mapa de uma metrópole conurbada e gráfico da taxa de urbanização mundial. |
+| GK17 | Estrutura fundiária, relações de trabalho e reforma agrária | Gráfico de barras da estrutura fundiária do Brasil em 2019 (número de imóveis e área por faixa de hectares). |
+| GK18 | Modelos agrícolas: intensivo, extensivo, familiar, agroecologia e agronegócio | Cartaz da FAO sobre agroecologia (questão Famerp) e comparativo entre agricultura familiar, agroecologia e agronegócio. |
+| GK19 | Capitalismo, territorialidades e divisão territorial do trabalho | Esquema da antiga DIT: economias industrializadas trocando produtos industrializados por minérios, alimentos e matérias-primas das economias primário-exportadoras. |
+| GK20 | Serviços, globalização, financeirização e nova divisão internacional do trabalho | Mapa de uma cadeia global de valor com etapas da produção em diferentes países e gráfico do peso dos serviços na economia. |
+| GK21 | Trabalho, neoliberalismo, informalidade e gig economy | Infográfico da gig economy: definição, contextos (política, tecnologia, social, econômico, cultural) e críticas. |
+| GK22 | Conceitos fundamentais da Geografia: espaço, território, paisagem, lugar e região | Esquema com os cinco conceitos (espaço, território, paisagem, lugar, região) e fotos que ilustram cada um. |
+| GK23 | Dinâmicas populacionais: crescimento, estrutura etária e políticas demográficas | Pirâmides etárias de país desenvolvido e em desenvolvimento e gráfico de crescimento vegetativo. |
+| GK24 | Migrações, refugiados, políticas anti-imigratórias e xenofobia | Foto de civis em fuga de conflito na fronteira Tailândia-Camboja e mapa de fluxos migratórios. |
+| GK25 | Transição demográfica e transformações populacionais | Gráfico da transição demográfica (natalidade, mortalidade e crescimento) e pirâmides etárias do Brasil 1950 e 2022. |
+| GK26 | Cultura, identidades e territórios de povos tradicionais | Mapa do Brasil: reservas e terras indígenas em 2022, por fase do processo administrativo (IBGE). |
+| GK27 | Direito à cidade, macrocefalia urbana, habitação e mobilidade | Mapa de megacidades e cidades globais e foto de conjunto habitacional popular em Belém (PA). |
+| GK28 | Formação histórica do território brasileiro | Mapa histórico da ocupação do território brasileiro (litoral, bandeiras, ferrovias do café, rodovias e Brasília). |
+| GK29 | Regionalizações do Brasil, desigualdades regionais e políticas de desenvolvimento | Mapas lado a lado: regiões do IBGE (cinco), geoeconômicas de Geiger (três) e os quatro Brasis de Milton Santos. |
+| GK30 | Industrialização, urbanização, desindustrialização e desconcentração no Brasil | Gráfico da evolução da população rural e urbana do Brasil (1950–2020) e mapa do eixo industrial São Paulo-Rio-Belo Horizonte. |
+| GK31 | Agropecuária, mineração e extrativismo no Brasil | Mapa das áreas de mineração (quadrilátero ferrífero, Carajás, Trombetas) e fronteira agrícola do Brasil. |
+| GK32 | Questões ambientais no Brasil: desmatamento e crises hídricas | Mapa do desmatamento na fronteira agrícola e esquema de como o desmatamento reduz chuva e infiltração. |
+| GK33 | Políticas ambientais e populações tradicionais no Brasil | Mapa do Brasil com unidades de conservação, terras indígenas e territórios quilombolas. |
+| GK34 | Colonialismo, imperialismo e guerras mundiais | Mapa da partilha da África e da Ásia no século XIX e do mundo bipolar após Yalta e Potsdam. |
+| GK35 | Guerra Fria, nova ordem mundial e multipolaridade | Mapa dos blocos da Guerra Fria (OTAN e Pacto de Varsóvia) e dos blocos econômicos atuais. |
+| GK36 | Ascensão da China e a nova ordem global | Mapa da Nova Rota da Seda (ferrovias, rota marítima, cinturão econômico) e mapa do comércio EUA-China em 1980 e 2018. |
+| GK37 | Conflitos contemporâneos: disputas territoriais, étnicas e religiosas | Mapa dos conflitos contemporâneos (Ucrânia, Geórgia, Oriente Médio, Sahel, Essequibo). |
+| GK38 | Terrorismo, guerra ao terror, intervenções e refugiados | Mapa dos grupos extremistas por região e dos fluxos de refugiados. |
+| GK39 | Geopolítica da energia e dos recursos naturais | Mapa mundial das reservas de petróleo, gás, terras raras e lítio. |
+| GK40 | Geopolítica ambiental e climática e justiça climática | Linha do tempo dos marcos ambientais (Estocolmo 1972, Montreal 1987, IPCC 1988, ECO-92, Kyoto 1997, Paris 2015). |
+| GK41 | Funções urbanas predominantes | Quadro com as seis funções urbanas e um exemplo de cidade para cada uma. |
+| GK42 | Redes urbanas, hierarquia, conurbação, metropolização, megacidades e cidades globais | Mapa das cidades globais (Nova York, Londres, Tóquio) e das megacidades; esquema de conurbação entre municípios. |
+| GK43 | Desconcentração urbana e cidades médias | Gráfico comparando o crescimento de cidades médias e de metrópoles. |
+| GK44 | Transportes e infraestruturas: modais | Quadro comparativo dos quatro modais (custo, distância ideal, flexibilidade, impacto ambiental). |
+| GK45 | Tecnologia, ciberespaço, exclusão digital, plataformização e algoritmização | Linha do tempo da internet (1980 a 2010) e esquema do fluxo de dados entre usuários, plataformas e algoritmos. |
+
+## História (caderno Revisaí) — imagens que faltam
+
+Cada item aparece no site como EM CONSTRUÇÃO... (o que será colocado: ...). Enviar como `<id>.png`.
+
+| id | título | imagem desejada |
+|---|---|---|
+| HK01 | A ciência histórica e a periodização | Linha do tempo com os cinco períodos da periodização tradicional. |
+| HK02 | Pré-História e origens humanas: Paleolítico e Neolítico | Crânios de Homo sapiens e neandertal; mapa da dispersão humana a partir da África. |
+| HK03 | Povos do Oriente Médio e do Norte da África | Mapa do Crescente Fértil com Mesopotâmia, Egito, Anatólia, Palestina, Assíria e rios Tigre, Eufrates, Nilo e Jordão. |
+| HK04 | Grécia antiga: períodos, pólis, Atenas e Esparta | Mapa da Grécia antiga e quadro dos cinco períodos. |
+| HK05 | Roma antiga: Monarquia, República e Império | Esquema da cidadania romana, mapa da expansão romana na República e linha do tempo da Monarquia ao Império. |
+| HK06 | Crise de Roma, cristianismo e queda do Império do Ocidente | Mapa do Império Romano do Ocidente e do Oriente em 395 d.C. com as migrações bárbaras e estátua de Constantino. |
+| HK07 | O mundo islâmico medieval | Foto da grande mesquita de Córdoba (século X) e mapa da expansão do Império Islâmico. |
+| HK08 | Império Bizantino (Império Romano do Oriente) | Mapa do Império Bizantino no século VI (conquistas de Justiniano) e foto da Basílica de Santa Sofia. |
+| HK09 | Alta Idade Média: Império Franco, merovíngios e carolíngios | Iluminura da coroação de Carlos Magno e mapa da divisão do Império Carolíngio no Tratado de Verdun. |
+| HK10 | Feudalismo: características e apogeu (séculos IX–XI) | Esquema da pirâmide feudal e calendário agrícola do século XV. |
+| HK11 | Baixa Idade Média (séculos XI–XIII): Cruzadas e renascimentos comercial e urbano | Mapa das rotas das Cruzadas e esquema de cidades, feiras e Liga Hanseática. |
+| HK12 | Crise do mundo medieval (séculos XIV–XV): peste e guerras | Afresco O triunfo da morte (Clusone, século XV) e mapa da disseminação da peste na Europa. |
+| HK13 | Passagem da Idade Média à Época Moderna e Renascimento | Davi de Michelangelo e A Escola de Atenas de Rafael. |
+| HK14 | Reforma Protestante e Contrarreforma | Retratos de Lutero e Calvino e mapa da Europa religiosa. |
+| HK15 | Absolutismo monárquico e monarquias francesa e inglesa | Capa do Leviatã de Hobbes (1651) e quadro comparativo das monarquias francesa e inglesa. |
+| HK16 | Reconquista, Revolução de Avis e formação dos reinos ibéricos | Mapa da Reconquista (séculos X a XV) e retrato dos reis católicos. |
+| HK17 | Mercantilismo e expansão marítima | Mapa das rotas das grandes navegações portuguesas e espanholas. |
+| HK18 | Primeiras navegações e povos nativos da América | Capa do Códice Mendoza e foto de um quipo; mapa dos povos nativos da América. |
+| HK19 | Conquista e estabelecimento das colônias espanholas | Códice Lienzo de Tlaxcala e pintura de castas coloniais (Do espanhol e da Índia, mestiça). |
+| HK20 | Início da colonização, capitanias hereditárias, câmaras e governo-geral | Mapa das capitanias hereditárias (Luís Teixeira, século XVI) e quadro do sistema colonial. |
+| HK21 | União Ibérica e Brasil holandês | Pintura Engenho (Frans Post, 1661) e Alegoria da Santa Aliança de El Greco (Filipe II). |
+| HK22 | Restauração portuguesa, crise do açúcar, interiorização e bandeiras | Estátua de Borba Gato (São Paulo) e mapa das bandeiras e da expansão da pecuária. |
+| HK23 | Economia e sociedade mineradora e revoltas nativistas | Igreja de São Francisco de Assis (Ouro Preto) e esquema de quinto, Casas de Fundição e derrama. |
+| HK24 | Reformas pombalinas e esgotamento da economia colonial | Gravura do terremoto de Lisboa (1755) e Praça Tiradentes em Ouro Preto. |
+| HK25 | Revoltas emancipacionistas: Inconfidência Mineira e Conjuração Baiana | Tiradentes esquartejado (Pedro Américo, 1893) e hospício da Piedade (Rugendas), local da execução na Bahia. |
+| HK26 | Independências na América espanhola | Retábulo da Independência do México (O'Gorman) e mapa das independências sul-americanas com Bolívar, San Martín e O'Higgins. |
+| HK27 | Independência da América portuguesa: Governo Joanino e Dia do Fico | Pintura Independência ou Morte (Pedro Américo) e gravura do embarque da família real para o Brasil. |
+| HK28 | Revolução Industrial | Gravura de 1835 de teares mecânicos e linha do tempo das conquistas trabalhistas. |
+| HK29 | Iluminismo e despotismo esclarecido | Frontispício da Enciclopédia e pintura da mesa redonda de Frederico II. |
+| HK30 | Independência das Treze Colônias | Gravura Os bostonianos pagando impostos (Dawe, 1774) e quadro comparativo Norte × Sul das Treze Colônias. |
+| HK31 | Revolução Haitiana | Batalha de São Domingos (Suchodolski) e retrato de Toussaint Louverture. |
+| HK32 | Revolução Francesa: Antigo Regime, Constituinte, Convenção e Diretório | Gravura da morte de Luís XVI na guilhotina e quadro das três fases da Revolução. |
+| HK33 | Era napoleônica e Congresso de Viena | Mapa do Império Napoleônico em 1812 e pintura Napoleão entronizado (Ingres). |
+| HK34 | Expansão para o Oeste, Guerra de Secessão e imperialismo estadunidense | Mapa da expansão dos EUA para o Oeste nos séculos XVIII e XIX e quadro Norte × Sul na Guerra de Secessão. |
+| HK35 | Primeiro Reinado: Constituição de 1824 e crise do governo de D. Pedro I | Pintura A execução de Frei Caneca e quadro dos quatro poderes da Constituição de 1824. |
+| HK36 | Período Regencial e Golpe da Maioridade | Mapa das revoltas regenciais e retrato de Dom Pedro de Alcântara (1830). |
+| HK37 | Segundo Reinado: política, economia, Guerra do Paraguai, abolição e crise | Esquema do Segundo Reinado e linha do tempo das leis abolicionistas (1850, 1871, 1885, 1888). |
+| HK38 | O longo século XIX: ideias, reorganização da Europa e Segunda Revolução Industrial | Mapa mental do longo século XIX (ideias, política e imperialismo). |
+| HK39 | Imperialismo na África e na Ásia | Mapa da partilha da África após a Conferência de Berlim e pintura de oficial da Companhia das Índias Orientais. |
+| HK40 | República da Espada e República Oligárquica | Mapa mental da Primeira República (política, economia, revoltas) e linha do tempo das revoltas. |
+| HK41 | Primeira Guerra Mundial: causas | Mapa dos povos e etnias do Império Austro-Húngaro no século XIX e foto das ruas de Sarajevo após o atentado. |
+| HK42 | Primeira Guerra Mundial: a guerra e suas consequências | Foto de trincheira no rio Somme (1916) e cartaz de recrutamento dos EUA (1917). |
+| HK43 | Rússia antes da Revolução e Revolução Russa de 1917 | Desenho do Domingo Sangrento (1905) e fotografia de Lênin discursando em Moscou (1920). |
+| HK44 | Stalinismo e União Soviética até a Segunda Guerra | Fotos de Trótski (1921) e Stálin (1937) e pintura realista socialista (Mashkov, 1930). |
+| HK45 | Governo Provisório e Governo Constitucional (1930–1937) | Quadro comparativo AIB × ANL e linha do tempo de 1930 a 1937. |
+| HK46 | Ditadura do Estado Novo (1937–1945) | Propaganda do Estado Novo (1937) e quadro dos partidos de 1945. |
+| HK47 | Entreguerras: Versalhes, crise de 1929, fascismo e Eixo | Mapa mental do entreguerras: Versalhes, Revolução Russa, crise de 1929, fascismos e Eixo. |
+| HK48 | Ascensão do nazifascismo | Foto de cerimônia fascista com crianças em Roma (1942) e linha do tempo da ascensão de Hitler (1919 a 1934). |
+| HK49 | Segunda Guerra Mundial: fases, fim e ordem do pós-guerra | Cogumelo da bomba de Hiroshima (1945), soldados soviéticos em Stalingrado (1943) e mapa das frentes da guerra. |
+| HK50 | Guerra Fria: tensões, guerras e fim | Mapa mental da Guerra Fria e linha do tempo de 1945 a 1991. |
+| HK51 | Populismo na América Latina: Argentina e México | Fotos de Perón e Evita (1955), de Lázaro Cárdenas (1937) e de Carmen Miranda (1941). |
+| HK52 | Dutra e o segundo governo Vargas | Selo da criação da Petrobras com Vargas e foto de Carlos Lacerda (1954). |
+| HK53 | JK, Jânio Quadros, João Goulart e o golpe de 1964 | Condecoração de Che Guevara por Jânio (1961) e marcha da família, São Paulo (1964). |
+| HK54 | Ditaduras na América Latina e ditadura militar no Brasil | Mapa das ditaduras latino-americanas e linha do tempo da ditadura brasileira (1964, AI-2, AI-5, anistia, Diretas Já). |
+| HK55 | Nova República: Sarney, Collor, Itamar e FHC | Caras-pintadas em Brasília (1992) e linha do tempo dos planos econômicos (Cruzado, Collor, Real). |
+| HK56 | Governos Lula, Dilma, Temer e Bolsonaro | Foto das manifestações de junho de 2013 e linha do tempo das eleições de 2002 a 2022. |
+| HK57 | América Latina no século XXI: neoliberalismo e mudanças sociopolíticas | Passeata de estudantes chilenos por educação (Santiago, 2012) e mapa político da América Latina. |
+
+## Filosofia (caderno Revisaí) — imagens que faltam
+
+Cada item aparece no site como EM CONSTRUÇÃO... (o que será colocado: ...). Enviar como `<id>.png`.
+
+| id | título | imagem desejada |
+|---|---|---|
+| FK01 | Definição de filosofia: Platão (O banquete) e Aristóteles | Escultura O pensador (Rodin, 1904) e esquema da ascensão do conhecimento em Platão. |
+| FK02 | Do mito à filosofia: contexto, mito e logos | Foto da Acrópole de Atenas e do Monte Olimpo e quadro comparativo mito x filosofia. |
+| FK03 | Filósofos pré-socráticos e o arché | Tabela dos pré-socráticos com escola, arché e explicação; retrato de Tales de Mileto. |
+| FK04 | Democracia ateniense: contexto, instituições e limites | Esquema das instituições (Eclésia, Boulé e Helieia) e ruínas do teatro de Mileto. |
+| FK05 | Os sofistas: retórica, relativismo e críticas | Busto de Górgias (Siracusa) e quadro Protágoras x Górgias. |
+| FK06 | Sócrates: método socrático, ideias e condenação | Pinturas A morte de Sócrates (David, 1787) e Discurso de Sócrates (Lebrun, 1867) e busto de Sócrates (Louvre). |
+| FK07 | Platão: contexto social, político e filosófico | Busto de Platão (Museu Capitolino) e esquema das influências sobre Platão. |
+| FK08 | Teoria das ideias, alegoria da caverna e Demiurgo | Ilustração da alegoria da caverna e esquema da teoria das ideias (mundo sensível x mundo inteligível). |
+| FK09 | Pensamento político de Platão: A República, classes e justiça | Esquema das três classes da República e das três partes da alma (razão, vontade e desejo). |
+| FK10 | Aristóteles: relação com Platão, quatro causas, hilemorfismo, ato e potência | Detalhe de A Escola de Atenas (Rafael) com Platão apontando para o alto e Aristóteles com a palma para baixo; esquema das quatro causas da estátua. |
+| FK11 | Ética aristotélica: eudaimonia, virtude e justo meio | Esquema do justo meio (coragem entre covardia e imprudência). |
+| FK12 | Política aristotélica: formas de governo, justiça e zoon politikon | Tabela das formas de governo de Aristóteles (número de governantes x forma justa e corrompida) e balança em equilíbrio, símbolo da justiça. |
+| FK13 | Período helenístico e epicurismo | Mosaico de Alexandre (detalhe, c. 120 a.C., Nápoles) e busto de Epicuro. |
+| FK14 | Estoicismo | Busto de bronze de Marco Aurélio (séc. II d.C.) e esquema comparando epicurismo e estoicismo. |
+| FK15 | Ceticismo, outras escolas helenísticas e legado | Esquema das escolas helenísticas (epicurismo, estoicismo, ceticismo, cinismo) com os fundadores. |
+| FK16 | Patrística e Santo Agostinho | Imagem de Santo Agostinho em seu estúdio (Botticelli, Uffizi). |
+| FK17 | Escolástica e Tomás de Aquino | Ilustração medieval de Santo Tomás de Aquino (séc. XIII) e esquema das cinco vias. |
+| FK18 | Filosofia do Renascimento e Humanismo (Erasmo e Thomas More) | Afresco A Trindade (Masaccio, c.1427), com perspectiva, e estátua de Leonardo da Vinci como exemplo de polímata. |
+| FK19 | Maquiavel e o realismo político | Retrato de Maquiavel (Santi di Tito, séc. XVI). |
+| FK20 | Revolução Científica: Copérnico, Kepler e Galileu | Pinturas O astrônomo Copérnico (Matejko, 1873) e Galileu perante a Inquisição Romana (Banti, 1857). |
+| FK21 | Racionalismo e Descartes | Retrato de René Descartes (Frans Hals, c.1649, Louvre). |
+| FK22 | Empirismo: Locke, Berkeley e Hume | Retratos de Locke e esquema de qualidades primárias e secundárias. |
+| FK23 | Kant: criticismo, revolução copernicana e conhecimento | Retrato de Kant e esquema fenômeno x númeno. |
+| FK24 | Quadro comparativo: racionalismo, empirismo e criticismo | Quadro de três colunas (racionalismo, empirismo, criticismo) com fundamentos, método, crítica e influência. |
+| FK25 | Ética kantiana: deontologia e imperativo categórico | Quadro de teorias éticas modernas (deontológica x utilitarismo). |
+| FK26 | Utilitarismo: Bentham e Stuart Mill | Retrato de Jeremy Bentham (Pickersgill, 1829) e quadro Kant x utilitarismo. |
+| FK27 | Contratualismo: Hobbes, Locke e Rousseau | Retrato de Thomas Hobbes (Wright, c.1669) e esquema comparando os três contratualistas. |
+| FK28 | Hegel e Marx: idealismo e materialismo | Retrato de Hegel (Schlesinger, 1831) e esquema da dialética (tese, antítese, síntese). |
+| FK29 | Schopenhauer, Kierkegaard, Nietzsche e crítica à razão | Esboço de Kierkegaard (c.1840), fotografia de Nietzsche (c.1875) e de Schopenhauer (1852). |
+| FK30 | Filosofia da linguagem: Frege, Russell e Wittgenstein | Retrato de Bertrand Russell (1936) e esquema das duas fases de Wittgenstein. |
+| FK31 | Popper: falsificabilidade e crítica à indução | Imagem de cisne negro entre cisnes brancos ilustrando a refutação. |
+| FK32 | Kuhn: paradigmas e revoluções científicas, Popper x Kuhn | Retrato de Thomas Kuhn (1973) e esquema do ciclo ciência normal, crise, revolução. |
+| FK33 | Mapa mental: Popper e Kuhn (resumo) | Mapa mental Filosofia da ciência (Popper e Kuhn), com seus conceitos-chave. |
+| FK34 | Escola de Frankfurt: indústria cultural, razão instrumental e Benjamin | Foto de Theodor Adorno (teoria crítica com Horkheimer) e esquema da indústria cultural. |
+| FK35 | Existencialismo: Sartre, Heidegger e Camus | Fotos de Sartre, Heidegger e Camus e quadro dos existencialismos. |
+| FK36 | Rawls (liberalismo igualitário) e Nozick (libertarianismo) | Esquema comparando Rawls e Nozick. |
+| FK37 | Habermas, Hans Jonas e Peter Singer | Quadro de Habermas, Jonas e Singer com ideias centrais. |
+| FK38 | Inteligência artificial: Turing e Searle | Cartaz do filme O jogo da imitação e esquema da Sala Chinesa. |
+
+## Sociologia (caderno Revisaí) — imagens que faltam
+
+Cada item aparece no site como EM CONSTRUÇÃO... (o que será colocado: ...). Enviar como `<id>.png`.
+
+| id | título | imagem desejada |
+|---|---|---|
+| SK01 | Surgimento da Sociologia, fundadores e senso comum x conhecimento sociológico | Retratos de Auguste Comte e Émile Durkheim; de Karl Marx e Max Weber. |
+| SK02 | Métodos e técnicas de pesquisa sociológica | Quadro dos métodos (quantitativo, qualitativo) e das quatro técnicas de pesquisa. |
+| SK03 | Estrutura social: status, papel, grupo e interação social | Quadro com status, papel social, grupo social e os quatro tipos de interação. |
+| SK04 | Influências sobre a Sociologia: Comte, Darwin e Spencer (evolucionismo social) | Esquema das influências: Comte, Darwin e Spencer sobre a Sociologia. |
+| SK05 | Cultura: conceito, cultura material e imaterial | Fotos do Largo do Pelourinho (Salvador) e do queijo da Canastra. |
+| SK06 | Normas e valores culturais, coesão e controle social | Quadro de normas formais e informais, com exemplos. |
+| SK07 | Patrimonialização da cultura | Foto da Festa do Divino Espírito Santo, em Paraty (RJ). |
+| SK08 | Religião, sagrado e profano, secularização e retorno das religiões | Foto da Marcha para Jesus (São Paulo, 2024), exemplo de religião convivendo com a secularização. |
+| SK09 | Instituições sociais e a família | Quadro de configurações familiares e foto de família judaica em rito de bênção. |
+| SK10 | A escola como instituição social | Foto de sala de aula com recursos tecnológicos e de família de três gerações (avó, mãe e filho). |
+| SK11 | Estratificação social: casta, estamento e classe social | Foto de sacerdotes em ritual no rio Ganges (Varanasi, 2020) e gravura A fortaleza da fé (Lacroix, 1873) mostrando o caráter estamental. |
+| SK12 | Teorias da desigualdade: Marx, Weber e Bourdieu | Quadro Marx, Weber e Bourdieu (autor, conceitos, ideia central). |
+| SK13 | Pobreza, desigualdade no Brasil e criminalidade | Foto do contraste entre o Aglomerado da Serra e o bairro Horto (Belo Horizonte, 2021) e quadro de dimensões da desigualdade. |
+| SK14 | Desvio e controle social: Becker, Foucault e Goffman | Retratos de Foucault, Goffman e Becker e projeto do panóptico em Cuba. |
+| SK15 | Estado moderno, soberania e Estado de direito; tipos de Estado | Foto da reunião do Conselho de Segurança da ONU (Nova York, 2024) e mapa mental do Estado moderno. |
+| SK16 | Modelos de democracia: direta, representativa e participativa | Quadro dos três modelos de democracia, com exemplos. |
+| SK17 | Divisão de poderes, Montesquieu e freios e contrapesos | Foto do Congresso Nacional (Brasília, DF) com duas câmaras e esquema dos três poderes. |
+| SK18 | Desafios da democracia no Brasil: representatividade, corrupção, redes sociais e desigualdade | Mapa mental dos desafios da democracia (crise de confiança, redes sociais, desigualdade). |
+| SK19 | Poder, dominação e poder nas instituições | Foto simbolizando o poder da mídia sobre a opinião pública e esquema do poder nas instituições. |
+| SK20 | Poder em Weber, Foucault e Bourdieu | Quadros dos três tipos de dominação de Weber, das três formas de poder de Foucault e das três dimensões de Bourdieu. |
+| SK21 | Estudos contemporâneos sobre o poder: necropolítica e psicopolítica | Fotos de Achille Mbembe (2021) e Byung-Chul Han (2019). |
+| SK22 | Positivismo: lei dos três estados, hierarquia das ciências e funcionalismo | Esquema da hierarquia das ciências de Comte (da Matemática à Sociologia) e dos três estados. |
+| SK23 | Durkheim: método, fato social, anomia, suicídio e solidariedade | Capas dos livros As regras do método sociológico (1895) e O suicídio (1897). |
+| SK24 | Weber: sociologia compreensiva, ação social e tipos ideais | Quadro dos quatro tipos de ação social e foto de modelo representando a professora como tipo ideal. |
+| SK25 | Weber: dominação, estratificação, racionalização e ética protestante | Quadro dos três tipos de dominação com exemplos. |
+| SK26 | Marx: origens e materialismo histórico-dialético | Pintura A Liberdade guiando o povo (Delacroix, 1830). |
+| SK27 | Marx: valor-trabalho, mais-valia, alienação, ideologia, revolução e religião | Capas dos livros de O capital (1867) e esquema da mais-valia com os valores do exemplo. |
+| SK28 | Apropriações da obra de Marx no século XX | Linha do tempo das revoluções socialistas (1917, 1949, 1959). |
+| SK29 | Quadro-resumo: Durkheim, Weber e Marx | Mapa mental Teorias clássicas (Durkheim, Weber e Marx) com os conceitos de cada um. |
+| SK30 | Antropologia, etnologia, evolucionismo, universalismo, Tylor e Morgan | Esquema dos três estágios de Tylor (selvageria, barbárie, civilização). |
+| SK31 | Boas, Malinowski, Mauss e Lévi-Strauss: críticas ao evolucionismo | Foto de Malinowski com nativos das Ilhas Trobriand (1917–1918) e quadro dos autores da Antropologia. |
+| SK32 | Sociologia acadêmica no Brasil | Foto de uma das primeiras universidades brasileiras ou de um centro de pesquisa social. |
+| SK33 | Intérpretes do Brasil: Gilberto Freyre e Darcy Ribeiro | Capas de Casa-grande & senzala e de O povo brasileiro e retratos de Freyre e Darcy Ribeiro. |
+| SK34 | Sérgio Buarque de Holanda, DaMatta e Florestan Fernandes | Quadro Autores e contribuições (Buarque: homem cordial; DaMatta: jeitinho brasileiro) e retratos. |
+| SK35 | Sociologia urbana: Escola de Chicago e Henri Lefebvre | Quadro comparativo Escola de Chicago x Lefebvre (enfoque, método, objetivo, impacto). |
+| SK36 | Massificação, cultura de massa e Escola de Frankfurt | Esquema da cultura de massa (produção padronizada, consumo, alienação). |
+| SK37 | Norbert Elias e o processo civilizador | Esquema da evolução do autocontrole ao longo da história. |
+| SK38 | A questão racial: W. E. B. Du Bois e Angela Davis | Foto da Marcha sobre Washington (1963), do Movimento pelos Direitos Civis. |
+| SK39 | Ação coletiva e comportamento de massa: Le Bon e Olson | Quadro dos autores da ação coletiva (Le Bon e Olson). |
+| SK40 | Movimentos sociais: características e tipos | Quadro dos cinco tipos de movimento social, com exemplos. |
+| SK41 | Teorias dos movimentos sociais: Tilly, Tarrow, Touraine e Castells | Quadro comparativo dos autores (Le Bon, Olson, Tilly, Tarrow) e mapa mental dos movimentos sociais. |
+| SK42 | Pós-modernidade: conceito e características | Esquema das quatro características da pós-modernidade. |
+| SK43 | Bauman (modernidade líquida) e Lipovetsky (hipermodernidade) | Foto de pessoas em meio ao consumo (compras) ilustrando a sociedade do consumo e identidade. |
+| SK44 | Pós-verdade e desinformação | Foto do deepfake do Papa Francisco de jaqueta puffer (Midjourney) e esquema dos mecanismos da desinformação. |
+| SK45 | Globalização: características e mutações no século XXI | Foto de letreiro sobre o Brexit na Estação Central de Glasgow (2019) e mapa da integração econômica global. |
+| SK46 | Sociedade da informação, Revolução 4.0 e riscos contemporâneos | Esquema da Quarta Revolução Industrial (IA, robótica, biotecnologia) e seus desafios éticos. |
+| SK47 | Interpretações da globalização: Bauman e Ulrich Beck | Foto dos destroços de uma escola infantil perto da usina de Chernobyl (explosão em 1986). |
+| SK48 | Mundo do trabalho, globalização e impactos culturais, econômicos e sociais | Mapa mental Mundo do trabalho, globalização e impactos culturais, econômicos e sociais. |
