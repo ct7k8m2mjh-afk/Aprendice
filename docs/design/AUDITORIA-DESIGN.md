@@ -11,9 +11,10 @@ Data: 11/11/2026 · Etapa 1 (só auditoria; nenhum arquivo do site foi alterado)
   1. **D01** — no celular, 947 botões e links (nas 96 telas do primeiro percurso) medem menos de 44 px (voltar 32×30, pausar 32×32, chips 31 de altura, "Trocar" 44×15).
   2. **D02** — a barra da questão corta o contador "35 de 44" quando o nome da matéria ou do tema é longo.
   3. **D03** — fração escrita na linha ("2/5 e 3/5") nos avisos "Cuidado" da teoria, contra a regra da fração empilhada.
-  4. **D04 e D05** — texto com contraste abaixo de 4,5:1: rótulos TOTAL/QUESTÃO (3,85), níveis sem questão (2,79 a 3,49) e a cor de algumas matérias em letra pequena (3,94 a 4,48).
+  4. **D04 e D05** — texto com contraste abaixo de 4,5:1: rótulo TOTAL (3,85), níveis sem questão (2,79 a 3,49) e a cor de algumas matérias em letra pequena (3,94 a 4,48).
   5. **D06** — na correção a 1280 px a explicação chega a 102 caracteres por linha (o confortável é 45 a 75).
-- A tipografia, os cantos, as sombras e os espaços funcionam, mas estão escritos com valores soltos (124 declarações de tamanho de letra diferentes no CSS); os itens D09 a D18 e D20 centralizam isso em variáveis, quase sem mudança visível.
+- Tamanhos de letra, cantos, sombras e espaços estão escritos com valores soltos (124 declarações distintas de tamanho de letra no CSS; 61 cores fora das variáveis); os itens D12 e D14 a D18 levam isso para variáveis sem mudar nenhum valor.
+- Depois da revisão por agente separado, dois itens foram retirados (D13 e D20) e sete foram corrigidos; ver a última seção.
 
 ## Como foi medido
 
@@ -393,10 +394,10 @@ Data: 11/11/2026 · Etapa 1 (só auditoria; nenhum arquivo do site foi alterado)
 
 | Onde | Cor do texto / fundo | Contraste | Tema | Causa |
 |---|---|---|---|---|
-| Rótulo "TOTAL" `.crono-tot small` (14 px/600) | #777980 / #F1F1EE | 3,85 | claro | `opacity: .8` sobre `lapis` |
+| Rótulo "TOTAL" `.crono-tot small` (14 px/600 medido; `tipografia.css` linha 97 passa por cima dos 11,5 px de `sistema.css` linha 43) | #777980 / #F1F1EE | 3,85 | claro | `opacity: .8` sobre `lapis` (valor herdado do protótipo, `materia.css` linha 1648). O rótulo "QUESTÃO" passa. |
 | Etiquetas de nível em cartão sem questão `.nivel-cartao.vazio .nivel-etq` | #C8834A / #FFF0E8 (Fís); #4DA642 / #E3FCE0 (Bio) | 2,79; 2,82 | claro | `opacity: .72` no cartão inteiro |
 | "13 questões de outras regiões" `.nv-outras` (13,5 px) | #8E9097 / #FFFFFF; #6B6D76 / #16171B | 3,18; 3,49 | claro; escuro | idem |
-| Cor da matéria sobre o fundo suave (`.etq.cor`, `.alt-l`, `.hj-n`, `.btn-conf` desabilitado) | Quí #D31A8D / #FFEEF5; Fís #B2580D / #FFF0E8; Bio #138404 / #E3FCE0; Fil-Soc #8C6C02 / #FFF3D5 | 4,37; 4,40; 4,45; 4,47 | claro | paleta aprovada |
+| Cor da matéria sobre o fundo suave (`.etq.cor`, `.alt-l`, `.hj-n`; no escopo da matéria `--sv` é igual a `--s`, `ui/comum.tsx`) | Quí #D31A8D / #FFEEF5; Fís #B2580D / #FFF0E8; Bio #138404 / #E3FCE0; Fil-Soc #8C6C02 / #FFF3D5 | 4,37; 4,40; 4,45; 4,47 | claro | paleta aprovada |
 | Idem | His #B77B4C / #472302; Ing #FE3E3A / #4B1D1F; Geo #59A0AB / #00353B | 3,94; 3,99; 4,48 | escuro | paleta aprovada |
 | Cor da matéria sobre o papel (`.fr-trocar` "Trocar", `.in-rotulo`, `.rv-tp-n`) | Bio #138404; Quí #D31A8D; Fís #B2580D; Fil-Soc #8C6C02 / #F1F1EE | 4,29; 4,31; 4,32; 4,36 | claro | paleta aprovada |
 | Rodapé do login `.l-rodape` (10 px) | #9B9397 / fundo com gradiente | 2,96 (não medido com segurança) | — | tela protegida |
@@ -448,7 +449,7 @@ Ordem: do maior para o menor impacto no aluno. Grupos que se resolvem juntos: **
 ### D01 — Alvos de toque menores que 44 px no celular
 - **Tela e seletor:** todas; lista na tabela acima (`.chip`, `.q-volta`, `.q-pausa`, `.q-tela`, `.q-marca`, `.q-amplia`, `.q-ver-txt`, `.q-ant`, `.ra-bt`, `.ft-seta`, `.abas button`, `.fr-trocar`, `.link-sec`, `.in-link`, `.tema-seg button`, `.btn.peq`, `.q-rel-g a`…). Arquivos: `sistema.css`, `app.css`, `telas.css`, `regiao.css`, `correcao.css`.
 - **Valor atual (medido a 390 px):** 947 ocorrências abaixo de 44 px; menores: "Ver de outras regiões" 14 de altura, "Trocar" 15, "Revisar" 18, fonte do print 20, chip do treino 26, "Ver em texto" 27, "Ampliar" 28, Dia/Noite 29, voltar 30.
-- **Problema:** o dedo erra; o projeto pede 44 px. Os que têm menos de 24 px de altura também ficam abaixo do mínimo da WCAG 2.2 (critério 2.5.8).
+- **Problema:** ficam abaixo dos 44 px pedidos como critério desta revisão. O mínimo da WCAG 2.2 (critério 2.5.8, nível AA) é 24 px: abaixo dele estão "Ver de outras regiões" (14), "Trocar" (15), "Revisar" (18) e a fonte do print (20). Nem o `CLAUDE.md` nem o `DESIGN.md` fixam 44 px como regra geral; se o dono preferir o mínimo de 24 px, a lista cai para essas quatro peças.
 - **Proposta:** uma variável `--alvo-min: 44px` e, só em aparelho de toque (`@media (pointer: coarse)`), uma área de toque invisível (`::after` posicionado para completar 44 × 44) em cada peça da lista. **O desenho não muda:** tamanho, posição e ícone ficam iguais. Onde duas áreas se encostariam (chips que quebram em mais de uma linha, hoje com 8 px entre linhas), o espaço entre linhas passa a 14 px só no toque.
 - **Efeito esperado:** toque certeiro no celular e no tablet; nada muda no computador.
 - **Risco:** médio (muitas peças; conferir sobreposição de áreas vizinhas).
@@ -479,20 +480,20 @@ Ordem: do maior para o menor impacto no aluno. Grupos que se resolvem juntos: **
 - AUTORIZO: ( ) sim ( ) não ( ) com ajuste: ____
 
 ### D04 — Texto apagado por opacidade (contraste abaixo do mínimo)
-- **Tela e seletor:** (a) questão e treinos — `.q-barra .crono small`, `.crono-tot small` (`sistema.css` linha 43, `opacity: .8`); (b) "Treine sua evolução" — `.nivel-cartao.vazio` (`opacity: .72` no cartão inteiro).
-- **Valor atual (medido):** (a) "TOTAL" 3,85:1; (b) etiqueta do nível 2,79 (Física) e 2,82 (Biologia) no claro, 3,08 e 3,28 no escuro; "13 questões de outras regiões" 3,18 no claro e 3,49 no escuro; etiqueta "Avançado" 3,27 e 3,82.
-- **Problema:** abaixo de 4,5:1; e a frase "N questões de outras regiões" é informação útil, não é item desabilitado.
-- **Proposta:** (a) `opacity: 1` no rótulo: fica `lapis` sobre o papel = 5,99:1. (b) tirar a opacidade do cartão e aplicá-la só à barra de progresso; o texto fica em `fraco` (5,82:1 no claro, 5,55:1 no escuro) e as etiquetas voltam à cor normal (4,45 a 4,85 — ver D05).
-- **Efeito esperado:** rótulos legíveis; o cartão vazio continua parecendo vazio pela barra e pelo texto em cinza.
-- **Risco:** baixo.
+- **Tela e seletor:** (a) questão e treinos — `.crono-tot small` (`sistema.css` linha 43, `opacity: .8`; tamanho e peso vêm de `tipografia.css` linha 97); (b) "Treine sua evolução" — `.nivel-cartao.vazio` (`opacity: .72` no cartão inteiro).
+- **Valor atual (medido):** (a) "TOTAL", 14 px peso 600: 3,85:1 ("QUESTÃO" dá 7,96 e passa); (b) etiqueta do nível 2,79 (Física) e 2,82 (Biologia) no claro, 3,08 e 3,28 no escuro; "13 questões de outras regiões" 3,18 no claro e 3,49 no escuro; etiqueta "Avançado" 3,27 e 3,82.
+- **Problema:** abaixo de 4,5:1; a frase "N questões de outras regiões" é informação, não é item desabilitado.
+- **Proposta:** (a) `opacity: 1` só no rótulo "TOTAL": fica `lapis` sobre o papel = 5,99:1. **Atenção:** a opacidade de 0,8 vem do protótipo (`materia.css` linha 1648, onde o rótulo tem 11,5 px); mudar esse valor é sair do protótipo num ponto, por isso depende da autorização. (b) tirar a opacidade do cartão e aplicá-la só à barra de progresso; a frase fica em `fraco` (5,82:1 no claro, 5,55:1 no escuro) e as etiquetas voltam ao contraste normal da matéria (Biologia 4,45; "Avançado" 4,85 — ver D05).
+- **Efeito esperado:** rótulo e frase legíveis; o cartão vazio continua marcado pela barra apagada e pelo texto em cinza.
+- **Risco:** baixo em (b); médio em (a), por mexer num valor do protótipo.
 - **Categoria:** acessibilidade.
-- **Evidência:** `evidencias/niveis-apagados-escada-1280.jpg`, `evidencias/barra-questao-cortada-1280.jpg` (rótulos TOTAL e QUESTÃO).
-- AUTORIZO: ( ) sim ( ) não ( ) com ajuste: ____
+- **Evidência:** `evidencias/niveis-apagados-escada-1280.jpg`, `evidencias/barra-questao-cortada-1280.jpg` (rótulo TOTAL).
+- AUTORIZO: ( ) sim ( ) só (a) ( ) só (b) ( ) não ( ) com ajuste: ____
 
 ### D05 — Cor da matéria em letra pequena sobre o fundo suave (decisão do dono)
-- **Tela e seletor:** etiquetas da matéria `.etq.cor`, letra da alternativa marcada `.alt-l`, número da ordem `.hj-n`, "Trocar" `.fr-trocar`, rótulo `.in-rotulo`; cores em `dados/materias.ts` (paleta de `docs/cores/paleta.json`).
+- **Tela e seletor:** etiquetas da matéria `.etq.cor`, letra da alternativa marcada `.alt-l`, número da ordem `.hj-n`, "Trocar" `.fr-trocar`, rótulo `.in-rotulo`; cores em `dados/materias.ts` (paleta de `docs/cores/paleta.json`). O fundo dessas peças é `--sv`, que dentro da matéria vale o mesmo que o fundo suave `--s` (`ui/comum.tsx`, função `tons`); conferido pelo estilo computado (ex.: Biologia `rgb(227, 252, 224)`).
 - **Valor atual (medido):** claro, sobre o fundo suave — Química 4,37; Física 4,40; Biologia 4,45; Filosofia e Sociologia 4,47. Claro, sobre o papel — 4,29; 4,31; 4,32; 4,36. Escuro, sobre o fundo suave — História 3,94; Inglês 3,99; Geografia 4,48. As outras combinações passam (Matemática 8,20; História 7,18 no claro etc.).
-- **Problema:** texto de 13 a 18 px abaixo de 4,5:1. A diferença é pequena no claro (0,03 a 0,21) e maior no escuro em História e Inglês.
+- **Problema:** texto de 13 a 18 px abaixo de 4,5:1. Faltam de 0,03 a 0,13 no claro sobre o fundo suave, de 0,14 a 0,21 no claro sobre o papel e de 0,02 a 0,56 no escuro.
 - **Proposta (sem criar cor):** nessas peças, quando a letra tem menos de 18,66 px em negrito, pôr o texto colorido sobre a folha (`folha`), onde as 9 matérias passam (4,85 a 9,05 no claro; 5,08 a 9,50 no escuro), mantendo o fundo suave só em peças de letra grande; **ou** manter como está. Mexer nos tons da paleta não é proposto: a paleta é do dono.
 - **Efeito esperado:** etiquetas da matéria com fundo branco e contorno fino na cor, em vez do fundo colorido.
 - **Risco:** alto (muda a aparência de uma peça muito usada e toca a paleta aprovada).
@@ -500,15 +501,15 @@ Ordem: do maior para o menor impacto no aluno. Grupos que se resolvem juntos: **
 - **Evidência:** `evidencias/contraste-etiqueta-qui-1280.jpg`.
 - AUTORIZO: ( ) sim ( ) não ( ) com ajuste: ____
 
-### D06 — Linhas longas demais na explicação e nos textos de apoio
-- **Tela e seletor:** correção — `.cor-expl`, `.ra-porque`, `.cor-resp` (`correcao.css`); Hoje — `.hj-como p`; Revisão, aba Domínio — `.dm-expl`.
-- **Valor atual (medido a 1280 px):** explicação com 79 a 102 caracteres por linha (bloco de 870 px); "Como a ordem é feita" 95; explicação do domínio 105 (blocos de 762 px). A 1440 px a explicação fica com 33 a 44 (coluna de 376 px) — ver Dúvidas, item 5.
-- **Problema:** acima de 75 caracteres a leitura cansa e o olho perde a linha.
-- **Proposta:** largura máxima de 620 px nos parágrafos da explicação (pela proporção medida, 870 px ↔ 102 caracteres, dá cerca de 73) e de 540 px nos dois textos de apoio de 14 px (762 px ↔ 105, dá cerca de 74). Os blocos e os títulos não mudam de largura.
-- **Efeito esperado:** leitura confortável a 1280 px; nada muda a 390 px nem na coluna estreita.
+### D06 — Linhas longas na explicação e nos textos de apoio
+- **Tela e seletor:** correção — `.cor-expl`, `.ra-porque` (`correcao.css`); Hoje — `.hj-como p` (`hoje.css`); Revisão, aba Domínio — `.dm-expl` (`dominio.css`).
+- **Valor atual (medido a 1280 px):** explicação com 72 a 102 caracteres por linha (bloco de 870 a 894 px); "Como a ordem é feita" 95; explicação do domínio 105 (blocos de 762 px). A 1440 px a explicação fica com 33 a 44 (coluna de 376 px) — ver Dúvidas.
+- **Problema:** fora da faixa de 45 a 75 caracteres por linha usada como critério desta revisão.
+- **Proposta (valores que já existem):** `max-width: 68ch` nos parágrafos da explicação — é o limite que o protótipo usa na resolução (`materia.css` linha 1211); `max-width: 62ch` nos dois textos de apoio — é o limite do texto de apoio da agenda (`dominio.css` linha 9). Blocos e títulos não mudam de largura.
+- **Efeito esperado (medido com a regra aplicada só para teste):** explicação entre 54 e 79 caracteres por linha (era 79 a 102 na mesma questão); explicação do domínio 63 (era 105); "Como a ordem é feita" 76 (era 95). Nada muda a 390 px nem na coluna estreita.
 - **Risco:** baixo.
 - **Categoria:** corrigir.
-- **Evidência:** `evidencias/medida-linha-correcao-1280.jpg`, `evidencias/medida-linha-correcao-1440.jpg`.
+- **Evidência:** `evidencias/medida-linha-correcao-1280.jpg`, `evidencias/medida-linha-correcao-1440.jpg`; programas `metodo/p6.cjs` e `p7.cjs`.
 - AUTORIZO: ( ) sim ( ) não ( ) com ajuste: ____
 
 ### D07 — Telas de estudo sem título principal para leitor de tela
@@ -527,16 +528,16 @@ Ver a seção própria abaixo (propostas A, B e C).
 - **Categoria:** modernizar.
 - AUTORIZO: ( ) A ( ) B ( ) C ( ) não ( ) com ajuste: ____
 
-### D09 — A etiqueta tem dois tamanhos e dois pesos
-- **Tela e seletor:** questão — `.etq.cor`, `.etq.q-sub`, `.etq.q-fonte`; demais telas — `.etq`, `.etq.ok`, `.etq.aviso`. No código: `tipografia.css` linha 51 pede `--fs-info` e peso 600; `sistema.css` linha 78 (`.q-meta .etq`, 13 px, peso 500) e `revisao.css` linha 82 (`.rv-cab .etq`, 13 px) passam por cima.
-- **Valor atual (medido a 1280 px):** na questão 13 px, peso 500 (39 telas); na revisão essencial a mesma `.etq.cor` tem 13 px, peso 600; nos flashcards e no resto do site 14 px, peso 600 (13,5 px a 390).
-- **Problema:** a mesma peça com duas aparências.
-- **Proposta:** todas com `var(--fs-info)` (13,5 px no celular, 14 px no computador), peso 600, como manda o guia.
-- **Efeito esperado:** etiquetas da questão 1 px maiores e um pouco mais firmes.
+### D09 — A etiqueta tem três aparências
+- **Tela e seletor:** questão — `.etq.cor`, `.etq.q-sub`, `.etq.q-fonte`; revisão essencial — `.rv-cab .etq`; demais telas — `.etq`, `.etq.ok`, `.etq.aviso`. No código: regra base `app.css` linha 174 (13 px, peso 500); `tipografia.css` linha 51 (`--fs-info`, peso 600); `sistema.css` linha 78 (`.q-meta .etq`, 13 px, peso 500) e `revisao.css` linha 82 (13 px) passam por cima.
+- **Valor atual (medido a 1280 px):** na questão 13 px, peso 500 (39 telas); na revisão essencial 13 px, peso 600; nos flashcards e no resto do site 14 px, peso 600 (13,5 px a 390).
+- **Problema:** a mesma peça com três aparências. O `DESIGN.md` (linha 109) e o protótipo (`materia.css` linha 960) dizem 13 px, peso 600.
+- **Proposta:** todas com 13 px, peso 600 (valor do protótipo). Muda: as da questão ganham peso (500 → 600); as de 14 px voltam a 13 px.
+- **Efeito esperado:** etiquetas iguais em todas as telas.
 - **Risco:** baixo.
 - **Categoria:** padronizar.
 - **Evidência:** `evidencias/contraste-etiqueta-qui-1280.jpg`; tabela de font-size (13 px).
-- AUTORIZO: ( ) sim ( ) não ( ) com ajuste: ____
+- AUTORIZO: ( ) sim ( ) não ( ) com ajuste (ex.: manter 14 px em vez de 13): ____
 
 ### D10 — O título do 4º bloco da correção é menor que os outros
 - **Tela e seletor:** correção — `details.cor-outras summary` (`correcao.css` linha 34).
@@ -549,41 +550,35 @@ Ver a seção própria abaixo (propostas A, B e C).
 - AUTORIZO: ( ) sim ( ) não ( ) com ajuste: ____
 
 ### D11 — Um título de seção com 19 px no computador
-- **Tela e seletor:** Revisão, aba Questões — `div.cab-sec h2` (`app.css` linha 144).
+- **Tela e seletor:** Revisão, aba Questões — `div.cab-sec h2`. A causa é um estilo escrito na própria tela: `style={{ fontSize: 19 }}` em `app/src/telas/Revisao.tsx` linha 94, que passa por cima de `tipografia.css` linha 22 (`--fs-secao`).
 - **Valor atual (medido a 1280 px):** 19 px, peso 700; os outros títulos de seção (`h2.sec-tit`, `h2.tp-h`, `h2.ag-tit`, `.dm-mat-cab h2`) têm 21 px.
-- **Proposta:** `var(--fs-secao)` (19 px no celular, 21 px no computador).
+- **Proposta:** tirar o estilo escrito na tela; o título passa a seguir `var(--fs-secao)` (19 px no celular, 21 px no computador).
 - **Efeito esperado:** igual aos outros títulos de seção.
 - **Risco:** baixo.
 - **Categoria:** padronizar.
 - **Evidência:** tabela de font-size (19 px a 1280).
 - AUTORIZO: ( ) sim ( ) não ( ) com ajuste: ____
 
-### D12 — Tamanhos de letra em variáveis e valores acidentais
+### D12 — Tamanhos de letra em variáveis e dois valores herdados por acidente
 - **Tela e seletor:** `app/src/estilo/*.css` (124 declarações distintas de tamanho).
-- **Valor atual (medido):** 38 tamanhos distintos a 1280 px e 32 a 390 px (sem o login). Valores que nasceram de conta ou de herança, não de escolha: 13,33 px (`small.fraco.num`, Desempenho, 9 elementos — tamanho padrão do `small`); 15,8 px (`small.num` e `h2.tp-h small`, 20 elementos); 14,5 px (`b.num`, Desempenho, 21); 12,5 px (`.abas button small`, `.tg-n i`, `kbd` dos atalhos, 57).
-- **Problema:** cada tela escolhe o seu número; fica difícil manter igual.
-- **Proposta:** (1) trocar os números repetidos pelas variáveis que já existem, sem mudar o valor (`16px` → `var(--fs-texto)`, `15px` de botão → `var(--fs-botao)`); (2) criar duas variáveis para valores já muito usados que o guia não nomeia: `--fs-micro: 12px` (479 elementos a 1280 px: rótulos de gráfico e de coluna) e `--fs-destaque: 18px` (272 elementos); (3) corrigir os acidentais para o valor vizinho do sistema: 13,33 → `var(--fs-info)` (14); 14,5 → `var(--fs-info)` (14); 12,5 → 12; 15,8 → `var(--fs-texto)` (16).
-- **Efeito esperado:** diferenças de até 0,7 px em 107 elementos; o resto idêntico.
+- **Valor atual (medido):** 38 tamanhos distintos a 1280 px e 32 a 390 px (sem o login). Dois não foram escolhidos por ninguém: 13,33 px (`small.fraco.num`, Desempenho, 9 elementos — é o tamanho padrão do `small` do navegador) e 15,8 px (`small.num` e `h2.tp-h small`, 20 elementos — resultado de conta em `em`). Nenhum dos dois existe no protótipo. Os demais valores fora do guia (12, 12,5, 13, 14,5, 18 px…) existem no protótipo e ficam.
+- **Problema:** os mesmos números repetidos à mão em muitos arquivos, e dois valores sem origem.
+- **Proposta:** (1) trocar os números repetidos pelas variáveis que já existem, sem mudar o valor (`16px` → `var(--fs-texto)`, `15px` de botão → `var(--fs-botao)`); (2) criar variáveis para valores do protótipo que o guia não nomeia, com o valor atual: `--fs-micro: 12px` (479 elementos a 1280 px), `--fs-etq: 13px`, `--fs-destaque: 18px` (272); (3) corrigir só os dois acidentais: 13,33 → `var(--fs-info)` (14 px) e 15,8 → `var(--fs-texto)` (16 px).
+- **Efeito esperado:** diferença de 0,2 a 0,7 px em 29 elementos; o resto idêntico.
 - **Risco:** médio (troca em muitos arquivos; conferir tela a tela).
 - **Categoria:** padronizar.
 - **Evidência:** tabela de font-size.
 - AUTORIZO: ( ) sim ( ) não ( ) com ajuste: ____
 
-### D13 — Entrelinhas fora do guia
-- **Tela e seletor:** `.tg-n i`, `.capa-p`, `.tg-comp` (matéria); `.t span` (lista do tema); `.rg-p`, `.rg-caixa span` (Revisão geral); botões `.ra-link` e outros com `normal`.
-- **Valor atual (medido a 1280 px):** 18 razões distintas. Fora das do guia (1 · 1,05 · 1,15 · 1,2 · 1,3 · 1,4 · 1,5 · 1,6): 1,25 (34 elementos; 166 a 390), 1,45 (100), 1,55 em Familjen (66, incluindo o texto dos tópicos da Revisão geral), `normal` (69), 1,1 (68), 1,17 (294, de entrelinha fixa em px), 1,35 (100, título do passo).
-- **Proposta:** 1,25 → 1,3; 1,45 → 1,5; 1,55 → 1,5; `normal` → 1 em controle e 1,5 em texto. Ficam como estão: 1,1 (títulos grandes do Início), 1,17 (rótulos de gráfico) e 1,35 (passo da resolução).
-- **Efeito esperado:** até 1 px por linha de diferença nessas peças.
-- **Risco:** baixo.
-- **Categoria:** padronizar.
-- **Evidência:** tabela de line-height.
-- AUTORIZO: ( ) sim ( ) não ( ) com ajuste: ____
+### D13 — Entrelinhas (RETIRADO depois da revisão)
+- Propunha trocar 1,25 → 1,3; 1,45 → 1,5; 1,55 → 1,5. O revisor mostrou que esses três valores existem no protótipo (1,25 três vezes, 1,45 seis, 1,55 nove) e que o 1,55 da Revisão geral está no `DESIGN.md` (linha 193). Como o protótipo é o sistema, não há o que padronizar. O inventário de entrelinha fica só como registro.
 
-### D14 — Espaçamento entre letras com 11 valores
-- **Tela e seletor:** títulos e números (`telas.css`, `sistema.css`, `inicio.css`).
-- **Valor atual (medido):** −0,03 · −0,02 · −0,01 · −0,009 · −0,007 · −0,006 · −0,005 · 0 · 0,02 · 0,04 · 0,08 em. Os de três casas vêm de valores em px (−0,4 px, −0,2 px, −0,1 px).
-- **Proposta:** quatro variáveis com valores que já existem — `--ls-titulo: -0.02em`, `--ls-sub: -0.01em`, `--ls-rotulo: .02em`, `--ls-caixa-alta: .08em`. Conversões: −0,03 → −0,02; −0,009 → −0,01; −0,007, −0,006 e −0,005 → 0; 0,04 (só o rótulo "Pegadinha" de "Treine sua evolução" e da Revisão geral, 18 elementos) → 0,08.
-- **Efeito esperado:** diferença de no máximo 0,3 px por letra em números grandes; imperceptível no resto.
+### D14 — Espaçamento entre letras em variáveis (sem mudar valores)
+- **Tela e seletor:** títulos, números e rótulos em caixa alta (`telas.css`, `sistema.css`, `inicio.css`, `revisao.css`, `geral.css`).
+- **Valor atual (medido em texto visível a 1280 px):** −0,03 · −0,02 · −0,01 · −0,009 · −0,007 · −0,006 · −0,005 · 0 · 0,02 · 0,04 · 0,08 em. Os de três casas vêm de valores em px (−0,4 px, −0,2 px, −0,1 px). O programa não mede pseudo-elemento: no CSS há ainda 0,06 em nos rótulos "Correta" e "Sua" (`sistema.css` linha 134). Os valores 0,04 e 0,06 em vêm do protótipo (`materia.css` linhas 1648, 1785 e 1816).
+- **Problema:** onze valores escritos à mão, alguns em px e outros em em.
+- **Proposta:** só nomear, sem converter nenhum valor: `--ls-titulo: -0.02em`, `--ls-sub: -0.01em`, `--ls-rotulo: .02em`, `--ls-caps-p: .04em`, `--ls-caps: .08em`, e trocar os números por essas variáveis onde o valor é igual. Os valores em px ficam como estão.
+- **Efeito esperado:** nenhuma mudança visível.
 - **Risco:** baixo.
 - **Categoria:** padronizar.
 - **Evidência:** tabela de letter-spacing.
@@ -599,11 +594,12 @@ Ver a seção própria abaixo (propostas A, B e C).
 - **Evidência:** tabela de border-radius.
 - AUTORIZO: ( ) sim ( ) não ( ) com ajuste: ____
 
-### D16 — Sombras neutras com três tintas e duas quase iguais
-- **Tela e seletor:** `.in-mat` (Início), `.ft-item` (faixa), `.ft-seta` e `.in-seta` (setas), `.btn` (`base.css`, `inicio.css`, `sistema.css`).
-- **Valor atual (medido):** a sombra neutra usa três bases — `rgba(21,25,51,…)`, `rgba(20,22,30,…)` e `rgba(0,0,0,…)`. O cartão de matéria do Início tem `0 1px 2px .04, 0 10px 24px -16px .22` e o cartão de tema tem `0 1px 2px .04, 0 10px 26px -18px .22` (`--sombra-tema`). As duas setas de rolagem têm sombras diferentes: `0 4px 14px -4px rgba(20,22,30,.25)` e `0 4px 14px rgba(21,25,51,.14)`.
-- **Proposta:** `.in-mat` passa a usar `var(--sombra-tema)`; as duas setas passam a usar uma variável nova `--sombra-seta` com o valor da faixa (`0 4px 14px -4px rgba(20,22,30,.25)`, que é o do protótipo); a sombra de 1 px dos botões vira `--sombra-botao: 0 1px 2px rgba(0,0,0,.08)`.
-- **Efeito esperado:** diferença de 2 px no desfoque do cartão do Início; seta do Início com sombra um pouco mais marcada.
+### D16 — Sombras neutras em variáveis (sem tocar no Início)
+- **Tela e seletor:** `.btn` (`app.css`), `.ft-seta` (`telas.css` linha 89), `.alt` (`sistema.css` linha 124), `.tema-seg button`.
+- **Valor atual (medido):** a sombra neutra aparece com três bases de cor — `rgba(21,25,51,…)`, `rgba(20,22,30,…)` e `rgba(0,0,0,…)` — e várias são escritas à mão em vez de usar variável: `0 1px 2px rgba(0,0,0,.08)` (51 elementos, botões), `0 4px 14px -4px rgba(20,22,30,.25)` (21, seta da faixa; igual ao protótipo, `materia.css` linha 1752), `0 1px 0 rgba(20,22,30,.04)` (125, alternativas).
+- **Problema:** valores repetidos sem nome.
+- **Proposta:** criar `--sombra-botao`, `--sombra-seta` e `--sombra-alt` com esses mesmos valores e usá-las no lugar dos números. O cartão de matéria e a seta do Início (`.in-mat`, `.in-seta`), que têm sombras um pouco diferentes, **não entram**: a aba Início segue as referências do dono de 06/11.
+- **Efeito esperado:** nenhuma mudança visível.
 - **Risco:** baixo.
 - **Categoria:** padronizar.
 - **Evidência:** tabelas de box-shadow.
@@ -631,24 +627,17 @@ Ver a seção própria abaixo (propostas A, B e C).
 - AUTORIZO: ( ) sim ( ) não ( ) com ajuste: ____
 
 ### D19 — O foco do teclado fica meio escondido na faixa de temas
-- **Tela e seletor:** matéria, tema e "Treine sua evolução" — `.faixa-temas .ft-item` (`sistema.css`).
-- **Valor atual (medido a 1280 px):** andando com Tab, o cartão em foco para em 1118–1314 px e a faixa visível vai de 268 a 1256 px: 58 px do cartão ficam sob a máscara da borda (64 px).
-- **Proposta:** `scroll-padding-inline: 72px` na faixa (o valor da máscara do Início), para o cartão em foco parar inteiro na área visível.
-- **Efeito esperado:** o contorno de foco aparece inteiro; nada muda para quem usa mouse ou toque.
-- **Risco:** baixo.
+- **Tela e seletor:** matéria, tema e "Treine sua evolução" — `.ft-rolo` (`telas.css` linha 73, hoje com `scroll-padding-inline: 10px`; máscara de 64 px nas linhas 75 a 77).
+- **Valor atual (medido a 1280 px):** andando com Tab, o cartão em foco para em 1118–1314 px e a faixa visível vai de 268 a 1256 px: 58 px do cartão ficam sob a máscara da borda.
+- **Proposta:** trocar `scroll-padding-inline: 10px` por `72px` (o valor da máscara da faixa do Início, `inicio.css` linha 35), para o cartão em foco parar inteiro fora da máscara de 64 px.
+- **Efeito esperado:** o contorno de foco aparece inteiro. O ponto de encaixe da rolagem muda junto (o cartão encaixa 62 px mais para dentro); conferir com mouse e toque.
+- **Risco:** médio (mexe no encaixe da rolagem da faixa).
 - **Categoria:** acessibilidade.
 - **Evidência:** `evidencias/foco-faixa-temas-1280.jpg`.
 - AUTORIZO: ( ) sim ( ) não ( ) com ajuste: ____
 
-### D20 — Letras abaixo de 12 px
-- **Tela e seletor:** rótulos "CORRETA" e "SUA" sob as alternativas — `.alt.certa::after`, `.alt.errada::after` (`sistema.css` linha 134); tecla do atalho nas notas do flashcard — `.nota kbd`.
-- **Valor atual:** 11,5 px em caixa alta (valor do CSS; o programa não mede pseudo-elemento) e 11 px (medido, 3 elementos).
-- **Proposta:** 12 px nas duas peças (o menor tamanho usado no resto da interface).
-- **Efeito esperado:** meio ponto maior (largura disponível sob a alternativa: não medido; conferir na aplicação).
-- **Risco:** baixo.
-- **Categoria:** padronizar.
-- **Evidência:** tabela de font-size (11 px).
-- AUTORIZO: ( ) sim ( ) não ( ) com ajuste: ____
+### D20 — Letras abaixo de 12 px (RETIRADO depois da revisão)
+- Propunha subir para 12 px os rótulos "Correta" e "Sua" (11,5 px) e a tecla das notas do flashcard (11 px). O revisor mostrou que 11,5 px e 11 px são valores do protótipo (`materia.css` linhas 1785 e 1816). Fica só o registro no inventário.
 
 ## Botão Treino geral
 
