@@ -2411,3 +2411,18 @@ for _k in ('unirg-2022-1', 'unirg-2022-2', 'unirg-2023-2'):
     PROVAS[_k]['margem'] = 24
 for _k in ('unirg-2022-1', 'unirg-2022-2', 'unirg-2023-2'):
     PROVAS[_k]['ancora_dx'] = 26   # com a margem menor, "Questão 01" fica mais longe da borda da coluna
+
+
+# ------------------------------------------------------------- Links do dono (fontes/provas-manuais), grupo A (11/11/2026)
+from provas_grupo_a import PROVAS as _grupo_a  # noqa: E402
+PROVAS.update(_grupo_a)
+
+
+# ------------------------------------------------------------- Links do dono (fontes/provas-manuais), grupo C (11/11/2026)
+from provas_grupo_c import PROVAS as _grupo_c  # noqa: E402
+PROVAS.update(_grupo_c)
+
+
+# ------------------------------------------------------- Grupo B (IME, Mackenzie, UEA, UFRR, UFT, Unitins, UNIRG)
+from provas_grupo_b import mais_provas as _mais_grupo_b  # noqa: E402
+PROVAS.update(_mais_grupo_b())

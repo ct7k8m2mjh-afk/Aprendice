@@ -634,7 +634,10 @@ def eventos_do_pdf(pdf, cfg, faixa=None):
                                     and not any(re.search(rx_, lp[li - 1]['t']) for rx_, _ in cfg.get('secoes_rx', [])) \
                                     and not any(re.search(rx_, lp[li - 1]['t']) for rx_ in cfg.get('corte', [])) \
                                     and not re.match(r'(?i)^texts?o?\s+0?\d+\s*$', t) \
-                                    and not re.match(r'^\s*(?:\(?[A-Ea-e][\)\.]|\([A-E]\))', lp[li - 1]['t']):
+                                    and not re.match(r'^\s*(?:\(?[A-Ea-e][\)\.]|\([A-E]\))', lp[li - 1]['t']) \
+                                    and not (cfg.get('suporte_ponto_final') and re.search(r'[.?!]\s*$', lp[li - 1]['t'])):
+                                # 'suporte_ponto_final': linha de cima terminada em ponto é o fim da questão anterior
+                                # (continuação de alternativa, Mackenzie 2026/2 julho: "Sebastiana.")
                                 yi = lp[li - 1]['bbox'][1] - 2
                             # frase de instrução em 3 ou mais linhas, com entrelinha apertada (linhas que se sobrepõem 1 pt):
                             # sobe até o começo da frase (FMABC: "Leia o capítulo CVI ... para res-/ponder às questões")
@@ -1176,7 +1179,13 @@ def processa(pid, amostra=False, so_texto=False):
     questoes = {}
     relatorio = {'sem_gabarito': [], 'anuladas': [], 'faltando': [], 'duplicadas': [], 'suspeitas': []}
     gab = cfg['gabarito'](pasta)
+    if callable(cfg.get('_suportes')):   # textos de apoio localizados a partir dos arquivos (UERJ: texto base, texto do inglês)
+        cfg['suporte_forcado'] = cfg['_suportes'](pasta)
+    if callable(cfg.get('_ancoras')):   # rótulo de questão desenhado (sem camada de texto): âncoras achadas no desenho
+        cfg['ancora_forcada'] = cfg['_ancoras'](pasta)
     cads = cfg['cadernos'](pasta) if callable(cfg['cadernos']) else cfg['cadernos']
+    # n -> texto de apoio que a questão recebeu (para 'apoio_de'); vale entre cadernos que são o mesmo arquivo
+    apoio_de = {}
     for cad in cads:
         arq = pasta / (cad['arquivo'] + '.pdf')
         pdf = pymupdf.open(arq)
@@ -1203,6 +1212,18 @@ def processa(pid, amostra=False, so_texto=False):
         cfg['_arquivo'] = cad['arquivo']
         apaga = apagaveis(pdf, cfg)
         ev = eventos_do_pdf(pdf, cfg, faixa_pag)
+        if cfg.get('suporte_icone'):
+            # ícone pequeno (imagem) ao lado do título "Text for questions 7 to 9": o texto de apoio começa no alto do
+            # ícone, que não pode ficar no pé do print da questão anterior (UNIRG 2025/2 q4, q9, q15)
+            for e in ev:
+                if e['tipo'] not in ('suporte', 'secao'):
+                    continue
+                pg_ = pdf[e['p']]
+                cols_ = colunas_da_pagina(pg_, cfg)
+                for im_ in pg_.get_image_info():
+                    x0_, y0_, x1_, y1_ = im_['bbox']
+                    if y0_ < e['y'] < y1_ and y1_ - y0_ < 40 and coluna_de(x0_, cols_) == e['c']:
+                        e['y'] = min(e['y'], y0_ + 2)   # o recorte começa 3 pt acima do evento
         if cfg.get('ancora_dy'):
             # fração no alto da 1ª linha ("Se x = (√5 − √2)/2"): o numerador fica acima da linha da âncora; a questão
             # começa mais acima (e a anterior termina antes dele). Chave: número da questão no site.
@@ -1274,7 +1295,6 @@ def processa(pid, amostra=False, so_texto=False):
             ev = limpos
         vistos = set()
         segs_de = {}
-        apoio_de = {}   # n -> texto de apoio que a questão recebeu (para 'apoio_de')
         suporte = None
         gerais = []   # instruções gerais de uma faixa larga, que seguem valendo dentro dela
         secao = None
@@ -1458,6 +1478,8 @@ def processa(pid, amostra=False, so_texto=False):
         'duracao_horas': cfg.get('duracao_horas'),
         'alternativas': cfg.get('alternativas', 5),
         'fontes': {k: v['url'] for k, v in man['arquivos'].items()},
+        # de onde o arquivo foi baixado, quando não foi da página oficial (registro para o dono; o site mostra 'fontes')
+        **({'origem': {k: v['origem'] for k, v in man['arquivos'].items() if v.get('origem')}} if any(v.get('origem') for v in man['arquivos'].values()) else {}),
         'nota': cfg.get('nota', ''),
         'questoes': sorted(validas, key=lambda q: q['n']),
         'fora': {k: sorted(set(v)) for k, v in relatorio.items() if v},
