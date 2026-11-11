@@ -1,6 +1,6 @@
 # Português: resoluções (gerado por lote.py em 2026-11-11)
 
-Faltam 3337 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 1030; demais nível 1-6 1768; ENEM nível 7-10 53; provas-alvo nível 7-10 225; demais nível 7-10 261.
+Faltam 3307 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 1000; demais nível 1-6 1768; ENEM nível 7-10 53; provas-alvo nível 7-10 225; demais nível 7-10 261.
 
 ## Lotes
 
@@ -33,6 +33,7 @@ Faltam 3337 questões sem resolução (fora as que estão em lote, pendentes ou 
 | por-0025 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | por-0026 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | por-0027 | provas-alvo nível 1-6 | 30 | gravado | 28 | 1 | 1 |
+| por-0028 | provas-alvo nível 1-6 | 30 | gravado | 29 | 1 | 0 |
 
 ## Pendentes (falta de certeza absoluta)
 
@@ -43,6 +44,7 @@ Faltam 3337 questões sem resolução (fora as que estão em lote, pendentes ou 
 | Pa7a2c5de | Fuvest 2026 1ª fase · questão 11 | P03.2 gêneros jornalísticos: notícia, reportagem, editorial e crônica (tema P03 Gêneros e tipos textuais) | A questão pede julgamento "a partir da leitura dos excertos e das obras citadas": as alternativas afirmam o conteúdo das obras inteiras (defesa do abolicionismo, ascensão da protagonista, obras seminais do feminismo) e a época delas (século XIX), que não estão nos excertos. Sem fonte conferida sobre as duas obras, não há como fundamentar a E nem as eliminações. |
 | P53983658 | Fuvest 2027 1ª fase · questão 51 | P03.4 divulgação científica e texto digital (tema P03 Gêneros e tipos textuais) | classificação: é de Inglês. O texto-base está em inglês ("Black hole stars challenge our idea of the universe") e a questão pede a compreensão desse texto. |
 | Pc059bf56 | Fuvest 2027 1ª fase · questão 71 | P03.3 charge, tirinha, cartaz e infográfico (tema P03 Gêneros e tipos textuais) | classificação: é de História (história da arte), não de Português. As alternativas são pares de imagens de obras da Antiguidade e do Renascimento, e a resposta depende de reconhecer a fórmula expressiva (Pathosformel) nas obras, não de leitura de texto. |
+| P10912a6c | UDESC 2020 Verão 2020.1 · questão 41 | P04.2 conjunções e relações lógicas (tema P04 Coesão e coerência) | obra: as afirmativas III e V falam de Mascarenhas, de Efigênia, do casamento e da relação com a esposa, que estão no livro O cemitério dos vivos e não no fragmento nem no print; a escolha entre as alternativas depende delas (a IV cai pelo fragmento, pois "este" retoma "o falso" e "daquele" retoma "o verdadeiro"; sobram A e D, que diferem pela I, mas as duas exigem dar III e V como verdadeiras, e isso só se confirma com a obra). |
 | Pdbf10241 | UDESC 2024 Inverno 2024.2 · questão 39 | P04.1 referência: pronome, elipse e substituição lexical (tema P04 Coesão e coerência) | A afirmativa V cai pelo próprio fragmento (crônica do início do século XX, que cita o grafofone e o século XX, não é romântica), o que deixa B (I, III e IV) e D (I, II, III e IV). A escolha entre as duas depende só da afirmativa II, que pede leitura da obra inteira A Alma Encantadora das Ruas (as crônicas-reportagens como convite para perambular pelas ruas da capital com João do Rio); isso não está no fragmento nem no print. |
 | Pd0bef1cb | UDESC 2024 Verão 2024.1 · questão 37 | P01.2 informação explícita × inferência (tema P01 Leitura e compreensão) | O gabarito oficial (C) considera as cinco proposições verdadeiras, e duas delas (3ª e 5ª) afirmam características da obra inteira de Cora Coralina (temáticas, personagens periféricos, mistura de prosa e poesia em conto popular) que não estão no poema transcrito; a 1ª também afirma alusão a perdas de terra "ainda hoje" sem apoio no texto. Não há como confirmar a sequência só com o que a questão traz. |
 | P93ec458e | UDESC 2025 Inverno 2025.2 · questão 44 | P03.2 gêneros jornalísticos: notícia, reportagem, editorial e crônica (tema P03 Gêneros e tipos textuais) | A 1ª proposição afirma influências literárias de Rubem Braga (segunda geração modernista nas crônicas, características parnasianas nos contos), dado que não está na questão; ela decide entre D e E. A 5ª também é discutível (classificação de "Mas" como adjunto adnominal). Sem fonte conferida, não há como fundamentar a sequência. |
