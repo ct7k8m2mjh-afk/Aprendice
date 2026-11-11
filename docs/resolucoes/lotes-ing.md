@@ -1,6 +1,6 @@
 # Inglês: resoluções (gerado por lote.py em 2026-11-11)
 
-Faltam 1691 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 535; demais nível 1-6 970; ENEM nível 7-10 2; provas-alvo nível 7-10 83; demais nível 7-10 101.
+Faltam 1661 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 505; demais nível 1-6 970; ENEM nível 7-10 2; provas-alvo nível 7-10 83; demais nível 7-10 101.
 
 ## Lotes
 
@@ -21,6 +21,7 @@ Faltam 1691 questões sem resolução (fora as que estão em lote, pendentes ou 
 | ing-0013 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | ing-0014 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | ing-0015 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| ing-0016 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 
 ## Pendentes (falta de certeza absoluta)
 
