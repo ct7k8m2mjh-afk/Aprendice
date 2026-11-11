@@ -1,0 +1,221 @@
+# Auditoria de cobertura da Revisão geral: Biologia, Química e Física
+
+Data: 11/11/2026. Pedido do dono: toda questão do site precisa ter, na revisão, o conteúdo do assunto que ela trata.
+
+Método: para cada subtema com questões em `app/public/conteudo/<m>/banco.json`, lidos os campos `conceito` (amostra aleatória de até 10 por subtema) e, quando o conceito estava vazio, o enunciado (amostra de 4 a 10 por subtema, `txt/<sub>.json` ou `enun`), comparados com os pontos dos tópicos ligados em `docs/revisao/<m>/geral.json` (`subs`). Lacuna real = algo que as questões cobram e nenhum ponto ligado ensina. Pontos existentes não foram alterados; só acrescentados no fim da lista do tópico ou em tópico novo. Contas refeitas em python. `valida_geral.py` passou.
+
+Fontes: livros didáticos abertos da OpenStax (Rice University), órgãos oficiais (EPA, BIPM, Ministério da Saúde, NIDDK/NIH, EPE), Fundação Nobel e e-book de curso de Engenharia de Energia da Unipampa (universidade federal). Nenhum cursinho ou fórum.
+
+
+## Biologia (69 subtemas com questões)
+
+- **B01.1** membrana plasmática e transporte passivo (36 q; tópicos BK08, BK09b): ACRESCENTADO. BK08: hemácia em meio hiper, hipo e isotônico (crenação, hemólise) (fonte: https://openstax.org/books/biology-2e/pages/5-2-passive-transport).
+- **B01.2** transporte ativo e vesicular (13 q; tópicos BK08): ACRESCENTADO. BK08: bomba de sódio e potássio: 3 Na+ para fora, 2 K+ para dentro por ATP (fonte: https://openstax.org/books/biology-2e/pages/5-3-active-transport).
+- **B01.3** envoltórios e comparação celular (21 q; tópicos BK08): OK.
+- **B01.4** sistema de endomembranas (38 q; tópicos BK07, BK09b): ACRESCENTADO. BK07: catalase: 2 H2O2 vira 2 H2O + O2 (fonte: https://openstax.org/books/biology-2e/pages/4-3-eukaryotic-cells).
+- **B01.5** mitocôndria, cloroplasto e endossimbiose (17 q; tópicos BK07, BK09b): ACRESCENTADO. BK07: evidências da endossimbiose (dupla membrana, DNA circular, ribossomos bacterianos, divisão própria) (fonte: https://openstax.org/books/biology-2e/pages/4-3-eukaryotic-cells).
+- **B01.6** núcleo, cromatina, citoesqueleto, cílios e flagelos (15 q; tópicos BK09, BK09b): ACRESCENTADO. BK09: cílios e flagelos 9 + 2, corpúsculo basal; corante básico e basofilia do núcleo (fonte: https://openstax.org/books/biology-2e/pages/4-5-the-cytoskeleton).
+- **B02.1** água e sais minerais (14 q; tópicos BK02): OK.
+- **B02.2** carboidratos e lipídios (29 q; tópicos BK03, BK04): ACRESCENTADO. BK04: 4 e 9 kcal/g; saturado × insaturado; LDL e HDL (fonte: https://openstax.org/books/biology-2e/pages/3-3-lipids).
+- **B02.3** proteínas: estrutura e desnaturação (17 q; tópicos BK05): ACRESCENTADO. BK05: estrutura do aminoácido, essenciais; níveis primário a quaternário (fonte: https://openstax.org/books/biology-2e/pages/3-4-proteins).
+- **B02.4** enzimas: sítio ativo, especificidade e fatores da atividade (17 q; tópicos BK05): ACRESCENTADO. BK05: temperatura e pH ótimos; desnaturação acima da ótima (fonte: https://openstax.org/books/biology-2e/pages/6-5-enzymes).
+- **B02.5** ácidos nucleicos, ATP e vitaminas (16 q; tópicos BK04, BK06): ACRESCENTADO. BK06: estrutura do ATP (fonte: https://openstax.org/books/biology-2e/pages/6-4-atp-adenosine-triphosphate); BK04: carências de vitaminas A, C, D, K, B1 (BK04 passou a ligar também a B02.5) (fonte: https://openstax.org/books/biology-2e/pages/3-3-lipids).
+- **B03.1** respiração celular: visão geral e glicólise (10 q; tópicos BK12): ACRESCENTADO. BK12: locais: glicólise no citosol (2 piruvatos), Krebs na matriz, cadeia nas cristas (fonte: https://openstax.org/books/biology-2e/pages/7-4-oxidative-phosphorylation).
+- **B03.2** ciclo de Krebs e cadeia transportadora de elétrons (14 q; tópicos BK12): ACRESCENTADO. BK12: gradiente de prótons e ATP-sintase; termogenina (fonte: https://openstax.org/books/biology-2e/pages/7-4-oxidative-phosphorylation).
+- **B03.3** balanço energético e o papel do oxigênio (7 q; tópicos BK12): ACRESCENTADO. BK12: O2 como aceptor final: sem O2 a cadeia para (fonte: https://openstax.org/books/biology-2e/pages/7-4-oxidative-phosphorylation).
+- **B03.4** fermentação láctica e alcoólica (33 q; tópicos BK12): ACRESCENTADO. BK12: aeróbio estrito, anaeróbio estrito e facultativo; Pasteur (fonte: https://openstax.org/books/biology-2e/pages/7-5-metabolism-without-oxygen).
+- **B03.5** fotossíntese: fase fotoquímica e ciclo de Calvin (40 q; tópicos BK13): ACRESCENTADO. BK13: luz absorvida × refletida pela clorofila; O2 vem da água; Engelmann (fonte: https://openstax.org/books/biology-2e/pages/8-2-the-light-dependent-reactions-of-photosynthesis).
+- **B03.6** fatores limitantes, plantas C4 e CAM, fotorrespiração e quimiossíntese (12 q; tópicos BK13): ACRESCENTADO. BK13: fotorrespiração, plantas C4 e CAM (fonte: https://openstax.org/books/biology-2e/pages/8-3-using-light-energy-to-make-organic-molecules).
+- **B04.1** ciclo celular, intérfase e pontos de checagem (19 q; tópicos BK10, BK10b): ACRESCENTADO. BK10: pontos de checagem e p53 (fonte: https://openstax.org/books/biology-2e/pages/10-3-control-of-the-cell-cycle).
+- **B04.2** mitose (17 q; tópicos BK10, BK10b): OK.
+- **B04.3** meiose e crossing-over (31 q; tópicos BK10b, BK11): ACRESCENTADO. BK10b: quantidade de DNA (2C, 4C, 2C, C) ao longo da meiose (fonte: https://openstax.org/books/biology-2e/pages/11-1-the-process-of-meiosis).
+- **B04.4** gametogênese, não disjunção e aneuploidias (41 q; tópicos BK11): ACRESCENTADO. BK11: não disjunção; Down, Edwards, Patau, Turner, Klinefelter; poliploidia; separação de X e Y na anáfase I (fonte: https://openstax.org/books/biology-2e/pages/13-2-chromosomal-basis-of-inherited-disorders).
+- **B04.5** apoptose e câncer (15 q; tópicos BK10): ACRESCENTADO. BK10: apoptose, proto-oncogenes e supressores, metástase; telomerase (fonte: https://openstax.org/books/biology-2e/pages/10-4-cancer-and-the-cell-cycle).
+- **B05.1** DNA: estrutura, pareamento e replicação semiconservativa (17 q; tópicos BK06): ACRESCENTADO. BK06: pareamento A-T (2) e C-G (3), regra de Chargaff; Meselson e Stahl (fonte: https://openstax.org/books/biology-2e/pages/14-2-dna-structure-and-sequencing, https://openstax.org/books/biology-2e/pages/14-3-basics-of-dna-replication).
+- **B05.2** transcrição e processamento do RNA (12 q; tópicos BK06): ACRESCENTADO. BK06: antiparalelismo e fita molde, U no lugar de T (fonte: https://openstax.org/books/biology-2e/pages/15-2-prokaryotic-transcription).
+- **B05.3** código genético e tradução (33 q; tópicos BK06): ACRESCENTADO. BK06: 64 códons, 61 + 3 de parada, AUG; anticódon (fonte: https://openstax.org/books/biology-2e/pages/15-1-the-genetic-code).
+- **B05.4** mutações: pontual, frameshift e cromossômica (17 q; tópicos BK38): OK.
+- **B05.5** regulação da expressão gênica: fatores de transcrição e diferenciação celular (28 q; tópicos BK47): OK.
+- **B05.6** biotecnologia: PCR, eletroforese, DNA recombinante, transgênicos, CRISPR e clonagem (71 q; tópicos BK39): ACRESCENTADO. BK39: PCR, eletroforese, enzimas de restrição, CRISPR-Cas9, transgênicos e terapia gênica (fonte: https://openstax.org/books/biology-2e/pages/17-1-biotechnology, https://www.nobelprize.org/prizes/chemistry/2020/press-release/).
+- **B06.1** 1ª lei de Mendel, segregação e probabilidade em cruzamentos (33 q; tópicos BK33, BK34): ACRESCENTADO. BK33: probabilidade condicional 2/3 de portador (fonte: https://openstax.org/books/biology-2e/pages/12-3-laws-of-inheritance).
+- **B06.2** 2ª lei de Mendel e segregação independente (16 q; tópicos BK34): OK.
+- **B06.3** heredogramas: identificar dominante ou recessiva (31 q; tópicos BK33): ACRESCENTADO. BK33: regras para decidir dominante ou recessiva no heredograma (fonte: https://openstax.org/books/biology-2e/pages/12-2-characteristics-and-traits).
+- **B06.4** dominância incompleta, codominância, alelos múltiplos, sistema ABO e fator Rh (45 q; tópicos BK34, BK35): ACRESCENTADO. BK35: aglutinogênio × aglutinina na transfusão; eritroblastose fetal (fonte: https://openstax.org/books/biology-2e/pages/40-2-components-of-the-blood).
+- **B06.5** herança ligada ao sexo (44 q; tópicos BK37): OK.
+- **B06.6** linkage e permuta, epistasia, pleiotropia e herança quantitativa (41 q; tópicos BK36): ACRESCENTADO. BK36: proporções 9:3:4 e 12:3:1; 2n + 1 classes; fenótipo Bombaim (fonte: https://openstax.org/books/biology-2e/pages/12-3-laws-of-inheritance).
+- **B07.1** os quatro tecidos fundamentais (62 q; tópicos BK23): ACRESCENTADO. BK23: fibras vermelhas (lentas) e brancas (rápidas) (fonte: https://openstax.org/books/biology-2e/pages/38-4-muscle-contraction-and-locomotion).
+- **B07.2** digestão, absorção intestinal, fígado e pâncreas (36 q; tópicos BK24): ACRESCENTADO. BK24: enzimas digestivas e local de ação; bile sem enzimas; doença celíaca (fonte: https://openstax.org/books/biology-2e/pages/34-3-digestive-system-processes, https://www.niddk.nih.gov/health-information/digestive-diseases/celiac-disease).
+- **B07.3** ventilação pulmonar, hematose e controle da respiração (26 q; tópicos BK24): ACRESCENTADO. BK24: hematose por difusão simples; transporte de CO2 como bicarbonato; efeito Bohr (fonte: https://openstax.org/books/biology-2e/pages/39-4-transport-of-gases-in-human-bodily-fluids).
+- **B07.4** coração e as duas circulações (28 q; tópicos BK25): ACRESCENTADO. BK25: frequência cardíaca = 60 ÷ período (eletrocardiograma) (fonte: conta conferida em python).
+- **B07.5** sangue, coagulação e pressão arterial (25 q; tópicos BK25): ACRESCENTADO. BK25: coagulação; hemácia anucleada; eritropoietina; pressão e velocidade ao longo dos vasos (fonte: https://openstax.org/books/biology-2e/pages/40-2-components-of-the-blood, https://openstax.org/books/biology-2e/pages/40-4-blood-flow-and-blood-pressure-regulation).
+- **B07.6** néfron, formação da urina e equilíbrio hidrossalino (27 q; tópicos BK26a, BK26b): OK.
+- **B08.1** neurônio, potencial de repouso e potencial de ação (23 q; tópicos BK26): ACRESCENTADO. BK26: potencial de repouso (-70 mV), condução saltatória (fonte: https://openstax.org/books/biology-2e/pages/35-2-how-neurons-communicate).
+- **B08.2** sinapse e neurotransmissores (9 q; tópicos BK26): ACRESCENTADO. BK26: principais neurotransmissores; sinapse química num só sentido (fonte: https://openstax.org/books/biology-2e/pages/35-2-how-neurons-communicate).
+- **B08.3** sistema nervoso autônomo e arco reflexo (16 q; tópicos BK26): OK.
+- **B08.4** eixo hipofisário e feedback negativo (13 q; tópicos BK27): ACRESCENTADO. BK27: eixo TRH-TSH-T3/T4 e feedback; LH e testosterona (fonte: https://openstax.org/books/biology-2e/pages/37-4-regulation-of-hormone-production).
+- **B08.5** hormônios: insulina e glucagon, tireoide, cortisol e adrenalina (56 q; tópicos BK27): ACRESCENTADO. BK27: cortisol e adrenalina (fonte: https://openstax.org/books/biology-2e/pages/37-5-endocrine-glands).
+- **B08.6** imunidade inata e adaptativa, vacina × soro e memória imunológica (73 q; tópicos BK25): ACRESCENTADO. BK25: linfócitos B, plasmócitos, T auxiliares (CD4) e citotóxicos; resposta secundária; imunidade coletiva (fonte: https://openstax.org/books/biology-2e/pages/42-2-adaptive-immune-response).
+- **B08.7** ciclo menstrual, fecundação, clivagem e folhetos embrionários (84 q; tópicos BK21a, BK28): ACRESCENTADO. BK28: FSH, LH, estrógeno, progesterona; hCG e queda hormonal após o parto (fonte: https://openstax.org/books/biology-2e/pages/43-5-human-pregnancy-and-birth); BK21a: derivados dos três folhetos (fonte: https://openstax.org/books/biology-2e/pages/43-7-organogenesis-and-vertebrate-formation).
+- **B09.1** cadeias e teias alimentares, níveis tróficos (34 q; tópicos BK01, BK42): ACRESCENTADO. BK42: mesma espécie em mais de um nível trófico; controle biológico (fonte: https://openstax.org/books/biology-2e/pages/46-2-energy-flow-through-ecosystems).
+- **B09.2** fluxo de energia, regra dos 10% e pirâmides ecológicas (16 q; tópicos BK42): ACRESCENTADO. BK42: regra dos cerca de 10% (fonte: https://openstax.org/books/biology-2e/pages/46-2-energy-flow-through-ecosystems).
+- **B09.3** ciclos biogeoquímicos (90 q; tópicos BK43): ACRESCENTADO. BK43: carbono 14 e combustível fóssil; floresta clímax com saldo de O2 próximo de zero; ciclo do fósforo (fonte: https://openstax.org/books/biology-2e/pages/46-3-biogeochemical-cycles).
+- **B09.4** relações ecológicas (78 q; tópicos BK44): ACRESCENTADO. BK44: oscilação predador-presa; maré vermelha (amensalismo) (fonte: https://openstax.org/books/biology-2e/pages/45-6-community-ecology).
+- **B09.5** sucessão ecológica e dinâmica de populações (41 q; tópicos BK44, BK45): ACRESCENTADO. BK44: produtividade líquida tende a zero no clímax (fonte: https://openstax.org/books/biology-2e/pages/45-6-community-ecology).
+- **B09.6** biomas brasileiros e impactos (192 q; tópicos BK45, BK45b, BK46): ACRESCENTADO. BK45: terra firme, várzea (água barrenta, rica em nutrientes) e igapó (água preta ou clara, pobre) (fonte: https://repositorio.inpa.gov.br/items/dd1e61d6-d805-4b79-80c6-51eab165c28b/full).
+- **B10.1** viroses e arboviroses (57 q; tópicos BK29): ACRESCENTADO. BK29: Aedes aegypti transmite dengue, zika, chikungunya e febre amarela urbana; epizootia em macacos (fonte: https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/f/febre-amarela).
+- **B10.2** bacterioses e resistência bacteriana (38 q; tópicos BK30): ACRESCENTADO. BK30: resistência por seleção de mutantes; antibiótico não age em vírus (fonte: https://openstax.org/books/biology-2e/pages/22-4-bacterial-diseases-in-humans).
+- **B10.3** protozooses e seus vetores (31 q; tópicos BK31): OK.
+- **B10.4** verminoses: ciclos e via de entrada (23 q; tópicos BK32): OK.
+- **B10.5** profilaxia, saneamento, imunização e ISTs (56 q; tópicos BK29): ACRESCENTADO. BK29: saneamento, preservativo, vacinas contra HPV e hepatite B (fonte: https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/i/ist).
+- **B11.1** evidências da evolução (31 q; tópicos BK41): OK.
+- **B11.2** Lamarck × Darwin, seleção natural e adaptação (85 q; tópicos BK40): OK.
+- **B11.3** variabilidade, deriva genética, efeito do fundador e fluxo gênico (27 q; tópicos BK38, BK40): ACRESCENTADO. BK38: deriva genética, efeito fundador, gargalo, fluxo gênico (fonte: https://openstax.org/books/biology-2e/pages/19-2-population-genetics).
+- **B11.4** equilíbrio de Hardy-Weinberg (17 q; tópicos BK38): ACRESCENTADO. BK38: exemplo numérico de Hardy-Weinberg (conta em python: 2pq = 0,32) (fonte: https://openstax.org/books/biology-2e/pages/19-2-population-genetics).
+- **B11.5** especiação, isolamento reprodutivo, irradiação adaptativa e origem da vida (63 q; tópicos BK41): ACRESCENTADO. BK41: isolamento geográfico × reprodutivo; irradiação e convergência adaptativa; Redi, Pasteur, Miller e Urey (fonte: https://openstax.org/books/biology-2e/pages/18-2-formation-of-new-species).
+- **B12.1** vírus e bactérias: estrutura, ciclos e reprodução (66 q; tópicos BK15): ACRESCENTADO. BK15: especificidade vírus-receptor; transcriptase reversa e integrase (fonte: https://openstax.org/books/biology-2e/pages/21-2-virus-infections-and-hosts).
+- **B12.2** protistas e fungos (51 q; tópicos BK14a, BK14b, BK16): ACRESCENTADO. BK14a: líquen (fonte: https://openstax.org/books/biology-2e/pages/24-3-ecology-of-fungi).
+- **B12.3** tecidos vegetais, xilema (94 q; tópicos BK17, BK18, BK19): ACRESCENTADO. BK17: gametófito e esporófito do musgo (fonte: https://openstax.org/books/biology-2e/pages/25-3-bryophytes).
+- **B12.4** estômatos, transpiração, hormônios vegetais e fotoperiodismo (59 q; tópicos BK20): OK.
+- **B12.5** invertebrados: novidades evolutivas (73 q; tópicos BK21, BK21b, BK21c, BK21d, BK21e): ACRESCENTADO. BK21b: ploidia na metagênese; zangões haploides por partenogênese (fonte: https://openstax.org/books/biology-2e/pages/28-2-phylum-cnidaria).
+- **B12.6** vertebrados, classificação, nomenclatura e filogenia (136 q; tópicos BK14, BK22): ACRESCENTADO. BK22: funções do âmnio, cório, alantoide e saco vitelínico (fonte: https://openstax.org/books/biology-2e/pages/29-4-reptiles); BK14: leitura de cladograma (fonte: https://openstax.org/books/biology-2e/pages/20-2-determining-evolutionary-relationships).
+
+## Química (57 subtemas com questões)
+
+- **Q01.1** modelos atômicos e partículas subatômicas (49 q; tópicos QK03, QK04): OK.
+- **Q01.2** número atômico, número de massa, isótopos, isóbaros e íons (38 q; tópicos QK04, QK05): OK.
+- **Q01.3** distribuição eletrônica, camadas e subníveis (29 q; tópicos QK06): OK.
+- **Q01.4** tabela periódica: períodos, famílias e localização do elemento (52 q; tópicos QK07): OK.
+- **Q01.5** propriedades periódicas (43 q; tópicos QK08): OK.
+- **Q02.1** ligação iônica: formação, fórmula e propriedades do composto (38 q; tópicos QK09): ACRESCENTADO. QK09: propriedades dos compostos iônicos (fonte: https://openstax.org/books/chemistry-2e/pages/10-5-the-solid-state-of-matter).
+- **Q02.2** ligação covalente, fórmula eletrônica e estrutural (16 q; tópicos QK09): OK.
+- **Q02.3** geometria molecular e polaridade da molécula (37 q; tópicos QK10): OK.
+- **Q02.4** forças intermoleculares e ponto de fusão, ebulição e solubilidade (100 q; tópicos QK11, QK12): OK.
+- **Q02.5** ligação metálica, ligas e propriedades dos materiais (12 q; tópicos QK09): ACRESCENTADO. QK09: propriedades dos metais; ligas (bronze, latão, aço, ouro 18 quilates = 75%, conta em python) (fonte: https://openstax.org/books/chemistry-2e/pages/10-6-lattice-structures-in-crystalline-solids).
+- **Q03.1** ácidos e bases: definições (Arrhenius, Brønsted, Lewis) e nomenclatura (37 q; tópicos QK15, QK29): ACRESCENTADO. QK15: força de hidrácidos e oxiácidos; nomes ídrico, ico, oso (fonte: https://openstax.org/books/chemistry-2e/pages/14-1-bronsted-lowry-acids-and-bases).
+- **Q03.2** sais e óxidos: classificação e nomenclatura (37 q; tópicos QK16): OK.
+- **Q03.3** reações inorgânicas e balanceamento por tentativa (68 q; tópicos QK17): OK.
+- **Q03.4** número de oxidação, oxirredução e balanceamento por oxirredução (87 q; tópicos QK31, QK32): OK.
+- **Q03.5** substância pura e mistura, alotropia e processos de separação de misturas (106 q; tópicos QK01, QK02, QK09): ACRESCENTADO. QK01: tipos de coloides e efeito Tyndall (fonte: https://openstax.org/books/chemistry-2e/pages/11-5-colloids).
+- **Q04.1** massa atômica, massa molar, mol e constante de Avogadro (32 q; tópicos QK13): OK.
+- **Q04.2** fórmula percentual, mínima e molecular (26 q; tópicos QK13): OK.
+- **Q04.3** cálculo estequiométrico direto (121 q; tópicos QK14): OK.
+- **Q04.4** reagente limitante, excesso, pureza e rendimento (47 q; tópicos QK14): OK.
+- **Q04.5** leis ponderais e conservação da massa (9 q; tópicos QK14): OK.
+- **Q05.1** concentração comum, densidade e massa de soluto (20 q; tópicos QK18): OK.
+- **Q05.2** concentração em mol/L e preparo de solução (58 q; tópicos QK18): OK.
+- **Q05.3** diluição e mistura de soluções (32 q; tópicos QK19): OK.
+- **Q05.4** título, porcentagem em massa, ppm e dosagem (46 q; tópicos QK18): OK.
+- **Q05.5** solubilidade, curva de solubilidade e saturação (27 q; tópicos QK18): ACRESCENTADO. QK18: solubilidade de gases e lei de Henry (fonte: https://openstax.org/books/chemistry-2e/pages/11-3-solubility).
+- **Q06.1** transformações gasosas e equação geral dos gases (27 q; tópicos QK22): OK.
+- **Q06.2** equação de Clapeyron, volume molar e CNTP (44 q; tópicos QK22, QK23): OK.
+- **Q06.3** misturas gasosas, pressão parcial e difusão (15 q; tópicos QK23): ACRESCENTADO. QK23: gás recolhido sobre água: desconta a pressão de vapor (fonte: https://openstax.org/books/chemistry-2e/pages/9-3-stoichiometry-of-gaseous-substances-mixtures-and-reactions).
+- **Q07.1** entalpia, reação exotérmica e endotérmica, diagrama de energia (51 q; tópicos QK20): ACRESCENTADO. QK20: calorimetria Q = m·c·ΔT e entalpia molar; evaporação endotérmica (fonte: https://openstax.org/books/chemistry-2e/pages/5-2-calorimetry).
+- **Q07.2** lei de Hess e entalpia de formação (45 q; tópicos QK21): OK.
+- **Q07.3** energia de ligação, poder calorífico e combustíveis (51 q; tópicos QK21): ACRESCENTADO. QK21: poder calorífico (fonte: https://openstax.org/books/chemistry-2e/pages/5-2-calorimetry).
+- **Q08.1** velocidade de reação e fatores que a alteram (73 q; tópicos QK24): ACRESCENTADO. QK24: regra de van't Hoff; ordens por experimento; reação elementar (fonte: https://openstax.org/books/chemistry-2e/pages/12-3-rate-laws).
+- **Q08.2** energia de ativação, complexo ativado e catalisador (37 q; tópicos QK24): ACRESCENTADO. QK24: etapa lenta; catalisador × intermediário (fonte: https://openstax.org/books/chemistry-2e/pages/12-6-reaction-mechanisms).
+- **Q08.3** equilíbrio químico, Kc e Kp (31 q; tópicos QK25): ACRESCENTADO. QK25: tabela início-reage-equilíbrio (fonte: https://openstax.org/books/chemistry-2e/pages/13-4-equilibrium-calculations).
+- **Q08.4** deslocamento de equilíbrio (65 q; tópicos QK25): ACRESCENTADO. QK25: K muda só com a temperatura (fonte: https://openstax.org/books/chemistry-2e/pages/13-3-shifting-equilibria-le-chateliers-principle).
+- **Q08.5** equilíbrio iônico, Ka, Kb e grau de ionização (28 q; tópicos QK26): OK.
+- **Q08.6** pH, pOH e hidrólise de sais (83 q; tópicos QK27, QK28): ACRESCENTADO. QK27: Kw e temperatura; pH negativo; indicadores; mistura ácido forte + base forte (fonte: https://openstax.org/books/chemistry-2e/pages/14-7-acid-base-titrations).
+- **Q08.7** solução-tampão e produto de solubilidade (34 q; tópicos QK30, QK59): ACRESCENTADO. QK59 (novo): solução-tampão, Henderson-Hasselbalch, sangue pH 7,4, efeito do íon comum (fonte: https://openstax.org/books/chemistry-2e/pages/14-6-buffers).
+- **Q09.1** pilhas: semirreações, potencial e espontaneidade (90 q; tópicos QK33, QK34): OK.
+- **Q09.2** eletrólise ígnea e aquosa, leis de Faraday (53 q; tópicos QK35): OK.
+- **Q09.3** corrosão, metal de sacrifício e proteção (18 q; tópicos QK34): ACRESCENTADO. QK34: ferrugem exige O2 e água; metal de sacrifício com menor potencial de redução (fonte: https://openstax.org/books/chemistry-2e/pages/17-6-corrosion).
+- **Q09.4** emissões radioativas e equações nucleares (54 q; tópicos QK36): OK.
+- **Q09.5** meia-vida, fissão e fusão nuclear (68 q; tópicos QK37, QK38): OK.
+- **Q10.1** tonoscopia, ebulioscopia e crioscopia (33 q; tópicos QK19): OK.
+- **Q10.2** osmose, pressão osmótica e soluções isotônicas (9 q; tópicos QK19): OK.
+- **Q11.1** cadeias carbônicas, classificação do carbono e da cadeia (34 q; tópicos QK39): OK.
+- **Q11.2** hidrocarbonetos: nomenclatura e identificação (29 q; tópicos QK40): OK.
+- **Q11.3** funções oxigenadas (90 q; tópicos QK41): OK.
+- **Q11.4** funções nitrogenadas, haletos e funções mistas (87 q; tópicos QK41): OK.
+- **Q11.5** isomeria plana (32 q; tópicos QK45): OK.
+- **Q11.6** isomeria espacial: geométrica e óptica, carbono quiral (88 q; tópicos QK46): ACRESCENTADO. QK46: propriedades de cis e trans; mistura racêmica (fonte: https://openstax.org/books/organic-chemistry/pages/7-4-cis-trans-isomerism-in-alkenes).
+- **Q11.7** acidez, basicidade, solubilidade e ponto de ebulição em orgânica (36 q; tópicos QK42): ACRESCENTADO. QK42: ordem de temperatura de ebulição por função; solubilidade (fonte: https://openstax.org/books/chemistry-2e/pages/20-1-hydrocarbons, livro didático de Química orgânica (ensino médio)).
+- **Q12.1** adição, substituição e eliminação (52 q; tópicos QK47, QK48, QK49, QK50, QK52): ACRESCENTADO. QK50: hidratação de alcino via enol e tautomeria (fonte: https://openstax.org/books/organic-chemistry/pages/9-4-hydration-of-alkynes).
+- **Q12.2** oxidação, redução, esterificação e saponificação (74 q; tópicos QK12, QK49, QK51, QK53): ACRESCENTADO. QK51: testes de Tollens e Fehling (fonte: https://openstax.org/books/organic-chemistry/pages/19-3-oxidation-of-aldehydes-and-ketones); QK12: saponificação dá sabão e glicerol (fonte: https://openstax.org/books/organic-chemistry/pages/27-2-soap).
+- **Q12.3** polímeros de adição e de condensação, reciclagem (52 q; tópicos QK54, QK55): OK.
+- **Q12.4** bioquímica: carboidratos, lipídios, proteínas e ácidos nucleicos (62 q; tópicos QK56, QK57, QK58): OK.
+- **Q12.5** química ambiental: combustíveis, poluentes, chuva ácida e efeito estufa (108 q; tópicos QK43, QK44, QK60): ACRESCENTADO. QK60 (novo): chuva ácida (pH 5,6 da chuva normal), efeito estufa, ozônio, craqueamento/isomerização/alquilação, cores do hidrogênio, ciclo do carbono do etanol (fonte: https://www.epa.gov/acidrain/what-acid-rain, https://cursos.unipampa.edu.br/cursos/engenhariadeenergia/files/2024/04/ebook-hidrogenio_tecnologia-do-h2.pdf).
+
+## Física (74 subtemas com questões)
+
+- **F01.1** grandezas, unidades do SI e conversões (18 q; tópicos FK43): ACRESCENTADO. FK43: sete unidades de base do SI; milha náutica e nó (1,852 km/h, conta em python) (fonte: https://www.bipm.org/en/measurement-units).
+- **F01.2** notação científica, ordem de grandeza e algarismos significativos (10 q; tópicos FK43): OK.
+- **F01.3** vetores e análise dimensional (16 q; tópicos FK03, FK39): OK.
+- **F01.4** relatividade restrita (39 q; tópicos FK39): OK.
+- **F01.5** fóton, efeito fotoelétrico e modelo de Bohr (53 q; tópicos FK40): OK.
+- **F01.6** radioatividade, meia-vida e física nuclear (23 q; tópicos FK44): ACRESCENTADO. FK44: penetração e desvio de alfa, beta, gama; hádrons e léptons; aniquilação (511 keV) (fonte: https://openstax.org/books/university-physics-volume-3/pages/10-3-radioactive-decay, https://openstax.org/books/university-physics-volume-3/pages/11-3-quarks).
+- **F02.1** velocidade média e movimento uniforme (71 q; tópicos FK01): OK.
+- **F02.2** movimento uniformemente variado e equação de Torricelli (31 q; tópicos FK01): OK.
+- **F02.3** gráficos s × t, v × t e a × t (29 q; tópicos FK01): OK.
+- **F02.4** queda livre e lançamento vertical (20 q; tópicos FK01): OK.
+- **F02.5** lançamento horizontal e oblíquo (45 q; tópicos FK04): OK.
+- **F02.6** movimento circular, período, frequência, correias e engrenagens (36 q; tópicos FK02, FK02b): OK.
+- **F02.7** composição de movimentos e velocidade relativa (19 q; tópicos FK03): OK.
+- **F03.1** leis de Newton e diagrama de forças (49 q; tópicos FK05b): ACRESCENTADO. FK05: peso aparente no elevador (fonte: https://openstax.org/books/university-physics-volume-1/pages/6-1-solving-problems-with-newtons-laws).
+- **F03.2** peso, normal, tração, blocos e polias (39 q; tópicos FK05, FK05b): ACRESCENTADO. FK05: peso aparente no elevador (fonte: https://openstax.org/books/university-physics-volume-1/pages/6-1-solving-problems-with-newtons-laws).
+- **F03.3** atrito e plano inclinado (47 q; tópicos FK05, FK06): OK.
+- **F03.4** força elástica e lei de Hooke (16 q; tópicos FK05): OK.
+- **F03.5** força centrípeta e curvas (29 q; tópicos FK06): ACRESCENTADO. FK06: curva plana com atrito; velocidade mínima no topo do looping (fonte: https://openstax.org/books/university-physics-volume-1/pages/6-3-centripetal-force).
+- **F03.6** estática: equilíbrio, torque e alavancas (51 q; tópicos FK10): OK.
+- **F04.1** trabalho de uma força (35 q; tópicos FK07): OK.
+- **F04.2** energia cinética e energia potencial (20 q; tópicos FK08): OK.
+- **F04.3** conservação da energia mecânica (57 q; tópicos FK08): OK.
+- **F04.4** potência e rendimento (35 q; tópicos FK07): OK.
+- **F04.5** fontes de energia, usinas e impacto ambiental (14 q; tópicos FK45): ACRESCENTADO. FK45: eólica e solar como fontes que mais crescem; hidrelétrica predominante (fonte: https://www.epe.gov.br/pt/publicacoes-dados-abertos/publicacoes/balanco-energetico-nacional-ben (BEN 2025)).
+- **F05.1** impulso e teorema do impulso (19 q; tópicos FK09): OK.
+- **F05.2** conservação da quantidade de movimento (15 q; tópicos FK09): OK.
+- **F05.3** colisões e coeficiente de restituição (27 q; tópicos FK09, FK09b): OK.
+- **F05.4** centro de massa (3 q; tópicos FK09b, FK10): OK.
+- **F06.1** leis de Kepler (18 q; tópicos FK41): OK.
+- **F06.2** lei da gravitação universal e aceleração da gravidade (29 q; tópicos FK41, FK42): OK.
+- **F06.3** satélites, órbitas e imponderabilidade (19 q; tópicos FK41, FK42): OK.
+- **F06.4** sistema solar, estrelas e cosmologia (27 q; tópicos FK42, FK47): ACRESCENTADO. FK47 (novo): estações do ano, ano-luz (9,46·10^15 m, conta em python), lei de Hubble, fusão nas estrelas e origem dos elementos (fonte: https://openstax.org/books/astronomy-2e/pages/4-2-the-seasons, https://openstax.org/books/astronomy-2e/pages/26-5-the-expanding-universe, https://openstax.org/books/astronomy-2e/pages/22-4-further-evolution-of-stars, https://openstax.org/books/astronomy-2e/pages/16-1-sources-of-sunshine-thermal-and-gravitational-energy).
+- **F07.1** densidade e pressão (27 q; tópicos FK11): OK.
+- **F07.2** teorema de Stevin, pressão atmosférica e vasos comunicantes (43 q; tópicos FK11b): OK.
+- **F07.3** princípio de Pascal e prensa hidráulica (2 q; tópicos FK11b): OK.
+- **F07.4** empuxo e flutuação (55 q; tópicos FK11b): OK.
+- **F07.5** hidrodinâmica: vazão, continuidade e Bernoulli (11 q; tópicos FK11b): ACRESCENTADO. FK11b: Bernoulli e Torricelli (fonte: https://openstax.org/books/university-physics-volume-1/pages/14-6-bernoullis-equation).
+- **F08.1** temperatura e escalas termométricas (30 q; tópicos FK12): OK.
+- **F08.2** dilatação térmica (36 q; tópicos FK13): OK.
+- **F08.3** calor sensível, calor latente e mudanças de estado (67 q; tópicos FK14, FK15, FK15b): OK.
+- **F08.4** trocas de calor e equilíbrio térmico (39 q; tópicos FK14): OK.
+- **F08.5** propagação do calor, efeito estufa e conforto térmico (41 q; tópicos FK15c, FK16): OK.
+- **F08.6** gases e transformações gasosas (45 q; tópicos FK16): OK.
+- **F08.7** trabalho de um gás e 1ª lei da termodinâmica (48 q; tópicos FK17): OK.
+- **F08.8** máquinas térmicas, 2ª lei e ciclo de Carnot (30 q; tópicos FK18): OK.
+- **F09.1** princípios da óptica, cor, sombra e câmara escura (25 q; tópicos FK19): OK.
+- **F09.2** reflexão e espelhos planos (13 q; tópicos FK20): OK.
+- **F09.3** espelhos esféricos (31 q; tópicos FK21, FK21b): OK.
+- **F09.4** refração, lei de Snell e reflexão total (52 q; tópicos FK22): OK.
+- **F09.5** lentes e vergência (37 q; tópicos FK23, FK24): OK.
+- **F09.6** óptica da visão e defeitos visuais (27 q; tópicos FK25): OK.
+- **F09.7** instrumentos ópticos e dispersão da luz (13 q; tópicos FK22, FK25): OK.
+- **F10.1** características das ondas e v = λ · f (73 q; tópicos FK27): OK.
+- **F10.2** espectro eletromagnético e radiações (50 q; tópicos FK46): OK.
+- **F10.3** reflexão, refração, difração e interferência de ondas (37 q; tópicos FK28): OK.
+- **F10.4** ressonância e polarização (4 q; tópicos FK28): OK.
+- **F10.5** som: altura, intensidade, timbre e nível sonoro (26 q; tópicos FK29, FK29b): OK.
+- **F10.6** cordas, tubos sonoros e ondas estacionárias (36 q; tópicos FK28, FK29): OK.
+- **F10.7** efeito Doppler (13 q; tópicos FK29): OK.
+- **F10.8** movimento harmônico simples e pêndulo (30 q; tópicos FK26): OK.
+- **F11.1** carga elétrica e processos de eletrização (23 q; tópicos FK30): OK.
+- **F11.2** lei de Coulomb e campo elétrico (57 q; tópicos FK30, FK31): OK.
+- **F11.3** potencial elétrico, energia e condutores em equilíbrio (35 q; tópicos FK31, FK32): OK.
+- **F11.4** corrente elétrica, leis de Ohm e resistividade (62 q; tópicos FK33, FK34): OK.
+- **F11.5** associação de resistores (64 q; tópicos FK34): OK.
+- **F11.6** potência elétrica, consumo em kWh e conta de luz (76 q; tópicos FK33): OK.
+- **F11.7** geradores, receptores e leis de Kirchhoff (32 q; tópicos FK35): OK.
+- **F11.8** medidores, fusíveis, instalações e choque elétrico (15 q; tópicos FK35): ACRESCENTADO. FK35: fusível e disjuntor em série, aparelhos em paralelo, aterramento; choque (fonte: https://openstax.org/books/college-physics-2e/pages/20-6-electric-hazards-and-the-human-body).
+- **F11.9** capacitores (31 q; tópicos FK31, FK35): OK.
+- **F12.1** ímãs, campo magnético e magnetismo terrestre (23 q; tópicos FK36): OK.
+- **F12.2** força magnética sobre carga e sobre fio (59 q; tópicos FK37): OK.
+- **F12.3** campo magnético de fio, espira e solenoide (21 q; tópicos FK37): OK.
+- **F12.4** indução eletromagnética: Faraday e Lenz (31 q; tópicos FK38): ACRESCENTADO. FK38: gerador por indução (fonte: https://openstax.org/books/university-physics-volume-2/pages/13-6-electric-generators-and-back-emf).
+- **F12.5** transformadores, geradores e motores elétricos (3 q; tópicos FK38): ACRESCENTADO. FK38: gerador × motor; transformador só com corrente alternada (fonte: https://openstax.org/books/university-physics-volume-2/pages/13-6-electric-generators-and-back-emf, https://openstax.org/books/university-physics-volume-2/pages/13-7-applications-of-electromagnetic-induction).
+
+Total: 200 subtemas auditados; 86 completados. Tópicos novos: QK59, QK60 (Química), FK47 (Física).
+
+Observação: em Física, muitas questões têm `conceito` vazio; a auditoria usou o fim do enunciado e as alternativas. Subtemas marcados OK já tinham nos pontos ligados as fórmulas e definições que as amostras exigem.
