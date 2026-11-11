@@ -910,3 +910,60 @@ Cada item aparece no site como EM CONSTRUÇÃO... (o que será colocado: ...). E
 | BK45 | Dinâmica populacional e biomas | Gráfico potencial biótico x resistência x carga biótica máxima e mapa de biomas. |
 | BK45b | Biomas brasileiros: Cerrado, Caatinga, Pampas, Pantanal e Manguezal | Mapa da distribuição dos biomas terrestres e marinhos no Brasil (Amazônia, Caatinga, Cerrado, Mata Atlântica, Pampa, Pantanal e sistema costeiro-marinho) e fotos de cada bioma. |
 | BK46 | Alterações ambientais e desenvolvimento sustentável | Gráfico do lago eutrofizado (nutrientes, bactérias anaeróbias e aeróbias, oxigênio ao longo do tempo), esquema da camada de ozônio com UVA, UVB e UVC e corte de aterro sanitário. |
+
+## Física (caderno Revisaí) — imagens que faltam
+
+Cada item aparece no site como EM CONSTRUÇÃO... (o que será colocado: ...). Enviar como `<id>.png`.
+
+| id | título | imagem desejada |
+|---|---|---|
+| FK01 | Introdução à cinemática, MU, MUV e gráficos | Quadro-resumo do mapa mental de Cinemática (tipos de movimento e fórmulas) e os gráficos de s, v e a para MU e MUV progressivo e retrógrado, com tangente e área marcadas. |
+| FK02 | Movimento circular: grandezas angulares, período e frequência | Figura da trajetória circular com o arco Δs, o ângulo Δθ e o raio R entre as posições P1 e P2. |
+| FK02b | MCU, MCUV e transmissão de movimento circular | Duas polias de raios diferentes ligadas por correia e duas rodas sobre o mesmo eixo, com as tabelas de grandezas lineares e angulares. |
+| FK03 | Cinemática vetorial e composição de movimentos | Vetores somados pelos três métodos (poligonal, paralelogramo, decomposição) e esquema das direções tangencial e normal em uma trajetória curva. |
+| FK04 | Lançamento oblíquo no vácuo | Parábola do lançamento oblíquo com v0, θ, componentes v0x e v0y, e vx e vy em vários pontos (vy = 0 no topo). |
+| FK05 | Resolução de problemas de Dinâmica, molas, polias e plano inclinado | Diagramas de forças: dinamômetro, polia fixa e móvel e plano inclinado com Px e Py. |
+| FK05b | Mapa mental de Dinâmica, definições e leis de Newton | Mapa mental colorido de Dinâmica com forças (elástica, atrito, peso, normal, tração) e as três leis de Newton. |
+| FK06 | Força de atrito, resistência dos fluidos e movimento circular | Esquema do atrito entre o livro e a superfície, com Fat e N, e as direções tangencial e centrípeta em uma curva. |
+| FK07 | Trabalho e potência | Esquemas de força formando ângulo θ com o deslocamento e gráfico F×s com a área sombreada. |
+| FK08 | Energia mecânica e conservação | Mapa mental de Trabalho e Energia (potência, trabalho, energia cinética, potencial e mecânica, teorema da energia cinética, gráfico F×s). |
+| FK09 | Impulso, quantidade de movimento e colisões | Mapa mental de Dinâmica impulsiva (impulso, quantidade de movimento e tipos de colisão) e gráficos F×t com a área. |
+| FK09b | Colisão, energia e centro de massa | Esquema do dinamômetro com prato e pacote caindo de 45 cm. |
+| FK10 | Estática: centro de massa, equilíbrio, torque e alavancas | Esquemas de torque com braço de alavanca, tipos de equilíbrio (estável, instável, indiferente) e os três tipos de alavanca. |
+| FK11 | Densidade e pressão | Esquema de pressão (força, área) e comparação entre massa específica e densidade de um corpo oco. |
+| FK11b | Teorema de Stevin, Pascal, Arquimedes e hidrodinâmica | Béquer com pontos de pressão a profundidades diferentes, vasos comunicantes, elevador hidráulico com pistões de áreas A1 e A2 e tubulação com estreitamento (A1, v1, A2, v2). |
+| FK12 | Termometria, escalas e calor | Mapa mental de Termologia e termômetros nas escalas Fahrenheit, Celsius e Kelvin com ponto de gelo e de vapor. |
+| FK13 | Dilatação térmica | Esquema das dilatações linear, superficial e volumétrica e gráfico do volume da água entre 0 e 4 °C. |
+| FK14 | Calorimetria e sistemas termicamente isolados | Quadro de calor sensível e latente e esquema do copo dentro da vasilha com água. |
+| FK15 | Mudanças de estado físico | Diagrama das mudanças de estado (fusão, solidificação, vaporização, liquefação, sublimação) entre sólido, líquido e vapor e tabela dos estados. |
+| FK15b | Curvas de aquecimento, calor latente e diagrama de estados | Curva de aquecimento da água (−65 °C a acima de 100 °C com patamares A–F), curva de mistura e diagrama de estados P × T com ponto triplo e ponto crítico. |
+| FK15c | Processos de transferência de calor | Barra metálica entre água em ebulição e gelo com isolante, panela com correntes de convecção e corte do vaso de Dewar com tampa, plástico, paredes espelhadas e vácuo. |
+| FK16 | Gases ideais e transformações gasosas | Esquema do efeito estufa (radiação solar, absorção na superfície, infravermelho retido na atmosfera, parte refletida ao espaço) e gráficos P×V, P×T e V×T das transformações. |
+| FK17 | Termodinâmica: trabalho, energia interna e primeira lei | Diagramas de Clapeyron de cada transformação (isotérmica, isovolumétrica, isobárica, adiabática e cíclica) e o esquema isobárica/isocórica/isotérmica A-B-C. |
+| FK18 | Segunda lei da termodinâmica e máquinas térmicas | Esquema da máquina térmica (fonte quente, fonte fria, trabalho) e do ciclo de Carnot no diagrama PV. |
+| FK19 | Introdução à óptica geométrica e princípios | Espectro eletromagnético com comprimentos de onda e frequências da luz visível, esquema de sombra e penumbra, eclipses e câmara escura, e reflexão regular e difusa. |
+| FK20 | Reflexão da luz e espelhos planos | Esquema das leis da reflexão com normal, raios incidente e refletido, imagem e objeto simétricos, campo visual e associação de espelhos planos. |
+| FK21 | Espelhos esféricos: equações e sinais | Espelhos côncavo e convexo com raios notáveis e as cinco posições do objeto no côncavo, e quadro de sinais. |
+| FK21b | Espelhos esféricos: elementos, raios notáveis e imagens | Calota esférica com centro de curvatura, raio R, ângulo θ e eixo principal; espelho côncavo e convexo com a luz incidente; construção de imagens com raios (1), (2), (3) e (4). |
+| FK22 | Refração da luz, Snell-Descartes e ângulo limite | Raio refratado com normal, ângulos î e r̂ entre dois meios, reflexão total no ângulo limite, prisma com dispersão e lâmina de faces paralelas. |
+| FK23 | Lentes esféricas delgadas | Lentes convergente e divergente com raios notáveis e os seis formatos de lente, e as posições do objeto no eixo (A, F, O). |
+| FK24 | Estudo analítico das lentes e vergência | Quadro de sinais das abscissas e esquema das faces de uma lente com R1 e R2. |
+| FK25 | Instrumentos ópticos e óptica da visão | Esquemas do olho humano com as estruturas nomeadas, das imagens no olho hipermetrope e míope, da lupa, do microscópio composto, da luneta e da máquina fotográfica. |
+| FK26 | MHS: massa-mola, pêndulo e equações | Sistemas massa-mola e pêndulo com amplitude marcada, gráfico das energias no MHS e o MCU projetado. |
+| FK27 | Ondas: classificação e ondas periódicas | Mapa mental de Ondas e onda com crista, vale, amplitude e comprimento de onda. |
+| FK28 | Fenômenos ondulatórios, interferência e ondas estacionárias | Esquemas de interferência construtiva e destrutiva, do experimento de dupla fenda de Young e da onda estacionária com nós, ventres e fuso. |
+| FK29 | Acústica: som, fenômenos acústicos, Doppler e tubos | Onda sonora longitudinal com compressões e rarefações, faixas de frequência (infra, audível, ultra), ouvido humano, Doppler com fonte e observador e padrões de tubos aberto e fechado. |
+| FK29b | Nível sonoro e intensidade sonora | Escala de níveis sonoros em decibéis com exemplos de fontes. |
+| FK30 | Carga elétrica, processos de eletrização e lei de Coulomb | Mapa mental de Eletrostática e esquemas das três eletrizações (atrito, contato, indução com aterramento), e da força de Coulomb entre cargas. |
+| FK31 | Campo elétrico, potencial e trabalho da força elétrica | Linhas de força e equipotenciais de uma carga puntiforme, campo uniforme entre placas paralelas, distribuição de carga com poder das pontas e condutor com E e V dentro, na superfície e fora. |
+| FK32 | Esfera condutora, campo uniforme e movimento de cargas | Gráficos de E × d e de V × d de uma esfera condutora, esfera eletrizada com cargas na superfície e gaiola de Faraday. |
+| FK33 | Corrente elétrica, potência e energia | Mapa mental de Eletrodinâmica, esquema de condutor com elétrons em deriva (sentido real e convencional) e gráfico i × t com a área. |
+| FK34 | Resistores, leis de Ohm e associações | Esquemas de associação em série e paralelo, gráfico U × i do condutor ôhmico, ponte de Wheatstone e ponte de fio, e circuito com lâmpada em curto-circuito. |
+| FK35 | Geradores, receptores, Kirchhoff, medidores e capacitores | Símbolos e curvas características de resistor, gerador e receptor, circuito de duas malhas com nós e ramos, amperímetro em série e voltímetro em paralelo, e associações de capacitores. |
+| FK36 | Magnetismo, ímãs e campo magnético terrestre | Mapa mental de Eletromagnetismo, ímãs com linhas de indução, atração e repulsão, partição de ímã, domínios magnéticos e campo magnético terrestre com auroras. |
+| FK37 | Campo magnético de correntes e força magnética | Regra da mão direita em fio, espira e solenoide, regra da mão esquerda da força magnética, trajetórias retilínea, circular e helicoidal, e dois fios paralelos com forças. |
+| FK38 | Indução eletromagnética e transformadores | Ímã se aproximando e se afastando de uma espira com sentido da corrente, fluxo atravessando superfície com ângulo θ e transformador com núcleo e enrolamentos. |
+| FK39 | Análise dimensional e teoria da relatividade | Quadro de dimensões das grandezas fundamentais e esquema do experimento de Michelson-Morley. |
+| FK40 | Corpo negro, quantização e modelos atômicos | Curvas de emissão do corpo negro em várias temperaturas (3000 a 6000 K), níveis de energia de Bohr com saltos quânticos e espectros de emissão e absorção. |
+| FK41 | Leis de Kepler e lei da gravitação universal | Elipse com Sol em um foco, periélio, afélio, semieixos maior e menor, áreas varridas e as duas massas m e M com forças de interação. |
+| FK42 | Campo gravitacional, energia potencial, velocidade de escape e eclipses | Esquema das fases da Lua e do alinhamento Sol, Terra e Lua nos eclipses solar e lunar. |
