@@ -1,0 +1,114 @@
+{
+ "P52edfc99": {
+  "n": "73",
+  "conceito": "Maior inteiro menor ou igual a x: para negativos, arredonda para baixo; os 61 termos se agrupam de 10 em 10 com o mesmo valor.",
+  "equivocos": {
+   "A": "M01.4:ultimo-termo-com-sinal-trocado",
+   "B": "M01.4:arredondou-para-cima",
+   "D": "M01.4:truncou-os-negativos",
+   "E": "M01.4:esqueceu-o-ultimo-termo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O símbolo dá o maior inteiro que não passa de x. Para positivos, é só cortar as casas decimais: de 1,0 a 1,9 dá 1. Para negativos com casas decimais, não: o maior inteiro menor ou igual a −3,9 é −4, porque −3 é maior que −3,9. Os termos vão de −4 a 2, de 0,1 em 0,1. Agrupe os que têm o mesmo valor.",
+    "formulas": [
+     "⌊x⌋ ≤ x < ⌊x⌋ + 1"
+    ],
+    "simbolos": [
+     [
+      "⌊x⌋",
+      "maior número inteiro que é menor ou igual a x"
+     ],
+     [
+      "termo",
+      "cada parcela da soma"
+     ]
+    ]
+   },
+   "pista": "Quanto vale o símbolo aplicado a −3,9? E a −3? Quantos termos seguidos têm o mesmo valor?",
+   "passos": [
+    {
+     "faz": "Calcule os primeiros termos",
+     "conta": "⌊−4⌋ = −4 · ⌊−3,9⌋ = −4 · … · ⌊−3,1⌋ = −4 · ⌊−3⌋ = −3",
+     "porque": "Negativo com casas decimais vai para o inteiro à esquerda na reta; inteiro fica como está.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Agrupe por valor",
+     "conta": "valor −4: de −4 a −3,1 (10 termos) · valor −3: de −3 a −2,1 (10 termos) · e assim por diante",
+     "porque": "Cada inteiro aparece 10 vezes.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Some os grupos",
+     "conta": "10 × (−4) + 10 × (−3) + 10 × (−2) + 10 × (−1) + 10 × 0 + 10 × 1 = −90",
+     "porque": "Grupos de valor −4, −3, −2, −1, 0 e 1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some o último termo",
+     "conta": "−90 + ⌊2⌋ = −90 + 2 = −88",
+     "porque": "O termo 2 fica sozinho no grupo de valor 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "−88",
+     "porque": "É a alternativa C.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C: são dez termos de cada valor de −4 a 1, que somam −90, mais o último termo, 2: −88.",
+   "checagem": "Conte os termos: de −4 a 2, de 0,1 em 0,1, são 61. Seis grupos de 10 mais o último: 61.",
+   "erradas": {
+    "A": "−92 sai de −90 − 2: subtraiu o último termo. ⌊2⌋ = 2 é positivo: −90 + 2 = −88.",
+    "B": "−34 sai de arredondar para cima: ⌊−3,9⌋ viraria −3 e ⌊1,1⌋ viraria 2. O símbolo pede o maior inteiro menor ou igual a x.",
+    "D": "−52 sai de cortar as casas decimais dos negativos: ⌊−3,9⌋ viraria −3. O maior inteiro menor ou igual a −3,9 é −4.",
+    "E": "−90 é a soma sem o último termo. Falta somar ⌊2⌋ = 2."
+   },
+   "armadilha": "Tratar ⌊−3,9⌋ como −3, cortando as casas decimais; o maior inteiro menor ou igual a −3,9 é −4.",
+   "alerta": "",
+   "essencial": {
+    "pede": "a soma dos 61 termos",
+    "chave": "dez termos de cada valor de −4 a 1, mais o termo 2: −90 + 2 = −88",
+    "cuidado": "negativo com casas decimais vai para o inteiro à esquerda; inteiro fica como está"
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pela soma dos inteiros",
+    "ideia": "Cada inteiro de −4 a 1 aparece 10 vezes: 10 × (−4 − 3 − 2 − 1 + 0 + 1) = 10 × (−9) = −90. Mais o 2 final: −88."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "⌊−3,9⌋ = −4 e ⌊−3⌋ = −3",
+    "nota": "com casas decimais: inteiro à esquerda"
+   },
+   {
+    "linha": "10 × (−4 − 3 − 2 − 1 + 0 + 1) = −90",
+    "nota": "seis grupos de dez termos"
+   },
+   {
+    "linha": "−90 + 2 = −88",
+    "nota": "com o último termo"
+   }
+  ],
+  "visual": {
+   "cabe": false,
+   "tipo": "nenhum",
+   "porque": "O quadro já mostra a conta inteira, linha por linha; uma figura a mais não acrescentaria nada.",
+   "roteiro": ""
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-11",
+   "lote": "mat-0005"
+  }
+ }
+}
