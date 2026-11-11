@@ -23,6 +23,11 @@ def prepara(pid):
     pasta = ENTRADA / pid
     pasta.mkdir(parents=True, exist_ok=True)
     reg = MANIFESTO[m['manifesto']]
+    # o id das questões vem do sha256 do manifesto: numa nova preparação (ex.: correção da limpeza do logotipo) o valor
+    # antigo fica, para os ids não mudarem (princípio 7); o sha do arquivo de agora vai em 'sha256_arquivo'
+    antes = {}
+    if (pasta / 'manifesto.json').exists():
+        antes = json.loads((pasta / 'manifesto.json').read_text()).get('arquivos', {})
     arqs = {}
     for papel, rel in m['arquivos'].items():
         paginas = None
@@ -47,7 +52,8 @@ def prepara(pid):
             'origem': reg['url'] + ' (Brasil Escola, página ' + reg['origem'] + '; arquivo ' + src.name
                       + (f', páginas {paginas[0]}–{paginas[1]}' if paginas else '') + ')',
             'bytes': dst.stat().st_size,
-            'sha256': hashlib.sha256(dst.read_bytes()).hexdigest(),
+            'sha256': (antes.get(papel) or {}).get('sha256') or hashlib.sha256(dst.read_bytes()).hexdigest(),
+            'sha256_arquivo': hashlib.sha256(dst.read_bytes()).hexdigest(),
             'copiado_em': datetime.now(timezone.utc).isoformat(timespec='seconds'),
         }
     (pasta / 'manifesto.json').write_text(json.dumps({'prova': pid, 'arquivos': arqs}, ensure_ascii=False, indent=2) + '\n')

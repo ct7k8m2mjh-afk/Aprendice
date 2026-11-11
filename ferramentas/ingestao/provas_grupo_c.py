@@ -97,6 +97,9 @@ def uece1(ano, sem, comunicado, data):
         # ou seção; a questão que cita outro texto ("textos 2 e 3") leva também esse (auditoria de 11/11: antes o texto
         # ia só para a 1ª questão do grupo)
         'suporte_secao': True, 'cita_textos': True,
+        # 2022.2: "Texto 4" centrado com espaços à esquerda (a linha começa em x≈15): margem menor
+        'colunas': lambda r: _p.duas_colunas(r, 12), 'margem': 12, 'ancora_dx': 32,
+        'ultima_continua': True,   # a última questão de um caderno pode terminar na página seguinte (2022.2, Geo/His e Fil/Soc)
     })
     return cfg
 
@@ -350,6 +353,95 @@ PROVAS['uemg-2024'] = {
     'suporte_forcado': {('caderno', 3): [(431, 0, (7, 7))]},
     'gabarito': _uemg_gab, 'area': lambda n: 'Conhecimentos gerais', 'area_da_materia': True, 'alternativa_rx': r'^[a-d]\)',
 }
+
+
+# ------------------------------------------------------------------------------------------ UECE, 2ª fase (CEV-UECE)
+# Provas específicas objetivas (A–D), 7 cadernos por edição, todos do gabarito 1: Língua Portuguesa, Língua Inglesa,
+# Matemática e Biologia (20 questões cada; 1º dia) e Física e Química, Geografia e História, Filosofia e Sociologia
+# (40 cada; 2º dia). Aqui numeradas em sequência: o número do caderno fica em 'nq'.
+_F2 = [('portugues', 'LÍNGUA PORTUGUESA', 20, 'Língua Portuguesa'), ('ingles', 'LÍNGUA INGLESA', 20, 'Língua Inglesa'),
+       ('matematica', 'MATEMÁTICA', 20, 'Matemática'), ('biologia', 'BIOLOGIA', 20, 'Biologia'),
+       ('fisqui', 'FÍSICA E QUÍMICA', 40, 'Física e Química'), ('geohis', 'GEOGRAFIA E HISTÓRIA', 40, 'Geografia e História'),
+       ('filsoc', 'FILOSOFIA E SOCIOLOGIA', 40, 'Filosofia e Sociologia')]
+_F2_DESLOC = {}
+_d = 0
+for _arq, _nome, _qtd, _rot in _F2:
+    _F2_DESLOC[_arq] = _d
+    _d += _qtd
+
+
+def _uece2_gab(pasta):
+    """Comunicado do gabarito definitivo da 2ª fase: blocos por matéria ("BIOLOGIA - GABARITO 1", "BIOLOGIA GABARITO 1 –
+    DEFINITIVO" ou "BIOLOGIA" numa linha e "GABARITO DEFINITIVO 1" na seguinte); vale o gabarito 1. Número do caderno
+    + deslocamento da matéria = número aqui. 'X' = anulada."""
+    txt = _p.texto_pdf(pasta / 'gabarito.pdf')
+    nomes = {nome: _F2_DESLOC[arq] for arq, nome, _, _ in _F2}
+    nomes.update({'LÍNGUA ESPANHOLA': None, 'LÍNGUA FRANCESA': None})
+    materia, num = None, None
+    g = {}
+    ls = [l for l in txt.splitlines() if l.strip()]
+    for i, l in enumerate(ls):
+        t = ' '.join(l.split())
+        for nome in nomes:
+            if t.startswith(nome) and (t == nome or 'GABARITO' in t):
+                materia = nome
+        m = re.search(r'GABARITO\s+(?:DEFINITIVO\s+)?(\d)\b', t)
+        if m:
+            num = int(m.group(1))
+            continue
+        a = l.split()
+        if i + 1 < len(ls) and a and all(x.isdigit() and len(x) == 2 for x in a) and materia and nomes[materia] is not None and num == 1:
+            b = ls[i + 1].split()
+            if len(a) == len(b) and all(re.fullmatch(r'[A-D]|X|\*', x) for x in b):
+                for n, v in zip(a, b):
+                    g[int(n) + nomes[materia]] = v if v in 'ABCD' else 'X'
+    assert len(g) == 200, (pasta, len(g))
+    return g
+
+
+def uece2(ano, sem, comunicado, dias):
+    cfg = dict(_p.PROVAS['uece-2024-1'])
+    cfg.update({
+        'ano': str(ano), 'fase': f'{ano}.{sem} – 2ª fase', 'titulo': f'UECE {ano}.{sem} – 2ª fase', 'total': 200, 'duracao_horas': 8,
+        'nota': f'Universidade Estadual do Ceará, Vestibular {ano}.{sem}, 2ª fase (provas específicas objetivas aplicadas em '
+                f'{dias}; cadernos do gabarito 1): Língua Portuguesa, Língua Inglesa, Matemática e Biologia (20 questões cada; '
+                'aqui 1–80) e Física e Química, Geografia e História, Filosofia e Sociologia (40 cada; aqui 81–200). Questões '
+                f'A–D. Redação fora. Gabarito oficial definitivo (Comunicado {comunicado}-CEV/UECE, após recursos); '
+                'anuladas ficam fora.',
+        'cadernos': [{'arquivo': arq, 'paginas': (3, 999), 'questoes': (_F2_DESLOC[arq] + 1, _F2_DESLOC[arq] + qtd),
+                      'deslocamento': _F2_DESLOC[arq], 'rotulo': rot} for arq, _, qtd, rot in _F2],
+        'gabarito': _uece2_gab,
+        'suporte': cfg['suporte'] + [r'^TEXTO\s+\d+\s*$'],
+        'suporte_secao': True, 'cita_textos': True,
+        # 2022.2: "Texto 4" centrado com espaços à esquerda (a linha começa em x≈15): margem menor
+        'colunas': lambda r: _p.duas_colunas(r, 12), 'margem': 12, 'ancora_dx': 32,
+        'ultima_continua': True,   # a última questão de um caderno pode terminar na página seguinte (2022.2, Geo/His e Fil/Soc)
+    })
+    return cfg
+
+
+def _f2(pid, manifesto, pasta, gabarito, **arqs):
+    _m(pid, manifesto, CEV, gabarito=_U + gabarito, **{k: _U + pasta + v for k, v in arqs.items()})
+
+
+_f2('uece-2020-2-f2', 'uece/47289', 'provas-e-gabaritos-uece-2020-2/2ª fase/', 'provas-e-gabaritos-uece-2020-2/2ª fase/gabarito-definitivo-2-fase.pdf',
+    portugues='Língua Portuguesa - Gabarito 1.pdf', ingles='Língua Inglesa - Gabarito 1.pdf', matematica='Matemática - Gabarito 1.pdf',
+    biologia='Biologia - Gabarito 1.pdf', fisqui='Física e Química - Gabarito 1.pdf', geohis='Geografia e História - Gabarito 1.pdf',
+    filsoc='Filosofia e Sociologia - Gabarito 1.pdf')
+_f2('uece-2021-1-f2', 'uece/47349', 'provas-e-gabaritos-uece-2021-1/2ª fase/', 'provas-e-gabaritos-uece-2021-1/2ª fase/gabarito-uece-2021-1.pdf',
+    portugues='prova-portugues.pdf', ingles='prova-ingles.pdf', matematica='prova-matematica.pdf', biologia='prova-biologia.pdf',
+    fisqui='prova-fisica-quimica.pdf', geohis='prova-geografia-historia.pdf', filsoc='prova-sociologia-biologia.pdf')
+_f2('uece-2022-1-f2', 'uece/47410', 'provas-e-gabaritos-uece-2022-1/2ª fase/', 'provas-e-gabaritos-uece-2022-1/gabaritos-vestibular-2022-1-uece.pdf',
+    portugues='vtb20221f2porg1.pdf', ingles='vtb20221f2ingg1.pdf', matematica='vtb20221f2matg1.pdf', biologia='vtb20221f2biog1.pdf',
+    fisqui='vtb20221f2fisquig1.pdf', geohis='vtb20221f2geohisg1.pdf', filsoc='vtb20221f2filsocg1.pdf')
+_f2('uece-2022-2-f2', 'uece/47489', 'provas-e-gabaritos-uece-2022-2/2ª fase/', 'provas-e-gabaritos-uece-2022-2/1ª fase/gabaritos-definitivos-vestibular-2022-2-uece.pdf',
+    portugues='prova-especifica-portugues.pdf', ingles='prova-especifica-ingles.pdf', matematica='prova-especifica-matematica.pdf',
+    biologia='prova-especifica-biologia.pdf', fisqui='prova-fisica-quimica.pdf', geohis='prova-geografia-historia.pdf',
+    filsoc='prova-filosofia-sociologia.pdf')
+PROVAS['uece-2020-2-f2'] = uece2(2020, 2, '02/2021', '20 e 21/12/2020')
+PROVAS['uece-2021-1-f2'] = uece2(2021, 1, '37/2021', '04 e 05/07/2021')
+PROVAS['uece-2022-1-f2'] = uece2(2022, 1, '88/2021', '05 e 06/12/2021')
+PROVAS['uece-2022-2-f2'] = uece2(2022, 2, '115/2022', '22 e 23/05/2022')
 
 
 if __name__ == '__main__':

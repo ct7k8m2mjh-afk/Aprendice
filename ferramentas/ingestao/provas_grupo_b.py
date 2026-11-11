@@ -206,7 +206,7 @@ def mais_provas():
                     'História, Química e língua estrangeira (inglês). Redação fora. Gabarito oficial publicado após os '
                     'recursos; anulada fica fora.',
             'cadernos': [{'arquivo': 'caderno', 'paginas': (2, 999)}],
-            'colunas': lambda r: [(24, r.width / 2), (r.width / 2, r.width - 20)], 'margem': 24, 'topo': 32, 'base': 30,
+            'colunas': lambda r: [(24, r.width / 2), (r.width / 2, r.width - 20)], 'margem': 24, 'topo': 32, 'base': 38,
             'ancora': r'(?i)^(?:QUEST[ÃA]O|QUESTION|PREGUNTA)\s+(\d{1,2})$', 'ancora_dx': 130, 'sequencial': True,   # número centrado na coluna
             'secoes_rx': secs, 'pular_secoes': ('Espanhol', 'Francês'), 'pular_antes_sequencia': True,
             'corte': [r'(?i)^PROPOSTA DE REDA', r'(?i)^REDA[ÇC][ÃA]O$', r'(?i)^RASCUNHO', r'(?i)^FOLHA DE RASCUNHO'],
@@ -214,6 +214,7 @@ def mais_provas():
                         r'(?i)^textos? para as quest', r'(?i)\bto answer\b.*\bquestions', r'^TEXTO?\s+[IVX]+\s*$'],
             # "TEXTO II" (título, sem frase de indicação): vale para a questão logo depois e para as que o citam
             'texto_romano': True, 'texto_n_sem_faixa': True, 'suporte_ate_proximo': True, 'suporte_primeira': True,
+            'suporte_palavras': '|a text|lyrics|song|graph|poem|poema|gráfico|canção|infográfico|mapa|tabela|imagem|charge|quadrinho',
             'suporte_interno': 60,   # "QUESTÃO 25 / Leia os textos a seguir..." com os textos logo abaixo: são da questão
             'gabarito': gab, 'area_do_gabarito': False, 'area': lambda n: 'Conhecimentos gerais',
         }
@@ -236,7 +237,7 @@ def mais_provas():
             'colunas': lambda r: [(28, r.width - 24)], 'margem': 28, 'topo': 30, 'base': 30,
             'ancora': r'^(\d{1,2})\s*ª\s*QUEST', 'ancora_dx': 20, 'sequencial': True,
             'corte': [r'(?i)^QUEST\s*\S?\s*[ÕO]\s*ES DE \d+ A \d+', r'^MATEM', r'^F[ÍI´]\s*\S*SICA$', r'^QU[ÍI´]', r'(?i)^RASCUNHO', r'^CONCURSO DE ADMISS'],
-            'suporte': [], 'aperta_moldura': True, 'seg_min': 20,
+            'suporte': [], 'aperta_moldura': True, 'seg_min': 20, 'pe_fio': True,
             'gabarito': lambda pasta: {int(n): (v if len(v) == 1 else 'X') for n, v in re.findall(
                 r'(?<![\d,.])(\d{1,2})\s+([A-E]\b|[Aa][Nn][Uu][Ll][Aa][Dd][AaOo])', _p.texto_pdf(pasta / 'gabarito.pdf'))},
             'area': lambda n: 'Matemática' if n <= 15 else 'Física' if n <= 30 else 'Química',
@@ -271,6 +272,16 @@ def mais_provas():
                 f'{desc}. Questões objetivas A–E, versão 1. Caderno e gabarito da Vunesp, baixados da página de downloads do '
                 'Brasil Escola (link do dono; o portal da Vunesp bloqueia acesso automático). Anulada fica fora.')
         c = _v.base('uea', 'UEA', acesso, fase, tit, 0, nota=nota)
+        c['suporte'] = c['suporte'] + [r'(?i)^as quest[õo]es de \d+ a \d+']   # "As questões de 05 a 08 focalizam a peça..."
+
+        def cadernos(pasta):
+            # o caderno termina na página da última "Questão NN": depois vêm a Classificação Periódica (às vezes só em
+            # imagem), a proposta de redação e o rascunho, que não podem entrar no print da última questão
+            import pymupdf
+            doc = pymupdf.open(pasta / 'caderno.pdf')
+            fim = max(i for i in range(len(doc)) if re.search(r'(?i)quest[ãa]o\s+\d', doc[i].get_text())) + 1
+            return [{'arquivo': 'caderno', 'paginas': (2, fim)}]
+        c['cadernos'] = cadernos
         c.pop('total')
         c['total_de'] = lambda pasta, g=c['gabarito']: max(g(pasta))
         P[pid] = c
@@ -305,13 +316,14 @@ def mais_provas():
                 'da UFG): 54 questões A–D. Língua estrangeira: inglês. Redação fora. Gabarito oficial (edital 97/2019); '
                 'anulada fica fora.',
         'cadernos': [{'arquivo': 'caderno', 'paginas': (3, 999)}],
-        'colunas': lambda r: [(24, 297), (297, r.width - 24)], 'margem': 24, 'topo': 44, 'base': 52,
+        'colunas': lambda r: [(24, 297), (297, r.width - 24)], 'margem': 24, 'topo': 44, 'base': 30,
         'ancora': r'^▬?\s*QUEST[ÃA]O\s+(\d{1,2})\b', 'ancora_dx': 14, 'sequencial': True,
         'secoes_rx': secs20, 'pular_secoes': ('Espanhol',), 'pular_antes_sequencia': True,
         'corte': [r'^▬?\s*RASCUNHO', r'(?i)^REDA[ÇC][ÃA]O$', r'-Tipo 1$'],
         'suporte': [r'(?i)(responda|responder)\b.*\bquest[õo]es', r'(?i)\bpara responder( [àa]s?)?\s*$', r'(?i)^textos? para as quest'],
         'gabarito': _gab_unirg20, 'area': lambda n: 'Conhecimentos gerais',
     }
+    P['unirg-2020-1']['uma_coluna'] = (6,)   # p. 6: questões 13 e 14 em largura total
     # Campus Paraíso do Tocantins, Medicina 2021/1 (caderno tipo 1) e 2021/2 (prova A, inglês): provas próprias do campus,
     # diferentes das de Gurupi. Arquivos do Brasil Escola (link do dono).
     def _gab_paraiso_1(pasta):   # grade "01 02 ..." / "A B ..." por matéria; inglês antes do espanhol; N1/N2 = anulada
@@ -351,6 +363,10 @@ def mais_provas():
               'colunas': lambda r: [(30, 298), (298, r.width - 26)], 'margem': 30, 'topo': 30, 'base': 34})
     P['unirg-2021-1-paraiso'] = c
     c['suporte'] = [x for x in c['suporte'] if 'Leia atentamente' not in x]   # "Leia atentamente as alternativas" (q19)
+    c['suporte'].append(r'(?i)^Leia\b.*\b(texto|coment[áa]rio|trecho|fragmento|poema)\b')
+    # o poema "Motivo" vem logo abaixo do título "LÍNGUA PORTUGUESA", sem frase de indicação: é o texto das questões 1 a 6
+    c['suporte_forcado'] = {('caderno', 3): [(86, 0, [1, 6])]}
+    c.update({'suporte_interno': 30, 'suporte_interno_mesma_pagina': True, 'pe_fio': True})   # "QUESTÃO 50 / Leia o fragmento..."
     c['secoes_rx'] = [(r'^L[ÍI]NGUA ESTRANGEIRA\s*[-–]\s*ESPANHOL', 'Espanhol'), (r'^L[ÍI]NGUA ESTRANGEIRA\s*[-–]\s*INGL', 'Inglês')] + c['secoes_rx']
     ordem2 = ('Língua Portuguesa', 'Literatura', 'Inglês', 'Matemática', 'Biologia', 'Física', 'Química', 'Geografia', 'História')
     P['unirg-2021-2-paraiso'] = {
@@ -368,6 +384,9 @@ def mais_provas():
         'gabarito': _gab_paraiso_2, 'area': lambda n: ordem2[(n - 1) // 6],
     }
     P['unirg-2021-2-paraiso']['ultima_continua'] = True   # a questão 54 continua na página seguinte
+    P['unirg-2021-2-paraiso']['suporte_aperto'] = True   # "TEXTO 01" colado na frase "O texto seguinte servirá de base..."
+    P['unirg-2021-2-paraiso']['corte'] = P['unirg-2021-2-paraiso']['corte'] + [r'^L[ÍI]NGUA ESTRANGEIRA']
+    P['unirg-2021-2-paraiso']['suporte'] = P['unirg-2021-2-paraiso']['suporte'] + [r'(?i)servir[áa] de base para responder']
     # 2025/2: ícones do título "Text for questions..." entravam no pé do print das questões 4, 9 e 15
     _p.PROVAS['unirg-2025-2']['suporte_icone'] = True
     return P

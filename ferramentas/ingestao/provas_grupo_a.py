@@ -28,10 +28,15 @@ def sem_logo_no_alto(pdf_path):
     import pymupdf
     d = pymupdf.open(pdf_path)
     for pg in d:
+        linhas_ = [l['bbox'] for b in pg.get_text('dict')['blocks'] for l in b.get('lines', [])
+                   if ''.join(s['text'] for s in l['spans']).strip()]
         for b in pg.get_image_info():
             x0, y0, x1, y1 = b['bbox']
             if y1 < 100 and y1 - y0 < 80 and x1 - x0 < 180:
-                pg.draw_rect(pymupdf.Rect(x0 - 1, y0 - 1, x1 + 1, y1 + 1), color=None, fill=(1, 1, 1), overlay=True)
+                # o logotipo pode descer sobre a 1ª linha da coluna (Unicamp 2027: logo até y≈55, texto desde y≈49):
+                # a faixa branca para logo acima do texto que fica embaixo dele
+                fim = min([l[1] - 0.5 for l in linhas_ if l[0] < x1 and l[2] > x0 and y0 + 5 < l[1] < y1 + 1] + [y1 + 1])
+                pg.draw_rect(pymupdf.Rect(x0 - 1, y0 - 1, x1 + 1, fim), color=None, fill=(1, 1, 1), overlay=True)
     tmp = str(pdf_path) + '.tmp'
     d.save(tmp, garbage=0)
     d.close()

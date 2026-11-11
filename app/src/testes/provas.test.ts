@@ -71,7 +71,7 @@ describe.skipIf(!temProvas)('provas completas (recorte oficial)', () => {
 const SEM_LETRA_NO_TEXTO: Record<string, number[]> = {
   'cmmg-2025-1': [59], 'enem-2020': [176, 177], 'enem-2022': [156, 160, 180], 'enem-2024': [112, 127, 131, 161, 168, 174], 'enem-2025': [107, 108, 119, 127, 130, 135, 138, 169],
   'fuvest-2021': [4, 5, 10, 11, 18, 28, 48, 55, 87], 'udesc-2024-1': [4], 'udesc-2024-2': [8, 11, 14], 'udesc-2025-1': [1, 9, 28],
-  'udesc-2026-2': [8],
+  'udesc-2026-2': [8], 'ime-2021': [30],   // IME 2021 q30: alternativas (A)–(E) são circuitos desenhados (print conferido)
 };
 const FAIXA_CONFERIDA: Record<string, number[]> = { 'fuvest-2021': [82], 'unifesp-2022': [23], 'ufu-2022': [13], 'upe-ssa3-2023': [58, 59], 'urca-2025-3': [114], 'urca-2023-1': [118] };
 type QPrint = { n: number; nq?: string; alt: number; larg: number; texto: string; print: string };
