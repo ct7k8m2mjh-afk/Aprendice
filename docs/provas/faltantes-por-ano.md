@@ -16,6 +16,10 @@ oficial quando o pacote só trazia o preliminar. Configuração: `ferramentas/in
 | UECE 2021.1 (`uece-2021-1`) | 81 de 85 | 1ª fase; Comunicado 31/2021; 28, 34, 47 e 53 anuladas. |
 | UECE 2022.1 (`uece-2022-1`) | 84 de 85 | 1ª fase; Comunicado 75/2021; 9 anulada. |
 | UECE 2022 – Vestibular Especial EaD (`uece-ead-2022`) | 45 de 45 | Cursos a distância; Comunicado 139/2022 (definitivo). |
+| UECE 2020.2 – 2ª fase (`uece-2020-2-f2`) | 197 de 200 | 7 cadernos do gabarito 1 (Português, Inglês, Matemática, Biologia: 20 cada; Física e Química, Geografia e História, Filosofia e Sociologia: 40 cada); Comunicado 02/2021; 45, 70 e 79 anuladas. |
+| UECE 2021.1 – 2ª fase (`uece-2021-1-f2`) | 196 de 200 | Idem; Comunicado 37/2021; 73, 114, 117 e 120 anuladas. |
+| UECE 2022.1 – 2ª fase (`uece-2022-1-f2`) | 198 de 200 | Idem; Comunicado 88/2021; 80 e 119 anuladas. |
+| UECE 2022.2 – 2ª fase (`uece-2022-2-f2`) | 196 de 200 | Idem; Comunicado 115/2022; 63, 79, 111 e 113 anuladas. |
 | Unimontes 2024 – PS 1/2024 (`unimontes-2024-ps1`) | 43 de 45 | Processo Seletivo 1/2024 (prova de 10/12/2023), Grupo 1, caderno 101 (Biológicas); gabarito após recursos baixado do site da Coteps; 23 e 26 anuladas. |
 | Unimontes PAES 2020 – 3ª etapa (`unimontes-paes3-2020`) | 48 de 50 | Caderno 3 (Biológicas), prova de 19/12/2021; gabarito após recursos; 12 (inglês) e 43 anuladas. |
 | Unioeste 2021 (`unioeste-2021`) | 73 de 77 | 1ª etapa (manhã, caderno do inglês, 1–21) + 2ª etapa (tarde, aqui 22–77); gabarito definitivo; 3, 10, 50 e 74 anuladas. |
@@ -30,6 +34,11 @@ texto ou seção, e a questão que cita outro texto o leva também — corrigido
 de anotações vazio à direita nas páginas de uma coluna da Unioeste (cortado). Colchetes e fios de diagramação da
 Unioeste continuam no print (são do caderno).
 
+UECE 2ª fase: segunda auditoria separada (11/11) comparou o gabarito das 787 questões com os comunicados definitivos
+(0 divergências, anuladas iguais) e abriu 80 prints da amostra + o fim de cada caderno (nenhum corte ou mistura); 15
+classificações corrigidas. Falta na taxonomia um conteúdo de "conceitos e correntes do pensamento geográfico"
+(espaço, região, lugar, paisagem; Geografia crítica/cultural): essas questões ficaram em G11.2 até ele existir.
+
 Já estavam no site e não foram duplicadas: UECE 2024.1, Unimontes 2024 (Edital 4/2024) e 2025 (Edital 4/2025 — é o
 pacote "Unimontes 2026" do Brasil Escola), UVA 2024.1, 2025.1 e 2026.1.
 
@@ -38,7 +47,6 @@ pacote "Unimontes 2026" do Brasil Escola), UVA 2024.1, 2025.1 e 2026.1.
 | Instituição | Anos (2020–2026) que faltam | Motivo |
 |---|---|---|
 | UECE | 2020.1 | Link do Brasil Escola quebrado (404); sem caderno. |
-| UECE | 2ª fase de 2020.2, 2021.1, 2022.1 e 2022.2 | Cadernos e gabaritos definitivos estão no pacote, mas são 7 cadernos de provas específicas por edição (~200 questões cada); ficaram para a próxima rodada. |
 | UECE | 2022.2 (1ª fase) | O pacote traz só o gabarito definitivo da 2ª fase; o definitivo da 1ª fase não veio (nem foi achado no site da CEV). |
 | UECE | 2023.1, 2023.2, 2024.1 (2ª fase), 2024.2, 2025.1 (1ª e 2ª fase), 2025.2, 2026.1; EaD 2023.2; UAB 2020 | Só gabarito PRELIMINAR (no pacote e no site da CEV, onde a busca só achou o definitivo da 2024.1). 2024.2: nem caderno. |
 | UEPG | todos (vestibular 2020–2024, Outono/Primavera 2021, PSS 2020–2025, EaD 2020) | Questões de somatória (01, 02, 04, 08, 16): formato fora do site (decisão do dono). |
@@ -94,3 +102,63 @@ já publicado — integrada.
 
 Fora por formato (não é falta de arquivo): as provas discursivas (Unicamp 2ª fase, UERJ Exame Discursivo, Prova I de
 Einstein/FMJ/São Camilo/Anhembi, Conhecimentos Específicos da Santa Casa) e as redações.
+
+## Grupo B (IME, Mackenzie, UEA, UFRR, UFT, Unitins, UNIRG) — 11/11/2026
+
+Material: `fontes/provas-manuais/<sigla>/` (links do dono, Brasil Escola) e, quando o site oficial ainda serve o arquivo,
+o caderno e o gabarito definitivo baixados de lá (Mackenzie, Unitins, UNIRG 2020/1). Configuração:
+`ferramentas/ingestao/provas_grupo_b.py`; cópia dos PDFs do pacote do dono com o registro de origem:
+`ferramentas/ingestao/prepara_grupo_b.py` (no `prova.json`, `fontes` = página oficial da instituição e `origem` = de onde
+o arquivo foi baixado). Matéria, tema, conteúdo e nível: rascunho de um classificador e conferência de um 2º agente
+questão a questão (prints e classificação); correções aplicadas.
+
+### Entraram nesta rodada (45 provas, 2.394 questões)
+
+| Instituição | Provas (id) | Questões |
+|---|---|---|
+| IME | 2020/2021, 2021/2022, 2022/2023, 2025/2026 — 1ª fase objetiva (`ime-2021`, `-2022`, `-2023`, `-2026`) | 155 |
+| Mackenzie | 2026/2 – 2ª aplicação, 15/07/2026 (`mackenzie-2026-3`) | 60 |
+| UEA | Acesso 2021, 2025, 2026 e 2027: Conhecimentos Gerais + Conhecimentos Específicos (2021: só grupo 1; 2025–2027: grupos 1, 2 e 3); SIS – Prova de Acompanhamento III dos acessos 2020, 2021, 2025, 2026 e 2027 | 996 |
+| UFRR | Vestibular 2021, 2022 e 2023 – Prova Integral (= etapa 3 do PSS) | 206 |
+| UFT | Vestibular 2022/1, 2022/2, 2023/1, 2024/1 (manhã 1–32 + tarde 33–76) e EaD 2022/2 | 327 |
+| Unitins | 2020/1, 2021/1, Medicina 2021/2, 2022/1, 2023/1 (cadernos 1 e 2), 2024/1 (cadernos 1 e 2), 2025/1 caderno 2, 2026/1 (cadernos 1 e 2) | 490 |
+| UNIRG | Medicina 2020/1 (Gurupi, banca UFG), Medicina 2021/1 e 2021/2 – campus Paraíso do Tocantins | 160 |
+
+Também: UNIRG 2025/2 — o ícone do título "Text for questions..." saiu do pé das questões 4, 9 e 15 (`suporte_icone`);
+as questões ainda sem classificação nas UNIRG 2022/1, 2022/2, 2023/2 e 2025/2 foram classificadas.
+
+Fora dentro das provas que entraram: anuladas (lista em `fora` de cada `prova.json`) e 40 questões da Unitins com
+`recorte_imperfeito` (a emenda das faixas de uma/duas colunas parte fórmula, tabela, figura ou linha; ficam fora até o
+print ser refeito à mão: 2021/1 q11, 17, 20, 21, 23; Medicina 2021/2 q4, 8, 17, 18, 19, 21, 26; 2022/1 q13, 14, 25, 28,
+30, 31, 37; 2023/1 c1 q10, 47; c2 q8, 9, 30; 2024/1 c1 q13, 15, 24; c2 q11, 13, 25, 27, 29; 2025/1 c2 q23, 24, 45; 2026/1
+c1 q4, 30; c2 q2, 4, 28). UEA acesso 2021 e SIS 2020/2021: as questões 9–12 têm versão em inglês e em espanhol com um só
+gabarito oficial; entra a versão em inglês.
+
+### Anos de 2020 a 2026 que ainda faltam
+
+| Instituição | Falta | Por quê |
+|---|---|---|
+| IME | Concurso 2019/2020 | Link do Brasil Escola quebrado (404); site do IME não responde a acesso automático. |
+| IME | 2023/2024 e 2024/2025 | No pacote só o gabarito PRELIMINAR; o definitivo não foi localizado (site do IME não responde). |
+| IME | 2ª fase (Português e Inglês objetivas) | 2020/2021: caderno só em imagem e gabarito sem indicar se é definitivo; 2021/2022: gabarito preliminar. As demais provas da 2ª fase são discursivas. |
+| Mackenzie | 2020/1 a 2022/1 | 2020/1: link quebrado no Brasil Escola e, no site oficial, só o caderno dos Grupos II e III, sem gabarito; 2020/2–2022/1: nada localizado. |
+| Mackenzie | 2023/1 a 2025/2 | Só o gabarito no servidor do Mackenzie; caderno não localizado. |
+| UEA | Acesso 2022, 2023 e 2024 | Acesso 2023: o pacote do dono só tem os gabaritos (sem caderno); acessos 2022 e 2024: não estão no pacote. |
+| UEA | Acesso 2021, Conhecimentos Específicos grupos 2 e 3 | O arquivo do pacote só traz o grupo 1. |
+| UEA | SIS – Acompanhamento III dos acessos 2022, 2023 e 2024 | Não estão no pacote. Acompanhamentos I e II ficam fora por regra (só a etapa final do seriado, como no PISM). |
+| UFRR | 2020 | Link do Brasil Escola quebrado (404). |
+| UFRR | 2024, 2025 e 2026 | No pacote só o gabarito PRELIMINAR (editais.ufrr.br não responde daqui para buscar o oficial). |
+| UFRR | Vestibular Indígena 2021 e 2025; etapas E1 e E2 do PSS | Indígena: gabarito preliminar. E1/E2: por regra, só a etapa final (E3 = Prova Integral). |
+| UFT | 2020/1 a 2021 | 2020/1: link quebrado (404); 2020/2–2021: nada no pacote (seleção pelo Sisu na pandemia). |
+| UFT | 2023/2 e 2024/2 | No pacote só o gabarito PROVISÓRIO. |
+| UFT | Exato 2024–2026; EaD 2022/2 – Licenciatura em Música | Exato: não está no pacote. Música: as questões comuns repetiriam as do caderno das licenciaturas de Ciências e as de Música não são matéria do site. |
+| Unitins | Medicina 2022/1 | Configurada, mas fora: 15 das 48 questões com print partido pela diagramação (selos que avançam sobre a calha); refazer à mão. |
+| Unitins | TO Graduado 2022/2 | O PDF do gabarito mistura as camadas "preliminar" e "definitivo"; não dá para confirmar a versão. |
+| Unitins | 2020/2 e Paraíso 2020 | 2020/2: ingresso pelo Sisu; Paraíso 2020: link quebrado (404). |
+| UNIRG | Gurupi 2020/2 a 2021/2 | Página oficial sem cadernos (provas on-line na pandemia). |
+| UNIRG | Gurupi 2023/1 | O arquivo "definitivo" é o gabarito preliminar. |
+| UNIRG | Gurupi 2025/1 | Caderno não publicado (só o gabarito). |
+| UNIRG | Paraíso 2022 | Só gabarito preliminar no pacote. |
+
+Fora do grupo B, mas achado no pacote: `fontes/provas-manuais/ufrr/provas-e-gabaritos-uerr-2023/` é da UERR (caderno só
+em imagem + gabarito definitivo) — não integrado.
