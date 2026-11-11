@@ -359,3 +359,14 @@ _vun('saocamilo-2022-2', 'saocamilo', 'São Camilo', 2022, '2º semestre', 'São
 _vun('anhembi-2022', 'anhembi', 'Anhembi Morumbi', 2022, 'Medicina', 'Anhembi Morumbi 2022', 40,
      'Universidade Anhembi Morumbi, Vestibular Medicina 1º semestre de 2022 (04/12/2021): Prova II (40 questões objetivas), '
      'versão 1. A Prova I (discursivas e redação) fica fora.')
+# "Read the two letters to the editor, referring to the article “Covid / lockdown rules ...”, and / answer questions from
+# 11 to 15." (Einstein 2021): a indicação das questões fica na 3ª linha da frase
+PROVAS['einstein-2021']['suporte'] = PROVAS['einstein-2021']['suporte'] + [r'(?i)^answer questions\b']
+# FMJ 2022: a página 18 tem "hélio" numa questão (a detecção da tabela periódica cortaria 56–60); a tabela é a p. 20
+PROVAS['fmj-2022']['cadernos'] = [{'arquivo': 'caderno', 'paginas': (2, 19)}]
+# Einstein 2021/2 Enfermagem: p. 18 = Classificação Periódica, p. 19 em diante = redação
+PROVAS['einstein-2021-2-enf']['cadernos'] = [{'arquivo': 'caderno', 'paginas': (2, 17)}]
+# "As questões 34 e 35 referem-se ao anestésico..." (Einstein 2021/2): texto de apoio das questões indicadas
+for _k in ('santacasa-2021', 'santacasa-2022', 'santacasa-2022-demais', 'einstein-2021', 'einstein-2021-2-enf', 'einstein-2022-2-enf',
+           'einstein-2023', 'fmj-2021', 'fmj-2022', 'saocamilo-2021-2', 'saocamilo-2022-2', 'anhembi-2022'):
+    PROVAS[_k]['suporte'] = PROVAS[_k]['suporte'] + [r'(?i)^as quest[õo]es (de )?\d+ (e|a) \d+ referem']

@@ -235,7 +235,127 @@ def mais_provas():
     ime('ime-2023', 2023, 'oficial definitivo')
     ime('ime-2026', 2026, 'final')
 
+    # ------------------------------------------------------------------------------------------------ UEA
+    # Universidade do Estado do Amazonas (banca Vunesp). Vestibular (acesso no ano seguinte): 1º dia = Conhecimentos
+    # Gerais (84 questões); 2º dia = Conhecimentos Específicos por grupo de cursos (36 questões + redação: grupo 1
+    # Biológicas/Saúde, 2 Humanas, 3 Exatas). SIS (seriado): só a Prova de Acompanhamento III (3ª série), a etapa final.
+    # Caderno e gabarito da Vunesp (versão 1). O "ano" é o ano de acesso.
+    import provas_vunesp as _v
+    GRUPO = {'bio': ('Conhecimentos Específicos – Biológicas', 'grupo 1: Medicina, Odontologia, Enfermagem e licenciaturas da área'),
+             'hum': ('Conhecimentos Específicos – Humanas', 'grupo 2: Administração, Direito e cursos de Humanas'),
+             'exa': ('Conhecimentos Específicos – Exatas', 'grupo 3: Engenharias, Computação e licenciaturas de Exatas')}
+
+    def uea(pid, acesso, tipo):
+        if tipo == 'cg':
+            fase, tit, desc = 'Conhecimentos Gerais', f'UEA {acesso} – Conhecimentos Gerais', 'Prova de Conhecimentos Gerais (1º dia)'
+        elif tipo == 'sis3':
+            fase, tit = 'SIS – Prova de Acompanhamento III', f'UEA SIS {acesso} – 3ª série'
+            desc = f'Sistema de Ingresso Seriado (acesso {acesso}), Prova de Acompanhamento III (3ª série do ensino médio)'
+        else:
+            fase, d = GRUPO[tipo]
+            tit = f'UEA {acesso} – {fase.split("– ")[1]}'
+            desc = f'Prova de Conhecimentos Específicos (2º dia), {d}; a redação fica fora'
+        nota = (f'Universidade do Estado do Amazonas, ' + (f'Vestibular {acesso - 1}/acesso {acesso}: ' if tipo != 'sis3' else '') +
+                f'{desc}. Questões objetivas A–E, versão 1. Caderno e gabarito da Vunesp, baixados da página de downloads do '
+                'Brasil Escola (link do dono; o portal da Vunesp bloqueia acesso automático). Anulada fica fora.')
+        c = _v.base('uea', 'UEA', acesso, fase, tit, 0, nota=nota)
+        c.pop('total')
+        c['total_de'] = lambda pasta, g=c['gabarito']: max(g(pasta))
+        P[pid] = c
+
+    uea('uea-2021', 2021, 'cg')
+    uea('uea-2021-bio', 2021, 'bio')
+    for a in (2025, 2026, 2027):
+        uea(f'uea-{a}', a, 'cg')
+        for t in ('bio', 'hum', 'exa'):
+            uea(f'uea-{a}-{t}', a, t)
+    for a in (2020, 2021, 2025, 2026, 2027):
+        uea(f'uea-sis3-{a}', a, 'sis3')
+
     # ------------------------------------------------------------------------------------------- UNIRG
+    # 2020/1 (banca UFG/Centro de Seleção): caderno tipo 1, 54 questões A–D (Português, Literatura, Matemática, Física,
+    # Biologia, Química, Geografia, História: 1–48; língua 49–54, inglês e depois espanhol). Gabarito oficial dos 4 tipos
+    # (edital 97/2019): a 1ª ocorrência de cada número na linha é a do tipo 1 (e, na língua, a do inglês).
+    def _gab_unirg20(pasta):
+        g = {}
+        for linha in _p.texto_pdf(pasta / 'gabarito.pdf').splitlines():
+            for n, v in re.findall(r'(?<![\d,./])(\d{2})\s+([A-D]\b|\*|ANULADA)', linha):
+                g.setdefault(int(n), v if v in 'ABCD' else 'X')
+        return g
+    secs20 = [(r'^L[ÍI]NGUA ESTRANGEIRA\s*[–-]\s*INGL', 'Inglês'), (r'^L[ÍI]NGUA ESTRANGEIRA\s*[–-]\s*ESPANH', 'Espanhol'),
+              (r'^L[ÍI]NGUA PORTUGUESA$', 'Língua Portuguesa'), (r'^LITERATURA BRASILEIRA$', 'Literatura'),
+              (r'^MATEM[ÁA]TICA$', 'Matemática'), (r'^BIOLOGIA$', 'Biologia'), (r'^F[ÍI]SICA$', 'Física'),
+              (r'^QU[ÍI]MICA$', 'Química'), (r'^GEOGRAFIA$', 'Geografia'), (r'^HIST[ÓO]RIA$', 'História')]
+    P['unirg-2020-1'] = {
+        'catalogo': 'unirg', 'escola': 'UNIRG', 'ano': '2020', 'fase': 'Medicina 2020/1', 'titulo': 'UNIRG Medicina 2020/1',
+        'banca': 'UFG/Centro de Seleção', 'duracao_horas': 4.5, 'total': 54, 'alternativas': 4,
+        'nota': 'Universidade de Gurupi (TO), Processo Seletivo 2020/1 (Medicina), caderno tipo 1 (banca: Centro de Seleção '
+                'da UFG): 54 questões A–D. Língua estrangeira: inglês. Redação fora. Gabarito oficial (edital 97/2019); '
+                'anulada fica fora.',
+        'cadernos': [{'arquivo': 'caderno', 'paginas': (3, 999)}],
+        'colunas': lambda r: [(24, 297), (297, r.width - 24)], 'margem': 24, 'topo': 44, 'base': 52,
+        'ancora': r'^▬?\s*QUEST[ÃA]O\s+(\d{1,2})\b', 'ancora_dx': 14, 'sequencial': True,
+        'secoes_rx': secs20, 'pular_secoes': ('Espanhol',), 'pular_antes_sequencia': True,
+        'corte': [r'^▬?\s*RASCUNHO', r'(?i)^REDA[ÇC][ÃA]O$', r'-Tipo 1$'],
+        'suporte': [r'(?i)(responda|responder)\b.*\bquest[õo]es', r'(?i)\bpara responder( [àa]s?)?\s*$', r'(?i)^textos? para as quest'],
+        'gabarito': _gab_unirg20, 'area': lambda n: 'Conhecimentos gerais',
+    }
+    # Campus Paraíso do Tocantins, Medicina 2021/1 (caderno tipo 1) e 2021/2 (prova A, inglês): provas próprias do campus,
+    # diferentes das de Gurupi. Arquivos do Brasil Escola (link do dono).
+    def _gab_paraiso_1(pasta):   # grade "01 02 ..." / "A B ..." por matéria; inglês antes do espanhol; N1/N2 = anulada
+        txt = _p.texto_pdf(pasta / 'gabarito.pdf')
+        txt = re.split(r'GABARITO DEFINITIVO DO CADERNO DE PROVAS TIPO 2', txt)[0]
+        g = {}
+        ls = [l for l in txt.splitlines() if l.strip()]
+        for i, a in enumerate(ls):
+            ns = [int(x) for x in re.findall(r'(?<!\w)(\d{2})(?!\w)', a)]
+            if len(ns) != 6:
+                continue
+            for b in ls[i + 1:i + 3]:
+                vs = re.findall(r'(?<!\w)([A-D]|N\d)(?!\w)', b)
+                if len(vs) == 6:
+                    for n, v in zip(ns, vs):
+                        g.setdefault(n, v if v in 'ABCD' else 'X')
+                    break
+        assert sorted(g) == list(range(1, 55)), sorted(g)
+        return g
+
+    def _gab_paraiso_2(pasta):   # 4 colunas (provas A–D) por linha: a 1ª é a prova A; só o quadro da língua inglesa
+        txt = re.split(r'L[ÍI]NGUA ESPANHOLA', _p.texto_pdf(pasta / 'gabarito.pdf'))[0]
+        g = {}
+        for linha in txt.splitlines():
+            m = re.match(r'^\s*(\d{1,2})\s+([A-D]|-)\s', linha)
+            if m:
+                g.setdefault(int(m.group(1)), m.group(2) if m.group(2) in 'ABCD' else 'X')
+        assert sorted(g) == list(range(1, 55)), sorted(g)
+        return g
+
+    c = _p.unirg(2021, 1, 'unirg')
+    c.update({'fase': 'Medicina 2021/1 – Paraíso do Tocantins', 'titulo': 'UNIRG Medicina 2021/1 – Paraíso', 'banca': 'UNIRG',
+              'gabarito': _gab_paraiso_1,
+              'nota': 'Universidade de Gurupi (TO), Processo Seletivo 2021/1 do curso de Medicina, campus Paraíso do Tocantins, '
+                      'caderno tipo 1: 54 questões A–D, 6 por matéria. Língua estrangeira: inglês. Redação fora. Gabarito '
+                      'definitivo retificado (20/05/2021); anulada fica fora.',
+              'colunas': lambda r: [(30, 298), (298, r.width - 26)], 'margem': 30, 'topo': 30, 'base': 34})
+    P['unirg-2021-1-paraiso'] = c
+    c['suporte'] = [x for x in c['suporte'] if 'Leia atentamente' not in x]   # "Leia atentamente as alternativas" (q19)
+    c['secoes_rx'] = [(r'^L[ÍI]NGUA ESTRANGEIRA\s*[-–]\s*ESPANHOL', 'Espanhol'), (r'^L[ÍI]NGUA ESTRANGEIRA\s*[-–]\s*INGL', 'Inglês')] + c['secoes_rx']
+    ordem2 = ('Língua Portuguesa', 'Literatura', 'Inglês', 'Matemática', 'Biologia', 'Física', 'Química', 'Geografia', 'História')
+    P['unirg-2021-2-paraiso'] = {
+        'catalogo': 'unirg', 'escola': 'UNIRG', 'ano': '2021', 'fase': 'Medicina 2021/2 – Paraíso do Tocantins',
+        'titulo': 'UNIRG Medicina 2021/2 – Paraíso', 'banca': 'UNIRG', 'duracao_horas': 4.5, 'total': 54, 'alternativas': 4,
+        'nota': 'Universidade de Gurupi (TO), Processo Seletivo do 2º semestre de 2021 (edital 58/2021), Medicina, campus '
+                'Paraíso do Tocantins, prova A (inglês): 54 questões A–D. Redação fora. Gabarito final; anulada fica fora.',
+        'cadernos': [{'arquivo': 'caderno', 'paginas': (9, 999)}],
+        'colunas': lambda r: [(24, 298), (298, r.width - 24)], 'margem': 24, 'topo': 30, 'base': 40,
+        'ancora': r'^Quest[ãa]o\s+(\d{1,2})$', 'ancora_dx': 60, 'ancora_negrito': True, 'sequencial': True,
+        'corte': [r'^(L[ÍI]NGUA PORTUGUESA|LITERATURA BRASILEIRA|L[ÍI]NGUA INGLESA|INGL[ÊE]S|MATEM[ÁA]TICA|BIOLOGIA|F[ÍI]SICA|QU[ÍI]MICA|GEOGRAFIA|HIST[ÓO]RIA)$',
+                  r'(?i)^RASCUNHO', r'^MEDICINA - PROVA A'],
+        'suporte': [r'(?i)(responda|responder)\b.*\bquest[õo]es', r'(?i)\bpara responder( [àa]s?)?\s*$', r'(?i)^textos? para as quest',
+                    r'(?i)\banswer\b.*\bquestions'],
+        'gabarito': _gab_paraiso_2, 'area': lambda n: ordem2[(n - 1) // 6],
+    }
+    P['unirg-2021-2-paraiso']['ultima_continua'] = True   # a questão 54 continua na página seguinte
     # 2025/2: ícones do título "Text for questions..." entravam no pé do print das questões 4, 9 e 15
     _p.PROVAS['unirg-2025-2']['suporte_icone'] = True
     return P

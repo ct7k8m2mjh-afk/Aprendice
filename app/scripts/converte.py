@@ -540,7 +540,7 @@ REGIAO_DA_UF = {
     'GO': 'co', 'MT': 'co', 'MS': 'co', 'DF': 'co',
 }
 # provas fora do catálogo nacional (catalogoId sem ficha) ou escolas antigas sem catalogoId
-ESCOLA_UF = {'Fema': 'SP', 'fema': 'SP', 'Sírio-Libanês': 'SP', 'FMJ (Jundiaí)': 'SP', 'Fatec': 'SP', 'uemg': 'MG'}
+ESCOLA_UF = {'Fema': 'SP', 'fema': 'SP', 'Sírio-Libanês': 'SP', 'FMJ (Jundiaí)': 'SP', 'Fatec': 'SP', 'uemg': 'MG', 'anhembi': 'SP', 'Anhembi Morumbi': 'SP'}
 CATALOGO_ARQ = os.path.join(APP, 'conteudo-fonte', 'catalogo-vestibulares.json')
 
 

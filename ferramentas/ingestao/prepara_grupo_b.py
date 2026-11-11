@@ -54,6 +54,48 @@ MANUAIS = {
     'ime-2026': ('ime/47767', {
         'caderno': 'ime/provas-e-gabaritos-ime-2025-2026/provas-e-gabaritos-ime-2025-2026/prova-1-fase-ime-2026.pdf',
         'gabarito': 'ime/provas-e-gabaritos-ime-2025-2026/provas-e-gabaritos-ime-2025-2026/gabarito-definitivo-1-fase-ime-2026.pdf'}),
+    # UEA (Vunesp): arquivo único da edição 2020/acesso 2021 dividido por páginas (caderno, gabarito)
+    'uea-2021': ('uea/47339', {'caderno': ('uea/provas-e-gabaritos-uea-2020-2021/arquivo.pdf', 1, 26), 'gabarito': ('uea/provas-e-gabaritos-uea-2020-2021/arquivo.pdf', 29, 29)}),
+    'uea-2021-bio': ('uea/47339', {'caderno': ('uea/provas-e-gabaritos-uea-2020-2021/arquivo.pdf', 30, 41), 'gabarito': ('uea/provas-e-gabaritos-uea-2020-2021/arquivo.pdf', 46, 46)}),
+    'uea-sis3-2020': ('uea/47340', {'caderno': ('uea/provas-e-gabaritos-uea-sis-2020/UEAM1902 - SIS TRIÊNIO 2020-2022 - PROVA DE ACOMPANHAMENTO III-mesclado.pdf', 1, 23),
+                                    'gabarito': ('uea/provas-e-gabaritos-uea-sis-2020/UEAM1902 - SIS TRIÊNIO 2020-2022 - PROVA DE ACOMPANHAMENTO III-mesclado.pdf', 25, 25)}),
+    'uea-sis3-2021': ('uea/47340', {'caderno': ('uea/provas-e-gabaritos-uea-sis-2020/UEAM2002 - SIS TRIÊNIO 2021-2023 - PROVA DE ACOMPANHAMENTO III-mesclado.pdf', 1, 23),
+                                    'gabarito': ('uea/provas-e-gabaritos-uea-sis-2020/UEAM2002 - SIS TRIÊNIO 2021-2023 - PROVA DE ACOMPANHAMENTO III-mesclado.pdf', 25, 25)}),
+    'uea-2025': ('uea/47680', {'caderno': 'uea/provas-e-gabaritos-uea-vestibular-e-sis-2024-2025/provas-e-gabaritos-uea-vestibular-sis-2025/provas-e-gabaritos-vestibular-uea-2025/prova-conhecimentos-gerais-vestibular-2025-uea.pdf',
+                               'gabarito': 'uea/provas-e-gabaritos-uea-vestibular-e-sis-2024-2025/provas-e-gabaritos-uea-vestibular-sis-2025/provas-e-gabaritos-vestibular-uea-2025/gabarito-conhecimentos-gerais-vestibular-2025-uea.pdf'}),
+    'uea-2025-bio': ('uea/47680', {'caderno': 'uea/provas-e-gabaritos-uea-vestibular-e-sis-2024-2025/provas-e-gabaritos-uea-vestibular-sis-2025/provas-e-gabaritos-vestibular-uea-2025/prova-conhecimentos-especificos-grupo1-vestibular-2025-uea.pdf',
+                               'gabarito': 'uea/provas-e-gabaritos-uea-vestibular-e-sis-2024-2025/provas-e-gabaritos-uea-vestibular-sis-2025/provas-e-gabaritos-vestibular-uea-2025/gabarito-conhecimentos-especificos-grupo1-vestibular-2025-uea.pdf'}),
+    'uea-2025-hum': ('uea/47680', {'caderno': 'uea/provas-e-gabaritos-uea-vestibular-e-sis-2024-2025/provas-e-gabaritos-uea-vestibular-sis-2025/provas-e-gabaritos-vestibular-uea-2025/prova-conhecimentos-especificos-grupo2-vestibular-2025-uea.pdf',
+                               'gabarito': 'uea/provas-e-gabaritos-uea-vestibular-e-sis-2024-2025/provas-e-gabaritos-uea-vestibular-sis-2025/provas-e-gabaritos-vestibular-uea-2025/gabarito-conhecimentos-especificos-grupo2-vestibular-2025-uea.pdf'}),
+    'uea-2025-exa': ('uea/47680', {'caderno': 'uea/provas-e-gabaritos-uea-vestibular-e-sis-2024-2025/provas-e-gabaritos-uea-vestibular-sis-2025/provas-e-gabaritos-vestibular-uea-2025/prova-conhecimentos-especificos-grupo3-vestibular-2025-uea.pdf',
+                               'gabarito': 'uea/provas-e-gabaritos-uea-vestibular-e-sis-2024-2025/provas-e-gabaritos-uea-vestibular-sis-2025/provas-e-gabaritos-vestibular-uea-2025/gabarito-conhecimentos-especificos-grupo3-vestibular-2025-uea.pdf'}),
+    'uea-sis3-2025': ('uea/47680', {'caderno': 'uea/provas-e-gabaritos-uea-vestibular-e-sis-2024-2025/provas-e-gabaritos-uea-vestibular-sis-2025/provas-e-gabaritos-sis-uea-2024-2025/prova3-sis-2024-uea.pdf',
+                                    'gabarito': 'uea/provas-e-gabaritos-uea-vestibular-e-sis-2024-2025/provas-e-gabaritos-uea-vestibular-sis-2025/provas-e-gabaritos-sis-uea-2024-2025/gabarito3-sis-2024-uea.pdf'}),
+    'uea-2026': ('uea/47785', {'caderno': 'uea/provas-e-gabaritos-uea-vestibular-e-sis-2025-2026/provas-e-gabaritos-uea-2026/prova-conhecimentos-gerais-2026-vestibular.pdf',
+                               'gabarito': 'uea/provas-e-gabaritos-uea-vestibular-e-sis-2025-2026/provas-e-gabaritos-uea-2026/gabarito-conhecimentos-gerais-2026-vestibular.pdf'}),
+    'uea-2026-bio': ('uea/47785', {'caderno': 'uea/provas-e-gabaritos-uea-vestibular-e-sis-2025-2026/provas-e-gabaritos-uea-2026/prova-conhecimentos-especificos-uea-2026-vestibular-grupo1.pdf',
+                               'gabarito': 'uea/provas-e-gabaritos-uea-vestibular-e-sis-2025-2026/provas-e-gabaritos-uea-2026/gabarito-conhecimentos-especificos-uea-2026-vestibular-grupo1.pdf'}),
+    'uea-2026-hum': ('uea/47785', {'caderno': 'uea/provas-e-gabaritos-uea-vestibular-e-sis-2025-2026/provas-e-gabaritos-uea-2026/prova-conhecimentos-especificos-uea-2026-vestibular-grupo2.pdf',
+                               'gabarito': 'uea/provas-e-gabaritos-uea-vestibular-e-sis-2025-2026/provas-e-gabaritos-uea-2026/gabarito-conhecimentos-especificos-uea-2026-vestibular-grupo2.pdf'}),
+    'uea-2026-exa': ('uea/47785', {'caderno': 'uea/provas-e-gabaritos-uea-vestibular-e-sis-2025-2026/provas-e-gabaritos-uea-2026/prova-conhecimentos-especificos-uea-2026-vestibular-grupo3.pdf',
+                               'gabarito': 'uea/provas-e-gabaritos-uea-vestibular-e-sis-2025-2026/provas-e-gabaritos-uea-2026/gabarito-conhecimentos-especificos-uea-2026-vestibular-grupo3.pdf'}),
+    'uea-sis3-2026': ('uea/47785', {'caderno': 'uea/provas-e-gabaritos-uea-vestibular-e-sis-2025-2026/provas-e-gabaritos-uea-2026/prova-uea-2025-sis-3.pdf', 'gabarito': 'uea/provas-e-gabaritos-uea-vestibular-e-sis-2025-2026/provas-e-gabaritos-uea-2026/gabarito-uea-2025-sis-3.pdf'}),
+    'uea-2027': ('uea/47821', {'caderno': 'uea/provas-e-gabaritos-uea-vestibular-e-sis-2026-2027/provas-e-gabaritos-uea-vestibular-e-sis-2026-2027/provas-gabaritos-uea-2027-sis-2026/vestibular-2027-uea/uea-2027-prova-conhecimentos-gerais-versao-1.pdf',
+                               'gabarito': 'uea/provas-e-gabaritos-uea-vestibular-e-sis-2026-2027/provas-e-gabaritos-uea-vestibular-e-sis-2026-2027/provas-gabaritos-uea-2027-sis-2026/vestibular-2027-uea/uea-2027-gabarito-conhecimentos-gerais-versao-1.pdf'}),
+    'uea-2027-bio': ('uea/47821', {'caderno': 'uea/provas-e-gabaritos-uea-vestibular-e-sis-2026-2027/provas-e-gabaritos-uea-vestibular-e-sis-2026-2027/provas-gabaritos-uea-2027-sis-2026/vestibular-2027-uea/uea-2027-prova-conhecimentos-especificos-grupo-1.pdf',
+                               'gabarito': 'uea/provas-e-gabaritos-uea-vestibular-e-sis-2026-2027/provas-e-gabaritos-uea-vestibular-e-sis-2026-2027/provas-gabaritos-uea-2027-sis-2026/vestibular-2027-uea/uea-2027-gabarito-conhecimentos-especificos-grupo-1.pdf'}),
+    'uea-2027-hum': ('uea/47821', {'caderno': 'uea/provas-e-gabaritos-uea-vestibular-e-sis-2026-2027/provas-e-gabaritos-uea-vestibular-e-sis-2026-2027/provas-gabaritos-uea-2027-sis-2026/vestibular-2027-uea/uea-2027-prova-conhecimentos-especificos-grupo-2.pdf',
+                               'gabarito': 'uea/provas-e-gabaritos-uea-vestibular-e-sis-2026-2027/provas-e-gabaritos-uea-vestibular-e-sis-2026-2027/provas-gabaritos-uea-2027-sis-2026/vestibular-2027-uea/uea-2027-gabarito-conhecimentos-especificos-grupo-2.pdf'}),
+    'uea-2027-exa': ('uea/47821', {'caderno': 'uea/provas-e-gabaritos-uea-vestibular-e-sis-2026-2027/provas-e-gabaritos-uea-vestibular-e-sis-2026-2027/provas-gabaritos-uea-2027-sis-2026/vestibular-2027-uea/uea-2027-prova-conhecimentos-especificos-grupo-3.pdf',
+                               'gabarito': 'uea/provas-e-gabaritos-uea-vestibular-e-sis-2026-2027/provas-e-gabaritos-uea-vestibular-e-sis-2026-2027/provas-gabaritos-uea-2027-sis-2026/vestibular-2027-uea/uea-2027-gabarito-conhecimentos-especificos-grupo-3.pdf'}),
+    'uea-sis3-2027': ('uea/47821', {'caderno': 'uea/provas-e-gabaritos-uea-vestibular-e-sis-2026-2027/provas-e-gabaritos-uea-vestibular-e-sis-2026-2027/provas-gabaritos-uea-2027-sis-2026/sis-2026-uea/uea-sis-2026-prova-acompanhamento-3.pdf',
+                                    'gabarito': 'uea/provas-e-gabaritos-uea-vestibular-e-sis-2026-2027/provas-e-gabaritos-uea-vestibular-e-sis-2026-2027/provas-gabaritos-uea-2027-sis-2026/sis-2026-uea/uea-sis-2026-gabarito-acompanhamento-3.pdf'}),
+    'unirg-2021-1-paraiso': ('unirg/47424', {
+        'caderno': 'unirg/provas-e-gabaritos-unirg-medicina-2021/CPtipo 1.pdf',
+        'gabarito': 'unirg/provas-e-gabaritos-unirg-medicina-2021/GAB DEFINITIVO PS UNIRG 20211 CP RET 20 DE MAIO .pdf'}),
+    'unirg-2021-2-paraiso': ('unirg/47424', {
+        'caderno': 'unirg/provas-e-gabaritos-unirg-medicina-2021/PROVA-MATRIZ-MEDICINA---PROVA-A-(INGLES).pdf',
+        'gabarito': 'unirg/provas-e-gabaritos-unirg-medicina-2021/Gabarito Final Paraíso.pdf'}),
 }
 
 
@@ -64,14 +106,24 @@ def prepara(pid):
     pasta.mkdir(parents=True, exist_ok=True)
     man = {'prova': pid, 'arquivos': {}}
     for papel, rel in arqs.items():
+        paginas = None
+        if isinstance(rel, tuple):   # (arquivo, 1ª página, última página): pedaço de um PDF que junta caderno e gabarito
+            rel, paginas = rel[0], rel[1:]
         src = FONTE / rel
         if not src.exists():
             raise SystemExit(f'{pid}: falta {src} — rode baixa_brasilescola.py {chave.split("/")[0]}=<slug> (origem no manifesto)')
         dst = pasta / f'{papel}.pdf'
-        shutil.copyfile(src, dst)
+        if paginas:
+            import pymupdf
+            novo = pymupdf.open()
+            novo.insert_pdf(pymupdf.open(src), from_page=paginas[0] - 1, to_page=paginas[1] - 1)
+            novo.save(dst, garbage=3, deflate=True)
+        else:
+            shutil.copyfile(src, dst)
         man['arquivos'][papel] = {
             'url': reg['url'],
-            'origem': f"{reg['url']} (Brasil Escola, \"{reg['titulo']}\", página {reg['origem']}; arquivo {src.name})",
+            'origem': f"{reg['url']} (Brasil Escola, \"{reg['titulo']}\", página {reg['origem']}; arquivo {src.name}"
+                      + (f", páginas {paginas[0]}–{paginas[1]}" if paginas else '') + ')',
             'bytes': dst.stat().st_size,
             'sha256': hashlib.sha256(dst.read_bytes()).hexdigest(),
             'copiado_em': datetime.now(timezone.utc).isoformat(timespec='seconds'),
