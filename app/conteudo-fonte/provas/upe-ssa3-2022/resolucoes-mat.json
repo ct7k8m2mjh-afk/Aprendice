@@ -106,5 +106,123 @@
    "data": "2026-11-11",
    "lote": "mat-0008"
   }
+ },
+ "P982a9ec4": {
+  "n": "19",
+  "conceito": "Contagem por subconjuntos: 10 pesos distintos formam 2¹⁰ − 1 = 1.023 agrupamentos não vazios; só o que usa todos (100 kg) passa de 95 kg: 1.022.",
+  "equivocos": {
+   "A": "M04.5:sem-origem-identificada",
+   "B": "M04.5:so-os-pares",
+   "C": "M04.5:sem-origem-identificada",
+   "E": "M04.5:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os 10 pesos são todos diferentes entre si. Cada agrupamento é uma escolha de quais pesos entram: cada peso entra ou não entra, o que dá 2¹⁰ possibilidades, incluída a de não escolher nenhum. Some as massas de todos: 100 kg. O limite é 95 kg, e o peso mais leve tem 5 kg: basta tirar um peso qualquer para respeitar o limite.",
+    "formulas": [],
+    "simbolos": [
+     [
+      "agrupamento",
+      "conjunto de pesos escolhidos, sem importar a ordem"
+     ],
+     [
+      "2¹⁰",
+      "número de subconjuntos de um conjunto de 10 elementos"
+     ],
+     [
+      "carga máxima",
+      "limite de 95 kg"
+     ]
+    ]
+   },
+   "pista": "Quanto pesam todos os pesos juntos? Quantos agrupamentos passam do limite?",
+   "passos": [
+    {
+     "faz": "Conte os pesos",
+     "conta": "4 + 3 + 2 + 1 = 10 pesos distintos",
+     "porque": "Diferentes até os de mesma massa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte os agrupamentos",
+     "conta": "2¹⁰ − 1 = 1.023",
+     "porque": "Cada peso entra ou não; tira-se o agrupamento vazio.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some as massas",
+     "conta": "4 × 5 + 3 × 10 + 2 × 15 + 20 = 100 kg",
+     "porque": "Todos juntos passam de 95 kg.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tire os proibidos",
+     "conta": "1.023 − 1 = 1.022",
+     "porque": "Sem qualquer um dos pesos, a carga é no máximo 95 kg.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "1 022",
+     "porque": "É a alternativa D.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D: 1 022 agrupamentos.",
+   "checagem": "Somando por tamanho, os grupos de 1 a 9 pesos: 10 + 45 + 120 + 210 + 252 + 210 + 120 + 45 + 10 = 1.022.",
+   "erradas": {
+    "A": "23 não confere: só escolhendo um ou dois dos 10 pesos já há 10 + 45 = 55 agrupamentos.",
+    "B": "45 é o número de pares de pesos, 10 × 9/2; os agrupamentos podem ter de 1 a 9 pesos.",
+    "C": "968 não confere: dos 1.023 agrupamentos não vazios, só um, o de 100 kg, passa do limite.",
+    "E": "3.600 não confere: 10 pesos distintos formam no máximo 2¹⁰ = 1.024 agrupamentos."
+   },
+   "armadilha": "Contar só os agrupamentos de dois pesos, 10 × 9/2 = 45, e marcar a B: os agrupamentos podem ter de 1 a 9 pesos.",
+   "alerta": "",
+   "essencial": {
+    "pede": "quantos agrupamentos respeitam a carga máxima",
+    "chave": "2¹⁰ − 1 = 1.023 não vazios, menos o de 100 kg: 1.022",
+    "cuidado": "95 kg é permitido; só 100 kg não é"
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pelo complemento",
+    "ideia": "Passar de 95 kg exige 100 kg, isto é, todos os pesos: 1 caso. Vazio: 1 caso. 1.024 − 2 = 1.022."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "2^(10) = 1.024",
+    "nota": "subconjuntos de 10 pesos"
+   },
+   {
+    "linha": "1.024 − 1 = 1.023",
+    "nota": "sem o vazio"
+   },
+   {
+    "linha": "20 + 30 + 30 + 20 = 100 kg",
+    "nota": "todos os pesos"
+   },
+   {
+    "linha": "1.023 − 1 = 1.022",
+    "nota": "sem o de 100 kg"
+   }
+  ],
+  "visual": {
+   "cabe": false,
+   "tipo": "nenhum",
+   "porque": "O quadro já mostra a conta inteira, linha por linha; uma figura a mais não acrescentaria nada.",
+   "roteiro": ""
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-11",
+   "lote": "mat-0011"
+  }
  }
 }
