@@ -1,7 +1,7 @@
 """Copia para fabrica_saida/ingestao/<prova>/ os PDFs do grupo B que só existem em fontes/provas-manuais/ (links do
-dono, baixados do Brasil Escola), com o manifesto que o recorte usa. `url` = link de download do Brasil Escola (a página
-oficial da instituição não serve mais o arquivo ou não responde a acesso automático); `origem` = de onde o arquivo veio
-(registro para o dono decidir os direitos, princípio 10). Uso: python3 prepara_grupo_b.py [<prova-id> ...]
+dono, baixados do Brasil Escola), com o manifesto que o recorte usa. `url` = página oficial do vestibular da instituição
+(é a fonte que o site mostra: o nome de site didático não pode aparecer no site, CLAUDE.md); `origem` = de onde o arquivo
+foi de fato baixado (Brasil Escola, link do dono), para o dono decidir os direitos (princípio 10). Uso: python3 prepara_grupo_b.py [<prova-id> ...]
 """
 import hashlib, json, shutil, sys
 from datetime import datetime, timezone
@@ -11,6 +11,15 @@ RAIZ = Path(__file__).resolve().parents[2]
 FONTE = RAIZ / 'fontes' / 'provas-manuais'
 ENTRADA = RAIZ / 'fabrica_saida' / 'ingestao'
 MANIFESTO = json.loads((FONTE / 'manifesto.json').read_text())
+
+OFICIAL = {
+    'ime': 'https://www.ime.eb.mil.br/',
+    'uea': 'https://www.uea.edu.br/',
+    'ufrr': 'https://editais.ufrr.br/',
+    'uft': 'https://www.uft.edu.br/concursos-e-selecoes/ingresso-na-graduacao/vestibular-1',
+    'unitins': 'https://www.unitins.br/Concursos/Publico/Home/Categoria?c=Vestibular',
+    'unirg': 'https://www.unirg.edu.br/vestibular',
+}
 
 # prova -> (chave do manifesto do Brasil Escola, {papel: caminho em fontes/provas-manuais})
 MANUAIS = {
@@ -96,6 +105,9 @@ MANUAIS = {
     'unirg-2021-2-paraiso': ('unirg/47424', {
         'caderno': 'unirg/provas-e-gabaritos-unirg-medicina-2021/PROVA-MATRIZ-MEDICINA---PROVA-A-(INGLES).pdf',
         'gabarito': 'unirg/provas-e-gabaritos-unirg-medicina-2021/Gabarito Final Paraíso.pdf'}),
+    'uft-ead-2022-2': ('uft/47495', {
+        'caderno': 'uft/provas-e-gabaritos-uft-ead-2022-2/prova-quimica-fisica-biologia-matematica-uft-ead-2022-2.pdf',
+        'gabarito': 'uft/provas-e-gabaritos-uft-ead-2022-2/gabarito-definitivo-vestibular-2022-2-uft-ead.pdf'}),
 }
 
 
@@ -121,7 +133,7 @@ def prepara(pid):
         else:
             shutil.copyfile(src, dst)
         man['arquivos'][papel] = {
-            'url': reg['url'],
+            'url': OFICIAL[pid.split('-')[0]],
             'origem': f"{reg['url']} (Brasil Escola, \"{reg['titulo']}\", página {reg['origem']}; arquivo {src.name}"
                       + (f", páginas {paginas[0]}–{paginas[1]}" if paginas else '') + ')',
             'bytes': dst.stat().st_size,

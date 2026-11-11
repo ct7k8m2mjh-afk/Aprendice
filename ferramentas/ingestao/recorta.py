@@ -1025,7 +1025,7 @@ def corta_pe_cor(im, cor, tol=14, zona=140):
     a = np.asarray(im.convert('RGB')).astype(int)
     h = a.shape[0]
     z0 = max(0, h - zona)
-    m = (np.abs(a[z0:] - np.array(cor)).max(axis=2) <= tol).sum(axis=1) > 6
+    m = (np.abs(a[z0:] - np.array(cor)).max(axis=2) <= tol).sum(axis=1) > max(6, a.shape[1] // 8)   # faixa, não texto suavizado
     if not m.any():
         return im
     r0 = z0 + int(np.argmax(m))
@@ -1515,7 +1515,11 @@ def processa(pid, amostra=False, so_texto=False):
                 if img is not None and cfg.get('pe_cor'):
                     img = corta_pe_cor(img, cfg['pe_cor'])
                 if img is not None and cfg.get('pe_fio'):
-                    img = corta_pe_fio(img)
+                    for _ in range(3):   # fio + acento cortado do título seguinte: um pedaço fino de cada vez
+                        antes_ = img.height
+                        img = corta_pe_fio(img, vao=cfg.get('pe_fio_vao', 10))
+                        if img.height == antes_:
+                            break
                 if img is not None and cfg.get('aperta_moldura'):
                     img = aperta_moldura(img)
             if img is None:

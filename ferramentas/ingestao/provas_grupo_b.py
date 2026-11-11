@@ -26,13 +26,13 @@ def _gab_unitins(pagina=None):
         for a, b in zip(ls, ls[1:]):
             if a.strip().startswith('Questão') and b.strip().startswith('Gabarito'):
                 ns = [int(x) for x in a.split()[1:]]
-                vs = re.findall(r'\*?Anul(?:ada|\.)|\*?[A-E]\b', b.split('Gabarito', 1)[1])
+                vs = re.findall(r'\*?(?i:anul)(?:ada|\.)|\*?[A-E]\b', b.split('Gabarito', 1)[1])
                 assert len(ns) == len(vs), (a, b)
                 for n, v in zip(ns, vs):
                     v = v.lstrip('*')
                     g[n] = v if v in 'ABCDE' else 'X'
         if not g:
-            for n, v in re.findall(r'(?<![\d,./])(\d{1,2})\s+(\*?[A-E]\b|Anul\.?|ANULADA)', txt):
+            for n, v in re.findall(r'(?<![\d,./])(\d{1,2})\s+(\*?[A-E]\b|(?i:anul)\.?|ANULADA)', txt):
                 v = v.lstrip('*')
                 g.setdefault(int(n), v if v in 'ABCDE' else 'X')
         assert sorted(g) == list(range(1, 51)), sorted(g)
@@ -89,9 +89,12 @@ def mais_provas():
                      'Literatura Brasileira, língua estrangeira). Língua estrangeira: inglês. Redação fora. Gabarito '
                      'definitivo; anulada fica fora.')
         P[pid] = c
+    unitins('unitins-2020-1', 2020, 1, '')
     unitins('unitins-2021-1', 2021, 1, '')
     unitins('unitins-2021-2', 2021, 2, 'Medicina')
     unitins('unitins-2022-1', 2022, 1, '')
+    # unitins-2022-1-med (Medicina 2022/1): configurada, mas FORA do site — a diagramação (selos que avançam sobre a calha,
+    # linhas da coluna esquerda até x≈299) deixa 15 das 48 questões com print partido; refazer à mão
     unitins('unitins-2022-1-med', 2022, 1, 'Medicina')
     unitins('unitins-2023-1', 2023, 1, 'Caderno 1')
     unitins('unitins-2023-1-c2', 2023, 1, 'Caderno 2')
@@ -108,12 +111,33 @@ def mais_provas():
     # 2023/1 caderno 1: o texto sobre Michael Jackson vem logo abaixo do título "Língua Inglesa", sem frase de indicação,
     # e é o texto da questão 46 (conferido no caderno, p. 18)
     P['unitins-2023-1']['suporte_forcado'] = {('caderno', 18): [(356, 3, [46, 46])]}
+    P['unitins-2023-1-c2']['suporte_forcado'] = {('caderno', 23): [(90, 3, [46, 46])]}   # letra de "The Show Must Go On"
+    for k in ('unitins-2023-1', 'unitins-2023-1-c2'):
+        P[k]['apagar_girado'] = r'Vestibular Unitins'   # rodapé vertical na margem direita
+    P['unitins-2024-1-c2']['suporte'] = P['unitins-2024-1-c2']['suporte'] + [r'(?i)^texto as quest']   # "Texto as questões de 31 a 34."
+    # Prints que a emenda de colunas/faixas não deixa fiéis (fórmula, tabela, figura ou linha partida; alternativa
+    # faltando), conferidos na folha de contato e pela conferência separada: ficam fora até serem refeitos à mão
+    EXCL = {'unitins-2021-1': (11, 17, 20, 21, 23), 'unitins-2021-2': (4, 8, 17, 18, 19, 21, 26),
+            'unitins-2022-1': (13, 14, 25, 28, 30, 31, 37), 'unitins-2023-1': (10, 47), 'unitins-2023-1-c2': (8, 9, 30),
+            'unitins-2024-1': (13, 15, 24), 'unitins-2024-1-c2': (11, 13, 25, 27, 29), 'unitins-2025-1-c2': (23, 24, 45),
+            'unitins-2026-1': (4, 30), 'unitins-2026-1-c2': (2, 4, 28)}
+    for k, ns in EXCL.items():
+        P[k]['excluir'] = {n: 'recorte' for n in ns}
     # selo (faixa azul-clara) do número da questão seguinte que sobra no pé do print
     for k in ('unitins-2021-2', 'unitins-2022-1', 'unitins-2022-1-med', 'unitins-2023-1', 'unitins-2023-1-c2'):
         P[k]['pe_cor'] = (185, 210, 214)
     # 2021/1: número da questão no começo da linha do enunciado ("01 - ", "16. ", "22- "), sem negrito
     P['unitins-2021-1'].update({'ancora': r'^(\d{2})\s*[-–.]\s*\S', 'ancora_negrito': False, 'ancora_dx': 40})
-    P['unitins-2021-1']['suporte'] = P['unitins-2021-1']['suporte'] + [r'^Leia\b']   # "Leia, a seguir, o soneto...", "Leia o trecho a seguir..."
+    P['unitins-2020-1'].update({'ancora': r'^(\d{2})\s*[-–.]\s*\S', 'ancora_negrito': False, 'ancora_dx': 40})
+    P['unitins-2020-1']['suporte'] = P['unitins-2020-1']['suporte'] + [r'^Leia\b']
+    P['unitins-2020-1'].update({'ancora_folga': 3, 'suporte_ponto_final': True})
+    # "Texto 3" (p. 16, depois da 44) é só da 45; os textos 1 e 2 ("questões 44 e 45") seguem valendo para ela
+    P['unitins-2020-1']['suporte_forcado'] = {('caderno', 16): [(385, 1, [])]}
+    # "Leia o trecho da notícia ... The Guardian e responda às questões." (sem números): vale para a língua inglesa, 46–50
+    P['unitins-2020-1']['faixa_errata'] = {('caderno', 17, ()): [46, 50]}
+    P['unitins-2020-1']['excluir'] = {12: 'recorte', 13: 'recorte', 33: 'recorte', 34: 'recorte'}
+    P['unitins-2021-1']['suporte'] = P['unitins-2021-1']['suporte'] + [r'^Leia\b']
+    P['unitins-2021-1']['suporte_ponto_final'] = True   # "Leia, a seguir, o soneto...", "Leia o trecho a seguir..."
     for k in ('unitins-2021-2', 'unitins-2022-1-med'):
         P[k]['ancora_coluna_dir'] = 10   # "QUESTÃO 20"/"QUESTÃO 31" num selo que começa em x≈292, antes da divisa (297)
 
@@ -153,7 +177,7 @@ def mais_provas():
                         r'(?i)\bto answer\s+(the\s+)?questions?\b', r'(?i)^textos? para as quest',
                         r'(?i)\bresponda\s+[àa]s?\s*$'],
             # instrução em duas linhas com entrelinha apertada (a 2ª começa antes do pé da 1ª)
-            'suporte_aperto': True,
+            'suporte_aperto': True, 'suporte_sobe': 2,   # frase de instrução em 3 linhas
             'pe_fio': True,   # borda da caixa seguinte no pé do print
             'pe_cor': (164, 164, 164),   # barra cinza do rodapé da página
             'gabarito': gab, 'area': lambda n: 'Conhecimentos gerais',
@@ -162,6 +186,23 @@ def mais_provas():
     uft('uft-2022-2', 2022, 2)
     uft('uft-2023-1', 2023, 1)
     uft('uft-2024-1', 2024, 1)
+    # EaD 2022/2 (licenciaturas a distância em Química, Física, Biologia e Matemática): caderno único de 30 questões A–D
+    # (Português 1–10, Matemática, Biologia, Química, Física). O caderno da Licenciatura em Música (mesmas 1–15 e
+    # questões de Música) fica fora: repetiria as comuns e Música não é matéria do site.
+    c = dict(P['uft-2022-2'])
+    c.update({'fase': 'Vestibular EaD 2022/2', 'titulo': 'UFT EaD 2022/2', 'total': 30,
+              'nota': 'Universidade Federal do Tocantins, Processo Seletivo EaD/UFT 2022/2 (Copese), caderno das licenciaturas '
+                      'em Química, Física, Biologia e Matemática: 30 questões A–D. Redação fora. Gabarito definitivo; anulada '
+                      'fica fora.',
+              'cadernos': [{'arquivo': 'caderno', 'paginas': (2, 999)}],
+              'gabarito': lambda pasta: _gab_grade(re.split(r'QU[ÍI]MICA, F[ÍI]SICA', _p.texto_pdf(pasta / 'gabarito.pdf'))[1], 'ABCD'),
+              'apoio_de': {10: [1]}})   # a 10 compara os textos I e II
+    c['corte'] = c['corte'] + [r'^PROVA DE ']
+    P['uft-ead-2022-2'] = c
+    c['cadernos'] = [{'arquivo': 'caderno', 'paginas': (2, 6)}]   # a p. 7 é a Classificação Periódica
+    c['pe_fio_vao'] = 4   # fio duplo da borda da página no pé
+    c['corte'] = c['corte'] + [r'^TABELA PERI']
+    c['base'] = 40   # rodapé "N Prova de conhecimentos" em y≈804
     # 2022/1 (tarde): "QUESTÃO 04" e logo abaixo "Leia os textos I e II para responder a QUESTÃO 04.": a instrução é da
     # própria questão (só na mesma coluna: a instrução no alto da página seguinte abre o texto das questões seguintes)
     P['uft-2022-1'].update({'suporte_interno': 30, 'suporte_interno_mesma_pagina': True})
@@ -206,7 +247,7 @@ def mais_provas():
                     'História, Química e língua estrangeira (inglês). Redação fora. Gabarito oficial publicado após os '
                     'recursos; anulada fica fora.',
             'cadernos': [{'arquivo': 'caderno', 'paginas': (2, 999)}],
-            'colunas': lambda r: [(24, r.width / 2), (r.width / 2, r.width - 20)], 'margem': 24, 'topo': 32, 'base': 38,
+            'colunas': lambda r: [(24, r.width / 2), (r.width / 2, r.width - 20)], 'margem': 24, 'topo': 32, 'base': 44,
             'ancora': r'(?i)^(?:QUEST[ÃA]O|QUESTION|PREGUNTA)\s+(\d{1,2})$', 'ancora_dx': 130, 'sequencial': True,   # número centrado na coluna
             'secoes_rx': secs, 'pular_secoes': ('Espanhol', 'Francês'), 'pular_antes_sequencia': True,
             'corte': [r'(?i)^PROPOSTA DE REDA', r'(?i)^REDA[ÇC][ÃA]O$', r'(?i)^RASCUNHO', r'(?i)^FOLHA DE RASCUNHO'],
@@ -215,6 +256,8 @@ def mais_provas():
             # "TEXTO II" (título, sem frase de indicação): vale para a questão logo depois e para as que o citam
             'texto_romano': True, 'texto_n_sem_faixa': True, 'suporte_ate_proximo': True, 'suporte_primeira': True,
             'suporte_palavras': '|a text|lyrics|song|graph|poem|poema|gráfico|canção|infográfico|mapa|tabela|imagem|charge|quadrinho',
+            'pe_fio': True, 'pe_fio_vao': 4,   # fio de separação + topo cortado do título seguinte no pé
+            'seg_min': 20,   # pedaço do alto da página seguinte só com o fio da caixa e o acento de "QUESTÃO"
             'suporte_interno': 60,   # "QUESTÃO 25 / Leia os textos a seguir..." com os textos logo abaixo: são da questão
             'gabarito': gab, 'area_do_gabarito': False, 'area': lambda n: 'Conhecimentos gerais',
         }

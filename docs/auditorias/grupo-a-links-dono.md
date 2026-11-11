@@ -152,3 +152,19 @@ mais preciso dentro do mesmo tema.
    pergunta, não pelo assunto do texto de apoio", começando por todas as questões `por` em P11/P12/P03 e `qui` cujo
    conteúdo veio do contexto. Com 28% de erro na amostra, a classificação do grupo A não deve ir ao ar sem essa segunda
    passada e uma nova amostra conferida por agente separado.
+
+## 4. Correções feitas pelo integrador depois desta auditoria (11/11/2026)
+
+- **Prints da Unicamp 2027 (q43 e q50):** a faixa branca que cobria o logotipo no alto da página descia sobre a 1ª linha da
+  coluna (o logo de 2027 vai até y≈55 e o texto começa em y≈49). A limpeza agora para logo acima da linha de texto; as 10
+  provas da Unicamp foram recortadas de novo (ids e classificação mantidos) e os dois prints conferidos.
+- **Classificação:** as 17 correções da amostra aplicadas como sugeridas (anhembi-2022 q13, q14; einstein-2021 q49;
+  einstein-2021-2-enf q10 → P07.1; einstein-2023 q6, q47; fmj-2022 q6; santacasa-2022-demais q41; saocamilo-2022-2 q3;
+  uerj-2025-1 q14; uerj-2025-2 q41; uerj-2026-1 q30; unicamp-2023 q18; unicamp-2024 q68; unicamp-2025 q5; unicamp-2026 q22;
+  unicamp-2027 q50). Seguindo o principal achado, as 153 questões de Português das 30 provas classificadas em P03/P11/P12
+  foram revistas pelo comando da questão: mais 45 mudaram para o conteúdo que a questão pergunta (gramática, figura de
+  linguagem, sentido, discurso direto/indireto, coesão — ex.: anhembi-2022 q2 → P08.1, fmj-2022 q5 → P10.5,
+  santacasa-2022-demais q9 → P08.1, uerj-2026-1 q20 → P06.2). As que perguntam a escola literária, o gênero ou a leitura
+  da obra ficaram em P03/P11/P12.
+- **Não corrigido (cosmético):** os arcos do selo "QUESTÃO" da questão seguinte em alguns prints da Santa Casa e da
+  Anhembi (nada do conteúdo é perdido).
