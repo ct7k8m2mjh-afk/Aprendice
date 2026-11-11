@@ -11,7 +11,7 @@ Revisão em 3 lentes sucessivas (fatos → compreensão do aluno → fatos de no
 | Biologia | `docs/revisao/bio/geral.json` | 58 de 58 | 58 | 2 | revisada completa, com "conferir" |
 | Física | `docs/revisao/fis/geral.json` | 50 de 50 | 50 | 1 | revisada completa, com "conferir" |
 | Química | `docs/revisao/qui/geral.json` | 58 de 58 | 58 | 2 | revisada completa, com "conferir" |
-| Geografia | `docs/revisao/geo/geral.json` | 0 de 45 | — | — | **não revisada** (retomar aqui) |
+| Geografia | `docs/revisao/geo/geral.json` | 45 de 45 | 45 | 3 | revisada completa, com "conferir" |
 | História | `docs/revisao/his/geral.json` | 0 de 57 | — | — | **não revisada** (retomar aqui) |
 | Filosofia e Sociologia | `docs/revisao/fs/geral.json` | 0 de 86 | — | — | **não revisada** (retomar aqui) |
 
@@ -287,4 +287,44 @@ Revisão em 3 lentes sucessivas (fatos → compreensão do aluno → fatos de no
 
 - QK18: se a imagem do livro mostrar a curva do NaOH como decrescente, não reproduzir; decidir qual gráfico entra.
 - QK14, QK18, QK21 e QK27 citam "exemplo do livro" com alternativa, sem prova e ano. Pela regra, questão de prova só com identificação: decidir se viram exemplo sem letra ou se saem.
+
+## Geografia
+
+### Erros de fato encontrados no trabalho anterior (6)
+
+1. GK26 — "305 povos segundo o Censo 2022": 305 é o número do Censo 2010; o Censo 2022 registrou 391 etnias e 295 línguas.
+2. GK05 — satélites "a dezenas de quilômetros da superfície" (orbitam a centenas de quilômetros ou mais) e GPS com "três ou mais satélites" (são pelo menos quatro para a posição completa).
+3. GK40 — ECO-92 teria criado "Comissões" sobre biodiversidade e clima (foram Convenções) e seria "a maior reunião da ONU até hoje".
+4. GK16 — pegadinha dizia que a metrópole "nasce" da conurbação, misturando conurbação, metrópole e região metropolitana.
+5. GK34 — colonialismo restrito aos "séculos XV e XVI".
+6. GK29 — "Pedro Pichas Geiger" (Pinchas); GK45 — "internet 2.0" (Web 2.0); GK35 — Nafta citado como bloco atual (substituído pelo USMCA em 2020).
+
+### Todas as alterações
+
+| id | o que mudou | por quê | fonte | lente |
+|---|---|---|---|---|
+| GK05 | altitude dos satélites e número de satélites do GPS corrigidos; pegadinha com o contraste GPS × sensoriamento × SIG | erros: satélites não orbitam a "dezenas de quilômetros" (o mínimo é da ordem de centenas); o GPS precisa de pelo menos quatro satélites para a posição completa | GPS.gov, https://www.gps.gov/systems/gps/space/ ; INPE, http://www.dgi.inpe.br | 1 |
+| GK16 | pegadinha reescrita; taxa de urbanização atualizada | "a metrópole nasce disso [da conurbação]" confundia conurbação, metrópole e região metropolitana | ONU, World Urbanization Prospects, https://population.un.org/wup/ ; IBGE, Regiões de Influência das Cidades (REGIC 2018) | 1 |
+| GK23 | taxa de reposição "cerca de 2,1" e dado do Brasil (1,55) | "acima de 2,1" era impreciso; dado atual do IBGE | IBGE, Censo Demográfico 2022, https://censo2022.ibge.gov.br (Fecundidade e migração: resultados preliminares da amostra, 2025) | 1 |
+| GK24 | pegadinha: migrante × refugiado × deslocado interno | contraste clássico ausente | ACNUR, https://www.acnur.org/portugues/quem-ajudamos/refugiados/ | 2 |
+| GK26 | número de povos indígenas: 391 (Censo 2022), não 305 | erro: 305 é o dado do Censo 2010; o Censo 2022 registrou 391 etnias e 295 línguas | IBGE/Ministério dos Povos Indígenas, https://www.gov.br/povosindigenas/pt-br/assuntos/noticias/2025/10-1/censo-2022-brasil-tem-391-etnias-e-295-linguas-indigenas | 1 |
+| GK29 | 'Pichas' → 'Pinchas' | nome do geógrafo grafado errado | IBGE, Memória (Pedro Pinchas Geiger), https://memoria.ibge.gov.br | 1 |
+| GK32 | matriz elétrica × matriz energética | o tópico dizia só "matriz"; a banca explora a diferença | EPE, Balanço Energético Nacional, https://www.epe.gov.br/pt/publicacoes-dados-abertos/publicacoes/balanco-energetico-nacional-ben | 2 |
+| GK34 | período do colonialismo | "séculos XV e XVI" reduzia o colonialismo ao seu início | Enciclopédia Britannica, "Western colonialism", https://www.britannica.com/topic/Western-colonialism | 1 |
+| GK35 | Nafta substituído pelo USMCA (2020) | atualização | USTR, https://ustr.gov/trade-agreements/free-trade-agreements/united-states-mexico-canada-agreement | 1 |
+| GK40 | "Comissões" → "Convenções"; "até hoje" → "até então"; COP30 | erro: na ECO-92 foram criadas convenções (tratados), não comissões | ONU/UNFCCC, https://unfccc.int/process-and-meetings/what-is-the-united-nations-framework-convention-on-climate-change | 1 |
+| GK43 | pegadinha reescrita | repetia um número que varia conforme o critério | IBGE, Regiões de Influência das Cidades (REGIC 2018); Ipea | 2 |
+| GK44 | modal dutoviário acrescentado | faltava um dos cinco modais cobrados | Ministério dos Transportes, https://www.gov.br/transportes | 2 |
+| GK45 | "internet 2.0" identificada como Web 2.0 | o termo consagrado é Web 2.0 | O’Reilly, "What Is Web 2.0" (2005) | 1 |
+| todos os 45 tópicos | busca[] ampliada | faltavam termos que o aluno digita (uberização, rios voadores, MATOPIBA, marco temporal, siglas e nomes de conferências) | — | 2 |
+
+### Itens marcados "conferir" (estão em `lacunas` do arquivo)
+
+- conferir: GK43 — o livro define cidade média como a de 100 mil a 1 milhão de habitantes; o corte mais usado (IBGE/Ipea) é 100 mil a 500 mil. O ponto mantém o do livro e a pegadinha avisa.
+- conferir: os percentuais de vegetação remanescente por bioma (GK14), a população de povos e comunidades tradicionais (GK33, 'cerca de 4,5 milhões') e o número de agrupamentos quilombolas (GK26) seguem o livro; conferir no MapBiomas e no IBGE antes de usar em questão.
+- conferir: gabaritos por letra das questões resolvidas (GK01 Uece 2023; GK03 Fuvest 2025; GK07 Unicamp 2025; GK18 Famerp 2023; GK22 Enem 2025; GK33 Unicamp 2024; GK40 UFJF 2021; GK42 UFPR 2022) vêm só do livro. As explicações foram conferidas e são coerentes; a conta da escala (GK03) foi refeita.
+
+### Pendências de decisão do dono
+
+- GK43: manter o corte do livro para cidade média (100 mil a 1 milhão) ou adotar o do IBGE/Ipea (100 mil a 500 mil)?
 
