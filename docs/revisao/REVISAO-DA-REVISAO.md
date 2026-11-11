@@ -4,16 +4,22 @@ Revisão em 3 lentes sucessivas (fatos → compreensão do aluno → fatos de no
 
 ## Situação por matéria
 
-| Matéria | Arquivo | Tópicos revisados | Tópicos alterados | Itens "conferir" | Estado |
-|---|---|---|---|---|---|
-| Português | `docs/revisao/por/geral.json` | 139 de 139 | 139 | 7 | revisada completa, com "conferir" |
-| Matemática | `docs/revisao/mat/geral.json` | 112 de 112 | 112 | 0 | revisada completa |
-| Biologia | `docs/revisao/bio/geral.json` | 58 de 58 | 58 | 2 | revisada completa, com "conferir" |
-| Física | `docs/revisao/fis/geral.json` | 50 de 50 | 50 | 1 | revisada completa, com "conferir" |
-| Química | `docs/revisao/qui/geral.json` | 58 de 58 | 58 | 2 | revisada completa, com "conferir" |
-| Geografia | `docs/revisao/geo/geral.json` | 45 de 45 | 45 | 3 | revisada completa, com "conferir" |
-| História | `docs/revisao/his/geral.json` | 57 de 57 | 57 | 3 | revisada completa, com "conferir" |
-| Filosofia e Sociologia | `docs/revisao/fs/geral.json` | 0 de 86 | — | — | **não revisada** (retomar aqui) |
+| Matéria | Arquivo | Tópicos revisados | Com mudança de conteúdo (pontos, pegadinha ou título) | Com busca[] ampliada | Erros de fato | Itens "conferir" | Estado |
+|---|---|---|---|---|---|---|---|
+| Português | `docs/revisao/por/geral.json` | 139 de 139 | 64 | 139 | 29 | 8 | revisada completa, com "conferir" |
+| Matemática | `docs/revisao/mat/geral.json` | 112 de 112 | 13 | 112 | 6 | 0 | revisada completa |
+| Biologia | `docs/revisao/bio/geral.json` | 58 de 58 | 15 | 58 | 9 | 2 | revisada completa, com "conferir" |
+| Física | `docs/revisao/fis/geral.json` | 50 de 50 | 12 | 50 | 7 | 1 | revisada completa, com "conferir" |
+| Química | `docs/revisao/qui/geral.json` | 58 de 58 | 12 | 58 | 7 | 2 | revisada completa, com "conferir" |
+| Geografia | `docs/revisao/geo/geral.json` | 45 de 45 | 14 | 45 | 6 | 3 | revisada completa, com "conferir" |
+| História | `docs/revisao/his/geral.json` | 57 de 57 | 32 | 57 | 23 | 3 | revisada completa, com "conferir" |
+| Filosofia e Sociologia | `docs/revisao/fs/geral.json` | 86 de 86 | 17 | 86 | 7 | 2 | revisada completa, com "conferir" |
+
+**Total:** 605 tópicos revisados nas 3 lentes; 179 com mudança de conteúdo; 94 registros de erro de fato no trabalho anterior (um registro pode reunir mais de um erro do mesmo tópico); 21 itens marcados "conferir". Nenhum id mudou, nenhum tópico foi apagado, a ordem e o esquema foram mantidos.
+
+Como ler a coluna "lente": 1 = correção de fato; 2 = clareza para o aluno (definição, contraste, exemplo, busca). Tudo o que a lente 2 escreveu foi reconferido pela lente 1 antes de salvar.
+
+Limites desta revisão: o livro não foi consultado (por instrução); gabaritos por letra de questões resolvidas e dados que só existem no livro ficaram marcados "conferir" em `lacunas` de cada arquivo. `docs/revisao/ing/geral.json` (Inglês) existe, mas não estava na lista pedida e não foi revisado.
 
 ## Português
 
@@ -118,9 +124,11 @@ Revisão em 3 lentes sucessivas (fatos → compreensão do aluno → fatos de no
 | RK01 | pegadinha: o que zera só a C5 × o que zera a redação | confusão frequente do aluno; lista conforme a cartilha oficial | Inep, A Redação do Enem – Cartilha do Participante, https://www.gov.br/inep/pt-br/areas-de-atuacao/avaliacao-e-exames-educacionais/enem/outros-documentos | 2 |
 | RK05 | níveis 4 e 5 da Competência 2 separados | "160 ou 200, se também for pertinente e produtivo" misturava os dois níveis | Inep, A Redação do Enem – Cartilha do Participante, https://www.gov.br/inep/pt-br/areas-de-atuacao/avaliacao-e-exames-educacionais/enem/outros-documentos | 1 |
 | todos os tópicos (PK, LK, IK, RK) | busca[] ampliada | faltavam os termos que o aluno digita: perguntas ("quando usar crase"), dúvidas ("mal ou mau"), nomes populares, personagens e obras-chave | — | 2 |
+| LK35, IK02, IK06, IK16, RK05, RK20 | ressalvas editoriais retiradas do conteúdo ("o livro cita/mostra/usa...") | o aluno não tem o livro; a frase deve valer sozinha (a observação sobre o livro, quando importa, está em lacunas) | — | 2 |
 
 ### Itens marcados "conferir" (estão em `lacunas` do arquivo)
 
+- Inconsistência no livro (Interpretação, questão FCMSCSP 2020, IK10): gabarito impresso D, mas o comentário descreve dissertação argumentativa com elementos descritivos. Ver o item 'conferir: IK10' abaixo.
 - conferir: PK27 cita questão resolvida da Unemat-MT sem o ano da prova (não consta no tópico e não foi possível identificar sem o livro).
 - conferir: LK22 — o livro afirmaria que a metáfora da antropofagia vem de uma 'Carta antropofágica' (1927) de Plínio Salgado; a afirmação foi retirada do tópico por falta de fonte confiável.
 - conferir: IK23 cita questão resolvida da UFU-MG sem o ano da prova.
@@ -160,6 +168,8 @@ Revisão em 3 lentes sucessivas (fatos → compreensão do aluno → fatos de no
 | M16.2 | i definido por i² = −1 | definição usual e mais segura que i = √−1 | Iezzi et al., Fundamentos de Matemática Elementar (Atual), v. 6 | 2 |
 | M14.1 | pegadinha: contraste média × mediana com exemplo | contraste clássico ausente | Iezzi et al., Fundamentos de Matemática Elementar (Atual), v. 11 | 2 |
 | todos os 112 tópicos | busca[] ampliada | a busca trazia só as palavras do título separadas ("equação; grau"); entraram nomes populares, siglas e grafias que o aluno digita (bhaskara/báskara, PFC, regra de 3, SOH CAH TOA) | — | 2 |
+| G06 | ressalvas editoriais retiradas do conteúdo ("o livro cita/mostra/usa...") | o aluno não tem o livro; a frase deve valer sozinha (a observação sobre o livro, quando importa, está em lacunas) | — | 2 |
+| M01.2 e M06.5 | frações dos expoentes empilhadas (\frac) | regra do CLAUDE.md: fração sempre empilhada, nunca "m/n" na mesma linha | CLAUDE.md, seção Resolução animada | 2 |
 
 ### Itens marcados "conferir" (estão em `lacunas` do arquivo)
 
@@ -240,6 +250,7 @@ Revisão em 3 lentes sucessivas (fatos → compreensão do aluno → fatos de no
 | FK17 | pegadinha: sinais da 1ª lei e isotérmica × adiabática | a pegadinha anterior só repetia os valores de R; faltava a confusão clássica | Halliday, Resnick & Walker, Fundamentos de Física; Ramalho, Nicolau & Toledo, Os Fundamentos da Física | 2 |
 | FK05b | pegadinha: peso × normal e massa × peso | confusões clássicas ausentes | Halliday, Resnick & Walker, Fundamentos de Física; Ramalho, Nicolau & Toledo, Os Fundamentos da Física | 2 |
 | todos os 50 tópicos | busca[] ampliada | faltavam os nomes que o aluno digita (fórmulas como "U = R i", macetes como "sorvete" e "que macete", sinônimos como ddp/tensão) | — | 2 |
+| FK21 | ressalvas editoriais retiradas do conteúdo ("o livro cita/mostra/usa...") | o aluno não tem o livro; a frase deve valer sozinha (a observação sobre o livro, quando importa, está em lacunas) | — | 2 |
 
 ### Itens marcados "conferir" (estão em `lacunas` do arquivo)
 
@@ -248,6 +259,7 @@ Revisão em 3 lentes sucessivas (fatos → compreensão do aluno → fatos de no
 ### Pendências de decisão do dono
 
 - FK21 (Santa Casa 2024): o exemplo cita "resultado 5 no livro" sem os dados do enunciado. Decidir se fica assim, se sai do tópico ou se entra a questão completa (com print fiel).
+- Física (e também Química e Biologia): as fórmulas estão em texto simples, com frações em barra (Δs/Δt), e não em LaTeX como em Matemática. A regra do produto é fração empilhada: decidir se o site converte na exibição ou se os arquivos devem ser reescritos em LaTeX.
 
 ## Química
 
@@ -277,6 +289,7 @@ Revisão em 3 lentes sucessivas (fatos → compreensão do aluno → fatos de no
 | QK52 | pegadinha: desidratação intra × intermolecular | contraste clássico (170 °C alceno × 140 °C éter) ausente | Atkins & Jones, Princípios de Química; Feltre, Química (Moderna) | 2 |
 | QK33 | pegadinha: pilha × eletrólise com o sentido dos elétrons | contraste reforçado | Atkins & Jones, Princípios de Química; Feltre, Química (Moderna) | 2 |
 | todos os 58 tópicos | busca[] ampliada | faltavam os nomes que o aluno digita (sinônimos como "pontes de hidrogênio", fórmulas como "PV = nRT", grafias como "Bronsted" e "Saytzeff") | — | 2 |
+| QK23 | ressalvas editoriais retiradas do conteúdo ("o livro cita/mostra/usa...") | o aluno não tem o livro; a frase deve valer sozinha (a observação sobre o livro, quando importa, está em lacunas) | — | 2 |
 
 ### Itens marcados "conferir" (estão em `lacunas` do arquivo)
 
@@ -317,6 +330,7 @@ Revisão em 3 lentes sucessivas (fatos → compreensão do aluno → fatos de no
 | GK44 | modal dutoviário acrescentado | faltava um dos cinco modais cobrados | Ministério dos Transportes, https://www.gov.br/transportes | 2 |
 | GK45 | "internet 2.0" identificada como Web 2.0 | o termo consagrado é Web 2.0 | O’Reilly, "What Is Web 2.0" (2005) | 1 |
 | todos os 45 tópicos | busca[] ampliada | faltavam termos que o aluno digita (uberização, rios voadores, MATOPIBA, marco temporal, siglas e nomes de conferências) | — | 2 |
+| GK01, GK43, GK45 | ressalvas editoriais retiradas do conteúdo ("o livro cita/mostra/usa...") | o aluno não tem o livro; a frase deve valer sozinha (a observação sobre o livro, quando importa, está em lacunas) | — | 2 |
 
 ### Itens marcados "conferir" (estão em `lacunas` do arquivo)
 
@@ -403,4 +417,50 @@ Revisão em 3 lentes sucessivas (fatos → compreensão do aluno → fatos de no
 ### Pendências de decisão do dono
 
 - HK24: o livro erra o rei de Pombal (D. João V); o tópico agora traz D. José I. Se o site reproduzir alguma página do livro sobre o tema, o erro reaparece.
+
+## Filosofia e Sociologia
+
+### Erros de fato encontrados no trabalho anterior (7)
+
+1. SK30 — os três estágios (selvageria, barbárie, civilização) atribuídos só a Tylor; quem os sistematizou foi Morgan (A sociedade antiga, 1877).
+2. SK26 — A Liberdade guiando o povo (Delacroix) ligada à Revolução Francesa de 1789; o quadro retrata a Revolução de 1830.
+3. SK03 — grupo primário definido por "status e papéis bem definidos"; o que o define são relações íntimas e duradouras.
+4. FK09 — virtude dos produtores na República dada como "prudência e economia" (é a temperança).
+5. FK11 — areté apresentada como "função própria" (função é ergon; areté é excelência); excesso da coragem como "imprudência" (temeridade).
+6. FK36 — Rawls sem a posição original e o véu da ignorância, seu conceito mais cobrado.
+7. FK19 e FK32 — ressalvas editoriais dentro do conteúdo ("segundo o livro").
+
+### Todas as alterações
+
+| id | o que mudou | por quê | fonte | lente |
+|---|---|---|---|---|
+| FK09 | virtude dos produtores: temperança | na República a virtude ligada à parte desejante da alma e à classe dos produtores é a temperança, não "prudência e economia" | Stanford Encyclopedia of Philosophy, https://plato.stanford.edu/entries/plato-ethics-politics/ | 1 |
+| FK11 | areté = excelência; ergon = função própria; coragem entre temeridade e covardia | o texto chamava a função própria de "areté"; o excesso da coragem é a temeridade | Stanford Encyclopedia of Philosophy, https://plato.stanford.edu/entries/aristotle-ethics/ | 1 |
+| FK19 | retirado "(segundo o livro)"; pegadinha sobre "os fins justificam os meios" | o ponto carregava uma ressalva editorial; a pegadinha agora trata do erro mais comum sobre Maquiavel | Stanford Encyclopedia of Philosophy, https://plato.stanford.edu/entries/machiavelli/ | 1 |
+| FK32 | retirado "segundo o livro" | ressalva editorial dentro do conteúdo | Stanford Encyclopedia of Philosophy, https://plato.stanford.edu/entries/thomas-kuhn/ | 2 |
+| FK36 | Rawls com posição original e véu da ignorância; obras e datas; Estado mínimo em Nozick | o tópico omitia o véu da ignorância, o conceito de Rawls mais cobrado | Stanford Encyclopedia of Philosophy, https://plato.stanford.edu/entries/rawls/ ; Stanford Encyclopedia of Philosophy, https://plato.stanford.edu/entries/nozick-political/ | 2 |
+| FK37 | obra de Hans Jonas | faltava a obra de referência | Enciclopédia Britannica, https://www.britannica.com/biography/Hans-Jonas | 2 |
+| SK03 | grupo primário definido pela intimidade das relações | "status e papéis bem definidos" não é o que distingue o grupo primário (conceito de Cooley: relações íntimas, face a face) | Enciclopédia Britannica, https://www.britannica.com/topic/primary-group | 1 |
+| SK14 | panóptico: projeto de Bentham | termo técnico sem definição | Enciclopédia Britannica, https://www.britannica.com/technology/panopticon | 2 |
+| SK15 | pegadinha: Estado × governo × nação | contraste clássico pedido na lente 2, com exemplo | Enciclopédia Britannica, https://www.britannica.com/topic/state-sovereign-political-entity | 2 |
+| SK23 | obra da solidariedade mecânica e orgânica | faltava a obra de referência | Enciclopédia Britannica, https://www.britannica.com/biography/Emile-Durkheim | 2 |
+| SK26 | A Liberdade guiando o povo retrata a Revolução de 1830 | a frase ligava o quadro de 1830 à Revolução Francesa de 1789 | Museu do Louvre, https://collections.louvre.fr/en/ark:/53355/cl010065872 | 1 |
+| SK30 | obras de Tylor (1871) e Morgan (1877); a sistematização dos três estágios é de Morgan | o esquema selvageria–barbárie–civilização era atribuído só a Tylor; quem o sistematizou foi Morgan | Enciclopédia Britannica, https://www.britannica.com/biography/Lewis-Henry-Morgan ; Enciclopédia Britannica, https://www.britannica.com/biography/Edward-Burnett-Tylor | 1 |
+| SK32 | marcos da institucionalização (ELSP, 1933; USP, 1934) | faltavam os marcos concretos | USP, https://www5.usp.br/institucional/a-usp/historia/ ; FESPSP, https://www.fespsp.org.br | 2 |
+| SK34 | obra do homem cordial (Raízes do Brasil, 1936) | faltava a obra de referência | ABL/FGV CPDOC, https://cpdoc.fgv.br | 2 |
+| SK42 | Lyotard e as metanarrativas | conceito sem autor | Enciclopédia Britannica, https://www.britannica.com/topic/postmodernism-philosophy | 2 |
+| SK44 | pós-verdade: palavra do ano de 2016 | dado cobrado em prova | Oxford Languages, https://languages.oup.com/word-of-the-year/2016/ | 2 |
+| SK45 | datas do Brexit (2016 e 2020) | faltavam as datas | Parlamento do Reino Unido, https://www.parliament.uk/business/publications/research/eu-referendum/ | 2 |
+| todos os 86 tópicos (FK e SK) | busca[] ampliada | faltavam os nomes que o aluno digita (mito da caverna, penso logo existo, Deus está morto, jeitinho brasileiro, uberização, grafias como "falseabilidade" e "Thomas Morus") | — | 2 |
+| FK09 | ressalvas editoriais retiradas do conteúdo ("o livro cita/mostra/usa...") | o aluno não tem o livro; a frase deve valer sozinha (a observação sobre o livro, quando importa, está em lacunas) | — | 2 |
+
+### Itens marcados "conferir" (estão em `lacunas` do arquivo)
+
+- [Sociologia] conferir: SK41 atribui a teoria da mobilização de recursos a Charles Tilly, como faz o livro; na literatura ela é ligada sobretudo a McCarthy e Zald, e Tilly, à teoria do processo político e aos repertórios de ação. Não foi alterado.
+- [Sociologia] conferir: SK13 traz 'mulheres ganham em média 20% a menos que os homens'; o percentual varia a cada ano (IBGE/PNAD Contínua). Conferir o dado do ano antes de usar em questão.
+
+### Pendências de decisão do dono
+
+- SK41: manter a atribuição do livro (mobilização de recursos = Tilly) ou corrigir para a atribuição usual (McCarthy e Zald; Tilly = processo político)?
+- Os tópicos de Filosofia e Sociologia são longos (vários pontos com mais de 400 caracteres). Foram mantidos para não perder conteúdo; se o site precisar de pontos mais curtos, o corte deve ser feito na tela, não no arquivo, ou em nova rodada de edição.
 
