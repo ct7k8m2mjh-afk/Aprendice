@@ -632,7 +632,7 @@ def eventos_do_pdf(pdf, cfg, faixa=None):
                                 mt = re.match(r'(?i)^text\s+(\d+)\s*$', t)
                             yi = y0
                             # frase de instrução quebrada em duas linhas: começa na linha de cima
-                            if li > 0 and coluna_de(lp[li - 1]['bbox'][0], cols) == c and 0 <= y0 - lp[li - 1]['bbox'][3] < 5 \
+                            if li > 0 and coluna_de(lp[li - 1]['bbox'][0], cols) == c and (-3 if cfg.get('suporte_aperto') else 0) <= y0 - lp[li - 1]['bbox'][3] < 5 \
                                     and not re.match(cfg['ancora'], lp[li - 1]['t']) and lp[li - 1]['bbox'][1] >= cfg['topo'] \
                                     and lp[li - 1]['t'].strip() not in cfg.get('secoes', {}) \
                                     and not any(re.search(rx_, lp[li - 1]['t']) for rx_, _ in cfg.get('secoes_rx', [])) \
@@ -966,6 +966,30 @@ NOME_MATERIA = {'bio': 'Biologia', 'qui': 'Química', 'mat': 'Matemática', 'por
                 'geo': 'Geografia', 'his': 'História', 'fs': 'Filosofia e Sociologia', 'ing': 'Inglês'}
 
 
+def corta_pe_fio(im, fio=10, vao=10):
+    """Borda de cima de uma caixa seguinte (rascunho, quadro da próxima questão) que sobrou no pé do print: um fio fino
+    (até `fio` px de conteúdo) separado do resto por um vão branco: sai do print."""
+    import numpy as np
+    d = np.asarray(im.convert('L')) < 200
+    vert = d[-150:].mean(axis=0) > 0.6   # fio vertical (separador de colunas) no pé do print não conta
+    a = d[:, ~vert].any(axis=1)
+    h = len(a)
+    r = h - 1
+    while r > 0 and not a[r]:
+        r -= 1
+    k = r
+    while k > 0 and a[k]:
+        k -= 1
+    if r - k > fio:
+        return im
+    j = k
+    while j > 0 and not a[j]:
+        j -= 1
+    if k - j < vao or j < 20:
+        return im
+    return im.crop((0, 0, im.width, j + 8))
+
+
 def aperta_moldura(im, folga=80):
     """Questão dentro de uma moldura que vai até o pé da página (IME): o espaço vazio entre o fim do conteúdo e o fio de
     baixo da moldura sai do print (fica o fio, para a moldura continuar fechada)."""
@@ -994,7 +1018,7 @@ def aperta_moldura(im, folga=80):
     return out
 
 
-def corta_pe_cor(im, cor, tol=14, zona=70):
+def corta_pe_cor(im, cor, tol=14, zona=140):
     """Selo da questão seguinte (faixa colorida) que sobrou no pé do print: corta a partir do 1º pixel dessa cor nos
     últimos `zona` px, desde que haja uma linha branca logo acima (o selo está separado do texto da questão)."""
     import numpy as np
@@ -1005,11 +1029,15 @@ def corta_pe_cor(im, cor, tol=14, zona=70):
     if not m.any():
         return im
     r0 = z0 + int(np.argmax(m))
-    branco = (a[:r0] >= 245).all(axis=(1, 2))
+    branco = (a[:r0] >= 245).all(axis=2).mean(axis=1) > 0.98   # tolera um fio vertical
     k = r0
+    for _ in range(3):   # borda suavizada do selo (1–3 linhas de cinza intermediário)
+        if k > 0 and not branco[k - 1]:
+            k -= 1
+    k0 = k
     while k > 0 and branco[k - 1]:
         k -= 1
-    if k == r0 or k < 20:
+    if k == k0 or k < 20:
         return im
     return im.crop((0, 0, im.width, k + 6))
 
@@ -1486,6 +1514,8 @@ def processa(pid, amostra=False, so_texto=False):
                 img = render(pdf, sup + segs, marcas, coloridos, apaga)
                 if img is not None and cfg.get('pe_cor'):
                     img = corta_pe_cor(img, cfg['pe_cor'])
+                if img is not None and cfg.get('pe_fio'):
+                    img = corta_pe_fio(img)
                 if img is not None and cfg.get('aperta_moldura'):
                     img = aperta_moldura(img)
             if img is None:
@@ -1532,6 +1562,14 @@ def processa(pid, amostra=False, so_texto=False):
             relatorio['sem_gabarito'].append(n)
         elif questoes[n]['gab'] == 'X':
             relatorio['anuladas'].append(n)
+    for n in cfg.get('excluir', {}):
+        # print que não fica fiel (emenda de colunas/faixas que parte fórmula, tabela ou figura), conferido: fica fora
+        # do site até ser refeito à mão ("na dúvida, não entra")
+        if n in questoes:
+            questoes.pop(n)
+            relatorio.setdefault('recorte_imperfeito', []).append(n)
+            if n in relatorio['faltando']:
+                relatorio['faltando'].remove(n)
     validas = [q for q in questoes.values() if q['gab'] in tuple('ABCDE')]
     numeros_do_caderno(cads, validas)
     for q in validas:

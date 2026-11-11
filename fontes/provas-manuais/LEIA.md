@@ -15,3 +15,7 @@ No site a fonte mostrada é a da prova (instituição, banca, ano); a origem do 
 | einstein | 2024–2026 | — | — | não estão na página do link |
 
 Página de partida: https://vestibular.brasilescola.uol.com.br/downloads/faculdade-israelita-ciencias-saude-albert-einstein.htm
+
+## Integração do grupo A (11/11/2026)
+
+Unicamp, UERJ, Santa Casa, Einstein, FMJ, São Camilo e Anhembi: 30 provas integradas em `app/conteudo-fonte/provas/` (lista e o que falta em `docs/provas/faltantes-por-ano.md`, seção Grupo A). Os arquivos .rar (Unicamp 2024, UERJ 2024) foram abertos em `extraido/` dentro da pasta da prova. A origem de cada PDF (link do Brasil Escola e nome do arquivo) está no campo `origem` do `prova.json`; no site a fonte mostrada é a página oficial.

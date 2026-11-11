@@ -55,3 +55,42 @@ pacote "Unimontes 2026" do Brasil Escola), UVA 2024.1, 2025.1 e 2026.1.
 | EMESCAM | 2020, 2021, 2023–2026 | Não estão no pacote (2024+ só no sistema da Fundep, com Cloudflare). |
 | Bahiana | 2020–2026 | Pacote só com gabaritos PRELIMINARES (2021/1, 2021/2, Prosef 2022/1, 2022/2) e sem caderno; 2020: 404. |
 | UESB | 2020–2026 | 2020: gabarito definitivo sem caderno; 2022: gabarito preliminar sem caderno; demais anos não estão no pacote. |
+
+## Grupo A (Unicamp, UERJ, Santa Casa, Einstein, Famema, FMJ, São Camilo, Anhembi) — 11/11/2026
+
+Material: `fontes/provas-manuais/<sigla>/` (links do dono, Brasil Escola). Configuração: `ferramentas/ingestao/provas_grupo_a.py`
+(cópia para `fabrica_saida/ingestao/` com `prepara_manuais.py`). No site a fonte é a página oficial (Comvest, UERJ, Vunesp);
+o arquivo de onde veio cada PDF fica no campo `origem` do `prova.json`.
+
+### Entraram nesta rodada
+
+| Instituição | Provas (id) | Questões |
+|---|---|---|
+| Unicamp | `unicamp-2021` (Biológicas), `unicamp-2021-exh` (Exatas/Humanas), `unicamp-2022` a `unicamp-2027` (1ª fase, prova Q), `unicamp-indigena-2021`, `unicamp-indigena-2022` | 672 |
+| UERJ | `uerj-2021`, `uerj-2022`, `uerj-2023` (Exame Único), `uerj-2025-1`, `uerj-2025-2`, `uerj-2026-1`, `uerj-2026-2`, `uerj-2027-1` (Exames de Qualificação) | 479 |
+| Santa Casa | `santacasa-2021`, `santacasa-2022` (Medicina, Conhecimentos Gerais), `santacasa-2022-demais` (Enfermagem e demais cursos) | 220 |
+| Einstein | `einstein-2021`, `einstein-2023` (Prova I), `einstein-2021-2-enf`, `einstein-2022-2-enf` (Enfermagem) | 200 |
+| FMJ | `fmj-2021`, `fmj-2022` (Prova II) | 120 |
+| São Camilo | `saocamilo-2021-2`, `saocamilo-2022-2` (Prova II) | 80 |
+| Anhembi Morumbi | `anhembi-2022` (Medicina, Prova II) | 40 |
+
+Gabaritos: Comvest e Vunesp publicam um gabarito oficial único (anuladas marcadas com "*" na Comvest e "N"/"X" na Vunesp).
+UERJ: o gabarito do DSEA não diz "preliminar" nem "definitivo"; foram usados os arquivos do pacote sem a marca de preliminar
+(o de 2024 vem nomeado "gabarito-preliminar" e ficou fora). Unicamp 2027 (prova de out/2026): gabarito oficial da Comvest
+já publicado — integrada.
+
+### O que ainda falta e por quê
+
+| Instituição | Anos (2020–2026) que faltam | Motivo |
+|---|---|---|
+| Unicamp | 2020 | Link do Brasil Escola quebrado (404). Robots.txt da Comvest proíbe acesso automático: baixar à mão (1ª fase 2020, prova Q, e o gabarito). |
+| UERJ | 2020, 2024 | 2020: os dois links (Exames de Qualificação e Discursivo) quebrados. 2024: o pacote só traz o 1º Exame de Qualificação com gabarito **preliminar**; falta o gabarito definitivo do 1º EQ e o 2º EQ inteiro (caderno + gabarito). |
+| Santa Casa (FCMSCSP) | 2020, 2023, 2024, 2025, 2026 | 2020: link quebrado. 2023–2026: não estão nos links; Vunesp bloqueia acesso automático. Em 2021, a prova dos demais cursos veio só com o gabarito (sem caderno). |
+| Einstein | 2020, 2024, 2025, 2026 (e Medicina 2022) | 2020: link quebrado. 2022: só a Enfermagem 2022/2 nos links (falta a Prova I de Medicina/2022). 2024–2026: não estão nos links. |
+| Famema | 2020, 2021, 2022, 2023, 2024, 2025, 2026 | 2020: link quebrado. 2021: o pacote traz o gabarito da Prova II (objetiva), mas o caderno é o da Prova I (discursiva) — falta o caderno da Prova II. 2022: só gabarito **preliminar**. 2023–2026: não estão nos links. |
+| FMJ | 2020, 2023, 2024, 2025, 2026 | 2020: link quebrado. 2023–2026: não estão nos links. |
+| São Camilo | 2020, 2023, 2025, 2026 (e 1º semestre de 2021 e 2022) | 2020: link quebrado. Os links só têm o 2º semestre de 2021 e 2022; 2024/2 já estava no site. |
+| Anhembi Morumbi | 2020, 2021, 2023, 2024, 2025, 2026 | 2020: link quebrado. Os links só têm a Medicina 2022. |
+
+Fora por formato (não é falta de arquivo): as provas discursivas (Unicamp 2ª fase, UERJ Exame Discursivo, Prova I de
+Einstein/FMJ/São Camilo/Anhembi, Conhecimentos Específicos da Santa Casa) e as redações.

@@ -80,8 +80,10 @@ def mais_provas():
         tit = f'Unitins {ano}/{sem}' + (f' – {rotulo}' if rotulo else '')
         c.update({'titulo': tit, 'fase': f'Vestibular {ano}/{sem}' + (f' – {rotulo}' if rotulo else ''),
                   'gabarito': _gab_unitins(pagina)})
-        c['suporte'] = c['suporte'] + [r'(?i)^textos? para (as )?quest']
-        c['corte'] = c['corte'] + [r'(?i)^L[ÍI]NGUA PORTUGUESA E LITERATURA']   # faixa de seção   # "Texto para questões 35 a 38."
+        c['suporte'] = c['suporte'] + [r'(?i)^textos? para (as )?(quest|\d)']   # "Texto para questões 35 a 38", "Texto para 35 a 38"
+        c['corte'] = c['corte'] + [r'(?i)^L[ÍI]NGUA PORTUGUESA E LITERATURA']   # faixa de seção
+        # título da matéria no alto da página (atravessa a calha): a página começa abaixo dele
+        c['cabecalho'] = r'^(F[íi]sica|Biologia|Matem[áa]tica|Hist[óo]ria|Geografia|Qu[íi]mica|L[íi]ngua Portuguesa|Ingl[êe]s|Espanhol)$'
         c['nota'] = (f'Universidade Estadual do Tocantins, Vestibular {ano}/{sem}' + (f' ({rotulo})' if rotulo else '') +
                      ': 50 questões A–E (Física, Biologia, Matemática, História, Geografia, Química, Língua Portuguesa e '
                      'Literatura Brasileira, língua estrangeira). Língua estrangeira: inglês. Redação fora. Gabarito '
@@ -103,6 +105,9 @@ def mais_provas():
     for k in ('unitins-2021-2', 'unitins-2022-1', 'unitins-2022-1-med'):
         P[k]['suporte'] = [r'(?i)(responda|responder)\b.*\bquest[õo]es\b', r'(?i)^textos? para as quest[õo]es',
                            r'(?i)^(leia|read)\b.*\bquest[õo]es\b', r'(?i)\bpara responder [àa]s\s*$']
+    # 2023/1 caderno 1: o texto sobre Michael Jackson vem logo abaixo do título "Língua Inglesa", sem frase de indicação,
+    # e é o texto da questão 46 (conferido no caderno, p. 18)
+    P['unitins-2023-1']['suporte_forcado'] = {('caderno', 18): [(356, 3, [46, 46])]}
     # selo (faixa azul-clara) do número da questão seguinte que sobra no pé do print
     for k in ('unitins-2021-2', 'unitins-2022-1', 'unitins-2022-1-med', 'unitins-2023-1', 'unitins-2023-1-c2'):
         P[k]['pe_cor'] = (185, 210, 214)
@@ -142,9 +147,15 @@ def mais_provas():
             'ancora_negrito': True, 'sequencial': True,
             'secoes_rx': secs, 'pular_secoes': ('Espanhol',), 'pular_antes_sequencia': True,
             'corte': [r'(?i)^PROPOSTA DE REDA', r'(?i)^REDA[ÇC][ÃA]O$', r'(?i)^PROVA DE REDA', r'(?i)^INSTRU[ÇC][ÕO]ES PARA A REDA',
-                      r'(?i)^RASCUNHO', r'(?i)^Aten[çc][ãa]o: Responda apenas'],
+                      r'(?i)^RASCUNHO', r'(?i)^Aten[çc][ãa]o: Responda apenas',
+                      r'^PROVA$', r'^TECNOLOGIAS$'],   # título de área com as palavras soltas (justificado)
             'suporte': [r'(?i)(responda|responder)\b.*\bquest', r'(?i)\bpara responder( [àa]s?)?\s*$', r'(?i)\bin order to answer\b',
-                        r'(?i)\bto answer\s+(the\s+)?questions?\b', r'(?i)^textos? para as quest'],
+                        r'(?i)\bto answer\s+(the\s+)?questions?\b', r'(?i)^textos? para as quest',
+                        r'(?i)\bresponda\s+[àa]s?\s*$'],
+            # instrução em duas linhas com entrelinha apertada (a 2ª começa antes do pé da 1ª)
+            'suporte_aperto': True,
+            'pe_fio': True,   # borda da caixa seguinte no pé do print
+            'pe_cor': (164, 164, 164),   # barra cinza do rodapé da página
             'gabarito': gab, 'area': lambda n: 'Conhecimentos gerais',
         }
     uft('uft-2022-1', 2022, 1)
@@ -157,6 +168,7 @@ def mais_provas():
     # 2022/2: "Texto II" depois da questão 07 é o texto da 08 (que relaciona os textos I e II)
     P['uft-2022-2']['suporte'] = P['uft-2022-2']['suporte'] + [r'^Texto II\s*$']
     P['uft-2022-2']['apoio_de'] = {8: [7]}
+    P['uft-2023-1']['anexa'] = {26: 25}   # "Com base na figura da QUESTÃO 25": a 25 vai junto
 
     # ----------------------------------------------------------------------------------------------- UFRR
     # Vestibular UFRR (CPV): Prova Integral (PI), que é a mesma da etapa 3 do seriado (E3): 72 questões A–E em 9
