@@ -485,7 +485,7 @@ def liga_provas(provas):
             if pq['conteudo'] not in subs[m]:
                 fora['conteudo_desconhecido'] += 1
                 continue
-            if pq.get('gab') not in LETRAS and pq.get('gab') not in (None, ''):
+            if pq.get('gab') not in (None, '') and pq.get('gab') not in LETRAS:
                 fora['gabarito_invalido'] += 1   # sem gabarito (None) entra fora do ar, à espera do gabarito do Aprendice
                 continue
             if pq['id'] in ids:

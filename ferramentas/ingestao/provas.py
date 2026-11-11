@@ -2426,3 +2426,8 @@ PROVAS.update(_grupo_c)
 # ------------------------------------------------------- Grupo B (IME, Mackenzie, UEA, UFRR, UFT, Unitins, UNIRG)
 from provas_grupo_b import mais_provas as _mais_grupo_b  # noqa: E402
 PROVAS.update(_mais_grupo_b())
+
+
+# ------------------------------------- Provas sem gabarito definitivo publicado (princípio 2 novo, dono, 11/11/2026)
+from provas_sem_gabarito import PROVAS as _sem_gab  # noqa: E402
+PROVAS.update(_sem_gab)

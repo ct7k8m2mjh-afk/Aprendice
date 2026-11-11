@@ -1569,7 +1569,11 @@ def processa(pid, amostra=False, so_texto=False):
     (destino / 'q').mkdir(parents=True, exist_ok=True)
     questoes = {}
     relatorio = {'sem_gabarito': [], 'anuladas': [], 'faltando': [], 'duplicadas': [], 'suspeitas': []}
-    gab = cfg['gabarito'](pasta)
+    gab = cfg['gabarito'](pasta) if cfg.get('gabarito') else {}
+    # princípio 2 (dono, 11/11/2026): prova sem gabarito oficial publicado (ou só com o preliminar) entra com gab None;
+    # a letra do preliminar (ou de resolução publicada) vai em gab_preliminar; anulada no preliminar continua fora ('X')
+    sem_gab = bool(cfg.get('sem_gabarito_oficial'))
+    pre = cfg['gabarito_preliminar'](pasta) if callable(cfg.get('gabarito_preliminar')) else (cfg.get('gabarito_preliminar') or {})
     if callable(cfg.get('_suportes')):   # textos de apoio localizados a partir dos arquivos (UERJ: texto base, texto do inglês)
         cfg['suporte_forcado'] = cfg['_suportes'](pasta)
     if callable(cfg.get('_ancoras')):   # rótulo de questão desenhado (sem camada de texto): âncoras achadas no desenho
@@ -1848,6 +1852,8 @@ def processa(pid, amostra=False, so_texto=False):
             estr = None if (st is True or (st and n in st)) else transcreve(pdf, sup + segs, cfg['ancora'], tuple(cfg.get('corte', [])) + tuple(cfg.get('fim', [])) + tuple(cfg.get('apagar', [])),
                               cfg.get('alternativas', 5), ocr=id(pdf) in _OCR)
             g = gab.get(n)
+            if sem_gab and g in (None, ''):
+                g = 'X' if pre.get(n) == 'X' else None
             area_q = cfg['area'](n) if cfg.get('area_do_gabarito') else (secao or cfg['area'](n))
             if cfg.get('area_da_materia') and (cls_anterior.get(n) or {}).get('materia'):
                 # caderno sem títulos de matéria: a área do simulado vem da matéria já classificada da questão
@@ -1858,6 +1864,8 @@ def processa(pid, amostra=False, so_texto=False):
                 'texto': texto(pdf, sup + segs),
                 'print': f'q/{n:03d}.webp', 'larg': img.width, 'alt': img.height,
             }
+            if sem_gab and g is None and pre.get(n) in tuple('ABCDE'):
+                questoes[n]['gab_preliminar'] = pre[n]
             if cfg.get('texto_ocr_print') and not so_texto:
                 questoes[n]['texto'] = ocr_imagem(img)
             if cfg.get('troca_texto'):   # caractere usado no PDF no lugar do espaço (ex.: "¬" na Fuvest 2026)
@@ -1875,7 +1883,8 @@ def processa(pid, amostra=False, so_texto=False):
         if n not in questoes:
             relatorio['faltando'].append(n)
         elif questoes[n]['gab'] in (None, ''):
-            relatorio['sem_gabarito'].append(n)
+            if not sem_gab:
+                relatorio['sem_gabarito'].append(n)
         elif questoes[n]['gab'] == 'X':
             relatorio['anuladas'].append(n)
     for n in cfg.get('excluir', {}):
@@ -1886,7 +1895,7 @@ def processa(pid, amostra=False, so_texto=False):
             relatorio.setdefault('recorte_imperfeito', []).append(n)
             if n in relatorio['faltando']:
                 relatorio['faltando'].remove(n)
-    validas = [q for q in questoes.values() if q['gab'] in tuple('ABCDE')]
+    validas = [q for q in questoes.values() if q['gab'] in tuple('ABCDE') or (sem_gab and q['gab'] is None)]
     numeros_do_caderno(cads, validas)
     for q in validas:
         h = hashlib.sha1(f"{man['arquivos'][q['caderno']]['sha256']}:{q['n']}".encode()).hexdigest()[:8]

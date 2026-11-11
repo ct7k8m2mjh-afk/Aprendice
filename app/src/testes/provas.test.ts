@@ -24,7 +24,12 @@ describe.skipIf(!temProvas)('provas completas (recorte oficial)', () => {
   it('gabarito oficial dentro das alternativas da prova; anuladas fora', () => {
     for (const p of provas) {
       const letras = 'ABCDE'.slice(0, p.alternativas);
-      for (const q of p.questoes) expect(letras).toContain(q.gab);
+      for (const q of p.questoes) {
+        // princípio 2 (dono, 11/11/2026): sem gabarito publicado, gab null (e, se houver, a letra do preliminar)
+        if (q.gab === null) {
+          if (q.gab_preliminar != null) expect(letras).toContain(q.gab_preliminar);
+        } else expect(letras).toContain(q.gab);
+      }
     }
   });
 

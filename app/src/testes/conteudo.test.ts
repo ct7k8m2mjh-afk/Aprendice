@@ -112,7 +112,9 @@ describe.skipIf(!temConteudo)('questões das provas nos exercícios', () => {
         if (!provas.has(q.prova!)) provas.set(q.prova!, ler(join(FONTE_PROVAS, q.prova!, 'prova.json')));
         const orig = provas.get(q.prova!)!.questoes.find((x) => x.id === q.id);
         expect(orig, `${q.id} está na prova ${q.prova}`).toBeTruthy();
-        expect(q.gab, q.id).toBe(orig!.gab);
+        if (orig!.gab) expect(q.gab, q.id).toBe(orig!.gab);
+        // sem gabarito publicado: fora do ar até o gabarito do Aprendice (dois especialistas às cegas)
+        else expect(q.gab === '' ? q.pendente : (q as { gabFonte?: string }).gabFonte, q.id).toBeTruthy();
         expect(q.url, q.id).toMatch(/^https?:\/\//);
         expect(q.escola && q.ano && q.n, q.id).toBeTruthy();
         expect(existsSync(join(DEST, q.print!)), `print ${q.print}`).toBe(true);
