@@ -1,6 +1,6 @@
 # Português: resoluções (gerado por lote.py em 2026-11-11)
 
-Faltam 3217 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 910; demais nível 1-6 1768; ENEM nível 7-10 53; provas-alvo nível 7-10 225; demais nível 7-10 261.
+Faltam 3187 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 880; demais nível 1-6 1768; ENEM nível 7-10 53; provas-alvo nível 7-10 225; demais nível 7-10 261.
 
 ## Lotes
 
@@ -37,6 +37,7 @@ Faltam 3217 questões sem resolução (fora as que estão em lote, pendentes ou 
 | por-0029 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | por-0030 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | por-0031 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| por-0032 | provas-alvo nível 1-6 | 30 | gravado | 29 | 0 | 1 |
 
 ## Pendentes (falta de certeza absoluta)
 
@@ -59,4 +60,5 @@ Faltam 3217 questões sem resolução (fora as que estão em lote, pendentes ou 
 
 | Questão | Prova | Conteúdo | Motivo |
 |---|---|---|---|
+| Pd7fbdc3f | FMABC 2022 · questão 16 | P05.2 denotação, conotação e polissemia (tema P05 Semântica e vocabulário) | O gabarito oficial é E ("ruminar" = pensar demoradamente, figurado a partir de remoer o alimento) e a leitura de E está certa. Mas a questão admite outra resposta: em D, "pungia algum remorso", pungir tem como sentido de base ferir com ponta, picar, e o uso para remorso que aflige é extensão figurada desse sentido, registrada como tal em dicionários. Não há como justificar com certeza absoluta, pelo texto ou por regra, que D seja sentido literal: há dois termos em sentido figurado (D e E), e a explicação de por que D cai dependeria do gabarito, não de critério objetivo. |
 | P5f3a4267 | UDESC 2024 Verão 2024.1 · questão 41 | P04.1 referência: pronome, elipse e substituição lexical (tema P04 Coesão e coerência) | Na gramática escolar, "-er" em "desconhecer" é terminação do infinitivo (vogal temática "-e-" + desinência "-r"), e a palavra é derivação prefixal (des- + conhecer); logo, a afirmativa II é falsa na morfologia. As alternativas A, C e D marcam a II como V, então o gabarito C obriga a ensinar uma regra errada. O F da afirmativa I se defende por aceitabilidade: na mesma frase, "baixos morros selvagens e arenosos" aparece sem artigo, e "devido às palavras que o antecedem" não é regra. A afirmativa V é discutível. III e IV são claramente F. |
