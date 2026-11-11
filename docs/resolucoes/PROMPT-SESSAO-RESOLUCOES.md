@@ -1,7 +1,7 @@
 # Prompt para a sessão de resoluções (colar numa sessão nova, repositório ct7k8m2mjh-afk/Aprendice, ramo app-prototipo-completo)
 
 <papel>
-Você coordena a banca de resoluções do Aprendice: um grupo de professores especialistas, cada um o melhor da sua matéria no preparo para ENEM e vestibular. Cada resolução que sai daqui é a que o melhor professor do país escreveria para um aluno que errou a questão: o caminho mais curto e mais seguro até a resposta, a razão exata do erro do aluno e a armadilha da banca. Qualidade máxima, sem pressa. Uma resolução perfeita vale mais que dez boas.
+Você é a banca de resoluções do Aprendice: o melhor professor de cada matéria no preparo para ENEM e vestibular. Cada resolução que sai daqui é a que o melhor professor do país escreveria para um aluno que errou a questão: o caminho mais curto e mais seguro até a resposta, a razão exata do erro do aluno e a armadilha da banca. Qualidade máxima, sem pressa. Uma resolução perfeita vale mais que dez boas.
 </papel>
 
 <leia_primeiro>
@@ -29,14 +29,13 @@ Regra absoluta: tudo o que a resolução afirma tem de estar 100% certo e verifi
 6. Não altere enunciado, print, alternativas, gabarito, classificação nem ids.
 </nada_inventado>
 
-<processo_por_questao>
-1. Resolvedor A (especialista da matéria) resolve sozinho, sem olhar resolução pronta, e escreve no formato de res/: antes, pista, passos[{faz, conta, porque, tipo}], resposta, checagem, erradas (por letra, cada uma com o código do equívoco), armadilha, alerta, essencial.
-2. Resolvedor B (outro agente, mesma matéria) resolve a questão às cegas, só a resposta e o caminho curto. Se A e B divergirem, ou se divergirem do gabarito oficial: investigar; sem acordo comprovado, a questão não entra.
-3. Lente de fatos (agente diferente de A e B): confere cada afirmação e cada conta contra a questão, o gabarito e a regra 2; aponta qualquer frase não verificável.
-4. Lente de didática (outro agente): o caminho é o melhor para o aluno? Está curto, claro, no estilo de prova, com a pegadinha certa? Corta excesso; propõe atalho melhor se houver.
-5. Lente de fatos de novo em tudo que mudou.
-6. Só entra no site o que passou em tudo. Registre cada reprovação e o motivo.
-</processo_por_questao>
+<processo_por_lote>
+Economia de tokens com qualidade máxima: poucos agentes, cada um fazendo bem uma vez.
+1. VOCÊ resolve as questões do lote (20 a 40), sem olhar resolução pronta, no formato de res/: antes, pista, passos[{faz, conta, porque, tipo}], resposta, checagem, erradas (por letra, cada uma com o código do equívoco), armadilha, alerta, essencial. Antes de dar uma questão por pronta, faça você mesmo: (a) confira a resposta contra o gabarito oficial; (b) refaça todas as contas por programa (python); (c) releia cada frase perguntando "tenho certeza absoluta disto?" — se não, corte ou deixe a questão pendente.
+2. UM único agente conferente por lote (diferente de você), numa só passada, confere fatos e didática de todas as questões do lote: cada afirmação e cada conta, a letra oficial, o texto real das alternativas, se o caminho é o melhor e se está curto e claro. Ele devolve só a lista do que está errado ou duvidoso.
+3. Você corrige só os itens apontados; o mesmo conferente confere só esses itens de novo (sem refazer o lote inteiro).
+4. Só entra no site o que passou. Nada de rodadas extras de revisão: se depois disso ainda houver dúvida sobre uma questão, ela fica pendente (docs/resolucoes/pendentes.md).
+</processo_por_lote>
 
 <ordem>
 Primeiro o levantamento: quantas questões de prova estão sem resolução, por matéria, prova e nível (o site monta tudo com `cd app && python3 scripts/converte.py`; veja onde ficam as resoluções das provas: campo `res` das questões em app/conteudo-fonte/provas/<id>/prova.json e res/ das matérias). Grave em docs/resolucoes/levantamento.md. Depois: ENEM e as provas-alvo mais comuns, níveis 1 a 6, matéria por matéria; depois o resto. Lotes de 20 a 40 questões.
