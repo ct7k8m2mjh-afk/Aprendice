@@ -9,11 +9,13 @@ Onde ficam: `app/conteudo-fonte/provas/<prova>/resolucoes.json` (uma entrada por
 | Lote | Matéria | Recorte | Resolvidas | Aprovadas | Reprovadas | Divergência de gabarito | Pendentes |
 |---|---|---|---:|---:|---:|---:|---:|
 | 01 | Biologia | ENEM 2020–2025, níveis 1 a 3 | 34 | 34 | 0 | 0 | 0 |
-| 02 | Matemática | ENEM 2020–2025, níveis 1 e 2 e parte do 3 | 28 | 28 | 0 | 0 | 2 |
+| 02 | Matemática | ENEM 2020–2025, níveis 1 e 2 e parte do 3 | 28 | 28 | 0 | 0 | 0 (as 2 entraram no lote 04b) |
 | 03 | Matemática | ENEM 2020–2025, restante do nível 3 | 32 | 32 | 0 | 0 | 0 |
-| **Total** | | | **94** | **94** | **0** | **0** | **2** |
+| 04 | Matemática | ENEM 2020–2025, nível 4 | 30 | 30 | 0 | 0 | 0 |
+| 04b | Matemática | as 2 pendentes do lote 02, com prints refeitos | 2 | 2 | 0 | 0 | 0 |
+| **Total** | | | **126** | **126** | **0** | **0** | **0** |
 
-No site montado: Biologia passou de 195 para 229 questões com resolução; Matemática, de 552 para 610 (duas das 60 de Matemática são a mesma questão que já existia no banco antigo com resolução: ENEM 2024 q145 e ENEM 2021 q178; a resolução antiga continua valendo nelas).
+No site montado: Biologia passou de 195 para 229 questões com resolução; Matemática, de 552 para 640. Quatro das 92 de Matemática são a mesma questão que já existia no banco antigo com resolução (ENEM 2024 q145, ENEM 2021 q178, ENEM 2020 q168 e ENEM 2023 q155); a resolução antiga continua valendo nelas.
 
 ## Lote 01 — Biologia, ENEM, níveis 1 a 3 (11/11/2026)
 
@@ -32,6 +34,23 @@ No site montado: Biologia passou de 195 para 229 questões com resolução; Mate
 - 32 questões; as 32 bateram com o gabarito oficial; contas refeitas por programa.
 - Conferente: 19 limpas; 16 apontamentos em 13 questões (nenhum de gabarito). O mais importante: na ENEM 2021 q162 (imposto por faixas), "três pontos bastam" estava errado, porque o gráfico em degraus também passa pelos três; entrou o teste em R = 7 500. Demais: código de equívoco, símbolo sem uso, checagem que não separava duas alternativas, justificativa do "mês mais chuvoso", definição de "inversamente proporcional". Volta: 32 aprovadas.
 
+## Lote 04 — Matemática, ENEM, nível 4 (11/11/2026)
+
+- 30 questões; as 30 bateram com o gabarito oficial; contas refeitas por programa pela banca e pelo conferente.
+- Conferente: 13 limpas; 24 apontamentos em 17 questões (nenhum de gabarito). Erros de fato corrigidos: na ENEM 2024 q152, a explicação da alternativa E dizia "ordem das exportações" e é a ordem das importações; na ENEM 2023 q173, um caminho de eliminação esquecia a alternativa C; na ENEM 2021 q150, "45,4 = 236 ÷ 519,2" não fecha (dá 45,45) e virou teste. O conferente achou a origem exata de nove alternativas erradas que estavam só com teste (ex.: 16 514 = 28 900 ÷ 1,75; 1,31 = 236 ÷ 180; 42 = 1 122 − 1 080). Três armadilhas que não levavam a nenhuma alternativa foram trocadas, e três quadros foram alinhados ao caminho dos passos. Volta: 30 aprovadas.
+
+## Lote 04b — as duas pendentes do lote 02 (11/11/2026)
+
+- A sessão principal refez os prints a partir do PDF oficial (ENEM 2020 q175) e gerou uma ampliação da ENEM 2020 q176 (`docs/resolucoes/apoio/Pe5e6840f.png`).
+- q175 (gráfico do lucro): resolvida pela diferença ponto a ponto; letra oficial A.
+- q176 (projeções de um sólido de quatro cubos): cada alternativa foi recortada e ampliada; banca e conferente contaram os quadrados de cada sombra, separadamente, e chegaram às mesmas leituras (C e D espelhadas, A com alturas diferentes nas duas paredes, B com a sombra da parede esquerda uma coluna deslocada); letra oficial E.
+- Conferente: conferência completa das duas; 2 ajustes de redação na q176. Aprovadas.
+
+## Conferência no site (lotes 04 e 04b)
+
+- `converte.py`, `tsc` e `vitest`: verde (18 arquivos, 766 testes).
+- Abertas no navegador (390 px): ENEM 2020 q176, q175 e q172, com os 4 blocos na ordem, fração empilhada e sem rolagem lateral. Animação assistida até o fim em ENEM 2020 q172 (5/5), ENEM 2021 q136 (6/6, com as potências de φ desenhadas certas) e ENEM 2020 q175 (5/5).
+
 ## Conferência no site (lotes 01 a 03)
 
 - `cd app && python3 scripts/converte.py && npx tsc --noEmit -p . && npx vitest run`: verde (18 arquivos, 766 testes).
@@ -40,6 +59,6 @@ No site montado: Biologia passou de 195 para 229 questões com resolução; Mate
 
 ## O que falta (Matemática e Biologia do ENEM, níveis 1 a 6)
 
-- Matemática: níveis 4, 5 e 6 do ENEM (115 questões) e as 2 pendentes.
+- Matemática: níveis 5 e 6 do ENEM (85 questões).
 - Biologia: níveis 4, 5 e 6 do ENEM (50 questões).
 - Depois: demais matérias do ENEM e as provas-alvo mais comuns (ver `levantamento.md`).

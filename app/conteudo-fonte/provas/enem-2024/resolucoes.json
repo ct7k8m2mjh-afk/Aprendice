@@ -1588,5 +1588,237 @@
    "data": "2026-11-11",
    "lote": "lote03"
   }
+ },
+ "P0b926498": {
+  "n": 150,
+  "conceito": "Número mínimo de colunas para vãos de até 15 cm em 3 m de largura, para cada diâmetro, e custo total.",
+  "resolucao": {
+   "antes": {
+    "texto": "As colunas ficam em linha ao longo dos 3 m (300 cm) de largura da sala. Com n colunas há n + 1 vãos: um antes da primeira, um depois da última e os que ficam entre elas. Cada vão tem no máximo 15 cm. Então n diâmetros mais (n + 1) vãos de 15 cm têm de cobrir os 300 cm. O diâmetro é o dobro do raio.",
+    "formulas": [],
+    "simbolos": [
+     [
+      "raio",
+      "metade do diâmetro da coluna"
+     ],
+     [
+      "vão",
+      "espaço livre entre duas colunas ou entre uma coluna e a parede"
+     ]
+    ]
+   },
+   "pista": "Com n colunas, quantos vãos existem? Que comprimento n colunas e esses vãos, no tamanho máximo, conseguem cobrir?",
+   "passos": [
+    {
+     "faz": "Monte a condição",
+     "conta": "n × diâmetro + (n + 1) × 15 ≥ 300 → n × (diâmetro + 15) ≥ 285",
+     "porque": "As colunas e os vãos máximos têm de alcançar os 300 cm.",
+     "tipo": "aplicar"
+    },
+    {
+     "faz": "Ache o mínimo de colunas de cada loja",
+     "conta": "I (10 cm): 285 ÷ 25 = 11,4 → 12 · II (20 cm): 285 ÷ 35 ≈ 8,1 → 9 · III (24 cm): 285 ÷ 39 ≈ 7,3 → 8 · IV (30 cm): 285 ÷ 45 ≈ 6,3 → 7 · V (40 cm): 285 ÷ 55 ≈ 5,2 → 6",
+     "porque": "Arredonde sempre para cima: não existe pedaço de coluna.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique pelo preço",
+     "conta": "I: 12 × 60 = 720 · II: 9 × 70 = 630 · III: 8 × 75 = 600 · IV: 7 × 90 = 630 · V: 6 × 120 = 720",
+     "porque": "Custo = número de colunas × preço da unidade.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare",
+     "conta": "600 < 630 = 630 < 720 = 720",
+     "porque": "O menor valor é o da loja III.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C: com as colunas da loja III (diâmetro 24 cm) bastam 8 unidades, por 8 × 75 = R$ 600,00.",
+   "checagem": "Confira a loja III: 8 colunas ocupam 8 × 24 = 192 cm; sobram 108 cm para 9 vãos, 12 cm cada, dentro do limite de 15 cm. Com 7 colunas sobrariam 132 cm para 8 vãos: 16,5 cm, acima do limite.",
+   "erradas": {
+    "A": "A coluna da loja I é a mais barata (R$ 60,00), mas é fina: são necessárias 12, e 12 × 60 = R$ 720,00.",
+    "B": "Na loja II são necessárias 9 colunas de 20 cm: 9 × 70 = R$ 630,00, mais que os R$ 600,00 da loja III.",
+    "D": "Na loja IV são necessárias 7 colunas de 30 cm: 7 × 90 = R$ 630,00, mais que os R$ 600,00 da loja III.",
+    "E": "A coluna da loja V é a mais larga e exige menos unidades (6), mas é a mais cara: 6 × 120 = R$ 720,00."
+   },
+   "armadilha": "Usar o raio como largura da coluna, ou esquecer que há um vão a mais que o número de colunas.",
+   "alerta": "",
+   "essencial": {
+    "pede": "a loja com menor custo total",
+    "chave": "n × (diâmetro + 15) ≥ 285, arredondando n para cima; depois n × preço",
+    "cuidado": "diâmetro = 2 × raio; vãos = colunas + 1"
+   }
+  },
+  "equivocos": {
+   "A": "M04.5:menor-preco-unitario-por-menor-custo",
+   "B": "M04.5:custo-total-nao-comparado",
+   "D": "M04.5:custo-total-nao-comparado",
+   "E": "M04.5:menor-quantidade-por-menor-custo"
+  },
+  "caminhos": [
+   {
+    "nome": "teste direto",
+    "ideia": "Para cada loja, teste o número de colunas: os vãos medem (300 − n × diâmetro) ÷ (n + 1) e têm de dar no máximo 15 cm."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "n · d + (n + 1) · 15 ≥ 300",
+    "nota": "colunas mais vãos máximos cobrem a largura"
+   },
+   {
+    "linha": "n · (d + 15) ≥ 285",
+    "nota": "junte os termos com n e passe o 15 para o outro lado"
+   },
+   {
+    "linha": "I: d = 10 → n ≥ 285/25 = 11,4 → 12 → 12 × 60 = 720",
+    "nota": ""
+   },
+   {
+    "linha": "II: d = 20 → n ≥ 285/35 ≈ 8,1 → 9 → 9 × 70 = 630",
+    "nota": ""
+   },
+   {
+    "linha": "III: d = 24 → n ≥ 285/39 ≈ 7,3 → 8 → 8 × 75 = 600",
+    "nota": "o menor custo"
+   },
+   {
+    "linha": "IV: d = 30 → n ≥ 285/45 ≈ 6,3 → 7 → 7 × 90 = 630",
+    "nota": ""
+   },
+   {
+    "linha": "V: d = 40 → n ≥ 285/55 ≈ 5,2 → 6 → 6 × 120 = 720",
+    "nota": ""
+   }
+  ],
+  "visual": {
+   "cabe": false,
+   "tipo": "nenhum",
+   "porque": "O quadro já mostra a conta inteira, linha por linha; uma figura a mais não acrescentaria nada.",
+   "roteiro": ""
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor",
+    "conferente (fatos e didática)",
+    "conferente-volta"
+   ],
+   "data": "2026-11-11",
+   "lote": "lote04"
+  }
+ },
+ "P4eed5d02": {
+  "n": 152,
+  "conceito": "Saldo = exportações − importações em três instantes de um gráfico de duas linhas; ordenar, com atenção ao saldo negativo.",
+  "resolucao": {
+   "antes": {
+    "texto": "O saldo é a distância vertical entre as duas linhas: exportações menos importações. Quando a linha das exportações (preta) está acima, o saldo é positivo. Quando fica abaixo da linha das importações (cinza), o saldo é negativo, e todo número negativo é menor que qualquer positivo.",
+    "formulas": [
+     "saldo = exportações − importações"
+    ],
+    "simbolos": [
+     [
+      "saldo",
+      "exportações menos importações"
+     ],
+     [
+      "S1, S2, S3",
+      "saldos em junho de 2009, janeiro de 2010 e junho de 2010"
+     ]
+    ]
+   },
+   "pista": "Em cada um dos três meses, qual linha está por cima? De quanto é a distância entre elas?",
+   "passos": [
+    {
+     "faz": "Leia junho de 2009",
+     "conta": "exportações ≈ 14,5 · importações = 10 → S1 ≈ 4,5",
+     "porque": "Início do gráfico: as linhas estão bem afastadas.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Leia janeiro de 2010",
+     "conta": "a linha preta fica um pouco ABAIXO da cinza → S2 é negativo",
+     "porque": "Importações maiores que exportações.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Leia junho de 2010",
+     "conta": "17,1 − 14,8 = 2,3 → S3 = 2,3",
+     "porque": "Os dois valores estão escritos no gráfico.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ordene do maior para o menor",
+     "conta": "4,5 > 2,3 > negativo → S1, S3, S2",
+     "porque": "É a alternativa A.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A: S1 ≈ 4,5; S3 = 2,3; S2 é negativo. Do maior para o menor: S1, S3 e S2.",
+   "checagem": "Não é preciso ler os valores com precisão. Em junho de 2009 as linhas estão quase duas vezes mais afastadas que em junho de 2010; em janeiro de 2010 elas estão invertidas.",
+   "erradas": {
+    "B": "S2, S1, S3 é a ordem das exportações, da menor para a maior (cerca de 11,3; 14,5; 17,1). O saldo é exportações menos importações, e a ordem pedida é do maior para o menor.",
+    "C": "S2, S3, S1 é a ordem certa de trás para a frente: do menor para o maior. A pergunta pede do maior para o menor.",
+    "D": "Põe S3 na frente de S1. Junho de 2010 tem a maior exportação dos três meses destacados, mas o saldo é a diferença: 2,3, contra cerca de 4,5 em junho de 2009.",
+    "E": "S3, S2, S1 é a ordem das importações, da maior para a menor (14,8; cerca de 11,6; 10). O saldo é a diferença entre as linhas: S1 é o maior e S2, negativo, o menor."
+   },
+   "armadilha": "Ordenar pelas exportações (17,1 é o maior dos três meses destacados) em vez de ordenar pela diferença entre as duas linhas.",
+   "alerta": "",
+   "essencial": {
+    "pede": "a ordem dos três saldos, do maior para o menor",
+    "chave": "saldo = distância entre as linhas, com sinal",
+    "cuidado": "onde as linhas se invertem, o saldo é negativo"
+   }
+  },
+  "equivocos": {
+   "B": "M05.3:ordenou-pelas-exportacoes",
+   "C": "M05.3:ordem-invertida",
+   "D": "M05.3:maior-valor-por-maior-diferenca",
+   "E": "M05.3:ordenou-pelas-importacoes"
+  },
+  "caminhos": [
+   {
+    "nome": "pelo desenho",
+    "ideia": "A área entre as linhas mostra o saldo: larga em junho de 2009, estreita em junho de 2010 e invertida em janeiro de 2010."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "S1 ≈ 14,5 − 10 = 4,5",
+    "nota": "junho de 2009"
+   },
+   {
+    "linha": "S2 < 0",
+    "nota": "janeiro de 2010: importações acima das exportações"
+   },
+   {
+    "linha": "S3 = 17,1 − 14,8 = 2,3",
+    "nota": "junho de 2010"
+   },
+   {
+    "linha": "S1 > S3 > S2",
+    "nota": "do maior para o menor"
+   }
+  ],
+  "visual": {
+   "cabe": false,
+   "tipo": "nenhum",
+   "porque": "O quadro já mostra a conta inteira, linha por linha; uma figura a mais não acrescentaria nada.",
+   "roteiro": ""
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor",
+    "conferente (fatos e didática)",
+    "conferente-volta"
+   ],
+   "data": "2026-11-11",
+   "lote": "lote04"
+  }
  }
 }
