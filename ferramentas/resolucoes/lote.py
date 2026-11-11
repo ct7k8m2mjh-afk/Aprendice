@@ -191,10 +191,12 @@ def separa_alternativas(texto, letras):
     return enun, alts
 
 
-def norm_cit(x):
+def norm_cit(x, caixa=False):
     """Normaliza para comparar citação com a prova: minúsculas, junta palavra partida no fim da linha, tira aspas
     e pontuação das pontas, espaços simples."""
-    x = str(x).lower().replace('\u00ad', '')
+    x = str(x).replace('\u00ad', '')
+    if not caixa:
+        x = x.lower()
     x = re.sub(r'(\w)-\s*\n\s*(\w)', r'\1\2', x)
     x = re.sub(r'(\w)- (\w)', r'\1\2', x)
     x = re.sub(r'[“”"«»]', '', x).replace('‘', "'").replace('’', "'")
@@ -456,11 +458,14 @@ def confere(saida):
         if alts_e.get(gab) and toks(r['pista']) and len(toks(r['pista']) & toks(alts_e[gab])) / max(len(toks(alts_e[gab])), 1) > 0.6:
             avisos.append(f'{qid}: a pista parece entregar a alternativa {gab}')
         fonte_txt = norm_cit(' '.join((e.get('texto_da_prova') or '', ' '.join(alts_e.values()))))
+        fonte_caixa = norm_cit(' '.join((e.get('texto_da_prova') or '', ' '.join(alts_e.values()))), caixa=True)
         if fonte_txt and not e.get('ler_o_print'):
             for cit in re.findall(r'“([^”]{15,})”', texto_todo(ps) + ' ' + texto_todo(erradas)):
                 pedacos = [norm_cit(x) for x in re.split(r'\[[^\]]{0,12}\]|\(\s*\.\.\.\s*\)|…', cit)]
                 if any(len(x) >= 15 and x not in fonte_txt for x in pedacos):
                     avisos.append(f'{qid}: citação entre aspas não bate com o texto da prova (confira letra por letra no print): “{cit[:60]}”')
+                elif fonte_caixa and any(len(x) >= 15 and x not in fonte_caixa for x in [norm_cit(y, caixa=True) for y in re.split(r'\[[^\]]{0,12}\]|\(\s*\.\.\.\s*\)|…', cit)]):
+                    avisos.append(f'{qid}: citação com maiúsculas/minúsculas diferentes da prova (copie como está, inclusive balão em CAIXA ALTA): “{cit[:60]}”')
         tc = toks(r['checagem'])
         for i, p in enumerate(ps, 1):
             tp = toks(str(p.get('conta', '')) + ' ' + str(p.get('porque', '')))
