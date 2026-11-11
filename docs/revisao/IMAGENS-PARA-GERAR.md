@@ -62,6 +62,53 @@ Cada linha diz o que ilustrar. Nome do arquivo: `<id do subtema>.png` (ex.: B01.
 - **Q01.3** Distribuição eletrônica e íons: Diagrama de Pauling com setas diagonais e caixinhas de orbitais de 1s a 4p preenchidas por meias-setas, e a distribuição de um íon com a camada de valência.
 - **Q01.3** Hund, números quânticos e magnetismo: Três caixinhas do subnível 3p recebendo uma meia-seta cada antes de parear (regra de Hund). Ao lado, uma amostra atraída por um ímã (paramagnética).
 
+### Q02 — Ligações e forças entre moléculas
+
+- **Q02.1** Ligação iônica: Átomo de sódio entregando um elétron ao cloro, os dois íons se atraindo e formando o retículo cristalino do sal, com cargas + e − alternadas.
+- **Q02.2** Covalente: quantas ligações: Moléculas H₂O, NH₃, CH₄ e CO₂ com pares de elétrons compartilhados, mostrando 2, 3, 4 ligações por átomo e as ligações duplas.
+- **Q02.2** Ligações sigma e pi: Dois orbitais p se sobrepondo de frente (sigma) e de lado (pi), e uma ligação dupla e uma tripla desenhadas com a contagem de cada tipo.
+- **Q02.3** Geometria pelas nuvens: Quatro moléculas, linear (CO₂), trigonal plana (BF₃), tetraédrica (CH₄) e angular (H₂O), com as nuvens de elétrons e o par isolado destacado.
+- **Q02.3** Polaridade da molécula: CO₂ com setas de dipolo opostas se cancelando e H₂O com setas somando um vetor resultante, mostrando molécula apolar e polar.
+- **Q02.4** Forças intermoleculares: Três quadros de moléculas vizinhas: dipolo induzido, dipolo-dipolo e ligação de hidrogênio (H preso a F, O ou N), com a força crescente.
+- **Q02.4** Ebulição e solubilidade: Gráfico de ponto de ebulição de hidretos dos grupos 14 a 17 com a água fora da curva, e um copo com óleo e água separados ('semelhante dissolve semelhante').
+- **Q02.5** Ligação metálica e ligas: Cátions metálicos num mar de elétrons livres, um fio conduzindo corrente e uma peça de liga (bronze) com átomos de tamanhos diferentes.
+
+### Q03 — Funções inorgânicas e nox
+
+- **Q03.1** Ácido e base: três teorias: Três quadros: Arrhenius (H⁺ e OH⁻ na água), Brønsted-Lowry (doa e recebe próton) e Lewis (par de elétrons), cada um com um exemplo.
+- **Q03.1** Nome dos ácidos: Tabela com terminações ídrico, ico e oso, e ácidos comuns (HCl, H₂SO₄, HNO₃, H₃PO₄) com o nome ao lado de cada fórmula.
+- **Q03.2** Sais: nome e fórmula: Um sal formado de cátion e ânion com a regra do nome (ânion de cátion), e a neutralização ácido + base → sal + água.
+- **Q03.2** Óxidos: classificação: Quatro caixas de óxidos, ácidos, básicos, anfóteros e neutros, cada uma com um exemplo e a reação com água ou ácido.
+- **Q03.3** Tipos de reação inorgânica: Quatro esquemas de reação, síntese, decomposição, simples troca e dupla troca, com peças coloridas se combinando e se separando.
+- **Q03.3** Balanceamento por tentativa: Equação química com a balança de átomos de cada lado e os coeficientes sendo ajustados até igualar o número de átomos.
+- **Q03.4** Cálculo do nox: Uma molécula com o nox de cada átomo escrito e a soma igual à carga, com a lista de noxes fixos (H +1, O −2, grupo 1 +1).
+- **Q03.4** Oxidante e redutor: Uma reação com elétrons indo de uma espécie à outra, com o redutor perdendo elétrons (oxida) e o oxidante ganhando (reduz).
+- **Q03.5** Substância, mistura e alotropia: Frascos de substância pura, mistura homogênea e heterogênea, e dois alótropos do carbono, grafite e diamante, com a estrutura de cada.
+- **Q03.5** Separação de misturas: Seis aparelhos de separação (filtração, decantação, destilação simples e fracionada, catação, imantação) e a mistura de cada um.
+
+### Q04 — Mol e estequiometria
+
+- **Q04.1** Mol e massa molar: Uma balança com 12 g de carbono e 18 g de água, cada uma com 1 mol, e a ligação entre massa atômica na tabela e massa molar em g/mol.
+- **Q04.1** Avogadro: contar partículas: Um frasco com 1 mol e a constante de Avogadro (6,02 × 10²³) como um enorme mar de partículas, com a conversão mol para número de moléculas.
+- **Q04.2** Fórmula mínima e molecular: Porcentagens de uma amostra virando mol e depois a razão mínima, e a molecular como múltiplo da mínima usando a massa molar.
+- **Q04.3** Estequiometria direta: Equação balanceada com coeficientes como proporção em mol e uma regra de três em três linhas (grandeza dada, razão, grandeza pedida).
+- **Q04.4** Reagente limitante: Montagem de sanduíches: pães sobram e queijo acaba, comparando com as moléculas de um reagente limitante e o excesso sobrando.
+- **Q04.4** Pureza e rendimento: Uma amostra com parte pura e impurezas e um funil reduzindo o produto obtido em relação ao teórico, com as fórmulas de pureza e rendimento.
+- **Q04.5** Lavoisier e Proust: Dois retratos estilizados, uma balança com massa antes e depois igual (Lavoisier) e três experimentos com proporção fixa de massas (Proust).
+
+### Q05 — Soluções e concentração
+
+- **Q05.1** Concentração comum: Um béquer com soluto e solvente, a fórmula C = m/V em g/L e dois béqueres com volumes diferentes e a mesma quantidade de soluto.
+- **Q05.1** Densidade não é concentração: Dois copos de mesma solução com volumes diferentes e a mesma concentração, e uma balança comparando densidade (massa da solução por volume).
+- **Q05.2** Concentração em mol/L: Balão volumétrico com sólido sendo dissolvido até a marca, com a conversão de massa em mol e a fórmula M = n/V.
+- **Q05.3** Diluição: Um béquer concentrado recebendo água e passando a um béquer mais diluído, com a mesma quantidade de soluto e a fórmula C₁V₁ = C₂V₂.
+- **Q05.3** Mistura de soluções: Duas soluções de concentrações diferentes sendo misturadas num terceiro frasco, com a conta de mols somados dividida pelo volume final.
+- **Q05.3** Titulação: Bureta pingando base num erlenmeyer com ácido e indicador mudando de cor no ponto de equivalência, com a relação de mols.
+- **Q05.4** Título e porcentagem: Uma solução de 100 g com 10 g de soluto (título 0,1 ou 10%), mostrando a faixa colorida do soluto e a do solvente.
+- **Q05.4** Partes por milhão (ppm): Um bloco de 1 milhão de partículas com 1 destacada (1 ppm) e uma conversão para mg/L em água.
+- **Q05.5** Curva de solubilidade: Gráfico de solubilidade contra temperatura com duas substâncias, regiões abaixo (insaturada) e acima da curva (corpo de fundo), e um ponto lido.
+- **Q05.5** Saturada ou supersaturada: Três béqueres, insaturado, saturado com corpo de fundo e supersaturado (instável, cristalizando ao receber um cristal).
+
 ### Q06 — Gases
 
 - **Q06.2** Equação de Clapeyron: Cilindro com êmbolo móvel, partículas e manômetro, com P, V, n e T destacados e a equação PV = nRT escrita ao lado.
@@ -81,6 +128,78 @@ Cada linha diz o que ilustrar. Nome do arquivo: `<id do subtema>.png` (ex.: B01.
 - **Q07.3** Poder calorífico e combustíveis: Barras de combustíveis comparadas em kJ por grama, com o hidrogênio no topo, e um seletor entre kJ por grama e kJ por mol.
 - **Q07.1** Exotérmica e endotérmica no gráfico: Dois gráficos de entalpia, um descendo (exotérmica, ΔH < 0) e outro subindo (endotérmica, ΔH > 0), com a energia de ativação como um morro.
 - **Q07.1** O que muda o ΔH: Duas escadas de entalpia, estados físicos da água (gás, líquido, sólido) e formas alotrópicas do carbono, com o ΔH mudando conforme o degrau.
+
+### Q08 — Cinética, equilíbrio e pH
+
+- **Q08.1** Fatores da velocidade: Quatro quadros de colisões, mais temperatura, mais concentração, superfície maior (pó) e catalisador, com mais choques efetivos.
+- **Q08.1** Lei de velocidade: Gráfico de velocidade contra concentração com retas e curvas de ordem 1 e 2, e a lei v = k[A]ᵃ[B]ᵇ com o expoente lido da tabela.
+- **Q08.2** Catalisador e ativação: Gráfico de energia com a barreira da energia de ativação sem e com catalisador (barreira menor) e o complexo ativado no topo.
+- **Q08.3** Expressão de Kc: Reação reversível com setas nos dois sentidos, a expressão Kc = [produtos]/[reagentes] com os coeficientes como expoentes e um gráfico de concentração chegando ao equilíbrio.
+- **Q08.3** Kp e equilíbrio heterogêneo: Reação com gases e um sólido, a expressão de Kp só com os gases (sólido fora) e a relação entre Kp e Kc.
+- **Q08.4** Le Chatelier: concentração: Uma balança em equilíbrio recebendo mais reagente e inclinando para o lado dos produtos, com o gráfico de concentração mostrando o deslocamento.
+- **Q08.4** Pressão e temperatura: Um êmbolo comprimindo o gás e o equilíbrio indo para o lado de menos mols, e um termômetro com a reação endotérmica favorecida ao aquecer.
+- **Q08.5** Ka, Kb e força: Dois ácidos em escala de Ka, um forte quase todo ionizado e um fraco pouco ionizado, mostrando as moléculas em cada béquer.
+- **Q08.5** Grau de ionização: Béquer com 100 moléculas de ácido, 3 ionizadas (α = 3%), e o gráfico do grau de ionização crescendo na diluição.
+- **Q08.6** pH e pOH: Escala de pH de 0 a 14 colorida com exemplos (suco gástrico, água, sabão) e a relação pH + pOH = 14.
+- **Q08.6** Hidrólise de sais: Quatro sais mostrados com a origem (ácido e base fortes ou fracos), o pH resultante da solução de cada um e a seta da hidrólise.
+- **Q08.7** Solução-tampão: Dois béqueres, um com água pura que muda de pH ao pingar ácido e outro com tampão que quase não muda, com o par ácido fraco e base conjugada.
+- **Q08.7** Produto de solubilidade: Sal pouco solúvel no fundo de um béquer com íons em equilíbrio e a expressão Kps como produto das concentrações dos íons.
+
+### Q09 — Pilhas, eletrólise e radioatividade
+
+- **Q09.1** Pilha: ânodo e cátodo: Pilha de Daniell, duas cubas com lâminas de Zn e Cu, ponte salina, fio com elétrons indo do ânodo ao cátodo, e as semirreações.
+- **Q09.1** Diferença de potencial: Tabela de potenciais padrão com Zn e Cu e a conta ddp = E(cátodo) − E(ânodo), com o voltímetro marcando 1,10 V.
+- **Q09.2** Eletrólise ígnea e aquosa: Duas cubas com eletrodos, uma de NaCl fundido produzindo Na e Cl₂ e outra aquosa com H₂ e Cl₂, e a bateria impulsionando os elétrons.
+- **Q09.2** Leis de Faraday: Uma cuba com depósito de metal crescendo no cátodo, com a corrente e o tempo marcados e a conta de carga Q = i·t e mols de elétrons.
+- **Q09.3** Corrosão e metal de sacrifício: Um casco de aço com um bloco de zinco preso que se corrói no lugar do ferro, e o ferro enferrujando sem proteção.
+- **Q09.4** Alfa, beta e gama: Três emissões saindo do núcleo e atravessando uma folha de papel, uma placa de alumínio e uma de chumbo, com o poder de penetração de cada.
+- **Q09.4** Equações nucleares: Duas equações nucleares com A e Z dos dois lados, uma com alfa e outra com beta, e a conferência da soma em cada lado.
+- **Q09.5** Meia-vida: Gráfico de decaimento com a massa caindo pela metade a cada meia-vida, e uma tabela de quantas restam após 1, 2 e 3 meias-vidas.
+- **Q09.5** Fissão e fusão: Um núcleo grande dividido por um nêutron (fissão) e dois núcleos leves se juntando (fusão), com a energia liberada em cada.
+
+### Q10 — Propriedades coligativas
+
+- **Q10.1** Contar partículas: Dois copos de água, um com açúcar e outro com sal, com o sal gerando mais partículas dissolvidas, e o fator de van't Hoff (i).
+- **Q10.1** Tono, ebulio e crioscopia: Gráfico de pressão de vapor e de temperatura de ebulição e congelamento da água pura e da solução, com as mudanças marcadas.
+- **Q10.2** Osmose e tonicidade: Uma célula em três soluções, hipotônica (incha), isotônica (igual) e hipertônica (murcha), com setas de água atravessando a membrana.
+- **Q10.2** Pressão osmótica: Tubo em U com membrana semipermeável, a água subindo do lado da solução e a pressão que impede, com a fórmula π = M·R·T·i.
+
+### Q11 — Orgânica: estrutura e isomeria
+
+- **Q11.1** Classificação do carbono: Uma cadeia com carbonos primário, secundário, terciário e quaternário marcados em cores, contando as ligações com outros carbonos.
+- **Q11.1** Classificação da cadeia: Quatro cadeias, aberta ou fechada, ramificada ou normal, saturada ou insaturada, homogênea ou heterogênea, cada uma com sua etiqueta.
+- **Q11.2** Nome: prefixo, infixo, sufixo: Uma cadeia com prefixos (met, et, prop, but), infixos (an, en, in) e sufixos de função (o, ol, al, ona, óico) montando um nome.
+- **Q11.2** Ramificações e numeração: Uma cadeia principal com ramificações numeradas a partir da ponta mais próxima da instauração ou da ramificação, e o nome montado.
+- **Q11.3** Álcool, fenol e éter: Três moléculas, OH ligado a carbono saturado (álcool), OH no anel aromático (fenol) e oxigênio entre dois carbonos (éter), com o grupo funcional em destaque.
+- **Q11.3** Carbonila: aldeído a éster: Cinco moléculas com a carbonila destacada: aldeído, cetona, ácido carboxílico, éster e anidrido, com a posição da carbonila em cada.
+- **Q11.4** Amina e amida: Duas moléculas com N, amina (N ligado a carbono) e amida (N ligado à carbonila), o grupo funcional circulado em cada.
+- **Q11.4** Haletos e funções mistas: Um haleto orgânico com cloro e uma molécula com mais de uma função (como aspirina ou aminoácido) com cada grupo circulado.
+- **Q11.5** Cadeia, posição e função: Três pares de isômeros planos, de cadeia, de posição e de função, com a fórmula molecular igual e as estruturas diferentes.
+- **Q11.5** Metameria e tautomeria: Dois éteres isômeros com o oxigênio em posições diferentes (metameria) e duas formas que se interconvertem em equilíbrio (tautomeria enol-ceto).
+- **Q11.6** Isomeria geométrica: Duas versões de um alceno, cis (grupos do mesmo lado) e trans (lados opostos), com a dupla ligação e os ligantes diferentes destacados.
+- **Q11.6** Carbono quiral e isomeria óptica: Duas mãos espelhadas e um carbono com quatro ligantes diferentes (quiral) com os dois enantiômeros lado a lado.
+- **Q11.7** Ebulição em orgânica: Barras de ponto de ebulição de moléculas de massa parecida, álcool, ácido, éter e hidrocarboneto, com a ordem de força intermolecular.
+- **Q11.7** Solubilidade em orgânica: Um copo com álcool de cadeia curta misturado à água e outro com hidrocarboneto longo separado, com a parte polar e a apolar da molécula.
+- **Q11.7** Acidez e basicidade: Escala de acidez com ácido carboxílico, fenol, água e álcool, e uma amina captando próton, com as setas de doação e recepção.
+
+### Q12 — Orgânica: reações, polímeros e ambiente
+
+- **Q12.1** Reação de adição: Um alceno recebendo H₂, HCl e Br₂ pela dupla, que vira ligação simples, com a regra de Markovnikov marcada.
+- **Q12.1** Reação de substituição: Um alcano com um H sendo trocado por Cl e um anel de benzeno com um grupo entrando, com o grupo que sai ao lado.
+- **Q12.1** Reação de eliminação: Um álcool ou haleto perdendo H₂O ou HX e formando um alceno, com a seta de saída e a dupla ligação criada.
+- **Q12.2** Oxidação de álcoois: Três álcoois (primário, secundário e terciário) com setas de oxidação para aldeído e ácido, cetona e sem reação.
+- **Q12.2** Ozonólise e oxidação enérgica: Um alceno cortado na dupla por ozônio e por oxidante forte, com os fragmentos virando aldeído, cetona ou ácido.
+- **Q12.2** Esterificação e hidrólise: Ácido e álcool se juntando em éster e água, com a seta de ida e a de volta pela hidrólise.
+- **Q12.2** Saponificação: Um triglicerídeo reagindo com NaOH e dando glicerol e sabão, com a molécula de sabão mostrando cabeça polar e cauda apolar.
+- **Q12.3** Polímero de adição: Muitos monômeros de eteno em fila ligando as pontas e formando polietileno, com a dupla se abrindo e a cadeia repetindo.
+- **Q12.3** Polímero de condensação: Dois monômeros diferentes se unindo e soltando uma molécula de água em cada ligação, formando poliéster ou náilon.
+- **Q12.4** Carboidratos: Glicose, frutose, sacarose e amido, mostrando monossacarídeo, dissacarídeo e polissacarídeo como um, dois e muitos anéis ligados.
+- **Q12.4** Lipídios: Um triglicerídeo com glicerol e três ácidos graxos, saturado reto e insaturado dobrado, e uma gota de óleo na água.
+- **Q12.4** Proteínas: Aminoácidos ligados por ligação peptídica numa cadeia que se dobra em hélice e novelo, com o grupo amina e carboxila destacados.
+- **Q12.5** Efeito estufa: A Terra com gases na atmosfera retendo calor, com as moléculas CO₂, CH₄ e N₂O destacadas e as fontes de cada uma.
+- **Q12.5** Chuva ácida: Uma chaminé emitindo SO₂ e NOx, nuvem, chuva ácida caindo numa floresta e numa estátua de mármore, com as reações resumidas.
+- **Q12.5** Camada de ozônio: A atmosfera com a camada de O₃ filtrando a radiação UV e um CFC liberando cloro que destrói o ozônio.
+- **Q12.5** Combustíveis e hidrogênio: Barras de energia por massa de combustíveis fósseis e do hidrogênio, e uma célula de combustível produzindo água.
 
 ## Física
 
