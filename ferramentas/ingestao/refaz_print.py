@@ -99,7 +99,20 @@ def sem_vermelho(im):
 
 
 def texto_dos_trechos(doc, segs):
-    return '\n'.join(doc[i].get_text('text', clip=r).strip() for i, r in segs).strip()
+    """Camada de texto dos trechos; página só em imagem: OCR (tesseract, como o recorte original)."""
+    partes = []
+    os.environ.setdefault('TESSDATA_PREFIX', '/usr/share/tesseract-ocr/5/tessdata')
+    for i, r in segs:
+        pagina = doc[i]  # guardada: o OCR precisa da página viva
+        t = pagina.get_text('text', clip=r).strip()
+        if not t:
+            try:
+                tp = pagina.get_textpage_ocr(language='por', dpi=220, full=True)
+                t = pagina.get_text('text', clip=r, textpage=tp).strip()
+            except Exception:
+                t = ''
+        partes.append(t)
+    return '\n'.join(partes).strip()
 
 
 def render(doc, segs):
