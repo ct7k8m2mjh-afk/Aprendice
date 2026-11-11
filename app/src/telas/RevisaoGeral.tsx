@@ -58,7 +58,9 @@ export function RevisaoGeralTela() {
     mc?.conteudo.modulos.forEach((mod) => mod.subs.forEach((x) => mapa.set(x.id, x.nome)));
     return (id: string) => mapa.get(id);
   }, [mc]);
-  const topicos = useMemo(() => (dados ? topicosDaParte(dados.topicos, m, parte) : []), [dados, m, parte]);
+  // ordem de exibição: por capítulo (um capítulo que reaparece adiante no arquivo junta-se ao primeiro, como na lista);
+  // "N de M", Anterior e Próximo seguem essa mesma ordem
+  const topicos = useMemo(() => (dados ? agrupaPorCapitulo(topicosDaParte(dados.topicos, m, parte)).flatMap((c) => c.topicos) : []), [dados, m, parte]);
   const achados = useMemo(() => buscaTopicos(topicos, q, nomeSub), [topicos, q, nomeSub]);
   const g = s.geral;
   const passa = (t: TopicoGeral) => filtro === 'todos' || (filtro === 'marcados' ? !!g?.[t.id]?.marc : !g?.[t.id]?.lido);
@@ -70,13 +72,20 @@ export function RevisaoGeralTela() {
   const mostrado = topico || lista[0] || null;
 
   useEffect(() => {
-    if (!focoNoTopico.current || !topico) return;
-    focoNoTopico.current = false;
+    if (!topico) return;
+    // computador: o item aberto fica visível na lista ao lado do tópico (chegando por link ou por Anterior/Próximo)
+    const it = document.querySelector<HTMLElement>('.rg-item.atual');
+    if (it && it.offsetParent && typeof matchMedia !== 'undefined' && matchMedia('(min-width: 901px)').matches) {
+      const r = it.getBoundingClientRect();
+      if (r.top < 80 || r.bottom > innerHeight) it.scrollIntoView({ block: 'center' });
+    }
     const art = tituloRef.current?.closest<HTMLElement>('.rg-topico');
-    tituloRef.current?.focus({ preventScroll: true });
-    art?.scrollTo({ top: 0 });
     // celular e tablet (lista e tópico um de cada vez): o tópico aberto sobe para o alto da tela
     if (art && typeof matchMedia !== 'undefined' && matchMedia('(max-width: 900px)').matches) art.scrollIntoView({ block: 'start' });
+    if (!focoNoTopico.current) return;
+    focoNoTopico.current = false;
+    tituloRef.current?.focus({ preventScroll: true });
+    art?.scrollTo({ top: 0 });
   }, [topico]);
 
   if (!info) return <div className="conteudo vazio"><h3>Matéria não encontrada</h3><Link to="/materias" className="btn sec">Ver matérias</Link></div>;
@@ -105,7 +114,7 @@ export function RevisaoGeralTela() {
   return (
     <div className={`conteudo m-${m} rg`}>
       <CabMateria m={m} nome={info.nome} titulo={false} sub={mc ? subMateria(mc.conteudo.modulos.length, mc.banco.length === 0) : info.descricao} />
-      <div className="tp-topo"><Link to={`/m/${m}`} className="tp-volta"><Icone nome="esquerda" />{info.nome}</Link></div>
+      <div className="tp-topo"><Link to={`/m/${m}`} className="tp-volta"><Icone nome="esquerda" />Todos os temas</Link></div>
 
       <section className="tp-capa rg-capa" aria-labelledby="rg-h1">
         <div className="rg-capa-g">
@@ -149,7 +158,7 @@ export function RevisaoGeralTela() {
             <p className="sr" role="status" aria-live="polite">{q.trim() ? (lista.length ? `${plural(lista.length, 'tópico encontrado', 'tópicos encontrados')}` : 'Nenhum tópico encontrado') : ''}</p>
             {!lista.length ? (
               <div className="rg-nada">
-                <p><b>{q.trim() ? `Nada encontrado para "${q.trim()}".` : filtro === 'marcados' ? 'Nenhum tópico marcado para rever.' : 'Você já leu todos os tópicos.'}</b></p>
+                <p><b>{q.trim() ? `Nada encontrado para “${q.trim()}”.` : filtro === 'marcados' ? 'Nenhum tópico marcado para rever.' : 'Você já leu todos os tópicos.'}</b></p>
                 <p>{q.trim() ? 'Tente uma parte da palavra ou outro nome do assunto.' : 'Mude o filtro para ver os outros tópicos.'}</p>
                 {(q.trim() || filtro !== 'todos') && <button type="button" className="btn sec peq" onClick={() => muda({ q: '', f: 'todos' })}>Ver todos os tópicos</button>}
               </div>
@@ -161,7 +170,7 @@ export function RevisaoGeralTela() {
                     <ul className="rg-lista">
                       {c.topicos.map((t) => {
                         const v = g?.[t.id];
-                        const atual = mostrado?.id === t.id;
+                        const atual = topico?.id === t.id; // realce só no tópico realmente aberto (?t=)
                         return (
                           <li key={t.id}>
                             <Link to={'?' + (() => { const p = new URLSearchParams(qs); p.set('t', t.id); return p.toString(); })()}
