@@ -441,8 +441,8 @@ def mais_provas():
     c['corte_forcado'] = {('caderno', p_): [(y_, c_)] for p_, y_, c_ in
                           ((2, 578, 1), (3, 514, 1), (10, 541, 0), (13, 491, 0), (14, 568, 1), (15, 592, 1), (17, 180, 1),
                            (18, 498, 0), (19, 657, 0), (20, 635, 1), (22, 699, 0), (24, 46, 1))}
-    c['topo_pag'] = {2: 78}   # faixa "PROVA OBJETIVA" no alto da p. 2
-    c['suporte_forcado'] = {('caderno', 2): [(78, 0, [1, 3])], ('caderno', 3): [(40, 0, [4, 4])], ('caderno', 6): [(46, 1, [10, 14])],
+    c['topo_pag'] = {2: 73.5}   # faixa "PROVA OBJETIVA" no alto da p. 2
+    c['suporte_forcado'] = {('caderno', 2): [(73.5, 0, [1, 3])], ('caderno', 3): [(40, 0, [4, 4])], ('caderno', 6): [(46, 1, [10, 14])],
                             ('caderno', 7): [(374, 0, [15, 18])], ('caderno', 10): [(46, 1, [19, 20])],
                             ('caderno', 11): [(46, 1, [21, 23])], ('caderno', 12): [(46, 0, [24, 27])]}
     c['nota'] = c['nota'].replace('Processo Seletivo Vestibular 2023 (Cebraspe)', 'Vestibular 2023 (Cebraspe, aplicação 23/10/2022)') + \

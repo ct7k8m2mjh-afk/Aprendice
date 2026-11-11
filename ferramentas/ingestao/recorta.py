@@ -1002,7 +1002,8 @@ def sem_molduras(arq):
     for pg in doc:
         dr = pg.get_drawings()
         fr = [pymupdf.Rect(d_['rect']) for d_ in dr if d_.get('fill') is None and (
-              (d_['rect'].height > 60 and d_['rect'].width > 120)
+              # só retângulo (caminho 're'/'qu'): linha de gráfico, eixo e figura em traço ficam
+              (d_['rect'].height > 60 and d_['rect'].width > 120 and all(it_[0] in ('re', 'qu') for it_ in d_['items']))
               # caixa baixa e larga só com a continuação de uma questão (alto da página seguinte)
               or (d_['rect'].height > 20 and d_['rect'].width > 400 and len(d_['items']) == 1 and d_['items'][0][0] == 're')
               # régua vertical entre as colunas (um traço só, alto): vira fio solto na lateral do print
