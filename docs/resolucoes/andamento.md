@@ -14,9 +14,10 @@ Onde ficam: `app/conteudo-fonte/provas/<prova>/resolucoes.json` (uma entrada por
 | 04 | Matemática | ENEM 2020–2025, nível 4 | 30 | 30 | 0 | 0 | 0 |
 | 04b | Matemática | as 2 pendentes do lote 02, com prints refeitos | 2 | 2 | 0 | 0 | 0 |
 | 05 | Matemática | ENEM 2020–2025, 24 questões (nível 5 na classificação anterior) | 24 | 24 | 0 | 0 | 0 |
-| **Total** | | | **150** | **150** | **0** | **0** | **0** |
+| 06 (mat-0001) | Matemática | ENEM 2020–2025, 24 questões pela ferramenta de lotes (níveis oficiais do INEP) | 24 | 24 | 0 | 0 | 0 |
+| **Total** | | | **174** | **174** | **0** | **0** | **0** |
 
-No site montado: Biologia passou de 195 para 229 questões com resolução; Matemática, de 552 para 663 (depois do lote 05). Quatro das 92 de Matemática são a mesma questão que já existia no banco antigo com resolução (ENEM 2024 q145, ENEM 2021 q178, ENEM 2020 q168 e ENEM 2023 q155); a resolução antiga continua valendo nelas.
+No site montado: Biologia passou de 195 para 229 questões com resolução; Matemática, de 552 para 687 (depois do lote 06). Quatro das 92 de Matemática são a mesma questão que já existia no banco antigo com resolução (ENEM 2024 q145, ENEM 2021 q178, ENEM 2020 q168 e ENEM 2023 q155); a resolução antiga continua valendo nelas.
 
 ## Lote 01 — Biologia, ENEM, níveis 1 a 3 (11/11/2026)
 
@@ -46,6 +47,13 @@ No site montado: Biologia passou de 195 para 229 questões com resolução; Mate
 - q175 (gráfico do lucro): resolvida pela diferença ponto a ponto; letra oficial A.
 - q176 (projeções de um sólido de quatro cubos): cada alternativa foi recortada e ampliada; banca e conferente contaram os quadrados de cada sombra, separadamente, e chegaram às mesmas leituras (C e D espelhadas, A com alturas diferentes nas duas paredes, B com a sombra da parede esquerda uma coluna deslocada); letra oficial E.
 - Conferente: conferência completa das duas; 2 ajustes de redação na q176. Aprovadas.
+
+## Lote 06 (mat-0001) — Matemática, ENEM, 24 questões (11/11/2026)
+
+- Primeiro lote aberto com `python3 ferramentas/resolucoes/lote.py proximo mat 24` e gravado com `grava` (a partir daqui os lotes também aparecem em `lotes-andamento.md`).
+- 24 questões; as 24 bateram com o gabarito oficial; contas refeitas por programa.
+- Conferente: 6 limpas; 32 apontamentos (nenhum de gabarito nem de conta). Quase todos do mesmo tipo: alternativa errada que estava só com o teste "não confere" e tinha origem exata. Exemplos: 3 800 = dividir pelos dias (ENEM 2024 q179); 800 = razão das horas invertida (ENEM 2025 q150); 185,60 e 285,60 = 20% aplicados a tudo, sem e com o lucro (ENEM 2025 q158); 18 = contar 10⁶ a partir de 1 larva (ENEM 2023 q159). Também: um quadro fora do caminho dos passos, três armadilhas que não levavam a alternativa e o campo `formulas` vazio em 23 questões. Volta: 24 aprovadas.
+- Site: `converte.py`, `tsc` e `vitest` verdes (766 testes).
 
 ## Lote 05 — Matemática, ENEM, 24 questões (11/11/2026)
 
