@@ -170,6 +170,15 @@ def transcricao_da_prova(q):
     return (_PROVAS_CACHE[pid].get(q['id']) or {}).get('transcricao')
 
 
+def info_da_prova(q):
+    pid = q.get('prova')
+    if not pid:
+        return {}
+    p = ler(os.path.join(PROVAS, pid, 'prova.json'), {})
+    pq = next((x for x in p.get('questoes', []) if x['id'] == q['id']), {})
+    return {'nota': p.get('nota', ''), 'pdf': (p.get('fontes') or {}).get(pq.get('caderno'), '')}
+
+
 def separa_alternativas(texto, letras):
     """Tenta separar enunciado e alternativas da camada de texto: marcadores '(A)', 'A)', 'a)', 'A.', 'A ⇒' em ordem."""
     pos, ini = {}, 0
@@ -248,6 +257,10 @@ def entrada(m, qs):
             'letras': letras,
             'print': os.path.join('app', 'conteudo-fonte', q['print']),
             'ver_no_site': f"#/m/{m}/q/{q['id']}",
+            # sobre a prova: nota da ingestão (versão, caderno, origem do gabarito) e o PDF oficial, para ver o
+            # cabeçalho com constantes e o formulário que a prova fornece (ex.: UPE Física)
+            'sobre_a_prova': info_da_prova(q).get('nota', ''),
+            'pdf_oficial': info_da_prova(q).get('pdf', ''),
             'tem_figura': bool(q.get('figura')),
         }
         tr = t.get('transcricao') or transcricao_da_prova(q)
