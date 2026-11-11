@@ -402,15 +402,19 @@ span.fm:not(.fm-bloco) .fm-linha + .fm-linha { margin-left: 1em; }
 .sem-anima .rv-falta, .sem-anima .entra, .sem-anima .rv-pontos i { animation: none !important; transition: none !important; }
 
 /* ============ Revisão geral em destaque (pedido do dono, 11/11/2026) ============
- * Mesmo desenho do destaque da tela Hoje (.hj-sessao): folha com borda, canto 18, espaços 8/16/22/28. */
-.rv-geral-dest { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 16px 28px; padding: 22px 28px; margin: 0 0 22px; border-radius: var(--r-dest); }
+ * Desenho do destaque da tela Hoje (.hj-sessao): folha com borda, canto 18; espaço interno igual ao da agenda logo
+ * abaixo (22, 16 no celular), para o texto dos dois blocos alinhar; espaços só da escala 4/8/12/16/22/28. */
+.rv-geral-dest { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 16px 28px; padding: 22px; margin: 0 0 22px; border-radius: var(--r-dest); }
 .rv-gd-txt { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
 .rv-gd-txt h2 { margin: 0; font: 700 var(--fs-secao)/1.2 var(--fonte); letter-spacing: -0.005em; color: var(--tinta); }
 .rv-gd-txt > p { margin: 0; font-size: var(--fs-info); line-height: 1.5; color: var(--lapis); max-width: 72ch; }
 .rv-gd-acao .btn.grande { min-width: 220px; }
 .rv-gd-mats { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 8px; }
-.rv-gd-mats .chip { display: inline-flex; align-items: center; gap: 8px; }
-@media (max-width: 700px) {
-  .rv-geral-dest { grid-template-columns: minmax(0, 1fr); padding: 22px 22px; }
+@media (max-width: 900px) {
+  .rv-geral-dest { grid-template-columns: minmax(0, 1fr); }
   .rv-gd-acao .btn.grande { width: 100%; min-width: 0; }
+}
+@media (max-width: 700px) {
+  .rv-geral-dest { padding: 16px; }
+  .rv-gd-mats .chip { min-height: 40px; }
 }

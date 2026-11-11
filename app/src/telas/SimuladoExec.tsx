@@ -66,7 +66,7 @@ function ConfigSimulado({ plano, nota, migalha }: { plano: PlanoSimulado; nota?:
     <div className="conteudo estreito">
       <nav className="migalhas"><Link to={migalha ? '/simulados?aba=conteudo' : '/simulados'}>{migalha || 'Simulados'}</Link><Icone nome="direita" tam={14} /><span>{plano.titulo}</span></nav>
       <div className="titulo-pag"><div><h1>{plano.titulo}</h1><p className="sub">{plano.descricao}</p></div></div>
-      <div className="sim-config folha">
+      <div className={'sim-config folha' + (plano.sid.startsWith('conteudo:') ? ` m-${plano.sid.split(':')[1]}` : '')}>
         <div className="sc-linha"><span className="fraco">Questões</span><b className="num">{plano.itens.length}</b><span className="sc-mats">{Object.entries(porGrupo).map(([g, n]) => <span key={g}><i className="ponto" />{g} {n}</span>)}</span></div>
         {nota && <p className="fraco" style={{ fontSize: 14, margin: 0 }}>{nota}</p>}
         <fieldset className="sc-grupo">
