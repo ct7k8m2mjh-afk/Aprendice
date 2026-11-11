@@ -88,23 +88,36 @@ Cobertura parcial registrada em `lacunas` de geo: orientação e movimentos da T
 Não ligados por só mencionarem o assunto: H08.1 e H08.2 (HK50) e H08.5 (HK54).
 Correções da conferência (lente separada, com volta): HK54 Guatemala 1954–1986 (o livro dizia 1996, ano do acordo de paz); GK54 com os números do BEN 2025, ano-base 2024 (50% e 88,2%); demais ajustes de clareza em BK38, IK15, IK28, IK33, IK34, FK42–FK44, SK50, SK53, SK54, GK06, GK51, HK56.
 
-## Ainda sem tópico (sem fonte aprovada)
+## Ainda sem tópico
 
-| Subtema | Nome | Questões |
-|---|---|---|
-| G01.3 | fusos horários | 24 |
-| G01.5 | curvas de nível e perfil topográfico | 5 |
-| G02.5 | solos: formação, tipos e conservação | 15 |
-| H05.9 | cultura e resistência à ditadura | 28 |
-| H08.1 | origens e blocos da Guerra Fria | 62 |
-| H08.2 | Coreia, Vietnã e crise dos mísseis | 12 |
-| H08.3 | Revolução Chinesa | 10 |
-| H08.4 | descolonização da África e da Ásia | 42 |
-| H08.5 | Revolução Cubana e ditaduras na América Latina | 40 |
-| H08.6 | contracultura e direitos civis nos anos 1960 | 25 |
-| H08.8 | mundo atual: Oriente Médio, terrorismo e conflitos recentes | 47 |
+Nenhum. Os 11 subtemas que estavam aqui (310 questões) e as 7 coberturas parciais de Geografia ganharam tópico em 11/11/2026. Fonte: conhecimento consolidado de livro didático, autorizado pelo dono em 11/11/2026; datas e números conferidos nas fontes oficiais listadas abaixo (o que não pôde ser confirmado foi cortado).
 
-Total: 310 questões (Geografia 44, História 266). Antes desta rodada: 2.173 questões sem tópico. Para fechar: o livro L1 (Geografia) e o L4 (História) que o dono ia mandar, ou autorização para escrever esses tópicos com conhecimento de livro didático e revisão em lentes.
+Geografia (`geo/geral.json`, 58 → 68 tópicos):
+- G01.3 fusos horários → GK59 "Fusos horários: cálculo da hora e fusos do Brasil".
+- G01.5 curvas de nível e perfil topográfico → GK60 "Curvas de nível, perfil topográfico e mapa hipsométrico".
+- G02.5 solos → GK61 "Solos: formação, horizontes, tipos e conservação".
+- Tópicos curtos para o que faltava: orientação e movimentos da Terra (G01.1) → GK62; anamorfoses (G01.6) → GK63; tempo geológico (G02.1) → GK64; assoreamento (G02.4) → GK65; rede (G13.1) → GK66; climogramas (G03.3) → GK67; saneamento básico (G12.4) → GK68.
+
+História (`his/geral.json`, 59 → 67 tópicos):
+- H08.1 origens e blocos da Guerra Fria → HK60.
+- H08.2 Coreia, Vietnã e crise dos mísseis → HK61.
+- H08.3 Revolução Chinesa → HK62.
+- H08.4 descolonização da África e da Ásia → HK63.
+- H08.5 Revolução Cubana e ditaduras (Cuba e a ligação com as ditaduras; as ditaduras seguem em HK54) → HK64.
+- H08.6 contracultura e direitos civis → HK65.
+- H08.8 mundo atual (até 2024) → HK66.
+- H05.9 cultura e resistência à ditadura → HK67.
+
+Datas e números conferidos na web (11/11/2026):
+- Quatro fusos do Brasil, Acre e oeste do Amazonas em UTC−5 (Lei 12.876/2013): Observatório Nacional, https://www.gov.br/observatorio/pt-br/assuntos/areas-de-atuacao/tempo-e-frequencia/brasil e Ministério da Defesa, https://sisclaten.defesa.gov.br/edgv/dominios/dominios-tematicos/fuso.html (GK59).
+- Metas do Marco Legal do Saneamento (Lei 14.026/2020: 99% água, 90% coleta e tratamento de esgoto até 31/12/2033): https://www2.camara.leg.br/legin/fed/lei/2020/lei-14026-15-julho-2020-790419-publicacaooriginal-161096-pl.html; Norte com os menores índices: Ministério das Cidades, https://www.gov.br/cidades/pt-br/assuntos/noticias-1/noticia-mcid-n-1467 (GK68).
+- Latossolos como a classe de solo mais extensa do Brasil: Embrapa, https://www.embrapa.br/en/tema-solos-brasileiros/solos-do-brasil (GK61).
+- 17 independências africanas em 1960: Britannica, https://www.britannica.com/topic/list-of-African-Countries-Independence-Dates (HK63).
+- Conferência de Bandung (1955) e conferência dos não alinhados em Belgrado (1961): Britannica, https://www.britannica.com/event/Bandung-Conference e https://www.britannica.com/topic/neutralism (HK63).
+- Pacto de Varsóvia (14/5/1955), depois da entrada da Alemanha Ocidental na OTAN (6/5/1955): Britannica, https://www.britannica.com/event/Warsaw-Pact e OTAN, https://www.nato.int/cps/en/natohq/declassified_185912.htm (HK60).
+- Fim da crise dos mísseis (promessa de não invadir Cuba, retirada dos mísseis da Turquia, linha direta em 1963): Britannica, https://www.britannica.com/event/Cuban-missile-crisis, Office of the Historian, https://history.state.gov/milestones/1961-1968/cuban-missile-crisis e JFK Library, https://www.jfklibrary.org/learn/about-jfk/jfk-in-history/cuban-missile-crisis (HK61).
+- Emenda Platt (1901), base de Guantánamo e ocupação dos EUA até 1902: Britannica, https://www.britannica.com/topic/Platt-Amendment (HK64).
+- As demais datas são de conhecimento consolidado de livro didático e não foram buscadas uma a uma; nenhum número novo além dos acima foi acrescentado.
 
 ## Conferência
 
