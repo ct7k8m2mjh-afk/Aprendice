@@ -106,6 +106,7 @@ export function Casca({ children, foco = false }: { children: ReactNode; foco?: 
         </nav>
         <div className="grupo" aria-hidden>Estudo</div>
         <nav aria-label="Estudo">
+          <ItemNav para="/hoje" icone="calendario">Hoje</ItemNav>
           <ItemNav para="/materias" icone="quadcheck">Questões</ItemNav>
           <ItemNav para="/simulados" icone="arquivo">Simulados</ItemNav>
           <ItemNav para="/revisao" icone="camadas">Revisão</ItemNav>

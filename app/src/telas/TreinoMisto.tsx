@@ -1,5 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, type ReactNode } from 'react';
 import { EH_PREVIA, urlPrint, useTodasMaterias } from '../dados/conteudo';
 import { materia as infoMateria, nomeMateria } from '../dados/materias';
 import { atualiza, pegaEstado, useEstado } from '../estado/loja';
@@ -76,6 +76,18 @@ export function TreinoMisto() {
     );
   }
 
+  return <RodadaQuestoes ses={ses} rotulo="Treino geral" dica="Treino geral de todas as matérias. O treino fica salvo se você sair"
+    ctx="misto" voltar="/" aoAvancar={avanca} topo={ses.i === 0 ? <div className="q-regiao"><FiltroRegiaoChips compacto aoMudar={recomecar} /></div> : null}
+    acao={<button className="btn fantasma peq" onClick={recomecar}>Nova rodada</button>} todas={todas} />;
+}
+
+/** Uma rodada de questões de várias matérias, uma por vez, com a barra da questão e a correção em 4 blocos.
+ *  Usada pelo Treino geral de todas as matérias e pelas sessões da tela Hoje e do Escudo TRI (comando 24, fase 3). */
+export function RodadaQuestoes({ ses, rotulo, dica, ctx, voltar, aoAvancar, topo, acao, todas }: {
+  ses: SessaoMisto; rotulo: string; dica: string; ctx: string; voltar: string;
+  aoAvancar: (k: string, ok: boolean | null) => void; topo?: ReactNode; acao?: ReactNode; todas: MateriaCarregada[];
+}) {
+  const nav = useNavigate();
   const it = ses.it[ses.i];
   const mc = todas.find((x) => x.id === it.m);
   const q = mc?.porId.get(it.id);
@@ -84,22 +96,22 @@ export function TreinoMisto() {
   return (
     <div className={`questao-tela m-${it.m}`}>
       <div className="q-barra">
-        <button className="q-volta" onClick={() => nav('/')} aria-label="Voltar (o treino fica salvo)" title="Voltar (o treino fica salvo)"><Icone nome="esquerda" /><span>Voltar</span></button>
+        <button className="q-volta" onClick={() => nav(voltar)} aria-label={`Voltar (${rotulo.toLowerCase()} fica salvo)`} title="Voltar (fica salvo)"><Icone nome="esquerda" /><span>Voltar</span></button>
         <div className="q-barq">
           <span className="g" aria-hidden><Icone nome={`m_${it.m}` as NomeIcone} /></span>
           <span className="n">{info?.nome}</span>
-          <span className="t num" title="Treino geral de todas as matérias. O treino fica salvo se você sair"><b>Treino geral</b> · <b>{ses.i + 1}</b> de {ses.it.length}</span>
+          <span className="t num" title={dica}><b>{rotulo}</b> · <b>{ses.i + 1}</b> de {ses.it.length}</span>
           <span className="p" aria-hidden><i style={{ width: `${((ses.i + 1) / ses.it.length) * 100}%` }} /></span>
         </div>
         <div className="q-progresso" aria-hidden>{ses.it.map((x, j) => { const v = ses.res[chaveMisto(x)]; return <i key={chaveMisto(x)} className={(j === ses.i ? 'atual ' : '') + (v ? (v === 'a' ? 'ok' : 'err') : '')} />; })}</div>
-        <button className="btn fantasma peq" onClick={recomecar}>Nova rodada</button>
+        {acao}
         <BotaoTelaCheia />
       </div>
-      {ses.i === 0 && <div className="q-regiao"><FiltroRegiaoChips compacto aoMudar={recomecar} /></div>}
+      {topo}
       <div className="q-corpo">
         {mc && q
-          ? <QuestaoInline key={k} mc={mc} q={q} ctx="misto" aoTerminar={(ok) => avanca(k, ok)} />
-          : <div className="vazio"><p>Questão indisponível.</p><button className="btn sec" onClick={() => avanca(k, null)}>Pular</button></div>}
+          ? <QuestaoInline key={k} mc={mc} q={q} ctx={ctx} aoTerminar={(ok) => aoAvancar(k, ok)} />
+          : <div className="vazio"><p>Questão indisponível.</p><button className="btn sec" onClick={() => aoAvancar(k, null)}>Pular</button></div>}
       </div>
     </div>
   );

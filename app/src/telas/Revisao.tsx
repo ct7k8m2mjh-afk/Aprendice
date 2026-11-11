@@ -57,7 +57,8 @@ export function Revisao() {
         ? 'Cada conteúdo revisado em slides volta no dia marcado no fim da revisão: amanhã quando algo não firmou, mais tarde quando firmou.'
         : aba === 'dominio'
           ? 'O que você domina, está aprendendo ou esqueceu, pelos acertos em dias diferentes, cada um na data marcada.'
-          : `Errou, chutou ou pediu pista: a questão volta no dia certo. Sai da revisão depois de ${SAIDA} acertos em dias diferentes, cada um na data marcada.`}</p></div></div>
+          : `Errou, chutou ou pediu pista: a questão volta no dia certo. Sai da revisão depois de ${SAIDA} acertos em dias diferentes, cada um na data marcada.`}</p></div>
+        <Link to="/hoje" className="btn sec peq rv-hoje"><Icone nome="calendario" />O que estudar hoje</Link></div>
       <AgendaRevisao ag={ag} hoje={totVenc} futuras={futuras} agora={agora} />
       <div className="abas abas-rev" role="group" aria-label="Seções">
         <button aria-pressed={aba === 'questoes'} onClick={() => setQs({}, { replace: true })}>Questões <small>{totVenc}</small></button>

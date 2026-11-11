@@ -116,6 +116,10 @@ export interface SessaoTreino { it: { k: 'q' | 'f' | 'c'; id: string }[]; i: num
  *  res: chave "<m>:<id>" -> a (acertou) | e (errou). */
 export interface SessaoMisto { it: { m: MateriaId; id: string }[]; i: number; res: Record<string, 'a' | 'e'>; t0: number }
 
+/** Sessão da tela Hoje ou do Escudo TRI (comando 24, fase 3): as questões do plano do dia, na ordem, de várias matérias.
+ *  Mesmo formato do Treino geral (SessaoMisto) + de onde veio e o dia em que foi montada (no dia seguinte, refaz). */
+export interface SessaoHoje extends SessaoMisto { tipo: 'hoje' | 'escudo'; dia: number }
+
 export interface Preferencias {
   tema: 'claro' | 'escuro' | 'sistema'; menuFechado: boolean; ultimaMateria: MateriaId | null;
   /** questões por rodada do Treino geral de todas as matérias ("Personalizar"; padrão 15) */
@@ -124,6 +128,8 @@ export interface Preferencias {
   regioes?: RegiaoId[] | null;
   /** filtro de região onde o aluno pratica (v6): minha região (+ ENEM), todas, ou uma região só */
   filtroRegiao?: FiltroRegiao;
+  /** minutos da sessão do dia na tela Hoje (15, 25 ou 40; padrão 25). Opcional: estados antigos não têm */
+  minutosHoje?: number;
 }
 
 export interface Estado {
@@ -145,6 +151,8 @@ export interface Estado {
   /** v7: momento em que a revisão passou para a regra nova (agenda pela data da prova, saída com 3 acertos espaçados).
    *  Tentativas anteriores seguem a regra antiga até esse momento (logica/revisao.ts, memoriaDe). 0 = estado novo. */
   revisaoDesde?: number;
+  /** sessão da tela Hoje / Escudo TRI em andamento (fase 3). Opcional: estados antigos não têm, e nada se perde */
+  sessaoHoje?: SessaoHoje | null;
 }
 
 export function estadoMateriaVazio(): EstadoMateria {

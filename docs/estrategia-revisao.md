@@ -36,7 +36,7 @@ O site já pergunta "certeza / acho / chute". Agora isso decide a fila:
 - Quando o aluno marca uma letra, o equívoco dela entra na agenda; na volta, o site traz OUTRA questão real que cobra o mesmo equívoco, e o slide `pegadinha` correspondente (feedback elaborado e transferência: Pan & Rickard 2018; Metcalfe 2017).
 
 ### 5. Escudo TRI (ENEM) e regra por prova
-- Para quem tem o ENEM como alvo: fila "garanta o básico" — os erros em questões nível 1–3 vêm primeiro; indicador por conteúdo "básico garantido"; alerta de **incoerência** quando o aluno acerta a difícil e erra a fácil do mesmo conteúdo (coerência pedagógica do Inep: mesmos 5 acertos, 480 × 310 pontos).
+- Para quem tem o ENEM como alvo: fila "garanta o básico" — os erros em questões fáceis (dificuldade 1–4) vêm primeiro (fase 3: tela Hoje e `logica/hoje.ts`); indicador por conteúdo "básico garantido"; alerta de **incoerência** quando o aluno acerta a difícil e erra a fácil do mesmo conteúdo (coerência pedagógica do Inep: mesmos 5 acertos, 480 × 310 pontos).
 - Nos simulados ENEM: dica de ordem de resolução (fáceis primeiro) e "não deixe em branco".
 - Para vestibulares sem TRI (Fuvest, Unicamp, Unesp, medicinas...): a regra muda conforme o raio-x daquela prova (peso dos temas, discursivas, formato).
 

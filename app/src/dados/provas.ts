@@ -115,6 +115,30 @@ export function catalogoDaProva(prova: string | undefined): string | null {
   return melhor;
 }
 
+/** Nomes de escola do banco que não batem com a sigla do catálogo (só para saber de que prova é a questão). */
+const ESCOLA_EXTRA: Record<string, string> = { 'Santa Casa': 'santacasa', 'Einstein': 'einstein', 'Sírio-Libanês': 'siriolibanes' };
+let porSigla: Map<string, string> | null = null;
+
+/**
+ * Prova do catálogo de onde veio a questão (Hoje e Escudo TRI: peso de cada conteúdo nas provas-alvo do aluno).
+ * Ordem: nome da escola conhecido, id da prova completa ("ufpr-2024" -> "ufpr"), sigla ou id do catálogo igual ao nome
+ * da escola. null: questão sem prova do catálogo (listas antigas).
+ */
+export function catalogoDaQuestao(q: Pick<Questao, 'escola' | 'prova'>): string | null {
+  const direto = idDaEscola(q.escola) || catalogoDaProva(q.prova);
+  if (direto) return direto;
+  if (!porSigla) {
+    porSigla = new Map();
+    for (const p of CATALOGO) {
+      if (p.sigla && !porSigla.has(p.sigla.toLowerCase())) porSigla.set(p.sigla.toLowerCase(), p.id);
+      if (!porSigla.has(p.id)) porSigla.set(p.id, p.id);
+    }
+  }
+  const extra = ESCOLA_EXTRA[q.escola];
+  if (extra && CATALOGO.some((p) => p.id === extra)) return extra;
+  return porSigla.get((q.escola || '').toLowerCase()) || null;
+}
+
 /** Traduz os nomes de campo da pesquisa ("formato.materias") para português de gente. */
 export function campoLegivel(t: string): string {
   return t
