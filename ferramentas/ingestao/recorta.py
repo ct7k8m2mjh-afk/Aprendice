@@ -993,6 +993,45 @@ def neutraliza(im, clip, rects, escala):
     return im
 
 
+def sem_molduras(arq):
+    """Cópia do caderno sem as molduras de coluna/caixa (retângulo alto sem preenchimento, Unitins), só para o print:
+    quando o recorte junta pedaços de caixas, as bordas viravam fios e caixas vazias soltas no meio da questão. O
+    retângulo é tirado do desenho da página (redação só de traço, num ponto da borda que não toca outro desenho);
+    texto e imagens ficam intactos."""
+    doc = pymupdf.open(arq)
+    for pg in doc:
+        dr = pg.get_drawings()
+        fr = [pymupdf.Rect(d_['rect']) for d_ in dr if d_.get('fill') is None and (
+              (d_['rect'].height > 60 and d_['rect'].width > 120)
+              # caixa baixa e larga só com a continuação de uma questão (alto da página seguinte)
+              or (d_['rect'].height > 20 and d_['rect'].width > 400 and len(d_['items']) == 1 and d_['items'][0][0] == 're')
+              # régua vertical entre as colunas (um traço só, alto): vira fio solto na lateral do print
+              or (d_['rect'].height > 150 and d_['rect'].width < 2 and len(d_['items']) == 1 and d_['items'][0][0] == 'l'))]
+        outros = [pymupdf.Rect(d_['rect']) for d_ in dr if pymupdf.Rect(d_['rect']) not in fr]
+        n_ = 0
+        for r_ in fr:
+            for f_ in [k_ / 20 for k_ in range(1, 20)]:
+                y_ = r_.y0 + f_ * r_.height
+                pt = pymupdf.Rect(r_.x0 - 0.3, y_, r_.x0 + 0.3, y_ + 0.6)
+                if not any(o_.intersects(pt) for o_ in outros):
+                    pg.add_redact_annot(pt, fill=False)
+                    n_ += 1
+                    break
+        # selo de questão vazio (desenho sem número dentro, esquecido no caderno por baixo de uma figura)
+        palavras = [pymupdf.Rect(w_[:4]) for w_ in pg.get_text('words')]
+        for d_ in dr:
+            r_ = pymupdf.Rect(d_['rect'])
+            if (d_.get('fill') and 60 < r_.width < 100 and 18 < r_.height < 30 and min(d_['fill']) > 0.65
+                    and d_['fill'][2] - d_['fill'][0] > 0.08 and not any(w_.intersects(r_) for w_ in palavras)):
+                pt = pymupdf.Rect(r_.x0 + r_.width / 2 - 0.3, r_.y1 - 1.5, r_.x0 + r_.width / 2 + 0.3, r_.y1 - 0.9)
+                if not any(pymupdf.Rect(o_['rect']).intersects(pt) for o_ in dr if o_ is not d_ and o_.get('fill')):
+                    pg.add_redact_annot(pt, fill=False)
+                    n_ += 1
+        if n_:
+            pg.apply_redactions(images=0, graphics=2, text=1)
+    return doc
+
+
 def apagaveis(pdf, cfg):
     """Linhas a pintar de branco no print: rodapé/cabeçalho de página que encosta no fim da questão (cfg 'apagar')."""
     out = {}
@@ -1003,34 +1042,6 @@ def apagaveis(pdf, cfg):
                   if abs(l['dir'][1]) > 0.9 and re.search(cfg['apagar_girado'], ''.join(s_['text'] for s_ in l['spans']))]
             if rs:
                 out.setdefault(pg.number, []).extend(rs)
-    if cfg.get('apagar_molduras'):
-        # moldura de coluna/caixa (retângulo alto sem preenchimento, Unitins): as 4 bordas saem do print — quando o
-        # recorte junta pedaços de caixas, as bordas viravam fios e caixas vazias soltas no meio da questão
-        for pg in pdf:
-            txt_ = [pymupdf.Rect(L['bbox']) for L in linhas(pg)]
-            for d_ in pg.get_drawings():
-                r_ = pymupdf.Rect(d_['rect'])
-                if d_.get('fill') is None and r_.height > 60 and r_.width > 120 and d_.get('type') in ('s', 'fs', None):
-                    e_ = 0.9
-                    bordas = [pymupdf.Rect(r_.x0 - e_, r_.y0 - e_, r_.x1 + e_, r_.y0 + e_), pymupdf.Rect(r_.x0 - e_, r_.y1 - e_, r_.x1 + e_, r_.y1 + e_),
-                              pymupdf.Rect(r_.x0 - e_, r_.y0 - e_, r_.x0 + e_, r_.y1 + e_), pymupdf.Rect(r_.x1 - e_, r_.y0 - e_, r_.x1 + e_, r_.y1 + e_)]
-                    for b_ in bordas:
-                        # onde o fio encosta numa linha de texto ele fica (pintar ali levaria o alto das letras junto)
-                        hor = b_.width > b_.height
-                        pedacos = [(b_.x0, b_.x1) if hor else (b_.y0, b_.y1)]
-                        for t_ in txt_:
-                            c_ = (b_.y0 + b_.y1) / 2 if hor else (b_.x0 + b_.x1) / 2
-                            if hor and t_.x0 < b_.x1 and t_.x1 > b_.x0 and t_.y0 - 2 < b_.y1 and t_.y1 + 1 > b_.y0:
-                                a_, z_ = t_.x0 - 3, t_.x1 + 3
-                            elif not hor and t_.y0 < b_.y1 and t_.y1 > b_.y0 and t_.x0 + 1 < c_ < t_.x1 - 1:
-                                a_, z_ = t_.y0 - 1, t_.y1 + 1
-                            else:
-                                continue
-                            pedacos = [q_ for p0, p1 in pedacos for q_ in ((p0, min(p1, a_)), (max(p0, z_), p1)) if q_[1] - q_[0] > 1]
-                            if hor:   # junto da letra: só a espessura do fio, sem folga
-                                out.setdefault(pg.number, []).append(('fino', pymupdf.Rect(max(b_.x0, a_), c_ - 0.45, min(b_.x1, z_), c_ + 0.45)))
-                        for p0, p1 in pedacos:
-                            out.setdefault(pg.number, []).append(pymupdf.Rect(p0, b_.y0, p1, b_.y1) if hor else pymupdf.Rect(b_.x0, p0, b_.x1, p1))
     if not cfg.get('apagar'):
         return out
     for pg in pdf:
@@ -1049,16 +1060,22 @@ def render(pdf, segs, marcas=None, coloridos=None, apagar=None):
         if r.height < 8:
             continue
         pg = pdf[p]
+        # lasca de barra/faixa preenchida (título de seção, selo) que o recorte pegou só pela beirada (até 3 pt):
+        # a beirada sai do print
+        r = pymupdf.Rect(r)
+        for d_ in pg.get_drawings():
+            f_ = pymupdf.Rect(d_['rect'])
+            if d_.get('fill') is None or f_.width < 40 or f_.x1 <= r.x0 or f_.x0 >= r.x1:
+                continue
+            if r.y0 < f_.y1 <= r.y0 + 3 and f_.y0 < r.y0:
+                r.y0 = f_.y1 + 0.3
+            if r.y1 - 3 <= f_.y0 < r.y1 and f_.y1 > r.y1:
+                r.y1 = f_.y0 - 0.3
+        if r.height < 8:
+            continue
         pix = pg.get_pixmap(clip=r, dpi=DPI)
         im = Image.open(BytesIO(pix.tobytes('png'))).convert('RGB')
         for ra in (apagar or {}).get(p, []):
-            if isinstance(ra, tuple):   # ('fino', rect): pinta exatamente o retângulo, sem folga
-                ra = ra[1]
-                if ra.intersects(r):
-                    e_ = DPI / 72
-                    im.paste((255, 255, 255), (max(0, round((ra.x0 - r.x0) * e_)), max(0, round((ra.y0 - r.y0) * e_)),
-                                               min(im.width, round((ra.x1 - r.x0) * e_)), min(im.height, round((ra.y1 - r.y0) * e_))))
-                continue
             if ra.intersects(r):
                 e_ = DPI / 72
                 im.paste((255, 255, 255), (max(0, int((ra.x0 - r.x0) * e_) - 2), max(0, int((ra.y0 - r.y0) * e_) - 2),
@@ -1563,6 +1580,7 @@ def processa(pid, amostra=False, so_texto=False):
         arq = pasta / (cad['arquivo'] + '.pdf')
         pdf = pymupdf.open(arq)
         conserta_bbox(pdf)
+        pdf_print = sem_molduras(arq) if cfg.get('apagar_molduras') else pdf
         _cache_linhas.clear()
         _cache_selos.clear()
         _cache_caixas.clear()
@@ -1801,7 +1819,7 @@ def processa(pid, amostra=False, so_texto=False):
             elif so_texto:
                 continue
             else:
-                img = render(pdf, sup + segs, marcas, coloridos, apaga)
+                img = render(pdf_print, sup + segs, marcas, coloridos, apaga)
                 if img is not None and cfg.get('pe_cor'):
                     img = corta_pe_cor(img, cfg['pe_cor'], minimo=cfg.get('pe_cor_min'))
                 if img is not None and cfg.get('caixa_vazia'):

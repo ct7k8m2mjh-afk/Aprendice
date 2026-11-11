@@ -110,7 +110,7 @@ def mais_provas():
                            r'(?i)^(leia|read)\b.*\bquest[õo]es\b', r'(?i)\bpara responder [àa]s\s*$']
     # 2023/1 caderno 1: o texto sobre Michael Jackson vem logo abaixo do título "Língua Inglesa", sem frase de indicação,
     # e é o texto da questão 46 (conferido no caderno, p. 18)
-    P['unitins-2023-1']['suporte_forcado'] = {('caderno', 18): [(356, 3, [46, 46])]}
+    P['unitins-2023-1']['suporte_forcado'] = {('caderno', 18): [(361, 3, [46, 46])]}
     P['unitins-2023-1-c2']['suporte_forcado'] = {('caderno', 23): [(95, 3, [46, 46])]}   # letra de "The Show Must Go On"
     for k in ('unitins-2023-1', 'unitins-2023-1-c2'):
         P[k]['apagar_girado'] = r'Vestibular Unitins'   # rodapé vertical na margem direita
@@ -157,7 +157,12 @@ def mais_provas():
                                 (25, 299, 568, r'^QUESTÃO 44', None), (26, 28, 568, None, r'^QUESTÃO 45')],
                            18: [(10, 28, 568, r'^QUESTÃO 18', None), (11, 28, 568, None, r'^QUESTÃO 19')],
                            19: [(11, 28, 290, r'^QUESTÃO 19', None), (11, 297, 568, r'^A\) A criação', r'^QUESTÃO 20')],
-                           26: [(15, 28, 568, r'^QUESTÃO 26', r'^QUESTÃO 27')]},
+                           26: [(15, 28, 568, r'^QUESTÃO 26', r'^QUESTÃO 27')],
+                           # texto do Krenak (p. 18 em duas colunas + p. 19): coluna esquerda, depois a direita, depois a p. 19
+                           33: [(18, 28, 568, r'^Leia fragmentos', 574), (18, 28, 298, 574, None), (18, 299, 568, 574, None),
+                                (19, 28, 298, None, r'^QUESTÃO 33'), (19, 28, 298, r'^QUESTÃO 33', None), (19, 299, 568, None, r'^QUESTÃO 34')],
+                           34: [(18, 28, 568, r'^Leia fragmentos', 574), (18, 28, 298, 574, None), (18, 299, 568, 574, None),
+                                (19, 28, 298, None, r'^QUESTÃO 33'), (19, 299, 568, r'^QUESTÃO 34', None), (20, 28, 568, None, r'^QUESTÃO 35')]},
         'unitins-2022-1': {15: [(8, 28, 568, r'^QUESTÃO 15', r'^HIST')], 23: [(11, 28, 298, r'^QUESTÃO 23', None)],
                            25: [(11, 298, 568, r'^QUESTÃO 25', None), (12, 28, 568, None, r'^QU[ÍI]MICA')]},
         'unitins-2022-1-med': {12: [(6, 28, 568, r'^QUESTÃO 12', None)]},
@@ -173,8 +178,8 @@ def mais_provas():
                                    (16, 28, 568, r'^Questão 37', r'^Questão 38')],
                               38: [(15, 299, 568, r'^Texto para as quest[õo]es 37', None), (16, 28, 568, None, r'^Questão 37'),
                                    (16, 28, 568, r'^Questão 38', None)]},
-        'unitins-2024-1': {39: [(17, 28, 568, r'^Textos para quest', r'^Questão 39'), (17, 28, 568, r'^Questão 39', r'^Questão 40')],
-                           40: [(17, 28, 568, r'^Textos para quest', r'^Questão 39'), (17, 28, 568, r'^Questão 40', None), (18, 28, 568, 25, 140)],
+        'unitins-2024-1': {39: [(17, 28, 568, r'^Textos para quest', 392.3), (17, 28, 568, 392.3, r'^Questão 40')],
+                           40: [(17, 28, 568, r'^Textos para quest', 392.3), (17, 28, 568, r'^Questão 40', None), (18, 28, 568, 25, 140)],
                            47: [(21, 28, 568, r'^Questão 47', None), (22, 28, 568, None, r'^Questão 48')],
                            13: [(5, 28, 568, r'^Questão 13', None), (6, 28, 568, None, r'^Questão 14')],
                            15: [(6, 28, 568, r'^Questão 15', None)]},
