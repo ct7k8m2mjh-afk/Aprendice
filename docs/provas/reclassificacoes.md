@@ -12,3 +12,4 @@
 | 2026-11-11 | Pfd8377aa | udesc-2020-1 q71 | qui Q01.4 | qui Q03.2 sais e óxidos | Propriedades de óxidos, ácidos, bases e sais (funções inorgânicas); apontada pela sessão do Fable |
 | 2026-11-11 | Pb0b64def | mackenzie-2026-1 q38 | mat M02.4 | mat M07.2 progressão geométrica | Carga de A em PA (+2 kg) contra carga de B em PG (dobra): progressões, não proporção; apontada pela sessão do Fable |
 | 2026-11-11 | P925ed60a | santacasa-2021 q8 | por P04.1 | por P05.4 variação linguística, registro e adequação | Pede a expressão própria da linguagem coloquial (registro), não referência; apontada pela sessão de Português; códigos de equívoco da resolução trocados de P04.1 para P05.4 |
+| 2026-11-11 | P93871b7a | saocamilo-2020-1 q12 | geo G10.6 | fs S04.3 racismo e relações étnico-raciais | Pede o tipo de preconceito (antissemitismo) no excerto; estava no bloco de Geografia da prova; apontada pelo agente de ingestão |
