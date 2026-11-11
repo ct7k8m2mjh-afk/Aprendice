@@ -1,6 +1,6 @@
 # Física: resoluções (gerado por lote.py em 2026-11-11)
 
-Faltam 2274 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 856; demais nível 1-6 928; ENEM nível 7-10 31; provas-alvo nível 7-10 185; demais nível 7-10 274.
+Faltam 2244 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 826; demais nível 1-6 928; ENEM nível 7-10 31; provas-alvo nível 7-10 185; demais nível 7-10 274.
 
 ## Lotes
 
@@ -12,6 +12,7 @@ Faltam 2274 questões sem resolução (fora as que estão em lote, pendentes ou 
 | fis-0004 | provas-alvo nível 1-6 | 20 | gravado | 19 | 0 | 1 |
 | fis-0005 | provas-alvo nível 1-6 | 30 | gravado | 29 | 1 | 0 |
 | fis-0006 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| fis-0007 | provas-alvo nível 1-6 | 30 | gravado | 29 | 0 | 1 |
 
 ## Pendentes (falta de certeza absoluta)
 
@@ -24,4 +25,5 @@ Faltam 2274 questões sem resolução (fora as que estão em lote, pendentes ou 
 
 | Questão | Prova | Conteúdo | Motivo |
 |---|---|---|---|
+| Ped0dc1fd | UDESC 2024 Verão 2024.1 · questão 52 | F02.4 queda livre e lançamento vertical (tema F02 Cinemática) | UDESC 2024.1 (Verão), questão 52 (no caderno, Questão 02): os dados levam a uma queda de cerca de 21 m (velocidade de 19,5 m/s no início dos últimos 2 m; 19,5²/20 + 2 ≈ 21 m). Com 3 m entre janelas de andares consecutivos, 21 m são 7 intervalos. O gabarito oficial é D (sexto andar), mas a alternativa A (sétimo andar) também se sustenta: o enunciado não diz a que altura fica a janela do térreo, e a resposta depende dessa convenção. Gabarito ambíguo; não publicar sem decisão do dono. |
 | Pf32f80b2 | UPE 2021 SSA3 · questão 72 | F01.5 fóton, efeito fotoelétrico e modelo de Bohr (tema F01 Fundamentos e grandezas) | UPE 2021 SSA3 q72 (questão 30 do caderno; comprimento de onda da aniquilação de um par elétron-pósitron lento): na aniquilação de um par lento surgem dois fótons, cada um com a energia de repouso de uma partícula, mc² ≈ 0,51 MeV; com os dados do cabeçalho da prova (h = 6,6 × 10⁻³⁴ J·s, mₑ = 9,1 × 10⁻³¹ kg) e c = 3 × 10⁸ m/s, o comprimento de onda de cada fóton é h/(mc) ≈ 2,4 × 10⁻¹² m = 2,4 × 10⁻² Å, valor que não está nas alternativas (a D é 2,4 × 10⁻¹). O gabarito oficial, E (1,2 × 10⁻² Å), só sai tratando toda a energia do par, 2mc², como um único fóton. Minha resposta não coincide com nenhuma alternativa; não publicar sem decisão do dono. |
