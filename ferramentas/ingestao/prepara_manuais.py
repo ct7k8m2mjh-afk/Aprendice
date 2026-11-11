@@ -25,16 +25,27 @@ def prepara(pid):
     reg = MANIFESTO[m['manifesto']]
     arqs = {}
     for papel, rel in m['arquivos'].items():
+        paginas = None
+        if isinstance(rel, tuple):   # (arquivo, (primeira, última)): caderno e gabarito no mesmo PDF publicado
+            rel, paginas = rel
         src = FONTE / rel
         if not src.exists():
             raise SystemExit(f'{pid}: falta {src} — rode baixa_brasilescola.py (origem no manifesto)')
         dst = pasta / f'{papel}.pdf'
-        shutil.copyfile(src, dst)
+        if paginas:
+            import pymupdf
+            d = pymupdf.open(src)
+            novo = pymupdf.open()
+            novo.insert_pdf(d, from_page=paginas[0] - 1, to_page=paginas[1] - 1)
+            novo.save(dst)
+        else:
+            shutil.copyfile(src, dst)
         if papel == 'caderno' and m.get('limpa'):
             m['limpa'](dst)   # ex.: logotipo no alto das páginas, que cairia no meio do print
         arqs[papel] = {
             'url': m['oficial'],
-            'origem': reg['url'] + ' (Brasil Escola, página ' + reg['origem'] + '; arquivo ' + src.name + ')',
+            'origem': reg['url'] + ' (Brasil Escola, página ' + reg['origem'] + '; arquivo ' + src.name
+                      + (f', páginas {paginas[0]}–{paginas[1]}' if paginas else '') + ')',
             'bytes': dst.stat().st_size,
             'sha256': hashlib.sha256(dst.read_bytes()).hexdigest(),
             'copiado_em': datetime.now(timezone.utc).isoformat(timespec='seconds'),

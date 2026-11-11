@@ -228,6 +228,7 @@ PROVAS['unioeste-2022'] = unioeste(2022)
 # 2021: o texto de Língua Portuguesa (pág. 5 da manhã) começa pelo título; a instrução "responda as questões de 08 a 14"
 # vem no fim do texto (conferido no caderno)
 PROVAS['unioeste-2021']['suporte_forcado'] = {('manha', 5): [(50, 0, (8, 14))]}
+PROVAS['unioeste-2022']['suporte_forcado'] = {('manha', 4): [(50, 0, (8, 14))]}   # idem 2022: texto da pág. 4, sem instrução
 
 
 class _TopoPorCaderno(dict):
@@ -247,6 +248,9 @@ PROVAS['unioeste-2021']['topo_pag'] = _TopoPorCaderno(PROVAS['unioeste-2021'], {
     ('manha', 2): 57, ('manha', 6): 55, ('tarde', 9): 50, ('tarde', 12): 50, ('tarde', 20): 50})
 PROVAS['unioeste-2022']['topo_pag'] = _TopoPorCaderno(PROVAS['unioeste-2022'], {
     ('manha', 2): 57, ('manha', 5): 55, ('tarde', 9): 50.5, ('tarde', 19): 50, ('tarde', 20): 26})
+# título do texto de Língua Portuguesa em largura total, acima das duas colunas
+PROVAS['unioeste-2021']['larga_topo'] = _TopoPorCaderno(PROVAS['unioeste-2021'], {('manha', 5): 86})
+PROVAS['unioeste-2022']['larga_topo'] = _TopoPorCaderno(PROVAS['unioeste-2022'], {('manha', 4): 104})
 
 
 if __name__ == '__main__':

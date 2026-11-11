@@ -283,3 +283,79 @@ PROVAS['unicamp-indigena-2022']['topo'] = 68
 _sup22 = PROVAS['uerj-2022']['_suportes']
 PROVAS['uerj-2022']['_suportes'] = lambda pasta: {**_sup22(pasta), ('caderno', 4): [(60, 0, (5, 11))],
                                                   ('caderno', 5): [(355, 0, (7, 11))], ('caderno', 6): [(354, 0, (9, 11))]}
+
+
+# ------------------------------------------------------------------- Vunesp: Santa Casa, Einstein, FMJ, São Camilo, Anhembi
+# Cadernos e gabaritos oficiais da Fundação Vunesp (código do concurso no gabarito), em cópia pública (Brasil Escola).
+import provas_vunesp as _v  # noqa: E402
+
+BE = 'cópia pública no Brasil Escola (vestibular.brasilescola.uol.com.br): o portal da Vunesp bloqueia acesso automático'
+_SC = 'fcmscsp/provas-e-gabaritos-fcmscsp-'
+_m('santacasa-2021', 'fcmscsp/47297', VUNESP, caderno=_SC + '2021-1/prova-conhecimentos-gerais-medicina-versao-1.pdf',
+   gabarito=_SC + '2021-1/gabarito-medicina.pdf')
+_m('santacasa-2022', 'fcmscsp/47394', VUNESP, caderno=_SC + '2022-1/Prova de Conhecimentos Gerais Medicina.pdf',
+   gabarito=_SC + '2022-1/Gabarito Medicina.pdf')
+_m('santacasa-2022-demais', 'fcmscsp/47394', VUNESP, caderno=_SC + '2022-1/Prova de Conhecimentos Gerais e Redação.pdf',
+   gabarito=_SC + '2022-1/Gabarito Conhecimentos Gerais e Redação.pdf')
+_E = 'einstein/'
+_m('einstein-2021', 'einstein/47298', VUNESP, caderno=_E + 'provas-e-gabaritos-einstein-2021-1/prova-1.pdf',
+   gabarito=_E + 'provas-e-gabaritos-einstein-2021-1/gabarito-prova-1.pdf')
+_m('einstein-2021-2-enf', 'einstein/47363', VUNESP, caderno=(_E + 'prova-e-gabarito-enfermagem-einstein-2021-2/arquivo.pdf', (1, 20)),
+   gabarito=(_E + 'prova-e-gabarito-enfermagem-einstein-2021-2/arquivo.pdf', (21, 21)))
+_m('einstein-2022-2-enf', 'einstein/47524', VUNESP, caderno=_E + 'prova-e-gabarito-einstein-enfermagem-2022-2/CADERNO_EINSTEIN_27_6_2022.pdf',
+   gabarito=_E + 'prova-e-gabarito-einstein-enfermagem-2022-2/GABARITO_EINSTEIN_27_6_2022.pdf')
+_m('einstein-2023', 'einstein/47553', VUNESP, caderno=_E + 'provas-e-gabaritos-vestibular-faculdade-albert-einstein-2023/prova-01-albert-einstein-2023.pdf',
+   gabarito=_E + 'provas-e-gabaritos-vestibular-faculdade-albert-einstein-2023/gabarito-albert-einstein-2023.pdf')
+_m('fmj-2021', 'fmj/47288', VUNESP, caderno=('fmj/prova-e-gabarito-fmj-2021/arquivo.pdf', (29, 44)),
+   gabarito=('fmj/prova-e-gabarito-fmj-2021/arquivo.pdf', (45, 45)))
+_m('fmj-2022', 'fmj/47417', VUNESP, caderno='fmj/provas-e-gabaritos-fmj-2022/CADERNO2_FMJ_2022.pdf',
+   gabarito='fmj/provas-e-gabaritos-fmj-2022/GABARITO_FMJ_2022.pdf')
+_m('saocamilo-2021-2', 'saocamilo/47357', VUNESP, caderno=('saocamilo/prova-e-gabarito-sao-camilo-medicina-2021-2/arquivo.pdf', (1, 20)),
+   gabarito=('saocamilo/prova-e-gabarito-sao-camilo-medicina-2021-2/arquivo.pdf', (21, 21)))
+_m('saocamilo-2022-2', 'saocamilo/47501', VUNESP, caderno='saocamilo/provas-e-gabarito-sao-camilo-medicina-2022-2/CADERNO2_SÃO_CAMILO_CUSC2103.pdf',
+   gabarito='saocamilo/provas-e-gabarito-sao-camilo-medicina-2022-2/GABARITO_SÃO_CAMILO_CUSC2103.pdf')
+_m('anhembi-2022', 'anhembi/47442', VUNESP, caderno='anhembi/provas-e-gabaritos-anhembi-morumbi-medicina-2022/CADERNO2_ANIM2101.pdf',
+   gabarito='anhembi/provas-e-gabaritos-anhembi-morumbi-medicina-2022/GABARITO_ANIM2101.pdf')
+
+
+def _vun(pid, cat, escola, ano, fase, titulo, total, nota):
+    PROVAS[pid] = _v.base(cat, escola, ano, fase, titulo, total, caderno='caderno', gabarito='gabarito',
+                          nota=nota + f' Caderno e gabarito oficiais da Vunesp, em {BE}. Anuladas ficam fora.')
+
+
+_vun('santacasa-2021', 'santacasa', 'Santa Casa', 2021, 'Medicina', 'Santa Casa 2021', 80,
+     'Faculdade de Ciências Médicas da Santa Casa de São Paulo, Vestibular 1º semestre de 2021 (Medicina, 11/12/2020): '
+     'Prova de Conhecimentos Gerais (80 questões objetivas), versão 1. A prova discursiva fica fora.')
+_vun('santacasa-2022', 'santacasa', 'Santa Casa', 2022, 'Medicina', 'Santa Casa 2022', 80,
+     'Faculdade de Ciências Médicas da Santa Casa de São Paulo, Vestibular 1º semestre de 2022 (Medicina, 30/10/2021): '
+     'Prova de Conhecimentos Gerais (80 questões objetivas), versão 1. A prova discursiva fica fora.')
+_vun('santacasa-2022-demais', 'santacasa', 'Santa Casa', 2022, 'Enfermagem e demais cursos', 'Santa Casa 2022 – demais cursos', 60,
+     'Faculdade de Ciências Médicas da Santa Casa de São Paulo, Vestibular 1º semestre de 2022 (Enfermagem, Fonoaudiologia, '
+     'Radiologia e Sistemas Biomédicos, 31/10/2021): Prova de Conhecimentos Gerais (60 questões objetivas). Redação fora.')
+_vun('einstein-2021', 'einstein', 'Einstein', 2021, 'Medicina e Enfermagem', 'Einstein 2021', 50,
+     'Faculdade Israelita de Ciências da Saúde Albert Einstein, Vestibular 2021 (Enfermagem e Medicina, 13/12/2020): '
+     'Prova I (50 questões objetivas), versão 1. A Prova II (discursivas e redação) fica fora.')
+_vun('einstein-2021-2-enf', 'einstein', 'Einstein', 2021, 'Enfermagem – 2º semestre', 'Einstein 2021/2 – Enfermagem', 50,
+     'Faculdade Israelita de Ciências da Saúde Albert Einstein, Vestibular Enfermagem 2º semestre de 2021: Prova de '
+     'Conhecimentos Gerais (50 questões objetivas). Redação fora.')
+_vun('einstein-2022-2-enf', 'einstein', 'Einstein', 2022, 'Enfermagem – 2º semestre', 'Einstein 2022/2 – Enfermagem', 50,
+     'Faculdade Israelita de Ciências da Saúde Albert Einstein, Vestibular Enfermagem 2º semestre de 2022 (27/06/2022): '
+     'Prova de Conhecimentos Gerais (50 questões objetivas). Redação fora.')
+_vun('einstein-2023', 'einstein', 'Einstein', 2023, 'Medicina, Enfermagem e Administração', 'Einstein 2023', 50,
+     'Faculdade Israelita de Ciências da Saúde Albert Einstein, Vestibular 2023: Prova I (50 questões objetivas), versão 1. '
+     'A Prova II (discursivas e redação) fica fora.')
+_vun('fmj-2021', 'fmj', 'FMJ', 2021, 'Medicina', 'FMJ 2021', 60,
+     'Faculdade de Medicina de Jundiaí, Vestibular 2021 (Medicina): Prova II (60 questões objetivas), versão 1. '
+     'A Prova I (discursivas e redação) fica fora.')
+_vun('fmj-2022', 'fmj', 'FMJ', 2022, 'Medicina', 'FMJ 2022', 60,
+     'Faculdade de Medicina de Jundiaí, Vestibular 2022 (Medicina, 13/11/2021): Prova II (60 questões objetivas), versão 1. '
+     'A Prova I (discursivas e redação) fica fora.')
+_vun('saocamilo-2021-2', 'saocamilo', 'São Camilo', 2021, '2º semestre', 'São Camilo 2021/2', 40,
+     'Centro Universitário São Camilo, Medicina, Processo Seletivo 2º semestre de 2021: Prova II (40 questões objetivas), '
+     'versão 1. A Prova I (discursivas) e a redação ficam fora.')
+_vun('saocamilo-2022-2', 'saocamilo', 'São Camilo', 2022, '2º semestre', 'São Camilo 2022/2', 40,
+     'Centro Universitário São Camilo, Medicina, Processo Seletivo 2º semestre de 2022 (29/05/2022): Prova II (40 questões '
+     'objetivas), versão 1. A Prova I (discursivas) e a redação ficam fora.')
+_vun('anhembi-2022', 'anhembi', 'Anhembi Morumbi', 2022, 'Medicina', 'Anhembi Morumbi 2022', 40,
+     'Universidade Anhembi Morumbi, Vestibular Medicina 1º semestre de 2022 (04/12/2021): Prova II (40 questões objetivas), '
+     'versão 1. A Prova I (discursivas e redação) fica fora.')
