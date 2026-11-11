@@ -166,5 +166,5 @@ mais preciso dentro do mesmo tema.
   linguagem, sentido, discurso direto/indireto, coesão — ex.: anhembi-2022 q2 → P08.1, fmj-2022 q5 → P10.5,
   santacasa-2022-demais q9 → P08.1, uerj-2026-1 q20 → P06.2). As que perguntam a escola literária, o gênero ou a leitura
   da obra ficaram em P03/P11/P12.
-- **Não corrigido (cosmético):** os arcos do selo "QUESTÃO" da questão seguinte em alguns prints da Santa Casa e da
-  Anhembi (nada do conteúdo é perdido).
+- **Selo "QUESTÃO" da questão seguinte (corrigido depois, a pedido do coordenador):** a questão agora começa no alto do selo (círculo da Santa Casa e da Anhembi; faixa em traço grosso do Einstein), em todos os prints dessas provas — Santa Casa 2021 e 2022, Einstein (4 provas) e Anhembi; ids mantidos. Era um defeito dos prints da Santa Casa, do Einstein e da
+  Anhembi (nada do conteúdo se perdia).

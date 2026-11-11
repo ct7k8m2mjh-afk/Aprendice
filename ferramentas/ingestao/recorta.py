@@ -189,6 +189,8 @@ def faixas_da_pagina(pg, cfg):
             manual = [(topo, base, None)]
     if manual is None and cfg.get('faixas_modo') == 'largas':
         manual = faixas_por_largas(pg, cfg, topo, base)
+    if manual is not None and cfg.get('faixas_ajuste'):
+        manual = ajusta_faixas(pg, cfg, manual, topo, base)
     if manual is not None:   # [(y0, y1, divisa ou None = largura total)], de cima para baixo
         cols, ys = [], []
         for a, b, div in manual:
@@ -272,6 +274,44 @@ def faixas_da_pagina(pg, cfg):
     if base - y > 2 or not cols:
         cols.append((m, W - m)); ys.append((y, base))
     return cols, ys
+
+
+def ajusta_faixas(pg, cfg, faixas, topo, base):
+    """'faixas_ajuste' (Unitins): (1) a fronteira entre duas faixas não pode atravessar uma linha de texto, uma figura
+    ou um quadro/tabela — vai para o vão mais próximo (antes cortava "PORQUE" ao meio, partia matriz e tabela);
+    (2) em cada faixa de duas colunas a divisa fica no meio da calha real daquela faixa (linhas da coluna esquerda que
+    vão até x≈299 e selos da direita que começam em x≈292 não deixam mais fragmentos da coluna vizinha)."""
+    W = pg.rect.width
+    meio = cfg.get('divisa', W / 2)
+    objs = [tuple(L['bbox']) for L in linhas(pg) if L['t'].strip()]
+    objs += [tuple(b['bbox']) for b in pg.get_image_info()]
+    objs += [tuple(d['rect']) for d in pg.get_drawings() if d['rect'].height > 2 and d['rect'].height < base - topo - 50]
+    def livre(y):
+        return not any(o[1] + 0.5 < y < o[3] - 0.5 for o in objs)
+    def encaixa(y):
+        if livre(y):
+            return y
+        for d in range(1, 60):
+            for c in (y - d * 0.5, y + d * 0.5):
+                if livre(c):
+                    return c
+        return y
+    out = [list(f) for f in faixas]
+    for i in range(1, len(out)):
+        y = encaixa(out[i][0])
+        out[i][0] = y
+        out[i - 1][1] = y
+    res = []
+    for a, b, div in out:
+        if div is not None:
+            ls = [L['bbox'] for L in linhas(pg) if a - 1 <= L['bbox'][1] and L['bbox'][3] <= b + 1 and L['t'].strip()
+                  and not re.match(cfg['ancora'], L['t'])]   # o selo do número é tratado em segmentos()
+            esq = [x1 for x0, y0, x1, y1 in ls if (x0 + x1) / 2 < meio and x1 < meio + 15]
+            dirx = [x0 for x0, y0, x1, y1 in ls if x0 > meio - 20 and (x0 + x1) / 2 > meio]
+            if esq and dirx and max(esq) < min(dirx):
+                div = (max(esq) + min(dirx)) / 2
+        res.append((a, b, div))
+    return res
 
 
 def faixas_por_largas(pg, cfg, topo, base):
@@ -771,6 +811,20 @@ def suportes_apos_alternativa(pdf, cfg, ev, faixa=None):
 
 def segmentos(pdf, cfg, ev, i, faixa_pag=None):
     segs = _segmentos(pdf, cfg, ev, i, faixa_pag)
+    if cfg.get('faixas_ajuste') and segs and ev[i]['tipo'] == 'q':
+        # selo do número que começa antes da divisa (Unitins: "QUESTÃO 31" em x≈292, divisa em ≈300): a faixa do selo
+        # sai com a largura dele, e o resto da questão com a da coluna (sem fragmentos da coluna vizinha)
+        p0, r0 = segs[0]
+        for L in linhas(pdf[p0]):
+            x0_, y0_, x1_, y1_ = L['bbox']
+            if re.match(cfg['ancora'], L['t']) and abs(y0_ - ev[i]['y']) < 12 and r0.x0 + 4 < x0_ + 10 and x0_ - 8 < r0.x0 + 4 \
+                    and r0.y0 <= y0_ <= r0.y1:
+                corte_ = min(r0.y1, y1_ + 8)
+                novo = [(p0, pymupdf.Rect(x0_ - 8, r0.y0, r0.x1, corte_))]
+                if r0.y1 - corte_ > 2:
+                    novo.append((p0, pymupdf.Rect(r0.x0, corte_, r0.x1, r0.y1)))
+                segs = novo + segs[1:]
+                break
     if cfg.get('seg_min') and len(segs) > 1:
         # pedaço de página só com o fio de uma moldura (IME: a questão termina no pé e a página seguinte abre com o
         # quadro do cabeçalho de seção): fica fora
@@ -969,6 +1023,39 @@ def render(pdf, segs, marcas=None, coloridos=None, apagar=None):
 
 NOME_MATERIA = {'bio': 'Biologia', 'qui': 'Química', 'mat': 'Matemática', 'por': 'Língua Portuguesa', 'fis': 'Física',
                 'geo': 'Geografia', 'his': 'História', 'fs': 'Filosofia e Sociologia', 'ing': 'Inglês'}
+
+
+def corta_caixa_vazia(im):
+    """Moldura vazia no pé do print (quadro de rascunho, caixa da questão seguinte, borda de página — Unitins): o bloco
+    final em que só há fios (linhas horizontais longas e traços verticais nas bordas), sem nada dentro, sai do print."""
+    import numpy as np
+    d = np.asarray(im.convert('L')) < 170
+    h, w = d.shape
+    linha_cheia = d.mean(axis=1) > 0.5
+    r = h - 1
+    while r > 0 and not d[r].any():
+        r -= 1
+    k = r
+    while k > 0:
+        row = d[k]
+        if not row.any():
+            # vão branco: continua só se o que está acima também for moldura
+            k -= 1
+            continue
+        if linha_cheia[k]:
+            k -= 1
+            continue
+        xs = np.nonzero(row)[0]
+        # só traços verticais (no máximo 4 grupos estreitos), sem texto
+        grupos = np.split(xs, np.nonzero(np.diff(xs) > 2)[0] + 1)
+        if len(grupos) <= 4 and all(len(g) <= 4 for g in grupos):
+            k -= 1
+            continue
+        break
+    # k = última linha com conteúdo de verdade; o pedaço só de moldura precisa ter algum tamanho
+    if r - k < 25 or k < 20:
+        return im
+    return im.crop((0, 0, w, min(h, k + 10)))
 
 
 def corta_pe_fio(im, fio=10, vao=10):
@@ -1519,6 +1606,8 @@ def processa(pid, amostra=False, so_texto=False):
                 img = render(pdf, sup + segs, marcas, coloridos, apaga)
                 if img is not None and cfg.get('pe_cor'):
                     img = corta_pe_cor(img, cfg['pe_cor'])
+                if img is not None and cfg.get('caixa_vazia'):
+                    img = corta_caixa_vazia(img)
                 if img is not None and cfg.get('pe_fio'):
                     for _ in range(3):   # fio + acento cortado do título seguinte: um pedaço fino de cada vez
                         antes_ = img.height
