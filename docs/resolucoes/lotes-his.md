@@ -1,6 +1,6 @@
 # História: resoluções (gerado por lote.py em 2026-11-11)
 
-Faltam 1243 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 118; demais nível 1-6 952; ENEM nível 7-10 17; provas-alvo nível 7-10 98; demais nível 7-10 58.
+Faltam 1213 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 88; demais nível 1-6 952; ENEM nível 7-10 17; provas-alvo nível 7-10 98; demais nível 7-10 58.
 
 ## Lotes
 
@@ -38,6 +38,7 @@ Faltam 1243 questões sem resolução (fora as que estão em lote, pendentes ou 
 | his-0030 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | his-0031 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | his-0032 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| his-0033 | provas-alvo nível 1-6 | 30 | gravado | 29 | 0 | 1 |
 
 ## Pendentes (falta de certeza absoluta)
 
@@ -54,4 +55,6 @@ Faltam 1243 questões sem resolução (fora as que estão em lote, pendentes ou 
 
 ## Divergências de gabarito (o dono decide)
 
-Nenhuma.
+| Questão | Prova | Conteúdo | Motivo |
+|---|---|---|---|
+| P70be0644 | UFPR 2020 1ª fase · questão 19 | H08.1 origens e blocos da Guerra Fria (tema H08 Guerra Fria) | divergência: a alternativa oficial (A) afirma que "Índia, Egito e África do Sul permaneceram neutros durante a Guerra Fria, não se alinhando ao sistema bipolar". Índia e Egito lideraram o Movimento dos Não Alinhados, mas a África do Sul do apartheid foi alinhada ao bloco ocidental e não integrou esse movimento até 1994. As demais alternativas são claramente falsas (o tratado de não proliferação é de 1968; o macarthismo não acabou com as hostilidades; Stálin morreu em 1953, mas a bipolaridade continuou e a Liga das Nações é de 1919), de modo que a A é a menos errada, porém contém um erro factual. |
