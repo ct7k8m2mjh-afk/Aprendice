@@ -14,7 +14,7 @@ Para quem vai levar a "revisão geral" para o site. Tudo aqui está em `docs/rev
 | Geografia | `docs/revisao/geo/geral.json` | 45 | GK01 … GK45 | revisada completa, com 2 item(ns) "conferir" |
 | História | `docs/revisao/his/geral.json` | 57 | HK01 … HK57 | revisada completa, com 2 item(ns) "conferir" |
 | Filosofia e Sociologia | `docs/revisao/fs/geral.json` | 86 | FK01 … FK38 (Filosofia) e SK01 … SK48 (Sociologia) | revisada completa, com 2 item(ns) "conferir" |
-| Inglês | `docs/revisao/ing/geral.json` | 49 | ids de subtema (I01.1 … I04.6) e IG01 … IG18 (complementos novos) | revisada e ampliada (31 tópicos do site + 18 novos) |
+| Inglês | `docs/revisao/ing/geral.json` | 49 | ids de subtema (I01.1 … I04.6); os 18 novos levam o id do subtema com letra (I02.2b, I02.2c…) | revisada e ampliada (31 tópicos do site + 18 novos) |
 
 Total: 654 tópicos em 9 arquivos. Nenhuma matéria ficou parcial.
 
@@ -37,7 +37,7 @@ Cada tópico tem exatamente estes campos, nesta ordem:
 | `id` | texto | Identificador fixo do tópico (ver regras abaixo). |
 | `capitulo` | texto | Capítulo ou frente; serve para agrupar. |
 | `titulo` | texto | Título do tópico. |
-| `subs` | lista de textos | Ids de subtemas do site ligados ao tópico (ex.: `B01.4`, `M05.2`, `I03.2`). Preenchido em Matemática e Inglês (todos) e em parte de Biologia; vazio nas demais. |
+| `subs` | lista de textos | Ids dos subtemas do site em que o tópico se encaixa (ex.: `F02.1`, `M05.2`, `I03.2`); o primeiro é o principal. É a ponte entre "revisar por subtema" e "revisar a matéria inteira": na tela do subtema, mostrar os tópicos da revisão geral que o citam em `subs`; no tópico da revisão geral, mostrar o nome dos subtemas com link. Preenchido em Matemática, Física, Química e Inglês (todos), na maior parte de Geografia, História, Filosofia e Sociologia e em parte de Biologia; vazio em Português (ver seção 6). |
 | `busca` | lista de textos | Termos que levam ao tópico na busca: nomes técnicos, sinônimos, nomes populares, siglas, perguntas ("quando usar crase") e grafias erradas comuns ("báskara", "in media res"). Comparar sem diferenciar maiúsculas e acentos. Uma grafia errada pode estar aqui de propósito e não deve ser mostrada ao aluno como texto. |
 | `pontos` | lista de textos | O conteúdo: um ponto por item, do simples ao complexo. |
 | `pegadinha` | texto | O que a banca costuma fazer e como evitar. |
@@ -60,9 +60,9 @@ Diferenças entre matérias que o site precisa tratar:
 
 1. Os ids não mudaram e **não podem mudar**: são a chave para progresso, favoritos e revisão espaçada do aluno (princípio 7 do CLAUDE.md).
 2. Nenhum tópico foi apagado nem renumerado; a ordem da lista é a ordem de exibição.
-3. Tópico novo só entra no fim da sequência, nunca reaproveitando número. Os únicos criados nesta revisão são `IG01` a `IG18`, em Inglês (complementos, como os `G01`–`G32` de Matemática).
+3. Os únicos tópicos criados nesta revisão são 18 de Inglês. Por decisão do dono, cada um leva o id do subtema em que se encaixa, com uma letra no fim (`I02.2b`, `I02.2c`), e fica logo depois do tópico desse subtema. Tópico novo, em qualquer matéria, segue essa regra: id do subtema + próxima letra livre, sem reaproveitar id.
 4. Os ids não são únicos entre arquivos. Use a matéria junto.
-5. `subs` aponta para ids de subtemas do site; os existentes não foram alterados.
+5. `subs` aponta para ids de subtemas do site (os de `<matéria>/resumos.json`); os que já estavam preenchidos não foram alterados. Em `fs`, um tópico de Filosofia pode apontar para subtema de Sociologia e vice-versa (ex.: Escola de Frankfurt).
 
 ## 4. Como conferir
 
@@ -83,15 +83,19 @@ O script confere JSON válido, ids únicos, campos na ordem do esquema, nenhum c
 ## 6. Decisões pendentes do dono
 
 - **Português** — As descrições de imagem de alguns tópicos ainda citam 'questão resolvida' (o campo imagem foi preservado). Ao produzir essas imagens, não incluir a questão: ela saiu do tópico.
+- **Português** — Português não tem lista de subtemas em docs/revisao (não existe por/resumos.json), então os 139 tópicos ficaram sem ligação com subtema (subs vazio). Quando a lista de subtemas de Português existir, a ligação é feita do mesmo jeito das outras matérias.
 - **Matemática** — Matemática: o campo `imagem` não tem `falta_imagem` nem `aviso`, ao contrário das outras matérias. Não foi alterado (a regra é preservar o campo). Decidir se o site trata a ausência como "imagem ainda não feita" ou se o campo deve ser igualado.
 - **Matemática** — Matemática: o campo `lacunas` foi criado (não existia) para registrar a revisão, como nas outras matérias.
 - **Biologia** — BK12: decidir se o site mostra 32 ATP (contagem atual) ou também 36/38, usados por provas antigas.
+- **Biologia** — Subtemas: a lista do site (bio/resumos.json) só tem 5 temas (B01, B02, B04, B09, B11). Ficaram sem subtema 36 tópicos (bioenergética, taxonomia, botânica, zoologia, fisiologia, parasitologia, genética, biotecnologia), até esses temas existirem no site.
 - **Química** — QK18: se a imagem do livro mostrar a curva do NaOH como decrescente, não reproduzir; decidir qual gráfico entra.
 - **Geografia** — GK43: manter o corte do livro para cidade média (100 mil a 1 milhão) ou adotar o do IBGE/Ipea (100 mil a 500 mil)?
+- **Geografia** — Subtemas: não há na lista do site os temas de pensamento geográfico, cartografia e geologia/relevo; ficaram sem subtema GK01 a GK08 e GK22.
 - **História** — HK24: o livro erra o rei de Pombal (D. João V); o tópico agora traz D. José I. Se o site reproduzir alguma página do livro sobre o tema, o erro reaparece.
+- **História** — Subtemas: a lista do site vai até as Guerras Mundiais e a República de 1946; ficaram sem subtema HK50 (Guerra Fria), HK51 (populismo), HK54 (ditaduras), HK55 e HK56 (Nova República) e HK57 (América Latina no século XXI).
 - **Filosofia e Sociologia** — SK41: manter a atribuição do livro (mobilização de recursos = Tilly) ou corrigir para a atribuição usual (McCarthy e Zald; Tilly = processo político)?
 - **Filosofia e Sociologia** — Os tópicos de Filosofia e Sociologia são longos (vários pontos com mais de 400 caracteres). Foram mantidos para não perder conteúdo; se o site precisar de pontos mais curtos, o corte deve ser feito na tela, não no arquivo, ou em nova rodada de edição.
-- **Inglês** — Inglês: os 18 tópicos novos usam ids IG01–IG18 (complementos, como os G01–G32 de Matemática). Se o site preferir que virem subtemas (I05…), a troca tem de ser feita antes de irem ao ar, porque depois o id não muda.
+- **Filosofia e Sociologia** — Subtemas: ficaram sem subtema FK18 (Renascimento), FK38 (inteligência artificial), SK02 (métodos de pesquisa), SK32 (Sociologia no Brasil), SK35 (Sociologia urbana) e SK37 (Norbert Elias), que não têm correspondente na lista do site.
 
 ## 7. O que o site não deve fazer
 
@@ -734,8 +738,11 @@ O script confere JSON válido, ids únicos, campos na ordem do esquema, nenhum c
 ### Inglês (`ing`) — 49 imagens
 
 - `I01.1` Tema e ideia principal: Um texto curto em inglês com a frase de tema destacada em cor e um quadro que liga as ideias a uma ideia principal.
+- `I01.1b` Passo a passo para resolver uma questão de leitura: Fluxograma com os cinco passos, do enunciado até a eliminação de alternativas.
 - `I01.2` Objetivo do texto e público-alvo: Um texto com duas setas, uma para quem escreveu (objetivo) e outra para quem lê (público-alvo), e três verbos de objetivo: informar, convencer, entreter.
+- `I01.2b` Como o inglês é cobrado no ENEM e nos vestibulares: Quadro lado a lado: questão no modelo ENEM (texto em inglês, pergunta em português) e questão de vestibular com pergunta em inglês.
 - `I01.3` Informação explícita: Um texto curto com um trecho grifado que responde diretamente a uma pergunta, com a seta ligando a pergunta à resposta explícita.
+- `I01.3b` Comandos de questão em inglês: Lista de comandos em inglês, cada um ligado ao tipo de pergunta (explícita, inferência, vocabulário, referência).
 - `I01.4` Inferência e sentido implícito: Um iceberg: a parte de cima é o que está escrito, a de baixo é o sentido implícito, com setas que levam do texto à inferência.
 - `I01.5` Título, fonte e imagem como pista: Uma página com título, fonte e imagem circulados, cada elemento apontando para uma pista sobre o conteúdo antes de ler.
 - `I01.6` Opinião, tom e atitude do autor: Um texto com palavras de tom (however, unfortunately, clearly) destacadas e uma escala de tom da crítica ao elogio.
@@ -744,42 +751,39 @@ O script confere JSON válido, ids únicos, campos na ordem do esquema, nenhum c
 - `I01.9` Poema e letra de canção: Um verso de poema com palavras de imagem destacadas e uma pauta musical, mostrando tema, tom e figuras.
 - `I01.10` Notícia, opinião e divulgação científica: Três recortes de jornal rotulados notícia (fatos), opinião (ponto de vista) e divulgação científica (explicação de pesquisa).
 - `I01.11` Aspectos culturais e interdisciplinares: Um globo com tópicos culturais (festas, música, esporte) e ligações com outras matérias, mostrando um texto sobre cultura.
+- `I01.11b` Temas que mais aparecem nos textos da prova: Cinco blocos temáticos, cada um com seis palavras-chave em inglês e a tradução.
+- `I01.11c` Inglês como língua global e variedades do inglês: Mapa-múndi destacando países onde o inglês é língua materna, língua oficial ou língua estrangeira estudada.
 - `I02.1` Sentido da palavra no contexto e sinônimos: Uma palavra em duas frases com sentidos diferentes, ligada ao significado de cada contexto, e setas para sinônimos.
+- `I02.1b` Pares de palavras que a prova confunde: Pares de palavras ligados por uma seta dupla, cada um com um exemplo curto.
 - `I02.2` Falsos cognatos: Pares de palavras lado a lado (actually/atualmente, pretend/pretender, push/puxar) com a tradução enganosa riscada e a correta ao lado.
+- `I02.2b` Cognatos: as palavras que você já conhece: Parágrafo curto em inglês com os cognatos destacados em cor, mostrando quanto do texto já se entende.
+- `I02.2c` Falsos cognatos: lista ampliada: Tabela de três colunas: palavra em inglês, o que parece ser e o que realmente significa.
 - `I02.3` Phrasal verbs: Um verbo base mudando de sentido com cada partícula (give up, give in, give away), cada combinação numa pequena cena.
 - `I02.4` Expressões idiomáticas e provérbios: Cartas com expressões idiomáticas (it's raining cats and dogs, a piece of cake) e o desenho literal ao lado do sentido real.
 - `I02.5` Formação de palavras: prefixos e sufixos: Uma palavra-raiz com prefixos e sufixos formando palavras novas (happy, unhappy, happiness), mostrando como o sentido muda.
+- `I02.5b` Prefixos e sufixos: quadro ampliado: Uma palavra-raiz (use) no centro e, em volta, as palavras formadas: useful, useless, user, reuse, misuse, usable.
 - `I03.1` Referência pronominal: it, they, this, which: Uma frase com setas curvas ligando it, they, this e which ao termo que cada um retoma, em cores diferentes.
+- `I03.1b` Pronomes: sujeito, objeto, possessivos e reflexivos: Tabela de pronomes em cinco colunas (sujeito, objeto, possessivo adjetivo, possessivo pronome, reflexivo), linha por pessoa.
 - `I03.2` Conectivos e relações lógicas: Quatro grupos de conectivos (adição, contraste, causa, consequência) em quatro caixas, cada uma com exemplos.
+- `I03.2b` Conectivos: quadro ampliado: Quadro de conectivos em seis colunas por relação lógica (adição, contraste, causa, resultado, finalidade, condição).
 - `I03.3` Modais e grau de certeza: Uma escala de certeza com modais, must e can't no alto, should e may no meio, might e could embaixo, com exemplos.
 - `I03.4` Comparativos, superlativos, intensificadores e quantificadores: Duas torres de tamanhos diferentes com tall, taller, the tallest, e quantificadores (much, many, few, little) em jarros de quantidade.
 - `I03.5` Voz passiva: Uma frase ativa virando passiva, com setas que trocam sujeito e objeto e a estrutura be + particípio destacada.
 - `I03.6` Discurso direto e indireto: Dois balões de fala viram uma frase reportada, com a mudança de tempo verbal, pronome e advérbio marcada por setas.
 - `I03.7` Condicionais e orações relativas: Quatro tipos de condicional (zero, 1º, 2º, 3º) como uma escada de probabilidade, e uma oração relativa com who, which e that.
+- `I03.7b` Orações relativas em detalhe: Duas frases quase iguais, com e sem vírgulas, mostrando a mudança de sentido entre restritiva e explicativa.
+- `I03.7c` Desejo e hipótese: wish, if only, would rather e had better: Balão de pensamento com 'I wish I had…' ao lado da situação real, mostrando o contraste entre desejo e realidade.
 - `I03.8` Classes de palavras: substantivo, adjetivo, pronome e preposição: Uma frase com cada palavra colorida segundo a classe (substantivo, adjetivo, pronome, preposição) e um quadro de funções.
+- `I03.8b` Substantivos: plural, contáveis e caso genitivo: Dois quadros: plurais irregulares com desenho (one child, two children) e o 's ligando o dono à coisa.
+- `I03.8c` Adjetivos e advérbios: posição, -ed × -ing e frequência: Duas figuras: pessoa entediada (bored) diante de uma aula chata (boring), e uma régua de frequência de never a always.
 - `I03.9` Negação e palavras de sentido restritivo: Frases com not, never, hardly e only, a palavra de negação ou restrição destacada, com uma pequena escala de força da negação.
+- `I03.9b` Perguntas: palavras interrogativas, ordem e question tags: Esquema da ordem da pergunta em blocos coloridos (interrogativa, auxiliar, sujeito, verbo) com dois exemplos.
 - `I04.1` Presente simples e contínuo: Duas cenas, uma rotina diária (presente simples) e uma ação no momento (contínuo), com a marca temporal de cada.
+- `I04.1b` Quadro-resumo dos tempos verbais: Linha do tempo (passado, agora, futuro) com os quatro aspectos marcados por pontos, intervalos e setas.
 - `I04.2` Passado simples, contínuo e used to: Uma linha do tempo com um passado simples, uma ação em curso interrompida por outra e um hábito antigo (used to).
 - `I04.3` Present perfect × simple past: Uma linha do tempo com uma data fixa no passado (simple past) e uma ação ligada ao presente (present perfect), com as palavras-pista.
 - `I04.4` Past perfect e sequência de tempos: Uma linha do tempo com duas ações no passado, a primeira em past perfect e a segunda em simple past.
 - `I04.5` Futuro: will, going to e presente: Três cenas de futuro, uma decisão na hora (will), um plano já feito (going to) e um horário marcado (presente), com as formas.
 - `I04.6` Irregulares, gerúndio e infinitivo: Uma lista de verbos irregulares com as três formas e uma caixa de quando usar gerúndio ou infinitivo.
-- `IG01` Como o inglês é cobrado no ENEM e nos vestibulares: Quadro lado a lado: questão no modelo ENEM (texto em inglês, pergunta em português) e questão de vestibular com pergunta em inglês.
-- `IG02` Passo a passo para resolver uma questão de leitura: Fluxograma com os cinco passos, do enunciado até a eliminação de alternativas.
-- `IG03` Cognatos: as palavras que você já conhece: Parágrafo curto em inglês com os cognatos destacados em cor, mostrando quanto do texto já se entende.
-- `IG04` Falsos cognatos: lista ampliada: Tabela de três colunas: palavra em inglês, o que parece ser e o que realmente significa.
-- `IG05` Prefixos e sufixos: quadro ampliado: Uma palavra-raiz (use) no centro e, em volta, as palavras formadas: useful, useless, user, reuse, misuse, usable.
-- `IG06` Pares de palavras que a prova confunde: Pares de palavras ligados por uma seta dupla, cada um com um exemplo curto.
-- `IG07` Comandos de questão em inglês: Lista de comandos em inglês, cada um ligado ao tipo de pergunta (explícita, inferência, vocabulário, referência).
-- `IG08` Temas que mais aparecem nos textos da prova: Cinco blocos temáticos, cada um com seis palavras-chave em inglês e a tradução.
-- `IG09` Pronomes: sujeito, objeto, possessivos e reflexivos: Tabela de pronomes em cinco colunas (sujeito, objeto, possessivo adjetivo, possessivo pronome, reflexivo), linha por pessoa.
-- `IG10` Substantivos: plural, contáveis e caso genitivo: Dois quadros: plurais irregulares com desenho (one child, two children) e o 's ligando o dono à coisa.
-- `IG11` Adjetivos e advérbios: posição, -ed × -ing e frequência: Duas figuras: pessoa entediada (bored) diante de uma aula chata (boring), e uma régua de frequência de never a always.
-- `IG12` Perguntas: palavras interrogativas, ordem e question tags: Esquema da ordem da pergunta em blocos coloridos (interrogativa, auxiliar, sujeito, verbo) com dois exemplos.
-- `IG13` Conectivos: quadro ampliado: Quadro de conectivos em seis colunas por relação lógica (adição, contraste, causa, resultado, finalidade, condição).
-- `IG14` Orações relativas em detalhe: Duas frases quase iguais, com e sem vírgulas, mostrando a mudança de sentido entre restritiva e explicativa.
-- `IG15` Quadro-resumo dos tempos verbais: Linha do tempo (passado, agora, futuro) com os quatro aspectos marcados por pontos, intervalos e setas.
-- `IG16` Verbos irregulares mais cobrados: Tabela de verbos irregulares em três colunas (base, passado, particípio), agrupados por padrão de mudança.
-- `IG17` Desejo e hipótese: wish, if only, would rather e had better: Balão de pensamento com 'I wish I had…' ao lado da situação real, mostrando o contraste entre desejo e realidade.
-- `IG18` Inglês como língua global e variedades do inglês: Mapa-múndi destacando países onde o inglês é língua materna, língua oficial ou língua estrangeira estudada.
+- `I04.6b` Verbos irregulares mais cobrados: Tabela de verbos irregulares em três colunas (base, passado, particípio), agrupados por padrão de mudança.
 
