@@ -677,7 +677,7 @@ Cada linha diz o que ilustrar. Nome do arquivo: `<id do subtema>.png` (ex.: B01.
 
 ## Matemática
 
-_Base: livro Revisaí – Matemática (pp. 4–76 lidas; M10.2–M12.5 e M17 seguem o conteúdo padrão do sumário do livro, sem leitura integral das pp. 88–112)._
+_Base: livro Revisaí – Matemática (pp. 4–112 lidas)._
 
 
 ### M01 Fundamentos
@@ -757,24 +757,24 @@ _Base: livro Revisaí – Matemática (pp. 4–76 lidas; M10.2–M12.5 e M17 seg
 - **M10.1** Razões trigonométricas no triângulo retângulo: Triângulo retângulo com o ângulo α marcado, cateto oposto, adjacente e hipotenusa em cores e as três razões escritas.
 - **M10.2** Lei dos senos: Triângulo qualquer inscrito numa circunferência, com lados e ângulos opostos de mesma cor e o raio R indicado.
 - **M10.3** Lei dos cossenos: Triângulo ABC com os lados b e c e o ângulo A entre eles, e a seta apontando para o lado oposto a.
-- **M10.4** Ciclo trigonométrico e arcos: Circunferência trigonométrica com os ângulos notáveis do primeiro quadrante e as coordenadas (cos, sen) de cada ponto.
-- **M10.5** Funções trigonométricas e gráficos: Dois gráficos (seno e cosseno) em um período, com amplitude, período e a imagem marcados.
+- **M10.4** Ciclo trigonométrico e arcos: Circunferência trigonométrica com os ângulos notáveis de 0° a 360° e as coordenadas (cos, sen) de cada ponto do primeiro quadrante.
+- **M10.5** Funções trigonométricas e gráficos: Gráfico do seno em um período, com amplitude, período e imagem marcados, e uma segunda curva deslocada e esticada para comparar.
 
 ### M11 Geometria espacial
 
-- **M11.1** Prismas e cubos: Cubo e paralelepípedo com a diagonal da face e a diagonal do sólido tracejadas, e as fórmulas ao lado.
+- **M11.1** Prismas e cubos: Cubo e paralelepípedo com a diagonal da face e a do sólido tracejadas, e um poliedro com V, A e F contados.
 - **M11.2** Cilindros: Cilindro planificado: dois círculos e um retângulo de comprimento 2πr, com r e h marcados.
 - **M11.3** Pirâmides e cones: Cone com r, h e geratriz g, e uma pirâmide ao lado com a altura e o apótema, cada uma dentro do prisma correspondente em linha tracejada.
-- **M11.4** Esfera: Esfera com um plano cortando e o triângulo retângulo R, d e r formado na secção.
-- **M11.5** Troncos, sólidos compostos e densidade/volume: Cone cortado por um plano paralelo à base, com o cone pequeno retirado tracejado e o tronco colorido.
+- **M11.4** Esfera: Esfera com plano de corte, o triângulo retângulo R, d e r da secção, e uma cunha e um fuso destacados em cores.
+- **M11.5** Troncos, sólidos compostos e densidade/volume: Cone cortado por plano paralelo à base: cone menor tracejado, tronco colorido, com r, R e h marcados.
 - **M11.6** Volumes básicos: Painel com os seis sólidos básicos e a fórmula do volume sob cada um.
 
 ### M12 Geometria analítica
 
 - **M12.1** Distância entre pontos e ponto médio: Plano cartesiano com dois pontos, o triângulo retângulo formado pelos catetos Δx e Δy e o ponto médio marcado.
 - **M12.2** Equação da reta: Reta no plano com dois pontos, o triângulo do coeficiente angular e o ângulo α com o eixo x.
-- **M12.3** Posição relativa e paralelismo: Três pares de retas: paralelas, concorrentes e perpendiculares, com os coeficientes angulares escritos.
-- **M12.4** Circunferência no plano cartesiano: Circunferência no plano com centro (a,b), raio r e a equação escrita sobre o gráfico.
+- **M12.3** Posição relativa e paralelismo: Três pares de retas (paralelas, concorrentes, perpendiculares) com os coeficientes angulares escritos.
+- **M12.4** Circunferência no plano cartesiano: Circunferência no plano com centro, raio, uma reta tangente e outra secante, e a distância d do centro às retas marcada.
 - **M12.5** Áreas por coordenadas: Triângulo de vértices (0,0), (4,0), (0,3) com a malha do plano e o determinante ao lado dando a área 6.
 
 ### M13 Combinatória e probabilidade
@@ -810,3 +810,36 @@ _Base: livro Revisaí – Matemática (pp. 4–76 lidas; M10.2–M12.5 e M17 seg
 
 - **M17.1** Raciocínio lógico e dedução: Diagramas de Venn para 'todo A é B', 'algum A é B' e 'nenhum A é B', com a negação de cada um escrita embaixo.
 - **M17.2** Algoritmos e sistemas de numeração: Divisão sucessiva por 2 do número 13, com os restos 1, 0, 1, 1 e a leitura de baixo para cima formando 1101.
+
+### Matemática — tópicos extras da revisão geral (arquivo <id>.png, ex.: G08.png)
+
+- **G30** Radiciação: propriedades e racionalização: Fração $\frac{1}{\sqrt3+\sqrt2}$ sendo multiplicada em cima e embaixo pelo conjugado, passo a passo.
+- **G02** Divisibilidade, primos, MMC e MDC (detalhe): Árvore de fatoração de 360 com os expoentes e a conta (3+1)(2+1)(1+1) = 24 divisores.
+- **G01** Teoria dos conjuntos e operações: Diagrama de Venn com três círculos, as oito regiões numeradas e a ordem de preenchimento (do centro para fora).
+- **G03** Sentenças, equações e identidades: Duas colunas: equação (x = 3 marca um ponto) e identidade (vale para toda a reta real).
+- **G04** Fatoração e produtos notáveis: Quadrado de lado a+b dividido em quatro regiões (a², b² e dois retângulos ab) mostrando $(a+b)^2$.
+- **G07** Inequações, estudo do sinal e forma fatorada: Quadro de sinais de $(x-1)(x-3)/(x+2)$ com três linhas e o resultado na reta real.
+- **G08** Parábola (lugar geométrico): Parábola com foco, diretriz, vértice e eixo de simetria, e um ponto P com duas setas iguais (a P-foco e a P-diretriz).
+- **G05** Par ordenado, produto cartesiano, relação e função: Diagrama de flechas de A para B com domínio, contradomínio e imagem pintados em cores diferentes.
+- **G06** Classificação das funções: sobrejetora, injetora, monotonicidade, paridade, periodicidade: Seis mini-gráficos: sobrejetora, injetora, bijetora, par, ímpar e periódica, cada um com a condição escrita.
+- **G29** Inequações exponencial e logarítmica, cologaritmo: Dois gráficos (base 2 e base 1/2) com um intervalo no eixo x e a desigualdade resultante em cada caso.
+- **G14** Classificação, existência e ângulos do triângulo: Triângulo com o ângulo externo marcado e a igualdade com os dois internos opostos; ao lado, 3 palitos (2, 3, 6) que não fecham.
+- **G15** Pontos notáveis do triângulo: Quatro triângulos, um para cada ponto notável, com as cevianas correspondentes em cores.
+- **G16** Congruência e teoremas da Geometria plana: Triângulo com os pontos médios de dois lados ligados (base média) e um trapézio com a base média e o segmento das diagonais.
+- **G28** Transformações trigonométricas: Ciclo com dois arcos a e b somando e um quadro com as três fórmulas de soma em cores.
+- **G17** Geometria de posição e poliedros: Os cinco poliedros de Platão em linha, com F, A e V escritos embaixo de cada um.
+- **G18** Pirâmide regular, tronco e inscrições de sólidos: Pirâmide quadrangular com h, g e a em um triângulo retângulo, e ao lado a esfera dentro de um cilindro equilátero.
+- **G13** Bissetrizes e ângulo entre retas: Duas retas concorrentes com as duas bissetrizes (perpendiculares entre si) e a distância do ponto às retas.
+- **G09** Elipse: Elipse com focos, os eixos 2a e 2b, a distância focal 2c e o triângulo retângulo a, b, c destacado.
+- **G10** Hipérbole: Hipérbole com focos, vértices, retângulo de lados 2a e 2b e as duas assíntotas tracejadas.
+- **G11** Inequações com duas variáveis e regiões do plano: Plano com uma elipse e um círculo, a região interior comum pintada, e o ponto teste (0,0) marcado.
+- **G12** Área de polígono por coordenadas e alinhamento: Quadrilátero no plano com os vértices numerados em ordem e a tabela das multiplicações cruzadas.
+- **G20** Experimento, espaço amostral e produto de probabilidades: Árvore de probabilidades com dois sorteios sem reposição, mostrando a multiplicação ao longo dos ramos.
+- **G19** Fatorial, binomial, Pascal e Newton: Triângulo de Pascal até a linha 6 com Stifel e uma diagonal somada marcados em cores.
+- **G21** Definições, frequências e tabelas: Tabela de distribuição de frequências com colunas f, fr, Fac e Frac coloridas e uma linha preenchida passo a passo.
+- **G22** Média geométrica, harmônica e ponderada: Três balanças: aritmética, geométrica e harmônica, cada uma com a fórmula e um exemplo curto.
+- **G25** Tipos de matrizes e propriedades da transposta: Matrizes 3×3 coloridas mostrando onde ficam os zeros em cada tipo (diagonal, triangular sup., inf., identidade).
+- **G26** Determinantes: propriedades, Laplace, Chió e Vandermonde: Matriz 3×3 com a fila de maior número de zeros destacada e os cofatores com sinais alternados em xadrez (+ − +).
+- **G27** Matriz inversa, Cramer e escalonamento: Sistema 3×3 sendo escalonado em três quadros, com o pivô circulado em cada etapa.
+- **G23** Equações polinomiais: raízes e teoremas: Gráfico de um polinômio cúbico cruzando o eixo x em três pontos, com Girard escrito ao lado.
+- **G24** Divisão de polinômios, Briot-Ruffini e teoremas: Dispositivo de Briot-Ruffini com a raiz à esquerda, os coeficientes em linha e o resto destacado.
