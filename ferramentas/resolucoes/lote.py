@@ -211,6 +211,23 @@ def texto_ruim(t):
     return curtas / max(len(linhas), 1) > 0.3
 
 
+def ocr_do_print(caminho):
+    """Texto do print lido por OCR (tesseract, português + inglês). Vazio se o tesseract não existir."""
+    import shutil
+    import subprocess
+    import tempfile
+    if not shutil.which('tesseract') or not os.path.exists(caminho):
+        return ''
+    try:
+        from PIL import Image
+        with tempfile.NamedTemporaryFile(suffix='.png') as tmp:
+            Image.open(caminho).convert('RGB').save(tmp.name)
+            r = subprocess.run(['tesseract', tmp.name, '-', '-l', 'por+eng'], capture_output=True, text=True, timeout=60)
+        return limpa(r.stdout)
+    except Exception:
+        return ''
+
+
 def entrada(m, qs):
     temas, subs = nomes_materia(m)
     txt = {}
@@ -248,6 +265,11 @@ def entrada(m, qs):
                 e['ler_o_print'] = True  # texto vazio, embaralhado ou sem as alternativas: a questão vale pelo print
         if e['tem_figura']:
             e['ler_o_print'] = True
+        if e.get('ler_o_print'):
+            o = ocr_do_print(os.path.join(RAIZ, e['print']))
+            if o:
+                # leitura automática da imagem, só como apoio: o que vale é o print
+                e['ocr_do_print'] = o
         out.append(e)
     return out
 
