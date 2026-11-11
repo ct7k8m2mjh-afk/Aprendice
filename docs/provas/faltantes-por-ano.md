@@ -112,31 +112,33 @@ o caderno e o gabarito definitivo baixados de lá (Mackenzie, Unitins, UNIRG 202
 o arquivo foi baixado). Matéria, tema, conteúdo e nível: rascunho de um classificador e conferência de um 2º agente
 questão a questão (prints e classificação); correções aplicadas. Auditoria separada (outro agente, amostra de 171
 questões das 46 provas): gabarito 171/171 igual ao oficial definitivo; 2 classificações corrigidas (UNIRG 2025/2 q4, q9);
-14 apontamentos de print — os que perdiam conteúdo foram corrigidos ou postos em `recorte_imperfeito`; ficaram, leves,
-molduras vazias/fios de diagramação em prints da Unitins e o glifo que falta no próprio PDF do Mackenzie 2026/2 q36
-("com x 0", sinal ausente no caderno oficial).
+14 apontamentos de print — corrigidos (molduras vazias da Unitins tiradas na 2ª rodada). Fica só o glifo que falta no
+próprio PDF do Mackenzie 2026/2 q36 ("com x 0", sinal ausente no caderno oficial).
 
-### Entraram nesta rodada (46 provas, 2.386 questões)
+### Entraram nesta rodada (48 provas, 2.552 questões)
 
 | Instituição | Provas (id) | Questões |
 |---|---|---|
 | IME | 2020/2021, 2021/2022, 2022/2023, 2025/2026 — 1ª fase objetiva (`ime-2021`, `-2022`, `-2023`, `-2026`) | 155 |
 | Mackenzie | 2026/2 – 2ª aplicação, 15/07/2026 (`mackenzie-2026-3`) | 60 |
 | UEA | Acesso 2021, 2025, 2026 e 2027: Conhecimentos Gerais + Conhecimentos Específicos (2021: só grupo 1; 2025–2027: grupos 1, 2 e 3); SIS – Prova de Acompanhamento III dos acessos 2020, 2021, 2025, 2026 e 2027 | 996 |
-| UFRR | Vestibular 2021, 2022 e 2023 – Prova Integral (= etapa 3 do PSS) | 204 |
+| UFRR | Vestibular 2021, 2022 e 2023 – Prova Integral (= etapa 3 do PSS) | 206 |
 | UFT | Vestibular 2022/1, 2022/2, 2023/1, 2024/1 (manhã 1–32 + tarde 33–76) e EaD 2022/2 | 327 |
-| Unitins | 2020/1, 2021/1, Medicina 2021/2, 2022/1, 2023/1 (cadernos 1 e 2), 2024/1 (cadernos 1 e 2), 2025/1 caderno 2, 2026/1 (cadernos 1 e 2) | 484 |
+| Unitins | 2020/1, 2021/1, Medicina 2021/2, 2022/1, Medicina 2022/1, 2023/1 (cadernos 1 e 2), 2024/1 (cadernos 1 e 2), 2025/1 caderno 2, 2026/1 (cadernos 1 e 2) | 578 |
+| UERR | 2023 (Cebraspe) | 70 |
 | UNIRG | Medicina 2020/1 (Gurupi, banca UFG), Medicina 2021/1 e 2021/2 – campus Paraíso do Tocantins | 160 |
 
 Também: UNIRG 2025/2 — o ícone do título "Text for questions..." saiu do pé das questões 4, 9 e 15 (`suporte_icone`);
 as questões ainda sem classificação nas UNIRG 2022/1, 2022/2, 2023/2 e 2025/2 foram classificadas.
 
-Fora dentro das provas que entraram: anuladas (lista em `fora` de cada `prova.json`) e 48 questões com
-`recorte_imperfeito` (a emenda das faixas de uma/duas colunas parte fórmula, tabela, figura ou linha; ficam fora até o
-print ser refeito à mão). UFRR 2021 q52 e 2023 q64. Unitins: 2020/1 q12, 13, 33, 34; 2021/1 q11, 17, 20, 21, 23, 39; Medicina 2021/2 q4, 8, 17, 18, 19, 21, 26; 2022/1 q13, 14, 25, 28,
-30, 31, 37; 2023/1 c1 q3, 10, 47; c2 q8, 9, 30; 2024/1 c1 q13, 15, 24; c2 q11, 13, 25, 27, 29; 2025/1 c2 q23, 24, 45; 2026/1
-c1 q4, 30; c2 q2, 4, 28). UEA acesso 2021 e SIS 2020/2021: as questões 9–12 têm versão em inglês e em espanhol com um só
-gabarito oficial; entra a versão em inglês.
+Fora dentro das provas que entraram: só anuladas (lista em `fora` de cada `prova.json`). As 48 questões que tinham
+ficado como `recorte_imperfeito` foram refeitas (11/11/2026, 2ª rodada, por ordem do dono): fronteiras de faixa
+encaixadas nos vãos entre linhas (`faixas_ajuste`), selo do número tratado à parte, e recorte manual por questão
+(`manual` em `provas_grupo_b.py`: página, colunas e a linha de início/fim lida na camada de texto) onde a diagramação
+mistura uma e duas colunas; molduras vazias tiradas do print (`caixa_vazia`). Nenhuma questão com print partido ficou
+no site: todas as questões das 12 provas da Unitins, UFRR 2021 q52 e 2023 q64 e a UERR 2023 foram reconferidas, uma a
+uma, por um conferente separado. Unitins Medicina 2022/1 entrou inteira (48 questões). UEA acesso 2021 e SIS 2020/2021:
+as questões 9–12 têm versão em inglês e em espanhol com um só gabarito oficial; entra a versão em inglês.
 
 ### Anos de 2020 a 2026 que ainda faltam
 
@@ -156,7 +158,6 @@ gabarito oficial; entra a versão em inglês.
 | UFT | 2020/1 a 2021 | 2020/1: link quebrado (404); 2020/2–2021: nada no pacote (seleção pelo Sisu na pandemia). |
 | UFT | 2023/2 e 2024/2 | No pacote só o gabarito PROVISÓRIO. |
 | UFT | Exato 2024–2026; EaD 2022/2 – Licenciatura em Música | Exato: não está no pacote. Música: as questões comuns repetiriam as do caderno das licenciaturas de Ciências e as de Música não são matéria do site. |
-| Unitins | Medicina 2022/1 | Configurada, mas fora: 15 das 48 questões com print partido pela diagramação (selos que avançam sobre a calha); refazer à mão. |
 | Unitins | TO Graduado 2022/2 | O PDF do gabarito mistura as camadas "preliminar" e "definitivo"; não dá para confirmar a versão. |
 | Unitins | 2020/2 e Paraíso 2020 | 2020/2: ingresso pelo Sisu; Paraíso 2020: link quebrado (404). |
 | UNIRG | Gurupi 2020/2 a 2021/2 | Página oficial sem cadernos (provas on-line na pandemia). |
@@ -164,5 +165,6 @@ gabarito oficial; entra a versão em inglês.
 | UNIRG | Gurupi 2025/1 | Caderno não publicado (só o gabarito). |
 | UNIRG | Paraíso 2022 | Só gabarito preliminar no pacote. |
 
-Fora do grupo B, mas achado no pacote: `fontes/provas-manuais/ufrr/provas-e-gabaritos-uerr-2023/` é da UERR (caderno só
-em imagem + gabarito definitivo) — não integrado.
+UERR 2023 (no pacote da UFRR): integrada (`uerr-2023`, Cebraspe, 70 questões; 45 e 69 anuladas). O caderno é só imagem:
+as âncoras vêm de OCR em 4 resoluções, encaixadas nas barras de título da página e conferidas; sem transcrição (só o
+print).

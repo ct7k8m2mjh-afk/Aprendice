@@ -306,6 +306,16 @@ def ajusta_faixas(pg, cfg, faixas, topo, base):
         if div is not None:
             ls = [L['bbox'] for L in linhas(pg) if a - 1 <= L['bbox'][1] and L['bbox'][3] <= b + 1 and L['t'].strip()
                   and not re.match(cfg['ancora'], L['t'])]   # o selo do número é tratado em segmentos()
+            # linha justificada partida na calha pela camada de texto (pedaço da esquerda e da direita na mesma altura,
+            # quase encostados): a faixa é de largura total
+            dirs = [round(l[0]) for l in ls if l[0] > meio - 20 and (l[0] + l[2]) / 2 > meio]
+            colados = sum(1 for l1 in ls for l2 in ls if l1 is not l2 and abs(l1[1] - l2[1]) < 2 and 0 <= l2[0] - l1[2] < 12
+                          and l1[2] > meio - 40 and l2[0] < meio + 40)
+            if cfg.get('faixas_justificada') and dirs and colados >= 2:
+                from collections import Counter
+                if Counter(dirs).most_common(1)[0][1] < 0.5 * len(dirs):   # a "coluna direita" não tem margem própria
+                    res.append((a, b, None))
+                    continue
             esq = [x1 for x0, y0, x1, y1 in ls if (x0 + x1) / 2 < meio and x1 < meio + 15]
             dirx = [x0 for x0, y0, x1, y1 in ls if x0 > meio - 20 and (x0 + x1) / 2 > meio]
             if esq and dirx and max(esq) < min(dirx):
@@ -414,7 +424,7 @@ def faixa_vertical(pg, cfg, c, cols):
     """(topo, base) da coluna c: com faixa larga, as colunas normais param nela e a faixa vai até o pé."""
     ys = _cache_faixas.get((id(pg.parent), pg.number)) if cfg.get('colunas') == 'faixas' else None
     if ys is not None:
-        return ys[c]
+        return ys[c] if c < len(ys) else (ys[-1][0], ys[-1][1])
     y_l = larga_de(pg, cfg)
     topo, base = topo_de(pg, cfg), limite_baixo(pg, cfg)
     y_t = larga_topo_de(pg, cfg)
@@ -441,6 +451,11 @@ def topo_de(pg, cfg):
         for L in linhas(pg):
             if L['bbox'][1] < 90 and re.search(cfg['cabecalho'], L['t']):
                 t = max(t, L['bbox'][3] + 1)
+    if cfg.get('topo_barra'):   # faixa colorida larga logo abaixo do título da matéria (Unitins 2023/1): também fica fora
+        for d_ in pg.get_drawings():
+            r_ = d_['rect']
+            if d_.get('fill') and r_.width > pg.rect.width * 0.6 and r_.height < 15 and r_.y0 < t + 10 and r_.y1 > t - 1 and r_.y0 < 120:
+                t = max(t, r_.y1 + 1)
     return t
 
 
@@ -560,6 +575,8 @@ def eventos_do_pdf(pdf, cfg, faixa=None):
             ev.append({'p': pi, 'c': c_f, 'y': y_f, 'tipo': 'q', 'n': n_f})
         # texto de apoio sem frase-padrão de indicação ("As três questões a seguir (02, 03 e 04)...", conferido no caderno):
         # (y, coluna, [primeira, última]) na numeração do caderno
+        for y_f, c_f in cfg.get('corte_forcado', {}).get((cfg.get('_arquivo'), pi + 1), []):
+            ev.append({'p': pi, 'c': c_f, 'y': y_f, 'tipo': 'corte'})   # fim de questão conferido (OCR junta colunas)
         for y_f, c_f, faixa_f in cfg.get('suporte_forcado', {}).get((cfg.get('_arquivo'), pi + 1), []):
             ev.append({'p': pi, 'c': c_f, 'y': y_f, 'tipo': 'suporte', 'faixa': list(faixa_f), 'num': None})
         for li, L in enumerate(lp):
@@ -611,7 +628,7 @@ def eventos_do_pdf(pdf, cfg, faixa=None):
             if m and x0 - cols[c][0] <= dx:
                 # selo desenhado em volta do número ("QUESTÃO 15" numa faixa colorida): a questão começa no alto do selo
                 for r_ in selos_da_pagina(pg, cfg.get('selo_linha_grossa', False)):
-                    if r_.y0 < y0 + 1 and r_.y1 > y0 and y0 - r_.y0 < 10 and r_.x0 - 2 <= x0 <= r_.x1 + cfg.get('selo_dx', 0):
+                    if r_.y0 < y0 + 1 and r_.y1 > y0 and y0 - r_.y0 < cfg.get('selo_folga', 10) and r_.x0 - 2 <= x0 <= r_.x1 + cfg.get('selo_dx', 0):
                         y0 = min(y0, r_.y0)
                 if cfg.get('ancora_bloco'):
                     # número centrado na altura do parágrafo ao lado (texto ao lado de figura, Unicentro 2026):
@@ -811,13 +828,25 @@ def suportes_apos_alternativa(pdf, cfg, ev, faixa=None):
 
 def segmentos(pdf, cfg, ev, i, faixa_pag=None):
     segs = _segmentos(pdf, cfg, ev, i, faixa_pag)
+    if cfg.get('faixas_ajuste') and segs:
+        # selo do número da coluna vizinha que avança sobre a calha: o pedaço da coluna esquerda para antes dele
+        novo = []
+        for p_, r_ in segs:
+            x1 = r_.x1
+            for d_ in pdf[p_].get_drawings():
+                q_ = d_['rect']
+                if d_.get('fill') and 15 < q_.height < 35 and 40 < q_.width < 140 and q_.y1 > r_.y0 and q_.y0 < r_.y1 \
+                        and r_.x0 + 60 < q_.x0 < x1 and q_.x1 > x1:
+                    x1 = min(x1, q_.x0 - 1)
+            novo.append((p_, pymupdf.Rect(r_.x0, r_.y0, x1, r_.y1)))
+        segs = novo
     if cfg.get('faixas_ajuste') and segs and ev[i]['tipo'] == 'q':
         # selo do número que começa antes da divisa (Unitins: "QUESTÃO 31" em x≈292, divisa em ≈300): a faixa do selo
         # sai com a largura dele, e o resto da questão com a da coluna (sem fragmentos da coluna vizinha)
         p0, r0 = segs[0]
         for L in linhas(pdf[p0]):
             x0_, y0_, x1_, y1_ = L['bbox']
-            if re.match(cfg['ancora'], L['t']) and abs(y0_ - ev[i]['y']) < 12 and r0.x0 + 4 < x0_ + 10 and x0_ - 8 < r0.x0 + 4 \
+            if re.match(cfg['ancora'], L['t']) and abs(y0_ - ev[i]['y']) < 12 and r0.x0 - 15 < x0_ < r0.x0 + 2 \
                     and r0.y0 <= y0_ <= r0.y1:
                 corte_ = min(r0.y1, y1_ + 8)
                 novo = [(p0, pymupdf.Rect(x0_ - 8, r0.y0, r0.x1, corte_))]
@@ -1025,6 +1054,92 @@ NOME_MATERIA = {'bio': 'Biologia', 'qui': 'Química', 'mat': 'Matemática', 'por
                 'geo': 'Geografia', 'his': 'História', 'fs': 'Filosofia e Sociologia', 'ing': 'Inglês'}
 
 
+def encolhe_vazios(im, max_px=40, fica=24):
+    """Trecho vazio dentro de moldura (só os fios laterais, sem texto) mais alto que `max_px`: encolhe para `fica` px."""
+    import numpy as np
+    from PIL import Image as _I
+    d = np.asarray(im.convert('L')) < 170
+    h, w = d.shape
+    def vazio(row):
+        xs = np.nonzero(row)[0]
+        if not len(xs):
+            return True
+        g = np.split(xs, np.nonzero(np.diff(xs) > 2)[0] + 1)
+        # só bordas da moldura: traços verticais perto das laterais ou fios de quase toda a largura
+        return all((len(x) <= 4 and (x[0] < 30 or x[-1] > w - 30)) or len(x) > w * 0.5 for x in g)
+    v = [vazio(d[r]) for r in range(h)]
+    cortes, r = [], 0
+    while r < h:
+        if v[r]:
+            a = r
+            while r < h and v[r]:
+                r += 1
+            if r - a > max_px and a > 0 and r < h:
+                cortes.append((a + fica // 2, r - fica // 2))
+        else:
+            r += 1
+    if not cortes:
+        return im
+    partes, y = [], 0
+    for a, b in cortes:
+        partes.append(im.crop((0, y, w, a)))
+        y = b
+    partes.append(im.crop((0, y, w, h)))
+    out = _I.new(im.mode, (w, sum(p.height for p in partes)), 'white')
+    yy = 0
+    for p_ in partes:
+        out.paste(p_, (0, yy))
+        yy += p_.height
+    return out
+
+
+def resolve_manual(pdf, cfg, sg):
+    """Pedaço de recorte manual: (página, x0, x1, início, fim). início/fim = regex da linha (início inclusive, com folga
+    para o selo do número; fim exclusivo: a linha seguinte que já não é da questão) ou None (alto/pé do conteúdo da
+    coluna) ou número (y em pt). As alturas saem da camada de texto, não de medida a olho."""
+    pg_, x0, x1, ini, fim = sg
+    pg = pdf[pg_ - 1]
+    topo, base = topo_de(pg, cfg), limite_baixo(pg, cfg)
+    ls = [L for L in linhas(pg) if L['t'].strip() and L['bbox'][2] > x0 + 3 and L['bbox'][0] < x1 - 3
+          and topo - 2 <= L['bbox'][1] and L['bbox'][3] <= base + 3
+          and not ((L['bbox'][3] - L['bbox'][1]) > 40 and (L['bbox'][3] - L['bbox'][1]) > 3 * (L['bbox'][2] - L['bbox'][0]))]   # rodapé girado fora
+    ls.sort(key=lambda L: L['bbox'][1])
+    if isinstance(ini, str):
+        L = next(L for L in ls if re.search(ini, L['t'].strip()))
+        y0 = L['bbox'][1] - (11 if re.match(r'(?i)quest', L['t'].strip()) else 3)
+        # linha de cima que encosta (título de seção, fim da questão anterior): o pedaço começa logo abaixo dela
+        cima = [M['bbox'][3] for M in ls if M['bbox'][1] < L['bbox'][1] - 2 and M['bbox'][3] > y0]
+        if cima:
+            y0 = min(max(cima) + 0.3, L['bbox'][1] - 0.3)
+    elif ini is None:
+        y0 = (ls[0]['bbox'][1] - 3) if ls else topo
+        # figura no alto da coluna, acima da 1ª linha de texto
+        for im_ in pg.get_image_info():
+            b_ = im_['bbox']
+            if b_[0] < x1 - 3 and b_[2] > x0 + 3 and topo - 2 <= b_[1] < y0 and b_[3] - b_[1] > 15:
+                y0 = min(y0, b_[1] - 3)
+    else:
+        y0 = ini
+    if isinstance(fim, str):
+        L = next(L for L in ls if L['bbox'][1] > y0 + 5 and re.search(fim, L['t'].strip()))
+        y1 = L['bbox'][1] - (12 if re.match(r'(?i)quest', L['t'].strip()) else 2)
+        baixo = [M['bbox'][1] for M in ls if M['bbox'][3] > L['bbox'][3] + 2 and M['bbox'][1] < y1 and M['bbox'][1] > y0 + 5
+                 and M['bbox'][3] > L['bbox'][1]]
+        acima = [M for M in ls if M['bbox'][1] < y1 < M['bbox'][3] and M is not L]
+        if acima:   # linha da questão que desce abaixo do corte: o corte vai para o pé dela, se não invade a seguinte
+            y1 = min(max(M['bbox'][3] for M in acima) + 0.5, L['bbox'][1] - 0.3)
+    elif fim is None:
+        y1 = min(base + 3, max(L['bbox'][3] for L in ls if L['bbox'][1] >= y0) + 3)
+        # figura abaixo do último texto da coluna
+        for im_ in pg.get_image_info():
+            b_ = im_['bbox']
+            if b_[0] < x1 and b_[2] > x0 and y0 < b_[1] < base and b_[3] > y1:
+                y1 = min(base, b_[3] + 3)
+    else:
+        y1 = fim
+    return (pg_ - 1, pymupdf.Rect(x0, y0, x1, y1))
+
+
 def corta_caixa_vazia(im):
     """Moldura vazia no pé do print (quadro de rascunho, caixa da questão seguinte, borda de página — Unitins): o bloco
     final em que só há fios (linhas horizontais longas e traços verticais nas bordas), sem nada dentro, sai do print."""
@@ -1048,7 +1163,7 @@ def corta_caixa_vazia(im):
         xs = np.nonzero(row)[0]
         # só traços verticais (no máximo 4 grupos estreitos), sem texto
         grupos = np.split(xs, np.nonzero(np.diff(xs) > 2)[0] + 1)
-        if len(grupos) <= 4 and all(len(g) <= 4 for g in grupos):
+        if all((len(g) <= 4 and (g[0] < 30 or g[-1] > w - 30)) or len(g) > w * 0.5 for g in grupos):   # bordas ou fios
             k -= 1
             continue
         break
@@ -1110,14 +1225,14 @@ def aperta_moldura(im, folga=80):
     return out
 
 
-def corta_pe_cor(im, cor, tol=14, zona=140):
+def corta_pe_cor(im, cor, tol=14, zona=140, minimo=None):
     """Selo da questão seguinte (faixa colorida) que sobrou no pé do print: corta a partir do 1º pixel dessa cor nos
     últimos `zona` px, desde que haja uma linha branca logo acima (o selo está separado do texto da questão)."""
     import numpy as np
     a = np.asarray(im.convert('RGB')).astype(int)
     h = a.shape[0]
     z0 = max(0, h - zona)
-    m = (np.abs(a[z0:] - np.array(cor)).max(axis=2) <= tol).sum(axis=1) > max(6, a.shape[1] // 8)   # faixa, não texto suavizado
+    m = (np.abs(a[z0:] - np.array(cor)).max(axis=2) <= tol).sum(axis=1) > (minimo or max(6, a.shape[1] // 8))   # faixa, não texto suavizado
     if not m.any():
         return im
     r0 = z0 + int(np.argmax(m))
@@ -1584,6 +1699,12 @@ def processa(pid, amostra=False, so_texto=False):
                 if g_['faixa'][0] <= n <= g_['faixa'][1] and not all(sg in sup for sg in g_['segs']):
                     sup = [sg for sg in g_['segs'] if sg not in sup] + list(sup)
             segs_de[n] = segs
+            if n in cfg.get('manual', {}):
+                # recorte manual conferido no caderno: [(página, x0, y0, x1, y1), ...] na ordem de leitura, já com o texto
+                # de apoio — para diagramação que o recorte automático parte (fórmula, tabela ou figura entre faixas)
+                segs = [resolve_manual(pdf, cfg, sg) for sg in cfg['manual'][n]]
+                sup = []
+                segs_de[n] = segs
             if n in cfg.get('sem_apoio', ()):   # conferido no caderno: o texto é da própria questão
                 sup = []
             if n in cfg.get('apoio_de', {}):
@@ -1605,9 +1726,10 @@ def processa(pid, amostra=False, so_texto=False):
             else:
                 img = render(pdf, sup + segs, marcas, coloridos, apaga)
                 if img is not None and cfg.get('pe_cor'):
-                    img = corta_pe_cor(img, cfg['pe_cor'])
+                    img = corta_pe_cor(img, cfg['pe_cor'], minimo=cfg.get('pe_cor_min'))
                 if img is not None and cfg.get('caixa_vazia'):
                     img = corta_caixa_vazia(img)
+                    img = encolhe_vazios(img)
                 if img is not None and cfg.get('pe_fio'):
                     for _ in range(3):   # fio + acento cortado do título seguinte: um pedaço fino de cada vez
                         antes_ = img.height

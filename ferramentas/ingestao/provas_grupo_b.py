@@ -83,7 +83,7 @@ def mais_provas():
         c['suporte'] = c['suporte'] + [r'(?i)^textos? para (as )?(quest|\d)']   # "Texto para questões 35 a 38", "Texto para 35 a 38"
         c['corte'] = c['corte'] + [r'(?i)^L[ÍI]NGUA PORTUGUESA E LITERATURA']   # faixa de seção
         # título da matéria no alto da página (atravessa a calha): a página começa abaixo dele
-        c['cabecalho'] = r'^(F[íi]sica|Biologia|Matem[áa]tica|Hist[óo]ria|Geografia|Qu[íi]mica|L[íi]ngua Portuguesa|Ingl[êe]s|Espanhol)$'
+        c['cabecalho'] = r'^(F[íi]sica|Biologia|Matem[áa]tica|Hist[óo]ria|Geografia|Qu[íi]mica|L[íi]ngua Portuguesa|Ingl[êe]s)\s*$'
         c['nota'] = (f'Universidade Estadual do Tocantins, Vestibular {ano}/{sem}' + (f' ({rotulo})' if rotulo else '') +
                      ': 50 questões A–E (Física, Biologia, Matemática, História, Geografia, Química, Língua Portuguesa e '
                      'Literatura Brasileira, língua estrangeira). Língua estrangeira: inglês. Redação fora. Gabarito '
@@ -111,9 +111,11 @@ def mais_provas():
     # 2023/1 caderno 1: o texto sobre Michael Jackson vem logo abaixo do título "Língua Inglesa", sem frase de indicação,
     # e é o texto da questão 46 (conferido no caderno, p. 18)
     P['unitins-2023-1']['suporte_forcado'] = {('caderno', 18): [(356, 3, [46, 46])]}
-    P['unitins-2023-1-c2']['suporte_forcado'] = {('caderno', 23): [(90, 3, [46, 46])]}   # letra de "The Show Must Go On"
+    P['unitins-2023-1-c2']['suporte_forcado'] = {('caderno', 23): [(95, 0, [46, 46])]}   # letra de "The Show Must Go On"
     for k in ('unitins-2023-1', 'unitins-2023-1-c2'):
         P[k]['apagar_girado'] = r'Vestibular Unitins'   # rodapé vertical na margem direita
+        P[k]['base'] = 31   # barra cinza no pé (y 812–820)
+        P[k]['topo_barra'] = True
     P['unitins-2024-1-c2']['suporte'] = P['unitins-2024-1-c2']['suporte'] + [r'(?i)^texto as quest']   # "Texto as questões de 31 a 34."
     # Prints que a emenda de colunas/faixas não deixa fiéis (fórmula, tabela, figura ou linha partida; alternativa
     # faltando), conferidos na folha de contato e pela conferência separada: ficam fora até serem refeitos à mão
@@ -126,11 +128,80 @@ def mais_provas():
     for k in [x for x in P if x.startswith('unitins-')]:
         P[k]['faixas_ajuste'] = True
         P[k]['caixa_vazia'] = True   # moldura vazia no pé do print
-        P[k]['faixas_uma_auto'] = True   # página toda de uma coluna (texto atravessa a calha e nenhuma questão começa à direita)
+    # diagramação antiga (selos azuis, páginas de uma coluna misturadas a duas, texto justificado partido na calha)
+    for k in ('unitins-2021-2', 'unitins-2022-1', 'unitins-2022-1-med'):
+        P[k]['faixas_uma_auto'] = True      # página toda de uma coluna (texto atravessa a calha, nenhuma questão começa à direita)
+        P[k]['faixas_justificada'] = True   # linha justificada partida na calha = faixa de largura total
+    # Recorte manual (coordenadas conferidas na página, em pt: página, x0, y0, x1, y1), nas questões em que o automático
+    # partia gráfico, fórmula, tabela ou linha entre faixas de uma e de duas colunas
+    MANUAL = {
+        'unitins-2020-1': {12: [(3, 28, 568, r'^12\s*-', None)], 13: [(4, 28, 568, r'^13\s*-', r'^14\s*-')],
+                           33: [(10, 28, 568, r'^Leia a tirinha', r'^Textos 1, 2 e 3')],
+                           34: [(10, 28, 568, r'^Textos 1, 2 e 3', None), (11, 28, 568, None, None), (12, 28, 297, None, r'^35\s*-')]},
+        'unitins-2021-1': {6: [(3, 28, 298, 52.4, r'^07\s*-')],
+                           8: [(3, 28, 298, r'^08\s*-', None), (3, 299, 568, 52.4, r'^09\s*-')],
+                           10: [(3, 299, 568, r'^10\s*-', None), (4, 28, 568, None, r'^MATEM')],
+                           11: [(4, 28, 568, r'^11\s*-', None), (5, 28, 568, None, r'^12\s*-')],
+                           17: [(7, 28, 568, r'^17\s*-', r'^18\s*-')],
+                           21: [(9, 28, 568, r'texto a seguir e analise o clim', None), (10, 28, 568, None, r'^22\s*-')],
+                           39: [(19, 28, 568, None, None)], 44: [(22, 299, 568, r'^Leia o trecho a seguir, produ', None)],
+                           46: [(23, 28, 298, r'texto a seguir para responder', None), (23, 299, 568, r'^46\s*-', r'^47\s*-')],
+                           47: [(23, 28, 298, r'texto a seguir para responder', None), (23, 299, 568, r'^47\s*-', None)],
+                           48: [(23, 28, 298, r'texto a seguir para responder', None), (24, 28, 568, None, r'^Com base no cartoon')]},
+        'unitins-2021-2': {6: [(4, 28, 298, r'^QUESTÃO 0?6', None)],
+                           42: [(24, 299, 568, r'^QUESTÃO 42', None), (25, 28, 298, None, r'^Leia o poema')],
+                           43: [(25, 28, 298, r'^Leia o poema', None), (25, 299, 568, None, r'^QUESTÃO 43'),
+                                (25, 299, 568, r'^QUESTÃO 43', r'^QUESTÃO 44')],
+                           44: [(25, 28, 298, r'^Leia o poema', None), (25, 299, 568, None, r'^QUESTÃO 43'),
+                                (25, 299, 568, r'^QUESTÃO 44', None), (26, 28, 568, None, r'^QUESTÃO 45')],
+                           18: [(10, 28, 568, r'^QUESTÃO 18', None), (11, 28, 568, None, r'^QUESTÃO 19')],
+                           19: [(11, 28, 290, r'^QUESTÃO 19', None), (11, 297, 568, r'^A\) A criação', r'^QUESTÃO 20')],
+                           26: [(15, 28, 568, r'^QUESTÃO 26', r'^QUESTÃO 27')]},
+        'unitins-2022-1': {15: [(8, 28, 568, r'^QUESTÃO 15', r'^HIST')], 23: [(11, 28, 298, r'^QUESTÃO 23', None)],
+                           25: [(11, 298, 568, r'^QUESTÃO 25', None), (12, 28, 568, None, r'^QU[ÍI]MICA')]},
+        'unitins-2022-1-med': {12: [(6, 28, 568, r'^QUESTÃO 12', None)]},
+        'unitins-2023-1': {5: [(2, 299, 568, r'^Questão 05', None), (3, 28, 568, None, r'^Biologia')],
+                           10: [(5, 28, 568, r'^Questão 10', None)],
+                           47: [(19, 28, 568, r'^Questão 47', None), (20, 28, 568, None, r'^Questão 48')],
+                           50: [(21, 28, 568, r'^Questão 50', None)]},
+        'unitins-2023-1-c2': {8: [(4, 28, 568, r'^Questão 08', r'^Questão 09')],
+                              9: [(4, 28, 568, r'^Questão 09', None), (5, 28, 568, None, r'^Questão 10')],
+                              29: [(12, 28, 568, r'^Questão 29', r'^Questão 30')],
+                              30: [(12, 28, 568, r'^Questão 30', None), (13, 28, 568, None, r'^L[íi]ngua Portuguesa')],
+                              37: [(15, 299, 568, r'^Texto para as quest[õo]es 37', None), (16, 28, 568, None, r'^Questão 37'),
+                                   (16, 28, 568, r'^Questão 37', r'^Questão 38')],
+                              38: [(15, 299, 568, r'^Texto para as quest[õo]es 37', None), (16, 28, 568, None, r'^Questão 37'),
+                                   (16, 28, 568, r'^Questão 38', None)]},
+        'unitins-2024-1': {39: [(17, 28, 568, r'^Textos para quest', r'^Questão 39'), (17, 28, 568, r'^Questão 39', r'^Questão 40')],
+                           40: [(17, 28, 568, r'^Textos para quest', r'^Questão 39'), (17, 28, 568, r'^Questão 40', None), (18, 28, 568, 25, 140)],
+                           47: [(21, 28, 568, r'^Questão 47', None), (22, 28, 568, None, r'^Questão 48')],
+                           13: [(5, 28, 568, r'^Questão 13', None), (6, 28, 568, None, r'^Questão 14')],
+                           15: [(6, 28, 568, r'^Questão 15', None)]},
+        'unitins-2024-1-c2': {13: [(9, 28, 568, r'^Questão 13', r'^Questão 14')], 27: [(14, 28, 568, r'^Questão 27', None)],
+                              29: [(15, 28, 568, r'^Questão 29', r'^Questão 30')],
+                              25: [(13, 296, 568, r'^Questão 25', None), (14, 28, 568, 25, 70)]},
+        'unitins-2025-1-c2': {46: [(21, 28, 568, r'^QUESTÃO 46', r'^QUESTÃO 47')],
+                              28: [(14, 28, 568, r'^QUESTÃO 28', None), (15, 28, 568, None, r'^QUESTÃO 29')],
+                              50: [(23, 28, 568, r'^QUESTÃO 50', None), (24, 28, 568, None, r'^Espanhol')],
+                              13: [(7, 28, 568, r'^QUESTÃO 13', r'^QUESTÃO 14')],
+                              14: [(7, 28, 568, r'^QUESTÃO 14', None), (8, 28, 568, None, r'^QUESTÃO 15')],
+                              23: [(12, 28, 568, r'^QUESTÃO 23', r'^QUESTÃO 24')],
+                              24: [(12, 28, 568, r'^QUESTÃO 24', None), (13, 28, 298, None, r'^QUESTÃO 25')],
+                              45: [(20, 296, 568, r'^QUESTÃO 45', None), (21, 28, 568, 25, 60)]},
+        'unitins-2026-1': {50: [(23, 28, 568, r'^QUESTÃO 50', None), (24, 28, 568, None, r'^Espanhol')],
+                           4: [(4, 28, 568, r'^QUESTÃO 4\b', r'^QUESTÃO 5\b')], 30: [(13, 28, 568, r'^QUESTÃO 30', None)]},
+        'unitins-2026-1-c2': {1: [(2, 28, 568, r'^QUESTÃO 1\b', r'^QUESTÃO 2\b')], 2: [(2, 28, 568, r'^QUESTÃO 2\b', None)],
+                              4: [(3, 28, 568, r'^QUESTÃO 4\b', None), (4, 28, 568, None, r'^QUESTÃO 5\b')],
+                              28: [(14, 28, 568, r'^QUESTÃO 28', r'^QUESTÃO 29')]},
+    }
+    for k, m in MANUAL.items():
+        P[k]['manual'] = m
     P['unitins-2026-1-c2']['aperta_moldura'] = True   # moldura vazia até o pé da página (q45)
     # selo (faixa azul-clara) do número da questão seguinte que sobra no pé do print
     for k in ('unitins-2021-2', 'unitins-2022-1', 'unitins-2022-1-med', 'unitins-2023-1', 'unitins-2023-1-c2'):
         P[k]['pe_cor'] = (185, 210, 214)
+        P[k]['pe_cor_min'] = 6   # o arco do selo é estreito; a cor azul-clara não aparece no texto
+        P[k]['selo_folga'] = 13   # selo oval: o número fica ~10 pt abaixo do alto do desenho
     # 2021/1: número da questão no começo da linha do enunciado ("01 - ", "16. ", "22- "), sem negrito
     P['unitins-2021-1'].update({'ancora': r'^(\d{2})\s*[-–.]\s*\S', 'ancora_negrito': False, 'ancora_dx': 40})
     P['unitins-2020-1'].update({'ancora': r'^(\d{2})\s*[-–.]\s*\S', 'ancora_negrito': False, 'ancora_dx': 40})
@@ -251,7 +322,7 @@ def mais_provas():
                     'História, Química e língua estrangeira (inglês). Redação fora. Gabarito oficial publicado após os '
                     'recursos; anulada fica fora.',
             'cadernos': [{'arquivo': 'caderno', 'paginas': (2, 999)}],
-            'colunas': lambda r: [(24, r.width / 2), (r.width / 2, r.width - 20)], 'margem': 24, 'topo': 32, 'base': 44,
+            'colunas': lambda r: [(24, r.width / 2), (r.width / 2, r.width - 20)], 'margem': 24, 'topo': 32, 'base': 39,
             'ancora': r'(?i)^(?:QUEST[ÃA]O|QUESTION|PREGUNTA)\s+(\d{1,2})$', 'ancora_dx': 130, 'sequencial': True,   # número centrado na coluna
             'secoes_rx': secs, 'pular_secoes': ('Espanhol', 'Francês'), 'pular_antes_sequencia': True,
             'corte': [r'(?i)^PROPOSTA DE REDA', r'(?i)^REDA[ÇC][ÃA]O$', r'(?i)^RASCUNHO', r'(?i)^FOLHA DE RASCUNHO'],
@@ -347,8 +418,27 @@ def mais_provas():
     # UERR 2023 (Cebraspe), no pacote da UFRR do dono: caderno publicado só como imagem — as questões são localizadas por
     # OCR (o print continua sendo a página original); sem transcrição. Gabarito oficial definitivo (Edital 41/2022).
     c = _p.uerr(2023)
-    c['cadernos'] = [{'arquivo': 'caderno', 'paginas': (1, 999), 'ocr': True}]
+    # p. 1 = capa; p. 8–9 (e o alto da 10) = bloco do espanhol: o caderno é lido em duas partes
+    c['cadernos'] = [{'arquivo': 'caderno', 'paginas': (2, 7), 'ocr': True, 'questoes': (1, 18)},
+                     {'arquivo': 'caderno', 'paginas': (10, 24), 'ocr': True, 'questoes': (19, 72)}]
     c['sem_transcricao'] = True
+    # O OCR lê mal o título "Questão N" (ícone colado: "V Questão 4", "uestão 2", "Questão3o"): as âncoras vêm de OCR em
+    # 4 resoluções (220–400 dpi), conferidas página a página (q1 e q71 lidas na página); (n, y, coluna). Bloco do
+    # espanhol (p. 8–10, questões 10–18) fora: vale o inglês (p. 6–7).
+    c['ancora'] = r'(?!x)x(\d)'
+    c['ancora_forcada'] = {('caderno', 2): [(2, 66, 1), (3, 207, 1), (1, 433, 0)], ('caderno', 3): [(4, 447, 0), (5, 50, 1)], ('caderno', 4): [(6, 47, 0), (7, 50, 1)], ('caderno', 5): [(8, 433, 0)], ('caderno', 6): [(9, 47, 0), (10, 387, 1), (11, 517, 1), (12, 649, 1)], ('caderno', 7): [(13, 47, 0), (14, 223, 0), (15, 47, 1), (16, 183, 1), (17, 420, 1), (18, 607, 1)], ('caderno', 10): [(19, 465, 1)], ('caderno', 11): [(20, 47, 0), (21, 381, 0), (22, 335, 1), (23, 515, 1)], ('caderno', 12): [(24, 456, 0), (25, 625, 0), (26, 50, 1), (27, 295, 1), (28, 487, 1)], ('caderno', 13): [(29, 50, 0), (30, 47, 1), (31, 470, 1)], ('caderno', 14): [(32, 50, 0), (33, 311, 0), (34, 50, 1), (35, 299, 1)], ('caderno', 15): [(36, 47, 0), (37, 427, 0), (38, 50, 1), (39, 287, 1)], ('caderno', 16): [(40, 47, 0), (41, 337, 0), (42, 47, 1), (43, 343, 1), (44, 537, 1)], ('caderno', 17): [(45, 47, 0), (46, 324, 0), (47, 589, 0), (48, 50, 1)], ('caderno', 18): [(49, 47, 0), (50, 47, 1)], ('caderno', 19): [(51, 47, 0), (52, 519, 0), (53, 50, 1), (54, 527, 1)], ('caderno', 20): [(55, 47, 0), (56, 340, 0), (57, 586, 0), (58, 47, 1), (59, 373, 1)], ('caderno', 21): [(60, 47, 0), (61, 509, 0), (62, 47, 1), (63, 433, 1)], ('caderno', 22): [(64, 50, 0), (65, 327, 0), (66, 47, 1)], ('caderno', 23): [(67, 50, 0), (68, 543, 0), (69, 50, 1), (70, 337, 1)], ('caderno', 24): [(72, 555, 0), (71, 50, 0)]}
+    # textos de apoio (títulos "Texto 1A1-I" etc. lidos mal pelo OCR): posições e questões conferidas no caderno
+    c.update({'suporte': [], 'suporte_apos_alt': None, 'suporte_apos_secao': False, 'suporte_ate_proximo': False,
+              'suporte_primeira': False, 'texto_id': None})
+    c['ultima_continua'] = False
+    # "Espaço livre" (fim da questão) que o OCR junta à linha da outra coluna: (página): [(y, coluna)]
+    c['corte_forcado'] = {('caderno', p_): [(y_, c_)] for p_, y_, c_ in
+                          ((2, 578, 1), (3, 514, 1), (10, 541, 0), (13, 491, 0), (14, 568, 1), (15, 592, 1), (17, 180, 1),
+                           (18, 498, 0), (19, 657, 0), (20, 635, 1), (22, 699, 0), (24, 46, 1))}
+    c['topo_pag'] = {2: 78}   # faixa "PROVA OBJETIVA" no alto da p. 2
+    c['suporte_forcado'] = {('caderno', 2): [(78, 0, [1, 3])], ('caderno', 3): [(40, 0, [4, 4])], ('caderno', 6): [(46, 1, [10, 14])],
+                            ('caderno', 7): [(374, 0, [15, 18])], ('caderno', 10): [(46, 1, [19, 20])],
+                            ('caderno', 11): [(46, 1, [21, 23])], ('caderno', 12): [(46, 0, [24, 27])]}
     c['nota'] = c['nota'].replace('Processo Seletivo Vestibular 2023 (Cebraspe)', 'Vestibular 2023 (Cebraspe, aplicação 23/10/2022)') + \
         ' Caderno publicado só como imagem: o print é a página original.'
     P['uerr-2023'] = c
