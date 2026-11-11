@@ -843,3 +843,5 @@ _Base: livro Revisaí – Matemática (pp. 4–112 lidas)._
 - **G27** Matriz inversa, Cramer e escalonamento: Sistema 3×3 sendo escalonado em três quadros, com o pivô circulado em cada etapa.
 - **G23** Equações polinomiais: raízes e teoremas: Gráfico de um polinômio cúbico cruzando o eixo x em três pontos, com Girard escrito ao lado.
 - **G24** Divisão de polinômios, Briot-Ruffini e teoremas: Dispositivo de Briot-Ruffini com a raiz à esquerda, os coeficientes em linha e o resto destacado.
+- **G32** Divisão de segmento: média, harmônica e áurea: Reta com A e B, os pontos S (interior) e S' (exterior) conjugados harmônicos, e abaixo um segmento dividido na razão áurea.
+- **G31** Isometrias: translação, rotação e reflexões: Quatro painéis com a mesma figura: transladada, girada, refletida em ponto e refletida em reta, cada um com a regra escrita.
