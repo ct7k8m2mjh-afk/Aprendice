@@ -11,3 +11,4 @@
 | 2026-11-11 | Pdeb86dd5 | upe-ssa3-2023 q60 | qui Q01.4 | qui Q09.4 emissões radioativas | Obtenção de Np e Pu por bombardeio de nêutrons e decaimento beta; não é tabela periódica; apontada pela sessão do Fable |
 | 2026-11-11 | Pfd8377aa | udesc-2020-1 q71 | qui Q01.4 | qui Q03.2 sais e óxidos | Propriedades de óxidos, ácidos, bases e sais (funções inorgânicas); apontada pela sessão do Fable |
 | 2026-11-11 | Pb0b64def | mackenzie-2026-1 q38 | mat M02.4 | mat M07.2 progressão geométrica | Carga de A em PA (+2 kg) contra carga de B em PG (dobra): progressões, não proporção; apontada pela sessão do Fable |
+| 2026-11-11 | P925ed60a | santacasa-2021 q8 | por P04.1 | por P05.4 variação linguística, registro e adequação | Pede a expressão própria da linguagem coloquial (registro), não referência; apontada pela sessão de Português; códigos de equívoco da resolução trocados de P04.1 para P05.4 |
