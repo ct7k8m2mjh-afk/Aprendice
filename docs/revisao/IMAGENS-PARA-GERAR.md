@@ -967,3 +967,68 @@ Cada item aparece no site como EM CONSTRUÇÃO... (o que será colocado: ...). E
 | FK40 | Corpo negro, quantização e modelos atômicos | Curvas de emissão do corpo negro em várias temperaturas (3000 a 6000 K), níveis de energia de Bohr com saltos quânticos e espectros de emissão e absorção. |
 | FK41 | Leis de Kepler e lei da gravitação universal | Elipse com Sol em um foco, periélio, afélio, semieixos maior e menor, áreas varridas e as duas massas m e M com forças de interação. |
 | FK42 | Campo gravitacional, energia potencial, velocidade de escape e eclipses | Esquema das fases da Lua e do alinhamento Sol, Terra e Lua nos eclipses solar e lunar. |
+
+## Química (caderno Revisaí) — imagens que faltam
+
+Cada item aparece no site como EM CONSTRUÇÃO... (o que será colocado: ...). Enviar como `<id>.png`.
+
+| id | título | imagem desejada |
+|---|---|---|
+| QK01 | Estados físicos, curvas de aquecimento, substância pura e mistura | Diagrama das mudanças de estado com processos endotérmicos e exotérmicos, e as curvas de aquecimento 1 (substância pura) e 2 (mistura) com PF e PE. |
+| QK02 | Métodos de separação de misturas | Aparelhagens de filtração, decantação com sifão, funil de bromo, centrifugação, destilação simples e destilação fracionada com coluna, e esquema de dissolução fracionada de areia e sal. |
+| QK03 | Evolução dos modelos atômicos (Dalton, Thomson, Rutherford) | Linha do tempo dos modelos (Dalton, Thomson, Rutherford, Bohr) com a ilustração de cada modelo, tabela de partículas, experimento da lâmina de ouro com fonte radioativa, bloco de chumbo e placa fluorescente. |
+| QK04 | Modelo de Bohr, Sommerfeld e partículas fundamentais | Esquema de absorção e emissão de energia pelo elétron entre níveis, modelo de Rutherford-Bohr e tabela de partículas fundamentais. |
+| QK05 | Número atômico, massa, íons e semelhanças atômicas | Representação X com A (número de massa) e Z (número atômico) e a carga, e o diagrama átomo neutro, cátion e ânion. |
+| QK06 | Distribuição eletrônica, números quânticos e regra de Hund | Diagrama de Linus Pauling com as diagonais, quadro de camadas e número máximo de elétrons, e os orbitais s, p, d, f com seus valores de mℓ e as setas de spin. |
+| QK07 | Organização da tabela periódica e famílias | Tabela periódica completa com símbolo, número atômico e massa, mais mapas de metais/ametais/gases nobres e dos blocos s, p, d, f. |
+| QK08 | Propriedades periódicas | Cinco tabelas periódicas com setas de variação (raio atômico, energia de ionização, afinidade eletrônica, eletronegatividade, eletropositividade) e as de temperatura de fusão/ebulição e densidade. |
+| QK09 | Ligações iônica, covalente e metálica; alotropia | Estruturas de Lewis e fórmulas estruturais de O2 e N2, formação de HCl e a nuvem eletrônica do retículo metálico com cátions. |
+| QK10 | Geometria molecular (VSEPR) e polaridade | Tabela de geometrias com desenho de cada molécula e ângulos, e vetores dipolares somando zero (apolar) ou não (polar). |
+| QK11 | Forças intermoleculares e propriedades físicas | Fluxograma de classificação (iônica/covalente, polar, F-H O-H N-H) e figuras de dipolo induzido, dipolo permanente, ligação de hidrogênio e íon-dipolo. |
+| QK12 | Sabões e detergentes | Micela com cauda hidrofóbica e cabeça hidrofílica e a ação de limpeza (adesão, desligamento e emulsão). |
+| QK13 | Massas, mol e determinação de fórmulas | Fórmula e esquema das conversões entre fórmula molecular, mínima e centesimal, e o cálculo da massa atômica média do cloro. |
+| QK14 | Leis ponderais e volumétrica; cálculo estequiométrico | Esquemas da lei de Lavoisier, proporção de Proust em duas experiências e proporção em mol, massa, volume e moléculas para N2 + 3H2. |
+| QK15 | Teoria de Arrhenius, ácidos e bases | Esquemas de condutividade, estruturas de ácidos e bases e o papel tornassol azul e vermelho em meios ácido e básico com pH. |
+| QK16 | Óxidos e sais | Quadro de óxidos (ácido, básico, anfótero, neutro, duplo, peróxido, superóxido) com exemplos e a tabela de solubilidade de sais por ânion. |
+| QK17 | Tipos de reação, reatividade e dupla-troca | Setas de reatividade dos metais comuns e nobres e dos ametais, esquemas das reações de síntese, decomposição, simples troca e dupla-troca. |
+| QK18 | Classificação de soluções, solubilidade e concentrações | Gráfico de curvas de solubilidade (KNO3, NaOH, NaCl) com os pontos x, y, z e os béqueres insaturada, saturada, saturada com corpo de fundo e supersaturada. |
+| QK19 | Diluição, mistura, titulação e propriedades coligativas | Esquemas de diluição e mistura de soluções, aparelhagem de titulação (bureta, erlenmeyer e suporte), gráfico de PMV × T com ΔTe e a osmose com membrana semipermeável. |
+| QK20 | Entalpia, reações exo e endotérmicas e fatores que alteram o ΔH | Diagramas de entalpia (caminho da reação) para exotérmica e endotérmica e os diagramas das formas alotrópicas. |
+| QK21 | Energia de ligação, lei de Hess e entalpia de formação | Esquema do cálculo de energia de ligação da propanona para isopropanol com a tabela de energias de ligação (C=O 745, H-H 436, C-H 413, C-O 358, O-H 463 kJ/mol) e a soma das equações da lei de Hess. |
+| QK22 | Variáveis de estado, transformações gasosas e Clapeyron | Gráficos P×V, V×T e P×T das transformações isotérmica, isobárica e isocórica, e os quadros de conversão de unidades de volume, temperatura e pressão. |
+| QK23 | Misturas gasosas, densidade e lei de Graham | Esquemas de pressões parciais e volumes parciais em uma mistura gasosa, as fórmulas de densidade e Graham. |
+| QK24 | Velocidade das reações, colisões, energia de ativação, catalisador e lei da ação das massas | Gráfico de entalpia versus caminho da reação com Ea direta e inversa, gráfico comparando as curvas com e sem catalisador (Ea sem e com NO), e a teoria das colisões com os choques não frontal, de baixa energia e efetivo de H2 e I2. |
+| QK25 | Equilíbrio químico, constantes Kc e Kp e Le Chatelier | Gráfico de velocidades direta e inversa se igualando e o quadro de deslocamentos de Le Chatelier com setas. |
+| QK26 | Equilíbrio iônico: Ka, Kb e lei de Ostwald | Esquema de ionização de HA e C(OH) com as setas de força crescente e a fórmula da lei de Ostwald. |
+| QK27 | Autoionização da água, pH e pOH | Escala de pH de 0 a 14 com exemplos do cotidiano (ácido estomacal, limão, leite, água pura, bicarbonato, sabão, amônia, soda cáustica). |
+| QK28 | Hidrólise de sais | Quadro dos quatro tipos de hidrólise com o meio resultante e a fórmula de Kh. |
+| QK29 | Conceitos de ácido e base: Arrhenius, Brönsted-Lowry, Lewis | Fórmula estrutural da formação do aduto entre NH3 (fornecedor do par) e H+ (receptor), e as setas do par ácido-base conjugado. |
+| QK30 | Produto de solubilidade (Kps) | Esquemas da mistura de soluções com cátion e ânion e as três situações de Qps × Kps (precipitado, saturada, insaturada). |
+| QK31 | Oxidação, redução e número de oxidação (Nox) | Reação de I2 com HNO3 mostrando Nox acima de cada átomo, com setas de oxidação e redução. |
+| QK32 | Balanceamento por oxirredução | Passo a passo do balanceamento de Br2 + HClO + H2O com os Nox e os ΔNox invertidos. |
+| QK33 | Pilhas e pilha de Daniell | Esquema completo da pilha de Daniell (zinco, cobre, ponte salina, receptor, fluxo de elétrons e de íons) e o esquema comparando pilha e eletrólise. |
+| QK34 | Potencial, força eletromotriz, pilhas comuns e corrosão | Visão interna da pilha seca (invólucro, pasta, separador, grafite) e esquema do eletrodo padrão de hidrogênio. |
+| QK35 | Eletrólise e eletroquímica quantitativa | Esquema de cuba eletrolítica (bateria, íons livres, eletrodos) e de cubas eletrolíticas em série, e a fila de facilidade de descarga. |
+| QK36 | Emissões radioativas e leis de Soddy | Quadro das emissões (representação, carga, número de massa, poder de penetração) e o esquema de papel, alumínio, chumbo e concreto barrando alfa, beta e gama. |
+| QK37 | Fissão, fusão, usinas e bomba atômica | Esquema do reator nuclear com circuitos, barras de controle, turbina e condensador, reação em cadeia da fissão do urânio e esquema simplificado da bomba atômica. |
+| QK38 | Meia-vida e datação por carbono-14 | Gráfico de massa por tempo caindo a m0/2, m0/4, m0/8 e m0/16 a cada meia-vida e o modelo de redução de 50% a cada intervalo. |
+| QK39 | Introdução: vitalismo, carbono e classificação de carbonos e cadeias | Fórmulas estrutural, condensada e em bastão do mesmo composto com carbonos 1º, 2º, 3º e 4º marcados, e os exemplos de cadeias saturada, insaturada, aberta, fechada, normal, ramificada, homogênea e heterogênea. |
+| QK40 | Nomenclatura substitutiva e hidrocarbonetos | Quadros de prefixos, infixos e sufixos, esquema das posições da dupla no buteno, e os grupos substituintes (metil, etil, propil, isopropil, butil, sec-butil, terc-butil, isobutil, vinil, fenil, benzil). |
+| QK41 | Funções orgânicas: grupos e nomenclatura | Quadro de funções orgânicas com grupo funcional, sufixo e exemplo, e as estruturas dos fármacos paracetamol, aspirina, Ketalar e diclofenaco com as funções marcadas. |
+| QK42 | Caráter ácido-básico de compostos orgânicos | Tabelas de Ka dos ácidos fórmico, acético, propanoico e dos ácidos acético, cloroacético e dicloroacético com suas estruturas. |
+| QK43 | Recursos orgânicos: petróleo, gás natural, carvão e xisto | Coluna de fracionamento do petróleo com as faixas de temperatura e carbono de cada fração (gases, nafta, gasolina, querosene, diesel, lubrificantes, resíduo). |
+| QK44 | Biocombustíveis e matriz energética | Esquema de produção de etanol (cana, garapa, melaço, mosto, fermentação, destilação) e esquema de obtenção e uso do biodiesel. |
+| QK45 | Isomeria plana (função, cadeia, posição, metameria, tautomeria) | Quadro de isomeria plana com as estruturas de etanol/éter, enol/cetona, pentano/2-metilbutano, butanol de posição e as aminas ou éteres de metameria. |
+| QK46 | Isomeria espacial: geométrica e óptica | Pares cis e trans-1,2-dicloroeteno, o carbono quiral com os quatro ligantes diferentes, par de enantiômeros diante do espelho (estruturas não sobreponíveis) e o esquema do polarímetro. |
+| QK47 | Cisão de ligações e substituição em alcanos | Esquema das cisões homolítica e heterolítica e as equações de cloração do metano e do propano com as porcentagens de 2-cloropropano e 1-cloropropano. |
+| QK48 | Substituição em aromáticos e grupos dirigentes | Equações de halogenação, nitração, sulfonação, alquilação e acilação do benzeno e os dois quadros de grupos orto-para e meta dirigentes. |
+| QK49 | Substituição em haletos, álcoois e grupos acila (esterificação e hidrólise) | Equações de substituição do Cl por OH no 2-cloropropano, da OH por Cl no álcool, de esterificação, de hidrólise ácida e básica e de transesterificação. |
+| QK50 | Reações de adição | Equações de hidrogenação do eteno e do etino, halogenação do eteno, adição de HCl e HBr (com e sem peróxido), hidratação do eteno, adição em dieno, hidrogenação de aldeído e cetona, reação de Grignard e ciclopropano/ciclobutano versus ciclopentano/ciclo-hexano. |
+| QK51 | Oxidação de compostos orgânicos | Equações de oxidação do etanol e do propan-2-ol, ozonólise do 2-metilpent-2-eno, oxidação do tolueno e do etilbenzeno e esquemas de oxidação branda e energética de alceno e alcino. |
+| QK52 | Reações de eliminação | Equações de eliminação de HCl do 2-cloropropano, de HBr do 2-bromobutano e de desidratação intramolecular do etanol. |
+| QK53 | Reações de redução | Equações de redução de aldeído, cetona, ácido, nitrobenzeno, propanonitrila e etanamida e o esquema o-hidroquinona (branca) para o-benzoquinona (escura). |
+| QK54 | Classificação e polímeros de adição | Reações de formação de PE, PP, PVC, teflon, PS, PVA, poliacrilonitrila, poli(cianoacrilato), borracha natural e SBR, e esquemas de homopolímero e copolímero. |
+| QK55 | Polímeros de condensação | Reações de formação de PET, PLA, náilon-6,6 e Kevlar com monômeros e fórmula estrutural do polímero. |
+| QK56 | Aminoácidos, ligação peptídica e proteínas | Fórmula do α-aminoácido, zwitterion, formação da ligação peptídica, hélice alfa e folha beta e proteína nativa versus desnaturada. |
+| QK57 | Lipídeos: ácidos graxos, triacilgliceróis e fosfolipídeos | Reação de glicerol com três ácidos graxos formando triacilglicerol e a estrutura do fosfolipídeo com cabeça fosfato hidrofílica. |
+| QK58 | Carboidratos: monossacarídeos, dissacarídeos e polissacarídeos | Estruturas da D-glicose (aldose) e D-frutose (cetose) abertas e cíclicas (α e β-glicopiranose), formação da sacarose com ligação glicosídica e os trechos de amido, glicogênio e celulose. |
