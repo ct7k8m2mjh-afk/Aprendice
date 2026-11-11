@@ -131,7 +131,8 @@ def colunas_da_pagina(pg, cfg):
     c = cfg['colunas']
     if pg.number + 1 in cfg.get('uma_coluna', ()):   # página de uma questão só, em largura total
         m = cfg.get('margem', 15)
-        c = [(m, pg.rect.width - m)]
+        # 'uma_coluna_fim': a coluna única acaba antes da borda (Unioeste: quadro de anotações à direita)
+        c = [(m, cfg.get('uma_coluna_fim', pg.rect.width - m))]
     elif c == 'auto':
         w = pg.rect.width
         meio = w / 2
