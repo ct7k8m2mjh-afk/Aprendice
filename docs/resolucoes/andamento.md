@@ -102,5 +102,5 @@ No site montado: Biologia passou de 195 para 229 questões com resolução; Mate
 ## O que falta (Matemática e Biologia do ENEM, níveis 1 a 6)
 
 - Matemática do ENEM, níveis 1 a 6: **concluída** (lote 08). Faltam em Matemática 2 789 questões de outras provas e níveis.
-- Biologia do ENEM, níveis 1 a 6: faltam 21 (`python3 ferramentas/resolucoes/lote.py proximo bio`).
+- Biologia do ENEM, níveis 1 a 6: **concluída** (lote bio-0002, 21 questões, 11/11/2026). A partir daqui o registro de cada lote fica em `lotes-<matéria>.md`, escrito pela ferramenta.
 - Depois: demais matérias do ENEM e as provas-alvo mais comuns (ver `levantamento.md`).
