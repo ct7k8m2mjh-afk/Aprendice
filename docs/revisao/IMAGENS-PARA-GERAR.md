@@ -845,3 +845,68 @@ _Base: livro Revisaí – Matemática (pp. 4–112 lidas)._
 - **G24** Divisão de polinômios, Briot-Ruffini e teoremas: Dispositivo de Briot-Ruffini com a raiz à esquerda, os coeficientes em linha e o resto destacado.
 - **G32** Divisão de segmento: média, harmônica e áurea: Reta com A e B, os pontos S (interior) e S' (exterior) conjugados harmônicos, e abaixo um segmento dividido na razão áurea.
 - **G31** Isometrias: translação, rotação e reflexões: Quatro painéis com a mesma figura: transladada, girada, refletida em ponto e refletida em reta, cada um com a regra escrita.
+
+## Biologia (caderno Revisaí) — imagens que faltam
+
+Cada item aparece no site como EM CONSTRUÇÃO... (o que será colocado: ...). Enviar como `<id>.png`.
+
+| id | título | imagem desejada |
+|---|---|---|
+| BK01 | Características dos seres vivos e método científico | Esquema dos níveis de organização, do átomo à biosfera, em escada. |
+| BK02 | Água e sais minerais | Molécula de água com cargas parciais e as ligações de hidrogênio entre moléculas nos três estados. |
+| BK03 | Carboidratos | Esquema da síntese por desidratação de duas glicoses formando maltose. |
+| BK04 | Lipídios | Fosfolipídio e bicamada, e triglicerídeo com 3 ácidos graxos. |
+| BK05 | Proteínas e enzimas | Três gráficos: velocidade x temperatura, x pH (pepsina e tripsina) e x substrato (saturação). |
+| BK06 | Ácidos nucleicos e código genético | Fluxo DNA para RNAm para proteína, com transcrição e tradução. |
+| BK07 | Tipos celulares e organelas | Célula animal e célula vegetal lado a lado, com as organelas nomeadas. |
+| BK08 | Parede celular e membrana plasmática | Hemácia em solução hipo, iso e hipertônica; célula vegetal túrgida e plasmolisada. |
+| BK09 | Núcleo, cromossomos e ploidia | Nucleossomos, cromatina e cromossomo duplicado com centrômero e telômeros. |
+| BK09b | Mapa mental: Biologia celular (visão geral) | Mapa mental colorido da célula procariótica, animal e vegetal, com as organelas, o citoesqueleto, o mosaico fluido e o transporte pela membrana. |
+| BK10 | Ciclo celular e mitose | Roda do ciclo celular G1, S, G2, M e G0. |
+| BK10b | Etapas da mitose e da meiose (esquema) | Esquema com as fases da mitose em célula animal e as fases da meiose I e II, com o quiasma destacado. |
+| BK11 | Gametogênese | Espermatogênese e ovogênese em paralelo, com os números de cromossomos (2n e n). |
+| BK12 | Respiração celular e fermentação | Respiração em três etapas, com local e ATP de cada uma. |
+| BK13 | Fotossíntese e quimiossíntese | Fotossíntese com as duas fases e gráficos de luz, CO2 e temperatura. |
+| BK14 | Classificação dos seres vivos | Árvore dos três domínios. |
+| BK14a | Fungos | Ciclo de vida do cogumelo: plasmogamia, micélio dicariótico, corpo de frutificação, cariogamia, meiose e esporos. |
+| BK14b | Protozoários | Divisão do núcleo e depois do citoplasma em protozoário (esquizogonia). |
+| BK15 | Vírus, bactérias e arqueas | Fases da reprodução do vírus (1 a 6) e os três mecanismos de troca de DNA em bactérias. |
+| BK16 | Ciclos de vida e algas | Os três ciclos reprodutivos com fases n e 2n. |
+| BK17 | Classificação e reprodução das plantas (briófitas, pteridófitas, gimnospermas, angiospermas) | Quatro ciclos de vida (musgo, samambaia, pinheiro e angiosperma) com fases n e 2n, e as quatro técnicas de propagação vegetativa. |
+| BK18 | Tecidos vegetais e órgãos (meristemas, epiderme, folha, caule e raiz) | Quadro comparativo mono x eudicotiledônea; meristema apical (gema e raiz); estrutura primária x secundária do caule; corte da folha; tipos de caule e de raiz. |
+| BK19 | Flor, fruto e semente | Flor completa com todas as partes e corte de um fruto. |
+| BK20 | Nutrição, transpiração, seiva, hormônios e movimentos vegetais | Mapa mental de Fisiologia vegetal; corte da folha com estômato; via apoplástica e simplástica com estria de Caspary; experimento de Münch; anelamento de Malpighi; gravitropismo; gráficos de fotoperiodismo. |
+| BK21 | Anelídeos e artrópodes | Tabela comparativa de crustáceos, insetos, aracnídeos, quilópodes e diplópodes. |
+| BK21a | Embriologia dos animais | Do ovo fertilizado à gástrula, com mórula, blástula e os folhetos. |
+| BK21b | Poríferos e cnidários | Esponja em corte (poros, átrio, ósculo, coanócitos); pólipo e medusa; cnidócito com nematocisto. |
+| BK21c | Platelmintos e nematódeos | Planária em corte e nematódeo com pseudoceloma e sistema digestório completo. |
+| BK21d | Moluscos e anelídeos | Esquema do molusco (cabeça, pé, massa visceral, manto, concha) e corte da minhoca. |
+| BK21e | Equinodermos | Estrela-do-mar com placa madrepórica, ampolas e pés ambulacrários. |
+| BK22 | Cordados e vertebrados (ágnatos, peixes, anfíbios, amniotas) | Corpo de um cordado com as quatro características exclusivas; circulação dos peixes e dos anfíbios. |
+| BK23 | Tecidos epitelial, conjuntivo e muscular | Sarcômero relaxado e contraído. |
+| BK24 | Digestório e respiratório | Movimentos respiratórios e a reação CO2 + H2O para H2CO3 para HCO3- + H+. |
+| BK25 | Sistema cardiovascular e imunitário | Mapa mental da fisiologia humana; corte de artéria, capilar e veia; coração humano com setas do fluxo; circulação em peixe e anfíbio. |
+| BK26 | Sistema nervoso (neurônio, impulso, SNC e SNP) | Neurônio com bainha de mielina; arco reflexo na medula; meninges; esquema das divisões simpática e parassimpática. |
+| BK26a | Sistema urinário e formação da urina | Corte do rim, aparelho urinário completo e néfron com túbulos, alça e ducto coletor. |
+| BK26b | Osmorregulação | Dois esquemas: peixe de água doce e peixe marinho, com setas de água e sal. |
+| BK27 | Sistema endócrino | Eixo hipotálamo, hipófise e tireoide com feedback; ação de insulina e glucagon. |
+| BK28 | Sistema genital, ciclo menstrual e métodos contraceptivos | Aparelhos genitais masculino e feminino com as estruturas; ciclo ovariano e uterino com hormônios. |
+| BK29 | Conceitos e viroses | Quadro de viroses com transmissão e profilaxia. |
+| BK30 | Bacterioses | Quadro de bacterioses. |
+| BK31 | Protozooses | Quadro de protozooses. |
+| BK32 | Verminoses | Quadro de verminoses. |
+| BK33 | Conceitos básicos e probabilidade | Heredograma com os símbolos de homem, mulher, afetado e casamento. |
+| BK34 | Leis de Mendel e variações | Cruzamento de P (roxa x branca) até F2 3:1. |
+| BK35 | Alelos múltiplos e grupos sanguíneos | Setas de transfusão entre A, B, AB e O, com Rh+ e Rh-. |
+| BK36 | Interações e ligações gênicas | Meiose com crossing-over e gametas parentais e recombinantes. |
+| BK37 | Herança relacionada ao sexo | Cruzamento XX x XY e inativação do X (mosaico). |
+| BK38 | Mutações e Hardy-Weinberg | Não disjunção na meiose I e II e cariótipo de trissomia do 21. |
+| BK39 | Células-tronco, clonagem e engenharia genética | Clonagem da ovelha Dolly e formação de DNA recombinante em bactéria. |
+| BK40 | Lamarck, Darwin e teoria moderna | Três gráficos de seleção estabilizadora, direcional e disruptiva. |
+| BK41 | Evidências, adaptações e especiação | Estruturas homólogas (nadadeira, pata, asa) e análogas (asa de inseto e de ave). |
+| BK42 | Níveis de organização, cadeias e pirâmides | Pirâmides de números, biomassa e energia, com exemplos. |
+| BK43 | Ciclos biogeoquímicos | Ciclo do nitrogênio com as seis etapas (A a F). |
+| BK44 | Sucessão ecológica e relações ecológicas | Sucessão primária e secundária lado a lado e quadro das relações com sinais. |
+| BK45 | Dinâmica populacional e biomas | Gráfico potencial biótico x resistência x carga biótica máxima e mapa de biomas. |
+| BK45b | Biomas brasileiros: Cerrado, Caatinga, Pampas, Pantanal e Manguezal | Mapa da distribuição dos biomas terrestres e marinhos no Brasil (Amazônia, Caatinga, Cerrado, Mata Atlântica, Pampa, Pantanal e sistema costeiro-marinho) e fotos de cada bioma. |
+| BK46 | Alterações ambientais e desenvolvimento sustentável | Gráfico do lago eutrofizado (nutrientes, bactérias anaeróbias e aeróbias, oxigênio ao longo do tempo), esquema da camada de ozônio com UVA, UVB e UVC e corte de aterro sanitário. |
