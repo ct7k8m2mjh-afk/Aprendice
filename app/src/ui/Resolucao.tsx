@@ -1,4 +1,4 @@
-import { numeroQuestao, type Letra, type Questao, type Resolucao } from '../dados/tipos';
+import { numeroQuestao, origemGabarito, type Letra, type Questao, type Resolucao } from '../dados/tipos';
 import { Icone } from './Icone';
 import { MATERIAS_ANIMADAS } from '../dados/revisao';
 import { ResolucaoAnimada } from './ResolucaoAnimada';
@@ -52,7 +52,7 @@ export function ResolucaoView({ q, r, marcada }: { q: Questao; r: Resolucao | nu
         </span>
         <div>
           <h2 id="res-tit">{acertou ? 'Você acertou' : marcada ? `Você marcou ${marcada}. A resposta é ${q.gab}.` : `Gabarito: ${q.gab}`}</h2>
-          <p className="fraco">Gabarito oficial publicado · {q.escola} {q.ano}{q.n ? `, questão ${numeroQuestao(q)}` : ''}</p>
+          <p className="fraco">{origemGabarito(q)} · {q.escola} {q.ano}{q.n ? `, questão ${numeroQuestao(q)}` : ''}</p>
         </div>
       </header>
 

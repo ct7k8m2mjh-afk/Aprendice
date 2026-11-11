@@ -7,7 +7,7 @@ import { ResumoSubtemaView } from '../ui/revisao/ResumoSubtema';
 import { atualizaMateria, pegaEstado, useMateriaEstado } from '../estado/loja';
 import type { AndamentoRevisao, Lembrou, RespRevisao, RevisaoConteudo } from '../estado/tipos';
 import { estadoMateriaVazio } from '../estado/tipos';
-import type { Letra, MateriaId, Questao } from '../dados/tipos';
+import { origemGabarito, type Letra, type MateriaId, type Questao } from '../dados/tipos';
 import {
   CTX_SLIDES, TEMPOS, escolheQuestoes, slideDaQuestao, fechaSessao, linhasFixe, novoAndamento, resumoSessao, sessaoBoa, slidesDoCiclo,
 } from '../logica/cicloRevisao';
@@ -421,7 +421,7 @@ function Fim({ m, resumos, temRes, rev, temaId, mcBanco, aoRefazer }: { m: Mater
           <h2 className="tp-h">Questões que você errou</h2>
           <ul>{erradas.map((q) => (
             <li key={q.id}><Link to={`/m/${m}/q/${q.id}?ctx=escada`}>
-              <span>{q.escola} {q.ano}{q.n ? ` · questão ${q.n}` : ''}<small>{q.res || temRes ? 'Gabarito oficial e resolução comentada' : `Gabarito oficial: ${q.gab} · resolução comentada em preparação`}</small></span>
+              <span>{q.escola} {q.ano}{q.n ? ` · questão ${q.n}` : ''}<small>{q.res || temRes ? `${q.gabFonte === 'aprendice' ? 'Gabarito do Aprendice' : 'Gabarito oficial'} e resolução comentada` : `${q.gabFonte === 'aprendice' ? 'Gabarito do Aprendice' : 'Gabarito oficial'}: ${q.gab} · resolução comentada em preparação`}</small></span>
               <Icone nome="direita" />
             </Link></li>
           ))}</ul>
@@ -452,7 +452,7 @@ function SemResolucao({ q, marcada }: { q: Questao; marcada: Letra }) {
         <span className={'res-selo ' + (ok ? 'ok' : 'err')}><Icone nome={ok ? 'check' : 'fechar'} tam={18} /></span>
         <div>
           <h2 id="rv-sr-tit">{ok ? 'Você acertou' : `Você marcou ${marcada}. A resposta é ${q.gab}.`}</h2>
-          <p className="fraco">Gabarito oficial publicado · {q.escola} {q.ano}{q.n ? `, questão ${q.n}` : ''}</p>
+          <p className="fraco">{origemGabarito(q)} · {q.escola} {q.ano}{q.n ? `, questão ${q.n}` : ''}</p>
         </div>
       </header>
       <p className="miolo rv-sr-p">A resolução comentada desta questão está em preparação: ela só entra no site depois de passar pela banca da matéria. Os slides deste conteúdo explicam a ideia que a questão cobra.</p>

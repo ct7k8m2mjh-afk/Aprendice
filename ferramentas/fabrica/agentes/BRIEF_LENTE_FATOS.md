@@ -7,7 +7,7 @@ Você NÃO escreveu as resoluções e não confia nelas.
 
 Para cada questão do lote:
 1. Abra o print (Read na imagem) e resolva a questão sozinho, do zero, antes de ler a resolução proposta.
-2. Confira com o gabarito oficial. Se você e o gabarito divergirem, marque `exceção` e explique.
+2. Confira com o gabarito oficial (sem gabarito publicado: resolva às cegas e compare com a letra do resolvedor; diferença é `exceção` — princípio 2, dono, 11/11/2026). Se você e o gabarito divergirem, marque `exceção` e explique.
 3. Leia a resolução proposta linha por linha e confira: cada fato, número, conta (refaça todas), unidade, nome, data,
    leitura de figura/gráfico (bate com o print?), cada comentário de `erradas` (o motivo dado é verdadeiro e suficiente?),
    `pista` (não entrega?), classificação (matéria/tema/conteúdo/nível plausíveis?), cada linha do `quadro` (refaça a

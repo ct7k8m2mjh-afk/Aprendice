@@ -176,7 +176,8 @@ def info_da_prova(q):
         return {}
     p = ler(os.path.join(PROVAS, pid, 'prova.json'), {})
     pq = next((x for x in p.get('questoes', []) if x['id'] == q['id']), {})
-    return {'nota': p.get('nota', ''), 'pdf': (p.get('fontes') or {}).get(pq.get('caderno'), '')}
+    return {'nota': p.get('nota', ''), 'pdf': (p.get('fontes') or {}).get(pq.get('caderno'), ''),
+            'preliminar': pq.get('gab_preliminar') or ''}
 
 
 def separa_alternativas(texto, letras):
@@ -285,6 +286,15 @@ def entrada(m, qs):
             if o:
                 # leitura automática da imagem, só como apoio: o que vale é o print
                 e['ocr_do_print'] = o
+        if not q.get('gab'):
+            # princípio 2 (dono, 11/11/2026): a banca não publicou gabarito (ou só o preliminar). A questão só entra com
+            # o gabarito do Aprendice: a sua letra e a do conferente, que resolve às cegas, têm de ser iguais (e iguais à
+            # do preliminar, se houver). Antes, procure na web gabarito ou resolução publicada (banca, cursinho).
+            e['gabarito_oficial'] = None
+            e['sem_gabarito_publicado'] = True
+            pre = info_da_prova(q).get('preliminar')
+            if pre:
+                e['gabarito_preliminar'] = pre
         out.append(e)
     return out
 
@@ -419,6 +429,22 @@ def confere(saida):
             erros.append(f'{qid}: faltam campos {falta}')
             continue
         gab = e['gabarito_oficial']
+        if e.get('sem_gabarito_publicado'):
+            ga = q.get('gabarito_aprendice') if isinstance(q.get('gabarito_aprendice'), dict) else {}
+            le, lc, pre = ga.get('letra'), ga.get('letra_conferente'), e.get('gabarito_preliminar')
+            if le not in e['letras'] or lc not in e['letras']:
+                erros.append(f'{qid}: sem gabarito publicado: falta gabarito_aprendice {{"letra", "letra_conferente", "fontes_web"}} '
+                             '(a letra do conferente vem da resolução dele às cegas)')
+                continue
+            if le != lc:
+                erros.append(f'{qid}: sem gabarito publicado e as letras não batem ({le} × {lc}): status divergencia')
+                continue
+            if pre and le != pre:
+                erros.append(f'{qid}: a letra {le} não bate com a do gabarito preliminar ({pre}): status divergencia')
+                continue
+            if not isinstance(ga.get('fontes_web', []), list):
+                erros.append(f'{qid}: gabarito_aprendice.fontes_web é lista (o que foi consultado na web; [] se nada)')
+            gab = le
         if not re.match(rf'^Alternativa {gab}\b', str(r['resposta'])):
             erros.append(f'{qid}: resposta tem de começar por "Alternativa {gab}" (gabarito oficial)')
         erradas = r['erradas'] if isinstance(r['erradas'], dict) else {}
@@ -545,6 +571,11 @@ def cmd_grava(saida):
             'aprovada': True,
             'revisao': {'lentes': ['resolvedor-autoconferencia', 'conferente-fatos-e-didatica'], 'data': hoje, 'lote': lote},
         }
+        if ent[q['id']].get('sem_gabarito_publicado'):
+            ga = q['gabarito_aprendice']
+            reg_q['gabarito_aprendice'] = {'letra': ga['letra'], 'letra_conferente': ga['letra_conferente'],
+                                           'preliminar': ent[q['id']].get('gabarito_preliminar', ''),
+                                           'fontes_web': ga.get('fontes_web') or [], 'data': hoje, 'lote': lote}
         por_prova.setdefault(bq['prova'], {})[q['id']] = reg_q
     for pid, novos in por_prova.items():
         f = os.path.join(PROVAS, pid, f'resolucoes-{m}.json')  # um arquivo por matéria: sessões em paralelo sem conflito

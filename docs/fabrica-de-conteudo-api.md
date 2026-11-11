@@ -26,7 +26,7 @@ O mesmo esquema vale para flashcards e frases (padrão em `docs/pesquisa/padrao_
 - Prompts versionados em arquivo (`ferramentas/fabrica/prompts/*.md`), testados primeiro no Playground com casos difíceis.
 - A chave fica só na variável de ambiente `ANTHROPIC_API_KEY` (segredo do ambiente do Claude Code). Nunca no código, nunca no chat, nunca no repositório.
 - Saída sempre em JSON validado por esquema; resposta que não valida volta para a fila.
-- Nenhum conteúdo da fábrica é "verdade" sem fonte publicada: o gabarito vem da fonte, a resolução é conferida, as frases de teoria citam a fonte.
+- Nenhum conteúdo da fábrica é "verdade" sem fonte publicada: o gabarito vem da fonte (sem gabarito publicado, só o gabarito do Aprendice: dois especialistas às cegas na mesma letra — princípio 2), a resolução é conferida, as frases de teoria citam a fonte.
 
 ## Depois, no app público
 As funções de IA do app (correção de flashcard, "explique de outro jeito", dúvida sobre a questão) também usam a API, mas com **orçamento próprio pago** e limites por usuário — os créditos mensais do plano são para desenvolvimento e produção de conteúdo, e param no teto do mês.

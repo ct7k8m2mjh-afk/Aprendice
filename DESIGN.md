@@ -148,7 +148,7 @@ Hover brilho +5%; pressionar desce 1px; foco contorno 2px `--t` afastado 2px; de
 - **Simulado por conteúdo** (dono, 11/11/2026; aba "Por conteúdo" em Simulados, `EscolhaConteudo`, rota `/simulados/conteudo?m=&c=&n=`): chips das matérias (ponto na cor), filtro de região; folha por tema como a lista de provas (`.sim-grupo`, título `--fs-secao`, "Marcar o tema" como link sublinhado igual ao "Trocar" da região); linha de conteúdo `.sc-sub` com caixa de marcar 18px, `.ponto-sub` da matéria, nome `--fs-info` (600 quando marcado) e quantidade 14px `lapis` à direita (embaixo ≤700); barra fixa no pé `.sc-barra` (folha, canto 18, sombra da folha) com chips 10/20/30/45, resumo 14px e "Montar simulado". Configuração e prova iguais ao simulado de prova inteira; resultado "Por conteúdo".
 
 ### Correção em 4 blocos (`ui/Resolucao.tsx`, `correcao.css`)
-Veredito ("Você marcou B. A resposta é A." + gabarito oficial), depois, nesta ordem, blocos canto 12 padding 16/18, título Familjen 600 16px, texto Literata `--fs-expl` 1.6:
+Veredito ("Você marcou B. A resposta é A." + a origem do gabarito: "Gabarito oficial publicado", "Gabarito de resolução publicada" ou "Gabarito do Aprendice: a banca não publicou gabarito oficial"), depois, nesta ordem, blocos canto 12 padding 16/18, título Familjen 600 16px, texto Literata `--fs-expl` 1.6:
 1. **Por que eu errei** — `res.erradas[marcada]`, fundo `errado-bg`, título `errado`; some se acertou.
 2. **Resposta correta** — `res.resposta` (600 17px) em `certo-bg`; dentro, **A pegadinha** (`res.armadilha`) em `aviso-bg`.
 3. **Resolução animada**.

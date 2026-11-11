@@ -329,6 +329,11 @@ def provas_fonte():
                         for k in ('materia', 'tema', 'conteudo', 'nivel', 'conceito'):
                             if r.get(k) is not None:
                                 q[k] = r[k]
+                        # gabarito do Aprendice (princípio 2): sem gabarito publicado, a letra confirmada por dois
+                        # especialistas às cegas fica gravada com a resolução (lote.py grava); o oficial, se houver, vale
+                        ga = r.get('gabarito_aprendice') or {}
+                        if not q.get('gab') and ga.get('letra'):
+                            q['gab'], q['gab_fonte'] = ga['letra'], 'aprendice'
             for q in p['questoes']:
                 if q.get('materia') in MATERIA_UNIDA:
                     q['materia'] = MATERIA_UNIDA[q['materia']]
@@ -424,7 +429,7 @@ def questao_da_prova(p, pq):
     q = {
         'id': pq['id'], 'escola': p['escola'], 'ano': str(p['ano']), 'n': str(pq['n']), 'banca': p.get('banca') or '',
         'fase': p.get('fase') or '', 'enun': '', 'alts': {l: '' for l in LETRAS[:p.get('alternativas') or 5]},
-        'gab': pq['gab'], 'modulo': pq['tema'], 'sub': pq['conteudo'], 'dif': inteiro(pq.get('nivel'), 5), 'degrau': 0,
+        'gab': pq.get('gab') or '', 'modulo': pq['tema'], 'sub': pq['conteudo'], 'dif': inteiro(pq.get('nivel'), 5), 'degrau': 0,
         'conceito': pq.get('conceito') or '', 'pista': '', 'url': caderno, 'origem': 'prova', 'figura': not tr,
         'print': 'provas/' + p['id'] + '/' + pq['print'], 'prova': p['id'], 'txt': 1,
     }
@@ -432,6 +437,13 @@ def questao_da_prova(p, pq):
         q['nq'] = pq['nq']
     if not caderno.startswith('http'):
         q['pendente'] = 'sem link da fonte'
+    # princípio 2 (dono, 11/11/2026): sem gabarito publicado (ou só preliminar), a questão fica fora do ar até ganhar o
+    # gabarito do Aprendice (dois especialistas, às cegas, na mesma letra; e a do preliminar, se houver)
+    if pq.get('gab_fonte') in ('aprendice', 'resolucao'):
+        q['gabFonte'] = pq['gab_fonte']
+    if not pq.get('gab'):
+        q['gab'] = ''
+        q['pendente'] = 'gabarito do Aprendice em preparação'
     texto = {'enun': pq.get('texto') or ''}
     if tr:
         texto['transcricao'] = tr
@@ -470,8 +482,8 @@ def liga_provas(provas):
             if pq['conteudo'] not in subs[m]:
                 fora['conteudo_desconhecido'] += 1
                 continue
-            if pq.get('gab') not in LETRAS:
-                fora['gabarito_invalido'] += 1
+            if pq.get('gab') not in LETRAS and pq.get('gab') not in (None, ''):
+                fora['gabarito_invalido'] += 1   # sem gabarito (None) entra fora do ar, à espera do gabarito do Aprendice
                 continue
             if pq['id'] in ids:
                 raise SystemExit(f"id repetido entre o banco e a prova {p['id']}: {pq['id']}")

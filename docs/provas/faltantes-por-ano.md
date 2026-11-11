@@ -1,5 +1,8 @@
 # Provas de 2020 a 2026 que ainda faltam, por instituição e ano
 
+
+> **Regra nova (dono, 11/11/2026, princípio 2):** prova sem gabarito publicado, ou só com o preliminar, agora pode entrar: cada questão fica fora do ar até ganhar o gabarito do Aprendice (dois especialistas, às cegas, na mesma letra; e a do preliminar, se houver). Anulada continua fora. As notas abaixo de "fora por falta de gabarito" são o registro de antes da regra.
+
 Regras (CLAUDE.md, princípios 1, 2 e 10): só entra prova com caderno + gabarito oficial DEFINITIVO, só questões de
 múltipla escolha; anuladas ficam fora; a origem de cada arquivo fica registrada no `prova.json` (campo `origem`).
 

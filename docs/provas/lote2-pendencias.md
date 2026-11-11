@@ -1,5 +1,8 @@
 # Lote 2 de provas — o que entrou e o que ficou para a próxima rodada (06/11/2026)
 
+
+> **Regra nova (dono, 11/11/2026, princípio 2):** prova sem gabarito publicado, ou só com o preliminar, agora pode entrar: cada questão fica fora do ar até ganhar o gabarito do Aprendice (dois especialistas, às cegas, na mesma letra; e a do preliminar, se houver). Anulada continua fora. As notas abaixo de "fora por falta de gabarito" são o registro de antes da regra.
+
 Fonte dos links: `inventario-publicas-1.json`, `inventario-publicas-2.json` e `inventario-privadas.json`.
 Só entram edições com caderno + gabarito oficial e download livre; anulada ou sem gabarito oficial fica fora.
 

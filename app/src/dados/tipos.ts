@@ -25,6 +25,9 @@ export interface Questao {
   enun: string;
   alts: Partial<Record<Letra, string>>;
   gab: Letra;
+  /** Origem do gabarito quando não é o oficial (princípio 2): 'resolucao' = resolução publicada (cursinho);
+   *  'aprendice' = a banca não publicou gabarito; dois especialistas, às cegas, chegaram à mesma letra. */
+  gabFonte?: 'resolucao' | 'aprendice';
   modulo: string;
   sub: string;
   dif: number;
@@ -59,6 +62,13 @@ export interface Questao {
 
 /** Número da questão para mostrar ao aluno: o do caderno oficial quando a prova renumera cadernos; senão o da prova. */
 export function numeroQuestao(q: Pick<Questao, 'n' | 'nq'>): string { return q.nq || q.n; }
+
+/** De onde vem o gabarito, como aparece ao aluno (princípio 2). */
+export function origemGabarito(q: Pick<Questao, 'gabFonte'>): string {
+  if (q.gabFonte === 'aprendice') return 'Gabarito do Aprendice: a banca não publicou gabarito oficial';
+  if (q.gabFonte === 'resolucao') return 'Gabarito de resolução publicada';
+  return 'Gabarito oficial publicado';
+}
 
 /** Texto de uma questão de prova (arquivo txt/<conteúdo>.json). */
 export interface TextoQuestao { enun: string; transcricao?: Transcricao }

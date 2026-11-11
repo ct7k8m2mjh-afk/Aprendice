@@ -23,7 +23,7 @@ Estudar pelas questões reais das provas: questões organizadas por nível de di
 
 ## Positioning
 
-Questões reais de prova com fonte e gabarito publicado, mais Questões Aprendice (criadas pelo site, revisadas pela banca de especialistas e sempre identificadas como tal), priorizadas pelo que as provas-alvo do aluno realmente cobram (raio-x por instituição), e material revisado em lentes sucessivas.
+Questões reais de prova com fonte e gabarito publicado (sem ele, o gabarito do Aprendice: dois especialistas, às cegas, na mesma letra, com aviso ao aluno — dono, 11/11/2026), mais Questões Aprendice (criadas pelo site, revisadas pela banca de especialistas e sempre identificadas como tal), priorizadas pelo que as provas-alvo do aluno realmente cobram (raio-x por instituição), e material revisado em lentes sucessivas.
 
 ## Operating Context
 
