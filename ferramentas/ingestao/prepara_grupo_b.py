@@ -19,6 +19,7 @@ OFICIAL = {
     'uft': 'https://www.uft.edu.br/concursos-e-selecoes/ingresso-na-graduacao/vestibular-1',
     'unitins': 'https://www.unitins.br/Concursos/Publico/Home/Categoria?c=Vestibular',
     'unirg': 'https://www.unirg.edu.br/vestibular',
+    'uerr': 'https://www.uerr.edu.br/',
 }
 
 # prova -> (chave do manifesto do Brasil Escola, {papel: caminho em fontes/provas-manuais})
@@ -108,6 +109,9 @@ MANUAIS = {
     'uft-ead-2022-2': ('uft/47495', {
         'caderno': 'uft/provas-e-gabaritos-uft-ead-2022-2/prova-quimica-fisica-biologia-matematica-uft-ead-2022-2.pdf',
         'gabarito': 'uft/provas-e-gabaritos-uft-ead-2022-2/gabarito-definitivo-vestibular-2022-2-uft-ead.pdf'}),
+    'uerr-2023': ('ufrr/47547', {
+        'caderno': 'ufrr/provas-e-gabaritos-uerr-2023/provas-uerr-2023.pdf',
+        'gabarito': 'ufrr/provas-e-gabaritos-uerr-2023/gabarito-definitivo-uerr-2023.pdf'}),
 }
 
 

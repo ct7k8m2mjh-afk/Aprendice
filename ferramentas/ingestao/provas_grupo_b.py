@@ -121,8 +121,12 @@ def mais_provas():
             'unitins-2022-1': (13, 14, 25, 28, 30, 31, 37), 'unitins-2023-1': (3, 10, 47), 'unitins-2023-1-c2': (8, 9, 30),
             'unitins-2024-1': (13, 15, 24), 'unitins-2024-1-c2': (11, 13, 25, 27, 29), 'unitins-2025-1-c2': (23, 24, 45),
             'unitins-2026-1': (4, 30), 'unitins-2026-1-c2': (2, 4, 28)}
-    for k, ns in EXCL.items():
-        P[k]['excluir'] = {n: 'recorte' for n in ns}
+    # 1ª tentativa: fronteiras de faixa e divisa ajustadas página a página (ajusta_faixas); o que continuar partido
+    # recebe recorte manual por questão ('manual')
+    for k in [x for x in P if x.startswith('unitins-')]:
+        P[k]['faixas_ajuste'] = True
+        P[k]['caixa_vazia'] = True   # moldura vazia no pé do print
+        P[k]['faixas_uma_auto'] = True   # página toda de uma coluna (texto atravessa a calha e nenhuma questão começa à direita)
     P['unitins-2026-1-c2']['aperta_moldura'] = True   # moldura vazia até o pé da página (q45)
     # selo (faixa azul-clara) do número da questão seguinte que sobra no pé do print
     for k in ('unitins-2021-2', 'unitins-2022-1', 'unitins-2022-1-med', 'unitins-2023-1', 'unitins-2023-1-c2'):
@@ -136,7 +140,6 @@ def mais_provas():
     P['unitins-2020-1']['suporte_forcado'] = {('caderno', 16): [(385, 1, [])]}
     # "Leia o trecho da notícia ... The Guardian e responda às questões." (sem números): vale para a língua inglesa, 46–50
     P['unitins-2020-1']['faixa_errata'] = {('caderno', 17, ()): [46, 50]}
-    P['unitins-2020-1']['excluir'] = {12: 'recorte', 13: 'recorte', 33: 'recorte', 34: 'recorte'}
     P['unitins-2021-1']['suporte'] = P['unitins-2021-1']['suporte'] + [r'^Leia\b']
     P['unitins-2021-1']['suporte_ponto_final'] = True   # "Leia, a seguir, o soneto...", "Leia o trecho a seguir..."
     for k in ('unitins-2021-2', 'unitins-2022-1-med'):
@@ -266,8 +269,6 @@ def mais_provas():
     ufrr('ufrr-2022', 2022)
     ufrr('ufrr-2023', 2023)
     # auditoria separada: verso/linha partidos na emenda das fatias, conferidos no print
-    P['ufrr-2021']['excluir'] = {52: 'recorte'}
-    P['ufrr-2023']['excluir'] = {64: 'recorte'}
 
     # ------------------------------------------------------------------------------------------------ IME
     # Concurso de Admissão (Formação e Graduação), 1ª fase: prova objetiva de 40 questões A–E (Matemática 1–15, Física
@@ -341,6 +342,16 @@ def mais_provas():
             uea(f'uea-{a}-{t}', a, t)
     for a in (2020, 2021, 2025, 2026, 2027):
         uea(f'uea-sis3-{a}', a, 'sis3')
+
+    # ------------------------------------------------------------------------------------------------ UERR
+    # UERR 2023 (Cebraspe), no pacote da UFRR do dono: caderno publicado só como imagem — as questões são localizadas por
+    # OCR (o print continua sendo a página original); sem transcrição. Gabarito oficial definitivo (Edital 41/2022).
+    c = _p.uerr(2023)
+    c['cadernos'] = [{'arquivo': 'caderno', 'paginas': (1, 999), 'ocr': True}]
+    c['sem_transcricao'] = True
+    c['nota'] = c['nota'].replace('Processo Seletivo Vestibular 2023 (Cebraspe)', 'Vestibular 2023 (Cebraspe, aplicação 23/10/2022)') + \
+        ' Caderno publicado só como imagem: o print é a página original.'
+    P['uerr-2023'] = c
 
     # ------------------------------------------------------------------------------------------- UNIRG
     # 2020/1 (banca UFG/Centro de Seleção): caderno tipo 1, 54 questões A–D (Português, Literatura, Matemática, Física,
