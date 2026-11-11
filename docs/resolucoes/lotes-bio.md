@@ -1,6 +1,6 @@
 # Biologia: resoluções (gerado por lote.py em 2026-11-11)
 
-Faltam 2424 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 1076; demais nível 1-6 1146; ENEM nível 7-10 16; provas-alvo nível 7-10 114; demais nível 7-10 72.
+Faltam 2402 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 1054; demais nível 1-6 1146; ENEM nível 7-10 16; provas-alvo nível 7-10 114; demais nível 7-10 72.
 
 ## Lotes
 
@@ -8,6 +8,7 @@ Faltam 2424 questões sem resolução (fora as que estão em lote, pendentes ou 
 |---|---|---|---|---|---|---|
 | bio-0001 | ENEM nível 1-6 | 22 | gravado | 22 | 0 | 0 |
 | bio-0002 | ENEM nível 1-6 | 21 | gravado | 21 | 0 | 0 |
+| bio-0003 | provas-alvo nível 1-6 | 22 | gravado | 21 | 0 | 1 |
 
 ## Pendentes (falta de certeza absoluta)
 
@@ -15,4 +16,6 @@ Nenhuma.
 
 ## Divergências de gabarito (o dono decide)
 
-Nenhuma.
+| Questão | Prova | Conteúdo | Motivo |
+|---|---|---|---|
+| Pe8aa4f48 | PUC-Campinas 2025 · questão 64 | B01.1 membrana plasmática e transporte passivo (tema B01 Citologia) | PUC-Campinas 2025 q64 (fibrose cística): a banca chega à letra oficial B, sustentada pelo texto. Mas a alternativa D (“quando a proteína transportadora […] é ativada por moléculas de ATP, a saída dos íons cloreto das células ocorre por transporte do tipo passivo”) descreve o que de fato ocorre no canal de cloro da fibrose cística (CFTR): é um canal aberto por ATP, e o cloreto sai a favor do gradiente, sem bombeamento. Para escrever que D está errada seria preciso afirmar que todo transporte com ATP é ativo, o que não vale para esse canal. Questão com duas alternativas defensáveis; não publicada. |
