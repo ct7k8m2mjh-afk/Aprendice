@@ -2361,13 +2361,15 @@ def fema(ano, data, online=False):
         return {int(n): v for n, v in re.findall(r'(?m)^\s*(\d{1,2})\s+([A-E])\s*$', fim) if int(n) <= 25}
 
     return {
-        'catalogo': 'fema', 'escola': 'Fema', 'ano': str(ano), 'fase': f'Processo Seletivo {ano + 1}', 'titulo': f'Fema {ano + 1}',
+        'catalogo': 'fema', 'escola': 'Fema', 'ano': str(ano + 1),   # ano do vestibular (como nas outras provas); id com o ano da prova
+        'fase': f'Processo Seletivo {ano + 1}', 'titulo': f'Fema {ano + 1}',
         'banca': 'Fema', 'duracao_horas': 2, 'total': 25,
         'nota': f'Fundação Educacional do Município de Assis (SP), Processo Seletivo {ano + 1} dos cursos gerais (prova '
                 f'{"on-line " if online else ""}de {data}): 25 questões A–E de conhecimentos gerais, Português e Inglês. Redação fora. '
                 'Gabarito oficial publicado pela Fema no próprio PDF da prova.',
         'cadernos': [{'arquivo': 'caderno', 'paginas': (2, 999)}],
-        'colunas': lambda r: [(24, r.width - 20)], 'margem': 24, 'topo': 30, 'base': 86, 'rodape_num': True,   # rodapé com endereço em y≈760
+        'colunas': lambda r: [(24, r.width - 20)], 'margem': 24, 'topo': 30, 'base': 30, 'rodape_num': True,
+        'rodape_rx': r'^(Avenida Get[úu]lio|Fone/Fax|\d{2}/\d{2}/\d{4})',   # rodapé com endereço/data em altura que muda
         'ancora': r'^(\d{2})\.(\s|$)', 'ancora_dx': 40, 'sequencial': True, 'ancora_negrito': True,
         'corte': [r'(?i)^GABARITO', r'(?i)^REDA[ÇC][ÃA]O', r'(?i)^PROPOSTA', r'(?i)^RASCUNHO'],
         'suporte': [r'(?i)(leia|responda|responder)\b.*\bquest[õo]es\s+\d', r'(?i)^textos? para as quest', r'(?i)^Texto\s+(\d+|[IVX]+)\s*$'],
@@ -2394,3 +2396,18 @@ PROVAS['unifesp-2022']['apoio_de'] = {23: [16]}   # a 23 compara o anúncio com 
 # Unesp, Famerp, Famema, Einstein, Santa Casa, Sírio-Libanês, FMJ, FACISB, UEA... (decisão do dono, 09/11/2026)
 from provas_vunesp import mais_provas as _mais_vunesp  # noqa: E402
 PROVAS.update(_mais_vunesp())
+
+
+# Correções da auditoria separada (rodada 6, 10/11/2026)
+for _k in ('mackenzie-2022-2', 'mackenzie-2026-1', 'mackenzie-2026-2', 'mackenzie-2027-1'):
+    PROVAS[_k]['base'] = 42   # a última linha da página desce até y≈800 (o rodapé "pág. N" começa em y≈801)
+PROVAS['pucpr-2023-1']['ancora_dy'] = {37: -14}             # numerador da fração acima do "37."
+PROVAS['pucpr-2023-2']['ancora_dy'] = {34: -14}
+PROVAS['pucpr-2024-1']['ancora_dy'] = {30: -14, 36: -14, 37: -14}
+PROVAS['unirg-2023-2']['uma_coluna'] = (10, 16, 17)   # páginas em largura total (questões 23–24 e o fim do caderno)
+PROVAS['unirg-2026-1']['colunas'] = lambda r: [(30, 308), (308, r.width - 26)]   # linhas da coluna esquerda vão até x≈305
+for _k in ('unirg-2022-1', 'unirg-2022-2', 'unirg-2023-2'):
+    PROVAS[_k]['colunas'] = lambda r: [(24, 298), (298, r.width - 30)]   # números de linha dos textos em x≈29
+    PROVAS[_k]['margem'] = 24
+for _k in ('unirg-2022-1', 'unirg-2022-2', 'unirg-2023-2'):
+    PROVAS[_k]['ancora_dx'] = 26   # com a margem menor, "Questão 01" fica mais longe da borda da coluna
