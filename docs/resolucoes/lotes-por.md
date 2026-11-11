@@ -1,6 +1,6 @@
 # Português: resoluções (gerado por lote.py em 2026-11-11)
 
-Faltam 3937 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 1630; demais nível 1-6 1768; ENEM nível 7-10 53; provas-alvo nível 7-10 225; demais nível 7-10 261.
+Faltam 3907 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 1600; demais nível 1-6 1768; ENEM nível 7-10 53; provas-alvo nível 7-10 225; demais nível 7-10 261.
 
 ## Lotes
 
@@ -13,10 +13,13 @@ Faltam 3937 questões sem resolução (fora as que estão em lote, pendentes ou 
 | por-0005 | ENEM nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | por-0006 | ENEM nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | por-0007 | ENEM nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| por-0008 | provas-alvo nível 1-6 | 30 | gravado | 29 | 1 | 0 |
 
 ## Pendentes (falta de certeza absoluta)
 
-Nenhuma.
+| Questão | Prova | Conteúdo | Motivo |
+|---|---|---|---|
+| Pd23309d1 | UFU 2023 1ª fase · questão 59 | P01.1 tema, tese e ideia principal do texto (tema P01 Leitura e compreensão) | A resposta depende do enredo de "Bom dia, camaradas" (papel de cada personagem: Amadou, Cláudio, António, Ondalu), que não está na questão; sem fonte conferida no lote para afirmar com certeza o que faz cada personagem. |
 
 ## Divergências de gabarito (o dono decide)
 
