@@ -1667,5 +1667,234 @@
    "data": "2026-11-11",
    "lote": "lote04"
   }
+ },
+ "P011450a7": {
+  "n": 144,
+  "conceito": "Seguir um algoritmo: soma ponderada dos dígitos, resto da divisão por 11 e dígito verificador 11 − R.",
+  "resolucao": {
+   "antes": {
+    "texto": "É só seguir as instruções na ordem: multiplicar cada dígito pelo seu peso (5, 4, 3, 2), somar, achar o resto da divisão por 11 e subtrair esse resto de 11. Cuidado com a posição de cada dígito no número 0100.",
+    "formulas": [],
+    "simbolos": [
+     [
+      "resto da divisão",
+      "o que sobra quando a divisão não é exata"
+     ],
+     [
+      "dígito verificador",
+      "dígito calculado a partir dos outros, usado para detectar erros de digitação"
+     ]
+    ]
+   },
+   "pista": "No número 0100, qual é N1? E N2? Qual peso multiplica o único dígito diferente de zero?",
+   "passos": [
+    {
+     "faz": "Identifique os dígitos",
+     "conta": "N1 = 0 · N2 = 1 · N3 = 0 · N4 = 0",
+     "porque": "O 1 está na segunda posição.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule S",
+     "conta": "S = 5 × 0 + 4 × 1 + 3 × 0 + 2 × 0 = 4",
+     "porque": "O peso da segunda posição é 4.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache o resto",
+     "conta": "4 ÷ 11 = 0, resto 4 → R = 4",
+     "porque": "4 é menor que 11: o quociente é 0 e o resto é o próprio 4.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule N5",
+     "conta": "11 − 4 = 7",
+     "porque": "É a alternativa C.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C: S = 4, R = 4 e N5 = 11 − 4 = 7.",
+   "checagem": "Releia os pesos na ordem dos dígitos: 5 para N1, 4 para N2, 3 para N3 e 2 para N4. O 1 de 0100 é N2.",
+   "erradas": {
+    "A": "0 não confere: para N5 = 0 seria preciso R = 11, e o resto de uma divisão por 11 vai de 0 a 10.",
+    "B": "6 sai de multiplicar o 1 por 5, peso de N1: S = 5, R = 5, N5 = 6. O 1 está na segunda posição, de peso 4.",
+    "D": "8 sai de multiplicar o 1 por 3, peso de N3: S = 3, R = 3, N5 = 8. O 1 está na segunda posição, de peso 4.",
+    "E": "9 sai de multiplicar o 1 por 2, peso de N4: S = 2, R = 2, N5 = 9. O 1 está na segunda posição, de peso 4."
+   },
+   "armadilha": "Associar o dígito 1 ao peso errado; em 0100 ele é N2, de peso 4.",
+   "alerta": "",
+   "essencial": {
+    "pede": "o dígito verificador da agência 0100",
+    "chave": "S = 4 × 1 = 4; R = 4; N5 = 11 − 4",
+    "cuidado": "quando S é menor que 11, o resto é o próprio S"
+   }
+  },
+  "equivocos": {
+   "A": "M01.4:resto-nao-confere",
+   "B": "M01.4:peso-da-posicao-errada",
+   "D": "M01.4:peso-da-posicao-errada",
+   "E": "M01.4:peso-da-posicao-errada"
+  },
+  "caminhos": [
+   {
+    "nome": "direto",
+    "ideia": "Só um dígito não é zero: S é o peso dele, 4. Como 4 < 11, R = 4 e N5 = 7."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "S = 5 × 0 + 4 × 1 + 3 × 0 + 2 × 0",
+    "nota": "pesos 5, 4, 3 e 2"
+   },
+   {
+    "linha": "S = 4",
+    "nota": ""
+   },
+   {
+    "linha": "4 = 11 × 0 + 4",
+    "nota": "resto R = 4"
+   },
+   {
+    "linha": "N5 = 11 − 4 = 7",
+    "nota": "dígito verificador"
+   }
+  ],
+  "visual": {
+   "cabe": false,
+   "tipo": "nenhum",
+   "porque": "O quadro já mostra a conta inteira, linha por linha; uma figura a mais não acrescentaria nada.",
+   "roteiro": ""
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor",
+    "conferente (fatos e didática)",
+    "conferente-volta"
+   ],
+   "data": "2026-11-11",
+   "lote": "lote05"
+  }
+ },
+ "Pd65649ce": {
+  "n": 169,
+  "conceito": "Volume do cilindro = área da base × profundidade; dobrar o raio quadruplica a área da base.",
+  "resolucao": {
+   "antes": {
+    "texto": "O volume de cada caixa é área da base vezes profundidade. A área da base depende do raio ao quadrado: dobrar o raio multiplica a área por 4, e reduzir o raio à metade divide a área por 4. Compare cada modelo com o modelo I, de volume V = Ab × P.",
+    "formulas": [
+     "volume do cilindro = área da base × profundidade",
+     "área da base = π · r²"
+    ],
+    "simbolos": [
+     [
+      "Ab",
+      "área da base do modelo I"
+     ],
+     [
+      "P",
+      "profundidade do modelo I"
+     ],
+     [
+      "área do círculo",
+      "π vezes o raio ao quadrado"
+     ]
+    ]
+   },
+   "pista": "Em dois modelos o enunciado fala em “área da base”; em outros dois, em “raio da base”. O que acontece com a área quando o raio dobra?",
+   "passos": [
+    {
+     "faz": "Modelos II e IV (mudam a área da base)",
+     "conta": "II: 2P × Ab ÷ 2 = V · IV: P ÷ 2 × 2Ab = V",
+     "porque": "O dobro de um compensa a metade do outro.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Modelo III (metade do raio)",
+     "conta": "área ÷ 4 → 2P × Ab ÷ 4 = V ÷ 2",
+     "porque": "Raio pela metade divide a área por 2² = 4.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Modelo V (dobro do raio)",
+     "conta": "área × 4 → P ÷ 2 × 4Ab = 2V",
+     "porque": "Raio em dobro multiplica a área por 2² = 4.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare",
+     "conta": "I: V · II: V · III: V ÷ 2 · IV: V · V: 2V",
+     "porque": "A maior capacidade é a do modelo V. É a alternativa E.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E: no modelo V a área da base quadruplica e a profundidade cai à metade; o volume é o dobro do modelo I.",
+   "checagem": "Teste com números: modelo I com raio 1 e profundidade 2 (π = 3): volume 6. Modelo V: raio 2, profundidade 1: 3 × 4 × 1 = 12, o dobro.",
+   "erradas": {
+    "A": "O modelo I tem volume V. O modelo V, com raio em dobro e metade da profundidade, tem 2V.",
+    "B": "No modelo II, o dobro da profundidade compensa exatamente a metade da área: volume V, igual ao do modelo I.",
+    "C": "O modelo III é o de MENOR volume: metade do raio divide a área por 4, e o dobro da profundidade só recupera metade: V ÷ 2.",
+    "D": "No modelo IV, o dobro da área compensa a metade da profundidade: volume V. Dobrar o RAIO (modelo V) quadruplica a área e dá 2V."
+   },
+   "armadilha": "Achar que dobro e metade sempre se compensam; com o raio, não: a área cresce com o quadrado do raio.",
+   "alerta": "",
+   "essencial": {
+    "pede": "o modelo de maior capacidade",
+    "chave": "volume = área × profundidade; raio × 2 → área × 4",
+    "cuidado": "distinguir quando muda o raio de quando muda a área"
+   }
+  },
+  "equivocos": {
+   "A": "M11.2:volume-nao-comparado",
+   "B": "M11.2:volume-nao-comparado",
+   "C": "M11.2:metade-do-raio-subestimada",
+   "D": "M11.2:volume-nao-comparado"
+  },
+  "caminhos": [
+   {
+    "nome": "teste numérico",
+    "ideia": "Com raio 1 e profundidade 2 (π = 3): I = 6; II = 6; III = 3 × 0,25 × 4 = 3; IV = 6; V = 3 × 4 × 1 = 12."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "I: Ab · P = V",
+    "nota": "referência"
+   },
+   {
+    "linha": "II: Ab/2 · 2P = V",
+    "nota": "metade da área, dobro da profundidade"
+   },
+   {
+    "linha": "III: Ab/4 · 2P = V/2",
+    "nota": "metade do raio: área dividida por 4"
+   },
+   {
+    "linha": "IV: 2Ab · P/2 = V",
+    "nota": "dobro da área, metade da profundidade"
+   },
+   {
+    "linha": "V: 4Ab · P/2 = 2V",
+    "nota": "dobro do raio: área vezes 4"
+   }
+  ],
+  "visual": {
+   "cabe": false,
+   "tipo": "nenhum",
+   "porque": "O quadro já mostra a conta inteira, linha por linha; uma figura a mais não acrescentaria nada.",
+   "roteiro": ""
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor",
+    "conferente (fatos e didática)",
+    "conferente-volta"
+   ],
+   "data": "2026-11-11",
+   "lote": "lote05"
+  }
  }
 }

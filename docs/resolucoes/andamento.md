@@ -13,9 +13,10 @@ Onde ficam: `app/conteudo-fonte/provas/<prova>/resolucoes.json` (uma entrada por
 | 03 | Matemática | ENEM 2020–2025, restante do nível 3 | 32 | 32 | 0 | 0 | 0 |
 | 04 | Matemática | ENEM 2020–2025, nível 4 | 30 | 30 | 0 | 0 | 0 |
 | 04b | Matemática | as 2 pendentes do lote 02, com prints refeitos | 2 | 2 | 0 | 0 | 0 |
-| **Total** | | | **126** | **126** | **0** | **0** | **0** |
+| 05 | Matemática | ENEM 2020–2025, 24 questões (nível 5 na classificação anterior) | 24 | 24 | 0 | 0 | 0 |
+| **Total** | | | **150** | **150** | **0** | **0** | **0** |
 
-No site montado: Biologia passou de 195 para 229 questões com resolução; Matemática, de 552 para 640. Quatro das 92 de Matemática são a mesma questão que já existia no banco antigo com resolução (ENEM 2024 q145, ENEM 2021 q178, ENEM 2020 q168 e ENEM 2023 q155); a resolução antiga continua valendo nelas.
+No site montado: Biologia passou de 195 para 229 questões com resolução; Matemática, de 552 para 663 (depois do lote 05). Quatro das 92 de Matemática são a mesma questão que já existia no banco antigo com resolução (ENEM 2024 q145, ENEM 2021 q178, ENEM 2020 q168 e ENEM 2023 q155); a resolução antiga continua valendo nelas.
 
 ## Lote 01 — Biologia, ENEM, níveis 1 a 3 (11/11/2026)
 
@@ -46,6 +47,13 @@ No site montado: Biologia passou de 195 para 229 questões com resolução; Mate
 - q176 (projeções de um sólido de quatro cubos): cada alternativa foi recortada e ampliada; banca e conferente contaram os quadrados de cada sombra, separadamente, e chegaram às mesmas leituras (C e D espelhadas, A com alturas diferentes nas duas paredes, B com a sombra da parede esquerda uma coluna deslocada); letra oficial E.
 - Conferente: conferência completa das duas; 2 ajustes de redação na q176. Aprovadas.
 
+## Lote 05 — Matemática, ENEM, 24 questões (11/11/2026)
+
+- Recorte montado antes de a sessão principal trocar os níveis do ENEM pela dificuldade oficial do INEP (eram nível 5); os ids não mudaram.
+- 24 questões; as 24 bateram com o gabarito oficial; contas refeitas por programa.
+- Conferente: 7 limpas; 26 apontamentos em 17 questões (nenhum de gabarito). O mais sério: na ENEM 2024 q174 (projeção de trajetória), os passos e a checagem não separavam a figura C da figura E; entrou a leitura da malha (profundidade de cada ponto) e o terceiro teste. Também: origens exatas que faltavam (ENEM 2023 q167, 57 embalagens → 3,51%; ENEM 2023 q175, relação lida pela metade → 10,50), cinco armadilhas que não levavam a nenhuma alternativa, símbolos sem definição e passos finais sem a letra. Volta: 24 aprovadas.
+- Site: `converte.py`, `tsc` e `vitest` verdes (766 testes). No navegador (390 px): ENEM 2024 q174, q166 e ENEM 2023 q175 com os 4 blocos e frações empilhadas (inclusive fração de frações); animação até o fim em ENEM 2024 q166 (6/6), ENEM 2023 q175 (8/8) e ENEM 2024 q175 (6/6).
+
 ## Conferência no site (lotes 04 e 04b)
 
 - `converte.py`, `tsc` e `vitest`: verde (18 arquivos, 766 testes).
@@ -59,6 +67,5 @@ No site montado: Biologia passou de 195 para 229 questões com resolução; Mate
 
 ## O que falta (Matemática e Biologia do ENEM, níveis 1 a 6)
 
-- Matemática: níveis 5 e 6 do ENEM (85 questões).
-- Biologia: níveis 4, 5 e 6 do ENEM (50 questões).
+- Matemática e Biologia do ENEM: seguir a ordem de `python3 ferramentas/resolucoes/lote.py proximo mat` (e depois `bio`), que já usa os níveis oficiais do INEP.
 - Depois: demais matérias do ENEM e as provas-alvo mais comuns (ver `levantamento.md`).
