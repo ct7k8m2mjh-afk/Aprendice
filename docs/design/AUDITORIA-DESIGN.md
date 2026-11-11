@@ -491,12 +491,12 @@ Ordem: do maior para o menor impacto no aluno. Grupos que se resolvem juntos: **
 - AUTORIZO: ( ) sim ( ) só (a) ( ) só (b) ( ) não ( ) com ajuste: ____
 
 ### D05 — Cor da matéria em letra pequena sobre o fundo suave (decisão do dono)
-- **Tela e seletor:** etiquetas da matéria `.etq.cor`, letra da alternativa marcada `.alt-l`, número da ordem `.hj-n`, "Trocar" `.fr-trocar`, rótulo `.in-rotulo`; cores em `dados/materias.ts` (paleta de `docs/cores/paleta.json`). O fundo dessas peças é `--sv`, que dentro da matéria vale o mesmo que o fundo suave `--s` (`ui/comum.tsx`, função `tons`); conferido pelo estilo computado (ex.: Biologia `rgb(227, 252, 224)`).
+- **Tela e seletor:** etiquetas da matéria `.etq.cor`, letra da alternativa marcada `.alt-l`, número da ordem `.hj-n`, "Trocar" `.fr-trocar`; cores em `dados/materias.ts` (paleta de `docs/cores/paleta.json`). O fundo dessas peças é `--sv`, que dentro da matéria vale o mesmo que o fundo suave `--s` (`ui/comum.tsx`, função `tons`); conferido pelo estilo computado (ex.: Biologia `rgb(227, 252, 224)`).
 - **Valor atual (medido):** claro, sobre o fundo suave — Química 4,37; Física 4,40; Biologia 4,45; Filosofia e Sociologia 4,47. Claro, sobre o papel — 4,29; 4,31; 4,32; 4,36. Escuro, sobre o fundo suave — História 3,94; Inglês 3,99; Geografia 4,48. As outras combinações passam (Matemática 8,20; História 7,18 no claro etc.).
 - **Problema:** texto de 13 a 18 px abaixo de 4,5:1. Faltam de 0,03 a 0,13 no claro sobre o fundo suave, de 0,14 a 0,21 no claro sobre o papel e de 0,02 a 0,56 no escuro.
 - **Proposta (sem criar cor):** nessas peças, quando a letra tem menos de 18,66 px em negrito, pôr o texto colorido sobre a folha (`folha`), onde as 9 matérias passam (4,85 a 9,05 no claro; 5,08 a 9,50 no escuro), mantendo o fundo suave só em peças de letra grande; **ou** manter como está. Mexer nos tons da paleta não é proposto: a paleta é do dono.
 - **Efeito esperado:** etiquetas da matéria com fundo branco e contorno fino na cor, em vez do fundo colorido.
-- **Risco:** alto (muda a aparência de uma peça muito usada e toca a paleta aprovada).
+- **Risco:** alto (muda a aparência de uma peça muito usada; a proposta não mexe nos tons da paleta). O rótulo "CONTINUE DE ONDE PAROU" do Início (`.in-rotulo`, 16 px peso 700, 4,29 a 4,36 sobre o papel) fica de fora: é exceção da referência do dono para a aba Início.
 - **Categoria:** acessibilidade.
 - **Evidência:** `evidencias/contraste-etiqueta-qui-1280.jpg`.
 - AUTORIZO: ( ) sim ( ) não ( ) com ajuste: ____
@@ -530,15 +530,15 @@ Ver a seção própria abaixo (propostas A, B e C).
 - AUTORIZO: ( ) A ( ) B ( ) C ( ) não ( ) com ajuste: ____
 
 ### D09 — A etiqueta tem três aparências
-- **Tela e seletor:** questão — `.etq.cor`, `.etq.q-sub`, `.etq.q-fonte`; revisão essencial — `.rv-cab .etq`; demais telas — `.etq`, `.etq.ok`, `.etq.aviso`. No código: regra base `app.css` linha 174 (13 px, peso 500); `tipografia.css` linha 51 (`--fs-info`, peso 600); `sistema.css` linha 78 (`.q-meta .etq`, 13 px, peso 500) e `revisao.css` linha 82 (13 px) passam por cima.
+- **Tela e seletor:** questão — `.etq.cor`, `.etq.q-sub`, `.etq.q-fonte`; revisão essencial — `.rv-cab .etq`; demais telas — `.etq`, `.etq.ok`, `.etq.aviso`. No código: regra base `app.css` linha 174 (13 px, peso 500); `tipografia.css` linhas 49 a 51 (`--fs-info`, peso 600, seguindo o guia tipográfico); `sistema.css` linha 78 (`.q-meta .etq`, 13 px, peso 500) e `revisao.css` linha 82 (13 px) passam por cima.
 - **Valor atual (medido a 1280 px):** na questão 13 px, peso 500 (39 telas); na revisão essencial 13 px, peso 600; nos flashcards e no resto do site 14 px, peso 600 (13,5 px a 390).
-- **Problema:** a mesma peça com três aparências. O `DESIGN.md` (linha 109) e o protótipo (`materia.css` linha 960) dizem 13 px, peso 600.
-- **Proposta:** todas com 13 px, peso 600 (valor do protótipo). Muda: as da questão ganham peso (500 → 600); as de 14 px voltam a 13 px.
-- **Efeito esperado:** etiquetas iguais em todas as telas.
-- **Risco:** baixo.
+- **Problema:** a mesma peça com três aparências. As fontes de verdade não concordam no tamanho: o protótipo (`materia.css` linha 960) e o `DESIGN.md` linha 109 dizem 13 px; o guia tipográfico (resumido no `DESIGN.md` linha 77: "etiquetas: 600 no tamanho secundário") dá 13,5 / 14 px. No peso, todas dizem 600.
+- **Proposta:** (1) peso 600 em todas (sem conflito): muda só as etiquetas da questão, de 500 para 600. (2) tamanho único, a escolher pelo dono — 13 px (protótipo) ou `--fs-info` 13,5 / 14 px (guia tipográfico); ver Dúvidas, item 10.
+- **Efeito esperado:** etiquetas com o mesmo peso em todas as telas; com a escolha do tamanho, iguais em tudo.
+- **Risco:** baixo na parte (1); médio na parte (2), porque contraria uma das duas fontes.
 - **Categoria:** padronizar.
 - **Evidência:** `evidencias/contraste-etiqueta-qui-1280.jpg`; tabela de font-size (13 px).
-- AUTORIZO: ( ) sim ( ) não ( ) com ajuste (ex.: manter 14 px em vez de 13): ____
+- AUTORIZO: ( ) sim, só o peso ( ) peso e 13 px ( ) peso e 13,5 / 14 px ( ) não ( ) com ajuste: ____
 
 ### D10 — O título do 4º bloco da correção é menor que os outros
 - **Tela e seletor:** correção — `details.cor-outras summary` (`correcao.css` linha 34).
@@ -560,11 +560,11 @@ Ver a seção própria abaixo (propostas A, B e C).
 - **Evidência:** tabela de font-size (19 px a 1280).
 - AUTORIZO: ( ) sim ( ) não ( ) com ajuste: ____
 
-### D12 — Tamanhos de letra em variáveis e dois valores herdados por acidente
+### D12 — Tamanhos de letra em variáveis e dois valores fora do sistema
 - **Tela e seletor:** `app/src/estilo/*.css` (124 declarações distintas de tamanho).
-- **Valor atual (medido):** 38 tamanhos distintos a 1280 px e 32 a 390 px (sem o login). Dois não foram escolhidos por ninguém: 13,33 px (`small.fraco.num`, Desempenho, 9 elementos — é o tamanho padrão do `small` do navegador) e 15,8 px (`small.num` e `h2.tp-h small`, 20 elementos — resultado de conta em `em`). Nenhum dos dois existe no protótipo. Os demais valores fora do guia (12, 12,5, 13, 14,5, 18 px…) existem no protótipo e ficam.
-- **Problema:** os mesmos números repetidos à mão em muitos arquivos, e dois valores sem origem.
-- **Proposta:** (1) trocar os números repetidos pelas variáveis que já existem, sem mudar o valor (`16px` → `var(--fs-texto)`, `15px` de botão → `var(--fs-botao)`); (2) criar variáveis para valores do protótipo que o guia não nomeia, com o valor atual: `--fs-micro: 12px` (479 elementos a 1280 px), `--fs-etq: 13px`, `--fs-destaque: 18px` (272); (3) corrigir só os dois acidentais: 13,33 → `var(--fs-info)` (14 px) e 15,8 → `var(--fs-texto)` (16 px).
+- **Valor atual (medido):** 38 tamanhos distintos a 1280 px e 32 a 390 px (sem o login). Dois não foram escolhidos por ninguém: 13,33 px (`small.fraco.num`, Desempenho, 9 elementos — é o tamanho padrão do `small` do navegador) e 15,8 px (`small.num` e `h2.tp-h small`, 20 elementos — escrito à mão em `sistema.css` linha 258). Nenhum dos dois existe no protótipo. Os demais valores fora do guia (12, 12,5, 13, 14,5, 18 px…) existem no protótipo e ficam.
+- **Problema:** os mesmos números repetidos à mão em muitos arquivos, e dois valores que não vêm do protótipo nem do guia.
+- **Proposta:** (1) trocar os números repetidos pelas variáveis que já existem, sem mudar o valor (`16px` → `var(--fs-texto)`, `15px` de botão → `var(--fs-botao)`); (2) criar variáveis para valores do protótipo que o guia não nomeia, com o valor atual: `--fs-micro: 12px` (479 elementos a 1280 px), `--fs-etq: 13px`, `--fs-destaque: 18px` (272); (3) corrigir só esses dois: 13,33 → `var(--fs-info)` (14 px) e 15,8 → `var(--fs-texto)` (16 px).
 - **Efeito esperado:** diferença de 0,2 a 0,7 px em 29 elementos; o resto idêntico.
 - **Risco:** médio (troca em muitos arquivos; conferir tela a tela).
 - **Categoria:** padronizar.
@@ -715,6 +715,7 @@ Só o que a medição não decide.
 7. **Arte do Treino geral no tema escuro:** na arte de Matemática há traços escuros (o globo e o quadrado tracejado) sobre o fundo escuro do cartão; ver `evidencias/tg-atual-1280-escuro.jpg`. Contraste não medido (é imagem). Não toquei na ilustração; só informo.
 8. **Mínimo de toque:** 44 px (critério desta revisão) ou 24 px (mínimo da WCAG 2.2 AA)? Muda o tamanho de D01.
 9. **Site publicado × ramo:** a auditoria mediu o código do ramo `app-prototipo-completo`. Há trabalho feito e ainda não publicado (Hoje, Domínio, filtro de região, Revisão geral). Se quiser, repito as medições direto no link público depois da próxima publicação.
+10. **Tamanho da etiqueta (D09):** 13 px, como no protótipo e na tabela de componentes do `DESIGN.md`, ou 13,5 / 14 px (`--fs-info`), como no guia tipográfico de 05/11?
 
 ## Revisão por agente separado
 
@@ -728,7 +729,7 @@ Um agente revisor que não participou da auditoria (sessão separada, só leitur
 | A opacidade 0,8 do rótulo vem do protótipo (`materia.css` linha 1648) | D04(a) passou a avisar que mexe num valor do protótipo; risco médio |
 | `.btn-conf` desabilitado não devia estar na lista de contraste | Retirado da tabela e de D05 |
 | D06 propunha 620 px e 540 px, valores que não existem no sistema | Trocados por 68ch (protótipo) e 62ch (site), com o efeito medido de novo |
-| D09: a etiqueta do sistema tem 13 px, peso 600 (`DESIGN.md` linha 109 e protótipo), não 14 px | Proposta refeita para 13 px, peso 600; origens citadas |
+| D09: a etiqueta do protótipo tem 13 px, peso 600 (`DESIGN.md` linha 109), não 14 px | Origens citadas; o tamanho virou escolha do dono (ver rodada 2) |
 | D11: os 19 px vêm de estilo escrito em `Revisao.tsx` linha 94 | Causa e correção corrigidas |
 | D12: 12,5 px e 14,5 px existem no protótipo | Deixaram de ser tratados como acidentais; ficam |
 | D13: 1,25, 1,45 e 1,55 existem no protótipo | Item retirado |
@@ -751,6 +752,8 @@ Um agente revisor que não participou da auditoria (sessão separada, só leitur
 |---|---|
 | O rótulo "TOTAL" teria 11,5 px, peso 500 (`sistema.css` linha 43) | O estilo computado é 14 px, peso 600: `tipografia.css` linha 97 é carregado depois e passa por cima |
 | As etiquetas `.etq.cor`, `.nivel-etq` e `.hj-n` estariam sobre `--sv` = 13 % da cor (contrastes 3,96 a 4,55) | Dentro da matéria, `--sv` é redefinida com o mesmo valor de `--s` (`ui/comum.tsx`, função `tons`). Fundo computado medido: `rgb(227, 252, 224)` em Biologia, `rgb(238, 244, 255)` em Matemática. Os contrastes do relatório (4,37 a 4,47) ficam |
+
+**Rodada 2.** O relatório corrigido voltou ao mesmo revisor. Ele reconferiu os dois pontos não aceitos e deu razão ao relatório nos dois (`main.tsx` carrega `tipografia.css` depois de `sistema.css`; `comum.tsx` linha 19 define `--sv` igual a `--s`). Apontou mais quatro diferenças, todas corrigidas: `.in-rotulo` saiu de D05 (é exceção da referência do Início); a justificativa do risco de D05 foi reescrita (a proposta não toca a paleta); em D09 o conflito entre o protótipo (13 px) e o guia tipográfico (`--fs-info`) passou para as Dúvidas, item 10, e a proposta firme ficou só no peso; em D12 a origem dos 15,8 px foi corrigida (`sistema.css` linha 258). Conferidos sem diferença na rodada 2: D01, D04, D06, D11, D14, D16, D19, "Botão Treino geral" (contas de contraste da borda refeitas por ele: 1,10, 1,47 e 1,50), "Protegido" e "Dúvidas". Essas quatro últimas correções não passaram por uma terceira leitura do revisor.
 
 O revisor recalculou 22 pares de contraste pela fórmula da WCAG e todos bateram com o relatório (diferença de até 0,02). Itens que ele conferiu sem diferença: D02, D03, D07, D10, D15, D17, D18 e a forma do botão na proposta B.
 
