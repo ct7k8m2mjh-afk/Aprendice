@@ -7,7 +7,7 @@ Revisão em 3 lentes sucessivas (fatos → compreensão do aluno → fatos de no
 | Matéria | Arquivo | Tópicos revisados | Tópicos alterados | Itens "conferir" | Estado |
 |---|---|---|---|---|---|
 | Português | `docs/revisao/por/geral.json` | 139 de 139 | 139 | 7 | revisada completa, com "conferir" |
-| Matemática | `docs/revisao/mat/geral.json` | 0 de 112 | — | — | **não revisada** (retomar aqui) |
+| Matemática | `docs/revisao/mat/geral.json` | 112 de 112 | 112 | 0 | revisada completa |
 | Biologia | `docs/revisao/bio/geral.json` | 0 de 58 | — | — | **não revisada** (retomar aqui) |
 | Física | `docs/revisao/fis/geral.json` | 0 de 50 | — | — | **não revisada** (retomar aqui) |
 | Química | `docs/revisao/qui/geral.json` | 0 de 58 | — | — | **não revisada** (retomar aqui) |
@@ -134,4 +134,38 @@ Revisão em 3 lentes sucessivas (fatos → compreensão do aluno → fatos de no
 - IK10 (Santa Casa 2020): a letra do gabarito (D impressa × E do comentário) só se resolve com o caderno oficial. O tópico está correto quanto ao conteúdo e não cita letra. Decidir se a questão entra no site só depois dessa conferência.
 - Dez gabaritos por letra de questões resolvidas (lista em `lacunas`) vêm só do livro. Decidir se o site mostra a letra antes da conferência no gabarito oficial.
 - PK27 (Unemat-MT) e IK23 (UFU-MG): questões citadas sem ano. Pela regra, questão de prova só entra com prova e ano.
+
+## Matemática
+
+### Erros de fato encontrados no trabalho anterior (6)
+
+1. M03.2 — "Aumento de p%: multiplique por (1+p)": com p = 20 o aluno multiplicaria por 21. O fator é 1 + p/100.
+2. M07.4 — pegadinha sem sentido ("Duas PA com razões diferentes têm termo-a-termo diferentes").
+3. M16.1 — frase truncada sobre raízes conjugadas ("raiz a+bi real traz o conjugado"): a condição é o polinômio ter coeficientes reais.
+4. M01.2 — √a·√b = √(ab) sem a condição a, b ≥ 0.
+5. Todos — busca[] era só o título quebrado em palavras (ex.: "equação; grau"), inútil para a busca do aluno.
+6. Diferenças de esquema em relação às outras matérias (não são erro de conteúdo): o arquivo não tinha `lacunas` (foi criado) e o campo `imagem` só tem `tipo` e `descricao`, sem `falta_imagem` nem `aviso` (mantido como estava).
+
+### Todas as alterações
+
+| id | o que mudou | por quê | fonte | lente |
+|---|---|---|---|---|
+| M01.2 | condição a ≥ 0 e b ≥ 0 no produto de raízes | sem a condição a propriedade é falsa nos reais (ex.: a = b = −1) | Iezzi et al., Fundamentos de Matemática Elementar (Atual), v. 2 | 1 |
+| M03.2 | fator escrito como 1 ± p/100, com exemplo | "aumento de p%: multiplique por (1+p)" dá o fator errado se o aluno usar p = 20 | Iezzi et al., Fundamentos de Matemática Elementar (Atual), v. 11 | 1 |
+| M03.3 e M03.4 | significado das letras (C, i, t, J, M) e contraste simples × compostos | fórmulas sem dizer o que é cada letra; contraste clássico só implícito | Iezzi et al., Fundamentos de Matemática Elementar (Atual), v. 11 | 2 |
+| M04.3 | siglas SPD, SPI e SI por extenso | termo técnico sem definição | Iezzi et al., Fundamentos de Matemática Elementar (Atual), v. 4 | 2 |
+| M07.4 | pegadinha reescrita | a frase anterior ("Duas PA com razões diferentes têm termo-a-termo diferentes") não fazia sentido | Iezzi et al., Fundamentos de Matemática Elementar (Atual), v. 4 | 1 |
+| M08.4 e M11.3 | apótema e geratriz definidos | termos técnicos sem definição | Iezzi et al., Fundamentos de Matemática Elementar (Atual), v. 9 e 10 | 2 |
+| M16.1 | frase do conjugado corrigida | "raiz a+bi real traz o conjugado" estava truncada: a condição é o polinômio ter coeficientes reais | Iezzi et al., Fundamentos de Matemática Elementar (Atual), v. 6 | 1 |
+| M16.2 | i definido por i² = −1 | definição usual e mais segura que i = √−1 | Iezzi et al., Fundamentos de Matemática Elementar (Atual), v. 6 | 2 |
+| M14.1 | pegadinha: contraste média × mediana com exemplo | contraste clássico ausente | Iezzi et al., Fundamentos de Matemática Elementar (Atual), v. 11 | 2 |
+| todos os 112 tópicos | busca[] ampliada | a busca trazia só as palavras do título separadas ("equação; grau"); entraram nomes populares, siglas e grafias que o aluno digita (bhaskara/báskara, PFC, regra de 3, SOH CAH TOA) | — | 2 |
+
+### Itens marcados "conferir" (estão em `lacunas` do arquivo)
+
+
+### Pendências de decisão do dono
+
+- Matemática: o campo `imagem` não tem `falta_imagem` nem `aviso`, ao contrário das outras matérias. Não foi alterado (a regra é preservar o campo). Decidir se o site trata a ausência como "imagem ainda não feita" ou se o campo deve ser igualado.
+- Matemática: o campo `lacunas` foi criado (não existia) para registrar a revisão, como nas outras matérias.
 
