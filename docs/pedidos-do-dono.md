@@ -62,3 +62,4 @@ Tudo o que o dono envia (texto, imagem, prancha) tem uso e fica registrado com d
 - Nada vai ao ar sem a permissão do dono (11/11/2026, enquanto ele estiver fora): a rotina das 2 horas só confere; publicar quando ele pedir.
 - Simulado por conteúdo (11/11/2026): o aluno escolhe a matéria, os conteúdos e a quantidade; muda a regra "só prova inteira" do CLAUDE.md.
 - Revisão geral (11/11/2026): o botão estava pequeno demais; precisa de destaque na aba Revisão, porque ali o aluno tem o conteúdo para responder todas as questões ("certifique-se disso").
+- Revisão (11/11/2026): "toda questão do site precisa ter, na revisão, o conteúdo do assunto que ela trata". A revisão é só conteúdo (sem questões). Autorizado escrever o que falta a partir de livro didático e buscar na web para complementar (fontes confiáveis, com o link registrado), sempre com conferente separado.
