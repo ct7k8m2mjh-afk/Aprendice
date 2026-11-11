@@ -79,7 +79,7 @@ describe('Filosofia e Sociologia em duas telas (prefixo FK × SK)', () => {
     expect(soc.every((t) => t.id.startsWith('SK'))).toBe(true);
     expect(fil.length + soc.length).toBe(fs.length);
     expect(fil.length).toBe(46);
-    expect(soc.length).toBe(56);
+    expect(soc.length).toBe(63);
   });
   it('a busca de uma parte não traz tópico da outra', () => {
     expect(buscaTopicos(fil, 'durkheim').every((x) => x.t.id.startsWith('FK'))).toBe(true);
@@ -138,7 +138,7 @@ print(json.dumps([a, b]))
 `;
       const [a, b] = JSON.parse(execFileSync('python3', ['-c', py], { encoding: 'utf-8' }).trim().split('\n').pop()!);
       expect(a).toMatchObject({ n: geral('his').topicos.length, imagens: 1 });
-      expect(b).toMatchObject({ imagens: 1, partes: { filosofia: 46, sociologia: 56 } });
+      expect(b).toMatchObject({ imagens: 1, partes: { filosofia: 46, sociologia: 63 } });
       const his: RevisaoGeral = JSON.parse(readFileSync(join(tmp, 'out/his/geral.json'), 'utf-8'));
       const hk2 = his.topicos.find((t) => t.id === 'HK02')!;
       expect(hk2.imagem.img).toBe('revisao/geral/HK02.webp');
