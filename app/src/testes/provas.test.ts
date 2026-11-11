@@ -78,7 +78,7 @@ const SEM_LETRA_NO_TEXTO: Record<string, number[]> = {
   'fuvest-2021': [4, 5, 10, 11, 18, 28, 48, 55, 87], 'udesc-2024-1': [4], 'udesc-2024-2': [8, 11, 14], 'udesc-2025-1': [1, 9, 28],
   'udesc-2026-2': [8], 'ime-2021': [30],   // IME 2021 q30: alternativas (A)–(E) são circuitos desenhados (print conferido)
 };
-const FAIXA_CONFERIDA: Record<string, number[]> = { 'fuvest-2021': [82], 'unifesp-2022': [23], 'ufu-2022': [13], 'upe-ssa3-2023': [58, 59], 'urca-2025-3': [114], 'urca-2023-1': [118], 'uft-2022-2': [8], 'uft-ead-2022-2': [10] };   // UFT 2022/2 q8 e EaD 2022/2 q10 comparam os textos I e II (o I é o das questões anteriores): conferido
+const FAIXA_CONFERIDA: Record<string, number[]> = { 'fuvest-2021': [82], 'unifesp-2022': [23], 'ufu-2022': [13], 'upe-ssa3-2023': [58, 59], 'urca-2025-3': [114], 'urca-2023-1': [118], 'uft-2022-2': [8], 'uft-ead-2022-2': [10], 'fempar-2027': [16, 17, 18, 19, 20, 21, 22, 23, 24, 25] };   // UFT 2022/2 q8 e EaD 2022/2 q10 comparam os textos I e II (o I é o das questões anteriores): conferido. Fempar 2027 16–25: o bloco de inglês numera as instruções de 01 a 10 ("answer questions 01 to 05"): conferido
 type QPrint = { n: number; nq?: string; alt: number; larg: number; texto: string; print: string };
 const letrasNoTexto = (t: string) => {
   const s = new Set<string>();

@@ -282,6 +282,121 @@ uece1('uece-2025-2', 2025, 2, '27/04/2025', formato='tabela', anuladas=(22, 55, 
                'localizado. A letra do preliminar vai em gab_preliminar.')
 
 
+# ------------------------------------------------------------------------------------------------- Fempar 2027 (FGV)
+# Na rodada anterior só havia o gabarito preliminar; o definitivo (prova de 18/10/2026) já está publicado na página da
+# FGV (conhecimento.fgv.br/processoseletivo/fempar27): a prova entra normalmente, com gab.
+def _fempar27_gab(pasta):
+    txt = _p.texto_pdf(pasta / 'gabarito.pdf')
+    txt = txt[txt.index('PROVA TIPO 1 – LÍNGUA ESTRANGEIRA (INGLÊS)'):]
+    txt = re.split(r'PROVA TIPO 1 – LÍNGUA ESTRANGEIRA \(ESPANHOL\)', txt)[0]
+    ls = [l.split() for l in txt.splitlines()[1:] if l.strip()]
+    g = {}
+    for a, b in zip(ls, ls[1:]):
+        if a and all(x.isdigit() for x in a) and len(a) == len(b) and all(re.fullmatch(r'[A-E]|\*', x) for x in b):
+            for n, v in zip(a, b):
+                g[int(n)] = v if v != '*' else 'X'
+    assert sorted(g) == list(range(1, 81)), sorted(g)
+    return g
+
+
+_FGV = 'https://conhecimento.fgv.br/sites/default/files/concursos/'
+_m('fempar-2027', 'https://conhecimento.fgv.br/processoseletivo/fempar27',
+   caderno=('url', _FGV + 'fempar-medicina-cnm001-tipo-1.pdf', 'fempar/fempar-medicina-cnm001-tipo-1.pdf'),
+   gabarito=('url', _FGV + 'fempar-publicacao-1.pdf', 'fempar/fempar-publicacao-1.pdf'))
+PROVAS['fempar-2027'] = _p.fempar(2027, 'PROVA TIPO 1', '18/10/2026')
+PROVAS['fempar-2027']['gabarito'] = _fempar27_gab
+# "READ TEXT I AND ANSWER QUESTIONS 01 TO 05": numeração própria do bloco de língua (aqui 16–25); posição fixa da instrução
+PROVAS['fempar-2027']['suporte'] = [r for r in PROVAS['fempar-2027']['suporte'] if 'Read' not in r]
+PROVAS['fempar-2027']['suporte_forcado'] = {('caderno', 5): [(305, 0, (16, 20))], ('caderno', 6): [(156, 0, (21, 22)), (56, 1, (23, 25))]}
+
+
+# ------------------------------------------------------------------------------------------- URCA PSU 2026.2/2027.1
+# Provas de 31/10 e 01/11/2026: em 11/11/2026 só o gabarito PRELIMINAR está no site da CEV-URCA.
+_UR = 'https://www.urca.br/cev/wp-content/uploads/sites/39/2026/11/'
+_m('urca-2027-1', 'https://www.urca.br/cev/',
+   **{'d1-caderno': ('url', _UR + 'PROVA-I-FIS-MAT-QUI-E-BIO.pdf', 'urca/PROVA-I-FIS-MAT-QUI-E-BIO.pdf'),
+      'd2-caderno': ('url', _UR + 'PROVA-II-HIS-GEO-PORT-RED-E-ING.pdf', 'urca/PROVA-II-HIS-GEO-PORT-RED-E-ING.pdf'),
+      'd1-preliminar': ('url', _UR + 'GABARITO-PRELIMINAR-1o-DIA.pdf', 'urca/GABARITO-PRELIMINAR-1o-DIA.pdf'),
+      'd2-preliminar': ('url', _UR + 'GABARITO-PRELIMINAR-2o-DIA.pdf', 'urca/GABARITO-PRELIMINAR-2o-DIA.pdf')})
+
+
+def _urca27_pre(pasta):
+    g = _p.urca_gab([_p.texto_pdf(pasta / f'{d}-preliminar.pdf') for d in ('d1', 'd2')])
+    assert sorted(g) == list(range(1, 121)), sorted(g)
+    return g
+
+
+PROVAS['urca-2027-1'] = sem_gabarito(
+    _p.urca(2027, 1), _urca27_pre,
+    'Universidade Regional do Cariri, Processo Seletivo Unificado 2026.2 (demais campi) / 2027.1, provas de 31/10 e '
+    '01/11/2026: Prova I (Física, Matemática, Química, Biologia; questões 1–60) e Prova II (História, Geografia, Língua '
+    'Portuguesa, Inglês; aqui 61–120), A–E. Redação fora. Só o gabarito PRELIMINAR da CEV-URCA (site oficial, 11/11/2026); '
+    'a letra dele vai em gab_preliminar.',
+    fase='PSU 2026.2/2027.1 (nov/2026)', titulo='URCA PSU 2027.1')
+# 2027.1, História: os textos I e II vêm logo abaixo do enunciado ("à luz dos textos abaixo") e são da própria questão;
+# só "Texto 1 – Questões de 46 a 49" (Português/Inglês) abre texto de apoio compartilhado
+PROVAS['urca-2027-1']['suporte'] = [r'(?i)^Texto?\s+([IVX]+|\d+)\s*[-–:.]\s*Quest'] + PROVAS['urca-2027-1']['suporte'][1:]
+
+
+# --------------------------------------------------------------------------------------------- UNIRG (Medicina)
+_UG = 'https://www.unirg.edu.br/arquivos/documentos/Vestibular/'
+
+
+class _ComoGabarito:
+    """Pasta em que 'gabarito.pdf' aponta para 'preliminar.pdf' (reaproveita o leitor de gabarito da prova-base)."""
+    def __init__(self, pasta):
+        self.pasta = pasta
+
+    def __truediv__(self, nome):
+        return self.pasta / ('preliminar.pdf' if nome == 'gabarito.pdf' else nome)
+
+
+def _pre_da_base(base_pid):
+    return lambda pasta: _p.PROVAS[base_pid]['gabarito'](_ComoGabarito(pasta))
+
+
+def _nota_unirg(ano, sem, campus, data, resto):
+    return (f'Universidade de Gurupi (TO), Processo Seletivo {ano}/{sem} do curso de Medicina, campus {campus} (prova de '
+            f'{data}), caderno tipo 1: 54 questões A–D, 6 por matéria. Língua estrangeira: inglês. Redação fora. ' + resto)
+
+
+# Paraíso 2022/1: o pacote do Brasil Escola só trazia o preliminar; o DEFINITIVO está no site da UNIRG (entra com gab)
+_m('unirg-2022-1-paraiso', 'https://www.unirg.edu.br/vestibular/paraiso',
+   caderno=('url', _UG + '2022-1P/ProvaTipo01%20-%20Internet%20(1).pdf', 'unirg/p22-caderno.pdf'),
+   gabarito=('url', _UG + '2022-1P/UNIRGPT20221%20%E2%80%93%20GabaritosDefinitivos.pdf', 'unirg/p22-def.pdf'))
+_c = dict(_p.PROVAS['unirg-2022-1'])
+_c.update({'fase': 'Medicina 2022/1 – Paraíso do Tocantins', 'titulo': 'UNIRG Medicina 2022/1 – Paraíso',
+           'nota': _nota_unirg(2022, 1, 'Paraíso do Tocantins', '14/11/2021',
+                               'Gabarito definitivo publicado pela Comissão Permanente de Processo Seletivo (08/12/2021); anulada fica fora.')})
+PROVAS['unirg-2022-1-paraiso'] = _c
+# Paraíso: texto de apoio da p. 2 em largura quase total (x≈48–422, com imagem à direita): faixas largas + duas colunas
+PROVAS['unirg-2022-1-paraiso'].update({'colunas': 'faixas', 'faixas_modo': 'largas', 'divisa': 298})
+PROVAS['unirg-2022-1-paraiso']['corte'] = PROVAS['unirg-2022-1-paraiso']['corte'] + [r'(?i)^RASCUNHO DE GABARITO']   # grade de rascunho na p. 15
+PROVAS['unirg-2022-1-paraiso']['corte_forcado'] = {('caderno', 15): [(718, 1)]}   # a grade atravessa as duas colunas
+
+# Gurupi 2023/1: o arquivo "Gabarito Definitivo" do site é o gabarito PRELIMINAR (25 e 37 já anuladas nele)
+_m('unirg-2023-1', 'https://www.unirg.edu.br/vestibular/gurupi',
+   caderno=('url', _UG + '2023-1G/CadernoProvaObjetivaReda%C3%A7%C3%A3o%20-%20Tipo%201%20(1).pdf', 'unirg/u23-caderno.pdf'),
+   preliminar=('url', _UG + '2023-1G/Gurupi%20-%20Vestibular%20-%20Gabarito%20Definitivo.pdf', 'unirg/u23-gab.pdf'))
+_c = {k: v for k, v in _p.PROVAS['unirg-2023-2'].items() if k != 'uma_coluna'}
+PROVAS['unirg-2023-1'] = sem_gabarito(
+    _c, _pre_da_base('unirg-2023-2'),
+    _nota_unirg(2023, 1, 'Gurupi', '06/11/2022', 'O arquivo publicado como "gabarito oficial" traz o gabarito PRELIMINAR '
+                '(25 e 37 anuladas nele); o definitivo não foi localizado. A letra do preliminar vai em gab_preliminar.'),
+    fase='Medicina 2023/1', titulo='UNIRG Medicina 2023/1', ano='2023')
+PROVAS['unirg-2023-1']['uma_coluna'] = (14, 15)   # mapas e questões 46–48 em largura total
+
+# Gurupi 2027/1 (prova de 01/11/2026): só o gabarito preliminar no site
+_m('unirg-2027-1', 'https://www.unirg.edu.br/vestibular/gurupi',
+   caderno=('url', _UG + '2027-1/provas/GURUPI%20-%201.pdf', 'unirg/u27-caderno.pdf'),
+   preliminar=('url', _UG + '2027-1/provas/GABARITO%20PRELIMINAR%20-%20GURUPI1.pdf', 'unirg/u27-pre.pdf'))
+PROVAS['unirg-2027-1'] = sem_gabarito(
+    _p.PROVAS['unirg-2026-2'], _pre_da_base('unirg-2026-2'),
+    _nota_unirg(2027, 1, 'Gurupi', '01/11/2026', 'Só o gabarito PRELIMINAR (site da UNIRG, 11/11/2026); a letra dele vai em '
+                'gab_preliminar.'),
+    fase='Medicina 2027/1', titulo='UNIRG Medicina 2027/1', ano='2027')
+
+
 if __name__ == '__main__':
     if sys.argv[1:2] == ['prepara']:
         for pid in (sys.argv[2:] or list(MANUAIS)):
