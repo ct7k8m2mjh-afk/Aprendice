@@ -157,6 +157,60 @@ def limpa(s):
     return s.strip()
 
 
+_PROVAS_CACHE = {}
+
+
+def transcricao_da_prova(q):
+    """Transcrição organizada guardada no prova.json (quando a do site montado não veio)."""
+    pid = q.get('prova')
+    if not pid:
+        return None
+    if pid not in _PROVAS_CACHE:
+        _PROVAS_CACHE[pid] = {x['id']: x for x in ler(os.path.join(PROVAS, pid, 'prova.json'), {}).get('questoes', [])}
+    return (_PROVAS_CACHE[pid].get(q['id']) or {}).get('transcricao')
+
+
+def separa_alternativas(texto, letras):
+    """Tenta separar enunciado e alternativas da camada de texto: marcadores '(A)', 'A)', 'a)', 'A.', 'A ⇒' em ordem."""
+    pos, ini = {}, 0
+    for L in letras:
+        r = re.compile(rf'(?:^|\n)\s*\(?(?:{L}|{L.lower()})\s*(?:\)|\.|⇒|=>|-|–)\s*', re.M)
+        m = None
+        for x in r.finditer(texto, ini):
+            m = x
+            break
+        if not m:
+            return None
+        pos[L] = (m.start(), m.end())
+        ini = m.end()
+    enun = texto[:pos[letras[0]][0]].strip()
+    alts = {}
+    for i, L in enumerate(letras):
+        fim = pos[letras[i + 1]][0] if i + 1 < len(letras) else len(texto)
+        alts[L] = ' '.join(texto[pos[L][1]:fim].split())
+    return enun, alts
+
+
+def norm_cit(x):
+    """Normaliza para comparar citação com a prova: minúsculas, junta palavra partida no fim da linha, tira aspas
+    e pontuação das pontas, espaços simples."""
+    x = str(x).lower().replace('\u00ad', '')
+    x = re.sub(r'(\w)-\s*\n\s*(\w)', r'\1\2', x)
+    x = re.sub(r'(\w)- (\w)', r'\1\2', x)
+    x = re.sub(r'[“”"«»]', '', x).replace('‘', "'").replace('’', "'")
+    x = re.sub(r'\s/\s', ' ', x)
+    return ' '.join(x.split()).strip(' .,;:!?()[]')
+
+
+def texto_ruim(t):
+    """Camada de texto vazia ou embaralhada (muitas linhas de 1–3 caracteres, comum em figura e em duas colunas)."""
+    linhas = [x.strip() for x in (t or '').split('\n') if x.strip()]
+    if len(' '.join(linhas)) < 40:
+        return True
+    curtas = sum(1 for x in linhas if len(x) <= 3)
+    return curtas / max(len(linhas), 1) > 0.3
+
+
 def entrada(m, qs):
     temas, subs = nomes_materia(m)
     txt = {}
@@ -165,24 +219,35 @@ def entrada(m, qs):
         if q['sub'] not in txt:
             txt[q['sub']] = ler(os.path.join(PUB, m, 'txt', q['sub'] + '.json'), {})
         t = txt[q['sub']].get(q['id'], {})
+        letras = sorted(q['alts'])
         e = {
             'id': q['id'],
             'prova': f"{q['escola']} {q['ano']}" + (f" {q['fase']}" if q.get('fase') else '') + f" · questão {q['n']}",
             'conteudo': f"{q['sub']} {subs.get(q['sub'], '')} (tema {q['modulo']} {temas.get(q['modulo'], '')})",
             'nivel': q.get('dif'),
             'gabarito_oficial': q['gab'],
-            'letras': sorted(q['alts']),
+            'letras': letras,
             'print': os.path.join('app', 'conteudo-fonte', q['print']),
+            'ver_no_site': f"#/m/{m}/q/{q['id']}",
             'tem_figura': bool(q.get('figura')),
         }
-        tr = t.get('transcricao')
+        tr = t.get('transcricao') or transcricao_da_prova(q)
         if isinstance(tr, dict) and tr.get('enun'):
             # transcrição organizada da prova oficial (mais limpa que a camada de texto)
             enun = tr['enun']
             e['texto_da_prova'] = limpa('\n\n'.join(b.get('t', '') for b in enun) if isinstance(enun, list) else str(enun))
             e['alternativas'] = {L: limpa(texto_todo(v)) for L, v in (tr.get('alts') or {}).items()}
         else:
-            e['texto_da_prova'] = limpa(t.get('enun', ''))
+            bruto = limpa(t.get('enun', ''))
+            sep = separa_alternativas(bruto, letras) if bruto else None
+            if sep:
+                e['texto_da_prova'], e['alternativas'] = sep
+            else:
+                e['texto_da_prova'] = bruto
+            if texto_ruim(bruto) or not sep:
+                e['ler_o_print'] = True  # texto vazio, embaralhado ou sem as alternativas: a questão vale pelo print
+        if e['tem_figura']:
+            e['ler_o_print'] = True
         out.append(e)
     return out
 
@@ -358,6 +423,28 @@ def confere(saida):
             erros.append(f'{qid}: equivocos deve ter exatamente as letras {sorted(esperadas)}')
         elif any(not re.match(r'^[A-Z]{1,2}\d{2}\.\d+:[a-z0-9-]+$', str(v)) for v in eq.values()):
             erros.append(f'{qid}: equivocos no formato <conteúdo>:<equívoco-em-minúsculas-com-hífen> (ex.: M01.1:dividiu-por-10)')
+        # avisos dos erros que a conferência mais pega (não impedem gravar; olhe antes de mandar ao conferente)
+        alts_e = e.get('alternativas') or {}
+        def toks(x):
+            return set(re.findall(r'[a-zà-ú0-9]{4,}', str(x).lower()))
+        if alts_e.get(gab):
+            ta, tr_ = toks(alts_e[gab]), toks(r['resposta'])
+            if ta and len(ta & tr_) / len(ta) < 0.2:
+                avisos.append(f'{qid}: a resposta não reproduz o texto da alternativa {gab}')
+        if alts_e.get(gab) and toks(r['pista']) and len(toks(r['pista']) & toks(alts_e[gab])) / max(len(toks(alts_e[gab])), 1) > 0.6:
+            avisos.append(f'{qid}: a pista parece entregar a alternativa {gab}')
+        fonte_txt = norm_cit(' '.join((e.get('texto_da_prova') or '', ' '.join(alts_e.values()))))
+        if fonte_txt and not e.get('ler_o_print'):
+            for cit in re.findall(r'“([^”]{15,})”', texto_todo(ps) + ' ' + texto_todo(erradas)):
+                pedacos = [norm_cit(x) for x in re.split(r'\[[^\]]{0,12}\]|\(\s*\.\.\.\s*\)|…', cit)]
+                if any(len(x) >= 15 and x not in fonte_txt for x in pedacos):
+                    avisos.append(f'{qid}: citação entre aspas não bate com o texto da prova (confira letra por letra no print): “{cit[:60]}”')
+        tc = toks(r['checagem'])
+        for i, p in enumerate(ps, 1):
+            tp = toks(str(p.get('conta', '')) + ' ' + str(p.get('porque', '')))
+            if tc and tp and len(tc & tp) / len(tc | tp) > 0.6:
+                avisos.append(f'{qid}: a checagem repete o passo {i}; confira por outro caminho')
+                break
         if PROIBIDAS.search(texto_todo(erradas)):
             erros.append(f'{qid}: erradas com palavra proibida (provavelmente/talvez/chute/distrator)')
         tudo = texto_todo(r)
