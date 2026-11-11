@@ -53,3 +53,4 @@ Tudo o que o dono envia (texto, imagem, prancha) tem uso e fica registrado com d
 - 10/11 — Matemática concluída: livro lido por inteiro (pp. 4–112), incluindo isometrias e divisão de segmento (G31, G32); 112 tópicos na revisão geral.
 
 - 10/11 22h16 — **Caixa de imagem das revisões:** em vez de só 'EM CONSTRUÇÃO', escrever **EM CONSTRUÇÃO... (o que será colocado: <descrição da imagem>)**. Substitui a regra de não mostrar a descrição. Aplicar em todas as matérias com resumos.json e geral.json.
+- 11/11/2026: QUALQUER alteração de design precisa da permissão do dono antes. O cartão Treino geral fica como está (na super revisão, autorizadas só propostas para as bordas).

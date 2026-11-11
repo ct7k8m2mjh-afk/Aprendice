@@ -528,7 +528,7 @@ Ver a seção própria abaixo (propostas A, B e C).
 - AUTORIZO: ( ) A ( ) B ( ) C ( ) não ( ) com ajuste: ____
 
 ### D09 — A etiqueta tem dois tamanhos e dois pesos
-- **Tela e seletor:** questão — `.etq.cor`, `.etq.q-sub`, `.etq.q-fonte`; demais telas — `.etq`, `.etq.ok`, `.etq.aviso` (`tipografia.css` linha 51 e regras da questão em `sistema.css`).
+- **Tela e seletor:** questão — `.etq.cor`, `.etq.q-sub`, `.etq.q-fonte`; demais telas — `.etq`, `.etq.ok`, `.etq.aviso`. No código: `tipografia.css` linha 51 pede `--fs-info` e peso 600; `sistema.css` linha 78 (`.q-meta .etq`, 13 px, peso 500) e `revisao.css` linha 82 (`.rv-cab .etq`, 13 px) passam por cima.
 - **Valor atual (medido a 1280 px):** na questão 13 px, peso 500 (39 telas); na revisão essencial a mesma `.etq.cor` tem 13 px, peso 600; nos flashcards e no resto do site 14 px, peso 600 (13,5 px a 390).
 - **Problema:** a mesma peça com duas aparências.
 - **Proposta:** todas com `var(--fs-info)` (13,5 px no celular, 14 px no computador), peso 600, como manda o guia.
@@ -539,7 +539,7 @@ Ver a seção própria abaixo (propostas A, B e C).
 - AUTORIZO: ( ) sim ( ) não ( ) com ajuste: ____
 
 ### D10 — O título do 4º bloco da correção é menor que os outros
-- **Tela e seletor:** correção — `details.cor-outras summary` (`correcao.css`).
+- **Tela e seletor:** correção — `details.cor-outras summary` (`correcao.css` linha 34).
 - **Valor atual (medido):** 15,5 px, peso 600; os títulos dos blocos 1 a 3 (`h3.cor-tit`) têm 16 px, peso 600.
 - **Proposta:** 16 px, igual aos outros três.
 - **Efeito esperado:** os quatro títulos iguais.
@@ -549,7 +549,7 @@ Ver a seção própria abaixo (propostas A, B e C).
 - AUTORIZO: ( ) sim ( ) não ( ) com ajuste: ____
 
 ### D11 — Um título de seção com 19 px no computador
-- **Tela e seletor:** Revisão, aba Questões — `div.cab-sec h2` (`app.css`).
+- **Tela e seletor:** Revisão, aba Questões — `div.cab-sec h2` (`app.css` linha 144).
 - **Valor atual (medido a 1280 px):** 19 px, peso 700; os outros títulos de seção (`h2.sec-tit`, `h2.tp-h`, `h2.ag-tit`, `.dm-mat-cab h2`) têm 21 px.
 - **Proposta:** `var(--fs-secao)` (19 px no celular, 21 px no computador).
 - **Efeito esperado:** igual aos outros títulos de seção.
