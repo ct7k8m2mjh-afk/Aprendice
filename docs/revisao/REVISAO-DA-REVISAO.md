@@ -128,6 +128,7 @@ Limites desta revisão: o livro não foi consultado (por instrução). Segunda r
 | LK35, IK02, IK06, IK16, RK05, RK20 | ressalvas editoriais retiradas do conteúdo ("o livro cita/mostra/usa...") | o aluno não tem o livro; a frase deve valer sozinha (a observação sobre o livro, quando importa, está em lacunas) | — | 2 |
 | PK27, PK37, PK39, PK42, LK24, LK27, LK31, IK10, IK23, IK24, IK26 | questão de prova trocada por exemplo ou ponto de conteúdo, sem prova e sem letra; títulos e busca[] ajustados | pedido do dono: resolver a questão ou tirar; sem o caderno da prova a letra não se confirma, mas o conteúdo ensinado vale por si | Cunha & Cintra; Bosi; Bagno, Preconceito Linguístico | 1 |
 | LK19, IK12, IK14, IK16 | questão de prova retirada do tópico | só se resolvem com o texto ou a imagem da prova, que não estão no arquivo | — | 1 |
+| campo subs | 126 de 139 tópicos ligados a subtemas: os 50 que já existem no site (P01.1–P12.5) e 10 novos propostos (P01.5, P04.5, P07.5, P07.6, P09.6, P10.6, P10.7, P11.5, P11.6, P12.6); criado por/subtemas.json | pedido do dono (12/11/2026): definir os subtemas de Português a partir dos tópicos, para o aluno se localizar entre a revisão por subtema e a da matéria inteira | app-atual/por/dados.json (nomesub) | 2 |
 
 ### Itens marcados "conferir" (estão em `lacunas` do arquivo)
 
@@ -138,7 +139,8 @@ Limites desta revisão: o livro não foi consultado (por instrução). Segunda r
 ### Pendências de decisão do dono
 
 - As descrições de imagem de alguns tópicos ainda citam 'questão resolvida' (o campo imagem foi preservado). Ao produzir essas imagens, não incluir a questão: ela saiu do tópico.
-- Português não tem lista de subtemas em docs/revisao (não existe por/resumos.json), então os 139 tópicos ficaram sem ligação com subtema (subs vazio). Quando a lista de subtemas de Português existir, a ligação é feita do mesmo jeito das outras matérias.
+- Subtemas novos de Português: para ligar os 139 tópicos, usei os 50 subtemas que já existem no site e propus 10 novos (P01.5 funções da linguagem; P04.5 intertextualidade; P07.5 artigo, numeral, preposição, conjunção e interjeição; P07.6 estrutura das palavras; P09.6 funções do 'que' e do 'se'; P10.6 ortografia, hífen, homônimos e parônimos; P10.7 acentuação gráfica; P11.5 Trovadorismo, Humanismo e Classicismo; P11.6 Quinhentismo; P12.6 Modernismo em Portugal e Fernando Pessoa). Eles ainda não existem no site: aprovar, renomear ou recusar antes de irem ao ar (lista em docs/revisao/por/subtemas.json).
+- Produção de Texto: 13 tópicos voltados à redação (RK01–RK05, RK08–RK12, RK20–RK22) ficaram sem subtema, porque Redação não é matéria do site (decisão de 03/11/2026). Decidir se aparecem só na revisão da matéria inteira ou se saem.
 
 ## Matemática
 
@@ -211,6 +213,7 @@ Limites desta revisão: o livro não foi consultado (por instrução). Segunda r
 | todos os 58 tópicos | busca[] ampliada | faltavam os nomes que o aluno digita (nomes populares de doenças, sinônimos como "sistema circulatório", siglas e mnemônicos) | — | 2 |
 | BK36 e BK38 | fórmulas em LaTeX, com fração empilhada | pedido do dono; são as duas únicas fórmulas com conta em Biologia | conferência direta | 2 |
 | campo subs | BK01 ligado a B09.1 (os demais já tinham ou não têm tema no site) (o primeiro da lista é o principal) | pedido do dono (12/11/2026): o aluno revisa por subtema ou a matéria inteira e precisa se localizar entre os dois | lista de subtemas em docs/revisao/bio/resumos.json | 2 |
+| campo subs | os 36 tópicos que faltavam foram ligados aos subtemas que já existem no site (B03, B05–B08, B10, B12); agora 58 de 58 | o catálogo do dono mostrou que só 5 temas tinham arquivo; os demais subtemas existem em app-atual/bio/dados.json | app-atual/bio/dados.json (nomesub) | 2 |
 
 ### Itens marcados "conferir" (estão em `lacunas` do arquivo)
 
@@ -220,7 +223,6 @@ Limites desta revisão: o livro não foi consultado (por instrução). Segunda r
 ### Pendências de decisão do dono
 
 - BK12: decidir se o site mostra 32 ATP (contagem atual) ou também 36/38, usados por provas antigas.
-- Subtemas: a lista do site (bio/resumos.json) só tem 5 temas (B01, B02, B04, B09, B11). Ficaram sem subtema 36 tópicos (bioenergética, taxonomia, botânica, zoologia, fisiologia, parasitologia, genética, biotecnologia), até esses temas existirem no site.
 
 ## Física
 

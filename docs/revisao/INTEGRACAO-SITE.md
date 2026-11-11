@@ -37,7 +37,7 @@ Cada tópico tem exatamente estes campos, nesta ordem:
 | `id` | texto | Identificador fixo do tópico (ver regras abaixo). |
 | `capitulo` | texto | Capítulo ou frente; serve para agrupar. |
 | `titulo` | texto | Título do tópico. |
-| `subs` | lista de textos | Ids dos subtemas do site em que o tópico se encaixa (ex.: `F02.1`, `M05.2`, `I03.2`); o primeiro é o principal. É a ponte entre "revisar por subtema" e "revisar a matéria inteira": na tela do subtema, mostrar os tópicos da revisão geral que o citam em `subs`; no tópico da revisão geral, mostrar o nome dos subtemas com link. Preenchido em Matemática, Física, Química e Inglês (todos), na maior parte de Geografia, História, Filosofia e Sociologia e em parte de Biologia; vazio em Português (ver seção 6). |
+| `subs` | lista de textos | Ids dos subtemas do site em que o tópico se encaixa (ex.: `F02.1`, `M05.2`, `I03.2`); o primeiro é o principal. É a ponte entre "revisar por subtema" e "revisar a matéria inteira": na tela do subtema, mostrar os tópicos da revisão geral que o citam em `subs`; no tópico da revisão geral, mostrar o nome dos subtemas com link. Preenchido em todas as matérias; fica vazio só onde não há subtema correspondente no site (13 tópicos de redação em Português, 9 em Geografia, 6 em História e 6 em Filosofia e Sociologia; ver seção 6). Em Português, 10 subtemas citados são novos, propostos pelo revisor (`por/subtemas.json`), e ainda não existem no site. |
 | `busca` | lista de textos | Termos que levam ao tópico na busca: nomes técnicos, sinônimos, nomes populares, siglas, perguntas ("quando usar crase") e grafias erradas comuns ("báskara", "in media res"). Comparar sem diferenciar maiúsculas e acentos. Uma grafia errada pode estar aqui de propósito e não deve ser mostrada ao aluno como texto. |
 | `pontos` | lista de textos | O conteúdo: um ponto por item, do simples ao complexo. |
 | `pegadinha` | texto | O que a banca costuma fazer e como evitar. |
@@ -62,7 +62,7 @@ Diferenças entre matérias que o site precisa tratar:
 2. Nenhum tópico foi apagado nem renumerado; a ordem da lista é a ordem de exibição.
 3. Os únicos tópicos criados nesta revisão são 18 de Inglês. Por decisão do dono, cada um leva o id do subtema em que se encaixa, com uma letra no fim (`I02.2b`, `I02.2c`), e fica logo depois do tópico desse subtema. Tópico novo, em qualquer matéria, segue essa regra: id do subtema + próxima letra livre, sem reaproveitar id.
 4. Os ids não são únicos entre arquivos. Use a matéria junto.
-5. `subs` aponta para ids de subtemas do site (os de `<matéria>/resumos.json`); os que já estavam preenchidos não foram alterados. Em `fs`, um tópico de Filosofia pode apontar para subtema de Sociologia e vice-versa (ex.: Escola de Frankfurt).
+5. `subs` aponta para ids de subtemas do site (os de `<matéria>/resumos.json` e, em Português e Biologia, os de `app-atual/<matéria>/dados.json`); o catálogo completo está em `SUBTEMAS.md` e `SUBTEMAS.json`; os que já estavam preenchidos não foram alterados. Em `fs`, um tópico de Filosofia pode apontar para subtema de Sociologia e vice-versa (ex.: Escola de Frankfurt).
 
 ## 4. Como conferir
 
@@ -83,11 +83,11 @@ O script confere JSON válido, ids únicos, campos na ordem do esquema, nenhum c
 ## 6. Decisões pendentes do dono
 
 - **Português** — As descrições de imagem de alguns tópicos ainda citam 'questão resolvida' (o campo imagem foi preservado). Ao produzir essas imagens, não incluir a questão: ela saiu do tópico.
-- **Português** — Português não tem lista de subtemas em docs/revisao (não existe por/resumos.json), então os 139 tópicos ficaram sem ligação com subtema (subs vazio). Quando a lista de subtemas de Português existir, a ligação é feita do mesmo jeito das outras matérias.
+- **Português** — Subtemas novos de Português: para ligar os 139 tópicos, usei os 50 subtemas que já existem no site e propus 10 novos (P01.5 funções da linguagem; P04.5 intertextualidade; P07.5 artigo, numeral, preposição, conjunção e interjeição; P07.6 estrutura das palavras; P09.6 funções do 'que' e do 'se'; P10.6 ortografia, hífen, homônimos e parônimos; P10.7 acentuação gráfica; P11.5 Trovadorismo, Humanismo e Classicismo; P11.6 Quinhentismo; P12.6 Modernismo em Portugal e Fernando Pessoa). Eles ainda não existem no site: aprovar, renomear ou recusar antes de irem ao ar (lista em docs/revisao/por/subtemas.json).
+- **Português** — Produção de Texto: 13 tópicos voltados à redação (RK01–RK05, RK08–RK12, RK20–RK22) ficaram sem subtema, porque Redação não é matéria do site (decisão de 03/11/2026). Decidir se aparecem só na revisão da matéria inteira ou se saem.
 - **Matemática** — Matemática: o campo `imagem` não tem `falta_imagem` nem `aviso`, ao contrário das outras matérias. Não foi alterado (a regra é preservar o campo). Decidir se o site trata a ausência como "imagem ainda não feita" ou se o campo deve ser igualado.
 - **Matemática** — Matemática: o campo `lacunas` foi criado (não existia) para registrar a revisão, como nas outras matérias.
 - **Biologia** — BK12: decidir se o site mostra 32 ATP (contagem atual) ou também 36/38, usados por provas antigas.
-- **Biologia** — Subtemas: a lista do site (bio/resumos.json) só tem 5 temas (B01, B02, B04, B09, B11). Ficaram sem subtema 36 tópicos (bioenergética, taxonomia, botânica, zoologia, fisiologia, parasitologia, genética, biotecnologia), até esses temas existirem no site.
 - **Química** — QK18: se a imagem do livro mostrar a curva do NaOH como decrescente, não reproduzir; decidir qual gráfico entra.
 - **Geografia** — GK43: manter o corte do livro para cidade média (100 mil a 1 milhão) ou adotar o do IBGE/Ipea (100 mil a 500 mil)?
 - **Geografia** — Subtemas: não há na lista do site os temas de pensamento geográfico, cartografia e geologia/relevo; ficaram sem subtema GK01 a GK08 e GK22.
