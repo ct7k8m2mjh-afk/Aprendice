@@ -97,3 +97,4 @@
 | 2026-11-11 | acafe-2024-verao | 7 | P3c834c10 | 1000x243 | 1000x688 | 10: 26,40,555,404 |
 | 2026-11-11 | acafe-2026-inverno | 9 | Pd233a30a | 1000x295 | 1000x736 | 16: 40,178,570,568 |
 | 2026-11-11 | acafe-2026-inverno | 10 | Pc886c37f | 1000x338 | 1000x836 | 16: 40,178,570,416; 17: 40,648,570,738; 18: 40,16,570,130 |
+| 2026-11-11 | acafe-2024-verao | 7 | P3c834c10 | transcrição retirada | — | o print agora traz o infográfico (Texto 3); questão com imagem aparece como print (princípio 1). Obs.: o comando da prova diz "texto 4", mas as alternativas tratam do infográfico do Texto 3 (o Texto 4, p. 12, é outro) |
