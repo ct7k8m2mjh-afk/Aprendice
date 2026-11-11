@@ -583,7 +583,9 @@ Nenhuma prova oficial publicada.
 | 2025 | 1º semestre 2025 | — | não |  | — | — |
 | 2024 | 2º semestre 2024 | — | não | saocamilo-2024-2 | — | — |
 | 2024 | 1º semestre 2024 | — | não |  | — | — |
-| 2023 | 2º semestre 2023 | — | não |  | — | — |
+| 2023 | 2º semestre 2023 | — | não | saocamilo-2023-2 | Drive do dono | Drive do dono |
+| 2023 | 1º semestre 2023 | — | não | saocamilo-2023-1 | Drive do dono | Drive do dono |
+| 2020 | 1º semestre 2020 | — | não | saocamilo-2020-1 | Drive do dono | Drive do dono |
 
 - 2027, 1º semestre 2027: Página Vunesp: https://www.vunesp.com.br/CUSC2602 (prova ainda por vir ou recente). Baixar à mão.
 - 2026, 2º semestre 2026: Página Vunesp: https://www.vunesp.com.br/CUSC2601 Baixar à mão.
@@ -591,8 +593,10 @@ Nenhuma prova oficial publicada.
 - 2025, 2º semestre 2025: Página Vunesp: https://www.vunesp.com.br/CUSC2402 Baixar à mão.
 - 2025, 1º semestre 2025: Página Vunesp: https://www.vunesp.com.br/CUSC2401 Baixar à mão.
 - 2024, 2º semestre 2024: Já no site (saocamilo-2024-2), a partir de cópia em cursinho. Página Vunesp: https://www.vunesp.com.br/CUSC2302 Baixar à mão.
-- 2024, 1º semestre 2024: Página Vunesp: https://www.vunesp.com.br/CUSC2301 Baixar à mão.
-- 2023, 2º semestre 2023: Página Vunesp: https://www.vunesp.com.br/CUSC2201 Baixar à mão.
+- 2024, 1º semestre 2024: Página Vunesp: https://www.vunesp.com.br/CUSC2301 Baixar à mão. No Drive do dono (11/11/2026) só o gabarito da versão 3, sem o caderno: não entra.
+- 2023, 2º semestre 2023: Já no site (saocamilo-2023-2), caderno e gabarito oficiais (versão 1) do Drive do dono. Página Vunesp: https://www.vunesp.com.br/CUSC2201
+- 2023, 1º semestre 2023: Já no site (saocamilo-2023-1), caderno e gabarito oficiais (versão 1, CUSC2104) do Drive do dono.
+- 2020, 1º semestre 2020: Já no site (saocamilo-2020-1), Prova II (50 questões) e gabarito oficiais (versão 1, CUSC1804) do Drive do dono.
 
 ### Sírio-Libanês (SP)
 

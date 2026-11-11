@@ -383,3 +383,8 @@ for _k in ('santacasa-2021', 'santacasa-2022', 'santacasa-2022-demais', 'einstei
 for _k in ('einstein-2021', 'einstein-2021-2-enf', 'einstein-2022-2-enf', 'einstein-2023'):
     PROVAS[_k]['selo_linha_grossa'] = True   # faixa de "QUESTÃO NN" é um traço de 14 pt que sobe 2 pt acima do texto
 PROVAS['anhembi-2022']['selo_dx'] = 12        # círculo azul a ~10 pt à esquerda de "QUESTÃO"
+
+
+# ------------------------------------------- São Camilo do Drive do dono (2020/1, 2023/1, 2023/2), 11/11/2026
+from provas_saocamilo import PROVAS as _saocamilo  # noqa: E402
+PROVAS.update(_saocamilo)
