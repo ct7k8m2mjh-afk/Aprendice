@@ -674,3 +674,139 @@ Cada linha diz o que ilustrar. Nome do arquivo: `<id do subtema>.png` (ex.: B01.
 - **I04.4** Past perfect e sequência de tempos: Uma linha do tempo com duas ações no passado, a primeira em past perfect e a segunda em simple past.
 - **I04.5** Futuro: will, going to e presente: Três cenas de futuro, uma decisão na hora (will), um plano já feito (going to) e um horário marcado (presente), com as formas.
 - **I04.6** Irregulares, gerúndio e infinitivo: Uma lista de verbos irregulares com as três formas e uma caixa de quando usar gerúndio ou infinitivo.
+
+## Matemática
+
+_Base: livro Revisaí – Matemática (pp. 4–76 lidas; M10.2–M12.5 e M17 seguem o conteúdo padrão do sumário do livro, sem leitura integral das pp. 88–112)._
+
+
+### M01 Fundamentos
+
+- **M01.1** Frações e decimais: Barra de 1 inteiro dividida em 12 partes: 1/2, 1/3 e 1/4 pintadas em cores, com o resultado 1/2+1/3 = 5/6 mostrado pela soma das partes.
+- **M01.2** Potências e radicais: Quadro com três cartões de propriedades de potência (produto, quociente, potência de potência) e uma flecha ligando $a^{1/2}$ a $\sqrt{a}$.
+- **M01.3** Notação científica e ordem de grandeza: Reta numérica em escala de potências de 10 (de $10^{-9}$ a $10^{9}$) com exemplos: vírus, célula, formiga, pessoa, Terra.
+- **M01.4** Divisibilidade, MMC e MDC: Duas árvores de fatoração (18 e 24) lado a lado, com os primos em cores e um quadro destacando maiores expoentes (MMC) e menores (MDC).
+- **M01.5** Conjuntos numéricos: Diagrama de círculos concêntricos ($\mathbb{N}$ dentro de $\mathbb{Z}$, $\mathbb{Q}$, $\mathbb{R}$) com $\mathbb{I}$ ao lado, e exemplos em cada região.
+
+### M02 Razão e proporção
+
+- **M02.1** Razão e proporção: Balança em equilíbrio com razões iguais nos dois pratos e as setas da multiplicação cruzada.
+- **M02.2** Regra de três simples e composta: Dois quadros: pedreiros × dias (setas opostas = inversa) e litros × preço (setas iguais = direta), com a conta montada ao lado.
+- **M02.3** Escalas e densidade: Mapa com régua: 3 cm no papel = 150 km, e um quadrado de 1 cm² no mapa representando um quadrado grande no terreno.
+- **M02.4** Grandezas direta e inversamente proporcionais: Dois gráficos lado a lado: reta pela origem (direta) e hipérbole (inversa), com pontos marcados e a constante k.
+- **M02.5** Divisão proporcional: Barra de R$ 1.200 cortada em 3 pedaços proporcionais a 2, 3 e 5, com cada pedaço em cor e o valor.
+
+### M03 Porcentagem e finanças
+
+- **M03.1** Porcentagem simples: Barra de 100 quadradinhos com 35 pintados (35%), e ao lado parte/todo para achar a taxa.
+- **M03.2** Aumentos e descontos sucessivos: Três degraus com R$ 100 → 110 → 121 (dois aumentos de 10%) e uma seta mostrando que +10% e −10% termina em 99.
+- **M03.3** Juros simples: Gráfico montante × tempo com uma reta que sobe degrau fixo a cada mês.
+- **M03.4** Juros compostos: Dois gráficos sobrepostos: reta (simples) e curva (composta) saindo do mesmo capital, abrindo vantagem para a curva com o tempo.
+- **M03.5** Dose, concentração e proporção aplicada à saúde: Frasco de soro com rótulo 5 mg/mL e uma seringa de 2 mL, com a conta da dose ao lado.
+
+### M04 Equações e sistemas
+
+- **M04.1** Equação do 1.º grau: Balança de dois pratos: x e pesos de 3 e 5 em cada lado, com a retirada de pesos iguais dos dois lados.
+- **M04.2** Equação do 2.º grau: Três parábolas lado a lado (Δ>0, Δ=0, Δ<0) com as raízes marcadas no eixo x.
+- **M04.3** Sistemas lineares: Plano com três pares de retas: cruzando (SPD), coincidindo (SPI) e paralelas (SI), com o rótulo de cada caso.
+- **M04.4** Inequações: Reta real com intervalos sombreados (bolinha aberta e fechada) e um quadro de sinais com três linhas.
+- **M04.5** Problemas de modelagem algébrica: Frase de enunciado ao lado da equação correspondente, com as palavras-chave ligadas por linhas aos símbolos.
+
+### M05 Funções afim e quadrática
+
+- **M05.1** Função afim: Duas retas (a>0 e a<0) com b e a raiz destacados e o triângulo do coeficiente angular.
+- **M05.2** Função quadrática e vértice: Parábola com eixo de simetria tracejado, vértice marcado com coordenadas, e a seta mostrando máximo ou mínimo.
+- **M05.3** Leitura de gráficos de funções: Gráfico de uma função qualquer com trechos marcados (cresce, decresce, constante) e as quatro translações em mini-gráficos.
+- **M05.4** Função definida por partes e modular: Gráfico de uma parábola e, ao lado, o gráfico de seu módulo com a parte negativa dobrada para cima.
+- **M05.5** Composição e inversa: Diagrama com três conjuntos (A, B, C) e setas f e g compondo, e ao lado gráfico de f e f⁻¹ espelhados na reta y = x.
+
+### M06 Exponencial e logaritmo
+
+- **M06.1** Função exponencial: Duas curvas no mesmo plano (a=2 sobe e a=1/2 desce), as duas passando por (0,1) e se aproximando do eixo x.
+- **M06.2** Equação exponencial: Quadro de três passos: igualar bases, igualar expoentes, resolver; e um exemplo com a troca 2^x = y.
+- **M06.3** Definição e propriedades do logaritmo: Ponte entre 'potência' e 'logaritmo': $2^3=8$ ligado a $\log_2 8=3$, com as propriedades em cartões.
+- **M06.4** Equação logarítmica: Reta real com a condição x > 0 sombreada e um 'filtro' que descarta uma solução fora do domínio.
+- **M06.5** Meia-vida, decaimento e crescimento: Curva de decaimento com a quantidade caindo pela metade em cada intervalo T marcado no eixo do tempo.
+
+### M07 Sequências
+
+- **M07.1** Progressão aritmética: Degraus de uma escada: cada degrau acrescenta r à altura, com a_1, a_2, a_3 marcados.
+- **M07.2** Progressão geométrica: Quadrados que dobram de largura (1, 2, 4, 8) em sequência, com a razão q = 2 em cada seta.
+- **M07.3** Soma de termos: Gauss: fileira de números 1 a 10 com pares ligados por arcos (1+10, 2+9, ...), cada um somando 11.
+- **M07.4** Padrões e recorrências: Espiral de quadrados de Fibonacci e, abaixo, uma tabela com os 8 primeiros termos.
+
+### M08 Geometria plana — áreas
+
+- **M08.1** Triângulos: Triângulo com base, altura tracejada e ângulo entre dois lados marcado, com as três fórmulas de área ao lado.
+- **M08.2** Quadriláteros: Cinco quadriláteros (retângulo, quadrado, paralelogramo, losango, trapézio) com base, altura e diagonais tracejadas.
+- **M08.3** Circunferência e círculo: Círculo com setor de 60° pintado e, ao lado, círculo com um segmento circular e o triângulo do setor tracejado.
+- **M08.4** Polígonos regulares: Triângulo, quadrado e hexágono regulares inscritos, cada um com apótema (verde) e raio (vermelho) marcados.
+- **M08.5** Áreas compostas e hachuradas: Figura com quadrado e quarto de círculo hachurado, com a divisão em partes e a conta 'quadrado − quarto de círculo'.
+- **M08.6** Áreas básicas: Malha quadriculada com um retângulo, um quadrado e um triângulo, cada um com a conta embaixo.
+
+### M09 Geometria plana — relações
+
+- **M09.1** Teorema de Pitágoras: Triângulo 3-4-5 com um quadrado sobre cada lado e as áreas 9 + 16 = 25 escritas dentro.
+- **M09.2** Teorema de Tales: Três retas paralelas cortadas por duas transversais, com os segmentos nomeados e a proporção escrita.
+- **M09.3** Semelhança de triângulos: Dois triângulos semelhantes (um maior) com ângulos iguais marcados em cores e lados correspondentes ligados.
+- **M09.4** Relações métricas no triângulo retângulo: Triângulo retângulo com altura h sobre a hipotenusa, projeções m e n coloridas e as quatro relações em cartões.
+- **M09.5** Ângulos e propriedades: Circunferência com ângulo central e inscrito no mesmo arco, e a figura de potência de ponto com duas secantes.
+
+### M10 Trigonometria
+
+- **M10.1** Razões trigonométricas no triângulo retângulo: Triângulo retângulo com o ângulo α marcado, cateto oposto, adjacente e hipotenusa em cores e as três razões escritas.
+- **M10.2** Lei dos senos: Triângulo qualquer inscrito numa circunferência, com lados e ângulos opostos de mesma cor e o raio R indicado.
+- **M10.3** Lei dos cossenos: Triângulo ABC com os lados b e c e o ângulo A entre eles, e a seta apontando para o lado oposto a.
+- **M10.4** Ciclo trigonométrico e arcos: Circunferência trigonométrica com os ângulos notáveis do primeiro quadrante e as coordenadas (cos, sen) de cada ponto.
+- **M10.5** Funções trigonométricas e gráficos: Dois gráficos (seno e cosseno) em um período, com amplitude, período e a imagem marcados.
+
+### M11 Geometria espacial
+
+- **M11.1** Prismas e cubos: Cubo e paralelepípedo com a diagonal da face e a diagonal do sólido tracejadas, e as fórmulas ao lado.
+- **M11.2** Cilindros: Cilindro planificado: dois círculos e um retângulo de comprimento 2πr, com r e h marcados.
+- **M11.3** Pirâmides e cones: Cone com r, h e geratriz g, e uma pirâmide ao lado com a altura e o apótema, cada uma dentro do prisma correspondente em linha tracejada.
+- **M11.4** Esfera: Esfera com um plano cortando e o triângulo retângulo R, d e r formado na secção.
+- **M11.5** Troncos, sólidos compostos e densidade/volume: Cone cortado por um plano paralelo à base, com o cone pequeno retirado tracejado e o tronco colorido.
+- **M11.6** Volumes básicos: Painel com os seis sólidos básicos e a fórmula do volume sob cada um.
+
+### M12 Geometria analítica
+
+- **M12.1** Distância entre pontos e ponto médio: Plano cartesiano com dois pontos, o triângulo retângulo formado pelos catetos Δx e Δy e o ponto médio marcado.
+- **M12.2** Equação da reta: Reta no plano com dois pontos, o triângulo do coeficiente angular e o ângulo α com o eixo x.
+- **M12.3** Posição relativa e paralelismo: Três pares de retas: paralelas, concorrentes e perpendiculares, com os coeficientes angulares escritos.
+- **M12.4** Circunferência no plano cartesiano: Circunferência no plano com centro (a,b), raio r e a equação escrita sobre o gráfico.
+- **M12.5** Áreas por coordenadas: Triângulo de vértices (0,0), (4,0), (0,3) com a malha do plano e o determinante ao lado dando a área 6.
+
+### M13 Combinatória e probabilidade
+
+- **M13.1** Princípio multiplicativo: Árvore de possibilidades: 3 camisas × 2 calças × 2 sapatos, com os ramos e o total 12 no final.
+- **M13.2** Arranjos e permutações: Mesa redonda com 4 pessoas: duas rotações iguais marcadas como 'mesma disposição', ao lado de uma fila com ordem importando.
+- **M13.3** Combinações: Seis bolinhas numeradas com três escolhidas e as 6 ordens possíveis do mesmo trio riscadas (conta como 1 combinação).
+- **M13.4** Probabilidade simples: Tabela 6×6 das somas de dois dados, com as células da soma 7 destacadas.
+- **M13.5** Probabilidade condicional e teste diagnóstico: Tabela 2×2 (exposto/não exposto × doente/sem doença) com a linha 'dado que' destacada em cor e a fração montada ao lado.
+- **M13.6** União, intersecção e evento complementar: Diagrama de Venn de A e B com a interseção em cor diferente e a fórmula da união ao lado.
+- **M13.9** Combinatória e probabilidade — outros casos: Triângulo de Pascal até a linha 5, com a relação de Stifel destacada em dois números somando-se ao de baixo.
+
+### M14 Estatística
+
+- **M14.1** Média, mediana e moda: Cinco barras de alturas diferentes ordenadas, com a do meio marcada (mediana) e uma linha horizontal na altura da média.
+- **M14.2** Leitura de tabelas e gráficos: Mesmo conjunto de dados em quatro gráficos pequenos (barras, histograma, setores, linhas), cada um com seu uso escrito embaixo.
+- **M14.3** Dispersão e desvio padrão: Dois conjuntos na reta com a mesma média: um agrupado e outro espalhado, com setas dos desvios até a média e o desvio padrão ao lado.
+- **M14.4** Média ponderada: Balança com blocos de pesos diferentes sobre as notas 6, 8 e 10 e o ponto de equilíbrio (média) marcado.
+- **M14.5** Interpretação de dados em saúde: Tabela 2×2 de exposição e doença com as duas probabilidades condicionais calculadas e a razão final.
+
+### M15 Matrizes e determinantes
+
+- **M15.1** Operações com matrizes: Duas matrizes pequenas com a linha 2 de A e a coluna 1 de B destacadas e a conta dando um elemento de C.
+- **M15.2** Determinantes: Matriz 3×3 com as duas colunas repetidas à direita e as seis diagonais do Sarrus em cores (três positivas, três negativas).
+- **M15.3** Aplicação em sistemas: Sistema 2×2 escrito ao lado da forma matricial, com a inversa aplicada dos dois lados.
+
+### M16 Polinômios e complexos
+
+- **M16.1** Polinômios e relações de Girard: Quadro de divisão pela chave (P(x) por x−2) ao lado do dispositivo de Briot-Ruffini com os coeficientes alinhados.
+- **M16.2** Números complexos: Plano de Argand-Gauss: eixo real e eixo imaginário, o ponto a+bi, o módulo r como seta e o ângulo θ.
+
+### M17 Lógica e algoritmos
+
+- **M17.1** Raciocínio lógico e dedução: Diagramas de Venn para 'todo A é B', 'algum A é B' e 'nenhum A é B', com a negação de cada um escrita embaixo.
+- **M17.2** Algoritmos e sistemas de numeração: Divisão sucessiva por 2 do número 13, com os restos 1, 0, 1, 1 e a leitura de baixo para cima formando 1101.
