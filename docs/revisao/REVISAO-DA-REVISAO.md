@@ -9,7 +9,7 @@ Revisão em 3 lentes sucessivas (fatos → compreensão do aluno → fatos de no
 | Português | `docs/revisao/por/geral.json` | 139 de 139 | 139 | 7 | revisada completa, com "conferir" |
 | Matemática | `docs/revisao/mat/geral.json` | 112 de 112 | 112 | 0 | revisada completa |
 | Biologia | `docs/revisao/bio/geral.json` | 58 de 58 | 58 | 2 | revisada completa, com "conferir" |
-| Física | `docs/revisao/fis/geral.json` | 0 de 50 | — | — | **não revisada** (retomar aqui) |
+| Física | `docs/revisao/fis/geral.json` | 50 de 50 | 50 | 1 | revisada completa, com "conferir" |
 | Química | `docs/revisao/qui/geral.json` | 0 de 58 | — | — | **não revisada** (retomar aqui) |
 | Geografia | `docs/revisao/geo/geral.json` | 0 de 45 | — | — | **não revisada** (retomar aqui) |
 | História | `docs/revisao/his/geral.json` | 0 de 57 | — | — | **não revisada** (retomar aqui) |
@@ -211,4 +211,41 @@ Revisão em 3 lentes sucessivas (fatos → compreensão do aluno → fatos de no
 ### Pendências de decisão do dono
 
 - BK12: decidir se o site mostra 32 ATP (contagem atual) ou também 36/38, usados por provas antigas.
+
+## Física
+
+### Erros de fato encontrados no trabalho anterior (7)
+
+1. FK28 — pulso em cordas de densidades diferentes: dizia que o pulso refratado inverte quando μ1 > μ2. O refratado nunca inverte; o refletido inverte quando a segunda corda é mais densa.
+2. FK25 — vergência da lente do hipermétrope com sinal trocado ("V = 1/dH − 4"; certo: V = 4 − 1/dH).
+3. FK19 — "a óptica geométrica usa o modelo ondulatório" (usa raios de luz).
+4. FK09b — equação da colisão escrita errada (0,2·3 = (0,2 + m)·2 dá 0,1 kg, não os 0,4 kg da resposta).
+5. FK15c — garrafa térmica: redução da condução atribuída ao espelhamento (é do vácuo).
+6. FK29 — fórmula do efeito Doppler sem convenção de sinais (± em cima e embaixo) e "som é mais rápido em meios mais densos".
+7. FK15b — ponto crítico sem a condição "acima da temperatura crítica"; FK36 — temperatura de Curie descrita como "o magnetismo enfraquece".
+
+### Todas as alterações
+
+| id | o que mudou | por quê | fonte | lente |
+|---|---|---|---|---|
+| FK09b | equação da colisão corrigida: m·3 = (m + 0,2)·2 | erro: a conta escrita (0,2·3 = (0,2 + m)·2) dá m = 0,1 kg e contradiz a resposta; quem cai a 3 m/s é o pacote de massa m, e o prato de 0,2 kg está parado | Halliday, Resnick & Walker, Fundamentos de Física; Ramalho, Nicolau & Toledo, Os Fundamentos da Física (conservação da quantidade de movimento) | 1 |
+| FK15b | ponto crítico: "acima da temperatura crítica" | a frase não dizia em que condição o gás deixa de se liquefazer | Halliday, Resnick & Walker, Fundamentos de Física; Ramalho, Nicolau & Toledo, Os Fundamentos da Física | 1 |
+| FK15c | garrafa térmica: papel de cada parte | erro: atribuía ao espelhamento a redução da condução; o espelho reflete radiação e o vácuo é que barra condução e convecção | Halliday, Resnick & Walker, Fundamentos de Física; Ramalho, Nicolau & Toledo, Os Fundamentos da Física | 1 |
+| FK19 | modelo da óptica geométrica: raios de luz, não o ondulatório | erro conceitual: a óptica geométrica usa o modelo de raios; o ondulatório é o da óptica física (interferência, difração) | Halliday, Resnick & Walker, Fundamentos de Física; Ramalho, Nicolau & Toledo, Os Fundamentos da Física | 1 |
+| FK21b | raio notável pelo centro de curvatura | faltava um dos quatro raios notáveis | Halliday, Resnick & Walker, Fundamentos de Física; Ramalho, Nicolau & Toledo, Os Fundamentos da Física | 2 |
+| FK25 | vergência da lente do hipermétrope: V = 4 − 1/dH | erro de sinal: "V = 1/dH − 4" dá vergência negativa (lente divergente) para quem precisa de lente convergente | Halliday, Resnick & Walker, Fundamentos de Física; Ramalho, Nicolau & Toledo, Os Fundamentos da Física (equação de Gauss: 1/f = 1/0,25 − 1/dH) | 1 |
+| FK28 | pulso em cordas de densidades diferentes | erro: dizia que o pulso refratado inverte quando μ1 > μ2; quem pode inverter é o refletido, e isso ocorre quando a segunda corda é mais densa | Halliday, Resnick & Walker, Fundamentos de Física; Ramalho, Nicolau & Toledo, Os Fundamentos da Física | 1 |
+| FK29 | Doppler com a convenção de sinais; velocidade do som por estado físico | a fórmula com "±" em cima e embaixo não dizia que sinal usar; "meios mais densos" induz a erro (o que pesa é a rigidez do meio) | Halliday, Resnick & Walker, Fundamentos de Física; Ramalho, Nicolau & Toledo, Os Fundamentos da Física | 1 |
+| FK36 | temperatura de Curie | "o magnetismo enfraquece" era impreciso | Halliday, Resnick & Walker, Fundamentos de Física; Ramalho, Nicolau & Toledo, Os Fundamentos da Física | 1 |
+| FK17 | pegadinha: sinais da 1ª lei e isotérmica × adiabática | a pegadinha anterior só repetia os valores de R; faltava a confusão clássica | Halliday, Resnick & Walker, Fundamentos de Física; Ramalho, Nicolau & Toledo, Os Fundamentos da Física | 2 |
+| FK05b | pegadinha: peso × normal e massa × peso | confusões clássicas ausentes | Halliday, Resnick & Walker, Fundamentos de Física; Ramalho, Nicolau & Toledo, Os Fundamentos da Física | 2 |
+| todos os 50 tópicos | busca[] ampliada | faltavam os nomes que o aluno digita (fórmulas como "U = R i", macetes como "sorvete" e "que macete", sinônimos como ddp/tensão) | — | 2 |
+
+### Itens marcados "conferir" (estão em `lacunas` do arquivo)
+
+- conferir: FK09b (Unesp 2023), FK10 (FCMSCSP 2022) e FK21/FK22 (FCMSCSP 2024) — os cálculos foram refeitos e fecham com os valores citados, mas as letras de gabarito e os enunciados vêm só do livro. FK21 cita 'resultado 5 no livro' para a razão imagem/objeto sem os dados do enunciado: conferir no caderno da prova.
+
+### Pendências de decisão do dono
+
+- FK21 (Santa Casa 2024): o exemplo cita "resultado 5 no livro" sem os dados do enunciado. Decidir se fica assim, se sai do tópico ou se entra a questão completa (com print fiel).
 
