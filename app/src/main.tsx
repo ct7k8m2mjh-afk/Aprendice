@@ -11,7 +11,6 @@ import './estilo/dominio.css'; // agenda pela data da prova e painel de domínio
 import './estilo/hoje.css'; // tela Hoje e Escudo TRI (comando 24, fase 3)
 import './estilo/tipografia.css'; // guia tipográfico: carregado por último
 import './estilo/correcao.css'; // correção em 4 blocos + resolução animada (comando 20)
-import './estilo/toque.css'; // área de toque de 44 px só em aparelho de toque (auditoria de design, D01)
 import { App } from './App';
 import { preparaConteudo } from './dados/conteudo';
 

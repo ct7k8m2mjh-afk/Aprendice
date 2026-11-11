@@ -79,7 +79,6 @@ export function RevisaoEssencial() {
 
   return (
     <div className={`questao-tela rv-tela es-tela m-${m}` + (MATERIAS_ANIMADAS.has(m) ? '' : ' sem-anima')}>
-      <h1 className="sr">Revisão essencial — {mod.nome}</h1>
       <div className="q-barra">
         <button className="q-volta" onClick={() => nav(voltar)} aria-label="Voltar" title="Voltar (Esc)"><Icone nome="esquerda" /><span>Voltar</span></button>
         <div className="q-barq">

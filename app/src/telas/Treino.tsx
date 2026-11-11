@@ -154,7 +154,6 @@ export function Treino() {
   const todos = [...mc.conteudo.flash, ...mc.conteudo.flashImg];
   return (
     <div className={`questao-tela m-${m}`}>
-      <h1 className="sr">Treino geral — item {ses.i + 1} de {ses.it.length}</h1>
       <div className="q-barra">
         <button className="q-volta" onClick={() => nav(`/m/${m}`)} aria-label="Voltar (o treino fica salvo)" title="Voltar (o treino fica salvo)"><Icone nome="esquerda" /><span>Voltar</span></button>
         <div className="q-barq">

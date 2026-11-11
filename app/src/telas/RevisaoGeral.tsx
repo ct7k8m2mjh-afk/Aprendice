@@ -12,7 +12,6 @@ import {
 } from '../logica/revisaoGeral';
 import { Carregando, cap, plural, useTitulo } from '../ui/comum';
 import { TextoMat } from '../ui/Formula';
-import { comFracoes } from '../ui/Fracao';
 import { Icone, type NomeIcone } from '../ui/Icone';
 import { CabMateria, subMateria } from './Materia';
 import '../estilo/geral.css';
@@ -256,7 +255,7 @@ function CaixaImagem({ m, im }: { m: MateriaId; im: ImagemTopico }) {
         : (
           <div className="rs-caixa rg-caixa" role="img" aria-label={avisoImagem(im)}>
             <Icone nome="olho" tam={18} />
-            <span><b>EM CONSTRUÇÃO</b>{' — '}{comFracoes(im.descricao || 'imagem em preparação')}</span>
+            <span><b>EM CONSTRUÇÃO</b>{' — ' + (im.descricao || 'imagem em preparação')}</span>
           </div>
         )}
     </figure>

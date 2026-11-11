@@ -33,7 +33,7 @@ export function CartaoTeoriaView({ c, figs }: { c: CartaoTeoria; figs?: Figura[]
           ? <li key={i} className="texto com-fm"><TextoMat t={x} prosa={contaEhTexto('1 + 1', materiaDoCodigo(c.sub))} /></li>
           : <li key={i} className={contaEhTexto(x, materiaDoCodigo(c.sub)) ? 'texto' : undefined}>{comFracoes(x)}</li>)}</ul>
       )}
-      {c.cuidado && <p className="cuidado"><Icone nome="info" tam={16} /> <span><b>Cuidado: </b>{comFracoes(c.cuidado)}</span></p>}
+      {c.cuidado && <p className="cuidado"><Icone nome="info" tam={16} /> <span><b>Cuidado: </b>{c.cuidado}</span></p>}
       {figs && figs.map((f, i) => (
         <figure key={i} className="fig-teoria">
           <img src={f.u} alt={f.t} loading="lazy" />
@@ -54,7 +54,7 @@ export function TeoriaModulo({ m, mod }: { m: MateriaId; mod: Modulo }) {
         {mod.formulas.length > 0 && (<><h3>No caderno</h3><ul className="caderno">{mod.formulas.map((f, i) => ehLatex(f)
           ? (contaEhTexto('1 + 1', m) ? <li key={i} className="texto"><Formula tex={f} prosa /></li> : <li key={i}><Formula tex={f} bloco={false} /></li>)
           : <li key={i} className={contaEhTexto(f, m) ? 'texto' : undefined}>{comFracoes(f)}</li>)}</ul></>)}
-        {mod.erro && <p className="cuidado"><Icone nome="info" tam={16} /> <span><b>Erro que mais derruba: </b>{comFracoes(mod.erro)}</span></p>}
+        {mod.erro && <p className="cuidado"><Icone nome="info" tam={16} /> <span><b>Erro que mais derruba: </b>{mod.erro}</span></p>}
       </section>
       <div className="grade g2" style={{ marginTop: 16 }}>
         {mod.cartoes.map((c, i) => <CartaoTeoriaView key={i} c={c} figs={figs.filter((f) => f.subs.includes(c.sub)).slice(0, 2)} />)}
@@ -207,7 +207,7 @@ export function Tema() {
                   <Link to={`/m/${m}/escada/${sub.id}`}>
                     <i className="ponto-sub" aria-hidden />
                     <span className="t"><b>{cap(sub.nome)}</b>{frase && <span>{frase}</span>}</span>
-                    <span className="p"><span className="num">{pe.feitas} de {pe.total}</span><Barra valor={pe.total ? pe.feitas / pe.total : 0} rotulo={`Progresso em ${sub.nome}`} /></span>
+                    <span className="p"><span className="num">{pe.feitas}/{pe.total}</span><Barra valor={pe.total ? pe.feitas / pe.total : 0} rotulo={`Progresso em ${sub.nome}`} /></span>
                     <Icone nome="direita" className="tp-seta" />
                   </Link>
                 </li>
