@@ -1,6 +1,6 @@
 # Inglês: resoluções (gerado por lote.py em 2026-11-12)
 
-Faltam 596 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 410; ENEM nível 7-10 2; provas-alvo nível 7-10 83; demais nível 7-10 101.
+Faltam 566 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 380; ENEM nível 7-10 2; provas-alvo nível 7-10 83; demais nível 7-10 101.
 
 ## Lotes
 
@@ -69,7 +69,8 @@ Faltam 596 questões sem resolução (fora as que estão em lote, pendentes ou c
 | ing-0061 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | ing-0062 | demais nível 1-6 | 30 | gravado | 26 | 4 | 0 |
 | ing-0063 | demais nível 1-6 | 30 | gravado | 29 | 1 | 0 |
-| ing-0064 | demais nível 1-6 | 30 | aberto |  |  |  |
+| ing-0064 | demais nível 1-6 | 30 | gravado | 29 | 1 | 0 |
+| ing-0065 | demais nível 1-6 | 30 | aberto |  |  |  |
 
 ## Pendentes (falta de certeza absoluta)
 
@@ -109,6 +110,7 @@ Faltam 596 questões sem resolução (fora as que estão em lote, pendentes ou c
 | P5ccce71c | UEMA 2024 PAES · questão 16 | I01.4 inferência e sentido implícito (tema I01 Leitura e interpretação de textos) | print: a questão pede informação de um texto de apoio que não está no texto_da_prova nem no print (que mostra só o enunciado e as alternativas). Refazer o print com o texto, a partir do caderno oficial da UEMA PAES 2024 (texto sobre Phoebe e o bullying). |
 | P3ade0003 | UEMA 2026 PAES · questão 16 | I01.4 inferência e sentido implícito (tema I01 Leitura e interpretação de textos) | print: a questão pede informação de um texto de apoio que não está no texto_da_prova nem no print (que mostra só o enunciado e as alternativas). Refazer o print com o texto, a partir do caderno oficial da UEMA PAES 2026 (texto sobre envelhecer e amizades). |
 | P0c3bf8a5 | UERR 2026 · questão 13 | I01.3 informação explícita (tema I01 Leitura e interpretação de textos) | print: a questão pede o motivo de o príncipe Harry não ficar num palácio, mas o texto de apoio (Buckingham Palace says Prince Harry will not stay at palace) não está no texto_da_prova nem no print, que mostra outro texto (o do macaco do Congo). Refazer o print com o texto certo, a partir do caderno oficial da UERR 2026. |
+| P9e4fe442 | UFRR 2024 Vestibular 2024 – Prova Integral · questão 71 | I01.6 opinião, tom e atitude do autor (tema I01 Leitura e interpretação de textos) | print: o texto de apoio (TEXTO V, 'What's in your go bag for the apocalypse?', Emma Beddington, The Guardian, seção Opinion / Life and style, 24/09/2023) não está no texto_da_prova nem no 071.webp; está no print 070.webp (parte de cima, antes da questão 70) e no prova.json da ufrr-2024, questão 70. Refazer o print da 71 juntando o TEXTO V. |
 | P315368d9 | UFRR 2026 Vestibular 2026 – Prova Integral · questão 65 | I01.1 tema e ideia principal (tema I01 Leitura e interpretação de textos) | print: a questão pede o sonho de Martin Luther King Jr. no quarto parágrafo de um texto que não está no texto_da_prova nem no print (que mostra só o enunciado e as alternativas). Refazer o print com o texto de apoio. Prova sem gabarito definitivo (gabarito do Aprendice depois). Atenção: discurso protegido; citar só poucas palavras. |
 | P5849ee3c | UNIRG 2024 Medicina 2024/1 · questão 12 | I01.5 título, fonte e imagem como pista de leitura (tema I01 Leitura e interpretação de textos) | print: a questão pede informação de um texto de apoio que não está no texto_da_prova nem no print (que mostra só o enunciado e as alternativas). Refazer o print com o texto, a partir do caderno oficial da UNIRG Medicina 2024/1 (as duas imagens de pacientes que a questão 12 compara). As duas imagens estão no fim do print 011.webp; refazer o 012 juntando-as. |
 | P4ace9dcd | Unespar 2023 Grupo I · questão 1 | I01.3 informação explícita (tema I01 Leitura e interpretação de textos) | print: a questão pede o que é correto sobre um texto a respeito da série Bluey, mas o texto de apoio não está no texto_da_prova nem no print (que mostra só o enunciado e as alternativas). Refazer o print com o texto, a partir do caderno oficial da Unespar 2023 (o print da questão 2 tem só frases soltas do texto). |
