@@ -133,5 +133,81 @@
    "data": "2026-11-11",
    "lote": "fis-0006"
   }
+ },
+ "P5422f5fb": {
+  "n": "41",
+  "conceito": "Achar a força sobre o último carrinho de uma fila empurrada.",
+  "equivocos": {
+   "A": "F03.2:transmitiu-a-forca-inteira",
+   "B": "F03.2:multiplicou-em-vez-de-dividir",
+   "D": "F03.2:multiplicou-em-vez-de-dividir"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os N carrinhos andam juntos, com a mesma aceleração, e a força F acelera todos. A força que chega ao último carrinho é só a necessária para acelerar ele sozinho.",
+    "formulas": [
+     "aceleração = F/(N × m)",
+     "força no último = m × aceleração"
+    ],
+    "simbolos": [
+     [
+      "m",
+      "massa de cada carrinho"
+     ],
+     [
+      "N",
+      "número de carrinhos"
+     ]
+    ]
+   },
+   "pista": "Ache a aceleração da fila inteira e depois isole o último carrinho.",
+   "passos": [
+    {
+     "faz": "Ache a aceleração da fila",
+     "conta": "a = F/(N × m)",
+     "porque": "A força F acelera N carrinhos de massa m cada.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole o último carrinho",
+     "conta": "força = m × a = m × F/(N × m) = F/N",
+     "porque": "Só o carrinho anterior o empurra, e ele tem a aceleração da fila. A massa cancela.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "F/N → alternativa C",
+     "porque": "Cada carrinho precisa de F/N para acelerar.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — F/N",
+   "checagem": "Teste com N = 1: o único carrinho é o último e recebe F/1 = F. Com N = 2 iguais, cada um fica com metade da força resultante: F/2.",
+   "erradas": {
+    "A": "F só valeria com um carrinho; com vários, parte da força fica para acelerar os carrinhos da frente.",
+    "B": "NF não confere: a força diminui ao longo da fila; com N = 2 daria 2F, mais do que foi aplicado.",
+    "D": "FN é o mesmo produto N × F: daria mais força no último carrinho do que a aplicada no primeiro."
+   },
+   "armadilha": "Achar que a força se transmite inteira de carrinho em carrinho.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A força que age no último carrinho da fila.",
+    "chave": "a = F/(Nm); no último: m × a = F/N.",
+    "cuidado": "Cada carrinho retém a parte necessária para a própria aceleração."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "fis-0011"
+  }
  }
 }
