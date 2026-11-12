@@ -1,6 +1,6 @@
 # Inglês: resoluções (gerado por lote.py em 2026-11-12)
 
-Faltam 1231 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 1045; ENEM nível 7-10 2; provas-alvo nível 7-10 83; demais nível 7-10 101.
+Faltam 1201 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 1015; ENEM nível 7-10 2; provas-alvo nível 7-10 83; demais nível 7-10 101.
 
 ## Lotes
 
@@ -41,12 +41,14 @@ Faltam 1231 questões sem resolução (fora as que estão em lote, pendentes ou 
 | ing-0033 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | ing-0034 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | ing-0035 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
-| ing-0036 | provas-alvo nível 1-6 | 30 | aberto |  |  |  |
+| ing-0036 | provas-alvo nível 1-6 | 30 | gravado | 28 | 2 | 0 |
+| ing-0037 | demais nível 1-6 | 30 | aberto |  |  |  |
 
 ## Pendentes (falta de certeza absoluta)
 
 | Questão | Prova | Conteúdo | Motivo |
 |---|---|---|---|
+| P773b0c19 | FCM-MG 2023 1º semestre · questão 53 | I01.1 tema e ideia principal (tema I01 Leitura e interpretação de textos) | print: a questão pede um resumo do artigo sobre o estudo de Kaori Murata (lágrimas de felicidade em animais), mas o texto_da_prova e o print trazem só a tirinha do PHD Comics; o artigo não está no lote. Refazer o print ou a transcrição com o artigo, a partir do PDF oficial. |
 | P91941880 | PUC-Campinas 2027 · questão 16 | I03.2 conectivos e relações lógicas (tema I03 Gramática) | print: a questão pede a lacuna I de um texto que não está no texto_da_prova nem no print da questão (que mostra só o comando e as alternativas); refazer o print ou a transcrição com o texto de apoio da PUC-Campinas 2027. |
 | Pcbb2a2aa | UECE 2025 2025.2 – 1ª fase · questão 78 | I01.3 informação explícita (tema I01 Leitura e interpretação de textos) | print: o texto de apoio em inglês (UECE 2025.2, página anterior às questões) não está no texto_da_prova nem no print da questão, que mostra só o enunciado e as alternativas; refazer o print ou a transcrição com o texto, a partir do PDF oficial. Prova sem gabarito definitivo: depois, gabarito do Aprendice às cegas. |
 | Pe4d0db1b | UECE 2025 2025.2 – 1ª fase · questão 79 | I01.3 informação explícita (tema I01 Leitura e interpretação de textos) | print: o texto de apoio em inglês (UECE 2025.2, página anterior às questões) não está no texto_da_prova nem no print da questão, que mostra só o enunciado e as alternativas; refazer o print ou a transcrição com o texto, a partir do PDF oficial. Prova sem gabarito definitivo: depois, gabarito do Aprendice às cegas. |
@@ -62,6 +64,7 @@ Faltam 1231 questões sem resolução (fora as que estão em lote, pendentes ou 
 | P2924ee9f | UECE 2026 2026.1 – 1ª fase · questão 82 | I01.3 informação explícita (tema I01 Leitura e interpretação de textos) | print: o texto de apoio em inglês (UECE 2026.1, página anterior às questões) não está no texto_da_prova nem no print da questão, que mostra só o enunciado e as alternativas; refazer o print ou a transcrição com o texto, a partir do PDF oficial. |
 | Pcf4bf745 | UECE 2026 2026.1 – 1ª fase · questão 83 | I01.3 informação explícita (tema I01 Leitura e interpretação de textos) | print: o texto de apoio em inglês (UECE 2026.1, página anterior às questões) não está no texto_da_prova nem no print da questão, que mostra só o enunciado e as alternativas; refazer o print ou a transcrição com o texto, a partir do PDF oficial. |
 | P523134b9 | UECE 2026 2026.1 – 1ª fase · questão 84 | I01.3 informação explícita (tema I01 Leitura e interpretação de textos) | print: o texto de apoio em inglês (UECE 2026.1, página anterior às questões) não está no texto_da_prova nem no print da questão, que mostra só o enunciado e as alternativas; refazer o print ou a transcrição com o texto, a partir do PDF oficial. |
+| P315368d9 | UFRR 2026 Vestibular 2026 – Prova Integral · questão 65 | I01.1 tema e ideia principal (tema I01 Leitura e interpretação de textos) | print: a questão pede o sonho de Martin Luther King Jr. no quarto parágrafo de um texto que não está no texto_da_prova nem no print (que mostra só o enunciado e as alternativas). Refazer o print com o texto de apoio. Prova sem gabarito definitivo (gabarito do Aprendice depois). Atenção: discurso protegido; citar só poucas palavras. |
 
 ## Divergências de gabarito (o dono decide)
 
