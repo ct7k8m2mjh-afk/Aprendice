@@ -1,0 +1,165 @@
+{
+ "P7daca525": {
+  "n": "13",
+  "conceito": "Contar os elementos da união de dois conjuntos de múltiplos (inclusão e exclusão).",
+  "equivocos": {
+   "A": "M01.4:nao-descontou-a-intersecao",
+   "B": "M01.4:contou-errado-os-multiplos-de-6",
+   "C": "M01.4:contou-errado-os-multiplos-de-6"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "U vai de 101 a 999. Quem é múltiplo de 2 e de 3 ao mesmo tempo (múltiplo de 6) aparece nas duas contagens. Por isso some as duas e desconte uma vez os múltiplos de 6.",
+    "formulas": [
+     "n(X ∪ Y) = n(X) + n(Y) − n(X ∩ Y)",
+     "múltiplos de k até N: parte inteira de N/k"
+    ],
+    "simbolos": [
+     [
+      "X ∪ Y",
+      "união: quem está em X, em Y ou nos dois"
+     ],
+     [
+      "X ∩ Y",
+      "interseção: quem está nos dois; aqui, os múltiplos de 6"
+     ]
+    ]
+   },
+   "pista": "Conte separadamente os múltiplos de 2, os de 3 e os que são dos dois ao mesmo tempo.",
+   "passos": [
+    {
+     "faz": "Conte os múltiplos de 2",
+     "conta": "até 999: 499 | até 100: 50 → 499 − 50 = 449",
+     "porque": "Tirando dos múltiplos até 999 os que vão até 100, sobram os que estão entre 101 e 999.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte os múltiplos de 3",
+     "conta": "até 999: 333 | até 100: 33 → 333 − 33 = 300",
+     "porque": "Mesma ideia: 999/3 = 333 e a parte inteira de 100/3 é 33.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte os múltiplos de 6",
+     "conta": "até 999: 166 | até 100: 16 → 166 − 16 = 150",
+     "porque": "Múltiplo de 2 e de 3 é múltiplo de 6. Esses foram contados duas vezes.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some e desconte a repetição",
+     "conta": "449 + 300 − 150 = 599 → alternativa D",
+     "porque": "Descontar os 150 uma vez deixa cada número contado uma única vez.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 599",
+   "checagem": "Conte quem fica de fora: em cada 6 números seguidos, 2 não são múltiplos de 2 nem de 3. U tem 899 números: 899 = 6 × 149 + 5. Nos 149 grupos completos (101 a 994) há 149 × 2 = 298; nos cinco que sobram (995 a 999), mais dois: 995 e 997. São 300 de fora, e 899 − 300 = 599.",
+   "erradas": {
+    "A": "749 sai de somar sem descontar a repetição: 449 + 300 = 749. Os 150 múltiplos de 6 ficam contados duas vezes.",
+    "B": "669 não confere: para dar 669 seria preciso descontar só 80 números (749 − 669), mas os múltiplos de 6 em U são 150.",
+    "C": "629 não confere: para dar 629 seria preciso descontar 120 números (749 − 629), mas os múltiplos de 6 em U são 150."
+   },
+   "armadilha": "Somar os múltiplos de 2 com os de 3 conta duas vezes os múltiplos de 6.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantos inteiros entre 101 e 999 são múltiplos de 2 ou de 3.",
+    "chave": "449 + 300 − 150 = 599.",
+    "cuidado": "Desconte os múltiplos de 6 e confira as pontas do intervalo (100 e 1000 ficam fora)."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0013"
+  }
+ },
+ "Pe80e76f1": {
+  "n": "14",
+  "conceito": "Contar os zeros no fim de um fatorial pelos fatores 5.",
+  "equivocos": {
+   "A": "M01.4:contou-fatores-demais",
+   "C": "M01.4:contou-fatores-demais",
+   "D": "M01.4:contou-um-fator-5-a-mais"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada zero no fim de um número vem de um fator 10, e 10 = 2 × 5. Em um fatorial sobram fatores 2 (todo número par traz um), então quem limita a quantidade de zeros é o fator 5. Conte quantos fatores 5 há em 15!.",
+    "formulas": [
+     "zeros no fim de n! = quantidade de fatores 5 em n!"
+    ],
+    "simbolos": [
+     [
+      "15!",
+      "o produto 1 × 2 × 3 × ... × 15"
+     ],
+     [
+      "fator 5",
+      "cada 5 que aparece na decomposição em primos"
+     ]
+    ]
+   },
+   "pista": "Não calcule 15!. Pergunte de onde vem cada zero do final.",
+   "passos": [
+    {
+     "faz": "Diga de onde vem um zero",
+     "conta": "10 = 2 × 5",
+     "porque": "Cada par formado por um fator 2 e um fator 5 produz um zero no fim.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Conte os fatores 5",
+     "conta": "5 = 5 | 10 = 2 × 5 | 15 = 3 × 5 → 3 fatores 5",
+     "porque": "De 1 a 15, só 5, 10 e 15 são múltiplos de 5, e cada um traz um único 5.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Veja se há fatores 2 suficientes",
+     "conta": "2, 4, 6, 8, 10, 12, 14 → 1 + 2 + 1 + 3 + 1 + 2 + 1 = 11 fatores 2",
+     "porque": "Há mais fatores 2 do que fatores 5, então os três 5 encontram par.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "3 pares 2 × 5 → 3 zeros → alternativa B",
+     "porque": "A quantidade de zeros é a quantidade de fatores 5.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 3 zeros",
+   "checagem": "O valor exato é 15! = 1 307 674 368 000, que termina em três zeros.",
+   "erradas": {
+    "A": "6 não confere: seis zeros exigem seis fatores 5, e 15! só tem três. Seis zeros só aparecem a partir de 25!.",
+    "C": "5 não confere: cinco zeros exigem cinco fatores 5, e de 1 a 15 só 5, 10 e 15 trazem esse fator.",
+    "D": "4 não confere: o quarto fator 5 só entra com o número 20; 20! é o primeiro fatorial com quatro zeros."
+   },
+   "armadilha": "Tentar multiplicar tudo, quando basta contar os fatores 5.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Com quantos zeros termina 15!.",
+    "chave": "Zeros = fatores 5 em 15!: os de 5, 10 e 15, três ao todo.",
+    "cuidado": "Conte fatores 5, não fatores 2 nem múltiplos de 10."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0013"
+  }
+ }
+}

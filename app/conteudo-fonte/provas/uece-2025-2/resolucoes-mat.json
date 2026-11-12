@@ -1,0 +1,188 @@
+{
+ "Pa8688ad2": {
+  "n": "13",
+  "conceito": "Decompor um número em fatores primos e somar os primos distintos.",
+  "equivocos": {
+   "A": "M01.4:fatorou-errado",
+   "B": "M01.4:esqueceu-um-primo",
+   "C": "M01.4:esqueceu-um-primo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os divisores primos de um número são exatamente os primos que aparecem na sua decomposição. Fatore 9438 e some cada primo uma vez só, mesmo que ele apareça repetido.",
+    "formulas": [
+     "divisores primos = primos da decomposição, sem repetir"
+    ],
+    "simbolos": [
+     [
+      "número primo",
+      "inteiro maior que 1 que só é divisível por 1 e por ele mesmo"
+     ]
+    ]
+   },
+   "pista": "Fatore 9438 começando pelos primos pequenos: 2, 3, 5, 7, 11...",
+   "passos": [
+    {
+     "faz": "Tire os fatores 2 e 3",
+     "conta": "9438 ÷ 2 = 4719 → 4719 ÷ 3 = 1573",
+     "porque": "9438 é par; 4719 tem soma dos algarismos 21, múltiplo de 3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Fatore 1573",
+     "conta": "1573 ÷ 11 = 143 → 143 ÷ 11 = 13",
+     "porque": "1573 não é divisível por 3, 5 nem 7; por 11 é (1 − 5 + 7 − 3 = 0).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escreva a decomposição",
+     "conta": "9438 = 2 × 3 × 11 × 11 × 13",
+     "porque": "13 é primo, então a fatoração acabou. O 11 aparece duas vezes.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some os primos distintos",
+     "conta": "2 + 3 + 11 + 13 = 29 → alternativa D",
+     "porque": "O 11 é um divisor só, por isso entra uma vez na soma.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 29",
+   "checagem": "Multiplique de volta: 2 × 3 = 6; 11 × 11 = 121; 6 × 121 = 726; 726 × 13 = 9438. A decomposição está certa.",
+   "erradas": {
+    "A": "25 não confere: faltam 4 para chegar a 29, e nenhum dos primos da decomposição (2, 3, 11, 13) vale 4.",
+    "B": "18 sai de esquecer o 11: 2 + 3 + 13 = 18. O 11 divide 9438 (9438 ÷ 11 = 858).",
+    "C": "26 sai de esquecer o 3: 2 + 11 + 13 = 26. O 3 divide 9438 (9438 ÷ 3 = 3146)."
+   },
+   "armadilha": "O 11 aparece duas vezes na fatoração, mas é um divisor primo só.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A soma dos divisores primos de 9438.",
+    "chave": "9438 = 2 × 3 × 11² × 13; soma 2 + 3 + 11 + 13 = 29.",
+    "cuidado": "Some cada primo uma vez e não pare a fatoração em 1573."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0013"
+  },
+  "gabarito_aprendice": {
+   "letra": "D",
+   "letra_conferente": "D",
+   "preliminar": "D",
+   "fontes_web": [
+    {
+     "url": "https://projetoagathaedu.com.br/prova-completa/resolucao-uece/matematica-2025-2.php",
+     "letra": "D"
+    }
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0013"
+  }
+ },
+ "P313c0327": {
+  "n": "19",
+  "conceito": "Resolver um sistema linear 3 × 3 e somar os termos de uma PA.",
+  "equivocos": {
+   "A": "M04.3:termo-no-lugar-da-soma",
+   "B": "M04.3:dividiu-por-2-duas-vezes",
+   "C": "M04.3:errou-a-soma-da-pa"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Primeiro resolva o sistema por adição: a 3ª equação tem −z, que cancela com o +z das outras duas. Depois, com os três primeiros termos da PA, ache a razão e use a soma dos 20 primeiros.",
+    "formulas": [
+     "a₂₀ = a₁ + 19r",
+     "S₂₀ = 20 × (a₁ + a₂₀)/2"
+    ],
+    "simbolos": [
+     [
+      "PA",
+      "progressão aritmética: cada termo é o anterior mais a razão r"
+     ],
+     [
+      "S₂₀",
+      "soma dos 20 primeiros termos"
+     ]
+    ]
+   },
+   "pista": "Some a 3ª equação com cada uma das outras para eliminar o z.",
+   "passos": [
+    {
+     "faz": "Elimine o z",
+     "conta": "(x + y + z) + (x + 2y − z) = 12 + 4 → 2x + 3y = 16 | (2x − y + z) + (x + 2y − z) = 6 + 4 → 3x + y = 10",
+     "porque": "Somando, +z e −z se cancelam e sobra um sistema com x e y.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva em x e y",
+     "conta": "y = 10 − 3x → 2x + 3 × (10 − 3x) = 16 → −7x = −14 → x = 2 → y = 4",
+     "porque": "Isolar y na segunda e substituir na primeira deixa uma equação só.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache z e a razão",
+     "conta": "2 + 4 + z = 12 → z = 6 | PA: 2, 4, 6 → r = 2",
+     "porque": "Os termos crescem de 2 em 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o 20º termo",
+     "conta": "a₂₀ = 2 + 19 × 2 = 40",
+     "porque": "Do 1º ao 20º termo há 19 passos de razão 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some os 20 termos",
+     "conta": "S₂₀ = 20 × (2 + 40)/2 = 420 → alternativa D",
+     "porque": "A soma da PA é a média do primeiro com o último vezes o número de termos.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 420",
+   "checagem": "A PA 2, 4, 6, ..., 40 é o dobro de 1, 2, ..., 20, cuja soma é 210; o dobro é 420. No sistema: 2×2 − 4 + 6 = 6 e 2 + 2×4 − 6 = 4. Fecha.",
+   "erradas": {
+    "A": "40 sai de parar no 20º termo: a₂₀ = 2 + 19 × 2 = 40. A pergunta é a soma dos vinte termos.",
+    "B": "210 sai de dividir por 2 duas vezes: (2 + 40) × 20/4 = 210. É também a soma de 1 a 20, metade da pedida.",
+    "C": "128 não confere: a soma dos n primeiros termos de 2, 4, 6... é n × (n + 1); com n = 10 dá 110 e com n = 11 dá 132, nunca 128."
+   },
+   "armadilha": "Responder o 20º termo (40) no lugar da soma dos 20 termos.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A soma dos 20 primeiros termos da PA formada por x, y, z.",
+    "chave": "Sistema dá 2, 4, 6; a₂₀ = 40; S₂₀ = 420.",
+    "cuidado": "Termo é um valor; soma é o acumulado."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0013"
+  },
+  "gabarito_aprendice": {
+   "letra": "D",
+   "letra_conferente": "D",
+   "preliminar": "D",
+   "fontes_web": [],
+   "data": "2026-11-12",
+   "lote": "mat-0013"
+  }
+ }
+}

@@ -434,5 +434,86 @@
    "data": "2026-11-11",
    "lote": "mat-0010"
   }
+ },
+ "Pd2d6517a": {
+  "n": "57",
+  "conceito": "Modelar um arco de parábola e calcular a altura em um ponto dado.",
+  "equivocos": {
+   "A": "M05.2:nao-buscou-o-maximo",
+   "B": "M05.2:nao-buscou-o-maximo",
+   "D": "M05.2:errou-o-ponto-de-calculo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Ponha o eixo y no meio da entrada. A parábola corta o chão em x = −1 e x = 1 e tem topo em (0; 2,5). A caixa de 1 m, centralizada, vai de x = −1/2 a x = 1/2. A altura máxima da caixa é a altura da parábola nessas bordas, porque são os cantos de cima que encostam primeiro.",
+    "formulas": [
+     "parábola com raízes −1 e 1: y = k(1 − x²)"
+    ],
+    "simbolos": [
+     [
+      "k",
+      "altura do topo, no meio da entrada"
+     ],
+     [
+      "x",
+      "distância horizontal até o centro da entrada, em metros"
+     ]
+    ]
+   },
+   "pista": "Onde ficam os cantos de cima da caixa quando ela passa centralizada?",
+   "passos": [
+    {
+     "faz": "Monte a parábola",
+     "conta": "y = k(1 − x²) | x = 0: y = 5/2 → k = 5/2 → y = (5/2)(1 − x²)",
+     "porque": "Raízes em ±1 porque a entrada tem 2 m no chão; o topo de 2,5 m dá o k.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Localize a borda da caixa",
+     "conta": "largura 1 m, centralizada → x = 1/2",
+     "porque": "Centralizada, a caixa aproveita a parte mais alta do arco; cada borda fica a meio metro do centro.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule a altura nessa borda",
+     "conta": "y = (5/2)(1 − 1/4) = (5/2) × (3/4) = 15/8",
+     "porque": "É a altura do arco exatamente acima do canto da caixa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "altura máxima = 15/8 m → alternativa C",
+     "porque": "Caixa mais alta que isso bate os cantos no arco.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 15/8 m",
+   "checagem": "Pela queda em relação ao topo: ela é proporcional a x². Em x = 1 a queda é toda a altura, 5/2. Em x = 1/2 é um quarto disso: (5/2) × (1/4) = 5/8. Altura: 5/2 − 5/8 = 15/8.",
+   "erradas": {
+    "A": "11/8 = 1,375 m não confere: a caixa passaria, mas ainda sobra espaço até 15/8 = 1,875 m; não é a altura máxima.",
+    "B": "13/8 = 1,625 m não confere: é menor que a altura do arco em x = 1/2, que é 15/8; não é a máxima.",
+    "D": "17/8 = 2,125 m não confere: passa da altura do arco em x = 1/2 (15/8 = 1,875 m); os cantos da caixa batem."
+   },
+   "armadilha": "Usar a altura do topo (2,5 m): quem limita a caixa são os cantos, a meio metro do centro.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A maior altura de uma caixa de 1 m de largura que passa pelo arco.",
+    "chave": "y = (5/2)(1 − x²) em x = 1/2 dá 15/8.",
+    "cuidado": "Calcule a altura na borda da caixa, não no centro."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0013"
+  }
  }
 }
