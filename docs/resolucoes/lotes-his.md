@@ -61,7 +61,7 @@ Faltam 648 questões sem resolução (fora as que estão em lote, pendentes ou c
 | his-0053 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | his-0054 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | his-0055 | demais nível 1-6 | 30 | gravado | 29 | 1 | 0 |
-| his-0056 | provas-alvo nível 1-6 | 30 | aberto |  |  |  |
+| his-0056 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | his-0057 | demais nível 1-6 | 30 | aberto |  |  |  |
 
 ## Pendentes (falta de certeza absoluta)
