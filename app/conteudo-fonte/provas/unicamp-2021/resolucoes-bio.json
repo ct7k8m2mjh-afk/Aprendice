@@ -98,106 +98,89 @@
  },
  "Pa71850a2": {
   "n": "27",
-  "conceito": "Leitura do RNAm: a tradução começa no códon de iniciação AUG; conta-se a posição dos aminoácidos a partir dele.",
+  "conceito": "Leitura de RNAm a partir do códon de iniciação e uso da tabela do código genético: GAG (ácido glutâmico) → GUG (valina) na 7ª posição.",
   "equivocos": {
-   "A": "B05.3:contou-antes-do-aug",
-   "C": "B05.3:contou-antes-do-aug",
-   "D": "B05.3:leu-o-codon-errado"
+   "A": "B05.3:contou-antes-do-codon-de-inicio",
+   "C": "B05.3:contou-antes-do-codon-de-inicio",
+   "D": "B05.3:leu-o-codon-errado-na-tabela"
   },
   "resolucao": {
    "antes": {
-    "texto": "A tradução não começa na primeira trinca escrita, e sim no códon de iniciação, AUG, que codifica metionina. A partir dele, cada trinca é um aminoácido. Compare as duas sequências trinca por trinca: só uma muda, de GAG, em Hbb, para GUG, em HbS. Conte a posição dessa trinca a partir do AUG e leia na tabela o aminoácido de cada uma.",
-    "formulas": [],
+    "texto": "Duas tarefas: achar a trinca que mudou e traduzi-la. O cuidado está na contagem. A proteína começa no códon de iniciação, AUG, e não na primeira trinca escrita. As quatro trincas antes do AUG não viram aminoácido. Então o AUG é o aminoácido 1, e a posição se conta a partir dele. Na tabela, leia cada códon pela 1ª base (linha), 2ª base (coluna) e 3ª base (linha fina, à direita).",
+    "formulas": [
+     "códon de iniciação: AUG = aminoácido 1",
+     "GAG → ácido glutâmico | GUG → valina"
+    ],
     "simbolos": [
      [
-      "RNAm",
-      "RNA mensageiro, lido em trincas pelo ribossomo"
-     ],
-     [
       "códon",
-      "trinca de bases do RNAm que indica um aminoácido"
+      "trinca de bases do RNA mensageiro que indica um aminoácido"
      ],
      [
       "códon de iniciação",
-      "AUG, onde a tradução começa"
+      "AUG: onde a tradução começa; codifica metionina"
      ],
      [
       "Hbb e HbS",
-      "hemoglobina normal e hemoglobina da anemia falciforme"
+      "RNA mensageiro da hemoglobina normal e da hemoglobina da anemia falciforme"
      ]
     ]
    },
-   "pista": "Ache primeiro o AUG. É dele que a contagem começa.",
+   "pista": "Antes de contar posições, marque a trinca aug nas duas sequências. A contagem começa nela.",
    "passos": [
     {
-     "faz": "Ache o início",
-     "conta": "caa aca gac acc | aug",
-     "porque": "As quatro trincas antes do AUG não são traduzidas.",
+     "faz": "Marque o início",
+     "conta": "caa aca gac acc | aug gug cau cug acu ccu gag gag aag ucu",
+     "porque": "O enunciado avisa que o trecho traz o códon de iniciação. Só o que vem do AUG em diante é traduzido.",
      "tipo": "localizar"
     },
     {
-     "faz": "Conte até a trinca que muda",
-     "conta": "aug(1) gug(2) cau(3) cug(4) acu(5) ccu(6) gag(7)",
-     "porque": "A sétima trinca é gag em Hbb e gug em HbS.",
+     "faz": "Ache a trinca diferente",
+     "conta": "Hbb: ... acu ccu gag gag ... → HbS: ... acu ccu gug gag ...",
+     "porque": "Comparando trinca a trinca, só uma muda: gag vira gug, logo depois de ccu.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Conte a posição a partir do AUG",
+     "conta": "aug 1 | gug 2 | cau 3 | cug 4 | acu 5 | ccu 6 | gag 7",
+     "porque": "A trinca alterada é a 7ª a partir do início. Isso elimina A e C.",
      "tipo": "calcular"
     },
     {
-     "faz": "Leia a tabela",
-     "conta": "GAG: ácido glutâmico → GUG: valina",
-     "porque": "1ª base G, 2ª base A ou U, 3ª base G.",
+     "faz": "Traduza pela tabela",
+     "conta": "GAG → ácido glutâmico | GUG → valina",
+     "porque": "Linha G, coluna A, 3ª base G: ácido glutâmico. Linha G, coluna U, 3ª base G: valina.",
      "tipo": "localizar"
     },
     {
      "faz": "Conclua",
-     "conta": "7ª posição, ácido glutâmico por valina",
-     "porque": "É a alternativa B.",
+     "conta": "7ª posição: ácido glutâmico → valina → alternativa B",
+     "porque": "Posição e troca conferem com B.",
      "tipo": "concluir"
     }
    ],
-   "resposta": "Alternativa B: altera a 7ª posição de aminoácidos, trocando ácido glutâmico por valina.",
-   "checagem": "Conte de trás para frente em Hbb: ucu, aag, gag, gag. A trinca alterada é a quarta a partir do fim; a sequência tem 14 trincas, 10 delas a partir do AUG, e 10 − 3 = 7.",
+   "resposta": "Alternativa B — a mutação altera a 7ª posição de aminoácidos, trocando ácido glutâmico por valina.",
+   "checagem": "Refaça a contagem do outro jeito: a trinca alterada é a 11ª da sequência escrita, e há 4 trincas antes do AUG. 11 − 4 = 7. Bate.",
    "erradas": {
-    "A": "11ª sai de contar desde a primeira trinca escrita, caa, e não do AUG; e leucina e histidina são cug e cau, que não mudam.",
-    "C": "A troca de aminoácidos está certa, mas 11ª sai de contar desde caa, sem partir do códon de iniciação.",
-    "D": "A posição está certa, mas leucina (cug) e histidina (cau) aparecem iguais nas duas sequências."
+    "A": "11 é a posição da trinca contada desde caa, antes do códon de iniciação. E leucina (cug) e histidina (cau) são trincas que não mudam.",
+    "C": "A troca está certa, mas a 11ª posição sai de contar desde a primeira trinca escrita. A partir do AUG, é a 7ª.",
+    "D": "A posição está certa, mas a troca não: gag é ácido glutâmico e gug é valina. Leucina (cug) e histidina (cau) aparecem inalteradas nas duas sequências."
    },
-   "armadilha": "Contar a partir da primeira trinca da linha: daria 11ª posição. A proteína começa no AUG.",
+   "armadilha": "Contar as trincas desde o começo da sequência (11ª) em vez de contar a partir do códon de iniciação (7ª).",
    "alerta": "",
    "essencial": {
-    "pede": "a posição e a troca de aminoácido na anemia falciforme",
-    "chave": "a partir do AUG, a 7ª trinca muda de GAG (ácido glutâmico) para GUG (valina)",
-    "cuidado": "a contagem começa no códon de iniciação"
+    "pede": "A posição e a troca de aminoácido causadas pela mutação da anemia falciforme.",
+    "chave": "Conte a partir do AUG: a 7ª trinca muda de GAG (ácido glutâmico) para GUG (valina).",
+    "cuidado": "O que vem antes do AUG não é traduzido."
    }
   },
-  "caminhos": [
-   {
-    "nome": "pela tabela primeiro",
-    "ideia": "A única trinca diferente é gag → gug: ácido glutâmico → valina. Sobram B e C. Contando do AUG, é a 7ª: B."
-   }
-  ],
-  "quadro": [
-   {
-    "linha": "caa aca gac acc | aug gug cau cug acu ccu gag",
-    "nota": "a tradução começa em aug"
-   },
-   {
-    "linha": "aug = 1 … gag = 7",
-    "nota": "contagem a partir do códon de iniciação"
-   },
-   {
-    "linha": "Hbb: gag → HbS: gug",
-    "nota": "única trinca diferente"
-   },
-   {
-    "linha": "GAG: ácido glutâmico | GUG: valina",
-    "nota": "leitura do código genético"
-   }
-  ],
+  "caminhos": [],
+  "quadro": null,
   "visual": {
    "cabe": true,
    "tipo": "esquema",
-   "porque": "Mostra as duas sequências alinhadas e a contagem.",
-   "roteiro": "Quadro 1: as duas sequências, uma sobre a outra. Quadro 2: as quatro primeiras trincas ficam apagadas; aug recebe o número 1. Quadro 3: números de 1 a 7 sobre as trincas; a 7ª pisca: gag em cima, gug embaixo. Quadro 4: tabela: GAG = ácido glutâmico, GUG = valina."
+   "porque": "Mostra a contagem das trincas a partir do AUG.",
+   "roteiro": "Quadro 1: as duas sequências alinhadas. Quadro 2: as quatro trincas antes de aug ficam cinza. Quadro 3: os números 1 a 7 aparecem sob as trincas a partir de aug; a 7ª pisca. Quadro 4: gag → ácido glutâmico e gug → valina, pela tabela."
   },
   "fontes": [],
   "aprovada": true,
