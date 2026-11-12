@@ -10,8 +10,9 @@ O trabalho de bastidor já está feito. A ferramenta `ferramentas/resolucoes/lot
 
 <divisao>
 Várias sessões resolvem ao mesmo tempo, cada uma com as suas matérias (decisão do dono, 11/11/2026), e nenhuma refaz o que outra já fez:
-- sessão do Fable: Matemática, Biologia, Química e Geografia (resoluções com ilustração/animação) e depois Física;
+- três sessões do Fable (decisão do dono, 12/11/2026): Química e Biologia; Física e Matemática; Geografia;
 - uma sessão Opus por matéria de texto: História, Filosofia e Sociologia, Português e Inglês.
+Direito autoral: nunca reproduza letra de música, poema ou trecho longo de obra protegida na resolução; cite poucas palavras ou descreva. Se a questão só se resolve citando a letra, ela sai com `status: "pendente"` e motivo "direito autoral: letra de música".
 Use sempre `lote.py proximo <sua matéria>`. A ferramenta grava cada matéria no seu próprio arquivo (provas/<prova>/resolucoes-<m>.json) e no seu próprio registro (docs/resolucoes/registro-<m>.json), então as sessões não entram em conflito no git. As resoluções já gravadas e as pendências de pendentes.md continuam valendo: a ferramenta não as repete.
 </divisao>
 
