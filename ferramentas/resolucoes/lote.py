@@ -408,8 +408,8 @@ def cmd_proximo(m=None, n=30):
             print(f'Saída: {caminho_saida(nome)}')
             return
     if NOVO and sum(1 for l in reg['lotes'].values() if l['materia'] == m and l['estado'] == 'aberto'
-                    and l.get('dono') == SESSAO) >= 2:
-        sys.exit('Esta sessão já tem 2 lotes abertos nesta matéria: grave um antes de abrir outro.')
+                    and l.get('dono') == SESSAO) >= 3:
+        sys.exit('Esta sessão já tem 3 lotes abertos nesta matéria: grave um antes de abrir outro.')
     qs = sorted(faltam(m, reg, resolvidas_em_provas()), key=chave)[:n]
     if not qs:
         print(f'{NOMES[m]}: nenhuma questão sem resolução.')

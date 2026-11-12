@@ -59,7 +59,7 @@ Comece com `cd app && python3 scripts/converte.py && cd ..` (uma vez por sessão
 - Cada lote tem 30 questões e vai SOZINHO para o conferente assim que você termina: um agente em segundo plano (`run_in_background`), um por lote. Nunca junte dois lotes (60) numa conferência só e nunca fique parado esperando a devolução.
 - No mesmo instante em que o lote N vai para o conferente, abra o próximo (`lote.py proximo <m> --novo`) e comece a resolvê-lo.
 - Quando o conferente devolver o lote N: sem nada apontado, grave o N na hora. Com itens apontados, pare o que está fazendo, corrija só esses itens, mande-os de volta ao conferente (em segundo plano) e volte imediatamente ao lote em andamento; grave o N quando a reconferência voltar limpa.
-- No máximo 2 lotes abertos por vez: o que está com o conferente e o que você está resolvendo.
+- No máximo 3 lotes abertos por vez (ex.: um em reconferência, um com o conferente e o que você está resolvendo); o terceiro existe só para você nunca parar.
 4. UM agente conferente, que não resolveu, confere o lote inteiro numa só passada, conforme docs/resolucoes/CONFERENTE.md, e devolve só a lista do que está errado ou duvidoso. Se o lote tem questões `sem_gabarito_publicado`, o mesmo conferente começa por elas às cegas (parte 0 do CONFERENTE.md: só a entrada, sem a sua saída) e devolve a letra de cada uma antes de receber a saída.
 5. Corrija só os itens apontados. O mesmo conferente confere só esses itens de novo. O que ainda tiver dúvida vira `status: "pendente"`. Nada de rodadas extras.
 6. Ponha `"conferido": true` e rode `python3 ferramentas/resolucoes/lote.py grava <saida>`.
