@@ -503,5 +503,116 @@
    "data": "2026-11-12",
    "lote": "bio-0027"
   }
+ },
+ "P36d2a80e": {
+  "n": "6",
+  "conceito": "A fórmula dá y(0) = 2, então h(0) não pode ser 3; y(t) fica sempre abaixo de K, então h(t) < K; a mutação gera doenças emergentes; o SARS-CoV-2 é um vírus de RNA; e y cresce com o tempo, não é constante.",
+  "equivocos": {
+   "A": "B12.1:leitura-errada-da-funcao",
+   "B": "B12.1:leitura-errada-da-funcao",
+   "D": "B12.1:leitura-errada-da-funcao",
+   "E": "B12.1:material-genetico-trocado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A questão mistura duas coisas. Na parte de matemática, h(t) é o número de infectados até o dia t, e y(t) é um teto: h(t) nunca passa de y(t). Com y(t) = 2K/(2 + (K − 2)e^(−3t)), em t = 0 temos e^0 = 1. Com o tempo, e^(−3t) diminui e o denominador também, então y cresce, aproximando-se de K sem nunca chegar a ele, porque o denominador fica sempre acima de 2. Na parte de biologia, vírus mutam com facilidade, e o novo coronavírus tem genoma de RNA de fita simples.",
+    "formulas": [
+     "y(t) = 2K/(2 + (K − 2)e^(−3t)) | h(t) ≤ y(t) | e^0 = 1"
+    ],
+    "simbolos": [
+     [
+      "h(t)",
+      "número de infectados até o instante t"
+     ],
+     [
+      "y(t)",
+      "teto (limitante) para h(t)"
+     ],
+     [
+      "K",
+      "número de pessoas da região, K > 2"
+     ],
+     [
+      "doença emergente",
+      "doença nova ou que aumentou muito de incidência"
+     ]
+    ]
+   },
+   "pista": "Calcule y(0) substituindo t = 0. O teto permite h(0) = 3?",
+   "passos": [
+    {
+     "faz": "Calcule y(0)",
+     "conta": "y(0) = 2K/(2 + (K − 2)·1) = 2K/K = 2 → h(0) ≤ 2 → 1ª F",
+     "porque": "O teto em t = 0 é 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare y(t) com K",
+     "conta": "(K − 2)e^(−3t) > 0 → denominador > 2 → y(t) < 2K/2 = K → h(t) < K → 3ª V",
+     "porque": "O teto nunca chega a K.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Julgue a biologia",
+     "conta": "mutação origina doenças emergentes → 2ª V | SARS-CoV-2 tem RNA, não DNA de dupla fita → 4ª F",
+     "porque": "Fatos sobre vírus.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Veja se y é constante",
+     "conta": "t cresce → e^(−3t) diminui → denominador diminui → y cresce → 5ª F",
+     "porque": "y aumenta desde o início.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte a sequência",
+     "conta": "F, V, V, F, F → alternativa C",
+     "porque": "Única com essa ordem.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — F, V, V, F, F",
+   "checagem": "Testando um caso numérico: com K = 10, y(0) = 20/(2 + 8) = 2 e, para t grande, e^(−3t) quase zero, y ≈ 20/2 = 10 = K, sem nunca atingir. O teto começa em 2 e sobe até perto de K, confirmando F na 1ª e na 5ª e V na 3ª.",
+   "erradas": {
+    "A": "Marca V na 1ª, mas y(0) = 2, então h(0) ≤ 2; e marca V na 4ª, mas o SARS-CoV-2 é vírus de RNA.",
+    "B": "Marca V na 1ª (h(0) ≤ 2, não 3), F na 2ª (a mutação gera doenças emergentes) e V na 5ª (y cresce com o tempo).",
+    "D": "Marca F na 3ª, mas como o denominador fica acima de 2, y(t) < K e então h(t) < K; e V na 5ª, mas y não é constante.",
+    "E": "Marca F na 2ª, mas a mutação é um dos processos que geram doenças emergentes; e V na 4ª, mas o coronavírus é de RNA."
+   },
+   "armadilha": "Ler y(0) como 3 por confundir a fórmula, e esquecer que o SARS-CoV-2 é vírus de RNA.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Julgar afirmações sobre um teto matemático de infectados e sobre vírus.",
+    "chave": "y(0) = 2, y(t) < K, y crescente; mutação gera doenças emergentes; coronavírus de RNA.",
+    "cuidado": "Substituir e^0 = 1 antes de concluir."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pela substituição",
+    "ideia": "Calcular y(0) = 2 e ver que y nunca chega a K resolve a matemática; a biologia fecha a sequência."
+   },
+   {
+    "nome": "pelo gráfico",
+    "ideia": "Esboçar y(t): começa em 2, sobe e se aproxima de K sem tocar."
+   }
+  ],
+  "quadro": null,
+  "visual": {
+   "cabe": true,
+   "tipo": "processo",
+   "porque": "Mostrar o teto de infectados subindo e o vírus de RNA.",
+   "roteiro": "Quadro 1: eixo t e curva y(t) começando em 2, com a linha tracejada K no alto. Quadro 2: a curva sobe e encosta na linha K sem cruzar; h(t) desenhado sempre abaixo da curva. Quadro 3: partícula do coronavírus aberta, mostrando a fita simples de RNA no interior. Quadro 4: o vírus copiando o RNA com um erro marcado, originando uma variante nova."
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "bio-0036"
+  }
  }
 }
