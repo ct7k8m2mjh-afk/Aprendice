@@ -305,5 +305,97 @@
    "data": "2026-11-12",
    "lote": "mat-0027"
   }
+ },
+ "Pb28ad2b0": {
+  "n": "28",
+  "conceito": "Distância entre pontos médios de arestas opostas do tetraedro regular.",
+  "equivocos": {
+   "A": "M11.3:sem-origem-identificada",
+   "B": "M11.3:sem-origem-identificada",
+   "C": "M11.3:parou-na-altura-da-face",
+   "E": "M11.3:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "No tetraedro regular, M (meio de AB) e N (meio de CD) formam com C um triângulo: CM é a altura da face ABC, CN é metade de CD, e MN é perpendicular a CD. Então MN² = CM² − CN².",
+    "formulas": [
+     "altura do triângulo equilátero = l√3/2",
+     "Pitágoras"
+    ],
+    "simbolos": [
+     [
+      "M, N",
+      "pontos médios de AB e CD"
+     ]
+    ]
+   },
+   "pista": "Olhe o triângulo MCD: ele é isósceles, com MC = MD.",
+   "passos": [
+    {
+     "faz": "Ache CM",
+     "conta": "CM = 6√3/2 = 3√3",
+     "porque": "Altura da face equilátera ABC, relativa a AB.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Use o triângulo MCD",
+     "conta": "MC = MD = 3√3 → MN ⟂ CD, CN = 3",
+     "porque": "Num isósceles, a mediana da base é altura.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule MN",
+     "conta": "MN² = (3√3)² − 3² = 27 − 9 = 18 → MN = 3√2 → alternativa D",
+     "porque": "Pitágoras no triângulo MNC.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 3√2",
+   "checagem": "Por coordenadas: A(0, 0, 0), B(6, 0, 0), C(3, 3√3, 0), D(3, √3, 2√6); M = (3, 0, 0) e N = (3, 2√3, √6); MN² = 0 + 12 + 6 = 18, MN = 3√2.",
+   "erradas": {
+    "A": "4√3 não confere: MN é cateto de um triângulo com hipotenusa CM = 3√3 ≈ 5,2, e 4√3 ≈ 6,9 é maior.",
+    "B": "4√2 não confere: 4√2 ≈ 5,66 é maior que a hipotenusa CM = 3√3 ≈ 5,2.",
+    "C": "3√3 é CM, a altura da face, não MN.",
+    "E": "2√2 não confere: (2√2)² = 8, e MN² = 27 − 9 = 18."
+   },
+   "armadilha": "Parar em CM = 3√3 (altura da face) sem descer até o meio de CD.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A medida de MN.",
+    "chave": "CM = 3√3, CN = 3; MN = √(27 − 9) = 3√2.",
+    "cuidado": "MN é perpendicular a CD porque MCD é isósceles."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "cubo",
+    "ideia": "O tetraedro regular de aresta 6 cabe num cubo de aresta 6/√2 = 3√2, com arestas opostas em faces opostas; MN é a aresta do cubo, 3√2."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "CM = 3√3",
+    "nota": "altura da face"
+   },
+   {
+    "linha": "CN = 3",
+    "nota": "meia aresta"
+   },
+   {
+    "linha": "√(27 − 9) = 3√2",
+    "nota": "MN"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0030"
+  }
  }
 }
