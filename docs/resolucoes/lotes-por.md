@@ -1,6 +1,6 @@
-# Português: resoluções (gerado por lote.py em 2026-11-11)
+# Português: resoluções (gerado por lote.py em 2026-11-12)
 
-Faltam 3166 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 800; demais nível 1-6 1827; ENEM nível 7-10 53; provas-alvo nível 7-10 225; demais nível 7-10 261.
+Faltam 3273 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 841; demais nível 1-6 1893; ENEM nível 7-10 53; provas-alvo nível 7-10 225; demais nível 7-10 261.
 
 ## Lotes
 
@@ -41,6 +41,7 @@ Faltam 3166 questões sem resolução (fora as que estão em lote, pendentes ou 
 | por-0033 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | por-0034 | provas-alvo nível 1-6 | 30 | gravado | 28 | 2 | 0 |
 | por-0035 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| por-0036 | provas-alvo nível 1-6 | 30 | gravado | 29 | 1 | 0 |
 
 ## Pendentes (falta de certeza absoluta)
 
@@ -55,6 +56,7 @@ Faltam 3166 questões sem resolução (fora as que estão em lote, pendentes ou 
 | Pdbf10241 | UDESC 2024 Inverno 2024.2 · questão 39 | P04.1 referência: pronome, elipse e substituição lexical (tema P04 Coesão e coerência) | A afirmativa V cai pelo próprio fragmento (crônica do início do século XX, que cita o grafofone e o século XX, não é romântica), o que deixa B (I, III e IV) e D (I, II, III e IV). A escolha entre as duas depende só da afirmativa II, que pede leitura da obra inteira A Alma Encantadora das Ruas (as crônicas-reportagens como convite para perambular pelas ruas da capital com João do Rio); isso não está no fragmento nem no print. |
 | Pd0bef1cb | UDESC 2024 Verão 2024.1 · questão 37 | P01.2 informação explícita × inferência (tema P01 Leitura e compreensão) | O gabarito oficial (C) considera as cinco proposições verdadeiras, e duas delas (3ª e 5ª) afirmam características da obra inteira de Cora Coralina (temáticas, personagens periféricos, mistura de prosa e poesia em conto popular) que não estão no poema transcrito; a 1ª também afirma alusão a perdas de terra "ainda hoje" sem apoio no texto. Não há como confirmar a sequência só com o que a questão traz. |
 | P93ec458e | UDESC 2025 Inverno 2025.2 · questão 44 | P03.2 gêneros jornalísticos: notícia, reportagem, editorial e crônica (tema P03 Gêneros e tipos textuais) | A 1ª proposição afirma influências literárias de Rubem Braga (segunda geração modernista nas crônicas, características parnasianas nos contos), dado que não está na questão; ela decide entre D e E. A 5ª também é discutível (classificação de "Mas" como adjunto adnominal). Sem fonte conferida, não há como fundamentar a sequência. |
+| P8944ccb0 | UERJ 2026 1º Exame de Qualificação · questão 4 | P06.1 metáfora, comparação e metonímia (tema P06 Figuras de linguagem) | classificação: é de Física. O poema serve só de contexto; o comando pergunta "A grandeza física associada a processos reais de emersão" e as alternativas são grandezas físicas (vazão, pressão, densidade, temperatura). A resposta (densidade, gabarito C) depende do empuxo e da comparação de densidades, conteúdo de Física, não de figura de linguagem. |
 | Pd23309d1 | UFU 2023 1ª fase · questão 59 | P01.1 tema, tese e ideia principal do texto (tema P01 Leitura e compreensão) | A resposta depende do enredo de "Bom dia, camaradas" (papel de cada personagem: Amadou, Cláudio, António, Ondalu), que não está na questão; sem fonte conferida no lote para afirmar com certeza o que faz cada personagem. |
 | P5dcad9ec | UFU 2025 1ª fase · questão 62 | P03.3 charge, tirinha, cartaz e infográfico (tema P03 Gêneros e tipos textuais) | A resposta depende do conteúdo do livro "O Karaíba: uma história do pré-Brasil" (narrar o período anterior à chegada dos portugueses pela visão indígena), que não está na questão; o print traz só o quadro de Oscar Pereira da Silva. Sem fonte conferida sobre o livro, não há como fundamentar a B nem as eliminações. |
 | Pb3cb3211 | UPE 2025 SSA3 · questão 16 | P03.3 charge, tirinha, cartaz e infográfico (tema P03 Gêneros e tipos textuais) | A questão pede a capa que antecipa "mais elementos do enredo" de Torto Arado. Decidir entre as capas exige conhecer o enredo do romance (o que cada objeto e cena das capas representa na história), que não está na questão. Sem fonte conferida sobre o livro, não há como fundamentar a E nem as eliminações. |
