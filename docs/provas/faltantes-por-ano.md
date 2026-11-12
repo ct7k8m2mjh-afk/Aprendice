@@ -146,9 +146,9 @@ já publicado — integrada.
 |---|---|---|
 | Unicamp | 2020 | Link do Brasil Escola quebrado (404). Robots.txt da Comvest proíbe acesso automático: baixar à mão (1ª fase 2020, prova Q, e o gabarito). |
 | UERJ | 2020, 2024 | 2020: os dois links (Exames de Qualificação e Discursivo) quebrados. 2024: o pacote só traz o 1º Exame de Qualificação com gabarito **preliminar**; falta o gabarito definitivo do 1º EQ e o 2º EQ inteiro (caderno + gabarito). |
-| Santa Casa (FCMSCSP) | 2020, 2024, 2026 | 2020: link quebrado. 2024 e 2026: não estão nos links; Vunesp bloqueia acesso automático. 2023 e 2025 entraram em 12/11/2026 (`santacasa-2023`, `santacasa-2025`, Drive do dono + gabarito oficial na cópia do Curso Objetivo). Em 2021, a prova dos demais cursos veio só com o gabarito (sem caderno). |
+| Santa Casa (FCMSCSP) | — | Todos os anos de 2020 a 2027 no site (Medicina, Conhecimentos Gerais). 2023 e 2025: Drive do dono + gabarito do Objetivo; 2020 (2º dia; 12 e 73 anuladas, pelo gabarito versão 3 do Drive), 2024, 2026 e 2027: cópia do Curso Objetivo (12/11/2026). Em 2021, a prova dos demais cursos veio só com o gabarito (sem caderno). |
 | Einstein | 2020, 2024, 2025, 2026 (e Medicina 2022) | 2020: link quebrado. 2022: só a Enfermagem 2022/2 nos links (falta a Prova I de Medicina/2022). 2024–2026: não estão nos links. |
-| Famema | 2020, 2021, 2022, 2023, 2024, 2025, 2026 | 2020: link quebrado. 2021: o pacote traz o gabarito da Prova II (objetiva), mas o caderno é o da Prova I (discursiva) — falta o caderno da Prova II. 2022: só gabarito **preliminar**. 2023–2026: não estão nos links. |
+| Famema | 2022, 2023 | 2020, 2021, 2024, 2025 e 2026 entraram em 12/11/2026 (Prova II, cópia do Curso Objetivo; 2024 sem as anuladas 15 e 16). 2022: banca FGV, só gabarito **preliminar** (vai pela regra do gabarito do Aprendice). 2023: o Objetivo só tem a resolução, sem o caderno da Prova II; no Drive do dono há só o gabarito versão 1. |
 | FMJ | 2020, 2023, 2024, 2025, 2026 | 2020: link quebrado. 2023–2026: não estão nos links. |
 | São Camilo | 2020, 2023, 2025, 2026 (e 1º semestre de 2021 e 2022) | 2020: link quebrado. Os links só têm o 2º semestre de 2021 e 2022; 2024/2 já estava no site. |
 | Anhembi Morumbi | 2020, 2021, 2023, 2024, 2025, 2026 | 2020: link quebrado. Os links só têm a Medicina 2022. |

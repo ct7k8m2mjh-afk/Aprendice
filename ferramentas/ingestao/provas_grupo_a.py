@@ -398,3 +398,8 @@ PROVAS.update(_santacasa)
 # ------------------------------------------- Drive do dono, 2º lote (São Camilo 2025/1 e 2025/2), 12/11/2026
 from provas_drive2 import PROVAS as _drive2  # noqa: E402
 PROVAS.update(_drive2)
+
+
+# ------------------------------------------- provas da Vunesp na cópia do Curso Objetivo (12/11/2026)
+from provas_objetivo import PROVAS as _objetivo  # noqa: E402
+PROVAS.update(_objetivo)

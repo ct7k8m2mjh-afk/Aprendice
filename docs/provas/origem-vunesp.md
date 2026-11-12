@@ -55,6 +55,22 @@ comentada do Curso Objetivo); **cópia de portal** = PDF oficial hospedado por p
 | Famerp 2025, Conhecimentos Gerais (`famerp-2025`) | 2025 | …/famerp/2025/1dia/famerp2025_1dia_prova.pdf | …/famerp/2025/1dia/famerp2025_1dia_gabarito.pdf (oficial, FMRP2401) | cópia de cursinho (Objetivo) |
 | Famerp 2026, Conhecimentos Gerais (`famerp-2026`) | 2026 | …/famerp/2026/1dia/famerp2026_1dia_prova.pdf | …/famerp/2026/1dia/famerp2026_1dia_gabarito.pdf (oficial, FMRP2501) | cópia de cursinho (Objetivo) |
 
+## Provas acrescentadas em 12/11/2026 (Santa Casa, Famema, FMJ, Einstein, Unifesp)
+
+Mesma regra de conferência: código do concurso igual no caderno e no gabarito, gabarito "versão 1", ordem das alternativas do caderno igual à da resolução comentada do Objetivo, e as respostas da resolução iguais às do gabarito oficial em todas as questões. Configuração: `ferramentas/ingestao/provas_objetivo.py`.
+
+| Prova (id) | Ano | Onde achou o caderno | Onde achou o gabarito | Tipo de fonte |
+|---|---|---|---|---|
+| Santa Casa 2020, Conhecimentos Gerais, 2º dia (`santacasa-2020`) | 2020 | …/santacasa/2020/2dia/santacasa2020_2dia_prova.pdf | …/santacasa/2020/2dia/santacasa2020_2dia_gabarito.pdf (oficial, FAVC1902, versão 1); anuladas 12 e 73 pelo gabarito versão 3 do Drive do dono | cópia de cursinho (Objetivo) |
+| Santa Casa 2024, Conhecimentos Gerais (`santacasa-2024`) | 2024 | …/santacasa/2024/1dia/santacasa2024_1dia_prova.pdf | …/santacasa/2024/1dia/santacasa2024_gabarito.pdf (oficial, FAVC2301) | cópia de cursinho (Objetivo) |
+| Santa Casa 2026, Conhecimentos Gerais (`santacasa-2026`) | 2026 | …/santacasa/2026/1dia/santacasa2026_1dia_prova.pdf | …/santacasa/2026/1dia/santacasa2026_gabarito.pdf (oficial, FAVC2501) | cópia de cursinho (Objetivo) |
+| Santa Casa 2027, Conhecimentos Gerais (`santacasa-2027`) | 2027 | …/santacasa/2027/1dia/santacasa2027_1dia_prova.pdf | …/santacasa/2027/1dia/santacasa2027_gabarito.pdf (oficial, FAVC2601) | cópia de cursinho (Objetivo) |
+| Famema 2020, Prova II (`famema-2020`) | 2020 | …/famema/2020/famema2020_prova.pdf (pp. 13–23) | …/famema/2020/famema2020_gabarito.pdf (oficial, FMMA1903) | cópia de cursinho (Objetivo) |
+| Famema 2021, Prova II (`famema-2021`) | 2021 | …/famema/2021/famema2021_prova.pdf (pp. 13–25) | …/famema/2021/famema2021_gabarito.pdf (oficial, FMMA2001) | cópia de cursinho (Objetivo) |
+| Famema 2024, Prova II (`famema-2024`) | 2024 | …/famema/2024/famema2024_prova.pdf (pp. 25–37) | …/famema/2024/famema2024_gabarito.pdf (oficial, FMMA2301; q15 e q16 anuladas depois — confirmado pelo gabarito versão 4 do Drive do dono) | cópia de cursinho (Objetivo) |
+| Famema 2025, Prova II (`famema-2025`) | 2025 | …/famema/2025/famema2025_prova.pdf (pp. 13–25) | …/famema/2025/famema2025_gabarito.pdf (oficial, FMMA2401) | cópia de cursinho (Objetivo) |
+| Famema 2026, Prova II (`famema-2026`) | 2026 | …/famema/2026/famema2026_prova.pdf (pp. 13–25) | …/famema/2026/famema2026_gabarito.pdf (oficial, FMMA2501) | cópia de cursinho (Objetivo) |
+
 "…" = `https://www.curso-objetivo.br/vestibular/resolucao-comentada`. As páginas do Objetivo carregam a lista de
 arquivos por um serviço público do próprio site (`sistemas.objetivo.br/ResolucaoComentadaApi/templates/prova/<n>`),
 o mesmo que o navegador usa ao abrir a página.
