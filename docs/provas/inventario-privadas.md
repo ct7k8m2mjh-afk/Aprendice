@@ -549,21 +549,21 @@ Nenhuma prova oficial publicada.
 - **Banca:** Vunesp
 - **Formato:** Conhecimentos Gerais: objetivas de 5 alternativas (80 no catálogo); Conhecimentos Específicos: 20 dissertativas + redação
 - **Página oficial:** https://fcmsantacasasp.edu.br/vemprasanta/
-- **Observação:** A faculdade não publica cadernos de Medicina no próprio site (só gabaritos de outros cursos). Vunesp bloqueia acesso automático (Akamai 403 em vunesp.com.br e documento.vunesp.com.br): baixar à mão na página do concurso. Cópias existem em cursinhos (ex.: Estratégia Vestibulares) - não usadas.
+- **Observação:** A faculdade não publica cadernos de Medicina no próprio site (só gabaritos de outros cursos). Vunesp bloqueia acesso automático (Akamai 403 em vunesp.com.br e documento.vunesp.com.br): baixar à mão na página do concurso. Cópias existem em cursinhos: o Estratégia Vestibulares não foi usado (robots.txt proíbe PDF); 2023 e 2025 entraram com o gabarito oficial (e o caderno de 2025, versão 1) da cópia do Curso Objetivo (12/11/2026).
 
 | Ano | Edição | Conf. | Livre | Já no site | Caderno | Gabarito |
 |---|---|---|---|---|---|---|
 | 2027 | Vestibular Santa Casa 2027 (26-27/09/2026) | — | não |  | — | — |
 | 2026 | Vestibular Santa Casa 2026 (18-19/10/2025) | — | não |  | — | — |
-| 2025 | Vestibular Santa Casa 2025 (28-29/09/2024) | — | não |  | — | — |
+| 2025 | Vestibular Santa Casa 2025 (28-29/09/2024) | — | não | santacasa-2025 | Objetivo (versão 1) | Objetivo |
 | 2024 | Vestibular Santa Casa 2024 | — | não |  | — | — |
-| 2023 | Vestibular Santa Casa 2023 | — | não |  | — | — |
+| 2023 | Vestibular Santa Casa 2023 | — | não | santacasa-2023 | Drive do dono | Objetivo |
 
 - 2027, Vestibular Santa Casa 2027 (26-27/09/2026): Página Vunesp: https://www.vunesp.com.br/FAVC2601 Baixar à mão.
 - 2026, Vestibular Santa Casa 2026 (18-19/10/2025): Página Vunesp: https://www.vunesp.com.br/FAVC2501 Baixar à mão.
-- 2025, Vestibular Santa Casa 2025 (28-29/09/2024): Página Vunesp: https://www.vunesp.com.br/favc2401 Baixar à mão.
+- 2025, Vestibular Santa Casa 2025 (28-29/09/2024): Já no site (santacasa-2025, 1º dia), caderno e gabarito oficiais versão 1 da cópia do Curso Objetivo; o caderno do Drive do dono (12/11/2026) é de outra versão. Página Vunesp: https://www.vunesp.com.br/favc2401
 - 2024, Vestibular Santa Casa 2024: Página Vunesp: https://www.vunesp.com.br/FAVC2301 Baixar à mão.
-- 2023, Vestibular Santa Casa 2023: Página Vunesp: https://www.vunesp.com.br/FAVC2201 Baixar à mão.
+- 2023, Vestibular Santa Casa 2023: Já no site (santacasa-2023, 1º dia), caderno do Drive do dono (12/11/2026) e gabarito oficial versão 1 da cópia do Curso Objetivo. Página Vunesp: https://www.vunesp.com.br/FAVC2201
 
 ### São Camilo (SP)
 

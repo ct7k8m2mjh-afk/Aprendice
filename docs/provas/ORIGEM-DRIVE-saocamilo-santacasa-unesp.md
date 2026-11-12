@@ -35,4 +35,18 @@ Pasta `1rbhYsmypdOrgpGG35_t02JCZbc2YoWHe` (dono do Drive: o dono do produto). Ba
 - Os zips de 2023 e 2025 só cobrem esses anos; para os demais, `docs/provas/baixar-a-mao.md`.
 
 ## Santa Casa
-- **Não há PDF de prova da Santa Casa no Drive.** Só: pasta "30 - Dossie das Bancas - 02 Santa Casa" `1xbwLrs4xz0vxhYir2eQNCq5MuM933oJT` e "Santa Casa - o que mais cai" `1lwxN_C4nr4JCu16m9A0VcNyLCTE3iMzN` (raio-x), e o doc `santacasa-raio-x-2021-2026.md` no Project ESTUDOS. As provas da Santa Casa precisam ser enviadas pelo dono ou baixadas da Vunesp (bloqueia acesso automático: baixar à mão).
+- Raio-x (não são provas): pasta "30 - Dossie das Bancas - 02 Santa Casa" `1xbwLrs4xz0vxhYir2eQNCq5MuM933oJT`, "Santa Casa - o que mais cai" `1lwxN_C4nr4JCu16m9A0VcNyLCTE3iMzN` e o doc `santacasa-raio-x-2021-2026.md` no Project ESTUDOS.
+
+### Provas que o dono pôs no Drive (12/11/2026)
+Baixados pelo Drive conectado em 12/11/2026 e guardados em `fontes/provas-manuais/santacasa/<nome do arquivo>/arquivo.pdf` (fora do git). Configuração: `ferramentas/ingestao/provas_santacasa.py`. Os dois são o caderno do **1º dia** (001. Prova de Conhecimentos Gerais, Medicina, 80 objetivas), **sem gabarito** no PDF.
+
+| Arquivo no Drive | id | O que é | Uso |
+|---|---|---|---|
+| `694557715-Santacasa2023-1dia-Prova.pdf` | `1BI6NA0A_7LX-Bb38i8ii9pRw3JfOfY-_` | Caderno do Vestibular 1º semestre de **2023** (FAVC2201, 22/10/2022), 80 objetivas. É a cópia do Curso Objetivo (autor "Curso Objetivo" nos metadados; mesmo md5 do PDF da página do Objetivo) | `santacasa-2023` |
+| `994771379-StaCasa2025-Testes.pdf` | `1mpRGvhnBzG8hK8sk0c3t8YBuo6nck2cY` | Caderno do Vestibular 1º semestre de **2025** (FAVC2401, 28/09/2024), 80 objetivas, de **outra versão** (mesmas questões, alternativas em outra ordem: q1 (A) "volúvel", na versão 1 é "distraído") | não usado: o gabarito publicado é o da versão 1 |
+
+Gabarito e caderno da versão 1 (não estão no Drive), da página de resolução comentada do Curso Objetivo (sem robots.txt; mesmo caminho das demais Vunesp em `docs/provas/origem-vunesp.md`), em 12/11/2026:
+- 2023: gabarito oficial Vunesp FAVC2201, versão 1 — `https://www.curso-objetivo.br/vestibular/resolucao-comentada/santacasa/2023/1dia/santacasa2023_gabarito.pdf`
+- 2025: caderno oficial versão 1 — `…/santacasa/2025/1dia/santacasa2025_1dia_prova.pdf`; gabarito oficial FAVC2401, versão 1 — `…/santacasa/2025/1dia/santacasa2025_gabarito.pdf`
+- Conferência: as 80 respostas da resolução comentada do Objetivo (`santacasa2023_1dia.pdf`, `santacasa2025_1dia.pdf`) batem com o gabarito oficial nas duas provas, e a resolução não aponta anulada nem troca de gabarito. As alternativas (A) do caderno versão 1 de 2025 batem com as da resolução (78 de 80; as 2 restantes só diferem na formatação); as do caderno do Drive, só 10 de 80.
+- Não há anuladas. O 2º dia (discursivas e redação) fica fora.

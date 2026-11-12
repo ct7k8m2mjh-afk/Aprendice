@@ -388,3 +388,8 @@ PROVAS['anhembi-2022']['selo_dx'] = 12        # círculo azul a ~10 pt à esquer
 # ------------------------------------------- São Camilo do Drive do dono (2020/1, 2023/1, 2023/2), 11/11/2026
 from provas_saocamilo import PROVAS as _saocamilo  # noqa: E402
 PROVAS.update(_saocamilo)
+
+
+# ------------------------------------------- Santa Casa do Drive do dono (2023, 2025), 12/11/2026
+from provas_santacasa import PROVAS as _santacasa  # noqa: E402
+PROVAS.update(_santacasa)

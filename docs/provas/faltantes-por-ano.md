@@ -29,7 +29,7 @@ Todas classificadas (matéria, tema, conteúdo, nível) e conferidas por folha d
 | Prova (id) | Questões (todas sem gabarito, com preliminar) | Observação |
 |---|---|---|
 | UFT 2023/2 (`uft-2023-2`) | 76 | Só o gabarito provisório da Copese; definitivo não localizado. |
-| UFT 2024/2 (`uft-2024-2`) | 74 de 76 | 39 e 40 da tarde (aqui 71, 72) anuladas no definitivo, segundo notícia; o PDF do definitivo só em servidor que proíbe robôs. |
+| UFT 2024/2 (`uft-2024-2`) | 74 de 76 | Resolvido em 12/11/2026: gabarito definitivo oficial achado (docs.uft.edu.br/s/jfgYJWwVR3Os4kALusUSog, link da página oficial) e aplicado; anuladas são 29 e 30 da tarde (aqui 61, 62), não 39 e 40 como dizia a notícia; 71 e 72 voltaram. Ver `gabaritos-corrigidos.md`. |
 | UFRR 2024, 2025, 2026 (`ufrr-2024`…`-2026`) | 72 cada | Definitivo publicado (Editais 97/24 e 93/25) em editais.ufrr.br, que não responde daqui; anulações do oficial não conferidas. |
 | IME 2023/2024 e 2024/2025 (`ime-2024`, `ime-2025`) | 40 cada | Site do IME com cadeia TLS incompleta; cópia do definitivo só em servidor que proíbe robôs. |
 | UECE 2025.2 – 1ª fase (`uece-2025-2`) | 82 de 85 | Preliminar + pareceres (Comunicado 81/2025: 22, 55, 82 anuladas, nenhuma letra alterada). |
@@ -146,7 +146,7 @@ já publicado — integrada.
 |---|---|---|
 | Unicamp | 2020 | Link do Brasil Escola quebrado (404). Robots.txt da Comvest proíbe acesso automático: baixar à mão (1ª fase 2020, prova Q, e o gabarito). |
 | UERJ | 2020, 2024 | 2020: os dois links (Exames de Qualificação e Discursivo) quebrados. 2024: o pacote só traz o 1º Exame de Qualificação com gabarito **preliminar**; falta o gabarito definitivo do 1º EQ e o 2º EQ inteiro (caderno + gabarito). |
-| Santa Casa (FCMSCSP) | 2020, 2023, 2024, 2025, 2026 | 2020: link quebrado. 2023–2026: não estão nos links; Vunesp bloqueia acesso automático. Em 2021, a prova dos demais cursos veio só com o gabarito (sem caderno). |
+| Santa Casa (FCMSCSP) | 2020, 2024, 2026 | 2020: link quebrado. 2024 e 2026: não estão nos links; Vunesp bloqueia acesso automático. 2023 e 2025 entraram em 12/11/2026 (`santacasa-2023`, `santacasa-2025`, Drive do dono + gabarito oficial na cópia do Curso Objetivo). Em 2021, a prova dos demais cursos veio só com o gabarito (sem caderno). |
 | Einstein | 2020, 2024, 2025, 2026 (e Medicina 2022) | 2020: link quebrado. 2022: só a Enfermagem 2022/2 nos links (falta a Prova I de Medicina/2022). 2024–2026: não estão nos links. |
 | Famema | 2020, 2021, 2022, 2023, 2024, 2025, 2026 | 2020: link quebrado. 2021: o pacote traz o gabarito da Prova II (objetiva), mas o caderno é o da Prova I (discursiva) — falta o caderno da Prova II. 2022: só gabarito **preliminar**. 2023–2026: não estão nos links. |
 | FMJ | 2020, 2023, 2024, 2025, 2026 | 2020: link quebrado. 2023–2026: não estão nos links. |
