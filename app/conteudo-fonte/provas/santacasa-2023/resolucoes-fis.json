@@ -591,5 +591,116 @@
    "data": "2026-11-12",
    "lote": "fis-0020"
   }
+ },
+ "P04ec80a5": {
+  "n": "66",
+  "conceito": "Tempo de aquecimento: calor sensível da água dividido pela potência do aquecedor, com conversão de segundo para minuto.",
+  "equivocos": {
+   "A": "F08.3:tempo-sem-teste-de-energia",
+   "B": "F08.3:tempo-sem-teste-de-energia",
+   "C": "F08.3:esqueceu-a-variacao-de-temperatura",
+   "D": "F08.3:tempo-sem-teste-de-energia"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Todo o calor do aquecedor vai para a água: P × Δt = m × c × ΔT. A massa sai do volume pela densidade (1 kg por litro). A conta dá o tempo em segundos, e as alternativas estão em minutos.",
+    "formulas": [
+     "P × Δt = m × c × ΔT",
+     "m = densidade × volume",
+     "1 min = 60 s"
+    ],
+    "simbolos": [
+     [
+      "P",
+      "potência do aquecedor: joules por segundo (W)"
+     ],
+     [
+      "c",
+      "calor específico da água"
+     ],
+     [
+      "ΔT",
+      "variação de temperatura"
+     ]
+    ]
+   },
+   "pista": "Transforme os 36 litros em massa e calcule a energia para subir 2,0 °C.",
+   "passos": [
+    {
+     "faz": "Calcule a massa de água",
+     "conta": "m = 1,0 kg/L × 36 L = 36 kg",
+     "porque": "Densidade de 1,0 kg/L: cada litro tem 1 kg.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o calor necessário",
+     "conta": "Q = 36 × 4200 × 2,0 = 302400 J",
+     "porque": "Calor sensível para elevar 36 kg de água em 2,0 °C.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida pela potência",
+     "conta": "Δt = 302400/42 = 7200 s",
+     "porque": "42 W são 42 J a cada segundo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Converta para minutos",
+     "conta": "7200/60 = 120 min",
+     "porque": "As alternativas estão em minutos.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 120 min.",
+   "checagem": "Por grau: 36 kg de água pedem 36 × 4200 = 151200 J por °C; a 42 J/s, isso leva 3600 s = 1 h por grau. Dois graus: 2 h = 120 min.",
+   "erradas": {
+    "A": "30 min não confere: 42 W × 1800 s = 75600 J, que aquecem os 36 kg em só 0,5 °C.",
+    "B": "90 min não confere: 42 W × 5400 s = 226800 J, que aquecem os 36 kg em 1,5 °C, não 2,0 °C.",
+    "C": "Sai de esquecer o fator 2,0 °C: 36 × 4200 × 1/42 = 3600 s = 60 min, que é o tempo de subir 1 °C.",
+    "D": "75 min não confere: 42 W × 4500 s = 189000 J, que aquecem os 36 kg em 1,25 °C, não 2,0 °C."
+   },
+   "armadilha": "Esquecer a variação de 2,0 °C ou deixar o tempo em segundos.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O tempo para um aquecedor de 42 W elevar 36 L de água em 2,0 °C.",
+    "chave": "Q = 36 × 4200 × 2 = 302400 J; Δt = 302400/42 = 7200 s = 120 min.",
+    "cuidado": "Volume vira massa pela densidade e segundos viram minutos no fim."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "por grau",
+    "ideia": "36 × 4200/42 = 3600 s = 1 h por °C; 2 °C → 2 h = 120 min."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "m = 1,0 × 36 = 36 kg",
+    "nota": "densidade × volume"
+   },
+   {
+    "linha": "Q = 36 × 4200 × 2,0 = 302400 J",
+    "nota": "calor sensível"
+   },
+   {
+    "linha": "Δt = 302400/42 = 7200 s",
+    "nota": "÷ potência"
+   },
+   {
+    "linha": "7200/60 = 120 min",
+    "nota": "em minutos"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "fis-0023"
+  }
  }
 }
