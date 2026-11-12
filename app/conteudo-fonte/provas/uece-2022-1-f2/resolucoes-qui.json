@@ -820,5 +820,133 @@
    "data": "2026-11-12",
    "lote": "qui-0022"
   }
+ },
+ "Pb11cd9e6": {
+  "n": "118",
+  "conceito": "Calcular a energia livre de Gibbs com ΔH e ΔS dados e decidir a espontaneidade.",
+  "equivocos": {
+   "A": "Q07.1:somou-tds-em-vez-de-subtrair",
+   "C": "Q07.1:trocou-os-sinais",
+   "D": "Q07.1:inverteu-a-ordem-da-subtracao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A espontaneidade a temperatura e pressão constantes é decidida pelo sinal de ΔG = ΔH − TΔS. O trabalho real da questão está nas unidades: o ΔH vem em kcal, o ΔS em cal, e a temperatura em grau Celsius. Passe tudo para kcal e kelvin antes de calcular.",
+    "formulas": [
+     "ΔG = ΔH − T·ΔS",
+     "T (K) = t (°C) + 273",
+     "ΔG < 0: espontânea; ΔG > 0: não espontânea",
+     "1 kcal = 1000 cal"
+    ],
+    "simbolos": [
+     [
+      "ΔG",
+      "variação de energia livre de Gibbs"
+     ],
+     [
+      "ΔH",
+      "variação de entalpia: o calor trocado"
+     ],
+     [
+      "ΔS",
+      "variação de entropia: a variação de desordem"
+     ],
+     [
+      "T",
+      "temperatura em kelvin"
+     ],
+     [
+      "kcal",
+      "quilocaloria, 1000 calorias"
+     ]
+    ]
+   },
+   "pista": "Antes de substituir, deixe ΔH e ΔS na mesma unidade de energia e a temperatura em kelvin.",
+   "passos": [
+    {
+     "faz": "Converta a temperatura para kelvin",
+     "conta": "27 + 273 = 300 K",
+     "porque": "A fórmula de Gibbs usa temperatura absoluta; com 27 o resultado sai errado.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Converta o ΔS para kcal",
+     "conta": "ΔS = −23,52 cal/(mol·K) = −0,02352 kcal/(mol·K)",
+     "porque": "O ΔH está em kcal; somar kcal com cal é somar grandezas em escalas diferentes.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o termo TΔS",
+     "conta": "300 × (−0,02352) = −7,056 kcal",
+     "porque": "É a contribuição da entropia; aqui negativa, porque a reação diminui o número de mols de gás (2 → 1).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Aplique a equação de Gibbs",
+     "conta": "ΔG = −11,04 − (−7,056) = −11,04 + 7,056 ≈ −3,98 kcal",
+     "porque": "Subtrair um número negativo vira soma: o sinal duplo é onde mais se erra.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Decida a espontaneidade e a letra",
+     "conta": "ΔG ≈ −3,98 kcal < 0 → espontânea → B",
+     "porque": "ΔG negativo indica processo espontâneo nessas condições.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — ΔG ≈ −3,98 kcal, e a reação é espontânea.",
+   "checagem": "Refaça em cal, sem converter o ΔS: ΔH = −11040 cal; ΔG = −11040 − 300 × (−23,52) = −11040 + 7056 = −3984 cal ≈ −3,98 kcal. Mesmo valor.",
+   "erradas": {
+    "A": "Sai de somar em vez de subtrair o termo de entropia: −11,04 + (−7,056) = −18,096, que a banca apresenta como −18,09 kcal. O sinal de menos da fórmula foi esquecido.",
+    "C": "Sai de trocar os dois sinais: 11,04 + 7,056 ≈ +18,09. Nenhum dos dois termos foi usado com o sinal certo.",
+    "D": "Sai de fazer TΔS − ΔH: −7,056 + 11,04 ≈ +3,98. É o valor certo com o sinal invertido."
+   },
+   "armadilha": "O sinal duplo em −(−7,056): quem não transforma em soma chega a −18,09.",
+   "alerta": "O enunciado escreve \"Fritz Harber\"; o nome do químico é Fritz Haber. Não muda a questão.",
+   "essencial": {
+    "pede": "O ΔG da síntese da amônia a 27 °C e se ela é espontânea.",
+    "chave": "ΔG = ΔH − TΔS com T = 300 K e ΔS em kcal: −11,04 + 7,056 ≈ −3,98 kcal.",
+    "cuidado": "Converta cal para kcal e °C para K; cuide do menos com menos."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "eliminação por sinal",
+    "ideia": "ΔH < 0 e ΔS < 0: a 300 K o termo −TΔS (+7 kcal) não vence os −11 kcal; o ΔG é negativo e menor que 11 em módulo, o que só a B tem."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "T = 27 + 273 = 300 K",
+    "nota": "temperatura absoluta"
+   },
+   {
+    "linha": "ΔS = −23,52 cal = −0,02352 kcal",
+    "nota": "mesma unidade do ΔH"
+   },
+   {
+    "linha": "TΔS = 300 × (−0,02352) = −7,056",
+    "nota": "kcal"
+   },
+   {
+    "linha": "ΔG = −11,04 − (−7,056)",
+    "nota": "fórmula de Gibbs"
+   },
+   {
+    "linha": "ΔG = −11,04 + 7,056 ≈ −3,98",
+    "nota": "kcal: espontânea"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "qui-0023"
+  }
  }
 }
