@@ -34,7 +34,7 @@ Faltam 1931 questões sem resolução (fora as que estão em lote, pendentes ou 
 | fis-0026 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | fis-0027 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | fis-0028 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
-| fis-0029 | provas-alvo nível 1-6 | 30 | aberto |  |  |  |
+| fis-0029 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 
 ## Pendentes (falta de certeza absoluta)
 
