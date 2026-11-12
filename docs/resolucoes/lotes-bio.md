@@ -1,6 +1,6 @@
 # Biologia: resoluções (gerado por lote.py em 2026-11-12)
 
-Faltam 2225 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 772; demais nível 1-6 1251; ENEM nível 7-10 16; provas-alvo nível 7-10 114; demais nível 7-10 72.
+Faltam 2195 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 742; demais nível 1-6 1251; ENEM nível 7-10 16; provas-alvo nível 7-10 114; demais nível 7-10 72.
 
 ## Lotes
 
@@ -21,11 +21,14 @@ Faltam 2225 questões sem resolução (fora as que estão em lote, pendentes ou 
 | bio-0013 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | bio-0014 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | bio-0015 | provas-alvo nível 1-6 | 30 | gravado | 29 | 1 | 0 |
+| bio-0016 | provas-alvo nível 1-6 | 30 | gravado | 28 | 2 | 0 |
 
 ## Pendentes (falta de certeza absoluta)
 
 | Questão | Prova | Conteúdo | Motivo |
 |---|---|---|---|
+| Pd59592fa | UECE 2023 2023.1 – 1ª fase · questão 65 | B07.4 coração e as duas circulações (tema B07 Fisiologia humana I) | classificação: é de Educação Física (UECE 2023.1, questão 65: nível de atividade física e gasto calórico), não de Biologia. |
+| P98fb7dec | UECE 2024 2024.2 – 1ª fase · questão 65 | B07.4 coração e as duas circulações (tema B07 Fisiologia humana I) | classificação: é de Educação Física (UECE 2024.2, questão 65: conceito de literacia física), não de Biologia. |
 | P56bf6cb4 | UECE 2026 2026.1 – 1ª fase · questão 66 | B07.1 os quatro tecidos fundamentais (tema B07 Fisiologia humana I) | classificação: é de Educação Física (UECE 2026.1, questão 66: princípios do treinamento desportivo), não de Biologia. |
 | Pa1b2ee02 | UEL 2020 1ª fase · questão 20 | B05.3 código genético e tradução (tema B05 Genética molecular) | classificação: é de Matemática (probabilidade e potências: (1/4) elevado a 150 milhões = 2 elevado a −3 × 10^8); o DNA é só o contexto. |
 
