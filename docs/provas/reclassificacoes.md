@@ -20,3 +20,7 @@
 | 2026-11-12 | Pea2576fa | saocamilo-2021-2 q38 | mat M08.2 | mat M12.2 | Altura pelo fêmur modelada por equação de reta (gráfico); não é quadrilátero; apontada pela sessão de Português |
 | 2026-11-12 | P8944ccb0 | uerj-2026-1 q4 | por P06.1 | fis F07.4 | Pergunta a grandeza física da emersão (densidade/empuxo); o texto de apoio é letra de música; apontada pela sessão de Português |
 | 2026-11-12 | Pbdaf3ef9 | unesp-2026-2 q47 | por P05.4 | geo G06.5 | Sotaques explicados pelas matrizes étnicas da formação do povo brasileiro: Geografia da população; apontada pela sessão de Português |
+| 2026-11-12 | P1fc9479e | udesc-2025-1 q93 | geo G02.6 | geo G05.2 | Serras do Mar e Mantiqueira: domínio dos mares de morros; apontada pelo conferente do Fable |
+| 2026-11-12 | P7c84dee0 | saocamilo-2022-2 q16 | geo G05.2 | geo G06.3 | rota da imigração haitiana; apontada pelo conferente do Fable |
+| 2026-11-12 | P6952a942 | saocamilo-2021-2 q22 | bio B09.6 | bio B11.2 | Nuvem de gafanhotos: adaptação e seleção; apontada pelo conferente do Fable |
+| 2026-11-12 | Pd0543346 | uece-2026-1 q56 | bio B04.5 | bio B07.6 | câncer de bexiga: anatomia do sistema urinário; apontada pelo conferente do Fable |
