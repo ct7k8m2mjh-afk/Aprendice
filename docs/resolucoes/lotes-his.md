@@ -52,7 +52,7 @@ Faltam 883 questões sem resolução (fora as que estão em lote, pendentes ou c
 | his-0044 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | his-0045 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | his-0046 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
-| his-0047 | demais nível 1-6 | 30 | aberto |  |  |  |
+| his-0047 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | his-0048 | demais nível 1-6 | 30 | aberto |  |  |  |
 
 ## Pendentes (falta de certeza absoluta)
