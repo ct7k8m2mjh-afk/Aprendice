@@ -528,6 +528,17 @@ def confere(saida):
         for c in ('pista', 'checagem', 'armadilha'):
             if not str(r[c]).strip():
                 erros.append(f'{qid}: {c} vazio')
+        # dono, 12/11/2026: nas animadas, "outro caminho" e lousa da conta deixaram de ser opcionais (aparecem para o aluno)
+        mat_lote = reg['lotes'][lote]['materia']
+        cam = q.get('caminhos')
+        if mat_lote in ANIMADAS and not (isinstance(cam, list) and cam and all(isinstance(c, dict) and str(c.get('nome', '')).strip()
+                                                       and str(c.get('ideia', '')).strip() for c in cam)):
+            erros.append(f'{qid}: caminhos obrigatório: [{{"nome": "...", "ideia": "o outro jeito de resolver, em uma linha"}}]')
+        qd = q.get('quadro')
+        tem_conta = any(re.search(r'\d.*[=≈]|[=≈].*\d', str(p.get('conta', ''))) for p in r.get('passos') or [])
+        if mat_lote in ('mat', 'fis') or (mat_lote == 'qui' and tem_conta):
+            if not (isinstance(qd, list) and qd and all(isinstance(x, dict) and str(x.get('linha', '')).strip() for x in qd)):
+                erros.append(f'{qid}: quadro obrigatório em {mat_lote} com conta: [{{"linha": "a conta como no caderno", "nota": "o que foi feito"}}]')
         eq = q.get('equivocos') if isinstance(q.get('equivocos'), dict) else {}
         if set(eq) != esperadas:
             erros.append(f'{qid}: equivocos deve ter exatamente as letras {sorted(esperadas)}')

@@ -10,8 +10,8 @@ O trabalho de bastidor já está feito. A ferramenta `ferramentas/resolucoes/lot
 
 <divisao>
 Várias sessões resolvem ao mesmo tempo, cada uma com as suas matérias (decisão do dono, 11/11/2026), e nenhuma refaz o que outra já fez:
-- duas sessões do Fable (decisão do dono, 12/11/2026): Química e Biologia; Física e Matemática (paradas sem créditos desde 12/11 15h30 UTC, até o dono repor);
-- uma sessão Opus por matéria de texto: História, Filosofia e Sociologia, Português, Inglês e Geografia (Geografia passou do Fable para o Opus, decisão do dono, 12/11/2026).
+- todas as matérias com sessões Opus (decisão do dono, 12/11/2026: tudo passa do Fable para o Opus): Biologia, Química, Matemática, Física, Geografia, História, Filosofia e Sociologia, Português e Inglês, uma sessão por matéria;
+- lotes abertos pelas sessões antigas do Fable são assumidos com `lote.py proximo <m> --retomar <lote>` (o rascunho delas se perdeu; refaça).
 Direito autoral: nunca reproduza letra de música, poema ou trecho longo de obra protegida na resolução; cite poucas palavras ou descreva. Se a questão só se resolve citando a letra, ela sai com `status: "pendente"` e motivo "direito autoral: letra de música".
 Use sempre `lote.py proximo <sua matéria>`. A ferramenta grava cada matéria no seu próprio arquivo (provas/<prova>/resolucoes-<m>.json) e no seu próprio registro (docs/resolucoes/registro-<m>.json), então as sessões não entram em conflito no git. As resoluções já gravadas e as pendências de pendentes.md continuam valendo: a ferramenta não as repete.
 </divisao>
@@ -87,7 +87,7 @@ Comece com `cd app && python3 scripts/converte.py && cd ..` (uma vez por sessão
  {"id": "...", "status": "divergencia", "motivo": "a letra a que o raciocínio chega e por quê"}
 ]}
 ```
-`erradas` e `equivocos` têm exatamente as letras que não são o gabarito (`equivocos`: código do equívoco de cada errada, `<conteúdo>:<equivoco-com-hifen>`, pilar 4 de docs/estrategia-revisao.md). Nas animadas, `visual` (`{"cabe", "tipo", "porque", "roteiro"}`) e `quadro` continuam opcionais, como nos lotes 01 a 03. De 3 a 6 passos, o último `concluir`. Fonte consultada na web vai em `"fontes": [{"nome": "...", "url": "..."}]` na questão. Questão sem gabarito publicado leva também `"gabarito_aprendice": {"letra": "C", "letra_conferente": "C", "fontes_web": [{"url": "...", "letra": "C"}]}` (passo 1b).
+`erradas` e `equivocos` têm exatamente as letras que não são o gabarito (`equivocos`: código do equívoco de cada errada, `<conteúdo>:<equivoco-com-hifen>`, pilar 4 de docs/estrategia-revisao.md). Nas animadas (decisão do dono, 12/11/2026), `caminhos` é OBRIGATÓRIO (o outro jeito de resolver, em uma linha; o aluno vê) e `quadro` é OBRIGATÓRIO em Matemática, Física e nas de Química com conta: a conta como no caderno, linha por linha, cada linha com `nota` curta do que foi feito (é a lousa animada que o aluno vê); o lote.py recusa sem eles. `visual` continua opcional. De 3 a 6 passos, o último `concluir`. Fonte consultada na web vai em `"fontes": [{"nome": "...", "url": "..."}]` na questão. Questão sem gabarito publicado leva também `"gabarito_aprendice": {"letra": "C", "letra_conferente": "C", "fontes_web": [{"url": "...", "letra": "C"}]}` (passo 1b).
 </formato_da_saida>
 
 <limites>
