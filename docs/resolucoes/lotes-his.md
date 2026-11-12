@@ -1,6 +1,6 @@
 # História: resoluções (gerado por lote.py em 2026-11-12)
 
-Faltam 1093 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 920; ENEM nível 7-10 17; provas-alvo nível 7-10 98; demais nível 7-10 58.
+Faltam 1063 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 890; ENEM nível 7-10 17; provas-alvo nível 7-10 98; demais nível 7-10 58.
 
 ## Lotes
 
@@ -47,6 +47,7 @@ Faltam 1093 questões sem resolução (fora as que estão em lote, pendentes ou 
 | his-0039 | provas-alvo nível 1-6 | 30 | gravado | 29 | 0 | 1 |
 | his-0040 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | his-0041 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| his-0042 | demais nível 1-6 | 30 | gravado | 29 | 0 | 1 |
 
 ## Pendentes (falta de certeza absoluta)
 
@@ -67,4 +68,5 @@ Faltam 1093 questões sem resolução (fora as que estão em lote, pendentes ou 
 |---|---|---|---|
 | Pada9ad18 | UDESC 2025 Verão 2025.1 · questão 87 | H08.8 mundo atual: Oriente Médio, terrorismo e conflitos recentes (tema H08 Guerra Fria) | divergência: o gabarito oficial é C (Revolução Cubana), mas a D também parece verdadeira — as Forças Armadas da Ucrânia têm dezenas de milhares de mulheres, inclusive na linha de frente, como atiradoras de elite, médicas e militares de aviação, e algumas em altos postos (por exemplo, a major-general Tetiana Ostashchenko, que comandou as Forças Médicas a partir de 2023). Com duas alternativas corretas, a questão é ambígua. O conferente avaliou que a D pode cair pelo comando ("movimentos revolucionários e insurgentes", e a D trata de forças armadas regulares), mas não conseguiu sustentar que ela seja falsa; na dúvida, fica fora do ar até decisão do dono. |
 | P878de6df | UECE 2025 2025.2 – 1ª fase · questão 30 | H05.10 abertura, Diretas Já e Constituição de 1988 (tema H05 República Brasileira) | divergência no gabarito do Aprendice: gabarito preliminar B; conferente às cegas B, com ressalva; resolvente: nenhuma alternativa correta. A B diz que os movimentos "só puderam se desenvolver e lutar por seus objetivos após o fim do período da Ditadura Militar", mas o próprio enunciado data a CUT em 1983 e o MST em 1984, antes de 1985. A, C e D são falsas. Fonte web: gabarito preliminar UECE 2025.2 (https://comentario.fariasbrito.com.br/upload/files/1745781290.325288884.pdf), q30 = B. |
+| Pe49c4e55 | UEG 2025 2025/2 · questão 40 | H01.8 Império Romano, cristianismo e crise (tema H01 Antiguidade) | divergência: o gabarito oficial é E, mas a E afirma que a Igreja "foi oficialmente criada pelo Império Romano" no Concílio de Niceia (325), o que é falso: as comunidades cristãs já existiam havia quase três séculos, Niceia foi um concílio convocado por Constantino para debater a doutrina, e o cristianismo só virou religião oficial com o Edito de Tessalônica (380). As outras alternativas também são falsas (A, B e C contradizem os textos ou os fatos; a D contradiz o texto 1, que diz que a divindade de Jesus foi um "processo"). Nenhuma alternativa está correta. |
 | P70be0644 | UFPR 2020 1ª fase · questão 19 | H08.1 origens e blocos da Guerra Fria (tema H08 Guerra Fria) | divergência: a alternativa oficial (A) afirma que "Índia, Egito e África do Sul permaneceram neutros durante a Guerra Fria, não se alinhando ao sistema bipolar". Índia e Egito lideraram o Movimento dos Não Alinhados, mas a África do Sul do apartheid foi alinhada ao bloco ocidental e não integrou esse movimento até 1994. As demais alternativas são claramente falsas (o tratado de não proliferação é de 1968; o macarthismo não acabou com as hostilidades; Stálin morreu em 1953, mas a bipolaridade continuou e a Liga das Nações é de 1919), de modo que a A é a menos errada, porém contém um erro factual. |
