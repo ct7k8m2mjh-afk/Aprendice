@@ -1,6 +1,6 @@
 # História: resoluções (gerado por lote.py em 2026-11-12)
 
-Faltam 45 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 0; ENEM nível 7-10 0; provas-alvo nível 7-10 0; demais nível 7-10 45.
+Faltam 0 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 0; ENEM nível 7-10 0; provas-alvo nível 7-10 0; demais nível 7-10 0.
 
 ## Lotes
 
@@ -87,6 +87,8 @@ Faltam 45 questões sem resolução (fora as que estão em lote, pendentes ou co
 | his-0079 | provas-alvo nível 7-10 | 30 | gravado | 30 | 0 | 0 |
 | his-0080 | provas-alvo nível 7-10 | 30 | gravado | 28 | 2 | 0 |
 | his-0081 | provas-alvo nível 7-10 | 30 | gravado | 30 | 0 | 0 |
+| his-0082 | demais nível 7-10 | 30 | gravado | 26 | 2 | 2 |
+| his-0083 | demais nível 7-10 | 15 | aberto |  |  |  |
 
 ## Pendentes (falta de certeza absoluta)
 
@@ -104,8 +106,10 @@ Faltam 45 questões sem resolução (fora as que estão em lote, pendentes ou co
 | P916264a9 | Fuvest 2026 1ª fase · questão 9 | H04.9 crise do Império e proclamação da República (tema H04 Independência e Império) | classificação: é de Filosofia e Sociologia (a questão compara as ideias de Nísia Floresta e Émile Durkheim sobre a educação; é de Sociologia, e não de História do Brasil) |
 | P5615270b | PUC-Rio 2026 Grupo 4 · questão 45 | H05.7 República de 1946: de Dutra a Jango (tema H05 República Brasileira) | classificação: é de Geografia |
 | P881983dc | UECE 2020 2020.2 – 2ª fase · questão 151 | H02.4 reinos e impérios africanos (tema H02 Idade Média) | As afirmativas sobre o reino Bamun (islamização como resistência ao avanço cristão, diplomacia que teria evitado o domínio britânico sob o rei Njoya, introdução de tecnologia e indústria) não são conferíveis com certeza em conhecimento consolidado de livro didático, e a segunda parece não combinar com o domínio alemão e depois francês sobre Bamun. Sem certeza absoluta, a resolução não entra. |
+| P71e0926d | UEG 2025 Medicina 2025/2 · questão 17 | H05.8 ditadura militar: repressão, AI-5 e milagre econômico (tema H05 República Brasileira) | classificação: é de Sociologia (artes e autodeterminação das identidades indígenas, sem processo histórico central) |
 | P4cdceafd | UEG 2026 Medicina 2026/1 · questão 42 | H08.8 mundo atual: Oriente Médio, terrorismo e conflitos recentes (tema H08 Guerra Fria) | classificação: é de Sociologia |
 | Pdd624e83 | UEL 2024 1ª fase · questão 41 | H05.6 Estado Novo e trabalhismo (tema H05 República Brasileira) | classificação: é de Física — questão interdisciplinar em que três das cinco afirmativas pedem cálculos de ondas (comprimento de onda de 150 MHz, energia e frequência, frequência da luz vermelha); só duas tratam de História (Torre Eiffel e rádio no Estado Novo). |
+| Pf0d70f89 | UEMA 2020 PAES · questão 25 | H04.2 independência do Brasil (tema H04 Independência e Império) | classificação: é de Geografia (transformação atual da paisagem dos babaçuais no Maranhão) |
 | P3914c17c | UEMA 2021 PAES · questão 65 | H06.4 Revolução Francesa (tema H06 Revoluções) | classificação: é de Filosofia |
 | P4172ca46 | UERJ 2027 1º Exame de Qualificação · questão 59 | H06.10 Estados Unidos no século XIX: expansão e Guerra de Secessão (tema H06 Revoluções) | classificação: é de Geografia — a questão pede o fundamento teórico (subjetividade do conceito de região) que explica as respostas de uma pesquisa de 2014 sobre quais estados formam o Sul dos EUA; não trata de fato histórico. |
 | P7f87c73b | UNIRG 2026 Medicina 2026/2 · questão 54 | H08.6 contracultura e direitos civis nos anos 1960 (tema H08 Guerra Fria) | classificação: é de Sociologia |
@@ -118,3 +122,5 @@ Faltam 45 questões sem resolução (fora as que estão em lote, pendentes ou co
 | Questão | Prova | Conteúdo | Motivo |
 |---|---|---|---|
 | Pc90de958 | Fema 2022 Processo Seletivo 2022 · questão 13 | H08.8 mundo atual: Oriente Médio, terrorismo e conflitos recentes (tema H08 Guerra Fria) | gabarito oficial E ("Apenas a alternativa IV está incorreta") contradiz os fatos: a IV é verdadeira (19 sequestradores, milhares de mortos) e a III é falsa (a Al-Qaeda não é grupo separatista basco); nenhuma alternativa diz "apenas III incorreta". Se a banca leu como erro o "terceiro avião" da II (foi o quarto), a coerente seria D (II e III incorretas). PDF da Fema não abriu daqui para conferir o gabarito. Conferente, às cegas, deu D. Manter fora até achar o gabarito publicado; se a banca confirmar E, a questão tem gabarito inconsistente com os fatos e fica fora. |
+| P0b8f78ef | URCA 2025 2025.1 · questão 72 | H05.5 Revolução de 1930 e governo constitucional de Vargas (tema H05 República Brasileira) | gabarito oficial D (I, IV e V) considera falsa a afirmativa III, mas ela repete o próprio texto da questão: a Constituição de 1824 não limitava a jornada e só mencionava a liberdade de trabalho (art. 179, XXIV). Com I, III, IV e V corretas, nenhuma alternativa corresponde |
+| Pacd2249d | URCA 2025 2025.1 · questão 73 | H05.10 abertura, Diretas Já e Constituição de 1988 (tema H05 República Brasileira) | gabarito oficial C (I, IV e V) considera falsa a afirmativa III, mas ela está correta: o Brasil alternou constituições outorgadas (1824, 1937) e a de 1967, imposta pelo regime militar, com constituições promulgadas por constituintes (1891, 1934, 1946, 1988). Com I, III, IV e V corretas, nenhuma alternativa corresponde |
