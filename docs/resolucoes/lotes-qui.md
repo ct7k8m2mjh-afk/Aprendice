@@ -39,7 +39,7 @@ Faltam 1709 questões sem resolução (fora as que estão em lote, pendentes ou 
 | qui-0031 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | qui-0032 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | qui-0033 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
-| qui-0034 | provas-alvo nível 1-6 | 30 | aberto |  |  |  |
+| qui-0034 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | qui-0035 | provas-alvo nível 1-6 | 30 | aberto |  |  |  |
 
 ## Pendentes (falta de certeza absoluta)
