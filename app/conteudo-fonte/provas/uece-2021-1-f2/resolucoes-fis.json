@@ -221,5 +221,91 @@
    "data": "2026-11-11",
    "lote": "fis-0008"
   }
+ },
+ "Pe8cd338f": {
+  "n": "93",
+  "conceito": "Usar os tempos de subida e descida de um barco para achar o tempo à deriva.",
+  "equivocos": {
+   "A": "F02.7:errou-o-sistema",
+   "C": "F02.7:somou-os-tempos",
+   "D": "F02.7:errou-o-sistema"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Na subida a correnteza atrapalha (velocidade do barco menos a do rio); na descida ajuda (soma). À deriva, o barco anda só com a velocidade do rio. Escreva as velocidades como frações do trecho por hora: assim o comprimento do trecho nem precisa ser conhecido.",
+    "formulas": [
+     "velocidade = distância/tempo",
+     "subida: v − c | descida: v + c"
+    ],
+    "simbolos": [
+     [
+      "v",
+      "velocidade do barco em relação à água"
+     ],
+     [
+      "c",
+      "velocidade da correnteza"
+     ],
+     [
+      "d",
+      "comprimento do trecho"
+     ]
+    ]
+   },
+   "pista": "Escreva a velocidade de subida e a de descida usando o trecho d e os tempos dados.",
+   "passos": [
+    {
+     "faz": "Escreva as duas velocidades",
+     "conta": "v − c = d/8 | v + c = d/4",
+     "porque": "Subindo o barco gasta 8 h; descendo, 4 h, no mesmo trecho d.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Subtraia as equações",
+     "conta": "(v + c) − (v − c) = d/4 − d/8 → 2c = d/8 → c = d/16",
+     "porque": "Na subtração o v some; d/4 − d/8 = d/8.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o tempo à deriva",
+     "conta": "t = d/c = d/(d/16) = 16 h",
+     "porque": "Com o motor desligado, a velocidade do barco é a da correnteza.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "16 horas → alternativa B",
+     "porque": "É o tempo pedido.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 16",
+   "checagem": "Ponha números: trecho de 16 km. Subida a 2 km/h, descida a 4 km/h; então v = 3 km/h e c = 1 km/h. À deriva: 16/1 = 16 h.",
+   "erradas": {
+    "A": "10 não confere: a correnteza faria d/10 por hora; a descida seria v + c = d/8 + 2 × d/10, diferente de d/4.",
+    "C": "12 sai de somar os tempos: 8 + 4 = 12. O que se combina são as velocidades, não os tempos.",
+    "D": "14 não confere: com c = d/14, a diferença entre descida e subida seria d/7, e ela é d/4 − d/8 = d/8."
+   },
+   "armadilha": "Somar ou fazer média dos tempos: o tempo à deriva é maior que os dois, porque a correnteza é mais lenta que o barco.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O tempo para descer o trecho só com a correnteza.",
+    "chave": "v − c = d/8 e v + c = d/4 dão c = d/16: 16 h.",
+    "cuidado": "Trabalhe com velocidades, não com tempos."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "fis-0010"
+  }
  }
 }
