@@ -50,7 +50,7 @@ Faltam 992 questões sem resolução (fora as que estão em lote, pendentes ou c
 | ing-0042 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | ing-0043 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | ing-0044 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
-| ing-0045 | provas-alvo nível 1-6 | 30 | aberto |  |  |  |
+| ing-0045 | provas-alvo nível 1-6 | 30 | gravado | 27 | 3 | 0 |
 
 ## Pendentes (falta de certeza absoluta)
 
@@ -83,6 +83,9 @@ Faltam 992 questões sem resolução (fora as que estão em lote, pendentes ou c
 | P2924ee9f | UECE 2026 2026.1 – 1ª fase · questão 82 | I01.3 informação explícita (tema I01 Leitura e interpretação de textos) | print: o texto de apoio em inglês (UECE 2026.1, página anterior às questões) não está no texto_da_prova nem no print da questão, que mostra só o enunciado e as alternativas; refazer o print ou a transcrição com o texto, a partir do PDF oficial. |
 | Pcf4bf745 | UECE 2026 2026.1 – 1ª fase · questão 83 | I01.3 informação explícita (tema I01 Leitura e interpretação de textos) | print: o texto de apoio em inglês (UECE 2026.1, página anterior às questões) não está no texto_da_prova nem no print da questão, que mostra só o enunciado e as alternativas; refazer o print ou a transcrição com o texto, a partir do PDF oficial. |
 | P523134b9 | UECE 2026 2026.1 – 1ª fase · questão 84 | I01.3 informação explícita (tema I01 Leitura e interpretação de textos) | print: o texto de apoio em inglês (UECE 2026.1, página anterior às questões) não está no texto_da_prova nem no print da questão, que mostra só o enunciado e as alternativas; refazer o print ou a transcrição com o texto, a partir do PDF oficial. |
+| Pe3f188ad | UEMA 2021 PAES · questão 53 | I01.3 informação explícita (tema I01 Leitura e interpretação de textos) | print: a questão pergunta por que donos de animais corriam risco na Inglaterra dos séculos XVI e XVII, mas o texto de apoio não está no texto_da_prova nem no print (que mostra só o enunciado e as alternativas). Refazer o print com o texto, a partir do caderno oficial da UEMA PAES 2021. |
+| Pe3636adf | UEMA 2021 PAES · questão 9 | I01.3 informação explícita (tema I01 Leitura e interpretação de textos) | print: a questão pede um procedimento orgânico citado num texto sobre agricultura que não está no texto_da_prova nem no print (que mostra só o enunciado e as alternativas). Refazer o print com o texto de apoio, a partir do caderno oficial da UEMA PAES 2021. |
+| P0c3bf8a5 | UERR 2026 · questão 13 | I01.3 informação explícita (tema I01 Leitura e interpretação de textos) | print: a questão pede o motivo de o príncipe Harry não ficar num palácio, mas o texto de apoio (Buckingham Palace says Prince Harry will not stay at palace) não está no texto_da_prova nem no print, que mostra outro texto (o do macaco do Congo). Refazer o print com o texto certo, a partir do caderno oficial da UERR 2026. |
 | P315368d9 | UFRR 2026 Vestibular 2026 – Prova Integral · questão 65 | I01.1 tema e ideia principal (tema I01 Leitura e interpretação de textos) | print: a questão pede o sonho de Martin Luther King Jr. no quarto parágrafo de um texto que não está no texto_da_prova nem no print (que mostra só o enunciado e as alternativas). Refazer o print com o texto de apoio. Prova sem gabarito definitivo (gabarito do Aprendice depois). Atenção: discurso protegido; citar só poucas palavras. |
 
 ## Divergências de gabarito (o dono decide)
