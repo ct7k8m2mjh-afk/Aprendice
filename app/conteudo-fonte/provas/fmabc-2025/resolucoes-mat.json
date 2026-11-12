@@ -743,5 +743,96 @@
    "data": "2026-11-12",
    "lote": "mat-0036"
   }
+ },
+ "Pe9b3c62a": {
+  "n": "80",
+  "conceito": "Mediana igual à média: achar um valor faltante.",
+  "equivocos": {
+   "B": "M14.1:sem-origem-identificada",
+   "C": "M14.1:sem-origem-identificada",
+   "D": "M14.1:sem-origem-identificada",
+   "E": "M14.1:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os gols conhecidos são 4, 1, 2, 3, 2, 4 (soma 16). Com g gols na 2.ª partida, a média é (16 + g)/7. A mediana é o 4.º valor da lista ordenada. Teste os valores possíveis de g.",
+    "formulas": [
+     "mediana de 7 valores = 4.º valor"
+    ],
+    "simbolos": [
+     [
+      "g",
+      "gols na 2.ª partida"
+     ]
+    ]
+   },
+   "pista": "Ordene os 6 valores conhecidos.",
+   "passos": [
+    {
+     "faz": "Conhecidos",
+     "conta": "1, 2, 2, 3, 4, 4 | soma 16",
+     "porque": "Sem a 2.ª partida.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Mediana",
+     "conta": "g ≤ 2 → mediana 2 | g ≥ 3 → mediana 3",
+     "porque": "4.º valor.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Média = mediana",
+     "conta": "(16 + g)/7 = 3 → g = 5 (≥ 3, coerente) | (16 + g)/7 = 2 → g = −2 (impossível) → g = 5 → alternativa A",
+     "porque": "Iguale.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 5.",
+   "checagem": "Com g = 5: valores 1, 2, 2, 3, 4, 4, 5; mediana 3 e média 21/7 = 3.",
+   "erradas": {
+    "B": "2 não confere: mediana 2 e média 18/7 ≈ 2,57.",
+    "C": "6 não confere: mediana 3 e média 22/7 ≈ 3,14.",
+    "D": "3 não confere: mediana 3 e média 19/7 ≈ 2,71.",
+    "E": "4 não confere: mediana 3 e média 20/7 ≈ 2,86."
+   },
+   "armadilha": "Achar a mediana sem incluir o g na lista ordenada.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Gols na 2.ª partida.",
+    "chave": "(16 + g)/7 = 3; g = 5.",
+    "cuidado": "Ordene com o g dentro."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "soma necessária",
+    "ideia": "Mediana 3 exige média 3, ou seja, soma 21 nas 7 partidas: faltam 21 − 16 = 5 gols."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "1, 2, 2, 3, 4, 4",
+    "nota": "conhecidos"
+   },
+   {
+    "linha": "(16 + g)/7 = 3",
+    "nota": "média = mediana"
+   },
+   {
+    "linha": "g = 5",
+    "nota": "resultado"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0038"
+  }
  }
 }

@@ -905,5 +905,90 @@
    "data": "2026-11-12",
    "lote": "mat-0034"
   }
+ },
+ "Pdff5164e": {
+  "n": "43",
+  "conceito": "Linhas do triângulo de Pascal com sinais: soma de cada linha.",
+  "equivocos": {
+   "A": "M13.9:sem-origem-identificada",
+   "C": "M13.9:sem-origem-identificada",
+   "D": "M13.9:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A linha n do quadro tem os coeficientes de (1 + x)ⁿ, com sinais alternados nas linhas pares. Somar a linha é pôr x = 1: nas ímpares, (1 + 1)ⁿ = 2ⁿ; nas pares, (1 − 1)ⁿ = 0.",
+    "formulas": [
+     "soma da linha n de Pascal = 2ⁿ",
+     "(1 − 1)ⁿ = 0"
+    ],
+    "simbolos": []
+   },
+   "pista": "Quanto dá a soma da linha 2 (1, −2, 1)? E a da linha 4?",
+   "passos": [
+    {
+     "faz": "Linhas pares",
+     "conta": "1 − 2 + 1 = 0 | 1 − 4 + 6 − 4 + 1 = 0 → todas 0",
+     "porque": "Sinais alternados.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Linhas ímpares",
+     "conta": "linha 1: 2 | linha 3: 8 | linha 5: 32 | linha 7: 128 | linha 9: 512",
+     "porque": "Potências de 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some as 10 linhas",
+     "conta": "2 + 8 + 32 + 128 + 512 = 682 → alternativa B",
+     "porque": "Pares não contam.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 682.",
+   "checagem": "Pela PG: 2 + 8 + 32 + 128 + 512 tem razão 4 e 5 termos: 2(4⁵ − 1)/(4 − 1) = 2 × 1023/3 = 682.",
+   "erradas": {
+    "A": "826 não confere: as linhas ímpares somam 2 + 8 + 32 + 128 + 512 = 682.",
+    "C": "862 não confere: as linhas ímpares somam 682 e as pares, 0.",
+    "D": "628 não confere: as linhas ímpares somam 682 e as pares, 0."
+   },
+   "armadilha": "Somar 2ⁿ em todas as linhas (2 + 4 + … + 1024 = 2046), ignorando os sinais das pares.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A soma das 10 primeiras linhas.",
+    "chave": "Pares somam 0; ímpares 2 + 8 + 32 + 128 + 512 = 682.",
+    "cuidado": "x = 1 em (1 ± x)ⁿ."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "ver a linha 6",
+    "ideia": "1 − 6 + 15 − 20 + 15 − 6 + 1 = 0: as positivas (32) e as negativas (−32) se cancelam, como em toda linha par."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "pares: 0",
+    "nota": "(1 − 1)ⁿ"
+   },
+   {
+    "linha": "2 + 8 + 32 + 128 + 512",
+    "nota": "ímpares"
+   },
+   {
+    "linha": "682",
+    "nota": "soma"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0038"
+  }
  }
 }

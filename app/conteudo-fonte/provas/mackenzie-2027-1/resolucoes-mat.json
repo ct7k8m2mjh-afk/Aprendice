@@ -839,5 +839,91 @@
    "data": "2026-11-12",
    "lote": "mat-0036"
   }
+ },
+ "Pc2943821": {
+  "n": "40",
+  "conceito": "Contagem de pares e soma por casos.",
+  "equivocos": {
+   "A": "M14.1:sem-origem-identificada",
+   "B": "M14.1:esqueceu-um-tipo",
+   "C": "M14.1:sem-origem-identificada",
+   "D": "M14.1:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Conte os pares de cada tipo: médico-médico C(8, 2), médica-médica C(8, 2) e médico-médica 8 × 8. Depois multiplique pelo número de apertos de mão de cada tipo nos três momentos.",
+    "formulas": [
+     "C(n, 2) = n(n − 1)/2"
+    ],
+    "simbolos": []
+   },
+   "pista": "Quantos pares de cada tipo existem?",
+   "passos": [
+    {
+     "faz": "Pares",
+     "conta": "médicos C(8, 2) = 28 | médicas 28 | mistos 8 × 8 = 64",
+     "porque": "Por tipo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Apertos por tipo",
+     "conta": "médicos 28 × 3 = 84 | médicas 28 × 1 = 28 | mistos 64 × 2 = 128",
+     "porque": "Regras do enunciado.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some",
+     "conta": "84 + 28 + 128 = 240 → alternativa E",
+     "porque": "Total.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 240",
+   "checagem": "Confira os pares: 28 + 28 + 64 = 120 = C(16, 2), todos os pares das 16 pessoas.",
+   "erradas": {
+    "A": "184 não confere: 84 + 28 + 128 = 240.",
+    "B": "212 = 240 − 28: esquece os apertos entre as médicas.",
+    "C": "220 não confere: 84 + 28 + 128 = 240.",
+    "D": "232 não confere: 84 + 28 + 128 = 240."
+   },
+   "armadilha": "Esquecer o único aperto entre médicas, à meia-noite (nos outros momentos elas só acenam): daria 212.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O total de apertos de mão.",
+    "chave": "84 + 28 + 128 = 240.",
+    "cuidado": "Pares por tipo × apertos por par."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "por momento",
+    "ideia": "Chegada: médicos 28 + mistos 64 = 92; meia-noite: 28 + 28 + 64 = 120; despedida: médicos 28; 92 + 120 + 28 = 240."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "28 | 28 | 64",
+    "nota": "pares"
+   },
+   {
+    "linha": "84 | 28 | 128",
+    "nota": "apertos"
+   },
+   {
+    "linha": "240",
+    "nota": "total"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0038"
+  }
  }
 }

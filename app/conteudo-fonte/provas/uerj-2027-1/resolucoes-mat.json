@@ -628,5 +628,95 @@
    "data": "2026-11-12",
    "lote": "mat-0034"
   }
+ },
+ "P9a618734": {
+  "n": "30",
+  "conceito": "Contagem de pares com soma fixa.",
+  "equivocos": {
+   "A": "M13.9:nao-buscou-o-maior",
+   "B": "M13.9:sem-origem-identificada",
+   "C": "M13.9:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Sobram 4 cartas: saem 16, ou seja, 8 pares com soma S. Para S grande (a partir de 21), os pares com soma S vão de (S − 20, 20) até o meio. Conte quantos pares existem para cada S.",
+    "formulas": [
+     "pares com soma S (S ≥ 21): (41 − S)/2, arredondado para baixo"
+    ],
+    "simbolos": []
+   },
+   "pista": "Quantos pares de cartas somam S = 25?",
+   "passos": [
+    {
+     "faz": "Pares necessários",
+     "conta": "20 − 4 = 16 cartas → 8 pares",
+     "porque": "Sobram 4.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "S = 25",
+     "conta": "5 + 20, 6 + 19, …, 12 + 13 → 8 pares",
+     "porque": "De 5 a 12.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "S maior",
+     "conta": "S = 26: 6 + 20, …, 12 + 14 → 7 pares (o 13 + 13 não existe) → sobrariam 6 cartas",
+     "porque": "Pares diminuem com S.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Conclusão",
+     "conta": "maior S = 25 → alternativa D",
+     "porque": "Com 8 pares exatos.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 25",
+   "checagem": "Sobras com S = 25: as cartas 1, 2, 3 e 4 (nenhuma delas completa 25 com carta até 20): exatamente 4.",
+   "erradas": {
+    "A": "17 dá 8 pares (1 + 16 a 8 + 9) e também deixa 4 cartas, mas não é o maior S.",
+    "B": "19 dá 9 pares e deixa só 2 cartas.",
+    "C": "23 dá 9 pares (3 + 20 a 11 + 12) e deixa só 2 cartas."
+   },
+   "armadilha": "Parar no primeiro S que funciona (17) e não buscar o maior.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O maior S que deixa 4 cartas.",
+    "chave": "S = 25: 8 pares; S = 26: 7.",
+    "cuidado": "Conte os pares de cada S."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "fórmula",
+    "ideia": "Para S ≥ 21, o número de pares é a parte inteira de (41 − S)/2; são precisos 8 pares: 41 − S ≥ 16, então S ≤ 25."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "16 cartas = 8 pares",
+    "nota": "meta"
+   },
+   {
+    "linha": "5 + 20 … 12 + 13",
+    "nota": "S = 25"
+   },
+   {
+    "linha": "S = 26 → 7 pares",
+    "nota": "passa"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0038"
+  }
  }
 }

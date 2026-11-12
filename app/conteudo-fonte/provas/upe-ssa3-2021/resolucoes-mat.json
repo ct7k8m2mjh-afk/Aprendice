@@ -620,5 +620,168 @@
    "data": "2026-11-12",
    "lote": "mat-0033"
   }
+ },
+ "P7c100bf7": {
+  "n": "15",
+  "conceito": "Desvio padrão a partir de gráfico.",
+  "equivocos": {
+   "A": "M14.1:sem-origem-identificada",
+   "C": "M14.1:respondeu-a-media",
+   "D": "M14.1:sem-origem-identificada",
+   "E": "M14.1:parou-na-variancia"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Leia os 7 tempos do gráfico, calcule a média, os desvios ao quadrado, a variância (média dos quadrados) e o desvio padrão (raiz da variância).",
+    "formulas": [
+     "variância = Σ(xᵢ − média)²/n",
+     "desvio padrão = √variância"
+    ],
+    "simbolos": []
+   },
+   "pista": "Quais são os 7 tempos?",
+   "passos": [
+    {
+     "faz": "Dados e média",
+     "conta": "120, 100, 110, 140, 170, 100, 100 → soma 840 → média 120",
+     "porque": "D a S.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Variância",
+     "conta": "desvios 0, −20, −10, 20, 50, −20, −20 → quadrados 0 + 400 + 100 + 400 + 2500 + 400 + 400 = 4200 → 4200/7 = 600",
+     "porque": "Média dos quadrados.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Desvio padrão",
+     "conta": "√600 ≈ 24,5 → alternativa B",
+     "porque": "Raiz.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 24,5",
+   "checagem": "Confira a raiz: 24,5² = 600,25, bem perto de 600.",
+   "erradas": {
+    "A": "20 não confere: 20² = 400, e a variância é 600.",
+    "C": "120 é a média dos tempos.",
+    "D": "140 é um dos tempos (quarta-feira), não uma medida de dispersão.",
+    "E": "600 é a variância; falta tirar a raiz."
+   },
+   "armadilha": "Parar na variância (600) sem tirar a raiz quadrada.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O desvio padrão.",
+    "chave": "Variância 600; √600 ≈ 24,5.",
+    "cuidado": "Desvio padrão = raiz da variância."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "média dos quadrados",
+    "ideia": "Média dos quadrados (105000/7 = 15 000) menos o quadrado da média (14 400): 600, a mesma variância."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "840/7 = 120",
+    "nota": "média"
+   },
+   {
+    "linha": "4200/7 = 600",
+    "nota": "variância"
+   },
+   {
+    "linha": "√600 ≈ 24,5",
+    "nota": "desvio"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0038"
+  }
+ },
+ "P1842ec2e": {
+  "n": "24",
+  "conceito": "Eventos independentes: nenhum acerta.",
+  "equivocos": {
+   "A": "M14.1:sem-origem-identificada",
+   "B": "M14.1:sem-origem-identificada",
+   "D": "M14.1:sem-origem-identificada",
+   "E": "M14.1:considerou-um-so"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Bruno erra com chance 1 − 0,7 = 0,3; César, com 1 − 0,5 = 0,5. Os dois errarem é o produto, por serem independentes.",
+    "formulas": [
+     "P(A e B) = P(A) × P(B)"
+    ],
+    "simbolos": []
+   },
+   "pista": "Qual é a chance de cada um errar?",
+   "passos": [
+    {
+     "faz": "Erros",
+     "conta": "Bruno 0,3 | César 0,5",
+     "porque": "Complementares.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Nenhum acerta",
+     "conta": "0,3 × 0,5 = 0,15 = 15% → alternativa C",
+     "porque": "Independentes.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 15%",
+   "checagem": "Pelas quatro situações: os dois acertam 0,35; só Bruno 0,35; só César 0,15; nenhum 0,15; somam 1.",
+   "erradas": {
+    "A": "8% não confere: 0,3 × 0,5 = 15%.",
+    "B": "10% não confere: 0,3 × 0,5 = 15%.",
+    "D": "25% não confere: 0,3 × 0,5 = 15%.",
+    "E": "30% é só a chance de Bruno errar."
+   },
+   "armadilha": "Multiplicar as chances de acerto (0,35) em vez das de erro.",
+   "alerta": "",
+   "essencial": {
+    "pede": "P(nenhum acerta).",
+    "chave": "0,3 × 0,5 = 15%.",
+    "cuidado": "Multiplique os erros."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "complementar da união",
+    "ideia": "P(algum acerta) = 0,7 + 0,5 − 0,35 = 0,85; nenhum: 1 − 0,85 = 0,15."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "0,3 | 0,5",
+    "nota": "erros"
+   },
+   {
+    "linha": "0,15",
+    "nota": "nenhum"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0038"
+  }
  }
 }

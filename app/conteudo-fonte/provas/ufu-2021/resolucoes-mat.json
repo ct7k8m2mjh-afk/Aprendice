@@ -582,5 +582,89 @@
    "data": "2026-11-12",
    "lote": "mat-0021"
   }
+ },
+ "P50eb08be": {
+  "n": "68",
+  "conceito": "Média móvel com desigualdades: maior valor possível.",
+  "equivocos": {
+   "A": "M14.1:nao-buscou-o-maior",
+   "C": "M14.1:usou-desigualdade-nao-estrita",
+   "D": "M14.1:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A média móvel do dia 07/05 usa os dias 01 a 07; a do dia 09/05 usa 03 a 09. Escreva a condição \"média de 09/05 menor que a de 07/05\" e junte com x ≥ y + 4 e y ≥ 3.",
+    "formulas": [
+     "média móvel = soma dos 7 dias/7"
+    ],
+    "simbolos": []
+   },
+   "pista": "Qual é a média móvel em 07/05?",
+   "passos": [
+    {
+     "faz": "Média em 07/05",
+     "conta": "(5 + 7 + 3 + 2 + 5 + 4 + 2)/7 = 28/7 = 4",
+     "porque": "Dias 01 a 07.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Condição em 09/05",
+     "conta": "(3 + 2 + 5 + 4 + 2 + x + y)/7 < 4 → 16 + x + y < 28 → x + y < 12",
+     "porque": "Dias 03 a 09.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Maximize x",
+     "conta": "y ≥ 3 → x < 12 − 3 = 9 → x ≤ 8 | x ≥ y + 4 = 7: ok → x = 8 → alternativa B",
+     "porque": "Menor y possível.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 8.",
+   "checagem": "Teste x = 8, y = 3: 8 ≥ 3 + 4, y ≥ 3 e média em 09/05 = 27/7 ≈ 3,86 < 4. Com x = 9 e y = 3: 28/7 = 4, não é menor.",
+   "erradas": {
+    "A": "7 cumpre as condições, mas não é o maior: x = 8 também cumpre.",
+    "C": "9 não confere: com y ≥ 3, a soma x + y = 12 deixa a média em 09/05 igual a 4, não menor.",
+    "D": "10 não confere: com y ≥ 3, a média em 09/05 passaria de 4."
+   },
+   "armadilha": "Usar ≤ em vez de < (\"inferior\" é estritamente menor): daria x = 9.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O maior x possível.",
+    "chave": "x + y < 12, y ≥ 3: x ≤ 8.",
+    "cuidado": "\"Inferior\" é estrito."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pelas saídas da janela",
+    "ideia": "De 07/05 para 09/05 saem os dias 01 e 02 (5 + 7 = 12) e entram x e y: a média cai se x + y < 12."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "28/7 = 4",
+    "nota": "07/05"
+   },
+   {
+    "linha": "x + y < 12",
+    "nota": "09/05"
+   },
+   {
+    "linha": "x = 8",
+    "nota": "máximo"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0038"
+  }
  }
 }
