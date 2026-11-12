@@ -219,5 +219,86 @@
    "data": "2026-11-11",
    "lote": "fis-0008"
   }
+ },
+ "P95035e70": {
+  "n": "40",
+  "conceito": "Corrigir a leitura de um termômetro defeituoso por proporção entre escalas.",
+  "equivocos": {
+   "A": "F08.1:corrigiu-so-o-deslocamento",
+   "C": "F08.1:somou-o-erro-em-vez-de-descontar",
+   "D": "F08.1:errou-a-conta"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O termômetro defeituoso marca 5 no ponto de fusão do gelo (correto: 0 °C) e 99 no ponto de vapor (correto: 100 °C). Ele funciona como outra escala, linear: a posição da leitura entre os dois pontos fixos é a mesma nas duas escalas. Fração percorrida na escala defeituosa = fração percorrida na escala correta.",
+    "formulas": [
+     "(L − 5)/(99 − 5) = (T − 0)/(100 − 0)"
+    ],
+    "simbolos": [
+     [
+      "L",
+      "leitura do termômetro defeituoso"
+     ],
+     [
+      "T",
+      "temperatura correta em °C"
+     ]
+    ]
+   },
+   "pista": "Que fração do caminho entre 5 e 99 a leitura 52 já percorreu?",
+   "passos": [
+    {
+     "faz": "Monte a proporção",
+     "conta": "(52 − 5)/(99 − 5) = T/100",
+     "porque": "Mesma fração entre os pontos fixos.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule a fração",
+     "conta": "47/94 = 0,5",
+     "porque": "Metade do caminho.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache T",
+     "conta": "T = 0,5 × 100 = 50 °C",
+     "porque": "Metade de 0 a 100.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "50 °C → alternativa B",
+     "porque": "Temperatura correta.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 50.",
+   "checagem": "Pelo ponto médio: na escala defeituosa, o meio entre 5 e 99 é (5 + 99)/2 = 52. Na correta, o meio entre 0 e 100 é 50. A leitura 52 é exatamente o ponto médio.",
+   "erradas": {
+    "A": "47 é 52 − 5: corrige só o deslocamento do zero e esquece que os 94 graus do defeituoso valem 100 graus corretos.",
+    "C": "57 é 52 + 5: soma o erro do ponto de fusão em vez de descontá-lo.",
+    "D": "Para 55 °C corretos, o termômetro defeituoso marcaria 5 + 0,94 × 55 = 56,7, não 52."
+   },
+   "armadilha": "O defeito não é só um deslocamento de 5 graus: o tamanho do grau também está errado (94 divisões para 100 graus).",
+   "alerta": "",
+   "essencial": {
+    "pede": "A temperatura correta quando o termômetro defeituoso marca 52.",
+    "chave": "(52 − 5)/(99 − 5) = 47/94 = 0,5 → 50 °C.",
+    "cuidado": "Corrigir o zero e o tamanho do grau."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "fis-0020"
+  }
  }
 }
