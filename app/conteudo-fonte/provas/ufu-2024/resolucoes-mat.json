@@ -420,5 +420,89 @@
    "data": "2026-11-12",
    "lote": "mat-0031"
   }
+ },
+ "P2fc00d30": {
+  "n": "71",
+  "conceito": "Combinação com \"pelo menos um\": complementar.",
+  "equivocos": {
+   "B": "M13.3:sem-origem-identificada",
+   "C": "M13.3:sem-origem-identificada",
+   "D": "M13.3:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Comissões de 3 dos 9 funcionários, com pelo menos um médico. Conte todas e tire as que não têm médico (só dos 6 não médicos). Depois classifique o número.",
+    "formulas": [
+     "pelo menos um = total − nenhum"
+    ],
+    "simbolos": []
+   },
+   "pista": "Quantas comissões não têm nenhum médico?",
+   "passos": [
+    {
+     "faz": "Total",
+     "conta": "C(9, 3) = 84",
+     "porque": "Sem restrição.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Sem médico",
+     "conta": "C(6, 3) = 20",
+     "porque": "Só os 6 não médicos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Com médico",
+     "conta": "84 − 20 = 64 = 8² → alternativa A",
+     "porque": "Quadrado perfeito.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — quadrado perfeito.",
+   "checagem": "Contando direto pelo número de médicos: 1 médico, 3 × C(6, 2) = 45; 2 médicos, C(3, 2) × 6 = 18; 3 médicos, 1; 45 + 18 + 1 = 64.",
+   "erradas": {
+    "B": "64 não é múltiplo de 3: 6 + 4 = 10.",
+    "C": "64 não é divisível por 5: termina em 4.",
+    "D": "64 = 2⁶ não é primo."
+   },
+   "armadilha": "Contar 3 × C(8, 2) = 84 (um médico e mais dois quaisquer): conta comissões com 2 ou 3 médicos mais de uma vez.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A propriedade do número de comissões.",
+    "chave": "84 − 20 = 64 = 8².",
+    "cuidado": "Complementar para \"pelo menos um\"."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pelo primeiro médico",
+    "ideia": "Numere os médicos M1, M2, M3. Comissões com M1: C(8, 2) = 28; sem M1 e com M2: C(7, 2) = 21; sem M1 e M2, com M3: C(6, 2) = 15; 28 + 21 + 15 = 64."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "C(9, 3) = 84",
+    "nota": "total"
+   },
+   {
+    "linha": "C(6, 3) = 20",
+    "nota": "sem médico"
+   },
+   {
+    "linha": "64 = 8²",
+    "nota": "resultado"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0035"
+  }
  }
 }

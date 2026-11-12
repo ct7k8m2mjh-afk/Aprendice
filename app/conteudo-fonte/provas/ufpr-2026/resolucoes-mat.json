@@ -729,5 +729,91 @@
    "data": "2026-11-12",
    "lote": "mat-0032"
   }
+ },
+ "P54d8f9f6": {
+  "n": "6",
+  "conceito": "Arranjo com restrições: posição fixa, elemento obrigatório e elementos proibidos.",
+  "equivocos": {
+   "A": "M13.3:sem-origem-identificada",
+   "B": "M13.3:sem-origem-identificada",
+   "D": "M13.3:sem-origem-identificada",
+   "E": "M13.3:permitiu-repeticao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O atacante já ocupa a 1.ª cobrança. O goleiro tem de estar entre as 4 cobranças seguintes. Os 3 zagueiros estão fora. Sobram 11 − 1 − 1 − 3 = 6 jogadores para as outras 3 cobranças, e a ordem importa.",
+    "formulas": [
+     "A(n, p) = n!/(n − p)!"
+    ],
+    "simbolos": []
+   },
+   "pista": "Quantos jogadores sobram para completar as cobranças depois de tirar atacante, goleiro e zagueiros?",
+   "passos": [
+    {
+     "faz": "Goleiro",
+     "conta": "posições 2, 3, 4 ou 5 → 4 opções",
+     "porque": "A 1.ª é do atacante.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Outras 3 cobranças",
+     "conta": "6 jogadores disponíveis, ordem importa: 6 × 5 × 4 = 120",
+     "porque": "11 − atacante − goleiro − 3 zagueiros.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique",
+     "conta": "4 × 120 = 480 → alternativa C",
+     "porque": "Etapas independentes.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 480",
+   "checagem": "Por escolha e ordem: escolha os 3 outros cobradores entre 6, C(6, 3) = 20; ordene goleiro e esses 3 nas posições 2 a 5, 4! = 24; 20 × 24 = 480.",
+   "erradas": {
+    "A": "280 não confere: 4 posições do goleiro × A(6, 3) = 120 dá 480.",
+    "B": "340 não confere: 4 × 120 = 480.",
+    "D": "625 = 5⁴ não corresponde a escolher jogadores distintos.",
+    "E": "864 = 4 × 6 × 6 × 6: deixa repetir o mesmo jogador nas 3 cobranças restantes; os jogadores são distintos, 4 × 6 × 5 × 4 = 480."
+   },
+   "armadilha": "Esquecer de tirar os zagueiros ou o goleiro dos jogadores livres (sobram 6, não 9 ou 7).",
+   "alerta": "",
+   "essencial": {
+    "pede": "O número de configurações de cobradores.",
+    "chave": "Goleiro em 4 posições × A(6, 3) = 480.",
+    "cuidado": "Fixe o obrigatório, tire os proibidos."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "complementar",
+    "ideia": "Com o atacante na 1.ª, preencha as cobranças 2 a 5 com 4 dos 7 jogadores que não são zagueiros: A(7, 4) = 840; tire as sem o goleiro, A(6, 4) = 360: 840 − 360 = 480."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "4",
+    "nota": "goleiro"
+   },
+   {
+    "linha": "6 × 5 × 4 = 120",
+    "nota": "outros"
+   },
+   {
+    "linha": "4 × 120 = 480",
+    "nota": "total"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0035"
+  }
  }
 }

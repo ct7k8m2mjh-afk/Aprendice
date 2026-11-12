@@ -1380,5 +1380,89 @@
    "data": "2026-11-12",
    "lote": "mat-0034"
   }
+ },
+ "P06ff1a6b": {
+  "n": "51",
+  "conceito": "Combinação com \"pelo menos dois\": complementar.",
+  "equivocos": {
+   "A": "M13.3:sem-origem-identificada",
+   "B": "M13.3:sem-origem-identificada",
+   "D": "M13.3:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Diretoria de 5 entre 9 sócios, com pelo menos 2 mulheres. Conte todas e tire as com 0 ou 1 mulher.",
+    "formulas": [
+     "pelo menos = total − os que faltam"
+    ],
+    "simbolos": []
+   },
+   "pista": "Quais diretorias não servem?",
+   "passos": [
+    {
+     "faz": "Total",
+     "conta": "C(9, 5) = 126",
+     "porque": "Sem restrição.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Não servem",
+     "conta": "0 mulher: C(5, 5) = 1 | 1 mulher: 4 × C(5, 4) = 20",
+     "porque": "Menos de duas mulheres.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Subtraia",
+     "conta": "126 − 1 − 20 = 105 → alternativa C",
+     "porque": "Pelo menos 2 mulheres.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 105.",
+   "checagem": "Direto: 2 mulheres C(4, 2) × C(5, 3) = 60; 3 mulheres 4 × 10 = 40; 4 mulheres 1 × 5 = 5; 60 + 40 + 5 = 105.",
+   "erradas": {
+    "A": "110 não confere: 126 − 21 = 105.",
+    "B": "95 não confere: 126 − 21 = 105.",
+    "D": "100 não confere: 126 − 21 = 105."
+   },
+   "armadilha": "Tirar só o caso de nenhuma mulher (126 − 1 = 125).",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantas diretorias.",
+    "chave": "126 − 1 − 20 = 105.",
+    "cuidado": "\"Pelo menos 2\": tire 0 e 1."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "quem fica de fora",
+    "ideia": "Escolha os 4 que ficam fora da diretoria, C(9, 4) = 126; não podem sair 3 moças (C(4, 3) × 5 = 20) nem 4 moças (1): 126 − 21 = 105."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "C(9, 5) = 126",
+    "nota": "total"
+   },
+   {
+    "linha": "1 + 20 = 21",
+    "nota": "não servem"
+   },
+   {
+    "linha": "105",
+    "nota": "resultado"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0035"
+  }
  }
 }

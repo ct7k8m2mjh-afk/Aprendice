@@ -835,5 +835,93 @@
    "data": "2026-11-12",
    "lote": "mat-0030"
   }
+ },
+ "P4376597e": {
+  "n": "17",
+  "conceito": "Binômio de Newton: coeficiente de um termo em um produto.",
+  "equivocos": {
+   "A": "M13.3:esqueceu-a-potencia-de-2",
+   "B": "M13.3:sem-origem-identificada",
+   "C": "M13.3:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Desenvolva (1 + x)² = 1 + 2x + x². No (x² + 2)ⁿ só aparecem potências pares de x: x^(2k) com coeficiente C(n, k) × 2^(n − k). Para formar x^(2n), combine 1 com x^(2n) e x² com x^(2n − 2); o termo 2x daria potência ímpar.",
+    "formulas": [
+     "(a + b)ⁿ = Σ C(n, k) a^k b^(n − k)"
+    ],
+    "simbolos": []
+   },
+   "pista": "Quais termos de (1 + x)² podem gerar x^(2n)?",
+   "passos": [
+    {
+     "faz": "1 × x^(2n)",
+     "conta": "k = n: C(n, n) × 2⁰ = 1",
+     "porque": "Maior potência de (x² + 2)ⁿ.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "x² × x^(2n − 2)",
+     "conta": "k = n − 1: C(n, n − 1) × 2¹ = 2n",
+     "porque": "O 2x não serve: potência ímpar.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some",
+     "conta": "1 + 2n → alternativa D",
+     "porque": "Coeficiente de x^(2n).",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 1 + 2n.",
+   "checagem": "Teste com n = 1: (1 + 2x + x²)(x² + 2) = x⁴ + 2x³ + 3x² + 4x + 2; o coeficiente de x² é 3 = 1 + 2 × 1.",
+   "erradas": {
+    "A": "1 + n não confere: para n = 1 daria 2, mas o coeficiente de x² em (1 + x)²(x² + 2) é 3.",
+    "B": "2 + 2n não confere: para n = 1 daria 4, e o coeficiente é 3.",
+    "C": "3 + 3n não confere: para n = 1 daria 6, e o coeficiente é 3."
+   },
+   "armadilha": "Esquecer o fator 2 de 2^(n − k) no termo k = n − 1 (daria 1 + n).",
+   "alerta": "",
+   "essencial": {
+    "pede": "O coeficiente de x^(2n).",
+    "chave": "1 (de 1 × x^(2n)) + 2n (de x² × x^(2n − 2)).",
+    "cuidado": "Só potências pares combinam."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "n = 2",
+    "ideia": "(1 + 2x + x²)(x⁴ + 4x² + 4): coeficiente de x⁴ é 1 + 4 = 5 = 1 + 2 × 2."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "(1 + x)² = 1 + 2x + x²",
+    "nota": "expansão"
+   },
+   {
+    "linha": "1 · 1",
+    "nota": "k = n"
+   },
+   {
+    "linha": "1 · 2n",
+    "nota": "k = n − 1"
+   },
+   {
+    "linha": "1 + 2n",
+    "nota": "coeficiente"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0035"
+  }
  }
 }

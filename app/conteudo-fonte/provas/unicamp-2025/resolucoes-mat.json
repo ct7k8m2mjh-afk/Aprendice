@@ -883,5 +883,177 @@
    "data": "2026-11-12",
    "lote": "mat-0025"
   }
+ },
+ "Pde723758": {
+  "n": "48",
+  "conceito": "Probabilidade com união: inclusão-exclusão.",
+  "equivocos": {
+   "B": "M13.4:contou-um-conjunto-so",
+   "C": "M13.4:contou-um-conjunto-so",
+   "D": "M13.4:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Múltiplos de 3 ou de 7 de 1 a 2025: some os múltiplos de 3 e os de 7 e tire os de 21, contados duas vezes.",
+    "formulas": [
+     "n(A ∪ B) = n(A) + n(B) − n(A ∩ B)"
+    ],
+    "simbolos": []
+   },
+   "pista": "Quantos múltiplos de 3, de 7 e de 21 há até 2025?",
+   "passos": [
+    {
+     "faz": "Múltiplos",
+     "conta": "de 3: 2025/3 = 675 | de 7: 2025/7 ≈ 289,3 → 289 | de 21: 2025/21 ≈ 96,4 → 96",
+     "porque": "Parte inteira.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "União",
+     "conta": "675 + 289 − 96 = 868",
+     "porque": "Tire a dupla contagem.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Probabilidade",
+     "conta": "868/2025 → alternativa A",
+     "porque": "Sobre 2025.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 868/2025",
+   "checagem": "Pelo complementar: não múltiplos de 3 são 1 350; destes, os múltiplos de 7 são 289 − 96 = 193; os que não são de 3 nem de 7: 1 350 − 193 = 1 157; 2025 − 1 157 = 868.",
+   "erradas": {
+    "B": "289/2025 conta só os múltiplos de 7.",
+    "C": "675/2025 conta só os múltiplos de 3.",
+    "D": "951/2025 não confere: a união tem 675 + 289 − 96 = 868 números."
+   },
+   "armadilha": "Somar 675 + 289 = 964 sem tirar os 96 múltiplos de 21.",
+   "alerta": "",
+   "essencial": {
+    "pede": "P(múltiplo de 3 ou de 7).",
+    "chave": "675 + 289 − 96 = 868.",
+    "cuidado": "Tire a interseção."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "ciclos de 21",
+    "ideia": "Em cada bloco de 21 números há 7 + 3 − 1 = 9 múltiplos de 3 ou 7; 2016 = 21 × 96 dá 96 × 9 = 864; de 2017 a 2025 entram 2019, 2022, 2023 e 2025: 868."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "675",
+    "nota": "múltiplos de 3"
+   },
+   {
+    "linha": "289",
+    "nota": "de 7"
+   },
+   {
+    "linha": "96",
+    "nota": "de 21"
+   },
+   {
+    "linha": "868/2025",
+    "nota": "probabilidade"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0035"
+  }
+ },
+ "P91e327d9": {
+  "n": "51",
+  "conceito": "Diagrama de Venn: completar regiões e calcular probabilidade.",
+  "equivocos": {
+   "B": "M13.4:sem-origem-identificada",
+   "C": "M13.4:sem-origem-identificada",
+   "D": "M13.4:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O diagrama tem 65 copos ao todo. Faltam as duas regiões com \"?\" (abacaxi e laranja só; abacaxi e morango só). A soma delas sai de 65 menos o resto. Exatamente dois sabores são essas duas regiões mais a de laranja e morango (6).",
+    "formulas": [
+     "P = favoráveis/total"
+    ],
+    "simbolos": []
+   },
+   "pista": "Quanto somam as regiões com \"?\"?",
+   "passos": [
+    {
+     "faz": "Regiões conhecidas",
+     "conta": "10 + 15 + 8 + 7 + 6 = 46",
+     "porque": "Só abacaxi, só laranja, só morango, os três, laranja e morango.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Interrogações",
+     "conta": "65 − 46 = 19",
+     "porque": "As duas juntas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Exatamente dois",
+     "conta": "19 + 6 = 25 → 25/65 = 5/13 → alternativa A",
+     "porque": "Três regiões de dois sabores.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 5/13.",
+   "checagem": "Por diferença: 1 sabor, 10 + 15 + 8 = 33; 3 sabores, 7; exatamente 2: 65 − 33 − 7 = 25.",
+   "erradas": {
+    "B": "1/10 não confere: 25/65 = 5/13.",
+    "C": "7/22 não confere: 25/65 = 5/13.",
+    "D": "2/7 não confere: 25/65 = 5/13."
+   },
+   "armadilha": "Incluir o 7 (os três sabores) entre os de dois sabores.",
+   "alerta": "",
+   "essencial": {
+    "pede": "P(exatamente dois sabores).",
+    "chave": "19 + 6 = 25; 25/65 = 5/13.",
+    "cuidado": "Não precisa de cada \"?\", só da soma."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "complementar em probabilidade",
+    "ideia": "P(1 sabor) = 33/65 e P(3 sabores) = 7/65; 1 − 33/65 − 7/65 = 25/65 = 5/13."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "10 + 15 + 8 + 7 + 6 = 46",
+    "nota": "conhecidos"
+   },
+   {
+    "linha": "65 − 46 = 19",
+    "nota": "?"
+   },
+   {
+    "linha": "25/65 = 5/13",
+    "nota": "probabilidade"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0035"
+  }
  }
 }

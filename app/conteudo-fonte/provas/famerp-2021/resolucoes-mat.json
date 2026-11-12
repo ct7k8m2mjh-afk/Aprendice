@@ -743,5 +743,110 @@
    "data": "2026-11-12",
    "lote": "mat-0033"
   }
+ },
+ "Pb00c2fb8": {
+  "n": "76",
+  "conceito": "Combinação por casos: experientes = treinamento + 1.",
+  "equivocos": {
+   "A": "M13.3:sem-origem-identificada",
+   "B": "M13.3:sem-origem-identificada",
+   "C": "M13.3:sem-origem-identificada",
+   "E": "M13.3:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Se a equipe tem t funcionários em treinamento (de 0 a 4), tem t + 1 experientes (no máximo 5). Para cada t, multiplique C(4, t) por C(5, t + 1) e some.",
+    "formulas": [
+     "C(n, p)",
+     "casos disjuntos: soma"
+    ],
+    "simbolos": []
+   },
+   "pista": "Liste os pares possíveis (treinamento, experientes).",
+   "passos": [
+    {
+     "faz": "t = 0 e t = 1",
+     "conta": "C(4, 0) × C(5, 1) = 5 | C(4, 1) × C(5, 2) = 4 × 10 = 40",
+     "porque": "Equipes de 1 e de 3 pessoas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "t = 2 e t = 3",
+     "conta": "C(4, 2) × C(5, 3) = 6 × 10 = 60 | C(4, 3) × C(5, 4) = 4 × 5 = 20",
+     "porque": "Equipes de 5 e de 7.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "t = 4",
+     "conta": "C(4, 4) × C(5, 5) = 1",
+     "porque": "Equipe de 9.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some",
+     "conta": "5 + 40 + 60 + 20 + 1 = 126 → alternativa D",
+     "porque": "Casos disjuntos.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 126.",
+   "checagem": "Cada equipe corresponde a escolher 4 dos 9: os t treinandos que entram e os 4 − t experientes que ficam de fora; C(9, 4) = 126.",
+   "erradas": {
+    "A": "104 não confere: a soma dos cinco casos é 126.",
+    "B": "116 não confere: a soma dos cinco casos é 126.",
+    "C": "120 não confere: a soma dos cinco casos é 126.",
+    "E": "132 não confere: a soma dos cinco casos é 126."
+   },
+   "armadilha": "Esquecer o caso de 1 só experiente sem ninguém em treinamento (t = 0) ou o de todos (t = 4).",
+   "alerta": "",
+   "essencial": {
+    "pede": "O total de equipes.",
+    "chave": "5 + 40 + 60 + 20 + 1 = 126.",
+    "cuidado": "t vai de 0 a 4."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pelos que ficam de fora",
+    "ideia": "Saem 4 − t treinandos e 4 − t experientes, sempre o mesmo número de cada grupo. Saindo j de cada (j de 0 a 4): C(4, 0) × C(5, 0) + C(4, 1) × C(5, 1) + C(4, 2) × C(5, 2) + C(4, 3) × C(5, 3) + C(4, 4) × C(5, 4) = 1 + 20 + 60 + 40 + 5 = 126."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "5",
+    "nota": "t = 0"
+   },
+   {
+    "linha": "40",
+    "nota": "t = 1"
+   },
+   {
+    "linha": "60",
+    "nota": "t = 2"
+   },
+   {
+    "linha": "20",
+    "nota": "t = 3"
+   },
+   {
+    "linha": "1",
+    "nota": "t = 4"
+   },
+   {
+    "linha": "126",
+    "nota": "soma"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0035"
+  }
  }
 }

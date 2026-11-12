@@ -435,5 +435,100 @@
    "data": "2026-11-12",
    "lote": "mat-0024"
   }
+ },
+ "Pc9e4e512": {
+  "n": "67",
+  "conceito": "Combinação por casos: trocar 1, 2 ou 3 livros.",
+  "equivocos": {
+   "A": "M13.3:sem-origem-identificada",
+   "B": "M13.3:contou-um-caso-so",
+   "D": "M13.3:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Uma troca é definida pelos livros que João entrega e pelos que Maria entrega, na mesma quantidade k. Para cada k, multiplique as escolhas de João (dos seus 3) e de Maria (dos seus 7). Some os casos.",
+    "formulas": [
+     "C(n, p)",
+     "casos disjuntos: soma"
+    ],
+    "simbolos": []
+   },
+   "pista": "Separe pelo número de livros trocados.",
+   "passos": [
+    {
+     "faz": "Troca 1",
+     "conta": "C(3, 1) × C(7, 1) = 3 × 7 = 21",
+     "porque": "Um livro de cada.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Troca 2",
+     "conta": "C(3, 2) × C(7, 2) = 3 × 21 = 63",
+     "porque": "Dois de cada.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Troca 3",
+     "conta": "C(3, 3) × C(7, 3) = 1 × 35 = 35",
+     "porque": "João entrega todos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some",
+     "conta": "21 + 63 + 35 = 119 → alternativa C",
+     "porque": "Casos disjuntos.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 119",
+   "checagem": "Pelo conjunto final de Maria: ela termina com 7 dos 10 livros, C(10, 7) = 120 conjuntos; tirando o conjunto original (sem troca), 119.",
+   "erradas": {
+    "A": "210 não confere: os casos somam 21 + 63 + 35 = 119.",
+    "B": "35 é só o caso de trocar os 3 livros.",
+    "D": "359 não confere: os casos somam 119."
+   },
+   "armadilha": "Esquecer os casos de troca de 1 ou 2 livros.",
+   "alerta": "",
+   "essencial": {
+    "pede": "De quantas maneiras trocar.",
+    "chave": "21 + 63 + 35 = 119.",
+    "cuidado": "Some os casos k = 1, 2, 3."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "soma completa",
+    "ideia": "Some k de 0 a 3: C(3, k) × C(7, k) = 1 + 21 + 63 + 35 = 120, e tire o k = 0 (sem troca): 119."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "3 × 7 = 21",
+    "nota": "k = 1"
+   },
+   {
+    "linha": "3 × 21 = 63",
+    "nota": "k = 2"
+   },
+   {
+    "linha": "1 × 35 = 35",
+    "nota": "k = 3"
+   },
+   {
+    "linha": "119",
+    "nota": "total"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0035"
+  }
  }
 }

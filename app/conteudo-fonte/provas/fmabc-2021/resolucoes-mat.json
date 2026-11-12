@@ -594,5 +594,92 @@
    "data": "2026-11-12",
    "lote": "mat-0032"
   }
+ },
+ "Pf772e2b5": {
+  "n": "73",
+  "conceito": "Combinação por casos: quem fica com a camisa 5.",
+  "equivocos": {
+   "A": "M13.3:sem-origem-identificada",
+   "B": "M13.3:sem-origem-identificada",
+   "C": "M13.3:sem-origem-identificada",
+   "E": "M13.3:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Henrique já tem a 1. Gustavo não pode ficar com a 5, então a 5 vai para o pai ou para Henrique. Separe esses dois casos e conte as escolhas restantes.",
+    "formulas": [
+     "C(n, p)",
+     "casos disjuntos: soma"
+    ],
+    "simbolos": []
+   },
+   "pista": "Com quem pode ficar a camisa 5?",
+   "passos": [
+    {
+     "faz": "5 com o pai",
+     "conta": "Henrique completa com 2 de {2, 3, 4, 6, 7}: C(5, 2) = 10; Gustavo leva as 3 restantes",
+     "porque": "Distribuição fica determinada.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "5 com Henrique",
+     "conta": "Henrique: 1, 5 e mais 1 de 5 → 5 | Gustavo: 3 das 4 restantes → C(4, 3) = 4 → 20",
+     "porque": "A que sobra vai para o pai.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some",
+     "conta": "10 + 20 = 30 → alternativa D",
+     "porque": "Casos disjuntos.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 30.",
+   "checagem": "Pelo complementar: sem a regra da 5, Henrique escolhe 2 de 6 (15) e Gustavo 3 de 4 (4): 60; com Gustavo pegando a 5: Henrique 2 de 5 sem a 5 (10) e Gustavo 5 + 2 de 3 (3): 30; 60 − 30 = 30.",
+   "erradas": {
+    "A": "40 não confere: os casos dão 10 + 20 = 30.",
+    "B": "35 não confere: os casos dão 10 + 20 = 30.",
+    "C": "45 não confere: os casos dão 10 + 20 = 30.",
+    "E": "50 não confere: os casos dão 10 + 20 = 30."
+   },
+   "armadilha": "Esquecer que a camisa 5 pode ficar com Henrique.",
+   "alerta": "",
+   "essencial": {
+    "pede": "De quantas maneiras distribuir.",
+    "chave": "5 com o pai: 10; 5 com Henrique: 20; 30.",
+    "cuidado": "Separe pelo dono da camisa 5."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "Gustavo primeiro",
+    "ideia": "Gustavo escolhe 3 de {2, 3, 4, 6, 7}: C(5, 3) = 10; sobram 3 camisas além da 1, e Henrique escolhe 2 delas: 3; 10 × 3 = 30."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "C(5, 2) = 10",
+    "nota": "5 com o pai"
+   },
+   {
+    "linha": "5 × 4 = 20",
+    "nota": "5 com Henrique"
+   },
+   {
+    "linha": "30",
+    "nota": "total"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0035"
+  }
  }
 }

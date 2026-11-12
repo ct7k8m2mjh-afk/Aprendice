@@ -1229,5 +1229,89 @@
    "data": "2026-11-12",
    "lote": "mat-0034"
   }
+ },
+ "P4c5bc9cd": {
+  "n": "61",
+  "conceito": "Probabilidade sem reposição com o que sobrou na sacola.",
+  "equivocos": {
+   "A": "M13.4:sem-origem-identificada",
+   "C": "M13.4:sem-origem-identificada",
+   "D": "M13.4:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Já saíram 35 brancas e 25 pretas, 60 no total. Sobraram 40: 25 brancas e 15 pretas. As duas próximas sem reposição: multiplique as chances.",
+    "formulas": [
+     "P(A e B) = P(A) × P(B | A)"
+    ],
+    "simbolos": []
+   },
+   "pista": "Quantas pedrinhas de cada cor restam?",
+   "passos": [
+    {
+     "faz": "Restantes",
+     "conta": "brancas 60 − 35 = 25 | pretas 40 − 25 = 15 | total 40",
+     "porque": "Já jogadas não voltam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Duas brancas",
+     "conta": "(25/40) × (24/39) = 600/1 560",
+     "porque": "Sem reposição.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Simplifique",
+     "conta": "600/1 560 = 5/13 → alternativa B",
+     "porque": "Divida por 120.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 5/13.",
+   "checagem": "Por combinações: C(25, 2)/C(40, 2) = 300/780 = 5/13.",
+   "erradas": {
+    "A": "7/13 não confere: (25/40) × (24/39) = 5/13.",
+    "C": "11/52 não confere: (25/40) × (24/39) = 5/13.",
+    "D": "7/52 não confere: (25/40) × (24/39) = 5/13."
+   },
+   "armadilha": "Usar a sacola cheia (60/100 × 59/99): as 60 já jogadas mudaram a composição.",
+   "alerta": "",
+   "essencial": {
+    "pede": "P(as próximas duas brancas).",
+    "chave": "25 brancas de 40; (25/40)(24/39) = 5/13.",
+    "cuidado": "Use o que restou."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "árvore completa",
+    "ideia": "BB = (25 × 24)/(40 × 39), BP = (25 × 15)/(40 × 39), PB = (15 × 25)/(40 × 39), PP = (15 × 14)/(40 × 39); os numeradores 600 + 375 + 375 + 210 = 1 560 fecham o total, e BB = 600/1560 = 5/13."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "25 brancas, 15 pretas",
+    "nota": "restante"
+   },
+   {
+    "linha": "(25/40)(24/39)",
+    "nota": "produto"
+   },
+   {
+    "linha": "5/13",
+    "nota": "resultado"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0035"
+  }
  }
 }

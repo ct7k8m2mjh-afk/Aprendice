@@ -1530,5 +1530,79 @@
    "data": "2026-11-12",
    "lote": "mat-0032"
   }
+ },
+ "P4250088c": {
+  "n": "47",
+  "conceito": "Combinação simples: grupos mínimos de 4 sintomas.",
+  "equivocos": {
+   "A": "M13.3:usou-outro-tamanho",
+   "B": "M13.3:sem-origem-identificada",
+   "D": "M13.3:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Uma combinação mínima para o diagnóstico tem exatamente 4 sintomas (com menos não basta; com mais, já contém uma de 4). Basta escolher 4 dos 7, sem ordem.",
+    "formulas": [
+     "C(n, p) = n!/(p!(n − p)!)"
+    ],
+    "simbolos": []
+   },
+   "pista": "Quantos sintomas tem uma combinação mínima?",
+   "passos": [
+    {
+     "faz": "Tamanho mínimo",
+     "conta": "4 sintomas",
+     "porque": "Quatro ou mais garantem; o mínimo é 4.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Conte",
+     "conta": "C(7, 4) = (7 × 6 × 5 × 4)/(4 × 3 × 2 × 1) = 35 → alternativa C",
+     "porque": "Sem ordem.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 35.",
+   "checagem": "Pelo complementar: escolher os 4 detectados é escolher os 3 ausentes, C(7, 3) = (7 × 6 × 5)/6 = 35.",
+   "erradas": {
+    "A": "21 é C(7, 2) ou C(7, 5): grupos de 2 ou 5 sintomas.",
+    "B": "56 não confere: C(7, 4) = 35.",
+    "D": "48 não confere: C(7, 4) = 35."
+   },
+   "armadilha": "Somar todos os grupos de 4 ou mais (35 + 21 + 7 + 1 = 64): o enunciado pede os mínimos.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O valor de k.",
+    "chave": "C(7, 4) = 35.",
+    "cuidado": "Mínimo = exatamente 4."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "Pascal",
+    "ideia": "Separe pelo sintoma 1: grupos com ele, C(6, 3) = 20; sem ele, C(6, 4) = 15; 20 + 15 = 35."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "C(7, 4)",
+    "nota": "mínimos"
+   },
+   {
+    "linha": "(7 · 6 · 5 · 4)/24 = 35",
+    "nota": "conta"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0035"
+  }
  }
 }
