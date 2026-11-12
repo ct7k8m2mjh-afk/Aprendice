@@ -338,5 +338,100 @@
    "data": "2026-11-12",
    "lote": "mat-0029"
   }
+ },
+ "P23f6b9a9": {
+  "n": "26",
+  "conceito": "Teste de afirmações: contagem com moedas, paridade de função, composição e triângulo retângulo.",
+  "equivocos": {
+   "B": "M13.4:aceitou-afirmacao-falsa",
+   "C": "M13.4:aceitou-afirmacao-falsa",
+   "D": "M13.4:aceitou-afirmacao-falsa"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Teste cada sentença. Em A, sequências de 5 lançamentos com pelo menos 3 caras: some 3, 4 e 5 caras. Em B, cos(x − π/2) = sen x. Em C, ache f a partir de f(g(x)). Em D, a hipotenusa BC é o diâmetro, 2R.",
+    "formulas": [
+     "C(n, k)",
+     "cos(x − π/2) = sen x"
+    ],
+    "simbolos": []
+   },
+   "pista": "Em A, quantas sequências têm exatamente 3 caras?",
+   "passos": [
+    {
+     "faz": "Teste A",
+     "conta": "C(5, 3) + C(5, 4) + C(5, 5) = 10 + 5 + 1 = 16 → verdadeira",
+     "porque": "Pelo menos 3 caras.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste B e C",
+     "conta": "B: g(x) = 3 − 2 sen x, g(−x) = 3 + 2 sen x ≠ g(x) → falsa | C: f(t) = 2t + 6 (f(4x + 8) = 8x + 22) → 6 não é primo → falsa",
+     "porque": "Paridade e composição.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Teste D",
+     "conta": "BC = 2R e AC = R → AB² = 4R² − R² = 3R² = 16 → R = 4/√3 → BC = 8/√3, irracional → falsa",
+     "porque": "Pitágoras.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Ligue ao gabarito",
+     "conta": "só A → alternativa A",
+     "porque": "Única correta.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — Um experimento consiste em lançar 5 vezes uma moeda sobre uma mesa e considerar resultado a sequência formada pelas faces voltadas para cima no 1º, 2º, 3º, 4º e 5º lançamentos. Então a quantidade de sequências diferentes com pelo menos 3 caras obtidas é 16.",
+   "checagem": "Em A, por simetria: das 2⁵ = 32 sequências, cada uma tem mais caras ou mais coroas (5 é ímpar); metade tem pelo menos 3 caras: 16.",
+   "erradas": {
+    "B": "g(x) = 3 − 2 sen x: g(π/2) = 1 e g(−π/2) = 5; não é par.",
+    "C": "f(t) = 2t + 6: o coeficiente 6 não é primo.",
+    "D": "Com AC = R e BC = 2R, AB² = 3R² = 16; BC = 8/√3 = (8√3)/3, irracional."
+   },
+   "armadilha": "Em C, usar f = 8x + 22 direto, sem desfazer a composição.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A sentença correta.",
+    "chave": "A: 16 sequências; B, C e D falsas.",
+    "cuidado": "Teste cada uma com uma conta curta."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "C pelos coeficientes",
+    "ideia": "Se f(t) = at + b, f(4x + 8) = 4ax + 8a + b = 8x + 22: a = 2 e b = 22 − 16 = 6."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "10 + 5 + 1 = 16",
+    "nota": "A"
+   },
+   {
+    "linha": "g(−x) ≠ g(x)",
+    "nota": "B"
+   },
+   {
+    "linha": "f(t) = 2t + 6",
+    "nota": "C"
+   },
+   {
+    "linha": "BC = 8/√3",
+    "nota": "D"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0037"
+  }
  }
 }

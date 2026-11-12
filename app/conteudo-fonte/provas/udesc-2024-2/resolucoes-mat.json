@@ -909,5 +909,91 @@
    "data": "2026-11-12",
    "lote": "mat-0030"
   }
+ },
+ "P93ae808b": {
+  "n": "14",
+  "conceito": "Probabilidade binomial: exatamente 2 acertos em 10.",
+  "equivocos": {
+   "B": "M13.4:esqueceu-a-combinacao",
+   "C": "M13.4:esqueceu-os-erros",
+   "D": "M13.4:sem-origem-identificada",
+   "E": "M13.4:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada questão é acertada com chance 1/5 e errada com 4/5, independentes. Exatamente 2 acertos: escolha quais 2 questões (C(10, 2)) e multiplique (1/5)² (4/5)⁸.",
+    "formulas": [
+     "P(k) = C(n, k) pᵏ (1 − p)ⁿ⁻ᵏ"
+    ],
+    "simbolos": []
+   },
+   "pista": "De quantos modos se escolhem as 2 questões certas?",
+   "passos": [
+    {
+     "faz": "Escolha",
+     "conta": "C(10, 2) = 45",
+     "porque": "Quais duas acerta.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Uma sequência",
+     "conta": "(1/5)² × (4/5)⁸ = 4⁸/5¹⁰",
+     "porque": "2 acertos e 8 erros.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique e simplifique",
+     "conta": "45 × 4⁸/5¹⁰ = (9 × 5 × 4⁸)/5¹⁰ = (9 × 4⁸)/5⁹ → alternativa A",
+     "porque": "45 = 9 × 5.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — (9 × 4⁸)/5⁹",
+   "checagem": "Por contagem de gabaritos: há 5¹⁰ formas de marcar; com exatamente 2 certas, C(10, 2) × 4⁸ (cada errada tem 4 opções): 45 × 4⁸/5¹⁰.",
+   "erradas": {
+    "B": "4⁸/5¹⁰ é uma única sequência; falta multiplicar pelas C(10, 2) = 45 escolhas das questões certas.",
+    "C": "1/5² é a chance de acertar duas questões fixas, sem exigir os 8 erros.",
+    "D": "1/5⁸ seria acertar 8 questões fixas; a questão pede exatamente 2 acertos e 8 erros: 45 × 4⁸/5¹⁰.",
+    "E": "4⁸/5⁹ = 5 × 4⁸/5¹⁰ multiplica por 5 em vez de 45."
+   },
+   "armadilha": "Esquecer o fator C(10, 2): as duas certas podem ser quaisquer.",
+   "alerta": "",
+   "essencial": {
+    "pede": "P(exatamente 2 acertos).",
+    "chave": "C(10, 2)(1/5)²(4/5)⁸ = (9 × 4⁸)/5⁹.",
+    "cuidado": "Binomial: não esqueça C(n, k)."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "contagem de gabaritos",
+    "ideia": "45 × 4⁸ marcações favoráveis em 5¹⁰."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "C(10, 2) = 45",
+    "nota": "escolha"
+   },
+   {
+    "linha": "4⁸/5¹⁰",
+    "nota": "sequência"
+   },
+   {
+    "linha": "(9 × 4⁸)/5⁹",
+    "nota": "resultado"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0037"
+  }
  }
 }

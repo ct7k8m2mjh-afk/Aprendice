@@ -647,5 +647,87 @@
    "data": "2026-11-12",
    "lote": "mat-0034"
   }
+ },
+ "P359bdecf": {
+  "n": "90",
+  "conceito": "Probabilidade condicional em tabela: sensibilidade e falso positivo.",
+  "equivocos": {
+   "A": "M13.5:usou-o-total-como-base",
+   "B": "M13.5:usou-o-total-como-base",
+   "C": "M13.5:usou-o-total-como-base",
+   "D": "M13.5:inverteu-a-condicao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A primeira lacuna é a chance de o teste dar positivo entre quem tem a doença (coluna SIM). A segunda é a chance de não ter a doença entre quem deu positivo (linha Positivo).",
+    "formulas": [
+     "P(A | B) = n(A e B)/n(B)"
+    ],
+    "simbolos": []
+   },
+   "pista": "Em cada lacuna, qual é o grupo de referência (o denominador)?",
+   "passos": [
+    {
+     "faz": "Detectar quem tem",
+     "conta": "doentes: 204 + 36 = 240 → 204/240 = 0,85 = 85%",
+     "porque": "Coluna SIM.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Falso positivo",
+     "conta": "positivos: 204 + 612 = 816 → 612/816 = 0,75 = 75%",
+     "porque": "Linha Positivo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue ao gabarito",
+     "conta": "85% ; 75% → alternativa E",
+     "porque": "Na ordem da frase.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 85% ; 75%.",
+   "checagem": "Simplifique as frações: 204/240 = 17/20 (divida por 12) e 612/816 = 3/4 (divida por 204).",
+   "erradas": {
+    "A": "38% ≈ 612/1620 usa o total de pessoas como base, não os positivos.",
+    "B": "50% ≈ 816/1620 é a fração de positivos no grupo todo, não a detecção entre os doentes (204/240 = 85%); e 38% ≈ 612/1620 também usa o total como base.",
+    "C": "50% ≈ 816/1620 é a fração de positivos no grupo todo, não a detecção entre os doentes (204/240 = 85%).",
+    "D": "44% ≈ 612/1380 é a chance de dar positivo entre quem NÃO tem a doença (coluna NÃO), a condicional invertida; a frase pede não ter a doença entre os positivos: 612/816 = 75%."
+   },
+   "armadilha": "Dividir pelo total de 1 620 pessoas em vez de restringir aos doentes ou aos positivos.",
+   "alerta": "",
+   "essencial": {
+    "pede": "As duas porcentagens da frase.",
+    "chave": "204/240 = 85%; 612/816 = 75%.",
+    "cuidado": "Escolha o grupo de referência certo."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "por complementares",
+    "ideia": "Doentes com negativo: 36/240 = 15%, logo detecção 85%; positivos doentes: 204/816 = 25%, logo falso positivo 75%."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "204/240 = 85%",
+    "nota": "detecção"
+   },
+   {
+    "linha": "612/816 = 75%",
+    "nota": "falso positivo"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0037"
+  }
  }
 }
