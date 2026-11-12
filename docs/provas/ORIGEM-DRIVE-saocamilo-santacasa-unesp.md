@@ -65,3 +65,17 @@ Gabarito e caderno da versão 1 (não estão no Drive), da página de resoluçã
 - 2025: caderno oficial versão 1 — `…/santacasa/2025/1dia/santacasa2025_1dia_prova.pdf`; gabarito oficial FAVC2401, versão 1 — `…/santacasa/2025/1dia/santacasa2025_gabarito.pdf`
 - Conferência: as 80 respostas da resolução comentada do Objetivo (`santacasa2023_1dia.pdf`, `santacasa2025_1dia.pdf`) batem com o gabarito oficial nas duas provas, e a resolução não aponta anulada nem troca de gabarito. As alternativas (A) do caderno versão 1 de 2025 batem com as da resolução (78 de 80; as 2 restantes só diferem na formatação); as do caderno do Drive, só 10 de 80.
 - Não há anuladas. O 2º dia (discursivas e redação) fica fora.
+
+## Outros arquivos do Drive do dono (12/11/2026): Famema, Einstein, Santa Casa e simulado
+Baixados pelo Drive conectado em 12/11/2026 e abertos um a um. **Nenhum entrou no site**: as Prova I da Famema são dissertativas, e os gabaritos vieram sem o caderno. As objetivas da Famema e do Einstein estão sendo integradas por outro trabalho, a partir das cópias do Curso Objetivo (`ferramentas/ingestao/provas_objetivo.py`); estes arquivos ficam guardados em `fontes/provas-manuais/<instituição>/<pasta>/arquivo.pdf` (fora do git) para conferência.
+
+| Arquivo no Drive | id | Pasta local | O que é | Situação |
+|---|---|---|---|---|
+| `732961048-Vestibular-Famema-2023-Prova1.pdf` | `1KelumZK-Qa9O_L75-M-38rvbqJEWbHgK` | `famema/732961048-Vestibular-Famema-2023-Prova1` | Famema, Vestibular 2023 (FMMA2201), **001. Prova I: 8 questões discursivas** | não entra (dissertativa); falta a Prova II objetiva |
+| `702787010-Famema-2024-Caderno-I.pdf` | `1e0qvy3UHELl--w4RyMLfn4Dhr0mKFXcR` | `famema/702787010-Famema-2024-Caderno-I` | Famema, Vestibular 2024 (FMMA2301), **Prova I: 8 discursivas** | não entra (dissertativa); falta a Prova II objetiva |
+| `824963401-Prova-I-Famema-2025.pdf` | `14KZU4jmYRygj0LzvW-1AdqU4KSmnGbn3` | `famema/824963401-Prova-I-Famema-2025` | Famema, Vestibular 2025 (FMMA2401), **Prova I: 8 discursivas** | não entra (dissertativa); falta a Prova II objetiva |
+| `952738232-Famema-gabarito.pdf` | `1d2-zCVsNxzx-GxwnU-EW_5aUVGxs45lD` | `famema/952738232-Famema-gabarito` | Gabarito oficial da **Prova II (objetiva, 40 questões) do Vestibular Famema 2026** (FMMA2501, 20/11/2025), versão 1 | não entra sozinho: falta o caderno da Prova II 2026 |
+| `952738232-Famema-gabarito (1).pdf` | `1ibdNi7ChqdyKF9jq2IdGKGOqEBb1MMM0` | — | Cópia idêntica do anterior (mesmo md5) | — |
+| `593663319-2020-Einstein-Prova-i-Gabarito.pdf` | `1t0c4r8hrY9vHgdIMzwVT_EQGs6bQcRYP` | `einstein/593663319-2020-Einstein-Prova-i-Gabarito` | Gabarito oficial da **Prova I (objetiva, 50 questões) do Vestibular Einstein 2020** (FEAE1902, 01/12/2019), Enfermagem e Medicina, versão 1. No Einstein a Prova I é a objetiva | não entra sozinho: falta o caderno |
+| `959775199-FAVC2501-308-20251020083405-pdf.pdf` | `1Tk4MOhFY_Gcko9hFoO_g80QZseLUlQ2_` | `santacasa/959775199-FAVC2501-308-20251020083405-pdf` | Gabarito oficial da **Santa Casa, Vestibular 1º semestre de 2026** (FAVC2501, 18/10/2025), Medicina, 001. Prova de Conhecimentos Gerais (80 questões), **versão 2** | não entra: só o gabarito, e da versão 2 (o caderno precisa ser da mesma versão). A Santa Casa é de outro trabalho |
+| `482591049-Simulado-FAMEMA-2-Prova-hexagMEDICINA-Julho-ONLINE-pdf.pdf` | `1fOcrguDpGwvyBFOuaX1XJ3oL_OfH7lzX` | — (não baixado) | **Simulado de cursinho** (Hexag Medicina), não é prova real | não entra (princípio 1) |
