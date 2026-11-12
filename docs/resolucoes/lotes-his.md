@@ -83,7 +83,7 @@ Faltam 135 questões sem resolução (fora as que estão em lote, pendentes ou c
 | his-0075 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | his-0076 | demais nível 1-6 | 30 | gravado | 28 | 1 | 1 |
 | his-0077 | demais nível 1-6 | 30 | gravado | 29 | 1 | 0 |
-| his-0078 | ENEM nível 7-10 | 30 | aberto |  |  |  |
+| his-0078 | ENEM nível 7-10 | 30 | gravado | 29 | 1 | 0 |
 
 ## Pendentes (falta de certeza absoluta)
 
@@ -95,6 +95,7 @@ Faltam 135 questões sem resolução (fora as que estão em lote, pendentes ou c
 | P4227aeb2 | Fatec 2026 1º semestre · questão 51 | H06.6 Revolução Industrial e mundo do trabalho (tema H06 Revoluções) | classificação: é de Matemática |
 | Pbc25b11f | Fempar 2021 Medicina 2021 · questão 32 | H05.7 República de 1946: de Dutra a Jango (tema H05 República Brasileira) | classificação: é de Sociologia |
 | P61d9ea43 | Fuvest 2026 1ª fase · questão 12 | H05.5 Revolução de 1930 e governo constitucional de Vargas (tema H05 República Brasileira) | classificação: é de Português (literatura) — a questão pede a análise dos romances Caminho de pedras, de Rachel de Queiroz, e As meninas, de Lygia Fagundes Telles (personagens Angelita, Ana Clara, Noemi, Lorena); o contexto histórico dos direitos das mulheres é só introdução. |
+| P90c57238 | Fuvest 2026 1ª fase · questão 46 | H02.7 Reformas protestantes e Contrarreforma (tema H02 Idade Média) | classificação: é de Português |
 | P916264a9 | Fuvest 2026 1ª fase · questão 9 | H04.9 crise do Império e proclamação da República (tema H04 Independência e Império) | classificação: é de Filosofia e Sociologia (a questão compara as ideias de Nísia Floresta e Émile Durkheim sobre a educação; é de Sociologia, e não de História do Brasil) |
 | P5615270b | PUC-Rio 2026 Grupo 4 · questão 45 | H05.7 República de 1946: de Dutra a Jango (tema H05 República Brasileira) | classificação: é de Geografia |
 | P881983dc | UECE 2020 2020.2 – 2ª fase · questão 151 | H02.4 reinos e impérios africanos (tema H02 Idade Média) | As afirmativas sobre o reino Bamun (islamização como resistência ao avanço cristão, diplomacia que teria evitado o domínio britânico sob o rei Njoya, introdução de tecnologia e indústria) não são conferíveis com certeza em conhecimento consolidado de livro didático, e a segunda parece não combinar com o domínio alemão e depois francês sobre Bamun. Sem certeza absoluta, a resolução não entra. |
