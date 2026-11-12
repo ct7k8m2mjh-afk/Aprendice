@@ -643,5 +643,99 @@
    "data": "2026-11-12",
    "lote": "fis-0038"
   }
+ },
+ "P8e820f12": {
+  "n": "10",
+  "conceito": "Gerador real com carga: i = U_b/(R_b + R); o voltímetro em R mede R × i.",
+  "equivocos": {
+   "A": "F11.7:queda-interna-como-leitura",
+   "C": "F11.7:resistencia-interna-ignorada",
+   "D": "F11.7:tensao-acima-da-fem"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A bateria (U_b = 3,6 V, R_b = 1,2 Ω) alimenta R = 6,0 Ω. A corrente é i = U_b/(R_b + R), e o voltímetro, ligado em R, marca R × i.",
+    "formulas": [
+     "i = U_b/(R_b + R)",
+     "U_R = R × i"
+    ],
+    "simbolos": [
+     [
+      "U_b",
+      "3,6 V"
+     ],
+     [
+      "R_b",
+      "1,2 Ω"
+     ],
+     [
+      "R",
+      "6,0 Ω"
+     ]
+    ]
+   },
+   "pista": "A tensão nos terminais é menor que 3,6 V. Por quê?",
+   "passos": [
+    {
+     "faz": "Corrente",
+     "conta": "i = 3,6/(1,2 + 6,0) = 0,5 A",
+     "porque": "Série.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Leitura",
+     "conta": "U = 6,0 × 0,5 = 3,0 V",
+     "porque": "Tensão em R.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Marque",
+     "conta": "3,0 V",
+     "porque": "É a alternativa B.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 3,0 V.",
+   "checagem": "Pela equação do gerador: U = U_b − R_b × i = 3,6 − 1,2 × 0,5 = 3,0 V.",
+   "erradas": {
+    "A": "Sai de dar a queda na resistência interna: 1,2 × 0,5 = 0,6 V.",
+    "C": "Sai de esquecer a resistência interna e dar a tensão ideal da bateria: 3,6 V.",
+    "D": "Não confere: 4,3 V é maior que a própria força eletromotriz de 3,6 V."
+   },
+   "armadilha": "Esquecer a queda na resistência interna.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A leitura do voltímetro.",
+    "chave": "i = 0,5 A; U = 6,0 × 0,5 = 3,0 V.",
+    "cuidado": "U = ε − ri."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "gerador",
+    "ideia": "3,6 − 0,6 = 3,0 V."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "i = 3,6/7,2 = 0,5 A",
+    "nota": "corrente"
+   },
+   {
+    "linha": "U = 6,0 × 0,5 = 3,0 V",
+    "nota": "B"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "fis-0039"
+  }
  }
 }

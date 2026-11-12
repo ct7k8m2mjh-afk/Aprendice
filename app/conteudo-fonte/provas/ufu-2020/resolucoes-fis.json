@@ -493,5 +493,108 @@
    "data": "2026-11-12",
    "lote": "fis-0031"
   }
+ },
+ "P2930bc81": {
+  "n": "22",
+  "conceito": "Diodo ideal: conduz num sentido e bloqueia no outro, deixando passar só uma parte de cada ciclo.",
+  "equivocos": {
+   "B": "F11.8:diodo-muda-forma",
+   "C": "F11.8:diodo-deixa-negativo",
+   "D": "F11.8:ignora-diodo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O diodo ideal deixa a corrente passar só num sentido. Na parte do ciclo em que ele conduz, o resistor recebe a tensão da fonte; na parte em que ele bloqueia, não há corrente e a tensão no resistor é zero. O voltímetro está ligado nos terminais do resistor.",
+    "formulas": [
+     "U_R = R · i"
+    ],
+    "simbolos": [
+     [
+      "U_R",
+      "tensão no resistor (leitura do voltímetro)"
+     ],
+     [
+      "i",
+      "corrente no circuito"
+     ]
+    ]
+   },
+   "pista": "Quando o diodo bloqueia, passa corrente no resistor? Que tensão ele mostra então?",
+   "passos": [
+    {
+     "faz": "Diodo conduzindo",
+     "conta": "U_R = tensão da fonte",
+     "porque": "Diodo ideal não consome tensão.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Diodo bloqueando",
+     "conta": "i = 0 → U_R = R · 0 = 0",
+     "porque": "Sem corrente, sem queda no resistor.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Forma da leitura",
+     "conta": "triângulos positivos separados por trechos em zero",
+     "porque": "Só uma parte de cada ciclo aparece.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "Gráfico A",
+     "porque": "Mesma altura dos picos da fonte, sem a parte negativa.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — o gráfico com os triângulos só na parte positiva e leitura nula entre eles.",
+   "checagem": "Pense no valor máximo: o pico do gráfico A tem a mesma altura do pico da fonte (linha tracejada), como deve ser com diodo ideal; nada fica abaixo do eixo, porque a corrente nunca inverte.",
+   "erradas": {
+    "B": "Não confere: o diodo não muda a forma da onda que passa; os trechos inclinados da fonte não viram dente de serra.",
+    "C": "Não confere: há leitura negativa, e o diodo ideal bloqueia o sentido contrário; também os picos ficaram cortados abaixo do máximo.",
+    "D": "Não confere: é a própria tensão da fonte, como se o diodo não existisse."
+   },
+   "armadilha": "Esquecer o diodo e repetir a onda da fonte.",
+   "alerta": "A figura não indica qual terminal da fonte é o positivo; a resposta oficial (A) corresponde ao diodo conduzindo na parte positiva do gráfico da fonte.",
+   "essencial": {
+    "pede": "A leitura do voltímetro no resistor ao longo do tempo.",
+    "chave": "O diodo deixa passar só um sentido: a outra parte vira zero.",
+    "cuidado": "Diodo ideal não corta o pico nem muda a forma da parte que passa."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "Por fase do ciclo",
+    "ideia": "Separar o ciclo em conduzindo e bloqueando e ver a tensão no resistor em cada parte."
+   },
+   {
+    "nome": "Eliminação",
+    "ideia": "Descartar gráficos com parte negativa ou com forma diferente da fonte."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "Diodo conduz: U_R = U_fonte",
+    "nota": "parte positiva passa"
+   },
+   {
+    "linha": "Diodo bloqueia: i = 0 → U_R = 0",
+    "nota": "parte negativa vira zero"
+   },
+   {
+    "linha": "Resposta: A",
+    "nota": "triângulos só positivos"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "fis-0039"
+  }
  }
 }

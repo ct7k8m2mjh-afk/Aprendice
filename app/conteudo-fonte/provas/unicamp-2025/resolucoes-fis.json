@@ -636,5 +636,98 @@
    "data": "2026-11-12",
    "lote": "fis-0031"
   }
+ },
+ "P98a90dfd": {
+  "n": "13",
+  "conceito": "Conservação de potência no controlador: P = U × i dos dois lados.",
+  "equivocos": {
+   "B": "F11.7:corrente-sem-equacao",
+   "C": "F11.7:corrente-sem-equacao",
+   "D": "F11.7:corrente-sem-equacao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O controlador transfere a potência do painel para a bateria sem perdas (situação ideal: toda a energia do painel vai para a bateria): a mesma P = 462 W, mas com tensões diferentes. Em cada lado, i = P/U.",
+    "formulas": [
+     "P = U × i"
+    ],
+    "simbolos": [
+     [
+      "P",
+      "462 W"
+     ],
+     [
+      "U_painel",
+      "42 V"
+     ],
+     [
+      "U_bat",
+      "12 V"
+     ]
+    ]
+   },
+   "pista": "A potência é a mesma dos dois lados; a corrente muda com a tensão.",
+   "passos": [
+    {
+     "faz": "Painel",
+     "conta": "i = 462/42 = 11 A",
+     "porque": "i = P/U.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Bateria",
+     "conta": "i = 462/12 = 38,5 A",
+     "porque": "Mesma potência.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "11 A e 38,5 A",
+     "porque": "É a alternativa A.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — i_painel = 11 A e i_bat = 38,5 A.",
+   "checagem": "Conferindo: 42 × 11 = 462 W e 12 × 38,5 = 462 W. Tensão menor do lado da bateria exige corrente maior.",
+   "erradas": {
+    "B": "Não confere: 12 V × 3,1 A ≈ 37 W, longe dos 462 W que chegam à bateria.",
+    "C": "Não confere: 134,75 A × 42 V daria cerca de 5660 W no painel, muito mais que 462 W.",
+    "D": "Não confere: 134,75 A no painel daria cerca de 5660 W; e 3,1 A na bateria daria só cerca de 37 W."
+   },
+   "armadilha": "Achar que a corrente diminui junto com a tensão.",
+   "alerta": "",
+   "essencial": {
+    "pede": "As correntes no painel e na bateria.",
+    "chave": "11 A e 38,5 A, com 462 W nos dois lados.",
+    "cuidado": "P = Ui conservada."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "conferência",
+    "ideia": "42 × 11 = 12 × 38,5 = 462 W."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "i_p = 462/42 = 11 A",
+    "nota": "painel"
+   },
+   {
+    "linha": "i_b = 462/12 = 38,5 A",
+    "nota": "bateria"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "fis-0039"
+  }
  }
 }

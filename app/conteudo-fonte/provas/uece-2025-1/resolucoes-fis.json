@@ -772,5 +772,123 @@
    "data": "2026-11-12",
    "lote": "fis-0029"
   }
+ },
+ "P5986513c": {
+  "n": "42",
+  "conceito": "Associação em série: a soma das quedas de tensão nos resistores é igual à tensão da fonte (lei das malhas).",
+  "equivocos": {
+   "A": "F11.7:serie-corrente-diferente",
+   "B": "F11.7:paralelo-corrente-igual",
+   "C": "F11.7:paralelo-equivalente-maior"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Em série, a corrente é a mesma em todos os resistores e as tensões se somam. Em paralelo, a tensão é a mesma em todos os ramos e as correntes se somam; o resistor equivalente fica menor que o menor deles.",
+    "formulas": [
+     "Série: U = U1 + U2 + U3",
+     "Paralelo: i = i1 + i2 + i3"
+    ],
+    "simbolos": [
+     [
+      "U",
+      "tensão da fonte"
+     ],
+     [
+      "U1, U2",
+      "quedas de tensão em cada resistor"
+     ],
+     [
+      "i",
+      "corrente"
+     ]
+    ]
+   },
+   "pista": "Percorra a malha de uma associação em série: quanto a fonte fornece e quanto cada resistor consome?",
+   "passos": [
+    {
+     "faz": "Série: o que é igual",
+     "conta": "i igual em todos",
+     "porque": "Só há um caminho para a corrente.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Série: o que se soma",
+     "conta": "U = U1 + U2 + U3",
+     "porque": "Lei das malhas: a fonte fornece o que os resistores consomem.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Paralelo: o que é igual",
+     "conta": "U igual em todos os ramos",
+     "porque": "Todos os ramos ligam os mesmos dois pontos.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Paralelo: equivalente",
+     "conta": "1/Req = 1/R1 + 1/R2 → Req < menor R",
+     "porque": "Cada ramo novo abre mais um caminho.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "Alternativa D",
+     "porque": "É a única afirmação que bate com as leis de Ohm e Kirchhoff.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — A soma das quedas de tensão, em cada resistor associado em série, de um circuito é igual à tensão fornecida pela fonte.",
+   "checagem": "Teste com números: fonte de 12 V com 2 Ω e 4 Ω em série. i = 12/6 = 2 A; quedas 2 × 2 = 4 V e 2 × 4 = 8 V; 4 + 8 = 12 V, igual à fonte.",
+   "erradas": {
+    "A": "Não confere: em série há um caminho só, então a corrente é a mesma em todos os resistores.",
+    "B": "Não confere: em paralelo é a tensão que se mantém; a corrente em cada ramo é U/R e muda com a resistência.",
+    "C": "Não confere: em paralelo o equivalente é sempre menor que a menor resistência (2 Ω ∥ 3 Ω = 6/5 = 1,2 Ω, menor que 2 Ω)."
+   },
+   "armadilha": "Trocar o que é constante em série (corrente) com o que é constante em paralelo (tensão).",
+   "alerta": "",
+   "essencial": {
+    "pede": "Qual afirmação sobre série e paralelo é verdadeira.",
+    "chave": "Série: corrente igual, tensões somam; paralelo: tensão igual, correntes somam.",
+    "cuidado": "Equivalente em paralelo é menor que o menor resistor."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "Lei das malhas",
+    "ideia": "Somar as quedas de tensão ao longo da série e igualar à tensão da fonte."
+   },
+   {
+    "nome": "Exemplo numérico",
+    "ideia": "Testar cada afirmação com resistores simples de valores conhecidos."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "Série: i igual; U = U1 + U2 + U3",
+    "nota": "tensões se somam"
+   },
+   {
+    "linha": "Paralelo: U igual; i = i1 + i2",
+    "nota": "correntes se somam"
+   },
+   {
+    "linha": "1/Req = 1/R1 + 1/R2 → Req < menor R",
+    "nota": "equivalente em paralelo"
+   },
+   {
+    "linha": "Resposta: D",
+    "nota": "soma das quedas = tensão da fonte"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "fis-0039"
+  }
  }
 }

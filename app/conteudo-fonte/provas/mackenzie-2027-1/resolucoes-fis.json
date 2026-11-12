@@ -654,5 +654,129 @@
    "data": "2026-11-12",
    "lote": "fis-0028"
   }
+ },
+ "P02ca221e": {
+  "n": "16",
+  "conceito": "Ramos em paralelo com a fonte: cada ramo recebe os 50 V; amperímetro ideal em série mede a corrente do ramo.",
+  "equivocos": {
+   "A": "F11.8:ramo-sem-tensao-total",
+   "B": "F11.8:ramo-sem-tensao-total",
+   "D": "F11.8:ramo-sem-tensao-total",
+   "E": "F11.8:corrente-total-no-ramo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O resistor R4 liga diretamente os dois polos da fonte; o outro ramo também liga os mesmos dois pontos e é formado por R1 ∥ R2 em série com R3 e o amperímetro ideal (resistência nula). Então esse ramo recebe 50 V inteiros e o amperímetro mede só a corrente dele.",
+    "formulas": [
+     "Paralelo de dois iguais: R/2",
+     "i = U/R"
+    ],
+    "simbolos": [
+     [
+      "U",
+      "50 V"
+     ],
+     [
+      "R1, R2",
+      "8 Ω"
+     ],
+     [
+      "R3",
+      "6 Ω"
+     ],
+     [
+      "R4",
+      "10 Ω"
+     ]
+    ]
+   },
+   "pista": "Qual tensão chega no ramo do amperímetro? Precisa de R4 para isso?",
+   "passos": [
+    {
+     "faz": "Paralelo R1, R2",
+     "conta": "8 ∥ 8 = 8/2 = 4 Ω",
+     "porque": "Dois iguais em paralelo: R/2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ramo do amperímetro",
+     "conta": "4 + 6 = 10 Ω",
+     "porque": "Série com R3; amperímetro ideal tem resistência nula.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tensão no ramo",
+     "conta": "U_ramo = 50 V",
+     "porque": "O ramo liga os dois polos da fonte ideal.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Corrente",
+     "conta": "i = 50/10 = 5,0 A",
+     "porque": "Lei de Ohm no ramo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "5,0 A",
+     "porque": "Alternativa C.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 5,0 A.",
+   "checagem": "Pela corrente total: Req = 10 ∥ 10 = 5 Ω, então a fonte fornece 50/5 = 10 A; os dois ramos têm 10 Ω cada e dividem igualmente: 10/2 = 5 A no ramo do amperímetro.",
+   "erradas": {
+    "A": "Não confere: 2,5 A no ramo de 10 Ω daria 25 V, mas o ramo está ligado direto nos 50 V da fonte.",
+    "B": "Não confere: 4,0 A no ramo de 10 Ω daria 40 V, não os 50 V da fonte.",
+    "D": "Não confere: 7,5 A no ramo de 10 Ω exigiria 75 V, mais que a fonte.",
+    "E": "Sai de tomar a corrente total da fonte: 50/5 = 10 A, que se divide entre os dois ramos; o amperímetro mede só um deles."
+   },
+   "armadilha": "Confundir a corrente total da fonte com a corrente do ramo onde está o amperímetro.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A corrente no ramo de R3.",
+    "chave": "O ramo tem 10 Ω e recebe os 50 V da fonte: 5 A.",
+    "cuidado": "R4 está em paralelo e não altera a tensão no ramo com fonte ideal."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "Ramo isolado",
+    "ideia": "Fonte ideal: cada ramo em paralelo recebe a tensão inteira; i = U/R_ramo."
+   },
+   {
+    "nome": "Corrente total e divisão",
+    "ideia": "Calcular a corrente total e dividir entre os ramos."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "8 ∥ 8 = 4 Ω",
+    "nota": "R1 com R2"
+   },
+   {
+    "linha": "4 + 6 = 10 Ω",
+    "nota": "ramo do amperímetro"
+   },
+   {
+    "linha": "i = 50/10",
+    "nota": "ramo recebe os 50 V"
+   },
+   {
+    "linha": "i = 5,0 A",
+    "nota": "alternativa C"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "fis-0039"
+  }
  }
 }

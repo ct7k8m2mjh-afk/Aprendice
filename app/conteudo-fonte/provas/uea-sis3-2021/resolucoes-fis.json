@@ -94,5 +94,354 @@
    "data": "2026-11-12",
    "lote": "fis-0037"
   }
+ },
+ "P45af8ed0": {
+  "n": "46",
+  "conceito": "Associação mista de pilhas: série soma as tensões; paralelo de ramos iguais mantém a tensão e aumenta a carga disponível.",
+  "equivocos": {
+   "A": "F11.7:paralelo-soma-tensao",
+   "B": "F11.7:paralelo-soma-tensao",
+   "D": "F11.7:serie-sem-limite",
+   "E": "F11.7:conta-errada-de-degraus"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Pilhas em série somam as tensões: duas de 1,5 V dão 3 V. Pilhas (ou grupos iguais) em paralelo mantêm a tensão, mas dividem a corrente entre si e oferecem mais carga. Para 3 V com a maior disponibilização de carga, as seis pilhas devem trabalhar todas, em dois níveis de 1,5 V.",
+    "formulas": [
+     "Série: U = U1 + U2",
+     "Paralelo de iguais: U igual"
+    ],
+    "simbolos": [
+     [
+      "U",
+      "tensão entre P e Q"
+     ],
+     [
+      "1,5 V",
+      "tensão de cada pilha"
+     ]
+    ]
+   },
+   "pista": "Quantas pilhas em série dão 3 V? E como usar as seis ao mesmo tempo?",
+   "passos": [
+    {
+     "faz": "Tensão pedida",
+     "conta": "3 = 2 × 1,5",
+     "porque": "São dois degraus de 1,5 V em série.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Usar as seis",
+     "conta": "6 pilhas em 2 degraus → 3 pilhas por degrau",
+     "porque": "Cada degrau com três pilhas em paralelo mantém 1,5 V e triplica a carga.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Leia o esquema C",
+     "conta": "(3 em paralelo) em série com (3 em paralelo)",
+     "porque": "Os negativos de 1, 2 e 3 vão a Q; os positivos de 1, 2 e 3 se ligam aos negativos de 4, 5 e 6; os positivos de 4, 5 e 6 vão a P.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Tensão entre P e Q",
+     "conta": "1,5 + 1,5 = 3 V",
+     "porque": "Dois degraus em série.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "Esquema C",
+     "porque": "3 V com as seis pilhas fornecendo carga.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — o esquema C (dois grupos de três pilhas em paralelo, ligados em série).",
+   "checagem": "Confira pelos outros: todas em paralelo dão 1,5 V; todas em série dão 6 × 1,5 = 9 V; três pares em paralelo ligados em série dão 3 × 1,5 = 4,5 V. Só o esquema C dá 3 V usando as seis.",
+   "erradas": {
+    "A": "Não confere: todas as pilhas estão em paralelo entre P e Q, então a tensão é 1,5 V.",
+    "B": "Não confere: os positivos vão todos a P e os negativos todos a Q; é tudo em paralelo, 1,5 V.",
+    "D": "Não confere: as seis pilhas ficam em série, positivo de uma no negativo da seguinte: 6 × 1,5 = 9 V.",
+    "E": "Não confere: são três pares em paralelo ligados em série: 3 × 1,5 = 4,5 V."
+   },
+   "armadilha": "Achar que \"mais carga\" significa mais tensão; a carga disponível aumenta com pilhas em paralelo, a tensão com pilhas em série.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O esquema que dá 3 V com a maior carga disponível.",
+    "chave": "Dois degraus em série, cada um com três pilhas em paralelo.",
+    "cuidado": "Seguir cada fio do positivo ao negativo antes de concluir."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "Degraus de tensão",
+    "ideia": "Contar quantos degraus de 1,5 V há entre P e Q em cada esquema."
+   },
+   {
+    "nome": "Eliminação",
+    "ideia": "Calcular a tensão de cada esquema e ficar com o único de 3 V."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "3 V = 2 × 1,5 V",
+    "nota": "dois degraus em série"
+   },
+   {
+    "linha": "6 pilhas / 2 degraus = 3 por degrau",
+    "nota": "três em paralelo por degrau"
+   },
+   {
+    "linha": "A, B: 1,5 V · D: 9 V · E: 4,5 V",
+    "nota": "os outros esquemas"
+   },
+   {
+    "linha": "Resposta: C",
+    "nota": "3 V com as seis pilhas"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "fis-0039"
+  }
+ },
+ "Pc461371f": {
+  "n": "47",
+  "conceito": "Geradores em oposição numa malha: a fem efetiva é a diferença; a corrente é fem efetiva dividida pela resistência total.",
+  "equivocos": {
+   "B": "F11.7:ignora-resistencia-interna",
+   "C": "F11.7:soma-fem-em-oposicao",
+   "D": "F11.7:usa-um-gerador-so",
+   "E": "F11.7:soma-fem-em-oposicao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Na malha, o gerador de 30 V tem o negativo à esquerda e o de 50 V tem o positivo à esquerda: estão em oposição. O maior (50 V) impõe o sentido e o menor funciona contra ele. Todas as resistências estão em série: as internas (60 Ω e 40 Ω) e a externa (100 Ω).",
+    "formulas": [
+     "i = (ε1 − ε2)/(R + r1 + r2)"
+    ],
+    "simbolos": [
+     [
+      "ε1",
+      "50 V"
+     ],
+     [
+      "ε2",
+      "30 V"
+     ],
+     [
+      "r1, r2",
+      "40 Ω e 60 Ω"
+     ],
+     [
+      "R",
+      "100 Ω"
+     ]
+    ]
+   },
+   "pista": "Os dois geradores empurram no mesmo sentido ou em sentidos opostos?",
+   "passos": [
+    {
+     "faz": "Polaridades",
+     "conta": "30 V: − à esquerda · 50 V: + à esquerda",
+     "porque": "Os sinais estão invertidos: geradores em oposição.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Fem efetiva",
+     "conta": "50 − 30 = 20 V",
+     "porque": "Em oposição, as fem se subtraem.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resistência total",
+     "conta": "60 + 40 + 100 = 200 Ω",
+     "porque": "Malha única: tudo em série.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Corrente",
+     "conta": "i = 20/200 = 0,1 A",
+     "porque": "Lei de Pouillet.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "0,1 A",
+     "porque": "Alternativa A.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 0,1 A.",
+   "checagem": "Lei das malhas com i = 0,1 A: quedas 60 × 0,1 = 6 V, 40 × 0,1 = 4 V e 100 × 0,1 = 10 V, somando 20 V; e 50 − 30 = 20 V. A malha fecha.",
+   "erradas": {
+    "B": "Sai de usar a fem efetiva e esquecer as resistências internas: 20/100 = 0,2 A.",
+    "C": "Sai de somar as fem como se estivessem a favor: (30 + 50)/200 = 0,4 A.",
+    "D": "Sai de usar só o gerador de 50 V e só o resistor externo: 50/100 = 0,5 A.",
+    "E": "Sai de somar as fem e ignorar as resistências internas: 80/100 = 0,8 A."
+   },
+   "armadilha": "Somar as fem sem olhar a polaridade; aqui os geradores estão em oposição.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A corrente no resistor de 100 Ω.",
+    "chave": "Fem efetiva 20 V dividida pela resistência total 200 Ω.",
+    "cuidado": "Conferir a polaridade de cada gerador e incluir as resistências internas."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "Pouillet",
+    "ideia": "i = soma algébrica das fem dividida pela resistência total."
+   },
+   {
+    "nome": "Lei das malhas",
+    "ideia": "Percorrer a malha somando ganhos e quedas de tensão e igualar a zero."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "ε = 50 − 30 = 20 V",
+    "nota": "geradores em oposição"
+   },
+   {
+    "linha": "R total = 60 + 40 + 100 = 200 Ω",
+    "nota": "tudo em série"
+   },
+   {
+    "linha": "i = 20/200",
+    "nota": "Pouillet"
+   },
+   {
+    "linha": "i = 0,1 A",
+    "nota": "alternativa A"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "fis-0039"
+  }
+ },
+ "P150129b7": {
+  "n": "48",
+  "conceito": "Circuito equivalente: fontes iguais em paralelo e resistores em série e paralelo.",
+  "equivocos": {
+   "A": "F11.7:fontes-paralelo-somam",
+   "C": "F11.7:fontes-paralelo-dividem",
+   "D": "F11.7:fontes-paralelo-dividem",
+   "E": "F11.7:fontes-paralelo-somam"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "As duas fontes de 40 V estão ligadas entre os mesmos dois fios (em paralelo): juntas, continuam valendo 40 V. Do lado direito, o resistor de 40 Ω fica entre esses dois fios, e o caminho 20 Ω + 10 Ω + 10 Ω também liga os mesmos dois fios.",
+    "formulas": [
+     "Série: R = R1 + R2 + R3",
+     "Paralelo de dois: R = R1·R2/(R1 + R2)"
+    ],
+    "simbolos": [
+     [
+      "U",
+      "tensão das fontes"
+     ],
+     [
+      "Req",
+      "resistência equivalente"
+     ]
+    ]
+   },
+   "pista": "Fontes iguais em paralelo somam tensão? E o caminho de 20 Ω com os dois de 10 Ω está em série com quem?",
+   "passos": [
+    {
+     "faz": "Fontes",
+     "conta": "40 V ∥ 40 V → 40 V",
+     "porque": "Fontes iguais em paralelo mantêm a tensão.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Ramo da direita",
+     "conta": "20 + 10 + 10 = 40 Ω",
+     "porque": "Um caminho só: série.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Paralelo com o de 40 Ω",
+     "conta": "Req = (40 · 40)/(40 + 40) = 20 Ω",
+     "porque": "Os dois ramos ligam os mesmos fios.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "40 V e 20 Ω",
+     "porque": "Alternativa B.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — fonte de 40 V com resistor de 20 Ω.",
+   "checagem": "Confira pela corrente: no ramo de 40 Ω passa 40/40 = 1 A; no ramo de 20 + 10 + 10 = 40 Ω, mais 1 A; total 2 A. No equivalente, 40/20 = 2 A. Mesma corrente.",
+   "erradas": {
+    "A": "Não confere: fontes iguais em paralelo não somam tensão (seriam 80 V só em série) e o equivalente é 20 Ω, não 60 Ω.",
+    "C": "Não confere: fontes iguais em paralelo dão 40 V, não 20 V, e o equivalente é 20 Ω, não 60 Ω.",
+    "D": "Não confere: a resistência de 20 Ω está certa, mas as fontes em paralelo mantêm 40 V, não 20 V.",
+    "E": "Não confere: as fontes em paralelo dão 40 V, e 40 Ω seria só um dos ramos, não o equivalente."
+   },
+   "armadilha": "Somar as tensões de fontes em paralelo como se estivessem em série.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O circuito equivalente: uma fonte e um resistor.",
+    "chave": "Fontes iguais em paralelo: 40 V; ramos de 40 Ω em paralelo: 20 Ω.",
+    "cuidado": "Ver quais elementos ligam os mesmos dois fios."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "Redução passo a passo",
+    "ideia": "Somar o ramo em série e depois fazer o paralelo com o 40 Ω."
+   },
+   {
+    "nome": "Pela corrente",
+    "ideia": "Calcular a corrente total no circuito real e conferir no equivalente."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "40 V ∥ 40 V = 40 V",
+    "nota": "fontes iguais em paralelo"
+   },
+   {
+    "linha": "20 + 10 + 10 = 40 Ω",
+    "nota": "ramo em série"
+   },
+   {
+    "linha": "(40 · 40)/(40 + 40) = 1600/80 = 20 Ω",
+    "nota": "paralelo de dois iguais"
+   },
+   {
+    "linha": "Resposta: 40 V e 20 Ω",
+    "nota": "alternativa B"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "fis-0039"
+  }
  }
 }

@@ -983,5 +983,100 @@
    "data": "2026-11-12",
    "lote": "fis-0031"
   }
+ },
+ "P27b09886": {
+  "n": "69",
+  "conceito": "LED em série com resistor: a fem é a soma da tensão no LED (lida na curva) com a do resistor.",
+  "equivocos": {
+   "A": "F11.7:fem-sem-equacao",
+   "B": "F11.7:parcela-esquecida",
+   "D": "F11.7:parcela-esquecida",
+   "E": "F11.7:fem-sem-equacao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Com 20 mA, a curva do LED dá U_LED = 2,4 V. O resistor de 330 Ω fica com 330 × 0,020 = 6,6 V. A bateria ideal fornece a soma.",
+    "formulas": [
+     "ε = U_LED + R × i"
+    ],
+    "simbolos": [
+     [
+      "i",
+      "20 mA"
+     ],
+     [
+      "R",
+      "330 Ω"
+     ]
+    ]
+   },
+   "pista": "Leia a tensão do LED para 20 mA.",
+   "passos": [
+    {
+     "faz": "LED",
+     "conta": "i = 20 mA → U = 2,4 V",
+     "porque": "Curva.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Resistor",
+     "conta": "330 × 0,020 = 6,6 V",
+     "porque": "Ohm.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Fem",
+     "conta": "2,4 + 6,6 = 9,0 V",
+     "porque": "É a alternativa C.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 9,0 V.",
+   "checagem": "De volta: com 9,0 V, se o LED fica com 2,4 V, sobram 6,6 V no resistor, e 6,6/330 = 20 mA, a corrente dada.",
+   "erradas": {
+    "A": "Não confere: 3,6 V deixaria só 1,2 V para o resistor, corrente de cerca de 3,6 mA.",
+    "B": "Sai de dar só a tensão no resistor: 6,6 V.",
+    "D": "Sai de dar só a tensão no LED: 2,4 V.",
+    "E": "Não confere: 4,2 V deixaria 1,8 V no resistor, corrente de cerca de 5,5 mA."
+   },
+   "armadilha": "Esquecer uma das tensões em série.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A fem da bateria.",
+    "chave": "2,4 V + 6,6 V = 9,0 V.",
+    "cuidado": "Série: tensões somam."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "de volta",
+    "ideia": "6,6/330 = 20 mA."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "U_LED = 2,4 V",
+    "nota": "curva"
+   },
+   {
+    "linha": "U_R = 6,6 V",
+    "nota": "Ohm"
+   },
+   {
+    "linha": "ε = 9,0 V",
+    "nota": "C"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "fis-0039"
+  }
  }
 }
