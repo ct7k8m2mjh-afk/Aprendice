@@ -26,7 +26,7 @@ docs/resolucoes/PROMPT-SESSAO-RESOLUCOES.md, com a sua matéria = <m>. Fale port
 sessão anterior desta matéria, assuma com `--retomar <lote>`. Avise a coordenadora (<id da coordenadora>) com TROCA
 quando chegar a hora (passo 9 do prompt)."
 
-## Sessões (12/11/2026, 22h UTC)
+## Sessões (12/11/2026, 22h20 UTC)
 | Matéria | Sessão | Situação |
 |---|---|---|
 | Matemática | session_01PveEKWYPGjW3SYacWGoS7w | trabalhando; conversa em 62%: trocar já |
@@ -34,10 +34,10 @@ quando chegar a hora (passo 9 do prompt)."
 | Química | session_01PveEKXEZ197XmbuWmKkDPw | trabalhando |
 | Biologia | session_01PveEKaZX71znbULe85ap8G | trabalhando |
 | Português | session_01PveEKZK2wY3DcaPfgMBKVX | trabalhando; conversa em 62%: trocar já |
-| Inglês | session_01PveEKYvFj3v794d3jbEjQY | pausada (termina os lotes abertos) |
-| Geografia | session_01PveEKYE1nkNeafq9SNBU2b | pausada (termina os lotes abertos) |
-| Filosofia e Sociologia | session_01PveEKWgecw6NvvouAmBWM2 | pausada; esperava o dono aprovar um comando |
-| Completar animadas | session_01PveEKXSa4J8B5gRwFfa8Af | pausada (termina o que tem aberto) |
+| Inglês | session_01PveEKYvFj3v794d3jbEjQY | parada, tudo gravado (sem lote aberto): pode arquivar (dono avisado 12/11) |
+| Geografia | session_01PveEKYE1nkNeafq9SNBU2b | terminando geo-0033 e para; avisar o dono para arquivar quando gravar |
+| Filosofia e Sociologia | session_01PveEKWgecw6NvvouAmBWM2 | trabalhando até acabar a matéria (dono aprovou; pode passar de 5 por pouco tempo) |
+| Completar animadas | session_01PveEKXSa4J8B5gRwFfa8Af | terminando o último lote e para; avisar o dono para arquivar quando gravar |
 | História | session_01PveEKar9UR25QNispiKNT4 | matéria concluída |
 Desativadas (não mandar nada): Fable session_01PveEKXU47Vds1gGREvakqY, session_01PveEKazGNg4UZjknkJiLtJ,
 session_01PveEKaAcCyTZHYawMeybog; Inglês antiga session_01PveEKYMQYJ9tRsSFLsoey8; Matemática duplicada
