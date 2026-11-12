@@ -311,5 +311,112 @@
    "data": "2026-11-11",
    "lote": "fis-0005"
   }
+ },
+ "P598ef723": {
+  "n": "49",
+  "conceito": "Tempo de resfriamento: calor sensível perdido dividido pela potência dissipada, com conversão de caloria para joule.",
+  "equivocos": {
+   "A": "F08.3:tempo-sem-teste-de-energia",
+   "B": "F08.3:tempo-sem-teste-de-energia",
+   "D": "F08.3:tempo-sem-teste-de-energia",
+   "E": "F08.3:tempo-sem-teste-de-energia"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O dissipador perde calor no ritmo de 180 W (180 J por segundo) e não recebe mais nada. O calor que ele precisa perder para ir de 80 °C a 20 °C é Q = m × c × ΔT. Como c está em cal e a potência em watt, converta com 1 cal = 4 J.",
+    "formulas": [
+     "Q = m × c × ΔT",
+     "Δt = Q/P",
+     "1 cal = 4 J (dado)"
+    ],
+    "simbolos": [
+     [
+      "P",
+      "potência dissipada: 180 J/s"
+     ],
+     [
+      "c",
+      "calor específico do alumínio"
+     ],
+     [
+      "W",
+      "watt: joule por segundo"
+     ]
+    ]
+   },
+   "pista": "Calcule o calor que o dissipador perde para esfriar 60 °C.",
+   "passos": [
+    {
+     "faz": "Calcule o calor perdido",
+     "conta": "Q = 150 × 0,2 × (80 − 20) = 1800 cal",
+     "porque": "O alumínio esfria de 80 °C para 20 °C.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Converta para joule",
+     "conta": "1800 × 4 = 7200 J",
+     "porque": "A potência está em watt, joule por segundo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida pela potência",
+     "conta": "Δt = 7200/180 = 40 s",
+     "porque": "Cada segundo, o dissipador perde 180 J.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Marque a alternativa",
+     "conta": "40 s",
+     "porque": "É a alternativa C.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 40 s.",
+   "checagem": "Por grau: 150 × 0,2 = 30 cal = 120 J por °C. A 180 J/s, o dissipador perde 1,5 °C por segundo; 60 °C levam 60/1,5 = 40 s.",
+   "erradas": {
+    "A": "20 s não confere: a 180 J/s, perderia 3600 J = 900 cal, que esfriam o dissipador só 30 °C, não 60 °C.",
+    "B": "32 s não confere: perderia 5760 J = 1440 cal, que esfriam o dissipador 48 °C, não 60 °C.",
+    "D": "48 s não confere: perderia 8640 J = 2160 cal, que esfriam o dissipador 72 °C, mais que os 60 °C.",
+    "E": "64 s não confere: perderia 11520 J = 2880 cal, que esfriam o dissipador 96 °C, mais que os 60 °C."
+   },
+   "armadilha": "Dividir calorias por watts sem converter: a potência está em joule por segundo.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O tempo para o dissipador de 150 g esfriar de 80 °C para 20 °C perdendo 180 W.",
+    "chave": "Q = 150 × 0,2 × 60 = 1800 cal = 7200 J; Δt = 7200/180 = 40 s.",
+    "cuidado": "Converter cal em J antes de dividir pela potência."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "potência em cal/s",
+    "ideia": "180 W = 180/4 = 45 cal/s; 1800 cal ÷ 45 = 40 s."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "Q = 150 × 0,2 × 60 = 1800 cal",
+    "nota": "calor perdido"
+   },
+   {
+    "linha": "Q = 1800 × 4 = 7200 J",
+    "nota": "cal → J"
+   },
+   {
+    "linha": "Δt = 7200/180 = 40 s",
+    "nota": "÷ potência"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "fis-0024"
+  }
  }
 }
