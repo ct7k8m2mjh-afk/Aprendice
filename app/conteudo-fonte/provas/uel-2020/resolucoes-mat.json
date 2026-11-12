@@ -176,5 +176,97 @@
    "data": "2026-11-12",
    "lote": "mat-0032"
   }
+ },
+ "P605bb068": {
+  "n": "11",
+  "conceito": "Fusos horários: somar a duração do voo e converter para o fuso de chegada.",
+  "equivocos": {
+   "A": "M13.1:nao-converteu-o-fuso",
+   "B": "M13.1:nao-converteu-o-fuso",
+   "D": "M13.1:sem-origem-identificada",
+   "E": "M13.1:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Pelo mapa, São Paulo e Rio estão em −3, Roma em +1 e Nova Iorque em −5. Em cada trecho, some a duração ao horário de partida (no fuso de saída) e converta para o fuso de chegada. Os dias de permanência contam a partir do dia de chegada.",
+    "formulas": [
+     "hora de chegada local = partida + duração + (fuso de chegada − fuso de saída)"
+    ],
+    "simbolos": []
+   },
+   "pista": "Leia no mapa o fuso de cada cidade.",
+   "passos": [
+    {
+     "faz": "SP → Roma",
+     "conta": "sexta 11h + 12h = 23h (fuso −3) → +4 h → 3h de sábado em Roma",
+     "porque": "Roma está 4 h à frente de São Paulo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Roma → NY",
+     "conta": "dias: sáb (1), dom (2), seg (3) → seg 11h + 10h = 21h (Roma) → −6 h → 15h de segunda em NY",
+     "porque": "NY está 6 h atrás de Roma.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "NY → Rio",
+     "conta": "dias: seg (1), ter (2), qua (3), qui (4) → qui 11h + 9h = 20h (NY) → +2 h → 22h de quinta no Rio",
+     "porque": "Rio está 2 h à frente de NY.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue ao gabarito",
+     "conta": "3h de sábado; 15h de segunda; 22h de quinta → alternativa C",
+     "porque": "Na ordem pedida.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 3h de sábado; 15h de segunda-feira; 22h de quinta-feira",
+   "checagem": "Volte do fim: 22h de quinta no Rio − 9 h de voo = 13h no Rio = 11h em NY, o embarque dado. 15h de segunda em NY − 10 h = 5h em NY = 11h em Roma. 3h de sábado em Roma − 12 h = 15h de sexta em Roma = 11h em SP.",
+   "erradas": {
+    "A": "A não converte nenhum fuso: 23h de sexta, 21h de segunda e 20h de quinta são as horas da cidade de partida (SP, Roma e NY).",
+    "B": "23h de sexta não converte o fuso de Roma, e 21h de domingo erra o dia: o 3.º dia, contando o sábado, é segunda.",
+    "D": "18h de segunda não confere: 21h em Roma são 15h em NY (6 h de diferença); e 20h de quarta erra dia e fuso.",
+    "E": "19h de segunda e 1h de sexta não conferem: a diferença Roma–NY é 6 h e NY–Rio é 2 h."
+   },
+   "armadilha": "Esquecer de converter o horário para o fuso da cidade de chegada.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Os horários de desembarque em Roma, NY e Rio.",
+    "chave": "Fusos −3, +1, −5, −3; chegadas 3h sáb, 15h seg, 22h qui.",
+    "cuidado": "Conte o dia de chegada como o 1.º dia."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "em UTC",
+    "ideia": "Converta tudo para o meridiano 0: partida sexta 14h UTC, chegada 2h sáb UTC = 3h em Roma; partida seg 10h UTC, chegada 20h UTC = 15h em NY; partida qui 16h UTC, chegada 1h sex UTC = 22h de quinta no Rio."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "23h (−3) → 3h sáb (+1)",
+    "nota": "Roma"
+   },
+   {
+    "linha": "21h (+1) → 15h seg (−5)",
+    "nota": "NY"
+   },
+   {
+    "linha": "20h (−5) → 22h qui (−3)",
+    "nota": "Rio"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0033"
+  }
  }
 }

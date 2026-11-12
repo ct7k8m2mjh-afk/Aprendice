@@ -449,5 +449,91 @@
    "data": "2026-11-12",
    "lote": "mat-0025"
   }
+ },
+ "Pdb17b14d": {
+  "n": "2",
+  "conceito": "Contagem com dígitos obrigatórios e número ímpar.",
+  "equivocos": {
+   "A": "M13.1:sem-origem-identificada",
+   "B": "M13.1:sem-origem-identificada",
+   "C": "M13.1:sem-origem-identificada",
+   "D": "M13.1:esqueceu-um-impar"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A senha tem 4 dígitos e contém sempre 4, 6 e 8. Como o número é ímpar, o último dígito é ímpar, e não pode ser 4, 6 ou 8; então o quarto dígito é um ímpar, no final, e 4, 6 e 8 ocupam as três primeiras posições em qualquer ordem.",
+    "formulas": [
+     "permutação de n elementos: n!"
+    ],
+    "simbolos": []
+   },
+   "pista": "Que dígito fica na última posição?",
+   "passos": [
+    {
+     "faz": "Último dígito",
+     "conta": "ímpar: 1, 3, 5, 7 ou 9 → 5 opções",
+     "porque": "Número ímpar termina em dígito ímpar.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Três primeiras posições",
+     "conta": "4, 6 e 8 em qualquer ordem: 3! = 6",
+     "porque": "Os três dígitos da residência.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique",
+     "conta": "5 × 6 = 30 → alternativa E",
+     "porque": "Princípio multiplicativo.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 30",
+   "checagem": "Liste para o final 1: 4681, 4861, 6481, 6841, 8461, 8641 — 6 senhas; o mesmo vale para 3, 5, 7 e 9: 5 × 6 = 30.",
+   "erradas": {
+    "A": "8 não confere: só com o final 1 já há 3! = 6 senhas, e são 5 finais.",
+    "B": "11 não confere: são 5 finais com 6 ordens cada.",
+    "C": "15 não confere: 5 finais × 3! = 30; 15 seria metade.",
+    "D": "24 sai de usar 4 finais ímpares em vez de 5: 4 × 6 = 24."
+   },
+   "armadilha": "Esquecer um dos ímpares (são 1, 3, 5, 7 e 9).",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantas senhas são possíveis.",
+    "chave": "5 finais ímpares × 3! ordens de 4, 6, 8 = 30.",
+    "cuidado": "O 4.º dígito é o ímpar do final."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pelo total",
+    "ideia": "Com 4, 6, 8 e um ímpar em qualquer posição há 5 × 4! = 120 senhas; por simetria, em 1 das 4 posições o ímpar fica no fim: 120/4 = 30."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "5",
+    "nota": "finais ímpares"
+   },
+   {
+    "linha": "3! = 6",
+    "nota": "ordens"
+   },
+   {
+    "linha": "5 × 6 = 30",
+    "nota": "senhas"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0033"
+  }
  }
 }

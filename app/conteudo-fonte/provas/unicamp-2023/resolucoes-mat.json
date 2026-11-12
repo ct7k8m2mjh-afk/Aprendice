@@ -1142,5 +1142,99 @@
    "data": "2026-11-12",
    "lote": "mat-0029"
   }
+ },
+ "P80320253": {
+  "n": "55",
+  "conceito": "Contagem de números com dígitos obrigatórios (complementar) e teste de afirmações.",
+  "equivocos": {
+   "A": "M13.1:aceitou-afirmacao-falsa",
+   "C": "M13.1:aceitou-afirmacao-falsa",
+   "D": "M13.1:aceitou-afirmacao-falsa"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "João comprou as cartelas em que aparecem os algarismos 2 e 5 (como 1205 e 0025). De 0001 a 1999, o primeiro algarismo é 0 ou 1; então 2 e 5 têm de estar nos três últimos. Conte os trios com pelo menos um 2 e pelo menos um 5 pelo complementar. A 2000 não tem 5.",
+    "formulas": [
+     "|com 2 e com 5| = total − sem 2 − sem 5 + sem nenhum"
+    ],
+    "simbolos": []
+   },
+   "pista": "Conte os trios (três últimos algarismos) que têm 2 e 5.",
+   "passos": [
+    {
+     "faz": "Trios com 2 e 5",
+     "conta": "1000 − 9³ − 9³ + 8³ = 1000 − 729 − 729 + 512 = 54",
+     "porque": "Inclusão-exclusão.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste I",
+     "conta": "primeiro algarismo 0 ou 1: 2 × 54 = 108 → verdadeira",
+     "porque": "2000 fica fora (não tem 5).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste II e III",
+     "conta": "II: com 1 e 5 → 54 (início 0) + 271 (início 1, só precisa de um 5) = 325 > 108 → falsa | III: trios com 2, 5 e 3: 3! = 6 → 2 × 6 = 12 ≠ 18 → falsa",
+     "porque": "Com início 1, o 1 já está presente.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Ligue ao gabarito",
+     "conta": "só I → alternativa B",
+     "porque": "II e III são falsas.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — Apenas a afirmação I é verdadeira",
+   "checagem": "Conte direto os trios com 2 e 5: os dois em posições distintas e o terceiro algarismo livre: 3 × 2 × 8 (terceiro diferente de 2 e 5) = 48, mais os com repetição (225, 252, 522, 255, 525, 552) = 6; 48 + 6 = 54.",
+   "erradas": {
+    "A": "Todas verdadeiras não confere: com 1 e 5 seriam 325 cartelas, mais que 108 (II falsa), e só 12 têm o 3 (III falsa).",
+    "C": "Apenas II não confere: com 1 e 5 ele compraria 325, mais, não menos; e I é verdadeira.",
+    "D": "I e III não confere: as cartelas com 2, 5 e 3 são 2 × 3! = 12, não 18."
+   },
+   "armadilha": "Ler \"exibisse 2 e 5, e nenhuma a mais\" como \"só um 2 e só um 5\": os exemplos (1205, 0025) mostram que outros algarismos podem aparecer.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quais afirmações são verdadeiras.",
+    "chave": "54 trios com 2 e 5; 108 cartelas; II dá 325; III dá 12.",
+    "cuidado": "Use o complementar para \"pelo menos um\"."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "por diferença",
+    "ideia": "Trios com pelo menos um 2: 1000 − 729 = 271; destes, sem 5: 9³ − 8³ = 217; 271 − 217 = 54 por primeiro algarismo, e 2 × 54 = 108."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "1000 − 729 − 729 + 512 = 54",
+    "nota": "trios"
+   },
+   {
+    "linha": "2 × 54 = 108",
+    "nota": "I"
+   },
+   {
+    "linha": "54 + 271 = 325",
+    "nota": "II"
+   },
+   {
+    "linha": "2 × 6 = 12",
+    "nota": "III"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0033"
+  }
  }
 }

@@ -682,5 +682,92 @@
    "data": "2026-11-12",
    "lote": "mat-0024"
   }
+ },
+ "Pe60e889f": {
+  "n": "75",
+  "conceito": "Contagem com casos: cores diferentes (pares de cores) e mesma cor (tons diferentes).",
+  "equivocos": {
+   "A": "M13.1:sem-origem-identificada",
+   "B": "M13.1:sem-origem-identificada",
+   "D": "M13.1:sem-origem-identificada",
+   "E": "M13.1:incluiu-tons-iguais"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada cor primária tem 256 tons (0 a 255). Caso 1: duas cores diferentes — 3 pares de cores, e cada par dá 256 × 256 combinações. Caso 2: a mesma cor com tons diferentes — para cada cor, 256 escolhas do primeiro tom e 255 do segundo, como a banca contou.",
+    "formulas": [
+     "princípio multiplicativo",
+     "casos disjuntos se somam"
+    ],
+    "simbolos": []
+   },
+   "pista": "Separe os casos: cores diferentes e a mesma cor.",
+   "passos": [
+    {
+     "faz": "Cores diferentes",
+     "conta": "3 pares (R-G, R-B, G-B) × 2⁸ × 2⁸ = 2¹⁶ × 3",
+     "porque": "Cada cor tem 256 tons.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Mesma cor",
+     "conta": "3 cores × 256 × 255 = 2⁸ × (2⁸ − 1) × 3",
+     "porque": "O 1.º tom tem 256 opções e o 2.º, diferente, 255: a banca conta tom a sobre tom b e tom b sobre tom a como sobreposições distintas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some",
+     "conta": "2⁸ × (2⁸ − 1) × 3 + 2¹⁶ × 3 = 195 840 + 196 608 = 392 448 → alternativa C",
+     "porque": "Casos disjuntos.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 2⁸ · (2⁸ − 1) · 3 + 2¹⁶ · 3 = 392 448",
+   "checagem": "Confira o caso de cores diferentes por outro caminho: há 3 × 256 = 768 pares (cor, tom); os pares não ordenados de cores diferentes são (768² − 3 × 256²)/2 = (589 824 − 196 608)/2 = 196 608 = 3 × 2¹⁶.",
+   "erradas": {
+    "A": "2¹⁶ × 3 + 2¹⁷ = 327 680 não confere: o caso da mesma cor dá 3 × 256 × 255 = 195 840, não 2¹⁷ = 131 072.",
+    "B": "2¹⁵ × 3 + 2¹⁷ não confere: o caso de cores diferentes é 3 × 2¹⁶, não 3 × 2¹⁵.",
+    "D": "2⁸ × (2⁸ − 1) × 3 + 2¹⁷ não confere: o caso de cores diferentes é 3 × 2¹⁶ = 196 608, não 2¹⁷.",
+    "E": "2¹⁷ × 3 = 393 216 conta também os pares de mesma cor e mesmo tom (que não geram cor inédita): 392 448 + 3 × 256 = 393 216."
+   },
+   "armadilha": "Contar sobreposições de uma cor com ela mesma no mesmo tom: o enunciado diz que só tons diferentes geram cor inédita.",
+   "alerta": "Na mesma cor, a banca contou 256 × 255, tratando a ordem dos tons como diferente (tom a sobre tom b e tom b sobre tom a); nas cores diferentes, contou 256 × 256 por par de cores. Contando os pares de tons sem ordem, o caso da mesma cor daria 3 × 256 × 255/2, e o total não estaria entre as alternativas. Vale o gabarito oficial, C.",
+   "essencial": {
+    "pede": "O número de cores inéditas.",
+    "chave": "Cores diferentes 3 × 2¹⁶; mesma cor 3 × 256 × 255; soma 392 448.",
+    "cuidado": "Separe os casos e exclua tom igual com tom igual."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pelo total",
+    "ideia": "Todas as sobreposições ordenadas de mesma cor e não ordenadas de cores diferentes: 3 × 2¹⁶ + 3 × 2¹⁶ = 2¹⁷ × 3; tire as 3 × 256 de tom repetido: 393 216 − 768 = 392 448."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "3 × 2¹⁶ = 196 608",
+    "nota": "cores diferentes"
+   },
+   {
+    "linha": "3 × 256 × 255 = 195 840",
+    "nota": "mesma cor"
+   },
+   {
+    "linha": "392 448",
+    "nota": "total"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0033"
+  }
  }
 }

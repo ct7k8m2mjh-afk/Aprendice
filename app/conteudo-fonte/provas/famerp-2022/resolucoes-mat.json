@@ -538,5 +538,91 @@
    "data": "2026-11-12",
    "lote": "mat-0031"
   }
+ },
+ "Pb1080e42": {
+  "n": "77",
+  "conceito": "Contagem de caminhos num grafo orientado: soma dos caminhos por cruzamento.",
+  "equivocos": {
+   "A": "M13.1:sem-origem-identificada",
+   "B": "M13.1:sem-origem-identificada",
+   "D": "M13.1:sem-origem-identificada",
+   "E": "M13.1:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Siga as setas a partir de P. Depois da rua 1, há dois caminhos: rua 3 (direto ao cruzamento de baixo) ou rua 2 (ao cruzamento central). Todos os caminhos terminam no cruzamento antes de Q, de onde só a rua 13 leva a Q. Conte os caminhos de cada cruzamento até lá.",
+    "formulas": [
+     "caminhos por um nó = soma dos caminhos de cada saída"
+    ],
+    "simbolos": []
+   },
+   "pista": "Marque, a partir do fim, quantos caminhos saem de cada cruzamento até o nó antes de Q.",
+   "passos": [
+    {
+     "faz": "Do cruzamento de baixo",
+     "conta": "rua 8 → 1 caminho",
+     "porque": "Só a rua 8 sai dele.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Do cruzamento central",
+     "conta": "6 | 7 → 8 | 5 → 12 | 5 → 9 → 11 | 4 → 10 → 11: total 5 caminhos",
+     "porque": "Cada saída seguindo as setas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "De P",
+     "conta": "1 → 3 → 8: 1 | 1 → 2 → (5 caminhos): 5 → 6 → alternativa C",
+     "porque": "Depois, a rua 13 até Q.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 6",
+   "checagem": "Pela rua que chega ao nó antes de Q: pela 6, 1 trajeto (1-2-6); pela 8, 2 (1-3 ou 1-2-7); pela 12, 1 (1-2-5); pela 11, 2 (via 9 ou via 4-10). Total 1 + 2 + 1 + 2 = 6.",
+   "erradas": {
+    "A": "8 não confere: a listagem completa seguindo as setas tem 6 trajetos.",
+    "B": "10 não confere: só há 6 trajetos possíveis seguindo as setas.",
+    "D": "9 não confere: a listagem completa tem 6 trajetos.",
+    "E": "7 não confere: a listagem completa tem 6 trajetos."
+   },
+   "armadilha": "Andar contra a seta em alguma rua de mão única.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O número de trajetos de P a Q.",
+    "chave": "1 pelo cruzamento de baixo + 5 pelo central = 6.",
+    "cuidado": "Respeite o sentido das setas."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "de trás para frente",
+    "ideia": "Ponha 1 no nó antes de Q; o nó de cima à direita tem 1 (rua 11); o de cima à esquerda, 1 (10); o do meio-alto, 1 + 1 = 2 (12 e 9); o de baixo, 1 (8); o central, 1 + 1 + 2 + 1 = 5; o de P (após a rua 1), 5 + 1 = 6."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "baixo: 1",
+    "nota": "rua 8"
+   },
+   {
+    "linha": "central: 6, 7-8, 5-12, 5-9-11, 4-10-11 = 5",
+    "nota": "saídas"
+   },
+   {
+    "linha": "1 + 5 = 6",
+    "nota": "total"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0033"
+  }
  }
 }
