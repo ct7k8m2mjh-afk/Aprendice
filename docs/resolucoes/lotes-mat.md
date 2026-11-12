@@ -1,6 +1,6 @@
 # Matemática: resoluções (gerado por lote.py em 2026-11-12)
 
-Faltam 2696 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 770; demais nível 1-6 1221; ENEM nível 7-10 76; provas-alvo nível 7-10 242; demais nível 7-10 387.
+Faltam 2666 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 740; demais nível 1-6 1221; ENEM nível 7-10 76; provas-alvo nível 7-10 242; demais nível 7-10 387.
 
 ## Lotes
 
@@ -20,10 +20,13 @@ Faltam 2696 questões sem resolução (fora as que estão em lote, pendentes ou 
 | mat-0012 | provas-alvo nível 1-6 | 18 | gravado | 18 | 0 | 0 |
 | mat-0013 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | mat-0014 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| mat-0015 | provas-alvo nível 1-6 | 30 | gravado | 29 | 1 | 0 |
 
 ## Pendentes (falta de certeza absoluta)
 
-Nenhuma.
+| Questão | Prova | Conteúdo | Motivo |
+|---|---|---|---|
+| P78a66ef3 | UFU 2023 1ª fase · questão 68 | M05.4 função definida por partes e modular (tema M05 Funções afim e quadrática) | print cortado: o print (ufu-2023/q/068.webp) termina na alternativa C; a alternativa D, que é o gabarito, não aparece inteira. Refazer o print do PDF oficial. Conta já conferida: triângulo de base 2k e altura k, área k² = 20, k = 2√5. |
 
 ## Divergências de gabarito (o dono decide)
 
