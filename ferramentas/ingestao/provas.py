@@ -513,6 +513,8 @@ for _a, _s, _o in ((2026, 2, False), (2025, 1, True), (2024, 2, False), (2024, 1
     _c = cmmg(_a, _s, _o)
     _c['total_de'] = (lambda c: (lambda pasta: max(c['gabarito'](pasta))))(_c)
     PROVAS[f'cmmg-{_a}-{_s}'] = _c
+# 2025/1 (OCR): fio do rodapé e letra solta abaixo da última alternativa saem do texto (12/11/2026)
+PROVAS['cmmg-2025-1']['ocr_ruido'] = True
 
 
 # ------------------------------------------------------------------------------- Vunesp (layout padrão)
@@ -1053,6 +1055,17 @@ PROVAS['cederj-2022-1']['uma_coluna'] = (14, 15)   # textos de inglês em largur
 PROVAS['cederj-2021-2']['rodape_centro'] = False    # número de página no canto direito
 # 2021.2, questão 39: o caderno usa "►" como marcador do quadro de dados (não é marca de resposta); fica fora do texto
 PROVAS['cederj-2021-2']['troca_texto'] = [('►', '')]
+# camada de texto com a tabela, a legenda, a fonte ou um pedaço do enunciado gravados depois da alternativa (D): nessas
+# questões o texto é lido de cima para baixo (conferido questão a questão no print; nas de fórmula ou de alternativas em
+# duas colunas a leitura de cima para baixo embaralha, por isso não vale para a prova toda) (12/11/2026)
+for _k, _ns in (('cederj-2020-1', {1, 46, 53}), ('cederj-2021-2', {14, 15, 22, 34, 38, 39, 42}), ('cederj-2022-2', {23}),
+                ('cederj-2023-1', {22}), ('cederj-2024-1', {22, 39}), ('cederj-2024-2', {24}), ('cederj-2026-1', {27}),
+                ('cederj-2026-2', {23})):
+    PROVAS[_k]['texto_em_ordem'] = _ns
+# transcrição que não fica fiel, conferida no print: fica o print (princípio 1) — 2021.2 q14: a fração 2/3 do enunciado
+# saía no fim da (D); 2026.2 q31: a variável n (objeto de fórmula) sumia do enunciado e ia para o fim da (D)
+PROVAS['cederj-2021-2']['sem_transcricao'] = {14}
+PROVAS['cederj-2026-2']['sem_transcricao'] = {31}
 
 
 # ---------------------------------------------------------------------------------------------- UTFPR
@@ -1245,6 +1258,8 @@ def ueg(ano, sem, duracao=4.5):
         'suporte': [r'(?i)(para responder|e responda|para contestar|para a[s]? quest)', r'(?i)\banswer (the )?questions?\s+\d'],
         'suporte_apos_alt': r'^e\)',
         'suporte_apos_secao': True, 'faixa_unica': True, 'suporte_nao_colado': 25,
+        # número da página no alto, à direita: não entra no texto nem na transcrição ("... Sul. 21") (12/11/2026)
+        'num_pagina_topo': True,
         'gabarito': gab, 'area': lambda n: 'Conhecimentos gerais',
     }
     cfg['total_de'] = lambda pasta: max(gab(pasta))
@@ -1346,6 +1361,9 @@ def uema(ano, dias=1, duracao=5):
         'corte': [r'(?i)^PRODUÇÃO TEXTUAL', r'(?i)^REDAÇÃO$', r'(?i)^RASCUNHO', r'(?i)^PROPOSTA'],
         'suporte': [r'(?i)(responder|responda)\s+(a|à|às|as)\s+quest[õo]es'], 'faixa_unica': True, 'suporte_nao_colado': 30,
         'suporte_apos_alt': r'^e\)', 'suporte_apos_alt_gap': 6, 'suporte_apos_alt_negrito': True,
+        # camada de texto fora de ordem (cabeçalho, abertura, legenda e fonte depois da alternativa e): ler de cima
+        # para baixo e sem o rótulo "Questão N" (12/11/2026)
+        'texto_em_ordem': True,
         'gabarito': gab, 'area': lambda n: 'Conhecimentos gerais',
     }
     cfg['total_de'] = lambda pasta: max(gab(pasta))
@@ -1355,6 +1373,7 @@ def uema(ano, dias=1, duracao=5):
 for _a in (2020, 2022, 2024, 2026):
     PROVAS[f'uema-paes-{_a}'] = uema(_a)
 PROVAS['uema-paes-2021'] = uema(2021, dias=2)
+PROVAS['uema-paes-2020']['texto_apagar'] = [r'§\d']   # q20: marcas §1–§6 sobre a figura da receita (não são texto)
 PROVAS['uema-paes-2021']['cadernos'] = lambda pasta: [
     {'arquivo': 'd1-caderno', 'paginas': (2, 999), 'questoes': (1, 44)},
     {'arquivo': 'd2-caderno', 'paginas': (2, 999), 'questoes': (45, 999), 'deslocamento': 44}]   # 1º dia: 44 questões

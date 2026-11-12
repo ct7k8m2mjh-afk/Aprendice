@@ -21,7 +21,7 @@ from PIL import Image, ImageChops
 
 sys.path.insert(0, str(Path(__file__).parent))
 from provas import PROVAS  # noqa: E402
-from transcreve import transcreve  # noqa: E402
+from transcreve import transcreve, fora_da_coluna  # noqa: E402
 
 RAIZ = Path(__file__).resolve().parents[2]
 ENTRADA = RAIZ / 'fabrica_saida' / 'ingestao'
@@ -1358,7 +1358,11 @@ def apara(im):
                 ini = x
                 while x < im.width and escuras[x]:
                     x += 1
-                if x - ini <= 4:
+                # fio de verdade tem ao menos um lado claro (a coluna logo ao lado). Numa imagem alta (unifesp-2025
+                # q22–25) a média passa de 50% em faixas finas dentro da própria imagem e o "fio" apagava a margem
+                # esquerda do texto inteiro; ali as vizinhas dos dois lados são escuras (12/11/2026)
+                viz = [col.getpixel((v, 0)) for v in (ini - 3, x + 2) if 0 <= v < im.width]
+                if x - ini <= 4 and any(v < 255 * 0.15 for v in viz):
                     fios += range(ini, x)
             else:
                 x += 1
@@ -1391,6 +1395,37 @@ def ocr_imagem(img):
 
 
 _GIRADO_RX = None   # cfg 'apagar_girado' da prova em processamento
+# cfg 'texto_em_ordem' da prova em processamento: a camada de texto guarda os blocos fora da ordem de leitura (UEMA:
+# o cabeçalho "Questão N", a frase de abertura, a legenda e a fonte vêm depois da alternativa e). Com ele, os blocos de
+# cada recorte são lidos de cima para baixo e o rótulo "Questão N" (que está no print) não entra no texto.
+_TEXTO_EM_ORDEM = False
+_ROTULO_RX = re.compile(r'(?i)\s*quest[ãa]o\s*\d{1,3}\s*')
+_SEM_ROTULO = False   # cfg 'texto_sem_rotulo': o rótulo "Questão N" sai do texto (sem mudar a ordem; UERJ 2021)
+_TEXTO_APAGAR = ()   # cfg 'texto_apagar': linhas (regex, linha inteira) que são marcas de figura, não texto da questão
+# cfg 'linha_na_coluna': o recorte de uma coluna encosta na coluna vizinha (EMESCAM: x1=301, a outra começa em x≈300) e a
+# camada de texto trazia a ponta de cada linha de lá ("Q D a" na alternativa D). Com ele, sai o pedaço cuja linha
+# inteira tem o centro fora do recorte (transcreve.fora_da_coluna).
+_NA_COLUNA = False
+# cfg 'ocr_ruido': caderno lido por OCR (FCM-MG 2025/1). O fio do rodapé sai como ">>>—>—>w>w—w—w…" (com um "-" antes) e
+# o fio/caixa abaixo da última alternativa como uma letra solta ("O", "4", "A"); com ele, esses pedaços saem do texto.
+_OCR_RUIDO = False
+# cfg 'num_pagina_topo': número da página no alto, à direita (UEG, logo abaixo de 'topo'): a questão que termina no pé
+# da página anterior ganhava um recorte fino no alto da seguinte, só com esse número ("... Sul. 21"). Só sai a linha
+# que é igual ao número da página (o número de linha de um texto, na margem esquerda, fica).
+_NUM_TOPO = None
+
+
+def tira_ruido_ocr(s):
+    """Tira do texto lido por OCR as linhas de fio (traços e setas) e as linhas de 1–2 caracteres depois da última
+    alternativa. O texto da questão e o OCR das figuras no meio dela ficam como estão."""
+    def fio(l):
+        x = l.strip()
+        return bool(x) and (re.fullmatch(r'[\[“"]?[-—–>]+', x) is not None
+                            or (len(x) >= 8 and sum(c in '—–->"“”' for c in x) >= 0.4 * len(x)))
+    ls = [l for l in s.split('\n') if not fio(l)]
+    while ls and len(ls[-1].strip()) <= 2 and not re.fullmatch(r'[A-Ea-e]\)', ls[-1].strip()):
+        ls.pop()
+    return '\n'.join(ls)
 
 
 def texto(pdf, segs):
@@ -1408,12 +1443,23 @@ def texto(pdf, segs):
         else:
             # só as linhas cujo centro está no recorte (o rótulo da questão seguinte, com fonte alta, encosta na borda)
             ls = []
-            for b in pdf[p].get_text('dict', clip=r)['blocks']:
+            blocos = pdf[p].get_text('dict', clip=r)['blocks']
+            if _TEXTO_EM_ORDEM:   # ordem de leitura: bloco a bloco, de cima para baixo (sort estável)
+                blocos = sorted(blocos, key=lambda b: round(b['bbox'][1]))
+            for b in blocos:
                 for l in b.get('lines', []):
                     y0_, y1_ = l['bbox'][1], l['bbox'][3]
                     lt = ''.join(s_['text'] for s_ in l['spans'])
                     if _GIRADO_RX and abs(l['dir'][1]) > 0.9 and re.search(_GIRADO_RX, lt):
                         continue   # marca-d'água girada ('apagar_girado'): não é texto da questão
+                    if (_TEXTO_EM_ORDEM or _SEM_ROTULO) and _ROTULO_RX.fullmatch(lt):
+                        continue   # rótulo "Questão N": fica no print, não no texto
+                    if any(re.fullmatch(rx_, lt.strip()) for rx_ in _TEXTO_APAGAR):
+                        continue
+                    if _NA_COLUNA and fora_da_coluna(pdf[p], l['bbox'], r):
+                        continue   # pedaço de linha da coluna vizinha
+                    if _NUM_TOPO is not None and lt.strip() == str(p + 1) and y0_ < _NUM_TOPO and l['bbox'][0] > pdf[p].rect.width * 0.8:
+                        continue   # número da página no alto, à direita
                     if r.y0 - 1 <= (y0_ + y1_) / 2 <= r.y1 + 1 and not re.fullmatch(r'(?i)\s*quest[ãa]o\s*', lt):
                         ls.append(lt)
             t.append('\n'.join(ls))
@@ -1422,6 +1468,8 @@ def texto(pdf, segs):
     s = re.sub(r'\n{3,}', '\n\n', s)
     if re.search(r'[˜´`ˆ¸]', s):   # caderno em LaTeX: acento solto ("Hist´oria") junto de novo
         s = unicodedata.normalize('NFC', acentos_latex(s))
+    if _OCR_RUIDO:
+        s = tira_ruido_ocr(s.strip())
     return s.strip()
 
 
@@ -1552,8 +1600,13 @@ def numeros_do_caderno(cads, questoes):
 
 def processa(pid, amostra=False, so_texto=False):
     cfg = PROVAS[pid]
-    global _GIRADO_RX
+    global _GIRADO_RX, _TEXTO_EM_ORDEM, _SEM_ROTULO, _TEXTO_APAGAR, _NA_COLUNA, _OCR_RUIDO, _NUM_TOPO
+    _SEM_ROTULO = bool(cfg.get('texto_sem_rotulo'))
+    _NA_COLUNA = bool(cfg.get('linha_na_coluna'))
+    _OCR_RUIDO = bool(cfg.get('ocr_ruido'))
+    _NUM_TOPO = cfg['topo'] + 12 if cfg.get('num_pagina_topo') else None
     _GIRADO_RX = cfg.get('apagar_girado')
+    _TEXTO_APAGAR = tuple(cfg.get('texto_apagar', ()))
     pasta = ENTRADA / pid
     man = json.loads((pasta / 'manifesto.json').read_text())
     destino = SAIDA / pid
@@ -1849,8 +1902,12 @@ def processa(pid, amostra=False, so_texto=False):
             # questão só de texto: transcrição fiel da camada de texto (nunca com figura, fórmula ou OCR)
             # 'sem_transcricao': True (prova toda) ou números do site — a transcrição não fica fiel: fica o print
             st = cfg.get('sem_transcricao')
+            # 'texto_em_ordem': True (prova toda) ou números das questões (Cederj: tabela, legenda ou fonte depois da (D))
+            eo = cfg.get('texto_em_ordem')
+            _TEXTO_EM_ORDEM = eo is True or bool(eo and n in eo)
             estr = None if (st is True or (st and n in st)) else transcreve(pdf, sup + segs, cfg['ancora'], tuple(cfg.get('corte', [])) + tuple(cfg.get('fim', [])) + tuple(cfg.get('apagar', [])),
-                              cfg.get('alternativas', 5), ocr=id(pdf) in _OCR)
+                              cfg.get('alternativas', 5), ocr=id(pdf) in _OCR, em_ordem=_TEXTO_EM_ORDEM,
+                              na_coluna=bool(cfg.get('linha_na_coluna')), num_topo=_NUM_TOPO)
             g = gab.get(n)
             if sem_gab and g in (None, ''):
                 g = 'X' if pre.get(n) == 'X' else None

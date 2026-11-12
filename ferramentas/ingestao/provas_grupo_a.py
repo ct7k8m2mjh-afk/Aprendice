@@ -276,6 +276,10 @@ _sup21 = PROVAS['uerj-2021']['_suportes']
 PROVAS['uerj-2021']['_suportes'] = lambda pasta: {**_sup21(pasta), ('caderno', 5): [(45, 0, (5, 7))]}
 PROVAS['uerj-2021']['apoio_de'] = {12: [1]}   # a 12 compara a canção do inglês com "Morro velho" (texto base)
 PROVAS['uerj-2021']['suporte'] = PROVAS['uerj-2021']['suporte'] + [r'(?i)^as quest[õo]es \d+ a \d+ referem']
+# rótulo "Questão08" (desenhado, sem espaço) saía no texto, às vezes depois da (D); q20: alternativas em fração ("4 5") —
+# fica o print (princípio 1) (12/11/2026)
+PROVAS['uerj-2021']['texto_sem_rotulo'] = True
+PROVAS['uerj-2021']['sem_transcricao'] = {20}
 # p. 14: fim da questão 33 em largura total (duas figuras com legenda e o comando), alternativas a–b | c–d lado a lado
 # logo acima da questão 34 (larga): a página inteira lida como uma coluna só (conferido no print)
 PROVAS['unicamp-2026']['uma_coluna'] = (14,)

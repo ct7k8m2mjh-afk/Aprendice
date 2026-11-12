@@ -510,6 +510,9 @@ PROVAS['emescam-2022-1'] = sem_gabarito({
     'suporte': [r'(?i)^INSTRU[ÇC][ÃA]O:', r'(?i)^INSTRUCTION:'],
     'area': lambda n: 'Conhecimentos gerais',
     'faixas_modo': 'largas', 'divisa': 297,   # questões 54–56 em largura total (com figura)
+    # o recorte da coluna esquerda vai até x=301 e a direita começa em x≈300: sem isto, a 1ª letra de cada linha da
+    # coluna vizinha entrava no texto ("Q D a" na alternativa D) (12/11/2026)
+    'linha_na_coluna': True,
 }, _emescam_pre,
     'Escola Superior de Ciências da Santa Casa de Misericórdia de Vitória, Processo Seletivo de Medicina 2022/1 (outubro de '
     '2021), prova A: 60 questões A–D. Redação e prova dissertativa fora. O quadro de gabaritos do pacote não diz se é o '

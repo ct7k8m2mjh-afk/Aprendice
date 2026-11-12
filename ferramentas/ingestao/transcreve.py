@@ -28,7 +28,24 @@ CABECALHO = re.compile(r'(?i)^(vestibular|processo seletivo|concurso vestibular|
 ALT = re.compile(r'^\s*(?:\(([A-Ea-e])\)|([A-Ea-e])\s?[\)\.](?!\d)|([A-E])\t)\s*')
 
 
-def _spans(pg, clip):
+_INTEIRAS = {}   # (id do documento, página) -> caixas dos blocos de texto sem recorte, para 'fora_da_coluna'
+
+
+def fora_da_coluna(pg, bbox, clip):
+    """O pedaço de linha que o recorte pegou é da coluna vizinha? Olha o bloco inteiro (sem recorte) que contém o
+    pedaço: se o centro dele está fora do recorte, o pedaço é a ponta de uma linha de lá (EMESCAM: a última letra das
+    linhas da coluna esquerda e a primeira das da direita entravam no texto, "Q D a"). Bloco, não linha: no texto
+    justificado cada palavra pode ser uma linha (o "e" solto no fim da linha da coluna esquerda)."""
+    k = (id(pg.parent), pg.number)
+    if k not in _INTEIRAS:
+        _INTEIRAS[k] = [b['bbox'] for b in pg.get_text('dict')['blocks'] if b.get('lines')]
+    x0, y0, x1, y1 = bbox
+    donas = [c for c in _INTEIRAS[k] if min(y1, c[3]) - max(y0, c[1]) > (y1 - y0) * 0.5
+             and c[0] - 1 <= x0 and x1 <= c[2] + 1]
+    return bool(donas) and all(not (clip.x0 <= (c[0] + c[2]) / 2 <= clip.x1) for c in donas)
+
+
+def _spans(pg, clip, na_coluna=False, num_topo=None):
     """Linhas do PDF dentro do recorte, com espaços reconstruídos pela distância entre letras
     (há PDFs que posicionam as palavras sem caractere de espaço)."""
     out = []
@@ -55,6 +72,13 @@ def _spans(pg, clip):
                 t = ''.join(txt)
                 if t:
                     spans.append({'text': t, 'font': s_['font'], 'flags': s_['flags'], 'size': s_['size'], 'origin': s_['origin']})
+            if na_coluna and fora_da_coluna(pg, l['bbox'], clip):
+                continue   # pedaço de linha da coluna vizinha (o recorte encosta nela)
+            t_ = ''.join(sp['text'] for sp in spans).strip()
+            if len(t_) <= 3 and not (clip.y0 - 1 <= (l['bbox'][1] + l['bbox'][3]) / 2 <= clip.y1 + 1):
+                continue   # pedaço de linha de fora do recorte (PUCPR: o "g" do cabeçalho da página seguinte)
+            if num_topo is not None and t_ == str(pg.number + 1) and l['bbox'][1] < num_topo and l['bbox'][0] > pg.rect.width * 0.8:
+                continue   # número da página no alto, à direita (UEG): não é texto da questão
             if any(sp['text'].strip() for sp in spans):
                 out.append({'bloco': b['number'], 'bbox': l['bbox'], 'spans': spans})
     return out
@@ -175,7 +199,7 @@ def _nao(m):
     return None
 
 
-def transcreve(pdf, segs, ancora, cortes=(), alternativas=5, ocr=False):
+def transcreve(pdf, segs, ancora, cortes=(), alternativas=5, ocr=False, em_ordem=False, na_coluna=False, num_topo=None):
     """Devolve {'enun': [{'a': 'e'|'c'|'d', 't': texto}], 'alts': {'A': texto, ...}} ou None (fica o print)."""
     if ocr:
         return _nao('ocr')
@@ -184,7 +208,7 @@ def transcreve(pdf, segs, ancora, cortes=(), alternativas=5, ocr=False):
     for p, clip in segs:
         pg = pdf[p]
         faixa = None
-        for l in _spans(pg, clip):
+        for l in _spans(pg, clip, na_coluna, num_topo):
             t_ = ''.join(sp['text'] for sp in l['spans']).strip()
             if re.match(ancora, t_) or re.fullmatch(r'(?i)quest[ãa]o', t_):   # "questão" e o número em linhas separadas
                 faixa = (l['bbox'][1], l['bbox'][3])
@@ -193,7 +217,14 @@ def transcreve(pdf, segs, ancora, cortes=(), alternativas=5, ocr=False):
         f = _tem_figura(pg, clip, faixa)
         if f:
             return _nao('figura:' + str(f))
-        ls = _spans(pg, clip)
+        ls = _spans(pg, clip, na_coluna, num_topo)
+        if em_ordem:
+            # camada de texto fora da ordem de leitura (UEMA: a frase de abertura vem depois da alternativa e):
+            # blocos de cima para baixo, cada um inteiro (sort estável)
+            topo = {}
+            for l in ls:
+                topo[l['bloco']] = min(topo.get(l['bloco'], 1e9), l['bbox'][1])
+            ls = sorted(ls, key=lambda l: round(topo[l['bloco']]))
         for l in ls:
             l['p'], l['col'] = p, (clip.x0, clip.x1)
         linhas += ls
@@ -254,8 +285,11 @@ def transcreve(pdf, segs, ancora, cortes=(), alternativas=5, ocr=False):
                 if sp['flags'] & 16:
                     sp['base'] = True
 
-    # tira o número da questão (âncora) e o que for corte
+    # tira o número da questão (âncora) e o que for corte. Só na linha do selo (faixa da âncora) ou, sem selo, na
+    # primeira linha que casa: "20 mA e 6 V" e "27 anos" (alternativas da Cederj) casam com a âncora "NN " e perdiam
+    # o número (12/11/2026)
     limpas = []
+    ancora_tirada = False
     for l in linhas:
         txt = ''.join(s['text'] for s in l['spans']).strip()
         if any(re.search(rx, txt) for rx in cortes) or re.fullmatch(r'[#*•·.\-–_\s]+', txt) or CABECALHO.match(txt):
@@ -266,11 +300,15 @@ def transcreve(pdf, segs, ancora, cortes=(), alternativas=5, ocr=False):
             continue   # pedaço de letra da coluna vizinha que entrou na borda do recorte
         if re.fullmatch(r'A{2,}', txt):
             continue
+        if re.fullmatch(r'(?i)quest[ãa]o\s*\d{1,3}', txt):
+            continue   # rótulo "Questão NN" solto (UERJ 2021: "Questão08" desenhado, fora da faixa da âncora, ia para a (D))
         if any(fp == l['p'] and l['bbox'][1] < fx[1] + 2 and l['bbox'][3] > fx[0] - 2 for fp, fx in faixas) \
                 and re.fullmatch(r'(?i)(quest[ãa]o)?\s*\d{0,3}', txt):
             continue   # "questão" / "01" do selo da questão
         m = re.match(ancora, txt)
-        if m:
+        if m and (any(fp == l['p'] and l['bbox'][1] < fx[1] + 2 and l['bbox'][3] > fx[0] - 2 for fp, fx in faixas)
+                  or (not faixas and not ancora_tirada)):
+            ancora_tirada = True
             resto = txt[m.end():].strip()
             if not resto:
                 continue
