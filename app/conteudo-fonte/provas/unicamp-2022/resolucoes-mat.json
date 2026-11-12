@@ -759,5 +759,94 @@
    "data": "2026-11-12",
    "lote": "mat-0020"
   }
+ },
+ "Pe3308fd8": {
+  "n": "24",
+  "conceito": "Projetar segmentos na horizontal com seno e cosseno e obter valores exatos pelo arco duplo.",
+  "equivocos": {
+   "A": "M10.1:esqueceu-as-divisoes-por-2",
+   "B": "M10.1:subtraiu-em-vez-de-somar",
+   "D": "M10.1:usou-raiz-de-outro-angulo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Na figura, a margem esquerda do canal passa pelo canto de trás do navio, onde está o ângulo α = 67,5° entre a margem e o lado de trás (60 m, dividido em 30 m + 30 m pelo eixo tracejado). A margem direita passa pela ponta da frente, que está sobre o eixo. O eixo mede 400 m e é perpendicular ao lado de trás. A largura L é a distância horizontal entre o canto e a ponta: a projeção horizontal dos 30 m do lado de trás mais a projeção horizontal dos 400 m do eixo. O lado de trás faz 67,5° com a margem (vertical): projeção 30 × sen 67,5°. O eixo faz 90° − 67,5° = 22,5° com a margem: projeção 400 × sen 22,5° = 400 × cos 67,5°.",
+    "formulas": [
+     "L = 30 × sen 67,5° + 400 × cos 67,5°",
+     "cos 2θ = 2 × cos² θ − 1",
+     "sen² θ = 1 − cos² θ"
+    ],
+    "simbolos": [
+     [
+      "α",
+      "ângulo entre a margem e o lado de trás do navio"
+     ],
+     [
+      "L",
+      "largura do canal"
+     ]
+    ]
+   },
+   "pista": "Que caminho liga o canto de trás à ponta da frente? Quanto cada trecho avança na horizontal?",
+   "passos": [
+    {
+     "faz": "Monte L",
+     "conta": "L = 30 × sen 67,5° + 400 × cos 67,5°",
+     "porque": "Meio lado de trás mais o eixo.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Ache cos 67,5°",
+     "conta": "cos 135° = 2 × cos² 67,5° − 1 → cos² 67,5° = (2 − √2)/4 → cos 67,5° = √(2 − √2)/2",
+     "porque": "cos 135° = −√2/2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache sen 67,5°",
+     "conta": "sen² 67,5° = 1 − (2 − √2)/4 = (2 + √2)/4 → sen 67,5° = √(2 + √2)/2",
+     "porque": "Relação fundamental.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Substitua",
+     "conta": "L = 15 × √(2 + √2) + 200 × √(2 − √2) ≈ 27,7 + 153,1 = 180,8",
+     "porque": "30/2 = 15 e 400/2 = 200.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "200√(2 − √2) + 15√(2 + √2) ≈ 180,8 → alternativa C",
+     "porque": "Largura do canal.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 200√(2 − √2) + 15√(2 + √2) ≈ 180,8",
+   "checagem": "Com valores decimais: sen 67,5° ≈ 0,924 e cos 67,5° ≈ 0,383. L ≈ 30 × 0,924 + 400 × 0,383 = 27,7 + 153,1 = 180,8 m, abaixo dos 200 m que o enunciado dá como limite da largura do canal.",
+   "erradas": {
+    "A": "Usa 400 e 60 sem as divisões por 2 que vêm do seno e do cosseno (e de meio lado de trás), e subtrai as parcelas.",
+    "B": "Os coeficientes estão certos, mas a parcela 15√(2 + √2) é somada, não subtraída: o meio lado de trás também avança na horizontal.",
+    "D": "O arco duplo de 67,5° é 135°, cujo cosseno é −√2/2: só aparece √2, nunca √3; e a segunda parcela é somada, não subtraída."
+   },
+   "armadilha": "O ângulo α está na borda do navio, não no meio: é preciso somar os 30 m do meio lado de trás até o eixo.",
+   "alerta": "A leitura da figura (qual margem toca qual ponto do navio e onde está α) foi feita no print; a foto de satélite só ilustra.",
+   "essencial": {
+    "pede": "A largura L do canal.",
+    "chave": "L = 30 × sen 67,5° + 400 × cos 67,5° = 15√(2 + √2) + 200√(2 − √2) ≈ 180,8 m.",
+    "cuidado": "Somar as duas projeções."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0024"
+  }
  }
 }
