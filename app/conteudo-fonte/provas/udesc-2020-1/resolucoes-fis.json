@@ -566,5 +566,101 @@
    "data": "2026-11-12",
    "lote": "fis-0015"
   }
+ },
+ "P4af879f0": {
+  "n": "57",
+  "conceito": "Trabalho no processo ABC: área sob a isobárica e sob a reta descendente, escrita como retângulo menos triângulo.",
+  "equivocos": {
+   "B": "F08.7:subtraiu-o-retangulo",
+   "C": "F08.7:somou-o-triangulo",
+   "D": "F08.7:somou-o-retangulo",
+   "E": "F08.7:pressao-inicial-no-trecho-todo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O trabalho é a área sob o caminho ABC no P × V. Ela cabe num retângulo de altura P_A e base V_C − V_A, faltando o triângulo acima da reta BC (catetos P_A − P_C e V_C − V_B). Então W = retângulo − triângulo.",
+    "formulas": [
+     "W = área sob a curva P × V",
+     "área do triângulo = (base × altura)/2"
+    ],
+    "simbolos": [
+     [
+      "P_A, P_C",
+      "pressões nos estados A e C"
+     ],
+     [
+      "V_A, V_B, V_C",
+      "volumes nos estados A, B e C"
+     ]
+    ]
+   },
+   "pista": "Imagine o retângulo de altura P_A de V_A a V_C: que pedaço dele não está sob o caminho?",
+   "passos": [
+    {
+     "faz": "Escreva o retângulo",
+     "conta": "P_A × (V_C − V_A)",
+     "porque": "Área se a pressão fosse P_A o tempo todo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escreva o triângulo que sobra",
+     "conta": "(1/2) × (P_A − P_C) × (V_C − V_B)",
+     "porque": "Acima da reta BC e abaixo de P_A há um triângulo que não é trabalho.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Subtraia",
+     "conta": "W = P_A(V_C − V_A) − (1/2)(P_A − P_C)(V_C − V_B)",
+     "porque": "É a alternativa A.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — W = P_A(V_C − V_A) − (1/2)(P_A − P_C)(V_C − V_B).",
+   "checagem": "Por outro caminho: retângulo sob AB, P_A(V_B − V_A), mais trapézio sob BC, (P_A + P_C)/2 × (V_C − V_B). Expandindo, dá P_A(V_C − V_A) − (1/2)(P_A − P_C)(V_C − V_B), a mesma expressão.",
+   "erradas": {
+    "B": "Sai de subtrair o retângulo inteiro (P_A − P_C)(V_C − V_B) em vez do triângulo: a reta BC deixa fora só metade dele.",
+    "C": "Sai de somar o triângulo em vez de subtrair: a área sob BC é menor que o retângulo de altura P_A, não maior.",
+    "D": "Sai de somar o retângulo (P_A − P_C)(V_C − V_B): a área sob BC fica abaixo de P_A, então algo tem de ser subtraído.",
+    "E": "Sai de usar a pressão P_A no caminho todo: P_A(V_C − V_A) esquece que a pressão cai de B para C."
+   },
+   "armadilha": "Subtrair o retângulo inteiro em vez do triângulo, ou somar o que devia subtrair.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O trabalho do gás no processo ABC (isobárica e depois reta descendente).",
+    "chave": "W = retângulo P_A(V_C − V_A) − triângulo (1/2)(P_A − P_C)(V_C − V_B).",
+    "cuidado": "Área sob o caminho; o triângulo acima da reta BC fica fora."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "retângulo + trapézio",
+    "ideia": "P_A(V_B − V_A) + (P_A + P_C)(V_C − V_B)/2: expandindo, chega à expressão da alternativa A."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "retângulo: P_A × (V_C − V_A)",
+    "nota": "altura P_A"
+   },
+   {
+    "linha": "triângulo: (1/2)(P_A − P_C)(V_C − V_B)",
+    "nota": "acima de BC"
+   },
+   {
+    "linha": "W = P_A(V_C − V_A) − (1/2)(P_A − P_C)(V_C − V_B)",
+    "nota": "subtrai"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "fis-0026"
+  }
  }
 }
