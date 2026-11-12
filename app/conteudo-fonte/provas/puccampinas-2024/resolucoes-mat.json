@@ -365,5 +365,91 @@
    "data": "2026-11-12",
    "lote": "mat-0027"
   }
+ },
+ "P42d7c7f3": {
+  "n": "24",
+  "conceito": "Otimização simples: escolher os menores tempos.",
+  "equivocos": {
+   "A": "M14.2:sem-origem-identificada",
+   "C": "M14.2:sem-origem-identificada",
+   "D": "M14.2:sem-origem-identificada",
+   "E": "M14.2:esqueceu-um-grupo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Para colocar o maior número de caixas em 49 s, use os compartimentos mais rápidos primeiro. Ordene os 33 tempos e vá somando até 49 s. Depois veja quantas dessas caixas ficaram na região \"Necessário abaixar-se\".",
+    "formulas": [
+     "guloso: menores tempos primeiro"
+    ],
+    "simbolos": []
+   },
+   "pista": "Quais são os menores tempos da estante?",
+   "passos": [
+    {
+     "faz": "Mais rápidos",
+     "conta": "1 s: 3 | 1,5 s: 6 | 2 s: 4 | 3,5 s: 1 → 14 caixas, 3 + 9 + 8 + 3,5 = 23,5 s",
+     "porque": "Melhor área.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Seguintes",
+     "conta": "4 s: 3 → 17 caixas, 35,5 s | 4,5 s: 3 → 20 caixas, 49 s",
+     "porque": "Região de abaixar-se.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Proporção",
+     "conta": "abaixar-se: 3 (de 4 s) + 3 (de 4,5 s) = 6 de 20 = 30% → alternativa B",
+     "porque": "Pela figura.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 30%",
+   "checagem": "Teste uma caixa a mais: a 21.ª custaria pelo menos 4,5 s e passaria de 49 s (53,5 s); então 20 é o máximo.",
+   "erradas": {
+    "A": "20% = 4 de 20 não confere: são 6 caixas na região de abaixar-se.",
+    "C": "25% = 5 de 20 não confere: são 6 caixas.",
+    "D": "40% = 8 de 20 não confere: são 6 caixas.",
+    "E": "15% = 3 de 20 conta só as de 4 s; faltam as 3 de 4,5 s."
+   },
+   "armadilha": "Contar na região \"melhor área\" as caixas de 4 s, ou parar a soma antes de 49 s.",
+   "alerta": "",
+   "essencial": {
+    "pede": "% das caixas na região de abaixar-se.",
+    "chave": "20 caixas em 49 s; 6 delas abaixo: 30%.",
+    "cuidado": "Menores tempos primeiro."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pelo tempo restante",
+    "ideia": "Depois das 14 caixas rápidas sobram 49 − 23,5 = 25,5 s: dá para 3 caixas de 4 s (12 s) e 3 de 4,5 s (13,5 s), todas na região de abaixar-se: 6."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "14 caixas em 23,5 s",
+    "nota": "melhor área"
+   },
+   {
+    "linha": "+3 × 4 + 3 × 4,5",
+    "nota": "abaixar-se"
+   },
+   {
+    "linha": "6/20 = 30%",
+    "nota": "proporção"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0040"
+  }
  }
 }
