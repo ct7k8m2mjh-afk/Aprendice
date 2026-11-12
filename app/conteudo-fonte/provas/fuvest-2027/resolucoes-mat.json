@@ -1,0 +1,82 @@
+{
+ "Paca91cd2": {
+  "n": "32",
+  "conceito": "Decompor um número em potências de 3 distintas.",
+  "equivocos": {
+   "A": "M07.3:errou-a-decomposicao",
+   "B": "M07.3:errou-a-decomposicao",
+   "D": "M07.3:errou-a-decomposicao",
+   "E": "M07.3:errou-a-decomposicao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "As pontuações das rodadas são potências de 3: 1, 3, 9, 27, 81, 243, 729, ... Cada rodada só pode ser vencida uma vez, então o total do jogador é uma soma de potências de 3 diferentes. A soma de todas as potências menores que uma delas é sempre menor que ela (1 + 3 + 9 = 13 < 27): por isso a maior potência que cabe no total tem de estar na soma.",
+    "formulas": [
+     "pontos da rodada n = 3ⁿ⁻¹",
+     "1 + 3 + ... + 3ᵏ⁻¹ = (3ᵏ − 1)/2 < 3ᵏ"
+    ],
+    "simbolos": [
+     [
+      "820",
+      "total de pontos acumulados"
+     ]
+    ]
+   },
+   "pista": "Qual é a maior potência de 3 que cabe em 820? Quanto sobra?",
+   "passos": [
+    {
+     "faz": "Liste as potências",
+     "conta": "1, 3, 9, 27, 81, 243, 729 (a seguinte, 2187, passa de 820)",
+     "porque": "Pontuações possíveis.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Tire a maior",
+     "conta": "820 − 729 = 91",
+     "porque": "Sem a de 729, o máximo seria 1 + 3 + 9 + 27 + 81 + 243 = 364.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Continue com o resto",
+     "conta": "91 − 81 = 10 → 10 − 9 = 1 → 1 − 1 = 0",
+     "porque": "Sempre a maior potência que cabe.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte e conclua",
+     "conta": "820 = 729 + 81 + 9 + 1 → 4 rodadas → alternativa C",
+     "porque": "Rodadas 7, 5, 3 e 1.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 4",
+   "checagem": "Somando: 729 + 81 = 810; 810 + 9 = 819; 819 + 1 = 820.",
+   "erradas": {
+    "A": "2 não confere: 820 − 729 = 91, e 91 não é uma potência de 3.",
+    "B": "3 não confere: com 729 e 81 sobram 10, e 10 não é uma potência de 3.",
+    "D": "5 não confere: a decomposição em potências de 3 distintas é única, e tem 4 parcelas.",
+    "E": "6 não confere: a decomposição em potências de 3 distintas é única, e tem 4 parcelas."
+   },
+   "armadilha": "Somar as pontuações em sequência (1 + 3 + 9 + ...) como se o jogador tivesse vencido as primeiras rodadas seguidas: 820 não é uma dessas somas.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantas rodadas o jogador ganhou.",
+    "chave": "820 = 729 + 81 + 9 + 1: quatro rodadas.",
+    "cuidado": "As rodadas vencidas não precisam ser consecutivas."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0019"
+  }
+ }
+}
