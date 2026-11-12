@@ -26,3 +26,7 @@
 | 2026-11-12 | Pd0543346 | uece-2026-1 q56 | bio B04.5 | bio B07.6 | câncer de bexiga: anatomia do sistema urinário; apontada pelo conferente do Fable |
 | 2026-11-12 | Pa2683ae6 | upe-ssa3-2023 q89 | geo G04.4 | geo G04.2 | regiões hidrográficas brasileiras; apontada pelo conferente de Geografia |
 | 2026-11-12 | P8ea94c18 | santacasa-2022-demais q26 | geo G05.2 | geo G04.3 | Aquífero Guarani: águas subterrâneas; apontada pelo conferente de Geografia |
+| 2026-11-12 | P56dd3c82 | uel-2022 q14 | fs S06.4 | mat M03.1 porcentagem simples | Porcentagem, proporção ("uma em cada quatro") e aproximação sobre pesquisa de violência contra a mulher; classificada por engano em Sociologia; apontada pela sessão de Filosofia e Sociologia |
+| 2026-11-12 | P6fcba762 | pucsp-2024 q27 | fs S07.5 | geo G06.1 conceitos e indicadores demográficos | Mortalidade pela Covid-19 e dinâmica demográfica mundial; classificada por engano em Sociologia; apontada pela sessão de Filosofia e Sociologia |
+| 2026-11-12 | Pddaaa08d | fuvest-2023 q50 | fs S08.2 | por P03.3 charge, tirinha, cartaz e infográfico | Leitura verbo-visual de peça publicitária da Anistia Internacional (polissemia de "desligar"); classificada por engano em Sociologia; apontada pela sessão de Filosofia e Sociologia |
+| 2026-11-12 | P284b35f0 | uel-2024 q5 | fs S08.5 | his H01.1 história, fontes e tempo histórico | Fotografia como documento e fonte histórica (Teoria da História, século XIX); classificada por engano em Sociologia; apontada pela sessão de Filosofia e Sociologia |

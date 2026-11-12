@@ -116,3 +116,21 @@
 | 2026-11-12 | cederj-2020-1 | 58 | P82033e67 | 1000x322 | 1000x2402 | texto de apoio acrescentado no topo: 13:35,55,298,596 |
 | 2026-11-12 | cederj-2020-1 | 59 | P822f7a73 | 1000x479 | 1000x2559 | texto de apoio acrescentado no topo: 13:35,55,298,596 |
 | 2026-11-12 | cederj-2020-1 | 60 | P5fbb4215 | 1000x460 | 1000x2540 | texto de apoio acrescentado no topo: 13:35,55,298,596 |
+| 2026-11-12 | cederj-2023-1 | 45 | Pa8195da1 | 548x241 | 1000x394 | 15: 305,285,572,390 |
+| 2026-11-12 | cederj-2023-1 | 43 | Pf5d540d9 | 1000x510 | 1000x2279 | texto de apoio acrescentado no topo: 15:24,52,296,527 |
+| 2026-11-12 | cederj-2023-1 | 44 | P5193e474 | 1000x852 | 1000x2621 | texto de apoio acrescentado no topo: 15:24,52,296,527 |
+| 2026-11-12 | cederj-2023-1 | 45 | Pa8195da1 | 1000x394 | 1000x2163 | texto de apoio acrescentado no topo: 15:24,52,296,527 |
+| 2026-11-12 | cederj-2025-1 | 43 | Pf1373916 | 1000x506 | 1000x3084 | texto de apoio acrescentado no topo: 13:52,52,295,673 |
+| 2026-11-12 | cederj-2025-1 | 44 | P9d3ec10c | 1000x439 | 1000x3017 | texto de apoio acrescentado no topo: 13:52,52,295,673 |
+| 2026-11-12 | cederj-2025-1 | 45 | Pbdc86abd | 1000x352 | 1000x2930 | texto de apoio acrescentado no topo: 13:52,52,295,673 |
+| 2026-11-12 | cederj-2025-2 | 43 | Pd0f594c1 | 1000x524 | 1000x2861 | texto de apoio acrescentado no topo: 13:52,298,295,780;13:304,52,547,132 |
+| 2026-11-12 | cederj-2025-2 | 44 | P41d399e2 | 1000x587 | 1000x2924 | texto de apoio acrescentado no topo: 13:52,298,295,780;13:304,52,547,132 |
+| 2026-11-12 | cederj-2025-2 | 45 | P181d5b60 | 1000x373 | 1000x2710 | texto de apoio acrescentado no topo: 13:52,298,295,780;13:304,52,547,132 |
+| 2026-11-12 | cmmg-2023-1 | 52 | Pe59f84a6 | 984x2699 | 1000x1257 | 29: 66,55,546,533; 29: 66,642,546,767 |
+| 2026-11-12 | cmmg-2023-1 | 53 | P773b0c19 | 986x1356 | 1000x364 | 31: 66,56,546,230 |
+| 2026-11-12 | cmmg-2023-1 | 54 | Pe7d63db6 | 986x1329 | 1000x334 | 31: 66,254,546,414 |
+| 2026-11-12 | cmmg-2023-1 | 55 | P82492451 | 986x1260 | 1000x269 | 31: 66,422,546,551 |
+| 2026-11-12 | cmmg-2023-1 | 53 | P773b0c19 | 1000x364 | 1000x1882 | texto de apoio acrescentado no topo: 30:88,58,546,742 |
+| 2026-11-12 | cmmg-2023-1 | 54 | Pe7d63db6 | 1000x334 | 1000x1852 | texto de apoio acrescentado no topo: 30:88,58,546,742 |
+| 2026-11-12 | cmmg-2023-1 | 55 | P82492451 | 1000x269 | 1000x1787 | texto de apoio acrescentado no topo: 30:88,58,546,742 |
+| 2026-11-12 | cmmg-2021-2 | 55 | Pac7c8c7b | 961x2434 | 961x2366 | rodapé cortado: tirado o título "QUESTÕES DISSERTATIVAS DE 01 A 06" (página 38), que não é da questão; tirado também do texto e da alternativa D da transcrição |

@@ -121,10 +121,12 @@ _m('uft-2023-2', UFT, manha=_UFT + '2023-2/provas-uft-2023-2-manha.pdf', tarde=_
 _m('uft-2024-2', UFT, manha=_UFT + '2024-2/uft-2024-2-vestibular-manha.pdf', tarde=_UFT + '2024-2/uft-2024-2-vestibular-tarde.pdf',
    preliminar=_UFT + '2024-2/gabarito-preliminar-uft-2024-2-vestibular.pdf')
 uft('uft-2023-2', 2023, 2, '30/04/2023')
-uft('uft-2024-2', 2024, 2, '05/05/2024', anuladas=(71, 72),
-    extra_nota=' O gabarito definitivo (03/06/2024) anulou as questões 39 e 40 da tarde (aqui 71 e 72), segundo a notícia '
-               'do Estratégia Vestibulares (vestibulares.estrategia.com, "Vestibular UFT 2024/2: confira o gabarito '
-               'definitivo"); o PDF do definitivo não pôde ser baixado (o servidor de arquivos proíbe robôs).')
+# 12/11/2026: o gabarito DEFINITIVO oficial (03/06/2024, docs.uft.edu.br/s/jfgYJWwVR3Os4kALusUSog) foi achado e aplicado
+# à mão no prova.json (gab em todas; anuladas 29 e 30 da tarde = aqui 61 e 62, não 39 e 40 como dizia a notícia).
+# Não rodar de novo este gerador para uft-2024-2 sem trazer essas mudanças.
+uft('uft-2024-2', 2024, 2, '05/05/2024', anuladas=(61, 62),
+    extra_nota=' O gabarito definitivo (03/06/2024) anulou as questões 29 e 30 da tarde (aqui 61 e 62), conforme o PDF '
+               'oficial da Copese.')
 
 
 # ------------------------------------------------------------------------------------------------------------ UFRR
