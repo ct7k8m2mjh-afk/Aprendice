@@ -1,6 +1,6 @@
 # Química: resoluções (gerado por lote.py em 2026-11-12)
 
-Faltam 2309 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 688; demais nível 1-6 1109; ENEM nível 7-10 26; provas-alvo nível 7-10 181; demais nível 7-10 305.
+Faltam 2279 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 658; demais nível 1-6 1109; ENEM nível 7-10 26; provas-alvo nível 7-10 181; demais nível 7-10 305.
 
 ## Lotes
 
@@ -20,10 +20,13 @@ Faltam 2309 questões sem resolução (fora as que estão em lote, pendentes ou 
 | qui-0012 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | qui-0013 | provas-alvo nível 1-6 | 30 | gravado | 29 | 0 | 1 |
 | qui-0014 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| qui-0015 | provas-alvo nível 1-6 | 30 | gravado | 29 | 1 | 0 |
 
 ## Pendentes (falta de certeza absoluta)
 
-Nenhuma.
+| Questão | Prova | Conteúdo | Motivo |
+|---|---|---|---|
+| Pa91b52ff | Fuvest 2021 1ª fase · questão 84 | Q04.3 cálculo estequiométrico direto (tema Q04 Mol e estequiometria) | print incompleto: o print traz só a segunda coluna da questão; faltam o início do enunciado e a tabela com os teores de HMF permitidos (legislação brasileira e recomendação internacional), sem a qual a questão não se resolve. Refazer o recorte (questão 84 ocupa duas colunas). |
 
 ## Divergências de gabarito (o dono decide)
 
