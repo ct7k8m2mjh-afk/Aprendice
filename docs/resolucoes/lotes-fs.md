@@ -1,6 +1,6 @@
 # Filosofia e Sociologia: resoluções (gerado por lote.py em 2026-11-12)
 
-Faltam 900 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 200; demais nível 1-6 469; ENEM nível 7-10 30; provas-alvo nível 7-10 147; demais nível 7-10 54.
+Faltam 870 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 170; demais nível 1-6 469; ENEM nível 7-10 30; provas-alvo nível 7-10 147; demais nível 7-10 54.
 
 ## Lotes
 
@@ -28,6 +28,7 @@ Faltam 900 questões sem resolução (fora as que estão em lote, pendentes ou c
 | fs-0020 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | fs-0021 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | fs-0022 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| fs-0023 | provas-alvo nível 1-6 | 30 | gravado | 29 | 0 | 1 |
 
 ## Pendentes (falta de certeza absoluta)
 
@@ -40,4 +41,6 @@ Faltam 900 questões sem resolução (fora as que estão em lote, pendentes ou c
 
 ## Divergências de gabarito (o dono decide)
 
-Nenhuma.
+| Questão | Prova | Conteúdo | Motivo |
+|---|---|---|---|
+| P878059c1 | UFU 2020 1ª fase · questão 83 | S04.4 gênero, feminismo e violência contra a mulher (tema S04 Desigualdade social) | Gabarito oficial D (homens e mulheres definem de maneira distinta a divisão igualitária). A alternativa C (os homens, em sua maioria, reconhecem o desequilíbrio) também se sustenta pelo gráfico: 43,1% + 9,2% = 52,3% dos homens dizem que não dividem todas as tarefas. E a D é inferência, porque o gráfico mede percepção da própria participação, não definições. Não há resolução publicada da UFU 2020 q83. Duas letras defensáveis. |
