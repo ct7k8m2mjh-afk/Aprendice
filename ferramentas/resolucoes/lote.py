@@ -196,7 +196,7 @@ def info_da_prova(q):
     p = ler(os.path.join(PROVAS, pid, 'prova.json'), {})
     pq = next((x for x in p.get('questoes', []) if x['id'] == q['id']), {})
     return {'nota': p.get('nota', ''), 'pdf': (p.get('fontes') or {}).get(pq.get('caderno'), ''),
-            'preliminar': pq.get('gab_preliminar') or ''}
+            'preliminar': pq.get('gab_preliminar') or '', 'nota_gabarito': pq.get('nota_gabarito') or ''}
 
 
 def separa_alternativas(texto, letras):
@@ -293,6 +293,9 @@ def entrada(m, qs):
             'pdf_oficial': info_da_prova(q).get('pdf', ''),
             'tem_figura': bool(q.get('figura')),
         }
+        if info_da_prova(q).get('nota_gabarito'):
+            # checagem do gabarito na web (errata, definitivo, resoluções publicadas), feita pela sessão principal
+            e['nota_gabarito'] = info_da_prova(q)['nota_gabarito']
         tr = t.get('transcricao') or transcricao_da_prova(q)
         if isinstance(tr, dict) and tr.get('enun'):
             # transcrição organizada da prova oficial (mais limpa que a camada de texto)
