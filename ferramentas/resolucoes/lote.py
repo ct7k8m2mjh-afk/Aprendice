@@ -541,6 +541,11 @@ def confere(saida):
                 avisos.append(f'{qid}: a resposta não reproduz o texto da alternativa {gab}')
         if alts_e.get(gab) and toks(r['pista']) and len(toks(r['pista']) & toks(alts_e[gab])) / max(len(toks(alts_e[gab])), 1) > 0.6:
             avisos.append(f'{qid}: a pista parece entregar a alternativa {gab}')
+        for p_ in ps:
+            if re.search(r'\d \d{3}\s*/', str(p_.get('conta', '')) if isinstance(p_, dict) else ''):
+                avisos.append(f'{qid}: fração com milhar separado por espaço ("11 000/6 000") quebra o empilhamento: '
+                              'escreva sem o espaço (11000/6000) ou use " ÷ "')
+                break
         fonte_txt = norm_cit(' '.join((e.get('texto_da_prova') or '', ' '.join(alts_e.values()))))
         fonte_caixa = norm_cit(' '.join((e.get('texto_da_prova') or '', ' '.join(alts_e.values()))), caixa=True)
         if fonte_txt and not e.get('ler_o_print'):

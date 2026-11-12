@@ -24,3 +24,5 @@
 | 2026-11-12 | P7c84dee0 | saocamilo-2022-2 q16 | geo G05.2 | geo G06.3 | rota da imigração haitiana; apontada pelo conferente do Fable |
 | 2026-11-12 | P6952a942 | saocamilo-2021-2 q22 | bio B09.6 | bio B11.2 | Nuvem de gafanhotos: adaptação e seleção; apontada pelo conferente do Fable |
 | 2026-11-12 | Pd0543346 | uece-2026-1 q56 | bio B04.5 | bio B07.6 | câncer de bexiga: anatomia do sistema urinário; apontada pelo conferente do Fable |
+| 2026-11-12 | Pa2683ae6 | upe-ssa3-2023 q89 | geo G04.4 | geo G04.2 | regiões hidrográficas brasileiras; apontada pelo conferente de Geografia |
+| 2026-11-12 | P8ea94c18 | santacasa-2022-demais q26 | geo G05.2 | geo G04.3 | Aquífero Guarani: águas subterrâneas; apontada pelo conferente de Geografia |
