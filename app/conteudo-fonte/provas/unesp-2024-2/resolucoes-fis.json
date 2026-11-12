@@ -432,5 +432,101 @@
    "data": "2026-11-12",
    "lote": "fis-0032"
   }
+ },
+ "P16d9bf45": {
+  "n": "81",
+  "conceito": "Lâmpadas em paralelo com fusível: cada uma consome i = P/U; o total não pode passar de 15 A.",
+  "equivocos": {
+   "B": "F11.5:contagem-errada",
+   "C": "F11.5:lampada-existente-ignorada",
+   "D": "F11.5:contagem-errada",
+   "E": "F11.5:contagem-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Todas as lâmpadas ficam entre A e B, em paralelo, com os 12 V do gerador: cada uma funciona nos valores nominais e consome i = P/U = 24/12 = 2 A. O fusível suporta 15 A no total.",
+    "formulas": [
+     "i = P/U",
+     "paralelo: correntes somam"
+    ],
+    "simbolos": [
+     [
+      "P, U",
+      "24 W, 12 V"
+     ],
+     [
+      "i_máx",
+      "15 A"
+     ]
+    ]
+   },
+   "pista": "Quantas lâmpadas de 2 A cabem em 15 A, contando a que já está ligada?",
+   "passos": [
+    {
+     "faz": "Corrente por lâmpada",
+     "conta": "i = 24/12 = 2 A",
+     "porque": "Nominal.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Máximo total",
+     "conta": "15/2 = 7,5 → no máximo 7 lâmpadas",
+     "porque": "Inteiro sem passar de 15 A.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Acrescentar",
+     "conta": "7 − 1 = 6",
+     "porque": "Já há uma ligada. É a alternativa A.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 6.",
+   "checagem": "Teste: com 7 lâmpadas, 14 A (cabe); com 8, 16 A (queima o fusível). Já existe uma, então cabem mais 6.",
+   "erradas": {
+    "B": "Não confere: com 5 a mais (6 no total), a corrente seria 12 A; ainda caberia mais uma.",
+    "C": "Sai de esquecer a lâmpada que já está ligada: 7 é o total, não o número a acrescentar.",
+    "D": "Não confere: com 4 a mais (5 no total), a corrente seria 10 A; cabem mais.",
+    "E": "Não confere: 8 a mais dariam 9 lâmpadas e 18 A, acima de 15 A."
+   },
+   "armadilha": "Esquecer a lâmpada que já está no circuito.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantas lâmpadas ainda podem ser acrescentadas.",
+    "chave": "2 A cada; 7 no máximo; 6 a acrescentar.",
+    "cuidado": "Paralelo: correntes somam."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste",
+    "ideia": "7 → 14 A; 8 → 16 A."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "i = 24/12 = 2 A",
+    "nota": "cada"
+   },
+   {
+    "linha": "15/2 = 7,5 → 7",
+    "nota": "máximo"
+   },
+   {
+    "linha": "7 − 1 = 6",
+    "nota": "A"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "fis-0037"
+  }
  }
 }

@@ -752,5 +752,100 @@
    "data": "2026-11-12",
    "lote": "fis-0034"
   }
+ },
+ "Pdb987a26": {
+  "n": "59",
+  "conceito": "Chave que põe uma lâmpada em curto: de duas lâmpadas em série (2R) para uma (R); com tensão fixa, a potência dobra.",
+  "equivocos": {
+   "A": "F11.5:potencia-invertida",
+   "B": "F11.5:curto-ignorado",
+   "C": "F11.5:lampada-no-lugar-do-circuito",
+   "E": "F11.5:potencia-sem-equacao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Com a chave aberta, as duas lâmpadas estão em série com o gerador: P = ε²/(2R). O fio diagonal com a chave liga o ponto entre as lâmpadas ao polo negativo, passando por fora da lâmpada da direita. Fechada, a chave põe essa lâmpada em curto, e fica só uma lâmpada: P′ = ε²/R.",
+    "formulas": [
+     "P = ε²/R_total"
+    ],
+    "simbolos": [
+     [
+      "aberta",
+      "2R"
+     ],
+     [
+      "fechada",
+      "R"
+     ]
+    ]
+   },
+   "pista": "Fechada a chave, por qual caminho a corrente evita uma das lâmpadas?",
+   "passos": [
+    {
+     "faz": "Aberta",
+     "conta": "série: R_total = 2R → P = ε²/(2R)",
+     "porque": "Duas lâmpadas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Fechada",
+     "conta": "lâmpada da direita em curto → R_total = R → P′ = ε²/R",
+     "porque": "Fio diagonal.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Razão",
+     "conta": "P′ = 2P",
+     "porque": "É a alternativa D.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 2P.",
+   "checagem": "Pela lâmpada que fica acesa: antes ela recebia ε/2 e dissipava (ε/2)²/R = ε²/(4R); depois recebe ε e dissipa ε²/R, quatro vezes mais. Mas o total antes era 2 × ε²/(4R) = ε²/(2R); o total depois, ε²/R: o dobro.",
+   "erradas": {
+    "A": "Sai de inverter o efeito: com menos resistência e tensão fixa, a potência aumenta.",
+    "B": "Não confere: a chave muda a resistência total do circuito, então a potência muda.",
+    "C": "Sai de olhar só a lâmpada que fica acesa: ela passa a dissipar 4 vezes mais, mas a pergunta é a potência do circuito, que dobra.",
+    "E": "Não confere: 3P/2 exigiria a resistência total cair para 4R/3, e ela cai para R."
+   },
+   "armadilha": "Comparar a potência de uma lâmpada com a do circuito inteiro.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A potência do circuito com a chave fechada.",
+    "chave": "De 2R para R com ε fixa: 2P.",
+    "cuidado": "Curto zera uma lâmpada."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "lâmpada acesa",
+    "ideia": "ε²/(4R) → ε²/R; circuito: ε²/(2R) → ε²/R."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "aberta: ε²/(2R)",
+    "nota": "série"
+   },
+   {
+    "linha": "fechada: ε²/R",
+    "nota": "curto"
+   },
+   {
+    "linha": "P′ = 2P",
+    "nota": "D"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "fis-0037"
+  }
  }
 }
