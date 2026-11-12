@@ -125,5 +125,91 @@
    "data": "2026-11-12",
    "lote": "mat-0015"
   }
+ },
+ "P68469e74": {
+  "n": "49",
+  "conceito": "Probabilidade com contagem de posições numa pizza.",
+  "equivocos": {
+   "B": "M13.4:esqueceu-uma-etapa",
+   "C": "M13.4:sem-origem-identificada",
+   "D": "M13.4:sem-origem-identificada",
+   "E": "M13.4:esqueceu-uma-etapa"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "As 4 fatias de calabresa são vizinhas entre si, e as 4 de mozarela também. Ana e Carlos pegam 2 das 4 de calabresa; Beatriz, 1 das 4 de mozarela. Lado a lado: as três fatias consecutivas, o que só acontece na divisa entre os sabores.",
+    "formulas": [
+     "P = favoráveis/possíveis"
+    ],
+    "simbolos": []
+   },
+   "pista": "Numere as fatias: C1 C2 C3 C4 M1 M2 M3 M4, em volta. Onde três fatias seguidas têm 2 de calabresa e 1 de mozarela?",
+   "passos": [
+    {
+     "faz": "Escolhas possíveis",
+     "conta": "pares de calabresa: C(4, 2) = 6 | fatia de mozarela: 4 → 6 × 4 = 24",
+     "porque": "Conjuntos de fatias escolhidas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Favoráveis",
+     "conta": "C3, C4, M1 ou M4, C1, C2 → 2",
+     "porque": "Só nas duas divisas.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Probabilidade",
+     "conta": "2/24 = 1/12 → alternativa A",
+     "porque": "Simplifique.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 1/12",
+   "checagem": "Passo a passo: Beatriz precisa pegar M1 ou M4 (2/4); aí as calabresas vizinhas ficam fixas (C3, C4 ou C1, C2), e Ana e Carlos precisam pegar exatamente esse par: 1 de 6; (2/4) × (1/6) = 1/12.",
+   "erradas": {
+    "B": "1/6 é só a chance de Ana e Carlos pegarem um par fixo de calabresa; falta Beatriz pegar a fatia da divisa (2/4).",
+    "C": "1/4 não confere: são 2 casos favoráveis em 24.",
+    "D": "1/3 não confere: são 2 casos favoráveis em 24.",
+    "E": "1/2 é só a chance de Beatriz pegar uma fatia da divisa."
+   },
+   "armadilha": "Achar que a mozarela pode ficar entre duas calabresas: os sabores ocupam metades contínuas.",
+   "alerta": "",
+   "essencial": {
+    "pede": "P(fatias lado a lado).",
+    "chave": "2 casos em 6 × 4 = 24: 1/12.",
+    "cuidado": "Só nas divisas entre os sabores."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "com ordem",
+    "ideia": "Ana 4 fatias, Carlos 3, Beatriz 4: 48 escolhas; favoráveis: 2 trios × 2 ordens de Ana e Carlos = 4; 4/48 = 1/12."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "C(4, 2) × 4 = 24",
+    "nota": "possíveis"
+   },
+   {
+    "linha": "2",
+    "nota": "favoráveis"
+   },
+   {
+    "linha": "2/24 = 1/12",
+    "nota": "probabilidade"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0036"
+  }
  }
 }

@@ -681,5 +681,91 @@
    "data": "2026-11-12",
    "lote": "mat-0035"
   }
+ },
+ "Pf7ac7be7": {
+  "n": "74",
+  "conceito": "Probabilidade binomial: comparar acertos de dois jogadores.",
+  "equivocos": {
+   "B": "M13.4:sem-origem-identificada",
+   "C": "M13.4:sem-origem-identificada",
+   "D": "M13.4:sem-origem-identificada",
+   "E": "M13.4:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "João: 2 lances com chance 1/5. Tiago: 3 lances com chance 1/4. João acerta mais que Tiago em dois casos: João 1 e Tiago 0; João 2 e Tiago 0 ou 1.",
+    "formulas": [
+     "P(k acertos) = C(n, k) pᵏ (1 − p)ⁿ⁻ᵏ"
+    ],
+    "simbolos": []
+   },
+   "pista": "Liste os casos em que João acerta mais.",
+   "passos": [
+    {
+     "faz": "João",
+     "conta": "P(1) = 2 × (1/5)(4/5) = 8/25 | P(2) = 1/25",
+     "porque": "Binomial n = 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tiago",
+     "conta": "P(0) = (3/4)³ = 27/64 | P(1) = 3 × (1/4)(9/16) = 27/64",
+     "porque": "Binomial n = 3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some os casos",
+     "conta": "(8/25)(27/64) + (1/25)(54/64) = (216 + 54)/1600 = 270/1600 = 27/160 → alternativa A",
+     "porque": "Casos disjuntos.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 27/160",
+   "checagem": "Pelo Tiago: Tiago 0 (27/64) e João ao menos 1 (9/25); Tiago 1 (27/64) e João 2 (1/25); (27/64)(10/25) = 270/1600 = 27/160.",
+   "erradas": {
+    "B": "3/160 não confere: os casos somam 270/1 600 = 27/160.",
+    "C": "9/160 não confere: os casos somam 270/1 600.",
+    "D": "15/160 não confere: os casos somam 270/1 600.",
+    "E": "21/160 não confere: os casos somam 270/1 600."
+   },
+   "armadilha": "Esquecer o caso João 2 e Tiago 1.",
+   "alerta": "",
+   "essencial": {
+    "pede": "P(João acerta mais).",
+    "chave": "(8/25)(27/64) + (1/25)(54/64) = 27/160.",
+    "cuidado": "Liste os casos."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "contagem de resultados",
+    "ideia": "Em contagem: João tem 5² = 25 resultados, 8 com 1 acerto e 1 com 2; Tiago tem 4³ = 64, 27 com 0 e 27 com 1. Pares favoráveis: 8 × 27 + 1 × 54 = 270, de 25 × 64 = 1 600."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "8/25 | 1/25",
+    "nota": "João"
+   },
+   {
+    "linha": "27/64 | 27/64",
+    "nota": "Tiago"
+   },
+   {
+    "linha": "270/1600 = 27/160",
+    "nota": "soma"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0036"
+  }
  }
 }

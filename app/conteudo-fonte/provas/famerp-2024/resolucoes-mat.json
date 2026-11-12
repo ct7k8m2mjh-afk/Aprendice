@@ -628,5 +628,91 @@
    "data": "2026-11-12",
    "lote": "mat-0031"
   }
+ },
+ "P403ca570": {
+  "n": "72",
+  "conceito": "Probabilidade com dados modificados: face apagada não soma.",
+  "equivocos": {
+   "A": "M13.4:sem-origem-identificada",
+   "B": "M13.4:sem-origem-identificada",
+   "C": "M13.4:ignorou-as-faces-apagadas",
+   "D": "M13.4:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada dado continua com 6 faces igualmente prováveis: 36 resultados. No primeiro dado, a face do 1 não tem número; no segundo, a do 4. Conte os pares que somam 7 usando só as faces com número.",
+    "formulas": [
+     "P = favoráveis/36"
+    ],
+    "simbolos": []
+   },
+   "pista": "Dos pares normais que somam 7, quais usam o 1 do primeiro dado ou o 4 do segundo?",
+   "passos": [
+    {
+     "faz": "Pares normais",
+     "conta": "(1, 6), (2, 5), (3, 4), (4, 3), (5, 2), (6, 1)",
+     "porque": "Dados comuns: 6 pares.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Tire os impossíveis",
+     "conta": "(1, 6) usa o 1 apagado; (3, 4) usa o 4 apagado → sobram 4",
+     "porque": "A face sem número não soma 7 com nada.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Probabilidade",
+     "conta": "4/36 = 1/9 → alternativa E",
+     "porque": "36 resultados.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 1/9",
+   "checagem": "Pela face do primeiro dado: sair 2, 4, 5 ou 6 (4 faces) exige no segundo 5, 3, 2 ou 1, que existem; sair 3 exige o 4, apagado; cada caso tem chance (1/6)(1/6): 4/36.",
+   "erradas": {
+    "A": "1/3 não confere: são 4 pares em 36.",
+    "B": "1/4 não confere: são 4 pares em 36.",
+    "C": "1/6 é a chance com dados comuns (6 pares em 36).",
+    "D": "1/12 = 3/36 não confere: são 4 pares favoráveis."
+   },
+   "armadilha": "Continuar contando (1, 6) ou (3, 4): as faces apagadas não têm valor.",
+   "alerta": "",
+   "essencial": {
+    "pede": "P(soma 7).",
+    "chave": "6 pares normais − 2 com face apagada = 4; 4/36 = 1/9.",
+    "cuidado": "Face apagada não soma."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pelo segundo dado",
+    "ideia": "Sair 1, 2, 3 ou 5 no segundo exige 6, 5, 4 ou 2 no primeiro, que existem; sair 6 exige o 1, apagado; sair 4 é face apagada: 4 casos."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "6 pares",
+    "nota": "dados comuns"
+   },
+   {
+    "linha": "− (1, 6) − (3, 4)",
+    "nota": "apagadas"
+   },
+   {
+    "linha": "4/36 = 1/9",
+    "nota": "probabilidade"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0036"
+  }
  }
 }

@@ -613,5 +613,89 @@
    "data": "2026-11-12",
    "lote": "mat-0028"
   }
+ },
+ "Pffe8727e": {
+  "n": "66",
+  "conceito": "Probabilidade sem reposição: duas pessoas entre os sorteados.",
+  "equivocos": {
+   "A": "M13.4:sem-origem-identificada",
+   "C": "M13.4:calculou-pelo-menos-uma",
+   "D": "M13.4:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "São sorteados 100 dos 200 passageiros. A chance da primeira irmã estar entre eles é 100/200; dado isso, sobram 99 vagas para os outros 199 passageiros.",
+    "formulas": [
+     "P(A e B) = P(A) × P(B | A)"
+    ],
+    "simbolos": []
+   },
+   "pista": "Depois que uma irmã foi sorteada, quantas vagas sobram e para quantas pessoas?",
+   "passos": [
+    {
+     "faz": "Primeira irmã",
+     "conta": "100/200 = 1/2",
+     "porque": "Metade é sorteada.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Segunda irmã",
+     "conta": "99/199",
+     "porque": "Vagas restantes.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique",
+     "conta": "(1/2) × (99/199) ≈ 0,249 ≈ 25% → alternativa B",
+     "porque": "Pouco menos de 1/4.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 25%",
+   "checagem": "Por combinações: grupos de 100 que contêm as duas, C(198, 98), sobre C(200, 100); a razão é (100 × 99)/(200 × 199) = 9 900/39 800 ≈ 0,249.",
+   "erradas": {
+    "A": "2% não confere: a chance de cada irmã é 1/2, e o produto fica perto de 1/4.",
+    "C": "75% é a chance de pelo menos uma ser entrevistada, aproximadamente 1 − 1/4.",
+    "D": "51% não confere: (1/2) × (99/199) ≈ 25%."
+   },
+   "armadilha": "Somar as chances (1/2 + 1/2) ou usar 1/2 só: são dois eventos que precisam ocorrer juntos.",
+   "alerta": "",
+   "essencial": {
+    "pede": "P(as duas entrevistadas).",
+    "chave": "(100/200)(99/199) ≈ 25%.",
+    "cuidado": "Sem reposição."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "por pares",
+    "ideia": "Por simetria, a chance de um par fixo estar entre os entrevistados é C(100, 2)/C(200, 2) = 4950/19900 ≈ 0,249."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "100/200",
+    "nota": "1.ª irmã"
+   },
+   {
+    "linha": "99/199",
+    "nota": "2.ª irmã"
+   },
+   {
+    "linha": "≈ 0,249",
+    "nota": "produto"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0036"
+  }
  }
 }

@@ -772,5 +772,92 @@
    "data": "2026-11-12",
    "lote": "mat-0033"
   }
+ },
+ "P29935320": {
+  "n": "80",
+  "conceito": "Probabilidade com complementares: errar, mas não errar todos.",
+  "equivocos": {
+   "A": "M13.4:respondeu-o-caso-de-travar",
+   "B": "M13.4:sem-origem-identificada",
+   "D": "M13.4:sem-origem-identificada",
+   "E": "M13.4:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada dígito digitado ao acaso acerta com chance 1/10 e erra com 9/10, independentes. \"Errada mas com outra chance\" é errar 1, 2 ou 3 dígitos: tudo menos acertar os 4 e menos errar os 4.",
+    "formulas": [
+     "P(acerta tudo) = (1/10)⁴",
+     "P(erra tudo) = (9/10)⁴"
+    ],
+    "simbolos": []
+   },
+   "pista": "Quais dois casos ficam de fora?",
+   "passos": [
+    {
+     "faz": "Acertar os 4",
+     "conta": "(0,1)⁴ = 0,0001",
+     "porque": "Senha certa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Errar os 4",
+     "conta": "(0,9)⁴ = 0,6561",
+     "porque": "Dispositivo trava.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resto",
+     "conta": "1 − 0,0001 − 0,6561 = 0,3438 = 34,38% → alternativa C",
+     "porque": "Errar 1, 2 ou 3.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 34,38%.",
+   "checagem": "Pela binomial: errar exatamente 1: 4 × 0,9 × 0,001 = 0,0036; exatamente 2: 6 × 0,81 × 0,01 = 0,0486; exatamente 3: 4 × 0,729 × 0,1 = 0,2916; soma 0,3438.",
+   "erradas": {
+    "A": "65,61% é a chance de errar os 4 dígitos, quando o cofre trava.",
+    "B": "72,20% não confere: 1 − 0,0001 − 0,6561 = 0,3438.",
+    "D": "50,40% não confere: 1 − 0,0001 − 0,6561 = 0,3438.",
+    "E": "42,25% não confere: 1 − 0,0001 − 0,6561 = 0,3438."
+   },
+   "armadilha": "Tirar só o caso de errar tudo (1 − 0,6561 = 34,39%) e esquecer o de acertar tudo.",
+   "alerta": "",
+   "essencial": {
+    "pede": "P(errada, mas com nova chance).",
+    "chave": "1 − 0,1⁴ − 0,9⁴ = 34,38%.",
+    "cuidado": "Tire os dois extremos."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "por contagem",
+    "ideia": "Das 10⁴ = 10 000 senhas: 1 certa e 9⁴ = 6 561 com todos os dígitos errados; 10 000 − 1 − 6 561 = 3 438."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "0,1⁴ = 0,0001",
+    "nota": "acerta tudo"
+   },
+   {
+    "linha": "0,9⁴ = 0,6561",
+    "nota": "erra tudo"
+   },
+   {
+    "linha": "0,3438",
+    "nota": "resto"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0036"
+  }
  }
 }

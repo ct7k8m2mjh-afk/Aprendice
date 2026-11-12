@@ -848,5 +848,96 @@
    "data": "2026-11-12",
    "lote": "mat-0035"
   }
+ },
+ "P6cf72b1d": {
+  "n": "78",
+  "conceito": "Probabilidade com combinações em função de n.",
+  "equivocos": {
+   "A": "M13.4:esqueceu-de-dividir-por-2",
+   "B": "M13.4:sem-origem-identificada",
+   "D": "M13.4:sem-origem-identificada",
+   "E": "M13.4:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O sorteio escolhe 2 dos n números, sem ordem: C(n, 2) resultados. Favoráveis: os 2 sorteados entre os 5 de João, C(5, 2) = 10.",
+    "formulas": [
+     "C(n, 2) = n(n − 1)/2"
+    ],
+    "simbolos": [
+     [
+      "n",
+      "quantidade de números da loteria"
+     ]
+    ]
+   },
+   "pista": "Quantos pares podem ser sorteados?",
+   "passos": [
+    {
+     "faz": "Possíveis",
+     "conta": "C(n, 2) = n(n − 1)/2",
+     "porque": "Pares sem ordem.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Favoráveis",
+     "conta": "C(5, 2) = 10",
+     "porque": "Pares dentro dos 5 de João.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Probabilidade",
+     "conta": "10/[n(n − 1)/2] = 20/(n² − n) → alternativa C",
+     "porque": "Divida por C(n, 2).",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 20/(n² − n)",
+   "checagem": "Teste com n = 5: João escolheu todos os números, então a chance deve ser 1; 20/(25 − 5) = 1. Confere.",
+   "erradas": {
+    "A": "10/(n² − n) esquece o ÷ 2 de C(n, 2); com n = 5 daria 1/2, mas a chance é 1.",
+    "B": "10/n! não confere: com n = 5 daria 10/120, mas a chance é 1.",
+    "D": "10/(n − 2)! não confere: com n = 5 daria 10/6 > 1.",
+    "E": "20/(n − 2)! não confere: com n = 5 daria 20/6 > 1."
+   },
+   "armadilha": "Usar n(n − 1) como total de pares: sem ordem, é n(n − 1)/2.",
+   "alerta": "",
+   "essencial": {
+    "pede": "P(os dois sorteados são de João).",
+    "chave": "C(5, 2)/C(n, 2) = 20/(n² − n).",
+    "cuidado": "Teste n = 5."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "passo a passo",
+    "ideia": "1.º sorteado entre os de João: 5/n; 2.º: 4/(n − 1); (5 × 4)/(n(n − 1)) = 20/(n² − n)."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "C(5, 2) = 10",
+    "nota": "favoráveis"
+   },
+   {
+    "linha": "n(n − 1)/2",
+    "nota": "possíveis"
+   },
+   {
+    "linha": "20/(n² − n)",
+    "nota": "probabilidade"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0036"
+  }
  }
 }
