@@ -1,6 +1,6 @@
 # História: resoluções (gerado por lote.py em 2026-11-12)
 
-Faltam 572 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 399; ENEM nível 7-10 17; provas-alvo nível 7-10 98; demais nível 7-10 58.
+Faltam 542 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 369; ENEM nível 7-10 17; provas-alvo nível 7-10 98; demais nível 7-10 58.
 
 ## Lotes
 
@@ -68,7 +68,8 @@ Faltam 572 questões sem resolução (fora as que estão em lote, pendentes ou c
 | his-0060 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | his-0061 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | his-0062 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
-| his-0063 | demais nível 1-6 | 30 | aberto |  |  |  |
+| his-0063 | demais nível 1-6 | 30 | gravado | 28 | 2 | 0 |
+| his-0064 | demais nível 1-6 | 30 | aberto |  |  |  |
 
 ## Pendentes (falta de certeza absoluta)
 
@@ -76,8 +77,10 @@ Faltam 572 questões sem resolução (fora as que estão em lote, pendentes ou c
 |---|---|---|---|
 | P106941e8 | Cederj 2025 2025.1 · questão 30 | H05.3 conflitos sociais na Primeira República (tema H05 República Brasileira) | classificação: é de Português — a questão associa autores e livros (Machado de Assis, Lima Barreto, João do Rio, García Márquez, Maquiavel, Hobbes), conteúdo de literatura |
 | P219afbbf | Cederj 2025 2025.2 · questão 30 | H05.4 tenentismo, Semana de 1922 e crise dos anos 1920 (tema H05 República Brasileira) | classificação: é de Português — a questão associa autores e obras literárias (Machado de Assis, Lima Barreto, Mário de Andrade, Casimiro de Abreu, João do Rio, Coelho Neto, Pedro Nava, Marques Rebelo) a séculos, conteúdo de literatura |
+| Pbc25b11f | Fempar 2021 Medicina 2021 · questão 32 | H05.7 República de 1946: de Dutra a Jango (tema H05 República Brasileira) | classificação: é de Sociologia |
 | P61d9ea43 | Fuvest 2026 1ª fase · questão 12 | H05.5 Revolução de 1930 e governo constitucional de Vargas (tema H05 República Brasileira) | classificação: é de Português (literatura) — a questão pede a análise dos romances Caminho de pedras, de Rachel de Queiroz, e As meninas, de Lygia Fagundes Telles (personagens Angelita, Ana Clara, Noemi, Lorena); o contexto histórico dos direitos das mulheres é só introdução. |
 | P916264a9 | Fuvest 2026 1ª fase · questão 9 | H04.9 crise do Império e proclamação da República (tema H04 Independência e Império) | classificação: é de Filosofia e Sociologia (a questão compara as ideias de Nísia Floresta e Émile Durkheim sobre a educação; é de Sociologia, e não de História do Brasil) |
+| P5615270b | PUC-Rio 2026 Grupo 4 · questão 45 | H05.7 República de 1946: de Dutra a Jango (tema H05 República Brasileira) | classificação: é de Geografia |
 | P881983dc | UECE 2020 2020.2 – 2ª fase · questão 151 | H02.4 reinos e impérios africanos (tema H02 Idade Média) | As afirmativas sobre o reino Bamun (islamização como resistência ao avanço cristão, diplomacia que teria evitado o domínio britânico sob o rei Njoya, introdução de tecnologia e indústria) não são conferíveis com certeza em conhecimento consolidado de livro didático, e a segunda parece não combinar com o domínio alemão e depois francês sobre Bamun. Sem certeza absoluta, a resolução não entra. |
 | Pdd624e83 | UEL 2024 1ª fase · questão 41 | H05.6 Estado Novo e trabalhismo (tema H05 República Brasileira) | classificação: é de Física — questão interdisciplinar em que três das cinco afirmativas pedem cálculos de ondas (comprimento de onda de 150 MHz, energia e frequência, frequência da luz vermelha); só duas tratam de História (Torre Eiffel e rádio no Estado Novo). |
 | P4172ca46 | UERJ 2027 1º Exame de Qualificação · questão 59 | H06.10 Estados Unidos no século XIX: expansão e Guerra de Secessão (tema H06 Revoluções) | classificação: é de Geografia — a questão pede o fundamento teórico (subjetividade do conceito de região) que explica as respostas de uma pesquisa de 2014 sobre quais estados formam o Sul dos EUA; não trata de fato histórico. |
