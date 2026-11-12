@@ -1,6 +1,6 @@
 # Português: resoluções (gerado por lote.py em 2026-11-12)
 
-Faltam 2977 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 494; demais nível 1-6 1944; ENEM nível 7-10 53; provas-alvo nível 7-10 225; demais nível 7-10 261.
+Faltam 2947 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 464; demais nível 1-6 1944; ENEM nível 7-10 53; provas-alvo nível 7-10 225; demais nível 7-10 261.
 
 ## Lotes
 
@@ -60,6 +60,7 @@ Faltam 2977 questões sem resolução (fora as que estão em lote, pendentes ou 
 | por-0052 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | por-0053 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | por-0054 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| por-0055 | provas-alvo nível 1-6 | 30 | gravado | 28 | 2 | 0 |
 
 ## Pendentes (falta de certeza absoluta)
 
@@ -79,6 +80,8 @@ Faltam 2977 questões sem resolução (fora as que estão em lote, pendentes ou 
 | P93ec458e | UDESC 2025 Inverno 2025.2 · questão 44 | P03.2 gêneros jornalísticos: notícia, reportagem, editorial e crônica (tema P03 Gêneros e tipos textuais) | A 1ª proposição afirma influências literárias de Rubem Braga (segunda geração modernista nas crônicas, características parnasianas nos contos), dado que não está na questão; ela decide entre D e E. A 5ª também é discutível (classificação de "Mas" como adjunto adnominal). Sem fonte conferida, não há como fundamentar a sequência. |
 | Pcfc26fc6 | UDESC 2025 Verão 2025.1 · questão 47 | P07.3 verbo: tempo, modo, aspecto e flexão (tema P07 Morfologia) | obra: as cinco proposições tratam do romance Dois irmãos inteiro (territorialidade e interculturalismo, a origem de Nael e de Domingas, a oposição entre Yaqub e Omar, a ditadura e o professor Antenor Laval), e nada disso se confirma pelo fragmento nem pelo print; não há proposição que o texto derrube para eliminar alternativas. Além disso, a II diz que Domingas é "nativa de Manaus", detalhe da obra que não consigo confirmar com certeza absoluta. O gabarito oficial (E) exige dar as cinco como verdadeiras. A proposição II é provavelmente falsa, porque Domingas vem do alto Rio Negro e não de Manaus, mas isso não foi conferido no livro. |
 | P8944ccb0 | UERJ 2026 1º Exame de Qualificação · questão 4 | P06.1 metáfora, comparação e metonímia (tema P06 Figuras de linguagem) | classificação: é de Física. O poema serve só de contexto; o comando pergunta "A grandeza física associada a processos reais de emersão" e as alternativas são grandezas físicas (vazão, pressão, densidade, temperatura). A resposta (densidade, gabarito C) depende do empuxo e da comparação de densidades, conteúdo de Física, não de figura de linguagem. |
+| Pb571aea8 | UFPR 2022 Fase única · questão 38 | P11.1 Barroco e Arcadismo (tema P11 Literatura: do Barroco ao Simbolismo) | obra: as afirmativas 2, 3 e 4, que decidem a letra, tratam de personagens e episódios de O Uraguai que o fragmento não traz (Cacambo, a feiticeira Tanajura, o sonho de Lindoia, a destruição dos Sete Povos, as vozes de líderes militares portugueses). Só a 1 se julga em parte pelo trecho (versos sem rima); julgar as outras exige o enredo da obra inteira. |
+| Pbc02114e | UFPR 2025 1ª fase · questão 69 | P11.1 Barroco e Arcadismo (tema P11 Literatura: do Barroco ao Simbolismo) | obra: a questão não traz nenhum trecho das Liras de Marília de Dirceu. As afirmativas 2 (voz de Dirceu em todas as liras, fuga do amor até ser vencido por Cupido) e 3 (predomínio de versos de 5 e 7 sílabas) exigem conhecer o conjunto da obra; a 1 depende do local e da data de publicação, que a questão não dá. |
 | Pd23309d1 | UFU 2023 1ª fase · questão 59 | P01.1 tema, tese e ideia principal do texto (tema P01 Leitura e compreensão) | A resposta depende do enredo de "Bom dia, camaradas" (papel de cada personagem: Amadou, Cláudio, António, Ondalu), que não está na questão; sem fonte conferida no lote para afirmar com certeza o que faz cada personagem. |
 | P5dcad9ec | UFU 2025 1ª fase · questão 62 | P03.3 charge, tirinha, cartaz e infográfico (tema P03 Gêneros e tipos textuais) | A resposta depende do conteúdo do livro "O Karaíba: uma história do pré-Brasil" (narrar o período anterior à chegada dos portugueses pela visão indígena), que não está na questão; o print traz só o quadro de Oscar Pereira da Silva. Sem fonte conferida sobre o livro, não há como fundamentar a B nem as eliminações. |
 | Pb3cb3211 | UPE 2025 SSA3 · questão 16 | P03.3 charge, tirinha, cartaz e infográfico (tema P03 Gêneros e tipos textuais) | A questão pede a capa que antecipa "mais elementos do enredo" de Torto Arado. Decidir entre as capas exige conhecer o enredo do romance (o que cada objeto e cena das capas representa na história), que não está na questão. Sem fonte conferida sobre o livro, não há como fundamentar a E nem as eliminações. |
