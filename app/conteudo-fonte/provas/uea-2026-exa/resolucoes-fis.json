@@ -263,5 +263,166 @@
    "data": "2026-11-12",
    "lote": "fis-0011"
   }
+ },
+ "Pddab64db": {
+  "n": "20",
+  "conceito": "Obter o rendimento total de etapas de transformação de energia em sequência.",
+  "equivocos": {
+   "A": "F04.4:tirou-a-media-dos-rendimentos",
+   "B": "F04.4:somou-os-rendimentos",
+   "C": "F04.4:dividiu-o-produto-por-3",
+   "E": "F04.4:somou-os-rendimentos"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Rendimento é a fração da energia que passa adiante. Em etapas em sequência, cada uma aproveita uma fração do que recebeu da anterior: fração de fração de fração. Isso é multiplicação, não soma.",
+    "formulas": [
+     "energia na saída = energia na entrada × ηC × ηT × ηG",
+     "rendimento total = energia na saída/energia na entrada"
+    ],
+    "simbolos": [
+     [
+      "ηC, ηT, ηG",
+      "rendimentos da caldeira, da turbina e do gerador"
+     ],
+     [
+      "ηP",
+      "rendimento total do processo"
+     ]
+    ]
+   },
+   "pista": "Se entra a energia E na caldeira, quanto sai dela? E quanto disso sai da turbina?",
+   "passos": [
+    {
+     "faz": "Acompanhe a energia na caldeira",
+     "conta": "entra E → sai ηC × E",
+     "porque": "A caldeira aproveita a fração ηC.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Acompanhe na turbina e no gerador",
+     "conta": "turbina: ηT × ηC × E → gerador: ηG × ηT × ηC × E",
+     "porque": "Cada etapa aproveita uma fração do que recebeu.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida a saída pela entrada",
+     "conta": "ηP = (ηC × ηT × ηG × E)/E = ηC × ηT × ηG",
+     "porque": "Definição de rendimento.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "ηP = ηC · ηT · ηG → alternativa D",
+     "porque": "O rendimento total é o produto.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — ηP = ηC · ηT · ηG",
+   "checagem": "Com números: rendimentos de 0,9; 0,5 e 0,8. De 100 J entram 90 J na turbina, 45 J no gerador e saem 36 J: rendimento 0,36 = 0,9 × 0,5 × 0,8.",
+   "erradas": {
+    "A": "A média dos rendimentos daria (0,9 + 0,5 + 0,8)/3 ≈ 0,73 no teste numérico, e o certo é 0,36.",
+    "B": "O triplo da soma daria 3 × 2,2 = 6,6 no teste numérico: rendimento maior que 1 não existe.",
+    "C": "Um terço do produto daria 0,36/3 = 0,12 no teste numérico, e o certo é 0,36.",
+    "E": "A soma daria 0,9 + 0,5 + 0,8 = 2,2 no teste numérico: rendimento maior que 1 não existe."
+   },
+   "armadilha": "Somar ou tirar a média dos rendimentos: em etapas em sequência, os rendimentos se multiplicam.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A expressão do rendimento total do processo.",
+    "chave": "Etapas em sequência: ηP = ηC × ηT × ηG.",
+    "cuidado": "O rendimento total é sempre menor que o de cada etapa."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "fis-0015"
+  }
+ },
+ "P2e3fd58f": {
+  "n": "21",
+  "conceito": "Classificar fontes de energia em renováveis e não renováveis e somar porcentagens de um gráfico.",
+  "equivocos": {
+   "B": "F04.5:contou-gas-e-nuclear-como-renovaveis",
+   "C": "F04.5:contou-gas-natural-como-renovavel",
+   "D": "F04.5:contou-nuclear-como-renovavel",
+   "E": "F04.5:excluiu-o-carvao-vegetal"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Fontes renováveis se repõem em pouco tempo: água dos rios (hidráulica), vento e Sol, e a biomassa, que volta a crescer (cana-de-açúcar, lenha e carvão vegetal). Não renováveis: petróleo, gás natural, carvão mineral e urânio (nuclear), que levam milhões de anos para se formar ou existem em quantidade fixa.",
+    "formulas": [
+     "renováveis = hidráulica + derivados de cana + lenha e carvão vegetal + eólica e solar + outras renováveis"
+    ],
+    "simbolos": [
+     [
+      "carvão vegetal",
+      "feito de madeira; renovável"
+     ],
+     [
+      "carvão mineral",
+      "combustível fóssil; não renovável"
+     ]
+    ]
+   },
+   "pista": "Separe as dez fatias do gráfico em dois grupos. Atenção aos dois tipos de carvão.",
+   "passos": [
+    {
+     "faz": "Separe as renováveis",
+     "conta": "eólica e solar 5,1 | outras renováveis 8,1 | lenha e carvão vegetal 8,5 | hidráulica 11,6 | derivados de cana 16,7",
+     "porque": "Vento, Sol, água e biomassa.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Some",
+     "conta": "5,1 + 8,1 + 8,5 + 11,6 + 16,7 = 50,0",
+     "porque": "Soma das cinco fatias renováveis.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "50,0% → alternativa A",
+     "porque": "É o total de fontes renováveis.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 50,0%.",
+   "checagem": "Pelo outro grupo: não renováveis somam 34,0 + 9,6 + 4,5 + 1,3 + 0,6 = 50,0%; 100 − 50,0 = 50,0%.",
+   "erradas": {
+    "B": "60,9% não confere: é 50,0 + 9,6 + 1,3, o que contaria gás natural e nuclear, não renováveis, como renováveis.",
+    "C": "59,6% é 50,0 + 9,6: conta o gás natural, que é combustível fóssil, como renovável.",
+    "D": "51,3% é 50,0 + 1,3: conta a energia nuclear, que usa urânio, como renovável.",
+    "E": "41,5% é 50,0 − 8,5: deixa de fora lenha e carvão vegetal, que são biomassa renovável."
+   },
+   "armadilha": "Confundir carvão vegetal (renovável, vem da madeira) com carvão mineral (fóssil), ou tratar a nuclear como renovável.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A porcentagem de fontes renováveis na matriz energética brasileira.",
+    "chave": "5,1 + 8,1 + 8,5 + 11,6 + 16,7 = 50,0%.",
+    "cuidado": "Nuclear e gás natural não são renováveis."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "fis-0015"
+  }
  }
 }

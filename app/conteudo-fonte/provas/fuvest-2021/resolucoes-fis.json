@@ -170,5 +170,92 @@
    "data": "2026-11-12",
    "lote": "fis-0012"
   }
+ },
+ "P5c782388": {
+  "n": "48",
+  "conceito": "Calcular a energia mensal de uma mini-hidrelétrica e completar a demanda com painéis solares.",
+  "equivocos": {
+   "A": "F04.5:errou-a-conta",
+   "C": "F04.5:errou-a-conta",
+   "D": "F04.5:errou-a-conta",
+   "E": "F04.5:ignorou-a-miniusina"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A potência de uma queda d'água é a energia potencial da água que cai a cada segundo: massa por segundo × g × altura. Com 1 kg por litro, 10 litros por segundo são 10 kg por segundo. Multiplicando a potência (em kW) pelas horas de um mês, sai a energia em kWh. O que faltar para 2 MWh = 2000 kWh vem dos painéis, 40 kWh cada.",
+    "formulas": [
+     "potência = (massa por segundo) × g × h",
+     "energia = potência × tempo",
+     "1 MWh = 1000 kWh"
+    ],
+    "simbolos": [
+     [
+      "vazão",
+      "volume de água que passa por segundo (10 L/s)"
+     ]
+    ]
+   },
+   "pista": "Quantos watts a queda d'água fornece? Quantas horas tem o mês?",
+   "passos": [
+    {
+     "faz": "Calcule a potência da miniusina",
+     "conta": "10 × 10 × 15 = 1500 W = 1,5 kW",
+     "porque": "10 kg de água por segundo, g = 10 m/s², queda de 15 m.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule as horas do mês",
+     "conta": "30 × 24 = 720 h",
+     "porque": "1 mês = 30 dias, 24 h por dia.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a energia mensal da miniusina",
+     "conta": "1,5 × 720 = 1080 kWh",
+     "porque": "Potência em kW vezes tempo em horas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o que falta e o número de painéis",
+     "conta": "2000 − 1080 = 920 kWh → 920/40 = 23",
+     "porque": "Cada painel produz 40 kWh por mês.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "23 painéis → alternativa B",
+     "porque": "É o número mínimo.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 23",
+   "checagem": "De volta: 23 painéis × 40 kWh = 920 kWh; 1080 + 920 = 2000 kWh = 2 MWh, a demanda exata.",
+   "erradas": {
+    "A": "12 não basta: 12 × 40 = 480 kWh, e faltam 920 kWh.",
+    "C": "30 atende, mas não é o mínimo: 30 × 40 = 1200 kWh, mais que os 920 kWh que faltam.",
+    "D": "45 atende, mas não é o mínimo: 45 × 40 = 1800 kWh, quase o dobro dos 920 kWh que faltam.",
+    "E": "50 é o número de painéis sem a miniusina (2000/40 = 50); a queda d'água já fornece 1080 kWh."
+   },
+   "armadilha": "Esquecer de descontar a energia da miniusina e dividir os 2000 kWh inteiros por 40.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O número mínimo de painéis solares.",
+    "chave": "Miniusina: 1,5 kW × 720 h = 1080 kWh; faltam 920 kWh = 23 painéis.",
+    "cuidado": "Desconte a parte da hidrelétrica."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "fis-0015"
+  }
  }
 }
