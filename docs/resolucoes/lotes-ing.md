@@ -1,6 +1,6 @@
 # Inglês: resoluções (gerado por lote.py em 2026-11-12)
 
-Faltam 1050 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 864; ENEM nível 7-10 2; provas-alvo nível 7-10 83; demais nível 7-10 101.
+Faltam 1002 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 5; demais nível 1-6 811; ENEM nível 7-10 2; provas-alvo nível 7-10 83; demais nível 7-10 101.
 
 ## Lotes
 
@@ -47,7 +47,9 @@ Faltam 1050 questões sem resolução (fora as que estão em lote, pendentes ou 
 | ing-0039 | demais nível 1-6 | 30 | gravado | 20 | 10 | 0 |
 | ing-0040 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | ing-0041 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
-| ing-0042 | demais nível 1-6 | 30 | aberto |  |  |  |
+| ing-0042 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| ing-0043 | demais nível 1-6 | 30 | aberto |  |  |  |
+| ing-0044 | demais nível 1-6 | 30 | aberto |  |  |  |
 
 ## Pendentes (falta de certeza absoluta)
 
@@ -64,6 +66,7 @@ Faltam 1050 questões sem resolução (fora as que estão em lote, pendentes ou 
 | P773b0c19 | FCM-MG 2023 1º semestre · questão 53 | I01.1 tema e ideia principal (tema I01 Leitura e interpretação de textos) | print: a questão pede um resumo do artigo sobre o estudo de Kaori Murata (lágrimas de felicidade em animais), mas o texto_da_prova e o print trazem só a tirinha do PHD Comics; o artigo não está no lote. Refazer o print ou a transcrição com o artigo, a partir do PDF oficial. |
 | Pe7d63db6 | FCM-MG 2023 1º semestre · questão 54 | I01.3 informação explícita (tema I01 Leitura e interpretação de textos) | print: a questão pede o método de um artigo sobre lágrimas de felicidade em cães, mas o texto de apoio não está no texto_da_prova e o print mostra outro material (uma tirinha sobre prova final). Refazer o print com o artigo, a partir do caderno oficial da FCM-MG 2023/1. |
 | P82492451 | FCM-MG 2023 1º semestre · questão 55 | I01.3 informação explícita (tema I01 Leitura e interpretação de textos) | print: a questão pede os benefícios descritos num artigo sobre lágrimas de felicidade em cães, mas o texto de apoio não está no texto_da_prova e o print mostra outro material (uma tirinha sobre prova final). Refazer o print com o artigo, a partir do caderno oficial da FCM-MG 2023/1. |
+| P855bb53e | Mackenzie 2026/2 q11 | I01.1 | decisão do dono: gabarito oficial A sem nenhuma leitura que o sustente (provável erro de digitação, sem errata); fica fora da fila até o dono decidir |
 | P91941880 | PUC-Campinas 2027 · questão 16 | I03.2 conectivos e relações lógicas (tema I03 Gramática) | print: a questão pede a lacuna I de um texto que não está no texto_da_prova nem no print da questão (que mostra só o comando e as alternativas); refazer o print ou a transcrição com o texto de apoio da PUC-Campinas 2027. |
 | Pcbb2a2aa | UECE 2025 2025.2 – 1ª fase · questão 78 | I01.3 informação explícita (tema I01 Leitura e interpretação de textos) | print: o texto de apoio em inglês (UECE 2025.2, página anterior às questões) não está no texto_da_prova nem no print da questão, que mostra só o enunciado e as alternativas; refazer o print ou a transcrição com o texto, a partir do PDF oficial. Prova sem gabarito definitivo: depois, gabarito do Aprendice às cegas. |
 | Pe4d0db1b | UECE 2025 2025.2 – 1ª fase · questão 79 | I01.3 informação explícita (tema I01 Leitura e interpretação de textos) | print: o texto de apoio em inglês (UECE 2025.2, página anterior às questões) não está no texto_da_prova nem no print da questão, que mostra só o enunciado e as alternativas; refazer o print ou a transcrição com o texto, a partir do PDF oficial. Prova sem gabarito definitivo: depois, gabarito do Aprendice às cegas. |
@@ -83,6 +86,4 @@ Faltam 1050 questões sem resolução (fora as que estão em lote, pendentes ou 
 
 ## Divergências de gabarito (o dono decide)
 
-| Questão | Prova | Conteúdo | Motivo |
-|---|---|---|---|
-| P855bb53e | Mackenzie 2026 2026/2 – 15/07 · questão 11 | I01.1 tema e ideia principal (tema I01 Leitura e interpretação de textos) | O raciocínio leva à alternativa B, e não à A do gabarito registrado. O texto é uma crítica (review) do filme de ficção The Secret Agent, de Kleber Mendonça Filho: “Kleber Mendonça Filho’s study of a man attempting to escape corrupt politics is a tremendous, novelistic study of corruption in high and low places” e “visual brilliance”, exatamente o que B diz. A alternativa A fala de “historical accuracy of documentary”, mas o texto não trata de documentário nem de precisão histórica. Conferir o gabarito oficial do Mackenzie 2026/2 (15/07), questão 11; pode ser erro na captura do gabarito. / web: o gabarito oficial do Mackenzie traz de fato 11 = A (https://www.mackenzie.br/fileadmin/ARQUIVOS/Public/2-processos-seletivos/upm/VESTIBULAR_REGULAR/2026/2026_2/Gabarito_15.07.2026_-_2026_2__semestre.pdf); 12 = B e 13 = C batem com o caderno (Prova A), então não é troca de versão nem erro de captura. Nenhuma errata ou gabarito retificado encontrado, e nenhuma fonte sustenta A: o texto é a crítica do Guardian ao filme de ficção, como diz B; A fala de documentário e precisão histórica, que o texto não trata. |
+Nenhuma.
