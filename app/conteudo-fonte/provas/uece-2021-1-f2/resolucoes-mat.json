@@ -1286,5 +1286,173 @@
    "data": "2026-11-12",
    "lote": "mat-0041"
   }
+ },
+ "P19239604": {
+  "n": "42",
+  "conceito": "Divisibilidade (teorema do resto) e valor numérico.",
+  "equivocos": {
+   "A": "M16.1:sem-origem-identificada",
+   "C": "M16.1:sem-origem-identificada",
+   "D": "M16.1:esqueceu-o-k"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Divisível por x − 1 quer dizer P(1) = 0. Isso dá k. Depois calcule P(2) e P(−2) e some.",
+    "formulas": [
+     "x − a divide P ⇔ P(a) = 0"
+    ],
+    "simbolos": []
+   },
+   "pista": "Quanto vale P(1)?",
+   "passos": [
+    {
+     "faz": "Ache k",
+     "conta": "P(1) = 1 + 1 + 1 + 1 + 1 + k = 0 → k = −5",
+     "porque": "Teorema do resto.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "P(2) e P(−2)",
+     "conta": "P(2) = 32 + 16 + 8 + 4 + 2 − 5 = 57 | P(−2) = −32 + 16 − 8 + 4 − 2 − 5 = −27",
+     "porque": "Substitua.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some",
+     "conta": "57 − 27 = 30 → alternativa B",
+     "porque": "Soma.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 30.",
+   "checagem": "Por Ruffini, P(x) = (x − 1)(x⁴ + 2x³ + 3x² + 4x + 5). P(2) = 1 × 57 = 57 e P(−2) = (−3) × 9 = −27. Soma 30.",
+   "erradas": {
+    "A": "10 não confere: P(2) + P(−2) = 2(16 + 4) + 2(−5) = 30.",
+    "C": "20 não confere: P(2) + P(−2) = 30.",
+    "D": "40 esquece o 2k = −10 na soma."
+   },
+   "armadilha": "Usar k = 5 (sinal trocado).",
+   "alerta": "",
+   "essencial": {
+    "pede": "P(2) + P(−2).",
+    "chave": "k = −5; 57 − 27 = 30.",
+    "cuidado": "P(1) = 0 dá k."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "paridade",
+    "ideia": "P(2) + P(−2) só soma os termos pares: 2(2⁴ + 2² + k) = 2(16 + 4 − 5) = 30."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "k = −5",
+    "nota": "P(1) = 0"
+   },
+   {
+    "linha": "57 | −27",
+    "nota": "P(±2)"
+   },
+   {
+    "linha": "30",
+    "nota": "soma"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0042"
+  }
+ },
+ "P9a461e6b": {
+  "n": "50",
+  "conceito": "Resto da divisão por (x + 1)(x − 1): valores em 1 e −1.",
+  "equivocos": {
+   "B": "M16.1:sem-origem-identificada",
+   "C": "M16.1:sem-origem-identificada",
+   "D": "M16.1:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "P(x) = (x + 1)(x − 1)Q(x) + ax + b. Em x = 1 e x = −1 o primeiro termo some: P(1) = a + b e P(−1) = −a + b.",
+    "formulas": [
+     "P(r) = R(r) nas raízes do divisor"
+    ],
+    "simbolos": []
+   },
+   "pista": "Quanto valem P(1) e P(−1)?",
+   "passos": [
+    {
+     "faz": "Valores",
+     "conta": "P(1) = (−2)³ + (−1)² = −7 | P(−1) = (−4)³ + (−3)² = −55",
+     "porque": "Substitua.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Sistema",
+     "conta": "a + b = −7 e −a + b = −55 → b = −31, a = 24",
+     "porque": "Some e subtraia.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "a² − b²",
+     "conta": "576 − 961 = −385 → alternativa A",
+     "porque": "Diferença de quadrados.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — –385.",
+   "checagem": "Teste R(x) = 24x − 31: R(1) = −7 = P(1) e R(−1) = −55 = P(−1). Confere.",
+   "erradas": {
+    "B": "−399 não confere: (a + b)(a − b) = (−7)(55) = −385.",
+    "C": "−388 não confere: a² − b² = −385.",
+    "D": "−397 não confere: a² − b² = −385."
+   },
+   "armadilha": "Errar o sinal de (−4)³ = −64.",
+   "alerta": "",
+   "essencial": {
+    "pede": "a² − b².",
+    "chave": "a = 24, b = −31: −385.",
+    "cuidado": "Use P(1) e P(−1)."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "sem achar a e b",
+    "ideia": "a + b = P(1) = −7 e a − b = −P(−1) = 55, então a² − b² = (a + b)(a − b) = (−7)(55) = −385, sem achar a e b."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "P(1) = −7 | P(−1) = −55",
+    "nota": "valores"
+   },
+   {
+    "linha": "a = 24, b = −31",
+    "nota": "resto"
+   },
+   {
+    "linha": "−385",
+    "nota": "a² − b²"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0042"
+  }
  }
 }

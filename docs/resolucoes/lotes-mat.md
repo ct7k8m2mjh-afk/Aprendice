@@ -47,7 +47,7 @@ Faltam 1935 questões sem resolução (fora as que estão em lote, pendentes ou 
 | mat-0039 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | mat-0040 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | mat-0041 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
-| mat-0042 | provas-alvo nível 1-6 | 30 | aberto |  |  |  |
+| mat-0042 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | mat-0043 | provas-alvo nível 1-6 | 30 | aberto |  |  |  |
 
 ## Pendentes (falta de certeza absoluta)
