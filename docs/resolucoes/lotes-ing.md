@@ -1,6 +1,6 @@
 # Inglês: resoluções (gerado por lote.py em 2026-11-12)
 
-Faltam 746 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 560; ENEM nível 7-10 2; provas-alvo nível 7-10 83; demais nível 7-10 101.
+Faltam 716 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 530; ENEM nível 7-10 2; provas-alvo nível 7-10 83; demais nível 7-10 101.
 
 ## Lotes
 
@@ -64,7 +64,8 @@ Faltam 746 questões sem resolução (fora as que estão em lote, pendentes ou c
 | ing-0056 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | ing-0057 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | ing-0058 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
-| ing-0059 | demais nível 1-6 | 30 | aberto |  |  |  |
+| ing-0059 | demais nível 1-6 | 30 | gravado | 27 | 3 | 0 |
+| ing-0060 | demais nível 1-6 | 30 | aberto |  |  |  |
 
 ## Pendentes (falta de certeza absoluta)
 
@@ -101,6 +102,9 @@ Faltam 746 questões sem resolução (fora as que estão em lote, pendentes ou c
 | Pe3636adf | UEMA 2021 PAES · questão 9 | I01.3 informação explícita (tema I01 Leitura e interpretação de textos) | print: a questão pede um procedimento orgânico citado num texto sobre agricultura que não está no texto_da_prova nem no print (que mostra só o enunciado e as alternativas). Refazer o print com o texto de apoio, a partir do caderno oficial da UEMA PAES 2021. |
 | P0c3bf8a5 | UERR 2026 · questão 13 | I01.3 informação explícita (tema I01 Leitura e interpretação de textos) | print: a questão pede o motivo de o príncipe Harry não ficar num palácio, mas o texto de apoio (Buckingham Palace says Prince Harry will not stay at palace) não está no texto_da_prova nem no print, que mostra outro texto (o do macaco do Congo). Refazer o print com o texto certo, a partir do caderno oficial da UERR 2026. |
 | P315368d9 | UFRR 2026 Vestibular 2026 – Prova Integral · questão 65 | I01.1 tema e ideia principal (tema I01 Leitura e interpretação de textos) | print: a questão pede o sonho de Martin Luther King Jr. no quarto parágrafo de um texto que não está no texto_da_prova nem no print (que mostra só o enunciado e as alternativas). Refazer o print com o texto de apoio. Prova sem gabarito definitivo (gabarito do Aprendice depois). Atenção: discurso protegido; citar só poucas palavras. |
+| P4ace9dcd | Unespar 2023 Grupo I · questão 1 | I01.3 informação explícita (tema I01 Leitura e interpretação de textos) | print: a questão pede o que é correto sobre um texto a respeito da série Bluey, mas o texto de apoio não está no texto_da_prova nem no print (que mostra só o enunciado e as alternativas). Refazer o print com o texto, a partir do caderno oficial da Unespar 2023 (o print da questão 2 tem só frases soltas do texto). |
+| P62ca9403 | Unespar 2023 Grupo I · questão 3 | I01.3 informação explícita (tema I01 Leitura e interpretação de textos) | print: a questão pede para associar frases a Desiree e Magdalena (Textos II e III, perfis profissionais), mas os textos não estão no texto_da_prova nem no print da questão 3; eles aparecem só no print da questão 2 da Unespar 2023. Refazer o print ou a transcrição com os Textos II e III. |
+| Pe92ce2de | Unespar 2023 Grupo I · questão 4 | I01.3 informação explícita (tema I01 Leitura e interpretação de textos) | print: a questão pede o gênero dos Textos II e III (perfis profissionais de Desiree e Magdalena), mas os textos não estão no texto_da_prova nem no print da questão 4; eles aparecem só no print da questão 2 da Unespar 2023. Refazer o print ou a transcrição com os Textos II e III. |
 
 ## Divergências de gabarito (o dono decide)
 
