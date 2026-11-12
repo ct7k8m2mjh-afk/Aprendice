@@ -38,7 +38,7 @@ Faltam 555 questões sem resolução (fora as que estão em lote, pendentes ou c
 | fs-0030 | provas-alvo nível 1-6 | 30 | gravado | 26 | 4 | 0 |
 | fs-0031 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | fs-0032 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
-| fs-0033 | provas-alvo nível 1-6 | 30 | aberto |  |  |  |
+| fs-0033 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | fs-0034 | provas-alvo nível 1-6 | 30 | aberto |  |  |  |
 
 ## Pendentes (falta de certeza absoluta)
