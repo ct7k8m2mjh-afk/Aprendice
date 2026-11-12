@@ -1,6 +1,6 @@
 # Biologia: resoluções (gerado por lote.py em 2026-11-12)
 
-Faltam 2130 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 675; demais nível 1-6 1252; ENEM nível 7-10 16; provas-alvo nível 7-10 115; demais nível 7-10 72.
+Faltam 2100 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 646; demais nível 1-6 1252; ENEM nível 7-10 16; provas-alvo nível 7-10 114; demais nível 7-10 72.
 
 ## Lotes
 
@@ -25,6 +25,7 @@ Faltam 2130 questões sem resolução (fora as que estão em lote, pendentes ou 
 | bio-0017 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | bio-0018 | provas-alvo nível 1-6 | 30 | gravado | 29 | 1 | 0 |
 | bio-0019 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| bio-0020 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 
 ## Pendentes (falta de certeza absoluta)
 
