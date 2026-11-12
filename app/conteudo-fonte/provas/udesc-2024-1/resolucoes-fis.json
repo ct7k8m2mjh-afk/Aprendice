@@ -665,5 +665,104 @@
    "data": "2026-11-12",
    "lote": "fis-0027"
   }
+ },
+ "Pa6a854ad": {
+  "n": "57",
+  "conceito": "Contatos sucessivos entre condutores idênticos: cada contato divide igualmente a soma das cargas.",
+  "equivocos": {
+   "A": "F11.1:carga-nao-conservada",
+   "B": "F11.1:contato-sem-equilibrio",
+   "C": "F11.1:contato-sem-equilibrio",
+   "D": "F11.1:contatos-simultaneos"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Condutores idênticos em contato ficam com cargas iguais: cada um recebe a média das cargas. Faça os contatos na ordem: primeiro A com B, depois B com C.",
+    "formulas": [
+     "contato entre idênticos: Q_final = (Q₁ + Q₂)/2"
+    ],
+    "simbolos": [
+     [
+      "A",
+      "+Q"
+     ],
+     [
+      "B",
+      "0"
+     ],
+     [
+      "C",
+      "−Q"
+     ]
+    ]
+   },
+   "pista": "Depois do primeiro contato, com que carga B entra no segundo?",
+   "passos": [
+    {
+     "faz": "A com B",
+     "conta": "(Q + 0)/2 = Q/2 → A = Q/2, B = Q/2",
+     "porque": "Média.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "B com C",
+     "conta": "(Q/2 − Q)/2 = −Q/4 → B = −Q/4, C = −Q/4",
+     "porque": "Média.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "A = Q/2, B = −Q/4, C = −Q/4",
+     "porque": "É a alternativa E.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — Q/2, −Q/4 e −Q/4.",
+   "checagem": "Conservação: no início a soma é Q + 0 − Q = 0; no fim, Q/2 − Q/4 − Q/4 = 0. Confere.",
+   "erradas": {
+    "A": "Não confere: com A = Q/2, B = Q/4 e C = −Q/4, a soma seria Q/2, e a soma inicial é zero; além disso, B e C, que se tocaram por último, teriam de ficar iguais.",
+    "B": "Não confere: a soma Q/2 − Q/2 + 0 é zero, mas B e C, idênticos e em contato, teriam de ficar com cargas iguais.",
+    "C": "Não confere: B e C, idênticos e em contato, ficam com cargas iguais; 0 e −Q/2 não são iguais.",
+    "D": "Sai de imaginar os três em contato ao mesmo tempo: (Q + 0 − Q)/3 = 0; mas os contatos foram em sequência, dois a dois."
+   },
+   "armadilha": "Imaginar que os três condutores se tocam ao mesmo tempo.",
+   "alerta": "",
+   "essencial": {
+    "pede": "As cargas finais de A, B e C.",
+    "chave": "A = Q/2; B = C = −Q/4.",
+    "cuidado": "Contato a contato, média das cargas."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "conservação",
+    "ideia": "0 no início e 0 no fim."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "A e B: (Q + 0)/2 = Q/2",
+    "nota": "1º contato"
+   },
+   {
+    "linha": "B e C: (Q/2 − Q)/2 = −Q/4",
+    "nota": "2º contato"
+   },
+   {
+    "linha": "Q/2, −Q/4, −Q/4",
+    "nota": "E"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "fis-0035"
+  }
  }
 }

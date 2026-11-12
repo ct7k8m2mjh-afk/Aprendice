@@ -1843,5 +1843,93 @@
    "data": "2026-11-12",
    "lote": "fis-0033"
   }
+ },
+ "P2150d751": {
+  "n": "86",
+  "conceito": "Resistor limitador de LED: fica com a tensão que sobra (12 − 4 V) e a corrente máxima; R = U/i.",
+  "equivocos": {
+   "B": "F11.4:resistencia-sem-equacao",
+   "C": "F11.4:tensao-do-led-no-resistor",
+   "D": "F11.4:resistencia-sem-equacao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Em série, o LED e o resistor têm a mesma corrente. O LED pode ficar com no máximo 4 V e 20 mA. Com 12 V na fonte, o resistor precisa ficar com o restante, 12 − 4 = 8 V. A resistência mínima é R = 8/0,020.",
+    "formulas": [
+     "U_fonte = U_LED + U_R",
+     "R = U_R/i"
+    ],
+    "simbolos": [
+     [
+      "U_fonte",
+      "12 V"
+     ],
+     [
+      "U_LED",
+      "4 V"
+     ],
+     [
+      "i",
+      "20 mA"
+     ]
+    ]
+   },
+   "pista": "Que tensão o resistor tem de \"segurar\"?",
+   "passos": [
+    {
+     "faz": "Tensão no resistor",
+     "conta": "12 − 4 = 8 V",
+     "porque": "Série.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resistência mínima",
+     "conta": "R = 8/0,020 = 400 Ω",
+     "porque": "É a alternativa A.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 400 Ω.",
+   "checagem": "Teste de um valor menor: com 200 Ω, se o LED ficasse com 4 V, o resistor teria 8 V e a corrente seria 8/200 = 40 mA, o dobro do máximo. Por isso 400 Ω é o mínimo.",
+   "erradas": {
+    "B": "Não confere: com 80 Ω e 8 V no resistor, a corrente seria 0,1 A, cinco vezes o máximo.",
+    "C": "Sai de usar a tensão do LED no resistor: 4/0,020 = 200 Ω.",
+    "D": "Não confere: com 120 Ω e 8 V no resistor, a corrente seria cerca de 67 mA."
+   },
+   "armadilha": "Usar a tensão do LED (4 V) no resistor.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A resistência mínima em série com o LED.",
+    "chave": "U_R = 8 V; R = 8/0,020 = 400 Ω.",
+    "cuidado": "Série: tensões somam."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste",
+    "ideia": "200 Ω → 40 mA: passa do máximo."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "U_R = 12 − 4 = 8 V",
+    "nota": "série"
+   },
+   {
+    "linha": "R = 8/0,020 = 400 Ω",
+    "nota": "A"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "fis-0036"
+  }
  }
 }

@@ -846,5 +846,108 @@
    "data": "2026-11-12",
    "lote": "fis-0018"
   }
+ },
+ "Pd140f629": {
+  "n": "75",
+  "conceito": "Associação de resistores: a lâmpada queima quando a resistência total do seu ramo fica menor que R + L.",
+  "equivocos": {
+   "A": "F11.4:limite-igual-como-superior",
+   "B": "F11.4:ramo-paralelo-mal-lido",
+   "C": "F11.4:limite-igual-como-superior",
+   "E": "F11.4:limite-igual-como-superior"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A corrente-limite V/(R + L) é a que passaria com um resistor R em série com a lâmpada. A lâmpada queima se a corrente nela for maior, ou seja, se a resistência em série com ela, no seu caminho, for menor que R. Calcule em cada circuito, com R_D = R/2.",
+    "formulas": [
+     "série: R_eq = R₁ + R₂",
+     "paralelo de dois iguais de valor X: X/2 (aqui R_D ∥ R_D = R/4)",
+     "i = V/R_eq"
+    ],
+    "simbolos": [
+     [
+      "R_D",
+      "R/2"
+     ],
+     [
+      "limite",
+      "V/(R + L)"
+     ]
+    ]
+   },
+   "pista": "Compare a resistência ligada em série com a lâmpada em cada circuito com R.",
+   "passos": [
+    {
+     "faz": "Circuito 1",
+     "conta": "R_D + R_D = R em série com L → i = V/(R + L) → não passa do limite",
+     "porque": "Não queima.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Circuito 2",
+     "conta": "R_D ∥ R_D = R/4 em série com L → i = V/(R/4 + L) > limite",
+     "porque": "Queima.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Circuito 3",
+     "conta": "ramo da lâmpada: R_D + L = R/2 + L, ligado direto a V → i = V/(R/2 + L) > limite",
+     "porque": "Queima.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "2 e 3",
+     "porque": "É a alternativa D.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 2 e 3, apenas.",
+   "checagem": "Com números (V = 12 V, R = 4 Ω, L = 2 Ω): limite 12/6 = 2 A. Circuito 1: 12/(4 + 2) = 2 A (igual, não superior). Circuito 2: 12/(1 + 2) = 4 A. Circuito 3: 12/(2 + 2) = 3 A.",
+   "erradas": {
+    "A": "Sai de achar que o circuito 1 queima; nele a corrente é exatamente o limite, não superior.",
+    "B": "Deixa de fora o circuito 3, em que o ramo da lâmpada tem só R/2 + L e a corrente passa do limite.",
+    "C": "Inclui o 1 (corrente igual ao limite) e deixa de fora o 2.",
+    "E": "Inclui o 1, em que a corrente é igual ao limite, não superior."
+   },
+   "armadilha": "Achar que corrente igual ao limite já queima: precisa ser superior.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Em quais circuitos a lâmpada queima.",
+    "chave": "2 (R/4 + L) e 3 (R/2 + L): menos resistência que R + L.",
+    "cuidado": "Menos resistência, mais corrente."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "números",
+    "ideia": "V = 12 V, R = 4 Ω, L = 2 Ω: 2 A, 4 A, 3 A."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "1: R + L → igual ao limite",
+    "nota": "não queima"
+   },
+   {
+    "linha": "2: R/4 + L",
+    "nota": "queima"
+   },
+   {
+    "linha": "3: R/2 + L",
+    "nota": "queima"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "fis-0036"
+  }
  }
 }
