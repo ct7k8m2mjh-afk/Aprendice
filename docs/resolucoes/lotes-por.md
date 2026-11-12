@@ -1,6 +1,6 @@
 # Português: resoluções (gerado por lote.py em 2026-11-12)
 
-Faltam 2949 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 491; demais nível 1-6 1919; ENEM nível 7-10 53; provas-alvo nível 7-10 225; demais nível 7-10 261.
+Faltam 3092 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 610; demais nível 1-6 1943; ENEM nível 7-10 53; provas-alvo nível 7-10 225; demais nível 7-10 261.
 
 ## Lotes
 
@@ -55,6 +55,7 @@ Faltam 2949 questões sem resolução (fora as que estão em lote, pendentes ou 
 | por-0047 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | por-0048 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | por-0049 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| por-0050 | provas-alvo nível 1-6 | 30 | gravado | 29 | 1 | 0 |
 
 ## Pendentes (falta de certeza absoluta)
 
@@ -62,6 +63,7 @@ Faltam 2949 questões sem resolução (fora as que estão em lote, pendentes ou 
 |---|---|---|---|
 | P93df8fac | Acafe 2024 Inverno · questão 11 | P01.1 tema, tese e ideia principal do texto (tema P01 Leitura e compreensão) | A questão traz só a frase "A vida do século XXI ficou medicalizada"; a alternativa do gabarito (prescrição excessiva impulsionada por interesses econômicos) depende do contexto do livro, que não está na prova. Sem o trecho, não há como fundamentar a resposta nem as eliminações. |
 | Pb66a8695 | Acafe 2026 Verão · questão 13 | P01.2 informação explícita × inferência (tema P01 Leitura e compreensão) | O comando pede a alternativa correta "considerando o contexto da obra" O exercício da incerteza, mas a questão traz só uma frase do livro; a alternativa do gabarito (B) fala em estudo contínuo e humanização do paciente, que não se deduzem da frase citada. Resolver exigiria afirmar o conteúdo do livro, que não está na questão. |
+| Pfa1a5f21 | Fuvest 2021 1ª fase · questão 34 | P11.1 Barroco e Arcadismo (tema P11 Literatura: do Barroco ao Simbolismo) | classificação: é de Biologia (com História). A estrofe de Os Lusíadas serve só de contexto; o comando pede a doença cujos sintomas Camões descreve, e as alternativas são doenças com agente, transmissão e época (peste bubônica, escorbuto, malária, varíola, leishmaniose). A resposta (escorbuto, gabarito B) depende de reconhecer o quadro clínico da falta de vitamina C (gengivas inchadas que crescem e apodrecem) e o contexto das viagens ultramarinas, conteúdo de Biologia e História, não de Barroco ou Arcadismo. |
 | Pa7a2c5de | Fuvest 2026 1ª fase · questão 11 | P03.2 gêneros jornalísticos: notícia, reportagem, editorial e crônica (tema P03 Gêneros e tipos textuais) | A questão pede julgamento "a partir da leitura dos excertos e das obras citadas": as alternativas afirmam o conteúdo das obras inteiras (defesa do abolicionismo, ascensão da protagonista, obras seminais do feminismo) e a época delas (século XIX), que não estão nos excertos. Sem fonte conferida sobre as duas obras, não há como fundamentar a E nem as eliminações. |
 | P53983658 | Fuvest 2027 1ª fase · questão 51 | P03.4 divulgação científica e texto digital (tema P03 Gêneros e tipos textuais) | classificação: é de Inglês. O texto-base está em inglês ("Black hole stars challenge our idea of the universe") e a questão pede a compreensão desse texto. |
 | Pc059bf56 | Fuvest 2027 1ª fase · questão 71 | P03.3 charge, tirinha, cartaz e infográfico (tema P03 Gêneros e tipos textuais) | classificação: é de História (história da arte), não de Português. As alternativas são pares de imagens de obras da Antiguidade e do Renascimento, e a resposta depende de reconhecer a fórmula expressiva (Pathosformel) nas obras, não de leitura de texto. |
