@@ -176,15 +176,103 @@ def _texto_estilizado(spans):
     return re.sub(r'[ \t]+', ' ', ''.join(out)).strip()
 
 
+# Junção de duas linhas do PDF quando a de cima termina em hífen: marca provisória, resolvida em _limpa
+# (palavra partida -> junta; hífen de verdade -> fica o hífen, sem espaço). Um espaço comum depois de hífen
+# é o que a banca imprimiu no meio da linha ("I- Os", "físico- químicas") e não se mexe.
+QUEBRA = '\u2063'
+_FIM_HIFEN = re.compile(r'\w[-\u00ad](?:\*\*|~~)*$')
+_VOCAB = {}
+
+
+def _sep(antes, sep):
+    """Separador para emendar a linha seguinte: a marca QUEBRA quando a linha de cima termina em hífen."""
+    return QUEBRA if _FIM_HIFEN.search(antes) and sep == ' ' else sep
+
+
+def _vocab():
+    """Palavras das provas já gravadas (camada de texto, só o que está no meio da linha): quantas vezes cada
+    palavra aparece inteira e quantas com hífen. É o dicionário para decidir o hífen do fim da linha."""
+    if not _VOCAB:
+        import collections, glob, json, os
+        inteira, com_hifen = collections.Counter(), collections.Counter()
+        w = r'[A-Za-zÀ-ÖØ-öø-ÿ0-9]+'
+        raiz = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'app', 'conteudo-fonte', 'provas')
+        for f in glob.glob(os.path.join(raiz, '*', 'prova.json')):
+            try:
+                qs = json.load(open(f)).get('questoes', [])
+            except Exception:
+                continue
+            for q in qs:
+                t = q.get('texto') or ''
+                t = re.sub(w + r'[-\u00ad][ \t]*\n[ \t]*' + w, ' ', t)
+                t = re.sub(w + r'[-\u00ad] +' + w, ' ', t).replace('\u00ad', '')
+                for m in re.finditer(w + r'(?:-' + w + r')+', t):
+                    com_hifen[m.group(0).lower()] += 1
+                for m in re.finditer(w, t):
+                    inteira[m.group(0).lower()] += 1
+        _VOCAB['inteira'], _VOCAB['hifen'] = inteira, com_hifen
+    return _VOCAB
+
+
+_PREFIXO_HIFEN = {'pós', 'recém', 'além', 'aquém', 'vice', 'grã', 'grão'}
+_PRE_PRO_QUEBRA = {'dio', 'dios', 'via', 'vias', 'vio', 'vios', 'prio', 'pria', 'prios', 'prias', 'ximo', 'xima', 'ximos',
+                   'ximas', 'ton', 'tons', 'tese', 'teses', 'logo', 'logos', 'digo', 'diga', 'digos', 'digas', 'xis'}
+
+
+def _hifen_real(esq, dir_):
+    """O hífen no fim da linha entre 'esq' e 'dir_' é da palavra (bem-estar, tornando-se, Grã-Bretanha, 1914-1918)
+    ou só da quebra de linha (au-menta)? Decide pelo uso nas provas já gravadas e, sem registro, por regras seguras."""
+    if dir_[:1].isdigit() or esq[-1:].isdigit():
+        return True
+    e, d = esq.lower(), dir_.lower()
+    v = _vocab()
+    if dir_[:1].isupper():
+        # palavra toda em maiúsculas partida ("COR-RETA", "RESPECTIVAMEN-TE"); sigla depois do hífen fica ("SSPDS-CE")
+        caixa_alta = esq.isalpha() and dir_.isalpha() and esq.isupper() and dir_.isupper()
+        return not (caixa_alta and (len(dir_) >= 3 or v['inteira'][e + d] > v['hifen'][e + '-' + d]))
+    inteira, hifen = v['inteira'][e + d], v['hifen'][e + '-' + d]
+    if inteira or hifen:
+        return hifen > inteira
+    if e in _PREFIXO_HIFEN or (e == 'bem' and d[:1] in 'aeiouháéíóú'):
+        return True
+    if len(e) >= 5 and e.endswith('ico') and len(d) >= 4:          # físico-químicas, técnico-científico
+        return True
+    if d in ('lo', 'la', 'los', 'las') and re.search(r'[áéêíóô]$', e):   # fazê-lo, considerá-las
+        return True
+    if d in ('se', 'lhe', 'lhes', 'me', 'nos') and len(e) >= 4 and re.search(r'(ndo|[aeo]u|[ae]m|ei|[aeií]va|[ií]a)$', e):
+        return True                                                     # tornando-se, tornou-se, arrepiava-me
+    if e in ('pré', 'pró') and d not in _PRE_PRO_QUEBRA:                # pré-nupcial (mas pré-dio, pró-prio)
+        return True
+    # duas palavras longas que juntas não existem: composto (narradores-protagonistas, Guarda-costas)
+    return len(e) >= 6 and len(d) >= 6 and v['inteira'][e] >= 3 and v['inteira'][d] >= 3
+
+
+def _religa(m):
+    esq, m1, m2, dir_ = m.group(1), m.group(2), m.group(3), m.group(4)
+    antes = m.string[:m.start()]
+    if antes and not antes[-1].isspace() and re.search(r'://|www\.|/', re.split(r'\s', antes)[-1]):
+        # endereço (URL): o hífen do fim da linha é do endereço, salvo palavra conhecida partida ("sena-do.leg.br")
+        v = _vocab()
+        if len(esq + dir_) >= 5 and v['inteira'][(esq + dir_).lower()] > v['hifen'][(esq + '-' + dir_).lower()]:
+            return esq + dir_
+        return esq + '-' + dir_
+    if _hifen_real(esq, dir_):
+        return esq + '-' + m1 + m2 + dir_
+    return esq + ('' if m1 and m1 == m2 else m1 + m2) + dir_        # "econô-~~ ~~mica" -> "econômica"
+
+
 def _limpa(t):
     """Religa palavras partidas no fim da linha e junta marcações vizinhas de mesmo estilo."""
+    # hífen invisível (U+00AD) no meio da linha não aparece na prova: sai; no fim da linha é hífen de quebra
+    t = re.sub('\u00ad(?![ \t]*(?:\\*\\*|~~)*[ \t]*(?:[\n' + QUEBRA + ']|$))', '', t)
     t = t.replace('\u00ad', '-').replace('\u2010', '-').replace('\u2011', '-')
     t = t.replace('\xa0', ' ').replace('\u2009', ' ').replace('\u202f', ' ')
     t = re.sub(r'[ \t]{2,}', ' ', t)
     t = t.replace('ﬁ', 'fi').replace('ﬂ', 'fl').replace('ﬀ', 'ff').replace('ﬃ', 'ffi').replace('ﬄ', 'ffl')
-    t = re.sub(r'(\w)- -(\w)', r'\1-\2', t)                       # "expor- -se" -> "expor-se"
-    t = re.sub(r'(\w)-[ \n]+(?=[a-zà-úç])', r'\1', t)                # "al- ternativa" -> "alternativa"
-    t = re.sub(r'(\w)-(\*\*|~~)+[ \n]+(\*\*|~~)+(?=[a-zà-úç])', r'\1', t)  # o mesmo com estilo no meio
+    t = re.sub(r'(\w)-[ \n' + QUEBRA + r']+-(\w)', r'\1-\2', t)       # "expor- -se" -> "expor-se" (hífen repetido na linha de baixo)
+    # fim de linha com hífen: "al-|ternativa" -> "alternativa"; "bem-|estar" -> "bem-estar"; "Grã-|Bretanha"
+    t = re.sub(r'(\w+)-((?:\*\*|~~)*)[ \t]*[\n' + QUEBRA + r'][ \t]*((?:\*\*|~~)*)(\w+)', _religa, t)
+    t = t.replace(QUEBRA, ' ')
     for m in ('**', '~~'):
         q = re.escape(m)
         t = re.sub(q + r'(\s*)' + q, r'\1', t)                         # "**a** **b**" -> "**a b**"
@@ -349,8 +437,8 @@ def transcreve(pdf, segs, ancora, cortes=(), alternativas=5, ocr=False, em_ordem
         novo = (ant is None or ant['bloco'] != l['bloco'] or ant['p'] != l['p'] or ma is not None
                 or (alin != 'e') or (paras and paras[-1]['a'] != 'e'))
         # palavra partida entre dois parágrafos/blocos ("reli-" / "gião"): continua o anterior
-        if paras and novo and ma is None and alin == paras[-1]['a'] and re.search(r'[\w]-(\*\*|~~)*$', paras[-1]['t']) and re.match(r'(\*\*|~~)*[a-zà-úç]', txt):
-            paras[-1]['t'] += '\n' + txt
+        if paras and novo and ma is None and _FIM_HIFEN.search(paras[-1]['t']) and re.match(r'(\*\*|~~)*[\w-]', txt):
+            paras[-1]['t'] += QUEBRA + txt
             continue
         # endereço (URL) partido em dois parágrafos: continua sem espaço
         if paras and ma is None and not paras[-1]['alt'] and re.search(r'(https?://|www\.)\S*[-/_.]$', paras[-1]['t']) and re.match(r'[\w/]', txt):
@@ -362,13 +450,13 @@ def transcreve(pdf, segs, ancora, cortes=(), alternativas=5, ocr=False, em_ordem
                 and (alin == paras[-1]['a'] or re.search(r'(?i)https?://|www\.|dispon[íi]vel em|acesso em|\bin:', paras[-1]['t'] + ' ' + txt)) \
                 and (alin != 'e' or len(txt) < 120):
             junta = '' if re.search(r'[/\-_.]$', paras[-1]['t']) and re.match(r'[\w/]', txt) and 'http' in paras[-1]['t'] else ' '
-            paras[-1]['t'] += junta + txt
+            paras[-1]['t'] += (_sep(paras[-1]['t'], junta) if junta else '') + txt
             continue
         # frase partida na quebra de coluna/página/bloco: o anterior não terminou e este começa em minúscula
         if paras and novo and ma is None and alin == 'e' and paras[-1]['a'] == 'e' and not paras[-1]['alt'] \
                 and ant is not None and (ant['p'] != l['p'] or ant['col'] != l['col'] or ant['bloco'] != l['bloco']) \
                 and not re.search(r'[.!?:;”"\)](\*\*|~~)*$', paras[-1]['t']) and re.match(r'(\*\*|~~)*[a-zà-úç(“"]', txt):
-            paras[-1]['t'] += ' ' + txt
+            paras[-1]['t'] += _sep(paras[-1]['t'], ' ') + txt
             continue
         if paras and not novo:
             prev_curta = (ant['bbox'][2] < x1c - larg * 0.18)
@@ -376,10 +464,8 @@ def transcreve(pdf, segs, ancora, cortes=(), alternativas=5, ocr=False, em_ordem
             if re.match(r'(?:\*\*|~~)*(?:[IVX]{1,4}|\d{1,2})\s?[\.\)–-](?:\*\*|~~)*(?:\s|$)(?!\s*ed\b)', txt) and re.search(r'(?:\w{2}[.;:?!”"\)]|[\w”"\)\]][.;:?!][”"]?)(?:\*\*|~~)*$', paras[-1]['t']):
                 prev_curta = True
             ultimo = paras[-1]
-            if ultimo['t'].endswith('-') and not prev_curta and re.match(r'[a-zà-ú]', txt):
-                ultimo['t'] = ultimo['t'][:-1] + txt
-            else:
-                ultimo['t'] += ('\n' if prev_curta else ' ') + txt
+            # linha que termina em hífen: a marca QUEBRA deixa _limpa decidir se é palavra partida ou hífen de verdade
+            ultimo['t'] += (QUEBRA if _FIM_HIFEN.search(ultimo['t']) and not prev_curta else ('\n' if prev_curta else ' ')) + txt
         else:
             letra = next((g for g in ma.groups() if g), None) if ma else None
             paras.append({'a': alin, 't': txt, 'alt': letra.upper() if letra else None})
@@ -400,7 +486,7 @@ def transcreve(pdf, segs, ancora, cortes=(), alternativas=5, ocr=False, em_ordem
         elif alts:
             # texto depois das alternativas: continuação da última alternativa (quebra de bloco)
             ult = list(alts)[-1]
-            alts[ult] += ' ' + pa['t']
+            alts[ult] = _limpa(alts[ult] + _sep(alts[ult], ' ') + pa['t'])   # a junção também religa a palavra partida
         else:
             enun.append({'a': pa['a'], 't': _limpa(pa['t'])})
     def _marcas_ok(t):
