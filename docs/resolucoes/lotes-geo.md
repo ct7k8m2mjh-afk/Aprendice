@@ -33,7 +33,7 @@ Faltam 1717 questões sem resolução (fora as que estão em lote, pendentes ou 
 | geo-0025 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | geo-0026 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | geo-0027 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
-| geo-0028 | provas-alvo nível 1-6 | 30 | aberto |  |  |  |
+| geo-0028 | provas-alvo nível 1-6 | 30 | gravado | 27 | 3 | 0 |
 | geo-0029 | provas-alvo nível 1-6 | 30 | gravado | 29 | 1 | 0 |
 | geo-0030 | provas-alvo nível 1-6 | 30 | aberto |  |  |  |
 
