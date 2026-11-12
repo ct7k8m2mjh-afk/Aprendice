@@ -33,13 +33,15 @@ Faltam 690 questões sem resolução (fora as que estão em lote, pendentes ou c
 | fs-0025 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | fs-0026 | provas-alvo nível 1-6 | 30 | gravado | 29 | 1 | 0 |
 | fs-0027 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
-| fs-0028 | provas-alvo nível 1-6 | 30 | aberto |  |  |  |
+| fs-0028 | provas-alvo nível 1-6 | 30 | gravado | 28 | 2 | 0 |
 | fs-0029 | provas-alvo nível 1-6 | 30 | aberto |  |  |  |
 
 ## Pendentes (falta de certeza absoluta)
 
 | Questão | Prova | Conteúdo | Motivo |
 |---|---|---|---|
+| Pddaaa08d | Fuvest 2023 1ª fase · questão 50 | S08.2 meios de comunicação, opinião pública e espetáculo (tema S08 Mídia e indústria cultural) | classificação: é de por (leitura verbo-visual de peça publicitária: polissemia de "desligar", pronomes "você" e "eles", omissão do verbo) |
+| P6fcba762 | PUC-SP 2024 Verão · questão 27 | S07.5 tecnologia, big techs e capitalismo de plataforma (tema S07 Globalização) | classificação: é de geo (dinâmica demográfica: taxa de mortalidade e acesso à imunização na pandemia, sem conteúdo de Sociologia) |
 | Pbf28d194 | Santa Casa 2022 Enfermagem e demais cursos · questão 28 | S01.5 arte, patrimônio e expressões culturais (tema S01 Cultura e sociedade) | classificação: é de mat (escala e conversão de unidades; a arte é só contexto) |
 | Ped354672 | UECE 2025 2025.2 – 1ª fase · questão 66 | S01.2 alteridade, diversidade e identidade (tema S01 Cultura e sociedade) | classificação: é de bio (pergunta o que são esteroides anabolizantes: hormônios sintéticos derivados da testosterona; o culto ao corpo é só contexto). UECE 2025.2, 1ª fase, q66; sem gabarito oficial publicado (preliminar A). |
 | P56dd3c82 | UEL 2022 Fase única · questão 14 | S06.4 movimento negro, feminista e LGBTQIA+ (tema S06 Movimentos sociais) | classificação: é de mat (porcentagem e probabilidade sobre os números da reportagem; as afirmativas I a IV são contas, sem conteúdo de Sociologia) |
