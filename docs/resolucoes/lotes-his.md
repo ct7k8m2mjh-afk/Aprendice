@@ -1,6 +1,6 @@
 # História: resoluções (gerado por lote.py em 2026-11-12)
 
-Faltam 1033 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 860; ENEM nível 7-10 17; provas-alvo nível 7-10 98; demais nível 7-10 58.
+Faltam 973 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 800; ENEM nível 7-10 17; provas-alvo nível 7-10 98; demais nível 7-10 58.
 
 ## Lotes
 
@@ -49,6 +49,8 @@ Faltam 1033 questões sem resolução (fora as que estão em lote, pendentes ou 
 | his-0041 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | his-0042 | demais nível 1-6 | 30 | gravado | 29 | 0 | 1 |
 | his-0043 | demais nível 1-6 | 30 | gravado | 29 | 0 | 1 |
+| his-0044 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| his-0045 | demais nível 1-6 | 30 | aberto |  |  |  |
 
 ## Pendentes (falta de certeza absoluta)
 
