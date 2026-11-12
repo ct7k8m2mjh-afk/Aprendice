@@ -1,6 +1,6 @@
 # Química: resoluções (gerado por lote.py em 2026-11-12)
 
-Faltam 2219 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 598; demais nível 1-6 1109; ENEM nível 7-10 26; provas-alvo nível 7-10 181; demais nível 7-10 305.
+Faltam 2189 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 568; demais nível 1-6 1109; ENEM nível 7-10 26; provas-alvo nível 7-10 181; demais nível 7-10 305.
 
 ## Lotes
 
@@ -23,6 +23,7 @@ Faltam 2219 questões sem resolução (fora as que estão em lote, pendentes ou 
 | qui-0015 | provas-alvo nível 1-6 | 30 | gravado | 29 | 1 | 0 |
 | qui-0016 | provas-alvo nível 1-6 | 30 | gravado | 29 | 1 | 0 |
 | qui-0017 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| qui-0018 | provas-alvo nível 1-6 | 30 | gravado | 29 | 1 | 0 |
 
 ## Pendentes (falta de certeza absoluta)
 
@@ -30,6 +31,7 @@ Faltam 2219 questões sem resolução (fora as que estão em lote, pendentes ou 
 |---|---|---|---|
 | Pa91b52ff | Fuvest 2021 1ª fase · questão 84 | Q04.3 cálculo estequiométrico direto (tema Q04 Mol e estequiometria) | print incompleto: o print traz só a segunda coluna da questão; faltam o início do enunciado e a tabela com os teores de HMF permitidos (legislação brasileira e recomendação internacional), sem a qual a questão não se resolve. Refazer o recorte (questão 84 ocupa duas colunas). |
 | Pc3a9046b | Unesp 2022 1ª fase – Biológicas · questão 90 | Q05.1 concentração comum, densidade e massa de soluto (tema Q05 Soluções e concentração) | classificação: é de Matemática (Unesp 2022, questão 90: razão e proporção com inequações; a química aparece só como contexto). |
+| Pf0174648 | Unesp 2024 1ª fase · questão 79 | Q05.4 título, porcentagem em massa, ppm e dosagem (tema Q05 Soluções e concentração) | classificação: é de Física (Unesp 2024, questão 79: índice de refração e velocidade da luz; a escala Brix é só contexto). |
 
 ## Divergências de gabarito (o dono decide)
 
