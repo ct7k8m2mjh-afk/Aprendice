@@ -1,6 +1,6 @@
 # Matemática: resoluções (gerado por lote.py em 2026-11-12)
 
-Faltam 2606 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 680; demais nível 1-6 1221; ENEM nível 7-10 76; provas-alvo nível 7-10 242; demais nível 7-10 387.
+Faltam 2576 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 650; demais nível 1-6 1221; ENEM nível 7-10 76; provas-alvo nível 7-10 242; demais nível 7-10 387.
 
 ## Lotes
 
@@ -23,6 +23,7 @@ Faltam 2606 questões sem resolução (fora as que estão em lote, pendentes ou 
 | mat-0015 | provas-alvo nível 1-6 | 30 | gravado | 29 | 1 | 0 |
 | mat-0016 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | mat-0017 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| mat-0018 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 
 ## Pendentes (falta de certeza absoluta)
 

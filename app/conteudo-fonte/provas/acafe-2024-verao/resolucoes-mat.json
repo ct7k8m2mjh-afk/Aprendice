@@ -130,5 +130,83 @@
    "data": "2026-11-11",
    "lote": "mat-0011"
   }
+ },
+ "P0705dba5": {
+  "n": "25",
+  "conceito": "Voltar no tempo em um crescimento que dobra a intervalos fixos.",
+  "equivocos": {
+   "A": "M06.5:contou-um-periodo-a-menos",
+   "B": "M06.5:contou-um-periodo-a-mais",
+   "D": "M06.5:errou-a-conta"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A população dobra a cada 15 minutos. Em 2h30min cabem vários períodos de 15 minutos; em cada um a população foi multiplicada por 2. Para voltar ao início, divida a população final por 2 tantas vezes quantos forem os períodos.",
+    "formulas": [
+     "população final = população inicial × 2ⁿ",
+     "n = tempo total/tempo para dobrar"
+    ],
+    "simbolos": [
+     [
+      "n",
+      "número de vezes que a população dobrou"
+     ]
+    ]
+   },
+   "pista": "Quantos períodos de 15 minutos cabem em 2h30min?",
+   "passos": [
+    {
+     "faz": "Conte os períodos",
+     "conta": "2h30min = 150 min → 150/15 = 10",
+     "porque": "A população dobrou 10 vezes.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o fator de crescimento",
+     "conta": "2¹⁰ = 1024",
+     "porque": "Dez dobras seguidas multiplicam por 2¹⁰.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Volte ao início",
+     "conta": "43 008/1024 = 42",
+     "porque": "População inicial = final dividida pelo fator.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "42 bactérias → alternativa C",
+     "porque": "É a quantidade no momento da infecção.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 42 bactérias",
+   "checagem": "De volta: 42 × 1024 = 42 × 1000 + 42 × 24 = 42 000 + 1008 = 43 008.",
+   "erradas": {
+    "A": "84 é a população depois de apenas 9 divisões por 2 (43 008/512 = 84); são 10 períodos de 15 minutos.",
+    "B": "21 é o que dá com 11 divisões por 2 (43 008/2048 = 21); são 10 períodos, não 11.",
+    "D": "31 não confere: 31 × 1024 = 31 744, e não 43 008."
+   },
+   "armadilha": "Errar a contagem dos períodos: 2h30min são 150 minutos, 10 períodos de 15 minutos.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A quantidade inicial de bactérias.",
+    "chave": "10 dobras: 43 008/2¹⁰ = 42.",
+    "cuidado": "Conte os períodos em minutos."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0018"
+  }
  }
 }
