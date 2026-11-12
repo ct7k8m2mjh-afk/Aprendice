@@ -1,6 +1,6 @@
 # Português: resoluções (gerado por lote.py em 2026-11-12)
 
-Faltam 3224 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 765; demais nível 1-6 1920; ENEM nível 7-10 53; provas-alvo nível 7-10 225; demais nível 7-10 261.
+Faltam 3194 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 735; demais nível 1-6 1920; ENEM nível 7-10 53; provas-alvo nível 7-10 225; demais nível 7-10 261.
 
 ## Lotes
 
@@ -45,6 +45,7 @@ Faltam 3224 questões sem resolução (fora as que estão em lote, pendentes ou 
 | por-0037 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | por-0038 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | por-0039 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| por-0040 | provas-alvo nível 1-6 | 30 | gravado | 29 | 1 | 0 |
 
 ## Pendentes (falta de certeza absoluta)
 
@@ -63,6 +64,7 @@ Faltam 3224 questões sem resolução (fora as que estão em lote, pendentes ou 
 | Pd23309d1 | UFU 2023 1ª fase · questão 59 | P01.1 tema, tese e ideia principal do texto (tema P01 Leitura e compreensão) | A resposta depende do enredo de "Bom dia, camaradas" (papel de cada personagem: Amadou, Cláudio, António, Ondalu), que não está na questão; sem fonte conferida no lote para afirmar com certeza o que faz cada personagem. |
 | P5dcad9ec | UFU 2025 1ª fase · questão 62 | P03.3 charge, tirinha, cartaz e infográfico (tema P03 Gêneros e tipos textuais) | A resposta depende do conteúdo do livro "O Karaíba: uma história do pré-Brasil" (narrar o período anterior à chegada dos portugueses pela visão indígena), que não está na questão; o print traz só o quadro de Oscar Pereira da Silva. Sem fonte conferida sobre o livro, não há como fundamentar a B nem as eliminações. |
 | Pb3cb3211 | UPE 2025 SSA3 · questão 16 | P03.3 charge, tirinha, cartaz e infográfico (tema P03 Gêneros e tipos textuais) | A questão pede a capa que antecipa "mais elementos do enredo" de Torto Arado. Decidir entre as capas exige conhecer o enredo do romance (o que cada objeto e cena das capas representa na história), que não está na questão. Sem fonte conferida sobre o livro, não há como fundamentar a E nem as eliminações. |
+| Pb6aa2d50 | Unesp 2022 1ª fase – Exatas e Humanidades · questão 61 | P06.3 figuras de som e de construção: aliteração, anáfora, elipse, hipérbato, zeugma, pleonasmo (tema P06 Figuras de linguagem) | classificação: é de Biologia (taxonomia: classe, gênero, espécie) |
 | P41d362f2 | Unesp 2024 1ª fase – meio de ano · questão 56 | P05.4 variação linguística, registro e adequação (tema P05 Semântica e vocabulário) | classificação: é de Filosofia e Sociologia. Na prova, a questão 56 está no bloco de Filosofia e Sociologia (questões 55, 57, 58, 59 e 60 são dessa área) e o comando pede a motivação da linguagem neutra "À luz dos Direitos Humanos". O texto permite eliminar A, B, D e E, mas ligar a invisibilização de pessoas trans e não binárias à "violência de gênero" é conteúdo de Sociologia e Direitos Humanos; o texto não fala em violência. |
 | Pbdaf3ef9 | Unesp 2026 1ª fase – meio de ano · questão 47 | P05.4 variação linguística, registro e adequação (tema P05 Semântica e vocabulário) | classificação: é de Geografia. Na prova, a questão 47 está entre as de Geografia (46, 48, 49, 50 e 51 são de Geografia). A imagem só mostra o som do r, do s e do t (tchi ou te, ti) em capitais; o gabarito, "heranças das matrizes étnicas brasileiras", depende de conteúdo de formação territorial e étnica do Brasil, que a imagem não traz, e não de leitura de marca linguística. |
 
