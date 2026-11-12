@@ -1,0 +1,104 @@
+{
+ "P4b286bf4": {
+  "n": "37",
+  "conceito": "Identidades entre conjuntos com a hipótese C ⊆ A.",
+  "equivocos": {
+   "A": "M01.5:aceitou-ii",
+   "C": "M01.5:aceitou-ii",
+   "D": "M01.5:esqueceu-a-hipotese",
+   "E": "M01.5:aceitou-ii"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Use a distributiva (A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C)) e a hipótese C ⊆ A, que dá A ∩ C = C. Para derrubar uma igualdade, basta um exemplo com conjuntos pequenos.",
+    "formulas": [
+     "A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C)",
+     "C ⊆ A → A ∩ C = C"
+    ],
+    "simbolos": [
+     [
+      "R − C",
+      "complementar de C nos reais"
+     ]
+    ]
+   },
+   "pista": "Em II, simplifique o lado direito: C ∪ (B ∩ (R − C)) é o quê?",
+   "passos": [
+    {
+     "faz": "I",
+     "conta": "A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C) = (A ∩ B) ∪ C",
+     "porque": "Verdadeira.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "II",
+     "conta": "C ∪ (B − C) = B ∪ C; A ∩ B = B ∪ C não vale sempre",
+     "porque": "Ex.: A = C = {1}, B = {2}: A ∩ B = ∅ e B ∪ C = {1, 2}. Falsa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "III",
+     "conta": "A ∩ (B − C) = A ∩ B ∩ Cᶜ = (A ∩ B) − C",
+     "porque": "Verdadeira sempre.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Juntar",
+     "conta": "I e III → alternativa B",
+     "porque": "Apenas I e III.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — apenas I e III.",
+   "checagem": "Teste com A = {1, 2, 3}, C = {1}, B = {2, 4}: I: (A ∩ B) ∪ C = {2} ∪ {1} = {1, 2} e A ∩ (B ∪ C) = A ∩ {1, 2, 4} = {1, 2}. III: A ∩ (B − C) = A ∩ {2, 4} = {2} e (A ∩ B) − C = {2} − {1} = {2}. II: A ∩ B = {2} e C ∪ (B − C) = {1, 2, 4}. Confere.",
+   "erradas": {
+    "A": "Inclui II, que falha com A = C = {1} e B = {2}.",
+    "C": "II é falsa e deixa de fora I e III, que valem sempre.",
+    "D": "Deixa de fora I, que vale pela distributiva com A ∩ C = C.",
+    "E": "Inclui II, que é falsa."
+   },
+   "armadilha": "Não simplificar C ∪ (B − C) = B ∪ C e achar que II é uma reescrita de A ∩ B.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quais valem.",
+    "chave": "I pela distributiva com C ⊆ A; III sempre; II falha.",
+    "cuidado": "Um contraexemplo derruba."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "tabela de pertinência",
+    "ideia": "Para III, olhe um x qualquer: x ∈ A ∩ (B − C) ⟺ x ∈ A, x ∈ B, x ∉ C ⟺ x ∈ (A ∩ B) − C. Para I, x ∈ C já implica x ∈ A, e os dois lados ficam iguais caso a caso."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "A ∩ C = C",
+    "nota": "hipótese"
+   },
+   {
+    "linha": "I: distributiva",
+    "nota": "V"
+   },
+   {
+    "linha": "II: B ∪ C ≠ A ∩ B",
+    "nota": "F"
+   },
+   {
+    "linha": "III: A ∩ B ∩ Cᶜ",
+    "nota": "V"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0045"
+  }
+ }
+}

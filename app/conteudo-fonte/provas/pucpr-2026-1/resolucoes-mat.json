@@ -1,0 +1,97 @@
+{
+ "Pa32aab62": {
+  "n": "32",
+  "conceito": "Contagem com conjuntos: quem não participa de nada.",
+  "equivocos": {
+   "A": "M01.5:respondeu-a-intersecao",
+   "C": "M01.5:respondeu-so-banda",
+   "D": "M01.5:nao-descontou-a-intersecao",
+   "E": "M01.5:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Some quem está em Leitura ou Teatro (descontando quem está nos dois) e quem está só na Banda. O resto dos 220 não participa de nada.",
+    "formulas": [
+     "n(L ∪ T) = n(L) + n(T) − n(L ∩ T)"
+    ],
+    "simbolos": [
+     [
+      "L",
+      "Clube de Leitura"
+     ],
+     [
+      "T",
+      "Grupo de Teatro"
+     ]
+    ]
+   },
+   "pista": "Os 25 que fazem Leitura e Teatro foram contados duas vezes.",
+   "passos": [
+    {
+     "faz": "Leitura ou Teatro",
+     "conta": "100 + 80 − 25 = 155",
+     "porque": "Inclusão e exclusão.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Somar só Banda",
+     "conta": "155 + 35 = 190",
+     "porque": "Os de \"apenas Banda\" não estão em L nem T.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Nenhuma",
+     "conta": "220 − 190 = 30 → alternativa B",
+     "porque": "Resto do grupo.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 30.",
+   "checagem": "Monte as partes: só Leitura 100 − 25 = 75; só Teatro 80 − 25 = 55; Leitura e Teatro 25; só Banda 35; nenhuma x. 75 + 55 + 25 + 35 + x = 220 → x = 30. Confere.",
+   "erradas": {
+    "A": "25 é o número de alunos em Leitura e Teatro.",
+    "C": "35 é o número de alunos só na Banda.",
+    "D": "40 = 220 − 100 − 80: não descontou os 25 contados duas vezes e esqueceu os 35 da Banda.",
+    "E": "60 não confere: só Leitura 75, só Teatro 55, ambos 25 e só Banda 35 somam 190; sobram 30."
+   },
+   "armadilha": "Somar 100 + 80 sem descontar os 25 que estão nos dois.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantos não participam.",
+    "chave": "155 em L ou T, 35 só Banda: 220 − 190 = 30.",
+    "cuidado": "Desconte a interseção uma vez."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "diagrama",
+    "ideia": "Desenhe L e T se cruzando (75 | 25 | 55) e, separado, 35 só na Banda. Somando as regiões: 190. Fora delas: 30."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "100 + 80 − 25 = 155",
+    "nota": "L ∪ T"
+   },
+   {
+    "linha": "155 + 35 = 190",
+    "nota": "alguma atividade"
+   },
+   {
+    "linha": "220 − 190 = 30",
+    "nota": "resposta"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0045"
+  }
+ }
+}

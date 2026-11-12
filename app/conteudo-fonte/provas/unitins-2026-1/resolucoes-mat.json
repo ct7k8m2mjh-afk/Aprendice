@@ -1,0 +1,100 @@
+{
+ "P47d11207": {
+  "n": "11",
+  "conceito": "Conjuntos aplicados a tipos sanguíneos.",
+  "equivocos": {
+   "B": "M01.5:confundiu-antigeno-com-tipo",
+   "C": "M01.5:sem-origem-identificada",
+   "D": "M01.5:sem-origem-identificada",
+   "E": "M01.5:confundiu-antigeno-com-tipo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Tipo A = só antígeno A; tipo B = só antígeno B; AB = os dois; O = nenhum. Use \"A ou B em 270\" para achar quem tem os dois.",
+    "formulas": [
+     "n(A ∪ B) = n(A) + n(B) − n(A ∩ B)"
+    ],
+    "simbolos": []
+   },
+   "pista": "Quantas pessoas têm os dois antígenos?",
+   "passos": [
+    {
+     "faz": "AB",
+     "conta": "200 + 110 − 270 = 40",
+     "porque": "Interseção.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tipo A",
+     "conta": "200 − 40 = 160",
+     "porque": "I verdadeira.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tipo O",
+     "conta": "300 − 270 = 30",
+     "porque": "II verdadeira.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tipo B",
+     "conta": "110 − 40 = 70",
+     "porque": "III diz 110: falsa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Juntar",
+     "conta": "I e II → alternativa A",
+     "porque": "Apenas I e II.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — I e II apenas.",
+   "checagem": "Some os quatro tipos: A 160 + B 70 + AB 40 + O 30 = 300, o total. E \"sem antígeno A\" = B + O = 70 + 30 = 100, como dado. Confere.",
+   "erradas": {
+    "B": "III confunde \"tem o antígeno B\" (110) com \"tipo B\" (só B: 70).",
+    "C": "Deixa de fora I, mas tipo A = 200 − 40 = 160.",
+    "D": "Deixa de fora II, mas tipo O = 300 − 270 = 30.",
+    "E": "III é falsa: tipo B são 70."
+   },
+   "armadilha": "Confundir \"tem o antígeno B\" com \"é do tipo B\"; quem tem os dois é AB.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quais proposições valem.",
+    "chave": "AB = 40, A = 160, B = 70, O = 30.",
+    "cuidado": "Tipo B é só antígeno B."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pelo dado de 100 sem A",
+    "ideia": "Sem antígeno A = tipos B e O = 100; O = 300 − 270 = 30, então tipo B = 70 e AB = 110 − 70 = 40; tipo A = 200 − 40 = 160."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "200 + 110 − 270 = 40",
+    "nota": "AB"
+   },
+   {
+    "linha": "160 | 40 | 70",
+    "nota": "A | AB | B"
+   },
+   {
+    "linha": "30",
+    "nota": "O"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0045"
+  }
+ }
+}

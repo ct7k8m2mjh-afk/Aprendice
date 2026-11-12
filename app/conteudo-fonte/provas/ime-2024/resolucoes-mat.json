@@ -1,0 +1,122 @@
+{
+ "P1ba3ca09": {
+  "n": "1",
+  "conceito": "Regiões de um diagrama de Venn com três conjuntos e minimização.",
+  "equivocos": {
+   "B": "M01.5:nao-minimizou",
+   "C": "M01.5:nao-minimizou",
+   "D": "M01.5:nao-minimizou",
+   "E": "M01.5:nao-minimizou"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Divida A ∪ B ∪ C nas 7 regiões do diagrama: só A (a), só B (b), só C (c), só A e B (x), só A e C (y), só B e C (z) e os três (w). Traduza cada condição em equação nessas letras, ache o menor número de elementos possível e use os menores inteiros positivos.",
+    "formulas": [
+     "|A| = a + x + y + w",
+     "|A ∩ B| = x + w"
+    ],
+    "simbolos": [
+     [
+      "a, b, c",
+      "elementos de um só conjunto"
+     ],
+     [
+      "x, y, z",
+      "elementos de exatamente dois"
+     ],
+     [
+      "w",
+      "elementos dos três"
+     ]
+    ]
+   },
+   "pista": "A segunda condição compara \"só A\" com \"B e C sem A\". Escreva as duas regiões com as letras.",
+   "passos": [
+    {
+     "faz": "2ª condição",
+     "conta": "|A ∩ (B ∪ C)ᶜ| = a; |Aᶜ ∩ B ∩ C| = z → a = z",
+     "porque": "Só A = só B e C.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "3ª condição",
+     "conta": "x + w < y + w < z + w → x < y < z",
+     "porque": "Tira o w dos três.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Mesma cardinalidade",
+     "conta": "|A| = |B|: a + y = b + z → b = y; |A| = |C|: a + x = c + z → c = x",
+     "porque": "Usando a = z.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Mínimo",
+     "conta": "x = 0, y = 1, z = 2, w = 0 → a = 2, b = 1, c = 0: 6 elementos",
+     "porque": "Total = 2(x + y + z) + w.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Menor soma",
+     "conta": "1 + 2 + 3 + 4 + 5 + 6 = 21 → alternativa A",
+     "porque": "Seis inteiros positivos distintos, os menores.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 21",
+   "checagem": "Monte um exemplo: A = {1, 2, 3} (1 e 2 só em A, 3 em A e C), B = {4, 5, 6} (4 só em B, 5 e 6 em B e C), C = {3, 5, 6}. |A| = |B| = |C| = 3; só A = {1, 2} e B ∩ C sem A = {5, 6}: 2 = 2; |A ∩ B| = 0 < |A ∩ C| = 1 < |B ∩ C| = 2. A união é {1, ..., 6}, soma 21. E não dá com menos: x < y < z obriga y ≥ 1 e z ≥ 2, e o total é 2(x + y + z) + w ≥ 2(0 + 1 + 2) = 6 elementos; 6 inteiros positivos distintos somam no mínimo 1 + … + 6 = 21. Confere.",
+   "erradas": {
+    "B": "36 = 1 + ... + 8: usa 8 elementos, mas 6 bastam.",
+    "C": "45 = 1 + ... + 9: usa 9 elementos, mais que o mínimo 6.",
+    "D": "55 = 1 + ... + 10: 10 elementos, longe do mínimo.",
+    "E": "78 = 1 + … + 12: é o que sai começando com x = 1, y = 2, z = 3, que dá 2(1 + 2 + 3) = 12 elementos; mas x = |A ∩ B| sem C pode ser 0."
+   },
+   "armadilha": "Achar que as interseções não podem ser vazias e começar com x = 1, o que aumenta o total.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Menor soma dos elementos da união.",
+    "chave": "a = z, b = y, c = x, x < y < z: mínimo de 6 elementos.",
+    "cuidado": "x = |A ∩ B| sem C pode ser 0."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "cota inferior pela contagem",
+    "ideia": "|B ∩ C| ≥ 2 (é maior que outras duas cardinalidades distintas, a menor ≥ 0). O conjunto só A tem a = z ≥ 2 elementos, e A, B, C juntos têm 2(x + y + z) + w ≥ 2 · 3 = 6 elementos. Com 6 elementos distintos positivos, a soma é pelo menos 21, e o exemplo atinge."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "a = z, b = y, c = x",
+    "nota": "condições"
+   },
+   {
+    "linha": "x < y < z: 0, 1, 2",
+    "nota": "mínimo"
+   },
+   {
+    "linha": "6 elementos: 1 + ... + 6 = 21",
+    "nota": "resposta"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0045"
+  },
+  "gabarito_aprendice": {
+   "letra": "A",
+   "letra_conferente": "A",
+   "preliminar": "A",
+   "fontes_web": [],
+   "data": "2026-11-12",
+   "lote": "mat-0045"
+  }
+ }
+}
