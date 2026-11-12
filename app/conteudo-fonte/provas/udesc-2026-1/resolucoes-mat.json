@@ -417,5 +417,165 @@
    "data": "2026-11-12",
    "lote": "mat-0017"
   }
+ },
+ "P20a37d79": {
+  "n": "9",
+  "conceito": "Somar números triangulares e resolver uma desigualdade por tentativa.",
+  "equivocos": {
+   "A": "M07.4:errou-a-conta",
+   "B": "M07.4:passou-do-minimo",
+   "C": "M07.4:passou-do-minimo",
+   "E": "M07.4:passou-do-minimo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O setor n recebe o n-ésimo número triangular: n × (n + 1)/2 flores (1, 3, 6, 10, ...). A soma dos n primeiros números triangulares é n × (n + 1) × (n + 2)/6. Procura-se o menor n para o qual essa soma passa de 1000.",
+    "formulas": [
+     "n-ésimo número triangular = n × (n + 1)/2",
+     "soma dos n primeiros = n × (n + 1) × (n + 2)/6"
+    ],
+    "simbolos": [
+     [
+      "n",
+      "número de setores plantados"
+     ]
+    ]
+   },
+   "pista": "Teste a fórmula da soma nos primeiros setores (1, 1 + 3, 1 + 3 + 6) e depois procure onde ela passa de 1000.",
+   "passos": [
+    {
+     "faz": "Confira a fórmula",
+     "conta": "n = 3: 3 × 4 × 5/6 = 10 = 1 + 3 + 6",
+     "porque": "A fórmula reproduz os primeiros totais.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Teste n = 17",
+     "conta": "17 × 18 × 19/6 = 969",
+     "porque": "Ainda não passa de 1000.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste n = 18",
+     "conta": "18 × 19 × 20/6 = 1140",
+     "porque": "Passa de 1000.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "mínimo de 18 setores → alternativa D",
+     "porque": "Com 17 setores faltam flores; com 18, sobram.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 18",
+   "checagem": "Somando a partir do total de 17 setores: o 18º setor recebe 18 × 19/2 = 171 flores, e 969 + 171 = 1140.",
+   "erradas": {
+    "A": "16 não basta: 16 × 17 × 18/6 = 816 flores, menos de 1000.",
+    "B": "22 passa de 1000 (22 × 23 × 24/6 = 2024), mas não é o mínimo: 18 já basta.",
+    "C": "24 passa de 1000 (24 × 25 × 26/6 = 2600), mas não é o mínimo: 18 já basta.",
+    "E": "31 passa de 1000 (31 × 32 × 33/6 = 5456), mas não é o mínimo: 18 já basta."
+   },
+   "armadilha": "Procurar o setor que sozinho tem mais de 1000 flores (seria o 45º): a pergunta é sobre o total acumulado.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O número mínimo de setores para o total passar de 1000 flores.",
+    "chave": "Soma = n(n + 1)(n + 2)/6: 969 com 17, 1140 com 18.",
+    "cuidado": "É o total acumulado, não o setor isolado."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0020"
+  }
+ },
+ "P7adc136b": {
+  "n": "6",
+  "conceito": "Calcular o perímetro de um quadrilátero formado por dois triângulos retângulos com ângulos notáveis.",
+  "equivocos": {
+   "B": "M08.2:errou-a-conta",
+   "C": "M08.2:errou-a-conta",
+   "D": "M08.2:errou-a-conta",
+   "E": "M08.2:errou-a-conta"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A diagonal BD divide o terreno em dois triângulos retângulos. BCD tem ângulo reto em C e 45° em D: é isósceles, com catetos iguais, e a hipotenusa é cateto × √2. BAD tem ângulo reto em A e 30° em D: o cateto oposto a 30° (AB) é metade da hipotenusa, e o adjacente (AD) é a hipotenusa × √3/2. A hipotenusa dos dois é BD.",
+    "formulas": [
+     "triângulo 45°-45°-90°: hipotenusa = cateto × √2",
+     "triângulo 30°-60°-90°: cateto oposto a 30° = hipotenusa/2; cateto adjacente = hipotenusa × √3/2"
+    ],
+    "simbolos": [
+     [
+      "BD",
+      "diagonal, hipotenusa dos dois triângulos"
+     ]
+    ]
+   },
+   "pista": "Comece pelo triângulo BCD, em que se conhece o lado CD. Quanto mede BD?",
+   "passos": [
+    {
+     "faz": "Resolva o triângulo BCD",
+     "conta": "BC = CD = 2 | BD = 2√2",
+     "porque": "Ângulos de 45°, 45° e 90°.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva o triângulo BAD",
+     "conta": "AB = 2√2/2 = √2 ≈ 1,4 | AD = 2√2 × √3/2 = √2 × √3 ≈ 1,4 × 1,7 = 2,38",
+     "porque": "Ângulo de 30° em D, hipotenusa BD.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some os quatro lados",
+     "conta": "AB + BC + CD + DA = 1,4 + 2 + 2 + 2,38 = 7,78",
+     "porque": "A diagonal BD não entra no perímetro.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "7,78 km → alternativa A",
+     "porque": "Comprimento da cerca.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 7,78",
+   "checagem": "Com valores exatos: AB = √2 e AD = √6, e AB² + AD² = 2 + 6 = 8 = (2√2)² = BD². E, por outro caminho, AD = AB × √3 ≈ 1,4 × 1,7 = 2,38.",
+   "erradas": {
+    "B": "7,20 não confere: BC + CD = 4 é fixo, e 7,20 exigiria AB + AD = 3,20; mas AB + AD = 1,4 + 2,38 = 3,78.",
+    "C": "6,23 não confere: só BC + CD + DA já somam 6,38.",
+    "D": "8,42 não confere: BC + CD = 4 é fixo, e 8,42 exigiria AB + AD = 4,42; mas AB + AD = 1,4 + 2,38 = 3,78.",
+    "E": "9,18 não confere: nem somando a diagonal BD (2,8) aos quatro lados se chega a esse valor (7,78 + 2,8 = 10,58); e a diagonal não faz parte do perímetro."
+   },
+   "armadilha": "Somar a diagonal BD ao perímetro: a cerca passa só pelos quatro lados.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O comprimento da cerca ao longo do perímetro.",
+    "chave": "BC = CD = 2; BD = 2√2; AB = √2; AD = √6 ≈ 2,38; soma 7,78.",
+    "cuidado": "Use as aproximações dadas para √2 e √3."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0020"
+  }
  }
 }

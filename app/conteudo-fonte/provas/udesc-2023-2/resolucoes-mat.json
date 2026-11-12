@@ -440,5 +440,96 @@
    "data": "2026-11-12",
    "lote": "mat-0016"
   }
+ },
+ "Pb0763da1": {
+  "n": "7",
+  "conceito": "Usar a soma dos termos de uma PG definida por recorrência para achar um termo.",
+  "equivocos": {
+   "B": "M07.4:esqueceu-o-cubo",
+   "C": "M07.4:errou-o-numero-de-termos",
+   "D": "M07.4:errou-o-numero-de-termos",
+   "E": "M07.4:errou-a-conta"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A regra aₙ₊₁ = √2 × aₙ diz que cada termo é o anterior vezes √2: é uma PG de primeiro termo 1 e razão √2, com aₙ = (√2)ⁿ⁻¹. A soma dos k primeiros termos é ((√2)ᵏ − 1)/(√2 − 1). Para tirar a raiz do denominador, multiplique em cima e embaixo por (√2 + 1): o denominador vira 2 − 1 = 1.",
+    "formulas": [
+     "soma da PG = a₁ × (qᵏ − 1)/(q − 1)",
+     "1/(√2 − 1) = √2 + 1",
+     "(√2)² = 2"
+    ],
+    "simbolos": [
+     [
+      "k",
+      "número de termos somados"
+     ],
+     [
+      "aₖ",
+      "último termo somado"
+     ]
+    ]
+   },
+   "pista": "Escreva a soma dos k primeiros termos e compare com 127 × (√2 + 1).",
+   "passos": [
+    {
+     "faz": "Escreva a soma",
+     "conta": "((√2)ᵏ − 1)/(√2 − 1) = ((√2)ᵏ − 1) × (√2 + 1)",
+     "porque": "Racionalizando o denominador.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare com o valor dado",
+     "conta": "((√2)ᵏ − 1) × (√2 + 1) = 127 × (√2 + 1) → (√2)ᵏ = 128 = 2⁷",
+     "porque": "Cancela-se o fator (√2 + 1).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache k",
+     "conta": "(√2)ᵏ = 2^(k/2) = 2⁷ → k = 14",
+     "porque": "√2 = 2^(1/2).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o cubo de aₖ",
+     "conta": "a₁₄ = (√2)¹³ → (a₁₄)³ = (√2)³⁹ = (√2)³⁸ × √2 = 2¹⁹ × √2",
+     "porque": "(√2)³⁸ = 2¹⁹.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "2¹⁹√2 → alternativa A",
+     "porque": "É o cubo do 14º termo.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 2¹⁹√2",
+   "checagem": "Pelo valor do termo: a₁₄ = (√2)¹³ = 2⁶ × √2 = 64√2. Cubo: 64³ × (√2)³ = 2¹⁸ × 2√2 = 2¹⁹√2.",
+   "erradas": {
+    "B": "2⁶√2 é o próprio termo a₁₄ = 64√2, sem elevar ao cubo.",
+    "C": "2¹⁶√2 = (√2)³³ é o cubo de (√2)¹¹ = a₁₂; a soma só chega a 127 × (√2 + 1) com 14 termos.",
+    "D": "2¹⁰√2 = (√2)²¹ é o cubo de (√2)⁷ = a₈; a soma só chega a 127 × (√2 + 1) com 14 termos.",
+    "E": "2¹⁰ = (√2)²⁰ não é cubo de nenhum termo: 20 não é múltiplo de 3."
+   },
+   "armadilha": "Usar aₖ = (√2)ᵏ em vez de (√2)ᵏ⁻¹: o primeiro termo é (√2)⁰ = 1.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O valor de (aₖ)³.",
+    "chave": "(√2)ᵏ = 128 → k = 14; a₁₄ = (√2)¹³; cubo = 2¹⁹√2.",
+    "cuidado": "aₙ = (√2)ⁿ⁻¹."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0020"
+  }
  }
 }
