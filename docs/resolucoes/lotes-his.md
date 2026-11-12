@@ -73,7 +73,7 @@ Faltam 405 questões sem resolução (fora as que estão em lote, pendentes ou c
 | his-0065 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | his-0066 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | his-0067 | demais nível 1-6 | 30 | gravado | 29 | 1 | 0 |
-| his-0068 | demais nível 1-6 | 30 | aberto |  |  |  |
+| his-0068 | demais nível 1-6 | 30 | gravado | 29 | 1 | 0 |
 | his-0069 | demais nível 1-6 | 30 | aberto |  |  |  |
 
 ## Pendentes (falta de certeza absoluta)
@@ -82,6 +82,7 @@ Faltam 405 questões sem resolução (fora as que estão em lote, pendentes ou c
 |---|---|---|---|
 | P106941e8 | Cederj 2025 2025.1 · questão 30 | H05.3 conflitos sociais na Primeira República (tema H05 República Brasileira) | classificação: é de Português — a questão associa autores e livros (Machado de Assis, Lima Barreto, João do Rio, García Márquez, Maquiavel, Hobbes), conteúdo de literatura |
 | P219afbbf | Cederj 2025 2025.2 · questão 30 | H05.4 tenentismo, Semana de 1922 e crise dos anos 1920 (tema H05 República Brasileira) | classificação: é de Português — a questão associa autores e obras literárias (Machado de Assis, Lima Barreto, Mário de Andrade, Casimiro de Abreu, João do Rio, Coelho Neto, Pedro Nava, Marques Rebelo) a séculos, conteúdo de literatura |
+| P4227aeb2 | Fatec 2026 1º semestre · questão 51 | H06.6 Revolução Industrial e mundo do trabalho (tema H06 Revoluções) | classificação: é de Matemática |
 | Pbc25b11f | Fempar 2021 Medicina 2021 · questão 32 | H05.7 República de 1946: de Dutra a Jango (tema H05 República Brasileira) | classificação: é de Sociologia |
 | P61d9ea43 | Fuvest 2026 1ª fase · questão 12 | H05.5 Revolução de 1930 e governo constitucional de Vargas (tema H05 República Brasileira) | classificação: é de Português (literatura) — a questão pede a análise dos romances Caminho de pedras, de Rachel de Queiroz, e As meninas, de Lygia Fagundes Telles (personagens Angelita, Ana Clara, Noemi, Lorena); o contexto histórico dos direitos das mulheres é só introdução. |
 | P916264a9 | Fuvest 2026 1ª fase · questão 9 | H04.9 crise do Império e proclamação da República (tema H04 Independência e Império) | classificação: é de Filosofia e Sociologia (a questão compara as ideias de Nísia Floresta e Émile Durkheim sobre a educação; é de Sociologia, e não de História do Brasil) |
