@@ -1,0 +1,656 @@
+{
+ "P1be81ada": {
+  "n": "39",
+  "conceito": "Fusos horários: para converter a hora de um lugar para outro, passa-se pela hora de Greenwich ou soma-se a diferença entre os fusos.",
+  "equivocos": {
+   "A": "G01.3:fuso-de-brasilia",
+   "C": "G01.3:esqueceu-greenwich",
+   "D": "G01.3:esqueceu-greenwich",
+   "E": "G01.3:virada-do-dia"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O jogo começou às 14h no horário de Brasília, que está no fuso GMT−3: 3 horas a menos que Greenwich. A questão dá os outros dois fusos: Califórnia, GMT−7; Sydney, GMT+10. O caminho mais seguro é levar tudo para Greenwich e depois para cada lugar. Quem está a oeste de Brasília está atrasado; quem está a leste, adiantado. Se a conta passar de 24h, é o dia seguinte.",
+    "formulas": [
+     "hora GMT = hora local − fuso",
+     "hora local = hora GMT + fuso"
+    ],
+    "simbolos": [
+     [
+      "GMT",
+      "hora do meridiano de Greenwich, referência dos fusos"
+     ],
+     [
+      "fuso horário",
+      "faixa de 15° de longitude em que vale a mesma hora"
+     ],
+     [
+      "horário de Brasília",
+      "hora oficial de Brasília, no fuso GMT−3, usada como referência no país"
+     ]
+    ]
+   },
+   "pista": "O enunciado dá os fusos da Califórnia e de Sydney, mas não o de Brasília. Comece por ele e ache a hora de Greenwich.",
+   "passos": [
+    {
+     "faz": "Ache o fuso de Brasília",
+     "conta": "Brasília: GMT−3",
+     "porque": "É o dado que o enunciado não fornece.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Leve para Greenwich",
+     "conta": "14h + 3h = 17h GMT",
+     "porque": "Brasília está 3 horas atrás de Greenwich.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a Califórnia",
+     "conta": "17h − 7h = 10h do mesmo dia",
+     "porque": "GMT−7: 7 horas a menos que Greenwich.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule Sydney",
+     "conta": "17h + 10h = 27h → 3h do dia seguinte",
+     "porque": "GMT+10: passou de 24h, virou o dia (27 − 24 = 3).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "10h do mesmo dia · 3h do dia seguinte",
+     "porque": "É o par da alternativa B.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B: às 10h, do mesmo dia, e às 3h do dia seguinte.",
+   "checagem": "Confira pela distância entre os dois resultados: de 10h do dia 31 até 3h do dia seguinte passam 17 horas, exatamente a distância entre GMT−7 e GMT+10 (7 + 10 = 17). E o sentido está certo: a Califórnia, a oeste de Brasília, fica atrás das 14h; Sydney, a leste, fica à frente.",
+   "erradas": {
+    "A": "9h e 2h saem de tomar Brasília como GMT−2: 16 − 7 = 9 e 16 + 10 = 26 → 2h. Brasília está em GMT−3.",
+    "C": "7h e 0h saem de aplicar os fusos direto sobre as 14h: 14 − 7 = 7 e 14 + 10 = 24. Faltou passar por Greenwich.",
+    "D": "7h sai de 14 − 7, sem passar por Greenwich; e 23h do mesmo dia não confere: Sydney está 13 horas à frente de Brasília.",
+    "E": "2h do mesmo dia seria antes do início do jogo em Brasília; Sydney está adiantada, e 14h + 13h cai no dia seguinte."
+   },
+   "armadilha": "Somar e subtrair os fusos diretamente das 14h, como se Brasília estivesse em Greenwich, e marcar a C.",
+   "alerta": "",
+   "essencial": {
+    "pede": "a hora do início do jogo na Califórnia e em Sydney",
+    "chave": "passar por Greenwich: 14h de Brasília = 17h GMT",
+    "cuidado": "Brasília não é o fuso zero; e observar a virada do dia"
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pela diferença entre os fusos",
+    "ideia": "Califórnia: −7 − (−3) = −4 horas → 10h. Sydney: +10 − (−3) = +13 horas → 3h do dia seguinte."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "14 + 3 = 17h GMT",
+    "nota": "Brasília em GMT−3"
+   },
+   {
+    "linha": "17 − 7 = 10h",
+    "nota": "Califórnia"
+   },
+   {
+    "linha": "17 + 10 = 27 → 3h",
+    "nota": "Sydney, dia seguinte"
+   }
+  ],
+  "visual": {
+   "cabe": false,
+   "tipo": "nenhum",
+   "porque": "Geografia tem resolução em texto, passo a passo; a questão se resolve pela leitura do suporte.",
+   "roteiro": ""
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "geo-0026"
+  }
+ },
+ "Pa15c1cbb": {
+  "n": "40",
+  "conceito": "Mapas e ponto de vista: todo planisfério escolhe um centro; pôr o Brasil no centro questiona a tradição de mapas centrados na Europa.",
+  "equivocos": {
+   "A": "G01.4:nao-existe-centro",
+   "B": "G01.4:contraria-a-imagem",
+   "D": "G01.4:toda-projecao-distorce",
+   "E": "G01.4:contraria-a-imagem"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O mapa-múndi lançado pelo IBGE em 2024 mostra o Brasil no centro, em destaque, com as Américas no meio da folha, a África e a Europa à direita e a Ásia dividida entre as duas bordas. Os mapas mais difundidos, herdeiros da projeção de Mercator, do século XVI, põem a Europa no centro e no alto. Como a Terra é aproximadamente esférica, sua superfície não tem um centro: a escolha é de quem faz o mapa e revela um ponto de vista. O novo mapa mantém a rede de paralelos e meridianos e as convenções usuais.",
+    "formulas": [],
+    "simbolos": [
+     [
+      "planisfério",
+      "mapa que representa toda a superfície da Terra num plano"
+     ],
+     [
+      "projeção de Mercator",
+      "projeção cilíndrica do século XVI, em geral desenhada com a Europa no centro"
+     ],
+     [
+      "eurocêntrico",
+      "que toma a Europa como centro e referência"
+     ],
+     [
+      "coordenadas geográficas",
+      "latitude e longitude"
+     ],
+     [
+      "distorção",
+      "deformação de formas, áreas ou distâncias no mapa"
+     ]
+    ]
+   },
+   "pista": "Compare esse mapa com o planisfério mais comum: o que mudou de lugar e o que continua igual? Depois veja se cada alternativa descreve uma mudança real.",
+   "passos": [
+    {
+     "faz": "Leia o que mudou",
+     "conta": "Brasil no centro do mapa",
+     "porque": "A mudança é a escolha do centro.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Leia o que continua",
+     "conta": "linhas de paralelos e meridianos · continentes e oceanos representados do modo usual",
+     "porque": "Coordenadas e convenções foram mantidas.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Descarte",
+     "conta": "A: ajusta corretamente o centro · B: contesta as coordenadas · D: corrige as distorções · E: descarta a padronização",
+     "porque": "A superfície da esfera não tem centro correto; as coordenadas e os padrões seguem no mapa; toda projeção distorce.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "alternativa C",
+     "porque": "Trocar o centro tradicional pelo Brasil é questionar a visão de mundo centrada na Europa.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C: questiona a perspectiva eurocêntrica de Mercator.",
+   "checagem": "Teste pela palavra “corretamente”, da A: se houvesse um centro correto, o mapa tradicional estaria errado, e não apenas adotaria outro ponto de vista. Mapas centrados no Pacífico, usados em países asiáticos, mostram que cada sociedade pode se pôr no centro.",
+   "erradas": {
+    "A": "A superfície da Terra não tem um centro; pôr o Brasil no meio é uma escolha de ponto de vista, não um ajuste correto.",
+    "B": "O mapa mostra a rede de paralelos e meridianos: as coordenadas geográficas continuam em uso.",
+    "D": "Nenhuma projeção corrige as distorções de representar a esfera no plano; mudar o centro não as elimina.",
+    "E": "O mapa segue as convenções usuais: oceanos em azul, limites dos países, linhas de coordenadas."
+   },
+   "armadilha": "Marcar a A por entender que o Brasil no centro seria o “certo” para brasileiros: centro de mapa é escolha, não correção.",
+   "alerta": "",
+   "essencial": {
+    "pede": "o que a nova representação cartográfica faz",
+    "chave": "questiona a visão centrada na Europa ao pôr o Brasil no centro",
+    "cuidado": "todo mapa tem ponto de vista; nenhum tem o centro correto"
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pelos verbos",
+    "ideia": "Ajusta corretamente, contesta, corrige e descarta afirmam mudanças técnicas que o mapa não fez. Questiona é o único verbo de ponto de vista, e a mudança foi de ponto de vista."
+   }
+  ],
+  "quadro": null,
+  "visual": {
+   "cabe": false,
+   "tipo": "nenhum",
+   "porque": "Geografia tem resolução em texto, passo a passo; a questão se resolve pela leitura do suporte.",
+   "roteiro": ""
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "geo-0026"
+  }
+ },
+ "P42b42332": {
+  "n": "37",
+  "conceito": "Petróleo e bacias sedimentares: o petróleo se forma de matéria orgânica soterrada por sedimentos, em bacias sedimentares.",
+  "equivocos": {
+   "A": "G02.3:tipo-de-terreno",
+   "B": "G02.3:tipo-de-rocha",
+   "D": "G02.3:tipo-de-terreno",
+   "E": "G02.3:conclusao-sem-base"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "As duas imagens contam uma história. Na primeira, um corpo de água recebe restos de fitoplâncton, zooplâncton e algas; no fundo, sem oxigênio (anóxico), essa matéria orgânica se acumula com os sedimentos e forma a “potencial rocha geradora”. Na segunda, novas camadas (“sobrecarga”) cobrem essa rocha; com o soterramento e o calor, a matéria orgânica vira óleo e gás, que migram até ficar presos sob uma camada impermeável (“selo”), numa “trapa”. Depressão que recebe e acumula camadas de sedimentos é uma bacia sedimentar.",
+    "formulas": [],
+    "simbolos": [
+     [
+      "bacia sedimentar",
+      "área rebaixada da crosta em que se acumulam camadas de sedimentos"
+     ],
+     [
+      "rocha geradora",
+      "rocha sedimentar rica em matéria orgânica, de onde sai o petróleo"
+     ],
+     [
+      "anóxico",
+      "sem oxigênio"
+     ],
+     [
+      "trapa",
+      "estrutura das rochas que aprisiona o óleo e o gás"
+     ],
+     [
+      "escudo cristalino",
+      "área muito antiga de rochas magmáticas e metamórficas"
+     ],
+     [
+      "pré-cambriano",
+      "intervalo mais antigo da história da Terra, anterior a cerca de 540 milhões de anos"
+     ],
+     [
+      "rocha magmática",
+      "rocha formada pelo resfriamento do magma"
+     ]
+    ]
+   },
+   "pista": "Siga a sequência das duas imagens e anote de que material é feita a rocha geradora e o que acontece com ela depois. Depois veja que tipo de terreno reúne essas condições.",
+   "passos": [
+    {
+     "faz": "Leia a primeira imagem",
+     "conta": "fitoplâncton, zooplâncton, algas → fundo anóxico → potencial rocha geradora",
+     "porque": "A matéria-prima é matéria orgânica depositada com sedimentos.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Leia a segunda imagem",
+     "conta": "sobrecarga · soterramento e calor · migração de óleo e gás · selo · trapa",
+     "porque": "Camadas de sedimentos se empilham sobre a rocha geradora.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Nomeie o ambiente",
+     "conta": "depressão + camadas de sedimentos",
+     "porque": "É uma bacia sedimentar.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Descarte",
+     "conta": "A: pré-cambriano · B: rochas magmáticas · D: escudos cristalinos · E: atividade tectônica recente e intensa",
+     "porque": "As imagens mostram seres vivos, sedimentos e camadas calmas, não magma, rochas cristalinas antigas nem tectonismo intenso.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "alternativa C",
+     "porque": "Deposição e soterramento de matéria orgânica ocorrem em bacias sedimentares.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C: associa-se à formação de bacias sedimentares.",
+   "checagem": "A primeira imagem mostra plantas terrestres, um réptil de grande porte e um animal voador: seres complexos, de tempos muito posteriores ao pré-cambriano. E o calor indicado vem do soterramento, de baixo, não de magma.",
+   "erradas": {
+    "A": "As imagens mostram plantas e animais de grande porte, que não existiam no pré-cambriano; terrenos dessa idade são, em geral, cristalinos.",
+    "B": "A rocha geradora das imagens é sedimentar, formada por matéria orgânica depositada, não por resfriamento de magma.",
+    "D": "Escudos cristalinos são de rochas magmáticas e metamórficas antigas, sem as camadas de sedimentos com matéria orgânica mostradas.",
+    "E": "As imagens mostram deposição lenta e soterramento ao longo do tempo, não atividade tectônica recente e intensa."
+   },
+   "armadilha": "Marcar a B por causa da palavra “Calor” na imagem: o calor vem do soterramento profundo, não de rochas magmáticas.",
+   "alerta": "",
+   "essencial": {
+    "pede": "o que as imagens indicam sobre a formação do petróleo",
+    "chave": "matéria orgânica soterrada em bacias sedimentares",
+    "cuidado": "petróleo é de terreno sedimentar, não cristalino"
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pela oposição sedimentar × cristalino",
+    "ideia": "A, B e D apontam para terrenos cristalinos e antigos. A imagem, com camadas e restos de seres vivos, é de terreno sedimentar: C."
+   }
+  ],
+  "quadro": null,
+  "visual": {
+   "cabe": false,
+   "tipo": "nenhum",
+   "porque": "Geografia tem resolução em texto, passo a passo; a questão se resolve pela leitura do suporte.",
+   "roteiro": ""
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "geo-0026"
+  }
+ },
+ "P02fb59fe": {
+  "n": "38",
+  "conceito": "Floresta e ciclo da água: as árvores devolvem água ao ar pela evapotranspiração e alimentam as chuvas continente adentro; sem floresta, há menos chuva e menos água.",
+  "equivocos": {
+   "B": "G05.4:sentido-invertido",
+   "C": "G05.4:sentido-invertido",
+   "D": "G05.4:sentido-invertido",
+   "E": "G05.4:sentido-invertido"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A ilustração mostra o vento soprando do oceano para o continente. Sobre o oceano, a água evapora e forma nuvens. Sobre a floresta, chove, e setas sobem das árvores: a floresta devolve água ao ar pela evapotranspiração. Essa umidade forma novas nuvens, que o vento leva adiante, e volta a chover mais para o interior. A floresta recicla a chuva várias vezes. O comando pergunta o que acontece quando a floresta é retirada: a reciclagem se interrompe, e a umidade deixa de chegar ao interior.",
+    "formulas": [],
+    "simbolos": [
+     [
+      "evapotranspiração",
+      "água que volta ao ar pela evaporação do solo e pela transpiração das plantas"
+     ],
+     [
+      "rios voadores",
+      "correntes de ar que transportam a umidade da floresta para outras regiões"
+     ],
+     [
+      "chuva convectiva",
+      "chuva formada pela subida de ar quente e úmido"
+     ],
+     [
+      "disponibilidade de água",
+      "quantidade de água acessível em rios, solo e chuvas"
+     ]
+    ]
+   },
+   "pista": "Na ilustração, veja o que as setas sobre as árvores representam e o que acontece com as nuvens ao longo do caminho do vento. Depois imagine a mesma cena sem as árvores.",
+   "passos": [
+    {
+     "faz": "Leia as setas",
+     "conta": "setas subindo das árvores para as nuvens",
+     "porque": "A floresta devolve umidade ao ar.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Leia a sequência",
+     "conta": "chuva → umidade sobe → nova nuvem → chuva mais adiante",
+     "porque": "A água é reciclada no caminho do vento.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Retire a floresta",
+     "conta": "sem árvores → menos evapotranspiração → menos nuvens → menos chuva",
+     "porque": "O ciclo perde seu motor.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Descarte",
+     "conta": "B: ampliação dos rios voadores · C: evapotranspiração intensificada · D: temperaturas menores · E: chuvas convectivas mais intensas",
+     "porque": "Todos dependem da floresta ou do vapor que ela fornece: com o desmatamento, diminuem, e a temperatura sobe.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "alternativa A",
+     "porque": "Menos chuva reciclada significa menos água disponível.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A: redução da disponibilidade de água.",
+   "checagem": "Leia as nuvens da esquerda para a direita: mesmo com a floresta devolvendo vapor, elas ficam menores e mais claras à medida que avançam pelo continente. Sem as setas que sobem das árvores, a umidade se esgotaria ainda antes, e a chuva não alcançaria o interior: menos água disponível.",
+   "erradas": {
+    "B": "Os rios voadores são alimentados pela umidade que a floresta devolve ao ar; sem floresta, enfraquecem.",
+    "C": "A evapotranspiração é feita pelas plantas e pelo solo coberto; com o desmatamento, ela diminui.",
+    "D": "Sem a sombra e a umidade da floresta, o solo exposto aquece: as temperaturas médias tendem a subir.",
+    "E": "Chuva convectiva depende de ar úmido; com menos vapor vindo da floresta, essas chuvas tendem a diminuir."
+   },
+   "armadilha": "Marcar a C ao pensar que o solo sem árvores, exposto ao sol, evapora mais: a maior parte da água vai ao ar pela transpiração das plantas, que desaparece com elas.",
+   "alerta": "",
+   "essencial": {
+    "pede": "um efeito do desmatamento das florestas tropicais sobre o ciclo da água",
+    "chave": "menos evapotranspiração, menos chuva, menos água disponível",
+    "cuidado": "desmatar reduz o que a floresta produz"
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pelo sinal",
+    "ideia": "Quatro alternativas falam em ampliar, intensificar ou diminuir temperatura. Como a floresta umedece e refresca, retirá-la reduz água e chuva e aumenta o calor: só a redução da água confere."
+   }
+  ],
+  "quadro": null,
+  "visual": {
+   "cabe": false,
+   "tipo": "nenhum",
+   "porque": "Geografia tem resolução em texto, passo a passo; a questão se resolve pela leitura do suporte.",
+   "roteiro": ""
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "geo-0026"
+  }
+ },
+ "P5ecaf825": {
+  "n": "34",
+  "conceito": "Endereços sem número: sinal de moradia irregular ou precária, sem reconhecimento oficial, o que indica vulnerabilidade habitacional.",
+  "equivocos": {
+   "A": "G07.4:sentido-invertido",
+   "B": "G07.4:sentido-invertido",
+   "C": "G07.4:sentido-invertido",
+   "E": "G07.4:fato-incorreto"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O excerto informa que o cadastro de endereços do IBGE tem 106 814 877 registros e que 24,4 milhões deles, 22,8% do total, não têm número. O número na porta é dado pela prefeitura quando a rua e o lote são reconhecidos e regularizados. Sem ele, o morador tem dificuldade para receber correspondência, comprovar residência e ser atendido por serviços. Endereço sem número é comum em ocupações irregulares, favelas, loteamentos sem registro e áreas rurais: aponta fragilidade na condição de moradia.",
+    "formulas": [],
+    "simbolos": [
+     [
+      "vulnerabilidade habitacional",
+      "condição de moradia frágil: precária, irregular ou sem serviços"
+     ],
+     [
+      "índice de Gini",
+      "medida da desigualdade de renda; quanto maior, mais desigual"
+     ],
+     [
+      "adensamento de domicílios precários",
+      "aumento do número de moradias precárias numa área"
+     ],
+     [
+      "superávit habitacional",
+      "sobra de moradias em relação às famílias"
+     ]
+    ]
+   },
+   "pista": "Pense no que é preciso para uma casa receber um número oficial. Depois veja, em cada alternativa, se ela descreve uma melhora ou uma carência.",
+   "passos": [
+    {
+     "faz": "Leia o dado",
+     "conta": "24,4 milhões de endereços sem número = 22,8% do total",
+     "porque": "Quase um em cada quatro endereços.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Interprete",
+     "conta": "sem número → rua ou lote sem regularização",
+     "porque": "Falta de numeração indica moradia fora do cadastro oficial da cidade.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Descarte",
+     "conta": "A: redução do Gini · B: menos domicílios precários · C: mais infraestrutura · E: superávit habitacional",
+     "porque": "As quatro descrevem melhora; a ausência de numeração é sinal de carência.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "alternativa D",
+     "porque": "É a única que lê o dado como fragilidade da moradia.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D: a vulnerabilidade no âmbito habitacional.",
+   "checagem": "Conta de conferência: 24,4 milhões ÷ 106,8 milhões ≈ 0,228, os 22,8% do texto. Teste a D pelo efeito na vida do morador: sem número, é difícil comprovar residência e receber correspondência e serviços. É uma fragilidade da moradia, o que “vulnerabilidade no âmbito habitacional” nomeia.",
+   "erradas": {
+    "A": "Redução do índice de Gini seria menos desigualdade; endereços sem número indicam carência, não melhora na distribuição de renda.",
+    "B": "Falta de numeração é típica de áreas com moradias precárias; não sinaliza que elas diminuíram.",
+    "C": "Numerar os endereços faz parte da infraestrutura básica; a ausência do número indica falta, não crescimento de serviços.",
+    "E": "O país tem déficit de moradias, não sobra; e endereço sem número nada diz sobre excesso de casas."
+   },
+   "armadilha": "Marcar a B por ler depressa “domicílios precários” e associar ao tema: a alternativa fala em diminuição deles, o oposto do que o dado sugere.",
+   "alerta": "",
+   "essencial": {
+    "pede": "o que a ausência de numeração nos endereços sinaliza",
+    "chave": "vulnerabilidade habitacional",
+    "cuidado": "ler o verbo de cada alternativa: redução, diminuição e crescimento descrevem melhora"
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pelo sinal",
+    "ideia": "Quatro alternativas são boas notícias (menos desigualdade, menos precariedade, mais infraestrutura, sobra de casas). O dado é uma carência: só a D."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "24,4 ÷ 106,8 ≈ 0,228",
+    "nota": "parcela de endereços sem número: 22,8%"
+   }
+  ],
+  "visual": {
+   "cabe": false,
+   "tipo": "nenhum",
+   "porque": "Geografia tem resolução em texto, passo a passo; a questão se resolve pela leitura do suporte.",
+   "roteiro": ""
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "geo-0026"
+  }
+ },
+ "P7885a518": {
+  "n": "35",
+  "conceito": "Modernização agrícola no Brasil: nos anos 1970, a Revolução Verde, apoiada por crédito rural, fez crescer a venda de tratores e colheitadeiras.",
+  "equivocos": {
+   "A": "G08.3:fato-invertido",
+   "B": "G08.3:efeito-pela-causa",
+   "C": "G08.3:fato-incorreto",
+   "E": "G08.3:causa-sem-relacao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O gráfico mostra as vendas internas de máquinas, em mil unidades, de 1960 a 2017. A linha dos tratores de roda parte de perto de zero em 1960, chega a cerca de 10 mil e fica nesse nível até o fim dos anos 1960, sobe sem parar no começo da década de 1970 e atinge cerca de 60 mil por volta de 1976; depois oscila, com quedas nos anos 1980 e 1990 e novo pico depois de 2010. A linha das colheitadeiras começa em 1976, perto de 5 mil. O salto dos anos 1970 coincide com a chegada ao Brasil do pacote da Revolução Verde: máquinas, sementes melhoradas e insumos químicos, financiados por crédito rural do governo.",
+    "formulas": [],
+    "simbolos": [
+     [
+      "Revolução Verde",
+      "difusão, a partir dos anos 1960, de sementes melhoradas, adubos químicos, agrotóxicos e máquinas"
+     ],
+     [
+      "mecanização",
+      "substituição do trabalho manual por máquinas"
+     ],
+     [
+      "crédito agrícola",
+      "empréstimo para financiar a produção e a compra de máquinas"
+     ],
+     [
+      "desemprego conjuntural",
+      "desemprego causado por uma fase ruim da economia"
+     ],
+     [
+      "desconcentração fundiária",
+      "distribuição da terra entre mais proprietários"
+     ]
+    ]
+   },
+   "pista": "Leia no gráfico o valor das vendas de tratores no fim dos anos 1960 e em meados dos anos 1970. Depois teste se a causa de cada alternativa levaria agricultores a comprar mais máquinas.",
+   "passos": [
+    {
+     "faz": "Leia o salto",
+     "conta": "tratores: cerca de 10 mil (1969) → cerca de 60 mil (1976)",
+     "porque": "As vendas se multiplicaram por cerca de seis em poucos anos.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Ligue ao período",
+     "conta": "anos 1970: pacote tecnológico + crédito rural",
+     "porque": "A Revolução Verde inclui a máquina como peça central.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Descarte",
+     "conta": "A: revogação do crédito agrícola · B: desemprego · C: desconcentração fundiária · E: importações de produtos agropecuários",
+     "porque": "Sem crédito, vende-se menos máquina; desemprego é efeito, não causa da mecanização; a terra não foi desconcentrada; importar alimentos não leva a comprar tratores.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "alternativa D",
+     "porque": "A expansão da Revolução Verde é a causa que explica o aumento da mecanização.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D: a expansão da Revolução Verde, que estimulou a mecanização.",
+   "checagem": "A A serve de teste pelo contrário: o gráfico cai nos anos 1980 e no começo dos 1990, quando o crédito rural farto dos anos 1970 encolheu. Crédito e venda de máquinas andam juntos; revogar o crédito não aqueceria as vendas.",
+   "erradas": {
+    "A": "Nos anos 1970 o crédito agrícola foi ampliado, não revogado; e o gráfico trata de vendas internas, não do mercado externo.",
+    "B": "A mecanização reduz empregos no campo; o desemprego é consequência, não a causa do aumento das vendas.",
+    "C": "Não houve desconcentração fundiária nos anos 1970; a modernização favoreceu as propriedades maiores.",
+    "E": "O que cresceu foi a venda interna de máquinas; importar produtos agropecuários não explica a compra de tratores."
+   },
+   "armadilha": "Marcar a B por associar máquina a desemprego: a relação existe, mas no sentido inverso, pois a máquina causa o desemprego.",
+   "alerta": "",
+   "essencial": {
+    "pede": "a que se relaciona o crescimento das vendas de máquinas nos anos 1970",
+    "chave": "expansão da Revolução Verde, com estímulo à mecanização",
+    "cuidado": "separar causa de consequência"
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pela palavra mecanização",
+    "ideia": "Trator e colheitadeira são mecanização. A única alternativa que usa a palavra é a D."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "60 ÷ 10 = 6",
+    "nota": "vezes que as vendas de tratores cresceram, de cerca de 10 mil (1969) a cerca de 60 mil (1976)"
+   }
+  ],
+  "visual": {
+   "cabe": false,
+   "tipo": "nenhum",
+   "porque": "Geografia tem resolução em texto, passo a passo; a questão se resolve pela leitura do suporte.",
+   "roteiro": ""
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "geo-0026"
+  }
+ }
+}

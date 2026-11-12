@@ -1,0 +1,677 @@
+{
+ "Pb077d3f4": {
+  "n": "40",
+  "conceito": "Fusos horários: cada 15° de longitude equivalem a 1 hora; para leste soma-se, para oeste subtrai-se, e a data muda ao passar da meia-noite.",
+  "equivocos": {
+   "A": "G01.3:conta-do-fuso",
+   "B": "G01.3:graus-em-horas",
+   "C": "G01.3:sinal-do-fuso",
+   "D": "G01.3:conta-do-fuso"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A Terra gira 360° em 24 horas: 15° por hora. Por isso, cada fuso tem 15° de longitude, e GMT+9 significa 9 horas a mais que Greenwich; GMT−4, 4 horas a menos. A questão dá dois executivos pelo fuso e dois pela distância em graus: é preciso converter graus em horas. Quem está a leste está adiantado. Se a soma passar de 24h, o dia já virou.",
+    "formulas": [
+     "360° ÷ 24h = 15° por hora",
+     "a leste: soma · a oeste: subtrai"
+    ],
+    "simbolos": [
+     [
+      "GMT",
+      "hora do meridiano de Greenwich, referência dos fusos"
+     ],
+     [
+      "fuso horário",
+      "faixa de 15° de longitude em que vale a mesma hora"
+     ],
+     [
+      "longitude",
+      "distância em graus até o meridiano de Greenwich, para leste ou para oeste"
+     ]
+    ]
+   },
+   "pista": "Antes de calcular qualquer horário, descubra em que fuso estão os executivos 3 e 4. Para isso, transforme os graus em horas.",
+   "passos": [
+    {
+     "faz": "Calcule o executivo 1",
+     "conta": "16h + 9h = 25h → 1h da quarta-feira",
+     "porque": "GMT+9 está 9 horas adiantado; ao passar de 24h, vira o dia.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o executivo 2",
+     "conta": "16h − 4h = 12h da terça-feira",
+     "porque": "GMT−4 está 4 horas atrasado em relação a Greenwich.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Converta os 75°",
+     "conta": "75 ÷ 15 = 5 horas a leste do executivo 2",
+     "porque": "Cada 15° valem 1 hora; a leste, soma-se.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o executivo 3",
+     "conta": "12h + 5h = 17h da terça-feira",
+     "porque": "O executivo 3 está no fuso GMT+1 (−4 + 5).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o executivo 4",
+     "conta": "30 ÷ 15 = 2 horas · 17h + 2h = 19h da terça-feira",
+     "porque": "Está 2 horas a leste do executivo 3, no fuso GMT+3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "1h de quarta · 12h de terça · 17h de terça · 19h de terça",
+     "porque": "É a sequência da alternativa E; qualquer outra tem ao menos um horário diferente.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E: 1h da quarta-feira; 12h da terça-feira; 17h da terça-feira; 19h da terça-feira.",
+   "checagem": "Confira os executivos 3 e 4 direto por Greenwich: o 3 está em GMT+1, 16h + 1h = 17h; o 4, em GMT+3, 16h + 3h = 19h. E a ordem tem de crescer de oeste para leste: 12h (GMT−4), 17h (GMT+1), 19h (GMT+3), 1h do dia seguinte (GMT+9).",
+   "erradas": {
+    "A": "Não confere: o executivo 2, em GMT−4, tem 16 − 4 = 12h, e não 13h; e 75° valem 5 horas, o que não leva de 13h a 22h.",
+    "B": "Acerta os executivos 1 e 2, mas 21h sai de 16h + 5h: contou os 75° a partir de Greenwich, e não do executivo 2. Daí 21h + 2h = 23h.",
+    "C": "Não confere: GMT+9 dá 16 + 9 = 25, ou 1h da quarta-feira, e não 23h da terça; e GMT−4 fica atrás de Greenwich: 12h, e não 19h.",
+    "D": "Não confere: em GMT−4 são 16 − 4 = 12h, e não 14h; e entre 19h e 22h há 3 horas, mas os 30° valem 2 horas."
+   },
+   "armadilha": "Calcular bem os executivos 1 e 2 e contar os 75° a partir de Greenwich, e não do executivo 2: 16h + 5h = 21h, o que leva à B.",
+   "alerta": "",
+   "essencial": {
+    "pede": "os horários dos quatro executivos quando são 16h de terça em Greenwich",
+    "chave": "15° = 1 hora; leste soma, oeste subtrai",
+    "cuidado": "converter graus em horas e observar a virada do dia"
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pelas alternativas",
+    "ideia": "Calcule só os dois primeiros: 1h de quarta e 12h de terça. Restam B e E. De 12h, somar 5 horas dá 17h: só a E."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "16 + 9 = 25 → 1h (quarta)",
+    "nota": "executivo 1, GMT+9"
+   },
+   {
+    "linha": "16 − 4 = 12h (terça)",
+    "nota": "executivo 2, GMT−4"
+   },
+   {
+    "linha": "75 ÷ 15 = 5 → 12 + 5 = 17h",
+    "nota": "executivo 3"
+   },
+   {
+    "linha": "30 ÷ 15 = 2 → 17 + 2 = 19h",
+    "nota": "executivo 4"
+   }
+  ],
+  "visual": {
+   "cabe": false,
+   "tipo": "nenhum",
+   "porque": "Geografia tem resolução em texto, passo a passo; a questão se resolve pela leitura do suporte.",
+   "roteiro": ""
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "geo-0026"
+  }
+ },
+ "Pb7748ec2": {
+  "n": "39",
+  "conceito": "Projeções cartográficas: é impossível representar no plano a superfície curva da Terra sem deformar formas, áreas ou distâncias.",
+  "equivocos": {
+   "A": "G01.4:causa-errada",
+   "B": "G01.4:causa-errada",
+   "D": "G01.4:conclusao-incorreta",
+   "E": "G01.4:conceito-invertido"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O excerto lista as três propriedades que um mapa ideal teria: manter as formas, manter as áreas e manter as distâncias. E usa o condicional: “o ideal seria”, “essa carta deveria”. A Terra tem superfície curva e irregular (o geoide). Uma superfície curva não pode ser estendida sobre um plano sem esticar ou encolher alguma parte, como acontece com a casca de uma laranja. Por isso, cada projeção conserva uma propriedade e sacrifica as outras, ou distorce um pouco de todas.",
+    "formulas": [],
+    "simbolos": [
+     [
+      "projeção cartográfica",
+      "método para representar a superfície curva da Terra num plano"
+     ],
+     [
+      "geoide",
+      "forma real da Terra: arredondada, achatada nos polos e irregular"
+     ],
+     [
+      "projeção afilática",
+      "projeção que não conserva formas, áreas nem distâncias, mas reduz as distorções de todas"
+     ],
+     [
+      "UTM",
+      "sistema de coordenadas baseado na projeção Universal Transversa de Mercator"
+     ]
+    ]
+   },
+   "pista": "Repare no tempo dos verbos do excerto ao falar da carta ideal. Depois confira, em cada alternativa, a conclusão e também a razão dada para ela.",
+   "passos": [
+    {
+     "faz": "Ache o condicional",
+     "conta": "“O ideal seria construir uma carta que reunisse todas as propriedades”",
+     "porque": "O autor trata essa carta como algo que não existe.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Lembre a causa",
+     "conta": "superfície curva → plano: sempre há deformação",
+     "porque": "A forma da Terra impede conservar as três propriedades ao mesmo tempo.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Descarte D e E",
+     "conta": "D: possível · E: viável",
+     "porque": "Juntar projeções não elimina deformações; a projeção de Robinson, afilática, não conserva nenhuma das três propriedades.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Descarte A e B",
+     "conta": "A: modelo simplificado e parcelas segmentadas · B: pouco provável, impede coordenadas UTM",
+     "porque": "A causa não é a simplificação nem o recorte do mapa; e as coordenadas UTM existem e são usadas.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "alternativa C",
+     "porque": "Conclusão certa (impossível) com a causa certa (a forma do planeta).",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C: impossível, em razão do formato geoide que o planeta possui.",
+   "checagem": "O único mapa sem deformação é o globo, que não é plano: ele conserva formas, áreas e distâncias justamente porque repete a curvatura da Terra. Isso mostra que o obstáculo é a forma do planeta.",
+   "erradas": {
+    "A": "A conclusão se aproxima, mas a causa está errada: a deformação vem da curvatura da Terra, não de o mapa ser simplificado ou mostrar só partes do planeta.",
+    "B": "Não é “pouco provável”: é impossível; e a forma da Terra não impede as coordenadas UTM, que são de uso corrente.",
+    "D": "Integrar várias projeções num mapa não elimina as deformações de cada uma; não existe mapa plano sem deformidades.",
+    "E": "A projeção afilática de Robinson não conserva formas, áreas nem distâncias; apenas reduz as distorções."
+   },
+   "armadilha": "Marcar a A por começar com “inviável”, que parece certo: a justificativa dela é falsa, e só a C dá a causa verdadeira.",
+   "alerta": "A alternativa B escreve UTM como “Unidade Transversa de Mercator”; o nome correto é Universal Transversa de Mercator. Isso não muda a resposta.",
+   "essencial": {
+    "pede": "a condição para uma projeção com as três propriedades",
+    "chave": "impossível: a superfície curva do geoide não se planifica sem deformar",
+    "cuidado": "conferir a justificativa, não só a primeira palavra"
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pela primeira palavra e pela causa",
+    "ideia": "Possível e viável (D, E) caem. Entre inviável, pouco provável e impossível, só a C explica pela forma da Terra, que é a causa real."
+   }
+  ],
+  "quadro": null,
+  "visual": {
+   "cabe": false,
+   "tipo": "nenhum",
+   "porque": "Geografia tem resolução em texto, passo a passo; a questão se resolve pela leitura do suporte.",
+   "roteiro": ""
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "geo-0026"
+  }
+ },
+ "P43d97e00": {
+  "n": "35",
+  "conceito": "Agentes internos do relevo: os processos endógenos dividem-se em tectonismo (orogenia e epirogenia) e vulcanismo.",
+  "equivocos": {
+   "A": "G02.2:termo-errado",
+   "B": "G02.2:interno-por-externo",
+   "C": "G02.2:efeito-pelo-processo",
+   "D": "G02.2:interno-por-externo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O esquema é uma árvore. No alto, a caixa 1 reúne tudo. Dela saem duas caixas: Tectonismo e a caixa 2, descrita como o conjunto dos processos que permitem e provocam a ascensão do magma. Do tectonismo saem a caixa 3, descrita como “movimentos horizontais da crosta”, e a Epirogenia, “movimentos verticais da crosta”. Tectonismo e subida de magma têm origem no interior da Terra: são processos endógenos. Os movimentos horizontais, que dobram as rochas e formam cadeias de montanhas, chamam-se orogenia.",
+    "formulas": [],
+    "simbolos": [
+     [
+      "processo endógeno",
+      "processo originado no interior da Terra"
+     ],
+     [
+      "processo exógeno",
+      "processo da superfície, movido por água, vento, gelo e seres vivos"
+     ],
+     [
+      "tectonismo",
+      "movimentos da crosta terrestre"
+     ],
+     [
+      "orogenia",
+      "movimentos horizontais da crosta, que formam cadeias de montanhas"
+     ],
+     [
+      "epirogenia",
+      "movimentos verticais lentos da crosta, de subida ou descida de grandes áreas"
+     ],
+     [
+      "vulcanismo",
+      "subida de magma até a superfície"
+     ],
+     [
+      "eustasia",
+      "variação do nível dos oceanos"
+     ],
+     [
+      "pedogenia",
+      "formação dos solos"
+     ],
+     [
+      "intemperismo",
+      "alteração e desagregação das rochas no próprio lugar, pela ação do clima e dos seres vivos"
+     ],
+     [
+      "magmatismo",
+      "conjunto dos processos ligados ao magma, dentro da crosta ou na superfície"
+     ],
+     [
+      "falhamento",
+      "ruptura das rochas em blocos que se deslocam"
+     ]
+    ]
+   },
+   "pista": "Comece pela caixa que tem a definição mais fácil de reconhecer. Use a caixa “Epirogenia”, já preenchida, como par da caixa 3.",
+   "passos": [
+    {
+     "faz": "Identifique a caixa 1",
+     "conta": "reúne tectonismo e ascensão do magma",
+     "porque": "Os dois vêm do interior da Terra: processos endógenos. Caem B e D.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Identifique a caixa 2",
+     "conta": "processos que permitem e provocam a ascensão do magma",
+     "porque": "Subida de magma é vulcanismo; abalos sísmicos não são isso. Cai a A.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Identifique a caixa 3",
+     "conta": "“Movimentos horizontais da crosta”, ao lado de Epirogenia",
+     "porque": "O par da epirogenia dentro do tectonismo é a orogenia.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "alternativa E",
+     "porque": "Endógenos, vulcanismo e orogenia: a C falha na caixa 3, pois falhamento é um efeito dos movimentos, não o nome dos movimentos horizontais.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E: processos endógenos, vulcanismo e orogenia.",
+   "checagem": "Pela origem das palavras: orogenia vem do grego oros, montanha; os movimentos horizontais comprimem a crosta e erguem cordilheiras. Epirogenia vem de epeiros, continente: blocos continentais que sobem ou descem na vertical. As definições das caixas confirmam o par.",
+   "erradas": {
+    "A": "Abalos sísmicos são tremores, não a ascensão do magma; e eustasia é variação do nível do mar, não movimento horizontal da crosta.",
+    "B": "Tectonismo e ascensão de magma são processos internos, não exógenos; intemperismo é a alteração das rochas na superfície, não subida de magma.",
+    "C": "As duas primeiras cabem, mas falhamento é a ruptura das rochas causada pelos movimentos; o nome dos movimentos horizontais é orogenia.",
+    "D": "Os processos do esquema são internos, não exógenos; e pedogenia é formação de solos, não movimento da crosta."
+   },
+   "armadilha": "Marcar a C porque magmatismo também descreve a subida de magma: a diferença está na caixa 3, em que falhamento não é o par de epirogenia.",
+   "alerta": "Na caixa 2, magmatismo (alternativa C) também nomearia a ascensão do magma; o que separa C de E é a caixa 3. O esquema grafa “ascenção”; a grafia correta é ascensão.",
+   "essencial": {
+    "pede": "os termos que completam as caixas 1, 2 e 3",
+    "chave": "endógenos; vulcanismo; orogenia",
+    "cuidado": "o par de epirogenia no tectonismo é orogenia"
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pela caixa 3 primeiro",
+    "ideia": "A caixa 3 é o par de Epirogenia. Dos cinco termos oferecidos para ela (eustasia, soerguimento, falhamento, pedogenia, orogenia), só orogenia forma esse par."
+   }
+  ],
+  "quadro": null,
+  "visual": {
+   "cabe": false,
+   "tipo": "nenhum",
+   "porque": "Geografia tem resolução em texto, passo a passo; a questão se resolve pela leitura do suporte.",
+   "roteiro": ""
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "geo-0026"
+  }
+ },
+ "Pfa7a4d36": {
+  "n": "36",
+  "conceito": "Chuva orográfica: o relevo força o ar úmido a subir; ao subir, o ar esfria, o vapor condensa e chove na encosta.",
+  "equivocos": {
+   "A": "G03.1:mecanismo-da-chuva",
+   "B": "G03.1:conceito-sem-relacao",
+   "C": "G03.1:sentido-invertido",
+   "E": "G03.1:conceito-sem-relacao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O excerto explica as chuvas de Petrópolis, em 2022, e destaca o papel do relevo: as características da serra “forçaram a elevação dos ventos úmidos”, o que leva ao encontro com temperaturas mais baixas e à precipitação. Ar úmido obrigado a subir por uma barreira de relevo esfria com a altitude; o vapor de água condensa e vira chuva. Chuva causada por esse mecanismo chama-se orográfica, ou de relevo.",
+    "formulas": [],
+    "simbolos": [
+     [
+      "chuva orográfica",
+      "chuva causada pela subida do ar úmido ao encontrar uma barreira de relevo"
+     ],
+     [
+      "chuva frontal",
+      "chuva causada pelo encontro de uma massa de ar quente com uma massa de ar fria"
+     ],
+     [
+      "massa de ar",
+      "grande porção de ar com temperatura e umidade semelhantes"
+     ],
+     [
+      "inversão térmica",
+      "camada de ar quente sobre ar frio, que impede a subida do ar"
+     ],
+     [
+      "brisa marítima",
+      "vento que sopra do mar para a terra durante o dia"
+     ]
+    ]
+   },
+   "pista": "Ache no excerto o que obrigou o ar úmido a subir. O nome de cada tipo de chuva vem do mecanismo que faz o ar subir.",
+   "passos": [
+    {
+     "faz": "Ache o mecanismo",
+     "conta": "“As características da serra forçaram a elevação dos ventos úmidos”",
+     "porque": "Quem faz o ar subir é o relevo.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Ache o efeito",
+     "conta": "“encontro com temperaturas mais baixas e a consequente precipitação”",
+     "porque": "O ar esfria com a altitude, e o vapor condensa.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Descarte",
+     "conta": "B: brisa marítima · C: inversão térmica · E: tornado",
+     "porque": "Brisa é vento, inversão térmica dificulta a subida do ar, e tornado é um redemoinho de vento: nenhum é chuva de relevo.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "alternativa D",
+     "porque": "Chuva provocada pela subida do ar úmido diante da serra é orográfica; a frontal, da A, nomeia o encontro de massas de ar, não o papel do relevo que o excerto explica.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D: chuva orográfica.",
+   "checagem": "A palavra confirma: oro vem do grego oros, montanha (a mesma raiz de orogenia). O excerto usa as palavras “serra” e “relevo” três vezes.",
+   "erradas": {
+    "A": "O excerto cita uma massa de ar fria, mas explica a precipitação pela serra, que forçou a subida dos ventos úmidos: o mecanismo descrito é o do relevo.",
+    "B": "Brisa marítima é um vento diário do mar para a terra; não é um tipo de chuva.",
+    "C": "Na inversão térmica o ar fica preso junto ao solo e não sobe; o excerto descreve ar que sobe e esfria.",
+    "E": "Tornado é uma coluna de vento em rotação; o excerto descreve chuva causada pela subida do ar na serra."
+   },
+   "armadilha": "Marcar a A por ver “massa de ar fria” no começo do excerto: ela criou a instabilidade, mas a segunda frase explica a chuva pela elevação dos ventos na serra.",
+   "alerta": "O excerto menciona a passagem de uma massa de ar fria, elemento de chuva frontal, “potencializada” pelo relevo. O fenômeno real combinou os dois fatores; o gabarito segue o mecanismo que o excerto detalha, o do relevo.",
+   "essencial": {
+    "pede": "o nome do fenômeno que afetou Petrópolis, segundo o excerto",
+    "chave": "chuva orográfica: o relevo força o ar úmido a subir",
+    "cuidado": "o tipo de chuva é dado pelo mecanismo que faz o ar subir"
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pela frase que explica",
+    "ideia": "A primeira frase dá o contexto (massa de ar fria); a segunda dá a explicação (“as características da serra forçaram a elevação”). O comando pede o fenômeno “segundo o excerto”: vale a explicação."
+   }
+  ],
+  "quadro": null,
+  "visual": {
+   "cabe": false,
+   "tipo": "nenhum",
+   "porque": "Geografia tem resolução em texto, passo a passo; a questão se resolve pela leitura do suporte.",
+   "roteiro": ""
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "geo-0026"
+  }
+ },
+ "Pbe2fa95e": {
+  "n": "34",
+  "conceito": "Desigualdade de gênero no Brasil: as mulheres têm escolaridade superior maior que a dos homens e, mesmo assim, rendimento menor.",
+  "equivocos": {
+   "A": "G06.6:conta-da-diferenca",
+   "C": "G06.6:leitura-do-grafico",
+   "D": "G06.6:contraria-o-grafico",
+   "E": "G06.6:fato-incorreto"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "São dois gráficos. O de educação mostra a parcela de pessoas de 25 anos ou mais com ensino superior completo: mulher branca, 23,50%; homem branco, 20,70%; mulher preta ou parda, 10,40%; homem preto ou pardo, 7%. Nos dois grupos de cor ou raça, as mulheres estão à frente dos homens; e os brancos têm mais que o dobro dos pretos ou pardos. O de mercado de trabalho mostra o rendimento: mulher, R$ 1.764,00; homem, R$ 2.306,00. As mulheres estudam mais e ganham menos.",
+    "formulas": [],
+    "simbolos": [
+     [
+      "rendimento",
+      "valor recebido pelo trabalho"
+     ],
+     [
+      "ensino superior completo",
+      "faculdade concluída"
+     ],
+     [
+      "desigualdade de gênero",
+      "diferença de oportunidades e de ganhos entre homens e mulheres"
+     ]
+    ]
+   },
+   "pista": "Em cada gráfico, compare primeiro homens e mulheres e depois, no de educação, brancos e pretos ou pardos. Faça as subtrações antes de aceitar uma comparação.",
+   "passos": [
+    {
+     "faz": "Compare a educação por sexo",
+     "conta": "23,50% > 20,70% · 10,40% > 7%",
+     "porque": "As mulheres têm mais ensino superior que os homens, nos dois grupos.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Compare o rendimento",
+     "conta": "R$ 2.306,00 > R$ 1.764,00",
+     "porque": "Os homens ganham mais.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Teste a A",
+     "conta": "23,50 − 10,40 = 13,10 pontos · 20,70 − 7 = 13,70 pontos",
+     "porque": "A diferença entre os homens é maior que entre as mulheres: a A afirma o contrário.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Descarte C, D e E",
+     "conta": "C: cor não interfere · D: reduzido acesso das mulheres · E: mais homens que mulheres no país",
+     "porque": "Brancos têm mais que o dobro dos pretos ou pardos (entre os homens, quase o triplo); as mulheres têm mais acesso; e o Brasil tem mais mulheres que homens.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "alternativa B",
+     "porque": "Junta os dois gráficos: homens com rendimento maior e participação menor no ensino superior.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B: o rendimento dos homens é superior ao das mulheres, embora eles tenham menor participação no ensino superior.",
+   "checagem": "Conta de conferência: 1 764 ÷ 2 306 ≈ 0,76. As mulheres recebem cerca de três quartos do rendimento dos homens, mesmo com 2,8 pontos a mais de ensino superior entre brancos (23,50 − 20,70) e 3,4 pontos a mais entre pretos ou pardos (10,40 − 7).",
+   "erradas": {
+    "A": "As contas mostram o contrário: 13,10 pontos entre as mulheres e 13,70 pontos entre os homens.",
+    "C": "A cor interfere muito: brancos têm 23,50% e 20,70%; pretos ou pardos, 10,40% e 7%.",
+    "D": "As mulheres têm acesso maior ao ensino superior que os homens, nos dois grupos; o rendimento menor não vem de menos estudo.",
+    "E": "O Brasil tem mais mulheres que homens; e rendimento médio não depende do tamanho de cada grupo."
+   },
+   "armadilha": "Marcar a D por supor que quem ganha menos estudou menos: o gráfico de educação mostra as mulheres à frente.",
+   "alerta": "",
+   "essencial": {
+    "pede": "o que os dados mostram sobre gênero, educação e rendimento",
+    "chave": "mulheres com mais ensino superior e menor rendimento",
+    "cuidado": "ler os dois gráficos juntos e fazer as subtrações"
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pela palavra “embora”",
+    "ideia": "A B é a única que usa os dois gráficos e marca a contradição entre eles com “embora”. As outras tiram de um gráfico uma conclusão que o outro desmente."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "23,50 − 10,40 = 13,10",
+    "nota": "diferença entre mulheres, em pontos percentuais"
+   },
+   {
+    "linha": "20,70 − 7 = 13,70",
+    "nota": "diferença entre homens"
+   },
+   {
+    "linha": "1 764 ÷ 2 306 ≈ 0,76",
+    "nota": "rendimento das mulheres em relação ao dos homens"
+   }
+  ],
+  "visual": {
+   "cabe": false,
+   "tipo": "nenhum",
+   "porque": "Geografia tem resolução em texto, passo a passo; a questão se resolve pela leitura do suporte.",
+   "roteiro": ""
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "geo-0026"
+  }
+ },
+ "P04ac7d87": {
+  "n": "33",
+  "conceito": "Fome no Brasil: há alimento produzido, mas parte da população não tem acesso; a prioridade a monoculturas de exportação é uma das causas.",
+  "equivocos": {
+   "B": "G08.3:efeito-invertido",
+   "C": "G08.3:fato-incorreto",
+   "D": "G08.3:causa-errada",
+   "E": "G08.3:fato-incorreto"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Na charge, um cartaz mostra um prato de comida com a frase que costuma acompanhar anúncios de bebida alcoólica, o pedido de moderação. Diante dele, um homem de cabelos brancos e roupa remendada olha o prato. A ironia: para ele, comida é coisa rara, quase um artigo de luxo. O problema retratado é a fome. O Brasil é grande produtor agropecuário, mas boa parte das melhores terras produz poucos itens para vender ao exterior, como soja, e não comida para o mercado interno; e quem tem pouca renda não consegue comprar o alimento.",
+    "formulas": [],
+    "simbolos": [
+     [
+      "monocultura",
+      "cultivo de um só produto em grandes áreas"
+     ],
+     [
+      "pleno emprego",
+      "situação em que quase todos os que procuram trabalho estão empregados"
+     ],
+     [
+      "agricultura familiar",
+      "produção em pequenas áreas, com o trabalho da própria família"
+     ],
+     [
+      "estatização",
+      "passagem de empresas para o controle do Estado"
+     ]
+    ]
+   },
+   "pista": "Primeiro diga qual problema a charge mostra. Depois pergunte, para cada alternativa: isso faria faltar comida na mesa dos mais pobres?",
+   "passos": [
+    {
+     "faz": "Leia a charge",
+     "conta": "cartaz de comida com pedido de moderação · homem de roupa remendada diante dele",
+     "porque": "Para o pobre, comida é escassa: o tema é a fome.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Teste as causas",
+     "conta": "B: pleno emprego · C: predomínio da agricultura familiar · E: estatização das indústrias alimentícias",
+     "porque": "Pleno emprego daria renda para comprar comida; a agricultura familiar não predomina em área e produz alimentos; não houve estatização dessas indústrias.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Teste a D",
+     "conta": "elevada capacidade de produção agropecuária",
+     "porque": "Produzir muito não causa fome; o problema é o que se produz e para quem.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "alternativa A",
+     "porque": "Terra voltada a monoculturas de exportação deixa de produzir comida para o mercado interno: é causa da fome.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A: a produção monocultora voltada para exportação.",
+   "checagem": "A charge é de 2008, ano de forte alta mundial dos preços dos alimentos: mesmo com safras grandes, a comida ficou mais cara para os pobres. Isso mostra que a fome depende de preço e acesso, não só da quantidade produzida.",
+   "erradas": {
+    "B": "Pleno emprego significaria renda para a maioria; reduziria a fome, em vez de causá-la. E não é a situação das cidades brasileiras.",
+    "C": "A agricultura familiar não predomina em área no campo brasileiro e é grande fornecedora de alimentos; não causa fome.",
+    "D": "A capacidade de produzir muito existe, mas não é causa de fome: a fome persiste apesar dela.",
+    "E": "As indústrias de alimentos do Brasil são privadas; não houve processo de estatização do setor."
+   },
+   "armadilha": "Marcar a D por ser um fato verdadeiro (o Brasil produz muito): a pergunta é pela causa da fome, e produzir muito não a explica.",
+   "alerta": "",
+   "essencial": {
+    "pede": "uma causa do problema retratado na charge",
+    "chave": "monocultura de exportação: a terra não produz comida para quem tem fome",
+    "cuidado": "fato verdadeiro nem sempre é causa do problema"
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pelo efeito de cada alternativa sobre a fome",
+    "ideia": "Pleno emprego e agricultura familiar reduzem a fome; alta produção não a causa; estatização não ocorreu. Só a monocultura de exportação tira comida do mercado interno."
+   }
+  ],
+  "quadro": null,
+  "visual": {
+   "cabe": false,
+   "tipo": "nenhum",
+   "porque": "Geografia tem resolução em texto, passo a passo; a questão se resolve pela leitura do suporte.",
+   "roteiro": ""
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "geo-0026"
+  }
+ }
+}
