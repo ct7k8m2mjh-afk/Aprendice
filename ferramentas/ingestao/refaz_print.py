@@ -33,7 +33,7 @@ def baixa(url):
     nome = re.sub(r'[^A-Za-z0-9._-]', '_', url.split('/')[-1])
     f = os.path.join(CACHE, nome)
     if not os.path.exists(f):
-        cmd = ['curl', '-sS', '-L', '-A', 'Mozilla/5.0 (compatible; estudos)', '-o', f, url]
+        cmd = ['curl', '-sS', '-L', '-A', 'Mozilla/5.0 (compatible; estudos)', '-o', f, url.replace(' ', '%20')]
         extra = os.path.join(RAIZ, 'ferramentas', 'ingestao', 'certs')
         if os.path.isdir(extra):  # cadeia intermediária de alguns servidores (INEP); soma ao bundle do sistema
             bundle = os.path.join(CACHE, 'bundle.pem')

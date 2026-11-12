@@ -99,3 +99,20 @@
 | 2026-11-11 | acafe-2026-inverno | 10 | Pc886c37f | 1000x338 | 1000x836 | 16: 40,178,570,416; 17: 40,648,570,738; 18: 40,16,570,130 |
 | 2026-11-11 | acafe-2024-verao | 7 | P3c834c10 | transcrição retirada | — | o print agora traz o infográfico (Texto 3); questão com imagem aparece como print (princípio 1). Obs.: o comando da prova diz "texto 4", mas as alternativas tratam do infográfico do Texto 3 (o Texto 4, p. 12, é outro) |
 | 2026-11-11 | acafe-2021-inverno | 15 | P0a9cb507 | 1000x731 | 1000x661 | 14: 40,388,545,722 |
+| 2026-11-12 | pucrio-2024 | 1 | P8d782e90 | 1000x586 | 1000x1879 | texto de apoio acrescentado no topo: 3:25,70,575,768 |
+| 2026-11-12 | pucrio-2024 | 2 | Pc2062609 | 1000x678 | 1000x1971 | texto de apoio acrescentado no topo: 3:25,70,575,768 |
+| 2026-11-12 | pucrio-2024 | 3 | Pe4ced206 | 1000x638 | 1000x1931 | texto de apoio acrescentado no topo: 3:25,70,575,768 |
+| 2026-11-12 | pucrio-2024 | 4 | P003efde3 | 1000x637 | 1000x1930 | texto de apoio acrescentado no topo: 3:25,70,575,768 |
+| 2026-11-12 | pucrio-2024 | 5 | P7316b7a6 | 1000x448 | 1000x1741 | texto de apoio acrescentado no topo: 3:25,70,575,768 |
+| 2026-11-12 | pucrio-2024 | 6 | P152a9843 | 1000x580 | 1000x1873 | texto de apoio acrescentado no topo: 3:25,70,575,768 |
+| 2026-11-12 | pucrio-2024 | 7 | Pfde01aa0 | 1000x486 | 1000x1779 | texto de apoio acrescentado no topo: 3:25,70,575,768 |
+| 2026-11-12 | pucrio-2024 | 8 | Pd63c81dc | 1000x441 | 1000x1734 | texto de apoio acrescentado no topo: 3:25,70,575,768 |
+| 2026-11-12 | pucrio-2024 | 9 | P701f2d3c | 1000x417 | 1000x1710 | texto de apoio acrescentado no topo: 3:25,70,575,768 |
+| 2026-11-12 | pucrio-2024 | 10 | P84d06cbf | 1000x809 | 1000x2102 | texto de apoio acrescentado no topo: 3:25,70,575,768 |
+| 2026-11-12 | cederj-2022-2 | 43 | P6a224b43 | 1000x539 | 1000x3466 | texto de apoio acrescentado no topo: 17:20,50,300,730;17:298,50,582,195 |
+| 2026-11-12 | cederj-2022-2 | 44 | Pc3329622 | 1000x822 | 1000x3749 | texto de apoio acrescentado no topo: 17:20,50,300,730;17:298,50,582,195 |
+| 2026-11-12 | cederj-2022-2 | 45 | P22a52db2 | 1000x984 | 1000x3911 | texto de apoio acrescentado no topo: 17:20,50,300,730;17:298,50,582,195 |
+| 2026-11-12 | cederj-2020-1 | 57 | P720a6387 | 1000x473 | 1000x2553 | texto de apoio acrescentado no topo: 13:35,55,298,596 |
+| 2026-11-12 | cederj-2020-1 | 58 | P82033e67 | 1000x322 | 1000x2402 | texto de apoio acrescentado no topo: 13:35,55,298,596 |
+| 2026-11-12 | cederj-2020-1 | 59 | P822f7a73 | 1000x479 | 1000x2559 | texto de apoio acrescentado no topo: 13:35,55,298,596 |
+| 2026-11-12 | cederj-2020-1 | 60 | P5fbb4215 | 1000x460 | 1000x2540 | texto de apoio acrescentado no topo: 13:35,55,298,596 |
