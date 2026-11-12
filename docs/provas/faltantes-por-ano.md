@@ -130,8 +130,8 @@ o arquivo de onde veio cada PDF fica no campo `origem` do `prova.json`.
 | Unicamp | `unicamp-2021` (Biológicas), `unicamp-2021-exh` (Exatas/Humanas), `unicamp-2022` a `unicamp-2027` (1ª fase, prova Q), `unicamp-indigena-2021`, `unicamp-indigena-2022` | 672 |
 | UERJ | `uerj-2021`, `uerj-2022`, `uerj-2023` (Exame Único), `uerj-2025-1`, `uerj-2025-2`, `uerj-2026-1`, `uerj-2026-2`, `uerj-2027-1` (Exames de Qualificação) | 479 |
 | Santa Casa | `santacasa-2021`, `santacasa-2022` (Medicina, Conhecimentos Gerais), `santacasa-2022-demais` (Enfermagem e demais cursos) | 220 |
-| Einstein | `einstein-2021`, `einstein-2023` (Prova I), `einstein-2021-2-enf`, `einstein-2022-2-enf` (Enfermagem) | 200 |
-| FMJ | `fmj-2021`, `fmj-2022` (Prova II) | 120 |
+| Einstein | 2020–2026 completos (Prova I objetiva) | 2020, 2022 (Medicina, Enfermagem e Fisioterapia), 2024, 2025 e 2026 entraram em 12/11/2026 pela cópia do Curso Objetivo. |
+| FMJ | 2020, 2023 | 2024, 2025 e 2026 entraram em 12/11/2026 (Prova II, cópia do Curso Objetivo). 2020 e 2023: o Objetivo só tem FMJ a partir de 2024; baixar à mão. |
 | São Camilo | `saocamilo-2021-2`, `saocamilo-2022-2` (Prova II) | 80 |
 | Anhembi Morumbi | `anhembi-2022` (Medicina, Prova II) | 40 |
 

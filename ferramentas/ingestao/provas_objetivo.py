@@ -101,6 +101,8 @@ for _a, _cod, _data, _n in ((2024, 'FMJU2301', '15/10/2023', 60), (2025, 'FMJU24
              'versão 1. A Prova I (discursivas e redação) fica fora. '
              f'Caderno e gabarito oficiais da Vunesp ({_cod}), em {CASA}. Anuladas ficam fora.')
     PROVAS[_pid]['suporte'] = PROVAS[_pid]['suporte'] + [r'(?i)^as quest[õo]es (de )?\d+ (e|a) \d+ referem']
+# FMJ 2026: "Leia o texto para responder às perguntas de 31 a 35." (a banca escreveu "perguntas")
+PROVAS['fmj-2026']['suporte'] = PROVAS['fmj-2026']['suporte'] + [r'(?i)para responder [àa]s perguntas']
 
 
 # ------------------------------------------------------------------ Einstein, Prova I objetiva (Prova II discursiva fora)

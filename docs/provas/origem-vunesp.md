@@ -70,6 +70,14 @@ Mesma regra de conferência: código do concurso igual no caderno e no gabarito,
 | Famema 2024, Prova II (`famema-2024`) | 2024 | …/famema/2024/famema2024_prova.pdf (pp. 25–37) | …/famema/2024/famema2024_gabarito.pdf (oficial, FMMA2301; q15 e q16 anuladas depois — confirmado pelo gabarito versão 4 do Drive do dono) | cópia de cursinho (Objetivo) |
 | Famema 2025, Prova II (`famema-2025`) | 2025 | …/famema/2025/famema2025_prova.pdf (pp. 13–25) | …/famema/2025/famema2025_gabarito.pdf (oficial, FMMA2401) | cópia de cursinho (Objetivo) |
 | Famema 2026, Prova II (`famema-2026`) | 2026 | …/famema/2026/famema2026_prova.pdf (pp. 13–25) | …/famema/2026/famema2026_gabarito.pdf (oficial, FMMA2501) | cópia de cursinho (Objetivo) |
+| FMJ 2024, Prova II (`fmj-2024`) | 2024 | …/fmj/2024/fmj2024_prova_II.pdf | …/fmj/2024/fmj2024_gabarito.pdf (oficial, FMJU2301) | cópia de cursinho (Objetivo) |
+| FMJ 2025, Prova II (`fmj-2025`) | 2025 | …/fmj/2025/fmj2025_prova_II.pdf | …/fmj/2025/fmj2025_gabarito.pdf (oficial, FMJU2401) | cópia de cursinho (Objetivo) |
+| FMJ 2026, Prova II (`fmj-2026`) | 2026 | …/fmj/2026/fmj2026_prova_II.pdf | …/fmj/2026/fmj2026_gabarito.pdf (oficial, FMJU2501) | cópia de cursinho (Objetivo) |
+| Einstein 2020, Prova I (`einstein-2020`) | 2020 | …/alberteinstein/2020/alberteinstein2020_prova.pdf (pp. 1–20) | …/alberteinstein/2020/alberteinstein2020_gabarito.pdf (oficial, FEAE1902) | cópia de cursinho (Objetivo) |
+| Einstein 2022, Prova I (`einstein-2022`) | 2022 | …/alberteinstein/2022/alberteinstein2022_prova_I.pdf | …/alberteinstein/2022/alberteinstein2022_gabarito.pdf (oficial, FEAE2103) | cópia de cursinho (Objetivo) |
+| Einstein 2024, Prova I (`einstein-2024`) | 2024 | …/alberteinstein/2024/alberteinstein2024_prova_I.pdf | …/alberteinstein/2024/alberteinstein2024_gabarito.pdf (oficial, FEAE2303) | cópia de cursinho (Objetivo) |
+| Einstein 2025, Prova I (`einstein-2025`) | 2025 | …/alberteinstein/2025/alberteinstein2025_prova_I.pdf | …/alberteinstein/2025/alberteinstein2025_gabarito.pdf (oficial, FEAE2405) | cópia de cursinho (Objetivo) |
+| Einstein 2026, Prova I (`einstein-2026`) | 2026 | …/alberteinstein/2026/alberteinstein2026_prova_I.pdf | …/alberteinstein/2026/alberteinstein2026_gabarito.pdf (oficial, FEAE2502) | cópia de cursinho (Objetivo) |
 
 "…" = `https://www.curso-objetivo.br/vestibular/resolucao-comentada`. As páginas do Objetivo carregam a lista de
 arquivos por um serviço público do próprio site (`sistemas.objetivo.br/ResolucaoComentadaApi/templates/prova/<n>`),
