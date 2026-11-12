@@ -30,7 +30,11 @@ LARG = 1000
 
 def baixa(url):
     os.makedirs(CACHE, exist_ok=True)
-    nome = re.sub(r'[^A-Za-z0-9._-]', '_', url.split('/')[-1])
+    # o nome leva um pedaço do hash da URL inteira: várias bancas usam o mesmo nome de arquivo em anos diferentes
+    # (UFPR: todos "Geral.pdf"), e a cópia de um ano não pode servir para recortar a prova de outro
+    import hashlib
+    h = hashlib.sha1(url.encode()).hexdigest()[:10]
+    nome = h + '_' + re.sub(r'[^A-Za-z0-9._-]', '_', url.split('/')[-1])
     f = os.path.join(CACHE, nome)
     if not os.path.exists(f):
         cmd = ['curl', '-sS', '-L', '-A', 'Mozilla/5.0 (compatible; estudos)', '-o', f, url.replace(' ', '%20')]
