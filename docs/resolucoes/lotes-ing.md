@@ -79,7 +79,7 @@ Faltam 266 questões sem resolução (fora as que estão em lote, pendentes ou c
 | ing-0071 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | ing-0072 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | ing-0073 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
-| ing-0074 | demais nível 1-6 | 30 | aberto |  |  |  |
+| ing-0074 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | ing-0075 | demais nível 1-6 | 30 | aberto |  |  |  |
 
 ## Pendentes (falta de certeza absoluta)
