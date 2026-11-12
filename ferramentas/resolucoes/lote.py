@@ -684,6 +684,14 @@ def gravar_md(f, linhas):
 
 
 if __name__ == '__main__':
+    # Espera o converte.py terminar (ele grava app/public/conteudo sob lock exclusivo): no meio da gravação o banco
+    # aparece incompleto e o status chega a mostrar "faltam 0" (visto em 12/11/2026).
+    try:
+        import fcntl
+        _trava = open('/tmp/converte.lock', 'a')
+        fcntl.flock(_trava, fcntl.LOCK_SH)
+    except OSError:
+        pass
     a = sys.argv[1:]
     if not a:
         print(__doc__)
