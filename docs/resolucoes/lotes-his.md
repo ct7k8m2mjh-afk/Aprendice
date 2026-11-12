@@ -86,7 +86,7 @@ Faltam 45 questões sem resolução (fora as que estão em lote, pendentes ou co
 | his-0078 | ENEM nível 7-10 | 30 | gravado | 29 | 1 | 0 |
 | his-0079 | provas-alvo nível 7-10 | 30 | gravado | 30 | 0 | 0 |
 | his-0080 | provas-alvo nível 7-10 | 30 | gravado | 28 | 2 | 0 |
-| his-0081 | provas-alvo nível 7-10 | 30 | aberto |  |  |  |
+| his-0081 | provas-alvo nível 7-10 | 30 | gravado | 30 | 0 | 0 |
 
 ## Pendentes (falta de certeza absoluta)
 
