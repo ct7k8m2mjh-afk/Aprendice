@@ -45,7 +45,7 @@ Faltam 1081 questões sem resolução (fora as que estão em lote, pendentes ou 
 | ing-0037 | demais nível 1-6 | 30 | gravado | 28 | 2 | 0 |
 | ing-0038 | demais nível 1-6 | 30 | gravado | 25 | 5 | 0 |
 | ing-0039 | demais nível 1-6 | 30 | gravado | 20 | 10 | 0 |
-| ing-0040 | demais nível 1-6 | 30 | aberto |  |  |  |
+| ing-0040 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | ing-0041 | demais nível 1-6 | 30 | aberto |  |  |  |
 
 ## Pendentes (falta de certeza absoluta)
