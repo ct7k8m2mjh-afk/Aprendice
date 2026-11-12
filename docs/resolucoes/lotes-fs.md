@@ -58,7 +58,7 @@ Faltam 0 questões sem resolução (fora as que estão em lote, pendentes ou com
 | fs-0050 | provas-alvo nível 7-10 | 30 | gravado | 30 | 0 | 0 |
 | fs-0051 | provas-alvo nível 7-10 | 30 | gravado | 30 | 0 | 0 |
 | fs-0052 | demais nível 7-10 | 30 | gravado | 30 | 0 | 0 |
-| fs-0053 | demais nível 7-10 | 15 | aberto |  |  |  |
+| fs-0053 | demais nível 7-10 | 15 | gravado | 15 | 0 | 0 |
 
 ## Pendentes (falta de certeza absoluta)
 
