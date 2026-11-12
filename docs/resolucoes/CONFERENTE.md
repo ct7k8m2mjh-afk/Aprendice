@@ -13,7 +13,7 @@ Arquivos: entrada `<caminho da entrada>` (questão, gabarito oficial, texto, pri
 Para cada questão com `status: "ok"`:
 1. **Fatos:** cada afirmação está 100% certa? Fato sem certeza absoluta, ou dado que não está na questão, é apontado.
 2. **Contas:** refaça em python todas as contas dos passos e das `erradas`. Número diferente é apontado.
-3. **Letra:** a resposta é a do `gabarito_oficial` (sem gabarito publicado: a letra do `gabarito_aprendice`, igual à sua da parte 0) e o raciocínio chega mesmo a ela. Se tem figura, abra o print.
+3. **Letra:** vale o gabarito oficial mesmo quando ele parece discutível (decisão do dono, 12/11/2026): não aponte a letra como erro se não houver errata ou anulação; aponte só se a explicação de POR QUE a oficial é a certa estiver faltando ou fraca. A resposta é a do `gabarito_oficial` (sem gabarito publicado: a letra do `gabarito_aprendice`, igual à sua da parte 0) e o raciocínio chega mesmo a ela. Se tem figura, abra o print.
 4. **Alternativas:** cada item de `erradas` corresponde ao texto real daquela letra e dá uma origem real ("sai de…") ou um teste objetivo ("não confere…"). Explicação genérica ou origem inventada é apontada.
 5. **Didática:** o caminho é o melhor para o aluno (curto e seguro)? Algum passo está sobrando, faltando ou longo demais? A pista entrega a resposta? A checagem repete a conta?
 6. **Animadas (bio, qui, mat, fis):** cada `conta` traz uma transformação clara, e as frações estão como a/b (nunca por extenso).
