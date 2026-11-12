@@ -89,6 +89,7 @@ Faltam 0 questões sem resolução (fora as que estão em lote, pendentes ou com
 | his-0081 | provas-alvo nível 7-10 | 30 | gravado | 30 | 0 | 0 |
 | his-0082 | demais nível 7-10 | 30 | gravado | 26 | 2 | 2 |
 | his-0083 | demais nível 7-10 | 15 | gravado | 15 | 0 | 0 |
+| his-0084 | demais nível 7-10 | 2 | gravado | 2 | 0 | 0 |
 
 ## Pendentes (falta de certeza absoluta)
 
@@ -122,5 +123,3 @@ Faltam 0 questões sem resolução (fora as que estão em lote, pendentes ou com
 | Questão | Prova | Conteúdo | Motivo |
 |---|---|---|---|
 | Pc90de958 | Fema 2022 Processo Seletivo 2022 · questão 13 | H08.8 mundo atual: Oriente Médio, terrorismo e conflitos recentes (tema H08 Guerra Fria) | gabarito oficial E ("Apenas a alternativa IV está incorreta") contradiz os fatos: a IV é verdadeira (19 sequestradores, milhares de mortos) e a III é falsa (a Al-Qaeda não é grupo separatista basco); nenhuma alternativa diz "apenas III incorreta". Se a banca leu como erro o "terceiro avião" da II (foi o quarto), a coerente seria D (II e III incorretas). PDF da Fema não abriu daqui para conferir o gabarito. Conferente, às cegas, deu D. Manter fora até achar o gabarito publicado; se a banca confirmar E, a questão tem gabarito inconsistente com os fatos e fica fora. |
-| P0b8f78ef | URCA 2025 2025.1 · questão 72 | H05.5 Revolução de 1930 e governo constitucional de Vargas (tema H05 República Brasileira) | gabarito oficial D (I, IV e V) considera falsa a afirmativa III, mas ela repete o próprio texto da questão: a Constituição de 1824 não limitava a jornada e só mencionava a liberdade de trabalho (art. 179, XXIV). Com I, III, IV e V corretas, nenhuma alternativa corresponde |
-| Pacd2249d | URCA 2025 2025.1 · questão 73 | H05.10 abertura, Diretas Já e Constituição de 1988 (tema H05 República Brasileira) | gabarito oficial C (I, IV e V) considera falsa a afirmativa III, mas ela está correta: o Brasil alternou constituições outorgadas (1824, 1937) e a de 1967, imposta pelo regime militar, com constituições promulgadas por constituintes (1891, 1934, 1946, 1988). Com I, III, IV e V corretas, nenhuma alternativa corresponde |
