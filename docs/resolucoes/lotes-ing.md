@@ -1,6 +1,6 @@
 # Inglês: resoluções (gerado por lote.py em 2026-11-12)
 
-Faltam 566 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 380; ENEM nível 7-10 2; provas-alvo nível 7-10 83; demais nível 7-10 101.
+Faltam 536 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 350; ENEM nível 7-10 2; provas-alvo nível 7-10 83; demais nível 7-10 101.
 
 ## Lotes
 
@@ -70,7 +70,8 @@ Faltam 566 questões sem resolução (fora as que estão em lote, pendentes ou c
 | ing-0062 | demais nível 1-6 | 30 | gravado | 26 | 4 | 0 |
 | ing-0063 | demais nível 1-6 | 30 | gravado | 29 | 1 | 0 |
 | ing-0064 | demais nível 1-6 | 30 | gravado | 29 | 1 | 0 |
-| ing-0065 | demais nível 1-6 | 30 | aberto |  |  |  |
+| ing-0065 | demais nível 1-6 | 30 | gravado | 29 | 1 | 0 |
+| ing-0066 | demais nível 1-6 | 30 | aberto |  |  |  |
 
 ## Pendentes (falta de certeza absoluta)
 
@@ -107,6 +108,7 @@ Faltam 566 questões sem resolução (fora as que estão em lote, pendentes ou c
 | Pe3f188ad | UEMA 2021 PAES · questão 53 | I01.3 informação explícita (tema I01 Leitura e interpretação de textos) | print: a questão pergunta por que donos de animais corriam risco na Inglaterra dos séculos XVI e XVII, mas o texto de apoio não está no texto_da_prova nem no print (que mostra só o enunciado e as alternativas). Refazer o print com o texto, a partir do caderno oficial da UEMA PAES 2021. |
 | Pdb725a03 | UEMA 2021 PAES · questão 54 | I01.4 inferência e sentido implícito (tema I01 Leitura e interpretação de textos) | print: a questão pede informação de um texto de apoio que não está no texto_da_prova nem no print (que mostra só o enunciado e as alternativas). Refazer o print com o texto, a partir do caderno oficial da UEMA PAES 2021 (texto sobre animais e julgamentos na Inglaterra dos séculos XVI e XVII). |
 | Pe3636adf | UEMA 2021 PAES · questão 9 | I01.3 informação explícita (tema I01 Leitura e interpretação de textos) | print: a questão pede um procedimento orgânico citado num texto sobre agricultura que não está no texto_da_prova nem no print (que mostra só o enunciado e as alternativas). Refazer o print com o texto de apoio, a partir do caderno oficial da UEMA PAES 2021. |
+| Pbd105de7 | UEMA 2022 PAES · questão 16 | I01.8 tirinha, cartum, charge e meme (tema I01 Leitura e interpretação de textos) | print: a questão pede informação de um texto de apoio que não está no texto_da_prova nem no print (que mostra só o enunciado e as alternativas). Refazer o print com o texto, a partir do caderno oficial da UEMA PAES 2022 (o texto “The Basics of Law”, sobre Jim, Bill e o barco). |
 | P5ccce71c | UEMA 2024 PAES · questão 16 | I01.4 inferência e sentido implícito (tema I01 Leitura e interpretação de textos) | print: a questão pede informação de um texto de apoio que não está no texto_da_prova nem no print (que mostra só o enunciado e as alternativas). Refazer o print com o texto, a partir do caderno oficial da UEMA PAES 2024 (texto sobre Phoebe e o bullying). |
 | P3ade0003 | UEMA 2026 PAES · questão 16 | I01.4 inferência e sentido implícito (tema I01 Leitura e interpretação de textos) | print: a questão pede informação de um texto de apoio que não está no texto_da_prova nem no print (que mostra só o enunciado e as alternativas). Refazer o print com o texto, a partir do caderno oficial da UEMA PAES 2026 (texto sobre envelhecer e amizades). |
 | P0c3bf8a5 | UERR 2026 · questão 13 | I01.3 informação explícita (tema I01 Leitura e interpretação de textos) | print: a questão pede o motivo de o príncipe Harry não ficar num palácio, mas o texto de apoio (Buckingham Palace says Prince Harry will not stay at palace) não está no texto_da_prova nem no print, que mostra outro texto (o do macaco do Congo). Refazer o print com o texto certo, a partir do caderno oficial da UERR 2026. |
