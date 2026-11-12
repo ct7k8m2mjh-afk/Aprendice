@@ -29,6 +29,12 @@ RAIZ = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)
 PUB = os.path.join(RAIZ, 'app', 'public', 'conteudo')
 PROVAS = os.path.join(RAIZ, 'app', 'conteudo-fonte', 'provas')
 DOCS = os.path.join(RAIZ, 'docs', 'resolucoes')
+# sessão dona do lote (cada sessão do Claude Code tem o seu id); --retomar <lote> assume um lote aberto sem dono
+SESSAO = os.environ.get('CLAUDE_CODE_SESSION_ID', '')
+RETOMAR = sys.argv[sys.argv.index('--retomar') + 1] if '--retomar' in sys.argv[:-1] else None
+if '--retomar' in sys.argv:
+    i = sys.argv.index('--retomar')
+    del sys.argv[i:i + 2]
 TRAB = os.path.join(DOCS, 'trabalho')  # lotes abertos (fora do git; refeitos a partir do registro se sumirem)
 REGISTRO_ANTIGO = os.path.join(DOCS, 'registro.json')  # um só para todas (até 11/11/2026); hoje um por matéria
 
@@ -375,9 +381,17 @@ def cmd_proximo(m=None, n=30):
     if m not in MATERIAS:
         sys.exit(f'matéria inválida: {m} (use {" ".join(MATERIAS)})')
     reg = registro(m)
-    # lote aberto da matéria: devolve o mesmo (refaz a entrada se o arquivo sumiu)
+    # lote aberto da matéria DESTA sessão: devolve o mesmo (refaz a entrada se o arquivo sumiu). Lote aberto por outra
+    # sessão não é devolvido (12/11/2026: duas sessões pegaram o mesmo lote e uma regravou por cima da outra).
     for nome, l in reg['lotes'].items():
         if l['materia'] == m and l['estado'] == 'aberto':
+            if l.get('dono') != SESSAO and RETOMAR != nome:
+                print(f'(lote {nome} está aberto por outra sessão: pulado. Se ele é seu, rode: '
+                      f'lote.py proximo {m} --retomar {nome})')
+                continue
+            if RETOMAR == nome and SESSAO and l.get('dono') != SESSAO:
+                l['dono'] = SESSAO   # esta sessão assume o lote
+                gravar(caminho_registro(m), reg)
             b, _ = banco(m)
             por_id = {q['id']: q for q in b}
             gravar(caminho_entrada(nome), {'lote': nome, 'materia': m, 'animada': m in ANIMADAS,
@@ -391,7 +405,7 @@ def cmd_proximo(m=None, n=30):
         return
     k = 1 + sum(1 for v in reg['lotes'].values() if v['materia'] == m)
     nome = f'{m}-{k:04d}'
-    reg['lotes'][nome] = {'materia': m, 'ids': [q['id'] for q in qs], 'estado': 'aberto',
+    reg['lotes'][nome] = {'materia': m, 'ids': [q['id'] for q in qs], 'estado': 'aberto', 'dono': SESSAO,
                           'aberto_em': datetime.date.today().isoformat(), 'faixa': FAIXAS[faixa(qs[0])]}
     gravar(caminho_entrada(nome), {'lote': nome, 'materia': m, 'animada': m in ANIMADAS, 'questoes': entrada(m, qs)})
     gravar(caminho_registro(m), reg)
@@ -567,6 +581,12 @@ def cmd_grava(saida):
         sys.exit(f'{lote}: nada gravado ({len(erros)} erro(s)).')
     m = lote.split('-')[0]
     reg = registro(m)
+    l0 = reg['lotes'].get(lote, {})
+    if l0.get('estado') == 'gravado':
+        sys.exit(f'{lote} já foi gravado (em {l0.get("gravado_em")}) por outra sessão ou antes: nada gravado por cima. '
+                 'Abra um lote novo com lote.py proximo.')
+    if l0.get('dono') and l0['dono'] != SESSAO and RETOMAR != lote:
+        sys.exit(f'{lote} pertence a outra sessão: nada gravado. Se ele é seu, rode: lote.py grava <saida> --retomar {lote}')
     b, _ = banco(m)
     por_id = {q['id']: q for q in b}
     hoje = datetime.date.today().isoformat()
