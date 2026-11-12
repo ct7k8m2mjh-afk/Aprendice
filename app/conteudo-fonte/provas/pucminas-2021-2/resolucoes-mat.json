@@ -1,0 +1,93 @@
+{
+ "P54122add": {
+  "n": "43",
+  "conceito": "MDC para encher um paralelepípedo com cubos iguais.",
+  "equivocos": {
+   "A": "M01.4:sem-origem-identificada",
+   "C": "M01.4:sem-origem-identificada",
+   "D": "M01.4:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Para os cubos encherem a caixa sem sobra, a aresta do cubo precisa dividir 18, 24 e 60. Menos ampolas significa menos cubos, ou seja, cubos maiores: aresta = mdc(18, 24, 60).",
+    "formulas": [
+     "aresta = mdc(18, 24, 60)",
+     "cubos = (18/a)(24/a)(60/a)"
+    ],
+    "simbolos": []
+   },
+   "pista": "Qual é o maior número que divide 18, 24 e 60 ao mesmo tempo?",
+   "passos": [
+    {
+     "faz": "mdc",
+     "conta": "18 = 2 · 3²; 24 = 2³ · 3; 60 = 2² · 3 · 5 → mdc = 2 · 3 = 6",
+     "porque": "Fatores comuns com menor expoente.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Cubos por aresta",
+     "conta": "18/6 = 3; 24/6 = 4; 60/6 = 10",
+     "porque": "Cubos em cada direção.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Total de cubos",
+     "conta": "3 · 4 · 10 = 120",
+     "porque": "Produto.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ampolas",
+     "conta": "120 · 4 = 480 → alternativa B",
+     "porque": "4 ampolas por cubo.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 480",
+   "checagem": "18/6 = 3, 24/6 = 4 e 60/6 = 10 não têm fator comum maior que 1, então 6 é a maior aresta possível; 3 · 4 · 10 · 4 = 480. Confere.",
+   "erradas": {
+    "A": "324/4 = 81 cubos; 25 920/81 = 320 cm³, que não é volume de cubo de aresta inteira.",
+    "C": "516/4 = 129 cubos; 25 920/129 não dá um cubo de aresta inteira.",
+    "D": "648/4 = 162 cubos; 25 920/162 = 160 cm³, que não é cubo de aresta inteira."
+   },
+   "armadilha": "Esquecer de multiplicar pelas 4 ampolas e procurar 120 nas alternativas.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Menor número de ampolas.",
+    "chave": "Aresta = mdc = 6; 120 cubos; 480 ampolas.",
+    "cuidado": "Cubos maiores → menos cubos → mdc."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "algoritmo de Euclides",
+    "ideia": "mdc(18, 24): 24 = 1 · 18 + 6; 18 = 3 · 6 → 6. mdc(6, 60) = 6, pois 60 = 10 · 6."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "mdc(18, 24, 60) = 6",
+    "nota": "aresta"
+   },
+   {
+    "linha": "3 · 4 · 10 = 120",
+    "nota": "cubos"
+   },
+   {
+    "linha": "120 · 4 = 480",
+    "nota": "resposta"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0044"
+  }
+ }
+}

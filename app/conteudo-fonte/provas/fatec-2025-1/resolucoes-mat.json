@@ -1,0 +1,89 @@
+{
+ "P30f11dea": {
+  "n": "13",
+  "conceito": "MDC para dividir um retângulo em quadrados iguais.",
+  "equivocos": {
+   "A": "M01.4:respondeu-a-area-da-peca",
+   "B": "M01.4:sem-origem-identificada",
+   "C": "M01.4:sem-origem-identificada",
+   "E": "M01.4:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O lado do quadrado precisa dividir exatamente 84 e 52. O maior lado possível é o mdc(84, 52). Quanto maior a peça, menos peças: esse é o número mínimo.",
+    "formulas": [
+     "lado = mdc(84, 52)",
+     "peças = (84/lado) · (52/lado)"
+    ],
+    "simbolos": []
+   },
+   "pista": "Qual é o maior número que divide 84 e 52?",
+   "passos": [
+    {
+     "faz": "Fatorar",
+     "conta": "84 = 2² · 3 · 7; 52 = 2² · 13",
+     "porque": "Fatores comuns: 2².",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "mdc",
+     "conta": "mdc = 4 cm",
+     "porque": "Lado da peça.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Peças",
+     "conta": "(84/4) · (52/4) = 21 · 13 = 273 → alternativa D",
+     "porque": "Peças por linha × linhas.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 273",
+   "checagem": "84/4 = 21 e 52/4 = 13 não têm fator comum, então não existe quadrado maior que 4 cm que divida os dois lados; 21 · 13 = 273. Confere.",
+   "erradas": {
+    "A": "16 é a área da peça (4²), não o número de peças.",
+    "B": "64 não sai da divisão: 4 368/64 = 68,25, não inteiro.",
+    "C": "128: 4 368/128 = 34,125, não inteiro; não há peça quadrada que dê 128 peças.",
+    "E": "546 = 2 · 273 exigiria peças de 8 cm², que não são quadrados de lado inteiro."
+   },
+   "armadilha": "Usar o mmc em vez do mdc, ou responder a área da peça.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Número mínimo de peças.",
+    "chave": "Lado = mdc(84, 52) = 4; 21 · 13 = 273.",
+    "cuidado": "Peças iguais e maiores possíveis → mdc."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "algoritmo de Euclides",
+    "ideia": "84 = 1 · 52 + 32; 52 = 1 · 32 + 20; 32 = 1 · 20 + 12; 20 = 1 · 12 + 8; 12 = 1 · 8 + 4; 8 = 2 · 4. mdc = 4."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "mdc(84, 52) = 4",
+    "nota": "lado"
+   },
+   {
+    "linha": "21 · 13",
+    "nota": "peças"
+   },
+   {
+    "linha": "273",
+    "nota": "resposta"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0044"
+  }
+ }
+}

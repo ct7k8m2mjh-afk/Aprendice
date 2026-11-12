@@ -1,0 +1,92 @@
+{
+ "P91af952f": {
+  "n": "39",
+  "conceito": "Estimativa de raiz e contagem de inteiros num intervalo aberto.",
+  "equivocos": {
+   "A": "M01.2:sem-origem-identificada",
+   "B": "M01.2:esqueceu-o-mais-um",
+   "D": "M01.2:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O intervalo vai de 50 − √50 a 50 + √50, sem incluir as pontas. Estime √50 entre dois inteiros e conte os inteiros que cabem.",
+    "formulas": [
+     "a² < n < b² → a < √n < b"
+    ],
+    "simbolos": []
+   },
+   "pista": "Entre que inteiros fica √50? Com isso, entre que números fica cada ponta?",
+   "passos": [
+    {
+     "faz": "Estimar √50",
+     "conta": "7² = 49 < 50 < 64 = 8² → 7 < √50 < 8 (≈ 7,07)",
+     "porque": "50 está logo acima de 49.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Pontas",
+     "conta": "50 − √50 ≈ 42,93; 50 + √50 ≈ 57,07",
+     "porque": "Nenhuma ponta é inteira.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Inteiros",
+     "conta": "43, 44, ..., 57",
+     "porque": "Do primeiro inteiro depois de 42,93 ao último antes de 57,07.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Contar",
+     "conta": "57 − 43 + 1 = 15 → alternativa C",
+     "porque": "Total de inteiros.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 15.",
+   "checagem": "O intervalo é simétrico em torno de 50: há o próprio 50 e, de cada lado, os inteiros a distância 1, 2, ..., 7 (pois 7 < √50 e 8 > √50). São 1 + 2 · 7 = 15. Confere.",
+   "erradas": {
+    "A": "13 seria 1 + 2 · 6: contaria só até distância 6 de cada lado.",
+    "B": "14 = 2 · 7: contou os inteiros de cada lado e esqueceu o próprio 50.",
+    "D": "16 inclui também o 42 ou o 58, que estão fora do intervalo."
+   },
+   "armadilha": "Fazer 57 − 43 = 14 e esquecer de somar 1 ao contar os inteiros de 43 a 57.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantos inteiros.",
+    "chave": "7 < √50 < 8 → inteiros de 43 a 57.",
+    "cuidado": "Contar de a até b dá b − a + 1."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "simetria",
+    "ideia": "Os inteiros n do intervalo satisfazem |n − 50| < √50, isto é, (n − 50)² < 50: n − 50 vai de −7 a 7, que são 15 valores."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "√50 ≈ 7,07",
+    "nota": "estimativa"
+   },
+   {
+    "linha": "]42,93; 57,07[",
+    "nota": "intervalo"
+   },
+   {
+    "linha": "43 a 57: 15",
+    "nota": "resposta"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0044"
+  }
+ }
+}

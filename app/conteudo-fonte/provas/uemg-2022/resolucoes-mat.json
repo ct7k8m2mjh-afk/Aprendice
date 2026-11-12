@@ -1,0 +1,120 @@
+{
+ "Pd1d6e6ff": {
+  "n": "43",
+  "conceito": "Critérios de divisibilidade por 5 e por 9 com condições sobre os algarismos.",
+  "equivocos": {
+   "A": "M01.4:nao-calculou-a-potencia",
+   "B": "M01.4:esqueceu-o-fator-3",
+   "C": "M01.4:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Divisível por 5: termina em 0 ou 5. Divisível por 9: soma dos algarismos múltipla de 9. Os dois primeiros algarismos saem da condição \"o segundo é o dobro do primeiro e somam 6\"; o quarto depende do terceiro.",
+    "formulas": [
+     "÷ 5: último 0 ou 5",
+     "÷ 9: soma múltipla de 9"
+    ],
+    "simbolos": [
+     [
+      "a",
+      "primeiro algarismo"
+     ],
+     [
+      "c",
+      "terceiro algarismo"
+     ],
+     [
+      "e",
+      "último algarismo"
+     ]
+    ]
+   },
+   "pista": "Primeiro descubra os dois primeiros algarismos; depois escreva a soma em função do terceiro e do último.",
+   "passos": [
+    {
+     "faz": "Dois primeiros",
+     "conta": "a + 2a = 6 → a = 2; segundo = 4",
+     "porque": "Número 2 4 c (2 + c) e.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Soma dos algarismos",
+     "conta": "2 + 4 + c + (2 + c) + e = 8 + 2c + e",
+     "porque": "Precisa ser múltiplo de 9.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "e = 0",
+     "conta": "8 + 2c múltiplo de 9 → c = 5 → 24570",
+     "porque": "Algarismos 2, 4, 5, 7, 0 distintos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "e = 5",
+     "conta": "13 + 2c múltiplo de 9 → c = 7 → 24795",
+     "porque": "Algarismos 2, 4, 7, 9, 5 distintos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Diferença",
+     "conta": "24795 − 24570 = 225 = 15² → alternativa D",
+     "porque": "Quadrado perfeito.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — quadrado perfeito.",
+   "checagem": "Divida os dois por 45: 24570 = 45 · 546 e 24795 = 45 · 551. A diferença é 45 · (551 − 546) = 45 · 5 = 225 = 15². Confere.",
+   "erradas": {
+    "A": "3^5 = 243 e 225 < 243: a diferença não é maior que 3^5.",
+    "B": "225 é múltiplo de 5, mas também de 3 (2 + 2 + 5 = 9).",
+    "C": "225 = 3² · 5² não é primo."
+   },
+   "armadilha": "Ler \"maior do que 3^5\" sem calcular 3^5 = 243 e achar que 225 passa.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Que tipo de número é a diferença.",
+    "chave": "24570 e 24795; diferença 225 = 15².",
+    "cuidado": "Divisível por 45 = por 5 e por 9."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "faixa do terceiro algarismo",
+    "ideia": "Como 2 + c ≤ 9, c ≤ 7, e a soma 8 + 2c + e fica entre 8 e 27. Múltiplos de 9 possíveis: 9, 18 e 27. Soma 9: 2c + e = 1, impossível com e = 0 ou 5. Soma 18: 2c + e = 10 → c = 5, e = 0. Soma 27: 2c + e = 19 → c = 7, e = 5. Os dois números saem direto."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "2 4 c (2 + c) e",
+    "nota": "forma"
+   },
+   {
+    "linha": "24570 e 24795",
+    "nota": "números"
+   },
+   {
+    "linha": "225 = 15²",
+    "nota": "resposta"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0044"
+  },
+  "gabarito_aprendice": {
+   "letra": "D",
+   "letra_conferente": "D",
+   "preliminar": "D",
+   "fontes_web": [],
+   "data": "2026-11-12",
+   "lote": "mat-0044"
+  }
+ }
+}

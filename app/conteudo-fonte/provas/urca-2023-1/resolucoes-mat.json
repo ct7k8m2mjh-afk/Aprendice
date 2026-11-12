@@ -1,0 +1,94 @@
+{
+ "Pb189b604": {
+  "n": "21",
+  "conceito": "Restos da divisão por 4 se repetem em ciclo.",
+  "equivocos": {
+   "A": "M01.4:sem-origem-identificada",
+   "B": "M01.4:sem-origem-identificada",
+   "C": "M01.4:sem-origem-identificada",
+   "E": "M01.4:contou-ciclo-a-mais"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os restos da divisão por 4 seguem o ciclo 0, 1, 2, 3, 0, 1, 2, 3, ... Conte quantos ciclos completos há de 4 a 99 e multiplique pela soma de um ciclo.",
+    "formulas": [
+     "restos por 4: 0, 1, 2, 3",
+     "soma de um ciclo = 6"
+    ],
+    "simbolos": [
+     [
+      "r(a, b)",
+      "resto de a ÷ b"
+     ]
+    ]
+   },
+   "pista": "Quantos números há de 4 a 99? Eles formam ciclos completos?",
+   "passos": [
+    {
+     "faz": "Quantidade",
+     "conta": "99 − 4 + 1 = 96 números",
+     "porque": "De 4 a 99.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ciclos",
+     "conta": "96 ÷ 4 = 24 ciclos completos",
+     "porque": "4 começa com resto 0 e 99 termina com resto 3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Soma",
+     "conta": "24 · (0 + 1 + 2 + 3) = 24 · 6 = 144 → alternativa D",
+     "porque": "Soma dos restos.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 144",
+   "checagem": "Conte por resto: de 4 a 99 há 24 números com cada resto (múltiplos de 4: 4, 8, ..., 96 são 24; os de resto 1: 5, 9, ..., 97 são 24; etc.). Soma = 24 · 0 + 24 · 1 + 24 · 2 + 24 · 3 = 0 + 24 + 48 + 72 = 144. Confere.",
+   "erradas": {
+    "A": "88 não corresponde a nenhuma contagem de ciclos (88/6 não é inteiro).",
+    "B": "98 não sai: a soma é múltipla de 6 (24 ciclos de 6).",
+    "C": "120 seria 20 ciclos de soma 6; de 4 a 99 há 24 ciclos.",
+    "E": "150 seria 25 ciclos: contou um ciclo a mais (de 0 a 99)."
+   },
+   "armadilha": "Contar os números errado (de 4 a 99 são 96, não 95 ou 100) e errar o número de ciclos.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Soma dos restos.",
+    "chave": "96 números = 24 ciclos de soma 6.",
+    "cuidado": "De a até b há b − a + 1 números."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "subtrair o quociente",
+    "ideia": "r(n, 4) = n − 4 · ⌊n/4⌋. Soma de n de 4 a 99 = (4 + 99) · 96/2 = 4 944. Soma de 4⌊n/4⌋: para cada k de 1 a 24, quatro números têm ⌊n/4⌋ = k: 4 · 4 · (1 + ... + 24) = 16 · 300 = 4 800. Diferença: 144."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "96 números",
+    "nota": "4 a 99"
+   },
+   {
+    "linha": "24 ciclos",
+    "nota": "de 0, 1, 2, 3"
+   },
+   {
+    "linha": "24 · 6 = 144",
+    "nota": "resposta"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0044"
+  }
+ }
+}

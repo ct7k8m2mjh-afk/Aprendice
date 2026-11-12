@@ -1,0 +1,86 @@
+{
+ "P04d46c2e": {
+  "n": "35",
+  "conceito": "Contagem de múltiplos num intervalo.",
+  "equivocos": {
+   "A": "M01.4:sem-origem-identificada",
+   "B": "M01.4:esqueceu-o-mais-um",
+   "D": "M01.4:contou-fora-do-intervalo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Ache o primeiro e o último múltiplo de 15 dentro do intervalo, escreva cada um como 15 · k e conte os valores de k.",
+    "formulas": [
+     "múltiplos de m entre a e b: k de ⌈a/m⌉ a ⌊b/m⌋"
+    ],
+    "simbolos": []
+   },
+   "pista": "Divida 1513 e 3436 por 15: quais são os quocientes inteiros que interessam?",
+   "passos": [
+    {
+     "faz": "Primeiro múltiplo",
+     "conta": "1513 ÷ 15 ≈ 100,9 → 15 · 101 = 1515",
+     "porque": "15 · 100 = 1500 fica abaixo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Último múltiplo",
+     "conta": "3436 ÷ 15 ≈ 229,1 → 15 · 229 = 3435",
+     "porque": "15 · 230 = 3450 passa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Contar",
+     "conta": "229 − 101 + 1 = 129 → alternativa C",
+     "porque": "k vai de 101 a 229.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 129",
+   "checagem": "Conte de outro jeito: múltiplos de 15 de 1 até 3436 são ⌊3436/15⌋ = 229; de 1 até 1512 são ⌊1512/15⌋ = 100. Entre 1513 e 3436: 229 − 100 = 129. Confere.",
+   "erradas": {
+    "A": "127 tira as duas pontas da contagem (229 − 101 − 1).",
+    "B": "128 é 229 − 101: esqueceu de somar 1.",
+    "D": "130 conta também 1500 ou 3450, que estão fora do intervalo."
+   },
+   "armadilha": "Fazer 229 − 101 = 128 e esquecer de somar 1.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantos múltiplos de 15.",
+    "chave": "15 · 101 = 1515 até 15 · 229 = 3435.",
+    "cuidado": "De a até b há b − a + 1 inteiros."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "progressão aritmética",
+    "ideia": "1515, 1530, ..., 3435 é PA de razão 15: n = (3435 − 1515)/15 + 1 = 1920/15 + 1 = 128 + 1 = 129."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "1515 = 15 · 101",
+    "nota": "primeiro"
+   },
+   {
+    "linha": "3435 = 15 · 229",
+    "nota": "último"
+   },
+   {
+    "linha": "229 − 101 + 1 = 129",
+    "nota": "resposta"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0044"
+  }
+ }
+}

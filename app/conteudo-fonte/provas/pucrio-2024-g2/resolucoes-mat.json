@@ -89,5 +89,176 @@
    "data": "2026-11-12",
    "lote": "mat-0043"
   }
+ },
+ "Pf4bf08e2": {
+  "n": "11",
+  "conceito": "Interseção de conjuntos de múltiplos: MMC.",
+  "equivocos": {
+   "A": "M01.4:esqueceu-um-conjunto",
+   "B": "M01.4:esqueceu-um-conjunto",
+   "C": "M01.4:esqueceu-um-conjunto",
+   "D": "M01.4:esqueceu-um-conjunto"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Um número está nos três conjuntos quando é múltiplo de 12, de 14 e de 18 ao mesmo tempo. O menor deles é o mmc.",
+    "formulas": [
+     "A ∩ B ∩ C = múltiplos do mmc"
+    ],
+    "simbolos": []
+   },
+   "pista": "Fatore 12, 14 e 18 e tome cada primo com o maior expoente.",
+   "passos": [
+    {
+     "faz": "Fatorar",
+     "conta": "12 = 2² · 3; 14 = 2 · 7; 18 = 2 · 3²",
+     "porque": "Fatores primos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "mmc",
+     "conta": "2² · 3² · 7 = 252 → alternativa E",
+     "porque": "Maior expoente de cada primo.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 252",
+   "checagem": "252/12 = 21, 252/14 = 18 e 252/18 = 14: múltiplo dos três. Nenhuma alternativa menor serve: 36 não é múltiplo de 14; 84 não é de 18; 126 não é de 12 (126/12 = 10,5); 168 não é de 18. Confere.",
+   "erradas": {
+    "A": "36 é múltiplo de 12 e de 18, mas não de 14.",
+    "B": "84 = mmc(12, 14), mas não é múltiplo de 18.",
+    "C": "126 = mmc(14, 18), mas não é múltiplo de 12.",
+    "D": "168 é múltiplo de 12 e de 14, mas não de 18."
+   },
+   "armadilha": "Fazer o mmc de só dois conjuntos (84 ou 126) e esquecer o terceiro.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Menor elemento de A ∩ B ∩ C.",
+    "chave": "mmc(12, 14, 18) = 252.",
+    "cuidado": "Use os três números."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "múltiplos do maior",
+    "ideia": "Liste os múltiplos de 18 e teste 12 e 14: 18, 36, 54, 72, 90, 108, 126, 144, 162, 180, 198, 216, 234, 252. O primeiro divisível por 12 e por 14 é 252."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "2² · 3 / 2 · 7 / 2 · 3²",
+    "nota": "fatoração"
+   },
+   {
+    "linha": "2² · 3² · 7 = 252",
+    "nota": "resposta"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0044"
+  }
+ },
+ "P0a2ec4f0": {
+  "n": "20",
+  "conceito": "Contagem com conjuntos (inclusão e exclusão) e fatores primos.",
+  "equivocos": {
+   "B": "M01.4:esqueceu-os-primos",
+   "C": "M01.4:sem-origem-identificada",
+   "D": "M01.4:contou-o-complemento",
+   "E": "M01.4:tirou-so-multiplos-de-3"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Um número maior que 7 com todos os fatores primos maiores que 4 é o que não é par nem múltiplo de 3. Entre esses, alguns são primos (os 10 primos, todos maiores que 7) e o resto são compostos.",
+    "formulas": [
+     "n(P ∪ T) = n(P) + n(T) − n(P ∩ T)"
+    ],
+    "simbolos": [
+     [
+      "P",
+      "pares"
+     ],
+     [
+      "T",
+      "múltiplos de 3"
+     ]
+    ]
+   },
+   "pista": "Comece contando os números que têm fator 2 ou fator 3.",
+   "passos": [
+    {
+     "faz": "Pares ou múltiplos de 3",
+     "conta": "60 + 20 − 15 = 65",
+     "porque": "Múltiplos de 6 contados duas vezes.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Nem pares nem múltiplos de 3",
+     "conta": "100 − 65 = 35",
+     "porque": "Todos os fatores primos ≥ 5.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tirar os primos",
+     "conta": "35 − 10 = 25 → alternativa A",
+     "porque": "Primos maiores que 7 não são pares nem múltiplos de 3.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 25 cartelas",
+   "checagem": "Monte as partes: só pares 45, só múltiplos de 3 (ímpares) 5, múltiplos de 6 15, primos 10, compostos sem 2 e 3: x. 45 + 5 + 15 + 10 + x = 100 → x = 25. Como todos os números são maiores que 7, o 1 não aparece. Confere.",
+   "erradas": {
+    "B": "35 inclui os 10 primos, que não são compostos.",
+    "C": "45 é o número de pares que não são múltiplos de 3.",
+    "D": "75 = 100 − 25 é o número de cartelas que não são compostos com todos os fatores primos maiores que 4.",
+    "E": "80 = 100 − 20: tira só os múltiplos de 3."
+   },
+   "armadilha": "Esquecer de tirar os 10 primos e responder 35.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Compostos com fatores primos maiores que 4.",
+    "chave": "100 − (60 + 20 − 15) − 10 = 25.",
+    "cuidado": "Primo não é composto."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "complemento direto",
+    "ideia": "Pares ou múltiplos de 3 = 60 + (20 − 15) = 65 (os ímpares múltiplos de 3 são 5); sobram 35 sem fator 2 nem 3; tirando os 10 primos, 25."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "60 + 20 − 15 = 65",
+    "nota": "pares ou mult. de 3"
+   },
+   {
+    "linha": "100 − 65 = 35",
+    "nota": "sem 2 e 3"
+   },
+   {
+    "linha": "35 − 10 = 25",
+    "nota": "resposta"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0044"
+  }
  }
 }

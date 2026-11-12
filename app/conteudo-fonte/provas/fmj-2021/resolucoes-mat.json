@@ -1,0 +1,105 @@
+{
+ "Pd95a1a40": {
+  "n": "11",
+  "conceito": "MMC com condição de paridade: todos no mesmo lado da piscina.",
+  "equivocos": {
+   "A": "M01.4:sem-origem-identificada",
+   "B": "M01.4:sem-origem-identificada",
+   "C": "M01.4:sem-origem-identificada",
+   "D": "M01.4:esqueceu-a-paridade"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada nadador está no lado de partida depois de um número par de travessias e no outro lado depois de um número ímpar. Para os quatro estarem no mesmo lado, o tempo precisa ser múltiplo de todos os tempos de travessia e o número de travessias de cada um precisa ter a mesma paridade.",
+    "formulas": [
+     "mmc",
+     "lado de partida ↔ travessias pares"
+    ],
+    "simbolos": []
+   },
+   "pista": "No mmc(12, 15, 18, 25), quantas travessias cada um fez? Estão todos do mesmo lado?",
+   "passos": [
+    {
+     "faz": "mmc dos tempos",
+     "conta": "mmc(12, 15, 18, 25) = 2² · 3² · 5² = 900 s",
+     "porque": "Primeiro instante em que todos tocam uma borda juntos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Travessias em 900 s",
+     "conta": "75, 60, 50 e 36",
+     "porque": "75 é ímpar: o mais rápido está do outro lado.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Paridade",
+     "conta": "em 900k s: 75k travessias (12 s) e 60k (15 s)",
+     "porque": "60k é sempre par; 75k só é par se k for par.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Mesmo lado",
+     "conta": "1800 s: 150, 120, 100 e 72 travessias, todas pares",
+     "porque": "Todos no lado de partida.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Distância do mais rápido",
+     "conta": "150 · 20 m = 3 000 m → alternativa E",
+     "porque": "Mais rápido = 12 s por travessia.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 3 000 m.",
+   "checagem": "Tempos de ida e volta: 24, 30, 36 e 50 s. Todos voltam juntos ao ponto de partida no mmc(24, 30, 36, 50) = 2³ · 3² · 5² = 1800 s. Em 1800 s o nadador de 12 s fez 1800/24 = 75 idas e voltas, ou seja, 75 · 40 = 3 000 m. Confere.",
+   "erradas": {
+    "A": "1 000 m são 50 travessias (600 s): os quatro não tocam a borda juntos nesse instante.",
+    "B": "2 000 m são 100 travessias (1200 s), e 1200 não é múltiplo de 18.",
+    "C": "2 500 m são 125 travessias (1500 s), que não é múltiplo de 18.",
+    "D": "1 500 m são as 75 travessias até 900 s, mas aí o mais rápido está do lado oposto ao dos outros três."
+   },
+   "armadilha": "Parar no mmc 900 s sem verificar se todos estão no mesmo lado; em 900 s o mais rápido fez 75 travessias (número ímpar).",
+   "alerta": "",
+   "essencial": {
+    "pede": "Distância do mais rápido.",
+    "chave": "mmc com paridade: 1800 s.",
+    "cuidado": "Encontrar-se na borda não basta; tem de ser a mesma borda."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "lado oposto impossível",
+    "ideia": "Para todos estarem no lado oposto, as quatro contagens t/12, t/15, t/18, t/25 precisariam ser ímpares; mas t/15 ímpar e t/18 ímpar não convivem com t múltiplo de 900 (t/15 = 60k é sempre par). Logo só o lado de partida serve, no primeiro múltiplo de 900 em que 75k é par: k = 2."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "mmc = 900 s",
+    "nota": "bordas"
+   },
+   {
+    "linha": "75 ímpar",
+    "nota": "lados diferentes"
+   },
+   {
+    "linha": "1800 s",
+    "nota": "mesmo lado"
+   },
+   {
+    "linha": "150 · 20 = 3 000 m",
+    "nota": "resposta"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0044"
+  }
+ }
+}
