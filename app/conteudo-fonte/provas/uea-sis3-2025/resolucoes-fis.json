@@ -460,5 +460,107 @@
    "data": "2026-11-12",
    "lote": "fis-0024"
   }
+ },
+ "P18faf3bf": {
+  "n": "47",
+  "conceito": "Campo visual de um espelho plano com obstáculos: o observador vê um ponto se a reta até a imagem do ponto cruza o espelho e o caminho do raio não está bloqueado.",
+  "equivocos": {
+   "A": "F09.2:ponto-fora-do-campo-visual",
+   "B": "F09.2:ponto-fora-do-campo-visual",
+   "D": "F09.2:ignorou-os-obstaculos",
+   "E": "F09.2:ponto-fora-do-campo-visual"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O observador vê um ponto pelo espelho se o raio que sai do ponto, reflete no espelho e chega ao olho não for bloqueado. Um jeito prático: trace a reta do olho até a imagem do ponto (simétrica atrás do espelho). Ela precisa cruzar o espelho, e os dois trechos do raio (ponto → espelho e espelho → olho) não podem atravessar os obstáculos.",
+    "formulas": [
+     "imagem simétrica ao ponto em relação ao espelho",
+     "raio visível: cruza o espelho e não é bloqueado"
+    ],
+    "simbolos": [
+     [
+      "E",
+      "espelho"
+     ],
+     [
+      "O",
+      "observador"
+     ]
+    ]
+   },
+   "pista": "Para cada ponto, imagine a reta do olho até a imagem dele, atrás do espelho.",
+   "passos": [
+    {
+     "faz": "Monte as coordenadas na grade",
+     "conta": "espelho de x = 2 a x = 10 | O em (6; 6 abaixo) | P (1;1), Q (3;1), R (11;1), S (9;3), T (12;3) abaixo do espelho",
+     "porque": "Unidades de uma casa da grade.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Teste P, R e T",
+     "conta": "P: a reta cruza o espelho em x ≈ 1,7 (fora dele) | R: cruza em x ≈ 10,3 (fora) | T: cruza na borda (x = 10), e o trecho espelho → olho passa pelo obstáculo da direita",
+     "porque": "Esses três pontos não são vistos.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Teste Q e S",
+     "conta": "Q: cruza em x ≈ 3,4 | S: cruza em x = 8, e nenhum trecho passa por obstáculo",
+     "porque": "Os dois raios chegam livres ao olho.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "visíveis: Q e S",
+     "porque": "É a alternativa C.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — Q e S.",
+   "checagem": "Confira S pelos ângulos: S está a 3 casas do espelho e O a 6, com 3 casas de diferença na horizontal; o ponto de reflexão divide essa distância na razão 3 : 6, ficando 1 casa à esquerda de S (x = 8), dentro do espelho. Ali, ângulo de incidência e de reflexão são iguais.",
+   "erradas": {
+    "A": "Não confere: o raio que viria de P bateria fora do espelho (à esquerda dele), então P não é visto.",
+    "B": "Não confere: R e T não são vistos: o raio de R bate fora do espelho, e o de T, na borda, é bloqueado pelo obstáculo da direita.",
+    "D": "Não confere: inclui R e T, que não aparecem para o observador; só Q e S têm o caminho livre.",
+    "E": "Não confere: P e R ficam fora do campo do espelho, e S, que é visível, ficou de fora."
+   },
+   "armadilha": "Esquecer que o raio precisa bater DENTRO do espelho e não pode atravessar os obstáculos.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quais pontos o observador vê pelo espelho, com obstáculos no caminho.",
+    "chave": "Retas do olho às imagens: só as de Q e S cruzam o espelho sem obstáculo.",
+    "cuidado": "Testar cada ponto pela imagem atrás do espelho."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "campo visual",
+    "ideia": "O campo do espelho é a região entre as retas que ligam a imagem do olho às bordas do espelho; P e R ficam fora dela, e o obstáculo da direita corta o caminho de T."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "imagem do ponto: simétrica atrás de E",
+    "nota": "método"
+   },
+   {
+    "linha": "P, R: reta fora do espelho ; T: bloqueado",
+    "nota": "não vistos"
+   },
+   {
+    "linha": "Q, S: reta dentro de E, sem obstáculo",
+    "nota": "vistos"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "fis-0028"
+  }
  }
 }
