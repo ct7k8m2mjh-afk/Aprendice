@@ -145,13 +145,15 @@ def banco(m):
 
 def ocupadas(reg):
     ids = set(reg['pendentes']) | set(reg['divergencias'])
-    # pendências e divergências registradas à mão pela sessão do Fable (pendentes.md, divergencias.md)
-    for f in ('pendentes.md', 'divergencias.md'):
-        c = os.path.join(DOCS, f)
-        if os.path.exists(c):
-            ids |= set(re.findall(r'\bP[0-9a-f]{8}\b', open(c, encoding='utf-8').read()))
+    # pendências registradas à mão pela sessão do Fable (pendentes.md). divergencias.md é só histórico desde 12/11/2026:
+    # divergência deixou de existir (vale o gabarito oficial, com nota_gabarito), e essas questões voltam à fila.
+    c = os.path.join(DOCS, 'pendentes.md')
+    if os.path.exists(c):
+        ids |= set(re.findall(r'\bP[0-9a-f]{8}\b', open(c, encoding='utf-8').read()))
+    # só lotes ABERTOS seguram as questões: num lote gravado, cada questão já está resolvida, pendente ou divergente
     for l in reg['lotes'].values():
-        ids |= set(l['ids'])
+        if l.get('estado') == 'aberto':
+            ids |= set(l['ids'])
     return ids
 
 
