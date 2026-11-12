@@ -770,5 +770,95 @@
    "data": "2026-11-12",
    "lote": "geo-0028"
   }
+ },
+ "P4b274f51": {
+  "n": "39",
+  "conceito": "Identificar no mapa a energia nuclear (contorno roxo, Rio de Janeiro) e a solar (contorno verde).",
+  "equivocos": {
+   "A": "G09.5:limiar-da-legenda-ignorado",
+   "B": "G09.5:fonte-trocada",
+   "D": "G09.5:fonte-trocada",
+   "E": "G09.5:fonte-trocada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O mapa tem dois contornos especiais. O roxo envolve só o Rio de Janeiro, com \"23% da energia gerada no estado\": é onde ficam as usinas nucleares de Angra dos Reis, as únicas do país. O verde envolve estados do Nordeste e do Sudeste, com \"mais de 1% de energia gerada\": em 2018, a energia solar ainda era pequena e começava a aparecer justamente nessas áreas ensolaradas.",
+    "formulas": [
+     "usinas nucleares no Brasil: só Angra dos Reis (RJ)",
+     "solar em 2018: fatia pequena, Nordeste e Minas Gerais"
+    ],
+    "simbolos": [
+     [
+      "Angra dos Reis",
+      "município do Rio de Janeiro onde ficam as usinas nucleares Angra 1 e Angra 2"
+     ],
+     [
+      "capacidade instalada",
+      "potência máxima que as usinas de uma fonte podem gerar"
+     ]
+    ]
+   },
+   "pista": "Qual fonte de energia existe em um único estado do Brasil?",
+   "passos": [
+    {
+     "faz": "Localize o contorno roxo",
+     "conta": "só o Rio de Janeiro · \"23% da energia gerada no estado\"",
+     "porque": "Fonte presente em um único estado: nuclear, em Angra dos Reis.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Localize o contorno verde",
+     "conta": "Nordeste, Bahia, Minas Gerais · \"Mais de 1% de energia gerada\"",
+     "porque": "Fonte pequena, em áreas de muito Sol: solar, em expansão em 2018.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Elimine as opções sem nuclear no roxo",
+     "conta": "B: eólica · D: hidráulica · E: solar",
+     "porque": "Nenhuma dessas fontes existe só no Rio de Janeiro.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Elimine a hidráulica no verde",
+     "conta": "A: nuclear e hidráulica",
+     "porque": "A hidráulica passa de 1% em quase todo o país; não precisaria de um contorno com esse limiar.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "nuclear e solar",
+     "porque": "É a alternativa C.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — nuclear e solar.",
+   "checagem": "Confira pelo limiar do verde: \"mais de 1%\" só faz sentido para uma fonte ainda pequena em 2018. A hidráulica e a eólica do Nordeste já tinham fatias muito maiores.",
+   "erradas": {
+    "A": "Acerta o roxo, mas a hidráulica gera bem mais que 1% em quase todo o país; o contorno verde, com limiar tão baixo, marca uma fonte ainda pequena.",
+    "B": "A eólica não existe só no Rio de Janeiro; o contorno roxo, num único estado, é a nuclear de Angra dos Reis.",
+    "D": "A hidráulica não está só no Rio de Janeiro; o roxo é a nuclear. E a eólica no Nordeste já passava muito de 1% em 2018.",
+    "E": "A solar não é a fonte do contorno roxo; o único estado com usinas nucleares é o Rio de Janeiro."
+   },
+   "armadilha": "Pensar que o verde, no Nordeste, é eólica (D), sem olhar o limiar de \"mais de 1%\", baixo demais para a eólica da região.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Que fontes de energia indicam os contornos roxo e verde.",
+    "chave": "Roxo: nuclear, só em Angra dos Reis (RJ); verde: solar, ainda pequena em 2018.",
+    "cuidado": "Use o limiar da legenda (1%) para diferenciar solar de eólica."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "geo-0031"
+  }
  }
 }

@@ -300,5 +300,98 @@
    "data": "2026-11-12",
    "lote": "geo-0022"
   }
+ },
+ "P17931495": {
+  "n": "35",
+  "conceito": "Ler o mapa de variação da movimentação portuária e localizar os portos citados.",
+  "equivocos": {
+   "B": "G09.6:porto-no-estado-errado",
+   "C": "G09.6:mapa-mal-lido",
+   "D": "G09.6:mapa-mal-lido",
+   "E": "G09.6:mapa-mal-lido"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O mapa pinta cada estado conforme a variação da movimentação portuária entre 2010 e 2019: tons de vermelho são queda, tons de azul são alta, branco é sem dados. Para julgar as alternativas, é preciso saber em que estado fica cada porto: Itaqui no Maranhão, Suape em Pernambuco, Itajaí em Santa Catarina e Tubarão no Espírito Santo.",
+    "formulas": [
+     "vermelho = variação negativa · azul = positiva · Itaqui (MA), Suape (PE), Itajaí (SC), Tubarão (ES)"
+    ],
+    "simbolos": [
+     [
+      "movimentação portuária",
+      "volume de cargas embarcadas e desembarcadas nos portos"
+     ],
+     [
+      "porto do Itaqui",
+      "porto de São Luís, no Maranhão"
+     ],
+     [
+      "porto de Tubarão",
+      "porto de Vitória, no Espírito Santo, voltado ao minério"
+     ]
+    ]
+   },
+   "pista": "Antes de olhar as cores, localize o estado de cada porto citado.",
+   "passos": [
+    {
+     "faz": "Localize o Maranhão",
+     "conta": "MA: azul médio (40,6 a 95,3%)",
+     "porque": "O Maranhão, onde fica o Itaqui, teve variação positiva.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Teste a E",
+     "conta": "Espírito Santo (Tubarão): tom vermelho (−66,7 a −31,2%)",
+     "porque": "A variação no Espírito Santo foi negativa, não positiva.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Teste a B e a C",
+     "conta": "Suape fica em Pernambuco, não no Espírito Santo · Paraná e Santa Catarina em azul",
+     "porque": "A B erra o estado do porto; a C contradiz as cores do Sul.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Teste a D",
+     "conta": "Mato Grosso do Sul: tom salmão (−31,2 a −1,6%) · MT e GO: sem dados",
+     "porque": "No Centro-Oeste, a variação não foi positiva.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "positiva no Maranhão, onde fica o Itaqui",
+     "porque": "É a alternativa A.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — positiva na unidade da federação onde se localiza o porto do Itaqui.",
+   "checagem": "Confira pela legenda: o Maranhão está numa faixa azul (40,6 a 95,3%), ou seja, alta de pelo menos 40% no período. Positiva com folga.",
+   "erradas": {
+    "B": "O Espírito Santo teve variação negativa, mas Suape fica em Pernambuco, não no Espírito Santo.",
+    "C": "Paraná e Santa Catarina, onde fica Itajaí, aparecem em tons de azul (alta); a variação no Sul não foi negativa.",
+    "D": "Mato Grosso do Sul aparece com variação negativa (−31,2 a −1,6%), e Mato Grosso e Goiás estão sem dados.",
+    "E": "Tubarão fica no Espírito Santo, que aparece em vermelho (−66,7 a −31,2%): variação negativa, não positiva."
+   },
+   "armadilha": "Não saber onde fica cada porto e julgar só pelas cores; a B, por exemplo, põe Suape no lugar errado.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Onde a variação na movimentação portuária foi como a alternativa diz.",
+    "chave": "Maranhão (porto do Itaqui) aparece em azul: variação positiva.",
+    "cuidado": "Localize o estado de cada porto antes de ler as cores."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "geo-0032"
+  }
  }
 }
