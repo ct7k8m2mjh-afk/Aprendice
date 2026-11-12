@@ -16,3 +16,7 @@
 | 2026-11-12 | Pcfe0e4d0 | uece-2023-1 q69 | fs L07.1 | fs S03.1 Marx: classes, mais-valia e alienação | Pede a orientação filosófica da interpretação de Caio Prado (materialismo histórico); apontada pelo conferente do fs-0018 |
 | 2026-11-12 | P19bf6a7a | uece-2026-1 q69 | fs L02.4 | fs L05.2 Hobbes e o contrato social | Bodin e o conceito de soberania (teoria política moderna); apontada pelo conferente do fs-0018 |
 | 2026-11-12 | Pf0116849 | uece-2023-1 q70 | fs L06.3 | fs L07.1 razão, progresso e autonomia | Spinoza: medo e superstição contra a razão (não é empirismo); apontada pelo conferente do fs-0018 |
+| 2026-11-12 | P41d362f2 | unesp-2024-2 q56 | por P05.4 | fs S04.6 | Linguagem neutra à luz dos direitos humanos (identidade de gênero, pessoas trans e não-binárias): Sociologia, não variação linguística; apontada pela sessão de Português |
+| 2026-11-12 | Pea2576fa | saocamilo-2021-2 q38 | mat M08.2 | mat M12.2 | Altura pelo fêmur modelada por equação de reta (gráfico); não é quadrilátero; apontada pela sessão de Português |
+| 2026-11-12 | P8944ccb0 | uerj-2026-1 q4 | por P06.1 | fis F07.4 | Pergunta a grandeza física da emersão (densidade/empuxo); o texto de apoio é letra de música; apontada pela sessão de Português |
+| 2026-11-12 | Pbdaf3ef9 | unesp-2026-2 q47 | por P05.4 | geo G06.5 | Sotaques explicados pelas matrizes étnicas da formação do povo brasileiro: Geografia da população; apontada pela sessão de Português |
