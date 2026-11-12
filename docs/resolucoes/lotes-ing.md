@@ -1,6 +1,6 @@
 # Inglês: resoluções (gerado por lote.py em 2026-11-12)
 
-Faltam 1471 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 214; demais nível 1-6 1071; ENEM nível 7-10 2; provas-alvo nível 7-10 83; demais nível 7-10 101.
+Faltam 1441 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 184; demais nível 1-6 1071; ENEM nível 7-10 2; provas-alvo nível 7-10 83; demais nível 7-10 101.
 
 ## Lotes
 
@@ -34,6 +34,7 @@ Faltam 1471 questões sem resolução (fora as que estão em lote, pendentes ou 
 | ing-0026 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | ing-0027 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | ing-0028 | provas-alvo nível 1-6 | 30 | gravado | 17 | 13 | 0 |
+| ing-0029 | provas-alvo nível 1-6 | 30 | gravado | 29 | 1 | 0 |
 
 ## Pendentes (falta de certeza absoluta)
 
@@ -48,6 +49,7 @@ Faltam 1471 questões sem resolução (fora as que estão em lote, pendentes ou 
 | P09cadc2b | UECE 2025 2025.2 – 1ª fase · questão 85 | I01.3 informação explícita (tema I01 Leitura e interpretação de textos) | print: o texto de apoio em inglês (UECE 2025.2, página anterior às questões) não está no texto_da_prova nem no print da questão, que mostra só o enunciado e as alternativas; refazer o print ou a transcrição com o texto, a partir do PDF oficial. Prova sem gabarito definitivo: depois, gabarito do Aprendice às cegas. |
 | P52d5be57 | UECE 2026 2026.1 – 1ª fase · questão 78 | I01.3 informação explícita (tema I01 Leitura e interpretação de textos) | print: o texto de apoio em inglês (UECE 2026.1, página anterior às questões) não está no texto_da_prova nem no print da questão, que mostra só o enunciado e as alternativas; refazer o print ou a transcrição com o texto, a partir do PDF oficial. |
 | P45b10618 | UECE 2026 2026.1 – 1ª fase · questão 79 | I01.3 informação explícita (tema I01 Leitura e interpretação de textos) | print: o texto de apoio em inglês (UECE 2026.1, página anterior às questões) não está no texto_da_prova nem no print da questão, que mostra só o enunciado e as alternativas; refazer o print ou a transcrição com o texto, a partir do PDF oficial. |
+| P8e288415 | UECE 2026 2026.1 – 1ª fase · questão 80 | I01.4 inferência e sentido implícito (tema I01 Leitura e interpretação de textos) | print: o texto de apoio em inglês (UECE 2026.1, página anterior às questões) não está no texto_da_prova nem no print da questão, que mostra só o enunciado e as alternativas; refazer o print ou a transcrição com o texto, a partir do PDF oficial. |
 | P6ca01ffd | UECE 2026 2026.1 – 1ª fase · questão 81 | I01.3 informação explícita (tema I01 Leitura e interpretação de textos) | print: o texto de apoio em inglês (UECE 2026.1, página anterior às questões) não está no texto_da_prova nem no print da questão, que mostra só o enunciado e as alternativas; refazer o print ou a transcrição com o texto, a partir do PDF oficial. |
 | P2924ee9f | UECE 2026 2026.1 – 1ª fase · questão 82 | I01.3 informação explícita (tema I01 Leitura e interpretação de textos) | print: o texto de apoio em inglês (UECE 2026.1, página anterior às questões) não está no texto_da_prova nem no print da questão, que mostra só o enunciado e as alternativas; refazer o print ou a transcrição com o texto, a partir do PDF oficial. |
 | Pcf4bf745 | UECE 2026 2026.1 – 1ª fase · questão 83 | I01.3 informação explícita (tema I01 Leitura e interpretação de textos) | print: o texto de apoio em inglês (UECE 2026.1, página anterior às questões) não está no texto_da_prova nem no print da questão, que mostra só o enunciado e as alternativas; refazer o print ou a transcrição com o texto, a partir do PDF oficial. |
