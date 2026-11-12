@@ -636,5 +636,105 @@
    "data": "2026-11-12",
    "lote": "fis-0031"
   }
+ },
+ "Pd4ed1f8a": {
+  "n": "32",
+  "conceito": "Oxímetro: absorção em cada comprimento de onda depende de quanto pesa cada forma de hemoglobina.",
+  "equivocos": {
+   "B": "F10.2:coeficientes-invertidos",
+   "C": "F10.2:absorcao-mesmo-sentido",
+   "D": "F10.2:absorcao-mesmo-sentido"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Quando a saturação sobe, [HbO₂] aumenta e [Hb] diminui. Em 660 nm, o coeficiente de Hb (3227) é muito maior que o de HbO₂ (320): trocar Hb por HbO₂ faz a absorção cair. Em 940 nm, o coeficiente de HbO₂ (1214) é maior que o de Hb (693): a absorção sobe.",
+    "formulas": [
+     "A(660) = 320[HbO₂] + 3227[Hb]",
+     "A(940) = 1214[HbO₂] + 693[Hb]"
+    ],
+    "simbolos": [
+     [
+      "[HbO₂]",
+      "oxi-hemoglobina (sobe)"
+     ],
+     [
+      "[Hb]",
+      "desoxi-hemoglobina (desce)"
+     ]
+    ]
+   },
+   "pista": "Em cada equação, qual termo tem o maior coeficiente?",
+   "passos": [
+    {
+     "faz": "Defina a mudança",
+     "conta": "[HbO₂] ↑ e [Hb] ↓ (uma vira a outra)",
+     "porque": "Saturação subindo.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "660 nm",
+     "conta": "perde termo de peso 3227, ganha de peso 320 → A diminui",
+     "porque": "Hb absorve mais aqui.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "940 nm",
+     "conta": "perde termo de peso 693, ganha de peso 1214 → A aumenta",
+     "porque": "HbO₂ absorve mais aqui.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "diminui em 660 e aumenta em 940",
+     "porque": "É a alternativa A.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — diminui em 660 nm e aumenta em 940 nm.",
+   "checagem": "Com números: passando de 80% para 95% de HbO₂ (total 1): A(660) = 320 × 0,8 + 3227 × 0,2 ≈ 901 para 320 × 0,95 + 3227 × 0,05 ≈ 465 (cai); A(940) ≈ 1110 para ≈ 1188 (sobe).",
+   "erradas": {
+    "B": "Sai de inverter os pesos: em 660 nm quem domina é a Hb (3227), que diminui.",
+    "C": "Não confere: em 660 nm a absorção cai, porque a Hb, que tem o maior coeficiente ali, diminui.",
+    "D": "Não confere: em 940 nm a absorção sobe, porque a HbO₂, que tem o maior coeficiente ali, aumenta."
+   },
+   "armadilha": "Achar que as duas absorções mudam no mesmo sentido.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Como mudam as absorções do oxímetro quando a saturação sobe.",
+    "chave": "Em 660 nm diminui; em 940 nm aumenta.",
+    "cuidado": "Compare os coeficientes."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "números",
+    "ideia": "80% → 95%: A(660) ≈ 901 → 465; A(940) ≈ 1110 → 1188."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "[HbO₂] ↑, [Hb] ↓",
+    "nota": "saturação"
+   },
+   {
+    "linha": "660: 3227 > 320 → A ↓",
+    "nota": "Hb pesa mais"
+   },
+   {
+    "linha": "940: 1214 > 693 → A ↑",
+    "nota": "HbO₂ pesa mais"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "fis-0032"
+  }
  }
 }
