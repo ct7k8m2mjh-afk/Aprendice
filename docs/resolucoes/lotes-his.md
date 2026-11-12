@@ -1,6 +1,6 @@
 # História: resoluções (gerado por lote.py em 2026-11-12)
 
-Faltam 733 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 560; ENEM nível 7-10 17; provas-alvo nível 7-10 98; demais nível 7-10 58.
+Faltam 678 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 505; ENEM nível 7-10 17; provas-alvo nível 7-10 98; demais nível 7-10 58.
 
 ## Lotes
 
@@ -58,7 +58,9 @@ Faltam 733 questões sem resolução (fora as que estão em lote, pendentes ou c
 | his-0050 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | his-0051 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | his-0052 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
-| his-0053 | demais nível 1-6 | 30 | aberto |  |  |  |
+| his-0053 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| his-0054 | provas-alvo nível 1-6 | 30 | aberto |  |  |  |
+| his-0055 | demais nível 1-6 | 30 | aberto |  |  |  |
 
 ## Pendentes (falta de certeza absoluta)
 
@@ -75,7 +77,4 @@ Faltam 733 questões sem resolução (fora as que estão em lote, pendentes ou c
 
 ## Divergências de gabarito (o dono decide)
 
-| Questão | Prova | Conteúdo | Motivo |
-|---|---|---|---|
-| Pe49c4e55 | UEG 2025 2025/2 · questão 40 | H01.8 Império Romano, cristianismo e crise (tema H01 Antiguidade) | divergência: o gabarito oficial é E, mas a E afirma que a Igreja "foi oficialmente criada pelo Império Romano" no Concílio de Niceia (325), o que é falso: as comunidades cristãs já existiam havia quase três séculos, Niceia foi um concílio convocado por Constantino para debater a doutrina, e o cristianismo só virou religião oficial com o Edito de Tessalônica (380). As outras alternativas também são falsas (A, B e C contradizem os textos ou os fatos; a D contradiz o texto 1, que diz que a divindade de Jesus foi um "processo"). Nenhuma alternativa está correta. / web: gabarito oficial definitivo UEG 2025/2 mantém 40 = E (https://www.nucleodeselecao.ueg.br/pdfs/processos/361/PS%20UEG%202025-2_Gabarito_Oficial_Definitivo_Espanhol-%20Ingles.pdf); nenhuma resolução publicada encontrada. Onde as leituras se separam: a banca lê a E como tese historiográfica (a Igreja como instituição ligada ao Estado nasce da aliança com o Império, marcada por Niceia, contra a fé de que Cristo a fundou), em diálogo com o texto 1, que trata a divindade de Jesus como "processo"; a sessão lê "oficialmente criada pelo Império Romano" ao pé da letra, o que é falso (comunidades e hierarquia anteriores; religião oficial só em 380). |
-| Pd3f20a6e | URCA 2024 2024.2 · questão 62 | H02.4 reinos e impérios africanos (tema H02 Idade Média) | divergência: o gabarito oficial é D (Império do Mali), mas o comando pede o "primeiro império da África subsaariana" conhecido pelo comércio de ouro, e o primeiro foi o Império de Gana (alternativa B), anterior ao Mali (século XIII); Axum (A), no nordeste da África, é ainda mais antigo. O Mali é famoso pelo ouro e por Tombuctu, mas não foi o primeiro. A palavra "primeiro" torna a D incorreta e a questão ambígua. / web: gabarito oficial do 2º dia mantém 2 = D (https://www.urca.br/cev/wp-content/uploads/sites/39/2024/07/GABARITO-OFICIAL-2o-DIA-2024.2.pdf); nenhuma resolução publicada encontrada; a World History Encyclopedia apresenta Gana como o primeiro grande império da África Ocidental, apoiado no comércio de ouro e sal, e o Mali como sucessor (https://www.worldhistory.org/trans/pt/2-1383/o-comercio-de-ouro-na-africa-ocidental-antiga-e-me/). Onde as leituras se separam: a banca chega ao Mali pelas pistas "riqueza cultural e intelectual" e controle das rotas (Tombuctu, Mansa Musa), lendo "primeiro" como o mais importante; ao pé da letra, "primeiro" aponta Gana (B). |
+Nenhuma.
