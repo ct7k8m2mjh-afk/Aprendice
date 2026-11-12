@@ -1,6 +1,6 @@
 # História: resoluções (gerado por lote.py em 2026-11-12)
 
-Faltam 678 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 505; ENEM nível 7-10 17; provas-alvo nível 7-10 98; demais nível 7-10 58.
+Faltam 648 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 475; ENEM nível 7-10 17; provas-alvo nível 7-10 98; demais nível 7-10 58.
 
 ## Lotes
 
@@ -60,12 +60,15 @@ Faltam 678 questões sem resolução (fora as que estão em lote, pendentes ou c
 | his-0052 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | his-0053 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | his-0054 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
-| his-0055 | demais nível 1-6 | 30 | aberto |  |  |  |
+| his-0055 | demais nível 1-6 | 30 | gravado | 29 | 1 | 0 |
+| his-0056 | provas-alvo nível 1-6 | 30 | aberto |  |  |  |
+| his-0057 | demais nível 1-6 | 30 | aberto |  |  |  |
 
 ## Pendentes (falta de certeza absoluta)
 
 | Questão | Prova | Conteúdo | Motivo |
 |---|---|---|---|
+| P106941e8 | Cederj 2025 2025.1 · questão 30 | H05.3 conflitos sociais na Primeira República (tema H05 República Brasileira) | classificação: é de Português — a questão associa autores e livros (Machado de Assis, Lima Barreto, João do Rio, García Márquez, Maquiavel, Hobbes), conteúdo de literatura |
 | P61d9ea43 | Fuvest 2026 1ª fase · questão 12 | H05.5 Revolução de 1930 e governo constitucional de Vargas (tema H05 República Brasileira) | classificação: é de Português (literatura) — a questão pede a análise dos romances Caminho de pedras, de Rachel de Queiroz, e As meninas, de Lygia Fagundes Telles (personagens Angelita, Ana Clara, Noemi, Lorena); o contexto histórico dos direitos das mulheres é só introdução. |
 | P916264a9 | Fuvest 2026 1ª fase · questão 9 | H04.9 crise do Império e proclamação da República (tema H04 Independência e Império) | classificação: é de Filosofia e Sociologia (a questão compara as ideias de Nísia Floresta e Émile Durkheim sobre a educação; é de Sociologia, e não de História do Brasil) |
 | P881983dc | UECE 2020 2020.2 – 2ª fase · questão 151 | H02.4 reinos e impérios africanos (tema H02 Idade Média) | As afirmativas sobre o reino Bamun (islamização como resistência ao avanço cristão, diplomacia que teria evitado o domínio britânico sob o rei Njoya, introdução de tecnologia e indústria) não são conferíveis com certeza em conhecimento consolidado de livro didático, e a segunda parece não combinar com o domínio alemão e depois francês sobre Bamun. Sem certeza absoluta, a resolução não entra. |
