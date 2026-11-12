@@ -1,6 +1,6 @@
 # História: resoluções (gerado por lote.py em 2026-11-12)
 
-Faltam 165 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 0; ENEM nível 7-10 9; provas-alvo nível 7-10 98; demais nível 7-10 58.
+Faltam 135 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 0; ENEM nível 7-10 0; provas-alvo nível 7-10 77; demais nível 7-10 58.
 
 ## Lotes
 
@@ -82,7 +82,8 @@ Faltam 165 questões sem resolução (fora as que estão em lote, pendentes ou c
 | his-0074 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | his-0075 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | his-0076 | demais nível 1-6 | 30 | gravado | 28 | 1 | 1 |
-| his-0077 | demais nível 1-6 | 30 | aberto |  |  |  |
+| his-0077 | demais nível 1-6 | 30 | gravado | 29 | 1 | 0 |
+| his-0078 | ENEM nível 7-10 | 30 | aberto |  |  |  |
 
 ## Pendentes (falta de certeza absoluta)
 
@@ -97,6 +98,7 @@ Faltam 165 questões sem resolução (fora as que estão em lote, pendentes ou c
 | P916264a9 | Fuvest 2026 1ª fase · questão 9 | H04.9 crise do Império e proclamação da República (tema H04 Independência e Império) | classificação: é de Filosofia e Sociologia (a questão compara as ideias de Nísia Floresta e Émile Durkheim sobre a educação; é de Sociologia, e não de História do Brasil) |
 | P5615270b | PUC-Rio 2026 Grupo 4 · questão 45 | H05.7 República de 1946: de Dutra a Jango (tema H05 República Brasileira) | classificação: é de Geografia |
 | P881983dc | UECE 2020 2020.2 – 2ª fase · questão 151 | H02.4 reinos e impérios africanos (tema H02 Idade Média) | As afirmativas sobre o reino Bamun (islamização como resistência ao avanço cristão, diplomacia que teria evitado o domínio britânico sob o rei Njoya, introdução de tecnologia e indústria) não são conferíveis com certeza em conhecimento consolidado de livro didático, e a segunda parece não combinar com o domínio alemão e depois francês sobre Bamun. Sem certeza absoluta, a resolução não entra. |
+| P4cdceafd | UEG 2026 Medicina 2026/1 · questão 42 | H08.8 mundo atual: Oriente Médio, terrorismo e conflitos recentes (tema H08 Guerra Fria) | classificação: é de Sociologia |
 | Pdd624e83 | UEL 2024 1ª fase · questão 41 | H05.6 Estado Novo e trabalhismo (tema H05 República Brasileira) | classificação: é de Física — questão interdisciplinar em que três das cinco afirmativas pedem cálculos de ondas (comprimento de onda de 150 MHz, energia e frequência, frequência da luz vermelha); só duas tratam de História (Torre Eiffel e rádio no Estado Novo). |
 | P3914c17c | UEMA 2021 PAES · questão 65 | H06.4 Revolução Francesa (tema H06 Revoluções) | classificação: é de Filosofia |
 | P4172ca46 | UERJ 2027 1º Exame de Qualificação · questão 59 | H06.10 Estados Unidos no século XIX: expansão e Guerra de Secessão (tema H06 Revoluções) | classificação: é de Geografia — a questão pede o fundamento teórico (subjetividade do conceito de região) que explica as respostas de uma pesquisa de 2014 sobre quais estados formam o Sul dos EUA; não trata de fato histórico. |
