@@ -1,6 +1,6 @@
 # História: resoluções (gerado por lote.py em 2026-11-12)
 
-Faltam 195 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 22; ENEM nível 7-10 17; provas-alvo nível 7-10 98; demais nível 7-10 58.
+Faltam 165 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 0; ENEM nível 7-10 9; provas-alvo nível 7-10 98; demais nível 7-10 58.
 
 ## Lotes
 
@@ -81,7 +81,8 @@ Faltam 195 questões sem resolução (fora as que estão em lote, pendentes ou c
 | his-0073 | demais nível 1-6 | 30 | gravado | 29 | 1 | 0 |
 | his-0074 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | his-0075 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
-| his-0076 | demais nível 1-6 | 30 | aberto |  |  |  |
+| his-0076 | demais nível 1-6 | 30 | gravado | 28 | 1 | 1 |
+| his-0077 | demais nível 1-6 | 30 | aberto |  |  |  |
 
 ## Pendentes (falta de certeza absoluta)
 
@@ -99,10 +100,13 @@ Faltam 195 questões sem resolução (fora as que estão em lote, pendentes ou c
 | Pdd624e83 | UEL 2024 1ª fase · questão 41 | H05.6 Estado Novo e trabalhismo (tema H05 República Brasileira) | classificação: é de Física — questão interdisciplinar em que três das cinco afirmativas pedem cálculos de ondas (comprimento de onda de 150 MHz, energia e frequência, frequência da luz vermelha); só duas tratam de História (Torre Eiffel e rádio no Estado Novo). |
 | P3914c17c | UEMA 2021 PAES · questão 65 | H06.4 Revolução Francesa (tema H06 Revoluções) | classificação: é de Filosofia |
 | P4172ca46 | UERJ 2027 1º Exame de Qualificação · questão 59 | H06.10 Estados Unidos no século XIX: expansão e Guerra de Secessão (tema H06 Revoluções) | classificação: é de Geografia — a questão pede o fundamento teórico (subjetividade do conceito de região) que explica as respostas de uma pesquisa de 2014 sobre quais estados formam o Sul dos EUA; não trata de fato histórico. |
+| P7f87c73b | UNIRG 2026 Medicina 2026/2 · questão 54 | H08.6 contracultura e direitos civis nos anos 1960 (tema H08 Guerra Fria) | classificação: é de Sociologia |
 | Pe2ccb6d3 | UPE 2021 SSA3 · questão 76 | H05.8 ditadura militar: repressão, AI-5 e milagre econômico (tema H05 República Brasileira) | fato não confirmado: a pergunta pede a "principal característica socioeconômica" do governo Nilo Coelho em Pernambuco (1967-1971); o texto da prova só fala da escolha do candidato, e não consigo confirmar, com fonte consolidada, que a ampliação da rede elétrica rural foi a marca principal desse governo diante das outras obras citadas. |
 | P2998bf6c | UPE 2022 SSA3 · questão 73 | H05.3 conflitos sociais na Primeira República (tema H05 República Brasileira) | fato não confirmado: o texto da prova não traz as reivindicações das greves do Recife (1890-1896), e não consigo confirmar, com fonte consolidada, que o aumento salarial e a restrição da mão de obra feminina foram pautas comuns a todas as categorias citadas (carroceiros, estivadores, jóqueis etc.); a afirmação do gabarito depende do artigo citado. |
 | Pc5b18c12 | UPE 2023 SSA3 · questão 82 | H04.9 crise do Império e proclamação da República (tema H04 Independência e Império) | fato não verificável com segurança: a questão pede um evento do mandato de Joaquim Francisco como governador de Pernambuco (1991-1995), e nem o texto nem fontes consolidadas de livro didático dão base para confirmar a alternativa D; além disso, está classificada em H04.9 (Proclamação da República), mas trata da Nova República |
 
 ## Divergências de gabarito (o dono decide)
 
-Nenhuma.
+| Questão | Prova | Conteúdo | Motivo |
+|---|---|---|---|
+| Pc90de958 | Fema 2022 Processo Seletivo 2022 · questão 13 | H08.8 mundo atual: Oriente Médio, terrorismo e conflitos recentes (tema H08 Guerra Fria) | gabarito oficial E ("Apenas a alternativa IV está incorreta") contradiz os fatos: a IV é verdadeira (19 sequestradores, milhares de mortos) e a III é falsa (a Al-Qaeda não é grupo separatista basco); nenhuma alternativa diz "apenas III incorreta". Se a banca leu como erro o "terceiro avião" da II (foi o quarto), a coerente seria D (II e III incorretas). PDF da Fema não abriu daqui para conferir o gabarito. Conferente, às cegas, deu D. Manter fora até achar o gabarito publicado; se a banca confirmar E, a questão tem gabarito inconsistente com os fatos e fica fora. |
