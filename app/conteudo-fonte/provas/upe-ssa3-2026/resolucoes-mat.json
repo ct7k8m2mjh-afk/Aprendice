@@ -1859,5 +1859,193 @@
    "data": "2026-11-12",
    "lote": "mat-0040"
   }
+ },
+ "P77b15bbe": {
+  "n": "47",
+  "conceito": "Faces opostas de um dado somam 7.",
+  "equivocos": {
+   "A": "M17.1:somou-as-visiveis",
+   "B": "M17.1:usou-um-par-so",
+   "D": "M17.1:sem-origem-identificada",
+   "E": "M17.1:somou-todas-as-faces"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Num dado comum, 1 é oposto a 6, 2 é oposto a 5 e 3 é oposto a 4. As faces que não aparecem na figura são exatamente as opostas às três que aparecem.",
+    "formulas": [
+     "face oposta = 7 − face"
+    ],
+    "simbolos": []
+   },
+   "pista": "Se você vê três faces que se encontram num vértice, quais são as três que ficam escondidas?",
+   "passos": [
+    {
+     "faz": "Faces visíveis",
+     "conta": "1, 2 e 3",
+     "porque": "Dado no enunciado e na figura.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Faces opostas",
+     "conta": "7 − 1 = 6, 7 − 2 = 5, 7 − 3 = 4",
+     "porque": "Cada escondida é a oposta de uma visível.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Soma",
+     "conta": "6 + 5 + 4 = 15 → alternativa C",
+     "porque": "Soma das não visíveis.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 15",
+   "checagem": "As seis faces somam 1 + 2 + 3 + 4 + 5 + 6 = 21. Tirando as visíveis, 21 − (1 + 2 + 3) = 21 − 6 = 15. Confere.",
+   "erradas": {
+    "A": "6 é a soma das faces visíveis (1 + 2 + 3), não das escondidas.",
+    "B": "7 é a soma de um único par de faces opostas.",
+    "D": "18 não confere: as faces escondidas são as opostas de 1, 2 e 3, isto é, 6, 5 e 4, que somam 15.",
+    "E": "21 é a soma de todas as seis faces."
+   },
+   "armadilha": "Responder a soma das faces que se veem, ou de todas as faces.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Soma das faces escondidas.",
+    "chave": "Oposta = 7 − face.",
+    "cuidado": "As escondidas são as opostas das visíveis."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "as três maiores",
+    "ideia": "As visíveis são as três menores faces (1, 2, 3); as escondidas são as três maiores (4, 5, 6). Três números seguidos com o do meio 5 somam 3 · 5 = 15."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "1 + 6 = 2 + 5 = 3 + 4 = 7",
+    "nota": "faces opostas"
+   },
+   {
+    "linha": "6 + 5 + 4 = 15",
+    "nota": "escondidas"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0043"
+  }
+ },
+ "P87252194": {
+  "n": "68",
+  "conceito": "Leitura literal das condições de um fluxograma de decisão.",
+  "equivocos": {
+   "B": "M17.2:leu-retorno-sem-agendamento",
+   "C": "M17.2:sem-origem-identificada",
+   "D": "M17.2:contou-o-outro-destino",
+   "E": "M17.2:contou-todos"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Siga cada paciente pelo fluxograma, respondendo cada losango exatamente como está escrito. O último losango pergunta \"É retorno agendado previamente?\": não basta ser retorno, o retorno precisa ter agendamento.",
+    "formulas": [
+     "sintomas graves → emergência",
+     "agendamento → sala de espera",
+     "retorno agendado → sala de espera"
+    ],
+    "simbolos": []
+   },
+   "pista": "Leia a pergunta do último losango palavra por palavra e compare com o que se sabe do paciente C.",
+   "passos": [
+    {
+     "faz": "Paciente A",
+     "conta": "dor intensa e falta de ar → sintomas graves",
+     "porque": "Atendimento emergencial.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Paciente E",
+     "conta": "sangramento → sintomas graves",
+     "porque": "Atendimento emergencial.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Paciente B",
+     "conta": "sem sintomas graves, com agendamento",
+     "porque": "Sala de espera.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Paciente C",
+     "conta": "sem agendamento, é retorno; retorno agendado? não",
+     "porque": "Se não tem agendamento, o retorno não foi agendado: emergencial.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Paciente D",
+     "conta": "sem agendamento, não é retorno",
+     "porque": "Atendimento emergencial.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Contar",
+     "conta": "só B → alternativa A",
+     "porque": "Um paciente.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 1",
+   "checagem": "Conte quem vai para o atendimento emergencial: A e E pelos sintomas graves, C e D pelo último losango. São 4 de 5, sobrando 5 − 4 = 1 para a sala de espera. Confere.",
+   "erradas": {
+    "B": "2 conta o paciente C, mas o losango pede retorno agendado previamente, e C não tem agendamento.",
+    "C": "3 incluiria também um paciente com sintoma grave ou o paciente D, que não é retorno.",
+    "D": "4 é o número de pacientes que vão para o atendimento emergencial.",
+    "E": "5 é o total de pacientes analisados."
+   },
+   "armadilha": "Ler \"é retorno?\" no último losango; a pergunta é \"é retorno agendado previamente?\", e o paciente C não tem agendamento.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantos vão para a sala de espera.",
+    "chave": "Só chega à sala quem tem agendamento ou retorno agendado.",
+    "cuidado": "Responda o losango exatamente como está escrito."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "procurar o caminho até a sala",
+    "ideia": "Há só duas setas que chegam à sala de espera: \"possui agendamento? sim\" e \"retorno agendado previamente? sim\". As duas exigem agendamento; dos cinco, só B tem."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "A, E: graves",
+    "nota": "emergência"
+   },
+   {
+    "linha": "B: agendado",
+    "nota": "sala de espera"
+   },
+   {
+    "linha": "C, D: sem agendamento",
+    "nota": "emergência"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0043"
+  }
  }
 }

@@ -1776,5 +1776,89 @@
    "data": "2026-11-12",
    "lote": "mat-0042"
   }
+ },
+ "P90e61a55": {
+  "n": "41",
+  "conceito": "Leitura de números em base 2 e soma.",
+  "equivocos": {
+   "A": "M17.2:sem-origem-identificada",
+   "B": "M17.2:sem-origem-identificada",
+   "C": "M17.2:leu-1111-como-16"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Em binário, cada posição vale uma potência de 2, a partir da direita: 1, 2, 4, 8, 16, ... Converta cada número para decimal e some.",
+    "formulas": [
+     "valor = soma das potências de 2 onde há 1"
+    ],
+    "simbolos": []
+   },
+   "pista": "Quanto vale cada posição de 10000, contando da direita?",
+   "passos": [
+    {
+     "faz": "Converter 1111",
+     "conta": "8 + 4 + 2 + 1 = 15",
+     "porque": "Quatro posições com 1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Converter 10000",
+     "conta": "2^4 = 16",
+     "porque": "Só a quinta posição tem 1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Somar",
+     "conta": "15 + 16 = 31 → alternativa D",
+     "porque": "k em decimal.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 31.",
+   "checagem": "Some direto em binário: 1111 + 10000 = 11111 (não há \"vai um\", pois os 1 estão em posições diferentes). 11111 = 16 + 8 + 4 + 2 + 1 = 31. Confere.",
+   "erradas": {
+    "A": "30 sai lendo 1111 como 14 (esquecendo a unidade).",
+    "B": "29 não corresponde à soma; 11101 = 29 teria um 0 na posição do 2.",
+    "C": "32 é 100000 = 2^5, como se 1111 valesse 16."
+   },
+   "armadilha": "Achar que 1111 vale 16, por estar \"a um\" de 10000.",
+   "alerta": "",
+   "essencial": {
+    "pede": "k em decimal.",
+    "chave": "1111 = 15 e 10000 = 16.",
+    "cuidado": "1111 é 16 − 1, não 16."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "2^5 − 1",
+    "ideia": "1111 + 10000 = 11111, cinco uns seguidos, que é 100000 − 1 = 2^5 − 1 = 31."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "1111 = 15",
+    "nota": "binário"
+   },
+   {
+    "linha": "10000 = 16",
+    "nota": "binário"
+   },
+   {
+    "linha": "15 + 16 = 31",
+    "nota": "resposta"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0043"
+  }
  }
 }

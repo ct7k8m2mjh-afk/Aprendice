@@ -889,5 +889,108 @@
    "data": "2026-11-12",
    "lote": "mat-0041"
   }
+ },
+ "P725193f9": {
+  "n": "50",
+  "conceito": "Execução passo a passo de um fluxograma com laço.",
+  "equivocos": {
+   "B": "M17.2:sem-origem-identificada",
+   "C": "M17.2:nao-descontou-moeda-de-ana",
+   "D": "M17.2:sem-origem-identificada",
+   "E": "M17.2:contou-avo-em-toda-volta"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Faça uma tabela com três colunas (Ana, Ivo, pote) e siga as setas sem pular caixa. Atenção: quando Ana \"coloca R$ 1,00 no pote\", a moeda sai do dinheiro dela; quando o avô coloca R$ 2,00, sai do bolso dele; quando Ivo coloca R$ 20,00, sai do dinheiro de Ivo.",
+    "formulas": [
+     "siga as setas até chegar em Fim"
+    ],
+    "simbolos": [
+     [
+      "(Ana, Ivo, pote)",
+      "dinheiro de Ana, de Ivo e no pote"
+     ]
+    ]
+   },
+   "pista": "Anote o dinheiro de cada um depois de cada caixa; não esqueça de quem sai cada moeda que vai para o pote.",
+   "passos": [
+    {
+     "faz": "Volta 1",
+     "conta": "(100, 50, 0) → Ana dá 5 e põe 1: (94, 55, 1) → avô: (99, 65, 3)",
+     "porque": "Ana > Ivo; depois nem Ivo > Ana nem iguais.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Volta 2",
+     "conta": "(99, 65, 3) → (93, 70, 4) → (98, 80, 6)",
+     "porque": "Mesmo caminho.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Volta 3",
+     "conta": "(98, 80, 6) → (92, 85, 7) → (97, 95, 9)",
+     "porque": "Mesmo caminho.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Volta 4",
+     "conta": "(97, 95, 9) → (91, 100, 10) → Ivo põe 20: (91, 80, 30)",
+     "porque": "Agora Ivo > Ana; volta ao início.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Volta 5",
+     "conta": "(91, 80, 30) → (85, 85, 31) → iguais: Fim → alternativa A",
+     "porque": "Ivo não tem mais que Ana e as quantias são iguais.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — R$ 31,00.",
+   "checagem": "Conte o dinheiro total. No início os netos têm 100 + 50 = 150. O avô deu 5 + 10 = 15 em cada uma das 3 passagens pela caixa da direita: 45. No fim, Ana e Ivo têm 85 + 85 = 170, e as moedas que eles puseram no pote são 5 (Ana) + 20 (Ivo) = 25. 150 + 45 = 195 = 170 + 25: as contas fecham. O pote tem 5 + 20 + 3 · 2 (do avô) = 31. Confere.",
+   "erradas": {
+    "B": "32 não confere: o pote recebe 5 · 1 (Ana) + 3 · 2 (avô) + 20 (Ivo) = 31.",
+    "C": "33 é o que sai se a moeda que Ana põe no pote não sair do dinheiro dela: as quantias só se igualam uma volta depois, com mais R$ 2,00 do avô.",
+    "D": "34 sairia de uma volta a mais de \"Ana põe 1 + avô põe 2\" (31 + 3); mas depois da 5ª volta as quantias já são iguais (85 e 85) e o processo termina.",
+    "E": "35 corresponderia a contar a contribuição do avô em todas as 5 voltas (5 + 10 + 20)."
+   },
+   "armadilha": "Esquecer que a moeda que Ana põe no pote sai do dinheiro dela; isso atrasa o fim e muda o total.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Valor final no pote.",
+    "chave": "Tabela (Ana, Ivo, pote) a cada caixa.",
+    "cuidado": "Toda moeda que entra no pote sai de alguém."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "acompanhar só a diferença",
+    "ideia": "Seja d = Ana − Ivo. Cada \"Ana dá 5 e põe 1\" baixa d em 11; cada passagem pelo avô baixa d em 5; Ivo pôr 20 sobe d em 20. d: 50 → 39 → 34 → 23 → 18 → 7 → 2 → −9 → 11 → 0. Pote: 1 + 2 + 1 + 2 + 1 + 2 + 1 + 20 + 1 = 31."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "(94, 55, 1)",
+    "nota": "volta 1"
+   },
+   {
+    "linha": "(91, 80, 30)",
+    "nota": "Ivo põe 20"
+   },
+   {
+    "linha": "(85, 85, 31)",
+    "nota": "Fim"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0043"
+  }
  }
 }

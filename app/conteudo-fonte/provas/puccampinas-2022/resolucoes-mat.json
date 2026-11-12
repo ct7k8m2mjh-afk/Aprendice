@@ -314,5 +314,107 @@
    "data": "2026-11-12",
    "lote": "mat-0031"
   }
+ },
+ "Pff903a75": {
+  "n": "29",
+  "conceito": "Contagem de pontos num torneio: vitória distribui 3 pontos, empate distribui 2.",
+  "equivocos": {
+   "A": "M17.1:trocou-vitorias-por-empates",
+   "B": "M17.1:sem-origem-identificada",
+   "C": "M17.1:jogo-sempre-3-pontos",
+   "D": "M17.1:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Com 4 jogadores, cada par se enfrenta uma vez: são 6 jogos. Cada jogo com vencedor põe 3 pontos no total; cada empate põe 1 + 1 = 2.",
+    "formulas": [
+     "jogos = 6",
+     "3 · (vitórias) + 2 · (empates) = total de pontos"
+    ],
+    "simbolos": [
+     [
+      "v",
+      "jogos com vencedor"
+     ],
+     [
+      "e",
+      "empates"
+     ]
+    ]
+   },
+   "pista": "Some todos os pontos da tabela e pense em quanto cada tipo de jogo acrescenta a essa soma.",
+   "passos": [
+    {
+     "faz": "Total de pontos",
+     "conta": "7 + 5 + 4 + 0 = 16",
+     "porque": "Soma da tabela.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Número de jogos",
+     "conta": "v + e = 6",
+     "porque": "4 jogadores, cada um com 3 jogos: 4 · 3 = 12 participações, 6 jogos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Pontos",
+     "conta": "3v + 2e = 16",
+     "porque": "Vitória gera 3 pontos no total; empate gera 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolver",
+     "conta": "3v + 2e = 16 e 2v + 2e = 12 → v = 4, e = 2 → alternativa E",
+     "porque": "Subtraindo as equações.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 2",
+   "checagem": "Monte um torneio com 2 empates que dê a tabela: Ana empata com Bruno e vence Carla e Daniel (1 + 3 + 3 = 7); Bruno empata com Ana e com Carla e vence Daniel (1 + 1 + 3 = 5); Carla empata com Bruno, perde de Ana e vence Daniel (1 + 0 + 3 = 4); Daniel perde os três (0). A tabela existe com exatamente 2 empates. Confere.",
+   "erradas": {
+    "A": "Com 4 empates, os pontos seriam 3 · 2 + 2 · 4 = 14, não 16.",
+    "B": "Com 1 empate, 3 · 5 + 2 · 1 = 17, não 16.",
+    "C": "Sem empates, 3 · 6 = 18, não 16.",
+    "D": "Com 3 empates, 3 · 3 + 2 · 3 = 15, não 16."
+   },
+   "armadilha": "Achar que cada jogo distribui sempre 3 pontos; o empate distribui só 2.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantos empates.",
+    "chave": "Total de pontos = 3v + 2e com v + e = 6.",
+    "cuidado": "Empate soma 2 ao total, não 3."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "cada empate tira 1 ponto",
+    "ideia": "Se os 6 jogos tivessem vencedor seriam 18 pontos; cada empate troca 3 por 2 e tira 1 ponto do total. Como saíram 16, faltam 2 pontos: 2 empates."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "v + e = 6",
+    "nota": "jogos"
+   },
+   {
+    "linha": "3v + 2e = 16",
+    "nota": "pontos"
+   },
+   {
+    "linha": "e = 2",
+    "nota": "resposta"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0043"
+  }
  }
 }

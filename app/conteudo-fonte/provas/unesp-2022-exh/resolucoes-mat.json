@@ -745,5 +745,102 @@
    "data": "2026-11-12",
    "lote": "mat-0038"
   }
+ },
+ "P2939f77a": {
+  "n": "90",
+  "conceito": "Conversão de decimal para binário por potências de 2.",
+  "equivocos": {
+   "A": "M17.2:sem-origem-identificada",
+   "B": "M17.2:respondeu-os-zeros",
+   "D": "M17.2:sem-origem-identificada",
+   "E": "M17.2:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Escrever em binário é decompor o número em potências de 2 distintas: cada potência usada vira 1, cada uma não usada vira 0. As potências até 2021 são 1024, 512, 256, 128, 64, 32, 16, 8, 4, 2, 1.",
+    "formulas": [
+     "número = soma de potências de 2"
+    ],
+    "simbolos": [
+     [
+      "2^10",
+      "1024"
+     ]
+    ]
+   },
+   "pista": "Qual é a maior potência de 2 que cabe em 2021? Vá tirando as próximas enquanto couberem.",
+   "passos": [
+    {
+     "faz": "Tirar potências",
+     "conta": "2021 − 1024 = 997; − 512 = 485; − 256 = 229; − 128 = 101; − 64 = 37; − 32 = 5",
+     "porque": "16 e 8 não cabem em 5.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resto",
+     "conta": "5 = 4 + 1",
+     "porque": "Usa 4 e 1; não usa 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escrever",
+     "conta": "11111100101",
+     "porque": "1 nas potências 1024 a 32, 0 em 16 e 8, 1 em 4, 0 em 2, 1 em 1.",
+     "tipo": "concluir"
+    },
+    {
+     "faz": "Contar",
+     "conta": "8 uns e 3 zeros: 8 − 3 = 5 → alternativa C",
+     "porque": "Diferença pedida.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — cinco.",
+   "checagem": "Divisões sucessivas por 2: 2021 → resto 1; 1010 → 0; 505 → 1; 252 → 0; 126 → 0; 63 → 1; 31 → 1; 15 → 1; 7 → 1; 3 → 1; 1 → 1. Lidos de baixo para cima: 11111100101, com 8 uns e 3 zeros. Confere.",
+   "erradas": {
+    "A": "Com 11 algarismos, uns + zeros = 11; diferença 4 daria 7,5 uns, impossível.",
+    "B": "Três é a quantidade de zeros, não a diferença.",
+    "D": "Com 11 algarismos, diferença 2 daria 6,5 uns, impossível.",
+    "E": "Com 11 algarismos, diferença 6 daria 8,5 uns, impossível; a diferença tem de ser ímpar."
+   },
+   "armadilha": "Responder o número de zeros em vez da diferença entre uns e zeros.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Uns menos zeros em binário de 2021.",
+    "chave": "2021 = 1024 + 512 + 256 + 128 + 64 + 32 + 4 + 1.",
+    "cuidado": "São 11 algarismos; não esqueça os zeros do meio."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "a partir de 2047",
+    "ideia": "2047 = 2^11 − 1 = 11111111111 (onze uns). 2047 − 2021 = 26 = 16 + 8 + 2: são os três zeros. Sobram 8 uns, e 8 − 3 = 5."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "2021 = 11111100101",
+    "nota": "binário"
+   },
+   {
+    "linha": "8 uns, 3 zeros",
+    "nota": "contagem"
+   },
+   {
+    "linha": "8 − 3 = 5",
+    "nota": "resposta"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0043"
+  }
  }
 }

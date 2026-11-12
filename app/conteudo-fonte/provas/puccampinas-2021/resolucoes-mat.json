@@ -224,5 +224,113 @@
    "data": "2026-11-11",
    "lote": "mat-0011"
   }
+ },
+ "Pf3315c93": {
+  "n": "31",
+  "conceito": "Soma de algarismos de uma data DDMM com limite do dia.",
+  "equivocos": {
+   "B": "M17.1:esqueceu-limite-do-dia",
+   "C": "M17.1:somou-o-numero-do-mes",
+   "D": "M17.1:somou-o-numero-do-mes",
+   "E": "M17.1:esqueceu-limite-do-dia"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada mês tem uma soma fixa de algarismos (julho = 0 + 7 = 7). O dia tem no máximo 31, e a maior soma de algarismos de um dia é 2 + 9 = 11 (dia 29). Então o mês precisa somar pelo menos 18 − 11 = 7.",
+    "formulas": [
+     "soma do dia + soma do mês = 18",
+     "soma máxima de um dia = 11"
+    ],
+    "simbolos": [
+     [
+      "DD",
+      "dia"
+     ],
+     [
+      "MM",
+      "mês"
+     ]
+    ]
+   },
+   "pista": "Qual é a maior soma de algarismos que um dia do mês consegue ter?",
+   "passos": [
+    {
+     "faz": "Soma máxima do dia",
+     "conta": "dia 29: 2 + 9 = 11",
+     "porque": "Nenhum dia de 01 a 31 passa disso.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Mês precisa somar ao menos 7",
+     "conta": "18 − 11 = 7",
+     "porque": "Só 07, 08 e 09 somam 7 ou mais (10 = 1, 11 = 2, 12 = 3).",
+     "tipo": "concluir"
+    },
+    {
+     "faz": "Julho",
+     "conta": "18 − 7 = 11: dia 29",
+     "porque": "29/07 existe.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Agosto",
+     "conta": "18 − 8 = 10: dias 19 e 28",
+     "porque": "Existem.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Setembro",
+     "conta": "18 − 9 = 9: dias 09, 18 e 27 → alternativa A",
+     "porque": "Existem.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — julho ou agosto ou setembro.",
+   "checagem": "Teste uma data de cada mês: 2907 dá 2 + 9 + 0 + 7 = 18; 2808 dá 2 + 8 + 0 + 8 = 18; 2709 dá 2 + 7 + 0 + 9 = 18. Já junho exigiria dia com soma 12, e nenhum dia até 31 chega a 12. Confere.",
+   "erradas": {
+    "B": "Junho soma 6 e pediria um dia com soma 12, que não existe.",
+    "C": "Outubro (10) soma só 1 e pediria um dia com soma 17, impossível.",
+    "D": "Novembro (11) soma 2 e pediria um dia com soma 16, impossível.",
+    "E": "Junho e novembro pedem dias com soma 12 e 16, que não existem."
+   },
+   "armadilha": "Esquecer que o mês 10, 11 ou 12 soma pouco (1, 2, 3), e não 10, 11, 12.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Os meses possíveis.",
+    "chave": "Dia soma no máximo 11.",
+    "cuidado": "Some os algarismos do mês, não o número do mês."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "procurar dias por mês",
+    "ideia": "Para cada mês de 01 a 12, calcule 18 menos a soma do mês e procure um dia de 01 a 31 com essa soma; só julho, agosto e setembro têm."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "dia ≤ 31 → soma ≤ 11",
+    "nota": "limite"
+   },
+   {
+    "linha": "mês ≥ 7",
+    "nota": "consequência"
+   },
+   {
+    "linha": "07, 08, 09",
+    "nota": "resposta"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0043"
+  }
  }
 }

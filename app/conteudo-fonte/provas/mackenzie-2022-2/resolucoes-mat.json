@@ -794,5 +794,95 @@
    "data": "2026-11-12",
    "lote": "mat-0036"
   }
+ },
+ "Peb78cf30": {
+  "n": "38",
+  "conceito": "Ordenação lógica com restrições de posição.",
+  "equivocos": {
+   "B": "M17.1:trocou-o-aluno",
+   "C": "M17.1:trocou-o-aluno",
+   "D": "M17.1:trocou-o-aluno",
+   "E": "M17.1:ignorou-uma-restricao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "São 5 andares e 5 alunos, um por andar. Traduza cada frase em relação entre andares: \"chega após\" = andar mais alto; \"sobe 2 andares depois que Sandro chegou\" = Henrique está 2 andares acima de Sandro.",
+    "formulas": [
+     "E < H < C",
+     "H = S + 2",
+     "P = E + 2",
+     "S ≠ 1"
+    ],
+    "simbolos": [
+     [
+      "E, S, P, H, C",
+      "andar de cada aluno"
+     ]
+    ]
+   },
+   "pista": "Comece pela relação de Henrique com Sandro e veja até onde Cláudio ainda cabe acima de Henrique.",
+   "passos": [
+    {
+     "faz": "Possíveis valores de S",
+     "conta": "S ≠ 1; S = 3 daria H = 5 e C > 5",
+     "porque": "Não há sexto andar, então S = 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Henrique e Cláudio",
+     "conta": "H = 4 → C = 5",
+     "porque": "Cláudio fica acima de Henrique.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Elias e Paulo",
+     "conta": "andares livres: 1 e 3; P = E + 2 → E = 1, P = 3 → alternativa A",
+     "porque": "É a única forma de os dois caberem.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 3º andar",
+   "checagem": "Leia de baixo para cima: 1º Elias, 2º Sandro, 3º Paulo, 4º Henrique, 5º Cláudio. Henrique (4) está depois de Elias (1) e antes de Cláudio (5); Henrique está 2 acima de Sandro (2); Paulo está 2 acima de Elias (1); Sandro não está no 1º. Todas as frases valem. Confere.",
+   "erradas": {
+    "B": "1º andar é o de Elias, não o de Paulo.",
+    "C": "2º andar é o de Sandro.",
+    "D": "5º andar é o de Cláudio, que fica acima de Henrique.",
+    "E": "4º andar sairia se Sandro pudesse estar no 1º (S = 1, H = 3, E = 2, P = 4); o enunciado proíbe isso."
+   },
+   "armadilha": "Esquecer a restrição \"Sandro não tem aulas no 1º andar\", que leva a Paulo no 4º.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Andar de Paulo.",
+    "chave": "H = S + 2 e Cláudio acima de Henrique força S = 2.",
+    "cuidado": "Use todas as restrições, inclusive a do 1º andar."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "testar Paulo em cada andar",
+    "ideia": "Paulo = E + 2 só pode ser 3, 4 ou 5. Paulo no 5 deixa Cláudio sem lugar acima de Henrique; Paulo no 4 dá E = 2 e obriga S = 1, proibido; sobra Paulo no 3."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "S = 2, H = 4, C = 5",
+    "nota": "pelas restrições de Henrique"
+   },
+   {
+    "linha": "E = 1, P = 3",
+    "nota": "andares que sobram"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0043"
+  }
  }
 }
