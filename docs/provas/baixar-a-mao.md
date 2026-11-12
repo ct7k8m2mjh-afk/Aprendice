@@ -1,7 +1,7 @@
 # Provas para o dono baixar à mão
 
 
-> **Lista do dono para marcar (12/11/2026):** https://claude.ai/artifact/AfS22NUUP69GNTWsEKV5YC — artefato "Provas para baixar", com 135 linhas (108 para baixar no navegador, 27 não localizadas). O dono marca "Baixei" em cada ano; a marcação fica na base do artefato (coleção `provas`) e a sessão principal lê com o ArtifactData para saber o que já chegou ao Drive. Quando uma prova entrar no site, apagar a linha dela da coleção.
+> **Lista do dono para marcar (12/11/2026):** https://claude.ai/artifact/AfS22NUUP69GNTWsEKV5YC — artefato "Provas para baixar", com 135 linhas (108 para baixar no navegador, 27 não localizadas). O dono marca "Prova" e "Gabarito" separados em cada ano (campos prova e gabarito; baixei = os dois); a marcação fica na base do artefato (coleção `provas`) e a sessão principal lê com o ArtifactData para saber o que já chegou ao Drive. Quando uma prova entrar no site, apagar a linha dela da coleção.
 
 O site oficial bloqueia o acesso automático (ou exige formulário/compra). Baixe os PDFs (caderno + gabarito definitivo) e coloque no Google Drive do dono em `APRENDICE/PROVAS-MANUAIS/<sigla>/<ano>/` (dono, 10/11/2026: ele baixa depois; lista atualizada em 11/11/2026: https://claude.ai/artifact/V7ezT2vfWQE5dGZyquAdhV — a anterior, 374KjYRbGGNBoDbkfb3wtp, está desatualizada). Detalhes e links de partida nos inventários.
 
