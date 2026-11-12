@@ -1,6 +1,6 @@
 # História: resoluções (gerado por lote.py em 2026-11-12)
 
-Faltam 75 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 0; ENEM nível 7-10 0; provas-alvo nível 7-10 17; demais nível 7-10 58.
+Faltam 45 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 0; ENEM nível 7-10 0; provas-alvo nível 7-10 0; demais nível 7-10 45.
 
 ## Lotes
 
@@ -85,18 +85,21 @@ Faltam 75 questões sem resolução (fora as que estão em lote, pendentes ou co
 | his-0077 | demais nível 1-6 | 30 | gravado | 29 | 1 | 0 |
 | his-0078 | ENEM nível 7-10 | 30 | gravado | 29 | 1 | 0 |
 | his-0079 | provas-alvo nível 7-10 | 30 | gravado | 30 | 0 | 0 |
-| his-0080 | provas-alvo nível 7-10 | 30 | aberto |  |  |  |
+| his-0080 | provas-alvo nível 7-10 | 30 | gravado | 28 | 2 | 0 |
+| his-0081 | provas-alvo nível 7-10 | 30 | aberto |  |  |  |
 
 ## Pendentes (falta de certeza absoluta)
 
 | Questão | Prova | Conteúdo | Motivo |
 |---|---|---|---|
+| P8b4fec38 | Acafe 2026 Inverno · questão 54 | H06.6 Revolução Industrial e mundo do trabalho (tema H06 Revoluções) | classificação: é de Biologia |
 | P106941e8 | Cederj 2025 2025.1 · questão 30 | H05.3 conflitos sociais na Primeira República (tema H05 República Brasileira) | classificação: é de Português — a questão associa autores e livros (Machado de Assis, Lima Barreto, João do Rio, García Márquez, Maquiavel, Hobbes), conteúdo de literatura |
 | P219afbbf | Cederj 2025 2025.2 · questão 30 | H05.4 tenentismo, Semana de 1922 e crise dos anos 1920 (tema H05 República Brasileira) | classificação: é de Português — a questão associa autores e obras literárias (Machado de Assis, Lima Barreto, Mário de Andrade, Casimiro de Abreu, João do Rio, Coelho Neto, Pedro Nava, Marques Rebelo) a séculos, conteúdo de literatura |
 | Pe9e82510 | Fatec 2025 2º semestre · questão 5 | H08.1 origens e blocos da Guerra Fria (tema H08 Guerra Fria) | classificação: é de Geografia |
 | P4227aeb2 | Fatec 2026 1º semestre · questão 51 | H06.6 Revolução Industrial e mundo do trabalho (tema H06 Revoluções) | classificação: é de Matemática |
 | Pbc25b11f | Fempar 2021 Medicina 2021 · questão 32 | H05.7 República de 1946: de Dutra a Jango (tema H05 República Brasileira) | classificação: é de Sociologia |
 | P61d9ea43 | Fuvest 2026 1ª fase · questão 12 | H05.5 Revolução de 1930 e governo constitucional de Vargas (tema H05 República Brasileira) | classificação: é de Português (literatura) — a questão pede a análise dos romances Caminho de pedras, de Rachel de Queiroz, e As meninas, de Lygia Fagundes Telles (personagens Angelita, Ana Clara, Noemi, Lorena); o contexto histórico dos direitos das mulheres é só introdução. |
+| P3a2fa1cd | Fuvest 2026 1ª fase · questão 42 | H06.9 nacionalismos, unificações e revoluções de 1848 (tema H06 Revoluções) | classificação: é de Português (artes) |
 | P90c57238 | Fuvest 2026 1ª fase · questão 46 | H02.7 Reformas protestantes e Contrarreforma (tema H02 Idade Média) | classificação: é de Português |
 | P916264a9 | Fuvest 2026 1ª fase · questão 9 | H04.9 crise do Império e proclamação da República (tema H04 Independência e Império) | classificação: é de Filosofia e Sociologia (a questão compara as ideias de Nísia Floresta e Émile Durkheim sobre a educação; é de Sociologia, e não de História do Brasil) |
 | P5615270b | PUC-Rio 2026 Grupo 4 · questão 45 | H05.7 República de 1946: de Dutra a Jango (tema H05 República Brasileira) | classificação: é de Geografia |
