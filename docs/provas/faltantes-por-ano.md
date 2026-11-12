@@ -3,6 +3,56 @@
 
 > **Regra nova (dono, 11/11/2026, princípio 2):** prova sem gabarito publicado, ou só com o preliminar, agora pode entrar: cada questão fica fora do ar até ganhar o gabarito do Aprendice (dois especialistas, às cegas, na mesma letra; e a do preliminar, se houver). Anulada continua fora. As notas abaixo de "fora por falta de gabarito" são o registro de antes da regra.
 
+## Provas sem gabarito definitivo — rodada de 11–12/11/2026 (princípio 2 novo)
+
+Antes de cada prova procurou-se na web o gabarito definitivo oficial (site da banca) e, sem ele, resolução publicada.
+Configuração: `ferramentas/ingestao/provas_sem_gabarito.py` (reaproveita o recorte da mesma banca); `recorta.py` aceita
+`sem_gabarito_oficial` (questão com `gab: null` e a letra do preliminar em `gab_preliminar`; anulada continua fora).
+Essas questões entram fora do ar ("gabarito do Aprendice em preparação") até a resolução dupla às cegas (`lote.py`).
+Todas classificadas (matéria, tema, conteúdo, nível) e conferidas por folha de contato + prints da 1ª, do meio e da última.
+
+**Entraram com gabarito oficial definitivo achado na web** (entram normalmente, com `gab`):
+
+| Prova (id) | Questões | Gabarito definitivo achado |
+|---|---|---|
+| UECE 2023.1 – 1ª fase (`uece-2023-1`) | 84 de 85 (39 anulada) | Comunicado 209/2022-CEV/UECE (www.cev.uece.br) |
+| UECE 2023.2 – 1ª fase (`uece-2023-2`) | 82 de 85 (4, 42, 43) | Comunicado 51/2023-CEV/UECE |
+| UECE 2024.2 – 1ª fase (`uece-2024-2`) | 79 de 85 (16, 29, 30, 35, 57, 79) | Comunicado 49/2024-CEV/UECE |
+| UECE 2025.1 – 1ª fase (`uece-2025-1`) | 85 de 85 | Comunicado 153/2024-CEV/UECE |
+| UECE 2026.1 – 1ª fase (`uece-2026-1`) | 84 de 85 (85) | Comunicado 190/2025-CEV/UECE |
+| Fempar Medicina 2027 (`fempar-2027`) | 80 de 80 | Gabarito definitivo já publicado pela FGV (conhecimento.fgv.br/processoseletivo/fempar27) |
+| UNIRG Medicina 2022/1 – Paraíso (`unirg-2022-1-paraiso`) | 54 de 54 | Gabarito definitivo (08/12/2021) no site da UNIRG |
+| Unespar 2025 (`unespar-2025`) | 57 de 60 (6, 16, 56) | O arquivo "gabarito-provisorio-2025.pdf" do site é o Edital 045/2024-CCCV, gabarito oficial |
+
+**Entraram só com o gabarito preliminar** (`gab: null` + `gab_preliminar` em todas as questões):
+
+| Prova (id) | Questões (todas sem gabarito, com preliminar) | Observação |
+|---|---|---|
+| UFT 2023/2 (`uft-2023-2`) | 76 | Só o gabarito provisório da Copese; definitivo não localizado. |
+| UFT 2024/2 (`uft-2024-2`) | 74 de 76 | 39 e 40 da tarde (aqui 71, 72) anuladas no definitivo, segundo notícia; o PDF do definitivo só em servidor que proíbe robôs. |
+| UFRR 2024, 2025, 2026 (`ufrr-2024`…`-2026`) | 72 cada | Definitivo publicado (Editais 97/24 e 93/25) em editais.ufrr.br, que não responde daqui; anulações do oficial não conferidas. |
+| IME 2023/2024 e 2024/2025 (`ime-2024`, `ime-2025`) | 40 cada | Site do IME com cadeia TLS incompleta; cópia do definitivo só em servidor que proíbe robôs. |
+| UECE 2025.2 – 1ª fase (`uece-2025-2`) | 82 de 85 | Preliminar + pareceres (Comunicado 81/2025: 22, 55, 82 anuladas, nenhuma letra alterada). |
+| URCA PSU 2026.2/2027.1 (`urca-2027-1`) | 120 | Provas de 31/10–01/11/2026: só o preliminar no site da CEV-URCA. |
+| UNIRG Medicina 2023/1 (`unirg-2023-1`) | 52 de 54 | O arquivo "gabarito oficial" é o preliminar (25 e 37 anuladas nele). |
+| UNIRG Medicina 2027/1 (`unirg-2027-1`) | 54 | Prova de 01/11/2026: só o preliminar. |
+| Acafe Medicina Verão 2022 (`acafe-2022-verao`) | 60 de 63 | "Gabarito oficial 22_1" é o preliminar (31–33 anuladas nele). |
+| UEMG 2022 (`uemg-2022`) | 48 | Instituto AOCP; gabarito saiu antes dos recursos (preliminar); site da UEMG recusa acesso automático. |
+| EMESCAM Medicina 2022/1 (`emescam-2022-1`) | 60 | Quadro de gabaritos sem marca de definitivo; Fundep atrás de Cloudflare (não contornado). |
+
+Total: 22 provas, 1.527 questões; 922 sem gabarito publicado (todas com a letra do preliminar), 605 com gabarito definitivo.
+
+**Ficaram fora nesta rodada e por quê:**
+- **Unioeste 2023–2026:** o definitivo existe, mas o site da Unioeste e as cópias achadas (CDN do Estratégia) proíbem robôs no
+  robots.txt; o preliminar teve muitas anulações no definitivo (2025) — entrar só com ele seria arriscado. Baixar à mão.
+- **Acafe Verão 2020:** só existe a prova comentada, com a justificativa e a letra certa coladas em cada questão (o print
+  revelaria a resposta).
+- **UECE 2ª fase (2023.1–2026.1), EaD 2023.2 e UAB 2020:** não feitas nesta rodada (muitos cadernos; os comunicados de
+  pareceres da 2ª fase estão no site da CEV — próxima rodada).
+- **UVA 2020.2, Ibiapaba 2021, 2022.1:** caderno só em imagem. **Bahiana:** sem caderno. **UFSC 2023:** somatória (formato fora).
+- **UFRR Indígena 2021/2025:** prova específica, fora do padrão do site. **Mackenzie 2020/1, Unifesp 2023/2025, UEMS 2021–2026,
+  UESB 2020–2025, UNEB 2024–2026:** não feitas nesta rodada (cadernos a baixar, layouts novos ou gabarito atrás de Cloudflare).
+
 Regras (CLAUDE.md, princípios 1, 2 e 10): só entra prova com caderno + gabarito oficial DEFINITIVO, só questões de
 múltipla escolha; anuladas ficam fora; a origem de cada arquivo fica registrada no `prova.json` (campo `origem`).
 

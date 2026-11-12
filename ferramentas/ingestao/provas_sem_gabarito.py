@@ -444,6 +444,76 @@ PROVAS['acafe-2022-verao'] = sem_gabarito(
 PROVAS['acafe-2022-verao']['suporte_forcado'] = {('caderno', 16): [(162, 0, (18, 21))]}   # "Text 3 ... The Hippocratic Oath" (p. 16): texto das 18–21
 
 
+# ------------------------------------------------------------------------------------------- UEMG 2022 (Instituto AOCP)
+# O gabarito do pacote saiu dois dias depois da prova (06/03/2022), antes do prazo de recursos (08 e 09/03): é o
+# preliminar; o definitivo não foi localizado (o site da UEMG recusa acesso automático).
+_m('uemg-2022', UEMG := 'https://vestibular.uemg.br/',
+   caderno='uemg/prova-e-gabarito-uemg-2022/provas-uemg-2022.pdf', preliminar='uemg/prova-e-gabarito-uemg-2022/gabarito-uemg-2022.pdf')
+
+
+def _uemg22_pre(pasta):
+    g = _gab_grade(_p.texto_pdf(pasta / 'preliminar.pdf'), 'ABCD')   # inglês antes do espanhol: vale a 1ª
+    assert sorted(g) == list(range(1, 49)), sorted(g)
+    return g
+
+
+PROVAS['uemg-2022'] = sem_gabarito({
+    'catalogo': 'uemg', 'escola': 'UEMG', 'ano': '2022', 'fase': 'Vestibular 2022', 'titulo': 'UEMG 2022', 'banca': 'Instituto AOCP',
+    'duracao_horas': 4, 'total': 48, 'alternativas': 4,
+    'cadernos': [{'arquivo': 'caderno', 'paginas': (3, 23)}],   # p. 24 em diante: instruções e rascunho da redação
+    'colunas': lambda r: [(40, 300), (300, r.width - 30)], 'margem': 40, 'topo': 50, 'base': 50,
+    'ancora': r'^(\d{1,2})\s*$', 'ancora_dx': 14, 'sequencial': True, 'ancora_isolada': True,
+    'secoes_rx': [(r'(?i)^L[íi]ngua Estrangeira\s*[-–]\s*Ingl[êe]s', 'Inglês'), (r'(?i)^L[íi]ngua Estrangeira\s*[-–]\s*Espanhol', 'Outra língua'),
+                  (r'^F[íi]sica\s*$', 'Conhecimentos gerais')],   # fecha o espanhol (p. 11)
+    # títulos de matéria no alto da coluna (y≈56): corte fixo, porque a palavra "História" solta numa linha justificada
+    # do texto da 41 (p. 21) seria lida como título
+    'corte_forcado': {('caderno', 11): [(50, 0)], ('caderno', 13): [(50, 1)], ('caderno', 15): [(50, 0)],
+                      ('caderno', 17): [(50, 0)], ('caderno', 19): [(50, 1)], ('caderno', 22): [(50, 1)]},
+    'pular_secoes': ('Outra língua',), 'pular_antes_sequencia': True,
+    'corte': [r'(?i)^REDA[ÇC][ÃA]O\s*$', r'(?i)^RASCUNHO', r'(?i)^PROPOSTA DE REDA'],
+    # textos I e II (p. 3) valem para 1–4; o texto do inglês (sem título, logo abaixo da seção, p. 6–7) para 7–12;
+    # as questões 5 e 6 trazem o texto logo abaixo do enunciado
+    'suporte': [], 'suporte_forcado': {('caderno', 3): [(80, 0, (1, 4))], ('caderno', 6): [(76, 1, (7, 12))]},
+    'area': lambda n: 'Conhecimentos gerais', 'area_da_materia': True,
+}, _uemg22_pre,
+    'Universidade do Estado de Minas Gerais, Vestibular 2022 (Instituto AOCP, prova de 06/03/2022): 48 questões A–D '
+    '(Língua Portuguesa e Literatura, língua estrangeira, Física, Química, Biologia, Geografia, História e Matemática). '
+    'Língua estrangeira: inglês (7 a 12). Redação fora. O gabarito do pacote saiu antes dos recursos (preliminar); a letra '
+    'dele vai em gab_preliminar.')
+
+
+# ---------------------------------------------------------------------------------------- EMESCAM Medicina 2022/1
+# Pacote do Brasil Escola: prova A + quadro de gabaritos A–D gerado em 07/10/2021 (dias depois da prova, sem marca de
+# definitivo nem de anuladas). O site da EMESCAM/Fundep fica atrás de desafio Cloudflare (não contornado): tratado como
+# preliminar.
+_m('emescam-2022-1', 'https://emescam.br/',
+   caderno='emescam/provas-e-gabaritos-emescam-medicina-2022-1/EMESCAM - objetiva - 2022_PROVA A.pdf',
+   preliminar='emescam/provas-e-gabaritos-emescam-medicina-2022-1/GABARITOS - EMESCAM 2.2021.pdf')
+
+
+def _emescam_pre(pasta):
+    g = {int(n): v for n, v in re.findall(r'(?m)^\s*(\d{1,2})\s+([A-D])\s+[A-D]\s+[A-D]\s+[A-D]\s*$', _p.texto_pdf(pasta / 'preliminar.pdf'))}
+    assert sorted(g) == list(range(1, 61)), sorted(g)
+    return g
+
+
+PROVAS['emescam-2022-1'] = sem_gabarito({
+    'catalogo': 'emescam', 'escola': 'EMESCAM', 'ano': '2022', 'fase': 'Medicina 2022/1', 'titulo': 'EMESCAM Medicina 2022/1',
+    'banca': 'EMESCAM', 'duracao_horas': 4.5, 'total': 60, 'alternativas': 4,
+    'cadernos': [{'arquivo': 'caderno', 'paginas': (3, 999)}],
+    'colunas': 'faixas', 'margem': 30, 'topo': 45, 'base': 50,   # duas colunas; margens alternadas (x≈43/71 e 300/328)
+    'ancora': r'^QUEST[ÃA]O\s+(\d{1,2})\s*$', 'ancora_dx': 45, 'sequencial': True,
+    'corte': [r'(?i)^FOLHA DE RESPOSTAS', r'(?i)^RASCUNHO',
+              r'^(L[ÍI]NGUA PORTUGUESA|L[ÍI]NGUA INGLESA|MATEM[ÁA]TICA|F[ÍI]SICA|QU[ÍI]MICA|BIOLOGIA|HIST[ÓO]RIA|GEOGRAFIA|ATUALIDADES)\s*$'],
+    'suporte': [r'(?i)^INSTRU[ÇC][ÃA]O:', r'(?i)^INSTRUCTION:'],
+    'area': lambda n: 'Conhecimentos gerais',
+    'faixas_modo': 'largas', 'divisa': 297,   # questões 54–56 em largura total (com figura)
+}, _emescam_pre,
+    'Escola Superior de Ciências da Santa Casa de Misericórdia de Vitória, Processo Seletivo de Medicina 2022/1 (outubro de '
+    '2021), prova A: 60 questões A–D. Redação e prova dissertativa fora. O quadro de gabaritos do pacote não diz se é o '
+    'definitivo (gerado dias depois da prova, sem anuladas); tratado como preliminar: a letra dele vai em gab_preliminar.')
+
+
 if __name__ == '__main__':
     if sys.argv[1:2] == ['prepara']:
         for pid in (sys.argv[2:] or list(MANUAIS)):
