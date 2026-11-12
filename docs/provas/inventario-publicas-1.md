@@ -45,7 +45,7 @@ Convenção: “ano” é o **ano de ingresso** (ex.: Fuvest 2026 = prova aplica
 | Universidade Estadual do Sudoeste da Bahia (UESB) | BA | Vestibular UESB — Instituto Avalia (edições recentes) | — | só caderno: 2020, 2022, 2023, 2024, 2025 | sim | ZIP oficial por ano com os cadernos; gabarito no site da banca (Instituto Avalia, sem PDF direto). |
 | Universidade Federal de São Paulo (Unifesp) | SP | Sistema Misto de Seleção (Medicina): nota do Enem + provas próprias — Unifesp (ProGrad) | 2022, 2026 | só caderno: 2023, 2025; só gabarito: 2024 | sim | Só Medicina (Sistema Misto: Enem + provas próprias); demais cursos só Sisu. Faltam gabaritos de 2023 e 2025 e caderno de 2024. |
 | Universidade Tecnológica Federal do Paraná (UTFPR) | PR | Vestibular de Verão UTFPR (1º semestre), Sisu e +Enem — UTFPR | 2024, 2025, 2026 | — | sim | Vestibular de Verão a partir de 2024 (antes só Sisu); 40 questões + redação. |
-| Faculdade de Medicina de Marília (Famema) | SP | Vestibular Famema — Vunesp | — | — | **não — baixar à mão** | Provas só na Vunesp (403). |
+| Faculdade de Medicina de Marília (Famema) | SP | Vestibular Famema — Vunesp | — | — | **não — baixar à mão** | Provas só na Vunesp (403). 2022 foi da FGV: caderno e gabarito definitivo na página oficial (conhecimento.fgv.br/concursos/vestibularfamema22); já no site como `famema-2022` (12/11/2026). |
 
 ## Avisos para o dono
 
