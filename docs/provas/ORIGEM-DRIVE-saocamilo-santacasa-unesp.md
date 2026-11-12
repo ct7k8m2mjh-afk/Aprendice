@@ -24,6 +24,21 @@ Pasta `1rbhYsmypdOrgpGG35_t02JCZbc2YoWHe` (dono do Drive: o dono do produto). Ba
 | `642503614-prova-e-gabarito-sao-camilo-medicina-2021-2.pdf` | `1BDuAcE-_f_Xmkn6cHeuS3P-dfqDPq03h` | Igual (mesmo md5) ao arquivo já usado em `saocamilo-2021-2` | já no site, não duplicado |
 | `642503614-prova-e-gabarito-sao-camilo-medicina-2021-2 (1).pdf` | `1HJ81eADc9qbGEcrTRXWrlmtIQlqqTQMs` | Outra cópia idêntica | — |
 
+### São Camilo 2025 e 2024/2 do Drive do dono (12/11/2026)
+Baixados pelo Drive conectado em 12/11/2026 e guardados em `fontes/provas-manuais/saocamilo/<pasta>/arquivo.pdf` (fora do git). Configuração: `ferramentas/ingestao/provas_drive2.py` (carregada no fim de `provas_grupo_a.py`). Documentos oficiais da Vunesp (código do concurso no cabeçalho).
+
+| Arquivo no Drive | id | Pasta local | O que é | Uso |
+|---|---|---|---|---|
+| `SÃO CAMILO 2025 - 1º semestre Prova II - prova.pdf` | `1sCsFKH5wknQbDEJtTDxOOIZFLlmLQr_v` | `SAO-CAMILO-2025-1-semestre-Prova-II-prova` | Caderno da Prova II, Processo Seletivo **1º semestre de 2025** (CUSC2401, 22/11/2024), 40 objetivas (questões nas pp. 2–12) | `saocamilo-2025-1` |
+| `SÃO CAMILO 2025 - 1º semestre Prova II - gabarito.pdf` | `11chNdsBrt3th3z5bZse0jLA1ocw_NlN0` | `SAO-CAMILO-2025-1-semestre-Prova-II-gabarito` | Gabarito oficial da Prova II, 1º sem. 2025, versão 1; nenhuma anulada | `saocamilo-2025-1` |
+| `SÃO CAMILO 2025 - 2º semestre Prova II - prova.pdf` | `1vdF4F7uUN0Kv6ydjR8ZkQVMVQWtlMrFW` | `SAO-CAMILO-2025-2-semestre-Prova-II-prova` | Caderno da Prova II, Processo Seletivo **2º semestre de 2025** (CUSC2402, 08/06/2025), 40 objetivas (questões nas pp. 3–15) | `saocamilo-2025-2` |
+| `SÃO CAMILO 2025 - 2º semestre Prova II - gabarito.pdf` | `1HMTeVhVqgMpoE0c_xOTzLuyMyPE2bT-d` | `SAO-CAMILO-2025-2-semestre-Prova-II-gabarito` | Gabarito oficial da Prova II, 2º sem. 2025, versão 1; nenhuma anulada | `saocamilo-2025-2` |
+| `saocamilo2024_2_prova_II.pdf` | `175aIcxOnveW1LO352-RBDN1tH9dkFh0q` | `saocamilo2024_2_prova_II` | Caderno da Prova II, 2º sem. 2024 (CUSC2302): **idêntico** (mesmo md5) ao já usado em `saocamilo-2024-2` | já no site, não duplicado |
+| `saocamilo2024_2_gabarito.pdf` | `1RaUhzb1WohMySSQJKi5RFUeKttcaEDkD` | `saocamilo2024_2_gabarito` | Gabarito da Prova II, 2º sem. 2024: idêntico (mesmo md5) ao já usado | já no site, não duplicado |
+
+- O gabarito (versão 1) foi conferido print a print contra as 80 questões (todas as 80 abertas; em questões de resposta direta a letra bate, ex.: 2025/1 q3, q26, q27, q29, q31, q33, q36, q38, q40; 2025/2 q3, q4, q21, q28, q30, q33, q36).
+- Em 2025/1 e 2025/2 a Prova II tem 5 questões de cada matéria: Português (1–5), Inglês (6–10), História (11–15), Geografia (16–20), Biologia (21–25), Química (26–30), Física (31–35), Matemática (36–40). O cartum em inglês da q1 (2025/1) e a tirinha em inglês da q5 (2025/2) estão no bloco de Português e foram classificados em Português, como nas edições anteriores.
+
 - Pasta "SAO CAMILO ANTERIORES" (`1umhJSrvSLHOXhIhpLgIDS7y1HSmJPTsg`): vazia em 11/11/2026.
 - O caderno não traz o número da versão; a versão 1 do gabarito foi conferida contra o caderno em questões de resposta direta (ex.: 2020/1 q37, q40, q43, q47; 2023/1 q5, q7, q27, q31, q33; 2023/2 q27, q31, q35, q36, q37).
 

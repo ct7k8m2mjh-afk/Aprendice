@@ -393,3 +393,8 @@ PROVAS.update(_saocamilo)
 # ------------------------------------------- Santa Casa do Drive do dono (2023, 2025), 12/11/2026
 from provas_santacasa import PROVAS as _santacasa  # noqa: E402
 PROVAS.update(_santacasa)
+
+
+# ------------------------------------------- Drive do dono, 2º lote (São Camilo 2025/1 e 2025/2), 12/11/2026
+from provas_drive2 import PROVAS as _drive2  # noqa: E402
+PROVAS.update(_drive2)
