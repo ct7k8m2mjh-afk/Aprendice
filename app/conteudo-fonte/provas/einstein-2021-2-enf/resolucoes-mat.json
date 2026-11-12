@@ -807,5 +807,87 @@
    "data": "2026-11-12",
    "lote": "mat-0036"
   }
+ },
+ "P4de75e87": {
+  "n": "44",
+  "conceito": "Matriz de adjacência de um diagrama.",
+  "equivocos": {
+   "B": "M15.1:leu-o-diagrama-errado",
+   "C": "M15.1:leu-o-diagrama-errado",
+   "D": "M15.1:trocou-a-posicao",
+   "E": "M15.1:leu-o-diagrama-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada linha i da matriz lista o tempo da empresa i até cada empresa j (0 se não há ligação ou se i = j). Leia as ligações de cada empresa no diagrama e compare com as alternativas.",
+    "formulas": [
+     "aᵢⱼ = tempo de i a j; aᵢᵢ = 0"
+    ],
+    "simbolos": []
+   },
+   "pista": "Em cada alternativa: a qual empresa a linha poderia pertencer? O zero na posição dela própria precisa estar lá.",
+   "passos": [
+    {
+     "faz": "Ligações da empresa 5",
+     "conta": "com 1: 5 | com 4: 2 | com 6: 3 | demais: 0",
+     "porque": "Pelo diagrama.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Linha 5",
+     "conta": "[5 0 0 2 0 3 0]",
+     "porque": "Posições 1 a 7.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue ao gabarito",
+     "conta": "[5 0 0 2 0 3 0] → alternativa A",
+     "porque": "Linha da empresa 5.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — [5 0 0 2 0 3 0].",
+   "checagem": "A matriz é simétrica: na linha 1 a posição 5 vale 5, na linha 4 a posição 5 vale 2 e na linha 6 a posição 5 vale 3, os mesmos números da linha 5.",
+   "erradas": {
+    "B": "[0 0 0 0 4 0 0] poria a ligação de 4 h entre a empresa 7 e a 5; a ligação de 4 h é entre 4 e 7.",
+    "C": "[8 0 0 2 0 0 4] é quase a linha 4, mas com o 2 na posição 4; na linha 4, a posição 4 é 0 e o 2 fica na posição 5.",
+    "D": "[5 0 0 2 0 0 3] põe o 3 na posição 7; a ligação de 3 h da empresa 5 é com a 6.",
+    "E": "[6 1 0 3 0 3 0] não corresponde a nenhuma empresa: a 6 se liga a 1 (6), 2 (1) e 5 (3), e a posição 6 da própria linha é 0."
+   },
+   "armadilha": "Pôr o tempo na posição da empresa errada (trocar 6 por 7).",
+   "alerta": "",
+   "essencial": {
+    "pede": "Uma linha da matriz de adjacência.",
+    "chave": "Linha 5: [5 0 0 2 0 3 0].",
+    "cuidado": "Posição j = empresa j."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pelas colunas",
+    "ideia": "A coluna 5 da matriz tem os mesmos valores da linha 5 (simetria): basta ver quem chega à empresa 5."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "1: 5 | 4: 2 | 6: 3",
+    "nota": "ligações de 5"
+   },
+   {
+    "linha": "[5 0 0 2 0 3 0]",
+    "nota": "linha 5"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0041"
+  }
  }
 }

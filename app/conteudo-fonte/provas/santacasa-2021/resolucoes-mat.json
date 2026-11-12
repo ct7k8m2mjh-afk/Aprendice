@@ -513,5 +513,91 @@
    "data": "2026-11-12",
    "lote": "mat-0036"
   }
+ },
+ "P3e9b0c5f": {
+  "n": "80",
+  "conceito": "Média ponderada escrita como produto de matrizes.",
+  "equivocos": {
+   "B": "M15.1:inverteu-matriz-nao-quadrada",
+   "C": "M15.1:inverteu-matriz-nao-quadrada",
+   "D": "M15.1:trocou-a-ordem-do-produto",
+   "E": "M15.1:trocou-a-ordem-do-produto"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A média de bromélias por m² é (total de bromélias)/(total de quadrantes). O total de bromélias é Σ (bromélias por quadrante × número de quadrantes), ou seja, Bᵗ · Q. O total de quadrantes é 17 + 12 + 8 + 5 + 5 + 3 = 50.",
+    "formulas": [
+     "Bᵗ · Q = Σ bᵢqᵢ (linha vezes coluna)"
+    ],
+    "simbolos": []
+   },
+   "pista": "Quantos quadrantes há ao todo?",
+   "passos": [
+    {
+     "faz": "Total de quadrantes",
+     "conta": "17 + 12 + 8 + 5 + 5 + 3 = 50 m²",
+     "porque": "Soma de Q.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Total de bromélias",
+     "conta": "Bᵗ · Q = 0 × 17 + 1 × 12 + 2 × 8 + 3 × 5 + 4 × 5 + 5 × 3 = 78",
+     "porque": "Linha 1 × 6 vezes coluna 6 × 1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Média",
+     "conta": "Bᵗ · Q/50 = 0,02 · Bᵗ · Q → alternativa A",
+     "porque": "1/50 = 0,02.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 0,02 · Bᵗ · Q",
+   "checagem": "Ordens das matrizes: Bᵗ é 1 × 6 e Q é 6 × 1, então Bᵗ · Q é 1 × 1, um número (78), e 0,02 × 78 = 1,56 bromélia por m².",
+   "erradas": {
+    "B": "B⁻¹ não existe: B é uma matriz coluna (6 × 1), não quadrada.",
+    "C": "Q⁻¹ não existe: Q é uma matriz coluna, não quadrada.",
+    "D": "B · Qᵗ é 6 × 6, uma matriz, não um número; e 0,3 não é 1/50.",
+    "E": "B · Qᵗ é uma matriz 6 × 6, não o número total de bromélias."
+   },
+   "armadilha": "Multiplicar B · Qᵗ (coluna vezes linha), que dá uma matriz 6 × 6.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A operação que dá a média por m².",
+    "chave": "0,02 · Bᵗ · Q = 78/50.",
+    "cuidado": "Linha vezes coluna dá um número."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "média ponderada",
+    "ideia": "É a média dos valores de B pesados pelas frequências de Q: (Σ bᵢqᵢ)/(Σ qᵢ) = 78/50."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "50",
+    "nota": "quadrantes"
+   },
+   {
+    "linha": "Bᵗ · Q = 78",
+    "nota": "bromélias"
+   },
+   {
+    "linha": "0,02 · Bᵗ · Q",
+    "nota": "média"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0041"
+  }
  }
 }

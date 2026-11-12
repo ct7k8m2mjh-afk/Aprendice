@@ -421,5 +421,91 @@
    "data": "2026-11-12",
    "lote": "mat-0034"
   }
+ },
+ "Pfd6de9f4": {
+  "n": "26",
+  "conceito": "Produto de matrizes: receita por rota.",
+  "equivocos": {
+   "B": "M15.1:trocou-a-ordem-do-produto",
+   "C": "M15.1:trocou-a-ordem-do-produto",
+   "D": "M15.1:esqueceu-a-unidade",
+   "E": "M15.1:inverteu-matriz-nao-quadrada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A receita de uma rota é Σ (passageiros na estação × preço na estação). Isso é a linha da rota em M vezes a coluna P. Para dar em milhares de reais, divida por 1 000.",
+    "formulas": [
+     "(2 × 3) · (3 × 1) = (2 × 1)"
+    ],
+    "simbolos": []
+   },
+   "pista": "As ordens de M e P permitem qual produto?",
+   "passos": [
+    {
+     "faz": "Ordens",
+     "conta": "M é 2 × 3 e P é 3 × 1 → M · P é 2 × 1",
+     "porque": "Uma receita por rota.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Receitas",
+     "conta": "Azul: 8000 × 5 + 5000 × 4 + 7000 × 6 = 102 000 | Verde: 6000 × 5 + 9000 × 4 + 4000 × 6 = 90 000",
+     "porque": "Linha × coluna.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Em milhares",
+     "conta": "(1/1000) · M · P = (102; 90) → alternativa A",
+     "porque": "÷ 1 000.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — (1/1000) · M · P",
+   "checagem": "Teste as ordens: P · M seria (3 × 1)(2 × 3), impossível; M · Pᵗ seria (2 × 3)(1 × 3), impossível; só M · P existe.",
+   "erradas": {
+    "B": "P · M não existe: (3 × 1) · (2 × 3) não combina as ordens.",
+    "C": "M · Pᵗ não existe: (2 × 3) · (1 × 3) não combina as ordens.",
+    "D": "M · P dá a receita em reais, não em milhares.",
+    "E": "M⁻¹ não existe: M não é quadrada."
+   },
+   "armadilha": "Esquecer o fator 1/1000 para passar a milhares de reais.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A operação da receita em milhares.",
+    "chave": "(1/1000) · M · P.",
+    "cuidado": "Linha da rota × coluna dos preços."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "estação por estação",
+    "ideia": "Receita da rota Azul: C 40 000 + N 20 000 + S 42 000 = 102 mil; Verde: 30 + 36 + 24 = 90 mil. É linha vezes coluna."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "(2 × 3)(3 × 1)",
+    "nota": "ordens"
+   },
+   {
+    "linha": "102 000 | 90 000",
+    "nota": "receitas"
+   },
+   {
+    "linha": "(1/1000) M P",
+    "nota": "milhares"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0041"
+  }
  }
 }

@@ -1604,5 +1604,93 @@
    "data": "2026-11-12",
    "lote": "mat-0035"
   }
+ },
+ "Pcdfae2ba": {
+  "n": "53",
+  "conceito": "Determinante de produto de matrizes.",
+  "equivocos": {
+   "B": "M15.1:sem-origem-identificada",
+   "C": "M15.1:sem-origem-identificada",
+   "D": "M15.1:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O determinante de um produto é o produto dos determinantes: det M = det P × det Q. Calcule cada um e iguale a zero.",
+    "formulas": [
+     "det(PQ) = det P × det Q"
+    ],
+    "simbolos": []
+   },
+   "pista": "Quanto valem det P e det Q?",
+   "passos": [
+    {
+     "faz": "det P e det Q",
+     "conta": "det P = x · (x − 0) − 0 + 1 · (0 − 1) = x² − 1 | det Q = 1 − x²",
+     "porque": "Expansão pela 1.ª linha.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "det M = 0",
+     "conta": "(x² − 1)(1 − x²) = −(x² − 1)² = 0 → x² = 1 → x = 1 ou x = −1",
+     "porque": "Produto nulo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Soma dos quadrados",
+     "conta": "1² + (−1)² = 2 → alternativa A",
+     "porque": "Dois valores.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 2.",
+   "checagem": "Teste x = 1 direto: P = [[1, 0, 1], [0, 1, 0], [1, 0, 1]] tem a 1.ª e a 3.ª linhas iguais, então det P = 0 e det M = 0.",
+   "erradas": {
+    "B": "10 não confere: só x = 1 e x = −1 anulam o determinante.",
+    "C": "4 soma duas vezes as mesmas raízes, ±1 de det P e ±1 de det Q (1 + 1 + 1 + 1); os valores distintos de x são só 1 e −1, e a soma dos quadrados é 2.",
+    "D": "5 não confere: só x = ±1 anulam o determinante."
+   },
+   "armadilha": "Calcular M = P · Q por inteiro e errar alguma entrada: basta multiplicar os determinantes.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A soma dos quadrados dos x com det M = 0.",
+    "chave": "det M = −(x² − 1)²; x = ±1; 1 + 1 = 2.",
+    "cuidado": "det do produto = produto dos det."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "calcular M",
+    "ideia": "M = [[2x, 0, x² + 1], [0, 1, 0], [x² + 1, 0, 2x]]; det M = 4x² − (x² + 1)² = −(x² − 1)²."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "x² − 1",
+    "nota": "det P"
+   },
+   {
+    "linha": "1 − x²",
+    "nota": "det Q"
+   },
+   {
+    "linha": "x = ±1",
+    "nota": "raízes"
+   },
+   {
+    "linha": "2",
+    "nota": "soma"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0041"
+  }
  }
 }

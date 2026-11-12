@@ -1164,5 +1164,89 @@
    "data": "2026-11-12",
    "lote": "mat-0037"
   }
+ },
+ "P6f74b532": {
+  "n": "20",
+  "conceito": "Sistema com matriz simétrica B = A + Aᵀ: classificar.",
+  "equivocos": {
+   "A": "M15.3:aceitou-afirmacao-falsa",
+   "B": "M15.3:nao-testou-a-compatibilidade",
+   "D": "M15.3:nao-testou-a-compatibilidade"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Monte B = A + Aᵀ = [[2, k + 3], [k + 3, 2k²]]. Para cada valor de k das alternativas, calcule o determinante e, se for zero, verifique se as equações são contraditórias.",
+    "formulas": [
+     "det ≠ 0: solução única"
+    ],
+    "simbolos": []
+   },
+   "pista": "Monte B = A + Aᵀ e veja para quais k o determinante zera.",
+   "passos": [
+    {
+     "faz": "B geral",
+     "conta": "[[2, k + 3], [k + 3, 2k²]] → det = 4k² − (k + 3)²",
+     "porque": "Soma com a transposta.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "k = −1",
+     "conta": "B = [[2, 2], [2, 2]]: 2x + 2y = 2021 e 2x + 2y = 2022 → contradição → sem solução",
+     "porque": "C verdadeira; B falsa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Outras",
+     "conta": "k = 0: det = −9 ≠ 0, solução única → A falsa | k = 3: B = [[2, 6], [6, 18]], 3 × 2021 ≠ 2022 → sem solução → D falsa → alternativa C",
+     "porque": "Testes.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — se k = −1, o sistema não tem solução.",
+   "checagem": "Pelas raízes de det = 0: 4k² = (k + 3)² → 2k = ±(k + 3) → k = 3 ou k = −1; nos dois casos o lado direito (2021, 2022) não acompanha a proporção das linhas, então o sistema nunca tem infinitas soluções.",
+   "erradas": {
+    "A": "Com k = 0, det B = −9 ≠ 0: há solução única.",
+    "B": "Com k = −1, as duas equações têm o mesmo lado esquerdo e lados direitos diferentes: nenhuma solução.",
+    "D": "Com k = 3, a 2.ª linha é 3 vezes a 1.ª, mas 3 × 2021 ≠ 2022: nenhuma solução."
+   },
+   "armadilha": "Concluir \"infinitas soluções\" só porque det = 0, sem olhar o lado direito.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A afirmação correta sobre o sistema.",
+    "chave": "k = −1: 2x + 2y vale 2021 e 2022 ao mesmo tempo: impossível.",
+    "cuidado": "det = 0 não basta; compare o lado direito."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "escalonamento",
+    "ideia": "Com k = −1: 2.ª linha − 1.ª linha dá 0 = 2022 − 2021 = 1, absurdo."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "B = [[2, k + 3], [k + 3, 2k²]]",
+    "nota": "B"
+   },
+   {
+    "linha": "k = −1: [[2, 2], [2, 2]]",
+    "nota": "contradição"
+   },
+   {
+    "linha": "C",
+    "nota": "resposta"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0041"
+  }
  }
 }

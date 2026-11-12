@@ -881,5 +881,179 @@
    "data": "2026-11-12",
    "lote": "mat-0035"
   }
+ },
+ "P0f88a47a": {
+  "n": "21",
+  "conceito": "Determinante e traço de matriz com entradas em PA.",
+  "equivocos": {
+   "B": "M15.1:respondeu-outro-termo",
+   "C": "M15.1:sem-origem-identificada",
+   "D": "M15.1:respondeu-outro-termo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Escreva b = a + r, c = a + 2r, d = a + 3r. O traço é a + d e o determinante é ad − bc. Monte as duas equações.",
+    "formulas": [
+     "det = ad − bc",
+     "traço = a + d"
+    ],
+    "simbolos": [
+     [
+      "r",
+      "razão da PA (negativa)"
+     ]
+    ]
+   },
+   "pista": "Calcule ad − bc com os termos da PA.",
+   "passos": [
+    {
+     "faz": "Determinante",
+     "conta": "a(a + 3r) − (a + r)(a + 2r) = −2r² = −8 → r² = 4 → r = −2",
+     "porque": "Razão negativa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Traço",
+     "conta": "a + (a + 3r) = 2a − 6 = −4",
+     "porque": "Com r = −2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a",
+     "conta": "2a = 2 → a = 1 → alternativa A",
+     "porque": "Primeiro termo.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 1.",
+   "checagem": "Monte a matriz: a = 1, b = −1, c = −3, d = −5; det = 1 × (−5) − (−1)(−3) = −5 − 3 = −8; traço 1 − 5 = −4.",
+   "erradas": {
+    "B": "−1 é o valor de b, o segundo termo.",
+    "C": "5 não confere: com a = 5 e r = −2, o traço seria 4, não −4.",
+    "D": "−5 é o valor de d, o quarto termo."
+   },
+   "armadilha": "Usar r = 2 (positivo): a PA é de razão negativa.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O valor de a.",
+    "chave": "det = −2r² → r = −2; 2a − 6 = −4 → a = 1.",
+    "cuidado": "O determinante só depende de r."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pelo termo do meio",
+    "ideia": "Com a = m − 3r/2 e d = m + 3r/2 (m é o centro da PA), o traço é 2m = −4: m = −2; a = −2 − 3(−2)/2 = 1."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "−2r² = −8",
+    "nota": "det"
+   },
+   {
+    "linha": "r = −2",
+    "nota": "razão"
+   },
+   {
+    "linha": "2a − 6 = −4 → a = 1",
+    "nota": "traço"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0041"
+  }
+ },
+ "P7a762971": {
+  "n": "17",
+  "conceito": "Determinante como polinômio de x e o seu gráfico.",
+  "equivocos": {
+   "A": "M15.2:errou-o-sinal-do-termo-principal",
+   "C": "M15.2:errou-o-grau",
+   "D": "M15.2:errou-o-grau"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "det(A(x)) é um polinômio de grau 3 cujo termo de maior grau é −x³ (vem do produto da diagonal). Então o gráfico desce para a direita. Calcule o determinante por cofatores, ache o valor em x = 0 e as raízes.",
+    "formulas": [
+     "det 3 × 3 por cofatores"
+    ],
+    "simbolos": []
+   },
+   "pista": "Qual é o termo de grau 3 de det(A(x))?",
+   "passos": [
+    {
+     "faz": "Determinante",
+     "conta": "Cofatores da 3.ª linha (0, 3, 1 − x): −3·[9(2 − x) − 21] + (1 − x)·[(2 − x)(−3 − x) + 7] = −3(−3 − 9x) + (1 − x)(x² + x + 1) = 9 + 27x + 1 − x³",
+     "porque": "A 3.ª linha tem um zero.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Polinômio",
+     "conta": "det(A(x)) = −x³ + 27x + 10 = −(x + 5)(x² − 5x − 2)",
+     "porque": "x = −5 é raiz.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Gráfico",
+     "conta": "raízes −5, ≈ −0,37 e ≈ 5,37; sobe à esquerda, desce à direita, positivo em x = 0 → alternativa B",
+     "porque": "Forma da cúbica.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B",
+   "checagem": "Teste x = −5 direto: A(−5) tem linhas (7, 1, −3), (−7, 2, 9), (0, 3, 6); det = 7(12 − 27) − 1(−42) − 3(−21) = −105 + 42 + 63 = 0.",
+   "erradas": {
+    "A": "A tem o comportamento contrário: sobe para a direita, como uma cúbica de coeficiente +x³.",
+    "C": "C desce dos dois lados (dois picos e um vale): é forma de grau 4, não de uma cúbica.",
+    "D": "D é de grau 4 (sobe nos dois lados), não de grau 3."
+   },
+   "armadilha": "Tomar o termo de maior grau como +x³: o produto da diagonal tem (−x)³.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O gráfico de y = det(A(x)).",
+    "chave": "−x³ + 27x + 10; raízes −5, ≈ −0,37, ≈ 5,37.",
+    "cuidado": "Grau 3 com −x³: desce à direita."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pela forma",
+    "ideia": "Grau 3 elimina C e D (grau 4); coeficiente −1 em x³ elimina A: sobra B. O valor 10 em x = 0 confirma a curva acima do eixo na origem."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "−3(−3 − 9x) + (1 − x)(x² + x + 1)",
+    "nota": "cofatores"
+   },
+   {
+    "linha": "−x³ + 27x + 10",
+    "nota": "polinômio"
+   },
+   {
+    "linha": "−5; ≈ −0,37; ≈ 5,37",
+    "nota": "raízes"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0041"
+  }
  }
 }

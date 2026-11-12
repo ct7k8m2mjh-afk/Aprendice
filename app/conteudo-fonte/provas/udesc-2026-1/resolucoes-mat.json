@@ -969,5 +969,91 @@
    "data": "2026-11-12",
    "lote": "mat-0040"
   }
+ },
+ "P2b7ef1ad": {
+  "n": "8",
+  "conceito": "Matrizes ortogonais: definição, determinante e exemplos.",
+  "equivocos": {
+   "A": "M15.1:confundiu-transposta-e-inversa",
+   "B": "M15.1:aceitou-afirmacao-falsa",
+   "C": "M15.1:aceitou-afirmacao-falsa",
+   "D": "M15.1:errou-o-determinante"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Se AᵀA = I, então Aᵀ é a inversa de A e (det A)² = 1, ou seja, det A = 1 ou −1. Para testar uma matriz 2 × 2, veja se as colunas têm comprimento 1 e são perpendiculares, e calcule o determinante.",
+    "formulas": [
+     "AᵀA = I ⇒ (det A)² = 1"
+    ],
+    "simbolos": []
+   },
+   "pista": "Se AᵀA = I, quanto vale (det A)²?",
+   "passos": [
+    {
+     "faz": "Teste E",
+     "conta": "[[√3/2, −1/2], [1/2, √3/2]]: colunas de comprimento 1 e perpendiculares (−√3/4 + √3/4 = 0); det = 3/4 + 1/4 = 1 → verdadeira",
+     "porque": "Rotação de 30°.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste A, B e C",
+     "conta": "A: Aᵀ = A⁻¹, não A | B: det pode ser −1 | C: coluna (√2, 1) tem comprimento √3 → não ortogonal",
+     "porque": "Falsas.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Teste D",
+     "conta": "ortogonal, mas det = −1/4 − 3/4 = −1, não 1 → falsa → alternativa E",
+     "porque": "Reflexão.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — A matriz [[√3/2, −1/2], [1/2, √3/2]] é ortogonal e tem determinante igual a 1.",
+   "checagem": "Multiplique AᵀA em E: [[√3/2, 1/2], [−1/2, √3/2]] × [[√3/2, −1/2], [1/2, √3/2]] = [[3/4 + 1/4, 0], [0, 1/4 + 3/4]] = I.",
+   "erradas": {
+    "A": "O determinante é 1 ou −1, mas a transposta coincide com a inversa, não com a própria matriz.",
+    "B": "Há ortogonais com determinante −1 (como a matriz da D).",
+    "C": "A coluna (√2, 1) tem comprimento √3, não 1: não é ortogonal.",
+    "D": "É ortogonal, mas o determinante é −1/4 − 3/4 = −1."
+   },
+   "armadilha": "Confundir \"transposta igual à inversa\" com \"transposta igual à própria matriz\" (simétrica).",
+   "alerta": "",
+   "essencial": {
+    "pede": "A afirmação correta.",
+    "chave": "E: rotação de 30°, ortogonal com det 1.",
+    "cuidado": "Ortogonal: det = ±1."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "cos e sen",
+    "ideia": "A matriz de E é [[cos 30°, −sen 30°], [sen 30°, cos 30°]]: toda rotação é ortogonal com det cos² + sen² = 1."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "AᵀA = I",
+    "nota": "definição"
+   },
+   {
+    "linha": "det = ±1",
+    "nota": "consequência"
+   },
+   {
+    "linha": "E: det 1",
+    "nota": "rotação"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0041"
+  }
  }
 }

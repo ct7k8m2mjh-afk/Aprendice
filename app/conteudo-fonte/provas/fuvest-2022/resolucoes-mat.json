@@ -625,5 +625,91 @@
    "data": "2026-11-12",
    "lote": "mat-0039"
   }
+ },
+ "Pc5100905": {
+  "n": "33",
+  "conceito": "Multiplicar porcentagens por quantidades (produto de matriz por vetor).",
+  "equivocos": {
+   "A": "M15.1:sem-origem-identificada",
+   "B": "M15.1:sem-origem-identificada",
+   "D": "M15.1:sem-origem-identificada",
+   "E": "M15.1:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Para cada cor, os defeituosos são 2% das M1, 5% das M2 e 8% das M3 daquela cor. As boas são o total da cor menos as defeituosas.",
+    "formulas": [
+     "defeituosas = Σ quantidade × porcentagem"
+    ],
+    "simbolos": []
+   },
+   "pista": "Quantas cadeiras pretas de cada modelo têm defeito?",
+   "passos": [
+    {
+     "faz": "Defeito pretas",
+     "conta": "500 × 0,02 + 400 × 0,05 + 250 × 0,08 = 10 + 20 + 20 = 50",
+     "porque": "Coluna P.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Defeito vermelhas",
+     "conta": "200 × 0,02 + 220 × 0,05 + 300 × 0,08 = 4 + 11 + 24 = 39",
+     "porque": "Coluna V.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Boas",
+     "conta": "P: 1 150 − 50 = 1 100 | V: 720 − 39 = 681 → alternativa C",
+     "porque": "Total menos defeito.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — D: 50 e 39; B: 1 100 e 681",
+   "checagem": "Pelo total geral: 1 870 cadeiras, 89 com defeito; 50 + 39 = 89 e 1 100 + 681 = 1 781 = 1 870 − 89.",
+   "erradas": {
+    "A": "Põe 55 pretas com defeito; o certo é 10 + 20 + 20 = 50.",
+    "B": "Põe 51 e 40 com defeito; os certos são 50 e 39.",
+    "D": "Põe 37 vermelhas com defeito; o certo é 4 + 11 + 24 = 39.",
+    "E": "Põe 51 pretas com defeito; o certo é 50."
+   },
+   "armadilha": "Aplicar a porcentagem de um modelo às cadeiras de outro.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A tabela de defeituosas e boas por cor.",
+    "chave": "P: 50 e 1 100; V: 39 e 681.",
+    "cuidado": "Porcentagem do modelo × quantidade."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "em matrizes",
+    "ideia": "O vetor linha (0,02  0,05  0,08) vezes a tabela 3 × 2 dá (50  39), as defeituosas de cada cor."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "10 + 20 + 20 = 50",
+    "nota": "D pretas"
+   },
+   {
+    "linha": "4 + 11 + 24 = 39",
+    "nota": "D vermelhas"
+   },
+   {
+    "linha": "1 100 | 681",
+    "nota": "boas"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0041"
+  }
  }
 }

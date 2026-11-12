@@ -1167,5 +1167,95 @@
    "data": "2026-11-12",
    "lote": "mat-0029"
   }
+ },
+ "Pc867f063": {
+  "n": "6",
+  "conceito": "Matriz inversa e determinante.",
+  "equivocos": {
+   "A": "M15.1:errou-o-sinal",
+   "C": "M15.1:sem-origem-identificada",
+   "D": "M15.1:sem-origem-identificada",
+   "E": "M15.1:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Calcule A⁻¹ (2 × 2: troca a diagonal, inverte sinais da outra e divide pelo det). Isole B = A + 2A⁻¹ − D e calcule seu determinante.",
+    "formulas": [
+     "A⁻¹ = (1/det A) [[d, −b], [−c, a]]"
+    ],
+    "simbolos": []
+   },
+   "pista": "Quanto vale det A?",
+   "passos": [
+    {
+     "faz": "Inversa",
+     "conta": "det A = 0 + 2 = 2 → A⁻¹ = (1/2)[[0, −2], [1, 1]] → 2A⁻¹ = [[0, −2], [1, 1]]",
+     "porque": "Fórmula 2 × 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "A + 2A⁻¹",
+     "conta": "[[1, 2], [−1, 0]] + [[0, −2], [1, 1]] = [[1, 0], [0, 1]] = I",
+     "porque": "Some.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "B e det",
+     "conta": "B = I − D = [[−2, 4], [−1, −1]] → det B = 2 + 4 = 6 → alternativa B",
+     "porque": "Diagonal menos diagonal.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 6",
+   "checagem": "Confira a igualdade dada: A + 2A⁻¹ − B = I − [[−2, 4], [−1, −1]] = [[3, −4], [1, 2]] = D.",
+   "erradas": {
+    "A": "−6 troca o sinal: det B = (−2)(−1) − 4(−1) = 2 + 4 = 6.",
+    "C": "3 não confere: det B = 6.",
+    "D": "−3 não confere: det B = 6.",
+    "E": "−1/2 não confere: det B = 6."
+   },
+   "armadilha": "Esquecer o fator 2 de 2A⁻¹ ou errar a inversa (trocar a diagonal sem inverter o sinal dos outros dois).",
+   "alerta": "",
+   "essencial": {
+    "pede": "O determinante de B.",
+    "chave": "A + 2A⁻¹ = I; B = I − D; det B = 6.",
+    "cuidado": "Inversa 2 × 2."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "inversa sem fórmula",
+    "ideia": "A·[[p, q], [r, s]] = I dá −p = 0, p + 2r = 1, −q = 1, q + 2s = 0 → A⁻¹ = [[0, −1], [1/2, 1/2]]; então 2A⁻¹ = [[0, −2], [1, 1]] e A + 2A⁻¹ = I."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "det A = 2",
+    "nota": "det"
+   },
+   {
+    "linha": "A + 2A⁻¹ = I",
+    "nota": "simplificação"
+   },
+   {
+    "linha": "B = [[−2, 4], [−1, −1]]",
+    "nota": "B"
+   },
+   {
+    "linha": "det B = 6",
+    "nota": "resposta"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0041"
+  }
  }
 }
