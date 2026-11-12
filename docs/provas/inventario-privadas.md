@@ -138,14 +138,14 @@ Legenda de **Conf.**: `ok` = caderno e gabarito confirmados; `só gab.` / `só c
 | Ano | Edição | Conf. | Livre | Já no site | Caderno | Gabarito |
 |---|---|---|---|---|---|---|
 | 2027 | Vestibular Unificado 2027 (11/10/2026) | — | não |  | — | — |
-| 2026 | Vestibular Unificado 2026 (12/10/2025) | — | não |  | — | — |
-| 2025 | Vestibular Unificado 2025 (13/10/2024) | — | não |  | — | — |
-| 2024 | Vestibular 2024 | — | não |  | — | — |
+| 2026 | Vestibular Unificado 2026 (12/10/2025) | — | não | einstein-2026 | Objetivo | Objetivo |
+| 2025 | Vestibular Unificado 2025 (13/10/2024) | — | não | einstein-2025 | Objetivo | Objetivo |
+| 2024 | Vestibular 2024 | — | não | einstein-2024 | Objetivo | Objetivo |
 
 - 2027, Vestibular Unificado 2027 (11/10/2026): Página Vunesp: https://www.vunesp.com.br/FEAE2602 Baixar à mão.
-- 2026, Vestibular Unificado 2026 (12/10/2025): Página Vunesp: https://www.vunesp.com.br/FEAE2502 Baixar à mão.
-- 2025, Vestibular Unificado 2025 (13/10/2024): Página Vunesp: https://www.vunesp.com.br/FEAE2405 Baixar à mão.
-- 2024, Vestibular 2024: Página Vunesp: https://www.vunesp.com.br/FEAE2303 Baixar à mão.
+- 2026, Vestibular Unificado 2026 (12/10/2025): Já no site (einstein-2026, Prova I), caderno e gabarito oficiais versão 1 (FEAE2502) da cópia do Curso Objetivo (12/11/2026). Página Vunesp: https://www.vunesp.com.br/FEAE2502
+- 2025, Vestibular Unificado 2025 (13/10/2024): Já no site (einstein-2025, Prova I), caderno e gabarito oficiais versão 1 (FEAE2405) da cópia do Curso Objetivo (12/11/2026). Página Vunesp: https://www.vunesp.com.br/FEAE2405
+- 2024, Vestibular 2024: Já no site (einstein-2024, Prova I), caderno e gabarito oficiais versão 1 (FEAE2303) da cópia do Curso Objetivo (12/11/2026). Página Vunesp: https://www.vunesp.com.br/FEAE2303
 
 ### EMESCAM (ES)
 
