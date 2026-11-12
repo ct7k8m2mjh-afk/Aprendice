@@ -729,5 +729,261 @@
    "data": "2026-11-12",
    "lote": "mat-0037"
   }
+ },
+ "P1d4c4a51": {
+  "n": "86",
+  "conceito": "Retas no gráfico: ponto de encontro de duas tendências.",
+  "equivocos": {
+   "A": "M14.2:sem-origem-identificada",
+   "B": "M14.2:sem-origem-identificada",
+   "C": "M14.2:sem-origem-identificada",
+   "E": "M14.2:errou-o-valor"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada reta passa por dois pontos dados. A reta de cima (máximos) sobe 300 USD a cada 18 dias (de 19/3 a 6/4). A de baixo (mínimos) sobe 800 USD a cada 18 dias. O ápice é onde elas se encontram.",
+    "formulas": [
+     "taxa = variação/dias",
+     "encontro: diferença inicial ÷ diferença das taxas"
+    ],
+    "simbolos": []
+   },
+   "pista": "Quantos dias há de 19 de março a 6 de abril?",
+   "passos": [
+    {
+     "faz": "Taxas",
+     "conta": "de 19/3 a 6/4: 12 + 6 = 18 dias | máximos: 300/18 por dia | mínimos: 800/18 por dia",
+     "porque": "Os dois trechos de 18 dias confirmam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Encontro",
+     "conta": "diferença inicial 7 200 − 5 200 = 2 000 | aproximação 500/18 por dia → 2000/(500/18) = 72 dias",
+     "porque": "As retas se aproximam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Valor",
+     "conta": "7 200 + 72 × 300/18 = 7 200 + 1 200 = 8 400 → alternativa D",
+     "porque": "Pela reta de cima.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 72 dias, com o valor de 8 400 USD.",
+   "checagem": "Pela reta de baixo: 5 200 + 72 × 800/18 = 5 200 + 3 200 = 8 400, o mesmo valor.",
+   "erradas": {
+    "A": "90 dias e 8 700 não conferem: em 72 dias as retas já se encontram em 8 400.",
+    "B": "54 dias não confere: em 54 dias as retas ainda distam 2 000 − 3 × 500 = 500 USD.",
+    "C": "54 dias não confere: em 54 dias ainda há 500 USD de distância entre as retas.",
+    "E": "72 dias está certo, mas o valor é 7 200 + 1 200 = 8 400, não 8 700."
+   },
+   "armadilha": "Contar os dias de março errado (19 a 31 são 12 dias, não 11 ou 13).",
+   "alerta": "",
+   "essencial": {
+    "pede": "Dias até o ápice e o valor.",
+    "chave": "2000/(500/18) = 72 dias; 8 400 USD.",
+    "cuidado": "Encontro das duas retas."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "em blocos de 18 dias",
+    "ideia": "A cada 18 dias a diferença cai 500 (2 000 → 1 500 → 1 000 → 500 → 0): 4 blocos = 72 dias; a de cima sobe 4 × 300 = 1 200."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "300/18 e 800/18",
+    "nota": "taxas"
+   },
+   {
+    "linha": "2 000 ÷ (500/18) = 72",
+    "nota": "dias"
+   },
+   {
+    "linha": "8 400",
+    "nota": "valor"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0039"
+  }
+ },
+ "P7abf1bcd": {
+  "n": "88",
+  "conceito": "Crescimento exponencial representado por áreas de círculos.",
+  "equivocos": {
+   "A": "M14.2:sem-origem-identificada",
+   "B": "M14.2:usou-as-duplicacoes",
+   "D": "M14.2:sem-origem-identificada",
+   "E": "M14.2:esqueceu-a-raiz"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Em 30 dias, duplicando a cada 3 dias são 10 duplicações; a cada 5 dias, 6 duplicações. A área é proporcional ao número de infectados, e a área é proporcional ao raio ao quadrado.",
+    "formulas": [
+     "área = πr²",
+     "n duplicações: × 2ⁿ"
+    ],
+    "simbolos": []
+   },
+   "pista": "Quantas duplicações há em 30 dias em cada ritmo?",
+   "passos": [
+    {
+     "faz": "Fatores de área",
+     "conta": "a cada 3 dias: 2¹⁰ = 1024 | a cada 5 dias: 2⁶ = 64",
+     "porque": "Raio inicial 1: área π.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Raios",
+     "conta": "R² = 1024 → R = 32 | r² = 64 → r = 8",
+     "porque": "Raio = raiz do fator.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue ao gabarito",
+     "conta": "r = 8 e R = 32 → alternativa C",
+     "porque": "Seta de 5 dias para o menor.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — r = 8 e R = 32.",
+   "checagem": "Áreas: π × 8² = 64π e π × 32² = 1024π; com área inicial π, os fatores 64 = 2⁶ e 1 024 = 2¹⁰ batem com 6 e 10 duplicações.",
+   "erradas": {
+    "A": "r = 8 e R = 16 dariam áreas 64π e 256π; 256 = 2⁸ não são 10 duplicações.",
+    "B": "r = 6 e R = 10 usam o número de duplicações como raio.",
+    "D": "r = 6 e R = 12 não conferem: as áreas 36π e 144π não são potências de 2.",
+    "E": "r = 64 e R = 1 024 usam os fatores de área como raio, sem tirar a raiz."
+   },
+   "armadilha": "Usar o fator de crescimento no raio: a área cresce com o quadrado do raio.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Os raios r e R.",
+    "chave": "Fatores 64 e 1 024; raios 8 e 32.",
+    "cuidado": "Raio = raiz do fator de área."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "raio duplica mais devagar",
+    "ideia": "Cada duplicação da área multiplica o raio por √2: 10 duplicações dão (√2)¹⁰ = 2⁵ = 32; 6 dão (√2)⁶ = 2³ = 8."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "2⁶ = 64 | 2¹⁰ = 1024",
+    "nota": "áreas"
+   },
+   {
+    "linha": "r = 8 | R = 32",
+    "nota": "raios"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0039"
+  }
+ },
+ "Pa5f16a2c": {
+  "n": "89",
+  "conceito": "Porcentagem dentro de um subconjunto lido em gráfico.",
+  "equivocos": {
+   "A": "M14.2:sem-origem-identificada",
+   "C": "M14.2:sem-origem-identificada",
+   "D": "M14.2:usou-o-total-como-base",
+   "E": "M14.2:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os cinco tipos mais descartados são PP (21%), LDPE (20%), HDPE (16%), PVC (12%) e PET (10%), somando 79%. Desses, os de fácil ou média reciclagem são PP, LDPE, HDPE e PET. A porcentagem é sobre esses 79%.",
+    "formulas": [
+     "% no subconjunto = parte/subtotal"
+    ],
+    "simbolos": []
+   },
+   "pista": "Quais são os cinco tipos mais descartados e quanto somam?",
+   "passos": [
+    {
+     "faz": "Cinco maiores",
+     "conta": "21 + 20 + 16 + 12 + 10 = 79%",
+     "porque": "PP, LDPE, HDPE, PVC, PET.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Fácil ou médio",
+     "conta": "PP 21 + LDPE 20 + HDPE 16 + PET 10 = 67%",
+     "porque": "PVC é muito difícil.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Proporção",
+     "conta": "67/79 ≈ 84,8% → entre 79% e 86% → alternativa B",
+     "porque": "Sobre os cinco.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — entre 79% e 86%.",
+   "checagem": "Pelo complementar: PVC é 12 de 79 ≈ 15,2%; 100% − 15,2% = 84,8%.",
+   "erradas": {
+    "A": "Superior a 86% exigiria PVC abaixo de 14% dos cinco; ele é ≈ 15,2%.",
+    "C": "Entre 72% e 79% não confere: 67/79 ≈ 84,8%.",
+    "D": "Entre 65% e 72% usa 67% sobre o total de plástico, sem restringir aos cinco tipos.",
+    "E": "Inferior a 65% não confere: 67/79 ≈ 84,8%."
+   },
+   "armadilha": "Responder 67% (sobre todo o plástico) em vez de 67 de 79.",
+   "alerta": "",
+   "essencial": {
+    "pede": "% fácil ou médio entre os cinco mais descartados.",
+    "chave": "67/79 ≈ 84,8%.",
+    "cuidado": "A base são os cinco tipos."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pelos limites",
+    "ideia": "0,79 × 79 ≈ 62,4 e 0,86 × 79 ≈ 67,9; como 67 fica entre esses valores, a proporção está entre 79% e 86%."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "79%",
+    "nota": "cinco maiores"
+   },
+   {
+    "linha": "67%",
+    "nota": "fácil ou médio"
+   },
+   {
+    "linha": "67/79 ≈ 84,8%",
+    "nota": "proporção"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0039"
+  }
  }
 }

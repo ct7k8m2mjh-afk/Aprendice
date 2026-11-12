@@ -842,5 +842,85 @@
    "data": "2026-11-12",
    "lote": "mat-0034"
   }
+ },
+ "P476c4b22": {
+  "n": "25",
+  "conceito": "Porcentagens de aumento: comparar áreas a partir de 2019.",
+  "equivocos": {
+   "A": "M14.2:sem-origem-identificada",
+   "B": "M14.2:sem-origem-identificada",
+   "C": "M14.2:inverteu-a-porcentagem"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Tome a área de 2019 como referência A. Um acréscimo de 35% em relação a 2018 quer dizer A = 1,35 × (área de 2018); o mesmo vale para 2017 (1,45) e 2016 (1,28). Então cada área antiga é A dividido pelo fator.",
+    "formulas": [
+     "A = (1 + p) × anterior → anterior = A/(1 + p)"
+    ],
+    "simbolos": []
+   },
+   "pista": "Escreva as áreas de 2016, 2017 e 2018 em função de A.",
+   "passos": [
+    {
+     "faz": "Áreas",
+     "conta": "2018: A/1,35 ≈ 0,741A | 2017: A/1,45 ≈ 0,690A | 2016: A/1,28 ≈ 0,781A",
+     "porque": "Divida pelo fator.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste D",
+     "conta": "2018 (0,741A) < 2016 (0,781A) → verdadeira",
+     "porque": "Compare.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste A, B e C",
+     "conta": "A: menor é 2017 → falsa | B: A/(0,690A + 0,741A) ≈ 70% → falsa | C: 2018 é 25,9% menor que 2019 → falsa → alternativa D",
+     "porque": "As outras falham.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — A área desmatada em 2018 foi menor que a área desmatada em 2016.",
+   "checagem": "Com A = 1 000 km² (valor de exemplo): 2018 ≈ 741, 2017 ≈ 690, 2016 ≈ 781; 741 < 781.",
+   "erradas": {
+    "A": "A menor área foi a de 2017 (≈ 0,690A), a que precisa do maior acréscimo (45%) para chegar a 2019.",
+    "B": "2017 e 2018 somam ≈ 1,43A; 2019 é cerca de 70% disso, não 80%.",
+    "C": "2018 = A/1,35 ≈ 0,741A: 25,9% menor que 2019, não 35%."
+   },
+   "armadilha": "Achar que \"35% a mais em 2019\" significa \"35% a menos em 2018\": a base muda.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A afirmação correta.",
+    "chave": "2018 ≈ 0,741A < 2016 ≈ 0,781A.",
+    "cuidado": "Divida pelo fator de aumento."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "comparar fatores",
+    "ideia": "Quanto maior o fator de aumento até 2019, menor a área antiga: 1,45 > 1,35 > 1,28, então 2017 < 2018 < 2016."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "A/1,35 | A/1,45 | A/1,28",
+    "nota": "áreas"
+   },
+   {
+    "linha": "0,741A < 0,781A",
+    "nota": "2018 < 2016"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0039"
+  }
  }
 }
