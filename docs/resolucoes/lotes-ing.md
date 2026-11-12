@@ -1,6 +1,6 @@
 # Inglês: resoluções (gerado por lote.py em 2026-11-12)
 
-Faltam 1201 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 1015; ENEM nível 7-10 2; provas-alvo nível 7-10 83; demais nível 7-10 101.
+Faltam 1141 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 955; ENEM nível 7-10 2; provas-alvo nível 7-10 83; demais nível 7-10 101.
 
 ## Lotes
 
@@ -42,12 +42,16 @@ Faltam 1201 questões sem resolução (fora as que estão em lote, pendentes ou 
 | ing-0034 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | ing-0035 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | ing-0036 | provas-alvo nível 1-6 | 30 | gravado | 28 | 2 | 0 |
-| ing-0037 | demais nível 1-6 | 30 | aberto |  |  |  |
+| ing-0037 | demais nível 1-6 | 30 | gravado | 28 | 2 | 0 |
+| ing-0038 | demais nível 1-6 | 30 | aberto |  |  |  |
+| ing-0039 | demais nível 1-6 | 30 | aberto |  |  |  |
 
 ## Pendentes (falta de certeza absoluta)
 
 | Questão | Prova | Conteúdo | Motivo |
 |---|---|---|---|
+| P6a224b43 | Cederj 2022 2022.2 · questão 43 | I01.2 objetivo do texto e público-alvo (tema I01 Leitura e interpretação de textos) | print: a questão pede o objetivo de um texto sobre vício em redes sociais que não está no texto_da_prova nem no print (que mostra só o enunciado e as alternativas). Refazer o print com o texto de apoio, a partir do PDF oficial da Cederj 2022.2. |
+| P22a52db2 | Cederj 2022 2022.2 · questão 45 | I01.10 notícia, artigo de opinião e divulgação científica (tema I01 Leitura e interpretação de textos) | print: a questão fala da terceira seção de um artigo sobre redes sociais (verbos set aside, turn off, take up), mas o texto de apoio não está no texto_da_prova nem no print (que mostra só o enunciado e as alternativas). Refazer o print com o texto, a partir do PDF oficial da Cederj 2022.2. |
 | P773b0c19 | FCM-MG 2023 1º semestre · questão 53 | I01.1 tema e ideia principal (tema I01 Leitura e interpretação de textos) | print: a questão pede um resumo do artigo sobre o estudo de Kaori Murata (lágrimas de felicidade em animais), mas o texto_da_prova e o print trazem só a tirinha do PHD Comics; o artigo não está no lote. Refazer o print ou a transcrição com o artigo, a partir do PDF oficial. |
 | P91941880 | PUC-Campinas 2027 · questão 16 | I03.2 conectivos e relações lógicas (tema I03 Gramática) | print: a questão pede a lacuna I de um texto que não está no texto_da_prova nem no print da questão (que mostra só o comando e as alternativas); refazer o print ou a transcrição com o texto de apoio da PUC-Campinas 2027. |
 | Pcbb2a2aa | UECE 2025 2025.2 – 1ª fase · questão 78 | I01.3 informação explícita (tema I01 Leitura e interpretação de textos) | print: o texto de apoio em inglês (UECE 2025.2, página anterior às questões) não está no texto_da_prova nem no print da questão, que mostra só o enunciado e as alternativas; refazer o print ou a transcrição com o texto, a partir do PDF oficial. Prova sem gabarito definitivo: depois, gabarito do Aprendice às cegas. |
@@ -70,4 +74,4 @@ Faltam 1201 questões sem resolução (fora as que estão em lote, pendentes ou 
 
 | Questão | Prova | Conteúdo | Motivo |
 |---|---|---|---|
-| P855bb53e | Mackenzie 2026 2026/2 – 15/07 · questão 11 | I01.1 tema e ideia principal (tema I01 Leitura e interpretação de textos) | O raciocínio leva à alternativa B, e não à A do gabarito registrado. O texto é uma crítica (review) do filme de ficção The Secret Agent, de Kleber Mendonça Filho: “Kleber Mendonça Filho’s study of a man attempting to escape corrupt politics is a tremendous, novelistic study of corruption in high and low places” e “visual brilliance”, exatamente o que B diz. A alternativa A fala de “historical accuracy of documentary”, mas o texto não trata de documentário nem de precisão histórica. Conferir o gabarito oficial do Mackenzie 2026/2 (15/07), questão 11; pode ser erro na captura do gabarito. |
+| P855bb53e | Mackenzie 2026 2026/2 – 15/07 · questão 11 | I01.1 tema e ideia principal (tema I01 Leitura e interpretação de textos) | O raciocínio leva à alternativa B, e não à A do gabarito registrado. O texto é uma crítica (review) do filme de ficção The Secret Agent, de Kleber Mendonça Filho: “Kleber Mendonça Filho’s study of a man attempting to escape corrupt politics is a tremendous, novelistic study of corruption in high and low places” e “visual brilliance”, exatamente o que B diz. A alternativa A fala de “historical accuracy of documentary”, mas o texto não trata de documentário nem de precisão histórica. Conferir o gabarito oficial do Mackenzie 2026/2 (15/07), questão 11; pode ser erro na captura do gabarito. / web: o gabarito oficial do Mackenzie traz de fato 11 = A (https://www.mackenzie.br/fileadmin/ARQUIVOS/Public/2-processos-seletivos/upm/VESTIBULAR_REGULAR/2026/2026_2/Gabarito_15.07.2026_-_2026_2__semestre.pdf); 12 = B e 13 = C batem com o caderno (Prova A), então não é troca de versão nem erro de captura. Nenhuma errata ou gabarito retificado encontrado, e nenhuma fonte sustenta A: o texto é a crítica do Guardian ao filme de ficção, como diz B; A fala de documentário e precisão histórica, que o texto não trata. |
