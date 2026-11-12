@@ -35,6 +35,9 @@ RETOMAR = sys.argv[sys.argv.index('--retomar') + 1] if '--retomar' in sys.argv[:
 if '--retomar' in sys.argv:
     i = sys.argv.index('--retomar')
     del sys.argv[i:i + 2]
+NOVO = '--novo' in sys.argv
+if NOVO:
+    sys.argv.remove('--novo')
 TRAB = os.path.join(DOCS, 'trabalho')  # lotes abertos (fora do git; refeitos a partir do registro se sumirem)
 REGISTRO_ANTIGO = os.path.join(DOCS, 'registro.json')  # um só para todas (até 11/11/2026); hoje um por matéria
 
@@ -385,6 +388,8 @@ def cmd_proximo(m=None, n=30):
     # sessão não é devolvido (12/11/2026: duas sessões pegaram o mesmo lote e uma regravou por cima da outra).
     for nome, l in reg['lotes'].items():
         if l['materia'] == m and l['estado'] == 'aberto':
+            if NOVO and l.get('dono') == SESSAO:
+                continue   # --novo: o lote aberto está com o conferente; abre o próximo enquanto isso (esteira, dono 12/11)
             if l.get('dono') != SESSAO and RETOMAR != nome:
                 print(f'(lote {nome} está aberto por outra sessão: pulado. Se ele é seu, rode: '
                       f'lote.py proximo {m} --retomar {nome})')
@@ -399,6 +404,9 @@ def cmd_proximo(m=None, n=30):
             print(f'Lote {nome} já estava aberto: {caminho_entrada(nome)}')
             print(f'Saída: {caminho_saida(nome)}')
             return
+    if NOVO and sum(1 for l in reg['lotes'].values() if l['materia'] == m and l['estado'] == 'aberto'
+                    and l.get('dono') == SESSAO) >= 2:
+        sys.exit('Esta sessão já tem 2 lotes abertos nesta matéria: grave um antes de abrir outro.')
     qs = sorted(faltam(m, reg, resolvidas_em_provas()), key=chave)[:n]
     if not qs:
         print(f'{NOMES[m]}: nenhuma questão sem resolução.')
