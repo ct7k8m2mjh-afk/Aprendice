@@ -88,7 +88,7 @@ Faltam 0 questões sem resolução (fora as que estão em lote, pendentes ou com
 | his-0080 | provas-alvo nível 7-10 | 30 | gravado | 28 | 2 | 0 |
 | his-0081 | provas-alvo nível 7-10 | 30 | gravado | 30 | 0 | 0 |
 | his-0082 | demais nível 7-10 | 30 | gravado | 26 | 2 | 2 |
-| his-0083 | demais nível 7-10 | 15 | aberto |  |  |  |
+| his-0083 | demais nível 7-10 | 15 | gravado | 15 | 0 | 0 |
 
 ## Pendentes (falta de certeza absoluta)
 
