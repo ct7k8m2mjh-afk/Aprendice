@@ -464,5 +464,107 @@
    "data": "2026-11-12",
    "lote": "bio-0018"
   }
+ },
+ "Pe05b5a87": {
+  "n": "29",
+  "conceito": "A onça é consumidora secundária ao comer herbívoros (veado, capivara) e de ordem mais alta ao comer o jacaré, que é carnívoro.",
+  "equivocos": {
+   "A": "B09.1:predador-como-primario",
+   "B": "B09.1:predador-como-primario",
+   "C": "B09.1:presa-carnivora-como-herbivora",
+   "E": "B09.1:presa-herbivora-como-carnivora"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A ordem do consumidor muda com a presa. Veado e capivara são herbívoros, consumidores primários; quem os come é consumidor secundário. O jacaré é carnívoro (come peixes e outros animais), então é pelo menos consumidor secundário, e a onça que o come é pelo menos terciária. A onça nunca é primária, porque não come plantas.",
+    "formulas": [
+     "come herbívoro → consumidor secundário",
+     "come carnívoro → consumidor terciário ou mais"
+    ],
+    "simbolos": [
+     [
+      "consumidor primário",
+      "come o produtor (herbívoro)"
+     ],
+     [
+      "consumidor secundário",
+      "come consumidor primário"
+     ],
+     [
+      "consumidor terciário",
+      "come consumidor secundário"
+     ],
+     [
+      "predador de topo",
+      "não é presa de nenhum outro animal"
+     ]
+    ]
+   },
+   "pista": "Classifique cada presa: ela come plantas ou outros animais?",
+   "passos": [
+    {
+     "faz": "Classifique as presas",
+     "conta": "veado e capivara: herbívoros → primários | jacaré: carnívoro → secundário ou mais",
+     "porque": "A dieta de cada presa define seu nível.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Dê a ordem da onça para cada presa",
+     "conta": "onça + veado ou capivara → secundária | onça + jacaré → terciária ou mais",
+     "porque": "O predador fica um nível acima da presa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Elimine as erradas",
+     "conta": "A e B: primária | C: secundária com jacaré | E: terciária com capivara",
+     "porque": "A onça nunca é primária; com jacaré ela sobe; com capivara é secundária.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "secundária com veado ou capivara → alternativa D",
+     "porque": "É a única ordem correta para as presas citadas.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — a onça é consumidora secundária quando se alimenta de veados ou de capivaras.",
+   "checagem": "Confira pelo jacaré: se a onça fosse secundária ao comê-lo (como diz a C), o jacaré teria de ser herbívoro. Ele é carnívoro, então a onça que o come fica no mínimo terciária, e a frase da D, só com veado e capivara, é a que se sustenta.",
+   "erradas": {
+    "A": "Consumidor primário come planta; ao comer veado, que é herbívoro, a onça é secundária.",
+    "B": "O jacaré é carnívoro; ao comê-lo, a onça é pelo menos terciária, nunca primária.",
+    "C": "O jacaré já é pelo menos consumidor secundário, então a onça que o come é pelo menos terciária.",
+    "E": "A parte do jacaré pode estar certa, mas ao comer capivara, que é herbívora, a onça é secundária, não terciária."
+   },
+   "armadilha": "Pensar que o predador de topo é sempre terciário; a ordem depende de cada presa.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A ordem de consumidor da onça conforme a presa.",
+    "chave": "Comendo herbívoro, a onça é secundária; comendo jacaré, terciária ou mais.",
+    "cuidado": "Predador de topo não tem ordem fixa: depende da presa."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "eliminação rápida",
+    "ideia": "Onça não come planta: caem A e B; capivara é herbívora: cai E; jacaré é carnívoro: cai C."
+   }
+  ],
+  "quadro": null,
+  "visual": {
+   "cabe": true,
+   "tipo": "processo",
+   "porque": "Mostra as duas cadeias da onça lado a lado.",
+   "roteiro": "Quadro 1: capim → capivara → onça, com a onça marcada 2ª ordem. Quadro 2: plantas aquáticas → peixe herbívoro → jacaré → onça, com a onça marcada 3ª ordem. Quadro 3: as duas cadeias lado a lado."
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "bio-0021"
+  }
  }
 }

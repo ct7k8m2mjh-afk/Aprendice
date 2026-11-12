@@ -462,5 +462,111 @@
    "data": "2026-11-12",
    "lote": "bio-0020"
   }
+ },
+ "P30782bc7": {
+  "n": "42",
+  "conceito": "A energia que vai aos decompositores é a produtividade líquida de cada nível que não passa ao nível seguinte: 300 + 40 + 10 + 2 = 352 kcal/m²/ano.",
+  "equivocos": {
+   "A": "B09.2:decompositor-por-manutencao",
+   "C": "B09.2:manutencao-dos-produtores-errada",
+   "D": "B09.2:incluiu-herbivoro-nos-carnivoros"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Em cada nível, a energia assimilada se divide em duas partes: a gasta na manutenção (respiração) e a que vira biomassa nova (produtividade líquida). Da produtividade líquida, uma parte é comida pelo nível seguinte (valor na seta) e o resto morre e vai para os decompositores. Nos produtores, PPB é o total fixado e PPL é o que sobra depois da manutenção.",
+    "formulas": [
+     "manutenção = assimilada − produtividade líquida",
+     "para os decompositores = produtividade líquida − passada ao nível seguinte"
+    ],
+    "simbolos": [
+     [
+      "PPB",
+      "produtividade primária bruta: toda a energia fixada pelos produtores"
+     ],
+     [
+      "PPL",
+      "produtividade primária líquida: PPB menos a gasta na respiração dos produtores"
+     ],
+     [
+      "PSL",
+      "produtividade secundária líquida: energia que vira biomassa nos consumidores"
+     ],
+     [
+      "kcal/m²/ano",
+      "quilocalorias por metro quadrado por ano"
+     ]
+    ]
+   },
+   "pista": "Para cada caixa, separe o que entra, o que vira biomassa e o que passa adiante; a diferença tem dois destinos possíveis.",
+   "passos": [
+    {
+     "faz": "Calcule a manutenção dos produtores",
+     "conta": "1000 − 500 = 500 kcal/m²/ano",
+     "porque": "PPB menos PPL é o que os autótrofos gastam. Isso derruba a C (700).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a manutenção do consumidor primário",
+     "conta": "200 − 100 = 100 kcal/m²/ano",
+     "porque": "Ele assimila 200 e transforma 100 em biomassa. Isso derruba a A (40).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a energia dos carnívoros",
+     "conta": "60 + 10 = 70 kcal/m²/ano",
+     "porque": "Carnívoros são os consumidores secundário e terciário. Isso derruba a D (270).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a energia para os decompositores",
+     "conta": "(500 − 200) + (100 − 60) + (20 − 10) + 2 = 300 + 40 + 10 + 2 = 352",
+     "porque": "Em cada nível, a biomassa que não é comida vai para os decompositores; o último nível manda toda a sua.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "352 kcal/m²/ano → alternativa B",
+     "porque": "É o único valor que confere.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — a energia direcionada aos decompositores é de 352 kcal/m²/ano.",
+   "checagem": "Faça o balanço dos 500 da PPL: tudo termina na manutenção dos consumidores (100 + 40 + 8 = 148, porque 200 − 100, 60 − 20 e 10 − 2) ou nos decompositores (352). 148 + 352 = 500: fecha com a PPL.",
+   "erradas": {
+    "A": "40 é a manutenção do consumidor secundário (60 − 20), não a do primário; a manutenção do consumidor primário é 200 − 100 = 100.",
+    "C": "A manutenção dos autótrofos é PPB − PPL = 1000 − 500 = 500, não 700.",
+    "D": "270 sai de somar todas as setas (200 + 60 + 10), incluindo o herbívoro; os carnívoros assimilam só 60 + 10 = 70."
+   },
+   "armadilha": "Confundir energia assimilada com produtividade líquida e esquecer que parte da biomassa de cada nível nunca é comida.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Qual valor de energia do modelo está correto.",
+    "chave": "Para os decompositores vai a produtividade líquida que não passa adiante: 300 + 40 + 10 + 2 = 352.",
+    "cuidado": "Manutenção é assimilada menos produtividade líquida."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "eliminação pelas contas curtas",
+    "ideia": "1000 − 500 = 500 (não 700), 200 − 100 = 100 (não 40), 60 + 10 = 70 (não 270): sobra a B."
+   }
+  ],
+  "quadro": null,
+  "visual": {
+   "cabe": true,
+   "tipo": "processo",
+   "porque": "Mostra a energia de cada caixa se dividindo entre manutenção, próximo nível e decompositores.",
+   "roteiro": "Quadro 1: os produtores com 1000 de PPB; 500 saem para a manutenção e 500 ficam como PPL. Quadro 2: da PPL, 200 vão para o herbívoro e 300 para os decompositores. Quadro 3: no herbívoro, 100 vão para a manutenção, 60 para o carnívoro e 40 para os decompositores. Quadro 4: seguem 10 e 2; a caixa dos decompositores soma 352."
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "bio-0022"
+  }
  }
 }
