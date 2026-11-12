@@ -457,5 +457,89 @@
    "data": "2026-11-12",
    "lote": "fis-0012"
   }
+ },
+ "P0d35a54d": {
+  "n": "90",
+  "conceito": "Achar o ângulo mínimo de uma escada apoiada em parede lisa e piso com atrito.",
+  "equivocos": {
+   "A": "F03.6:nao-buscou-o-minimo",
+   "C": "F03.6:nao-buscou-o-minimo",
+   "D": "F03.6:usou-a-formula-do-plano-inclinado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Na escada agem: o peso, no meio; a normal e o atrito do piso, no pé; e a normal da parede (lisa, sem atrito), no topo. Na vertical, a normal do piso iguala o peso. Na horizontal, o atrito iguala a normal da parede. Os torques em torno do pé ligam a normal da parede ao ângulo. No ângulo mínimo, o atrito está no valor máximo.",
+    "formulas": [
+     "normal do piso = peso",
+     "atrito = normal da parede",
+     "torques no pé: N da parede × L × sen θ = peso × (L/2) × cos θ",
+     "atrito máximo = µ × normal do piso"
+    ],
+    "simbolos": [
+     [
+      "θ",
+      "ângulo entre a escada e o piso"
+     ],
+     [
+      "µ",
+      "coeficiente de atrito estático: 0,5"
+     ]
+    ]
+   },
+   "pista": "Escreva o equilíbrio de torques em torno do pé da escada.",
+   "passos": [
+    {
+     "faz": "Equilibre as forças",
+     "conta": "normal do piso = m × g | atrito = normal da parede",
+     "porque": "Vertical e horizontal, separadamente.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Equilibre os torques no pé",
+     "conta": "N da parede × L × sen θ = m × g × (L/2) × cos θ → N da parede = m × g/(2 × tg θ)",
+     "porque": "No pé, a normal do piso e o atrito não giram a escada.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Imponha o atrito máximo",
+     "conta": "m × g/(2 × tg θ) = 0,5 × m × g → tg θ = 1",
+     "porque": "No ângulo mínimo, o atrito necessário é o máximo disponível.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "tg θ = 1 → θ = 45° → alternativa B",
+     "porque": "Abaixo disso a escada escorrega.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 45º.",
+   "checagem": "Com ângulo menor, a tangente diminui e o atrito necessário, m × g/(2 × tg θ), aumenta, passando do máximo. Por exemplo, a 30° seria preciso 0,87 × m × g, mais que os 0,5 × m × g disponíveis.",
+   "erradas": {
+    "A": "60º é seguro (o atrito necessário seria cerca de 0,29 × m × g), mas não é o ângulo mínimo.",
+    "C": "75º é seguro, mas não é o ângulo mínimo; a escada já se sustenta a partir de 45°.",
+    "D": "30º não confere: o atrito necessário seria m × g/(2 × tg 30°) ≈ 0,87 × m × g, maior que o máximo de 0,5 × m × g."
+   },
+   "armadilha": "Usar tg θ = µ (resultado do plano inclinado): na escada a relação é tg θ = 1/(2µ).",
+   "alerta": "",
+   "essencial": {
+    "pede": "O ângulo mínimo entre a escada e o piso.",
+    "chave": "tg θ = 1/(2 × 0,5) = 1 → 45°.",
+    "cuidado": "O peso age no meio da escada: daí o fator 2."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "fis-0013"
+  }
  }
 }
