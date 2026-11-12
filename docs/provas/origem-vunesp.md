@@ -78,6 +78,11 @@ Mesma regra de conferência: código do concurso igual no caderno e no gabarito,
 | Einstein 2024, Prova I (`einstein-2024`) | 2024 | …/alberteinstein/2024/alberteinstein2024_prova_I.pdf | …/alberteinstein/2024/alberteinstein2024_gabarito.pdf (oficial, FEAE2303) | cópia de cursinho (Objetivo) |
 | Einstein 2025, Prova I (`einstein-2025`) | 2025 | …/alberteinstein/2025/alberteinstein2025_prova_I.pdf | …/alberteinstein/2025/alberteinstein2025_gabarito.pdf (oficial, FEAE2405) | cópia de cursinho (Objetivo) |
 | Einstein 2026, Prova I (`einstein-2026`) | 2026 | …/alberteinstein/2026/alberteinstein2026_prova_I.pdf | …/alberteinstein/2026/alberteinstein2026_gabarito.pdf (oficial, FEAE2502) | cópia de cursinho (Objetivo) |
+| Unifesp Medicina 2020, prova 1 (`unifesp-2020`) | 2020 | …/unifesp/2020/1dia/unifesp2020_1dia_prova.pdf | …/unifesp/2020/1dia/unifesp2020_1dia_gabarito.pdf (oficial, UFSP1901) | cópia de cursinho (Objetivo) |
+| Unifesp Medicina 2021, prova 1 (`unifesp-2021`) | 2021 | …/unifesp/2021/1dia/unifesp2021_1dia_prova.pdf | …/unifesp/2021/1dia/unifesp2021_1dia_gabarito.pdf (oficial, UFSP2001) | cópia de cursinho (Objetivo) |
+| Unifesp Medicina 2023, prova 1 (`unifesp-2023`) | 2023 | …/unifesp/2023/1dia/unifesp2023_1dia_prova.pdf | …/unifesp/2023/1dia/unifesp2023_1dia_gabarito.pdf (oficial, UFSP2201) | cópia de cursinho (Objetivo) |
+| Unifesp Medicina 2024, prova 1 (`unifesp-2024`) | 2024 | …/unifesp/2024/1dia/unifesp2024_1dia_prova.pdf | …/unifesp/2024/1dia/unifesp2024_1dia_gabarito.pdf (oficial, UFSP2304) | cópia de cursinho (Objetivo) |
+| Unifesp Medicina 2025, prova 1 (`unifesp-2025`) | 2025 | …/unifesp/2025/1dia/unifesp2025_1dia_prova.pdf | …/unifesp/2025/1dia/unifesp2025_1dia_gabarito.pdf (oficial, UFSP2401) | cópia de cursinho (Objetivo) |
 
 "…" = `https://www.curso-objetivo.br/vestibular/resolucao-comentada`. As páginas do Objetivo carregam a lista de
 arquivos por um serviço público do próprio site (`sistemas.objetivo.br/ResolucaoComentadaApi/templates/prova/<n>`),

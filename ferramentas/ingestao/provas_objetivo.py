@@ -124,6 +124,29 @@ for _a, _cod, _data, _arq, _pag, _fase in (
                                                          r'(?i)^answer questions\b']
 
 
+# ------------------------------------------------------------------ Unifesp Medicina (Sistema Misto), prova 1 objetiva
+# 25 questões de Língua Portuguesa e Língua Inglesa (1º dia); redação e Conhecimentos Específicos (discursiva) fora,
+# como em unifesp-2022 e unifesp-2026 (provas.py)
+for _a, _cod, _data in ((2020, 'UFSP1901', '12/12/2019'), (2021, 'UFSP2001', '11/02/2021'), (2023, 'UFSP2201', '12/01/2023'),
+                        (2024, 'UFSP2304', '07/01/2024'), (2025, 'UFSP2401', '19/12/2024')):
+    _pid = f'unifesp-{_a}'
+    ARQUIVOS[_pid] = {'caderno': (f'unifesp/{_a}/1dia/unifesp{_a}_1dia_prova.pdf', None),
+                      'gabarito': (f'unifesp/{_a}/1dia/unifesp{_a}_1dia_gabarito.pdf', None)}
+    PROVAS[_pid] = provas.vunesp(
+        'unifesp', 'Unifesp', _a, 'Medicina – Misto', f'Unifesp Medicina {_a}', 25, caderno='caderno', duracao=4,
+        nota=f'Universidade Federal de São Paulo, Sistema Misto de Medicina {_a} (prova de {_data}, banca Vunesp): prova 1, '
+             'versão 1, 25 questões objetivas de Língua Portuguesa e Língua Inglesa. Redação e Conhecimentos Específicos '
+             f'(discursiva) fora. Caderno e gabarito oficiais da Vunesp ({_cod}), em {CASA}.')
+    PROVAS[_pid]['area_da_materia'] = True
+    # "Examine o quadrinho de Peter Steiner para responder às / questões 16 e 17." (instrução partida depois de "às")
+    PROVAS[_pid]['suporte'] = PROVAS[_pid]['suporte'] + [r'(?i)para responder [àa]s?\s*$', r'(?i)\bto answer (the )?questions?\b']
+    # 2024: "r\u00adesponder às questões de 08 a 12" (hífen invisível U+00AD no meio da palavra)
+    PROVAS[_pid]['suporte'] = PROVAS[_pid]['suporte'] + [r'(?i)^r\u00ad?esponder [àa]s? quest']
+# 2025 q22–25: o infográfico do texto de apoio ocupa ~43% da altura da coluna e, recortado junto com o texto, faz as
+# colunas de pixels do texto passarem por "fio" na aparagem (a margem esquerda some). Os quatro prints foram refeitos
+# com refaz_print.py em trechos separados (docs/provas/prints-refeitos.md); refazer depois de um novo recorte.
+
+
 RAIZ = Path(__file__).resolve().parents[2]
 ENTRADA = RAIZ / 'fabrica_saida' / 'ingestao'
 UA = 'Mozilla/5.0 (compatible; generic-client)'

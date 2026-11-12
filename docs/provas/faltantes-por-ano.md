@@ -50,8 +50,10 @@ Total: 22 provas, 1.527 questões; 922 sem gabarito publicado (todas com a letra
 - **UECE 2ª fase (2023.1–2026.1), EaD 2023.2 e UAB 2020:** não feitas nesta rodada (muitos cadernos; os comunicados de
   pareceres da 2ª fase estão no site da CEV — próxima rodada).
 - **UVA 2020.2, Ibiapaba 2021, 2022.1:** caderno só em imagem. **Bahiana:** sem caderno. **UFSC 2023:** somatória (formato fora).
-- **UFRR Indígena 2021/2025:** prova específica, fora do padrão do site. **Mackenzie 2020/1, Unifesp 2023/2025, UEMS 2021–2026,
+- **UFRR Indígena 2021/2025:** prova específica, fora do padrão do site. **Mackenzie 2020/1, UEMS 2021–2026,
   UESB 2020–2025, UNEB 2024–2026:** não feitas nesta rodada (cadernos a baixar, layouts novos ou gabarito atrás de Cloudflare).
+- **Unifesp Medicina 2020, 2021, 2023, 2024 e 2025** (prova 1 objetiva, Português e Inglês) entraram em 12/11/2026 pela
+  cópia do Curso Objetivo (`unifesp-2020` … `unifesp-2025`); com 2022 e 2026, a Unifesp fica completa de 2020 a 2026.
 
 Regras (CLAUDE.md, princípios 1, 2 e 10): só entra prova com caderno + gabarito oficial DEFINITIVO, só questões de
 múltipla escolha; anuladas ficam fora; a origem de cada arquivo fica registrada no `prova.json` (campo `origem`).
