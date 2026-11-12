@@ -1,6 +1,6 @@
 # Geografia: resoluções (gerado por lote.py em 2026-11-12)
 
-Faltam 1742 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 566; demais nível 1-6 1015; ENEM nível 7-10 21; provas-alvo nível 7-10 91; demais nível 7-10 49.
+Faltam 1712 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 536; demais nível 1-6 1015; ENEM nível 7-10 21; provas-alvo nível 7-10 91; demais nível 7-10 49.
 
 ## Lotes
 
@@ -28,15 +28,19 @@ Faltam 1742 questões sem resolução (fora as que estão em lote, pendentes ou 
 | geo-0020 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | geo-0021 | provas-alvo nível 1-6 | 30 | gravado | 29 | 1 | 0 |
 | geo-0022 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
-| geo-0023 | provas-alvo nível 1-6 | 30 | aberto |  |  |  |
+| geo-0023 | provas-alvo nível 1-6 | 30 | gravado | 27 | 3 | 0 |
 | geo-0024 | provas-alvo nível 1-6 | 30 | aberto |  |  |  |
+| geo-0025 | provas-alvo nível 1-6 | 30 | aberto |  |  |  |
 
 ## Pendentes (falta de certeza absoluta)
 
 | Questão | Prova | Conteúdo | Motivo |
 |---|---|---|---|
+| Pfc161343 | UEL 2021 Fase única · questão 33 | G07.4 problemas urbanos: segregação, favelização e gentrificação (tema G07 Urbanização) | classificação: é de História (pacto de 1939, Estado Novo e a guerra, ocupação do Norte do Paraná; quatro das cinco afirmativas são de História) |
+| Pd1aeb2d4 | UEL 2025 1ª fase · questão 54 | G07.4 problemas urbanos: segregação, favelização e gentrificação (tema G07 Urbanização) | classificação: é de Biologia (bactéria da cólera, transmissão e sintomas em duas das quatro afirmativas; as outras duas são de História, reforma de Haussmann) |
 | Pfcc1eb63 | UERJ 2026 2º Exame de Qualificação · questão 46 | G02.2 tectônica de placas, sismos e vulcanismo (tema G02 Relevo e estrutura da Terra) | classificação: é de Física (UERJ 2026, 2º Exame de Qualificação, questão 46: ordem de grandeza da razão entre duas energias, 7,9 × 10¹⁵ J e 2,0 × 10¹² J; a razão é 3,95 × 10³ e a resposta oficial é B, 10⁴). O terremoto é só o contexto; não há conteúdo de Geografia a resolver. Está classificada em Geografia, G02.2. |
 | Pe9cc0b8f | UFPR 2025 1ª fase · questão 41 | G07.1 urbanização mundial e metropolização (tema G07 Urbanização) | anulada pela banca: a entrada traz, depois das alternativas, o aviso “Questão anulada, portanto todos os candidatos serão pontuados”; questão anulada fica fora (princípio 2) |
+| P1da9dba8 | Unesp 2025 1ª fase – meio de ano · questão 46 | G07.4 problemas urbanos: segregação, favelização e gentrificação (tema G07 Urbanização) | classificação: é de Sociologia (reincidência prisional, cidadania e direitos humanos; sem conteúdo de Geografia urbana) |
 
 ## Divergências de gabarito (o dono decide)
 
