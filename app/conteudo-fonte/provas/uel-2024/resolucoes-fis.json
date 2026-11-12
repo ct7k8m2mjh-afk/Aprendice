@@ -82,5 +82,90 @@
    "data": "2026-11-12",
    "lote": "fis-0014"
   }
+ },
+ "P2d7a0e01": {
+  "n": "7",
+  "conceito": "Calcular a força média em uma colisão pelo impulso e a pressão correspondente.",
+  "equivocos": {
+   "B": "F07.1:errou-a-conta",
+   "C": "F07.1:errou-a-conta",
+   "D": "F07.1:errou-a-conta",
+   "E": "F07.1:errou-as-potencias-de-dez"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A força média vem do teorema do impulso: F × tempo = massa × variação da velocidade. O robô chega a 15 m/s e recua a 3 m/s: como o sentido se inverte, a variação é a soma, 18 m/s. Depois, pressão = força/área, com a área em m² (1 mm² = 10⁻⁶ m²) e o tempo em segundos (9 ms = 9 × 10⁻³ s).",
+    "formulas": [
+     "F × Δt = m × Δv",
+     "P = F/A",
+     "1 mm² = 10⁻⁶ m²"
+    ],
+    "simbolos": [
+     [
+      "Δv",
+      "variação da velocidade (inversão de sentido)"
+     ],
+     [
+      "Δt",
+      "duração da colisão (9 ms)"
+     ]
+    ]
+   },
+   "pista": "O robô inverte o sentido do movimento. A variação da velocidade é 15 − 3 ou 15 + 3?",
+   "passos": [
+    {
+     "faz": "Calcule a variação da velocidade",
+     "conta": "15 + 3 = 18 m/s",
+     "porque": "Sentidos opostos antes e depois.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a força média",
+     "conta": "18 × 18/(9 × 10⁻³) = 324/(9 × 10⁻³) = 3,6 × 10⁴ N",
+     "porque": "Massa 18 kg, tempo 9 × 10⁻³ s.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a pressão",
+     "conta": "3,6 × 10⁴/10⁻⁶ = 3,6 × 10¹⁰ Pa",
+     "porque": "Área de 1 mm² = 10⁻⁶ m².",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "3,6 × 10¹⁰ → alternativa A",
+     "porque": "Pressão da lança sobre a parede.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 3,6 × 10¹⁰",
+   "checagem": "De volta: 3,6 × 10¹⁰ Pa × 10⁻⁶ m² = 3,6 × 10⁴ N; impulso 3,6 × 10⁴ × 9 × 10⁻³ = 324 N·s. Quantidade de movimento antes: 18 × 15 = 270; depois: 18 × 3 = 54, no sentido oposto; variação 270 + 54 = 324.",
+   "erradas": {
+    "B": "2,7 × 10⁹ não confere: a força seria 2,7 × 10³ N, e ela é 3,6 × 10⁴ N.",
+    "C": "5,4 × 10⁹ não confere: a força seria 5,4 × 10³ N, e ela é 3,6 × 10⁴ N.",
+    "D": "5,4 × 10¹⁰ não confere: a força seria 5,4 × 10⁴ N, o que exigiria variação de velocidade de 27 m/s, e ela é 18 m/s.",
+    "E": "3,6 × 10⁹ não confere: a força seria 3,6 × 10⁹ × 10⁻⁶ = 3,6 × 10³ N, e ela é 3,6 × 10⁴ N."
+   },
+   "armadilha": "Subtrair as velocidades (15 − 3 = 12 m/s): com inversão de sentido, elas se somam.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A pressão da lança sobre a parede.",
+    "chave": "Δv = 18 m/s; F = 3,6 × 10⁴ N; P = 3,6 × 10¹⁰ Pa.",
+    "cuidado": "Inversão de sentido: some os módulos."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "fis-0018"
+  }
  }
 }
