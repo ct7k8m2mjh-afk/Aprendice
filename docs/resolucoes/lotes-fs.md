@@ -1,6 +1,6 @@
 # Filosofia e Sociologia: resoluções (gerado por lote.py em 2026-11-12)
 
-Faltam 636 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 405; ENEM nível 7-10 30; provas-alvo nível 7-10 147; demais nível 7-10 54.
+Faltam 610 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 4; demais nível 1-6 375; ENEM nível 7-10 30; provas-alvo nível 7-10 147; demais nível 7-10 54.
 
 ## Lotes
 
@@ -36,7 +36,8 @@ Faltam 636 questões sem resolução (fora as que estão em lote, pendentes ou c
 | fs-0028 | provas-alvo nível 1-6 | 30 | gravado | 28 | 2 | 0 |
 | fs-0029 | provas-alvo nível 1-6 | 30 | gravado | 29 | 1 | 0 |
 | fs-0030 | provas-alvo nível 1-6 | 30 | gravado | 26 | 4 | 0 |
-| fs-0031 | demais nível 1-6 | 30 | aberto |  |  |  |
+| fs-0031 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| fs-0032 | demais nível 1-6 | 30 | aberto |  |  |  |
 
 ## Pendentes (falta de certeza absoluta)
 
