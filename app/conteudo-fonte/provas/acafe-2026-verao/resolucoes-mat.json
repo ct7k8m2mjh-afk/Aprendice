@@ -237,5 +237,106 @@
    "data": "2026-11-11",
    "lote": "mat-0011"
   }
+ },
+ "Pf56e6223": {
+  "n": "22",
+  "conceito": "Volume de cilindro deitado parcialmente cheio: segmento circular.",
+  "equivocos": {
+   "A": "M11.2:sem-origem-identificada",
+   "C": "M11.2:calculou-o-cilindro-cheio",
+   "D": "M11.2:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O cilindro está deitado: a seção é um círculo de diâmetro 1 m (raio 0,5 m), e o líquido sobe 75 cm. A parte vazia em cima é um segmento circular de altura 0,25 m, metade do raio; isso dá um ângulo central de 120°. Área do líquido = círculo − segmento vazio; volume = área × 2 m.",
+    "formulas": [
+     "área do segmento = setor − triângulo",
+     "área do triângulo = r²/2 × sen θ",
+     "1 m³ = 1 000 L"
+    ],
+    "simbolos": [
+     [
+      "θ",
+      "ângulo central do segmento vazio"
+     ]
+    ]
+   },
+   "pista": "Calcule a área da parte vazia da seção, que é a menor.",
+   "passos": [
+    {
+     "faz": "Ache o ângulo do segmento vazio",
+     "conta": "distância do centro à superfície: 0,75 − 0,5 = 0,25 = r/2 → cos(θ/2) = 1/2 → θ = 120°",
+     "porque": "No triângulo do centro até a borda do líquido, o cateto é metade do raio.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Área do segmento vazio",
+     "conta": "setor: 120/360 × 3 × 0,25 = 0,25 | triângulo: 0,25/2 × 1,7/2 = 0,10625 | segmento: 0,14375 m²",
+     "porque": "sen 120° = √3/2 ≈ 0,85.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Área do líquido",
+     "conta": "3 × 0,25 − 0,14375 = 0,75 − 0,14375 = 0,60625 m²",
+     "porque": "Círculo inteiro menos a parte vazia.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Volume em litros",
+     "conta": "0,60625 × 2 = 1,2125 m³ = 1212,5 L → alternativa B",
+     "porque": "Comprimento 2 m; 1 m³ = 1 000 L.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 1 212,5 litros",
+   "checagem": "Metade mais uma faixa: a metade de baixo do círculo tem 0,375 m²; a faixa do centro até o líquido tem dois setores de 30° (2 × 30/360 × 3 × 0,25 = 0,125) e o triângulo central (0,85 × 0,25/2 = 0,10625), 0,23125; total 0,60625 m², vezes 2 m = 1212,5 L.",
+   "erradas": {
+    "A": "850 L não confere: a faixa acima do centro tem pelo menos 0,85 m de largura, 0,85 × 0,25 × 2 ≈ 0,425 m³; o total passa de 750 + 425 = 1175 L.",
+    "C": "1 500 L é o cilindro inteiro cheio (3 × 0,5² × 2 = 1,5 m³), mas o líquido vai só até 75 cm.",
+    "D": "2 550 L não confere: passa até do cilindro cheio, 1 500 L."
+   },
+   "armadilha": "Fazer 75% do volume (1 125 L) como se a seção fosse retangular: num círculo a área não cresce na mesma proporção da altura.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O volume de líquido em litros.",
+    "chave": "Segmento vazio de 120°: 0,25 − 0,10625 = 0,14375; líquido 0,60625 m² × 2 m = 1 212,5 L.",
+    "cuidado": "Calcule a parte vazia, que é um segmento só."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "setor da parte molhada",
+    "ideia": "A parte molhada é um setor de 240° (2/3 × 0,75 = 0,5 m²) mais o triângulo do centro com a corda (0,10625 m²): 0,60625 m²."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "cos(θ/2) = 0,25/0,5 → θ = 120°",
+    "nota": "ângulo"
+   },
+   {
+    "linha": "0,25 − 0,10625 = 0,14375",
+    "nota": "segmento vazio"
+   },
+   {
+    "linha": "0,75 − 0,14375 = 0,60625",
+    "nota": "área do líquido"
+   },
+   {
+    "linha": "0,60625 × 2 = 1,2125 m³",
+    "nota": "volume"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0029"
+  }
  }
 }

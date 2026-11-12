@@ -594,5 +594,124 @@
    "data": "2026-11-12",
    "lote": "mat-0028"
   }
+ },
+ "P40e28a59": {
+  "n": "27",
+  "conceito": "Análise de afirmações: volume pelas áreas das faces, soma de quadrados de distâncias, mastro com dois ângulos e razão de áreas.",
+  "equivocos": {
+   "B": "M11.1:aceitou-afirmacao-falsa",
+   "C": "M11.1:aceitou-afirmacao-falsa",
+   "D": "M11.1:aceitou-afirmacao-falsa"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada afirmação pede uma ferramenta. I: o produto das três áreas de faces é (abc)², então o volume é a raiz desse produto. II: para um ponto F da circunferência, use que A e C (e B e D) são diametralmente opostos, e o ângulo inscrito num diâmetro é reto. III: cada ângulo dá a distância da base do mastro até o ponto, e norte e oeste formam ângulo reto. IV: triângulos com mesma altura têm áreas na razão das bases.",
+    "formulas": [
+     "(ab)(bc)(ac) = (abc)²",
+     "ângulo inscrito num diâmetro = 90°",
+     "mesma altura ⇒ razão das áreas = razão das bases"
+    ],
+    "simbolos": [
+     [
+      "F",
+      "ponto da circunferência"
+     ],
+     [
+      "h",
+      "altura do mastro"
+     ]
+    ]
+   },
+   "pista": "Na afirmação II, repare que AC e BD são diâmetros da circunferência.",
+   "passos": [
+    {
+     "faz": "Teste I",
+     "conta": "(ab)(bc)(ac) = 3√10 × 2√15 × 5√6 = 30 × √900 = 900 = (abc)² → abc = 30 → verdadeira",
+     "porque": "3 × 2 × 5 = 30 e √10 × √15 × √6 = √900 = 30; o produto das áreas é 900 = (abc)², e abc = 30.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste II",
+     "conta": "AF² + CF² = AC² = 12² = 144 | BF² + DF² = BD² = 144 → soma = 288 → falsa",
+     "porque": "AC e BD são diâmetros (12); F vê cada diâmetro sob ângulo reto, então vale Pitágoras em cada par.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Teste III",
+     "conta": "OA = h (tg 45° = 1) | OB = h/√3 (tg 60° = √3) | AB² = h² + h²/3 = 4h²/3 → 2h/√3 = 16√3 → h = 24 → verdadeira",
+     "porque": "A ao norte e B a oeste da base O: o ângulo AOB é reto.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste IV",
+     "conta": "área ACQ = 1/2 × 40 = 20 (Q é meio de AB) | área CPQ = PC/AC × 20 = 3/4 × 20 = 15 → verdadeira",
+     "porque": "PC = 3 × PA quer dizer PC = 3/4 de AC; CPQ e CAQ têm o mesmo vértice Q e bases na reta AC.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à letra",
+     "conta": "I, III e IV → alternativa A",
+     "porque": "Só a II é falsa.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — I, III, IV",
+   "checagem": "Na II, teste um ponto concreto: centro na origem, A(6, 0), B(0, 6), C(−6, 0), D(0, −6) e F(−3,6; 4,8), que está (3,6² + 4,8² = 36) na circunferência; as distâncias ao quadrado são 92,16 + 23,04 = 115,2, 12,96 + 1,44 = 14,4, 5,76 + 23,04 = 28,8 e 12,96 + 116,64 = 129,6, com soma 288.",
+   "erradas": {
+    "B": "Inclui II, que é falsa: AF² + BF² + CF² + DF² = AC² + BD² = 144 + 144 = 288, não 144.",
+    "C": "Inclui II, falsa (a soma é 288, não 144); e deixa de fora I, que é verdadeira (abc = √900 = 30).",
+    "D": "Inclui II, falsa (a soma é 288), e deixa de fora IV, verdadeira (área CPQ = 3/4 × 20 = 15)."
+   },
+   "armadilha": "Na II, aplicar Pitágoras a um só diâmetro e parar em 144: são dois diâmetros, AC e BD, e a soma é 288.",
+   "alerta": "Gabarito do Aprendice: a banca não publicou gabarito oficial (o preliminar dá A); dois especialistas resolveram de forma independente e chegaram a A.",
+   "essencial": {
+    "pede": "Quais afirmações são corretas.",
+    "chave": "I: abc = 30; II: soma 288; III: h = 24; IV: área 15. Corretas: I, III e IV.",
+    "cuidado": "Na II há dois diâmetros, cada um com 12² = 144."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "vetores na II",
+    "ideia": "Com centro O: AF² = |F − A|² = 2r² − 2F·A; somando os quatro vértices, F·(A + B + C + D) = 0, e sobra 8r² = 8 × 36 = 288."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "(abc)² = 30 × 30 = 900 → abc = 30",
+    "nota": "I"
+   },
+   {
+    "linha": "AC² + BD² = 144 + 144 = 288",
+    "nota": "II"
+   },
+   {
+    "linha": "4h²/3 = (16√3)² = 768 → h² = 576 → h = 24",
+    "nota": "III"
+   },
+   {
+    "linha": "3/4 × 1/2 × 40 = 15",
+    "nota": "IV"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0029"
+  },
+  "gabarito_aprendice": {
+   "letra": "A",
+   "letra_conferente": "A",
+   "preliminar": "A",
+   "fontes_web": [],
+   "data": "2026-11-12",
+   "lote": "mat-0029"
+  }
  }
 }
