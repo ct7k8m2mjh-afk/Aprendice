@@ -74,5 +74,8 @@ session_01PveEKb4hnDGKRb7Gtd9hCr. A coordenadora antiga é session_01PveEKWW3t7Z
   campos prova, gabarito, obs). Faltam, entre outras: Famema 2023 (caderno da Prova II v1), FMJ 2020 e 2023.
 
 ## Publicação
-Última no ar: ver docs/resolucoes/publicacao.json. Em 12/11 ~21h UTC foi criada a dpl_9RjZ5JUkUHkb2TFUNRpHKQre4mJP
-(commit cdc5959a, São Camilo completa: 274 de 274); conferir se ficou READY e registrar.
+Última no ar: dpl_9RjZ5JUkUHkb2TFUNRpHKQre4mJP (commit cdc5959a, São Camilo completa), READY e conferida em
+12/11: 13.522 resoluções no site (detalhe em docs/resolucoes/publicacao.json). Próxima ao passar de 14.022.
+Contagem: `com_resolucao` de https://aprendice.vercel.app/conteudo/relatorio.json (ou do relatório local do converte).
+
+Coordenadora atual: session_01PveEKabuyZnqVN65W5FfEc (desde 12/11, 23h UTC).
