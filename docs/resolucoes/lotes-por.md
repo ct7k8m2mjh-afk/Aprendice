@@ -1,6 +1,6 @@
 # Português: resoluções (gerado por lote.py em 2026-11-12)
 
-Faltam 2797 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 314; demais nível 1-6 1944; ENEM nível 7-10 53; provas-alvo nível 7-10 225; demais nível 7-10 261.
+Faltam 2737 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 254; demais nível 1-6 1944; ENEM nível 7-10 53; provas-alvo nível 7-10 225; demais nível 7-10 261.
 
 ## Lotes
 
@@ -66,6 +66,8 @@ Faltam 2797 questões sem resolução (fora as que estão em lote, pendentes ou 
 | por-0058 | provas-alvo nível 1-6 | 30 | gravado | 26 | 4 | 0 |
 | por-0059 | provas-alvo nível 1-6 | 30 | gravado | 28 | 2 | 0 |
 | por-0060 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| por-0061 | provas-alvo nível 1-6 | 30 | gravado | 28 | 2 | 0 |
+| por-0062 | provas-alvo nível 1-6 | 30 | aberto |  |  |  |
 
 ## Pendentes (falta de certeza absoluta)
 
@@ -91,7 +93,9 @@ Faltam 2797 questões sem resolução (fora as que estão em lote, pendentes ou 
 | Pb571aea8 | UFPR 2022 Fase única · questão 38 | P11.1 Barroco e Arcadismo (tema P11 Literatura: do Barroco ao Simbolismo) | obra: as afirmativas 2, 3 e 4, que decidem a letra, tratam de personagens e episódios de O Uraguai que o fragmento não traz (Cacambo, a feiticeira Tanajura, o sonho de Lindoia, a destruição dos Sete Povos, as vozes de líderes militares portugueses). Só a 1 se julga em parte pelo trecho (versos sem rima); julgar as outras exige o enredo da obra inteira. |
 | Pbc02114e | UFPR 2025 1ª fase · questão 69 | P11.1 Barroco e Arcadismo (tema P11 Literatura: do Barroco ao Simbolismo) | obra: a questão não traz nenhum trecho das Liras de Marília de Dirceu. As afirmativas 2 (voz de Dirceu em todas as liras, fuga do amor até ser vencido por Cupido) e 3 (predomínio de versos de 5 e 7 sílabas) exigem conhecer o conjunto da obra; a 1 depende do local e da data de publicação, que a questão não dá. |
 | P4e59af67 | UFPR 2026 1ª fase · questão 72 | P11.2 Romantismo: poesia das três gerações e prosa (tema P11 Literatura: do Barroco ao Simbolismo) | obra: a questão pergunta quem é a mulher que entra no capítulo final de Noite na taverna, e as cinco alternativas resumem enredos de capítulos diferentes do livro. A prova não traz trecho nenhum: a resposta depende inteiramente da leitura da obra, e nada no enunciado permite separar a C das outras. |
+| P9cb2e259 | UFU 2021 1ª fase · questão 57 | P12.1 Pré-Modernismo: Euclides da Cunha, Lima Barreto, Augusto dos Anjos (tema P12 Literatura: Pré-Modernismo em diante) | obra: o trecho dado é só a abertura do conto "O número da sepultura". A alternativa A cai pelo trecho (narração em 3ª pessoa: "podia ela dizer", "lhe parecia"), mas B (pai e marido como antagonistas que tolhem Zilda) e D (enredo de reviravoltas e humor absurdo) dependem do enredo do conto, que não está na prova; sem ele não dá para provar que B e D são falsas, nem que o conto se passa no subúrbio, como diz a C. |
 | P468973aa | UFU 2021 1ª fase · questão 60 | P11.2 Romantismo: poesia das três gerações e prosa (tema P11 Literatura: do Barroco ao Simbolismo) | obra: a questão julga o conjunto das peças de Martins Pena (personagens das várias classes, gêneros das peças, espaços urbano e rural, influência no teatro posterior), e a prova não traz trecho nenhum. Confirmar a D e derrubar a C exige dizer o que há ou não na obra inteira do autor, que a questão não mostra. |
+| P3405a59b | UFU 2022 1ª fase · questão 62 | P12.1 Pré-Modernismo: Euclides da Cunha, Lima Barreto, Augusto dos Anjos (tema P12 Literatura: Pré-Modernismo em diante) | obra: a questão não traz nenhum trecho do conto "Três gênios de secretaria"; as quatro alternativas tratam de detalhes do enredo (quem narra e de onde tira o relato, os funcionários Mata-Borrão e Xisto Rodrigues, o casamento de Gonzaga de Sá) que não estão na prova e não são conhecimento escolar consolidado; nenhuma alternativa pode ser eliminada pela prova. |
 | Pd23309d1 | UFU 2023 1ª fase · questão 59 | P01.1 tema, tese e ideia principal do texto (tema P01 Leitura e compreensão) | A resposta depende do enredo de "Bom dia, camaradas" (papel de cada personagem: Amadou, Cláudio, António, Ondalu), que não está na questão; sem fonte conferida no lote para afirmar com certeza o que faz cada personagem. |
 | Pc73eb6b3 | UFU 2023 1ª fase · questão 64 | P11.3 Realismo e Naturalismo, com Machado de Assis (tema P11 Literatura: do Barroco ao Simbolismo) | obra: a questão não traz trecho de "O Caso da Vara" e as quatro alternativas dependem do enredo do conto (a escolha final de Damião, o deslocamento do foco para Sinhá Rita e Lucrécia, a relação de Sinhá Rita com João Carneiro, a atitude de Lucrécia). Nenhuma delas cai por data ou por escola literária; sem o texto não há como provar a B nem derrubar as outras. |
 | P5dcad9ec | UFU 2025 1ª fase · questão 62 | P03.3 charge, tirinha, cartaz e infográfico (tema P03 Gêneros e tipos textuais) | A resposta depende do conteúdo do livro "O Karaíba: uma história do pré-Brasil" (narrar o período anterior à chegada dos portugueses pela visão indígena), que não está na questão; o print traz só o quadro de Oscar Pereira da Silva. Sem fonte conferida sobre o livro, não há como fundamentar a B nem as eliminações. |
