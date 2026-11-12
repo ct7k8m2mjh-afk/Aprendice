@@ -114,5 +114,181 @@
    "data": "2026-11-11",
    "lote": "mat-0009"
   }
+ },
+ "Pba314e43": {
+  "n": "23",
+  "conceito": "Encadear meia-vida, volume de sangue e uma função logarítmica para estimar um pH.",
+  "equivocos": {
+   "B": "M06.3:errou-o-sinal",
+   "C": "M06.3:errou-a-conta",
+   "D": "M06.3:errou-a-conta"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "São quatro contas em sequência: a massa ingerida, a massa que ainda está ativa depois de 2 horas (meia-vida), o volume de sangue e, por fim, a função P, que diz quanto o pH se desloca. Todos os números foram escolhidos para a conta dentro do log virar uma potência de 10.",
+    "formulas": [
+     "a cada meia-vida, a massa cai pela metade",
+     "V(M) = M/16",
+     "P(m) = log (V × 10^(−3,1) × MM/m)"
+    ],
+    "simbolos": [
+     [
+      "m",
+      "massa de medicamento ainda ativa, em gramas"
+     ],
+     [
+      "MM",
+      "massa molar do medicamento: 300 g/mol"
+     ],
+     [
+      "P",
+      "variação estimada do pH"
+     ]
+    ]
+   },
+   "pista": "Quantas meias-vidas de 40 minutos cabem em 2 horas?",
+   "passos": [
+    {
+     "faz": "Ache a massa ativa",
+     "conta": "6 × 2 = 12 g | 120 min/40 min = 3 meias-vidas → 12 → 6 → 3 → 1,5 g",
+     "porque": "Cada meia-vida corta a massa pela metade.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache o volume de sangue",
+     "conta": "V = 80/16 = 5 L",
+     "porque": "Função dada para um homem de 80 kg.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o que está dentro do log",
+     "conta": "(5 × 300/1,5) × 10^(−3,1) = 1000 × 10^(−3,1) = 10^(−0,1)",
+     "porque": "5 × 300 = 1500; 1500/1,5 = 1000 = 10³.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Aplique o log e ajuste o pH",
+     "conta": "P = −0,1 → pH = 7,35 − 0,1 = 7,25 → alternativa A",
+     "porque": "P negativo quer dizer pH abaixo do inicial.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 7,25",
+   "checagem": "De volta: m = 1,5 g dá 5 × 300/1,5 = 1000 = 10³, e 10³ × 10^(−3,1) = 10^(−0,1); o expoente é P = −0,1, e o pH cai de 7,35 para 7,25.",
+   "erradas": {
+    "B": "7,45 sai de somar 0,1 em vez de subtrair: P = −0,1 indica pH abaixo do inicial.",
+    "C": "7,15 corresponderia a P = −0,2; a conta dá log 10^(−0,1) = −0,1.",
+    "D": "7,55 corresponderia a P = +0,2; a conta dá P = −0,1."
+   },
+   "armadilha": "Usar os 12 g ingeridos, sem aplicar as três meias-vidas.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O pH estimado do sangue 2 horas depois.",
+    "chave": "m = 1,5 g; V = 5 L; P = log 10^(−0,1) = −0,1; pH = 7,25.",
+    "cuidado": "Aplique a meia-vida antes de usar a função."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0017"
+  }
+ },
+ "Pdb5c0ef7": {
+  "n": "27",
+  "conceito": "Julgar quatro afirmações independentes: juros compostos, contagem de subconjuntos, desvio padrão e volume de octaedro.",
+  "equivocos": {
+   "A": "M06.5:converteu-mal-meses-em-anos",
+   "C": "M06.5:arredondou-o-desvio-padrao",
+   "D": "M06.5:esqueceu-o-terco"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada alternativa é uma conta separada; teste uma por vez. A B é a mais rápida: conte os primos de A e use que um conjunto com n elementos tem 2^n subconjuntos, incluído o vazio.",
+    "formulas": [
+     "conjunto com n elementos: 2^n subconjuntos",
+     "montante = capital × (1 + i)^n",
+     "volume do octaedro regular = (√2/3) × aresta³"
+    ],
+    "simbolos": [
+     [
+      "conjunto família",
+      "conjunto em que todos os elementos são primos, segundo a definição da questão"
+     ],
+     [
+      "σ",
+      "desvio padrão"
+     ]
+    ]
+   },
+   "pista": "Conte quantos números primos há em A.",
+   "passos": [
+    {
+     "faz": "Teste a B",
+     "conta": "primos de A: 2, 3, 5, 7, 11, 13 → 6 primos → 2⁶ − 1 = 63",
+     "porque": "Subconjuntos formados só por primos, descontado o conjunto vazio.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste a A",
+     "conta": "1,05^n = 2 → n = 0,30/0,02 = 15 meses = 1,25 ano",
+     "porque": "Não são 1,5 ano. Falsa.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Teste a D",
+     "conta": "(√2/3) × 4³ = 64√2/3",
+     "porque": "Falta dividir por 3. Falsa.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Teste a C",
+     "conta": "pontos médios 8, 20, 32 | média = (13 × 8 + 9 × 20 + 8 × 32)/30 = 18 | variância = (13 × 100 + 9 × 4 + 8 × 196)/30 = 96,8",
+     "porque": "Desvio padrão populacional (divide-se por n = 30): raiz de 96,8, cerca de 9,84, e não 10. Falsa.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "só a B é correta → alternativa B",
+     "porque": "63 subconjuntos família.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — o número de subconjuntos família de A é 63.",
+   "checagem": "Contando por tamanho os subconjuntos dos 6 primos: 6 com um elemento, 15 com dois, 20 com três, 15 com quatro, 6 com cinco e 1 com seis. 6 + 15 + 20 + 15 + 6 + 1 = 63.",
+   "erradas": {
+    "A": "Não confere: 1,05^n = 2 dá n = 0,30/0,02 = 15 meses, isto é, 1,25 ano, e não 1,5 ano.",
+    "C": "Não confere: com o desvio padrão populacional (divisão pelos 30 dados), a variância é 96,8 e o desvio padrão é √96,8 ≈ 9,84; para dar 10, a variância teria de ser 100.",
+    "D": "Não confere: o volume do octaedro regular de aresta 4 cm é (√2/3) × 64 = 64√2/3 cm³, um terço do valor afirmado."
+   },
+   "armadilha": "Converter 15 meses em 1,5 ano: 15 meses são 1 ano e 3 meses, 1,25 ano.",
+   "alerta": "O gabarito conta 63 subconjuntos, sem o conjunto vazio. Pela definição dada, o conjunto vazio poderia ser incluído (não tem elemento que não seja primo), o que daria 64; as outras três alternativas são falsas de qualquer modo. Na alternativa C, a resolução usa o desvio padrão populacional (divisão por 30), que dá 9,84; com a divisão por n − 1 = 29, o valor seria cerca de 10,007.",
+   "essencial": {
+    "pede": "A alternativa correta entre quatro afirmações.",
+    "chave": "6 primos em A: 2⁶ − 1 = 63 subconjuntos.",
+    "cuidado": "15 meses = 1,25 ano."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0017"
+  }
  }
 }

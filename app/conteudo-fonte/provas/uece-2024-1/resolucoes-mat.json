@@ -199,5 +199,83 @@
    "data": "2026-11-12",
    "lote": "mat-0015"
   }
+ },
+ "Pb1bda029": {
+  "n": "14",
+  "conceito": "Simplificar uma soma de logaritmos com coeficientes.",
+  "equivocos": {
+   "A": "M06.3:errou-a-conta",
+   "B": "M06.3:errou-a-conta",
+   "D": "M06.3:errou-a-conta"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada coeficiente entra como expoente do número de dentro do log; depois, soma vira produto e subtração vira divisão. Fatore tudo em primos (2, 3 e 5) antes de multiplicar: quase tudo se cancela.",
+    "formulas": [
+     "k × log a = log a^k",
+     "log a + log b − log c = log (a × b/c)"
+    ],
+    "simbolos": [
+     [
+      "log₂",
+      "logaritmo na base 2"
+     ]
+    ]
+   },
+   "pista": "Simplifique primeiro o produto (36/25) × (6/27), que está sob o mesmo coeficiente 3.",
+   "passos": [
+    {
+     "faz": "Junte os dois primeiros termos",
+     "conta": "3 log₂ (36/25) + 3 log₂ (6/27) = 3 log₂ ((36 × 6)/(25 × 27)) = 3 log₂ (8/25)",
+     "porque": "216/675: dividindo por 27, 8/25.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Passe os coeficientes para expoentes",
+     "conta": "log₂ (8/25)³ − log₂ (16/125)² = log₂ ((8³/25³) × (125²/16²))",
+     "porque": "Subtrair um log é dividir pelo número de dentro.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Fatore e cancele",
+     "conta": "8³ = 2⁹ | 16² = 2⁸ | 25³ = 5⁶ | 125² = 5⁶ → 2⁹/2⁸ = 2",
+     "porque": "As potências de 5 se cancelam por completo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "log₂ 2 = 1 → alternativa C",
+     "porque": "O logaritmo da própria base é 1.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 1,00.",
+   "checagem": "Em decimais: log₂ (8/25) ≈ −1,644 e log₂ (16/125) ≈ −2,966. 3 × (−1,644) − 2 × (−2,966) ≈ −4,932 + 5,932 = 1.",
+   "erradas": {
+    "A": "0,16 não confere: a expressão se reduz a log₂ 2 = 1.",
+    "B": "0,50 não confere: a expressão se reduz a log₂ 2 = 1.",
+    "D": "1,20 não confere: a expressão se reduz a log₂ 2 = 1."
+   },
+   "armadilha": "Errar o sinal do último termo: subtrair 2 log (16/125) é multiplicar por (125/16)².",
+   "alerta": "",
+   "essencial": {
+    "pede": "O valor da expressão com logaritmos.",
+    "chave": "(8/25)³ × (125/16)² = 2; log₂ 2 = 1.",
+    "cuidado": "Coeficiente vira expoente; subtração vira divisão."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0017"
+  }
  }
 }

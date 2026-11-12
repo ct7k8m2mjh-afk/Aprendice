@@ -340,5 +340,82 @@
    "data": "2026-11-11",
    "lote": "mat-0010"
   }
+ },
+ "P227da03a": {
+  "n": "3",
+  "conceito": "Listar os primos cujo antecessor é potência de 2.",
+  "equivocos": {
+   "A": "M06.4:contou-composto-como-primo",
+   "C": "M06.4:nao-filtrou-os-primos",
+   "D": "M06.4:esqueceu-um-elemento",
+   "E": "M06.4:contou-composto-como-primo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "log₂ (x − 1) é inteiro exatamente quando x − 1 é uma potência de 2 com expoente inteiro: 1, 2, 4, 8, 16, 32, 64, 128... (expoentes negativos dariam frações, e x é natural). Some 1 a cada potência e veja quais resultados são primos até 130.",
+    "formulas": [
+     "log₂ (x − 1) = k inteiro → x = 2^k + 1"
+    ],
+    "simbolos": [
+     [
+      "ℤ",
+      "conjunto dos números inteiros"
+     ],
+     [
+      "ℕ",
+      "conjunto dos números naturais"
+     ]
+    ]
+   },
+   "pista": "Liste as potências de 2 até 129 e some 1 a cada uma.",
+   "passos": [
+    {
+     "faz": "Liste os candidatos",
+     "conta": "2^k + 1: 2, 3, 5, 9, 17, 33, 65, 129",
+     "porque": "Com k de 0 a 7; o seguinte, 257, passa de 130.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Descarte os que não são primos",
+     "conta": "9 = 3 × 3 | 33 = 3 × 11 | 65 = 5 × 13 | 129 = 3 × 43",
+     "porque": "Sobram 2, 3, 5 e 17.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Some",
+     "conta": "2 + 3 + 5 + 17 = 27 → alternativa B",
+     "porque": "São os elementos de B.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 27",
+   "checagem": "Conferindo cada um: log₂ 1 = 0, log₂ 2 = 1, log₂ 4 = 2 e log₂ 16 = 4, todos inteiros.",
+   "erradas": {
+    "A": "156 = 27 + 129: sai de contar 129 como primo, mas 129 = 3 × 43. A soma certa é 2 + 3 + 5 + 17 = 27.",
+    "C": "263 é a soma de todos os candidatos 2 + 3 + 5 + 9 + 17 + 33 + 65 + 129, sem descartar os que não são primos.",
+    "D": "10 é a soma 2 + 3 + 5; falta o 17, que é primo e tem 17 − 1 = 16 = 2⁴.",
+    "E": "60 = 27 + 33: sai de contar 33 como primo, mas 33 = 3 × 11. A soma certa é 2 + 3 + 5 + 17 = 27."
+   },
+   "armadilha": "Esquecer o 2: log₂ (2 − 1) = log₂ 1 = 0, que é inteiro.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A soma dos elementos de B.",
+    "chave": "Primos da forma 2^k + 1 até 130: 2, 3, 5, 17.",
+    "cuidado": "Zero também é inteiro."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0017"
+  }
  }
 }

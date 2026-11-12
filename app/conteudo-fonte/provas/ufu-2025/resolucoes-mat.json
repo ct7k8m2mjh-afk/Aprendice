@@ -227,5 +227,87 @@
    "data": "2026-11-11",
    "lote": "mat-0010"
   }
+ },
+ "P232b3260": {
+  "n": "72",
+  "conceito": "Achar os parâmetros de um decaimento com meia-vida conhecida.",
+  "equivocos": {
+   "B": "M06.5:errou-a-quantidade-inicial",
+   "C": "M06.5:errou-a-conta",
+   "D": "M06.5:errou-a-constante"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A meia-vida de 50 s diz que, em 50 s, a quantidade cai à metade: 2^(k × 50) = 1/2 = 2⁻¹. Daí sai k. Com k, o dado Q(150) entrega M.",
+    "formulas": [
+     "meia-vida T: 2^(k × T) = 2⁻¹",
+     "Q(t) = M × 2^(k × t)"
+    ],
+    "simbolos": [
+     [
+      "M",
+      "quantidade inicial"
+     ],
+     [
+      "k",
+      "constante do expoente, negativa no decaimento"
+     ]
+    ]
+   },
+   "pista": "Use a meia-vida para achar k antes de usar Q(150).",
+   "passos": [
+    {
+     "faz": "Ache k",
+     "conta": "2^(50k) = 2⁻¹ → 50k = −1 → k = −1/50",
+     "porque": "Em 50 s a quantidade cai à metade.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache M",
+     "conta": "Q(150) = M × 2^(−150/50) = M × 2⁻³ = M/8 = 26,25 → M = 210",
+     "porque": "150 s são três meias-vidas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique",
+     "conta": "M × k = 210 × (−1/50) = −4,2",
+     "porque": "210/50 = 4,2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "−4,2 → alternativa A",
+     "porque": "É o produto pedido.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — −4,2",
+   "checagem": "De trás para a frente: 210 → 105 → 52,5 → 26,25, três reduções à metade em 150 s. Confere com Q(150).",
+   "erradas": {
+    "B": "−1,4 não confere: com k = −1/50, M teria de ser 70, e Q(150) seria 70/8 = 8,75, não 26,25.",
+    "C": "−4,7 não confere: M = 26,25 × 8 = 210 e k = −1/50 dão −4,2.",
+    "D": "−12,6 sai de usar k = −3/50 (como se a meia-vida fosse um terço de 50 s): 210 × (−3/50) = −12,6."
+   },
+   "armadilha": "Esquecer o sinal negativo de k: a quantidade diminui com o tempo.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O produto M × k.",
+    "chave": "k = −1/50; M = 26,25 × 8 = 210; produto −4,2.",
+    "cuidado": "Três meias-vidas: divide por 8."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0017"
+  }
  }
 }

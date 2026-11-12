@@ -183,5 +183,83 @@
    "data": "2026-11-12",
    "lote": "mat-0016"
   }
+ },
+ "P0516d29c": {
+  "n": "43",
+  "conceito": "Estimar o tempo de um crescimento que dobra a cada período usando logaritmos.",
+  "equivocos": {
+   "A": "M06.5:errou-o-numero-de-duplicacoes",
+   "B": "M06.5:errou-o-numero-de-duplicacoes",
+   "D": "M06.5:errou-o-numero-de-duplicacoes"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Dobrar a cada 3 dias: depois de t dias há 2^(t/3) infectados, partindo de 1. Iguale a 4000 e aplique logaritmo decimal. Para o log de 4000, escreva 4000 = 4 × 1000 = 2² × 10³.",
+    "formulas": [
+     "N(t) = 2^(t/3)",
+     "log 4000 = 2 × log 2 + 3"
+    ],
+    "simbolos": [
+     [
+      "log",
+      "logaritmo na base 10"
+     ]
+    ]
+   },
+   "pista": "Escreva 4000 usando só potências de 2 e de 10.",
+   "passos": [
+    {
+     "faz": "Monte a equação",
+     "conta": "2^(t/3) = 4000",
+     "porque": "Um infectado que dobra a cada 3 dias.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule log 4000",
+     "conta": "log (2² × 10³) = 2 × 0,3 + 3 = 3,6",
+     "porque": "Com log 2 ≈ 0,3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Aplique o log",
+     "conta": "(t/3) × 0,3 = 3,6 → t/3 = 12 → t = 36",
+     "porque": "O expoente desce multiplicando.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "36º dia: entre o 32º e o 38º → alternativa C",
+     "porque": "É a faixa que contém 36.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — o 32º dia e o 38º dia.",
+   "checagem": "Sem logaritmo: 2¹² = 4096, pouco acima de 4000. Doze duplicações de 3 dias são 36 dias.",
+   "erradas": {
+    "A": "Não confere: no 24º dia houve 8 duplicações, 2⁸ = 256 infectados, longe de 4 mil.",
+    "B": "Não confere: no 30º dia houve 10 duplicações, 2¹⁰ = 1024 infectados.",
+    "D": "Não confere: no 39º dia já houve 13 duplicações, 2¹³ = 8192, o dobro da marca."
+   },
+   "armadilha": "Esquecer de multiplicar por 3: 12 é o número de duplicações, não de dias.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Em que faixa de dias os infectados chegam a 4 mil.",
+    "chave": "2^(t/3) = 4000 → t/3 = 12 → t = 36.",
+    "cuidado": "Cada duplicação leva 3 dias."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0017"
+  }
  }
 }
