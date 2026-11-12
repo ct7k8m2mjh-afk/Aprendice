@@ -576,5 +576,102 @@
    "data": "2026-11-12",
    "lote": "fis-0032"
   }
+ },
+ "P412c75c1": {
+  "n": "46",
+  "conceito": "Resistência equivalente entre pares de terminais: o fio do meio forma um nó; de S a U há R/2, de S a T há R/2 + R/3.",
+  "equivocos": {
+   "A": "F11.5:resistencia-sem-equacao",
+   "C": "F11.5:resistencia-sem-equacao",
+   "D": "F11.5:resistencia-sem-equacao",
+   "E": "F11.5:trecho-ignorado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O fio vertical do meio liga o topo, o centro e U num único nó (M). Entre S e M há 2 resistores em paralelo (o de cima e o de baixo, à esquerda): R/2. Entre M e T há 3 resistores em paralelo (os três da direita): R/3. Ligando S e U, só entra o trecho S–M; ligando S e T, entram os dois trechos em série.",
+    "formulas": [
+     "paralelo de n iguais: R/n",
+     "série: soma",
+     "i = U/R_eq"
+    ],
+    "simbolos": [
+     [
+      "M",
+      "nó do fio vertical (ligado a U)"
+     ],
+     [
+      "U_bateria",
+      "12 V"
+     ]
+    ]
+   },
+   "pista": "Marque o nó formado pelo fio vertical do meio.",
+   "passos": [
+    {
+     "faz": "S–U",
+     "conta": "R_eq = R/2 → 12/(R/2) = 4 mA → R = 6 kΩ",
+     "porque": "Dois em paralelo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "S–T",
+     "conta": "R_eq = R/2 + R/3 = 5R/6 = 5 kΩ",
+     "porque": "Paralelos em série.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Corrente",
+     "conta": "i = 12/5000 = 2,4 × 10⁻³ A = 2,4 mA",
+     "porque": "É a alternativa B.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 2,4 mA.",
+   "checagem": "Por proporção: a corrente é inversamente proporcional à resistência equivalente; de R/2 para 5R/6, a resistência fica 5/3 vezes maior, e a corrente cai para 4 × 3/5 = 2,4 mA.",
+   "erradas": {
+    "A": "Não confere: 1,8 mA exigiria R_eq ≈ 6,7 kΩ entre S e T, e ela vale 5 kΩ.",
+    "C": "Não confere: 3,0 mA exigiria 4 kΩ entre S e T.",
+    "D": "Não confere: 4,2 mA seria maior que os 4 mA de S–U, mas o trecho S–T tem mais resistência.",
+    "E": "Sai de usar só o trecho M–T (R/3 = 2 kΩ): 12/2000 = 6,0 mA."
+   },
+   "armadilha": "Esquecer o trecho S–M ao ligar S e T.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A corrente com a bateria entre S e T.",
+    "chave": "R = 6 kΩ; R_eq(S–T) = 5R/6 = 5 kΩ; i = 2,4 mA.",
+    "cuidado": "Fio une nós."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "proporção",
+    "ideia": "4 × 3/5 = 2,4 mA."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "R/2 = 12/0,004 → R = 6 kΩ",
+    "nota": "S–U"
+   },
+   {
+    "linha": "R/2 + R/3 = 5 kΩ",
+    "nota": "S–T"
+   },
+   {
+    "linha": "i = 12/5000 = 2,4 mA",
+    "nota": "B"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "fis-0038"
+  }
  }
 }
