@@ -86,7 +86,7 @@ Faltam 56 questões sem resolução (fora as que estão em lote, pendentes ou co
 | ing-0078 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | ing-0079 | provas-alvo nível 7-10 | 30 | gravado | 30 | 0 | 0 |
 | ing-0080 | provas-alvo nível 7-10 | 30 | gravado | 30 | 0 | 0 |
-| ing-0081 | provas-alvo nível 7-10 | 30 | aberto |  |  |  |
+| ing-0081 | provas-alvo nível 7-10 | 30 | gravado | 30 | 0 | 0 |
 | ing-0082 | demais nível 7-10 | 30 | aberto |  |  |  |
 
 ## Pendentes (falta de certeza absoluta)
