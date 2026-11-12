@@ -1,0 +1,170 @@
+{
+ "P4a3ebc84": {
+  "n": "40",
+  "conceito": "Calcular a escala numérica a partir da distância real e da medida no mapa.",
+  "equivocos": {
+   "A": "G01.2:conversao-parou-em-metros",
+   "B": "G01.2:multiplicou-e-errou-zeros",
+   "C": "G01.2:zero-a-menos-na-conversao",
+   "E": "G01.2:multiplicou-em-vez-de-dividir"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Escala é a razão entre a medida no mapa e a medida real, nas mesmas unidades. O trabalho da questão é converter 33 km para centímetros, porque o mapa está em centímetros. Depois, basta dividir.",
+    "formulas": [
+     "denominador = distância real ÷ distância no mapa (mesma unidade)",
+     "1 km = 100 000 cm"
+    ],
+    "simbolos": [
+     [
+      "escala numérica",
+      "razão 1 : N; cada unidade no mapa vale N unidades no terreno"
+     ]
+    ]
+   },
+   "pista": "Antes de dividir, ponha as duas medidas na mesma unidade.",
+   "passos": [
+    {
+     "faz": "Separe os dados",
+     "conta": "real: 33 km | mapa: 12 cm",
+     "porque": "As unidades são diferentes; a razão só vale com as duas iguais.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Converta para centímetros",
+     "conta": "33 km × 100 000 = 3 300 000 cm",
+     "porque": "Um quilômetro tem 1 000 m, e cada metro tem 100 cm.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida o real pelo mapa",
+     "conta": "3 300 000 cm ÷ 12 cm = 275 000",
+     "porque": "Cada centímetro do mapa representa 275 000 cm no terreno.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "escala 1 : 275 000",
+     "porque": "É a alternativa D.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 1 : 275 000.",
+   "checagem": "Volte da escala ao terreno: 12 cm × 275 000 = 3 300 000 cm = 33 000 m = 33 km, a extensão da linha.",
+   "erradas": {
+    "A": "A sai de converter 33 km só para metros: 33 000 ÷ 12 = 2 750.",
+    "B": "B sai de multiplicar em vez de dividir e ainda perder um zero: 330 000 × 12 = 3 960 000.",
+    "C": "C sai de perder um zero na conversão: 330 000 ÷ 12 = 27 500 (33 km são 3 300 000 cm).",
+    "E": "E sai de multiplicar em vez de dividir: 3 300 000 × 12 = 39 600 000."
+   },
+   "armadilha": "Errar os zeros na passagem de km para cm: 1 km = 100 000 cm.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A escala numérica de um mapa em que 33 km medem 12 cm.",
+    "chave": "Denominador = 3 300 000 cm ÷ 12 cm = 275 000.",
+    "cuidado": "Converta para a mesma unidade antes de dividir."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "geo-0029"
+  }
+ },
+ "Pcfc52186": {
+  "n": "39",
+  "conceito": "Reconhecer a maior distorção da projeção de Mercator: as altas latitudes.",
+  "equivocos": {
+   "A": "G01.4:conforme-trocada-por-equivalente",
+   "B": "G01.4:propriedade-nao-preservada",
+   "C": "G01.4:propriedade-preservada-tomada-por-distorcida",
+   "D": "G01.4:propriedade-preservada-tomada-por-distorcida"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Mercator é uma projeção cilíndrica conforme: preserva os ângulos e as formas de pequenas áreas, e por isso as direções (rumos) viram linhas retas, o que a tornou útil para a navegação. O preço é a área: os paralelos se afastam cada vez mais rumo aos polos, e as regiões de alta latitude aparecem muito maiores do que são.",
+    "formulas": [
+     "conforme = preserva ângulos e formas locais, deforma áreas",
+     "equivalente = preserva áreas, deforma formas"
+    ],
+    "simbolos": [
+     [
+      "projeção conforme",
+      "projeção que mantém os ângulos e a forma de pequenas áreas"
+     ],
+     [
+      "alta latitude",
+      "região próxima aos polos"
+     ],
+     [
+      "rumo",
+      "direção constante em relação ao norte, usada na navegação"
+     ]
+    ]
+   },
+   "pista": "Compare no mapa o tamanho da Groenlândia com o da América do Sul.",
+   "passos": [
+    {
+     "faz": "Localize a pista do mapa",
+     "conta": "Groenlândia parece quase do tamanho da América do Sul; a Antártida vira uma faixa enorme",
+     "porque": "Na Terra, a América do Sul é muito maior que a Groenlândia. O exagero cresce perto dos polos.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Lembre a propriedade da Mercator",
+     "conta": "cilíndrica conforme: ângulos e direções preservados, áreas deformadas",
+     "porque": "Os paralelos se afastam rumo aos polos para manter os ângulos, e isso infla as altas latitudes.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Elimine o que ela preserva ou não preserva",
+     "conta": "A: áreas · B: distâncias · C e D: direções e ângulos",
+     "porque": "Áreas e distâncias não são preservadas; direções e ângulos são.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "maior distorção nas altas latitudes",
+     "porque": "É a alternativa E.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — a distorção das altas latitudes.",
+   "checagem": "Confira pela quadrícula do mapa: os paralelos ficam mais espaçados no alto e no baixo da figura do que perto do Equador; a mesma faixa de latitude ocupa mais espaço perto dos polos.",
+   "erradas": {
+    "A": "Inverte a propriedade: a Mercator deforma áreas (veja a Groenlândia); quem preserva áreas são as projeções equivalentes, como a de Peters.",
+    "B": "A Mercator não preserva distâncias: a mesma distância em graus aparece mais longa nas altas latitudes.",
+    "C": "Inverte: a Mercator preserva as direções (o rumo vira linha reta), e por isso foi usada na navegação.",
+    "D": "Inverte: a Mercator é conforme, ou seja, preserva os ângulos."
+   },
+   "armadilha": "Saber que a Mercator \"deforma\" e marcar ângulos ou direções (C, D), que são justamente o que ela preserva.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A característica da projeção de Mercator.",
+    "chave": "Conforme: preserva ângulos e direções e exagera as áreas perto dos polos.",
+    "cuidado": "Deformar área não é deformar ângulo: na Mercator, só a área sofre."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "geo-0029"
+  }
+ }
+}

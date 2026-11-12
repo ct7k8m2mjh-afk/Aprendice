@@ -1,0 +1,91 @@
+{
+ "Pcf48cf9d": {
+  "n": "25",
+  "conceito": "Traçar a rota entre duas coordenadas e ver por quais regiões ela passa.",
+  "equivocos": {
+   "A": "G01.1:rota-nao-tracada",
+   "C": "G01.1:rota-nao-tracada",
+   "D": "G01.1:coordenada-mal-localizada",
+   "E": "G01.1:fusos-mal-contados"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Com as coordenadas, localize as duas pontas: 50° N 10° L fica na Europa Central, e 30° S 135° L fica no interior da Austrália. Ligando os dois pontos, a rota desce para o sudeste, passa sobre o Mediterrâneo oriental e o Oriente Médio, cruza o oceano Índico e chega à Austrália. Para contar fusos, use 15° de longitude por hora.",
+    "formulas": [
+     "fusos ≈ diferença de longitude ÷ 15°"
+    ],
+    "simbolos": [
+     [
+      "L (leste)",
+      "lado de Greenwich em que as longitudes são contadas para leste"
+     ],
+     [
+      "fuso horário",
+      "faixa de cerca de 15° de longitude com a mesma hora"
+     ]
+    ]
+   },
+   "pista": "Localize primeiro as duas pontas: em que continente fica cada coordenada?",
+   "passos": [
+    {
+     "faz": "Localize as duas pontas",
+     "conta": "50° N 10° L: Europa Central · 30° S 135° L: centro da Austrália",
+     "porque": "Saber de onde sai e aonde chega o avião já elimina várias alternativas.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Trace a rota",
+     "conta": "50° N 10° L → cerca de 31° N 40° L → cerca de 8° N 75° L → 30° S 135° L",
+     "porque": "Num mapa com paralelos e meridianos retos, a linha passa pelo Oriente Médio, depois pelo oceano Índico.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste a alternativa dos fusos",
+     "conta": "(135° − 10°) ÷ 15° ≈ 8,3 → mais de 8 fusos",
+     "porque": "Percorrer só quatro fusos é pouco para 125° de longitude.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Elimine as regiões fora da rota",
+     "conta": "China: nas longitudes chinesas (73° a 135° L) a linha vai de cerca de 10° N a 30° S, sobre o Índico e depois a Austrália, sempre bem ao sul da China · mar das Filipinas: a rota já está perto de 24° a 30° S · África: a rota sai da Europa",
+     "porque": "A linha passa ao sul da China e longe do mar das Filipinas, e nenhuma das pontas está na África.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "a rota cruza o Oriente Médio",
+     "porque": "É a alternativa B.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — cruzou o Oriente Médio.",
+   "checagem": "Confira pela inclinação da reta: ela desce 80° de latitude em 125° de longitude, cerca de 0,64° por grau. O ponto médio fica perto de 10° N 72,5° L, no mar da Arábia, a sudeste da Península Arábica: antes dele, a linha só pode ter passado pelo Oriente Médio.",
+   "erradas": {
+    "A": "A China fica ao norte e a leste da rota: quando a linha chega às longitudes chinesas, ela já está sobre o oceano Índico, perto do Equador.",
+    "C": "O mar das Filipinas fica ao norte do Equador, por volta de 125° a 135° L; nessas longitudes a rota já está perto de 25° a 30° S, chegando à Austrália.",
+    "D": "O avião sai da Europa (50° N) e vai para a Austrália; nem a partida nem a chegada ficam na África.",
+    "E": "E não confere: a diferença de longitude é 135° − 10° = 125°, e 125° ÷ 15° ≈ 8,3, mais de oito fusos, não quatro."
+   },
+   "armadilha": "Pensar no Oriente como \"Ásia em geral\" e marcar a China, sem traçar a rota pelas coordenadas.",
+   "alerta": "O enunciado diz só \"linha reta\"; o gabarito considera a reta traçada num planisfério de paralelos e meridianos retos. A rota mais curta sobre o globo (círculo máximo) seria outra: passaria pela Ásia Central e pela Índia, não pelo Oriente Médio.",
+   "essencial": {
+    "pede": "Por qual região passa uma rota reta da Europa Central ao centro da Austrália.",
+    "chave": "Ligando 50° N 10° L a 30° S 135° L, a linha atravessa o Oriente Médio e o Índico.",
+    "cuidado": "Localize as duas pontas antes de julgar as alternativas e conte fusos por 15°."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "geo-0029"
+  }
+ }
+}
