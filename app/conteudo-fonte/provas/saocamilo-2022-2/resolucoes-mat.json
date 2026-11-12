@@ -122,5 +122,363 @@
    "data": "2026-11-11",
    "lote": "mat-0007"
   }
+ },
+ "P0fa2fd8c": {
+  "n": "37",
+  "conceito": "Princípio multiplicativo com restrição: posiciona-se primeiro o enfeite que só cabe nos nichos grandes.",
+  "equivocos": {
+   "A": "M13.3:sem-origem-identificada",
+   "B": "M13.3:nao-descontou-nicho-ocupado",
+   "C": "M13.3:sem-origem-identificada",
+   "E": "M13.3:ignorou-a-restricao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os dois enfeites são diferentes, então trocar um pelo outro gera outra arrumação. Comece pelo enfeite com restrição: ele só tem os nichos grandes. Depois o outro enfeite vai para qualquer nicho que sobrou, grande ou pequeno.",
+    "formulas": [
+     "princípio multiplicativo: escolhas em sequência se multiplicam"
+    ],
+    "simbolos": []
+   },
+   "pista": "Escolha primeiro o lugar do enfeite que tem restrição.",
+   "passos": [
+    {
+     "faz": "Coloque o enfeite restrito",
+     "conta": "6 nichos grandes → 6 opções",
+     "porque": "Ele só cabe nos grandes; os pequenos não servem para ele.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Coloque o outro enfeite",
+     "conta": "12 − 1 = 11 nichos livres → 11 opções",
+     "porque": "Ele cabe em qualquer nicho, menos no que já foi ocupado (1 enfeite por nicho).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique as etapas",
+     "conta": "6 × 11 = 66",
+     "porque": "Para cada lugar do primeiro há 11 lugares para o segundo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "66 → alternativa D",
+     "porque": "É o número de maneiras distintas.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 66.",
+   "checagem": "Conte por complemento: sem restrição seriam 12 × 11 = 132 arrumações. Tire aquelas em que o enfeite restrito ficaria num pequeno: 6 × 11 = 66. Sobra 132 − 66 = 66.",
+   "erradas": {
+    "A": "84 não confere: o enfeite restrito tem no máximo 6 lugares e o outro no máximo 11, então o total não passa de 6 × 11 = 66.",
+    "B": "72 sai de esquecer que o nicho ocupado não recebe o segundo enfeite: 6 × 12 = 72.",
+    "C": "120 não confere: passa do máximo possível, 6 × 11 = 66.",
+    "E": "132 sai de ignorar a restrição: 12 × 11 = 132, como se o enfeite grande coubesse em qualquer nicho."
+   },
+   "armadilha": "Ignorar a restrição (132) ou deixar o segundo enfeite cair no nicho já ocupado (72).",
+   "alerta": "",
+   "essencial": {
+    "pede": "O número de maneiras de pôr 2 enfeites distintos, um por nicho, com um deles só nos grandes.",
+    "chave": "Comece pela restrição: 6 lugares para o restrito e 11 para o outro, 6 × 11 = 66.",
+    "cuidado": "Depois de ocupar um nicho, restam 11, não 12."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "complemento",
+    "ideia": "Total sem restrição 12 × 11 = 132 menos os casos com o restrito num nicho pequeno, 6 × 11 = 66."
+   }
+  ],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0012"
+  }
+ },
+ "P16623790": {
+  "n": "38",
+  "conceito": "Máximo elemento a elemento entre matrizes, subtração de matrizes e leitura do maior valor de cada linha.",
+  "equivocos": {
+   "A": "M15.1:errou-diagnostico-de-carlos",
+   "C": "M15.1:errou-diagnostico-de-carlos",
+   "D": "M15.1:errou-diagnostico-de-ana",
+   "E": "M15.1:pareou-matrizes-erradas"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Monte V1 pegando, posição por posição, o maior entre T1 e T3; monte V2 do mesmo jeito com T2 e T4. Depois faça M = V1 − V2. Em cada linha de M (um paciente), o diagnóstico é a coluna com o maior valor: coluna 1 hipertensão, coluna 2 úlcera.",
+    "formulas": [
+     "V1(i, j) = máx{T1(i, j); T3(i, j)}",
+     "V2(i, j) = máx{T2(i, j); T4(i, j)}",
+     "M = V1 − V2"
+    ],
+    "simbolos": [
+     [
+      "máx",
+      "o maior dos dois valores"
+     ],
+     [
+      "d1, d2",
+      "hipertensão e úlcera, colunas 1 e 2"
+     ],
+     [
+      "p1, p2, p3",
+      "Ana, Bianca e Carlos, linhas 1, 2 e 3"
+     ]
+    ]
+   },
+   "pista": "Trabalhe posição por posição; não some nem multiplique matrizes, só compare e subtraia.",
+   "passos": [
+    {
+     "faz": "Monte V1 com os maiores de T1 e T3",
+     "conta": "linha 1: máx(0,4; 0,7) = 0,7 | máx(1; 0,5) = 1\nlinha 2: 0,7 | 0,9\nlinha 3: 0,9 | 0,8",
+     "porque": "Em cada posição fica o maior dos dois números.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte V2 com os maiores de T2 e T4",
+     "conta": "linha 1: 0,3 | 0,3\nlinha 2: 0,4 | 1\nlinha 3: 0,2 | 0,8",
+     "porque": "Mesmo critério, agora com T2 e T4.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Subtraia V1 − V2",
+     "conta": "Ana: 0,7 − 0,3 = 0,4 | 1 − 0,3 = 0,7\nBianca: 0,7 − 0,4 = 0,3 | 0,9 − 1 = −0,1\nCarlos: 0,9 − 0,2 = 0,7 | 0,8 − 0,8 = 0",
+     "porque": "Subtração de matrizes é posição por posição.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escolha a maior coluna de cada linha",
+     "conta": "Ana: 0,7 > 0,4 → úlcera\nBianca: 0,3 > −0,1 → hipertensão\nCarlos: 0,7 > 0 → hipertensão",
+     "porque": "O diagnóstico é o da coluna com maior valor na linha do paciente.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Ache a alternativa compatível",
+     "conta": "Ana úlcera e Carlos hipertensão → alternativa B",
+     "porque": "As duas afirmações da B batem com a tabela de diagnósticos.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — Ana com úlcera e Carlos com hipertensão.",
+   "checagem": "Confira só as posições que decidem: para Ana, a úlcera tem 1 em V1 (o maior valor possível) contra 0,3 em V2, folga de 0,7, maior que qualquer folga de hipertensão (0,7 − 0,3 = 0,4). Para Carlos, a úlcera empata em 0,8 nas duas matrizes e zera, enquanto a hipertensão fica positiva.",
+   "erradas": {
+    "A": "A erra Carlos: Bianca tem mesmo hipertensão, mas Carlos tem 0,7 em hipertensão e 0 em úlcera, então é hipertensão.",
+    "C": "C erra Carlos: a linha dele em M é 0,7 e 0, e o maior está na coluna da hipertensão.",
+    "D": "D erra Ana: a linha dela em M é 0,4 e 0,7, e o maior está na coluna da úlcera.",
+    "E": "E sai de comparar T1 com T2 e T3 com T4, em vez de T1 com T3: a subtração dá Ana (−0,3; 0,5), Bianca (−0,1; 0,1) e Carlos (0,5; 0,2), ou seja, Ana úlcera, Bianca úlcera e Carlos hipertensão."
+   },
+   "armadilha": "Trocar a ordem da subtração (V2 − V1) ou comparar T1 com T2 em vez de T1 com T3.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Qual diagnóstico sai da matriz M = V1 − V2.",
+    "chave": "V1 e V2 são máximos posição a posição; em M, cada linha aponta a coluna de maior valor.",
+    "cuidado": "Compare T1 com T3 e T2 com T4, e subtraia na ordem V1 − V2."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0012"
+  }
+ },
+ "P1e1ea71a": {
+  "n": "39",
+  "conceito": "Função composta: calcular g(−2), aplicar f e resolver a equação em p.",
+  "equivocos": {
+   "B": "M05.5:sem-origem-identificada",
+   "C": "M05.5:sem-origem-identificada",
+   "D": "M05.5:sem-origem-identificada",
+   "E": "M05.5:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "f(g(−2)) quer dizer: primeiro calcule g(−2), depois use esse resultado como entrada de f. Como g tem a constante p, g(−2) vira uma expressão com p; iguale f dela a 7.",
+    "formulas": [
+     "f(g(x)): calcula-se g primeiro, depois f",
+     "(−2)² = 4"
+    ],
+    "simbolos": [
+     [
+      "f(g(−2))",
+      "f aplicada ao valor de g em −2"
+     ],
+     [
+      "p",
+      "constante desconhecida de g"
+     ]
+    ]
+   },
+   "pista": "Calcule g(−2) deixando p como letra, com atenção ao sinal do quadrado.",
+   "passos": [
+    {
+     "faz": "Calcule g(−2)",
+     "conta": "g(−2) = 3 · (−2)² − p = 3 · 4 − p = 12 − p",
+     "porque": "O quadrado de −2 é +4; o sinal some ao elevar ao quadrado.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Aplique f",
+     "conta": "f(12 − p) = 2 · (12 − p) − 3 = 24 − 2p − 3 = 21 − 2p",
+     "porque": "f dobra a entrada e tira 3; o 2 multiplica o p também.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Iguale a 7 e resolva",
+     "conta": "21 − 2p = 7 → −2p = −14 → p = 7",
+     "porque": "O 21 passa para o outro lado subtraindo e o −2 passa dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "p = 7 → alternativa A",
+     "porque": "É o valor de p pedido.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 7.",
+   "checagem": "Substitua p = 7: g(−2) = 12 − 7 = 5 e f(5) = 2 · 5 − 3 = 7. Bate com o enunciado.",
+   "erradas": {
+    "B": "4 não confere: com p = 4, g(−2) = 8 e f(8) = 13, não 7.",
+    "C": "−2 não confere: com p = −2, g(−2) = 14 e f(14) = 25, não 7.",
+    "D": "1 não confere: com p = 1, g(−2) = 11 e f(11) = 19, não 7.",
+    "E": "−5 não confere: com p = −5, g(−2) = 17 e f(17) = 31, não 7."
+   },
+   "armadilha": "Fazer (−2)² = −4 ou esquecer de multiplicar o p por 2 ao aplicar f.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O valor de p para que f(g(−2)) = 7.",
+    "chave": "g(−2) = 12 − p; f dele = 21 − 2p = 7, logo p = 7.",
+    "cuidado": "Calcule de dentro para fora e distribua o 2 sobre os dois termos."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "de fora para dentro",
+    "ideia": "f(y) = 7 dá 2y − 3 = 7, y = 5; então g(−2) = 5, 12 − p = 5, p = 7."
+   }
+  ],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0012"
+  }
+ },
+ "P9cf112cb": {
+  "n": "40",
+  "conceito": "Volume da pirâmide: a altura do triângulo equilátero perpendicular à base é a altura da pirâmide.",
+  "equivocos": {
+   "A": "M11.3:usou-a-area-da-face-como-altura",
+   "B": "M11.3:sem-origem-identificada",
+   "D": "M11.3:sem-origem-identificada",
+   "E": "M11.3:esqueceu-o-4-da-area-do-equilatero"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A face ABC é um triângulo equilátero de pé, perpendicular à base, com o lado AB apoiado nela. Por isso a altura desse triângulo, de C até AB, é a altura da pirâmide. Pela área da face você acha o lado; pelo lado, a altura; e pelo volume, a área da base.",
+    "formulas": [
+     "área do triângulo equilátero = l²√3/4",
+     "altura do triângulo equilátero = l√3/2",
+     "volume da pirâmide = área da base × altura ÷ 3"
+    ],
+    "simbolos": [
+     [
+      "l",
+      "lado do triângulo equilátero"
+     ],
+     [
+      "h",
+      "altura da pirâmide"
+     ],
+     [
+      "Ab",
+      "área da base"
+     ]
+    ]
+   },
+   "pista": "Descubra primeiro o lado do triângulo ABC pela área dada.",
+   "passos": [
+    {
+     "faz": "Ache o lado da face ABC",
+     "conta": "l²√3/4 = 4√3 → l² = 16 → l = 4 cm",
+     "porque": "O √3 aparece dos dois lados e se cancela.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a altura da pirâmide",
+     "conta": "h = l√3/2 = 4√3/2 = 2√3 cm",
+     "porque": "Como a face é perpendicular à base, a altura do triângulo, de C até AB, cai na vertical e é a altura da pirâmide.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte o volume",
+     "conta": "(Ab × 2√3)/3 = 16√3",
+     "porque": "Volume de pirâmide é base vezes altura dividido por 3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole a área da base",
+     "conta": "Ab × 2√3 = 48√3 → Ab = 24 cm²",
+     "porque": "O 3 passa multiplicando e o 2√3 passa dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "24 cm² → alternativa C",
+     "porque": "É a área da base pedida.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 24 cm².",
+   "checagem": "Volte ao enunciado: base de 24 cm² e altura de 2√3 cm dão volume de 24 × 2√3 ÷ 3 = 16√3 cm³, o valor dado. Ordem de grandeza: 2√3 é cerca de 3,46 cm, e 24 × 3,46 ÷ 3 é cerca de 27,7, que é 16 × 1,73.",
+   "erradas": {
+    "A": "12 sai de usar a área da face, 4√3, como altura: Ab = 48√3 ÷ 4√3 = 12.",
+    "B": "36 cm² não confere: daria volume de 36 × 2√3 ÷ 3 = 24√3 cm³, e não 16√3.",
+    "D": "6 cm² não confere: daria volume de 6 × 2√3 ÷ 3 = 4√3 cm³, e não 16√3.",
+    "E": "48 sai de esquecer o ÷ 4 na área do equilátero: l²√3 = 4√3 → l = 2 → h = √3 → Ab = (3 · 16√3) ÷ √3 = 48."
+   },
+   "armadilha": "Não perceber que a altura da face perpendicular é a própria altura da pirâmide.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A área da base retangular da pirâmide.",
+    "chave": "Lado 4 pela área da face, altura 2√3 e Ab = 3 × 16√3 ÷ 2√3 = 24.",
+    "cuidado": "Use a altura do triângulo, não a área da face nem o lado, e não esqueça de dividir por 3."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0012"
+  }
  }
 }

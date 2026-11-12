@@ -1,0 +1,426 @@
+{
+ "Pd64cbc43": {
+  "n": "36",
+  "conceito": "Combinação de 5 reagentes tomados 2 a 2, multiplicada pelo tempo de cada tentativa.",
+  "equivocos": {
+   "A": "M13.3:contou-reagentes-em-vez-de-duplas",
+   "B": "M13.3:incluiu-reagente-com-ele-mesmo",
+   "C": "M13.3:sem-origem-identificada",
+   "E": "M13.3:arranjo-no-lugar-de-combinacao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Misturar o reagente 1 com o 2 é a mesma mistura que o 2 com o 1: a ordem não importa, então é combinação. Conte as duplas diferentes e multiplique pelos 3 minutos de cada tentativa.",
+    "formulas": [
+     "C(n, 2) = n · (n − 1)/2",
+     "tempo total = número de tentativas × 3 min"
+    ],
+    "simbolos": [
+     [
+      "C(n, 2)",
+      "número de duplas sem ordem tiradas de n elementos"
+     ]
+    ]
+   },
+   "pista": "Pergunte-se: trocar a ordem dos dois reagentes muda a mistura?",
+   "passos": [
+    {
+     "faz": "Decida o tipo de contagem",
+     "conta": "{R1, R2} = {R2, R1}",
+     "porque": "A mistura é a mesma em qualquer ordem, então cada dupla conta uma vez só.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Conte as duplas",
+     "conta": "C(5, 2) = (5 · 4)/2 = 10",
+     "porque": "São 5 · 4 = 20 pares ordenados, e cada dupla aparece duas vezes nessa conta.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Converta em tempo",
+     "conta": "10 × 3 min = 30 min",
+     "porque": "Cada tentativa leva 3 minutos e todas precisam ser testadas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "30 minutos → alternativa D",
+     "porque": "É o tempo mínimo para testar todas as combinações.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 30 minutos.",
+   "checagem": "Liste as duplas com reagentes A, B, C, D, E: AB, AC, AD, AE, BC, BD, BE, CD, CE, DE. São 10, e 10 × 3 = 30 minutos.",
+   "erradas": {
+    "A": "15 minutos sai de testar cada reagente uma vez só: 5 × 3 = 15. Mas cada teste mistura dois reagentes.",
+    "B": "45 minutos sai de incluir a mistura de um reagente com ele mesmo: (10 + 5) × 3 = 45. O enunciado pede dois reagentes diferentes.",
+    "C": "20 minutos não confere: daria 20 ÷ 3, que não é um número inteiro de tentativas.",
+    "E": "60 minutos sai de contar a ordem: 5 × 4 = 20 tentativas, 20 × 3 = 60. Mas misturar A com B é o mesmo que B com A."
+   },
+   "armadilha": "Contar a ordem (arranjo) onde ela não importa, o que dobra o número de misturas.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O tempo para testar todas as misturas de dois reagentes diferentes.",
+    "chave": "Combinação: C(5, 2) = 10 misturas, 10 × 3 = 30 min.",
+    "cuidado": "A ordem da mistura não importa: divida o arranjo por 2."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0012"
+  }
+ },
+ "Pbd15354b": {
+  "n": "37",
+  "conceito": "Produto de matrizes 2 × 2 e igualdade de matrizes elemento a elemento.",
+  "equivocos": {
+   "A": "M15.1:sem-origem-identificada",
+   "B": "M15.1:sem-origem-identificada",
+   "C": "M15.1:sem-origem-identificada",
+   "D": "M15.1:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "B² é B vezes B pela regra de linha por coluna, não o quadrado de cada número. Duas matrizes são iguais quando todos os elementos de mesma posição são iguais; as posições que têm p dão as equações.",
+    "formulas": [
+     "(B · B)ᵢⱼ = linha i de B · coluna j de B",
+     "matrizes iguais: elemento a elemento"
+    ],
+    "simbolos": [
+     [
+      "B²",
+      "o produto B · B"
+     ]
+    ]
+   },
+   "pista": "Calcule B · B pela regra de linha por coluna antes de olhar para p.",
+   "passos": [
+    {
+     "faz": "Calcule B²",
+     "conta": "linha 1: (−1)(−1) + 0 · 3 = 1 | (−1) · 0 + 0 · 3 = 0\nlinha 2: 3(−1) + 3 · 3 = 6 | 3 · 0 + 3 · 3 = 9",
+     "porque": "Cada elemento é a soma dos produtos da linha da primeira pela coluna da segunda.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule A + B",
+     "conta": "1 | p − 6\n6 | p + 3",
+     "porque": "Soma de matrizes é posição por posição: 2 − 1 = 1, 3 + 3 = 6.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Iguale as posições com p",
+     "conta": "p − 6 = 0 → p = 6\np + 3 = 9 → p = 6",
+     "porque": "As outras posições já são iguais (1 = 1 e 6 = 6); as duas equações em p dão o mesmo valor.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "p = 6 → alternativa E",
+     "porque": "As duas condições concordam, então p = 6 é a resposta.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 6.",
+   "checagem": "Substitua p = 6: A = [[2, 0], [3, 6]] e A + B = [[1, 0], [6, 9]], igual a B². Com qualquer outro p, a posição da linha 1, coluna 2 deixa de ser 0.",
+   "erradas": {
+    "A": "3 não confere: com p = 3, a posição (1, 2) de A + B vale −3, e em B² ela vale 0.",
+    "B": "4 não confere: com p = 4, a posição (1, 2) de A + B vale −2, e em B² ela vale 0.",
+    "C": "2 não confere: com p = 2, a posição (1, 2) de A + B vale −4, e em B² ela vale 0.",
+    "D": "5 não confere: com p = 5, a posição (1, 2) de A + B vale −1, e em B² ela vale 0."
+   },
+   "armadilha": "Elevar cada elemento de B ao quadrado em vez de multiplicar B por B: a posição (2, 1) daria 9 em vez de 6.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O valor de p que faz B² = A + B.",
+    "chave": "B² = [[1, 0], [6, 9]]; igualando, p − 6 = 0 e p + 3 = 9, logo p = 6.",
+    "cuidado": "Produto de matrizes é linha por coluna, não elemento a elemento."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0012"
+  }
+ },
+ "P0eea1b22": {
+  "n": "38",
+  "conceito": "Área acumulada à esquerda de uma reta móvel: trecho de altura constante dá reta; trecho de altura decrescente dá curva que se achata.",
+  "equivocos": {
+   "A": "M05.4:ignorou-a-mudanca-de-altura",
+   "B": "M05.4:inverteu-a-concavidade",
+   "C": "M05.4:curva-onde-a-altura-e-constante",
+   "E": "M05.4:trocou-reta-e-curva-entre-os-trechos"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A área à esquerda cresce, a cada passo de x, na proporção da altura da figura naquele ponto. Onde a altura é constante, a área cresce em ritmo constante: reta. Onde a altura diminui, a área continua crescendo, mas cada vez mais devagar: curva que se achata. Leia a altura da figura em cada trecho.",
+    "formulas": [
+     "área do retângulo = base × altura",
+     "área do triângulo = base × altura ÷ 2"
+    ],
+    "simbolos": [
+     [
+      "A(x)",
+      "área da região à esquerda da reta r quando r está na abscissa x"
+     ]
+    ]
+   },
+   "pista": "Olhe a altura da figura em cada trecho de x: ela é constante, cresce ou diminui?",
+   "passos": [
+    {
+     "faz": "Analise o trecho do retângulo",
+     "conta": "0 ≤ x ≤ 2: altura 3 → A(x) = 3x → A(2) = 6",
+     "porque": "Altura constante: a área cresce 3 por unidade de x, uma reta.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare a altura logo depois de x = 2",
+     "conta": "altura 3 → altura 6",
+     "porque": "Em x = 2 o triângulo começa com altura 6, o dobro: o gráfico fica mais íngreme, não mais plano.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Analise o trecho do triângulo",
+     "conta": "2 ≤ x ≤ 6: altura 6 → 0, diminuindo",
+     "porque": "A altura cai até zero em x = 6, então a área cresce cada vez mais devagar e chega em x = 6 sem inclinação: curva que se achata.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule o valor final",
+     "conta": "A(6) = 6 + (4 · 6)/2 = 6 + 12 = 18",
+     "porque": "A área total é o retângulo mais o triângulo de catetos 4 e 6.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escolha o gráfico",
+     "conta": "reta até (2, 6) → mais íngreme → curva que se achata até 18 → alternativa D",
+     "porque": "Só o gráfico D tem reta no início, fica mais inclinado em x = 2 e termina se achatando em 18.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — o gráfico com reta de 0 a 2 até a área 6 e, depois, uma curva que sobe mais inclinada e vai se achatando até 18 em x = 6.",
+   "checagem": "Teste um ponto: em x = 4, a parte do triângulo à esquerda é um trapézio de bases 6 e 3 e largura 2, área (6 + 3) · 2 ÷ 2 = 9; A(4) = 6 + 9 = 15. No gráfico D, x = 4 está perto de 15; nos gráficos B e C está perto de 9 ou 10.",
+   "erradas": {
+    "A": "A não confere: uma reta só exige altura constante de 0 a 6, mas a altura passa de 3 para 6 em x = 2 e depois cai até 0.",
+    "B": "B não confere: depois de x = 2 o gráfico fica quase plano e então acelera, mas a altura salta para 6 e depois diminui, então a curva deve começar íngreme e se achatar.",
+    "C": "C não confere: o trecho de 0 a 2 é curvo, mas a altura do retângulo é constante, então ali é reta; e o fim acelera em vez de se achatar.",
+    "E": "E não confere: é curva de 0 a 2 e reta de 2 a 6, o inverso do certo, pois a altura é constante no retângulo e diminui no triângulo."
+   },
+   "armadilha": "Confundir altura que diminui com área que diminui: a área sempre cresce, só que cada vez mais devagar.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Qual gráfico descreve a área à esquerda da reta r conforme ela anda de 0 a 6.",
+    "chave": "A inclinação do gráfico é a altura da figura: 3 constante, depois 6 caindo até 0.",
+    "cuidado": "Área acumulada nunca diminui; altura menor só deixa o crescimento mais lento."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0012"
+  }
+ },
+ "Pd6f4a976": {
+  "n": "39",
+  "conceito": "Volume de tetraedro por diferença de duas pirâmides com a mesma base na face lateral do bloco.",
+  "equivocos": {
+   "B": "M11.3:sem-origem-identificada",
+   "C": "M11.3:sem-origem-identificada",
+   "D": "M11.3:aresta-tomada-como-altura",
+   "E": "M11.3:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A face quadrada ABEH tem área 16, então o lado é 4; a aresta EF mede 6. M (centro da face EFGH) e N (meio de FG) estão na linha que liga os pontos médios de EH e de FG. Chame de Q o ponto médio de EH: Q, M e N ficam alinhados, numa reta perpendicular à face ABEH. A pirâmide MABN é a pirâmide ABQN menos a pirâmide ABQM.",
+    "formulas": [
+     "volume da pirâmide = área da base × altura ÷ 3",
+     "área do triângulo = base × altura ÷ 2"
+    ],
+    "simbolos": [
+     [
+      "Q",
+      "ponto médio da aresta EH, criado para a resolução"
+     ]
+    ]
+   },
+   "pista": "Procure um ponto da face ABEH que fique alinhado com M e N.",
+   "passos": [
+    {
+     "faz": "Leia as medidas",
+     "conta": "AB = 4 | EH = 4 | EF = 6 | QM = 3 | QN = 6",
+     "porque": "Face de área 16 tem lado 4; QN é paralelo a EF e vai até o meio de FG, por isso mede 6, e M fica no meio dele.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule a base ABQ",
+     "conta": "área(ABQ) = (4 · 4)/2 = 8 cm²",
+     "porque": "Q está na aresta EH, oposta a AB no quadrado, a 4 cm de AB.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a pirâmide ABQN",
+     "conta": "(8 · 6)/3 = 16 cm³",
+     "porque": "A reta QN é perpendicular à face ABEH, então QN = 6 é a altura dessa pirâmide.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a pirâmide ABQM",
+     "conta": "(8 · 3)/3 = 8 cm³",
+     "porque": "Mesma base; M está a 3 cm da face ABEH.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Subtraia e conclua",
+     "conta": "16 − 8 = 8 cm³ → alternativa A",
+     "porque": "Como M está no segmento QN, a pirâmide ABQN se divide em ABQM e MABN.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 8 cm³.",
+   "checagem": "Por coordenadas: A = (0, 0, 0), B = (0, 4, 0), M = (3, 2, 4) e N = (6, 2, 4). O volume é o módulo do determinante dos vetores AB, AM e AN dividido por 6: 48 ÷ 6 = 8 cm³.",
+   "erradas": {
+    "B": "6 cm³ não confere: a pirâmide MABN é ABQN (16 cm³) menos ABQM (8 cm³); para dar 6, a parte retirada teria de valer 10 cm³.",
+    "C": "4 cm³ não confere: exigiria tirar 12 cm³ de ABQN, mas ABQM, com M no meio de QN, vale exatamente metade, 8 cm³.",
+    "D": "10 sai de tomar MN = 3 como altura sobre a base ABM, de área 10 cm²: (10 · 3) ÷ 3 = 10; mas MN não é perpendicular ao plano ABM.",
+    "E": "2 cm³ não confere: exigiria tirar 14 cm³ de ABQN, mas ABQM vale 8 cm³."
+   },
+   "armadilha": "Procurar a altura da pirâmide MABN diretamente; o caminho fácil é completar até a pirâmide ABQN e subtrair.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O volume da pirâmide de vértices M, A, B e N.",
+    "chave": "Com Q no meio de EH, MABN = ABQN − ABQM = 16 − 8.",
+    "cuidado": "O lado do quadrado sai da área 16; a distância de M e N à face ABEH é medida ao longo de EF."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "arestas reversas",
+    "ideia": "AB e MN são perpendiculares e distam 4; volume = AB · MN · 4 ÷ 6 = 4 · 3 · 4 ÷ 6 = 8."
+   }
+  ],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0012"
+  }
+ },
+ "Paf67ed4e": {
+  "n": "40",
+  "conceito": "Execução passo a passo de um algoritmo com atribuições, resto da divisão e laço repetido.",
+  "equivocos": {
+   "A": "M17.2:sem-origem-identificada",
+   "B": "M17.2:parou-antes-do-laco",
+   "C": "M17.2:rodou-o-laco-duas-vezes",
+   "D": "M17.2:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Siga o código linha por linha, anotando o valor de x depois de cada comando. Pelo exemplo do enunciado, \"x mod 3\" troca o valor de x pelo resto da divisão de x por 3. O bloco entre chaves roda 3 vezes, sempre a partir do valor que x tem naquele momento.",
+    "formulas": [
+     "x *= k: x vira x · k",
+     "x += k: x vira x + k",
+     "x mod k: x vira o resto da divisão de x por k"
+    ],
+    "simbolos": [
+     [
+      "mod",
+      "resto da divisão inteira"
+     ]
+    ]
+   },
+   "pista": "Anote x depois de cada linha, inclusive em cada volta do laço.",
+   "passos": [
+    {
+     "faz": "Rode as linhas antes do laço",
+     "conta": "x = 1 → 1 · 2 = 2 → 2 · 3 = 6 → 6 + 4 = 10",
+     "porque": "Cada comando usa o valor que x acabou de ganhar.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Rode a 1.ª volta",
+     "conta": "10 mod 3 = 1 → 1 + 7 = 8",
+     "porque": "10 = 3 · 3 + 1: o resto é 1, e x passa a ser 1 antes de somar 7.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Rode a 2.ª volta",
+     "conta": "8 mod 3 = 2 → 2 + 7 = 9",
+     "porque": "8 = 3 · 2 + 2: resto 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Rode a 3.ª volta",
+     "conta": "9 mod 3 = 0 → 0 + 7 = 7",
+     "porque": "9 é múltiplo de 3: resto 0.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Rode a última linha",
+     "conta": "7 + 5 = 12 → alternativa E",
+     "porque": "Depois das 3 voltas, soma-se 5 uma vez só.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 12.",
+   "checagem": "Confira pelo padrão do laço: em cada volta x vira resto + 7, e o resto por 3 só pode ser 0, 1 ou 2; logo, depois do laço, x está entre 7 e 9 e o final entre 12 e 14. A entrada da 3.ª volta é 9, múltiplo de 3, por isso sai o menor valor, 7, e o final é 12.",
+   "erradas": {
+    "A": "18 não confere: depois do laço x vale no máximo 9 (resto até 2, mais 7), então o resultado final não passa de 9 + 5 = 14.",
+    "B": "10 sai de parar antes do laço: é o valor de x depois de x += 4, sem rodar o bloco nem somar 5.",
+    "C": "14 sai de rodar o laço só 2 vezes: 10 → 8 → 9, e 9 + 5 = 14.",
+    "D": "16 não confere: depois do laço x vale no máximo 9, então o final não passa de 14."
+   },
+   "armadilha": "Errar a contagem das voltas do laço ou esquecer que mod substitui x pelo resto.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O valor de x ao fim do código.",
+    "chave": "Antes do laço x = 10; as voltas dão 8, 9 e 7; somando 5, x = 12.",
+    "cuidado": "Rode exatamente 3 voltas e, em cada uma, troque x pelo resto antes de somar 7."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0012"
+  }
+ }
+}

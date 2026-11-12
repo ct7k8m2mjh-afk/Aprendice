@@ -106,5 +106,359 @@
    "data": "2026-11-11",
    "lote": "mat-0008"
   }
+ },
+ "Pc5ddeb0c": {
+  "n": "36",
+  "conceito": "PA dos treinos para achar quantos treinos houve e resto da divisão por 7 para achar o dia da semana.",
+  "equivocos": {
+   "B": "M07.1:sem-origem-identificada",
+   "C": "M07.1:contou-treinos-em-vez-de-intervalos",
+   "D": "M07.1:sem-origem-identificada",
+   "E": "M07.1:errou-o-numero-de-intervalos"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "As distâncias formam uma progressão aritmética: começam em 1 000 m e sobem 400 m a cada treino. Descubra em que treino ela chega a 42,2 km. Entre um treino e o seguinte passam 3 dias, então os dias corridos são 3 vezes o número de intervalos, não o número de treinos. A semana se repete a cada 7 dias: só o resto da divisão por 7 importa.",
+    "formulas": [
+     "termo geral da PA: aₙ = a₁ + (n − 1) · r",
+     "dias corridos = 3 × (n − 1)",
+     "dia da semana: resto da divisão por 7"
+    ],
+    "simbolos": [
+     [
+      "aₙ",
+      "distância do treino número n"
+     ],
+     [
+      "a₁",
+      "distância do 1.º treino, 1 000 m"
+     ],
+     [
+      "r",
+      "razão da PA, o aumento de 400 m por treino"
+     ],
+     [
+      "n",
+      "número do treino"
+     ]
+    ]
+   },
+   "pista": "Passe 42,2 km para metros e ache o número do último treino. Depois conte os intervalos entre treinos, não os treinos.",
+   "passos": [
+    {
+     "faz": "Converta a distância final para metros",
+     "conta": "42,2 km = 42 200 m",
+     "porque": "As outras distâncias estão em metros; a PA só funciona com tudo na mesma unidade.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache o número do último treino",
+     "conta": "1 000 + (n − 1) · 400 = 42 200 → (n − 1) · 400 = 41 200 → n − 1 = 103 → n = 104",
+     "porque": "Cada treino acrescenta 400 m. De 1 000 m a 42 200 m são 41 200 m de aumento, ou seja, 103 aumentos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Converta intervalos em dias corridos",
+     "conta": "103 intervalos × 3 dias = 309 dias",
+     "porque": "São 104 treinos, mas entre o primeiro e o último há só 103 intervalos de 3 dias.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tire as semanas inteiras",
+     "conta": "309 = 7 · 44 + 1 → resto 1",
+     "porque": "Cada 7 dias o dia da semana volta a ser o mesmo; 44 semanas inteiras não mudam nada, sobra 1 dia.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ande o resto a partir do domingo",
+     "conta": "domingo + 1 dia = segunda-feira",
+     "porque": "O treino começou num domingo; 309 dias depois é o mesmo que 1 dia depois.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — segunda-feira.",
+   "checagem": "Por ciclos de treino: a cada 7 intervalos passam 21 dias, três semanas exatas, e o dia da semana se repete. Dos 103 intervalos, 103 = 7 · 14 + 5; sobram 5 intervalos, 15 dias, e 15 = 14 + 1. Domingo + 1 = segunda, como antes.",
+   "erradas": {
+    "B": "Terça-feira não confere: exigiria resto 2 na divisão por 7, e os 309 dias corridos deixam resto 1.",
+    "C": "Quinta-feira sai de contar 104 intervalos em vez de 103: 104 × 3 = 312 dias, resto 4 na divisão por 7, domingo + 4 = quinta.",
+    "D": "Quarta-feira não confere: seria preciso resto 3 na divisão por 7; os 309 dias corridos deixam resto 1.",
+    "E": "Sexta-feira sai de usar 102 intervalos: 102 × 3 = 306 dias, resto 5 na divisão por 7, domingo + 5 = sexta."
+   },
+   "armadilha": "Contar treinos no lugar de intervalos: 104 treinos têm só 103 intervalos de 3 dias.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O dia da semana do treino em que ela pedalou 42,2 km.",
+    "chave": "Pela PA, n − 1 = 103 intervalos; 103 × 3 = 309 dias, que deixam resto 1 na divisão por 7.",
+    "cuidado": "Converta km para m e multiplique os intervalos (n − 1), não os treinos, por 3."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0012"
+  }
+ },
+ "Pf1d1e51f": {
+  "n": "37",
+  "conceito": "Probabilidade como número de casos favoráveis lidos no gráfico dividido pelo total de 400 funcionários.",
+  "equivocos": {
+   "A": "M13.4:leu-contagem-como-porcentagem",
+   "B": "M13.4:sem-origem-identificada",
+   "C": "M13.4:sem-origem-identificada",
+   "D": "M13.4:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada barra do gráfico é um número de pessoas, não uma porcentagem. A probabilidade de cada evento é o número de funcionários que o satisfazem dividido pelos 400. Leia as barras com cuidado: o eixo vertical começa em 20, não em zero.",
+    "formulas": [
+     "probabilidade = casos favoráveis ÷ casos possíveis",
+     "\"ou\" entre modos diferentes: soma as pessoas, porque cada um indicou um só modo"
+    ],
+    "simbolos": [
+     [
+      "P",
+      "probabilidade"
+     ]
+    ]
+   },
+   "pista": "Anote os oito números do gráfico e confira que somam 400. Depois teste cada alternativa dividindo por 400.",
+   "passos": [
+    {
+     "faz": "Leia as barras",
+     "conta": "H: carro 60 | ônibus 40 | metrô 30 | bicicleta 60\nM: carro 30 | ônibus 60 | metrô 50 | bicicleta 70",
+     "porque": "Os valores são lidos na escala de 10 em 10 do eixo vertical.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Confira o total",
+     "conta": "190 + 210 = 400",
+     "porque": "A soma bate com os 400 funcionários, então a leitura está certa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte mulheres de metrô ou bicicleta",
+     "conta": "50 + 70 = 120",
+     "porque": "Cada pessoa indicou um modo só, então os dois grupos não se repetem e podem ser somados.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida pelo total",
+     "conta": "120/400 = 3/10 = 30%",
+     "porque": "O sorteio é entre todos os 400 funcionários, não só entre as mulheres.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "30% → alternativa E",
+     "porque": "É exatamente o valor afirmado na alternativa E.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — ser mulher e utilizar metrô ou bicicleta é de 30%.",
+   "checagem": "Teste as outras pelo mesmo critério: mulher de ônibus 60 ÷ 400 = 15%; carro ou bicicleta 220 ÷ 400 = 55%; homem de carro 60 ÷ 400 = 15%; metrô 80 ÷ 400 = 20%. Só a E tem o valor certo.",
+   "erradas": {
+    "A": "60% sai de ler as 60 mulheres que usam ônibus como se fossem 60%. Divididas pelo total: 60 ÷ 400 = 15%.",
+    "B": "50% não confere: carro tem 60 + 30 = 90 pessoas e bicicleta 60 + 70 = 130; 220 ÷ 400 = 55%.",
+    "C": "45% não confere: são 60 homens de carro, e 60 ÷ 400 = 15%.",
+    "D": "40% não confere: metrô tem 30 + 50 = 80 pessoas, e 80 ÷ 400 = 20%."
+   },
+   "armadilha": "Tomar o número de pessoas da barra como porcentagem, ou dividir por um subgrupo em vez dos 400 sorteáveis.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Qual das probabilidades está correta num sorteio entre os 400 funcionários.",
+    "chave": "Favoráveis lidos no gráfico divididos por 400: mulheres de metrô ou bicicleta 120 ÷ 400 = 30%.",
+    "cuidado": "Barra é contagem de pessoas; o denominador é sempre 400."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0012"
+  }
+ },
+ "Pea2576fa": {
+  "n": "38",
+  "conceito": "Equação da reta a partir de dois pontos do gráfico e cálculo do valor para x = 52.",
+  "equivocos": {
+   "A": "M08.2:sem-origem-identificada",
+   "B": "M08.2:sem-origem-identificada",
+   "D": "M08.2:sem-origem-identificada",
+   "E": "M08.2:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O gráfico dá dois pontos da reta: fêmur de 40 cm com altura de 154 cm e fêmur de 70 cm com altura de 229 cm. Numa reta, a altura sobe sempre a mesma quantidade por centímetro de fêmur. Ache essa taxa e ande de 40 até 52.",
+    "formulas": [
+     "taxa = Δy ÷ Δx",
+     "y = y₀ + taxa × (x − x₀)"
+    ],
+    "simbolos": [
+     [
+      "Δy",
+      "variação da altura"
+     ],
+     [
+      "Δx",
+      "variação do comprimento do fêmur"
+     ]
+    ]
+   },
+   "pista": "Descubra quantos centímetros de altura correspondem a cada centímetro de fêmur.",
+   "passos": [
+    {
+     "faz": "Leia os dois pontos",
+     "conta": "(40, 154) | (70, 229)",
+     "porque": "São os únicos pontos marcados com valores nos dois eixos.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule a taxa da reta",
+     "conta": "(229 − 154)/(70 − 40) = 75/30 = 2,5",
+     "porque": "Cada centímetro a mais de fêmur soma 2,5 cm na altura estimada.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ande de 40 até 52",
+     "conta": "52 − 40 = 12 → 12 × 2,5 = 30",
+     "porque": "São 12 cm a mais de fêmur em relação ao ponto conhecido.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some à altura de partida",
+     "conta": "154 + 30 = 184 cm",
+     "porque": "A altura no fêmur de 40 cm era 154 cm; somam-se os 30 cm de aumento.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 184 cm.",
+   "checagem": "Faça o caminho a partir do outro ponto: de 70 para 52 o fêmur diminui 18 cm, e 229 − 18 × 2,5 = 229 − 45 = 184 cm. Mesmo resultado.",
+   "erradas": {
+    "A": "180 cm não confere: daria um aumento de 26 cm em 12 cm de fêmur, taxa de cerca de 2,17, diferente dos 2,5 da reta.",
+    "B": "188 cm não confere: daria 34 cm de aumento em 12 cm de fêmur, taxa de cerca de 2,83, diferente de 2,5.",
+    "D": "196 cm não confere: daria 42 cm de aumento em 12 cm de fêmur, taxa de 3,5, diferente de 2,5.",
+    "E": "192 cm não confere: daria 38 cm de aumento em 12 cm de fêmur, taxa de cerca de 3,17, diferente de 2,5."
+   },
+   "armadilha": "Achar que a altura é proporcional ao fêmur (reta pela origem): a reta não passa pelo zero, então use a taxa a partir de um ponto conhecido.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A altura estimada para um fêmur de 52 cm.",
+    "chave": "Taxa de 75 ÷ 30 = 2,5 cm por cm; 154 + 12 × 2,5 = 184.",
+    "cuidado": "Não multiplique 52 por uma razão fixa: a reta tem coeficiente linear diferente de zero."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0012"
+  }
+ },
+ "Pec20b2f6": {
+  "n": "39",
+  "conceito": "Num quadrado, triângulos com bases em lados opostos e vértice comum somam metade da área.",
+  "equivocos": {
+   "A": "M08.5:sem-origem-identificada",
+   "C": "M08.5:sem-origem-identificada",
+   "D": "M08.5:sem-origem-identificada",
+   "E": "M08.5:usou-area-dada-de-outro-triangulo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os triângulos BCE e ADE têm como bases os lados opostos BC e AD, e as duas alturas, somadas, dão o lado do quadrado. Por isso as áreas deles somam metade do quadrado. O mesmo vale para o par ABE e CDE, com bases AB e CD.",
+    "formulas": [
+     "área do triângulo = base × altura ÷ 2",
+     "BCE + ADE = ABE + CDE = metade da área do quadrado"
+    ],
+    "simbolos": [
+     [
+      "L",
+      "lado do quadrado"
+     ]
+    ]
+   },
+   "pista": "Agrupe os quatro triângulos em dois pares de lados opostos e veja quanto cada par vale.",
+   "passos": [
+    {
+     "faz": "Some o par de cima e de baixo",
+     "conta": "BCE + ADE = 20 + 12 = 32 cm²",
+     "porque": "As alturas de E até BC e até AD somam L, então as duas áreas somam o lado vezes o lado dividido por 2, a metade do quadrado.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a área do quadrado",
+     "conta": "L²/2 = 32 → L² = 64 → L = 8 cm",
+     "porque": "O par vale metade do quadrado, então o quadrado tem o dobro.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Use o outro par",
+     "conta": "ABE + CDE = 32 → ABE + 24 = 32 → ABE = 8 cm²",
+     "porque": "As alturas de E até AB e até CD também somam L, então esse par também vale metade.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "ABE = 8 cm² → alternativa B",
+     "porque": "É a área pedida.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 8 cm².",
+   "checagem": "Ache a posição de E: com L = 8, o triângulo CDE de 24 cm² tem altura 2 × 24 ÷ 8 = 6, então E está a 2 cm de AB. Área de ABE = 8 × 2 ÷ 2 = 8 cm². Somando tudo: 8 + 20 + 24 + 12 = 64 = 8².",
+   "erradas": {
+    "A": "4 cm² não confere: com ele, ABE + CDE = 28 cm², mas esse par tem de valer 32 cm², metade do quadrado.",
+    "C": "6 cm² não confere: ABE + CDE daria 30 cm², e o par vale 32 cm².",
+    "D": "10 cm² não confere: ABE + CDE daria 34 cm², e o par vale 32 cm².",
+    "E": "12 cm² é a área dada de ADE, não a de ABE; com 12, ABE + CDE daria 36 cm², e não 32 cm²."
+   },
+   "armadilha": "Tentar achar as coordenadas de E sem perceber o atalho: cada par de triângulos opostos vale metade do quadrado.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A área do triângulo ABE.",
+    "chave": "BCE + ADE = 32 = metade do quadrado, logo ABE = 32 − 24 = 8.",
+    "cuidado": "As duas alturas de um par somam o lado; isso vale para qualquer ponto E interno."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "coordenadas",
+    "ideia": "Com E a distância y de AD: 8y ÷ 2 = 12 dá y = 3; com distância x de AB: 8(8 − x) ÷ 2 = 24 dá x = 2; ABE = 8 · 2 ÷ 2 = 8."
+   }
+  ],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0012"
+  }
  }
 }
