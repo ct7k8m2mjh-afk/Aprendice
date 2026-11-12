@@ -324,5 +324,102 @@
    "data": "2026-11-12",
    "lote": "mat-0025"
   }
+ },
+ "Pc3899b8f": {
+  "n": "24",
+  "conceito": "Permutação com bloco, ordem relativa e complementar.",
+  "equivocos": {
+   "A": "M13.2:sem-origem-identificada",
+   "C": "M13.2:sem-origem-identificada",
+   "D": "M13.2:sem-origem-identificada",
+   "E": "M13.2:esqueceu-a-ordem-do-bloco"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "E e F juntos: trate como um bloco (2 ordens internas). C à esquerda de D: metade das filas. A não ao lado de B: conte o total e tire as filas com A e B juntos.",
+    "formulas": [
+     "bloco: (n − 1)! × 2",
+     "ordem fixa entre dois: ÷ 2"
+    ],
+    "simbolos": []
+   },
+   "pista": "Comece contando as filas com E e F juntos e C antes de D.",
+   "passos": [
+    {
+     "faz": "Bloco EF",
+     "conta": "unidades [EF], A, B, C, D: 5! × 2 = 240",
+     "porque": "EF ou FE.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "C antes de D",
+     "conta": "240/2 = 120",
+     "porque": "Metade das filas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tire A junto de B",
+     "conta": "blocos [EF], [AB], C, D: 4! × 2 × 2 = 96 → 96/2 = 48",
+     "porque": "Mesmas regras com A e B colados.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Subtraia",
+     "conta": "120 − 48 = 72 → alternativa B",
+     "porque": "A separado de B.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 72",
+   "checagem": "Trocando a ordem: com o bloco EF há 240 filas; tire as 96 com A junto de B (240 − 96 = 144) e só no fim divida por 2 pela ordem de C e D: 144/2 = 72.",
+   "erradas": {
+    "A": "54 não confere: as filas válidas são 120 − 48 = 72.",
+    "C": "68 não confere: as filas válidas são 120 − 48 = 72.",
+    "D": "84 não confere: as filas válidas são 120 − 48 = 72.",
+    "E": "36 sai de esquecer as duas ordens do bloco EF: 72/2."
+   },
+   "armadilha": "Esquecer que o bloco EF pode ser FE: dobra a contagem.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O número de formações.",
+    "chave": "120 com EF e C antes de D; menos 48 com AB juntos: 72.",
+    "cuidado": "Bloco, metade, complementar."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "lacunas",
+    "ideia": "Fixe [EF], C e D ((3! × 2)/2 = 6 jeitos), depois ponha A e B em lacunas distintas: 4 × 3 = 12; 6 × 12 = 72."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "5! × 2 = 240",
+    "nota": "bloco EF"
+   },
+   {
+    "linha": "240/2 = 120",
+    "nota": "C antes de D"
+   },
+   {
+    "linha": "4! × 4/2 = 48",
+    "nota": "AB juntos"
+   },
+   {
+    "linha": "120 − 48 = 72",
+    "nota": "total"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0034"
+  }
  }
 }

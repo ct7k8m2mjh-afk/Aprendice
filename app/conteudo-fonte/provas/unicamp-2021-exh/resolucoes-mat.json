@@ -758,5 +758,89 @@
    "data": "2026-11-12",
    "lote": "mat-0031"
   }
+ },
+ "P8c087ccf": {
+  "n": "21",
+  "conceito": "Permutação com repetição de letras.",
+  "equivocos": {
+   "A": "M13.2:nao-descontou-repeticoes",
+   "B": "M13.2:descontou-so-uma-repeticao",
+   "D": "M13.2:contou-repeticao-ja-usada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Com FLORES fixo no início, sobram as letras de REFLORESTAMENTO que não foram usadas. Elas se permutam nas 9 posições finais; letras repetidas dividem pelo fatorial das repetições.",
+    "formulas": [
+     "Pⁿ com repetição = n!/(a! b! …)"
+    ],
+    "simbolos": []
+   },
+   "pista": "Risque de REFLORESTAMENTO as letras de FLORES. O que sobra?",
+   "passos": [
+    {
+     "faz": "Letras que sobram",
+     "conta": "R, E, T, A, M, E, N, T, O → 9 letras",
+     "porque": "15 − 6 = 9.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Repetições",
+     "conta": "E aparece 2 vezes; T aparece 2 vezes; R e O só uma",
+     "porque": "Um R e um O foram para FLORES.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Permute",
+     "conta": "9!/(2! 2!) → alternativa C",
+     "porque": "Divida pelas trocas entre letras iguais.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 9!/(2! 2!)",
+   "checagem": "Conte as letras da palavra inteira: R 2, E 3, F 1, L 1, O 2, S 1, T 2, A 1, M 1, N 1 (15). FLORES usa R 1, E 1, O 1: sobram R 1, E 2, O 1, T 2 — só E e T repetidos.",
+   "erradas": {
+    "A": "9! não desconta as letras repetidas (E e T aparecem duas vezes).",
+    "B": "9!/2! desconta só uma das duas letras repetidas.",
+    "D": "9!/(2! 2! 2!) conta três letras repetidas; mas um dos R e um dos O ficaram em FLORES, e só E e T repetem."
+   },
+   "armadilha": "Contar as repetições da palavra inteira, esquecendo que FLORES já usou um R, um E e um O.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantos anagramas começam com FLORES.",
+    "chave": "Sobram 9 letras com E e T duas vezes: 9!/(2! 2!).",
+    "cuidado": "Conte as repetições só nas letras que sobram."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "escolha de posições",
+    "ideia": "Escolha as 2 posições dos E (C(9, 2)), depois as 2 dos T (C(7, 2)) e permute as 5 letras distintas (5!): 36 × 21 × 120 = 9!/(2! 2!)."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "15 − 6 = 9 letras",
+    "nota": "sobram"
+   },
+   {
+    "linha": "E: 2 | T: 2",
+    "nota": "repetições"
+   },
+   {
+    "linha": "9!/(2! 2!)",
+    "nota": "anagramas"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0034"
+  }
  }
 }

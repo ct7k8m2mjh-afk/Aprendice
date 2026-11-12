@@ -671,5 +671,91 @@
    "data": "2026-11-12",
    "lote": "mat-0031"
   }
+ },
+ "P57de97be": {
+  "n": "71",
+  "conceito": "Permutação com alternância de dois grupos.",
+  "equivocos": {
+   "A": "M13.2:ignorou-a-restricao",
+   "B": "M13.2:sem-origem-identificada",
+   "C": "M13.2:esqueceu-um-padrao",
+   "E": "M13.2:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Intercalando 4 retratos e 4 pinturas em 8 posições, os tipos alternam: RPRPRPRP ou PRPRPRPR. Em cada padrão, os 4 retratos permutam entre si nas posições deles, e o mesmo para as pinturas.",
+    "formulas": [
+     "Pₙ = n!"
+    ],
+    "simbolos": []
+   },
+   "pista": "Quantos padrões de tipo (R e P) alternados existem?",
+   "passos": [
+    {
+     "faz": "Padrões",
+     "conta": "RPRPRPRP ou PRPRPRPR → 2",
+     "porque": "Começa por retrato ou por pintura.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Dentro de cada padrão",
+     "conta": "4! × 4! = 24 × 24 = 576",
+     "porque": "Quadros diferentes entre si.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique",
+     "conta": "2 × 576 = 1 152 → alternativa D",
+     "porque": "Dois padrões.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 1 152.",
+   "checagem": "Posição a posição: 8 escolhas para a 1.ª (qualquer quadro), 4 para a 2.ª (do outro tipo), 3, 3, 2, 2, 1, 1: 8 × 4 × 3 × 3 × 2 × 2 × 1 × 1 = 1 152.",
+   "erradas": {
+    "A": "40 320 é 8!, sem a restrição de intercalar.",
+    "B": "8 192 não confere: 2 × 4! × 4! = 1 152.",
+    "C": "576 é 4! × 4! para um padrão só; esquece que a fila pode começar por pintura.",
+    "E": "20 160 é 8!/2, sem relação com a alternância."
+   },
+   "armadilha": "Esquecer o padrão que começa pelo outro tipo.",
+   "alerta": "",
+   "essencial": {
+    "pede": "De quantas maneiras pendurar os 8 quadros.",
+    "chave": "2 padrões × 4! × 4! = 1 152.",
+    "cuidado": "Comece por retrato ou por pintura."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pelo total",
+    "ideia": "Das 8! = 40 320 filas, os tipos ficam alternados em 2 dos C(8, 4) = 70 padrões de R e P: 40 320 × (2/70) = 1 152."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "2",
+    "nota": "padrões"
+   },
+   {
+    "linha": "4! × 4! = 576",
+    "nota": "permutações"
+   },
+   {
+    "linha": "2 × 576 = 1 152",
+    "nota": "total"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0034"
+  }
  }
 }

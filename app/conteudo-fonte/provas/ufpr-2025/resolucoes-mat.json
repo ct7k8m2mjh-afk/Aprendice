@@ -852,5 +852,91 @@
    "data": "2026-11-12",
    "lote": "mat-0031"
   }
+ },
+ "Pa541926c": {
+  "n": "6",
+  "conceito": "Arranjo com restrição: lugar do condutor obrigatório.",
+  "equivocos": {
+   "A": "M13.2:sem-origem-identificada",
+   "B": "M13.2:esqueceu-o-condutor",
+   "C": "M13.2:ignorou-a-ordem",
+   "E": "M13.2:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Primeiro escolha quem dirige (3 opções). Os outros dois ocupam 2 dos 4 lugares restantes, e a ordem importa (pessoas diferentes em lugares diferentes).",
+    "formulas": [
+     "A(n, p) = n!/(n − p)!"
+    ],
+    "simbolos": []
+   },
+   "pista": "Comece pelo lugar do condutor.",
+   "passos": [
+    {
+     "faz": "Condutor",
+     "conta": "3 opções",
+     "porque": "Qualquer um dos três.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Os outros dois",
+     "conta": "A(4, 2) = 4 × 3 = 12",
+     "porque": "4 lugares livres.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique",
+     "conta": "3 × 12 = 36 → alternativa D",
+     "porque": "Etapas independentes.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 36",
+   "checagem": "Pelo total: os 3 amigos em 5 lugares dão A(5, 3) = 60; destes, os que deixam o volante vazio são A(4, 3) = 24; 60 − 24 = 36.",
+   "erradas": {
+    "A": "9 não confere: só os passageiros já têm 4 × 3 = 12 arranjos para cada condutor.",
+    "B": "12 conta só os passageiros para um condutor fixo; faltam as 3 escolhas de condutor.",
+    "C": "18 sai de 3 × C(4, 2): ignora a ordem dos dois passageiros nos lugares.",
+    "E": "120 é 5!, como se fossem 5 pessoas em 5 lugares."
+   },
+   "armadilha": "Esquecer que o motorista também se reveza: são 3 escolhas para o volante.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantas configurações.",
+    "chave": "3 condutores × A(4, 2) = 36.",
+    "cuidado": "Comece pelo lugar obrigatório."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "por lugares",
+    "ideia": "Escolha os 2 lugares de passageiro entre os 4 (C(4, 2) = 6) e distribua os 3 amigos no volante e nesses 2 lugares (3! = 6): 6 × 6 = 36."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "3",
+    "nota": "condutor"
+   },
+   {
+    "linha": "4 × 3 = 12",
+    "nota": "passageiros"
+   },
+   {
+    "linha": "3 × 12 = 36",
+    "nota": "total"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0034"
+  }
  }
 }

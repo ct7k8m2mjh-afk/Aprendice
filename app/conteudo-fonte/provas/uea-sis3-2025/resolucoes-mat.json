@@ -402,5 +402,91 @@
    "data": "2026-11-12",
    "lote": "mat-0032"
   }
+ },
+ "P08bafbe9": {
+  "n": "43",
+  "conceito": "Permutação com restrição: total menos casos proibidos.",
+  "equivocos": {
+   "A": "M13.2:contou-um-caso-so",
+   "B": "M13.2:sem-origem-identificada",
+   "C": "M13.2:contou-um-caso-so",
+   "D": "M13.2:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Sem restrição, 6 atletas formam 6! filas. Proibido: um atleta de branco na 1.ª posição e o outro de branco na 6.ª. Conte esses casos e tire.",
+    "formulas": [
+     "total − proibidos"
+    ],
+    "simbolos": []
+   },
+   "pista": "Conte as filas proibidas.",
+   "passos": [
+    {
+     "faz": "Total",
+     "conta": "6! = 720",
+     "porque": "Seis atletas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Proibidas",
+     "conta": "brancos nas pontas (2 ordens) × 4! no meio = 2 × 24 = 48",
+     "porque": "Um na 1.ª e o outro na 6.ª.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Subtraia",
+     "conta": "720 − 48 = 672 → alternativa E",
+     "porque": "Filas permitidas.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 672.",
+   "checagem": "Pelo 1.º lugar: se é de branco (2 × 4 × 4! = 192: 2 atletas, a 6.ª posição fica para um dos 4 outros, e o resto 4!) e se não é (4 × 5! = 480); 192 + 480 = 672.",
+   "erradas": {
+    "A": "192 são só as filas que começam com um atleta de branco; faltam as 480 que não começam.",
+    "B": "288 não confere: 720 − 48 = 672.",
+    "C": "480 são só as filas que começam com um atleta de outro clube.",
+    "D": "600 sai de tirar 5! = 120 em vez de 48."
+   },
+   "armadilha": "Tirar todas as filas com um atleta de branco na frente (2 × 5! = 240, sobram 480): a regra só proíbe o outro de branco na 6.ª posição.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantas filas.",
+    "chave": "720 − 48 = 672.",
+    "cuidado": "Complementar."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "probabilidade",
+    "ideia": "A chance de uma fila proibida é (2/6) × (1/5) = 1/15; permitidas: 720 × (14/15) = 672."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "6! = 720",
+    "nota": "total"
+   },
+   {
+    "linha": "2 × 4! = 48",
+    "nota": "proibidas"
+   },
+   {
+    "linha": "672",
+    "nota": "permitidas"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0034"
+  }
  }
 }

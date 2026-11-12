@@ -1108,5 +1108,99 @@
    "data": "2026-11-12",
    "lote": "mat-0032"
   }
+ },
+ "P14e1ed32": {
+  "n": "59",
+  "conceito": "Contagem de números com dígitos distintos e uma condição de tamanho.",
+  "equivocos": {
+   "A": "M13.2:sem-origem-identificada",
+   "C": "M13.2:excluiu-todos-com-2",
+   "D": "M13.2:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Números de quatro dígitos distintos: o milhar não pode ser 0. Conte todos e tire os que não passam de 2500: os que começam com 1 e os que começam com 2 com centena menor que 5. O próprio 2500 repete o 0, então não é contado.",
+    "formulas": [
+     "total − não servem"
+    ],
+    "simbolos": []
+   },
+   "pista": "Quantos números de 4 dígitos distintos existem no total?",
+   "passos": [
+    {
+     "faz": "Total",
+     "conta": "9 × 9 × 8 × 7 = 4 536",
+     "porque": "Milhar de 1 a 9; os outros sem repetir.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Começam com 1",
+     "conta": "9 × 8 × 7 = 504",
+     "porque": "Todos menores que 2 500.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Começam com 2 e centena 0, 1, 3 ou 4",
+     "conta": "4 × 8 × 7 = 224",
+     "porque": "Abaixo de 2 500 (o 2 já está usado).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Subtraia",
+     "conta": "4 536 − 504 − 224 = 3 808 → alternativa B",
+     "porque": "Maiores que 2 500.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 3808.",
+   "checagem": "Contando direto: milhar de 3 a 9: 7 × 9 × 8 × 7 = 3 528; milhar 2 com centena 5 a 9: 5 × 8 × 7 = 280; 3 528 + 280 = 3 808.",
+   "erradas": {
+    "A": "3917 não confere: o total 4 536 menos os 728 que não passam de 2 500 dá 3 808.",
+    "C": "3528 são só os que começam com 3 a 9; faltam os que começam com 25 a 29 (280).",
+    "D": "3712 não confere: 4 536 − 504 − 224 = 3 808."
+   },
+   "armadilha": "Tirar todos os que começam com 2: os de 2 503 em diante passam de 2 500.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantos números maiores que 2500 com 4 dígitos distintos.",
+    "chave": "4 536 − 504 − 224 = 3 808.",
+    "cuidado": "Separe os que começam com 2 pela centena."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "por milhar",
+    "ideia": "Cada milhar de 1 a 9 tem 504 números de dígitos distintos; servem os 7 milhares de 3 a 9 (7 × 504 = 3 528) e, no milhar 2, 5 das 9 centenas possíveis (504 × (5/9) = 280): 3 808."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "9 × 9 × 8 × 7 = 4 536",
+    "nota": "total"
+   },
+   {
+    "linha": "504",
+    "nota": "início 1"
+   },
+   {
+    "linha": "224",
+    "nota": "início 20 a 24"
+   },
+   {
+    "linha": "3 808",
+    "nota": "resultado"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0034"
+  }
  }
 }

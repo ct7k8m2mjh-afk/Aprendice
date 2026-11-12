@@ -729,5 +729,91 @@
    "data": "2026-11-12",
    "lote": "mat-0033"
   }
+ },
+ "P98aecbdc": {
+  "n": "14",
+  "conceito": "Permutação com bloco: algarismos sempre juntos.",
+  "equivocos": {
+   "A": "M13.2:esqueceu-o-bloco-como-elemento",
+   "C": "M13.2:ignorou-a-restricao",
+   "D": "M13.2:sem-origem-identificada",
+   "E": "M13.2:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os algarismos 2, 3 e 7 ficam juntos: viram um bloco. Esse bloco e as 9 letras (todas diferentes) formam 10 elementos para permutar; dentro do bloco, os 3 algarismos permutam.",
+    "formulas": [
+     "bloco: permute os elementos e, dentro do bloco, as peças"
+    ],
+    "simbolos": []
+   },
+   "pista": "Quantos elementos há se o bloco dos algarismos contar como um só?",
+   "passos": [
+    {
+     "faz": "Elementos",
+     "conta": "9 letras + 1 bloco = 10 → 10!",
+     "porque": "C, D, E, H, N, O, P, R, S são distintas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Dentro do bloco",
+     "conta": "2, 3, 7 → 3!",
+     "porque": "Ordens dos algarismos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique",
+     "conta": "10! × 3! → alternativa B",
+     "porque": "Etapas independentes.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 10! 3!",
+   "checagem": "Teste com uma versão pequena: 2 letras (a, b) e 2 algarismos juntos (1, 2): pela regra, 3! × 2! = 12; listando, o bloco 12 ou 21 fica em uma de 3 posições entre as letras em 2 ordens: 2 × 3 × 2 = 12.",
+   "erradas": {
+    "A": "9! · 3! esquece de contar o bloco como um elemento a mais: permuta só as letras.",
+    "C": "12! permite os algarismos separados.",
+    "D": "(9 · 3)! = 27! não corresponde a 12 símbolos.",
+    "E": "9! · 3! · 2! não confere: o bloco e as letras somam 10 elementos, 10! × 3!."
+   },
+   "armadilha": "Permutar só as letras (9!) e esquecer que o bloco ocupa um lugar entre elas.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantos anagramas com os algarismos juntos.",
+    "chave": "10 elementos (9 letras + bloco) × 3! dentro do bloco.",
+    "cuidado": "O bloco é um elemento."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "posição do bloco",
+    "ideia": "Arrume as 9 letras (9!), escolha uma das 10 lacunas para o bloco (10) e permute os algarismos (3!): 9! × 10 × 3! = 10! × 3!."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "9 + 1 = 10 → 10!",
+    "nota": "elementos"
+   },
+   {
+    "linha": "3!",
+    "nota": "bloco"
+   },
+   {
+    "linha": "10! · 3!",
+    "nota": "anagramas"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0034"
+  }
  }
 }

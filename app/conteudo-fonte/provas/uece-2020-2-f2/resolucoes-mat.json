@@ -737,5 +737,173 @@
    "data": "2026-11-12",
    "lote": "mat-0032"
   }
+ },
+ "Pcaa3f421": {
+  "n": "49",
+  "conceito": "Princípio multiplicativo sem repetição.",
+  "equivocos": {
+   "A": "M13.1:inverteu-algarismos",
+   "B": "M13.1:sem-origem-identificada",
+   "C": "M13.1:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "São cinco posições. As duas primeiras são letras distintas das 27; as três últimas, algarismos distintos de 1 a 9. Multiplique as opções de cada posição, tirando uma a cada escolha já feita.",
+    "formulas": [
+     "princípio multiplicativo"
+    ],
+    "simbolos": []
+   },
+   "pista": "Quantas opções há para cada uma das cinco posições?",
+   "passos": [
+    {
+     "faz": "Letras",
+     "conta": "27 × 26 = 702",
+     "porque": "Sem repetir a primeira.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Algarismos",
+     "conta": "9 × 8 × 7 = 504",
+     "porque": "Sem repetição.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique",
+     "conta": "702 × 504 = 353 808 → alternativa D",
+     "porque": "Letras e algarismos independentes.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 353808.",
+   "checagem": "Pelo algarismo das unidades: 702 × 504 termina em 2 × 4 = 8, o que só a D (353808) cumpre entre as que começam com 353; e 700 × 504 = 352 800, mais 2 × 504 = 1 008, dá 353 808.",
+   "erradas": {
+    "A": "353880 troca a ordem dos dois últimos algarismos de 353808: o produto 702 × 504 termina em 8.",
+    "B": "335088 não confere: 702 × 504 = 353 808.",
+    "C": "535888 não confere: 702 × 504 = 353 808."
+   },
+   "armadilha": "Permitir repetição (27 × 27 × 9 × 9 × 9): o enunciado diz sem repetição.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantas senhas.",
+    "chave": "27 × 26 × 9 × 8 × 7 = 353 808.",
+    "cuidado": "Sem repetição: tire uma opção a cada posição."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "arranjos",
+    "ideia": "A(27, 2) × A(9, 3) = (27!/25!) × (9!/6!) = 702 × 504."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "27 × 26 = 702",
+    "nota": "letras"
+   },
+   {
+    "linha": "9 × 8 × 7 = 504",
+    "nota": "algarismos"
+   },
+   {
+    "linha": "702 × 504 = 353 808",
+    "nota": "total"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0034"
+  }
+ },
+ "Pb73cf82b": {
+  "n": "44",
+  "conceito": "Posição na lista em ordem crescente: contar os que vêm antes.",
+  "equivocos": {
+   "B": "M13.2:parou-no-primeiro-do-bloco",
+   "C": "M13.2:sem-origem-identificada",
+   "D": "M13.2:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os números usam 2, 3, 4, 6 e 7 sem repetir. Em ordem crescente, vêm primeiro todos que começam com 2, depois 3, depois 4; em seguida os que começam com 6. Conte os anteriores a 62 437.",
+    "formulas": [
+     "números com início fixo: (n − 1)!"
+    ],
+    "simbolos": []
+   },
+   "pista": "Quantos números começam com 2, 3 ou 4?",
+   "passos": [
+    {
+     "faz": "Começam por 2, 3 ou 4",
+     "conta": "3 × 4! = 72",
+     "porque": "Todos menores que 60 000.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Começam por 62",
+     "conta": "restam 3, 4, 7: 62 347 (73.º), 62 374 (74.º), 62 437 (75.º)",
+     "porque": "62 é o menor início com 6.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Posição",
+     "conta": "75 → alternativa A",
+     "porque": "62 437 é o terceiro após os 72.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 75.",
+   "checagem": "Contando os maiores: começam com 7: 24; começam com 6 e segundo 3, 4 ou 7: 3 × 3! = 18; começam com 62 e maiores que 62 437: 62 473, 62 734, 62 743 = 3. São 45 maiores; 120 − 45 = 75.",
+   "erradas": {
+    "B": "73 é a posição de 62 347, o primeiro que começa com 62.",
+    "C": "77 não confere: só 62 347 e 62 374 estão entre os 72 primeiros e 62 437.",
+    "D": "71 não confere: os que começam com 2, 3 ou 4 já são 72, todos antes."
+   },
+   "armadilha": "Esquecer os que começam com 62 e vêm antes (62 347 e 62 374).",
+   "alerta": "",
+   "essencial": {
+    "pede": "A posição de 62 437.",
+    "chave": "72 com início 2, 3, 4; depois 62 347, 62 374, 62 437: 75.º.",
+    "cuidado": "Conte os que vêm antes."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "posição pelos menores à direita",
+    "ideia": "Para cada algarismo de 62 437, conte os algarismos ainda livres menores que ele e multiplique pelo fatorial das casas seguintes: 3 × 4! + 0 × 3! + 1 × 2! + 0 × 1! = 74; a posição é 74 + 1 = 75."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "3 × 4! = 72",
+    "nota": "início 2, 3, 4"
+   },
+   {
+    "linha": "62 347 | 62 374 | 62 437",
+    "nota": "início 62"
+   },
+   {
+    "linha": "72 + 3 = 75",
+    "nota": "posição"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0034"
+  }
  }
 }

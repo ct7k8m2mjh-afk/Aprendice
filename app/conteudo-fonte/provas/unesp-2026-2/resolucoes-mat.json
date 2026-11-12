@@ -565,5 +565,91 @@
    "data": "2026-11-12",
    "lote": "mat-0028"
   }
+ },
+ "P8895227e": {
+  "n": "86",
+  "conceito": "Combinação em etapas: escolher casas para cada cor de peça.",
+  "equivocos": {
+   "A": "M13.3:sem-origem-identificada",
+   "C": "M13.3:sem-origem-identificada",
+   "D": "M13.3:esqueceu-uma-etapa",
+   "E": "M13.3:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "As peças da mesma cor são iguais entre si: importa só quais casas recebem peças pretas e quais recebem brancas. Escolha 12 das 32 casas pretas para as peças pretas; depois 12 das 20 que sobram para as brancas.",
+    "formulas": [
+     "C(n, p) = n!/(p!(n − p)!)"
+    ],
+    "simbolos": []
+   },
+   "pista": "Duas peças pretas trocadas de lugar mudam a distribuição?",
+   "passos": [
+    {
+     "faz": "Peças pretas",
+     "conta": "C(32, 12) = 32!/(12! 20!)",
+     "porque": "Peças iguais: combinação.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Peças brancas",
+     "conta": "C(20, 12) = 20!/(12! 8!)",
+     "porque": "Das casas que sobraram.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique e simplifique",
+     "conta": "32!/(12! 20!) × 20!/(12! 8!) = 32!/(8! (12!)²) → alternativa B",
+     "porque": "O 20! cancela.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 32!/(8! · (12!)²)",
+   "checagem": "Pela permutação com repetição: as 32 casas pretas recebem 12 P, 12 B e 8 vazias, ou seja, anagramas de uma palavra com 12 P, 12 B e 8 V: 32!/(12! 12! 8!), o mesmo valor.",
+   "erradas": {
+    "A": "12³² não confere: cada casa preta tem só 3 situações (vazia, peça preta, peça branca), então o total não passa de 3³², e 12³² é muito maior.",
+    "C": "24!/(8!)³ divide as 24 peças em três grupos de 8; não há grupos de 8 peças.",
+    "D": "20!/8! não considera a escolha das casas das peças pretas.",
+    "E": "32!/24! = A(32, 8) ≈ 4,2 × 10¹¹ não confere: C(32, 12) × C(20, 12) ≈ 2,8 × 10¹³; falta escolher as casas de cada cor."
+   },
+   "armadilha": "Tratar as peças como diferentes (arranjo): peças da mesma cor são iguais.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A conta do número de distribuições.",
+    "chave": "C(32, 12) × C(20, 12) = 32!/(8! (12!)²).",
+    "cuidado": "Peças iguais: combinação."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "vazias primeiro",
+    "ideia": "Escolha as 8 casas vazias, C(32, 8), e depois as 12 pretas entre as 24 ocupadas, C(24, 12): (32!/(8! 24!)) × (24!/(12! 12!)) = 32!/(8! (12!)²)."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "C(32, 12)",
+    "nota": "pretas"
+   },
+   {
+    "linha": "C(20, 12)",
+    "nota": "brancas"
+   },
+   {
+    "linha": "32!/(8! (12!)²)",
+    "nota": "total"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0034"
+  }
  }
 }

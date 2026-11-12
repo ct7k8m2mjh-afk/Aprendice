@@ -638,5 +638,90 @@
    "data": "2026-11-12",
    "lote": "mat-0030"
   }
+ },
+ "P5f892244": {
+  "n": "33",
+  "conceito": "Combinação com condição: total menos os casos que não servem.",
+  "equivocos": {
+   "A": "M13.3:sem-origem-identificada",
+   "B": "M13.3:sem-origem-identificada",
+   "D": "M13.3:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Retirar 3 notas sem ordem: C(7, 3) = 35 grupos. Qualquer grupo com a nota de 50, 100 ou 200 já passa de 50 (50 + 2 + 5 = 57). Não servem só os grupos formados apenas por 2, 5, 10 e 20.",
+    "formulas": [
+     "C(n, p)",
+     "total − não servem"
+    ],
+    "simbolos": []
+   },
+   "pista": "Quais grupos de 3 notas somam 50 ou menos?",
+   "passos": [
+    {
+     "faz": "Total",
+     "conta": "C(7, 3) = 35",
+     "porque": "Sete notas, três retiradas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Não servem",
+     "conta": "só com 2, 5, 10, 20: C(4, 3) = 4 (somas 17, 27, 32, 35)",
+     "porque": "Todas até 50.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Subtraia",
+     "conta": "35 − 4 = 31 → alternativa C",
+     "porque": "Somam mais que 50.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 31",
+   "checagem": "Contando direto: com a nota de 200: C(6, 2) = 15; sem 200 e com 100: C(5, 2) = 10; sem 200 e 100 e com 50: C(4, 2) = 6; 15 + 10 + 6 = 31.",
+   "erradas": {
+    "A": "29 não confere: só 4 grupos ficam abaixo de 50, e 35 − 4 = 31.",
+    "B": "30 não confere: só 4 grupos ficam abaixo de 50, e 35 − 4 = 31.",
+    "D": "32 não confere: são 4 grupos que não passam de 50, não 3."
+   },
+   "armadilha": "Achar que algum grupo com a nota de 50 não passa de 50: com quaisquer outras duas, passa.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantas retiradas somam mais que 50.",
+    "chave": "35 − 4 = 31.",
+    "cuidado": "Complementar: conte os pequenos."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "por notas grandes",
+    "ideia": "Conte quantas notas de 50, 100 ou 200 entram: 1 grande, 3 × C(4, 2) = 18; 2 grandes, C(3, 2) × 4 = 12; 3 grandes, 1; 18 + 12 + 1 = 31."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "C(7, 3) = 35",
+    "nota": "total"
+   },
+   {
+    "linha": "C(4, 3) = 4",
+    "nota": "não servem"
+   },
+   {
+    "linha": "35 − 4 = 31",
+    "nota": "resultado"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0034"
+  }
  }
 }

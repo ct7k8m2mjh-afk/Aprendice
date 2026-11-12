@@ -96,5 +96,96 @@
    "data": "2026-11-12",
    "lote": "mat-0030"
   }
+ },
+ "P6b888600": {
+  "n": "5",
+  "conceito": "Combinação em cada grupo de produtos e princípio multiplicativo.",
+  "equivocos": {
+   "A": "M13.1:misturou-os-tipos",
+   "B": "M13.1:misturou-os-tipos",
+   "C": "M13.1:usou-arranjo-em-vez-de-combinacao",
+   "E": "M13.1:somou-opcoes-e-escolhas"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Dentro do boxe, a ordem dos produtos não importa: escolher as máscaras A e B é o mesmo que escolher B e A. Por isso cada tipo é uma combinação. Os três tipos são escolhas independentes: multiplique.",
+    "formulas": [
+     "C(n, p) = n!/(p!(n − p)!)",
+     "escolhas independentes: multiplica"
+    ],
+    "simbolos": []
+   },
+   "pista": "A ordem dos produtos dentro do boxe muda o boxe?",
+   "passos": [
+    {
+     "faz": "Máscaras",
+     "conta": "2 de 5: C(5, 2)",
+     "porque": "Ordem não importa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Hidratantes e perfumes",
+     "conta": "3 de 10: C(10, 3) | 2 de 15: C(15, 2)",
+     "porque": "Mesmo raciocínio.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique",
+     "conta": "C(5, 2) × C(10, 3) × C(15, 2) → alternativa D",
+     "porque": "Tipos independentes.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — C5, 2 · C10, 3 · C15, 2.",
+   "checagem": "Teste pequeno: com 3 máscaras (X, Y, Z) e 2 por boxe, a lista dá XY, XZ, YZ: 3 = C(3, 2). Já A(3, 2) = 6 contaria XY e YX como boxes diferentes.",
+   "erradas": {
+    "A": "A30, 7 escolhe 7 produtos quaisquer dos 30, com ordem: ignora que são 2, 3 e 2 de cada tipo e conta a ordem.",
+    "B": "C30, 7 escolhe 7 dos 30 sem separar os tipos: aceitaria um boxe com 7 perfumes.",
+    "C": "Arranjos contam a ordem dentro de cada tipo, mas trocar duas máscaras de lugar não muda o boxe.",
+    "E": "A7, 2 · A13, 3 · A17, 2 soma as opções com as escolhas (5 + 2, 10 + 3, 15 + 2), o que não tem sentido, e ainda usa arranjo, que conta a ordem."
+   },
+   "armadilha": "Usar arranjo: dentro do boxe não existe primeira ou segunda máscara.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A expressão para o número de boxes.",
+    "chave": "C(5, 2) × C(10, 3) × C(15, 2).",
+    "cuidado": "Ordem não importa: combinação."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "arranjo dividido",
+    "ideia": "Conte com ordem (A5, 2 · A10, 3 · A15, 2) e divida pelas ordens internas 2! · 3! · 2!: chega ao mesmo produto de combinações."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "C(5, 2)",
+    "nota": "máscaras"
+   },
+   {
+    "linha": "C(10, 3)",
+    "nota": "hidratantes"
+   },
+   {
+    "linha": "C(15, 2)",
+    "nota": "perfumes"
+   },
+   {
+    "linha": "C(5, 2) · C(10, 3) · C(15, 2)",
+    "nota": "boxe"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0034"
+  }
  }
 }
