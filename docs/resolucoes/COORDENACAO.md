@@ -121,13 +121,13 @@ com update, e marcar o item como feito no o-que-falta.json.
 
 ## Painel "O que falta no Aprendice" (pedido do dono, 13/11)
 Artefato: https://claude.ai/artifact/L5VSRBJLyyadbmaWMmNwj4 (tem o link do site no topo). Atualizar SÓ a cada 1.000
-questões resolvidas a mais (dono, 13/11). Última atualização: 16.464 feitas → próxima ao passar de 17.464. Para atualizar: mude o item em docs/resolucoes/o-que-falta.json (estado falta/andamento/decidir/feito), rode o converte,
+questões resolvidas a mais (dono, 13/11). Última atualização: 18.060 feitas (13/11, com a seção Provas pedida pelo dono) → próxima ao passar de 19.060. Para atualizar: mude o item em docs/resolucoes/o-que-falta.json (estado falta/andamento/decidir/feito), rode o converte,
 depois `python3 ferramentas/resolucoes/painel_falta.py` e publique docs/resolucoes/o-que-falta.html nesse URL (Artifact,
 `url` = o link acima, de outra conversa; read antes).
 
 ## Publicação
-Última no ar: dpl_F5FyQ927LL92bBa7fihgbaPFWbBJ (commit 3f9191a7, 13/11, a pedido do dono): 16.108 resoluções.
-Próxima ao passar de 16.608.
+Última no ar: dpl_BuLFgvkJFLHjcU2G2ToHxiHRkuE5 (commit 7c6705c6, 13/11, a pedido do dono): 18.060 resoluções.
+Próxima ao passar de 18.560.
 Contagem: `com_resolucao` de https://aprendice.vercel.app/conteudo/relatorio.json (ou do relatório local do converte).
 
 Coordenadora atual: session_01PveEKabuyZnqVN65W5FfEc (desde 12/11, 23h UTC).

@@ -43,6 +43,36 @@ def numeros():
     return linhas
 
 
+def provas():
+    """Provas: no projeto, completas (todas as questões com resolução), com questões por resolver, e anos 2020-2026
+    sem prova nenhuma em cada vestibular do catálogo."""
+    import glob
+    fonte = os.path.join(RAIZ, 'app', 'conteudo-fonte')
+    ids = {}
+    for f in glob.glob(os.path.join(fonte, 'provas', '*', 'prova.json')):
+        d = json.load(open(f))
+        ids[d['id']] = (d.get('catalogoId'), str(d.get('ano', ''))[:4])
+    tot, com = {}, {}
+    for m in ORDEM:
+        arq = os.path.join(lote.PUB, m, 'banco.json')
+        if not os.path.exists(arq):
+            continue
+        for q in json.load(open(arq)):
+            p = q.get('prova')
+            if not p or q.get('outra_materia'):
+                continue
+            tot[p] = tot.get(p, 0) + 1
+            com[p] = com.get(p, 0) + (1 if q.get('cr') else 0)
+    completas = sum(1 for p in ids if tot.get(p) and com.get(p, 0) >= tot[p])
+    cat = json.load(open(os.path.join(fonte, 'catalogo-vestibulares.json')))['provas']
+    anos = [str(a) for a in range(2020, 2027)]
+    cobertos = {(c, a) for c, a in ids.values() if c and a in anos}
+    vazios = sum(1 for v in cat for a in anos if (v['id'], a) not in cobertos)
+    sem_nenhuma = sum(1 for v in cat if not any((v['id'], a) in cobertos for a in anos))
+    return {'projeto': len(ids), 'completas': completas, 'andamento': len(ids) - completas,
+            'vestibulares': len(cat), 'anos_vazios': vazios, 'meta': len(cat) * len(anos), 'sem_nenhuma': sem_nenhuma}
+
+
 def no_ar():
     try:
         return json.load(open(os.path.join(RAIZ, 'docs', 'resolucoes', 'publicacao.json')))['ultima']
@@ -113,6 +143,7 @@ def gera():
     pal = json.load(open(PALETA))['materias']
     cor = lambda m, k: pal.get(m, pal.get('fil', {})).get(k, '#888')  # noqa: E731
     lin = numeros()
+    pv = provas()
     itens = json.load(open(ITENS)) if os.path.exists(ITENS) else {'grupos': []}
     pub = no_ar()
     tot_f = sum(x['feitas'] for x in lin)
@@ -204,6 +235,7 @@ h2{{font-size:1.05rem;font-weight:700;margin:0 0 10px;letter-spacing:.01em}}
 .mat-num{{display:flex;justify-content:space-between;gap:8px;font-size:.9rem;color:var(--suave);font-variant-numeric:tabular-nums}}
 .mat-num b{{color:var(--fg);font-weight:600}}
 .obs{{margin:0;font-size:.82rem;color:var(--suave)}}
+.nota-provas{{margin-top:10px;max-width:70ch}}
 .pill{{font-size:.72rem;font-weight:600;padding:2px 8px;border-radius:99px;letter-spacing:.02em;white-space:nowrap}}
 .pill.ok{{background:var(--okf);color:var(--ok)}}.pill.and{{background:var(--andf);color:var(--and)}}.pill.pausa{{background:var(--pauf);color:var(--pau)}}
 .grupos{{display:grid;gap:22px}}
@@ -243,6 +275,15 @@ footer{{color:var(--suave);font-size:.82rem}}
   <div class="n"><b>{f"{tot_r:,}".replace(",", ".")}</b><span>questões sem resolução</span></div>
   <div class="n"><b>{n_dec}</b><span>decisões esperando você</span></div>
 </div>
+<section><h2>Provas</h2>
+<div class="resumo">
+  <div class="n"><b>{pv["projeto"]}</b><span>provas no projeto e no site</span></div>
+  <div class="n"><b>{pv["completas"]}</b><span>provas prontas: todas as questões já com resolução</span></div>
+  <div class="n"><b>{pv["andamento"]}</b><span>provas pendentes: ainda têm questões sem resolução</span></div>
+  <div class="n"><b>{pv["anos_vazios"]}</b><span>faltam: anos de 2020 a 2026 sem prova, nos {pv["vestibulares"]} vestibulares do catálogo</span></div>
+</div>
+<p class="obs nota-provas">A meta é uma prova por ano de 2020 a 2026 em cada vestibular ({pv["meta"]} ao todo). {pv["sem_nenhuma"]} vestibulares ainda não têm nenhuma prova, por bloqueio do site da banca (baixar à mão), formato que o site não aceita, gabarito só preliminar ou por não terem prova própria.</p>
+</section>
 <section><h2>Resoluções por matéria</h2><ul class="lista">{"".join(linhas)}</ul></section>
 <div class="grupos">{"".join(grupos)}
 <section class="grupo"><h2>Outra instrução para a coordenação</h2><div class="itens geral">{caixa_resposta({"id": "geral", "texto": "Instrução geral do dono"}, "Escreva qualquer outra instrução")}</div></section>
