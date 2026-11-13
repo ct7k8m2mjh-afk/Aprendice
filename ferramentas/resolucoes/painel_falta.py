@@ -6,6 +6,7 @@ Uso: cd app && python3 scripts/converte.py && cd .. && python3 ferramentas/resol
 Depois publique o HTML no mesmo artefato (URL em docs/resolucoes/COORDENACAO.md, seção Publicação).
 """
 import datetime
+import hashlib
 import html
 import json
 import os
@@ -47,6 +48,65 @@ def no_ar():
         return json.load(open(os.path.join(RAIZ, 'docs', 'resolucoes', 'publicacao.json')))['ultima']
     except Exception:
         return {}
+
+
+def id_item(it):
+    return it.get('id') or 'd-' + hashlib.sha1(it['texto'].encode()).hexdigest()[:10]
+
+
+def caixa_resposta(it, rotulo='O que fazer com esta pendência'):
+    i = id_item(it)
+    return f'''<div class="resp" data-id="{e(i)}" data-item="{e(it["texto"])}">
+  <label for="r-{e(i)}">{e(rotulo)}</label>
+  <textarea id="r-{e(i)}" rows="2" placeholder="Escreva aqui a sua instrução"></textarea>
+  <div class="resp-acao"><button type="button">Enviar</button><span class="resp-st" aria-live="polite"></span></div>
+  <p class="retorno" hidden></p>
+</div>'''
+
+
+SCRIPT = '''<script>
+(async function () {
+  const caixas = Array.from(document.querySelectorAll('.resp'));
+  const aviso = (c, t) => { c.querySelector('.resp-st').textContent = t; };
+  const db = await (window.claude ? window.claude.use('db') : null);
+  if (!db) {
+    caixas.forEach(c => { c.querySelector('button').disabled = true; aviso(c, 'Abra esta página no claude.ai, com a sua conta, para enviar.'); });
+    return;
+  }
+  const quando = iso => { try { return new Date(iso).toLocaleString('pt-BR', {dateStyle: 'short', timeStyle: 'short'}); } catch (e) { return ''; } };
+  const porId = {};
+  caixas.forEach(c => { porId[c.dataset.id] = c; });
+  const espera = setTimeout(() => caixas.forEach(c => { if (!c.dataset.ok) aviso(c, 'Ainda não consegui carregar as respostas salvas.'); }), 10000);
+  db.collection('respostas').onSnapshot(snap => {
+    if (!snap.metadata.fromCache) clearTimeout(espera);
+    caixas.forEach(c => { c.dataset.ok = '1'; });
+    snap.docs.forEach(d => {
+      const c = porId[d.id]; const v = d.data(); if (!c || !v) return;
+      const ta = c.querySelector('textarea');
+      if (document.activeElement !== ta && !c.dataset.editando) ta.value = v.texto || '';
+      aviso(c, v.lido ? 'Recebido pela coordenação em ' + quando(v.lidoEm) : 'Enviado em ' + quando(v.enviadoEm) + '. A coordenação lê na próxima rodada.');
+      const r = c.querySelector('.retorno');
+      if (v.retorno) { r.textContent = 'Coordenação: ' + v.retorno; r.hidden = false; } else { r.hidden = true; }
+    });
+  }, () => { clearTimeout(espera); caixas.forEach(c => aviso(c, 'Não consegui carregar as respostas salvas.')); });
+  caixas.forEach(c => {
+    const ta = c.querySelector('textarea'); const bt = c.querySelector('button');
+    ta.addEventListener('input', () => { c.dataset.editando = '1'; });
+    bt.addEventListener('click', async () => {
+      const texto = ta.value.trim();
+      if (!texto) { aviso(c, 'Escreva a instrução antes de enviar.'); ta.focus(); return; }
+      bt.disabled = true; aviso(c, 'Enviando...');
+      try {
+        await db.doc('respostas/' + c.dataset.id).set({texto: texto, item: c.dataset.item, enviadoEm: new Date().toISOString(), lido: false});
+        delete c.dataset.editando;
+        aviso(c, 'Enviado. A coordenação lê na próxima rodada.');
+      } catch (e) {
+        aviso(c, 'Não foi enviado: ' + ((e && e.message) || 'erro desconhecido') + '. Tente de novo.');
+      } finally { bt.disabled = false; }
+    });
+  });
+})();
+</script>'''
 
 
 def gera():
@@ -102,7 +162,8 @@ def gera():
             n_dec += st == 'decidir'
             rot = {'falta': 'falta', 'feito': 'feito', 'decidir': 'você decide', 'andamento': 'em andamento'}.get(st, st)
             det = f'<span class="det">{e(it["detalhe"])}</span>' if it.get('detalhe') else ''
-            lis.append(f'<li class="it st-{st}"><span class="tag">{e(rot)}</span><span class="txt">{e(it["texto"])}{det}</span></li>')
+            caixa = caixa_resposta(it) if st == 'decidir' else ''
+            lis.append(f'<li class="it st-{st}"><span class="tag">{e(rot)}</span><span class="txt">{e(it["texto"])}{det}</span>{caixa}</li>')
         grupos.append(f'<section class="grupo"><h2>{e(g["area"])}</h2><ul class="itens">{"".join(lis)}</ul></section>')
 
     pub_txt = ''
@@ -156,7 +217,19 @@ h2{{font-size:1.05rem;font-weight:700;margin:0 0 10px;letter-spacing:.01em}}
 .det{{display:block;color:var(--suave);font-size:.85rem;margin-top:2px}}
 .st-feito .det{{text-decoration:none}}
 footer{{color:var(--suave);font-size:.82rem}}
-@media (max-width:520px){{.it{{grid-template-columns:1fr;gap:4px}}h1{{font-size:2.2rem}}}}
+.resp{{grid-column:2;display:grid;gap:6px;margin-top:4px}}
+.geral .resp{{grid-column:auto;padding:12px 16px;margin:0}}
+.resp label{{font-size:.8rem;font-weight:600;color:var(--suave)}}
+.resp textarea{{width:100%;box-sizing:border-box;font:inherit;font-size:.92rem;color:var(--fg);background:var(--bg);border:1px solid var(--linha);border-radius:8px;padding:8px 10px;resize:vertical;min-height:56px}}
+.resp textarea:focus-visible{{outline:2px solid var(--and);outline-offset:1px;border-color:transparent}}
+.resp-acao{{display:flex;align-items:center;gap:10px;flex-wrap:wrap}}
+.resp button{{font:inherit;font-size:.85rem;font-weight:600;color:var(--sup);background:var(--fg);border:0;border-radius:8px;padding:7px 16px;cursor:pointer}}
+.resp button:hover{{opacity:.88}}
+.resp button:focus-visible{{outline:2px solid var(--and);outline-offset:2px}}
+.resp button:disabled{{opacity:.5;cursor:default}}
+.resp-st{{font-size:.8rem;color:var(--suave)}}
+.retorno{{margin:0;font-size:.85rem;background:var(--okf);color:var(--ok);border-radius:8px;padding:6px 10px}}
+@media (max-width:520px){{.it{{grid-template-columns:1fr;gap:4px}}.resp{{grid-column:auto}}h1{{font-size:2.2rem}}}}
 </style>
 <div class="pag">
 <header>
@@ -171,10 +244,12 @@ footer{{color:var(--suave);font-size:.82rem}}
   <div class="n"><b>{n_dec}</b><span>decisões esperando você</span></div>
 </div>
 <section><h2>Resoluções por matéria</h2><ul class="lista">{"".join(linhas)}</ul></section>
-<div class="grupos">{"".join(grupos)}</div>
-<footer>{n_feito} itens concluídos · {n_falta} itens por fazer. A página é atualizada pela coordenação a cada rodada (3 em 3 horas) e quando algo termina.</footer>
+<div class="grupos">{"".join(grupos)}
+<section class="grupo"><h2>Outra instrução para a coordenação</h2><div class="itens geral">{caixa_resposta({"id": "geral", "texto": "Instrução geral do dono"}, "Escreva qualquer outra instrução")}</div></section>
 </div>
-'''
+<footer>{n_feito} itens concluídos · {n_falta} itens por fazer. A página é atualizada pela coordenação a cada 1.000 questões resolvidas; as suas instruções são lidas a cada rodada (3 em 3 horas).</footer>
+</div>
+''' + SCRIPT
     open(SAIDA, 'w').write(pagina)
     print(SAIDA, tot_f, tot_r)
 

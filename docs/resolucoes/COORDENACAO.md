@@ -24,8 +24,9 @@ docs/resolucoes/PROMPT-SESSAO-RESOLUCOES.md, com a sua matéria = <m>. Fale port
 `cd app && flock /tmp/converte.lock python3 scripts/converte.py`, volte à raiz e siga a esteira
 (`python3 ferramentas/resolucoes/lote.py proximo <m> --novo`, até 3 lotes abertos seus). Limite de 10 lotes por
 sessão: só abra lote novo se (lotes que você já gravou + lotes abertos seus) for menor que 10; ao gravar o 10º, mande TROCA. Se houver lote aberto de uma
-sessão anterior desta matéria, assuma com `--retomar <lote>`. Trabalhe continuamente, sem parar
-esperando aprovação: enquanto a lente confere um lote, já adiante o próximo; só pare para o que não tem volta (CLAUDE.md).
+sessão anterior desta matéria, assuma com `--retomar <lote>`. Trabalhe continuamente e nunca pare
+esperando aprovação nem resposta (dono, 13/11): enquanto a lente confere um lote, já adiante o próximo. Questão com erro ou
+problema sai como pendente com o motivo e vai por mensagem para a coordenadora; você segue para a próxima.
 Avise a coordenadora (<id da coordenadora>) com TROCA quando chegar a hora (passo 9 do prompt)."
 Ao abrir: extra_allowed_tools = ["Bash","Edit","Write","Read","Glob","Grep","Agent","Skill","WebFetch","WebSearch",
 "mcp__claude-code-remote__send_message"] (dono, 13/11: resolvedores não pedem autorização; também em .claude/settings.json).
@@ -87,6 +88,11 @@ session_01PveEKb4hnDGKRb7Gtd9hCr. A coordenadora antiga é session_01PveEKWW3t7Z
 7. Nada novo: não fazer nada e não avisar.
 
 ## Esperando o dono
+Regra (dono, 13/11): problema de questão vem das sessões para a coordenadora, que resolve sozinha (web, print, reclassificação).
+Só o que não tem solução sem o dono, EM ÚLTIMO CASO, vai para o painel "O que falta" como item `decidir` (com `id`): o dono
+escreve a instrução na caixa de texto abaixo do item e envia pela página. Em toda rodada: ArtifactData list da coleção
+`respostas` do painel; para cada doc com `lido:false`, cumprir a instrução, gravar `retorno` (o que foi feito) e `lido:true`
+com update, e marcar o item como feito no o-que-falta.json.
 - Unifor 2026.2 Medicina q01 (Pb1863457): erro de enunciado (36 cápsulas não chegam a 4 665 mg; gabarito D só ignorando o
   "36"). Recomendação: deixar fora do site.
 - Limite semanal da conta em aviso (renova 19/11). Teste de cobertura animada de Matemática voltou ao verde (82,3%, 13/11).
