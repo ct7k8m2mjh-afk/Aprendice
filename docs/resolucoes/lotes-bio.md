@@ -54,7 +54,7 @@ Faltam 1275 questões sem resolução (fora as que estão em lote, pendentes ou 
 | bio-0046 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | bio-0047 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | bio-0048 | demais nível 1-6 | 30 | gravado | 29 | 1 | 0 |
-| bio-0049 | demais nível 1-6 | 30 | aberto |  |  |  |
+| bio-0049 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 
 ## Pendentes (falta de certeza absoluta)
 
