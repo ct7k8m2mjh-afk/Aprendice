@@ -61,11 +61,11 @@ aprovação ou resposta: pendências e avisos vão para docs/resolucoes/caixa/<m
 | Matéria | Sessão | Situação |
 |---|---|---|
 | Matemática | session_01PveEKaSPVEijwvkvEUmmWx | trabalhando (aberta 13/11 05h03, sistema novo) |
-| Física | session_01PveEKX5T4pY3Xx4fn4PR8G | trabalhando (aberta 13/11 05h03, sistema novo) |
+| Física | session_01PveEKXXFLhp4ro4vnf1rh7 | trabalhando (aberta 13/11 05h32; a anterior session_01PveEKX5T4pY3Xx4fn4PR8G fez FIM após fis-0059 — a coordenadora já tratou este FIM) |
 | Química | session_01PveEKX1xy9oPyd7TtkKSTJ | trabalhando (aberta 13/11 05h03, sistema novo) |
 | Biologia | session_01PveEKb648gnNx7gv9Y2Xbs | trabalhando (aberta 13/11 05h03, sistema novo) |
 | Português | session_01PveEKWhAdHoSJKa5to3K8D | trabalhando (aberta 13/11 05h03, sistema novo) |
-Antigas, todas paradas (o dono pode arquivar): Mat session_01PveEKZRuBiHmg4Hm9HT1J1, Fís session_01PveEKXmCjqipC4JbNj9w73,
+Química 3 (session_01PveEKadroQ4kNhHt52L2hy) arquivada em 13/11. Antigas, todas paradas (o dono pode arquivar): Mat session_01PveEKZRuBiHmg4Hm9HT1J1, Fís session_01PveEKXmCjqipC4JbNj9w73,
 Quí session_01PveEKadroQ4kNhHt52L2hy, Bio session_01PveEKaptKYR7JXwbmxDGXx, Por session_01PveEKaBDR2WGsLQUacMYFY; e as
 anteriores já listadas para arquivar. Coordenadoras antigas: session_01PveEKWW3t7ZxcdDQKNiYWa, session_01PveEKabuyZnqVN65W5FfEc.
 COORDENADORA ATUAL: session_01PveEKXX1TDGcjetcyMQLVm (13/11 05h03), acordada a cada 20 min por 3 tarefas (minutos 3, 23, 43: trig_01L1hQ4kKsZUoi153z1k5wqY, trig_01GNukL58HkyvYTSY6ao7ujk, trig_01LRUGodxhrgPzxYEYvKm4sn).
