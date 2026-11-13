@@ -26,18 +26,18 @@ docs/resolucoes/PROMPT-SESSAO-RESOLUCOES.md, com a sua matéria = <m>. Fale port
 sessão anterior desta matéria, assuma com `--retomar <lote>`. Avise a coordenadora (<id da coordenadora>) com TROCA
 quando chegar a hora (passo 9 do prompt)."
 
-## Sessões (12/11/2026, 22h20 UTC)
+## Sessões (13/11/2026, 00h30 UTC)
 | Matéria | Sessão | Situação |
 |---|---|---|
-| Matemática | session_01PveEKWYPGjW3SYacWGoS7w | trabalhando; conversa em 62%: trocar já |
+| Matemática | session_01PveEKWYPGjW3SYacWGoS7w | trabalhando; mandada parar de abrir lote e mandar TROCA (13/11 00h20); também avisada do teste de cobertura animada |
 | Física | session_01PveEKaLLM5an4P4mkWzqv3 | trabalhando |
 | Química | session_01PveEKXEZ197XmbuWmKkDPw | trabalhando |
 | Biologia | session_01PveEKaZX71znbULe85ap8G | trabalhando |
-| Português | session_01PveEKZK2wY3DcaPfgMBKVX | trabalhando; conversa em 62%: trocar já |
-| Inglês | session_01PveEKYvFj3v794d3jbEjQY | parada, tudo gravado (sem lote aberto): pode arquivar (dono avisado 12/11) |
-| Geografia | session_01PveEKYE1nkNeafq9SNBU2b | terminando geo-0033 e para; avisar o dono para arquivar quando gravar |
-| Filosofia e Sociologia | session_01PveEKWgecw6NvvouAmBWM2 | trabalhando até acabar a matéria (dono aprovou; pode passar de 5 por pouco tempo) |
-| Completar animadas | session_01PveEKXSa4J8B5gRwFfa8Af | terminando o último lote e para; avisar o dono para arquivar quando gravar |
+| Português | session_01PveEKZK2wY3DcaPfgMBKVX | trabalhando (69%); mandada parar de abrir lote e mandar TROCA (13/11 00h20) |
+| Inglês | session_01PveEKYvFj3v794d3jbEjQY | matéria concluída, tudo gravado: pode arquivar (dono avisado) |
+| Geografia | session_01PveEKYE1nkNeafq9SNBU2b | pausada, tudo gravado (até geo-0038; faltam 1.476): pode arquivar (dono avisado 13/11) |
+| Filosofia e Sociologia | session_01PveEKWgecw6NvvouAmBWM2 | matéria concluída (13/11), tudo gravado: pode arquivar (dono avisado) |
+| Completar animadas | session_01PveEKXSa4J8B5gRwFfa8Af | pausada, tudo gravado; deixou pendentes P0eaf87df (Unicamp 2025 q72), passo 2 de Pb942e52d, gabaritos P1ba4d126 e P140521…: pode arquivar (dono avisado 13/11) |
 | História | session_01PveEKar9UR25QNispiKNT4 | matéria concluída |
 Desativadas (não mandar nada): Fable session_01PveEKXU47Vds1gGREvakqY, session_01PveEKazGNg4UZjknkJiLtJ,
 session_01PveEKaAcCyTZHYawMeybog; Inglês antiga session_01PveEKYMQYJ9tRsSFLsoey8; Matemática duplicada
@@ -63,6 +63,8 @@ session_01PveEKb4hnDGKRb7Gtd9hCr. A coordenadora antiga é session_01PveEKWW3t7Z
 6. Nada novo: não fazer nada e não avisar.
 
 ## Esperando o dono
+- Publicação segurada (13/11 00h30): 15.745 resoluções prontas (+2.223), mas o teste de cobertura animada de
+  Matemática caiu para 69,4% (mínimo 70%). Publicar quando voltar ao verde. Limite semanal da conta em aviso (renova 19/11).
 - Fema 2022 q13 (Pc90de958, prova fema-2021): gabarito oficial E contradiz os fatos (III é falsa; II também erra o
   número do avião); coerente seria D. Está fora do site. Recomendação: deixar fora. Alternativa: publicar com E e alerta.
 - Teste da fábrica pela API (US$ 20), que não gasta o limite semanal da conta.
