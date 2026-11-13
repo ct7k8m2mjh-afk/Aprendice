@@ -1,6 +1,6 @@
 # Química: resoluções (gerado por lote.py em 2026-11-13)
 
-Faltam 1052 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 539; ENEM nível 7-10 26; provas-alvo nível 7-10 181; demais nível 7-10 306.
+Faltam 1022 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 509; ENEM nível 7-10 26; provas-alvo nível 7-10 181; demais nível 7-10 306.
 
 ## Lotes
 
@@ -61,8 +61,9 @@ Faltam 1052 questões sem resolução (fora as que estão em lote, pendentes ou 
 | qui-0053 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | qui-0054 | demais nível 1-6 | 30 | gravado | 27 | 3 | 0 |
 | qui-0055 | demais nível 1-6 | 30 | gravado | 27 | 3 | 0 |
-| qui-0056 | demais nível 1-6 | 30 | aberto |  |  |  |
+| qui-0056 | demais nível 1-6 | 30 | gravado | 29 | 1 | 0 |
 | qui-0057 | demais nível 1-6 | 30 | aberto |  |  |  |
+| qui-0058 | demais nível 1-6 | 30 | aberto |  |  |  |
 
 ## Pendentes (falta de certeza absoluta)
 
@@ -77,6 +78,7 @@ Faltam 1052 questões sem resolução (fora as que estão em lote, pendentes ou 
 | P76ed5406 | ITA 2022 1ª fase · questão 64 | Q07.1 entalpia, reação exotérmica e endotérmica, diagrama de energia (tema Q07 Termoquímica) | classificação: o conteúdo é método científico (hipotético-dedutivo), não entalpia (Q07.1), e Química não tem subtema para ele; a sessão decide onde a questão fica (Biologia já tem resoluções de método científico, ex. uea-2026-bio P0bc23aaf). |
 | P27a7cbb0 | PUC-Rio 2024 Grupo 2 · questão 37 | Q06.1 transformações gasosas e equação geral dos gases (tema Q06 Gases) | classificação: é de Física (PUC-Rio 2024, 2º dia, grupo 2: Física vai da 20 à 27, Química começa na 28) |
 | P904e00fe | UEL 2023 1ª fase · questão 18 | Q06.2 equação de Clapeyron, volume molar e CNTP (tema Q06 Gases) | classificação: é de Física (empuxo; princípio de Arquimedes) |
+| P7f6fa922 | UEMA 2022 PAES · questão 52 | Q03.5 substância pura e mistura, alotropia e processos de separação de misturas (tema Q03 Funções inorgânicas e nox) | classificação: é de Biologia (cadeia alimentar, nível trófico e bioacumulação/magnificação trófica do mercúrio; a pergunta é qual peixe acumula mais mercúrio pela posição na cadeia, sem conteúdo de separação de misturas). Gabarito oficial E (peixe maior, 4º nível trófico). |
 | P523fcc4a | UFRR 2025 Vestibular 2025 – Prova Integral · questão 55 | Q04.2 fórmula percentual, mínima e molecular (tema Q04 Mol e estequiometria) | dados inconsistentes, possível anulação: 5,00 g de sal liberando 1,70 g de água dão n = (1,70/18) ÷ (3,30/58,44) ≈ 1,67 para NaCl (preliminar C), não 2; NaCl·2H2O perderia 1,91 g. Só KS (fórmula impossível) dá n ≈ 2,04. Gabarito oficial (Edital 97/24-CPV, https://editais.ufrr.br/editais/arquivo/568/edital-n-97-24-gabarito-oficial-vestibular-2025.pdf) não abriu daqui para conferir anulação. |
 | Pc3a9046b | Unesp 2022 1ª fase – Biológicas · questão 90 | Q05.1 concentração comum, densidade e massa de soluto (tema Q05 Soluções e concentração) | classificação: é de Matemática (Unesp 2022, questão 90: razão e proporção com inequações; a química aparece só como contexto). |
 | Pf0174648 | Unesp 2024 1ª fase · questão 79 | Q05.4 título, porcentagem em massa, ppm e dosagem (tema Q05 Soluções e concentração) | classificação: é de Física (Unesp 2024, questão 79: índice de refração e velocidade da luz; a escala Brix é só contexto). |
