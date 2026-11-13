@@ -48,7 +48,7 @@ Faltam 1511 questões sem resolução (fora as que estão em lote, pendentes ou 
 | fis-0040 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | fis-0041 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | fis-0042 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
-| fis-0043 | demais nível 1-6 | 30 | aberto |  |  |  |
+| fis-0043 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 
 ## Pendentes (falta de certeza absoluta)
 
