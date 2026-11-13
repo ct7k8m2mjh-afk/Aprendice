@@ -38,7 +38,7 @@ Ao abrir: extra_allowed_tools = ["Bash","Edit","Write","Read","Glob","Grep","Age
 | Física | session_01PveEKYTfpdPfG8PfUEbE3Q | trabalhando (aberta 13/11 01h28; antiga session_01PveEKaLLM5an4P4mkWzqv3 mandou TROCA após fis-0043: pode arquivar) |
 | Química | session_01PveEKXnC2DKmBd64gp3Zn3 | trabalhando (aberta 13/11 01h14; antiga session_01PveEKXEZ197XmbuWmKkDPw mandou TROCA após qui-0039: pode arquivar) |
 | Biologia | session_01PveEKaZX71znbULe85ap8G | 21 lotes (bio-0021 a 0045): mandada gravar e mandar TROCA (13/11 01h35) |
-| Português | session_01PveEKaTKHh9kRmYcfPdmUA | trabalhando (aberta 13/11 00h50; antiga session_01PveEKZK2wY3DcaPfgMBKVX mandou TROCA após por-0071: pode arquivar) |
+| Português | session_01PveEKaBDR2WGsLQUacMYFY | trabalhando (Português 3, aberta 13/11 01h38; Português 2 session_01PveEKaTKHh9kRmYcfPdmUA mandou TROCA após por-0079: pode arquivar) |
 | Inglês | session_01PveEKYvFj3v794d3jbEjQY | matéria concluída, tudo gravado: pode arquivar (dono avisado) |
 | Geografia | session_01PveEKYE1nkNeafq9SNBU2b | pausada, tudo gravado (até geo-0038; faltam 1.476): pode arquivar (dono avisado 13/11) |
 | Filosofia e Sociologia | session_01PveEKWgecw6NvvouAmBWM2 | matéria concluída (13/11), tudo gravado: pode arquivar (dono avisado) |
@@ -56,6 +56,9 @@ session_01PveEKb4hnDGKRb7Gtd9hCr. A coordenadora antiga é session_01PveEKWW3t7Z
   P273c97a5, P5bd2916f, P9889395d, Pd86425b8, P087b8c9f. Dado: P40c29de8 (alternativa E com coluna do poema colada).
   Química: Pa2383034 (UEG 2023-2 q36) alternativa B com "~~emissão~~" tachado na entrada; no print é itálico.
   Física: P0e47c350 (capacitores, está em F12.2), P20f45835 (defeitos da visão, em F01.4), Pf58dd11b (impulso, em F01.4).
+  Português (13/11): para Artes P82bbfc0a; para Filosofia e Sociologia Pd8a099e2, P2e17d217; gramática resolvida em P01.2
+  (Fempar 2021, PUC/Anhembi). Prints P0c8c68ab, P31dcd8ee, Pbddde95d: agente refazendo. P298602be (UFT 2023/2 q14):
+  os dois especialistas deram A, o preliminar da Copese é B: fora do ar até sair o definitivo.
   63 pendentes "obra:" (lotes 61-71). FMABC 2022 q16 (Pd7fbdc3f) com nota_gabarito, esperando o dono.
 - Biologia: para Física P3c08d8ee; para Química Pc68c4acb. Dados: P039ae129 (print pega o título "LÍNGUA
   ESTRANGEIRA" e a alternativa E termina com ele); itálico virou ~~riscado~~ no texto_da_prova de Pa582852a, Pd28a6e90,
