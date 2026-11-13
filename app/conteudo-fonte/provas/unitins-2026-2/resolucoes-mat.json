@@ -101,5 +101,104 @@
    "data": "2026-11-12",
    "lote": "mat-0045"
   }
+ },
+ "P2ef3bc97": {
+  "n": "12",
+  "conceito": "Consumo em km/L em cada trecho e custo total.",
+  "equivocos": {
+   "A": "M02.1:sem-origem-identificada",
+   "B": "M02.1:inverteu-a-comparacao",
+   "C": "M02.1:usou-o-tanque-todo",
+   "E": "M02.1:inverteu-a-comparacao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Dos 40 L disponíveis, o trajeto 1 (70% de 400 km) usou 50% = 20 L e o trajeto 2 (o resto) usou 30% = 12 L. Calcule km/L em cada trecho e o custo dos 32 L usados.",
+    "formulas": [
+     "km/L = distância ÷ litros",
+     "custo = litros · preço"
+    ],
+    "simbolos": []
+   },
+   "pista": "Quantos quilômetros tem cada trecho e quantos litros cada um usou?",
+   "passos": [
+    {
+     "faz": "Trajeto 1",
+     "conta": "0,7 · 400 = 280 km com 20 L → 14 km/L",
+     "porque": "50% de 40 L.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Trajeto 2",
+     "conta": "120 km com 12 L → 10 km/L",
+     "porque": "30% de 40 L. III verdadeira.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "II",
+     "conta": "14 > 10",
+     "porque": "Consumo no trajeto 1 não foi menor: falsa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "I",
+     "conta": "32 L · 7 = R$ 224,00",
+     "porque": "Verdadeira.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Juntar",
+     "conta": "I e III → alternativa D",
+     "porque": "Apenas I e III.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — I e III apenas.",
+   "checagem": "Feche as contas: 280 km/14 km/L = 20 L e 120 km/10 km/L = 12 L; total 32 L = 80% de 40 L (50% + 30%). 32 · 7 = 224. Confere.",
+   "erradas": {
+    "A": "Deixa de fora III, mas 120 km com 12 L dá exatamente 10 km/L.",
+    "B": "II é falsa: o trajeto 1 fez 14 km/L, mais que os 10 km/L do trajeto 2.",
+    "C": "Deixa de fora I, mas foram 32 L a R$ 7,00: R$ 224,00.",
+    "E": "Inclui II, que é falsa (14 km/L > 10 km/L)."
+   },
+   "armadilha": "Calcular o custo com os 40 L disponíveis (R$ 280) em vez dos 32 L usados.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quais proposições valem.",
+    "chave": "14 km/L, 10 km/L, 32 L · 7 = 224.",
+    "cuidado": "Use as porcentagens do combustível inicial (40 L)."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "litros por km",
+    "ideia": "Trajeto 1: 20/280 ≈ 0,071 L/km; trajeto 2: 12/120 = 0,1 L/km. O trajeto 2 gasta mais por km, então rende menos (10 km/L), e o 1 rende mais."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "280 km / 20 L = 14",
+    "nota": "trajeto 1"
+   },
+   {
+    "linha": "120 km / 12 L = 10",
+    "nota": "trajeto 2"
+   },
+   {
+    "linha": "32 L · 7 = 224",
+    "nota": "custo"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0046"
+  }
  }
 }
