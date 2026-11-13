@@ -332,5 +332,120 @@
    "data": "2026-11-13",
    "lote": "qui-0046"
   }
+ },
+ "P811be9fa": {
+  "n": "75",
+  "conceito": "pH de mistura de dois ácidos fortes: somar mols de H+ e dividir pelo volume total.",
+  "equivocos": {
+   "B": "Q08.6:errou-a-potencia-de-dez",
+   "C": "Q08.6:fez-media-dos-ph",
+   "D": "Q08.6:tratou-hcl-como-acido-fraco",
+   "E": "Q08.6:ignorou-a-diluicao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "pH não se soma nem se tira média. Passe cada pH para [H+], calcule os mols de H+ de cada solução, some e divida pelo volume total. Como os volumes são iguais, a [H+] final é a média das [H+], não a média dos pH.",
+    "formulas": [
+     "[H+] = 10^-pH",
+     "n = [H+] × V",
+     "[H+] final = soma dos n ÷ volume total"
+    ],
+    "simbolos": [
+     [
+      "[H+]",
+      "concentração de íons H+, em mol/L"
+     ],
+     [
+      "HCl e HNO3",
+      "ácidos fortes: praticamente 100% ionizados"
+     ],
+     [
+      "mol.L-1",
+      "mol por litro"
+     ]
+    ]
+   },
+   "pista": "pH é logaritmo: antes de misturar, volte de cada pH para a quantidade de H+ que ele representa.",
+   "passos": [
+    {
+     "faz": "Converta pH em [H+]",
+     "conta": "pH 4 → [H+] = 10^-4 mol/L | pH 5 → [H+] = 10^-5 mol/L",
+     "porque": "pH é logaritmo; para somar quantidades é preciso voltar à concentração.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule os mols de H+ de cada solução",
+     "conta": "HCl: 10^-4 × 0,010 L = 1,0 × 10^-6 mol | HNO3: 10^-5 × 0,010 L = 1,0 × 10^-7 mol",
+     "porque": "Mols se somam; concentrações e pH não.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some e divida pelo volume total",
+     "conta": "(1,0 × 10^-6 + 1,0 × 10^-7)/0,020 = 1,1 × 10^-6/0,020 = 5,5 × 10^-5 mol/L",
+     "porque": "O volume final é 10,0 + 10,0 = 20,0 mL = 0,020 L.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "[H+] = 5,5 × 10^-5 mol/L → alternativa A",
+     "porque": "O pH final fica cerca de 4,26, entre 4 e 5, mas não 4,5.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — a concentração final de H+ é 5,5 × 10^-5 mol/L.",
+   "checagem": "Ordem de grandeza: misturar volumes iguais dilui o HCl pela metade (10^-4 → 5 × 10^-5) e o HNO3 também (10^-5 → 5 × 10^-6); 5 × 10^-5 + 0,5 × 10^-5 = 5,5 × 10^-5. Bate.",
+   "erradas": {
+    "B": "Não confere: 5,5 × 10^-4 mol/L seria mais ácido que a solução de pH 4 sozinha (10^-4), e misturar com um ácido mais fraco não pode aumentar a [H+].",
+    "C": "Sai de tirar a média dos pH, (4 + 5)/2 = 4,5. pH é logaritmo: o certo é a média das [H+], que dá pH ≈ 4,26.",
+    "D": "HCl é ácido FORTE, e a [H+] final não é 10^-5: a conta dá 5,5 × 10^-5 mol/L.",
+    "E": "Mesmo com pouco H+ vindo do HNO3, a mistura dilui o HCl pela metade: [H+] ≈ 5,5 × 10^-5, pH ≈ 4,26, não 4,0."
+   },
+   "armadilha": "Fazer média dos pH (4,5): pH é logaritmo, e o que se mistura são os mols de H+.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A [H+] ou o pH da mistura de 10 mL de HCl pH 4 com 10 mL de HNO3 pH 5.",
+    "chave": "(10^-6 + 10^-7) mol ÷ 0,020 L = 5,5 × 10^-5 mol/L.",
+    "cuidado": "Nunca tirar média de pH; e lembrar que a mistura dilui cada ácido."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "média das concentrações",
+    "ideia": "Com volumes iguais, [H+] final = (10^-4 + 10^-5)/2 = 5,5 × 10^-5 mol/L direto."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "pH 4 → [H+] = 10^-4 mol/L ; pH 5 → [H+] = 10^-5 mol/L",
+    "nota": "[H+] = 10^-pH"
+   },
+   {
+    "linha": "n1 = 10^-4 × 0,010 = 1,0 × 10^-6 mol",
+    "nota": "mols do HCl"
+   },
+   {
+    "linha": "n2 = 10^-5 × 0,010 = 1,0 × 10^-7 mol",
+    "nota": "mols do HNO3"
+   },
+   {
+    "linha": "[H+] = (1,1 × 10^-6)/0,020 = 5,5 × 10^-5 mol/L",
+    "nota": "volume total 20 mL"
+   }
+  ],
+  "visual": {
+   "cabe": true,
+   "tipo": "processo",
+   "roteiro": "Quadro 1: dois béqueres de 10 mL, pH 4 (10^-4 mol/L) e pH 5 (10^-5 mol/L). Quadro 2: contagem de H+: 1,0 × 10^-6 mol e 1,0 × 10^-7 mol. Quadro 3: mistura num béquer de 20 mL, H+ somados (1,1 × 10^-6 mol). Quadro 4: [H+] = 5,5 × 10^-5 mol/L e pH ≈ 4,26, com o 4,5 riscado."
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "qui-0060"
+  }
  }
 }

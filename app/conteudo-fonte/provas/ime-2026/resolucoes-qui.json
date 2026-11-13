@@ -626,5 +626,142 @@
    "data": "2026-11-13",
    "lote": "qui-0057"
   }
+ },
+ "Pf6b76cbb": {
+  "n": "36",
+  "conceito": "Ponto isoelétrico de aminoácido: no pI as formas catiônica e aniônica se igualam e pH = (pK1 + pK2)/2.",
+  "equivocos": {
+   "A": "Q08.5:pi-confundido-com-ph-neutro",
+   "B": "Q08.5:multiplicou-pk-em-vez-de-k",
+   "C": "Q08.5:raiz-aplicada-aos-pk",
+   "D": "Q08.5:multiplicou-por-2-em-vez-de-dividir"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Ponto isoelétrico (pI) é o pH em que a glicina fica, em média, sem carga: a forma com carga + e a forma com carga − estão em concentrações iguais, e predomina o íon dipolar. Multiplicar as duas constantes elimina o íon dipolar e deixa só [H⁺]². Passando para logaritmo, o pH do pI sai como a média de pK1 e pK2.",
+    "formulas": [
+     "K1 = [H⁺]·[dipolar] / [cátion]",
+     "K2 = [H⁺]·[ânion] / [dipolar]",
+     "pK = −log K; pH = −log [H⁺]"
+    ],
+    "simbolos": [
+     [
+      "pI",
+      "ponto isoelétrico: pH em que a carga média da molécula é zero"
+     ],
+     [
+      "cátion",
+      "NH3⁺–CH2–COOH, forma com carga +1"
+     ],
+     [
+      "dipolar",
+      "NH3⁺–CH2–COO⁻, uma carga + e uma −, carga total zero"
+     ],
+     [
+      "ânion",
+      "NH2–CH2–COO⁻, forma com carga −1"
+     ],
+     [
+      "pK1, pK2",
+      "−log das constantes da 1ª e da 2ª ionização"
+     ],
+     [
+      "K1, K2",
+      "constantes de equilíbrio das duas ionizações"
+     ]
+    ]
+   },
+   "pista": "Escreva K1 e K2 e multiplique uma pela outra: veja qual espécie desaparece.",
+   "passos": [
+    {
+     "faz": "Escreva as duas constantes",
+     "conta": "K1 = [H⁺]·[dipolar]/[cátion] | K2 = [H⁺]·[ânion]/[dipolar]",
+     "porque": "Cada constante é produtos sobre reagentes da sua etapa; o íon dipolar é produto da 1ª e reagente da 2ª.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Multiplique K1 por K2",
+     "conta": "K1 · K2 = [H⁺]²·[ânion]/[cátion]",
+     "porque": "O [dipolar] aparece em cima numa e embaixo na outra e se cancela.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Imponha a condição do ponto isoelétrico",
+     "conta": "[ânion] = [cátion] → K1 · K2 = [H⁺]²",
+     "porque": "Carga média zero exige tanta carga −1 quanto +1, então as duas formas carregadas têm a mesma concentração.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Passe para logaritmo",
+     "conta": "log K1 + log K2 = 2·log[H⁺] → pK1 + pK2 = 2·pH → pH = (pK1 + pK2)/2",
+     "porque": "O log de um produto é a soma dos logs; trocando o sinal, log vira p. A raiz quadrada de [H⁺]² vira a divisão por 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "pH = (pK1 + pK2)/2 = ½(pK1 + pK2) → alternativa E",
+     "porque": "É a média aritmética dos dois pK.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — o pH do ponto isoelétrico é ½(pK1 + pK2).",
+   "checagem": "Teste com números simples, pK1 = 2 e pK2 = 10: K1·K2 = 10⁻² · 10⁻¹⁰ = 10⁻¹² = [H⁺]², logo [H⁺] = 10⁻⁶ e pH = 6, que é a média de 2 e 10. Já pK1·pK2 daria 20, fora da escala de pH.",
+   "erradas": {
+    "A": "A confunde ponto isoelétrico com meio neutro: pI é carga média zero da glicina, não [H⁺] = [OH⁻]; com pK1 = 2 e pK2 = 10 o pI seria 6.",
+    "B": "B multiplica os pK em vez das constantes: em log, K1·K2 vira pK1 + pK2. Com pK1 = 2 e pK2 = 10, daria pH 20, fora da escala.",
+    "C": "C aplica a raiz no lugar errado: a raiz vale para as constantes, [H⁺] = √(K1·K2), que em log vira média, não √(pK1·pK2).",
+    "D": "D multiplica por 2 em vez de dividir: de pK1 + pK2 = 2·pH sai pH = (pK1 + pK2)/2, não 2(pK1 + pK2)."
+   },
+   "armadilha": "Levar a raiz de K1·K2 para os pK: em logaritmo, produto vira soma e raiz vira metade.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O pH do ponto isoelétrico da glicina em função de pK1 e pK2.",
+    "chave": "No pI, [cátion] = [ânion], logo K1·K2 = [H⁺]² e pH = (pK1 + pK2)/2.",
+    "cuidado": "A raiz de K1·K2 vira média dos pK, não raiz do produto dos pK."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "simetria",
+    "ideia": "O dipolar predomina entre pK1 e pK2; o ponto em que cátion e ânion se igualam fica exatamente no meio, na média dos dois pK."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "K1 · K2 = [H⁺]²·[ânion]/[cátion]",
+    "nota": "multiplica e cancela o dipolar"
+   },
+   {
+    "linha": "[ânion] = [cátion] → K1 · K2 = [H⁺]²",
+    "nota": "condição do pI"
+   },
+   {
+    "linha": "log K1 + log K2 = 2·log[H⁺]",
+    "nota": "log do produto vira soma"
+   },
+   {
+    "linha": "pK1 + pK2 = 2·pH",
+    "nota": "troca o sinal: p = −log"
+   },
+   {
+    "linha": "pH = (pK1 + pK2)/2",
+    "nota": "divide por 2"
+   }
+  ],
+  "visual": {
+   "cabe": true,
+   "tipo": "processo",
+   "roteiro": "Quadro 1: as três formas da glicina em fila, cátion → dipolar → ânion, cada seta com o seu pK. Quadro 2: K1 e K2 escritos lado a lado; ao multiplicar, o [dipolar] de cima e o de baixo se riscam. Quadro 3: no pI, as caixinhas do cátion e do ânion ficam do mesmo tamanho e somem da fração, sobrando [H⁺]². Quadro 4: régua de pH com pK1 e pK2 marcados e o pI exatamente no meio."
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "qui-0060"
+  }
  }
 }

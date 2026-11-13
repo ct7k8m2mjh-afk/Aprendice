@@ -472,5 +472,120 @@
    "data": "2026-11-13",
    "lote": "qui-0057"
   }
+ },
+ "P70127522": {
+  "n": "59",
+  "conceito": "Variação de pH de um tampão ácido acético/acetato após adição de base forte (Henderson-Hasselbalch).",
+  "equivocos": {
+   "A": "Q08.7:errou-a-razao-sal-acido",
+   "B": "Q08.7:errou-a-razao-sal-acido",
+   "D": "Q08.7:dividiu-o-log-por-dois",
+   "E": "Q08.7:nao-descontou-o-acido-consumido"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Em um tampão, a base forte adicionada é consumida pelo ácido fraco: HA + OH- → A- + H2O. Então o ácido diminui e o sal aumenta na mesma quantidade. O pH sai de pKa + log([sal]/[ácido]); como o volume não muda, dá para usar os mols direto.",
+    "formulas": [
+     "pH = pKa + log([sal]/[ácido])",
+     "CH3COOH + OH- → CH3COO- + H2O",
+     "ΔpH = pH final − pH inicial"
+    ],
+    "simbolos": [
+     [
+      "pKa",
+      "−log Ka; aqui 4,74 para o ácido acético"
+     ],
+     [
+      "tampão",
+      "mistura de ácido fraco e seu sal, que resiste a variações de pH"
+     ],
+     [
+      "CH3COO-",
+      "íon acetato, a base conjugada do ácido acético"
+     ]
+    ]
+   },
+   "pista": "Antes de usar a fórmula, descubra quanto ácido e quanto acetato existem DEPOIS que a base reage.",
+   "passos": [
+    {
+     "faz": "Calcule o pH inicial",
+     "conta": "pH = 4,74 + log(1/1) = 4,74 + 0 = 4,74",
+     "porque": "Com ácido e sal em quantidades iguais, o log é zero e o pH é o pKa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Faça a base reagir com o ácido",
+     "conta": "ácido: 1 − 0,5 = 0,5 mol | acetato: 1 + 0,5 = 1,5 mol",
+     "porque": "Cada mol de OH- transforma um mol de ácido acético em acetato.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o pH final",
+     "conta": "pH = 4,74 + log(1,5/0,5) = 4,74 + log 3 = 4,74 + 0,48 = 5,22",
+     "porque": "A razão sal/ácido passou a 3; o dado log 3 = 0,48 foi dado para isto.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a variação",
+     "conta": "ΔpH = 5,22 − 4,74 = 0,48 → alternativa C",
+     "porque": "A variação é exatamente o log da nova razão, já que o log inicial era zero.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — a variação de pH observada foi de 0,48.",
+   "checagem": "Sentido: adicionar base deve SUBIR o pH, e 4,74 → 5,22 sobe. Tamanho: 0,5 mol de NaOH em 1 L de água pura levaria o pH a mais de 13; no tampão o pH mudou menos de meio ponto, que é o efeito esperado.",
+   "erradas": {
+    "A": "Não confere: a razão sal/ácido final é 1,5/0,5 = 3, e log 3 = 0,48; 0,62 exigiria razão ≈ 4,2.",
+    "B": "Não confere: com razão 3 a variação é log 3 = 0,48; 0,54 não corresponde a nenhuma razão dos dados.",
+    "D": "0,24 é a metade de log 3; não há metade na conta: a razão sal/ácido final é 3 e a variação é log 3 = 0,48.",
+    "E": "Não confere: somar a base ao acetato sem gastar ácido daria log(1,5/1) ≈ 0,18; a variação certa é log 3 = 0,48."
+   },
+   "armadilha": "Somar 0,5 mol ao acetato e esquecer de tirar 0,5 mol do ácido: a base consome o ácido.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A variação de pH do tampão (1 mol de ácido acético + 1 mol de acetato) após 0,5 mol de NaOH.",
+    "chave": "Ácido 0,5 mol e acetato 1,5 mol; ΔpH = log(1,5/0,5) = log 3 = 0,48.",
+    "cuidado": "A base faz o ácido diminuir e o sal aumentar na mesma quantidade."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "direto pelo log",
+    "ideia": "Como o log inicial é zero, a variação é só log(1,5/0,5) = log 3 = 0,48."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "pH inicial = 4,74 + log(1/1) = 4,74",
+    "nota": "ácido = sal"
+   },
+   {
+    "linha": "CH3COOH: 1 − 0,5 = 0,5 mol ; CH3COO-: 1 + 0,5 = 1,5 mol",
+    "nota": "a base reage com o ácido"
+   },
+   {
+    "linha": "pH final = 4,74 + log(1,5/0,5) = 4,74 + 0,48 = 5,22",
+    "nota": "log 3 = 0,48"
+   },
+   {
+    "linha": "ΔpH = 5,22 − 4,74 = 0,48",
+    "nota": "variação"
+   }
+  ],
+  "visual": {
+   "cabe": true,
+   "tipo": "reação",
+   "roteiro": "Quadro 1: tampão com 1 mol de CH3COOH e 1 mol de CH3COO-, pH 4,74. Quadro 2: entram 0,5 mol de OH-; CH3COOH + OH- → CH3COO- + H2O. Quadro 3: barras: ácido cai para 0,5, acetato sobe para 1,5. Quadro 4: pH vai de 4,74 para 5,22, ΔpH = log 3 = 0,48."
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "qui-0060"
+  }
  }
 }
