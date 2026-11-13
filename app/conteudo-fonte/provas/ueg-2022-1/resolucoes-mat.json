@@ -85,5 +85,87 @@
    "data": "2026-11-12",
    "lote": "mat-0045"
   }
+ },
+ "Pba74da13": {
+  "n": "17",
+  "conceito": "MMC de ciclos: folgas que coincidem.",
+  "equivocos": {
+   "A": "M02.5:usou-so-o-trabalho",
+   "B": "M02.5:sem-origem-identificada",
+   "C": "M02.5:sem-origem-identificada",
+   "E": "M02.5:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "João folga a cada 9 dias (8 de trabalho + 1 de folga); o irmão, a cada 21 dias. Se folgaram juntos hoje, voltam a coincidir num múltiplo comum de 9 e 21; o primeiro é o mmc.",
+    "formulas": [
+     "mmc(9, 21)"
+    ],
+    "simbolos": []
+   },
+   "pista": "Conte o ciclo de cada um: trabalho mais folga.",
+   "passos": [
+    {
+     "faz": "Ciclos",
+     "conta": "João 9 dias; irmão 21 dias",
+     "porque": "Trabalho + folga.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Fatorar",
+     "conta": "9 = 3²; 21 = 3 · 7",
+     "porque": "Primos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "mmc",
+     "conta": "3² · 7 = 63 → alternativa D",
+     "porque": "Daqui a 63 dias.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 63 dias",
+   "checagem": "63/9 = 7 ciclos de João e 63/21 = 3 ciclos do irmão, ambos inteiros. Nenhum múltiplo de 21 menor (21, 42) é múltiplo de 9. Confere.",
+   "erradas": {
+    "A": "40 = 8 · 5 não é múltiplo de 9 nem de 21.",
+    "B": "50 não é múltiplo de 9 nem de 21.",
+    "C": "52 não é múltiplo de 9 nem de 21.",
+    "E": "65 não é múltiplo de 9 nem de 21."
+   },
+   "armadilha": "Usar 8 e 20 (só os dias de trabalho) em vez dos ciclos 9 e 21; mmc(8, 20) = 40.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Próxima folga juntos.",
+    "chave": "mmc(9, 21) = 63.",
+    "cuidado": "Ciclo = trabalho + folga."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "produto sobre mdc",
+    "ideia": "mmc(9, 21) = 9 · 21/mdc(9, 21) = 189/3 = 63."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "9 e 21",
+    "nota": "ciclos"
+   },
+   {
+    "linha": "mmc = 63",
+    "nota": "resposta"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0047"
+  }
  }
 }
