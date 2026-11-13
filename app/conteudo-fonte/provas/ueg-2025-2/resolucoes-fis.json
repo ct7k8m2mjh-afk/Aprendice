@@ -113,5 +113,117 @@
    "data": "2026-11-13",
    "lote": "fis-0043"
   }
+ },
+ "Pbb81b980": {
+  "n": "28",
+  "conceito": "Consumo médio (km/L) e velocidade escalar média de uma viagem com parada: a parada conta no tempo total.",
+  "equivocos": {
+   "A": "F02.1:consumo-nao-fecha",
+   "B": "F02.1:ignorou-a-parada",
+   "C": "F02.1:ignorou-a-parada",
+   "D": "F02.1:valores-nao-fecham"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "As duas respostas usam o trajeto inteiro. O consumo médio é a distância total sobre o combustível gasto. A velocidade escalar média é a distância total sobre o tempo total da viagem, e o tempo total inclui a hora de parada.",
+    "formulas": [
+     "consumo = distância/combustível",
+     "vm = Δs/Δt (com o tempo parado)"
+    ],
+    "simbolos": [
+     [
+      "km/l",
+      "quilômetros rodados por litro"
+     ],
+     [
+      "vm",
+      "velocidade escalar média"
+     ]
+    ]
+   },
+   "pista": "Some as distâncias e todos os tempos da viagem, inclusive o da parada.",
+   "passos": [
+    {
+     "faz": "Some as distâncias",
+     "conta": "400 + 500 = 900 km",
+     "porque": "A viagem inteira.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o consumo médio",
+     "conta": "900/90 = 10 km/l",
+     "porque": "Distância total sobre combustível total.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some os tempos, com a parada",
+     "conta": "4 + 1 + 5 = 10 h",
+     "porque": "A parada faz parte do tempo da viagem.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a velocidade média",
+     "conta": "vm = 900/10 = 90 km/h",
+     "porque": "Distância total sobre tempo total.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "10 km/l e 90 km/h",
+     "porque": "É a alternativa E.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 10 km/l e 90 km/h.",
+   "checagem": "Nos dois trechos rodando, a velocidade foi 100 km/h (400/4 e 500/5); a média de toda a viagem tem de ficar abaixo disso, porque houve 1 h parado.",
+   "erradas": {
+    "A": "O 90 km/h está certo, mas 9 km/l não confere: 9 km/l × 90 l = 810 km, não 900 km.",
+    "B": "9 km/l não confere (9 × 90 = 810 km), e 100 km/h sai de ignorar a hora parada: 900/9.",
+    "C": "O consumo está certo, mas 100 km/h sai de ignorar a parada: 900 km/9 h; a hora parada também conta.",
+    "D": "Não confere: 11 km/l × 90 l = 990 km e 110 km/h × 10 h = 1100 km, nenhum fecha com 900 km."
+   },
+   "armadilha": "Descontar a hora de parada no tempo total e obter 100 km/h.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O consumo médio e a velocidade escalar média da viagem toda.",
+    "chave": "900 km/90 l = 10 km/l; 900 km/10 h = 90 km/h.",
+    "cuidado": "A parada entra no tempo total."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "média ponderada",
+    "ideia": "100 km/h durante 9 h e 0 km/h durante 1 h: (900 + 0)/10 = 90 km/h."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "400 + 500 = 900",
+    "nota": "km"
+   },
+   {
+    "linha": "900/90 = 10",
+    "nota": "km/l"
+   },
+   {
+    "linha": "4 + 1 + 5 = 10",
+    "nota": "h"
+   },
+   {
+    "linha": "900/10 = 90",
+    "nota": "km/h"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "fis-0044"
+  }
  }
 }

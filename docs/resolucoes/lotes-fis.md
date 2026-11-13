@@ -1,6 +1,6 @@
 # Física: resoluções (gerado por lote.py em 2026-11-13)
 
-Faltam 1511 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 995; ENEM nível 7-10 31; provas-alvo nível 7-10 186; demais nível 7-10 299.
+Faltam 1451 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 935; ENEM nível 7-10 31; provas-alvo nível 7-10 186; demais nível 7-10 299.
 
 ## Lotes
 
@@ -49,12 +49,15 @@ Faltam 1511 questões sem resolução (fora as que estão em lote, pendentes ou 
 | fis-0041 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | fis-0042 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | fis-0043 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| fis-0044 | demais nível 1-6 | 30 | gravado | 29 | 1 | 0 |
+| fis-0045 | demais nível 1-6 | 30 | aberto |  |  |  |
 
 ## Pendentes (falta de certeza absoluta)
 
 | Questão | Prova | Conteúdo | Motivo |
 |---|---|---|---|
 | Pcf680d36 | Acafe 2023 Inverno · questão 32 | F03.6 estática: equilíbrio, torque e alavancas (tema F03 Dinâmica e forças) | dados insuficientes na questão: a figura só traz as cotas de 8 cm e 10 cm. O caderno comentado da Acafe chega a 187,5 N usando sen α = 0,8, cos α = 0,6 e cos θ = 0,8, valores que não aparecem no enunciado nem na figura, e esses valores não fecham o equilíbrio vertical (Fc × 0,6 = 112,5 N contra 50 + 200 = 250 N). Sem os dados na questão, não há resolução segura; sugestão: deixar fora. |
+| P88f37147 | Fema 2021 Processo Seletivo 2021 · questão 9 | F01.6 radioatividade, meia-vida e física nuclear (tema F01 Fundamentos e grandezas) | questão com mais de uma afirmativa falsa e dependente de fatos fora do texto: além de B (o custo do ITER é estimado na casa das dezenas de bilhões de euros, não 25 milhões), E também é falsa (150 milhões de °C é cerca de 10 vezes a temperatura do núcleo do Sol, cerca de 15 milhões de °C, não 10%), e C é imprecisa (Bernard Bigot assumiu a direção-geral em março de 2015, não 2016). Não achei errata nem anulação; precisa de decisão da sessão principal. |
 | P806713a7 | Fuvest 2026 1ª fase · questão 73 | F03.6 estática: equilíbrio, torque e alavancas (tema F03 Dinâmica e forças) | a resposta depende da leitura fina de quatro fotos (posição da concha da colher e do ponto de apoio). As imagens 2 e 3 são claras (colher encaixada sobre a borda; colher pendurada com o centro de gravidade abaixo do apoio), mas a justificativa para 1 e 4 não tem certeza absoluta só pelas fotos (a seta da imagem 4 está em perspectiva). Conferir com uma resolução publicada antes de escrever. |
 | Pa6cf7d38 | UDESC 2024 Inverno 2024.2 · questão 64 | F01.4 relatividade restrita (tema F01 Fundamentos e grandezas) | UDESC 2024.2 q64 (dispositivo que usa mecânica quântica e relatividade): a resposta da banca coincide com a oficial, E (sistema de posicionamento global). Mas, para escrever por que a alternativa D (microscópio eletrônico) está errada, seria preciso afirmar que ele não depende de relatividade; nos microscópios de alta tensão os elétrons têm velocidade próxima à da luz e o cálculo do comprimento de onda leva correção relativística. O conferente concorda que não há frase segura para negar a relatividade no microscópio eletrônico e considera a alternativa D defensável. Se o dono autorizar, a questão pode ser publicada com alerta de gabarito discutível. |
 | Ped0dc1fd | UDESC 2024 Verão 2024.1 · questão 52 | F02.4 queda livre e lançamento vertical (tema F02 Cinemática) | Com g = 10 m/s², percorrer os últimos 2 m em 0,1 s dá velocidade de 20,5 m/s no solo e altura de queda de 21,0 m, que são exatamente 7 vãos de 3 m (sétimo andar se a janela do térreo estiver no nível do solo). A letra oficial é D (sexto andar), que sai da aproximação v ≈ 20 m/s (20 m de queda) ou de uma altura da janela do térreo que o enunciado não informa. Sem como justificar a letra oficial sem suposição, fica pendente. Busca na web não achou resolução publicada. |
