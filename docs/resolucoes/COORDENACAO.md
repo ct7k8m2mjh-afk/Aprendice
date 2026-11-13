@@ -19,8 +19,8 @@ questão. Fala com o dono em português do Brasil, simples. Mantém a própria c
 - Nunca usa send_message com as sessões (pede aprovação ao dono). Fala com elas criando a sessão com o prompt certo.
 
 ## Sessões de matéria
-- No máximo 5 ao mesmo tempo (dono, 12/11): Matemática, Física, Química, Biologia, Português. Quando uma matéria acabar
-  (ACABOU na caixa), a vaga vai para Geografia (1.476 por fazer). História, Inglês e Filosofia e Sociologia acabaram.
+- 6 matérias ao mesmo tempo (dono, 13/11: pediu Geografia de volta e autorizou uso extra): Matemática, Física, Química,
+  Biologia, Português e Geografia. História, Inglês e Filosofia e Sociologia acabaram.
 - Modo enxuto (PROMPT-SESSAO-RESOLUCOES.md): lote de 60, 6 agentes resolvem em paralelo, 2 conferentes (30 cada) em
   segundo plano enquanto o próximo lote já anda; a conversa principal só organiza. Troca pelo contexto (40%), não por
   número de lotes. Sessão de revisão separada: NÃO (avaliado em 13/11: o lote fica preso à sessão que o abriu, falar entre
@@ -62,7 +62,8 @@ aprovação ou resposta: pendências e avisos vão para docs/resolucoes/caixa/<m
 |---|---|---|
 | Matemática | session_01PveEKWKTewFDUJvA5Y5s91 | trabalhando (aberta 13/11 05h47; anterior aSPVE deu FIM) |
 | Física | session_01PveEKXXFLhp4ro4vnf1rh7 | trabalhando (aberta 13/11 05h32 pela coordenadora antiga; anterior X5T4 deu FIM) |
-| Química | session_01PveEKX1xy9oPyd7TtkKSTJ | trabalhando (aberta 13/11 05h03) |
+| Química | session_01PveEKZxREDvirT6VTx5nKy | trabalhando (aberta 13/11 05h52 pela coordenadora antiga; FIM da anterior após qui-0063 já tratado) |
+| Geografia | session_01PveEKaHNFQdko42Ddhy3XZ | trabalhando (aberta 13/11 05h52 a pedido do dono: 6ª sessão, além do limite de 5) |
 | Biologia | session_01PveEKb648gnNx7gv9Y2Xbs | trabalhando (aberta 13/11 05h03; FIM cancelado, limite 40%) |
 | Português | session_01PveEKY3G8XPW7thJLdH3jL | trabalhando (aberta 13/11 05h47; anterior WhAd deu FIM) |
 Paradas do sistema novo (o dono pode arquivar): Mat session_01PveEKaSPVEijwvkvEUmmWx, Fís session_01PveEKX5T4pY3Xx4fn4PR8G,
