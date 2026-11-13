@@ -107,5 +107,116 @@
    "data": "2026-11-13",
    "lote": "mat-0051"
   }
+ },
+ "P0c8b4071": {
+  "n": "12",
+  "conceito": "Maior retângulo dentro de um triângulo retângulo, com dois lados sobre os catetos.",
+  "equivocos": {
+   "B": "M05.2:passou-do-maximo",
+   "C": "M05.2:valor-fora-do-maximo",
+   "D": "M05.2:passou-do-maximo",
+   "E": "M05.2:valor-fora-do-maximo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "120² + 160² = 200², então o terreno é um triângulo retângulo com catetos 120 m e 160 m. O retângulo tem um canto no ângulo reto e o canto oposto na hipotenusa. Por semelhança, a altura dele depende da base, e a área vira uma função do 2º grau.",
+    "formulas": [
+     "120² + 160² = 200²",
+     "y = 120 · (1 − x/160)",
+     "A(x) = x · y"
+    ],
+    "simbolos": [
+     [
+      "x",
+      "lado do retângulo sobre o cateto de 160 m"
+     ],
+     [
+      "y",
+      "lado do retângulo sobre o cateto de 120 m"
+     ],
+     [
+      "A(x)",
+      "área do retângulo"
+     ]
+    ]
+   },
+   "pista": "Confirme primeiro que o triângulo é retângulo e use semelhança para ligar os dois lados do retângulo.",
+   "passos": [
+    {
+     "faz": "Confirme o ângulo reto",
+     "conta": "120² + 160² = 14 400 + 25 600 = 40 000 = 200²",
+     "porque": "Pitágoras vale, então os lados menores formam o ângulo reto.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Ligue y a x por semelhança",
+     "conta": "y/120 = (160 − x)/160 → y = 120 − (3/4)x",
+     "porque": "O pedaço de triângulo acima do retângulo é semelhante ao terreno inteiro.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte a área",
+     "conta": "A(x) = x · (120 − (3/4)x) = 120x − (3/4)x²",
+     "porque": "Parábola para baixo, com raízes x = 0 e x = 160.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache o máximo",
+     "conta": "xv = (0 + 160)/2 = 80 → y = 120 − 60 = 60 → A = 80 · 60 = 4 800",
+     "porque": "O vértice fica no meio das raízes.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 4 800 m²",
+   "checagem": "O retângulo ótimo tem lados iguais à metade de cada cateto (80 e 60) e ocupa metade do triângulo: área do triângulo 120 · 160/2 = 9 600, metade = 4 800.",
+   "erradas": {
+    "B": "Não confere: 5 600 passa do máximo da área, 4 800.",
+    "C": "Não confere: com x = 40 a área já é 40 · 90 = 3 600, mais que 2 400; não é o máximo.",
+    "D": "Não confere: 7 200 passa do máximo, 4 800.",
+    "E": "Não confere: 1 200 é menor que a área com x = 40, 3 600; não é o máximo."
+   },
+   "armadilha": "Usar o lado de 200 m (a hipotenusa) como se fosse um dos lados onde o retângulo se apoia.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A maior área possível do retângulo com dois lados sobre os catetos.",
+    "chave": "Semelhança dá y = 120 − (3/4)x; a área máxima é em x = 80: 80 · 60 = 4 800.",
+    "cuidado": "Confira por Pitágoras quais lados formam o ângulo reto."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "metade do triângulo",
+    "ideia": "O maior retângulo inscrito com canto no ângulo reto tem metade da área do triângulo: 9 600/2 = 4 800."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "120² + 160² = 200²",
+    "nota": "triângulo retângulo"
+   },
+   {
+    "linha": "y = 120 − (3/4)x",
+    "nota": "semelhança"
+   },
+   {
+    "linha": "A(x) = 120x − (3/4)x²",
+    "nota": "área"
+   },
+   {
+    "linha": "xv = 80 → A = 80 · 60 = 4 800",
+    "nota": "máximo"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0054"
+  }
  }
 }

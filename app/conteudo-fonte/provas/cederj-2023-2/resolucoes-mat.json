@@ -187,5 +187,113 @@
    "data": "2026-11-13",
    "lote": "mat-0052"
   }
+ },
+ "P51211361": {
+  "n": "36",
+  "conceito": "Função definida por partes: ler cada trecho para achar monotonia, paridade e imagem.",
+  "equivocos": {
+   "A": "M05.4:julgou-por-um-trecho-so",
+   "B": "M05.4:imagem-sem-testar-minimo",
+   "C": "M05.4:confundiu-par-com-impar"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada linha da chave vale só no seu pedaço do domínio. Para x ≤ 0 vale 1 − x, e para x > 0 vale 1 + x. Os dois trechos juntos são o gráfico de 1 + |x|, um V com ponta em (0, 1).",
+    "formulas": [
+     "x ≤ 0: f(x) = 1 − x",
+     "x > 0: f(x) = 1 + x"
+    ],
+    "simbolos": [
+     [
+      "f(−x) = f(x)",
+      "função par: gráfico simétrico em relação ao eixo y"
+     ],
+     [
+      "f(−x) = −f(x)",
+      "função ímpar: simétrica em relação à origem"
+     ],
+     [
+      "imagem",
+      "conjunto dos valores que f(x) assume"
+     ]
+    ]
+   },
+   "pista": "Calcule f em alguns pontos dos dois lados do zero, como x = −1, 0 e 1.",
+   "passos": [
+    {
+     "faz": "Teste valores nos dois trechos",
+     "conta": "f(−1) = 1 − (−1) = 2 | f(0) = 1 − 0 = 1 | f(1) = 1 + 1 = 2",
+     "porque": "Dois números de cada lado já mostram o formato do gráfico.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Teste a A e a C",
+     "conta": "f(−1) = 2 > f(0) = 1 → não é crescente | f(−1) = f(1) = 2 → f(−x) = f(x), e não −f(x)",
+     "porque": "Uma função crescente nunca desce, e esta desce de x = −1 até x = 0. Os valores iguais em −1 e 1 mostram que f é par.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Ache o menor valor",
+     "conta": "x ≤ 0: 1 − x ≥ 1 | x > 0: 1 + x > 1 → menor valor = f(0) = 1",
+     "porque": "No primeiro trecho, −x ≥ 0; no segundo, x > 0. Então f nunca fica abaixo de 1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "Im(f) = [1, +∞) → B falsa, D correta",
+     "porque": "A imagem não tem números menores que 1, logo não é ℝ; e 1 é o mínimo, atingido em x = 0.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 1 é o menor valor do conjunto imagem de f.",
+   "checagem": "Desenhe o gráfico: é um V com ponta em (0, 1), igual ao de |x| subido 1 unidade. A ponta é o ponto mais baixo, com altura 1.",
+   "erradas": {
+    "A": "Não confere: f(−1) = 2 e f(0) = 1, então f desce no trecho x ≤ 0. Ela só cresce para x > 0.",
+    "B": "Não confere: nenhum valor abaixo de 1 aparece, pois 1 − x ≥ 1 para x ≤ 0 e 1 + x > 1 para x > 0. A imagem é [1, +∞).",
+    "C": "Troca par por ímpar: f(1) = 2 e f(−1) = 2, então f(−x) = f(x). Pela C, f(−1) teria de valer −2."
+   },
+   "armadilha": "Julgar a função inteira por um trecho só: no trecho x > 0 ela cresce, mas no trecho x ≤ 0 ela decresce.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Qual afirmação sobre a função por partes é correta.",
+    "chave": "Os dois trechos formam 1 + |x|: mínimo 1 em x = 0, função par.",
+    "cuidado": "Teste pontos dos dois lados do zero antes de afirmar algo sobre a função inteira."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "gráfico",
+    "ideia": "Esboce os dois trechos: o V com vértice em (0, 1) mostra todas as respostas de uma vez."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "f(−1) = 1 − (−1) = 2",
+    "nota": "trecho x ≤ 0"
+   },
+   {
+    "linha": "f(0) = 1 − 0 = 1",
+    "nota": "ponta do V"
+   },
+   {
+    "linha": "f(1) = 1 + 1 = 2",
+    "nota": "trecho x > 0"
+   },
+   {
+    "linha": "Im(f) = [1, +∞)",
+    "nota": "menor valor = 1"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0054"
+  }
  }
 }

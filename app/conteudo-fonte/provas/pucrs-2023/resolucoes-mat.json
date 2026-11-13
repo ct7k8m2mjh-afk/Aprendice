@@ -82,5 +82,119 @@
    "data": "2026-11-13",
    "lote": "mat-0046"
   }
+ },
+ "P3fffac44": {
+  "n": "20",
+  "conceito": "Soma dos termos de uma PA: quantos dias até o total de inscritos chegar a 15 000.",
+  "equivocos": {
+   "A": "M07.1:valor-sem-calculo",
+   "B": "M07.1:valor-sem-calculo",
+   "C": "M07.1:valor-sem-calculo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "As inscrições de cada dia formam uma PA: 180, 240, 300, ... (razão 60). A pergunta é sobre o total acumulado, então a conta é a soma dos n primeiros termos, e não o termo do dia n.",
+    "formulas": [
+     "aₙ = a₁ + (n − 1)r",
+     "Sₙ = (a₁ + aₙ)n/2"
+    ],
+    "simbolos": [
+     [
+      "a₁",
+      "primeiro termo: 180 inscritos no 1º dia"
+     ],
+     [
+      "r",
+      "razão: 60 inscritos a mais por dia"
+     ],
+     [
+      "Sₙ",
+      "total de inscritos nos n primeiros dias"
+     ]
+    ]
+   },
+   "pista": "Decida antes: a questão fala de inscritos em um dia ou do total acumulado?",
+   "passos": [
+    {
+     "faz": "Separe os dados",
+     "conta": "a₁ = 180 | r = 60 | meta: Sₙ = 15 000",
+     "porque": "Os 15 000 são a capacidade do curso, então se compara com o total somado.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Escreva o termo geral",
+     "conta": "aₙ = 180 + (n − 1) · 60 = 60n + 120",
+     "porque": "É o número de inscritos no dia n.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte a soma",
+     "conta": "Sₙ = (180 + 60n + 120)n/2 = 30n² + 150n",
+     "porque": "Média do primeiro e do último dia vezes o número de dias.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Iguale à meta",
+     "conta": "30n² + 150n = 15 000 → n² + 5n − 500 = 0 → (n − 20)(n + 25) = 0 → n = 20",
+     "porque": "A raiz negativa não serve: é número de dias.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "S₂₀ = 30 · 400 + 150 · 20 = 15 000",
+     "porque": "No 20º dia o total chega exatamente a 15 000; em 19 dias seriam 13 680.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 20",
+   "checagem": "Some pela média: no 20º dia entram 180 + 19 · 60 = 1 320; a média de 180 e 1 320 é 750, e 750 × 20 = 15 000.",
+   "erradas": {
+    "A": "Não confere: S₁₂ = 30 · 144 + 150 · 12 = 6 120, bem abaixo de 15 000.",
+    "B": "Não confere: S₁₅ = 30 · 225 + 150 · 15 = 9 000.",
+    "C": "Não confere: S₁₈ = 30 · 324 + 150 · 18 = 12 420, ainda abaixo de 15 000."
+   },
+   "armadilha": "Usar o termo geral (inscritos de um dia) no lugar da soma (total acumulado).",
+   "alerta": "",
+   "essencial": {
+    "pede": "O menor número de dias para o total de inscritos chegar a 15 000.",
+    "chave": "Soma da PA: 30n² + 150n = 15 000 dá n = 20.",
+    "cuidado": "Compare a meta com a soma, não com o termo do dia."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "tabela de somas",
+    "ideia": "Acumule de 5 em 5 dias: S₁₅ = 9 000, S₁₈ = 12 420, S₂₀ = 15 000."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "aₙ = 180 + (n − 1) · 60 = 60n + 120",
+    "nota": "termo geral"
+   },
+   {
+    "linha": "Sₙ = (180 + 60n + 120)n/2 = 30n² + 150n",
+    "nota": "soma"
+   },
+   {
+    "linha": "30n² + 150n = 15 000 → n² + 5n − 500 = 0",
+    "nota": "iguala à meta"
+   },
+   {
+    "linha": "(n − 20)(n + 25) = 0 → n = 20",
+    "nota": "raiz positiva"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0054"
+  }
  }
 }
