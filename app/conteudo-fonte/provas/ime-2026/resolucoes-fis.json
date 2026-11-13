@@ -1,0 +1,132 @@
+{
+ "P21c5c0b6": {
+  "n": "26",
+  "conceito": "Drone acelerado e depois em subida livre: a velocidade máxima sai da área do gráfico v × t, a aceleração dá o empuxo total e F = CT × ω² dá ω.",
+  "equivocos": {
+   "A": "F03.1:sem-origem-identificada",
+   "B": "F03.1:esqueceu-a-raiz",
+   "D": "F03.1:forca-total-em-um-motor",
+   "E": "F03.1:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O voo tem duas etapas: subida com aceleração a (motores ligados), partindo do repouso, e subida livre freando a g (motores parados) até parar na altura máxima. Num gráfico v × t isso é um triângulo de base 6 s e área 9 m, que dá a velocidade máxima. Com ela saem a duração de cada etapa e a aceleração; a segunda lei dá a força total, que se divide pelos quatro motores.",
+    "formulas": [
+     "deslocamento = área do v × t; triângulo: h = v(máx) × Δt/2",
+     "freada livre: t2 = v(máx)/g",
+     "4F − m × g = m × a",
+     "F = CT × ω²"
+    ],
+    "simbolos": [
+     [
+      "ω",
+      "velocidade angular do propulsor, em rad/s"
+     ],
+     [
+      "CT",
+      "constante que liga a força do motor ao quadrado de ω"
+     ],
+     [
+      "v(máx)",
+      "velocidade no instante da falha"
+     ],
+     [
+      "Δt",
+      "tempo total do chão até a altura máxima"
+     ]
+    ]
+   },
+   "pista": "Desenhe o gráfico v × t do voo inteiro: que figura ele forma e o que a área dela representa?",
+   "passos": [
+    {
+     "faz": "Ache a velocidade na falha",
+     "conta": "h = v(máx) × Δt/2 → 9 = v(máx) × 6/2 → v(máx) = 3 m/s",
+     "porque": "A velocidade sobe em linha reta de 0 até v(máx) e desce em linha reta até 0: o v × t é um triângulo, e a área é a altura.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Separe as duas etapas",
+     "conta": "t2 = 3/10 = 0,3 s | t1 = 6 − 0,3 = 5,7 s",
+     "porque": "Depois da falha só o peso atua e o drone freia a g = 10 m/s²; o resto do tempo é a etapa acelerada.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a aceleração com os motores",
+     "conta": "a = 3/5,7 = 10/19 m/s²",
+     "porque": "Partindo do repouso, ganhou 3 m/s em 5,7 s.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a força de cada motor",
+     "conta": "4F = m × (g + a) = 0,19 × (10 + 10/19) = 0,19 × 200/19 = 2,0 N → F = 2,0/4 = 0,5 N",
+     "porque": "A resultante para cima é 4F menos o peso; a massa vai em kg, 190 g = 0,19 kg.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache ω e conclua",
+     "conta": "ω² = 0,5/(5 × 10⁻⁷) = 1 × 10⁶ → ω = 1 × 10³ rad/s",
+     "porque": "Isole ω² em F = CT × ω² e tire a raiz. É a alternativa C.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 1 × 10³ rad/s.",
+   "checagem": "Some as alturas das etapas: acelerando, 3 × 5,7/2 = 8,55 m; freando, 3 × 0,3/2 = 0,45 m; total 9 m, como o enunciado dá.",
+   "erradas": {
+    "A": "Não confere: com ω = 4 × 10³ rad/s cada motor faria 5 × 10⁻⁷ × 16 × 10⁶ = 8 N, total 32 N contra um peso de 1,9 N, aceleração de mais de 150 m/s².",
+    "B": "1 × 10⁶ é ω², não ω: faltou tirar a raiz quadrada no último passo.",
+    "D": "Sai de pôr a força total num motor só: ω² = 2,0/(5 × 10⁻⁷) = 4 × 10⁶, ω = 2 × 10³. Os 2,0 N se dividem pelos quatro motores.",
+    "E": "Não confere: com ω = 2 × 10⁶ rad/s cada motor faria 5 × 10⁻⁷ × 4 × 10¹² = 2 × 10⁶ N, absurdo para um drone de 190 g."
+   },
+   "armadilha": "Duas armadilhas no fim: a força total é a dos quatro motores juntos, e F = CT × ω² dá ω², não ω.",
+   "alerta": "",
+   "essencial": {
+    "pede": "a velocidade angular de cada propulsor logo antes da falha",
+    "chave": "triângulo no v × t dá v(máx) = 3 m/s; a = 10/19 m/s²; 4F = 2,0 N; ω = 10³ rad/s",
+    "cuidado": "dividir a força pelos 4 motores e tirar a raiz de ω²"
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pelas equações horárias",
+    "ideia": "h1 = a × t1²/2 e h2 = (a × t1)²/(2g), com t1 + (a × t1)/g = 6 e h1 + h2 = 9: dá a = 10/19 m/s² e t1 = 5,7 s, como no gráfico."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "9 = v(máx) × 6/2 → v(máx) = 3 m/s",
+    "nota": "área do triângulo"
+   },
+   {
+    "linha": "t2 = 3/10 = 0,3 s; t1 = 5,7 s",
+    "nota": "freada a g"
+   },
+   {
+    "linha": "a = 3/5,7 = 10/19 m/s²",
+    "nota": "etapa com motores"
+   },
+   {
+    "linha": "4F = 0,19 × (10 + 10/19) = 2,0 N",
+    "nota": "segunda lei"
+   },
+   {
+    "linha": "F = 0,5 N",
+    "nota": "cada motor"
+   },
+   {
+    "linha": "ω² = 0,5/(5 × 10⁻⁷) = 10⁶ → ω = 10³ rad/s",
+    "nota": "raiz"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "fis-0048"
+  }
+ }
+}

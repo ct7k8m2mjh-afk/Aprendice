@@ -105,5 +105,115 @@
    "data": "2026-11-13",
    "lote": "fis-0042"
   }
+ },
+ "Pc87ee3ff": {
+  "n": "24",
+  "conceito": "Leitura da balança no elevador: maior que o peso indica aceleração para cima; menor, aceleração para baixo; partindo do repouso, o primeiro trecho define o sentido.",
+  "equivocos": {
+   "A": "F03.1:leitura-diferente-sem-aceleracao",
+   "B": "F03.1:aceleracao-nula-como-repouso",
+   "C": "F03.1:leitura-menor-como-descida",
+   "E": "F03.1:ignora-partida-do-repouso"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A balança marca a normal N. Se N > P, a resultante e a aceleração são para cima; se N = P, aceleração zero; se N < P, aceleração para baixo. O elevador parte do repouso, então a primeira aceleração define para onde ele vai.",
+    "formulas": [
+     "N − P = m × a (para cima positivo)",
+     "N > P → a para cima | N = P → a = 0 | N < P → a para baixo"
+    ],
+    "simbolos": [
+     [
+      "P",
+      "leitura com o elevador parado, igual ao peso"
+     ],
+     [
+      "N",
+      "força da balança no jovem, o que ela marca"
+     ],
+     [
+      "a",
+      "aceleração do elevador"
+     ]
+    ]
+   },
+   "pista": "Parta do repouso: para que lado aponta a aceleração no primeiro trecho do gráfico?",
+   "passos": [
+    {
+     "faz": "Leia o primeiro trecho",
+     "conta": "0 < t < t1: leitura > P → a para cima",
+     "porque": "Partindo do repouso, aceleração para cima põe o elevador subindo.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Leia o trecho do meio",
+     "conta": "t1 < t < t2: leitura = P → a = 0, velocidade constante para cima",
+     "porque": "Sem aceleração, o elevador mantém a velocidade que ganhou: continua subindo.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Leia o último trecho",
+     "conta": "t2 < t < tf: leitura < P → a para baixo, freando a subida até parar",
+     "porque": "Aceleração contra a velocidade faz o elevador parar no andar de chegada.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "acelera para cima → sobe constante → freia → para acima",
+     "porque": "É a alternativa D.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — o elevador foi para um andar acima do andar de partida.",
+   "checagem": "Teste o caso contrário: descendo, o elevador começaria acelerando para baixo, e a balança marcaria menos que P logo no início; o gráfico começa acima de P.",
+   "erradas": {
+    "A": "Falsa: nos trechos com leitura diferente de P há aceleração, então a velocidade muda; só entre t1 e t2 ela é constante.",
+    "B": "Falsa: entre t1 e t2 a leitura é P, a aceleração é zero e o elevador já está em movimento, com velocidade constante diferente de zero.",
+    "C": "Sai de ler o trecho final, abaixo de P, como descida; quem desce acelera para baixo no começo, e o gráfico começa acima de P.",
+    "E": "Falsa: como o elevador parte do repouso, o sentido da primeira aceleração, para cima, decide o sentido do movimento."
+   },
+   "armadilha": "Leitura maior que P indica aceleração para cima, não velocidade; o que decide o sentido é a primeira aceleração, porque o elevador parte do repouso.",
+   "alerta": "",
+   "essencial": {
+    "pede": "o que o gráfico da balança revela sobre o trajeto do elevador",
+    "chave": "parte do repouso com leitura > P: acelera para cima, sobe",
+    "cuidado": "a balança indica aceleração, não velocidade"
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pela sensação",
+    "ideia": "Sentir-se mais pesado ao partir é sinal de partida para cima; sentir-se mais leve ao chegar é a freada da subida."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "0 a t1: N > P → a para cima",
+    "nota": "parte subindo"
+   },
+   {
+    "linha": "t1 a t2: N = P → a = 0",
+    "nota": "sobe constante"
+   },
+   {
+    "linha": "t2 a tf: N < P → a para baixo",
+    "nota": "freia a subida"
+   },
+   {
+    "linha": "para em andar acima",
+    "nota": "conclusão"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "fis-0048"
+  }
  }
 }
