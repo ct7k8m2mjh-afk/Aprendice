@@ -1,6 +1,6 @@
 # Física: resoluções (gerado por lote.py em 2026-11-13)
 
-Faltam 1121 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 605; ENEM nível 7-10 31; provas-alvo nível 7-10 186; demais nível 7-10 299.
+Faltam 1122 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 1; demais nível 1-6 605; ENEM nível 7-10 31; provas-alvo nível 7-10 186; demais nível 7-10 299.
 
 ## Lotes
 
@@ -61,7 +61,7 @@ Faltam 1121 questões sem resolução (fora as que estão em lote, pendentes ou 
 | fis-0053 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | fis-0054 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | fis-0055 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
-| fis-0056 | demais nível 1-6 | 30 | aberto |  |  |  |
+| fis-0056 | demais nível 1-6 | 30 | gravado | 29 | 1 | 0 |
 
 ## Pendentes (falta de certeza absoluta)
 
@@ -75,6 +75,7 @@ Faltam 1121 questões sem resolução (fora as que estão em lote, pendentes ou 
 | Pb1b726b3 | UERJ 2025 2º Exame de Qualificação · questão 7 | F02.1 velocidade média e movimento uniforme (tema F02 Cinemática) | classificação: é de Geografia (UERJ 2025, 2º Exame de Qualificação, questão 7: redes de transporte na França; a resposta oficial, A, “posição relativa na rede técnica”, compara cidades ligadas ou não por linha de trem de alta velocidade). Está classificada em Física, F02.1 velocidade média. |
 | Pf32f80b2 | UPE 2021 SSA3 · questão 72 | F01.5 fóton, efeito fotoelétrico e modelo de Bohr (tema F01 Fundamentos e grandezas) | O print não traz as constantes necessárias (h, c, massa do elétron). Além disso, na aniquilação de um par lento saem dois fótons de 0,511 MeV, de comprimento de onda cerca de 0,024 angstrom, valor que não está nas alternativas; a letra oficial (E, 1,2 × 10⁻²) só sai tratando a energia total do par como um único fóton. Sem certeza de como ensinar isso sem erro, fica pendente. Busca na web não achou resolução publicada. |
 | P7f440cd0 | URCA 2025 2025.1 · questão 2 | F03.3 atrito e plano inclinado (tema F03 Dinâmica e forças) | A física dá 1000 N (A): o atrito estático máximo 0,5 × F tem de igualar o peso 500 N, logo F = 500/0,5 = 1000 N. O gabarito oficial definitivo da CEV-URCA 2025.1 (https://vestibulares.estrategia.com/portal/wp-content/uploads/2025/01/urca-2025-gabarito.pdf) mantém D (2000 N), sem anulação, e não achei leitura do enunciado nem resolução publicada que leve a 2000 N; sem certeza para explicar a oficial. |
+| P525706b9 | Unitins 2024 Vestibular 2024/1 – Caderno 2 · questão 2 | F07.2 teorema de Stevin, pressão atmosférica e vasos comunicantes (tema F07 Hidrostática) | gabarito oficial B (36) não sai dos dados: com diâmetro 0,5 m (r = 0,25 m) e Δp = 0,5 atm, F = 0,5 × 10⁵ × π × 0,25² ≈ 9 817 N ≈ 8,9 cavalos por lado, 18 no total (E); 36 só sai usando 0,5 m como raio (39 270/1100 ≈ 35,7) ou ignorando a pressão interna e somando os dois lados. O gabarito definitivo mantém B e anulou a Física 3, não a 2 (https://vestibulares.estrategia.com/portal/wp-content/uploads/2023/12/gabarito-definitivo-unitins-2024.pdf); nenhuma resolução publicada encontrada. Sem caminho fisicamente correto até a letra oficial. |
 
 ## Divergências de gabarito (o dono decide)
 

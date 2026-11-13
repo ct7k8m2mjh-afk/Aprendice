@@ -244,5 +244,150 @@
    "data": "2026-11-13",
    "lote": "fis-0052"
   }
+ },
+ "Pa9d54613": {
+  "n": "22",
+  "conceito": "Calcular o volume submerso máximo de um veículo anfíbio e, pela flutuação, a carga máxima.",
+  "equivocos": {
+   "A": "F07.4:subestimou-o-volume-submerso",
+   "C": "F07.4:superestimou-o-volume-submerso",
+   "D": "F07.4:superestimou-o-volume-submerso",
+   "E": "F07.4:superestimou-o-volume-submerso"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Flutuando, o empuxo é igual ao peso total, então a massa total que o veículo aguenta é a massa de água que cabe no volume abaixo da linha limite. Pela figura, as rodas têm diâmetro de 120 cm e o eixo delas fica no fundo do casco; a linha limite está 80 cm acima do fundo do casco (a rampa de 45° sobe 80 cm em 80 cm). Então o volume submerso é o casco até essa altura mais as seis rodas inteiras, que ficam abaixo da linha. A vista isométrica mostra as rodas fora da largura de 2,7 m do casco, por isso elas entram separadas.",
+    "formulas": [
+     "E = P → d(água) × V(submerso) = m(total)",
+     "casco: área do trapézio × largura = 0,8 × 6,6 × 2,7",
+     "roda: π × r² × largura = π × 0,6² × 0,4"
+    ],
+    "simbolos": [
+     [
+      "E",
+      "empuxo"
+     ],
+     [
+      "P",
+      "peso total do conjunto"
+     ],
+     [
+      "d(água)",
+      "massa específica da água, 1000 kg/m³"
+     ],
+     [
+      "V(submerso)",
+      "volume do veículo abaixo da linha limite"
+     ],
+     [
+      "m(total)",
+      "massa do veículo com militares e cunhetes"
+     ],
+     [
+      "r",
+      "raio da roda, 0,6 m"
+     ],
+     [
+      "π",
+      "pi, razão entre o comprimento da circunferência e o diâmetro"
+     ],
+     [
+      "n",
+      "número de cunhetes"
+     ]
+    ]
+   },
+   "pista": "Descubra pela vista lateral a altura da linha limite em relação ao fundo do casco e às rodas.",
+   "passos": [
+    {
+     "faz": "Calcule o volume do casco submerso",
+     "conta": "casco: (6,2 + 7,0)/2 × 0,8 × 2,7 = 0,8 × 6,6 × 2,7 ≈ 14,3 m³",
+     "porque": "Até 80 cm, a seção lateral é um trapézio com base de 6,2 m embaixo e 7,0 m em cima (a rampa de 45° avança 0,8 m); a base média é 6,6 m.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some as seis rodas",
+     "conta": "rodas: 6 × π × 0,6² × 0,4 ≈ 6 × 0,45 = 2,7 m³",
+     "porque": "O topo da roda fica 60 cm acima do fundo do casco, abaixo da linha limite (80 cm): cada roda fica toda submersa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a massa máxima",
+     "conta": "V(submerso) ≈ 14,3 + 2,7 = 17,0 m³ → m(total) = 1000 × 17,0 = 17 000 kg",
+     "porque": "Flutuando, o conjunto desloca água de massa igual à dele.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Desconte veículo e militares",
+     "conta": "17 000 − 15 000 − 11 × 100 = 900 kg → n = 900/5 = 180",
+     "porque": "O que sobra da massa permitida pode ir em cunhetes de 5 kg.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "n ≈ 180 → alternativa B",
+     "porque": "É o número máximo aproximado de cunhetes.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — cerca de 180 cunhetes.",
+   "checagem": "Refaça sem as aproximações do enunciado: o casco dá 5,28 × 2,7 = 14,256 m³ e as rodas 6 × π × 0,36 × 0,4 ≈ 2,714 m³, total ≈ 16,97 m³. Sobram cerca de 16 970 − 16 100 = 870 kg, ou 174 cunhetes, e a alternativa mais próxima continua sendo 180.",
+   "erradas": {
+    "A": "Não confere: pelos dados do enunciado sobram 900 kg, que comportam 180 cunhetes; 160 cunhetes (800 kg) ainda deixa folga de 100 kg.",
+    "C": "Não confere: 200 cunhetes dariam 15 000 + 1100 + 1000 = 17 100 kg, mais que os 17 000 kg de água que cabem até a linha limite.",
+    "D": "Não confere: 220 cunhetes dariam 17 200 kg, acima dos 17 000 kg que o veículo desloca até a linha limite.",
+    "E": "Não confere: 240 cunhetes dariam 17 300 kg, acima dos 17 000 kg que o veículo desloca até a linha limite."
+   },
+   "armadilha": "Esquecer as rodas ou contar só a metade de baixo delas: com o casco sozinho (14,3 m³) o veículo nem flutua com os militares.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O número máximo de cunhetes para o veículo flutuar sem a água passar da linha limite.",
+    "chave": "m(total) = 1000 × (14,3 + 2,7) = 17 000 kg; sobram 900 kg, ou 180 cunhetes.",
+    "cuidado": "Ler a figura: a linha limite fica 80 cm acima do fundo do casco e acima do topo das rodas."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste das alternativas",
+    "ideia": "Some veículo, militares e 5 kg por cunhete e compare com 17 000 kg: 180 cunhetes dão exatamente 17 000 kg."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "casco: 0,8 × 6,6 × 2,7 ≈ 14,3 m³",
+    "nota": "trapézio × largura"
+   },
+   {
+    "linha": "rodas: 6 × 0,45 = 2,7 m³",
+    "nota": "seis cilindros"
+   },
+   {
+    "linha": "V(submerso) ≈ 17,0 m³",
+    "nota": "soma"
+   },
+   {
+    "linha": "m(total) = 1000 × 17,0 = 17 000 kg",
+    "nota": "E = P"
+   },
+   {
+    "linha": "17 000 − 15 000 − 1100 = 900 kg",
+    "nota": "carga livre"
+   },
+   {
+    "linha": "n = 900/5 = 180",
+    "nota": "alternativa B"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "fis-0056"
+  }
  }
 }

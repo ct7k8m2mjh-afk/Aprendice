@@ -411,5 +411,129 @@
    "data": "2026-11-13",
    "lote": "fis-0053"
   }
+ },
+ "P1f20c9cf": {
+  "n": "40",
+  "conceito": "Calcular a pressão absoluta no fundo do mar com a lei de Stevin, somando a pressão atmosférica.",
+  "equivocos": {
+   "A": "F07.2:errou-a-soma-das-potencias-de-dez",
+   "B": "F07.2:errou-a-soma-das-potencias-de-dez",
+   "D": "F07.2:somou-a-pressao-atmosferica-duas-vezes"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "As criaturas sentem a pressão total: a do ar sobre a superfície mais a da coluna de 3 km de água. O trabalho real está nas unidades: a densidade vem em g/cm³ e a profundidade em km, e tudo precisa ir para o SI antes da conta.",
+    "formulas": [
+     "p = p(atm) + d × g × h (lei de Stevin)",
+     "1 g/cm³ = 1000 kg/m³; 1 km = 1000 m"
+    ],
+    "simbolos": [
+     [
+      "p",
+      "pressão total (absoluta) na profundidade h"
+     ],
+     [
+      "p(atm)",
+      "pressão atmosférica na superfície, 1,0 × 10⁵ Pa"
+     ],
+     [
+      "d",
+      "densidade da água do mar"
+     ],
+     [
+      "g",
+      "aceleração da gravidade, 10 m/s²"
+     ],
+     [
+      "h",
+      "profundidade, 3 km"
+     ],
+     [
+      "Pa",
+      "pascal, unidade de pressão do SI (N/m²)"
+     ]
+    ]
+   },
+   "pista": "Passe densidade e profundidade para o SI antes de usar a fórmula.",
+   "passos": [
+    {
+     "faz": "Converta os dados para o SI",
+     "conta": "d = 1,02 g/cm³ = 1020 kg/m³ | h = 3 km = 3000 m",
+     "porque": "Com kg/m³, m/s² e m, a pressão sai direto em pascal.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a pressão da coluna de água",
+     "conta": "d × g × h = 1020 × 10 × 3000 = 3,06 × 10⁷ Pa",
+     "porque": "É o peso da água acima das criaturas dividido pela área.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some a pressão atmosférica",
+     "conta": "p = 3,06 × 10⁷ + 0,01 × 10⁷ = 3,07 × 10⁷ Pa",
+     "porque": "O ar também pesa sobre a superfície do mar; 1,0 × 10⁵ Pa é 0,01 × 10⁷ Pa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "p = 3,07 × 10⁷ Pa → alternativa C",
+     "porque": "A pergunta é a pressão a que as criaturas estão submetidas, a total.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 3,07 × 10⁷ Pa.",
+   "checagem": "Pela regra de bolso: cada 10 m de água valem cerca de 1 atm (10⁵ Pa). Com d = 1020 kg/m³, cada 10 m dão 1,02 × 10⁵ Pa; 300 trechos de 10 m dão 306 × 10⁵ Pa, e o ar acrescenta mais 1 × 10⁵: 307 × 10⁵ = 3,07 × 10⁷ Pa.",
+   "erradas": {
+    "A": "Não confere: a coluna de água sozinha já dá 3,06 × 10⁷ Pa, e a pressão total não pode ser menor que ela.",
+    "B": "Não confere: 3,04 × 10⁷ Pa é menor que os 3,06 × 10⁷ Pa da coluna de água sozinha.",
+    "D": "Não confere: 3,08 × 10⁷ Pa exigiria 2,0 × 10⁵ Pa na superfície, o dobro da pressão atmosférica dada."
+   },
+   "armadilha": "Esquecer a pressão atmosférica ou não converter g/cm³ para kg/m³ desmonta o resultado; aqui as alternativas diferem só na segunda casa.",
+   "alerta": "A unidade da pressão atmosférica está impressa como N/m³; o correto é N/m² (pascal). A resolução usa 1,0 × 10⁵ Pa.",
+   "essencial": {
+    "pede": "A pressão total sobre as criaturas a 3 km de profundidade.",
+    "chave": "p = p(atm) + d × g × h = 1,0 × 10⁵ + 1020 × 10 × 3000 = 3,07 × 10⁷ Pa.",
+    "cuidado": "Converter g/cm³ para kg/m³ (× 1000) e km para m, e somar a pressão atmosférica."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "regra dos 10 m",
+    "ideia": "Cada 10 m de água do mar somam cerca de 1,02 × 10⁵ Pa; 300 trechos mais o ar dão 3,07 × 10⁷ Pa."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "d = 1020 kg/m³ | h = 3000 m",
+    "nota": "dados no SI"
+   },
+   {
+    "linha": "d × g × h = 1020 × 10 × 3000",
+    "nota": "coluna de água"
+   },
+   {
+    "linha": "d × g × h = 3,06 × 10⁷ Pa",
+    "nota": "resultado da coluna"
+   },
+   {
+    "linha": "p = 3,06 × 10⁷ + 0,01 × 10⁷",
+    "nota": "soma o ar"
+   },
+   {
+    "linha": "p = 3,07 × 10⁷ Pa",
+    "nota": "alternativa C"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "fis-0056"
+  }
  }
 }
