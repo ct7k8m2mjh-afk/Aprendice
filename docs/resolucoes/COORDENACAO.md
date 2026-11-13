@@ -48,29 +48,30 @@ Desativadas (não mandar nada): Fable session_01PveEKXU47Vds1gGREvakqY, session_
 session_01PveEKaAcCyTZHYawMeybog; Inglês antiga session_01PveEKYMQYJ9tRsSFLsoey8; Matemática duplicada
 session_01PveEKb4hnDGKRb7Gtd9hCr. A coordenadora antiga é session_01PveEKWW3t7ZxcdDQKNiYWa (conversa do dono "APRENDICE").
 
-## Reclassificar (recados das sessões, 13/11)
-- Matemática: P7c50dc09 (Física, ondas), Pb3deaa68 (Biologia, níveis tróficos), Pb906bf2a (Geografia); subtema errado:
-  Pea59fe40, P632bbc24, P17e6f8b1, Pb9248592, Pc79dc928, P0ca7ab6a. Prints/dados: P19d0e8df (tabela vazia no print),
-  Pf5b6a3c2 (caderno pula a D), número divergente P14017141, P4b446079, Pf025255d.
-- Português: para Biologia P7b12298d, P73a24ac0; subtema errado Ped65eba5, P3bdc3073, Pbe8025a1, Pfe767de0, P98fee0ad,
+## Reclassificar (recados das sessões; atualizado 13/11, 03h)
+Classificação = campos `materia`/`tema`/`conteudo` da questão no prova.json (id não muda; a resolução continua ligada
+pelo id). Questão que muda de matéria sai dos `pendentes` do registro antigo para entrar na fila da nova.
+- Matemática (falta): com resolução de Matemática já gravada e mudança de matéria (refazer no estilo da outra matéria):
+  P7c50dc09 (Física, ondas), Pb3deaa68 (Biologia, níveis tróficos), Pb906bf2a (Geografia). Subtema errado, sem destino
+  indicado pela sessão: Pea59fe40, P632bbc24, P17e6f8b1, Pb9248592, Pc79dc928, P0ca7ab6a. Prints/dados: P19d0e8df
+  (tabela vazia no print), Pf5b6a3c2 (caderno pula a D), número divergente P14017141, P4b446079, Pf025255d.
+- Português (falta): subtema errado, sem destino indicado: Ped65eba5, P3bdc3073, Pbe8025a1, Pfe767de0, P98fee0ad,
   P273c97a5, P5bd2916f, P9889395d, Pd86425b8, P087b8c9f. Dado: P40c29de8 (alternativa E com coluna do poema colada).
-  Química: Pa2383034 (UEG 2023-2 q36) alternativa B com "~~emissão~~" tachado na entrada; no print é itálico.
-  Física: P0e47c350 (capacitores, está em F12.2), P20f45835 (defeitos da visão, em F01.4), Pf58dd11b (impulso, em F01.4).
-  Português (13/11): para Artes P82bbfc0a; para Filosofia e Sociologia Pd8a099e2, P2e17d217; gramática resolvida em P01.2
-  (Fempar 2021, PUC/Anhembi). Prints P0c8c68ab, P31dcd8ee, Pbddde95d refeitos e liberados (commit 70b34f43). P298602be (UFT 2023/2 q14):
-  os dois especialistas deram A, o preliminar da Copese é B: fora do ar até sair o definitivo.
-  Física: P88f37147 (Fema, ITER) pendente: mais de uma afirmativa falsa e depende de fatos fora do texto (ver registro).
+  P298602be (UFT 2023/2 q14): especialistas A, preliminar da Copese B: fora do ar até sair o definitivo.
   63 pendentes "obra:" (lotes 61-71). FMABC 2022 q16 (Pd7fbdc3f) com nota_gabarito, esperando o dono.
-- Biologia: para Física P3c08d8ee; para Química Pc68c4acb. Dados: P039ae129 (print pega o título "LÍNGUA
-  ESTRANGEIRA" e a alternativa E termina com ele); itálico virou ~~riscado~~ no texto_da_prova de Pa582852a, Pd28a6e90,
-  P1daa8136, Pff5a68fe, P0bf82481, P2ea30ef7 (nomes científicos). Subtema errado: P372650c4 (é B04.1 ciclo celular), Pfa8485e7
-  (é B01.4 organelas), Pd4ba01ad (é B02.5 ácidos nucleicos).
-- Blocos de Educação Física/Artes (UECE q63–67, Unespar) e casos em dúvida, decididos pelo conhecimento que a questão
-  cobra (13/11). 21 foram para outra-materia.json; 14 ficaram onde estão. Reclassificar:
-  Ped354672 (UECE 2025.2 q66, esteroides anabolizantes) → Biologia B08.5; P46105cc7 (UECE 2020.2 q63, comportamento
-  sedentário e dispêndio energético) → Biologia B03.3; P6f6cf8da (UECE 2024.1 q65, gasto energético com a idade) →
-  Biologia B03.3; P4a88f3b0 (UECE 2020.2 q66, bulimia) → Biologia B07.2; P77bfc70e (UECE 2023.1 q64, futebol
-  feminino e desigualdade de gênero) → Filosofia e Sociologia S04.4.
+- Feito em 13/11 (sessão principal): Biologia P3c08d8ee→Física F08.5, Pc68c4acb→Química Q01.3, Pbf20fbdc→Português
+  P01.2; subtemas P372650c4 B04.1, Pfa8485e7 B01.4, Pd4ba01ad B02.5. Química P7f6fa922→Biologia B09.1 e 15 subtemas
+  (Pa03ab8a5, P7e43e4b3, P373a52f0, Pbf3a7103, Pd7e4692a, Pd02b7249, Pe17c191b, P33b5d811, P433f7077, Ped3214f8,
+  Pd751a99a, Peba62744, Pfe847491, Pa2e37ff4, Pe719f30b). Física P0e47c350 F11.9, P20f45835 F09.6, Pf58dd11b F05.1.
+  Português P73a24ac0→B05.4, P7b12298d→B12.5, Pd8a099e2→S04.1, P2e17d217→S07.2 (P82bbfc0a já em outra-materia.json).
+  UECE: Ped354672→B08.5, P46105cc7 e P6f6cf8da→B03.3, P4a88f3b0→B07.2, P77bfc70e→S04.4.
+  Prints refeitos: P8a7424bc, P2d41428f (transcrição retirada: tem fórmula), P039ae129.
+- O "~~texto~~" na entrada das sessões é a marcação de ITÁLICO do site (QuestaoCartao.tsx a mostra em itálico; regra
+  já no PROMPT-SESSAO-RESOLUCOES.md). Não há erro de extração: Pa582852a, Pd28a6e90, P1daa8136, Pff5a68fe, P0bf82481,
+  P2ea30ef7 e Pa2383034 estão certos no site.
+- UFRR 2025/2026: links do gabarito oficial pós-recursos achados (editais 97/24 e 93/25, anotados na `nota` das provas),
+  mas editais.ufrr.br e web.archive.org não respondem daqui: letras não conferidas. Tentar de novo noutra rodada.
+- Física P88f37147 (Fema, ITER): motivo final no registro (duas afirmativas falsas, sem errata): fica fora; dono decide.
 
 ## Rodada da conferência (a cada 3 horas)
 1. `git pull --rebase --autostash origin app-prototipo-completo`.
@@ -112,6 +113,8 @@ com update, e marcar o item como feito no o-que-falta.json.
 - Direitos: letras de música em Geografia (UERJ 2021 q4 "Morro Velho", Pcaf0f0ee; "Lucro", P8e5ccfb5); artigo do Le
   Monde Diplomatique com foto de Sebastião Salgado (P875a6d1a); prints com fotos de imprensa e charges. Sugestão: as
   duas de letra de música só como print.
+- Fema 2021 q9 (P88f37147, ITER): gabarito oficial B, mas E também é falsa (150 milhões de °C é ~10 vezes o centro do
+  Sol, não 10%). Fora do site. Recomendação: deixar fora.
 - Mackenzie 2026/2 q11 (P855bb53e): fora do site (recomendado) ou com A e explicação.
 - Checklist de provas para baixar à mão: https://claude.ai/artifact/AfS22NUUP69GNTWsEKV5YC (coleção `provas`;
   campos prova, gabarito, obs). Faltam, entre outras: Famema 2023 (caderno da Prova II v1), FMJ 2020 e 2023.
