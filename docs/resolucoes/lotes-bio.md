@@ -65,7 +65,7 @@ Faltam 827 questões sem resolução (fora as que estão em lote, pendentes ou c
 | bio-0057 | provas-alvo nível 1-6 | 30 | gravado | 27 | 3 | 0 |
 | bio-0058 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | bio-0059 | provas-alvo nível 1-6 | 60 | gravado | 59 | 1 | 0 |
-| bio-0060 | demais nível 1-6 | 60 | aberto |  |  |  |
+| bio-0060 | demais nível 1-6 | 60 | gravado | 60 | 0 | 0 |
 | bio-0061 | demais nível 1-6 | 60 | aberto |  |  |  |
 
 ## Pendentes (falta de certeza absoluta)
