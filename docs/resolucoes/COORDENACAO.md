@@ -1,57 +1,85 @@
 # Coordenação das sessões de resolução
 
-Arquivo de passagem entre sessões coordenadoras (decisão do dono, 12/11/2026: trocar a coordenação por uma sessão nova
-para gastar menos do limite semanal). Leia inteiro antes de agir. Atualize no fim de cada rodada o que mudou.
+Arquivo de passagem entre coordenadoras. Leia inteiro antes de agir. Atualize no fim de cada ação o que mudou.
+Sistema refeito em 13/11/2026 a pedido do dono (lote maior, nenhuma sessão parada, nada de pedir permissão,
+coordenação só ativa quando há tarefa, economizar o limite semanal melhorando o método).
 
-## Papel
-A coordenadora só organiza: questões no site, classificação, prints, gabaritos, publicação e o andamento das sessões.
-NUNCA resolve questão. Fala com o dono em português do Brasil, direto, sem termos técnicos (CLAUDE.md).
+## Papel da coordenadora
+Só organiza: abre sessões de matéria, trata as pendências que chegam na caixa, publica, cuida do painel. NUNCA resolve
+questão. Fala com o dono em português do Brasil, simples. Mantém a própria conversa curta: troca por uma coordenadora nova
+(create_session com o prompt da seção abaixo) ao passar de 25% do contexto, escrevendo o estado aqui antes.
 
-## Situação (13/11, 03h30)
-O dono mandou todas as sessões pararem depois do último lote. Não abrir sessões novas até ele mandar retomar.
-Respostas do dono no painel (9) cumpridas ou em andamento; "anulada pelo Aprendice" vale para gabarito oficial contra os fatos.
+## Como trabalha (sempre por evento, nunca esperando)
+- É acordada só por: a tarefa agendada de hora em hora (que entra nesta conversa), uma mensagem do dono, ou o aviso de um
+  agente dela terminando. Em cada despertar faz a RODADA abaixo e encerra a vez. Sem nada novo: não escreve nada ao dono.
+- NUNCA: espera publicação de pé (dispara e confere na rodada seguinte); faz laço de consulta (git, eventos, site);
+  roda converte/tsc/vitest na própria conversa (as sessões já rodam; antes de publicar, um build em segundo plano);
+  lê arquivos ou eventos grandes inteiros; manda rajadas de recados; põe dois agentes gravando ao mesmo tempo no mesmo
+  ramo. Agente que grava: um por vez, com `git add` só dos arquivos dele e `git pull --rebase` antes do push.
+- Nunca usa send_message com as sessões (pede aprovação ao dono). Fala com elas criando a sessão com o prompt certo.
 
-## Regras de economia (dono, 12/11/2026)
-- No máximo 5 sessões de resolução trabalhando ao mesmo tempo. Agora: Matemática, Física, Química, Biologia e Português.
-- Pausadas (retomar só quando uma das 5 acabar a matéria ou o dono pedir): Inglês, Geografia, Filosofia e Sociologia,
-  "Completar resoluções animadas" (ferramentas/resolucoes/completa.py). História acabou.
-- Cada sessão de resolução troca por uma nova depois de 10 lotes (ou contexto acima de 40%): ela avisa com a palavra
-  TROCA; a coordenadora abre uma sessão nova da mesma matéria (Opus, ambiente env_01PD36og67UPYvCWa3DcbQpX, repositório
-  https://github.com/ct7k8m2mjh-afk/aprendice, ramo app-prototipo-completo, permission_mode acceptEdits, tag
-  aprendice-resolucoes) com o prompt-padrão abaixo, e atualiza a tabela de sessões aqui.
-- A própria coordenadora também é trocada quando a conversa passar de 40%: escreva o estado aqui e peça ao dono.
-- Conferência agendada a cada 3 horas (não de hora em hora).
+## Sessões de matéria
+- No máximo 5 ao mesmo tempo (dono, 12/11): Matemática, Física, Química, Biologia, Português. Quando uma matéria acabar
+  (ACABOU na caixa), a vaga vai para Geografia (1.476 por fazer). História, Inglês e Filosofia e Sociologia acabaram.
+- Modo enxuto (PROMPT-SESSAO-RESOLUCOES.md): lote de 60, 6 agentes resolvem em paralelo, 2 conferentes (30 cada) em
+  segundo plano enquanto o próximo lote já anda; a conversa principal só organiza. Troca pelo contexto (25%), não por
+  número de lotes. Sessão de revisão separada: NÃO (avaliado em 13/11: o lote fica preso à sessão que o abriu, falar entre
+  sessões pede aprovação ou consulta repetida, e o conferente em segundo plano já trabalha em paralelo e às cegas).
+- A sessão escreve FIM, PENDENCIAS ou ACABOU em docs/resolucoes/caixa/<m>.md (commit) e, no FIM, encerra.
+- Abrir sessão: create_session (Opus, ambiente env_01PD36og67UPYvCWa3DcbQpX, source_url
+  https://github.com/ct7k8m2mjh-afk/aprendice, source_revision app-prototipo-completo, permission_mode acceptEdits, tag
+  aprendice-resolucoes, extra_allowed_tools ["Bash","Edit","Write","Read","Glob","Grep","Agent","Skill","WebFetch","WebSearch"],
+  título "Resoluções — <Matéria> (<data hora>)") com o prompt-padrão abaixo.
 
 ## Prompt-padrão de uma sessão de matéria
-"Você é a sessão de resoluções de <MATÉRIA> do Aprendice. Leia CLAUDE.md e siga integralmente
-docs/resolucoes/PROMPT-SESSAO-RESOLUCOES.md, com a sua matéria = <m>. Fale português do Brasil. Comece com
-`cd app && flock /tmp/converte.lock python3 scripts/converte.py`, volte à raiz e siga a esteira
-(`python3 ferramentas/resolucoes/lote.py proximo <m> --novo`, até 3 lotes abertos seus). Limite de 10 lotes por
-sessão: só abra lote novo se (lotes que você já gravou + lotes abertos seus) for menor que 10; ao gravar o 10º, mande TROCA. Se houver lote aberto de uma
-sessão anterior desta matéria, assuma com `--retomar <lote>`. Trabalhe continuamente e nunca pare
-esperando aprovação nem resposta (dono, 13/11): enquanto a lente confere um lote, já adiante o próximo. Questão com erro ou
-problema sai como pendente com o motivo e vai por mensagem para a coordenadora; você segue para a próxima.
-Avise a coordenadora com TROCA quando chegar a hora (passo 9 do prompt), escrevendo em
-docs/resolucoes/caixa/<m>.md (veja LEIA.md); nunca use send_message, que pede aprovação do dono."
-Ao abrir: extra_allowed_tools = ["Bash","Edit","Write","Read","Glob","Grep","Agent","Skill","WebFetch","WebSearch",
-] (dono, 13/11: resolvedores não pedem autorização; também em .claude/settings.json).
+"Você é a sessão de resoluções de <MATÉRIA> do Aprendice. Fale português do Brasil. Na raiz do repositório, rode
+`python3 ferramentas/resolucoes/vez.py <m>`: se der OCUPADO (outra sessão desta matéria gravou há menos de 45 min), encerre
+sem fazer nada. Senão, leia CLAUDE.md e siga integralmente docs/resolucoes/PROMPT-SESSAO-RESOLUCOES.md com a sua matéria =
+<m>, em especial o MODO ENXUTO (a sua conversa só organiza; resolver, conferir e abrir prints é sempre trabalho de agentes),
+o lote de 60 (`lote.py proximo <m> 60 --novo`) e o passo 9 (ao passar de 25% do contexto, termine os lotes abertos,
+escreva FIM na caixa e encerre). Retome antes os lotes abertos que o vez.py listar (`--retomar <lote>`). Prepare o
+ambiente em segundo plano: `cd app && (test -d node_modules || npm ci); python3 -m pip install -q --break-system-packages
+pillow numpy scipy; flock /tmp/converte.lock python3 scripts/converte.py`. Nunca use send_message e nunca pare esperando
+aprovação ou resposta: pendências e avisos vão para docs/resolucoes/caixa/<m>.md (veja caixa/LEIA.md), com commit e push."
+(Matemática: acrescentar a regra da animação — campo `conta` no formato que o motor anima; teste motorConta exige 70%.)
 
-## Sessões (13/11/2026, 03h30 UTC) — TODAS PARADAS por ordem do dono (último lote)
+## RODADA (a cada despertar)
+1. `git pull -q --rebase --autostash origin app-prototipo-completo`.
+2. Caixa: `git log --since=<última rodada> --format=%h -- docs/resolucoes/caixa/` e ler só os blocos novos.
+   FIM → abrir a sessão nova da matéria (prompt-padrão). ACABOU → abrir Geografia no lugar. PENDENCIAS → anotar em
+   "Pendências a tratar" e tratar com UM agente (worktree próprio), não na conversa.
+3. Sessões vivas: `python3 ferramentas/resolucoes/vez.py <m>` para cada matéria da tabela. LIVRE com sessão marcada como
+   trabalhando = a sessão caiu ou parou → abrir nova (a anterior: anotar para o dono arquivar).
+4. Publicação a cada 500 resolvidas a mais que publicacao.json: build em segundo plano (converte+tsc+vitest), verde →
+   create_deployment (dados na seção Publicação) e ENCERRAR a vez; na rodada seguinte conferir a contagem no site e
+   registrar.
+5. Painel: só a cada 1.000 resolvidas a mais (seção Painel); nesse momento ler também as respostas do dono (ArtifactData
+   list `respostas`), cumprir e gravar o retorno.
+6. Atualizar a tabela abaixo e encerrar.
+
+## Sessões (13/11/2026, 05h UTC) — sistema novo começando
 | Matéria | Sessão | Situação |
 |---|---|---|
-| Matemática | session_01PveEKZRuBiHmg4Hm9HT1J1 | PARADA por ordem do dono (13/11 03h): último lote mat-0059, nada aberto; pode arquivar |
-| Física | session_01PveEKXmCjqipC4JbNj9w73 | PARADA por ordem do dono (13/11 03h): último lote fis-0056, nada aberto; pode arquivar |
-| Química | session_01PveEKadroQ4kNhHt52L2hy | PARADA por ordem do dono (13/11 03h): último lote qui-0059, nada aberto; pode arquivar |
-| Biologia | session_01PveEKaptKYR7JXwbmxDGXx | PARADA por ordem do dono (13/11 03h): último lote bio-0058, nada aberto; pode arquivar |
-| Português | session_01PveEKaBDR2WGsLQUacMYFY | PARADA por ordem do dono (13/11 03h): último lote por-0087, nada aberto; pode arquivar |
-| Inglês | session_01PveEKYvFj3v794d3jbEjQY | matéria concluída, tudo gravado: pode arquivar (dono avisado) |
-| Geografia | session_01PveEKYE1nkNeafq9SNBU2b | pausada, tudo gravado (até geo-0038; faltam 1.476): pode arquivar (dono avisado 13/11) |
-| Filosofia e Sociologia | session_01PveEKWgecw6NvvouAmBWM2 | matéria concluída (13/11), tudo gravado: pode arquivar (dono avisado) |
-| Completar animadas | session_01PveEKXSa4J8B5gRwFfa8Af | pausada, tudo gravado; deixou pendentes P0eaf87df (Unicamp 2025 q72), passo 2 de Pb942e52d, gabaritos P1ba4d126 e P140521…: pode arquivar (dono avisado 13/11) |
-| História | session_01PveEKar9UR25QNispiKNT4 | matéria concluída |
-Desativadas (não mandar nada): Fable session_01PveEKXU47Vds1gGREvakqY, session_01PveEKazGNg4UZjknkJiLtJ,
-session_01PveEKaAcCyTZHYawMeybog; Inglês antiga session_01PveEKYMQYJ9tRsSFLsoey8; Matemática duplicada
-session_01PveEKb4hnDGKRb7Gtd9hCr. A coordenadora antiga é session_01PveEKWW3t7ZxcdDQKNiYWa (conversa do dono "APRENDICE").
+| Matemática | (a abrir) | |
+| Física | (a abrir) | |
+| Química | (a abrir) | |
+| Biologia | (a abrir) | |
+| Português | (a abrir) | |
+Antigas, todas paradas (o dono pode arquivar): Mat session_01PveEKZRuBiHmg4Hm9HT1J1, Fís session_01PveEKXmCjqipC4JbNj9w73,
+Quí session_01PveEKadroQ4kNhHt52L2hy, Bio session_01PveEKaptKYR7JXwbmxDGXx, Por session_01PveEKaBDR2WGsLQUacMYFY; e as
+anteriores já listadas para arquivar. Coordenadoras antigas: session_01PveEKWW3t7ZxcdDQKNiYWa, session_01PveEKabuyZnqVN65W5FfEc.
+
+## Permissões (medido em 13/11)
+- Sessões de matéria: Bash/Edit/Agent/Write/Read não pedem; só send_message pedia (por isso a caixa).
+- Coordenadora: create_session pede UMA vez por sessão; create_deployment/get_deployment (Vercel) e Artifact/ArtifactData
+  pedem a cada uso por política do servidor. Por isso: publicar só a cada 500, painel só a cada 1.000, e nada de
+  get_deployment (conferir pelo relatorio.json do site com curl).
+
+## Pendências a tratar
+Prints, reclassificações e gabaritos que chegaram das sessões e ainda não foram tratados. Restos de 13/11: gabaritos da
+UFRR (editais 93/25-CPV e 97/24-CPV; site deu 503) — Pdfed097c, P4e8b41b9, P523fcc4a, P802620a5, P1b018f21, Pdfefb95a,
+Pb2ea6273, Pdc6fdc40, P91b7dbde, P6e4b0c62, Pf34120b0; IME 2024 q36 (P1f92eb26) errata E a confirmar (resolução pronta em
+docs/resolucoes/trabalho/qui-0055.parte1.json da sessão antiga — se não existir aqui, a sessão de Química refaz).
 
 ## Reclassificar (recados das sessões; atualizado 13/11, 03h)
 Classificação = campos `materia`/`tema`/`conteudo` da questão no prova.json (id não muda; a resolução continua ligada
@@ -134,4 +162,4 @@ depois `python3 ferramentas/resolucoes/painel_falta.py` e publique docs/resoluco
 Próxima ao passar de 18.913.
 Contagem: `com_resolucao` de https://aprendice.vercel.app/conteudo/relatorio.json (ou do relatório local do converte).
 
-Coordenadora atual: session_01PveEKabuyZnqVN65W5FfEc (desde 12/11, 23h UTC).
+Coordenadora atual: ver a tabela de sessões e a tarefa agendada (13/11: nova coordenadora enxuta).
