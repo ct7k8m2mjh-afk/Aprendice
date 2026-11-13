@@ -84,7 +84,7 @@ Faltam 2227 questões sem resolução (fora as que estão em lote, pendentes ou 
 | por-0076 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | por-0077 | demais nível 1-6 | 30 | gravado | 27 | 3 | 0 |
 | por-0078 | demais nível 1-6 | 30 | gravado | 29 | 1 | 0 |
-| por-0079 | demais nível 1-6 | 30 | aberto |  |  |  |
+| por-0079 | demais nível 1-6 | 30 | gravado | 29 | 0 | 1 |
 
 ## Pendentes (falta de certeza absoluta)
 
@@ -193,4 +193,6 @@ Faltam 2227 questões sem resolução (fora as que estão em lote, pendentes ou 
 
 ## Divergências de gabarito (o dono decide)
 
-Nenhuma.
+| Questão | Prova | Conteúdo | Motivo |
+|---|---|---|---|
+| P298602be | UFT 2023 Vestibular 2023/2 · questão 14 | P01.2 informação explícita × inferência (tema P01 Leitura e compreensão) | Letra do Aprendice A × gabarito preliminar B. O comando pede a INCORRETA; a B ("o sentimento que capacita aquele que ama") repete o título e o último verso ("do amor que me faz capaz"), então é verdadeira. A A é a falsa: o poema fala de "lembranças de antes" (há memórias) e não trata da finitude da vida. Não achei gabarito definitivo da Copese na web; conferente às cegas também A. |
