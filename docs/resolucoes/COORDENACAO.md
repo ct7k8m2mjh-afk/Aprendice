@@ -35,7 +35,7 @@ Ao abrir: extra_allowed_tools = ["Bash","Edit","Write","Read","Glob","Grep","Age
 | Matemática | session_01PveEKX177vB2BRfF6zV6S5 | trabalhando (aberta 13/11 00h46; antiga session_01PveEKWYPGjW3SYacWGoS7w mandou TROCA após mat-0049: pode arquivar) |
 | Física | session_01PveEKYTfpdPfG8PfUEbE3Q | trabalhando (aberta 13/11 01h28; antiga session_01PveEKaLLM5an4P4mkWzqv3 mandou TROCA após fis-0043: pode arquivar) |
 | Química | session_01PveEKXnC2DKmBd64gp3Zn3 | trabalhando (aberta 13/11 01h14; antiga session_01PveEKXEZ197XmbuWmKkDPw mandou TROCA após qui-0039: pode arquivar) |
-| Biologia | session_01PveEKaZX71znbULe85ap8G | trabalhando |
+| Biologia | session_01PveEKaZX71znbULe85ap8G | 21 lotes (bio-0021 a 0045): mandada gravar e mandar TROCA (13/11 01h35) |
 | Português | session_01PveEKaTKHh9kRmYcfPdmUA | trabalhando (aberta 13/11 00h50; antiga session_01PveEKZK2wY3DcaPfgMBKVX mandou TROCA após por-0071: pode arquivar) |
 | Inglês | session_01PveEKYvFj3v794d3jbEjQY | matéria concluída, tudo gravado: pode arquivar (dono avisado) |
 | Geografia | session_01PveEKYE1nkNeafq9SNBU2b | pausada, tudo gravado (até geo-0038; faltam 1.476): pode arquivar (dono avisado 13/11) |
@@ -61,7 +61,10 @@ session_01PveEKb4hnDGKRb7Gtd9hCr. A coordenadora antiga é session_01PveEKWW3t7Z
 
 ## Rodada da conferência (a cada 3 horas)
 1. `git pull --rebase --autostash origin app-prototipo-completo`.
-2. Para cada sessão trabalhando: get_session. Parada com matéria ainda por fazer → send_message (priority later):
+2. Contar os lotes de cada sessão (commits com o id dela: `git log --since=<criação> --format=%b | grep -c <id>`).
+   Passou de 10 lotes (ou contexto > 40%) → send_message priority next: não abrir lote novo, gravar os abertos e mandar
+   TROCA. Não esperar a sessão pedir (dono, 13/11: Física chegou a 21 lotes sem troca).
+   Para cada sessão trabalhando: get_session. Parada com matéria ainda por fazer → send_message (priority later):
    "Continue: próximo lote da sua matéria, sem encerrar a vez entre lotes, até o dono mandar parar." Falha por limite
    ou créditos → anotar em docs/resolucoes/conferencia.md e avisar o dono uma vez. Pedido de aprovação sem resposta →
    avisar o dono uma vez. Pediu TROCA → abrir a sessão nova (acima).
