@@ -317,5 +317,125 @@
    "data": "2026-11-13",
    "lote": "mat-0057"
   }
+ },
+ "P045b696e": {
+  "n": "17",
+  "conceito": "Soma telescópica com termos de uma PA: decompor 1/(aₖaₖ₊₁) em diferença de frações.",
+  "equivocos": {
+   "A": "M07.1:inverteu-a-constante",
+   "C": "M07.1:inverteu-a-constante",
+   "D": "M07.1:esqueceu-o-fator",
+   "E": "M07.1:ignorou-a-razao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Como aₖ₊₁ − aₖ = r, a diferença 1/aₖ − 1/aₖ₊₁ vale r/(aₖaₖ₊₁). Por isso A = 1/r. Escrita assim, a soma é telescópica: cada fração negativa cancela a positiva da parcela seguinte, e só sobram a primeira e a última.",
+    "formulas": [
+     "1/aₖ − 1/aₖ₊₁ = (aₖ₊₁ − aₖ)/(aₖ × aₖ₊₁) = r/(aₖ × aₖ₊₁)",
+     "aₙ = a₁ + (n − 1) × r"
+    ],
+    "simbolos": [
+     [
+      "PA",
+      "progressão aritmética: cada termo é o anterior mais um número fixo"
+     ],
+     [
+      "r",
+      "razão da PA: o número que se soma de um termo para o seguinte"
+     ],
+     [
+      "telescópica",
+      "soma em que os termos do meio se cancelam aos pares"
+     ]
+    ]
+   },
+   "pista": "Junte 1/aₖ − 1/aₖ₊₁ numa fração só e compare com 1/(aₖaₖ₊₁).",
+   "passos": [
+    {
+     "faz": "Ache A",
+     "conta": "1/aₖ − 1/aₖ₊₁ = 3/(aₖ × aₖ₊₁) → A = 1/3",
+     "porque": "O numerador é aₖ₊₁ − aₖ = r = 3; para sobrar 1 em cima, multiplica-se por 1/3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache o 10.º termo",
+     "conta": "a₁₀ = 2 + 9 × 3 = 29",
+     "porque": "Nove razões depois do 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Cancele os termos do meio",
+     "conta": "S = 1/3 × (1/2 − 1/5 + 1/5 − ... + 1/26 − 1/29) = 1/3 × (1/2 − 1/29)",
+     "porque": "Cada − 1/aₖ₊₁ cancela o + 1/aₖ₊₁ da parcela seguinte.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a diferença",
+     "conta": "1/2 − 1/29 = (29 − 2)/58 = 27/58",
+     "porque": "Denominador comum 58.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique por A",
+     "conta": "S = 1/3 × 27/58 = 9/58",
+     "porque": "Não esqueça o fator A = 1/3.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — A = 1/3 e S = 9/58",
+   "checagem": "Teste A na primeira parcela: 1/(2 × 5) = 1/10 e 1/3 × (1/2 − 1/5) = 1/3 × 3/10 = 1/10. Some as 9 frações direto e também dá 9/58.",
+   "erradas": {
+    "A": "A troca A por r (3 no lugar de 1/3) e dá S sem o fator A: 27/58 é só 1/2 − 1/29.",
+    "C": "C não confere: com A = 3, a primeira parcela daria 3 × (1/2 − 1/5) = 9/10, e não 1/10.",
+    "D": "D sai de esquecer de multiplicar por A no fim: 1/2 − 1/29 = 27/58, sem o 1/3.",
+    "E": "E não confere: com A = 1, a primeira parcela daria 1/2 − 1/5 = 3/10, e não 1/10."
+   },
+   "armadilha": "Depois do cancelamento ainda falta multiplicar por A = 1/3.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A constante A e a soma S.",
+    "chave": "1/aₖ − 1/aₖ₊₁ = r/(aₖaₖ₊₁), logo A = 1/r = 1/3; S = 1/3 × (1/2 − 1/29) = 9/58.",
+    "cuidado": "O cancelamento deixa só o primeiro e o último; depois multiplique por A."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "soma direta",
+    "ideia": "Some 1/10 + 1/40 + 1/88 + ... + 1/754 (nove frações) e simplifique: 9/58."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "1/aₖ − 1/aₖ₊₁ = 3/(aₖ × aₖ₊₁)",
+    "nota": "junta as frações"
+   },
+   {
+    "linha": "A = 1/3",
+    "nota": "constante"
+   },
+   {
+    "linha": "a₁₀ = 2 + 9 × 3 = 29",
+    "nota": "último termo"
+   },
+   {
+    "linha": "1/2 − 1/29 = 27/58",
+    "nota": "sobra da telescópica"
+   },
+   {
+    "linha": "S = 1/3 × 27/58 = 9/58",
+    "nota": "multiplica por A"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0059"
+  }
  }
 }

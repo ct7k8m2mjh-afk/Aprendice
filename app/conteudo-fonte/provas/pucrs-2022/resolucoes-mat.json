@@ -304,5 +304,136 @@
    "data": "2026-11-13",
    "lote": "mat-0058"
   }
+ },
+ "Pdd1871fa": {
+  "n": "17",
+  "conceito": "PG do tempo das séries e logaritmo para achar o número de séries.",
+  "equivocos": {
+   "B": "M07.2:numero-de-termos-errado",
+   "C": "M07.2:numero-de-termos-errado",
+   "D": "M07.2:numero-de-termos-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada série dura 25 % a mais que a anterior: os tempos formam uma PG de razão 1,25. Primeiro converta os 5 minutos para segundos. O expoente desconhecido sai com logaritmo, usando os valores que a prova manda considerar. No fim, a pergunta é o total de abdominais: séries × 30.",
+    "formulas": [
+     "aₙ = a₁ × qⁿ⁻¹",
+     "log(a/b) = log a − log b",
+     "log(aⁿ) = n × log a"
+    ],
+    "simbolos": [
+     [
+      "PG",
+      "progressão geométrica: cada termo é o anterior vezes um número fixo"
+     ],
+     [
+      "q",
+      "razão da PG: o número pelo qual se multiplica de um termo para o seguinte"
+     ],
+     [
+      "log",
+      "logaritmo na base 10"
+     ]
+    ]
+   },
+   "pista": "Converta a duração da última série para segundos antes de montar a PG.",
+   "passos": [
+    {
+     "faz": "Monte a PG em segundos",
+     "conta": "15 × 1,25ⁿ⁻¹ = 300",
+     "porque": "Aumentar 25 % é multiplicar por 1,25; 5 min = 300 s.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole a potência",
+     "conta": "1,25ⁿ⁻¹ = 300/15 → 1,25ⁿ⁻¹ = 20",
+     "porque": "O 15 que multiplica passa dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule os logaritmos",
+     "conta": "log 1,25 = log (5/4) = 0,7 − 2 × 0,3 = 0,1 | log 20 = log 2 + 1 = 1,3",
+     "porque": "1,25 = 5/4 e 20 = 2 × 10, para usar só log 5 e log 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache o número de séries",
+     "conta": "(n − 1) × 0,1 = 1,3 → n − 1 = 1,3/0,1 = 13 → n = 14",
+     "porque": "O log desce o expoente; o 0,1 passa dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte as abdominais",
+     "conta": "14 × 30 = 420",
+     "porque": "Cada série tem 30 repetições.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 420 abdominais",
+   "checagem": "Pela conta inversa: 30 repetições por série e 420 no total dão 420/30 = 14 séries, e com os logs da prova 1,25¹³ = 10^1,3 = 20, então a 14.ª série dura 15 × 20 = 300 s = 5 min.",
+   "erradas": {
+    "B": "B não confere: 450 abdominais são 15 séries; pelos logs da prova a 15.ª duraria 15 × 10^1,4 ≈ 377 s, mais que 5 min.",
+    "C": "C não confere: 480 abdominais são 16 séries; a 16.ª duraria 15 × 10^1,5 ≈ 474 s, bem mais que 5 min.",
+    "D": "D não confere: 510 abdominais são 17 séries; a 17.ª duraria 15 × 10^1,6 ≈ 597 s, quase 10 min."
+   },
+   "armadilha": "O expoente dá n − 1 = 13; o número de séries é 14, e a resposta pede abdominais, não séries.",
+   "alerta": "Com os valores exatos, log 1,25 ≈ 0,0969 e log 20 ≈ 1,301, e n − 1 sairia ≈ 13,4, não inteiro; a conta só fecha com os valores aproximados que a própria prova manda usar (log 5 = 0,7 e log 2 = 0,3).",
+   "essencial": {
+    "pede": "O total de abdominais, sabendo que a última série durou 5 min.",
+    "chave": "15 × 1,25ⁿ⁻¹ = 300 com log 1,25 = 0,1 e log 20 = 1,3 dá n = 14 séries.",
+    "cuidado": "Converta 5 min para 300 s e multiplique as séries por 30."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "dobra aproximada",
+    "ideia": "1,25³ ≈ 1,95 ≈ 2: o tempo quase dobra a cada 3 séries; de 15 s a 300 s é ×20 ≈ 2⁴ × 1,25, uns 13 saltos."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "15 × 1,25ⁿ⁻¹ = 300",
+    "nota": "PG em segundos"
+   },
+   {
+    "linha": "1,25ⁿ⁻¹ = 300/15",
+    "nota": "o 15 passa dividindo"
+   },
+   {
+    "linha": "1,25ⁿ⁻¹ = 20",
+    "nota": "divide"
+   },
+   {
+    "linha": "(n − 1) × 0,1 = 1,3",
+    "nota": "aplica log"
+   },
+   {
+    "linha": "n − 1 = 1,3/0,1",
+    "nota": "o 0,1 passa dividindo"
+   },
+   {
+    "linha": "n − 1 = 13",
+    "nota": "saltos"
+   },
+   {
+    "linha": "n = 13 + 1 = 14",
+    "nota": "séries"
+   },
+   {
+    "linha": "14 × 30 = 420",
+    "nota": "abdominais"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0059"
+  }
  }
 }

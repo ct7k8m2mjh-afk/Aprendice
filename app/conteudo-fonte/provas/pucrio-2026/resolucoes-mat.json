@@ -472,5 +472,128 @@
    "data": "2026-11-13",
    "lote": "mat-0056"
   }
+ },
+ "P57974eaa": {
+  "n": "17",
+  "conceito": "Soma de PG de razão 3 até superar o valor que falta.",
+  "equivocos": {
+   "A": "M07.3:parou-cedo",
+   "B": "M07.3:parou-cedo",
+   "D": "M07.3:ignorou-o-valor-inicial",
+   "E": "M07.3:valor-sem-base"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O que interessa é o que FALTA: 4000 − 2500 = 1500. As parcelas 5, 15, 45, ... formam uma PG de razão 3, e ele compra quando a SOMA das parcelas alcança 1500, não quando uma parcela sozinha alcança.",
+    "formulas": [
+     "Sₙ = a₁ × (qⁿ − 1)/(q − 1)"
+    ],
+    "simbolos": [
+     [
+      "PG",
+      "progressão geométrica: cada termo é o anterior vezes um número fixo"
+     ],
+     [
+      "q",
+      "razão da PG: o número pelo qual se multiplica de um termo para o seguinte"
+     ],
+     [
+      "Sₙ",
+      "soma das n primeiras parcelas"
+     ]
+    ]
+   },
+   "pista": "Calcule quanto ainda falta antes de mexer nas parcelas.",
+   "passos": [
+    {
+     "faz": "Calcule o que falta",
+     "conta": "4000 − 2500 = 1500",
+     "porque": "Ele já tem 2500.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escreva a soma da PG",
+     "conta": "Sₙ = 5 × (3ⁿ − 1)/2",
+     "porque": "a₁ = 5 e q = 3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole a potência",
+     "conta": "5 × (3ⁿ − 1)/2 = 1500 → 3ⁿ − 1 = 1500 × 2/5 → 3ⁿ − 1 = 600 → 3ⁿ = 601",
+     "porque": "Resolver a igualdade dá a fronteira: a soma precisa chegar a 1500, então 3ⁿ tem de ser pelo menos 601. O 2 que divide passa multiplicando e o 5 passa dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare com as potências de 3",
+     "conta": "3⁵ = 243 < 601 ≤ 3⁶ = 729",
+     "porque": "Com 5 parcelas não basta; com 6, sim.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "n = 6 parcelas",
+     "porque": "Na 6.ª parcela a soma chega a 1820 ≥ 1500.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 6 parcelas",
+   "checagem": "Some direto: 5, 20, 65, 200, 605, 1820. Depois da 5.ª parcela ele tem 2500 + 605 = 3105; depois da 6.ª, 2500 + 1820 = 4320 ≥ 4000.",
+   "erradas": {
+    "A": "A não confere: com 4 parcelas ele guardou 5 + 15 + 45 + 135 = 200 e tem 2700.",
+    "B": "B não confere: com 5 parcelas guardou 605 e tem 3105, ainda abaixo de 4000.",
+    "D": "D sai de esquecer os 2500 já guardados: a soma só passa de 4000 na 7.ª parcela (5465).",
+    "E": "E não confere: na 7.ª parcela a soma já é 5465, então nunca se chega à 8.ª."
+   },
+   "armadilha": "Ele já tinha 2500: a meta das parcelas é 1500, e o que conta é a soma delas.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantas parcelas até poder comprar.",
+    "chave": "Faltam 1500; 5 × (3ⁿ − 1)/2 ≥ 1500 exige 3ⁿ ≥ 601, n = 6.",
+    "cuidado": "Desconte os 2500 e compare a soma, não a parcela."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "tabela",
+    "ideia": "Acumule 5, 20, 65, 200, 605, 1820 e pare no primeiro valor ≥ 1500."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "4000 − 2500 = 1500",
+    "nota": "o que falta"
+   },
+   {
+    "linha": "5 × (3ⁿ − 1)/2 = 1500",
+    "nota": "soma da PG"
+   },
+   {
+    "linha": "3ⁿ − 1 = 1500 × 2/5",
+    "nota": "o 2 multiplica e o 5 divide"
+   },
+   {
+    "linha": "3ⁿ − 1 = 600",
+    "nota": "calcula"
+   },
+   {
+    "linha": "3ⁿ = 600 + 1 = 601",
+    "nota": "o 1 passa somando"
+   },
+   {
+    "linha": "3⁶ = 729 ≥ 601",
+    "nota": "n = 6"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0059"
+  }
  }
 }

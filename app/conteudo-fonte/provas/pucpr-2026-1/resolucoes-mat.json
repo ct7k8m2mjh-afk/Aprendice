@@ -189,5 +189,232 @@
    "data": "2026-11-13",
    "lote": "mat-0051"
   }
+ },
+ "P9d5edabe": {
+  "n": "33",
+  "conceito": "Sequência em que a soma de três termos consecutivos é constante: ela se repete de 3 em 3.",
+  "equivocos": {
+   "A": "M07.1:contagem-dos-grupos-errada",
+   "B": "M07.1:contagem-dos-grupos-errada",
+   "D": "M07.1:contagem-dos-grupos-errada",
+   "E": "M07.1:grupo-de-posicao-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Se a₁ + a₂ + a₃ = a₂ + a₃ + a₄, cortando a₂ e a₃ dos dois lados sobra a₁ = a₄. Então a sequência se repete a cada 3 posições: as posições 1, 4, 7, 10 têm o mesmo valor; 2, 5, 8, 11 também; e 3, 6, 9 também.",
+    "formulas": [
+     "a₁ + a₂ + a₃ = a₂ + a₃ + a₄ ⇒ a₁ = a₄",
+     "aₙ = aₙ₊₃"
+    ],
+    "simbolos": [
+     [
+      "aₙ",
+      "termo de posição n da sequência"
+     ]
+    ]
+   },
+   "pista": "Compare duas somas vizinhas de três termos e veja o que sobra.",
+   "passos": [
+    {
+     "faz": "Descubra a repetição",
+     "conta": "a₁ + a₂ + a₃ = a₂ + a₃ + a₄ → a₁ = a₄",
+     "porque": "a₂ e a₃ aparecem dos dois lados e se cancelam; o mesmo vale mais adiante, então os valores se repetem de 3 em 3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Agrupe as posições",
+     "conta": "posições 1, 4, 7, 10 → a₁ | 2, 5, 8, 11 → a₂ = 5 | 3, 6, 9 → a₃ = a₆ = 10",
+     "porque": "O 6.º termo cai no grupo do 3.º, então a₃ = 10.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Monte a soma dos 11 termos",
+     "conta": "4a₁ + 4 × 5 + 3 × 10 = 70 → 4a₁ + 50 = 70",
+     "porque": "O grupo de a₁ e o de a₂ têm 4 posições cada; o de a₃ tem 3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole a₁",
+     "conta": "4a₁ = 70 − 50 → 4a₁ = 20 → a₁ = 20/4 = 5",
+     "porque": "O 50 passa subtraindo e o 4 passa dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache o sétimo termo",
+     "conta": "a₇ = a₁ = 5",
+     "porque": "A posição 7 está no grupo da posição 1.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 5",
+   "checagem": "A sequência fica 5, 5, 10, 5, 5, 10, 5, 5, 10, 5, 5. Toda soma de três vizinhos dá 20, a soma total é 70 e o 2.º termo é 5 e o 6.º é 10.",
+   "erradas": {
+    "A": "A não confere: com a₇ = a₁ = 3, a soma seria 4 × 3 + 20 + 30 = 62, não 70.",
+    "B": "B não confere: com a₇ = a₁ = 4, a soma seria 4 × 4 + 20 + 30 = 66, não 70.",
+    "D": "D não confere: com a₇ = a₁ = 6, a soma seria 4 × 6 + 20 + 30 = 74, não 70.",
+    "E": "E sai de pôr o 7.º termo no grupo do 6.º; mas 7 deixa resto 1 na divisão por 3, então a₇ = a₁, não a₆."
+   },
+   "armadilha": "Termos vizinhos não são iguais: o que se repete é a cada 3 posições, e o 7.º anda junto com o 1.º, não com o 6.º.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O 7.º termo de uma sequência de 11 termos com soma de três vizinhos constante.",
+    "chave": "a₁ = a₄ = a₇ = a₁₀; soma 4a₁ + 4 × 5 + 3 × 10 = 70 dá a₁ = 5.",
+    "cuidado": "Conte quantas vezes cada valor aparece nos 11 termos: 4, 4 e 3."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "soma por blocos",
+    "ideia": "Os 9 primeiros termos são 3 blocos de soma S e sobram a₁₀ + a₁₁ = a₁ + 5; com S = a₁ + 15: 3(a₁ + 15) + a₁ + 5 = 70 dá a₁ = 5."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "a₁ = a₄ = a₇ = a₁₀",
+    "nota": "repete de 3 em 3"
+   },
+   {
+    "linha": "4a₁ + 4 × 5 + 3 × 10 = 70",
+    "nota": "soma dos 11 termos"
+   },
+   {
+    "linha": "4a₁ + 50 = 70",
+    "nota": "simplifica"
+   },
+   {
+    "linha": "4a₁ = 70 − 50",
+    "nota": "o 50 passa subtraindo"
+   },
+   {
+    "linha": "4a₁ = 20",
+    "nota": "subtrai"
+   },
+   {
+    "linha": "a₁ = 20/4 = 5",
+    "nota": "o 4 passa dividindo"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0059"
+  }
+ },
+ "P22fbb7d1": {
+  "n": "36",
+  "conceito": "Média geométrica dos termos de uma PG pelo produto dos termos.",
+  "equivocos": {
+   "B": "M07.2:primeiro-termo-no-lugar-da-media",
+   "C": "M07.2:esqueceu-a-razao-no-produto",
+   "D": "M07.2:modulo-esquecido",
+   "E": "M07.2:ultimo-termo-no-lugar-da-media"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A média geométrica de 10 números é a raiz décima do produto deles. Na PG, o produto é a₁¹⁰ × q^(0 + 1 + ... + 9) = a₁¹⁰ × q⁴⁵. O sinal de k sai do último termo, que é negativo.",
+    "formulas": [
+     "média geométrica = (a₁ × a₂ × ... × a₁₀)^(1/10)",
+     "produto = a₁¹⁰ × q⁴⁵",
+     "q = 9^(1/9) ⇒ q⁹ = 9"
+    ],
+    "simbolos": [
+     [
+      "PG",
+      "progressão geométrica: cada termo é o anterior vezes um número fixo"
+     ],
+     [
+      "q",
+      "razão da PG: o número pelo qual se multiplica de um termo para o seguinte"
+     ],
+     [
+      "média geométrica",
+      "raiz n-ésima do produto de n números"
+     ]
+    ]
+   },
+   "pista": "Use o último termo para descobrir o sinal de k.",
+   "passos": [
+    {
+     "faz": "Descubra o sinal de k",
+     "conta": "a₁₀ = k/3 × q⁹ = k/3 × 9 = 3k < 0 → k < 0",
+     "porque": "q⁹ = 9; o último termo negativo obriga k negativo.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule o produto",
+     "conta": "(k/3)¹⁰ × q⁴⁵ = k¹⁰/3¹⁰ × 9⁵ = k¹⁰/3¹⁰ × 3¹⁰ = k¹⁰",
+     "porque": "q⁴⁵ = (q⁹)⁵ = 9⁵ = 3¹⁰, que cancela com o 3¹⁰ de baixo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tire a raiz décima",
+     "conta": "(k¹⁰)^(1/10) = |k|",
+     "porque": "Raiz de índice par devolve um número positivo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Use o sinal de k",
+     "conta": "k < 0 → |k| = −k",
+     "porque": "O módulo de um número negativo é o oposto dele.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — −k",
+   "checagem": "Exemplo: k = −3 dá a₁ = −1 e q = 9^(1/9); o produto é (−1)¹⁰ × 9⁵ = 59049 = 3¹⁰, e a raiz décima é 3 = −k.",
+   "erradas": {
+    "B": "B não confere: k/3 é o primeiro termo, negativo; a média geométrica de 10 números é raiz de índice par e não pode ser negativa.",
+    "C": "C não confere: (−k/3)¹⁰ = k¹⁰/3¹⁰, e o produto dos termos é k¹⁰; falta o fator q⁴⁵ = 3¹⁰.",
+    "D": "D sai de tirar a raiz sem olhar o sinal: (k¹⁰)^(1/10) = |k|, e como k < 0, isso é −k, não k.",
+    "E": "E não confere: 3k é o último termo, negativo; a média de dez termos não é o último termo."
+   },
+   "armadilha": "A raiz décima de k¹⁰ é |k|, e k é negativo: a resposta é −k, não k.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A média geométrica dos dez termos.",
+    "chave": "Produto = (k/3)¹⁰ × 3¹⁰ = k¹⁰; raiz décima = |k| = −k, pois a₁₀ = 3k < 0.",
+    "cuidado": "Ache o sinal de k pelo último termo antes de responder."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "termos equidistantes",
+    "ideia": "a₁ × a₁₀ = k/3 × 3k = k²; os 5 pares dão (k²)⁵ = k¹⁰, e a raiz décima é |k| = −k."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "a₁₀ = k/3 × 9 = 3k",
+    "nota": "último termo"
+   },
+   {
+    "linha": "3k < 0 → k < 0",
+    "nota": "sinal de k"
+   },
+   {
+    "linha": "k¹⁰/3¹⁰ × 3¹⁰ = k¹⁰",
+    "nota": "o 3¹⁰ se cancela"
+   },
+   {
+    "linha": "(k¹⁰)^(1/10) = |k| = −k",
+    "nota": "raiz décima"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0059"
+  }
  }
 }
