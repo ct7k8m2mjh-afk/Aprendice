@@ -31,7 +31,7 @@ quando chegar a hora (passo 9 do prompt)."
 |---|---|---|
 | Matemática | session_01PveEKX177vB2BRfF6zV6S5 | trabalhando (aberta 13/11 00h46; antiga session_01PveEKWYPGjW3SYacWGoS7w mandou TROCA após mat-0049: pode arquivar) |
 | Física | session_01PveEKaLLM5an4P4mkWzqv3 | trabalhando |
-| Química | session_01PveEKXEZ197XmbuWmKkDPw | trabalhando |
+| Química | session_01PveEKXnC2DKmBd64gp3Zn3 | trabalhando (aberta 13/11 01h14; antiga session_01PveEKXEZ197XmbuWmKkDPw mandou TROCA após qui-0039: pode arquivar) |
 | Biologia | session_01PveEKaZX71znbULe85ap8G | trabalhando |
 | Português | session_01PveEKaTKHh9kRmYcfPdmUA | trabalhando (aberta 13/11 00h50; antiga session_01PveEKZK2wY3DcaPfgMBKVX mandou TROCA após por-0071: pode arquivar) |
 | Inglês | session_01PveEKYvFj3v794d3jbEjQY | matéria concluída, tudo gravado: pode arquivar (dono avisado) |
@@ -49,6 +49,7 @@ session_01PveEKb4hnDGKRb7Gtd9hCr. A coordenadora antiga é session_01PveEKWW3t7Z
   Pf5b6a3c2 (caderno pula a D), número divergente P14017141, P4b446079, Pf025255d.
 - Português: para Biologia P7b12298d, P73a24ac0; subtema errado Ped65eba5, P3bdc3073, Pbe8025a1, Pfe767de0, P98fee0ad,
   P273c97a5, P5bd2916f, P9889395d, Pd86425b8, P087b8c9f. Dado: P40c29de8 (alternativa E com coluna do poema colada).
+  Química: Pa2383034 (UEG 2023-2 q36) alternativa B com "~~emissão~~" tachado na entrada; no print é itálico.
   63 pendentes "obra:" (lotes 61-71). FMABC 2022 q16 (Pd7fbdc3f) com nota_gabarito, esperando o dono.
 - Biologia: para Física P3c08d8ee; para Química Pc68c4acb. Dados: P039ae129 (print pega o título "LÍNGUA
   ESTRANGEIRA" e a alternativa E termina com ele); itálico virou ~~riscado~~ no texto_da_prova de Pa582852a, Pd28a6e90,
