@@ -31,9 +31,10 @@ sessão: só abra lote novo se (lotes que você já gravou + lotes abertos seus)
 sessão anterior desta matéria, assuma com `--retomar <lote>`. Trabalhe continuamente e nunca pare
 esperando aprovação nem resposta (dono, 13/11): enquanto a lente confere um lote, já adiante o próximo. Questão com erro ou
 problema sai como pendente com o motivo e vai por mensagem para a coordenadora; você segue para a próxima.
-Avise a coordenadora (<id da coordenadora>) com TROCA quando chegar a hora (passo 9 do prompt)."
+Avise a coordenadora com TROCA quando chegar a hora (passo 9 do prompt), escrevendo em
+docs/resolucoes/caixa/<m>.md (veja LEIA.md); nunca use send_message, que pede aprovação do dono."
 Ao abrir: extra_allowed_tools = ["Bash","Edit","Write","Read","Glob","Grep","Agent","Skill","WebFetch","WebSearch",
-"mcp__claude-code-remote__send_message"] (dono, 13/11: resolvedores não pedem autorização; também em .claude/settings.json).
+] (dono, 13/11: resolvedores não pedem autorização; também em .claude/settings.json).
 
 ## Sessões (13/11/2026, 03h30 UTC) — TODAS PARADAS por ordem do dono (último lote)
 | Matéria | Sessão | Situação |
@@ -76,6 +77,11 @@ pelo id). Questão que muda de matéria sai dos `pendentes` do registro antigo p
 - UFRR 2025/2026: links do gabarito oficial pós-recursos achados (editais 97/24 e 93/25, anotados na `nota` das provas),
   mas editais.ufrr.br e web.archive.org não respondem daqui: letras não conferidas. Tentar de novo noutra rodada.
 - Física P88f37147 (Fema, ITER): motivo final no registro (duas afirmativas falsas, sem errata): fica fora; dono decide.
+
+## Caixa das sessões (dono, 13/11)
+As sessões falam com a coordenadora só por docs/resolucoes/caixa/<m>.md (commit). A coordenadora deixa um vigia em segundo
+plano (Bash em background: git fetch a cada 2 min; termina quando a pasta caixa/ muda em origin) e o rearma depois de
+tratar cada mensagem. Na rodada, ler também a caixa.
 
 ## Rodada da conferência (a cada 3 horas)
 1. `git pull --rebase --autostash origin app-prototipo-completo`.
