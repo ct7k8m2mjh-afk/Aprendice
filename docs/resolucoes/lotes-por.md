@@ -1,6 +1,6 @@
 # Português: resoluções (gerado por lote.py em 2026-11-13)
 
-Faltam 2020 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 1481; ENEM nível 7-10 53; provas-alvo nível 7-10 225; demais nível 7-10 261.
+Faltam 1990 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 1451; ENEM nível 7-10 53; provas-alvo nível 7-10 225; demais nível 7-10 261.
 
 ## Lotes
 
@@ -91,7 +91,8 @@ Faltam 2020 questões sem resolução (fora as que estão em lote, pendentes ou 
 | por-0083 | demais nível 1-6 | 30 | aberto |  |  |  |
 | por-0084 | demais nível 1-6 | 30 | gravado | 29 | 1 | 0 |
 | por-0085 | demais nível 1-6 | 30 | gravado | 29 | 1 | 0 |
-| por-0086 | demais nível 1-6 | 30 | aberto |  |  |  |
+| por-0086 | demais nível 1-6 | 30 | gravado | 29 | 1 | 0 |
+| por-0087 | demais nível 1-6 | 30 | aberto |  |  |  |
 
 ## Pendentes (falta de certeza absoluta)
 
@@ -159,6 +160,7 @@ Faltam 2020 questões sem resolução (fora as que estão em lote, pendentes ou 
 | P8944ccb0 | UERJ 2026 1º Exame de Qualificação · questão 4 | P06.1 metáfora, comparação e metonímia (tema P06 Figuras de linguagem) | classificação: é de Física. O poema serve só de contexto; o comando pergunta "A grandeza física associada a processos reais de emersão" e as alternativas são grandezas físicas (vazão, pressão, densidade, temperatura). A resposta (densidade, gabarito C) depende do empuxo e da comparação de densidades, conteúdo de Física, não de figura de linguagem. |
 | P211d44ff | UERJ 2026 2º Exame de Qualificação · questão 13 | P11.2 Romantismo: poesia das três gerações e prosa (tema P11 Literatura: do Barroco ao Simbolismo) | obra: a letra D (antecipar a transformação sofrida por Fernando) só se confirma pelo desfecho do romance Senhora. Nem o trecho, nem o enunciado, nem a nota sobre Pigmalião mostram que Fernando muda; o enunciado diz apenas que Aurélia destaca no retrato uma expressão honesta que deseja reconhecer no marido. Sem trazer o enredo do livro, não há como provar a D nem derrubar a A e a B pelo texto. |
 | P7ca5604c | UFJF 2025 PISM III · questão 1 | P02.1 tipos de argumento e como o autor sustenta a tese (tema P02 Argumentação) | print: o print da questão 1 traz só o comando e as alternativas; falta o Texto I ("Capitalismo com tração Sanguínea", de Emiliano Gullo), do qual depende a resposta. O texto está nas páginas 1 e 2 do caderno oficial do 1º dia (https://www2.ufjf.br/copese/wp-content/uploads/sites/42/2024/12/Pism-3-Saude-Dia-1.pdf). Refazer o print com o texto; a texto_da_prova da entrada também está vazia (só letras soltas). |
+| P61ea787b | UFJF 2025 PISM III · questão 3 | P02.3 ironia, humor e sentido implícito (tema P02 Argumentação) | print: o print da questão 3 não traz o Texto I (mesmo problema da P7ca5604c, UFJF PISM III 2025); o texto está nas p. 1–2 do caderno oficial do 1º dia (https://www2.ufjf.br/copese/wp-content/uploads/sites/42/2024/12/Pism-3-Saude-Dia-1.pdf). Refazer o print; há rascunho de resolução pela A. |
 | P63e225b8 | UFPR 2021 Fase única · questão 14 | P11.3 Realismo e Naturalismo, com Machado de Assis (tema P11 Literatura: do Barroco ao Simbolismo) | obra: a questão não traz trecho de Casa de Pensão e as cinco alternativas dependem do enredo (ordem dos acontecimentos, construção da casa de Madame Brizard, motivo da ida de Amâncio ao Rio, trajetória de Sabino e Cora, relação entre as histórias dos hóspedes). Pelas datas e pela escola só se derruba com segurança a E (o enunciado chama a obra de romance, e não de coletânea de contos); A, B, C e D só se separam com o livro. |
 | Pb571aea8 | UFPR 2022 Fase única · questão 38 | P11.1 Barroco e Arcadismo (tema P11 Literatura: do Barroco ao Simbolismo) | obra: as afirmativas 2, 3 e 4, que decidem a letra, tratam de personagens e episódios de O Uraguai que o fragmento não traz (Cacambo, a feiticeira Tanajura, o sonho de Lindoia, a destruição dos Sete Povos, as vozes de líderes militares portugueses). Só a 1 se julga em parte pelo trecho (versos sem rima); julgar as outras exige o enredo da obra inteira. |
 | Pce7fa972 | UFPR 2022 Fase única · questão 40 | P12.5 literatura contemporânea e autores africanos de língua portuguesa (tema P12 Literatura: Pré-Modernismo em diante) | obra: o comando pede o fragmento "e na leitura integral" de Nove noites, de Bernardo Carvalho; o trecho é narrado por alguém que esteve numa aldeia e os abandonou, "como todos os brancos", e isso caberia tanto ao narrador jornalista (E) quanto a Buell Quain (A) ou a uma carta de Manoel Perna (C). Saber quem narra o fragmento, se o narrador visitou o Xingu criança com o pai e qual a visão que predomina no livro depende do enredo inteiro. |
