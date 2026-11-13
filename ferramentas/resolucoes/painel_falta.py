@@ -125,6 +125,9 @@ body{{background:var(--bg);color:var(--fg);font-family:var(--txt);font-size:15px
 header{{display:grid;gap:6px}}
 h1{{font-family:var(--tit);font-weight:600;font-size:2.6rem;line-height:1.1;margin:0;text-wrap:balance}}
 .sub{{color:var(--suave);margin:0}}
+.site{{margin:2px 0 0;font-weight:600}}
+.site a{{color:var(--and);text-underline-offset:3px}}
+.site a:focus-visible{{outline:2px solid var(--and);outline-offset:2px;border-radius:4px}}
 .resumo{{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}}
 .n{{background:var(--sup);border:1px solid var(--linha);border-radius:12px;padding:14px 16px;display:grid;gap:2px}}
 .n b{{font-size:1.7rem;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.15}}
@@ -159,6 +162,7 @@ footer{{color:var(--suave);font-size:.82rem}}
 <header>
   <h1>O que falta no Aprendice</h1>
   <p class="sub">Atualizado em {agora} (horário de Brasília). {pub_txt}</p>
+  <p class="site">Site: <a href="https://aprendice.vercel.app" target="_blank" rel="noopener">aprendice.vercel.app</a></p>
 </header>
 <div class="resumo">
   <div class="n"><b>{pct}%</b><span>das questões de prova já resolvidas</span></div>
