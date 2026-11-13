@@ -25,7 +25,8 @@ const Z_DO_SIMBOLO = new Map(ELEMENTOS.map((s, i) => [s, i + 1]));
 // (raiz opcional, número com decimais, no máximo uma letra, expoentes)
 // (coeficiente e raiz juntos: "6√5/5" é (6√5) ÷ 5, o numerador inteiro vai em cima; letras: uma, ou um segmento
 // "AB", "Ab" (área da base), "xP" (abscissa de P))
-const TERMO = String.raw`\([^()\n]{1,40}\)|(?:\d+(?:[.,]\d+)*)?√?(?:\d+(?:[.,]\d+)*)?(?:[A-Z]{2}|[A-Z][a-z]|[xy][A-Z]|[a-zA-Zα-ωπθ])?[²³⁴⁵⁶⁷⁸⁹¹⁰⁻]*`;
+// "Δ" antes da letra ("ΔV²", "Δt", "ΔΦ") e índice depois dela ("v₂", "T₁", "B_f", "Δε_jul") fazem parte do termo
+const TERMO = String.raw`\([^()\n]{1,40}\)|(?:\d+(?:[.,]\d+)*)?√?(?:\d+(?:[.,]\d+)*)?Δ?(?:[A-Z]{2}|[A-Z][a-z]|[xy][A-Z]|[a-zA-Zα-ωπθΦ])?(?:_[A-Za-z0-9]+|[₀-₉]+|(?<=Δ[A-Za-z])\d+)?[²³⁴⁵⁶⁷⁸⁹¹⁰⁻]*`;
 const RE = new RegExp(`(${TERMO})/(${TERMO})`, 'g');
 const LETRA = /[A-Za-zÀ-ÿα-ωπθ]/;
 const ANTES_PROIBIDO = /[A-Za-zÀ-ÿ0-9.,/_\\-]/; // colado a uma palavra, número, data ou link
@@ -40,7 +41,7 @@ function semParenteses(x: string): string {
 function ehFracao(texto: string, ini: number, num: string, den: string): boolean {
   if (!num || !den) return false;
   // termo vazio por dentro (só "√" ou só expoente) não conta
-  const temValor = (x: string) => /[0-9a-zA-Zα-ωπθ]/.test(x);
+  const temValor = (x: string) => /[0-9a-zA-Zα-ωπθΦ]/.test(x);
   if (!temValor(num) || !temValor(den)) return false;
   const antes = texto.slice(0, ini);
   const fim = ini + num.length + 1 + den.length;
@@ -75,7 +76,7 @@ function ehFracao(texto: string, ini: number, num: string, den: string): boolean
   if (soLetras(num) && soLetras(den)) {
     const tira = (x: string) => x.replace(/[²³⁴⁵⁶⁷⁸⁹¹⁰⁻]/g, '');
     // depois de sinal, no começo, como argumento de função ("f(c/b)"), depois de "razão" ou antes de "=" ("a/g = 10/15")
-    const depoisDeSinal = /(^|[=+−\-×·÷≈<>→]\s*\(?)\s*$/.test(antes) || /(^|[^A-Za-zÀ-ÿ])[a-zA-Z]\($/.test(antes)
+    const depoisDeSinal = /(^|[=+−\-×·÷≈<>→√]\s*\(?)\s*$/.test(antes) || /(^|[^A-Za-zÀ-ÿ])[a-zA-Z]\($/.test(antes)
       || /\braz(ão|ões)\s+$/i.test(antes) || /^\s*[=≈]/.test(texto.slice(fim));
     if (!depoisDeSinal) return false;
     // no começo do texto, só letra de variável ou segmento ("a/b = c/d", "AB/CD"); "Wh/L (watt-hora...)" é unidade
@@ -87,7 +88,7 @@ function ehFracao(texto: string, ini: number, num: string, den: string): boolean
     // produto de unidades: "atm·L/K", "atm · L/(mol·K)"
     if (/[A-Za-zÀ-ÿ]{2,}\s*·\s*$/.test(antes)) return false;
     // dois símbolos de unidade ("m/s²", "g/L") só depois de "=": "d = m/V"
-    if (UNIDADE.has(tira(num)) && UNIDADE.has(tira(den)) && !/=\s*$/.test(antes)) return false;
+    if (UNIDADE.has(tira(num)) && UNIDADE.has(tira(den)) && !/(=\s*|√\s*\()$/.test(antes)) return false;
   }
   return true;
 }

@@ -239,3 +239,27 @@ describe('barra que não é fração (revisão em slides)', () => {
     expect(temFrac('t = 400/10 = 40 s')).toBe(true);
   });
 });
+
+describe('fração com Δ, índice e raiz empilha (Física, 13/11/2026)', () => {
+  it('Δ antes da letra e índice depois dela', () => {
+    expect(fr('C = 2U/ΔV²')).toEqual(['2U|ΔV²']);
+    expect(fr('U = C·ΔV²/2')).toEqual(['ΔV²|2']);
+    expect(fr('F_média = ΔQ/Δt')).toEqual(['ΔQ|Δt']);
+    expect(fr('ε ∝ ΔΦ/Δt')).toEqual(['ΔΦ|Δt']);
+    expect(fr('razão = v₂/v₁')).toEqual(['v₂|v₁']);
+    expect(fr('λ₂/λ₁ = 2')).toEqual(['λ₂|λ₁']);
+    expect(fr('v = v₁/6')).toEqual(['v₁|6']);
+    expect(fr('Δε_jul/Δε_jan = 3/4')).toEqual(['Δε_jul|Δε_jan', '3|4']);
+    expect(fr('k2 = (k1 × ΔL1)/ΔL2')).toEqual(['k1 × ΔL1|ΔL2']);
+  });
+  it('dentro de raiz', () => {
+    expect(fr('v₂/v₁ = √(h₂/h₁)')).toEqual(['v₂|v₁', 'h₂|h₁']);
+    expect(fr('t = √(2h/g)')).toEqual(['2h|g']);
+    expect(fr('v = √(g/h)')).toEqual(['g|h']);
+  });
+  it('unidades continuam na linha e o texto não muda', () => {
+    expect(fr('10 m/s')).toEqual([]);
+    expect(fr('concentração (g/L)')).toEqual([]);
+    for (const s of ['C = 2U/ΔV²', 'Δε_jul/Δε_jan = 3/4']) expect(junta(s)).toBe(s);
+  });
+});
