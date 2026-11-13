@@ -1,0 +1,663 @@
+{
+ "Pe1120636": {
+  "n": "71",
+  "conceito": "Sistema linear 2×2 escrito como produto de matrizes A · X = M.",
+  "equivocos": {
+   "A": "M04.3:valor-que-nao-fecha",
+   "B": "M04.3:trocou-as-incognitas",
+   "D": "M04.3:valor-que-nao-fecha",
+   "E": "M04.3:valor-que-nao-fecha"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A · X = M é só um sistema escrito em forma de matriz: cada linha de A vezes a coluna X dá um número de M. Dá para resolver pelo sistema ou pela inversa de A, que para 2×2 sai rápido porque o determinante é 1.",
+    "formulas": [
+     "3C + 5F = 115",
+     "C + 2F = 43",
+     "inversa 2×2: troca a diagonal principal, troca o sinal da outra e divide pelo determinante"
+    ],
+    "simbolos": [
+     [
+      "C",
+      "sacos de cimento"
+     ],
+     [
+      "F",
+      "barras de ferro"
+     ],
+     [
+      "A⁻¹",
+      "matriz inversa de A"
+     ],
+     [
+      "det",
+      "determinante: 3 · 2 − 5 · 1"
+     ]
+    ]
+   },
+   "pista": "Multiplique linha por coluna e escreva as duas equações.",
+   "passos": [
+    {
+     "faz": "Escreva o sistema",
+     "conta": "3C + 5F = 115 | C + 2F = 43",
+     "porque": "Linha de A vezes a coluna (C, F) é igual à linha correspondente de M.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole C na segunda",
+     "conta": "C = 43 − 2F",
+     "porque": "A segunda equação tem coeficiente 1 em C.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Substitua na primeira",
+     "conta": "3(43 − 2F) + 5F = 115 → 129 − F = 115 → F = 14",
+     "porque": "Sobra uma equação só em F.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache C",
+     "conta": "C = 43 − 2 · 14 = 15",
+     "porque": "Volta na equação já isolada.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Responda",
+     "conta": "15 sacos e 14 barras → alternativa C",
+     "porque": "C é cimento, F é ferro.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 15 sacos de cimento e 14 barras de ferro",
+   "checagem": "Pela inversa: det A = 3 · 2 − 5 · 1 = 1 e A⁻¹ = [2 −5; −1 3]; C = 2 · 115 − 5 · 43 = 15 e F = −115 + 3 · 43 = 14. Mesmo par.",
+   "erradas": {
+    "A": "10 e 15 não confere: 3 · 10 + 5 · 15 = 105, não 115.",
+    "B": "14 e 15 sai de trocar os papéis de C e F; e não confere: 3 · 14 + 5 · 15 = 117, não 115.",
+    "D": "15 e 11 não confere: 3 · 15 + 5 · 11 = 100, não 115.",
+    "E": "20 e 11 fecha a primeira linha (60 + 55 = 115), mas não a segunda: 20 + 2 · 11 = 42, não 43."
+   },
+   "armadilha": "Trocar a ordem C e F, ou conferir o par em uma linha só.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantos sacos de cimento e quantas barras de ferro.",
+    "chave": "A · X = M é o sistema 3C + 5F = 115 e C + 2F = 43, que dá C = 15 e F = 14.",
+    "cuidado": "Confira nas duas linhas e na ordem cimento, ferro."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "matriz inversa",
+    "ideia": "det A = 1, A⁻¹ = [2 −5; −1 3]; X = A⁻¹ · M dá C = 2 · 115 − 5 · 43 = 15 e F = −115 + 3 · 43 = 14."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "3C + 5F = 115",
+    "nota": "1.ª linha de A · X"
+   },
+   {
+    "linha": "C + 2F = 43",
+    "nota": "2.ª linha de A · X"
+   },
+   {
+    "linha": "3(43 − 2F) + 5F = 115",
+    "nota": "substitui C"
+   },
+   {
+    "linha": "129 − F = 115",
+    "nota": "distribui"
+   },
+   {
+    "linha": "F = 129 − 115 = 14",
+    "nota": "isola F"
+   },
+   {
+    "linha": "C = 43 − 2 · 14 = 15",
+    "nota": "volta em C"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0052"
+  }
+ },
+ "Pa37c9614": {
+  "n": "77",
+  "conceito": "Montar a parábola pela forma canônica (vértice) e um ponto, e calcular um valor.",
+  "equivocos": {
+   "A": "M05.2:valor-sem-calculo",
+   "B": "M05.2:valor-sem-calculo",
+   "D": "M05.2:valor-sem-calculo",
+   "E": "M05.2:instante-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O drone parte de (0, 0) e tem altura máxima 16 m em t = 4 s: o vértice é (4, 16). Na forma h(t) = a(t − 4)² + 16, só falta o a, que sai do ponto de partida.",
+    "formulas": [
+     "h(t) = a(t − tv)² + hv"
+    ],
+    "simbolos": [
+     [
+      "tv, hv",
+      "instante e altura do vértice: 4 s e 16 m"
+     ],
+     [
+      "a",
+      "coeficiente de t², negativo porque abre para baixo"
+     ]
+    ]
+   },
+   "pista": "Use o vértice (4, 16) na forma a(t − 4)² + 16 e descubra a com h(0) = 0.",
+   "passos": [
+    {
+     "faz": "Escreva pela forma do vértice",
+     "conta": "h(t) = a(t − 4)² + 16",
+     "porque": "O vértice é (4, 16).",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Use a decolagem",
+     "conta": "h(0) = a · 16 + 16 = 0 → a = −1",
+     "porque": "Em t = 0 a altura é zero.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule em t = 6",
+     "conta": "h(6) = −(6 − 4)² + 16 = −4 + 16 = 12",
+     "porque": "Dois segundos depois do vértice, o drone desce 2² = 4 m.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "12 m",
+     "porque": "É a alternativa C.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 12 m",
+   "checagem": "Por simetria: t = 6 está 2 s depois do vértice, como t = 2 está 2 s antes. Na forma expandida, h(t) = −t² + 8t, e h(2) = −4 + 16 = 12 = h(6).",
+   "erradas": {
+    "A": "Não confere: h(6) = −(6 − 4)² + 16 = 12. A altura 8 m só acontece quando (t − 4)² = 8, ou seja, t = 4 ± √8, e 6 não é um desses instantes.",
+    "B": "Não confere: h(6) = 12, e h(t) = −t² + 8t não dá 10 em t = 6.",
+    "D": "Não confere: h(6) = −36 + 48 = 12, não 14.",
+    "E": "Sai de calcular a altura em t = 5 em vez de t = 6: h(5) = −1 + 16 = 15."
+   },
+   "armadilha": "Usar a forma geral com três incógnitas e se perder no sistema; a forma do vértice deixa só o a.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A altura do drone em t = 6 s.",
+    "chave": "Vértice (4, 16) e h(0) = 0 dão h(t) = −(t − 4)² + 16.",
+    "cuidado": "Em t = 6, (6 − 4)² = 4: a altura cai 4 m."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "forma geral",
+    "ideia": "c = 0; −b/(2a) = 4 e h(4) = 16a + 4b = 16 dão a = −1, b = 8; h(6) = −36 + 48 = 12."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "h(t) = a(t − 4)² + 16",
+    "nota": "vértice (4, 16)"
+   },
+   {
+    "linha": "16a + 16 = 0 → a = −1",
+    "nota": "h(0) = 0"
+   },
+   {
+    "linha": "h(6) = −4 + 16 = 12",
+    "nota": "altura em t = 6"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0055"
+  }
+ },
+ "Pd26a927a": {
+  "n": "72",
+  "conceito": "Achar o padrão de palitos (PA 6, 11, 16, …) e somar as 15 primeiras figuras.",
+  "equivocos": {
+   "A": "M07.3:termo-no-lugar-da-soma",
+   "B": "M07.3:somou-termos-de-menos",
+   "C": "M07.3:somou-termos-de-menos",
+   "E": "M07.3:esqueceu-de-dividir-por-2"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada hexágono novo encosta no anterior e aproveita um lado: acrescenta 5 palitos. A figura n tem 5n + 1 palitos, uma PA. O comando pede o total para fazer as 15 figuras, ou seja, a soma dos 15 termos.",
+    "formulas": [
+     "palitos da figura n = 5n + 1",
+     "soma da PA = (primeiro + último) × número de termos/2"
+    ],
+    "simbolos": [
+     [
+      "PA",
+      "progressão aritmética: cada termo é o anterior mais um valor fixo"
+     ],
+     [
+      "n",
+      "número da figura"
+     ]
+    ]
+   },
+   "pista": "Conte os palitos das três figuras desenhadas e veja quanto aumenta de uma para a outra.",
+   "passos": [
+    {
+     "faz": "Conte os palitos das figuras dadas",
+     "conta": "figura 1: 6 | figura 2: 11 | figura 3: 16",
+     "porque": "O hexágono tem 6 lados; cada hexágono novo divide um lado com o anterior e acrescenta 5.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Escreva o termo geral e a 15.ª figura",
+     "conta": "an = 6 + (n − 1) × 5 = 5n + 1 → a15 = 76",
+     "porque": "PA de primeiro termo 6 e razão 5.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some as 15 figuras",
+     "conta": "S = (6 + 76) × 15/2 = 82 × 15/2 = 615",
+     "porque": "O comando quer palitos para todas as 15 figuras, não só para a última.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o total à alternativa",
+     "conta": "615 palitos → D",
+     "porque": "Soma dos palitos das figuras 1 a 15.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 615 palitos",
+   "checagem": "Separe a soma: 5 × (1 + 2 + … + 15) + 15 × 1 = 5 × 120 + 15 = 615. Bate com a soma da PA.",
+   "erradas": {
+    "A": "76 sai de responder só a 15.ª figura: 5 × 15 + 1 = 76. O comando pede as quinze figuras.",
+    "B": "147 não confere: só as duas últimas figuras já somam 71 + 76 = 147, e faltam as outras treze.",
+    "C": "153 não confere: as três últimas figuras sozinhas somam 66 + 71 + 76 = 213, mais que 153.",
+    "E": "1230 sai de esquecer a divisão por 2 na soma da PA: (6 + 76) × 15 = 1230."
+   },
+   "armadilha": "O comando pede os palitos de todas as quinze figuras, não os da 15.ª.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O total de palitos para montar as figuras 1 a 15.",
+    "chave": "Figura n tem 5n + 1 palitos; soma = (6 + 76) × 15/2 = 615.",
+    "cuidado": "Some todas as figuras e não esqueça o ÷ 2 da fórmula."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "separar",
+    "ideia": "5 × (1 + … + 15) + 15 = 5 × 120 + 15 = 615."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "6, 11, 16, …",
+    "nota": "figuras 1, 2, 3: +5 por figura"
+   },
+   {
+    "linha": "a15 = 5 × 15 + 1 = 76",
+    "nota": "15.ª figura"
+   },
+   {
+    "linha": "S = (6 + 76) × 15/2",
+    "nota": "soma da PA"
+   },
+   {
+    "linha": "S = 82 × 15/2 = 615",
+    "nota": "total de palitos"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0060"
+  }
+ },
+ "P9383ff15": {
+  "n": "70",
+  "conceito": "Área composta: retângulo mais trapézio, menos o círculo do canteiro, com π = 3.",
+  "equivocos": {
+   "A": "M08.5:decomposicao-errada",
+   "C": "M08.5:area-do-circulo-errada",
+   "D": "M08.5:area-do-todo-sem-subtrair",
+   "E": "M08.5:area-maior-que-a-figura-que-a-contem"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O parque é a soma de duas figuras simples, o retângulo de baixo e o trapézio de cima. O canteiro é um buraco dentro dele: a área que recebe piso é o total menos o círculo. O enunciado manda usar π = 3.",
+    "formulas": [
+     "retângulo = base × altura",
+     "trapézio = ((base maior + base menor)/2) × altura",
+     "círculo = π · r²"
+    ],
+    "simbolos": [
+     [
+      "trapézio retângulo",
+      "trapézio com um lado perpendicular às bases"
+     ],
+     [
+      "r",
+      "raio do canteiro, 2,5 m"
+     ]
+    ]
+   },
+   "pista": "Separe o desenho em três peças: duas que somam e uma que se tira.",
+   "passos": [
+    {
+     "faz": "Calcule o retângulo",
+     "conta": "6 × 4 → 24 m²",
+     "porque": "Região inferior de 6 m por 4 m.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o trapézio",
+     "conta": "((6 + 3)/2) × 14 → 4,5 × 14 → 63 m²",
+     "porque": "Média das bases, 6 m e 3 m, vezes a altura do trapézio, 14 m.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o canteiro",
+     "conta": "3 · 2,5² → 3 · 6,25 → 18,75 m²",
+     "porque": "Círculo com raio 2,5 m e π = 3, como manda o enunciado.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some e subtraia",
+     "conta": "24 + 63 − 18,75 → 87 − 18,75 → 68,25 m²",
+     "porque": "O piso cobre o parque inteiro menos o canteiro.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "68,25 m² → alternativa B",
+     "porque": "É a área que recebe piso.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 68,25 m²",
+   "checagem": "Pelo contorno: o parque cabe num retângulo de 6 m por 18 m, com 108 m². Falta o triângulo da esquerda do trapézio, de catetos 3 m e 14 m: (3 × 14)/2 = 21 m². 108 − 21 = 87 m², e 87 − 18,75 = 68,25 m². Fecha.",
+   "erradas": {
+    "A": "A não confere: 56 + 18,75 = 74,75 m², e o parque inteiro tem 24 + 63 = 87 m². Somando o canteiro de volta, teria de dar 87.",
+    "C": "C não confere: 87 − 72,50 = 14,50 m² de canteiro, mas o círculo tem 3 · 2,5² = 18,75 m².",
+    "D": "D sai de somar retângulo e trapézio, 24 + 63 = 87 m², sem tirar o canteiro.",
+    "E": "E não confere: 112 m² passa da área do parque inteiro, 87 m², e a área do piso tem de ser menor."
+   },
+   "armadilha": "Parar na área total do parque (87 m²) e esquecer de tirar o canteiro.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A área do parque que recebe piso, sem o canteiro circular.",
+    "chave": "24 + 63 − 18,75 = 68,25 m².",
+    "cuidado": "Use π = 3, como o enunciado manda, e tire o canteiro no fim."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "retângulo envolvente",
+    "ideia": "6 × 18 = 108, menos o triângulo (3 × 14)/2 = 21, dá 87; tirando 18,75 do canteiro, 68,25 m²."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "6 × 4 = 24",
+    "nota": "retângulo"
+   },
+   {
+    "linha": "((6 + 3)/2) × 14 = 63",
+    "nota": "trapézio"
+   },
+   {
+    "linha": "3 · 2,5² = 18,75",
+    "nota": "canteiro, π = 3"
+   },
+   {
+    "linha": "24 + 63 − 18,75 = 68,25",
+    "nota": "total menos canteiro"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0061"
+  }
+ },
+ "P33d2a02d": {
+  "n": "73",
+  "conceito": "Conversão de ângulo em graus e minutos para radianos.",
+  "equivocos": {
+   "A": "M10.4:ignorou-os-minutos",
+   "B": "M10.4:ignorou-os-minutos",
+   "C": "M10.4:esqueceu-denominador-da-fracao",
+   "D": "M10.4:dividiu-por-2-o-angulo-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Antes de converter para radianos, o ângulo precisa estar só em graus. Um grau tem 60 minutos, então 30 minutos são meio grau. Depois, a conversão é a regra de três 180° ↔ π rad.",
+    "formulas": [
+     "1° = 60′",
+     "ângulo em rad = ângulo em graus × π/180"
+    ],
+    "simbolos": [
+     [
+      "′",
+      "minuto de grau: a sexagésima parte de um grau"
+     ],
+     [
+      "rad",
+      "radiano"
+     ],
+     [
+      "π rad",
+      "equivale a 180°"
+     ]
+    ]
+   },
+   "pista": "Transforme os 30 minutos em fração de grau antes de pensar em π.",
+   "passos": [
+    {
+     "faz": "Passe os minutos para grau",
+     "conta": "30′ = 30/60 grau → 30′ = 1/2 grau",
+     "porque": "Cada grau tem 60 minutos; 30 minutos são metade de um grau.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escreva o ângulo só em graus",
+     "conta": "15° + 1/2° = 15,5° → 15,5° = 31/2 grau",
+     "porque": "Escrever 15,5 como fração evita decimal dentro da fração com π.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Converta para radianos",
+     "conta": "(31/2) × π/180 → 31π/360 rad",
+     "porque": "Multiplicar por π/180 transforma grau em radiano; o 2 do denominador multiplica o 180 e dá 360.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "31π/360 rad → alternativa E",
+     "porque": "É exatamente a forma da alternativa E.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 31π/360 rad",
+   "checagem": "Volte para graus: 31π/360 × 180/π = 31/2 = 15,5°, ou seja, 15° e meio grau, que são 15°30′. Fecha.",
+   "erradas": {
+    "A": "π/12 rad sai de converter só os 15°: 15 × π/180 = π/12. Os 30 minutos ficaram de fora.",
+    "B": "15π/180 rad é o mesmo valor de π/12 (15°): ignora os 30 minutos.",
+    "C": "31π/180 rad sai de escrever 15,5 como 31/2 e esquecer o 2 do denominador: 31π/180 corresponde a 31°, o dobro do ângulo.",
+    "D": "15π/360 rad não confere: voltando para graus, 15π/360 × 180/π = 7,5°, menos da metade de 15°30′."
+   },
+   "armadilha": "Os 30 minutos não são 0,30 grau nem podem ser ignorados: valem meio grau.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O valor de 15°30′ em radianos.",
+    "chave": "30′ = 1/2 grau, então 15°30′ = 31/2 grau, e (31/2) × π/180 = 31π/360.",
+    "cuidado": "Converta os minutos antes e não perca o 2 do denominador."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "tudo em minutos",
+    "ideia": "15°30′ = 930′ e 180° = 10 800′; então 930/10 800 × π = 31π/360."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "30′ = 30/60 = 1/2 grau",
+    "nota": "minutos viram fração de grau"
+   },
+   {
+    "linha": "15°30′ = 15 + 1/2 = 31/2 grau",
+    "nota": "ângulo só em graus"
+   },
+   {
+    "linha": "(31/2) × π/180 = 31π/360 rad",
+    "nota": "converte para radianos"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0063"
+  }
+ },
+ "Pfb387a90": {
+  "n": "74",
+  "conceito": "Seno de ângulo não notável por redução ao 1º quadrante e seno da diferença.",
+  "equivocos": {
+   "A": "M10.4:errou-o-denominador",
+   "B": "M10.4:trocou-sinal-da-formula-da-diferenca",
+   "C": "M10.4:seno-maior-que-1",
+   "E": "M10.4:substituiu-valor-notavel-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "165° não é notável, mas 165° = 180° − 15°, e no 2º quadrante o seno se mantém: sen 165° = sen 15°. Já 15° = 45° − 30°, diferença de dois ângulos notáveis, e aí entra a fórmula do seno da diferença.",
+    "formulas": [
+     "sen(180° − x) = sen x",
+     "sen(a − b) = sen a · cos b − cos a · sen b"
+    ],
+    "simbolos": [
+     [
+      "sen",
+      "seno"
+     ],
+     [
+      "cos",
+      "cosseno"
+     ]
+    ]
+   },
+   "pista": "Primeiro leve 165° para o 1º quadrante; depois escreva o ângulo como diferença de dois notáveis.",
+   "passos": [
+    {
+     "faz": "Reduza ao 1º quadrante",
+     "conta": "sen 165° = sen(180° − 15°) → sen 165° = sen 15°",
+     "porque": "Ângulos suplementares têm o mesmo seno: 165° e 15° são simétricos em relação ao eixo vertical.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escreva 15° como diferença",
+     "conta": "sen 15° = sen(45° − 30°) → sen 45° · cos 30° − cos 45° · sen 30°",
+     "porque": "45° e 30° são notáveis, e a fórmula do seno da diferença os separa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Substitua os valores notáveis",
+     "conta": "(√2/2) · (√3/2) − (√2/2) · (1/2) → √6/4 − √2/4 → (√6 − √2)/4",
+     "porque": "√2 · √3 = √6, e os denominadores 2 · 2 dão 4 nas duas parcelas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "sen 165° = (√6 − √2)/4 → alternativa D",
+     "porque": "É exatamente o valor da alternativa D.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — sen 165° = (√6 − √2)/4",
+   "checagem": "Pela aproximação: (2,449 − 1,414)/4 ≈ 0,259. Um seno de 15° tem de ser pequeno e positivo (menor que sen 30° = 0,5), e 0,259 é isso mesmo.",
+   "erradas": {
+    "A": "(√6 − √2)/2 sai de esquecer que os denominadores 2 · 2 dão 4: o valor fica o dobro do certo, cerca de 0,52, maior que sen 30°.",
+    "B": "(√6 + √2)/4 sai de trocar o sinal da fórmula: é sen(45° + 30°) = sen 75° ≈ 0,966, não sen 15°.",
+    "C": "(2 + √6 + √2)/4 não confere: vale cerca de 1,47, e nenhum seno passa de 1.",
+    "E": "(√6 − √3)/2 não confere: vale cerca de 0,359, e o seno de 165° (igual ao de 15°) é cerca de 0,259."
+   },
+   "armadilha": "Usar sen(45° + 30°) ou errar o sinal da fórmula dá o seno de 75°, que aparece como alternativa B.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O valor exato de sen 165°.",
+    "chave": "sen 165° = sen 15° = sen(45° − 30°) = (√6 − √2)/4.",
+    "cuidado": "Na diferença, o sinal entre as parcelas é de menos; os denominadores somam 4."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "120° + 45°",
+    "ideia": "sen(120° + 45°) = (√3/2)(√2/2) + (−1/2)(√2/2) = (√6 − √2)/4, sem reduzir antes."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "sen 165° = sen(180° − 15°) = sen 15°",
+    "nota": "redução ao 1º quadrante"
+   },
+   {
+    "linha": "sen 15° = sen 45° · cos 30° − cos 45° · sen 30°",
+    "nota": "seno da diferença"
+   },
+   {
+    "linha": "= (√2/2)(√3/2) − (√2/2)(1/2)",
+    "nota": "valores notáveis"
+   },
+   {
+    "linha": "= √6/4 − √2/4 = (√6 − √2)/4",
+    "nota": "mesmo denominador"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0063"
+  }
+ }
+}

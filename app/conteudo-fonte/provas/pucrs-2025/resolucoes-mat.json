@@ -1,0 +1,516 @@
+{
+ "P8ab50075": {
+  "n": "20",
+  "conceito": "Juros compostos com amortizações de metade da dívida.",
+  "equivocos": {
+   "A": "M03.3:sem-origem-identificada",
+   "B": "M03.3:sem-origem-identificada",
+   "D": "M03.3:esqueceu-os-juros"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A cada mês, a dívida cresce 1% (multiplica por 1,01) e depois é paga metade dela (multiplica por 0,5).",
+    "formulas": [
+     "dívida = X · (1,01 · 0,5)²"
+    ],
+    "simbolos": []
+   },
+   "pista": "Quanto se deve logo antes do primeiro pagamento?",
+   "passos": [
+    {
+     "faz": "1.º mês",
+     "conta": "X · 1,01 · 0,5 = 0,505X",
+     "porque": "Juros e metade.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "2.º mês",
+     "conta": "0,505X · 1,01 · 0,5 = 0,255025X",
+     "porque": "De novo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Porcentagem",
+     "conta": "25,5025% → alternativa C",
+     "porque": "De X.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 25,5025%",
+   "checagem": "Com X = 10 000: 10 100 → paga 5 050; resta 5 050 → 5 100,50 → paga 2 550,25; resta 2 550,25 = 25,5025% de 10 000. Confere.",
+   "erradas": {
+    "A": "25,6% exigiria juros de 2,4% em dois meses (0,256 ÷ 0,25 = 1,024), mas 1,01² = 1,0201.",
+    "B": "25,525% exigiria fator 0,25525; (1,01 · 0,5)² = 0,255025.",
+    "D": "25% esquece os juros (0,5 · 0,5)."
+   },
+   "armadilha": "Esquecer os juros e fazer só 1/2 · 1/2 = 25%.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Percentual devido.",
+    "chave": "(1,01 · 0,5)² = 0,255025.",
+    "cuidado": "Juros antes de cada pagamento."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "fatores",
+    "ideia": "Juros: 1,01² = 1,0201; pagamentos: 0,5² = 0,25. 1,0201 · 0,25 = 0,255025."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "0,505X",
+    "nota": "1.º mês"
+   },
+   {
+    "linha": "0,255025X",
+    "nota": "2.º mês"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0049"
+  }
+ },
+ "Pb6e3c98a": {
+  "n": "13",
+  "conceito": "Montar um sistema de inequações a partir de 'no mínimo' e 'disponível'.",
+  "equivocos": {
+   "A": "M04.4:sinais-invertidos-e-escala",
+   "B": "M04.4:escala-esquecida",
+   "C": "M04.4:sinais-invertidos"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os coeficientes do sistema estão multiplicados por 10: margarina 0,5; 0,6; 0,4 viram 5, 6, 4, e leite 0,4; 0,5; 0,6 L viram 4, 5, 6. Então os lados direitos também vão multiplicados por 10. 'No mínimo' é ≥; 'disponível' é ≤.",
+    "formulas": [
+     "mínimo → ≥",
+     "disponível (máximo) → ≤"
+    ],
+    "simbolos": [
+     [
+      "x, y, z",
+      "kg de farinha de cada confeiteiro"
+     ]
+    ]
+   },
+   "pista": "Escreva a condição da margarina com os coeficientes 0,5; 0,6; 0,4 e compare com 5x + 6y + 4z.",
+   "passos": [
+    {
+     "faz": "Margarina",
+     "conta": "0,5x + 0,6y + 0,4z ≥ 7 → 5x + 6y + 4z ≥ 70",
+     "porque": "Tabletes por kg de farinha; no mínimo 7; multiplique por 10.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Leite",
+     "conta": "0,4x + 0,5y + 0,6z ≤ 8 → 4x + 5y + 6z ≤ 80",
+     "porque": "Litros por kg; só há 8 L; multiplique por 10.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Farinha",
+     "conta": "x + y + z ≤ 14",
+     "porque": "Só há 14 kg.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Responda",
+     "conta": "≥ 70, ≤ 80, ≤ 14 → alternativa D",
+     "porque": "De cima para baixo.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — ≥ 70, ≤ 80, ≤ 14",
+   "checagem": "Exemplo: x = y = z = 4 (12 kg) dá margarina 0,5 · 4 + 0,6 · 4 + 0,4 · 4 = 6 tabletes; na forma do sistema, 20 + 24 + 16 = 60 = 10 · 6. O fator 10 confirma os lados direitos 70 e 80.",
+   "erradas": {
+    "A": "≤ 7, ≥ 8, ≥ 14 inverte os sinais e esquece o fator 10 dos coeficientes.",
+    "B": "≥ 7, ≤ 8, ≤ 14 tem os sinais certos, mas não multiplica 7 e 8 por 10, como foi feito com os coeficientes.",
+    "C": "≤ 70, ≥ 80, ≥ 14 multiplica por 10, mas inverte os sinais: 'no mínimo' é ≥ e 'disponível' é ≤."
+   },
+   "armadilha": "Copiar 7 e 8 sem perceber que os coeficientes 5, 6, 4 e 4, 5, 6 já estão multiplicados por 10.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Completar os lados direitos do sistema.",
+    "chave": "Margarina ≥ 70, leite ≤ 80, farinha ≤ 14 (tudo na escala ×10, menos a farinha).",
+    "cuidado": "Mínimo é ≥; disponível é ≤; multiplique os dois lados por 10."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "dividir por 10",
+    "ideia": "Divida 5x + 6y + 4z por 10 e veja 0,5x + 0,6y + 0,4z: tem de ser ≥ 7, logo 5x + 6y + 4z ≥ 70."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "0,5x + 0,6y + 0,4z ≥ 7",
+    "nota": "margarina, no mínimo 7"
+   },
+   {
+    "linha": "10 · 7 = 70",
+    "nota": "multiplica tudo por 10: 5x + 6y + 4z ≥ 70"
+   },
+   {
+    "linha": "0,4x + 0,5y + 0,6z ≤ 8",
+    "nota": "leite, até 8 L"
+   },
+   {
+    "linha": "10 · 8 = 80",
+    "nota": "multiplica por 10: 4x + 5y + 6z ≤ 80"
+   },
+   {
+    "linha": "x + y + z ≤ 14",
+    "nota": "farinha disponível"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0051"
+  }
+ },
+ "P77e8b288": {
+  "n": "17",
+  "conceito": "Contar interseções entre parábolas e a curva do cosseno, comparando faixas de valores.",
+  "equivocos": {
+   "B": "M05.3:esqueceu-o-ponto-de-tangencia",
+   "C": "M05.3:inverteu-a-ordem",
+   "D": "M05.3:inverteu-a-ordem"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O cosseno fica sempre entre −1 e 1. A parábola x² + 1 nunca fica abaixo de 1 e só vale 1 em x = 0. A parábola x² − 1 começa em −1 e sobe, cruzando a faixa do cosseno de um lado e do outro.",
+    "formulas": [
+     "−1 ≤ cos x ≤ 1",
+     "x² ≥ 0"
+    ],
+    "simbolos": [
+     [
+      "h(x) = cos x",
+      "curva que oscila entre −1 e 1"
+     ],
+     [
+      "ponto de interseção",
+      "ponto em que dois gráficos têm o mesmo y"
+     ]
+    ]
+   },
+   "pista": "Compare os valores de cada parábola em x = 0 com cos 0 = 1.",
+   "passos": [
+    {
+     "faz": "Compare g com h",
+     "conta": "g(x) = x² + 1 ≥ 1 ≥ cos x",
+     "porque": "g nunca fica abaixo de 1, e o cosseno nunca passa de 1.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Ache onde g e h se tocam",
+     "conta": "igualdade só se x² = 0 e cos x = 1 → x = 0 → 1 ponto",
+     "porque": "Fora de x = 0, g(x) > 1 ≥ cos x.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare f com h",
+     "conta": "f(0) = −1 < cos 0 = 1 | f(2) = 3 > cos 2",
+     "porque": "Em x = 0, f está abaixo; em x = 2, acima. Entre eles, cruza uma vez.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Conte pela simetria",
+     "conta": "f e h são pares → um ponto com x > 0 e outro com x < 0 → 2 pontos",
+     "porque": "Para |x| ≥ √2, f(x) ≥ 1 ≥ cos x; o único cruzamento de cada lado fica antes disso, onde f sobe e cos x desce.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 2 e 1",
+   "checagem": "Esboce: o cosseno é uma onda entre −1 e 1. A parábola x² + 1 tem vértice em (0, 1), bem no pico do cosseno, e se afasta para cima. A parábola x² − 1 tem vértice em (0, −1) e sobe atravessando a onda uma vez de cada lado.",
+   "erradas": {
+    "B": "Esquece o ponto de contato (0, 1): em x = 0, g(0) = 1 = cos 0, e os gráficos se tocam ali.",
+    "C": "Troca as ordens: a pergunta pede primeiro f com h (2 pontos) e depois g com h (1 ponto).",
+    "D": "Troca as ordens e erra a contagem: f e h se cruzam em 2 pontos, e g e h se tocam em 1."
+   },
+   "armadilha": "Achar que, se a parábola só encosta no cosseno sem cruzar, não há interseção: o ponto (0, 1) conta.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantos pontos comuns têm f e h, e g e h.",
+    "chave": "x² + 1 ≥ 1 ≥ cos x, igualdade só em x = 0; x² − 1 cruza o cosseno uma vez de cada lado.",
+    "cuidado": "Ponto de tangência também é interseção."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "esboço dos gráficos",
+    "ideia": "Desenhe a onda do cosseno e as duas parábolas de vértice (0, −1) e (0, 1)."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "x² + 1 ≥ 1 ≥ cos x",
+    "nota": "g e h: só x = 0"
+   },
+   {
+    "linha": "f(0) = −1 < 1 = cos 0",
+    "nota": "f abaixo em 0"
+   },
+   {
+    "linha": "f(2) = 3 > cos 2",
+    "nota": "f acima em 2"
+   },
+   {
+    "linha": "2 pontos (simetria) e 1 ponto",
+    "nota": "resposta"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0055"
+  }
+ },
+ "Pc93d5da5": {
+  "n": "14",
+  "conceito": "Comparar dois crescimentos exponenciais de bases diferentes por meio de uma inequação exponencial.",
+  "equivocos": {
+   "A": "M06.2:inequacao-mal-resolvida",
+   "C": "M06.2:ignorou-igualdade",
+   "D": "M06.2:nao-pegou-o-minimo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A começa com 729 e dobra por semana; B começa com 64 e triplica. Depois de n semanas, A = 729 × 2^n e B = 64 × 3^n. A pergunta é o menor n com B ≥ A. Repare que 729 = 3^6 e 64 = 2^6: isso faz tudo virar uma potência de 3/2.",
+    "formulas": [
+     "A(n) = 729 × 2^n",
+     "B(n) = 64 × 3^n",
+     "729/64 = 3^6/2^6 = (3/2)^6"
+    ],
+    "simbolos": [
+     [
+      "n",
+      "número de semanas"
+     ]
+    ]
+   },
+   "pista": "Escreva as duas populações depois de n semanas e monte a desigualdade B ≥ A.",
+   "passos": [
+    {
+     "faz": "Monte as duas funções",
+     "conta": "A(n) = 729 × 2^n | B(n) = 64 × 3^n",
+     "porque": "Dobrar a cada semana é multiplicar por 2 a cada semana; triplicar, por 3.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Escreva a condição",
+     "conta": "64 × 3^n ≥ 729 × 2^n → 3^n/2^n ≥ 729/64",
+     "porque": "Dividir os dois lados por números positivos (64 e 2^n) não muda o sentido.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Reconheça a mesma base",
+     "conta": "(3/2)^n ≥ (3/2)^6",
+     "porque": "729 = 3^6 e 64 = 2^6.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare os expoentes",
+     "conta": "n ≥ 6",
+     "porque": "A base 3/2 é maior que 1, então a potência cresce com o expoente e o sentido se mantém.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Responda o menor tempo",
+     "conta": "n = 6 semanas → alternativa B",
+     "porque": "O primeiro n que satisfaz é 6; nessa semana as duas populações empatam, e o enunciado aceita igual.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 6 semanas",
+   "checagem": "Conte direto: com 5 semanas, A = 729 × 32 = 23328 e B = 64 × 243 = 15552 (B ainda menor). Com 6 semanas, A = 729 × 64 = 46656 e B = 64 × 729 = 46656 (empate).",
+   "erradas": {
+    "A": "5 não confere: com 5 semanas B = 15552 e A = 23328, B ainda é menor.",
+    "C": "7 é uma semana depois do necessário: desde a 6.ª semana B já é igual a A, e o enunciado aceita maior ou igual.",
+    "D": "8 é duas semanas depois do necessário: desde a 6.ª semana B já é igual a A."
+   },
+   "armadilha": "O enunciado pede maior ou igual: o empate na 6.ª semana já conta.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O menor número de semanas para B alcançar ou passar A.",
+    "chave": "64 × 3^n ≥ 729 × 2^n dá (3/2)^n ≥ (3/2)^6, n ≥ 6.",
+    "cuidado": "Perceba 729 = 3^6 e 64 = 2^6, e aceite o empate."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "tabela semanal",
+    "ideia": "Liste A e B semana a semana: a 6.ª é a primeira em que B alcança A (46656 = 46656)."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "64 × 3^n ≥ 729 × 2^n",
+    "nota": "condição B ≥ A"
+   },
+   {
+    "linha": "3^n/2^n ≥ 729/64",
+    "nota": "divide por 64 e por 2^n"
+   },
+   {
+    "linha": "(3/2)^n ≥ (3/2)^6",
+    "nota": "729 = 3^6, 64 = 2^6"
+   },
+   {
+    "linha": "n ≥ 6",
+    "nota": "base maior que 1"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0057"
+  }
+ },
+ "P97a57de0": {
+  "n": "11",
+  "conceito": "Triângulo retângulo com ângulos de 30° e 60°: catetos pela hipotenusa e tempo de cada trecho por distância ÷ velocidade.",
+  "equivocos": {
+   "A": "M10.3:tempo-de-s-errado",
+   "B": "M10.3:tempo-de-s-errado",
+   "D": "M10.3:tempo-de-s-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Ângulo de 30° em A e de 60° em B fazem o terceiro ângulo, em O, valer 90°: AB = 25 km é a hipotenusa. Os catetos saem de seno e cosseno de 30°. Depois é física de sala: tempo = distância ÷ velocidade, trecho por trecho. A frase pede duas coisas: se S chegou antes ou depois de V e o tempo de S.",
+    "formulas": [
+     "ângulo em O = 180° − 30° − 60°",
+     "AO = AB · cos 30° | OB = AB · sen 30°",
+     "tempo = distância ÷ velocidade"
+    ],
+    "simbolos": [
+     [
+      "cos 30°",
+      "√3/2, que a prova manda usar como 1,7/2"
+     ],
+     [
+      "sen 30°",
+      "1/2"
+     ],
+     [
+      "hipotenusa",
+      "lado oposto ao ângulo reto"
+     ]
+    ]
+   },
+   "pista": "Descubra primeiro o ângulo em O: ele diz qual lado é a hipotenusa.",
+   "passos": [
+    {
+     "faz": "Ache o ângulo em O",
+     "conta": "180° − 30° − 60° → 90°",
+     "porque": "Com o ângulo reto em O, AB = 25 km é a hipotenusa, e AO e OB são catetos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule os dois trechos de S",
+     "conta": "AO = 25 · 1,7/2 → AO = 21,25 km | OB = 25 · 1/2 → OB = 12,5 km",
+     "porque": "AO é adjacente ao ângulo de 30° (cosseno); OB é oposto a ele (seno). A prova manda usar √3 = 1,7.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o tempo de S",
+     "conta": "21,25/34 + 12,5/20 = 0,625 + 0,625 → 1,25 h = 1h15min",
+     "porque": "Cada trecho tem a sua velocidade, então o tempo é calculado trecho por trecho e somado. 0,25 h = 15 min.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o tempo de V",
+     "conta": "25/25 → 1 h",
+     "porque": "V vai em linha reta de A a B, 25 km a 25 km/h.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare e complete a frase",
+     "conta": "1h15min > 1 h → depois, no tempo de 1h15min → alternativa C",
+     "porque": "S levou mais tempo que V, então chegou depois; o tempo de S é 1h15min.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — depois; 1h15min",
+   "checagem": "Confira em minutos, por proporção: a 34 km/h, S anda 17 km em 30 min, e 21,25 km é 17 km mais um quarto disso (21,25/17 = 1,25), então leva 30 × 1,25 = 37,5 min; a 20 km/h, cada km leva 3 min, e 12,5 km levam 12,5 × 3 = 37,5 min. Total 75 min = 1h15min, contra 60 min de V: S chega depois.",
+   "erradas": {
+    "A": "antes, 45min não confere: S leva 37,5 min no primeiro trecho e 37,5 min no segundo, 75 min no total, mais que os 60 min de V.",
+    "B": "antes, 50min não confere: os dois trechos de S somam 0,625 h + 0,625 h = 1,25 h, mais que a 1 h de V; S não chega antes.",
+    "D": "depois, 1h25min não confere: 1h25min = 85 min, e os trechos de S dão 21,25/34 + 12,5/20 = 1,25 h = 75 min."
+   },
+   "armadilha": "A velocidade muda no ponto O: o tempo de S é a soma dos tempos de cada trecho, cada um com a sua velocidade.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Se S chegou antes ou depois de V e o tempo do percurso de S.",
+    "chave": "Triângulo retângulo em O: AO = 21,25 km e OB = 12,5 km; tempo de S = 21,25/34 + 12,5/20 = 1,25 h, contra 1 h de V.",
+    "cuidado": "Calcule o tempo de cada trecho separado; não use uma velocidade só para o percurso todo."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "lei dos senos",
+    "ideia": "Com o ângulo de 90° em O, AO = 25 · sen 60°/sen 90° e OB = 25 · sen 30°/sen 90° dão os mesmos 21,25 km e 12,5 km."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "Ô = 180° − 30° − 60° = 90°",
+    "nota": "triângulo retângulo em O"
+   },
+   {
+    "linha": "AO = 25 · 1,7/2 = 21,25 km",
+    "nota": "cateto adjacente ao 30°"
+   },
+   {
+    "linha": "OB = 25 · 1/2 = 12,5 km",
+    "nota": "cateto oposto ao 30°"
+   },
+   {
+    "linha": "tS = 21,25/34 + 12,5/20 = 0,625 + 0,625 = 1,25 h",
+    "nota": "tempo de S, trecho por trecho"
+   },
+   {
+    "linha": "tV = 25/25 = 1 h → S chega depois, em 1h15min",
+    "nota": "comparação"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0062"
+  }
+ }
+}

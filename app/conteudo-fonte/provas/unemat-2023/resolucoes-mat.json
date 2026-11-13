@@ -1,0 +1,503 @@
+{
+ "P56a24f51": {
+  "n": "10",
+  "conceito": "Vazão de torneiras e registro: somar e subtrair taxas.",
+  "equivocos": {
+   "B": "M02.4:so-a-segunda-fase",
+   "C": "M02.4:taxa-liquida-na-caixa-toda",
+   "D": "M02.4:so-a-primeira-fase",
+   "E": "M02.4:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Duas torneiras juntas enchem em 3 h, então cada uma enche em 6 h (taxa 1/6 por hora). O registro esvazia em 4 h (taxa −1/4 por hora). Divida o enchimento em duas fases.",
+    "formulas": [
+     "taxa da torneira = 1/6",
+     "taxa do registro = −1/4"
+    ],
+    "simbolos": []
+   },
+   "pista": "Quanto tempo uma torneira sozinha leva para encher metade?",
+   "passos": [
+    {
+     "faz": "Taxa de uma torneira",
+     "conta": "juntas 1/3 → cada 1/6 por hora",
+     "porque": "Mesma vazão.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Fase 1",
+     "conta": "metade com uma torneira: (1/2) ÷ (1/6) = 3 h",
+     "porque": "Registro fechado.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Taxa da fase 2",
+     "conta": "1/6 + 1/6 − 1/4 = 1/12 por hora",
+     "porque": "Duas torneiras e registro.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Fase 2",
+     "conta": "(1/2) ÷ (1/12) = 6 h",
+     "porque": "Outra metade.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Total",
+     "conta": "3 + 6 = 9 h → alternativa A",
+     "porque": "Caixa cheia.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 9 horas.",
+   "checagem": "Teste 9 h pelo trabalho de cada um: a 1.ª torneira trabalha 9 h (9/6 = 1,5 caixa), a 2.ª trabalha 6 h (6/6 = 1 caixa) e o registro 6 h (tira 6/4 = 1,5 caixa). Saldo 1,5 + 1 − 1,5 = 1 caixa cheia. Confere.",
+   "erradas": {
+    "B": "6 h é só a segunda fase.",
+    "C": "12 h seria o tempo para encher a caixa toda com a taxa líquida 1/12.",
+    "D": "3 h é só a primeira fase (ou o tempo das duas torneiras sem o registro).",
+    "E": "Em 8 h: 3 h da fase 1 (1/2) + 5 h da fase 2 (5/12) enchem 11/12 da caixa."
+   },
+   "armadilha": "Usar a taxa de uma torneira como 1/3 (o tempo das duas juntas) e errar as fases.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Tempo total para encher.",
+    "chave": "3 h + 6 h = 9 h.",
+    "cuidado": "Cada torneira sozinha: 6 h."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "em litros",
+    "ideia": "Escolha 12 unidades de volume: torneira 2 por hora, registro 3 por hora. Fase 1: 6 unidades em 3 h; fase 2: saldo de 1 por hora, 6 unidades em 6 h."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "metade com uma torneira: (1/2) ÷ (1/6) = 3 h",
+    "nota": "Fase 1"
+   },
+   {
+    "linha": "1/6 + 1/6 − 1/4 = 1/12 por hora",
+    "nota": "Taxa da fase 2"
+   },
+   {
+    "linha": "(1/2) ÷ (1/12) = 6 h",
+    "nota": "Fase 2"
+   },
+   {
+    "linha": "3 + 6 = 9 h",
+    "nota": "Total"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0047"
+  }
+ },
+ "P16f1af45": {
+  "n": "11",
+  "conceito": "Desconto que desfaz aumentos sucessivos.",
+  "equivocos": {
+   "A": "M03.2:sem-origem-identificada",
+   "C": "M03.2:sem-origem-identificada",
+   "D": "M03.2:somou-as-porcentagens",
+   "E": "M03.2:aumento-como-desconto"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os dois aumentos multiplicam o preço por 1,6 · 1,25 = 2. Para voltar ao preço inicial, é preciso multiplicar por 1/2, isto é, dar 50% de desconto.",
+    "formulas": [
+     "fator do desconto = 1 ÷ fator dos aumentos"
+    ],
+    "simbolos": []
+   },
+   "pista": "Por quanto o preço foi multiplicado depois dos dois aumentos?",
+   "passos": [
+    {
+     "faz": "Aumentos",
+     "conta": "1,6 · 1,25 = 2",
+     "porque": "O preço dobrou.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Voltar",
+     "conta": "2 · (1 − d) = 1 → d = 0,5 → alternativa B",
+     "porque": "Desconto.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 50%",
+   "checagem": "Com preço 100: 160, depois 200; 50% de desconto em 200 dá 100. Confere.",
+   "erradas": {
+    "A": "62,5% de desconto deixaria 200 · 0,375 = 75, abaixo do original.",
+    "C": "45% deixaria 200 · 0,55 = 110, acima do original.",
+    "D": "85% = 60% + 25%: somou os aumentos; deixaria só 30.",
+    "E": "100% de desconto zera o preço; 100% é o aumento total, não o desconto."
+   },
+   "armadilha": "Somar os aumentos (85%) e dar esse desconto.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Desconto necessário.",
+    "chave": "Fator 2 → desconto de 50%.",
+    "cuidado": "Desconto se aplica ao preço já aumentado."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "regra",
+    "ideia": "Para desfazer um fator f, o desconto é 1 − 1/f = 1 − 1/2 = 50%."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "1,6 · 1,25 = 2",
+    "nota": "aumentos"
+   },
+   {
+    "linha": "50%",
+    "nota": "resposta"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0049"
+  }
+ },
+ "Paf421299": {
+  "n": "16",
+  "conceito": "Duas funções afins com o mesmo P: comparar diretamente as fórmulas.",
+  "equivocos": {
+   "A": "M05.1:valor-que-nao-fecha",
+   "B": "M05.1:valor-que-nao-fecha",
+   "C": "M05.1:sentido-invertido",
+   "D": "M05.1:sentido-invertido"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "As duas fórmulas usam o mesmo 5P e diferem só no número somado: 28 no Brasil e 32 em Portugal. A diferença entre os números é (32 − 28)/4 = 1, qualquer que seja o pé.",
+    "formulas": [
+     "S_Brasil = (5P + 28)/4",
+     "S_Portugal = (5P + 32)/4"
+    ],
+    "simbolos": [
+     [
+      "S",
+      "número do calçado"
+     ],
+     [
+      "P",
+      "tamanho do pé, em cm"
+     ]
+    ]
+   },
+   "pista": "Ache o tamanho do pé pela numeração brasileira.",
+   "passos": [
+    {
+     "faz": "Use a fórmula brasileira",
+     "conta": "(5P + 28)/4 = 38 → 5P + 28 = 152",
+     "porque": "O 4 passa multiplicando.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache P",
+     "conta": "5P = 124 → P = 24,8 cm",
+     "porque": "Tamanho do pé.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Aplique a fórmula portuguesa",
+     "conta": "(5 · 24,8 + 32)/4 = 156/4 = 39",
+     "porque": "Mesmo pé, outra fórmula.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "39 → alternativa E",
+     "porque": "Numeração em Portugal.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 39",
+   "checagem": "Subtraindo as fórmulas: S_Portugal − S_Brasil = (32 − 28)/4 = 1, então 38 + 1 = 39 sem calcular P.",
+   "erradas": {
+    "A": "41 não confere: daria diferença de 3, mas a diferença é sempre (32 − 28)/4 = 1.",
+    "B": "40 não confere: diferença de 2, e a diferença das fórmulas é 1.",
+    "C": "36 não confere: Portugal soma 32, mais que 28, então o número português é maior que 38.",
+    "D": "37 sai de subtrair a diferença em vez de somar: 38 − 1."
+   },
+   "armadilha": "Portugal soma 32 e o Brasil 28: o número português é maior, não menor.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A numeração portuguesa do tênis 38 brasileiro.",
+    "chave": "P = 24,8 cm; (5 · 24,8 + 32)/4 = 39.",
+    "cuidado": "A diferença é +1 para Portugal."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "diferença das fórmulas",
+    "ideia": "(5P + 32)/4 − (5P + 28)/4 = 4/4 = 1: some 1 a 38."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "(5P + 28)/4 = 38",
+    "nota": "Brasil"
+   },
+   {
+    "linha": "5P + 28 = 152",
+    "nota": "o 4 passa multiplicando"
+   },
+   {
+    "linha": "5P = 124",
+    "nota": "o 28 passa subtraindo"
+   },
+   {
+    "linha": "P = 124/5 = 24,8",
+    "nota": "o 5 passa dividindo"
+   },
+   {
+    "linha": "(5 · 24,8 + 32)/4 = 39",
+    "nota": "Portugal"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0053"
+  }
+ },
+ "P7707e8db": {
+  "n": "17",
+  "conceito": "Ler valores de uma função definida por várias sentenças num gráfico e calcular uma expressão.",
+  "equivocos": {
+   "B": "M05.4:valor-sem-calculo",
+   "C": "M05.4:valor-sem-calculo",
+   "D": "M05.4:valor-sem-calculo",
+   "E": "M05.4:valor-sem-calculo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada pedaço do gráfico vale num intervalo. Para cada valor pedido, ache o pedaço e leia ou calcule. O trecho de 2 a 6 é uma reta: use dois pontos dela para achar f(4).",
+    "formulas": [
+     "inclinação = Δy/Δx"
+    ],
+    "simbolos": [
+     [
+      "f(a)",
+      "altura do gráfico em x = a"
+     ]
+    ]
+   },
+   "pista": "Localize o pedaço de cada x: 1, 4, −2 e −1/2.",
+   "passos": [
+    {
+     "faz": "Leia f(−2) e f(−1/2)",
+     "conta": "reta de (−5, −4) a (−1, 0): f(−2) = −1 | trecho constante: f(−1/2) = 2",
+     "porque": "Na reta da esquerda, y = x + 1; entre −1 e 0, o gráfico é horizontal na altura 2.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Leia f(1)",
+     "conta": "curva de (0, 3) a (2, −1): f(1) = 2",
+     "porque": "A curva passa pela marca 2 em x = 1.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule f(4)",
+     "conta": "reta de (2, −1) a (5, 3): inclinação = (3 − (−1))/(5 − 2) = 4/3 → f(4) = −1 + 2 · 4/3 = 5/3",
+     "porque": "A reta da direita passa pelos pontos da grade (2, −1) e (5, 3); de x = 2 a x = 4 ela sobe 2 · 4/3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte r",
+     "conta": "r = 2 · 5/3 − (−1) · 2 = 10/3 + 2 = 16/3",
+     "porque": "Menos com menos vira mais.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 16/3",
+   "checagem": "Confira a reta da direita pelo zero: com inclinação 4/3 saindo de (2, −1), ela zera em x = 2 + 3/4 = 2,75, entre 2 e 3, como no gráfico.",
+   "erradas": {
+    "B": "Não confere: r = 10/3 + 2 = 16/3 ≈ 5,33, não 12.",
+    "C": "Não confere: r = 16/3 ≈ 5,33; 3 não sai dos valores lidos.",
+    "D": "Não confere: r = 16/3; 5/2 = 2,5 fica longe.",
+    "E": "Não confere: r = 16/3 ≈ 5,33, e 12/3 = 4."
+   },
+   "armadilha": "Errar o sinal: f(−2) é negativo, e subtrair (−1) · 2 = −2 é somar 2.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O valor de r = f(1) · f(4) − f(−2) · f(−1/2).",
+    "chave": "f(1) = 2, f(4) = 5/3, f(−2) = −1, f(−1/2) = 2; r = 16/3.",
+    "cuidado": "Cuidado com o sinal de f(−2) e com a reta da direita."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "só sinais",
+    "ideia": "f(1) · f(4) > 0 e f(−2) · f(−1/2) < 0, então r passa de f(1) · f(4) = 10/3: sobram A, B e E, e a conta final decide."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "f(−2) = −1 | f(−1/2) = 2",
+    "nota": "trechos da esquerda"
+   },
+   {
+    "linha": "f(1) = 2",
+    "nota": "curva"
+   },
+   {
+    "linha": "inclinação = 4/3 → f(4) = −1 + 8/3 = 5/3",
+    "nota": "reta da direita"
+   },
+   {
+    "linha": "r = 10/3 + 2 = 16/3",
+    "nota": "expressão"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0056"
+  }
+ },
+ "P3b6f93db": {
+  "n": "13",
+  "conceito": "Calcular o volume da arquibancada como soma das colunas dos degraus (PA de alturas) vezes o comprimento.",
+  "equivocos": {
+   "B": "M07.3:usou-o-bloco-inteiro",
+   "C": "M07.3:termo-no-lugar-da-soma",
+   "D": "M07.3:termo-no-lugar-da-soma",
+   "E": "M07.3:esqueceu-as-medidas"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Corte a arquibancada de lado: o perfil é formado por 15 colunas de largura 1/2 m, com alturas 1/4, 2/4, …, 15/4 m (sobe 1/4 m por degrau). A área do perfil é a soma das áreas dessas colunas, uma PA. O volume é essa área vezes os 50 m de comprimento.",
+    "formulas": [
+     "área do perfil = soma das colunas (largura × altura)",
+     "1 + 2 + … + n = n(n + 1)/2",
+     "volume = área do perfil × comprimento"
+    ],
+    "simbolos": [
+     [
+      "perfil",
+      "o desenho da arquibancada vista de lado"
+     ],
+     [
+      "PA",
+      "progressão aritmética: cada termo é o anterior mais um valor fixo"
+     ],
+     [
+      "m³",
+      "metro cúbico, unidade de volume"
+     ]
+    ]
+   },
+   "pista": "Olhe a arquibancada de lado e divida o perfil em colunas, uma por degrau.",
+   "passos": [
+    {
+     "faz": "Descreva cada coluna do perfil",
+     "conta": "coluna k: largura 1/2 m | altura k/4 m (k = 1 a 15)",
+     "porque": "A altura cresce 1/4 m a cada degrau, a partir de 1/4 m no primeiro, conforme a figura.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Some as áreas das colunas",
+     "conta": "1/2 × 1/4 × (1 + 2 + … + 15) = 1/8 × 120 = 15 m²",
+     "porque": "A largura e o passo de altura são comuns e saem da soma; 1 + 2 + … + 15 = (15 × 16)/2 = 120.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique pelo comprimento",
+     "conta": "15 m² × 50 m = 750 m³",
+     "porque": "O perfil se repete ao longo dos 50 m: volume de prisma = área do perfil × comprimento.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o volume à alternativa",
+     "conta": "750 m³ → A",
+     "porque": "É o volume de todo o concreto.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 750 m³",
+   "checagem": "Use a média das colunas: a altura média é (1/4 + 15/4)/2 = 2 m e a largura total é 15 × 1/2 = 7,5 m. Área = 7,5 × 2 = 15 m², volume = 15 × 50 = 750 m³.",
+   "erradas": {
+    "B": "11.250/8 m³ sai de tomar o bloco retangular inteiro, sem descontar os vãos dos degraus: (15/2) × (15/4) × 50 = 11 250/8.",
+    "C": "750/8 m³ sai de calcular só a coluna mais alta: 1/2 × 15/4 × 50 = 750/8. Faltam as outras 14 colunas.",
+    "D": "50/8 m³ sai de calcular só a primeira coluna: 1/2 × 1/4 × 50 = 50/8.",
+    "E": "11.250 m³ sai de contar o bloco em degraus sem as medidas: 15 × 15 × 50 = 11 250; esquece a largura de 1/2 m e a altura de 1/4 m."
+   },
+   "armadilha": "O concreto não é um bloco retangular: cada coluna tem uma altura, e o volume é a soma de uma PA de colunas.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O volume de concreto da arquibancada de 15 degraus e 50 m de comprimento.",
+    "chave": "Perfil = 1/2 × 1/4 × (1 + … + 15) = 15 m²; volume = 15 × 50 = 750 m³.",
+    "cuidado": "Some as 15 colunas; não use o retângulo inteiro nem só uma coluna."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "altura média",
+    "ideia": "Altura média das colunas 2 m, largura 7,5 m: 7,5 × 2 × 50 = 750 m³."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "coluna k: 1/2 × k/4",
+    "nota": "área de cada coluna"
+   },
+   {
+    "linha": "1 + 2 + … + 15 = 120",
+    "nota": "soma da PA"
+   },
+   {
+    "linha": "1/8 × 120 = 15",
+    "nota": "área do perfil, em m²"
+   },
+   {
+    "linha": "15 × 50 = 750",
+    "nota": "volume, em m³"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0060"
+  }
+ }
+}

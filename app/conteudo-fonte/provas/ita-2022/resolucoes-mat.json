@@ -1,0 +1,350 @@
+{
+ "Pb98ae589": {
+  "n": "41",
+  "conceito": "Propriedades do logaritmo: juntar parcelas na mesma base e reconhecer uma potência.",
+  "equivocos": {
+   "A": "M06.3:valor-nao-confere",
+   "C": "M06.3:valor-nao-confere",
+   "D": "M06.3:valor-nao-confere",
+   "E": "M06.3:valor-nao-confere"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "As duas primeiras parcelas já estão na base 120. A terceira está na base 14400 = 120^2, e trocar a base por seu quadrado divide o logaritmo por 2. Com tudo na base 120, os coeficientes viram expoentes e as somas viram produto.",
+    "formulas": [
+     "n × log_b a = log_b (a^n)",
+     "log_(b^2) a = (1/2) × log_b a",
+     "log_b A + log_b B = log_b (A × B)"
+    ],
+    "simbolos": [
+     [
+      "log_120",
+      "logaritmo na base 120"
+     ]
+    ]
+   },
+   "pista": "Repare que 14400 = 120^2.",
+   "passos": [
+    {
+     "faz": "Passe a terceira parcela para a base 120",
+     "conta": "2 log_14400 125 = 2 × (1/2) log_120 125 = log_120 125",
+     "porque": "14400 = 120^2, e log na base b^2 é metade do log na base b.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Suba os coeficientes para os expoentes",
+     "conta": "9 log_120 2 + 3 log_120 3 = log_120 (2^9 × 3^3) = log_120 13824",
+     "porque": "2^9 = 512 e 3^3 = 27; 512 × 27 = 13824.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Junte tudo num log só",
+     "conta": "x = log_120 (13824 × 125) = log_120 1728000",
+     "porque": "Soma de logs na mesma base é log do produto.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Reconheça a potência",
+     "conta": "1728000 = 120^3 → x = 3",
+     "porque": "120^3 = 1728000; também 2^9 × 3^3 × 5^3 = (2^3 × 3 × 5)^3 = 120^3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Responda",
+     "conta": "x = 3 → alternativa B",
+     "porque": "É o valor de x.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — x = 3",
+   "checagem": "Fatore em primos: 120 = 2^3 × 3 × 5, então 120^3 = 2^9 × 3^3 × 5^3. Os expoentes 9, 3 e 3 são exatamente os coeficientes 9 e 3 e o 125 = 5^3 da questão.",
+   "erradas": {
+    "A": "x = 2 não confere: 120^2 = 14400, bem menor que 1728000.",
+    "C": "x = 4 não confere: 120^4 = 207360000, muito maior que 1728000.",
+    "D": "x = 5 não confere: 120^5 = 24883200000, muito maior que 1728000.",
+    "E": "x = 6 não confere: 120^6 é cerca de 3 × 10^12, muito maior que 1728000."
+   },
+   "armadilha": "A base 14400 é 120^2: ao passar para a base 120, o logaritmo cai pela metade.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O valor de x = 9 log_120 2 + 3 log_120 3 + 2 log_14400 125.",
+    "chave": "Tudo na base 120: log_120 (2^9 × 3^3 × 5^3) = log_120 120^3 = 3.",
+    "cuidado": "Ao trocar a base pelo seu quadrado, divida o log por 2."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "fatoração",
+    "ideia": "120^3 = 2^9 × 3^3 × 5^3, e esses são exatamente os fatores que aparecem nos logaritmos."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "2 log_14400 125 = log_120 125",
+    "nota": "14400 = 120^2"
+   },
+   {
+    "linha": "x = log_120 (2^9 × 3^3 × 5^3)",
+    "nota": "coeficientes viram expoentes"
+   },
+   {
+    "linha": "x = log_120 1728000",
+    "nota": "13824 × 125"
+   },
+   {
+    "linha": "x = log_120 120^3 = 3",
+    "nota": "120^3 = 1728000"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0057"
+  }
+ },
+ "P733e79f7": {
+  "n": "42",
+  "conceito": "Mediatriz de um segmento e Pitágoras duas vezes para achar a distância de um ponto a uma reta.",
+  "equivocos": {
+   "A": "M09.4:distancia-errada-a-reta",
+   "B": "M09.4:distancia-errada-a-reta",
+   "C": "M09.4:distancia-errada-a-reta",
+   "D": "M09.4:distancia-errada-a-reta"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Ponto equidistante de A e C está na mediatriz de AC, a reta perpendicular a AC pelo ponto médio M. Então a distância de O à reta r é o segmento OM. Falta só AC, que sai de Pitágoras no triângulo ABC, e depois OM sai de Pitágoras no triângulo AMO.",
+    "formulas": [
+     "Pitágoras: hipotenusa² = cateto² + cateto²",
+     "O equidistante de A e C ⇒ O está na mediatriz de AC"
+    ],
+    "simbolos": [
+     [
+      "r",
+      "a reta que passa por A e C"
+     ],
+     [
+      "M",
+      "ponto médio de AC"
+     ],
+     [
+      "mediatriz",
+      "reta perpendicular a um segmento pelo seu ponto médio"
+     ],
+     [
+      "m(AO)",
+      "medida do segmento AO"
+     ]
+    ]
+   },
+   "pista": "Pergunte onde ficam todos os pontos que estão à mesma distância de A e de C.",
+   "passos": [
+    {
+     "faz": "Calcule a hipotenusa AC",
+     "conta": "AC² = 10² + 24² → AC² = 676 → AC = 26",
+     "porque": "O triângulo é retângulo em B, então AC é a hipotenusa e AB, BC são os catetos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Localize o pé da perpendicular",
+     "conta": "O na mediatriz de AC → pé em M, com AM = 26/2 = 13",
+     "porque": "Como OA = OC, O está na mediatriz de AC, que cruza r em ângulo reto no ponto médio M. Logo a distância de O a r é OM.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Aplique Pitágoras no triângulo AMO",
+     "conta": "OM² = 85² − 13² → OM² = 7225 − 169 = 7056 → OM = 84",
+     "porque": "AMO é retângulo em M, com hipotenusa AO = 85 e cateto AM = 13.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o valor à alternativa",
+     "conta": "OM = 84 → alternativa E",
+     "porque": "A distância pedida é OM. O dado de O estar do mesmo lado que B só fixa a posição de O; não muda a distância.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 84",
+   "checagem": "13, 84, 85 é uma terna pitagórica conhecida: 13² + 84² = 169 + 7056 = 7225 = 85². E 10, 24, 26 é o dobro da terna 5, 12, 13. As duas contas fecham.",
+   "erradas": {
+    "A": "64 não confere: 64² + 13² = 4265, e não 85² = 7225.",
+    "B": "66 não confere: 66² + 13² = 4525, longe de 7225.",
+    "C": "74 não confere: 74² + 13² = 5645, e não 7225.",
+    "D": "76 não confere: 76² + 13² = 5945, e não 7225."
+   },
+   "armadilha": "Usar o AC inteiro (26) como cateto no triângulo com O; o pé da perpendicular é o ponto médio, então o cateto é 13.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A distância de O, equidistante de A e C, à reta AC.",
+    "chave": "O está na mediatriz de AC: AC = 26, AM = 13 e OM = √(85² − 13²) = 84.",
+    "cuidado": "Use a metade de AC, pois a perpendicular cai no ponto médio."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "terna pitagórica",
+    "ideia": "Reconheça 5, 12, 13 (×2) para AC = 26 e 13, 84, 85 para OM = 84, sem calcular raiz."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "AC² = 10² + 24² = 100 + 576 = 676",
+    "nota": "Pitágoras em ABC"
+   },
+   {
+    "linha": "AC = 26 → AM = 26/2 = 13",
+    "nota": "O na mediatriz: pé no ponto médio"
+   },
+   {
+    "linha": "OM² = 85² − 13² = 7225 − 169",
+    "nota": "Pitágoras em AMO"
+   },
+   {
+    "linha": "OM² = 7056 → OM = 84",
+    "nota": "raiz quadrada"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0062"
+  }
+ },
+ "P59cc1373": {
+  "n": "53",
+  "conceito": "Desigualdade com cossenos de ângulos de um triângulo: redução ao 1.º quadrante por suplementos e monotonia do cosseno.",
+  "equivocos": {
+   "A": "M10.4:nao-testou-contraexemplo",
+   "B": "M10.4:nao-testou-contraexemplo",
+   "D": "M10.4:nao-testou-contraexemplo",
+   "E": "M10.4:nao-reduziu-a-desigualdade"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Num triângulo α + β + θ = 180°, então cada arco da desigualdade pode ser reescrito como 180° menos ou mais alguma coisa: β + θ = 180° − α e α + 2β = 180° + (β − θ). Isso troca os dois cossenos por −cos α e −cos(β − θ). Como o cosseno decresce de 0° a 180°, comparar cossenos vira comparar ângulos.",
+    "formulas": [
+     "α + β + θ = 180°",
+     "cos(180° − x) = −cos x e cos(180° + x) = −cos x",
+     "cos é decrescente em [0°, 180°] e cos(−x) = cos x"
+    ],
+    "simbolos": [
+     [
+      "α, β, θ",
+      "ângulos internos do triângulo"
+     ],
+     [
+      "acutângulo",
+      "triângulo com os três ângulos agudos (escrito actuângulo na prova)"
+     ],
+     [
+      "obtusângulo",
+      "triângulo com um ângulo maior que 90°"
+     ],
+     [
+      "|β − θ|",
+      "valor absoluto da diferença entre β e θ"
+     ]
+    ]
+   },
+   "pista": "Use α + β + θ = 180° para reescrever β + θ e α + 2β como 180° mais ou menos um ângulo.",
+   "passos": [
+    {
+     "faz": "Reescreva o 1.º cosseno",
+     "conta": "cos(β + θ) = cos(180° − α) → cos(β + θ) = −cos α",
+     "porque": "β + θ é o que falta para α completar 180°.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Reescreva o 2.º cosseno",
+     "conta": "α + 2β = 180° + (β − θ) → cos(α + 2β) = −cos(β − θ)",
+     "porque": "α + 2β = (α + β + θ) + β − θ; somar 180° troca o sinal do cosseno.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Troque cossenos por ângulos",
+     "conta": "−cos α ≤ −cos(β − θ) → cos α ≥ cos|β − θ| → α ≤ |β − θ|",
+     "porque": "Multiplicar por −1 inverte o sinal; α e |β − θ| estão entre 0° e 180°, onde o cosseno decresce, e cosseno maior significa ângulo menor.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tire a conclusão sobre o maior ângulo",
+     "conta": "β ≥ θ: α + θ ≤ β → 180° − β ≤ β → β ≥ 90°",
+     "porque": "Se θ ≥ β, a mesma conta dá θ ≥ 90°. Em qualquer caso, há um ângulo de 90° ou mais.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "ângulo ≥ 90° → não é acutângulo → alternativa C",
+     "porque": "Um triângulo com ângulo reto ou obtuso não pode ter os três ângulos agudos.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — o triângulo não é acutângulo",
+   "checagem": "Teste o equilátero, que é acutângulo: cos(120°) = −0,5 e cos(180°) = −1, e −0,5 ≤ −1 é falso. Já o triângulo 45°, 90°, 45° dá cos 135° = cos 225° ≈ −0,707: vale com igualdade.",
+   "erradas": {
+    "A": "Não se garante: α = 30°, β = 120°, θ = 30° é isósceles e satisfaz, pois cos 150° ≈ −0,866 ≤ cos 270° = 0.",
+    "B": "Não se garante: α = 45°, β = 90°, θ = 45° é retângulo e satisfaz com igualdade, cos 135° = cos 225° ≈ −0,707.",
+    "D": "Não se garante: o triângulo 30°, 120°, 30° é obtusângulo e satisfaz a desigualdade.",
+    "E": "Não confere: a desigualdade obriga β ≥ 90° ou θ ≥ 90°, então garante que o triângulo não é acutângulo."
+   },
+   "armadilha": "Ao multiplicar −cos α ≤ −cos(β − θ) por −1, o sinal da desigualdade inverte; e cosseno maior corresponde a ângulo menor.",
+   "alerta": "A prova escreve \"actuângulo\" e \"isóceles\"; as formas corretas são acutângulo e isósceles. Isso não muda a questão.",
+   "essencial": {
+    "pede": "O que se garante sobre o triângulo se cos(β + θ) ≤ cos(α + 2β).",
+    "chave": "Com α + β + θ = 180°, a desigualdade vira α ≤ |β − θ|, que obriga β ou θ a medir pelo menos 90°.",
+    "cuidado": "Inverta o sinal ao multiplicar por −1 e lembre que o cosseno decresce em [0°, 180°]."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste de casos",
+    "ideia": "O equilátero falha (−0,5 ≤ −1 é falso), enquanto um retângulo e um obtusângulo isósceles passam; só C resiste."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "cos(β + θ) = −cos α",
+    "nota": "β + θ = 180° − α"
+   },
+   {
+    "linha": "cos(α + 2β) = −cos(β − θ)",
+    "nota": "α + 2β = 180° + β − θ"
+   },
+   {
+    "linha": "−cos α ≤ −cos(β − θ) → cos α ≥ cos(β − θ)",
+    "nota": "multiplicou por −1"
+   },
+   {
+    "linha": "α ≤ |β − θ|",
+    "nota": "cosseno decrescente"
+   },
+   {
+    "linha": "α + θ ≤ β → β ≥ 90°",
+    "nota": "trocou α + θ por 180° − β"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0062"
+  }
+ }
+}

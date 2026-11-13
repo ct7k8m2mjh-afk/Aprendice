@@ -1,0 +1,471 @@
+{
+ "P8be84563": {
+  "n": "34",
+  "conceito": "Minimizar o tempo total distribuindo velocidades entre trechos: o trecho mais longo vai com a maior velocidade.",
+  "equivocos": {
+   "A": "M04.5:valor-que-nao-fecha",
+   "C": "M04.5:pareamento-errado",
+   "D": "M04.5:pareamento-errado",
+   "E": "M04.5:pior-caso-no-lugar-do-melhor"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Tempo de cada trecho é distância dividida pela velocidade. Para o total ser o menor possível, a maior velocidade deve ficar com o trecho mais longo, e a menor com o mais curto. São só 6 combinações; a regra evita testar todas.",
+    "formulas": [
+     "tempo = distância ÷ velocidade",
+     "menor tempo: maior velocidade no maior trecho"
+    ],
+    "simbolos": [
+     [
+      "km/h",
+      "quilômetros percorridos em uma hora"
+     ]
+    ]
+   },
+   "pista": "Ordene os trechos e as velocidades do maior para o menor antes de dividir.",
+   "passos": [
+    {
+     "faz": "Ordene trechos e velocidades",
+     "conta": "trechos: 18 > 15 > 9 | velocidades: 10 > 9 > 6",
+     "porque": "Casar maior com maior faz os trechos longos andarem rápido.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule cada tempo",
+     "conta": "18/10 + 15/9 + 9/6 = 1,8 + 1,666... + 1,5",
+     "porque": "Cada trecho com a sua velocidade.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some",
+     "conta": "1,8 + 5/3 + 1,5 = 149/30 h ≈ 4,9667 h",
+     "porque": "Somando em fração fica exato.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Converta a parte decimal",
+     "conta": "0,9667 h · 60 = 58 min → 4 h 58 min",
+     "porque": "A parte depois da vírgula é fração de hora, não minutos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "4 h 58 min → alternativa B",
+     "porque": "É o menor tempo entre as combinações.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 4 h e 58 min",
+   "checagem": "As seis combinações dão 5 h 18, 5 h 24, 4 h 58, 5 h 34, 5 h 00 e 5 h 30 min; a menor é 4 h 58 min.",
+   "erradas": {
+    "A": "4 h 48 min não confere: nenhuma das seis distribuições dá esse tempo; a menor é 4 h 58 min.",
+    "C": "5 h 24 min sai de 15 km a 6 km/h, 9 km a 10 km/h e 18 km a 9 km/h: 2,5 + 0,9 + 2 = 5,4 h.",
+    "D": "5 h 30 min sai de 15 km a 10 km/h, 9 km a 9 km/h e 18 km a 6 km/h: 1,5 + 1 + 3 = 5,5 h.",
+    "E": "5 h 34 min é o pior caso: 15 km a 9 km/h, 9 km a 10 km/h e 18 km a 6 km/h dão 5,5666... h, o maior tempo possível."
+   },
+   "armadilha": "Ler 4,9667 h como 4 h 96 min ou ignorar que o maior trecho precisa da maior velocidade.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O menor tempo total para os três trechos.",
+    "chave": "18/10 + 15/9 + 9/6 = 149/30 h = 4 h 58 min.",
+    "cuidado": "Converta a parte decimal da hora multiplicando por 60."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "testar todas",
+    "ideia": "São 3! = 6 maneiras de distribuir as velocidades; calcule as seis e escolha a menor."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "18/10 + 15/9 + 9/6 = 149/30",
+    "nota": "maior trecho com maior velocidade"
+   },
+   {
+    "linha": "149/30 = 4 + 29/30",
+    "nota": "4 horas inteiras"
+   },
+   {
+    "linha": "29/30 · 60 = 58",
+    "nota": "minutos"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0053"
+  }
+ },
+ "P3d57713e": {
+  "n": "29",
+  "conceito": "Depreciação percentual mensal: achar o número de meses com logaritmos.",
+  "equivocos": {
+   "B": "M06.5:conta-errada-do-log",
+   "C": "M06.5:conta-errada-do-log",
+   "D": "M06.5:conta-errada-do-log",
+   "E": "M06.5:conta-errada-do-log"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Primeiro descubra quanto foi aplicado: metade da herança no apartamento, um terço do RESTO no carro, e o que sobra em ações. Depois, perder 2% ao mês é multiplicar por 0,98 a cada mês. O valor caiu de 300 mil para 150 mil, ou seja, à metade, e o log resolve.",
+    "formulas": [
+     "fator mensal = 1 − 0,02 = 0,98",
+     "log 0,98 = log (2 × 7²) − 2"
+    ],
+    "simbolos": [
+     [
+      "n",
+      "número de meses com as ações"
+     ],
+     [
+      "log",
+      "logaritmo na base 10"
+     ]
+    ]
+   },
+   "pista": "Calcule o valor aplicado em ações antes de montar qualquer exponencial.",
+   "passos": [
+    {
+     "faz": "Ache o valor aplicado",
+     "conta": "900 000 − 450 000 = 450 000 | carro: 450000/3 = 150 000 | ações: 450 000 − 150 000 = 300 000",
+     "porque": "O terço é do restante (450 mil), não da herança toda.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Monte a equação",
+     "conta": "300 000 · 0,98ⁿ = 150 000 → 0,98ⁿ = 150000/300000 = 1/2",
+     "porque": "Perder 2% ao mês multiplica o saldo por 0,98; o 300 000 vai dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule log 0,98",
+     "conta": "log 0,98 = log 98 − 2 = log 2 + 2 log 7 − 2 = 0,301 + 1,690 − 2 = −0,009",
+     "porque": "98 = 2 × 7² e 0,98 = 98/100.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva para n",
+     "conta": "n × (−0,009) = −0,301 → n = 0,301/0,009 ≈ 33,4",
+     "porque": "log (1/2) = −log 2; o −0,009 que multiplica vai dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache o intervalo",
+     "conta": "33,4 ∈ [33; 35) → alternativa A",
+     "porque": "n fica entre 33 e 35 meses.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — n está no intervalo [33; 35)",
+   "checagem": "Com logaritmos exatos, log 0,5 ÷ log 0,98 ≈ 34,3, ainda dentro de [33; 35). E 0,98³⁴ ≈ 0,503, praticamente a metade. Fecha.",
+   "erradas": {
+    "B": "[35; 37) não confere: com n = 35, 0,98³⁵ ≈ 0,493, já abaixo da metade, e n ≈ 33,4 pelos logs dados.",
+    "C": "[37; 39) não confere: com n = 37, 0,98³⁷ ≈ 0,474, o saldo já estaria em cerca de 142 mil.",
+    "D": "[39; 41) não confere: com n = 39, 0,98³⁹ ≈ 0,455, cerca de 136 mil.",
+    "E": "[41; 43) não confere: com n = 41, 0,98⁴¹ ≈ 0,437, cerca de 131 mil."
+   },
+   "armadilha": "Calcular o carro como um terço da herança toda (300 mil) e errar o valor aplicado: o terço é do restante.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O intervalo que contém o número de meses n.",
+    "chave": "Aplicou 300 mil; 300 000 · 0,98ⁿ = 150 000 dá n = 0,301/0,009 ≈ 33,4.",
+    "cuidado": "O terço é do restante, e a perda de 2% é multiplicativa."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste de potência",
+    "ideia": "Sem log: 0,98³³ ≈ 0,513 e 0,98³⁵ ≈ 0,493; a metade fica entre 33 e 35."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "ações = 450 000 − 150 000 = 300 000",
+    "nota": "metade e um terço do resto"
+   },
+   {
+    "linha": "300 000 · 0,98ⁿ = 150 000",
+    "nota": "perda de 2% ao mês"
+   },
+   {
+    "linha": "0,98ⁿ = 150000/300000",
+    "nota": "o 300 000 vai dividindo"
+   },
+   {
+    "linha": "0,98ⁿ = 1/2",
+    "nota": "simplifica"
+   },
+   {
+    "linha": "n × (−0,009) = −0,301",
+    "nota": "log dos dois lados"
+   },
+   {
+    "linha": "n = 0,301/0,009",
+    "nota": "o −0,009 vai dividindo"
+   },
+   {
+    "linha": "n ≈ 33,4",
+    "nota": "intervalo [33; 35)"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0058"
+  }
+ },
+ "Pbaa0138c": {
+  "n": "35",
+  "conceito": "Reflexão em espelhos planos: ângulos iguais com o espelho, triângulos 30-60-90 e raio que volta pelo mesmo caminho.",
+  "equivocos": {
+   "B": "M09.1:dividiu-por-3-sem-motivo",
+   "C": "M09.1:contou-so-a-ida",
+   "D": "M09.1:trajeto-menor-que-o-minimo",
+   "E": "M09.1:valor-sem-conta"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Em cada reflexão, o raio sai do espelho com o mesmo ângulo com que chegou. Siga o raio de espelho em espelho: se em algum momento ele bater perpendicular a um espelho, volta exatamente pelo mesmo caminho até a lanterna. Então o trajeto total é o dobro do caminho de ida até esse ponto.",
+    "formulas": [
+     "ângulo do raio com o espelho na chegada = ângulo na saída",
+     "triângulo 30-60-90: lados x, x√3 e 2x"
+    ],
+    "simbolos": [
+     [
+      "√",
+      "raiz quadrada"
+     ],
+     [
+      "perpendicular",
+      "que forma ângulo de 90°"
+     ]
+    ]
+   },
+   "pista": "Descubra o ângulo do raio com o espelho de cima em B, usando que AB é paralelo ao espelho de baixo.",
+   "passos": [
+    {
+     "faz": "Ache o ângulo em B",
+     "conta": "AB ∥ espelho de baixo → ângulo do raio com o espelho de cima = 30°",
+     "porque": "Ângulos alternos com a paralela: o raio chega a B formando 30° com o espelho, como o ângulo em C. Ele sai também a 30°.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule o trecho até o espelho de baixo",
+     "conta": "triângulo B, C, P: ângulos 30°, 30°, 120° → BP = PC = 2/√3",
+     "porque": "O raio refletido e o espelho de cima formam 30° em B, e em C também há 30°: o triângulo é isósceles com BC = 2. Pela lei dos senos, BP = 2 × sen 30° ÷ sen 120° = 2/√3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Siga a segunda reflexão",
+     "conta": "em P: ângulo de saída 60° → chega ao espelho de cima a 90° → PQ = (2/√3) × sen 30° = 1/√3",
+     "porque": "O raio chega ao espelho de baixo a 60° e sai a 60°; com os 30° de C, o terceiro ângulo é 90°: o raio bate perpendicular e volta pelo mesmo caminho.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some ida e volta",
+     "conta": "2 × (2 + 2/√3 + 1/√3) = 2 × (2 + √3) = 4 + 2√3",
+     "porque": "2/√3 + 1/√3 = 3/√3 = √3. Ida e volta têm o mesmo comprimento.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "4 + 2√3 m → alternativa A",
+     "porque": "É o trajeto completo, da lanterna de volta a ela.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 4 + 2√3 m",
+   "checagem": "Por coordenadas, com C na origem e o espelho de baixo no eixo horizontal: B = (−√3, 1), o raio bate no espelho de baixo em (−2/√3, 0) e chega ao de cima em (−√3/2, 1/2), a 1 m de C, na direção perpendicular a ele. Os comprimentos dão 2, 2/√3 e 1/√3, total de ida 2 + √3 ≈ 3,73; ida e volta ≈ 7,46 = 4 + 2√3. Fecha.",
+   "erradas": {
+    "B": "(4 + 2√3)/3 ≈ 2,49 não confere: o raio sai de A, passa por B e volta a A, então o trajeto é no mínimo 2 × AB = 4 m.",
+    "C": "2 + √3 sai de contar só a ida (2 + 2/√3 + 1/√3) e esquecer a volta pelo mesmo caminho.",
+    "D": "(2 + 3√3)/3 ≈ 2,40 não confere: é menor que 2 × AB = 4 m, o mínimo de qualquer trajeto que sai de A, passa por B e volta a A.",
+    "E": "5 não confere: só AB e BP, na ida e na volta, já dão 2 · (2 + 2/√3) ≈ 6,3 m, mais que 5."
+   },
+   "armadilha": "Parar quando o raio bate perpendicular ao espelho: a pergunta é até ele voltar à lanterna, o dobro da ida.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O comprimento total do raio, saindo da lanterna e voltando a ela.",
+    "chave": "Ângulos de 30° e 60° nas reflexões levam o raio a bater a 90° no espelho e voltar: total 2 × (2 + √3).",
+    "cuidado": "Somar a ida e a volta."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "coordenadas",
+    "ideia": "C na origem, espelhos nas retas y = 0 e y = −x/√3; reflita o vetor direção em cada espelho e meça os trechos."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "ângulo em B = 30°",
+    "nota": "alternos com a paralela"
+   },
+   {
+    "linha": "BP = 2 × sen 30°/sen 120° = 2/√3",
+    "nota": "lei dos senos no triângulo BCP"
+   },
+   {
+    "linha": "PQ = (2/√3) × sen 30° = 1/√3",
+    "nota": "triângulo 30-60-90"
+   },
+   {
+    "linha": "ida = 2 + 2/√3 + 1/√3 = 2 + √3",
+    "nota": "soma da ida"
+   },
+   {
+    "linha": "total = 2 × (2 + √3) = 4 + 2√3",
+    "nota": "ida e volta"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0061"
+  }
+ },
+ "P9b0745ff": {
+  "n": "32",
+  "conceito": "Volume de paralelepípedo e de cilindro, com frações e porcentagem de perda, para achar o número mínimo de viagens (arredondamento para cima).",
+  "equivocos": {
+   "A": "M11.2:esqueceu-a-fracao-do-balde",
+   "B": "M11.2:arredondou-para-baixo",
+   "C": "M11.2:esqueceu-o-desperdicio",
+   "E": "M11.2:desperdicio-sobre-a-capacidade"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "São três contas encadeadas: quanto de água o reservatório precisa (75% dele), quanto de água chega por viagem (4/5 do balde, menos 10% dessa água) e quantas viagens fecham a conta. As medidas vêm em metros e centímetros; passar tudo para litros evita erro. Como não existe meia viagem, o número de viagens arredonda para cima.",
+    "formulas": [
+     "volume do paralelepípedo = comprimento × largura × altura",
+     "volume do cilindro = πr²h, com π = 3",
+     "1 m³ = 1000 L ; 1 L = 1000 cm³"
+    ],
+    "simbolos": [
+     [
+      "L",
+      "litro"
+     ],
+     [
+      "r",
+      "raio do balde, metade do diâmetro de 40 cm"
+     ],
+     [
+      "π ≈ 3",
+      "aproximação permitida pelo enunciado"
+     ]
+    ]
+   },
+   "pista": "Calcule separadamente a meta em litros e o que de fato chega ao reservatório em cada viagem.",
+   "passos": [
+    {
+     "faz": "Calcule a meta do reservatório",
+     "conta": "V = 2 × 0,6 × 0,86 = 1,032 m³ = 1032 L → 0,75 × 1032 = 774 L",
+     "porque": "Os 60 cm viram 0,6 m. A meta é ao menos 75% da capacidade.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a capacidade do balde",
+     "conta": "V = 3 × 20² × 50 = 60000 cm³ → 60000/1000 = 60 L",
+     "porque": "O diâmetro é 40 cm, então o raio é 20 cm; usa-se π = 3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a água que chega por viagem",
+     "conta": "(4/5) × 60 = 48 L → 48 − 0,1 × 48 = 43,2 L",
+     "porque": "Ele enche 4/5 do balde e perde 10% da água que estava no balde, ou seja, 10% de 48 L.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida a meta pela água útil",
+     "conta": "774/43,2 ≈ 17,9 → 18 viagens",
+     "porque": "Com 17 viagens chegam 17 × 43,2 = 734,4 L, menos que 774 L; com 18 chegam 777,6 L, que bastam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "mínimo de 18 viagens → alternativa D",
+     "porque": "O pedido é o número mínimo que garante os 75%.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 18 viagens",
+   "checagem": "Com o π da calculadora o balde tem cerca de 62,8 L, chegam cerca de 45,2 L por viagem e 774 ÷ 45,2 ≈ 17,1: ainda são 18 viagens. A aproximação π = 3 não muda a resposta.",
+   "erradas": {
+    "A": "15 sai de esquecer que o balde vai só com 4/5: 60 L menos 10% dá 54 L, e 774 ÷ 54 ≈ 14,3, arredondado para 15.",
+    "B": "16 não confere: 16 viagens levam 16 × 43,2 = 691,2 L, bem menos que os 774 L necessários.",
+    "C": "17 sai de esquecer o desperdício: 774 ÷ 48 ≈ 16,1, arredondado para 17. Mas chegam só 43,2 L por viagem, e 17 × 43,2 = 734,4 L não alcançam 774 L.",
+    "E": "19 sai de tirar os 10% da capacidade do balde (6 L) em vez da água que havia nele: 48 − 6 = 42 L, e 774 ÷ 42 ≈ 18,4, arredondado para 19."
+   },
+   "armadilha": "O desperdício é de 10% da água que estava no balde (48 L), não da capacidade dele; e o número de viagens arredonda para cima.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O número mínimo de viagens para encher ao menos 75% do reservatório.",
+    "chave": "Meta 774 L; por viagem chegam 0,9 × 0,8 × 60 = 43,2 L; 774 ÷ 43,2 ≈ 17,9 → 18.",
+    "cuidado": "Aplique o 4/5 e o desconto de 10% sobre a água do balde, e arredonde para cima."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "fator único",
+    "ideia": "Cada viagem entrega 0,8 × 0,9 = 0,72 do balde, 0,72 × 60 = 43,2 L; 774 ÷ 43,2 ≈ 17,9, então 18 viagens."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "V = 2 × 0,6 × 0,86 = 1,032 m³ = 1032 L",
+    "nota": "reservatório"
+   },
+   {
+    "linha": "0,75 × 1032 = 774 L",
+    "nota": "meta de 75%"
+   },
+   {
+    "linha": "V = 3 × 20² × 50 = 60000 cm³ = 60 L",
+    "nota": "balde"
+   },
+   {
+    "linha": "(4/5) × 60 = 48 L",
+    "nota": "balde com 4/5"
+   },
+   {
+    "linha": "48 − 0,1 × 48 = 43,2 L",
+    "nota": "perde 10% no caminho"
+   },
+   {
+    "linha": "774/43,2 ≈ 17,9 → 18",
+    "nota": "arredonda para cima"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0063"
+  }
+ }
+}

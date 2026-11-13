@@ -1,0 +1,201 @@
+{
+ "P67be3a8b": {
+  "n": "42",
+  "conceito": "Função afim por dois pontos lidos no gráfico de barras e extrapolação.",
+  "equivocos": {
+   "A": "M05.1:valor-que-nao-fecha",
+   "B": "M05.1:valor-que-nao-fecha",
+   "D": "M05.1:valor-que-nao-fecha"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Se o crescimento for linear a partir dos dias 7 e 8, o aumento diário é constante e igual à diferença entre esses dois dias. Do dia 8 ao dia 13 são 5 dias.",
+    "formulas": [
+     "aumento diário = casos(8) − casos(7)",
+     "casos(13) = casos(8) + 5 · aumento"
+    ],
+    "simbolos": []
+   },
+   "pista": "Leia as barras de 07/abr e 08/abr e calcule o aumento de um dia.",
+   "passos": [
+    {
+     "faz": "Leia o gráfico",
+     "conta": "07/abr: 1 082 | 08/abr: 1 434",
+     "porque": "São os dois dias que definem a reta.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule o aumento por dia",
+     "conta": "1 434 − 1 082 = 352",
+     "porque": "Linear: aumento igual todo dia.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Projete até o dia 13",
+     "conta": "1 434 + 5 · 352 = 1 434 + 1 760 = 3 194",
+     "porque": "Do dia 8 ao dia 13 são 5 dias.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "3 194 → alternativa C",
+     "porque": "Valor pedido.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 3194",
+   "checagem": "Partindo do dia 7: 1 082 + 6 · 352 = 1 082 + 2 112 = 3 194. Mesmo valor.",
+   "erradas": {
+    "A": "3012 não confere: 3 012 − 1 434 = 1 578, que não é múltiplo de 352 (daria 4,48 dias).",
+    "B": "3106 não confere: 3 106 − 1 434 = 1 672 = 4,75 · 352, não um número inteiro de dias.",
+    "D": "3262 não confere: 3 262 − 1 434 = 1 828 ≈ 5,19 · 352, não um número inteiro de dias."
+   },
+   "armadilha": "Do dia 8 ao 13 são 5 dias, não 6; e o valor real do dia 13 no gráfico (2 807) não é o pedido.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O número de casos em 13 de abril no modelo linear.",
+    "chave": "Aumento 352 por dia; 1 434 + 5 · 352 = 3 194.",
+    "cuidado": "Conte os intervalos de dias: 13 − 8 = 5."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "lei da função",
+    "ideia": "c(d) = 1 082 + 352 · (d − 7); c(13) = 1 082 + 352 · 6 = 3 194."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "1434 − 1082 = 352",
+    "nota": "aumento por dia"
+   },
+   {
+    "linha": "13 − 8 = 5",
+    "nota": "dias de projeção"
+   },
+   {
+    "linha": "1434 + 5 · 352 = 3194",
+    "nota": "casos em 13/abr"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0053"
+  }
+ },
+ "P9d00c7b3": {
+  "n": "39",
+  "conceito": "Achar o máximo de D(t) = 2 − cos(...) fazendo o cosseno valer −1.",
+  "equivocos": {
+   "A": "M10.5:ignorou-o-sinal-de-menos",
+   "B": "M10.5:nao-achou-o-extremo",
+   "D": "M10.5:nao-achou-o-extremo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O cosseno entra com sinal de menos: quanto menor o cosseno, maior D. O menor valor do cosseno é −1, e isso acontece quando o ângulo é π. Basta achar o mês t que faz o ângulo valer π e conferir que ele está no 1.º semestre.",
+    "formulas": [
+     "−1 ≤ cos x ≤ 1",
+     "cos x = −1 quando x = π (na primeira volta)"
+    ],
+    "simbolos": [
+     [
+      "D(t)",
+      "número de doações, em milhares, no mês t"
+     ],
+     [
+      "t",
+      "mês: 1 é janeiro e 12 é dezembro"
+     ]
+    ]
+   },
+   "pista": "Pense no sinal de menos na frente do cosseno: que valor do cosseno deixa D maior?",
+   "passos": [
+    {
+     "faz": "Descubra o cosseno que maximiza D",
+     "conta": "D = 2 − cos(...) → D máx com cos(...) = −1 → D = 2 + 1 = 3",
+     "porque": "Subtrair um número negativo aumenta o resultado; o mais negativo que o cosseno chega é −1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Iguale o ângulo a π",
+     "conta": "(π/3)(t − 2) = π → t − 2 = 3 → t = 5",
+     "porque": "O cosseno vale −1 no ângulo π. Dividindo os dois lados por π/3 sobra t − 2 = 3, e o 2 passa somando.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Confira no semestre",
+     "conta": "t: 1 a 6 → D: 1,5 | 1,0 | 1,5 | 2,5 | 3,0 | 2,5",
+     "porque": "Calculando os seis meses, o maior valor é 3 mil doações, em t = 5, dentro do 1.º semestre.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Traduza o número do mês",
+     "conta": "t = 5 → maio → alternativa C",
+     "porque": "Pela convenção do enunciado, t = 1 é janeiro, então t = 5 é maio.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — maio",
+   "checagem": "O período é 2π/(π/3) = 6 meses, e o mínimo acontece em t = 2 (cos 0 = 1, D = 1). O máximo vem meio período depois: 2 + 3 = 5. Fecha com maio.",
+   "erradas": {
+    "A": "Fevereiro (t = 2) dá o ângulo 0, cos 0 = 1 e D = 2 − 1 = 1: é o mês de MENOS doações, não de mais.",
+    "B": "Março (t = 3) dá cos(π/3) = 0,5 e D = 1,5 mil, abaixo dos 3 mil de maio.",
+    "D": "Junho (t = 6) dá cos(4π/3) = −0,5 e D = 2,5 mil, abaixo dos 3 mil de maio."
+   },
+   "armadilha": "Procurar o cosseno igual a 1 para o máximo, esquecendo o sinal de menos na frente: isso leva ao mês de menor doação, fevereiro.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O mês do 1.º semestre com mais doações.",
+    "chave": "D é máximo quando cos = −1: (π/3)(t − 2) = π, t = 5 (maio).",
+    "cuidado": "O menos na frente do cosseno inverte: cosseno mínimo dá D máximo."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "tabela dos meses",
+    "ideia": "Calcule D de t = 1 a t = 6 (1,5; 1,0; 1,5; 2,5; 3,0; 2,5) e escolha o maior: t = 5, maio."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "D = 2 − cos((π/3)(t − 2))",
+    "nota": "a função dada"
+   },
+   {
+    "linha": "cos = −1 → D = 2 + 1 = 3",
+    "nota": "menor cosseno, maior D"
+   },
+   {
+    "linha": "(π/3)(t − 2) = π",
+    "nota": "ângulo em que cos = −1"
+   },
+   {
+    "linha": "t − 2 = 3",
+    "nota": "divide por π/3"
+   },
+   {
+    "linha": "t = 5 → maio",
+    "nota": "o 2 passa somando"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0063"
+  }
+ }
+}

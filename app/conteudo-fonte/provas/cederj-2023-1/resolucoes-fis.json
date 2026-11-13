@@ -1,0 +1,341 @@
+{
+ "Pea3f4175": {
+  "n": "14",
+  "conceito": "MUV em duas etapas: com aceleração positiva (mesmo reduzida), a velocidade continua aumentando e a distância da 2ª etapa é maior.",
+  "equivocos": {
+   "A": "F02.2:distancia-nao-fecha",
+   "B": "F02.2:aceleracao-menor-como-freio",
+   "C": "F02.2:esqueceu-velocidade-inicial"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Reduzir a aceleração pela metade não é frear: a aceleração continua positiva, então a velocidade continua crescendo. Na segunda etapa, o carro já começa com v₁ e ainda acelera, por isso anda mais no mesmo tempo t.",
+    "formulas": [
+     "v = v₀ + a · t",
+     "d = v₀ · t + a · t²/2"
+    ],
+    "simbolos": [
+     [
+      "a",
+      "aceleração"
+     ],
+     [
+      "v₀",
+      "velocidade inicial"
+     ],
+     [
+      "v",
+      "velocidade final"
+     ],
+     [
+      "Δs",
+      "deslocamento"
+     ],
+     [
+      "t",
+      "duração de cada etapa"
+     ]
+    ]
+   },
+   "pista": "Na segunda etapa, a aceleração é negativa ou só menor?",
+   "passos": [
+    {
+     "faz": "Calcule v₁",
+     "conta": "v₁ = 0 + a · t = a · t",
+     "porque": "Parte do repouso.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule v₂",
+     "conta": "v₂ = a · t + (a/2) · t = 1,5 · a · t",
+     "porque": "A aceleração a/2 ainda é positiva: v₂ > v₁.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule d₁ e d₂",
+     "conta": "d₁ = a · t²/2 = 0,5 · a · t² | d₂ = a · t · t + (a/2) · t²/2 = 1,25 · a · t²",
+     "porque": "Na 2ª etapa já começa com velocidade v₁.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare",
+     "conta": "v₂ > v₁ e d₂ > d₁",
+     "porque": "1,5 > 1 e 1,25 > 0,5.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "v₁ < v₂ e d₁ < d₂",
+     "porque": "É a alternativa D.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — v₁ < v₂ e d₁ < d₂.",
+   "checagem": "Com números, a = 2 m/s² e t = 1 s: v₁ = 2 m/s, d₁ = 1 m; depois, com 1 m/s², v₂ = 3 m/s e d₂ = 2 + 0,5 = 2,5 m. Tudo maior na 2ª etapa.",
+   "erradas": {
+    "A": "Não confere: mesmo que a/2 fosse freio, o carro começa a 2ª etapa com v₁ e anda pelo menos 0,75 · a · t², mais que d₁ = 0,5 · a · t²; d₁ > d₂ é impossível.",
+    "B": "Sai de tratar a/2 como frenagem: aí v₂ = 0,5 · a · t < v₁; mas a aceleração continua positiva, então v₂ = 1,5 · a · t > v₁.",
+    "C": "d₂ não é menor que d₁: na 2ª etapa o carro já começa com v₁ e anda 1,25 · a · t², contra 0,5 · a · t² na 1ª."
+   },
+   "armadilha": "Confundir aceleração menor com desaceleração: o carro continua ganhando velocidade.",
+   "alerta": "",
+   "essencial": {
+    "pede": "As comparações entre as velocidades e as distâncias das duas etapas.",
+    "chave": "v₂ = 1,5 · a · t > v₁ = a · t; d₂ = 1,25 · a · t² > d₁ = 0,5 · a · t².",
+    "cuidado": "Aceleração menor, mas positiva, ainda aumenta a velocidade."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "gráfico v × t",
+    "ideia": "A reta sobe nas duas etapas (menos inclinada na 2ª); a área sob a 2ª etapa é maior que o triângulo da 1ª."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "v₁ = a · t",
+    "nota": "1ª etapa"
+   },
+   {
+    "linha": "v₂ = a · t + (a/2) · t = 1,5 · a · t",
+    "nota": "2ª etapa"
+   },
+   {
+    "linha": "d₁ = 0,5 · a · t²",
+    "nota": "1ª etapa"
+   },
+   {
+    "linha": "d₂ = a · t² + 0,25 · a · t² = 1,25 · a · t²",
+    "nota": "2ª etapa"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "fis-0045"
+  }
+ },
+ "P624f8b49": {
+  "n": "13",
+  "conceito": "Decidir se o bloco desliza comparando a força aplicada com o atrito estático máximo; parado, o atrito iguala a força aplicada.",
+  "equivocos": {
+   "A": "F03.3:parado-sem-atrito",
+   "B": "F03.3:usou-atrito-cinetico-parado",
+   "D": "F03.3:usou-atrito-maximo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Antes de usar qualquer coeficiente, descubra se o bloco se move. O atrito estático não tem valor fixo: ele cresce junto com a força aplicada até um teto, μe × N. Se a força não passa desse teto, o bloco fica parado e o atrito vale exatamente a força aplicada.",
+    "formulas": [
+     "N = P = m × g (mesa horizontal, força horizontal)",
+     "atrito estático máximo = μe × N",
+     "parado: atrito = força aplicada"
+    ],
+    "simbolos": [
+     [
+      "μe",
+      "coeficiente de atrito estático, vale enquanto não há deslizamento"
+     ],
+     [
+      "μc",
+      "coeficiente de atrito cinético, vale só com o bloco deslizando"
+     ],
+     [
+      "N",
+      "força normal, que a mesa faz no bloco"
+     ]
+    ]
+   },
+   "pista": "Calcule o maior atrito estático possível e compare com os 3,5 N aplicados.",
+   "passos": [
+    {
+     "faz": "Calcule a normal",
+     "conta": "N = m × g = 2,0 × 10 = 20 N",
+     "porque": "Mesa horizontal e força horizontal: só o peso aperta o bloco contra a mesa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o atrito estático máximo",
+     "conta": "Fat,máx = μe × N = 0,20 × 20 = 4,0 N",
+     "porque": "É o maior valor que o atrito consegue atingir sem o bloco deslizar.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare com a força aplicada",
+     "conta": "F = 3,5 N < 4,0 N → o bloco não desliza",
+     "porque": "A força não vence o teto do atrito estático, então o bloco continua em repouso.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Iguale atrito e força",
+     "conta": "repouso: Fat = F = 3,5 N → alternativa C",
+     "porque": "Parado, a resultante é zero: o atrito só equilibra a força aplicada, sem passar dela.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 3,5 N",
+   "checagem": "Se o atrito fosse 4,0 N com o bloco parado, a resultante seria 4,0 − 3,5 = 0,5 N para trás e o bloco sairia andando para trás sozinho, o que é absurdo. Só 3,5 N deixa a resultante nula.",
+   "erradas": {
+    "A": "Sai de achar que bloco parado não tem atrito. Sem atrito, os 3,5 N acelerariam o bloco; é o atrito estático de 3,5 N que o mantém parado.",
+    "B": "Sai de usar o cinético: 0,15 × 20 = 3,0 N. Esse coeficiente só vale com o bloco deslizando, e ele está parado.",
+    "D": "Sai de usar o teto do atrito estático: 0,20 × 20 = 4,0 N. Esse é o valor máximo possível, não o que atua quando a força é só 3,5 N."
+   },
+   "armadilha": "Usar μe × N como se fosse o atrito que atua: esse é só o teto; parado, o atrito iguala a força aplicada.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O atrito sobre um bloco de 2,0 kg empurrado com 3,5 N, com μe = 0,20 e μc = 0,15.",
+    "chave": "Fat,máx = 0,20 × 20 = 4,0 N > 3,5 N: o bloco fica parado e Fat = 3,5 N.",
+    "cuidado": "Primeiro descubra se desliza; μe × N é o limite, não o valor do atrito."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "resultante nula",
+    "ideia": "O bloco não desliza (3,5 N < 4,0 N); parado, resultante zero exige atrito igual e oposto à força: 3,5 N."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "N = 2,0 × 10 = 20 N",
+    "nota": "normal = peso"
+   },
+   {
+    "linha": "Fat,máx = 0,20 × 20 = 4,0 N",
+    "nota": "teto do atrito estático"
+   },
+   {
+    "linha": "3,5 N < 4,0 N",
+    "nota": "não desliza"
+   },
+   {
+    "linha": "Fat = F = 3,5 N",
+    "nota": "atrito equilibra a força"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "fis-0049"
+  }
+ },
+ "P44398371": {
+  "n": "17",
+  "conceito": "Mistura de águas: calor cedido pela quente = calor recebido pela fria; massas inversamente proporcionais às variações.",
+  "equivocos": {
+   "A": "F08.4:media-simples-sem-pesar-massas",
+   "C": "F08.4:razao-nao-fecha",
+   "D": "F08.4:razao-nao-fecha"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Num recipiente isolado, todo o calor que a água quente perde vai para a fria. Como as duas são água, o calor específico é o mesmo e cancela. Sobra uma proporção: cada massa vezes a sua variação de temperatura. Quem varia menos tem mais massa.",
+    "formulas": [
+     "calor cedido = calor recebido",
+     "m₁ · c · (Tf − T₁) = m₂ · c · (T₂ − Tf)"
+    ],
+    "simbolos": [
+     [
+      "m₁",
+      "massa da água fria, a 20 °C"
+     ],
+     [
+      "m₂",
+      "massa da água quente, a 80 °C"
+     ],
+     [
+      "c",
+      "calor específico da água (cancela)"
+     ],
+     [
+      "Tf",
+      "temperatura final, 40 °C"
+     ]
+    ]
+   },
+   "pista": "Calcule quanto cada porção de água variou de temperatura até os 40 °C.",
+   "passos": [
+    {
+     "faz": "Ache as variações",
+     "conta": "fria: 40 − 20 = 20 °C | quente: 80 − 40 = 40 °C",
+     "porque": "A temperatura final está mais perto da fria, sinal de que há mais água fria.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Iguale os calores",
+     "conta": "m₁ · c · 20 = m₂ · c · 40 → m₁ · 20 = m₂ · 40",
+     "porque": "Recipiente isolado: o calor cedido pela quente é o recebido pela fria; c é o mesmo e cancela.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole a razão",
+     "conta": "m₁ · 20 = m₂ · 40 → m₁/m₂ = 40/20 = 2",
+     "porque": "O 20 que multiplica m₁ passa dividindo, e m₂ passa dividindo para o lado de m₁.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "m₁/m₂ = 2 → alternativa B",
+     "porque": "Há o dobro de água fria.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — m₁/m₂ = 2.",
+   "checagem": "Substitua m₁ = 2 e m₂ = 1: média ponderada (2 × 20 + 1 × 80)/3 = 120/3 = 40 °C, a temperatura medida.",
+   "erradas": {
+    "A": "Com massas iguais a final seria a média, (20 + 80)/2 = 50 °C, não 40 °C.",
+    "C": "Com m₁/m₂ = 3, a final seria (3 × 20 + 80)/4 = 35 °C, não 40 °C.",
+    "D": "Com m₁/m₂ = 4, a final seria (4 × 20 + 80)/5 = 32 °C, não 40 °C."
+   },
+   "armadilha": "Inverter a proporção: a massa maior é a da água que variou MENOS de temperatura.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A razão entre as massas de água fria e quente que, misturadas, ficam a 40 °C.",
+    "chave": "m₁ · 20 = m₂ · 40 → m₁/m₂ = 2.",
+    "cuidado": "Cada massa vai com a sua própria variação: fria 20 °C, quente 40 °C."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "média ponderada",
+    "ideia": "40 = (m₁ · 20 + m₂ · 80)/(m₁ + m₂) → 20 m₁ = 40 m₂ → m₁/m₂ = 2."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "fria: 40 − 20 = 20 °C | quente: 80 − 40 = 40 °C",
+    "nota": "variações"
+   },
+   {
+    "linha": "m₁ · 20 = m₂ · 40",
+    "nota": "cedido = recebido, c cancela"
+   },
+   {
+    "linha": "m₁/m₂ = 40/20 = 2",
+    "nota": "alternativa B"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "fis-0058"
+  }
+ }
+}

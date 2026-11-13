@@ -3,6 +3,8 @@ Destilado de 50 resoluções em vídeo de 35 canais (49 resoluções de questõe
 
 ## Subtemas que caem
 
+**Ids oficiais: `ferramentas/fabrica/agentes/TAXONOMIA.md` (06/11/2026).** Os códigos desta seção são a proposta antiga, anterior aos temas do site, e não coincidem com os ids em uso; para classificar questão, use sempre os ids da TAXONOMIA. A lista abaixo continua valendo como guia do que mais cai e dos roteiros.
+
 **Isto é uma proposta.** O app ainda não tem Física. Os códigos seguem o formato das outras matérias (módulo `F01`, conteúdo `F01.1`) e devem ser aprovados antes de virar `nomesub` no `dados.json`. A marca **(muito cobrado)** é qualitativa: vem do que aparece com frequência no ENEM e nos vestibulares de Medicina (Fuvest, Unicamp, Unesp, Santa Casa, Einstein, UEL, federais), não de contagem.
 
 **F01 Cinemática**

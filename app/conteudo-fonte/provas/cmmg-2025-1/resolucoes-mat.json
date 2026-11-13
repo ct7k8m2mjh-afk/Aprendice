@@ -1,0 +1,448 @@
+{
+ "Pb570a928": {
+  "n": "51",
+  "conceito": "Custo por quilo de cada fármaco em cada fornecedor: soma de porcentagem vezes preço (produto de matrizes).",
+  "equivocos": {
+   "A": "M04.5:nao-comparou-todos-os-casos",
+   "B": "M04.5:nao-comparou-todos-os-casos",
+   "D": "M04.5:nao-comparou-todos-os-casos"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O custo dos componentes em 1 kg de fármaco é a soma de (porcentagem do componente × preço por kg) em cada fornecedor. São 3 fármacos × 3 fornecedores = 9 contas; a melhor opção é a menor.",
+    "formulas": [
+     "custo = 0,α · preço Alfa + 0,β · preço Beta + 0,γ · preço Gama"
+    ],
+    "simbolos": [
+     [
+      "Tabela I",
+      "preço de cada componente, em R$/kg, por fornecedor"
+     ],
+     [
+      "Tabela II",
+      "porcentagem de cada componente em cada fármaco"
+     ]
+    ]
+   },
+   "pista": "Para cada remédio, multiplique as porcentagens pelos preços de uma mesma coluna da Tabela I e some.",
+   "passos": [
+    {
+     "faz": "Leia as tabelas",
+     "conta": "SP: 9, 11, 10 | RJ: 10, 9, 11 | MG: 11, 10, 9 | A: 40%, 30%, 20% | B: 40%, 20%, 30% | C: 30%, 40%, 30%",
+     "porque": "Preços na ordem Alfa, Beta, Gama; porcentagens na mesma ordem.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Fármaco A",
+     "conta": "SP: 0,4 · 9 + 0,3 · 11 + 0,2 · 10 = 8,90 | RJ: 8,90 | MG: 9,20",
+     "porque": "RJ: 4 + 2,7 + 2,2; MG: 4,4 + 3 + 1,8.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Fármaco B",
+     "conta": "SP: 0,4 · 9 + 0,2 · 11 + 0,3 · 10 = 8,80 | RJ: 9,10 | MG: 9,10",
+     "porque": "RJ: 4 + 1,8 + 3,3; MG: 4,4 + 2 + 2,7.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Fármaco C",
+     "conta": "SP: 2,7 + 4,4 + 3 = 10,10 | RJ: 3 + 3,6 + 3,3 = 9,90 | MG: 3,3 + 4 + 2,7 = 10,00",
+     "porque": "O C é o mais caro em todos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escolha o menor",
+     "conta": "menor: B com SP, R$ 8,80 → alternativa C",
+     "porque": "Todos os outros pares passam de 8,80.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — o fármaco B, com o Fornecedor SP",
+   "checagem": "Compare A e B no mesmo fornecedor SP: diferem só em 10% de Beta (R$ 11) trocados por 10% de Gama (R$ 10); B fica R$ 0,10 mais barato. Fecha com 8,80 contra 8,90.",
+   "erradas": {
+    "A": "O fármaco A com RJ não confere: custa R$ 8,90, mais que os R$ 8,80 do B com SP.",
+    "B": "O fármaco B com MG não confere: custa R$ 9,10, mais que os R$ 8,80 do mesmo fármaco com SP.",
+    "D": "O fármaco C com RJ não confere: custa R$ 9,90, o mais barato do C, mas acima de R$ 8,80."
+   },
+   "armadilha": "Escolher o fornecedor pelo preço de um componente só, sem ponderar pelas porcentagens.",
+   "alerta": "Na Tabela II, os fármacos A e B somam 90% dos três componentes (o C soma 100%); o restante vem dos \"muitos outros\" componentes citados no texto, sem preço na questão. A banca compara só o custo de Alfa, Beta e Gama, e é esse o critério usado aqui.",
+   "essencial": {
+    "pede": "O par fármaco-fornecedor de menor custo.",
+    "chave": "Custo = soma de porcentagem × preço; o menor é B com SP, R$ 8,80 por kg.",
+    "cuidado": "Faça as nove contas, sem decidir por um componente só."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "produto de matrizes",
+    "ideia": "Multiplique a matriz das porcentagens (3 × 3) pela dos preços (3 × 3): cada entrada é um custo; a menor é 8,80, linha B, coluna SP."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "0,4 · 9 + 0,3 · 11 + 0,2 · 10 = 8,9",
+    "nota": "A com SP"
+   },
+   {
+    "linha": "0,4 · 10 + 0,3 · 9 + 0,2 · 11 = 8,9",
+    "nota": "A com RJ"
+   },
+   {
+    "linha": "0,4 · 9 + 0,2 · 11 + 0,3 · 10 = 8,8",
+    "nota": "B com SP"
+   },
+   {
+    "linha": "0,4 · 11 + 0,2 · 10 + 0,3 · 9 = 9,1",
+    "nota": "B com MG"
+   },
+   {
+    "linha": "0,3 · 10 + 0,4 · 9 + 0,3 · 11 = 9,9",
+    "nota": "C com RJ"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0052"
+  }
+ },
+ "P23248550": {
+  "n": "53",
+  "conceito": "Meia-vida de 1 hora: voltar da quantidade final para a dose inicial.",
+  "equivocos": {
+   "B": "M06.5:trocou-algarismos",
+   "C": "M06.5:conta-errada-da-potencia",
+   "D": "M06.5:conta-errada-da-potencia"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Metade é eliminada a cada hora, então a quantidade cai pela metade 4 vezes em 4 horas. A questão dá o que sobrou e pede o que entrou: o caminho é dobrar de volta 4 vezes, ou seja, multiplicar por 2⁴.",
+    "formulas": [
+     "M(t) = d · (1/2)ᵗ",
+     "(1/2)⁴ = 1/16"
+    ],
+    "simbolos": [
+     [
+      "M(t)",
+      "quantidade no organismo após t horas"
+     ],
+     [
+      "d",
+      "dose inicial"
+     ],
+     [
+      "mg",
+      "miligrama"
+     ]
+    ]
+   },
+   "pista": "Escreva a função com t = 4 e M = 80 e isole o d.",
+   "passos": [
+    {
+     "faz": "Substitua os dados",
+     "conta": "80 = d · (1/2)⁴",
+     "porque": "Após 4 horas restam 80 mg.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule a potência",
+     "conta": "(1/2)⁴ = 1/16 → d/16 = 80",
+     "porque": "Quatro metades seguidas: 1/2 × 1/2 × 1/2 × 1/2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole a dose",
+     "conta": "d ÷ 16 = 80 → d = 80 × 16 = 1280 mg",
+     "porque": "O 16 que divide vai multiplicando.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "d = 1280 mg → alternativa A",
+     "porque": "É a dose recebida no início.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 1280 mg",
+   "checagem": "Desça a partir da dose: 1280 → 640 → 320 → 160 → 80 mg, quatro metades em quatro horas. Fecha.",
+   "erradas": {
+    "B": "2180 mg sai de trocar a ordem dos algarismos de 1280; 2180/16 ≈ 136 mg, não 80 mg.",
+    "C": "3200 mg não confere: 3200/16 = 200 mg após 4 horas, não 80 mg.",
+    "D": "4000 mg não confere: 4000/16 = 250 mg após 4 horas, não 80 mg."
+   },
+   "armadilha": "Dividir os 80 mg por 2 em vez de multiplicar: a pergunta volta no tempo, da quantidade final para a inicial.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A dose inicial de quem tem 80 mg após 4 horas.",
+    "chave": "80 = d/16, logo d = 1280 mg.",
+    "cuidado": "Volta no tempo é multiplicar por 2 a cada hora."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "dobrar de volta",
+    "ideia": "Volte uma hora por vez dobrando: 80 → 160 → 320 → 640 → 1280 mg."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "80 = d · (1/2)⁴",
+    "nota": "dados no modelo"
+   },
+   {
+    "linha": "d ÷ 16 = 80",
+    "nota": "(1/2)⁴ = 1/16"
+   },
+   {
+    "linha": "d = 80 × 16",
+    "nota": "o 16 que divide vai multiplicando"
+   },
+   {
+    "linha": "d = 1280",
+    "nota": "mg"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0058"
+  }
+ },
+ "Pca9d5b1e": {
+  "n": "60",
+  "conceito": "Achar o raio de uma circunferência pela equação geral e calcular o comprimento de 5 voltas.",
+  "equivocos": {
+   "A": "M08.3:pi-r-no-lugar-de-2-pi-r",
+   "B": "M08.3:sinal-ao-completar-quadrado",
+   "D": "M08.3:constante-como-comprimento"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Apesar de o texto falar em pista elíptica, a equação dada é de uma circunferência: x² e y² têm o mesmo coeficiente e não há termo xy. Completando quadrados, aparecem o centro e o raio. Uma volta é o comprimento da circunferência, 2πr, e são 5 voltas.",
+    "formulas": [
+     "(x − a)² + (y − b)² = r²: centro (a, b) e raio r",
+     "comprimento de uma volta = 2πr"
+    ],
+    "simbolos": [
+     [
+      "completar quadrados",
+      "somar o número que transforma x² − 10x em (x − 5)², e o mesmo do outro lado da igualdade"
+     ],
+     [
+      "π",
+      "aproximadamente 3,14"
+     ],
+     [
+      "r",
+      "raio da circunferência"
+     ]
+    ]
+   },
+   "pista": "Agrupe os termos em x e os termos em y e complete os quadrados dos dois grupos.",
+   "passos": [
+    {
+     "faz": "Complete o quadrado em x",
+     "conta": "x² − 10x → (x − 5)² − 25",
+     "porque": "(x − 5)² = x² − 10x + 25. Para não mudar a equação, o 25 somado é descontado.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Complete o quadrado em y",
+     "conta": "y² − 6y → (y − 3)² − 9",
+     "porque": "(y − 3)² = y² − 6y + 9; o 9 a mais é descontado.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole o raio ao quadrado",
+     "conta": "(x − 5)² + (y − 3)² − 25 − 9 − 66 = 0 → (x − 5)² + (y − 3)² = 100 → r = 10",
+     "porque": "Os números soltos passam para o outro lado trocando de sinal: 25 + 9 + 66 = 100. O raio é a raiz: 10 m.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule 5 voltas",
+     "conta": "5 × 2π × 10 = 100π ≈ 314",
+     "porque": "Uma volta mede 2π × 10 = 20π m. Cinco voltas medem 100π m, e 100 × 3,14 ≈ 314.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "100π m ≈ 314 m → alternativa C",
+     "porque": "O comando pede a distância aproximada percorrida em 5 voltas.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 314 m",
+   "checagem": "Confira o raio pelo centro: o ponto (15, 3) está a 10 m do centro (5, 3). Na equação: 15² − 10 × 15 + 3² − 6 × 3 − 66 = 225 − 150 + 9 − 18 − 66 = 0. Ele está na pista, então o raio 10 está certo.",
+   "erradas": {
+    "A": "157 m sai de usar πr em vez de 2πr: 5 × π × 10 ≈ 157. Isso é meia volta multiplicada por 5.",
+    "B": "180 m não confere: daria 36 m por volta e raio 36/(2π) ≈ 5,7 m, mas o raio é 10 m.",
+    "D": "330 m sai de tomar o 66 da equação como o comprimento de uma volta: 5 × 66 = 330. O 66 não é medida nenhuma; o raio sai de 66 + 25 + 9 = 100."
+   },
+   "armadilha": "Errar o sinal ao passar 25 e 9 para o outro lado: o raio ao quadrado é 66 + 25 + 9 = 100, não 66 − 25 − 9.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A distância percorrida em 5 voltas na trajetória x² − 10x + y² − 6y − 66 = 0.",
+    "chave": "Completando quadrados, (x − 5)² + (y − 3)² = 100, raio 10 m; 5 × 2π × 10 = 100π ≈ 314 m.",
+    "cuidado": "Os números que completam os quadrados vão para o outro lado somando; e uma volta é 2πr, não πr."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "fórmula do raio",
+    "ideia": "Na equação x² + y² + Dx + Ey + F = 0, o centro é (−D/2, −E/2) = (5, 3) e r² = 5² + 3² − (−66) = 100."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "x² − 10x + y² − 6y − 66 = 0",
+    "nota": "equação dada"
+   },
+   {
+    "linha": "(x − 5)² − 25 + (y − 3)² − 9 − 66 = 0",
+    "nota": "quadrados completados"
+   },
+   {
+    "linha": "(x − 5)² + (y − 3)² = 100",
+    "nota": "r = 10"
+   },
+   {
+    "linha": "5 × 2π × 10 = 100π ≈ 314",
+    "nota": "5 voltas, em m"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0060"
+  }
+ },
+ "Pd515c7fc": {
+  "n": "59",
+  "conceito": "Efeito dos parâmetros a, b e d no gráfico de y = a·sen(bx + c) + d: amplitude, período e deslocamento vertical.",
+  "equivocos": {
+   "B": "M10.5:confundiu-periodo-com-amplitude",
+   "C": "M10.5:confundiu-sinal-do-seno-no-deslocamento",
+   "D": "M10.5:confundiu-deslocamento-com-amplitude"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada parâmetro mexe numa coisa do gráfico. O número que multiplica x (b) muda o período: sen(2x) completa duas ondas entre 0 e 2π. O número que multiplica o seno (a) muda a amplitude: 2sen(x) vai de −2 a 2. O número somado (d) sobe o gráfico: 2 + sen(x) oscila entre 1 e 3, em torno de 2.",
+    "formulas": [
+     "período = 2π/b",
+     "imagem de a·sen x: de −a a a",
+     "imagem de d + sen x: de d − 1 a d + 1"
+    ],
+    "simbolos": [
+     [
+      "período",
+      "tamanho de uma onda completa no eixo x"
+     ],
+     [
+      "amplitude",
+      "quanto o gráfico sobe e desce em relação ao centro"
+     ],
+     [
+      "imagem",
+      "faixa de valores de y que o gráfico alcança"
+     ]
+    ]
+   },
+   "pista": "Para cada uma das três funções, descubra quantas ondas cabem entre 0 e 2π e entre que valores de y o gráfico fica.",
+   "passos": [
+    {
+     "faz": "Descreva y = sen(2x)",
+     "conta": "período = 2π/2 = π | imagem: −1 a 1 → 2 ondas em [0, 2π]",
+     "porque": "O 2 dentro do seno faz o ciclo acontecer na metade do tempo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Descreva y = 2sen(x)",
+     "conta": "período = 2π/1 = 2π | imagem: −2 a 2 → 1 onda, altura 2",
+     "porque": "O 2 fora do seno estica o gráfico na vertical, sem mudar o período.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Descreva y = 2 + sen(x)",
+     "conta": "imagem: 2 − 1 = 1 a 2 + 1 = 3 | período 2π → 1 onda centrada em 2",
+     "porque": "Somar 2 sobe o gráfico inteiro duas unidades.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Confira os gráficos de cada alternativa",
+     "conta": "A: 2 ondas (−1 a 1) | 1 onda (−2 a 2) | 1 onda (1 a 3)",
+     "porque": "Em A, o 1º gráfico tem duas ondas entre −1 e 1, o 2º uma onda entre −2 e 2, e o 3º uma onda entre 1 e 3 em torno do 2.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Marque a sequência",
+     "conta": "sen(2x) | 2sen(x) | 2 + sen(x) → alternativa A",
+     "porque": "Só a sequência A combina os três gráficos na ordem pedida.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — o 1º gráfico com duas ondas entre −1 e 1, o 2º com uma onda entre −2 e 2 e o 3º com uma onda entre 1 e 3",
+   "checagem": "Teste pontos: em x = π/4, sen(2x) = sen(π/2) = 1, o máximo do 1º gráfico de A; em x = π/2, 2sen(x) = 2, o máximo do 2º; em x = 0, 2 + sen 0 = 2, onde começa o 3º. Os três batem.",
+   "erradas": {
+    "B": "O 1º gráfico de B tem uma onda só entre −1 e 1, que é y = sen(x), não sen(2x). O 3º, entre −2 e 2, é 2sen(x), não 2 + sen(x).",
+    "C": "O 1º gráfico de C vai de 0 a 1 com meia onda em [0, 2π], o que não é sen(2x). O 3º, entre 1 e 3, começa em 2 descendo, o que é 2 − sen(x), não 2 + sen(x).",
+    "D": "O 2º gráfico de D, entre 1 e 3, tem duas ondas, o que é 2 + sen(2x), e não 2sen(x). O 3º, entre −0,5 e 0,5, não é 2 + sen(x)."
+   },
+   "armadilha": "Confundir o 2 dentro do seno (muda o período) com o 2 fora dele (muda a altura ou desloca o gráfico).",
+   "alerta": "",
+   "essencial": {
+    "pede": "Qual trio de gráficos corresponde a sen(2x), 2sen(x) e 2 + sen(x), nessa ordem.",
+    "chave": "b muda o período (2π/b), a muda a amplitude e d desloca o gráfico para cima.",
+    "cuidado": "Leia a escala do eixo y de cada gráfico, não só o formato da onda."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "eliminação pelo eixo y",
+    "ideia": "Só o 3º gráfico pode ficar entre 1 e 3 e só o 2º pode ir de −2 a 2; olhando só as escalas sobram A."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "sen(2x): período 2π/2 = π ; y de −1 a 1",
+    "nota": "duas ondas em [0, 2π]"
+   },
+   {
+    "linha": "2sen(x): período 2π ; y de −2 a 2",
+    "nota": "uma onda mais alta"
+   },
+   {
+    "linha": "2 + sen(x): y de 2 − 1 = 1 a 2 + 1 = 3",
+    "nota": "uma onda centrada em 2"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0063"
+  }
+ }
+}

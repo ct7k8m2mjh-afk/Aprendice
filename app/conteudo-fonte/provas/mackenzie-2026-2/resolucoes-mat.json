@@ -1,0 +1,975 @@
+{
+ "P0cf1d2e5": {
+  "n": "32",
+  "conceito": "Calcular um logaritmo na base 2 usando logaritmos decimais.",
+  "equivocos": {
+   "A": "M06.4:errou-a-mudanca-de-base",
+   "B": "M06.4:errou-a-mudanca-de-base",
+   "D": "M06.4:arredondou-para-cima",
+   "E": "M06.4:errou-a-mudanca-de-base"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Se f₁ é um décimo de f₂, a razão f₂/f₁ vale 10. O que se quer é log₂ 10, mas a calculadora só faz logaritmo na base 10: use a mudança de base. No fim, a resposta é a parte inteira de n.",
+    "formulas": [
+     "n = log₂ (f₂/f₁)",
+     "log₂ 10 = log 10/log 2"
+    ],
+    "simbolos": [
+     [
+      "parte inteira",
+      "o número sem as casas decimais"
+     ],
+     [
+      "log",
+      "logaritmo na base 10"
+     ]
+    ]
+   },
+   "pista": "Quanto vale a razão f₂/f₁?",
+   "passos": [
+    {
+     "faz": "Ache a razão",
+     "conta": "f₁ = f₂/10 → f₂/f₁ = 10",
+     "porque": "f₁ é um décimo de f₂.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Mude de base",
+     "conta": "n = log₂ 10 = log 10/log 2 = 1/0,30 ≈ 3,33",
+     "porque": "log 10 = 1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Pegue a parte inteira",
+     "conta": "parte inteira de 3,33 = 3 → alternativa C",
+     "porque": "O número de oitavas é a parte inteira de n.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 3",
+   "checagem": "Sem logaritmo: 2³ = 8 e 2⁴ = 16. Como 10 está entre 8 e 16, o expoente está entre 3 e 4: três oitavas completas.",
+   "erradas": {
+    "A": "1 não confere: uma oitava dobra a frequência (2¹ = 2), e a razão aqui é 10.",
+    "B": "2 não confere: duas oitavas multiplicam a frequência por 4, e a razão aqui é 10.",
+    "D": "4 não confere: quatro oitavas multiplicariam a frequência por 16, mais que 10.",
+    "E": "5 não confere: cinco oitavas multiplicariam a frequência por 32, mais que 10."
+   },
+   "armadilha": "Arredondar 3,33 para cima, ou inverter a divisão e calcular 0,30/1.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O número de oitavas entre as duas notas.",
+    "chave": "log₂ 10 = 1/0,30 ≈ 3,33; parte inteira 3.",
+    "cuidado": "Mudança de base: divide pelo log da base nova."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "dobrando a frequência",
+    "ideia": "A partir de f₁, dobre: 2f₁, 4f₁, 8f₁ ainda ficam abaixo de f₂ = 10f₁, e 16f₁ já passa. Cabem 3 oitavas completas."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "f₁ = f₂/10 → f₂/f₁ = 10",
+    "nota": "Ache a razão"
+   },
+   {
+    "linha": "n = log₂ 10 = log 10/log 2 = 1/0,30 ≈ 3,33",
+    "nota": "Mude de base"
+   },
+   {
+    "linha": "parte inteira de 3,33 = 3",
+    "nota": "Pegue a parte inteira"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0017"
+  }
+ },
+ "Pc5741d4d": {
+  "n": "38",
+  "conceito": "Reconhecer uma PA escondida em uma sequência que alterna dois acréscimos.",
+  "equivocos": {
+   "A": "M07.1:esqueceu-o-termo-inicial",
+   "B": "M07.1:errou-a-conta",
+   "D": "M07.1:trocou-a-ordem-dos-acrescimos",
+   "E": "M07.1:contou-um-salto-a-mais"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os valores em kg sobem alternando 5 e 4: de uma placa para a seguinte o acréscimo muda, mas a cada duas placas (20 LBs) o acréscimo é sempre 5 + 4 = 9 kg. Olhando só as placas de 20, 40, 60, 80 LBs, os valores 9, 18, 27, 36 formam uma PA de razão 9.",
+    "formulas": [
+     "a cada 20 LBs: + 9 kg",
+     "aₙ = a₁ + (n − 1) × r"
+    ],
+    "simbolos": [
+     [
+      "LBs",
+      "libras"
+     ]
+    ]
+   },
+   "pista": "Olhe só as placas de 20 em 20 LBs. Quanto o valor em kg aumenta de uma para a outra?",
+   "passos": [
+    {
+     "faz": "Leia a tabela de 20 em 20 LBs",
+     "conta": "20 → 9 | 40 → 18 | 60 → 27 | 80 → 36",
+     "porque": "A cada 20 LBs o valor sobe 5 + 4 = 9 kg.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Conte os saltos até 2100 LBs",
+     "conta": "(2100 − 20)/20 = 2080/20 = 104",
+     "porque": "Saltos de 20 LBs a partir da placa de 20 LBs.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some os acréscimos",
+     "conta": "9 + 104 × 9 = 9 + 936 = 945",
+     "porque": "Valor inicial de 9 kg mais 104 acréscimos de 9 kg.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "945 kg → alternativa C",
+     "porque": "É o valor indicado na placa de 2100 LBs.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 945",
+   "checagem": "Por proporção: nas placas de 20 em 20 LBs, o valor em kg é 9 para cada 20 LBs (20 → 9, 40 → 18, 60 → 27). Então 2100/20 = 105 e 105 × 9 = 945.",
+   "erradas": {
+    "A": "936 é só a soma dos 104 acréscimos (104 × 9); falta somar os 9 kg da placa inicial de 20 LBs.",
+    "B": "940 não confere: a placa anterior, de 2090 LBs, marca 945 − 4 = 941; 940 não aparece na sequência (..., 936, 941, 945, 950, ...).",
+    "D": "949 não confere: a placa seguinte, de 2110 LBs, marca 945 + 5 = 950; 949 sai de somar 4 quando o acréscimo da vez é 5.",
+    "E": "954 não confere: é o valor da placa de 2120 LBs (945 + 9), um salto de 20 LBs além."
+   },
+   "armadilha": "Esquecer o valor inicial de 9 kg ao somar os acréscimos, ou contar 105 saltos em vez de 104.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O valor em kg da placa de 2100 LBs.",
+    "chave": "A cada 20 LBs, +9 kg: 9 + 104 × 9 = 945.",
+    "cuidado": "Agrupe os acréscimos de 5 e 4 em pares."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "kg por LB",
+    "ideia": "Na tabela, 20 LBs valem 9 kg, então cada LB vale 9/20 = 0,45 kg. Para 2100 LBs: 2100 × 0,45 = 945 kg."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "(2100 − 20)/20 = 2080/20",
+    "nota": "saltos de 20 LBs"
+   },
+   {
+    "linha": "2080/20 = 104",
+    "nota": "divide"
+   },
+   {
+    "linha": "9 + 104 × 9",
+    "nota": "soma os acréscimos"
+   },
+   {
+    "linha": "9 + 936 = 945",
+    "nota": "multiplica"
+   },
+   {
+    "linha": "945 kg",
+    "nota": "valor da placa"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0018"
+  }
+ },
+ "P9024ba8d": {
+  "n": "33",
+  "conceito": "Calcular a área entre dois quadrados por diferença de quadrados.",
+  "equivocos": {
+   "A": "M08.5:errou-o-produto-notavel",
+   "B": "M08.5:errou-o-produto-notavel",
+   "C": "M08.5:errou-o-produto-notavel",
+   "D": "M08.5:errou-o-produto-notavel"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A área útil é a do quadrado maior menos a do menor: (x + a)² − (x − a)². Pode-se desenvolver os dois quadrados ou usar o produto notável: diferença de quadrados = soma × diferença.",
+    "formulas": [
+     "(x + a)² = x² + 2ax + a²",
+     "(x − a)² = x² − 2ax + a²",
+     "A² − B² = (A + B) × (A − B)"
+    ],
+    "simbolos": [
+     [
+      "x + a",
+      "lado do quadrado maior"
+     ],
+     [
+      "x − a",
+      "lado do quadrado menor"
+     ]
+    ]
+   },
+   "pista": "Escreva as duas áreas e subtraia. O que se cancela?",
+   "passos": [
+    {
+     "faz": "Escreva a diferença",
+     "conta": "(x + a)² − (x − a)²",
+     "porque": "Quadrado maior menos quadrado menor.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Desenvolva",
+     "conta": "x² + 2ax + a² − (x² − 2ax + a²) = x² + 2ax + a² − x² + 2ax − a²",
+     "porque": "O sinal de menos troca os sinais do segundo quadrado.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Simplifique",
+     "conta": "2ax + 2ax = 4ax",
+     "porque": "x² e a² se cancelam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "4ax → alternativa E",
+     "porque": "Área útil da praça.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 4ax",
+   "checagem": "Pelo produto notável: soma dos lados (x + a) + (x − a) = 2x; diferença (x + a) − (x − a) = 2a; produto 2x × 2a = 4ax. Com x = 3 e a = 1: 16 − 4 = 12 = 4 × 1 × 3.",
+   "erradas": {
+    "A": "Com x = 3 e a = 1, 4(x + a)(x − a) = 4 × 4 × 2 = 32, e a área é 16 − 4 = 12.",
+    "B": "Com x = 3 e a = 1, 4(x + a)² = 64, mais que o quadrado maior inteiro (16).",
+    "C": "Com x = 3 e a = 1, 4(x − a)² = 16, e a área é 12.",
+    "D": "Com x = 3 e a = 1, 4x² − a² = 35, e a área é 12."
+   },
+   "armadilha": "Errar o sinal ao subtrair o segundo quadrado: −(−2ax) vira +2ax.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A expressão da área útil da praça.",
+    "chave": "(x + a)² − (x − a)² = 4ax.",
+    "cuidado": "Diferença de quadrados = soma × diferença."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "cata-vento",
+    "ideia": "A faixa entre os dois quadrados tem largura a e se divide em 4 retângulos iguais de a por x, um em cada lado, encaixados em cata-vento. Área: 4 × a × x = 4ax."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "(x + a)² − (x − a)²",
+    "nota": "maior menos menor"
+   },
+   {
+    "linha": "x² + 2ax + a² − (x² − 2ax + a²)",
+    "nota": "desenvolve"
+   },
+   {
+    "linha": "x² + 2ax + a² − x² + 2ax − a²",
+    "nota": "troca os sinais"
+   },
+   {
+    "linha": "2ax + 2ax",
+    "nota": "cancela x² e a²"
+   },
+   {
+    "linha": "4ax",
+    "nota": "soma"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0022"
+  }
+ },
+ "Pab686cce": {
+  "n": "36",
+  "conceito": "Achar a área de um quadrilátero como diferença entre dois triângulos retângulos semelhantes.",
+  "equivocos": {
+   "B": "M09.3:respondeu-a-area-do-triangulo-menor",
+   "C": "M09.3:respondeu-a-area-do-triangulo-maior",
+   "D": "M09.3:errou-a-conta",
+   "E": "M09.3:usou-a-hipotenusa-como-cateto"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O quadrilátero MACK é o triângulo MAE sem o triângulo CEK. O triângulo MAE é retângulo em M, com hipotenusa AE = 8 + 12 = 20 m e cateto MA = 12 m. O triângulo CEK é retângulo em C e tem o ângulo em E em comum com MAE: os dois são semelhantes. Em MAE, o ângulo E fica entre ME e AE, com MA oposto; em CEK, fica entre CE e KE, com CK oposto.",
+    "formulas": [
+     "ME² = AE² − MA²",
+     "CK/CE = MA/ME",
+     "área = cateto × cateto/2"
+    ],
+    "simbolos": [
+     [
+      "K",
+      "ponto de ME acima de C"
+     ]
+    ]
+   },
+   "pista": "Que triângulo sobra quando se tira MACK do triângulo MAE? Ele é semelhante a qual?",
+   "passos": [
+    {
+     "faz": "Ache ME",
+     "conta": "ME² = 20² − 12² = 256 → ME = 16 m",
+     "porque": "Pitágoras em MAE, hipotenusa AE.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a área de MAE",
+     "conta": "(12 × 16)/2 = 96 m²",
+     "porque": "Catetos MA e ME.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache CK por semelhança",
+     "conta": "CK/12 = 12/16 → CK = 9 m",
+     "porque": "Cateto oposto a E sobre cateto vizinho a E.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a área de CEK",
+     "conta": "(12 × 9)/2 = 54 m²",
+     "porque": "Catetos CE e CK.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Subtraia e conclua",
+     "conta": "96 − 54 = 42 m² → alternativa A",
+     "porque": "MACK = MAE − CEK.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 42",
+   "checagem": "Pela razão de semelhança: a hipotenusa de CEK é KE = √(12² + 9²) = 15, e a de MAE é 20. Razão 15/20 = 3/4; razão das áreas (3/4)² = 9/16. Área de CEK = 96 × 9/16 = 54. Sobra 96 − 54 = 42 m².",
+   "erradas": {
+    "B": "54 m² é a área do triângulo CEK, a parte que não é hachurada.",
+    "C": "96 m² é a área do triângulo MAE inteiro; falta tirar o triângulo CEK.",
+    "D": "108 m² é mais que a área do triângulo MAE inteiro (96 m²), que contém a região hachurada.",
+    "E": "120 m² é (12 × 20)/2: trata MA e AE como catetos, mas AE é a hipotenusa."
+   },
+   "armadilha": "As áreas dos dois triângulos (96 e 54) estão nas alternativas; a região pedida é a diferença.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A área do quadrilátero MACK.",
+    "chave": "ME = 16; MAE = 96; CK = 9; CEK = 54; MACK = 96 − 54 = 42 m².",
+    "cuidado": "AE = 20 m é hipotenusa, não cateto."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "dois triângulos pela diagonal AK",
+    "ideia": "KE = √(12² + 9²) = 15, então MK = 16 − 15 = 1. A diagonal AK divide MACK em AMK (12 × 1/2 = 6) e ACK, retângulo em C, com AC = 20 − 12 = 8 (8 × 9/2 = 36). Total: 6 + 36 = 42 m²."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "ME² = 20² − 12²",
+    "nota": "Pitágoras em MAE"
+   },
+   {
+    "linha": "ME² = 256",
+    "nota": "calcula"
+   },
+   {
+    "linha": "ME = 16 m",
+    "nota": "tira a raiz"
+   },
+   {
+    "linha": "(12 × 16)/2 = 96 m²",
+    "nota": "área de MAE"
+   },
+   {
+    "linha": "CK/12 = 12/16",
+    "nota": "semelhança"
+   },
+   {
+    "linha": "CK = 9 m",
+    "nota": "isola CK"
+   },
+   {
+    "linha": "(12 × 9)/2 = 54 m²",
+    "nota": "área de CEK"
+   },
+   {
+    "linha": "96 − 54 = 42 m²",
+    "nota": "MAE menos CEK"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0023"
+  }
+ },
+ "P19f2054c": {
+  "n": "35",
+  "conceito": "Usar o cosseno para achar a hipotenusa e recompor um comprimento total.",
+  "equivocos": {
+   "A": "M10.1:errou-a-conta",
+   "B": "M10.1:respondeu-a-distancia-no-chao",
+   "C": "M10.1:esqueceu-a-parte-em-pe",
+   "D": "M10.1:errou-a-conta"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Depois do corte, a árvore forma um triângulo retângulo com o chão: a parte que ficou em pé (2 m) é um cateto, o chão é o outro, e a parte que tombou é a hipotenusa. O ângulo de 60° está no ponto do corte, entre a parte vertical e a parte tombada: a parte vertical é o cateto adjacente a ele. A altura original é a soma das duas partes.",
+    "formulas": [
+     "cos 60° = cateto adjacente/hipotenusa",
+     "altura = parte em pé + parte tombada"
+    ],
+    "simbolos": [
+     [
+      "hipotenusa",
+      "comprimento da parte que tombou"
+     ]
+    ]
+   },
+   "pista": "Que lado do triângulo é a parte que tombou? O toco de 2 m é adjacente ou oposto ao ângulo de 60°?",
+   "passos": [
+    {
+     "faz": "Monte o cosseno",
+     "conta": "cos 60° = 2/parte tombada",
+     "porque": "O toco é adjacente ao ângulo no corte.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Ache a parte tombada",
+     "conta": "2/0,5 = 4 m",
+     "porque": "cos 60° = 1/2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some as partes",
+     "conta": "2 + 4 = 6 m",
+     "porque": "Altura antes do corte.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "6,0 m → alternativa E",
+     "porque": "Altura original.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 6,0 m",
+   "checagem": "Pelo outro ângulo: a ponta da árvore faz 30° com o chão, e o cateto oposto a 30° (o toco, 2 m) é metade da hipotenusa: parte tombada de 4 m. Total 6 m.",
+   "erradas": {
+    "A": "3,0 m daria uma parte tombada de 1 m, menor que o toco de 2 m: ela nem alcançaria o chão.",
+    "B": "3,4 m é 2 × 1,7: a distância, no chão, entre o toco e a ponta da árvore (2 × tg 60°), não a altura.",
+    "C": "4,0 m é só a parte que tombou; falta somar os 2 m do toco.",
+    "D": "5,8 m daria uma parte tombada de 3,8 m, com cosseno 2/3,8 ≈ 0,53, e cos 60° = 0,5."
+   },
+   "armadilha": "A hipotenusa (4 m) é só a parte que caiu: a árvore inteira inclui o toco.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A altura da árvore antes do corte.",
+    "chave": "Parte tombada = 2/cos 60° = 4 m; altura = 2 + 4 = 6 m.",
+    "cuidado": "Somar o toco."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "Pitágoras",
+    "ideia": "No chão, a ponta fica a 2 × tg 60° = 2√3 m do toco. Então L² = 2² + (2√3)² = 4 + 12 = 16, L = 4 m, e a altura é 2 + 4 = 6 m."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "cos 60° = 2/L",
+    "nota": "L: parte tombada"
+   },
+   {
+    "linha": "L = 2/0,5 = 4 m",
+    "nota": "cos 60° = 0,5"
+   },
+   {
+    "linha": "2 + 4 = 6 m",
+    "nota": "soma as partes"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0025"
+  }
+ },
+ "Pdf8dda27": {
+  "n": "39",
+  "conceito": "Volume do cone menos o volume da semiesfera.",
+  "equivocos": {
+   "A": "M11.5:usou-a-esfera-inteira",
+   "C": "M11.5:sem-origem-identificada",
+   "D": "M11.5:nao-descontou-a-bolha",
+   "E": "M11.5:somou-em-vez-de-subtrair"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A resina é o cone cheio menos a bolha de ar. O cone tem raio 6 e altura 18; a bolha é meia esfera de raio 3. Os dois volumes têm π como fator.",
+    "formulas": [
+     "volume do cone = π r² h/3",
+     "volume da semiesfera = 2πR³/3"
+    ],
+    "simbolos": []
+   },
+   "pista": "Calcule separadamente o cone e a bolha.",
+   "passos": [
+    {
+     "faz": "Cone",
+     "conta": "π × 6² × 18/3 = 216π",
+     "porque": "Base 36π, altura 18.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Semiesfera",
+     "conta": "2π × 3³/3 = 18π",
+     "porque": "Metade de 4π × 27/3 = 36π.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resina",
+     "conta": "216π − 18π = 198π → alternativa B",
+     "porque": "Cone sem a bolha.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 198 (o volume é 198π cm³)",
+   "checagem": "Em valores aproximados: cone 216π ≈ 678,6 cm³ e bolha 18π ≈ 56,5 cm³; 678,6 − 56,5 ≈ 622,0 ≈ 198π.",
+   "erradas": {
+    "A": "180 sai de tirar a esfera inteira (36π) em vez da semiesfera: 216π − 36π.",
+    "C": "210 não confere: exigiria bolha de 6π, mas a semiesfera de raio 3 tem 18π.",
+    "D": "216 é o cone sem descontar a bolha.",
+    "E": "234 sai de somar a bolha ao cone (216π + 18π) em vez de subtrair."
+   },
+   "armadilha": "Usar a esfera inteira para a bolha: ela é só meia esfera.",
+   "alerta": "O volume é 198π cm³ (cerca de 622 cm³); as alternativas trazem só o coeficiente de π, e o gabarito oficial é a letra B, 198.",
+   "essencial": {
+    "pede": "O volume de resina.",
+    "chave": "216π − 18π = 198π.",
+    "cuidado": "Bolha é semiesfera: metade de 4πR³/3."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "fator comum",
+    "ideia": "Tire π: 36 × 6 − 2 × 9 = 216 − 18 = 198."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "π × 36 × 18/3 = 216π",
+    "nota": "cone"
+   },
+   {
+    "linha": "2π × 27/3 = 18π",
+    "nota": "bolha"
+   },
+   {
+    "linha": "216π − 18π = 198π",
+    "nota": "resina"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0030"
+  }
+ },
+ "P1351179c": {
+  "n": "34",
+  "conceito": "Reta perpendicular por um ponto e interseção com o eixo y.",
+  "equivocos": {
+   "A": "M12.2:trocou-o-eixo",
+   "B": "M12.2:sem-origem-identificada",
+   "C": "M12.2:nao-trocou-o-sinal",
+   "E": "M12.2:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "r: 2x − y + 1 = 0 é y = 2x + 1, inclinação 2. A rua t é perpendicular: inclinação −1/2, e passa por P(2, 3). O ponto de ônibus fica onde t cruza o eixo das ordenadas, isto é, em x = 0.",
+    "formulas": [
+     "perpendiculares: m₁ × m₂ = −1",
+     "y − y₀ = m(x − x₀)"
+    ],
+    "simbolos": []
+   },
+   "pista": "Escreva r na forma y = mx + n para ler a inclinação.",
+   "passos": [
+    {
+     "faz": "Inclinação de r",
+     "conta": "2x − y + 1 = 0 → y = 2x + 1 → m = 2",
+     "porque": "Isole y.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Reta t",
+     "conta": "m = −1/2 → y − 3 = −(x − 2)/2",
+     "porque": "Perpendicular por P(2, 3).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Corte com o eixo y",
+     "conta": "x = 0: y = 3 + 1 = 4 → (0, 4) → alternativa D",
+     "porque": "No eixo das ordenadas, x = 0.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — (0, 4)",
+   "checagem": "Confira o ângulo reto: t vai de (0, 4) a (2, 3), direção (2, −1); r tem direção (1, 2); produto 2 × 1 + (−1) × 2 = 0.",
+   "erradas": {
+    "A": "(8, 0) sai de cruzar t com o eixo das abscissas (y = 0) em vez do das ordenadas: 3 − (x − 2)/2 = 0 dá x = 8.",
+    "B": "(2, 0) está no eixo x, e o ponto fica no eixo das ordenadas.",
+    "C": "(0, 2) sai de usar a inclinação 1/2 (só inverter, sem trocar o sinal): 3 − 2 × 1/2 = 2.",
+    "E": "(0, 8) não confere: de P(2, 3) até (0, 8) a inclinação é −5/2, não −1/2."
+   },
+   "armadilha": "Confundir eixo das ordenadas (eixo y) com eixo das abscissas.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O ponto onde t cruza o eixo y.",
+    "chave": "t: inclinação −1/2 por (2, 3); em x = 0, y = 4.",
+    "cuidado": "Perpendicular: inverta e troque o sinal."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pelo vetor",
+    "ideia": "t tem direção (2, −1); de P(2, 3) voltando 2 em x, sobe 1 em y: (0, 4)."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "m(r) = 2",
+    "nota": "r"
+   },
+   {
+    "linha": "m(t) = −1/2",
+    "nota": "t"
+   },
+   {
+    "linha": "y = 3 + 1 = 4",
+    "nota": "x = 0"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0032"
+  }
+ },
+ "P8dfa98ed": {
+  "n": "31",
+  "conceito": "Retas por dois pontos lidos no gráfico, interseção e área.",
+  "equivocos": {
+   "A": "M12.5:sem-origem-identificada",
+   "B": "M12.5:sem-origem-identificada",
+   "D": "M12.5:sem-origem-identificada",
+   "E": "M12.5:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Leia os pontos marcados: f passa por (0, −6) e (4, 2); g passa por (0, 2) e (2, −6). O triângulo sombreado tem um lado no eixo y, de (0, 2) a (0, −6), e o terceiro vértice em P.",
+    "formulas": [
+     "área = base × altura/2"
+    ],
+    "simbolos": []
+   },
+   "pista": "Ache as leis de f e g pelos pontos marcados.",
+   "passos": [
+    {
+     "faz": "Leis",
+     "conta": "f: (2 + 6)/4 = 2 → f(x) = 2x − 6 | g: (−6 − 2)/2 = −4 → g(x) = −4x + 2",
+     "porque": "Inclinação e ponto no eixo y.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache P",
+     "conta": "2x − 6 = −4x + 2 → 6x = 8 → x = 4/3",
+     "porque": "Encontro de f e g.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Área",
+     "conta": "base 2 − (−6) = 8 no eixo y | altura 4/3 → 8 × (4/3)/2 = 16/3 → alternativa C",
+     "porque": "A altura é a abscissa de P.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 16/3",
+   "checagem": "Pela fórmula com coordenadas: (0, 2), (0, −6), (4/3, −10/3): |0 + 0 + (4/3)(2 + 6)|/2 = (32/3)/2 = 16/3.",
+   "erradas": {
+    "A": "16/9 não confere: com base 8, exigiria altura 4/9, mas P tem x = 4/3.",
+    "B": "10/3 não confere: com base 8, exigiria altura 5/6, mas P tem x = 4/3.",
+    "D": "20/3 não confere: com base 8, exigiria altura 5/3.",
+    "E": "8 não confere: com base 8, exigiria altura 2, e P tem x = 4/3."
+   },
+   "armadilha": "Usar a ordenada de P (−10/3) como altura: a base está no eixo y, então a altura é horizontal, x de P.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A área do triângulo sombreado.",
+    "chave": "f = 2x − 6, g = −4x + 2; P em x = 4/3; área 8 × (4/3)/2.",
+    "cuidado": "Base no eixo y: altura é a abscissa."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "faixas verticais",
+    "ideia": "Entre x = 0 e x = 4/3, a distância vertical g − f = 8 − 6x cai linearmente de 8 a 0: área = 8 × (4/3)/2."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "f = 2x − 6 | g = −4x + 2",
+    "nota": "leis"
+   },
+   {
+    "linha": "x = 4/3",
+    "nota": "P"
+   },
+   {
+    "linha": "8 × (4/3)/2 = 16/3",
+    "nota": "área"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0033"
+  }
+ },
+ "Paed92e89": {
+  "n": "37",
+  "conceito": "Probabilidade com anagramas e bloco de letras.",
+  "equivocos": {
+   "A": "M13.4:fixou-o-bloco-no-inicio",
+   "B": "M13.4:sem-origem-identificada",
+   "C": "M13.4:esqueceu-a-repeticao",
+   "E": "M13.4:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "MACKENZIE tem 9 letras com o E repetido: 9!/2! anagramas. Com MACKE em sequência, o bloco vira um elemento; sobram N, Z, I, E, todas distintas. São 5 elementos distintos para permutar.",
+    "formulas": [
+     "anagramas com repetição: n!/(a!)"
+    ],
+    "simbolos": []
+   },
+   "pista": "Depois de formar o bloco MACKE, quais letras sobram?",
+   "passos": [
+    {
+     "faz": "Total",
+     "conta": "9!/2! = 362880/2 = 181 440",
+     "porque": "E aparece 2 vezes.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Com o bloco",
+     "conta": "[MACKE], N, Z, I, E → 5! = 120",
+     "porque": "Elementos distintos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Probabilidade",
+     "conta": "120/181440 = 1/1512 → alternativa D",
+     "porque": "Simplifique.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 1/1512",
+   "checagem": "Pelas posições do bloco: o bloco começa numa de 5 posições (1 a 5); as outras 4 letras distintas se permutam em 4! = 24: 5 × 24 = 120 casos.",
+   "erradas": {
+    "A": "1/7560 = 24/181440 conta só o bloco no começo da palavra (4! = 24).",
+    "B": "1/6048 não confere: 120/181440 = 1/1512.",
+    "C": "1/3024 = 120/362880 esquece que o E se repete (usa 9!).",
+    "E": "5/126 não confere: 120/181440 = 1/1512."
+   },
+   "armadilha": "Dividir por 2! também nos favoráveis: depois do bloco, sobra um E só.",
+   "alerta": "",
+   "essencial": {
+    "pede": "P(sequência MACKE).",
+    "chave": "5!/(9!/2!) = 1/1512.",
+    "cuidado": "Bloco = um elemento."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "E distintos",
+    "ideia": "Tratando os E como E₁ e E₂: 9! = 362880 anagramas; o bloco pode usar E₁ ou E₂: 2 × 5! = 240; 240/362880 = 1/1512."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "9!/2! = 181 440",
+    "nota": "total"
+   },
+   {
+    "linha": "5! = 120",
+    "nota": "com bloco"
+   },
+   {
+    "linha": "1/1512",
+    "nota": "probabilidade"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0036"
+  }
+ },
+ "Pa7c21975": {
+  "n": "30",
+  "conceito": "Média, mediana, moda e amplitude a partir de gráfico.",
+  "equivocos": {
+   "B": "M14.1:nao-ordenou",
+   "C": "M14.1:sem-origem-identificada",
+   "D": "M14.1:sem-origem-identificada",
+   "E": "M14.1:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Leia os 10 valores do gráfico: 2, 3, 5, 8, 12, 15, 15, 10, 6, 4. Calcule cada medida.",
+    "formulas": [
+     "mediana de 10 valores = média do 5.º e do 6.º",
+     "amplitude = máximo − mínimo"
+    ],
+    "simbolos": []
+   },
+   "pista": "Ordene os 10 valores.",
+   "passos": [
+    {
+     "faz": "Média",
+     "conta": "soma 2 + 3 + 5 + 8 + 12 + 15 + 15 + 10 + 6 + 4 = 80 → 80/10 = 8",
+     "porque": "10 dias.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Mediana e moda",
+     "conta": "ordenados: 2, 3, 4, 5, 6, 8, 10, 12, 15, 15 → mediana (6 + 8)/2 = 7 | moda 15",
+     "porque": "15 aparece duas vezes.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Amplitude",
+     "conta": "15 − 2 = 13 → média 8, mediana 7, moda 15, amplitude 13 → alternativa A",
+     "porque": "Máximo menos mínimo.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — A média diária de ataques é 8, a mediana é 7, a moda é 15 e a amplitude é 13.",
+   "checagem": "A mediana 7 deixa 5 valores abaixo (2, 3, 4, 5, 6) e 5 acima (8, 10, 12, 15, 15). A soma em pares: (2 + 15) + (3 + 15) + (5 + 12) + (8 + 10) + (6 + 4) = 80.",
+   "erradas": {
+    "B": "A mediana é (6 + 8)/2 = 7, não 8.",
+    "C": "A média é 80/10 = 8, não 7.",
+    "D": "A moda é 15 (aparece duas vezes); o 12 aparece uma.",
+    "E": "A amplitude é 15 − 2 = 13, não 12."
+   },
+   "armadilha": "Tirar a mediana na ordem dos dias (12 e 15, os dias 5 e 6) sem ordenar os valores.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A alternativa correta sobre as medidas.",
+    "chave": "Média 8, mediana 7, moda 15, amplitude 13.",
+    "cuidado": "Ordene antes da mediana."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "média por desvios",
+    "ideia": "Desvios em relação a 8: −6, −5, −3, 0, 4, 7, 7, 2, −2, −4 somam 0, então a média é 8."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "80/10 = 8",
+    "nota": "média"
+   },
+   {
+    "linha": "(6 + 8)/2 = 7",
+    "nota": "mediana"
+   },
+   {
+    "linha": "15",
+    "nota": "moda"
+   },
+   {
+    "linha": "15 − 2 = 13",
+    "nota": "amplitude"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0038"
+  }
+ }
+}

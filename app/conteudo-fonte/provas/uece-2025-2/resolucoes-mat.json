@@ -1,0 +1,1056 @@
+{
+ "Pa8688ad2": {
+  "n": "13",
+  "conceito": "Decompor um número em fatores primos e somar os primos distintos.",
+  "equivocos": {
+   "A": "M01.4:fatorou-errado",
+   "B": "M01.4:esqueceu-um-primo",
+   "C": "M01.4:esqueceu-um-primo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os divisores primos de um número são exatamente os primos que aparecem na sua decomposição. Fatore 9438 e some cada primo uma vez só, mesmo que ele apareça repetido.",
+    "formulas": [
+     "divisores primos = primos da decomposição, sem repetir"
+    ],
+    "simbolos": [
+     [
+      "número primo",
+      "inteiro maior que 1 que só é divisível por 1 e por ele mesmo"
+     ]
+    ]
+   },
+   "pista": "Fatore 9438 começando pelos primos pequenos: 2, 3, 5, 7, 11...",
+   "passos": [
+    {
+     "faz": "Tire os fatores 2 e 3",
+     "conta": "9438 ÷ 2 = 4719 → 4719 ÷ 3 = 1573",
+     "porque": "9438 é par; 4719 tem soma dos algarismos 21, múltiplo de 3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Fatore 1573",
+     "conta": "1573 ÷ 11 = 143 → 143 ÷ 11 = 13",
+     "porque": "1573 não é divisível por 3, 5 nem 7; por 11 é (1 − 5 + 7 − 3 = 0).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escreva a decomposição",
+     "conta": "9438 = 2 × 3 × 11 × 11 × 13",
+     "porque": "13 é primo, então a fatoração acabou. O 11 aparece duas vezes.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some os primos distintos",
+     "conta": "2 + 3 + 11 + 13 = 29 → alternativa D",
+     "porque": "O 11 é um divisor só, por isso entra uma vez na soma.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 29",
+   "checagem": "Multiplique de volta: 2 × 3 = 6; 11 × 11 = 121; 6 × 121 = 726; 726 × 13 = 9438. A decomposição está certa.",
+   "erradas": {
+    "A": "25 não confere: faltam 4 para chegar a 29, e nenhum dos primos da decomposição (2, 3, 11, 13) vale 4.",
+    "B": "18 sai de esquecer o 11: 2 + 3 + 13 = 18. O 11 divide 9438 (9438 ÷ 11 = 858).",
+    "C": "26 sai de esquecer o 3: 2 + 11 + 13 = 26. O 3 divide 9438 (9438 ÷ 3 = 3146)."
+   },
+   "armadilha": "O 11 aparece duas vezes na fatoração, mas é um divisor primo só.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A soma dos divisores primos de 9438.",
+    "chave": "9438 = 2 × 3 × 11² × 13; soma 2 + 3 + 11 + 13 = 29.",
+    "cuidado": "Some cada primo uma vez e não pare a fatoração em 1573."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "começar pelo 11",
+    "ideia": "Pela regra do 11 em 9438: 9 − 4 + 3 − 8 = 0, então 9438 = 11 × 858. E 858 = 2 × 3 × 11 × 13. Os primos distintos 2, 3, 11 e 13 somam 29."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "9438 = 2 × 4719",
+    "nota": "divide por 2"
+   },
+   {
+    "linha": "9438 = 2 × 3 × 1573",
+    "nota": "divide por 3"
+   },
+   {
+    "linha": "9438 = 2 × 3 × 11 × 143",
+    "nota": "divide por 11"
+   },
+   {
+    "linha": "9438 = 2 × 3 × 11 × 11 × 13",
+    "nota": "divide por 11"
+   },
+   {
+    "linha": "2 + 3 + 11 + 13 = 29",
+    "nota": "primos sem repetir"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0013"
+  },
+  "gabarito_aprendice": {
+   "letra": "D",
+   "letra_conferente": "D",
+   "preliminar": "D",
+   "fontes_web": [
+    {
+     "url": "https://projetoagathaedu.com.br/prova-completa/resolucao-uece/matematica-2025-2.php",
+     "letra": "D"
+    }
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0013"
+  }
+ },
+ "P313c0327": {
+  "n": "19",
+  "conceito": "Resolver um sistema linear 3 × 3 e somar os termos de uma PA.",
+  "equivocos": {
+   "A": "M04.3:termo-no-lugar-da-soma",
+   "B": "M04.3:dividiu-por-2-duas-vezes",
+   "C": "M04.3:errou-a-soma-da-pa"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Primeiro resolva o sistema por adição: a 3ª equação tem −z, que cancela com o +z das outras duas. Depois, com os três primeiros termos da PA, ache a razão e use a soma dos 20 primeiros.",
+    "formulas": [
+     "a₂₀ = a₁ + 19r",
+     "S₂₀ = 20 × (a₁ + a₂₀)/2"
+    ],
+    "simbolos": [
+     [
+      "PA",
+      "progressão aritmética: cada termo é o anterior mais a razão r"
+     ],
+     [
+      "S₂₀",
+      "soma dos 20 primeiros termos"
+     ]
+    ]
+   },
+   "pista": "Some a 3ª equação com cada uma das outras para eliminar o z.",
+   "passos": [
+    {
+     "faz": "Elimine o z",
+     "conta": "(x + y + z) + (x + 2y − z) = 12 + 4 → 2x + 3y = 16 | (2x − y + z) + (x + 2y − z) = 6 + 4 → 3x + y = 10",
+     "porque": "Somando, +z e −z se cancelam e sobra um sistema com x e y.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva em x e y",
+     "conta": "y = 10 − 3x → 2x + 3 × (10 − 3x) = 16 → −7x = −14 → x = 2 → y = 4",
+     "porque": "Isolar y na segunda e substituir na primeira deixa uma equação só.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache z e a razão",
+     "conta": "2 + 4 + z = 12 → z = 6 | PA: 2, 4, 6 → r = 2",
+     "porque": "Os termos crescem de 2 em 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o 20º termo",
+     "conta": "a₂₀ = 2 + 19 × 2 = 40",
+     "porque": "Do 1º ao 20º termo há 19 passos de razão 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some os 20 termos",
+     "conta": "S₂₀ = 20 × (2 + 40)/2 = 420 → alternativa D",
+     "porque": "A soma da PA é a média do primeiro com o último vezes o número de termos.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 420",
+   "checagem": "A PA 2, 4, 6, ..., 40 é o dobro de 1, 2, ..., 20, cuja soma é 210; o dobro é 420. No sistema: 2×2 − 4 + 6 = 6 e 2 + 2×4 − 6 = 4. Fecha.",
+   "erradas": {
+    "A": "40 sai de parar no 20º termo: a₂₀ = 2 + 19 × 2 = 40. A pergunta é a soma dos vinte termos.",
+    "B": "210 sai de dividir por 2 duas vezes: (2 + 40) × 20/4 = 210. É também a soma de 1 a 20, metade da pedida.",
+    "C": "128 não confere: a soma dos n primeiros termos de 2, 4, 6... é n × (n + 1); com n = 10 dá 110 e com n = 11 dá 132, nunca 128."
+   },
+   "armadilha": "Responder o 20º termo (40) no lugar da soma dos 20 termos.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A soma dos 20 primeiros termos da PA formada por x, y, z.",
+    "chave": "Sistema dá 2, 4, 6; a₂₀ = 40; S₂₀ = 420.",
+    "cuidado": "Termo é um valor; soma é o acumulado."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "soma pela razão",
+    "ideia": "Com a₁ = 2 e r = 2, a soma também sai de S₂₀ = 20 × a₁ + r × (19 × 20)/2 = 40 + 2 × 190 = 420."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "(x + y + z) + (x + 2y − z) = 12 + 4",
+    "nota": "soma eq. 1 e 3"
+   },
+   {
+    "linha": "2x + 3y = 16",
+    "nota": "z cancela"
+   },
+   {
+    "linha": "(2x − y + z) + (x + 2y − z) = 6 + 4",
+    "nota": "soma eq. 2 e 3"
+   },
+   {
+    "linha": "3x + y = 10",
+    "nota": "z cancela"
+   },
+   {
+    "linha": "2x + 3 × (10 − 3x) = 16",
+    "nota": "substitui y = 10 − 3x"
+   },
+   {
+    "linha": "−7x = −14",
+    "nota": "junta os termos"
+   },
+   {
+    "linha": "x = 2 | y = 4 | z = 6",
+    "nota": "volta nas equações"
+   },
+   {
+    "linha": "r = 4 − 2 = 2",
+    "nota": "razão da PA"
+   },
+   {
+    "linha": "a₂₀ = 2 + 19 × 2 = 40",
+    "nota": "20º termo"
+   },
+   {
+    "linha": "S₂₀ = (20 × (2 + 40))/2",
+    "nota": "soma da PA"
+   },
+   {
+    "linha": "S₂₀ = 420",
+    "nota": "resultado"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0013"
+  },
+  "gabarito_aprendice": {
+   "letra": "D",
+   "letra_conferente": "D",
+   "preliminar": "D",
+   "fontes_web": [],
+   "data": "2026-11-12",
+   "lote": "mat-0013"
+  }
+ },
+ "Pf780a95e": {
+  "n": "14",
+  "conceito": "Achar os pontos de interseção de duas exponenciais igualando as bases.",
+  "equivocos": {
+   "B": "M05.3:errou-a-conta",
+   "C": "M05.3:errou-a-conta",
+   "D": "M05.3:errou-o-sinal"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os gráficos se cruzam onde f(x) = g(x). Escreva 4^x na base 2: com bases iguais, basta igualar os expoentes. A pergunta pede o produto das coordenadas dos dois pontos, isto é, dos dois x e dos dois y.",
+    "formulas": [
+     "4^x = 2^(2x)",
+     "bases iguais: expoentes iguais"
+    ],
+    "simbolos": [
+     [
+      "f(x)",
+      "2 elevado a x² − 3"
+     ],
+     [
+      "g(x)",
+      "4 elevado a x"
+     ]
+    ]
+   },
+   "pista": "Escreva as duas funções como potências de 2.",
+   "passos": [
+    {
+     "faz": "Iguale as bases",
+     "conta": "2^(x² − 3) = 4^x = 2^(2x)",
+     "porque": "4 = 2², então 4^x = 2^(2x).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Iguale os expoentes",
+     "conta": "x² − 3 = 2x → x² − 2x − 3 = 0 → (x − 3)(x + 1) = 0 → x = 3 ou x = −1",
+     "porque": "Potências de mesma base são iguais só com expoentes iguais.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache os y",
+     "conta": "x = 3: y = 4³ = 64 | x = −1: y = 4^(−1) = 1/4",
+     "porque": "Use g, que é mais simples.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique as coordenadas",
+     "conta": "3 × 64 × (−1) × (1/4) = −48 → alternativa A",
+     "porque": "São quatro coordenadas: dois x e dois y.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — −48",
+   "checagem": "Confira os pontos em f: f(3) = 2^(9 − 3) = 2⁶ = 64 e f(−1) = 2^(1 − 3) = 2^(−2) = 1/4. Os dois pontos estão nos dois gráficos.",
+   "erradas": {
+    "B": "24 não confere: o produto 3 × 64 × (−1) × (1/4) é −48.",
+    "C": "−24 não confere: 3 × (−1) = −3 e 64 × (1/4) = 16; o produto é −3 × 16 = −48.",
+    "D": "48 erra o sinal: um dos x é negativo (−1), e os dois y são positivos; o produto é negativo."
+   },
+   "armadilha": "Multiplicar só as abscissas (−3) ou esquecer o sinal de x = −1.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O produto das coordenadas dos dois pontos de interseção.",
+    "chave": "x = 3 e x = −1; pontos (3, 64) e (−1, 1/4); produto −48.",
+    "cuidado": "Entram os dois x e os dois y."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "soma e produto",
+    "ideia": "Em x² − 2x − 3 = 0, o produto das raízes é −3 e a soma é 2. O produto dos y é 4^(x₁) × 4^(x₂) = 4^(x₁ + x₂) = 4² = 16. Total: −3 × 16 = −48."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "2^(x² − 3) = 4^x",
+    "nota": "f(x) = g(x)"
+   },
+   {
+    "linha": "2^(x² − 3) = 2^(2x)",
+    "nota": "4 = 2²"
+   },
+   {
+    "linha": "x² − 3 = 2x",
+    "nota": "iguala expoentes"
+   },
+   {
+    "linha": "x² − 2x − 3 = 0",
+    "nota": "passa para a esquerda"
+   },
+   {
+    "linha": "(x − 3)(x + 1) = 0",
+    "nota": "fatora"
+   },
+   {
+    "linha": "x = 3 ou x = −1",
+    "nota": "raízes"
+   },
+   {
+    "linha": "y = 4³ = 64 | y = 4^(−1) = 1/4",
+    "nota": "calcula em g"
+   },
+   {
+    "linha": "P = 3 × 64 × (−1) × 1/4",
+    "nota": "multiplica as coordenadas"
+   },
+   {
+    "linha": "P = −48",
+    "nota": "resultado"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0015"
+  },
+  "gabarito_aprendice": {
+   "letra": "A",
+   "letra_conferente": "A",
+   "preliminar": "A",
+   "fontes_web": [],
+   "data": "2026-11-12",
+   "lote": "mat-0015"
+  }
+ },
+ "Pdcab2608": {
+  "n": "21",
+  "conceito": "Julgar afirmações sobre imagem, interseção, paridade e periodicidade de f(x) = x + 1/x.",
+  "equivocos": {
+   "A": "M05.5:descartou-afirmacao-verdadeira",
+   "C": "M05.5:errou-a-imagem",
+   "D": "M05.5:errou-a-imagem"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "São quatro afirmações independentes sobre f(x) = x + 1/x. Uma ideia ajuda em duas delas: para x positivo, x + 1/x nunca fica abaixo de 2 (o mínimo ocorre em x = 1); para x negativo, nunca fica acima de −2.",
+    "formulas": [
+     "x + 1/x = k → x² − kx + 1 = 0 → Δ = k² − 4",
+     "função ímpar: f(−x) = −f(x)"
+    ],
+    "simbolos": [
+     [
+      "imagem",
+      "conjunto dos valores que a função assume"
+     ],
+     [
+      "função periódica",
+      "função que repete os valores a intervalos fixos"
+     ]
+    ]
+   },
+   "pista": "Na I, teste se f consegue valer 1: resolva x + 1/x = 1.",
+   "passos": [
+    {
+     "faz": "Julgue a I",
+     "conta": "x + 1/x = 1 → x² − x + 1 = 0 → Δ = 1 − 4 = −3",
+     "porque": "Sem solução real: f nunca vale 1. A imagem não é todo o conjunto dos reais sem o zero. I falsa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Julgue a II",
+     "conta": "reta: y = −x | x + 1/x = −x → 2x² = −1",
+     "porque": "Um quadrado não pode ser negativo: não há ponto comum. II verdadeira.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Julgue a III",
+     "conta": "f(−x) = −x − 1/x = −(x + 1/x) = −f(x)",
+     "porque": "III verdadeira.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Julgue a IV",
+     "conta": "f(1) = 2 | f(3) = 3 + 1/3 = 10/3",
+     "porque": "Com período 2, f(3) teria de ser igual a f(1). IV falsa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte",
+     "conta": "verdadeiras: II e III → 2 → alternativa B",
+     "porque": "A pergunta é a quantidade.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 2.",
+   "checagem": "A imagem de f: a equação x + 1/x = k só tem solução quando k² − 4 ≥ 0, isto é, k ≤ −2 ou k ≥ 2. Valores entre −2 e 2 nunca são atingidos, o que confirma que a I é falsa.",
+   "erradas": {
+    "A": "Não confere: são duas as verdadeiras, a II (a reta y = −x não corta o gráfico) e a III (f é ímpar).",
+    "C": "Não confere: a I é falsa (f nunca vale 1, por exemplo) e a IV também (f(3) ≠ f(1)); sobram duas.",
+    "D": "Não confere: a I e a IV são falsas."
+   },
+   "armadilha": "Aceitar a I porque f nunca vale zero: ela também não assume nenhum valor entre −2 e 2.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantas das quatro afirmações são verdadeiras.",
+    "chave": "II e III verdadeiras; I e IV falsas.",
+    "cuidado": "x + 1/x fica sempre fora do intervalo de −2 a 2."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "sinal de f",
+    "ideia": "f(x) tem sempre o sinal de x, e −x o sinal oposto: os gráficos não se encontram (II verdadeira). f nunca fica entre −2 e 2, logo não vale 1 (I falsa). Para x > 0, f(x) > x cresce sem limite; se o período fosse 2, f(1 + 2k) valeria sempre f(1) = 2, o que não acontece (IV falsa). Com f(−x) = −f(x) (III), são 2 verdadeiras."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "I: x² − x + 1 = 0 | Δ = 1 − 4 = −3",
+    "nota": "f nunca vale 1"
+   },
+   {
+    "linha": "II: x + 1/x = −x → 2x² = −1",
+    "nota": "sem ponto comum"
+   },
+   {
+    "linha": "III: f(−x) = −x − 1/x = −f(x)",
+    "nota": "função ímpar"
+   },
+   {
+    "linha": "IV: f(1) = 2 | f(3) = 10/3",
+    "nota": "f(3) ≠ f(1)"
+   },
+   {
+    "linha": "verdadeiras: II, III = 2",
+    "nota": "conta"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0016"
+  },
+  "gabarito_aprendice": {
+   "letra": "B",
+   "letra_conferente": "B",
+   "preliminar": "B",
+   "fontes_web": [],
+   "data": "2026-11-12",
+   "lote": "mat-0016"
+  }
+ },
+ "P86577d6b": {
+  "n": "16",
+  "conceito": "Calcular a área de um losango a partir do lado e de um ângulo.",
+  "equivocos": {
+   "A": "M08.2:calculou-so-um-triangulo",
+   "B": "M08.2:errou-a-conta",
+   "D": "M08.2:errou-a-conta"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Um losango com um ângulo interno de 60° é formado por dois triângulos equiláteros: a diagonal menor divide o losango em dois triângulos de lados 20, 20 e ângulo de 60° entre eles, portanto equiláteros. A área de um triângulo equilátero de lado L é L² × √3/4.",
+    "formulas": [
+     "área do triângulo equilátero = L² × √3/4",
+     "área do losango = lado² × sen (ângulo)"
+    ],
+    "simbolos": [
+     [
+      "L",
+      "lado do losango (20 m)"
+     ]
+    ]
+   },
+   "pista": "A diagonal que parte dos ângulos de 120° divide o losango em que tipo de triângulo?",
+   "passos": [
+    {
+     "faz": "Divida o losango",
+     "conta": "dois triângulos de lados 20, 20 e ângulo de 60° → equiláteros",
+     "porque": "Dois lados iguais com 60° entre eles.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule a área de um triângulo",
+     "conta": "20² × √3/4 = 400√3/4 = 100√3",
+     "porque": "Fórmula do triângulo equilátero.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Dobre",
+     "conta": "2 × 100√3 = 200√3 m²",
+     "porque": "O losango tem dois desses triângulos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "200√3 → alternativa C",
+     "porque": "Área do terreno.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 200√3.",
+   "checagem": "Pela fórmula com o seno: 20 × 20 × sen 60° = 400 × √3/2 = 200√3. Pelas diagonais: 20 e 20√3; (20 × 20√3)/2 = 200√3.",
+   "erradas": {
+    "A": "100√3 é a área de um só dos dois triângulos equiláteros: metade do losango.",
+    "B": "250√3 não confere: exigiria sen do ângulo igual a 250√3/400 ≈ 1,08, maior que 1.",
+    "D": "150√3 não confere: exigiria sen do ângulo igual a 150√3/400 ≈ 0,65, e sen 60° ≈ 0,87."
+   },
+   "armadilha": "Parar na área de um triângulo equilátero e esquecer que o losango tem dois.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A área do terreno em forma de losango.",
+    "chave": "Dois triângulos equiláteros de lado 20: 2 × 100√3 = 200√3 m².",
+    "cuidado": "Losango de 60° = dois triângulos equiláteros."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "base vezes altura",
+    "ideia": "O losango é um paralelogramo de base 20. A altura é a do triângulo equilátero de lado 20: 20 × √3/2 = 10√3. Área: 20 × 10√3 = 200√3."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "lados 20, 20 e 60° → equilátero",
+    "nota": "divide o losango"
+   },
+   {
+    "linha": "A(triângulo) = (20² × √3)/4",
+    "nota": "fórmula do equilátero"
+   },
+   {
+    "linha": "A(triângulo) = (400√3)/4",
+    "nota": "eleva ao quadrado"
+   },
+   {
+    "linha": "A(triângulo) = 100√3",
+    "nota": "divide por 4"
+   },
+   {
+    "linha": "A(losango) = 2 × 100√3",
+    "nota": "dois triângulos"
+   },
+   {
+    "linha": "A(losango) = 200√3 m²",
+    "nota": "resultado"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0020"
+  },
+  "gabarito_aprendice": {
+   "letra": "C",
+   "letra_conferente": "C",
+   "preliminar": "C",
+   "fontes_web": [
+    "https://projetoagathaedu.com.br/prova-completa/resolucao-uece/matematica-2025-2.php"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0020"
+  }
+ },
+ "Pf3aae8d4": {
+  "n": "20",
+  "conceito": "Localizar o cruzamento de uma reta com uma circunferência inscrita em um quadrado.",
+  "equivocos": {
+   "A": "M08.5:errou-a-conta",
+   "B": "M08.5:respondeu-op",
+   "D": "M08.5:errou-a-conta"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Coloque o centro O na origem: a circunferência inscrita tem raio 5 e equação x² + y² = 25. Os pontos de tangência N e M são os pontos médios dos lados XW e YZ: N = (−5, 0) e M = (5, 0); NM é um diâmetro horizontal. O vértice X é (−5, 5). O ponto I está sobre a reta XM e sobre a circunferência; IP, perpendicular a NM, é a altura de I acima do diâmetro, isto é, a coordenada y de I.",
+    "formulas": [
+     "circunferência: x² + y² = 25",
+     "reta XM: passa por (−5, 5) e (5, 0)"
+    ],
+    "simbolos": [
+     [
+      "I",
+      "segundo ponto em que XM corta a circunferência"
+     ],
+     [
+      "P",
+      "pé da perpendicular de I sobre NM"
+     ]
+    ]
+   },
+   "pista": "Escreva a reta XM e veja onde ela corta a circunferência, além de M.",
+   "passos": [
+    {
+     "faz": "Escreva a reta XM",
+     "conta": "inclinação (0 − 5)/(5 − (−5)) = −1/2 → y = (5 − x)/2",
+     "porque": "Passa por M(5, 0).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Substitua na circunferência",
+     "conta": "x² + (5 − x)²/4 = 25 → 4x² + 25 − 10x + x² = 100 → 5x² − 10x − 75 = 0 → x² − 2x − 15 = 0",
+     "porque": "Multiplicando por 4 e dividindo por 5.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva",
+     "conta": "x = 5 (ponto M) ou x = −3 → I = (−3, 4)",
+     "porque": "y = (5 − (−3))/2 = 4.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Leia IP",
+     "conta": "IP = 4 m",
+     "porque": "Distância de I ao diâmetro NM.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "4,0 → alternativa C",
+     "porque": "Medida de IP.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 4,0.",
+   "checagem": "Conferindo: (−3)² + 4² = 25, I está na circunferência; e de I(−3, 4) a M(5, 0) a inclinação é −4/8 = −1/2, a mesma de XM. É o triângulo 3, 4, 5: OP = 3, IP = 4, OI = 5.",
+   "erradas": {
+    "A": "3,5 não confere: com IP = 3,5 e OI = 5, OP seria √(25 − 12,25) ≈ 3,57, e o ponto (−3,57; 3,5) não está na reta XM (nela, y = (5 + 3,57)/2 ≈ 4,29).",
+    "B": "3,0 é a medida de OP, não de IP.",
+    "D": "4,5 não confere: com IP = 4,5 e OI = 5, OP seria √(25 − 20,25) ≈ 2,18, e o ponto (−2,18; 4,5) não está na reta XM (nela, y ≈ 3,59)."
+   },
+   "armadilha": "Trocar IP por OP: o triângulo OPI tem catetos 3 e 4, e IP é o de 4.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A medida do segmento IP.",
+    "chave": "I = (−3, 4): IP = 4 m.",
+    "cuidado": "IP é a distância de I ao diâmetro NM."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "potência de ponto",
+    "ideia": "XN = 5 é tangente à circunferência, então XI × XM = XN² = 25. Como XM = √(10² + 5²) = 5√5, XI = √5 e IM = 4√5, isto é, 4/5 de XM. A altura cai na mesma proporção: IP = 4/5 × 5 = 4."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "m = (0 − 5)/(5 − (−5)) = −1/2",
+    "nota": "inclinação de XM"
+   },
+   {
+    "linha": "y = (5 − x)/2",
+    "nota": "reta XM"
+   },
+   {
+    "linha": "x² + ((5 − x)²)/4 = 25",
+    "nota": "substitui na circunferência"
+   },
+   {
+    "linha": "4x² + 25 − 10x + x² = 100",
+    "nota": "multiplica por 4"
+   },
+   {
+    "linha": "5x² − 10x − 75 = 0",
+    "nota": "junta os termos"
+   },
+   {
+    "linha": "x² − 2x − 15 = 0",
+    "nota": "divide por 5"
+   },
+   {
+    "linha": "x = 5 ou x = −3",
+    "nota": "raízes"
+   },
+   {
+    "linha": "y = (5 − (−3))/2 = 4",
+    "nota": "I = (−3, 4)"
+   },
+   {
+    "linha": "IP = 4 m",
+    "nota": "altura de I"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0022"
+  },
+  "gabarito_aprendice": {
+   "letra": "C",
+   "letra_conferente": "C",
+   "preliminar": "C",
+   "fontes_web": [
+    "https://projetoagathaedu.com.br/prova-completa/resolucao-uece/matematica-2025-2.php"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0022"
+  }
+ },
+ "P01c642cb": {
+  "n": "17",
+  "conceito": "Cubo formado por 8 cubinhos: aresta pela metade, área por quatro.",
+  "equivocos": {
+   "A": "M11.1:parou-na-face-do-cubo-maior",
+   "C": "M11.1:sem-origem-identificada",
+   "D": "M11.1:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Oito cubinhos iguais formam um cubo maior de 2 × 2 × 2. Então a aresta do cubinho é metade da aresta do cubo grande. A área total do cubo grande dá a área de uma face e, daí, a aresta.",
+    "formulas": [
+     "área total do cubo = 6 × aresta²"
+    ],
+    "simbolos": []
+   },
+   "pista": "Como 8 cubos iguais se arrumam num cubo maior?",
+   "passos": [
+    {
+     "faz": "Ache a aresta do cubo maior",
+     "conta": "384/6 = 64 → aresta = √64 = 8 cm",
+     "porque": "Seis faces quadradas iguais.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a aresta do cubinho",
+     "conta": "8 = 2 × 2 × 2 → aresta = 8/2 = 4 cm",
+     "porque": "Dois cubinhos em cada direção.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a área do cubinho",
+     "conta": "6 × 4² = 6 × 16 = 96 → alternativa B",
+     "porque": "Seis faces de 16 cm².",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 96",
+   "checagem": "Pela razão de semelhança: aresta pela metade, área multiplicada por (1/2)² = 1/4; 384/4 = 96.",
+   "erradas": {
+    "A": "64 é a área de uma face do cubo maior (384 ÷ 6), não a área total do cubinho.",
+    "C": "120 não confere: com aresta 4, a área total do cubinho é 6 × 16 = 96.",
+    "D": "168 não confere: com aresta 4, a área total do cubinho é 6 × 16 = 96."
+   },
+   "armadilha": "Dividir a área do cubo maior por 8 (o número de cubinhos): área não se divide como volume; aresta pela metade dá área dividida por 4.",
+   "alerta": "Gabarito do Aprendice: a banca não publicou gabarito oficial (o preliminar dá B); dois especialistas resolveram de forma independente e chegaram a B.",
+   "essencial": {
+    "pede": "A área total de um dos cubos menores.",
+    "chave": "Aresta do maior 8; do menor 4; área 6 × 16 = 96.",
+    "cuidado": "Volume divide por 8, aresta por 2, área por 4."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pelo volume",
+    "ideia": "O cubo maior tem 8³ = 512 cm³; cada cubinho tem 512/8 = 64 = 4³, aresta 4 e área 6 × 16 = 96."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "384/6 = 64 → aresta 8",
+    "nota": "cubo maior"
+   },
+   {
+    "linha": "8/2 = 4",
+    "nota": "cubinho"
+   },
+   {
+    "linha": "6 × 4² = 96",
+    "nota": "área"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0029"
+  },
+  "gabarito_aprendice": {
+   "letra": "B",
+   "letra_conferente": "B",
+   "preliminar": "B",
+   "fontes_web": [],
+   "data": "2026-11-12",
+   "lote": "mat-0029"
+  }
+ },
+ "P7627ed86": {
+  "n": "18",
+  "conceito": "Permutação circular com alternância.",
+  "equivocos": {
+   "A": "M13.2:sem-origem-identificada",
+   "C": "M13.2:sem-origem-identificada",
+   "D": "M13.2:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Na roda alternada, homens e mulheres se intercalam. Arrume primeiro os 6 homens na roda: permutação circular, (6 − 1)!. Eles deixam 6 espaços entre si, e esses espaços já são distintos (cada um fica entre dois homens determinados): as mulheres ocupam os espaços em 6! modos, como fila comum.",
+    "formulas": [
+     "permutação circular: (n − 1)!"
+    ],
+    "simbolos": []
+   },
+   "pista": "Depois de fixar os homens na roda, as mulheres ainda formam uma permutação circular?",
+   "passos": [
+    {
+     "faz": "Homens na roda",
+     "conta": "(6 − 1)! = 5!",
+     "porque": "Só a posição relativa importa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Mulheres nos espaços",
+     "conta": "6 espaços distintos: 6!",
+     "porque": "Os homens já quebraram a simetria da roda.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique",
+     "conta": "5! × 6! → alternativa B",
+     "porque": "Etapas independentes.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — (5!).(6!)",
+   "checagem": "Pelo total de filas: em fila alternada há 2 × 6! × 6! arranjos de 12 posições; cada roda corresponde a 12 rotações: (2 × 6! × 6!)/12 = (6! × 6!)/6 = 5! × 6!.",
+   "erradas": {
+    "A": "(4!).(7!) não confere: em números, 24 × 5 040 = 120 960, e 5! × 6! = 86 400.",
+    "C": "(5!).(11!) não confere: 11! = (12 − 1)! já é a roda das 12 pessoas sem restrição nenhuma, e multiplicar por 5! só aumenta; 5! × 6! = 86 400 é bem menor.",
+    "D": "(4!).(8!) não confere: 24 × 40 320 = 967 680, diferente de 5! × 6! = 86 400."
+   },
+   "armadilha": "Usar a fórmula circular duas vezes, (5!) × (5!): depois que os homens estão na roda, os lugares das mulheres já são distintos.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O número de rodas alternadas.",
+    "chave": "Homens 5!; mulheres nos espaços 6!; 5! × 6!.",
+    "cuidado": "Circular só no primeiro grupo."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "mulheres primeiro",
+    "ideia": "Arrume as 6 mulheres na roda, (6 − 1)! = 5!, e ponha os 6 homens nos 6 espaços já distintos, 6!: o mesmo 5! × 6!."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "(6 − 1)! = 5!",
+    "nota": "homens"
+   },
+   {
+    "linha": "6!",
+    "nota": "mulheres"
+   },
+   {
+    "linha": "5! · 6!",
+    "nota": "rodas"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0034"
+  },
+  "gabarito_aprendice": {
+   "letra": "B",
+   "letra_conferente": "B",
+   "preliminar": "B",
+   "fontes_web": [],
+   "data": "2026-11-12",
+   "lote": "mat-0034"
+  }
+ },
+ "P6ddca084": {
+  "n": "15",
+  "conceito": "Determinante, traço, inversa e quadrado de uma matriz 3 × 3.",
+  "equivocos": {
+   "A": "M15.1:aceitou-afirmacao-falsa",
+   "B": "M15.1:sem-origem-identificada",
+   "D": "M15.1:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Teste cada afirmação: o determinante por Sarrus (ou cofatores), o traço somando a diagonal, a inversa pelo determinante não nulo e M² multiplicando linhas por colunas.",
+    "formulas": [
+     "M invertível ⇔ det M ≠ 0"
+    ],
+    "simbolos": []
+   },
+   "pista": "Quanto vale a soma da diagonal principal?",
+   "passos": [
+    {
+     "faz": "I e III",
+     "conta": "det M = 1(0 − 4) − 2(−2 − 6) + 3(4 − 0) = −4 + 16 + 12 = 24 → I verdadeira; det ≠ 0 → III verdadeira",
+     "porque": "Cofatores da 1.ª linha.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "II",
+     "conta": "traço 1 + 0 + (−1) = 0 → \"não nulo\" é falsa",
+     "porque": "Diagonal.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "IV e contagem",
+     "conta": "M simétrica: M² = [[14, 8, 4], [8, 8, 4], [4, 4, 14]] → todos positivos → verdadeira → I, III e IV: 3 → alternativa C",
+     "porque": "Linhas × colunas.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 3.",
+   "checagem": "Confira o det por Sarrus: diagonais (0 + 12 + 12) − (0 + 4 − 4) = 24 − 0 = 24.",
+   "erradas": {
+    "A": "4 inclui II, falsa: o traço é 1 + 0 − 1 = 0.",
+    "B": "2 deixa de fora uma verdadeira: I, III e IV valem.",
+    "D": "1 deixa de fora duas verdadeiras."
+   },
+   "armadilha": "Achar que algum elemento de M² é negativo porque M tem um −1.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantas afirmações são corretas.",
+    "chave": "det 24, traço 0, invertível, M² positiva: 3.",
+    "cuidado": "Teste cada uma."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "IV pela simetria",
+    "ideia": "Como M é simétrica, cada entrada de M² é o produto de duas linhas: (1, 2, 3)·(3, 2, −1) = 3 + 4 − 3 = 4 é a menor; todas positivas."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "det = 24",
+    "nota": "I e III"
+   },
+   {
+    "linha": "traço = 0",
+    "nota": "II falsa"
+   },
+   {
+    "linha": "M² > 0",
+    "nota": "IV"
+   },
+   {
+    "linha": "3",
+    "nota": "corretas"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0041"
+  },
+  "gabarito_aprendice": {
+   "letra": "C",
+   "letra_conferente": "C",
+   "preliminar": "C",
+   "fontes_web": [],
+   "data": "2026-11-12",
+   "lote": "mat-0041"
+  }
+ }
+}

@@ -1,0 +1,349 @@
+{
+ "Pbbd8e7bf": {
+  "n": "23",
+  "conceito": "Montante a juros compostos seguido de multiplicação diária a juros simples sobre esse montante.",
+  "equivocos": {
+   "A": "M03.3:taxa-que-nao-fecha-o-valor",
+   "C": "M03.3:taxa-que-nao-fecha-o-valor",
+   "D": "M03.3:taxa-que-nao-fecha-o-valor",
+   "E": "M03.3:taxa-que-nao-fecha-o-valor"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "São duas etapas. Primeiro o empréstimo cresce a juros compostos por dois anos; só esse valor é o que 'deveria ser devolvido'. Depois a multa de juros simples incide sobre esse valor por 10 dias.",
+    "formulas": [
+     "M = C · (1 + i)ⁿ",
+     "juros simples: valor final = base · (1 + i · t)"
+    ],
+    "simbolos": [
+     [
+      "a.a.",
+      "ao ano"
+     ],
+     [
+      "i",
+      "taxa diária da multa, em decimal"
+     ]
+    ]
+   },
+   "pista": "Descubra primeiro quanto deveria ser pago no prazo; a multa é calculada sobre esse valor, não sobre os R$ 5.000,00.",
+   "passos": [
+    {
+     "faz": "Calcule o valor devido no prazo",
+     "conta": "M = 5 000 · 1,1² = 5 000 · 1,21 = 6 050",
+     "porque": "Dois anos a 10% ao ano compostos: o fator é 1,1 duas vezes.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte a equação da multa",
+     "conta": "6 050 · (1 + 10i) = 7 260",
+     "porque": "Juros simples por 10 dias sobre os 6 050: o valor pago é a base vezes (1 + 10i).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole o fator",
+     "conta": "1 + 10i = 7260/6050 = 1,2",
+     "porque": "O valor pago é 1,2 vez o devido, ou seja, 20% a mais nos 10 dias.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a taxa diária",
+     "conta": "10i = 0,2 → i = 0,02 = 2%",
+     "porque": "Em juros simples os 20% se repartem igualmente pelos 10 dias.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Responda",
+     "conta": "taxa diária = 2% → alternativa B",
+     "porque": "É a taxa por dia que a questão pede.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 2% ao dia",
+   "checagem": "Volte pelo enunciado: 2% de 6 050 é 121 por dia; em 10 dias, 1 210. 6 050 + 1 210 = 7 260, o valor pago.",
+   "erradas": {
+    "A": "1% não confere: 6 050 · (1 + 10 · 0,01) = 6 050 · 1,1 = 6 655, abaixo dos 7 260 pagos.",
+    "C": "5% não confere: 6 050 · (1 + 10 · 0,05) = 6 050 · 1,5 = 9 075, muito acima de 7 260.",
+    "D": "6% não confere: 6 050 · (1 + 10 · 0,06) = 6 050 · 1,6 = 9 680, longe de 7 260.",
+    "E": "9% não confere: 6 050 · (1 + 10 · 0,09) = 6 050 · 1,9 = 11 495, cerca de 1,6 vez o valor pago."
+   },
+   "armadilha": "Calcular a multa sobre os R$ 5.000,00 emprestados: a taxa extra incide sobre o valor que deveria ser devolvido, R$ 6.050,00.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A taxa diária de juros simples da multa.",
+    "chave": "Devido no prazo: 5 000 · 1,1² = 6 050; 7 260 ÷ 6 050 = 1,2, então 10i = 0,2 e i = 2%.",
+    "cuidado": "A base da multa é o montante de 6 050, não o capital de 5 000."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "juros em reais",
+    "ideia": "A multa total é 7 260 − 6 050 = 1 210; por dia, 121; e 121 ÷ 6 050 = 0,02 = 2%."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "M = 5 000 · 1,1² = 5 000 · 1,21 = 6 050",
+    "nota": "valor devido no prazo"
+   },
+   {
+    "linha": "6 050 · (1 + 10i) = 7 260",
+    "nota": "multa de 10 dias, juros simples"
+   },
+   {
+    "linha": "1 + 10i = 7260/6050",
+    "nota": "o 6 050 passa dividindo"
+   },
+   {
+    "linha": "1 + 10i = 1,2",
+    "nota": "faz a divisão"
+   },
+   {
+    "linha": "10i = 0,2",
+    "nota": "o 1 passa subtraindo"
+   },
+   {
+    "linha": "i = 0,02 = 2%",
+    "nota": "taxa por dia"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0050"
+  }
+ },
+ "P1f4bac16": {
+  "n": "22",
+  "conceito": "Ler composições em gráficos para montar um sistema e achar a e b.",
+  "equivocos": {
+   "A": "M05.5:ordem-da-subtracao-trocada",
+   "B": "M05.5:valor-sem-calculo",
+   "C": "M05.5:respondeu-um-parametro",
+   "D": "M05.5:valor-sem-calculo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "As duas condições viram equações em a e b. Para cada uma, leia os valores no gráfico de dentro para fora: f(0), depois g nesse valor; g(6), depois f nesse valor.",
+    "formulas": [
+     "h(x) = ax² + bx",
+     "h(2) = 4a + 2b | h(1) = a + b"
+    ],
+    "simbolos": [
+     [
+      "f",
+      "curva preta"
+     ],
+     [
+      "g",
+      "curva cinza"
+     ]
+    ]
+   },
+   "pista": "Comece pelo de dentro: f(0) e g(6).",
+   "passos": [
+    {
+     "faz": "Leia a primeira composição",
+     "conta": "f(0) = 3 → g(3) = 3 → h(2) = 4 · 3 = 12",
+     "porque": "A curva preta começa em (0, 3); a cinza passa por (3, 3).",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Leia a segunda composição",
+     "conta": "g(6) = 4 → f(4) = 1 → h(1) = 1 + 4 = 5",
+     "porque": "As curvas se tocam em (6, 4); a preta passa por (4, 1).",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Monte o sistema",
+     "conta": "4a + 2b = 12 → 2a + b = 6 | a + b = 5",
+     "porque": "Substitua x = 2 e x = 1 em h.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva",
+     "conta": "(2a + b) − (a + b) = 6 − 5 → a = 1 → b = 4",
+     "porque": "Subtraindo, o b some.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a − b",
+     "conta": "1 − 4 = −3",
+     "porque": "É a alternativa E.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — −3",
+   "checagem": "Volte às condições: h(x) = x² + 4x dá h(2) = 4 + 8 = 12 = 4 · 3 e h(1) = 1 + 4 = 5 = 1 + 4. As duas conferem.",
+   "erradas": {
+    "A": "Sai de fazer b − a em vez de a − b: 4 − 1 = 3.",
+    "B": "Não confere: com a = 1 e b = 4, a − b = −3; 2 não sai do sistema.",
+    "C": "Não confere: a − b = −3; 1 é o valor de a sozinho.",
+    "D": "Não confere: a − b = 1 − 4 = −3, não −1."
+   },
+   "armadilha": "Trocar as curvas f e g ao ler o gráfico, ou ler f(4) e g(3) no ponto errado da grade.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O valor de a − b.",
+    "chave": "f(0) = 3, g(3) = 3, g(6) = 4, f(4) = 1; sistema 2a + b = 6 e a + b = 5.",
+    "cuidado": "Leia de dentro para fora e confira a curva pelo rótulo."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "substituir",
+    "ideia": "Com a = 5 − b em 2a + b = 6: 10 − 2b + b = 6, b = 4 e a = 1."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "f(0) = 3 → g(3) = 3 → h(2) = 12",
+    "nota": "1ª condição"
+   },
+   {
+    "linha": "g(6) = 4 → f(4) = 1 → h(1) = 5",
+    "nota": "2ª condição"
+   },
+   {
+    "linha": "2a + b = 6 | a + b = 5 → a = 1, b = 4",
+    "nota": "sistema"
+   },
+   {
+    "linha": "a − b = −3",
+    "nota": "resposta"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0056"
+  }
+ },
+ "P1df65392": {
+  "n": "21",
+  "conceito": "Área de retângulo com lados dados por seno e cosseno: arcos complementares/suplementares e seno do arco duplo.",
+  "equivocos": {
+   "B": "M08.2:esqueceu-fator-2-arco-duplo",
+   "C": "M08.2:area-trigonometrica-errada",
+   "D": "M08.2:area-trigonometrica-errada",
+   "E": "M08.2:area-trigonometrica-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A área é o produto dos lados, sen(7π/12) × cos(5π/12). Passe para graus: 7π/12 = 105° e 5π/12 = 75°. Reduza tudo a ângulos de 15° e use o seno do arco duplo, que transforma sen × cos em metade de um seno conhecido.",
+    "formulas": [
+     "sen(180° − a) = sen a",
+     "sen a = cos(90° − a)",
+     "sen(2a) = 2 sen a cos a, logo sen a cos a = sen(2a)/2"
+    ],
+    "simbolos": [
+     [
+      "π",
+      "180°, em radianos"
+     ],
+     [
+      "sen",
+      "seno"
+     ],
+     [
+      "cos",
+      "cosseno"
+     ]
+    ]
+   },
+   "pista": "Converta os dois arcos para graus e procure um ângulo comum aos dois.",
+   "passos": [
+    {
+     "faz": "Converta os arcos para graus",
+     "conta": "7π/12 = 105° | 5π/12 = 75°",
+     "porque": "Como π equivale a 180°, 180 ÷ 12 = 15° e os arcos são 7 × 15° e 5 × 15°.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Reduza os dois ao ângulo de 15°",
+     "conta": "sen 105° = sen 75° = cos 15° | cos 75° = sen 15°",
+     "porque": "105° e 75° são suplementares (mesmo seno), e 75° e 15° são complementares (seno de um é cosseno do outro).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Use o seno do arco duplo",
+     "conta": "cos 15° × sen 15° = (sen 30°)/2 → (1/2)/2 = 1/4",
+     "porque": "sen 2a = 2 sen a cos a; com a = 15°, o produto vale metade de sen 30°.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "área = 1/4 → alternativa A",
+     "porque": "A área é o produto dos lados, 1/4.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 1/4",
+   "checagem": "Pelos valores aproximados: sen 105° ≈ 0,966 e cos 75° ≈ 0,259; 0,966 × 0,259 ≈ 0,250. Fecha com 1/4.",
+   "erradas": {
+    "B": "1/2 sai de esquecer a divisão por 2 do arco duplo: tomar sen 15° × cos 15° como sen 30° = 1/2.",
+    "C": "1 não confere: o lado cos 75° ≈ 0,259 é menor que 1 e o outro lado é no máximo 1, então a área fica abaixo de 0,26.",
+    "D": "√2/2 ≈ 0,707 não confere: o produto 0,966 × 0,259 dá cerca de 0,25.",
+    "E": "√3/2 ≈ 0,866 não confere: o produto 0,966 × 0,259 dá cerca de 0,25."
+   },
+   "armadilha": "Achar que sen a × cos a = sen 2a: o certo é sen 2a dividido por 2.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A área do retângulo de lados sen(7π/12) e cos(5π/12).",
+    "chave": "sen 105° = cos 15° e cos 75° = sen 15°; o produto é sen 30° ÷ 2 = 1/4.",
+    "cuidado": "No arco duplo, sen 2a = 2 sen a cos a: não esqueça o fator 2."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "produto em soma",
+    "ideia": "sen a cos b = [sen(a + b) + sen(a − b)]/2: [sen 180° + sen 30°]/2 = (0 + 1/2)/2 = 1/4."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "7π/12 = 105° | 5π/12 = 75°",
+    "nota": "arcos em graus"
+   },
+   {
+    "linha": "sen 105° = cos 15°",
+    "nota": "suplementar e complementar"
+   },
+   {
+    "linha": "cos 75° = sen 15°",
+    "nota": "complementares"
+   },
+   {
+    "linha": "sen 15° cos 15° = (sen 30°)/2",
+    "nota": "arco duplo"
+   },
+   {
+    "linha": "(1/2)/2 = 1/4",
+    "nota": "área"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0060"
+  }
+ }
+}

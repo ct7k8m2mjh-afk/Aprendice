@@ -1,0 +1,60 @@
+# Geografia: resoluções (gerado por lote.py em 2026-11-12)
+
+Faltam 1477 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 276; demais nível 1-6 1040; ENEM nível 7-10 21; provas-alvo nível 7-10 91; demais nível 7-10 49.
+
+## Lotes
+
+| Lote | Faixa | Questões | Estado | OK | Pendentes | Divergências |
+|---|---|---|---|---|---|---|
+| geo-0001 | ENEM nível 1-6 | 24 | gravado | 24 | 0 | 0 |
+| geo-0002 | ENEM nível 1-6 | 24 | gravado | 24 | 0 | 0 |
+| geo-0003 | ENEM nível 1-6 | 24 | gravado | 24 | 0 | 0 |
+| geo-0004 | provas-alvo nível 1-6 | 20 | gravado | 20 | 0 | 0 |
+| geo-0005 | provas-alvo nível 1-6 | 20 | gravado | 20 | 0 | 0 |
+| geo-0006 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| geo-0007 | provas-alvo nível 1-6 | 30 | gravado | 29 | 1 | 0 |
+| geo-0008 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| geo-0009 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| geo-0010 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| geo-0011 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| geo-0012 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| geo-0013 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| geo-0014 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| geo-0015 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| geo-0016 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| geo-0017 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| geo-0018 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| geo-0019 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| geo-0020 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| geo-0021 | provas-alvo nível 1-6 | 30 | gravado | 29 | 1 | 0 |
+| geo-0022 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| geo-0023 | provas-alvo nível 1-6 | 30 | gravado | 27 | 3 | 0 |
+| geo-0024 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| geo-0025 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| geo-0026 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| geo-0027 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| geo-0028 | provas-alvo nível 1-6 | 30 | gravado | 27 | 3 | 0 |
+| geo-0029 | provas-alvo nível 1-6 | 30 | gravado | 29 | 1 | 0 |
+| geo-0030 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| geo-0031 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| geo-0032 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| geo-0033 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| geo-0034 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| geo-0035 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| geo-0036 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| geo-0037 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| geo-0038 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+
+## Pendentes (falta de certeza absoluta)
+
+| Questão | Prova | Conteúdo | Motivo |
+|---|---|---|---|
+| P1da9dba8 |  |  | reclassificada para outra matéria |
+| Pfc161343 |  |  | reclassificada para outra matéria |
+| Pd1aeb2d4 |  |  | reclassificada para outra matéria |
+| Pd4ca228f | Santa Casa 2024 Medicina · questão 40 | G01.4 projeções cartográficas (tema G01 Cartografia) | print: as cinco imagens do Atlas Escolar do IBGE não trazem o nome da projeção, e a quadrícula recortada não permite confirmar com certeza qual delas é a conforme pedida (gabarito C); falta a identificação das projeções no atlas para resolver sem inventar. |
+| Pfcc1eb63 | UERJ 2026 2º Exame de Qualificação · questão 46 | G02.2 tectônica de placas, sismos e vulcanismo (tema G02 Relevo e estrutura da Terra) | classificação: é de Física (UERJ 2026, 2º Exame de Qualificação, questão 46: ordem de grandeza da razão entre duas energias, 7,9 × 10¹⁵ J e 2,0 × 10¹² J; a razão é 3,95 × 10³ e a resposta oficial é B, 10⁴). O terremoto é só o contexto; não há conteúdo de Geografia a resolver. Está classificada em Geografia, G02.2. |
+
+## Divergências de gabarito (o dono decide)
+
+Nenhuma.

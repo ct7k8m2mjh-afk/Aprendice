@@ -1,0 +1,39 @@
+/* Filtro de região onde o aluno pratica (pedido do dono, 09/11/2026). Sistema do protótipo: chip pílula 20, borda
+   linha, lapis 500 14.5px, padding 7/14; selecionado tinta/papel (app.css). Aviso em aviso/aviso-bg, canto 12. */
+.fr-regiao { display: flex; flex-direction: column; gap: 8px; margin: 0 0 16px; min-width: 0; }
+.fr-chips { gap: 8px; }
+.fr-frase { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; margin: 0; font-size: 14px; line-height: 1.4; color: var(--lapis); }
+.fr-frase b { font-weight: 600; color: var(--tinta); }
+.fr-trocar { padding: 0; border: 0; background: none; font-size: 14px; font-weight: 600; color: var(--t, var(--tinta)); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.fr-trocar:hover { color: var(--tinta); }
+.fr-seletor { display: flex; flex-direction: column; gap: 10px; padding: 14px 16px; border: 1px solid var(--linha); border-radius: 12px; background: var(--folha); }
+.bloco .fr-seletor { padding: 0; border: 0; background: none; }
+.fr-seletor-tit { margin: 0; font-size: 15px; font-weight: 600; color: var(--tinta); }
+.fr-nota { margin: 0; font-size: 13.5px; line-height: 1.4; color: var(--fraco); }
+.fr-aviso { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; margin: 0 0 16px; padding: 10px 14px; border-radius: 12px; background: var(--aviso-bg); color: var(--aviso); font-size: 14px; line-height: 1.4; }
+.fr-aviso .link-sec { padding: 0; border: 0; background: none; font-size: 14px; font-weight: 600; color: var(--aviso); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.fr-regiao + .fr-aviso { margin-top: -6px; }
+.nv-outras { font-size: 13.5px; }
+
+/* onde entra */
+.tp-regiao { margin: 0 0 18px; }
+.tp-regiao .fr-regiao, .tp-regiao .fr-aviso { margin-bottom: 0; }
+.tp-regiao .fr-aviso { margin-top: 10px; }
+.rv-regiao { margin: 0 0 4px; }
+.q-regiao { margin: -6px 0 16px; }
+.q-regiao .fr-regiao { margin: 0; }
+.tm-regiao { margin: 18px 0 4px; text-align: left; align-self: stretch; width: 100%; min-width: 0; max-width: 100%; }
+.tm-regiao .fr-regiao { margin: 0; }
+.fr-regiao.compacto .chip { padding: 5px 12px; font-size: 14px; }
+
+/* celular: chips numa linha só, rolando por dentro (a página não rola para o lado) */
+@media (max-width: 700px) {
+  .fr-chips { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch;
+    margin: 0 calc(-1 * var(--pag-x, 16px)); padding: 0 var(--pag-x, 16px) 2px; scroll-padding: 0 var(--pag-x, 16px); }
+  .fr-chips::-webkit-scrollbar { display: none; }
+  .fr-chips .chip { flex: none; white-space: nowrap; }
+}
+.tm-regiao .fr-chips { margin: 0; padding: 0; }
+
+/* tela "Treino concluído" no celular: a linha de chips rola dentro do cartão, sem passar da borda (auditoria G1) */
+@media (max-width: 700px) { .tm-regiao .fr-chips { max-width: 100%; overflow-x: auto; } }

@@ -1,0 +1,520 @@
+{
+ "P1e12b1e2": {
+  "n": "28",
+  "conceito": "Travessia de ponte por corpo extenso: a distância percorrida é o comprimento da ponte mais o do veículo.",
+  "equivocos": {
+   "A": "F02.1:tempo-nao-fecha-distancia",
+   "B": "F02.1:corpo-extenso-como-ponto",
+   "C": "F02.1:tempo-nao-fecha-distancia"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O caminhão não é um ponto: ele só atravessa completamente quando a traseira sai da ponte. Do momento em que a frente entra até a traseira sair, o caminhão anda a ponte inteira mais o próprio comprimento.",
+    "formulas": [
+     "Δs = L(ponte) + L(veículo)",
+     "Δt = Δs/v"
+    ],
+    "simbolos": [
+     [
+      "L",
+      "comprimento"
+     ],
+     [
+      "Δs",
+      "distância percorrida pela frente do caminhão"
+     ]
+    ]
+   },
+   "pista": "Acompanhe a traseira do caminhão: quando ela sai da ponte, quanto a frente andou?",
+   "passos": [
+    {
+     "faz": "Monte a distância da travessia",
+     "conta": "Δs = 23 + 23 = 46 m",
+     "porque": "A frente percorre a ponte e mais o comprimento do caminhão até a traseira sair.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o tempo",
+     "conta": "Δt = 46/23 = 2 s",
+     "porque": "Velocidade constante: distância sobre velocidade.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "2 s",
+     "porque": "É a alternativa D.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — o caminhão-cegonha precisa de dois segundos para atravessar completamente a ponte.",
+   "checagem": "Divida em duas fases: em 1 s a frente chega ao fim da ponte (23 m); em mais 1 s a traseira, que estava 23 m atrás, também sai. Total: 2 s.",
+   "erradas": {
+    "A": "Não confere: em 0,5 s o caminhão anda 11,5 m, só metade da ponte; para a traseira sair, a frente precisa andar 46 m.",
+    "B": "Sai de tratar o caminhão como ponto: 23/23 = 1 s é só a frente cruzando a ponte; a traseira ainda está sobre ela.",
+    "C": "Não confere: em 1,5 s o caminhão anda 34,5 m, e a traseira ainda não saiu da ponte (precisa de 46 m)."
+   },
+   "armadilha": "Tratar o caminhão como ponto e esquecer de somar o comprimento dele ao da ponte.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O tempo para o caminhão atravessar completamente a ponte.",
+    "chave": "(23 + 23)/23 = 2 s.",
+    "cuidado": "Corpo extenso: somar o próprio comprimento."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pela traseira",
+    "ideia": "A traseira começa 23 m antes da ponte e precisa chegar ao fim dela: 46 m a 23 m/s = 2 s."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "Δs = 23 + 23 = 46",
+    "nota": "m"
+   },
+   {
+    "linha": "Δt = 46/23 = 2",
+    "nota": "s"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "fis-0044"
+  }
+ },
+ "P60369b64": {
+  "n": "55",
+  "conceito": "Polias e tensão máxima da corda: só a montagem em que dois trechos de corda dividem o peso deixa cada trecho com P/2, abaixo da ruptura de 3P/4.",
+  "equivocos": {
+   "A": "F03.2:tracao-igual-ao-peso",
+   "B": "F03.2:polia-fixa-reduz-forca",
+   "D": "F03.2:polia-fixa-reduz-forca"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A corda arrebenta se a tensão em algum trecho passar de 3P/4. A pergunta é, em cada montagem, quantos trechos de corda sustentam a plataforma. Polia presa na viga só muda a direção da corda: a tensão continua igual ao peso. Quando dois trechos da mesma corda puxam a plataforma para cima, cada um carrega metade do peso.",
+    "formulas": [
+     "equilíbrio: soma das forças para cima = P",
+     "n trechos iguais sustentando o peso: n · T = P → T = P/n",
+     "segurança: T < 3P/4"
+    ],
+    "simbolos": [
+     [
+      "P",
+      "peso total do colaborador com o equipamento"
+     ],
+     [
+      "T",
+      "tensão (tração) na corda"
+     ],
+     [
+      "tensão de ruptura",
+      "maior tensão que a corda aguenta sem arrebentar"
+     ],
+     [
+      "polia",
+      "roda com sulco por onde a corda passa"
+     ]
+    ]
+   },
+   "pista": "Em cada desenho, conte quantos trechos de corda chegam à plataforma puxando para cima.",
+   "passos": [
+    {
+     "faz": "Escreva a condição de segurança",
+     "conta": "T < 3P/4 = 0,75 P",
+     "porque": "Qualquer montagem em que um trecho tenha tensão igual a P arrebenta, porque P é maior que 0,75 P.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Teste A, B e D",
+     "conta": "A: um trecho → T = P | B e D: polias presas na viga, um trecho chega à plataforma → T = P",
+     "porque": "Polia fixa só desvia a corda. Se um único trecho segura a plataforma, ele carrega o peso inteiro.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Teste C",
+     "conta": "C: dois trechos sobem da plataforma até a polia → 2T = P → T = P/2 = 0,5 P",
+     "porque": "A mesma corda passa pela polia e as duas pontas puxam a plataforma; a tensão é a mesma nos dois trechos e cada um leva metade.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare com a ruptura",
+     "conta": "0,5 P < 0,75 P",
+     "porque": "Só em C a tensão fica abaixo da ruptura. É a configuração segura.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — a plataforma presa pelas duas pontas de uma corda que passa por uma polia: cada trecho suporta P/2.",
+   "checagem": "Confira pela folga: em C sobra 0,75 P − 0,5 P = 0,25 P de margem em cada trecho. Nas outras, cada trecho precisaria de 1,0 P, que passa da ruptura em 0,25 P.",
+   "erradas": {
+    "A": "Não confere: uma corda só, sem polia, segura a plataforma com T = P, e P > 3P/4. A corda arrebenta.",
+    "B": "Não confere: a polia presa na viga só muda a direção da corda. O trecho que chega à plataforma continua com T = P, acima de 3P/4.",
+    "D": "Não confere: as duas polias estão presas na viga, e a plataforma pende de um único trecho de corda. A tensão é P, acima de 3P/4. Mais polias não ajudam se nenhuma divide o peso."
+   },
+   "armadilha": "Achar que qualquer polia reduz a força: polia presa só muda a direção; o que divide o peso é o número de trechos que sustentam a carga.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Qual montagem mantém a tensão da corda abaixo de 3P/4.",
+    "chave": "Contar os trechos que sustentam a plataforma: em C são dois, então T = P/2.",
+    "cuidado": "Não confundir polia fixa (só desvia a corda) com divisão do peso entre trechos."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pelo número de trechos",
+    "ideia": "A tensão é P dividido pelo número de trechos que puxam a plataforma; só C tem 2 trechos (T = 0,5 P < 0,75 P)."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "T máx = 3P/4 = 0,75 P",
+    "nota": "ruptura"
+   },
+   {
+    "linha": "A, B, D: T = P",
+    "nota": "um trecho segura tudo"
+   },
+   {
+    "linha": "C: 2T = P → T = P/2",
+    "nota": "dois trechos"
+   },
+   {
+    "linha": "0,5 P < 0,75 P",
+    "nota": "só C é seguro"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "fis-0049"
+  }
+ },
+ "Pe5d524a3": {
+  "n": "53",
+  "conceito": "A energia potencial gravitacional depende só da massa, de g e da altura, não do caminho que o corpo vai fazer.",
+  "equivocos": {
+   "A": "F04.2:energia-depende-do-caminho",
+   "B": "F04.2:energia-depende-do-caminho",
+   "C": "F04.2:energia-depende-do-caminho"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A energia potencial gravitacional é m × g × h: depende da massa, da gravidade e da altura em relação ao nível de referência. As quatro bolas são iguais e estão a 10 m do chão no instante em que são soltas. A forma da rampa (nenhuma, reta, curva para fora ou curva para dentro) só muda o caminho da descida, não a energia de partida.",
+    "formulas": [
+     "U = m × g × h"
+    ],
+    "simbolos": [
+     [
+      "U",
+      "energia potencial gravitacional"
+     ],
+     [
+      "h",
+      "altura em relação ao chão"
+     ]
+    ]
+   },
+   "pista": "Olhe só o que entra na fórmula de U no instante em que a bola é solta. A rampa aparece em algum lugar dela?",
+   "passos": [
+    {
+     "faz": "Localize os dados",
+     "conta": "h = 10 m nas quatro situações",
+     "porque": "Na figura, as quatro bolas estão à mesma altura de 10 m e partem do repouso.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Aplique a fórmula",
+     "conta": "U = m × g × 10 nas quatro",
+     "porque": "Mesma bola, mesmo g, mesma altura: o produto é o mesmo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Descarte o caminho",
+     "conta": "forma da rampa não entra em U",
+     "porque": "A energia potencial depende da posição, não do trajeto que vem depois.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "U1 = U2 = U3 = U4",
+     "porque": "É a alternativa D.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — U1 = U2 = U3 = U4.",
+   "checagem": "Pela conservação da energia: sem atrito, as quatro bolas chegariam ao chão com a mesma velocidade, √(2 × 10 × 10) ≈ 14 m/s; isso só acontece porque partem com a mesma energia.",
+   "erradas": {
+    "A": "U1 > U2 = U3 = U4 trata a queda livre como diferente das rampas; a altura é a mesma, 10 m, em todas.",
+    "B": "U1 > U2 = U3 > U4 faz a energia depender da forma da rampa; a rampa não entra em m × g × h.",
+    "C": "U1 = U2 > U3 = U4 separa rampas retas e curvas; o formato do caminho não muda a energia de partida."
+   },
+   "armadilha": "Achar que a rampa (ou a forma dela) muda a energia potencial no instante da largada.",
+   "alerta": "",
+   "essencial": {
+    "pede": "comparar a energia potencial das quatro bolas no instante em que são soltas",
+    "chave": "U = m × g × h: mesma bola e mesma altura dão a mesma energia",
+    "cuidado": "o caminho da descida não entra na energia potencial"
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pela velocidade final",
+    "ideia": "Sem atrito, todas chegam ao chão com a mesma velocidade; logo partiram com a mesma energia potencial."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "U = m × g × h",
+    "nota": "fórmula"
+   },
+   {
+    "linha": "h = 10 m nas quatro",
+    "nota": "figura"
+   },
+   {
+    "linha": "U1 = U2 = U3 = U4",
+    "nota": "mesma energia"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "fis-0052"
+  }
+ },
+ "P746c133e": {
+  "n": "56",
+  "conceito": "Força gravitacional num planeta uniforme: reta crescente do centro até a superfície e, fora, curva que cai com o inverso do quadrado da distância.",
+  "equivocos": {
+   "A": "F06.2:forca-constante-fora-do-planeta",
+   "B": "F06.2:forca-constante-dentro-do-planeta",
+   "D": "F06.2:formas-trocadas-dentro-e-fora"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O texto descreve as duas partes do gráfico. Dentro do planeta, a força é diretamente proporcional à distância ao centro: isso é uma reta que sai da origem. Fora, a força é inversamente proporcional ao quadrado da distância: uma curva que cai cada vez mais devagar. O máximo fica em d = R, onde as duas partes se encontram.",
+    "formulas": [
+     "dentro: F ∝ d (reta pela origem)",
+     "fora: F ∝ 1/d² (curva que desce e se achata)"
+    ],
+    "simbolos": [
+     [
+      "d",
+      "distância radial ao centro do planeta"
+     ],
+     [
+      "R",
+      "raio do planeta"
+     ],
+     [
+      "∝",
+      "é proporcional a"
+     ]
+    ]
+   },
+   "pista": "Desenhe as duas partes separadas, uma até R e outra depois de R, e só então olhe as alternativas.",
+   "passos": [
+    {
+     "faz": "Desenhe a parte de dentro",
+     "conta": "0 ≤ d ≤ R: F ∝ d → reta saindo de F = 0 no centro",
+     "porque": "Força diretamente proporcional à distância dá reta pela origem.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Desenhe a parte de fora",
+     "conta": "d > R: F ∝ 1/d² → curva descendo, cada vez mais achatada",
+     "porque": "Dobrar a distância divide a força por 4; ela cai rápido perto de R e devagar longe.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Elimine pela parte de dentro",
+     "conta": "A: reta crescente; B: patamar; D: curva crescente",
+     "porque": "B não começa em zero e D é curva, não reta; ficam A e C.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Elimine pela parte de fora",
+     "conta": "A: patamar depois de R; C: curva descendo",
+     "porque": "Depois de R a força tem de diminuir, e A fica constante.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "C: reta crescente até R, curva descendente depois",
+     "porque": "É a alternativa C.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — reta crescente do centro até R e, depois de R, curva que decresce com o inverso do quadrado da distância.",
+   "checagem": "Teste valores: em d = R/2 a força é a metade da máxima (reta); em d = 2R é um quarto da máxima (inverso do quadrado). Só o gráfico C mostra o ponto da metade subindo antes de R e o decaimento curvo depois.",
+   "erradas": {
+    "A": "Não confere: depois de R o gráfico fica constante, mas fora do planeta a força cai com o quadrado da distância.",
+    "B": "Não confere: dentro do planeta o gráfico é um patamar, mas a força começa em zero no centro e cresce com a distância.",
+    "D": "Não confere: dentro é uma curva (força crescendo mais que a distância) e fora é uma reta descendo; o texto pede reta dentro e queda com 1/d² fora."
+   },
+   "armadilha": "Trocar as formas: a reta é a parte de dentro (F ∝ d) e a curva é a parte de fora (F ∝ 1/d²).",
+   "alerta": "",
+   "essencial": {
+    "pede": "o gráfico da força gravitacional em função da distância ao centro",
+    "chave": "dentro F ∝ d (reta pela origem), fora F ∝ 1/d² (curva que se achata), máximo em R",
+    "cuidado": "conferir as duas partes do gráfico, não só o pico em R"
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "casos extremos",
+    "ideia": "No centro a força é zero e muito longe tende a zero: só C começa em zero e termina se achatando perto do eixo."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "0 ≤ d ≤ R: F ∝ d",
+    "nota": "reta pela origem"
+   },
+   {
+    "linha": "d > R: F ∝ 1/d²",
+    "nota": "curva que se achata"
+   },
+   {
+    "linha": "máximo em d = R",
+    "nota": "encontro das duas partes"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "fis-0054"
+  }
+ },
+ "Pa56736cc": {
+  "n": "60",
+  "conceito": "Brisa marinha de dia: o ar sobre a areia quente sobe, o do mar desce, embaixo o ar vai do mar para a terra e em cima da terra para o mar (célula de convecção).",
+  "equivocos": {
+   "B": "F08.5:brisa-terrestre-no-lugar-da-marinha",
+   "C": "F08.5:ciclo-de-conveccao-nao-fechado",
+   "D": "F08.5:ciclo-de-conveccao-nao-fechado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "De dia a areia esquenta mais que a água. O ar sobre a areia aquece, fica menos denso e sobe; isso deixa a pressão baixa embaixo, sobre a terra. O ar mais frio do mar ocupa esse lugar, e por cima o ar fecha o circuito voltando para o mar e descendo. É uma célula de convecção.",
+    "formulas": [
+     "ar quente → menos denso → sobe",
+     "perto do chão: ar vai da pressão alta (mar) para a baixa (areia)"
+    ],
+    "simbolos": [
+     [
+      "convecção",
+      "transporte de calor pelo movimento do próprio fluido"
+     ],
+     [
+      "I, II, III, IV",
+      "I: baixo/areia; II: alto/areia; III: alto/mar; IV: baixo/mar"
+     ]
+    ]
+   },
+   "pista": "Comece pela porção de ar sobre a areia quente: ela sobe ou desce?",
+   "passos": [
+    {
+     "faz": "Defina o movimento sobre a areia",
+     "conta": "areia quente → ar de I aquece → sobe: I → II",
+     "porque": "Ar aquecido fica menos denso que o vizinho e sobe.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Feche o circuito embaixo",
+     "conta": "ar frio do mar → IV → I (para a areia)",
+     "porque": "O ar que subiu deixa pressão baixa sobre a areia; o ar do mar vem ocupar o lugar: essa é a brisa marinha.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Feche o circuito em cima",
+     "conta": "II → III (para o mar) | III → IV (desce)",
+     "porque": "O ar acumulado no alto da areia segue para cima do mar, esfria e desce, completando a célula.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Compare com as figuras",
+     "conta": "A: II→III, I sobe, III desce, IV→I (confere) | B e D: embaixo para o mar (não) | C: em cima para a areia (não)",
+     "porque": "B e D mostram a brisa terrestre (noite); C tem as duas camadas indo para a areia, sem fechar o ciclo.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "I→II→III→IV→I",
+     "porque": "Só a figura A mostra o circuito fechado no sentido do dia.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — embaixo o ar vai do mar para a areia (IV → I), sobe sobre a areia (I → II), segue no alto para o mar (II → III) e desce sobre o mar (III → IV).",
+   "checagem": "Conservação do ar: o ar que sobe em um lugar precisa descer em outro, e o que vai para um lado embaixo volta por cima. Só a A tem um ciclo fechado; C quebra essa regra.",
+   "erradas": {
+    "B": "É a brisa terrestre, da noite: embaixo da areia para o mar, descendo sobre a areia e subindo sobre o mar.",
+    "C": "Não fecha o ciclo: embaixo e em cima o ar vai para a areia; o ar se acumularia de um lado só.",
+    "D": "Desenha descida sobre a areia e subida sobre o mar, sentido da noite; e as duas camadas vão para o mar, sem ciclo fechado."
+   },
+   "armadilha": "Achar que o vento da praia de dia sopra da terra para o mar: o ar quente sobe sobre a areia, e embaixo a brisa vem do mar.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O desenho do movimento do ar na brisa marinha durante o dia.",
+    "chave": "Ar sobe sobre a areia quente, desce sobre o mar, vem do mar embaixo e volta por cima: I→II→III→IV→I.",
+    "cuidado": "Não trocar com a brisa terrestre, que é o mesmo ciclo no sentido contrário, à noite."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pela pressão",
+    "ideia": "Sobre a areia quente a pressão embaixo é baixa; o vento de superfície sempre vai da alta (mar) para a baixa (areia): IV → I, e só a A tem essa seta."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "areia quente → ar menos denso → sobe (I → II)",
+    "nota": "origem do ciclo"
+   },
+   {
+    "linha": "embaixo: mar → areia (IV → I)",
+    "nota": "brisa marinha"
+   },
+   {
+    "linha": "em cima: II → III; desce III → IV",
+    "nota": "ciclo fechado = figura A"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "fis-0058"
+  }
+ }
+}

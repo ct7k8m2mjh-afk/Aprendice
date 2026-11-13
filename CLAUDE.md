@@ -11,11 +11,11 @@ Hoje existe um protótipo funcional em HTML estático com 4 matérias (Biologia,
 
 Fale com o dono do produto em português do Brasil, direto, passo a passo, sem assumir conhecimento técnico.
 
-**Trabalho autônomo (decisão do dono, 05/11/2026):** trabalhe sozinho do começo ao fim, sem pedir aprovação de plano, sem perguntas e sem mandar prints para o dono conferir — a conferência é sua (princípio 9). Pare para perguntar só diante do que não tem volta: apagar conteúdo ou progresso, gastar acima do teto declarado de um lote, ou um risco de direito autoral ainda não decidido (princípio 10). Ao terminar cada comando, informe em poucas linhas o que foi feito.
+**Trabalho autônomo (decisão do dono, 05/11/2026):** trabalhe sozinho do começo ao fim, sem pedir aprovação de plano, sem perguntas e sem mandar prints para o dono conferir — a conferência é sua (princípio 9). Pare para perguntar só diante do que não tem volta e antes de **qualquer alteração de design** (decisão do dono, 11/11/2026: toda mudança visual precisa da permissão dele antes): apagar conteúdo ou progresso, gastar acima do teto declarado de um lote, ou um risco de direito autoral ainda não decidido (princípio 10). Ao terminar cada comando, informe em poucas linhas o que foi feito.
 
 ## Princípios do produto (não se quebram)
 1. **Questões reais e questões do Aprendice.** Questão de prova é real, publicada, com a fonte (prova, ano, número, link); nunca "reconstruir" nem alterar questão de prova. O site **pode ter questões criadas por ele** (decisão do dono, 05/11/2026), desde que: tenham como base o que se cobra em cada matéria (raio-x das provas); sejam resolvidas, corrigidas e analisadas pela banca de especialistas da matéria em todas as lentes antes de ir ao ar; e apareçam sempre identificadas como "Questão Aprendice", nunca como questão de vestibular. Questão de prova **só de texto** aparece escrita, copiada da camada de texto da prova oficial e organizada como a banca organizou (parágrafos, versos, alinhamento, negrito/itálico), com a fonte entre parênteses — decisão do dono, 02/11/2026. **Proibido** transcrever questão com imagem, figura geométrica, gráfico, tabela ou fórmula: essas aparecem como print fiel. O print original fica sempre disponível.
-2. **Gabarito de questão de prova só de fonte publicada** (oficial ou resolução reconhecida); sem gabarito publicado, a questão não entra. Questão Aprendice: gabarito definido pelo especialista da matéria e confirmado de forma independente pela lente de fatos.
+2. **Gabarito de questão de prova vem de fonte publicada** (oficial ou resolução reconhecida, como a de cursinho; pode ser buscada na web). **Sem gabarito publicado (decisão do dono, 11/11/2026), a questão pode entrar com o "gabarito do Aprendice":** dois especialistas da matéria resolvem a questão de forma independente, sem um ver a resposta do outro, e só entra se os dois chegarem à mesma letra; a questão aparece com o aviso "Gabarito do Aprendice: a banca não publicou gabarito oficial"; se a banca publicar o gabarito depois, vale o oficial. Prova só com gabarito **preliminar** segue a mesma regra, e a letra dos dois especialistas também tem de bater com a do preliminar. Questão **anulada** pela banca continua fora. Questão Aprendice: gabarito definido pelo especialista da matéria e confirmado de forma independente pela lente de fatos.
 3. **Zero erro em material de estudo.** Resoluções, teoria, flashcards e frases têm fonte e passam por **revisão em lentes sucessivas** com agentes diferentes: 1ª lente confere fatos contra a fonte; 2ª lente confere utilidade, tamanho e estilo de prova; a 1ª lente volta em tudo que mudou. Nada vai ao ar sem isso.
 4. **A prova manda.** Prioridade de conteúdo, simulados e treinos vem do que as provas realmente cobram (raio-x por instituição: temas, frequência, formato). O aluno escolhe as provas-alvo e o site prioriza por elas.
 5. **Errar ensina.** A resolução explica a alternativa que o aluno marcou, não só a certa (origem de cada distrator).
@@ -29,11 +29,11 @@ Fale com o dono do produto em português do Brasil, direto, passo a passo, sem a
 
 ## Como o site ensina (o pensamento por trás de tudo)
 Toda tela e todo conteúdo novo seguem esta lógica, construída com o dono desde o começo:
-- **Questão real primeiro:** o aluno estuda pelo que a prova cobra, com print fiel, fonte e gabarito oficial.
+- **Questão real primeiro:** o aluno estuda pelo que a prova cobra, com print fiel, fonte e gabarito oficial (sem ele, o gabarito do Aprendice, conferido por dois especialistas — princípio 2).
 - **Do mais fácil ao mais difícil:** cada conteúdo começa no básico e sobe de nível; o aluno vê onde trava.
 - **Errar ensina:** a correção começa pela letra que o aluno marcou e mostra o que faltou no raciocínio dele.
 - **A pegadinha sempre aparece:** o aluno aprende a reconhecer a armadilha que a banca usa.
-- **Ver a coisa acontecer:** resolução animada, nunca só texto (regras abaixo).
+- **Ver a coisa acontecer:** em Biologia, Química, Matemática e Física, resolução animada, nunca só texto; nas outras matérias, texto passo a passo (regras abaixo).
 - **O erro volta:** o que o aluno errou retorna na revisão espaçada até ele acertar.
 - **Revisar é lembrar, não reler:** o Método Aprendice de Revisão (`docs/estrategia-revisao.md`, decisão do dono 06/11/2026) — pergunta antes da explicação, certeza antes da resposta, agenda contada a partir da data da prova, o equívoco volta (não só a questão), prioridade pela prova-alvo.
 - **Confiável:** tudo tem fonte e passa pelas lentes; na dúvida, não entra.
@@ -42,32 +42,33 @@ Toda tela e todo conteúdo novo seguem esta lógica, construída com o dono desd
 Depois de responder, o aluno vê só 4 blocos, nesta ordem:
 1. **Por que eu errei** — o que faltou no raciocínio de quem marcou aquela letra (não aparece quando o aluno acerta).
 2. **Resposta correta + a pegadinha** da questão.
-3. **Resolução animada.**
+3. **Resolução animada** (Bio, Quí, Mat, Fís) **ou resolução em texto** (demais matérias).
 4. **Por que as outras estão erradas** — fechado; abre ao clicar.
 Os demais campos de `res/` (antes, checagem, essencial, alerta…) continuam nos dados, mas não ocupam a correção; podem aparecer só onde o dono pedir.
 
-### Resolução animada (obrigatória)
+### Resolução animada (obrigatória só em Biologia, Química, Matemática e Física)
+**Decisão do dono (09/11/2026):** só Química, Matemática, Física e Biologia têm a resolução ilustrada como vídeo, animada, mostrando o que acontece e como. As outras matérias (Português, Geografia, História, Inglês, Filosofia e Sociologia) têm resolução só em texto, passo a passo; imagens da web só quando forem necessárias (com crédito, princípio 10).
 - **Biologia e Química:** animação do que acontece — processo, estrutura, reação, molécula, fluxo.
 - **Matemática (e toda conta em Física e Química):** a conta escrita à mão, passo a passo, como o "Assistir resolução" do protótipo, e cada passagem **move os termos na tela**: o x atravessa o sinal de igual e troca de sinal; o número que multiplica vai para o outro lado dividindo; os números da fração viajam até onde são multiplicados (multiplicação cruzada); o que se cancela é riscado; o resultado novo aparece no lugar.
 - **Fração sempre empilhada:** numerador em cima, barra, denominador embaixo — nunca "3/5" ou "3 ÷ 5" na mesma linha, em textos, fórmulas e animações.
 - Um único motor de animação desenha tudo a partir dos passos de cada resolução (nada feito à mão questão por questão), para todas ficarem iguais e corretas.
 
 ## Identidade
-- Cores por matéria: Matemática verde-água · Português amarelo · Biologia verde · Química rosa/magenta. Definir as das novas matérias seguindo o mesmo sistema.
+- Cores por matéria: a paleta aprovada pelo dono (05/11/2026) em `docs/cores/paleta.json`, já aplicada no site — Biologia verde-folha · Química magenta · Matemática azul-marinho vivo · Português roxo · Física laranja · História marrom cor de couro · Geografia azul-petróleo · Inglês vermelho-cereja · Filosofia e Sociologia amarelo-ouro. Ao entrar numa matéria o site assume a cor dela.
 - Vocabulário (manter):
   - **Nível**: cada questão tem um nível de dificuldade — básico (dif 1–3), intermediário (4–6) ou avançado (7–10). Sem limite de questões por conteúdo e sem meta de degraus (decisão do dono, 02/11/2026).
   - **Treine sua evolução**: percorre o conteúdo do mais fácil ao mais difícil; dá para treinar um nível só. O desempenho por nível alimenta o feedback "onde você mais erra".
   - Quantidade de questões aparece só nos conteúdos (subtemas), não na matéria nem no tema.
   - **Treino geral**: mistura questões reais + frases para completar + flashcards dos temas que mais caem.
   - **Plataforma**: estamos construindo um **site**, não um aplicativo. Ele funciona no navegador de qualquer aparelho (computador, celular, iPad e outros), com layout responsivo; aplicativo nas lojas está fora do plano (decisão do dono, 05/11/2026).
-  - **Simulado**: só prova inteira, com todas as matérias, escolhida por instituição e ano (título com o ano). Sem simulado por objetivo ou por conteúdo. Meta: provas de 2020 a 2026 (privadas incluídas); onde não houver, no mínimo 3 anos por instituição.
+  - **Simulado**: prova inteira, com todas as matérias, escolhida por instituição e ano (título com o ano); ou **simulado por conteúdo** (decisão do dono, 11/11/2026): o aluno escolhe a matéria, um ou mais conteúdos e a quantidade (10, 20, 30 ou 45), e o site monta com questões reais de prova desses conteúdos, da mais fácil à mais difícil, com cronômetro e resultado por conteúdo. Sem simulado por objetivo. Meta: provas de 2020 a 2026 (privadas incluídas); provas anteriores a 2020 não são baixadas (dono, 09/11/2026).
   - **Flashcard**: pergunta curta no estilo das discursivas, resposta em uma frase; correção por IA ou local; no verso, fonte e "Curtiu este cartão? Sim/Não" (Não tira das próximas sessões).
   - Faixa de temas sempre no topo da matéria.
 
 ## Fábrica de conteúdo (API + créditos do Console)
 Trabalho de volume (classificar questões, rascunhar resoluções, flashcards, revisões em lentes) roda em programas da fábrica que chamam a **API do Claude** com a chave `ANTHROPIC_API_KEY`, pagos pelos créditos mensais do Console — não pelo limite do plano. Você (Claude Code) escreve, roda e supervisiona esses programas, confere amostras e integra só o que passou por todas as lentes. Use Batches sempre que não for urgente, declare o teto de gasto de cada lote e registre o gasto. Detalhes e linha de produção: `docs/fabrica-de-conteudo-api.md`.
 
-**Resoluções:** para escrever, revisar ou gerar resoluções (inclusive os prompts da fábrica e as Questões Aprendice), use a skill `resolucao-exercicios` (`.claude/skills/resolucao-exercicios/`), junto com a banca de `ferramentas/fabrica/agentes/`. A skill tem as regras de cada campo de `res/<sub>.json` e um guia por matéria (subtemas, roteiros por tipo de questão, distratores típicos, exemplo conferido), tirados de cerca de 430 resoluções em vídeo (`docs/pesquisa/videos-resolucao/`). O formato da correção e das animações é o da seção "Como o site ensina".
+**Resoluções:** para escrever, revisar ou gerar resoluções (inclusive os prompts da fábrica e as Questões Aprendice), use a skill `resolucao-exercicios` (`.claude/skills/resolucao-exercicios/`), junto com a banca de `ferramentas/fabrica/agentes/`. A skill tem as regras de cada campo de `res/<sub>.json` e um guia por matéria (subtemas, roteiros por tipo de questão, distratores típicos, exemplo conferido), tirados de cerca de 430 resoluções em vídeo (`docs/pesquisa/videos-resolucao/`). O formato da correção e das animações é o da seção "Como o site ensina". **Busca na web (decisão do dono, 11/11/2026):** quem resolve pode procurar na web gabaritos e resoluções publicadas (banca, cursinhos, professores) para achar o gabarito e conferir a resposta e o raciocínio; a fonte consultada fica registrada, e o texto da resolução é sempre escrito pela banca do Aprendice, nunca copiado (princípio 10).
 
 ## O protótipo atual (`app-atual/`)
 - `bio/ qui/ mat/ por/` — uma matéria cada:

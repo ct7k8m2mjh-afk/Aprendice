@@ -1,0 +1,571 @@
+{
+ "Pd95a1a40": {
+  "n": "11",
+  "conceito": "MMC com condição de paridade: todos no mesmo lado da piscina.",
+  "equivocos": {
+   "A": "M01.4:sem-origem-identificada",
+   "B": "M01.4:sem-origem-identificada",
+   "C": "M01.4:sem-origem-identificada",
+   "D": "M01.4:esqueceu-a-paridade"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada nadador está no lado de partida depois de um número par de travessias e no outro lado depois de um número ímpar. Para os quatro estarem no mesmo lado, o tempo precisa ser múltiplo de todos os tempos de travessia e o número de travessias de cada um precisa ter a mesma paridade.",
+    "formulas": [
+     "mmc",
+     "lado de partida ↔ travessias pares"
+    ],
+    "simbolos": []
+   },
+   "pista": "No mmc(12, 15, 18, 25), quantas travessias cada um fez? Estão todos do mesmo lado?",
+   "passos": [
+    {
+     "faz": "mmc dos tempos",
+     "conta": "mmc(12, 15, 18, 25) = 2² · 3² · 5² = 900 s",
+     "porque": "Primeiro instante em que todos tocam uma borda juntos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Travessias em 900 s",
+     "conta": "75, 60, 50 e 36",
+     "porque": "75 é ímpar: o mais rápido está do outro lado.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Paridade",
+     "conta": "em 900k s: 75k travessias (12 s) e 60k (15 s)",
+     "porque": "60k é sempre par; 75k só é par se k for par.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Mesmo lado",
+     "conta": "1800 s: 150, 120, 100 e 72 travessias, todas pares",
+     "porque": "Todos no lado de partida.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Distância do mais rápido",
+     "conta": "150 · 20 m = 3 000 m → alternativa E",
+     "porque": "Mais rápido = 12 s por travessia.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 3 000 m.",
+   "checagem": "Tempos de ida e volta: 24, 30, 36 e 50 s. Todos voltam juntos ao ponto de partida no mmc(24, 30, 36, 50) = 2³ · 3² · 5² = 1800 s. Em 1800 s o nadador de 12 s fez 1800/24 = 75 idas e voltas, ou seja, 75 · 40 = 3 000 m. Confere.",
+   "erradas": {
+    "A": "1 000 m são 50 travessias (600 s): os quatro não tocam a borda juntos nesse instante.",
+    "B": "2 000 m são 100 travessias (1200 s), e 1200 não é múltiplo de 18.",
+    "C": "2 500 m são 125 travessias (1500 s), que não é múltiplo de 18.",
+    "D": "1 500 m são as 75 travessias até 900 s, mas aí o mais rápido está do lado oposto ao dos outros três."
+   },
+   "armadilha": "Parar no mmc 900 s sem verificar se todos estão no mesmo lado; em 900 s o mais rápido fez 75 travessias (número ímpar).",
+   "alerta": "",
+   "essencial": {
+    "pede": "Distância do mais rápido.",
+    "chave": "mmc com paridade: 1800 s.",
+    "cuidado": "Encontrar-se na borda não basta; tem de ser a mesma borda."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "lado oposto impossível",
+    "ideia": "Para todos estarem no lado oposto, as quatro contagens t/12, t/15, t/18, t/25 precisariam ser ímpares; mas t/15 ímpar e t/18 ímpar não convivem com t múltiplo de 900 (t/15 = 60k é sempre par). Logo só o lado de partida serve, no primeiro múltiplo de 900 em que 75k é par: k = 2."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "mmc = 900 s",
+    "nota": "bordas"
+   },
+   {
+    "linha": "75 ímpar",
+    "nota": "lados diferentes"
+   },
+   {
+    "linha": "1800 s",
+    "nota": "mesmo lado"
+   },
+   {
+    "linha": "150 · 20 = 3 000 m",
+    "nota": "resposta"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0044"
+  }
+ },
+ "Pe78b3bb2": {
+  "n": "16",
+  "conceito": "Inequação entre logaritmo e reta resolvida pelo gráfico e pelos pontos de intersecção.",
+  "equivocos": {
+   "A": "M06.3:intervalo-nao-confere",
+   "C": "M06.3:regiao-invertida",
+   "D": "M06.3:cruzamento-errado",
+   "E": "M06.3:cruzamento-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O gráfico mostra que a curva do log fica acima da reta entre os dois cruzamentos. O enunciado garante que os cruzamentos têm coordenadas inteiras: basta achá-los testando inteiros em que x + 1 seja potência de 2. A resposta é o intervalo entre eles.",
+    "formulas": [
+     "log₂ (x + 1) é inteiro quando x + 1 é potência de 2",
+     "f(x) > g(x): curva acima da reta"
+    ],
+    "simbolos": [
+     [
+      "log₂",
+      "logaritmo na base 2"
+     ],
+     [
+      "f(x) > g(x)",
+      "pontos em que o gráfico de f está acima do de g"
+     ]
+    ]
+   },
+   "pista": "Procure os x inteiros que tornam log₂(x + 1) exato e teste f = g neles.",
+   "passos": [
+    {
+     "faz": "Teste x = 0",
+     "conta": "f(0) = 4 + log₂ 1 = 4 | g(0) = 28/7 = 4",
+     "porque": "No gráfico, um cruzamento está sobre o eixo y, em x = 0.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Teste x = 7",
+     "conta": "f(7) = 4 + log₂ 8 = 7 | g(7) = (21 + 28)/7 = 49/7 = 7",
+     "porque": "x + 1 = 8 é potência de 2 e dá o outro cruzamento, à direita.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Leia no gráfico onde f está acima",
+     "conta": "entre x = 0 e x = 7, a curva fica acima da reta",
+     "porque": "Antes de 0 a curva despenca rumo à assíntota x = −1; depois de 7 a reta passa por cima.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Escreva o conjunto",
+     "conta": "{x ∈ ℝ | 0 < x < 7} → alternativa B",
+     "porque": "A desigualdade é estrita, então 0 e 7 ficam de fora.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — {x ∈ ℝ | 0 < x < 7}",
+   "checagem": "Teste um ponto do meio: x = 3 dá f(3) = 4 + log₂ 4 = 6 e g(3) = 37/7 ≈ 5,29; f > g. Um ponto fora: x = 15 dá f = 4 + 4 = 8 e g = 73/7 ≈ 10,43; f < g.",
+   "erradas": {
+    "A": "x < 0 e x > 4 não confere: em x = 3 já vale f > g (6 > 37/7), e 3 não está nesse conjunto.",
+    "C": "x < 0 e x > 7 é a região oposta: ali a reta é que está acima da curva (em x = 15, 8 < 73/7).",
+    "D": "0 < x < 4 não confere: em x = 5, f = 4 + log₂ 6 ≈ 6,58 e g = 43/7 ≈ 6,14, f > g, e 5 fica fora.",
+    "E": "4 < x < 7 não confere: em x = 3, f > g, e 3 fica fora desse intervalo."
+   },
+   "armadilha": "O segundo cruzamento é em x = 7, onde x + 1 = 8 é potência de 2, e não em x = 4.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Para que x a curva 4 + log₂(x + 1) fica acima da reta (3x + 28)/7.",
+    "chave": "Cruzamentos em (0, 4) e (7, 7); entre eles, f > g.",
+    "cuidado": "Use as coordenadas inteiras para achar os cruzamentos e deixe as pontas fora (desigualdade estrita)."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste de pontos",
+    "ideia": "x = 3 e x = 5 satisfazem f > g e x = 15 não: só a B contém 3 e 5."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "f(0) = 4 + log₂ 1 = 4",
+    "nota": "x = 0"
+   },
+   {
+    "linha": "g(0) = 28/7 = 4",
+    "nota": "cruzamento (0, 4)"
+   },
+   {
+    "linha": "f(7) = 4 + log₂ 8 = 7",
+    "nota": "x = 7"
+   },
+   {
+    "linha": "g(7) = 49/7 = 7",
+    "nota": "cruzamento (7, 7)"
+   },
+   {
+    "linha": "0 < x < 7",
+    "nota": "curva acima da reta"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0057"
+  }
+ },
+ "P6a0faed1": {
+  "n": "18",
+  "conceito": "Ângulos no hexágono regular: diagonais dividem o ângulo interno e soma dos ângulos do triângulo.",
+  "equivocos": {
+   "A": "M08.4:soma-de-angulos-que-nao-fecha",
+   "C": "M08.4:soma-de-angulos-que-nao-fecha",
+   "D": "M08.4:soma-de-angulos-que-nao-fecha",
+   "E": "M08.4:soma-de-angulos-que-nao-fecha"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "No hexágono regular cada ângulo interno mede 120°. A diagonal maior (a horizontal, que passa pelo centro) divide o ângulo do vértice ao meio, 60° de cada lado; e a diagonal menor, saindo do mesmo vértice, faz 30° com a maior. Com esses ângulos e o 110° dado, dois triângulos resolvem tudo.",
+    "formulas": [
+     "ângulo interno do hexágono regular = 120°",
+     "soma dos ângulos do triângulo = 180°",
+     "ângulos opostos pelo vértice são iguais; ângulos lado a lado na reta somam 180°"
+    ],
+    "simbolos": [
+     [
+      "α",
+      "ângulo marcado no ponto sobre o lado do hexágono"
+     ],
+     [
+      "β",
+      "ângulo marcado no cruzamento com a diagonal horizontal"
+     ],
+     [
+      "x",
+      "ângulo entre o segmento e a diagonal horizontal, no cruzamento"
+     ]
+    ]
+   },
+   "pista": "Olhe o triângulo formado pelo vértice da esquerda, o ângulo de 110° e o cruzamento com a diagonal horizontal.",
+   "passos": [
+    {
+     "faz": "Ache o ângulo no vértice da esquerda",
+     "conta": "120° = 60° + 60° → 60° = 30° + 30°",
+     "porque": "A diagonal maior corta o ângulo de 120° do vértice da esquerda em dois de 60°; a diagonal menor fica no meio de um deles, a 30° da maior.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Feche o triângulo da esquerda",
+     "conta": "x + 110° + 30° = 180° → x = 40°",
+     "porque": "No triângulo com o vértice da esquerda, o ângulo de 110° e o cruzamento, os três ângulos somam 180°.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule β",
+     "conta": "β + 40° = 180° → β = 140°",
+     "porque": "β e o ângulo de 40° ficam lado a lado sobre a diagonal horizontal, então somam 180°.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Feche o triângulo da direita",
+     "conta": "α + 60° + 40° = 180° → α = 80°",
+     "porque": "No vértice da direita, a diagonal maior faz 60° com o lado; no cruzamento, o ângulo é 40° (oposto pelo vértice ao x).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some e marque",
+     "conta": "α + β = 80° + 140° = 220° → alternativa B",
+     "porque": "É a soma pedida.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 220°",
+   "checagem": "Pelo ângulo externo: β é externo ao triângulo da direita no cruzamento, então β = α + 60° = 80° + 60° = 140°, o mesmo valor.",
+   "erradas": {
+    "A": "230° não confere: α + β = 300° − 2x, e 230° pediria x = 35°, o que só aconteceria se o ângulo marcado fosse 115°, não 110°.",
+    "C": "235° não confere: pediria x = 32,5° no cruzamento, o que exigiria um ângulo marcado de 117,5°, não 110°.",
+    "D": "225° não confere: pediria x = 37,5°, o que exigiria um ângulo marcado de 112,5°, não 110°.",
+    "E": "215° não confere: pediria x = 42,5°, o que exigiria um ângulo marcado de 107,5°, não 110°."
+   },
+   "armadilha": "Usar 60° como ângulo entre as duas diagonais no vértice da esquerda: entre a menor e a maior são só 30°.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A soma α + β dos ângulos marcados na figura do hexágono regular.",
+    "chave": "30° no vértice da esquerda dá 40° no cruzamento; β = 140° e α = 180° − 60° − 40° = 80°.",
+    "cuidado": "No hexágono regular, as diagonais de um vértice cortam o ângulo de 120° em partes de 30°."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "ângulo externo",
+    "ideia": "β é externo aos dois triângulos: β = 110° + 30° = 140° e β = α + 60°, logo α = 80°."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "120° = 60° + 60° → 60° = 30° + 30°",
+    "nota": "vértice da esquerda: 30° entre as diagonais"
+   },
+   {
+    "linha": "x + 110° + 30° = 180° → x = 40°",
+    "nota": "triângulo da esquerda"
+   },
+   {
+    "linha": "β = 180° − 40° = 140°",
+    "nota": "ângulos lado a lado"
+   },
+   {
+    "linha": "α = 180° − 60° − 40° = 80°",
+    "nota": "triângulo da direita"
+   },
+   {
+    "linha": "α + β = 220°",
+    "nota": "soma pedida"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0061"
+  }
+ },
+ "Pdf9159c6": {
+  "n": "17",
+  "conceito": "Pitágoras para achar a altura do trapézio retângulo e seno de 60° para achar o lado oblíquo.",
+  "equivocos": {
+   "A": "M10.1:razao-trigonometrica-errada",
+   "B": "M10.1:razao-trigonometrica-errada",
+   "C": "M10.1:confundiu-projecao-com-lado",
+   "E": "M10.1:razao-trigonometrica-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "No trapézio retângulo da figura, o ângulo em D é reto: o triângulo ACD é retângulo em D, com hipotenusa AC. Ele dá o lado CD, que é a altura do trapézio. Essa mesma altura é o cateto oposto ao ângulo de 60° no triângulo que tem AB como hipotenusa.",
+    "formulas": [
+     "AC² = AD² + CD²",
+     "sen 60° = altura ÷ AB",
+     "sen 60° = √3/2"
+    ],
+    "simbolos": [
+     [
+      "trapézio retângulo",
+      "trapézio com dois ângulos retos"
+     ],
+     [
+      "sen 60°",
+      "cateto oposto ao ângulo de 60° dividido pela hipotenusa"
+     ]
+    ]
+   },
+   "pista": "A diagonal AC não envolve o ângulo de 60°: use-a primeiro para achar a altura.",
+   "passos": [
+    {
+     "faz": "Ache a altura pelo triângulo ACD",
+     "conta": "(2√13)² = 6² + CD² → 52 = 36 + CD² → CD² = 16 → CD = 4",
+     "porque": "Em D o ângulo é reto, então Pitágoras vale; (2√13)² = 4 × 13 = 52.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Use a altura no ângulo de 60°",
+     "conta": "sen 60° = 4/AB → √3/2 = 4/AB → √3 · AB = 8",
+     "porque": "Baixando a altura de B até AD, forma-se um triângulo retângulo com hipotenusa AB e cateto oposto ao 60° igual a CD = 4.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole AB e racionalize",
+     "conta": "AB = 8/√3 → AB = (8√3)/3",
+     "porque": "Multiplicando em cima e embaixo por √3, a raiz sai do denominador, como estão as alternativas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Marque a alternativa",
+     "conta": "AB = (8√3)/3 cm → alternativa D",
+     "porque": "A pergunta é o lado AB, a hipotenusa do triângulo de 60°.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — (8√3)/3 cm",
+   "checagem": "Com AB = (8√3)/3 ≈ 4,62 cm, a projeção de AB sobre AD é AB × cos 60° ≈ 2,31 cm, e a altura é AB × sen 60° = 4. Então BC ≈ 6 − 2,31 = 3,69 cm, positivo: o trapézio existe com esses lados.",
+   "erradas": {
+    "A": "(9√3)/2 ≈ 7,79 cm não confere: com esse AB a altura seria (9√3)/2 × √3/2 = 6,75 cm, e não 4 cm.",
+    "B": "(5√3)/2 ≈ 4,33 cm não confere: daria altura (5√3)/2 × √3/2 = 3,75 cm, e não 4 cm.",
+    "C": "(4√3)/3 ≈ 2,31 cm não confere: daria altura 2 cm, metade dos 4 cm. É a projeção de AB sobre AD, não o lado AB.",
+    "E": "(6√3)/3 = 2√3 ≈ 3,46 cm não confere: daria altura 2√3 × √3/2 = 3 cm, e não 4 cm."
+   },
+   "armadilha": "Tentar usar o 60° no triângulo ACD: o ângulo de 60° está em A, mas no lado AB, e não na diagonal AC.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A medida do lado AB do trapézio.",
+    "chave": "Pitágoras em ACD dá a altura 4; sen 60° = 4/AB dá AB = (8√3)/3.",
+    "cuidado": "(2√13)² é 52, e a altura é o cateto oposto ao 60°."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "tangente",
+    "ideia": "A projeção de AB é 4/tg 60° = (4√3)/3, e AB = 2 × projeção (no 60°, a hipotenusa é o dobro do cateto adjacente) = (8√3)/3."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "(2√13)² = 6² + CD²",
+    "nota": "Pitágoras no triângulo ACD"
+   },
+   {
+    "linha": "52 = 36 + CD² → CD² = 16 → CD = 4",
+    "nota": "36 passou subtraindo"
+   },
+   {
+    "linha": "sen 60° = 4/AB → √3/2 = 4/AB",
+    "nota": "altura oposta ao 60°"
+   },
+   {
+    "linha": "√3 · AB = 8 → AB = 8/√3",
+    "nota": "multiplicação cruzada"
+   },
+   {
+    "linha": "AB = (8√3)/3",
+    "nota": "racionalizou"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0062"
+  }
+ },
+ "Pc278a793": {
+  "n": "19",
+  "conceito": "Usar volume, área total e área de uma face de um paralelepípedo para achar a soma das dimensões.",
+  "equivocos": {
+   "A": "M11.1:area-total-montada-errada",
+   "B": "M11.1:area-total-montada-errada",
+   "C": "M11.1:area-total-montada-errada",
+   "D": "M11.1:area-total-montada-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Volume equivalente a 12 blocos iguais quer dizer que cada bloco pequeno tem 1/12 do volume grande. Com o volume pqr e uma face pq = 20, a terceira dimensão sai de uma divisão. A área total 2(pq + pr + qr) dá então a soma p + q.",
+    "formulas": [
+     "volume = p·q·r",
+     "área total = 2(pq + pr + qr)"
+    ],
+    "simbolos": [
+     [
+      "p, q, r",
+      "dimensões de cada paralelepípedo menor, em cm"
+     ],
+     [
+      "cm³",
+      "centímetro cúbico"
+     ],
+     [
+      "cm²",
+      "centímetro quadrado"
+     ]
+    ]
+   },
+   "pista": "Comece pelo volume de um bloco pequeno; com a face de 20 cm², uma dimensão sai na hora.",
+   "passos": [
+    {
+     "faz": "Ache o volume de cada bloco menor",
+     "conta": "4 × 6 × 10 = 240 → 240/12 = 20 cm³",
+     "porque": "Os 12 blocos idênticos juntos têm o volume do grande, então cada um tem um doze avos dele.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Use a face de 20 cm²",
+     "conta": "pqr = 20 e pq = 20 → r = 20/20 = 1",
+     "porque": "Chame de pq a face de 20 cm². O volume é essa face vezes a terceira dimensão, então r = 1 cm.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Use a área total",
+     "conta": "2(20 + r(p + q)) = 58 → 20 + (p + q) = 29 → p + q = 9",
+     "porque": "Com r = 1, pr + qr = p + q. O 2 passa dividindo (58/2 = 29) e o 20 passa subtraindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some as três dimensões",
+     "conta": "p + q + r = 9 + 1 = 10",
+     "porque": "Já temos p + q e r; não é preciso achar p e q separados.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "p + q + r = 10 cm → alternativa E",
+     "porque": "A pergunta é a soma das três dimensões de cada bloco menor.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 10 cm",
+   "checagem": "p + q = 9 e pq = 20 dão p = 4 e q = 5 (4 + 5 = 9, 4 × 5 = 20). Bloco 4 × 5 × 1: volume 20 cm³ e área 2(20 + 4 + 5) = 58 cm². Fecha com os dois dados.",
+   "erradas": {
+    "A": "12 cm não confere: com r = 1, p + q seria 11, e a área ficaria 2(20 + 11) = 62 cm², não 58.",
+    "B": "16 cm não confere: p + q seria 15, e a área ficaria 2(20 + 15) = 70 cm², não 58.",
+    "C": "14 cm não confere: p + q seria 13, e a área ficaria 2(20 + 13) = 66 cm², não 58.",
+    "D": "18 cm não confere: p + q seria 17, e a área ficaria 2(20 + 17) = 74 cm², não 58."
+   },
+   "armadilha": "Usar o volume do bloco grande (240 cm³) como se fosse o de cada bloco menor, esquecendo de dividir por 12.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A soma p + q + r das dimensões de cada bloco menor.",
+    "chave": "pqr = 240/12 = 20 e pq = 20 dão r = 1; 2(20 + p + q) = 58 dá p + q = 9; soma 10 cm.",
+    "cuidado": "O volume de cada bloco é 1/12 do grande."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "achar as dimensões",
+    "ideia": "p e q são raízes de x² − 9x + 20 = 0, ou seja, 4 e 5; com r = 1, a soma é 4 + 5 + 1 = 10 cm."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "4 × 6 × 10 = 240 cm³",
+    "nota": "volume do bloco grande"
+   },
+   {
+    "linha": "pqr = 240/12 = 20",
+    "nota": "cada bloco menor"
+   },
+   {
+    "linha": "pq = 20 → r = 20/20 = 1",
+    "nota": "face de 20 cm²"
+   },
+   {
+    "linha": "2(20 + p + q) = 58 → 20 + p + q = 29",
+    "nota": "área total; divide por 2"
+   },
+   {
+    "linha": "p + q = 9",
+    "nota": "20 passa subtraindo"
+   },
+   {
+    "linha": "p + q + r = 9 + 1 = 10",
+    "nota": "soma pedida"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0063"
+  }
+ }
+}

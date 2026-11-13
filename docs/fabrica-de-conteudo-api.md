@@ -9,7 +9,7 @@
 Créditos mensais cobrem: Messages API, **Message Batches API**, Playground, Agent SDK e `claude -p` rodando com chave de API da organização vinculada. Não cobrem o Claude Code interativo. Créditos não acumulam: o que sobra no mês se perde, então vale ter lotes prontos para rodar. Fonte: https://support.claude.com/en/articles/17154008-monthly-api-credits-for-max-and-team-plans
 
 ## Linha de produção (cada etapa é um lote; nada entra no app sem passar por todas)
-1. **Ingestão** (sem IA): baixar provas públicas, recortar prints, extrair texto, ler o gabarito publicado. Respeitar robots.txt e direitos de uso.
+1. **Ingestão** (sem IA): baixar provas públicas, recortar prints, extrair texto, ler o gabarito publicado. Respeitar robots.txt; registrar a origem de cada print (o dono decide sobre direitos de uso).
 2. **Classificação** — modelo rápido (`claude-haiku-5-5`), Batches: matéria, módulo/conteúdo (taxonomia do `dados.json`), dificuldade 1–10, conceito em uma linha, se tem figura.
 3. **Resolução (rascunho)** — `claude-sonnet-5-5`, Batches: campos `antes, pista, passos, resposta, checagem, erradas (origem de cada distrator), armadilha, essencial`. O modelo resolve **antes** de ver o gabarito; divergência com o gabarito publicado → fila de exceção, nunca "ajustar" a resolução ao gabarito sem explicação.
 4. **Lente 1 — fatos** — `claude-opus-5-5`, outro prompt, sem ver o raciocínio do rascunho: refaz a questão, confere cada afirmação e número, aponta correções exatas.
@@ -26,7 +26,7 @@ O mesmo esquema vale para flashcards e frases (padrão em `docs/pesquisa/padrao_
 - Prompts versionados em arquivo (`ferramentas/fabrica/prompts/*.md`), testados primeiro no Playground com casos difíceis.
 - A chave fica só na variável de ambiente `ANTHROPIC_API_KEY` (segredo do ambiente do Claude Code). Nunca no código, nunca no chat, nunca no repositório.
 - Saída sempre em JSON validado por esquema; resposta que não valida volta para a fila.
-- Nenhum conteúdo da fábrica é "verdade" sem fonte publicada: o gabarito vem da fonte, a resolução é conferida, as frases de teoria citam a fonte.
+- Nenhum conteúdo da fábrica é "verdade" sem fonte publicada: o gabarito vem da fonte (sem gabarito publicado, só o gabarito do Aprendice: dois especialistas às cegas na mesma letra — princípio 2), a resolução é conferida, as frases de teoria citam a fonte.
 
 ## Depois, no app público
 As funções de IA do app (correção de flashcard, "explique de outro jeito", dúvida sobre a questão) também usam a API, mas com **orçamento próprio pago** e limites por usuário — os créditos mensais do plano são para desenvolvimento e produção de conteúdo, e param no teto do mês.

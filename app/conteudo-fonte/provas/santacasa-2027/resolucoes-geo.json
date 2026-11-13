@@ -1,0 +1,806 @@
+{
+ "P4a3ebc84": {
+  "n": "40",
+  "conceito": "Calcular a escala numérica a partir da distância real e da medida no mapa.",
+  "equivocos": {
+   "A": "G01.2:conversao-parou-em-metros",
+   "B": "G01.2:multiplicou-e-errou-zeros",
+   "C": "G01.2:zero-a-menos-na-conversao",
+   "E": "G01.2:multiplicou-em-vez-de-dividir"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Escala é a razão entre a medida no mapa e a medida real, nas mesmas unidades. O trabalho da questão é converter 33 km para centímetros, porque o mapa está em centímetros. Depois, basta dividir.",
+    "formulas": [
+     "denominador = distância real ÷ distância no mapa (mesma unidade)",
+     "1 km = 100 000 cm"
+    ],
+    "simbolos": [
+     [
+      "escala numérica",
+      "razão 1 : N; cada unidade no mapa vale N unidades no terreno"
+     ]
+    ]
+   },
+   "pista": "Antes de dividir, ponha as duas medidas na mesma unidade.",
+   "passos": [
+    {
+     "faz": "Separe os dados",
+     "conta": "real: 33 km | mapa: 12 cm",
+     "porque": "As unidades são diferentes; a razão só vale com as duas iguais.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Converta para centímetros",
+     "conta": "33 km × 100 000 = 3 300 000 cm",
+     "porque": "Um quilômetro tem 1 000 m, e cada metro tem 100 cm.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida o real pelo mapa",
+     "conta": "3 300 000 cm ÷ 12 cm = 275 000",
+     "porque": "Cada centímetro do mapa representa 275 000 cm no terreno.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "escala 1 : 275 000",
+     "porque": "É a alternativa D.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 1 : 275 000.",
+   "checagem": "Volte da escala ao terreno: 12 cm × 275 000 = 3 300 000 cm = 33 000 m = 33 km, a extensão da linha.",
+   "erradas": {
+    "A": "A sai de converter 33 km só para metros: 33 000 ÷ 12 = 2 750.",
+    "B": "B sai de multiplicar em vez de dividir e ainda perder um zero: 330 000 × 12 = 3 960 000.",
+    "C": "C sai de perder um zero na conversão: 330 000 ÷ 12 = 27 500 (33 km são 3 300 000 cm).",
+    "E": "E sai de multiplicar em vez de dividir: 3 300 000 × 12 = 39 600 000."
+   },
+   "armadilha": "Errar os zeros na passagem de km para cm: 1 km = 100 000 cm.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A escala numérica de um mapa em que 33 km medem 12 cm.",
+    "chave": "Denominador = 3 300 000 cm ÷ 12 cm = 275 000.",
+    "cuidado": "Converta para a mesma unidade antes de dividir."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "geo-0029"
+  }
+ },
+ "Pcfc52186": {
+  "n": "39",
+  "conceito": "Reconhecer a maior distorção da projeção de Mercator: as altas latitudes.",
+  "equivocos": {
+   "A": "G01.4:conforme-trocada-por-equivalente",
+   "B": "G01.4:propriedade-nao-preservada",
+   "C": "G01.4:propriedade-preservada-tomada-por-distorcida",
+   "D": "G01.4:propriedade-preservada-tomada-por-distorcida"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Mercator é uma projeção cilíndrica conforme: preserva os ângulos e as formas de pequenas áreas, e por isso as direções (rumos) viram linhas retas, o que a tornou útil para a navegação. O preço é a área: os paralelos se afastam cada vez mais rumo aos polos, e as regiões de alta latitude aparecem muito maiores do que são.",
+    "formulas": [
+     "conforme = preserva ângulos e formas locais, deforma áreas",
+     "equivalente = preserva áreas, deforma formas"
+    ],
+    "simbolos": [
+     [
+      "projeção conforme",
+      "projeção que mantém os ângulos e a forma de pequenas áreas"
+     ],
+     [
+      "alta latitude",
+      "região próxima aos polos"
+     ],
+     [
+      "rumo",
+      "direção constante em relação ao norte, usada na navegação"
+     ]
+    ]
+   },
+   "pista": "Compare no mapa o tamanho da Groenlândia com o da América do Sul.",
+   "passos": [
+    {
+     "faz": "Localize a pista do mapa",
+     "conta": "Groenlândia parece quase do tamanho da América do Sul; a Antártida vira uma faixa enorme",
+     "porque": "Na Terra, a América do Sul é muito maior que a Groenlândia. O exagero cresce perto dos polos.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Lembre a propriedade da Mercator",
+     "conta": "cilíndrica conforme: ângulos e direções preservados, áreas deformadas",
+     "porque": "Os paralelos se afastam rumo aos polos para manter os ângulos, e isso infla as altas latitudes.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Elimine o que ela preserva ou não preserva",
+     "conta": "A: áreas · B: distâncias · C e D: direções e ângulos",
+     "porque": "Áreas e distâncias não são preservadas; direções e ângulos são.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "maior distorção nas altas latitudes",
+     "porque": "É a alternativa E.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — a distorção das altas latitudes.",
+   "checagem": "Confira pela quadrícula do mapa: os paralelos ficam mais espaçados no alto e no baixo da figura do que perto do Equador; a mesma faixa de latitude ocupa mais espaço perto dos polos.",
+   "erradas": {
+    "A": "Inverte a propriedade: a Mercator deforma áreas (veja a Groenlândia); quem preserva áreas são as projeções equivalentes, como a de Peters.",
+    "B": "A Mercator não preserva distâncias: a mesma distância em graus aparece mais longa nas altas latitudes.",
+    "C": "Inverte: a Mercator preserva as direções (o rumo vira linha reta), e por isso foi usada na navegação.",
+    "D": "Inverte: a Mercator é conforme, ou seja, preserva os ângulos."
+   },
+   "armadilha": "Saber que a Mercator \"deforma\" e marcar ângulos ou direções (C, D), que são justamente o que ela preserva.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A característica da projeção de Mercator.",
+    "chave": "Conforme: preserva ângulos e direções e exagera as áreas perto dos polos.",
+    "cuidado": "Deformar área não é deformar ângulo: na Mercator, só a área sofre."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "geo-0029"
+  }
+ },
+ "Paebe1389": {
+  "n": "37",
+  "conceito": "Identificar a lixiviação como o processo que leva pesticidas do solo à água subterrânea.",
+  "equivocos": {
+   "B": "G04.3:processo-de-solo-vizinho",
+   "C": "G04.3:processo-de-agua-superficial",
+   "D": "G04.3:movimento-da-agua-no-lugar-do-transporte",
+   "E": "G04.3:movimento-da-agua-no-lugar-do-transporte"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Na imagem, o número 1 marca uma seta que sai do solo e desce até o lençol freático. Quando a água da chuva atravessa o solo carregando substâncias dissolvidas, como resíduos de pesticidas, até as camadas mais profundas, o processo se chama lixiviação. É ele que leva o veneno até a água subterrânea.",
+    "formulas": [
+     "lixiviação: água que atravessa o solo levando substâncias dissolvidas para baixo",
+     "infiltração: entrada da água no solo · percolação: movimento da água dentro do solo"
+    ],
+    "simbolos": [
+     [
+      "lixiviação",
+      "transporte de substâncias dissolvidas pela água que atravessa o solo para baixo"
+     ],
+     [
+      "lençol freático",
+      "camada de água subterrânea mais próxima da superfície"
+     ],
+     [
+      "eutrofização",
+      "excesso de nutrientes em lagos e rios, que provoca proliferação de algas"
+     ]
+    ]
+   },
+   "pista": "Siga a seta do número 1: de onde sai, para onde vai e o que ela leva junto?",
+   "passos": [
+    {
+     "faz": "Localize o número 1",
+     "conta": "seta do solo descendo até o \"LENÇOL FREÁTICO\" e a \"ÁGUA SUBTERRÂNEA\"",
+     "porque": "O processo leva algo da superfície para baixo, até a água subterrânea.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Localize o que é transportado",
+     "conta": "\"resíduos de pesticidas têm sido detectados em águas subterrâneas\"",
+     "porque": "O que importa é o pesticida carregado pela água.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Nomeie o processo",
+     "conta": "água atravessando o solo + substância dissolvida levada para baixo = lixiviação",
+     "porque": "Infiltração e percolação descrevem o movimento da água; lixiviação é o transporte do que vai dissolvido nela.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Elimine os processos vizinhos",
+     "conta": "B: laterização · C: eutrofização · D: infiltração · E: percolação",
+     "porque": "Laterização é formação de solo; eutrofização ocorre em água superficial; infiltração e percolação falam da água, não do contaminante.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "lixiviação",
+     "porque": "É a alternativa A.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — lixiviação.",
+   "checagem": "Confira pelos outros caminhos da imagem: o que vai para rios e lagos aparece como \"escoamento superficial\" e \"escoamento subsuperficial\". O único caminho vertical até o lençol freático é o 1, a lixiviação.",
+   "erradas": {
+    "B": "Laterização é a concentração de óxidos de ferro e alumínio em solos tropicais; não transporta pesticidas para o lençol.",
+    "C": "Eutrofização é o excesso de nutrientes em águas superficiais (lagos, rios), não um caminho até a água subterrânea.",
+    "D": "Infiltração é a entrada da água no solo, junto à superfície; a questão pede o processo que leva o pesticida dissolvido até o lençol freático.",
+    "E": "Percolação é o movimento da água através do solo; o nome do transporte dos contaminantes dissolvidos por essa água é lixiviação."
+   },
+   "armadilha": "Escolher infiltração ou percolação (D, E), que descrevem a água, quando o comando pede o processo de contaminação pelo pesticida.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O processo que leva pesticidas do solo até a água subterrânea.",
+    "chave": "Água atravessando o solo e carregando o pesticida dissolvido = lixiviação.",
+    "cuidado": "Infiltração e percolação são da água; lixiviação é do que ela carrega."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "geo-0030"
+  }
+ },
+ "P1c8997d8": {
+  "n": "35",
+  "conceito": "Reconhecer que os microapartamentos em áreas centrais intensificam a especulação imobiliária.",
+  "equivocos": {
+   "A": "G07.4:argumento-de-venda-aceito",
+   "B": "G07.4:efeito-invertido",
+   "C": "G07.4:efeito-invertido",
+   "D": "G07.4:instrumento-publico-como-efeito"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os apartamentos minúsculos descritos no texto são vendidos pela localização: perto do metrô, do centro, de universidades. Em poucos metros quadrados, o preço por metro quadrado fica muito alto, e o terreno bem localizado rende mais unidades para vender. Em vez de baratear a moradia, esse tipo de empreendimento valoriza ainda mais o solo central: é especulação imobiliária.",
+    "formulas": [
+     "muitas unidades pequenas em terreno valorizado → preço alto por m² → mais lucro com a localização"
+    ],
+    "simbolos": [
+     [
+      "especulação imobiliária",
+      "uso do solo urbano para lucrar com a sua valorização"
+     ],
+     [
+      "déficit habitacional",
+      "falta de moradias adequadas para as famílias que precisam delas"
+     ],
+     [
+      "função social da terra urbana",
+      "princípio de que o solo urbano deve servir ao interesse coletivo, e não só ao lucro"
+     ],
+     [
+      "IPTU progressivo no tempo",
+      "imposto que sobe a cada ano sobre terreno vazio ou subutilizado, para combater a especulação"
+     ]
+    ]
+   },
+   "pista": "Repare no que é vendido junto com o apartamento: o tamanho ou a localização?",
+   "passos": [
+    {
+     "faz": "Traduza o que se pede",
+     "conta": "\"Em contraposição à visão de muitos urbanistas\"",
+     "porque": "Pede o efeito criticado, o oposto da visão positiva do texto.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Localize o argumento de venda",
+     "conta": "\"unidades próximas a estações de metrô, universidades, centro, museus, pontos turísticos\"",
+     "porque": "Vende-se a localização, que é o que mais valoriza o solo urbano.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Ligue ao conceito",
+     "conta": "terreno central + muitas unidades minúsculas → preço alto por m² → lucro com a valorização",
+     "porque": "É a lógica da especulação imobiliária.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Elimine os efeitos opostos",
+     "conta": "A: fim do déficit · B: desvalorização do m² · C: função social · D: IPTU progressivo",
+     "porque": "Todas são o contrário: o empreendimento valoriza o solo e mira quem pode pagar.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "intensificação da especulação imobiliária",
+     "porque": "É a alternativa E.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — a intensificação da especulação imobiliária.",
+   "checagem": "Confira pelo público: os anúncios falam de \"estilo de vida moderno, dinâmico\", não de famílias sem casa. O alvo é quem paga pela localização, o que confirma que o motor é o lucro com o solo.",
+   "erradas": {
+    "A": "O texto descreve imóveis vendidos pela localização privilegiada, não moradia para a população sem casa; o déficit não é eliminado.",
+    "B": "Inverte: unidades minúsculas em áreas centrais elevam o valor do metro quadrado.",
+    "C": "O empreendimento visa ao lucro com a localização; não é o cumprimento da função social da terra urbana.",
+    "D": "O IPTU progressivo é instrumento do poder público contra a especulação; não é efeito de um empreendimento privado."
+   },
+   "armadilha": "Aceitar o argumento de venda do texto (moradia moderna, bem localizada, defendida por urbanistas) e marcar a A, quando o comando pede a crítica.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O efeito dos microapartamentos em áreas centrais, na visão crítica.",
+    "chave": "Vende-se a localização: o solo central se valoriza ainda mais, intensificando a especulação.",
+    "cuidado": "\"Em contraposição\" pede a crítica, não o argumento de venda."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "geo-0030"
+  }
+ },
+ "P8a69348a": {
+  "n": "36",
+  "conceito": "Identificar a cana-de-açúcar pela distribuição da produção entre os estados.",
+  "equivocos": {
+   "A": "G08.3:so-o-lider-considerado",
+   "B": "G08.3:distribuicao-mal-lida",
+   "C": "G08.3:lider-errado",
+   "E": "G08.3:lider-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O mapa traz os dez maiores estados produtores de um mesmo produto agrícola na safra 2024-2025. São Paulo sozinho tem 52,2%, seguido de Minas Gerais e Goiás, e aparecem também Alagoas, Pernambuco e Paraíba, na Zona da Mata nordestina. Essa combinação, liderança paulista com presença do litoral nordestino, é a assinatura da cana-de-açúcar.",
+    "formulas": [
+     "São Paulo líder absoluto + Zona da Mata nordestina (AL, PE, PB) → cana-de-açúcar",
+     "Mato Grosso líder → soja · Minas Gerais líder → café"
+    ],
+    "simbolos": [
+     [
+      "Zona da Mata",
+      "faixa litorânea do Nordeste, área tradicional da cana desde a colonização"
+     ],
+     [
+      "safra",
+      "produção agrícola de um ciclo de colheita"
+     ]
+    ]
+   },
+   "pista": "Procure no mapa os estados do Nordeste que aparecem. Que cultura é tradicional ali desde o período colonial?",
+   "passos": [
+    {
+     "faz": "Localize o líder",
+     "conta": "1º São Paulo: 52,2% · 2º Minas Gerais: 12,1% · 3º Goiás: 11,6%",
+     "porque": "Mais da metade da produção em São Paulo, com Minas e Goiás logo atrás.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Localize a pista do Nordeste",
+     "conta": "Alagoas (2,6%), Pernambuco (2,0%), Paraíba (1,1%)",
+     "porque": "Os três estados da Zona da Mata são produtores tradicionais de cana.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Elimine pelo líder",
+     "conta": "soja: Mato Grosso lidera · café: Minas Gerais lidera",
+     "porque": "No mapa, Mato Grosso tem 2,6% e Minas Gerais não é o primeiro.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Elimine pela distribuição",
+     "conta": "laranja e banana",
+     "porque": "Nenhuma das duas tem a Zona da Mata (Alagoas, Pernambuco, Paraíba) entre os dez maiores ao lado de Goiás e Mato Grosso do Sul.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "cana-de-açúcar",
+     "porque": "É a alternativa D.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — cana-de-açúcar.",
+   "checagem": "Confira pelo uso: São Paulo, Goiás, Minas Gerais e Mato Grosso do Sul concentram usinas de etanol e açúcar no Centro-Sul; Alagoas e Pernambuco são os polos sucroalcooleiros do Nordeste.",
+   "erradas": {
+    "A": "São Paulo também lidera a laranja, mas ela não tem Alagoas, Pernambuco e Paraíba entre os dez maiores produtores.",
+    "B": "A banana tem produção espalhada, sem um estado com mais da metade do total, e sem esse peso de Goiás e Mato Grosso do Sul.",
+    "C": "O maior produtor de café é Minas Gerais, não São Paulo, e o café não tem a Zona da Mata nordestina entre os principais produtores.",
+    "E": "O maior produtor de soja é Mato Grosso; no mapa ele tem só 2,6%."
+   },
+   "armadilha": "Ver São Paulo em primeiro e marcar laranja (A), sem usar a pista dos estados nordestinos.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O produto agrícola cuja produção o mapa mostra.",
+    "chave": "São Paulo com mais da metade + Zona da Mata nordestina = cana-de-açúcar.",
+    "cuidado": "Use mais de um estado para identificar a cultura, não só o líder."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "geo-0030"
+  }
+ },
+ "P1aba6491": {
+  "n": "38",
+  "conceito": "Ler um gráfico de variação anual da geração de eletricidade: em 2025, as fontes de baixo carbono cresceram mais que a demanda.",
+  "equivocos": {
+   "A": "G09.4:grafico-mal-lido",
+   "C": "G09.4:variacao-tomada-por-total",
+   "D": "G09.4:grafico-mal-lido",
+   "E": "G09.4:tendencia-invertida"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O gráfico mostra, para cada ano, quanto a geração mundial de eletricidade mudou em relação ao ano anterior, separando solar, outras limpas e fóssil; a linha roxa é o aumento da demanda. Quando a soma das barras verdes passa da linha roxa, as fontes limpas cobriram sozinhas todo o aumento da demanda, e a geração fóssil pode até cair.",
+    "formulas": [
+     "barra acima de zero = geração aumentou · abaixo de zero = diminuiu",
+     "limpas > demanda → o fóssil não precisa crescer"
+    ],
+    "simbolos": [
+     [
+      "TWh",
+      "terawatt-hora, unidade de energia: um bilhão de quilowatts-hora"
+     ],
+     [
+      "baixo carbono",
+      "fontes que emitem pouco CO2, como solar, eólica, hidráulica e nuclear"
+     ]
+    ]
+   },
+   "pista": "Olhe só a última barra, 2025: compare o topo das barras verdes com a linha roxa.",
+   "passos": [
+    {
+     "faz": "Entenda o gráfico",
+     "conta": "cada barra = variação da geração no ano · linha roxa = variação da demanda",
+     "porque": "Não são totais; são aumentos ou quedas de um ano para o outro.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Leia 2025",
+     "conta": "solar + outras limpas ≈ 890 TWh · demanda ≈ 850 TWh · fóssil levemente abaixo de zero",
+     "porque": "O crescimento das limpas passou do crescimento da demanda.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Elimine as leituras erradas",
+     "conta": "A: fóssil só negativo de 2015 a 2025 · D: fóssil irrelevante em 2021-2025 · E: limpas reduzidas",
+     "porque": "O fóssil cresceu em vários desses anos (muito em 2021); a barra da solar cresce todo ano, e o aumento das limpas supera o do fóssil em quase todos os anos.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Elimine a confusão de escala",
+     "conta": "C: limpas acima do total fóssil desde 2010",
+     "porque": "O gráfico mostra variações anuais, não o total gerado por cada fonte.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "baixo carbono superou o aumento da demanda em 2025",
+     "porque": "É a alternativa B.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — a geração de fontes de baixo carbono superou o aumento da demanda global em 2025.",
+   "checagem": "Confira pela barra cinza de 2025: ela fica um pouco abaixo de zero. Se as limpas não tivessem coberto todo o aumento da demanda, o fóssil precisaria crescer; como caiu, as limpas bastaram.",
+   "erradas": {
+    "A": "A não confere: a barra cinza fica acima de zero em vários anos entre 2015 e 2025 (como 2017, 2018 e 2021); o fóssil não oscilou só para baixo.",
+    "C": "C não confere: o gráfico mostra a variação de cada ano, não o total gerado; e em muitos anos depois de 2010 o aumento fóssil foi maior que o das limpas.",
+    "D": "D não confere: em 2021 o aumento da geração fóssil foi grande (a parte cinza da barra é enorme); não foi irrelevante.",
+    "E": "E não confere: a solar cresce todos os anos e, tirando 2021, o aumento das limpas supera o do fóssil; em 2025 o fóssil fica abaixo de zero enquanto as limpas sobem quase 900 TWh. Não houve redução das limpas em relação ao fóssil."
+   },
+   "armadilha": "Ler as barras como total gerado (C), quando o gráfico mostra a mudança de um ano para o outro.",
+   "alerta": "Os valores de 2025 são leitura aproximada do gráfico; a conclusão não depende da precisão, porque a barra fóssil fica abaixo de zero.",
+   "essencial": {
+    "pede": "O que o gráfico mostra sobre a geração mundial de eletricidade.",
+    "chave": "Em 2025, o aumento das limpas (cerca de 890 TWh) passou do aumento da demanda (cerca de 850 TWh).",
+    "cuidado": "Variação anual não é total: leia o título do gráfico."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "geo-0030"
+  }
+ },
+ "P1214c7d7": {
+  "n": "31",
+  "conceito": "Reconhecer a mudança do centro da economia mundial da indústria manufatureira para as empresas de tecnologia.",
+  "equivocos": {
+   "A": "G10.1:contradiz-o-texto",
+   "B": "G10.1:tangivel-intangivel-trocados",
+   "C": "G10.1:escala-errada",
+   "D": "G10.1:fora-do-texto"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O texto compara as maiores empresas do mundo em 2005 e 2025. Em 2005, 8 das 10 maiores eram fábricas; em 2025, só 3, e duas delas metade software. Entre as 20 maiores de 2025, 12 vivem de informação, comunicação e comércio eletrônico. O centro da economia passou da manufatura para as empresas de tecnologia.",
+    "formulas": [
+     "2005: 8 de 10 maiores eram fábricas · 2025: 3 de 10 · 12 de 20 ligadas à informação"
+    ],
+    "simbolos": [
+     [
+      "indústria manufatureira",
+      "indústria que transforma matérias-primas em produtos físicos"
+     ],
+     [
+      "economia do conhecimento",
+      "economia baseada em informação, tecnologia e inovação"
+     ],
+     [
+      "recursos intangíveis",
+      "bens que não são físicos, como software, dados e marcas"
+     ]
+    ]
+   },
+   "pista": "Compare quantas fábricas havia entre as maiores empresas em 2005 e em 2025.",
+   "passos": [
+    {
+     "faz": "Localize 2005",
+     "conta": "\"entre as 10 das maiores empresas do mundo, 8 eram fábricas\"",
+     "porque": "A manufatura dominava.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Localize 2025",
+     "conta": "\"apenas 3 eram fábricas\" · \"12 têm suas atividades completamente vinculadas à informação, à comunicação e ao comércio eletrônico\"",
+     "porque": "As empresas de tecnologia passaram a dominar.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Elimine as leituras erradas",
+     "conta": "A: polos no Sul Global · B: foco nos recursos tangíveis · C: arranjos produtivos locais · D: produção flexível 4.0",
+     "porque": "O texto compara tipos de empresa, não regiões; o foco virou o intangível; e trata do valor das empresas, não do modelo fabril.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "da indústria manufatureira para as empresas de tecnologia",
+     "porque": "É a alternativa E.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — no modelo de produção, cujo centro passou da indústria manufatureira para as empresas de tecnologia e inovação.",
+   "checagem": "Confira pela proporção: entre as 20 maiores, as fábricas caíram de 16 (2005) para 4 (2025). A troca de liderança é da manufatura para a tecnologia.",
+   "erradas": {
+    "A": "O texto compara tipos de empresa (fábricas × tecnologia e informação), não uma mudança de região; e os novos líderes não são \"polos financeiros\" (há só 4 bancos), e sim empresas de informação e comércio eletrônico.",
+    "B": "Inverte: a economia do conhecimento se apoia em recursos intangíveis (informação, software), não em tangíveis.",
+    "C": "O texto trata das maiores empresas do mundo, não de arranjos produtivos locais substituindo a Divisão Internacional do Trabalho.",
+    "D": "O texto não fala de mudança no modo de produzir das fábricas; fala de as fábricas deixarem de ser as maiores empresas."
+   },
+   "armadilha": "Escolher a D pela ideia de Indústria 4.0, quando o texto mostra que o centro saiu da indústria.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Que mudança as transformações da economia mundial representam.",
+    "chave": "As maiores empresas deixaram de ser fábricas e passaram a ser de tecnologia e informação.",
+    "cuidado": "Compare 2005 com 2025 usando os números do texto."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "geo-0033"
+  }
+ },
+ "Pec684a4a": {
+  "n": "32",
+  "conceito": "Reconhecer que o Acordo de Parceria Econômica Mercosul-Japão visa fortalecer o comércio com a eliminação de barreiras alfandegárias.",
+  "equivocos": {
+   "B": "G10.3:fora-do-texto",
+   "C": "G10.3:fora-do-texto",
+   "D": "G10.3:exagero",
+   "E": "G10.3:fora-do-texto"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O texto anuncia negociações para um acordo entre Mercosul e Japão, com o objetivo de \"aprofundar laços econômicos e comerciais\". Acordos desse tipo reduzem ou eliminam tarifas e outras barreiras para aumentar o comércio e os investimentos entre as partes.",
+    "formulas": [
+     "acordo de parceria econômica → menos barreiras → mais comércio e investimento"
+    ],
+    "simbolos": [
+     [
+      "Acordo de Parceria Econômica",
+      "acordo para ampliar comércio e investimentos, com redução de barreiras"
+     ],
+     [
+      "barreira alfandegária",
+      "tarifa ou exigência que dificulta a entrada de produtos"
+     ]
+    ]
+   },
+   "pista": "O texto diz que o objetivo é aprofundar laços econômicos e comerciais. Como um acordo faz isso?",
+   "passos": [
+    {
+     "faz": "Localize o objetivo",
+     "conta": "\"reafirmando o interesse mútuo em aprofundar laços econômicos e comerciais\"",
+     "porque": "Mais comércio entre Mercosul e Japão.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Nomeie o meio",
+     "conta": "eliminação de barreiras alfandegárias",
+     "porque": "É a alternativa A.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Elimine as que o texto não sustenta",
+     "conta": "B: interromper dependência dos EUA · C: reorganizar o setor primário · E: instituições supranacionais",
+     "porque": "O texto não fala de EUA, de infraestrutura nem de novas instituições.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Elimine o exagero",
+     "conta": "D: \"reativar a indústria\" com livre circulação",
+     "porque": "O acordo amplia trocas; não promete reativar a indústria nem criar livre circulação plena.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "fortalecer o comércio eliminando barreiras",
+     "porque": "É a alternativa A.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — fortalecer as relações comerciais entre os países integrantes com a eliminação de barreiras alfandegárias.",
+   "checagem": "Confira pelo nome do acordo: \"Parceria Econômica\", com intercâmbio de \"produtos agroalimentares, manufaturados, insumos industriais e bens tecnológicos\". Comércio de mão dupla cresce quando caem as barreiras.",
+   "erradas": {
+    "B": "O texto não menciona os EUA nem a interrupção de dependência; trata de ampliar laços com o Japão.",
+    "C": "O texto não fala de reorganizar o setor primário nem de expansão da infraestrutura.",
+    "D": "O acordo busca ampliar o comércio; não trata de reativar a indústria nem de livre circulação limitada a bens de alto valor agregado.",
+    "E": "O texto não prevê criar instituições supranacionais nem trata de remessas financeiras."
+   },
+   "armadilha": "Escolher a B por imaginar uma rivalidade com os EUA que o texto não traz.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O objetivo do acordo Mercosul-Japão.",
+    "chave": "Fortalecer o comércio, eliminando barreiras alfandegárias.",
+    "cuidado": "Responda pelo que o texto diz."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "geo-0036"
+  }
+ },
+ "P7f7a6c6a": {
+  "n": "33",
+  "conceito": "Interpretar a charge: a bandeira chinesa encobrindo a figura americana indica o maior protagonismo da China perante os EUA.",
+  "equivocos": {
+   "A": "G10.4:exagero",
+   "B": "G10.4:causa-inventada",
+   "D": "G10.4:fora-do-suporte",
+   "E": "G10.4:fora-do-suporte"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Na charge, o líder chinês sorri ao lado de uma bandeira da China tão grande que, soprada pelo vento, cobre a cabeça e o corpo de uma figura de terno ao lado da bandeira dos EUA; só aparece um tufo de cabelo amarelo. A ironia é que a China ganha tanto espaço que encobre os Estados Unidos no cenário mundial.",
+    "formulas": [
+     "bandeira chinesa enorme cobre a figura americana → China ganha protagonismo perante os EUA"
+    ],
+    "simbolos": [
+     [
+      "protagonismo",
+      "papel de destaque"
+     ],
+     [
+      "charge",
+      "desenho humorístico que comenta um fato atual"
+     ]
+    ]
+   },
+   "pista": "Quem aparece encoberto na charge, e por qual bandeira?",
+   "passos": [
+    {
+     "faz": "Descreva a charge",
+     "conta": "líder chinês sorrindo · bandeira chinesa enorme cobrindo a figura junto à bandeira dos EUA",
+     "porque": "A China \"engole\" a presença americana.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Interprete",
+     "conta": "a China ocupa mais espaço no cenário mundial perante os EUA",
+     "porque": "É a alternativa C.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Elimine os exageros",
+     "conta": "A: predomínio do socialismo · B: declínio dos EUA por erros econômicos",
+     "porque": "A charge não fala de sistema econômico nem de decisões dos EUA.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Elimine as acusações sem base",
+     "conta": "D: dados falsos · E: desrespeito às regras",
+     "porque": "A charge não mostra fraude nem violação de regras.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "maior protagonismo da China",
+     "porque": "É a alternativa C.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — à ampliação do protagonismo da China no cenário geopolítico mundial perante os Estados Unidos.",
+   "checagem": "Confira pelo rosto do líder chinês: ele sorri satisfeito enquanto a bandeira do seu país cobre a figura americana. A ironia está no avanço chinês, não num erro americano.",
+   "erradas": {
+    "A": "A China tem economia de mercado sob controle do Partido Comunista; a charge não trata de vitória do socialismo sobre o capitalismo.",
+    "B": "A charge mostra o avanço chinês, não decisões econômicas equivocadas dos EUA.",
+    "D": "Nada na charge sugere produção de dados falsos.",
+    "E": "A charge não mostra a China desrespeitando regras internacionais."
+   },
+   "armadilha": "Escolher a B lendo só o encobrimento dos EUA, sem ver que quem cresce é a China.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A ironia da charge.",
+    "chave": "O protagonismo crescente da China perante os EUA.",
+    "cuidado": "A bandeira chinesa encobre a figura americana."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "geo-0037"
+  }
+ }
+}

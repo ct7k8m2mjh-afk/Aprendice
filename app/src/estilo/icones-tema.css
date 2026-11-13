@@ -1,0 +1,63 @@
+/* ---------- ícones de tema novos (comando 19 do dono, 06/11/2026; docs/icones/ONDE-USAR.md) ----------
+   O objeto fica INTEIRO dentro de um círculo claro (o WebP já vem enquadrado: o objeto ocupa até 88% do raio).
+   O tamanho do círculo é o tamanho do ícone em cada lugar (regras .ic3d de cada tela).
+   Mouse ou foco pelo teclado no link/botão em volta: o círculo cresce ~6% e sobe um pouco (animação curta).
+   "Reduzir movimento": só o destaque da borda. No toque não há efeito (hover só em aparelhos com mouse). */
+.ic-tema { display: grid; place-items: center; flex: none; border-radius: 50%; overflow: hidden;
+  background: radial-gradient(circle at 50% 38%, #FFFFFF, color-mix(in srgb, var(--s) 70%, #FFFFFF) 92%);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c) 16%, transparent), 0 1px 2px rgba(20, 22, 30, .06), 0 6px 14px -8px rgba(20, 22, 30, .2);
+  transition: transform .2s var(--curva), box-shadow .2s var(--curva); }
+.ic-tema img { display: block; width: 100%; height: 100%; object-fit: contain; }
+/* no escuro o círculo continua claro (um pouco mais baixo, para não ofuscar) */
+[data-theme='dark'] .ic-tema { background: radial-gradient(circle at 50% 38%, #F1F3EF, color-mix(in srgb, var(--p) 14%, #DCE0D9) 92%);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .5), 0 6px 14px -8px rgba(0, 0, 0, .6); }
+
+/* o círculo dispensa o ladrilho de trás (faixa de temas e capa do tema) */
+.ft-item .ft-ic:has(> .ic-tema), .ft-item.atual .ft-ic:has(> .ic-tema) { background: none; }
+.tp-ic:has(> .ic-tema) { background: none; box-shadow: none; }
+
+@media (hover: hover) {
+  :is(a, button):hover .ic-tema { transform: translateY(-3px) scale(1.06);
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c) 30%, transparent), 0 2px 4px rgba(20, 22, 30, .08), 0 12px 22px -10px rgba(20, 22, 30, .3); }
+}
+:is(a, button):focus-visible .ic-tema { transform: translateY(-3px) scale(1.06);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c) 30%, transparent), 0 2px 4px rgba(20, 22, 30, .08), 0 12px 22px -10px rgba(20, 22, 30, .3); }
+/* ícones pequenos (filtros e listas): sobe só 1 px */
+@media (hover: hover) { :is(.fl-tema, .fl-area, .busca-item):hover .ic-tema { transform: translateY(-1px) scale(1.06); } }
+:is(.fl-tema, .fl-area, .busca-item):focus-visible .ic-tema { transform: translateY(-1px) scale(1.06); }
+
+@media (prefers-reduced-motion: reduce) {
+  .ic-tema { transition: none; }
+  :is(a, button):hover .ic-tema, :is(a, button):focus-visible .ic-tema,
+  :is(.fl-tema, .fl-area, .busca-item):hover .ic-tema, :is(.fl-tema, .fl-area, .busca-item):focus-visible .ic-tema {
+    transform: none; box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--c) 70%, transparent); }
+  .ft-item:hover { transform: none; } /* o cartão da faixa também não sobe */
+}
+
+/* ---------- subtemas: ponto na cor da matéria, nunca ícone (dono, 06/11) ----------
+   Igual ao ponto do protótipo (app-atual/design/shell.html, .grupo::before / .legenda span::before): 8 px, redondo,
+   na cor principal da matéria (--p, paleta.json). Fica centrado na PRIMEIRA linha do nome que vem depois dele. */
+.ponto-sub { display: block; flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--p); }
+.tp-enc .ponto-sub { align-self: start; margin-top: 7.7px; }            /* nome 18px x 1.3 */
+.tp-enc .ponto-sub + .t { margin-left: -10px; }                         /* 8px até o nome (gap da grade 18) */
+.q-rel-g .ponto-sub { align-self: flex-start; margin: 5.1px -2px 0 0; } /* nome 14px x 1.3; 8px até o nome */
+.q-teo-rot .ponto-sub { margin-right: -2px; }
+.fc-faixa .ponto-sub { align-self: start; margin-top: calc((1.35em - 8px) / 2); }
+.fc-faixa .ponto-sub + .fc-faixa-nm { margin-left: -4px; }              /* 8px até o nome (gap 12) */
+.busca-item .mini-ponto { background: none; }
+@media (max-width: 700px) { .tp-enc .ponto-sub { margin-top: 6.7px; } .tp-enc .ponto-sub + .t, .tp-enc .ponto-sub ~ .p { margin-left: -6px; } } /* nome 16.5px x 1.3; gap 14 */
+
+/* ---------- pedido do dono (09/11/2026): nenhuma sombra nos ícones; ao passar o mouse o ícone salta para cima e
+   fica no alto enquanto o mouse estiver em cima ---------- */
+.ic-tema, [data-theme='dark'] .ic-tema, .circ-mat, [data-theme='dark'] .circ-mat { box-shadow: none !important; }
+.ic-tema img, .circ-mat img, .ilu-mat, .ic-materia, .capa-ilu, .bv-ilus img, .bv-ilus .bv-ilu, .in-cont-arte { filter: none !important; }
+.ic-tema, .circ-mat { transition: transform .38s cubic-bezier(.34, 1.56, .64, 1); will-change: transform; }
+@media (hover: hover) {
+  :is(a, button):hover .ic-tema, :is(a, button):hover .circ-mat { transform: translateY(-10px) scale(1.04); box-shadow: none !important; }
+  :is(.fl-tema, .fl-area, .busca-item):hover .ic-tema { transform: translateY(-4px) scale(1.04); }
+}
+:is(a, button):focus-visible .ic-tema, :is(a, button):focus-visible .circ-mat { transform: translateY(-10px) scale(1.04); box-shadow: none !important; }
+@media (prefers-reduced-motion: reduce) {
+  .ic-tema, .circ-mat { transition: none; }
+  :is(a, button):hover .ic-tema, :is(a, button):hover .circ-mat, :is(a, button):focus-visible .ic-tema, :is(a, button):focus-visible .circ-mat { transform: none; }
+}

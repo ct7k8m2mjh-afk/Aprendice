@@ -1,0 +1,914 @@
+{
+ "P7daca525": {
+  "n": "13",
+  "conceito": "Contar os elementos da união de dois conjuntos de múltiplos (inclusão e exclusão).",
+  "equivocos": {
+   "A": "M01.4:nao-descontou-a-intersecao",
+   "B": "M01.4:contou-errado-os-multiplos-de-6",
+   "C": "M01.4:contou-errado-os-multiplos-de-6"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "U vai de 101 a 999. Quem é múltiplo de 2 e de 3 ao mesmo tempo (múltiplo de 6) aparece nas duas contagens. Por isso some as duas e desconte uma vez os múltiplos de 6.",
+    "formulas": [
+     "n(X ∪ Y) = n(X) + n(Y) − n(X ∩ Y)",
+     "múltiplos de k até N: parte inteira de N/k"
+    ],
+    "simbolos": [
+     [
+      "X ∪ Y",
+      "união: quem está em X, em Y ou nos dois"
+     ],
+     [
+      "X ∩ Y",
+      "interseção: quem está nos dois; aqui, os múltiplos de 6"
+     ]
+    ]
+   },
+   "pista": "Conte separadamente os múltiplos de 2, os de 3 e os que são dos dois ao mesmo tempo.",
+   "passos": [
+    {
+     "faz": "Conte os múltiplos de 2",
+     "conta": "até 999: 499 | até 100: 50 → 499 − 50 = 449",
+     "porque": "Tirando dos múltiplos até 999 os que vão até 100, sobram os que estão entre 101 e 999.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte os múltiplos de 3",
+     "conta": "até 999: 333 | até 100: 33 → 333 − 33 = 300",
+     "porque": "Mesma ideia: 999/3 = 333 e a parte inteira de 100/3 é 33.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte os múltiplos de 6",
+     "conta": "até 999: 166 | até 100: 16 → 166 − 16 = 150",
+     "porque": "Múltiplo de 2 e de 3 é múltiplo de 6. Esses foram contados duas vezes.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some e desconte a repetição",
+     "conta": "449 + 300 − 150 = 599 → alternativa D",
+     "porque": "Descontar os 150 uma vez deixa cada número contado uma única vez.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 599",
+   "checagem": "Conte quem fica de fora: em cada 6 números seguidos, 2 não são múltiplos de 2 nem de 3. U tem 899 números: 899 = 6 × 149 + 5. Nos 149 grupos completos (101 a 994) há 149 × 2 = 298; nos cinco que sobram (995 a 999), mais dois: 995 e 997. São 300 de fora, e 899 − 300 = 599.",
+   "erradas": {
+    "A": "749 sai de somar sem descontar a repetição: 449 + 300 = 749. Os 150 múltiplos de 6 ficam contados duas vezes.",
+    "B": "669 não confere: para dar 669 seria preciso descontar só 80 números (749 − 669), mas os múltiplos de 6 em U são 150.",
+    "C": "629 não confere: para dar 629 seria preciso descontar 120 números (749 − 629), mas os múltiplos de 6 em U são 150."
+   },
+   "armadilha": "Somar os múltiplos de 2 com os de 3 conta duas vezes os múltiplos de 6.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantos inteiros entre 101 e 999 são múltiplos de 2 ou de 3.",
+    "chave": "449 + 300 − 150 = 599.",
+    "cuidado": "Desconte os múltiplos de 6 e confira as pontas do intervalo (100 e 1000 ficam fora)."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pares mais ímpares",
+    "ideia": "Os pares de U são 449. Falta somar os ímpares múltiplos de 3, que vão de 105 a 999 de 6 em 6: (999 − 105)/6 + 1 = 150. Total: 449 + 150 = 599."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "n(2) = 499 − 50 = 449",
+    "nota": "múltiplos de 2"
+   },
+   {
+    "linha": "n(3) = 333 − 33 = 300",
+    "nota": "múltiplos de 3"
+   },
+   {
+    "linha": "n(6) = 166 − 16 = 150",
+    "nota": "múltiplos de 6"
+   },
+   {
+    "linha": "n(2 ∪ 3) = 449 + 300 − 150",
+    "nota": "desconta a repetição"
+   },
+   {
+    "linha": "n(2 ∪ 3) = 599",
+    "nota": "resultado"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0013"
+  }
+ },
+ "Pe80e76f1": {
+  "n": "14",
+  "conceito": "Contar os zeros no fim de um fatorial pelos fatores 5.",
+  "equivocos": {
+   "A": "M01.4:contou-fatores-demais",
+   "C": "M01.4:contou-fatores-demais",
+   "D": "M01.4:contou-um-fator-5-a-mais"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada zero no fim de um número vem de um fator 10, e 10 = 2 × 5. Em um fatorial sobram fatores 2 (todo número par traz um), então quem limita a quantidade de zeros é o fator 5. Conte quantos fatores 5 há em 15!.",
+    "formulas": [
+     "zeros no fim de n! = quantidade de fatores 5 em n!"
+    ],
+    "simbolos": [
+     [
+      "15!",
+      "o produto 1 × 2 × 3 × ... × 15"
+     ],
+     [
+      "fator 5",
+      "cada 5 que aparece na decomposição em primos"
+     ]
+    ]
+   },
+   "pista": "Não calcule 15!. Pergunte de onde vem cada zero do final.",
+   "passos": [
+    {
+     "faz": "Diga de onde vem um zero",
+     "conta": "10 = 2 × 5",
+     "porque": "Cada par formado por um fator 2 e um fator 5 produz um zero no fim.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Conte os fatores 5",
+     "conta": "5 = 5 | 10 = 2 × 5 | 15 = 3 × 5 → 3 fatores 5",
+     "porque": "De 1 a 15, só 5, 10 e 15 são múltiplos de 5, e cada um traz um único 5.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Veja se há fatores 2 suficientes",
+     "conta": "2, 4, 6, 8, 10, 12, 14 → 1 + 2 + 1 + 3 + 1 + 2 + 1 = 11 fatores 2",
+     "porque": "Há mais fatores 2 do que fatores 5, então os três 5 encontram par.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "3 pares 2 × 5 → 3 zeros → alternativa B",
+     "porque": "A quantidade de zeros é a quantidade de fatores 5.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 3 zeros",
+   "checagem": "O valor exato é 15! = 1 307 674 368 000, que termina em três zeros.",
+   "erradas": {
+    "A": "6 não confere: seis zeros exigem seis fatores 5, e 15! só tem três. Seis zeros só aparecem a partir de 25!.",
+    "C": "5 não confere: cinco zeros exigem cinco fatores 5, e de 1 a 15 só 5, 10 e 15 trazem esse fator.",
+    "D": "4 não confere: o quarto fator 5 só entra com o número 20; 20! é o primeiro fatorial com quatro zeros."
+   },
+   "armadilha": "Tentar multiplicar tudo, quando basta contar os fatores 5.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Com quantos zeros termina 15!.",
+    "chave": "Zeros = fatores 5 em 15!: os de 5, 10 e 15, três ao todo.",
+    "cuidado": "Conte fatores 5, não fatores 2 nem múltiplos de 10."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "fórmula de Legendre",
+    "ideia": "Os fatores 5 de 15! são a parte inteira de 15/5 mais a de 15/25: 3 + 0 = 3. Logo, 3 zeros."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "10 = 2 × 5",
+    "nota": "um zero por par"
+   },
+   {
+    "linha": "5 = 5 | 10 = 2 × 5 | 15 = 3 × 5",
+    "nota": "múltiplos de 5"
+   },
+   {
+    "linha": "fatores 5 = 1 + 1 + 1 = 3",
+    "nota": "conta os 5"
+   },
+   {
+    "linha": "fatores 2 = 1 + 2 + 1 + 3 + 1 + 2 + 1 = 11",
+    "nota": "conta os 2"
+   },
+   {
+    "linha": "11 > 3",
+    "nota": "sobra fator 2"
+   },
+   {
+    "linha": "zeros = 3",
+    "nota": "3 pares 2 × 5"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0013"
+  }
+ },
+ "P4298c945": {
+  "n": "20",
+  "conceito": "Resolver uma equação com inversos de logaritmos trocando a base.",
+  "equivocos": {
+   "A": "M06.3:errou-a-conta",
+   "C": "M06.3:errou-a-conta",
+   "D": "M06.3:errou-a-conta"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O inverso de um logaritmo troca a base com o número: 1/log₂ x = log de 2 na base x. Com isso, todos os termos ficam na mesma base x e se juntam em um só logaritmo.",
+    "formulas": [
+     "1/log₂ x = logₓ 2",
+     "k × logₓ a = logₓ a^k",
+     "logₓ N = 2 → x² = N"
+    ],
+    "simbolos": [
+     [
+      "logₓ a",
+      "logaritmo de a na base x"
+     ]
+    ]
+   },
+   "pista": "Reescreva cada fração como um logaritmo na base x.",
+   "passos": [
+    {
+     "faz": "Troque as bases",
+     "conta": "3/log₂ x + 2/log₃ x + 2/log₅ x = 3 logₓ 2 + 2 logₓ 3 + 2 logₓ 5",
+     "porque": "Inverter o logaritmo troca base e logaritmando.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Junte em um logaritmo",
+     "conta": "logₓ (2³ × 3² × 5²) = logₓ (8 × 9 × 25) = logₓ 1800",
+     "porque": "Coeficientes viram expoentes; soma vira produto.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Use a definição",
+     "conta": "logₓ 1800 = 2 → x² = 1800",
+     "porque": "A base elevada ao logaritmo dá o número.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tire a raiz",
+     "conta": "x = √1800 = √(900 × 2) = 30√2 → alternativa B",
+     "porque": "x é positivo.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 30√2.",
+   "checagem": "(30√2)² = 900 × 2 = 1800 = 8 × 9 × 25. Confere.",
+   "erradas": {
+    "A": "20√3 não confere: (20√3)² = 1200, e x² tem de ser 1800.",
+    "C": "20√5 não confere: (20√5)² = 2000, e x² tem de ser 1800.",
+    "D": "30√5 não confere: (30√5)² = 4500, e x² tem de ser 1800."
+   },
+   "armadilha": "Somar os logaritmos sem antes trocar a base.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O valor positivo de x.",
+    "chave": "logₓ (8 × 9 × 25) = 2 → x² = 1800 → x = 30√2.",
+    "cuidado": "1/log_a x = log_x a."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "mudança para base 10",
+    "ideia": "Cada termo vira quociente de logaritmos decimais: 1/(log₂ x) = (log 2)/(log x), 1/(log₃ x) = (log 3)/(log x) e 1/(log₅ x) = (log 5)/(log x). A equação fica (3 log 2 + 2 log 3 + 2 log 5)/(log x) = 2, isto é, log 1800 = 2 log x. Então x² = 1800 e x = 30√2."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "3/log₂ x + 2/log₃ x + 2/log₅ x = 2",
+    "nota": "equação dada"
+   },
+   {
+    "linha": "3 logₓ 2 + 2 logₓ 3 + 2 logₓ 5 = 2",
+    "nota": "troca as bases"
+   },
+   {
+    "linha": "logₓ (2³ × 3² × 5²) = 2",
+    "nota": "junta em um log"
+   },
+   {
+    "linha": "logₓ (8 × 9 × 25) = 2",
+    "nota": "calcula as potências"
+   },
+   {
+    "linha": "logₓ 1800 = 2",
+    "nota": "multiplica"
+   },
+   {
+    "linha": "x² = 1800",
+    "nota": "definição de log"
+   },
+   {
+    "linha": "x = √1800",
+    "nota": "raiz positiva"
+   },
+   {
+    "linha": "x = √(900 × 2)",
+    "nota": "fatora 1800"
+   },
+   {
+    "linha": "x = 30√2",
+    "nota": "tira o 900"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0017"
+  }
+ },
+ "Pa2637c5c": {
+  "n": "17",
+  "conceito": "Decompor um quadrilátero em triângulos retângulos e usar o teorema de Pitágoras para a área.",
+  "equivocos": {
+   "A": "M09.5:errou-a-conta",
+   "B": "M09.5:errou-a-conta",
+   "C": "M09.5:errou-a-conta"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A nota da questão diz que o prolongamento de IK corta OE em M e que o triângulo OIM é retângulo isósceles. Como os ângulos em O e em I desse triângulo medem 45°, o ângulo reto está em M: IM é perpendicular a OE e OM = IM. O ponto K fica sobre IM. No triângulo KME, o ângulo em E mede 45° e o ângulo em M é reto: também é retângulo isósceles, com KM = ME. No triângulo IME, retângulo em M: IM² + ME² = IE² = 64. O quadrilátero OIKE é o triângulo OIE sem o triângulo IKE.",
+    "formulas": [
+     "área do triângulo = base × altura/2",
+     "IM² + ME² = IE²"
+    ],
+    "simbolos": [
+     [
+      "M",
+      "ponto de OE no prolongamento de IK"
+     ],
+     [
+      "a",
+      "medida de OM e de IM"
+     ],
+     [
+      "e",
+      "medida de ME e de KM"
+     ]
+    ]
+   },
+   "pista": "Que triângulos retângulos isósceles aparecem com o ponto M? Como escrever a área de OIKE com dois triângulos?",
+   "passos": [
+    {
+     "faz": "Nomeie as medidas",
+     "conta": "OM = IM = a | ME = KM = e",
+     "porque": "Triângulos OIM e KME retângulos isósceles.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule a área de OIE",
+     "conta": "(a + e) × a/2",
+     "porque": "Base OE = a + e, altura IM = a.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a área de IKE",
+     "conta": "(a − e) × e/2",
+     "porque": "Base IK = a − e, altura ME = e.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Subtraia",
+     "conta": "(a² + ae − ae + e²)/2 = (a² + e²)/2",
+     "porque": "OIKE = OIE − IKE.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Use Pitágoras e conclua",
+     "conta": "a² + e² = 64 → área = 32 m² → alternativa D",
+     "porque": "Triângulo IME, hipotenusa IE = 8.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 32.",
+   "checagem": "Por outra divisão: OIKE = triângulo OKE + triângulo OIK. OKE tem base OE = a + e e altura KM = e; OIK tem base IK = a − e e altura OM = a. Soma: [(a + e) × e + (a − e) × a]/2 = (a² + e²)/2 = 32. Com números: a = √48 e e = 4 dão 37,86 − 5,86 = 32.",
+   "erradas": {
+    "A": "Área 28 exigiria IE² = 56, isto é, IE ≈ 7,5 m, e IE mede 8 m.",
+    "B": "Área 30 exigiria IE² = 60, isto é, IE ≈ 7,7 m, e IE mede 8 m.",
+    "C": "Área 26 exigiria IE² = 52, isto é, IE ≈ 7,2 m, e IE mede 8 m."
+   },
+   "armadilha": "Não é preciso achar a e e separadamente: a área depende só de a² + e², que é IE².",
+   "alerta": "",
+   "essencial": {
+    "pede": "A área do quadrilátero OIKE.",
+    "chave": "Área = (IM² + ME²)/2 = IE²/2 = 64/2 = 32 m².",
+    "cuidado": "O quadrilátero é OIE menos IKE."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "diagonais perpendiculares",
+    "ideia": "Com M na origem, O = (−a, 0), E = (e, 0), I = (0, a) e K = (0, e): as diagonais OK e IE são perpendiculares e as duas medem √(a² + e²) = 8. Área do quadrilátero = 8 × 8/2 = 32."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "OM = IM = a | ME = KM = e",
+    "nota": "nomeia as medidas"
+   },
+   {
+    "linha": "A(OIE) = ((a + e) × a)/2",
+    "nota": "base OE, altura IM"
+   },
+   {
+    "linha": "A(IKE) = ((a − e) × e)/2",
+    "nota": "base IK, altura ME"
+   },
+   {
+    "linha": "A = ((a + e) × a − (a − e) × e)/2",
+    "nota": "subtrai IKE"
+   },
+   {
+    "linha": "A = (a² + ae − ae + e²)/2",
+    "nota": "distribui"
+   },
+   {
+    "linha": "A = (a² + e²)/2",
+    "nota": "cancela ae"
+   },
+   {
+    "linha": "a² + e² = 8² = 64",
+    "nota": "Pitágoras em IME"
+   },
+   {
+    "linha": "A = 64/2",
+    "nota": "substitui"
+   },
+   {
+    "linha": "A = 32 m²",
+    "nota": "resultado"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0024"
+  }
+ },
+ "P2ddfbbc3": {
+  "n": "22",
+  "conceito": "Achar os ângulos de um triângulo retângulo em progressão aritmética e seus catetos.",
+  "equivocos": {
+   "A": "M10.1:usou-triangulo-45-45-90",
+   "C": "M10.1:multiplicou-pela-hipotenusa",
+   "D": "M10.1:errou-a-conta"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Em uma progressão aritmética de três termos, o do meio é a média dos outros dois, e a soma é 3 vezes ele. A soma dos ângulos é 180°: o termo do meio é 60°. Como o triângulo é retângulo, um ângulo é 90°: os ângulos são 30°, 60° e 90°. Com hipotenusa 2, os catetos são 2 × sen 30° e 2 × cos 30°.",
+    "formulas": [
+     "soma dos ângulos = 180° → termo do meio = 60°",
+     "cateto oposto a 30° = hipotenusa/2",
+     "cateto oposto a 60° = (hipotenusa/2) × √3"
+    ],
+    "simbolos": [
+     [
+      "x, y",
+      "medidas dos catetos"
+     ]
+    ]
+   },
+   "pista": "Qual é o termo do meio de uma PA de três ângulos que somam 180°? Quais são os outros?",
+   "passos": [
+    {
+     "faz": "Ache os ângulos",
+     "conta": "termo do meio 60° → 30°, 60°, 90°",
+     "porque": "PA com um ângulo de 90°.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache os catetos",
+     "conta": "2 × 1/2 = 1 m | 2 × √3/2 = √3 m",
+     "porque": "Hipotenusa 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique",
+     "conta": "x × y = 1 × √3 = √3 m²",
+     "porque": "Produto dos catetos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "√3 m² → alternativa B",
+     "porque": "Valor de x × y.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — √3 m².",
+   "checagem": "Por Pitágoras: 1² + (√3)² = 1 + 3 = 4 = 2². E o produto dos catetos é o dobro da área: a área é √3/2 m².",
+   "erradas": {
+    "A": "√2 é a medida de cada cateto no triângulo de ângulos 45°, 45° e 90° com hipotenusa 2; mas esses ângulos não formam uma PA com termo do meio 60°.",
+    "C": "2√3 é 2 × √3: o produto da hipotenusa (2) por um cateto (√3), não o dos dois catetos.",
+    "D": "3√2 ≈ 4,24 é maior que o maior produto possível de catetos com hipotenusa 2, que é 2 (catetos iguais a √2)."
+   },
+   "armadilha": "45°, 45°, 90° não é PA: as diferenças entre os ângulos são 0° e 45°.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O produto dos catetos.",
+    "chave": "Ângulos 30°, 60°, 90°; catetos 1 e √3; produto √3.",
+    "cuidado": "O termo do meio da PA é 60°."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "tangente e Pitágoras",
+    "ideia": "tg 60° = √3 dá y = √3 x. Em x² + y² = 4: x² + 3x² = 4, então x = 1 e y = √3. Produto: √3."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "(60° − r) + 60° + (60° + r) = 180°",
+    "nota": "soma dos ângulos"
+   },
+   {
+    "linha": "ângulos: 30°, 60°, 90°",
+    "nota": "um deles é 90°"
+   },
+   {
+    "linha": "x = 2 × 1/2 = 1 m",
+    "nota": "cateto oposto a 30°"
+   },
+   {
+    "linha": "y = 2 × √3/2 = √3 m",
+    "nota": "cateto oposto a 60°"
+   },
+   {
+    "linha": "x × y = 1 × √3",
+    "nota": "multiplica"
+   },
+   {
+    "linha": "x × y = √3 m²",
+    "nota": "resultado"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0025"
+  }
+ },
+ "P48d64f9d": {
+  "n": "18",
+  "conceito": "Equação com arco duplo: fatorar em vez de dividir por sen x.",
+  "equivocos": {
+   "A": "M10.4:sem-origem-identificada",
+   "B": "M10.4:sem-origem-identificada",
+   "D": "M10.4:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Troque sen 2x por 2 sen x cos x e passe tudo para um lado. Aparece o fator comum sen x; colocando-o em evidência, o produto é zero quando um dos fatores é zero. Não divida por sen x: isso apagaria as soluções em que sen x = 0.",
+    "formulas": [
+     "sen 2x = 2 sen x cos x",
+     "A × B = 0 ⇔ A = 0 ou B = 0"
+    ],
+    "simbolos": [
+     [
+      "sen, cos",
+      "seno e cosseno"
+     ]
+    ]
+   },
+   "pista": "Escreva sen 2x com o seno e o cosseno do arco simples.",
+   "passos": [
+    {
+     "faz": "Use o arco duplo",
+     "conta": "2 sen x cos x = sen x → 2 sen x cos x − sen x = 0",
+     "porque": "Tudo de um lado, para fatorar.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Fatore",
+     "conta": "sen x (2 cos x − 1) = 0",
+     "porque": "sen x é fator comum das duas parcelas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva cada fator",
+     "conta": "sen x = 0 → x = π | cos x = 1/2 → x = π/3 ou x = 5π/3",
+     "porque": "Entre 0 e 2π, sem os extremos: sen x = 0 só em π; o cosseno vale 1/2 no 1.º e no 4.º quadrantes.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue ao gabarito",
+     "conta": "π/3, π, 5π/3 → alternativa C",
+     "porque": "São as três soluções no intervalo.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — π/3, π, 5π/3",
+   "checagem": "Substitua x = 5π/3: sen(10π/3) = sen(4π/3) = −√3/2 e sen(5π/3) = −√3/2. Iguais. E x = π: sen 2π = 0 = sen π.",
+   "erradas": {
+    "A": "π/3, 2π/3, 4π/3 não confere: em 2π/3, sen(4π/3) = −√3/2 e sen(2π/3) = √3/2, valores diferentes.",
+    "B": "π/4, 2π/3, 4π/5 não confere: em π/4, sen(π/2) = 1 e sen(π/4) = √2/2, valores diferentes.",
+    "D": "π/5, 2π/3, 4π/7 não confere: em 2π/3, sen 2x = −√3/2 e sen x = √3/2, valores diferentes."
+   },
+   "armadilha": "Dividir os dois lados por sen x: some a solução x = π, em que sen x = 0.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Os valores de x entre 0 e 2π com sen 2x = sen x.",
+    "chave": "sen x (2 cos x − 1) = 0: sen x = 0 dá π; cos x = 1/2 dá π/3 e 5π/3.",
+    "cuidado": "Fatore em vez de dividir por sen x."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "senos iguais",
+    "ideia": "sen 2x = sen x ⇔ 2x = x + 2kπ ou 2x = π − x + 2kπ, o que dá x = 2kπ ou x = π/3 + 2kπ/3; no intervalo aberto sobram π/3, π e 5π/3."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "2 sen x cos x = sen x → 2 sen x cos x − sen x = 0",
+    "nota": "Use o arco duplo"
+   },
+   {
+    "linha": "sen x (2 cos x − 1) = 0",
+    "nota": "Fatore"
+   },
+   {
+    "linha": "sen x = 0 → x = π | cos x = 1/2 → x = π/3 ou x = 5π/3",
+    "nota": "Resolva cada fator"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0028"
+  }
+ },
+ "P5580682c": {
+  "n": "21",
+  "conceito": "Quantas caixas cabem num container sem sobra: divisão das arestas na mesma unidade.",
+  "equivocos": {
+   "A": "M11.1:sem-origem-identificada",
+   "B": "M11.1:sem-origem-identificada",
+   "C": "M11.1:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Passe tudo para centímetros: o container mede 240 × 440 × 600. Procure a orientação em que cada medida da caixa divide exatamente uma medida do container; aí o empilhamento não deixa vazios.",
+    "formulas": [
+     "número de caixas = produto das divisões das arestas"
+    ],
+    "simbolos": []
+   },
+   "pista": "Converta as medidas do container para centímetros.",
+   "passos": [
+    {
+     "faz": "Converta",
+     "conta": "2,4 m = 240 cm | 4,4 m = 440 cm | 6,0 m = 600 cm",
+     "porque": "1 m = 100 cm.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida aresta por aresta",
+     "conta": "240/30 = 8 | 440/55 = 8 | 600/75 = 8",
+     "porque": "Cada medida da caixa cabe um número inteiro de vezes numa medida do container.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique",
+     "conta": "8 × 8 × 8 = 512 → alternativa D",
+     "porque": "Oito caixas em cada direção.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 512",
+   "checagem": "Por volume: container 240 × 440 × 600 = 63 360 000 cm³; caixa 30 × 55 × 75 = 123 750 cm³; 63 360 000/123 750 = 512, exato.",
+   "erradas": {
+    "A": "424 não confere: o volume do container dividido pelo da caixa é exatamente 512.",
+    "B": "480 não confere: o volume do container dividido pelo da caixa é exatamente 512.",
+    "C": "450 não confere: o volume do container dividido pelo da caixa é exatamente 512."
+   },
+   "armadilha": "Misturar metros e centímetros na divisão.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantas caixas cabem sem deixar vazios.",
+    "chave": "240/30, 440/55 e 600/75 dão 8 cada; 8³ = 512.",
+    "cuidado": "Mesma unidade antes de dividir."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "por camadas",
+    "ideia": "No chão do container cabem 8 × 8 = 64 caixas (240/30 por 440/55); empilhando de 75 em 75 cm, cabem 600/75 = 8 camadas: 8 × 64 = 512."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "240/30 = 8 | 440/55 = 8 | 600/75 = 8",
+    "nota": "por aresta"
+   },
+   {
+    "linha": "8 × 8 × 8 = 512",
+    "nota": "caixas"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0029"
+  }
+ },
+ "P8d7b8ab9": {
+  "n": "19",
+  "conceito": "Cubo inscrito na esfera: a diagonal do cubo é o diâmetro.",
+  "equivocos": {
+   "B": "M11.4:usou-a-diagonal-da-face",
+   "C": "M11.4:sem-origem-identificada",
+   "D": "M11.4:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os oito vértices do cubo estão na esfera, e o segmento entre vértices opostos passa pelo centro: a diagonal do cubo é o diâmetro, 6 m. A diagonal do cubo de aresta a é a√3.",
+    "formulas": [
+     "diagonal do cubo = a√3"
+    ],
+    "simbolos": [
+     [
+      "a",
+      "aresta do cubo"
+     ]
+    ]
+   },
+   "pista": "Que segmento do cubo coincide com o diâmetro da esfera?",
+   "passos": [
+    {
+     "faz": "Iguale ao diâmetro",
+     "conta": "a√3 = 2 × 3 = 6",
+     "porque": "Diagonal do cubo = diâmetro.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a aresta",
+     "conta": "a = 6/√3 = 6√3/3 = 2√3 → alternativa A",
+     "porque": "Racionalize.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 2√3",
+   "checagem": "Pela soma dos quadrados das três arestas: a² + a² + a² = 12 + 12 + 12 = 36 = 6², o diâmetro ao quadrado.",
+   "erradas": {
+    "B": "3√2 sai de igualar a diagonal de uma face ao diâmetro: a√2 = 6.",
+    "C": "√6 não confere: a diagonal seria √6 × √3 = 3√2 ≈ 4,2, não 6.",
+    "D": "2√2 não confere: a diagonal seria 2√2 × √3 = 2√6 ≈ 4,9, não 6."
+   },
+   "armadilha": "Usar a diagonal da face (a√2) em vez da diagonal do cubo (a√3).",
+   "alerta": "",
+   "essencial": {
+    "pede": "A aresta do cubo inscrito.",
+    "chave": "a√3 = 6, a = 2√3.",
+    "cuidado": "O diâmetro liga vértices opostos do cubo."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "Pitágoras duas vezes",
+    "ideia": "Diagonal da face a√2; com a aresta, a diagonal do cubo é √(2a² + a²) = a√3 = 6."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "a√3 = 2 × 3 = 6",
+    "nota": "Iguale ao diâmetro"
+   },
+   {
+    "linha": "a = 6/√3 = 6√3/3 = 2√3",
+    "nota": "Ache a aresta"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0030"
+  }
+ },
+ "Pd42c9278": {
+  "n": "15",
+  "conceito": "Combinação: dividir em dois grupos iguais sem nome.",
+  "equivocos": {
+   "A": "M13.3:nao-dividiu-pelas-trocas",
+   "B": "M13.3:sem-origem-identificada",
+   "D": "M13.3:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Escolher 5 das 10 pessoas para um grupo deixa o outro determinado: C(10, 5). Mas os grupos não têm nome: escolher {A} e deixar {B} é a mesma divisão que escolher {B}. Divida por 2.",
+    "formulas": [
+     "grupos iguais sem rótulo: divida pelo número de trocas"
+    ],
+    "simbolos": []
+   },
+   "pista": "Escolher um grupo e escolher o outro dá divisões diferentes?",
+   "passos": [
+    {
+     "faz": "Escolha um grupo",
+     "conta": "C(10, 5) = 252",
+     "porque": "O outro fica determinado.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Grupos sem nome",
+     "conta": "252/2 = 126 → alternativa C",
+     "porque": "Cada divisão foi contada 2 vezes.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 126.",
+   "checagem": "Fixe uma pessoa P: o grupo de P se completa com 4 das outras 9, C(9, 4) = 126; isso já dá cada divisão uma vez só.",
+   "erradas": {
+    "A": "252 é C(10, 5): conta cada divisão duas vezes, como se os grupos tivessem nome.",
+    "B": "212 não confere: C(10, 5)/2 = 126.",
+    "D": "104 não confere: C(10, 5)/2 = 126."
+   },
+   "armadilha": "Não dividir por 2: os dois grupos de 5 não são distinguidos.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantas divisões em dois grupos de 5.",
+    "chave": "C(10, 5)/2 = 126.",
+    "cuidado": "Grupos iguais sem nome: ÷ 2."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "enfileirar e marcar",
+    "ideia": "Marque 5 das 10 pessoas como grupo X e as outras 5 como grupo Y: 10!/(5! × 5!) = 252; os grupos não têm nome, ÷ 2 = 126."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "C(10, 5) = 252",
+    "nota": "escolhas"
+   },
+   {
+    "linha": "252/2 = 126",
+    "nota": "divisões"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0035"
+  }
+ }
+}

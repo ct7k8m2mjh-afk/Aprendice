@@ -1,0 +1,632 @@
+{
+ "Pa32aab62": {
+  "n": "32",
+  "conceito": "Contagem com conjuntos: quem não participa de nada.",
+  "equivocos": {
+   "A": "M01.5:respondeu-a-intersecao",
+   "C": "M01.5:respondeu-so-banda",
+   "D": "M01.5:nao-descontou-a-intersecao",
+   "E": "M01.5:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Some quem está em Leitura ou Teatro (descontando quem está nos dois) e quem está só na Banda. O resto dos 220 não participa de nada.",
+    "formulas": [
+     "n(L ∪ T) = n(L) + n(T) − n(L ∩ T)"
+    ],
+    "simbolos": [
+     [
+      "L",
+      "Clube de Leitura"
+     ],
+     [
+      "T",
+      "Grupo de Teatro"
+     ]
+    ]
+   },
+   "pista": "Os 25 que fazem Leitura e Teatro foram contados duas vezes.",
+   "passos": [
+    {
+     "faz": "Leitura ou Teatro",
+     "conta": "100 + 80 − 25 = 155",
+     "porque": "Inclusão e exclusão.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Somar só Banda",
+     "conta": "155 + 35 = 190",
+     "porque": "Os de \"apenas Banda\" não estão em L nem T.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Nenhuma",
+     "conta": "220 − 190 = 30 → alternativa B",
+     "porque": "Resto do grupo.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 30.",
+   "checagem": "Monte as partes: só Leitura 100 − 25 = 75; só Teatro 80 − 25 = 55; Leitura e Teatro 25; só Banda 35; nenhuma x. 75 + 55 + 25 + 35 + x = 220 → x = 30. Confere.",
+   "erradas": {
+    "A": "25 é o número de alunos em Leitura e Teatro.",
+    "C": "35 é o número de alunos só na Banda.",
+    "D": "40 = 220 − 100 − 80: não descontou os 25 contados duas vezes e esqueceu os 35 da Banda.",
+    "E": "60 não confere: só Leitura 75, só Teatro 55, ambos 25 e só Banda 35 somam 190; sobram 30."
+   },
+   "armadilha": "Somar 100 + 80 sem descontar os 25 que estão nos dois.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantos não participam.",
+    "chave": "155 em L ou T, 35 só Banda: 220 − 190 = 30.",
+    "cuidado": "Desconte a interseção uma vez."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "diagrama",
+    "ideia": "Desenhe L e T se cruzando (75 | 25 | 55) e, separado, 35 só na Banda. Somando as regiões: 190. Fora delas: 30."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "100 + 80 − 25 = 155",
+    "nota": "L ∪ T"
+   },
+   {
+    "linha": "155 + 35 = 190",
+    "nota": "alguma atividade"
+   },
+   {
+    "linha": "220 − 190 = 30",
+    "nota": "resposta"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0045"
+  }
+ },
+ "Pbc64f6ec": {
+  "n": "31",
+  "conceito": "Produto de matriz por vetor para totalizar componentes e caixas.",
+  "equivocos": {
+   "A": "M15.1:valor-que-nao-fecha",
+   "B": "M15.1:valor-que-nao-fecha",
+   "D": "M15.1:valor-que-nao-fecha",
+   "E": "M15.1:valor-que-nao-fecha"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada linha da matriz dá quanto de um componente vai em cada kit (coluna A e coluna B). Multiplique pela produção (20 A e 15 B) e divida o total de cada componente por 25.",
+    "formulas": [
+     "componente = (por kit A) · 20 + (por kit B) · 15"
+    ],
+    "simbolos": []
+   },
+   "pista": "Calcule quantas unidades de cada componente o dia consome.",
+   "passos": [
+    {
+     "faz": "Componente 1",
+     "conta": "3 · 20 + 1 · 15 = 75 → 75/25 = 3 caixas",
+     "porque": "Linha 1 da matriz.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Componente 2",
+     "conta": "2 · 20 + 4 · 15 = 100 → 100/25 = 4 caixas",
+     "porque": "Linha 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Componente 3",
+     "conta": "1 · 20 + 2 · 15 = 50 → 50/25 = 2 caixas",
+     "porque": "Linha 3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some e responda",
+     "conta": "3 + 4 + 2 = 9 → alternativa C",
+     "porque": "Todas as divisões são exatas: não sobra peça.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 9",
+   "checagem": "Total de peças: 75 + 100 + 50 = 225 = 9 · 25. Como cada componente fecha caixas inteiras, o total é exatamente 9.",
+   "erradas": {
+    "A": "6 não confere: só o componente 2 já pede 4 caixas e o 1 pede 3.",
+    "B": "7 não confere: 3 + 4 + 2 = 9 caixas, todas cheias.",
+    "D": "10 não confere: não sobra peça em nenhuma caixa (75, 100 e 50 são múltiplos de 25).",
+    "E": "15 não confere: seriam 375 peças, e o dia usa 225."
+   },
+   "armadilha": "Trocar linhas por colunas: cada linha é um componente e cada coluna é um kit.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantas caixas comprar por dia.",
+    "chave": "Componentes: 75, 100 e 50; caixas 3 + 4 + 2 = 9.",
+    "cuidado": "Linha = componente, coluna = kit."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "total de peças",
+    "ideia": "Kit A usa 3 + 2 + 1 = 6 peças e kit B, 1 + 4 + 2 = 7: 6 · 20 + 7 · 15 = 225 peças = 9 caixas (cada componente fecha caixas inteiras)."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "3 · 20 + 1 · 15 = 75",
+    "nota": "componente 1: 3 caixas"
+   },
+   {
+    "linha": "2 · 20 + 4 · 15 = 100",
+    "nota": "componente 2: 4 caixas"
+   },
+   {
+    "linha": "1 · 20 + 2 · 15 = 50",
+    "nota": "componente 3: 2 caixas"
+   },
+   {
+    "linha": "3 + 4 + 2 = 9",
+    "nota": "caixas por dia"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0051"
+  }
+ },
+ "P9d5edabe": {
+  "n": "33",
+  "conceito": "Sequência em que a soma de três termos consecutivos é constante: ela se repete de 3 em 3.",
+  "equivocos": {
+   "A": "M07.1:contagem-dos-grupos-errada",
+   "B": "M07.1:contagem-dos-grupos-errada",
+   "D": "M07.1:contagem-dos-grupos-errada",
+   "E": "M07.1:grupo-de-posicao-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Se a₁ + a₂ + a₃ = a₂ + a₃ + a₄, cortando a₂ e a₃ dos dois lados sobra a₁ = a₄. Então a sequência se repete a cada 3 posições: as posições 1, 4, 7, 10 têm o mesmo valor; 2, 5, 8, 11 também; e 3, 6, 9 também.",
+    "formulas": [
+     "a₁ + a₂ + a₃ = a₂ + a₃ + a₄ ⇒ a₁ = a₄",
+     "aₙ = aₙ₊₃"
+    ],
+    "simbolos": [
+     [
+      "aₙ",
+      "termo de posição n da sequência"
+     ]
+    ]
+   },
+   "pista": "Compare duas somas vizinhas de três termos e veja o que sobra.",
+   "passos": [
+    {
+     "faz": "Descubra a repetição",
+     "conta": "a₁ + a₂ + a₃ = a₂ + a₃ + a₄ → a₁ = a₄",
+     "porque": "a₂ e a₃ aparecem dos dois lados e se cancelam; o mesmo vale mais adiante, então os valores se repetem de 3 em 3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Agrupe as posições",
+     "conta": "posições 1, 4, 7, 10 → a₁ | 2, 5, 8, 11 → a₂ = 5 | 3, 6, 9 → a₃ = a₆ = 10",
+     "porque": "O 6.º termo cai no grupo do 3.º, então a₃ = 10.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Monte a soma dos 11 termos",
+     "conta": "4a₁ + 4 × 5 + 3 × 10 = 70 → 4a₁ + 50 = 70",
+     "porque": "O grupo de a₁ e o de a₂ têm 4 posições cada; o de a₃ tem 3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole a₁",
+     "conta": "4a₁ = 70 − 50 → 4a₁ = 20 → a₁ = 20/4 = 5",
+     "porque": "O 50 passa subtraindo e o 4 passa dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache o sétimo termo",
+     "conta": "a₇ = a₁ = 5",
+     "porque": "A posição 7 está no grupo da posição 1.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 5",
+   "checagem": "A sequência fica 5, 5, 10, 5, 5, 10, 5, 5, 10, 5, 5. Toda soma de três vizinhos dá 20, a soma total é 70 e o 2.º termo é 5 e o 6.º é 10.",
+   "erradas": {
+    "A": "A não confere: com a₇ = a₁ = 3, a soma seria 4 × 3 + 20 + 30 = 62, não 70.",
+    "B": "B não confere: com a₇ = a₁ = 4, a soma seria 4 × 4 + 20 + 30 = 66, não 70.",
+    "D": "D não confere: com a₇ = a₁ = 6, a soma seria 4 × 6 + 20 + 30 = 74, não 70.",
+    "E": "E sai de pôr o 7.º termo no grupo do 6.º; mas 7 deixa resto 1 na divisão por 3, então a₇ = a₁, não a₆."
+   },
+   "armadilha": "Termos vizinhos não são iguais: o que se repete é a cada 3 posições, e o 7.º anda junto com o 1.º, não com o 6.º.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O 7.º termo de uma sequência de 11 termos com soma de três vizinhos constante.",
+    "chave": "a₁ = a₄ = a₇ = a₁₀; soma 4a₁ + 4 × 5 + 3 × 10 = 70 dá a₁ = 5.",
+    "cuidado": "Conte quantas vezes cada valor aparece nos 11 termos: 4, 4 e 3."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "soma por blocos",
+    "ideia": "Os 9 primeiros termos são 3 blocos de soma S e sobram a₁₀ + a₁₁ = a₁ + 5; com S = a₁ + 15: 3(a₁ + 15) + a₁ + 5 = 70 dá a₁ = 5."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "a₁ = a₄ = a₇ = a₁₀",
+    "nota": "repete de 3 em 3"
+   },
+   {
+    "linha": "4a₁ + 4 × 5 + 3 × 10 = 70",
+    "nota": "soma dos 11 termos"
+   },
+   {
+    "linha": "4a₁ + 50 = 70",
+    "nota": "simplifica"
+   },
+   {
+    "linha": "4a₁ = 70 − 50",
+    "nota": "o 50 passa subtraindo"
+   },
+   {
+    "linha": "4a₁ = 20",
+    "nota": "subtrai"
+   },
+   {
+    "linha": "a₁ = 20/4 = 5",
+    "nota": "o 4 passa dividindo"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0059"
+  }
+ },
+ "P22fbb7d1": {
+  "n": "36",
+  "conceito": "Média geométrica dos termos de uma PG pelo produto dos termos.",
+  "equivocos": {
+   "B": "M07.2:primeiro-termo-no-lugar-da-media",
+   "C": "M07.2:esqueceu-a-razao-no-produto",
+   "D": "M07.2:modulo-esquecido",
+   "E": "M07.2:ultimo-termo-no-lugar-da-media"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A média geométrica de 10 números é a raiz décima do produto deles. Na PG, o produto é a₁¹⁰ × q^(0 + 1 + ... + 9) = a₁¹⁰ × q⁴⁵. O sinal de k sai do último termo, que é negativo.",
+    "formulas": [
+     "média geométrica = (a₁ × a₂ × ... × a₁₀)^(1/10)",
+     "produto = a₁¹⁰ × q⁴⁵",
+     "q = 9^(1/9) ⇒ q⁹ = 9"
+    ],
+    "simbolos": [
+     [
+      "PG",
+      "progressão geométrica: cada termo é o anterior vezes um número fixo"
+     ],
+     [
+      "q",
+      "razão da PG: o número pelo qual se multiplica de um termo para o seguinte"
+     ],
+     [
+      "média geométrica",
+      "raiz n-ésima do produto de n números"
+     ]
+    ]
+   },
+   "pista": "Use o último termo para descobrir o sinal de k.",
+   "passos": [
+    {
+     "faz": "Descubra o sinal de k",
+     "conta": "a₁₀ = k/3 × q⁹ = k/3 × 9 = 3k < 0 → k < 0",
+     "porque": "q⁹ = 9; o último termo negativo obriga k negativo.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule o produto",
+     "conta": "(k/3)¹⁰ × q⁴⁵ = k¹⁰/3¹⁰ × 9⁵ = k¹⁰/3¹⁰ × 3¹⁰ = k¹⁰",
+     "porque": "q⁴⁵ = (q⁹)⁵ = 9⁵ = 3¹⁰, que cancela com o 3¹⁰ de baixo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tire a raiz décima",
+     "conta": "(k¹⁰)^(1/10) = |k|",
+     "porque": "Raiz de índice par devolve um número positivo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Use o sinal de k",
+     "conta": "k < 0 → |k| = −k",
+     "porque": "O módulo de um número negativo é o oposto dele.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — −k",
+   "checagem": "Exemplo: k = −3 dá a₁ = −1 e q = 9^(1/9); o produto é (−1)¹⁰ × 9⁵ = 59049 = 3¹⁰, e a raiz décima é 3 = −k.",
+   "erradas": {
+    "B": "B não confere: k/3 é o primeiro termo, negativo; a média geométrica de 10 números é raiz de índice par e não pode ser negativa.",
+    "C": "C não confere: (−k/3)¹⁰ = k¹⁰/3¹⁰, e o produto dos termos é k¹⁰; falta o fator q⁴⁵ = 3¹⁰.",
+    "D": "D sai de tirar a raiz sem olhar o sinal: (k¹⁰)^(1/10) = |k|, e como k < 0, isso é −k, não k.",
+    "E": "E não confere: 3k é o último termo, negativo; a média de dez termos não é o último termo."
+   },
+   "armadilha": "A raiz décima de k¹⁰ é |k|, e k é negativo: a resposta é −k, não k.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A média geométrica dos dez termos.",
+    "chave": "Produto = (k/3)¹⁰ × 3¹⁰ = k¹⁰; raiz décima = |k| = −k, pois a₁₀ = 3k < 0.",
+    "cuidado": "Ache o sinal de k pelo último termo antes de responder."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "termos equidistantes",
+    "ideia": "a₁ × a₁₀ = k/3 × 3k = k²; os 5 pares dão (k²)⁵ = k¹⁰, e a raiz décima é |k| = −k."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "a₁₀ = k/3 × 9 = 3k",
+    "nota": "último termo"
+   },
+   {
+    "linha": "3k < 0 → k < 0",
+    "nota": "sinal de k"
+   },
+   {
+    "linha": "k¹⁰/3¹⁰ × 3¹⁰ = k¹⁰",
+    "nota": "o 3¹⁰ se cancela"
+   },
+   {
+    "linha": "(k¹⁰)^(1/10) = |k| = −k",
+    "nota": "raiz décima"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0059"
+  }
+ },
+ "P6e0dc1db": {
+  "n": "29",
+  "conceito": "Figuras que crescem: contar brancos na figura n (n(n + 1)) e somar das 10 primeiras figuras.",
+  "equivocos": {
+   "A": "M07.4:lado-da-figura-trocado-por-n",
+   "B": "M07.4:lado-da-figura-trocado-por-n",
+   "D": "M07.4:esqueceu-de-tirar-os-cinzas",
+   "E": "M07.4:somou-em-vez-de-subtrair"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Monte a regra da figura n olhando as primeiras: a figura 1 é 2 × 2, a figura 2 é 3 × 3, a figura 5 é 6 × 6. Os cinzas ficam numa diagonal, um por linha. Brancos = total − cinzas. Depois some as 10 figuras.",
+    "formulas": [
+     "figura n: lado n + 1, total (n + 1)², cinzas n + 1",
+     "brancos = (n + 1)² − (n + 1) = n(n + 1)"
+    ],
+    "simbolos": [
+     [
+      "n",
+      "número da figura"
+     ]
+    ]
+   },
+   "pista": "Conte, em cada figura, o lado do quadrado e quantos quadradinhos são cinza; ache a regra antes de somar.",
+   "passos": [
+    {
+     "faz": "Leia o padrão nas figuras",
+     "conta": "figura 1: 2 × 2, 2 cinzas | figura 2: 3 × 3, 3 cinzas | figura 5: 6 × 6, 6 cinzas",
+     "porque": "O lado é sempre n + 1, e há um cinza por linha, numa diagonal: n + 1 cinzas.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Escreva os brancos da figura n",
+     "conta": "(n + 1)² − (n + 1) = n(n + 1)",
+     "porque": "Brancos são o total de quadradinhos menos os cinzas. Na figura 1: 4 − 2 = 2 = 1 · 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some as dez primeiras figuras",
+     "conta": "1·2 + 2·3 + 3·4 + ... + 10·11 = 2 + 6 + 12 + 20 + 30 + 42 + 56 + 72 + 90 + 110 = 440",
+     "porque": "A pergunta é sobre todos os quadradinhos brancos usados nas dez figuras juntas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "440 → alternativa C",
+     "porque": "O total de brancos nas dez figuras é 440.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 440",
+   "checagem": "Por outro caminho: total de quadradinhos 2² + 3² + ... + 11² = 505; total de cinzas 2 + 3 + ... + 11 = 65; brancos = 505 − 65 = 440.",
+   "erradas": {
+    "A": "330 sai de contar n² − n brancos (como se a figura n fosse n × n com n cinzas): 385 − 55 = 330. A figura 1 desmente: ela é 2 × 2 e tem 2 brancos, não 0.",
+    "B": "385 sai de somar 1² + 2² + ... + 10² = 385, como se a figura n tivesse n² brancos. A figura 1 tem 2 brancos, não 1.",
+    "D": "505 sai de somar todos os quadradinhos, 2² + 3² + ... + 11² = 505, sem tirar os 65 cinzas.",
+    "E": "570 sai de somar os cinzas em vez de subtrair: 505 + 65 = 570."
+   },
+   "armadilha": "A figura n tem lado n + 1, não n; quem usa lado n desloca toda a contagem.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantos quadradinhos brancos há nas dez primeiras figuras juntas.",
+    "chave": "Figura n: (n + 1)² quadradinhos e n + 1 cinzas, logo n(n + 1) brancos; soma de 1 a 10 dá 440.",
+    "cuidado": "Confira a regra na figura 1 antes de somar e tire os cinzas do total."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "total menos cinzas",
+    "ideia": "Some todos os quadradinhos (505) e tire todos os cinzas (65): 440."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "figura n: (n + 1) × (n + 1), n + 1 cinzas",
+    "nota": "padrão"
+   },
+   {
+    "linha": "brancos = (n + 1)² − (n + 1) = n(n + 1)",
+    "nota": "regra"
+   },
+   {
+    "linha": "2 + 6 + 12 + 20 + 30 + 42 + 56 + 72 + 90 + 110 = 440",
+    "nota": "soma das 10 figuras"
+   },
+   {
+    "linha": "resposta: 440 (C)",
+    "nota": "conclusão"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0060"
+  }
+ },
+ "P3bc48dd0": {
+  "n": "37",
+  "conceito": "Inequação trigonométrica num modelo de maré: intervalo de tempo em que sen(πt/6) > 1/2 num dia.",
+  "equivocos": {
+   "A": "M10.5:contou-so-um-periodo",
+   "B": "M10.5:confundiu-instante-com-duracao",
+   "D": "M10.5:errou-o-intervalo-da-inequacao",
+   "E": "M10.5:calculou-o-complementar"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Ficar acima de 2 metros é H(t) > 2, que vira sen(πt/6) > 1/2. O seno passa de 1/2 entre π/6 e 5π/6 em cada volta. O período da função é 12 horas, então o dia de 24 horas tem duas voltas completas.",
+    "formulas": [
+     "período = 2π/(π/6) = 12 h",
+     "sen θ > 1/2 para π/6 < θ < 5π/6 (em cada volta)"
+    ],
+    "simbolos": [
+     [
+      "H(t)",
+      "altura da água no instante t, em metros"
+     ],
+     [
+      "t",
+      "horas desde a meia-noite"
+     ],
+     [
+      "θ",
+      "o ângulo πt/6"
+     ]
+    ]
+   },
+   "pista": "Escreva a condição H(t) > 2 e isole o seno; só depois volte para o tempo t.",
+   "passos": [
+    {
+     "faz": "Monte a desigualdade",
+     "conta": "1,5 + sen(πt/6) > 2 → sen(πt/6) > 0,5",
+     "porque": "O 1,5 passa para o outro lado subtraindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva na primeira volta",
+     "conta": "π/6 < πt/6 < 5π/6 → 1 < t < 5",
+     "porque": "O seno passa de 1/2 entre π/6 e 5π/6; multiplicando tudo por 6/π sobra t.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Repita na segunda volta",
+     "conta": "período = 2π/(π/6) = 12 h → 13 < t < 17",
+     "porque": "O dia de 24 horas tem duas voltas de 12 horas; o mesmo trecho aparece 12 horas depois.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some os trechos",
+     "conta": "(5 − 1) + (17 − 13) = 4 + 4 = 8 h → alternativa C",
+     "porque": "A pergunta é o tempo total no dia acima de 2 m, somando os dois trechos.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 8 horas",
+   "checagem": "Nas pontas, H(1) = 1,5 + sen(π/6) = 2 e H(5) = 1,5 + sen(5π/6) = 2, e no meio, H(3) = 1,5 + 1 = 2,5 m, acima de 2. A cada volta de 12 h, o seno fica acima de 1/2 em um terço da volta (de 30° a 150°, 120° de 360°): 1/3 de 24 h = 8 h.",
+   "erradas": {
+    "A": "4 horas sai de contar só a primeira volta, de t = 1 a t = 5. O dia tem duas voltas de 12 h e o trecho se repete de 13 h a 17 h.",
+    "B": "5 horas não confere: 5 é o instante em que o primeiro trecho termina, não a sua duração; de 1 h a 5 h são 4 horas.",
+    "D": "10 horas não confere: seria preciso 5 horas acima de 2 m em cada volta, mas o seno só passa de 1/2 em 4 das 12 horas (de 1 a 5).",
+    "E": "16 horas sai do tempo complementar: 24 − 8 = 16 h é o tempo em que a água fica em 2 m ou abaixo."
+   },
+   "armadilha": "O período é de 12 horas, e o dia tem duas voltas: contar só a primeira dá 4 horas.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantas horas do dia a água fica acima de 2 m.",
+    "chave": "sen(πt/6) > 1/2 para 1 < t < 5 e 13 < t < 17: 4 + 4 = 8 h.",
+    "cuidado": "Calcule o período (12 h) e conte as duas voltas do dia."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "fração da volta",
+    "ideia": "O seno fica acima de 1/2 de 30° a 150°, um terço da volta; um terço de 24 h é 8 h."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "1,5 + sen(πt/6) > 2 → sen(πt/6) > 1/2",
+    "nota": "isola o seno"
+   },
+   {
+    "linha": "π/6 < πt/6 < 5π/6 → 1 < t < 5",
+    "nota": "multiplica por 6/π"
+   },
+   {
+    "linha": "2π/(π/6) = 12 → 13 < t < 17",
+    "nota": "repete 12 h depois"
+   },
+   {
+    "linha": "4 + 4 = 8 h",
+    "nota": "soma os dois trechos"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0063"
+  }
+ }
+}

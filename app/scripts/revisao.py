@@ -1,0 +1,399 @@
+#!/usr/bin/env python3
+"""Revisão em slides (comandos 24 e 26 do dono): leva docs/revisao/<matéria>/<TEMA>.json para public/conteudo/<m>/revisao/.
+
+Basta soltar um JSON novo em docs/revisao/<m>/ (formato em docs/revisao/FORMATO.md) e rodar o converte.py: nada no
+código do site muda. Este script:
+- confere o formato mínimo de cada tema (id, nome, slides por conteúdo; fixe com 3 linhas) e pára com erro claro;
+- grava public/conteudo/<m>/revisao/<TEMA>.json (o tema inteiro) e public/conteudo/<m>/revisao/indice.json
+  (temas, conteúdos e quantos slides cada um tem);
+- leva resumo/formulas/erro/cartoes para a "Teoria em cartões" do tema (materia.json), sem apagar o que já existe:
+  campo vazio recebe o da revisão; cartão de conteúdo que ainda não tem cartão é acrescentado;
+- fotos: só as de visual.foto (Wikimedia Commons, licença livre). A imagem é baixada UMA vez para
+  app/conteudo-fonte/revisao/<m>/fotos/ (versionada) e servida pelo próprio site: o navegador do aluno não fala com
+  terceiros (LGPD). O crédito (autor, licença, página) segue junto no JSON.
+
+Uso: python3 scripts/revisao.py   (o converte.py chama no fim da conversão completa)
+"""
+import json, os, re, shutil, sys, time, urllib.parse, urllib.request
+from io import BytesIO
+
+AQUI = os.path.dirname(os.path.abspath(__file__))
+APP = os.path.dirname(AQUI)
+RAIZ = os.path.dirname(APP)
+FONTE = os.path.join(RAIZ, 'docs', 'revisao')
+FOTOS = os.path.join(APP, 'conteudo-fonte', 'revisao')
+DESTINO = os.path.join(APP, 'public', 'conteudo')
+TIPOS = {'abertura', 'conceito', 'formula', 'grafico', 'exemplo', 'pegadinha', 'na_prova', 'fixe'}
+# de onde vêm as fichas de cada matéria (as chaves de fonte "L1-F1-C02" são livro, frente e capítulo dessa obra)
+OBRAS = {'fis': 'PV Física (Poliedro)', 'bio': 'PV Biologia (Poliedro)'}  # fs: a chave já diz a obra (FIL-..., SOC-...), ver dados/revisao.ts
+LARGURA_FOTO = 1280
+TEORIA_PROPRIA = {'bio', 'qui', 'mat', 'por'}
+# fotos que só vão ao ar com o OK do dono (princípio 10): o slide fica com o roteiro animado, sem a imagem e sem o link
+# (06/11/2026: o dono liberou o uso de imagens e referências na revisão, inclusive a pintura "Tiradentes esquartejado",
+#  H03.9; a lista fica vazia e serve para uma próxima decisão)
+FOTOS_AGUARDANDO_DONO: set = set()
+
+
+class ErroRevisao(Exception):
+    pass
+
+
+def ler(p):
+    with open(p, encoding='utf-8') as f:
+        return json.load(f)
+
+
+def gravar(p, obj):
+    os.makedirs(os.path.dirname(p), exist_ok=True)
+    with open(p, 'w', encoding='utf-8') as f:
+        json.dump(obj, f, ensure_ascii=False, separators=(',', ':'))
+
+
+def nome_foto(arquivo):
+    """'File:Apollo 15 F&H.jpg' -> 'apollo-15-f-h.webp' (estável: o mesmo arquivo do Commons dá sempre o mesmo nome)."""
+    base = re.sub(r'^(File|Arquivo):', '', arquivo).rsplit('.', 1)[0]
+    base = re.sub(r'[^a-z0-9]+', '-', base.lower()).strip('-')
+    return base[:80] + '.webp'
+
+
+def baixa_foto(arquivo, alvo):
+    """Baixa do Commons (Special:FilePath) já reduzida e grava em WebP. Tenta as larguras padrão de miniatura do
+    Commons, da maior para a menor: imagem original menor que a largura pedida vem sem redução, e esse caminho o
+    Commons limita para robôs (erro 429)."""
+    from PIL import Image
+    nome = re.sub(r'^(File|Arquivo):', '', arquivo)
+    erro = None
+    for larg in (LARGURA_FOTO, 960, 800, 640, 500):
+        time.sleep(3)  # sem pressa com o Commons (limite de pedidos)
+        url = 'https://commons.wikimedia.org/wiki/Special:FilePath/' + urllib.parse.quote(nome.replace(' ', '_')) + f'?width={larg}'
+        req = urllib.request.Request(url, headers={'User-Agent': 'AprendiceRevisao/1.0 (site de estudos; contato pelo repositório)'})
+        try:
+            with urllib.request.urlopen(req, timeout=60) as r:
+                dados = r.read()
+            break
+        except Exception as e:  # noqa: PERF203
+            erro = e
+    else:
+        raise erro
+    im = Image.open(BytesIO(dados))
+    im = im.convert('RGB')
+    if im.width > LARGURA_FOTO:
+        im = im.resize((LARGURA_FOTO, round(im.height * LARGURA_FOTO / im.width)), Image.LANCZOS)
+    os.makedirs(os.path.dirname(alvo), exist_ok=True)
+    im.save(alvo, 'WEBP', quality=80, method=6)
+    return im.size
+
+
+def confere_tema(m, d, arq):
+    erros = []
+    for k in ('id', 'nome'):
+        if not d.get(k):
+            erros.append(f'falta "{k}"')
+    if not d.get('slides') and not d.get('essencial'):
+        erros.append('falta "slides" ou "essencial"')
+    e = d.get('essencial')
+    if e:
+        if not e.get('telas'):
+            erros.append('essencial sem "telas"')
+        for t in e.get('telas', []):
+            if not str(t.get('sub', '')).startswith(d.get('id', '?') + '.'):
+                erros.append(f'tela do essencial com conteúdo {t.get("sub")} fora do tema')
+            if not t.get('titulo') or not t.get('pontos'):
+                erros.append(f'tela {t.get("sub")} sem título ou tópicos')
+        qr = e.get('questao_resolvida')
+        if qr and (qr.get('gabarito') not in 'ABCDE' or len(qr.get('alternativas', [])) < 2):
+            erros.append('questão resolvida sem gabarito ou alternativas')
+    if erros:
+        raise ErroRevisao(f'{arq}: ' + '; '.join(erros))
+    if not re.fullmatch(r'[A-Z]\d{2}', d['id']):
+        raise ErroRevisao(f'{arq}: id do tema "{d["id"]}" fora do padrão (ex.: F02)')
+    for sub, lista in d['slides'].items():
+        if not sub.startswith(d['id'] + '.'):
+            erros.append(f'conteúdo {sub} não é do tema {d["id"]}')
+        if not isinstance(lista, list) or not lista:
+            erros.append(f'{sub}: sem slides')
+            continue
+        for i, s in enumerate(lista):
+            if s.get('tipo') not in TIPOS:
+                erros.append(f'{sub} #{i + 1}: tipo "{s.get("tipo")}" desconhecido')
+            if not s.get('titulo'):
+                erros.append(f'{sub} #{i + 1}: sem título')
+            if s.get('tipo') == 'fixe':
+                linhas = [x for x in (s.get('texto') or '').split('\n') if x.strip()]
+                if len(linhas) != 3:
+                    erros.append(f'{sub} #{i + 1}: o slide "fixe" precisa de 3 linhas (tem {len(linhas)})')
+            for p in s.get('passos') or []:
+                if not p.get('conta'):
+                    erros.append(f'{sub} #{i + 1}: passo sem conta')
+            foto = (s.get('visual') or {}).get('foto')
+            if foto:
+                for k in ('url', 'arquivo', 'autor', 'licenca'):
+                    if not foto.get(k):
+                        erros.append(f'{sub} #{i + 1}: foto sem "{k}" (crédito obrigatório)')
+                # fora do Commons vale com crédito e acervo (decisão do dono, 06/11/2026, FORMATO.md): a imagem vem de
+                # app/conteudo-fonte/revisao/<m>/fotos/ (posta à mão); o site não baixa de outros endereços
+    if erros:
+        raise ErroRevisao(f'{arq}:\n  ' + '\n  '.join(erros))
+
+
+def prepara_fotos(m, d, saida):
+    """Copia (ou baixa uma vez) cada foto do tema e põe no slide o caminho servido pelo site."""
+    n = 0
+    listas = list(d['slides'].values()) + [(d.get('essencial') or {}).get('telas', [])]
+    for lista in listas:
+        for s in lista:
+            foto = (s.get('visual') or {}).get('foto')
+            if not foto:
+                continue
+            if foto['arquivo'] in FOTOS_AGUARDANDO_DONO:
+                del s['visual']['foto']
+                print(f"  foto fora do ar até o OK do dono: {foto['arquivo']}")
+                continue
+            nome = nome_foto(foto['arquivo'])
+            fonte = os.path.join(FOTOS, m, 'fotos', nome)
+            if not os.path.exists(fonte) and 'commons.wikimedia.org' not in foto.get('url', ''):
+                print(f'  AVISO: imagem fora do Commons sem arquivo em conteudo-fonte/revisao/{m}/fotos/{nome}')
+                continue
+            if not os.path.exists(fonte):
+                try:
+                    tam = baixa_foto(foto['arquivo'], fonte)
+                    print(f'  foto baixada do Commons: {nome} {tam}')
+                except Exception as e:  # sem rede: o slide mostra o visual em roteiro e o crédito, sem a imagem
+                    print(f'  AVISO: não consegui baixar {foto["arquivo"]}: {e}')
+                    continue
+            alvo = os.path.join(saida, 'fotos', nome)
+            os.makedirs(os.path.dirname(alvo), exist_ok=True)
+            with open(fonte, 'rb') as a, open(alvo, 'wb') as b:
+                b.write(a.read())
+            foto['img'] = 'revisao/fotos/' + nome
+            n += 1
+    return n
+
+
+def alimenta_teoria(m, temas):
+    """Teoria em cartões do tema: o resumo, as fórmulas, o erro e os cartões da revisão entram no materia.json."""
+    p = os.path.join(DESTINO, m, 'materia.json')
+    # matérias com teoria própria no site (Bio, Quí, Mat, Por): a revisão complementa e não altera a teoria sem o dono
+    # (comando 31); os cartões delas continuam só os do protótipo
+    if m in TEORIA_PROPRIA or not os.path.exists(p):
+        return 0
+    mat = ler(p)
+    n = 0
+    for mod in mat.get('modulos', []):
+        d = temas.get(mod['id'])
+        if not d:
+            continue
+        for k in ('resumo', 'erro'):
+            if not mod.get(k) and d.get(k):
+                mod[k] = d[k]
+        if not mod.get('formulas') and d.get('formulas'):
+            mod['formulas'] = list(d['formulas'])
+        tem = {c.get('sub') for c in mod.get('cartoes', [])}
+        # só conteúdos que existem no site: conteúdo novo proposto em `pendencias` não vira id sem decisão do dono
+        ids = {x['id'] for x in mod.get('subs', [])}
+        novos = [c for c in d.get('cartoes', []) if c.get('sub') not in tem and c.get('sub') in ids]
+        if novos:
+            mod['cartoes'] = list(mod.get('cartoes', [])) + novos
+            n += len(novos)
+    gravar(p, mat)
+    return n
+
+
+# Correções pedidas pelo dono no conteúdo convertido de app-atual (que fica intacto, princípio 8): aplicadas no que o
+# site lê (public/conteudo/<m>/materia.json, só na teoria). Questão de prova NUNCA muda (princípio 1): a Unesp 2024 dá
+# R = 62,3 no enunciado e a resolução dela usa o valor dado.
+CORRECOES_TEORIA = {
+    # comando 34 (docs/revisao/qui/LEIA.md, 06/11/2026): R = 62,4 mmHg·L/(mol·K) (8,314 J/(mol·K) × 760 / 101 325)
+    'qui': [('R = 62,3 mmHg', 'R = 62,4 mmHg')],
+}
+
+
+def corrige_teoria(m):
+    p = os.path.join(DESTINO, m, 'materia.json')
+    regras = CORRECOES_TEORIA.get(m)
+    if not regras or not os.path.exists(p):
+        return 0
+    mat = ler(p)
+    n = 0
+
+    def troca(x):
+        nonlocal n
+        if isinstance(x, str):
+            for a, b in regras:
+                if a in x:
+                    n += x.count(a)
+                    x = x.replace(a, b)
+            return x
+        if isinstance(x, list):
+            return [troca(y) for y in x]
+        if isinstance(x, dict):
+            return {k: troca(v) for k, v in x.items()}
+        return x
+    mat['modulos'] = troca(mat.get('modulos', []))
+    gravar(p, mat)
+    return n
+
+
+IMAGENS = os.path.join(RAIZ, 'docs', 'imagens')
+
+
+def resumos_materia(m, saida):
+    """Comando 35: resumos curtos por subtema (docs/revisao/<m>/resumos.json) para public/conteudo/<m>/revisao/resumos.json,
+    agrupados por subtema (Química tem mais de um por subtema). A imagem enviada pelo dono em docs/imagens/<m>/<sub>.png
+    vira WebP leve em revisao/imagens/<sub>.webp e substitui a caixa tracejada; sem ela, o site mostra a descrição."""
+    f = os.path.join(FONTE, m, 'resumos.json')
+    if not os.path.exists(f):
+        return 0, 0
+    from PIL import Image
+    dados = ler(f)
+    out = {}
+    imgs = 0
+    for tema in dados.values():
+        for r in tema.get('subtemas', []):
+            sub = r.get('sub')
+            if not sub or not r.get('titulo'):
+                raise ErroRevisao(f'docs/revisao/{m}/resumos.json: subtema sem "sub" ou "titulo"')
+            r = dict(r)
+            png = os.path.join(IMAGENS, m, sub + '.png')
+            if os.path.exists(png):
+                alvo = os.path.join(saida, 'imagens', sub + '.webp')
+                os.makedirs(os.path.dirname(alvo), exist_ok=True)
+                im = Image.open(png)
+                im = im.convert('RGBA' if im.mode in ('RGBA', 'LA', 'P') else 'RGB')
+                if im.width > 1200:
+                    im = im.resize((1200, round(im.height * 1200 / im.width)), Image.LANCZOS)
+                im.save(alvo, 'WEBP', quality=80, method=6)
+                r['imagem'] = {**(r.get('imagem') or {}), 'img': 'revisao/imagens/' + sub + '.webp'}
+                imgs += 1
+            out.setdefault(sub, []).append(r)
+    gravar(os.path.join(saida, 'resumos.json'), out)
+    return len(out), imgs
+
+
+# Comando 37: revisão geral da matéria inteira (docs/revisao/<m>/geral.json). Campos que o site usa; `lacunas`,
+# `como_usar` e `base` são notas de trabalho e não vão ao ar (INTEGRACAO-SITE.md, seção 7).
+CAMPOS_GERAL = ('id', 'capitulo', 'titulo', 'subs', 'busca', 'pontos', 'pegadinha')
+# Filosofia e Sociologia no mesmo arquivo: o prefixo do id separa as duas telas (FK = Filosofia, SK = Sociologia)
+PARTES_GERAL = {'fs': {'filosofia': 'FK', 'sociologia': 'SK'}}
+
+
+def imagem_geral(m, tid):
+    """PNG do dono para o tópico da revisão geral. Mesma convenção dos resumos (docs/imagens/<m>/<id>.png); em
+    docs/imagens/<m>/geral/<id>.png fica a imagem só da revisão geral (vale primeiro), útil em Matemática e Inglês,
+    onde o id do tópico é igual ao do subtema e a imagem do resumo serviria aos dois."""
+    for p in (os.path.join(IMAGENS, m, 'geral', tid + '.png'), os.path.join(IMAGENS, m, tid + '.png')):
+        if os.path.exists(p):
+            return p
+    return None
+
+
+def geral_materia(m, saida):
+    """docs/revisao/<m>/geral.json -> public/conteudo/<m>/revisao/geral.json (só os campos do site). Imagem do dono,
+    quando existe, vira WebP em revisao/geral/<id>.webp e entra em imagem.img; sem ela, o site mostra o aviso
+    "EM CONSTRUÇÃO — <descrição>". Os JSON de docs/revisao não são alterados."""
+    f = os.path.join(FONTE, m, 'geral.json')
+    if not os.path.exists(f):
+        return None
+    from PIL import Image
+    d = ler(f)
+    ids = set()
+    topicos = []
+    imgs = 0
+    for t in d.get('topicos', []):
+        falta = [k for k in ('id', 'titulo', 'pontos') if not t.get(k)]
+        if falta:
+            raise ErroRevisao(f'docs/revisao/{m}/geral.json: tópico {t.get("id", "?")} sem {", ".join(falta)}')
+        if t['id'] in ids:
+            raise ErroRevisao(f'docs/revisao/{m}/geral.json: id repetido {t["id"]}')
+        ids.add(t['id'])
+        x = {k: t.get(k) for k in CAMPOS_GERAL}
+        x['capitulo'] = x['capitulo'] or ''
+        x['subs'] = list(x['subs'] or [])
+        x['busca'] = list(x['busca'] or [])
+        x['pegadinha'] = x['pegadinha'] or ''
+        im = t.get('imagem') or {}
+        img = {'descricao': im.get('descricao', '')}
+        # Matemática e Inglês não têm falta_imagem: a ausência vale "imagem ainda não feita"
+        img['falta_imagem'] = bool(im.get('falta_imagem', True))
+        png = imagem_geral(m, t['id'])
+        if png:
+            alvo = os.path.join(saida, 'geral', t['id'] + '.webp')
+            os.makedirs(os.path.dirname(alvo), exist_ok=True)
+            pi = Image.open(png)
+            pi = pi.convert('RGBA' if pi.mode in ('RGBA', 'LA', 'P') else 'RGB')
+            if pi.width > 1200:
+                pi = pi.resize((1200, round(pi.height * 1200 / pi.width)), Image.LANCZOS)
+            pi.save(alvo, 'WEBP', quality=80, method=6)
+            img['img'] = 'revisao/geral/' + t['id'] + '.webp'
+            imgs += 1
+        x['imagem'] = img
+        topicos.append(x)
+    gravar(os.path.join(saida, 'geral.json'), {'materia': m, 'topicos': topicos})
+    info = {'n': len(topicos), 'imagens': imgs}
+    partes = PARTES_GERAL.get(m)
+    if partes:
+        info['partes'] = {p: sum(1 for t in topicos if t['id'].startswith(pre)) for p, pre in partes.items()}
+    return info
+
+
+def converte(materias=None):
+    rel = {}
+    for m in CORRECOES_TEORIA:
+        n = corrige_teoria(m)
+        if n:
+            rel.setdefault('correcoes', {})[m] = n
+    if not os.path.isdir(FONTE):
+        return rel
+    for m in sorted(os.listdir(FONTE)):
+        pasta = os.path.join(FONTE, m)
+        if not os.path.isdir(pasta) or (materias and m not in materias):
+            continue
+        arqs = sorted(f for f in os.listdir(pasta) if re.fullmatch(r'[A-Z]\d{2}\.json', f))
+        if not arqs and not os.path.exists(os.path.join(pasta, 'resumos.json')) and not os.path.exists(os.path.join(pasta, 'geral.json')):
+            continue
+        saida = os.path.join(DESTINO, m, 'revisao')
+        # do zero a cada conversão: foto retirada (ou que aguarda o dono) não fica esquecida na pasta servida
+        shutil.rmtree(saida, ignore_errors=True)
+        os.makedirs(saida, exist_ok=True)
+        indice = {'materia': m, 'obra': OBRAS.get(m, ''), 'temas': {}}
+        n_res, n_img = resumos_materia(m, saida)
+        indice['resumos'] = n_res > 0
+        geral = geral_materia(m, saida)
+        if geral:
+            indice['geral'] = geral
+        temas = {}
+        fotos = 0
+        for a in arqs:
+            d = ler(os.path.join(pasta, a))
+            # comando 33: tema só com a revisão essencial (slides vazio) também entra; o site mostra o essencial e, quando
+            # houver slides, guarda-os como "Aprofundar este conteúdo"
+            d.setdefault('slides', {})
+            confere_tema(m, d, f'docs/revisao/{m}/{a}')
+            fotos += prepara_fotos(m, d, saida)
+            d['obra'] = OBRAS.get(m, '')
+            temas[d['id']] = d
+            gravar(os.path.join(saida, d['id'] + '.json'), d)
+            indice['temas'][d['id']] = {
+                'nome': d['nome'],
+                'subs': {sub: len(l) for sub, l in d['slides'].items()},
+            }
+            if d.get('essencial'):
+                indice['temas'][d['id']]['essencial'] = len(d['essencial'].get('telas', []))
+        # conteúdos que têm resolução comentada publicada (res/<conteúdo>.json): o site só busca a resolução que existe
+        # (nada de 404 no console; sem resolução, diz "em preparação")
+        pres = os.path.join(DESTINO, m, 'res')
+        indice['res'] = sorted(f[:-5] for f in os.listdir(pres) if f.endswith('.json')) if os.path.isdir(pres) else []
+        gravar(os.path.join(saida, 'indice.json'), indice)
+        cartoes = alimenta_teoria(m, temas)
+        rel[m] = {'temas': len(temas), 'slides': sum(sum(t['subs'].values()) for t in indice['temas'].values()),
+                  'fotos': fotos, 'cartoes_teoria': cartoes, 'resumos': n_res, 'imagens_resumo': n_img,
+                  'geral': (geral or {}).get('n', 0), 'imagens_geral': (geral or {}).get('imagens', 0)}
+    return rel
+
+
+if __name__ == '__main__':
+    try:
+        print('revisão em slides', converte(sys.argv[1:] or None))
+    except ErroRevisao as e:
+        print('ERRO na revisão:', e)
+        sys.exit(1)

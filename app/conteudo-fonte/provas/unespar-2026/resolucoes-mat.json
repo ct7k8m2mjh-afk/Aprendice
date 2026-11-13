@@ -1,0 +1,210 @@
+{
+ "P439e2847": {
+  "n": "59",
+  "conceito": "Composição, crescimento e interseção de uma quadrática com uma reta.",
+  "equivocos": {
+   "A": "M05.5:composicao-comutada",
+   "B": "M05.2:crescimento-sem-limite",
+   "D": "M05.1:sinal-da-inclinacao",
+   "E": "M05.2:minimo-tomado-como-maximo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Teste uma afirmação por vez. Para saber se dois gráficos se encontram, iguale as funções: se a equação não tem raiz real, eles nunca se cruzam.",
+    "formulas": [
+     "f(x) = g(x) → x² + 3 = 2x + 1",
+     "Δ < 0: sem raiz real"
+    ],
+    "simbolos": [
+     [
+      "f(g(x))",
+      "f aplicada a g(x)"
+     ],
+     [
+      "Δ",
+      "discriminante: b² − 4ac"
+     ]
+    ]
+   },
+   "pista": "Iguale x² + 3 a 2x + 1 e calcule o Δ.",
+   "passos": [
+    {
+     "faz": "Teste a A",
+     "conta": "f(g(x)) = (2x + 1)² + 3 = 4x² + 4x + 4 | g(f(x)) = 2(x² + 3) + 1 = 2x² + 7",
+     "porque": "As duas composições são diferentes, e nenhuma é 2x² + 4.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Teste B, D e E",
+     "conta": "f é parábola para cima: desce até x = 0 e sobe; mínimo em x = 0 | g tem inclinação 2 > 0: crescente",
+     "porque": "f não é sempre crescente, g não é decrescente, f não tem máximo.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Teste a C",
+     "conta": "x² + 3 = 2x + 1 → x² − 2x + 2 = 0 → Δ = 4 − 8 = −4 < 0",
+     "porque": "Sem raiz real: os gráficos nunca se encontram.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "alternativa C",
+     "porque": "As duas funções nunca se encontram em ℝ.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — As duas funções nunca se encontram em ℝ.",
+   "checagem": "Escreva f − g = x² − 2x + 2 = (x − 1)² + 1. Esse valor é sempre ≥ 1, então f fica sempre pelo menos 1 acima de g.",
+   "erradas": {
+    "A": "Não confere: f(g(x)) = 4x² + 4x + 4 e g(f(x)) = 2x² + 7; são diferentes e nenhuma é 2x² + 4.",
+    "B": "Não confere: f(−1) = 4 > f(0) = 3, então f desce antes de x = 0.",
+    "D": "Não confere: g(x) = 2x + 1 tem inclinação 2 > 0; é crescente.",
+    "E": "Não confere: x² + 3 abre para cima e tem mínimo 3 em x = 0; não tem ponto máximo."
+   },
+   "armadilha": "Calcular só uma composição e supor que f(g(x)) = g(f(x)): composição em geral não comuta.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Qual afirmação sobre f(x) = x² + 3 e g(x) = 2x + 1 é correta.",
+    "chave": "x² − 2x + 2 = 0 tem Δ = −4: os gráficos não se cruzam.",
+    "cuidado": "f ∘ g e g ∘ f costumam ser diferentes."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "completar quadrado",
+    "ideia": "f(x) − g(x) = (x − 1)² + 1 ≥ 1: f sempre acima de g."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "x² + 3 = 2x + 1 → x² − 2x + 2 = 0",
+    "nota": "iguala"
+   },
+   {
+    "linha": "Δ = 4 − 8 = −4 < 0",
+    "nota": "sem raiz"
+   },
+   {
+    "linha": "f − g = (x − 1)² + 1 ≥ 1",
+    "nota": "nunca se encontram"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0056"
+  }
+ },
+ "P42b49f65": {
+  "n": "56",
+  "conceito": "Crescimento por duplicação: contar períodos de 20 min em 4 horas.",
+  "equivocos": {
+   "A": "M06.5:conta-errada",
+   "B": "M06.5:numero-de-duplicacoes-errado",
+   "D": "M06.5:numero-de-duplicacoes-errado",
+   "E": "M06.5:conta-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O total inicial já está dado: 10⁶ bactérias no frasco (10⁵ por mL × 10 mL). A cada 20 minutos o total dobra; em 4 horas cabem 12 períodos de 20 minutos, então o fator é 2¹².",
+    "formulas": [
+     "N(t) = N₀ · 2^(t/20), t em minutos",
+     "2¹² = 4096"
+    ],
+    "simbolos": [
+     [
+      "N₀",
+      "total inicial de bactérias, 10⁶"
+     ],
+     [
+      "t",
+      "tempo em minutos"
+     ]
+    ]
+   },
+   "pista": "Passe 4 horas para minutos e conte quantas duplicações cabem.",
+   "passos": [
+    {
+     "faz": "Converta o tempo",
+     "conta": "4 h = 4 × 60 = 240 min",
+     "porque": "A duplicação é dada em minutos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte as duplicações",
+     "conta": "240 ÷ 20 = 12",
+     "porque": "Uma duplicação a cada 20 minutos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Aplique o fator",
+     "conta": "10⁶ × 2¹² = 10⁶ × 4096 = 4.096 × 10⁶",
+     "porque": "Doze dobras seguidas multiplicam por 2¹².",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "4.096 × 10⁶ → alternativa C",
+     "porque": "Total no frasco após 4 horas.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 4.096 × 10⁶ bactérias",
+   "checagem": "Por hora: em 60 min há 3 dobras, fator 2³ = 8 por hora; em 4 horas, 8⁴ = 4096. Fecha.",
+   "erradas": {
+    "A": "25 × 10⁶ não confere: 25 não é potência de 2, e o fator de dobras sucessivas tem de ser 2ⁿ.",
+    "B": "2.048 × 10⁶ sai de contar 11 duplicações em vez de 12: 2¹¹ = 2048.",
+    "D": "16 × 10⁶ sai de dobrar uma vez por hora: 2⁴ = 16.",
+    "E": "1,667 × 10⁶ não confere: o total só cresce e 1,667 não é potência de 2."
+   },
+   "armadilha": "Contar uma dobra por hora (2⁴) em vez de três por hora (2¹²).",
+   "alerta": "",
+   "essencial": {
+    "pede": "O número de bactérias após 4 horas.",
+    "chave": "240 ÷ 20 = 12 dobras: 10⁶ × 2¹² = 4096 × 10⁶.",
+    "cuidado": "Converta horas em minutos antes de contar as dobras."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "fator por hora",
+    "ideia": "3 dobras por hora dão × 8 por hora; 8⁴ = 4096."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "4 h = 240 min",
+    "nota": "conversão"
+   },
+   {
+    "linha": "240 ÷ 20 = 12",
+    "nota": "dobras"
+   },
+   {
+    "linha": "N = 10⁶ × 2¹²",
+    "nota": "12 dobras"
+   },
+   {
+    "linha": "N = 4096 × 10⁶",
+    "nota": "alternativa C"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0058"
+  }
+ }
+}

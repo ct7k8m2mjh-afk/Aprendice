@@ -1,0 +1,134 @@
+/* ===================== TIPOGRAFIA (guia tipográfico do dono, comando 18) =====================
+   Fonte: docs/fontes/Guia-tipografico-APRENDICE.pdf (6 páginas). Este arquivo é carregado por último (main.tsx)
+   e é a ÚNICA fonte da verdade de família, peso, tamanho e entrelinha de cada papel; os tamanhos vêm de base.css (--fs-*),
+   com valores de celular e de computador (acima de 700 px).
+   Uma fonte por papel:
+     Dancing Script 700 ...... título da matéria, na cor dela (tom de texto no claro, tom claro no escuro)
+     Familjen Grotesk 400-700  títulos de tela e de seção, temas e conteúdos, enunciado, botões, números
+     Literata 400 ............ explicação longa da correção ("Por que eu errei", pegadinha, "Por que as outras estão erradas")
+     Caveat 500 .............. conta à mão no caderno (tinta azul sobre papel creme)
+     DM Sans ................. só a tela de entrada (login.css)
+   Nunca: cursiva em texto corrido, botão ou etiqueta; duas sem serifa na mesma tela; peso abaixo de 400 em texto;
+   maiúsculas em frases (só em rótulos curtos); números de cronômetro, placar e porcentagem sem algarismos tabulares. */
+
+/* ---------- título da matéria: Dancing Script 700 · 36 / 44 px · 1,05 ---------- */
+.tit-mat { font: 700 var(--fs-materia)/1.05 var(--escrita); letter-spacing: 0; color: var(--t); }
+
+/* ---------- título da tela: Familjen 700 · 25 / 32 px · 1,15 · -0,02em ---------- */
+.titulo-pag h1, .tema-cab h1, .bv-corpo h1, .resultado-fl h1, .res-sim h1, .capa-txt h2 {
+  font-family: var(--fonte); font-weight: 700; font-size: var(--fs-tela); line-height: 1.15; letter-spacing: -0.02em; }
+
+/* ---------- título de seção / bloco: Familjen 700 · 19 / 21 px · 1,2 ---------- */
+.bloco > h2, .sec-tit, .secao > h2, .cab-sec h2, .res-cab h2, .janela .cab h2, .vazio h3,
+.preparo h2, .cartao-teoria h3, .bv-frase, .fc-frente, .sc-linha b {
+  font-family: var(--fonte); font-weight: 700; font-size: var(--fs-secao); line-height: 1.2; letter-spacing: -0.005em; }
+/* subtítulos dentro de um bloco (resolução, teoria, caderno): mesmo papel, um passo abaixo, sem sair da família */
+.res-marcada h3, .res-bloco h3, .teoria-resumo h3, .quadro-cab h3, .res-chave b, .res-antes summary, .res-erradas summary, .res-caminhos summary {
+  font-family: var(--fonte); font-weight: 700; font-size: var(--fs-texto); line-height: 1.3; letter-spacing: 0; }
+
+/* ---------- tema e conteúdo: Familjen 600 · 15 / 17 px · 1,3 ---------- */
+.ft-nome, .faixa-temas.compacta .ft-nome, .at-txt b, .le-txt b, .dg-txt b, .linha-mat b, .busca-item .tit, .atalho b, .pm-nome, .ep-txt b, .cartao-obj b, .cartao-sim b, .cp-cab b, .escada-acao b, .linha-lista .tit, .nv-qtd, .cs-titulo,
+.passos b, .q-barra-txt b, .fc-veredito b, .nota b, .res-caminhos li b {
+  font-family: var(--fonte); font-weight: 600; font-size: var(--fs-tema); line-height: 1.3; }
+.faixa-temas.compacta .ft-nome { font-size: 15px; }
+
+/* ---------- texto de interface: Familjen 400 · 16 px · 1,5 ---------- */
+.titulo-pag .sub, .tema-cab .sub, .capa-p, .mat-sub, .preparo-passos span, .aviso-banco,
+.atalhos div, .creditos, .ficha dd, .fc-modelo p, .fc-veredito p, .fc-erro, .feedback-nivel, .cuidado, .pista, .q-texto, .res-resposta, .quadro-vazio, .simbolos div, .padroes li, .tema-desemp, .q-antes, .certeza, .gosto, .notas > span, .res-chave p, .miolo {
+  font-family: var(--fonte); font-weight: 400; font-size: var(--fs-texto); line-height: 1.5; }
+.res-resposta { font-weight: 600; }
+
+/* ---------- informação secundária: Familjen 400 · 13,5 / 14 px · 1,4 ---------- */
+.at-txt small, .le-txt small, .dg-txt small, .atalho small, .linha-mat small, .busca-item .det, .ep-txt small,
+.cartao-obj small, .cartao-sim > span:nth-child(2), .opcao small, .sc-tempo small, .kpis span, .fl-resumo > div span, .rf-nums span,
+.cartao-prova small, .cartao-prova small.fraco, .res-fonte, .fc-fonte, .mat-anel, .res-cab p,
+.nv-acerto, .fontes, .aviso-linha, .aviso-previa, .cs-mats, .sc-mats, .meta-lado small, .bv-meta small, .q-barra-txt span, .q-meta, .q-nota, .fr-leg, .tema-desemp small, .nota small, .fc-veredito small, .q-ver-txt, .q-dica-tecla, .grupo, .busca-grupo, .q-transcricao .tr-d {
+  font-family: var(--fonte); font-weight: 400; font-size: var(--fs-info); line-height: 1.4; }
+.grupo, .busca-grupo { font-weight: 600; }
+/* rótulos curtos em maiúsculas e etiquetas: mesmo tamanho da informação secundária, peso de destaque */
+.area-cab h2, .ficha dt, .fc-modelo span { font-family: var(--fonte); font-weight: 600; font-size: var(--fs-info); line-height: 1.3; }
+.area-cab p { font-size: var(--fs-info); line-height: 1.4; }
+.etq, .nivel-etq { font-family: var(--fonte); font-weight: 600; font-size: var(--fs-info); line-height: 1.3; }
+
+/* ---------- explicação da correção: Literata 400 · 16,5 / 17 px · 1,6 ---------- */
+.res-marcada p, .res-bloco p, .res-erradas li > span, .passos .porque, .res-antes > p, .res-caminhos li > span,
+.teoria-resumo .resumo-mod, .cartao-teoria p {
+  font-family: var(--leitura); font-weight: 400; font-size: var(--fs-expl); line-height: 1.6; letter-spacing: 0; }
+.res-erradas li { font-size: var(--fs-expl); }
+.res-erradas li > b { font-family: var(--fonte); }
+.passos .porque { color: var(--lapis); }
+.cartao-teoria p b, .res-bloco p b { font-weight: 600; }
+
+/* ---------- conta à mão: Caveat 500 · 19–24 / 24–26 px · 1,35–1,55, tinta azul sobre papel creme ---------- */
+.passos .conta { font-family: var(--mao); font-weight: 500; font-size: var(--fs-mao); line-height: 1.4; }
+.q-linha { font-family: var(--mao); font-weight: 500; font-size: var(--fs-mao-grande); line-height: 1.5; }
+.caderno { --cad-lh: calc(var(--fs-mao) * 1.45); line-height: var(--cad-lh);
+  background-image: repeating-linear-gradient(transparent 0 calc(var(--cad-lh) - 1px), color-mix(in srgb, var(--cad-tinta) 10%, transparent) calc(var(--cad-lh) - 1px) var(--cad-lh)); }
+.caderno li { font-family: var(--mao); font-weight: 500; font-size: var(--fs-mao); }
+/* fração da conta: sempre empilhada pelo layout, nunca o recurso automático da fonte */
+.passos .conta, .q-linha, .caderno li { font-feature-settings: 'frac' 0; font-variant-numeric: normal; }
+/* fração empilhada (ui/Fracao.tsx): numerador, barra e denominador montados pelo layout, centrados na linha da conta;
+   vale na conta, nas fórmulas do caderno, no quadro animado e nos textos da resolução (guia: "em texto, fórmula e animação") */
+.frac { position: relative; display: inline-flex; flex-direction: column; align-items: stretch; vertical-align: middle; margin: 0 .12em;
+  font-size: .86em; line-height: 1.08; text-align: center; white-space: nowrap; font-feature-settings: 'frac' 0; }
+.frac-n { padding: 0 .18em .04em; border-bottom: max(1.5px, .07em) solid currentColor; }
+.frac-d { padding: .06em .18em 0; }
+/* nuclídeo ("207/82 Pb"): número de massa em cima e número atômico embaixo, alinhados à direita, colados ao símbolo; sem barra */
+.nuc { display: inline-flex; flex-direction: column; align-items: flex-end; vertical-align: middle; margin: 0 .06em 0 .12em;
+  font-size: .62em; line-height: 1.05; white-space: nowrap; font-feature-settings: 'frac' 0; font-variant-numeric: lining-nums; }
+/* trecho citado da prova ou frase na "conta" de um passo: texto na família da interface, não na letra à mão (guia, p. 5) */
+.passos .conta.citacao { font-family: var(--fonte); font-weight: 400; font-size: var(--fs-texto); line-height: 1.5; color: var(--tinta);
+  background: var(--folha2); border: 0; border-left: 3px solid color-mix(in srgb, var(--t) 40%, var(--linha)); border-radius: 0 8px 8px 0; padding: 8px 12px; }
+
+/* ---------- botão: Familjen 600 · 15 px · 1 ---------- */
+.btn, .btn.peq, .btn.grande, .btn.btn-capa, .q-painel .q-acoes .btn:last-child, .q-resp .q-acoes .btn-conf, .q-resp .q-acoes .btn.fantasma, .q-painel .q-acoes .btn.fantasma, .abas button, .chip,
+.certeza .chip, .q-painel .certeza .chip, .sanfona, .tema-seg button, .bv-passos li, .migalhas, .link-sec, .cab-sec a:not(.btn), .q-volta, .q-dica, .q-tela, .q-orig {
+  font-family: var(--fonte); font-weight: 600; font-size: var(--fs-botao); line-height: 1; }
+.btn.fantasma, .q-painel .q-acoes .btn.fantasma { font-weight: 600; }
+/* botões com regra própria mais específica (auditoria rodada 3, item 9): também na medida do guia */
+.btn.tp-teo, .fl-area, .fl-area[aria-pressed='true'], .q-resp .certeza .chip, .sim-config .btn.grande {
+  font-family: var(--fonte); font-weight: 600; font-size: var(--fs-botao); line-height: 1; }
+.migalhas { line-height: 1.3; }
+.bv-passos li { line-height: 1.3; }
+/* menu e abas do celular: navegação na família da interface */
+.item-nav { font-family: var(--fonte); font-size: var(--fs-botao); line-height: 1.3; }
+.tabs a { font-family: var(--fonte); font-weight: 600; font-size: var(--fs-info); line-height: 1.2; }
+/* rótulos curtos dos cronômetros (TOTAL, QUESTÃO): tamanho da informação secundária */
+.q-barra .crono small, .crono-tot small { font-size: var(--fs-info); font-weight: 600; letter-spacing: .02em; }
+.busca-btn { font-family: var(--fonte); font-size: var(--fs-botao); }
+.perfil-chip { font-size: var(--fs-botao); }
+
+/* ---------- enunciado em texto: Familjen (a transcrição da prova fica na família da interface) ---------- */
+.q-transcricao { font-family: var(--fonte); font-size: var(--fs-texto); line-height: 1.6; }
+.alts.com-texto .alt { font-family: var(--fonte); font-size: var(--fs-texto); }
+.alt { font-family: var(--fonte); }
+.campo label { font-weight: 600; font-size: var(--fs-botao); }
+.campo small { font-size: var(--fs-info); line-height: 1.4; }
+
+/* ---------- números: algarismos tabulares em cronômetro, placar e porcentagem ---------- */
+.crono, .crono-tot, .kpis b, .at-pc, .rf-nums b, .fl-resumo > div b, .bv-meta b, .padroes b,
+.tema-desemp b, .pm b, .fr-q b, .gq b, .nv-qtd, .meta-lado b, .mat-anel, .dg-n, .passo-n, .q-barq .n, .le-txt small, .at-txt small {
+  font-variant-numeric: tabular-nums; }
+.kpis b, .rf-nums b, .fl-resumo > div b, .bv-meta b, .padroes b { font-family: var(--fonte); font-weight: 700; }
+
+/* ===================== PALETA sobre as peças da tela de questão (sistema.css) =====================
+   Barra de progresso na cor principal; seleção e abas nos tons de texto e de fundo suave da paleta. */
+.q-barq .p i { background: var(--p); }
+.q-abas button[aria-selected='true']::after { background: var(--t); }
+.q-bolhas .alt.sel { border-color: var(--t); background: var(--s); color: var(--t); box-shadow: 0 0 0 3px color-mix(in srgb, var(--p) 16%, transparent); }
+@media (hover: hover) { .q-bolhas .alt:not([disabled]):not(.sel):hover { border-color: color-mix(in srgb, var(--p) 45%, var(--linha)); background: var(--sv2); } }
+.q-resp .q-acoes .btn-conf[disabled] { background: var(--s); color: var(--t); box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--p) 45%, transparent); }
+.q-resp .certeza .chip[aria-checked='true'] { box-shadow: 0 1px 2px rgba(0, 0, 0, .2), inset 0 0 0 1.5px color-mix(in srgb, var(--p) 60%, transparent); }
+
+/* ===================== guia sobre as peças de layout novas (revisão do comando 18) =====================
+   tela do tema e capa dos flashcards, títulos de seção das folhas, faixa compacta e grupos dos simulados */
+.tp-capa h1 { font-family: var(--fonte); font-weight: 700; font-size: var(--fs-tela); line-height: 1.15; letter-spacing: -0.02em; }
+.btn.tp-comecar { font-family: var(--fonte); font-weight: 600; font-size: var(--fs-botao); line-height: 1; }
+.tp-h, .sim-grupo-cab h2 { font-family: var(--fonte); font-weight: 700; font-size: var(--fs-secao); line-height: 1.2; }
+.tp-enc .t b, .faixa-temas.compacta .ft-nome { font-family: var(--fonte); font-weight: 600; font-size: var(--fs-tema); line-height: 1.3; }
+/* informação secundária das peças novas (flashcards, simulados, contadores da capa do treino) */
+.fc-tecla, .fc-faixa-nm span, .fl-tema .t small, .sim-txt > span, .sim-grupo-cab p, .tg-n > small {
+  font-family: var(--fonte); font-weight: 400; font-size: var(--fs-info); line-height: 1.4; }
+.fl-tema .t b, .fc-faixa-nm b { font-family: var(--fonte); font-weight: 600; font-size: var(--fs-tema); line-height: 1.3; }
+/* item do caderno que é frase, não fórmula: letra da interface sobre o mesmo papel pautado (guia: cursiva nunca em texto corrido) */
+.caderno li.texto { font-family: var(--fonte); font-weight: 400; font-size: var(--fs-texto); }

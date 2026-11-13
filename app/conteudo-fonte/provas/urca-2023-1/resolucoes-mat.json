@@ -1,0 +1,615 @@
+{
+ "Pb189b604": {
+  "n": "21",
+  "conceito": "Restos da divisão por 4 se repetem em ciclo.",
+  "equivocos": {
+   "A": "M01.4:sem-origem-identificada",
+   "B": "M01.4:sem-origem-identificada",
+   "C": "M01.4:sem-origem-identificada",
+   "E": "M01.4:contou-ciclo-a-mais"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os restos da divisão por 4 seguem o ciclo 0, 1, 2, 3, 0, 1, 2, 3, ... Conte quantos ciclos completos há de 4 a 99 e multiplique pela soma de um ciclo.",
+    "formulas": [
+     "restos por 4: 0, 1, 2, 3",
+     "soma de um ciclo = 6"
+    ],
+    "simbolos": [
+     [
+      "r(a, b)",
+      "resto de a ÷ b"
+     ]
+    ]
+   },
+   "pista": "Quantos números há de 4 a 99? Eles formam ciclos completos?",
+   "passos": [
+    {
+     "faz": "Quantidade",
+     "conta": "99 − 4 + 1 = 96 números",
+     "porque": "De 4 a 99.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ciclos",
+     "conta": "96 ÷ 4 = 24 ciclos completos",
+     "porque": "4 começa com resto 0 e 99 termina com resto 3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Soma",
+     "conta": "24 · (0 + 1 + 2 + 3) = 24 · 6 = 144 → alternativa D",
+     "porque": "Soma dos restos.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 144",
+   "checagem": "Conte por resto: de 4 a 99 há 24 números com cada resto (múltiplos de 4: 4, 8, ..., 96 são 24; os de resto 1: 5, 9, ..., 97 são 24; etc.). Soma = 24 · 0 + 24 · 1 + 24 · 2 + 24 · 3 = 0 + 24 + 48 + 72 = 144. Confere.",
+   "erradas": {
+    "A": "88 não corresponde a nenhuma contagem de ciclos (88/6 não é inteiro).",
+    "B": "98 não sai: a soma é múltipla de 6 (24 ciclos de 6).",
+    "C": "120 seria 20 ciclos de soma 6; de 4 a 99 há 24 ciclos.",
+    "E": "150 seria 25 ciclos: contou um ciclo a mais (de 0 a 99)."
+   },
+   "armadilha": "Contar os números errado (de 4 a 99 são 96, não 95 ou 100) e errar o número de ciclos.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Soma dos restos.",
+    "chave": "96 números = 24 ciclos de soma 6.",
+    "cuidado": "De a até b há b − a + 1 números."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "subtrair o quociente",
+    "ideia": "r(n, 4) = n − 4 · ⌊n/4⌋. Soma de n de 4 a 99 = (4 + 99) · 96/2 = 4 944. Soma de 4⌊n/4⌋: para cada k de 1 a 24, quatro números têm ⌊n/4⌋ = k: 4 · 4 · (1 + ... + 24) = 16 · 300 = 4 800. Diferença: 144."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "96 números",
+    "nota": "4 a 99"
+   },
+   {
+    "linha": "24 ciclos",
+    "nota": "de 0, 1, 2, 3"
+   },
+   {
+    "linha": "24 · 6 = 144",
+    "nota": "resposta"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0044"
+  }
+ },
+ "P8c30187e": {
+  "n": "17",
+  "conceito": "Propriedades das desigualdades: multiplicar por número entre 0 e 1 e por número negativo.",
+  "equivocos": {
+   "A": "M04.4:valor-que-nao-fecha",
+   "B": "M04.4:valor-que-nao-fecha",
+   "D": "M04.4:esqueceu-o-sinal-negativo",
+   "E": "M04.4:valor-que-nao-fecha"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Multiplicar um positivo por um número entre 0 e 1 diminui o positivo. Como 0 < b < 1, ab fica entre 0 e a. Multiplicar por −1 inverte tudo: −ab fica entre −a e 0.",
+    "formulas": [
+     "0 < b < 1 e a > 0 ⇒ 0 < ab < a",
+     "multiplicar por −1 inverte a desigualdade"
+    ],
+    "simbolos": [
+     [
+      "[−a, 0]",
+      "intervalo de −a até 0"
+     ]
+    ]
+   },
+   "pista": "Compare ab com a primeiro, sem o sinal de menos.",
+   "passos": [
+    {
+     "faz": "Multiplique b < 1 por a",
+     "conta": "0 < b < 1 → 0 < ab < a",
+     "porque": "a é positivo, então o sentido se mantém.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique por −1",
+     "conta": "0 < ab < a → −a < −ab < 0",
+     "porque": "Multiplicar por negativo inverte as desigualdades.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escolha o intervalo",
+     "conta": "−ab ∈ [−a, 0] → alternativa C",
+     "porque": "Está entre −a e 0.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — −a · b ∈ [−a, 0]",
+   "checagem": "Exemplo: a = 0,2 e b = 0,5 dão −ab = −0,1, que está entre −0,2 e 0.",
+   "erradas": {
+    "A": "[−1, −b] não confere: ab < b, então −ab > −b; no exemplo, −0,1 > −0,5.",
+    "B": "[−b, −a] não confere: −ab > −a, porque ab < a; no exemplo, −0,1 > −0,2.",
+    "D": "[0, a] sai de esquecer o sinal de menos: ab está entre 0 e a, mas −ab é negativo.",
+    "E": "[a, b] não confere: −ab é negativo e a, b são positivos."
+   },
+   "armadilha": "Esquecer que multiplicar por −1 inverte a desigualdade, ou que ab < a quando b < 1.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Em que intervalo está −ab, com 0 < a < b < 1.",
+    "chave": "0 < ab < a; trocando o sinal, −a < −ab < 0.",
+    "cuidado": "Ao multiplicar por −1, inverta os sinais."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "exemplo numérico",
+    "ideia": "Com a = 0,2 e b = 0,5, −ab = −0,1: só o intervalo [−0,2; 0] o contém."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "0 < b < 1 → 0 < ab < a",
+    "nota": "multiplica por a > 0"
+   },
+   {
+    "linha": "−a < −ab < 0",
+    "nota": "multiplica por −1 e inverte"
+   },
+   {
+    "linha": "−0,2 · 0,5 = −0,1",
+    "nota": "exemplo: a = 0,2 e b = 0,5"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0052"
+  }
+ },
+ "P7da3920b": {
+  "n": "16",
+  "conceito": "Composição de funções afins: igualar f∘g e g∘f coeficiente a coeficiente.",
+  "equivocos": {
+   "A": "M05.1:divisao-invertida",
+   "C": "M05.1:valor-que-nao-fecha",
+   "D": "M05.1:valor-que-nao-fecha",
+   "E": "M05.1:termo-esquecido-na-composta"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "f∘g significa aplicar g primeiro e depois f. Faça as duas composições, compare: os termos em x já são iguais (16x), então os termos independentes também precisam ser.",
+    "formulas": [
+     "(f∘g)(x) = f(g(x))",
+     "(g∘f)(x) = g(f(x))"
+    ],
+    "simbolos": [
+     [
+      "f∘g",
+      "composta: aplica g e depois f"
+     ],
+     [
+      "k",
+      "constante a determinar"
+     ]
+    ]
+   },
+   "pista": "Calcule f(2x + k) e g(8x + 5) por extenso.",
+   "passos": [
+    {
+     "faz": "Calcule f∘g",
+     "conta": "f(2x + k) = 8(2x + k) + 5 = 16x + 8k + 5",
+     "porque": "Troque x por g(x) na lei de f.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule g∘f",
+     "conta": "g(8x + 5) = 2(8x + 5) + k = 16x + 10 + k",
+     "porque": "Troque x por f(x) na lei de g.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Iguale os termos independentes",
+     "conta": "8k + 5 = 10 + k → 7k = 5 → k = 5/7",
+     "porque": "Os termos em x já são iguais.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "k = 5/7 → alternativa B",
+     "porque": "Valor pedido.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 5/7",
+   "checagem": "Com k = 5/7: 8 · 5/7 + 5 = 40/7 + 35/7 = 75/7 e 10 + 5/7 = 75/7. Iguais.",
+   "erradas": {
+    "A": "7/5 sai de inverter a divisão final: de 7k = 5 escrever k = 7/5.",
+    "C": "7/8 não confere: 8 · 7/8 + 5 = 12, mas 10 + 7/8 = 10,875.",
+    "D": "8/7 não confere: 8 · 8/7 + 5 = 99/7, mas 10 + 8/7 = 78/7.",
+    "E": "10/7 sai de esquecer o + 5 de f∘g: 8k = 10 + k dá 7k = 10."
+   },
+   "armadilha": "Na composta, o k de g é multiplicado por 8 em f∘g, mas aparece sozinho em g∘f.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O valor de k para que f∘g = g∘f.",
+    "chave": "16x + 8k + 5 = 16x + 10 + k dá 7k = 5, k = 5/7.",
+    "cuidado": "Distribua o 8 sobre o k e não perca o + 5."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "testar alternativas",
+    "ideia": "Teste cada k em 8k + 5 = 10 + k: só 5/7 iguala os dois lados."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "8(2x + k) + 5 = 2(8x + 5) + k",
+    "nota": "f∘g = g∘f"
+   },
+   {
+    "linha": "16x + 8k + 5 = 16x + 10 + k",
+    "nota": "distributiva"
+   },
+   {
+    "linha": "8k − k = 10 − 5",
+    "nota": "k para a esquerda, 5 para a direita"
+   },
+   {
+    "linha": "7k = 5",
+    "nota": "simplifica"
+   },
+   {
+    "linha": "k = 5/7",
+    "nota": "o 7 passa dividindo"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0053"
+  }
+ },
+ "Pc2b30c10": {
+  "n": "30",
+  "conceito": "Área do círculo a partir do diâmetro e porcentagem dessa área.",
+  "equivocos": {
+   "B": "M08.3:porcentagem-errada-da-area",
+   "C": "M08.3:porcentagem-errada-da-area",
+   "D": "M08.3:porcentagem-errada-da-area",
+   "E": "M08.3:porcentagem-errada-da-area"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O enunciado dá o diâmetro, e a fórmula da área usa o raio: o primeiro trabalho é dividir 15 por 2. Depois é área inteira e, por fim, 60 % dela.",
+    "formulas": [
+     "r = diâmetro ÷ 2",
+     "área = π × r²",
+     "60 % de A = 0,6 × A"
+    ],
+    "simbolos": [
+     [
+      "r",
+      "raio, metade do diâmetro"
+     ],
+     [
+      "π",
+      "pi, que fica indicado nas alternativas"
+     ]
+    ]
+   },
+   "pista": "Antes de usar a fórmula, transforme o diâmetro em raio e escreva o raio como fração.",
+   "passos": [
+    {
+     "faz": "Ache o raio",
+     "conta": "r = 15/2",
+     "porque": "A fórmula da área pede o raio, que é metade do diâmetro.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a área do círculo",
+     "conta": "π · (15/2)² = (225π)/4",
+     "porque": "Elevar a fração ao quadrado é elevar em cima e embaixo: 15² = 225 e 2² = 4.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tome 60 % da área",
+     "conta": "(3/5) · (225π)/4 = (675π)/20 = (135π)/4",
+     "porque": "60 % é 3/5; 225 ÷ 5 = 45 e 45 × 3 = 135.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Marque a alternativa",
+     "conta": "(135π)/4 → alternativa A",
+     "porque": "É exatamente 60 % da área do círculo.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 135π/4",
+   "checagem": "Pelo complemento: 40 % da área é 0,4 × 225 = 90, então (90π)/4; somando, 135 + 90 = 225, a área inteira (225π)/4.",
+   "erradas": {
+    "B": "121π/4 não confere: 121 de 225 é cerca de 53,8 % da área, não 60 %.",
+    "C": "115π/4 não confere: 115 de 225 é cerca de 51,1 % da área, não 60 %.",
+    "D": "109π/4 não confere: 109 de 225 é cerca de 48,4 % da área, não 60 %.",
+    "E": "105π/4 não confere: 105 de 225 é cerca de 46,7 % da área, não 60 %."
+   },
+   "armadilha": "Usar o diâmetro 15 como raio, o que dá uma área 4 vezes maior.",
+   "alerta": "",
+   "essencial": {
+    "pede": "60 % da área de um círculo de diâmetro 15.",
+    "chave": "r = 15/2, área (225π)/4, e 3/5 disso é (135π)/4.",
+    "cuidado": "Divida o diâmetro por 2 antes de elevar ao quadrado."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "decimal",
+    "ideia": "Raio 7,5: área 56,25π e 0,6 × 56,25 = 33,75 = 135/4."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "r = 15/2",
+    "nota": "metade do diâmetro"
+   },
+   {
+    "linha": "π · (15/2)² = (225π)/4",
+    "nota": "área do círculo"
+   },
+   {
+    "linha": "(3/5) · (225π)/4 = (135π)/4",
+    "nota": "60 % da área"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0061"
+  }
+ },
+ "Paa4279f1": {
+  "n": "22",
+  "conceito": "Pitágoras com lados em função de x gera equação do 2º grau; descarta-se a raiz negativa.",
+  "equivocos": {
+   "A": "M09.1:respondeu-x",
+   "C": "M09.1:valor-sem-conta",
+   "D": "M09.1:valor-sem-conta",
+   "E": "M09.1:valor-sem-conta"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Escreva Pitágoras com as expressões dos lados e resolva a equação do 2º grau que aparece. Uma das raízes é negativa e não serve como medida. A expressão pedida simplifica: x² − 1 = (x − 1)(x + 1).",
+    "formulas": [
+     "(5x)² = (3x)² + (3x + 2)²",
+     "x² − 1 = (x − 1)(x + 1)",
+     "x = (−b ± √Δ)/(2a), Δ = b² − 4ac"
+    ],
+    "simbolos": [
+     [
+      "Δ",
+      "discriminante da equação do 2º grau"
+     ],
+     [
+      "x",
+      "número desconhecido que define os lados"
+     ]
+    ]
+   },
+   "pista": "Monte Pitágoras e, antes de calcular a fração do fim, veja se ela simplifica.",
+   "passos": [
+    {
+     "faz": "Monte Pitágoras",
+     "conta": "25x² = 9x² + (9x² + 12x + 4)",
+     "porque": "A hipotenusa ao quadrado é a soma dos quadrados dos catetos; (3x + 2)² = 9x² + 12x + 4.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Arrume a equação",
+     "conta": "25x² = 18x² + 12x + 4 → 7x² − 12x − 4 = 0",
+     "porque": "Passe tudo para um lado.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva por Bhaskara",
+     "conta": "Δ = 144 + 112 = 256 → x = (12 ± 16)/14 → x = 2 ou x = −2/7",
+     "porque": "Como 3x é lado, x tem de ser positivo: fica x = 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Simplifique a expressão",
+     "conta": "(x² − 1)/(x − 1) = x + 1 = 2 + 1 = 3",
+     "porque": "x² − 1 = (x − 1)(x + 1), e x − 1 = 1 não é zero.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "3 → alternativa B",
+     "porque": "É o valor da alternativa B.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 3",
+   "checagem": "Com x = 2 os lados são 6, 8 e 10: 6² + 8² = 36 + 64 = 100 = 10². E (4 − 1)/(2 − 1) = 3. Fecha.",
+   "erradas": {
+    "A": "2 é o valor de x; faltou calcular a expressão pedida, que vale x + 1.",
+    "C": "5 não confere: x + 1 = 5 exigiria x = 4, e (5 · 4)² = 400 ≠ 12² + 14² = 340.",
+    "D": "7 não confere: x + 1 = 7 exigiria x = 6, e 30² = 900 ≠ 18² + 20² = 724.",
+    "E": "9 não confere: x + 1 = 9 exigiria x = 8, e 40² = 1600 ≠ 24² + 26² = 1252."
+   },
+   "armadilha": "Parar em x = 2 e esquecer que a pergunta é o valor da expressão.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O valor de (x² − 1)/(x − 1) no triângulo de lados 3x, 3x + 2 e 5x.",
+    "chave": "Pitágoras dá 7x² − 12x − 4 = 0, x = 2; a expressão é x + 1 = 3.",
+    "cuidado": "Descartar a raiz negativa e voltar à expressão pedida."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste das alternativas",
+    "ideia": "A expressão é x + 1; teste x = 1, 2, 4, 6, 8 em Pitágoras: só x = 2 dá 6, 8, 10."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "25x² = 9x² + 9x² + 12x + 4",
+    "nota": "Pitágoras"
+   },
+   {
+    "linha": "7x² − 12x − 4 = 0",
+    "nota": "tudo de um lado"
+   },
+   {
+    "linha": "x = (12 ± 16)/14 → x = 2",
+    "nota": "raiz positiva"
+   },
+   {
+    "linha": "(x² − 1)/(x − 1) = x + 1 = 3",
+    "nota": "fatoração"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0061"
+  }
+ },
+ "Pdde3119a": {
+  "n": "27",
+  "conceito": "Calcular expressão com valores notáveis de seno, cosseno e tangente, inclusive de arco negativo.",
+  "equivocos": {
+   "A": "M10.4:sinal-de-tan-negativo",
+   "C": "M10.4:valor-notavel-trocado",
+   "D": "M10.4:valor-notavel-trocado-soma",
+   "E": "M10.4:raiz-de-2-indevida"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "É uma conta com valores notáveis: troque cada função pelo valor de 30°, 45° ou 60°. O único cuidado é tan(−45°): a tangente é ímpar, então tan(−45°) = −tan 45° = −1. Depois de trocar, compare numerador e denominador.",
+    "formulas": [
+     "cos 60° = sin 30° = 1/2",
+     "sin 60° = √3/2 ; tan 60° = √3 ; tan 45° = 1",
+     "tan(−θ) = −tan θ"
+    ],
+    "simbolos": [
+     [
+      "sin",
+      "seno, com a abreviação em inglês usada na prova"
+     ],
+     [
+      "tan",
+      "tangente"
+     ]
+    ]
+   },
+   "pista": "Comece pelo tan(−45°): o sinal dele decide o resto da conta.",
+   "passos": [
+    {
+     "faz": "Troque os valores do numerador",
+     "conta": "cos 60° − 4·tan(−45°) + (1/2)·tan 60° → 1/2 − 4·(−1) + (1/2)·√3 → 1/2 + 4 + √3/2",
+     "porque": "tan(−45°) = −1, e −4·(−1) = +4.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Troque os valores do denominador",
+     "conta": "sin 60° + 4·tan 45° + sin 30° → √3/2 + 4·1 + 1/2 → √3/2 + 4 + 1/2",
+     "porque": "sin 60° = √3/2, tan 45° = 1, sin 30° = 1/2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare os dois",
+     "conta": "X = (1/2 + 4 + √3/2)/(√3/2 + 4 + 1/2) → X = 1",
+     "porque": "As parcelas são as mesmas em outra ordem; um número não nulo dividido por ele mesmo dá 1.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "X = 1 → alternativa B",
+     "porque": "É o valor da letra B.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 1",
+   "checagem": "Em decimais: numerador 0,5 + 4 + 0,866 = 5,366; denominador 0,866 + 4 + 0,5 = 5,366. O quociente é 1. Fecha.",
+   "erradas": {
+    "A": "A não confere: numerador e denominador são positivos, então X > 0. Mesmo errando o sinal de tan(−45°), sai X ≈ −0,49, não −1.",
+    "C": "C não confere: √2 − √3 ≈ −0,32 é negativo, e X é quociente de dois positivos; além disso nenhum valor da conta tem √2.",
+    "D": "D não confere: √2 + √3 ≈ 3,15, e numerador e denominador são iguais, logo X = 1.",
+    "E": "E não confere: √3 − √2 ≈ 0,32, e os valores usados na conta (cos 60°, sin 60°, sin 30°, tan 45° = 1, tan 60° = √3) não têm √2; numerador e denominador são iguais, então X = 1."
+   },
+   "armadilha": "Esquecer que tan(−45°) = −1: o −4·tan(−45°) vira +4, e é isso que iguala numerador e denominador.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O valor numérico de X.",
+    "chave": "Com os valores notáveis, numerador e denominador valem 1/2 + 4 + √3/2; logo X = 1.",
+    "cuidado": "Tangente de arco negativo troca de sinal: tan(−45°) = −1."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "decimais",
+    "ideia": "Troque tudo por decimais (0,5; 0,866; 1) e veja que numerador e denominador dão 5,366."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "cos 60° − 4·tan(−45°) + (1/2)·tan 60° = 1/2 + 4 + √3/2",
+    "nota": "tan(−45°) = −1"
+   },
+   {
+    "linha": "sin 60° + 4·tan 45° + sin 30° = √3/2 + 4 + 1/2",
+    "nota": "valores notáveis"
+   },
+   {
+    "linha": "X = (1/2 + 4 + √3/2)/(√3/2 + 4 + 1/2) = 1",
+    "nota": "numerador igual ao denominador"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0062"
+  }
+ }
+}

@@ -1,0 +1,371 @@
+{
+ "Pd1d6e6ff": {
+  "n": "43",
+  "conceito": "Critérios de divisibilidade por 5 e por 9 com condições sobre os algarismos.",
+  "equivocos": {
+   "A": "M01.4:nao-calculou-a-potencia",
+   "B": "M01.4:esqueceu-o-fator-3",
+   "C": "M01.4:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Divisível por 5: termina em 0 ou 5. Divisível por 9: soma dos algarismos múltipla de 9. Os dois primeiros algarismos saem da condição \"o segundo é o dobro do primeiro e somam 6\"; o quarto depende do terceiro.",
+    "formulas": [
+     "÷ 5: último 0 ou 5",
+     "÷ 9: soma múltipla de 9"
+    ],
+    "simbolos": [
+     [
+      "a",
+      "primeiro algarismo"
+     ],
+     [
+      "c",
+      "terceiro algarismo"
+     ],
+     [
+      "e",
+      "último algarismo"
+     ]
+    ]
+   },
+   "pista": "Primeiro descubra os dois primeiros algarismos; depois escreva a soma em função do terceiro e do último.",
+   "passos": [
+    {
+     "faz": "Dois primeiros",
+     "conta": "a + 2a = 6 → a = 2; segundo = 4",
+     "porque": "Número 2 4 c (2 + c) e.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Soma dos algarismos",
+     "conta": "2 + 4 + c + (2 + c) + e = 8 + 2c + e",
+     "porque": "Precisa ser múltiplo de 9.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "e = 0",
+     "conta": "8 + 2c múltiplo de 9 → c = 5 → 24570",
+     "porque": "Algarismos 2, 4, 5, 7, 0 distintos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "e = 5",
+     "conta": "13 + 2c múltiplo de 9 → c = 7 → 24795",
+     "porque": "Algarismos 2, 4, 7, 9, 5 distintos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Diferença",
+     "conta": "24795 − 24570 = 225 = 15² → alternativa D",
+     "porque": "Quadrado perfeito.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — quadrado perfeito.",
+   "checagem": "Divida os dois por 45: 24570 = 45 · 546 e 24795 = 45 · 551. A diferença é 45 · (551 − 546) = 45 · 5 = 225 = 15². Confere.",
+   "erradas": {
+    "A": "3^5 = 243 e 225 < 243: a diferença não é maior que 3^5.",
+    "B": "225 é múltiplo de 5, mas também de 3 (2 + 2 + 5 = 9).",
+    "C": "225 = 3² · 5² não é primo."
+   },
+   "armadilha": "Ler \"maior do que 3^5\" sem calcular 3^5 = 243 e achar que 225 passa.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Que tipo de número é a diferença.",
+    "chave": "24570 e 24795; diferença 225 = 15².",
+    "cuidado": "Divisível por 45 = por 5 e por 9."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "faixa do terceiro algarismo",
+    "ideia": "Como 2 + c ≤ 9, c ≤ 7, e a soma 8 + 2c + e fica entre 8 e 27. Múltiplos de 9 possíveis: 9, 18 e 27. Soma 9: 2c + e = 1, impossível com e = 0 ou 5. Soma 18: 2c + e = 10 → c = 5, e = 0. Soma 27: 2c + e = 19 → c = 7, e = 5. Os dois números saem direto."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "a + 2a = 6 → a = 2; segundo = 4",
+    "nota": "Dois primeiros"
+   },
+   {
+    "linha": "2 + 4 + c + (2 + c) + e = 8 + 2c + e",
+    "nota": "Soma dos algarismos"
+   },
+   {
+    "linha": "8 + 2c múltiplo de 9 → c = 5 → 24570",
+    "nota": "e = 0"
+   },
+   {
+    "linha": "13 + 2c múltiplo de 9 → c = 7 → 24795",
+    "nota": "e = 5"
+   },
+   {
+    "linha": "24795 − 24570 = 225 = 15²",
+    "nota": "Diferença"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0044"
+  },
+  "gabarito_aprendice": {
+   "letra": "D",
+   "letra_conferente": "D",
+   "preliminar": "D",
+   "fontes_web": [],
+   "data": "2026-11-12",
+   "lote": "mat-0044"
+  }
+ },
+ "P8919adb9": {
+  "n": "45",
+  "conceito": "Domínio de função raiz com frações: inequação quociente e interseção de conjuntos de inteiros.",
+  "equivocos": {
+   "A": "M04.4:nao-excluiu-zero-do-denominador",
+   "C": "M04.4:esqueceu-um-trecho-do-quadro-de-sinais",
+   "D": "M04.4:valor-que-nao-fecha"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Raiz quadrada exige radicando ≥ 0, e os denominadores x − 1 e x + 1 não podem zerar. Junte as duas frações numa só e faça o quadro de sinais. Depois liste os inteiros de S₁ e de S₂ e cruze.",
+    "formulas": [
+     "x/(x − 1) − 2x/(x + 1) = x(3 − x)/((x − 1)(x + 1))",
+     "domínio: x(3 − x)/((x − 1)(x + 1)) ≥ 0"
+    ],
+    "simbolos": [
+     [
+      "S₁",
+      "resposta errada do aluno A: 0 ≤ x ≤ 3"
+     ],
+     [
+      "S₂",
+      "domínio correto"
+     ],
+     [
+      "A ∩ B",
+      "inteiros que estão nos dois conjuntos"
+     ]
+    ]
+   },
+   "pista": "Ponha as duas frações sobre o denominador comum (x − 1)(x + 1).",
+   "passos": [
+    {
+     "faz": "Junte as frações",
+     "conta": "[x(x + 1) − 2x(x − 1)]/((x − 1)(x + 1)) = (−x² + 3x)/((x − 1)(x + 1)) = x(3 − x)/((x − 1)(x + 1))",
+     "porque": "Denominador comum e numerador simplificado.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Faça o quadro de sinais",
+     "conta": "raízes 0 e 3 (numerador) | −1 e 1 (denominador) → ≥ 0 em (−1, 0] ∪ (1, 3]",
+     "porque": "Testes: x = −0,5 dá positivo, x = 0,5 negativo, x = 2 positivo, x = 4 negativo, x = −2 negativo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Liste os inteiros",
+     "conta": "A = {0, 1, 2, 3} | B = {0, 2, 3}",
+     "porque": "Em S₂ entram 0 (zera o numerador), 2 e 3; 1 e −1 zeram o denominador.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Cruze os conjuntos",
+     "conta": "A ∩ B = {0, 2, 3} → alternativa B",
+     "porque": "Todos os inteiros de B estão em A.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — {0, 2, 3}",
+   "checagem": "Teste direto em f: x = 2 dá 2/1 − 4/3 = 2/3 ≥ 0; x = 3 dá 3/2 − 6/4 = 0; x = 0 dá 0; x = 1 anula o denominador.",
+   "erradas": {
+    "A": "{0, 1, 2, 3} sai de não excluir x = 1, que anula o denominador de x/(x − 1).",
+    "C": "{2, 3} sai de ficar só com o trecho (1, 3] do quadro de sinais e esquecer (−1, 0], onde está o 0, que zera o radicando e serve.",
+    "D": "vazio não confere: 2 está em S₁ e em S₂ (radicando 2/3 ≥ 0)."
+   },
+   "armadilha": "Esquecer de excluir x = 1 (denominador zero), que está em S₁ mas não em S₂.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A interseção dos inteiros de S₁ com os do domínio correto S₂.",
+    "chave": "O radicando vira x(3 − x)/((x − 1)(x + 1)) ≥ 0, que dá (−1, 0] ∪ (1, 3]; inteiros 0, 2 e 3.",
+    "cuidado": "Exclua os zeros do denominador e inclua os do numerador."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste de inteiros",
+    "ideia": "Teste x = 0, 1, 2, 3 (os de S₁) direto em f: 1 anula o denominador; 0, 2 e 3 dão radicando ≥ 0."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "x/(x − 1) − 2x/(x + 1) = (−x² + 3x)/(x² − 1)",
+    "nota": "denominador comum"
+   },
+   {
+    "linha": "x(3 − x)/((x − 1)(x + 1)) ≥ 0",
+    "nota": "condição da raiz"
+   },
+   {
+    "linha": "S₂ = (−1, 0] ∪ (1, 3]",
+    "nota": "quadro de sinais"
+   },
+   {
+    "linha": "2/1 − 4/3 = 2/3",
+    "nota": "x = 2: radicando positivo"
+   },
+   {
+    "linha": "A ∩ B = {0, 2, 3}",
+    "nota": "inteiros em comum"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0052"
+  },
+  "gabarito_aprendice": {
+   "letra": "B",
+   "letra_conferente": "B",
+   "preliminar": "B",
+   "fontes_web": [],
+   "data": "2026-11-13",
+   "lote": "mat-0052"
+  }
+ },
+ "Pab08670e": {
+  "n": "46",
+  "conceito": "Achar cosseno e cotangente de um arco do 2º quadrante a partir do seno e combinar os dois.",
+  "equivocos": {
+   "B": "M10.4:sinal-errado-na-subtracao",
+   "C": "M10.4:ignorou-o-quadrante",
+   "D": "M10.4:sinais-incompativeis-de-cotg-e-cos"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Do seno sai o cosseno pela relação fundamental, mas a raiz dá dois sinais: quem escolhe é o quadrante. Entre π/2 e π o arco está no 2º quadrante, onde o cosseno é negativo. Com seno e cosseno em mãos, a cotangente é cosseno dividido por seno.",
+    "formulas": [
+     "sen²x + cos²x = 1",
+     "cotg x = cos x / sen x"
+    ],
+    "simbolos": [
+     [
+      "cotg",
+      "cotangente: cosseno dividido por seno"
+     ],
+     [
+      "2º quadrante",
+      "arcos entre π/2 e π: seno positivo, cosseno negativo"
+     ]
+    ]
+   },
+   "pista": "Antes de tirar a raiz para achar o cosseno, decida o sinal dele pelo intervalo dado.",
+   "passos": [
+    {
+     "faz": "Ache cos²x pela relação fundamental",
+     "conta": "cos²x = 1 − (√5/5)² → cos²x = 1 − 5/25 → cos²x = 20/25",
+     "porque": "Seno ao quadrado mais cosseno ao quadrado dá 1; (√5)² = 5 e 5² = 25.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tire a raiz com o sinal do quadrante",
+     "conta": "cos x = ±√20/5 → cos x = −2√5/5",
+     "porque": "√20 = 2√5. Como π/2 < x < π, o arco está no 2º quadrante e o cosseno é negativo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a cotangente",
+     "conta": "cotg x = (−2√5/5)/(√5/5) → cotg x = −2",
+     "porque": "Cotangente é cosseno sobre seno; o √5/5 de cima cancela com o de baixo e sobra −2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte cotg x − cos x",
+     "conta": "−2 − (−2√5/5) → −2 + 2√5/5",
+     "porque": "Menos com menos vira mais: tirar um número negativo é somar o seu módulo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "−2 + 2√5/5 → alternativa A",
+     "porque": "É exatamente a expressão da letra A.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — −2 + 2√5/5",
+   "checagem": "Pela ordem de grandeza: 2√5/5 ≈ 0,894, então o valor é ≈ −1,106. No 2º quadrante a cotangente é negativa e −cos x é positivo e menor que 1; uma soma de −2 com algo entre 0 e 1 tem de ficar entre −2 e −1. Fecha.",
+   "erradas": {
+    "B": "B sai de errar o sinal na subtração: escrever −2 − 2√5/5, sem notar que tirar cos x = −2√5/5 vira somar 2√5/5.",
+    "C": "C sai de ignorar o quadrante: com cos x = +2√5/5, a cotangente vira +2 e o resultado fica 2 − 2√5/5.",
+    "D": "D não confere: exigiria cotg x = +2 e cos x = −2√5/5 ao mesmo tempo, mas com sen x > 0 a cotangente tem o sinal do cosseno."
+   },
+   "armadilha": "O sinal do cosseno vem do intervalo π/2 < x < π: tomar a raiz positiva troca o sinal da cotangente e do cosseno.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O valor de cotg x − cos x, sabendo o seno e que o arco está no 2º quadrante.",
+    "chave": "cos x = −2√5/5 pela relação fundamental com o sinal do 2º quadrante; cotg x = −2.",
+    "cuidado": "Escolha o sinal da raiz pelo quadrante e cuide do menos com menos na subtração."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "triângulo auxiliar",
+    "ideia": "sen = √5/5 = 1/√5: cateto oposto 1, hipotenusa √5, adjacente 2; no 2º quadrante cos = −2/√5 e cotg = −2."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "cos²x = 1 − (√5/5)² = 1 − 5/25 = 20/25",
+    "nota": "relação fundamental"
+   },
+   {
+    "linha": "cos x = −√20/5 = −2√5/5",
+    "nota": "sinal negativo: 2º quadrante"
+   },
+   {
+    "linha": "cotg x = (−2√5/5)/(√5/5) = −2",
+    "nota": "cosseno sobre seno"
+   },
+   {
+    "linha": "cotg x − cos x = −2 − (−2√5/5) = −2 + 2√5/5",
+    "nota": "menos com menos vira mais"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "Estratégia Vestibulares — provas UEMG 2022 (busca do gabarito; a questão 46 não aparece)",
+    "url": "https://vestibulares.estrategia.com/portal/wp-content/uploads/2022/03/provas-uemg-2022.pdf"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0062"
+  },
+  "gabarito_aprendice": {
+   "letra": "A",
+   "letra_conferente": "A",
+   "preliminar": "A",
+   "fontes_web": [],
+   "data": "2026-11-13",
+   "lote": "mat-0062"
+  }
+ }
+}

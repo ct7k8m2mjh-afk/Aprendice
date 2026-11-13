@@ -1,0 +1,142 @@
+# Inglês: resoluções (gerado por lote.py em 2026-11-13)
+
+Faltam 3 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 3; demais nível 1-6 0; ENEM nível 7-10 0; provas-alvo nível 7-10 0; demais nível 7-10 0.
+
+## Lotes
+
+| Lote | Faixa | Questões | Estado | OK | Pendentes | Divergências |
+|---|---|---|---|---|---|---|
+| ing-0001 | ENEM nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| ing-0002 | provas-alvo nível 1-6 | 30 | gravado | 28 | 1 | 1 |
+| ing-0003 | provas-alvo nível 1-6 | 30 | gravado | 27 | 3 | 0 |
+| ing-0004 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| ing-0005 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| ing-0006 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| ing-0007 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| ing-0008 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| ing-0009 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| ing-0010 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| ing-0011 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| ing-0012 | provas-alvo nível 1-6 | 30 | gravado | 29 | 1 | 0 |
+| ing-0013 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| ing-0014 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| ing-0015 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| ing-0016 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| ing-0017 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| ing-0018 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| ing-0019 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| ing-0020 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| ing-0021 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| ing-0022 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| ing-0023 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| ing-0024 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| ing-0025 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| ing-0026 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| ing-0027 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| ing-0028 | provas-alvo nível 1-6 | 30 | gravado | 17 | 13 | 0 |
+| ing-0029 | provas-alvo nível 1-6 | 30 | gravado | 29 | 1 | 0 |
+| ing-0030 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| ing-0031 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| ing-0032 | provas-alvo nível 1-6 | 30 | gravado | 29 | 1 | 0 |
+| ing-0033 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| ing-0034 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| ing-0035 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| ing-0036 | provas-alvo nível 1-6 | 30 | gravado | 28 | 2 | 0 |
+| ing-0037 | demais nível 1-6 | 30 | gravado | 28 | 2 | 0 |
+| ing-0038 | demais nível 1-6 | 30 | gravado | 25 | 5 | 0 |
+| ing-0039 | demais nível 1-6 | 30 | gravado | 20 | 10 | 0 |
+| ing-0040 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| ing-0041 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| ing-0042 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| ing-0043 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| ing-0044 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| ing-0045 | provas-alvo nível 1-6 | 30 | gravado | 27 | 3 | 0 |
+| ing-0046 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| ing-0047 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| ing-0048 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| ing-0049 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| ing-0050 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| ing-0051 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| ing-0052 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| ing-0053 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| ing-0054 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| ing-0055 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| ing-0056 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| ing-0057 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| ing-0058 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| ing-0059 | demais nível 1-6 | 30 | gravado | 27 | 3 | 0 |
+| ing-0060 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| ing-0061 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| ing-0062 | demais nível 1-6 | 30 | gravado | 26 | 4 | 0 |
+| ing-0063 | demais nível 1-6 | 30 | gravado | 29 | 1 | 0 |
+| ing-0064 | demais nível 1-6 | 30 | gravado | 29 | 1 | 0 |
+| ing-0065 | demais nível 1-6 | 30 | gravado | 29 | 1 | 0 |
+| ing-0066 | demais nível 1-6 | 30 | gravado | 29 | 1 | 0 |
+| ing-0067 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| ing-0068 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| ing-0069 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| ing-0070 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| ing-0071 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| ing-0072 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| ing-0073 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| ing-0074 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| ing-0075 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| ing-0076 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| ing-0077 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| ing-0078 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| ing-0079 | provas-alvo nível 7-10 | 30 | gravado | 30 | 0 | 0 |
+| ing-0080 | provas-alvo nível 7-10 | 30 | gravado | 30 | 0 | 0 |
+| ing-0081 | provas-alvo nível 7-10 | 30 | gravado | 30 | 0 | 0 |
+| ing-0082 | demais nível 7-10 | 30 | gravado | 30 | 0 | 0 |
+| ing-0083 | demais nível 7-10 | 30 | gravado | 30 | 0 | 0 |
+| ing-0084 | demais nível 7-10 | 26 | gravado | 26 | 0 | 0 |
+
+## Pendentes (falta de certeza absoluta)
+
+| Questão | Prova | Conteúdo | Motivo |
+|---|---|---|---|
+| Pc3329622 | Cederj 2022 2022.2 · questão 44 | I01.3 informação explícita (tema I01 Leitura e interpretação de textos) | print: a questão cita um texto de apoio que não está no texto_da_prova nem no print (que mostra só o enunciado e as alternativas). Refazer o print com o texto, a partir do caderno oficial da Cederj 2022.2 (texto sobre vício em redes sociais). |
+| Pf5d540d9 | Cederj 2023 2023.1 · questão 43 | I01.3 informação explícita (tema I01 Leitura e interpretação de textos) | print: a questão cita um texto de apoio que não está no texto_da_prova nem no print (que mostra só o enunciado e as alternativas). Refazer o print com o texto, a partir do caderno oficial da Cederj 2023.1 (texto sobre educação on-line). |
+| P5193e474 | Cederj 2023 2023.1 · questão 44 | I01.3 informação explícita (tema I01 Leitura e interpretação de textos) | print: a questão cita um texto de apoio que não está no texto_da_prova nem no print (que mostra só o enunciado e as alternativas). Refazer o print com o texto, a partir do caderno oficial da Cederj 2023.1 (texto sobre educação on-line). |
+| Pf1373916 | Cederj 2025 2025.1 · questão 43 | I01.3 informação explícita (tema I01 Leitura e interpretação de textos) | print: a questão cita um texto de apoio que não está no texto_da_prova nem no print (que mostra só o enunciado e as alternativas). Refazer o print com o texto, a partir do caderno oficial da Cederj 2025.1 (texto sobre foguetes reutilizáveis). |
+| P9d3ec10c | Cederj 2025 2025.1 · questão 44 | I01.3 informação explícita (tema I01 Leitura e interpretação de textos) | print: a questão cita um texto de apoio que não está no texto_da_prova nem no print (que mostra só o enunciado e as alternativas). Refazer o print com o texto, a partir do caderno oficial da Cederj 2025.1 (texto sobre foguetes reutilizáveis). |
+| Pbdc86abd | Cederj 2025 2025.1 · questão 45 | I01.3 informação explícita (tema I01 Leitura e interpretação de textos) | print: a questão cita um texto de apoio que não está no texto_da_prova nem no print (que mostra só o enunciado e as alternativas). Refazer o print com o texto, a partir do caderno oficial da Cederj 2025.1 (texto sobre foguetes reutilizáveis). |
+| Pd0f594c1 | Cederj 2025 2025.2 · questão 43 | I01.3 informação explícita (tema I01 Leitura e interpretação de textos) | print: a questão cita um texto de apoio que não está no texto_da_prova nem no print (que mostra só o enunciado e as alternativas). Refazer o print com o texto, a partir do caderno oficial da Cederj 2025.2 (texto sobre as previsões de Bill Gates para a IA). |
+| P41d399e2 | Cederj 2025 2025.2 · questão 44 | I01.3 informação explícita (tema I01 Leitura e interpretação de textos) | print: a questão cita um texto de apoio que não está no texto_da_prova nem no print (que mostra só o enunciado e as alternativas). Refazer o print com o texto, a partir do caderno oficial da Cederj 2025.2 (texto sobre as previsões de Bill Gates para a IA). |
+| P773b0c19 | FCM-MG 2023 1º semestre · questão 53 | I01.1 tema e ideia principal (tema I01 Leitura e interpretação de textos) | print: a questão pede um resumo do artigo sobre o estudo de Kaori Murata (lágrimas de felicidade em animais), mas o texto_da_prova e o print trazem só a tirinha do PHD Comics; o artigo não está no lote. Refazer o print ou a transcrição com o artigo, a partir do PDF oficial. |
+| Pe7d63db6 | FCM-MG 2023 1º semestre · questão 54 | I01.3 informação explícita (tema I01 Leitura e interpretação de textos) | print: a questão pede o método de um artigo sobre lágrimas de felicidade em cães, mas o texto de apoio não está no texto_da_prova e o print mostra outro material (uma tirinha sobre prova final). Refazer o print com o artigo, a partir do caderno oficial da FCM-MG 2023/1. |
+| P82492451 | FCM-MG 2023 1º semestre · questão 55 | I01.3 informação explícita (tema I01 Leitura e interpretação de textos) | print: a questão pede os benefícios descritos num artigo sobre lágrimas de felicidade em cães, mas o texto de apoio não está no texto_da_prova e o print mostra outro material (uma tirinha sobre prova final). Refazer o print com o artigo, a partir do caderno oficial da FCM-MG 2023/1. |
+| P91941880 | PUC-Campinas 2027 · questão 16 | I03.2 conectivos e relações lógicas (tema I03 Gramática) | print: a questão pede a lacuna I de um texto que não está no texto_da_prova nem no print da questão (que mostra só o comando e as alternativas); refazer o print ou a transcrição com o texto de apoio da PUC-Campinas 2027. |
+| Pcbb2a2aa | UECE 2025 2025.2 – 1ª fase · questão 78 | I01.3 informação explícita (tema I01 Leitura e interpretação de textos) | print: o texto de apoio em inglês (UECE 2025.2, página anterior às questões) não está no texto_da_prova nem no print da questão, que mostra só o enunciado e as alternativas; refazer o print ou a transcrição com o texto, a partir do PDF oficial. Prova sem gabarito definitivo: depois, gabarito do Aprendice às cegas. |
+| Pe4d0db1b | UECE 2025 2025.2 – 1ª fase · questão 79 | I01.3 informação explícita (tema I01 Leitura e interpretação de textos) | print: o texto de apoio em inglês (UECE 2025.2, página anterior às questões) não está no texto_da_prova nem no print da questão, que mostra só o enunciado e as alternativas; refazer o print ou a transcrição com o texto, a partir do PDF oficial. Prova sem gabarito definitivo: depois, gabarito do Aprendice às cegas. |
+| Pfe6f376c | UECE 2025 2025.2 – 1ª fase · questão 80 | I01.3 informação explícita (tema I01 Leitura e interpretação de textos) | print: o texto de apoio em inglês (UECE 2025.2, página anterior às questões) não está no texto_da_prova nem no print da questão, que mostra só o enunciado e as alternativas; refazer o print ou a transcrição com o texto, a partir do PDF oficial. Prova sem gabarito definitivo: depois, gabarito do Aprendice às cegas. |
+| P2a5d9564 | UECE 2025 2025.2 – 1ª fase · questão 81 | I01.3 informação explícita (tema I01 Leitura e interpretação de textos) | print: o texto de apoio em inglês (UECE 2025.2, página anterior às questões) não está no texto_da_prova nem no print da questão, que mostra só o enunciado e as alternativas; refazer o print ou a transcrição com o texto, a partir do PDF oficial. Prova sem gabarito definitivo: depois, gabarito do Aprendice às cegas. |
+| P47d12c7d | UECE 2025 2025.2 – 1ª fase · questão 83 | I01.3 informação explícita (tema I01 Leitura e interpretação de textos) | print: o texto de apoio em inglês (UECE 2025.2, página anterior às questões) não está no texto_da_prova nem no print da questão, que mostra só o enunciado e as alternativas; refazer o print ou a transcrição com o texto, a partir do PDF oficial. Prova sem gabarito definitivo: depois, gabarito do Aprendice às cegas. |
+| Pc8920343 | UECE 2025 2025.2 – 1ª fase · questão 84 | I01.3 informação explícita (tema I01 Leitura e interpretação de textos) | print: o texto de apoio em inglês (UECE 2025.2, página anterior às questões) não está no texto_da_prova nem no print da questão, que mostra só o enunciado e as alternativas; refazer o print ou a transcrição com o texto, a partir do PDF oficial. Prova sem gabarito definitivo: depois, gabarito do Aprendice às cegas. |
+| P09cadc2b | UECE 2025 2025.2 – 1ª fase · questão 85 | I01.3 informação explícita (tema I01 Leitura e interpretação de textos) | print: o texto de apoio em inglês (UECE 2025.2, página anterior às questões) não está no texto_da_prova nem no print da questão, que mostra só o enunciado e as alternativas; refazer o print ou a transcrição com o texto, a partir do PDF oficial. Prova sem gabarito definitivo: depois, gabarito do Aprendice às cegas. |
+| P52d5be57 | UECE 2026 2026.1 – 1ª fase · questão 78 | I01.3 informação explícita (tema I01 Leitura e interpretação de textos) | print: o texto de apoio em inglês (UECE 2026.1, página anterior às questões) não está no texto_da_prova nem no print da questão, que mostra só o enunciado e as alternativas; refazer o print ou a transcrição com o texto, a partir do PDF oficial. |
+| P45b10618 | UECE 2026 2026.1 – 1ª fase · questão 79 | I01.3 informação explícita (tema I01 Leitura e interpretação de textos) | print: o texto de apoio em inglês (UECE 2026.1, página anterior às questões) não está no texto_da_prova nem no print da questão, que mostra só o enunciado e as alternativas; refazer o print ou a transcrição com o texto, a partir do PDF oficial. |
+| P8e288415 | UECE 2026 2026.1 – 1ª fase · questão 80 | I01.4 inferência e sentido implícito (tema I01 Leitura e interpretação de textos) | print: o texto de apoio em inglês (UECE 2026.1, página anterior às questões) não está no texto_da_prova nem no print da questão, que mostra só o enunciado e as alternativas; refazer o print ou a transcrição com o texto, a partir do PDF oficial. |
+| P6ca01ffd | UECE 2026 2026.1 – 1ª fase · questão 81 | I01.3 informação explícita (tema I01 Leitura e interpretação de textos) | print: o texto de apoio em inglês (UECE 2026.1, página anterior às questões) não está no texto_da_prova nem no print da questão, que mostra só o enunciado e as alternativas; refazer o print ou a transcrição com o texto, a partir do PDF oficial. |
+| P2924ee9f | UECE 2026 2026.1 – 1ª fase · questão 82 | I01.3 informação explícita (tema I01 Leitura e interpretação de textos) | print: o texto de apoio em inglês (UECE 2026.1, página anterior às questões) não está no texto_da_prova nem no print da questão, que mostra só o enunciado e as alternativas; refazer o print ou a transcrição com o texto, a partir do PDF oficial. |
+| Pcf4bf745 | UECE 2026 2026.1 – 1ª fase · questão 83 | I01.3 informação explícita (tema I01 Leitura e interpretação de textos) | print: o texto de apoio em inglês (UECE 2026.1, página anterior às questões) não está no texto_da_prova nem no print da questão, que mostra só o enunciado e as alternativas; refazer o print ou a transcrição com o texto, a partir do PDF oficial. |
+| P523134b9 | UECE 2026 2026.1 – 1ª fase · questão 84 | I01.3 informação explícita (tema I01 Leitura e interpretação de textos) | print: o texto de apoio em inglês (UECE 2026.1, página anterior às questões) não está no texto_da_prova nem no print da questão, que mostra só o enunciado e as alternativas; refazer o print ou a transcrição com o texto, a partir do PDF oficial. |
+| P415f0b80 | UEMA 2021 PAES · questão 10 | I01.4 inferência e sentido implícito (tema I01 Leitura e interpretação de textos) | print: a questão pede informação de um texto de apoio que não está no texto_da_prova nem no print (que mostra só o enunciado e as alternativas). Refazer o print com o texto, a partir do caderno oficial da UEMA PAES 2021 (texto sobre Norman Borlaug e seus críticos). |
+| Pe3f188ad | UEMA 2021 PAES · questão 53 | I01.3 informação explícita (tema I01 Leitura e interpretação de textos) | print: a questão pergunta por que donos de animais corriam risco na Inglaterra dos séculos XVI e XVII, mas o texto de apoio não está no texto_da_prova nem no print (que mostra só o enunciado e as alternativas). Refazer o print com o texto, a partir do caderno oficial da UEMA PAES 2021. |
+| Pdb725a03 | UEMA 2021 PAES · questão 54 | I01.4 inferência e sentido implícito (tema I01 Leitura e interpretação de textos) | print: a questão pede informação de um texto de apoio que não está no texto_da_prova nem no print (que mostra só o enunciado e as alternativas). Refazer o print com o texto, a partir do caderno oficial da UEMA PAES 2021 (texto sobre animais e julgamentos na Inglaterra dos séculos XVI e XVII). |
+| Pe3636adf | UEMA 2021 PAES · questão 9 | I01.3 informação explícita (tema I01 Leitura e interpretação de textos) | print: a questão pede um procedimento orgânico citado num texto sobre agricultura que não está no texto_da_prova nem no print (que mostra só o enunciado e as alternativas). Refazer o print com o texto de apoio, a partir do caderno oficial da UEMA PAES 2021. |
+| Pbd105de7 | UEMA 2022 PAES · questão 16 | I01.8 tirinha, cartum, charge e meme (tema I01 Leitura e interpretação de textos) | print: a questão pede informação de um texto de apoio que não está no texto_da_prova nem no print (que mostra só o enunciado e as alternativas). Refazer o print com o texto, a partir do caderno oficial da UEMA PAES 2022 (o texto “The Basics of Law”, sobre Jim, Bill e o barco). |
+| P5ccce71c | UEMA 2024 PAES · questão 16 | I01.4 inferência e sentido implícito (tema I01 Leitura e interpretação de textos) | print: a questão pede informação de um texto de apoio que não está no texto_da_prova nem no print (que mostra só o enunciado e as alternativas). Refazer o print com o texto, a partir do caderno oficial da UEMA PAES 2024 (texto sobre Phoebe e o bullying). |
+| P3ade0003 | UEMA 2026 PAES · questão 16 | I01.4 inferência e sentido implícito (tema I01 Leitura e interpretação de textos) | print: a questão pede informação de um texto de apoio que não está no texto_da_prova nem no print (que mostra só o enunciado e as alternativas). Refazer o print com o texto, a partir do caderno oficial da UEMA PAES 2026 (texto sobre envelhecer e amizades). |
+| P0c3bf8a5 | UERR 2026 · questão 13 | I01.3 informação explícita (tema I01 Leitura e interpretação de textos) | print: a questão pede o motivo de o príncipe Harry não ficar num palácio, mas o texto de apoio (Buckingham Palace says Prince Harry will not stay at palace) não está no texto_da_prova nem no print, que mostra outro texto (o do macaco do Congo). Refazer o print com o texto certo, a partir do caderno oficial da UERR 2026. |
+| P9e4fe442 | UFRR 2024 Vestibular 2024 – Prova Integral · questão 71 | I01.6 opinião, tom e atitude do autor (tema I01 Leitura e interpretação de textos) | print: o texto de apoio (TEXTO V, 'What's in your go bag for the apocalypse?', Emma Beddington, The Guardian, seção Opinion / Life and style, 24/09/2023) não está no texto_da_prova nem no 071.webp; está no print 070.webp (parte de cima, antes da questão 70) e no prova.json da ufrr-2024, questão 70. Refazer o print da 71 juntando o TEXTO V. |
+| P315368d9 | UFRR 2026 Vestibular 2026 – Prova Integral · questão 65 | I01.1 tema e ideia principal (tema I01 Leitura e interpretação de textos) | print: a questão pede o sonho de Martin Luther King Jr. no quarto parágrafo de um texto que não está no texto_da_prova nem no print (que mostra só o enunciado e as alternativas). Refazer o print com o texto de apoio. Prova sem gabarito definitivo (gabarito do Aprendice depois). Atenção: discurso protegido; citar só poucas palavras. |
+| Pffee7437 | UFRR 2026 Vestibular 2026 – Prova Integral · questão 72 | I01.8 tirinha, cartum, charge e meme (tema I01 Leitura e interpretação de textos) | print: a questão pede informação de um texto de apoio que não está no texto_da_prova nem no print (que mostra só o enunciado e as alternativas). Refazer o print com o texto, a partir do caderno oficial da UFRR 2026 (a tirinha de Terry e o pai, com a estrela cadente, que está no print 071.webp, TEXT III; refazer o 072 juntando-a). |
+| P5849ee3c | UNIRG 2024 Medicina 2024/1 · questão 12 | I01.5 título, fonte e imagem como pista de leitura (tema I01 Leitura e interpretação de textos) | print: a questão pede informação de um texto de apoio que não está no texto_da_prova nem no print (que mostra só o enunciado e as alternativas). Refazer o print com o texto, a partir do caderno oficial da UNIRG Medicina 2024/1 (as duas imagens de pacientes que a questão 12 compara). As duas imagens estão no fim do print 011.webp; refazer o 012 juntando-as. |
+| P4ace9dcd | Unespar 2023 Grupo I · questão 1 | I01.3 informação explícita (tema I01 Leitura e interpretação de textos) | print: a questão pede o que é correto sobre um texto a respeito da série Bluey, mas o texto de apoio não está no texto_da_prova nem no print (que mostra só o enunciado e as alternativas). Refazer o print com o texto, a partir do caderno oficial da Unespar 2023 (o print da questão 2 tem só frases soltas do texto). |
+| P62ca9403 | Unespar 2023 Grupo I · questão 3 | I01.3 informação explícita (tema I01 Leitura e interpretação de textos) | print: a questão pede para associar frases a Desiree e Magdalena (Textos II e III, perfis profissionais), mas os textos não estão no texto_da_prova nem no print da questão 3; eles aparecem só no print da questão 2 da Unespar 2023. Refazer o print ou a transcrição com os Textos II e III. |
+| Pe92ce2de | Unespar 2023 Grupo I · questão 4 | I01.3 informação explícita (tema I01 Leitura e interpretação de textos) | print: a questão pede o gênero dos Textos II e III (perfis profissionais de Desiree e Magdalena), mas os textos não estão no texto_da_prova nem no print da questão 4; eles aparecem só no print da questão 2 da Unespar 2023. Refazer o print ou a transcrição com os Textos II e III. |
+
+## Divergências de gabarito (o dono decide)
+
+Nenhuma.

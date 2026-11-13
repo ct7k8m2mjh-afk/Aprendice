@@ -1,0 +1,693 @@
+{
+ "P2077456f": {
+  "n": "15",
+  "conceito": "Cubos perfeitos de quatro algarismos e palíndromos.",
+  "equivocos": {
+   "B": "M01.4:sem-origem-identificada",
+   "C": "M01.4:sem-origem-identificada",
+   "D": "M01.4:sem-origem-identificada",
+   "E": "M01.4:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os cubos de quatro algarismos vão de 10³ = 1 000 a 21³ = 9 261 (22³ = 10 648 já tem cinco). Basta listar esses 12 cubos e ver qual se lê igual de trás para frente.",
+    "formulas": [
+     "10³ = 1 000",
+     "21³ = 9 261",
+     "22³ = 10 648"
+    ],
+    "simbolos": []
+   },
+   "pista": "Quais inteiros têm cubo entre 1 000 e 9 999? Liste os cubos.",
+   "passos": [
+    {
+     "faz": "Limites",
+     "conta": "10³ = 1 000 e 21³ = 9 261 < 9 999 < 22³",
+     "porque": "Bases de 10 a 21.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Listar",
+     "conta": "1000, 1331, 1728, 2197, 2744, 3375, 4096, 4913, 5832, 6859, 8000, 9261",
+     "porque": "Cubos de 10 a 21.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Palíndromo",
+     "conta": "1331 = 11³",
+     "porque": "Único que se lê igual nos dois sentidos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Soma dos algarismos",
+     "conta": "1 + 3 + 3 + 1 = 8 → alternativa A",
+     "porque": "Pedido.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 8",
+   "checagem": "Em abba, o primeiro algarismo é igual ao último. Entre os 12 cubos, só 1 331 tem o primeiro igual ao último (1 000 começa por 1 e termina em 0; 9 261 começa por 9 e termina em 1; nos outros também não coincidem), e os do meio, 3 e 3, também são iguais. Soma 1 + 3 + 3 + 1 = 8. Confere.",
+   "erradas": {
+    "B": "10 não é a soma dos algarismos de nenhum cubo palíndromo; 1 331 é o único.",
+    "C": "12 não sai de 1 331 (1 + 3 + 3 + 1 = 8).",
+    "D": "14 não é a soma dos algarismos de nenhum cubo de quatro algarismos; 14 é a base de 2 744 = 14³, cuja soma é 17, e 2 744 não é palíndromo.",
+    "E": "16 não sai de 1 331."
+   },
+   "armadilha": "Achar que não há cubo palíndromo e chutar; 11³ = 1 331 é palíndromo, como as potências de 11 pequenas (121, 1 331).",
+   "alerta": "",
+   "essencial": {
+    "pede": "Soma dos algarismos.",
+    "chave": "Único cubo palíndromo de 4 algarismos: 1 331 = 11³.",
+    "cuidado": "Palíndromo de 4 algarismos é múltiplo de 11."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "múltiplo de 11",
+    "ideia": "Todo palíndromo abba vale 1001a + 110b = 11(91a + 10b), múltiplo de 11. Se é cubo, a base é múltipla de 11; entre 10 e 21 só há o 11: 11³ = 1 331, soma 8."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "10³ a 21³",
+    "nota": "cubos com 4 algarismos"
+   },
+   {
+    "linha": "1331 = 11³",
+    "nota": "palíndromo"
+   },
+   {
+    "linha": "1 + 3 + 3 + 1 = 8",
+    "nota": "resposta"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0044"
+  }
+ },
+ "P34f73afb": {
+  "n": "11",
+  "conceito": "Movimento relativo de ponteiros trocados: achar o primeiro instante em que as duas posições voltam a coincidir com as corretas.",
+  "equivocos": {
+   "A": "M04.5:intervalo-antes-da-coincidencia",
+   "C": "M04.5:intervalo-errado",
+   "D": "M04.5:segunda-coincidencia",
+   "E": "M04.5:intervalo-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Com os ponteiros trocados, o ponteiro curto gira 360° por hora e o longo gira 30° por hora. O relógio marca a hora certa quando cada ponteiro está onde deveria estar. Basta exigir que o ponteiro curto (que deveria andar 30° por hora) esteja na mesma posição em que estaria se andasse certo, a menos de voltas inteiras.",
+    "formulas": [
+     "ângulo do ponteiro = ângulo inicial + velocidade · tempo",
+     "mesma posição: diferença de ângulos = 360° · k"
+    ],
+    "simbolos": [
+     [
+      "t",
+      "tempo decorrido desde as 4 h, em horas"
+     ],
+     [
+      "k",
+      "número inteiro de voltas"
+     ]
+    ]
+   },
+   "pista": "Escreva onde o ponteiro curto está de fato e onde ele deveria estar depois de t horas.",
+   "passos": [
+    {
+     "faz": "Anote as velocidades trocadas",
+     "conta": "curto: 360°/h | longo: 30°/h",
+     "porque": "O curto ganhou a velocidade do ponteiro dos minutos, e o longo, a do ponteiro das horas.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Iguale a posição real e a correta",
+     "conta": "120 + 360t = 120 + 30t + 360k",
+     "porque": "Às 4 h o curto aponta para o 4 (120°). Para a hora estar certa, ele deve estar onde estaria andando a 30°/h, a menos de voltas completas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole t",
+     "conta": "330t = 360k → t = 12k/11",
+     "porque": "Tire 120 e 30t dos dois lados (360 − 30 = 330) e divida por 330: 360/330 = 12/11.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tome a primeira vez",
+     "conta": "k = 1 → t = 12/11 h ≈ 1 h 05 min 27 s",
+     "porque": "k = 0 é o próprio instante das 4 h; a primeira vez seguinte é k = 1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some às 4 h",
+     "conta": "4 h + 1 h 05 min ≈ 5 h 05 min → alternativa B",
+     "porque": "5 h 05 min está entre 5 h e 5 h 30 min.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 5h ⩽ t < 5h30min",
+   "checagem": "Teste em t = 12/11 h: o curto andou 360 · 12/11 ≈ 392,7°, ou seja, uma volta mais 32,7°, e o correto seria 30 · 12/11 ≈ 32,7°. Fecha.",
+   "erradas": {
+    "A": "4h30min a 5h não confere: em t = 0,5 h o curto andou 180° e deveria ter andado 15°; a primeira coincidência só vem em 12/11 h, depois das 5 h.",
+    "C": "5h30min a 6h não confere: a coincidência acontece antes, às 4 h + 12/11 h ≈ 5 h 05 min.",
+    "D": "6h a 6h30min não confere: esse intervalo contém a segunda coincidência (k = 2, t = 24/11 h ≈ 2 h 11 min, às 6 h 11 min), não a primeira.",
+    "E": "6h30min a 7h10min não confere: a primeira vez é em 12/11 h ≈ 1 h 05 min depois das 4 h, bem antes das 6 h 30 min."
+   },
+   "armadilha": "A primeira vez é k = 1: a diferença de velocidade, 330° por hora, precisa completar só uma volta.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O intervalo que contém o primeiro horário em que o relógio trocado marca a hora certa.",
+    "chave": "330t = 360 dá t = 12/11 h ≈ 1 h 05 min; somado às 4 h, cerca de 5 h 05 min.",
+    "cuidado": "A coincidência depende da diferença de velocidades (330°/h), não da soma."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "encontro de ponteiros",
+    "ideia": "É como dois ponteiros num relógio normal: a diferença de velocidades, 330°/h, precisa fechar uma volta de 360°, o que leva 360/330 = 12/11 h."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "120 + 360t = 120 + 30t + 360",
+    "nota": "posição real = posição correta + 1 volta"
+   },
+   {
+    "linha": "330t = 360",
+    "nota": "tira 120 e 30t dos dois lados"
+   },
+   {
+    "linha": "t = 360/330 = 12/11",
+    "nota": "divide por 330"
+   },
+   {
+    "linha": "12/11 · 60 = 65,45",
+    "nota": "em minutos: cerca de 1 h 05 min"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0053"
+  }
+ },
+ "P24753958": {
+  "n": "13",
+  "conceito": "Equação exponencial com bases diferentes reduzida, por fatoração, a uma equação do 2º grau numa razão de potências.",
+  "equivocos": {
+   "B": "M06.2:parou-na-variavel-auxiliar",
+   "C": "M06.2:solucao-nao-confere",
+   "D": "M06.2:solucao-nao-confere",
+   "E": "M06.2:solucao-nao-confere"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "As quatro bases são produtos de 2 e 3: 144 = 2^4 × 3^2, 324 = 2^2 × 3^4, 64 = 2^6 e 729 = 3^6. Chamando p = 4^x e q = 9^x, o numerador vira pq(p + q) e o denominador vira p^3 + q^3 = (p + q)(p^2 − pq + q^2). O fator (p + q) cancela e sobra uma equação na razão t = p/q.",
+    "formulas": [
+     "p^3 + q^3 = (p + q)(p^2 − pq + q^2)",
+     "t = p/q = (4/9)^x = (2/3)^(2x)"
+    ],
+    "simbolos": [
+     [
+      "p",
+      "4^x, que é 2^(2x)"
+     ],
+     [
+      "q",
+      "9^x, que é 3^(2x)"
+     ],
+     [
+      "t",
+      "a razão p/q, sempre positiva"
+     ]
+    ]
+   },
+   "pista": "Escreva cada base como produto de potências de 2 e de 3 e procure um fator comum.",
+   "passos": [
+    {
+     "faz": "Reescreva com p = 4^x e q = 9^x",
+     "conta": "144^x = p^2 × q | 324^x = p × q^2 | 64^x = p^3 | 729^x = q^3",
+     "porque": "144 = 16 × 9 e 324 = 4 × 81; 64 = 4^3 e 729 = 9^3.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Fatore e cancele p + q",
+     "conta": "pq(p + q)/((p + q)(p^2 − pq + q^2)) = 6/7 → pq/(p^2 − pq + q^2) = 6/7",
+     "porque": "Soma de cubos tem o fator p + q, que também está no numerador; p + q > 0, então pode cancelar.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida por q^2 e use t = p/q",
+     "conta": "t/(t^2 − t + 1) = 6/7 → 7t = 6(t^2 − t + 1) → 6t^2 − 13t + 6 = 0",
+     "porque": "Multiplicação cruzada e tudo para um lado.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva em t e volte para x",
+     "conta": "t = 3/2 ou t = 2/3 | (2/3)^(2x) = 3/2 → x = −1/2 | (2/3)^(2x) = 2/3 → x = 1/2",
+     "porque": "Δ = 169 − 144 = 25, raízes (13 ± 5)/12. Como 3/2 = (2/3)^(−1), 2x = −1; e 2x = 1 na outra.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some os módulos",
+     "conta": "|−1/2| + |1/2| = 1 → alternativa A",
+     "porque": "A pergunta é a soma dos módulos das soluções reais.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 1",
+   "checagem": "Teste x = 1/2: (12 + 18)/(8 + 27) = 30/35 = 6/7. Teste x = −1/2: (1/12 + 1/18)/(1/8 + 1/27) = (5/36)/(35/216) = 6/7. Os dois fecham.",
+   "erradas": {
+    "B": "2 sai de parar em 2x = ±1 e somar os módulos de 2x: 1 + 1 = 2. A incógnita é x, então cada módulo vale 1/2.",
+    "C": "3 não confere: as únicas soluções reais são 1/2 e −1/2, e a soma dos módulos é 1.",
+    "D": "8 não confere: as únicas soluções reais são 1/2 e −1/2, e a soma dos módulos é 1.",
+    "E": "9 não confere: as únicas soluções reais são 1/2 e −1/2, e a soma dos módulos é 1."
+   },
+   "armadilha": "Depois de achar t, ainda falta voltar para x: (2/3)^(2x) tem o 2 no expoente.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A soma dos módulos das soluções reais de (144^x + 324^x)/(64^x + 729^x) = 6/7.",
+    "chave": "Com p = 4^x e q = 9^x, cancela p + q e sai 6t^2 − 13t + 6 = 0; x = ±1/2.",
+    "cuidado": "Volte de t para x lembrando que t = (2/3)^(2x)."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "simetria",
+    "ideia": "Trocar x por −x troca t por 1/t, e a equação t/(t^2 − t + 1) não muda; as soluções vêm aos pares ±x, e x = 1/2 se acha testando."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "pq(p + q)/(p^3 + q^3) = 6/7",
+    "nota": "p = 4^x, q = 9^x"
+   },
+   {
+    "linha": "pq/(p^2 − pq + q^2) = 6/7",
+    "nota": "cancela p + q"
+   },
+   {
+    "linha": "t/(t^2 − t + 1) = 6/7",
+    "nota": "divide por q^2"
+   },
+   {
+    "linha": "7 × t = 6 × (t^2 − t + 1)",
+    "nota": "multiplicação cruzada"
+   },
+   {
+    "linha": "6t^2 − 13t + 6 = 0",
+    "nota": "tudo para um lado"
+   },
+   {
+    "linha": "t = 3/2 ou t = 2/3",
+    "nota": "Δ = 25"
+   },
+   {
+    "linha": "x = −1/2 ou x = 1/2",
+    "nota": "(2/3)^(2x) = t"
+   },
+   {
+    "linha": "1/2 + 1/2 = 1",
+    "nota": "soma dos módulos"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0057"
+  }
+ },
+ "Pcc9787ed": {
+  "n": "8",
+  "conceito": "Paridade de uma função logarítmica: comparar f(−x) com f(x) usando o produto conjugado.",
+  "equivocos": {
+   "A": "M06.3:paridade-trocada",
+   "C": "M06.3:esqueceu-x-negativo",
+   "D": "M06.3:numero-de-raizes-errado",
+   "E": "M06.3:esqueceu-raiz-zero"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Para saber se f é par ou ímpar, calcule f(−x). O truque é o produto (√(x^2 + 1) − x)(√(x^2 + 1) + x) = x^2 + 1 − x^2 = 1: os dois fatores são inversos, e log do inverso é o oposto do log.",
+    "formulas": [
+     "par: f(−x) = f(x); ímpar: f(−x) = −f(x)",
+     "(√(x^2 + 1) − x)(√(x^2 + 1) + x) = 1",
+     "log (1/A) = −log A"
+    ],
+    "simbolos": [
+     [
+      "função par",
+      "gráfico simétrico em relação ao eixo y"
+     ],
+     [
+      "função ímpar",
+      "gráfico simétrico em relação à origem"
+     ]
+    ]
+   },
+   "pista": "Calcule f(−x) e multiplique o que fica dentro do log pelo seu conjugado.",
+   "passos": [
+    {
+     "faz": "Escreva f(−x)",
+     "conta": "f(−x) = log (√(x^2 + 1) − x)",
+     "porque": "Trocar x por −x muda o sinal do primeiro termo; x^2 não muda.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Use o produto conjugado",
+     "conta": "(√(x^2 + 1) − x)(√(x^2 + 1) + x) = x^2 + 1 − x^2 = 1",
+     "porque": "Produto da soma pela diferença.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Reescreva f(−x)",
+     "conta": "f(−x) = log (1/(x + √(x^2 + 1))) = −log (x + √(x^2 + 1)) = −f(x)",
+     "porque": "Se o produto é 1, um fator é o inverso do outro; log do inverso é o oposto.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Elimine as outras",
+     "conta": "f(0) = log 1 = 0 | f(−1) ≈ −0,383 ≠ f(1) ≈ 0,383",
+     "porque": "Isso derruba \"par\" e \"não tem raiz\"; f é crescente, então tem só uma raiz.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "f(−x) = −f(x) → f é ímpar → alternativa B",
+     "porque": "É a definição de função ímpar.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — f(x) é uma função ímpar.",
+   "checagem": "Numericamente: f(2) = log (2 + √5) ≈ 0,627 e f(−2) = log (√5 − 2) ≈ −0,627. Valores opostos, como numa função ímpar.",
+   "erradas": {
+    "A": "Não confere: f(1) = log (1 + √2) ≈ 0,383 e f(−1) = log (√2 − 1) ≈ −0,383; são opostos, não iguais.",
+    "C": "Não confere: para x = −1, f(−2) ≈ −0,627 é menor que f(−1) ≈ −0,383, e não maior.",
+    "D": "Não confere: f é crescente, então tem uma raiz só, x = 0.",
+    "E": "Não confere: f(0) = log (0 + 1) = log 1 = 0, então x = 0 é raiz."
+   },
+   "armadilha": "x + √(x^2 + 1) e √(x^2 + 1) − x são inversos: é isso que faz f(−x) = −f(x).",
+   "alerta": "",
+   "essencial": {
+    "pede": "Qual propriedade vale para f(x) = log(x + √(x^2 + 1)).",
+    "chave": "(√(x^2 + 1) − x)(√(x^2 + 1) + x) = 1, logo f(−x) = −f(x): f é ímpar.",
+    "cuidado": "Teste x negativo também ao julgar afirmações do tipo \"para todo x\"."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "soma",
+    "ideia": "f(x) + f(−x) = log [(x + √(x^2 + 1))(√(x^2 + 1) − x)] = log 1 = 0, logo f(−x) = −f(x)."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "f(−x) = log (√(x^2 + 1) − x)",
+    "nota": "troca x por −x"
+   },
+   {
+    "linha": "(√(x^2 + 1) − x)(√(x^2 + 1) + x) = 1",
+    "nota": "conjugado"
+   },
+   {
+    "linha": "f(−x) = log (1/(x + √(x^2 + 1)))",
+    "nota": "inverso"
+   },
+   {
+    "linha": "f(−x) = −f(x)",
+    "nota": "log do inverso: f é ímpar"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0057"
+  }
+ },
+ "Pb66b6ca6": {
+  "n": "12",
+  "conceito": "Ângulos com incentro e ex-incentro: BÎC = 90° + Â/2 e AĜC = B̂/2.",
+  "equivocos": {
+   "A": "M09.5:angulo-do-ex-incentro-errado",
+   "B": "M09.5:angulo-do-ex-incentro-errado",
+   "D": "M09.5:angulo-do-ex-incentro-errado",
+   "E": "M09.5:angulo-do-ex-incentro-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O incentro I é o encontro das bissetrizes internas; o ex-incentro G relativo a BC é o encontro da bissetriz interna de A com as bissetrizes externas de B e C. Escreva cada ângulo pedido em função de Â, B̂ e Ĉ, some e use Â + B̂ + Ĉ = 180°.",
+    "formulas": [
+     "no triângulo BIC: BÎC = 180° − B̂/2 − Ĉ/2 = 90° + Â/2",
+     "no triângulo AGC: AĜC = 180° − Â/2 − (Ĉ + (180° − Ĉ)/2) = B̂/2"
+    ],
+    "simbolos": [
+     [
+      "I",
+      "incentro: encontro das bissetrizes internas"
+     ],
+     [
+      "G",
+      "ex-incentro relativo a BC: fica do outro lado de BC, na bissetriz interna de A e nas bissetrizes externas de B e C"
+     ],
+     [
+      "Â, B̂, Ĉ",
+      "ângulos internos do triângulo ABC"
+     ]
+    ]
+   },
+   "pista": "Escreva BÎC e AĜC só com os ângulos do triângulo, usando que G está na bissetriz de A e na bissetriz externa de C.",
+   "passos": [
+    {
+     "faz": "Calcule BÎC",
+     "conta": "BÎC = 180° − B̂/2 − Ĉ/2 → BÎC = 90° + Â/2",
+     "porque": "No triângulo BIC, os ângulos em B e C são metades de B̂ e Ĉ; e B̂/2 + Ĉ/2 = 90° − Â/2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule AĜC",
+     "conta": "AĜC = 180° − Â/2 − (90° + Ĉ/2) → AĜC = B̂/2",
+     "porque": "Em AGC, o ângulo em A é Â/2 (bissetriz interna) e o ângulo em C é Ĉ mais metade do externo, Ĉ + (180° − Ĉ)/2 = 90° + Ĉ/2. Sobra 90° − (Â + Ĉ)/2 = B̂/2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some e iguale a 155°",
+     "conta": "90° + Â/2 + B̂/2 = 155° → (Â + B̂)/2 = 65° → Â + B̂ = 130°",
+     "porque": "A soma é dada no enunciado.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache Ĉ pela soma dos ângulos",
+     "conta": "Ĉ = 180° − 130° → Ĉ = 50°",
+     "porque": "Os ângulos internos somam 180°.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o valor à alternativa",
+     "conta": "AĈB = 50° → alternativa C",
+     "porque": "AĈB é o ângulo Ĉ do triângulo.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 50°",
+   "checagem": "Num triângulo com Â = 70°, B̂ = 60° e Ĉ = 50°: BÎC = 90° + 35° = 125° e AĜC = 60° ÷ 2 = 30°; soma 155°.",
+   "erradas": {
+    "A": "30° não confere: a soma vale 180° − Ĉ/2, e com Ĉ = 30° daria 165°, não 155°.",
+    "B": "45° não confere: 180° − 45° ÷ 2 = 157,5°, não 155°.",
+    "D": "60° não confere: 180° − 60° ÷ 2 = 150°, não 155°.",
+    "E": "90° não confere: 180° − 90° ÷ 2 = 135°, não 155°."
+   },
+   "armadilha": "Confundir AĜC com BĜC: o ângulo pedido tem vértice em G entre A e C, e vale B̂/2, não 90° − Â/2.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O ângulo Ĉ, sabendo que BÎC + AĜC = 155°.",
+    "chave": "BÎC = 90° + Â/2 e AĜC = B̂/2; a soma é 180° − Ĉ/2 = 155°, logo Ĉ = 50°.",
+    "cuidado": "No ex-incentro, o ângulo em C do triângulo AGC é Ĉ mais metade do ângulo externo."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "fórmula pronta",
+    "ideia": "BÎC + AĜC = 90° + Â/2 + B̂/2 = 180° − Ĉ/2; igualando a 155°, Ĉ = 50°."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "BÎC = 180° − B̂/2 − Ĉ/2 = 90° + Â/2",
+    "nota": "triângulo BIC"
+   },
+   {
+    "linha": "AĜC = 180° − Â/2 − (90° + Ĉ/2) = B̂/2",
+    "nota": "triângulo AGC"
+   },
+   {
+    "linha": "90° + Â/2 + B̂/2 = 155°",
+    "nota": "somou e igualou"
+   },
+   {
+    "linha": "Â + B̂ = 130°",
+    "nota": "isolou a soma"
+   },
+   {
+    "linha": "Ĉ = 180° − 130° = 50°",
+    "nota": "soma dos ângulos internos"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0062"
+  }
+ },
+ "Pe05c7e01": {
+  "n": "4",
+  "conceito": "Equação com arco tangente: tangente da soma, equação do 2.º grau e descarte da raiz estranha.",
+  "equivocos": {
+   "A": "M10.4:nao-testou-raiz-estranha",
+   "B": "M10.4:sinal-das-raizes-errado",
+   "C": "M10.4:sinal-das-raizes-errado",
+   "E": "M10.4:descartou-a-raiz-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Aplicar a tangente aos dois lados transforma a equação numa equação do 2.º grau, mas essa operação pode criar soluções falsas: dois arcos diferentes por π têm a mesma tangente. Por isso cada raiz tem de ser testada na equação original. A soma arctg(z) + arctg(z + 1) cresce com z, então só pode haver uma solução.",
+    "formulas": [
+     "tg(a + b) = (tg a + tg b)/(1 − tg a · tg b)",
+     "arctg(x) está entre −π/2 e π/2 e tem o sinal de x"
+    ],
+    "simbolos": [
+     [
+      "arctg(x)",
+      "arco tangente de x: o ângulo entre −π/2 e π/2 cuja tangente é x"
+     ],
+     [
+      "raiz estranha",
+      "solução da equação transformada que não satisfaz a original"
+     ]
+    ]
+   },
+   "pista": "Tome a tangente dos dois lados e use a fórmula da tangente da soma; depois teste o sinal de cada raiz.",
+   "passos": [
+    {
+     "faz": "Tire a tangente dos dois lados",
+     "conta": "(z + (z + 1))/(1 − z(z + 1)) = 4/3",
+     "porque": "tg(arctg z) = z e tg(arctg(z + 1)) = z + 1; a tangente da soma junta os dois.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique cruzado e organize",
+     "conta": "3(2z + 1) = 4(1 − z² − z) → 6z + 3 = 4 − 4z² − 4z → 4z² + 10z − 1 = 0",
+     "porque": "O 3 e o denominador trocam de lado multiplicando; depois tudo vai para o 1.º membro.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva a equação do 2.º grau",
+     "conta": "z = (−10 ± √116)/8 → z = (−5 ± √29)/4 → z ≈ 0,096 ou z ≈ −2,596",
+     "porque": "Δ = 100 + 16 = 116 = 4 · 29, e o 2 da raiz simplifica com o 8.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste a raiz negativa",
+     "conta": "z ≈ −2,596: arctg(−2,596) + arctg(−1,596) < 0 | arctg(4/3) > 0",
+     "porque": "Com z e z + 1 negativos, os dois arcos são negativos e a soma também; o lado direito é positivo. A raiz é estranha.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "única solução: z = (−5 + √29)/4 ≈ 0,096 > 0 → alternativa D",
+     "porque": "A raiz positiva satisfaz a equação original, e a negativa caiu.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — uma única solução real, positiva",
+   "checagem": "A função arctg(z) + arctg(z + 1) é crescente. Em z = 0 ela vale 0 + π/4 ≈ 0,785, menor que arctg(4/3) ≈ 0,927; em z = 1 vale π/4 + arctg 2 ≈ 1,89, maior. Então existe exatamente uma solução, entre 0 e 1.",
+   "erradas": {
+    "A": "Sai de aceitar as duas raízes de 4z² + 10z − 1 = 0 sem testar. A negativa, z ≈ −2,596, dá soma de arcos ≈ −2,21, que difere de arctg(4/3) por π.",
+    "B": "Não confere: o produto das raízes de 4z² + 10z − 1 = 0 é −1/4, negativo, então elas têm sinais opostos; não podem ser duas positivas.",
+    "C": "Não confere: pelo mesmo produto −1/4, as raízes têm sinais opostos; não podem ser duas negativas.",
+    "E": "Sai de ficar com a raiz errada: a negativa é justamente a estranha, porque soma dois arcos negativos e não chega a arctg(4/3) > 0."
+   },
+   "armadilha": "Tirar a tangente dos dois lados cria uma raiz falsa; sem testar no original, parece haver duas soluções.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantas soluções reais tem arctg(z) + arctg(z + 1) = arctg(4/3), e de que sinal.",
+    "chave": "Tangente da soma dá 4z² + 10z − 1 = 0; das raízes (−5 ± √29)/4, só a positiva satisfaz a original.",
+    "cuidado": "Teste cada raiz na equação com arcos: arcos negativos não somam um valor positivo."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "monotonia",
+    "ideia": "O lado esquerdo cresce com z e passa de 0,785 para 1,89 entre z = 0 e z = 1: uma única solução, positiva."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "(2z + 1)/(1 − z(z + 1)) = 4/3",
+    "nota": "tangente da soma"
+   },
+   {
+    "linha": "3(2z + 1) = 4(1 − z² − z)",
+    "nota": "multiplicação cruzada"
+   },
+   {
+    "linha": "4z² + 10z − 1 = 0",
+    "nota": "tudo para o 1.º membro"
+   },
+   {
+    "linha": "z = (−5 ± √29)/4",
+    "nota": "Bhaskara, Δ = 116"
+   },
+   {
+    "linha": "z ≈ −2,596: soma de arcos < 0",
+    "nota": "raiz estranha, cai"
+   },
+   {
+    "linha": "z ≈ 0,096 > 0",
+    "nota": "única solução"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0062"
+  }
+ }
+}

@@ -1,0 +1,256 @@
+{
+ "P18afea2d": {
+  "n": "42",
+  "conceito": "Inequação exponencial com base variável: separar os casos base > 1, base = 1 e 0 < base < 1.",
+  "equivocos": {
+   "A": "M04.4:ignorou-inversao-com-base-menor-que-1",
+   "B": "M04.4:esqueceu-um-caso",
+   "C": "M04.4:esqueceu-um-caso",
+   "E": "M04.4:valor-que-nao-fecha"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A base x² + x + 1 é sempre positiva, mas pode ser maior, igual ou menor que 1. Se a base é maior que 1, potência ≤ 1 pede expoente ≤ 0; se é menor que 1, pede expoente ≥ 0; se é 1, qualquer expoente serve.",
+    "formulas": [
+     "b > 1: bᵉ ≤ 1 ⇔ e ≤ 0",
+     "0 < b < 1: bᵉ ≤ 1 ⇔ e ≥ 0",
+     "b = 1: bᵉ = 1"
+    ],
+    "simbolos": [
+     [
+      "b",
+      "base x² + x + 1"
+     ],
+     [
+      "e",
+      "expoente 2x² − x − 1 = (2x + 1)(x − 1)"
+     ]
+    ]
+   },
+   "pista": "Descubra para quais x a base passa de 1: x² + x + 1 > 1 equivale a x² + x > 0.",
+   "passos": [
+    {
+     "faz": "Classifique a base",
+     "conta": "b > 1 ⇔ x < −1 ou x > 0 | b = 1 ⇔ x = −1 ou x = 0 | b < 1 ⇔ −1 < x < 0",
+     "porque": "x² + x + 1 − 1 = x(x + 1).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Estude o expoente",
+     "conta": "e = (2x + 1)(x − 1) ≤ 0 ⇔ −1/2 ≤ x ≤ 1",
+     "porque": "Raízes −1/2 e 1, parábola para cima.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Caso b > 1: e ≤ 0",
+     "conta": "(x < −1 ou x > 0) e −1/2 ≤ x ≤ 1 → 0 < x ≤ 1",
+     "porque": "Com x < −1 o expoente é positivo; não serve.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Caso b < 1: e ≥ 0",
+     "conta": "−1 < x < 0 e (x ≤ −1/2 ou x ≥ 1) → −1 < x ≤ −1/2",
+     "porque": "Base menor que 1 inverte o sentido.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Junte com b = 1 e conclua",
+     "conta": "S = [−1, −1/2] ∪ [0, 1] → alternativa D",
+     "porque": "x = −1 e x = 0 dão 1 ≤ 1 e fecham os intervalos.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — S = [−1, −1/2] ∪ [0, 1]",
+   "checagem": "Teste pontos: x = 0,5 dá 1,75⁻¹ ≈ 0,57 ≤ 1 (serve); x = −0,75 dá 0,8125^0,875 ≈ 0,83 (serve); x = −0,25 dá 0,8125^(−0,625) ≈ 1,14 (não serve).",
+   "erradas": {
+    "A": "[−1, 1] não confere: x = −0,25 está nele, mas dá base 0,8125 e expoente −0,625, potência ≈ 1,14 > 1.",
+    "B": "[−1, −1/2] sai de fazer só o caso da base menor que 1 e esquecer o caso b > 1, que dá (0, 1]; x = 0,5 serve e ficou de fora.",
+    "C": "[0, 1] sai de fazer só o caso da base maior que 1 (com x = 0) e esquecer o caso b < 1; x = −0,75 serve e ficou de fora.",
+    "E": "conjunto vazio não confere: x = 0 dá 1⁻¹ = 1 ≤ 1."
+   },
+   "armadilha": "Tratar a base como se fosse sempre maior que 1 e perder o trecho −1 < x < 0, onde a desigualdade inverte.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O conjunto solução de (x² + x + 1)^(2x² − x − 1) ≤ 1.",
+    "chave": "Base > 1 pede expoente ≤ 0; base < 1 pede expoente ≥ 0; base = 1 sempre serve.",
+    "cuidado": "Separe os casos pela base e junte no fim."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "logaritmo",
+    "ideia": "Aplicando ln: (2x² − x − 1) · ln(x² + x + 1) ≤ 0; os dois fatores têm de ter sinais opostos ou um deles zero, o que dá o mesmo conjunto."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "x² + x + 1 > 1 ⇔ x(x + 1) > 0",
+    "nota": "quando a base passa de 1"
+   },
+   {
+    "linha": "2x² − x − 1 = (2x + 1)(x − 1)",
+    "nota": "fatora o expoente"
+   },
+   {
+    "linha": "(1 + 3)/4 = 1",
+    "nota": "raiz maior do expoente"
+   },
+   {
+    "linha": "(1 − 3)/4 = −1/2",
+    "nota": "raiz menor do expoente"
+   },
+   {
+    "linha": "(2x + 1)(x − 1) ≤ 0 ⇔ −1/2 ≤ x ≤ 1",
+    "nota": "expoente ≤ 0"
+   },
+   {
+    "linha": "S = [−1, −1/2] ∪ [0, 1]",
+    "nota": "junta os casos"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0052"
+  }
+ },
+ "P9997ec7e": {
+  "n": "50",
+  "conceito": "Propriedades das diagonais de quadriláteros: o que garante losango, paralelogramo e retângulo.",
+  "equivocos": {
+   "A": "M08.2:diagonais-perpendiculares-garantem-losango",
+   "B": "M08.2:esqueceu-circunscrito-retangulo",
+   "C": "M08.2:esqueceu-areas-iguais-paralelogramo",
+   "D": "M08.2:diagonais-perpendiculares-garantem-losango"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada afirmação diz: se as diagonais têm tal propriedade, então o quadrilátero é de tal tipo. Para derrubar uma afirmação basta um contraexemplo; para aceitar, é preciso provar. Chame de O o encontro das diagonais e use os quatro pedaços OA, OB, OC e OD.",
+    "formulas": [
+     "área de um triângulo = (1/2) × lado × lado × seno do ângulo entre eles",
+     "diagonais que se cortam ao meio ⇒ paralelogramo",
+     "paralelogramo com diagonais iguais ⇒ retângulo"
+    ],
+    "simbolos": [
+     [
+      "O",
+      "ponto de encontro das diagonais AC e BD"
+     ],
+     [
+      "ortogonal",
+      "que forma ângulo de 90°"
+     ],
+     [
+      "losango",
+      "quadrilátero com os quatro lados iguais"
+     ],
+     [
+      "paralelogramo",
+      "quadrilátero com lados opostos paralelos"
+     ],
+     [
+      "sen θ",
+      "seno do ângulo θ entre as diagonais"
+     ]
+    ]
+   },
+   "pista": "Na afirmação I, tente desenhar diagonais iguais e perpendiculares que não se cortam ao meio.",
+   "passos": [
+    {
+     "faz": "Teste a I com um contraexemplo",
+     "conta": "OA = 1 | OC = 3 | OB = OD = 2 → AC = BD = 4",
+     "porque": "Com diagonais perpendiculares de 4 cada, cortando-se fora do meio de AC, AB² = 1 + 4 = 5 e BC² = 9 + 4 = 13: lados diferentes, então não é losango. A I é falsa.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Escreva as quatro áreas na II",
+     "conta": "OA·OB = OB·OC = OC·OD = OD·OA",
+     "porque": "Cada triângulo tem área (1/2)·(dois pedaços de diagonal)·sen θ, com o mesmo sen θ (ângulos opostos pelo vértice ou suplementares). Áreas iguais dão esses produtos iguais.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tire a conclusão da II",
+     "conta": "OA·OB = OB·OC → OA = OC | OB·OC = OC·OD → OB = OD",
+     "porque": "As diagonais se cortam ao meio, e quadrilátero com diagonais que se cortam ao meio é paralelogramo. A II é verdadeira.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Analise a III",
+     "conta": "OA = OB = OC = OD = R → AC = BD = 2R",
+     "porque": "O centro do círculo está à mesma distância R dos quatro vértices. Então O é o meio das duas diagonais (paralelogramo) e as diagonais são iguais: paralelogramo com diagonais iguais é retângulo. A III é verdadeira.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Junte os resultados",
+     "conta": "I falsa | II verdadeira | III verdadeira → alternativa E",
+     "porque": "Apenas II e III são verdadeiras.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — apenas II e III são verdadeiras",
+   "checagem": "Confira a II pelas alturas: os triângulos AOB e COB têm a mesma altura em relação a AC (a distância de B à reta AC); áreas iguais exigem bases iguais, OA = OC. E a III num caso concreto: no retângulo de lados 3 e 4, a diagonal mede 5 e o encontro das diagonais fica a 2,5 de cada vértice, centro do círculo de raio 2,5.",
+   "erradas": {
+    "A": "Apenas I não confere: a I é falsa (diagonais iguais e perpendiculares com OA = 1 e OC = 3 dão lados √5 e √13), e a II e a III são verdadeiras.",
+    "B": "Apenas II não confere: falta a III, que vale porque O equidistante dos quatro vértices faz as diagonais se cortarem ao meio e terem o mesmo tamanho.",
+    "C": "Apenas III não confere: falta a II, que vale porque áreas iguais forçam OA = OC e OB = OD.",
+    "D": "I e II não confere: a I é falsa; diagonais iguais e perpendiculares não precisam se cortar ao meio, e sem isso o quadrilátero pode ter lados diferentes."
+   },
+   "armadilha": "Achar que diagonais iguais e perpendiculares bastam para o losango: falta elas se cortarem ao meio.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quais das três implicações sobre diagonais de um quadrilátero convexo são verdadeiras.",
+    "chave": "Áreas iguais forçam OA = OC e OB = OD (paralelogramo); O equidistante dos vértices dá diagonais iguais que se cortam ao meio (retângulo).",
+    "cuidado": "Para cair uma afirmação basta um contraexemplo: diagonais iguais e perpendiculares fora do meio não dão losango."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "eliminação",
+    "ideia": "Achado o contraexemplo da I, restam B, C e E; provar a II e a III já leva à E."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "I: OA = 1, OC = 3, OB = OD = 2",
+    "nota": "diagonais de 4, perpendiculares"
+   },
+   {
+    "linha": "AB² = 1 + 4 = 5 | BC² = 9 + 4 = 13",
+    "nota": "lados diferentes: I falsa"
+   },
+   {
+    "linha": "OA·OB = OB·OC → OA = OC",
+    "nota": "II: áreas iguais"
+   },
+   {
+    "linha": "OB·OC = OC·OD → OB = OD",
+    "nota": "diagonais se cortam ao meio: paralelogramo"
+   },
+   {
+    "linha": "OA = OB = OC = OD = R",
+    "nota": "III: O é centro do círculo"
+   },
+   {
+    "linha": "AC = BD = 2R → retângulo",
+    "nota": "paralelogramo de diagonais iguais"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0060"
+  }
+ }
+}

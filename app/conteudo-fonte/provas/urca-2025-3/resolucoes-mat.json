@@ -1,0 +1,650 @@
+{
+ "P7341b4ca": {
+  "n": "16",
+  "conceito": "Racionalização com a fatoração da diferença de cubos.",
+  "equivocos": {
+   "A": "M01.4:sem-origem-identificada",
+   "B": "M01.4:sem-origem-identificada",
+   "C": "M01.4:nao-cancelou-o-numerador",
+   "D": "M01.4:trocou-o-sinal"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Escreva cada raiz como potência de expoente fracionário: ⁶√(p⁴) = p^(2/3) = ∛(p²); ¹⁵√((pq)⁵) = (pq)^(1/3) = ∛(pq). Chamando a = ∛p e b = ∛q, o denominador é a² + ab + b², exatamente o segundo fator de a³ − b³ = (a − b)(a² + ab + b²).",
+    "formulas": [
+     "ⁿ√(x^m) = x^(m/n)",
+     "a³ − b³ = (a − b)(a² + ab + b²)"
+    ],
+    "simbolos": [
+     [
+      "a",
+      "∛p"
+     ],
+     [
+      "b",
+      "∛q"
+     ]
+    ]
+   },
+   "pista": "Simplifique os índices das raízes: 4/6 e 5/15. Que produto notável aparece no denominador?",
+   "passos": [
+    {
+     "faz": "Simplificar raízes",
+     "conta": "⁶√(p⁴) = ∛(p²); ¹⁵√((pq)⁵) = ∛(pq); ∛(q²)",
+     "porque": "Dividir índice e expoente pelo mesmo número.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Reconhecer o fator",
+     "conta": "denominador = a² + ab + b², com a = ∛p, b = ∛q",
+     "porque": "Segundo fator da diferença de cubos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Numerador",
+     "conta": "p − q = a³ − b³ = (a − b)(a² + ab + b²)",
+     "porque": "Diferença de cubos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Cancelar",
+     "conta": "(a − b)(a² + ab + b²)/(a² + ab + b²) = a − b = ∛p − ∛q → alternativa E",
+     "porque": "Sobra a − b.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — ∛p − ∛q",
+   "checagem": "Teste com p = 8 e q = 1: ⁶√(8⁴) = 8^(2/3) = 4; ¹⁵√(8⁵) = 8^(1/3) = 2; ∛(1²) = 1. A fração vale (8 − 1)/(4 + 2 + 1) = 7/7 = 1. E ∛8 − ∛1 = 2 − 1 = 1. Confere.",
+   "erradas": {
+    "A": "(p − q)(∛p + ∛q) com p = 8, q = 1 dá 7 · 3 = 21, não 1: manteve o numerador e usou o sinal errado.",
+    "B": "(p + q)(∛p + ∛q) com p = 8, q = 1 dá 9 · 3 = 27, não 1.",
+    "C": "(p − q)(∛p − ∛q) com p = 8, q = 1 dá 7 · 1 = 7: esqueceu que o p − q se cancela.",
+    "D": "∛p + ∛q com p = 8, q = 1 dá 3, não 1: o fator é a − b, não a + b."
+   },
+   "armadilha": "Multiplicar pelo conjugado como numa raiz quadrada e não reconhecer a² + ab + b².",
+   "alerta": "",
+   "essencial": {
+    "pede": "Forma racionalizada.",
+    "chave": "Denominador = a² + ab + b² com a = ∛p, b = ∛q.",
+    "cuidado": "a³ − b³ = (a − b)(a² + ab + b²)."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "multiplicar pelo fator que falta",
+    "ideia": "Multiplique numerador e denominador por (∛p − ∛q): o denominador vira (∛p)³ − (∛q)³ = p − q, que cancela com o numerador, e sobra ∛p − ∛q."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "∛p² + ∛(pq) + ∛q²",
+    "nota": "denominador"
+   },
+   {
+    "linha": "p − q = (∛p − ∛q)(...)",
+    "nota": "diferença de cubos"
+   },
+   {
+    "linha": "∛p − ∛q",
+    "nota": "resposta"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0045"
+  }
+ },
+ "Pabf6f875": {
+  "n": "18",
+  "conceito": "Ponto de mínimo de uma soma de quadrados: o vértice fica na média dos números.",
+  "equivocos": {
+   "A": "M05.2:valor-sem-calculo",
+   "B": "M05.2:valor-sem-calculo",
+   "C": "M05.2:metade-no-lugar-da-media",
+   "E": "M05.2:valor-sem-calculo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Expandindo cada parcela (x − k)² = x² − 2kx + k², a soma vira uma quadrática com a = 100 e b = −2 · (1 + 2 + ... + 100). O xv = −b/(2a) é exatamente a média de 1 a 100.",
+    "formulas": [
+     "xv = −b/(2a)",
+     "1 + 2 + ... + 100 = 100 · 101/2 = 5 050"
+    ],
+    "simbolos": [
+     [
+      "xv",
+      "abscissa do vértice: o x onde a parábola faz a curva"
+     ],
+     [
+      "ponto de mínimo",
+      "o x em que f é menor"
+     ]
+    ]
+   },
+   "pista": "Conte quantas parcelas x² aparecem e some todos os termos com x.",
+   "passos": [
+    {
+     "faz": "Some os termos em x²",
+     "conta": "100 parcelas → a = 100",
+     "porque": "Cada (x − k)² traz um x².",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some os termos em x",
+     "conta": "b = −2 · (1 + 2 + ... + 100) = −2 · 5 050 = −10 100",
+     "porque": "Cada (x − k)² traz −2kx.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o vértice",
+     "conta": "xv = −(−10 100)/(2 · 100) = 10100/200 = 50,5",
+     "porque": "a > 0: o vértice é o ponto de mínimo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "x = 50,5",
+     "porque": "É a média de 1 a 100.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 50,5",
+   "checagem": "Por simetria: os números 1 a 100 se emparelham (1 e 100, 2 e 99, ...), e cada par tem média 50,5. O ponto que equilibra todas as distâncias é o centro, 50,5.",
+   "erradas": {
+    "A": "Não confere: xv = 10100/200 = 50,5, não 49.",
+    "B": "Não confere: 49,5 é a média de 1 a 98, não de 1 a 100.",
+    "C": "Sai de tomar a metade de 100, 100/2 = 50; a média de 1 a 100 é (1 + 100)/2 = 50,5.",
+    "E": "Não confere: xv = 50,5, menor que 51."
+   },
+   "armadilha": "Dizer que o meio de 1 a 100 é 50: a média é (1 + 100)/2 = 50,5.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O x que torna mínima a soma dos 100 quadrados.",
+    "chave": "a = 100 e b = −2 · 5 050; xv = 10100/200 = 50,5.",
+    "cuidado": "O centro de 1 a 100 é a média (1 + 100)/2."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "média",
+    "ideia": "O mínimo de Σ(x − k)² é a média dos k: (1 + 100)/2 = 50,5."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "a = 100",
+    "nota": "100 parcelas x²"
+   },
+   {
+    "linha": "b = −2 · 5 050 = −10 100",
+    "nota": "termos em x"
+   },
+   {
+    "linha": "xv = 10100/200 = 50,5",
+    "nota": "mínimo"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0055"
+  }
+ },
+ "P295f3af5": {
+  "n": "29",
+  "conceito": "Composição com funções características: acompanhar os valores 0 e 1 de dentro para fora.",
+  "equivocos": {
+   "A": "M05.5:valor-sem-calculo",
+   "C": "M05.5:parou-na-funcao-de-dentro",
+   "D": "M05.5:valor-sem-calculo",
+   "E": "M05.5:valor-sem-calculo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A função característica de um conjunto só devolve 0 ou 1. Comece por dentro: χ_Q(x) é 0 ou 1. Depois, χ_(ℝ−Q) é aplicada a 0 ou 1, que são números racionais. Por fim, p é aplicado ao que sobrou.",
+    "formulas": [
+     "χ_X(x) = 1 se x ∈ X; 0 se x ∉ X"
+    ],
+    "simbolos": [
+     [
+      "χ_X",
+      "função característica de X: 1 dentro de X, 0 fora"
+     ],
+     [
+      "Q",
+      "números racionais"
+     ],
+     [
+      "ℝ − Q",
+      "números irracionais"
+     ]
+    ]
+   },
+   "pista": "Pergunte: 0 e 1 são racionais ou irracionais?",
+   "passos": [
+    {
+     "faz": "Aplique χ_Q",
+     "conta": "χ_Q(x) ∈ {0, 1}",
+     "porque": "Qualquer que seja x, o resultado é 0 ou 1.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Aplique χ_(ℝ−Q)",
+     "conta": "0 e 1 são racionais → χ_(ℝ−Q)(0) = χ_(ℝ−Q)(1) = 0",
+     "porque": "Nenhum dos dois é irracional, então os dois vão para 0.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Aplique p",
+     "conta": "p(0) = um número fixo",
+     "porque": "Toda entrada chegou a 0, e p(0) é um valor só.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "imagem = {p(0)} → um ponto",
+     "porque": "A composição é constante.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — um ponto",
+   "checagem": "Teste dois x: x = √2 dá χ_Q = 0, χ_(ℝ−Q)(0) = 0, p(0); x = 5 dá χ_Q = 1, χ_(ℝ−Q)(1) = 0, p(0). Mesmo resultado.",
+   "erradas": {
+    "A": "Não confere: a composição está definida para todo x e devolve p(0); a imagem tem um elemento.",
+    "C": "Sai de parar em χ_Q, cuja imagem é {0, 1}, sem aplicar χ_(ℝ−Q) e p.",
+    "D": "Não confere: depois de χ_(ℝ−Q), toda entrada vira 0; p recebe só o 0.",
+    "E": "Não confere: a imagem é só {p(0)}, um único número."
+   },
+   "armadilha": "Parar na imagem de χ_Q ({0, 1}) e esquecer que 0 e 1 são racionais, o que leva os dois a 0.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A imagem de p ∘ χ_(ℝ−Q) ∘ χ_Q.",
+    "chave": "χ_Q dá 0 ou 1; ambos são racionais, χ_(ℝ−Q) dá 0; p(0) é um ponto.",
+    "cuidado": "Aplique as funções de dentro para fora."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste de valores",
+    "ideia": "Um x racional e um irracional chegam ao mesmo p(0)."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "χ_Q(x) ∈ {0, 1}",
+    "nota": "de dentro"
+   },
+   {
+    "linha": "χ_(ℝ−Q)(0) = χ_(ℝ−Q)(1) = 0",
+    "nota": "0 e 1 são racionais"
+   },
+   {
+    "linha": "p(0)",
+    "nota": "imagem com um ponto"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0056"
+  }
+ },
+ "Pb5ea9d3b": {
+  "n": "20",
+  "conceito": "Inversa de uma função com potências de 2: equação do 2º grau na variável 2^x.",
+  "equivocos": {
+   "A": "M05.5:esqueceu-o-deslocamento",
+   "B": "M05.5:esqueceu-o-deslocamento",
+   "C": "M05.5:deslocamento-com-sinal-trocado",
+   "D": "M05.5:sinal-trocado-na-raiz"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Chame y = f(x) e u = 2^x. Então 2^(x − 1) = u/2 e 2^(−x − 1) = 1/(2u). A equação vira do 2º grau em u. Como u = 2^x é sempre positivo, só a raiz positiva serve; depois, x = log₂ u.",
+    "formulas": [
+     "2^(x − 1) = 2^x/2",
+     "2^(−x − 1) = 1/(2 · 2^x)"
+    ],
+    "simbolos": [
+     [
+      "f⁻¹",
+      "função inversa de f"
+     ],
+     [
+      "u",
+      "apelido para 2^x, sempre positivo"
+     ]
+    ]
+   },
+   "pista": "Escreva y − 2 em função de u = 2^x.",
+   "passos": [
+    {
+     "faz": "Isole a parte exponencial",
+     "conta": "y − 2 = u/2 − 1/(2u) → 2(y − 2) = u − 1/u",
+     "porque": "Multiplicar por 2 limpa os denominadores 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte a equação em u",
+     "conta": "u² − 2(y − 2)u − 1 = 0",
+     "porque": "Multiplique tudo por u.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva",
+     "conta": "u = (y − 2) ± √((y − 2)² + 1)",
+     "porque": "Bhaskara com b = −2(y − 2), Δ = 4(y − 2)² + 4.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escolha a raiz positiva",
+     "conta": "√((y − 2)² + 1) > |y − 2| → só o + dá u > 0",
+     "porque": "A raiz com − daria u negativo, e 2^x > 0.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Volte para x",
+     "conta": "x = log₂((y − 2) + √((y − 2)² + 1)) → f⁻¹(x) = log₂((x − 2) + √((x − 2)² + 1))",
+     "porque": "Troque o nome da variável no fim.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — f⁻¹(x) = log₂((x − 2) + √((x − 2)² + 1))",
+   "checagem": "Teste um ponto: f(0) = 1/2 − 1/2 + 2 = 2, então f⁻¹(2) tem de dar 0. Na E: log₂(0 + √1) = log₂ 1 = 0.",
+   "erradas": {
+    "A": "Não confere: em x = 2, a A dá log₂(2 + 1) = log₂ 3, mas f⁻¹(2) = 0.",
+    "B": "Não confere: em x = 2, a B dá log₂(0 + √5) ≠ 0.",
+    "C": "Não confere: em x = 2, a C dá log₂(4 + √17) ≠ 0.",
+    "D": "Não confere: em x = 2, a D dá log₂(2 + √(−1)), que nem existe nos reais."
+   },
+   "armadilha": "Esquecer de deslocar o x pelo 2 da função: o termo +2 de f vira x − 2 dentro da inversa, inclusive dentro da raiz.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A lei da inversa de f(x) = 2^(x − 1) − 2^(−x − 1) + 2.",
+    "chave": "Com u = 2^x: u² − 2(y − 2)u − 1 = 0, raiz positiva u = (y − 2) + √((y − 2)² + 1).",
+    "cuidado": "Descarte a raiz negativa: 2^x > 0."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste de ponto",
+    "ideia": "f(0) = 2, então f⁻¹(2) = 0: só a E dá log₂ 1 = 0."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "y − 2 = u/2 − 1/(2u)",
+    "nota": "u = 2^x"
+   },
+   {
+    "linha": "u² − 2(y − 2)u − 1 = 0",
+    "nota": "multiplica por 2u"
+   },
+   {
+    "linha": "u = (y − 2) + √((y − 2)² + 1)",
+    "nota": "raiz positiva"
+   },
+   {
+    "linha": "f⁻¹(x) = log₂((x − 2) + √((x − 2)² + 1))",
+    "nota": "inversa"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0056"
+  }
+ },
+ "Pde174432": {
+  "n": "17",
+  "conceito": "Perímetro de polígono de lados perpendiculares: os lados horizontais de ida e de volta somam o mesmo, e os verticais também.",
+  "equivocos": {
+   "B": "M09.1:perimetro-sem-conferir-verticais",
+   "C": "M09.1:tratou-figura-como-retangulo",
+   "D": "M09.1:perimetro-sem-conferir-verticais",
+   "E": "M09.1:esqueceu-lados-horizontais"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Todos os ângulos da figura são retos, então cada lado é horizontal ou vertical. Ao dar a volta na figura, quanto você anda para a direita é igual ao que anda para a esquerda, e quanto sobe é igual ao que desce. Por isso não é preciso descobrir cada lado: basta saber um dos sentidos de cada direção e dobrar.",
+    "formulas": [
+     "horizontais: AB = CD + EF + GH",
+     "verticais: BC + FG = DE + HA",
+     "perímetro = 2 × AB + 2 × (DE + HA)"
+    ],
+    "simbolos": [
+     [
+      "perímetro",
+      "soma dos comprimentos de todos os lados da figura"
+     ],
+     [
+      "AB, DE, AH",
+      "comprimentos dos segmentos entre esses pontos da figura"
+     ]
+    ]
+   },
+   "pista": "Separe os lados em horizontais e verticais e pense no caminho de ida e volta em cada direção.",
+   "passos": [
+    {
+     "faz": "Some os lados horizontais",
+     "conta": "CD + EF + GH = AB = 4 → horizontais = 4 + 4 = 8",
+     "porque": "Indo de A para B você anda 4 para a direita; os outros três lados horizontais (CD, EF e GH) levam você de volta para a esquerda, então juntos medem 4.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some os lados verticais",
+     "conta": "BC + FG = DE + HA = 7 + 2 = 9 → verticais = 9 + 9 = 18",
+     "porque": "Os lados que sobem (BC e FG) cobrem a mesma altura que os que descem (DE e HA). Não importa quanto mede cada um sozinho.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Junte as duas direções",
+     "conta": "8 + 18 = 26",
+     "porque": "O perímetro é a soma de todos os lados: os horizontais mais os verticais.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "perímetro = 26 → alternativa A",
+     "porque": "A questão pede o perímetro da figura inteira, e foi isso que a soma deu.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 26",
+   "checagem": "Pense no retângulo que envolve a figura, de base AB = 4 e altura BC: os degraus do contorno só trocam de lugar alguns lados horizontais, mas a descida extra de D até E e a subida de F até G acrescentam 2 × FG. Como BC = 9 − FG, o perímetro fica 2 × 4 + 2 × (9 − FG) + 2 × FG = 26, qualquer que seja FG.",
+   "erradas": {
+    "B": "20 não confere: tirando os 8 dos lados horizontais, os verticais teriam de somar 12, mas descem 7 + 2 = 9 e sobem outros 9, total 18.",
+    "C": "22 sai de tratar a figura como um retângulo de 4 por 7: 2 × (4 + 7) = 22. Faltou a descida AH = 2, que aparece duas vezes no contorno.",
+    "D": "28 não confere: daria 20 para os verticais, mas eles somam 2 × (7 + 2) = 18.",
+    "E": "18 sai de somar só os lados verticais: 2 × (7 + 2) = 18. Os horizontais, que somam 2 × 4 = 8, ficaram de fora."
+   },
+   "armadilha": "Faltam medidas de vários lados, e quem tenta achar cada um trava; o atalho é que os lados de ida e de volta em cada direção somam o mesmo.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O perímetro da figura de ângulos retos com AB = 4, DE = 7 e AH = 2.",
+    "chave": "Horizontais somam 2 × AB = 8 e verticais somam 2 × (DE + AH) = 18; total 26.",
+    "cuidado": "Conte a descida AH e a descida DE, cada uma aparecendo também na subida correspondente."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "retângulo envolvente",
+    "ideia": "O contorno tem o perímetro do retângulo 4 por BC mais 2 × FG, e BC + FG = 9: 8 + 2 × 9 = 26."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "CD + EF + GH = AB = 4",
+    "nota": "o que vai para a esquerda volta o que foi para a direita"
+   },
+   {
+    "linha": "horizontais = 4 + 4 = 8",
+    "nota": "AB mais os três de volta"
+   },
+   {
+    "linha": "BC + FG = DE + HA = 7 + 2 = 9",
+    "nota": "o que sobe é igual ao que desce"
+   },
+   {
+    "linha": "verticais = 9 + 9 = 18",
+    "nota": "subidas mais descidas"
+   },
+   {
+    "linha": "8 + 18 = 26",
+    "nota": "perímetro"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0061"
+  }
+ },
+ "Pe726d2d7": {
+  "n": "22",
+  "conceito": "Transformar soma de cossenos em produto, fatorar a equação e contar as soluções no intervalo.",
+  "equivocos": {
+   "A": "M10.4:dividiu-por-fator-que-zera",
+   "B": "M10.4:esqueceu-um-fator",
+   "C": "M10.4:contagem-errada-de-solucoes",
+   "E": "M10.4:contagem-errada-de-solucoes"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Do lado esquerdo há uma soma de cossenos: a fórmula de prostaférese a transforma em produto, e aparece cos 2x, o mesmo do lado direito. Aí dá para colocar cos 2x em evidência: a equação vira um produto igual a zero, e cada fator dá suas soluções. A pergunta é quantas são em [0, 2π].",
+    "formulas": [
+     "cos p + cos q = 2·cos((p + q)/2)·cos((p − q)/2)",
+     "A·B = 0 ⇔ A = 0 ou B = 0"
+    ],
+    "simbolos": [
+     [
+      "prostaférese",
+      "fórmulas que transformam soma de senos ou cossenos em produto"
+     ],
+     [
+      "[0, 2π]",
+      "intervalo fechado de 0 a 2π, uma volta completa"
+     ]
+    ]
+   },
+   "pista": "Transforme cos x + cos 3x em produto e procure um fator comum com o lado direito.",
+   "passos": [
+    {
+     "faz": "Transforme a soma em produto",
+     "conta": "cos 3x + cos x → 2·cos((3x + x)/2)·cos((3x − x)/2) → 2cos 2x·cos x",
+     "porque": "(3x + x)/2 = 2x e (3x − x)/2 = x.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Passe tudo para um lado e fatore",
+     "conta": "2cos 2x·cos x = −cos 2x → 2cos 2x·cos x + cos 2x = 0 → cos 2x·(2cos x + 1) = 0",
+     "porque": "O −cos 2x passa para a esquerda como +cos 2x; cos 2x é fator comum. Não divida por cos 2x, senão perde soluções.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva cos 2x = 0",
+     "conta": "2x = π/2 + kπ → x = π/4 + kπ/2 → x = π/4, 3π/4, 5π/4, 7π/4",
+     "porque": "Com x em [0, 2π], 2x percorre [0, 4π] e passa por quatro zeros do cosseno: 4 soluções.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva 2cos x + 1 = 0",
+     "conta": "2cos x + 1 = 0 → cos x = −1/2 → x = 2π/3, 4π/3",
+     "porque": "O +1 passa como −1 e o 2 passa dividindo; cos x = −1/2 no 2º e no 3º quadrantes: 2 soluções.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte e ligue à alternativa",
+     "conta": "4 + 2 → 6 → alternativa D",
+     "porque": "As duas listas não têm valor em comum, então o total é 6.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 6",
+   "checagem": "Por polinômio em cos x: cos 3x = 4c³ − 3c e cos 2x = 2c² − 1 dão 4c³ + 2c² − 2c − 1 = 0, que fatora como (2c + 1)(2c² − 1) = 0. Então c = −1/2 (2 arcos) ou c = ±√2/2 (4 arcos): 6 soluções. Fecha.",
+   "erradas": {
+    "A": "A sai de dividir os dois lados por cos 2x: fica 2cos x = −1, com só 2 soluções, e somem as 4 de cos 2x = 0.",
+    "B": "B sai de contar só o fator cos 2x = 0, com as 4 soluções π/4, 3π/4, 5π/4 e 7π/4, esquecendo cos x = −1/2.",
+    "C": "C não confere: os dois fatores dão 4 e 2 soluções, todas diferentes, e nenhuma cai nos extremos 0 ou 2π; o total é 6.",
+    "E": "E não confere: a equação equivale a cos 2x·(2cos x + 1) = 0, e esses dois fatores só têm 6 zeros em [0, 2π]."
+   },
+   "armadilha": "Cancelar cos 2x dos dois lados: dividir por um fator que pode ser zero apaga as soluções em que ele zera.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantas soluções a equação tem em [0, 2π].",
+    "chave": "cos x + cos 3x = 2cos 2x·cos x; a equação vira cos 2x·(2cos x + 1) = 0, com 4 + 2 = 6 soluções.",
+    "cuidado": "Coloque o fator em evidência em vez de dividir por ele, e conte cos 2x = 0 numa volta de 2x que vai até 4π."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "polinômio em cos x",
+    "ideia": "Com cos 3x = 4c³ − 3c e cos 2x = 2c² − 1, sai (2c + 1)(2c² − 1) = 0: c = −1/2 ou c = ±√2/2, 2 + 4 = 6 soluções."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "cos 3x + cos x = 2cos 2x·cos x",
+    "nota": "soma em produto"
+   },
+   {
+    "linha": "2cos 2x·cos x + cos 2x = 0 → cos 2x·(2cos x + 1) = 0",
+    "nota": "fator comum"
+   },
+   {
+    "linha": "cos 2x = 0 → x = π/4, 3π/4, 5π/4, 7π/4",
+    "nota": "4 soluções"
+   },
+   {
+    "linha": "cos x = −1/2 → x = 2π/3, 4π/3",
+    "nota": "2 soluções"
+   },
+   {
+    "linha": "4 + 2 = 6",
+    "nota": "total"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0062"
+  }
+ }
+}

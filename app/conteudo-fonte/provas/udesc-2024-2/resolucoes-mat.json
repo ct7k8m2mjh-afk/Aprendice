@@ -1,0 +1,1085 @@
+{
+ "P47ecdc52": {
+  "n": "6",
+  "conceito": "Achar o tempo para um capital dobrar a juros compostos usando um logaritmo dado.",
+  "equivocos": {
+   "A": "M06.4:errou-a-conta",
+   "B": "M06.4:errou-a-conta",
+   "C": "M06.4:errou-a-conta",
+   "D": "M06.4:errou-a-conta"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Juros iguais ao capital querem dizer que o montante é o dobro do capital. Então (1,04)^n = 2. O enunciado dá o logaritmo de 26/25 na base 2, e 26/25 é exatamente 1,04. Aplique log₂ aos dois lados.",
+    "formulas": [
+     "montante = capital + juros",
+     "M = C × (1 + i)^n",
+     "26/25 = 1,04"
+    ],
+    "simbolos": [
+     [
+      "i",
+      "taxa trimestral: 4% = 0,04"
+     ],
+     [
+      "n",
+      "número de trimestres"
+     ]
+    ]
+   },
+   "pista": "Se os juros são iguais ao capital, quanto vale o montante?",
+   "passos": [
+    {
+     "faz": "Ache o montante",
+     "conta": "250 000 + 250 000 = 500 000 → M = 2 × C",
+     "porque": "Juros de mesmo valor que o capital.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte a equação",
+     "conta": "2 × C = C × (1,04)^n → (1,04)^n = 2",
+     "porque": "O capital cancela.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Aplique log₂",
+     "conta": "n × log₂ (26/25) = log₂ 2 → n × 0,056 = 1 → n = 1/0,056 ≈ 17,9",
+     "porque": "1,04 = 26/25, e log₂ 2 = 1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "aproximadamente 18 trimestres → alternativa E",
+     "porque": "É o inteiro mais próximo.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 18",
+   "checagem": "A juros simples seriam 25 trimestres (100%/4%). A juros compostos o capital dobra antes, então o número tem de ser menor que 25: 18 é coerente.",
+   "erradas": {
+    "A": "14 não confere: 14 × 0,056 = 0,78, e é preciso chegar a 1.",
+    "B": "20 não confere: 20 × 0,056 = 1,12, já além de 1.",
+    "C": "21 não confere: 21 × 0,056 = 1,18, já além de 1.",
+    "D": "35 não confere: 35 × 0,056 = 1,96; corresponderia a quase quadruplicar o capital."
+   },
+   "armadilha": "Usar M = 250 000: esse é o valor dos juros; o montante é o dobro do capital.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O número de trimestres para os juros igualarem o capital.",
+    "chave": "(1,04)^n = 2 → n = 1/0,056 ≈ 18.",
+    "cuidado": "Juros iguais ao capital: montante dobrado."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "potências diretas",
+    "ideia": "Calcule 1,04 elevado aos inteiros vizinhos: 1,04¹⁷ ≈ 1,95 e 1,04¹⁸ ≈ 2,03. O valor que mais se aproxima de 2 é o de 18 trimestres."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "M = 250000 + 250000 = 500000",
+    "nota": "juros iguais ao capital"
+   },
+   {
+    "linha": "M = 2 × C",
+    "nota": "montante dobrado"
+   },
+   {
+    "linha": "2 × C = C × (1,04)ⁿ",
+    "nota": "juros compostos"
+   },
+   {
+    "linha": "(1,04)ⁿ = 2",
+    "nota": "cancela C"
+   },
+   {
+    "linha": "n × log₂ (26/25) = log₂ 2",
+    "nota": "aplica log₂"
+   },
+   {
+    "linha": "n × 0,056 = 1",
+    "nota": "substitui os logs"
+   },
+   {
+    "linha": "n = 1/0,056 ≈ 17,9",
+    "nota": "isola n"
+   },
+   {
+    "linha": "n ≈ 18",
+    "nota": "inteiro mais próximo"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0017"
+  }
+ },
+ "Pde5cfc3a": {
+  "n": "7",
+  "conceito": "Aplicar progressão geométrica aos raios, áreas e comprimentos de circunferências sucessivas.",
+  "equivocos": {
+   "A": "M07.2:usou-expoente-n-em-vez-de-n-menos-1",
+   "C": "M07.2:descartou-sentenca-correta",
+   "D": "M07.2:usou-expoente-n-em-vez-de-n-menos-1",
+   "E": "M07.2:descartou-sentenca-correta"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada circunferência tem metade do raio da anterior: os raios formam uma PG de primeiro termo r e razão 1/2. O raio da circunferência de ordem n é r/2ⁿ⁻¹. Área do círculo: π × R². Comprimento: 2 × π × R. A soma de infinitos termos de uma PG de razão entre −1 e 1 é o primeiro termo dividido por (1 − razão).",
+    "formulas": [
+     "raio da n-ésima = r/2ⁿ⁻¹",
+     "área/comprimento = (π × R²)/(2 × π × R) = R/2",
+     "soma infinita = a₁/(1 − q)"
+    ],
+    "simbolos": [
+     [
+      "r",
+      "raio da primeira circunferência"
+     ]
+    ]
+   },
+   "pista": "Escreva o raio da 7ª e da 8ª circunferências. O expoente de 2 é igual ao número da circunferência?",
+   "passos": [
+    {
+     "faz": "Julgue I",
+     "conta": "raio da 8ª = r/2⁷ = r/128",
+     "porque": "A sentença diz r/256, que é o raio da 9ª. Falsa.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Julgue II",
+     "conta": "raio da 7ª = r/2⁶ = r/64 → área/comprimento = (r/64)/2 = r/128 = r/2⁷",
+     "porque": "A razão entre área e comprimento é metade do raio. Verdadeira.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Julgue III",
+     "conta": "2πr + πr + πr/2 + ... = 2πr/(1 − 1/2) = 4πr",
+     "porque": "Os comprimentos formam PG de primeiro termo 2πr e razão 1/2. Verdadeira.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "corretas: II e III → alternativa B",
+     "porque": "É a combinação da alternativa B.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — II e III",
+   "checagem": "Na III, somando os primeiros termos: 2πr + πr + 0,5πr + 0,25πr = 3,75πr, cada vez mais perto de 4πr sem passar.",
+   "erradas": {
+    "A": "Inclui a I, que é falsa: o raio da 8ª circunferência é r/2⁷ = r/128, não r/256.",
+    "C": "A III é correta, mas a II também é: (r/64)/2 = r/2⁷.",
+    "D": "Inclui a I, que é falsa: o raio da 8ª circunferência é r/128.",
+    "E": "A II é correta, mas a III também é: a soma dos comprimentos é 2πr/(1 − 1/2) = 4πr."
+   },
+   "armadilha": "Usar expoente n em vez de n − 1: a primeira circunferência tem raio r = r/2⁰, e a oitava, r/2⁷.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quais sentenças sobre as circunferências são corretas.",
+    "chave": "Raio da n-ésima: r/2ⁿ⁻¹; II e III conferem, I não.",
+    "cuidado": "A 8ª tem raio r/2⁷."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "soma dos raios",
+    "ideia": "Some primeiro os raios: r + r/2 + r/4 + ... = r/(1 − 1/2) = 2r. O comprimento total é 2π vezes essa soma, 2π × 2r = 4πr, o que confirma a III; a I falha porque r/256 é o raio da 9ª. Corretas II e III."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "R₈ = r/2⁷ = r/128",
+    "nota": "I: raio da 8ª (falsa)"
+   },
+   {
+    "linha": "R₇ = r/2⁶ = r/64",
+    "nota": "II: raio da 7ª"
+   },
+   {
+    "linha": "(πR₇²)/(2πR₇) = R₇/2",
+    "nota": "área sobre comprimento"
+   },
+   {
+    "linha": "R₇/2 = r/128 = r/2⁷",
+    "nota": "II verdadeira"
+   },
+   {
+    "linha": "2πr + πr + πr/2 + ... = 2πr/(1 − 1/2)",
+    "nota": "III: soma da PG infinita"
+   },
+   {
+    "linha": "2πr/(1/2) = 4πr",
+    "nota": "III verdadeira"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0019"
+  }
+ },
+ "P20a1d04f": {
+  "n": "2",
+  "conceito": "Calcular a soma de uma PA com número ímpar de termos pelo termo central.",
+  "equivocos": {
+   "A": "M07.3:errou-a-conta",
+   "B": "M07.3:esqueceu-a-divisao-por-2",
+   "C": "M07.3:respondeu-o-termo-central",
+   "E": "M07.3:usou-a-posicao-em-vez-do-valor"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Em uma PA com número ímpar de termos, o termo do meio é a média de todos. Com 33 termos, o do meio é o 17º (16 antes e 16 depois). A soma é a média vezes o número de termos.",
+    "formulas": [
+     "soma = termo central × número de termos (PA com quantidade ímpar de termos)"
+    ],
+    "simbolos": [
+     [
+      "a₁₇",
+      "termo central da PA de 33 termos (vale 7)"
+     ]
+    ]
+   },
+   "pista": "Que posição o 17º termo ocupa em uma lista de 33?",
+   "passos": [
+    {
+     "faz": "Localize o termo central",
+     "conta": "33 termos → o do meio é o (33 + 1)/2 = 17º",
+     "porque": "Há 16 termos antes e 16 depois.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Use a média",
+     "conta": "a₁ + a₃₃ = 2 × a₁₇ = 14",
+     "porque": "Termos equidistantes do centro têm média igual ao termo central.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Calcule a soma",
+     "conta": "(a₁ + a₃₃) × 33/2 = 14 × 33/2 = 231",
+     "porque": "Ou, direto, 33 × 7.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "231 → alternativa D",
+     "porque": "É a soma dos 33 termos.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 231",
+   "checagem": "Exemplo: a PA constante com 33 termos iguais a 7 tem a₁₇ = 7 e soma 33 × 7 = 231; qualquer outra razão dá a mesma soma, pois o que um termo perde de um lado o simétrico ganha do outro.",
+   "erradas": {
+    "A": "34 não confere: seria média de 34/33 ≈ 1,03 por termo, e a média é o termo central, 7.",
+    "B": "462 é o dobro do correto: aparece ao fazer (a₁ + a₃₃) × 33 = 14 × 33, sem dividir por 2.",
+    "C": "7 é o valor do termo central, não a soma dos 33 termos.",
+    "E": "561 é 33 × 17: multiplica o número de termos pela posição do termo, não pelo valor dele."
+   },
+   "armadilha": "Achar que faltam dados (primeiro termo e razão): o termo central já é a média.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A soma dos 33 termos da PA.",
+    "chave": "a₁₇ é o termo central: soma = 33 × 7 = 231.",
+    "cuidado": "Termo central = média da PA."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pares simétricos",
+    "ideia": "Os 32 termos fora do centro formam 16 pares equidistantes, cada um com soma 2 × 7 = 14: 16 × 14 = 224. Somando o termo central, 224 + 7 = 231."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "(33 + 1)/2 = 17",
+    "nota": "posição do termo central"
+   },
+   {
+    "linha": "a₁ + a₃₃ = 2 × a₁₇",
+    "nota": "extremos e termo central"
+   },
+   {
+    "linha": "a₁ + a₃₃ = 2 × 7 = 14",
+    "nota": "substitui a₁₇"
+   },
+   {
+    "linha": "S = (a₁ + a₃₃) × 33/2",
+    "nota": "soma da PA"
+   },
+   {
+    "linha": "S = 14 × 33/2",
+    "nota": "substitui"
+   },
+   {
+    "linha": "S = 231",
+    "nota": "resultado"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0019"
+  }
+ },
+ "P6b864b08": {
+  "n": "3",
+  "conceito": "Usar a soma dos ângulos internos em triângulos encaixados para achar um ângulo.",
+  "equivocos": {
+   "A": "M09.3:respondeu-um-angulo-da-figura",
+   "B": "M09.3:respondeu-um-angulo-da-figura",
+   "C": "M09.3:respondeu-um-angulo-da-figura",
+   "E": "M09.3:errou-a-conta"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O triângulo ABC é isósceles de base BC, com ângulo de 80° em A: os ângulos da base medem (180° − 80°)/2 = 50° cada. Na figura há um ponto no lado AB e outro no lado AC, ligados entre si; chame-os de E (em AB) e F (em AC). De C sai um segmento até E, e o ângulo entre ele e a base BC mede 25°. De B sai um segmento até F, fazendo 20° com o lado AB. No ponto F, o ângulo entre FA e FE mede 30°. O ângulo x fica em E, entre EF e EC.",
+    "formulas": [
+     "soma dos ângulos internos de um triângulo = 180°",
+     "triângulo isósceles: ângulos da base iguais"
+    ],
+    "simbolos": [
+     [
+      "E",
+      "ponto do lado AB (nome dado aqui)"
+     ],
+     [
+      "F",
+      "ponto do lado AC (nome dado aqui)"
+     ]
+    ]
+   },
+   "pista": "O ângulo x é a diferença entre dois ângulos com vértice em E. Em que triângulos cada um aparece?",
+   "passos": [
+    {
+     "faz": "Ache os ângulos da base",
+     "conta": "(180° − 80°)/2 = 50°",
+     "porque": "ABC isósceles de base BC.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache o ângulo AEF",
+     "conta": "180° − 80° − 30° = 70°",
+     "porque": "Triângulo AEF: 80° em A e 30° em F.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache o ângulo AEC",
+     "conta": "ângulo ACE = 50° − 25° = 25° → AEC = 180° − 80° − 25° = 75°",
+     "porque": "Triângulo AEC.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache x",
+     "conta": "x = 75° − 70° = 5°",
+     "porque": "EF fica entre EA e EC.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "5° → alternativa D",
+     "porque": "Medida de x.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 5°",
+   "checagem": "Pelo triângulo EFC: o ângulo em F é 180° − 30° = 150° (suplemento do ângulo AFE), o ângulo em C é 25°, e sobra x = 180° − 150° − 25° = 5°.",
+   "erradas": {
+    "A": "20° é o ângulo marcado em B, entre o lado AB e o segmento BF; ele não entra na conta de x.",
+    "B": "25° é o ângulo marcado em C, não o ângulo x.",
+    "C": "30° é o ângulo marcado em F, não o ângulo x.",
+    "E": "Com x = 35°, o triângulo EFC teria 35° + 150° + 25° = 210°, mais que 180°."
+   },
+   "armadilha": "O ângulo de 20° em B está na figura, mas não é necessário para achar x.",
+   "alerta": "Na figura, os pontos sobre AB e AC não têm nome; a resolução os chama de E e F.",
+   "essencial": {
+    "pede": "A medida do ângulo x.",
+    "chave": "AEF = 70° e AEC = 75° → x = 5°.",
+    "cuidado": "Nem todo ângulo da figura entra na conta."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "ângulos externos",
+    "ideia": "No triângulo AEC, o ângulo externo BEC vale 80° + 25° = 105°. No triângulo AEF, o externo BEF vale 80° + 30° = 110°. Então x = 110° − 105° = 5°."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "(180° − 80°)/2 = 50°",
+    "nota": "ângulos da base"
+   },
+   {
+    "linha": "AEF = 180° − 80° − 30° = 70°",
+    "nota": "triângulo AEF"
+   },
+   {
+    "linha": "ACE = 50° − 25° = 25°",
+    "nota": "ângulo em C"
+   },
+   {
+    "linha": "AEC = 180° − 80° − 25° = 75°",
+    "nota": "triângulo AEC"
+   },
+   {
+    "linha": "x = 75° − 70°",
+    "nota": "diferença dos ângulos"
+   },
+   {
+    "linha": "x = 5°",
+    "nota": "resultado"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0023"
+  }
+ },
+ "P606311bb": {
+  "n": "13",
+  "conceito": "Julgar afirmações usando Pitágoras, razões trigonométricas e ângulo inscrito em uma circunferência.",
+  "equivocos": {
+   "B": "M09.4:trocou-o-angulo-de-cosseno-um-meio",
+   "C": "M09.4:esqueceu-o-angulo-inscrito",
+   "D": "M09.4:trocou-o-angulo-de-cosseno-um-meio",
+   "E": "M09.4:nao-calculou-pb"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Na figura, A e C são as pontas de um diâmetro horizontal (A à direita), P está sobre o raio OA, B está na circunferência, acima de P, e D está na circunferência, embaixo à esquerda. OB é raio: OB = OA = 8. O triângulo OPB é retângulo em P, com OP = 4. O ângulo AÔB é o ângulo em O desse triângulo. O ângulo CDB é inscrito e enxerga o arco CB; ângulo inscrito mede metade do ângulo central do mesmo arco.",
+    "formulas": [
+     "PB² = OB² − OP²",
+     "cos AÔB = OP/OB",
+     "ângulo inscrito = ângulo central/2"
+    ],
+    "simbolos": [
+     [
+      "O",
+      "centro da circunferência"
+     ],
+     [
+      "raio",
+      "OA = OB = OC = 8"
+     ]
+    ]
+   },
+   "pista": "OB também é raio. Que triângulo retângulo aparece com OP e OB?",
+   "passos": [
+    {
+     "faz": "Julgue I",
+     "conta": "PB² = 8² − 4² = 48 → PB = 4√3",
+     "porque": "Pitágoras em OPB. Correta.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Julgue II",
+     "conta": "cos AÔB = 4/8 = 1/2 → AÔB = 60°",
+     "porque": "Não é 45°. Incorreta.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache o ângulo central CÔB",
+     "conta": "180° − 60° = 120°",
+     "porque": "A, O e C estão alinhados.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Julgue III",
+     "conta": "CDB = 120°/2 = 60°",
+     "porque": "Ângulo inscrito no arco CB. Correta.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "I e III → alternativa A",
+     "porque": "São as sentenças corretas.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — I e III",
+   "checagem": "Por outro caminho: tg AÔB = PB/OP = 4√3/4 = √3, tangente de 60°, o que confirma I e II juntas. E no triângulo isósceles COB (lados 8 e 8, ângulo 120°), os ângulos em C e em B medem 30° cada: soma 120° + 30° + 30° = 180°.",
+   "erradas": {
+    "B": "II está incorreta: o ângulo AÔB tem cosseno 1/2 e mede 60°, não 45°.",
+    "C": "I está correta, mas III também: o ângulo inscrito CDB é metade do central de 120°.",
+    "D": "II está incorreta (AÔB = 60°) e falta a I, que é correta.",
+    "E": "III está correta, mas I também: PB = √(64 − 16) = 4√3."
+   },
+   "armadilha": "OP é metade do raio, e isso leva a 60° (cosseno 1/2), não a 45°.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quais sentenças estão corretas.",
+    "chave": "PB = 4√3; AÔB = 60°; CÔB = 120° → CDB = 60°. Corretas: I e III.",
+    "cuidado": "Cosseno 1/2 é de 60°."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "triângulo equilátero",
+    "ideia": "P é o ponto médio de OA (OP = 4 e OA = 8), e BP é perpendicular a OA, então BA = BO = 8 = OA: o triângulo OAB é equilátero. Daí AÔB = 60°, PB é a altura 8√3/2 = 4√3, e CDB = 120°/2 = 60°. Corretas I e III."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "PB² = 8² − 4²",
+    "nota": "I: Pitágoras em OPB"
+   },
+   {
+    "linha": "PB² = 48",
+    "nota": "calcula"
+   },
+   {
+    "linha": "PB = 4√3",
+    "nota": "I correta"
+   },
+   {
+    "linha": "cos AÔB = 4/8 = 1/2",
+    "nota": "II: cosseno em O"
+   },
+   {
+    "linha": "AÔB = 60°",
+    "nota": "II incorreta"
+   },
+   {
+    "linha": "CÔB = 180° − 60° = 120°",
+    "nota": "ângulo central"
+   },
+   {
+    "linha": "CDB = 120°/2 = 60°",
+    "nota": "III correta"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0023"
+  }
+ },
+ "Pc72fc08d": {
+  "n": "1",
+  "conceito": "Achar a interseção de duas retas e a área de um triângulo retângulo por coordenadas.",
+  "equivocos": {
+   "A": "M10.2:esqueceu-a-divisao-por-2",
+   "C": "M10.2:errou-a-conta",
+   "D": "M10.2:errou-a-conta",
+   "E": "M10.2:errou-a-conta"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Na figura, a reta −3x + 7y = 11 passa por A e C, a reta x − y = 3 passa por B e C, e há um ângulo reto marcado em B. São dados A = (1, 2) e B = (3, 0). O ponto C é a solução do sistema das duas equações. Com o ângulo reto em B, a área é (AB × BC)/2.",
+    "formulas": [
+     "sistema: −3x + 7y = 11 e x − y = 3",
+     "distância = √(Δx² + Δy²)",
+     "área = cateto × cateto/2"
+    ],
+    "simbolos": [
+     [
+      "C",
+      "interseção das duas retas"
+     ]
+    ]
+   },
+   "pista": "Quais são as coordenadas de C? Quais lados são os catetos?",
+   "passos": [
+    {
+     "faz": "Resolva o sistema",
+     "conta": "x = y + 3 → −3(y + 3) + 7y = 11 → 4y = 20 → y = 5, x = 8",
+     "porque": "C = (8, 5).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache AB",
+     "conta": "√((3 − 1)² + (0 − 2)²) = √8 = 2√2",
+     "porque": "Distância entre A e B.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache BC",
+     "conta": "√((8 − 3)² + (5 − 0)²) = √50 = 5√2",
+     "porque": "Distância entre B e C.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a área",
+     "conta": "(2√2 × 5√2)/2 = 20/2 = 10",
+     "porque": "Catetos AB e BC.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "10 u.a. → alternativa B",
+     "porque": "Área do triângulo.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 10 u.a.",
+   "checagem": "Pela fórmula das coordenadas: área = |1 × (0 − 5) + 3 × (5 − 2) + 8 × (2 − 0)|/2 = |−5 + 9 + 16|/2 = 20/2 = 10. E o ângulo em B é mesmo reto: (−2, 2) e (5, 5) têm produto escalar −10 + 10 = 0.",
+   "erradas": {
+    "A": "20 é o produto dos catetos (2√2 × 5√2), sem a divisão por 2.",
+    "C": "Área 33 com AB = 2√2 pediria BC ≈ 23,3, e BC = 5√2 ≈ 7,07.",
+    "D": "8 é AB² = (2√2)², não a área.",
+    "E": "Área 21 com AB = 2√2 pediria BC ≈ 14,8, e BC = 5√2 ≈ 7,07."
+   },
+   "armadilha": "O produto dos catetos dá 20: a área do triângulo é a metade.",
+   "alerta": "As equações das retas e as alternativas foram lidas no print, porque a camada de texto da prova está embaralhada.",
+   "essencial": {
+    "pede": "A área do triângulo ABC.",
+    "chave": "C = (8, 5); AB = 2√2, BC = 5√2; área = 10.",
+    "cuidado": "Dividir por 2."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "retângulo envolvente",
+    "ideia": "O retângulo de x = 1 a 8 e y = 0 a 5 tem área 7 × 5 = 35. Tire os três triângulos retângulos de fora: (2 × 2)/2 = 2, (5 × 5)/2 = 12,5 e (7 × 3)/2 = 10,5. Sobra 35 − 25 = 10."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "x = y + 3",
+    "nota": "isola x"
+   },
+   {
+    "linha": "−3(y + 3) + 7y = 11",
+    "nota": "substitui na outra reta"
+   },
+   {
+    "linha": "4y − 9 = 11",
+    "nota": "distribui"
+   },
+   {
+    "linha": "4y = 20",
+    "nota": "passa o 9"
+   },
+   {
+    "linha": "y = 5 ; x = 8",
+    "nota": "C = (8, 5)"
+   },
+   {
+    "linha": "AB = √((3 − 1)² + (0 − 2)²) = √8 = 2√2",
+    "nota": "distância AB"
+   },
+   {
+    "linha": "BC = √((8 − 3)² + (5 − 0)²) = √50 = 5√2",
+    "nota": "distância BC"
+   },
+   {
+    "linha": "(2√2 × 5√2)/2 = 20/2",
+    "nota": "área com os catetos"
+   },
+   {
+    "linha": "área = 10 u.a.",
+    "nota": "resultado"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0025"
+  }
+ },
+ "P89713e07": {
+  "n": "11",
+  "conceito": "Imagem de um intervalo pela função cosseno: transformar o intervalo do argumento.",
+  "equivocos": {
+   "A": "M10.4:esqueceu-de-multiplicar-por-3",
+   "B": "M10.4:sem-origem-identificada",
+   "C": "M10.4:sem-origem-identificada",
+   "E": "M10.4:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Transforme o intervalo de x no intervalo do argumento x/2 + π/4, passo a passo. Depois veja quanto o cosseno vale nesse intervalo de ângulos, olhando o círculo, e por fim multiplique por 3.",
+    "formulas": [
+     "cos 0 = 1 | cos 3π/4 = −√2/2",
+     "o cosseno decresce de 0 a π"
+    ],
+    "simbolos": [
+     [
+      "]a, b[",
+      "intervalo aberto: não inclui as pontas"
+     ]
+    ]
+   },
+   "pista": "Comece levando o intervalo de x até o argumento do cosseno.",
+   "passos": [
+    {
+     "faz": "Divida por 2",
+     "conta": "−π/2 < x < π → −π/4 < x/2 < π/2",
+     "porque": "Dividir todos os lados por 2 mantém o sentido das desigualdades.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some π/4",
+     "conta": "−π/4 + π/4 < x/2 + π/4 < π/2 + π/4 → 0 < x/2 + π/4 < 3π/4",
+     "porque": "Agora o argumento do cosseno vai de 0 a 3π/4, sem as pontas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache os valores do cosseno",
+     "conta": "cos(3π/4) < cos(...) < cos 0 → −√2/2 < cos(...) < 1",
+     "porque": "Entre 0 e π o cosseno só decresce, então os extremos ficam nas pontas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique por 3",
+     "conta": "−3√2/2 < 3cos(...) < 3 → alternativa D",
+     "porque": "O pedido é 3 vezes o cosseno.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — ]−3√2/2, 3[",
+   "checagem": "Teste dois valores: x = 0 dá 3cos(π/4) = 3√2/2 ≈ 2,12, dentro de ]−2,12; 3[; x perto de π dá argumento perto de 3π/4 e 3cos perto de −2,12, a ponta de baixo.",
+   "erradas": {
+    "A": "]−√2/2, 1[ é o intervalo do cosseno sozinho: faltou multiplicar por 3.",
+    "B": "]3√2/2, 3[ não confere: x = −π/4 dá argumento π/8 e 3cos(π/8) ≈ 2,77, mas x = π/2 dá argumento π/2 e 3cos(π/2) = 0, fora desse intervalo.",
+    "C": "]−1, 1[ não confere: x = 0 dá 3cos(π/4) ≈ 2,12, maior que 1.",
+    "E": "]−√3/2, 1[ não confere: x = 0 dá 3cos(π/4) ≈ 2,12, maior que 1."
+   },
+   "armadilha": "Esquecer de multiplicar por 3 no fim e marcar o intervalo do cosseno sozinho.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O intervalo dos valores de 3cos(x/2 + π/4).",
+    "chave": "O argumento vai de 0 a 3π/4; o cosseno vai de −√2/2 a 1; vezes 3.",
+    "cuidado": "Transforme o intervalo na ordem das operações e multiplique por 3 no fim."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "em graus",
+    "ideia": "O argumento vai de 0° a 135°; cos 135° = −√2/2 e cos 0° = 1; vezes 3, de −3√2/2 a 3."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "−π/4 < x/2 < π/2",
+    "nota": "÷ 2"
+   },
+   {
+    "linha": "0 < x/2 + π/4 < 3π/4",
+    "nota": "+ π/4"
+   },
+   {
+    "linha": "−√2/2 < cos < 1",
+    "nota": "cosseno decresce"
+   },
+   {
+    "linha": "−3√2/2 < 3cos < 3",
+    "nota": "× 3"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0028"
+  }
+ },
+ "Pd9443de5": {
+  "n": "10",
+  "conceito": "Tronco rolando: a região coberta é uma coroa circular de um quarto de volta.",
+  "equivocos": {
+   "A": "M11.5:usou-meia-volta",
+   "B": "M11.5:sem-origem-identificada",
+   "D": "M11.5:usou-a-area-da-base",
+   "E": "M11.5:subtraiu-as-bases"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Rolando sem deslizar, o tronco gira em torno do ponto onde estaria o vértice do cone completo. Por semelhança, esse vértice fica a 4 cm da base menor (raios 0,4 e 1,2, diferença de altura 8). Num quarto de volta, as bases descrevem arcos de raios 4 e 12; a área coberta é um quarto da coroa entre eles.",
+    "formulas": [
+     "semelhança: 0,4/x = 1,2/(x + 8)",
+     "área da coroa = π(R² − r²)"
+    ],
+    "simbolos": [
+     [
+      "x",
+      "distância do vértice do cone completo até a base menor"
+     ]
+    ]
+   },
+   "pista": "Ache onde fica o vértice do cone que o tronco completa.",
+   "passos": [
+    {
+     "faz": "Ache o vértice",
+     "conta": "0,4/x = 1,2/(x + 8) → 1,2x = 0,4x + 3,2 → x = 4",
+     "porque": "O tronco é parte de um cone maior.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Raios dos arcos",
+     "conta": "r = 4 | R = 4 + 8 = 12",
+     "porque": "Distâncias do vértice até as duas bases.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Área de um quarto da coroa",
+     "conta": "π(12² − 4²)/4 = 128π/4 = 32π → alternativa C",
+     "porque": "90° é um quarto da volta.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 32π cm²",
+   "checagem": "Faixa de largura 8: o meio da faixa está a 8 do vértice e percorre um quarto de volta, 2π × 8/4 = 4π; área ≈ largura × caminho do meio = 8 × 4π = 32π.",
+   "erradas": {
+    "A": "64π sai de usar meia volta (180°): π(144 − 16)/2 = 64π.",
+    "B": "96π não confere: corresponderia a 3/4 da coroa, 270°, e o giro é de 90°.",
+    "D": "1,44π é a área da base maior (π × 1,2²), não a região coberta.",
+    "E": "1,28π sai de subtrair as áreas das bases: π(1,2² − 0,4²) = 1,28π."
+   },
+   "armadilha": "Usar os raios das bases (0,4 e 1,2) em vez das distâncias até o vértice (4 e 12).",
+   "alerta": "A banca mediu as distâncias ao vértice ao longo do eixo (4 e 12). Pela geratriz, seriam √(4² + 0,4²) ≈ 4,02 e √(12² + 1,2²) ≈ 12,06, e a área sairia cerca de 32,3π; a alternativa mais próxima continua sendo 32π, a do gabarito.",
+   "essencial": {
+    "pede": "A área coberta pelo bastão.",
+    "chave": "Vértice a 4 cm da base menor; coroa de raios 4 e 12; um quarto: 32π.",
+    "cuidado": "O tronco gira em torno do vértice do cone completo."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "razão de áreas",
+    "ideia": "O quarto de raio 4 é (4/12)² = 1/9 do quarto de raio 12 (36π); a região é 36π × (1 − 1/9) = 32π."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "0,4/x = 1,2/(x + 8) → 1,2x = 0,4x + 3,2 → x = 4",
+    "nota": "Ache o vértice"
+   },
+   {
+    "linha": "r = 4 | R = 4 + 8 = 12",
+    "nota": "Raios dos arcos"
+   },
+   {
+    "linha": "π(12² − 4²)/4 = 128π/4 = 32π",
+    "nota": "Área de um quarto da coroa"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0030"
+  }
+ },
+ "P93ae808b": {
+  "n": "14",
+  "conceito": "Probabilidade binomial: exatamente 2 acertos em 10.",
+  "equivocos": {
+   "B": "M13.4:esqueceu-a-combinacao",
+   "C": "M13.4:esqueceu-os-erros",
+   "D": "M13.4:sem-origem-identificada",
+   "E": "M13.4:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada questão é acertada com chance 1/5 e errada com 4/5, independentes. Exatamente 2 acertos: escolha quais 2 questões (C(10, 2)) e multiplique (1/5)² (4/5)⁸.",
+    "formulas": [
+     "P(k) = C(n, k) pᵏ (1 − p)ⁿ⁻ᵏ"
+    ],
+    "simbolos": []
+   },
+   "pista": "De quantos modos se escolhem as 2 questões certas?",
+   "passos": [
+    {
+     "faz": "Escolha",
+     "conta": "C(10, 2) = 45",
+     "porque": "Quais duas acerta.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Uma sequência",
+     "conta": "(1/5)² × (4/5)⁸ = 4⁸/5¹⁰",
+     "porque": "2 acertos e 8 erros.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique e simplifique",
+     "conta": "45 × 4⁸/5¹⁰ = (9 × 5 × 4⁸)/5¹⁰ = (9 × 4⁸)/5⁹ → alternativa A",
+     "porque": "45 = 9 × 5.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — (9 × 4⁸)/5⁹",
+   "checagem": "Por contagem de gabaritos: há 5¹⁰ formas de marcar; com exatamente 2 certas, C(10, 2) × 4⁸ (cada errada tem 4 opções): 45 × 4⁸/5¹⁰.",
+   "erradas": {
+    "B": "4⁸/5¹⁰ é uma única sequência; falta multiplicar pelas C(10, 2) = 45 escolhas das questões certas.",
+    "C": "1/5² é a chance de acertar duas questões fixas, sem exigir os 8 erros.",
+    "D": "1/5⁸ seria acertar 8 questões fixas; a questão pede exatamente 2 acertos e 8 erros: 45 × 4⁸/5¹⁰.",
+    "E": "4⁸/5⁹ = 5 × 4⁸/5¹⁰ multiplica por 5 em vez de 45."
+   },
+   "armadilha": "Esquecer o fator C(10, 2): as duas certas podem ser quaisquer.",
+   "alerta": "",
+   "essencial": {
+    "pede": "P(exatamente 2 acertos).",
+    "chave": "C(10, 2)(1/5)²(4/5)⁸ = (9 × 4⁸)/5⁹.",
+    "cuidado": "Binomial: não esqueça C(n, k)."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "contagem de gabaritos",
+    "ideia": "45 × 4⁸ marcações favoráveis em 5¹⁰."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "C(10, 2) = 45",
+    "nota": "escolha"
+   },
+   {
+    "linha": "4⁸/5¹⁰",
+    "nota": "sequência"
+   },
+   {
+    "linha": "(9 × 4⁸)/5⁹",
+    "nota": "resultado"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0037"
+  }
+ },
+ "Pcb6a329a": {
+  "n": "4",
+  "conceito": "Quociente de divisão por x + 1 avaliado em −1.",
+  "equivocos": {
+   "A": "M16.1:confundiu-com-o-resto",
+   "B": "M16.1:sem-origem-identificada",
+   "D": "M16.1:sem-origem-identificada",
+   "E": "M16.1:errou-o-sinal"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A(x) = (x + 1)Q(x) + R, com R = A(−1) = 1 − 2 = −1. Então x⁹⁸ − 1 = (x + 1)Q(x). Q(x) é a soma alternada x⁹⁷ − x⁹⁶ + … − 1, e Q(−1) soma 98 termos iguais a −1.",
+    "formulas": [
+     "xⁿ − 1 com n par = (x + 1)(xⁿ⁻¹ − xⁿ⁻² + … − 1)"
+    ],
+    "simbolos": []
+   },
+   "pista": "Quanto vale o resto R = A(−1)?",
+   "passos": [
+    {
+     "faz": "Resto",
+     "conta": "R = (−1)⁹⁸ − 2 = −1",
+     "porque": "Teorema do resto.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Quociente",
+     "conta": "x⁹⁸ − 1 = (x + 1)(x⁹⁷ − x⁹⁶ + x⁹⁵ − … − 1)",
+     "porque": "98 termos alternados.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Q(−1)",
+     "conta": "cada termo vale −1 em x = −1 → 98 × (−1) = −98 → alternativa C",
+     "porque": "(−1)⁹⁷ = −1, −(−1)⁹⁶ = −1, …",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — −98",
+   "checagem": "Com um caso pequeno: x² − 2 = (x + 1)(x − 1) − 1, quociente x − 1, Q(−1) = −2 = −(expoente). Para x⁹⁸ − 2, o padrão dá −98.",
+   "erradas": {
+    "A": "−1 é o resto R, não Q(−1).",
+    "B": "0 não confere: os 98 termos de Q valem −1 cada em x = −1.",
+    "D": "1 não confere: Q(−1) = −98.",
+    "E": "98 esquece o sinal: cada termo vale −1."
+   },
+   "armadilha": "Confundir Q(−1) com o resto A(−1).",
+   "alerta": "",
+   "essencial": {
+    "pede": "Q(−1).",
+    "chave": "Q = x⁹⁷ − x⁹⁶ + … − 1; Q(−1) = −98.",
+    "cuidado": "Não confunda com o resto."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "Ruffini",
+    "ideia": "Dividindo x⁹⁸ − 2 por x + 1, os coeficientes de Q alternam 1, −1, 1, …, −1; em x = −1 cada termo dá −1: 98 termos, −98."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "R = (−1)⁹⁸ − 2 = −1",
+    "nota": "Resto"
+   },
+   {
+    "linha": "x⁹⁸ − 1 = (x + 1)(x⁹⁷ − x⁹⁶ + x⁹⁵ − … − 1)",
+    "nota": "Quociente"
+   },
+   {
+    "linha": "cada termo vale −1 em x = −1 → 98 × (−1) = −98",
+    "nota": "Q(−1)"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0042"
+  }
+ }
+}

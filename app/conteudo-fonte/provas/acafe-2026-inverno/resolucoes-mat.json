@@ -1,0 +1,348 @@
+{
+ "Pd6684918": {
+  "n": "24",
+  "conceito": "Resolver uma inequação com seno para achar um intervalo de tempo.",
+  "equivocos": {
+   "A": "M05.2:errou-o-intervalo",
+   "C": "M05.2:respondeu-o-instante-final",
+   "D": "M05.2:usou-o-limite-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A frequência passa de 90 bpm quando 80 + 20 × sen(…) > 90, isto é, quando o seno é maior que 1/2. Na primeira volta, o seno vale 1/2 nos ângulos π/6 e 5π/6 e fica acima de 1/2 entre eles. Converta esses dois ângulos em tempo.",
+    "formulas": [
+     "sen (π/6) = sen (5π/6) = 1/2",
+     "sen > 1/2 entre π/6 e 5π/6"
+    ],
+    "simbolos": [
+     [
+      "f(t)",
+      "frequência cardíaca, em bpm, no minuto t"
+     ],
+     [
+      "bpm",
+      "batimentos por minuto"
+     ]
+    ]
+   },
+   "pista": "Isole o seno na desigualdade antes de pensar em ângulos.",
+   "passos": [
+    {
+     "faz": "Isole o seno",
+     "conta": "80 + 20 × sen (πt/6) > 90 → 20 × sen (πt/6) > 10 → sen (πt/6) > 1/2",
+     "porque": "Subtraia 80 e divida por 20.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache os ângulos-limite",
+     "conta": "πt/6 = π/6 → t = 1 | πt/6 = 5π/6 → t = 5",
+     "porque": "São os dois ângulos da primeira volta com seno 1/2. Com t de 0 a 12, o ângulo vai de 0 a 2π: uma volta só.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Meça o intervalo",
+     "conta": "1 < t < 5 → 5 − 1 = 4 min",
+     "porque": "Entre esses instantes o seno fica acima de 1/2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "4 minutos → alternativa B",
+     "porque": "É o tempo total acima de 90 bpm.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 4",
+   "checagem": "No meio do intervalo, t = 3: f(3) = 80 + 20 × sen (π/2) = 100 bpm, acima de 90. Fora dele, t = 6: f(6) = 80 + 20 × sen π = 80 bpm, abaixo de 90.",
+   "erradas": {
+    "A": "3 não confere: nas pontas certas, f(1) = f(5) = 80 + 20 × 1/2 = 90, e entre 1 e 5 são 4 minutos.",
+    "C": "5 é o instante em que a frequência volta a 90 bpm, não a duração; ela só passa de 90 a partir de t = 1.",
+    "D": "6 é o tempo em que a frequência fica acima de 80 bpm (seno positivo, de 0 a 6), não acima de 90."
+   },
+   "armadilha": "Responder o instante final (5) no lugar da duração (5 − 1).",
+   "alerta": "",
+   "essencial": {
+    "pede": "Por quantos minutos a frequência fica acima de 90 bpm.",
+    "chave": "sen (πt/6) > 1/2 para 1 < t < 5: 4 minutos.",
+    "cuidado": "Duração é a diferença entre os instantes."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "simetria do seno",
+    "ideia": "O seno é máximo em πt/6 = π/2, isto é, t = 3, e fica acima de 1/2 numa faixa de π/3 para cada lado (de π/6 a 5π/6). Cada π/3 de ângulo vale (π/3)/(π/6) = 2 min: 2 + 2 = 4 min."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "80 + 20 × sen (πt/6) > 90",
+    "nota": "condição"
+   },
+   {
+    "linha": "20 × sen (πt/6) > 10",
+    "nota": "subtrai 80"
+   },
+   {
+    "linha": "sen (πt/6) > 1/2",
+    "nota": "divide por 20"
+   },
+   {
+    "linha": "πt/6 = π/6",
+    "nota": "primeiro ângulo-limite"
+   },
+   {
+    "linha": "t = 1",
+    "nota": "isola t"
+   },
+   {
+    "linha": "πt/6 = 5π/6",
+    "nota": "segundo ângulo-limite"
+   },
+   {
+    "linha": "t = 5",
+    "nota": "isola t"
+   },
+   {
+    "linha": "5 − 1 = 4 min",
+    "nota": "duração"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0015"
+  }
+ },
+ "Pa220f913": {
+  "n": "25",
+  "conceito": "Resolver uma inequação com dois módulos por intervalos.",
+  "equivocos": {
+   "B": "M05.4:errou-o-intervalo",
+   "C": "M05.4:errou-o-intervalo",
+   "D": "M05.4:errou-o-intervalo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada módulo muda de expressão onde o que está dentro troca de sinal: x − 3 em x = 3 e 3x em x = 0. Esses pontos dividem a reta em três trechos. Resolva a inequação em cada trecho e junte as respostas.",
+    "formulas": [
+     "|u| = u se u ≥ 0 | |u| = −u se u < 0"
+    ],
+    "simbolos": [
+     [
+      "S",
+      "conjunto solução: o intervalo de a até b"
+     ]
+    ]
+   },
+   "pista": "Marque na reta os pontos x = 0 e x = 3 e trabalhe um trecho de cada vez.",
+   "passos": [
+    {
+     "faz": "Resolva para x < 0",
+     "conta": "(3 − x) + (−3x) ≤ 7 → 3 − 4x ≤ 7 → −4x ≤ 4 → x ≥ −1",
+     "porque": "Aqui x − 3 e 3x são negativos. Fica −1 ≤ x < 0.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva para 0 ≤ x < 3",
+     "conta": "(3 − x) + 3x ≤ 7 → 3 + 2x ≤ 7 → x ≤ 2",
+     "porque": "Aqui x − 3 é negativo e 3x não é. Fica 0 ≤ x ≤ 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva para x ≥ 3",
+     "conta": "(x − 3) + 3x ≤ 7 → 4x ≤ 10 → x ≤ 2,5",
+     "porque": "Não há x que seja ao mesmo tempo ≥ 3 e ≤ 2,5: sem solução.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Junte e conclua",
+     "conta": "S = [−1, 2] → b − a = 2 − (−1) = 3: primo → alternativa A",
+     "porque": "3 é primo; não é quadrado perfeito, nem múltiplo de 5, nem divisor de 14.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — número primo.",
+   "checagem": "Teste as pontas: x = −1 dá |−4| + |−3| = 7 e x = 2 dá |−1| + |6| = 7, exatamente o limite. Um pouco fora, x = 2,1 dá 0,9 + 6,3 = 7,2 > 7.",
+   "erradas": {
+    "B": "Não confere: b − a = 3, e 3 não é quadrado perfeito.",
+    "C": "Não confere: b − a = 3, e 3 não é múltiplo de 5.",
+    "D": "Não confere: b − a = 3, e os divisores de 14 são 1, 2, 7 e 14."
+   },
+   "armadilha": "Ao dividir por −4, esquecer de inverter a desigualdade: −4x ≤ 4 dá x ≥ −1.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A natureza do número b − a, a largura do intervalo solução.",
+    "chave": "S = [−1, 2]; b − a = 3.",
+    "cuidado": "Dividir por negativo inverte o sinal da desigualdade."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pontas pela igualdade",
+    "ideia": "O lado esquerdo desce até x = 0 e depois sobe, então a solução é o intervalo entre as soluções de |x − 3| + |3x| = 7: x = −1 (4 + 3) e x = 2 (1 + 6). O comprimento é 2 − (−1) = 3, primo."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "(3 − x) + (−3x) ≤ 7",
+    "nota": "trecho x < 0"
+   },
+   {
+    "linha": "3 − 4x ≤ 7",
+    "nota": "junta os termos em x"
+   },
+   {
+    "linha": "−4x ≤ 4",
+    "nota": "subtrai 3"
+   },
+   {
+    "linha": "x ≥ −1",
+    "nota": "divide por −4, inverte"
+   },
+   {
+    "linha": "(3 − x) + 3x ≤ 7",
+    "nota": "trecho 0 ≤ x < 3"
+   },
+   {
+    "linha": "3 + 2x ≤ 7",
+    "nota": "junta os termos em x"
+   },
+   {
+    "linha": "x ≤ 2",
+    "nota": "subtrai 3, divide por 2"
+   },
+   {
+    "linha": "(x − 3) + 3x ≤ 7",
+    "nota": "trecho x ≥ 3"
+   },
+   {
+    "linha": "4x ≤ 10",
+    "nota": "soma 3, junta os termos"
+   },
+   {
+    "linha": "x ≤ 2,5",
+    "nota": "divide por 4; sem solução"
+   },
+   {
+    "linha": "b − a = 2 − (−1)",
+    "nota": "S = [−1, 2]"
+   },
+   {
+    "linha": "b − a = 3",
+    "nota": "número primo"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0015"
+  }
+ },
+ "Pc2949a0e": {
+  "n": "28",
+  "conceito": "Teste de afirmações: contagem com produto de algarismos, divisibilidade de polinômio, múltiplos e esfera inscrita.",
+  "equivocos": {
+   "B": "M13.2:aceitou-afirmacao-falsa",
+   "C": "M13.2:aceitou-afirmacao-falsa",
+   "D": "M13.2:usou-a-aresta-como-raio"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Teste cada sentença. Em A, produto 35 = 5 × 7: o número tem um 5, um 7 e sete algarismos 1. Em B, use o teorema do resto: x − 2 divide p se p(2) = 0. Em C, conte os múltiplos de 3 entre 70 e 929. Em D, a aresta do cubo é o diâmetro da esfera.",
+    "formulas": [
+     "resto da divisão por x − a = p(a)",
+     "esfera: V = 4πr³/3"
+    ],
+    "simbolos": []
+   },
+   "pista": "Em A, quais algarismos podem formar produto 35?",
+   "passos": [
+    {
+     "faz": "Teste A",
+     "conta": "algarismos: um 5, um 7 e sete 1 → posição do 5: 9, do 7: 8 → 72 = 18 × 4 → verdadeira",
+     "porque": "35 = 5 × 7, primos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste B",
+     "conta": "p(2) = 64 − 32 − 20 + 4 − 1 = 15 ≠ 0 → falsa",
+     "porque": "Teorema do resto.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Teste C e D",
+     "conta": "C: múltiplos de 3 de 72 a 927: (927 − 72)/3 + 1 = 286 < 290 → falsa | D: 6a² = 54 → a = 3, r = 1,5 → V = 4π(3,375)/3 = 4,5π ≠ 36π → falsa",
+     "porque": "Contagem e volume.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Ligue ao gabarito",
+     "conta": "só A → alternativa A",
+     "porque": "Única correta.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — A quantidade de números naturais de 9 algarismos cujo produto de todos os seus algarismos é 35 é um número divisível por 18.",
+   "checagem": "Em A, conte de outro jeito: os 9 algarismos são 1, 1, 1, 1, 1, 1, 1, 5, 7; permutações com repetição: 9!/7! = 72 = 2³ × 3², que contém 2 × 3² = 18.",
+   "erradas": {
+    "B": "p(2) = 2 × 32 − 4 × 8 − 5 × 4 + 2 × 2 − 1 = 15, resto diferente de zero: x − 2 não divide p.",
+    "C": "Entre 70 e 929 há 286 múltiplos de 3 (de 72 a 927), menos de 290.",
+    "D": "Área 54 dá aresta 3 e raio 1,5; o volume é 4,5π cm³; 36π seria a esfera de raio 3, usando a aresta como raio."
+   },
+   "armadilha": "Em D, usar a aresta como raio: a esfera inscrita tem diâmetro igual à aresta.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A sentença correta.",
+    "chave": "A: 72 números, divisível por 18; B, C e D falsas.",
+    "cuidado": "Teste cada sentença com uma conta curta."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "C pela divisão inteira",
+    "ideia": "Múltiplos de 3 até 929: 309; até 70: 23; 309 − 23 = 286."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "9 × 8 = 72 = 18 × 4",
+    "nota": "A"
+   },
+   {
+    "linha": "p(2) = 15",
+    "nota": "B"
+   },
+   {
+    "linha": "286 < 290",
+    "nota": "C"
+   },
+   {
+    "linha": "4,5π ≠ 36π",
+    "nota": "D"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0034"
+  }
+ }
+}

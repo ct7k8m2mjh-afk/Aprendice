@@ -1,0 +1,634 @@
+{
+ "P30f11dea": {
+  "n": "13",
+  "conceito": "MDC para dividir um retângulo em quadrados iguais.",
+  "equivocos": {
+   "A": "M01.4:respondeu-a-area-da-peca",
+   "B": "M01.4:sem-origem-identificada",
+   "C": "M01.4:sem-origem-identificada",
+   "E": "M01.4:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O lado do quadrado precisa dividir exatamente 84 e 52. O maior lado possível é o mdc(84, 52). Quanto maior a peça, menos peças: esse é o número mínimo.",
+    "formulas": [
+     "lado = mdc(84, 52)",
+     "peças = (84/lado) · (52/lado)"
+    ],
+    "simbolos": []
+   },
+   "pista": "Qual é o maior número que divide 84 e 52?",
+   "passos": [
+    {
+     "faz": "Fatorar",
+     "conta": "84 = 2² · 3 · 7; 52 = 2² · 13",
+     "porque": "Fatores comuns: 2².",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "mdc",
+     "conta": "mdc = 4 cm",
+     "porque": "Lado da peça.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Peças",
+     "conta": "(84/4) · (52/4) = 21 · 13 = 273 → alternativa D",
+     "porque": "Peças por linha × linhas.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 273",
+   "checagem": "84/4 = 21 e 52/4 = 13 não têm fator comum, então não existe quadrado maior que 4 cm que divida os dois lados; 21 · 13 = 273. Confere.",
+   "erradas": {
+    "A": "16 é a área da peça (4²), não o número de peças.",
+    "B": "64 não sai da divisão: 4 368/64 = 68,25, não inteiro.",
+    "C": "128: 4 368/128 = 34,125, não inteiro; não há peça quadrada que dê 128 peças.",
+    "E": "546 = 2 · 273 exigiria peças de 8 cm², que não são quadrados de lado inteiro."
+   },
+   "armadilha": "Usar o mmc em vez do mdc, ou responder a área da peça.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Número mínimo de peças.",
+    "chave": "Lado = mdc(84, 52) = 4; 21 · 13 = 273.",
+    "cuidado": "Peças iguais e maiores possíveis → mdc."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "algoritmo de Euclides",
+    "ideia": "84 = 1 · 52 + 32; 52 = 1 · 32 + 20; 32 = 1 · 20 + 12; 20 = 1 · 12 + 8; 12 = 1 · 8 + 4; 8 = 2 · 4. mdc = 4."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "mdc(84, 52) = 4",
+    "nota": "lado"
+   },
+   {
+    "linha": "21 · 13",
+    "nota": "peças"
+   },
+   {
+    "linha": "273",
+    "nota": "resposta"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0044"
+  }
+ },
+ "P971e52c1": {
+  "n": "14",
+  "conceito": "Problema de operações sucessivas resolvido de trás para frente.",
+  "equivocos": {
+   "A": "M04.1:valor-que-nao-fecha",
+   "B": "M04.1:valor-que-nao-fecha",
+   "C": "M04.1:valor-que-nao-fecha",
+   "D": "M04.1:valor-que-nao-fecha"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Conhecemos o fim (47) e a ordem das operações. Volte do fim ao começo desfazendo cada operação: doar metade vira dobrar, comprar 12 vira tirar 12, perder 8 vira somar 8, vender metade vira dobrar. No início, deu um quinto: o que sobrou é 4/5 do total.",
+    "formulas": [
+     "sobrou 4/5 de x"
+    ],
+    "simbolos": [
+     [
+      "x",
+      "moedas no início"
+     ]
+    ]
+   },
+   "pista": "Comece pelas 47 moedas e desfaça a última operação.",
+   "passos": [
+    {
+     "faz": "Desfaça a doação ao museu",
+     "conta": "47 · 2 = 94",
+     "porque": "Ficou com metade; antes tinha o dobro.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Desfaça a compra e a perda",
+     "conta": "94 − 12 = 82 → 82 + 8 = 90",
+     "porque": "Antes de comprar 12 tinha 12 a menos; antes de perder 8, 8 a mais.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Desfaça a venda",
+     "conta": "90 · 2 = 180",
+     "porque": "Vendeu metade das restantes e ficou com 90.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Desfaça o presente ao amigo",
+     "conta": "4x/5 = 180 → x = 180 · 5/4 = 225",
+     "porque": "Dar um quinto deixa 4/5 da coleção.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Responda",
+     "conta": "x = 225 moedas → alternativa E",
+     "porque": "É a quantidade inicial.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 225 moedas",
+   "checagem": "Para frente: 225 − 45 = 180; vende 90, sobram 90; perde 8: 82; compra 12: 94; doa 47, fica com 47.",
+   "erradas": {
+    "A": "95 não confere: dá 76 depois do amigo, 38 depois da venda e termina com 21, não 47.",
+    "B": "135 não confere: 135 − 27 = 108, depois 54, 46, 58, e termina com 29.",
+    "C": "215 não confere: um quinto de 215 é 43; sobram 172 e o fim dá 45, não 47.",
+    "D": "295 não confere: 295 − 59 = 236, depois 118, 110, 122, e termina com 61."
+   },
+   "armadilha": "Desfazer o 'deu um quinto' multiplicando 180 por 5 (900): o que sobrou são 4/5, então o total é 180 · 5/4.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantas moedas Maria tinha no início.",
+    "chave": "De trás para frente: 47 → 94 → 82 → 90 → 180, e 180 = 4/5 de 225.",
+    "cuidado": "Desfaça cada operação com a inversa, na ordem contrária."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "equação direta",
+    "ideia": "[(4x/5) ÷ 2 − 8 + 12] ÷ 2 = 47 → 2x/5 + 4 = 94 → 2x/5 = 90 → x = 225."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "47 · 2 = 94",
+    "nota": "antes da doação"
+   },
+   {
+    "linha": "94 − 12 + 8 = 90",
+    "nota": "antes da compra e da perda"
+   },
+   {
+    "linha": "90 · 2 = 180",
+    "nota": "antes da venda"
+   },
+   {
+    "linha": "4x/5 = 180",
+    "nota": "sobraram 4/5"
+   },
+   {
+    "linha": "x = 180 · 5/4 = 225",
+    "nota": "o 4/5 passa invertido"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0050"
+  }
+ },
+ "P124be25f": {
+  "n": "15",
+  "conceito": "Problema de idades com sistema linear.",
+  "equivocos": {
+   "A": "M04.3:valor-que-nao-fecha",
+   "B": "M04.3:valor-que-nao-fecha",
+   "D": "M04.3:valor-que-nao-fecha",
+   "E": "M04.3:valor-que-nao-fecha"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Use letras para as idades de hoje. Daqui a nove anos, os DOIS envelhecem 9 anos.",
+    "formulas": [
+     "A = 3B",
+     "A + 9 = 2(B + 9)"
+    ],
+    "simbolos": [
+     [
+      "A, B",
+      "idades atuais de Alfredo e Bernardo"
+     ]
+    ]
+   },
+   "pista": "Escreva as idades daqui a 9 anos somando 9 às duas.",
+   "passos": [
+    {
+     "faz": "Monte o sistema",
+     "conta": "A = 3B | A + 9 = 2(B + 9)",
+     "porque": "Hoje é o triplo; daqui a 9 anos, o dobro.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Substitua",
+     "conta": "3B + 9 = 2B + 18 → B = 9",
+     "porque": "Troque A por 3B.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache A",
+     "conta": "A = 3 · 9 = 27",
+     "porque": "Triplo de Bernardo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Responda",
+     "conta": "27 + 9 = 36 → alternativa C",
+     "porque": "A pergunta é a soma das idades atuais.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 36",
+   "checagem": "Daqui a 9 anos: 36 e 18. De fato 36 = 2 · 18.",
+   "erradas": {
+    "A": "14 não confere: a soma atual é A + B = 4B, múltiplo de 4, e 14 não é.",
+    "B": "26 não confere: não é múltiplo de 4, e a soma atual é 4B.",
+    "D": "42 não confere: não é múltiplo de 4.",
+    "E": "48 não confere: daria B = 12 e A = 36; daqui a 9 anos, 45 e 21, e 45 não é o dobro de 21."
+   },
+   "armadilha": "Somar 9 só à idade de Alfredo: Bernardo também envelhece.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A soma das idades atuais.",
+    "chave": "A = 3B e A + 9 = 2(B + 9) dão B = 9, A = 27.",
+    "cuidado": "O tempo passa para os dois."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "diferença de idades",
+    "ideia": "A diferença 2B não muda; daqui a 9 anos ela é igual à idade de Bernardo (dobro menos um): 2B = B + 9, B = 9."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "3B + 9 = 2 · (B + 9)",
+    "nota": "A = 3B"
+   },
+   {
+    "linha": "3B + 9 = 2B + 18",
+    "nota": "distributiva"
+   },
+   {
+    "linha": "3B − 2B = 18 − 9",
+    "nota": "separa B"
+   },
+   {
+    "linha": "B = 9",
+    "nota": "A = 27"
+   },
+   {
+    "linha": "27 + 9 = 36",
+    "nota": "soma atual"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0051"
+  }
+ },
+ "P84cb9180": {
+  "n": "7",
+  "conceito": "Equação exponencial com soma de termos de mesma base: pôr 3^x em evidência.",
+  "equivocos": {
+   "A": "M06.2:soma-de-potencias-errada",
+   "B": "M06.2:soma-de-potencias-errada",
+   "C": "M06.2:soma-de-potencias-errada",
+   "E": "M06.2:soma-de-potencias-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os dois termos têm 3^x. Colocando 3^x em evidência, o que sobra é um número, e a equação vira 3^x = número. Depois basta ver em que intervalo está x.",
+    "formulas": [
+     "3^x × a + 3^x × b = 3^x × (a + b)",
+     "3^x = 3^1 ⇔ x = 1"
+    ],
+    "simbolos": [
+     [
+      "evidência",
+      "pôr o fator comum para fora dos parênteses"
+     ]
+    ]
+   },
+   "pista": "Repare que 3^x aparece nos dois termos.",
+   "passos": [
+    {
+     "faz": "Ponha 3^x em evidência",
+     "conta": "3^x × 9 + 3^x × 1/3 = 3^x × (9 + 1/3) = 3^x × 28/3",
+     "porque": "3^2 = 9, e dividir por 3 é multiplicar por 1/3; 9 + 1/3 = 28/3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole 3^x",
+     "conta": "3^x × 28/3 = 28 → 3^x = 28 × 3/28 → 3^x = 3",
+     "porque": "O 28/3 que multiplica vai para o outro lado dividindo, ou seja, multiplicando por 3/28.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache x",
+     "conta": "3^x = 3^1 → x = 1",
+     "porque": "Bases iguais, expoentes iguais.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Localize o intervalo",
+     "conta": "0 < 1 < 2 → alternativa D",
+     "porque": "A pergunta é entre que números está a solução.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — entre 0 e 2",
+   "checagem": "Substitua x = 1: 3 × 9 + 3/3 = 27 + 1 = 28. Fecha.",
+   "erradas": {
+    "A": "4 e 6 não confere: já em x = 5 o lado esquerdo vale 9 × 243 + 81 = 2268, muito acima de 28.",
+    "B": "−5 e −3 não confere: com x negativo, 3^x < 1 e o lado esquerdo fica abaixo de 9 + 1/3, longe de 28.",
+    "C": "−8 e −6 não confere: com x negativo, 3^x < 1 e o lado esquerdo fica abaixo de 9 + 1/3, longe de 28.",
+    "E": "7 e 10 não confere: em x = 7 o lado esquerdo já passa de 19 mil."
+   },
+   "armadilha": "Somar potências não junta expoentes: o certo é pôr 3^x em evidência.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Em que intervalo está a solução de 3^x × 3^2 + 3^x/3 = 28.",
+    "chave": "3^x × 28/3 = 28 dá 3^x = 3, x = 1.",
+    "cuidado": "Ponha o fator comum em evidência; não some expoentes de parcelas."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "troca de variável",
+    "ideia": "Chame 3^x de y: 9y + y/3 = 28 dá 28y = 84, y = 3, x = 1."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "3^x × 9 + 3^x × 1/3 = 28",
+    "nota": "3^2 = 9"
+   },
+   {
+    "linha": "3^x × 28/3 = 28",
+    "nota": "evidência: 9 + 1/3 = 28/3"
+   },
+   {
+    "linha": "3^x = 28 × 3/28",
+    "nota": "o 28/3 vai dividindo"
+   },
+   {
+    "linha": "3^x = 3",
+    "nota": "simplifica"
+   },
+   {
+    "linha": "x = 1",
+    "nota": "bases iguais"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0057"
+  }
+ },
+ "P954bb137": {
+  "n": "6",
+  "conceito": "Número de termos de uma PA pelo termo geral.",
+  "equivocos": {
+   "A": "M07.1:razao-errada",
+   "B": "M07.1:razao-errada",
+   "D": "M07.1:esqueceu-o-mais-um",
+   "E": "M07.1:razao-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O termo geral liga primeiro termo, último termo, razão e quantidade de termos. Você conhece três deles; o que falta é n. O cuidado é o '− 1': do primeiro ao último há n − 1 saltos.",
+    "formulas": [
+     "aₙ = a₁ + (n − 1) × r"
+    ],
+    "simbolos": [
+     [
+      "PA",
+      "progressão aritmética: cada termo é o anterior mais um número fixo"
+     ],
+     [
+      "r",
+      "razão da PA: o número que se soma de um termo para o seguinte"
+     ],
+     [
+      "aₙ",
+      "termo de posição n da sequência"
+     ],
+     [
+      "n",
+      "número de termos"
+     ]
+    ]
+   },
+   "pista": "Escreva o termo geral com os números dados e isole o que multiplica a razão.",
+   "passos": [
+    {
+     "faz": "Monte o termo geral",
+     "conta": "39 = 18 + (n − 1) × 3",
+     "porque": "O último termo é o primeiro mais n − 1 razões.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Passe o 18 para o outro lado",
+     "conta": "(n − 1) × 3 = 39 − 18 → (n − 1) × 3 = 21",
+     "porque": "O 18 que soma passa subtraindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida pela razão",
+     "conta": "n − 1 = 21/3 → n − 1 = 7",
+     "porque": "O 3 que multiplica passa dividindo: são 7 saltos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some 1 para contar os termos",
+     "conta": "n = 7 + 1 = 8",
+     "porque": "7 saltos ligam 8 termos.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 8 termos",
+   "checagem": "Liste os termos: 18, 21, 24, 27, 30, 33, 36, 39. São 8.",
+   "erradas": {
+    "A": "5 não confere: com 5 termos o último seria 18 + 4 × 3 = 30.",
+    "B": "6 não confere: com 6 termos o último seria 18 + 5 × 3 = 33.",
+    "D": "7 sai de contar os saltos como termos: 21/3 = 7 é o número de razões, e falta somar 1.",
+    "E": "4 não confere: com 4 termos o último seria 18 + 3 × 3 = 27."
+   },
+   "armadilha": "21/3 = 7 é o número de saltos; o número de termos é um a mais.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantos termos tem a PA de 18 a 39 com razão 3.",
+    "chave": "39 = 18 + (n − 1) × 3 dá n − 1 = 7.",
+    "cuidado": "Some o 1 no fim: n = 8."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "listar",
+    "ideia": "Escreva 18, 21, 24, ... até 39 e conte: 8 termos."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "39 = 18 + (n − 1) × 3",
+    "nota": "termo geral"
+   },
+   {
+    "linha": "(n − 1) × 3 = 39 − 18",
+    "nota": "o 18 passa subtraindo"
+   },
+   {
+    "linha": "(n − 1) × 3 = 21",
+    "nota": "subtrai"
+   },
+   {
+    "linha": "n − 1 = 21/3",
+    "nota": "o 3 passa dividindo"
+   },
+   {
+    "linha": "n − 1 = 7",
+    "nota": "saltos"
+   },
+   {
+    "linha": "n = 7 + 1 = 8",
+    "nota": "o 1 passa somando"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0059"
+  }
+ },
+ "Pba332c44": {
+  "n": "12",
+  "conceito": "Achar a letra numa sequência periódica de período 6 pelo resto da divisão.",
+  "equivocos": {
+   "B": "M07.4:errou-o-resto",
+   "C": "M07.4:errou-o-resto",
+   "D": "M07.4:errou-o-resto",
+   "E": "M07.4:errou-o-resto"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A palavra LOGICA tem 6 letras e se repete sem parar: a cada 6 posições tudo recomeça. Basta saber em que posição dentro da palavra cai a 2025ª letra, e isso é o resto da divisão de 2025 por 6.",
+    "formulas": [
+     "posição na palavra = resto da divisão da posição por 6 (resto 0 → 6.ª letra)"
+    ],
+    "simbolos": [
+     [
+      "período",
+      "quantidade de termos após a qual a sequência se repete; aqui 6"
+     ],
+     [
+      "resto",
+      "o que sobra na divisão inteira"
+     ]
+    ]
+   },
+   "pista": "Quantas palavras LOGICA completas cabem antes da 2025ª letra?",
+   "passos": [
+    {
+     "faz": "Ache o período",
+     "conta": "L O G I C A → 6 letras",
+     "porque": "Depois da 6.ª letra a sequência volta ao L.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Divida a posição pelo período",
+     "conta": "2025 = 6 × 337 + 3",
+     "porque": "337 palavras completas ocupam 2022 letras; sobram 3 posições.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Leia a letra do resto",
+     "conta": "resto 3 → 3.ª letra: G",
+     "porque": "Depois das 337 palavras completas, conta-se L, O, G.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Ligue a letra à alternativa",
+     "conta": "G → A",
+     "porque": "A 2025ª letra é G.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — G",
+   "checagem": "Pela posição do G: ele aparece nas posições 3, 9, 15, …, todas da forma 6k + 3. Como 2025 − 3 = 2022 = 6 × 337, a posição 2025 é uma delas.",
+   "erradas": {
+    "B": "L não confere: o L ocupa as posições 6k + 1, e 2025 − 1 = 2024 não é divisível por 6.",
+    "C": "O não confere: o O ocupa as posições 6k + 2, e 2025 − 2 = 2023 não é divisível por 6.",
+    "D": "I não confere: o I ocupa as posições 6k + 4, e 2025 − 4 = 2021 não é divisível por 6.",
+    "E": "C não confere: o C ocupa as posições 6k + 5, e 2025 − 5 = 2020 não é divisível por 6."
+   },
+   "armadilha": "O que decide a letra é o resto da divisão por 6, não o quociente 337.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A 2025ª letra da repetição de LOGICA.",
+    "chave": "2025 = 6 × 337 + 3: resto 3, terceira letra, G.",
+    "cuidado": "Use o resto, e lembre que resto 0 seria a 6.ª letra (A)."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste de posição",
+    "ideia": "G está nas posições 6k + 3; 2025 − 3 = 2022 = 6 × 337, então serve."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "período = 6",
+    "nota": "L O G I C A"
+   },
+   {
+    "linha": "2025 ÷ 6 = 337, resto 3",
+    "nota": "337 palavras completas"
+   },
+   {
+    "linha": "resto 3 → G",
+    "nota": "terceira letra"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0060"
+  }
+ }
+}

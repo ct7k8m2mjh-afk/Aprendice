@@ -1,0 +1,517 @@
+{
+ "P21c5c0b6": {
+  "n": "26",
+  "conceito": "Drone acelerado e depois em subida livre: a velocidade máxima sai da área do gráfico v × t, a aceleração dá o empuxo total e F = CT × ω² dá ω.",
+  "equivocos": {
+   "A": "F03.1:sem-origem-identificada",
+   "B": "F03.1:esqueceu-a-raiz",
+   "D": "F03.1:forca-total-em-um-motor",
+   "E": "F03.1:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O voo tem duas etapas: subida com aceleração a (motores ligados), partindo do repouso, e subida livre freando a g (motores parados) até parar na altura máxima. Num gráfico v × t isso é um triângulo de base 6 s e área 9 m, que dá a velocidade máxima. Com ela saem a duração de cada etapa e a aceleração; a segunda lei dá a força total, que se divide pelos quatro motores.",
+    "formulas": [
+     "deslocamento = área do v × t; triângulo: h = v(máx) × Δt/2",
+     "freada livre: t2 = v(máx)/g",
+     "4F − m × g = m × a",
+     "F = CT × ω²"
+    ],
+    "simbolos": [
+     [
+      "ω",
+      "velocidade angular do propulsor, em rad/s"
+     ],
+     [
+      "CT",
+      "constante que liga a força do motor ao quadrado de ω"
+     ],
+     [
+      "v(máx)",
+      "velocidade no instante da falha"
+     ],
+     [
+      "Δt",
+      "tempo total do chão até a altura máxima"
+     ]
+    ]
+   },
+   "pista": "Desenhe o gráfico v × t do voo inteiro: que figura ele forma e o que a área dela representa?",
+   "passos": [
+    {
+     "faz": "Ache a velocidade na falha",
+     "conta": "h = v(máx) × Δt/2 → 9 = v(máx) × 6/2 → v(máx) = 3 m/s",
+     "porque": "A velocidade sobe em linha reta de 0 até v(máx) e desce em linha reta até 0: o v × t é um triângulo, e a área é a altura.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Separe as duas etapas",
+     "conta": "t2 = 3/10 = 0,3 s | t1 = 6 − 0,3 = 5,7 s",
+     "porque": "Depois da falha só o peso atua e o drone freia a g = 10 m/s²; o resto do tempo é a etapa acelerada.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a aceleração com os motores",
+     "conta": "a = 3/5,7 = 10/19 m/s²",
+     "porque": "Partindo do repouso, ganhou 3 m/s em 5,7 s.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a força de cada motor",
+     "conta": "4F = m × (g + a) = 0,19 × (10 + 10/19) = 0,19 × 200/19 = 2,0 N → F = 2,0/4 = 0,5 N",
+     "porque": "A resultante para cima é 4F menos o peso; a massa vai em kg, 190 g = 0,19 kg.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache ω e conclua",
+     "conta": "ω² = 0,5/(5 × 10⁻⁷) = 1 × 10⁶ → ω = 1 × 10³ rad/s",
+     "porque": "Isole ω² em F = CT × ω² e tire a raiz. É a alternativa C.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 1 × 10³ rad/s.",
+   "checagem": "Some as alturas das etapas: acelerando, 3 × 5,7/2 = 8,55 m; freando, 3 × 0,3/2 = 0,45 m; total 9 m, como o enunciado dá.",
+   "erradas": {
+    "A": "Não confere: com ω = 4 × 10³ rad/s cada motor faria 5 × 10⁻⁷ × 16 × 10⁶ = 8 N, total 32 N contra um peso de 1,9 N, aceleração de mais de 150 m/s².",
+    "B": "1 × 10⁶ é ω², não ω: faltou tirar a raiz quadrada no último passo.",
+    "D": "Sai de pôr a força total num motor só: ω² = 2,0/(5 × 10⁻⁷) = 4 × 10⁶, ω = 2 × 10³. Os 2,0 N se dividem pelos quatro motores.",
+    "E": "Não confere: com ω = 2 × 10⁶ rad/s cada motor faria 5 × 10⁻⁷ × 4 × 10¹² = 2 × 10⁶ N, absurdo para um drone de 190 g."
+   },
+   "armadilha": "Duas armadilhas no fim: a força total é a dos quatro motores juntos, e F = CT × ω² dá ω², não ω.",
+   "alerta": "",
+   "essencial": {
+    "pede": "a velocidade angular de cada propulsor logo antes da falha",
+    "chave": "triângulo no v × t dá v(máx) = 3 m/s; a = 10/19 m/s²; 4F = 2,0 N; ω = 10³ rad/s",
+    "cuidado": "dividir a força pelos 4 motores e tirar a raiz de ω²"
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pelas equações horárias",
+    "ideia": "h1 = a × t1²/2 e h2 = (a × t1)²/(2g), com t1 + (a × t1)/g = 6 e h1 + h2 = 9: dá a = 10/19 m/s² e t1 = 5,7 s, como no gráfico."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "9 = v(máx) × 6/2 → v(máx) = 3 m/s",
+    "nota": "área do triângulo"
+   },
+   {
+    "linha": "t2 = 3/10 = 0,3 s; t1 = 5,7 s",
+    "nota": "freada a g"
+   },
+   {
+    "linha": "a = 3/5,7 = 10/19 m/s²",
+    "nota": "etapa com motores"
+   },
+   {
+    "linha": "4F = 0,19 × (10 + 10/19) = 2,0 N",
+    "nota": "segunda lei"
+   },
+   {
+    "linha": "F = 0,5 N",
+    "nota": "cada motor"
+   },
+   {
+    "linha": "ω² = 0,5/(5 × 10⁻⁷) = 10⁶ → ω = 10³ rad/s",
+    "nota": "raiz"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "fis-0048"
+  }
+ },
+ "P88810cdf": {
+  "n": "23",
+  "conceito": "Oscilador em duas dimensões: a elipse é centrada no ponto em que as duas molas estão relaxadas; a deformação máxima da mola vertical é o semieixo vertical.",
+  "equivocos": {
+   "B": "F04.2:esqueceu-o-meio-da-energia-elastica",
+   "C": "F04.2:trocou-a-mola-pelo-semieixo-errado",
+   "D": "F04.2:semieixo-errado-sem-o-meio",
+   "E": "F04.2:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A questão não fala em peso: trate o movimento como num plano horizontal, como a banca supõe. A partícula está presa a duas molas iguais, uma em cada direção. Cada mola puxa a partícula de volta para a posição em que ela está relaxada, então o centro da elipse é o ponto de equilíbrio, onde as duas molas têm deformação zero. Pondo a equação na forma reduzida, você lê o centro e os semieixos. A mola com cursor no eixo x fica na vertical: a deformação dela é a distância vertical até o centro da elipse.",
+    "formulas": [
+     "E = k × d²/2",
+     "elipse: (x − x₀)²/a² + (y − y₀)²/b² = 1"
+    ],
+    "simbolos": [
+     [
+      "Ex",
+      "energia potencial elástica da mola cujo cursor desliza no eixo x"
+     ],
+     [
+      "d",
+      "deformação da mola (quanto ela está esticada ou comprimida)"
+     ],
+     [
+      "semieixo",
+      "metade do eixo da elipse numa direção"
+     ]
+    ]
+   },
+   "pista": "Complete os quadrados para achar o centro e os semieixos da elipse; depois pense em qual direção a mola com cursor no eixo x se deforma.",
+   "passos": [
+    {
+     "faz": "Complete os quadrados",
+     "conta": "4(x − 4)² + 9(y − 3)² = −109 + 64 + 81 = 36",
+     "porque": "4x² − 32x = 4(x − 4)² − 64 e 9y² − 54y = 9(y − 3)² − 81.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escreva a forma reduzida",
+     "conta": "(x − 4)²/9 + (y − 3)²/4 = 1",
+     "porque": "Dividindo por 36: centro (4, 3), semieixo 3 em x e 2 em y.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a deformação máxima da mola",
+     "conta": "centro: mola relaxada → d máx = 2 m",
+     "porque": "A mola do cursor no eixo x fica vertical e se deforma só na direção y. O centro da elipse é o equilíbrio, onde ela está relaxada; o mais longe que a partícula vai na vertical é o semieixo de 2 m.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule a energia máxima",
+     "conta": "Ex = k × 2²/2 = 2k",
+     "porque": "Energia elástica = k × d²/2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "Ex máx = 2k",
+     "porque": "É a alternativa A.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 2k (em joules, com k em N/m).",
+   "checagem": "Pelos extremos: a elipse vai de y = 1 a y = 5; o centro y = 3 fica a 2 m de cada extremo. Nos dois pontos a mola vertical tem deformação 2 m e Ex = k × 4/2 = 2k.",
+   "erradas": {
+    "B": "4k sai de esquecer a metade na energia elástica: k × 2² = 4k.",
+    "C": "9/2 k sai de usar o semieixo horizontal, 3 m, que é a deformação da outra mola: k × 3²/2.",
+    "D": "9k sai de usar o semieixo horizontal e ainda esquecer a metade: k × 3².",
+    "E": "3/2 k não confere: exigiria k × d²/2 = 3k/2, isto é, d² = 3, e nenhum semieixo da elipse vale √3 m."
+   },
+   "armadilha": "Trocar as molas: a mola com cursor no eixo x é a vertical, que se deforma na direção y.",
+   "alerta": "A questão não diz o comprimento natural das molas: ele sai do fato de a trajetória ser uma elipse centrada em (4, 3), que é onde as duas molas estão relaxadas. A questão também não fala em peso: a resolução trata o movimento como num plano horizontal, como a banca supõe.",
+   "essencial": {
+    "pede": "o maior valor da energia elástica da mola cujo cursor anda no eixo x",
+    "chave": "o centro da elipse é a posição de equilíbrio; a deformação máxima é o semieixo vertical, 2 m",
+    "cuidado": "a mola do cursor no eixo x é a vertical; energia = k × d²/2"
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pela força",
+    "ideia": "Com duas molas iguais a força é −k vezes o deslocamento a partir do equilíbrio em cada eixo, por isso a elipse fica centrada em (4, 3); a maior distância vertical ao centro é 2 m, e Ex = k × 2²/2 = 2k."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "4(x − 4)² + 9(y − 3)² = 36",
+    "nota": "completa os quadrados"
+   },
+   {
+    "linha": "(x − 4)²/9 + (y − 3)²/4 = 1",
+    "nota": "centro (4, 3)"
+   },
+   {
+    "linha": "d máx = 2",
+    "nota": "semieixo vertical, m"
+   },
+   {
+    "linha": "Ex = k × 2²/2 = 2k",
+    "nota": "energia máxima"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "fis-0052"
+  }
+ },
+ "Pa9d54613": {
+  "n": "22",
+  "conceito": "Calcular o volume submerso máximo de um veículo anfíbio e, pela flutuação, a carga máxima.",
+  "equivocos": {
+   "A": "F07.4:subestimou-o-volume-submerso",
+   "C": "F07.4:superestimou-o-volume-submerso",
+   "D": "F07.4:superestimou-o-volume-submerso",
+   "E": "F07.4:superestimou-o-volume-submerso"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Flutuando, o empuxo é igual ao peso total, então a massa total que o veículo aguenta é a massa de água que cabe no volume abaixo da linha limite. Pela figura, as rodas têm diâmetro de 120 cm e o eixo delas fica no fundo do casco; a linha limite está 80 cm acima do fundo do casco (a rampa de 45° sobe 80 cm em 80 cm). Então o volume submerso é o casco até essa altura mais as seis rodas inteiras, que ficam abaixo da linha. A vista isométrica mostra as rodas fora da largura de 2,7 m do casco, por isso elas entram separadas.",
+    "formulas": [
+     "E = P → d(água) × V(submerso) = m(total)",
+     "casco: área do trapézio × largura = 0,8 × 6,6 × 2,7",
+     "roda: π × r² × largura = π × 0,6² × 0,4"
+    ],
+    "simbolos": [
+     [
+      "E",
+      "empuxo"
+     ],
+     [
+      "P",
+      "peso total do conjunto"
+     ],
+     [
+      "d(água)",
+      "massa específica da água, 1000 kg/m³"
+     ],
+     [
+      "V(submerso)",
+      "volume do veículo abaixo da linha limite"
+     ],
+     [
+      "m(total)",
+      "massa do veículo com militares e cunhetes"
+     ],
+     [
+      "r",
+      "raio da roda, 0,6 m"
+     ],
+     [
+      "π",
+      "pi, razão entre o comprimento da circunferência e o diâmetro"
+     ],
+     [
+      "n",
+      "número de cunhetes"
+     ]
+    ]
+   },
+   "pista": "Descubra pela vista lateral a altura da linha limite em relação ao fundo do casco e às rodas.",
+   "passos": [
+    {
+     "faz": "Calcule o volume do casco submerso",
+     "conta": "casco: (6,2 + 7,0)/2 × 0,8 × 2,7 = 0,8 × 6,6 × 2,7 ≈ 14,3 m³",
+     "porque": "Até 80 cm, a seção lateral é um trapézio com base de 6,2 m embaixo e 7,0 m em cima (a rampa de 45° avança 0,8 m); a base média é 6,6 m.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some as seis rodas",
+     "conta": "rodas: 6 × π × 0,6² × 0,4 ≈ 6 × 0,45 = 2,7 m³",
+     "porque": "O topo da roda fica 60 cm acima do fundo do casco, abaixo da linha limite (80 cm): cada roda fica toda submersa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a massa máxima",
+     "conta": "V(submerso) ≈ 14,3 + 2,7 = 17,0 m³ → m(total) = 1000 × 17,0 = 17 000 kg",
+     "porque": "Flutuando, o conjunto desloca água de massa igual à dele.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Desconte veículo e militares",
+     "conta": "17 000 − 15 000 − 11 × 100 = 900 kg → n = 900/5 = 180",
+     "porque": "O que sobra da massa permitida pode ir em cunhetes de 5 kg.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "n ≈ 180 → alternativa B",
+     "porque": "É o número máximo aproximado de cunhetes.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — cerca de 180 cunhetes.",
+   "checagem": "Refaça sem as aproximações do enunciado: o casco dá 5,28 × 2,7 = 14,256 m³ e as rodas 6 × π × 0,36 × 0,4 ≈ 2,714 m³, total ≈ 16,97 m³. Sobram cerca de 16 970 − 16 100 = 870 kg, ou 174 cunhetes, e a alternativa mais próxima continua sendo 180.",
+   "erradas": {
+    "A": "Não confere: pelos dados do enunciado sobram 900 kg, que comportam 180 cunhetes; 160 cunhetes (800 kg) ainda deixa folga de 100 kg.",
+    "C": "Não confere: 200 cunhetes dariam 15 000 + 1100 + 1000 = 17 100 kg, mais que os 17 000 kg de água que cabem até a linha limite.",
+    "D": "Não confere: 220 cunhetes dariam 17 200 kg, acima dos 17 000 kg que o veículo desloca até a linha limite.",
+    "E": "Não confere: 240 cunhetes dariam 17 300 kg, acima dos 17 000 kg que o veículo desloca até a linha limite."
+   },
+   "armadilha": "Esquecer as rodas ou contar só a metade de baixo delas: com o casco sozinho (14,3 m³) o veículo nem flutua com os militares.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O número máximo de cunhetes para o veículo flutuar sem a água passar da linha limite.",
+    "chave": "m(total) = 1000 × (14,3 + 2,7) = 17 000 kg; sobram 900 kg, ou 180 cunhetes.",
+    "cuidado": "Ler a figura: a linha limite fica 80 cm acima do fundo do casco e acima do topo das rodas."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste das alternativas",
+    "ideia": "Some veículo, militares e 5 kg por cunhete e compare com 17 000 kg: 180 cunhetes dão exatamente 17 000 kg."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "casco: 0,8 × 6,6 × 2,7 ≈ 14,3 m³",
+    "nota": "trapézio × largura"
+   },
+   {
+    "linha": "rodas: 6 × 0,45 = 2,7 m³",
+    "nota": "seis cilindros"
+   },
+   {
+    "linha": "V(submerso) ≈ 17,0 m³",
+    "nota": "soma"
+   },
+   {
+    "linha": "m(total) = 1000 × 17,0 = 17 000 kg",
+    "nota": "E = P"
+   },
+   {
+    "linha": "17 000 − 15 000 − 1100 = 900 kg",
+    "nota": "carga livre"
+   },
+   {
+    "linha": "n = 900/5 = 180",
+    "nota": "alternativa B"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "fis-0056"
+  }
+ },
+ "Pf6049394": {
+  "n": "21",
+  "conceito": "Lei de Boyle aplicada a cada coluna de ar e equilíbrio de pressões na coluna de mercúrio na vertical.",
+  "equivocos": {
+   "A": "F08.6:nao-confere-equilibrio-mercurio",
+   "B": "F08.6:nao-confere-equilibrio-mercurio",
+   "D": "F08.6:nao-confere-equilibrio-mercurio",
+   "E": "F08.6:nao-confere-equilibrio-mercurio"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada coluna de ar fica presa do seu lado e a temperatura não muda: para cada uma vale p × comprimento = constante (o tubo tem seção fixa, então o volume é proporcional ao comprimento). Na horizontal, as duas colunas têm a mesma pressão p, porque o mercúrio não pesa na direção do tubo. Na vertical, o ar de baixo sustenta o ar de cima mais o peso da coluna de mercúrio.",
+    "formulas": [
+     "Boyle: p₁ × L₁ = p₂ × L₂ (T constante, mesma seção)",
+     "na vertical: p_baixo = p_cima + d × g × a"
+    ],
+    "simbolos": [
+     [
+      "p",
+      "pressão do ar na horizontal, a incógnita"
+     ],
+     [
+      "L",
+      "comprimento da coluna de ar, que faz o papel do volume"
+     ],
+     [
+      "d",
+      "densidade do mercúrio"
+     ],
+     [
+      "g",
+      "aceleração da gravidade"
+     ],
+     [
+      "a",
+      "comprimento da coluna de mercúrio"
+     ]
+    ]
+   },
+   "pista": "Escreva a pressão final de cada coluna de ar em função de p, usando o comprimento antes e depois. Só depois olhe para o mercúrio.",
+   "passos": [
+    {
+     "faz": "Aplique Boyle à coluna de cima",
+     "conta": "p × 2a = p_cima × 3a → p_cima = (2p)/3",
+     "porque": "A coluna de cima foi esticada de 2a para 3a: com mais espaço e a mesma temperatura, a pressão cai na mesma proporção.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Aplique Boyle à coluna de baixo",
+     "conta": "p × 2a = p_baixo × a → p_baixo = 2p",
+     "porque": "A coluna de baixo foi comprimida de 2a para a: metade do comprimento, o dobro da pressão.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Equilibre o mercúrio na vertical",
+     "conta": "p_baixo = p_cima + d g a → 2p = (2p)/3 + d g a",
+     "porque": "O mercúrio parado precisa que o ar de baixo empurre para cima o que o ar de cima empurra para baixo mais o peso da própria coluna, que dá pressão d g a.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole p",
+     "conta": "2p − (2p)/3 = d g a → (4p)/3 = d g a → p = (3 d g a)/4",
+     "porque": "O termo (2p)/3 passa para o outro lado subtraindo; o 4/3 que multiplica p vai para o outro lado como 3/4.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "p = (3/4) d g a",
+     "porque": "É a pressão comum às duas colunas na horizontal, a situação da Figura 1.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — a pressão na horizontal é (3/4) d g a.",
+   "checagem": "Substitua p = (3/4) d g a de volta: p_baixo = 2p = (3/2) d g a e p_cima = (2/3)p = (1/2) d g a. A diferença é (3/2 − 1/2) d g a = d g a, exatamente o peso da coluna de mercúrio por área.",
+   "erradas": {
+    "A": "Não confere: com p = (1/4) d g a, a diferença p_baixo − p_cima = (4/3)p daria (1/3) d g a, menor que o peso do mercúrio, d g a.",
+    "B": "Não confere: com p = (1/2) d g a, a diferença (4/3)p daria (2/3) d g a, e o mercúrio não ficaria em equilíbrio.",
+    "D": "Não confere: com p = (3/5) d g a, a diferença (4/3)p daria (4/5) d g a, e não d g a.",
+    "E": "Não confere: com p = (2/3) d g a, a diferença (4/3)p daria (8/9) d g a, e não d g a."
+   },
+   "armadilha": "Achar que só a coluna de baixo muda de pressão: as duas mudam, a de cima cai para 2p/3 e a de baixo sobe para 2p.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A pressão do ar no tubo horizontal.",
+    "chave": "Boyle em cada coluna (p_cima = 2p/3, p_baixo = 2p) e p_baixo − p_cima = d g a, logo p = (3/4) d g a.",
+    "cuidado": "Usar o comprimento como volume e lembrar que a coluna de cima também muda de pressão."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste das alternativas",
+    "ideia": "Para cada p, calcule 2p − 2p/3 = 4p/3 e veja qual dá exatamente d g a: só 3/4."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "p · 2a = p_cima · 3a → p_cima = 2p/3",
+    "nota": "coluna de cima esticada"
+   },
+   {
+    "linha": "p · 2a = p_baixo · a → p_baixo = 2p",
+    "nota": "coluna de baixo comprimida"
+   },
+   {
+    "linha": "2p = 2p/3 + dga",
+    "nota": "equilíbrio do mercúrio"
+   },
+   {
+    "linha": "4p/3 = dga → p = 3dga/4",
+    "nota": "2p/3 passa subtraindo; 4/3 vira 3/4"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "fis-0059"
+  }
+ }
+}

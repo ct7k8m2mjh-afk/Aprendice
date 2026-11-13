@@ -1,0 +1,674 @@
+{
+ "P1a5f326d": {
+  "n": "76",
+  "conceito": "Conversões de moeda em sequência.",
+  "equivocos": {
+   "B": "M03.1:sem-origem-identificada",
+   "C": "M03.1:achou-taxas-coerentes",
+   "D": "M03.1:inverteu-o-sinal",
+   "E": "M03.1:inverteu-o-sinal"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Converta passo a passo: dólares em reais (multiplica por 5,46), reais em euros (divide por 6,25) e euros em dólares (multiplica por 1,15). Compare o final com os US$ 10 000 iniciais.",
+    "formulas": [
+     "reais = dólares · 5,46",
+     "euros = reais ÷ 6,25",
+     "dólares = euros · 1,15"
+    ],
+    "simbolos": []
+   },
+   "pista": "Quantos reais rendem US$ 10 000?",
+   "passos": [
+    {
+     "faz": "Dólar → real",
+     "conta": "10 000 · 5,46 = R$ 54 600",
+     "porque": "Taxa 1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Real → euro",
+     "conta": "54 600 ÷ 6,25 = € 8 736",
+     "porque": "Taxa 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Euro → dólar",
+     "conta": "8 736 · 1,15 = US$ 10 046,40",
+     "porque": "Taxa 3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resultado",
+     "conta": "10 046,40 − 10 000 = lucro de US$ 46,40 → alternativa A",
+     "porque": "Comparar.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — teve lucro de US$ 46,40.",
+   "checagem": "Fator do ciclo: 5,46 · 1,15/6,25 = 6,279/6,25 = 1,00464; 10 000 · 0,00464 = 46,40 de lucro. Confere.",
+   "erradas": {
+    "B": "Lucro de US$ 36 exigiria fator 1,0036 no ciclo; o ciclo dá 5,46 · 1,15/6,25 = 1,00464.",
+    "C": "As taxas não são coerentes entre si (5,46 · 1,15 = 6,279 ≠ 6,25), então há ganho.",
+    "D": "Há lucro, não prejuízo: o fator é maior que 1.",
+    "E": "O ciclo devolve US$ 10 046,40 > US$ 10 000: há lucro de 46,40, não prejuízo de 56."
+   },
+   "armadilha": "Achar que dar a volta nas moedas sempre devolve o mesmo valor.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Resultado das trocas.",
+    "chave": "10 000 → 54 600 → 8 736 → 10 046,40.",
+    "cuidado": "Siga a ordem das conversões."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "taxa cruzada",
+    "ideia": "Pelas taxas 1 e 2, o euro vale 6,25/5,46 ≈ 1,1447 dólar; a taxa 3 paga 1,15. Cada euro rende 0,0053 dólar a mais: 8 736 · 0,0053 ≈ 46,4."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "R$ 54 600",
+    "nota": "1.ª troca"
+   },
+   {
+    "linha": "€ 8 736",
+    "nota": "2.ª troca"
+   },
+   {
+    "linha": "US$ 10 046,40",
+    "nota": "3.ª troca"
+   },
+   {
+    "linha": "+46,40",
+    "nota": "resposta"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0047"
+  }
+ },
+ "P1363888b": {
+  "n": "78",
+  "conceito": "Problema de proporções que vira equação do 1.º grau com uma incógnita.",
+  "equivocos": {
+   "A": "M04.1:valor-que-nao-fecha-a-soma",
+   "C": "M04.1:valor-que-nao-fecha-a-soma",
+   "D": "M04.1:respondeu-outra-incognita",
+   "E": "M04.1:valor-que-nao-fecha-a-soma"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Escreva todas as massas em função da de potássio. Sódio é o dobro dela, cloreto é sódio mais potássio, glicose é igual ao cloreto. A soma de tudo é 900 mg.",
+    "formulas": [
+     "soma das massas = 900"
+    ],
+    "simbolos": [
+     [
+      "k",
+      "massa de potássio por litro, em mg"
+     ]
+    ]
+   },
+   "pista": "Chame a massa de potássio de k e escreva as outras três em função de k.",
+   "passos": [
+    {
+     "faz": "Escreva as massas em função de k",
+     "conta": "potássio: k | sódio: 2k | cloreto: 3k | glicose: 3k",
+     "porque": "Cloreto = 2k + k = 3k, e glicose = cloreto.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some e iguale a 900",
+     "conta": "k + 2k + 3k + 3k = 900 → 9k = 900",
+     "porque": "A soma das quatro massas é 900 mg por litro.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva",
+     "conta": "k = 900/9 = 100",
+     "porque": "Potássio: 100 mg.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Responda",
+     "conta": "sódio = 2k = 200 mg → alternativa B",
+     "porque": "A pergunta é a massa de sódio.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 200 mg",
+   "checagem": "Potássio 100, sódio 200, cloreto 300, glicose 300: soma 900. Sódio é o dobro do potássio e cloreto é 200 + 100. Tudo confere.",
+   "erradas": {
+    "A": "150 mg não confere: com sódio 150, potássio 75, cloreto 225 e glicose 225, a soma dá 675, não 900.",
+    "C": "250 mg não confere: potássio 125, cloreto 375, glicose 375; a soma dá 1 125.",
+    "D": "300 mg sai da massa de cloreto (ou de glicose): 3k = 300. Não é a de sódio.",
+    "E": "350 mg não confere: potássio 175, cloreto 525, glicose 525; a soma dá 1 575."
+   },
+   "armadilha": "Resolver certo e responder a massa de cloreto (300 mg) em vez da de sódio.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A massa de sódio por litro.",
+    "chave": "k + 2k + 3k + 3k = 9k = 900, k = 100, sódio = 200.",
+    "cuidado": "Volte ao que se pede: sódio é 2k."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "partes",
+    "ideia": "As massas estão na razão 1 : 2 : 3 : 3, 9 partes ao todo; cada parte vale 900 ÷ 9 = 100, e o sódio tem 2 partes."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "k + 2k + 3k + 3k = 900",
+    "nota": "potássio, sódio, cloreto, glicose"
+   },
+   {
+    "linha": "9k = 900",
+    "nota": "junta os termos"
+   },
+   {
+    "linha": "k = 900/9 = 100",
+    "nota": "o 9 passa dividindo"
+   },
+   {
+    "linha": "2k = 2 · 100 = 200",
+    "nota": "sódio"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0050"
+  }
+ },
+ "Pe8e3a6f7": {
+  "n": "71",
+  "conceito": "Valor máximo de uma função quadrática aplicada (pressão pulmonar).",
+  "equivocos": {
+   "B": "M05.2:extremo-no-limite-do-dominio",
+   "C": "M05.2:valor-fora-do-maximo",
+   "D": "M05.2:esqueceu-o-termo-quadratico",
+   "E": "M05.2:extremo-no-limite-do-dominio"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "P(x) = 12x − 12x² é uma parábola com a = −12 < 0: ela abre para baixo e o máximo fica no vértice. A pergunta quer dois números: o volume x em que isso acontece e a pressão máxima.",
+    "formulas": [
+     "xv = −b/(2a)",
+     "P máxima = P(xv)"
+    ],
+    "simbolos": [
+     [
+      "x",
+      "volume extra de ar inalado, em litros"
+     ],
+     [
+      "P",
+      "pressão nos pulmões, em mmHg"
+     ],
+     [
+      "xv",
+      "abscissa do vértice: o x onde a parábola faz a curva"
+     ]
+    ]
+   },
+   "pista": "Ache primeiro o x do vértice; só depois calcule a pressão nele.",
+   "passos": [
+    {
+     "faz": "Identifique a e b",
+     "conta": "P(x) = −12x² + 12x → a = −12 | b = 12",
+     "porque": "a < 0: a parábola tem ponto de máximo.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule o xv",
+     "conta": "xv = −12/(2 · (−12)) = 1/2 = 0,5",
+     "porque": "O vértice é onde a pressão para de subir e começa a descer. 0,5 está dentro de [0, 1].",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a pressão máxima",
+     "conta": "P(0,5) = 12 · 0,5 − 12 · 0,25 = 6 − 3 = 3",
+     "porque": "O x² vale 0,25; esquecer de elevar ao quadrado é o erro mais comum aqui.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Junte os dois números",
+     "conta": "3,0 mmHg quando x = 0,5 L",
+     "porque": "A alternativa precisa ter as duas coisas certas.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 3,0 mmHg, quando x = 0,5 litro.",
+   "checagem": "Pelas raízes: 12x(1 − x) = 0 dá x = 0 e x = 1; o meio é 0,5, e P(0,5) = 12 · 0,5 · 0,5 = 3.",
+   "erradas": {
+    "B": "Não confere: P(1) = 12 − 12 = 0; em x = 1 a pressão volta a zero.",
+    "C": "Não confere: P(0,75) = 9 − 6,75 = 2,25, menor que 3.",
+    "D": "Sai de calcular só a primeira parcela, 12 · 0,5 = 6, sem subtrair 12 · 0,25 = 3.",
+    "E": "Não confere: em x = 1, P(1) = 0, e não 6."
+   },
+   "armadilha": "Acertar o x = 0,5 e errar a pressão por esquecer o 12x², que tira 3 dos 6.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A pressão máxima e o volume em que ela ocorre.",
+    "chave": "xv = 0,5 e P(0,5) = 6 − 3 = 3 mmHg.",
+    "cuidado": "Calcule o termo 12x² com x² = 0,25."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "raízes e simetria",
+    "ideia": "P(x) = 12x(1 − x) zera em 0 e 1; o máximo fica em 0,5."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "P(x) = −12x² + 12x",
+    "nota": "a = −12, b = 12"
+   },
+   {
+    "linha": "xv = −12/(2 · (−12)) = 1/2",
+    "nota": "volume do máximo"
+   },
+   {
+    "linha": "P(0,5) = 6 − 3 = 3",
+    "nota": "pressão máxima"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0054"
+  }
+ },
+ "P73de8ca2": {
+  "n": "74",
+  "conceito": "Achar os parâmetros de A(t) = M·t^α·e^(βt) a partir de dois valores e calcular A(100).",
+  "equivocos": {
+   "A": "M06.5:usou-a-diferenca-dos-expoentes",
+   "B": "M06.5:somou-os-expoentes",
+   "C": "M06.5:beta-errado",
+   "E": "M06.5:beta-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Com α = 0,5, t^α é √t: √16 = 4 e √25 = 5. As duas igualdades dadas viram 4M·e^(16β) = 1000·e^(−0,32) e 5M·e^(25β) = 1250·e^(−0,50). Dividindo uma pela outra, o M some e sobra β; depois o M sai de qualquer uma.",
+    "formulas": [
+     "t^0,5 = √t",
+     "eᵃ ÷ eᵇ = e^(a − b)"
+    ],
+    "simbolos": [
+     [
+      "A(t)",
+      "taxa de aparecimento de glicose, em mg/min"
+     ],
+     [
+      "M, α, β",
+      "constantes do modelo"
+     ],
+     [
+      "e",
+      "número de Euler"
+     ]
+    ]
+   },
+   "pista": "Com α = 0,5, calcule √16 e √25 e escreva as duas equações; depois divida uma pela outra.",
+   "passos": [
+    {
+     "faz": "Escreva as duas equações",
+     "conta": "4M·e^(16β) = 1000·e^(−0,32) | 5M·e^(25β) = 1250·e^(−0,50)",
+     "porque": "t^0,5 = √t: √16 = 4 e √25 = 5.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Divida a 2.ª pela 1.ª",
+     "conta": "(5/4)·e^(9β) = (5/4)·e^(−0,18) → 9β = −0,18 → β = −0,18/9 = −0,02",
+     "porque": "O M se cancela; 1250/1000 = 5/4 dos dois lados; o 9 que multiplica vai dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache M",
+     "conta": "4M·e^(−0,32) = 1000·e^(−0,32) → 4M = 1000 → M = 1000/4 = 250",
+     "porque": "Com β = −0,02, 16β = −0,32: a potência de e é a mesma dos dois lados e cancela.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule A(100)",
+     "conta": "A(100) = 250 · √100 · e^(−0,02 × 100) = 250 × 10 · e^(−2) = 2500·e^(−2)",
+     "porque": "√100 = 10 e o expoente é −0,02 × 100 = −2.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 2500 · e^(−2) mg/min",
+   "checagem": "Teste os parâmetros em t = 25: 250 × 5 · e^(−0,02 × 25) = 1250·e^(−0,5), exatamente o valor dado. Fecha.",
+   "erradas": {
+    "A": "2500·e^(−0,18) sai de usar no expoente a diferença −0,50 − (−0,32) = −0,18 como se fosse β·100.",
+    "B": "2500·e^(−0,82) sai de somar os expoentes dados: −0,32 + (−0,50) = −0,82.",
+    "C": "2500·e^(−1) sai de usar β = −0,01, metade do valor certo; com ele A(16) daria e^(−0,16), não e^(−0,32).",
+    "E": "2500·e^(−2,5) não confere: exigiria β × 100 = −2,5, ou β = −0,025; aí 16β = −0,4, e A(16) teria e^(−0,4), não o e^(−0,32) dado."
+   },
+   "armadilha": "Esquecer que t^0,5 é a raiz de t e, ao dividir as equações, não perceber que o M some.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A(100) no modelo A(t) = M·t^0,5·e^(βt).",
+    "chave": "Dividindo as duas equações, β = −0,02; daí M = 250 e A(100) = 250 × 10 × e^(−2).",
+    "cuidado": "Expoente de e: β × 100 = −2."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "comparação direta",
+    "ideia": "Compare 4M·e^(16β) com 1000·e^(−0,32): 16β = −0,32 dá β = −0,02 e 4M = 1000 de uma vez."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "4M·e^(16β) = 1000·e^(−0,32)",
+    "nota": "t = 16"
+   },
+   {
+    "linha": "5M·e^(25β) = 1250·e^(−0,50)",
+    "nota": "t = 25"
+   },
+   {
+    "linha": "e^(9β) = e^(−0,18)",
+    "nota": "divisão: o M some"
+   },
+   {
+    "linha": "9β = −0,18",
+    "nota": "bases iguais"
+   },
+   {
+    "linha": "β = −0,18/9",
+    "nota": "o 9 vai dividindo"
+   },
+   {
+    "linha": "β = −0,02",
+    "nota": "divide"
+   },
+   {
+    "linha": "4M = 1000 → M = 250",
+    "nota": "volta na 1.ª equação"
+   },
+   {
+    "linha": "A(100) = 250 × 10 × e^(−2) = 2500·e^(−2)",
+    "nota": "t = 100"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0058"
+  }
+ },
+ "P7a327c8e": {
+  "n": "77",
+  "conceito": "Lei dos cossenos com ângulo de 120° e lados ímpares consecutivos.",
+  "equivocos": {
+   "A": "M09.4:perimetro-nao-multiplo-de-3",
+   "B": "M09.4:nao-testou-a-lei-dos-cossenos",
+   "C": "M09.4:perimetro-nao-multiplo-de-3",
+   "D": "M09.4:perimetro-nao-multiplo-de-3"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Chame o menor lado de x: os outros são x + 2 e x + 4. O ângulo de 120° fica em A, entre AB e AC, então o lado oposto a ele é BC, o maior. A lei dos cossenos com cos 120° = −1/2 liga os três lados numa equação em x.",
+    "formulas": [
+     "lei dos cossenos: BC² = AB² + AC² − 2·AB·AC·cos Â",
+     "cos 120° = −1/2, então BC² = AB² + AC² + AB·AC"
+    ],
+    "simbolos": [
+     [
+      "BÂC",
+      "ângulo com vértice em A, entre os lados AB e AC"
+     ],
+     [
+      "x",
+      "medida de AB, o menor lado"
+     ]
+    ]
+   },
+   "pista": "Veja qual lado fica de frente para o ângulo de 120° e aplique nele a lei dos cossenos.",
+   "passos": [
+    {
+     "faz": "Nomeie os lados",
+     "conta": "AB = x | AC = x + 2 | BC = x + 4",
+     "porque": "Ímpares consecutivos diferem de 2 em 2, na ordem AB, AC, BC dada no enunciado.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Monte a lei dos cossenos",
+     "conta": "BC² = AB² + AC² − 2·AB·AC·cos 120° → (x + 4)² = x² + (x + 2)² + x(x + 2)",
+     "porque": "BC é oposto ao ângulo de 120°. Como cos 120° = −1/2, o termo −2·AB·AC·cos vira +AB·AC.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Desenvolva e simplifique",
+     "conta": "x² + 8x + 16 = 3x² + 6x + 4 → 2x² − 2x − 12 = 0 → x² − x − 6 = 0",
+     "porque": "Passe tudo para um lado e divida por 2 para deixar a equação mais simples.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva e descarte a raiz negativa",
+     "conta": "x² − x − 6 = 0 → (x − 3)(x + 2) = 0 → x = 3",
+     "porque": "Lado não pode ser negativo, então x = −2 não serve.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Some os lados",
+     "conta": "3 + 5 + 7 = 15 → alternativa E",
+     "porque": "Com x = 3, os lados são 3, 5 e 7; o perímetro é a soma deles.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 15 cm",
+   "checagem": "Confira o ângulo: 3² + 5² + 3·5 = 9 + 25 + 15 = 49 = 7². Além disso, três ímpares consecutivos somam 3x + 6, sempre múltiplo de 3: entre as alternativas, só 21 e 15 servem, e 21 (lados 5, 7, 9) falha no teste.",
+   "erradas": {
+    "A": "23 não confere: o perímetro é x + (x + 2) + (x + 4) = 3x + 6, múltiplo de 3, e 23 não é.",
+    "B": "21 não confere: seriam os lados 5, 7 e 9, mas 5² + 7² + 5·7 = 109, e não 9² = 81; o ângulo não seria 120°.",
+    "C": "19 não confere: 3x + 6 = 19 dá x não inteiro, e os lados têm de ser ímpares inteiros.",
+    "D": "17 não confere: 3x + 6 = 17 dá x não inteiro; 17 não é múltiplo de 3."
+   },
+   "armadilha": "Errar o sinal: com ângulo obtuso, cos 120° = −1/2 e o termo da lei dos cossenos passa a somar AB·AC.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O perímetro de um triângulo com lados ímpares consecutivos e ângulo de 120° entre AB e AC.",
+    "chave": "(x + 4)² = x² + (x + 2)² + x(x + 2) dá x = 3; lados 3, 5, 7 e perímetro 15.",
+    "cuidado": "O lado oposto ao 120° é o maior, e cos 120° é negativo."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "testar alternativas",
+    "ideia": "Perímetro 3x + 6 só pode ser 21 ou 15; teste 5, 7, 9 e 3, 5, 7 em BC² = AB² + AC² + AB·AC: só 3, 5, 7 passa."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "(x + 4)² = x² + (x + 2)² + x(x + 2)",
+    "nota": "lei dos cossenos com cos 120° = −1/2"
+   },
+   {
+    "linha": "x² + 8x + 16 = 3x² + 6x + 4",
+    "nota": "desenvolveu os quadrados"
+   },
+   {
+    "linha": "2x² − 2x − 12 = 0 → x² − x − 6 = 0",
+    "nota": "passou tudo para um lado e dividiu por 2"
+   },
+   {
+    "linha": "(x − 3)(x + 2) = 0 → x = 3",
+    "nota": "fatorou; x = −2 não serve"
+   },
+   {
+    "linha": "3 + 5 + 7 = 15",
+    "nota": "somou os lados"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0062"
+  }
+ },
+ "P7f8a0dad": {
+  "n": "80",
+  "conceito": "Volume de líquido entre um cilindro e um cone invertido inscrito, até certa altura: cilindro parcial menos cone semelhante menor.",
+  "equivocos": {
+   "A": "M11.2:subtracao-errada",
+   "B": "M11.2:esqueceu-o-um-terco-do-cone",
+   "D": "M11.2:subtracao-errada",
+   "E": "M11.2:volume-maior-que-o-cilindro"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cilindro equilátero é aquele em que a altura é igual ao diâmetro: com 20 cm de altura, o raio é 10 cm. O líquido ocupa o cilindro até 12 cm, menos a parte de dentro do cone. Essa parte é um cone menor, de altura 12 cm, semelhante ao cone inteiro: o raio dele sai por proporção.",
+    "formulas": [
+     "volume do cilindro = πR²h",
+     "volume do cone = (1/3)πr²h",
+     "semelhança: r/12 = 10/20"
+    ],
+    "simbolos": [
+     [
+      "cilindro equilátero",
+      "cilindro cuja altura é igual ao diâmetro da base"
+     ],
+     [
+      "R",
+      "raio do cilindro, 10 cm"
+     ],
+     [
+      "r",
+      "raio do cone pequeno na altura de 12 cm"
+     ],
+     [
+      "inscrito",
+      "colocado dentro, encostando nas bordas"
+     ]
+    ]
+   },
+   "pista": "Pense no líquido como um cilindro de 12 cm de altura do qual se tira a ponta do cone que fica mergulhada.",
+   "passos": [
+    {
+     "faz": "Ache o raio do cilindro",
+     "conta": "cilindro equilátero: 2R = 20 → R = 10 cm",
+     "porque": "No cilindro equilátero, diâmetro e altura são iguais.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o cilindro até 12 cm",
+     "conta": "V = π × 10² × 12 = 1200π cm³",
+     "porque": "É o volume que o líquido teria se não houvesse o cone.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache o raio do cone na altura 12",
+     "conta": "r/12 = 10/20 → r = (10 × 12)/20 = 6 cm",
+     "porque": "A ponta mergulhada é um cone semelhante ao inteiro: o raio cresce na mesma proporção da altura a partir do vértice.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o cone mergulhado",
+     "conta": "V = (1/3) × π × 6² × 12 = 144π cm³",
+     "porque": "É o espaço de dentro do cone, onde o líquido não entra.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Subtraia e conclua",
+     "conta": "1200π − 144π = 1056π cm³ → alternativa C",
+     "porque": "O líquido está dentro do cilindro e fora do cone.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 1056π cm³",
+   "checagem": "Por razão de semelhança: o cone inteiro tem (1/3)π × 100 × 20 = (2000/3)π; a ponta de altura 12 é (12/20)³ = 0,216 dele, ou seja, 0,216 × (2000/3)π = 144π. Mesmo valor.",
+   "erradas": {
+    "A": "766π não confere: o cone mergulhado teria de valer 1200π − 766π = 434π, que não é (1/3)π × 6² × 12 = 144π nem π × 6² × 12 = 432π.",
+    "B": "768π sai de esquecer o 1/3 do cone: 1200π − π × 6² × 12 = 1200π − 432π = 768π.",
+    "D": "1065π não confere: a conta dá 1200π − 144π = 1056π; 1065π deixaria para o cone mergulhado 1200π − 1065π = 135π, e (1/3)π · 6² · 12 = 144π.",
+    "E": "1440π não confere: é mais do que os 1200π do cilindro inteiro até 12 cm, e o líquido não pode ocupar mais que isso."
+   },
+   "armadilha": "Esquecer o 1/3 no volume do cone, ou usar o raio do cone inteiro (10 cm) em vez do raio na altura de 12 cm (6 cm).",
+   "alerta": "",
+   "essencial": {
+    "pede": "O volume de líquido dentro do cilindro e fora do cone, até 12 cm de altura.",
+    "chave": "Cilindro até 12 cm (1200π) menos o cone de altura 12 e raio 6 (144π) = 1056π.",
+    "cuidado": "Raio do cone pequeno por semelhança e o 1/3 no volume do cone."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "razão de semelhança",
+    "ideia": "A ponta mergulhada é (12/20)³ = 0,216 do cone inteiro de (2000/3)π: 144π; 1200π − 144π = 1056π."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "2R = 20 → R = 10 cm",
+    "nota": "cilindro equilátero"
+   },
+   {
+    "linha": "V = π × 10² × 12 = 1200π",
+    "nota": "cilindro até 12 cm"
+   },
+   {
+    "linha": "r/12 = 10/20 → r = 6 cm",
+    "nota": "semelhança no cone"
+   },
+   {
+    "linha": "V = (1/3) × π × 6² × 12 = 144π",
+    "nota": "cone mergulhado"
+   },
+   {
+    "linha": "1200π − 144π = 1056π cm³",
+    "nota": "cilindro menos cone"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0063"
+  }
+ }
+}

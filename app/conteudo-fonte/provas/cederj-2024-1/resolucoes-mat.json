@@ -1,0 +1,419 @@
+{
+ "P1de8cebc": {
+  "n": "33",
+  "conceito": "Aumento e desconto sucessivos de mesma taxa.",
+  "equivocos": {
+   "B": "M03.2:sem-origem-identificada",
+   "C": "M03.2:respondeu-o-desconto",
+   "D": "M03.2:errou-a-escala"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Aumentar x% e depois descontar x% multiplica o preço por (1 + x/100)(1 − x/100) = 1 − (x/100)². Isso deve ser igual a um desconto de 2,25%, isto é, 0,9775.",
+    "formulas": [
+     "(1 + i)(1 − i) = 1 − i²"
+    ],
+    "simbolos": [
+     [
+      "i",
+      "x/100"
+     ]
+    ]
+   },
+   "pista": "Que produto notável aparece em (1 + i)(1 − i)?",
+   "passos": [
+    {
+     "faz": "Fator",
+     "conta": "1 − i² = 1 − 0,0225",
+     "porque": "Desconto de 2,25%.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolver",
+     "conta": "i² = 0,0225 → i = 0,15",
+     "porque": "i positivo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "x",
+     "conta": "x = 15 → alternativa A",
+     "porque": "Percentual.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 15",
+   "checagem": "Com o preço: 175 · 1,15 = 201,25; 201,25 · 0,85 = 171,0625; 175 · 0,9775 = 171,0625. Confere.",
+   "erradas": {
+    "B": "x = 5 dá 1 − 0,0025: desconto de 0,25%, não 2,25%.",
+    "C": "2,25 é o desconto final, não a taxa de cada ajuste; dá desconto de ≈ 0,05%.",
+    "D": "x = 1,5 dá desconto de 0,0225%: confundiu 2,25% com i² sem a escala."
+   },
+   "armadilha": "Responder 2,25 (o desconto equivalente) como se fosse a taxa x.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Taxa x.",
+    "chave": "1 − i² = 0,9775 → i = 0,15.",
+    "cuidado": "Aumento e desconto iguais não se anulam."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "testar alternativas",
+    "ideia": "Teste x = 15: 1,15 · 0,85 = 0,9775. Teste x = 5: 1,05 · 0,95 = 0,9975. Só 15 dá 2,25% de desconto."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "1 − i² = 0,9775",
+    "nota": "equação"
+   },
+   {
+    "linha": "i = 0,15",
+    "nota": "taxa"
+   },
+   {
+    "linha": "15",
+    "nota": "resposta"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0049"
+  }
+ },
+ "P7608e221": {
+  "n": "31",
+  "conceito": "Resto da divisão por x² + 1 e valor numérico para montar um sistema em a e b.",
+  "equivocos": {
+   "A": "M05.1:sinal-do-resto-trocado",
+   "C": "M05.1:razao-errada",
+   "D": "M05.1:razao-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Separe p(x) em partes que são múltiplas de x² + 1: x³ + x = x(x² + 1) e ax² = a(x² + 1) − a. O que sobra é o resto. Com o resto e p(1) = 4 sai um sistema 2 × 2.",
+    "formulas": [
+     "x³ + x = x(x² + 1)",
+     "ax² + b = a(x² + 1) + (b − a)"
+    ],
+    "simbolos": [
+     [
+      "p(1)",
+      "valor do polinômio em x = 1"
+     ],
+     [
+      "resto",
+      "o que sobra na divisão; aqui um número porque x² + 1 tem grau 2"
+     ]
+    ]
+   },
+   "pista": "Agrupe x³ com x e ax² com b e veja o que é múltiplo de x² + 1.",
+   "passos": [
+    {
+     "faz": "Ache o resto",
+     "conta": "p(x) = (x + a)(x² + 1) + (b − a)",
+     "porque": "x³ + x e a(x² + 1) somem na divisão; sobra b − a.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte o sistema",
+     "conta": "b − a = 1 | 1 + a + 1 + b = 4 → a + b = 2",
+     "porque": "Resto dado é 1; p(1) = 4.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva",
+     "conta": "2b = 3 → b = 3/2 e a = 1/2",
+     "porque": "Somando as equações, a se cancela.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare a e b",
+     "conta": "b/a = (3/2)/(1/2) = 3 → b é o triplo de a → alternativa B",
+     "porque": "A razão entre eles dá a relação.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — b é o triplo de a",
+   "checagem": "Com a = 1/2 e b = 3/2: p(1) = 1 + 0,5 + 1 + 1,5 = 4; e em x² = −1, p vale −x + a·(−1) + x + b = b − a = 1. Fecha.",
+   "erradas": {
+    "A": "\"a é o triplo de b\" sai de trocar o resto por a − b = 1: com a + b = 2 viria a = 3/2 e b = 1/2.",
+    "C": "\"a é a metade de b\" não confere: a = 1/2 e b = 3/2, então a é um terço de b.",
+    "D": "\"b é a metade de a\" não confere: b = 3/2 é maior que a = 1/2."
+   },
+   "armadilha": "O resto é b − a, não a − b: ax² = a(x² + 1) − a.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A relação entre a e b.",
+    "chave": "Resto b − a = 1 e a + b = 2 dão a = 1/2, b = 3/2: b = 3a.",
+    "cuidado": "Ao tirar a(x² + 1), sobra −a, não +a."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "x² = −1",
+    "ideia": "O resto é o valor de p quando se troca x² por −1: x³ = −x, então p fica −x + (−a) + x + b = b − a."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "b − a = 1",
+    "nota": "resto"
+   },
+   {
+    "linha": "a + b = 2",
+    "nota": "de p(1) = 4"
+   },
+   {
+    "linha": "2b = 3",
+    "nota": "soma das equações"
+   },
+   {
+    "linha": "b = 3/2",
+    "nota": "divide por 2"
+   },
+   {
+    "linha": "a = 2 − 3/2 = 1/2",
+    "nota": "volta na soma"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0053"
+  }
+ },
+ "Pc66b08b0": {
+  "n": "36",
+  "conceito": "Propriedades de logaritmo: mudar de base e separar o produto para achar f − g.",
+  "equivocos": {
+   "A": "M06.3:valor-sem-calculo",
+   "B": "M06.3:valor-sem-calculo",
+   "C": "M06.3:ordem-da-subtracao-trocada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Leve tudo para a base 2. Em f, o expoente 3 sai multiplicando e log₈ = (log₂)/3, então os dois se cancelam. Em g, ponha 8 em evidência: log₂(8 · (2 + x²)) = 3 + log₂(2 + x²).",
+    "formulas": [
+     "log_b(Aⁿ) = n · log_b A",
+     "log₈ A = log₂ A/3",
+     "log(A · B) = log A + log B"
+    ],
+    "simbolos": [
+     [
+      "log₂",
+      "logaritmo na base 2"
+     ],
+     [
+      "log₈",
+      "logaritmo na base 8 = 2³"
+     ]
+    ]
+   },
+   "pista": "Escreva 16 + 8x² como 8 · (2 + x²).",
+   "passos": [
+    {
+     "faz": "Simplifique f",
+     "conta": "f(x) = 3 · log₈(2 + x²) = 3 · log₂(2 + x²)/3 = log₂(2 + x²)",
+     "porque": "O expoente 3 e o divisor 3 da troca de base se cancelam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Simplifique g",
+     "conta": "g(x) = log₂(8 · (2 + x²)) = log₂ 8 + log₂(2 + x²) = 3 + log₂(2 + x²)",
+     "porque": "Log do produto é a soma dos logs; log₂ 8 = 3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Subtraia",
+     "conta": "f − g = log₂(2 + x²) − 3 − log₂(2 + x²) = −3",
+     "porque": "Os logs iguais se cancelam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "(f − g)(x) = −3",
+     "porque": "É a alternativa D.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — (f − g)(x) = −3",
+   "checagem": "Teste x = 0: f(0) = log₈ 8 = 1 e g(0) = log₂ 16 = 4; f(0) − g(0) = 1 − 4 = −3.",
+   "erradas": {
+    "A": "Não confere: em x = 0, f(0) − g(0) = 1 − 4 = −3, não −1/3.",
+    "B": "Não confere: em x = 0, a diferença é −3, não 1/3.",
+    "C": "Sai de fazer g − f em vez de f − g: 4 − 1 = 3."
+   },
+   "armadilha": "Calcular g − f no lugar de f − g e trocar o sinal da resposta.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A constante f − g.",
+    "chave": "f = log₂(2 + x²) e g = 3 + log₂(2 + x²); f − g = −3.",
+    "cuidado": "A ordem é f menos g."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste de valor",
+    "ideia": "Em x = 0: log₈ 8 − log₂ 16 = 1 − 4 = −3."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "f(x) = 3 · log₈(2 + x²) = log₂(2 + x²)",
+    "nota": "troca de base"
+   },
+   {
+    "linha": "g(x) = log₂ 8 + log₂(2 + x²) = 3 + log₂(2 + x²)",
+    "nota": "produto"
+   },
+   {
+    "linha": "f − g = −3",
+    "nota": "cancela"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0056"
+  }
+ },
+ "P4a70eda9": {
+  "n": "32",
+  "conceito": "Área do triângulo isósceles a partir do perímetro e da altura relativa à base, usando Pitágoras.",
+  "equivocos": {
+   "B": "M08.1:area-sem-conferir-a-altura",
+   "C": "M08.1:area-sem-conferir-a-altura",
+   "D": "M08.1:esqueceu-dividir-por-2"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A altura relativa à base de um triângulo isósceles cai no meio da base e corta o triângulo em dois triângulos retângulos iguais. Em cada um, os catetos são a metade da base e a altura (12 cm), e a hipotenusa é o lado congruente. O perímetro dá a segunda equação: com as duas, saem a base e o lado.",
+    "formulas": [
+     "perímetro: 2L + 2b = 36, em que b é a metade da base",
+     "Pitágoras: L² = b² + 12²",
+     "área = base × altura ÷ 2"
+    ],
+    "simbolos": [
+     [
+      "L",
+      "medida de cada um dos dois lados iguais"
+     ],
+     [
+      "b",
+      "metade da base"
+     ],
+     [
+      "isósceles",
+      "triângulo com dois lados de mesma medida"
+     ]
+    ]
+   },
+   "pista": "Trace a altura: ela divide a base ao meio e forma um triângulo retângulo com o lado igual como hipotenusa.",
+   "passos": [
+    {
+     "faz": "Escreva o perímetro com L e b",
+     "conta": "2L + 2b = 36 → L + b = 18",
+     "porque": "A base inteira vale 2b, porque a altura a divide ao meio. Dividir tudo por 2 deixa a equação mais simples.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Aplique Pitágoras na metade do triângulo",
+     "conta": "L² = b² + 12² → L² − b² = 144",
+     "porque": "No triângulo retângulo formado pela altura, os catetos são b e 12 e a hipotenusa é o lado L.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Fatore e use L + b = 18",
+     "conta": "(L − b)(L + b) = 144 → 18(L − b) = 144 → L − b = 8",
+     "porque": "A diferença de quadrados vira um produto em que um fator já é conhecido; assim não é preciso resolver equação do 2.º grau.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache L e b",
+     "conta": "L + b = 18 e L − b = 8 → 2L = 26 → L = 13 e b = 5",
+     "porque": "Somando as duas equações, b some; depois b = 18 − 13. A base inteira mede 2 × 5 = 10 cm.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a área e marque",
+     "conta": "A = (10 × 12)/2 → A = 60 cm² → alternativa A",
+     "porque": "Área de triângulo é base vezes altura dividido por 2, com a altura relativa àquela base.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 60 cm²",
+   "checagem": "Monte o triângulo e confira: lados 13, 13 e 10 dão perímetro 36 cm, e na metade dele 5² + 12² = 25 + 144 = 169 = 13². Os dois dados do enunciado fecham.",
+   "erradas": {
+    "B": "80 cm² não confere: com altura 12, a base seria 2 × 80 ÷ 12 ≈ 13,3 cm e os lados (36 − 13,3) ÷ 2 ≈ 11,3 cm; a altura desse triângulo daria cerca de 9,2 cm, não 12.",
+    "C": "100 cm² não confere: a base seria 2 × 100 ÷ 12 ≈ 16,7 cm e os lados ≈ 9,7 cm; a altura sairia cerca de 4,9 cm, não 12.",
+    "D": "120 cm² sai de esquecer o ÷ 2 da área: 10 × 12 = 120. Isso é a área do retângulo de base 10 e altura 12, o dobro da do triângulo."
+   },
+   "armadilha": "A fórmula da área tem o ÷ 2: base 10 vezes altura 12 dá 120, que é o retângulo, não o triângulo.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A área de um triângulo isósceles de perímetro 36 cm e altura 12 cm relativa à base.",
+    "chave": "A altura divide o triângulo em dois retângulos de catetos b e 12; com L + b = 18 e L² − b² = 144 saem L = 13 e base 10.",
+    "cuidado": "A altura cai no meio da base, e a área leva o ÷ 2."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste das alternativas",
+    "ideia": "Para cada área, base = 2A ÷ 12; só A = 60 dá base 10 e lados 13, que respeitam Pitágoras com altura 12."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "2L + 2b = 36 → L + b = 18",
+    "nota": "perímetro, com a base = 2b"
+   },
+   {
+    "linha": "L² = b² + 12² → L² − b² = 144",
+    "nota": "Pitágoras na metade"
+   },
+   {
+    "linha": "18(L − b) = 144 → L − b = 8",
+    "nota": "diferença de quadrados"
+   },
+   {
+    "linha": "L = 13 ; b = 5 ; base = 10",
+    "nota": "soma e subtração das equações"
+   },
+   {
+    "linha": "A = (10 × 12)/2 = 60 cm²",
+    "nota": "área do triângulo"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0060"
+  }
+ }
+}

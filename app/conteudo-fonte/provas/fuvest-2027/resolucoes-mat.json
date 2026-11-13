@@ -1,0 +1,228 @@
+{
+ "Paca91cd2": {
+  "n": "32",
+  "conceito": "Decompor um número em potências de 3 distintas.",
+  "equivocos": {
+   "A": "M07.3:errou-a-decomposicao",
+   "B": "M07.3:errou-a-decomposicao",
+   "D": "M07.3:errou-a-decomposicao",
+   "E": "M07.3:errou-a-decomposicao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "As pontuações das rodadas são potências de 3: 1, 3, 9, 27, 81, 243, 729, ... Cada rodada só pode ser vencida uma vez, então o total do jogador é uma soma de potências de 3 diferentes. A soma de todas as potências menores que uma delas é sempre menor que ela (1 + 3 + 9 = 13 < 27): por isso a maior potência que cabe no total tem de estar na soma.",
+    "formulas": [
+     "pontos da rodada n = 3ⁿ⁻¹",
+     "1 + 3 + ... + 3ᵏ⁻¹ = (3ᵏ − 1)/2 < 3ᵏ"
+    ],
+    "simbolos": [
+     [
+      "820",
+      "total de pontos acumulados"
+     ]
+    ]
+   },
+   "pista": "Qual é a maior potência de 3 que cabe em 820? Quanto sobra?",
+   "passos": [
+    {
+     "faz": "Liste as potências",
+     "conta": "1, 3, 9, 27, 81, 243, 729 (a seguinte, 2187, passa de 820)",
+     "porque": "Pontuações possíveis.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Tire a maior",
+     "conta": "820 − 729 = 91",
+     "porque": "Sem a de 729, o máximo seria 1 + 3 + 9 + 27 + 81 + 243 = 364.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Continue com o resto",
+     "conta": "91 − 81 = 10 → 10 − 9 = 1 → 1 − 1 = 0",
+     "porque": "Sempre a maior potência que cabe.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte e conclua",
+     "conta": "820 = 729 + 81 + 9 + 1 → 4 rodadas → alternativa C",
+     "porque": "Rodadas 7, 5, 3 e 1.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 4",
+   "checagem": "Somando: 729 + 81 = 810; 810 + 9 = 819; 819 + 1 = 820.",
+   "erradas": {
+    "A": "2 não confere: 820 − 729 = 91, e 91 não é uma potência de 3.",
+    "B": "3 não confere: com 729 e 81 sobram 10, e 10 não é uma potência de 3.",
+    "D": "5 não confere: a decomposição em potências de 3 distintas é única, e tem 4 parcelas.",
+    "E": "6 não confere: a decomposição em potências de 3 distintas é única, e tem 4 parcelas."
+   },
+   "armadilha": "Somar as pontuações em sequência (1 + 3 + 9 + ...) como se o jogador tivesse vencido as primeiras rodadas seguidas: 820 não é uma dessas somas.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantas rodadas o jogador ganhou.",
+    "chave": "820 = 729 + 81 + 9 + 1: quatro rodadas.",
+    "cuidado": "As rodadas vencidas não precisam ser consecutivas."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "base 3",
+    "ideia": "Escreva 820 na base 3: 820 = 1·3⁶ + 0·3⁵ + 1·3⁴ + 0·3³ + 1·3² + 0·3 + 1, isto é, 1010101. Cada algarismo 1 é uma rodada pontuada: são 4."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "1, 3, 9, 27, 81, 243, 729",
+    "nota": "potências de 3 até 820"
+   },
+   {
+    "linha": "820 − 729 = 91",
+    "nota": "tira a maior, 729"
+   },
+   {
+    "linha": "91 − 81 = 10",
+    "nota": "tira 81"
+   },
+   {
+    "linha": "10 − 9 = 1",
+    "nota": "tira 9"
+   },
+   {
+    "linha": "1 − 1 = 0",
+    "nota": "tira 1"
+   },
+   {
+    "linha": "820 = 729 + 81 + 9 + 1",
+    "nota": "quatro potências"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0019"
+  }
+ },
+ "Pa9904cb8": {
+  "n": "31",
+  "conceito": "Converter inclinação em porcentagem e em graus para alturas e comparar.",
+  "equivocos": {
+   "A": "M10.1:tratou-graus-como-porcentagem",
+   "B": "M10.1:respondeu-a-altura-antiga",
+   "D": "M10.1:respondeu-a-altura-nova",
+   "E": "M10.1:usou-a-profundidade-em-vez-da-frente"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O telhado é simétrico, de duas águas, sobre uma frente de 12 m: a cumeeira fica no meio, e cada água cobre 6 m na horizontal (y = 6). A altura da cumeeira acima da linha das paredes é x. Com inclinação de 17,6%: x/y = 0,176. Com inclinação de 25°: x/y = tg 25° ≈ 0,47. A elevação pedida é a diferença entre as duas alturas.",
+    "formulas": [
+     "i = (x/y) × 100",
+     "tg (ângulo) = x/y"
+    ],
+    "simbolos": [
+     [
+      "x",
+      "altura da cumeeira acima da linha das paredes"
+     ],
+     [
+      "y",
+      "distância horizontal de cada água, 6 m"
+     ]
+    ]
+   },
+   "pista": "Qual é a distância horizontal de cada água do telhado? Qual é a altura da cumeeira em cada inclinação?",
+   "passos": [
+    {
+     "faz": "Ache a distância horizontal",
+     "conta": "y = 12/2 = 6 m",
+     "porque": "Telhado simétrico.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a altura antiga",
+     "conta": "x = 0,176 × 6 = 1,056 m",
+     "porque": "Inclinação de 17,6%.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a altura nova",
+     "conta": "x = 0,47 × 6 = 2,82 m",
+     "porque": "tg 25° ≈ 0,47.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Subtraia",
+     "conta": "2,82 − 1,056 = 1,764 ≈ 1,76 m",
+     "porque": "Quanto a cumeeira sobe.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "1,76 → alternativa C",
+     "porque": "Elevação da cumeeira.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 1,76",
+   "checagem": "Em porcentagem: 25° equivalem a uma inclinação de 47%. A inclinação aumenta 47 − 17,6 = 29,4 pontos, e 29,4% de 6 m são 0,294 × 6 = 1,764 m.",
+   "erradas": {
+    "A": "0,44 sai de tratar 25° como 25%: 0,25 × 6 = 1,5 m; 1,5 − 1,056 ≈ 0,44. Grau não é porcentagem: usa-se tg 25° ≈ 0,47.",
+    "B": "1,06 m é a altura antiga da cumeeira (0,176 × 6), não o quanto ela sobe.",
+    "D": "2,82 m é a altura nova da cumeeira (0,47 × 6); falta descontar a altura antiga.",
+    "E": "2,94 é 0,294 × 10: usa metade da profundidade da casa (20 m) em vez de metade da frente (12 m)."
+   },
+   "armadilha": "As duas alturas (1,06 m e 2,82 m) estão nas alternativas; a pergunta é a diferença entre elas.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantos metros a cumeeira sobe com a nova inclinação.",
+    "chave": "y = 6 m; altura antiga 1,056 m; nova 2,82 m; diferença 1,76 m.",
+    "cuidado": "Usar metade da frente (6 m) e subtrair as alturas."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "diferença de inclinações",
+    "ideia": "Cada metro na horizontal passa a subir 0,47 − 0,176 = 0,294 m a mais. Nos 6 m até a cumeeira: 6 × 0,294 = 1,764 ≈ 1,76 m."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "y = 12/2 = 6 m",
+    "nota": "metade do vão"
+   },
+   {
+    "linha": "x = 0,176 × 6 = 1,056 m",
+    "nota": "altura com 17,6%"
+   },
+   {
+    "linha": "x = 0,47 × 6 = 2,82 m",
+    "nota": "altura com tg 25°"
+   },
+   {
+    "linha": "2,82 − 1,056 = 1,764 m",
+    "nota": "subtrai as alturas"
+   },
+   {
+    "linha": "1,764 ≈ 1,76 m",
+    "nota": "arredonda"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0024"
+  }
+ }
+}

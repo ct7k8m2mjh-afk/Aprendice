@@ -1,0 +1,323 @@
+{
+ "P9a289016": {
+  "n": "41",
+  "conceito": "Maior número de kits iguais sem sobra: MDC.",
+  "equivocos": {
+   "A": "M01.4:sobra-material",
+   "B": "M01.4:falta-material",
+   "D": "M01.4:razao-invertida"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Kits idênticos usando tudo: o número de kits divide 240 e 360. O maior número possível é o MDC dos dois. Depois divida para achar o conteúdo de cada kit.",
+    "formulas": [
+     "número de kits = MDC(240, 360)"
+    ],
+    "simbolos": [
+     [
+      "MDC",
+      "máximo divisor comum"
+     ]
+    ]
+   },
+   "pista": "Qual é o maior número que divide 240 e 360 ao mesmo tempo?",
+   "passos": [
+    {
+     "faz": "Calcule o MDC",
+     "conta": "240 = 2⁴ · 3 · 5 | 360 = 2³ · 3² · 5 → MDC = 2³ · 3 · 5 = 120",
+     "porque": "Fatores comuns com o menor expoente.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida os lápis",
+     "conta": "240/120 = 2",
+     "porque": "Cada um dos 120 kits recebe a mesma quantidade.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida as canetas",
+     "conta": "360/120 = 3",
+     "porque": "Idem.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Responda",
+     "conta": "2 lápis e 3 canetas → alternativa C",
+     "porque": "Conteúdo de cada kit.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 2 lápis e 3 canetas",
+   "checagem": "120 kits · 2 = 240 lápis e 120 · 3 = 360 canetas: nada sobra. A razão 240 : 360 = 2 : 3 também já está na forma irredutível.",
+   "erradas": {
+    "A": "1 lápis e 1 caneta não confere: 240 kits usariam 240 canetas e sobrariam 120.",
+    "B": "1 lápis e 2 canetas não confere: 240 kits pediriam 480 canetas, e só há 360.",
+    "D": "3 lápis e 2 canetas inverte a proporção: 80 kits usariam 160 canetas e sobrariam 200."
+   },
+   "armadilha": "Inverter a razão: há mais canetas que lápis, então cada kit leva mais canetas.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Lápis e canetas por kit no maior número de kits.",
+    "chave": "MDC(240, 360) = 120 kits: 2 lápis e 3 canetas.",
+    "cuidado": "Usar tudo e repartir igual pede MDC."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "simplificar a razão",
+    "ideia": "240/360 = 2/3 irredutível: cada kit leva 2 lápis e 3 canetas, e há 120 kits."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "MDC(240, 360) = 2³ · 3 · 5 = 120",
+    "nota": "número de kits"
+   },
+   {
+    "linha": "240/120 = 2",
+    "nota": "lápis por kit"
+   },
+   {
+    "linha": "360/120 = 3",
+    "nota": "canetas por kit"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0051"
+  }
+ },
+ "Pc91e3cc9": {
+  "n": "43",
+  "conceito": "Áreas entre círculo e quadrados inscrito e circunscrito, escritas em função do raio, e a razão entre elas.",
+  "equivocos": {
+   "A": "M08.5:razao-de-areas-negativa",
+   "B": "M08.5:razao-de-areas-negativa",
+   "D": "M08.5:inverteu-a-razao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Escreva tudo em função do raio r. O quadrado circunscrito tem lado igual ao diâmetro, 2r. O inscrito tem a diagonal igual ao diâmetro, 2r, e a área de um quadrado é metade do quadrado da diagonal. Cada região pedida é uma diferença de duas áreas conhecidas.",
+    "formulas": [
+     "área do círculo = πr²",
+     "quadrado circunscrito: lado 2r, área 4r²",
+     "quadrado inscrito: área = (diagonal)²/2 = (2r)²/2 = 2r²"
+    ],
+    "simbolos": [
+     [
+      "r",
+      "raio da circunferência"
+     ],
+     [
+      "A1",
+      "área entre o quadrado de fora e a circunferência"
+     ],
+     [
+      "A2",
+      "área entre a circunferência e o quadrado de dentro"
+     ],
+     [
+      "inscrito",
+      "quadrado com os vértices sobre a circunferência"
+     ],
+     [
+      "circunscrito",
+      "quadrado com os lados tocando a circunferência"
+     ]
+    ]
+   },
+   "pista": "Descubra a área de cada quadrado em função de r: um tem lado igual ao diâmetro, o outro tem diagonal igual ao diâmetro.",
+   "passos": [
+    {
+     "faz": "Calcule A1: quadrado de fora menos círculo",
+     "conta": "A1 = (2r)² − πr² → A1 = 4r² − πr² → A1 = r²(4 − π)",
+     "porque": "O lado do quadrado circunscrito é o diâmetro 2r. Tirando o círculo, sobram os quatro cantos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a área do quadrado inscrito",
+     "conta": "diagonal = 2r → área = (2r)²/2 → área = 2r²",
+     "porque": "A diagonal do quadrado de dentro liga dois pontos opostos da circunferência, então mede 2r. Área de quadrado é diagonal ao quadrado dividida por 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule A2: círculo menos quadrado de dentro",
+     "conta": "A2 = πr² − 2r² → A2 = r²(π − 2)",
+     "porque": "Tirando o quadrado inscrito do círculo, sobram os quatro segmentos circulares.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida e simplifique o r²",
+     "conta": "A1/A2 = (r²(4 − π))/(r²(π − 2)) → (4 − π)/(π − 2)",
+     "porque": "O r² aparece em cima e embaixo e cancela: a razão não depende do tamanho da figura.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a forma da alternativa",
+     "conta": "(4 − π)/(π − 2) = (π − 4)/(2 − π) → alternativa C",
+     "porque": "Multiplicar numerador e denominador por −1 não muda a fração. É exatamente a forma escrita na alternativa C.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — a razão A1/A2 é (π − 4)/(2 − π), o mesmo que (4 − π)/(π − 2)",
+   "checagem": "Ordem de grandeza: com π ≈ 3,1416, A1 ≈ 0,858r² e A2 ≈ 1,142r², razão ≈ 0,75. A alternativa C dá (3,1416 − 4)/(2 − 3,1416) ≈ 0,75, positiva e menor que 1, como deve ser, porque A1 é menor que A2.",
+   "erradas": {
+    "A": "(4 − π)/(1 − π) não confere: 1 − π é negativo, então a razão sairia negativa (≈ −0,40). Razão entre duas áreas nunca é negativa.",
+    "B": "(1 − π)/(4 − π) não confere: o numerador 1 − π é negativo e a razão daria ≈ −2,49. Área dividida por área é sempre positiva.",
+    "D": "(π − 2)/(4 − π) sai de inverter a divisão: é A2/A1 ≈ 1,33, e não A1/A2."
+   },
+   "armadilha": "A ordem da razão: pede-se A1 sobre A2, e a alternativa D traz A2 sobre A1; além disso, a resposta certa aparece com os dois sinais trocados.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A razão entre a área dos cantos (fora do círculo, dentro do quadrado maior) e a dos segmentos (dentro do círculo, fora do quadrado menor).",
+    "chave": "A1 = 4r² − πr² e A2 = πr² − 2r²; o r² cancela e fica (4 − π)/(π − 2) = (π − 4)/(2 − π).",
+    "cuidado": "O quadrado inscrito tem área 2r² (diagonal 2r), não r² nem 4r²; e confira a ordem A1 sobre A2."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "valor numérico",
+    "ideia": "Com r = 1, A1 ≈ 0,858 e A2 ≈ 1,142; razão ≈ 0,75, e só a C dá esse valor (A e B são negativas, D dá ≈ 1,33)."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "A1 = (2r)² − πr² = r²(4 − π)",
+    "nota": "quadrado de fora menos círculo"
+   },
+   {
+    "linha": "quadrado de dentro: (2r)²/2 = 2r²",
+    "nota": "diagonal = diâmetro"
+   },
+   {
+    "linha": "A2 = πr² − 2r² = r²(π − 2)",
+    "nota": "círculo menos quadrado de dentro"
+   },
+   {
+    "linha": "A1/A2 = (4 − π)/(π − 2)",
+    "nota": "r² cancela"
+   },
+   {
+    "linha": "(4 − π)/(π − 2) = (π − 4)/(2 − π)",
+    "nota": "troca os dois sinais: alternativa C"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0061"
+  }
+ },
+ "P6da81ee7": {
+  "n": "45",
+  "conceito": "Volume do paralelepípedo com medidas em unidades diferentes: converter tudo para decímetro e usar 1 dm³ = 1 L.",
+  "equivocos": {
+   "A": "M11.1:fator-linear-na-conversao",
+   "B": "M11.1:fator-de-area-na-conversao",
+   "D": "M11.1:misturou-unidades"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "As três medidas estão em unidades diferentes (cm, m e mm), e essa conversão é o trabalho real da questão. Como a resposta é em litros e 1 L = 1 dm³, o caminho mais curto é passar tudo para decímetro antes de multiplicar.",
+    "formulas": [
+     "volume = largura × comprimento × altura",
+     "1 dm³ = 1 L",
+     "1 dm = 10 cm = 100 mm ; 1 m = 10 dm"
+    ],
+    "simbolos": [
+     [
+      "dm",
+      "decímetro, a décima parte do metro"
+     ],
+     [
+      "dm³",
+      "decímetro cúbico, volume de um cubo de 10 cm de lado; vale 1 L"
+     ],
+     [
+      "paralelepípedo retângulo",
+      "caixa com todas as faces retangulares"
+     ]
+    ]
+   },
+   "pista": "Escolha uma unidade só para as três medidas; a que combina com litro é o decímetro.",
+   "passos": [
+    {
+     "faz": "Converta as três medidas para dm",
+     "conta": "80 cm → 8 dm | 1,5 m → 15 dm | 400 mm → 4 dm",
+     "porque": "1 dm tem 10 cm e 100 mm, e 1 m tem 10 dm.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique as três dimensões",
+     "conta": "V = 8 × 15 × 4 = 480 dm³",
+     "porque": "O volume do paralelepípedo é o produto das três dimensões, todas na mesma unidade.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Passe para litros e ligue à alternativa",
+     "conta": "480 dm³ = 480 L → alternativa C",
+     "porque": "Cada decímetro cúbico é exatamente um litro.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 480 litros",
+   "checagem": "Faça em metros: 0,8 × 1,5 × 0,4 = 0,48 m³; como 1 m³ = 1 000 L, 0,48 × 1 000 = 480 L.",
+   "erradas": {
+    "A": "4,8 sai de calcular 0,48 m³ e converter com o fator linear: 0,48 × 10 = 4,8. De m³ para L o fator é 1 000.",
+    "B": "48 sai de calcular 0,48 m³ e converter com o fator de área: 0,48 × 100 = 48. Volume usa o fator 1 000.",
+    "D": "4 800 sai de converter só duas medidas para cm e deixar o comprimento em metros: 80 × 1,5 × 40 = 4 800."
+   },
+   "armadilha": "As três medidas precisam estar na mesma unidade antes de multiplicar, e o fator de m³ para L é 1 000.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O volume, em litros, de uma caixa de 80 cm por 1,5 m por 400 mm.",
+    "chave": "Em dm: 8 × 15 × 4 = 480 dm³ = 480 L.",
+    "cuidado": "Converta todas as medidas para a mesma unidade antes de multiplicar."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "em metros",
+    "ideia": "0,8 × 1,5 × 0,4 = 0,48 m³ e 0,48 × 1 000 = 480 L."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "80 cm → 8 dm ; 1,5 m → 15 dm ; 400 mm → 4 dm",
+    "nota": "tudo em decímetro"
+   },
+   {
+    "linha": "8 × 15 × 4 = 480 dm³",
+    "nota": "produto das três dimensões"
+   },
+   {
+    "linha": "480 dm³ = 480 L",
+    "nota": "1 dm³ = 1 L"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0063"
+  }
+ }
+}

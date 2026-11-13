@@ -1,0 +1,500 @@
+# Revisão da revisão geral (caderno Revisaí)
+
+Revisão em 3 lentes sucessivas (fatos → compreensão do aluno → fatos de novo em tudo o que mudou) dos 9 arquivos `docs/revisao/<matéria>/geral.json`. O revisor não teve acesso ao livro: os fatos foram conferidos em fontes públicas (indicadas em cada linha). Ids, ordem e esquema não mudaram; nenhum tópico foi apagado.
+
+## Situação por matéria
+
+| Matéria | Arquivo | Tópicos revisados | Com mudança de conteúdo (pontos, pegadinha ou título) | Com busca[] ampliada | Erros de fato | Itens "conferir" | Estado |
+|---|---|---|---|---|---|---|---|
+| Português | `docs/revisao/por/geral.json` | 139 de 139 | 72 | 139 | 29 | 3 | revisada completa, com "conferir" |
+| Matemática | `docs/revisao/mat/geral.json` | 112 de 112 | 13 | 112 | 6 | 0 | revisada completa |
+| Biologia | `docs/revisao/bio/geral.json` | 58 de 58 | 17 | 58 | 9 | 2 | revisada completa, com "conferir" |
+| Física | `docs/revisao/fis/geral.json` | 50 de 50 | 49 | 50 | 8 | 0 | revisada completa |
+| Química | `docs/revisao/qui/geral.json` | 58 de 58 | 40 | 58 | 7 | 1 | revisada completa, com "conferir" |
+| Geografia | `docs/revisao/geo/geral.json` | 45 de 45 | 20 | 45 | 6 | 2 | revisada completa, com "conferir" |
+| História | `docs/revisao/his/geral.json` | 57 de 57 | 34 | 57 | 23 | 2 | revisada completa, com "conferir" |
+| Filosofia e Sociologia | `docs/revisao/fs/geral.json` | 86 de 86 | 18 | 86 | 7 | 2 | revisada completa, com "conferir" |
+| Inglês | `docs/revisao/ing/geral.json` | 49 de 49 | 24 | 49 | 2 | 0 | revisada (31 tópicos do site) e ampliada com 18 tópicos novos, nomeados pelo subtema (ex.: I02.2b) |
+
+**Total:** 654 tópicos revisados nas 3 lentes; 287 com mudança de conteúdo; 97 registros de erro de fato no trabalho anterior (um registro pode reunir mais de um erro do mesmo tópico); 12 itens marcados "conferir". Nenhum id mudou, nenhum tópico foi apagado, a ordem e o esquema foram mantidos.
+
+Como ler a coluna "lente": 1 = correção de fato; 2 = clareza para o aluno (definição, contraste, exemplo, busca). Tudo o que a lente 2 escreveu foi reconferido pela lente 1 antes de salvar.
+
+Limites desta revisão: o livro não foi consultado (por instrução). Segunda rodada (12/11/2026, decisões do dono): as letras de gabarito de questões resolvidas foram todas retiradas (ficou a resolução refeita aqui, ou a questão saiu); as fórmulas de Física, Química e Biologia foram reescritas em LaTeX com fração empilhada; Inglês foi revisado e ampliado. O que ainda depende de dado que só existe no livro está marcado "conferir" em `lacunas` de cada arquivo.
+
+## Português
+
+### Erros de fato encontrados no trabalho anterior (29)
+
+1. LK10 — *Nebulosas* (1872) estava atribuída a Nísia Floresta (1810–1885). O livro é de Narcisa Amália (1852–1924).
+2. LK25 — Rachel de Queiroz com morte em 2001 (certo: 2003) e Jorge Amado com morte em 1975 (certo: 2001).
+3. LK12 — *Til* datado de 1871 (certo: 1872) e *O tronco do ipê* de 1881 (certo: 1871).
+4. LK09 — *O Uraguai* descrito com "divisão métrica como Os Lusíadas"; é o contrário: 5 cantos em decassílabos brancos, sem oitava-rima (quem segue Camões é *Caramuru*). Os lemas *aurea mediocritas* e *inutilia truncat* estavam com sentidos trocados.
+5. LK17 — Francisca Júlia listada como simbolista sem ressalva; *Mármores* (1895) é obra parnasiana.
+6. LK22 — afirmação de que a metáfora da antropofagia vem de uma "Carta antropofágica" (1927) de Plínio Salgado: sem apoio em nenhuma fonte; retirada.
+7. LK24 — *Romanceiro da Inconfidência* situado no "séc. XVII"; ciclo do ouro e Inconfidência são do séc. XVIII.
+8. LK31 — título "Canção para ninar gente grande" (certo: *Canção para ninar menino grande*); Ruth Guimarães dada como viva (1920–2014); prêmio "APCA 2020" de *O avesso da pele* sem fonte.
+9. LK35 — *Os transparentes* datado de 2013 (certo: 2012) e *A visão das plantas* de 2022 (certo: 2019), com os dois prêmios Oceanos atribuídos ao mesmo livro.
+10. LK36 — *Histórias de índio* datado de 1997 (certo: 1996); Joênia Wapichana como "1ª deputada federal indígena" sem dizer que o primeiro deputado indígena foi Mário Juruna (1982).
+11. LK37 — título "Sobre futuro ancestral" (certo: *Futuro ancestral*).
+12. LK04 — Humanismo datado nos "séculos XIV e XV" (em Portugal: 1434–1527).
+13. LK02 e IK08 — "in media res" (certo: *in medias res*); IK06 — "Raimundo Correa" (certo: Correia).
+14. LK10, LK12, LK13 — três tópicos levavam para o aluno as contradições do livro ("o livro grafa 1922", "confirmar na fonte") em vez da data certa. Agora: Independência 1822, Lucíola 1862, Quincas Borba 1891.
+15. PK13 — "biologia" e "surfista" como hibridismo (biologia é toda grega); USP como "abreviação" (é sigla); "tic-tac" (VOLP: tique-taque).
+16. PK17 — objeto direto preposicionado "antes de pronome átono" (certo: oblíquo tônico); contradizia a própria pegadinha.
+17. PK27 — "Penso, logo existo" dado como exemplo de "pois" explicativo.
+18. PK33 — pegadinha dizia "Devia haver (e não 'haver')": a forma errada citada era igual à certa.
+19. PK38 — "implicar em" apresentado como regência-padrão; faltava dizer que implicar = acarretar é transitivo direto.
+20. PK42 — pegadinha dava como correta a crase em "Agradecemos à preferência" (certo: "agradecemos a preferência").
+21. PK10 — advérbio interrogativo de causa grafado "por quê?" (certo: "por que").
+22. PK11 — coordenação definida como "acrescenta informação (no entanto, então)".
+23. PK03 — desinência definida como "sufixo".
+24. PK49 — tópico de acentuação sem nenhuma das mudanças do Acordo de 1990 (ideia, heroico, voo, leem, feiura, trema).
+25. IK12 — "pronomes em 1ª pessoa" como marca do discurso indireto livre (a marca é a 3ª pessoa com a fala do personagem).
+26. IK18 — "nem... nem" como alternativa (é aditiva) e retomada "esse/aquele" (o par é este/aquele).
+27. IK25 — "s sibilante carioca" (é o s chiado).
+28. IK20 — homonímia dada como "rara em português", sem apoio.
+29. RK05 — níveis 4 (160) e 5 (200) da Competência 2 misturados numa só frase.
+
+### Todas as alterações
+
+| id | o que mudou | por quê | fonte | lente |
+|---|---|---|---|---|
+| PK01 | ponto 1: verbo marcado como classe variável | o verbo estava fora da lista de variáveis e o aluno podia tomá-lo por invariável | Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa | 2 |
+| PK03 | pegadinha reescrita | dizia que desinência "é o sufixo"; desinência (flexão) e sufixo (derivação) são morfemas diferentes | Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa | 1 |
+| PK04 | ponto 1: "em geral" | regra era dada como absoluta, mas há exceções (bom/boa, espanhol/espanhola) | Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa | 1 |
+| PK09 | ponto novo: este × aquele na retomada de dois termos | contraste clássico de prova que faltava | Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa | 2 |
+| PK10 | advérbio interrogativo de causa: "por quê?" → "por que?"; pegadinha reescrita | o advérbio interrogativo é "por que"; o acento só aparece em fim de frase ou antes de pausa | Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa; VOLP/ABL https://www.academia.org.br/nossa-lingua/busca-no-vocabulario | 1 |
+| PK11 | ponto 2 reescrito | definia coordenação como "acrescenta informação (no entanto, então)", o que é impreciso: coordenação = orações independentes; subordinação = oração dependente | Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa | 1 |
+| PK13 | hibridismo: "biologia" e "surfista" trocados por "sociologia" e "automóvel"; USP passou de abreviação para sigla; "tic-tac" → "tique-taque" | "biologia" (bio + logia) é toda grega, não é hibridismo; USP é sigla; a grafia registrada é tique-taque | Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa; VOLP/ABL (tique-taque) | 1 |
+| PK17 | ponto 2: "pronome átono" → "pronome oblíquo tônico" | erro: o objeto direto preposicionado ocorre com o tônico (a mim), não com o átono; o ponto contradizia a própria pegadinha | Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa | 1 |
+| PK19 | ponto novo e pegadinha: adjunto adnominal × complemento nominal | faltava o contraste mais cobrado do tópico (agente/posse × paciente) | Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa | 2 |
+| PK22 | pegadinha: uso do particípio duplo | o tópico listava os dois particípios sem dizer quando usar cada um | Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa | 2 |
+| PK27 | pegadinha: exemplo trocado | 'Penso, logo existo' era dado como exemplo de 'pois' explicativo; a frase nem tem 'pois' e é conclusiva | Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa | 1 |
+| PK29 | pontos 1 e 2: par de exemplos com a mesma frase | o exemplo no singular ('A funcionária...') vinha com a glosa 'todas foram demitidas', sem sentido; agora o contraste usa a mesma frase com e sem vírgula | Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa | 2 |
+| PK30 | pegadinha: contraste concessiva × adversativa/causal/condicional com exemplos | confusão clássica sem exemplo | Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa | 2 |
+| PK33 | pegadinha: "(e não 'haver')" → "(e não 'Deviam haver')"; 'um dos que': 'de preferência no plural' | a forma errada citada era igual à certa; com "um dos que" o singular também é aceito pelas gramáticas | Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa | 1 |
+| PK35 | ponto 0: coletivo/partitivo + plural | só dizia "coletivo: singular"; faltava o caso cobrado em prova (a maioria de + plural admite as duas concordâncias) | Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa | 2 |
+| PK38 | ponto 1 dividido em dois e pegadinha reescritos | erro: 'implicar em' era dado como regência-padrão sem dizer que 'implicar' = acarretar é transitivo direto; faltavam os pares de sentido (aspirar, assistir, visar) e 'preferir... a' | Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa; Luft, Dicionário Prático de Regência Verbal | 1 |
+| PK40 | pegadinha: teste do nome de lugar | reforço do teste prático com par de exemplo | Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa | 2 |
+| PK42 | pegadinha: 'Agradecemos à preferência' corrigido para 'agradecemos a preferência' | erro: a pegadinha dava como certa a crase em 'agradecemos à preferência'; 'a preferência' é objeto direto de agradecer (agradecer algo a alguém), sem preposição e sem crase — coerente com o gabarito citado (só II e IV corretas) | Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa; Luft, Dicionário Prático de Regência Verbal | 1 |
+| PK45 | 'marquês' → 'marquesa' na lista do som /z/ | em 'marquês' o s final não tem som de /z/ | conferência fonética direta | 1 |
+| PK46 | pegadinha: exceções dos compostos com elemento de ligação | faltavam as exceções previstas no Acordo (Base XV) | Acordo Ortográfico de 1990 (Decreto 6.583/2008), https://www.planalto.gov.br/ccivil_03/_ato2007-2010/2008/decreto/d6583.htm | 2 |
+| PK47 | definições de absorver, emergir, infração, mandato e eminência ajustadas | definições imprecisas: infração é a violação (a penalidade é a multa); mandato é também o período do cargo eletivo, sentido mais cobrado | VOLP/ABL e Dicionário Houaiss | 1 |
+| PK49 | ponto novo (mudanças do Acordo de 1990), pegadinha reescrita e "na mesma sílaba" no hiato | o tópico não trazia nenhuma das mudanças de acentuação do Acordo de 1990 (ideia, heroico, voo, leem, feiura, trema), que são o que mais cai | Acordo Ortográfico de 1990 (Decreto 6.583/2008), https://www.planalto.gov.br/ccivil_03/_ato2007-2010/2008/decreto/d6583.htm | 1 |
+| LK01 | ponto 1: tríade dos gêneros atribuída à tradição a partir de Aristóteles | a Poética trata de epopeia e drama; a tríade com o lírico é sistematização posterior | Aristóteles, Poética; Enciclopédia Britannica, 'genre' | 1 |
+| LK02 | 'in media res' → 'in medias res' | grafia latina errada (a grafia errada ficou só em busca[], para o aluno achar) | Horácio, Arte Poética, v. 148 | 1 |
+| LK03 | marco inicial acrescentado | faltava o marco cobrado em prova | Massaud Moisés, A Literatura Portuguesa; Bosi, História Concisa da Literatura Brasileira | 2 |
+| LK04 | datação 'séculos XIV e XV' → 1434–1527 | o Humanismo português vai do século XV ao início do XVI; Gil Vicente escreve de 1502 a 1536 | Massaud Moisés, A Literatura Portuguesa; Bosi, História Concisa da Literatura Brasileira | 1 |
+| LK06 | medida velha/medida nova definidas pela métrica | "forma trovadoresca" era impreciso: medida velha = redondilhas; medida nova = decassílabo | Massaud Moisés, A Literatura Portuguesa; Bosi, História Concisa da Literatura Brasileira | 1 |
+| LK08 | pegadinha com contraste antítese × paradoxo (exemplos próprios); marco inicial no Brasil | contraste clássico e marco ausentes | Massaud Moisés, A Literatura Portuguesa; Bosi, História Concisa da Literatura Brasileira | 2 |
+| LK09 | O Uraguai: 'divisão métrica como Os Lusíadas' corrigido; lemas latinos redefinidos; marco de 1768 | erro: O Uraguai tem 5 cantos em decassílabos brancos e rompe o modelo camoniano (quem o segue é Caramuru); aurea mediocritas e inutilia truncat estavam com sentidos trocados/vagos | Massaud Moisés, A Literatura Portuguesa; Bosi, História Concisa da Literatura Brasileira; Biblioteca Nacional Digital / Brasiliana, https://bndigital.bn.gov.br | 1 |
+| LK10 | Independência fixada em 1822; Nebulosas (1872) atribuída a Narcisa Amália, não a Nísia Floresta; marco de 1836 | erro de fato: Nebulosas é de Narcisa Amália (1852–1924); as datas 1810–1885 são de Nísia Floresta, que não escreveu o livro. Independência: 7/9/1822 | Biblioteca Nacional Digital / Brasiliana, https://bndigital.bn.gov.br (Nebulosas, Garnier, 1872); Senado Federal/Arquivo Nacional (Independência, 1822) | 1 |
+| LK11 | datas de Lucíola (1862), Senhora (1875), Til (1872) e das Memórias | Lucíola fixada em 1862 (o livro traz também 1872, errado) | ABL, perfil dos acadêmicos, https://www.academia.org.br/academicos (José de Alencar; Manuel Antônio de Almeida) | 1 |
+| LK12 | Til 1871 → 1872; O tronco do ipê 1881 → 1871; pegadinha deixou de falar dos erros do livro | erros de data: O tronco do ipê é de 1871 e Til de 1872; a pegadinha era um aviso editorial, não uma armadilha de prova | ABL, perfil dos acadêmicos, https://www.academia.org.br/academicos (José de Alencar) | 1 |
+| LK13 | Quincas Borba fixado em 1891; pegadinha reescrita | o livro traz 1889 e 1891; a 1ª edição em livro é de 1891 (folhetim em A Estação, 1886–1891). Machado viveu de 1839 a 1908; "(1881-1908)" do livro é só o intervalo da fase realista | ABL, perfil dos acadêmicos, https://www.academia.org.br/academicos (Machado de Assis, bibliografia) | 1 |
+| LK15 | datas dos três romances de Machado | coerência com LK13 | ABL, perfil dos acadêmicos, https://www.academia.org.br/academicos | 1 |
+| LK17 | Francisca Júlia: de simbolista para parnasiana que se aproximou do Simbolismo; marco de 1893; pegadinha com contraste | erro de classificação: Mármores (1895) é obra parnasiana; faltava o marco (Missal e Broquéis, 1893) | Bosi, História Concisa da Literatura Brasileira; Biblioteca Nacional Digital / Brasiliana, https://bndigital.bn.gov.br | 1 |
+| LK18 | Urupês (1918) e vocabulário científico de Augusto dos Anjos | marcas mais cobradas dos dois autores | ABL, perfil dos acadêmicos, https://www.academia.org.br/academicos (Monteiro Lobato não foi acadêmico: ver Biblioteca Nacional Digital / Brasiliana, https://bndigital.bn.gov.br) | 2 |
+| LK21 | Mensagem: "em português"; nº de heterônimos sem cifra; data de O guardador de rebanhos | Pessoa publicou em vida também folhetos em inglês; a contagem de heterônimos varia conforme o critério; O guardador de rebanhos é de 1914 | Casa Fernando Pessoa, https://www.casafernandopessoa.pt ; Arquivo Pessoa, http://arquivopessoa.net | 1 |
+| LK22 | retirada a afirmação de que a metáfora antropofágica veio de uma 'Carta antropofágica' (1927) de Plínio Salgado | afirmação sem apoio em fonte confiável; trocada por fatos verificáveis (Pau-Brasil, 1924; grupo Verde-Amarelo/Anta como oposição) | Bosi, História Concisa da Literatura Brasileira; Enciclopédia Itaú Cultural, https://enciclopedia.itaucultural.org.br (Antropofagia; Verde-Amarelismo) | 1 |
+| LK24 | Romanceiro da Inconfidência: século XVIII, não XVII | erro de século: o ciclo do ouro e a Inconfidência (1789) são do século XVIII | ABL, perfil dos acadêmicos, https://www.academia.org.br/academicos (Cecília Meireles não foi acadêmica: ver Bosi, História Concisa da Literatura Brasileira) | 1 |
+| LK25 | Rachel de Queiroz 1910–2001 → 1910–2003; Jorge Amado 1912–1975 → 1912–2001; obras-chave acrescentadas | erros de data: Rachel de Queiroz morreu em 4/11/2003 e Jorge Amado em 6/8/2001 | ABL, perfil dos acadêmicos, https://www.academia.org.br/academicos (Rachel de Queiroz, cadeira 5; Jorge Amado, cadeira 23) | 1 |
+| LK26 | Morte e vida severina descrita pelo enredo | "sobre a seca de forma estrutural" não dizia nada ao aluno | ABL, perfil dos acadêmicos, https://www.academia.org.br/academicos (João Cabral de Melo Neto) | 2 |
+| LK27 | Campo geral: 1956 (Corpo de baile), reeditado em 1964 | a data 1964 é a do volume Manuelzão e Miguilim, não a da novela. Datas de Rosa conferidas: 1908–1967 (o livro traz também 1961, errado) | ABL, perfil dos acadêmicos, https://www.academia.org.br/academicos (João Guimarães Rosa, cadeira 2) | 1 |
+| LK28 | Neoconcretismo definido (manifesto de 1959) | "tom mais plástico e performático" era vago e sem data | Enciclopédia Itaú Cultural, https://enciclopedia.itaucultural.org.br (Neoconcretismo) | 2 |
+| LK31 | título 'Canção para ninar gente grande' → 'Canção para ninar menino grande'; Ruth Guimarães (1920–2014) | título errado; a autora morreu em 2014 e estava como viva | Enciclopédia Itaú Cultural, https://enciclopedia.itaucultural.org.br (Conceição Evaristo; Ruth Guimarães) | 1 |
+| LK35 | Os transparentes 2013 → 2012; A visão das plantas 2022 → 2019 e prêmios Oceanos por obra | datas de 1ª edição erradas; os dois prêmios Oceanos não foram pelo mesmo livro | Prêmio Oceanos, https://www.itaucultural.org.br/oceanos ; Fundação José Saramago, https://www.josesaramago.org | 1 |
+| LK36 | Histórias de índio 1997 → 1996; Joênia Wapichana: primeira mulher indígena deputada federal | data de 1ª edição; "1ª deputada federal indígena" apagava Mário Juruna (1982) | Companhia das Letras (catálogo, Histórias de índio); Câmara dos Deputados, https://www.camara.leg.br/deputados | 1 |
+| LK37 | título 'Sobre futuro ancestral' → 'Futuro ancestral'; coautoria e edições de A queda do céu | título errado; o livro de Kopenawa é em coautoria com Bruce Albert | ABL, https://www.academia.org.br/academicos/ailton-krenak ; Companhia das Letras (catálogo) | 1 |
+| IK01 | comparação com exemplo; sinédoque; pegadinha com par mínimo | contraste metáfora × comparação sem exemplo paralelo; faltava a relação parte/todo | Bechara, Moderna Gramática Portuguesa; Garcia, Comunicação em Prosa Moderna | 2 |
+| IK02 | paradoxo e pegadinha com exemplos próprios | contraste clássico sem exemplo | Bechara, Moderna Gramática Portuguesa | 2 |
+| IK04 | zeugma com exemplo próprio | faltava exemplo curto | Bechara, Moderna Gramática Portuguesa | 2 |
+| IK05 | definição de anáfora corrigida; pegadinha distingue anáfora figura × anáfora coesiva | "repetição de qualquer classe de palavra" não dizia que é no início de versos/frases | Bechara, Moderna Gramática Portuguesa | 1 |
+| IK06 | 'Raimundo Correa' → 'Raimundo Correia' | nome do poeta grafado errado | ABL, https://www.academia.org.br/academicos/raimundo-correia | 1 |
+| IK08 | 'in media res' → 'in medias res' | grafia latina errada | Horácio, Arte Poética, v. 148 | 1 |
+| IK11 | conversão: aqui → ali/lá | faltava o marcador de lugar, citado na pegadinha | Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa | 2 |
+| IK12 | marcadores do indireto livre: 3ª pessoa e tempos do narrador | erro: dava "pronomes em 1ª pessoa" como marca; no indireto livre a fala do personagem aparece em 3ª pessoa, sem verbo de dizer | Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa; Garcia, Comunicação em Prosa Moderna | 1 |
+| IK18 | 'nem... nem' saiu da alternância e 'nem' entrou na adição; pegadinha: este × aquele (não 'esse/aquele') | 'nem' é conjunção aditiva; na retomada de dois termos o par é este (último) × aquele (primeiro) | Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa | 1 |
+| IK19 | pegadinha com par de exemplos | contraste anáfora × catáfora sem exemplo | Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa | 2 |
+| IK20 | retirado 'rara em português' da homonímia | afirmação sem apoio (o próprio tópico lista vários homônimos) | Cunha & Cintra, Nova Gramática do Português Contemporâneo; Bechara, Moderna Gramática Portuguesa | 1 |
+| IK25 | 's sibilante carioca' → 's chiado carioca'; nomes técnicos das variações (diatópica, diacrônica, diafásica, diastrática) | erro: a marca do falar carioca é o s chiado; as provas usam os nomes técnicos, ausentes do tópico | Bagno, Preconceito Linguístico; Ilari & Basso, O Português da Gente | 1 |
+| LK31 | retirado 'APCA 2020' de O avesso da pele | não há fonte que confirme prêmio APCA para o livro; o Jabuti 2021 está confirmado | Companhia das Letras, https://www.companhiadasletras.com.br/9788535933390-o-avesso-da-pele-–-vencedor-jabuti-2021-11141/p | 1 |
+| LK27 | pegadinha parafraseada | trazia duas frases literais de Grande sertão: veredas (obra protegida); agora a ideia está em paráfrase | regra 2 da revisão (não copiar texto protegido) | 2 |
+| IK10 | ponto 3: retirada a discussão "gabarito D × comentário E"; ficou a classificação que o comentário sustenta; pegadinha reescrita | o tópico expunha ao aluno a dúvida editorial do livro. Pelo conteúdo descrito, a resposta é "dissertativo-argumentativo com elementos descritivos"; a letra (D impressa × E do comentário) não pôde ser confirmada sem o caderno da prova e ficou em lacunas | busca pela prova FCMSCSP 2020 sem resultado; decisão pelo comentário da própria resolução | 1 |
+| RK01 | pegadinha: o que zera só a C5 × o que zera a redação | confusão frequente do aluno; lista conforme a cartilha oficial | Inep, A Redação do Enem – Cartilha do Participante, https://www.gov.br/inep/pt-br/areas-de-atuacao/avaliacao-e-exames-educacionais/enem/outros-documentos | 2 |
+| RK05 | níveis 4 e 5 da Competência 2 separados | "160 ou 200, se também for pertinente e produtivo" misturava os dois níveis | Inep, A Redação do Enem – Cartilha do Participante, https://www.gov.br/inep/pt-br/areas-de-atuacao/avaliacao-e-exames-educacionais/enem/outros-documentos | 1 |
+| todos os tópicos (PK, LK, IK, RK) | busca[] ampliada | faltavam os termos que o aluno digita: perguntas ("quando usar crase"), dúvidas ("mal ou mau"), nomes populares, personagens e obras-chave | — | 2 |
+| LK35, IK02, IK06, IK16, RK05, RK20 | ressalvas editoriais retiradas do conteúdo ("o livro cita/mostra/usa...") | o aluno não tem o livro; a frase deve valer sozinha (a observação sobre o livro, quando importa, está em lacunas) | — | 2 |
+| PK27, PK37, PK39, PK42, LK24, LK27, LK31, IK10, IK23, IK24, IK26 | questão de prova trocada por exemplo ou ponto de conteúdo, sem prova e sem letra; títulos e busca[] ajustados | pedido do dono: resolver a questão ou tirar; sem o caderno da prova a letra não se confirma, mas o conteúdo ensinado vale por si | Cunha & Cintra; Bosi; Bagno, Preconceito Linguístico | 1 |
+| LK19, IK12, IK14, IK16 | questão de prova retirada do tópico | só se resolvem com o texto ou a imagem da prova, que não estão no arquivo | — | 1 |
+| campo subs | 126 de 139 tópicos ligados a subtemas: os 50 que já existem no site (P01.1–P12.5) e 10 novos propostos (P01.5, P04.5, P07.5, P07.6, P09.6, P10.6, P10.7, P11.5, P11.6, P12.6); criado por/subtemas.json | pedido do dono (12/11/2026): definir os subtemas de Português a partir dos tópicos, para o aluno se localizar entre a revisão por subtema e a da matéria inteira | app-atual/por/dados.json (nomesub) | 2 |
+| RK01–RK05, RK08–RK12, RK20–RK22 | registrado que ficam só na revisão geral da matéria, sem subtema | decisão do dono (12/11/2026): redação não terá subtema no site | — | 2 |
+| campo subs | retirados os 10 subtemas novos propostos; ficam só os 50 que já existem no site; 33 tópicos sem subtema aparecem só na revisão geral | decisão do dono (12/11/2026): não criar subtemas novos | — | 2 |
+
+### Itens marcados "conferir" (estão em `lacunas` do arquivo)
+
+- conferir: LK22 — o livro afirmaria que a metáfora da antropofagia vem de uma 'Carta antropofágica' (1927) de Plínio Salgado; a afirmação foi retirada do tópico por falta de fonte confiável.
+- conferir: RK12 (tema e nota da redação Fuvest 2025) e RK20 (pontuação e formato das questões discursivas da UFPR) vêm só do livro; confirmar nos manuais do candidato da Fuvest e do NC-UFPR.
+- conferir: IK16 cita o poema concreto 'Anti-ruído', de Augusto de Campos, com data de 1964; título e data não foram localizados em fonte pública.
+
+### Pendências de decisão do dono
+
+- As descrições de imagem de alguns tópicos ainda citam 'questão resolvida' (o campo imagem foi preservado). Ao produzir essas imagens, não incluir a questão: ela saiu do tópico.
+
+## Matemática
+
+### Erros de fato encontrados no trabalho anterior (6)
+
+1. M03.2 — "Aumento de p%: multiplique por (1+p)": com p = 20 o aluno multiplicaria por 21. O fator é 1 + p/100.
+2. M07.4 — pegadinha sem sentido ("Duas PA com razões diferentes têm termo-a-termo diferentes").
+3. M16.1 — frase truncada sobre raízes conjugadas ("raiz a+bi real traz o conjugado"): a condição é o polinômio ter coeficientes reais.
+4. M01.2 — √a·√b = √(ab) sem a condição a, b ≥ 0.
+5. Todos — busca[] era só o título quebrado em palavras (ex.: "equação; grau"), inútil para a busca do aluno.
+6. Diferenças de esquema em relação às outras matérias (não são erro de conteúdo): o arquivo não tinha `lacunas` (foi criado) e o campo `imagem` só tem `tipo` e `descricao`, sem `falta_imagem` nem `aviso` (mantido como estava).
+
+### Todas as alterações
+
+| id | o que mudou | por quê | fonte | lente |
+|---|---|---|---|---|
+| M01.2 | condição a ≥ 0 e b ≥ 0 no produto de raízes | sem a condição a propriedade é falsa nos reais (ex.: a = b = −1) | Iezzi et al., Fundamentos de Matemática Elementar (Atual), v. 2 | 1 |
+| M03.2 | fator escrito como 1 ± p/100, com exemplo | "aumento de p%: multiplique por (1+p)" dá o fator errado se o aluno usar p = 20 | Iezzi et al., Fundamentos de Matemática Elementar (Atual), v. 11 | 1 |
+| M03.3 e M03.4 | significado das letras (C, i, t, J, M) e contraste simples × compostos | fórmulas sem dizer o que é cada letra; contraste clássico só implícito | Iezzi et al., Fundamentos de Matemática Elementar (Atual), v. 11 | 2 |
+| M04.3 | siglas SPD, SPI e SI por extenso | termo técnico sem definição | Iezzi et al., Fundamentos de Matemática Elementar (Atual), v. 4 | 2 |
+| M07.4 | pegadinha reescrita | a frase anterior ("Duas PA com razões diferentes têm termo-a-termo diferentes") não fazia sentido | Iezzi et al., Fundamentos de Matemática Elementar (Atual), v. 4 | 1 |
+| M08.4 e M11.3 | apótema e geratriz definidos | termos técnicos sem definição | Iezzi et al., Fundamentos de Matemática Elementar (Atual), v. 9 e 10 | 2 |
+| M16.1 | frase do conjugado corrigida | "raiz a+bi real traz o conjugado" estava truncada: a condição é o polinômio ter coeficientes reais | Iezzi et al., Fundamentos de Matemática Elementar (Atual), v. 6 | 1 |
+| M16.2 | i definido por i² = −1 | definição usual e mais segura que i = √−1 | Iezzi et al., Fundamentos de Matemática Elementar (Atual), v. 6 | 2 |
+| M14.1 | pegadinha: contraste média × mediana com exemplo | contraste clássico ausente | Iezzi et al., Fundamentos de Matemática Elementar (Atual), v. 11 | 2 |
+| todos os 112 tópicos | busca[] ampliada | a busca trazia só as palavras do título separadas ("equação; grau"); entraram nomes populares, siglas e grafias que o aluno digita (bhaskara/báskara, PFC, regra de 3, SOH CAH TOA) | — | 2 |
+| G06 | ressalvas editoriais retiradas do conteúdo ("o livro cita/mostra/usa...") | o aluno não tem o livro; a frase deve valer sozinha (a observação sobre o livro, quando importa, está em lacunas) | — | 2 |
+| M01.2 e M06.5 | frações dos expoentes empilhadas (\frac) | regra do CLAUDE.md: fração sempre empilhada, nunca "m/n" na mesma linha | CLAUDE.md, seção Resolução animada | 2 |
+
+### Itens marcados "conferir" (estão em `lacunas` do arquivo)
+
+
+### Pendências de decisão do dono
+
+- Matemática: o campo `imagem` não tem `falta_imagem` nem `aviso`, ao contrário das outras matérias. Não foi alterado (a regra é preservar o campo). Decidir se o site trata a ausência como "imagem ainda não feita" ou se o campo deve ser igualado.
+- Matemática: o campo `lacunas` foi criado (não existia) para registrar a revisão, como nas outras matérias.
+
+## Biologia
+
+### Erros de fato encontrados no trabalho anterior (9)
+
+1. BK22 — ácido úrico dado como excreta de todos os amniotas; mamíferos excretam ureia.
+2. BK29 — pegadinha afirmava que só a febre amarela tem vacina; a vacina da dengue está no SUS desde 2024.
+3. BK27 — GH aparecia colado à neuro-hipófise (é da adeno-hipófise); grafia "neuroipófise".
+4. BK09 — cariótipo humano como "22 pares de autossomos + X e Y" (vale só para o homem); nucléolo definido como "DNA ribossomal".
+5. BK21c — trematódeos descritos como dioicos; a maioria é monoica (dioico é o esquistossomo).
+6. BK20 — seiva elaborada como "água e glicose" (o açúcar transportado é a sacarose).
+7. BK41 — "pH ácido" como condição de fossilização.
+8. BK21b — poríferos como exclusivamente marinhos.
+9. BK02 — "anemia férrica" (ferropriva); BK02 e BK07 — pegadinhas comentavam o livro ("o texto do livro cita...") em vez de ensinar a armadilha.
+
+### Todas as alterações
+
+| id | o que mudou | por quê | fonte | lente |
+|---|---|---|---|---|
+| BK02 | 'anemia férrica' → 'anemia ferropriva'; pegadinha reescrita | nome da doença errado; a pegadinha comentava o texto do livro em vez de ensinar a armadilha | Campbell et al., Biologia (Artmed); Amabis & Martho, Biologia Moderna; Ministério da Saúde, https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z | 1 |
+| BK06 | transcriptase reversa acrescentada ao dogma central | exceção sempre cobrada junto do dogma | Campbell et al., Biologia (Artmed); Amabis & Martho, Biologia Moderna | 2 |
+| BK07 | pegadinha reescrita | comentava o livro ("o livro os cita em...") e generalizava: musgos e samambaias têm centríolos nas células que formam gametas flagelados | Campbell et al., Biologia (Artmed); Amabis & Martho, Biologia Moderna | 1 |
+| BK09 | nucléolo e cariótipo humano corrigidos | "22 pares + X e Y" valia só para o homem; nucléolo definido como "DNA ribossomal" era impreciso | Campbell et al., Biologia (Artmed); Amabis & Martho, Biologia Moderna | 1 |
+| BK20 | seiva elaborada: sacarose, não glicose | o açúcar transportado no floema é sobretudo a sacarose | Campbell et al., Biologia (Artmed); Amabis & Martho, Biologia Moderna; Taiz & Zeiger, Fisiologia Vegetal | 1 |
+| BK21b | poríferos: "marinhos" → "aquáticos, a maioria marinha" | há esponjas de água doce | Campbell et al., Biologia (Artmed); Amabis & Martho, Biologia Moderna | 1 |
+| BK21c | trematódeos: maioria monoica; dioico é o esquistossomo | generalizava para a classe uma característica que é exceção (Schistosoma) | Campbell et al., Biologia (Artmed); Amabis & Martho, Biologia Moderna; Rey, Parasitologia | 1 |
+| BK22 | excreção dos amniotas corrigida; pegadinha com as três excretas | erro: dava ácido úrico para todos os amniotas; mamíferos excretam ureia | Campbell et al., Biologia (Artmed); Amabis & Martho, Biologia Moderna | 1 |
+| BK25 | veias cavas; sangue das artérias e veias pulmonares; pegadinha artéria × veia e vacina × soro | contrastes clássicos ausentes; só a veia cava superior era citada | Campbell et al., Biologia (Artmed); Amabis & Martho, Biologia Moderna | 2 |
+| BK27 | hipófise reescrita (GH é da adeno-hipófise); 'neuroipófise' → 'neuro-hipófise'; contraste insulina × glucagon | a frase juntava GH à neuro-hipófise; grafia do VOLP é neuro-hipófise | Campbell et al., Biologia (Artmed); Amabis & Martho, Biologia Moderna; VOLP/ABL | 1 |
+| BK29 | pegadinha atualizada: existe vacina contra a dengue | dizia que só a febre amarela tem vacina; a vacina da dengue foi incorporada ao SUS em 2024 | Ministério da Saúde, https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z (dengue; febre amarela) | 1 |
+| BK41 | condições de fossilização | "pH ácido" não é condição de fossilização (meio ácido dissolve ossos e conchas) | Campbell et al., Biologia (Artmed); Amabis & Martho, Biologia Moderna | 1 |
+| BK42 | hábitat × nicho com a analogia endereço/profissão | nicho definido como "condições necessárias" era vago | Campbell et al., Biologia (Artmed); Amabis & Martho, Biologia Moderna; Odum, Fundamentos de Ecologia | 2 |
+| BK10b | pegadinha: contraste mitose × meiose em números | contraste clássico pedido na lente 2 | Campbell et al., Biologia (Artmed); Amabis & Martho, Biologia Moderna | 2 |
+| todos os 58 tópicos | busca[] ampliada | faltavam os nomes que o aluno digita (nomes populares de doenças, sinônimos como "sistema circulatório", siglas e mnemônicos) | — | 2 |
+| BK36 e BK38 | fórmulas em LaTeX, com fração empilhada | pedido do dono; são as duas únicas fórmulas com conta em Biologia | conferência direta | 2 |
+| campo subs | BK01 ligado a B09.1 (os demais já tinham ou não têm tema no site) (o primeiro da lista é o principal) | pedido do dono (12/11/2026): o aluno revisa por subtema ou a matéria inteira e precisa se localizar entre os dois | lista de subtemas em docs/revisao/bio/resumos.json | 2 |
+| campo subs | os 36 tópicos que faltavam foram ligados aos subtemas que já existem no site (B03, B05–B08, B10, B12); agora 58 de 58 | o catálogo do dono mostrou que só 5 temas tinham arquivo; os demais subtemas existem em app-atual/bio/dados.json | app-atual/bio/dados.json (nomesub) | 2 |
+
+### Itens marcados "conferir" (estão em `lacunas` do arquivo)
+
+- conferir: BK12 — o saldo de 32 ATP por glicose segue a contagem atual (30 a 32); livros mais antigos e algumas provas ainda usam 36 ou 38. Conferir qual número a prova-alvo adota.
+- conferir: BK21b — cnidários classificados como protostômios, como faz o livro; parte da literatura reserva protostômio/deuterostômio aos animais bilaterais (triblásticos). Não foi alterado.
+
+### Pendências de decisão do dono
+
+- BK12: decidir se o site mostra 32 ATP (contagem atual) ou também 36/38, usados por provas antigas.
+
+## Física
+
+### Erros de fato encontrados no trabalho anterior (8)
+
+1. FK28 — pulso em cordas de densidades diferentes: dizia que o pulso refratado inverte quando μ1 > μ2. O refratado nunca inverte; o refletido inverte quando a segunda corda é mais densa.
+2. FK25 — vergência da lente do hipermétrope com sinal trocado ("V = 1/dH − 4"; certo: V = 4 − 1/dH).
+3. FK19 — "a óptica geométrica usa o modelo ondulatório" (usa raios de luz).
+4. FK09b — equação da colisão escrita errada (0,2·3 = (0,2 + m)·2 dá 0,1 kg, não os 0,4 kg da resposta).
+5. FK15c — garrafa térmica: redução da condução atribuída ao espelhamento (é do vácuo).
+6. FK29 — fórmula do efeito Doppler sem convenção de sinais (± em cima e embaixo) e "som é mais rápido em meios mais densos".
+7. FK15b — ponto crítico sem a condição "acima da temperatura crítica"; FK36 — temperatura de Curie descrita como "o magnetismo enfraquece".
+8. FK18 — Q_F/W dado como eficiência da bomba de calor (é a do refrigerador); achado pelo revisor independente na segunda rodada.
+
+### Todas as alterações
+
+| id | o que mudou | por quê | fonte | lente |
+|---|---|---|---|---|
+| FK09b | equação da colisão corrigida: m·3 = (m + 0,2)·2 | erro: a conta escrita (0,2·3 = (0,2 + m)·2) dá m = 0,1 kg e contradiz a resposta; quem cai a 3 m/s é o pacote de massa m, e o prato de 0,2 kg está parado | Halliday, Resnick & Walker, Fundamentos de Física; Ramalho, Nicolau & Toledo, Os Fundamentos da Física (conservação da quantidade de movimento) | 1 |
+| FK15b | ponto crítico: "acima da temperatura crítica" | a frase não dizia em que condição o gás deixa de se liquefazer | Halliday, Resnick & Walker, Fundamentos de Física; Ramalho, Nicolau & Toledo, Os Fundamentos da Física | 1 |
+| FK15c | garrafa térmica: papel de cada parte | erro: atribuía ao espelhamento a redução da condução; o espelho reflete radiação e o vácuo é que barra condução e convecção | Halliday, Resnick & Walker, Fundamentos de Física; Ramalho, Nicolau & Toledo, Os Fundamentos da Física | 1 |
+| FK19 | modelo da óptica geométrica: raios de luz, não o ondulatório | erro conceitual: a óptica geométrica usa o modelo de raios; o ondulatório é o da óptica física (interferência, difração) | Halliday, Resnick & Walker, Fundamentos de Física; Ramalho, Nicolau & Toledo, Os Fundamentos da Física | 1 |
+| FK21b | raio notável pelo centro de curvatura | faltava um dos quatro raios notáveis | Halliday, Resnick & Walker, Fundamentos de Física; Ramalho, Nicolau & Toledo, Os Fundamentos da Física | 2 |
+| FK25 | vergência da lente do hipermétrope: V = 4 − 1/dH | erro de sinal: "V = 1/dH − 4" dá vergência negativa (lente divergente) para quem precisa de lente convergente | Halliday, Resnick & Walker, Fundamentos de Física; Ramalho, Nicolau & Toledo, Os Fundamentos da Física (equação de Gauss: 1/f = 1/0,25 − 1/dH) | 1 |
+| FK28 | pulso em cordas de densidades diferentes | erro: dizia que o pulso refratado inverte quando μ1 > μ2; quem pode inverter é o refletido, e isso ocorre quando a segunda corda é mais densa | Halliday, Resnick & Walker, Fundamentos de Física; Ramalho, Nicolau & Toledo, Os Fundamentos da Física | 1 |
+| FK29 | Doppler com a convenção de sinais; velocidade do som por estado físico | a fórmula com "±" em cima e embaixo não dizia que sinal usar; "meios mais densos" induz a erro (o que pesa é a rigidez do meio) | Halliday, Resnick & Walker, Fundamentos de Física; Ramalho, Nicolau & Toledo, Os Fundamentos da Física | 1 |
+| FK36 | temperatura de Curie | "o magnetismo enfraquece" era impreciso | Halliday, Resnick & Walker, Fundamentos de Física; Ramalho, Nicolau & Toledo, Os Fundamentos da Física | 1 |
+| FK17 | pegadinha: sinais da 1ª lei e isotérmica × adiabática | a pegadinha anterior só repetia os valores de R; faltava a confusão clássica | Halliday, Resnick & Walker, Fundamentos de Física; Ramalho, Nicolau & Toledo, Os Fundamentos da Física | 2 |
+| FK05b | pegadinha: peso × normal e massa × peso | confusões clássicas ausentes | Halliday, Resnick & Walker, Fundamentos de Física; Ramalho, Nicolau & Toledo, Os Fundamentos da Física | 2 |
+| todos os 50 tópicos | busca[] ampliada | faltavam os nomes que o aluno digita (fórmulas como "U = R i", macetes como "sorvete" e "que macete", sinônimos como ddp/tensão) | — | 2 |
+| FK21 | ressalvas editoriais retiradas do conteúdo ("o livro cita/mostra/usa...") | o aluno não tem o livro; a frase deve valer sozinha (a observação sobre o livro, quando importa, está em lacunas) | — | 2 |
+| 46 tópicos de Física (todos os que têm fórmula) | fórmulas reescritas em LaTeX entre cifrões, com toda fração empilhada (\frac), como em Matemática | pedido do dono: entregar pronto, sem o site ter de converter; regra do CLAUDE.md (fração sempre empilhada) | conferência fórmula a fórmula contra Halliday, Resnick & Walker | 2 (+1 de novo) |
+| FK21 | exemplo da Santa Casa 2024 reescrito só com a parte que fecha na conta (p = 20 cm, p' = 60 cm, f = 15 cm) | a primeira metade citava um resultado sem os dados; ficou só o que foi resolvido aqui | conta refeita | 1 |
+| FK09b | retirada a letra do gabarito (alternativa E) | pedido do dono: sem letra não conferida; a conta foi refeita e dá 400 g | conta refeita | 1 |
+| FK18 | eficiência: Q_F/W é do refrigerador; a da bomba de calor é Q_Q/W | erro herdado, apontado pelo revisor independente | Halliday, Resnick & Walker, cap. de entropia e máquinas térmicas | 1 (2º revisor) |
+| FK10 | retirado o exemplo da Santa Casa 2022 | o ponto não trazia as distâncias; a conta não pôde ser refeita (pedido do dono: resolver ou tirar) | — | 1 |
+| FK09, FK11, FK11b, FK13, FK35, FK40 | índices com acento passaram a \text{…} dentro da fórmula | letra acentuada solta em modo matemático pode falhar no renderizador (apontado pelo revisor independente) | documentação do KaTeX | 2 |
+| campo subs | 50 tópicos ligados a subtemas F01–F12 (o primeiro da lista é o principal) | pedido do dono (12/11/2026): o aluno revisa por subtema ou a matéria inteira e precisa se localizar entre os dois | lista de subtemas em docs/revisao/fis/resumos.json | 2 |
+
+### Itens marcados "conferir" (estão em `lacunas` do arquivo)
+
+
+## Química
+
+### Erros de fato encontrados no trabalho anterior (7)
+
+1. QK18 — NaOH dado como exemplo de curva de solubilidade decrescente; a solubilidade do NaOH aumenta com a temperatura (exemplos corretos: Ca(OH)2, Ce2(SO4)3).
+2. QK21 — conta de energia de ligação com um "2·" a mais (2·(413 + 358 + 463) daria 2468, não 1234) e frase da lei de Hess truncada, ilegível.
+3. QK17 — fila de reatividade dos metais sem o hidrogênio, que é o que decide quem reage com ácido.
+4. QK08 — tópico de propriedades periódicas sem dizer em que sentido cada propriedade varia na tabela.
+5. QK10 — pegadinha usava CH4 como exemplo de "ligações polares em molécula apolar" (a ligação C–H é praticamente apolar).
+6. QK28 — "Kh = Kw" para sal que não sofre hidrólise.
+7. QK03 — Demócrito com nascimento em 450 a.C. (c. 460); QK45 — "metoxi-metano".
+
+### Todas as alterações
+
+| id | o que mudou | por quê | fonte | lente |
+|---|---|---|---|---|
+| QK03 | datas de Demócrito: c. 460–370 a.C. | nascimento dado como 450 a.C. | Stanford Encyclopedia of Philosophy, https://plato.stanford.edu/entries/democritus/ | 1 |
+| QK08 | ponto novo com o sentido de variação de cada propriedade; pegadinha com raio de íons | o tópico definia as propriedades mas não dizia como variam na tabela (isso só estava na imagem que falta) | Atkins & Jones, Princípios de Química; Feltre, Química (Moderna) | 2 |
+| QK10 | pegadinha: CO2 × H2O no lugar de CH4 | o exemplo 'CH4 tem ligações polares' é fraco (a ligação C–H é quase apolar); o par clássico é CO2 × H2O | Atkins & Jones, Princípios de Química; Feltre, Química (Moderna) | 1 |
+| QK17 | hidrogênio incluído na fila de reatividade | sem a posição do H a fila não permite decidir quais metais reagem com ácidos | Atkins & Jones, Princípios de Química; Feltre, Química (Moderna) | 1 |
+| QK18 | exemplo de curva decrescente: NaOH → Ca(OH)2 e Ce2(SO4)3 | erro: a dissolução do NaOH libera calor, mas a solubilidade dele aumenta com a temperatura; os exemplos de curva decrescente são Ca(OH)2 e Ce2(SO4)3 | IUPAC-NIST Solubility Database, https://srdata.nist.gov/solubility/ ; CRC Handbook of Chemistry and Physics | 1 |
+| QK21 | conta da energia de ligação (sem o "2·") e frase da lei de Hess reescrita | erro de conta: 2·(413 + 358 + 463) daria 2468, não 1234; a frase da lei de Hess estava truncada ("inverso da fermentação a etapa inversa...") | conta refeita; Atkins & Jones, Princípios de Química; Feltre, Química (Moderna) | 1 |
+| QK28 | retirado "Kh = Kw" do sal de ácido forte e base forte | se não há hidrólise, não há Kh | Atkins & Jones, Princípios de Química; Feltre, Química (Moderna) | 1 |
+| QK39 | ano da síntese de Wöhler (1828) | data cobrada em prova | Atkins & Jones, Princípios de Química; Feltre, Química (Moderna) | 2 |
+| QK45 | 'metoxi-metano' → 'metoximetano' | grafia da nomenclatura IUPAC (sem hífen) | IUPAC, Compendium of Chemical Terminology (Gold Book), https://goldbook.iupac.org | 1 |
+| QK52 | pegadinha: desidratação intra × intermolecular | contraste clássico (170 °C alceno × 140 °C éter) ausente | Atkins & Jones, Princípios de Química; Feltre, Química (Moderna) | 2 |
+| QK33 | pegadinha: pilha × eletrólise com o sentido dos elétrons | contraste reforçado | Atkins & Jones, Princípios de Química; Feltre, Química (Moderna) | 2 |
+| todos os 58 tópicos | busca[] ampliada | faltavam os nomes que o aluno digita (sinônimos como "pontes de hidrogênio", fórmulas como "PV = nRT", grafias como "Bronsted" e "Saytzeff") | — | 2 |
+| QK23 | ressalvas editoriais retiradas do conteúdo ("o livro cita/mostra/usa...") | o aluno não tem o livro; a frase deve valer sozinha (a observação sobre o livro, quando importa, está em lacunas) | — | 2 |
+| QK04–QK51 (25 tópicos com contas) | fórmulas matemáticas reescritas em LaTeX entre cifrões, com fração empilhada (\frac) e potências de dez; fórmulas químicas (H2O, CO2) continuam em texto | pedido do dono: entregar pronto, sem conversão no site | contas refeitas uma a uma | 2 (+1 de novo) |
+| QK14, QK18, QK21–QK24, QK27, QK30, QK32, QK34–QK36, QK38, QK39, QK41, QK48, QK51, QK53, QK58 | retiradas as letras de gabarito; cada exemplo ficou com a resolução feita aqui (conta ou classificação refeita) | pedido do dono: resolver a questão ou tirar; a letra dependia do caderno de prova | contas e classificações refeitas (Atkins & Jones; Feltre) | 1 |
+| QK43 | retirada a questão Udesc 2023 | as afirmações (faixas de carbonos e temperaturas das frações) não puderam ser conferidas sem o enunciado; pedido do dono: tirar o que não se resolve | — | 1 |
+| QK22 | exemplo da Unicamp 2021: 9 950 L em 995 min (não 1000 min) | conta refeita: ficam 50 L no cilindro | conta refeita | 1 |
+| QK01, QK14, QK35 | densidade em LaTeX; reação do exemplo explicitada; arredondamento da carga corrigido (44 970 C) | apontado pelo revisor independente | contas refeitas | 1 (2º revisor) |
+| campo subs | 58 tópicos ligados a subtemas Q01–Q12 (o primeiro da lista é o principal) | pedido do dono (12/11/2026): o aluno revisa por subtema ou a matéria inteira e precisa se localizar entre os dois | lista de subtemas em docs/revisao/qui/resumos.json | 2 |
+
+### Itens marcados "conferir" (estão em `lacunas` do arquivo)
+
+- conferir: QK18 — a descrição da imagem do livro cita curvas de solubilidade de KNO3, NaOH e NaCl. Se o gráfico do livro mostrar a curva do NaOH como decrescente, a imagem não deve ser reproduzida assim (a solubilidade do NaOH cresce com a temperatura).
+
+### Pendências de decisão do dono
+
+- QK18: se a imagem do livro mostrar a curva do NaOH como decrescente, não reproduzir; decidir qual gráfico entra.
+
+## Geografia
+
+### Erros de fato encontrados no trabalho anterior (6)
+
+1. GK26 — "305 povos segundo o Censo 2022": 305 é o número do Censo 2010; o Censo 2022 registrou 391 etnias e 295 línguas.
+2. GK05 — satélites "a dezenas de quilômetros da superfície" (orbitam a centenas de quilômetros ou mais) e GPS com "três ou mais satélites" (são pelo menos quatro para a posição completa).
+3. GK40 — ECO-92 teria criado "Comissões" sobre biodiversidade e clima (foram Convenções) e seria "a maior reunião da ONU até hoje".
+4. GK16 — pegadinha dizia que a metrópole "nasce" da conurbação, misturando conurbação, metrópole e região metropolitana.
+5. GK34 — colonialismo restrito aos "séculos XV e XVI".
+6. GK29 — "Pedro Pichas Geiger" (Pinchas); GK45 — "internet 2.0" (Web 2.0); GK35 — Nafta citado como bloco atual (substituído pelo USMCA em 2020).
+
+### Todas as alterações
+
+| id | o que mudou | por quê | fonte | lente |
+|---|---|---|---|---|
+| GK05 | altitude dos satélites e número de satélites do GPS corrigidos; pegadinha com o contraste GPS × sensoriamento × SIG | erros: satélites não orbitam a "dezenas de quilômetros" (o mínimo é da ordem de centenas); o GPS precisa de pelo menos quatro satélites para a posição completa | GPS.gov, https://www.gps.gov/systems/gps/space/ ; INPE, http://www.dgi.inpe.br | 1 |
+| GK16 | pegadinha reescrita; taxa de urbanização atualizada | "a metrópole nasce disso [da conurbação]" confundia conurbação, metrópole e região metropolitana | ONU, World Urbanization Prospects, https://population.un.org/wup/ ; IBGE, Regiões de Influência das Cidades (REGIC 2018) | 1 |
+| GK23 | taxa de reposição "cerca de 2,1" e dado do Brasil (1,55) | "acima de 2,1" era impreciso; dado atual do IBGE | IBGE, Censo Demográfico 2022, https://censo2022.ibge.gov.br (Fecundidade e migração: resultados preliminares da amostra, 2025) | 1 |
+| GK24 | pegadinha: migrante × refugiado × deslocado interno | contraste clássico ausente | ACNUR, https://www.acnur.org/portugues/quem-ajudamos/refugiados/ | 2 |
+| GK26 | número de povos indígenas: 391 (Censo 2022), não 305 | erro: 305 é o dado do Censo 2010; o Censo 2022 registrou 391 etnias e 295 línguas | IBGE/Ministério dos Povos Indígenas, https://www.gov.br/povosindigenas/pt-br/assuntos/noticias/2025/10-1/censo-2022-brasil-tem-391-etnias-e-295-linguas-indigenas | 1 |
+| GK29 | 'Pichas' → 'Pinchas' | nome do geógrafo grafado errado | IBGE, Memória (Pedro Pinchas Geiger), https://memoria.ibge.gov.br | 1 |
+| GK32 | matriz elétrica × matriz energética | o tópico dizia só "matriz"; a banca explora a diferença | EPE, Balanço Energético Nacional, https://www.epe.gov.br/pt/publicacoes-dados-abertos/publicacoes/balanco-energetico-nacional-ben | 2 |
+| GK34 | período do colonialismo | "séculos XV e XVI" reduzia o colonialismo ao seu início | Enciclopédia Britannica, "Western colonialism", https://www.britannica.com/topic/Western-colonialism | 1 |
+| GK35 | Nafta substituído pelo USMCA (2020) | atualização | USTR, https://ustr.gov/trade-agreements/free-trade-agreements/united-states-mexico-canada-agreement | 1 |
+| GK40 | "Comissões" → "Convenções"; "até hoje" → "até então"; COP30 | erro: na ECO-92 foram criadas convenções (tratados), não comissões | ONU/UNFCCC, https://unfccc.int/process-and-meetings/what-is-the-united-nations-framework-convention-on-climate-change | 1 |
+| GK43 | pegadinha reescrita | repetia um número que varia conforme o critério | IBGE, Regiões de Influência das Cidades (REGIC 2018); Ipea | 2 |
+| GK44 | modal dutoviário acrescentado | faltava um dos cinco modais cobrados | Ministério dos Transportes, https://www.gov.br/transportes | 2 |
+| GK45 | "internet 2.0" identificada como Web 2.0 | o termo consagrado é Web 2.0 | O’Reilly, "What Is Web 2.0" (2005) | 1 |
+| todos os 45 tópicos | busca[] ampliada | faltavam termos que o aluno digita (uberização, rios voadores, MATOPIBA, marco temporal, siglas e nomes de conferências) | — | 2 |
+| GK01, GK43, GK45 | ressalvas editoriais retiradas do conteúdo ("o livro cita/mostra/usa...") | o aluno não tem o livro; a frase deve valer sozinha (a observação sobre o livro, quando importa, está em lacunas) | — | 2 |
+| GK01, GK07, GK18, GK22, GK33, GK40, GK42 | referência à questão de prova e letra retiradas; ficou o conteúdo | pedido do dono: resolver ou tirar; sem o caderno da prova a letra não se confirma | IBGE; FAO, https://www.fao.org/agroecology | 1 |
+| GK03 | exemplo da escala com fração empilhada e sem letra | conta refeita; regra da fração empilhada | conta refeita | 1 |
+| campo subs | 36 de 45 tópicos ligados a subtemas G03–G12 (o primeiro da lista é o principal) | pedido do dono (12/11/2026): o aluno revisa por subtema ou a matéria inteira e precisa se localizar entre os dois | lista de subtemas em docs/revisao/geo/resumos.json | 2 |
+
+### Itens marcados "conferir" (estão em `lacunas` do arquivo)
+
+- conferir: GK43 — o livro define cidade média como a de 100 mil a 1 milhão de habitantes; o corte mais usado (IBGE/Ipea) é 100 mil a 500 mil. O ponto mantém o do livro e a pegadinha avisa.
+- conferir: os percentuais de vegetação remanescente por bioma (GK14), a população de povos e comunidades tradicionais (GK33, 'cerca de 4,5 milhões') e o número de agrupamentos quilombolas (GK26) seguem o livro; conferir no MapBiomas e no IBGE antes de usar em questão.
+
+### Pendências de decisão do dono
+
+- GK43: manter o corte do livro para cidade média (100 mil a 1 milhão) ou adotar o do IBGE/Ipea (100 mil a 500 mil)?
+
+## História
+
+### Erros de fato encontrados no trabalho anterior (23)
+
+1. HK32 — os estados da França do Antigo Regime estavam trocados: "primeiro estado (nobreza), segundo (clero)". O primeiro estado é o clero; o segundo, a nobreza. A Convenção aparecia como 1792–1794 (vai até 1795).
+2. HK49 — "Yalta criou a ONU" (a ONU foi fundada na Conferência de São Francisco, em 1945); "Mussolini deposto em 1943, com participação brasileira" (a FEB só chegou à Itália em 1944); "mais de 300 mil civis mortos" pelas bombas atômicas (estimativas: 110 a 210 mil até o fim de 1945); Potsdam como criadora do Tribunal de Nuremberg.
+3. HK12 — peste negra teria matado "entre 8 e 10 milhões de pessoas, quase metade da população europeia" (estimativas: 25 milhões ou mais, cerca de um terço).
+4. HK08 — "árabes dominaram regiões do império, incluindo Constantinopla": os árabes nunca tomaram Constantinopla (cruzados em 1204, otomanos em 1453).
+5. HK09 — Carlos Magno "imperador do Sacro Império Romano-Germânico": foi coroado imperador dos romanos em 800; o Sacro Império é de 962.
+6. HK55 — tripé macroeconômico atribuído ao Plano Real e ao governo Itamar (é de 1999, segundo governo FHC); "surgimento do MST" no governo FHC (o MST é de 1984).
+7. HK14 — Carlos V "aliou-se aos luteranos"; Zwinglio listado como anabatista; Igreja anglicana criada "em 1529" (Ato de Supremacia, 1534).
+8. HK34 — escravidão nos EUA "abolida em 1862" (Proclamação de Emancipação, 1863; 13ª Emenda, 1865); Havaí estado "em 1957" (1959).
+9. HK36 — D. Pedro II com "15 anos" no Golpe da Maioridade (tinha 14); Balaiada iniciada em 1837 (1838).
+10. HK16 — casamento de Fernando e Isabel "em 1496" (1469).
+11. HK21 — holandeses em Salvador "1624–1645" (1624–1625).
+12. HK53 — plebiscito do presidencialismo "em 1962" (6 de janeiro de 1963).
+13. HK54 — ditadura uruguaia "1973–1990" (1973–1985); Nicarágua desde 1934 (Somoza chega ao poder em 1936).
+14. HK40 — República Oligárquica "1889–1930" (1894–1930).
+15. HK25 — "retorno dos jesuítas" depois da queda de Pombal (não houve; a ordem só foi restaurada em 1814).
+16. HK29 — "Gustavo II" como déspota esclarecido (é Gustavo III).
+17. HK39 — portugueses expulsos da Índia "exceto Bombaim" (mantiveram Goa, Damão e Diu; Bombaim foi cedida à Inglaterra).
+18. HK04 — Guerras Médicas "496–448 a.C." (499–449 a.C.); período homérico até 700 a.C. (c. 800 a.C.).
+19. HK07 — café no comércio da Arábia pré-islâmica (anacronismo de quase mil anos).
+20. HK20 — pecuária entre as atividades dos povos indígenas antes da colonização.
+21. HK43 — governo provisório russo "liderado por mencheviques".
+22. HK06 — capital do Império do Oriente como "Bizâncio"; faltava Teodósio (cristianismo oficial em 380).
+23. HK15 — Revolução Puritana "1642–1648" (1649); HK30 — guerra de independência dos EUA iniciada "em 1776" (1775); HK33 — Código Civil antes do consulado vitalício; HK52 — "Rubem Vaz" (Rubens Vaz).
+
+### Todas as alterações
+
+| id | o que mudou | por quê | fonte | lente |
+|---|---|---|---|---|
+| HK02 | Luzia: "um dos mais antigos" e idade aproximada | "o crânio mais antigo da América" é afirmação absoluta que achados posteriores contestam; a idade é estimativa | Museu Nacional/UFRJ, https://www.museunacional.ufrj.br | 1 |
+| HK04 | datas das Guerras Médicas (499–449 a.C.) e dos períodos homérico e arcaico (limite em c. 800 a.C.); pegadinha Atenas × Esparta | datas erradas: "496–448 a.C." e período homérico até 700 a.C. | Enciclopédia Britannica, https://www.britannica.com/event/Greco-Persian-Wars | 1 |
+| HK06 | Editos de Milão (313) e Tessalônica (380), divisão de 395 e capital do Oriente (Constantinopla) | faltava Teodósio e a oficialização do cristianismo; a capital do Oriente estava como "Bizâncio", nome anterior a Constantino | Enciclopédia Britannica, https://www.britannica.com/place/Roman-Empire | 1 |
+| HK07 | retirado o café do comércio da Arábia pré-islâmica | anacronismo: o café só passa a ser consumido e comerciado na Arábia por volta do século XV | Enciclopédia Britannica, https://www.britannica.com/topic/coffee | 1 |
+| HK08 | Constantinopla não foi tomada pelos árabes | erro: os árabes cercaram Constantinopla (674–678 e 717–718) e foram repelidos; a cidade caiu para os cruzados (1204) e para os otomanos (1453) | Enciclopédia Britannica, https://www.britannica.com/place/Byzantine-Empire | 1 |
+| HK09 | Carlos Magno: imperador dos romanos (800), não do Sacro Império Romano-Germânico | erro: o Sacro Império Romano-Germânico é de 962 (Oto I); Carlos Magno governou o Império Carolíngio | Enciclopédia Britannica, https://www.britannica.com/biography/Charlemagne | 1 |
+| HK12 | mortos pela peste negra | erro de número: 8 a 10 milhões não é "quase metade" da Europa da época; as estimativas falam em 25 milhões ou mais, cerca de um terço da população | Enciclopédia Britannica, https://www.britannica.com/event/Black-Death | 1 |
+| HK14 | Carlos V e os luteranos; Zwinglio não era anabatista; Igreja anglicana criada em 1534 | erros: Carlos V combateu os luteranos (só fez concessões); Zwinglio perseguiu os anabatistas; a Igreja anglicana nasce com o Ato de Supremacia (1534), não em 1529 | Enciclopédia Britannica, https://www.britannica.com/event/Reformation | 1 |
+| HK15 | Revolução Puritana: 1642–1649 | Carlos I foi executado em 1649 | Enciclopédia Britannica, https://www.britannica.com/event/English-Civil-Wars | 1 |
+| HK16 | casamento de Fernando e Isabel: 1469 (1496 é o título de Reis Católicos); Granada, 1492 | erro de data | Enciclopédia Britannica, https://www.britannica.com/biography/Ferdinand-II-king-of-Spain | 1 |
+| HK19 | chapetones definidos | "ou descendentes diretos" confundia chapetones com criollos | Enciclopédia Britannica, https://www.britannica.com/topic/Creole | 1 |
+| HK20 | retirada a pecuária dos povos indígenas | os povos indígenas do Brasil não criavam gado antes da colonização | Boris Fausto, História do Brasil (Edusp) | 1 |
+| HK21 | holandeses em Salvador: 1624–1625 | erro de data (1645) | Boris Fausto, História do Brasil (Edusp) | 1 |
+| HK24 | Pombal: ministro de D. José I (1750–1777); expulsão dos jesuítas em 1759 | o tópico omitia o rei porque o livro cita D. João V, errado | Enciclopédia Britannica, https://www.britannica.com/biography/Sebastiao-Jose-de-Carvalho-e-Mello-marques-de-Pombal | 1 |
+| HK25 | retirado o "retorno dos jesuítas"; Alvará de 1785; execução de Tiradentes em 1792 | erro: os jesuítas não voltaram com a queda de Pombal (a ordem só foi restaurada em 1814) | Boris Fausto, História do Brasil (Edusp); Arquivo Nacional, http://historiacolonial.arquivonacional.gov.br | 1 |
+| HK29 | Gustavo II → Gustavo III; Émilie du Châtelet pelo nome usual | erro: o déspota esclarecido sueco é Gustavo III (1771–1792); Gustavo II é do século XVII | Enciclopédia Britannica, https://www.britannica.com/biography/Gustav-III | 1 |
+| HK30 | Segundo Congresso Continental e início da guerra: 1775 | a guerra começou em 1775, um ano antes da Declaração | Enciclopédia Britannica, https://www.britannica.com/topic/Continental-Congress | 1 |
+| HK31 | ano do início da revolta (1791) | faltava a data inicial | Enciclopédia Britannica, https://www.britannica.com/topic/Haitian-Revolution | 2 |
+| HK32 | primeiro estado = clero, segundo = nobreza; Convenção 1792–1795; Terror 1793–1794 | erro: os dois primeiros estados estavam trocados; a Convenção vai até 1795 | Enciclopédia Britannica, https://www.britannica.com/event/French-Revolution | 1 |
+| HK33 | ordem dos fatos: cônsul vitalício (1802), Código Civil e Império (1804) | a frase punha o Código Civil antes de 1802 | Enciclopédia Britannica, https://www.britannica.com/biography/Napoleon-I | 1 |
+| HK34 | Proclamação de Emancipação (1863); Havaí estado em 1959; Filipinas 1898–1946; ocupações do Haiti e da República Dominicana | erros de data: abolição "em 1862" e Havaí estado "em 1957" | Enciclopédia Britannica, https://www.britannica.com/event/Emancipation-Proclamation ; Enciclopédia Britannica, https://www.britannica.com/place/Hawaii-state | 1 |
+| HK35 | datas da Confederação do Equador e da Guerra da Cisplatina | faltavam as datas | Boris Fausto, História do Brasil (Edusp) | 2 |
+| HK36 | D. Pedro II tinha 14 anos no Golpe da Maioridade; Balaiada 1838–1841 | erro: nascido em 2/12/1825, D. Pedro II tinha 14 anos em julho de 1840 | Boris Fausto, História do Brasil (Edusp); Senado Federal, https://www12.senado.leg.br/noticias | 1 |
+| HK37 | datas da tarifa Alves Branco e da Guerra do Paraguai; pegadinha sobre os limites de cada lei | tópico sem datas-chave; a pegadinha não tratava das leis abolicionistas | Boris Fausto, História do Brasil (Edusp) | 2 |
+| HK39 | portugueses na Índia; campos de concentração da Guerra dos Bôeres; Revolta dos Cipaios (1857) | erro: Bombaim não foi a única posição portuguesa mantida (Goa, Damão e Diu ficaram portuguesas até 1961); quem ficou nos campos britânicos foram civis bôeres e africanos | Enciclopédia Britannica, https://www.britannica.com/place/Goa ; Enciclopédia Britannica, https://www.britannica.com/event/South-African-War | 1 |
+| HK40 | República Oligárquica: 1894–1930 (República da Espada: 1889–1894) | erro de data: os dois períodos estavam sobrepostos | Boris Fausto, História do Brasil (Edusp) | 1 |
+| HK43 | governo provisório: liberais e socialistas moderados; pegadinha fevereiro × outubro | o governo provisório não era "liderado por mencheviques": começou com liberais (príncipe Lvov) e passou a Kerenski | Enciclopédia Britannica, https://www.britannica.com/event/Russian-Revolution | 1 |
+| HK49 | ONU fundada em São Francisco (1945); Mussolini deposto sem participação brasileira; mortos das bombas atômicas; Nuremberg | erros: a ONU não foi "criada em Yalta"; a FEB só chegou à Itália em 1944, um ano depois da queda de Mussolini; "mais de 300 mil mortos" não bate com as estimativas (110 a 210 mil até o fim de 1945) | ONU, https://www.un.org/en/about-us/history-of-the-un ; FGV CPDOC, Dicionário Histórico-Biográfico Brasileiro, https://cpdoc.fgv.br/acervo/dhbb (FEB); Atomic Heritage Foundation / Enciclopédia Britannica, https://www.britannica.com/event/atomic-bombings-of-Hiroshima-and-Nagasaki | 1 |
+| HK52 | 'Rubem Vaz' → 'Rubens Vaz' | nome grafado errado | FGV CPDOC, Dicionário Histórico-Biográfico Brasileiro, https://cpdoc.fgv.br/acervo/dhbb | 1 |
+| HK53 | plebiscito do presidencialismo: janeiro de 1963 | erro de data (1962); "plebiscito de 1962" ficou só em busca[] como grafia que o aluno pode digitar | FGV CPDOC, Dicionário Histórico-Biográfico Brasileiro, https://cpdoc.fgv.br/acervo/dhbb | 1 |
+| HK54 | ditadura uruguaia: 1973–1985; Somoza no poder a partir de 1936; datas do fim da ditadura brasileira | erro de data: a ditadura uruguaia terminou em 1985, não em 1990 | Enciclopédia Britannica, https://www.britannica.com/place/Uruguay/The-military-regime ; FGV CPDOC, Dicionário Histórico-Biográfico Brasileiro, https://cpdoc.fgv.br/acervo/dhbb | 1 |
+| HK55 | tripé macroeconômico datado em 1999 (FHC), não no Plano Real de 1994; MST fundado em 1984 | erro: o Plano Real usou câmbio controlado (âncora cambial); câmbio flutuante e metas de inflação são de 1999. O MST não "surgiu" no governo FHC | Banco Central do Brasil, https://www.bcb.gov.br/controleinflacao/historicometas ; FGV CPDOC, Dicionário Histórico-Biográfico Brasileiro, https://cpdoc.fgv.br/acervo/dhbb | 1 |
+| todos os 57 tópicos | busca[] ampliada | faltavam os nomes que o aluno digita (República Velha, Guerra dos Farrapos, Jango, anos de chumbo, causas e consequências) | — | 2 |
+| HK12, HK20, HK28, HK48, HK54 | referência à questão de prova e letra retiradas; ficou o conteúdo | pedido do dono: resolver ou tirar; sem o caderno da prova a letra não se confirma | Britannica; FGV CPDOC (Vladimir Herzog) | 1 |
+| campo subs | 51 de 57 tópicos ligados a subtemas H01–H07 (o primeiro da lista é o principal) | pedido do dono (12/11/2026): o aluno revisa por subtema ou a matéria inteira e precisa se localizar entre os dois | lista de subtemas em docs/revisao/his/resumos.json | 2 |
+
+### Itens marcados "conferir" (estão em `lacunas` do arquivo)
+
+- conferir: HK52 — o livro atribui o Plano Salte (1947) a empréstimos do FMI; a informação não foi confirmada em fonte pública e foi mantida como está no livro.
+- conferir: HK55 — a inflação de 1989 aparece como 1700%; os índices oficiais variam conforme a medida (IPCA de 1989: cerca de 1 970%; INPC: cerca de 1 860%). Conferir o índice antes de usar em questão.
+
+### Pendências de decisão do dono
+
+- HK24: o livro erra o rei de Pombal (D. João V); o tópico agora traz D. José I. Se o site reproduzir alguma página do livro sobre o tema, o erro reaparece.
+
+## Filosofia e Sociologia
+
+### Erros de fato encontrados no trabalho anterior (7)
+
+1. SK30 — os três estágios (selvageria, barbárie, civilização) atribuídos só a Tylor; quem os sistematizou foi Morgan (A sociedade antiga, 1877).
+2. SK26 — A Liberdade guiando o povo (Delacroix) ligada à Revolução Francesa de 1789; o quadro retrata a Revolução de 1830.
+3. SK03 — grupo primário definido por "status e papéis bem definidos"; o que o define são relações íntimas e duradouras.
+4. FK09 — virtude dos produtores na República dada como "prudência e economia" (é a temperança).
+5. FK11 — areté apresentada como "função própria" (função é ergon; areté é excelência); excesso da coragem como "imprudência" (temeridade).
+6. FK36 — Rawls sem a posição original e o véu da ignorância, seu conceito mais cobrado.
+7. FK19 e FK32 — ressalvas editoriais dentro do conteúdo ("segundo o livro").
+
+### Todas as alterações
+
+| id | o que mudou | por quê | fonte | lente |
+|---|---|---|---|---|
+| FK09 | virtude dos produtores: temperança | na República a virtude ligada à parte desejante da alma e à classe dos produtores é a temperança, não "prudência e economia" | Stanford Encyclopedia of Philosophy, https://plato.stanford.edu/entries/plato-ethics-politics/ | 1 |
+| FK11 | areté = excelência; ergon = função própria; coragem entre temeridade e covardia | o texto chamava a função própria de "areté"; o excesso da coragem é a temeridade | Stanford Encyclopedia of Philosophy, https://plato.stanford.edu/entries/aristotle-ethics/ | 1 |
+| FK19 | retirado "(segundo o livro)"; pegadinha sobre "os fins justificam os meios" | o ponto carregava uma ressalva editorial; a pegadinha agora trata do erro mais comum sobre Maquiavel | Stanford Encyclopedia of Philosophy, https://plato.stanford.edu/entries/machiavelli/ | 1 |
+| FK32 | retirado "segundo o livro" | ressalva editorial dentro do conteúdo | Stanford Encyclopedia of Philosophy, https://plato.stanford.edu/entries/thomas-kuhn/ | 2 |
+| FK36 | Rawls com posição original e véu da ignorância; obras e datas; Estado mínimo em Nozick | o tópico omitia o véu da ignorância, o conceito de Rawls mais cobrado | Stanford Encyclopedia of Philosophy, https://plato.stanford.edu/entries/rawls/ ; Stanford Encyclopedia of Philosophy, https://plato.stanford.edu/entries/nozick-political/ | 2 |
+| FK37 | obra de Hans Jonas | faltava a obra de referência | Enciclopédia Britannica, https://www.britannica.com/biography/Hans-Jonas | 2 |
+| SK03 | grupo primário definido pela intimidade das relações | "status e papéis bem definidos" não é o que distingue o grupo primário (conceito de Cooley: relações íntimas, face a face) | Enciclopédia Britannica, https://www.britannica.com/topic/primary-group | 1 |
+| SK14 | panóptico: projeto de Bentham | termo técnico sem definição | Enciclopédia Britannica, https://www.britannica.com/technology/panopticon | 2 |
+| SK15 | pegadinha: Estado × governo × nação | contraste clássico pedido na lente 2, com exemplo | Enciclopédia Britannica, https://www.britannica.com/topic/state-sovereign-political-entity | 2 |
+| SK23 | obra da solidariedade mecânica e orgânica | faltava a obra de referência | Enciclopédia Britannica, https://www.britannica.com/biography/Emile-Durkheim | 2 |
+| SK26 | A Liberdade guiando o povo retrata a Revolução de 1830 | a frase ligava o quadro de 1830 à Revolução Francesa de 1789 | Museu do Louvre, https://collections.louvre.fr/en/ark:/53355/cl010065872 | 1 |
+| SK30 | obras de Tylor (1871) e Morgan (1877); a sistematização dos três estágios é de Morgan | o esquema selvageria–barbárie–civilização era atribuído só a Tylor; quem o sistematizou foi Morgan | Enciclopédia Britannica, https://www.britannica.com/biography/Lewis-Henry-Morgan ; Enciclopédia Britannica, https://www.britannica.com/biography/Edward-Burnett-Tylor | 1 |
+| SK32 | marcos da institucionalização (ELSP, 1933; USP, 1934) | faltavam os marcos concretos | USP, https://www5.usp.br/institucional/a-usp/historia/ ; FESPSP, https://www.fespsp.org.br | 2 |
+| SK34 | obra do homem cordial (Raízes do Brasil, 1936) | faltava a obra de referência | ABL/FGV CPDOC, https://cpdoc.fgv.br | 2 |
+| SK42 | Lyotard e as metanarrativas | conceito sem autor | Enciclopédia Britannica, https://www.britannica.com/topic/postmodernism-philosophy | 2 |
+| SK44 | pós-verdade: palavra do ano de 2016 | dado cobrado em prova | Oxford Languages, https://languages.oup.com/word-of-the-year/2016/ | 2 |
+| SK45 | datas do Brexit (2016 e 2020) | faltavam as datas | Parlamento do Reino Unido, https://www.parliament.uk/business/publications/research/eu-referendum/ | 2 |
+| todos os 86 tópicos (FK e SK) | busca[] ampliada | faltavam os nomes que o aluno digita (mito da caverna, penso logo existo, Deus está morto, jeitinho brasileiro, uberização, grafias como "falseabilidade" e "Thomas Morus") | — | 2 |
+| FK09 | ressalvas editoriais retiradas do conteúdo ("o livro cita/mostra/usa...") | o aluno não tem o livro; a frase deve valer sozinha (a observação sobre o livro, quando importa, está em lacunas) | — | 2 |
+| SK27 | valores escritos como "2.000 reais" em vez de "R$ 2.000" | o cifrão de "R$" seria lido pelo site como início de fórmula | — | 2 |
+| campo subs | 80 de 86 tópicos ligados a subtemas L01–L08 e S01–S08 (o primeiro da lista é o principal) | pedido do dono (12/11/2026): o aluno revisa por subtema ou a matéria inteira e precisa se localizar entre os dois | lista de subtemas em docs/revisao/fs/resumos.json | 2 |
+
+### Itens marcados "conferir" (estão em `lacunas` do arquivo)
+
+- [Sociologia] conferir: SK41 atribui a teoria da mobilização de recursos a Charles Tilly, como faz o livro; na literatura ela é ligada sobretudo a McCarthy e Zald, e Tilly, à teoria do processo político e aos repertórios de ação. Não foi alterado.
+- [Sociologia] conferir: SK13 traz 'mulheres ganham em média 20% a menos que os homens'; o percentual varia a cada ano (IBGE/PNAD Contínua). Conferir o dado do ano antes de usar em questão.
+
+### Pendências de decisão do dono
+
+- SK41: manter a atribuição do livro (mobilização de recursos = Tilly) ou corrigir para a atribuição usual (McCarthy e Zald; Tilly = processo político)?
+- Os tópicos de Filosofia e Sociologia são longos (vários pontos com mais de 400 caracteres). Foram mantidos para não perder conteúdo; se o site precisar de pontos mais curtos, o corte deve ser feito na tela, não no arquivo, ou em nova rodada de edição.
+
+## Inglês
+
+### Erros de fato encontrados no trabalho anterior (2)
+
+1. Os 31 tópicos existentes (I01–I04) não tinham erro de fato; o problema era de uso: busca[] era o título quebrado em palavras e vários termos técnicos (skimming, scanning, topic sentence, lead, stative verbs) vinham sem tradução.
+2. O arquivo cobria só leitura, vocabulário, gramática e tempos verbais por subtema; faltavam visão da prova, estratégia de resolução, pronomes, plural e genitivo, perguntas, quadro geral dos tempos e lista de irregulares, que entraram como 18 tópicos novos, cada um com o id do seu subtema e uma letra no fim.
+
+### Todas as alterações
+
+| id | o que mudou | por quê | fonte | lente |
+|---|---|---|---|---|
+| I01.1, I01.3, I01.10, I01.11, I03.9, I04.1 | termos técnicos traduzidos na primeira vez (skimming, scanning, topic sentence, headline, lead, stative verbs) e exemplos para any | termo técnico sem definição | Cambridge Dictionary, https://dictionary.cambridge.org | 2 |
+| todos os 31 tópicos I01–I04 | busca[] ampliada | a busca era o título quebrado em palavras; entraram os nomes em inglês e em português que o aluno digita (false friends, reported speech, if clauses, will x going to) | — | 2 |
+| 18 tópicos novos | 18 tópicos criados no fim do arquivo: prova e estratégia, vocabulário, gramática, tempos verbais e inglês como língua global | pedido do dono (12/11/2026): criar a revisão de Inglês no padrão das outras matérias; o arquivo não cobria esses conteúdos | Murphy, English Grammar in Use; Swan, Practical English Usage; Cambridge Dictionary; Inep (provas e matriz do Enem), https://www.gov.br/inep/pt-br/areas-de-atuacao/avaliacao-e-exames-educacionais/enem | 1 e 2 |
+| arquivo | campos `base` e `lacunas` atualizados | registrar a origem de cada grupo de tópicos | — | 2 |
+| I01.1b, I03.8b, I03.9b, I03.2b, I04.1b | sete ajustes de precisão (scanning, plural em -o e -f, auxiliar da question tag, otherwise e whether, auxiliar e marca de tempo) | apontados pelo revisor independente (segunda lente de fatos) | Swan, Practical English Usage; Cambridge Dictionary | 1 (2º revisor) |
+| 18 tópicos novos | ids trocados de IG01–IG18 para o id do subtema com letra (I01.1b, I01.2b, I01.3b, I01.11b, I01.11c, I02.1b, I02.2b, I02.2c, I02.5b, I03.1b, I03.2b, I03.7b, I03.7c, I03.8b, I03.8c, I03.9b, I04.1b, I04.6b), cada um logo depois do tópico do seu subtema | pedido do dono: nomear pelos subtemas para o aluno se localizar; os ids IG nunca foram ao ar | — | 2 |
+
+### Itens marcados "conferir" (estão em `lacunas` do arquivo)
+
+

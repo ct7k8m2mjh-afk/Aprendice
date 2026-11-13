@@ -1,0 +1,192 @@
+<title>O que falta no Aprendice</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&family=Dancing+Script:wght@600&display=swap">
+<style>
+/* Painel de acompanhamento: resumo no topo, matérias em lista com barra de progresso, depois a lista de pendências por área. */
+:root{--bg:#F6F7F9;--sup:#FFFFFF;--fg:#17181C;--suave:#5C6070;--linha:#E2E4EA;--ok:#1E7B3A;--okf:#E2F4E7;--and:#2350B8;--andf:#E6EDFC;--dec:#9A5B00;--decf:#FDF0DB;--pau:#6B6F7C;--pauf:#ECEDF1;
+--txt:"Familjen Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;--tit:"Dancing Script","Brush Script MT",cursive}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121318;--sup:#1B1D24;--fg:#ECEDF1;--suave:#A3A7B5;--linha:#2C2F39;--ok:#6FD08C;--okf:#173A22;--and:#8FB0FF;--andf:#1C2847;--dec:#F2B25C;--decf:#3D2A0E;--pau:#A3A7B5;--pauf:#262932;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#121318;--sup:#1B1D24;--fg:#ECEDF1;--suave:#A3A7B5;--linha:#2C2F39;--ok:#6FD08C;--okf:#173A22;--and:#8FB0FF;--andf:#1C2847;--dec:#F2B25C;--decf:#3D2A0E;--pau:#A3A7B5;--pauf:#262932;color-scheme:dark}
+.m-mat{--c:#1F3FA6;--ct:#1F3FA6}@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .m-mat{--ct:#6B93F6}}:root[data-theme="dark"] .m-mat{--ct:#6B93F6}.m-fis{--c:#F27700;--ct:#B2580D}@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .m-fis{--ct:#F27700}}:root[data-theme="dark"] .m-fis{--ct:#F27700}.m-qui{--c:#D31A8D;--ct:#D31A8D}@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .m-qui{--ct:#F65BB0}}:root[data-theme="dark"] .m-qui{--ct:#F65BB0}.m-bio{--c:#3FA535;--ct:#138404}@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .m-bio{--ct:#51A948}}:root[data-theme="dark"] .m-bio{--ct:#51A948}.m-por{--c:#8A3FD1;--ct:#8A3FD1}@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .m-por{--ct:#B679FC}}:root[data-theme="dark"] .m-por{--ct:#B679FC}.m-geo{--c:#0F6E7A;--ct:#0F6E7A}@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .m-geo{--ct:#59A0AB}}:root[data-theme="dark"] .m-geo{--ct:#59A0AB}.m-his{--c:#75451D;--ct:#75451D}@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .m-his{--ct:#B77B4C}}:root[data-theme="dark"] .m-his{--ct:#B77B4C}.m-ing{--c:#AC002A;--ct:#AC002A}@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .m-ing{--ct:#FE3E3A}}:root[data-theme="dark"] .m-ing{--ct:#FE3E3A}.m-fs{--c:#E8B616;--ct:#8C6C02}@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .m-fs{--ct:#E8B616}}:root[data-theme="dark"] .m-fs{--ct:#E8B616}
+body{background:var(--bg);color:var(--fg);font-family:var(--txt);font-size:15px;line-height:1.5}
+.pag{max-width:980px;margin:0 auto;padding-block:28px 56px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:28px}
+header{display:grid;gap:6px}
+h1{font-family:var(--tit);font-weight:600;font-size:2.6rem;line-height:1.1;margin:0;text-wrap:balance}
+.sub{color:var(--suave);margin:0}
+.site{margin:2px 0 0;font-weight:600}
+.site a{color:var(--and);text-underline-offset:3px}
+.site a:focus-visible{outline:2px solid var(--and);outline-offset:2px;border-radius:4px}
+.resumo{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+.n{background:var(--sup);border:1px solid var(--linha);border-radius:12px;padding:14px 16px;display:grid;gap:2px}
+.n b{font-size:1.7rem;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.15}
+.n span{color:var(--suave);font-size:.85rem}
+h2{font-size:1.05rem;font-weight:700;margin:0 0 10px;letter-spacing:.01em}
+.lista{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+.mat{background:var(--sup);border:1px solid var(--linha);border-radius:12px;padding:14px 16px;display:grid;gap:8px;min-width:0}
+.mat-top{display:flex;align-items:center;gap:8px}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--c);flex:none}
+.mat-nome{font-weight:600;color:var(--ct);flex:1;min-width:0}
+.barra{height:8px;border-radius:99px;background:var(--linha);overflow:hidden}
+.barra span{display:block;height:100%;background:var(--c);border-radius:99px}
+.mat-num{display:flex;justify-content:space-between;gap:8px;font-size:.9rem;color:var(--suave);font-variant-numeric:tabular-nums}
+.mat-num b{color:var(--fg);font-weight:600}
+.obs{margin:0;font-size:.82rem;color:var(--suave)}
+.nota-provas{margin-top:10px;max-width:70ch}
+.pill{font-size:.72rem;font-weight:600;padding:2px 8px;border-radius:99px;letter-spacing:.02em;white-space:nowrap}
+.pill.ok{background:var(--okf);color:var(--ok)}.pill.and{background:var(--andf);color:var(--and)}.pill.pausa{background:var(--pauf);color:var(--pau)}
+.grupos{display:grid;gap:22px}
+.itens{list-style:none;margin:0;padding:0;display:grid;border:1px solid var(--linha);border-radius:12px;background:var(--sup);overflow:hidden}
+.it{display:grid;grid-template-columns:110px 1fr;gap:12px;padding:11px 16px;border-top:1px solid var(--linha);align-items:baseline}
+.it:first-child{border-top:0}
+.tag{font-size:.72rem;font-weight:600;padding:2px 8px;border-radius:99px;justify-self:start;white-space:nowrap}
+.st-falta .tag{background:var(--pauf);color:var(--fg)}.st-feito .tag{background:var(--okf);color:var(--ok)}.st-decidir .tag{background:var(--decf);color:var(--dec)}.st-andamento .tag{background:var(--andf);color:var(--and)}
+.st-feito .txt{color:var(--suave);text-decoration:line-through;text-decoration-color:var(--linha)}
+.txt{min-width:0;overflow-wrap:anywhere}
+.det{display:block;color:var(--suave);font-size:.85rem;margin-top:2px}
+.st-feito .det{text-decoration:none}
+footer{color:var(--suave);font-size:.82rem}
+.resp{grid-column:2;display:grid;gap:6px;margin-top:4px}
+.geral .resp{grid-column:auto;padding:12px 16px;margin:0}
+.resp label{font-size:.8rem;font-weight:600;color:var(--suave)}
+.resp textarea{width:100%;box-sizing:border-box;font:inherit;font-size:.92rem;color:var(--fg);background:var(--bg);border:1px solid var(--linha);border-radius:8px;padding:8px 10px;resize:vertical;min-height:56px}
+.resp textarea:focus-visible{outline:2px solid var(--and);outline-offset:1px;border-color:transparent}
+.resp-acao{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.resp button{font:inherit;font-size:.85rem;font-weight:600;color:var(--sup);background:var(--fg);border:0;border-radius:8px;padding:7px 16px;cursor:pointer}
+.resp button:hover{opacity:.88}
+.resp button:focus-visible{outline:2px solid var(--and);outline-offset:2px}
+.resp button:disabled{opacity:.5;cursor:default}
+.resp-st{font-size:.8rem;color:var(--suave)}
+.retorno{margin:0;font-size:.85rem;background:var(--okf);color:var(--ok);border-radius:8px;padding:6px 10px}
+@media (max-width:520px){.it{grid-template-columns:1fr;gap:4px}.resp{grid-column:auto}h1{font-size:2.2rem}}
+</style>
+<div class="pag">
+<header>
+  <h1>O que falta no Aprendice</h1>
+  <p class="sub">Atualizado em 13/11/2026, 03h01 (horário de Brasília). No site agora: <b>18.413</b> resoluções (publicado em 2026-11-13).</p>
+  <p class="site">Site: <a href="https://aprendice.vercel.app" target="_blank" rel="noopener">aprendice.vercel.app</a></p>
+</header>
+<div class="resumo">
+  <div class="n"><b>75%</b><span>das questões de prova já resolvidas</span></div>
+  <div class="n"><b>19.483</b><span>resoluções prontas</span></div>
+  <div class="n"><b>6.378</b><span>questões sem resolução</span></div>
+  <div class="n"><b>2</b><span>decisões esperando você</span></div>
+</div>
+<section><h2>Provas</h2>
+<div class="resumo">
+  <div class="n"><b>399</b><span>provas no projeto e no site</span></div>
+  <div class="n"><b>25</b><span>provas prontas: todas as questões já com resolução</span></div>
+  <div class="n"><b>374</b><span>provas pendentes: ainda têm questões sem resolução</span></div>
+  <div class="n"><b>224</b><span>faltam: anos de 2020 a 2026 sem prova, nos 72 vestibulares do catálogo</span></div>
+</div>
+<p class="obs nota-provas">A meta é uma prova por ano de 2020 a 2026 em cada vestibular (504 ao todo). 18 vestibulares ainda não têm nenhuma prova, por bloqueio do site da banca (baixar à mão), formato que o site não aceita, gabarito só preliminar ou por não terem prova própria.</p>
+</section>
+<section><h2>Resoluções por matéria</h2><ul class="lista"><li class="mat m-por">
+  <div class="mat-top"><span class="dot"></span><span class="mat-nome">Português</span><span class="pill and">em andamento</span></div>
+  <div class="barra" role="img" aria-label="65% feito"><span style="width:65.4%"></span></div>
+  <div class="mat-num"><span><b>3.085</b> feitas</span><span><b>1.634</b> faltam</span></div>
+  <p class="obs">95 em espera (print. gabarito ou trecho) · 1 com gabarito em dúvida</p>
+</li><li class="mat m-geo">
+  <div class="mat-top"><span class="dot"></span><span class="mat-nome">Geografia</span><span class="pill pausa">pausada</span></div>
+  <div class="barra" role="img" aria-label="44% feito"><span style="width:43.6%"></span></div>
+  <div class="mat-num"><span><b>1.097</b> feitas</span><span><b>1.417</b> faltam</span></div>
+  <p class="obs">216 do ENEM ou provas-alvo (nível 1 a 6) · 5 em espera (print. gabarito ou trecho)</p>
+</li><li class="mat m-mat">
+  <div class="mat-top"><span class="dot"></span><span class="mat-nome">Matemática</span><span class="pill and">em andamento</span></div>
+  <div class="barra" role="img" aria-label="69% feito"><span style="width:69.1%"></span></div>
+  <div class="mat-num"><span><b>2.581</b> feitas</span><span><b>1.155</b> faltam</span></div>
+  <p class="obs">5 em espera (print. gabarito ou trecho)</p>
+</li><li class="mat m-fis">
+  <div class="mat-top"><span class="dot"></span><span class="mat-nome">Física</span><span class="pill and">em andamento</span></div>
+  <div class="barra" role="img" aria-label="70% feito"><span style="width:70.5%"></span></div>
+  <div class="mat-num"><span><b>1.823</b> feitas</span><span><b>764</b> faltam</span></div>
+  <p class="obs">10 em espera (print. gabarito ou trecho)</p>
+</li><li class="mat m-bio">
+  <div class="mat-top"><span class="dot"></span><span class="mat-nome">Biologia</span><span class="pill and">em andamento</span></div>
+  <div class="barra" role="img" aria-label="75% feito"><span style="width:75.3%"></span></div>
+  <div class="mat-num"><span><b>2.158</b> feitas</span><span><b>707</b> faltam</span></div>
+  <p class="obs">11 em espera (print. gabarito ou trecho)</p>
+</li><li class="mat m-qui">
+  <div class="mat-top"><span class="dot"></span><span class="mat-nome">Química</span><span class="pill and">em andamento</span></div>
+  <div class="barra" role="img" aria-label="76% feito"><span style="width:76.5%"></span></div>
+  <div class="mat-num"><span><b>2.259</b> feitas</span><span><b>695</b> faltam</span></div>
+  <p class="obs">8 em espera (print. gabarito ou trecho) · 1 com gabarito em dúvida</p>
+</li><li class="mat m-ing">
+  <div class="mat-top"><span class="dot"></span><span class="mat-nome">Inglês</span><span class="pill and">em andamento</span></div>
+  <div class="barra" role="img" aria-label="100% feito"><span style="width:99.8%"></span></div>
+  <div class="mat-num"><span><b>2.467</b> feitas</span><span><b>4</b> faltam</span></div>
+  <p class="obs">3 do ENEM ou provas-alvo (nível 1 a 6) · 41 em espera (print. gabarito ou trecho)</p>
+</li><li class="mat m-fs">
+  <div class="mat-top"><span class="dot"></span><span class="mat-nome">Filosofia e Sociologia</span><span class="pill and">em andamento</span></div>
+  <div class="barra" role="img" aria-label="100% feito"><span style="width:99.9%"></span></div>
+  <div class="mat-num"><span><b>1.562</b> feitas</span><span><b>2</b> faltam</span></div>
+  <p class="obs">5 em espera (print. gabarito ou trecho)</p>
+</li><li class="mat m-his">
+  <div class="mat-top"><span class="dot"></span><span class="mat-nome">História</span><span class="pill ok">concluída</span></div>
+  <div class="barra" role="img" aria-label="100% feito"><span style="width:100.0%"></span></div>
+  <div class="mat-num"><span><b>2.451</b> feitas</span><span><b>0</b> faltam</span></div>
+  <p class="obs">22 em espera (print. gabarito ou trecho)</p>
+</li></ul></section>
+<div class="grupos"><section class="grupo"><h2>Resoluções</h2><ul class="itens"><li class="it st-andamento"><span class="tag">em andamento</span><span class="txt">Resoluções das questões de prova que faltam<span class="det">5 sessões trabalhando desde 13/11 05h (Matemática, Física, Química, Biologia, Português), lotes de 60 conferidos. Números por matéria no alto da página.</span></span></li><li class="it st-falta"><span class="tag">falta</span><span class="txt">Geografia: retomar as resoluções<span class="det">Pausada para respeitar o limite de 5 sessões; volta quando outra matéria acabar.</span></span></li><li class="it st-feito"><span class="tag">feito</span><span class="txt">Animação nas contas de Matemática acima de 70%<span class="det">82,3% em 13/11 (todos os 773 testes passam).</span></span></li><li class="it st-falta"><span class="tag">falta</span><span class="txt">Questões em espera nas sessões (print ilegível, gabarito em dúvida ou trecho de obra que falta)<span class="det">Português tem 94, Inglês 42, História 22; as demais, menos de 10 cada. Regra nova (13/11): pergunta sobre a obra inteira passa a ser resolvida com fonte didática confirmada na web; letra de música deixou de ser motivo de espera.</span></span></li><li class="it st-andamento"><span class="tag">em andamento</span><span class="txt">Reclassificar questões que estão na matéria ou no conteúdo errado<span class="det">Cerca de 60 apontadas pelas sessões em 13/11 (Biologia, Química, Matemática, Português). Um agente está aplicando.</span></span></li><li class="it st-falta"><span class="tag">falta</span><span class="txt">Gabarito do Aprendice para questões sem gabarito publicado<span class="det">519 questões no banco sem gabarito; dois especialistas resolvem sem ver um ao outro.</span></span></li><li class="it st-feito"><span class="tag">feito</span><span class="txt">História, Inglês e Filosofia e Sociologia: todas as questões resolvidas</span></li><li class="it st-andamento"><span class="tag">em andamento</span><span class="txt">Problema: gabarito oficial contra a conta foi gravado ensinando a letra errada<span class="det">Achado na revisão do prompt (13/11). Regra corrigida: agora a questão sai para &quot;anulada pelo Aprendice&quot;. A revisar: Química Pae0c806e (Cecierj, manitol: oficial 0,15, conta dá 0,30) e P1c5351e6, P4db2bbce, Pb2b6d654; Física P9615ec2a (UERR q44).</span></span></li><li class="it st-feito"><span class="tag">feito</span><span class="txt">Problema: conferência às cegas via a letra preliminar<span class="det">Nas questões sem gabarito, o conferente recebia o gabarito preliminar (Física, lote fis-0059). Agora o prompt manda apagar esse campo por script antes.</span></span></li><li class="it st-feito"><span class="tag">feito</span><span class="txt">Problema: próximo lote abria com 30 questões, não 60<span class="det">O comando da esteira estava sem o número; a ferramenta usa 30 por padrão. Corrigido no prompt.</span></span></li><li class="it st-feito"><span class="tag">feito</span><span class="txt">Problema: campos quadro e visual fora do lugar<span class="det">O exemplo do prompt não mostrava onde vão a lousa da conta e a ilustração; a ferramenta recusava. Exemplo corrigido.</span></span></li><li class="it st-andamento"><span class="tag">em andamento</span><span class="txt">Problema: texto da questão diferente do print<span class="det">Texto de apoio colado na alternativa (Biologia P524982f4, P6b95bc98), número trocado (Física P42642b2d: 0,2 kg x 2,0 kg), letras quebradas (Matemática P79f14a82, P1d1bb4f2, Pe9cf6c25). Vale o print; um agente está corrigindo.</span></span></li><li class="it st-andamento"><span class="tag">em andamento</span><span class="txt">Problema: prints cortados<span class="det">Física P8de70adc (fim das linhas em °F) e Química P49c155b4 (faltam alternativas B a E). Um agente está refazendo do PDF oficial.</span></span></li><li class="it st-falta"><span class="tag">falta</span><span class="txt">Problema: gabaritos pós-recursos da UFRR não abrem<span class="det">editais.ufrr.br e web.archive.org fora do ar daqui; 13 questões esperam (entre elas Matemática P12e54be4 e Química P4013ff98). Nova tentativa a cada rodada.</span></span></li></ul></section><section class="grupo"><h2>Conteúdo de estudo</h2><ul class="itens"><li class="it st-falta"><span class="tag">falta</span><span class="txt">Flashcards de Física, História, Geografia, Inglês e Filosofia e Sociologia<span class="det">Essas 5 matérias têm 0; as quatro primeiras têm 60 cada.</span></span></li><li class="it st-falta"><span class="tag">falta</span><span class="txt">Frases para completar nessas mesmas 5 matérias<span class="det">0 em cada; as quatro primeiras têm 40.</span></span></li><li class="it st-falta"><span class="tag">falta</span><span class="txt">Cartões de teoria de 27 conteúdos de História e Geografia<span class="det">História H05.8 a H05.11 e H08 inteiro; Geografia G01, G02 e G13. Esperam os livros de referência.</span></span></li><li class="it st-falta"><span class="tag">falta</span><span class="txt">Flashcards que faltam nas matérias antigas<span class="det">Biologia: epistasia, rim e ADH, zoologia, proporções de ligação. Química: polímeros de condensação, Le Châtelier com temperatura. Matemática: leitura de gráfico e tabela. Português: expressão idiomática, literatura contemporânea.</span></span></li><li class="it st-falta"><span class="tag">falta</span><span class="txt">Revisão em slides nos temas que não têm<span class="det">Biologia B03, B05 a B08, B10, B12; Química, todos menos Q01, Q06 e Q07; Matemática, todos; Português não tem resumo curto nem slides.</span></span></li><li class="it st-falta"><span class="tag">falta</span><span class="txt">Imagens da revisão (hoje aparece &quot;EM CONSTRUÇÃO&quot;)<span class="det">Lista em docs/revisao/IMAGENS-PARA-GERAR.md.</span></span></li><li class="it st-falta"><span class="tag">falta</span><span class="txt">Corrigir erros da revisão geral<span class="det">Filosofia e Sociologia aponta para conteúdos que não existem; Português cita banco de imagens e &quot;o livro&quot; em 35 descrições; Matemática dá dois nomes ao capítulo de funções.</span></span></li><li class="it st-feito"><span class="tag">feito</span><span class="txt">Ícones de tema das 9 matérias</span></li><li class="it st-feito"><span class="tag">feito</span><span class="txt">40 questões de geometria básica do ENEM (áreas e volumes)</span></li></ul></section><section class="grupo"><h2>Questões e provas</h2><ul class="itens"><li class="it st-falta"><span class="tag">falta</span><span class="txt">Questões Aprendice no lugar das questões de sites didáticos<span class="det">0 escritas, 734 por fazer.</span></span></li><li class="it st-falta"><span class="tag">falta</span><span class="txt">Provas de 18 instituições que ainda não têm nenhuma prova no site<span class="det">Entre elas UnB, UFSC, UFRGS, UFG, Bahiana, UEFS, FGV e Mauá.</span></span></li><li class="it st-falta"><span class="tag">falta</span><span class="txt">Provas que precisam ser baixadas à mão<span class="det">108 no navegador, mais 27 ainda não localizadas. Checklist: https://claude.ai/artifact/AfS22NUUP69GNTWsEKV5YC</span></span></li><li class="it st-falta"><span class="tag">falta</span><span class="txt">Formatos de prova que o site ainda não aceita<span class="det">Certo ou errado (UnB), somatória (UEM, UFSC) e resposta numérica.</span></span></li><li class="it st-falta"><span class="tag">falta</span><span class="txt">Logos das instituições nos simulados<span class="det">Só há os da Fuvest e da São Camilo, e nenhuma tela mostra logo ainda. Falta o da Unesp.</span></span></li><li class="it st-feito"><span class="tag">feito</span><span class="txt">Simulados por universidade e por conteúdo</span></li></ul></section><section class="grupo"><h2>Funções do site</h2><ul class="itens"><li class="it st-falta"><span class="tag">falta</span><span class="txt">Contas de usuário de verdade e progresso salvo na nuvem<span class="det">Hoje o login só confere o formato do e-mail e o progresso fica no aparelho; &quot;Esqueceu sua senha?&quot; não funciona.</span></span></li><li class="it st-falta"><span class="tag">falta</span><span class="txt">Revisão, fase 4: o equívoco volta (&quot;Qual é este caso?&quot;)<span class="det">Os equívocos já estão nas resoluções, mas o site ainda não os usa.</span></span></li><li class="it st-falta"><span class="tag">falta</span><span class="txt">Revisão, fase 5: resolução que esmaece, modo véspera, ofensiva e tutor que pergunta</span></li><li class="it st-falta"><span class="tag">falta</span><span class="txt">Selo &quot;Questão Aprendice&quot; e filtro &quot;só questões de prova&quot;<span class="det">Dependem das Questões Aprendice.</span></span></li><li class="it st-feito"><span class="tag">feito</span><span class="txt">Tela Hoje, revisão geral, filtro por região e simulado por conteúdo</span></li></ul></section><section class="grupo"><h2>Esperando a sua decisão</h2><ul class="itens"><li class="it st-feito"><span class="tag">feito</span><span class="txt">Fema 2022 q13: o gabarito oficial (E) contradiz os fatos<span class="det">Decidido pelo dono (13/11): questão anulada pelo Aprendice (fora do site; no simulado da prova inteira conta como anulada).</span></span></li><li class="it st-feito"><span class="tag">feito</span><span class="txt">Mackenzie 2026/2 q11<span class="det">Decidido pelo dono (13/11): questão anulada pelo Aprendice (fora do site; no simulado da prova inteira conta como anulada).</span></span></li><li class="it st-feito"><span class="tag">feito</span><span class="txt">Unifor 2026.2 Medicina q01: erro no enunciado<span class="det">Decidido pelo dono (13/11): questão anulada pelo Aprendice (fora do site; no simulado da prova inteira conta como anulada).</span></span></li><li class="it st-feito"><span class="tag">feito</span><span class="txt">FMABC 2022 q16: gabarito em dúvida<span class="det">Decidido pelo dono (13/11): questão anulada pelo Aprendice (fora do site; no simulado da prova inteira conta como anulada).</span></span></li><li class="it st-feito"><span class="tag">feito</span><span class="txt">Direitos: letras de música e fotos de imprensa em Geografia<span class="det">Decidido pelo dono (13/11): uso autorizado para fins educacionais, com a fonte registrada. UERJ 2021 q13 a q18 (&quot;The Boxer&quot;) voltaram ao site.</span></span></li><li class="it st-andamento"><span class="tag">em andamento</span><span class="txt">Direitos dos prints que vieram de cursinhos<span class="det">1.309 do Curso Objetivo, entre outros.</span></span></li><li class="it st-feito"><span class="tag">feito</span><span class="txt">Provas oficiais anteriores a 2020 que estavam na triagem<span class="det">Decidido pelo dono (13/11): apagadas da lista de provas a baixar ENEM 2003, 2004, 2008, 2018 e PPL 2017 (nenhum arquivo de prova anterior a 2020 existia no projeto). Ficam ENEM 2009, 2010, 2012 a 2017 e 2019, que têm 27 questões no site (Matemática, M08.6 e M11.6).</span></span></li><li class="it st-decidir"><span class="tag">você decide</span><span class="txt">Novos conteúdos: Trovadorismo e Quinhentismo, Cônicas, e separar Arte e Educação Física (S01.5, 145 questões)</span><div class="resp" data-id="novos-conteudos-trovadorismo-e" data-item="Novos conteúdos: Trovadorismo e Quinhentismo, Cônicas, e separar Arte e Educação Física (S01.5, 145 questões)">
+  <label for="r-novos-conteudos-trovadorismo-e">O que fazer com esta pendência</label>
+  <textarea id="r-novos-conteudos-trovadorismo-e" rows="2" placeholder="Escreva aqui a sua instrução"></textarea>
+  <div class="resp-acao"><button type="button">Enviar</button><span class="resp-st" aria-live="polite"></span></div>
+  <p class="retorno" hidden></p>
+</div></li><li class="it st-decidir"><span class="tag">você decide</span><span class="txt">Nova versão dos ícones H08, G03 e H04</span><div class="resp" data-id="nova-versao-dos-icones" data-item="Nova versão dos ícones H08, G03 e H04">
+  <label for="r-nova-versao-dos-icones">O que fazer com esta pendência</label>
+  <textarea id="r-nova-versao-dos-icones" rows="2" placeholder="Escreva aqui a sua instrução"></textarea>
+  <div class="resp-acao"><button type="button">Enviar</button><span class="resp-st" aria-live="polite"></span></div>
+  <p class="retorno" hidden></p>
+</div></li><li class="it st-feito"><span class="tag">feito</span><span class="txt">Confirmar que &quot;FAI&quot; é o Centro Universitário de Adamantina<span class="det">Confirmado pelo dono (13/11): FAI = Centro Universitário de Adamantina.</span></span></li><li class="it st-feito"><span class="tag">feito</span><span class="txt">Teste da fábrica pela API (US$ 20), que não gasta o limite semanal<span class="det">Decidido pelo dono (13/11): não vai fazer.</span></span></li><li class="it st-feito"><span class="tag">feito</span><span class="txt">Unitins 2020 q11 e q14: falta um dado no próprio enunciado oficial<span class="det">Decidido pelo dono (13/11): questão anulada pelo Aprendice (fora do site; no simulado da prova inteira conta como anulada).</span></span></li><li class="it st-feito"><span class="tag">feito</span><span class="txt">Fema 2021 q9 (reator ITER): gabarito oficial B, mas a E também é falsa<span class="det">Decidido pelo dono (13/11): questão anulada pelo Aprendice (fora do site; no simulado da prova inteira conta como anulada).</span></span></li></ul></section>
+<section class="grupo"><h2>Outra instrução para a coordenação</h2><div class="itens geral"><div class="resp" data-id="geral" data-item="Instrução geral do dono">
+  <label for="r-geral">Escreva qualquer outra instrução</label>
+  <textarea id="r-geral" rows="2" placeholder="Escreva aqui a sua instrução"></textarea>
+  <div class="resp-acao"><button type="button">Enviar</button><span class="resp-st" aria-live="polite"></span></div>
+  <p class="retorno" hidden></p>
+</div></div></section>
+</div>
+<footer>19 itens concluídos · 20 itens por fazer. A página é atualizada pela coordenação a cada 1.000 questões resolvidas; as suas instruções são lidas a cada rodada (3 em 3 horas).</footer>
+</div>
+<script>
+(async function () {
+  const caixas = Array.from(document.querySelectorAll('.resp'));
+  const aviso = (c, t) => { c.querySelector('.resp-st').textContent = t; };
+  const db = await (window.claude ? window.claude.use('db') : null);
+  if (!db) {
+    caixas.forEach(c => { c.querySelector('button').disabled = true; aviso(c, 'Abra esta página no claude.ai, com a sua conta, para enviar.'); });
+    return;
+  }
+  const quando = iso => { try { return new Date(iso).toLocaleString('pt-BR', {dateStyle: 'short', timeStyle: 'short'}); } catch (e) { return ''; } };
+  const porId = {};
+  caixas.forEach(c => { porId[c.dataset.id] = c; });
+  const espera = setTimeout(() => caixas.forEach(c => { if (!c.dataset.ok) aviso(c, 'Ainda não consegui carregar as respostas salvas.'); }), 10000);
+  db.collection('respostas').onSnapshot(snap => {
+    if (!snap.metadata.fromCache) clearTimeout(espera);
+    caixas.forEach(c => { c.dataset.ok = '1'; });
+    snap.docs.forEach(d => {
+      const c = porId[d.id]; const v = d.data(); if (!c || !v) return;
+      const ta = c.querySelector('textarea');
+      if (document.activeElement !== ta && !c.dataset.editando) ta.value = v.texto || '';
+      aviso(c, v.lido ? 'Recebido pela coordenação em ' + quando(v.lidoEm) : 'Enviado em ' + quando(v.enviadoEm) + '. A coordenação lê na próxima rodada.');
+      const r = c.querySelector('.retorno');
+      if (v.retorno) { r.textContent = 'Coordenação: ' + v.retorno; r.hidden = false; } else { r.hidden = true; }
+    });
+  }, () => { clearTimeout(espera); caixas.forEach(c => aviso(c, 'Não consegui carregar as respostas salvas.')); });
+  caixas.forEach(c => {
+    const ta = c.querySelector('textarea'); const bt = c.querySelector('button');
+    ta.addEventListener('input', () => { c.dataset.editando = '1'; });
+    bt.addEventListener('click', async () => {
+      const texto = ta.value.trim();
+      if (!texto) { aviso(c, 'Escreva a instrução antes de enviar.'); ta.focus(); return; }
+      bt.disabled = true; aviso(c, 'Enviando...');
+      try {
+        await db.doc('respostas/' + c.dataset.id).set({texto: texto, item: c.dataset.item, enviadoEm: new Date().toISOString(), lido: false});
+        delete c.dataset.editando;
+        aviso(c, 'Enviado. A coordenação lê na próxima rodada.');
+      } catch (e) {
+        aviso(c, 'Não foi enviado: ' + ((e && e.message) || 'erro desconhecido') + '. Tente de novo.');
+      } finally { bt.disabled = false; }
+    });
+  });
+})();
+</script>

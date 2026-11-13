@@ -89,7 +89,7 @@ Use quando a dificuldade ou o degrau do banco parecem errados, com a justificati
 
 ## Regras que não se quebram
 
-1. **Resolva antes de ver o gabarito.** Se o seu resultado divergir do gabarito publicado, a questão vai para a fila de exceção. Nunca ajuste a resolução ao gabarito sem explicar.
+1. **Resolva antes de ver o gabarito.** Se o seu resultado divergir do gabarito publicado, a questão vai para a fila de exceção. Nunca ajuste a resolução ao gabarito sem explicar. Sem gabarito publicado (ou só o preliminar), vale o gabarito do Aprendice: dois especialistas às cegas na mesma letra (e na do preliminar, se houver) — princípio 2, dono, 11/11/2026. Pode buscar na web gabaritos e resoluções publicadas para conferir; registre a fonte e nunca copie o texto.
 2. **Toda conta é conferida por código** (Python) antes de entrar, inclusive as contas das `erradas`.
 3. **Nada de fato sem fonte.** Datas, autores, dados biológicos e constantes têm que ser conferíveis. Na dúvida, não afirme.
 4. **Questão de prova versus Questão Aprendice** (ver `docs/questoes-aprendice.md`). A resolução nunca cita site didático. Na Questão Aprendice, ela nunca chama a questão pelo nome de uma banca.

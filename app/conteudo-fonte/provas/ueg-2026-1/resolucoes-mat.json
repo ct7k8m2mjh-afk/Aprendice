@@ -1,0 +1,398 @@
+{
+ "Pc79dc928": {
+  "n": "17",
+  "conceito": "Combinações de 2 elementos: pares sem ordem.",
+  "equivocos": {
+   "A": "M03.1:sem-origem-identificada",
+   "B": "M03.1:dois-grupos-fixos",
+   "D": "M03.1:sem-origem-identificada",
+   "E": "M03.1:contou-ordem-e-repeticao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Um par sem ordem de ações distintas é uma combinação de 50 elementos tomados 2 a 2: escolha a primeira (50 jeitos) e a segunda (49), e divida por 2 porque (A, B) e (B, A) são o mesmo par.",
+    "formulas": [
+     "C(n, 2) = n(n − 1)/2"
+    ],
+    "simbolos": []
+   },
+   "pista": "Quantos pares ordenados existem? Cada par sem ordem aparece quantas vezes nessa contagem?",
+   "passos": [
+    {
+     "faz": "Pares ordenados",
+     "conta": "50 · 49 = 2 450",
+     "porque": "Primeira e segunda ação.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Sem ordem",
+     "conta": "2 450 ÷ 2 = 1 225 → alternativa C",
+     "porque": "Cada par contado duas vezes.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 1225",
+   "checagem": "Teste num caso pequeno: com 4 ações (A, B, C, D) os pares são AB, AC, AD, BC, BD, CD = 6 = 4 · 3/2. A mesma regra com 50 ações dá 50 · 49/2 = 1 225. Confere.",
+   "erradas": {
+    "A": "50 é só o número de ações.",
+    "B": "625 = 25 · 25: separou as ações em dois grupos fixos de 25 (compra e venda) e contou só os pares entre os grupos.",
+    "D": "Cada ação forma par com as outras 49. Para dar 1 750 pares, cada ação teria de estar em 1 750 · 2/50 = 70 pares, mais que as 49 possíveis.",
+    "E": "2 500 = 50 · 50: permitiu a mesma ação duas vezes e contou a ordem."
+   },
+   "armadilha": "Fazer 50 · 50 ou 50 · 49 sem dividir por 2.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Número de pares.",
+    "chave": "C(50, 2) = 1 225.",
+    "cuidado": "Ordem não importa: divida por 2."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "soma de 1 a 49",
+    "ideia": "A 1.ª ação forma 49 pares, a 2.ª forma mais 48 novos, ..., a 49.ª forma 1: total 49 · 50/2 = 1 225."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "50 · 49 = 2 450",
+    "nota": "ordenados"
+   },
+   {
+    "linha": "÷ 2 = 1 225",
+    "nota": "resposta"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0048"
+  }
+ },
+ "Pa505efb7": {
+  "n": "16",
+  "conceito": "Inequação-quociente: quadro de sinais com os zeros do numerador e do denominador.",
+  "equivocos": {
+   "A": "M05.1:quadro-de-sinais-errado",
+   "B": "M05.1:sinal-invertido",
+   "C": "M05.1:fronteira-incluida",
+   "D": "M05.1:sinal-invertido"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "f é positiva quando numerador e denominador têm o mesmo sinal. Os pontos críticos são x = 4 (numerador zero) e x = −3 e x = 5 (denominador zero). Nenhum deles entra: em 4 f vale 0, e em −3 e 5 f não existe.",
+    "formulas": [
+     "(x − 4)/((x − 5)(x + 3)) > 0",
+     "pontos críticos: −3, 4, 5"
+    ],
+    "simbolos": [
+     [
+      "quadro de sinais",
+      "tabela com o sinal de cada fator em cada intervalo"
+     ]
+    ]
+   },
+   "pista": "Fatore o denominador e marque os três pontos críticos na reta.",
+   "passos": [
+    {
+     "faz": "Fatore o denominador",
+     "conta": "x² − 2x − 15 = (x − 5)(x + 3)",
+     "porque": "Soma 2 e produto −15: raízes 5 e −3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte o quadro de sinais",
+     "conta": "x < −3: − | −3 < x < 4: + | 4 < x < 5: − | x > 5: +",
+     "porque": "Teste x = −4, 0, 4,5 e 6 na fração.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Exclua os pontos críticos",
+     "conta": "x = 4 dá 0; x = −3 e x = 5 zeram o denominador",
+     "porque": "\"Apenas valores positivos\" exige f > 0.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Junte os intervalos",
+     "conta": "−3 < x < 4 ou x > 5 → alternativa E",
+     "porque": "Onde o quadro deu +.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — {x ∈ ℝ; −3 < x < 4 ou x > 5}",
+   "checagem": "Teste x = 0: (−4)/(−15) = 4/15 > 0; x = 6: 2/9 > 0; x = 4,5: 0,5/(−3,75) < 0; x = −4: (−8)/9 < 0.",
+   "erradas": {
+    "A": "Inclui x = −3, que zera o denominador, e x entre 4 e 5, onde f é negativa (em 4,5 vale −2/15).",
+    "B": "Inverte o sinal: em x = −4 f vale −8/9 e em 4,5 vale −2/15, ambos negativos; e ainda inclui −3 e 5.",
+    "C": "Inclui −3 (denominador zero) e 4 (f = 0, que não é positivo).",
+    "D": "É exatamente a região onde f é negativa: sinal invertido."
+   },
+   "armadilha": "Pontos onde o denominador zera nunca entram, e f = 0 não é positivo.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Onde (x − 4)/(x² − 2x − 15) é positiva.",
+    "chave": "Críticos −3, 4, 5; sinais −, +, −, +: positiva em −3 < x < 4 ou x > 5.",
+    "cuidado": "Intervalos abertos em todos os pontos críticos."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste de pontos",
+    "ideia": "Teste x = 0 (positivo) e x = 4,5 (negativo): só E contém 0 e exclui 4,5."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "x² − 2x − 15 = (x − 5)(x + 3)",
+    "nota": "fatoração"
+   },
+   {
+    "linha": "(x − 4)/((x − 5)(x + 3)) > 0",
+    "nota": "inequação"
+   },
+   {
+    "linha": "(0 − 4)/((0 − 5)(0 + 3)) = 4/15",
+    "nota": "teste em x = 0: positivo"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0053"
+  }
+ },
+ "Peadcea0c": {
+  "n": "25",
+  "conceito": "Montar a função lucro (receita − custo) e usar duas condições para achar dois parâmetros.",
+  "equivocos": {
+   "A": "M05.2:respondeu-um-parametro",
+   "B": "M05.2:valor-sem-calculo",
+   "C": "M05.2:respondeu-um-parametro",
+   "E": "M05.2:valor-sem-calculo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Lucro é receita menos custo: L(x) = R(x) − C(x). As duas informações viram duas equações: ponto de equilíbrio em 10 unidades significa L(10) = 0, e lucro de R$ 80,00 com 20 unidades significa L(20) = 80.",
+    "formulas": [
+     "L(x) = R(x) − C(x)",
+     "L(10) = 0 | L(20) = 80"
+    ],
+    "simbolos": [
+     [
+      "R(x)",
+      "receita com x unidades"
+     ],
+     [
+      "C(x)",
+      "custo de x unidades"
+     ],
+     [
+      "L(x)",
+      "lucro (ou prejuízo, se negativo)"
+     ],
+     [
+      "ponto de equilíbrio",
+      "quantidade em que o lucro é zero"
+     ]
+    ]
+   },
+   "pista": "Monte L(x) primeiro e só depois substitua x = 10 e x = 20.",
+   "passos": [
+    {
+     "faz": "Monte o lucro",
+     "conta": "L(x) = (a/10)x² + 2x + b − ax − 6b = (a/10)x² + (2 − a)x − 5b",
+     "porque": "Os termos em b se juntam: b − 6b = −5b.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Use o equilíbrio",
+     "conta": "L(10) = 10a + 20 − 10a − 5b = 0 → 20 − 5b = 0 → b = 4",
+     "porque": "Os termos em a se cancelam e sobra só o b.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Use o lucro de 80",
+     "conta": "L(20) = 40a + 40 − 20a − 5 · 4 = 80 → 20a + 20 = 80 → a = 3",
+     "porque": "Com b = 4 já conhecido, sobra uma equação só em a.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some",
+     "conta": "a + b = 3 + 4 = 7",
+     "porque": "É a alternativa D.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 7",
+   "checagem": "Volte às funções: com a = 3 e b = 4, R(20) = 120 + 40 + 4 = 164 e C(20) = 60 + 24 = 84; o lucro é 164 − 84 = 80. E R(10) = 30 + 20 + 4 = 54 = C(10) = 30 + 24.",
+   "erradas": {
+    "A": "Sai de responder só o a = 3, sem somar o b.",
+    "B": "Não confere: com b = 4 seria a = 1, e L(20) = 20 · 1 + 20 = 40, não 80.",
+    "C": "Sai de responder só o b = 4, sem somar o a.",
+    "E": "Não confere: com b = 4 seria a = 4, e L(20) = 20 · 4 + 20 = 100, não 80."
+   },
+   "armadilha": "Parar no primeiro parâmetro encontrado (b = 4 ou a = 3) e esquecer que a pergunta é a soma.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O valor de a + b.",
+    "chave": "L(10) = 0 dá b = 4; L(20) = 80 dá a = 3.",
+    "cuidado": "Monte L = R − C com cuidado nos sinais do custo."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "checar alternativas",
+    "ideia": "b = 4 sai de L(10) = 0; teste a = 7 − 4 = 3 em L(20) = 20a + 20 = 80."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "L(x) = (a/10)x² + (2 − a)x − 5b",
+    "nota": "receita − custo"
+   },
+   {
+    "linha": "L(10) = 20 − 5b = 0 → b = 4",
+    "nota": "equilíbrio"
+   },
+   {
+    "linha": "L(20) = 20a + 20 = 80 → a = 3",
+    "nota": "lucro de 80"
+   },
+   {
+    "linha": "a + b = 7",
+    "nota": "soma"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0054"
+  }
+ },
+ "Pc1715399": {
+  "n": "18",
+  "conceito": "Reconhecer o gráfico de |cos x + sen x|: valores não negativos, máximo √2.",
+  "equivocos": {
+   "B": "M10.5:ignorou-o-modulo",
+   "C": "M10.5:ignorou-o-modulo",
+   "D": "M10.5:ignorou-o-modulo",
+   "E": "M10.5:maximo-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "cos x + sen x oscila entre −√2 e √2 (cerca de −1,41 e 1,41). O módulo rebate a parte negativa para cima: o gráfico fica todo acima do eixo x, com máximo √2 e zeros onde cos x = −sen x.",
+    "formulas": [
+     "cos x + sen x = √2 · sen(x + π/4)",
+     "|·| ≥ 0"
+    ],
+    "simbolos": [
+     [
+      "√2",
+      "cerca de 1,41: o maior valor de cos x + sen x"
+     ],
+     [
+      "|·|",
+      "módulo: nunca negativo"
+     ]
+    ]
+   },
+   "pista": "Calcule f(0) e o maior valor possível; depois procure o esboço que bate.",
+   "passos": [
+    {
+     "faz": "Calcule um ponto",
+     "conta": "f(0) = |1 + 0| = 1",
+     "porque": "O gráfico passa por (0, 1).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache o máximo",
+     "conta": "x = π/4: |√2/2 + √2/2| = √2 ≈ 1,41",
+     "porque": "Esse é o maior valor de f.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache os zeros",
+     "conta": "cos x = −sen x → x = −π/4, 3π/4, −5π/4, 7π/4",
+     "porque": "Entre zeros vizinhos a distância é π.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Elimine os esboços",
+     "conta": "B, C e D têm valores negativos | E tem máximo 1",
+     "porque": "O módulo não deixa nada abaixo do eixo, e o máximo é 1,41.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "esboço A",
+     "porque": "Não negativo, máximo perto de 1,41 e f(0) = 1.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — o esboço só com valores não negativos, máximo perto de 1,41 e f(0) = 1.",
+   "checagem": "Confira as pontas: f(2π) = |1 + 0| = 1 e f(−2π) = 1, como no esboço A, que começa e termina na altura 1.",
+   "erradas": {
+    "B": "É o gráfico de cos x: tem valores negativos e máximo 1; o módulo não deixa f ficar abaixo de zero.",
+    "C": "É o gráfico de cos x + sen x sem o módulo: desce até −1,41.",
+    "D": "É o gráfico de sen x: f(0) seria 0, mas f(0) = 1, e há valores negativos.",
+    "E": "Tem máximo 1 e f(0) = 0, mas f(π/4) = √2 ≈ 1,41 e f(0) = 1."
+   },
+   "armadilha": "Esquecer que cos x + sen x passa de 1: o máximo é √2, não 1.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O esboço de f(x) = |cos x + sen x| em [−2π, 2π].",
+    "chave": "Não negativo, máximo √2 em x = π/4, f(0) = 1.",
+    "cuidado": "Calcule o valor em x = π/4 para ver o máximo √2."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "forma de seno",
+    "ideia": "cos x + sen x = √2 · sen(x + π/4); com o módulo, arcos de altura √2 a cada π."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "f(0) = |1 + 0| = 1",
+    "nota": "ponto"
+   },
+   {
+    "linha": "f(π/4) = |√2/2 + √2/2| = √2",
+    "nota": "máximo"
+   },
+   {
+    "linha": "zeros: x = −π/4 + kπ",
+    "nota": "cos x = −sen x"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0056"
+  }
+ }
+}

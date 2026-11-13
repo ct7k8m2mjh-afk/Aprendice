@@ -1,0 +1,420 @@
+{
+ "Pcd475c7a": {
+  "n": "14",
+  "conceito": "Algarismo das unidades de uma soma de fatoriais.",
+  "equivocos": {
+   "A": "M01.4:sem-origem-identificada",
+   "B": "M01.4:sem-origem-identificada",
+   "D": "M01.4:esqueceu-uma-parcela",
+   "E": "M01.4:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A partir de 5!, todo fatorial tem os fatores 2 e 5, logo termina em 0. Só 1!, 2!, 3! e 4! mexem no algarismo das unidades.",
+    "formulas": [
+     "n! termina em 0 para n ≥ 5"
+    ],
+    "simbolos": [
+     [
+      "n!",
+      "1 · 2 · ... · n"
+     ]
+    ]
+   },
+   "pista": "O que 5!, 6!, 7! ... têm em comum no último algarismo?",
+   "passos": [
+    {
+     "faz": "Fatoriais pequenos",
+     "conta": "1! + 2! + 3! + 4! = 1 + 2 + 6 + 24 = 33",
+     "porque": "Os únicos que não terminam em 0.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Demais",
+     "conta": "5! = 120, 6! = 720, ... terminam em 0",
+     "porque": "Têm o fator 10.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Unidade",
+     "conta": "33 + (múltiplo de 10) → termina em 3 → alternativa C",
+     "porque": "Algarismo das unidades.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 3",
+   "checagem": "Some as unidades até 7!: 1 + 2 + 6 + 24 + 120 + 720 + 5040 = 5913, termina em 3; cada fatorial seguinte só acrescenta zeros nas unidades. Confere.",
+   "erradas": {
+    "A": "2 não é a unidade de 33 + múltiplos de 10.",
+    "B": "6 é a unidade de 3!, não da soma.",
+    "D": "7 sairia somando só 1! + 2! + 4! (27), esquecendo o 3!.",
+    "E": "5 não sai: a soma dos quatro primeiros é 33."
+   },
+   "armadilha": "Achar que é preciso calcular fatoriais grandes; do 5! em diante, todos terminam em 0.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Algarismo das unidades.",
+    "chave": "Só 1! + 2! + 3! + 4! = 33 conta.",
+    "cuidado": "n ≥ 5: n! termina em 0."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "resto por 10",
+    "ideia": "Trabalhe com o resto na divisão por 10: 1! ≡ 1, 2! ≡ 2, 3! ≡ 6, 4! ≡ 4 e n! ≡ 0 para n ≥ 5. Soma ≡ 1 + 2 + 6 + 4 = 13 ≡ 3."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "1 + 2 + 6 + 24 = 33",
+    "nota": "parte que conta"
+   },
+   {
+    "linha": "n ≥ 5: termina em 0",
+    "nota": "resto"
+   },
+   {
+    "linha": "3",
+    "nota": "resposta"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0044"
+  }
+ },
+ "P0ddf730e": {
+  "n": "12",
+  "conceito": "Soma de áreas de retângulos sob uma parábola: montar a equação em m.",
+  "equivocos": {
+   "A": "M05.2:valor-sem-calculo",
+   "B": "M04.1:inverteu-a-divisao",
+   "C": "M05.2:valor-sem-calculo",
+   "D": "M05.2:valor-sem-calculo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os três retângulos têm base 2 (de 1 a 3, de 3 a 5, de 5 a 7). Pela figura, a altura de cada um é o valor de f na ponta esquerda da base: f(1), f(3) e f(5). A soma das áreas vira uma equação do 1º grau em m.",
+    "formulas": [
+     "área = base × altura",
+     "f(x) = mx² + 1/3"
+    ],
+    "simbolos": [
+     [
+      "m",
+      "coeficiente de x², o valor procurado"
+     ],
+     [
+      "f(1), f(3), f(5)",
+      "alturas dos três retângulos"
+     ]
+    ]
+   },
+   "pista": "Leia na figura de que ponto a curva toca cada retângulo: isso define a altura.",
+   "passos": [
+    {
+     "faz": "Leia bases e alturas",
+     "conta": "bases: 2, 2, 2 | alturas: f(1), f(3), f(5)",
+     "porque": "Cada retângulo encosta na curva pelo canto superior esquerdo.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule as alturas",
+     "conta": "f(1) = m + 1/3 | f(3) = 9m + 1/3 | f(5) = 25m + 1/3",
+     "porque": "Basta trocar x por 1, 3 e 5.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte a soma das áreas",
+     "conta": "2 · (m + 9m + 25m + 3 · 1/3) = 12 → 2 · (35m + 1) = 12",
+     "porque": "As três parcelas 1/3 somam 1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva",
+     "conta": "35m + 1 = 6 → 35m = 5 → m = 5/35 = 1/7",
+     "porque": "O 2 passou dividindo e o 1 passou subtraindo.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 1/7",
+   "checagem": "Substitua m = 1/7: alturas 1/7 + 1/3 = 10/21, 9/7 + 1/3 = 34/21 e 25/7 + 1/3 = 82/21. Soma: 126/21 = 6; vezes a base 2, área 12.",
+   "erradas": {
+    "A": "Não confere: com m = 1/8, a área seria 2 · (35/8 + 1) = 10,75, não 12.",
+    "B": "Sai de inverter a fração no último passo: 35m = 5 virou m = 35/5 = 7.",
+    "C": "Não confere: com m = 8, a área seria 2 · (280 + 1) = 562.",
+    "D": "Não confere: com m = 7/8, a área seria 2 · (245/8 + 1) = 63,25."
+   },
+   "armadilha": "Inverter a fração ao isolar m: 35m = 5 dá m = 5/35, e não 35/5.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O valor de m para que os três retângulos somem área 12.",
+    "chave": "Base 2 e alturas f(1), f(3), f(5): 2(35m + 1) = 12.",
+    "cuidado": "Isole m dividindo 5 por 35, nessa ordem."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste das alternativas",
+    "ideia": "Calcule 2(35m + 1) para cada m: só m = 1/7 dá 12."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "2 · (f(1) + f(3) + f(5)) = 12",
+    "nota": "base 2"
+   },
+   {
+    "linha": "2 · (35m + 1) = 12",
+    "nota": "soma das alturas"
+   },
+   {
+    "linha": "35m + 1 = 6 → 35m = 5",
+    "nota": "isola"
+   },
+   {
+    "linha": "m = 5/35 = 1/7",
+    "nota": "resposta"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0054"
+  }
+ },
+ "P5d2d8625": {
+  "n": "18",
+  "conceito": "Achar P a partir de P(x − 1) e calcular P(x + 1).",
+  "equivocos": {
+   "A": "M05.5:trocou-px-por-px1",
+   "B": "M05.5:trocou-px-por-px1",
+   "D": "M05.5:valor-sem-calculo",
+   "E": "M05.5:valor-sem-calculo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "P(x − 1) = x² − 1 diz o valor de P no número x − 1. Chame t = x − 1; então x = t + 1 e P(t) = (t + 1)² − 1. Com a fórmula de P em mãos, calcule P(x + 1).",
+    "formulas": [
+     "t = x − 1 → x = t + 1"
+    ],
+    "simbolos": [
+     [
+      "P(x − 1)",
+      "valor de P no número x − 1"
+     ]
+    ]
+   },
+   "pista": "Troque x − 1 por uma letra nova e escreva x em função dela.",
+   "passos": [
+    {
+     "faz": "Troque a variável",
+     "conta": "t = x − 1 → x = t + 1 → P(t) = (t + 1)² − 1 = t² + 2t",
+     "porque": "Agora P está escrito com a própria variável.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule P(x + 1)",
+     "conta": "P(x + 1) = (x + 1)² + 2(x + 1) = x² + 2x + 1 + 2x + 2 = x² + 4x + 3",
+     "porque": "Troque t por x + 1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare",
+     "conta": "P(x) = x² + 2x e P(x + 1) = x² + 4x + 3 → alternativa C",
+     "porque": "A e D erram P(x); B e E erram P(x + 1).",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — P(x + 1) = x² + 4x + 3",
+   "checagem": "Teste x = 1: P(x + 1) = P(2). Pela fórmula original, P(2) vem de x − 1 = 2, x = 3: 9 − 1 = 8. E a C dá 1 + 4 + 3 = 8.",
+   "erradas": {
+    "A": "Sai de dar a expressão de P(x + 1) como se fosse P(x). P(x) = x² + 2x: em x = 0, P(0) = 0, e a A dá 3.",
+    "B": "Sai de dar P(x) = x² + 2x como se fosse P(x + 1). Em x = 0, P(1) = 3, e a B dá 0.",
+    "D": "Não confere: P(1) deve ser 3 (x = 2 em x² − 1), e a D dá 1 + 1 = 2.",
+    "E": "Não confere: em x = 0, P(1) = 3, e a E dá 1."
+   },
+   "armadilha": "Confundir P(x) com P(x + 1): as duas fórmulas aparecem nas alternativas.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Uma expressão correta para P.",
+    "chave": "P(t) = t² + 2t; P(x + 1) = x² + 4x + 3.",
+    "cuidado": "Troque a variável antes de substituir."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "direto",
+    "ideia": "P(x + 1) = P((x + 2) − 1) = (x + 2)² − 1 = x² + 4x + 3."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "t = x − 1 → P(t) = (t + 1)² − 1 = t² + 2t",
+    "nota": "fórmula de P"
+   },
+   {
+    "linha": "P(x + 1) = (x + 1)² + 2(x + 1)",
+    "nota": "substitui"
+   },
+   {
+    "linha": "= x² + 4x + 3",
+    "nota": "expande"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0056"
+  }
+ },
+ "P64b28218": {
+  "n": "11",
+  "conceito": "Crescimento exponencial na base e resolvido com logaritmo natural.",
+  "equivocos": {
+   "A": "M06.4:conta-errada-no-expoente",
+   "B": "M06.4:conta-errada-no-expoente",
+   "C": "M06.4:esqueceu-t-menos-1",
+   "E": "M06.4:conta-errada-no-expoente"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Isole a potência de e antes de aplicar o log: o 2 que multiplica sai dividindo. O valor ln 8 = 2,25 dado pela banca é o atalho: e^algo = 8 quer dizer algo = 2,25. Por fim, cuidado: o expoente tem t − 1, não t.",
+    "formulas": [
+     "I(t) = I₁ · e^(r(t − 1))",
+     "eᵃ = b ⇔ a = ln b"
+    ],
+    "simbolos": [
+     [
+      "I₁",
+      "infectados no 1.º dia"
+     ],
+     [
+      "r",
+      "taxa de crescimento"
+     ],
+     [
+      "e",
+      "número de Euler"
+     ],
+     [
+      "ln",
+      "logaritmo na base e (o log_e do enunciado)"
+     ]
+    ]
+   },
+   "pista": "Divida por 2 primeiro e veja que número sobra do lado direito.",
+   "passos": [
+    {
+     "faz": "Substitua os dados",
+     "conta": "16 = 2 · e^(0,25(t − 1))",
+     "porque": "I(t) = 16, I₁ = 2 e r = 0,25.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Isole a potência de e",
+     "conta": "2 · e^(0,25(t − 1)) = 16 → e^(0,25(t − 1)) = 16/2 = 8",
+     "porque": "O 2 que multiplica vai dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Aplique o logaritmo natural",
+     "conta": "0,25(t − 1) = ln 8 = 2,25 → t − 1 = 2,25/0,25 = 9",
+     "porque": "e^a = 8 quer dizer a = ln 8; o 0,25 que multiplica passa dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache o dia",
+     "conta": "t − 1 = 9 → t = 9 + 1 = 10 → 10.º dia",
+     "porque": "O 1 atravessa o igual trocando de sinal.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 10.º dia de infecção",
+   "checagem": "Por dobras: e^(0,25(t − 1)) = 8 = 2³. Se ln 8 = 2,25, então ln 2 = 0,75 e o número dobra a cada 0,75/0,25 = 3 dias. De 2 para 16 são 3 dobras: 9 dias depois do dia 1, ou seja, dia 10.",
+   "erradas": {
+    "A": "7.º dia não confere: com ln 8 = 2,25, o número dobra a cada 3 dias; do dia 1 ao 7 são 6 dias, 2 dobras: 2 → 8 infectados, não 16.",
+    "B": "8.º dia não confere: do dia 1 ao 8 são 7 dias, pouco mais de 2 dobras (7/3): cerca de 10 infectados, ainda menos que 16.",
+    "C": "9.º dia sai de usar t em vez de t − 1: 0,25t = 2,25 → t = 9.",
+    "E": "11.º dia não confere: do dia 1 ao 11 são 10 dias, mais de 3 dobras (10/3): cerca de 20 infectados, já acima de 16."
+   },
+   "armadilha": "Esquecer o '− 1' do expoente (o 1.º dia é t = 1) e responder 9.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O dia em que havia 16 infectados.",
+    "chave": "e^(0,25(t − 1)) = 8, logo 0,25(t − 1) = 2,25 e t = 10.",
+    "cuidado": "O expoente é t − 1; some 1 no fim."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "dobras",
+    "ideia": "ln 8 = 3 ln 2 = 2,25 dá dobra a cada 3 dias: 2 → 4 → 8 → 16 em 9 dias, no dia 10."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "2 · e^(0,25(t − 1)) = 16",
+    "nota": "modelo com os dados"
+   },
+   {
+    "linha": "e^(0,25(t − 1)) = 16/2",
+    "nota": "o 2 vai dividindo"
+   },
+   {
+    "linha": "e^(0,25(t − 1)) = 8",
+    "nota": "divide"
+   },
+   {
+    "linha": "0,25(t − 1) = 2,25",
+    "nota": "ln 8 = 2,25"
+   },
+   {
+    "linha": "t − 1 = 2,25/0,25",
+    "nota": "o 0,25 vai dividindo"
+   },
+   {
+    "linha": "t − 1 = 9",
+    "nota": "divide"
+   },
+   {
+    "linha": "t = 9 + 1",
+    "nota": "o 1 troca de lado e de sinal"
+   },
+   {
+    "linha": "t = 10",
+    "nota": "10.º dia"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0058"
+  }
+ }
+}

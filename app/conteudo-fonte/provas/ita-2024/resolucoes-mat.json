@@ -1,0 +1,229 @@
+{
+ "P4b286bf4": {
+  "n": "37",
+  "conceito": "Identidades entre conjuntos com a hipótese C ⊆ A.",
+  "equivocos": {
+   "A": "M01.5:aceitou-ii",
+   "C": "M01.5:aceitou-ii",
+   "D": "M01.5:esqueceu-a-hipotese",
+   "E": "M01.5:aceitou-ii"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Use a distributiva (A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C)) e a hipótese C ⊆ A, que dá A ∩ C = C. Para derrubar uma igualdade, basta um exemplo com conjuntos pequenos.",
+    "formulas": [
+     "A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C)",
+     "C ⊆ A → A ∩ C = C"
+    ],
+    "simbolos": [
+     [
+      "R − C",
+      "complementar de C nos reais"
+     ]
+    ]
+   },
+   "pista": "Em II, simplifique o lado direito: C ∪ (B ∩ (R − C)) é o quê?",
+   "passos": [
+    {
+     "faz": "I",
+     "conta": "A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C) = (A ∩ B) ∪ C",
+     "porque": "Verdadeira.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "II",
+     "conta": "C ∪ (B − C) = B ∪ C; A ∩ B = B ∪ C não vale sempre",
+     "porque": "Ex.: A = C = {1}, B = {2}: A ∩ B = ∅ e B ∪ C = {1, 2}. Falsa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "III",
+     "conta": "A ∩ (B − C) = A ∩ B ∩ Cᶜ = (A ∩ B) − C",
+     "porque": "Verdadeira sempre.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Juntar",
+     "conta": "I e III → alternativa B",
+     "porque": "Apenas I e III.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — apenas I e III.",
+   "checagem": "Teste com A = {1, 2, 3}, C = {1}, B = {2, 4}: I: (A ∩ B) ∪ C = {2} ∪ {1} = {1, 2} e A ∩ (B ∪ C) = A ∩ {1, 2, 4} = {1, 2}. III: A ∩ (B − C) = A ∩ {2, 4} = {2} e (A ∩ B) − C = {2} − {1} = {2}. II: A ∩ B = {2} e C ∪ (B − C) = {1, 2, 4}. Confere.",
+   "erradas": {
+    "A": "Inclui II, que falha com A = C = {1} e B = {2}.",
+    "C": "II é falsa e deixa de fora I e III, que valem sempre.",
+    "D": "Deixa de fora I, que vale pela distributiva com A ∩ C = C.",
+    "E": "Inclui II, que é falsa."
+   },
+   "armadilha": "Não simplificar C ∪ (B − C) = B ∪ C e achar que II é uma reescrita de A ∩ B.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quais valem.",
+    "chave": "I pela distributiva com C ⊆ A; III sempre; II falha.",
+    "cuidado": "Um contraexemplo derruba."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "tabela de pertinência",
+    "ideia": "Para III, olhe um x qualquer: x ∈ A ∩ (B − C) ⟺ x ∈ A, x ∈ B, x ∉ C ⟺ x ∈ (A ∩ B) − C. Para I, x ∈ C já implica x ∈ A, e os dois lados ficam iguais caso a caso."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "A ∩ C = C",
+    "nota": "hipótese"
+   },
+   {
+    "linha": "I: distributiva",
+    "nota": "V"
+   },
+   {
+    "linha": "II: B ∪ C ≠ A ∩ B",
+    "nota": "F"
+   },
+   {
+    "linha": "III: A ∩ B ∩ Cᶜ",
+    "nota": "V"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0045"
+  }
+ },
+ "Pe0a50d95": {
+  "n": "43",
+  "conceito": "Progressão geométrica formada por área da base, área lateral e volume de um cilindro: condição do termo médio e de crescimento.",
+  "equivocos": {
+   "A": "M11.2:ignorou-a-condicao-de-crescente",
+   "B": "M11.2:ignorou-a-condicao-de-crescente",
+   "C": "M11.2:ignorou-a-condicao-de-crescente",
+   "D": "M11.2:ignorou-a-condicao-de-crescente"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Três números estão em PG quando o do meio ao quadrado é igual ao produto dos outros dois. Aplicando isso a A1, A2 e A3, sai uma relação entre h e r. Depois, crescente quer dizer razão maior que 1; e a razão, com essa relação, depende só do raio.",
+    "formulas": [
+     "A1 = πr² ; A2 = 2πrh ; A3 = πr²h",
+     "PG: A2² = A1 × A3",
+     "razão q = A2/A1 ; crescente: q > 1"
+    ],
+    "simbolos": [
+     [
+      "PG",
+      "progressão geométrica: cada termo é o anterior vezes a mesma razão"
+     ],
+     [
+      "q",
+      "razão da PG"
+     ],
+     [
+      "r",
+      "raio da base"
+     ],
+     [
+      "h",
+      "altura do cilindro"
+     ]
+    ]
+   },
+   "pista": "Use a propriedade do termo do meio de uma PG e simplifique até sobrar uma relação entre h e r.",
+   "passos": [
+    {
+     "faz": "Aplique a condição da PG",
+     "conta": "A2² = A1 × A3 → (2πrh)² = πr² × πr²h",
+     "porque": "Em PG, o termo do meio ao quadrado é o produto dos vizinhos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Simplifique a igualdade",
+     "conta": "4π²r²h² = π²r⁴h → 4h = r² → h = r²/4",
+     "porque": "Dividindo os dois lados por π²r²h (todos positivos), sobra 4h = r².",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a razão da PG",
+     "conta": "q = A2/A1 = (2πrh)/(πr²) = 2h/r → q = 2(r²/4)/r = r/2",
+     "porque": "Trocando h por r²/4, a razão passa a depender só do raio. Confere: A3/A2 = (πr²h)/(2πrh) = r/2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Imponha a PG crescente",
+     "conta": "q > 1 → r/2 > 1 → r > 2",
+     "porque": "Crescente com termos positivos exige razão maior que 1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escolha o intervalo",
+     "conta": "r > 2 → só (2, 5/2) serve → alternativa E",
+     "porque": "Os outros intervalos têm todos os valores abaixo de 2, o que daria PG decrescente.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — o raio pode estar no intervalo (2, 5/2)",
+   "checagem": "Teste r = 2,4 (dentro de E): h = 2,4²/4 = 1,44. A1 = 5,76π, A2 = 2π × 2,4 × 1,44 = 6,912π, A3 = 5,76π × 1,44 = 8,2944π. Razões: 6,912/5,76 = 1,2 e 8,2944/6,912 = 1,2. PG crescente de razão 1,2.",
+   "erradas": {
+    "A": "(1, 5/4) não confere: nesse intervalo q = r/2 fica entre 0,5 e 0,625, menor que 1, e a PG seria decrescente.",
+    "B": "(5/4, 3/2) não confere: q = r/2 fica entre 0,625 e 0,75, menor que 1; a PG seria decrescente.",
+    "C": "(3/2, 7/4) não confere: q = r/2 fica entre 0,75 e 0,875, menor que 1; a PG seria decrescente.",
+    "D": "(7/4, 2) não confere: q = r/2 fica entre 0,875 e 1, ainda menor que 1; a PG só cresce com r > 2."
+   },
+   "armadilha": "Achar a relação h = r²/4 e esquecer a condição de crescimento, que é a que escolhe o intervalo.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Um intervalo possível para o raio quando área da base, área lateral e volume formam PG crescente.",
+    "chave": "A2² = A1·A3 dá h = r²/4; a razão vira r/2, e crescente exige r > 2.",
+    "cuidado": "Use o crescente: razão maior que 1."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "razões iguais",
+    "ideia": "A2/A1 = 2h/r e A3/A2 = r/2; igualando, 2h/r = r/2 dá h = r²/4, e a razão r/2 > 1 exige r > 2."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "(2πrh)² = πr² × πr²h",
+    "nota": "termo do meio ao quadrado"
+   },
+   {
+    "linha": "4π²r²h² = π²r⁴h → 4h = r²",
+    "nota": "dividiu por π²r²h"
+   },
+   {
+    "linha": "h = r²/4",
+    "nota": "relação entre h e r"
+   },
+   {
+    "linha": "q = 2h/r = r/2",
+    "nota": "razão da PG"
+   },
+   {
+    "linha": "r/2 > 1 → r > 2",
+    "nota": "PG crescente"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0063"
+  }
+ }
+}

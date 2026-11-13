@@ -1,0 +1,677 @@
+{
+ "P6a114296": {
+  "n": "71",
+  "conceito": "Sistema linear de mistura: volume, glicose e sódio.",
+  "equivocos": {
+   "A": "M04.3:respondeu-outra-incognita",
+   "B": "M04.3:respondeu-outra-incognita",
+   "C": "M04.3:valor-que-nao-fecha",
+   "E": "M04.3:valor-que-nao-fecha"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Chame de a, b e c os volumes (em mL) das soluções A, B e C. Cada mL leva a concentração da tabela. Três condições dão três equações: volume total, glicose total e sódio total.",
+    "formulas": [
+     "massa = concentração · volume"
+    ],
+    "simbolos": [
+     [
+      "a, b, c",
+      "volumes das soluções A, B e C, em mL"
+     ]
+    ]
+   },
+   "pista": "Escreva uma equação para o volume, uma para a glicose e uma para o sódio.",
+   "passos": [
+    {
+     "faz": "Monte o sistema",
+     "conta": "a + b + c = 100 | 10a + 20b + 40c = 2 800 | a + 3b + 2c = 210",
+     "porque": "Volume total, glicose e sódio em mg.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Simplifique a glicose",
+     "conta": "a + 2b + 4c = 280",
+     "porque": "Divida por 10.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Elimine a",
+     "conta": "b + 3c = 180 | 2b + c = 110",
+     "porque": "Subtraia a 1.ª equação da glicose e do sódio.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva",
+     "conta": "b = 180 − 3c → 360 − 6c + c = 110 → 5c = 250 → c = 50",
+     "porque": "Substituição.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Responda",
+     "conta": "c = 50 mL → alternativa D",
+     "porque": "É o volume da solução C.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 50 mL",
+   "checagem": "Eliminando b em vez de a: b = 100 − a − c; a glicose vira −10a + 20c = 800 e o sódio, 2a + c = 90. Com a = (90 − c)/2: −5(90 − c) + 20c = 800, 25c = 1 250, c = 50. Mesmo valor.",
+   "erradas": {
+    "A": "20 mL sai do volume da solução A (a = 20), não da C.",
+    "B": "30 mL sai do volume da solução B (b = 30), não da C.",
+    "C": "40 mL não confere: c = 40 dá b = 180 − 120 = 60, e o sódio ficaria 2 · 60 + 40 = 160 ≠ 110.",
+    "E": "60 mL não confere: c = 60 dá b = 0, e o sódio ficaria 0 + 60 = 60 ≠ 110."
+   },
+   "armadilha": "Resolver o sistema e marcar o volume de A ou de B: a pergunta é o volume de C.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O volume da solução C.",
+    "chave": "Eliminando a: b + 3c = 180 e 2b + c = 110, então c = 50.",
+    "cuidado": "Concentração em mg/mL vezes mL dá mg."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "testar alternativas",
+    "ideia": "Para cada c, b = 180 − 3c e a = 100 − b − c; só c = 50 fecha o sódio de 210 mg."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "a + 2b + 4c = 280",
+    "nota": "glicose ÷ 10"
+   },
+   {
+    "linha": "b + 3c = 180",
+    "nota": "glicose − volume"
+   },
+   {
+    "linha": "2b + c = 110",
+    "nota": "sódio − volume"
+   },
+   {
+    "linha": "2 · (180 − 3c) + c = 110",
+    "nota": "b = 180 − 3c"
+   },
+   {
+    "linha": "360 − 5c = 110",
+    "nota": "junta os c"
+   },
+   {
+    "linha": "5c = 250",
+    "nota": "troca de lado"
+   },
+   {
+    "linha": "c = 250/5 = 50",
+    "nota": "o 5 passa dividindo"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0051"
+  }
+ },
+ "Pd4f09089": {
+  "n": "78",
+  "conceito": "Sistema linear 3×3 dado por equação matricial.",
+  "equivocos": {
+   "A": "M04.3:usou-os-dados-antigos",
+   "B": "M04.3:valor-que-nao-fecha",
+   "D": "M04.3:mudou-so-uma-incognita",
+   "E": "M04.3:valor-que-nao-fecha"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada linha da matriz vezes o vetor (x, y, z) dá uma dose. Com as doses novas (16, 7, 5) saem três equações simples: 2x + y + z = 16, x + y = 7 e y + z = 5.",
+    "formulas": [
+     "linha · coluna = soma dos produtos"
+    ],
+    "simbolos": [
+     [
+      "T, O₁, O₂",
+      "doses no tumor, no órgão I e no órgão II"
+     ]
+    ]
+   },
+   "pista": "Subtraia a 2.ª e a 3.ª equação da 1.ª: veja o que sobra.",
+   "passos": [
+    {
+     "faz": "Escreva o sistema novo",
+     "conta": "2x + y + z = 16 | x + y = 7 | y + z = 5",
+     "porque": "Tumor passa a 16; os órgãos ficam em 7 e 5.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Subtraia as duas últimas da primeira",
+     "conta": "(2x + y + z) − (x + y) − (y + z) = x − y = 16 − 7 − 5 = 4",
+     "porque": "Sobra só x − y.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva",
+     "conta": "x − y = 4 e x + y = 7 → 2x = 11 → x = 5,5; y = 1,5; z = 3,5",
+     "porque": "Some as duas; depois z = 5 − y.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Responda",
+     "conta": "5,5; 1,5; 3,5 → alternativa C",
+     "porque": "Na ordem x, y, z.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 5,5; 1,5; 3,5",
+   "checagem": "2 · 5,5 + 1,5 + 3,5 = 16; 5,5 + 1,5 = 7; 1,5 + 3,5 = 5. As três doses conferem.",
+   "erradas": {
+    "A": "4; 3; 2 é o planejamento inicial: dá doses 13, 7 e 5, com o tumor ainda em 13.",
+    "B": "4,5; 0,5; 6,5 não confere: x + y = 5, e o órgão I tem de receber 7.",
+    "D": "5,5; 3; 2 sai de somar a variação de 1,5 só em x e manter y = 3 e z = 2: o tumor chega a 16, mas o órgão I passa a receber 8,5, e não 7.",
+    "E": "6,5; 0,5; 4,5 não confere: tumor 13 + 0,5 + 4,5 = 18 ≠ 16."
+   },
+   "armadilha": "Usar o vetor de doses antigo (13) ou marcar o planejamento inicial.",
+   "alerta": "",
+   "essencial": {
+    "pede": "As intensidades x, y, z do novo plano.",
+    "chave": "x − y = 16 − 7 − 5 = 4 e x + y = 7: x = 5,5, y = 1,5, z = 3,5.",
+    "cuidado": "Use T = 16 e mantenha 7 e 5."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "variação",
+    "ideia": "Só a dose do tumor sobe 3. Como O₁ e O₂ não mudam, Δy = −Δx e Δz = Δx; então 2Δx − Δx + Δx = 2Δx = 3 e Δx = 1,5: x = 4 + 1,5, y = 3 − 1,5, z = 2 + 1,5."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "x − y = 16 − 7 − 5 = 4",
+    "nota": "1.ª − 2.ª − 3.ª"
+   },
+   {
+    "linha": "x − y + x + y = 4 + 7",
+    "nota": "soma com x + y = 7"
+   },
+   {
+    "linha": "2x = 11",
+    "nota": "y se cancela"
+   },
+   {
+    "linha": "x = 11/2 = 5,5",
+    "nota": "y = 1,5 e z = 3,5"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0051"
+  }
+ },
+ "P592c7a60": {
+  "n": "79",
+  "conceito": "Traduzir duas sequências de operações em expressões e simplificar a diferença.",
+  "equivocos": {
+   "B": "M04.5:valor-que-nao-fecha",
+   "C": "M04.5:valor-que-nao-fecha",
+   "D": "M04.5:respondeu-o-quadrado",
+   "E": "M04.5:valor-que-nao-fecha"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Traduza cada frase com parênteses: P soma k a N primeiro e depois multiplica por k + 1; Q multiplica N por k + 1 primeiro e depois soma k. Na diferença, N some.",
+    "formulas": [
+     "P = (N + k)(k + 1)",
+     "Q = N(k + 1) + k"
+    ],
+    "simbolos": [
+     [
+      "N",
+      "o número dado"
+     ],
+     [
+      "k",
+      "número positivo procurado"
+     ]
+    ]
+   },
+   "pista": "Escreva P e Q com parênteses, na ordem em que as operações acontecem.",
+   "passos": [
+    {
+     "faz": "Traduza P e Q",
+     "conta": "P = (N + k)(k + 1) | Q = N(k + 1) + k",
+     "porque": "Em P a soma vem antes; em Q a multiplicação vem antes.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule P − Q",
+     "conta": "N(k + 1) + k(k + 1) − N(k + 1) − k = k² + k − k = k²",
+     "porque": "Os termos com N se cancelam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Iguale a 9",
+     "conta": "k² = 9 → k = 3",
+     "porque": "k é positivo, então descarte −3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Responda",
+     "conta": "k = 3 → alternativa A",
+     "porque": "É o valor de k, não k².",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 3",
+   "checagem": "Com N = 1 e k = 3: P = (1 + 3) · 4 = 16 e Q = 1 · 4 + 3 = 7; 16 − 7 = 9. Fecha.",
+   "erradas": {
+    "B": "4,5 não confere: 4,5² = 20,25, não 9.",
+    "C": "8 não confere: 8² = 64, não 9.",
+    "D": "9 sai de responder o valor de k² (P − Q = k² = 9) em vez de k.",
+    "E": "10 não confere: 10² = 100, não 9."
+   },
+   "armadilha": "Responder 9, que é k², em vez de k.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O valor de k sabendo que P − Q = 9.",
+    "chave": "P − Q = (N + k)(k + 1) − N(k + 1) − k = k²; k² = 9 dá k = 3.",
+    "cuidado": "Use parênteses na tradução e volte ao que se pede: k, não k²."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "caso particular",
+    "ideia": "Faça N = 0: P = k(k + 1) e Q = k, então P − Q = k² = 9 e k = 3."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "P − Q = (N + k)(k + 1) − N(k + 1) − k",
+    "nota": "diferença"
+   },
+   {
+    "linha": "P − Q = k(k + 1) − k = k²",
+    "nota": "N se cancela"
+   },
+   {
+    "linha": "k² = 9 → k = 3",
+    "nota": "k positivo"
+   },
+   {
+    "linha": "(1 + 3) · 4 − (1 · 4 + 3) = 9",
+    "nota": "teste com N = 1 e k = 3"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0052"
+  }
+ },
+ "P02dbc43b": {
+  "n": "77",
+  "conceito": "Meia-vida a partir de uma redução percentual por período, com logaritmo.",
+  "equivocos": {
+   "A": "M06.5:periodo-confundido-com-meia-vida",
+   "B": "M06.5:conta-errada-do-log",
+   "C": "M06.5:conta-errada-do-log",
+   "D": "M06.5:reducao-somada-linear"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Diminuir 20% é multiplicar por 0,8 a cada 4 horas. A meia-vida é o tempo T em que o fator total chega a 1/2: 0,8^(T/4) = 1/2. Com log 2 = 0,30, log 0,8 = log 8 − log 10 = 0,90 − 1 = −0,10.",
+    "formulas": [
+     "redução de 20% = fator 0,8",
+     "C(t) = C₀ · 0,8^(t/4)",
+     "log 0,8 = 3 log 2 − 1"
+    ],
+    "simbolos": [
+     [
+      "T",
+      "meia-vida, em horas"
+     ],
+     [
+      "log",
+      "logaritmo na base 10"
+     ]
+    ]
+   },
+   "pista": "Comece trocando 'diminui 20%' por uma multiplicação e escreva a condição de meia-vida.",
+   "passos": [
+    {
+     "faz": "Escreva o modelo",
+     "conta": "C(t) = C₀ · 0,8^(t/4)",
+     "porque": "A cada 4 horas a concentração é multiplicada por 1 − 0,20 = 0,8.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Iguale a metade",
+     "conta": "0,8^(T/4) = 1/2 → (T/4) · log 0,8 = −log 2",
+     "porque": "Na meia-vida, C/C₀ = 1/2; aplicando log, o expoente desce.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule log 0,8",
+     "conta": "log 0,8 = log 8 − log 10 = 3 × 0,30 − 1 = −0,10",
+     "porque": "0,8 = 8/10 e log 8 = 3 log 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva para T",
+     "conta": "(T/4) × (−0,10) = −0,30 → T/4 = 3 → T = 3 × 4 = 12 h",
+     "porque": "O −0,10 que multiplica vai dividindo; o 4 que divide vai multiplicando.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — aproximadamente 12 horas",
+   "checagem": "Faça a conta direto: 0,8³ = 0,512 ≈ 0,5. São 3 períodos de 4 horas, ou 12 horas, para cair à metade. Fecha.",
+   "erradas": {
+    "A": "4 horas não confere: em 4 horas a concentração cai só 20%, e sobram 80%, não 50%.",
+    "B": "6 horas não confere: 0,8^(6/4) ≈ 0,72, ainda longe da metade.",
+    "C": "8 horas não confere: em 8 horas sobram 0,8² = 64%, não 50%.",
+    "D": "10 horas sai de somar 20% por período como se fosse linear: 50% ÷ 20% = 2,5 períodos × 4 h = 10 h."
+   },
+   "armadilha": "Tratar a queda de 20% como subtração fixa (20% + 20% + 10%), quando ela é multiplicação por 0,8 a cada período.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A meia-vida do medicamento.",
+    "chave": "0,8^(T/4) = 1/2 com log 0,8 = −0,10 dá T/4 = 3 e T = 12 h.",
+    "cuidado": "Redução percentual sucessiva multiplica; não soma."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "contar fatores",
+    "ideia": "Multiplique 0,8 até chegar perto de 0,5: 0,8 → 0,64 → 0,512; são 3 períodos de 4 h."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "0,8^(T/4) = 1/2",
+    "nota": "meia-vida"
+   },
+   {
+    "linha": "(T/4) · log 0,8 = −log 2",
+    "nota": "log dos dois lados"
+   },
+   {
+    "linha": "(T/4) × (−0,10) = −0,30",
+    "nota": "log 0,8 = 0,90 − 1"
+   },
+   {
+    "linha": "T/4 = −0,30/(−0,10)",
+    "nota": "o −0,10 vai dividindo"
+   },
+   {
+    "linha": "T/4 = 3",
+    "nota": "divide"
+   },
+   {
+    "linha": "T = 3 × 4",
+    "nota": "o 4 que divide vai multiplicando"
+   },
+   {
+    "linha": "T = 12",
+    "nota": "horas"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0058"
+  }
+ },
+ "P3ad7b81e": {
+  "n": "72",
+  "conceito": "Concentração após doses repetidas: limite de uma recorrência (soma de PG infinita).",
+  "equivocos": {
+   "A": "M07.2:limite-errado",
+   "C": "M07.2:antes-da-dose-no-lugar-de-depois",
+   "D": "M07.2:parou-num-termo-intermediario",
+   "E": "M07.2:limite-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Logo depois de cada dose, a concentração é 75 % da que havia logo depois da dose anterior, mais 12 mg/L. Se o processo se estabiliza num valor L, aplicar a regra a L devolve o próprio L. Isso vira uma equação de 1.º grau.",
+    "formulas": [
+     "Cₙ₊₁ = 0,75 × Cₙ + 12",
+     "no limite: L = 0,75 × L + 12"
+    ],
+    "simbolos": [
+     [
+      "mg/L",
+      "miligramas de remédio por litro"
+     ],
+     [
+      "Cₙ",
+      "concentração logo após a n-ésima dose"
+     ],
+     [
+      "L",
+      "valor de que as concentrações se aproximam"
+     ]
+    ]
+   },
+   "pista": "Escreva a regra que leva da concentração após uma dose à concentração após a dose seguinte.",
+   "passos": [
+    {
+     "faz": "Monte a regra",
+     "conta": "Cₙ₊₁ = 0,75 × Cₙ + 12",
+     "porque": "Elimina 25 %, sobra 75 %, e a nova dose soma 12 mg/L. O exemplo confere: 0,75 × 12 + 12 = 21.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Imponha o equilíbrio",
+     "conta": "L = 0,75L + 12 → L − 0,75L = 12 → 0,25L = 12",
+     "porque": "No limite, a concentração não muda de uma dose para a outra; o 0,75L passa subtraindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole L",
+     "conta": "0,25L = 12 → L = 12/0,25 → L = 48",
+     "porque": "O 0,25 passa dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "logo após cada dose → 48 mg/L",
+     "porque": "A pergunta é a concentração logo após a dose, que é o L da regra.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 48 mg/L",
+   "checagem": "Pela soma de PG: logo após a n-ésima dose há 12 + 12 × 0,75 + 12 × 0,75² + ...; a soma infinita é 12/(1 − 0,75) = 12/0,25 = 48. Os primeiros valores, 12; 21; 27,75; 32,8..., sobem em direção a 48.",
+   "erradas": {
+    "A": "A não confere: com 60, a dose seguinte daria 0,75 × 60 + 12 = 57, e não 60; o valor não se mantém.",
+    "C": "C sai de calcular o valor logo ANTES da dose: 0,75 × 48 = 36, que é o que sobra até a próxima dose.",
+    "D": "D não confere: com 32, a dose seguinte daria 0,75 × 32 + 12 = 36; ainda está subindo.",
+    "E": "E não confere: com 28, a dose seguinte daria 0,75 × 28 + 12 = 33; ainda está subindo."
+   },
+   "armadilha": "O comando pede o valor logo APÓS a dose (48), não logo antes dela (36).",
+   "alerta": "",
+   "essencial": {
+    "pede": "O valor limite da concentração logo após cada dose.",
+    "chave": "L = 0,75L + 12 dá 0,25L = 12, L = 48.",
+    "cuidado": "Não confunda o valor após a dose com o valor antes dela."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "PG infinita",
+    "ideia": "12 × (1 + 0,75 + 0,75² + ...) = 12/(1 − 0,75) = 48."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "L = 0,75L + 12",
+    "nota": "equilíbrio"
+   },
+   {
+    "linha": "L − 0,75L = 12",
+    "nota": "o 0,75L passa subtraindo"
+   },
+   {
+    "linha": "0,25L = 12",
+    "nota": "simplifica"
+   },
+   {
+    "linha": "L = 12/0,25",
+    "nota": "o 0,25 passa dividindo"
+   },
+   {
+    "linha": "L = 48",
+    "nota": "mg/L"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0059"
+  }
+ },
+ "P8a332ad7": {
+  "n": "76",
+  "conceito": "Distância inacessível com dois ângulos de observação: altura comum a dois triângulos retângulos e tangentes de 45° e 60°.",
+  "equivocos": {
+   "A": "M10.3:inverteu-a-tangente",
+   "C": "M10.3:soma-das-projecoes-nao-fecha",
+   "D": "M10.3:altura-maior-que-a-base",
+   "E": "M10.3:soma-das-projecoes-nao-fecha"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A profundidade é a altura h de P em relação à reta AB. Como os dois segmentos estão do mesmo lado e os ângulos em A e B são internos do triângulo, o pé H da altura cai entre A e B e divide AB = 10 cm em duas partes. Em cada triângulo retângulo, a tangente liga h à parte da base: com tg 45° = 1 e tg 60° = √3, as duas partes ficam em função de h e somam 10.",
+    "formulas": [
+     "tg = cateto oposto ÷ cateto adjacente",
+     "AH + HB = AB = 10 cm"
+    ],
+    "simbolos": [
+     [
+      "h",
+      "profundidade: distância de P à reta AB"
+     ],
+     [
+      "H",
+      "pé da altura, onde a perpendicular por P encontra AB"
+     ],
+     [
+      "tg",
+      "tangente: cateto oposto ao ângulo dividido pelo cateto adjacente"
+     ]
+    ]
+   },
+   "pista": "Baixe a perpendicular de P até AB e escreva as duas partes da base em função da mesma altura.",
+   "passos": [
+    {
+     "faz": "Escreva AH em função de h",
+     "conta": "tg 45° = h/AH → 1 = h/AH → AH = h",
+     "porque": "No triângulo retângulo AHP, o ângulo em A é 45°, a altura é o cateto oposto e AH o adjacente.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escreva HB em função de h",
+     "conta": "tg 60° = h/HB → √3 = h/HB → HB = h/√3",
+     "porque": "No triângulo BHP, o ângulo em B é 60°; o HB que divide h passa multiplicando, e o √3 passa dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some as partes da base",
+     "conta": "h + h/√3 = 10 → h(√3 + 1)/√3 = 10 → h = 10√3/(√3 + 1)",
+     "porque": "O pé H fica entre A e B, então AH + HB = AB. Pondo h em evidência, o fator passa dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Racionalize",
+     "conta": "h = 10√3(√3 − 1)/((√3 + 1)(√3 − 1)) → h = 10(3 − √3)/2 → h = 5(3 − √3)",
+     "porque": "Multiplicar em cima e embaixo por √3 − 1 deixa o denominador 3 − 1 = 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue ao pedido",
+     "conta": "h = 5(3 − √3) ≈ 6,34 cm → alternativa B",
+     "porque": "A profundidade é a própria altura h.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 5(3 − √3) cm",
+   "checagem": "Confira pela lei dos senos: o ângulo em P é 180° − 45° − 60° = 75°, então AP = 10 · sen 60°/sen 75° ≈ 8,97 cm, e h = AP · sen 45° ≈ 6,34 cm, o mesmo valor de 5(3 − √3).",
+   "erradas": {
+    "A": "5(√3 − 1) sai de inverter a tangente em B: HB = h · √3, e h + h√3 = 10 dá h = 10/(√3 + 1) = 5(√3 − 1) ≈ 3,66 cm.",
+    "C": "5√3 não confere: com h ≈ 8,66 cm, AH = 8,66 e HB = 8,66/√3 = 5, somando cerca de 13,66 cm, e não 10 cm.",
+    "D": "5(√3 + 1) não confere: com h ≈ 13,66 cm, AH = h já passaria dos 10 cm de AB, e o pé da altura fica entre A e B.",
+    "E": "10(√3 − 1) não confere: com h ≈ 7,32 cm, AH + HB = 7,32 + 7,32/√3 ≈ 11,55 cm, e não 10 cm."
+   },
+   "armadilha": "Em B a tangente é h/HB = √3, então HB = h/√3: inverter a razão leva a 5(√3 − 1).",
+   "alerta": "",
+   "essencial": {
+    "pede": "A distância de P à reta AB, com ângulos de 45° em A e 60° em B e AB = 10 cm.",
+    "chave": "Altura comum: AH = h e HB = h/√3, com AH + HB = 10, o que dá h = 5(3 − √3) cm.",
+    "cuidado": "Monte cada tangente como oposto sobre adjacente e racionalize no fim."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "lei dos senos",
+    "ideia": "Ângulo em P = 75°; AP = 10 · sen 60°/sen 75° e h = AP · sen 45° = 5(3 − √3)."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "tg 45° = h/AH → AH = h",
+    "nota": "triângulo AHP"
+   },
+   {
+    "linha": "tg 60° = h/HB → HB = h/√3",
+    "nota": "triângulo BHP"
+   },
+   {
+    "linha": "h + h/√3 = 10 → h = 10√3/(√3 + 1)",
+    "nota": "AH + HB = AB; h em evidência"
+   },
+   {
+    "linha": "h = 10√3(√3 − 1)/2 = 5(3 − √3)",
+    "nota": "racionaliza: (√3 + 1)(√3 − 1) = 2"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0062"
+  }
+ }
+}

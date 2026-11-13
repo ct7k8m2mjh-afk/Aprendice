@@ -1,0 +1,462 @@
+{
+ "P845891cd": {
+  "n": "4",
+  "conceito": "Equação com frações transformada em produto de inteiros (divisores de 23²).",
+  "equivocos": {
+   "A": "M01.4:sem-origem-identificada",
+   "B": "M01.4:sem-origem-identificada",
+   "C": "M01.4:so-divisores-positivos",
+   "D": "M01.4:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Multiplique tudo por 23xy para tirar os denominadores e reorganize como um produto: (x − 23)(y − 23) = 23². Então x − 23 e y − 23 são divisores inteiros (positivos ou negativos) de 529, lembrando que x e y não podem ser 0.",
+    "formulas": [
+     "23y + 23x = xy",
+     "(x − 23)(y − 23) = 529"
+    ],
+    "simbolos": []
+   },
+   "pista": "Some 529 aos dois lados de xy − 23x − 23y = 0. O que aparece?",
+   "passos": [
+    {
+     "faz": "Tirar denominadores",
+     "conta": "1/x + 1/y = 1/23 → 23y + 23x = xy",
+     "porque": "Multiplica por 23xy (x, y ≠ 0).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Fatorar",
+     "conta": "xy − 23x − 23y + 529 = 529 → (x − 23)(y − 23) = 529",
+     "porque": "Completa o produto.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divisores de 529 = 23²",
+     "conta": "±1, ±23, ±529: seis pares (d, 529/d)",
+     "porque": "23 é primo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Testar",
+     "conta": "(24, 552), (46, 46), (552, 24), (22, −506), (−506, 22); d = −23 dá (0, 0)",
+     "porque": "x = 0 não é permitido.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Contar",
+     "conta": "5 pares → alternativa E",
+     "porque": "Pares válidos.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 5",
+   "checagem": "Teste cada par na equação original: 1/24 + 1/552 = 23/552 + 1/552 = 24/552 = 1/23; 1/46 + 1/46 = 2/46 = 1/23; 1/22 − 1/506 = 23/506 − 1/506 = 22/506 = 1/23. Os pares trocados também valem. São 5. Confere.",
+   "erradas": {
+    "A": "1 conta só o par simétrico (46, 46).",
+    "B": "2 deixa de fora os pares trocados e os negativos.",
+    "C": "3 conta só os pares com x e y positivos: (24, 552), (46, 46) e (552, 24).",
+    "D": "4 esquece o par simétrico (46, 46) ou um dos pares negativos."
+   },
+   "armadilha": "Considerar só divisores positivos de 529 e esquecer as soluções com y negativo, como (22, −506).",
+   "alerta": "",
+   "essencial": {
+    "pede": "Pares inteiros (x, y).",
+    "chave": "(x − 23)(y − 23) = 23².",
+    "cuidado": "Divisores negativos também valem; exclua x = 0."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "isolar y",
+    "ideia": "y = 23x/(x − 23) = 23 + 529/(x − 23). y é inteiro exatamente quando x − 23 divide 529; os 6 divisores dão 6 valores de x, e x = 0 (divisor −23) é descartado."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "(x − 23)(y − 23) = 529",
+    "nota": "fatoração"
+   },
+   {
+    "linha": "d ∈ {±1, ±23, ±529}",
+    "nota": "divisores"
+   },
+   {
+    "linha": "5 pares (sem o (0, 0))",
+    "nota": "resposta"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0044"
+  }
+ },
+ "P12692de8": {
+  "n": "6",
+  "conceito": "Módulo de potência de número complexo e propriedades do logaritmo.",
+  "equivocos": {
+   "A": "M06.3:valor-nao-confere",
+   "B": "M06.3:valor-nao-confere",
+   "D": "M06.3:valor-nao-confere",
+   "E": "M06.3:valor-nao-confere"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O módulo de uma potência é a potência do módulo: |z| = |1 − 2√2 i|^12. Esse módulo dá 3, então m = 3^12. Depois, log_m(27m) se abre em log_m 27 + log_m m, e 27 = 3^3 é uma potência da mesma base 3.",
+    "formulas": [
+     "|a + bi| = √(a^2 + b^2)",
+     "|w^n| = |w|^n",
+     "log_m (A × B) = log_m A + log_m B",
+     "log_(3^12) 3^3 = 3/12"
+    ],
+    "simbolos": [
+     [
+      "|z|",
+      "módulo do número complexo z"
+     ],
+     [
+      "i",
+      "unidade imaginária, i^2 = −1"
+     ],
+     [
+      "log_m",
+      "logaritmo na base m"
+     ]
+    ]
+   },
+   "pista": "Calcule primeiro o módulo de 1 − 2√2 i.",
+   "passos": [
+    {
+     "faz": "Calcule o módulo da base",
+     "conta": "|1 − 2√2 i| = √(1 + 8) = √9 = 3",
+     "porque": "(2√2)^2 = 4 × 2 = 8.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache m",
+     "conta": "m = |z| = 3^12",
+     "porque": "O módulo da potência é a potência do módulo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Abra o logaritmo",
+     "conta": "log_m (27m) = log_m 27 + log_m m = log_(3^12) 3^3 + 1 = 3/12 + 1 = 5/4",
+     "porque": "Log do produto é soma; log_m m = 1; e log de 3^3 na base 3^12 é 3/12.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole x",
+     "conta": "2x = 5/4 → x = 5/4 ÷ 2 → x = 5/8",
+     "porque": "O 2 que multiplica vai dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escolha a alternativa",
+     "conta": "x = 5/8 → alternativa C",
+     "porque": "É o valor de x.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 5/8",
+   "checagem": "Volte pela definição: 2x = 5/4 quer dizer m^(5/4) = 27m. Com m = 3^12: m^(5/4) = 3^15, e 27m = 3^3 × 3^12 = 3^15. Fecha.",
+   "erradas": {
+    "A": "15/14 não confere: daria 2x = 15/7 e m^(15/7) = 27m exigiria m^(8/7) = 27, mas m^(8/7) = 3^(96/7), não 3^3.",
+    "B": "5/14 não confere: daria 2x = 5/7 < 1, mas log_m(27m) = 1 + log_m 27 > 1 porque m > 1 e 27 > 1.",
+    "D": "15/4 não confere: daria 2x = 15/2 e m^(15/2) = 27m exigiria m^(13/2) = 27, mas m^(13/2) = 3^78.",
+    "E": "3/8 não confere: daria 2x = 3/4 < 1, mas log_m(27m) = 1 + log_m 27 > 1."
+   },
+   "armadilha": "Depois de achar log_m(27m) = 5/4, ainda falta dividir por 2: a expressão é 2x.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O valor de x em 2x = log_m(27m), com m = |(1 − 2√2 i)^12|.",
+    "chave": "|1 − 2√2 i| = 3, m = 3^12, log_m(27m) = 1 + 3/12 = 5/4, x = 5/8.",
+    "cuidado": "Use |w^n| = |w|^n e não esqueça o 2 de 2x."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "definição",
+    "ideia": "2x = k quer dizer m^k = 27m; com m = 3^12, 3^(12k) = 3^15 e k = 5/4."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "|1 − 2√2 i| = √(1 + 8) = √9 = 3",
+    "nota": "módulo"
+   },
+   {
+    "linha": "m = 3^12",
+    "nota": "|w^12| = |w|^12"
+   },
+   {
+    "linha": "log_m (27m) = log_m 27 + 1",
+    "nota": "log do produto"
+   },
+   {
+    "linha": "log_m (27m) = 3/12 + 1 = 5/4",
+    "nota": "27 = 3^3"
+   },
+   {
+    "linha": "2x = 5/4",
+    "nota": "equação"
+   },
+   {
+    "linha": "x = 5/4 ÷ 2",
+    "nota": "o 2 vai dividindo"
+   },
+   {
+    "linha": "x = 5/8",
+    "nota": "resultado"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0057"
+  }
+ },
+ "P422434d8": {
+  "n": "9",
+  "conceito": "Fractal: cada operação multiplica a área restante por 5/9, uma PG.",
+  "equivocos": {
+   "A": "M07.2:numero-de-termos-errado",
+   "C": "M07.2:numero-de-termos-errado",
+   "D": "M07.2:complementar-no-lugar-do-pedido",
+   "E": "M07.2:sinal-trocado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Na operação, o quadrado é dividido em 9 quadradinhos iguais (lado L/3) e ficam 5: os 4 cantos e o do centro. Então a área que sobra é 5/9 da anterior, em cada quadrado restante. Depois de n operações, a área é (5/9)ⁿ × L².",
+    "formulas": [
+     "área após n operações = L² × (5/9)ⁿ",
+     "área do quadradinho = (L/3)² = L²/9"
+    ],
+    "simbolos": [
+     [
+      "PG",
+      "progressão geométrica: cada termo é o anterior vezes um número fixo"
+     ],
+     [
+      "q",
+      "razão da PG: o número pelo qual se multiplica de um termo para o seguinte"
+     ],
+     [
+      "L",
+      "lado do quadrado inicial"
+     ]
+    ]
+   },
+   "pista": "Na Figura B, conte em quantos quadradinhos iguais o quadrado foi dividido e quantos ficaram.",
+   "passos": [
+    {
+     "faz": "Leia a Figura B",
+     "conta": "9 quadradinhos de lado L/3, ficam 5",
+     "porque": "Os 4 cantos e o centro continuam; as 4 peças do meio das bordas saem.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Ache a razão da PG",
+     "conta": "área após 1 operação = 5 × L²/9 = 5/9 × L²",
+     "porque": "Cada quadradinho tem área L²/9; sobram 5.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Repita em cada quadrado",
+     "conta": "após 2 operações: (5/9)² × L² = 25/81 × L²",
+     "porque": "A mesma operação em cada quadrado restante multiplica de novo por 5/9; a Figura C tem 25 quadradinhos de lado L/9.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Vá até 10 operações",
+     "conta": "após 10: (5/9)¹⁰ × L² = 5¹⁰L²/9¹⁰",
+     "porque": "Cada operação é mais um fator 5/9.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 5¹⁰L²/9¹⁰",
+   "checagem": "Conte peças: após 10 operações há 5¹⁰ quadradinhos, cada um de lado L/3¹⁰ e área L²/9¹⁰. Área total 5¹⁰ × L²/9¹⁰.",
+   "erradas": {
+    "A": "A sai de contar 9 operações: (5/9)⁹ × L².",
+    "C": "C sai de contar 11 operações: (5/9)¹¹ × L².",
+    "D": "D é a área retirada, não a que sobra: L² − (5/9)¹⁰L² = (9¹⁰ − 5¹⁰)L²/9¹⁰.",
+    "E": "E não confere: como 5¹⁰ < 9¹⁰, a expressão é negativa, e área não pode ser negativa."
+   },
+   "armadilha": "A pergunta é a área que SOBRA; a área retirada (9¹⁰ − 5¹⁰)L²/9¹⁰ está ao lado para pegar quem lê rápido.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A área restante após 10 operações de corte.",
+    "chave": "Cada operação guarda 5 de 9 partes: área × 5/9; após 10, (5/9)¹⁰ L².",
+    "cuidado": "Diferencie área restante de área retirada e conte as 10 operações."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "contagem de peças",
+    "ideia": "5¹⁰ quadradinhos de área L²/9¹⁰ cada."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "A₁ = 5 × L²/9 = 5/9 × L²",
+    "nota": "1.ª operação"
+   },
+   {
+    "linha": "A₂ = (5/9)² × L² = 25/81 × L²",
+    "nota": "2.ª operação"
+   },
+   {
+    "linha": "A₁₀ = (5/9)¹⁰ × L²",
+    "nota": "10.ª operação"
+   },
+   {
+    "linha": "A₁₀ = 5¹⁰L²/9¹⁰",
+    "nota": "escreve como fração"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0059"
+  }
+ },
+ "P73bdf6af": {
+  "n": "12",
+  "conceito": "Simplificação de expressão trigonométrica com tg e sec e identidades de sen⁴ + cos⁴ e sen⁶ + cos⁶.",
+  "equivocos": {
+   "A": "M10.5:nao-simplificou-a-expressao",
+   "C": "M10.5:nao-simplificou-a-expressao",
+   "D": "M10.5:esqueceu-a-parcela-final",
+   "E": "M10.5:nao-simplificou-a-expressao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Troque tangente e secante por seno e cosseno: o cosseno à potência n se cancela e fn(x) vira (senⁿx + cosⁿx)/n. Depois, sen⁴ + cos⁴ e sen⁶ + cos⁶ se escrevem com o produto sen²x·cos²x, e esse produto se cancela na diferença.",
+    "formulas": [
+     "tg x = sen x/cos x ; sec x = 1/cos x",
+     "sen⁴x + cos⁴x = 1 − 2sen²x·cos²x",
+     "sen⁶x + cos⁶x = 1 − 3sen²x·cos²x"
+    ],
+    "simbolos": [
+     [
+      "tg",
+      "tangente"
+     ],
+     [
+      "sec",
+      "secante: 1 dividido pelo cosseno"
+     ],
+     [
+      "fn",
+      "a função da família para o número n"
+     ],
+     [
+      "p",
+      "abreviação de sen²x·cos²x"
+     ]
+    ]
+   },
+   "pista": "Multiplique numerador e denominador de fn(x) por cosⁿx e veja o que sobra.",
+   "passos": [
+    {
+     "faz": "Simplifique fn(x)",
+     "conta": "fn = (senⁿx/cosⁿx + 1)/(n/cosⁿx) → fn = (senⁿx + cosⁿx)/n",
+     "porque": "Multiplicar em cima e embaixo por cosⁿx cancela o cosseno do denominador da tangente e da secante.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escreva f4 com p = sen²x·cos²x",
+     "conta": "sen⁴x + cos⁴x = (sen²x + cos²x)² − 2p → f4 = (1 − 2p)/4",
+     "porque": "O quadrado de sen²x + cos²x = 1 tem o termo cruzado 2p, que se subtrai.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escreva f6 com p",
+     "conta": "sen⁶x + cos⁶x = (sen²x + cos²x)³ − 3p(sen²x + cos²x) → f6 = (1 − 3p)/6",
+     "porque": "É a soma de cubos: a³ + b³ = (a + b)³ − 3ab(a + b), com a = sen²x e b = cos²x.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Faça a diferença",
+     "conta": "f6 − f4 = (1 − 3p)/6 − (1 − 2p)/4 → 1/6 − p/2 − 1/4 + p/2 → f6 − f4 = −1/12",
+     "porque": "Os termos com p se cancelam: a diferença é constante.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some 1/3 e conclua",
+     "conta": "g = −1/12 + 1/3 → g = −1/12 + 4/12 → g = 3/12 = 1/4 → alternativa B",
+     "porque": "g é constante e vale 1/4 para todo x permitido.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — g(x) = 1/4",
+   "checagem": "Teste x = π/4: sen = cos = √2/2. f6 = (1/8 + 1/8)/6 = 1/24 e f4 = (1/4 + 1/4)/4 = 1/8. g = 1/24 − 3/24 + 8/24 = 6/24 = 1/4. Fecha.",
+   "erradas": {
+    "A": "cos(x) + 3 não confere: em x = π/4 (permitido), f6 = 1/24 e f4 = 1/8, logo g(π/4) = 1/24 − 1/8 + 1/3 = 1/4, mas cos(π/4) + 3 ≈ 3,71.",
+    "C": "sen(x) − 2 não confere: em x = π/4 ela vale ≈ −1,29, e g(π/4) = 1/4.",
+    "D": "1/12 não confere: em x = π/4, g(π/4) = 1/24 − 1/8 + 1/3 = 1/4. O 1/12 é f4 − f6, a diferença com a ordem trocada e sem o 1/3 do enunciado.",
+    "E": "tg(x) − 1/3 não confere: em x = π/4 ela vale 1 − 1/3 = 2/3, e g(π/4) = 1/4."
+   },
+   "armadilha": "Ficar preso a tg e sec: escritas com seno e cosseno, as potências do cosseno se cancelam e o produto sen²x·cos²x some na diferença.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A expressão de g(x) = f6(x) − f4(x) + 1/3.",
+    "chave": "fn = (senⁿx + cosⁿx)/n; com p = sen²x·cos²x, f6 − f4 = (1 − 3p)/6 − (1 − 2p)/4 = −1/12.",
+    "cuidado": "Não esqueça de somar o 1/3 no fim: −1/12 + 1/3 = 1/4."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "caso particular",
+    "ideia": "Como todas as alternativas são funções diferentes, teste x = π/4 (x = 0 está fora do domínio, pois k = −1 dá (k + 1)π/2 = 0): f6 = 1/24, f4 = 1/8, g = 1/24 − 1/8 + 1/3 = 1/4, e só B serve."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "fn = (senⁿx + cosⁿx)/n",
+    "nota": "multiplica em cima e embaixo por cosⁿx"
+   },
+   {
+    "linha": "f4 = (1 − 2p)/4 ; f6 = (1 − 3p)/6",
+    "nota": "p = sen²x·cos²x"
+   },
+   {
+    "linha": "f6 − f4 = 1/6 − p/2 − 1/4 + p/2 = −1/12",
+    "nota": "o p se cancela"
+   },
+   {
+    "linha": "g = −1/12 + 4/12 = 3/12 = 1/4",
+    "nota": "soma o 1/3"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0063"
+  }
+ }
+}
