@@ -39,6 +39,7 @@ Na `texto_da_prova` e nas `alternativas`, `**texto**` é negrito e `~~texto~~` �
 4c. Não presuma gênero pelo nome ("ele", "ela", "o diretor", "a autora"): use o nome ou "quem escreve", salvo quando o próprio texto marca o gênero. Não generalize além do que o texto diz ("sempre", "todos", "o autor defende" só com apoio no texto).
 5. `erradas` usa o texto real de cada alternativa: "X sai de …" com a conta do erro típico, ou "X não confere" com o teste que a derruba. Nas questões de leitura, diga onde o texto desmente a alternativa. Nunca uma origem inventada.
 6. Não mude enunciado, print, gabarito, classificação nem ids. Questão de outra matéria (classificação errada) sai com `status: "pendente"` e motivo começando por "classificação: é de <matéria>"; a sessão principal reclassifica.
+7. Questão que não é de nenhuma das 9 matérias do site (Artes, Educação Física, outra língua estrangeira...) sai com `status: "pendente"` e motivo "outra matéria: <nome>" e NÃO é resolvida (decisão do dono, 13/11/2026); a sessão principal a põe em app/conteudo-fonte/outra-materia.json, e ela fica só no simulado da prova inteira.
 </nada_inventado>
 
 <animacao>

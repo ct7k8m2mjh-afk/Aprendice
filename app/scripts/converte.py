@@ -36,6 +36,9 @@ PESSOAL = [(re.compile(r'\bVitor\b'), 'você')]
 # Comando 21 do dono: questões copiadas de sites didáticos (tipo "site") não vão ao site. A triagem
 # (scripts/triagem_site.py) diz qual questão de prova ocupa o lugar de cada uma, quando existe.
 TRIAGEM = os.path.join(os.path.dirname(APP), 'docs', 'provas', 'triagem-questoes-site.json')
+# Decisão do dono (13/11/2026): questão de prova cuja matéria real não é nenhuma das 9 do site (Artes, Educação Física...)
+# não aparece nos temas das matérias, só no simulado da prova inteira. Lista única: conteudo-fonte/outra-materia.json.
+OUTRA_MATERIA = os.path.join(APP, 'conteudo-fonte', 'outra-materia.json')
 
 
 def triagem():
@@ -665,6 +668,66 @@ def aplica_retiradas():
     return rel
 
 
+def outra_materia():
+    """id da questão de prova -> nome da matéria real, fora das 9 do site (conteudo-fonte/outra-materia.json)."""
+    if not os.path.exists(OUTRA_MATERIA):
+        return {}
+    return {qid: v['materia'] for qid, v in ler(OUTRA_MATERIA)['questoes'].items()}
+
+
+def marca_outra_materia_provas(provas):
+    """Marca outraMateria na questão da prova completa (o simulado da prova inteira continua com todas, na posição e no
+    número originais). Id da lista que não existe em nenhuma prova para a conversão com erro (lista desatualizada)."""
+    om = outra_materia()
+    achou = set()
+    for p in provas:
+        for pq in p['questoes']:
+            if pq['id'] in om:
+                pq['outraMateria'] = om[pq['id']]
+                achou.add(pq['id'])
+    falta = sorted(set(om) - achou)
+    if falta:
+        raise SystemExit(f'outra-materia.json: ids que não estão em nenhuma prova: {falta}')
+    return len(achou)
+
+
+def aplica_outra_materia():
+    """Decisão do dono (13/11/2026), depois de ligar as provas: a questão de outra matéria (fora das 9) fica no banco
+    com outraMateria e pendente 'outra matéria: <nome>' (o site tira as pendentes de toda listagem por matéria: temas,
+    conteúdos, treinos, treino geral, revisão, busca, simulado por conteúdo e contagens) e sai do treino geral
+    (essencial.abc). Nada é apagado e o id não muda (princípio 7). Vale também para a questão antiga do banco que ficou
+    no lugar de uma duplicata da prova (duplicatas-provas.json)."""
+    om = outra_materia()
+    dup = ler(os.path.join(DESTINO, 'duplicatas-provas.json')) if os.path.exists(os.path.join(DESTINO, 'duplicatas-provas.json')) else {}
+    alvo = dict(om)
+    for pid, nome in om.items():
+        if pid in dup:
+            alvo[dup[pid].split('/', 1)[1]] = nome
+    rel = {'lista': len(om), 'no_banco': {}, 'por_materia_real': {}}
+    for m in MATERIAS + NOVAS:
+        f = os.path.join(DESTINO, m, 'banco.json')
+        if not os.path.exists(f):
+            continue
+        banco, n = ler(f), 0
+        for q in banco:
+            nome = alvo.get(q['id'])
+            if nome:
+                q['outraMateria'] = nome
+                q['pendente'] = 'outra matéria: ' + nome
+                n += 1
+                rel['por_materia_real'][nome] = rel['por_materia_real'].get(nome, 0) + 1
+        if n:
+            gravar(f, banco)
+            rel['no_banco'][m] = n
+        fm = os.path.join(DESTINO, m, 'materia.json')
+        mat = ler(fm)
+        abc = mat.get('essencial', {}).get('abc') or []
+        if any(i in alvo for i in abc):
+            mat['essencial']['abc'] = [i for i in abc if i not in alvo]
+            gravar(fm, mat)
+    return rel
+
+
 def pacotes_provas(pasta):
     """Prévia publicada: provas/indice.json + provas/<id>.json com os prints embutidos (reduzidos),
     servidos ao lado do HTML e lidos sob demanda."""
@@ -673,7 +736,9 @@ def pacotes_provas(pasta):
     destino = os.path.join(pasta, 'provas')
     os.makedirs(destino, exist_ok=True)
     indice = []
-    for p in provas_fonte():
+    provas = provas_fonte()
+    marca_outra_materia_provas(provas)
+    for p in provas:
         prints = {}
         for q in p['questoes']:
             im = Image.open(os.path.join(FONTE_PROVAS, p['id'], q['print'])).convert('RGB')
@@ -891,12 +956,15 @@ def main():
         relatorio[m] = converte_nova(m)
         print(m, relatorio[m])
     provas = provas_fonte()
+    relatorio['outra_materia_nas_provas'] = marca_outra_materia_provas(provas)
     relatorio['provas'] = copia_provas(provas)
     print('provas completas', relatorio['provas'])
     relatorio['exercicios'] = liga_provas(provas)
     print('questões das provas nos exercícios', relatorio['exercicios'])
     relatorio['questoes_de_site'] = aplica_retiradas()
     print('questões de site fora do site', relatorio['questoes_de_site'])
+    relatorio['outra_materia'] = aplica_outra_materia()
+    print('questões de outra matéria (só no simulado da prova inteira)', relatorio['outra_materia'])
     relatorio['regioes'] = marca_regioes()
     print('região da prova de cada questão', relatorio['regioes'])
     # revisão em slides: depois das matérias (alimenta a Teoria em cartões no materia.json de cada uma)

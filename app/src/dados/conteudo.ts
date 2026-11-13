@@ -53,8 +53,10 @@ const cache = new Map<MateriaId, Promise<MateriaCarregada>>();
 /** Print das questões que vieram das provas completas (id -> caminho dentro de conteudo/). */
 const PRINTS_PROVA = new Map<string, string>();
 
-function monta(id: MateriaId, bancoTodo: Questao[], conteudo: MateriaConteudo, amostra?: string[]): MateriaCarregada {
-  const banco = bancoTodo.filter((q) => !q.pendente);
+/** Monta a matéria a partir do banco gravado (exportada para os testes). */
+export function monta(id: MateriaId, bancoTodo: Questao[], conteudo: MateriaConteudo, amostra?: string[]): MateriaCarregada {
+  // fora do ar (pendente) e de outra matéria fora das 9 (decisão do dono, 13/11/2026: só no simulado da prova inteira)
+  const banco = bancoTodo.filter((q) => !q.pendente && !q.outraMateria);
   const porSub = new Map<string, Questao[]>();
   for (const q of banco) {
     const l = porSub.get(q.sub) || [];

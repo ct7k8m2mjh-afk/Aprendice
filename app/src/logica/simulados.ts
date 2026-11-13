@@ -38,7 +38,8 @@ export const QTDS_CONTEUDO = [10, 20, 30, 45] as const;
 /**
  * Simulado por conteúdo (pedido do dono, 11/11/2026): só questões reais de prova dos conteúdos escolhidos, de uma
  * matéria. Divide a quantidade entre os conteúdos (rodízio), sorteia dentro de cada um, prefere as que o aluno ainda
- * não respondeu e põe em ordem do nível mais fácil ao mais difícil. Questões fora do ar (pendente) não entram.
+ * não respondeu e põe em ordem do nível mais fácil ao mais difícil. Questões fora do ar (pendente) e de outra matéria
+ * fora das 9 (outraMateria; dono, 13/11/2026) não entram.
  */
 export function planoDoConteudo(m: MateriaId, banco: Questao[], subs: string[], n: number, nomes: Record<string, string>,
   opc: { respondidas?: Set<string>; rnd?: () => number } = {}): PlanoSimulado {
@@ -47,7 +48,7 @@ export function planoDoConteudo(m: MateriaId, banco: Questao[], subs: string[], 
   const embaralha = <T,>(l: T[]) => { const a = [...l]; for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(rnd() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
   const ordem = [...new Set(subs)].sort();
   const filas = ordem.map((s) => {
-    const l = banco.filter((q) => q.sub === s && !q.pendente);
+    const l = banco.filter((q) => q.sub === s && !q.pendente && !q.outraMateria);
     // novas primeiro, cada grupo embaralhado
     return [...embaralha(l.filter((q) => !feitas.has(q.id))), ...embaralha(l.filter((q) => feitas.has(q.id)))];
   });

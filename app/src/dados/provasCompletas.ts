@@ -41,6 +41,8 @@ export interface QuestaoProva {
   /** resolução aprovada pela banca (resolvedor + corretores de fatos e de didática) */
   res?: Resolucao;
   materia?: MateriaId; tema?: string; conteudo?: string | null; nivel?: number; conceito?: string;
+  /** matéria real fora das 9 do site (decisão do dono, 13/11/2026): fica só aqui, no simulado da prova inteira */
+  outraMateria?: string;
 }
 
 export interface ProvaCompleta extends Omit<IndiceProva, 'questoes' | 'areas'> {

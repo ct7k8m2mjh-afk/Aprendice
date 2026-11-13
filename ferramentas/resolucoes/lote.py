@@ -161,7 +161,8 @@ def faltam(m, reg, feitas_provas):
     b, feitas = banco(m)
     ocup = ocupadas(reg)
     return [q for q in b if q.get('prova') and q['id'] not in feitas and q['id'] not in feitas_provas and q['id'] not in ocup
-            and not str(q.get('pendente', '')).startswith('indisponível')]   # fora do site por decisão do dono
+            and not str(q.get('pendente', '')).startswith('indisponível')   # fora do site por decisão do dono
+            and not q.get('outraMateria')]   # matéria fora das 9 do site (dono, 13/11/2026): não se resolve
 
 
 def nomes_materia(m):

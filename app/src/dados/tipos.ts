@@ -39,6 +39,9 @@ export interface Questao {
   figura: boolean;
   /** motivo pelo qual a questão está fora do ar (ex.: sem link da fonte) */
   pendente?: string;
+  /** matéria real fora das 9 do site (ex.: Artes, Educação Física; conteudo-fonte/outra-materia.json, decisão do dono de
+   *  13/11/2026): a questão não aparece em nenhuma listagem por matéria, só no simulado da prova inteira */
+  outraMateria?: string;
   /** questão só de texto, transcrita da camada de texto da prova oficial (parágrafos como a banca organizou) */
   transcricao?: Transcricao;
   /** resolução embutida (questões de prova completa aprovadas pela banca) */
