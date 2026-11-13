@@ -85,5 +85,98 @@
    "data": "2026-11-13",
    "lote": "mat-0052"
   }
+ },
+ "P5489bff2": {
+  "n": "55",
+  "conceito": "Reaproveitamento em etapas: cada 5 sobras viram um sabonete novo, que também deixa sobra.",
+  "equivocos": {
+   "A": "M04.5:ignorou-reaproveitamento",
+   "B": "M04.5:so-a-parte-nova",
+   "C": "M04.5:parou-na-primeira-rodada",
+   "E": "M04.5:valor-que-nao-fecha"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada sabonete usado deixa uma sobra, e 5 sobras fazem um sabonete. O sabonete refeito também é usado e deixa sobra. Por isso é preciso repetir a conta até sobrarem menos de 5 sobras.",
+    "formulas": [
+     "novos = sobras ÷ 5 (parte inteira)",
+     "sobras seguintes = novos + o que restou da divisão"
+    ],
+    "simbolos": []
+   },
+   "pista": "Não pare na primeira rodada: os sabonetes refeitos também deixam sobra.",
+   "passos": [
+    {
+     "faz": "Use os 35 sabonetes",
+     "conta": "35 hóspedes → 35 sobras",
+     "porque": "Cada hóspede recebe um sabonete.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Refaça com as sobras",
+     "conta": "35 ÷ 5 = 7 sabonetes novos → 7 sobras",
+     "porque": "Cinco sobras formam um sabonete.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Repita",
+     "conta": "7 = 5 + 2 → 1 sabonete novo; restam 2 + 1 = 3 sobras",
+     "porque": "Com 3 sobras não dá outro sabonete.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some os hóspedes",
+     "conta": "35 + 7 + 1 = 43 → alternativa D",
+     "porque": "Cada sabonete atende um hóspede.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 43 hóspedes",
+   "checagem": "Cada hóspede consome 4/5 de sabonete de forma líquida: 43 · 4/5 = 34,4 sabonetes, que cabem nos 35 (sobram 0,6 = 3 sobras de 1/5).",
+   "erradas": {
+    "A": "35 sai de ignorar o reaproveitamento: só os sabonetes da dispensa.",
+    "B": "07 sai de contar só os sabonetes refeitos na primeira rodada: 35 ÷ 5 = 7.",
+    "C": "42 sai de parar na primeira rodada: 35 + 7, esquecendo que os 7 novos deixam 7 sobras.",
+    "E": "40 não confere: depois da primeira rodada já são 35 + 7 = 42 hóspedes atendidos."
+   },
+   "armadilha": "O sabonete refeito também deixa sobra.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantos hóspedes 35 sabonetes atendem com reaproveitamento das sobras.",
+    "chave": "35 + 7 + 1 = 43.",
+    "cuidado": "Repita até restarem menos de 5 sobras."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "consumo líquido",
+    "ideia": "Cada hóspede gasta 4/5 de sabonete: 35 ÷ 4/5 = 43,75, ou seja, 43 hóspedes inteiros."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "35/5 = 7",
+    "nota": "sobras viram sabonetes"
+   },
+   {
+    "linha": "7 = 5 + 2",
+    "nota": "mais 1 sabonete e restam 2"
+   },
+   {
+    "linha": "35 + 7 + 1 = 43",
+    "nota": "hóspedes atendidos"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0053"
+  }
  }
 }

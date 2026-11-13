@@ -251,5 +251,107 @@
    "data": "2026-11-13",
    "lote": "mat-0049"
   }
+ },
+ "P323771e2": {
+  "n": "17",
+  "conceito": "Imagem de y = a + b·sen(cx + d): o seno varia de −1 a 1.",
+  "equivocos": {
+   "A": "M05.1:maximo-errado",
+   "B": "M05.1:parametro-interno-na-imagem",
+   "C": "M05.1:parametro-interno-na-imagem",
+   "E": "M05.1:maximo-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Qualquer que seja o que está dentro do seno, ele vale no mínimo −1 e no máximo 1. Então y = 2 + sen(πx + π/2) vai de 2 − 1 a 2 + 1. Os valores de c e d não mudam a imagem, só o período e o deslocamento.",
+    "formulas": [
+     "−1 ≤ sen(θ) ≤ 1",
+     "y = a + b·sen(θ) com b > 0: a − b ≤ y ≤ a + b"
+    ],
+    "simbolos": [
+     [
+      "sen",
+      "seno"
+     ],
+     [
+      "imagem",
+      "conjunto dos valores que y assume"
+     ]
+    ]
+   },
+   "pista": "Comece pelo intervalo do seno e some 2.",
+   "passos": [
+    {
+     "faz": "Substitua os parâmetros",
+     "conta": "y = 2 + 1 · sen(πx + π/2)",
+     "porque": "a = 2, b = 1, c = π, d = π/2.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Use o limite do seno",
+     "conta": "−1 ≤ sen(πx + π/2) ≤ 1",
+     "porque": "Vale para qualquer argumento.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some 2",
+     "conta": "2 − 1 ≤ y ≤ 2 + 1 → 1 ≤ y ≤ 3",
+     "porque": "Somar a mesma constante desloca o intervalo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "[1, 3] → alternativa D",
+     "porque": "Esse é o conjunto imagem.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — [1, 3]",
+   "checagem": "Teste dois pontos: x = 0 dá 2 + sen(π/2) = 3 (máximo) e x = 1 dá 2 + sen(3π/2) = 1 (mínimo).",
+   "erradas": {
+    "A": "[1, 2] não confere: em x = 0, y = 2 + sen(π/2) = 3, fora do intervalo.",
+    "B": "[1, π] sai de usar c = π como máximo; mas c fica dentro do seno e não muda a imagem. O máximo é 3.",
+    "C": "[1, 2π] não confere: y nunca passa de 2 + 1 = 3, e 2π ≈ 6,28.",
+    "E": "[1, 4] não confere: chegar a 4 exigiria sen = 2, e o seno não passa de 1."
+   },
+   "armadilha": "c e d mudam o período e o deslocamento, não a imagem.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A imagem de y = 2 + sen(πx + π/2).",
+    "chave": "O seno vai de −1 a 1, então y vai de 1 a 3.",
+    "cuidado": "Só a e b definem a imagem."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "cosseno",
+    "ideia": "sen(πx + π/2) = cos(πx), então y = 2 + cos(πx), que também vai de 1 a 3."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "y = 2 + sen(πx + π/2)",
+    "nota": "parâmetros dados"
+   },
+   {
+    "linha": "y = 2 − 1 = 1",
+    "nota": "seno no mínimo"
+   },
+   {
+    "linha": "y = 2 + 1 = 3",
+    "nota": "seno no máximo"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0053"
+  }
  }
 }

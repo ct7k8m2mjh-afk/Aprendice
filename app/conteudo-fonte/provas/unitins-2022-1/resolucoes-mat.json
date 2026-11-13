@@ -150,5 +150,115 @@
    "data": "2026-11-13",
    "lote": "mat-0048"
   }
+ },
+ "Pa3c98944": {
+  "n": "11",
+  "conceito": "Função afim por dois pontos de tabela: coeficiente angular, valor inverso e valor em x = 0.",
+  "equivocos": {
+   "B": "M05.1:afim-tratada-como-linear",
+   "C": "M05.1:item-mal-testado",
+   "D": "M05.1:afim-tratada-como-linear",
+   "E": "M05.1:item-mal-testado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A resistência y é função do 1.º grau do consumo x. A tabela dá dois pontos; a taxa é Δy ÷ Δx. Com a lei pronta, teste os itens II (achar x para y = 23,1) e III (calcular y em x = 0).",
+    "formulas": [
+     "a = Δy ÷ Δx",
+     "y = 22,6 + a · (x − 330)"
+    ],
+    "simbolos": [
+     [
+      "MPa",
+      "megapascal, unidade de resistência"
+     ],
+     [
+      "kg/m³",
+      "quilogramas de cimento por metro cúbico de concreto"
+     ]
+    ]
+   },
+   "pista": "Calcule o coeficiente angular com os dois pontos da tabela.",
+   "passos": [
+    {
+     "faz": "Calcule a taxa",
+     "conta": "a = (27,1 − 22,6)/(420 − 330) = 4,5/90 = 0,05",
+     "porque": "Item I verdadeiro.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste o item II",
+     "conta": "23,1 = 22,6 + 0,05 · (x − 330) → x − 330 = 10 → x = 340",
+     "porque": "Dá 340 kg/m³, não 350: item II falso.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste o item III",
+     "conta": "y(0) = 22,6 − 0,05 · 330 = 22,6 − 16,5 = 6,1",
+     "porque": "Com consumo zero, a lei dá 6,1 MPa, não zero: item III falso.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "só I verdadeira → alternativa A",
+     "porque": "II e III caem.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — Somente I é verdadeira",
+   "checagem": "Lei completa: y = 0,05x + 6,1. Em 420: 21 + 6,1 = 27,1; em 330: 16,5 + 6,1 = 22,6. Fecha com a tabela.",
+   "erradas": {
+    "B": "Inclui III, mas y(0) = 6,1 MPa, não zero: a reta não passa pela origem.",
+    "C": "Exclui I, que é verdadeira (4,5/90 = 0,05), e inclui II, mas para 23,1 MPa o consumo é 340 kg/m³.",
+    "D": "II e III são falsas: x = 340 para 23,1 MPa e y(0) = 6,1.",
+    "E": "Inclui II: com 350 kg/m³ a resistência seria 22,6 + 0,05 · 20 = 23,6 MPa, não 23,1."
+   },
+   "armadilha": "Função do 1.º grau não é proporcional: ela tem termo independente (6,1), então y(0) não é zero.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quais itens sobre a relação consumo × resistência são verdadeiros.",
+    "chave": "a = 0,05 e y = 0,05x + 6,1: I verdadeiro, II dá 340, III dá 6,1.",
+    "cuidado": "Termo independente diferente de zero: a reta não passa pela origem."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "lei completa",
+    "ideia": "Escreva y = 0,05x + 6,1 e teste: y(350) = 23,6 ≠ 23,1 e y(0) = 6,1 ≠ 0."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "a = (27,1 − 22,6)/(420 − 330) = 4,5/90 = 0,05",
+    "nota": "item I"
+   },
+   {
+    "linha": "23,1 = 22,6 + 0,05 · (x − 330)",
+    "nota": "item II"
+   },
+   {
+    "linha": "0,5 = 0,05 · (x − 330)",
+    "nota": "o 22,6 passa subtraindo"
+   },
+   {
+    "linha": "x − 330 = 0,5/0,05 = 10",
+    "nota": "o 0,05 passa dividindo"
+   },
+   {
+    "linha": "22,6 − 0,05 · 330 = 6,1",
+    "nota": "item III"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0053"
+  }
  }
 }

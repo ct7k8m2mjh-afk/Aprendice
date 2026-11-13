@@ -173,5 +173,109 @@
    "data": "2026-11-13",
    "lote": "mat-0046"
   }
+ },
+ "P293f051b": {
+  "n": "33",
+  "conceito": "Modelar a área do retângulo com perímetro fixo e achar o domínio.",
+  "equivocos": {
+   "B": "M05.2:perimetro-como-semiperimetro",
+   "C": "M05.2:perimetro-dividido-por-4",
+   "D": "M05.2:valor-que-nao-fecha"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Perímetro 120 significa 2x + 2y = 120, ou seja, x + y = 60: os dois lados somam metade do perímetro. Então o outro lado é 60 − x e a área é x(60 − x). Os dois lados precisam ser positivos.",
+    "formulas": [
+     "2x + 2y = 120 → y = 60 − x",
+     "A = x · y"
+    ],
+    "simbolos": [
+     [
+      "x",
+      "um dos lados, em metros"
+     ],
+     [
+      "A(x)",
+      "área em m²"
+     ]
+    ]
+   },
+   "pista": "Some só dois lados vizinhos: eles valem metade do perímetro.",
+   "passos": [
+    {
+     "faz": "Use o perímetro",
+     "conta": "2x + 2y = 120 → x + y = 60 → y = 60 − x",
+     "porque": "Lados opostos do retângulo são iguais.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escreva a área",
+     "conta": "A(x) = x(60 − x) = 60x − x²",
+     "porque": "Lado vezes lado.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache o domínio",
+     "conta": "x > 0 e 60 − x > 0 → 0 < x < 60",
+     "porque": "Lado não pode ser zero nem negativo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "60x − x², 0 < x < 60 → alternativa A",
+     "porque": "Lei e domínio batem.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — A(x) = 60x − x², 0 < x < 60",
+   "checagem": "Teste x = 20: lados 20 e 40, perímetro 2 · 60 = 120 e área 800; a fórmula dá 60 · 20 − 400 = 800.",
+   "erradas": {
+    "B": "120x − x² sai de tratar 120 como a soma de dois lados (x + y = 120), mas 120 é a soma dos quatro.",
+    "C": "30x − x² sai de dividir o perímetro por 4 como se fosse para um lado só; com x = 10 daria 200 m², mas lados 10 e 50 dão 500 m².",
+    "D": "40x − x² não confere: com x = 10 daria 300 m², mas lados 10 e 50 dão 500 m²."
+   },
+   "armadilha": "O perímetro soma os quatro lados: dois lados vizinhos somam 60, não 120.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A área da praça em função de um lado x.",
+    "chave": "x + y = 60, então A(x) = x(60 − x) = 60x − x², com 0 < x < 60.",
+    "cuidado": "Divida o perímetro por 2, não por 4."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste numérico",
+    "ideia": "Escolha x = 10: lados 10 e 50, área 500; só 60x − x² dá 500."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "2x + 2y = 120",
+    "nota": "perímetro"
+   },
+   {
+    "linha": "x + y = 120/2 = 60",
+    "nota": "divide por 2"
+   },
+   {
+    "linha": "y = 60 − x",
+    "nota": "o x passa subtraindo"
+   },
+   {
+    "linha": "A = x(60 − x) = 60x − x²",
+    "nota": "área"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0053"
+  }
  }
 }

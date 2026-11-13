@@ -1,0 +1,106 @@
+{
+ "P8be84563": {
+  "n": "34",
+  "conceito": "Minimizar o tempo total distribuindo velocidades entre trechos: o trecho mais longo vai com a maior velocidade.",
+  "equivocos": {
+   "A": "M04.5:valor-que-nao-fecha",
+   "C": "M04.5:pareamento-errado",
+   "D": "M04.5:pareamento-errado",
+   "E": "M04.5:pior-caso-no-lugar-do-melhor"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Tempo de cada trecho é distância dividida pela velocidade. Para o total ser o menor possível, a maior velocidade deve ficar com o trecho mais longo, e a menor com o mais curto. São só 6 combinações; a regra evita testar todas.",
+    "formulas": [
+     "tempo = distância ÷ velocidade",
+     "menor tempo: maior velocidade no maior trecho"
+    ],
+    "simbolos": [
+     [
+      "km/h",
+      "quilômetros percorridos em uma hora"
+     ]
+    ]
+   },
+   "pista": "Ordene os trechos e as velocidades do maior para o menor antes de dividir.",
+   "passos": [
+    {
+     "faz": "Ordene trechos e velocidades",
+     "conta": "trechos: 18 > 15 > 9 | velocidades: 10 > 9 > 6",
+     "porque": "Casar maior com maior faz os trechos longos andarem rápido.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule cada tempo",
+     "conta": "18/10 + 15/9 + 9/6 = 1,8 + 1,666... + 1,5",
+     "porque": "Cada trecho com a sua velocidade.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some",
+     "conta": "1,8 + 5/3 + 1,5 = 149/30 h ≈ 4,9667 h",
+     "porque": "Somando em fração fica exato.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Converta a parte decimal",
+     "conta": "0,9667 h · 60 = 58 min → 4 h 58 min",
+     "porque": "A parte depois da vírgula é fração de hora, não minutos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "4 h 58 min → alternativa B",
+     "porque": "É o menor tempo entre as combinações.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 4 h e 58 min",
+   "checagem": "As seis combinações dão 5 h 18, 5 h 24, 4 h 58, 5 h 34, 5 h 00 e 5 h 30 min; a menor é 4 h 58 min.",
+   "erradas": {
+    "A": "4 h 48 min não confere: nenhuma das seis distribuições dá esse tempo; a menor é 4 h 58 min.",
+    "C": "5 h 24 min sai de 15 km a 6 km/h, 9 km a 10 km/h e 18 km a 9 km/h: 2,5 + 0,9 + 2 = 5,4 h.",
+    "D": "5 h 30 min sai de 15 km a 10 km/h, 9 km a 9 km/h e 18 km a 6 km/h: 1,5 + 1 + 3 = 5,5 h.",
+    "E": "5 h 34 min é o pior caso: 15 km a 9 km/h, 9 km a 10 km/h e 18 km a 6 km/h dão 5,5666... h, o maior tempo possível."
+   },
+   "armadilha": "Ler 4,9667 h como 4 h 96 min ou ignorar que o maior trecho precisa da maior velocidade.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O menor tempo total para os três trechos.",
+    "chave": "18/10 + 15/9 + 9/6 = 149/30 h = 4 h 58 min.",
+    "cuidado": "Converta a parte decimal da hora multiplicando por 60."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "testar todas",
+    "ideia": "São 3! = 6 maneiras de distribuir as velocidades; calcule as seis e escolha a menor."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "18/10 + 15/9 + 9/6 = 149/30",
+    "nota": "maior trecho com maior velocidade"
+   },
+   {
+    "linha": "149/30 = 4 + 29/30",
+    "nota": "4 horas inteiras"
+   },
+   {
+    "linha": "29/30 · 60 = 58",
+    "nota": "minutos"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0053"
+  }
+ }
+}

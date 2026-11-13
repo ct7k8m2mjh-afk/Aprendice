@@ -551,5 +551,108 @@
    "data": "2026-11-13",
    "lote": "mat-0051"
   }
+ },
+ "P4fc7bdf7": {
+  "n": "23",
+  "conceito": "Função definida por partes: trecho linear, trecho constante e trecho exponencial.",
+  "equivocos": {
+   "A": "M05.1:dado-por-segundo-lido-como-total",
+   "B": "M05.1:formato-de-trecho-trocado",
+   "D": "M05.1:multiplicou-em-vez-de-somar",
+   "E": "M05.1:esqueceu-posicao-inicial"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada trecho tem um comportamento: velocidade constante é reta; parado é trecho horizontal; dobrar a cada segundo é crescimento exponencial (curva que fica cada vez mais inclinada). Calcule também os valores nas mudanças: t = 4 e t = 9.",
+    "formulas": [
+     "s = k + 3t (0 ≤ t ≤ 4)",
+     "s constante (4 ≤ t ≤ 6)",
+     "s = s(6) · 2^(t − 6) (6 ≤ t ≤ 9)"
+    ],
+    "simbolos": [
+     [
+      "k",
+      "posição inicial, em metros"
+     ],
+     [
+      "s",
+      "posição"
+     ],
+     [
+      "t",
+      "tempo, em segundos"
+     ]
+    ]
+   },
+   "pista": "Descreva cada trecho com uma palavra (reta, parado, dobra) e calcule s(4) e s(9).",
+   "passos": [
+    {
+     "faz": "Calcule s(4)",
+     "conta": "s(4) = k + 3 · 4 = k + 12",
+     "porque": "3 m por segundo durante 4 s; trecho reto.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Trecho parado",
+     "conta": "s(6) = s(4) = k + 12",
+     "porque": "Entre 4 s e 6 s não se move: trecho horizontal.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Dobre três vezes",
+     "conta": "s(9) = (k + 12) · 2³ = (k + 12) · 8",
+     "porque": "De 6 a 9 s são 3 segundos, cada um dobra a distância: curva exponencial.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare com os gráficos",
+     "conta": "reta até k + 12, horizontal, curva até (k + 12) · 8 → alternativa C",
+     "porque": "Só C tem os três formatos e os dois valores.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — reta de k até k + 12, horizontal até t = 6 e curva crescente até (k + 12) · 8",
+   "checagem": "Ordem de grandeza: com k = 0, a partícula vai a 12 m, fica parada e depois passa por 24, 48 e 96 m.",
+   "erradas": {
+    "A": "Usa 3 m em 4 s no total (k + 3) e multiplica por 6 no fim; são 3 m a cada segundo (k + 12) e 2³ = 8.",
+    "B": "Primeiro trecho curvo, mas velocidade constante dá reta; último trecho reto e × 6, mas dobrar a cada segundo dá curva e × 8.",
+    "D": "Multiplica k em vez de somar (12k, 36k) e desenha o último trecho como reta.",
+    "E": "Esquece o k (marca 12 e 96) e desenha o primeiro trecho curvo, mas ele é reto."
+   },
+   "armadilha": "Dobrar 3 vezes é × 2³ = × 8, não × 6; e o primeiro trecho soma 12 a k.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O gráfico posição × tempo da partícula.",
+    "chave": "Reta até k + 12, parado até t = 6, depois × 2 por segundo até (k + 12) · 8.",
+    "cuidado": "Dobrar três vezes multiplica por 8."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "eliminação por valor",
+    "ideia": "Só confira s(9): 2 · 2 · 2 = 8 vezes k + 12; só C traz (k + 12) · 8 e k + 12."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "k + 3 · 4 = k + 12",
+    "nota": "posição em t = 4"
+   },
+   {
+    "linha": "(k + 12) · 2³ = (k + 12) · 8",
+    "nota": "dobra em t = 7, 8 e 9"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0053"
+  }
  }
 }
