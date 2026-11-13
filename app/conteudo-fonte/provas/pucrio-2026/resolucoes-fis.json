@@ -334,5 +334,129 @@
    "data": "2026-11-13",
    "lote": "fis-0047"
   }
+ },
+ "P87c92a93": {
+  "n": "30",
+  "conceito": "Calcular a força mínima para um torque dado quando a força é oblíqua à chave.",
+  "equivocos": {
+   "A": "F03.6:ignorou-o-torque",
+   "B": "F03.6:esqueceu-o-seno-do-angulo",
+   "C": "F03.6:errou-o-angulo-do-torque",
+   "E": "F03.6:confundiu-suficiente-com-minimo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Torque mede o poder de girar de uma força. Só a parte da força perpendicular à chave faz girar; a parte ao longo da chave só puxa o cabo. Aqui F faz 30° com o eixo da chave, então a parte que gira é F × sen 30°. O comprimento vem em centímetro e o torque em N.m: converta antes.",
+    "formulas": [
+     "torque = F × D × sen α",
+     "1 m = 100 cm"
+    ],
+    "simbolos": [
+     [
+      "torque",
+      "efeito de giro de uma força, em N.m"
+     ],
+     [
+      "α",
+      "ângulo entre a força F e o eixo da chave"
+     ],
+     [
+      "D",
+      "distância do parafuso ao ponto onde F atua"
+     ],
+     [
+      "N.m",
+      "newton vezes metro, unidade de torque"
+     ]
+    ]
+   },
+   "pista": "Decomponha F em duas partes: uma ao longo da chave e outra perpendicular a ela. Qual das duas gira o parafuso?",
+   "passos": [
+    {
+     "faz": "Converta o comprimento para metro",
+     "conta": "D = 20 cm = 0,20 m",
+     "porque": "O torque está em N.m, então a distância tem de estar em metro.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Separe a parte de F que gira",
+     "conta": "F(perpendicular) = F × sen 30° = 0,5 F",
+     "porque": "O ângulo de 30° é medido a partir do eixo da chave; a componente perpendicular a esse eixo usa o seno.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Monte o torque e iguale ao mínimo",
+     "conta": "0,5 F × 0,20 = 2,0 → 0,10 F = 2,0",
+     "porque": "Torque é a componente perpendicular vezes o braço D.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole F",
+     "conta": "F = 2,0/0,10 = 20 N",
+     "porque": "Divida o torque pelo fator 0,10 m.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "F = 20 N → alternativa D",
+     "porque": "É a menor força que, com esse ângulo, atinge os 2,0 N.m.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 20 N.",
+   "checagem": "Pelo braço de alavanca: a distância do parafuso à linha de ação de F é D × sen 30° = 0,20 × 0,5 = 0,10 m. Então F × 0,10 = 2,0, e F = 20 N de novo.",
+   "erradas": {
+    "A": "Não confere: com F = 0 não há torque nenhum, e o parafuso precisa de 2,0 N.m.",
+    "B": "Sai de usar a força inteira como se fosse perpendicular: 2,0/0,20 = 10 N. Com 30°, só metade de F gira a chave.",
+    "C": "Não confere: 15 × 0,5 × 0,20 = 1,5 N.m, abaixo dos 2,0 N.m pedidos. Nem usando o cosseno sai 15: 2,0/(0,20 × 0,87) ≈ 11,5 N.",
+    "E": "Não confere: 30 × 0,5 × 0,20 = 3,0 N.m solta o parafuso, mas não é o mínimo; 20 N já bastam."
+   },
+   "armadilha": "Usar F inteira como se fosse perpendicular à chave: só a componente F × sen 30° gira o parafuso.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A força mínima F, a 30° do eixo da chave de 20 cm, para um torque de 2,0 N.m.",
+    "chave": "Torque = F × D × sen 30° = 0,10 F = 2,0, logo F = 20 N.",
+    "cuidado": "Converter cm em m e usar o seno, porque o ângulo é com o eixo da chave."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "braço de alavanca",
+    "ideia": "A linha de ação de F passa a D × sen 30° = 0,10 m do parafuso; F = 2,0/0,10 = 20 N."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "D = 20 cm = 0,20 m",
+    "nota": "converte para metro"
+   },
+   {
+    "linha": "F⊥ = F × sen 30° = 0,5 F",
+    "nota": "só a parte perpendicular gira"
+   },
+   {
+    "linha": "0,5 F × 0,20 = 2,0",
+    "nota": "torque mínimo"
+   },
+   {
+    "linha": "0,10 F = 2,0",
+    "nota": "simplifica"
+   },
+   {
+    "linha": "F = 2,0/0,10 = 20 N",
+    "nota": "isola F"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "fis-0051"
+  }
  }
 }

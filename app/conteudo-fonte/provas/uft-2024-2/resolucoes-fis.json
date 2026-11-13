@@ -333,5 +333,115 @@
    "data": "2026-11-13",
    "lote": "fis-0047"
   }
+ },
+ "P3788ba43": {
+  "n": "59",
+  "conceito": "Usar torques das forças de sustentação para inclinar um drone para a frente.",
+  "equivocos": {
+   "B": "F03.6:reduziu-os-motores-de-tras",
+   "C": "F03.6:reducao-simetrica-sem-torque",
+   "D": "F03.6:reducao-simetrica-sem-torque"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Parado no ar, as quatro hélices dão a mesma sustentação e os torques em torno do centro se anulam. Para ir para a frente, o drone inclina o nariz para baixo: a sustentação passa a ter uma componente que aponta para a frente. Para inclinar assim, a sustentação na frente tem de ficar menor que a de trás: reduz-se a rotação dos motores da frente. A seta tracejada mostra que a frente é para cima no desenho.",
+    "formulas": [
+     "torque = força × distância ao centro",
+     "menos rotação → menos sustentação"
+    ],
+    "simbolos": [
+     [
+      "sustentação",
+      "força para cima que a hélice faz ao jogar ar para baixo"
+     ],
+     [
+      "torque",
+      "efeito de giro de uma força em torno do centro do drone"
+     ]
+    ]
+   },
+   "pista": "Para o drone andar para a frente, para que lado ele precisa se inclinar?",
+   "passos": [
+    {
+     "faz": "Ache a frente nos dois desenhos",
+     "conta": "seta para cima: frente | \"+\": motor 1 | \"X\": motores 4 e 1",
+     "porque": "Na configuração em X, os dois motores de cima ficam do lado da frente.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Diga a inclinação necessária",
+     "conta": "frente desce → sustentação inclina para a frente",
+     "porque": "Inclinada, a sustentação ganha componente horizontal que empurra o drone para a frente.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Crie o torque de inclinação",
+     "conta": "sustentação na frente < sustentação atrás",
+     "porque": "Com menos força na frente, o torque das hélices de trás vence e a frente abaixa.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Descarte o que não inclina",
+     "conta": "reduzir 1 e 3 juntos ou os quatro → só desce, não inclina",
+     "porque": "Reduções simétricas em relação ao centro não criam torque para a frente.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "\"+\": motor 1 | \"X\": motores 1 e 4 → alternativa A",
+     "porque": "São os motores do lado da frente em cada configuração.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — Configuração \"+\": motor 1. Configuração \"X\": motores 1 e 4.",
+   "checagem": "Faça o caso oposto: reduzindo os motores de trás (3 no \"+\"; 2 e 3 no \"X\"), a traseira abaixa e a sustentação inclina para trás: o drone recua. A frente tem de ser o lado que abaixa.",
+   "erradas": {
+    "B": "Reduz os motores de trás (3; 2 e 3): a traseira abaixa e o drone vai para trás.",
+    "C": "No \"+\", reduzir 1 e 3 diminui frente e trás igualmente: não cria torque para inclinar. No \"X\", 2 e 3 são os de trás.",
+    "D": "Reduzir 1 e 3 no \"+\" ou os quatro no \"X\" é simétrico: o drone só perde sustentação e desce, sem inclinar."
+   },
+   "armadilha": "Achar que basta reduzir motores para andar: o que move para a frente é a inclinação, que só aparece com redução assimétrica na frente.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quais motores reduzir para o drone sair do pairado e ir para a frente, nas configurações \"+\" e \"X\".",
+    "chave": "Menos sustentação na frente gera torque que abaixa o nariz; a sustentação inclinada empurra para a frente.",
+    "cuidado": "Na configuração em X, a frente tem dois motores (1 e 4)."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "eliminação",
+    "ideia": "Só inclina para a frente quem reduz apenas o lado da frente: no \"+\" é o 1, no \"X\" são o 1 e o 4; só a alternativa A traz os dois."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "frente: \"+\" → 1 | \"X\" → 1 e 4",
+    "nota": "pela seta"
+   },
+   {
+    "linha": "sustentação na frente < atrás",
+    "nota": "torque abaixa a frente"
+   },
+   {
+    "linha": "sustentação inclinada → componente para a frente",
+    "nota": "o drone avança"
+   },
+   {
+    "linha": "alternativa A",
+    "nota": "reduz só os da frente"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "fis-0051"
+  }
  }
 }
