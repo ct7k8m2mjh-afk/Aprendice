@@ -66,7 +66,7 @@ Faltam 827 questões sem resolução (fora as que estão em lote, pendentes ou c
 | bio-0058 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | bio-0059 | provas-alvo nível 1-6 | 60 | gravado | 59 | 1 | 0 |
 | bio-0060 | demais nível 1-6 | 60 | gravado | 60 | 0 | 0 |
-| bio-0061 | demais nível 1-6 | 60 | aberto |  |  |  |
+| bio-0061 | demais nível 1-6 | 60 | gravado | 59 | 1 | 0 |
 
 ## Pendentes (falta de certeza absoluta)
 
@@ -78,6 +78,7 @@ Faltam 827 questões sem resolução (fora as que estão em lote, pendentes ou c
 | P98fb7dec | UECE 2024 2024.2 – 1ª fase · questão 65 | B07.4 coração e as duas circulações (tema B07 Fisiologia humana I) | classificação: é de Educação Física (UECE 2024.2, questão 65: conceito de literacia física), não de Biologia. |
 | P50441003 | UECE 2025 2025.2 – 1ª fase · questão 59 | B08.3 sistema nervoso autônomo e arco reflexo (tema B08 Neuro, hormônios, imune e reprodução) | gabarito preliminar A, mantido pela banca no parecer dos recursos (Comunicado 81/2025 CEV/UECE, https://www.cev.uece.br/wp-content/uploads/2025/05/comunicado81.2025cev.pdf), mas sem gabarito definitivo publicado e com erro conceitual na própria alternativa (chama a rodopsina de neurotransmissor e a liga aos cones); resolvedor e conferente chegam a A só por eliminação; decisão do dono |
 | P56bf6cb4 | UECE 2026 2026.1 – 1ª fase · questão 66 | B07.1 os quatro tecidos fundamentais (tema B07 Fisiologia humana I) | classificação: é de Educação Física (UECE 2026.1, questão 66: princípios do treinamento desportivo), não de Biologia. |
+| Pb536f4cb | UEG 2023 2023/2 · questão 38 | B08.7 ciclo menstrual, fecundação, clivagem e folhetos embrionários (tema B08 Neuro, hormônios, imune e reprodução) | classificação: é de Química (o comando pede classificar reação como endotérmica ou exotérmica pela variação de entalpia ΔH = Hp − Hr; o ciclo menstrual é só contexto) |
 | Pc6c1048f | UEG 2026 Medicina 2026/1 · questão 26 | B08.3 sistema nervoso autônomo e arco reflexo (tema B08 Neuro, hormônios, imune e reprodução) | classificação: é de física (cinemática: distância = velocidade × tempo de reação; está entre as questões de Física 24 a 28 da prova) |
 | Pa1b2ee02 | UEL 2020 1ª fase · questão 20 | B05.3 código genético e tradução (tema B05 Genética molecular) | classificação: é de Matemática (probabilidade e potências: (1/4) elevado a 150 milhões = 2 elevado a −3 × 10^8); o DNA é só o contexto. |
 | P3c08d8ee | Unesp 2024 1ª fase – meio de ano · questão 78 | B12.6 vertebrados, classificação, nomenclatura e filogenia (tema B12 Diversidade dos seres vivos) | classificação: é de Física (propagação de calor: convecção em correntes de ar quente; não cobra Biologia) |

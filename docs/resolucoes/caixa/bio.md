@@ -13,3 +13,13 @@ Reclassificar (os equívocos já usam o conteúdo certo):
 - P82144199 → B10.3 (protozooses e vetores); está em B08.6
 - Pa18eb3c1 → B01.4 (endomembranas); está em B08.6
 - P2cf1e5c1 → B04.4 (aneuploidias); a entrada trazia um campo nota_classificacao que o lote.py não grava
+
+## 2026-11-13 05:31 UTC — FIM — session_01PveEKb648gnNx7gv9Y2Xbs
+Encerrando a vez (troca pelo tamanho da conversa). Último lote gravado: bio-0061. Nenhum lote aberto.
+Nesta sessão: bio-0059 (59 ok, 1 pendente), bio-0060 (60 ok), bio-0061 (59 ok, 1 pendente) = 178 resoluções.
+Testes depois do bio-0060: converte + tsc + vitest verdes (786 passed).
+Pendências novas do bio-0061:
+- Pb536f4cb: classificação: é de Química (classificar reação como endotérmica/exotérmica por ΔH; o ciclo menstrual é só contexto).
+As demais pendências estão nos blocos acima (Pc6c1048f Física; P524982f4 alternativa D com texto-base colado; reclassificações).
+Status Biologia (lote.py status): 826 faltam no total da linha bio.
+Dica para a próxima sessão: o lote.py procura  no nível da questão (não dentro de ); os briefs em docs/resolucoes/trabalho/BRIEF-*-bio.md já dizem isso.
