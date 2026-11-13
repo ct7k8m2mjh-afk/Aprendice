@@ -1,6 +1,6 @@
 # Física: resoluções (gerado por lote.py em 2026-11-13)
 
-Faltam 1271 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 755; ENEM nível 7-10 31; provas-alvo nível 7-10 186; demais nível 7-10 299.
+Faltam 1241 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 725; ENEM nível 7-10 31; provas-alvo nível 7-10 186; demais nível 7-10 299.
 
 ## Lotes
 
@@ -55,8 +55,9 @@ Faltam 1271 questões sem resolução (fora as que estão em lote, pendentes ou 
 | fis-0047 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | fis-0048 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | fis-0049 | demais nível 1-6 | 30 | gravado | 29 | 0 | 1 |
-| fis-0050 | demais nível 1-6 | 30 | aberto |  |  |  |
+| fis-0050 | demais nível 1-6 | 30 | gravado | 29 | 1 | 0 |
 | fis-0051 | demais nível 1-6 | 30 | aberto |  |  |  |
+| fis-0052 | demais nível 1-6 | 30 | aberto |  |  |  |
 
 ## Pendentes (falta de certeza absoluta)
 
@@ -69,6 +70,7 @@ Faltam 1271 questões sem resolução (fora as que estão em lote, pendentes ou 
 | Ped0dc1fd | UDESC 2024 Verão 2024.1 · questão 52 | F02.4 queda livre e lançamento vertical (tema F02 Cinemática) | Com g = 10 m/s², percorrer os últimos 2 m em 0,1 s dá velocidade de 20,5 m/s no solo e altura de queda de 21,0 m, que são exatamente 7 vãos de 3 m (sétimo andar se a janela do térreo estiver no nível do solo). A letra oficial é D (sexto andar), que sai da aproximação v ≈ 20 m/s (20 m de queda) ou de uma altura da janela do térreo que o enunciado não informa. Sem como justificar a letra oficial sem suposição, fica pendente. Busca na web não achou resolução publicada. |
 | Pb1b726b3 | UERJ 2025 2º Exame de Qualificação · questão 7 | F02.1 velocidade média e movimento uniforme (tema F02 Cinemática) | classificação: é de Geografia (UERJ 2025, 2º Exame de Qualificação, questão 7: redes de transporte na França; a resposta oficial, A, “posição relativa na rede técnica”, compara cidades ligadas ou não por linha de trem de alta velocidade). Está classificada em Física, F02.1 velocidade média. |
 | Pf32f80b2 | UPE 2021 SSA3 · questão 72 | F01.5 fóton, efeito fotoelétrico e modelo de Bohr (tema F01 Fundamentos e grandezas) | O print não traz as constantes necessárias (h, c, massa do elétron). Além disso, na aniquilação de um par lento saem dois fótons de 0,511 MeV, de comprimento de onda cerca de 0,024 angstrom, valor que não está nas alternativas; a letra oficial (E, 1,2 × 10⁻²) só sai tratando a energia total do par como um único fóton. Sem certeza de como ensinar isso sem erro, fica pendente. Busca na web não achou resolução publicada. |
+| P7f440cd0 | URCA 2025 2025.1 · questão 2 | F03.3 atrito e plano inclinado (tema F03 Dinâmica e forças) | A física dá 1000 N (A): o atrito estático máximo 0,5 × F tem de igualar o peso 500 N, logo F = 500/0,5 = 1000 N. O gabarito oficial definitivo da CEV-URCA 2025.1 (https://vestibulares.estrategia.com/portal/wp-content/uploads/2025/01/urca-2025-gabarito.pdf) mantém D (2000 N), sem anulação, e não achei leitura do enunciado nem resolução publicada que leve a 2000 N; sem certeza para explicar a oficial. |
 
 ## Divergências de gabarito (o dono decide)
 
