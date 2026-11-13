@@ -33,7 +33,7 @@ quando chegar a hora (passo 9 do prompt)."
 | Física | session_01PveEKaLLM5an4P4mkWzqv3 | trabalhando |
 | Química | session_01PveEKXEZ197XmbuWmKkDPw | trabalhando |
 | Biologia | session_01PveEKaZX71znbULe85ap8G | trabalhando |
-| Português | session_01PveEKZK2wY3DcaPfgMBKVX | trabalhando (69%); mandada parar de abrir lote e mandar TROCA (13/11 00h20) |
+| Português | session_01PveEKaTKHh9kRmYcfPdmUA | trabalhando (aberta 13/11 00h50; antiga session_01PveEKZK2wY3DcaPfgMBKVX mandou TROCA após por-0071: pode arquivar) |
 | Inglês | session_01PveEKYvFj3v794d3jbEjQY | matéria concluída, tudo gravado: pode arquivar (dono avisado) |
 | Geografia | session_01PveEKYE1nkNeafq9SNBU2b | pausada, tudo gravado (até geo-0038; faltam 1.476): pode arquivar (dono avisado 13/11) |
 | Filosofia e Sociologia | session_01PveEKWgecw6NvvouAmBWM2 | matéria concluída (13/11), tudo gravado: pode arquivar (dono avisado) |
@@ -42,6 +42,14 @@ quando chegar a hora (passo 9 do prompt)."
 Desativadas (não mandar nada): Fable session_01PveEKXU47Vds1gGREvakqY, session_01PveEKazGNg4UZjknkJiLtJ,
 session_01PveEKaAcCyTZHYawMeybog; Inglês antiga session_01PveEKYMQYJ9tRsSFLsoey8; Matemática duplicada
 session_01PveEKb4hnDGKRb7Gtd9hCr. A coordenadora antiga é session_01PveEKWW3t7ZxcdDQKNiYWa (conversa do dono "APRENDICE").
+
+## Reclassificar (recados das sessões, 13/11)
+- Matemática: P7c50dc09 (Física, ondas), Pb3deaa68 (Biologia, níveis tróficos), Pb906bf2a (Geografia); subtema errado:
+  Pea59fe40, P632bbc24, P17e6f8b1, Pb9248592, Pc79dc928, P0ca7ab6a. Prints/dados: P19d0e8df (tabela vazia no print),
+  Pf5b6a3c2 (caderno pula a D), número divergente P14017141, P4b446079, Pf025255d.
+- Português: para Biologia P7b12298d, P73a24ac0; subtema errado Ped65eba5, P3bdc3073, Pbe8025a1, Pfe767de0, P98fee0ad,
+  P273c97a5, P5bd2916f, P9889395d, Pd86425b8, P087b8c9f. Dado: P40c29de8 (alternativa E com coluna do poema colada).
+  63 pendentes "obra:" (lotes 61-71). FMABC 2022 q16 (Pd7fbdc3f) com nota_gabarito, esperando o dono.
 
 ## Rodada da conferência (a cada 3 horas)
 1. `git pull --rebase --autostash origin app-prototipo-completo`.
