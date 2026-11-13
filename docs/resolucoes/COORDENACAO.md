@@ -34,7 +34,7 @@ Ao abrir: extra_allowed_tools = ["Bash","Edit","Write","Read","Glob","Grep","Age
 ## Sessões (13/11/2026, 00h30 UTC)
 | Matéria | Sessão | Situação |
 |---|---|---|
-| Matemática | session_01PveEKX177vB2BRfF6zV6S5 | trabalhando (aberta 13/11 00h46; antiga session_01PveEKWYPGjW3SYacWGoS7w mandou TROCA após mat-0049: pode arquivar) |
+| Matemática | session_01PveEKXeWuGGwuP9KHSuc9N | trabalhando (Matemática 3, aberta 13/11 01h40; Matemática 2 session_01PveEKX177vB2BRfF6zV6S5 mandou TROCA após mat-0053: pode arquivar) |
 | Física | session_01PveEKYTfpdPfG8PfUEbE3Q | trabalhando (aberta 13/11 01h28; antiga session_01PveEKaLLM5an4P4mkWzqv3 mandou TROCA após fis-0043: pode arquivar) |
 | Química | session_01PveEKXnC2DKmBd64gp3Zn3 | trabalhando (aberta 13/11 01h14; antiga session_01PveEKXEZ197XmbuWmKkDPw mandou TROCA após qui-0039: pode arquivar) |
 | Biologia | session_01PveEKaZX71znbULe85ap8G | 21 lotes (bio-0021 a 0045): mandada gravar e mandar TROCA (13/11 01h35) |
@@ -57,7 +57,7 @@ session_01PveEKb4hnDGKRb7Gtd9hCr. A coordenadora antiga é session_01PveEKWW3t7Z
   Química: Pa2383034 (UEG 2023-2 q36) alternativa B com "~~emissão~~" tachado na entrada; no print é itálico.
   Física: P0e47c350 (capacitores, está em F12.2), P20f45835 (defeitos da visão, em F01.4), Pf58dd11b (impulso, em F01.4).
   Português (13/11): para Artes P82bbfc0a; para Filosofia e Sociologia Pd8a099e2, P2e17d217; gramática resolvida em P01.2
-  (Fempar 2021, PUC/Anhembi). Prints P0c8c68ab, P31dcd8ee, Pbddde95d: agente refazendo. P298602be (UFT 2023/2 q14):
+  (Fempar 2021, PUC/Anhembi). Prints P0c8c68ab, P31dcd8ee, Pbddde95d refeitos e liberados (commit 70b34f43). P298602be (UFT 2023/2 q14):
   os dois especialistas deram A, o preliminar da Copese é B: fora do ar até sair o definitivo.
   63 pendentes "obra:" (lotes 61-71). FMABC 2022 q16 (Pd7fbdc3f) com nota_gabarito, esperando o dono.
 - Biologia: para Física P3c08d8ee; para Química Pc68c4acb. Dados: P039ae129 (print pega o título "LÍNGUA
