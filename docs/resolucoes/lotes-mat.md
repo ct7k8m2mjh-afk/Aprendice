@@ -54,7 +54,7 @@ Faltam 1755 questões sem resolução (fora as que estão em lote, pendentes ou 
 | mat-0046 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | mat-0047 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | mat-0048 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
-| mat-0049 | demais nível 1-6 | 30 | aberto |  |  |  |
+| mat-0049 | demais nível 1-6 | 30 | gravado | 29 | 1 | 0 |
 
 ## Pendentes (falta de certeza absoluta)
 
@@ -64,6 +64,7 @@ Faltam 1755 questões sem resolução (fora as que estão em lote, pendentes ou 
 | P78a66ef3 | UFU 2023 1ª fase · questão 68 | M05.4 função definida por partes e modular (tema M05 Funções afim e quadrática) | print cortado: o print (ufu-2023/q/068.webp) termina na alternativa C; a alternativa D, que é o gabarito, não aparece inteira. Refazer o print do PDF oficial. Conta já conferida: triângulo de base 2k e altura k, área k² = 20, k = 2√5. |
 | Pf56e32e8 | UPE 2026 SSA3 · questão 54 | M08.2 quadriláteros (tema M08 Geometria plana — áreas) | print: a questão (UPE 2026 SSA3, item 9) pede o perímetro do quadrilátero OPRQ, mas o ponto R não é definido no texto nem no print desta questão. A definição está no item 7 da mesma prova (app/conteudo-fonte/provas/upe-ssa3-2026/q/052.webp): 'quadrilátero de vértices O (0,0), P(a,0), R (a, b) e Q (0, b)'. Com isso, OPRQ é um retângulo 3 × 6, de perímetro 18 (letra D, igual ao gabarito). Falta refazer o print ou o enunciado incluindo a definição de R, para o aluno conseguir resolver. |
 | P2e08b381 | Unicamp 2022 Vestibular Indígena · questão 13 | M07.4 padrões e recorrências (tema M07 Sequências) | a questão (Unicamp 2022 Vestibular Indígena, q13) é de interpretação de texto, de Português, e está classificada em Matemática (M07.4 padrões e recorrências). Precisa ser levada para a matéria certa antes de receber resolução. |
+| Pb1863457 | Unifor 2026 2º semestre · questão 1 | M03.2 aumentos e descontos sucessivos (tema M03 Porcentagem e finanças) | Erro de enunciado (Unifor 2026.2, Medicina, q01): o dado de 36 cápsulas é incompatível com os totais (36 cápsulas, mesmo de 50 mg com 30% a mais, dão no máximo 2 340 mg, e o texto diz 4 665 mg). A única leitura que reproduz o gabarito D (40) ignora o 36 e aplica cada fase ao kit inicial: 9a = 130d − 5 110 com a ≥ 0 dá d mínimo 40 (a = 10), com um kit de 130 cápsulas. O dono decide se entra com essa leitura e um alerta. |
 
 ## Divergências de gabarito (o dono decide)
 

@@ -1,0 +1,91 @@
+{
+ "P1de8cebc": {
+  "n": "33",
+  "conceito": "Aumento e desconto sucessivos de mesma taxa.",
+  "equivocos": {
+   "B": "M03.2:sem-origem-identificada",
+   "C": "M03.2:respondeu-o-desconto",
+   "D": "M03.2:errou-a-escala"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Aumentar x% e depois descontar x% multiplica o preço por (1 + x/100)(1 − x/100) = 1 − (x/100)². Isso deve ser igual a um desconto de 2,25%, isto é, 0,9775.",
+    "formulas": [
+     "(1 + i)(1 − i) = 1 − i²"
+    ],
+    "simbolos": [
+     [
+      "i",
+      "x/100"
+     ]
+    ]
+   },
+   "pista": "Que produto notável aparece em (1 + i)(1 − i)?",
+   "passos": [
+    {
+     "faz": "Fator",
+     "conta": "1 − i² = 1 − 0,0225",
+     "porque": "Desconto de 2,25%.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolver",
+     "conta": "i² = 0,0225 → i = 0,15",
+     "porque": "i positivo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "x",
+     "conta": "x = 15 → alternativa A",
+     "porque": "Percentual.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 15",
+   "checagem": "Com o preço: 175 · 1,15 = 201,25; 201,25 · 0,85 = 171,0625; 175 · 0,9775 = 171,0625. Confere.",
+   "erradas": {
+    "B": "x = 5 dá 1 − 0,0025: desconto de 0,25%, não 2,25%.",
+    "C": "2,25 é o desconto final, não a taxa de cada ajuste; dá desconto de ≈ 0,05%.",
+    "D": "x = 1,5 dá desconto de 0,0225%: confundiu 2,25% com i² sem a escala."
+   },
+   "armadilha": "Responder 2,25 (o desconto equivalente) como se fosse a taxa x.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Taxa x.",
+    "chave": "1 − i² = 0,9775 → i = 0,15.",
+    "cuidado": "Aumento e desconto iguais não se anulam."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "testar alternativas",
+    "ideia": "Teste x = 15: 1,15 · 0,85 = 0,9775. Teste x = 5: 1,05 · 0,95 = 0,9975. Só 15 dá 2,25% de desconto."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "1 − i² = 0,9775",
+    "nota": "equação"
+   },
+   {
+    "linha": "i = 0,15",
+    "nota": "taxa"
+   },
+   {
+    "linha": "15",
+    "nota": "resposta"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0049"
+  }
+ }
+}

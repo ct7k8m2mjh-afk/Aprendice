@@ -100,5 +100,95 @@
    "data": "2026-11-12",
    "lote": "mat-0043"
   }
+ },
+ "P77a45ea1": {
+  "n": "45",
+  "conceito": "Descontos sucessivos e desconto sobre parte das parcelas.",
+  "equivocos": {
+   "A": "M03.2:somou-os-descontos",
+   "B": "M03.2:sem-origem-identificada",
+   "C": "M03.2:desconto-em-todas"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Aplique os descontos na ordem: 20% sobre 5 000, depois 10% sobre o novo valor. Divida em 5 parcelas; a primeira é paga cheia e as outras 4 têm 3% de desconto.",
+    "formulas": [
+     "valor final = 5 000 · 0,8 · 0,9"
+    ],
+    "simbolos": []
+   },
+   "pista": "Quanto vale cada parcela antes do adiantamento?",
+   "passos": [
+    {
+     "faz": "Descontos",
+     "conta": "5 000 · 0,8 · 0,9 = 3 600",
+     "porque": "Login e cartão.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Parcela",
+     "conta": "3 600 ÷ 5 = 720",
+     "porque": "Cinco iguais.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Quatro adiantadas",
+     "conta": "4 · 720 · 0,97 = 2 793,60",
+     "porque": "3% de desconto.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Total",
+     "conta": "720 + 2 793,60 = R$ 3 513,60 → alternativa D",
+     "porque": "Pago.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — R$ 3.513,60",
+   "checagem": "Pelo desconto: as quatro parcelas somam 2 880, e 3% disso é 86,40; 3 600 − 86,40 = 3 513,60. Confere.",
+   "erradas": {
+    "A": "3 350 = 5 000 · 0,67: somou os descontos (20% + 10% + 3%) sobre o preço cheio.",
+    "B": "3 421,25 daria um desconto de 178,75 sobre 3 600, mais que o dobro dos 86,40 (3% de 4 · 720).",
+    "C": "3 492 = 3 600 · 0,97: aplicou os 3% também à primeira parcela."
+   },
+   "armadilha": "Aplicar o desconto de 3% nas cinco parcelas, inclusive na que já foi paga.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Total pago.",
+    "chave": "720 + 4 · 720 · 0,97 = 3 513,60.",
+    "cuidado": "Os 3% valem só para as 4 restantes."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "fator médio",
+    "ideia": "Uma parcela com fator 1 e quatro com 0,97: média (1 + 3,88)/5 = 0,976. 3 600 · 0,976 = 3 513,60."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "3 600",
+    "nota": "após descontos"
+   },
+   {
+    "linha": "720",
+    "nota": "parcela"
+   },
+   {
+    "linha": "3 513,60",
+    "nota": "resposta"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0049"
+  }
  }
 }

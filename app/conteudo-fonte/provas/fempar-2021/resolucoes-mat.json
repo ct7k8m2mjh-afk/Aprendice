@@ -1,0 +1,100 @@
+{
+ "P1516ed12": {
+  "n": "71",
+  "conceito": "Montar uma função do 1º grau a partir de um produto de fatores.",
+  "equivocos": {
+   "A": "M03.2:esqueceu-de-dividir",
+   "B": "M03.2:dividiu-so-a-constante",
+   "C": "M03.2:esqueceu-o-desconto",
+   "D": "M03.2:esqueceu-o-fator-posicao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Valor venal = área · valor por m² · fração · fator idade · posição · tipologia = 80 · 2 000 · 1 · (1 − 0,01x) · 0,9 · 1. O IPTU é a centésima parte do valor venal, menos o desconto de 540.",
+    "formulas": [
+     "VV = 144 000(1 − 0,01x)",
+     "y = VV/100 − 540"
+    ],
+    "simbolos": [
+     [
+      "x",
+      "idade do imóvel em anos"
+     ]
+    ]
+   },
+   "pista": "Multiplique os fatores que não dependem de x primeiro.",
+   "passos": [
+    {
+     "faz": "Fatores fixos",
+     "conta": "80 · 2 000 · 0,9 = 144 000",
+     "porque": "Sem a idade.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Valor venal",
+     "conta": "144 000(1 − 0,01x) = 144 000 − 1 440x",
+     "porque": "Fator idade.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Centésima parte",
+     "conta": "1 440 − 14,4x",
+     "porque": "÷ 100.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Desconto",
+     "conta": "y = 1 440 − 14,4x − 540 = 900 − 14,4x → alternativa E",
+     "porque": "IPTU a pagar.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — y = 900 – 14,4x",
+   "checagem": "Teste x = 0 (imóvel novo): VV = 144 000; 1% = 1 440; menos 540 = 900. Teste x = 10: VV = 129 600; 1 296 − 540 = 756 = 900 − 144. Confere.",
+   "erradas": {
+    "A": "143 460 − 1 440x = valor venal − 540: esqueceu de dividir por 100.",
+    "B": "Dividiu por 100 só a constante (143 460 → 1 434,6) e não o termo em x.",
+    "C": "1 440 − 14,4x é a centésima parte sem tirar o desconto de 540.",
+    "D": "1 060 − 16x sai esquecendo o fator posição 0,9: 1 600 − 16x − 540."
+   },
+   "armadilha": "Esquecer o desconto de R$ 540 (alternativa C) ou não dividir por 100.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Função y(x).",
+    "chave": "y = 1 440 − 14,4x − 540.",
+    "cuidado": "Centésima parte e depois o desconto."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "dois pontos",
+    "ideia": "Calcule y em x = 0 (900) e em x = 100 (fator idade 0, y = −540). A reta passa por (0, 900) com inclinação (−540 − 900)/100 = −14,4."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "144 000",
+    "nota": "fatores"
+   },
+   {
+    "linha": "1 440 − 14,4x",
+    "nota": "1%"
+   },
+   {
+    "linha": "900 − 14,4x",
+    "nota": "resposta"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0049"
+  }
+ }
+}
