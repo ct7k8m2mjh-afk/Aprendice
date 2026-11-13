@@ -71,7 +71,8 @@ session_01PveEKb4hnDGKRb7Gtd9hCr. A coordenadora antiga é session_01PveEKWW3t7Z
    python3 scripts/converte.py && npx vite build", outputDirectory dist, nodeVersion 22.x,
    sourceFilesOutsideRootDirectory true). As prévias automáticas da Vercel estão desligadas (12/11). Quando o site
    servir a contagem nova: atualizar publicacao.json, commit, push, avisar o dono em 2 linhas por matéria.
-6. Nada novo: não fazer nada e não avisar.
+6. Atualizar o painel "O que falta" (seção abaixo).
+7. Nada novo: não fazer nada e não avisar.
 
 ## Esperando o dono
 - Unifor 2026.2 Medicina q01 (Pb1863457): erro de enunciado (36 cápsulas não chegam a 4 665 mg; gabarito D só ignorando o
@@ -86,6 +87,12 @@ session_01PveEKb4hnDGKRb7Gtd9hCr. A coordenadora antiga é session_01PveEKWW3t7Z
 - Mackenzie 2026/2 q11 (P855bb53e): fora do site (recomendado) ou com A e explicação.
 - Checklist de provas para baixar à mão: https://claude.ai/artifact/AfS22NUUP69GNTWsEKV5YC (coleção `provas`;
   campos prova, gabarito, obs). Faltam, entre outras: Famema 2023 (caderno da Prova II v1), FMJ 2020 e 2023.
+
+## Painel "O que falta no Aprendice" (pedido do dono, 13/11)
+Artefato: https://claude.ai/artifact/L5VSRBJLyyadbmaWMmNwj4 (tem o link do site no topo). Atualizar a cada rodada e sempre
+que algo terminar: mude o item em docs/resolucoes/o-que-falta.json (estado falta/andamento/decidir/feito), rode o converte,
+depois `python3 ferramentas/resolucoes/painel_falta.py` e publique docs/resolucoes/o-que-falta.html nesse URL (Artifact,
+`url` = o link acima, de outra conversa; read antes).
 
 ## Publicação
 Última no ar: dpl_F5FyQ927LL92bBa7fihgbaPFWbBJ (commit 3f9191a7, 13/11, a pedido do dono): 16.108 resoluções.
