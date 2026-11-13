@@ -50,6 +50,9 @@ session_01PveEKb4hnDGKRb7Gtd9hCr. A coordenadora antiga é session_01PveEKWW3t7Z
 - Português: para Biologia P7b12298d, P73a24ac0; subtema errado Ped65eba5, P3bdc3073, Pbe8025a1, Pfe767de0, P98fee0ad,
   P273c97a5, P5bd2916f, P9889395d, Pd86425b8, P087b8c9f. Dado: P40c29de8 (alternativa E com coluna do poema colada).
   63 pendentes "obra:" (lotes 61-71). FMABC 2022 q16 (Pd7fbdc3f) com nota_gabarito, esperando o dono.
+- Biologia: para Física P3c08d8ee; para Química Pc68c4acb. Dados: P039ae129 (print pega o título "LÍNGUA
+  ESTRANGEIRA" e a alternativa E termina com ele); itálico virou ~~riscado~~ no texto_da_prova de Pa582852a, Pd28a6e90,
+  P1daa8136, Pff5a68fe, P0bf82481, P2ea30ef7 (nomes científicos).
 
 ## Rodada da conferência (a cada 3 horas)
 1. `git pull --rebase --autostash origin app-prototipo-completo`.
