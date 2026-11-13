@@ -1,0 +1,115 @@
+{
+ "P40d6e1a0": {
+  "n": "30",
+  "conceito": "Modelagem: valor líquido por viagem e número mínimo de viagens para uma meta.",
+  "equivocos": {
+   "A": "M04.5:valor-que-nao-fecha",
+   "C": "M04.5:nao-e-o-minimo",
+   "D": "M04.5:nao-e-o-minimo",
+   "E": "M04.5:nao-e-o-minimo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Calcule primeiro quanto o passageiro paga numa viagem de 5 km e 10 min. A plataforma fica com 1/4, Amanda com 3/4, e dessa parte sai o combustível. Com o líquido por viagem, divida a meta.",
+    "formulas": [
+     "bruto = 2 + 0,26 · min + 1,40 · km",
+     "líquido = 3/4 · bruto − 0,28 · km",
+     "viagens = meta ÷ líquido"
+    ],
+    "simbolos": [
+     [
+      "bruto",
+      "o que o passageiro paga"
+     ],
+     [
+      "líquido",
+      "o que sobra para Amanda depois da plataforma e do combustível"
+     ]
+    ]
+   },
+   "pista": "Ache o valor de UMA viagem antes de pensar no mês.",
+   "passos": [
+    {
+     "faz": "Valor pago pelo passageiro",
+     "conta": "2 + 0,26 · 10 + 1,40 · 5 = 2 + 2,60 + 7 = 11,60",
+     "porque": "Fixo, minutos e quilômetros.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Parte de Amanda",
+     "conta": "3/4 · 11,60 = 8,70",
+     "porque": "A plataforma retém 1/4.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Desconte o combustível",
+     "conta": "8,70 − 0,28 · 5 = 8,70 − 1,40 = 7,30",
+     "porque": "R$ 0,28 por km, 5 km por viagem.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida a meta",
+     "conta": "2190/7,30 = 300 viagens",
+     "porque": "300 · 7,30 = 2 190 exatamente.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Responda",
+     "conta": "300 → alternativa B",
+     "porque": "Com 299 viagens ela fica abaixo da meta.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 300 viagens",
+   "checagem": "300 viagens rendem 300 · 11,60 = 3 480 brutos; 3/4 disso é 2 610; menos 300 · 1,40 = 420 de combustível, sobra 2 190. Fecha.",
+   "erradas": {
+    "A": "280 não confere: 280 · 7,30 = 2 044 reais, abaixo da meta de 2 190.",
+    "C": "320 não confere: 300 viagens já dão os 2 190; 320 não é o menor número.",
+    "D": "340 não confere: passa da meta (340 · 7,30 = 2 482); 300 já bastam.",
+    "E": "360 não confere: passa da meta (360 · 7,30 = 2 628); 300 já bastam."
+   },
+   "armadilha": "Esquecer a retenção de 1/4 ou o combustível: o líquido é 7,30 por viagem, não 11,60.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O menor número de viagens para receber R$ 2 190 líquidos.",
+    "chave": "Bruto 11,60; Amanda fica com 8,70; menos 1,40 de combustível, 7,30; 2 190/7,30 = 300.",
+    "cuidado": "Desconte a plataforma e o combustível antes de dividir."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste das alternativas",
+    "ideia": "Multiplique cada número de viagens por 7,30: 280 dá 2 044 (pouco) e 300 dá 2 190 (exato)."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "2 + 0,26 · 10 + 1,40 · 5 = 11,60",
+    "nota": "valor da viagem"
+   },
+   {
+    "linha": "3/4 · 11,60 = 8,70",
+    "nota": "parte de Amanda"
+   },
+   {
+    "linha": "8,70 − 0,28 · 5 = 7,30",
+    "nota": "menos combustível"
+   },
+   {
+    "linha": "2190/7,30 = 300",
+    "nota": "viagens no mês"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0052"
+  }
+ }
+}
