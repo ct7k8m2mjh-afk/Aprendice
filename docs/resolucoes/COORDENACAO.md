@@ -23,8 +23,11 @@ NUNCA resolve questão. Fala com o dono em português do Brasil, direto, sem ter
 docs/resolucoes/PROMPT-SESSAO-RESOLUCOES.md, com a sua matéria = <m>. Fale português do Brasil. Comece com
 `cd app && flock /tmp/converte.lock python3 scripts/converte.py`, volte à raiz e siga a esteira
 (`python3 ferramentas/resolucoes/lote.py proximo <m> --novo`, até 3 lotes abertos seus). Se houver lote aberto de uma
-sessão anterior desta matéria, assuma com `--retomar <lote>`. Avise a coordenadora (<id da coordenadora>) com TROCA
-quando chegar a hora (passo 9 do prompt)."
+sessão anterior desta matéria, assuma com `--retomar <lote>`. Trabalhe continuamente, sem parar
+esperando aprovação: enquanto a lente confere um lote, já adiante o próximo; só pare para o que não tem volta (CLAUDE.md).
+Avise a coordenadora (<id da coordenadora>) com TROCA quando chegar a hora (passo 9 do prompt)."
+Ao abrir: extra_allowed_tools = ["Bash","Edit","Write","Read","Glob","Grep","Agent","Skill","WebFetch","WebSearch",
+"mcp__claude-code-remote__send_message"] (dono, 13/11: resolvedores não pedem autorização; também em .claude/settings.json).
 
 ## Sessões (13/11/2026, 00h30 UTC)
 | Matéria | Sessão | Situação |
@@ -72,7 +75,7 @@ session_01PveEKb4hnDGKRb7Gtd9hCr. A coordenadora antiga é session_01PveEKWW3t7Z
    python3 scripts/converte.py && npx vite build", outputDirectory dist, nodeVersion 22.x,
    sourceFilesOutsideRootDirectory true). As prévias automáticas da Vercel estão desligadas (12/11). Quando o site
    servir a contagem nova: atualizar publicacao.json, commit, push, avisar o dono em 2 linhas por matéria.
-6. Atualizar o painel "O que falta" (seção abaixo).
+6. Painel "O que falta": só se passou de mais 1.000 resolvidas desde a última atualização (seção abaixo).
 7. Nada novo: não fazer nada e não avisar.
 
 ## Esperando o dono
@@ -90,8 +93,8 @@ session_01PveEKb4hnDGKRb7Gtd9hCr. A coordenadora antiga é session_01PveEKWW3t7Z
   campos prova, gabarito, obs). Faltam, entre outras: Famema 2023 (caderno da Prova II v1), FMJ 2020 e 2023.
 
 ## Painel "O que falta no Aprendice" (pedido do dono, 13/11)
-Artefato: https://claude.ai/artifact/L5VSRBJLyyadbmaWMmNwj4 (tem o link do site no topo). Atualizar a cada rodada e sempre
-que algo terminar: mude o item em docs/resolucoes/o-que-falta.json (estado falta/andamento/decidir/feito), rode o converte,
+Artefato: https://claude.ai/artifact/L5VSRBJLyyadbmaWMmNwj4 (tem o link do site no topo). Atualizar SÓ a cada 1.000
+questões resolvidas a mais (dono, 13/11). Última atualização: 16.464 feitas → próxima ao passar de 17.464. Para atualizar: mude o item em docs/resolucoes/o-que-falta.json (estado falta/andamento/decidir/feito), rode o converte,
 depois `python3 ferramentas/resolucoes/painel_falta.py` e publique docs/resolucoes/o-que-falta.html nesse URL (Artifact,
 `url` = o link acima, de outra conversa; read antes).
 
