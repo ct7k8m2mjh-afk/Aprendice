@@ -517,5 +517,134 @@
    "data": "2026-11-13",
    "lote": "qui-0050"
   }
+ },
+ "P134bbf87": {
+  "n": "45",
+  "conceito": "Calcular a dose em mg pela massa do paciente e convertê-la em volume para cada apresentação do xarope.",
+  "equivocos": {
+   "A": "Q05.4:concentracao-tomada-como-volume",
+   "B": "Q05.4:ignorou-a-concentracao",
+   "D": "Q05.4:nao-somou-o-tratamento",
+   "E": "Q05.4:nao-somou-o-tratamento"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A dose vem do peso: 5 mg para cada kg do paciente. Depois, cada apresentação diz quantos mg há em 5 mL, e isso dá a concentração em mg/mL. Com a dose em mg e a concentração, sai o volume de cada dose. Um frasco tem 50 mL, o que permite julgar se ele basta para o tratamento.",
+    "formulas": [
+     "dose (mg) = 5 mg/kg × massa do paciente (kg)",
+     "volume (mL) = dose (mg) ÷ concentração (mg/mL)",
+     "200 mg/5 mL = 40 mg/mL; 300 mg/5 mL = 60 mg/mL"
+    ],
+    "simbolos": [
+     [
+      "mg/kg",
+      "miligramas de remédio por quilograma do paciente"
+     ],
+     [
+      "princípio ativo",
+      "a substância do remédio que faz efeito"
+     ],
+     [
+      "apresentação",
+      "a forma e a concentração em que o remédio é vendido"
+     ]
+    ]
+   },
+   "pista": "Primeiro calcule a dose do paciente em mg; só depois pense em mL.",
+   "passos": [
+    {
+     "faz": "Calcule a dose em mg",
+     "conta": "5 mg/kg × 71,8 kg = 359 mg",
+     "porque": "A dose é proporcional à massa do paciente.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Passe as apresentações para mg/mL",
+     "conta": "(I) 200 mg ÷ 5 mL = 40 mg/mL | (II) 300 mg ÷ 5 mL = 60 mg/mL",
+     "porque": "Com a concentração por mL, o volume da dose sai de uma divisão.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o volume de cada dose",
+     "conta": "(I) 359 ÷ 40 ≈ 8,98 mL | (II) 359 ÷ 60 ≈ 5,98 mL",
+     "porque": "Mesma massa de princípio ativo, volumes diferentes: derruba A (40 e 60 mL) e B (mesmo volume).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste D e E pelo frasco de 50 mL",
+     "conta": "D: 7 × 8,98 ≈ 62,8 mL > 50 | E: 10 × 5,98 ≈ 59,8 mL > 50",
+     "porque": "Nos dois casos o tratamento gasta mais que um frasco.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Confira a C",
+     "conta": "9 mL × 40 mg/mL = 360 mg → 360 ÷ 60 mg/mL = 6 mL → alternativa C",
+     "porque": "A mesma massa de princípio ativo na apresentação mais concentrada cabe em menos volume.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — se a dose receitada é de 9 mL da apresentação (I), com a apresentação (II) o paciente toma só 6 mL por dose.",
+   "checagem": "Pela razão das concentrações: (II) é 60/40 = 1,5 vez mais concentrada que (I), então o volume cai na mesma razão: 9 mL ÷ 1,5 = 6 mL.",
+   "erradas": {
+    "A": "40 e 60 mL não conferem: a dose de 359 mg cabe em cerca de 8,98 mL de (I) e 5,98 mL de (II). 40 e 60 são as concentrações em mg/mL.",
+    "B": "Com concentrações diferentes, a mesma massa de princípio ativo ocupa volumes diferentes: cerca de 8,98 mL em (I) e 5,98 mL em (II).",
+    "D": "Sete doses de cerca de 8,98 mL somam cerca de 62,8 mL, mais que os 50 mL de um frasco.",
+    "E": "Dez doses (5 dias × 2) de cerca de 5,98 mL somam cerca de 59,8 mL, mais que os 50 mL de um frasco."
+   },
+   "armadilha": "Tomar 40 e 60 (as concentrações em mg/mL) como se fossem volumes de dose, o que leva à alternativa A.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Qual afirmação sobre a dose e o volume de xarope está correta.",
+    "chave": "Dose = 5 × 71,8 = 359 mg; (I) 40 mg/mL e (II) 60 mg/mL; 9 mL de (I) = 360 mg = 6 mL de (II).",
+    "cuidado": "Volume = mg ÷ (mg/mL); some o volume do tratamento antes de dizer que um frasco basta."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "razão das concentrações",
+    "ideia": "(II) é 1,5 vez mais concentrada que (I): 9 mL ÷ 1,5 = 6 mL, sem calcular a dose."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "5 × 71,8 = 359 mg",
+    "nota": "dose do paciente"
+   },
+   {
+    "linha": "200/5 = 40 mg/mL",
+    "nota": "apresentação (I)"
+   },
+   {
+    "linha": "300/5 = 60 mg/mL",
+    "nota": "apresentação (II)"
+   },
+   {
+    "linha": "9 × 40 = 360 mg",
+    "nota": "dose de 9 mL de (I)"
+   },
+   {
+    "linha": "360/60 = 6 mL",
+    "nota": "mesma dose em (II): alternativa C"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "qui-0054"
+  },
+  "gabarito_aprendice": {
+   "letra": "C",
+   "letra_conferente": "C",
+   "preliminar": "C",
+   "fontes_web": [],
+   "data": "2026-11-13",
+   "lote": "qui-0054"
+  }
  }
 }
