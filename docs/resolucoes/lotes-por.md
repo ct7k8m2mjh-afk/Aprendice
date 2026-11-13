@@ -88,7 +88,7 @@ Faltam 2080 questões sem resolução (fora as que estão em lote, pendentes ou 
 | por-0080 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | por-0081 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | por-0082 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
-| por-0083 | demais nível 1-6 | 30 | aberto |  |  |  |
+| por-0083 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | por-0084 | demais nível 1-6 | 30 | aberto |  |  |  |
 
 ## Pendentes (falta de certeza absoluta)
