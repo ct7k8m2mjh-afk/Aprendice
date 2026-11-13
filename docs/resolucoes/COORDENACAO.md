@@ -64,11 +64,11 @@ aprovação ou resposta: pendências e avisos vão para docs/resolucoes/caixa/<m
 | Física | session_01PveEKXXFLhp4ro4vnf1rh7 | trabalhando (aberta 13/11 05h32 pela coordenadora antiga; anterior X5T4 deu FIM) |
 | Química | session_01PveEKZxREDvirT6VTx5nKy | trabalhando (aberta 13/11 05h52 pela coordenadora antiga; FIM da anterior após qui-0063 já tratado) |
 | Geografia | session_01PveEKaHNFQdko42Ddhy3XZ | trabalhando (aberta 13/11 05h52 a pedido do dono: 6ª sessão, além do limite de 5) |
-| Biologia | session_01PveEKb648gnNx7gv9Y2Xbs | trabalhando (aberta 13/11 05h03; FIM cancelado, limite 40%) |
+| Biologia | session_01PveEKaPh1PAjF3bRbuJ5fG | trabalhando (aberta 13/11 06h04; anterior b648 deu FIM no bio-0063) |
 | Português | session_01PveEKY3G8XPW7thJLdH3jL | trabalhando (aberta 13/11 05h47; anterior WhAd deu FIM) |
 Paradas do sistema novo (o dono pode arquivar): Mat session_01PveEKaSPVEijwvkvEUmmWx, Fís session_01PveEKX5T4pY3Xx4fn4PR8G,
-Por session_01PveEKWhAdHoSJKa5to3K8D.
-Última rodada: 13/11 05h44 UTC (caixa lida até 2df8c094). Agente de pendências da caixa disparado 05h48 (um por vez).
+Por session_01PveEKWhAdHoSJKa5to3K8D, Bio session_01PveEKb648gnNx7gv9Y2Xbs.
+Última rodada: 13/11 06h04 UTC (caixa lida até f699d2d6). Novas: DADO P233b33fd (texto de apoio colado na E); GABARITO P0e5ecbdc (UFRR, Edital 93/25). Agente de pendências da caixa disparado 05h48 (um por vez).
 Antigas, todas paradas (o dono pode arquivar): Mat session_01PveEKZRuBiHmg4Hm9HT1J1, Fís session_01PveEKXmCjqipC4JbNj9w73,
 Quí session_01PveEKadroQ4kNhHt52L2hy, Bio session_01PveEKaptKYR7JXwbmxDGXx, Por session_01PveEKaBDR2WGsLQUacMYFY; e as
 anteriores já listadas para arquivar. Coordenadoras antigas: session_01PveEKWW3t7ZxcdDQKNiYWa, session_01PveEKabuyZnqVN65W5FfEc.
@@ -173,11 +173,8 @@ depois `python3 ferramentas/resolucoes/painel_falta.py` e publique docs/resoluco
 `url` = o link acima, de outra conversa; read antes).
 
 ## Publicação
-Última no ar: dpl_2nXjFi2ruBj9zHwh8Lzn4G2ZwAni (commit 8f6e726b, 13/11): 18.413 resoluções.
-Próxima ao passar de 18.913.
-Em andamento (13/11 05h56): dpl_5xTE1MfLrc4mzG1QxsSmMzDEamEP, commit 78298a33, build local verde (786 testes), 19.483 resoluções
-(mat 2581 · fís 1823 · quí 2259 · bio 2158 · por 3085 · geo 1097 · his 2451 · fs 1562 · ing 2467). Na rodada seguinte: conferir
-`com_resolucao` no site; se bater, atualizar publicacao.json e a linha "Última no ar".
+Última no ar: dpl_5xTE1MfLrc4mzG1QxsSmMzDEamEP (commit 78298a33, 13/11 06h, conferido no site): 19.483 resoluções.
+Próxima ao passar de 19.983.
 Contagem: `com_resolucao` de https://aprendice.vercel.app/conteudo/relatorio.json (ou do relatório local do converte).
 
 Coordenadora atual: ver a tabela de sessões e a tarefa agendada (13/11: nova coordenadora enxuta).
