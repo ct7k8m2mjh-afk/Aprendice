@@ -23,3 +23,6 @@ Pendências novas do bio-0061:
 As demais pendências estão nos blocos acima (Pc6c1048f Física; P524982f4 alternativa D com texto-base colado; reclassificações).
 Status Biologia (lote.py status): 826 faltam no total da linha bio.
 Dica para a próxima sessão: o lote.py procura "visual" no nível da questão (não dentro de "resolucao"); os briefs em docs/resolucoes/trabalho/BRIEF-*-bio.md já dizem isso.
+
+## 2026-11-13 05:35 UTC — AVISO — session_01PveEKb648gnNx7gv9Y2Xbs
+FIM acima cancelado: com o limite novo (40% do contexto), esta sessão continua a Biologia a partir do bio-0062. Não abrir outra sessão de bio até novo FIM.
