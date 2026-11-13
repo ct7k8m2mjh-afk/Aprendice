@@ -155,6 +155,8 @@ Só o que não tem solução sem o dono, EM ÚLTIMO CASO, vai para o painel "O q
 escreve a instrução na caixa de texto abaixo do item e envia pela página. Em toda rodada: ArtifactData list da coleção
 `respostas` do painel; para cada doc com `lido:false`, cumprir a instrução, gravar `retorno` (o que foi feito) e `lido:true`
 com update, e marcar o item como feito no o-que-falta.json.
+- Revisar como "anular" (gabarito oficial contra a conta, gravadas com alerta pelo prompt antigo): Pae0c806e, P1c5351e6,
+  P4db2bbce, Pb2b6d654; e P9615ec2a (pendente). Regra nova no PROMPT-SESSAO (13/11 05h55).
 - Limite semanal da conta em aviso (renova 19/11). Teste de cobertura animada de Matemática voltou ao verde (82,3%, 13/11).
 - Decidido pelo dono em 13/11 (painel): "questão anulada pelo Aprendice" para gabarito oficial contra os fatos ou enunciado
   com erro/dado faltando — lista em app/conteudo-fonte/anuladas-aprendice.json (12 questões: Pc90de958, Pd7fbdc3f,
@@ -173,6 +175,9 @@ depois `python3 ferramentas/resolucoes/painel_falta.py` e publique docs/resoluco
 ## Publicação
 Última no ar: dpl_2nXjFi2ruBj9zHwh8Lzn4G2ZwAni (commit 8f6e726b, 13/11): 18.413 resoluções.
 Próxima ao passar de 18.913.
+Em andamento (13/11 05h56): dpl_5xTE1MfLrc4mzG1QxsSmMzDEamEP, commit 78298a33, build local verde (786 testes), 19.483 resoluções
+(mat 2581 · fís 1823 · quí 2259 · bio 2158 · por 3085 · geo 1097 · his 2451 · fs 1562 · ing 2467). Na rodada seguinte: conferir
+`com_resolucao` no site; se bater, atualizar publicacao.json e a linha "Última no ar".
 Contagem: `com_resolucao` de https://aprendice.vercel.app/conteudo/relatorio.json (ou do relatório local do converte).
 
 Coordenadora atual: ver a tabela de sessões e a tarefa agendada (13/11: nova coordenadora enxuta).
