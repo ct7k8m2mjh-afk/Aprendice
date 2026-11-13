@@ -394,5 +394,100 @@
    "data": "2026-11-13",
    "lote": "mat-0055"
   }
+ },
+ "P51f54bc2": {
+  "n": "16",
+  "conceito": "Cobrança por faixas: somar o excedente de cada faixa com o seu preço.",
+  "equivocos": {
+   "A": "M05.4:faixas-mal-contadas",
+   "B": "M05.4:faixas-mal-contadas",
+   "D": "M05.4:tudo-na-ultima-faixa",
+   "E": "M05.4:esqueceu-a-taxa-fixa"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Até 20 kg paga-se só a taxa de R$ 80,00. Cada quilo acima disso é cobrado pelo preço da faixa em que ele cai: os quilos de 20 a 30 a R$ 11,00 e os de 30 a 40 a R$ 13,00. Não se cobra todo o peso pelo preço da última faixa.",
+    "formulas": [
+     "total = taxa + (kg na faixa 2) × 11 + (kg na faixa 3) × 13"
+    ],
+    "simbolos": [
+     [
+      "faixa",
+      "intervalo de peso com preço próprio por quilo"
+     ],
+     [
+      "excedente",
+      "quilos acima do limite da faixa anterior"
+     ]
+    ]
+   },
+   "pista": "Separe os 35 kg em pedaços: até 20, de 20 a 30 e de 30 a 35.",
+   "passos": [
+    {
+     "faz": "Separe o peso",
+     "conta": "35 kg = 20 + 10 + 5",
+     "porque": "20 kg cobertos pela taxa, 10 kg na faixa 2 e 5 kg na faixa 3.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule cada faixa",
+     "conta": "10 × 11 = 110 | 5 × 13 = 65",
+     "porque": "Cada pedaço com o preço da sua faixa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some com a taxa",
+     "conta": "80 + 110 + 65 = 255",
+     "porque": "A taxa de R$ 80,00 vale para qualquer bagagem.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — R$ 255,00",
+   "checagem": "Confira por fora: se todos os 15 kg excedentes custassem R$ 13,00, seriam 80 + 195 = 275; como 10 deles custam R$ 2,00 a menos, 275 − 20 = 255.",
+   "erradas": {
+    "A": "Sai de cobrar só um quilo na faixa 3: 80 + 13 = 93.",
+    "B": "Sai de cobrar um quilo em cada faixa: 80 + 11 + 13 = 104.",
+    "D": "Sai de cobrar os 35 kg inteiros a R$ 13,00: 35 × 13 = 455, sem taxa e sem faixas.",
+    "E": "Sai de esquecer a taxa de R$ 80,00: 110 + 65 = 175."
+   },
+   "armadilha": "Cobrar todo o peso pelo preço da última faixa, ou esquecer a taxa fixa.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O valor pago por uma bagagem de 35 kg.",
+    "chave": "80 + 10 × 11 + 5 × 13 = 255.",
+    "cuidado": "Cada quilo paga o preço da faixa em que cai, e a taxa vale sempre."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pela diferença",
+    "ideia": "Tudo a R$ 13,00 daria 80 + 15 × 13 = 275; os 10 kg da faixa 2 custam 2 a menos cada: 275 − 20 = 255."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "35 = 20 + 10 + 5",
+    "nota": "faixas"
+   },
+   {
+    "linha": "10 × 11 = 110 | 5 × 13 = 65",
+    "nota": "excedentes"
+   },
+   {
+    "linha": "80 + 110 + 65 = 255",
+    "nota": "total"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0056"
+  }
  }
 }

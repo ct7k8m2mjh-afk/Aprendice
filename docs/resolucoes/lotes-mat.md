@@ -61,7 +61,7 @@ Faltam 1545 questões sem resolução (fora as que estão em lote, pendentes ou 
 | mat-0053 | demais nível 1-6 | 30 | gravado | 29 | 1 | 0 |
 | mat-0054 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | mat-0055 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
-| mat-0056 | demais nível 1-6 | 30 | aberto |  |  |  |
+| mat-0056 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 
 ## Pendentes (falta de certeza absoluta)
 

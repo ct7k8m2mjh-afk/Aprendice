@@ -196,5 +196,120 @@
    "data": "2026-11-13",
    "lote": "mat-0054"
   }
+ },
+ "Pb92f55e2": {
+  "n": "14",
+  "conceito": "Crescimento exponencial comparado com um volume: potências de 2 e volume da esfera.",
+  "equivocos": {
+   "A": "M06.1:diametro-como-raio",
+   "C": "M06.1:contagem-de-dias-errada",
+   "D": "M06.1:contagem-de-dias-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "No dia n há 2^(n − 1) bactérias (1 no dia 1, 2 no dia 2...). Cada uma é uma esfera de diâmetro 1 µm, ou seja, raio 0,5 µm. Compare o volume total com o volume do cubo, 40³ µm³.",
+    "formulas": [
+     "V esfera = (4/3)πr³",
+     "V cubo = aresta³",
+     "2^10 ≈ 1 000"
+    ],
+    "simbolos": [
+     [
+      "µm",
+      "micrômetro, a milionésima parte do metro"
+     ],
+     [
+      "r",
+      "raio da bactéria: metade do diâmetro, 0,5 µm"
+     ],
+     [
+      "2^(n − 1)",
+      "número de bactérias no dia n"
+     ]
+    ]
+   },
+   "pista": "Calcule o volume de uma bactéria com o raio, não com o diâmetro.",
+   "passos": [
+    {
+     "faz": "Volume do cubo",
+     "conta": "40³ = 64 000 µm³",
+     "porque": "Aresta ao cubo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Volume de uma bactéria",
+     "conta": "(4/3) · 3 · 0,5³ = 4 · 0,125 = 0,5 µm³",
+     "porque": "Raio 0,5 µm e π ≈ 3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Quantas bactérias enchem o cubo",
+     "conta": "64000/0,5 = 128 000 bactérias",
+     "porque": "Volume do cubo dividido pelo de uma bactéria.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare com as potências de 2",
+     "conta": "2^17 = 2^7 · 2^10 = 128 · 1 024 = 131 072 > 128 000 | 2^16 = 65 536 < 128 000",
+     "porque": "No dia n há 2^(n − 1) bactérias.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "2^(n − 1) = 2^17 → n = 18",
+     "porque": "No 18º dia o volume passa o do cubo.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 18",
+   "checagem": "Confira o dia anterior: no dia 17 há 2^16 = 65 536 bactérias, volume 65 536 · 0,5 = 32 768 µm³, só metade do cubo. No dia 18 o volume dobra para 65 536 µm³, acima de 64 000.",
+   "erradas": {
+    "A": "Sai de usar o diâmetro 1 µm como raio: volume 4 µm³ por bactéria, 64 000/4 = 16 000 ≈ 2^14, dia 15.",
+    "C": "Não confere: no dia 18 o volume (2^17 · 0,5 = 65 536 µm³) já passa de 64 000 µm³.",
+    "D": "Não confere: no dia 18 o volume já passa do cubo; no dia 21 seria 8 vezes maior."
+   },
+   "armadilha": "Usar o diâmetro como raio: o volume da bactéria fica 8 vezes maior e o dia sai 3 dias antes.",
+   "alerta": "Com a aproximação 2^10 ≈ 1 000 sugerida pela prova, 2^17 ≈ 128 000 fica exatamente igual ao necessário. O valor exato, 2^17 = 131 072, mostra que no 18º dia o volume já ultrapassa o do cubo, o que confirma o gabarito B.",
+   "essencial": {
+    "pede": "O primeiro dia em que o volume das bactérias passa o do cubo.",
+    "chave": "Cubo 64 000 µm³; bactéria 0,5 µm³; 2^(n − 1) > 128 000 dá n = 18.",
+    "cuidado": "Raio é metade do diâmetro, e no dia n há 2^(n − 1) bactérias."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "com 2^10 ≈ 1 000",
+    "ideia": "128 000 = 128 · 1 000 ≈ 2^7 · 2^10 = 2^17; no dia n = 18 há 2^17 bactérias."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "40³ = 64 000",
+    "nota": "cubo"
+   },
+   {
+    "linha": "(4/3) · 3 · 0,5³ = 0,5",
+    "nota": "bactéria"
+   },
+   {
+    "linha": "64000/0,5 = 128 000",
+    "nota": "bactérias necessárias"
+   },
+   {
+    "linha": "2^17 = 131 072 > 128 000 → n − 1 = 17 → n = 18",
+    "nota": "dia"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0056"
+  }
  }
 }

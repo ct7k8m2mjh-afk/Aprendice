@@ -202,5 +202,222 @@
    "data": "2026-11-13",
    "lote": "mat-0055"
   }
+ },
+ "P295f3af5": {
+  "n": "29",
+  "conceito": "Composição com funções características: acompanhar os valores 0 e 1 de dentro para fora.",
+  "equivocos": {
+   "A": "M05.5:valor-sem-calculo",
+   "C": "M05.5:parou-na-funcao-de-dentro",
+   "D": "M05.5:valor-sem-calculo",
+   "E": "M05.5:valor-sem-calculo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A função característica de um conjunto só devolve 0 ou 1. Comece por dentro: χ_Q(x) é 0 ou 1. Depois, χ_(ℝ−Q) é aplicada a 0 ou 1, que são números racionais. Por fim, p é aplicado ao que sobrou.",
+    "formulas": [
+     "χ_X(x) = 1 se x ∈ X; 0 se x ∉ X"
+    ],
+    "simbolos": [
+     [
+      "χ_X",
+      "função característica de X: 1 dentro de X, 0 fora"
+     ],
+     [
+      "Q",
+      "números racionais"
+     ],
+     [
+      "ℝ − Q",
+      "números irracionais"
+     ]
+    ]
+   },
+   "pista": "Pergunte: 0 e 1 são racionais ou irracionais?",
+   "passos": [
+    {
+     "faz": "Aplique χ_Q",
+     "conta": "χ_Q(x) ∈ {0, 1}",
+     "porque": "Qualquer que seja x, o resultado é 0 ou 1.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Aplique χ_(ℝ−Q)",
+     "conta": "0 e 1 são racionais → χ_(ℝ−Q)(0) = χ_(ℝ−Q)(1) = 0",
+     "porque": "Nenhum dos dois é irracional, então os dois vão para 0.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Aplique p",
+     "conta": "p(0) = um número fixo",
+     "porque": "Toda entrada chegou a 0, e p(0) é um valor só.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "imagem = {p(0)} → um ponto",
+     "porque": "A composição é constante.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — um ponto",
+   "checagem": "Teste dois x: x = √2 dá χ_Q = 0, χ_(ℝ−Q)(0) = 0, p(0); x = 5 dá χ_Q = 1, χ_(ℝ−Q)(1) = 0, p(0). Mesmo resultado.",
+   "erradas": {
+    "A": "Não confere: a composição está definida para todo x e devolve p(0); a imagem tem um elemento.",
+    "C": "Sai de parar em χ_Q, cuja imagem é {0, 1}, sem aplicar χ_(ℝ−Q) e p.",
+    "D": "Não confere: depois de χ_(ℝ−Q), toda entrada vira 0; p recebe só o 0.",
+    "E": "Não confere: a imagem é só {p(0)}, um único número."
+   },
+   "armadilha": "Parar na imagem de χ_Q ({0, 1}) e esquecer que 0 e 1 são racionais, o que leva os dois a 0.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A imagem de p ∘ χ_(ℝ−Q) ∘ χ_Q.",
+    "chave": "χ_Q dá 0 ou 1; ambos são racionais, χ_(ℝ−Q) dá 0; p(0) é um ponto.",
+    "cuidado": "Aplique as funções de dentro para fora."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste de valores",
+    "ideia": "Um x racional e um irracional chegam ao mesmo p(0)."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "χ_Q(x) ∈ {0, 1}",
+    "nota": "de dentro"
+   },
+   {
+    "linha": "χ_(ℝ−Q)(0) = χ_(ℝ−Q)(1) = 0",
+    "nota": "0 e 1 são racionais"
+   },
+   {
+    "linha": "p(0)",
+    "nota": "imagem com um ponto"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0056"
+  }
+ },
+ "Pb5ea9d3b": {
+  "n": "20",
+  "conceito": "Inversa de uma função com potências de 2: equação do 2º grau na variável 2^x.",
+  "equivocos": {
+   "A": "M05.5:esqueceu-o-deslocamento",
+   "B": "M05.5:esqueceu-o-deslocamento",
+   "C": "M05.5:deslocamento-com-sinal-trocado",
+   "D": "M05.5:sinal-trocado-na-raiz"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Chame y = f(x) e u = 2^x. Então 2^(x − 1) = u/2 e 2^(−x − 1) = 1/(2u). A equação vira do 2º grau em u. Como u = 2^x é sempre positivo, só a raiz positiva serve; depois, x = log₂ u.",
+    "formulas": [
+     "2^(x − 1) = 2^x/2",
+     "2^(−x − 1) = 1/(2 · 2^x)"
+    ],
+    "simbolos": [
+     [
+      "f⁻¹",
+      "função inversa de f"
+     ],
+     [
+      "u",
+      "apelido para 2^x, sempre positivo"
+     ]
+    ]
+   },
+   "pista": "Escreva y − 2 em função de u = 2^x.",
+   "passos": [
+    {
+     "faz": "Isole a parte exponencial",
+     "conta": "y − 2 = u/2 − 1/(2u) → 2(y − 2) = u − 1/u",
+     "porque": "Multiplicar por 2 limpa os denominadores 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte a equação em u",
+     "conta": "u² − 2(y − 2)u − 1 = 0",
+     "porque": "Multiplique tudo por u.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva",
+     "conta": "u = (y − 2) ± √((y − 2)² + 1)",
+     "porque": "Bhaskara com b = −2(y − 2), Δ = 4(y − 2)² + 4.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escolha a raiz positiva",
+     "conta": "√((y − 2)² + 1) > |y − 2| → só o + dá u > 0",
+     "porque": "A raiz com − daria u negativo, e 2^x > 0.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Volte para x",
+     "conta": "x = log₂((y − 2) + √((y − 2)² + 1)) → f⁻¹(x) = log₂((x − 2) + √((x − 2)² + 1))",
+     "porque": "Troque o nome da variável no fim.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — f⁻¹(x) = log₂((x − 2) + √((x − 2)² + 1))",
+   "checagem": "Teste um ponto: f(0) = 1/2 − 1/2 + 2 = 2, então f⁻¹(2) tem de dar 0. Na E: log₂(0 + √1) = log₂ 1 = 0.",
+   "erradas": {
+    "A": "Não confere: em x = 2, a A dá log₂(2 + 1) = log₂ 3, mas f⁻¹(2) = 0.",
+    "B": "Não confere: em x = 2, a B dá log₂(0 + √5) ≠ 0.",
+    "C": "Não confere: em x = 2, a C dá log₂(4 + √17) ≠ 0.",
+    "D": "Não confere: em x = 2, a D dá log₂(2 + √(−1)), que nem existe nos reais."
+   },
+   "armadilha": "Esquecer de deslocar o x pelo 2 da função: o termo +2 de f vira x − 2 dentro da inversa, inclusive dentro da raiz.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A lei da inversa de f(x) = 2^(x − 1) − 2^(−x − 1) + 2.",
+    "chave": "Com u = 2^x: u² − 2(y − 2)u − 1 = 0, raiz positiva u = (y − 2) + √((y − 2)² + 1).",
+    "cuidado": "Descarte a raiz negativa: 2^x > 0."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste de ponto",
+    "ideia": "f(0) = 2, então f⁻¹(2) = 0: só a E dá log₂ 1 = 0."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "y − 2 = u/2 − 1/(2u)",
+    "nota": "u = 2^x"
+   },
+   {
+    "linha": "u² − 2(y − 2)u − 1 = 0",
+    "nota": "multiplica por 2u"
+   },
+   {
+    "linha": "u = (y − 2) + √((y − 2)² + 1)",
+    "nota": "raiz positiva"
+   },
+   {
+    "linha": "f⁻¹(x) = log₂((x − 2) + √((x − 2)² + 1))",
+    "nota": "inversa"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0056"
+  }
  }
 }

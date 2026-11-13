@@ -384,5 +384,105 @@
    "data": "2026-11-13",
    "lote": "mat-0055"
   }
+ },
+ "Pecbe827d": {
+  "n": "55",
+  "conceito": "Usar um ponto conhecido para achar o fator exponencial e prever outro instante.",
+  "equivocos": {
+   "B": "M06.1:valor-sem-calculo",
+   "C": "M06.1:valor-sem-calculo",
+   "D": "M06.1:crescimento-linear-suposto"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "No modelo, kt aparece sempre no expoente −25kt. Chame u = e^(−25kt). O dado Q(10) = 10 dá o valor de u em t = 10; em t = 20 o expoente dobra, então u fica ao quadrado.",
+    "formulas": [
+     "Q(t) = 50(1 − u)/(2 − u), u = e^(−25kt)",
+     "e^(−2m) = (e^(−m))²"
+    ],
+    "simbolos": [
+     [
+      "u",
+      "apelido para e^(−25kt)"
+     ],
+     [
+      "k",
+      "constante do modelo, positiva"
+     ]
+    ]
+   },
+   "pista": "Use Q(10) = 10 para achar u em t = 10, sem tentar achar k.",
+   "passos": [
+    {
+     "faz": "Use o ponto t = 10",
+     "conta": "50(1 − u)/(2 − u) = 10 → 50 − 50u = 20 − 10u → 30 = 40u → u = 3/4",
+     "porque": "Multiplicação cruzada; u = e^(−250k).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Passe para t = 20",
+     "conta": "e^(−500k) = (e^(−250k))² = (3/4)² = 9/16 = 0,5625",
+     "porque": "Dobrar o tempo eleva u ao quadrado. Pelos valores dados: 2 · ln(3/4) = −0,576 e e^(−0,576) = 0,562.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule Q(20)",
+     "conta": "Q(20) = 50(1 − 0,5625)/(2 − 0,5625) = 21,875/1,4375 ≈ 15,2",
+     "porque": "Substitua o novo u.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "≈ 15,2 g",
+     "porque": "É a alternativa A.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 15,2",
+   "checagem": "Confira com o gráfico: Q cresce rápido no começo e se aproxima de 25. De 0 a 10 min ganhou 10 g; de 10 a 20 ganha menos, cerca de 5,2 g, como esperado numa curva que desacelera.",
+   "erradas": {
+    "B": "Não confere: com u = 0,5625, Q(20) = 21,875/1,4375 ≈ 15,2, não 16,8.",
+    "C": "Não confere: Q(20) ≈ 15,2; 18,4 não sai do modelo com u = 9/16.",
+    "D": "Sai de supor crescimento linear, dobrando Q(10) = 10. A curva desacelera, e Q(20) ≈ 15,2."
+   },
+   "armadilha": "Supor que dobrar o tempo dobra a quantidade, quando no modelo é o fator e^(−25kt) que fica ao quadrado.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A quantidade de produto em t = 20 min.",
+    "chave": "Q(10) = 10 dá u = 3/4; em t = 20, u = 9/16; Q ≈ 15,2.",
+    "cuidado": "Dobrar t eleva o fator exponencial ao quadrado."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pelos valores dados",
+    "ideia": "25k · 10 = 0,288 (de ln(3/4) = −0,288); em t = 20, e^(−0,576) = 0,562 e Q = 50 · 0,438/1,438 ≈ 15,2."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "50(1 − u) = 10(2 − u) → u = 3/4",
+    "nota": "t = 10"
+   },
+   {
+    "linha": "u² = 9/16 = 0,5625",
+    "nota": "t = 20"
+   },
+   {
+    "linha": "Q = 50 · 0,4375/1,4375 ≈ 15,2",
+    "nota": "resultado"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0056"
+  }
  }
 }
