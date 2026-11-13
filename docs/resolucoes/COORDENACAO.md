@@ -22,7 +22,8 @@ NUNCA resolve questão. Fala com o dono em português do Brasil, direto, sem ter
 "Você é a sessão de resoluções de <MATÉRIA> do Aprendice. Leia CLAUDE.md e siga integralmente
 docs/resolucoes/PROMPT-SESSAO-RESOLUCOES.md, com a sua matéria = <m>. Fale português do Brasil. Comece com
 `cd app && flock /tmp/converte.lock python3 scripts/converte.py`, volte à raiz e siga a esteira
-(`python3 ferramentas/resolucoes/lote.py proximo <m> --novo`, até 3 lotes abertos seus). Se houver lote aberto de uma
+(`python3 ferramentas/resolucoes/lote.py proximo <m> --novo`, até 3 lotes abertos seus). Limite de 10 lotes por
+sessão: só abra lote novo se (lotes que você já gravou + lotes abertos seus) for menor que 10; ao gravar o 10º, mande TROCA. Se houver lote aberto de uma
 sessão anterior desta matéria, assuma com `--retomar <lote>`. Trabalhe continuamente, sem parar
 esperando aprovação: enquanto a lente confere um lote, já adiante o próximo; só pare para o que não tem volta (CLAUDE.md).
 Avise a coordenadora (<id da coordenadora>) com TROCA quando chegar a hora (passo 9 do prompt)."
@@ -63,8 +64,10 @@ session_01PveEKb4hnDGKRb7Gtd9hCr. A coordenadora antiga é session_01PveEKWW3t7Z
 ## Rodada da conferência (a cada 3 horas)
 1. `git pull --rebase --autostash origin app-prototipo-completo`.
 2. Contar os lotes de cada sessão (commits com o id dela: `git log --since=<criação> --format=%b | grep -c <id>`).
-   Passou de 10 lotes (ou contexto > 40%) → send_message priority next: não abrir lote novo, gravar os abertos e mandar
-   TROCA. Não esperar a sessão pedir (dono, 13/11: Física chegou a 21 lotes sem troca).
+   Lote começado não se interrompe (dono, 13/11): a sessão só para quando termina os lotes que já abriu. Por isso o
+   limite vem no prompt (gravados + abertos < 10 para abrir outro). Na rodada, quem tiver gravados + abertos >= 10 (ou
+   contexto > 40%) recebe send_message priority later: não abrir lote novo, terminar os abertos e mandar TROCA.
+   Não esperar a sessão pedir (dono, 13/11: Física chegou a 21 lotes sem troca).
    Para cada sessão trabalhando: get_session. Parada com matéria ainda por fazer → send_message (priority later):
    "Continue: próximo lote da sua matéria, sem encerrar a vez entre lotes, até o dono mandar parar." Falha por limite
    ou créditos → anotar em docs/resolucoes/conferencia.md e avisar o dono uma vez. Pedido de aprovação sem resposta →
