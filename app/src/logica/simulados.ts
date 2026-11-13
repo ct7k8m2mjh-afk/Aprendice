@@ -48,7 +48,7 @@ export function planoDoConteudo(m: MateriaId, banco: Questao[], subs: string[], 
   const embaralha = <T,>(l: T[]) => { const a = [...l]; for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(rnd() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
   const ordem = [...new Set(subs)].sort();
   const filas = ordem.map((s) => {
-    const l = banco.filter((q) => q.sub === s && !q.pendente && !q.outraMateria);
+    const l = banco.filter((q) => q.sub === s && !q.pendente && !q.outraMateria && !q.anuladaAprendice);
     // novas primeiro, cada grupo embaralhado
     return [...embaralha(l.filter((q) => !feitas.has(q.id))), ...embaralha(l.filter((q) => feitas.has(q.id)))];
   });

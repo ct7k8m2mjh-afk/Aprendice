@@ -1,4 +1,4 @@
-# História: resoluções (gerado por lote.py em 2026-11-12)
+# História: resoluções (gerado por lote.py em 2026-11-13)
 
 Faltam 0 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 0; ENEM nível 7-10 0; provas-alvo nível 7-10 0; demais nível 7-10 0.
 
@@ -120,6 +120,4 @@ Faltam 0 questões sem resolução (fora as que estão em lote, pendentes ou com
 
 ## Divergências de gabarito (o dono decide)
 
-| Questão | Prova | Conteúdo | Motivo |
-|---|---|---|---|
-| Pc90de958 | Fema 2022 Processo Seletivo 2022 · questão 13 | H08.8 mundo atual: Oriente Médio, terrorismo e conflitos recentes (tema H08 Guerra Fria) | gabarito oficial E ("Apenas a alternativa IV está incorreta") contradiz os fatos: a IV é verdadeira (19 sequestradores, milhares de mortos) e a III é falsa (a Al-Qaeda não é grupo separatista basco); nenhuma alternativa diz "apenas III incorreta". Se a banca leu como erro o "terceiro avião" da II (foi o quarto), a coerente seria D (II e III incorretas). PDF da Fema não abriu daqui para conferir o gabarito. Conferente, às cegas, deu D. Manter fora até achar o gabarito publicado; se a banca confirmar E, a questão tem gabarito inconsistente com os fatos e fica fora. |
+Nenhuma.

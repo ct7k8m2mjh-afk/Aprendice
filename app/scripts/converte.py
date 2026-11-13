@@ -39,6 +39,10 @@ TRIAGEM = os.path.join(os.path.dirname(APP), 'docs', 'provas', 'triagem-questoes
 # Decisão do dono (13/11/2026): questão de prova cuja matéria real não é nenhuma das 9 do site (Artes, Educação Física...)
 # não aparece nos temas das matérias, só no simulado da prova inteira. Lista única: conteudo-fonte/outra-materia.json.
 OUTRA_MATERIA = os.path.join(APP, 'conteudo-fonte', 'outra-materia.json')
+# Decisão do dono (13/11/2026): "questão anulada pelo Aprendice" (gabarito oficial contra os fatos, enunciado com erro ou
+# dado faltando) vale como anulada pela banca: fora do site e, no simulado da prova inteira, contada como anulada.
+# Lista única: conteudo-fonte/anuladas-aprendice.json.
+ANULADAS_APRENDICE = os.path.join(APP, 'conteudo-fonte', 'anuladas-aprendice.json')
 
 
 def triagem():
@@ -352,6 +356,41 @@ def entrada_indice(p):
                                   'alternativas', 'total_oficial')} | {'questoes': len(p['questoes']), 'areas': areas}
 
 
+def anuladas_aprendice():
+    """id da questão de prova -> motivo (conteudo-fonte/anuladas-aprendice.json)."""
+    if not os.path.exists(ANULADAS_APRENDICE):
+        return {}
+    return {qid: v['motivo'] for qid, v in ler(ANULADAS_APRENDICE)['questoes'].items()}
+
+
+def marca_anuladas_aprendice(provas):
+    """Marca anuladaAprendice (motivo) na questão da prova completa. Id da lista que não existe em nenhuma prova para a
+    conversão com erro (lista desatualizada)."""
+    an = anuladas_aprendice()
+    achou = set()
+    for p in provas:
+        for pq in p['questoes']:
+            if pq['id'] in an:
+                pq['anuladaAprendice'] = an[pq['id']]
+                achou.add(pq['id'])
+    falta = sorted(set(an) - achou)
+    if falta:
+        raise SystemExit(f'anuladas-aprendice.json: ids que não estão em nenhuma prova: {falta}')
+    return len(achou)
+
+
+def prova_publicada(p):
+    """A prova como vai ao site: a anulada pelo Aprendice sai, como a anulada pela banca (que o recorte já tira), e o
+    número dela fica em fora.anuladas_aprendice. A fonte não muda."""
+    fora_ap = [q['n'] for q in p['questoes'] if q.get('anuladaAprendice')]
+    if not fora_ap:
+        return p
+    out = dict(p)
+    out['questoes'] = [q for q in p['questoes'] if not q.get('anuladaAprendice')]
+    out['fora'] = dict(p.get('fora') or {}, anuladas_aprendice=sorted(fora_ap))
+    return out
+
+
 def copia_provas(provas=None):
     """App completo: public/conteudo/provas/<id>/prova.json + q/<n>.webp e o índice."""
     destino = os.path.join(DESTINO, 'provas')
@@ -361,8 +400,10 @@ def copia_provas(provas=None):
     for p in (provas if provas is not None else provas_fonte()):
         d = os.path.join(destino, p['id'])
         os.makedirs(os.path.join(d, 'q'), exist_ok=True)
+        # todos os prints, inclusive os da anulada pelo Aprendice (a questão continua no banco, fora do ar, com o print)
         for q in p['questoes']:
             shutil.copy(os.path.join(FONTE_PROVAS, p['id'], q['print']), os.path.join(d, q['print']))
+        p = prova_publicada(p)
         gravar(os.path.join(d, 'prova.json'), p)
         indice.append(entrada_indice(p))
     gravar(os.path.join(destino, 'indice.json'), indice)
@@ -728,6 +769,41 @@ def aplica_outra_materia():
     return rel
 
 
+def aplica_anuladas_aprendice():
+    """Decisão do dono (13/11/2026): a questão anulada pelo Aprendice fica no banco com anuladaAprendice (motivo) e
+    pendente 'anulada pelo Aprendice: <motivo>' (o site tira as pendentes de toda listagem por matéria) e sai do treino
+    geral (essencial.abc). Vale também para a questão antiga do banco que ficou no lugar de uma duplicata da prova.
+    Nada é apagado e o id não muda (princípio 7)."""
+    an = anuladas_aprendice()
+    dup = ler(os.path.join(DESTINO, 'duplicatas-provas.json')) if os.path.exists(os.path.join(DESTINO, 'duplicatas-provas.json')) else {}
+    alvo = dict(an)
+    for pid, motivo in an.items():
+        if pid in dup:
+            alvo[dup[pid].split('/', 1)[1]] = motivo
+    rel = {'lista': len(an), 'no_banco': {}}
+    for m in MATERIAS + NOVAS:
+        f = os.path.join(DESTINO, m, 'banco.json')
+        if not os.path.exists(f):
+            continue
+        banco, n = ler(f), 0
+        for q in banco:
+            motivo = alvo.get(q['id'])
+            if motivo:
+                q['anuladaAprendice'] = motivo
+                q['pendente'] = 'anulada pelo Aprendice: ' + motivo
+                n += 1
+        if n:
+            gravar(f, banco)
+            rel['no_banco'][m] = n
+        fm = os.path.join(DESTINO, m, 'materia.json')
+        mat = ler(fm)
+        abc = mat.get('essencial', {}).get('abc') or []
+        if any(i in alvo for i in abc):
+            mat['essencial']['abc'] = [i for i in abc if i not in alvo]
+            gravar(fm, mat)
+    return rel
+
+
 def pacotes_provas(pasta):
     """Prévia publicada: provas/indice.json + provas/<id>.json com os prints embutidos (reduzidos),
     servidos ao lado do HTML e lidos sob demanda."""
@@ -738,7 +814,8 @@ def pacotes_provas(pasta):
     indice = []
     provas = provas_fonte()
     marca_outra_materia_provas(provas)
-    for p in provas:
+    marca_anuladas_aprendice(provas)
+    for p in map(prova_publicada, provas):
         prints = {}
         for q in p['questoes']:
             im = Image.open(os.path.join(FONTE_PROVAS, p['id'], q['print'])).convert('RGB')
@@ -957,6 +1034,7 @@ def main():
         print(m, relatorio[m])
     provas = provas_fonte()
     relatorio['outra_materia_nas_provas'] = marca_outra_materia_provas(provas)
+    relatorio['anuladas_aprendice_nas_provas'] = marca_anuladas_aprendice(provas)
     relatorio['provas'] = copia_provas(provas)
     print('provas completas', relatorio['provas'])
     relatorio['exercicios'] = liga_provas(provas)
@@ -965,6 +1043,8 @@ def main():
     print('questões de site fora do site', relatorio['questoes_de_site'])
     relatorio['outra_materia'] = aplica_outra_materia()
     print('questões de outra matéria (só no simulado da prova inteira)', relatorio['outra_materia'])
+    relatorio['anuladas_aprendice'] = aplica_anuladas_aprendice()
+    print('questões anuladas pelo Aprendice (fora do site)', relatorio['anuladas_aprendice'])
     relatorio['regioes'] = marca_regioes()
     print('região da prova de cada questão', relatorio['regioes'])
     # revisão em slides: depois das matérias (alimenta a Teoria em cartões no materia.json de cada uma)

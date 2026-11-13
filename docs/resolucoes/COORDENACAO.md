@@ -63,7 +63,7 @@ pelo id). Questão que muda de matéria sai dos `pendentes` do registro antigo p
 - Português (falta): subtema errado, sem destino indicado: Ped65eba5, P3bdc3073, Pbe8025a1, Pfe767de0, P98fee0ad,
   P273c97a5, P5bd2916f, P9889395d, Pd86425b8, P087b8c9f. Dado: P40c29de8 (alternativa E com coluna do poema colada).
   P298602be (UFT 2023/2 q14): especialistas A, preliminar da Copese B: fora do ar até sair o definitivo.
-  63 pendentes "obra:" (lotes 61-71). FMABC 2022 q16 (Pd7fbdc3f) com nota_gabarito, esperando o dono.
+  63 pendentes "obra:" (lotes 61-71). FMABC 2022 q16 (Pd7fbdc3f): anulada pelo Aprendice (dono, 13/11).
 - Feito em 13/11 (sessão principal): Biologia P3c08d8ee→Física F08.5, Pc68c4acb→Química Q01.3, Pbf20fbdc→Português
   P01.2; subtemas P372650c4 B04.1, Pfa8485e7 B01.4, Pd4ba01ad B02.5. Química P7f6fa922→Biologia B09.1 e 15 subtemas
   (Pa03ab8a5, P7e43e4b3, P373a52f0, Pbf3a7103, Pd7e4692a, Pd02b7249, Pe17c191b, P33b5d811, P433f7077, Ped3214f8,
@@ -114,18 +114,12 @@ Só o que não tem solução sem o dono, EM ÚLTIMO CASO, vai para o painel "O q
 escreve a instrução na caixa de texto abaixo do item e envia pela página. Em toda rodada: ArtifactData list da coleção
 `respostas` do painel; para cada doc com `lido:false`, cumprir a instrução, gravar `retorno` (o que foi feito) e `lido:true`
 com update, e marcar o item como feito no o-que-falta.json.
-- Unifor 2026.2 Medicina q01 (Pb1863457): erro de enunciado (36 cápsulas não chegam a 4 665 mg; gabarito D só ignorando o
-  "36"). Recomendação: deixar fora do site.
 - Limite semanal da conta em aviso (renova 19/11). Teste de cobertura animada de Matemática voltou ao verde (82,3%, 13/11).
-- Fema 2022 q13 (Pc90de958, prova fema-2021): gabarito oficial E contradiz os fatos (III é falsa; II também erra o
-  número do avião); coerente seria D. Está fora do site. Recomendação: deixar fora. Alternativa: publicar com E e alerta.
-- Teste da fábrica pela API (US$ 20), que não gasta o limite semanal da conta.
-- Direitos: letras de música em Geografia (UERJ 2021 q4 "Morro Velho", Pcaf0f0ee; "Lucro", P8e5ccfb5); artigo do Le
-  Monde Diplomatique com foto de Sebastião Salgado (P875a6d1a); prints com fotos de imprensa e charges. Sugestão: as
-  duas de letra de música só como print.
-- Fema 2021 q9 (P88f37147, ITER): gabarito oficial B, mas E também é falsa (150 milhões de °C é ~10 vezes o centro do
-  Sol, não 10%). Fora do site. Recomendação: deixar fora.
-- Mackenzie 2026/2 q11 (P855bb53e): fora do site (recomendado) ou com A e explicação.
+- Decidido pelo dono em 13/11 (painel): "questão anulada pelo Aprendice" para gabarito oficial contra os fatos ou enunciado
+  com erro/dado faltando — lista em app/conteudo-fonte/anuladas-aprendice.json (12 questões: Pc90de958, Pd7fbdc3f,
+  P855bb53e, Pb1863457, Pe5a5d0ab, Pb024ee4d, P88f37147, P7f440cd0, P525706b9, Pcc7ef326, Pd1c0ef9d, Pc520853b). Caso
+  igual que aparecer: acrescentar a linha nesse arquivo e tirar a id das pendências do registro. Letras de música e fotos
+  de imprensa: uso autorizado para fins educacionais. Teste da fábrica pela API: o dono não vai fazer.
 - Checklist de provas para baixar à mão: https://claude.ai/artifact/AfS22NUUP69GNTWsEKV5YC (coleção `provas`;
   campos prova, gabarito, obs). Faltam, entre outras: Famema 2023 (caderno da Prova II v1), FMJ 2020 e 2023.
 
