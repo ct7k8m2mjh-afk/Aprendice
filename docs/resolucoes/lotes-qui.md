@@ -1,6 +1,6 @@
 # Química: resoluções (gerado por lote.py em 2026-11-13)
 
-Faltam 875 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 362; ENEM nível 7-10 26; provas-alvo nível 7-10 181; demais nível 7-10 306.
+Faltam 815 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 302; ENEM nível 7-10 26; provas-alvo nível 7-10 181; demais nível 7-10 306.
 
 ## Lotes
 
@@ -66,12 +66,14 @@ Faltam 875 questões sem resolução (fora as que estão em lote, pendentes ou c
 | qui-0058 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | qui-0059 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | qui-0060 | demais nível 1-6 | 60 | gravado | 59 | 0 | 1 |
-| qui-0061 | demais nível 1-6 | 60 | aberto |  |  |  |
+| qui-0061 | demais nível 1-6 | 60 | gravado | 59 | 1 | 0 |
+| qui-0062 | demais nível 1-6 | 60 | aberto |  |  |  |
 
 ## Pendentes (falta de certeza absoluta)
 
 | Questão | Prova | Conteúdo | Motivo |
 |---|---|---|---|
+| P49c155b4 | Fatec 2025 1º semestre · questão 31 | Q09.1 pilhas: semirreações, potencial e espontaneidade (tema Q09 Pilhas, eletrólise e radioatividade) | print: o print está cortado à direita (o fim das linhas do enunciado e das alternativas B, C, D e E não aparece; em C falta a palavra que diz se é maior ou menor potencial). Refazer o print do PDF oficial antes de resolver. |
 | Pa91b52ff | Fuvest 2021 1ª fase · questão 84 | Q04.3 cálculo estequiométrico direto (tema Q04 Mol e estequiometria) | print incompleto: o print traz só a segunda coluna da questão; faltam o início do enunciado e a tabela com os teores de HMF permitidos (legislação brasileira e recomendação internacional), sem a qual a questão não se resolve. Refazer o recorte (questão 84 ocupa duas colunas). |
 | P1f92eb26 | IME 2024 Concurso 2023/2024 – 1ª fase (objetiva) · questão 36 | Q06.2 equação de Clapeyron, volume molar e CNTP (tema Q06 Gases) | errata: E https://www.ime.eb.mil.br/images/arquivos/admissao/cfg/provas-anteriores/2023-2024/Gabarito_Prova_Objetiva_1_FASE.pdf (gabarito definitivo do IME traz "36 E" no trecho da busca; o preliminar da entrada é D; resolvedor e conferente às cegas chegam a E: P proporcional a n·T, amônia 0,8 mol a 345 K dá 276, maior que 273 do metano nas CNTP). Resolução com E pronta para refazer. |
 | P904e00fe | UEL 2023 1ª fase · questão 18 | Q06.2 equação de Clapeyron, volume molar e CNTP (tema Q06 Gases) | classificação: é de Física (empuxo; princípio de Arquimedes) |
