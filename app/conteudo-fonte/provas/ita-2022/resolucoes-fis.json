@@ -242,5 +242,130 @@
    "data": "2026-11-13",
    "lote": "fis-0053"
   }
+ },
+ "Pc7435958": {
+  "n": "10",
+  "conceito": "Sistema espelho côncavo + lente convergente: o objeto entre os dois manda luz direto para a lente e também via espelho; nenhuma das duas imagens finais pode ser real à direita da lente.",
+  "equivocos": {
+   "A": "F09.5:inverteu-faixa-de-imagem-real",
+   "C": "F09.5:ignorou-reflexao-no-espelho",
+   "D": "F09.5:faixa-sem-testar-o-espelho",
+   "E": "F09.5:inverteu-condicao-do-espelho"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O objeto fica entre o espelho (x = 0) e a lente (x = 8 cm), então a luz dele segue dois caminhos: vai direto para a lente e vai ao espelho, volta e então passa pela lente. Uma lente convergente só joga imagem para o outro lado (x > 8 cm) quando o objeto que ela enxerga está além do foco, a mais de 5 cm dela. Então a condição é: tanto o objeto quanto a imagem dada pelo espelho precisam ficar a no máximo 5 cm da lente, ou seja, em x ≥ 3 cm.",
+    "formulas": [
+     "1/f = 1/p + 1/p′ (lente e espelho)",
+     "p′ = (f · p)/(p − f)",
+     "lente convergente: p > f → imagem real do outro lado; p < f → imagem virtual do mesmo lado"
+    ],
+    "simbolos": [
+     [
+      "f",
+      "distância focal: 5 cm na lente, 2 cm no espelho"
+     ],
+     [
+      "p",
+      "distância do objeto ao elemento óptico"
+     ],
+     [
+      "p′",
+      "distância da imagem ao elemento óptico"
+     ],
+     [
+      "x",
+      "posição ao longo do eixo, com x = 0 no vértice do espelho"
+     ]
+    ]
+   },
+   "pista": "Siga separadamente os dois caminhos da luz: o que vai direto para a lente e o que passa antes pelo espelho.",
+   "passos": [
+    {
+     "faz": "Traduza a condição para a lente",
+     "conta": "imagem real em x > 8 ↔ objeto da lente a mais de 5 cm → proibido ficar em x < 3",
+     "porque": "A lente está em x = 8 e tem f = 5 cm: só objeto além do foco (x < 8 − 5 = 3) gera imagem real do lado direito. Em x > 3 a imagem da lente é virtual, à esquerda; em x = 3 o objeto está no foco e a imagem vai para o infinito.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Caminho direto: objeto → lente",
+     "conta": "p = 8 − x ≤ 5 → x ≥ 3 cm",
+     "porque": "Para a luz que vai direto não formar imagem à direita, o objeto precisa estar entre o foco da lente e ela.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Caminho pelo espelho: ache a imagem",
+     "conta": "p′ = (2 · x)/(x − 2) → x = 3 dá p′ = 6; x = 6 dá p′ = 3",
+     "porque": "Essa imagem do espelho vira o objeto da lente. Quanto mais longe do espelho o objeto, mais perto do espelho cai a imagem.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Imponha a mesma regra à imagem do espelho",
+     "conta": "(2 · x)/(x − 2) ≥ 3 → 2x ≥ 3x − 6 → x ≤ 6 cm",
+     "porque": "A imagem do espelho também precisa ficar em x ≥ 3 (a no máximo 5 cm da lente). Como x − 2 > 0 nessa faixa, dá para multiplicar sem inverter a desigualdade.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Junte as duas condições",
+     "conta": "x ≥ 3 e x ≤ 6 → 3 cm ≤ x ≤ 6 cm",
+     "porque": "Só nessa faixa as duas imagens finais (direta e via espelho) são virtuais ou vão ao infinito; nenhuma se forma em x > 8.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 3 cm ≤ x ≤ 6 cm.",
+   "checagem": "Teste x = 4: direto, p = 4 cm < 5 → imagem virtual; pelo espelho, p′ = 8/2 = 4 cm, que fica a 4 cm da lente → também virtual. Teste x = 7: pelo espelho, p′ = 14/5 = 2,8 cm, a 5,2 cm da lente, além do foco → imagem real à direita; por isso x = 7 está fora.",
+   "erradas": {
+    "A": "Na faixa 0 a 2,67 cm o objeto está a mais de 5 cm da lente: a luz direta já forma imagem real em x > 8 (em x = 2,67 a imagem do espelho cai em x = 8, sobre a lente).",
+    "C": "Sai de olhar só a luz direta (x ≥ 3) e esquecer o espelho. Em x = 7 a imagem do espelho fica em 2,8 cm, a 5,2 cm da lente, e gera imagem real à direita.",
+    "D": "Não confere: em x = 7, dentro da D, o espelho forma imagem em 2,8 cm, a 5,2 cm da lente, além do foco, e a lente gera imagem real à direita.",
+    "E": "Inverte a condição do espelho: para x > 6 a imagem do espelho fica a menos de 3 cm do vértice, a mais de 5 cm da lente, e a lente forma imagem real à direita."
+   },
+   "armadilha": "Esquecer que a luz que vai ao espelho volta e passa pela lente: a imagem do espelho é um segundo objeto para a lente.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A faixa de posições do objeto entre espelho e lente em que nenhuma imagem se forma à direita da lente.",
+    "chave": "Objeto direto e imagem do espelho precisam ficar a no máximo 5 cm da lente: x ≥ 3 e (2 · x)/(x − 2) ≥ 3, logo 3 ≤ x ≤ 6.",
+    "cuidado": "Analisar os dois caminhos da luz, não só o direto."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste de pontos",
+    "ideia": "Teste x = 2, 4 e 7 nos dois caminhos: só o 4 não gera imagem à direita, e só a B contém o 4 sem conter 2 ou 7."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "lente: f = 5 em x = 8 → x > 3: imagem virtual; x = 3: imagem no infinito",
+    "nota": "condição da lente"
+   },
+   {
+    "linha": "direto: p = 8 − x ≤ 5 → x ≥ 3",
+    "nota": "luz que vai direto"
+   },
+   {
+    "linha": "espelho: p′ = (2 · x)/(x − 2)",
+    "nota": "imagem do espelho"
+   },
+   {
+    "linha": "(2 · x)/(x − 2) ≥ 3 → 2x ≥ 3x − 6 → x ≤ 6",
+    "nota": "imagem do espelho também em x ≥ 3"
+   },
+   {
+    "linha": "3 ≤ x ≤ 6",
+    "nota": "as duas condições juntas"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "fis-0061"
+  }
  }
 }
