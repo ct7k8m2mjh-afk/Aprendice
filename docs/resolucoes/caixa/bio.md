@@ -22,4 +22,4 @@ Pendências novas do bio-0061:
 - Pb536f4cb: classificação: é de Química (classificar reação como endotérmica/exotérmica por ΔH; o ciclo menstrual é só contexto).
 As demais pendências estão nos blocos acima (Pc6c1048f Física; P524982f4 alternativa D com texto-base colado; reclassificações).
 Status Biologia (lote.py status): 826 faltam no total da linha bio.
-Dica para a próxima sessão: o lote.py procura  no nível da questão (não dentro de ); os briefs em docs/resolucoes/trabalho/BRIEF-*-bio.md já dizem isso.
+Dica para a próxima sessão: o lote.py procura "visual" no nível da questão (não dentro de "resolucao"); os briefs em docs/resolucoes/trabalho/BRIEF-*-bio.md já dizem isso.
