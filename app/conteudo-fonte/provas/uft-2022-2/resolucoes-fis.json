@@ -88,5 +88,118 @@
    "data": "2026-11-13",
    "lote": "fis-0044"
   }
+ },
+ "P60369b64": {
+  "n": "55",
+  "conceito": "Polias e tensão máxima da corda: só a montagem em que dois trechos de corda dividem o peso deixa cada trecho com P/2, abaixo da ruptura de 3P/4.",
+  "equivocos": {
+   "A": "F03.2:tracao-igual-ao-peso",
+   "B": "F03.2:polia-fixa-reduz-forca",
+   "D": "F03.2:polia-fixa-reduz-forca"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A corda arrebenta se a tensão em algum trecho passar de 3P/4. A pergunta é, em cada montagem, quantos trechos de corda sustentam a plataforma. Polia presa na viga só muda a direção da corda: a tensão continua igual ao peso. Quando dois trechos da mesma corda puxam a plataforma para cima, cada um carrega metade do peso.",
+    "formulas": [
+     "equilíbrio: soma das forças para cima = P",
+     "n trechos iguais sustentando o peso: n · T = P → T = P/n",
+     "segurança: T < 3P/4"
+    ],
+    "simbolos": [
+     [
+      "P",
+      "peso total do colaborador com o equipamento"
+     ],
+     [
+      "T",
+      "tensão (tração) na corda"
+     ],
+     [
+      "tensão de ruptura",
+      "maior tensão que a corda aguenta sem arrebentar"
+     ],
+     [
+      "polia",
+      "roda com sulco por onde a corda passa"
+     ]
+    ]
+   },
+   "pista": "Em cada desenho, conte quantos trechos de corda chegam à plataforma puxando para cima.",
+   "passos": [
+    {
+     "faz": "Escreva a condição de segurança",
+     "conta": "T < 3P/4 = 0,75 P",
+     "porque": "Qualquer montagem em que um trecho tenha tensão igual a P arrebenta, porque P é maior que 0,75 P.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Teste A, B e D",
+     "conta": "A: um trecho → T = P | B e D: polias presas na viga, um trecho chega à plataforma → T = P",
+     "porque": "Polia fixa só desvia a corda. Se um único trecho segura a plataforma, ele carrega o peso inteiro.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Teste C",
+     "conta": "C: dois trechos sobem da plataforma até a polia → 2T = P → T = P/2 = 0,5 P",
+     "porque": "A mesma corda passa pela polia e as duas pontas puxam a plataforma; a tensão é a mesma nos dois trechos e cada um leva metade.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare com a ruptura",
+     "conta": "0,5 P < 0,75 P",
+     "porque": "Só em C a tensão fica abaixo da ruptura. É a configuração segura.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — a plataforma presa pelas duas pontas de uma corda que passa por uma polia: cada trecho suporta P/2.",
+   "checagem": "Confira pela folga: em C sobra 0,75 P − 0,5 P = 0,25 P de margem em cada trecho. Nas outras, cada trecho precisaria de 1,0 P, que passa da ruptura em 0,25 P.",
+   "erradas": {
+    "A": "Não confere: uma corda só, sem polia, segura a plataforma com T = P, e P > 3P/4. A corda arrebenta.",
+    "B": "Não confere: a polia presa na viga só muda a direção da corda. O trecho que chega à plataforma continua com T = P, acima de 3P/4.",
+    "D": "Não confere: as duas polias estão presas na viga, e a plataforma pende de um único trecho de corda. A tensão é P, acima de 3P/4. Mais polias não ajudam se nenhuma divide o peso."
+   },
+   "armadilha": "Achar que qualquer polia reduz a força: polia presa só muda a direção; o que divide o peso é o número de trechos que sustentam a carga.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Qual montagem mantém a tensão da corda abaixo de 3P/4.",
+    "chave": "Contar os trechos que sustentam a plataforma: em C são dois, então T = P/2.",
+    "cuidado": "Não confundir polia fixa (só desvia a corda) com divisão do peso entre trechos."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pelo número de trechos",
+    "ideia": "A tensão é P dividido pelo número de trechos que puxam a plataforma; só C tem 2 trechos (T = 0,5 P < 0,75 P)."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "T máx = 3P/4 = 0,75 P",
+    "nota": "ruptura"
+   },
+   {
+    "linha": "A, B, D: T = P",
+    "nota": "um trecho segura tudo"
+   },
+   {
+    "linha": "C: 2T = P → T = P/2",
+    "nota": "dois trechos"
+   },
+   {
+    "linha": "0,5 P < 0,75 P",
+    "nota": "só C é seguro"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "fis-0049"
+  }
  }
 }

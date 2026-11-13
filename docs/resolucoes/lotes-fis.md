@@ -1,6 +1,6 @@
 # Física: resoluções (gerado por lote.py em 2026-11-13)
 
-Faltam 1331 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 815; ENEM nível 7-10 31; provas-alvo nível 7-10 186; demais nível 7-10 299.
+Faltam 1301 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 785; ENEM nível 7-10 31; provas-alvo nível 7-10 186; demais nível 7-10 299.
 
 ## Lotes
 
@@ -54,7 +54,8 @@ Faltam 1331 questões sem resolução (fora as que estão em lote, pendentes ou 
 | fis-0046 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | fis-0047 | demais nível 1-6 | 30 | aberto |  |  |  |
 | fis-0048 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
-| fis-0049 | demais nível 1-6 | 30 | aberto |  |  |  |
+| fis-0049 | demais nível 1-6 | 30 | gravado | 29 | 0 | 1 |
+| fis-0050 | demais nível 1-6 | 30 | aberto |  |  |  |
 
 ## Pendentes (falta de certeza absoluta)
 
@@ -70,4 +71,6 @@ Faltam 1331 questões sem resolução (fora as que estão em lote, pendentes ou 
 
 ## Divergências de gabarito (o dono decide)
 
-Nenhuma.
+| Questão | Prova | Conteúdo | Motivo |
+|---|---|---|---|
+| Pc520853b | URCA 2027 PSU 2026.2/2027.1 (nov/2026) · questão 6 | F03.2 peso, normal, tração, blocos e polias (tema F03 Dinâmica e forças) | Duas alternativas incorretas: C (t2/T2 = M·g/(M·(a+g)) = g/(a+g), não (a+g)/g; a alternativa traz a razão invertida) e E (t1 = (M+m)·g ≠ T1 = (M+m)·(a+g)). O preliminar dá E; minha leitura acha C e E incorretas, sem como escolher uma só. Sem gabarito definitivo nem resolução publicada localizados na web (busca em 13/11/2026). Candidata a anulação. |
