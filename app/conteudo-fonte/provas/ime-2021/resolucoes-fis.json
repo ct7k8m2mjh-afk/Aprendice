@@ -488,5 +488,125 @@
    "data": "2026-11-13",
    "lote": "fis-0056"
   }
+ },
+ "P692aff0b": {
+  "n": "27",
+  "conceito": "Calorimetria a partir de dados experimentais: obter calor específico, temperatura de fusão e calor latente, e somar calor sensível e latente.",
+  "equivocos": {
+   "A": "F08.3:escalou-uma-etapa",
+   "B": "F08.3:esqueceu-o-calor-latente",
+   "C": "F08.3:escalou-a-amostra",
+   "D": "F08.3:esqueceu-o-calor-sensivel"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A amostra de 1 kg dá tudo o que falta. Na 1ª etapa, nada funde: só aquecimento, e daí sai o calor específico. Na 2ª etapa, sobra sólido (0,92 kg) junto com material fundido em equilíbrio: isso só acontece na temperatura de fusão, então ela é 90 °C. O que sobra das 16 kcal depois de aquecer até 90 °C funde 0,08 kg e dá o calor latente.",
+    "formulas": [
+     "Q = m × c × Δθ",
+     "Q = m × L"
+    ],
+    "simbolos": [
+     [
+      "c",
+      "calor específico do material sólido"
+     ],
+     [
+      "L",
+      "calor latente de fusão do material"
+     ],
+     [
+      "kcal",
+      "quilocaloria: 1 000 cal"
+     ]
+    ]
+   },
+   "pista": "Sólido e líquido juntos em equilíbrio: o que isso diz sobre a temperatura de 90 °C?",
+   "passos": [
+    {
+     "faz": "Calor específico (1ª etapa)",
+     "conta": "16 = 1 × c × (60 − 20) → c = 16/40 = 0,4 kcal/kg °C",
+     "porque": "Massa continua 1 kg: só houve aquecimento.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Temperatura de fusão",
+     "conta": "sólido (0,92 kg) + fundido em equilíbrio → T_fusão = 90 °C",
+     "porque": "Sólido e líquido só coexistem em equilíbrio na temperatura de fusão.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calor latente (2ª etapa)",
+     "conta": "1 × 0,4 × (90 − 60) = 12 kcal | 16 − 12 = 4 kcal → L = 4/0,08 = 50 kcal/kg",
+     "porque": "Sobram 4 kcal para fundir 1 − 0,92 = 0,08 kg.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Energia para os 50 kg",
+     "conta": "50 × 0,4 × (90 − 20) + 50 × 50 = 1 400 + 2 500 = 3 900 kcal",
+     "porque": "Aquecer de 20 °C até 90 °C e depois fundir tudo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "Q mínimo = 3 900 kcal",
+     "porque": "É a alternativa E.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 3900 kcal.",
+   "checagem": "Confira por quilograma: aquecer 1 kg de 20 °C a 90 °C custa 0,4 × 70 = 28 kcal e fundir custa 50 kcal; 78 kcal/kg × 50 kg = 3 900 kcal.",
+   "erradas": {
+    "A": "Sai de multiplicar só uma etapa da amostra por 50: 16 × 50 = 800 kcal.",
+    "B": "Sai de parar no aquecimento: 50 × 0,4 × 70 = 1 400 kcal, sem o calor de fusão.",
+    "C": "Sai de multiplicar as duas etapas da amostra por 50: 32 × 50 = 1 600 kcal, mas a amostra não fundiu toda.",
+    "D": "Sai de contar só a fusão: 50 × 50 = 2 500 kcal, sem aquecer de 20 °C a 90 °C."
+   },
+   "armadilha": "Não perceber que 90 °C é a temperatura de fusão, porque há sólido e fundido juntos em equilíbrio.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A energia mínima para fundir 50 kg a partir de 20 °C.",
+    "chave": "c = 0,4 kcal/kg °C, fusão a 90 °C, L = 50 kcal/kg; 50 × (28 + 50) = 3 900 kcal.",
+    "cuidado": "Somar o aquecimento até a fusão e o calor latente."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "por quilograma",
+    "ideia": "Cada kg custa 0,4 × 70 = 28 kcal para aquecer e 50 kcal para fundir: 78 kcal/kg × 50 kg = 3 900 kcal."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "c = 16/(1 × 40) = 0,4 kcal/kg °C",
+    "nota": "1ª etapa"
+   },
+   {
+    "linha": "T_fusão = 90 °C",
+    "nota": "sólido e líquido em equilíbrio"
+   },
+   {
+    "linha": "16 − 1 × 0,4 × 30 = 4 kcal",
+    "nota": "sobra da 2ª etapa"
+   },
+   {
+    "linha": "L = 4/0,08 = 50 kcal/kg",
+    "nota": "calor latente"
+   },
+   {
+    "linha": "50 × 0,4 × 70 + 50 × 50 = 3 900 kcal",
+    "nota": "total"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "fis-0057"
+  }
  }
 }

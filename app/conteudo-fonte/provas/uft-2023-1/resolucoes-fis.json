@@ -205,5 +205,114 @@
    "data": "2026-11-13",
    "lote": "fis-0052"
   }
+ },
+ "Pd3529714": {
+  "n": "60",
+  "conceito": "Balão parado no ar: o empuxo do ar é igual ao peso da sonda mais o peso do gás; a densidade do gás sai daí.",
+  "equivocos": {
+   "A": "F07.4:valor-nao-fecha",
+   "C": "F07.4:esqueceu-a-carga",
+   "D": "F07.4:valor-nao-fecha"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Estático significa resultante zero: empuxo do ar para cima igual ao peso total para baixo. O peso total é o da sonda mais o do gás que enche os 1 000 m³ (o balão tem massa desprezível). O empuxo usa a densidade do ar na altitude. Atenção às unidades: densidades em grama por m³.",
+    "formulas": [
+     "E = ρ_ar · V · g",
+     "E = (m_sonda + m_gás) · g",
+     "ρ_gás = m_gás/V"
+    ],
+    "simbolos": [
+     [
+      "ρ",
+      "densidade"
+     ],
+     [
+      "V",
+      "volume do balão, 1 000 m³"
+     ],
+     [
+      "E",
+      "empuxo"
+     ]
+    ]
+   },
+   "pista": "Passe a densidade do ar para kg/m³ antes de calcular o empuxo.",
+   "passos": [
+    {
+     "faz": "Calcule a massa de ar deslocada",
+     "conta": "13,0 g/m³ × 1 000 m³ = 13 000 g = 13 kg",
+     "porque": "O empuxo é o peso desse ar.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Iguale empuxo e peso total",
+     "conta": "13 kg × 10 = (10 kg + m_gás) × 10 → 13 = 10 + m_gás",
+     "porque": "O g cancela dos dois lados.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a massa de gás",
+     "conta": "m_gás = 13 − 10 = 3 kg = 3 000 g",
+     "porque": "Só 3 kg de gás cabem para o balão ficar parado.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a densidade do gás",
+     "conta": "ρ_gás = 3000 g/1000 m³ = 3,0 g/m³ → gás 2 → alternativa B",
+     "porque": "Na tabela, 3,0 g/m³ é o gás 2.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — o gás 2, de 3,0 g/m³.",
+   "checagem": "Em forças: empuxo 13 kg × 10 = 130 N; peso da sonda 100 N; gás 2 pesa 3 kg × 10 = 30 N; 100 + 30 = 130 N. Fecha.",
+   "erradas": {
+    "A": "Não confere: com o gás 1 (1,5 kg de gás) o peso total é 115 N, menor que o empuxo de 130 N; o balão subiria.",
+    "C": "Sai de achar que o gás só precisa ter a densidade do ar. Com 13 kg de gás o peso seria 230 N, maior que 130 N, e o balão desceria: faltou contar a sonda.",
+    "D": "Não confere: com o gás 4 (23 kg de gás) o peso total é 330 N, muito maior que o empuxo de 130 N; o balão cairia."
+   },
+   "armadilha": "Esquecer o peso da sonda e escolher o gás de mesma densidade do ar.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A densidade do gás que mantém o balão com a sonda parado a 30 km.",
+    "chave": "13 kg de ar deslocado = 10 kg de sonda + m_gás → 3 kg em 1 000 m³ = 3,0 g/m³.",
+    "cuidado": "Densidades em g/m³: converter para kg e não esquecer a sonda."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "densidade média",
+    "ideia": "O conjunto precisa ter densidade média igual à do ar: (10000 g + ρ_gás × 1000)/1000 = 13 → ρ_gás = 3 g/m³."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "m_ar = 13 × 1 000 = 13 000 g = 13 kg",
+    "nota": "ar deslocado"
+   },
+   {
+    "linha": "13 = 10 + m_gás",
+    "nota": "E = P"
+   },
+   {
+    "linha": "m_gás = 3 kg = 3 000 g",
+    "nota": "gás"
+   },
+   {
+    "linha": "ρ = 3000/1000 = 3,0 g/m³",
+    "nota": "gás 2 → B"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "fis-0057"
+  }
  }
 }

@@ -120,5 +120,132 @@
    "data": "2026-11-13",
    "lote": "fis-0054"
   }
+ },
+ "P7b7c681c": {
+  "n": "4",
+  "conceito": "Alcance máximo do jato (lançamento a 45°) dá a velocidade de saída; a continuidade da vazão entre uma mangueira e 30 menores dá a razão dos diâmetros.",
+  "equivocos": {
+   "B": "F07.5:esqueceu-as-30-mangueiras",
+   "C": "F07.5:velocidade-de-saida-inconsistente",
+   "D": "F07.5:velocidade-de-saida-inconsistente",
+   "E": "F07.5:velocidade-de-saida-inconsistente"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Duas ideias se juntam. Primeiro, o alcance horizontal é máximo com lançamento a 45°, e esse alcance vale v²/g: dele sai a velocidade de saída da água. Depois, a água que entra pela mangueira grossa sai dividida pelas 30 finas, então a vazão se conserva. Como a área é proporcional ao quadrado do diâmetro, a razão dos diâmetros vem de uma raiz quadrada.",
+    "formulas": [
+     "Alcance máximo (45°): R = v²/g",
+     "Continuidade: A₁ × v₁ = 30 × A₂ × v₂",
+     "A = π × D²/4, logo (D₂/D₁)² = v₁/(30 × v₂)"
+    ],
+    "simbolos": [
+     [
+      "D₁, D₂",
+      "diâmetros da mangueira grossa e de cada mangueira fina"
+     ],
+     [
+      "v₁, v₂",
+      "velocidade da água na mangueira grossa e na saída das finas"
+     ],
+     [
+      "A",
+      "área da seção da mangueira"
+     ],
+     [
+      "R",
+      "alcance horizontal do jato"
+     ],
+     [
+      "g",
+      "aceleração da gravidade, 10 m/s²"
+     ]
+    ]
+   },
+   "pista": "Use o alcance de 40 m para descobrir com que velocidade a água precisa sair; só depois compare as mangueiras.",
+   "passos": [
+    {
+     "faz": "Converta a velocidade na mangueira grossa",
+     "conta": "v₁ = 360 m/min ÷ 60 = 6 m/s",
+     "porque": "O alcance vai sair em m/s com g em m/s²; as duas velocidades precisam estar na mesma unidade.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a velocidade de saída pelo alcance máximo",
+     "conta": "R = v₂²/g → v₂² = 40 × 10 = 400 → v₂ = 20 m/s",
+     "porque": "O alcance é máximo a 45°, e nesse caso R = v²/g.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escreva a conservação da vazão",
+     "conta": "(π × D₁²/4) × 6 = 30 × (π × D₂²/4) × 20",
+     "porque": "Toda a água da grossa sai pelas 30 finas iguais; π/4 aparece dos dois lados e cancela.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole a razão dos diâmetros",
+     "conta": "(D₂/D₁)² = 6/(30 × 20) = 6/600 = 1/100 → D₂/D₁ = 1/10",
+     "porque": "A área depende do quadrado do diâmetro, por isso a raiz no fim.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — D₂/D₁ = 1/10.",
+   "checagem": "Substitua de volta: com D₂ = D₁/10, cada fina tem área 1/100 da grossa, e as 30 juntas têm 30/100 = 0,3 da área. A vazão é a mesma, então a velocidade sobe na razão inversa: 6 ÷ 0,3 = 20 m/s, que dá alcance máximo 20²/10 = 40 m.",
+   "erradas": {
+    "B": "Sai de esquecer as 30 mangueiras na vazão: (D₂/D₁)² = 6/20 = 3/10, e D₂/D₁ = √(3/10). A água se divide entre 30 saídas.",
+    "C": "4/5 não confere: (4/5)² × 30 × v₂ = 6 dá v₂ ≈ 0,31 m/s, e o alcance máximo seria 0,31²/10 ≈ 0,01 m, não 40 m.",
+    "D": "1/2 não confere: (1/2)² × 30 × v₂ = 6 dá v₂ = 0,8 m/s, e o alcance máximo seria 0,8²/10 = 0,064 m.",
+    "E": "√(2/3) não confere: (2/3) × 30 × v₂ = 6 dá v₂ = 0,3 m/s, e o alcance máximo seria 0,3²/10 = 0,009 m."
+   },
+   "armadilha": "A vazão se divide entre 30 mangueiras, e a área vai com o quadrado do diâmetro: esquecer qualquer um dos dois dá outra letra.",
+   "alerta": "O enunciado não traz g; usou-se g = 10 m/s², valor que o ITA adota na lista de constantes da prova. Com 9,8 m/s² a razão fica 0,1005, praticamente a mesma.",
+   "essencial": {
+    "pede": "A razão D₂/D₁ para que os 30 jatos tenham alcance máximo de 40 m, com água a 360 m/min na mangueira grossa.",
+    "chave": "v₂ = √(40 × 10) = 20 m/s; (D₂/D₁)² = 6/(30 × 20) = 1/100; D₂/D₁ = 1/10.",
+    "cuidado": "Converter m/min para m/s, contar as 30 mangueiras e tirar a raiz no fim."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste das alternativas",
+    "ideia": "Para cada razão, calcule v₂ = 6/(30 × razão²) e o alcance v₂²/10: só 1/10 dá v₂ = 20 m/s e 40 m."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "v₁ = 360/60 = 6 m/s",
+    "nota": "m/min para m/s"
+   },
+   {
+    "linha": "R = v₂²/g → v₂² = 40 × 10 = 400",
+    "nota": "alcance máximo a 45°"
+   },
+   {
+    "linha": "v₂ = 20 m/s",
+    "nota": "raiz"
+   },
+   {
+    "linha": "D₁² × 6 = 30 × D₂² × 20",
+    "nota": "vazão se conserva; π/4 cancela"
+   },
+   {
+    "linha": "(D₂/D₁)² = 6/600 = 1/100",
+    "nota": "isola a razão"
+   },
+   {
+    "linha": "D₂/D₁ = 1/10",
+    "nota": "raiz quadrada"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "fis-0057"
+  }
  }
 }

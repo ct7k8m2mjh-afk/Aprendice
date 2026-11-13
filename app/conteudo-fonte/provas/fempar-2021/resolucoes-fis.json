@@ -642,5 +642,122 @@
    "data": "2026-11-13",
    "lote": "fis-0055"
   }
+ },
+ "P337e03d1": {
+  "n": "67",
+  "conceito": "Trocas de calor com mudança de fase: massa máxima de gelo derretida pelo calor do vapor que condensa e esfria.",
+  "equivocos": {
+   "A": "F08.3:calculou-a-massa-minima",
+   "B": "F08.3:nao-usou-o-caso-limite",
+   "C": "F08.3:nao-usou-o-caso-limite",
+   "E": "F08.3:excedeu-o-calor-disponivel"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Massa máxima significa o caso limite: o equilíbrio fica exatamente a 0 °C, com todo o gelo derretido. Nesse limite, o vapor condensa e a água formada esfria de 100 °C até 0 °C; todo esse calor vai para derreter o gelo, que não chega a esquentar. Com mais gelo que isso, sobraria gelo.",
+    "formulas": [
+     "Q = m × L (mudança de fase)",
+     "Q = m × c × Δθ (variação de temperatura)",
+     "calor cedido = calor recebido"
+    ],
+    "simbolos": [
+     [
+      "L",
+      "calor latente: 540 cal/g na condensação, 80 cal/g na fusão"
+     ],
+     [
+      "c",
+      "calor específico da água líquida: 1 cal/g °C"
+     ],
+     [
+      "calorímetro de capacidade térmica desprezível",
+      "o recipiente não troca calor"
+     ]
+    ]
+   },
+   "pista": "Pense no caso limite: com a maior massa possível de gelo, a que temperatura fica o equilíbrio?",
+   "passos": [
+    {
+     "faz": "Traduza o máximo",
+     "conta": "equilíbrio a 0 °C, só água líquida",
+     "porque": "Qualquer gelo a mais ficaria sem derreter.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calor da condensação",
+     "conta": "Q₁ = 5 × 540 = 2 700 cal",
+     "porque": "O vapor vira água a 100 °C liberando calor.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calor do resfriamento da água",
+     "conta": "Q₂ = 5 × 1 × (100 − 0) = 500 cal",
+     "porque": "A água do vapor desce de 100 °C a 0 °C.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Iguale ao calor de fusão",
+     "conta": "m × 80 = 2 700 + 500 = 3 200 → m = 3200/80 = 40 g",
+     "porque": "Todo o calor cedido derrete o gelo, que fica a 0 °C.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "m máx = 40 g",
+     "porque": "É a alternativa D.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 40 g.",
+   "checagem": "Teste uma massa maior: 60 g de gelo pediriam 60 × 80 = 4 800 cal, mas o vapor só pode ceder 3 200 cal até 0 °C, e sobraria gelo. Com 40 g fecha exatamente.",
+   "erradas": {
+    "A": "Sai do outro extremo: 5 × 540 = 15 × (80 + 100) = 2 700 cal. Com 15 g o equilíbrio fica a 100 °C; é a massa mínima para condensar todo o vapor.",
+    "B": "Não confere: com 20 g o equilíbrio fica a 64 °C, só água líquida, mas cabe mais gelo; não é o máximo.",
+    "C": "Não confere: com 30 g o equilíbrio fica perto de 23 °C, só água líquida, mas ainda cabe gelo; não é o máximo.",
+    "E": "Não confere: 60 g pediriam 4 800 cal para derreter, mais que as 3 200 cal disponíveis; sobraria gelo."
+   },
+   "armadilha": "Esquecer o calor que a água condensada cede ao esfriar de 100 °C a 0 °C: só a condensação daria 2 700/80 ≈ 34 g.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A maior massa de gelo que ainda termina toda líquida.",
+    "chave": "Equilíbrio a 0 °C: 5 × 540 + 5 × 100 = m × 80 → m = 40 g.",
+    "cuidado": "Somar o resfriamento da água de 100 °C a 0 °C ao calor de condensação."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "por grama de vapor",
+    "ideia": "Cada grama de vapor cede 540 + 100 = 640 cal até 0 °C e derrete 640/80 = 8 g de gelo; 5 g derretem 40 g."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "Q₁ = 5 × 540 = 2 700 cal",
+    "nota": "condensação"
+   },
+   {
+    "linha": "Q₂ = 5 × 1 × 100 = 500 cal",
+    "nota": "água de 100 °C a 0 °C"
+   },
+   {
+    "linha": "m × 80 = 2 700 + 500 = 3 200",
+    "nota": "fusão do gelo"
+   },
+   {
+    "linha": "m = 3200/80 = 40 g",
+    "nota": "massa máxima"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "fis-0057"
+  }
  }
 }

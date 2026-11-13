@@ -111,5 +111,243 @@
    "data": "2026-11-13",
    "lote": "fis-0049"
   }
+ },
+ "P028bdfa6": {
+  "n": "38",
+  "conceito": "Tombamento de caixas empilhadas: o sistema tomba quando o torque do lado de fora da borda da mesa supera o do lado de dentro.",
+  "equivocos": {
+   "A": "F07.4:esqueceu-peso-de-um-corpo",
+   "C": "F07.4:esqueceu-massa-do-recipiente",
+   "D": "F07.4:limite-passou-do-ponto",
+   "E": "F07.4:limite-passou-do-ponto"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O sistema inteiro gira em torno da borda da mesa. Cada caixa uniforme age como se o peso estivesse no meio dela. Basta achar a posição do centro de cada caixa em relação à borda e ver quando o torque de fora vence o de dentro. Antes, confira que as caixas de cima não tombam sozinhas sobre as de baixo.",
+    "formulas": [
+     "torque = peso × distância à borda",
+     "tomba quando torque de fora > torque de dentro"
+    ],
+    "simbolos": [
+     [
+      "L",
+      "comprimento de cada caixa"
+     ],
+     [
+      "M",
+      "massa de água na caixa 3"
+     ],
+     [
+      "torque",
+      "tendência de girar: força vezes distância ao ponto de giro"
+     ]
+    ]
+   },
+   "pista": "Tome a borda da mesa como ponto de giro e marque onde fica o meio de cada caixa.",
+   "passos": [
+    {
+     "faz": "Ache o centro de cada caixa",
+     "conta": "borda da mesa = 0 | caixa 1: L/5 − L/2 = −3L/10 | caixa 2: −L/10 | caixa 3: +L/10",
+     "porque": "Cada caixa passa L/5 da de baixo; o centro fica L/2 antes da ponta direita. Negativo é sobre a mesa.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Some o torque de dentro",
+     "conta": "m × 3L/10 + m × L/10 = 4mL/10",
+     "porque": "Caixas 1 e 2 têm o centro sobre a mesa e seguram o sistema.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escreva o torque de fora",
+     "conta": "torque de fora = peso × braço = (m + M) × L/10 = (m + M)L/10",
+     "porque": "A caixa 3, com a água espalhada por igual nela, tem o centro L/10 além da borda.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Iguale para achar o limite",
+     "conta": "(m + M) × L/10 = 4mL/10 → m + M = 4m → M = 3m",
+     "porque": "Acima disso o torque de fora vence e o conjunto gira na borda.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "M = 3m → alternativa B",
+     "porque": "As caixas de cima nunca tombam sozinhas (o centro da 3 fica L/10, dentro da caixa 2), então o tombamento é na mesa.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — a partir de 3m de água na caixa 3.",
+   "checagem": "Pelo centro de massa: com M = 3m, ele fica em (m × (−3L/10) + m × (−L/10) + 4m × L/10)/(6m) = 0, exatamente sobre a borda. Qualquer água a mais o leva para fora e o sistema tomba.",
+   "erradas": {
+    "A": "Sai de esquecer o peso da caixa 2 na conta: m × 3L/10 = (m + M) × L/10 dá M = 2m.",
+    "C": "Sai de esquecer a massa da própria caixa 3: 4mL/10 = M × L/10 dá M = 4m. A caixa 3 também pesa m.",
+    "D": "Não confere: com 5m o torque de fora já é 6m × L/10, maior que 4mL/10; o tombamento começa logo acima de 3m.",
+    "E": "Não confere: com 6m o torque de fora é 7m × L/10, bem maior que 4mL/10; o sistema já teria tombado antes."
+   },
+   "armadilha": "Esquecer que a própria caixa 3 pesa m e também está do lado de fora da borda.",
+   "alerta": "O conteúdo cobrado é equilíbrio de corpo extenso (torque), não empuxo; a classificação no banco é a de hidrostática.",
+   "essencial": {
+    "pede": "A massa de água que faz o conjunto de caixas tombar na borda da mesa.",
+    "chave": "Torques na borda: dentro m × 3L/10 + m × L/10; fora (m + M) × L/10 → M = 3m.",
+    "cuidado": "Medir cada braço até a borda da mesa e incluir a massa da caixa 3."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "centro de massa",
+    "ideia": "O conjunto tomba quando o centro de massa passa da borda: −3m/10 − m/10 + (m + M)/10 = 0 → M = 3m."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "x1 = −3L/10 | x2 = −L/10 | x3 = +L/10",
+    "nota": "centros"
+   },
+   {
+    "linha": "dentro: m × 3L/10 + m × L/10 = 4mL/10",
+    "nota": "seguram"
+   },
+   {
+    "linha": "fora: (m + M) × L/10 = (m + M)L/10",
+    "nota": "caixa 3 + água"
+   },
+   {
+    "linha": "m + M = 4m → M = 3m",
+    "nota": "B"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "fis-0057"
+  }
+ },
+ "P0cace437": {
+  "n": "41",
+  "conceito": "Potência da radiação refletida que aquece a água: intensidade × área × eficiência, e Q = m × c × Δθ.",
+  "equivocos": {
+   "A": "F08.3:conta-sem-origem",
+   "B": "F08.3:conta-sem-origem",
+   "C": "F08.3:conta-sem-origem",
+   "D": "F08.3:conta-sem-origem"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A energia que chega à água por segundo é a intensidade da luz vezes a área do espelho, vezes a eficiência de 40%. A água precisa receber Q = m × c × Δθ para ir de 20 °C a 40 °C. O tempo é a energia dividida pela potência. A potência sai em watt (J/s): passe o calor de caloria para joule.",
+    "formulas": [
+     "P = I × A × eficiência",
+     "A = π × r²",
+     "Q = m × c × Δθ",
+     "Δt = Q/P"
+    ],
+    "simbolos": [
+     [
+      "I",
+      "intensidade da luz: 800 W/m²"
+     ],
+     [
+      "A",
+      "área do espelho"
+     ],
+     [
+      "W",
+      "watt: 1 J por segundo"
+     ]
+    ]
+   },
+   "pista": "Calcule quantos joules por segundo chegam de fato à água; atenção às unidades da área e do calor.",
+   "passos": [
+    {
+     "faz": "Área do espelho",
+     "conta": "A = 3 × (0,1)² = 0,03 m²",
+     "porque": "r = 10 cm = 0,1 m, com π ≈ 3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Potência que chega à água",
+     "conta": "P = 800 × 0,03 × 0,4 = 9,6 W",
+     "porque": "Só 40% da luz que incide é refletida para a água.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calor para aquecer a água",
+     "conta": "Q = 100 × 1 × (40 − 20) = 2 000 cal = 2 000 × 4,2 = 8 400 J",
+     "porque": "A potência está em J/s, então Q vai em joule.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o tempo",
+     "conta": "Δt = 8400/9,6 = 875 s = 875/60 ≈ 14,6 min",
+     "porque": "Tempo = energia ÷ potência; depois passe para minuto.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "Δt ≈ 14,6 min",
+     "porque": "É a alternativa E.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 14,6 min.",
+   "checagem": "Volte: 9,6 W durante 14,6 min (876 s) dão cerca de 8 410 J ≈ 2 000 cal, o que aquece 100 g de água em 20 °C.",
+   "erradas": {
+    "A": "Não confere: em 1,2 min a água receberia 9,6 × 72 ≈ 690 J ≈ 165 cal, que só a aquecem cerca de 1,6 °C.",
+    "B": "Não confere: em 3,2 min a água receberia 9,6 × 192 ≈ 1 840 J ≈ 440 cal, que a aquecem cerca de 4,4 °C.",
+    "C": "Não confere: em 6,8 min a água receberia 9,6 × 408 ≈ 3 920 J ≈ 930 cal, que a aquecem cerca de 9,3 °C.",
+    "D": "Não confere: em 8,4 min a água receberia 9,6 × 504 ≈ 4 840 J ≈ 1 150 cal, que a aquecem cerca de 11,5 °C."
+   },
+   "armadilha": "Esquecer a eficiência de 40% ou a conversão de caloria para joule; também converter r para metro antes de calcular a área.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O tempo para a água ir de 20 °C a 40 °C com a luz refletida.",
+    "chave": "P = 800 × 0,03 × 0,4 = 9,6 W; Q = 8 400 J; Δt = 875 s ≈ 14,6 min.",
+    "cuidado": "r em metro, 40% de eficiência e caloria em joule."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "em calorias por segundo",
+    "ideia": "9,6 W ÷ 4,2 ≈ 2,29 cal/s; 2 000 cal ÷ 2,29 cal/s ≈ 875 s ≈ 14,6 min."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "A = 3 × 0,1² = 0,03 m²",
+    "nota": "área"
+   },
+   {
+    "linha": "P = 800 × 0,03 × 0,4 = 9,6 W",
+    "nota": "potência útil"
+   },
+   {
+    "linha": "Q = 100 × 1 × 20 = 2 000 cal = 8 400 J",
+    "nota": "calor"
+   },
+   {
+    "linha": "Δt = 8400/9,6 = 875 s",
+    "nota": "tempo"
+   },
+   {
+    "linha": "875/60 ≈ 14,6 min",
+    "nota": "em minutos"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "fis-0057"
+  }
  }
 }
