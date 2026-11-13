@@ -1,6 +1,6 @@
 # Biologia: resoluções (gerado por lote.py em 2026-11-13)
 
-Faltam 1305 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 1102; ENEM nível 7-10 16; provas-alvo nível 7-10 115; demais nível 7-10 72.
+Faltam 1275 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 1072; ENEM nível 7-10 16; provas-alvo nível 7-10 115; demais nível 7-10 72.
 
 ## Lotes
 
@@ -53,12 +53,14 @@ Faltam 1305 questões sem resolução (fora as que estão em lote, pendentes ou 
 | bio-0045 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | bio-0046 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | bio-0047 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
-| bio-0048 | demais nível 1-6 | 30 | aberto |  |  |  |
+| bio-0048 | demais nível 1-6 | 30 | gravado | 29 | 1 | 0 |
+| bio-0049 | demais nível 1-6 | 30 | aberto |  |  |  |
 
 ## Pendentes (falta de certeza absoluta)
 
 | Questão | Prova | Conteúdo | Motivo |
 |---|---|---|---|
+| Pbf20fbdc | Fatec 2023 2º semestre · questão 6 | B03.4 fermentação láctica e alcoólica (tema B03 Metabolismo energético) | classificação: é de por (interpretação do texto sobre o queijo da Serra da Canastra; a pergunta e as alternativas tratam de história, economia e mulheres na produção, sem conteúdo de biologia) |
 | Pc68c4acb | PUCRS 2023 Verão · questão 37 | B01.2 transporte ativo e vesicular (tema B01 Citologia) | classificação: é de qui (configuração eletrônica dos íons Na⁺ e K⁺; a biologia só aparece no contexto) |
 | Pd59592fa | UECE 2023 2023.1 – 1ª fase · questão 65 | B07.4 coração e as duas circulações (tema B07 Fisiologia humana I) | classificação: é de Educação Física (UECE 2023.1, questão 65: nível de atividade física e gasto calórico), não de Biologia. |
 | P98fb7dec | UECE 2024 2024.2 – 1ª fase · questão 65 | B07.4 coração e as duas circulações (tema B07 Fisiologia humana I) | classificação: é de Educação Física (UECE 2024.2, questão 65: conceito de literacia física), não de Biologia. |
