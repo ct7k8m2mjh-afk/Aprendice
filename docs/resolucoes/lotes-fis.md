@@ -59,7 +59,7 @@ Faltam 1121 questões sem resolução (fora as que estão em lote, pendentes ou 
 | fis-0051 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | fis-0052 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | fis-0053 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
-| fis-0054 | demais nível 1-6 | 30 | aberto |  |  |  |
+| fis-0054 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | fis-0055 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | fis-0056 | demais nível 1-6 | 30 | aberto |  |  |  |
 
