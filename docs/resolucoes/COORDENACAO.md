@@ -36,8 +36,8 @@ Ao abrir: extra_allowed_tools = ["Bash","Edit","Write","Read","Glob","Grep","Age
 |---|---|---|
 | Matemática | session_01PveEKXeWuGGwuP9KHSuc9N | trabalhando (Matemática 3, aberta 13/11 01h40; Matemática 2 session_01PveEKX177vB2BRfF6zV6S5 mandou TROCA após mat-0053: pode arquivar) |
 | Física | session_01PveEKXmCjqipC4JbNj9w73 | trabalhando (Física 3, aberta 13/11 02h03; Física 2 session_01PveEKYTfpdPfG8PfUEbE3Q mandou TROCA após fis-0046: pode arquivar) |
-| Química | session_01PveEKXnC2DKmBd64gp3Zn3 | trabalhando (aberta 13/11 01h14; antiga session_01PveEKXEZ197XmbuWmKkDPw mandou TROCA após qui-0039: pode arquivar) |
-| Biologia | session_01PveEKaZX71znbULe85ap8G | 21 lotes (bio-0021 a 0045): mandada gravar e mandar TROCA (13/11 01h35) |
+| Química | session_01PveEKadroQ4kNhHt52L2hy | trabalhando (Química 3, aberta 13/11 02h08; Química 2 session_01PveEKXnC2DKmBd64gp3Zn3 mandou TROCA após qui-0049: pode arquivar) |
+| Biologia | session_01PveEKaptKYR7JXwbmxDGXx | trabalhando (Biologia 2, aberta 13/11 02h04; antiga session_01PveEKaZX71znbULe85ap8G mandou TROCA após bio-0049: pode arquivar) |
 | Português | session_01PveEKaBDR2WGsLQUacMYFY | trabalhando (Português 3, aberta 13/11 01h38; Português 2 session_01PveEKaTKHh9kRmYcfPdmUA mandou TROCA após por-0079: pode arquivar) |
 | Inglês | session_01PveEKYvFj3v794d3jbEjQY | matéria concluída, tudo gravado: pode arquivar (dono avisado) |
 | Geografia | session_01PveEKYE1nkNeafq9SNBU2b | pausada, tudo gravado (até geo-0038; faltam 1.476): pode arquivar (dono avisado 13/11) |
