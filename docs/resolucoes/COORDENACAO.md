@@ -7,6 +7,10 @@ para gastar menos do limite semanal). Leia inteiro antes de agir. Atualize no fi
 A coordenadora só organiza: questões no site, classificação, prints, gabaritos, publicação e o andamento das sessões.
 NUNCA resolve questão. Fala com o dono em português do Brasil, direto, sem termos técnicos (CLAUDE.md).
 
+## Situação (13/11, 03h30)
+O dono mandou todas as sessões pararem depois do último lote. Não abrir sessões novas até ele mandar retomar.
+Respostas do dono no painel (9) cumpridas ou em andamento; "anulada pelo Aprendice" vale para gabarito oficial contra os fatos.
+
 ## Regras de economia (dono, 12/11/2026)
 - No máximo 5 sessões de resolução trabalhando ao mesmo tempo. Agora: Matemática, Física, Química, Biologia e Português.
 - Pausadas (retomar só quando uma das 5 acabar a matéria ou o dono pedir): Inglês, Geografia, Filosofia e Sociologia,
@@ -27,18 +31,19 @@ sessão: só abra lote novo se (lotes que você já gravou + lotes abertos seus)
 sessão anterior desta matéria, assuma com `--retomar <lote>`. Trabalhe continuamente e nunca pare
 esperando aprovação nem resposta (dono, 13/11): enquanto a lente confere um lote, já adiante o próximo. Questão com erro ou
 problema sai como pendente com o motivo e vai por mensagem para a coordenadora; você segue para a próxima.
-Avise a coordenadora (<id da coordenadora>) com TROCA quando chegar a hora (passo 9 do prompt)."
+Avise a coordenadora com TROCA quando chegar a hora (passo 9 do prompt), escrevendo em
+docs/resolucoes/caixa/<m>.md (veja LEIA.md); nunca use send_message, que pede aprovação do dono."
 Ao abrir: extra_allowed_tools = ["Bash","Edit","Write","Read","Glob","Grep","Agent","Skill","WebFetch","WebSearch",
-"mcp__claude-code-remote__send_message"] (dono, 13/11: resolvedores não pedem autorização; também em .claude/settings.json).
+] (dono, 13/11: resolvedores não pedem autorização; também em .claude/settings.json).
 
-## Sessões (13/11/2026, 00h30 UTC)
+## Sessões (13/11/2026, 03h30 UTC) — TODAS PARADAS por ordem do dono (último lote)
 | Matéria | Sessão | Situação |
 |---|---|---|
-| Matemática | session_01PveEKZRuBiHmg4Hm9HT1J1 | trabalhando (Matemática 4, aberta 13/11 02h35; Matemática 3 session_01PveEKXeWuGGwuP9KHSuc9N mandou TROCA após mat-0056: pode arquivar) |
-| Física | session_01PveEKXmCjqipC4JbNj9w73 | trabalhando (Física 3, aberta 13/11 02h03; Física 2 session_01PveEKYTfpdPfG8PfUEbE3Q mandou TROCA após fis-0046: pode arquivar) |
-| Química | session_01PveEKadroQ4kNhHt52L2hy | trabalhando (Química 3, aberta 13/11 02h08; Química 2 session_01PveEKXnC2DKmBd64gp3Zn3 mandou TROCA após qui-0049: pode arquivar) |
-| Biologia | session_01PveEKaptKYR7JXwbmxDGXx | trabalhando (Biologia 2, aberta 13/11 02h04; antiga session_01PveEKaZX71znbULe85ap8G mandou TROCA após bio-0049: pode arquivar) |
-| Português | session_01PveEKaBDR2WGsLQUacMYFY | trabalhando (Português 3, aberta 13/11 01h38; Português 2 session_01PveEKaTKHh9kRmYcfPdmUA mandou TROCA após por-0079: pode arquivar) |
+| Matemática | session_01PveEKZRuBiHmg4Hm9HT1J1 | PARADA por ordem do dono (13/11 03h): último lote mat-0059, nada aberto; pode arquivar |
+| Física | session_01PveEKXmCjqipC4JbNj9w73 | PARADA por ordem do dono (13/11 03h): último lote fis-0056, nada aberto; pode arquivar |
+| Química | session_01PveEKadroQ4kNhHt52L2hy | PARADA por ordem do dono (13/11 03h): último lote qui-0059, nada aberto; pode arquivar |
+| Biologia | session_01PveEKaptKYR7JXwbmxDGXx | PARADA por ordem do dono (13/11 03h): último lote bio-0058, nada aberto; pode arquivar |
+| Português | session_01PveEKaBDR2WGsLQUacMYFY | PARADA por ordem do dono (13/11 03h): último lote por-0087, nada aberto; pode arquivar |
 | Inglês | session_01PveEKYvFj3v794d3jbEjQY | matéria concluída, tudo gravado: pode arquivar (dono avisado) |
 | Geografia | session_01PveEKYE1nkNeafq9SNBU2b | pausada, tudo gravado (até geo-0038; faltam 1.476): pode arquivar (dono avisado 13/11) |
 | Filosofia e Sociologia | session_01PveEKWgecw6NvvouAmBWM2 | matéria concluída (13/11), tudo gravado: pode arquivar (dono avisado) |
@@ -58,7 +63,7 @@ pelo id). Questão que muda de matéria sai dos `pendentes` do registro antigo p
 - Português (falta): subtema errado, sem destino indicado: Ped65eba5, P3bdc3073, Pbe8025a1, Pfe767de0, P98fee0ad,
   P273c97a5, P5bd2916f, P9889395d, Pd86425b8, P087b8c9f. Dado: P40c29de8 (alternativa E com coluna do poema colada).
   P298602be (UFT 2023/2 q14): especialistas A, preliminar da Copese B: fora do ar até sair o definitivo.
-  63 pendentes "obra:" (lotes 61-71). FMABC 2022 q16 (Pd7fbdc3f) com nota_gabarito, esperando o dono.
+  63 pendentes "obra:" (lotes 61-71). FMABC 2022 q16 (Pd7fbdc3f): anulada pelo Aprendice (dono, 13/11).
 - Feito em 13/11 (sessão principal): Biologia P3c08d8ee→Física F08.5, Pc68c4acb→Química Q01.3, Pbf20fbdc→Português
   P01.2; subtemas P372650c4 B04.1, Pfa8485e7 B01.4, Pd4ba01ad B02.5. Química P7f6fa922→Biologia B09.1 e 15 subtemas
   (Pa03ab8a5, P7e43e4b3, P373a52f0, Pbf3a7103, Pd7e4692a, Pd02b7249, Pe17c191b, P33b5d811, P433f7077, Ped3214f8,
@@ -72,6 +77,11 @@ pelo id). Questão que muda de matéria sai dos `pendentes` do registro antigo p
 - UFRR 2025/2026: links do gabarito oficial pós-recursos achados (editais 97/24 e 93/25, anotados na `nota` das provas),
   mas editais.ufrr.br e web.archive.org não respondem daqui: letras não conferidas. Tentar de novo noutra rodada.
 - Física P88f37147 (Fema, ITER): motivo final no registro (duas afirmativas falsas, sem errata): fica fora; dono decide.
+
+## Caixa das sessões (dono, 13/11)
+As sessões falam com a coordenadora só por docs/resolucoes/caixa/<m>.md (commit). A coordenadora deixa um vigia em segundo
+plano (Bash em background: git fetch a cada 2 min; termina quando a pasta caixa/ muda em origin) e o rearma depois de
+tratar cada mensagem. Na rodada, ler também a caixa.
 
 ## Rodada da conferência (a cada 3 horas)
 1. `git pull --rebase --autostash origin app-prototipo-completo`.
@@ -104,18 +114,12 @@ Só o que não tem solução sem o dono, EM ÚLTIMO CASO, vai para o painel "O q
 escreve a instrução na caixa de texto abaixo do item e envia pela página. Em toda rodada: ArtifactData list da coleção
 `respostas` do painel; para cada doc com `lido:false`, cumprir a instrução, gravar `retorno` (o que foi feito) e `lido:true`
 com update, e marcar o item como feito no o-que-falta.json.
-- Unifor 2026.2 Medicina q01 (Pb1863457): erro de enunciado (36 cápsulas não chegam a 4 665 mg; gabarito D só ignorando o
-  "36"). Recomendação: deixar fora do site.
 - Limite semanal da conta em aviso (renova 19/11). Teste de cobertura animada de Matemática voltou ao verde (82,3%, 13/11).
-- Fema 2022 q13 (Pc90de958, prova fema-2021): gabarito oficial E contradiz os fatos (III é falsa; II também erra o
-  número do avião); coerente seria D. Está fora do site. Recomendação: deixar fora. Alternativa: publicar com E e alerta.
-- Teste da fábrica pela API (US$ 20), que não gasta o limite semanal da conta.
-- Direitos: letras de música em Geografia (UERJ 2021 q4 "Morro Velho", Pcaf0f0ee; "Lucro", P8e5ccfb5); artigo do Le
-  Monde Diplomatique com foto de Sebastião Salgado (P875a6d1a); prints com fotos de imprensa e charges. Sugestão: as
-  duas de letra de música só como print.
-- Fema 2021 q9 (P88f37147, ITER): gabarito oficial B, mas E também é falsa (150 milhões de °C é ~10 vezes o centro do
-  Sol, não 10%). Fora do site. Recomendação: deixar fora.
-- Mackenzie 2026/2 q11 (P855bb53e): fora do site (recomendado) ou com A e explicação.
+- Decidido pelo dono em 13/11 (painel): "questão anulada pelo Aprendice" para gabarito oficial contra os fatos ou enunciado
+  com erro/dado faltando — lista em app/conteudo-fonte/anuladas-aprendice.json (12 questões: Pc90de958, Pd7fbdc3f,
+  P855bb53e, Pb1863457, Pe5a5d0ab, Pb024ee4d, P88f37147, P7f440cd0, P525706b9, Pcc7ef326, Pd1c0ef9d, Pc520853b). Caso
+  igual que aparecer: acrescentar a linha nesse arquivo e tirar a id das pendências do registro. Letras de música e fotos
+  de imprensa: uso autorizado para fins educacionais. Teste da fábrica pela API: o dono não vai fazer.
 - Checklist de provas para baixar à mão: https://claude.ai/artifact/AfS22NUUP69GNTWsEKV5YC (coleção `provas`;
   campos prova, gabarito, obs). Faltam, entre outras: Famema 2023 (caderno da Prova II v1), FMJ 2020 e 2023.
 

@@ -55,8 +55,9 @@ const PRINTS_PROVA = new Map<string, string>();
 
 /** Monta a matéria a partir do banco gravado (exportada para os testes). */
 export function monta(id: MateriaId, bancoTodo: Questao[], conteudo: MateriaConteudo, amostra?: string[]): MateriaCarregada {
-  // fora do ar (pendente) e de outra matéria fora das 9 (decisão do dono, 13/11/2026: só no simulado da prova inteira)
-  const banco = bancoTodo.filter((q) => !q.pendente && !q.outraMateria);
+  // fora do ar (pendente), de outra matéria fora das 9 (decisão do dono, 13/11/2026: só no simulado da prova inteira)
+  // e anulada pelo Aprendice (dono, 13/11/2026: vale como anulada pela banca)
+  const banco = bancoTodo.filter((q) => !q.pendente && !q.outraMateria && !q.anuladaAprendice);
   const porSub = new Map<string, Questao[]>();
   for (const q of banco) {
     const l = porSub.get(q.sub) || [];

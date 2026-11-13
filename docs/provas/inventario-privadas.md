@@ -19,7 +19,7 @@ Levantamento feito em 05 e 06/11/2026. Só fontes oficiais (site da instituiçã
 4. **ACAFE:** várias edições só têm a prova 'comentada' (com a justificativa da banca). Seguir o mesmo recorte já usado no site (só o enunciado).
 5. **Gabarito ainda não definitivo:** Fempar 2027 (definitivo previsto para 10/11/2026), FGV 2027.1 e PUC-Campinas 2027 (gabarito do dia da prova; conferir anulações).
 6. **São Camilo 2024/2**, que já está no site, veio de cópia do caderno oficial da Vunesp hospedada pelo Curso Objetivo (cursinho).
-7. **FAI** = Centro Universitário de Adamantina (SP), **verificado em 06/11/2026**: o próprio site da FAI (fai.com.br) publica o vestibular de Medicina (edital 030/2026, 100 vagas, ingresso 2027); a Vunesp aplicou as provas de 2023 e 2025 (provas no site da Vunesp, que bloqueia acesso automático → baixar à mão). O edital 2027 não cita a banca.
+7. **FAI** = Centro Universitário de Adamantina (SP), **verificado em 06/11/2026 e confirmado pelo dono em 13/11/2026**: o próprio site da FAI (fai.com.br) publica o vestibular de Medicina (edital 030/2026, 100 vagas, ingresso 2027); a Vunesp aplicou as provas de 2023 e 2025 (provas no site da Vunesp, que bloqueia acesso automático → baixar à mão). O edital 2027 não cita a banca.
 8. **Insper:** a prova 26.1 (30/11/2025) foi anulada pela Vunesp e reaplicada em 21/12/2025.
 
 ## Por instituição
@@ -196,7 +196,7 @@ Legenda de **Conf.**: `ok` = caderno e gabarito confirmados; `só gab.` / `só c
 - **Banca:** Vunesp
 - **Formato:** Prova única de Conhecimentos Gerais (60 pontos) - nº de questões a confirmar no edital
 - **Página oficial:** https://www.fai.com.br/
-- **Observação:** Interpretado como FAI = Centro Universitário de Adamantina (SP), que tem Medicina; confirmar com o dono. A FAI não publica provas no site. Vunesp bloqueia acesso automático (Akamai 403 em vunesp.com.br e documento.vunesp.com.br): baixar à mão na página do concurso. Vestibular 2027 com prova em dez/2026.
+- **Observação:** FAI = Centro Universitário de Adamantina (SP), que tem Medicina (confirmado pelo dono em 13/11/2026). A FAI não publica provas no site. Vunesp bloqueia acesso automático (Akamai 403 em vunesp.com.br e documento.vunesp.com.br): baixar à mão na página do concurso. Vestibular 2027 com prova em dez/2026.
 
 | Ano | Edição | Conf. | Livre | Já no site | Caderno | Gabarito |
 |---|---|---|---|---|---|---|
