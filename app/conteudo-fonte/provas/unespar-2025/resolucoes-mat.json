@@ -90,5 +90,100 @@
    "data": "2026-11-13",
    "lote": "mat-0046"
   }
+ },
+ "P2e79524b": {
+  "n": "60",
+  "conceito": "Taxa sobre a força de trabalho: a base inclui os desempregados.",
+  "equivocos": {
+   "B": "M03.1:base-errada",
+   "C": "M03.1:sem-origem-identificada",
+   "D": "M03.1:sem-origem-identificada",
+   "E": "M03.1:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A taxa de desemprego é desempregados ÷ (empregados + desempregados). Com 100 milhões de empregados, os empregados são 100% − 6,6% = 93,4% da força de trabalho.",
+    "formulas": [
+     "taxa = D ÷ (E + D)"
+    ],
+    "simbolos": [
+     [
+      "D",
+      "desempregados"
+     ],
+     [
+      "E",
+      "empregados"
+     ]
+    ]
+   },
+   "pista": "A taxa de desemprego é calculada só sobre quem trabalha, ou sobre quem trabalha mais quem procura emprego?",
+   "passos": [
+    {
+     "faz": "Empregados",
+     "conta": "93,4% da força de trabalho = 100 milhões",
+     "porque": "Complementar.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Força de trabalho",
+     "conta": "100 ÷ 0,934 ≈ 107,07 milhões",
+     "porque": "Total.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Desempregados",
+     "conta": "107,07 − 100 ≈ 7,07 ≈ 7,1 milhões → alternativa A",
+     "porque": "Diferença.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 7,1 milhões;",
+   "checagem": "Teste: 7,1/(100 + 7,1) = 7,1/107,1 ≈ 6,6%. Confere.",
+   "erradas": {
+    "B": "6,6 milhões é 6,6% dos empregados; a taxa é sobre empregados + desempregados (6,6/106,6 ≈ 6,2%).",
+    "C": "13 milhões daria 13/113 ≈ 11,5%.",
+    "D": "22 milhões daria 22/122 ≈ 18%.",
+    "E": "17,22 milhões daria 17,22/117,22 ≈ 14,7%."
+   },
+   "armadilha": "Calcular 6,6% de 100 milhões, como se a taxa fosse sobre os empregados.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Desempregados.",
+    "chave": "100 = 93,4% → total ≈ 107,07; D ≈ 7,1.",
+    "cuidado": "A taxa é sobre a força de trabalho."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "equação",
+    "ideia": "D = 0,066(100 + D) → 0,934D = 6,6 → D ≈ 7,07."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "93,4% = 100 mi",
+    "nota": "empregados"
+   },
+   {
+    "linha": "≈ 107,07 mi",
+    "nota": "total"
+   },
+   {
+    "linha": "≈ 7,1 mi",
+    "nota": "resposta"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0048"
+  }
  }
 }
