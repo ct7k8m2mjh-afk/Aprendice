@@ -78,7 +78,7 @@ session_01PveEKb4hnDGKRb7Gtd9hCr. A coordenadora antiga é session_01PveEKWW3t7Z
 ## Esperando o dono
 - Unifor 2026.2 Medicina q01 (Pb1863457): erro de enunciado (36 cápsulas não chegam a 4 665 mg; gabarito D só ignorando o
   "36"). Recomendação: deixar fora do site.
-- Limite semanal da conta em aviso (renova 19/11). Teste de cobertura animada de Matemática vermelho (69,4%): sessão Mat 2 corrigindo.
+- Limite semanal da conta em aviso (renova 19/11). Teste de cobertura animada de Matemática voltou ao verde (82,3%, 13/11).
 - Fema 2022 q13 (Pc90de958, prova fema-2021): gabarito oficial E contradiz os fatos (III é falsa; II também erra o
   número do avião); coerente seria D. Está fora do site. Recomendação: deixar fora. Alternativa: publicar com E e alerta.
 - Teste da fábrica pela API (US$ 20), que não gasta o limite semanal da conta.
