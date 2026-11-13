@@ -68,6 +68,9 @@ aprovação ou resposta: pendências e avisos vão para docs/resolucoes/caixa/<m
 Antigas, todas paradas (o dono pode arquivar): Mat session_01PveEKZRuBiHmg4Hm9HT1J1, Fís session_01PveEKXmCjqipC4JbNj9w73,
 Quí session_01PveEKadroQ4kNhHt52L2hy, Bio session_01PveEKaptKYR7JXwbmxDGXx, Por session_01PveEKaBDR2WGsLQUacMYFY; e as
 anteriores já listadas para arquivar. Coordenadoras antigas: session_01PveEKWW3t7ZxcdDQKNiYWa, session_01PveEKabuyZnqVN65W5FfEc.
+COORDENADORA ATUAL: session_01PveEKXX1TDGcjetcyMQLVm (13/11 05h03), acordada pela tarefa trig_01L1hQ4kKsZUoi153z1k5wqY (hora em hora, minuto 3).
+Ambientes: as sessões usam o Default (env_01PD36og67UPYvCWa3DcbQpX, tem a chave da Vercel; o repositório vem no source_url).
+O ambiente "Fabrica" (env_01QMooYA98c8e8MNnWwkV34D) tem o repositório salvo e a APRENDICE_API_KEY (fábrica pela API).
 
 ## Permissões (medido em 13/11)
 - Sessões de matéria: Bash/Edit/Agent/Write/Read não pedem; só send_message pedia (por isso a caixa).
