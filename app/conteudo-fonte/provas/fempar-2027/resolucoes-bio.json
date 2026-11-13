@@ -288,5 +288,126 @@
    "data": "2026-11-13",
    "lote": "bio-0050"
   }
+ },
+ "Pdde74990": {
+  "n": "50",
+  "conceito": "Alelo recessivo letal em homozigose: chance de dois filhos nascidos vivos, em ordem de sexo definida, sem o alelo.",
+  "equivocos": {
+   "A": "B06.1:considerou-um-so-filho",
+   "B": "B06.1:considerou-um-so-filho",
+   "C": "B06.1:ignorou-o-letal",
+   "E": "B06.1:ignorou-o-letal"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O casal é Aa × Aa e o aa morre antes do parto. Entre os nascidos vivos ficam AA e Aa na proporção 1 : 2, então a chance de um nascido vivo ser AA é 1/3. São dois filhos com sexo e ordem fixos: menina e depois menino, cada um com 1/2.",
+    "formulas": [
+     "Aa × Aa: 1/4 AA, 2/4 Aa, 1/4 aa",
+     "entre os vivos: 1/3 AA, 2/3 Aa",
+     "eventos independentes: multiplique"
+    ],
+    "simbolos": [
+     [
+      "TRIP11",
+      "gene cuja mutação causa a doença, segundo o texto"
+     ],
+     [
+      "não carregar o alelo",
+      "ser AA, homozigoto sem o alelo da doença"
+     ],
+     [
+      "letal pré-parto",
+      "o feto aa não chega a nascer"
+     ]
+    ]
+   },
+   "pista": "\"Não carregar o alelo\" é mais do que não ter a doença; e o filho aa nem chega a nascer.",
+   "passos": [
+    {
+     "faz": "Monte o cruzamento",
+     "conta": "Aa × Aa → 1 AA : 2 Aa : 1 aa",
+     "porque": "Cada genitor manda A ou a com chance 1/2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Restrinja aos vivos",
+     "conta": "vivos: 1 AA : 2 Aa → P(AA | vivo) = 1/3",
+     "porque": "O aa morre antes do parto, e a pergunta é sobre filhos nascidos vivos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule cada filho",
+     "conta": "menina AA: 1/3 × 1/2 = 1/6 | menino AA: 1/3 × 1/2 = 1/6",
+     "porque": "Cada filho precisa ter o sexo certo e ser AA.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Junte os dois filhos",
+     "conta": "1/6 × 1/6 = 1/36",
+     "porque": "Os dois nascimentos são independentes e precisam acontecer juntos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "1/36 → alternativa D",
+     "porque": "A ordem já está fixada (primeiro menina), então não se multiplica por 2.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 1/36.",
+   "checagem": "Por outra ordem de conta: os dois serem AA entre vivos dá 1/3 × 1/3 = 1/9; a sequência menina e depois menino dá 1/2 × 1/2 = 1/4; 1/9 × 1/4 = 1/36.",
+   "erradas": {
+    "A": "A sai de 1/4 × 1/2 = 1/8: um único filho AA de sexo definido, sem tirar o aa letal e sem o segundo filho.",
+    "B": "B sai de 1/3 × 1/4 = 1/12: considerou só um filho AA e multiplicou pela ordem menina e menino.",
+    "C": "C sai de 1/4 × 1/4 = 1/16: dois filhos AA sem tirar o aa letal e sem os fatores de sexo.",
+    "E": "E sai de (1/4 × 1/2) × (1/4 × 1/2) = 1/64: fez tudo certo, mas não tirou o aa letal, usando 1/4 no lugar de 1/3."
+   },
+   "armadilha": "Usar 1/4 para AA: como o aa não nasce, entre os nascidos vivos a chance de AA é 1/3.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A chance de um casal Aa × Aa ter, nascidos vivos, primeiro uma menina e depois um menino, ambos AA.",
+    "chave": "AA entre vivos é 1/3; cada filho vale 1/3 × 1/2 = 1/6; os dois juntos, 1/36.",
+    "cuidado": "Tire o letal do espaço amostral e não multiplique por 2, porque a ordem dos sexos está fixada."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "genótipo e sexo separados",
+    "ideia": "(1/3)² para os dois AA vezes (1/2)² para a ordem menina-menino: 1/9 × 1/4 = 1/36."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "Aa × Aa → 1 AA : 2 Aa : 1 aa",
+    "nota": "cruzamento dos heterozigotos"
+   },
+   {
+    "linha": "vivos: 1 AA : 2 Aa → P(AA) = 1/3",
+    "nota": "o aa não nasce"
+   },
+   {
+    "linha": "menina AA: 1/3 × 1/2 = 1/6",
+    "nota": "primeiro filho"
+   },
+   {
+    "linha": "menino AA: 1/3 × 1/2 = 1/6",
+    "nota": "segundo filho"
+   },
+   {
+    "linha": "1/6 × 1/6 = 1/36",
+    "nota": "os dois juntos"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "bio-0054"
+  }
  }
 }

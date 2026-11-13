@@ -317,5 +317,214 @@
    "data": "2026-11-13",
    "lote": "bio-0050"
   }
+ },
+ "P19bf340f": {
+  "n": "48",
+  "conceito": "Cruzamento de heterozigotos com alelo dominante letal em homozigose: probabilidade entre os nascidos vivos e sexo.",
+  "equivocos": {
+   "A": "B06.1:esqueceu-o-sexo",
+   "B": "B06.1:ignorou-o-letal",
+   "D": "B06.1:sexo-como-um-quarto",
+   "E": "B06.1:ignorou-o-letal"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O casal é Cc × Cc. O CC morre, então os filhos vivos são só Cc e cc, na proporção 2 : 1. A pergunta é sobre \"criança viva\": o espaço amostral passa a ser os vivos. Depois, a pergunta pede também o sexo feminino, um fator de 1/2.",
+    "formulas": [
+     "Cc × Cc: 1/4 CC, 2/4 Cc, 1/4 cc",
+     "entre os vivos: 2/3 Cc, 1/3 cc",
+     "menina: × 1/2"
+    ],
+    "simbolos": [
+     [
+      "C",
+      "alelo dominante da condrodistrofia, letal em dose dupla (CC)"
+     ],
+     [
+      "c",
+      "alelo recessivo, sem a condição"
+     ],
+     [
+      "letal em homozigose",
+      "o indivíduo com dois alelos iguais (CC) não sobrevive"
+     ]
+    ]
+   },
+   "pista": "Antes de contar, risque do quadro o genótipo que não nasce: a pergunta fala em criança viva.",
+   "passos": [
+    {
+     "faz": "Monte o cruzamento",
+     "conta": "Cc × Cc → 1 CC : 2 Cc : 1 cc",
+     "porque": "Cada genitor manda C ou c com chance 1/2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tire o letal",
+     "conta": "vivos: 2 Cc : 1 cc → P(cc | vivo) = 1/3",
+     "porque": "O CC não sobrevive; contamos só entre as três partes que nascem.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Inclua o sexo",
+     "conta": "1/3 × 1/2 = 1/6",
+     "porque": "A pergunta pede menina e sem condrodistrofia: dois eventos independentes, que se multiplicam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "1/6 → alternativa C",
+     "porque": "É a chance de uma criança viva ser menina e cc.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 1/6.",
+   "checagem": "Imagine 12 gestações: 3 CC morrem, nascem 9 (6 Cc e 3 cc). Das 3 cc, metade é menina: 1,5 em 9 vivos, ou seja, 1/6.",
+   "erradas": {
+    "A": "A sai de parar em 1/3: é a chance de a criança viva ser cc, sem o fator 1/2 de ser menina.",
+    "B": "B sai de usar 1/4 de cc sem tirar o CC letal e sem multiplicar pelo sexo.",
+    "D": "D sai de multiplicar 1/3 por 1/4 no lugar de 1/2: 1/3 × 1/4 = 1/12. A chance de ser menina é 1/2.",
+    "E": "E sai de 1/4 × 1/4 = 1/16: ignora o letal e usa 1/4 para o sexo, que é 1/2."
+   },
+   "armadilha": "Esquecer que o CC não nasce: entre as crianças vivas, cc é 1/3, não 1/4.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A chance de um casal Cc × Cc ter uma menina viva sem condrodistrofia.",
+    "chave": "Com o CC letal, entre os vivos cc vale 1/3; vezes 1/2 de menina dá 1/6.",
+    "cuidado": "Tire o letal do espaço amostral e só multiplique por 1/2 porque a pergunta pede o sexo."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "contagem em 12",
+    "ideia": "Em 12 gestações nascem 9 vivos e 3 são cc; metade menina: 1,5/9 = 1/6."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "Cc × Cc → 1 CC : 2 Cc : 1 cc",
+    "nota": "cruzamento dos heterozigotos"
+   },
+   {
+    "linha": "vivos: 2 Cc : 1 cc → P(cc) = 1/3",
+    "nota": "o CC é letal e sai da conta"
+   },
+   {
+    "linha": "1/3 × 1/2 = 1/6",
+    "nota": "vezes a chance de ser menina"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "bio-0054"
+  }
+ },
+ "P06b95623": {
+  "n": "45",
+  "conceito": "Leitura de cladograma: grupo monofilético, sinapomorfias e autapomorfias.",
+  "equivocos": {
+   "A": "B12.6:confundiu-mono-e-parafiletico",
+   "C": "B12.6:confundiu-mono-e-polifiletico",
+   "D": "B12.6:autapomorfia-como-sinapomorfia",
+   "E": "B12.6:autapomorfia-como-sinapomorfia"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "No cladograma, cada número marca uma característica nova que surge naquele ramo e passa a todos os descendentes dele. Característica no ramo que leva a um grupo é sinapomorfia desse grupo; característica no ramo de uma espécie só é autapomorfia. Grupo monofilético é um ancestral com todos os seus descendentes.",
+    "formulas": [
+     "ramo que leva a um grupo → sinapomorfia do grupo",
+     "ramo de uma espécie só → autapomorfia",
+     "ancestral + todos os descendentes → monofilético"
+    ],
+    "simbolos": [
+     [
+      "sinapomorfia",
+      "característica derivada compartilhada por um grupo, herdada do ancestral comum"
+     ],
+     [
+      "autapomorfia",
+      "característica derivada exclusiva de uma espécie"
+     ],
+     [
+      "monofilético",
+      "grupo com um ancestral comum e todos os seus descendentes"
+     ],
+     [
+      "parafilético",
+      "grupo com o ancestral, mas sem todos os descendentes"
+     ],
+     [
+      "polifilético",
+      "grupo que junta espécies de ancestrais diferentes"
+     ]
+    ]
+   },
+   "pista": "Para cada número, siga o ramo onde ele está e veja quais espécies ficam acima dele.",
+   "passos": [
+    {
+     "faz": "Leia os ramos",
+     "conta": "2, 3: ramo de A + B | 1: só A | 4: C + D + E | 6: só C | 5: D + E | 7: só D | 8: só E",
+     "porque": "Cada característica pertence às espécies que ficam acima do ramo onde ela surgiu.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Avalie o grupo A + B",
+     "conta": "ancestral com 2 e 3 → só A e B como descendentes → monofilético",
+     "porque": "O grupo tem o ancestral comum e todos os descendentes dele.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Elimine as outras",
+     "conta": "A: parafilético × monofilético | C: D + E é monofilético (5) | D: 1 é só de A | E: 6 é só de C; o compartilhado por C, D, E é o 4",
+     "porque": "Cada alternativa erra o tipo de grupo ou o ramo da característica.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "A e B: monofilético → alternativa B",
+     "porque": "É a única leitura correta do cladograma.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — A e B formam um grupo monofilético.",
+   "checagem": "Pelas sinapomorfias: A e B compartilham 2 e 3, que nenhuma outra espécie tem. Um grupo definido por sinapomorfias exclusivas é monofilético.",
+   "erradas": {
+    "A": "A não confere: o grupo A + B inclui o ancestral comum e todos os seus descendentes; parafilético exigiria deixar algum descendente de fora.",
+    "C": "C não confere: D e E compartilham a característica 5 e descendem do mesmo ancestral; são monofiléticos.",
+    "D": "D não confere: 2 e 3 são sinapomorfias de A e B, mas 1 está só no ramo de A e é autapomorfia.",
+    "E": "E não confere: 6 está só no ramo de C e 5 só em D e E; o que C, D e E compartilham é o 4."
+   },
+   "armadilha": "Tratar todos os números próximos de um grupo como sinapomorfias, sem ver que alguns estão no ramo de uma espécie só.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A afirmação correta sobre o cladograma.",
+    "chave": "A e B têm ancestral exclusivo (2 e 3): grupo monofilético.",
+    "cuidado": "Característica no ramo de uma espécie só é autapomorfia, não sinapomorfia."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pelas sinapomorfias",
+    "ideia": "2 e 3 só aparecem em A e B: o par tem ancestral exclusivo, logo é monofilético."
+   }
+  ],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "bio-0054"
+  }
  }
 }
