@@ -53,7 +53,7 @@ Faltam 1289 questões sem resolução (fora as que estão em lote, pendentes ou 
 | qui-0045 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | qui-0046 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | qui-0047 | demais nível 1-6 | 30 | gravado | 29 | 1 | 0 |
-| qui-0048 | demais nível 1-6 | 30 | aberto |  |  |  |
+| qui-0048 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | qui-0049 | demais nível 1-6 | 30 | aberto |  |  |  |
 
 ## Pendentes (falta de certeza absoluta)
