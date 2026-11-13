@@ -76,8 +76,7 @@ session_01PveEKb4hnDGKRb7Gtd9hCr. A coordenadora antiga é session_01PveEKWW3t7Z
 ## Esperando o dono
 - Unifor 2026.2 Medicina q01 (Pb1863457): erro de enunciado (36 cápsulas não chegam a 4 665 mg; gabarito D só ignorando o
   "36"). Recomendação: deixar fora do site.
-- Publicação segurada (13/11 00h30): 15.745 resoluções prontas (+2.223), mas o teste de cobertura animada de
-  Matemática caiu para 69,4% (mínimo 70%). Publicar quando voltar ao verde. Limite semanal da conta em aviso (renova 19/11).
+- Limite semanal da conta em aviso (renova 19/11). Teste de cobertura animada de Matemática vermelho (69,4%): sessão Mat 2 corrigindo.
 - Fema 2022 q13 (Pc90de958, prova fema-2021): gabarito oficial E contradiz os fatos (III é falsa; II também erra o
   número do avião); coerente seria D. Está fora do site. Recomendação: deixar fora. Alternativa: publicar com E e alerta.
 - Teste da fábrica pela API (US$ 20), que não gasta o limite semanal da conta.
@@ -89,8 +88,8 @@ session_01PveEKb4hnDGKRb7Gtd9hCr. A coordenadora antiga é session_01PveEKWW3t7Z
   campos prova, gabarito, obs). Faltam, entre outras: Famema 2023 (caderno da Prova II v1), FMJ 2020 e 2023.
 
 ## Publicação
-Última no ar: dpl_9RjZ5JUkUHkb2TFUNRpHKQre4mJP (commit cdc5959a, São Camilo completa), READY e conferida em
-12/11: 13.522 resoluções no site (detalhe em docs/resolucoes/publicacao.json). Próxima ao passar de 14.022.
+Última no ar: dpl_F5FyQ927LL92bBa7fihgbaPFWbBJ (commit 3f9191a7, 13/11, a pedido do dono): 16.108 resoluções.
+Próxima ao passar de 16.608.
 Contagem: `com_resolucao` de https://aprendice.vercel.app/conteudo/relatorio.json (ou do relatório local do converte).
 
 Coordenadora atual: session_01PveEKabuyZnqVN65W5FfEc (desde 12/11, 23h UTC).
