@@ -1,6 +1,6 @@
 # Português: resoluções (gerado por lote.py em 2026-11-13)
 
-Faltam 2080 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 1541; ENEM nível 7-10 53; provas-alvo nível 7-10 225; demais nível 7-10 261.
+Faltam 2050 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 1511; ENEM nível 7-10 53; provas-alvo nível 7-10 225; demais nível 7-10 261.
 
 ## Lotes
 
@@ -88,8 +88,9 @@ Faltam 2080 questões sem resolução (fora as que estão em lote, pendentes ou 
 | por-0080 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | por-0081 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | por-0082 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
-| por-0083 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
-| por-0084 | demais nível 1-6 | 30 | aberto |  |  |  |
+| por-0083 | demais nível 1-6 | 30 | aberto |  |  |  |
+| por-0084 | demais nível 1-6 | 30 | gravado | 29 | 1 | 0 |
+| por-0085 | demais nível 1-6 | 30 | aberto |  |  |  |
 
 ## Pendentes (falta de certeza absoluta)
 
@@ -150,6 +151,7 @@ Faltam 2080 questões sem resolução (fora as que estão em lote, pendentes ou 
 | P57e4dcb4 | UEL 2021 Fase única · questão 37 | P12.2 Modernismo de 1922, vanguardas europeias e manifestos (tema P12 Literatura: Pré-Modernismo em diante) | obra: o comando pede julgar as afirmativas "com base no trecho e na leitura integral do conto". Pelo trecho só cai a II: a razão que Juca resiste a admitir é "uma espécie de despeito desprezador de um pelo outro", não a homossexualidade de Frederico, o que derruba A, D e E. A IV se apoia no trecho ("Depois desisti, com muito propósito"). Entre B (I e IV) e C (III e IV), a decisão depende de episódios do conto que o fragmento não traz: se há maledicências e preconceitos sobre a relação dos dois em outras passagens (I) e as brigas violentas de cada um com um colega (III). A justificativa publicada pela Cops (rumores de vínculo homossexual que causam brigas físicas) confirma o gabarito C, mas se apoia no conto inteiro. |
 | Paea343d3 | UEL 2021 Fase única · questão 38 | P12.2 Modernismo de 1922, vanguardas europeias e manifestos (tema P12 Literatura: Pré-Modernismo em diante) | obra: a questão compara a morte dos pais em "Frederico Paciência" e em "O peru de Natal", e o fragmento dado não fala de morte nenhuma nem traz trecho de "O peru de Natal". As cinco alternativas dependem do enredo dos dois contos (em que ponto da narrativa as mortes ocorrem, como o narrador reage a elas, se os amigos vivem ou não o envolvimento amoroso, se o filho supera o luto), e nada no trecho permite eliminar alguma delas. |
 | Pfa8a5c79 | UEL 2021 Fase única · questão 42 | P12.5 literatura contemporânea e autores africanos de língua portuguesa (tema P12 Literatura: Pré-Modernismo em diante) | obra: o trecho de Quarto de despejo é dado, mas a questão pede a "exata correlação" com Casa de pensão, de Aluísio Azevedo, e Clara dos Anjos, de Lima Barreto, que não são reproduzidos; julgar a miséria dos parentes do protagonista (A), o individualismo das personagens (B), a situação do protagonista (C), a moradia de Clara e Cassi Jones (D) e o papel dos políticos no desfecho de Clara (E) depende do enredo dos dois romances. |
+| P7a6cb566 | UEMA 2022 PAES · questão 1 | P01.4 finalidade do texto e interlocutor (tema P01 Leitura e compreensão) | print: o print da questão 1 não traz o artigo "O (não) lugar do 'pardo'" (só o endereço do Medium), e a resposta depende dele; o texto está na p. 2 do caderno oficial da UEMA PAES 2022 (https://www.paes.uema.br/wp-content/uploads/2022/05/PROVA-PAES-2022-EDITAL-N.º-04_2022_-GR-UEMA-22_05_2022.pdf). Refazer o print com o texto; com ele, a resolução pela D (ironia: "(faz me rir)", "mutilação é sempre ruim ok?") é direta. |
 | Pb325f77c | UERJ 2025 1º Exame de Qualificação · questão 12 | P12.5 literatura contemporânea e autores africanos de língua portuguesa (tema P12 Literatura: Pré-Modernismo em diante) | obra: a questão pede a passagem da crônica "Sebo", de Luis Fernando Verissimo, em que o narrador explicita que a história é ficcional, mas não reproduz a crônica; as quatro alternativas são frases soltas. A B só marcaria a ficção se o narrador, a "décima sétima" vítima, morresse na história, e nada na questão diz o que aconteceu às "dezesseis vítimas"; A, C e D não se derrubam sem o texto da crônica. |
 | P81fafc63 | UERJ 2025 1º Exame de Qualificação · questão 15 | P12.5 literatura contemporânea e autores africanos de língua portuguesa (tema P12 Literatura: Pré-Modernismo em diante) | obra: a questão pede a reação da esposa à falsa explicação do marido no desfecho da crônica "A aliança", de Luis Fernando Verissimo, mas não reproduz nem o desfecho nem a explicação; as quatro reações (dúvida, indiferença, aceitação, rejeição) são igualmente possíveis sem o texto da crônica, e não há como eliminar nenhuma. |
 | P19faff2d | UERJ 2025 1º Exame de Qualificação · questão 16 | P12.5 literatura contemporânea e autores africanos de língua portuguesa (tema P12 Literatura: Pré-Modernismo em diante) | obra: a questão pede a característica da mentira que João e Maria contam a Luíza e Pedro na crônica "A mentira", de Luis Fernando Verissimo, mas não reproduz a crônica nem a mentira; saber que ela cresce como "bola de neve" (C) e não é derrotada, tempero da verdade ou degrau dos vícios depende da leitura do texto. |
