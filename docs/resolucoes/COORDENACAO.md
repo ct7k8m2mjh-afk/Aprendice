@@ -75,6 +75,11 @@ COORDENADORA ATUAL: session_01PveEKXX1TDGcjetcyMQLVm (13/11 05h03), acordada a c
 Ambientes: as sessões usam o Default (env_01PD36og67UPYvCWa3DcbQpX, tem a chave da Vercel; o repositório vem no source_url).
 O ambiente "Fabrica" (env_01QMooYA98c8e8MNnWwkV34D) tem o repositório salvo e a APRENDICE_API_KEY (fábrica pela API).
 
+## Uso da conta
+O limite semanal acabou em 13/11 (renova 19/11, 1h de Brasília). O DONO AUTORIZOU continuar com uso extra (13/11, ~06h UTC): não pausar por isso.
+Arquivadas em 13/11 a pedido do dono: todas as sessões de resolução paradas (sistema novo 1 de Mat/Fís/Quí/Por, Geografia antiga,
+Filosofia e Sociologia, História, "Resoluções ENEM e vestibular", Química 3). A coordenadora session_01PveEKabuyZnqVN65W5FfEc pode ser arquivada.
+
 ## Permissões (medido em 13/11)
 - Sessões de matéria: Bash/Edit/Agent/Write/Read não pedem; só send_message pedia (por isso a caixa).
 - Coordenadora: create_session pede UMA vez por sessão; create_deployment/get_deployment (Vercel) e Artifact/ArtifactData
