@@ -29,7 +29,7 @@ quando chegar a hora (passo 9 do prompt)."
 ## Sessões (13/11/2026, 00h30 UTC)
 | Matéria | Sessão | Situação |
 |---|---|---|
-| Matemática | session_01PveEKWYPGjW3SYacWGoS7w | trabalhando; mandada parar de abrir lote e mandar TROCA (13/11 00h20); também avisada do teste de cobertura animada |
+| Matemática | session_01PveEKX177vB2BRfF6zV6S5 | trabalhando (aberta 13/11 00h46; antiga session_01PveEKWYPGjW3SYacWGoS7w mandou TROCA após mat-0049: pode arquivar) |
 | Física | session_01PveEKaLLM5an4P4mkWzqv3 | trabalhando |
 | Química | session_01PveEKXEZ197XmbuWmKkDPw | trabalhando |
 | Biologia | session_01PveEKaZX71znbULe85ap8G | trabalhando |
@@ -63,6 +63,8 @@ session_01PveEKb4hnDGKRb7Gtd9hCr. A coordenadora antiga é session_01PveEKWW3t7Z
 6. Nada novo: não fazer nada e não avisar.
 
 ## Esperando o dono
+- Unifor 2026.2 Medicina q01 (Pb1863457): erro de enunciado (36 cápsulas não chegam a 4 665 mg; gabarito D só ignorando o
+  "36"). Recomendação: deixar fora do site.
 - Publicação segurada (13/11 00h30): 15.745 resoluções prontas (+2.223), mas o teste de cobertura animada de
   Matemática caiu para 69,4% (mínimo 70%). Publicar quando voltar ao verde. Limite semanal da conta em aviso (renova 19/11).
 - Fema 2022 q13 (Pc90de958, prova fema-2021): gabarito oficial E contradiz os fatos (III é falsa; II também erra o
