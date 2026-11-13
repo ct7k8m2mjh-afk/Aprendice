@@ -324,5 +324,117 @@
    "data": "2026-11-13",
    "lote": "fis-0058"
   }
+ },
+ "P193cf99a": {
+  "n": "37",
+  "conceito": "Rendimento de máquina térmica (trabalho/calor recebido) e potência útil (trabalho/tempo).",
+  "equivocos": {
+   "A": "F08.8:rendimento-mal-calculado",
+   "C": "F08.8:potencia-com-calor-recebido",
+   "D": "F08.8:rendimento-mal-calculado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "São duas contas independentes. Rendimento compara o trabalho com o calor que a máquina recebe da fonte quente. Potência útil é o trabalho realizado dividido pelo tempo em que ele é feito. As temperaturas de 110 °C e 20 °C não entram nas contas que as alternativas pedem.",
+    "formulas": [
+     "η = W/Q_q",
+     "P = W/Δt"
+    ],
+    "simbolos": [
+     [
+      "η",
+      "rendimento: fração do calor recebido que vira trabalho"
+     ],
+     [
+      "W",
+      "trabalho útil realizado por ciclo"
+     ],
+     [
+      "Q_q",
+      "calor recebido da fonte quente"
+     ],
+     [
+      "P",
+      "potência útil, em watt (J/s)"
+     ],
+     [
+      "Δt",
+      "intervalo de tempo"
+     ]
+    ]
+   },
+   "pista": "Separe o que cada alternativa afirma: um número de rendimento e um de potência. Calcule os dois com os dados do texto.",
+   "passos": [
+    {
+     "faz": "Calcule o rendimento",
+     "conta": "η = 600 J/2000 J → η = 0,3 = 30%",
+     "porque": "Rendimento é a parte do calor recebido que virou trabalho.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a potência útil",
+     "conta": "P = 600 J/10 s → P = 60 W",
+     "porque": "O trabalho de 600 J é realizado a cada 10 segundos; joule por segundo é watt.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare com as alternativas",
+     "conta": "η = 30% e P = 60 W → só B traz os dois",
+     "porque": "A diz menos de 30% e menos de 40 W; C diz 200 W; D diz 60%.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "30% e 60 W → B",
+     "porque": "Os dois valores calculados coincidem com a alternativa B.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — rendimento de 30% e potência útil de 60 W.",
+   "checagem": "Calor rejeitado por ciclo: 2000 − 600 = 1400 J, ou 70% do recebido; 30% + 70% = 100%, e o balanço de energia fecha.",
+   "erradas": {
+    "A": "Não confere: o rendimento é exatamente 600/2000 = 30% (não inferior) e a potência é 600/10 = 60 W (não inferior a 40 W).",
+    "C": "Sai de dividir o calor recebido pelo tempo: 2000 J/10 s = 200 W. Potência útil usa o trabalho, 600 J, e só 30% da energia vira trabalho.",
+    "D": "Não confere: 600/2000 = 0,3, e 600 J é menos da metade dos 2000 J recebidos."
+   },
+   "armadilha": "Usar o calor recebido (2000 J) no lugar do trabalho (600 J) ao calcular a potência útil.",
+   "alerta": "Os números do enunciado não são fisicamente possíveis: entre 110 °C (383 K) e 20 °C (293 K), o rendimento máximo (Carnot) é 1 − 293/383 ≈ 23,5%, menor que os 30% calculados. A questão só pede a conta direta com os dados fornecidos, e o gabarito oficial B é o resultado dessa conta.",
+   "essencial": {
+    "pede": "O rendimento e a potência útil de uma máquina que recebe 2000 J e realiza 600 J a cada 10 s.",
+    "chave": "η = 600/2000 = 30%; P = 600/10 = 60 W.",
+    "cuidado": "Potência útil é trabalho por tempo, não calor recebido por tempo."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "potência primeiro",
+    "ideia": "Potência recebida = 2000/10 = 200 W; 30% de 200 W = 60 W, que confere rendimento e potência ao mesmo tempo."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "η = 600/2000 = 0,3",
+    "nota": "trabalho ÷ calor recebido"
+   },
+   {
+    "linha": "η = 30%",
+    "nota": "rendimento"
+   },
+   {
+    "linha": "P = 600/10 = 60 W",
+    "nota": "trabalho ÷ tempo"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "fis-0059"
+  }
  }
 }

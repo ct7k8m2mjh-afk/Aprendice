@@ -247,5 +247,138 @@
    "data": "2026-11-13",
    "lote": "fis-0057"
   }
+ },
+ "Pcaad7f37": {
+  "n": "9",
+  "conceito": "Obter Cp/Cv comparando o aquecimento a volume constante e a pressão constante com a mesma quantidade de calor.",
+  "equivocos": {
+   "A": "F08.7:inverteu-as-razoes-de-estado",
+   "C": "F08.7:fator-sem-origem-na-lei-dos-gases",
+   "D": "F08.7:fator-sem-origem-na-lei-dos-gases",
+   "E": "F08.7:fator-sem-origem-na-lei-dos-gases"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O mesmo fio, com a mesma corrente e o mesmo intervalo Δt, entrega ao gás a mesma quantidade de calor Q nas duas experiências. A volume constante, Q = n·Cv·ΔT1; a pressão constante, Q = n·Cp·ΔT2. Como Q é o mesmo, Cp/Cv = ΔT1/ΔT2. Cada ΔT sai da lei dos gases, comparando o estado final com o inicial.",
+    "formulas": [
+     "Q = n·Cv·ΔT (volume constante) | Q = n·Cp·ΔT (pressão constante)",
+     "volume constante: P/T constante → T1 = T0·P1/P0",
+     "pressão constante: V/T constante → T2 = T0·V1/V0"
+    ],
+    "simbolos": [
+     [
+      "Cp",
+      "calor específico molar a pressão constante"
+     ],
+     [
+      "Cv",
+      "calor específico molar a volume constante"
+     ],
+     [
+      "n",
+      "número de mols do gás"
+     ],
+     [
+      "ΔT",
+      "variação de temperatura"
+     ],
+     [
+      "T0, P0, V0",
+      "temperatura, pressão e volume iniciais"
+     ],
+     [
+      "Δt",
+      "intervalo de tempo em que a corrente passa no fio"
+     ]
+    ]
+   },
+   "pista": "Comece pelo que é igual nas duas experiências: o fio, a corrente e o tempo. O que isso diz sobre o calor recebido?",
+   "passos": [
+    {
+     "faz": "Iguale o calor das duas experiências",
+     "conta": "Q = n·Cv·ΔT1 = n·Cp·ΔT2 → Cp/Cv = ΔT1/ΔT2",
+     "porque": "Mesma corrente no mesmo fio durante o mesmo Δt: a energia dissipada é a mesma. O n cancela dos dois lados.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache ΔT1 a volume constante",
+     "conta": "P0/T0 = P1/T1 → T1 = T0·(P1/P0) → ΔT1 = T0·(P1/P0 − 1)",
+     "porque": "Com V fixo, pressão e temperatura absoluta crescem na mesma proporção.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache ΔT2 a pressão constante",
+     "conta": "V0/T0 = V1/T2 → T2 = T0·(V1/V0) → ΔT2 = T0·(V1/V0 − 1)",
+     "porque": "Com P fixa, volume e temperatura crescem na mesma proporção; o gás parte de novo de T0.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida e cancele T0",
+     "conta": "Cp/Cv = [T0·(P1/P0 − 1)]/[T0·(V1/V0 − 1)] = (P1/P0 − 1)/(V1/V0 − 1)",
+     "porque": "T0 aparece em cima e embaixo e se cancela.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "(P1/P0 − 1)/(V1/V0 − 1) → alternativa B",
+     "porque": "É exatamente a expressão da letra B.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — Cp/Cv = (P1/P0 − 1)/(V1/V0 − 1).",
+   "checagem": "Teste com um gás monoatômico (Cp/Cv = 5/3): se P1/P0 = 1,5, então ΔT1 = 0,5·T0; o mesmo calor a pressão constante dá ΔT2 = 0,3·T0, logo V1/V0 = 1,3. A expressão B dá 0,5/0,3 ≈ 1,67 = 5/3. Além disso, como Cp > Cv, o gás esquenta menos a pressão constante, e B fica maior que 1, como deve.",
+   "erradas": {
+    "A": "A inverte as razões: com P1/P0 = 1,5 e V1/V0 = 1,3 (monoatômico, 5/3 ≈ 1,67), a expressão A dá (1/1,5 − 1)/(1/1,3 − 1) ≈ 1,44, que não é 5/3.",
+    "C": "C não confere: no mesmo teste, (2/1,5 − 1)/(1/1,3 − 1) ≈ −1,44, um valor negativo, impossível para Cp/Cv.",
+    "D": "D não confere: no mesmo teste, (2·1,5 − 1)/(1,3 − 1) ≈ 6,67, longe de 5/3. O fator 2 não sai de nenhuma das leis usadas.",
+    "E": "E não confere: no mesmo teste, (1,5 − 1)/(2·1,3 − 1) ≈ 0,31, menor que 1, mas Cp é sempre maior que Cv."
+   },
+   "armadilha": "Achar que é preciso saber o calor ou a temperatura: os dois se cancelam, porque o calor é o mesmo nas duas experiências e ambas partem de T0.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A razão Cp/Cv em função de P0, P1, V0 e V1.",
+    "chave": "Mesmo calor nas duas experiências → Cp/Cv = ΔT1/ΔT2 = (P1/P0 − 1)/(V1/V0 − 1).",
+    "cuidado": "Partir de T0 nas duas vezes e usar P/T constante no isovolumétrico e V/T constante no isobárico."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "por eliminação",
+    "ideia": "Cp/Cv tem de ser maior que 1 e voltar 5/3 num gás monoatômico; testando valores, só B passa."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "n·Cv·ΔT1 = n·Cp·ΔT2",
+    "nota": "mesmo calor Q"
+   },
+   {
+    "linha": "Cp/Cv = ΔT1/ΔT2",
+    "nota": "n cancela"
+   },
+   {
+    "linha": "ΔT1 = T0·(P1/P0 − 1)",
+    "nota": "volume constante"
+   },
+   {
+    "linha": "ΔT2 = T0·(V1/V0 − 1)",
+    "nota": "pressão constante"
+   },
+   {
+    "linha": "Cp/Cv = (P1/P0 − 1)/(V1/V0 − 1)",
+    "nota": "T0 cancela → B"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "fis-0059"
+  }
  }
 }

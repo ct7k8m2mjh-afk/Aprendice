@@ -693,5 +693,226 @@
    "data": "2026-11-13",
    "lote": "fis-0056"
   }
+ },
+ "Pf452131d": {
+  "n": "8",
+  "conceito": "No processo isobárico de gás ideal, V/T é constante; com temperatura em kelvin, a razão inicial é igual à final.",
+  "equivocos": {
+   "B": "F08.6:razao-nao-confere",
+   "C": "F08.6:razao-nao-confere",
+   "D": "F08.6:razao-nao-confere",
+   "E": "F08.6:razao-nao-confere"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Pressão e número de mols constantes: PV = nRT dá V/T = nR/P, um valor fixo durante todo o processo. Então a razão V/T no início é a mesma do fim. O trabalho real é converter 0 °C para kelvin.",
+    "formulas": [
+     "PV = nRT → V/T = nR/P",
+     "T(K) = T(°C) + 273"
+    ],
+    "simbolos": [
+     [
+      "V/T",
+      "razão entre volume e temperatura absoluta"
+     ],
+     [
+      "K",
+      "kelvin, unidade de temperatura absoluta"
+     ],
+     [
+      "isobárico",
+      "processo a pressão constante"
+     ]
+    ]
+   },
+   "pista": "Nas leis dos gases, a temperatura vai sempre em kelvin.",
+   "passos": [
+    {
+     "faz": "Mostre que V/T não muda",
+     "conta": "PV = nRT → V/T = nR/P",
+     "porque": "Com n e P fixos, nR/P é constante; por isso V/T inicial = V/T final.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Converta a temperatura final",
+     "conta": "0 °C + 273 = 273 K",
+     "porque": "Na equação dos gases, T é a temperatura absoluta.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a razão no estado final",
+     "conta": "V/T = 273 L/273 K = 1 L/K",
+     "porque": "O 273 de cima cancela com o 273 de baixo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Volte ao estado inicial",
+     "conta": "V₀/T₀ = V/T = 1 L/K",
+     "porque": "Como a razão é constante no isobárico, a inicial também vale 1 litro por kelvin: alternativa A.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 1 litro por kelvin.",
+   "checagem": "Teste um estado intermediário: com V/T = 1 L/K, a 136,5 K o gás teria 136,5 L, e dobrando a temperatura para 273 K chega aos 273 L; volume e temperatura dobram juntos, como manda a lei de Charles.",
+   "erradas": {
+    "B": "Não confere: com 2 L/K, a 273 K o volume seria 546 L, não os 273 L do enunciado.",
+    "C": "Não confere: com 3 L/K, a 273 K o volume seria 819 L, e a razão não muda num processo isobárico.",
+    "D": "Não confere: com 4 L/K, a 273 K o gás ocuparia 1 092 L, quatro vezes o volume dado.",
+    "E": "Não confere: com 5 L/K, a 273 K o gás ocuparia 1 365 L, cinco vezes o volume dado."
+   },
+   "armadilha": "Usar 0 °C direto na conta: temperatura em °C não serve na lei dos gases (dividir por zero não tem sentido).",
+   "alerta": "O valor exato de 0 °C é 273,15 K; a questão usa 273 K, e 273 ÷ 273,15 ≈ 0,9995, que continua dando 1 litro por kelvin.",
+   "essencial": {
+    "pede": "A razão V/T inicial de um gás que se expande a pressão constante até 273 L a 0 °C.",
+    "chave": "No isobárico V/T é constante: 273 L ÷ 273 K = 1 L/K.",
+    "cuidado": "Converter 0 °C para 273 K antes de dividir."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "lei de Charles",
+    "ideia": "V₀/T₀ = V/T direto: 273 L/273 K = 1 L/K, sem precisar de n nem de P."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "V/T = nR/P",
+    "nota": "constante no isobárico"
+   },
+   {
+    "linha": "T = 0 + 273 = 273 K",
+    "nota": "°C para kelvin"
+   },
+   {
+    "linha": "V/T = 273/273 = 1 L/K",
+    "nota": "273 cancela"
+   },
+   {
+    "linha": "V₀/T₀ = 1 L/K",
+    "nota": "alternativa A"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "fis-0059"
+  }
+ },
+ "P256e78e3": {
+  "n": "9",
+  "conceito": "Sacudir o recipiente realiza trabalho de agitação sobre o líquido; com paredes condutoras, ele também pode trocar calor.",
+  "equivocos": {
+   "A": "F08.7:troca-condutora-por-adiabatica",
+   "B": "F08.7:trabalho-zero-com-volume-constante",
+   "C": "F08.7:sinal-do-trabalho-trocado",
+   "D": "F08.7:afirmacao-absurda"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Duas perguntas separadas: há trabalho? há calor? Quem sacode aplica forças que agitam o líquido: isso é trabalho sobre ele, mesmo com volume fixo (o trabalho p·ΔV é só o de expansão). E as paredes são condutoras, então nada impede troca de calor com a vizinhança.",
+    "formulas": [
+     "ΔU = Q − W",
+     "parede condutora: Q pode ser ≠ 0",
+     "agitação: trabalho sobre o líquido mesmo com ΔV = 0"
+    ],
+    "simbolos": [
+     [
+      "parede condutora",
+      "deixa passar calor"
+     ],
+     [
+      "Q",
+      "calor recebido pelo líquido"
+     ],
+     [
+      "W",
+      "trabalho realizado pelo líquido; negativo quando ele recebe trabalho"
+     ],
+     [
+      "vizinhança",
+      "tudo o que está fora do sistema"
+     ]
+    ]
+   },
+   "pista": "Pergunte separadamente: as paredes deixam passar calor? Sacudir faz trabalho?",
+   "passos": [
+    {
+     "faz": "Analise o calor",
+     "conta": "paredes condutoras → Q pode ser ≠ 0",
+     "porque": "Parede condutora permite troca de calor sempre que houver diferença de temperatura; A cai.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Analise o trabalho",
+     "conta": "sacudir → forças sobre o líquido → trabalho sobre ele",
+     "porque": "Volume fixo zera só p·ΔV; a agitação é trabalho feito pelo agente externo sobre o líquido. B e C caem (C inverte quem faz o trabalho).",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Descarte o absurdo",
+     "conta": "massa do líquido > 0",
+     "porque": "D contradiz a existência do próprio líquido.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "trabalho recebido + calor possível → alternativa E",
+     "porque": "E junta as duas conclusões.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — é realizado trabalho sobre o líquido, e ele pode trocar calor com a vizinhança.",
+   "checagem": "Compare com o recipiente adiabático: lá a agitação só aumentaria a energia interna (Q = 0). Aqui, com paredes condutoras, o líquido aquecido pela agitação pode devolver calor ao ambiente: coerente com E.",
+   "erradas": {
+    "A": "Vale para parede adiabática; aqui as paredes são termicamente condutoras, então há troca de calor possível.",
+    "B": "Confunde trabalho em geral com p·ΔV; a agitação realiza trabalho mesmo com volume constante.",
+    "C": "Inverte o sentido: é o agente externo que realiza trabalho sobre o líquido, e não o líquido sobre a vizinhança.",
+    "D": "Absurdo: o líquido tem massa; nada no enunciado sugere o contrário."
+   },
+   "armadilha": "Achar que volume constante significa trabalho nulo; a agitação é trabalho sem variar o volume.",
+   "alerta": "",
+   "essencial": {
+    "pede": "As trocas de energia de um líquido sacudido num recipiente condutor de volume fixo.",
+    "chave": "Agitação = trabalho sobre o líquido; parede condutora = calor possível.",
+    "cuidado": "W = p·ΔV é só o trabalho de expansão."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "palavras-chave",
+    "ideia": "'Paredes condutoras' derruba A; 'sacudir' é trabalho sobre o líquido e derruba B e C; D é absurda; sobra E."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "paredes condutoras → Q ≠ 0 é possível",
+    "nota": "calor pode passar"
+   },
+   {
+    "linha": "sacudir → trabalho sobre o líquido, mesmo com ΔV = 0",
+    "nota": "agitação não é p·ΔV"
+   },
+   {
+    "linha": "trabalho recebido + calor possível",
+    "nota": "alternativa E"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "fis-0059"
+  }
  }
 }
