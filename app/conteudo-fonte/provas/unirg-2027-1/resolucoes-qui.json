@@ -439,5 +439,135 @@
    "data": "2026-11-13",
    "lote": "qui-0059"
   }
+ },
+ "Pd5f78958": {
+  "n": "36",
+  "conceito": "Contar meias-vidas até a atividade atingir o limite mínimo e converter em horário.",
+  "equivocos": {
+   "A": "Q09.5:parou-antes-do-limite",
+   "B": "Q09.5:excluiu-o-valor-igual-ao-limite",
+   "D": "Q09.5:passou-do-limite-minimo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A amostra perde metade da atividade a cada 110 minutos. Descubra quantas metades cabem entre 3200 MBq e 200 MBq: esse é o limite em que a amostra ainda vale, porque o critério aceita atividade igual a 200 MBq. Depois some esse tempo às 7h.",
+    "formulas": [
+     "após n meias-vidas, atividade = inicial/2ⁿ",
+     "tempo = n × 110 min"
+    ],
+    "simbolos": [
+     [
+      "MBq",
+      "megabecquerel: milhões de desintegrações por segundo, medida da atividade"
+     ],
+     [
+      "¹⁸F",
+      "flúor-18, radioisótopo usado no exame PET"
+     ],
+     [
+      "PET",
+      "tomografia por emissão de pósitrons"
+     ],
+     [
+      "meia-vida",
+      "tempo para a quantidade (ou a atividade) do radioisótopo cair pela metade"
+     ]
+    ]
+   },
+   "pista": "Divida 3200 por 2 repetidas vezes até chegar a 200 e conte quantas divisões fez.",
+   "passos": [
+    {
+     "faz": "Divida a atividade por 2 até o limite",
+     "conta": "3200 → 1600 → 800 → 400 → 200 MBq",
+     "porque": "Cada seta é uma meia-vida; foram 4 setas até exatamente 200 MBq.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a fração restante",
+     "conta": "200/3200 = 1/16 = 1/2⁴",
+     "porque": "Quatro meias-vidas deixam 1/2 × 1/2 × 1/2 × 1/2 da atividade inicial.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Converta em horário",
+     "conta": "4 × 110 min = 440 min = 7 h 20 min → 7h + 7h20 = 14h20",
+     "porque": "Somando o tempo de 4 meias-vidas às 7h chega-se ao último instante em que a atividade ainda é 200 MBq.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste o horário seguinte",
+     "conta": "16h10: 550 min = 5 meias-vidas → 3200/32 = 100 MBq < 200 MBq",
+     "porque": "No horário IV a amostra já está abaixo do mínimo; o último horário possível é o III.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Junte horário e fração",
+     "conta": "14h20 e 1/16 → alternativa C",
+     "porque": "É o último procedimento atendido, com 1/16 da atividade inicial.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — o último horário é 14h20, com 1/16 da atividade inicial.",
+   "checagem": "Faça a conta pelo horário: das 7h às 14h20 passam 440 min, e 440/110 = 4 meias-vidas; 3200 × 1/16 = 200 MBq, exatamente o limite que o critério aceita (igual ou superior).",
+   "erradas": {
+    "A": "A para cedo: 10h40 são 220 min = 2 meias-vidas, atividade 800 MBq (1/4); a amostra ainda serve por mais duas meias-vidas.",
+    "B": "B para em 12h30: 330 min = 3 meias-vidas, 400 MBq (1/8); ainda acima de 200 MBq, então não é o último horário.",
+    "D": "D passa do limite: 16h10 são 550 min = 5 meias-vidas, 1/32 de 3200 = 100 MBq, abaixo dos 200 MBq exigidos."
+   },
+   "armadilha": "Achar que atividade exatamente igual a 200 MBq já não serve; o critério diz \"igual ou superior\", então 14h20 ainda vale.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O último horário com atividade de pelo menos 200 MBq e a fração restante.",
+    "chave": "3200/200 = 16 = 2⁴: 4 meias-vidas = 440 min, das 7h às 14h20, com 1/16.",
+    "cuidado": "Contar metades (2ⁿ), não dividir 3200 por 200 e multiplicar por 110."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "testar os horários",
+    "ideia": "Cada horário está 110 min depois do anterior (2, 3, 4 e 5 meias-vidas desde as 7h): 800, 400, 200 e 100 MBq; o último com 200 ou mais é 14h20."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "3200 → 1600 → 800 → 400 → 200 MBq",
+    "nota": "4 metades: 4 meias-vidas"
+   },
+   {
+    "linha": "200/3200 = 1/16",
+    "nota": "fração da atividade inicial"
+   },
+   {
+    "linha": "4 × 110 min = 440 min = 7 h 20 min",
+    "nota": "tempo decorrido"
+   },
+   {
+    "linha": "7h + 7h20 = 14h20",
+    "nota": "horário III"
+   }
+  ],
+  "visual": {
+   "cabe": true,
+   "tipo": "gráfico",
+   "roteiro": "Quadro 1: eixo do tempo começando às 7h com uma barra de 3200 MBq. Quadros 2 a 5: a cada 110 min a barra cai à metade (1600, 800, 400, 200), com os horários 10h40, 12h30 e 14h20 marcados. Quadro 6: em 16h10 a barra (100 MBq) fica abaixo da linha tracejada de 200 MBq e fica vermelha."
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "qui-0062"
+  },
+  "gabarito_aprendice": {
+   "letra": "C",
+   "letra_conferente": "C",
+   "preliminar": "C",
+   "fontes_web": [],
+   "data": "2026-11-13",
+   "lote": "qui-0062"
+  }
  }
 }

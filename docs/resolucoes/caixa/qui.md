@@ -10,3 +10,9 @@ Lote qui-0061 gravado (59 ok). Lote aberto: qui-0062.
 - P49c155b4: pendente — print cortado à direita (faltam fim do enunciado e alternativas B–E); refazer o print do PDF oficial.
 - Reclassificação de conteúdo (resolvidas assim mesmo; equivocos já usam o conteúdo real): P35d0032f → Q08.4; P57ce6af2 → Q01.5; P2461a610 → Q02.5; Pc29e20b8 → Q01.4; P0d7f5909 → Q09.1; P4fe63146 (trabalho, pH, ebulição, ΔH×ΔU) não é Q09.3 — termoquímica/físico-química.
 - P2461a610: texto_da_prova traz "~~Blade~~" mas no print é itálico simples — conferir a convenção.
+
+## 2026-11-13 07:30 UTC — PENDENCIAS — session_01PveEKX1xy9oPyd7TtkKSTJ
+Lote qui-0062 gravado (60 ok). Lote aberto: qui-0063. Testes após 3 lotes: 786 passed.
+- Pae0c806e (Cecierj, manitol isotônico): resolvida com o oficial B (0,15), mas a conta isotônica dá ≈ 0,30 mol/L; 0,15 é a quantidade em mol nos 500 mL. Alerta explica; sem errata.
+- P387bf99a: oficial E; a A também parece verdadeira (Sr²⁺ menor que o átomo de Ca). Alerta explica.
+- Reclassificação (resolvidas assim mesmo): P426eb2da → Q08.6; P8e1519c0 → Q08.1; P938922a8 → Q05.1; P756a3d0b e P9e858994 → Q09.4; P6613c02f é cinética de 1ª ordem; P5a34823e → Q09.4; P0a626e58 é sabões/detergentes.
