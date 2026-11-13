@@ -171,3 +171,19 @@ Provas da varredura de hífens (questões alteradas / trechos): acafe-2022-inver
 | 2026-11-13 | uva-2024-1 | 46 | P8a7424bc | 1000x179 | 1000x370 | 13: 52,605,548,788 |
 | 2026-11-13 | unitins-2024-2 | 29 | P2d41428f | 1000x348 | 1000x340 | 14: 30,399,565,580 |
 | 2026-11-13 | udesc-2024-1 | 28 | P039ae129 | 963x322 | 1000x272 | 15: 66,79,530,205 |
+| 2026-11-13 | uema-paes-2022 | 1 | P7a6cb566 | 1000x378 | 1000x1044 | 2: 24,54,571,625 |
+| 2026-11-13 | fatec-2026-2 | 59 | P2d6face4 | 1000x452 | 1000x552 | 22: 24,24,557,212; 22: 24,338,557,444 |
+| 2026-11-13 | ufjf-pism3-2025 | 1 | P7ca5604c | 553x1492 | 1000x10758 | 3: 40,88,298,777; 3: 300,64,558,777; 4: 40,64,298,758; 4: 300,64,558,746 |
+| 2026-11-13 | ufjf-pism3-2025 | 3 | P61ea787b | 553x921 | 1000x9826 | 3: 40,88,298,777; 3: 300,64,558,777; 4: 40,64,298,758; 5: 40,412,298,779; 5: 300,64,558,138 |
+| 2026-11-13 | ueg-2026-1 | 13 | P2118aaac | 1000x273 | 1000x635 | 8: 40,477,269,682; 9: 40,57,560,182 |
+| 2026-11-13 | pucrio-2027 | 28 | P8e9a3e2d | 1000x1042 | 1000x628 | 6: 24,426,572,770 |
+| 2026-11-13 | unifor-2026-2 | 16 | P1e680265 | 510x1152 | 1000x2164 | 13: 58,110,290,612 |
+| 2026-11-13 | fatec-2022-2 | 5 | P1abc1ea0 | 1000x533 | 1000x502 | 3: 24,441,232,460; 3: 24,460,571,715 |
+| 2026-11-13 | fatec-2024-1 | 42 | P23d5eb3e | 1000x1264 | 1000x984 | 17: 24,28,557,352; 17: 24,490,557,690 |
+| 2026-11-13 | fatec-2022-2 | 8 | Pb5d98e3b | 1000x543 | 1000x332 | 4: 24,513,571,694 |
+| 2026-11-13 | unitins-2024-2 | 30 | Pc2b48c65 | 1000x524 | 1000x457 | 14: 37,582,555,818 |
+| 2026-11-13 | pucrio-2026 | 32 | P39b97730 | 1000x481 | 1000x330 | 7: 22,271,572,452 |
+| 2026-11-13 | pucrio-2020 | 35 | P2e3d9060 | 1000x910 | 1000x506 | 7: 22,308,572,586 |
+| 2026-11-13 | fatec-2024-2 | 33 | P00508b62 | 1000x551 | 1000x506 | 13: 24,455,557,707; 13: 24,707,330,724 |
+| 2026-11-13 | uema-paes-2022, unitins-2024-2, ufjf-pism3-2025 | 1; 30; 1, 3 | P7a6cb566, Pc2b48c65, P7ca5604c, P61ea787b | transcrição e texto | — | uema q1: transcrição refeita com o artigo "O (não) lugar do pardo" (mesmos trechos do print); unitins q30: transcrição sem o resto da q29 ("__MZ + __L2X3") e com os "(   )" das afirmativas; ufjf q1 e q3: acentos soltos do caderno LaTeX juntados no texto ("Quest˜ao" → "Questão") |
+| 2026-11-13 | fatec-2026-2, pucrio-2020, pucrio-2024, pucrio-2026, ufrr-2022, fatec-2024-2, uft-2023-1 | 25; 33, 35; 35; 32; 60; 33; 65 | P7a183a2e, P2a1b35dc, P2e3d9060, Pa9df0c16, P39b97730, P23312853, P00508b62, Pf0ecd552 | texto corrigido pelo PDF | — | quadro "Dados"/fórmula/legenda do gráfico deixa de vir colado na alternativa E (vai antes das alternativas); tabela da pucrio-2020 q35 remontada em linhas; índices, cargas e expoentes que a camada de texto perdeu (mg L⁻¹, Cℓ⁻, I₃⁻, 3,0 × 10², H₂SO₄); fatec-2024-2 q33 na ordem de leitura (o fim da questão vinha antes do começo) |

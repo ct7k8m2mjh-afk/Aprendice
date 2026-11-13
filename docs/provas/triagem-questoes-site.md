@@ -9,11 +9,11 @@ Critério: mesma questão = texto >= 0.85 do texto menor (mín. 12 palavras) e m
 
 | Matéria | Questões de site | Viraram questão de prova | Prova a baixar | Questão Aprendice |
 |---|---|---|---|---|
-| Biologia | 312 | 1 | 3 | 308 |
+| Biologia | 312 | 1 | 4 | 307 |
 | Química | 250 | 9 | 3 | 238 |
-| Matemática | 98 | 3 | 14 | 81 |
-| Português | 128 | 3 | 8 | 117 |
-| **Total** | **788** | **16** | **28** | **744** |
+| Matemática | 98 | 3 | 15 | 80 |
+| Português | 128 | 3 | 16 | 109 |
+| **Total** | **788** | **16** | **38** | **734** |
 
 ## Viraram questão de prova
 
@@ -41,11 +41,15 @@ Critério: mesma questão = texto >= 0.85 do texto menor (mín. 12 palavras) e m
 | Prova | Questões | Ids |
 |---|---|---|
 | ENEM Digital/2020 | 3 | W5bb6c02, W57aca47, W2ca0443 |
+| ENEM PPL/2017 | 1 | W94a370c |
 | ENEM PPL/2020 | 1 | Wbc7a822 |
 | ENEM PPL/2021 | 1 | W387d76f |
 | ENEM PPL/2022 | 1 | We2d7752 |
 | ENEM PPL/2023 | 1 | We0833a1 |
 | ENEM PPL/2024 | 1 | W0b8eac4 |
+| ENEM/2003 | 1 | W19d951a |
+| ENEM/2004 | 1 | Wa725ab2 |
+| ENEM/2008 | 2 | Wdc938b0, We9f5e5b |
 | ENEM/2009 | 2 | W81929df, W69b5dd2 |
 | ENEM/2010 | 2 | Wc9a7a55, Wc59dd23 |
 | ENEM/2012 | 3 | Wd24b850, W33fc81e, Wac6bf4d |
@@ -54,6 +58,7 @@ Critério: mesma questão = texto >= 0.85 do texto menor (mín. 12 palavras) e m
 | ENEM/2015 | 2 | W8e20657, W3aa2a67 |
 | ENEM/2016 | 3 | W7a7947f, W386e63b, We4f956f |
 | ENEM/2017 | 1 | W6ac88fc |
+| ENEM/2018 | 5 | Wcb73a63, W18722ec, Wd790cdd, Wdc16194, W8d329ea |
 | ENEM/2019 | 3 | Wec2f113, W4121a4c, W0eb9f56 |
 | Unitins/2021 | 1 | W5d49e70 |
 
@@ -72,5 +77,4 @@ Conta as questões com destino `questao_aprendice` e `prova_a_baixar` (enquanto 
 - sem banca citada: 252
 - ano anterior a 2020 ou sem caderno oficial no inventário: 15
 - banca de fora dos inventários (concurso, colégio técnico ou instituição não listada): 12
-- prova anterior a 2020, apagada da lista de provas a baixar (dono, 13/11/2026): 10
 - a prova ENEM 2020 já está no site, mas a questão não está nela (outra fase, caderno ou adaptação): 1

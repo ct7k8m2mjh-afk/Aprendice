@@ -34,14 +34,6 @@ CONFERIDOS = {
     'W845df46', 'W18d5d4d', 'Wc4a3e7e', 'Wa98db9a', 'W4f69629', 'W237add0', 'W39cb2bf',
 }
 
-# Decisão do dono (13/11/2026): "provas anteriores a 2020 podem ser apagadas". Saem da lista de provas a baixar as
-# anteriores a 2020 que não têm nenhuma questão no site; a questão de site que citava a prova vira Questão Aprendice
-# (o id continua na tabela de retiradas, para o progresso do aluno). Ficam na lista, por terem questões no site com id
-# em uso (as 27 do ENEM em Matemática, M08.6 e M11.6, do banco antigo): ENEM 2009, 2010, 2012, 2013, 2014, 2015, 2016,
-# 2017 e 2019.
-ANTERIORES_APAGADAS = {'ENEM/2003', 'ENEM/2004', 'ENEM/2008', 'ENEM/2018', 'ENEM PPL/2017'}
-ANTERIORES_APAGADAS_MOTIVO = 'prova anterior a 2020, apagada da lista de provas a baixar (dono, 13/11/2026)'
-
 
 def ler(p):
     with open(p, encoding='utf-8') as f:
@@ -165,10 +157,7 @@ def main():
                     melhor = (s, c)
         it = {'id': q['id'], 'materia': m, 'sub': q['sub'], 'dif': int(str(q.get('dif') or 5)), 'site': q.get('escola'),
               'banca_citada': cit, 'instituicao': inst, 'ano_citado': ano}
-        prova_cit = f'ENEM {variante_enem(cit)}/{ano}' if inst == 'ENEM' and ano and variante_enem(cit) else f'{inst}/{ano}'
-        if not melhor and prova_cit in ANTERIORES_APAGADAS:
-            it.update(destino='questao_aprendice', motivo=ANTERIORES_APAGADAS_MOTIVO)
-        elif melhor:
+        if melhor:
             s, c = melhor
             it.update(destino='questao_de_prova:' + c['id'], equivalente={
                 'id': c['id'], 'fonte': c['fonte'], 'questao': c['rotulo'], 'materia': c['materia'], 'sub': c['sub'],

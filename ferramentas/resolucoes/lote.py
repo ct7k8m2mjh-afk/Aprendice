@@ -162,8 +162,7 @@ def faltam(m, reg, feitas_provas):
     ocup = ocupadas(reg)
     return [q for q in b if q.get('prova') and q['id'] not in feitas and q['id'] not in feitas_provas and q['id'] not in ocup
             and not str(q.get('pendente', '')).startswith('indisponível')   # fora do site por decisão do dono
-            and not q.get('outraMateria')    # matéria fora das 9 do site (dono, 13/11/2026): não se resolve
-            and not q.get('anuladaAprendice')]   # anulada pelo Aprendice (dono, 13/11/2026): fora do site
+            and not q.get('outraMateria')]   # matéria fora das 9 do site (dono, 13/11/2026): não se resolve
 
 
 def nomes_materia(m):
