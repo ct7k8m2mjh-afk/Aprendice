@@ -663,5 +663,134 @@
    "data": "2026-11-13",
    "lote": "qui-0054"
   }
+ },
+ "Pa750f20c": {
+  "n": "38",
+  "conceito": "Calcular pressão total e pressões parciais de uma mistura gasosa e avaliar o efeito do aquecimento a volume constante.",
+  "equivocos": {
+   "A": "Q06.3:comando-falsa-lido-como-correta",
+   "B": "Q06.3:comando-falsa-lido-como-correta",
+   "D": "Q06.3:comando-falsa-lido-como-correta",
+   "E": "Q06.3:comando-falsa-lido-como-correta"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Numa mistura de gases que não reagem, a pressão total vem da soma dos mols de todos os gases (PV = nRT), e a pressão parcial de cada gás é proporcional aos mols dele. Para o aquecimento, o detalhe é a temperatura em kelvin: de 27 °C para 54 °C o número dobra em Celsius, mas não em kelvin. O comando pede a alternativa FALSA.",
+    "formulas": [
+     "PV = nRT (n = soma dos mols)",
+     "pressão parcial = (mols do gás ÷ mols totais) × pressão total",
+     "V fixo: P ÷ T = constante (T em kelvin)"
+    ],
+    "simbolos": [
+     [
+      "pressão parcial",
+      "pressão que um gás da mistura exerceria sozinho no mesmo volume"
+     ],
+     [
+      "massas molares (g/mol)",
+      "Ar 40 | O2 32 | NO 30"
+     ],
+     [
+      "NO",
+      "óxido nítrico"
+     ],
+     [
+      "R",
+      "0,082 atm·L/(mol·K)"
+     ]
+    ]
+   },
+   "pista": "Passe cada massa para mol antes de tudo; depois veja a temperatura do aquecimento em kelvin.",
+   "passos": [
+    {
+     "faz": "Converta as massas em mol",
+     "conta": "Ar: 6,00/40 = 0,15 | O2: 4,80/32 = 0,15 | NO: 6,0/30 = 0,20 | total = 0,50 mol",
+     "porque": "As pressões dependem do número de mols, não da massa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a pressão total inicial",
+     "conta": "P = nRT/V → P = (0,50 × 0,082 × 300)/1,23 → P = 12,3/1,23 = 10 atm",
+     "porque": "27 °C = 300 K. A alternativa A é verdadeira.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule as pressões parciais",
+     "conta": "Ar: 0,15/0,50 × 10 = 3,0 atm | O2: 3,0 atm | NO: 0,20/0,50 × 10 = 4,0 atm",
+     "porque": "Cada gás contribui na proporção dos seus mols. B, D e E são verdadeiras.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Avalie o aquecimento",
+     "conta": "27 °C = 300 K → 54 °C = 327 K | P2 = 10 × 327/300 → P2 = 10,9 atm",
+     "porque": "Com volume fixo, a pressão cresce na razão das temperaturas em kelvin: 327/300 = 1,09, não 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "10,9 atm não é o dobro de 10 atm → C é falsa → alternativa C",
+     "porque": "O comando pede a falsa.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — é falso que, após o aquecimento, a pressão no cilindro seja o dobro da inicial (ela vai a cerca de 10,9 atm).",
+   "checagem": "Confira a soma das parciais: 3,0 + 3,0 + 4,0 = 10 atm, igual à pressão total calculada pelos mols totais. E 10,9 atm a 327 K: 0,50 × 0,082 × 327 ÷ 1,23 ≈ 10,9 atm.",
+   "erradas": {
+    "A": "A é verdadeira: 0,50 mol × 0,082 × 300 K ÷ 1,23 L = 10 atm.",
+    "B": "B é verdadeira: Ar (6,00 ÷ 40) e O2 (4,80 ÷ 32) têm os mesmos 0,15 mol, logo a mesma pressão parcial, 3,0 atm.",
+    "D": "D é verdadeira: NO tem 0,20 de 0,50 mol, ou 40% de 10 atm = 4,0 atm.",
+    "E": "E é verdadeira: O2 tem 0,15 de 0,50 mol, ou 30% de 10 atm = 3,0 atm."
+   },
+   "armadilha": "Dobrar a pressão porque a temperatura em Celsius dobrou (27 → 54 °C): a lei dos gases usa kelvin, e 300 K → 327 K é só 9% a mais.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A afirmação falsa sobre a mistura de Ar, O2 e NO no cilindro.",
+    "chave": "n total = 0,50 mol dá 10 atm a 300 K; a 327 K, 10,9 atm, não 20 atm.",
+    "cuidado": "Leis dos gases em kelvin; e o comando pede a FALSA."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste direto da C",
+    "ideia": "Sem calcular as parciais: com V fixo, P2/P1 = T2/T1 = 327/300 ≈ 1,09; o dobro exigiria 600 K (327 °C)."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "6,00/40 + 4,80/32 + 6,0/30",
+    "nota": "mols de Ar, O2 e NO"
+   },
+   {
+    "linha": "0,15 + 0,15 + 0,20 = 0,50 mol",
+    "nota": "mols totais"
+   },
+   {
+    "linha": "P = (0,50 × 0,082 × 300)/1,23",
+    "nota": "Clapeyron a 300 K"
+   },
+   {
+    "linha": "P = 12,3/1,23 = 10 atm",
+    "nota": "A verdadeira"
+   },
+   {
+    "linha": "Ar 3,0 | O2 3,0 | NO 4,0 atm",
+    "nota": "parciais: B, D, E verdadeiras"
+   },
+   {
+    "linha": "P2 = 10 × 327/300 ≈ 10,9 atm",
+    "nota": "não é o dobro: C falsa"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "qui-0055"
+  }
  }
 }

@@ -1,6 +1,6 @@
 # Química: resoluções (gerado por lote.py em 2026-11-13)
 
-Faltam 1082 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 569; ENEM nível 7-10 26; provas-alvo nível 7-10 181; demais nível 7-10 306.
+Faltam 1052 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 539; ENEM nível 7-10 26; provas-alvo nível 7-10 181; demais nível 7-10 306.
 
 ## Lotes
 
@@ -60,17 +60,21 @@ Faltam 1082 questões sem resolução (fora as que estão em lote, pendentes ou 
 | qui-0052 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | qui-0053 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | qui-0054 | demais nível 1-6 | 30 | gravado | 27 | 3 | 0 |
-| qui-0055 | demais nível 1-6 | 30 | aberto |  |  |  |
+| qui-0055 | demais nível 1-6 | 30 | gravado | 27 | 3 | 0 |
 | qui-0056 | demais nível 1-6 | 30 | aberto |  |  |  |
+| qui-0057 | demais nível 1-6 | 30 | aberto |  |  |  |
 
 ## Pendentes (falta de certeza absoluta)
 
 | Questão | Prova | Conteúdo | Motivo |
 |---|---|---|---|
+| P707f333f | EMESCAM 2022 Medicina 2022/1 · questão 36 | Q07.1 entalpia, reação exotérmica e endotérmica, diagrama de energia (tema Q07 Termoquímica) | classificação: é de Física (propagação de calor: condução, convecção e radiação); sem conteúdo de Química. |
 | P1abc1ea0 | Fatec 2022 2º semestre · questão 5 | Q04.3 cálculo estequiométrico direto (tema Q04 Mol e estequiometria) | print: a coluna I da tabela de alternativas (os números de horas, 96 e 44) está em branco no print; os valores só aparecem na camada de texto. Sem eles, B e D (ambas "cloro") não se distinguem. Refazer o print do PDF oficial. (Conta: 240 ÷ 10 × 4 = 96 h; cloro → B.) |
 | Pf989c470 | Fatec 2024 1º semestre · questão 10 | Q05.5 solubilidade, curva de solubilidade e saturação (tema Q05 Soluções e concentração) | classificação: é de Inglês (questão 10 de leitura do texto em inglês sobre as Blood Falls; pede o que o texto diz, sem conta nem conceito de solubilidade) |
 | P23d5eb3e | Fatec 2024 1º semestre · questão 42 | Q05.5 solubilidade, curva de solubilidade e saturação (tema Q05 Soluções e concentração) | print: o gráfico da alternativa C está partido no print (a metade que desce aparece ao lado do B e a metade que sobe aparece solta à esquerda do D, com o fragmento 'ra (oC).'); refazer o print da página 17 do PDF oficial, onde as cinco curvas estão lado a lado. A resolução abaixo está pronta (conferida contra a página do PDF) e pode ir para ok depois do novo print. |
 | Pa91b52ff | Fuvest 2021 1ª fase · questão 84 | Q04.3 cálculo estequiométrico direto (tema Q04 Mol e estequiometria) | print incompleto: o print traz só a segunda coluna da questão; faltam o início do enunciado e a tabela com os teores de HMF permitidos (legislação brasileira e recomendação internacional), sem a qual a questão não se resolve. Refazer o recorte (questão 84 ocupa duas colunas). |
+| P1f92eb26 | IME 2024 Concurso 2023/2024 – 1ª fase (objetiva) · questão 36 | Q06.2 equação de Clapeyron, volume molar e CNTP (tema Q06 Gases) | errata: E https://www.ime.eb.mil.br/images/arquivos/admissao/cfg/provas-anteriores/2023-2024/Gabarito_Prova_Objetiva_1_FASE.pdf (gabarito definitivo do IME traz "36 E" no trecho da busca; o preliminar da entrada é D; resolvedor e conferente às cegas chegam a E: P proporcional a n·T, amônia 0,8 mol a 345 K dá 276, maior que 273 do metano nas CNTP). Resolução com E pronta para refazer. |
+| P76ed5406 | ITA 2022 1ª fase · questão 64 | Q07.1 entalpia, reação exotérmica e endotérmica, diagrama de energia (tema Q07 Termoquímica) | classificação: o conteúdo é método científico (hipotético-dedutivo), não entalpia (Q07.1), e Química não tem subtema para ele; a sessão decide onde a questão fica (Biologia já tem resoluções de método científico, ex. uea-2026-bio P0bc23aaf). |
 | P27a7cbb0 | PUC-Rio 2024 Grupo 2 · questão 37 | Q06.1 transformações gasosas e equação geral dos gases (tema Q06 Gases) | classificação: é de Física (PUC-Rio 2024, 2º dia, grupo 2: Física vai da 20 à 27, Química começa na 28) |
 | P904e00fe | UEL 2023 1ª fase · questão 18 | Q06.2 equação de Clapeyron, volume molar e CNTP (tema Q06 Gases) | classificação: é de Física (empuxo; princípio de Arquimedes) |
 | P523fcc4a | UFRR 2025 Vestibular 2025 – Prova Integral · questão 55 | Q04.2 fórmula percentual, mínima e molecular (tema Q04 Mol e estequiometria) | dados inconsistentes, possível anulação: 5,00 g de sal liberando 1,70 g de água dão n = (1,70/18) ÷ (3,30/58,44) ≈ 1,67 para NaCl (preliminar C), não 2; NaCl·2H2O perderia 1,91 g. Só KS (fórmula impossível) dá n ≈ 2,04. Gabarito oficial (Edital 97/24-CPV, https://editais.ufrr.br/editais/arquivo/568/edital-n-97-24-gabarito-oficial-vestibular-2025.pdf) não abriu daqui para conferir anulação. |
