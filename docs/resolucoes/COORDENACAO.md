@@ -130,8 +130,8 @@ depois `python3 ferramentas/resolucoes/painel_falta.py` e publique docs/resoluco
 `url` = o link acima, de outra conversa; read antes).
 
 ## Publicação
-Última no ar: dpl_BuLFgvkJFLHjcU2G2ToHxiHRkuE5 (commit 7c6705c6, 13/11, a pedido do dono): 18.060 resoluções.
-Próxima ao passar de 18.560.
+Última no ar: dpl_2nXjFi2ruBj9zHwh8Lzn4G2ZwAni (commit 8f6e726b, 13/11): 18.413 resoluções.
+Próxima ao passar de 18.913.
 Contagem: `com_resolucao` de https://aprendice.vercel.app/conteudo/relatorio.json (ou do relatório local do converte).
 
 Coordenadora atual: session_01PveEKabuyZnqVN65W5FfEc (desde 12/11, 23h UTC).
