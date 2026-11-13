@@ -1,6 +1,6 @@
 # Física: resoluções (gerado por lote.py em 2026-11-12)
 
-Faltam 1601 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 33; demais nível 1-6 1052; ENEM nível 7-10 31; provas-alvo nível 7-10 186; demais nível 7-10 299.
+Faltam 1571 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 3; demais nível 1-6 1052; ENEM nível 7-10 31; provas-alvo nível 7-10 186; demais nível 7-10 299.
 
 ## Lotes
 
@@ -45,7 +45,8 @@ Faltam 1601 questões sem resolução (fora as que estão em lote, pendentes ou 
 | fis-0037 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | fis-0038 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | fis-0039 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
-| fis-0040 | provas-alvo nível 1-6 | 30 | aberto |  |  |  |
+| fis-0040 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
+| fis-0041 | provas-alvo nível 1-6 | 30 | aberto |  |  |  |
 
 ## Pendentes (falta de certeza absoluta)
 

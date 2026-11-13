@@ -673,5 +673,111 @@
    "data": "2026-11-12",
    "lote": "fis-0038"
   }
+ },
+ "P27ccb16c": {
+  "n": "45",
+  "conceito": "Associação mista de capacitores: série de iguais, paralelo e nova série.",
+  "equivocos": {
+   "B": "F11.9:serie-paralelo-trocados",
+   "C": "F11.9:esquece-ultimo-bloco",
+   "D": "F11.9:serie-paralelo-trocados",
+   "E": "F11.9:serie-paralelo-trocados"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Seguindo os fios da figura: os dois capacitores de 100 µF estão em série entre si; esse par está em paralelo com o de 150 µF (os dois caminhos saem de P e chegam ao mesmo ponto); esse conjunto fica em série com o de 200 µF, que chega a Q.",
+    "formulas": [
+     "Série de dois: C1·C2/(C1 + C2)",
+     "Paralelo: soma"
+    ],
+    "simbolos": [
+     [
+      "C",
+      "capacitâncias em µF"
+     ]
+    ]
+   },
+   "pista": "Reduza por partes: primeiro o par de 100 µF, depois o paralelo com 150 µF, por fim a série com 200 µF.",
+   "passos": [
+    {
+     "faz": "Par de 100 µF em série",
+     "conta": "(100 · 100)/(100 + 100) = 50 µF",
+     "porque": "Dois iguais em série: C/2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Paralelo com 150 µF",
+     "conta": "50 + 150 = 200 µF",
+     "porque": "Caminhos entre os mesmos pontos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Série com 200 µF",
+     "conta": "(200 · 200)/(200 + 200) = 100 µF",
+     "porque": "Um bloco depois do outro.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "C_eq = 100 µF",
+     "porque": "Alternativa A.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 100 µF.",
+   "checagem": "Pelos inversos no último passo: 1/C_eq = 1/200 + 1/200 = 2/200 = 1/100, então C_eq = 100 µF. Em série, o resultado fica abaixo do menor bloco (200 µF), como deve ser.",
+   "erradas": {
+    "B": "Não confere: 150 µF é só um dos capacitores; a série final com 200 µF dá 100 µF.",
+    "C": "Sai de parar no paralelo e esquecer a série com o de 200 µF: 50 + 150 = 200 µF.",
+    "D": "Não confere: 250 µF é maior que o bloco de 200 µF em série; o equivalente de uma série é menor que cada parte.",
+    "E": "Sai de somar o de 200 µF como se estivesse em paralelo: 50 + 150 + 200 = 400 µF."
+   },
+   "armadilha": "Somar capacitâncias em série como se fossem resistências.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A capacitância equivalente entre P e Q.",
+    "chave": "(100 série 100) = 50; com 150 em paralelo = 200; em série com 200 = 100 µF.",
+    "cuidado": "Capacitor: paralelo soma, série reduz."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "Redução por blocos",
+    "ideia": "Reduzir de dentro para fora até sobrar um capacitor."
+   },
+   {
+    "nome": "Soma dos inversos",
+    "ideia": "Usar 1/C_eq = 1/C1 + 1/C2 em cada série."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "(100 · 100)/(100 + 100) = 50 µF",
+    "nota": "par de cima"
+   },
+   {
+    "linha": "50 + 150 = 200 µF",
+    "nota": "paralelo"
+   },
+   {
+    "linha": "(200 · 200)/(200 + 200) = 100 µF",
+    "nota": "série com 200"
+   },
+   {
+    "linha": "Resposta: A",
+    "nota": "100 µF"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "fis-0040"
+  }
  }
 }

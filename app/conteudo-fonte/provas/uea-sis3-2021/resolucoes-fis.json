@@ -443,5 +443,121 @@
    "data": "2026-11-12",
    "lote": "fis-0039"
   }
+ },
+ "P38e152da": {
+  "n": "45",
+  "conceito": "Capacitor em curto-circuito: sai da associação em série do seu ramo e a capacitância equivalente muda.",
+  "equivocos": {
+   "B": "F11.9:conta-de-serie-errada",
+   "C": "F11.9:curto-diminui-capacitancia",
+   "D": "F11.9:curto-diminui-capacitancia",
+   "E": "F11.9:curto-diminui-capacitancia"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Ramo de cima: dois de 400 mF em série. Ramo de baixo: três de 600 mF em série. Os ramos estão em paralelo entre P e Q. Um capacitor em curto vira um fio: some do ramo de baixo, que passa a ter só dois capacitores de 600 mF em série.",
+    "formulas": [
+     "Série de iguais: C/n",
+     "Paralelo: soma"
+    ],
+    "simbolos": [
+     [
+      "400 mF",
+      "capacitores de cima"
+     ],
+     [
+      "600 mF",
+      "capacitores de baixo"
+     ]
+    ]
+   },
+   "pista": "Calcule o equivalente antes e depois; um capacitor em curto se comporta como um fio.",
+   "passos": [
+    {
+     "faz": "Antes, cima",
+     "conta": "400/2 = 200 mF",
+     "porque": "Dois iguais em série.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Antes, baixo",
+     "conta": "600/3 = 200 mF",
+     "porque": "Três iguais em série.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Antes, total",
+     "conta": "200 + 200 = 400 mF",
+     "porque": "Ramos em paralelo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Depois",
+     "conta": "600/2 = 300 mF ; total 200 + 300 = 500 mF",
+     "porque": "Sobram dois de 600 mF no ramo de baixo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "500 − 400 = 100 mF a mais",
+     "porque": "Alternativa A.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — aumentada em 100 mF.",
+   "checagem": "Raciocínio qualitativo: em série, menos capacitores dá equivalente maior; o ramo de baixo sobe de 200 para 300 mF e o de cima não muda, então o total sobe exatamente 100 mF.",
+   "erradas": {
+    "B": "Não confere: aumentar 200 mF exigiria total de 600 mF, mas o novo total é 200 + 300 = 500 mF.",
+    "C": "Não confere: o curto tira um capacitor de uma série, o que aumenta o equivalente do ramo; não diminui.",
+    "D": "Não confere: o equivalente aumenta (de 400 para 500 mF), não diminui.",
+    "E": "Não confere: o equivalente aumenta; uma queda de 300 mF levaria a 100 mF."
+   },
+   "armadilha": "Achar que perder um capacitor sempre diminui a capacitância; em série, tirar um aumenta o equivalente.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Como muda a capacitância equivalente entre P e Q.",
+    "chave": "Ramo de baixo: de 600/3 = 200 para 600/2 = 300 mF; total de 400 para 500 mF.",
+    "cuidado": "Capacitor em curto vira fio."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "Antes e depois",
+    "ideia": "Calcular o equivalente nas duas situações e subtrair."
+   },
+   {
+    "nome": "Só o ramo que muda",
+    "ideia": "O ramo de cima não muda; basta a variação do ramo de baixo."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "Antes: 400/2 + 600/3 = 200 + 200 = 400 mF",
+    "nota": "equivalente inicial"
+   },
+   {
+    "linha": "Depois: 400/2 + 600/2 = 200 + 300 = 500 mF",
+    "nota": "um capacitor em curto"
+   },
+   {
+    "linha": "500 − 400 = 100 mF",
+    "nota": "variação"
+   },
+   {
+    "linha": "Resposta: A",
+    "nota": "aumentada em 100 mF"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "fis-0040"
+  }
  }
 }

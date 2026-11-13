@@ -729,5 +729,119 @@
    "data": "2026-11-12",
    "lote": "fis-0035"
   }
+ },
+ "P9693ac36": {
+  "n": "41",
+  "conceito": "Associação de capacitores em paralelo e em série: sistema com o número de unidades de cada tipo.",
+  "equivocos": {
+   "A": "F11.9:sistema-mal-montado",
+   "B": "F11.9:razao-das-capacitancias",
+   "D": "F11.9:sistema-mal-montado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Tipo A: 100 µF; tipo B: 1000 µF. Em paralelo, as capacitâncias somam: 100·M + 1000·N = 2300. Em série, os inversos somam: M/100 + N/1000 = 1/31,25. Duas equações, duas incógnitas.",
+    "formulas": [
+     "Paralelo: C_eq = soma das C",
+     "Série: 1/C_eq = soma dos 1/C"
+    ],
+    "simbolos": [
+     [
+      "M",
+      "nº de capacitores A (100 µF)"
+     ],
+     [
+      "N",
+      "nº de capacitores B (1000 µF)"
+     ]
+    ]
+   },
+   "pista": "Monte uma equação para o paralelo e outra para a série; depois resolva o sistema.",
+   "passos": [
+    {
+     "faz": "Paralelo",
+     "conta": "100M + 1000N = 2300 → M + 10N = 23",
+     "porque": "Divide por 100.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Série",
+     "conta": "M/100 + N/1000 = 1/31,25 = 0,032 → 10M + N = 32",
+     "porque": "Multiplica por 1000.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva",
+     "conta": "M = 23 − 10N → 10 · (23 − 10N) + N = 32 → 99N = 198",
+     "porque": "Substituição.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Valores",
+     "conta": "N = 2 e M = 3",
+     "porque": "198/99 = 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "M/N = 3/2",
+     "porque": "Alternativa C.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 3/2.",
+   "checagem": "Volte: 3 de 100 µF e 2 de 1000 µF em paralelo dão 300 + 2000 = 2300 µF; em série, 3/100 + 2/1000 = 0,032, e 1/0,032 = 31,25 µF. Confere.",
+   "erradas": {
+    "A": "Não confere: 32/23 é a razão entre os segundos membros das equações, não entre M e N; com M = 32 e N = 23 o paralelo daria 26200 µF.",
+    "B": "Sai de dividir as capacitâncias dos tipos: 100/1000 = 1/10.",
+    "D": "Não confere: M = 23 e N = 10 dariam em paralelo 2300 + 10000 = 12300 µF."
+   },
+   "armadilha": "Esquecer que em série se somam os inversos.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A razão M/N.",
+    "chave": "M + 10N = 23 e 10M + N = 32: M = 3, N = 2.",
+    "cuidado": "Paralelo soma C; série soma 1/C."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "Sistema linear",
+    "ideia": "Uma equação do paralelo e outra da série; resolver por substituição."
+   },
+   {
+    "nome": "Tentativa com inteiros",
+    "ideia": "Testar pares inteiros pequenos que satisfaçam M + 10N = 23."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "M + 10N = 23",
+    "nota": "paralelo"
+   },
+   {
+    "linha": "10M + N = 32",
+    "nota": "série"
+   },
+   {
+    "linha": "99N = 198 → N = 2; M = 3",
+    "nota": "solução"
+   },
+   {
+    "linha": "M/N = 3/2",
+    "nota": "alternativa C"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "fis-0040"
+  }
  }
 }

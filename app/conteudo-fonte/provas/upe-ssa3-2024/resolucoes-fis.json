@@ -331,5 +331,125 @@
    "data": "2026-11-12",
    "lote": "fis-0033"
   }
+ },
+ "Pa320cfb2": {
+  "n": "71",
+  "conceito": "Capacitância a partir da energia armazenada: E = C·V²/2, com conversão de kJ, kV e mF.",
+  "equivocos": {
+   "A": "F11.9:valor-sem-conta",
+   "B": "F11.9:erro-de-potencia-de-dez",
+   "C": "F11.9:valor-sem-conta",
+   "E": "F11.9:esquece-fator-2"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O desfibrilador guarda energia num capacitor: E = C·V²/2. Isolando, C = 2E/V². Converta antes: 0,4 kJ = 400 J; 2 kV = 2000 V; no fim, 1 mF = 10⁻³ F.",
+    "formulas": [
+     "E = C·V²/2",
+     "C = 2E/V²"
+    ],
+    "simbolos": [
+     [
+      "E",
+      "0,4 kJ = 400 J"
+     ],
+     [
+      "V",
+      "2 kV = 2000 V"
+     ],
+     [
+      "C",
+      "capacitância"
+     ]
+    ]
+   },
+   "pista": "Isole C na fórmula da energia e use as unidades do SI antes de calcular.",
+   "passos": [
+    {
+     "faz": "Converta",
+     "conta": "E = 400 J ; V = 2000 V",
+     "porque": "kJ e kV para J e V.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Isole C",
+     "conta": "C = 2E/V²",
+     "porque": "O 2 passa multiplicando, V² passa dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Substitua",
+     "conta": "C = (2 · 400)/2000² = 800/(4 × 10⁶)",
+     "porque": "2000² = 4 × 10⁶.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule",
+     "conta": "C = 2 × 10⁻⁴ F = 0,2 mF",
+     "porque": "10⁻⁴ F = 0,1 mF.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "C = 0,2 mF",
+     "porque": "Alternativa D.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 0,2.",
+   "checagem": "Volte com C = 0,2 mF = 2 × 10⁻⁴ F: E = (2 × 10⁻⁴ · 4 × 10⁶)/2 = 800/2 = 400 J = 0,4 kJ. Confere.",
+   "erradas": {
+    "A": "Não confere: 100 mF = 0,1 F daria E = (0,1 · 4 × 10⁶)/2 = 2 × 10⁵ J, muito mais que 400 J.",
+    "B": "Não confere: 20 mF daria E = (0,02 · 4 × 10⁶)/2 = 40000 J, cem vezes 400 J.",
+    "C": "Não confere: 1,0 mF daria E = (10⁻³ · 4 × 10⁶)/2 = 2000 J, não 400 J.",
+    "E": "Sai de esquecer o fator 2: E/V² = 400/(4 × 10⁶) = 10⁻⁴ F = 0,1 mF."
+   },
+   "armadilha": "Esquecer o 2 da fórmula ou não converter kJ e kV antes da conta.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A capacitância em mF.",
+    "chave": "C = 2E/V² com E em J e V em volts.",
+    "cuidado": "Converter as unidades e elevar a tensão ao quadrado."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "Isolar C",
+    "ideia": "C = 2E/V² com unidades do SI."
+   },
+   {
+    "nome": "Pela carga",
+    "ideia": "Achar Q = 2E/V e depois C = Q/V."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "C = 2E/V²",
+    "nota": "da energia do capacitor"
+   },
+   {
+    "linha": "C = (2 · 400)/2000²",
+    "nota": "SI"
+   },
+   {
+    "linha": "C = 800/(4 × 10⁶) = 2 × 10⁻⁴ F",
+    "nota": "conta"
+   },
+   {
+    "linha": "C = 0,2 mF",
+    "nota": "alternativa D"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "fis-0040"
+  }
  }
 }
