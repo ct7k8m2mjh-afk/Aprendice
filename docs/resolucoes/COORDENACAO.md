@@ -60,11 +60,11 @@ aprovação ou resposta: pendências e avisos vão para docs/resolucoes/caixa/<m
 ## Sessões (13/11/2026, 05h UTC) — sistema novo começando
 | Matéria | Sessão | Situação |
 |---|---|---|
-| Matemática | (a abrir) | |
-| Física | (a abrir) | |
-| Química | (a abrir) | |
-| Biologia | (a abrir) | |
-| Português | (a abrir) | |
+| Matemática | session_01PveEKaSPVEijwvkvEUmmWx | trabalhando (aberta 13/11 05h03, sistema novo) |
+| Física | session_01PveEKX5T4pY3Xx4fn4PR8G | trabalhando (aberta 13/11 05h03, sistema novo) |
+| Química | session_01PveEKX1xy9oPyd7TtkKSTJ | trabalhando (aberta 13/11 05h03, sistema novo) |
+| Biologia | session_01PveEKb648gnNx7gv9Y2Xbs | trabalhando (aberta 13/11 05h03, sistema novo) |
+| Português | session_01PveEKWhAdHoSJKa5to3K8D | trabalhando (aberta 13/11 05h03, sistema novo) |
 Antigas, todas paradas (o dono pode arquivar): Mat session_01PveEKZRuBiHmg4Hm9HT1J1, Fís session_01PveEKXmCjqipC4JbNj9w73,
 Quí session_01PveEKadroQ4kNhHt52L2hy, Bio session_01PveEKaptKYR7JXwbmxDGXx, Por session_01PveEKaBDR2WGsLQUacMYFY; e as
 anteriores já listadas para arquivar. Coordenadoras antigas: session_01PveEKWW3t7ZxcdDQKNiYWa, session_01PveEKabuyZnqVN65W5FfEc.
