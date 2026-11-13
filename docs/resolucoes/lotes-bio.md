@@ -1,6 +1,6 @@
 # Biologia: resoluções (gerado por lote.py em 2026-11-13)
 
-Faltam 1515 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 54; demais nível 1-6 1258; ENEM nível 7-10 16; provas-alvo nível 7-10 115; demais nível 7-10 72.
+Faltam 1485 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 24; demais nível 1-6 1258; ENEM nível 7-10 16; provas-alvo nível 7-10 115; demais nível 7-10 72.
 
 ## Lotes
 
@@ -46,7 +46,8 @@ Faltam 1515 questões sem resolução (fora as que estão em lote, pendentes ou 
 | bio-0038 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | bio-0039 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | bio-0040 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
-| bio-0041 | provas-alvo nível 1-6 | 30 | aberto |  |  |  |
+| bio-0041 | provas-alvo nível 1-6 | 30 | gravado | 29 | 1 | 0 |
+| bio-0042 | provas-alvo nível 1-6 | 30 | aberto |  |  |  |
 
 ## Pendentes (falta de certeza absoluta)
 
@@ -57,6 +58,7 @@ Faltam 1515 questões sem resolução (fora as que estão em lote, pendentes ou 
 | P50441003 | UECE 2025 2025.2 – 1ª fase · questão 59 | B08.3 sistema nervoso autônomo e arco reflexo (tema B08 Neuro, hormônios, imune e reprodução) | gabarito preliminar A, mantido pela banca no parecer dos recursos (Comunicado 81/2025 CEV/UECE, https://www.cev.uece.br/wp-content/uploads/2025/05/comunicado81.2025cev.pdf), mas sem gabarito definitivo publicado e com erro conceitual na própria alternativa (chama a rodopsina de neurotransmissor e a liga aos cones); resolvedor e conferente chegam a A só por eliminação; decisão do dono |
 | P56bf6cb4 | UECE 2026 2026.1 – 1ª fase · questão 66 | B07.1 os quatro tecidos fundamentais (tema B07 Fisiologia humana I) | classificação: é de Educação Física (UECE 2026.1, questão 66: princípios do treinamento desportivo), não de Biologia. |
 | Pa1b2ee02 | UEL 2020 1ª fase · questão 20 | B05.3 código genético e tradução (tema B05 Genética molecular) | classificação: é de Matemática (probabilidade e potências: (1/4) elevado a 150 milhões = 2 elevado a −3 × 10^8); o DNA é só o contexto. |
+| P3c08d8ee | Unesp 2024 1ª fase – meio de ano · questão 78 | B12.6 vertebrados, classificação, nomenclatura e filogenia (tema B12 Diversidade dos seres vivos) | classificação: é de fis (fenômeno térmico, convecção; questão 78 da Unesp, fora da Biologia) |
 
 ## Divergências de gabarito (o dono decide)
 
