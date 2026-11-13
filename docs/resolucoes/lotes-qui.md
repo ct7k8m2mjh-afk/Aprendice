@@ -1,6 +1,6 @@
 # Química: resoluções (gerado por lote.py em 2026-11-13)
 
-Faltam 1022 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 509; ENEM nível 7-10 26; provas-alvo nível 7-10 181; demais nível 7-10 306.
+Faltam 993 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 480; ENEM nível 7-10 26; provas-alvo nível 7-10 181; demais nível 7-10 306.
 
 ## Lotes
 
@@ -62,8 +62,9 @@ Faltam 1022 questões sem resolução (fora as que estão em lote, pendentes ou 
 | qui-0054 | demais nível 1-6 | 30 | gravado | 27 | 3 | 0 |
 | qui-0055 | demais nível 1-6 | 30 | gravado | 27 | 3 | 0 |
 | qui-0056 | demais nível 1-6 | 30 | gravado | 29 | 1 | 0 |
-| qui-0057 | demais nível 1-6 | 30 | aberto |  |  |  |
+| qui-0057 | demais nível 1-6 | 30 | gravado | 29 | 1 | 0 |
 | qui-0058 | demais nível 1-6 | 30 | aberto |  |  |  |
+| qui-0059 | demais nível 1-6 | 30 | aberto |  |  |  |
 
 ## Pendentes (falta de certeza absoluta)
 
@@ -76,6 +77,7 @@ Faltam 1022 questões sem resolução (fora as que estão em lote, pendentes ou 
 | Pa91b52ff | Fuvest 2021 1ª fase · questão 84 | Q04.3 cálculo estequiométrico direto (tema Q04 Mol e estequiometria) | print incompleto: o print traz só a segunda coluna da questão; faltam o início do enunciado e a tabela com os teores de HMF permitidos (legislação brasileira e recomendação internacional), sem a qual a questão não se resolve. Refazer o recorte (questão 84 ocupa duas colunas). |
 | P1f92eb26 | IME 2024 Concurso 2023/2024 – 1ª fase (objetiva) · questão 36 | Q06.2 equação de Clapeyron, volume molar e CNTP (tema Q06 Gases) | errata: E https://www.ime.eb.mil.br/images/arquivos/admissao/cfg/provas-anteriores/2023-2024/Gabarito_Prova_Objetiva_1_FASE.pdf (gabarito definitivo do IME traz "36 E" no trecho da busca; o preliminar da entrada é D; resolvedor e conferente às cegas chegam a E: P proporcional a n·T, amônia 0,8 mol a 345 K dá 276, maior que 273 do metano nas CNTP). Resolução com E pronta para refazer. |
 | P76ed5406 | ITA 2022 1ª fase · questão 64 | Q07.1 entalpia, reação exotérmica e endotérmica, diagrama de energia (tema Q07 Termoquímica) | classificação: o conteúdo é método científico (hipotético-dedutivo), não entalpia (Q07.1), e Química não tem subtema para ele; a sessão decide onde a questão fica (Biologia já tem resoluções de método científico, ex. uea-2026-bio P0bc23aaf). |
+| Pcc7ef326 | PUC Minas 2026 Medicina 2026/1 · questão 32 | Q08.1 velocidade de reação e fatores que a alteram (tema Q08 Cinética, equilíbrio e pH) | sem leitura que torne D correta: a questão pergunta só o que 'aumentará a rapidez dessa reação' (reação escrita com seta única, sem equilíbrio, rendimento ou volume de O2 em jogo; a mudança 1 é literalmente 'Aumentar a temperatura'). Aumentar a temperatura sempre aumenta a rapidez (mais choques com energia ≥ Ea; vale também com o catalisador MnO2, que é inorgânico e não desnatura); 'exotérmica' só afeta o equilíbrio/rendimento, não a velocidade. D ('Somente 2') exige afirmar que aquecer não acelera, o que é falso; pela Química seria A. Gabarito oficial conferido: 32 = D (https://www.pucminas.br/formas-ingresso/vestibular/Documents/2026/GABARITOOFICIAL2026.pdf; numeração confirmada no caderno https://www.pucminas.br/formas-ingresso/vestibular/Documents/2026/Caderno2026Medicina.pdf). Errata, anulação, gabarito definitivo diferente ou resolução de cursinho não localizados na web (13/11/2026). |
 | P27a7cbb0 | PUC-Rio 2024 Grupo 2 · questão 37 | Q06.1 transformações gasosas e equação geral dos gases (tema Q06 Gases) | classificação: é de Física (PUC-Rio 2024, 2º dia, grupo 2: Física vai da 20 à 27, Química começa na 28) |
 | P904e00fe | UEL 2023 1ª fase · questão 18 | Q06.2 equação de Clapeyron, volume molar e CNTP (tema Q06 Gases) | classificação: é de Física (empuxo; princípio de Arquimedes) |
 | P7f6fa922 | UEMA 2022 PAES · questão 52 | Q03.5 substância pura e mistura, alotropia e processos de separação de misturas (tema Q03 Funções inorgânicas e nox) | classificação: é de Biologia (cadeia alimentar, nível trófico e bioacumulação/magnificação trófica do mercúrio; a pergunta é qual peixe acumula mais mercúrio pela posição na cadeia, sem conteúdo de separação de misturas). Gabarito oficial E (peixe maior, 4º nível trófico). |

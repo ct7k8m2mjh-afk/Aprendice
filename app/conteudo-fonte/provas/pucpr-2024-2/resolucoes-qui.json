@@ -342,5 +342,130 @@
    "data": "2026-11-13",
    "lote": "qui-0051"
   }
+ },
+ "Pb8f815de": {
+  "n": "27",
+  "conceito": "Calcular o ΔH de combustão do etanol pelas entalpias de formação e aplicar pureza (96%) e rendimento (92%) à queima de 1000 g de combustível.",
+  "equivocos": {
+   "B": "Q07.2:sinal-do-reagente-nao-trocado",
+   "C": "Q07.2:sinal-do-reagente-nao-trocado",
+   "D": "Q07.2:numero-sem-base-na-conta",
+   "E": "Q07.2:parou-no-valor-por-mol"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "São três etapas: o ΔH de combustão por mol (pelas entalpias de formação), quanto etanol puro há em 1000 g da mistura (96%) e quanto da energia é bem aproveitada (92%). O O2 é substância simples e tem entalpia de formação zero.",
+    "formulas": [
+     "ΔH = Σ ΔHf produtos − Σ ΔHf reagentes",
+     "massa pura = 0,96 × massa da mistura",
+     "energia = n × |ΔH| × 0,92"
+    ],
+    "simbolos": [
+     [
+      "ΔHf°",
+      "entalpia de formação padrão; vale zero para substância simples como O2"
+     ],
+     [
+      "C2H5OH",
+      "etanol, massa molar 2 × 12 + 6 × 1 + 16 = 46 g/mol"
+     ],
+     [
+      "pureza",
+      "fração da mistura que é etanol de fato"
+     ],
+     [
+      "rendimento",
+      "fração da energia que a queima realmente entrega no motor"
+     ]
+    ]
+   },
+   "pista": "Comece pelo ΔH por mol; atenção ao sinal do ΔHf do etanol, que está nos reagentes.",
+   "passos": [
+    {
+     "faz": "Calcule o ΔH de combustão por mol",
+     "conta": "ΔH = [2 × (−394) + 3 × (−286)] − (−278) = (−788 − 858) + 278 = −1646 + 278 = −1368 kJ/mol",
+     "porque": "Produtos menos reagentes; o O2 vale zero e o etanol entra com o sinal trocado por estar subtraído.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Desconte a umidade",
+     "conta": "0,96 × 1000 g = 960 g de etanol",
+     "porque": "Só a parte pura queima; os 4% de água não liberam energia.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Converta em mol",
+     "conta": "960/46 ≈ 20,87 mol",
+     "porque": "Massa molar do etanol: 2 × 12 + 6 × 1 + 16 = 46 g/mol.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a energia com o rendimento",
+     "conta": "20,87 × 1368 ≈ 28 549,6 kJ → 0,92 × 28 549,6 ≈ 26 265,6 kJ",
+     "porque": "Cada mol libera 1368 kJ; só 92% da queima é eficiente.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "26 265,6 ≈ 26 265 kJ → alternativa A",
+     "porque": "É o valor aproximado da alternativa A.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 26265 kJ.",
+   "checagem": "Ordem de grandeza: 1 kg de etanol puro daria 1000/46 × 1368 ≈ 29 739 kJ; tirar 4% e depois 8% deixa cerca de 0,96 × 0,92 ≈ 88% disso, 29 739 × 0,8832 ≈ 26 265 kJ.",
+   "erradas": {
+    "B": "1924 sai de somar o ΔHf do etanol em vez de subtrair: −788 − 858 − 278 = −1924 kJ/mol, e parar no valor por mol.",
+    "C": "36 940 sai do mesmo sinal trocado no etanol (1924 kJ/mol) levado até o fim: 20,87 × 1924 × 0,92 ≈ 36 940 kJ.",
+    "D": "D não confere: 80 306 kJ é quase o triplo dos ≈ 29 739 kJ que 1 kg de etanol puro liberaria sem perda nenhuma; nenhuma leitura correta dos dados chega a esse valor.",
+    "E": "1368 sai de parar no ΔH por mol de etanol, sem passar para 1000 g da mistura nem aplicar pureza e rendimento."
+   },
+   "armadilha": "O sinal do ΔHf do etanol: ele é subtraído, então −(−278) vira +278; quem soma chega a 1924 kJ/mol (B) ou a 36 940 kJ (C).",
+   "alerta": "",
+   "essencial": {
+    "pede": "A energia útil da queima de 1000 g de etanol 96% com rendimento de 92%.",
+    "chave": "ΔH = −1368 kJ/mol; 960/46 ≈ 20,87 mol; × 1368 × 0,92 ≈ 26 265 kJ.",
+    "cuidado": "Sinal do ΔHf do etanol nos reagentes e aplicar pureza e rendimento, cada um uma vez."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "fator único",
+    "ideia": "1000 g × 0,96 × 0,92 = 883,2 g efetivos; 883,2/46 × 1368 ≈ 26 265 kJ."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "ΔH = [2(−394) + 3(−286)] − (−278)",
+    "nota": "produtos − reagentes"
+   },
+   {
+    "linha": "ΔH = −1646 + 278 = −1368 kJ/mol",
+    "nota": "por mol de etanol"
+   },
+   {
+    "linha": "0,96 × 1000 = 960 g",
+    "nota": "pureza"
+   },
+   {
+    "linha": "960/46 ≈ 20,87 mol",
+    "nota": "mol de etanol"
+   },
+   {
+    "linha": "20,87 × 1368 × 0,92 ≈ 26 265 kJ",
+    "nota": "rendimento: A"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "qui-0057"
+  }
  }
 }
