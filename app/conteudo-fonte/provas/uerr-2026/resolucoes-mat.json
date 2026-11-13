@@ -97,5 +97,130 @@
    "data": "2026-11-13",
    "lote": "mat-0047"
   }
+ },
+ "Pf83f42b5": {
+  "n": "65",
+  "conceito": "Tempo em capitalização composta com logaritmo: 110% maior é fator 2,1.",
+  "equivocos": {
+   "A": "M03.4:tratou-como-simples",
+   "C": "M03.4:fator-110-lido-como-1-1",
+   "D": "M03.4:fator-110-lido-como-1-1",
+   "E": "M03.4:tempo-que-nao-fecha"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "'110% maior que o original' significa valer o original mais 110% dele: 2,1 vezes o preço. A cada ano o preço é multiplicado por 1,05. Para achar o expoente, use logaritmo na base 1,05.",
+    "formulas": [
+     "V = V₀ · 1,05ᵗ",
+     "log_b(x · y) = log_b x + log_b y",
+     "log_b b = 1"
+    ],
+    "simbolos": [
+     [
+      "V₀",
+      "preço de compra"
+     ],
+     [
+      "t",
+      "tempo em anos"
+     ],
+     [
+      "log₁,₀₅",
+      "logaritmo na base 1,05"
+     ]
+    ]
+   },
+   "pista": "Escreva 110% maior como um fator multiplicativo do valor original.",
+   "passos": [
+    {
+     "faz": "Traduza o 110% maior",
+     "conta": "V = V₀ + 1,1V₀ = 2,1V₀",
+     "porque": "Maior em 110% é somar 110% ao original.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte a equação",
+     "conta": "V₀ · 1,05ᵗ = 2,1V₀ → 1,05ᵗ = 2,1",
+     "porque": "O V₀ aparece dos dois lados e se cancela.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Aplique o logaritmo",
+     "conta": "t = log₁,₀₅(2,1)",
+     "porque": "O logaritmo devolve o expoente.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Separe o fator 1,05",
+     "conta": "t = log₁,₀₅(1,05 · 2) = log₁,₀₅(1,05) + log₁,₀₅(2) = 1 + log₁,₀₅(2)",
+     "porque": "2,1 = 1,05 · 2, e o log de um produto é a soma dos logs; log₁,₀₅(1,05) = 1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Responda",
+     "conta": "t = 1 + log₁,₀₅(2) anos → alternativa B",
+     "porque": "É a forma que aparece nas alternativas.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 1 + log₁,₀₅(2) anos",
+   "checagem": "Numericamente, 1,05ᵗ = 2,1 dá t = ln 2,1 ÷ ln 1,05 ≈ 15,2 anos, e 1 + log₁,₀₅(2) ≈ 1 + 14,2 = 15,2. Bate. As alternativas A (22) e E (2) ficam longe.",
+   "erradas": {
+    "A": "22 anos sai de juros simples: 110% ÷ 5% = 22. Na capitalização composta o tempo é menor, cerca de 15,2 anos.",
+    "C": "1 + log₁,₀₅(1,1) não confere: vale log₁,₀₅(1,155), o tempo para o preço crescer 15,5%, não 110%.",
+    "D": "log(1,1) ÷ log(1,05) sai de ler '110% maior' como fator 1,1: é o tempo para crescer só 10%.",
+    "E": "2 anos não confere: 1,05² = 1,1025, alta de pouco mais de 10%, longe de 110%."
+   },
+   "armadilha": "Ler '110% maior' como 1,1 vez o valor: o fator é 1 + 1,1 = 2,1.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O tempo exato para o imóvel valer 110% a mais.",
+    "chave": "1,05ᵗ = 2,1 = 1,05 · 2, logo t = 1 + log₁,₀₅(2).",
+    "cuidado": "x% maior que V é V · (1 + x/100)."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "mudança de base",
+    "ideia": "t = log 2,1 ÷ log 1,05 = (log 1,05 + log 2) ÷ log 1,05 = 1 + log 2 ÷ log 1,05."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "V = V₀ · (1 + 1,1)",
+    "nota": "110% maior"
+   },
+   {
+    "linha": "V = 2,1V₀",
+    "nota": "fator 2,1"
+   },
+   {
+    "linha": "1,05ᵗ = 2,1",
+    "nota": "corta o V₀"
+   },
+   {
+    "linha": "t = log₁,₀₅(2,1)",
+    "nota": "o log devolve o expoente"
+   },
+   {
+    "linha": "t = log₁,₀₅(1,05) + log₁,₀₅(2)",
+    "nota": "2,1 = 1,05 · 2"
+   },
+   {
+    "linha": "t = 1 + log₁,₀₅(2)",
+    "nota": "log da base é 1"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0050"
+  }
  }
 }

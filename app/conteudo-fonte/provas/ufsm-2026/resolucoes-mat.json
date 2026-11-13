@@ -84,5 +84,107 @@
    "data": "2026-11-13",
    "lote": "mat-0048"
   }
+ },
+ "Pcf9088e5": {
+  "n": "12",
+  "conceito": "Montante composto e expressão do que sobra depois de gastar uma porcentagem e um valor fixo.",
+  "equivocos": {
+   "B": "M03.4:ordem-das-despesas-trocada",
+   "C": "M03.4:despesa-tirada-do-capital",
+   "D": "M03.4:parte-gasta-no-lugar-do-resto",
+   "E": "M03.4:despesa-tirada-do-capital"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Primeiro o montante: 2 anos são 24 meses a 1,5% ao mês, M = 10 000 · (1,015)²⁴. Os 45% e os R$ 2 500,00 saem do mesmo montante, então o resto é M − 0,45M − 2 500.",
+    "formulas": [
+     "M = C · (1 + i)ⁿ",
+     "M − 0,45M = 0,55M"
+    ],
+    "simbolos": [
+     [
+      "M",
+      "montante após 24 meses"
+     ]
+    ]
+   },
+   "pista": "Escreva o montante e tire dele, uma de cada vez, as duas despesas.",
+   "passos": [
+    {
+     "faz": "Escreva o montante",
+     "conta": "M = 10 000 · (1,015)²⁴",
+     "porque": "Taxa mensal, então o tempo em meses: 24.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tire as duas despesas",
+     "conta": "resto = M − 0,45M − 2 500",
+     "porque": "Os 45% são do montante; os 2 500 são fixos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Junte os termos com M",
+     "conta": "M − 0,45M = 0,55M → resto = 0,55M − 2 500",
+     "porque": "Tirar 45% é ficar com 55%; o 2 500 fica fora, sem ser multiplicado.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Substitua o M e responda",
+     "conta": "resto = 0,55 · [10 000 · (1,015)²⁴] − 2 500 → alternativa A",
+     "porque": "É exatamente a expressão da alternativa A.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 0,55 · [10 000 · (1,015)²⁴] − 2 500",
+   "checagem": "Com o montante aproximado (1,015²⁴ ≈ 1,4295, M ≈ 14 295): quartos 6 433, artesanato 2 500, sobra 14 295 − 6 433 − 2 500 ≈ 5 362, e 0,55 · 14 295 − 2 500 ≈ 5 362.",
+   "erradas": {
+    "B": "Põe o 2 500 dentro do colchete, como se os 2 500 saíssem primeiro e os 45% fossem do que sobrou; o enunciado tira 45% do montante.",
+    "C": "(10 000 − 2 500) · [(1,015)²⁴ − 0,45] ≈ 7 346 não confere com o resto ≈ 5 362: tira os 2 500 antes da aplicação e aplica os 45% sobre 7 500, não sobre o montante.",
+    "D": "0,45 · M − 2 500 usa a parte da reforma (45%) no lugar do que sobra (55%).",
+    "E": "Tira os 2 500 do capital antes da aplicação, mas eles saem do montante depois de 2 anos."
+   },
+   "armadilha": "Aplicar os 55% também sobre os R$ 2 500,00: o valor fixo é subtraído depois, sem ser multiplicado.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A expressão do valor gasto em pesquisas.",
+    "chave": "Resto = M − 0,45M − 2 500 = 0,55M − 2 500, com M = 10 000 · 1,015²⁴.",
+    "cuidado": "Porcentagem e valor fixo saem do mesmo montante; o fixo não leva o 0,55."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "números",
+    "ideia": "Calcule com M ≈ 14 295: 14 295 − 6 433 − 2 500 ≈ 5 362 e teste cada expressão; só a A dá 5 362."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "M = 10 000 · (1,015)²⁴",
+    "nota": "24 meses a 1,5%"
+   },
+   {
+    "linha": "resto = M − 0,45M − 2 500",
+    "nota": "tira as duas despesas"
+   },
+   {
+    "linha": "1 − 0,45 = 0,55",
+    "nota": "sobra 55% do montante"
+   },
+   {
+    "linha": "resto = 0,55M − 2 500",
+    "nota": "M − 0,45M = 0,55M"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0050"
+  }
  }
 }

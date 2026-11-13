@@ -85,5 +85,116 @@
    "data": "2026-11-12",
    "lote": "mat-0044"
   }
+ },
+ "P971e52c1": {
+  "n": "14",
+  "conceito": "Problema de operações sucessivas resolvido de trás para frente.",
+  "equivocos": {
+   "A": "M04.1:valor-que-nao-fecha",
+   "B": "M04.1:valor-que-nao-fecha",
+   "C": "M04.1:valor-que-nao-fecha",
+   "D": "M04.1:valor-que-nao-fecha"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Conhecemos o fim (47) e a ordem das operações. Volte do fim ao começo desfazendo cada operação: doar metade vira dobrar, comprar 12 vira tirar 12, perder 8 vira somar 8, vender metade vira dobrar. No início, deu um quinto: o que sobrou é 4/5 do total.",
+    "formulas": [
+     "sobrou 4/5 de x"
+    ],
+    "simbolos": [
+     [
+      "x",
+      "moedas no início"
+     ]
+    ]
+   },
+   "pista": "Comece pelas 47 moedas e desfaça a última operação.",
+   "passos": [
+    {
+     "faz": "Desfaça a doação ao museu",
+     "conta": "47 · 2 = 94",
+     "porque": "Ficou com metade; antes tinha o dobro.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Desfaça a compra e a perda",
+     "conta": "94 − 12 = 82 → 82 + 8 = 90",
+     "porque": "Antes de comprar 12 tinha 12 a menos; antes de perder 8, 8 a mais.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Desfaça a venda",
+     "conta": "90 · 2 = 180",
+     "porque": "Vendeu metade das restantes e ficou com 90.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Desfaça o presente ao amigo",
+     "conta": "4x/5 = 180 → x = 180 · 5/4 = 225",
+     "porque": "Dar um quinto deixa 4/5 da coleção.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Responda",
+     "conta": "x = 225 moedas → alternativa E",
+     "porque": "É a quantidade inicial.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 225 moedas",
+   "checagem": "Para frente: 225 − 45 = 180; vende 90, sobram 90; perde 8: 82; compra 12: 94; doa 47, fica com 47.",
+   "erradas": {
+    "A": "95 não confere: dá 76 depois do amigo, 38 depois da venda e termina com 21, não 47.",
+    "B": "135 não confere: 135 − 27 = 108, depois 54, 46, 58, e termina com 29.",
+    "C": "215 não confere: um quinto de 215 é 43; sobram 172 e o fim dá 45, não 47.",
+    "D": "295 não confere: 295 − 59 = 236, depois 118, 110, 122, e termina com 61."
+   },
+   "armadilha": "Desfazer o 'deu um quinto' multiplicando 180 por 5 (900): o que sobrou são 4/5, então o total é 180 · 5/4.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantas moedas Maria tinha no início.",
+    "chave": "De trás para frente: 47 → 94 → 82 → 90 → 180, e 180 = 4/5 de 225.",
+    "cuidado": "Desfaça cada operação com a inversa, na ordem contrária."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "equação direta",
+    "ideia": "[(4x/5) ÷ 2 − 8 + 12] ÷ 2 = 47 → 2x/5 + 4 = 94 → 2x/5 = 90 → x = 225."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "47 · 2 = 94",
+    "nota": "antes da doação"
+   },
+   {
+    "linha": "94 − 12 + 8 = 90",
+    "nota": "antes da compra e da perda"
+   },
+   {
+    "linha": "90 · 2 = 180",
+    "nota": "antes da venda"
+   },
+   {
+    "linha": "4x/5 = 180",
+    "nota": "sobraram 4/5"
+   },
+   {
+    "linha": "x = 180 · 5/4 = 225",
+    "nota": "o 4/5 passa invertido"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0050"
+  }
  }
 }

@@ -84,5 +84,204 @@
    "data": "2026-11-13",
    "lote": "mat-0048"
   }
+ },
+ "P097dddf3": {
+  "n": "102",
+  "conceito": "Montante a juros simples com taxa anual convertida para meses, seguido de desconto de imposto sobre o montante.",
+  "equivocos": {
+   "A": "M03.3:respondeu-o-imposto",
+   "B": "M03.3:respondeu-os-juros",
+   "D": "M03.3:somou-o-imposto",
+   "E": "M03.3:esqueceu-o-imposto"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A taxa é anual e o prazo é em meses: 12% ao ano em juros simples são 1% ao mês. O imposto de 5% incide sobre o montante total, então sobra 95% dele.",
+    "formulas": [
+     "M = C · (1 + i · t)",
+     "sobrar 95%: valor final = 0,95 · M"
+    ],
+    "simbolos": [
+     [
+      "M",
+      "montante: capital mais juros"
+     ],
+     [
+      "C",
+      "capital aplicado"
+     ]
+    ]
+   },
+   "pista": "Passe a taxa para o mês antes de usar os 7 meses.",
+   "passos": [
+    {
+     "faz": "Converta a taxa para mensal",
+     "conta": "i = 12%/12 = 1% ao mês",
+     "porque": "Em juros simples a taxa é proporcional ao tempo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o montante",
+     "conta": "M = 8 500 · (1 + 0,01 · 7) = 8 500 · 1,07 = 9 095",
+     "porque": "Sete meses a 1% rendem 7% sobre o capital.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Desconte o imposto",
+     "conta": "0,95 · 9 095 = 8 640,25",
+     "porque": "Pagar 5% sobre o montante é ficar com 95% dele.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Responda",
+     "conta": "R$ 8 640,25 → alternativa C",
+     "porque": "A questão pede o montante final depois do imposto.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — R$ 8 640,25",
+   "checagem": "Pelo imposto em reais: 5% de 9 095 é 454,75; 9 095 − 454,75 = 8 640,25. Mesmo valor.",
+   "erradas": {
+    "A": "R$ 454,75 sai do próprio imposto: 0,05 · 9 095 = 454,75. É o que se paga, não o que sobra.",
+    "B": "R$ 595,00 sai dos juros: 8 500 · 0,07 = 595. É só o rendimento, sem o capital e sem o imposto.",
+    "D": "R$ 8 954,75 sai de somar o imposto ao capital: 8 500 + 454,75. O imposto é descontado do montante, não somado.",
+    "E": "R$ 9 095,00 é o montante antes do imposto: esqueceu de descontar os 5%."
+   },
+   "armadilha": "Parar no montante de R$ 9 095,00 sem descontar o imposto de 5% que a empresa pagou no resgate.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O valor final do investimento depois do imposto.",
+    "chave": "8 500 · 1,07 = 9 095; 0,95 · 9 095 = 8 640,25.",
+    "cuidado": "Taxa anual com prazo em meses: divida por 12 antes."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "fator único",
+    "ideia": "Multiplique os dois fatores de uma vez: 8 500 · 1,07 · 0,95 = 8 500 · 1,0165 = 8 640,25."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "i = 12%/12 = 1% ao mês",
+    "nota": "taxa por mês"
+   },
+   {
+    "linha": "M = 8 500 · (1 + 0,01 · 7) = 8 500 · 1,07 = 9 095",
+    "nota": "montante em 7 meses"
+   },
+   {
+    "linha": "0,95 · 9 095 = 8 640,25",
+    "nota": "fica 95% depois do imposto"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0050"
+  }
+ },
+ "P81ce605e": {
+  "n": "15",
+  "conceito": "Descobrir a taxa composta pelo primeiro mês e aplicar por 4 meses.",
+  "equivocos": {
+   "A": "M03.4:tratou-como-simples",
+   "B": "M03.4:potencia-errada",
+   "D": "M03.4:potencia-errada",
+   "E": "M03.4:potencia-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Um mês depois o pacote passa de R$ 1 000,00 para R$ 1 100,00: a taxa composta é 10% ao mês. Em juros compostos, cada mês multiplica por 1,1.",
+    "formulas": [
+     "M = C · (1 + i)ⁿ"
+    ],
+    "simbolos": [
+     [
+      "n",
+      "número de meses"
+     ]
+    ]
+   },
+   "pista": "Que taxa transforma 1 000 em 1 100 em um mês?",
+   "passos": [
+    {
+     "faz": "Ache a taxa mensal",
+     "conta": "1100/1000 = 1,1 → i = 10%",
+     "porque": "O valor de um mês depois mostra o fator mensal.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte o montante de 4 meses",
+     "conta": "M = 1 000 · 1,1⁴",
+     "porque": "A mesma taxa composta mês a mês.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a potência",
+     "conta": "1,1² = 1,21 → 1,21² = 1,4641 → M = 1 464,10",
+     "porque": "1,1⁴ é 1,1² ao quadrado.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Responda",
+     "conta": "sem os centavos: R$ 1 464,00 → alternativa C",
+     "porque": "O enunciado manda descontar os centavos.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — R$ 1 464,00",
+   "checagem": "Mês a mês: 1 000 → 1 100 → 1 210 → 1 331 → 1 464,10. Mesmo resultado.",
+   "erradas": {
+    "A": "R$ 1400,00 sai de juros simples: 1 000 + 4 · 100. Com juros compostos, os juros de cada mês incidem sobre o valor já aumentado.",
+    "B": "R$ 1 444,00 não confere: a sequência mês a mês é 1 100, 1 210, 1 331, 1 464,10; 1 444 não aparece.",
+    "D": "R$ 1 484,00 não confere: passa em 20 reais o valor de 1 000 · 1,1⁴ = 1 464,10.",
+    "E": "R$ 1 504,00 não confere: passa em 40 reais o valor de 1 000 · 1,1⁴ = 1 464,10."
+   },
+   "armadilha": "Somar 100 reais por mês (juros simples) e marcar R$ 1400,00.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quanto pagar 4 meses após a matrícula.",
+    "chave": "Taxa de 10% ao mês; 1 000 · 1,1⁴ = 1 464,10.",
+    "cuidado": "Juros compostos: o acréscimo cresce a cada mês."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "mês a mês",
+    "ideia": "Some 10% a cada mês: 1 100, 1 210, 1 331, 1 464,10."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "1100/1000 = 1,1",
+    "nota": "fator mensal: 10%"
+   },
+   {
+    "linha": "M = 1 000 · 1,1⁴",
+    "nota": "quatro meses"
+   },
+   {
+    "linha": "M = 1 000 · 1,4641 = 1 464,10",
+    "nota": "1,1⁴ = 1,4641"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0050"
+  }
  }
 }

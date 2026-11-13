@@ -1,0 +1,122 @@
+{
+ "Pbbd8e7bf": {
+  "n": "23",
+  "conceito": "Montante a juros compostos seguido de multiplicação diária a juros simples sobre esse montante.",
+  "equivocos": {
+   "A": "M03.3:taxa-que-nao-fecha-o-valor",
+   "C": "M03.3:taxa-que-nao-fecha-o-valor",
+   "D": "M03.3:taxa-que-nao-fecha-o-valor",
+   "E": "M03.3:taxa-que-nao-fecha-o-valor"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "São duas etapas. Primeiro o empréstimo cresce a juros compostos por dois anos; só esse valor é o que 'deveria ser devolvido'. Depois a multa de juros simples incide sobre esse valor por 10 dias.",
+    "formulas": [
+     "M = C · (1 + i)ⁿ",
+     "juros simples: valor final = base · (1 + i · t)"
+    ],
+    "simbolos": [
+     [
+      "a.a.",
+      "ao ano"
+     ],
+     [
+      "i",
+      "taxa diária da multa, em decimal"
+     ]
+    ]
+   },
+   "pista": "Descubra primeiro quanto deveria ser pago no prazo; a multa é calculada sobre esse valor, não sobre os R$ 5.000,00.",
+   "passos": [
+    {
+     "faz": "Calcule o valor devido no prazo",
+     "conta": "M = 5 000 · 1,1² = 5 000 · 1,21 = 6 050",
+     "porque": "Dois anos a 10% ao ano compostos: o fator é 1,1 duas vezes.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte a equação da multa",
+     "conta": "6 050 · (1 + 10i) = 7 260",
+     "porque": "Juros simples por 10 dias sobre os 6 050: o valor pago é a base vezes (1 + 10i).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole o fator",
+     "conta": "1 + 10i = 7260/6050 = 1,2",
+     "porque": "O valor pago é 1,2 vez o devido, ou seja, 20% a mais nos 10 dias.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a taxa diária",
+     "conta": "10i = 0,2 → i = 0,02 = 2%",
+     "porque": "Em juros simples os 20% se repartem igualmente pelos 10 dias.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Responda",
+     "conta": "taxa diária = 2% → alternativa B",
+     "porque": "É a taxa por dia que a questão pede.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 2% ao dia",
+   "checagem": "Volte pelo enunciado: 2% de 6 050 é 121 por dia; em 10 dias, 1 210. 6 050 + 1 210 = 7 260, o valor pago.",
+   "erradas": {
+    "A": "1% não confere: 6 050 · (1 + 10 · 0,01) = 6 050 · 1,1 = 6 655, abaixo dos 7 260 pagos.",
+    "C": "5% não confere: 6 050 · (1 + 10 · 0,05) = 6 050 · 1,5 = 9 075, muito acima de 7 260.",
+    "D": "6% não confere: 6 050 · (1 + 10 · 0,06) = 6 050 · 1,6 = 9 680, longe de 7 260.",
+    "E": "9% não confere: 6 050 · (1 + 10 · 0,09) = 6 050 · 1,9 = 11 495, cerca de 1,6 vez o valor pago."
+   },
+   "armadilha": "Calcular a multa sobre os R$ 5.000,00 emprestados: a taxa extra incide sobre o valor que deveria ser devolvido, R$ 6.050,00.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A taxa diária de juros simples da multa.",
+    "chave": "Devido no prazo: 5 000 · 1,1² = 6 050; 7 260 ÷ 6 050 = 1,2, então 10i = 0,2 e i = 2%.",
+    "cuidado": "A base da multa é o montante de 6 050, não o capital de 5 000."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "juros em reais",
+    "ideia": "A multa total é 7 260 − 6 050 = 1 210; por dia, 121; e 121 ÷ 6 050 = 0,02 = 2%."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "M = 5 000 · 1,1² = 5 000 · 1,21 = 6 050",
+    "nota": "valor devido no prazo"
+   },
+   {
+    "linha": "6 050 · (1 + 10i) = 7 260",
+    "nota": "multa de 10 dias, juros simples"
+   },
+   {
+    "linha": "1 + 10i = 7260/6050",
+    "nota": "o 6 050 passa dividindo"
+   },
+   {
+    "linha": "1 + 10i = 1,2",
+    "nota": "faz a divisão"
+   },
+   {
+    "linha": "10i = 0,2",
+    "nota": "o 1 passa subtraindo"
+   },
+   {
+    "linha": "i = 0,02 = 2%",
+    "nota": "taxa por dia"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0050"
+  }
+ }
+}

@@ -95,5 +95,102 @@
    "data": "2026-11-12",
    "lote": "mat-0045"
   }
+ },
+ "Pc71137bd": {
+  "n": "32",
+  "conceito": "Juros embutidos num parcelamento com entrada: compare com o preço à vista.",
+  "equivocos": {
+   "A": "M03.4:taxa-que-nao-fecha-o-valor",
+   "B": "M03.4:confundiu-desconto-com-juros",
+   "C": "M03.4:ignorou-a-entrada",
+   "D": "M03.4:juros-sobre-a-parcela"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O preço real é o à vista, 90% do anunciado. Quem paga em duas vezes dá metade na hora; a dívida que sobra é o preço à vista menos essa entrada, e ela vira a segunda parcela um mês depois.",
+    "formulas": [
+     "taxa = parcela futura ÷ dívida − 1"
+    ],
+    "simbolos": [
+     [
+      "P",
+      "preço anunciado"
+     ]
+    ]
+   },
+   "pista": "Depois da entrada, quanto o cliente fica devendo, comparado com o preço à vista?",
+   "passos": [
+    {
+     "faz": "Escreva os valores com o preço P",
+     "conta": "à vista: 0,9P | entrada: 0,5P | 2ª parcela: 0,5P",
+     "porque": "Dez por cento de desconto e duas metades iguais.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule a dívida após a entrada",
+     "conta": "0,9P − 0,5P = 0,4P",
+     "porque": "É o que fica financiado se o preço justo é o à vista.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare com a 2ª parcela",
+     "conta": "0,5P/0,4P = 1,25",
+     "porque": "A dívida de 0,4P é paga com 0,5P um mês depois.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Responda",
+     "conta": "1,25 − 1 = 0,25 = 25% → alternativa E",
+     "porque": "O fator 1,25 é um acréscimo de 25% em um mês.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 25%",
+   "checagem": "Com P = 100: à vista 90; entrada 50, deve 40; paga 50 depois. Os juros são 10 sobre 40: 25%.",
+   "erradas": {
+    "A": "5% não confere: a dívida de 0,4P com 5% viraria 0,42P, e a parcela é 0,5P.",
+    "B": "10% é o desconto à vista, não a taxa sobre a dívida que sobra depois da entrada.",
+    "C": "11,11% sai de comparar o preço cheio com o à vista: 1/0,9 − 1 = 0,1111. Ignora que metade é paga na hora, sem prazo.",
+    "D": "20% sai de dividir os juros pela parcela: 0,1P/0,5P = 0,2. A taxa é sobre a dívida de 0,4P."
+   },
+   "armadilha": "Esquecer que a primeira parcela é paga no ato: só 0,4P fica financiado, e a taxa é calculada sobre ele.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A taxa mensal de juros embutida no plano em duas vezes.",
+    "chave": "Dívida 0,9P − 0,5P = 0,4P paga com 0,5P: 0,5 ÷ 0,4 = 1,25, juros de 25%.",
+    "cuidado": "A base dos juros é a dívida após a entrada, não o preço."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "número concreto",
+    "ideia": "Com P = 100: deve 90 − 50 = 40 e paga 50; 10 ÷ 40 = 25%."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "0,9P − 0,5P = 0,4P",
+    "nota": "dívida após a entrada"
+   },
+   {
+    "linha": "0,5P/0,4P = 1,25",
+    "nota": "parcela ÷ dívida"
+   },
+   {
+    "linha": "1,25 − 1 = 0,25",
+    "nota": "juros de 25% ao mês"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0050"
+  }
  }
 }
