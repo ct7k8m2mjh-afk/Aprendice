@@ -95,7 +95,7 @@ Faltam 1814 questões sem resolução (fora as que estão em lote, pendentes ou 
 | por-0087 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | por-0088 | demais nível 1-6 | 60 | gravado | 58 | 2 | 0 |
 | por-0089 | demais nível 1-6 | 60 | gravado | 60 | 0 | 0 |
-| por-0090 | demais nível 1-6 | 60 | aberto |  |  |  |
+| por-0090 | demais nível 1-6 | 60 | gravado | 60 | 0 | 0 |
 
 ## Pendentes (falta de certeza absoluta)
 
