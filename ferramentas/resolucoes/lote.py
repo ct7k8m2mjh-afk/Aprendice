@@ -541,6 +541,22 @@ def confere(saida):
         if mat_lote in ('mat', 'fis') or (mat_lote == 'qui' and tem_conta):
             if not (isinstance(qd, list) and qd and all(isinstance(x, dict) and str(x.get('linha', '')).strip() for x in qd)):
                 erros.append(f'{qid}: quadro obrigatório em {mat_lote} com conta: [{{"linha": "a conta como no caderno", "nota": "o que foi feito"}}]')
+        # dono, 13/11/2026: Matemática e Física com a conta ilustrada (lousa de verdade, não resultado solto);
+        # Biologia e Química com a ilustração do que a questão pede (processo, estrutura, reação, fluxo na animação).
+        contas = [str(p.get('conta', '')) for p in r.get('passos') or []]
+        if mat_lote in ('mat', 'fis') and isinstance(qd, list) and qd:
+            if len(qd) < 2:
+                erros.append(f'{qid}: quadro com uma linha só: a lousa mostra a conta passo a passo (antes e depois de cada transformação)')
+            if not any('→' in c or c.count('=') >= 2 for c in contas):
+                erros.append(f'{qid}: nenhum passo com conta que se transforma ("2x + 6 = 14 → 2x = 8 → x = 4"): o motor não tem o que animar')
+        if mat_lote in ('bio', 'qui'):
+            if not tem_conta and not any(('→' in c) or (' × ' in c) or ('|' in c) for c in contas):
+                erros.append(f'{qid}: ilustração obrigatória em {mat_lote}: ao menos um passo com a conta mostrando o que a questão pede '
+                             '(processo/fluxo com →, reação "2 H2 + O2 → 2 H2O", contraste "A × B" ou dados em pares "a: x | b: y")')
+            vi = q.get('visual')
+            if not (isinstance(vi, dict) and vi.get('cabe') is not None and str(vi.get('roteiro', '')).strip()):
+                erros.append(f'{qid}: visual obrigatório em {mat_lote}: {{"cabe": true, "tipo": "processo|estrutura|reação|gráfico|ciclo", '
+                             '"roteiro": "o que a ilustração mostra, quadro a quadro"}}')
         eq = q.get('equivocos') if isinstance(q.get('equivocos'), dict) else {}
         if set(eq) != esperadas:
             erros.append(f'{qid}: equivocos deve ter exatamente as letras {sorted(esperadas)}')

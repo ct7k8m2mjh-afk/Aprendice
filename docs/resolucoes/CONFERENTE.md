@@ -17,6 +17,7 @@ Para cada questão com `status: "ok"`:
 4. **Alternativas:** cada item de `erradas` corresponde ao texto real daquela letra e dá uma origem real ("sai de…") ou um teste objetivo ("não confere…"). Explicação genérica ou origem inventada é apontada.
 5. **Didática:** o caminho é o melhor para o aluno (curto e seguro)? Algum passo está sobrando, faltando ou longo demais? A pista entrega a resposta? A checagem repete a conta?
 6. **Animadas (bio, qui, mat, fis):** cada `conta` traz uma transformação clara, e as frações estão como a/b (nunca por extenso).
+   Regra do dono (13/11/2026), erro e não aviso: **Matemática e Física** com a conta ILUSTRADA (cada passo de cálculo mostra a linha de antes → a de depois; `quadro` com a conta inteira, uma linha por transformação, nunca só o resultado); **Química e Biologia** com a ILUSTRAÇÃO DO QUE A QUESTÃO PEDE (passo com o processo, a reação, a estrutura ou o contraste desenhado na `conta`, e `visual` com o roteiro da ilustração coerente com a questão). Aponte se a ilustração não mostra o que a questão pergunta.
 
 Formato da resposta, uma linha por problema:
 `<id> | <campo> | <o que está errado> | <correção sugerida>`

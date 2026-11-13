@@ -49,6 +49,10 @@ Biologia, Química, Matemática e Física têm resolução animada. O site anima
 - processo e reação com seta: "glicose → piruvato → acetil-CoA"; reação com " + " e uma seta só: "2 H2 + O2 → 2 H2O";
 - dados em pares: "m: 20 g | V: 0,5 L"; contraste: "mitose × meiose".
 Português, Geografia, História, Inglês e Filosofia e Sociologia: texto passo a passo; a `conta` é o trecho citado entre aspas ou a informação localizada.
+OBRIGATÓRIO (dono, 13/11/2026; o lote.py recusa sem isto):
+- Matemática e Física: a CONTA ILUSTRADA. Todo passo de cálculo tem `conta` com a transformação (linha de antes → linha de depois: o termo que passa para o outro lado, o que multiplica indo dividir, a fração que se multiplica, o que se cancela); `quadro` com a conta inteira como no caderno, uma linha por transformação (no mínimo 2), cada uma com `nota`. Nunca só o resultado solto ("x = 4"). Física sem conta (conceitual): o `quadro` mostra a relação usada e o raciocínio em linhas ("F = m·a → a dobra se F dobra").
+- Química e Biologia: a ILUSTRAÇÃO DO QUE A QUESTÃO PEDE. Ao menos um passo com `conta` que desenha o fenômeno: processo ou fluxo com setas ("glicose → piruvato → acetil-CoA"), reação ("2 H2 + O2 → 2 H2O"), estrutura ou contraste ("mitose × meiose"), dados em pares ("genótipo: Aa | fenótipo: dominante"). Química com conta segue também a regra de Matemática. E `visual` obrigatório: {"cabe": true, "tipo": "processo|estrutura|reação|gráfico|ciclo", "roteiro": "o que a ilustração mostra, quadro a quadro"}.
+- O conferente confere isso (falta de ilustração é erro, não aviso).
 </animacao>
 
 <ciclo_de_cada_lote>
@@ -61,7 +65,7 @@ Comece com `cd app && python3 scripts/converte.py && cd ..` (uma vez por sessão
 - No mesmo instante em que o lote N vai para o conferente, abra o próximo (`lote.py proximo <m> --novo`) e comece a resolvê-lo.
 - Quando o conferente devolver o lote N: sem nada apontado, grave o N na hora. Com itens apontados, pare o que está fazendo, corrija só esses itens, mande-os de volta ao conferente (em segundo plano) e volte imediatamente ao lote em andamento; grave o N quando a reconferência voltar limpa.
 - No máximo 3 lotes abertos por vez (ex.: um em reconferência, um com os conferentes e o que você está resolvendo); o terceiro existe só para você nunca parar. Enquanto houver agente trabalhando em segundo plano, você pode encerrar a vez: o aviso do agente te acorda. Sem nenhum agente rodando, NUNCA encerre a vez (sessão parada).
-4. UM agente conferente, que não resolveu, confere o lote inteiro numa só passada, conforme docs/resolucoes/CONFERENTE.md, e devolve só a lista do que está errado ou duvidoso. Se o lote tem questões `sem_gabarito_publicado`, o mesmo conferente começa por elas às cegas (parte 0 do CONFERENTE.md: só a entrada, sem a sua saída) e devolve a letra de cada uma antes de receber a saída.
+4. Cada agente conferente (dois por lote, 30 questões cada, que não resolveram) confere a sua metade numa só passada, conforme docs/resolucoes/CONFERENTE.md, e devolve só a lista do que está errado ou duvidoso. Se o lote tem questões `sem_gabarito_publicado`, o mesmo conferente começa por elas às cegas (parte 0 do CONFERENTE.md: só a entrada, sem a sua saída) e devolve a letra de cada uma antes de receber a saída.
 5. Corrija só os itens apontados. O mesmo conferente confere só esses itens de novo. O que ainda tiver dúvida vira `status: "pendente"`. Nada de rodadas extras.
 6. Ponha `"conferido": true` e rode `python3 ferramentas/resolucoes/lote.py grava <saida>`.
 7. A cada 3 lotes, em segundo plano (Bash `run_in_background`, sem esperar de pé; leia só a última linha do resultado): `cd app && python3 scripts/converte.py && npx tsc --noEmit -p . && npx vitest run` verde (se faltar pacote: `python3 -m pip install -q --break-system-packages pillow numpy scipy`). A cada 10 lotes, um agente abre 3 questões no site pelo endereço direto da questão (`ver_no_site` da entrada, ex.: http://localhost:<porta>/#/m/his/q/<id>; build local + Playwright; login #ent-email teste@exemplo.com / #ent-senha 123456, botão .l-botao) e veja os 4 blocos da correção completos, a fração empilhada e, nas matérias animadas, a animação até o fim.
@@ -89,7 +93,7 @@ Comece com `cd app && python3 scripts/converte.py && cd ..` (uma vez por sessão
  {"id": "...", "status": "divergencia", "motivo": "a letra a que o raciocínio chega e por quê"}
 ]}
 ```
-`erradas` e `equivocos` têm exatamente as letras que não são o gabarito (`equivocos`: código do equívoco de cada errada, `<conteúdo>:<equivoco-com-hifen>`, pilar 4 de docs/estrategia-revisao.md). Nas animadas (decisão do dono, 12/11/2026), `caminhos` é OBRIGATÓRIO (o outro jeito de resolver, em uma linha; o aluno vê) e `quadro` é OBRIGATÓRIO em Matemática, Física e nas de Química com conta: a conta como no caderno, linha por linha, cada linha com `nota` curta do que foi feito (é a lousa animada que o aluno vê); o lote.py recusa sem eles. `visual` continua opcional. De 3 a 6 passos, o último `concluir`. Fonte consultada na web vai em `"fontes": [{"nome": "...", "url": "..."}]` na questão. Questão sem gabarito publicado leva também `"gabarito_aprendice": {"letra": "C", "letra_conferente": "C", "fontes_web": [{"url": "...", "letra": "C"}]}` (passo 1b).
+`erradas` e `equivocos` têm exatamente as letras que não são o gabarito (`equivocos`: código do equívoco de cada errada, `<conteúdo>:<equivoco-com-hifen>`, pilar 4 de docs/estrategia-revisao.md). Nas animadas (decisão do dono, 12/11/2026), `caminhos` é OBRIGATÓRIO (o outro jeito de resolver, em uma linha; o aluno vê) e `quadro` é OBRIGATÓRIO em Matemática, Física e nas de Química com conta: a conta como no caderno, linha por linha, cada linha com `nota` curta do que foi feito (é a lousa animada que o aluno vê); o lote.py recusa sem eles. `visual` é obrigatório em Biologia e Química (bloco <animacao>) e opcional nas demais. De 3 a 6 passos, o último `concluir`. Fonte consultada na web vai em `"fontes": [{"nome": "...", "url": "..."}]` na questão. Questão sem gabarito publicado leva também `"gabarito_aprendice": {"letra": "C", "letra_conferente": "C", "fontes_web": [{"url": "...", "letra": "C"}]}` (passo 1b).
 </formato_da_saida>
 
 <limites>
@@ -97,12 +101,12 @@ Não mexa no design do site (qualquer mudança visual precisa da permissão do d
 </limites>
 
 <saida>
-A cada 10 lotes, e quando acabar o limite, responda em português, curto: lotes gravados, resoluções que entraram, pendentes, divergências e o que vem a seguir (`python3 ferramentas/resolucoes/lote.py status`).
+A cada 10 lotes, e ao encerrar a sessão, escreva na caixa (não em mensagem), em português, curto: lotes gravados, resoluções que entraram, pendentes, divergências e o que vem a seguir (`python3 ferramentas/resolucoes/lote.py status`).
 </saida>
 
 
 ## Falar com a coordenadora (dono, 13/11/2026)
-NUNCA use send_message (cada envio pede aprovação do dono). TROCA, pendências e avisos vão para docs/resolucoes/caixa/<m>.md, como explica docs/resolucoes/caixa/LEIA.md, com commit e push.
+NUNCA use send_message (cada envio pede aprovação do dono). FIM, pendências e avisos vão para docs/resolucoes/caixa/<m>.md, como explica docs/resolucoes/caixa/LEIA.md, com commit e push.
 
 ## Modo enxuto (dono, 13/11/2026: economizar o limite semanal melhorando o método)
 Cada passo relê a conversa principal inteira; por isso ela guarda só o necessário.
