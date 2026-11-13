@@ -418,5 +418,137 @@
    "data": "2026-11-13",
    "lote": "mat-0060"
   }
+ },
+ "Pb47432ec": {
+  "n": "14",
+  "conceito": "Área composta numa circunferência: quadrado com lado numa corda e lado oposto passando pelo centro, interseção com retângulo inscrito no semicírculo.",
+  "equivocos": {
+   "A": "M08.5:area-da-intersecao-errada",
+   "B": "M08.5:igualou-raio-a-area",
+   "D": "M08.5:igualou-r-ao-quadrado-a-area",
+   "E": "M08.5:area-da-intersecao-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Leia a figura: um lado do quadrado é a corda que vai da ponta esquerda do diâmetro horizontal até o canto superior esquerdo do retângulo, e o lado oposto passa pelo centro. Isso quer dizer que a distância do centro a essa corda é L. Daí sai L em função de r, as coordenadas do canto do retângulo e, por fim, a área da interseção.",
+    "formulas": [
+     "distância do centro à corda² + (meia corda)² = r²",
+     "área do triângulo = base × altura/2"
+    ],
+    "simbolos": [
+     [
+      "r",
+      "raio da circunferência"
+     ],
+     [
+      "L",
+      "lado do quadrado"
+     ],
+     [
+      "O",
+      "centro da circunferência"
+     ],
+     [
+      "A",
+      "ponta esquerda do diâmetro horizontal, vértice do quadrado"
+     ],
+     [
+      "B",
+      "canto superior esquerdo do retângulo, vértice do quadrado na circunferência"
+     ],
+     [
+      "C",
+      "vértice do quadrado vizinho de B, dentro do retângulo"
+     ]
+    ]
+   },
+   "pista": "O centro está sobre o lado oposto à corda AB: a distância de O até AB é exatamente L.",
+   "passos": [
+    {
+     "faz": "Ache L em função de r",
+     "conta": "L² + (L/2)² = r² → 5L²/4 = r² → L² = 4r²/5",
+     "porque": "A perpendicular de O até a corda AB mede L (o lado oposto do quadrado passa por O) e cai no meio da corda, formando um triângulo retângulo com hipotenusa r.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Localize o canto B do retângulo",
+     "conta": "O = (0, 0), A = (−r, 0): AB² = 2r² + 2r·x = 4r²/5 → x = −3r/5 → B = (−3r/5, 4r/5)",
+     "porque": "B está na circunferência, então x² + y² = r², e AB² = (x + r)² + y² = 2r² + 2rx. Como o retângulo tem a base no diâmetro, ele vai de x = −3r/5 a 3r/5 e de y = 0 a 4r/5.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida a interseção em dois triângulos",
+     "conta": "triângulo (−3r/5, 0), O, B: (3r/5 × 4r/5)/2 = 6r²/25 | triângulo O, B, C: L × (L/2)/2 = r²/5",
+     "porque": "A parte do quadrado dentro do retângulo é o quadrilátero B, C, O e o pé de B no diâmetro. No triângulo OBC, o ângulo em C é reto, BC = L e CO = L/2 (O é o meio do lado do quadrado que passa por ele).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Iguale a 11 e ache r",
+     "conta": "6r²/25 + 5r²/25 = 11r²/25 = 11 → r² = 25 → r = 5",
+     "porque": "A área da interseção é dada no enunciado: 11 u².",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "r = 5 → alternativa C",
+     "porque": "É o raio da circunferência, em unidades u.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 5.",
+   "checagem": "Com r = 5: L² = 4 × 25/5 = 20, B = (−3, 4), que está na circunferência (9 + 16 = 25), e C = (1, 2). Pela fórmula do cadarço no quadrilátero (−3, 4), (1, 2), (0, 0), (−3, 0): área = 11. Fecha.",
+   "erradas": {
+    "A": "7 não confere: com r = 7, a interseção valeria 11 × 49/25 = 21,56 u², não 11.",
+    "B": "11 não confere: com r = 11, a interseção valeria 11 × 121/25 = 53,24 u².",
+    "D": "√11 não confere: com r² = 11, a interseção valeria 11 × 11/25 = 4,84 u².",
+    "E": "2√11 não confere: com r² = 44, a interseção valeria 11 × 44/25 = 19,36 u²."
+   },
+   "armadilha": "Não perceber que o centro está sobre o lado do quadrado oposto à corda, que é o que liga L ao raio r.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O raio r, sabendo que a interseção do quadrado com o retângulo mede 11 u².",
+    "chave": "Distância do centro à corda = L dá L² = 4r²/5; a interseção vale 11r²/25.",
+    "cuidado": "Leia na figura onde está cada vértice do quadrado: A no diâmetro, B no canto do retângulo e o lado oposto passando por O."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "cadarço",
+    "ideia": "Com r = 1, a interseção é o quadrilátero (−0,6; 0,8), (0,2; 0,4), (0, 0), (−0,6; 0), de área 0,44; então 0,44r² = 11 e r = 5."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "L² + (L/2)² = r² → L² = 4r²/5",
+    "nota": "distância do centro à corda AB é L"
+   },
+   {
+    "linha": "2r² + 2rx = 4r²/5 → x = −3r/5",
+    "nota": "B na circunferência"
+   },
+   {
+    "linha": "B = (−3r/5, 4r/5)",
+    "nota": "canto do retângulo"
+   },
+   {
+    "linha": "6r²/25 + r²/5 = 11r²/25",
+    "nota": "dois triângulos"
+   },
+   {
+    "linha": "11r²/25 = 11 → r = 5",
+    "nota": "letra C"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0061"
+  }
  }
 }

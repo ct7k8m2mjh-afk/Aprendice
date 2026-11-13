@@ -423,5 +423,118 @@
    "data": "2026-11-13",
    "lote": "mat-0058"
   }
+ },
+ "P84265d03": {
+  "n": "12",
+  "conceito": "Área de quadrilátero dividido pela diagonal BC: triângulo isósceles com ângulo de 45° e triângulo retângulo isósceles.",
+  "equivocos": {
+   "A": "M09.2:area-menor-que-uma-das-partes",
+   "B": "M09.2:esqueceu-um-dos-triangulos",
+   "D": "M09.2:supos-triangulos-iguais"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Trace a diagonal BC: ela corta o terreno em dois triângulos. O BDC tem dois lados de 4 dam e o ângulo de 45° entre eles, então sai pela fórmula da área com seno. O ABC é retângulo em A com catetos iguais; a área dele depende só de BC², que sai da lei dos cossenos no BDC. Os radicais se cancelam na soma.",
+    "formulas": [
+     "área com dois lados e o ângulo entre eles = (a · b · sen θ)/2",
+     "lei dos cossenos: BC² = BD² + DC² − 2 · BD · DC · cos 45°",
+     "retângulo isósceles: AB² + AC² = BC², área = AB²/2 = BC²/4"
+    ],
+    "simbolos": [
+     [
+      "dam",
+      "decâmetro, 10 metros"
+     ],
+     [
+      "sen 45° = cos 45°",
+      "√2/2"
+     ],
+     [
+      "BC",
+      "diagonal auxiliar que divide o terreno"
+     ]
+    ]
+   },
+   "pista": "Divida o terreno em dois triângulos pela diagonal que liga B a C.",
+   "passos": [
+    {
+     "faz": "Calcule a área do triângulo BDC",
+     "conta": "(4 · 4 · sen 45°)/2 = (16 · √2/2)/2 → 4√2",
+     "porque": "Você conhece dois lados (BD e DC) e o ângulo entre eles, exatamente o que a fórmula com seno pede.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache BC² pela lei dos cossenos",
+     "conta": "BC² = 16 + 16 − 2 · 4 · 4 · √2/2 → BC² = 32 − 16√2",
+     "porque": "BC é o lado oposto ao ângulo de 45° no triângulo BDC; não precisa tirar a raiz, porque a área do outro triângulo usa BC².",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a área do triângulo ABC",
+     "conta": "2 · AB² = 32 − 16√2 → AB² = 16 − 8√2 → área = AB²/2 = 8 − 4√2",
+     "porque": "ABC é retângulo em A com AB = AC; por Pitágoras, AB² + AC² = BC², e a área é cateto vezes cateto sobre 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some as duas áreas",
+     "conta": "4√2 + (8 − 4√2) = 8 dam² → alternativa C",
+     "porque": "O terreno é a união dos dois triângulos; os termos com √2 se anulam.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 8 (dam²)",
+   "checagem": "Em decimais: 4√2 ≈ 5,66 e 8 − 4√2 ≈ 2,34; a soma dá 8,00. E a ordem de grandeza faz sentido: o terreno é pouco maior que o triângulo BDC.",
+   "erradas": {
+    "A": "4 não confere: só o triângulo BDC já mede 4√2 ≈ 5,66 dam², mais que 4.",
+    "B": "4√2 sai de calcular só o triângulo BDC e esquecer o triângulo ABC, que acrescenta 8 − 4√2 ≈ 2,34 dam².",
+    "D": "8√2 sai de dobrar a área do BDC (2 × 4√2), como se ABC fosse igual a ele; ABC mede só 8 − 4√2 ≈ 2,34 dam²."
+   },
+   "armadilha": "O triângulo ABC não é igual ao BDC: seus catetos não medem 4, e a área dele vem de BC², que você tira da lei dos cossenos.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A área do terreno ABDC.",
+    "chave": "Diagonal BC: área BDC = 4√2 e área ABC = BC²/4 = 8 − 4√2; soma 8.",
+    "cuidado": "Não tire a raiz de BC²: a área do triângulo retângulo isósceles usa o quadrado direto."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "altura do BDC",
+    "ideia": "A altura do BDC relativa a BD vale 4 · sen 45° = 2√2, área 4 · 2√2/2 = 4√2; o resto segue igual."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "área BDC = (4 · 4 · √2/2)/2 = 4√2",
+    "nota": "dois lados e o ângulo entre eles"
+   },
+   {
+    "linha": "BC² = 16 + 16 − 16√2 = 32 − 16√2",
+    "nota": "lei dos cossenos"
+   },
+   {
+    "linha": "AB² = (32 − 16√2)/2 = 16 − 8√2",
+    "nota": "Pitágoras com AB = AC"
+   },
+   {
+    "linha": "área ABC = (16 − 8√2)/2 = 8 − 4√2",
+    "nota": "(cateto × cateto)/2"
+   },
+   {
+    "linha": "4√2 + 8 − 4√2 = 8",
+    "nota": "os radicais se cancelam"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0061"
+  }
  }
 }

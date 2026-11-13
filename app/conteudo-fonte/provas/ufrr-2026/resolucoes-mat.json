@@ -122,5 +122,134 @@
    "data": "2026-11-13",
    "lote": "mat-0060"
   }
+ },
+ "Pe9220ef7": {
+  "n": "12",
+  "conceito": "Ângulos inscritos num polígono regular para descobrir o número de lados e contar as diagonais.",
+  "equivocos": {
+   "A": "M08.4:contagem-de-lados-errada",
+   "C": "M08.4:contagem-de-lados-errada",
+   "D": "M08.4:esqueceu-dividir-por-2-nas-diagonais",
+   "E": "M08.4:contagem-de-lados-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Todo polígono regular cabe numa circunferência, e cada lado enxerga do vértice oposto o mesmo ângulo inscrito. Assim, os ângulos com vértice em A são múltiplos de um ângulo básico, um por lado do arco que eles enxergam. Comparar y e 13y dá o número de lados.",
+    "formulas": [
+     "cada lado vale, como ângulo inscrito, 180°/n",
+     "ângulo com vértice em A = (lados do arco enxergado) × 180°/n",
+     "diagonais = n(n − 3)/2"
+    ],
+    "simbolos": [
+     [
+      "n",
+      "número de lados do polígono"
+     ],
+     [
+      "ângulo inscrito",
+      "ângulo com vértice na circunferência; mede metade do arco que enxerga"
+     ],
+     [
+      "DÂB",
+      "ângulo em A entre AD e AB"
+     ]
+    ]
+   },
+   "pista": "Conte quantos lados do polígono ficam dentro de cada ângulo com vértice em A: DÂB enxerga BC e CD.",
+   "passos": [
+    {
+     "faz": "Meça DÂB em lados",
+     "conta": "DÂB enxerga 2 lados (BC, CD) → y = 2 × 180°/n = 360°/n",
+     "porque": "Com o polígono inscrito na circunferência, o ângulo em A que abraça os lados BC e CD vale metade dos dois arcos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Meça DÂE em lados",
+     "conta": "DÂE enxerga n − 4 lados → 13y = (n − 4) × 180°/n",
+     "porque": "Dos n lados, ficam fora de DÂE os quatro que tocam A ou estão no outro ângulo: EA, AB, BC e CD.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Iguale e ache n",
+     "conta": "(n − 4) × 180/n = 13 × 360/n → n − 4 = 26 → n = 30",
+     "porque": "O fator 180/n aparece dos dois lados e cancela, sobrando uma equação do 1.º grau.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte as diagonais",
+     "conta": "30 × (30 − 3)/2 → 30 × 27/2 → 405",
+     "porque": "De cada vértice saem n − 3 diagonais; divide-se por 2 porque cada diagonal foi contada nas duas pontas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "405 diagonais → alternativa B",
+     "porque": "A pergunta é o número de diagonais, não o de lados.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 405.",
+   "checagem": "O ângulo interno em A é y + 13y = 14y. Com n = 30, y = 360°/30 = 12° e 14y = 168°, que é exatamente o ângulo interno do polígono de 30 lados: (30 − 2) × 180°/30 = 168°.",
+   "erradas": {
+    "A": "243 não confere: n(n − 3)/2 = 243 exige n(n − 3) = 486, e nenhum número inteiro de lados dá isso (23 dá 460; 24 dá 504).",
+    "C": "170 é o número de diagonais de 20 lados, mas com n = 20 seria y = 18° e 13y = 234°, maior que o próprio ângulo interno de 162°.",
+    "D": "810 sai de esquecer de dividir por 2: 30 × 27 = 810, contando cada diagonal duas vezes.",
+    "E": "520 não confere: n(n − 3)/2 = 520 exige n(n − 3) = 1040, e nenhum inteiro dá isso (33 dá 990; 34 dá 1054)."
+   },
+   "armadilha": "Esquecer de dividir por 2 na fórmula das diagonais, chegando a 810.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O número de diagonais do polígono regular em que DÂB = y e DÂE = 13y.",
+    "chave": "Cada lado vale 180°/n como ângulo inscrito: y enxerga 2 lados e 13y enxerga n − 4; daí n = 30 e 405 diagonais.",
+    "cuidado": "Na fórmula n(n − 3)/2, não esqueça a divisão por 2."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "ângulo interno",
+    "ideia": "O ângulo interno é 14y e cada um dos n − 2 'lados enxergados' de A vale y/2; então 14y = (n − 2) × y/2, logo n − 2 = 28 e n = 30."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "y = 2 × 180/n = 360/n",
+    "nota": "DÂB enxerga 2 lados"
+   },
+   {
+    "linha": "13y = (n − 4) × 180/n",
+    "nota": "DÂE enxerga n − 4 lados"
+   },
+   {
+    "linha": "n − 4 = 26 → n = 30",
+    "nota": "cancela 180/n"
+   },
+   {
+    "linha": "30 × 27/2 = 405",
+    "nota": "fórmula das diagonais"
+   },
+   {
+    "linha": "405",
+    "nota": "letra B"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0061"
+  },
+  "gabarito_aprendice": {
+   "letra": "B",
+   "letra_conferente": "B",
+   "preliminar": "B",
+   "fontes_web": [],
+   "data": "2026-11-13",
+   "lote": "mat-0061"
+  }
  }
 }

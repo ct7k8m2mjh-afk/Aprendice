@@ -430,5 +430,111 @@
    "data": "2026-11-13",
    "lote": "mat-0060"
   }
+ },
+ "P78dfcb60": {
+  "n": "44",
+  "conceito": "Encontro de dois corredores em pista fechada: tempo comum por MMC ou por velocidade relativa.",
+  "equivocos": {
+   "A": "M09.1:parou-antes-do-mmc",
+   "B": "M09.1:usou-voltas-do-lento-no-mmc",
+   "D": "M09.1:passou-do-mmc"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os dois saem juntos e no mesmo sentido; voltam a se encontrar quando o mais rápido tiver dado exatamente uma volta a mais que o outro. Como as voltas duram 5 min e 6 min, isso acontece no primeiro instante em que os dois completam um número inteiro de voltas ao mesmo tempo: o MMC dos tempos. A pergunta é a distância do mais rápido, não o tempo.",
+    "formulas": [
+     "tempo do reencontro = MMC(5, 6) min",
+     "distância = número de voltas × 800 m"
+    ],
+    "simbolos": [
+     [
+      "MMC",
+      "mínimo múltiplo comum: o menor número que é múltiplo dos dois"
+     ]
+    ]
+   },
+   "pista": "Pergunte em que instante os dois estão de novo juntos no ponto de partida, com voltas inteiras.",
+   "passos": [
+    {
+     "faz": "Leia os tempos de volta",
+     "conta": "rápido: 5 min | lento: 5 + 1 = 6 min",
+     "porque": "O outro precisa de um minuto a mais que os 5 minutos do primeiro.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Ache o primeiro tempo comum",
+     "conta": "MMC(5, 6) = 5 × 6 = 30 min",
+     "porque": "5 e 6 não têm divisor comum além de 1, então o MMC é o produto. Aos 30 min os dois completam voltas inteiras juntos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte as voltas do mais rápido",
+     "conta": "30/5 → 6 voltas",
+     "porque": "Cada volta dele dura 5 min; o mais lento faz 30/6 = 5 voltas, uma a menos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Transforme voltas em metros",
+     "conta": "6 × 800 = 4800 m",
+     "porque": "Cada volta tem 800 m.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "4800 m → alternativa C",
+     "porque": "O comando pede a distância do mais rápido.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 4.800 metros",
+   "checagem": "Por velocidade: o rápido faz 800/5 = 160 m/min e o lento 800/6 ≈ 133,3 m/min. Ele ganha cerca de 26,7 m por minuto e precisa ganhar 800 m: 800/(80/3) → 30 min. Em 30 min, 160 × 30 = 4800 m. Fecha.",
+   "erradas": {
+    "A": "800 m é uma volta só: no fim da primeira volta do mais rápido (5 min) o outro ainda não completou a dele.",
+    "B": "4.000 m sai da distância do mais lento: 5 voltas × 800 = 4000 m. A pergunta é sobre o mais rápido.",
+    "D": "5.600 m não confere: são 7 voltas, ou 35 min; nesse instante o mais lento estaria em 35/6 ≈ 5,83 voltas, longe do outro."
+   },
+   "armadilha": "Achar o tempo do encontro e responder a distância do corredor errado: 5 voltas são do mais lento, 6 do mais rápido.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Os metros do corredor mais rápido até o primeiro reencontro.",
+    "chave": "MMC(5, 6) = 30 min; 30/5 = 6 voltas de 800 m = 4800 m.",
+    "cuidado": "Use as voltas do mais rápido, não as do mais lento."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "velocidade relativa",
+    "ideia": "O rápido ganha 160 − 800/6 = 80/3 m por minuto; para ganhar 800 m precisa de 30 min, e 160 × 30 = 4800 m."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "rápido: 5 min | lento: 6 min",
+    "nota": "tempo de cada volta"
+   },
+   {
+    "linha": "MMC(5, 6) = 30 min",
+    "nota": "primeiro instante comum"
+   },
+   {
+    "linha": "30/5 = 6 voltas",
+    "nota": "voltas do mais rápido"
+   },
+   {
+    "linha": "6 × 800 = 4800 m",
+    "nota": "distância pedida"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0061"
+  }
  }
 }

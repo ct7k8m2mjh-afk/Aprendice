@@ -302,5 +302,121 @@
    "data": "2026-11-13",
    "lote": "mat-0055"
   }
+ },
+ "P8e7ef93d": {
+  "n": "78",
+  "conceito": "Perímetro de figura formada por arcos de circunferências que passam pelo centro das vizinhas.",
+  "equivocos": {
+   "A": "M08.3:perimetro-menor-que-os-arcos-das-pontas",
+   "B": "M08.3:perimetro-menor-que-os-arcos-das-pontas",
+   "C": "M08.3:perimetro-menor-que-os-arcos-das-pontas",
+   "D": "M08.3:arco-do-meio-com-angulo-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Quando uma circunferência de raio R passa pelo centro da vizinha, os dois centros ficam a distância R, e os dois centros com um ponto de cruzamento formam um triângulo equilátero. Por isso cada cruzamento corta um arco de 120° em cada circunferência. O perímetro é a soma, em graus, dos arcos que ficam na borda de fora.",
+    "formulas": [
+     "comprimento do arco = (ângulo/360°) × 2πR",
+     "triângulo equilátero: ângulos de 60°"
+    ],
+    "simbolos": [
+     [
+      "R",
+      "raio comum das quatro circunferências"
+     ],
+     [
+      "arco",
+      "pedaço da circunferência"
+     ]
+    ]
+   },
+   "pista": "Ligue os centros de A e B aos pontos em que as duas se cruzam e veja que triângulos aparecem.",
+   "passos": [
+    {
+     "faz": "Ache o ângulo de cada cruzamento",
+     "conta": "triângulo equilátero de lado R → 2 · 60° = 120°",
+     "porque": "Centro, centro e ponto de cruzamento ficam todos a distância R uns dos outros. O arco que fica dentro da vizinha mede 2 × 60° = 120°.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some os arcos de fora de A e D",
+     "conta": "A: 360° − 120° = 240° | D: 240°",
+     "porque": "As circunferências das pontas só têm uma vizinha; perdem 120° cada.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some os arcos de fora de B e C",
+     "conta": "B: 60° em cima + 60° embaixo = 120° | C: 120°",
+     "porque": "B perde 120° para A e 120° para C; dos 360° sobram 120°, metade em cima e metade embaixo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Transforme graus em comprimento",
+     "conta": "240° + 240° + 120° + 120° = 720° → (720/360) · 2πR = 4πR",
+     "porque": "720° são duas voltas inteiras de raio R.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Marque a alternativa",
+     "conta": "4πR → alternativa E",
+     "porque": "É o comprimento total da borda da figura.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 4πR",
+   "checagem": "Conte os pedaços perdidos: são 3 regiões de sobreposição (A com B, B com C, C com D), e cada uma tira 120° de cada uma das duas circunferências, 6 × 120° = 720°. Das 4 × 360° = 1440°, sobram 720°, duas voltas: 4πR.",
+   "erradas": {
+    "A": "πR não confere: só os arcos de fora de A e D, com 240° cada, já somam (480/360) · 2πR = 8πR/3, mais que πR.",
+    "B": "3πR/2 não confere: só os arcos de A e D já somam 8πR/3, mais que 3πR/2.",
+    "C": "2πR não confere: é uma circunferência só, menos que os 8πR/3 dos arcos de A e D.",
+    "D": "7πR/2 não confere: B e C precisariam somar 7/2 − 8/3 = 5/6 de πR, mas seus quatro arcos de 60° somam (240/360) · 2πR = 4πR/3."
+   },
+   "armadilha": "Achar que a sobreposição tira meia circunferência; o arco escondido em cada cruzamento é de 120°, vindo do triângulo equilátero.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O perímetro da borda de fora da figura de quatro circunferências.",
+    "chave": "Cada cruzamento esconde 120°; sobram 240° + 240° + 120° + 120° = 720°, ou seja, 4πR.",
+    "cuidado": "Nas do meio sobram dois arcos de 60°, um em cima e outro embaixo."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "total menos escondido",
+    "ideia": "4 voltas (1440°) menos 6 arcos escondidos de 120° (720°) deixam 720°, ou 4πR."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "2 · 60° = 120°",
+    "nota": "arco escondido por cruzamento"
+   },
+   {
+    "linha": "360° − 120° = 240°",
+    "nota": "A e D"
+   },
+   {
+    "linha": "360° − 2 · 120° = 120°",
+    "nota": "B e C"
+   },
+   {
+    "linha": "240° + 240° + 120° + 120° = 720°",
+    "nota": "total da borda"
+   },
+   {
+    "linha": "(720/360) · 2πR = 4πR",
+    "nota": "graus em comprimento"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0061"
+  }
  }
 }

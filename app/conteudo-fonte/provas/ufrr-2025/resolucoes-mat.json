@@ -219,5 +219,262 @@
    "data": "2026-11-13",
    "lote": "mat-0056"
   }
+ },
+ "Pfdf5f545": {
+  "n": "11",
+  "conceito": "Área sombreada de um quadrado com dois quartos de círculo: quadrado menos a região comum aos dois quartos.",
+  "equivocos": {
+   "B": "M08.5:somou-em-vez-de-subtrair",
+   "C": "M08.5:area-maior-que-o-todo",
+   "D": "M08.5:regiao-comum-errada",
+   "E": "M08.5:sinal-trocado-ao-subtrair"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os dois arcos são quartos de círculo de raio L: um com centro em D (vai de A a C) e outro com centro em C (vai de D a B). A parte branca é a região que fica dentro dos dois ao mesmo tempo; o sombreado é o quadrado menos ela. O ponto onde os arcos se cruzam está a L de D e a L de C, então forma com D e C um triângulo equilátero.",
+    "formulas": [
+     "setor de 60° = πL²/6",
+     "triângulo equilátero de lado L: área = L²√3/4",
+     "região comum = 2 setores de 60° − triângulo equilátero"
+    ],
+    "simbolos": [
+     [
+      "L",
+      "lado do quadrado e raio dos dois arcos"
+     ],
+     [
+      "setor de 60°",
+      "fatia do círculo com ângulo de 60° no centro"
+     ],
+     [
+      "região comum",
+      "parte branca, dentro dos dois quartos de círculo"
+     ]
+    ]
+   },
+   "pista": "Ligue o ponto de cruzamento dos arcos a D e a C: que triângulo aparece?",
+   "passos": [
+    {
+     "faz": "Identifique o ponto de cruzamento",
+     "conta": "DP = L | CP = L | DC = L → triângulo DPC equilátero",
+     "porque": "P, o cruzamento, está nos dois arcos: dista L de D e L de C. Com DC = L, os três lados são iguais e cada ângulo vale 60°.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule um setor de 60°",
+     "conta": "(60/360) × πL² = πL²/6",
+     "porque": "O setor de centro C entre D e P tem ângulo de 60°, porque o ângulo em C do triângulo equilátero é 60°.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a região comum (a parte branca)",
+     "conta": "2 × πL²/6 − L²√3/4 → πL²/3 − L²√3/4",
+     "porque": "Os dois setores de 60° (centros C e D) se sobrepõem exatamente no triângulo DPC; somando-os, o triângulo entra duas vezes, então se tira uma vez.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tire do quadrado",
+     "conta": "L² − (πL²/3 − L²√3/4) → L²(1 − π/3 + √3/4)",
+     "porque": "O sombreado é tudo do quadrado que não está na região comum.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare com as alternativas",
+     "conta": "L²(1 − π/3 + √3/4) → alternativa A",
+     "porque": "Ao tirar os parênteses, o −√3/4 vira +√3/4.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — a área sombreada é L²(1 − π/3 + √3/4)",
+   "checagem": "Limites independentes, com L = 1: a região branca contém o triângulo equilátero DPC (√3/4 ≈ 0,433) e cabe dentro de um quarto de círculo (π/4 ≈ 0,785). Então o sombreado fica entre 1 − 0,785 ≈ 0,215 e 1 − 0,433 ≈ 0,567, e só a alternativa A (≈ 0,386) cai nessa faixa.",
+   "erradas": {
+    "B": "L²(1 + π/3 − √3/4) sai de somar a região comum ao quadrado em vez de subtraí-la; dá ≈ 1,61L², mais que o próprio quadrado.",
+    "C": "L²(1 + π/6 − √3/8) não confere: dá ≈ 1,31L², maior que a área L² do quadrado que contém o sombreado.",
+    "D": "L²(1 − π/6 + √3/8) não confere: dá ≈ 0,69L², mas a região comum vale ≈ 0,61L² e sobram só ≈ 0,39L².",
+    "E": "L²(1 − π/3 − √3/4) não confere: dá ≈ −0,48L², e área não pode ser negativa; o sinal de √3/4 não foi trocado ao abrir os parênteses."
+   },
+   "armadilha": "O triângulo equilátero aparece nos dois setores: somar os setores conta o triângulo duas vezes, e ao tirar do quadrado o sinal dele vira positivo.",
+   "alerta": "A UFRR publicou o gabarito oficial pós-recursos (Edital 97/24-CPV), mas o arquivo não abriu daqui; a letra A coincide com a do gabarito preliminar.",
+   "essencial": {
+    "pede": "A área sombreada do quadrado de lado L, fora da região comum aos dois quartos de círculo.",
+    "chave": "O cruzamento forma triângulo equilátero com D e C; região comum = 2 × πL²/6 − L²√3/4; sombreado = L²(1 − π/3 + √3/4).",
+    "cuidado": "Conte o triângulo uma vez só e troque o sinal de cada termo ao subtrair a região comum do quadrado."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste numérico",
+    "ideia": "Com L = 1 o sombreado tem de ficar entre 0 e 1: B e C passam de 1, E é negativa; entre A (≈ 0,39) e D (≈ 0,69), a região comum ≈ 0,61 deixa ≈ 0,39."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "DP = CP = DC = L",
+    "nota": "triângulo equilátero, ângulos de 60°"
+   },
+   {
+    "linha": "setor de 60°: πL²/6",
+    "nota": "um sexto do círculo"
+   },
+   {
+    "linha": "comum = 2 × πL²/6 − L²√3/4",
+    "nota": "dois setores menos o triângulo"
+   },
+   {
+    "linha": "sombreado = L² − πL²/3 + L²√3/4",
+    "nota": "quadrado menos a região comum"
+   },
+   {
+    "linha": "L²(1 − π/3 + √3/4)",
+    "nota": "alternativa A"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "UFRR — Edital 96/24-CPV, gabarito preliminar do Vestibular 2025 (letra A segundo o pacote da prova)",
+    "url": "https://editais.ufrr.br/editais/arquivo/526/edital-n-96-24-gabarito-preliminar-vestibular-2025.pdf"
+   },
+   {
+    "nome": "UFRR — Edital 97/24-CPV, gabarito oficial (não abriu daqui)",
+    "url": "https://editais.ufrr.br/editais/arquivo/568/edital-n-97-24-gabarito-oficial-vestibular-2025.pdf"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0061"
+  },
+  "gabarito_aprendice": {
+   "letra": "A",
+   "letra_conferente": "A",
+   "preliminar": "A",
+   "fontes_web": [
+    {
+     "url": "https://editais.ufrr.br/editais/arquivo/526/edital-n-96-24-gabarito-preliminar-vestibular-2025.pdf",
+     "letra": "A"
+    }
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0061"
+  }
+ },
+ "P8a8eec09": {
+  "n": "12",
+  "conceito": "Base média (ponto médio e paralela) aplicada duas vezes para dividir BC na razão certa.",
+  "equivocos": {
+   "A": "M09.3:razao-errada-no-lado-dividido",
+   "B": "M09.3:razao-errada-no-lado-dividido",
+   "D": "M09.3:razao-errada-no-lado-dividido",
+   "E": "M09.3:razao-errada-no-lado-dividido"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Falta só BC para o perímetro, e você conhece apenas NC = 3. O truque é traçar por M uma paralela a AN, que corta BC num ponto X. Aí aparecem dois triângulos com ponto médio e paralela, onde vale a base média: a paralela pelo ponto médio de um lado corta o outro lado também no meio.",
+    "formulas": [
+     "base média: reta pelo ponto médio de um lado, paralela a outro lado, corta o terceiro lado no meio",
+     "perímetro = AB + AC + BC"
+    ],
+    "simbolos": [
+     [
+      "X",
+      "ponto auxiliar: onde a paralela a AN por M corta BC"
+     ],
+     [
+      "ponto médio",
+      "ponto que divide o segmento em duas partes iguais"
+     ]
+    ]
+   },
+   "pista": "Trace por M uma reta paralela a AN até encontrar BC.",
+   "passos": [
+    {
+     "faz": "Use o triângulo CMX",
+     "conta": "P médio de CM e PN ∥ MX → XN = NC = 3",
+     "porque": "No triângulo CMX, a reta PN passa pelo ponto médio de CM e é paralela a MX, então N é o ponto médio de CX.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Use o triângulo BAN",
+     "conta": "M médio de AB e MX ∥ AN → BX = XN = 3",
+     "porque": "No triângulo BAN, MX passa pelo ponto médio de AB e é paralela a AN, então X é o ponto médio de BN.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some os pedaços de BC",
+     "conta": "BC = BX + XN + NC → BC = 3 + 3 + 3 = 9",
+     "porque": "Os três pedaços cobrem BC inteiro.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o perímetro",
+     "conta": "8 + 10 + 9 = 27 → alternativa C",
+     "porque": "O perímetro é a soma dos três lados do triângulo ABC.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 27",
+   "checagem": "Pelo teorema de Menelau no triângulo BCM cortado pela reta A, P, N: (BN/NC) · (CP/PM) · (MA/AB) = 1, ou seja, (BN/NC) · 1 · (1/2) = 1, então BN = 2 · NC = 6 e BC = 9. O mesmo valor.",
+   "erradas": {
+    "A": "25 não confere: daria BC = 7 e BN = 4, com BN/NC = 4/3; a construção exige BN = 2 · NC.",
+    "B": "26 não confere: daria BC = 8 e BN = 5, com BN/NC = 5/3, e não 2.",
+    "D": "28 não confere: daria BC = 10 e BN = 7, com BN/NC = 7/3, e não 2.",
+    "E": "29 não confere: daria BC = 11 e BN = 8, com BN/NC = 8/3, e não 2."
+   },
+   "armadilha": "N não é ponto médio de BC: BN mede o dobro de NC, então BC = 9, e não 6.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O perímetro do triângulo ABC com AB = 8, AC = 10 e NC = 3.",
+    "chave": "Paralela a AN por M e base média duas vezes: BX = XN = NC = 3, logo BC = 9 e o perímetro é 27.",
+    "cuidado": "Não suponha que N seja ponto médio de BC."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "Menelau",
+    "ideia": "No triângulo BCM com a reta APN: (BN/NC) · 1 · (1/2) = 1, então BN = 6, BC = 9 e o perímetro é 27."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "XN = NC = 3",
+    "nota": "base média no triângulo CMX"
+   },
+   {
+    "linha": "BX = XN = 3",
+    "nota": "base média no triângulo BAN"
+   },
+   {
+    "linha": "BC = 3 + 3 + 3 = 9",
+    "nota": "soma dos pedaços"
+   },
+   {
+    "linha": "8 + 10 + 9 = 27",
+    "nota": "perímetro"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0061"
+  },
+  "gabarito_aprendice": {
+   "letra": "C",
+   "letra_conferente": "C",
+   "preliminar": "C",
+   "fontes_web": [],
+   "data": "2026-11-13",
+   "lote": "mat-0061"
+  }
  }
 }

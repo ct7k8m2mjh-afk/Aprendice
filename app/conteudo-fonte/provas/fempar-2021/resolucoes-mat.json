@@ -516,5 +516,137 @@
    "data": "2026-11-13",
    "lote": "mat-0060"
   }
+ },
+ "P562e193b": {
+  "n": "73",
+  "conceito": "Seção plana de um prisma hexagonal regular reto por um plano que passa por dois vértices da base e um do topo.",
+  "equivocos": {
+   "A": "M08.4:contou-vertices-do-hexagono",
+   "B": "M08.4:pensou-que-o-plano-corta-o-topo-num-segmento",
+   "C": "M08.4:supos-lados-iguais-sem-medir",
+   "E": "M08.4:ligou-so-os-tres-vertices-dados"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A seção plana é o polígono que o plano recorta no sólido: cada lado dela é o traço do plano numa face. Comece pela base, onde o plano já passa por dois vértices, e depois veja em quais arestas laterais ele corta. Para saber se é regular, compare o comprimento de dois lados seguidos.",
+    "formulas": [
+     "no hexágono regular de lado s: FB ∥ EC, distância entre FB e EC = s, e D fica s/2 além de EC",
+     "altura do plano cresce proporcionalmente à distância até a reta FB"
+    ],
+    "simbolos": [
+     [
+      "seção plana",
+      "figura que o plano corta dentro do sólido"
+     ],
+     [
+      "h",
+      "altura do prisma"
+     ],
+     [
+      "s",
+      "lado do hexágono da base"
+     ],
+     [
+      "P, Q",
+      "pontos onde o plano corta as arestas laterais CH e EJ"
+     ],
+     [
+      "∥",
+      "paralelo"
+     ]
+    ]
+   },
+   "pista": "Ache primeiro o traço do plano na base (a reta FB) e depois descubra a que altura o plano passa por cima dos vértices C e E.",
+   "passos": [
+    {
+     "faz": "Ache o traço na base",
+     "conta": "base ABCDEF: plano ∩ base = segmento FB",
+     "porque": "F e B estão no plano e na base, então o plano corta a base exatamente na diagonal FB, que separa o vértice A do resto.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Ache o traço no topo",
+     "conta": "topo: reta por I paralela a FB → toca o topo só em I",
+     "porque": "Faces paralelas são cortadas por retas paralelas. A paralela a FB por I é perpendicular à diagonal maior LI e fica do lado de fora do hexágono de cima, encostando só em I.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule a altura sobre C e E",
+     "conta": "distância a FB: em C e E = s; em D = 3s/2 → altura em C = h × s/(3s/2) = 2h/3",
+     "porque": "O plano sobe de 0 (na reta FB) até h (em I, sobre D) de forma proporcional à distância até FB. C e E estão a 2/3 desse caminho, então o plano corta CH e EJ a 2h/3 de altura, dentro das arestas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte o polígono e compare lados",
+     "conta": "seção F → B → P → I → Q; BP² = s² + (2h/3)² e PI² = s² + (h/3)² → BP > PI",
+     "porque": "São 5 vértices, então é pentágono. BP sobe 2h/3 e PI sobe só mais h/3 com o mesmo afastamento horizontal s, então BP é sempre maior que PI.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "5 vértices, lados diferentes → pentágono de lados não congruentes",
+     "porque": "Basta um par de lados diferentes para o pentágono não ser regular.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — pentágono de lados não congruentes.",
+   "checagem": "Conte as faces cortadas: a base (lado FB), as faces laterais BCHG e EFKJ (lados BP e QF) e as faces CDIH e DEJI (lados PI e IQ). São 5 faces, 5 lados. E FB = s√3, enquanto PI² = s² + h²/9; mudando h, PI muda e FB não, então os lados não podem ser todos iguais.",
+   "erradas": {
+    "A": "Hexágono regular não confere: a seção tem só 5 vértices (F, B, P, I, Q), porque o plano toca o topo apenas no ponto I.",
+    "B": "Hexágono de lados não congruentes não confere: o plano corta só 5 faces; no topo ele encosta apenas em I, sem formar um lado ali.",
+    "C": "Pentágono regular não confere: BP² = s² + (2h/3)² é maior que PI² = s² + (h/3)² para qualquer altura h.",
+    "E": "Triângulo seria a seção se o plano fosse direto de FB até I sem cortar faces laterais; mas ele corta as arestas CH e EJ a 2h/3 de altura, ganhando mais dois vértices."
+   },
+   "armadilha": "Imaginar que o plano passa só pelos três vértices citados e responder triângulo, sem ver que ele atravessa as arestas laterais CH e EJ.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A forma da seção do prisma hexagonal regular reto pelo plano que contém I, F e B.",
+    "chave": "O plano corta a base em FB, toca o topo só em I e atravessa CH e EJ a 2h/3: pentágono F, B, P, I, Q.",
+    "cuidado": "Conte os vértices pelas arestas que o plano atravessa e compare dois lados antes de dizer que é regular."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "coordenadas",
+    "ideia": "Com s = 1, ponha FB em x = 1/2 e D em x = −1; o plano z = h(1/2 − x)/(3/2) dá z = 2h/3 em C e E, e os comprimentos saem direto."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "plano ∩ base = FB",
+    "nota": "F e B estão na base"
+   },
+   {
+    "linha": "plano ∩ topo = {I}",
+    "nota": "paralela a FB por I só encosta em I"
+   },
+   {
+    "linha": "altura em C = h × s/(3s/2) = 2h/3",
+    "nota": "proporção da distância até FB"
+   },
+   {
+    "linha": "BP² = s² + (2h/3)²",
+    "nota": "lado que sobe 2h/3"
+   },
+   {
+    "linha": "PI² = s² + (h/3)²",
+    "nota": "lado que sobe h/3"
+   },
+   {
+    "linha": "BP ≠ PI → pentágono irregular",
+    "nota": "letra D"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0061"
+  }
  }
 }

@@ -1,0 +1,131 @@
+{
+ "Pd5b9e245": {
+  "n": "39",
+  "conceito": "Polígonos convexos: lados iguais não garantem regularidade; soma dos ângulos internos com ângulos em progressão aritmética.",
+  "equivocos": {
+   "A": "M08.4:lados-iguais-implica-regular",
+   "C": "M08.4:ignorou-limite-de-180-no-convexo",
+   "D": "M08.4:ignorou-limite-de-180-no-convexo",
+   "E": "M08.4:nao-usou-soma-da-pa"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada afirmação se testa com uma ferramenta: a I cai com um contraexemplo; a II e a III usam a soma dos ângulos internos e a soma da PA. Num polígono convexo, todo ângulo interno é menor que 180°, e é isso que derruba a III.",
+    "formulas": [
+     "soma dos ângulos internos = (n − 2) × 180°",
+     "soma da PA = (a₁ + aₙ) × n/2",
+     "aₙ = a₁ + (n − 1) × r"
+    ],
+    "simbolos": [
+     [
+      "PA",
+      "progressão aritmética: cada termo é o anterior mais a razão r"
+     ],
+     [
+      "a₁, aₙ",
+      "menor e maior ângulo da lista"
+     ],
+     [
+      "n",
+      "número de lados"
+     ],
+     [
+      "convexo",
+      "polígono com todos os ângulos internos menores que 180°"
+     ]
+    ]
+   },
+   "pista": "Para a I, procure um quadrilátero de lados iguais que não seja quadrado. Para a II e a III, junte a soma dos ângulos com a soma da PA.",
+   "passos": [
+    {
+     "faz": "Teste a I com um contraexemplo",
+     "conta": "losango de ângulos 60° e 120°: 4 lados iguais, ângulos diferentes → I falsa",
+     "porque": "Regular exige lados iguais e ângulos iguais. O losango não quadrado tem só a primeira condição.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Some os ângulos do hexágono",
+     "conta": "(6 − 2) × 180° = 720°",
+     "porque": "É a soma dos ângulos internos de qualquer polígono convexo de 6 lados.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Use a soma da PA na II",
+     "conta": "(a₁ + a₆) × 6/2 = 720° → a₁ + a₆ = 720°/3 = 240° → II verdadeira",
+     "porque": "Numa PA, a soma é a média do primeiro com o último vezes o número de termos; isso vale para qualquer razão.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste a III com 100 lados",
+     "conta": "(a₁ + a₁₀₀) × 50 = 98 × 180° = 17640° → a₁ + a₁₀₀ = 352,8°; a₁₀₀ − a₁ = 99° → a₁₀₀ = 225,9°",
+     "porque": "Com razão 1°, o maior ângulo fica 99° acima do menor. Resolvendo, o maior passa de 180°, o que é proibido num polígono convexo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "I falsa, II verdadeira, III falsa → apenas II",
+     "porque": "Só a II vale sempre.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — apenas II.",
+   "checagem": "Confira a II com um caso concreto: ângulos 115°, 117°, 119°, 121°, 123°, 125° (PA de razão 2) somam 720° e 115° + 125° = 240°. Na III, mesmo o menor ângulo, 126,9°, já obriga o maior a 225,9°.",
+   "erradas": {
+    "A": "Apenas I não confere: o losango de ângulos 60° e 120° tem lados iguais e não é regular; e a II é verdadeira.",
+    "C": "Apenas III não confere: na III o maior ângulo daria 225,9°, acima de 180°, e o polígono não seria convexo.",
+    "D": "Apenas II e III sai de aceitar a III sem testar o limite de 180°: a soma fecha, mas o maior ângulo, 225,9°, não cabe num polígono convexo.",
+    "E": "Nenhuma não confere: a II vale para qualquer PA, pois a₁ + a₆ = 720° ÷ 3 = 240°."
+   },
+   "armadilha": "Aceitar a III só porque os números da PA fecham a soma, esquecendo que todo ângulo interno de um polígono convexo é menor que 180°.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quais afirmações sobre polígonos convexos são sempre verdadeiras.",
+    "chave": "Soma dos ângulos (n − 2) × 180° com soma da PA (a₁ + aₙ) × n/2; contraexemplo do losango para a I.",
+    "cuidado": "Num polígono convexo, nenhum ângulo interno chega a 180°: confira o maior termo da PA."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "termo médio",
+    "ideia": "Na II, os ângulos da PA têm média 720° ÷ 6 = 120°, e o menor mais o maior é o dobro da média: 240°."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "I: losango de ângulos 60° e 120° → falsa",
+    "nota": "contraexemplo"
+   },
+   {
+    "linha": "S₆ = (6 − 2) × 180° = 720°",
+    "nota": "soma do hexágono"
+   },
+   {
+    "linha": "(a₁ + a₆) × 3 = 720° → a₁ + a₆ = 240°",
+    "nota": "II verdadeira"
+   },
+   {
+    "linha": "(a₁ + a₁₀₀) × 50 = 17640° → a₁ + a₁₀₀ = 352,8°",
+    "nota": "soma com 100 lados"
+   },
+   {
+    "linha": "a₁₀₀ = (352,8° + 99°)/2 = 225,9° > 180°",
+    "nota": "III falsa"
+   },
+   {
+    "linha": "apenas II",
+    "nota": "letra B"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0061"
+  }
+ }
+}
