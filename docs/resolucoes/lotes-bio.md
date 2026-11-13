@@ -1,6 +1,6 @@
 # Biologia: resoluções (gerado por lote.py em 2026-11-13)
 
-Faltam 1032 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 830; ENEM nível 7-10 16; provas-alvo nível 7-10 115; demais nível 7-10 71.
+Faltam 1002 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 800; ENEM nível 7-10 16; provas-alvo nível 7-10 115; demais nível 7-10 71.
 
 ## Lotes
 
@@ -62,17 +62,21 @@ Faltam 1032 questões sem resolução (fora as que estão em lote, pendentes ou 
 | bio-0054 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | bio-0055 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | bio-0056 | demais nível 1-6 | 30 | aberto |  |  |  |
-| bio-0057 | provas-alvo nível 1-6 | 30 | aberto |  |  |  |
+| bio-0057 | provas-alvo nível 1-6 | 30 | gravado | 27 | 3 | 0 |
+| bio-0058 | demais nível 1-6 | 30 | aberto |  |  |  |
 
 ## Pendentes (falta de certeza absoluta)
 
 | Questão | Prova | Conteúdo | Motivo |
 |---|---|---|---|
+| Pbf20fbdc | Fatec 2023 2º semestre · questão 6 | B03.4 fermentação láctica e alcoólica (tema B03 Metabolismo energético) | classificação: é de Português (interpretação de texto: "Segundo o texto", sobre a história e a produção do queijo da Canastra; não cobra Biologia) |
+| Pc68c4acb | PUCRS 2023 Verão · questão 37 | B01.2 transporte ativo e vesicular (tema B01 Citologia) | classificação: é de Química (configuração eletrônica dos íons Na+ e K+; o contexto da célula nervosa é só ilustração) |
 | Pd59592fa | UECE 2023 2023.1 – 1ª fase · questão 65 | B07.4 coração e as duas circulações (tema B07 Fisiologia humana I) | classificação: é de Educação Física (UECE 2023.1, questão 65: nível de atividade física e gasto calórico), não de Biologia. |
 | P98fb7dec | UECE 2024 2024.2 – 1ª fase · questão 65 | B07.4 coração e as duas circulações (tema B07 Fisiologia humana I) | classificação: é de Educação Física (UECE 2024.2, questão 65: conceito de literacia física), não de Biologia. |
 | P50441003 | UECE 2025 2025.2 – 1ª fase · questão 59 | B08.3 sistema nervoso autônomo e arco reflexo (tema B08 Neuro, hormônios, imune e reprodução) | gabarito preliminar A, mantido pela banca no parecer dos recursos (Comunicado 81/2025 CEV/UECE, https://www.cev.uece.br/wp-content/uploads/2025/05/comunicado81.2025cev.pdf), mas sem gabarito definitivo publicado e com erro conceitual na própria alternativa (chama a rodopsina de neurotransmissor e a liga aos cones); resolvedor e conferente chegam a A só por eliminação; decisão do dono |
 | P56bf6cb4 | UECE 2026 2026.1 – 1ª fase · questão 66 | B07.1 os quatro tecidos fundamentais (tema B07 Fisiologia humana I) | classificação: é de Educação Física (UECE 2026.1, questão 66: princípios do treinamento desportivo), não de Biologia. |
 | Pa1b2ee02 | UEL 2020 1ª fase · questão 20 | B05.3 código genético e tradução (tema B05 Genética molecular) | classificação: é de Matemática (probabilidade e potências: (1/4) elevado a 150 milhões = 2 elevado a −3 × 10^8); o DNA é só o contexto. |
+| P3c08d8ee | Unesp 2024 1ª fase – meio de ano · questão 78 | B12.6 vertebrados, classificação, nomenclatura e filogenia (tema B12 Diversidade dos seres vivos) | classificação: é de Física (propagação de calor: convecção em correntes de ar quente; não cobra Biologia) |
 
 ## Divergências de gabarito (o dono decide)
 
