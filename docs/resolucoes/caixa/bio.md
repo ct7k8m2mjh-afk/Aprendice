@@ -26,3 +26,9 @@ Dica para a próxima sessão: o lote.py procura "visual" no nível da questão (
 
 ## 2026-11-13 05:35 UTC — AVISO — session_01PveEKb648gnNx7gv9Y2Xbs
 FIM acima cancelado: com o limite novo (40% do contexto), esta sessão continua a Biologia a partir do bio-0062. Não abrir outra sessão de bio até novo FIM.
+
+## 2026-11-13 UTC — PENDENCIAS — session_01PveEKb648gnNx7gv9Y2Xbs
+Lote bio-0062 gravado. Aberto: bio-0063 (resolvendo).
+- Pfd1ea733: pendente — classificação: é de Química (cinética da síntese do DDT).
+- Pd860da4d, P1b43382f, P50da9a5a: equívocos codificados em B09.7; a questão está em B09.3 (revisar classificação).
+- P6b95bc98 (bio-0063): na entrada, o texto de apoio está colado na alternativa E (corrigir separação texto/alternativa).
