@@ -1,6 +1,6 @@
 # Português: resoluções (gerado por lote.py em 2026-11-13)
 
-Faltam 1814 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 1275; ENEM nível 7-10 53; provas-alvo nível 7-10 225; demais nível 7-10 261.
+Faltam 1634 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 1095; ENEM nível 7-10 53; provas-alvo nível 7-10 225; demais nível 7-10 261.
 
 ## Lotes
 
@@ -96,6 +96,9 @@ Faltam 1814 questões sem resolução (fora as que estão em lote, pendentes ou 
 | por-0088 | demais nível 1-6 | 60 | gravado | 58 | 2 | 0 |
 | por-0089 | demais nível 1-6 | 60 | gravado | 60 | 0 | 0 |
 | por-0090 | demais nível 1-6 | 60 | gravado | 60 | 0 | 0 |
+| por-0091 | demais nível 1-6 | 60 | aberto |  |  |  |
+| por-0092 | demais nível 1-6 | 60 | gravado | 59 | 1 | 0 |
+| por-0093 | demais nível 1-6 | 60 | aberto |  |  |  |
 
 ## Pendentes (falta de certeza absoluta)
 
@@ -149,6 +152,7 @@ Faltam 1814 questões sem resolução (fora as que estão em lote, pendentes ou 
 | Pd93f60fa | UEA 2025 Conhecimentos Específicos – Biológicas · questão 27 | P12.4 Geração de 45 e prosa de ruptura: Guimarães Rosa, Clarice Lispector, João Cabral (tema P12 Literatura: Pré-Modernismo em diante) | obra: a questão pergunta quem é Luciana "No romance" Ciranda de pedra. O trecho mostra Luciana ordenando "Abre, menina" e ameaçando contar "para o seu tio", o que não separa empregada (C) de tia casada com tio Daniel, irmã de Virgínia ou irmã de Conrado; a resposta depende da leitura do romance. |
 | P1c06415d | UEA 2025 Conhecimentos Específicos – Exatas · questão 27 | P12.4 Geração de 45 e prosa de ruptura: Guimarães Rosa, Clarice Lispector, João Cabral (tema P12 Literatura: Pré-Modernismo em diante) | obra: a questão pergunta quem é Luciana "No romance" Ciranda de pedra. O trecho mostra Luciana ordenando "Abre, menina" e ameaçando contar "para o seu tio", o que não separa empregada (C) de tia casada com tio Daniel, irmã de Virgínia ou irmã de Conrado; a resposta depende da leitura do romance. |
 | P3edf12b1 | UEA 2025 Conhecimentos Específicos – Humanas · questão 27 | P12.4 Geração de 45 e prosa de ruptura: Guimarães Rosa, Clarice Lispector, João Cabral (tema P12 Literatura: Pré-Modernismo em diante) | obra: a questão pergunta quem é Luciana "No romance" Ciranda de pedra. O trecho mostra Luciana ordenando "Abre, menina" e ameaçando contar "para o seu tio", o que não separa empregada (C) de tia casada com tio Daniel, irmã de Virgínia ou irmã de Conrado; a resposta depende da leitura do romance. |
+| P61c6a142 | UEG 2024 2024/1 · questão 10 | P05.1 sentido da palavra no contexto e substituição sem mudar o sentido (tema P05 Semântica e vocabulário) | outra matéria: Artes (identificar a Transvanguarda italiana pela descrição; não é questão de Português) |
 | P82bbfc0a | UEG 2026 2026/2 · questão 11 | P01.2 informação explícita × inferência (tema P01 Leitura e compreensão) | classificação: é de Artes (história da arte: minimalismo × pós-minimalismo). O texto da questão só traz o que os dois movimentos têm em comum; as diferenças pedidas (materiais rígidos × maleáveis e orgânicos) dependem de conhecimento de história da arte que não está na prova. |
 | P57e4dcb4 | UEL 2021 Fase única · questão 37 | P12.2 Modernismo de 1922, vanguardas europeias e manifestos (tema P12 Literatura: Pré-Modernismo em diante) | obra: o comando pede julgar as afirmativas "com base no trecho e na leitura integral do conto". Pelo trecho só cai a II: a razão que Juca resiste a admitir é "uma espécie de despeito desprezador de um pelo outro", não a homossexualidade de Frederico, o que derruba A, D e E. A IV se apoia no trecho ("Depois desisti, com muito propósito"). Entre B (I e IV) e C (III e IV), a decisão depende de episódios do conto que o fragmento não traz: se há maledicências e preconceitos sobre a relação dos dois em outras passagens (I) e as brigas violentas de cada um com um colega (III). A justificativa publicada pela Cops (rumores de vínculo homossexual que causam brigas físicas) confirma o gabarito C, mas se apoia no conto inteiro. |
 | Paea343d3 | UEL 2021 Fase única · questão 38 | P12.2 Modernismo de 1922, vanguardas europeias e manifestos (tema P12 Literatura: Pré-Modernismo em diante) | obra: a questão compara a morte dos pais em "Frederico Paciência" e em "O peru de Natal", e o fragmento dado não fala de morte nenhuma nem traz trecho de "O peru de Natal". As cinco alternativas dependem do enredo dos dois contos (em que ponto da narrativa as mortes ocorrem, como o narrador reage a elas, se os amigos vivem ou não o envolvimento amoroso, se o filho supera o luto), e nada no trecho permite eliminar alguma delas. |
