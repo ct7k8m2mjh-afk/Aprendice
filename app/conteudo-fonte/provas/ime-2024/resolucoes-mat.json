@@ -374,5 +374,138 @@
    "data": "2026-11-13",
    "lote": "mat-0057"
   }
+ },
+ "P3589710e": {
+  "n": "13",
+  "conceito": "Ângulo de visão máximo: diferença de dois ângulos com tangente, otimizada pela distância do observador.",
+  "equivocos": {
+   "B": "M10.1:esqueceu-de-subtrair-angulo-da-base",
+   "C": "M10.1:errou-otimizacao",
+   "D": "M10.1:errou-otimizacao",
+   "E": "M10.1:errou-otimizacao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O observador vê a barra sob o ângulo AOB, que é a diferença entre o ângulo até o topo da barra e o ângulo até a base dela (que está no alto do muro). Perto do muro o ângulo fica pequeno; longe, também. O máximo acontece quando a distância d até o muro é a média geométrica das duas alturas: d² = a × b. Esse fato vem da tangente da diferença de ângulos.",
+    "formulas": [
+     "tg(x − y) = (tg x − tg y)/(1 + tg x · tg y)",
+     "ângulo máximo quando d = √(a · b), com a e b as alturas das pontas",
+     "tg 60° = √3 ; tg 30° = √3/3"
+    ],
+    "simbolos": [
+     [
+      "L",
+      "comprimento da barra"
+     ],
+     [
+      "d",
+      "distância do observador ao pé do muro"
+     ],
+     [
+      "a, b",
+      "alturas da ponta de baixo (L/2) e da ponta de cima (3L/2) da barra"
+     ],
+     [
+      "média geométrica",
+      "raiz do produto de dois números"
+     ]
+    ]
+   },
+   "pista": "Escreva as alturas das duas pontas da barra e veja o ângulo AOB como diferença de dois ângulos de elevação.",
+   "passos": [
+    {
+     "faz": "Ache as alturas das pontas",
+     "conta": "ponta de baixo: a = L/2 | ponta de cima: b = L/2 + L = 3L/2",
+     "porque": "A barra vertical de comprimento L fica apoiada no alto do muro de altura L/2.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Escreva a tangente do ângulo AOB",
+     "conta": "tg AOB = (b/d − a/d)/(1 + ab/d²) → tg AOB = (b − a)d/(d² + ab)",
+     "porque": "O ângulo AOB é a diferença entre os ângulos de elevação das duas pontas, cujas tangentes são b/d e a/d.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a distância do máximo",
+     "conta": "d² = ab → d² = (L/2)(3L/2) = 3L²/4 → d = (L√3)/2",
+     "porque": "A fração d/(d² + ab) é máxima quando d² = ab (desigualdade entre médias: d² + ab ≥ 2d√(ab)); maior tangente, maior ângulo, pois o ângulo é agudo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule os dois ângulos nessa distância",
+     "conta": "tg(topo) = (3L/2)/((L√3)/2) = √3 → 60° ; tg(base) = (L/2)/((L√3)/2) = √3/3 → 30°",
+     "porque": "Com d achado, cada ponta tem um ângulo de elevação notável.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Subtraia e marque",
+     "conta": "AOB = 60° − 30° = 30° → alternativa A",
+     "porque": "O ângulo sob o qual se vê a barra é a diferença entre o ângulo do topo e o da base.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 30°",
+   "checagem": "Pela circunferência: o ângulo máximo ocorre quando a circunferência que passa por A e B tangencia o chão. A potência do ponto no pé do muro dá d² = (L/2)(3L/2), o mesmo d.",
+   "erradas": {
+    "B": "60° sai de parar no ângulo de elevação do topo: tg = √3, 60°. Falta subtrair os 30° da base da barra.",
+    "C": "75° não confere: tg AOB = (b − a)d/(d² + ab) vale no máximo (L)/(2√(3L²/4)) = √3/3, que é tg 30°, e tg 75° ≈ 3,73.",
+    "D": "15° não confere: é menor que o ângulo de 30° que o observador já obtém em d = (L√3)/2, então não é o máximo.",
+    "E": "45° não confere: tg 45° = 1, maior que o valor máximo √3/3 da tangente de AOB."
+   },
+   "armadilha": "Esquecer que a barra começa no alto do muro (altura L/2) e não no chão: o ângulo AOB é uma diferença de dois ângulos.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O maior ângulo sob o qual o observador no chão vê a barra.",
+    "chave": "Pontas em L/2 e 3L/2; máximo em d² = (L/2)(3L/2), onde os ângulos de elevação são 60° e 30°.",
+    "cuidado": "AOB é a diferença entre os ângulos do topo e da base da barra."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "circunferência tangente",
+    "ideia": "O ângulo máximo vem da circunferência por A e B tangente ao chão; a potência do pé do muro dá d² = (L/2)(3L/2)."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "a = L/2 ; b = 3L/2",
+    "nota": "alturas das pontas"
+   },
+   {
+    "linha": "tg AOB = (b − a)d/(d² + ab)",
+    "nota": "tangente da diferença"
+   },
+   {
+    "linha": "d² = ab = 3L²/4 → d = (L√3)/2",
+    "nota": "distância do máximo"
+   },
+   {
+    "linha": "tg topo = √3 → 60° ; tg base = √3/3 → 30°",
+    "nota": "ângulos notáveis"
+   },
+   {
+    "linha": "AOB = 60° − 30° = 30°",
+    "nota": "diferença"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0062"
+  },
+  "gabarito_aprendice": {
+   "letra": "A",
+   "letra_conferente": "A",
+   "preliminar": "A",
+   "fontes_web": [],
+   "data": "2026-11-13",
+   "lote": "mat-0062"
+  }
  }
 }

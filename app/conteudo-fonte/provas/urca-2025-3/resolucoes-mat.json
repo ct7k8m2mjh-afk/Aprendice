@@ -530,5 +530,121 @@
    "data": "2026-11-13",
    "lote": "mat-0061"
   }
+ },
+ "Pe726d2d7": {
+  "n": "22",
+  "conceito": "Transformar soma de cossenos em produto, fatorar a equação e contar as soluções no intervalo.",
+  "equivocos": {
+   "A": "M10.4:dividiu-por-fator-que-zera",
+   "B": "M10.4:esqueceu-um-fator",
+   "C": "M10.4:contagem-errada-de-solucoes",
+   "E": "M10.4:contagem-errada-de-solucoes"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Do lado esquerdo há uma soma de cossenos: a fórmula de prostaférese a transforma em produto, e aparece cos 2x, o mesmo do lado direito. Aí dá para colocar cos 2x em evidência: a equação vira um produto igual a zero, e cada fator dá suas soluções. A pergunta é quantas são em [0, 2π].",
+    "formulas": [
+     "cos p + cos q = 2·cos((p + q)/2)·cos((p − q)/2)",
+     "A·B = 0 ⇔ A = 0 ou B = 0"
+    ],
+    "simbolos": [
+     [
+      "prostaférese",
+      "fórmulas que transformam soma de senos ou cossenos em produto"
+     ],
+     [
+      "[0, 2π]",
+      "intervalo fechado de 0 a 2π, uma volta completa"
+     ]
+    ]
+   },
+   "pista": "Transforme cos x + cos 3x em produto e procure um fator comum com o lado direito.",
+   "passos": [
+    {
+     "faz": "Transforme a soma em produto",
+     "conta": "cos 3x + cos x → 2·cos((3x + x)/2)·cos((3x − x)/2) → 2cos 2x·cos x",
+     "porque": "(3x + x)/2 = 2x e (3x − x)/2 = x.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Passe tudo para um lado e fatore",
+     "conta": "2cos 2x·cos x = −cos 2x → 2cos 2x·cos x + cos 2x = 0 → cos 2x·(2cos x + 1) = 0",
+     "porque": "O −cos 2x passa para a esquerda como +cos 2x; cos 2x é fator comum. Não divida por cos 2x, senão perde soluções.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva cos 2x = 0",
+     "conta": "2x = π/2 + kπ → x = π/4 + kπ/2 → x = π/4, 3π/4, 5π/4, 7π/4",
+     "porque": "Com x em [0, 2π], 2x percorre [0, 4π] e passa por quatro zeros do cosseno: 4 soluções.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva 2cos x + 1 = 0",
+     "conta": "2cos x + 1 = 0 → cos x = −1/2 → x = 2π/3, 4π/3",
+     "porque": "O +1 passa como −1 e o 2 passa dividindo; cos x = −1/2 no 2º e no 3º quadrantes: 2 soluções.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte e ligue à alternativa",
+     "conta": "4 + 2 → 6 → alternativa D",
+     "porque": "As duas listas não têm valor em comum, então o total é 6.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 6",
+   "checagem": "Por polinômio em cos x: cos 3x = 4c³ − 3c e cos 2x = 2c² − 1 dão 4c³ + 2c² − 2c − 1 = 0, que fatora como (2c + 1)(2c² − 1) = 0. Então c = −1/2 (2 arcos) ou c = ±√2/2 (4 arcos): 6 soluções. Fecha.",
+   "erradas": {
+    "A": "A sai de dividir os dois lados por cos 2x: fica 2cos x = −1, com só 2 soluções, e somem as 4 de cos 2x = 0.",
+    "B": "B sai de contar só o fator cos 2x = 0, com as 4 soluções π/4, 3π/4, 5π/4 e 7π/4, esquecendo cos x = −1/2.",
+    "C": "C não confere: os dois fatores dão 4 e 2 soluções, todas diferentes, e nenhuma cai nos extremos 0 ou 2π; o total é 6.",
+    "E": "E não confere: a equação equivale a cos 2x·(2cos x + 1) = 0, e esses dois fatores só têm 6 zeros em [0, 2π]."
+   },
+   "armadilha": "Cancelar cos 2x dos dois lados: dividir por um fator que pode ser zero apaga as soluções em que ele zera.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantas soluções a equação tem em [0, 2π].",
+    "chave": "cos x + cos 3x = 2cos 2x·cos x; a equação vira cos 2x·(2cos x + 1) = 0, com 4 + 2 = 6 soluções.",
+    "cuidado": "Coloque o fator em evidência em vez de dividir por ele, e conte cos 2x = 0 numa volta de 2x que vai até 4π."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "polinômio em cos x",
+    "ideia": "Com cos 3x = 4c³ − 3c e cos 2x = 2c² − 1, sai (2c + 1)(2c² − 1) = 0: c = −1/2 ou c = ±√2/2, 2 + 4 = 6 soluções."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "cos 3x + cos x = 2cos 2x·cos x",
+    "nota": "soma em produto"
+   },
+   {
+    "linha": "2cos 2x·cos x + cos 2x = 0 → cos 2x·(2cos x + 1) = 0",
+    "nota": "fator comum"
+   },
+   {
+    "linha": "cos 2x = 0 → x = π/4, 3π/4, 5π/4, 7π/4",
+    "nota": "4 soluções"
+   },
+   {
+    "linha": "cos x = −1/2 → x = 2π/3, 4π/3",
+    "nota": "2 soluções"
+   },
+   {
+    "linha": "4 + 2 = 6",
+    "nota": "total"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0062"
+  }
  }
 }
