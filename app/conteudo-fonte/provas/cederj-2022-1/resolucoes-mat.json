@@ -277,5 +277,113 @@
    "data": "2026-11-13",
    "lote": "mat-0053"
   }
+ },
+ "P34ee22a6": {
+  "n": "36",
+  "conceito": "Equação exponencial que leva a um logaritmo, e estimativa do sinal e do tamanho do resultado.",
+  "equivocos": {
+   "A": "M06.3:perdeu-sinal-do-expoente",
+   "B": "M06.3:sinal-errado",
+   "C": "M06.3:estimativa-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Substitua t = 3 e cancele a, que não é zero. Sobra 2^(−3b) = 3. Não é preciso o valor exato de b: basta saber entre que potências de 2 está o 3, e isso dá o sinal e o tamanho de b.",
+    "formulas": [
+     "2^p = 3 ⇔ p = log₂ 3",
+     "2^1 = 2 < 3 < 4 = 2^2, então 1 < log₂ 3 < 2"
+    ],
+    "simbolos": [
+     [
+      "log₂ 3",
+      "o expoente que leva 2 até 3"
+     ]
+    ]
+   },
+   "pista": "Substitua t = 3 e veja o que sobra depois de cancelar a.",
+   "passos": [
+    {
+     "faz": "Substitua t = 3 e cancele a",
+     "conta": "a × 2^(−3b) = 3a → 2^(−3b) = 3",
+     "porque": "a é não nulo, então pode dividir os dois lados por a.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Passe para logaritmo",
+     "conta": "−3b = log₂ 3 → b = −(log₂ 3)/3",
+     "porque": "Pela definição, o expoente que leva 2 até 3 é log₂ 3; o −3 que multiplica vai dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Estime log₂ 3",
+     "conta": "2 < 3 < 4 → 1 < log₂ 3 < 2 → −2/3 < b < −1/3",
+     "porque": "Dividindo por −3, as desigualdades se invertem.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Classifique b",
+     "conta": "b negativo e maior que −1 → alternativa D",
+     "porque": "Todo o intervalo de b está entre −1 e 0.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — negativo e maior que −1",
+   "checagem": "Valor numérico: log₂ 3 ≈ 1,585, então b ≈ −1,585/3 ≈ −0,528. Confira: 2^(−3 × (−0,528)) = 2^1,585 ≈ 3.",
+   "erradas": {
+    "A": "Positivo e menor que 1 sai de perder o sinal do expoente: 2^(3b) = 3 daria b ≈ 0,528.",
+    "B": "Positivo e maior que 1 não confere: com b > 0, 2^(−3b) é menor que 1 e não pode dar 3.",
+    "C": "Negativo e menor que −1 não confere: com b < −1, −3b > 3 e 2^(−3b) > 8, não 3."
+   },
+   "armadilha": "O expoente é −bt: o sinal de menos faz b sair negativo.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O sinal e o tamanho de b sabendo que f(3) = 3a.",
+    "chave": "2^(−3b) = 3 dá b = −(log₂ 3)/3, entre −2/3 e −1/3.",
+    "cuidado": "Mantenha o sinal de menos do expoente e inverta as desigualdades ao dividir por −3."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste de b = −1",
+    "ideia": "Se b = −1, 2^(−3b) = 2^3 = 8 > 3; para dar 3 o expoente −3b tem de ser menor que 3, então −1 < b < 0."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "a × 2^(−3b) = 3a",
+    "nota": "f(3) = 3a"
+   },
+   {
+    "linha": "2^(−3b) = 3",
+    "nota": "cancela a"
+   },
+   {
+    "linha": "−3b = log₂ 3",
+    "nota": "definição de log"
+   },
+   {
+    "linha": "b = −(log₂ 3)/3",
+    "nota": "o −3 vai dividindo"
+   },
+   {
+    "linha": "1 < log₂ 3 < 2",
+    "nota": "2 < 3 < 4"
+   },
+   {
+    "linha": "−2/3 < b < −1/3",
+    "nota": "divide por −3 e inverte"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0057"
+  }
  }
 }

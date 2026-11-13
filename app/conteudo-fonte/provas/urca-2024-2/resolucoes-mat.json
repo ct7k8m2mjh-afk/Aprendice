@@ -776,5 +776,118 @@
    "data": "2026-11-13",
    "lote": "mat-0056"
   }
+ },
+ "Pd2fd12da": {
+  "n": "21",
+  "conceito": "Mudança de base para a base 10 e escrita de log 5 como 1 − log 2.",
+  "equivocos": {
+   "A": "M06.3:expressao-nao-confere",
+   "B": "M06.3:expressao-nao-confere",
+   "C": "M06.3:log-4-como-log-2",
+   "E": "M06.3:simplificacao-incompleta"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Leve log₅ 28 para a base 10: log 28 ÷ log 5. O numerador sai de 28 = 4 × 7. O denominador é o truque: 5 = 10/2, então log 5 = 1 − log 2, e log 2 é metade de log 4.",
+    "formulas": [
+     "log_5 28 = log 28/log 5",
+     "log 5 = log (10/2) = 1 − log 2",
+     "log 2 = (log 4)/2 = x/2"
+    ],
+    "simbolos": [
+     [
+      "x",
+      "log 4"
+     ],
+     [
+      "y",
+      "log 7"
+     ]
+    ]
+   },
+   "pista": "Mude para a base 10 e escreva 5 como 10/2.",
+   "passos": [
+    {
+     "faz": "Mude a base",
+     "conta": "log₅ 28 = log 28/log 5",
+     "porque": "Mudança de base para a base 10, onde estão os dados.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escreva o numerador",
+     "conta": "log 28 = log (4 × 7) = x + y",
+     "porque": "Log do produto é soma.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escreva o denominador",
+     "conta": "log 5 = log 10 − log 2 = 1 − x/2",
+     "porque": "5 = 10/2; log 10 = 1; log 2 = metade de log 4.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Simplifique a fração",
+     "conta": "(x + y)/(1 − x/2) = 2(x + y)/(2 − x)",
+     "porque": "Multiplique em cima e embaixo por 2 para tirar a fração do denominador.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Responda",
+     "conta": "2(x + y)/(2 − x) → alternativa D",
+     "porque": "É a forma da alternativa D.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 2(x + y)/(2 − x)",
+   "checagem": "Com números: x = log 4 ≈ 0,602 e y = log 7 ≈ 0,845 dão 2 × 1,447/1,398 ≈ 2,070, e de fato 5^2,070 ≈ 28.",
+   "erradas": {
+    "A": "(x + 2y)/(2 − x) não confere: dá cerca de 1,640, e log₅ 28 ≈ 2,070.",
+    "B": "(2x + y)/(1 − x) não confere: dá cerca de 5,150, e log₅ 28 ≈ 2,070.",
+    "C": "(x + y)/(1 − x) sai de usar log 5 = 1 − log 4, tomando x como log 2; dá cerca de 3,637.",
+    "E": "(x + y)/(2 − x) sai de esquecer de multiplicar o numerador por 2 ao tirar a fração do denominador; dá cerca de 1,035."
+   },
+   "armadilha": "x é log 4, não log 2: log 5 = 1 − x/2.",
+   "alerta": "",
+   "essencial": {
+    "pede": "log₅ 28 em função de x = log 4 e y = log 7.",
+    "chave": "log 28/log 5 = (x + y)/(1 − x/2) = 2(x + y)/(2 − x).",
+    "cuidado": "Use log 5 = 1 − log 2 e lembre que log 2 = x/2."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "valores numéricos",
+    "ideia": "Com log 4 ≈ 0,602 e log 7 ≈ 0,845, calcule cada alternativa: só a D dá log₅ 28 ≈ 2,070."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "log₅ 28 = log 28/log 5",
+    "nota": "mudança de base"
+   },
+   {
+    "linha": "log 28 = x + y",
+    "nota": "28 = 4 × 7"
+   },
+   {
+    "linha": "log 5 = 1 − x/2",
+    "nota": "5 = 10/2, log 2 = x/2"
+   },
+   {
+    "linha": "(x + y)/(1 − x/2) = 2(x + y)/(2 − x)",
+    "nota": "multiplica por 2 em cima e embaixo"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0057"
+  }
  }
 }

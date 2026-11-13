@@ -91,5 +91,118 @@
    "data": "2026-11-13",
    "lote": "mat-0049"
   }
+ },
+ "Pc4ffbe43": {
+  "n": "39",
+  "conceito": "Tempo de duplicação num modelo exponencial de base 2, com conversão de meses para anos.",
+  "equivocos": {
+   "A": "M06.2:conversao-de-meses-errada",
+   "B": "M06.2:conversao-de-meses-errada",
+   "C": "M06.2:conversao-de-meses-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Duplicar o investimento é chegar a M(t) = 2C. Como o modelo tem base 2, a equação vira 2^(0,01t) = 2^1. O trabalho real está no fim: t sai em meses e as alternativas estão em anos e meses.",
+    "formulas": [
+     "M(t) = C × 2^(0,01t)",
+     "duplicar: M(t) = 2C",
+     "1 ano = 12 meses"
+    ],
+    "simbolos": [
+     [
+      "C",
+      "o valor investido no início (M(0) = C)"
+     ],
+     [
+      "t",
+      "tempo em meses"
+     ]
+    ]
+   },
+   "pista": "Escreva o que é \"duplicar\" em termos de M(t) e de C.",
+   "passos": [
+    {
+     "faz": "Traduza duplicar",
+     "conta": "C × 2^(0,01t) = 2C",
+     "porque": "O investimento inicial é M(0) = C × 2^0 = C; o dobro é 2C.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Cancele C e iguale expoentes",
+     "conta": "2^(0,01t) = 2^1 → 0,01t = 1 → t = 1/0,01 → t = 100",
+     "porque": "C é positivo e aparece nos dois lados; com base 2 nos dois lados, os expoentes são iguais.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Converta meses em anos",
+     "conta": "100 = 12 × 8 + 4 → 8 anos e 4 meses",
+     "porque": "100 ÷ 12 dá 8 e sobram 4 meses.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escolha a alternativa",
+     "conta": "8 anos e 4 meses → alternativa D",
+     "porque": "É o tempo mínimo, porque M cresce sempre.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 8 anos e 4 meses",
+   "checagem": "Substitua t = 100: M = C × 2^(0,01 × 100) = C × 2^1 = 2C. É exatamente o dobro.",
+   "erradas": {
+    "A": "8 anos e 10 meses não confere: são 106 meses, e já em 100 meses o investimento dobrou; não é o tempo mínimo.",
+    "B": "8 anos e 8 meses não confere: são 104 meses, e já em 100 meses o investimento dobrou; não é o tempo mínimo.",
+    "C": "8 anos e 6 meses não confere: são 102 meses, e já em 100 meses o investimento dobrou; não é o tempo mínimo."
+   },
+   "armadilha": "t vem em meses: 100 meses são 8 anos e 4 meses, e não 8,33 lido como anos e décimos.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O tempo mínimo, em anos e meses, para M(t) = C × 2^(0,01t) chegar a 2C.",
+    "chave": "2^(0,01t) = 2^1 dá t = 100 meses = 8 anos e 4 meses.",
+    "cuidado": "Converta meses em anos dividindo por 12 e guardando o resto."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "taxa do expoente",
+    "ideia": "O expoente 0,01t aumenta 1 a cada 100 meses, e cada aumento de 1 no expoente dobra o valor."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "C × 2^(0,01t) = 2C",
+    "nota": "dobro do inicial"
+   },
+   {
+    "linha": "2^(0,01t) = 2^1",
+    "nota": "cancela C"
+   },
+   {
+    "linha": "0,01t = 1",
+    "nota": "bases iguais"
+   },
+   {
+    "linha": "t = 1/0,01",
+    "nota": "o 0,01 vai dividindo"
+   },
+   {
+    "linha": "t = 100",
+    "nota": "meses"
+   },
+   {
+    "linha": "100 = 12 × 8 + 4",
+    "nota": "8 anos e 4 meses"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0057"
+  }
  }
 }

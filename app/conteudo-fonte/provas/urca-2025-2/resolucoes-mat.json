@@ -607,5 +607,111 @@
    "data": "2026-11-13",
    "lote": "mat-0055"
   }
+ },
+ "P6ec7697e": {
+  "n": "18",
+  "conceito": "Verificar uma identidade com funções exponenciais: expandir os dois lados e comparar.",
+  "equivocos": {
+   "A": "M06.2:solucao-particular-como-unica",
+   "B": "M06.2:restricao-inventada",
+   "C": "M06.2:restricao-inventada",
+   "D": "M06.2:negou-solucao-existente"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Expanda os dois lados usando 2^(x+y) = 2^x × 2^y. Se os dois lados derem a mesma expressão para quaisquer x e y, a equação é uma identidade: todo par de reais é solução.",
+    "formulas": [
+     "2^(x + y) = 2^x × 2^y",
+     "2^(−x) = 1/2^x"
+    ],
+    "simbolos": [
+     [
+      "identidade",
+      "igualdade verdadeira para todos os valores das variáveis"
+     ]
+    ]
+   },
+   "pista": "Expanda o lado direito, 2f(x)f(y), e compare com o esquerdo.",
+   "passos": [
+    {
+     "faz": "Expanda o lado esquerdo",
+     "conta": "f(x + y) + f(x − y) = (2^(x+y) + 2^(−x−y) + 2^(x−y) + 2^(−x+y))/2",
+     "porque": "Basta trocar x por x + y e por x − y na fórmula de f e somar.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Expanda o lado direito",
+     "conta": "2f(x)f(y) = 2 × (2^x + 2^(−x))(2^y + 2^(−y))/4 = (2^(x+y) + 2^(x−y) + 2^(−x+y) + 2^(−x−y))/2",
+     "porque": "Distributiva: cada termo do primeiro parêntese multiplica cada termo do segundo, somando expoentes.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare os dois lados",
+     "conta": "os quatro termos são os mesmos → igualdade vale para todo x e y",
+     "porque": "Os dois lados têm as mesmas quatro potências divididas por 2, sem nenhuma condição sobre x e y.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Escolha a alternativa",
+     "conta": "todos os reais → alternativa E",
+     "porque": "Uma identidade é satisfeita por qualquer par de reais.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — Todos os valores reais de x e y são soluções da equação.",
+   "checagem": "Teste com números: x = 1 e y = 1 dão f(2) + f(0) = 2,125 + 1 = 3,125 e 2f(1)^2 = 2 × 1,25^2 = 3,125. Fecha.",
+   "erradas": {
+    "A": "Não confere: x = 1 e y = 1 também satisfazem (3,125 = 3,125), então não é só x = 0 e y = 0.",
+    "B": "Não confere: x = 0,5 e y = 0,5 satisfazem (f(1) + f(0) = 2,25 = 2f(0,5)^2), e não são inteiros.",
+    "C": "Não confere: x = −1 e y = 0,5 satisfazem a equação, e x é negativo.",
+    "D": "Não confere: x = 0 e y = 0 dão 1 + 1 = 2 × 1 × 1, então existe solução real."
+   },
+   "armadilha": "Achar uma solução particular não basta: a expansão mostra que vale para todos os pares.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quais pares (x, y) satisfazem f(x + y) + f(x − y) = 2f(x)f(y).",
+    "chave": "Expandindo, os dois lados dão as mesmas quatro potências de 2 divididas por 2.",
+    "cuidado": "Antes de marcar \"exclusivamente\", teste outros valores."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "eliminação por teste",
+    "ideia": "x = y = 1 e x = −1, y = 0,5 satisfazem: isso derruba A, B, C e D."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "f(x + y) + f(x − y)",
+    "nota": "lado esquerdo"
+   },
+   {
+    "linha": "(2^(x+y) + 2^(−x−y) + 2^(x−y) + 2^(−x+y))/2",
+    "nota": "substitui em f"
+   },
+   {
+    "linha": "2 × (2^x + 2^(−x))(2^y + 2^(−y))/4",
+    "nota": "lado direito"
+   },
+   {
+    "linha": "(2^(x+y) + 2^(x−y) + 2^(−x+y) + 2^(−x−y))/2",
+    "nota": "distributiva"
+   },
+   {
+    "linha": "esquerdo = direito para todo x, y",
+    "nota": "identidade"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0057"
+  }
  }
 }

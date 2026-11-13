@@ -204,5 +204,250 @@
    "data": "2026-11-13",
    "lote": "mat-0053"
   }
+ },
+ "P24753958": {
+  "n": "13",
+  "conceito": "Equação exponencial com bases diferentes reduzida, por fatoração, a uma equação do 2º grau numa razão de potências.",
+  "equivocos": {
+   "B": "M06.2:parou-na-variavel-auxiliar",
+   "C": "M06.2:solucao-nao-confere",
+   "D": "M06.2:solucao-nao-confere",
+   "E": "M06.2:solucao-nao-confere"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "As quatro bases são produtos de 2 e 3: 144 = 2^4 × 3^2, 324 = 2^2 × 3^4, 64 = 2^6 e 729 = 3^6. Chamando p = 4^x e q = 9^x, o numerador vira pq(p + q) e o denominador vira p^3 + q^3 = (p + q)(p^2 − pq + q^2). O fator (p + q) cancela e sobra uma equação na razão t = p/q.",
+    "formulas": [
+     "p^3 + q^3 = (p + q)(p^2 − pq + q^2)",
+     "t = p/q = (4/9)^x = (2/3)^(2x)"
+    ],
+    "simbolos": [
+     [
+      "p",
+      "4^x, que é 2^(2x)"
+     ],
+     [
+      "q",
+      "9^x, que é 3^(2x)"
+     ],
+     [
+      "t",
+      "a razão p/q, sempre positiva"
+     ]
+    ]
+   },
+   "pista": "Escreva cada base como produto de potências de 2 e de 3 e procure um fator comum.",
+   "passos": [
+    {
+     "faz": "Reescreva com p = 4^x e q = 9^x",
+     "conta": "144^x = p^2 × q | 324^x = p × q^2 | 64^x = p^3 | 729^x = q^3",
+     "porque": "144 = 16 × 9 e 324 = 4 × 81; 64 = 4^3 e 729 = 9^3.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Fatore e cancele p + q",
+     "conta": "pq(p + q)/((p + q)(p^2 − pq + q^2)) = 6/7 → pq/(p^2 − pq + q^2) = 6/7",
+     "porque": "Soma de cubos tem o fator p + q, que também está no numerador; p + q > 0, então pode cancelar.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida por q^2 e use t = p/q",
+     "conta": "t/(t^2 − t + 1) = 6/7 → 7t = 6(t^2 − t + 1) → 6t^2 − 13t + 6 = 0",
+     "porque": "Multiplicação cruzada e tudo para um lado.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva em t e volte para x",
+     "conta": "t = 3/2 ou t = 2/3 | (2/3)^(2x) = 3/2 → x = −1/2 | (2/3)^(2x) = 2/3 → x = 1/2",
+     "porque": "Δ = 169 − 144 = 25, raízes (13 ± 5)/12. Como 3/2 = (2/3)^(−1), 2x = −1; e 2x = 1 na outra.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some os módulos",
+     "conta": "|−1/2| + |1/2| = 1 → alternativa A",
+     "porque": "A pergunta é a soma dos módulos das soluções reais.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 1",
+   "checagem": "Teste x = 1/2: (12 + 18)/(8 + 27) = 30/35 = 6/7. Teste x = −1/2: (1/12 + 1/18)/(1/8 + 1/27) = (5/36)/(35/216) = 6/7. Os dois fecham.",
+   "erradas": {
+    "B": "2 sai de parar em 2x = ±1 e somar os módulos de 2x: 1 + 1 = 2. A incógnita é x, então cada módulo vale 1/2.",
+    "C": "3 não confere: as únicas soluções reais são 1/2 e −1/2, e a soma dos módulos é 1.",
+    "D": "8 não confere: as únicas soluções reais são 1/2 e −1/2, e a soma dos módulos é 1.",
+    "E": "9 não confere: as únicas soluções reais são 1/2 e −1/2, e a soma dos módulos é 1."
+   },
+   "armadilha": "Depois de achar t, ainda falta voltar para x: (2/3)^(2x) tem o 2 no expoente.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A soma dos módulos das soluções reais de (144^x + 324^x)/(64^x + 729^x) = 6/7.",
+    "chave": "Com p = 4^x e q = 9^x, cancela p + q e sai 6t^2 − 13t + 6 = 0; x = ±1/2.",
+    "cuidado": "Volte de t para x lembrando que t = (2/3)^(2x)."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "simetria",
+    "ideia": "Trocar x por −x troca t por 1/t, e a equação t/(t^2 − t + 1) não muda; as soluções vêm aos pares ±x, e x = 1/2 se acha testando."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "pq(p + q)/(p^3 + q^3) = 6/7",
+    "nota": "p = 4^x, q = 9^x"
+   },
+   {
+    "linha": "pq/(p^2 − pq + q^2) = 6/7",
+    "nota": "cancela p + q"
+   },
+   {
+    "linha": "t/(t^2 − t + 1) = 6/7",
+    "nota": "divide por q^2"
+   },
+   {
+    "linha": "7 × t = 6 × (t^2 − t + 1)",
+    "nota": "multiplicação cruzada"
+   },
+   {
+    "linha": "6t^2 − 13t + 6 = 0",
+    "nota": "tudo para um lado"
+   },
+   {
+    "linha": "t = 3/2 ou t = 2/3",
+    "nota": "Δ = 25"
+   },
+   {
+    "linha": "x = −1/2 ou x = 1/2",
+    "nota": "(2/3)^(2x) = t"
+   },
+   {
+    "linha": "1/2 + 1/2 = 1",
+    "nota": "soma dos módulos"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0057"
+  }
+ },
+ "Pcc9787ed": {
+  "n": "8",
+  "conceito": "Paridade de uma função logarítmica: comparar f(−x) com f(x) usando o produto conjugado.",
+  "equivocos": {
+   "A": "M06.3:paridade-trocada",
+   "C": "M06.3:esqueceu-x-negativo",
+   "D": "M06.3:numero-de-raizes-errado",
+   "E": "M06.3:esqueceu-raiz-zero"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Para saber se f é par ou ímpar, calcule f(−x). O truque é o produto (√(x^2 + 1) − x)(√(x^2 + 1) + x) = x^2 + 1 − x^2 = 1: os dois fatores são inversos, e log do inverso é o oposto do log.",
+    "formulas": [
+     "par: f(−x) = f(x); ímpar: f(−x) = −f(x)",
+     "(√(x^2 + 1) − x)(√(x^2 + 1) + x) = 1",
+     "log (1/A) = −log A"
+    ],
+    "simbolos": [
+     [
+      "função par",
+      "gráfico simétrico em relação ao eixo y"
+     ],
+     [
+      "função ímpar",
+      "gráfico simétrico em relação à origem"
+     ]
+    ]
+   },
+   "pista": "Calcule f(−x) e multiplique o que fica dentro do log pelo seu conjugado.",
+   "passos": [
+    {
+     "faz": "Escreva f(−x)",
+     "conta": "f(−x) = log (√(x^2 + 1) − x)",
+     "porque": "Trocar x por −x muda o sinal do primeiro termo; x^2 não muda.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Use o produto conjugado",
+     "conta": "(√(x^2 + 1) − x)(√(x^2 + 1) + x) = x^2 + 1 − x^2 = 1",
+     "porque": "Produto da soma pela diferença.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Reescreva f(−x)",
+     "conta": "f(−x) = log (1/(x + √(x^2 + 1))) = −log (x + √(x^2 + 1)) = −f(x)",
+     "porque": "Se o produto é 1, um fator é o inverso do outro; log do inverso é o oposto.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Elimine as outras",
+     "conta": "f(0) = log 1 = 0 | f(−1) ≈ −0,383 ≠ f(1) ≈ 0,383",
+     "porque": "Isso derruba \"par\" e \"não tem raiz\"; f é crescente, então tem só uma raiz.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "f(−x) = −f(x) → f é ímpar → alternativa B",
+     "porque": "É a definição de função ímpar.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — f(x) é uma função ímpar.",
+   "checagem": "Numericamente: f(2) = log (2 + √5) ≈ 0,627 e f(−2) = log (√5 − 2) ≈ −0,627. Valores opostos, como numa função ímpar.",
+   "erradas": {
+    "A": "Não confere: f(1) = log (1 + √2) ≈ 0,383 e f(−1) = log (√2 − 1) ≈ −0,383; são opostos, não iguais.",
+    "C": "Não confere: para x = −1, f(−2) ≈ −0,627 é menor que f(−1) ≈ −0,383, e não maior.",
+    "D": "Não confere: f é crescente, então tem uma raiz só, x = 0.",
+    "E": "Não confere: f(0) = log (0 + 1) = log 1 = 0, então x = 0 é raiz."
+   },
+   "armadilha": "x + √(x^2 + 1) e √(x^2 + 1) − x são inversos: é isso que faz f(−x) = −f(x).",
+   "alerta": "",
+   "essencial": {
+    "pede": "Qual propriedade vale para f(x) = log(x + √(x^2 + 1)).",
+    "chave": "(√(x^2 + 1) − x)(√(x^2 + 1) + x) = 1, logo f(−x) = −f(x): f é ímpar.",
+    "cuidado": "Teste x negativo também ao julgar afirmações do tipo \"para todo x\"."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "soma",
+    "ideia": "f(x) + f(−x) = log [(x + √(x^2 + 1))(√(x^2 + 1) − x)] = log 1 = 0, logo f(−x) = −f(x)."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "f(−x) = log (√(x^2 + 1) − x)",
+    "nota": "troca x por −x"
+   },
+   {
+    "linha": "(√(x^2 + 1) − x)(√(x^2 + 1) + x) = 1",
+    "nota": "conjugado"
+   },
+   {
+    "linha": "f(−x) = log (1/(x + √(x^2 + 1)))",
+    "nota": "inverso"
+   },
+   {
+    "linha": "f(−x) = −f(x)",
+    "nota": "log do inverso: f é ímpar"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0057"
+  }
  }
 }

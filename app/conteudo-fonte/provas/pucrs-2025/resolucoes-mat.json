@@ -286,5 +286,112 @@
    "data": "2026-11-13",
    "lote": "mat-0055"
   }
+ },
+ "Pc93d5da5": {
+  "n": "14",
+  "conceito": "Comparar dois crescimentos exponenciais de bases diferentes por meio de uma inequação exponencial.",
+  "equivocos": {
+   "A": "M06.2:inequacao-mal-resolvida",
+   "C": "M06.2:ignorou-igualdade",
+   "D": "M06.2:nao-pegou-o-minimo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A começa com 729 e dobra por semana; B começa com 64 e triplica. Depois de n semanas, A = 729 × 2^n e B = 64 × 3^n. A pergunta é o menor n com B ≥ A. Repare que 729 = 3^6 e 64 = 2^6: isso faz tudo virar uma potência de 3/2.",
+    "formulas": [
+     "A(n) = 729 × 2^n",
+     "B(n) = 64 × 3^n",
+     "729/64 = 3^6/2^6 = (3/2)^6"
+    ],
+    "simbolos": [
+     [
+      "n",
+      "número de semanas"
+     ]
+    ]
+   },
+   "pista": "Escreva as duas populações depois de n semanas e monte a desigualdade B ≥ A.",
+   "passos": [
+    {
+     "faz": "Monte as duas funções",
+     "conta": "A(n) = 729 × 2^n | B(n) = 64 × 3^n",
+     "porque": "Dobrar a cada semana é multiplicar por 2 a cada semana; triplicar, por 3.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Escreva a condição",
+     "conta": "64 × 3^n ≥ 729 × 2^n → 3^n/2^n ≥ 729/64",
+     "porque": "Dividir os dois lados por números positivos (64 e 2^n) não muda o sentido.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Reconheça a mesma base",
+     "conta": "(3/2)^n ≥ (3/2)^6",
+     "porque": "729 = 3^6 e 64 = 2^6.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare os expoentes",
+     "conta": "n ≥ 6",
+     "porque": "A base 3/2 é maior que 1, então a potência cresce com o expoente e o sentido se mantém.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Responda o menor tempo",
+     "conta": "n = 6 semanas → alternativa B",
+     "porque": "O primeiro n que satisfaz é 6; nessa semana as duas populações empatam, e o enunciado aceita igual.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 6 semanas",
+   "checagem": "Conte direto: com 5 semanas, A = 729 × 32 = 23328 e B = 64 × 243 = 15552 (B ainda menor). Com 6 semanas, A = 729 × 64 = 46656 e B = 64 × 729 = 46656 (empate).",
+   "erradas": {
+    "A": "5 não confere: com 5 semanas B = 15552 e A = 23328, B ainda é menor.",
+    "C": "7 é uma semana depois do necessário: desde a 6.ª semana B já é igual a A, e o enunciado aceita maior ou igual.",
+    "D": "8 é duas semanas depois do necessário: desde a 6.ª semana B já é igual a A."
+   },
+   "armadilha": "O enunciado pede maior ou igual: o empate na 6.ª semana já conta.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O menor número de semanas para B alcançar ou passar A.",
+    "chave": "64 × 3^n ≥ 729 × 2^n dá (3/2)^n ≥ (3/2)^6, n ≥ 6.",
+    "cuidado": "Perceba 729 = 3^6 e 64 = 2^6, e aceite o empate."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "tabela semanal",
+    "ideia": "Liste A e B semana a semana: a 6.ª é a primeira em que B alcança A (46656 = 46656)."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "64 × 3^n ≥ 729 × 2^n",
+    "nota": "condição B ≥ A"
+   },
+   {
+    "linha": "3^n/2^n ≥ 729/64",
+    "nota": "divide por 64 e por 2^n"
+   },
+   {
+    "linha": "(3/2)^n ≥ (3/2)^6",
+    "nota": "729 = 3^6, 64 = 2^6"
+   },
+   {
+    "linha": "n ≥ 6",
+    "nota": "base maior que 1"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0057"
+  }
  }
 }
