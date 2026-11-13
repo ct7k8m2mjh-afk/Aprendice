@@ -22,7 +22,7 @@ questão. Fala com o dono em português do Brasil, simples. Mantém a própria c
 - No máximo 5 ao mesmo tempo (dono, 12/11): Matemática, Física, Química, Biologia, Português. Quando uma matéria acabar
   (ACABOU na caixa), a vaga vai para Geografia (1.476 por fazer). História, Inglês e Filosofia e Sociologia acabaram.
 - Modo enxuto (PROMPT-SESSAO-RESOLUCOES.md): lote de 60, 6 agentes resolvem em paralelo, 2 conferentes (30 cada) em
-  segundo plano enquanto o próximo lote já anda; a conversa principal só organiza. Troca pelo contexto (25%), não por
+  segundo plano enquanto o próximo lote já anda; a conversa principal só organiza. Troca pelo contexto (40%), não por
   número de lotes. Sessão de revisão separada: NÃO (avaliado em 13/11: o lote fica preso à sessão que o abriu, falar entre
   sessões pede aprovação ou consulta repetida, e o conferente em segundo plano já trabalha em paralelo e às cegas).
 - A sessão escreve FIM, PENDENCIAS ou ACABOU em docs/resolucoes/caixa/<m>.md (commit) e, no FIM, encerra.
@@ -36,7 +36,7 @@ questão. Fala com o dono em português do Brasil, simples. Mantém a própria c
 `python3 ferramentas/resolucoes/vez.py <m>`: se der OCUPADO (outra sessão desta matéria gravou há menos de 45 min), encerre
 sem fazer nada. Senão, leia CLAUDE.md e siga integralmente docs/resolucoes/PROMPT-SESSAO-RESOLUCOES.md com a sua matéria =
 <m>, em especial o MODO ENXUTO (a sua conversa só organiza; resolver, conferir e abrir prints é sempre trabalho de agentes),
-o lote de 60 (`lote.py proximo <m> 60 --novo`) e o passo 9 (ao passar de 25% do contexto, termine os lotes abertos,
+o lote de 60 (`lote.py proximo <m> 60 --novo`) e o passo 9 (ao passar de 40% do contexto, termine os lotes abertos,
 escreva FIM na caixa e encerre). Retome antes os lotes abertos que o vez.py listar (`--retomar <lote>`). Prepare o
 ambiente em segundo plano: `cd app && (test -d node_modules || npm ci); python3 -m pip install -q --break-system-packages
 pillow numpy scipy; flock /tmp/converte.lock python3 scripts/converte.py`. Nunca use send_message e nunca pare esperando
@@ -68,7 +68,7 @@ aprovação ou resposta: pendências e avisos vão para docs/resolucoes/caixa/<m
 Antigas, todas paradas (o dono pode arquivar): Mat session_01PveEKZRuBiHmg4Hm9HT1J1, Fís session_01PveEKXmCjqipC4JbNj9w73,
 Quí session_01PveEKadroQ4kNhHt52L2hy, Bio session_01PveEKaptKYR7JXwbmxDGXx, Por session_01PveEKaBDR2WGsLQUacMYFY; e as
 anteriores já listadas para arquivar. Coordenadoras antigas: session_01PveEKWW3t7ZxcdDQKNiYWa, session_01PveEKabuyZnqVN65W5FfEc.
-COORDENADORA ATUAL: session_01PveEKXX1TDGcjetcyMQLVm (13/11 05h03), acordada pela tarefa trig_01L1hQ4kKsZUoi153z1k5wqY (hora em hora, minuto 3).
+COORDENADORA ATUAL: session_01PveEKXX1TDGcjetcyMQLVm (13/11 05h03), acordada a cada 20 min por 3 tarefas (minutos 3, 23, 43: trig_01L1hQ4kKsZUoi153z1k5wqY, trig_01GNukL58HkyvYTSY6ao7ujk, trig_01LRUGodxhrgPzxYEYvKm4sn).
 Ambientes: as sessões usam o Default (env_01PD36og67UPYvCWa3DcbQpX, tem a chave da Vercel; o repositório vem no source_url).
 O ambiente "Fabrica" (env_01QMooYA98c8e8MNnWwkV34D) tem o repositório salvo e a APRENDICE_API_KEY (fábrica pela API).
 
@@ -79,6 +79,7 @@ O ambiente "Fabrica" (env_01QMooYA98c8e8MNnWwkV34D) tem o repositório salvo e a
   get_deployment (conferir pelo relatorio.json do site com curl).
 
 ## Pendências a tratar
+- Física (FIM 13/11 05h29): print P8de70adc (fim das linhas cortado, °F); P9615ec2a (UERR q44: conferir no caderno se é esta a questão 44 do gabarito; se for, resolver com C e alerta); texto P42642b2d (0,2 kg → 2,0 kg pelo print).
 Prints, reclassificações e gabaritos que chegaram das sessões e ainda não foram tratados. Restos de 13/11: gabaritos da
 UFRR (editais 93/25-CPV e 97/24-CPV; site deu 503) — Pdfed097c, P4e8b41b9, P523fcc4a, P802620a5, P1b018f21, Pdfefb95a,
 Pb2ea6273, Pdc6fdc40, P91b7dbde, P6e4b0c62, Pf34120b0; IME 2024 q36 (P1f92eb26) errata E a confirmar (resolução pronta em
