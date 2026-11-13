@@ -32,3 +32,12 @@ Lote bio-0062 gravado. Aberto: bio-0063 (resolvendo).
 - Pfd1ea733: pendente — classificação: é de Química (cinética da síntese do DDT).
 - Pd860da4d, P1b43382f, P50da9a5a: equívocos codificados em B09.7; a questão está em B09.3 (revisar classificação).
 - P6b95bc98 (bio-0063): na entrada, o texto de apoio está colado na alternativa E (corrigir separação texto/alternativa).
+
+## 2026-11-13 UTC — FIM — session_01PveEKb648gnNx7gv9Y2Xbs
+Encerrando a vez (tamanho da conversa). Último lote gravado: bio-0063. Nenhum lote aberto. A próxima sessão começa no bio-0064.
+Nesta sessão: bio-0059 (59), bio-0060 (60), bio-0061 (59), bio-0062 (59), bio-0063 (60) = 297 resoluções; 3 pendentes (classificação: Pc6c1048f Física, Pb536f4cb Química, Pfd1ea733 Química).
+Testes depois do bio-0063: converte + tsc + vitest verdes (786 passed). Status bio: 707 na linha da matéria.
+Pendências novas do bio-0063:
+- P233b33fd: entrada com erro — o texto de apoio (Relatório Planeta Vivo, WWF, 1970–2018) está colado no fim da alternativa E e falta no texto_da_prova (conferido no print). Resolução gravada está certa.
+- P0e5ecbdc: gravada com "Gabarito do Aprendice" (E, igual ao preliminar e ao conferente às cegas). Existe o Edital 93/25 da UFRR com o gabarito oficial (editais.ufrr.br/editais/arquivo/1209/...), mas o site deu erro 503; conferir a letra oficial e possível anulação quando abrir.
+Lembrete para a próxima sessão: o lote.py lê "visual" no nível da questão, não dentro de "resolucao"; a conferência às cegas recebe a entrada sem gabarito_preliminar/gabarito_oficial.
