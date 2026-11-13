@@ -247,5 +247,122 @@
    "data": "2026-11-13",
    "lote": "mat-0059"
   }
+ },
+ "Pca8b7334": {
+  "n": "45",
+  "conceito": "Comparar o total de velas compradas (12 por ano) com a soma 1 + 2 + … + n das velas usadas até a idade n.",
+  "equivocos": {
+   "A": "M07.3:nao-acumulou-o-estoque",
+   "B": "M07.3:tomou-a-igualdade-como-falta",
+   "D": "M07.3:nao-testou-a-primeira-idade",
+   "E": "M07.3:nao-testou-a-primeira-idade"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O estoque é acumulado: até a idade n entraram 12n velas (um pacote por aniversário) e saíram 1 + 2 + … + n velas. As velas faltam no primeiro aniversário em que o que foi usado até ali passa do que foi comprado. A soma dos n primeiros naturais é a soma de uma PA, e a comparação vira uma desigualdade simples.",
+    "formulas": [
+     "velas compradas até a idade n = 12 × n",
+     "velas usadas até a idade n = n(n + 1)/2",
+     "faltam velas quando n(n + 1)/2 > 12n"
+    ],
+    "simbolos": [
+     [
+      "n",
+      "a idade, em anos, no aniversário analisado"
+     ],
+     [
+      "PA",
+      "progressão aritmética: cada termo é o anterior mais um valor fixo"
+     ]
+    ]
+   },
+   "pista": "Não pense ano a ano: escreva quanto entrou e quanto saiu, no total, até o aniversário n.",
+   "passos": [
+    {
+     "faz": "Escreva o total comprado até a idade n",
+     "conta": "comprado = 12n",
+     "porque": "Um pacote de 12 velas por aniversário, desde o primeiro. Até o aniversário n foram n pacotes.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escreva o total usado até a idade n",
+     "conta": "usado = 1 + 2 + … + n = n(n + 1)/2",
+     "porque": "Em cada aniversário a idade é o número de velas: 1, 2, 3, …, n. É a soma de uma PA de razão 1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte a condição de falta e resolva",
+     "conta": "n(n + 1)/2 > 12n → (n + 1)/2 > 12 → n + 1 > 24 → n > 23",
+     "porque": "Faltam velas quando o usado passa do comprado. Como n é positivo, dá para dividir os dois lados por n sem mudar o sentido.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Confira o limite: 23 e 24",
+     "conta": "n = 23: 276 = 276 | n = 24: 300 > 288",
+     "porque": "Aos 23 anos as velas usadas igualam as compradas: o estoque zera, mas ainda é suficiente. Aos 24 faltam 12.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Ligue a idade à alternativa",
+     "conta": "primeiro ano com falta: 24 anos → C",
+     "porque": "O comando pede a idade no primeiro ano em que as velas não bastam, e isso acontece aos 24.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 24 anos",
+   "checagem": "Olhe o estoque antes do 24.º aniversário: até os 23 anos entraram 12 × 23 = 276 velas e saíram 276; sobra 0. Chega o pacote novo, ficam 12 velas para um bolo que pede 24. Falta mesmo.",
+   "erradas": {
+    "A": "12 não confere: até os 12 anos entraram 12 × 12 = 144 velas e saíram só 78; ainda sobram 66 velas guardadas.",
+    "B": "23 sai de parar na igualdade: aos 23 anos usado = comprado = 276. O estoque zera, mas é exatamente suficiente; a falta só vem aos 24.",
+    "D": "36 não confere: aos 24 anos já faltam velas (300 usadas contra 288 compradas), então 36 não é o primeiro ano de falta.",
+    "E": "38 não confere: a falta começa aos 24 anos (300 > 288), muito antes dos 38."
+   },
+   "armadilha": "Aos 23 anos as velas acabam exatamente, mas ainda bastam: o primeiro ano de falta é o seguinte.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A primeira idade em que as velas guardadas mais o pacote do ano não bastam.",
+    "chave": "Comparar n(n + 1)/2 velas usadas com 12n compradas: falta quando n + 1 > 24.",
+    "cuidado": "Igualdade não é falta: aos 23 o estoque zera e ainda dá."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "média",
+    "ideia": "O consumo médio até n é (n + 1)/2 velas por ano; ele passa de 12 por ano quando n + 1 > 24, isto é, aos 24."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "comprado = 12n",
+    "nota": "um pacote por aniversário"
+   },
+   {
+    "linha": "usado = n(n + 1)/2",
+    "nota": "soma 1 + 2 + … + n"
+   },
+   {
+    "linha": "n(n + 1)/2 > 12n",
+    "nota": "falta quando usado passa do comprado"
+   },
+   {
+    "linha": "n + 1 > 24 → n > 23",
+    "nota": "divide por n e multiplica por 2"
+   },
+   {
+    "linha": "n = 24 → 300 > 288",
+    "nota": "primeiro ano de falta"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0060"
+  }
  }
 }

@@ -204,5 +204,128 @@
    "data": "2026-11-13",
    "lote": "mat-0056"
   }
+ },
+ "P1d1bb4f2": {
+  "n": "17",
+  "conceito": "Razão entre áreas de triângulos usando a área com seno e a altura do triângulo isósceles com trigonometria.",
+  "equivocos": {
+   "A": "M08.1:razao-de-areas-sem-teste",
+   "B": "M08.1:razao-de-areas-sem-teste",
+   "C": "M08.1:razao-de-areas-constante"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O triângulo ABC tem dois lados de medida α e o ângulo 2θ entre eles, então a área sai da fórmula com seno. No triângulo desenhado, a altura que sai de A divide a base α ao meio e divide o ângulo 2θ em dois ângulos θ; com a tangente de θ, sai a altura e, dela, a área.",
+    "formulas": [
+     "área com dois lados e o ângulo entre eles = (a × b × sen do ângulo)/2",
+     "tg θ = cateto oposto ÷ cateto adjacente",
+     "sen 2θ = 2 sen θ cos θ"
+    ],
+    "simbolos": [
+     [
+      "α",
+      "medida da base do triângulo desenhado e de AB e AC"
+     ],
+     [
+      "θ",
+      "metade do ângulo em A"
+     ],
+     [
+      "h",
+      "altura do triângulo desenhado relativa à base"
+     ],
+     [
+      "tg",
+      "tangente"
+     ]
+    ]
+   },
+   "pista": "Para o triângulo grande, trace a altura de A até a base e olhe o triângulo retângulo com ângulo θ.",
+   "passos": [
+    {
+     "faz": "Calcule a área de ABC",
+     "conta": "A_ABC = (α × α × sen 2θ)/2",
+     "porque": "AB = AC = α e o ângulo entre eles é o ângulo A, de 2θ.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a altura do triângulo desenhado",
+     "conta": "tg θ = (α/2)/h → h = α/(2 tg θ)",
+     "porque": "A altura do isósceles cai no meio da base e divide o ângulo 2θ ao meio; θ fica oposto a α/2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a área do desenhado",
+     "conta": "A_T = (α × h)/2 → A_T = α²/(4 tg θ)",
+     "porque": "Base α vezes altura α/(2 tg θ), dividido por 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida e simplifique",
+     "conta": "(α² sen 2θ/2)/(α²/(4 tg θ)) = 2 sen 2θ tg θ → 4 sen θ cos θ × (sen θ)/(cos θ) → 4 sen²θ",
+     "porque": "α² cancela; troque sen 2θ por 2 sen θ cos θ e tg θ por sen θ ÷ cos θ, e o cos θ se cancela.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Marque a alternativa",
+     "conta": "razão = 4 sen²θ → alternativa D",
+     "porque": "A razão pedida é área de ABC sobre área do triângulo desenhado.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 4 sen²(θ)",
+   "checagem": "Teste θ = 30°: o ângulo A vale 60° e o triângulo desenhado vira equilátero de lado α; então B e C são os próprios vértices da base, ABC é o triângulo inteiro e a razão tem de ser 1. De fato, 4 × sen²30° = 4 × 1/4 = 1.",
+   "erradas": {
+    "A": "2 cos(θ) não confere: com θ = 30° (caso em que ABC é o próprio triângulo) dá 2 × 0,866 ≈ 1,73, e a razão tem de ser 1.",
+    "B": "2 tg(θ) não confere: com θ = 30° dá 2 × 0,577 ≈ 1,15, e não 1.",
+    "C": "4 não confere: a razão depende de θ, e no caso θ = 30° vale 1. Além disso, ABC fica dentro do triângulo desenhado quando θ < 30°, e a razão não pode passar de 1 nesse caso."
+   },
+   "armadilha": "A altura do triângulo grande não é α: ela sai da tangente de θ, metade do ângulo em A.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A razão entre a área de ABC e a área do triângulo isósceles desenhado.",
+    "chave": "A_ABC = α² sen 2θ ÷ 2 e A_T = α² ÷ (4 tg θ); a razão simplifica para 4 sen²θ.",
+    "cuidado": "A altura do isósceles divide o ângulo 2θ ao meio: use θ, não 2θ, no triângulo retângulo."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "caso particular",
+    "ideia": "Com θ = 30° o triângulo é equilátero, ABC coincide com ele e a razão é 1: só 4 sen²θ dá 1."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "A_ABC = (α² sen 2θ)/2",
+    "nota": "dois lados e o ângulo"
+   },
+   {
+    "linha": "h = α/(2 tg θ)",
+    "nota": "tangente na metade do isósceles"
+   },
+   {
+    "linha": "A_T = α²/(4 tg θ)",
+    "nota": "base × altura ÷ 2"
+   },
+   {
+    "linha": "2 sen 2θ tg θ = 4 sen θ cos θ × (sen θ)/(cos θ)",
+    "nota": "divisão das áreas"
+   },
+   {
+    "linha": "= 4 sen²θ",
+    "nota": "cos θ se cancela"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0060"
+  }
  }
 }

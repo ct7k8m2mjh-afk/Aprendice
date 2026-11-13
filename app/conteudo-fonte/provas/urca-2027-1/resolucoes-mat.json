@@ -748,5 +748,143 @@
    "data": "2026-11-13",
    "lote": "mat-0058"
   }
+ },
+ "P191c7778": {
+  "n": "19",
+  "conceito": "Sequência cujas diferenças formam uma PA: a_11 = a_1 + soma das 10 primeiras diferenças.",
+  "equivocos": {
+   "A": "M07.4:valor-fora-da-sequencia",
+   "B": "M07.4:valor-fora-da-sequencia",
+   "D": "M07.4:erro-de-um-no-termo-geral",
+   "E": "M07.4:valor-fora-da-sequencia"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Para ir de a_1 até a_11 você dá 10 passos, e cada passo soma uma diferença: a_11 = a_1 + d_1 + d_2 + ... + d_10. As diferenças formam uma PA (5, 7, 9, ...), então essa soma sai pela fórmula da soma da PA.",
+    "formulas": [
+     "d_n = d_1 + (n − 1)·r",
+     "soma da PA = ((primeiro + último) · quantidade)/2"
+    ],
+    "simbolos": [
+     [
+      "a_n",
+      "termo de posição n da sequência"
+     ],
+     [
+      "d_n",
+      "diferença a_(n+1) − a_n"
+     ],
+     [
+      "r",
+      "razão da PA das diferenças"
+     ]
+    ]
+   },
+   "pista": "Quantas diferenças você precisa somar para sair de a_1 e chegar em a_11?",
+   "passos": [
+    {
+     "faz": "Escreva a_11 com as diferenças",
+     "conta": "a_11 = a_1 + d_1 + d_2 + ... + d_10",
+     "porque": "De a_1 a a_11 são 10 passos; cada passo soma uma diferença.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Ache a 10ª diferença",
+     "conta": "d_10 = 5 + (10 − 1) × 2 = 5 + 18 = 23",
+     "porque": "Termo geral da PA das diferenças, com d_1 = 5 e razão 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some as 10 diferenças",
+     "conta": "((5 + 23) × 10)/2 = 140",
+     "porque": "Soma da PA: primeiro mais último, vezes a quantidade, dividido por 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some ao primeiro termo",
+     "conta": "a_11 = 2 + 140 = 142",
+     "porque": "O primeiro termo da sequência é 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "142 → alternativa C",
+     "porque": "O 11º termo é 142.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 142",
+   "checagem": "Continuando a lista: 2, 7, 14, 23, 34, 47, 62, 79, 98, 119, 142 (somando 5, 7, 9, ..., 23). Ou pela fórmula a_n = n² + 2n − 1, que dá 2, 7, 14, 23 e, em n = 11, 121 + 22 − 1 = 142.",
+   "erradas": {
+    "A": "121 não confere: está entre a_10 = 119 e a_11 = 142, então não é termo da sequência. Coincide com 11², mas a fórmula dos termos é n² + 2n − 1.",
+    "B": "132 não confere: também fica entre a_10 = 119 e a_11 = 142, sem ser termo da sequência.",
+    "D": "152 sai de errar o termo geral das diferenças: d_10 = 5 + 10 × 2 = 25 em vez de 23; soma ((5 + 25) × 10)/2 = 150 e 2 + 150 = 152.",
+    "E": "161 não confere: a_11 − a_1 = 159 teria de ser a soma de 10 diferenças ímpares (5, 7, 9, ...), e soma de 10 ímpares é par; 159 é ímpar."
+   },
+   "armadilha": "De a_1 a a_11 são 10 diferenças, e a 10ª diferença é 5 + 9 × 2 = 23, não 5 + 10 × 2.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O 11º termo de (2, 7, 14, 23, ...).",
+    "chave": "a_11 = 2 + (5 + 7 + ... + 23) = 2 + 140 = 142.",
+    "cuidado": "São 10 diferenças, e o termo geral usa (n − 1)·r."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "fórmula fechada",
+    "ideia": "Os termos seguem a_n = n² + 2n − 1 (confira em 2, 7, 14, 23); a_11 = 121 + 22 − 1 = 142."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "a_11 = a_1 + d_1 + ... + d_10",
+    "nota": "10 passos"
+   },
+   {
+    "linha": "d_10 = 5 + 9 × 2 = 23",
+    "nota": "última diferença"
+   },
+   {
+    "linha": "((5 + 23) × 10)/2 = 140",
+    "nota": "soma das diferenças"
+   },
+   {
+    "linha": "2 + 140 = 142",
+    "nota": "a_11"
+   },
+   {
+    "linha": "resposta: 142 (C)",
+    "nota": "conclusão"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "Gabarito preliminar URCA 2027.1, 1º dia (cópia publicada pela Estratégia Vestibulares)",
+    "url": "https://cdn.blog.estrategiavestibulares.com.br/vestibulares/wp-content/uploads/2026/11/Gabarito-Preliminar-1o-dia.pdf"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0060"
+  },
+  "gabarito_aprendice": {
+   "letra": "C",
+   "letra_conferente": "C",
+   "preliminar": "C",
+   "fontes_web": [
+    {
+     "url": "https://cdn.blog.estrategiavestibulares.com.br/vestibulares/wp-content/uploads/2026/11/Gabarito-Preliminar-1o-dia.pdf",
+     "letra": "C"
+    }
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0060"
+  }
  }
 }

@@ -1,0 +1,126 @@
+{
+ "P31a319ce": {
+  "n": "15",
+  "conceito": "Soma telescópica: k!/(k + 2)! = 1/((k + 1)(k + 2)) = 1/(k + 1) − 1/(k + 2).",
+  "equivocos": {
+   "A": "M07.4:soma-telescopica-mal-cancelada",
+   "B": "M07.4:esqueceu-o-ultimo-termo-da-telescopica",
+   "C": "M07.4:soma-telescopica-mal-cancelada",
+   "D": "M07.4:soma-telescopica-mal-cancelada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada parcela é k!/(k + 2)!. Como (k + 2)! = (k + 2)(k + 1)·k!, o k! cancela e sobra 1/((k + 1)(k + 2)). Essa fração se separa em diferença de duas frações vizinhas, e na soma quase tudo se cancela: é uma soma telescópica.",
+    "formulas": [
+     "(k + 2)! = (k + 2)(k + 1)·k!",
+     "1/((k + 1)(k + 2)) = 1/(k + 1) − 1/(k + 2)"
+    ],
+    "simbolos": [
+     [
+      "k!",
+      "fatorial: 1 · 2 · 3 · ... · k"
+     ],
+     [
+      "soma telescópica",
+      "soma em que cada parcela cancela um pedaço da seguinte, sobrando só o começo e o fim"
+     ]
+    ]
+   },
+   "pista": "Simplifique uma parcela qualquer, k!/(k + 2)!, antes de pensar na soma toda.",
+   "passos": [
+    {
+     "faz": "Simplifique a parcela geral",
+     "conta": "k!/(k + 2)! = k!/((k + 2)(k + 1)·k!) = 1/((k + 1)(k + 2))",
+     "porque": "O fatorial de cima cancela com o pedaço igual do de baixo. A soma vai de k = 1 até k = 2024.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Separe em diferença",
+     "conta": "1/((k + 1)(k + 2)) = 1/(k + 1) − 1/(k + 2)",
+     "porque": "Duas frações de denominadores vizinhos: 1/(k + 1) − 1/(k + 2) = ((k + 2) − (k + 1))/((k + 1)(k + 2)), que é a parcela.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escreva a soma e cancele",
+     "conta": "S = (1/2 − 1/3) + (1/3 − 1/4) + ... + (1/2025 − 1/2026) = 1/2 − 1/2026",
+     "porque": "Cada −1/(k + 2) cancela com o +1/(k + 2) da parcela seguinte; sobram o primeiro e o último.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Faça a conta final",
+     "conta": "1/2 − 1/2026 = 1013/2026 − 1/2026 = 1012/2026",
+     "porque": "Denominador comum 2026, porque 2026 = 2 × 1013.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "1012/2026 → alternativa E",
+     "porque": "A forma não simplificada é exatamente a da alternativa E.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 1012/2026",
+   "checagem": "Com poucas parcelas a regra 1/2 − 1/(n + 2) funciona: 1/6 + 1/12 = 3/12 = 1/4, e 1/2 − 1/4 = 1/4. Na questão, n = 2024 dá 1/2 − 1/2026. E S fica um pouco abaixo de 1/2, como 1012/2026 ≈ 0,4995.",
+   "erradas": {
+    "A": "1012/1013 não confere: vale cerca de 0,999, mais que 1/2, e a soma é 1/2 menos um número positivo, logo menor que 1/2.",
+    "B": "1012/2024 = 1/2 sai de ficar só com o primeiro termo da soma telescópica e esquecer o −1/2026 do fim.",
+    "C": "1010/2024 não confere: é 1/2 − 2/2024 = 1/2 − 1/1012, e a parte que sobra no fim é 1/2026, não 1/1012.",
+    "D": "1010/2026 não confere: é 1013/2026 − 3/2026, ou seja, 1/2 − 3/2026, e a soma é 1/2 − 1/2026."
+   },
+   "armadilha": "Na soma telescópica sobram o primeiro E o último termo; esquecer o −1/2026 leva a 1/2.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O valor de 1!/3! + 2!/4! + ... + 2024!/2026!.",
+    "chave": "k!/(k + 2)! = 1/(k + 1) − 1/(k + 2); a soma telescópica deixa 1/2 − 1/2026 = 1012/2026.",
+    "cuidado": "Simplifique o fatorial antes e não esqueça o último termo que sobra."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "padrão das somas parciais",
+    "ideia": "Somas parciais 1/6, 1/4, 3/10, ... seguem n/(2(n + 2)); com n = 2024 dá 2024/4052 = 1012/2026."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "k!/(k + 2)! = 1/((k + 1)(k + 2))",
+    "nota": "cancela k!"
+   },
+   {
+    "linha": "= 1/(k + 1) − 1/(k + 2)",
+    "nota": "separa em diferença"
+   },
+   {
+    "linha": "S = 1/2 − 1/2026",
+    "nota": "telescópica"
+   },
+   {
+    "linha": "= 1013/2026 − 1/2026 = 1012/2026",
+    "nota": "conta final"
+   },
+   {
+    "linha": "resposta: E",
+    "nota": "conclusão"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0060"
+  },
+  "gabarito_aprendice": {
+   "letra": "E",
+   "letra_conferente": "E",
+   "preliminar": "E",
+   "fontes_web": [],
+   "data": "2026-11-13",
+   "lote": "mat-0060"
+  }
+ }
+}

@@ -88,5 +88,126 @@
    "data": "2026-11-13",
    "lote": "mat-0048"
   }
+ },
+ "Pa35f2104": {
+  "n": "19",
+  "conceito": "Raios em progressão geométrica e área da coroa circular entre os dois maiores círculos.",
+  "equivocos": {
+   "A": "M07.2:valor-sem-origem-na-conta",
+   "B": "M07.2:valor-sem-origem-na-conta",
+   "D": "M07.2:valor-sem-origem-na-conta"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os 7 raios formam uma PG que começa em 1 cm e dobra a cada círculo. A coroa pedida é o anel entre os dois maiores círculos: a área dela é a área do círculo maior menos a do segundo maior.",
+    "formulas": [
+     "termo da PG: an = a1 × q^(n − 1)",
+     "área do círculo = π × r²",
+     "área da coroa = π × (R² − r²)"
+    ],
+    "simbolos": [
+     [
+      "PG",
+      "progressão geométrica: cada termo é o anterior vezes a razão"
+     ],
+     [
+      "q",
+      "razão da PG"
+     ],
+     [
+      "coroa circular",
+      "anel entre dois círculos de mesmo centro"
+     ],
+     [
+      "R",
+      "raio do círculo maior"
+     ],
+     [
+      "r",
+      "raio do círculo menor"
+     ],
+     [
+      "concêntricos",
+      "com o mesmo centro"
+     ]
+    ]
+   },
+   "pista": "Liste os 7 raios começando em 1 e veja quais são os dois maiores.",
+   "passos": [
+    {
+     "faz": "Liste os raios da PG",
+     "conta": "1, 2, 4, 8, 16, 32, 64",
+     "porque": "Primeiro termo 1 e razão 2: cada raio é o dobro do anterior. O 7º raio é 1 × 2^6 = 64 cm.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Separe os dois maiores raios",
+     "conta": "R = 64 cm | r = 32 cm",
+     "porque": "A coroa pedida fica entre o 7º e o 6º círculos, os de maiores raios.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule a área da coroa",
+     "conta": "π × (64² − 32²) → π × (4096 − 1024) → 3072π",
+     "porque": "A área do anel é o círculo grande menos o buraco do meio.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o valor à alternativa",
+     "conta": "3072π cm² → alternativa C",
+     "porque": "É exatamente o valor da alternativa C.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 3.072π cm²",
+   "checagem": "Fatore: 64² − 32² = (64 − 32)(64 + 32) = 32 × 96 = 3072. Ou repare que, com razão 2, a coroa entre raios consecutivos vale π(R² − R²/4) = 3/4 × π × R² = 3/4 × 4096π = 3072π.",
+   "erradas": {
+    "A": "2.980π não confere: com razão 2, cada coroa entre círculos vizinhos vale 3/4 da área do maior (3π, 12π, 48π, 192π, 768π, 3072π), e 2980 não está nessa lista.",
+    "B": "3.541π não confere: não é nenhuma das coroas entre círculos vizinhos (3π, 12π, 48π, 192π, 768π, 3072π) nem a área do maior círculo, 4096π.",
+    "D": "3.798π não confere: 3798 ÷ 3 = 1266, que não é potência de 4; toda coroa entre círculos vizinhos desta figura vale 3 × 4^k × π."
+   },
+   "armadilha": "A coroa é a diferença entre as áreas dos dois maiores círculos, não a área do maior nem a soma das áreas.",
+   "alerta": "A prova escreve \"razão 2 cm\", mas a razão de uma PG é um número puro, sem unidade: leia como razão 2.",
+   "essencial": {
+    "pede": "A área do anel entre os dois maiores dos 7 círculos.",
+    "chave": "Raios 1, 2, ..., 64; área π(64² − 32²) = 3072π.",
+    "cuidado": "Subtraia as áreas; não use a diferença dos raios ao quadrado, (64 − 32)²."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "fração fixa",
+    "ideia": "Com razão 2, o círculo menor tem 1/4 da área do maior; a coroa é 3/4 de 4096π = 3072π."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "1, 2, 4, 8, 16, 32, 64",
+    "nota": "raios em PG de razão 2"
+   },
+   {
+    "linha": "R = 64 | r = 32",
+    "nota": "os dois maiores"
+   },
+   {
+    "linha": "π(64² − 32²) = π(4096 − 1024)",
+    "nota": "área da coroa"
+   },
+   {
+    "linha": "= 3072π → C",
+    "nota": "resultado"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0060"
+  }
  }
 }

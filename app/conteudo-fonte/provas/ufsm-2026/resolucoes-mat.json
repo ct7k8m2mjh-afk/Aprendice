@@ -295,5 +295,133 @@
    "data": "2026-11-13",
    "lote": "mat-0051"
   }
+ },
+ "P170bce67": {
+  "n": "73",
+  "conceito": "Achar o primeiro termo de uma PG de razão 2 pela soma de 10 termos e calcular a diferença entre o décimo e o primeiro termos.",
+  "equivocos": {
+   "B": "M07.3:nao-usou-a-soma-da-pg",
+   "C": "M07.3:nao-usou-a-soma-da-pg",
+   "D": "M07.3:nao-usou-a-soma-da-pg",
+   "E": "M07.3:nao-usou-a-soma-da-pg"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "\"O dobro da quantidade de livros do mês anterior\" é uma PG de razão 2. O total de 10 meses é a soma dos 10 termos; dela sai o primeiro termo. Com ele, o décimo termo vem do termo geral, e a pergunta é só a diferença entre os dois.",
+    "formulas": [
+     "soma da PG: S = a1 × (q^n − 1)/(q − 1)",
+     "termo geral: an = a1 × q^(n − 1)"
+    ],
+    "simbolos": [
+     [
+      "PG",
+      "progressão geométrica: cada termo é o anterior multiplicado por um valor fixo"
+     ],
+     [
+      "a1",
+      "quantidade comprada no primeiro mês"
+     ],
+     [
+      "q",
+      "razão da PG, aqui 2"
+     ],
+     [
+      "n",
+      "número de termos, aqui 10 meses"
+     ],
+     [
+      "S",
+      "soma dos termos"
+     ]
+    ]
+   },
+   "pista": "Use o total de 20 460 livros para descobrir quantos livros foram comprados no primeiro mês.",
+   "passos": [
+    {
+     "faz": "Traduza o enunciado",
+     "conta": "q = 2 | n = 10 | S = 20 460",
+     "porque": "Dobrar a cada mês é multiplicar por 2, e o total de 10 meses é a soma dos 10 primeiros termos.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Ache o primeiro termo pela soma",
+     "conta": "a1 × (2^10 − 1)/(2 − 1) = 20 460 → 1023a1 = 20 460 → a1 = 20",
+     "porque": "2^10 = 1024, logo 2^10 − 1 = 1023; dividindo 20 460 por 1023, sobram 20 livros no primeiro mês.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o décimo termo",
+     "conta": "a10 = 20 × 2^9 = 20 × 512 = 10 240",
+     "porque": "Do 1.º ao 10.º mês são 9 dobras, por isso o expoente é 9.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Faça a diferença pedida",
+     "conta": "10 240 − 20 = 10 220",
+     "porque": "O comando pede décimo mês menos primeiro mês, não o total.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o valor à alternativa",
+     "conta": "10 220 → A",
+     "porque": "É a diferença entre os livros do 10.º e os do 1.º mês.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 10 220 livros",
+   "checagem": "Some os meses: 20, 40, 80, 160, 320, 640, 1280, 2560, 5120, 10 240 dão 20 460, o total do enunciado. A diferença também é 20 × (512 − 1) = 20 × 511 = 10 220.",
+   "erradas": {
+    "B": "12 240 não confere: a diferença é a1 × (2^9 − 1) = 511 × a1, e 12 240 ÷ 511 não é inteiro (≈ 23,95).",
+    "C": "14 280 não confere: 14 280 ÷ 511 ≈ 27,95, não é inteiro; não pode ser 511 vezes um número de livros.",
+    "D": "16 800 não confere: 16 800 ÷ 511 ≈ 32,88, não é inteiro, então não é diferença entre o 10.º e o 1.º termo.",
+    "E": "19 600 não confere: 19 600 ÷ 511 ≈ 38,36, não é inteiro; e com a1 = 20 a diferença é 10 220."
+   },
+   "armadilha": "Do 1.º ao 10.º mês há 9 multiplicações por 2, não 10: o décimo termo é a1 × 2^9.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A diferença entre os livros comprados no 10.º e no 1.º mês.",
+    "chave": "Soma da PG de razão 2: 1023 × a1 = 20 460 dá a1 = 20; a10 = 20 × 512 = 10 240.",
+    "cuidado": "Use expoente 9 no termo geral e responda a diferença, não o total."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "diferença direto pela PG",
+    "ideia": "a10 − a1 = a1 × 2^9 − a1 = a1 × (2^9 − 1); com a1 = 20, a diferença é 20 × 511 = 10 220."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "S = a1 × (2^10 − 1)/(2 − 1)",
+    "nota": "soma da PG"
+   },
+   {
+    "linha": "1023a1 = 20 460",
+    "nota": "2^10 − 1 = 1023"
+   },
+   {
+    "linha": "a1 = 20",
+    "nota": "divide por 1023"
+   },
+   {
+    "linha": "a10 = 20 × 2^9 = 10 240",
+    "nota": "9 dobras"
+   },
+   {
+    "linha": "10 240 − 20 = 10 220",
+    "nota": "diferença pedida"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0060"
+  }
  }
 }

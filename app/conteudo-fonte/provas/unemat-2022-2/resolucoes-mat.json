@@ -307,5 +307,120 @@
    "data": "2026-11-13",
    "lote": "mat-0052"
   }
+ },
+ "P6055bcda": {
+  "n": "14",
+  "conceito": "Contágio em ciclos de 3 dias como progressão geométrica de razão 2 e soma dos novos casos em 5 ciclos.",
+  "equivocos": {
+   "A": "M07.2:somou-o-valor-inicial",
+   "B": "M07.2:termo-no-lugar-da-soma",
+   "C": "M07.2:termo-no-lugar-da-soma",
+   "E": "M07.2:contou-um-periodo-a-mais"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada infectado passa a doença para 2 pessoas em 3 dias e depois para de transmitir. Então, a cada ciclo de 3 dias, o número de novos infectados dobra em relação ao ciclo anterior: é uma progressão geométrica de razão 2. A pergunta é quantas pessoas a mais foram contaminadas, ou seja, só os casos novos, sem os 100 que já estavam doentes.",
+    "formulas": [
+     "número de ciclos = dias ÷ duração do ciclo",
+     "novos casos do ciclo k = 100 × 2^k",
+     "soma da PG: S = a1 × (q^n − 1)/(q − 1)"
+    ],
+    "simbolos": [
+     [
+      "PG",
+      "progressão geométrica: cada termo é o anterior multiplicado pela razão"
+     ],
+     [
+      "q",
+      "razão da PG, aqui 2"
+     ],
+     [
+      "a1",
+      "primeiro termo da PG"
+     ],
+     [
+      "n",
+      "número de termos somados"
+     ]
+    ]
+   },
+   "pista": "Conte quantos ciclos de 3 dias cabem em 15 dias e escreva quantos novos casos aparecem em cada um.",
+   "passos": [
+    {
+     "faz": "Conte os ciclos de transmissão",
+     "conta": "15 ÷ 3 = 5 ciclos",
+     "porque": "Cada infectado transmite dentro de 3 dias e depois para. Em 15 dias há 5 rodadas de transmissão.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escreva os novos casos de cada ciclo",
+     "conta": "100 × 2 = 200 → 200 × 2 = 400 → 800 → 1600 → 3200",
+     "porque": "Só quem acabou de se infectar ainda transmite. Os 100 iniciais geram 200; esses 200 geram 400, e assim por diante.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some os casos novos",
+     "conta": "S = 200 × (2^5 − 1)/(2 − 1) → S = 200 × 31 → S = 6200",
+     "porque": "É a soma de 5 termos de uma PG com primeiro termo 200 e razão 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Volte ao comando",
+     "conta": "pessoas a mais = 6200 → alternativa D",
+     "porque": "A pergunta é quantas pessoas a mais foram contaminadas: os 100 que já estavam infectados não entram.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 6200 pessoas",
+   "checagem": "Some direto os termos: 200 + 400 + 800 + 1600 + 3200 = 6200. Com os 100 iniciais, a cidade teria 6300 infectados, bem abaixo dos 30 mil habitantes, então a população nunca limita o contágio no período.",
+   "erradas": {
+    "A": "6300 sai de somar também os 100 infectados iniciais: 100 + 6200 = 6300. A pergunta pede só as pessoas a mais.",
+    "B": "3200 sai de pegar só o último ciclo: 100 × 2^5 = 3200. São os novos casos do 5º ciclo, não o total dos 15 dias.",
+    "C": "1600 sai de tratar os 100 iniciais como 1º termo e pegar o 5º termo: 100, 200, 400, 800, 1600. Não é soma nem conta só os casos novos.",
+    "E": "6400 sai de calcular um ciclo a mais: 100 × 2^6 = 6400, que seriam os novos casos do 6º ciclo (dias 16 a 18)."
+   },
+   "armadilha": "A pergunta é quantas pessoas a mais foram contaminadas: os 100 iniciais ficam fora da soma.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantos novos infectados surgem em 15 dias.",
+    "chave": "5 ciclos de 3 dias, novos casos 200, 400, 800, 1600, 3200: soma 6200.",
+    "cuidado": "Não some os 100 iniciais e não pare no último ciclo."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "total menos inicial",
+    "ideia": "Após 5 ciclos o acumulado é 100 × (2^6 − 1) = 6300 infectados; tirando os 100 iniciais sobram 6200."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "15 ÷ 3 = 5 ciclos",
+    "nota": "rodadas de transmissão"
+   },
+   {
+    "linha": "200, 400, 800, 1600, 3200",
+    "nota": "novos casos por ciclo (razão 2)"
+   },
+   {
+    "linha": "S = 200 × (2^5 − 1)/(2 − 1) = 6200",
+    "nota": "soma da PG"
+   },
+   {
+    "linha": "6200 → D",
+    "nota": "sem os 100 iniciais"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0060"
+  }
  }
 }
