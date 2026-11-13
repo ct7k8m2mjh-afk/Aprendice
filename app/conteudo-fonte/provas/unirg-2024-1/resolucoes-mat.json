@@ -94,5 +94,109 @@
    "data": "2026-11-13",
    "lote": "mat-0050"
   }
+ },
+ "Pcbe285b8": {
+  "n": "37",
+  "conceito": "Substituir valores num modelo exponencial com expoente negativo fracionário.",
+  "equivocos": {
+   "A": "M06.5:expoente-errado",
+   "B": "M06.5:expoente-errado",
+   "C": "M06.5:esqueceu-o-sinal-do-expoente"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O modelo dado é C(t) = (C₀/2)^(−t/8), com C₀ = 20 mg/mL: a base vale 10. Em t = 24 horas, o expoente é −24/8 = −3, e 10⁻³ é um milésimo. O volume de 1 mL é informação que não entra na conta.",
+    "formulas": [
+     "C(t) = (C₀/2)^(−t/8)",
+     "10⁻³ = 1/1000 = 0,001"
+    ],
+    "simbolos": [
+     [
+      "C₀",
+      "concentração inicial, 20 mg/mL"
+     ],
+     [
+      "t",
+      "tempo em horas"
+     ]
+    ]
+   },
+   "pista": "Calcule primeiro a base C₀/2 e depois o expoente com t = 24.",
+   "passos": [
+    {
+     "faz": "Calcule a base",
+     "conta": "C₀/2 = 20/2 = 10",
+     "porque": "C₀ = 20 mg/mL.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule o expoente",
+     "conta": "−t/8 = −24/8 = −3",
+     "porque": "t = 24 horas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a potência",
+     "conta": "10⁻³ = 1/10³ = 0,001",
+     "porque": "Expoente negativo é o inverso da potência positiva.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "C(24) = 0,001 mg/mL → alternativa D",
+     "porque": "O volume de 1 mL não muda a concentração.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 0,001 mg/mL",
+   "checagem": "Coerência: o expoente −t/8 é negativo para t > 0 e a base 10 é maior que 1, então C(t) tem de ser menor que 1 e diminuir com o tempo; só D é menor que 1.",
+   "erradas": {
+    "A": "2 · 10²⁴ mg/mL não confere: o expoente é −3, não 24; o resultado tem de ser menor que 1.",
+    "B": "2 mg/mL não confere: 10^(−3) não vale 2; valores maiores que 1 exigiriam expoente positivo.",
+    "C": "1000 mg/mL sai de esquecer o sinal negativo do expoente: 10³ = 1000."
+   },
+   "armadilha": "Ignorar o sinal de menos no expoente e responder 10³ = 1000.",
+   "alerta": "O modelo C(t) = (C₀/2)^(−t/8) é pouco usual (C₀ aparece na base, e não multiplicando a potência), mas a pergunta só pede a substituição no modelo dado; a resposta oficial segue dele.",
+   "essencial": {
+    "pede": "A concentração após 24 horas.",
+    "chave": "(20/2)^(−24/8) = 10⁻³ = 0,001 mg/mL.",
+    "cuidado": "Expoente negativo inverte a potência."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "eliminação",
+    "ideia": "Com base 10 e expoente negativo o resultado é menor que 1: só D é possível."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "C(24) = (20/2)^(−24/8)",
+    "nota": "substitui"
+   },
+   {
+    "linha": "C(24) = 10^(−3)",
+    "nota": "base 10, expoente −3"
+   },
+   {
+    "linha": "C(24) = 1/1000",
+    "nota": "expoente negativo inverte"
+   },
+   {
+    "linha": "C(24) = 0,001",
+    "nota": "mg/mL"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0058"
+  }
  }
 }

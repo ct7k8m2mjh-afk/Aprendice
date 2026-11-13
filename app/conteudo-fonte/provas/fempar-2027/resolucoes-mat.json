@@ -324,5 +324,124 @@
    "data": "2026-11-13",
    "lote": "mat-0052"
   }
+ },
+ "P02dbc43b": {
+  "n": "77",
+  "conceito": "Meia-vida a partir de uma redução percentual por período, com logaritmo.",
+  "equivocos": {
+   "A": "M06.5:periodo-confundido-com-meia-vida",
+   "B": "M06.5:conta-errada-do-log",
+   "C": "M06.5:conta-errada-do-log",
+   "D": "M06.5:reducao-somada-linear"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Diminuir 20% é multiplicar por 0,8 a cada 4 horas. A meia-vida é o tempo T em que o fator total chega a 1/2: 0,8^(T/4) = 1/2. Com log 2 = 0,30, log 0,8 = log 8 − log 10 = 0,90 − 1 = −0,10.",
+    "formulas": [
+     "redução de 20% = fator 0,8",
+     "C(t) = C₀ · 0,8^(t/4)",
+     "log 0,8 = 3 log 2 − 1"
+    ],
+    "simbolos": [
+     [
+      "T",
+      "meia-vida, em horas"
+     ],
+     [
+      "log",
+      "logaritmo na base 10"
+     ]
+    ]
+   },
+   "pista": "Comece trocando 'diminui 20%' por uma multiplicação e escreva a condição de meia-vida.",
+   "passos": [
+    {
+     "faz": "Escreva o modelo",
+     "conta": "C(t) = C₀ · 0,8^(t/4)",
+     "porque": "A cada 4 horas a concentração é multiplicada por 1 − 0,20 = 0,8.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Iguale a metade",
+     "conta": "0,8^(T/4) = 1/2 → (T/4) · log 0,8 = −log 2",
+     "porque": "Na meia-vida, C/C₀ = 1/2; aplicando log, o expoente desce.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule log 0,8",
+     "conta": "log 0,8 = log 8 − log 10 = 3 × 0,30 − 1 = −0,10",
+     "porque": "0,8 = 8/10 e log 8 = 3 log 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva para T",
+     "conta": "(T/4) × (−0,10) = −0,30 → T/4 = 3 → T = 3 × 4 = 12 h",
+     "porque": "O −0,10 que multiplica vai dividindo; o 4 que divide vai multiplicando.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — aproximadamente 12 horas",
+   "checagem": "Faça a conta direto: 0,8³ = 0,512 ≈ 0,5. São 3 períodos de 4 horas, ou 12 horas, para cair à metade. Fecha.",
+   "erradas": {
+    "A": "4 horas não confere: em 4 horas a concentração cai só 20%, e sobram 80%, não 50%.",
+    "B": "6 horas não confere: 0,8^(6/4) ≈ 0,72, ainda longe da metade.",
+    "C": "8 horas não confere: em 8 horas sobram 0,8² = 64%, não 50%.",
+    "D": "10 horas sai de somar 20% por período como se fosse linear: 50% ÷ 20% = 2,5 períodos × 4 h = 10 h."
+   },
+   "armadilha": "Tratar a queda de 20% como subtração fixa (20% + 20% + 10%), quando ela é multiplicação por 0,8 a cada período.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A meia-vida do medicamento.",
+    "chave": "0,8^(T/4) = 1/2 com log 0,8 = −0,10 dá T/4 = 3 e T = 12 h.",
+    "cuidado": "Redução percentual sucessiva multiplica; não soma."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "contar fatores",
+    "ideia": "Multiplique 0,8 até chegar perto de 0,5: 0,8 → 0,64 → 0,512; são 3 períodos de 4 h."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "0,8^(T/4) = 1/2",
+    "nota": "meia-vida"
+   },
+   {
+    "linha": "(T/4) · log 0,8 = −log 2",
+    "nota": "log dos dois lados"
+   },
+   {
+    "linha": "(T/4) × (−0,10) = −0,30",
+    "nota": "log 0,8 = 0,90 − 1"
+   },
+   {
+    "linha": "T/4 = −0,30/(−0,10)",
+    "nota": "o −0,10 vai dividindo"
+   },
+   {
+    "linha": "T/4 = 3",
+    "nota": "divide"
+   },
+   {
+    "linha": "T = 3 × 4",
+    "nota": "o 4 que divide vai multiplicando"
+   },
+   {
+    "linha": "T = 12",
+    "nota": "horas"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0058"
+  }
  }
 }

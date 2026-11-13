@@ -100,5 +100,111 @@
    "data": "2026-11-13",
    "lote": "mat-0056"
   }
+ },
+ "P42b49f65": {
+  "n": "56",
+  "conceito": "Crescimento por duplicação: contar períodos de 20 min em 4 horas.",
+  "equivocos": {
+   "A": "M06.5:conta-errada",
+   "B": "M06.5:numero-de-duplicacoes-errado",
+   "D": "M06.5:numero-de-duplicacoes-errado",
+   "E": "M06.5:conta-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O total inicial já está dado: 10⁶ bactérias no frasco (10⁵ por mL × 10 mL). A cada 20 minutos o total dobra; em 4 horas cabem 12 períodos de 20 minutos, então o fator é 2¹².",
+    "formulas": [
+     "N(t) = N₀ · 2^(t/20), t em minutos",
+     "2¹² = 4096"
+    ],
+    "simbolos": [
+     [
+      "N₀",
+      "total inicial de bactérias, 10⁶"
+     ],
+     [
+      "t",
+      "tempo em minutos"
+     ]
+    ]
+   },
+   "pista": "Passe 4 horas para minutos e conte quantas duplicações cabem.",
+   "passos": [
+    {
+     "faz": "Converta o tempo",
+     "conta": "4 h = 4 × 60 = 240 min",
+     "porque": "A duplicação é dada em minutos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte as duplicações",
+     "conta": "240 ÷ 20 = 12",
+     "porque": "Uma duplicação a cada 20 minutos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Aplique o fator",
+     "conta": "10⁶ × 2¹² = 10⁶ × 4096 = 4.096 × 10⁶",
+     "porque": "Doze dobras seguidas multiplicam por 2¹².",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "4.096 × 10⁶ → alternativa C",
+     "porque": "Total no frasco após 4 horas.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 4.096 × 10⁶ bactérias",
+   "checagem": "Por hora: em 60 min há 3 dobras, fator 2³ = 8 por hora; em 4 horas, 8⁴ = 4096. Fecha.",
+   "erradas": {
+    "A": "25 × 10⁶ não confere: 25 não é potência de 2, e o fator de dobras sucessivas tem de ser 2ⁿ.",
+    "B": "2.048 × 10⁶ sai de contar 11 duplicações em vez de 12: 2¹¹ = 2048.",
+    "D": "16 × 10⁶ sai de dobrar uma vez por hora: 2⁴ = 16.",
+    "E": "1,667 × 10⁶ não confere: o total só cresce e 1,667 não é potência de 2."
+   },
+   "armadilha": "Contar uma dobra por hora (2⁴) em vez de três por hora (2¹²).",
+   "alerta": "",
+   "essencial": {
+    "pede": "O número de bactérias após 4 horas.",
+    "chave": "240 ÷ 20 = 12 dobras: 10⁶ × 2¹² = 4096 × 10⁶.",
+    "cuidado": "Converta horas em minutos antes de contar as dobras."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "fator por hora",
+    "ideia": "3 dobras por hora dão × 8 por hora; 8⁴ = 4096."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "4 h = 240 min",
+    "nota": "conversão"
+   },
+   {
+    "linha": "240 ÷ 20 = 12",
+    "nota": "dobras"
+   },
+   {
+    "linha": "N = 10⁶ × 2¹²",
+    "nota": "12 dobras"
+   },
+   {
+    "linha": "N = 4096 × 10⁶",
+    "nota": "alternativa C"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0058"
+  }
  }
 }

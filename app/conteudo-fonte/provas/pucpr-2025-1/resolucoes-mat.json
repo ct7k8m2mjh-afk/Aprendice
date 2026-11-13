@@ -102,5 +102,129 @@
    "data": "2026-11-13",
    "lote": "mat-0053"
   }
+ },
+ "P3d57713e": {
+  "n": "29",
+  "conceito": "Depreciação percentual mensal: achar o número de meses com logaritmos.",
+  "equivocos": {
+   "B": "M06.5:conta-errada-do-log",
+   "C": "M06.5:conta-errada-do-log",
+   "D": "M06.5:conta-errada-do-log",
+   "E": "M06.5:conta-errada-do-log"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Primeiro descubra quanto foi aplicado: metade da herança no apartamento, um terço do RESTO no carro, e o que sobra em ações. Depois, perder 2% ao mês é multiplicar por 0,98 a cada mês. O valor caiu de 300 mil para 150 mil, ou seja, à metade, e o log resolve.",
+    "formulas": [
+     "fator mensal = 1 − 0,02 = 0,98",
+     "log 0,98 = log (2 × 7²) − 2"
+    ],
+    "simbolos": [
+     [
+      "n",
+      "número de meses com as ações"
+     ],
+     [
+      "log",
+      "logaritmo na base 10"
+     ]
+    ]
+   },
+   "pista": "Calcule o valor aplicado em ações antes de montar qualquer exponencial.",
+   "passos": [
+    {
+     "faz": "Ache o valor aplicado",
+     "conta": "900 000 − 450 000 = 450 000 | carro: 450000/3 = 150 000 | ações: 450 000 − 150 000 = 300 000",
+     "porque": "O terço é do restante (450 mil), não da herança toda.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Monte a equação",
+     "conta": "300 000 · 0,98ⁿ = 150 000 → 0,98ⁿ = 150000/300000 = 1/2",
+     "porque": "Perder 2% ao mês multiplica o saldo por 0,98; o 300 000 vai dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule log 0,98",
+     "conta": "log 0,98 = log 98 − 2 = log 2 + 2 log 7 − 2 = 0,301 + 1,690 − 2 = −0,009",
+     "porque": "98 = 2 × 7² e 0,98 = 98/100.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva para n",
+     "conta": "n × (−0,009) = −0,301 → n = 0,301/0,009 ≈ 33,4",
+     "porque": "log (1/2) = −log 2; o −0,009 que multiplica vai dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache o intervalo",
+     "conta": "33,4 ∈ [33; 35) → alternativa A",
+     "porque": "n fica entre 33 e 35 meses.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — n está no intervalo [33; 35)",
+   "checagem": "Com logaritmos exatos, log 0,5 ÷ log 0,98 ≈ 34,3, ainda dentro de [33; 35). E 0,98³⁴ ≈ 0,503, praticamente a metade. Fecha.",
+   "erradas": {
+    "B": "[35; 37) não confere: com n = 35, 0,98³⁵ ≈ 0,493, já abaixo da metade, e n ≈ 33,4 pelos logs dados.",
+    "C": "[37; 39) não confere: com n = 37, 0,98³⁷ ≈ 0,474, o saldo já estaria em cerca de 142 mil.",
+    "D": "[39; 41) não confere: com n = 39, 0,98³⁹ ≈ 0,455, cerca de 136 mil.",
+    "E": "[41; 43) não confere: com n = 41, 0,98⁴¹ ≈ 0,437, cerca de 131 mil."
+   },
+   "armadilha": "Calcular o carro como um terço da herança toda (300 mil) e errar o valor aplicado: o terço é do restante.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O intervalo que contém o número de meses n.",
+    "chave": "Aplicou 300 mil; 300 000 · 0,98ⁿ = 150 000 dá n = 0,301/0,009 ≈ 33,4.",
+    "cuidado": "O terço é do restante, e a perda de 2% é multiplicativa."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste de potência",
+    "ideia": "Sem log: 0,98³³ ≈ 0,513 e 0,98³⁵ ≈ 0,493; a metade fica entre 33 e 35."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "ações = 450 000 − 150 000 = 300 000",
+    "nota": "metade e um terço do resto"
+   },
+   {
+    "linha": "300 000 · 0,98ⁿ = 150 000",
+    "nota": "perda de 2% ao mês"
+   },
+   {
+    "linha": "0,98ⁿ = 150000/300000",
+    "nota": "o 300 000 vai dividindo"
+   },
+   {
+    "linha": "0,98ⁿ = 1/2",
+    "nota": "simplifica"
+   },
+   {
+    "linha": "n × (−0,009) = −0,301",
+    "nota": "log dos dois lados"
+   },
+   {
+    "linha": "n = 0,301/0,009",
+    "nota": "o −0,009 vai dividindo"
+   },
+   {
+    "linha": "n ≈ 33,4",
+    "nota": "intervalo [33; 35)"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0058"
+  }
  }
 }

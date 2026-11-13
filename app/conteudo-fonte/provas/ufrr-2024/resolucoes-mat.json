@@ -94,5 +94,134 @@
    "data": "2026-11-13",
    "lote": "mat-0048"
   }
+ },
+ "Pa1a08a01": {
+  "n": "11",
+  "conceito": "Decaimento exponencial na base e: julgar proposições com limites de ln 5 e ln 2.",
+  "equivocos": {
+   "A": "M06.5:nao-testou-todas-as-proposicoes",
+   "B": "M06.5:dobrou-o-tempo",
+   "D": "M06.5:meia-vida-errada",
+   "E": "M06.5:dobrou-o-tempo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Com r = 0,02, chegar a uma fração f da massa inicial leva t = ln (1/f)/0,02 = 50 · ln (1/f). Basta usar os intervalos dados para ln 5 e ln 2 e testar cada proposição: 400 g é 1/5 de 2000 g, 200 g é 1/10, e 1000 g é a metade.",
+    "formulas": [
+     "Q(t) = 2000 · e^(−0,02t)",
+     "e^(−0,02t) = 1/N ⇔ t = 50 · ln N",
+     "ln 10 = ln 2 + ln 5"
+    ],
+    "simbolos": [
+     [
+      "Q₀",
+      "massa inicial, 2000 g"
+     ],
+     [
+      "r",
+      "taxa de desintegração, 0,02 ao ano"
+     ],
+     [
+      "ln",
+      "logaritmo na base e"
+     ]
+    ]
+   },
+   "pista": "Escreva o tempo para a massa cair a 1/N do inicial e use os intervalos de ln dados.",
+   "passos": [
+    {
+     "faz": "Tempo para 400 g (1/5)",
+     "conta": "e^(−0,02t) = 400/2000 = 1/5 → t = 50 · ln 5 ∈ (80; 81)",
+     "porque": "0,02t = ln 5 e 1/0,02 = 50; 50 × 1,6 = 80 e 50 × 1,62 = 81. I verdadeira.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tempo para 200 g (1/10)",
+     "conta": "t = 50 · ln 10 = 50 · (ln 2 + ln 5) ∈ (114,5; 116)",
+     "porque": "50 × (0,69 + 1,6) = 114,5 e 50 × (0,7 + 1,62) = 116. II diz 'pelo menos 162' e III 'pelo menos 120': ambas falsas.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Teste IV em 324 anos",
+     "conta": "324 > 4 × 50 · ln 5 → Q(324) < 2000 × (1/5)⁴ = 3,2 g",
+     "porque": "Como 50 · ln 5 < 81, em 324 = 4 × 81 anos já passaram mais de 4 períodos de divisão por 5. IV verdadeira.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Teste V com a meia-vida",
+     "conta": "meia-vida = 50 · ln 2 ∈ (34,5; 35) > 34",
+     "porque": "Antes da meia-vida a massa ainda é maior que 1000 g; t < 34 está antes dela. V verdadeira.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Junte os resultados",
+     "conta": "I, IV e V verdadeiras; II e III falsas → alternativa C",
+     "porque": "Só C reúne exatamente as verdadeiras.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — as proposições I, IV e V estão corretas",
+   "checagem": "Com valores numéricos: 50 ln 5 ≈ 80,5 anos; 50 ln 10 ≈ 115,1 anos; 50 ln 2 ≈ 34,7 anos; Q(324) = 2000 e^(−6,48) ≈ 3,07 g < 3,2 g. Tudo bate.",
+   "erradas": {
+    "A": "A diz que só I está correta; IV e V também estão (Q(324) < 3,2 g e a meia-vida passa de 34,5 anos).",
+    "B": "B não confere: os 200 g chegam entre 114,5 e 116 anos, menos que 120 e muito menos que 162; II e III são falsas.",
+    "D": "D não confere: a meia-vida é 50 ln 2 > 34,5 anos, então antes de 34 anos a massa passa de 1000 g e V está correta.",
+    "E": "E não confere: II afirma que os 200 g só chegam em pelo menos 162 anos, mas chegam antes de 116."
+   },
+   "armadilha": "Achar que de 400 g para 200 g leva outros 80 anos (dobrar o tempo): de 400 para 200 é só uma meia-vida, cerca de 35 anos.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quais proposições sobre o decaimento são verdadeiras.",
+    "chave": "t = 50 · ln N para a massa cair a 1/N: ln 5, ln 10 e ln 2 dão 80–81, 114,5–116 e 34,5–35 anos.",
+    "cuidado": "Cair de 1/5 para 1/10 é dividir por 2, não por 5 de novo."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "meias-vidas",
+    "ideia": "Meia-vida ≈ 35 anos: 2000 → 1000 → 500 → 250 → 125 g em 140 anos; 200 g chegam bem antes de 162 e de 120 anos."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "2000 · e^(−0,02t) = 400",
+    "nota": "400 g"
+   },
+   {
+    "linha": "e^(−0,02t) = 1/5",
+    "nota": "divide por 2000"
+   },
+   {
+    "linha": "0,02t = ln 5",
+    "nota": "ln dos dois lados"
+   },
+   {
+    "linha": "t = 50 · ln 5",
+    "nota": "o 0,02 vai dividindo"
+   },
+   {
+    "linha": "80 < t < 81",
+    "nota": "1,6 < ln 5 < 1,62: I ok"
+   },
+   {
+    "linha": "t₂₀₀ = 50 · ln 10 < 116",
+    "nota": "II e III falsas"
+   },
+   {
+    "linha": "t₁/₂ = 50 · ln 2 > 34,5",
+    "nota": "V ok"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0058"
+  }
  }
 }

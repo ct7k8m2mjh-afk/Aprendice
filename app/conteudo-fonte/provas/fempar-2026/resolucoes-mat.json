@@ -303,5 +303,131 @@
    "data": "2026-11-13",
    "lote": "mat-0054"
   }
+ },
+ "P73de8ca2": {
+  "n": "74",
+  "conceito": "Achar os parâmetros de A(t) = M·t^α·e^(βt) a partir de dois valores e calcular A(100).",
+  "equivocos": {
+   "A": "M06.5:usou-a-diferenca-dos-expoentes",
+   "B": "M06.5:somou-os-expoentes",
+   "C": "M06.5:beta-errado",
+   "E": "M06.5:beta-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Com α = 0,5, t^α é √t: √16 = 4 e √25 = 5. As duas igualdades dadas viram 4M·e^(16β) = 1000·e^(−0,32) e 5M·e^(25β) = 1250·e^(−0,50). Dividindo uma pela outra, o M some e sobra β; depois o M sai de qualquer uma.",
+    "formulas": [
+     "t^0,5 = √t",
+     "eᵃ ÷ eᵇ = e^(a − b)"
+    ],
+    "simbolos": [
+     [
+      "A(t)",
+      "taxa de aparecimento de glicose, em mg/min"
+     ],
+     [
+      "M, α, β",
+      "constantes do modelo"
+     ],
+     [
+      "e",
+      "número de Euler"
+     ]
+    ]
+   },
+   "pista": "Com α = 0,5, calcule √16 e √25 e escreva as duas equações; depois divida uma pela outra.",
+   "passos": [
+    {
+     "faz": "Escreva as duas equações",
+     "conta": "4M·e^(16β) = 1000·e^(−0,32) | 5M·e^(25β) = 1250·e^(−0,50)",
+     "porque": "t^0,5 = √t: √16 = 4 e √25 = 5.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Divida a 2.ª pela 1.ª",
+     "conta": "(5/4)·e^(9β) = (5/4)·e^(−0,18) → 9β = −0,18 → β = −0,18/9 = −0,02",
+     "porque": "O M se cancela; 1250/1000 = 5/4 dos dois lados; o 9 que multiplica vai dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache M",
+     "conta": "4M·e^(−0,32) = 1000·e^(−0,32) → 4M = 1000 → M = 1000/4 = 250",
+     "porque": "Com β = −0,02, 16β = −0,32: a potência de e é a mesma dos dois lados e cancela.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule A(100)",
+     "conta": "A(100) = 250 · √100 · e^(−0,02 × 100) = 250 × 10 · e^(−2) = 2500·e^(−2)",
+     "porque": "√100 = 10 e o expoente é −0,02 × 100 = −2.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 2500 · e^(−2) mg/min",
+   "checagem": "Teste os parâmetros em t = 25: 250 × 5 · e^(−0,02 × 25) = 1250·e^(−0,5), exatamente o valor dado. Fecha.",
+   "erradas": {
+    "A": "2500·e^(−0,18) sai de usar no expoente a diferença −0,50 − (−0,32) = −0,18 como se fosse β·100.",
+    "B": "2500·e^(−0,82) sai de somar os expoentes dados: −0,32 + (−0,50) = −0,82.",
+    "C": "2500·e^(−1) sai de usar β = −0,01, metade do valor certo; com ele A(16) daria e^(−0,16), não e^(−0,32).",
+    "E": "2500·e^(−2,5) não confere: exigiria β × 100 = −2,5, ou β = −0,025; aí 16β = −0,4, e A(16) teria e^(−0,4), não o e^(−0,32) dado."
+   },
+   "armadilha": "Esquecer que t^0,5 é a raiz de t e, ao dividir as equações, não perceber que o M some.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A(100) no modelo A(t) = M·t^0,5·e^(βt).",
+    "chave": "Dividindo as duas equações, β = −0,02; daí M = 250 e A(100) = 250 × 10 × e^(−2).",
+    "cuidado": "Expoente de e: β × 100 = −2."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "comparação direta",
+    "ideia": "Compare 4M·e^(16β) com 1000·e^(−0,32): 16β = −0,32 dá β = −0,02 e 4M = 1000 de uma vez."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "4M·e^(16β) = 1000·e^(−0,32)",
+    "nota": "t = 16"
+   },
+   {
+    "linha": "5M·e^(25β) = 1250·e^(−0,50)",
+    "nota": "t = 25"
+   },
+   {
+    "linha": "e^(9β) = e^(−0,18)",
+    "nota": "divisão: o M some"
+   },
+   {
+    "linha": "9β = −0,18",
+    "nota": "bases iguais"
+   },
+   {
+    "linha": "β = −0,18/9",
+    "nota": "o 9 vai dividindo"
+   },
+   {
+    "linha": "β = −0,02",
+    "nota": "divide"
+   },
+   {
+    "linha": "4M = 1000 → M = 250",
+    "nota": "volta na 1.ª equação"
+   },
+   {
+    "linha": "A(100) = 250 × 10 × e^(−2) = 2500·e^(−2)",
+    "nota": "t = 100"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0058"
+  }
  }
 }

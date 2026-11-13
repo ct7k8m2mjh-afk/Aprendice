@@ -286,5 +286,135 @@
    "data": "2026-11-13",
    "lote": "mat-0056"
   }
+ },
+ "P64b28218": {
+  "n": "11",
+  "conceito": "Crescimento exponencial na base e resolvido com logaritmo natural.",
+  "equivocos": {
+   "A": "M06.4:conta-errada-no-expoente",
+   "B": "M06.4:conta-errada-no-expoente",
+   "C": "M06.4:esqueceu-t-menos-1",
+   "E": "M06.4:conta-errada-no-expoente"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Isole a potência de e antes de aplicar o log: o 2 que multiplica sai dividindo. O valor ln 8 = 2,25 dado pela banca é o atalho: e^algo = 8 quer dizer algo = 2,25. Por fim, cuidado: o expoente tem t − 1, não t.",
+    "formulas": [
+     "I(t) = I₁ · e^(r(t − 1))",
+     "eᵃ = b ⇔ a = ln b"
+    ],
+    "simbolos": [
+     [
+      "I₁",
+      "infectados no 1.º dia"
+     ],
+     [
+      "r",
+      "taxa de crescimento"
+     ],
+     [
+      "e",
+      "número de Euler"
+     ],
+     [
+      "ln",
+      "logaritmo na base e (o log_e do enunciado)"
+     ]
+    ]
+   },
+   "pista": "Divida por 2 primeiro e veja que número sobra do lado direito.",
+   "passos": [
+    {
+     "faz": "Substitua os dados",
+     "conta": "16 = 2 · e^(0,25(t − 1))",
+     "porque": "I(t) = 16, I₁ = 2 e r = 0,25.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Isole a potência de e",
+     "conta": "2 · e^(0,25(t − 1)) = 16 → e^(0,25(t − 1)) = 16/2 = 8",
+     "porque": "O 2 que multiplica vai dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Aplique o logaritmo natural",
+     "conta": "0,25(t − 1) = ln 8 = 2,25 → t − 1 = 2,25/0,25 = 9",
+     "porque": "e^a = 8 quer dizer a = ln 8; o 0,25 que multiplica passa dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache o dia",
+     "conta": "t − 1 = 9 → t = 9 + 1 = 10 → 10.º dia",
+     "porque": "O 1 atravessa o igual trocando de sinal.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 10.º dia de infecção",
+   "checagem": "Por dobras: e^(0,25(t − 1)) = 8 = 2³. Se ln 8 = 2,25, então ln 2 = 0,75 e o número dobra a cada 0,75/0,25 = 3 dias. De 2 para 16 são 3 dobras: 9 dias depois do dia 1, ou seja, dia 10.",
+   "erradas": {
+    "A": "7.º dia não confere: com ln 8 = 2,25, o número dobra a cada 3 dias; do dia 1 ao 7 são 6 dias, 2 dobras: 2 → 8 infectados, não 16.",
+    "B": "8.º dia não confere: do dia 1 ao 8 são 7 dias, pouco mais de 2 dobras (7/3): cerca de 10 infectados, ainda menos que 16.",
+    "C": "9.º dia sai de usar t em vez de t − 1: 0,25t = 2,25 → t = 9.",
+    "E": "11.º dia não confere: do dia 1 ao 11 são 10 dias, mais de 3 dobras (10/3): cerca de 20 infectados, já acima de 16."
+   },
+   "armadilha": "Esquecer o '− 1' do expoente (o 1.º dia é t = 1) e responder 9.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O dia em que havia 16 infectados.",
+    "chave": "e^(0,25(t − 1)) = 8, logo 0,25(t − 1) = 2,25 e t = 10.",
+    "cuidado": "O expoente é t − 1; some 1 no fim."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "dobras",
+    "ideia": "ln 8 = 3 ln 2 = 2,25 dá dobra a cada 3 dias: 2 → 4 → 8 → 16 em 9 dias, no dia 10."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "2 · e^(0,25(t − 1)) = 16",
+    "nota": "modelo com os dados"
+   },
+   {
+    "linha": "e^(0,25(t − 1)) = 16/2",
+    "nota": "o 2 vai dividindo"
+   },
+   {
+    "linha": "e^(0,25(t − 1)) = 8",
+    "nota": "divide"
+   },
+   {
+    "linha": "0,25(t − 1) = 2,25",
+    "nota": "ln 8 = 2,25"
+   },
+   {
+    "linha": "t − 1 = 2,25/0,25",
+    "nota": "o 0,25 vai dividindo"
+   },
+   {
+    "linha": "t − 1 = 9",
+    "nota": "divide"
+   },
+   {
+    "linha": "t = 9 + 1",
+    "nota": "o 1 troca de lado e de sinal"
+   },
+   {
+    "linha": "t = 10",
+    "nota": "10.º dia"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0058"
+  }
  }
 }

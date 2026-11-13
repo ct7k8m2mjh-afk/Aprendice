@@ -235,5 +235,115 @@
    "data": "2026-11-13",
    "lote": "mat-0049"
   }
+ },
+ "P3bb5d46e": {
+  "n": "16",
+  "conceito": "Crescimento exponencial com fator diário 1,2 aplicado por 5 dias.",
+  "equivocos": {
+   "A": "M06.5:conta-errada-da-potencia",
+   "B": "M06.5:crescimento-linear",
+   "C": "M06.5:conta-errada-da-potencia",
+   "D": "M06.5:ignorou-a-taxa"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Taxa 1,2 por dia quer dizer que cada dia multiplica a quantidade por 1,2: 100 viram 120 em 24 horas. Em 5 dias, o fator é aplicado 5 vezes, não somado 5 vezes.",
+    "formulas": [
+     "N(t) = 100 · 1,2ᵗ",
+     "1,2⁵ ≈ 2,49"
+    ],
+    "simbolos": [
+     [
+      "t",
+      "tempo em dias"
+     ],
+     [
+      "1,2",
+      "fator diário de crescimento"
+     ]
+    ]
+   },
+   "pista": "Confira com o dado de 24 horas como o 1,2 age: soma ou multiplica?",
+   "passos": [
+    {
+     "faz": "Monte o modelo",
+     "conta": "N(1) = 100 × 1,2 = 120 → N(t) = 100 · 1,2ᵗ",
+     "porque": "Segundo o enunciado, 100 pessoas contaminam outras 120 em 24 horas: 120 = 100 × 1,2, então cada dia multiplica a quantidade por 1,2.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule a potência",
+     "conta": "1,2² = 1,44 | 1,2³ = 1,728 | 1,2⁴ = 2,0736 | 1,2⁵ = 2,48832",
+     "porque": "Multiplique por 1,2 dia a dia.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Aplique aos 100",
+     "conta": "100 × 2,48832 ≈ 248,8",
+     "porque": "Cinco dias de crescimento.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Arredonde e ligue à alternativa",
+     "conta": "248,8 ≈ 250 → alternativa E",
+     "porque": "A questão pede o valor aproximado.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — aproximadamente 250 pessoas",
+   "checagem": "Por dobras: 1,2⁴ ≈ 2,07, ou seja, em 4 dias a quantidade praticamente dobra (≈ 207); mais um dia, × 1,2, dá ≈ 249. Fecha.",
+   "erradas": {
+    "A": "1200 não confere: seria 12 vezes os 100 iniciais, e 1,2⁵ ≈ 2,49.",
+    "B": "600 sai de somar 120 por dia durante 5 dias: 5 × 120 = 600, como se o crescimento fosse linear.",
+    "C": "360 não confere: 360/100 = 3,6, e 1,2⁵ ≈ 2,49; 3,6 só seria atingido perto de 7 dias.",
+    "D": "500 sai de multiplicar 100 por 5 dias, ignorando a taxa de 1,2."
+   },
+   "armadilha": "Somar 120 por dia em vez de multiplicar por 1,2 a cada dia.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A quantidade aproximada após 5 dias.",
+    "chave": "N(5) = 100 · 1,2⁵ ≈ 248,8 ≈ 250.",
+    "cuidado": "Crescimento exponencial multiplica a cada dia."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "produto em pares",
+    "ideia": "1,2⁵ = 1,44 × 1,44 × 1,2 = 2,0736 × 1,2 ≈ 2,49, então ≈ 249 pessoas."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "N(t) = 100 · 1,2ᵗ",
+    "nota": "modelo"
+   },
+   {
+    "linha": "1,2⁵ = 1,44 × 1,44 × 1,2",
+    "nota": "potência em pares"
+   },
+   {
+    "linha": "1,2⁵ = 2,48832",
+    "nota": "multiplica"
+   },
+   {
+    "linha": "N(5) = 100 × 2,48832 ≈ 248,8",
+    "nota": "5 dias"
+   },
+   {
+    "linha": "N(5) ≈ 250",
+    "nota": "alternativa E"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0058"
+  }
  }
 }

@@ -192,5 +192,124 @@
    "data": "2026-11-12",
    "lote": "mat-0045"
   }
+ },
+ "P9ff7b148": {
+  "n": "32",
+  "conceito": "Tempo de redução à metade num modelo de base 0,1, com log₂ 10 aproximado e conversão de minutos em segundos.",
+  "equivocos": {
+   "A": "M06.5:conversao-de-unidade-errada",
+   "B": "M06.5:conta-errada-do-log",
+   "C": "M06.5:conta-errada-do-log",
+   "D": "M06.5:conversao-de-unidade-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Metade da quantidade inicial quer dizer 0,1^(t/2) = 1/2. Aplicando log₂ nos dois lados aparece log₂ 10, que a banca aproxima por 10/3. O t sai em minutos, e as alternativas misturam minutos e segundos: converter é parte da questão.",
+    "formulas": [
+     "Q(t) = Q(0) · 0,1^(t/2)",
+     "log₂ 0,1 = −log₂ 10",
+     "1 min = 60 s"
+    ],
+    "simbolos": [
+     [
+      "Q(t)",
+      "bactérias vivas após t minutos"
+     ],
+     [
+      "log₂",
+      "logaritmo na base 2"
+     ]
+    ]
+   },
+   "pista": "Iguale Q(t) a Q(0)/2 e aplique log₂, que é o log que a banca deu.",
+   "passos": [
+    {
+     "faz": "Iguale à metade",
+     "conta": "Q(0) · 0,1^(t/2) = Q(0)/2 → 0,1^(t/2) = 1/2",
+     "porque": "Q(0) aparece dos dois lados e se cancela.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Aplique log₂",
+     "conta": "(t/2) · log₂ 0,1 = log₂ (1/2) → (t/2) · (−log₂ 10) = −1",
+     "porque": "0,1 = 10⁻¹ e 1/2 = 2⁻¹.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Use a aproximação dada",
+     "conta": "(t/2) · 10/3 = 1 → t/2 = 3/10 → t = 2 × 3/10 = 0,6 min",
+     "porque": "O 10/3 que multiplica passa dividindo; o 2 que divide passa multiplicando.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Converta para segundos",
+     "conta": "0,6 min × 60 = 36 s",
+     "porque": "As alternativas estão em segundos e minutos; 0,6 min não é 6 min nem 6 s.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 36 segundos",
+   "checagem": "Ordem de grandeza: em t = 2 min a quantidade cai para 0,1 (um décimo). Metade é uma queda bem menor que um décimo, então t precisa ser bem menor que 2 min; 36 s = 0,6 min serve. Fecha.",
+   "erradas": {
+    "A": "6 segundos sai de ler 0,6 min como 6 s, sem converter.",
+    "B": "9 segundos não confere: 9 s = 0,15 min dá 0,1^0,075 ≈ 0,84, longe da metade.",
+    "C": "1 minuto não confere: 0,1^0,5 ≈ 0,32, menos que a metade.",
+    "D": "6 minutos sai de ler 0,6 min como 6 min; com 6 min sobraria 0,1³ = 0,001."
+   },
+   "armadilha": "Parar no 0,6 sem lembrar que o t está em minutos: 0,6 min = 36 s.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O tempo para as bactérias caírem à metade.",
+    "chave": "0,1^(t/2) = 1/2 dá (t/2) · log₂ 10 = 1, logo t = 0,6 min.",
+    "cuidado": "Converta minutos decimais em segundos multiplicando por 60."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "log na base 10",
+    "ideia": "Com log comum: (t/2)(−1) = −log 2 ≈ −0,3, então t ≈ 0,6 min; 3/10 é o mesmo que 1/log₂ 10."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "0,1^(t/2) = 1/2",
+    "nota": "metade"
+   },
+   {
+    "linha": "(t/2) · (−log₂ 10) = −1",
+    "nota": "log₂ dos dois lados"
+   },
+   {
+    "linha": "(t/2) · 10/3 = 1",
+    "nota": "log₂ 10 ≈ 10/3"
+   },
+   {
+    "linha": "t/2 = 3/10",
+    "nota": "o 10/3 vai dividindo"
+   },
+   {
+    "linha": "t = 2 × 3/10",
+    "nota": "o 2 vai multiplicando"
+   },
+   {
+    "linha": "t = 0,6",
+    "nota": "minutos"
+   },
+   {
+    "linha": "0,6 × 60 = 36",
+    "nota": "segundos"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0058"
+  }
  }
 }

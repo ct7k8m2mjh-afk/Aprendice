@@ -487,5 +487,266 @@
    "data": "2026-11-13",
    "lote": "mat-0056"
   }
+ },
+ "Pba5a45cf": {
+  "n": "20",
+  "conceito": "Soma de logaritmos que se cancela em cadeia (soma telescópica) e equação log A = 1.",
+  "equivocos": {
+   "A": "M06.3:nao-cancelou-o-produto",
+   "B": "M06.3:nao-cancelou-o-produto",
+   "D": "M06.3:manteve-raiz-fora-do-dominio",
+   "E": "M06.3:nao-testou-o-menor-valor"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Soma de logaritmos vira o logaritmo do produto. Escrevendo o produto das frações, quase tudo se cancela: cada numerador reaparece como denominador duas frações depois. Sobra uma expressão simples em n, e f(n) = 1 na base 10 quer dizer que esse produto vale 10.",
+    "formulas": [
+     "log a + log b = log (a × b)",
+     "log A = 1 (base 10) ⇔ A = 10"
+    ],
+    "simbolos": [
+     [
+      "log",
+      "logaritmo na base 10"
+     ],
+     [
+      "X",
+      "domínio da função: os inteiros a partir de 3"
+     ],
+     [
+      "f(n)",
+      "soma dos logaritmos até a fração (n + 2)/n"
+     ]
+    ]
+   },
+   "pista": "Junte todos os logaritmos num só e escreva o produto das frações por extenso: veja o que se cancela.",
+   "passos": [
+    {
+     "faz": "Junte a soma num só logaritmo",
+     "conta": "f(n) = log (3/1 × 4/2 × 5/3 × … × (n + 2)/n)",
+     "porque": "Soma de logaritmos na mesma base é o logaritmo do produto.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Cancele numeradores e denominadores",
+     "conta": "3 × 4 × 5 × … × (n + 2) ÷ (1 × 2 × 3 × … × n) = ((n + 1)(n + 2))/2",
+     "porque": "Os fatores de 3 até n aparecem em cima e embaixo e se cancelam; sobram (n + 1)(n + 2) em cima e 1 × 2 embaixo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Iguale o produto a 10",
+     "conta": "((n + 1)(n + 2))/2 = 10 → (n + 1)(n + 2) = 10 × 2 = 20",
+     "porque": "f(n) = 1 na base 10 significa que o logaritmando é 10¹ = 10. O 2 que divide passa multiplicando.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva e confira o domínio",
+     "conta": "(n + 1)(n + 2) = 20 → n² + 3n − 18 = 0 → n = 3 ou n = −6",
+     "porque": "Só n = 3 pertence a X; −6 não está no domínio, então há um único valor.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "n = 3 → alternativa C",
+     "porque": "Existe exatamente um n em X, e ele é 3.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — n = 3",
+   "checagem": "Substitua n = 3 direto na soma: log 3 + log 2 + log (5/3) = log (3 × 2 × 5/3) = log 10 = 1. Fecha.",
+   "erradas": {
+    "A": "5 não confere: com n = 5 o produto é (6 × 7)/2 = 21, e log 21 ≈ 1,32, não 1.",
+    "B": "4 não confere: com n = 4 o produto é (5 × 6)/2 = 15, e log 15 ≈ 1,18, não 1.",
+    "D": "D sai de contar a raiz n = −6 da equação n² + 3n − 18 = 0; ela não pertence a X = {3, 4, 5, …}.",
+    "E": "E não confere: n = 3 está em X e dá f(3) = log 10 = 1."
+   },
+   "armadilha": "Somar as frações em vez de multiplicá-las: soma de logaritmos é logaritmo do produto.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O n em X para o qual a soma dos logaritmos vale 1.",
+    "chave": "O produto das frações é telescópico e vale ((n + 1)(n + 2))/2; igualado a 10, dá n = 3.",
+    "cuidado": "Descarte a raiz negativa: ela não está no domínio."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste direto",
+    "ideia": "Comece pelo menor n de X: f(3) = log (3 × 2 × 5/3) = log 10 = 1, e f cresce, então só n = 3 serve."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "f(n) = log (3/1 × 4/2 × … × (n + 2)/n)",
+    "nota": "soma de logs vira log do produto"
+   },
+   {
+    "linha": "f(n) = log (((n + 1)(n + 2))/2)",
+    "nota": "os fatores do meio se cancelam"
+   },
+   {
+    "linha": "((n + 1)(n + 2))/2 = 10",
+    "nota": "log A = 1 ⇔ A = 10"
+   },
+   {
+    "linha": "(n + 1)(n + 2) = 10 × 2",
+    "nota": "o 2 que divide passa multiplicando"
+   },
+   {
+    "linha": "(n + 1)(n + 2) = 20",
+    "nota": "4 × 5 = 20, logo n + 1 = 4"
+   },
+   {
+    "linha": "n = 3",
+    "nota": "−6 está fora de X"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0058"
+  },
+  "gabarito_aprendice": {
+   "letra": "C",
+   "letra_conferente": "C",
+   "preliminar": "C",
+   "fontes_web": [],
+   "data": "2026-11-13",
+   "lote": "mat-0058"
+  }
+ },
+ "P17552d28": {
+  "n": "22",
+  "conceito": "Domínio com raiz no denominador: inequação exponencial resolvida por troca de variável.",
+  "equivocos": {
+   "A": "M06.4:raiz-errada-do-trinomio",
+   "B": "M06.4:raiz-errada-do-trinomio",
+   "D": "M06.4:raiz-errada-do-trinomio",
+   "E": "M06.4:igualou-produto-em-vez-da-raiz"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A raiz está no denominador, então o radicando tem de ser estritamente positivo. Chamando 10ˣ de y, ele vira um trinômio do 2.º grau em y, com raízes 2 e m. O domínio dado mostra 10ˣ fora do intervalo entre 2 e 3, e isso entrega m.",
+    "formulas": [
+     "y = 10ˣ, então 10^(2x) = y²",
+     "y² − (m + 2)y + 2m = (y − 2)(y − m)",
+     "x < log 2 ⇔ 10ˣ < 2"
+    ],
+    "simbolos": [
+     [
+      "Df",
+      "domínio da função"
+     ],
+     [
+      "log",
+      "logaritmo na base 10"
+     ],
+     [
+      "y",
+      "variável auxiliar 10ˣ"
+     ]
+    ]
+   },
+   "pista": "Troque 10ˣ por uma letra e fatore o trinômio que aparece.",
+   "passos": [
+    {
+     "faz": "Escreva a condição de existência",
+     "conta": "10^(2x) − (m + 2)·10ˣ + 2m > 0",
+     "porque": "Raiz quadrada no denominador: o radicando não pode ser negativo nem zero.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Troque 10ˣ por y e fatore",
+     "conta": "y² − (m + 2)y + 2m = (y − 2)(y − m) > 0",
+     "porque": "Soma das raízes m + 2 e produto 2m: as raízes são 2 e m.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Traduza o domínio dado para y",
+     "conta": "x < log 2 ⇔ y < 2 | x > log 3 ⇔ y > 3",
+     "porque": "10ˣ é crescente, então log 2 e log 3 viram 2 e 3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare as raízes",
+     "conta": "(y − 2)(y − m) > 0 ⇔ y < 2 ou y > m → m = 3",
+     "porque": "O produto é positivo fora das raízes; a raiz maior tem de ser 3.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "m = 3 → alternativa C",
+     "porque": "Com m = 3 o domínio fica exatamente (−∞, log 2) ∪ (log 3, +∞).",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — m = 3",
+   "checagem": "Substitua m = 3: 10^(2x) − 5·10ˣ + 6 = (10ˣ − 2)(10ˣ − 3), que se anula em x = log 2 e x = log 3 e é positivo fora desse intervalo. Fecha.",
+   "erradas": {
+    "A": "m = 1 não confere: as raízes seriam y = 1 e y = 2, e o domínio ficaria (−∞, 0) ∪ (log 2, +∞).",
+    "B": "m = 2 não confere: (y − 2)² > 0 vale para todo y ≠ 2, e o domínio seria ℝ menos o ponto log 2.",
+    "D": "m = 4 não confere: o domínio seria (−∞, log 2) ∪ (log 4, +∞).",
+    "E": "m = 6 sai de tomar m como o produto das raízes 2 × 3 = 6, confundindo m com o termo independente 2m; com m = 6 o domínio seria (−∞, log 2) ∪ (log 6, +∞)."
+   },
+   "armadilha": "Ver log 2 e log 3 e esquecer que, em y = 10ˣ, eles valem 2 e 3: as raízes do trinômio são 2 e m.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O m que faz o domínio ser (−∞, log 2) ∪ (log 3, +∞).",
+    "chave": "Com y = 10ˣ, o radicando é (y − 2)(y − m), positivo fora de [2, m]; logo m = 3.",
+    "cuidado": "O radicando no denominador precisa ser maior que zero, não só maior ou igual."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "soma e produto",
+    "ideia": "As raízes em y precisam ser 2 e 3: soma m + 2 = 5 e produto 2m = 6, as duas dão m = 3."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "10^(2x) − (m + 2)·10ˣ + 2m > 0",
+    "nota": "radicando positivo"
+   },
+   {
+    "linha": "y² − (m + 2)y + 2m > 0",
+    "nota": "y = 10ˣ"
+   },
+   {
+    "linha": "(y − 2)(y − m) > 0",
+    "nota": "raízes 2 e m"
+   },
+   {
+    "linha": "y < 2 ou y > 3",
+    "nota": "domínio dado, com 10^(log 2) = 2 e 10^(log 3) = 3"
+   },
+   {
+    "linha": "m = 3",
+    "nota": "a outra raiz é 3"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0058"
+  },
+  "gabarito_aprendice": {
+   "letra": "C",
+   "letra_conferente": "C",
+   "preliminar": "C",
+   "fontes_web": [],
+   "data": "2026-11-13",
+   "lote": "mat-0058"
+  }
  }
 }

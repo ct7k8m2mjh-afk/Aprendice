@@ -104,5 +104,199 @@
    "data": "2026-11-13",
    "lote": "mat-0050"
   }
+ },
+ "P36b295be": {
+  "n": "38",
+  "conceito": "Aumentos percentuais sucessivos: fator 1,12 aplicado 4 vezes.",
+  "equivocos": {
+   "A": "M06.5:diferenca-absoluta-como-porcentagem",
+   "B": "M06.5:aumentos-somados",
+   "D": "M06.5:valor-final-como-porcentagem"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Aumento de 12% sobre a semana anterior é multiplicar por 1,12 a cada semana. Após 4 semanas o fator acumulado é 1,12⁴, e o aumento percentual é esse fator menos 1. Aumentos sucessivos multiplicam, não somam.",
+    "formulas": [
+     "aumento de 12% = fator 1,12",
+     "aumento total = 1,12⁴ − 1"
+    ],
+    "simbolos": [
+     [
+      "1,12",
+      "fator semanal de aumento"
+     ]
+    ]
+   },
+   "pista": "Transforme o aumento em fator e multiplique semana a semana.",
+   "passos": [
+    {
+     "faz": "Escreva o fator semanal",
+     "conta": "aumento de 12% → fator 1,12",
+     "porque": "Cada semana é a anterior mais 12% dela.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Acumule 4 semanas",
+     "conta": "1,12² = 1,2544 | 1,12⁴ = 1,2544² ≈ 1,5735",
+     "porque": "O fator se aplica sobre o valor da vez, então multiplica.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Aplique à dose",
+     "conta": "50 × 1,5735 ≈ 78,68 mg",
+     "porque": "Dose depois de 4 aumentos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o aumento percentual",
+     "conta": "1,5735 − 1 = 0,5735 ≈ 57,35% → alternativa C",
+     "porque": "O aumento é o fator menos 1; a alternativa C traz aproximadamente 57,36%.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — aproximadamente 57,36% maior",
+   "checagem": "Pela diferença em mg, semana a semana: 50 → 56 → 62,72 → 70,25 → 78,68 mg; (78,68 − 50)/50 = 28,68/50 ≈ 0,5736, o mesmo aumento de cerca de 57%. Fecha.",
+   "erradas": {
+    "A": "28,68% sai de pegar o aumento em miligramas, 78,68 − 50 = 28,68 mg, e ler como porcentagem.",
+    "B": "Exatamente 48% sai de somar os aumentos: 4 × 12% = 48%, como se fossem lineares.",
+    "D": "Exatamente 78,68% sai de ler a dose final, 78,68 mg, como porcentagem; além disso 1,12⁴ não é exato com duas casas."
+   },
+   "armadilha": "Somar 12% quatro vezes (48%): cada aumento incide sobre a dose já aumentada.",
+   "alerta": "A conta exata dá 1,12⁴ − 1 = 0,57351936, ou 57,35%; a banca escreveu 'aproximadamente 57,36%', que sai de arredondar antes a dose para 78,68 mg (28,68 ÷ 50 = 0,5736). A diferença é só de arredondamento e a alternativa C é a única coerente com a conta. A leitura 'após 4 semanas' = 4 aumentos sobre a dose inicial é a da banca.",
+   "essencial": {
+    "pede": "Quanto por cento a dose após 4 semanas é maior que a inicial.",
+    "chave": "1,12⁴ ≈ 1,5735, aumento de cerca de 57,35%.",
+    "cuidado": "Aumentos sucessivos multiplicam; aumento é fator menos 1."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "em miligramas",
+    "ideia": "50 → 56 → 62,72 → 70,25 → 78,68 mg; aumento de 28,68 mg sobre 50 mg ≈ 57,4%."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "fator = 1,12⁴",
+    "nota": "4 aumentos de 12%"
+   },
+   {
+    "linha": "1,12² = 1,2544",
+    "nota": "duas semanas"
+   },
+   {
+    "linha": "1,2544² ≈ 1,5735",
+    "nota": "quatro semanas"
+   },
+   {
+    "linha": "1,5735 − 1 = 0,5735",
+    "nota": "aumento"
+   },
+   {
+    "linha": "≈ 57,35%",
+    "nota": "alternativa C"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0058"
+  }
+ },
+ "P15be0a68": {
+  "n": "42",
+  "conceito": "Meia-vida: contar quantas metades cabem no tempo dado.",
+  "equivocos": {
+   "A": "M06.5:decaimento-linear",
+   "C": "M06.5:numero-de-meias-vidas-errado",
+   "D": "M06.5:dividiu-pelo-numero-de-meias-vidas"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Meia-vida de 6 horas: a cada 6 horas a quantidade cai pela metade. Em 24 horas cabem 4 meias-vidas, então o percentual é 100% dividido por 2 quatro vezes.",
+    "formulas": [
+     "número de meias-vidas = tempo ÷ meia-vida",
+     "restante = 100% × (1/2)ⁿ"
+    ],
+    "simbolos": [
+     [
+      "n",
+      "número de meias-vidas"
+     ]
+    ]
+   },
+   "pista": "Quantas vezes 6 horas cabem em 24 horas?",
+   "passos": [
+    {
+     "faz": "Conte as meias-vidas",
+     "conta": "n = 24 ÷ 6 = 4",
+     "porque": "Cada 6 horas é uma metade.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Aplique as metades",
+     "conta": "100% × (1/2)⁴ = 100%/16 = 6,25%",
+     "porque": "Quatro metades seguidas é dividir por 16.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "6,25% → alternativa B",
+     "porque": "É o que resta após 24 horas.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 6,25%",
+   "checagem": "Passo a passo: 100% → 50% (6 h) → 25% (12 h) → 12,5% (18 h) → 6,25% (24 h). Fecha.",
+   "erradas": {
+    "A": "0% sai de pensar que 4 × 25% = 100% foi eliminado; a meia-vida corta pela metade o que resta, então nunca zera.",
+    "C": "12,5% sai de parar em 3 meias-vidas (18 horas).",
+    "D": "25% sai de parar em 2 meias-vidas (12 horas), ou de fazer 100% ÷ 4."
+   },
+   "armadilha": "Dividir 100% por 4 (número de meias-vidas) em vez de dividir por 2 quatro vezes.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O percentual de remédio no sangue após 24 horas.",
+    "chave": "24 ÷ 6 = 4 meias-vidas: 100% ÷ 2⁴ = 6,25%.",
+    "cuidado": "Cada metade é do que resta, não do inicial."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "fórmula",
+    "ideia": "P = 100% · (1/2)^(24/6) = 100% · (1/2)⁴ = 6,25%."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "n = 24 ÷ 6 = 4",
+    "nota": "meias-vidas"
+   },
+   {
+    "linha": "100% × (1/2)⁴",
+    "nota": "quatro metades"
+   },
+   {
+    "linha": "100%/16 = 6,25%",
+    "nota": "resultado"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0058"
+  }
  }
 }

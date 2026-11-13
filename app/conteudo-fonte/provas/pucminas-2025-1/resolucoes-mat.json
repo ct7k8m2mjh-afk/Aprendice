@@ -190,5 +190,129 @@
    "data": "2026-11-13",
    "lote": "mat-0053"
   }
+ },
+ "P9e2ab0de": {
+  "n": "41",
+  "conceito": "Lei de resfriamento de Newton: achar C e B por dois instantes e resolver a equação exponencial.",
+  "equivocos": {
+   "A": "M06.5:queda-linear",
+   "B": "M06.5:conta-errada-do-expoente",
+   "D": "M06.5:conta-errada-do-expoente"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Conte o tempo a partir das 12 horas, em minutos. Em t = 0 o termo Bᵗ vale 1, então C é a diferença inicial entre o corpo e a sala. O segundo dado dá B. A pergunta pede o horário, não só o t.",
+    "formulas": [
+     "T(t) = Tₐ + C · Bᵗ",
+     "B⁰ = 1"
+    ],
+    "simbolos": [
+     [
+      "Tₐ",
+      "temperatura ambiente, 32 ºC"
+     ],
+     [
+      "C, B",
+      "constantes do modelo"
+     ],
+     [
+      "t",
+      "minutos desde as 12 horas"
+     ]
+    ]
+   },
+   "pista": "Use t = 0 às 12 horas: o que sobra de C · Bᵗ nesse instante?",
+   "passos": [
+    {
+     "faz": "Ache C em t = 0",
+     "conta": "36 = 32 + C · B⁰ → C = 36 − 32 = 4",
+     "porque": "B⁰ = 1, e o 32 troca de lado e de sinal.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache B em t = 1",
+     "conta": "34 = 32 + 4B → 4B = 2 → B = 2/4 = 1/2",
+     "porque": "O 4 que multiplica vai dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Iguale a 33 ºC",
+     "conta": "33 = 32 + 4 · (1/2)ᵗ → 4 · (1/2)ᵗ = 1 → (1/2)ᵗ = 1/4",
+     "porque": "O 32 passa subtraindo e o 4 passa dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva e volte ao relógio",
+     "conta": "(1/2)ᵗ = (1/2)² → t = 2 min → 12 h 2 min",
+     "porque": "Bases iguais, expoentes iguais. O t conta minutos a partir das 12 horas.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — às 12 horas e 2 minutos",
+   "checagem": "A diferença para a sala cai pela metade a cada minuto: 4 ºC (12h00) → 2 ºC (12h01) → 1 ºC (12h02). Diferença de 1 ºC é 33 ºC. Fecha.",
+   "erradas": {
+    "A": "12 h 1 min 30 s sai de supor queda linear de 2 ºC por minuto: 36 − 2t = 33 dá t = 1,5 min. No modelo, quem cai pela metade a cada minuto é a diferença para a sala.",
+    "B": "12 h 2 min 30 s não confere: em t = 2,5 a diferença seria 4 · (1/2)^2,5 ≈ 0,71 ºC, ou 32,71 ºC.",
+    "D": "12 h 3 min não confere: em t = 3 a diferença é 4 · (1/2)³ = 0,5 ºC, ou 32,5 ºC."
+   },
+   "armadilha": "Pensar que a temperatura cai sempre 2 ºC por minuto: quem cai pela metade é a diferença em relação à sala.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O horário em que o corpo chega a 33 ºC.",
+    "chave": "C = 4 e B = 1/2; então 4 · (1/2)ᵗ = 1 dá t = 2 min.",
+    "cuidado": "O modelo vale para a diferença até 32 ºC, não para a temperatura toda."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "diferença para a sala",
+    "ideia": "Acompanhe só a diferença T − 32: 4, 2, 1 ºC; ela chega a 1 ºC (33 ºC) no minuto 2."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "36 = 32 + C",
+    "nota": "t = 0"
+   },
+   {
+    "linha": "C = 36 − 32 = 4",
+    "nota": "o 32 troca de lado"
+   },
+   {
+    "linha": "34 = 32 + 4B → 4B = 2",
+    "nota": "t = 1"
+   },
+   {
+    "linha": "B = 2/4 = 1/2",
+    "nota": "o 4 vai dividindo"
+   },
+   {
+    "linha": "33 = 32 + 4 · (1/2)ᵗ",
+    "nota": "33 ºC"
+   },
+   {
+    "linha": "4 · (1/2)ᵗ = 33 − 32",
+    "nota": "o 32 troca de lado"
+   },
+   {
+    "linha": "(1/2)ᵗ = 1/4",
+    "nota": "o 4 vai dividindo"
+   },
+   {
+    "linha": "t = 2",
+    "nota": "minutos: 12 h 2 min"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0058"
+  }
  }
 }

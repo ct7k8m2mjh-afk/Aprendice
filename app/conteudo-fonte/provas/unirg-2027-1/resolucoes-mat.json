@@ -212,5 +212,140 @@
    "data": "2026-11-13",
    "lote": "mat-0054"
   }
+ },
+ "Pfdfd8ceb": {
+  "n": "41",
+  "conceito": "Taxa de eliminação a partir da meia-vida e tempo para chegar a 12,5%.",
+  "equivocos": {
+   "B": "M06.5:meia-vida-errada",
+   "C": "M06.5:numero-de-meias-vidas-errado",
+   "D": "M06.5:meia-vida-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Na meia-vida, e^(−k · 6) = 1/2, então k = ln 2 ÷ 6. Já 12,5% é 1/8 = (1/2)³: três meias-vidas, sem precisar de log nenhum.",
+    "formulas": [
+     "C(t) = C₀ · e^(−kt)",
+     "k = ln 2 ÷ t₁/₂",
+     "12,5% = 1/8 = (1/2)³"
+    ],
+    "simbolos": [
+     [
+      "k",
+      "taxa de eliminação, em h⁻¹"
+     ],
+     [
+      "t₁/₂",
+      "meia-vida, 6 horas"
+     ],
+     [
+      "t_f",
+      "instante da nova dose"
+     ],
+     [
+      "ln",
+      "logaritmo na base e"
+     ]
+    ]
+   },
+   "pista": "Comece pela meia-vida para achar k e escreva 12,5% como fração.",
+   "passos": [
+    {
+     "faz": "Iguale a meia-vida",
+     "conta": "e^(−6k) = 1/2 → 6k = ln 2",
+     "porque": "Em t = 6 h a concentração é a metade; aplicando ln, −6k = −ln 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule k",
+     "conta": "6k = 0,69 → k = 0,69/6 = 0,115 h⁻¹",
+     "porque": "O 6 que multiplica vai dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escreva 12,5% em metades",
+     "conta": "12,5% = 1/8 = (1/2)³",
+     "porque": "Três metades seguidas: 100 → 50 → 25 → 12,5%.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule t_f",
+     "conta": "t_f = 3 × 6 = 18 h",
+     "porque": "Três meias-vidas de 6 horas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "k ≈ 0,115 h⁻¹ e t_f = 18 h → alternativa A",
+     "porque": "Os dois valores aparecem juntos só na A.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — k ≈ 0,115 h⁻¹ e t_f = 18 h",
+   "checagem": "Pela fórmula: t_f = ln 8 ÷ k = 3 × 0,69 ÷ 0,115 = 2,07 ÷ 0,115 = 18 h. Fecha.",
+   "erradas": {
+    "B": "k ≈ 0,230 e 12 h sai de usar 3 horas como meia-vida (0,69/3 = 0,23) ou de contar só 2 meias-vidas (25%, não 12,5%).",
+    "C": "k certo, mas 24 h são 4 meias-vidas: sobrariam 6,25%, não 12,5%.",
+    "D": "k ≈ 0,057 sai de dividir ln 2 por 12 em vez de 6; com esse k, 18 h não dariam 12,5%."
+   },
+   "armadilha": "Contar errado as meias-vidas: 12,5% é 1/8, três metades, e não quatro.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A taxa k e o tempo até 12,5% da concentração inicial.",
+    "chave": "k = ln 2/6 ≈ 0,115 h⁻¹; 12,5% = (1/2)³, logo t_f = 18 h.",
+    "cuidado": "Conte as metades: 50%, 25%, 12,5%."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "log direto",
+    "ideia": "e^(−kt) = 1/8 dá t = 3 ln 2/k = 3 × 6 = 18 h, pois ln 2/k = 6."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "e^(−6k) = 1/2",
+    "nota": "meia-vida"
+   },
+   {
+    "linha": "6k = 0,69",
+    "nota": "ln 2 ≈ 0,69"
+   },
+   {
+    "linha": "k = 0,69/6",
+    "nota": "o 6 vai dividindo"
+   },
+   {
+    "linha": "k = 0,115",
+    "nota": "h⁻¹"
+   },
+   {
+    "linha": "12,5% = (1/2)³",
+    "nota": "três metades"
+   },
+   {
+    "linha": "t_f = 3 × 6 = 18",
+    "nota": "horas"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0058"
+  },
+  "gabarito_aprendice": {
+   "letra": "A",
+   "letra_conferente": "A",
+   "preliminar": "A",
+   "fontes_web": [],
+   "data": "2026-11-13",
+   "lote": "mat-0058"
+  }
  }
 }
