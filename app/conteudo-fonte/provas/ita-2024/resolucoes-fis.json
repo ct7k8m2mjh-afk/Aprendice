@@ -1,0 +1,122 @@
+{
+ "Pba12107e": {
+  "n": "1",
+  "conceito": "Leitura de curvas de calibração e energia cinética: converter contagens em tempo, distância e massa.",
+  "equivocos": {
+   "A": "F01.2:unidades-nao-convertidas",
+   "B": "F01.2:unidades-nao-convertidas",
+   "C": "F01.2:esquece-fator-2",
+   "E": "F01.2:leitura-de-grafico-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada equipamento tem uma curva que transforma contagem em grandeza. Tempo: reta pela origem com 5 contagens em 10 s, então E_t = t/2. Comprimento: reta de 10 contagens (em 0 cm) a 0 (em 10 cm), então E_c = 10 − x. Massa: a curva passa por 3 contagens em 5 g.",
+    "formulas": [
+     "E_c = mv²/2",
+     "v = Δx/Δt"
+    ],
+    "simbolos": [
+     [
+      "E_m = 3",
+      "massa"
+     ],
+     [
+      "E_c: 6 e 2",
+      "posições"
+     ],
+     [
+      "E_t: 0 a 1",
+      "tempo"
+     ]
+    ]
+   },
+   "pista": "Converta cada contagem em tempo, posição e massa pelas curvas antes de calcular.",
+   "passos": [
+    {
+     "faz": "Tempo",
+     "conta": "E_t = t/2 → 0 a 1 contagem = 0 a 2 s",
+     "porque": "Reta pela origem.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Distância",
+     "conta": "E_c = 10 − x → 6 ↔ 4 cm, 2 ↔ 8 cm → Δx = 4 cm = 0,04 m",
+     "porque": "Reta decrescente.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Velocidade e massa",
+     "conta": "v = 0,04/2 = 0,02 m/s ; E_m = 3 ↔ m = 5 g = 5 × 10⁻³ kg",
+     "porque": "MRU; curva da massa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Energia",
+     "conta": "E = (5 × 10⁻³ · 0,02²)/2 = 1,0 × 10⁻⁶ J",
+     "porque": "mv²/2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "1,0 µJ",
+     "porque": "Alternativa D.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 1,0 µJ.",
+   "checagem": "Em outras unidades: com m = 5 g e v = 2 cm/s, mv²/2 = (5 · 4)/2 = 10 g·cm²/s² = 10 erg; como 1 erg = 10⁻⁷ J, são 10⁻⁶ J = 1,0 µJ.",
+   "erradas": {
+    "A": "Sai de usar g e cm/s sem converter e esquecer o 2: 5 · 2² = 20.",
+    "B": "Sai de usar g e cm/s sem converter para o SI: (5 · 2²)/2 = 10.",
+    "C": "Sai de esquecer o 2 da energia cinética: 5 × 10⁻³ · 0,02² = 2,0 × 10⁻⁶ J.",
+    "E": "Não confere: 0,75 µJ exigiria m = 3,75 g, e a curva dá 5 g para 3 contagens."
+   },
+   "armadilha": "Usar a contagem diretamente como se fosse a grandeza, sem passar pela curva.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A energia cinética da partícula.",
+    "chave": "t = 2 s, Δx = 4 cm, m = 5 g: mv²/2 = 1,0 µJ.",
+    "cuidado": "Converter contagens e unidades antes."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "SI",
+    "ideia": "Converter tudo para kg, m e s e calcular."
+   },
+   {
+    "nome": "CGS",
+    "ideia": "Calcular em erg e converter para joule."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "t = 2 s ; Δx = 8 − 4 = 4 cm",
+    "nota": "curvas de tempo e comprimento"
+   },
+   {
+    "linha": "v = 0,04/2 = 0,02 m/s ; m = 5 g",
+    "nota": "MRU e curva da massa"
+   },
+   {
+    "linha": "E = (5 × 10⁻³ · 0,02²)/2",
+    "nota": "energia cinética"
+   },
+   {
+    "linha": "E = 1,0 × 10⁻⁶ J = 1,0 µJ",
+    "nota": "alternativa D"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "fis-0042"
+  }
+ }
+}
