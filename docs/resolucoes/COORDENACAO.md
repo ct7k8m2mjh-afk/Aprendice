@@ -35,7 +35,7 @@ Ao abrir: extra_allowed_tools = ["Bash","Edit","Write","Read","Glob","Grep","Age
 | Matéria | Sessão | Situação |
 |---|---|---|
 | Matemática | session_01PveEKXeWuGGwuP9KHSuc9N | trabalhando (Matemática 3, aberta 13/11 01h40; Matemática 2 session_01PveEKX177vB2BRfF6zV6S5 mandou TROCA após mat-0053: pode arquivar) |
-| Física | session_01PveEKYTfpdPfG8PfUEbE3Q | trabalhando (aberta 13/11 01h28; antiga session_01PveEKaLLM5an4P4mkWzqv3 mandou TROCA após fis-0043: pode arquivar) |
+| Física | session_01PveEKXmCjqipC4JbNj9w73 | trabalhando (Física 3, aberta 13/11 02h03; Física 2 session_01PveEKYTfpdPfG8PfUEbE3Q mandou TROCA após fis-0046: pode arquivar) |
 | Química | session_01PveEKXnC2DKmBd64gp3Zn3 | trabalhando (aberta 13/11 01h14; antiga session_01PveEKXEZ197XmbuWmKkDPw mandou TROCA após qui-0039: pode arquivar) |
 | Biologia | session_01PveEKaZX71znbULe85ap8G | 21 lotes (bio-0021 a 0045): mandada gravar e mandar TROCA (13/11 01h35) |
 | Português | session_01PveEKaBDR2WGsLQUacMYFY | trabalhando (Português 3, aberta 13/11 01h38; Português 2 session_01PveEKaTKHh9kRmYcfPdmUA mandou TROCA após por-0079: pode arquivar) |
@@ -59,11 +59,18 @@ session_01PveEKb4hnDGKRb7Gtd9hCr. A coordenadora antiga é session_01PveEKWW3t7Z
   Português (13/11): para Artes P82bbfc0a; para Filosofia e Sociologia Pd8a099e2, P2e17d217; gramática resolvida em P01.2
   (Fempar 2021, PUC/Anhembi). Prints P0c8c68ab, P31dcd8ee, Pbddde95d refeitos e liberados (commit 70b34f43). P298602be (UFT 2023/2 q14):
   os dois especialistas deram A, o preliminar da Copese é B: fora do ar até sair o definitivo.
+  Física: P88f37147 (Fema, ITER) pendente: mais de uma afirmativa falsa e depende de fatos fora do texto (ver registro).
   63 pendentes "obra:" (lotes 61-71). FMABC 2022 q16 (Pd7fbdc3f) com nota_gabarito, esperando o dono.
 - Biologia: para Física P3c08d8ee; para Química Pc68c4acb. Dados: P039ae129 (print pega o título "LÍNGUA
   ESTRANGEIRA" e a alternativa E termina com ele); itálico virou ~~riscado~~ no texto_da_prova de Pa582852a, Pd28a6e90,
   P1daa8136, Pff5a68fe, P0bf82481, P2ea30ef7 (nomes científicos). Subtema errado: P372650c4 (é B04.1 ciclo celular), Pfa8485e7
   (é B01.4 organelas), Pd4ba01ad (é B02.5 ácidos nucleicos).
+- Blocos de Educação Física/Artes (UECE q63–67, Unespar) e casos em dúvida, decididos pelo conhecimento que a questão
+  cobra (13/11). 21 foram para outra-materia.json; 14 ficaram onde estão. Reclassificar:
+  Ped354672 (UECE 2025.2 q66, esteroides anabolizantes) → Biologia B08.5; P46105cc7 (UECE 2020.2 q63, comportamento
+  sedentário e dispêndio energético) → Biologia B03.3; P6f6cf8da (UECE 2024.1 q65, gasto energético com a idade) →
+  Biologia B03.3; P4a88f3b0 (UECE 2020.2 q66, bulimia) → Biologia B07.2; P77bfc70e (UECE 2023.1 q64, futebol
+  feminino e desigualdade de gênero) → Filosofia e Sociologia S04.4.
 
 ## Rodada da conferência (a cada 3 horas)
 1. `git pull --rebase --autostash origin app-prototipo-completo`.
