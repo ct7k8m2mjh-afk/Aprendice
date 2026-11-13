@@ -1,6 +1,6 @@
 # Português: resoluções (gerado por lote.py em 2026-11-13)
 
-Faltam 2317 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 1778; ENEM nível 7-10 53; provas-alvo nível 7-10 225; demais nível 7-10 261.
+Faltam 2287 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 1748; ENEM nível 7-10 53; provas-alvo nível 7-10 225; demais nível 7-10 261.
 
 ## Lotes
 
@@ -80,8 +80,9 @@ Faltam 2317 questões sem resolução (fora as que estão em lote, pendentes ou 
 | por-0072 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | por-0073 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | por-0074 | demais nível 1-6 | 30 | gravado | 30 | 0 | 0 |
-| por-0075 | demais nível 1-6 | 30 | aberto |  |  |  |
+| por-0075 | demais nível 1-6 | 30 | gravado | 28 | 2 | 0 |
 | por-0076 | demais nível 1-6 | 30 | aberto |  |  |  |
+| por-0077 | demais nível 1-6 | 30 | aberto |  |  |  |
 
 ## Pendentes (falta de certeza absoluta)
 
@@ -109,6 +110,8 @@ Faltam 2317 questões sem resolução (fora as que estão em lote, pendentes ou 
 | P52289eb6 | Acafe 2026 Verão · questão 11 | P12.5 literatura contemporânea e autores africanos de língua portuguesa (tema P12 Literatura: Pré-Modernismo em diante) | obra: o poema Andorinhas escrevem no ar derruba C (o eu lírico entende a escrita da andorinha, não a vê como inalcançável) e D (o próprio poema é de versos livres, sem forma clássica), mas escolher entre A (temática central de O Código das Águas: economia verbal e impacto visual) e B (o espírito da Catequese Poética) depende de saber qual é a temática do livro e o que foi a Catequese Poética de Lindolf Bell, que a questão não explica. |
 | P3bd2c3bc | Acafe 2026 Verão · questão 12 | P12.4 Geração de 45 e prosa de ruptura: Guimarães Rosa, Clarice Lispector, João Cabral (tema P12 Literatura: Pré-Modernismo em diante) | obra: as quatro alternativas tratam do enredo e das personagens de Memorial de Maria Moura, de Rachel de Queiroz (questão agrária, liderança de Maria Moura, papéis de gênero, polifonia e visão da protagonista), sem trecho do romance na questão; a eliminação depende da leitura integral. Além disso, Rachel de Queiroz é autora do Modernismo de 30, não da geração de 45 (P12.4). |
 | Pb66a8695 | Acafe 2026 Verão · questão 13 | P01.2 informação explícita × inferência (tema P01 Leitura e compreensão) | O comando pede a alternativa correta "considerando o contexto da obra" O exercício da incerteza, mas a questão traz só uma frase do livro; a alternativa do gabarito (B) fala em estudo contínuo e humanização do paciente, que não se deduzem da frase citada. Resolver exigiria afirmar o conteúdo do livro, que não está na questão. |
+| P0c8c68ab | Fatec 2026 2º semestre · questão 58 | P01.2 informação explícita × inferência (tema P01 Leitura e compreensão) | print: o Texto II (a segunda manchete, com "por falas sexistas") não está no print nem no texto da prova; só aparece o rótulo "Texto II". O print das questões 58 e 59 (fatec-2026-2) tem o mesmo corte. |
+| P31dcd8ee | Fema 2021 Processo Seletivo 2021 · questão 19 | P01.2 informação explícita × inferência (tema P01 Leitura e compreensão) | print: o texto de apoio (a trajetória do escrevente) não está no print 019 nem no texto da prova; o print 018 é de Química. Refazer o print a partir do PDF oficial. |
 | Pfa1a5f21 | Fuvest 2021 1ª fase · questão 34 | P11.1 Barroco e Arcadismo (tema P11 Literatura: do Barroco ao Simbolismo) | classificação: é de Biologia (com História). A estrofe de Os Lusíadas serve só de contexto; o comando pede a doença cujos sintomas Camões descreve, e as alternativas são doenças com agente, transmissão e época (peste bubônica, escorbuto, malária, varíola, leishmaniose). A resposta (escorbuto, gabarito B) depende de reconhecer o quadro clínico da falta de vitamina C (gengivas inchadas que crescem e apodrecem) e o contexto das viagens ultramarinas, conteúdo de Biologia e História, não de Barroco ou Arcadismo. |
 | Pd0bacd15 | Fuvest 2022 1ª fase · questão 19 | P11.3 Realismo e Naturalismo, com Machado de Assis (tema P11 Literatura: do Barroco ao Simbolismo) | obra: a questão pede quais obras da lista da Fuvest têm narrativas paralelas e não traz trecho nenhum. Para decidir entre Quincas Borba, Nove noites, Campo geral, Terra sonâmbula e Angústia, é preciso conhecer a estrutura de cada romance inteiro: quantos fios narrativos há e como eles se alternam. Nem datas nem escolas separam as alternativas. Observação: a classificação em P11.3 só se aplica a Quincas Borba; as outras obras são do século XX ou da literatura africana de língua portuguesa. |
 | P154ccb4a | Fuvest 2024 1ª fase · questão 15 | P12.5 literatura contemporânea e autores africanos de língua portuguesa (tema P12 Literatura: Pré-Modernismo em diante) | obra: a questão pergunta o resultado da rivalidade entre Yaqub e Omar em Dois irmãos, de Milton Hatoum, sem trecho do romance; C (a ida de Nael a São Paulo) e D (a morte de Rânia) são fatos de enredo que só a leitura do livro confirma ou desmente, e a E também depende do desfecho do romance. |
