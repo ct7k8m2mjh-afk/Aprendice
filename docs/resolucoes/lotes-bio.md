@@ -1,6 +1,6 @@
 # Biologia: resoluções (gerado por lote.py em 2026-11-13)
 
-Faltam 1425 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 1222; ENEM nível 7-10 16; provas-alvo nível 7-10 115; demais nível 7-10 72.
+Faltam 1395 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 1192; ENEM nível 7-10 16; provas-alvo nível 7-10 115; demais nível 7-10 72.
 
 ## Lotes
 
@@ -49,12 +49,14 @@ Faltam 1425 questões sem resolução (fora as que estão em lote, pendentes ou 
 | bio-0041 | provas-alvo nível 1-6 | 30 | gravado | 29 | 1 | 0 |
 | bio-0042 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
 | bio-0043 | provas-alvo nível 1-6 | 30 | gravado | 30 | 0 | 0 |
-| bio-0044 | demais nível 1-6 | 30 | aberto |  |  |  |
+| bio-0044 | demais nível 1-6 | 30 | gravado | 29 | 1 | 0 |
+| bio-0045 | demais nível 1-6 | 30 | aberto |  |  |  |
 
 ## Pendentes (falta de certeza absoluta)
 
 | Questão | Prova | Conteúdo | Motivo |
 |---|---|---|---|
+| Pc68c4acb | PUCRS 2023 Verão · questão 37 | B01.2 transporte ativo e vesicular (tema B01 Citologia) | classificação: é de qui (configuração eletrônica dos íons Na⁺ e K⁺; a biologia só aparece no contexto) |
 | Pd59592fa | UECE 2023 2023.1 – 1ª fase · questão 65 | B07.4 coração e as duas circulações (tema B07 Fisiologia humana I) | classificação: é de Educação Física (UECE 2023.1, questão 65: nível de atividade física e gasto calórico), não de Biologia. |
 | P98fb7dec | UECE 2024 2024.2 – 1ª fase · questão 65 | B07.4 coração e as duas circulações (tema B07 Fisiologia humana I) | classificação: é de Educação Física (UECE 2024.2, questão 65: conceito de literacia física), não de Biologia. |
 | P50441003 | UECE 2025 2025.2 – 1ª fase · questão 59 | B08.3 sistema nervoso autônomo e arco reflexo (tema B08 Neuro, hormônios, imune e reprodução) | gabarito preliminar A, mantido pela banca no parecer dos recursos (Comunicado 81/2025 CEV/UECE, https://www.cev.uece.br/wp-content/uploads/2025/05/comunicado81.2025cev.pdf), mas sem gabarito definitivo publicado e com erro conceitual na própria alternativa (chama a rodopsina de neurotransmissor e a liga aos cones); resolvedor e conferente chegam a A só por eliminação; decisão do dono |
