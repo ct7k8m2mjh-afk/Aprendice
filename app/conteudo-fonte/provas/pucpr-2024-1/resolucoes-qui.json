@@ -239,5 +239,114 @@
    "data": "2026-11-13",
    "lote": "qui-0044"
   }
+ },
+ "P62abba79": {
+  "n": "27",
+  "conceito": "Converter uma dose em miligramas em número de moléculas, escolhendo o dado certo do texto.",
+  "equivocos": {
+   "A": "Q04.1:inverteu-massa-e-massa-molar",
+   "B": "Q04.1:usou-a-dose-errada",
+   "D": "Q04.1:inverteu-massa-e-massa-molar",
+   "E": "Q04.1:usou-1-mol"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O texto traz três números de massa: 1,34 mg por mL (da bula), 0,25 mg por semana (início do tratamento) e 1 mg por semana (dose cheia). A pergunta é sobre o paciente NO INÍCIO do tratamento: vale 0,25 mg por semana. O resto é linha do mol: mg → g → mol → moléculas.",
+    "formulas": [
+     "quantidade (mol) = massa (g) ÷ massa molar",
+     "moléculas = mol × 6,02 × 10^23",
+     "1 mg = 10^−3 g"
+    ],
+    "simbolos": [
+     [
+      "semaglutida",
+      "princípio ativo do Ozempic, massa molar 4114 g/mol (dado)"
+     ],
+     [
+      "constante de Avogadro",
+      "6,02 × 10^23 entidades por mol"
+     ]
+    ]
+   },
+   "pista": "Volte ao texto e ache a dose semanal de quem está começando o tratamento.",
+   "passos": [
+    {
+     "faz": "Localize a dose do início",
+     "conta": "\"A pessoa pode começar usando 0,25mg por semana\"",
+     "porque": "O comando pede quem \"se encontra no início do tratamento\"; os 1,34 mg/mL e o 1 mg são distrações.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Converta mg em g",
+     "conta": "0,25 mg = 0,25 × 10^−3 g = 2,5 × 10^−4 g",
+     "porque": "A massa molar está em g/mol.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Passe para mol",
+     "conta": "2,5 × 10^−4 g ÷ 4114 g/mol ≈ 6,08 × 10^−8 mol",
+     "porque": "Mol é a ponte entre massa e número de moléculas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique por Avogadro",
+     "conta": "6,08 × 10^−8 × 6,02 × 10^23 ≈ 3,66 × 10^16 moléculas",
+     "porque": "Cada mol tem 6,02 × 10^23 moléculas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare com as alternativas",
+     "conta": "≈ 3,7 × 10^16 → 3,6 × 10^16",
+     "porque": "A alternativa C é o mesmo valor, arredondado.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — aproximadamente 3,6 × 10^16 moléculas de semaglutida por semana.",
+   "checagem": "Ordem de grandeza: a massa molar é cerca de 4 × 10^3 g/mol, então 2,5 × 10^−4 g são uns 6 × 10^−8 mol; vezes 6 × 10^23 dá uns 3,6 × 10^16. Fecha.",
+   "erradas": {
+    "A": "A sai de inverter a divisão: 4114 × 6,02 × 10^23 ÷ (0,25 × 10^−3) ≈ 9,9 × 10^30. Massa molar dividida por massa nem dá mol.",
+    "B": "B sai de usar a dose cheia de 1 mg: 10^−3 ÷ 4114 × 6,02 × 10^23 ≈ 1,46 × 10^17, quatro vezes C; não é a dose do início.",
+    "D": "D sai de inverter a divisão com a dose de 1 mg: 4114 × 6,02 × 10^23 ÷ 10^−3 ≈ 2,48 × 10^30.",
+    "E": "E não confere: 6,0 × 10^23 moléculas são 1 mol, ou 4114 g de semaglutida, e a dose é de 0,25 mg."
+   },
+   "armadilha": "Três números de massa no texto: o do início do tratamento é 0,25 mg por semana, não 1 mg nem 1,34 mg/mL.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantas moléculas de semaglutida o paciente no início do tratamento recebe por semana.",
+    "chave": "0,25 mg = 2,5 × 10^−4 g ÷ 4114 g/mol ≈ 6,08 × 10^−8 mol × 6,02 × 10^23 ≈ 3,6 × 10^16.",
+    "cuidado": "Usar a dose do início e dividir a massa pela massa molar, nunca o contrário."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "regra de três",
+    "ideia": "4114 g ↔ 6,02 × 10^23 moléculas; 2,5 × 10^−4 g ↔ x, logo x ≈ 3,66 × 10^16."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "0,25 mg = 2,5 × 10^−4 g",
+    "nota": "miligrama em grama"
+   },
+   {
+    "linha": "2,5 × 10^−4 ÷ 4114 ≈ 6,08 × 10^−8 mol",
+    "nota": "massa em mol"
+   },
+   {
+    "linha": "6,08 × 10^−8 × 6,02 × 10^23 ≈ 3,66 × 10^16",
+    "nota": "mol em moléculas"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "qui-0050"
+  }
  }
 }
